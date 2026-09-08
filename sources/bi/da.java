@@ -29,36 +29,36 @@ public final class da extends View implements org.telegram.ui.Cells.z9 {
     public boolean H;
     public ValueAnimator I;
     public final ea J;
-    public final PorterDuffColorFilter f2876a;
-    public boolean f2877b;
-    public final TextPaint f2878c;
+    public final PorterDuffColorFilter f2903a;
+    public boolean f2904b;
+    public final TextPaint f2905c;
     public final TextPaint d;
-    public final Paint f2879e;
-    public final Paint f2880f;
+    public final Paint f2906e;
+    public final Paint f2907f;
     public float h;
-    public float f2881n;
-    public final ca[] f2882r;
-    public int f2883s;
+    public float f2908n;
+    public final ca[] f2909r;
+    public int f2910s;
     public StaticLayout v;
-    public float f2884w;
-    public boolean f2885x;
-    public final boolean f2886y;
+    public float f2911w;
+    public boolean f2912x;
+    public final boolean f2913y;
 
     public da(ea eaVar, Context context) {
         super(context);
         this.J = eaVar;
         TextPaint textPaint = new TextPaint(1);
-        this.f2878c = textPaint;
+        this.f2905c = textPaint;
         TextPaint textPaint2 = new TextPaint(1);
         this.d = textPaint2;
         Paint paint = new Paint();
-        this.f2879e = paint;
+        this.f2906e = paint;
         Paint paint2 = new Paint(1);
-        this.f2880f = paint2;
-        this.f2882r = r7;
-        this.f2883s = 0;
+        this.f2907f = paint2;
+        this.f2909r = r7;
+        this.f2910s = 0;
         new Path();
-        this.f2886y = true;
+        this.f2913y = true;
         this.H = false;
         ca[] caVarArr = {new ca(this), null};
         textPaint.setColor(-1);
@@ -72,7 +72,7 @@ public final class da extends View implements org.telegram.ui.Cells.z9 {
         paint.setXfermode(new PorterDuffXfermode(mode));
         paint2.setShader(new LinearGradient(0.0f, 0.0f, AndroidUtilities.dp(16.0f), 0.0f, new int[]{0, -1}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP));
         paint2.setXfermode(new PorterDuffXfermode(mode));
-        this.f2876a = new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN);
+        this.f2903a = new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN);
     }
 
     public static StaticLayout a(da daVar, TextPaint textPaint, CharSequence charSequence, int i10) {
@@ -82,7 +82,7 @@ public final class da extends View implements org.telegram.ui.Cells.z9 {
             if (LocaleController.isRTL) {
                 alignment = iw0.a();
             } else {
-                Layout.Alignment[] alignmentArr = iw0.f27279a;
+                Layout.Alignment[] alignmentArr = iw0.f27306a;
                 if (alignmentArr.length >= 5) {
                     alignment = alignmentArr[3];
                 } else {
@@ -98,16 +98,16 @@ public final class da extends View implements org.telegram.ui.Cells.z9 {
         if (charSequence == null) {
             charSequence = "";
         }
-        ca[] caVarArr = this.f2882r;
-        if (MediaDataController.stringsEqual(caVarArr[0].f2835n, charSequence)) {
+        ca[] caVarArr = this.f2909r;
+        if (MediaDataController.stringsEqual(caVarArr[0].f2862n, charSequence)) {
             ca caVar = caVarArr[0];
-            if (caVar.f2836o == z9Var && caVar.f2837p == z9Var2) {
-                caVar.f2838q = z10;
+            if (caVar.f2863o == z9Var && caVar.f2864p == z9Var2) {
+                caVar.f2865q = z10;
                 invalidate();
                 return;
             }
         }
-        this.f2885x = false;
+        this.f2912x = false;
         ValueAnimator valueAnimator = this.I;
         if (valueAnimator != null) {
             valueAnimator.cancel();
@@ -119,15 +119,15 @@ public final class da extends View implements org.telegram.ui.Cells.z9 {
             }
             ca caVar2 = caVarArr[1];
             ca caVar3 = caVarArr[0];
-            caVar2.g(caVar3.f2835n, caVar3.f2836o, caVar3.f2837p);
+            caVar2.g(caVar3.f2862n, caVar3.f2863o, caVar3.f2864p);
             ca caVar4 = caVarArr[1];
             ca caVar5 = caVarArr[0];
-            caVar4.f2838q = caVar5.f2838q;
-            caVar4.f2839r.d(caVar5.f2839r.f25565c, true);
+            caVar4.f2865q = caVar5.f2865q;
+            caVar4.f2866r.d(caVar5.f2866r.f25592c, true);
             caVarArr[0].g(charSequence, z9Var, z9Var2);
             ca caVar6 = caVarArr[0];
-            caVar6.f2838q = z10;
-            caVar6.f2839r.d(0.0f, true);
+            caVar6.f2865q = z10;
+            caVar6.f2866r.d(0.0f, true);
             this.G = 1.0f;
             ValueAnimator valueAnimator2 = this.I;
             if (valueAnimator2 != null) {
@@ -139,12 +139,12 @@ public final class da extends View implements org.telegram.ui.Cells.z9 {
             ofFloat.addUpdateListener(new ah.d0(this, 14));
             this.I.addListener(new ah.b(this, 13));
             this.I.setDuration(180L);
-            this.I.setInterpolator(pr.f29467g);
+            this.I.setInterpolator(pr.f29494g);
             this.I.start();
             return;
         }
         caVarArr[0].g(charSequence, z9Var, z9Var2);
-        caVarArr[0].f2838q = z10;
+        caVarArr[0].f2865q = z10;
         invalidate();
         this.G = 0.0f;
     }
@@ -156,38 +156,38 @@ public final class da extends View implements org.telegram.ui.Cells.z9 {
 
     public float getAnimatedHeight() {
         int i10 = this.F * 2;
-        ca[] caVarArr = this.f2882r;
+        ca[] caVarArr = this.f2909r;
         int i11 = 0;
-        int i12 = caVarArr[0].f2833l;
+        int i12 = caVarArr[0].f2860l;
         ca caVar = caVarArr[1];
         if (caVar != null) {
-            i11 = caVar.f2833l;
+            i11 = caVar.f2860l;
         }
         return AndroidUtilities.lerp(i12, i11, this.G) + i10;
     }
 
     public Paint getPaint() {
-        return this.f2878c;
+        return this.f2905c;
     }
 
     @Override
     public Layout getStaticTextLayout() {
-        return this.f2882r[0].f2827e;
+        return this.f2909r[0].f2854e;
     }
 
     @Override
     public CharSequence getText() {
-        return this.f2882r[0].f2835n;
+        return this.f2909r[0].f2862n;
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
         int i10 = 0;
-        ca caVar = this.f2882r[0];
+        ca caVar = this.f2909r[0];
         da daVar = caVar.v;
         org.telegram.ui.Components.z5.release(daVar, caVar.d);
-        org.telegram.ui.Components.z5.release(daVar, caVar.f2828f);
+        org.telegram.ui.Components.z5.release(daVar, caVar.f2855f);
         if (caVar.h == null) {
             return;
         }
@@ -196,7 +196,7 @@ public final class da extends View implements org.telegram.ui.Cells.z9 {
             if (i10 < aaVarArr.length) {
                 aa aaVar = aaVarArr[i10];
                 if (aaVar != null) {
-                    org.telegram.ui.Components.z5.release(daVar, aaVar.f2773a);
+                    org.telegram.ui.Components.z5.release(daVar, aaVar.f2800a);
                 }
                 i10++;
             } else {
@@ -215,7 +215,7 @@ public final class da extends View implements org.telegram.ui.Cells.z9 {
             canvas2 = canvas;
             canvas2.save();
         }
-        ca[] caVarArr = this.f2882r;
+        ca[] caVarArr = this.f2909r;
         caVarArr[0].b(canvas2, 1.0f - this.G);
         ca caVar = caVarArr[1];
         if (caVar != null) {
@@ -223,19 +223,19 @@ public final class da extends View implements org.telegram.ui.Cells.z9 {
         }
         if (this.v != null) {
             float scrollY = this.h + this.J.getScrollY();
-            int clamp = (int) ((1.0f - Utilities.clamp(this.f2884w / 0.5f, 1.0f, 0.0f)) * 255.0f);
-            Paint paint = this.f2880f;
+            int clamp = (int) ((1.0f - Utilities.clamp(this.f2911w / 0.5f, 1.0f, 0.0f)) * 255.0f);
+            Paint paint = this.f2907f;
             paint.setAlpha(clamp);
-            Paint paint2 = this.f2879e;
+            Paint paint2 = this.f2906e;
             paint2.setAlpha(clamp);
             this.d.setAlpha(clamp);
             canvas2.save();
-            canvas2.translate(this.f2881n - AndroidUtilities.dp(32.0f), scrollY);
+            canvas2.translate(this.f2908n - AndroidUtilities.dp(32.0f), scrollY);
             canvas2.drawRect(0.0f, 0.0f, AndroidUtilities.dp(32.0f), this.v.getHeight() + this.F, paint);
             canvas2.restore();
-            canvas2.drawRect(this.f2881n - AndroidUtilities.dp(16.0f), scrollY, getMeasuredWidth(), this.v.getHeight() + scrollY + this.F, paint2);
+            canvas2.drawRect(this.f2908n - AndroidUtilities.dp(16.0f), scrollY, getMeasuredWidth(), this.v.getHeight() + scrollY + this.F, paint2);
             canvas2.save();
-            canvas2.translate(this.f2881n, scrollY);
+            canvas2.translate(this.f2908n, scrollY);
             this.v.draw(canvas2);
             canvas2.restore();
         }
@@ -247,11 +247,11 @@ public final class da extends View implements org.telegram.ui.Cells.z9 {
         int i12 = (i11 + i10) << 16;
         this.E = AndroidUtilities.dp(16.0f);
         this.F = AndroidUtilities.dp(8.0f);
-        int i13 = this.f2883s;
-        ca[] caVarArr = this.f2882r;
+        int i13 = this.f2910s;
+        ca[] caVarArr = this.f2909r;
         int i14 = 0;
         if (i13 != i12) {
-            this.f2883s = i12;
+            this.f2910s = i12;
             int max = Math.max(0, View.MeasureSpec.getSize(i10) - (this.E * 2));
             caVarArr[0].e(max);
             ca caVar = caVarArr[1];
@@ -260,10 +260,10 @@ public final class da extends View implements org.telegram.ui.Cells.z9 {
             }
         }
         int i15 = this.F * 2;
-        int i16 = caVarArr[0].f2833l;
+        int i16 = caVarArr[0].f2860l;
         ca caVar2 = caVarArr[1];
         if (caVar2 != null) {
-            i14 = caVar2.f2833l;
+            i14 = caVar2.f2860l;
         }
         super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.lerp(i16, i14, this.G) + i15, 1073741824));
     }
@@ -302,9 +302,9 @@ public final class da extends View implements org.telegram.ui.Cells.z9 {
         z9 z9Var2;
         z9 z9Var3;
         z9 z9Var4;
-        ca[] caVarArr = this.f2882r;
+        ca[] caVarArr = this.f2909r;
         ca caVar2 = caVarArr[0];
-        if ((caVar2 != null && (caVar2.f2840s == drawable || (((z9Var3 = caVar2.f2836o) != null && z9Var3.f4081j == drawable) || ((z9Var4 = caVar2.f2837p) != null && z9Var4.f4081j == drawable)))) || ((caVar = caVarArr[1]) != null && (caVar.f2840s == drawable || (((z9Var = caVar.f2836o) != null && z9Var.f4081j == drawable) || ((z9Var2 = caVar.f2837p) != null && z9Var2.f4081j == drawable))))) {
+        if ((caVar2 != null && (caVar2.f2867s == drawable || (((z9Var3 = caVar2.f2863o) != null && z9Var3.f4108j == drawable) || ((z9Var4 = caVar2.f2864p) != null && z9Var4.f4108j == drawable)))) || ((caVar = caVarArr[1]) != null && (caVar.f2867s == drawable || (((z9Var = caVar.f2863o) != null && z9Var.f4108j == drawable) || ((z9Var2 = caVar.f2864p) != null && z9Var2.f4108j == drawable))))) {
             return true;
         }
         return super.verifyDrawable(drawable);

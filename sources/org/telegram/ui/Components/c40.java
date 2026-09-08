@@ -7,10 +7,10 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class c40 implements Utilities.Callback5, Utilities.Callback5Return {
-    public final d40 f24886a;
+    public final d40 f24913a;
 
     public c40(d40 d40Var) {
-        this.f24886a = d40Var;
+        this.f24913a = d40Var;
     }
 
     @Override
@@ -20,15 +20,15 @@ public final class c40 implements Utilities.Callback5, Utilities.Callback5Return
         ((Float) obj4).getClass();
         ((Float) obj5).getClass();
         int i10 = ((h51) obj).d;
-        d40 d40Var = this.f24886a;
+        d40 d40Var = this.f24913a;
         if (i10 == 0) {
-            HashtagSearchController.getInstance(d40Var.f25222a).clearHistory();
-            d40Var.f25226f.N(true);
+            HashtagSearchController.getInstance(d40Var.f25249a).clearHistory();
+            d40Var.f25253f.N(true);
             return;
         }
         Utilities.Callback callback = d40Var.h;
         if (callback != null) {
-            callback.run((String) d40Var.f25224c.get(i10 - 1));
+            callback.run((String) d40Var.f25251c.get(i10 - 1));
         }
     }
 
@@ -41,11 +41,11 @@ public final class c40 implements Utilities.Callback5, Utilities.Callback5Return
         int i10 = ((h51) obj).d;
         boolean z10 = false;
         if (i10 != 0) {
-            d40 d40Var = this.f24886a;
-            String str = (String) d40Var.f25224c.get(i10 - 1);
-            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(d40Var.getContext(), 0, d40Var.f25223b);
+            d40 d40Var = this.f24913a;
+            String str = (String) d40Var.f25251c.get(i10 - 1);
+            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(d40Var.getContext(), 0, d40Var.f25250b);
             String string = LocaleController.getString(R.string.ClearSearchSingleAlertTitle);
-            org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20198a;
+            org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20225a;
             b2Var.R = string;
             b2Var.T = LocaleController.formatString(R.string.ClearSearchSingleHashtagAlertText, str);
             alertDialog$Builder.k(LocaleController.getString(R.string.ClearSearchRemove), new b3(12, d40Var, str));

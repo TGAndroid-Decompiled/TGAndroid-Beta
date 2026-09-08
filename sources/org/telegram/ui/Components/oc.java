@@ -9,11 +9,11 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class oc extends mb {
-    public Runnable f29029a;
-    public Runnable f29030b;
-    public qc f29031c;
+    public Runnable f29056a;
+    public Runnable f29057b;
+    public qc f29058c;
     public final TextView d;
-    public boolean f29032e;
+    public boolean f29059e;
 
     public oc(Context context, org.telegram.ui.ActionBar.f6 f6Var, boolean z10, boolean z11) {
         super(context);
@@ -52,14 +52,14 @@ public final class oc extends mb {
 
     @Override
     public final void a(qc qcVar) {
-        this.f29031c = qcVar;
+        this.f29058c = qcVar;
     }
 
     @Override
     public final void b() {
-        this.f29031c = null;
-        Runnable runnable = this.f29030b;
-        if (runnable != null && !this.f29032e) {
+        this.f29058c = null;
+        Runnable runnable = this.f29057b;
+        if (runnable != null && !this.f29059e) {
             runnable.run();
         }
     }
@@ -72,13 +72,13 @@ public final class oc extends mb {
     }
 
     public final void f() {
-        if (this.f29031c != null) {
-            this.f29032e = true;
-            Runnable runnable = this.f29029a;
+        if (this.f29058c != null) {
+            this.f29059e = true;
+            Runnable runnable = this.f29056a;
             if (runnable != null) {
                 runnable.run();
             }
-            qc qcVar = this.f29031c;
+            qc qcVar = this.f29058c;
             if (qcVar != null) {
                 qcVar.b();
             }

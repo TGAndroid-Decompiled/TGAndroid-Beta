@@ -17,7 +17,7 @@ public class TL_ephemeral {
         public ArrayList<TLRPC.MessageEntity> entities;
         public int flags;
         public TLRPC.Peer from_id;
-        public int f20083id;
+        public int f20110id;
         public boolean invert_media;
         public TLRPC.MessageMedia media;
         public String message;
@@ -69,7 +69,7 @@ public class TL_ephemeral {
     public static class TL_deleteMessage extends TLMethod<TLRPC.Bool> {
         public static final int constructor = -1829312617;
         public int flags;
-        public int f20084id;
+        public int f20111id;
         public TLRPC.InputPeer peer;
         public TLRPC.InputUser receiver_id;
 
@@ -90,7 +90,7 @@ public class TL_ephemeral {
                 this.peer.serializeToStream(outputSerializedData);
             }
             this.receiver_id.serializeToStream(outputSerializedData);
-            outputSerializedData.writeInt32(this.f20084id);
+            outputSerializedData.writeInt32(this.f20111id);
         }
 
         @Override
@@ -101,14 +101,14 @@ public class TL_ephemeral {
 
     public static class TL_deleteWelcomeMessage extends TLMethod<TLRPC.Bool> {
         public static final int constructor = -394090015;
-        public int f20085id;
+        public int f20112id;
         public TLRPC.InputPeer peer;
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(-394090015);
             this.peer.serializeToStream(outputSerializedData);
-            outputSerializedData.writeInt32(this.f20085id);
+            outputSerializedData.writeInt32(this.f20112id);
         }
 
         @Override
@@ -183,7 +183,7 @@ public class TL_ephemeral {
                 this.peer.serializeToStream(outputSerializedData);
             }
             this.receiver_id.serializeToStream(outputSerializedData);
-            outputSerializedData.writeInt32(this.f19952id);
+            outputSerializedData.writeInt32(this.f19979id);
             if (TLObject.hasFlag(this.flags, 1)) {
                 outputSerializedData.writeString(this.message);
             }
@@ -213,7 +213,7 @@ public class TL_ephemeral {
             this.welcome = TLObject.hasFlag(this.flags, 32);
             this.invert_media = TLObject.hasFlag(this.flags, 128);
             this.noforwards = TLObject.hasFlag(this.flags, 4096);
-            this.f20083id = inputSerializedData.readInt32(z10);
+            this.f20110id = inputSerializedData.readInt32(z10);
             this.from_id = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
             if (TLObject.hasFlag(this.flags, 512)) {
                 this.peer_id = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
@@ -305,7 +305,7 @@ public class TL_ephemeral {
             int flag10 = TLObject.setFlag(flag9, 4096, this.noforwards);
             this.flags = flag10;
             outputSerializedData.writeInt32(flag10);
-            outputSerializedData.writeInt32(this.f20083id);
+            outputSerializedData.writeInt32(this.f20110id);
             this.from_id.serializeToStream(outputSerializedData);
             if (TLObject.hasFlag(this.flags, 512)) {
                 this.peer_id.serializeToStream(outputSerializedData);
@@ -348,7 +348,7 @@ public class TL_ephemeral {
             int readInt32 = inputSerializedData.readInt32(z10);
             this.flags = readInt32;
             this.out = TLObject.hasFlag(readInt32, 1);
-            this.f20083id = inputSerializedData.readInt32(z10);
+            this.f20110id = inputSerializedData.readInt32(z10);
             this.from_id = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
             this.peer_id = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
             this.receiver_id = inputSerializedData.readInt64(z10);
@@ -407,7 +407,7 @@ public class TL_ephemeral {
             int flag5 = TLObject.setFlag(flag4, 64, z13);
             this.flags = flag5;
             outputSerializedData.writeInt32(flag5);
-            outputSerializedData.writeInt32(this.f20083id);
+            outputSerializedData.writeInt32(this.f20110id);
             this.from_id.serializeToStream(outputSerializedData);
             this.peer_id.serializeToStream(outputSerializedData);
             outputSerializedData.writeInt64(this.receiver_id);
@@ -441,7 +441,7 @@ public class TL_ephemeral {
             this.out = TLObject.hasFlag(readInt32, 1);
             this.welcome = TLObject.hasFlag(this.flags, 32);
             this.invert_media = TLObject.hasFlag(this.flags, 128);
-            this.f20083id = inputSerializedData.readInt32(z10);
+            this.f20110id = inputSerializedData.readInt32(z10);
             this.from_id = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
             this.peer_id = TLRPC.Peer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
             this.receiver_id = inputSerializedData.readInt64(z10);
@@ -515,7 +515,7 @@ public class TL_ephemeral {
             int flag8 = TLObject.setFlag(flag7, 256, z14);
             this.flags = flag8;
             outputSerializedData.writeInt32(flag8);
-            outputSerializedData.writeInt32(this.f20083id);
+            outputSerializedData.writeInt32(this.f20110id);
             this.from_id.serializeToStream(outputSerializedData);
             this.peer_id.serializeToStream(outputSerializedData);
             outputSerializedData.writeInt64(this.receiver_id);
@@ -546,7 +546,7 @@ public class TL_ephemeral {
         public static final int constructor = 1067738312;
         public byte[] data;
         public int flags;
-        public int f20086id;
+        public int f20113id;
         public TLRPC.InputPeer peer;
 
         @Override
@@ -563,7 +563,7 @@ public class TL_ephemeral {
             this.flags = flag;
             outputSerializedData.writeInt32(flag);
             this.peer.serializeToStream(outputSerializedData);
-            outputSerializedData.writeInt32(this.f20086id);
+            outputSerializedData.writeInt32(this.f20113id);
             if (TLObject.hasFlag(this.flags, 2)) {
                 outputSerializedData.writeByteArray(this.data);
             }
@@ -595,7 +595,7 @@ public class TL_ephemeral {
 
     public static class TL_reportMessage extends TLMethod<TLRPC.ReportResult> {
         public static final int constructor = -2029718849;
-        public int f20087id;
+        public int f20114id;
         public String message;
         public byte[] option;
         public TLRPC.InputPeer peer;
@@ -604,7 +604,7 @@ public class TL_ephemeral {
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(-2029718849);
             this.peer.serializeToStream(outputSerializedData);
-            outputSerializedData.writeInt32(this.f20087id);
+            outputSerializedData.writeInt32(this.f20114id);
             outputSerializedData.writeByteArray(this.option);
             outputSerializedData.writeString(this.message);
         }

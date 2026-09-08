@@ -11,41 +11,41 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.id0;
 public final class j7 implements RequestDelegate {
-    public final int f3141a;
-    public final long f3142b;
-    public final Object f3143c;
+    public final int f3168a;
+    public final long f3169b;
+    public final Object f3170c;
 
     public j7(Object obj, long j3, int i10) {
-        this.f3141a = i10;
-        this.f3143c = obj;
-        this.f3142b = j3;
+        this.f3168a = i10;
+        this.f3170c = obj;
+        this.f3169b = j3;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f3141a) {
+        switch (this.f3168a) {
             case 0:
-                AndroidUtilities.runOnUIThread(new a3.g0((u8) this.f3143c, this.f3142b, tLObject, 2));
+                AndroidUtilities.runOnUIThread(new a3.h0((u8) this.f3170c, this.f3169b, tLObject, 2));
                 return;
             case 1:
-                ((ContactsController) this.f3143c).lambda$loadContacts$28(this.f3142b, tLObject, tL_error);
+                ((ContactsController) this.f3170c).lambda$loadContacts$28(this.f3169b, tLObject, tL_error);
                 return;
             case 2:
-                ((LocationController) this.f3143c).lambda$loadLiveLocations$26(this.f3142b, tLObject, tL_error);
+                ((LocationController) this.f3170c).lambda$loadLiveLocations$26(this.f3169b, tLObject, tL_error);
                 return;
             case 3:
-                ((SavedMessagesController) this.f3143c).lambda$hasSavedMessages$15(this.f3142b, tLObject, tL_error);
+                ((SavedMessagesController) this.f3170c).lambda$hasSavedMessages$15(this.f3169b, tLObject, tL_error);
                 return;
             case 4:
-                ((SecretChatHelper) this.f3143c).lambda$declineSecretChat$20(this.f3142b, tLObject, tL_error);
+                ((SecretChatHelper) this.f3170c).lambda$declineSecretChat$20(this.f3169b, tLObject, tL_error);
                 return;
             case 5:
-                ((SendMessagesHelper) this.f3143c).lambda$sendGame$47(this.f3142b, tLObject, tL_error);
+                ((SendMessagesHelper) this.f3170c).lambda$sendGame$47(this.f3169b, tLObject, tL_error);
                 return;
             default:
-                id0 id0Var = (id0) this.f3143c;
+                id0 id0Var = (id0) this.f3170c;
                 if (tLObject != null) {
-                    AndroidUtilities.runOnUIThread(new a3.g0(id0Var, tLObject, this.f3142b, 28));
+                    AndroidUtilities.runOnUIThread(new a3.h0(id0Var, tLObject, this.f3169b, 28));
                     return;
                 }
                 return;

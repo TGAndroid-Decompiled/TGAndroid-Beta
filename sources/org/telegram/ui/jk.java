@@ -7,40 +7,40 @@ import java.util.WeakHashMap;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class jk extends org.telegram.ui.Components.a81 {
-    public final Context f37795a;
-    public final co f37796b;
+    public final Context f37822a;
+    public final co f37823b;
 
     public jk(co coVar, Context context) {
-        this.f37796b = coVar;
-        this.f37795a = context;
+        this.f37823b = coVar;
+        this.f37822a = context;
     }
 
     @Override
     public final void b(View view, int i10, int i11) {
         if (view instanceof fo) {
-            ((fo) view).f36437a.Jc(this.f37796b.f35437u3);
+            ((fo) view).f36464a.Jc(this.f37823b.f35464u3);
         }
-        WeakHashMap weakHashMap = r0.i0.f44697a;
+        WeakHashMap weakHashMap = r0.i0.f44725a;
         r0.y.c(view);
     }
 
     @Override
     public final View d(int i10) {
-        Context context = this.f37795a;
-        co coVar = this.f37796b;
+        Context context = this.f37822a;
+        co coVar = this.f37823b;
         if (i10 == 0) {
             return new qn(coVar, context);
         }
         Bundle bundle = new Bundle();
         bundle.putInt("chatMode", 7);
         bundle.putInt("searchType", i10);
-        bundle.putString("searchHashtag", coVar.f35437u3);
+        bundle.putString("searchHashtag", coVar.f35464u3);
         ik ikVar = new ik(context, coVar.getParentLayout(), bundle, 0);
         ikVar.h = false;
-        eo eoVar = ikVar.f36437a;
-        eoVar.L.f10661a = coVar.L;
-        eoVar.f35222ca = coVar.f35247ea;
-        eoVar.f35234da = coVar;
+        eo eoVar = ikVar.f36464a;
+        eoVar.L.f10689a = coVar.L;
+        eoVar.f35249ca = coVar.f35274ea;
+        eoVar.f35261da = coVar;
         eoVar.V8 = new g(this, 13);
         return ikVar;
     }

@@ -37,16 +37,16 @@ public abstract class g1 extends k {
     public f5 J0;
     public f5 K0;
     public f5 L0;
-    public final t5 f45189q0;
-    public final z0 f45190r0;
-    public final ArrayList f45191s0;
-    public final MessageObject.GroupedMessages f45192t0;
-    public boolean f45193u0;
-    public boolean f45194v0;
-    public TextureView f45195w0;
-    public boolean f45196x0;
-    public int f45197y0;
-    public int f45198z0;
+    public final t5 f45217q0;
+    public final z0 f45218r0;
+    public final ArrayList f45219s0;
+    public final MessageObject.GroupedMessages f45220t0;
+    public boolean f45221u0;
+    public boolean f45222v0;
+    public TextureView f45223w0;
+    public boolean f45224x0;
+    public int f45225y0;
+    public int f45226z0;
 
     public g1(Context context, PointF pointF, ArrayList arrayList, ja jaVar, boolean z10, c7 c7Var) {
         super(context, pointF);
@@ -56,25 +56,25 @@ public abstract class g1 extends k {
         Boolean D;
         TLRPC.MessageFwdHeader messageFwdHeader;
         TLRPC.Peer peer;
-        this.f45191s0 = new ArrayList();
-        this.f45197y0 = 1;
-        this.f45198z0 = 1;
+        this.f45219s0 = new ArrayList();
+        this.f45225y0 = 1;
+        this.f45226z0 = 1;
         this.A0 = true;
         this.B0 = j6.I.q();
         this.C0 = new SparseIntArray();
         c6 c6Var = (c6) this;
         ?? obj = new Object();
-        obj.f6378f = c6Var;
+        obj.f6405f = c6Var;
         TextPaint textPaint = new TextPaint();
-        obj.f6374a = textPaint;
+        obj.f6401a = textPaint;
         TextPaint textPaint2 = new TextPaint();
-        obj.f6375b = textPaint2;
+        obj.f6402b = textPaint2;
         TextPaint textPaint3 = new TextPaint();
-        obj.f6376c = textPaint3;
+        obj.f6403c = textPaint3;
         new Paint(3);
         obj.d = new Paint(3);
         Paint paint = new Paint(3);
-        obj.f6377e = paint;
+        obj.f6404e = paint;
         textPaint.setTextSize(AndroidUtilities.dp(Math.max(16, SharedConfig.fontSize) - 2));
         textPaint2.setTextSize(AndroidUtilities.dp(Math.max(16, SharedConfig.fontSize) - 2));
         textPaint3.setTextSize(AndroidUtilities.dp(15.0f));
@@ -104,9 +104,9 @@ public abstract class g1 extends k {
                 int i12 = messageObject.currentAccount;
                 MessageObject messageObject2 = new MessageObject(i12, message, messageObject.replyMessageObject, MessagesController.getInstance(i12).getUsers(), MessagesController.getInstance(messageObject.currentAccount).getChats(), null, null, true, true, 0L, true, z10, false);
                 messageObject2.setType();
-                this.f45191s0.add(messageObject2);
+                this.f45219s0.add(messageObject2);
             }
-            tL_messageService.f19890id = message2.f19890id;
+            tL_messageService.f19917id = message2.f19917id;
             tL_messageService.from_id = message2.from_id;
             tL_messageService.peer_id = message2.peer_id;
             tL_messageService.date = message2.date;
@@ -184,45 +184,45 @@ public abstract class g1 extends k {
             int i122 = messageObject.currentAccount;
             MessageObject messageObject22 = new MessageObject(i122, message, messageObject.replyMessageObject, MessagesController.getInstance(i122).getUsers(), MessagesController.getInstance(messageObject.currentAccount).getChats(), null, null, true, true, 0L, true, z10, false);
             messageObject22.setType();
-            this.f45191s0.add(messageObject22);
+            this.f45219s0.add(messageObject22);
         }
-        this.f45192t0 = null;
-        if (this.f45191s0.size() > 1) {
+        this.f45220t0 = null;
+        if (this.f45219s0.size() > 1) {
             MessageObject.GroupedMessages groupedMessages = new MessageObject.GroupedMessages();
-            this.f45192t0 = groupedMessages;
-            groupedMessages.messages.addAll(this.f45191s0);
-            groupedMessages.groupId = ((MessageObject) this.f45191s0.get(0)).getGroupId();
+            this.f45220t0 = groupedMessages;
+            groupedMessages.messages.addAll(this.f45219s0);
+            groupedMessages.groupId = ((MessageObject) this.f45219s0.get(0)).getGroupId();
             groupedMessages.calculate();
         }
         t5 t5Var = new t5(c6Var, context);
-        this.f45189q0 = t5Var;
+        this.f45217q0 = t5Var;
         addView(t5Var, x5.c(-1.0f, -1));
         z0 z0Var = new z0(c6Var, context, this.D0);
-        this.f45190r0 = z0Var;
+        this.f45218r0 = z0Var;
         z0Var.setAdapter(new c1(c6Var, context, jaVar, c7Var, z10));
         d1 d1Var = new d1(c6Var);
         d1Var.O = new e1(c6Var);
         z0Var.setLayoutManager(d1Var);
         z0Var.i(new Object());
         t5Var.addView(z0Var, x5.c(-1.0f, -1));
-        if (c7Var != null && c7Var.f6994g) {
+        if (c7Var != null && c7Var.f7022g) {
             org.telegram.ui.web.b1 b1Var = new org.telegram.ui.web.b1(c6Var, 5);
             ii.a aVar2 = new ii.a(c6Var, 7);
-            c7Var.f6990b = b1Var;
-            c7Var.f6991c = aVar2;
-            TextureView textureView = c7Var.f6989a;
+            c7Var.f7018b = b1Var;
+            c7Var.f7019c = aVar2;
+            TextureView textureView = c7Var.f7017a;
             if (textureView != null) {
                 b1Var.run(textureView);
             }
-            if (c7Var.d && (aVar = c7Var.f6991c) != null) {
-                aVar.run(Integer.valueOf(c7Var.f6992e), Integer.valueOf(c7Var.f6993f));
+            if (c7Var.d && (aVar = c7Var.f7019c) != null) {
+                aVar.run(Integer.valueOf(c7Var.f7020e), Integer.valueOf(c7Var.f7021f));
             }
         }
         k();
     }
 
     public org.telegram.ui.Cells.t1 getCell() {
-        z0 z0Var = this.f45190r0;
+        z0 z0Var = this.f45218r0;
         if (z0Var != null) {
             for (int i10 = 0; i10 < z0Var.getChildCount(); i10++) {
                 if (z0Var.getChildAt(i10) instanceof org.telegram.ui.Cells.t1) {
@@ -263,7 +263,7 @@ public abstract class g1 extends k {
         setX(getPositionX() - (getMeasuredWidth() / 2.0f));
         setY(getPositionY() - (getMeasuredHeight() / 2.0f));
         m();
-        if (this.f45194v0) {
+        if (this.f45222v0) {
             s();
         }
     }
@@ -284,11 +284,11 @@ public abstract class g1 extends k {
         float f14 = -2.1474836E9f;
         int i10 = 0;
         while (true) {
-            z0 z0Var = this.f45190r0;
+            z0 z0Var = this.f45218r0;
             if (i10 < z0Var.getChildCount()) {
                 View childAt = z0Var.getChildAt(i10);
                 boolean z10 = childAt instanceof org.telegram.ui.Cells.t1;
-                t5 t5Var = this.f45189q0;
+                t5 t5Var = this.f45217q0;
                 if (z10) {
                     org.telegram.ui.Cells.t1 t1Var = (org.telegram.ui.Cells.t1) childAt;
                     if (t1Var.getMessageObject() != null && t1Var.getMessageObject().isRoundVideo() && t1Var.getPhotoImage() != null) {
@@ -299,7 +299,7 @@ public abstract class g1 extends k {
                         y3 = t1Var.getPhotoImage().getImageY2() + t1Var.getY() + y10;
                     } else {
                         float x10 = childAt.getX() + t5Var.getX() + t1Var.getBackgroundDrawableLeft() + AndroidUtilities.dp(1.0f);
-                        if (this.f45192t0 == null) {
+                        if (this.f45220t0 == null) {
                             x10 += AndroidUtilities.dp(8.0f);
                         }
                         float x11 = ((childAt.getX() + t5Var.getX()) + t1Var.getBackgroundDrawableRight()) - AndroidUtilities.dp(1.66f);
@@ -335,7 +335,7 @@ public abstract class g1 extends k {
     }
 
     public final void s() {
-        z0 z0Var = this.f45190r0;
+        z0 z0Var = this.f45218r0;
         z0Var.invalidate();
         for (int i10 = 0; i10 < z0Var.getChildCount(); i10++) {
             z0Var.getChildAt(i10).invalidate();

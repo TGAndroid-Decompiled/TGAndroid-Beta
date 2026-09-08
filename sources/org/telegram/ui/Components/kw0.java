@@ -6,7 +6,7 @@ public abstract class kw0 extends Drawable {
         yf.h d = yf.h.d();
         d.getClass();
         yf.h.c();
-        d.f50099e.add(this);
+        d.f50128e.add(this);
     }
 
     public abstract void b(int i10);

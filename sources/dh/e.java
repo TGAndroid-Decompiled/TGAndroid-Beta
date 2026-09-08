@@ -45,7 +45,7 @@ public final class e extends d {
     @Override
     public final void draw(Canvas canvas) {
         c cVar = this.h;
-        if (cVar.f6828m.isEmpty()) {
+        if (cVar.f6856m.isEmpty()) {
             return;
         }
         boolean isHardwareAccelerated = canvas.isHardwareAccelerated();
@@ -61,16 +61,16 @@ public final class e extends d {
             w();
         }
         this.M = false;
-        int l1 = j6.l1(this.H.getAlpha() * this.f6842n, this.d);
+        int l1 = j6.l1(this.H.getAlpha() * this.f6870n, this.d);
         if (Color.alpha(l1) != 0) {
-            float f7 = this.f6840l;
-            float f10 = this.f6841m;
+            float f7 = this.f6868l;
+            float f10 = this.f6869m;
             Paint paint = this.J;
             paint.setShadowLayer(f7, 0.0f, f10, l1);
-            cVar.c(canvas, paint, this.f6839k);
+            cVar.c(canvas, paint, this.f6867k);
         }
         canvas.save();
-        Rect rect = cVar.f6828m;
+        Rect rect = cVar.f6856m;
         canvas.translate(rect.left, rect.top);
         canvas.drawRenderNode(this.H);
         canvas.restore();
@@ -85,19 +85,19 @@ public final class e extends d {
     public final void j() {
         b();
         c cVar = this.h;
-        this.K.setStrokeWidth(cVar.f6824i);
-        this.L.setStrokeWidth(cVar.f6825j);
-        int width = cVar.f6828m.width();
-        int height = cVar.f6828m.height();
+        this.K.setStrokeWidth(cVar.f6852i);
+        this.L.setStrokeWidth(cVar.f6853j);
+        int width = cVar.f6856m.width();
+        int height = cVar.f6856m.height();
         Rect rect = this.G;
         rect.set(0, 0, width, height);
-        float[] fArr = cVar.f6819b;
+        float[] fArr = cVar.f6847b;
         Outline outline = this.F;
         d.h(outline, rect, fArr);
         outline.setAlpha(1.0f);
-        if (!cVar.f6828m.isEmpty()) {
-            this.I.setPosition(0, 0, cVar.f6828m.width(), cVar.f6828m.height());
-            this.H.setPosition(0, 0, cVar.f6828m.width(), cVar.f6828m.height());
+        if (!cVar.f6856m.isEmpty()) {
+            this.I.setPosition(0, 0, cVar.f6856m.width(), cVar.f6856m.height());
+            this.H.setPosition(0, 0, cVar.f6856m.width(), cVar.f6856m.height());
             this.H.setOutline(outline);
             this.M = true;
         }
@@ -122,8 +122,8 @@ public final class e extends d {
 
     @Override
     public final void setAlpha(int i10) {
-        int i11 = this.f6838j;
-        this.f6838j = i10;
+        int i11 = this.f6866j;
+        this.f6866j = i10;
         this.H.setAlpha(i10 / 255.0f);
         this.M = true;
         if (i11 == 0 && i10 > 0) {
@@ -134,9 +134,9 @@ public final class e extends d {
     @Override
     public final void u() {
         super.u();
-        this.J.setShadowLayer(this.f6840l, 0.0f, this.f6841m, this.d);
-        this.K.setColor(this.f6835f);
-        this.L.setColor(this.f6836g);
+        this.J.setShadowLayer(this.f6868l, 0.0f, this.f6869m, this.d);
+        this.K.setColor(this.f6863f);
+        this.L.setColor(this.f6864g);
         this.M = true;
     }
 
@@ -145,11 +145,11 @@ public final class e extends d {
     }
 
     public final void w() {
-        float f7 = this.f6831a;
-        float f10 = this.f6832b;
+        float f7 = this.f6859a;
+        float f10 = this.f6860b;
         c cVar = this.h;
-        Rect rect = cVar.f6828m;
-        Rect rect2 = cVar.f6828m;
+        Rect rect = cVar.f6856m;
+        Rect rect2 = cVar.f6856m;
         float f11 = rect.left + f7;
         float f12 = rect.top + f10;
         float f13 = rect.right + f7;
@@ -158,7 +158,7 @@ public final class e extends d {
         beginRecording.save();
         beginRecording.translate(-f11, -f12);
         if (this.N != null && Build.VERSION.SDK_INT >= 33) {
-            int i10 = cVar.f6822f;
+            int i10 = cVar.f6850f;
             if (i10 <= 0) {
                 i10 = AndroidUtilities.dp(11.0f);
             }
@@ -166,26 +166,26 @@ public final class e extends d {
             g gVar = this.N;
             float width = rect2.width();
             float height = rect2.height();
-            float[] fArr = cVar.f6820c;
-            gVar.a(width, height, fArr[0], fArr[2], fArr[4], fArr[6], max, cVar.f6823g, cVar.h, this.f6834e);
+            float[] fArr = cVar.f6848c;
+            gVar.a(width, height, fArr[0], fArr[2], fArr[4], fArr[6], max, cVar.f6851g, cVar.h, this.f6862e);
         }
         this.E.v(beginRecording, f11, f12, f13, f14);
         beginRecording.save();
         this.I.endRecording();
         RecordingCanvas beginRecording2 = this.H.beginRecording();
-        if (Color.alpha(this.f6834e) == 255) {
-            beginRecording2.drawColor(this.f6834e);
+        if (Color.alpha(this.f6862e) == 255) {
+            beginRecording2.drawColor(this.f6862e);
         } else {
             beginRecording2.drawRenderNode(this.I);
-            if (this.N == null && Color.alpha(this.f6834e) != 0) {
-                beginRecording2.drawColor(this.f6834e);
+            if (this.N == null && Color.alpha(this.f6862e) != 0) {
+                beginRecording2.drawColor(this.f6862e);
             }
         }
-        if (this.f6835f != 0) {
-            d.e(beginRecording2, rect2.width(), rect2.height(), cVar.f6819b, cVar.f6824i, true, this.K);
+        if (this.f6863f != 0) {
+            d.e(beginRecording2, rect2.width(), rect2.height(), cVar.f6847b, cVar.f6852i, true, this.K);
         }
-        if (this.f6836g != 0) {
-            d.e(beginRecording2, rect2.width(), rect2.height(), cVar.f6819b, cVar.f6825j, false, this.L);
+        if (this.f6864g != 0) {
+            d.e(beginRecording2, rect2.width(), rect2.height(), cVar.f6847b, cVar.f6853j, false, this.L);
         }
         this.H.endRecording();
     }

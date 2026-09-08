@@ -23,30 +23,30 @@ import org.telegram.ui.j60;
 import org.telegram.ui.uy;
 import org.telegram.ui.web.g1;
 public final class y6 implements m8, org.telegram.ui.Components.d5, org.telegram.ui.ActionBar.a2, t5.b, r9.g, t40 {
-    public final int f8476a;
-    public final long f8477b;
-    public final Object f8478c;
+    public final int f8504a;
+    public final long f8505b;
+    public final Object f8506c;
     public final Object d;
-    public final Object f8479e;
+    public final Object f8507e;
 
     public y6(Object obj, Object obj2, long j3, Object obj3, int i10) {
-        this.f8476a = i10;
-        this.f8478c = obj;
+        this.f8504a = i10;
+        this.f8506c = obj;
         this.d = obj2;
-        this.f8477b = j3;
-        this.f8479e = obj3;
+        this.f8505b = j3;
+        this.f8507e = obj3;
     }
 
     @Override
     public void J(int i10, int i11, boolean z10) {
-        co.r0((co) this.f8478c, (ArrayList) this.d, this.f8477b, (am0) this.f8479e, z10, i10);
+        co.r0((co) this.f8506c, (ArrayList) this.d, this.f8505b, (am0) this.f8507e, z10, i10);
     }
 
     @Override
     public void Q(TLRPC.InputFile inputFile, TLRPC.InputFile inputFile2, double d, String str, TLRPC.PhotoSize photoSize, TLRPC.PhotoSize photoSize2, boolean z10, TLRPC.VideoSize videoSize) {
-        co coVar = (co) this.f8478c;
+        co coVar = (co) this.f8506c;
         TLRPC.FileLocation[] fileLocationArr = (TLRPC.FileLocation[]) this.d;
-        TLRPC.FileLocation[] fileLocationArr2 = (TLRPC.FileLocation[]) this.f8479e;
+        TLRPC.FileLocation[] fileLocationArr2 = (TLRPC.FileLocation[]) this.f8507e;
         if (inputFile == null && inputFile2 == null && videoSize == null) {
             fileLocationArr[0] = photoSize2.location;
             fileLocationArr2[0] = photoSize.location;
@@ -67,33 +67,33 @@ public final class y6 implements m8, org.telegram.ui.Components.d5, org.telegram
             tL_photos_uploadProfilePhoto.video_emoji_markup = videoSize;
             tL_photos_uploadProfilePhoto.flags |= 16;
         }
-        coVar.getConnectionsManager().sendRequest(tL_photos_uploadProfilePhoto, new bi.m9(coVar, fileLocationArr, str, fileLocationArr2, this.f8477b));
+        coVar.getConnectionsManager().sendRequest(tL_photos_uploadProfilePhoto, new bi.m9(coVar, fileLocationArr, str, fileLocationArr2, this.f8505b));
     }
 
     @Override
     public ScheduledFuture a(final l.d dVar) {
-        switch (this.f8476a) {
+        switch (this.f8504a) {
             case 5:
-                r9.f fVar = (r9.f) this.f8478c;
-                return fVar.f45050b.schedule(new r9.d(fVar, (Runnable) this.d, dVar, 1), this.f8477b, (TimeUnit) this.f8479e);
+                r9.f fVar = (r9.f) this.f8506c;
+                return fVar.f45078b.schedule(new r9.d(fVar, (Runnable) this.d, dVar, 1), this.f8505b, (TimeUnit) this.f8507e);
             default:
-                final r9.f fVar2 = (r9.f) this.f8478c;
+                final r9.f fVar2 = (r9.f) this.f8506c;
                 final Callable callable = (Callable) this.d;
-                return fVar2.f45050b.schedule(new Callable() {
+                return fVar2.f45078b.schedule(new Callable() {
                     @Override
                     public final Object call() {
-                        return f.this.f45049a.submit(new g1(14, callable, dVar));
+                        return f.this.f45077a.submit(new g1(14, callable, dVar));
                     }
-                }, this.f8477b, (TimeUnit) this.f8479e);
+                }, this.f8505b, (TimeUnit) this.f8507e);
         }
     }
 
     @Override
     public Bitmap d(BitmapFactory.Options options) {
-        d7 d7Var = (d7) this.f8478c;
+        d7 d7Var = (d7) this.f8506c;
         o8 o8Var = (o8) this.d;
-        long j3 = this.f8477b;
-        String str = (String) this.f8479e;
+        long j3 = this.f8505b;
+        String str = (String) this.f8507e;
         if (o8Var.K) {
             String str2 = o8Var.N;
             if (str2 != null) {
@@ -116,23 +116,23 @@ public final class y6 implements m8, org.telegram.ui.Components.d5, org.telegram
 
     @Override
     public void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        switch (this.f8476a) {
+        switch (this.f8504a) {
             case 2:
-                ChatObject.Call call = (ChatObject.Call) this.f8478c;
-                Runnable runnable = (Runnable) this.f8479e;
+                ChatObject.Call call = (ChatObject.Call) this.f8506c;
+                Runnable runnable = (Runnable) this.f8507e;
                 boolean z10 = false;
                 org.telegram.ui.Cells.z1 z1Var = ((org.telegram.ui.Cells.z1[]) this.d)[0];
                 if (z1Var != null && z1Var.b()) {
                     z10 = true;
                 }
-                j60.w1(call, z10, this.f8477b, runnable);
+                j60.w1(call, z10, this.f8505b, runnable);
                 return;
             default:
-                TLRPC.User user = (TLRPC.User) this.f8479e;
-                ProfileActivity profileActivity = ((i01) this.f8478c).f37149b;
+                TLRPC.User user = (TLRPC.User) this.f8507e;
+                ProfileActivity profileActivity = ((i01) this.f8506c).f37176b;
                 profileActivity.N1 = true;
                 Bundle i11 = a4.a.i("scrollToTopOnResume", true);
-                long j3 = -this.f8477b;
+                long j3 = -this.f8505b;
                 i11.putLong("chat_id", j3);
                 if (profileActivity.getMessagesController().checkCanOpenChat(i11, (uy) this.d)) {
                     co coVar = new co(i11);
@@ -160,10 +160,10 @@ public final class y6 implements m8, org.telegram.ui.Components.d5, org.telegram
 
     @Override
     public Object i() {
-        da.b bVar = (da.b) this.f8478c;
+        da.b bVar = (da.b) this.f8506c;
         Iterable iterable = (Iterable) this.d;
-        l5.i iVar = (l5.i) this.f8479e;
-        s5.g gVar = (s5.g) ((s5.d) bVar.f6653c);
+        l5.i iVar = (l5.i) this.f8507e;
+        s5.g gVar = (s5.g) ((s5.d) bVar.f6680c);
         gVar.getClass();
         if (iterable.iterator().hasNext()) {
             String str = "UPDATE events SET num_attempts = num_attempts + 1 WHERE _id in " + s5.g.g(iterable);
@@ -182,7 +182,7 @@ public final class y6 implements m8, org.telegram.ui.Components.d5, org.telegram
                 a2.endTransaction();
             }
         }
-        gVar.c(new bi.p1(((u5.a) bVar.f6656g).l() + this.f8477b, iVar));
+        gVar.c(new bi.p1(((u5.a) bVar.f6683g).l() + this.f8505b, iVar));
         return null;
     }
 
@@ -192,19 +192,19 @@ public final class y6 implements m8, org.telegram.ui.Components.d5, org.telegram
     }
 
     public y6(Object obj, Object obj2, Object obj3, long j3, int i10) {
-        this.f8476a = i10;
-        this.f8478c = obj;
+        this.f8504a = i10;
+        this.f8506c = obj;
         this.d = obj2;
-        this.f8479e = obj3;
-        this.f8477b = j3;
+        this.f8507e = obj3;
+        this.f8505b = j3;
     }
 
     public y6(i01 i01Var, long j3, uy uyVar, TLRPC.User user) {
-        this.f8476a = 3;
-        this.f8478c = i01Var;
-        this.f8477b = j3;
+        this.f8504a = 3;
+        this.f8506c = i01Var;
+        this.f8505b = j3;
         this.d = uyVar;
-        this.f8479e = user;
+        this.f8507e = user;
     }
 
     @Override

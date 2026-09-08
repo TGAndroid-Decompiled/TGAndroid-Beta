@@ -8,7 +8,7 @@ import android.widget.TextView;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class ih1 extends FrameLayout {
-    public final sg.r0 f37376a;
+    public final sg.r0 f37403a;
 
     public ih1(Context context, org.telegram.ui.ActionBar.f6 f6Var) {
         super(context);
@@ -22,7 +22,7 @@ public final class ih1 extends FrameLayout {
         textView.setText(LocaleController.getString(R.string.UnlockPremiumStickersDescription));
         linearLayout.addView(textView, w7.x5.t(-1, -2, 0, 16, 17, 17, 16));
         sg.r0 r0Var = new sg.r0(context, f6Var, false);
-        this.f37376a = r0Var;
+        this.f37403a = r0Var;
         String string = LocaleController.getString(R.string.UnlockPremiumStickers);
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
         spannableStringBuilder.append((CharSequence) "d ").setSpan(new org.telegram.ui.Components.nq(0, context.getDrawable(R.drawable.msg_premium_normal)), 0, 1, 0);

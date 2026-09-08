@@ -4,14 +4,14 @@ import android.os.Handler;
 import e2.d0;
 import ig.t0;
 public final class d implements l {
-    public final j f16380a;
-    public g f16381b;
-    public boolean f16382c;
+    public final j f16407a;
+    public g f16408b;
+    public boolean f16409c;
     public final e d;
 
     public d(e eVar, j jVar) {
         this.d = eVar;
-        this.f16380a = jVar;
+        this.f16407a = jVar;
     }
 
     @Override

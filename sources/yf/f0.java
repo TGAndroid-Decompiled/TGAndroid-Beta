@@ -5,7 +5,7 @@ import java.util.Collections;
 import java.util.List;
 import org.telegram.ui.f11;
 public abstract class f0 {
-    public static final f11 f50093a = new f11(22);
+    public static final f11 f50122a = new f11(22);
 
     public static int a(int i10, List list, List list2) {
         boolean z10;
@@ -83,7 +83,7 @@ public abstract class f0 {
             rectF5.top = Float.MAX_VALUE;
             rectF5.left = Float.MAX_VALUE;
         }
-        Collections.sort(list2, f50093a);
+        Collections.sort(list2, f50122a);
         return i10;
     }
 

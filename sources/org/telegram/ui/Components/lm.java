@@ -10,16 +10,16 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.VideoEditedInfo;
 import org.telegram.tgnet.TLRPC;
 public final class lm extends org.telegram.ui.su0 {
-    public ArrayList f28245a = new ArrayList();
-    public final pm f28246b;
+    public ArrayList f28272a = new ArrayList();
+    public final pm f28273b;
 
     public lm(pm pmVar) {
-        this.f28246b = pmVar;
+        this.f28273b = pmVar;
     }
 
     @Override
     public final void D() {
-        pm pmVar = this.f28246b;
+        pm pmVar = this.f28273b;
         pmVar.c();
         pmVar.i(pmVar.P.P, false);
     }
@@ -28,10 +28,10 @@ public final class lm extends org.telegram.ui.su0 {
     public final org.telegram.ui.cv0 E(MessageObject messageObject, TLRPC.FileLocation fileLocation, int i10, boolean z10, boolean z11) {
         MediaController.PhotoEntry photoEntry;
         ArrayList arrayList;
-        pm pmVar = this.f28246b;
-        ArrayList arrayList2 = pmVar.f29427b;
+        pm pmVar = this.f28273b;
+        ArrayList arrayList2 = pmVar.f29454b;
         qm qmVar = pmVar.P;
-        if (i10 >= 0 && i10 < this.f28245a.size() && x(i10) && (photoEntry = (MediaController.PhotoEntry) this.f28245a.get(i10)) != null) {
+        if (i10 >= 0 && i10 < this.f28272a.size() && x(i10) && (photoEntry = (MediaController.PhotoEntry) this.f28272a.get(i10)) != null) {
             int size = arrayList2.size();
             om omVar = null;
             nm nmVar = null;
@@ -45,7 +45,7 @@ public final class lm extends org.telegram.ui.su0 {
                             break;
                         }
                         nm nmVar2 = (nm) arrayList.get(i12);
-                        if (nmVar2 != null && nmVar2.f28792b == photoEntry && nmVar2.f28799k > 0.5d) {
+                        if (nmVar2 != null && nmVar2.f28819b == photoEntry && nmVar2.f28826k > 0.5d) {
                             nmVar = (nm) arrayList.get(i12);
                             break;
                         }
@@ -61,20 +61,20 @@ public final class lm extends org.telegram.ui.su0 {
                 int[] iArr = new int[2];
                 pmVar.getLocationInWindow(iArr);
                 if (Build.VERSION.SDK_INT < 26) {
-                    iArr[0] = iArr[0] - qmVar.f28753b.getLeftInset();
+                    iArr[0] = iArr[0] - qmVar.f28780b.getLeftInset();
                 }
-                cv0Var.f35541b = iArr[0];
-                cv0Var.f35542c = iArr[1] + ((int) omVar.f29109a);
-                cv0Var.f35548k = 1.0f;
+                cv0Var.f35568b = iArr[0];
+                cv0Var.f35569c = iArr[1] + ((int) omVar.f29136a);
+                cv0Var.f35575k = 1.0f;
                 cv0Var.d = pmVar;
-                ImageReceiver imageReceiver = nmVar.f28793c;
-                cv0Var.f35540a = imageReceiver;
-                cv0Var.f35543e = imageReceiver.getBitmapSafe();
+                ImageReceiver imageReceiver = nmVar.f28820c;
+                cv0Var.f35567a = imageReceiver;
+                cv0Var.f35570e = imageReceiver.getBitmapSafe();
                 cv0Var.h = r5;
-                RectF rectF = nmVar.f28805q;
+                RectF rectF = nmVar.f28832q;
                 int[] iArr2 = {(int) rectF.left, (int) rectF.top, (int) rectF.right, (int) rectF.bottom};
-                cv0Var.f35547j = (int) (-pmVar.getY());
-                cv0Var.f35546i = pmVar.getHeight() - ((int) (((-pmVar.getY()) + qmVar.f29769r.getHeight()) - qmVar.f28753b.l1()));
+                cv0Var.f35574j = (int) (-pmVar.getY());
+                cv0Var.f35573i = pmVar.getHeight() - ((int) (((-pmVar.getY()) + qmVar.f29796r.getHeight()) - qmVar.f28780b.l1()));
                 return cv0Var;
             }
         }
@@ -83,14 +83,14 @@ public final class lm extends org.telegram.ui.su0 {
 
     @Override
     public final int H() {
-        return this.f28246b.h.size();
+        return this.f28273b.h.size();
     }
 
     @Override
     public final int Q(Object obj) {
         int indexOf;
         Integer valueOf = Integer.valueOf(((MediaController.PhotoEntry) obj).imageId);
-        pm pmVar = this.f28246b;
+        pm pmVar = this.f28273b;
         if (pmVar.h.size() <= 1 || (indexOf = pmVar.h.indexOf(valueOf)) < 0) {
             return -1;
         }
@@ -102,10 +102,10 @@ public final class lm extends org.telegram.ui.su0 {
     @Override
     public final int R(int i10) {
         MediaController.PhotoEntry photoEntry;
-        if (i10 < 0 || i10 >= this.f28245a.size() || (photoEntry = (MediaController.PhotoEntry) this.f28245a.get(i10)) == null) {
+        if (i10 < 0 || i10 >= this.f28272a.size() || (photoEntry = (MediaController.PhotoEntry) this.f28272a.get(i10)) == null) {
             return -1;
         }
-        return this.f28246b.h.indexOf(Integer.valueOf(photoEntry.imageId));
+        return this.f28273b.h.indexOf(Integer.valueOf(photoEntry.imageId));
     }
 
     @Override
@@ -113,25 +113,25 @@ public final class lm extends org.telegram.ui.su0 {
         MediaController.PhotoEntry photoEntry;
         ArrayList arrayList;
         boolean z10;
-        if (i10 >= 0 && i10 < this.f28245a.size() && (photoEntry = (MediaController.PhotoEntry) this.f28245a.get(i10)) != null) {
+        if (i10 >= 0 && i10 < this.f28272a.size() && (photoEntry = (MediaController.PhotoEntry) this.f28272a.get(i10)) != null) {
             int i11 = photoEntry.imageId;
-            pm pmVar = this.f28246b;
+            pm pmVar = this.f28273b;
             pmVar.invalidate();
-            for (int i12 = 0; i12 < pmVar.f29427b.size(); i12++) {
-                om omVar = (om) pmVar.f29427b.get(i12);
+            for (int i12 = 0; i12 < pmVar.f29454b.size(); i12++) {
+                om omVar = (om) pmVar.f29454b.get(i12);
                 if (omVar != null && (arrayList = omVar.h) != null) {
                     for (int i13 = 0; i13 < arrayList.size(); i13++) {
                         nm nmVar = (nm) arrayList.get(i13);
-                        if (nmVar != null && nmVar.f28792b.imageId == i11) {
+                        if (nmVar != null && nmVar.f28819b.imageId == i11) {
                             nm.a(nmVar, photoEntry);
                         }
                     }
-                    jm jmVar = omVar.f29117k;
-                    if (jmVar != null && jmVar.f27538g != null) {
+                    jm jmVar = omVar.f29144k;
+                    if (jmVar != null && jmVar.f27565g != null) {
                         z10 = false;
-                        for (int i14 = 0; i14 < omVar.f29117k.f27538g.size(); i14++) {
-                            if (((MediaController.PhotoEntry) omVar.f29117k.f27538g.get(i14)).imageId == i11) {
-                                omVar.f29117k.f27538g.set(i14, photoEntry);
+                        for (int i14 = 0; i14 < omVar.f29144k.f27565g.size(); i14++) {
+                            if (((MediaController.PhotoEntry) omVar.f29144k.f27565g.get(i14)).imageId == i11) {
+                                omVar.f29144k.f27565g.set(i14, photoEntry);
                                 z10 = true;
                             }
                         }
@@ -139,7 +139,7 @@ public final class lm extends org.telegram.ui.su0 {
                         z10 = false;
                     }
                     if (z10) {
-                        om.a(omVar, omVar.f29117k, true);
+                        om.a(omVar, omVar.f29144k, true);
                     }
                 }
             }
@@ -150,16 +150,16 @@ public final class lm extends org.telegram.ui.su0 {
 
     @Override
     public final ArrayList c() {
-        return this.f28246b.h;
+        return this.f28273b.h;
     }
 
     @Override
     public final int k(int i10, VideoEditedInfo videoEditedInfo) {
-        if (i10 < 0 || i10 >= this.f28245a.size()) {
+        if (i10 < 0 || i10 >= this.f28272a.size()) {
             return -1;
         }
-        Integer valueOf = Integer.valueOf(((MediaController.PhotoEntry) this.f28245a.get(i10)).imageId);
-        pm pmVar = this.f28246b;
+        Integer valueOf = Integer.valueOf(((MediaController.PhotoEntry) this.f28272a.get(i10)).imageId);
+        pm pmVar = this.f28273b;
         int indexOf = pmVar.h.indexOf(valueOf);
         if (indexOf >= 0) {
             if (pmVar.h.size() <= 1) {
@@ -181,13 +181,13 @@ public final class lm extends org.telegram.ui.su0 {
 
     @Override
     public final HashMap v() {
-        return this.f28246b.d;
+        return this.f28273b.d;
     }
 
     @Override
     public final boolean x(int i10) {
-        if (i10 >= 0 && i10 < this.f28245a.size()) {
-            return this.f28246b.h.contains(Integer.valueOf(((MediaController.PhotoEntry) this.f28245a.get(i10)).imageId));
+        if (i10 >= 0 && i10 < this.f28272a.size()) {
+            return this.f28273b.h.contains(Integer.valueOf(((MediaController.PhotoEntry) this.f28272a.get(i10)).imageId));
         }
         return false;
     }

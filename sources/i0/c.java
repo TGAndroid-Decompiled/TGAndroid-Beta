@@ -2,26 +2,26 @@ package i0;
 
 import android.graphics.Insets;
 public final class c {
-    public static final c f11424e = new c(0, 0, 0, 0);
-    public final int f11425a;
-    public final int f11426b;
-    public final int f11427c;
+    public static final c f11450e = new c(0, 0, 0, 0);
+    public final int f11451a;
+    public final int f11452b;
+    public final int f11453c;
     public final int d;
 
     public c(int i10, int i11, int i12, int i13) {
-        this.f11425a = i10;
-        this.f11426b = i11;
-        this.f11427c = i12;
+        this.f11451a = i10;
+        this.f11452b = i11;
+        this.f11453c = i12;
         this.d = i13;
     }
 
     public static c a(c cVar, c cVar2) {
-        return b(Math.max(cVar.f11425a, cVar2.f11425a), Math.max(cVar.f11426b, cVar2.f11426b), Math.max(cVar.f11427c, cVar2.f11427c), Math.max(cVar.d, cVar2.d));
+        return b(Math.max(cVar.f11451a, cVar2.f11451a), Math.max(cVar.f11452b, cVar2.f11452b), Math.max(cVar.f11453c, cVar2.f11453c), Math.max(cVar.d, cVar2.d));
     }
 
     public static c b(int i10, int i11, int i12, int i13) {
         if (i10 == 0 && i11 == 0 && i12 == 0 && i13 == 0) {
-            return f11424e;
+            return f11450e;
         }
         return new c(i10, i11, i12, i13);
     }
@@ -31,7 +31,7 @@ public final class c {
     }
 
     public final Insets d() {
-        return b2.c.i(this.f11425a, this.f11426b, this.f11427c, this.d);
+        return b2.c.i(this.f11451a, this.f11452b, this.f11453c, this.d);
     }
 
     public final boolean equals(Object obj) {
@@ -42,17 +42,17 @@ public final class c {
             return false;
         }
         c cVar = (c) obj;
-        if (this.d == cVar.d && this.f11425a == cVar.f11425a && this.f11427c == cVar.f11427c && this.f11426b == cVar.f11426b) {
+        if (this.d == cVar.d && this.f11451a == cVar.f11451a && this.f11453c == cVar.f11453c && this.f11452b == cVar.f11452b) {
             return true;
         }
         return false;
     }
 
     public final int hashCode() {
-        return (((((this.f11425a * 31) + this.f11426b) * 31) + this.f11427c) * 31) + this.d;
+        return (((((this.f11451a * 31) + this.f11452b) * 31) + this.f11453c) * 31) + this.d;
     }
 
     public final String toString() {
-        return "Insets{left=" + this.f11425a + ", top=" + this.f11426b + ", right=" + this.f11427c + ", bottom=" + this.d + '}';
+        return "Insets{left=" + this.f11451a + ", top=" + this.f11452b + ", right=" + this.f11453c + ", bottom=" + this.d + '}';
     }
 }

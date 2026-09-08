@@ -12,29 +12,29 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.Components.pr;
 public abstract class a9 extends FrameLayout implements x2 {
-    public final z8 f6909a;
-    public final FrameLayout f6910b;
-    public final TextView f6911c;
+    public final z8 f6937a;
+    public final FrameLayout f6938b;
+    public final TextView f6939c;
     public final FrameLayout d;
-    public final TextView f6912e;
-    public final FrameLayout f6913f;
+    public final TextView f6940e;
+    public final FrameLayout f6941f;
     public final TextView h;
-    public float f6914n;
-    public float f6915r;
-    public int f6916s;
+    public float f6942n;
+    public float f6943r;
+    public int f6944s;
     public ValueAnimator v;
-    public Utilities.Callback f6917w;
-    public Utilities.Callback f6918x;
+    public Utilities.Callback f6945w;
+    public Utilities.Callback f6946x;
 
     public a9(Context context) {
         super(context);
         z8 z8Var = new z8(this, context);
-        this.f6909a = z8Var;
+        this.f6937a = z8Var;
         z8Var.setOrientation(0);
         FrameLayout frameLayout = new FrameLayout(context);
-        this.f6910b = frameLayout;
+        this.f6938b = frameLayout;
         TextView textView = new TextView(context);
-        this.f6911c = textView;
+        this.f6939c = textView;
         textView.setTextSize(1, 14.0f);
         textView.setTypeface(AndroidUtilities.bold());
         textView.setTextColor(-1);
@@ -42,23 +42,23 @@ public abstract class a9 extends FrameLayout implements x2 {
         frameLayout.addView(textView, w7.x5.d(-2, -2.0f, 80, 16.0f, 0.0f, 16.0f, 7.0f));
         z8Var.addView(frameLayout, w7.x5.r(-2, -1, 112, 0.0f, 0.0f, 6.66f, 0.0f));
         frameLayout.setOnClickListener(new View.OnClickListener(this) {
-            public final a9 f8483b;
+            public final a9 f8511b;
 
             {
-                this.f8483b = this;
+                this.f8511b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        this.f8483b.b(-1);
+                        this.f8511b.b(-1);
                         return;
                     case 1:
-                        this.f8483b.b(0);
+                        this.f8511b.b(0);
                         return;
                     default:
-                        this.f8483b.b(1);
+                        this.f8511b.b(1);
                         return;
                 }
             }
@@ -67,7 +67,7 @@ public abstract class a9 extends FrameLayout implements x2 {
         FrameLayout frameLayout2 = new FrameLayout(context);
         this.d = frameLayout2;
         TextView textView2 = new TextView(context);
-        this.f6912e = textView2;
+        this.f6940e = textView2;
         textView2.setTextSize(1, 14.0f);
         textView2.setTypeface(AndroidUtilities.bold());
         textView2.setTextColor(-1);
@@ -75,30 +75,30 @@ public abstract class a9 extends FrameLayout implements x2 {
         frameLayout2.addView(textView2, w7.x5.d(-2, -2.0f, 80, 16.0f, 0.0f, 16.0f, 7.0f));
         z8Var.addView(frameLayout2, w7.x5.r(-2, -1, 112, 0.0f, 0.0f, 6.66f, 0.0f));
         frameLayout2.setOnClickListener(new View.OnClickListener(this) {
-            public final a9 f8483b;
+            public final a9 f8511b;
 
             {
-                this.f8483b = this;
+                this.f8511b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        this.f8483b.b(-1);
+                        this.f8511b.b(-1);
                         return;
                     case 1:
-                        this.f8483b.b(0);
+                        this.f8511b.b(0);
                         return;
                     default:
-                        this.f8483b.b(1);
+                        this.f8511b.b(1);
                         return;
                 }
             }
         });
         w7.z5.a(frameLayout2);
         FrameLayout frameLayout3 = new FrameLayout(context);
-        this.f6913f = frameLayout3;
+        this.f6941f = frameLayout3;
         TextView textView3 = new TextView(context);
         this.h = textView3;
         textView3.setTextSize(1, 14.0f);
@@ -108,23 +108,23 @@ public abstract class a9 extends FrameLayout implements x2 {
         frameLayout3.addView(textView3, w7.x5.d(-2, -2.0f, 80, 16.0f, 0.0f, 16.0f, 7.0f));
         z8Var.addView(frameLayout3, w7.x5.t(-2, -1, 112, 0, 0, 0, 0));
         frameLayout3.setOnClickListener(new View.OnClickListener(this) {
-            public final a9 f8483b;
+            public final a9 f8511b;
 
             {
-                this.f8483b = this;
+                this.f8511b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        this.f8483b.b(-1);
+                        this.f8511b.b(-1);
                         return;
                     case 1:
-                        this.f8483b.b(0);
+                        this.f8511b.b(0);
                         return;
                     default:
-                        this.f8483b.b(1);
+                        this.f8511b.b(1);
                         return;
                 }
             }
@@ -134,15 +134,15 @@ public abstract class a9 extends FrameLayout implements x2 {
     }
 
     public final void a(int i10) {
-        if (this.f6916s == i10) {
+        if (this.f6944s == i10) {
             return;
         }
-        this.f6916s = i10;
+        this.f6944s = i10;
         ValueAnimator valueAnimator = this.v;
         if (valueAnimator != null) {
             valueAnimator.cancel();
         }
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(this.f6915r, i10);
+        ValueAnimator ofFloat = ValueAnimator.ofFloat(this.f6943r, i10);
         this.v = ofFloat;
         ofFloat.addUpdateListener(new ah.d0(this, 25));
         this.v.setDuration(320L);
@@ -151,9 +151,9 @@ public abstract class a9 extends FrameLayout implements x2 {
     }
 
     public final void b(int i10) {
-        if (this.f6916s != i10) {
+        if (this.f6944s != i10) {
             a(i10);
-            Utilities.Callback callback = this.f6917w;
+            Utilities.Callback callback = this.f6945w;
             if (callback != null) {
                 callback.run(Integer.valueOf(i10));
             }
@@ -162,7 +162,7 @@ public abstract class a9 extends FrameLayout implements x2 {
 
     @Override
     public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        if (((gb) this).f7303y.I()) {
+        if (((gb) this).f7331y.I()) {
             return false;
         }
         return super.dispatchTouchEvent(motionEvent);
@@ -171,22 +171,22 @@ public abstract class a9 extends FrameLayout implements x2 {
     @Override
     public final void invalidate() {
         super.invalidate();
-        this.f6909a.invalidate();
+        this.f6937a.invalidate();
     }
 
     @Override
     public void setInvert(float f7) {
-        this.f6914n = f7;
-        this.f6911c.setTextColor(i0.a.d(f7, -1, -16777216));
-        this.f6912e.setTextColor(i0.a.d(f7, -1, -16777216));
+        this.f6942n = f7;
+        this.f6939c.setTextColor(i0.a.d(f7, -1, -16777216));
+        this.f6940e.setTextColor(i0.a.d(f7, -1, -16777216));
         this.h.setTextColor(i0.a.d(f7, -1, -16777216));
     }
 
     public void setOnSwitchModeListener(Utilities.Callback<Integer> callback) {
-        this.f6917w = callback;
+        this.f6945w = callback;
     }
 
     public void setOnSwitchingModeListener(Utilities.Callback<Float> callback) {
-        this.f6918x = callback;
+        this.f6946x = callback;
     }
 }

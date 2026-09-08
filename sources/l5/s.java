@@ -8,37 +8,37 @@ import java.util.Collections;
 import java.util.Set;
 import java.util.concurrent.Executor;
 public final class s {
-    public static volatile j f15306e;
-    public final u5.a f15307a;
-    public final u5.a f15308b;
-    public final q5.b f15309c;
+    public static volatile j f15333e;
+    public final u5.a f15334a;
+    public final u5.a f15335b;
+    public final q5.b f15336c;
     public final da.b d;
 
     public s(u5.a aVar, u5.a aVar2, q5.b bVar, da.b bVar2, com.google.firebase.messaging.s sVar) {
-        this.f15307a = aVar;
-        this.f15308b = aVar2;
-        this.f15309c = bVar;
+        this.f15334a = aVar;
+        this.f15335b = aVar2;
+        this.f15336c = bVar;
         this.d = bVar2;
-        ((Executor) sVar.f6391b).execute(new org.telegram.ui.web.b(sVar, 18));
+        ((Executor) sVar.f6418b).execute(new org.telegram.ui.web.b(sVar, 18));
     }
 
     public static s a() {
-        j jVar = f15306e;
+        j jVar = f15333e;
         if (jVar != null) {
-            return (s) jVar.f15290f.mo28get();
+            return (s) jVar.f15317f.mo28get();
         }
         throw new IllegalStateException("Not initialized!");
     }
 
     public static void b(Context context) {
-        if (f15306e == null) {
+        if (f15333e == null) {
             synchronized (s.class) {
                 try {
-                    if (f15306e == null) {
+                    if (f15333e == null) {
                         ?? obj = new Object();
                         context.getClass();
-                        obj.f14823a = context;
-                        f15306e = obj.a();
+                        obj.f14849a = context;
+                        f15333e = obj.a();
                     }
                 } catch (Throwable th2) {
                     throw th2;
@@ -57,10 +57,10 @@ public final class s {
         }
         aa.a a2 = i.a();
         kVar.getClass();
-        a2.f371b = "cct";
+        a2.f383b = "cct";
         j5.a aVar = (j5.a) kVar;
-        String str = aVar.f13510a;
-        String str2 = aVar.f13511b;
+        String str = aVar.f13536a;
+        String str2 = aVar.f13537b;
         if (str2 == null && str == null) {
             bytes = null;
         } else {
@@ -69,7 +69,7 @@ public final class s {
             }
             bytes = e2.j("1$", str, "\\", str2).getBytes(Charset.forName("UTF-8"));
         }
-        a2.f372c = bytes;
+        a2.f384c = bytes;
         return new q(singleton, a2.f(), this);
     }
 }

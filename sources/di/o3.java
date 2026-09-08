@@ -6,23 +6,23 @@ import org.telegram.ui.Components.bl0;
 import org.telegram.ui.Components.cl0;
 import org.telegram.ui.Components.zk0;
 public final class o3 implements Runnable {
-    public final int f7726a;
-    public final p3 f7727b;
-    public final s3 f7728c;
+    public final int f7754a;
+    public final p3 f7755b;
+    public final s3 f7756c;
 
     public o3(p3 p3Var, s3 s3Var, int i10) {
-        this.f7726a = i10;
-        this.f7727b = p3Var;
-        this.f7728c = s3Var;
+        this.f7754a = i10;
+        this.f7755b = p3Var;
+        this.f7756c = s3Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f7726a) {
+        switch (this.f7754a) {
             case 0:
-                f3 f3Var = this.f7727b.f7823c.d;
+                f3 f3Var = this.f7755b.f7851c.d;
                 f3Var.getClass();
-                s3 s3Var = this.f7728c;
+                s3 s3Var = this.f7756c;
                 int R = RecyclerView.R(s3Var);
                 if (R != -1) {
                     zk0 zk0Var = f3Var.V0;
@@ -39,9 +39,9 @@ public final class o3 implements Runnable {
                 }
                 return;
             default:
-                f3 f3Var2 = this.f7727b.f7823c.d;
+                f3 f3Var2 = this.f7755b.f7851c.d;
                 f3Var2.getClass();
-                s3 s3Var2 = this.f7728c;
+                s3 s3Var2 = this.f7756c;
                 int R2 = RecyclerView.R(s3Var2);
                 if (R2 != -1) {
                     bl0 bl0Var = f3Var2.X0;

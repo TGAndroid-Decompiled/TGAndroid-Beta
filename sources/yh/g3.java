@@ -17,7 +17,7 @@ import org.telegram.ui.Components.h51;
 import org.telegram.ui.Components.ll0;
 import org.telegram.ui.Components.v51;
 public final class g3 extends g51 {
-    public static final int f50291a = 0;
+    public static final int f50320a = 0;
 
     static {
         g51.setup(new g51());
@@ -27,9 +27,9 @@ public final class g3 extends g51 {
     public final void bindView(View view, h51 h51Var, boolean z10, v51 v51Var, d61 d61Var) {
         h3 h3Var = (h3) view;
         TL_stars.starGiftAttributeBackdrop stargiftattributebackdrop = (TL_stars.starGiftAttributeBackdrop) h51Var.G;
-        int i10 = h51Var.f26607z;
-        String str = (String) h51Var.f26594l;
-        boolean z11 = h51Var.f26588e;
+        int i10 = h51Var.f26634z;
+        String str = (String) h51Var.f26621l;
+        boolean z11 = h51Var.f26615e;
         h3Var.getClass();
         ShapeDrawable K = j6.K(AndroidUtilities.dp(20.0f), stargiftattributebackdrop.center_color | (-16777216));
         SpannableStringBuilder spannableStringBuilder = stargiftattributebackdrop.name;
@@ -54,7 +54,7 @@ public final class g3 extends g51 {
         f1Var.setPadding(AndroidUtilities.dp(18.0f), 0, AndroidUtilities.dp(18.0f), 0);
         f1Var.c(j6.v0(j6.E8, f6Var), j6.v0(j6.F8, f6Var));
         f1Var.e(-1, PorterDuff.Mode.MULTIPLY);
-        f1Var.f20403c.setTranslationX(AndroidUtilities.dp(2.0f));
+        f1Var.f20430c.setTranslationX(AndroidUtilities.dp(2.0f));
         f1Var.a(2);
         f1Var.setBackground(null);
         return f1Var;

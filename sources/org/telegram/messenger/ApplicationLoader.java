@@ -63,7 +63,7 @@ public class ApplicationLoader extends Application {
 
     private boolean checkPlayServices() {
         try {
-            AtomicBoolean atomicBoolean = k6.g.f14818a;
+            AtomicBoolean atomicBoolean = k6.g.f14844a;
             if (k6.g.b(this, 12451000) == 0) {
                 return true;
             }

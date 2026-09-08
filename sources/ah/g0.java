@@ -10,32 +10,32 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.co;
 public final class g0 extends FrameLayout {
-    public final co f535a;
-    public f0 f536b;
-    public List f537c;
+    public final co f547a;
+    public f0 f548b;
+    public List f549c;
     public boolean d;
-    public MessageObject f538e;
-    public final int f539f;
+    public MessageObject f550e;
+    public final int f551f;
     public final int h;
-    public float f540n;
-    public float f541r;
-    public float f542s;
+    public float f552n;
+    public float f553r;
+    public float f554s;
     public long v;
-    public boolean f543w;
-    public boolean f544x;
-    public final int[] f545y;
+    public boolean f555w;
+    public boolean f556x;
+    public final int[] f557y;
 
     public g0(co coVar, Context context) {
         super(context);
-        this.f537c = Collections.EMPTY_LIST;
-        this.f539f = 22;
+        this.f549c = Collections.EMPTY_LIST;
+        this.f551f = 22;
         this.h = 24;
-        this.f545y = new int[2];
+        this.f557y = new int[2];
         setVisibility(8);
-        this.f535a = coVar;
+        this.f547a = coVar;
         setClipToPadding(false);
         setClipChildren(false);
-        coVar.f35473x0.j(new e0(this, 0));
+        coVar.f35500x0.j(new e0(this, 0));
     }
 
     public final void a(boolean z10) {
@@ -44,7 +44,7 @@ public final class g0 extends FrameLayout {
             post(new c0(this, 1));
             return;
         }
-        this.f544x = false;
+        this.f556x = false;
         ValueAnimator duration = ValueAnimator.ofFloat(1.0f, 0.0f).setDuration(150L);
         duration.addUpdateListener(new d0(this, 0));
         duration.addListener(new b(this, 1));
@@ -56,10 +56,10 @@ public final class g0 extends FrameLayout {
         ArrayList<MessageObject> arrayList;
         TLRPC.TL_messageReactions tL_messageReactions;
         ArrayList<TLRPC.ReactionCount> arrayList2;
-        if (this.d && !this.f537c.isEmpty()) {
+        if (this.d && !this.f549c.isEmpty()) {
             int i10 = 0;
-            MessageObject messageObject = (MessageObject) this.f537c.get(0);
-            if (messageObject.getGroupId() != 0 && (y82 = this.f535a.y8(messageObject.getGroupId())) != null && (arrayList = y82.messages) != null) {
+            MessageObject messageObject = (MessageObject) this.f549c.get(0);
+            if (messageObject.getGroupId() != 0 && (y82 = this.f547a.y8(messageObject.getGroupId())) != null && (arrayList = y82.messages) != null) {
                 int size = arrayList.size();
                 while (i10 < size) {
                     MessageObject messageObject2 = arrayList.get(i10);
@@ -81,14 +81,14 @@ public final class g0 extends FrameLayout {
     }
 
     public final boolean d() {
-        if (this.d && !this.f543w) {
+        if (this.d && !this.f555w) {
             return true;
         }
         return false;
     }
 
     public void setHiddenByScroll(boolean z10) {
-        this.f543w = z10;
+        this.f555w = z10;
         if (z10) {
             a(false);
         }

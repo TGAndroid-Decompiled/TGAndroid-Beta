@@ -13,11 +13,11 @@ public final class fb extends c0 {
         this.D0 = true;
         this.M0 = new androidx.activity.i(this, 9);
         this.O0 = -1;
-        this.f3830y0 = i10;
+        this.f3857y0 = i10;
         this.H0 = new l5(context);
         this.N0 = pbVar2;
         r9 r9Var = new r9(this, context, pbVar2, bVar);
-        this.f3831z0 = r9Var;
+        this.f3858z0 = r9Var;
         setAdapter(r9Var);
         a1.c cVar = new a1.c(this, 8);
         if (this.m0 != null) {
@@ -27,8 +27,8 @@ public final class fb extends c0 {
         }
         this.m0 = cVar;
         setChildrenDrawingOrderEnabled(true);
-        this.f50749o0 = 1;
-        this.f50748n0 = 2;
+        this.f50780o0 = 1;
+        this.f50779n0 = 2;
         if (z10) {
             s();
         }

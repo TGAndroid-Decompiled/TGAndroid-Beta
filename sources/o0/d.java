@@ -18,8 +18,8 @@ import java.util.List;
 import mg.n;
 import w7.z7;
 public abstract class d {
-    public static final a0.k f16774a = new a0.k(2);
-    public static final a4.e f16775b = new a4.e(23);
+    public static final a0.k f16801a = new a0.k(2);
+    public static final a4.e f16802b = new a4.e(23);
 
     public static j4.f a(Context context, List list) {
         z7.a("FontProvider.getFontFamilyResult");
@@ -40,20 +40,20 @@ public abstract class d {
     }
 
     public static ProviderInfo b(PackageManager packageManager, e eVar, Resources resources) {
-        a4.e eVar2 = f16775b;
-        a0.k kVar = f16774a;
+        a4.e eVar2 = f16802b;
+        a0.k kVar = f16801a;
         z7.a("FontProvider.getProvider");
         try {
             List list = eVar.d;
-            String str = eVar.f16776a;
-            String str2 = eVar.f16777b;
+            String str = eVar.f16803a;
+            String str2 = eVar.f16804b;
             if (list == null) {
                 list = h0.b.h(resources, 0);
             }
             ?? obj = new Object();
-            obj.f16771a = str;
-            obj.f16772b = str2;
-            obj.f16773c = list;
+            obj.f16798a = str;
+            obj.f16799b = str2;
+            obj.f16800c = list;
             ProviderInfo providerInfo = (ProviderInfo) kVar.a(obj);
             if (providerInfo != null) {
                 return providerInfo;
@@ -110,7 +110,7 @@ public abstract class d {
             }
             String[] strArr = {"_id", "file_id", "font_ttc_index", "font_variation_settings", "font_weight", "font_italic", "result_code"};
             z7.a("ContentQueryWrapper.query");
-            Cursor l4 = nVar.l(build, strArr, new String[]{eVar.f16778c});
+            Cursor l4 = nVar.l(build, strArr, new String[]{eVar.f16805c});
             Trace.endSection();
             if (l4 != null && l4.getCount() > 0) {
                 int columnIndex = l4.getColumnIndex("result_code");

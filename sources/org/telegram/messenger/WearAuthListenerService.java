@@ -31,13 +31,13 @@ public class WearAuthListenerService extends x8.k {
                 return;
             }
             FileLog.d("wear-auth: cancel from " + str2);
-            BigInteger bigInteger = lj1.f38395a;
+            BigInteger bigInteger = lj1.f38422a;
             FileLog.d("wear-auth: cancel received; dropping session and dismissing sheet");
             lj1.d = null;
-            org.telegram.ui.ActionBar.f3 f3Var = lj1.f38397c;
+            org.telegram.ui.ActionBar.f3 f3Var = lj1.f38424c;
             if (f3Var != null) {
                 f3Var.dismiss();
-                lj1.f38397c = null;
+                lj1.f38424c = null;
                 return;
             }
             return;
@@ -46,7 +46,7 @@ public class WearAuthListenerService extends x8.k {
         v.append(bArr.length);
         v.append(" bytes)");
         FileLog.d(v.toString());
-        BigInteger bigInteger2 = lj1.f38395a;
+        BigInteger bigInteger2 = lj1.f38422a;
         if (bArr.length != 272) {
             FileLog.d("wear-auth: malformed offer (" + bArr.length + ")");
             return;
@@ -54,14 +54,14 @@ public class WearAuthListenerService extends x8.k {
         byte[] copyOfRange = Arrays.copyOfRange(bArr, 0, 16);
         byte[] copyOfRange2 = Arrays.copyOfRange(bArr, 16, bArr.length);
         cf.c cVar = lj1.d;
-        if (cVar != null && Arrays.equals((byte[]) cVar.f4797b, copyOfRange)) {
+        if (cVar != null && Arrays.equals((byte[]) cVar.f4824b, copyOfRange)) {
             FileLog.d("wear-auth: duplicate offer (same sessionId) — ignoring");
             return;
         }
         FileLog.d("wear-auth: new session " + lj1.d(copyOfRange) + " from " + str2);
         ?? obj = new Object();
-        obj.f4797b = copyOfRange;
-        obj.f4798c = copyOfRange2;
+        obj.f4824b = copyOfRange;
+        obj.f4825c = copyOfRange2;
         obj.d = str2;
         lj1.d = obj;
         Context context = LaunchActivity.G1;
@@ -75,10 +75,10 @@ public class WearAuthListenerService extends x8.k {
             } else {
                 f6Var = null;
             }
-            org.telegram.ui.ActionBar.f3 f3Var2 = lj1.f38397c;
+            org.telegram.ui.ActionBar.f3 f3Var2 = lj1.f38424c;
             if (f3Var2 != null) {
                 f3Var2.dismiss();
-                lj1.f38397c = null;
+                lj1.f38424c = null;
             }
             org.telegram.ui.ActionBar.f3 i10 = wl.i(1, context, f6Var, false);
             FrameLayout frameLayout = new FrameLayout(context);
@@ -101,7 +101,7 @@ public class WearAuthListenerService extends x8.k {
             FrameLayout frameLayout2 = new FrameLayout(context);
             int i13 = i11;
             FrameLayout frameLayout3 = new FrameLayout(context);
-            frameLayout3.setBackground(org.telegram.ui.ActionBar.j6.b0(AndroidUtilities.dp(14.0f), org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f20752i5, f6Var)));
+            frameLayout3.setBackground(org.telegram.ui.ActionBar.j6.b0(AndroidUtilities.dp(14.0f), org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f20779i5, f6Var)));
             org.telegram.ui.Components.x9 x9Var = new org.telegram.ui.Components.x9(context);
             x9Var.setRoundRadius(AndroidUtilities.dp(14.0f));
             x9Var.getImageReceiver().setCrossfadeWithOldImage(true);
@@ -113,7 +113,7 @@ public class WearAuthListenerService extends x8.k {
             frameLayout3.addView(x9Var, w7.x5.e(28, 28, 115));
             ImageView imageView = new ImageView(context);
             imageView.setScaleType(ImageView.ScaleType.CENTER);
-            imageView.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f20915r5, f6Var), PorterDuff.Mode.SRC_IN));
+            imageView.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f20942r5, f6Var), PorterDuff.Mode.SRC_IN));
             imageView.setImageResource(R.drawable.arrows_select);
             frameLayout3.addView(imageView, w7.x5.d(18, 18.0f, 21, 0.0f, 0.0f, 4.0f, 0.0f));
             frameLayout2.addView(frameLayout3, w7.x5.e(52, 28, 17));
@@ -128,7 +128,7 @@ public class WearAuthListenerService extends x8.k {
             org.telegram.ui.Components.x9 x9Var2 = new org.telegram.ui.Components.x9(context);
             f7.addView(x9Var2, w7.x5.r(130, 130, 49, 32.0f, 32.0f, 32.0f, 9.66f));
             MediaDataController.getInstance(i13).setPlaceholderImage(x9Var2, "Utya3D", "😎", "130_130");
-            int i14 = org.telegram.ui.ActionBar.j6.f20770j5;
+            int i14 = org.telegram.ui.ActionBar.j6.f20797j5;
             TextView b10 = w7.b6.b(context, 20.0f, i14, true, f6Var);
             b10.setGravity(17);
             b10.setText(LocaleController.getString(R.string.WearAuthTitle));
@@ -140,12 +140,12 @@ public class WearAuthListenerService extends x8.k {
             di.d g10 = wl.g(24, context, f6Var, true);
             g10.setText(LocaleController.getString(R.string.Next));
             f7.addView(g10, w7.x5.t(-1, 48, 7, 12, 12, 12, 8));
-            int i15 = org.telegram.ui.ActionBar.j6.f20607a7;
+            int i15 = org.telegram.ui.ActionBar.j6.f20634a7;
             i10.setBackgroundColor(org.telegram.ui.ActionBar.j6.v0(i15, f6Var));
             i10.fixNavigationBar(org.telegram.ui.ActionBar.j6.v0(i15, f6Var));
             frameLayout2.setOnClickListener(new org.telegram.ui.Components.n0(i10, frameLayout3, arrayList, iArr, i9Var, x9Var, 4));
             g10.setOnClickListener(new wy0(11, g10, iArr));
-            lj1.f38397c = i10;
+            lj1.f38424c = i10;
             i10.show();
         }
     }
@@ -153,9 +153,9 @@ public class WearAuthListenerService extends x8.k {
     @Override
     public void onMessageReceived(x8.g gVar) {
         y8.k0 k0Var = (y8.k0) gVar;
-        String str = k0Var.f49613b;
+        String str = k0Var.f49642b;
         String str2 = k0Var.d;
-        byte[] bArr = k0Var.f49614c;
+        byte[] bArr = k0Var.f49643c;
         if ("/tg-wear-auth/offer".equals(str)) {
             try {
                 Intent intent = new Intent(this, LaunchActivity.class);

@@ -29,7 +29,7 @@ public final class w30 extends bb {
         org.telegram.ui.n01 P2 = P(activity, AndroidUtilities.dp(60.0f), tLObject);
         ImageView imageView = new ImageView(activity);
         imageView.setImageResource(R.drawable.msg_arrow_avatar);
-        imageView.setColorFilter(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f21061z6, f6Var));
+        imageView.setColorFilter(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f21088z6, f6Var));
         imageView.setScaleType(ImageView.ScaleType.CENTER);
         LinearLayout linearLayout2 = new LinearLayout(activity);
         linearLayout2.setOrientation(0);
@@ -88,7 +88,7 @@ public final class w30 extends bb {
     public final kl0 v(ll0 ll0Var) {
         v51 v51Var = new v51(this.d, getContext(), this.currentAccount, 0, true, new d(this, 14), this.resourcesProvider);
         this.Y = v51Var;
-        v51Var.f31135r = false;
+        v51Var.f31162r = false;
         return v51Var;
     }
 

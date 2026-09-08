@@ -4,7 +4,7 @@ import android.media.MediaRoute2Info;
 import java.util.Set;
 public abstract class w {
     public static void a(MediaRoute2Info.Builder builder, m mVar) {
-        if (mVar.f43867a.getBoolean("isVisibilityPublic", true)) {
+        if (mVar.f43894a.getBoolean("isVisibilityPublic", true)) {
             builder.setVisibilityPublic();
         } else {
             builder.setVisibilityRestricted(mVar.a());

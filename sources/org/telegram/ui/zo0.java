@@ -2,20 +2,20 @@ package org.telegram.ui;
 
 import org.telegram.messenger.Utilities;
 public final class zo0 implements Utilities.Callback {
-    public final int f43475a;
-    public final bq0 f43476b;
+    public final int f43502a;
+    public final bq0 f43503b;
 
     public zo0(bq0 bq0Var, int i10) {
-        this.f43475a = i10;
-        this.f43476b = bq0Var;
+        this.f43502a = i10;
+        this.f43503b = bq0Var;
     }
 
     @Override
     public final void run(Object obj) {
-        switch (this.f43475a) {
+        switch (this.f43502a) {
             case 0:
-                bq0 bq0Var = this.f43476b;
-                bq0Var.f34874r = false;
+                bq0 bq0Var = this.f43503b;
+                bq0Var.f34901r = false;
                 bq0Var.Q.setLoading(false);
                 if (((Boolean) obj).booleanValue()) {
                     bq0Var.x0();
@@ -26,7 +26,7 @@ public final class zo0 implements Utilities.Callback {
                 return;
             default:
                 Integer num = (Integer) obj;
-                di.i1 i1Var = this.f43476b.I;
+                di.i1 i1Var = this.f43503b.I;
                 if (i1Var != null) {
                     i1Var.D(num.intValue());
                     return;

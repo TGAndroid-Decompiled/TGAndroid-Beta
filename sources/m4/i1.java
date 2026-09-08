@@ -1,37 +1,37 @@
 package m4;
 public final class i1 extends b2.k1 {
-    public static final Object f15960k = new Object();
-    public final b2.k0 f15961e;
-    public final boolean f15962f;
-    public final boolean f15963g;
+    public static final Object f15987k = new Object();
+    public final b2.k0 f15988e;
+    public final boolean f15989f;
+    public final boolean f15990g;
     public final boolean h;
-    public final b2.e0 f15964i;
-    public final long f15965j;
+    public final b2.e0 f15991i;
+    public final long f15992j;
 
     public i1(j1 j1Var) {
         boolean z10;
         b2.e0 e0Var;
-        this.f15961e = j1Var.w();
-        this.f15962f = j1Var.d0();
-        this.f15963g = j1Var.t0();
-        if (!j1Var.w0().p() && j1Var.w0().m(j1Var.l0(), new b2.j1(), 0L).f2114k) {
+        this.f15988e = j1Var.w();
+        this.f15989f = j1Var.d0();
+        this.f15990g = j1Var.t0();
+        if (!j1Var.w0().p() && j1Var.w0().m(j1Var.l0(), new b2.j1(), 0L).f2141k) {
             z10 = true;
         } else {
             z10 = false;
         }
         this.h = z10;
         if (j1Var.M0()) {
-            e0Var = b2.e0.f2010f;
+            e0Var = b2.e0.f2037f;
         } else {
             e0Var = null;
         }
-        this.f15964i = e0Var;
-        this.f15965j = e2.d0.Q(j1Var.A());
+        this.f15991i = e0Var;
+        this.f15992j = e2.d0.Q(j1Var.A());
     }
 
     @Override
     public final int b(Object obj) {
-        if (f15960k.equals(obj)) {
+        if (f15987k.equals(obj)) {
             return 0;
         }
         return -1;
@@ -40,10 +40,10 @@ public final class i1 extends b2.k1 {
     @Override
     public final b2.h1 f(int i10, b2.h1 h1Var, boolean z10) {
         h1Var.getClass();
-        b2.b bVar = b2.b.f1966c;
-        Object obj = f15960k;
-        h1Var.h(obj, obj, 0, this.f15965j, 0L, bVar, false);
-        h1Var.f2058f = this.h;
+        b2.b bVar = b2.b.f1993c;
+        Object obj = f15987k;
+        h1Var.h(obj, obj, 0, this.f15992j, 0L, bVar, false);
+        h1Var.f2085f = this.h;
         return h1Var;
     }
 
@@ -54,13 +54,13 @@ public final class i1 extends b2.k1 {
 
     @Override
     public final Object l(int i10) {
-        return f15960k;
+        return f15987k;
     }
 
     @Override
     public final b2.j1 m(int i10, b2.j1 j1Var, long j3) {
-        j1Var.b(f15960k, this.f15961e, null, -9223372036854775807L, -9223372036854775807L, -9223372036854775807L, this.f15962f, this.f15963g, this.f15964i, 0L, this.f15965j, 0, 0, 0L);
-        j1Var.f2114k = this.h;
+        j1Var.b(f15987k, this.f15988e, null, -9223372036854775807L, -9223372036854775807L, -9223372036854775807L, this.f15989f, this.f15990g, this.f15991i, 0L, this.f15992j, 0, 0, 0L);
+        j1Var.f2141k = this.h;
         return j1Var;
     }
 

@@ -16,14 +16,14 @@ public final class da0 extends xh.n {
             case 0:
                 xh.b bVar = (xh.b) this.F;
                 xw0 xw0Var = bVar.W;
-                if (this.f49445e.isEmpty()) {
+                if (this.f49474e.isEmpty()) {
                     if (xw0Var.getVisibility() != 4) {
                         xw0Var.setVisibility(4);
                         return;
                     }
                     return;
                 } else if (z11) {
-                    bVar.f28982w.J.setText("");
+                    bVar.f29009w.J.setText("");
                     return;
                 } else {
                     super.f(str, z10, z11);

@@ -9,8 +9,8 @@ import android.os.RemoteException;
 import android.util.Log;
 import java.util.concurrent.atomic.AtomicBoolean;
 public abstract class j8 {
-    public static Context f47495a;
-    public static i8.e f47496b;
+    public static Context f47523a;
+    public static i8.e f47524b;
 
     public static i8.e a(Context context) {
         Class cls;
@@ -18,9 +18,9 @@ public abstract class j8 {
         i8.e aVar;
         n6.l.h(context);
         Log.d("j8", "preferredRenderer: ".concat("null"));
-        i8.e eVar = f47496b;
+        i8.e eVar = f47524b;
         if (eVar == null) {
-            AtomicBoolean atomicBoolean = k6.g.f14818a;
+            AtomicBoolean atomicBoolean = k6.g.f14844a;
             int b10 = k6.g.b(context, 13400000);
             if (b10 == 0) {
                 Log.i("j8", "Making Creator dynamically");
@@ -39,7 +39,7 @@ public abstract class j8 {
                                 aVar = new a9.a(iBinder, "com.google.android.gms.maps.internal.ICreator", 9);
                             }
                         }
-                        f47496b = aVar;
+                        f47524b = aVar;
                         try {
                             Context b11 = b(context);
                             b11.getClass();
@@ -48,7 +48,7 @@ public abstract class j8 {
                             s7.b.c(O0, bVar);
                             O0.writeInt(12451000);
                             aVar.S0(O0, 6);
-                            return f47496b;
+                            return f47524b;
                         } catch (RemoteException e7) {
                             throw new RuntimeException(e7);
                         }
@@ -68,32 +68,32 @@ public abstract class j8 {
 
     public static Context b(Context context) {
         Context context2;
-        Context context3 = f47495a;
+        Context context3 = f47523a;
         if (context3 == null) {
             context.getApplicationContext();
             try {
-                context2 = y6.e.c(context, y6.e.f49545b, "com.google.android.gms.maps_dynamite").f49555a;
+                context2 = y6.e.c(context, y6.e.f49574b, "com.google.android.gms.maps_dynamite").f49584a;
             } catch (Exception e7) {
                 try {
                     if (!"com.google.android.gms.maps_dynamite".equals("com.google.android.gms.maps_dynamite")) {
                         try {
                             Log.d("j8", "Attempting to load maps_dynamite again.");
-                            context2 = y6.e.c(context, y6.e.f49545b, "com.google.android.gms.maps_dynamite").f49555a;
+                            context2 = y6.e.c(context, y6.e.f49574b, "com.google.android.gms.maps_dynamite").f49584a;
                         } catch (Exception e10) {
                             Log.e("j8", "Failed to load maps module, use pre-Chimera", e10);
-                            AtomicBoolean atomicBoolean = k6.g.f14818a;
+                            AtomicBoolean atomicBoolean = k6.g.f14844a;
                             context2 = context.createPackageContext("com.google.android.gms", 3);
                         }
                     } else {
                         Log.e("j8", "Failed to load maps module, use pre-Chimera", e7);
-                        AtomicBoolean atomicBoolean2 = k6.g.f14818a;
+                        AtomicBoolean atomicBoolean2 = k6.g.f14844a;
                         context2 = context.createPackageContext("com.google.android.gms", 3);
                     }
                 } catch (PackageManager.NameNotFoundException unused) {
                     context2 = null;
                 }
             }
-            f47495a = context2;
+            f47523a = context2;
             return context2;
         }
         return context3;

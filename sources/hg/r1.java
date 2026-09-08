@@ -3,10 +3,10 @@ package hg;
 import java.util.ArrayList;
 import org.telegram.ui.zs;
 public final class r1 implements a2 {
-    public final zs f11229a;
+    public final zs f11255a;
 
     public r1(zs zsVar) {
-        this.f11229a = zsVar;
+        this.f11255a = zsVar;
     }
 
     @Override
@@ -21,7 +21,7 @@ public final class r1 implements a2 {
 
     @Override
     public final void f(int i10) {
-        zs zsVar = this.f11229a;
+        zs zsVar = this.f11255a;
         zsVar.l();
         if (i10 != 0) {
             zsVar.F();

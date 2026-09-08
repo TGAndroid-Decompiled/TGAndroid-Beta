@@ -1,9 +1,9 @@
 package s4;
 public final class i1 {
     public static final c5.b0 d = new c5.b0(20, 6);
-    public int f45800a;
-    public b2.q0 f45801b;
-    public b2.q0 f45802c;
+    public int f45828a;
+    public b2.q0 f45829b;
+    public b2.q0 f45830c;
 
     public static i1 a() {
         i1 i1Var = (i1) d.a();

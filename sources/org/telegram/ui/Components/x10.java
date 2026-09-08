@@ -7,49 +7,49 @@ import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.voip.VoIPService;
 import org.telegram.tgnet.TLRPC;
 public final class x10 {
-    public w10[] f32392a;
-    public w10 f32393b;
-    public w10 f32394c;
+    public w10[] f32419a;
+    public w10 f32420b;
+    public w10 f32421c;
     public w10 d;
-    public float f32395e;
-    public float f32396f;
-    public float f32397g;
+    public float f32422e;
+    public float f32423f;
+    public float f32424g;
     public float h;
-    public float f32398i;
-    public long f32399j;
-    public float f32400k;
-    public ArrayList f32401l;
-    public Paint f32402m;
-    public Path f32403n;
+    public float f32425i;
+    public long f32426j;
+    public float f32427k;
+    public ArrayList f32428l;
+    public Paint f32429m;
+    public Path f32430n;
 
     public final void a(float f7) {
-        this.f32397g = f7;
-        float f10 = this.f32395e;
+        this.f32424g = f7;
+        float f10 = this.f32422e;
         this.h = (f7 - f10) / 250.0f;
-        this.f32398i = (f7 - f10) / 120.0f;
+        this.f32425i = (f7 - f10) / 120.0f;
     }
 
     public final void b(int i10, boolean z10) {
         w10 w10Var;
-        w10 w10Var2 = this.f32393b;
-        if (w10Var2 != null && w10Var2.f32067i == i10) {
+        w10 w10Var2 = this.f32420b;
+        if (w10Var2 != null && w10Var2.f32094i == i10) {
             return;
         }
-        if (VoIPService.getSharedInstance() == null && this.f32393b == null) {
-            this.f32393b = this.d;
+        if (VoIPService.getSharedInstance() == null && this.f32420b == null) {
+            this.f32420b = this.d;
             return;
         }
         if (z10) {
-            w10Var = this.f32393b;
+            w10Var = this.f32420b;
         } else {
             w10Var = null;
         }
-        this.f32394c = w10Var;
-        this.f32393b = this.f32392a[i10];
+        this.f32421c = w10Var;
+        this.f32420b = this.f32419a[i10];
         if (w10Var != null) {
-            this.f32400k = 0.0f;
+            this.f32427k = 0.0f;
         } else {
-            this.f32400k = 1.0f;
+            this.f32427k = 1.0f;
         }
     }
 

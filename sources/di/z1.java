@@ -7,29 +7,29 @@ import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.NotificationCenter;
 public final class z1 extends a2 implements NotificationCenter.NotificationCenterDelegate {
-    public final bi.o0 f8506b;
-    public final w1 f8507c;
+    public final bi.o0 f8534b;
+    public final w1 f8535c;
     public final l2 d;
-    public final y1 f8508e;
-    public final s1 f8509f;
+    public final y1 f8536e;
+    public final s1 f8537f;
     public final ArrayList h;
-    public final ArrayList f8510n;
-    public final t2 f8511r;
+    public final ArrayList f8538n;
+    public final t2 f8539r;
 
     public z1(t2 t2Var, Context context) {
         super(context);
         org.telegram.ui.ActionBar.f6 f6Var;
-        this.f8511r = t2Var;
-        this.f8509f = new Object();
+        this.f8539r = t2Var;
+        this.f8537f = new Object();
         this.h = new ArrayList();
-        this.f8510n = new ArrayList();
+        this.f8538n = new ArrayList();
         bi.o0 o0Var = new bi.o0(this, context, 1);
-        this.f8506b = o0Var;
+        this.f8534b = o0Var;
         w1 w1Var = new w1(this);
-        this.f8507c = w1Var;
+        this.f8535c = w1Var;
         o0Var.setAdapter(w1Var);
         y1 y1Var = new y1(this);
-        this.f8508e = y1Var;
+        this.f8536e = y1Var;
         o0Var.setLayoutManager(y1Var);
         o0Var.i(new r1(this, 0));
         o0Var.setClipToPadding(true);
@@ -49,9 +49,9 @@ public final class z1 extends a2 implements NotificationCenter.NotificationCente
 
     @Override
     public final void a(int i10) {
-        w1 w1Var = this.f8507c;
+        w1 w1Var = this.f8535c;
         w1.E(w1Var, false);
-        if (this.f8510n.isEmpty() && TextUtils.isEmpty(this.f8511r.f8167b)) {
+        if (this.f8538n.isEmpty() && TextUtils.isEmpty(this.f8539r.f8195b)) {
             w1Var.G();
         }
         w1Var.H(null);
@@ -61,7 +61,7 @@ public final class z1 extends a2 implements NotificationCenter.NotificationCente
     public final float b() {
         int i10 = 0;
         while (true) {
-            bi.o0 o0Var = this.f8506b;
+            bi.o0 o0Var = this.f8534b;
             if (i10 < o0Var.getChildCount()) {
                 View childAt = o0Var.getChildAt(i10);
                 Object tag = childAt.getTag();
@@ -83,7 +83,7 @@ public final class z1 extends a2 implements NotificationCenter.NotificationCente
     @Override
     public final void didReceivedNotification(int i10, int i11, Object... objArr) {
         if (i10 == NotificationCenter.recentDocumentsDidLoad) {
-            w1.E(this.f8507c, true);
+            w1.E(this.f8535c, true);
         }
     }
 
@@ -91,7 +91,7 @@ public final class z1 extends a2 implements NotificationCenter.NotificationCente
     public final void onAttachedToWindow() {
         int i10;
         super.onAttachedToWindow();
-        i10 = ((org.telegram.ui.ActionBar.f3) this.f8511r).currentAccount;
+        i10 = ((org.telegram.ui.ActionBar.f3) this.f8539r).currentAccount;
         NotificationCenter.getInstance(i10).addObserver(this, NotificationCenter.recentDocumentsDidLoad);
     }
 
@@ -99,7 +99,7 @@ public final class z1 extends a2 implements NotificationCenter.NotificationCente
     public final void onDetachedFromWindow() {
         int i10;
         super.onDetachedFromWindow();
-        i10 = ((org.telegram.ui.ActionBar.f3) this.f8511r).currentAccount;
+        i10 = ((org.telegram.ui.ActionBar.f3) this.f8539r).currentAccount;
         NotificationCenter.getInstance(i10).removeObserver(this, NotificationCenter.recentDocumentsDidLoad);
     }
 
@@ -107,7 +107,7 @@ public final class z1 extends a2 implements NotificationCenter.NotificationCente
     public final void onMeasure(int i10, int i11) {
         int i12;
         int i13;
-        t2 t2Var = this.f8511r;
+        t2 t2Var = this.f8539r;
         i12 = ((org.telegram.ui.ActionBar.f3) t2Var).backgroundPaddingLeft;
         i13 = ((org.telegram.ui.ActionBar.f3) t2Var).backgroundPaddingLeft;
         setPadding(i12, 0, i13, AndroidUtilities.navigationBarHeight);

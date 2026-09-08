@@ -2,18 +2,18 @@ package ad;
 
 import java.util.Map;
 public abstract class c {
-    public final String f404a;
-    public final int f405b;
-    public final Map f406c;
+    public final String f416a;
+    public final int f417b;
+    public final Map f418c;
     public int d = -1;
 
     public c(int i10, String str, Map map) {
-        this.f404a = str;
-        this.f405b = i10;
-        this.f406c = map;
+        this.f416a = str;
+        this.f417b = i10;
+        this.f418c = map;
     }
 
     public Map a() {
-        return this.f406c;
+        return this.f418c;
     }
 }

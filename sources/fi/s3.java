@@ -17,31 +17,31 @@ import org.telegram.ui.Components.yc;
 import org.telegram.ui.eg1;
 import org.telegram.ui.of1;
 public final class s3 implements Utilities.Callback {
-    public final int f9954a = 0;
-    public final int f9955b;
-    public final long f9956c;
+    public final int f9982a = 0;
+    public final int f9983b;
+    public final long f9984c;
     public final Object d;
-    public final Object f9957e;
-    public final Object f9958f;
-    public final Object f9959g;
+    public final Object f9985e;
+    public final Object f9986f;
+    public final Object f9987g;
 
     public s3(int i10, long j3, Context context, TL_payments.connectedBotStarRef connectedbotstarref, org.telegram.ui.ActionBar.f3 f3Var, f6 f6Var) {
-        this.f9955b = i10;
+        this.f9983b = i10;
         this.d = connectedbotstarref;
-        this.f9957e = f3Var;
-        this.f9958f = context;
-        this.f9956c = j3;
-        this.f9959g = f6Var;
+        this.f9985e = f3Var;
+        this.f9986f = context;
+        this.f9984c = j3;
+        this.f9987g = f6Var;
     }
 
     @Override
     public final void run(Object obj) {
         int i10;
         SpannableStringBuilder replaceTags;
-        int i11 = this.f9954a;
-        Object obj2 = this.f9959g;
-        Object obj3 = this.f9958f;
-        Object obj4 = this.f9957e;
+        int i11 = this.f9982a;
+        Object obj2 = this.f9987g;
+        Object obj3 = this.f9986f;
+        Object obj4 = this.f9985e;
         Object obj5 = this.d;
         switch (i11) {
             case 0:
@@ -50,8 +50,8 @@ public final class s3 implements Utilities.Callback {
                 Context context = (Context) obj3;
                 f6 f6Var = (f6) obj2;
                 TL_payments.connectedBotStarRef connectedbotstarref2 = (TL_payments.connectedBotStarRef) obj;
-                int i12 = this.f9955b;
-                long j3 = this.f9956c;
+                int i12 = this.f9983b;
+                long j3 = this.f9984c;
                 if (connectedbotstarref2 == null) {
                     TLRPC.User user = MessagesController.getInstance(i12).getUser(Long.valueOf(connectedbotstarref.bot_id));
                     if (user != null) {
@@ -68,15 +68,15 @@ public final class s3 implements Utilities.Callback {
                 int[] iArr = (int[]) obj3;
                 ArrayList arrayList = (ArrayList) obj2;
                 TLRPC.TL_messages_invitedUsers tL_messages_invitedUsers2 = (TLRPC.TL_messages_invitedUsers) obj;
-                eg1 eg1Var = ((of1) obj5).f39237b;
+                eg1 eg1Var = ((of1) obj5).f39264b;
                 if (tL_messages_invitedUsers2 != null) {
                     tL_messages_invitedUsers.missing_invitees.addAll(tL_messages_invitedUsers2.missing_invitees);
                 }
                 int i13 = iArr[0] + 1;
                 iArr[0] = i13;
-                if (i13 == this.f9955b) {
+                if (i13 == this.f9983b) {
                     boolean isEmpty = tL_messages_invitedUsers.missing_invitees.isEmpty();
-                    long j10 = this.f9956c;
+                    long j10 = this.f9984c;
                     if (isEmpty) {
                         yc a02 = yc.a0(eg1Var);
                         TLRPC.Chat chat = eg1Var.getMessagesController().getChat(Long.valueOf(j10));
@@ -108,10 +108,10 @@ public final class s3 implements Utilities.Callback {
 
     public s3(of1 of1Var, TLRPC.TL_messages_invitedUsers tL_messages_invitedUsers, int[] iArr, int i10, ArrayList arrayList, long j3) {
         this.d = of1Var;
-        this.f9957e = tL_messages_invitedUsers;
-        this.f9958f = iArr;
-        this.f9955b = i10;
-        this.f9959g = arrayList;
-        this.f9956c = j3;
+        this.f9985e = tL_messages_invitedUsers;
+        this.f9986f = iArr;
+        this.f9983b = i10;
+        this.f9987g = arrayList;
+        this.f9984c = j3;
     }
 }

@@ -4,25 +4,25 @@ import android.graphics.Point;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.SharedConfig;
 public final class rz implements Runnable {
-    public final int f30119a;
-    public final vz f30120b;
-    public final int f30121c;
+    public final int f30146a;
+    public final vz f30147b;
+    public final int f30148c;
     public final int d;
 
     public rz(vz vzVar, int i10, int i11, int i12) {
-        this.f30119a = i12;
-        this.f30120b = vzVar;
-        this.f30121c = i10;
+        this.f30146a = i12;
+        this.f30147b = vzVar;
+        this.f30148c = i10;
         this.d = i11;
     }
 
     @Override
     public final void run() {
         int i10;
-        switch (this.f30119a) {
+        switch (this.f30146a) {
             case 0:
-                vz vzVar = this.f30120b;
-                int i11 = this.f30121c;
+                vz vzVar = this.f30147b;
+                int i11 = this.f30148c;
                 int i12 = this.d;
                 if (vzVar.W != i11 || vzVar.X != i12) {
                     vzVar.W = i11;
@@ -54,24 +54,24 @@ public final class rz implements Runnable {
                     }
                     vzVar.Z = false;
                     vzVar.g();
-                    vzVar.f32029d0.run();
+                    vzVar.f32056d0.run();
                     return;
                 }
                 return;
             case 1:
-                vz vzVar2 = this.f30120b;
-                int i16 = this.f30121c;
+                vz vzVar2 = this.f30147b;
+                int i16 = this.f30148c;
                 int i17 = this.d;
-                vzVar2.f32032n = i16;
-                vzVar2.f32033r = i17;
+                vzVar2.f32059n = i16;
+                vzVar2.f32060r = i17;
                 return;
             default:
-                vz vzVar3 = this.f30120b;
-                int i18 = this.f30121c;
+                vz vzVar3 = this.f30147b;
+                int i18 = this.f30148c;
                 int i19 = this.d;
                 pa paVar = vzVar3.I;
-                paVar.f29333l = i18;
-                paVar.f29334m = i19;
+                paVar.f29360l = i18;
+                paVar.f29361m = i19;
                 return;
         }
     }

@@ -15,11 +15,11 @@ public final class u60 extends xw0 {
         switch (this.K) {
             case 0:
                 super.onAttachedToWindow();
-                this.f32753b.getImageReceiver().startAnimation();
+                this.f32780b.getImageReceiver().startAnimation();
                 return;
             case 1:
                 super.onAttachedToWindow();
-                this.f32753b.getImageReceiver().startAnimation();
+                this.f32780b.getImageReceiver().startAnimation();
                 return;
             default:
                 super.onAttachedToWindow();

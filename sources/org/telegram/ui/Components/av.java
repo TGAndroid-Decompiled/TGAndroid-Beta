@@ -16,10 +16,10 @@ import org.telegram.messenger.UserObject;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class av implements org.telegram.ui.qt {
-    public final rv f24458a;
+    public final rv f24485a;
 
     public av(rv rvVar) {
-        this.f24458a = rvVar;
+        this.f24485a = rvVar;
     }
 
     @Override
@@ -29,8 +29,8 @@ public final class av implements org.telegram.ui.qt {
 
     @Override
     public final void B(TLRPC.Document document) {
-        rv rvVar = this.f24458a;
-        org.telegram.ui.ActionBar.n2 n2Var = rvVar.f30094c;
+        rv rvVar = this.f24485a;
+        org.telegram.ui.ActionBar.n2 n2Var = rvVar.f30121c;
         if (n2Var instanceof org.telegram.ui.co) {
             ((org.telegram.ui.co) n2Var).bb(document);
         }
@@ -63,7 +63,7 @@ public final class av implements org.telegram.ui.qt {
         SpannableStringBuilder valueOf = SpannableStringBuilder.valueOf(MessageObject.findAnimatedEmojiEmoticon(document));
         valueOf.setSpan(new z5(document, (Paint.FontMetricsInt) null), 0, valueOf.length(), 33);
         if (AndroidUtilities.addToClipboard(valueOf)) {
-            rv rvVar = this.f24458a;
+            rv rvVar = this.f24485a;
             viewGroup = ((org.telegram.ui.ActionBar.f3) rvVar).containerView;
             f6Var = ((org.telegram.ui.ActionBar.f3) rvVar).resourcesProvider;
             org.telegram.messenger.wl.o(R.string.EmojiCopied, new yc((FrameLayout) viewGroup, f6Var));
@@ -93,7 +93,7 @@ public final class av implements org.telegram.ui.qt {
             return null;
         }
         Long emojiStatusDocumentId = UserObject.getEmojiStatusDocumentId(currentUser);
-        if (document != null && (emojiStatusDocumentId == null || emojiStatusDocumentId.longValue() != document.f19875id)) {
+        if (document != null && (emojiStatusDocumentId == null || emojiStatusDocumentId.longValue() != document.f19902id)) {
             z10 = true;
         } else {
             z10 = false;
@@ -118,7 +118,7 @@ public final class av implements org.telegram.ui.qt {
 
     @Override
     public final boolean c() {
-        org.telegram.ui.ActionBar.n2 n2Var = this.f24458a.f30094c;
+        org.telegram.ui.ActionBar.n2 n2Var = this.f24485a.f30121c;
         if (n2Var instanceof org.telegram.ui.co) {
             return ((org.telegram.ui.co) n2Var).c();
         }
@@ -157,11 +157,11 @@ public final class av implements org.telegram.ui.qt {
 
     @Override
     public final boolean k(int i10) {
-        rv rvVar = this.f24458a;
-        org.telegram.ui.ActionBar.n2 n2Var = rvVar.f30094c;
+        rv rvVar = this.f24485a;
+        org.telegram.ui.ActionBar.n2 n2Var = rvVar.f30121c;
         if ((n2Var instanceof org.telegram.ui.co) && ((org.telegram.ui.co) n2Var).E6()) {
             if (!UserConfig.getInstance(UserConfig.selectedAccount).isPremium()) {
-                if (((org.telegram.ui.co) rvVar.f30094c).i() != null && UserObject.isUserSelf(((org.telegram.ui.co) rvVar.f30094c).i())) {
+                if (((org.telegram.ui.co) rvVar.f30121c).i() != null && UserObject.isUserSelf(((org.telegram.ui.co) rvVar.f30121c).i())) {
                     return true;
                 }
                 return false;
@@ -195,7 +195,7 @@ public final class av implements org.telegram.ui.qt {
             emojiStatus = new TLRPC.TL_emojiStatusEmpty();
         } else {
             TLRPC.TL_emojiStatus tL_emojiStatus = new TLRPC.TL_emojiStatus();
-            tL_emojiStatus.document_id = document.f19875id;
+            tL_emojiStatus.document_id = document.f19902id;
             emojiStatus = tL_emojiStatus;
         }
         TLRPC.User currentUser = UserConfig.getInstance(UserConfig.selectedAccount).getCurrentUser();
@@ -204,7 +204,7 @@ public final class av implements org.telegram.ui.qt {
         } else {
             obj = currentUser.emoji_status;
         }
-        rv rvVar = this.f24458a;
+        rv rvVar = this.f24485a;
         i10 = ((org.telegram.ui.ActionBar.f3) rvVar).currentAccount;
         MessagesController.getInstance(i10).updateEmojiStatus(emojiStatus);
         zu zuVar = new zu(0, this, obj);
@@ -217,12 +217,12 @@ public final class av implements org.telegram.ui.qt {
         Context context = rvVar.getContext();
         f6Var2 = ((org.telegram.ui.ActionBar.f3) rvVar).resourcesProvider;
         ic icVar = new ic(context, f6Var2);
-        icVar.f27070b.setText(LocaleController.getString(R.string.RemoveStatusInfo));
-        icVar.f27069a.setImageResource(R.drawable.msg_settings_premium);
+        icVar.f27097b.setText(LocaleController.getString(R.string.RemoveStatusInfo));
+        icVar.f27096a.setImageResource(R.drawable.msg_settings_premium);
         Context context2 = rvVar.getContext();
         f6Var3 = ((org.telegram.ui.ActionBar.f3) rvVar).resourcesProvider;
         oc ocVar = new oc(context2, f6Var3, true);
-        ocVar.f29029a = zuVar;
+        ocVar.f29056a = zuVar;
         icVar.setButton(ocVar);
         viewGroup2 = ((org.telegram.ui.ActionBar.f3) rvVar).containerView;
         qc.f((FrameLayout) viewGroup2, icVar, 1500).j();

@@ -30,25 +30,25 @@ public final class x extends bb {
     public final int X;
     public final Utilities.Callback Y;
     public v51 Z;
-    public final FrameLayout f14312a0;
-    public final FrameLayout f14313b0;
-    public final RichMessageLayout.PreviewView f14314c0;
-    public final FrameLayout f14315d0;
-    public final org.telegram.ui.Cells.i3 f14316e0;
-    public final di.d f14317f0;
-    public boolean f14318g0;
-    public int f14319h0;
-    public TL_iv.RichMessage f14320i0;
+    public final FrameLayout f14338a0;
+    public final FrameLayout f14339b0;
+    public final RichMessageLayout.PreviewView f14340c0;
+    public final FrameLayout f14341d0;
+    public final org.telegram.ui.Cells.i3 f14342e0;
+    public final di.d f14343f0;
+    public boolean f14344g0;
+    public int f14345h0;
+    public TL_iv.RichMessage f14346i0;
 
     public x(int i10, Context context, Utilities.Callback callback, org.telegram.ui.ActionBar.f6 f6Var) {
         super(context, null, true, false, f6Var);
         this.X = i10;
         this.Y = callback;
-        int i11 = org.telegram.ui.ActionBar.j6.f20607a7;
+        int i11 = org.telegram.ui.ActionBar.j6.f20634a7;
         setBackgroundColor(org.telegram.ui.ActionBar.j6.v0(i11, f6Var));
         fixNavigationBar(org.telegram.ui.ActionBar.j6.v0(i11, f6Var));
         FrameLayout frameLayout = new FrameLayout(context);
-        this.f14312a0 = frameLayout;
+        this.f14338a0 = frameLayout;
         TextView textView = new TextView(context);
         textView.setText(LocaleController.getString(R.string.ArticleAICreate));
         textView.setTextSize(1, 20.0f);
@@ -64,23 +64,23 @@ public final class x extends bb {
         imageView.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.j6.v0(i12, f6Var), PorterDuff.Mode.SRC_IN));
         w7.z5.a(imageView);
         imageView.setOnClickListener(new View.OnClickListener(this) {
-            public final x f14234b;
+            public final x f14260b;
 
             {
-                this.f14234b = this;
+                this.f14260b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        this.f14234b.dismiss();
+                        this.f14260b.dismiss();
                         return;
                     default:
-                        x xVar = this.f14234b;
-                        org.telegram.ui.Cells.i3 i3Var = xVar.f14316e0;
-                        if (!xVar.f14318g0) {
-                            TL_iv.RichMessage richMessage = xVar.f14320i0;
+                        x xVar = this.f14260b;
+                        org.telegram.ui.Cells.i3 i3Var = xVar.f14342e0;
+                        if (!xVar.f14344g0) {
+                            TL_iv.RichMessage richMessage = xVar.f14346i0;
                             if (richMessage != null) {
                                 Utilities.Callback callback2 = xVar.Y;
                                 if (callback2 != null) {
@@ -89,16 +89,16 @@ public final class x extends bb {
                                 xVar.dismiss();
                                 return;
                             }
-                            String trim = i3Var.f22074b.getText().toString().trim();
+                            String trim = i3Var.f22101b.getText().toString().trim();
                             if (!TextUtils.isEmpty(trim)) {
-                                xVar.f14318g0 = true;
-                                xVar.f14317f0.setLoading(true);
+                                xVar.f14344g0 = true;
+                                xVar.f14343f0.setLoading(true);
                                 TLRPC.TL_messages_composeRichMessageWithAI tL_messages_composeRichMessageWithAI = new TLRPC.TL_messages_composeRichMessageWithAI();
                                 TL_aicompose.inputAiComposeToneSingleUse inputaicomposetonesingleuse = new TL_aicompose.inputAiComposeToneSingleUse();
                                 inputaicomposetonesingleuse.custom_prompt = trim;
                                 tL_messages_composeRichMessageWithAI.tone = inputaicomposetonesingleuse;
-                                xVar.f14319h0 = ConnectionsManager.getInstance(xVar.X).sendRequest(tL_messages_composeRichMessageWithAI, new v7(xVar, 16));
-                                AndroidUtilities.hideKeyboard(i3Var.f22074b);
+                                xVar.f14345h0 = ConnectionsManager.getInstance(xVar.X).sendRequest(tL_messages_composeRichMessageWithAI, new v7(xVar, 16));
+                                AndroidUtilities.hideKeyboard(i3Var.f22101b);
                                 return;
                             }
                             return;
@@ -109,20 +109,20 @@ public final class x extends bb {
         });
         frameLayout.addView(imageView, w7.x5.d(48, 48.0f, 53, 0.0f, 10.0f, 12.0f, 0.0f));
         FrameLayout frameLayout2 = new FrameLayout(context);
-        this.f14313b0 = frameLayout2;
+        this.f14339b0 = frameLayout2;
         RichMessageLayout.PreviewView previewView = new RichMessageLayout.PreviewView(context, i10, f6Var);
-        this.f14314c0 = previewView;
+        this.f14340c0 = previewView;
         previewView.setPadding(AndroidUtilities.dp(14.0f), AndroidUtilities.dp(12.0f), AndroidUtilities.dp(14.0f), AndroidUtilities.dp(12.0f));
         int dp = AndroidUtilities.dp(12.0f);
-        int i13 = org.telegram.ui.ActionBar.j6.f20663d6;
+        int i13 = org.telegram.ui.ActionBar.j6.f20690d6;
         previewView.setBackground(org.telegram.ui.ActionBar.j6.b0(dp, org.telegram.ui.ActionBar.j6.v0(i13, f6Var)));
         frameLayout2.addView(previewView, w7.x5.c(-2.0f, -1));
         frameLayout2.setPadding(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f), 0);
         FrameLayout frameLayout3 = new FrameLayout(context);
-        this.f14315d0 = frameLayout3;
+        this.f14341d0 = frameLayout3;
         org.telegram.ui.Cells.i3 i3Var = new org.telegram.ui.Cells.i3(context, LocaleController.getString(R.string.ArticleAIPrompt), true, false, MessagesController.getInstance(i10).config.aicomposeTonePromptLengthMax.get(), f6Var);
-        this.f14316e0 = i3Var;
-        org.telegram.ui.Cells.g3 g3Var = i3Var.f22074b;
+        this.f14342e0 = i3Var;
+        org.telegram.ui.Cells.g3 g3Var = i3Var.f22101b;
         g3Var.setImeOptions(6);
         g3Var.setMaxLines(5);
         i3Var.setBackground(org.telegram.ui.ActionBar.j6.b0(AndroidUtilities.dp(20.0f), org.telegram.ui.ActionBar.j6.v0(i13, f6Var)));
@@ -130,26 +130,26 @@ public final class x extends bb {
         frameLayout3.addView(i3Var, w7.x5.c(-2.0f, -1));
         frameLayout3.setPadding(AndroidUtilities.dp(12.0f), 0, AndroidUtilities.dp(12.0f), 0);
         di.d g10 = wl.g(24, context, f6Var, true);
-        this.f14317f0 = g10;
+        this.f14343f0 = g10;
         g10.g(LocaleController.getString(R.string.ArticleAIGenerate), false, true);
         g10.setOnClickListener(new View.OnClickListener(this) {
-            public final x f14234b;
+            public final x f14260b;
 
             {
-                this.f14234b = this;
+                this.f14260b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        this.f14234b.dismiss();
+                        this.f14260b.dismiss();
                         return;
                     default:
-                        x xVar = this.f14234b;
-                        org.telegram.ui.Cells.i3 i3Var2 = xVar.f14316e0;
-                        if (!xVar.f14318g0) {
-                            TL_iv.RichMessage richMessage = xVar.f14320i0;
+                        x xVar = this.f14260b;
+                        org.telegram.ui.Cells.i3 i3Var2 = xVar.f14342e0;
+                        if (!xVar.f14344g0) {
+                            TL_iv.RichMessage richMessage = xVar.f14346i0;
                             if (richMessage != null) {
                                 Utilities.Callback callback2 = xVar.Y;
                                 if (callback2 != null) {
@@ -158,16 +158,16 @@ public final class x extends bb {
                                 xVar.dismiss();
                                 return;
                             }
-                            String trim = i3Var2.f22074b.getText().toString().trim();
+                            String trim = i3Var2.f22101b.getText().toString().trim();
                             if (!TextUtils.isEmpty(trim)) {
-                                xVar.f14318g0 = true;
-                                xVar.f14317f0.setLoading(true);
+                                xVar.f14344g0 = true;
+                                xVar.f14343f0.setLoading(true);
                                 TLRPC.TL_messages_composeRichMessageWithAI tL_messages_composeRichMessageWithAI = new TLRPC.TL_messages_composeRichMessageWithAI();
                                 TL_aicompose.inputAiComposeToneSingleUse inputaicomposetonesingleuse = new TL_aicompose.inputAiComposeToneSingleUse();
                                 inputaicomposetonesingleuse.custom_prompt = trim;
                                 tL_messages_composeRichMessageWithAI.tone = inputaicomposetonesingleuse;
-                                xVar.f14319h0 = ConnectionsManager.getInstance(xVar.X).sendRequest(tL_messages_composeRichMessageWithAI, new v7(xVar, 16));
-                                AndroidUtilities.hideKeyboard(i3Var2.f22074b);
+                                xVar.f14345h0 = ConnectionsManager.getInstance(xVar.X).sendRequest(tL_messages_composeRichMessageWithAI, new v7(xVar, 16));
+                                AndroidUtilities.hideKeyboard(i3Var2.f22101b);
                                 return;
                             }
                             return;
@@ -180,7 +180,7 @@ public final class x extends bb {
         ((ViewGroup.MarginLayoutParams) g10.getLayoutParams()).leftMargin += this.backgroundPaddingLeft;
         ((ViewGroup.MarginLayoutParams) g10.getLayoutParams()).rightMargin += this.backgroundPaddingLeft;
         s4.j jVar = new s4.j();
-        jVar.f45777m = false;
+        jVar.f45805m = false;
         jVar.C = false;
         jVar.o(pr.h);
         jVar.n(350L);
@@ -194,22 +194,22 @@ public final class x extends bb {
     }
 
     public final void P() {
-        TL_iv.RichMessage richMessage = this.f14320i0;
-        di.d dVar = this.f14317f0;
+        TL_iv.RichMessage richMessage = this.f14346i0;
+        di.d dVar = this.f14343f0;
         if (richMessage != null) {
             dVar.setEnabled(true);
         } else {
-            dVar.setEnabled(!TextUtils.isEmpty(this.f14316e0.f22074b.getText().toString().trim()));
+            dVar.setEnabled(!TextUtils.isEmpty(this.f14342e0.f22101b.getText().toString().trim()));
         }
     }
 
     @Override
     public final void dismiss() {
-        if (this.f14319h0 != 0) {
-            ConnectionsManager.getInstance(this.X).cancelRequest(this.f14319h0, true);
-            this.f14319h0 = 0;
+        if (this.f14345h0 != 0) {
+            ConnectionsManager.getInstance(this.X).cancelRequest(this.f14345h0, true);
+            this.f14345h0 = 0;
         }
-        AndroidUtilities.hideKeyboard(this.f14316e0.f22074b);
+        AndroidUtilities.hideKeyboard(this.f14342e0.f22101b);
         super.dismiss();
     }
 

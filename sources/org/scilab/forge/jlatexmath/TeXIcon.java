@@ -14,7 +14,7 @@ public class TeXIcon implements Icon {
     public static float defaultSize = -1.0f;
     public static float magFactor = 0.0f;
     private Box box;
-    private Color f17062fg;
+    private Color f17089fg;
     private Insets insets;
     public boolean isColored;
     private final float size;
@@ -83,7 +83,7 @@ public class TeXIcon implements Icon {
         graphics2D.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
         float f7 = this.size;
         graphics2D.scale(f7, f7);
-        Color color2 = this.f17062fg;
+        Color color2 = this.f17089fg;
         if (color2 != null) {
             graphics2D.setColor(color2);
         } else if (component != null) {
@@ -101,7 +101,7 @@ public class TeXIcon implements Icon {
     }
 
     public void setForeground(Color color) {
-        this.f17062fg = color;
+        this.f17089fg = color;
     }
 
     public void setIconHeight(int i10, int i11) {
@@ -134,7 +134,7 @@ public class TeXIcon implements Icon {
 
     public TeXIcon(Box box, float f7, boolean z10) {
         this.insets = new Insets(0, 0, 0, 0);
-        this.f17062fg = null;
+        this.f17089fg = null;
         this.isColored = false;
         this.box = box;
         float f10 = defaultSize;

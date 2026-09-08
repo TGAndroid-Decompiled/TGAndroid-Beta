@@ -19,7 +19,7 @@ public final class wv0 extends org.telegram.ui.Cells.c6 {
     public final boolean d() {
         s4.c1 T;
         zv0 zv0Var = this.F.d;
-        ec1 ec1Var = zv0Var.f43531c;
+        ec1 ec1Var = zv0Var.f43558c;
         View F = ec1Var.F(this);
         if (F == null) {
             T = null;
@@ -28,8 +28,8 @@ public final class wv0 extends org.telegram.ui.Cells.c6 {
         }
         if (T != null) {
             int b10 = T.b();
-            int i10 = zv0Var.f43560y;
-            if (i10 == zv0Var.f43544n && b10 == (zv0Var.f43545n0 + i10) - 1) {
+            int i10 = zv0Var.f43587y;
+            if (i10 == zv0Var.f43571n && b10 == (zv0Var.f43572n0 + i10) - 1) {
                 return false;
             }
         }
@@ -41,7 +41,7 @@ public final class wv0 extends org.telegram.ui.Cells.c6 {
         s4.c1 T;
         int b10;
         zv0 zv0Var = this.F.d;
-        ec1 ec1Var = zv0Var.f43531c;
+        ec1 ec1Var = zv0Var.f43558c;
         View F = ec1Var.F(c6Var);
         if (F == null) {
             T = null;
@@ -49,7 +49,7 @@ public final class wv0 extends org.telegram.ui.Cells.c6 {
             T = ec1Var.T(F);
         }
         if (T != null && (b10 = T.b()) != -1) {
-            return zv0Var.f43556w[b10 - zv0Var.f43545n0];
+            return zv0Var.f43583w[b10 - zv0Var.f43572n0];
         }
         return false;
     }
@@ -59,7 +59,7 @@ public final class wv0 extends org.telegram.ui.Cells.c6 {
         if (b6Var.isFocused() && b6Var.hasSelection()) {
             Menu menu = actionMode.getMenu();
             if (menu.findItem(16908321) != null) {
-                co.k8(menu, this.F.d.f43536f.h, false, true, true, true);
+                co.k8(menu, this.F.d.f43563f.h, false, true, true, true);
             }
         }
     }
@@ -70,20 +70,20 @@ public final class wv0 extends org.telegram.ui.Cells.c6 {
         int b10;
         zv0 zv0Var = this.F.d;
         if (z10 && zv0Var.L) {
-            Arrays.fill(zv0Var.f43556w, false);
-            zv0Var.f43531c.getChildCount();
-            for (int i10 = zv0Var.f43545n0; i10 < zv0Var.f43545n0 + zv0Var.f43560y; i10++) {
-                s4.c1 K = zv0Var.f43531c.K(i10);
+            Arrays.fill(zv0Var.f43583w, false);
+            zv0Var.f43558c.getChildCount();
+            for (int i10 = zv0Var.f43572n0; i10 < zv0Var.f43572n0 + zv0Var.f43587y; i10++) {
+                s4.c1 K = zv0Var.f43558c.K(i10);
                 if (K != null) {
-                    View view = K.f45738a;
+                    View view = K.f45766a;
                     if (view instanceof org.telegram.ui.Cells.c6) {
-                        ((org.telegram.ui.Cells.c6) view).f21688r.a(false, true);
+                        ((org.telegram.ui.Cells.c6) view).f21715r.a(false, true);
                     }
                 }
             }
         }
         super.h(c6Var, z10);
-        ec1 ec1Var = zv0Var.f43531c;
+        ec1 ec1Var = zv0Var.f43558c;
         View F = ec1Var.F(c6Var);
         if (F == null) {
             T = null;
@@ -91,7 +91,7 @@ public final class wv0 extends org.telegram.ui.Cells.c6 {
             T = ec1Var.T(F);
         }
         if (T != null && (b10 = T.b()) != -1) {
-            zv0Var.f43556w[b10 - zv0Var.f43545n0] = z10;
+            zv0Var.f43583w[b10 - zv0Var.f43572n0] = z10;
         }
         zv0Var.i0();
     }
@@ -110,24 +110,24 @@ public final class wv0 extends org.telegram.ui.Cells.c6 {
     public final boolean l(ArrayList arrayList) {
         zv0 zv0Var = this.F.d;
         if (!arrayList.isEmpty()) {
-            zv0Var.f43531c.getClass();
-            int R = RecyclerView.R(this) - zv0Var.f43545n0;
+            zv0Var.f43558c.getClass();
+            int R = RecyclerView.R(this) - zv0Var.f43572n0;
             if (R >= 0) {
                 org.telegram.ui.Cells.b6 b6Var = this.d;
                 b6Var.getText().replace(b6Var.getSelectionStart(), b6Var.getSelectionEnd(), (CharSequence) arrayList.remove(0));
                 int i10 = R + 1;
-                while (!arrayList.isEmpty() && i10 < zv0Var.f43544n) {
+                while (!arrayList.isEmpty() && i10 < zv0Var.f43571n) {
                     for (int length = zv0Var.v.length - 1; length > i10; length--) {
                         CharSequence[] charSequenceArr = zv0Var.v;
                         charSequenceArr[length] = charSequenceArr[length - 1];
                     }
                     zv0Var.v[i10] = (CharSequence) arrayList.remove(0);
-                    zv0Var.f43560y++;
+                    zv0Var.f43587y++;
                     i10++;
                 }
                 zv0Var.r0();
-                zv0Var.f43538g0 = (zv0Var.f43545n0 + i10) - 1;
-                zv0Var.f43529b.l();
+                zv0Var.f43565g0 = (zv0Var.f43572n0 + i10) - 1;
+                zv0Var.f43556b.l();
                 return true;
             }
         }

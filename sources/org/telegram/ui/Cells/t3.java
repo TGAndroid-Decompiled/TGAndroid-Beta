@@ -5,16 +5,16 @@ import android.graphics.Canvas;
 import android.widget.Button;
 import org.telegram.messenger.AndroidUtilities;
 public final class t3 extends org.telegram.ui.Components.q6 {
-    public final int f23232s;
+    public final int f23259s;
 
     public t3(Context context, boolean z10, boolean z11, boolean z12, int i10) {
         super(context, z10, z11, z12);
-        this.f23232s = i10;
+        this.f23259s = i10;
     }
 
     @Override
     public CharSequence getAccessibilityClassName() {
-        switch (this.f23232s) {
+        switch (this.f23259s) {
             case 0:
                 return Button.class.getName();
             case 1:
@@ -26,7 +26,7 @@ public final class t3 extends org.telegram.ui.Components.q6 {
 
     @Override
     public void invalidate() {
-        switch (this.f23232s) {
+        switch (this.f23259s) {
             case 4:
                 if (ah.y0.b(this)) {
                     return;
@@ -41,7 +41,7 @@ public final class t3 extends org.telegram.ui.Components.q6 {
 
     @Override
     public void onDraw(Canvas canvas) {
-        switch (this.f23232s) {
+        switch (this.f23259s) {
             case 2:
                 canvas.save();
                 canvas.translate(AndroidUtilities.dp(17.0f), 0.0f);
@@ -56,7 +56,7 @@ public final class t3 extends org.telegram.ui.Components.q6 {
 
     @Override
     public void onMeasure(int i10, int i11) {
-        switch (this.f23232s) {
+        switch (this.f23259s) {
             case 3:
                 super.onMeasure(i10, i11);
                 setPivotX(getMeasuredWidth());
@@ -69,7 +69,7 @@ public final class t3 extends org.telegram.ui.Components.q6 {
 
     @Override
     public void invalidate(int i10, int i11, int i12, int i13) {
-        switch (this.f23232s) {
+        switch (this.f23259s) {
             case 4:
                 if (ah.y0.b(this)) {
                     return;

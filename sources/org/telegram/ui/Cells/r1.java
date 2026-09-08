@@ -11,63 +11,63 @@ public final class r1 {
     public int C;
     public int D;
     public final t1 E;
-    public int f22511a;
-    public int f22512b;
-    public int f22513c;
+    public int f22538a;
+    public int f22539b;
+    public int f22540c;
     public int d;
-    public float f22514e;
-    public int f22515f;
-    public float f22516g;
+    public float f22541e;
+    public int f22542f;
+    public float f22543g;
     public float h;
-    public boolean f22517i;
-    public int f22518j;
-    public boolean f22519k;
-    public boolean f22520l;
-    public float f22521m;
-    public float f22522n;
-    public boolean f22523o;
-    public StaticLayout f22524p;
-    public f01 f22525q;
-    public org.telegram.ui.Components.v5 f22526r;
-    public TLRPC.PollAnswer f22527s;
-    public TLRPC.TodoItem f22528t;
-    public boolean f22529u;
+    public boolean f22544i;
+    public int f22545j;
+    public boolean f22546k;
+    public boolean f22547l;
+    public float f22548m;
+    public float f22549n;
+    public boolean f22550o;
+    public StaticLayout f22551p;
+    public f01 f22552q;
+    public org.telegram.ui.Components.v5 f22553r;
+    public TLRPC.PollAnswer f22554s;
+    public TLRPC.TodoItem f22555t;
+    public boolean f22556u;
     public int v;
-    public Drawable f22530w;
-    public th.b f22531x;
-    public org.telegram.ui.Components.i9 f22532y;
-    public ImageReceiver f22533z;
+    public Drawable f22557w;
+    public th.b f22558x;
+    public org.telegram.ui.Components.i9 f22559y;
+    public ImageReceiver f22560z;
 
     public r1(t1 t1Var) {
         this.E = t1Var;
     }
 
     public static TLRPC.PollAnswer a(r1 r1Var) {
-        return r1Var.f22527s;
+        return r1Var.f22554s;
     }
 
     public static void b(r1 r1Var, TLRPC.PollAnswer pollAnswer) {
-        r1Var.f22527s = pollAnswer;
+        r1Var.f22554s = pollAnswer;
     }
 
     public static void c(r1 r1Var, int i10) {
-        r1Var.f22518j = i10;
+        r1Var.f22545j = i10;
     }
 
     public static TLRPC.TodoItem d(r1 r1Var) {
-        return r1Var.f22528t;
+        return r1Var.f22555t;
     }
 
     public static void e(r1 r1Var, TLRPC.TodoItem todoItem) {
-        r1Var.f22528t = todoItem;
+        r1Var.f22555t = todoItem;
     }
 
     public static boolean f(r1 r1Var) {
-        return r1Var.f22517i;
+        return r1Var.f22544i;
     }
 
     public static ImageReceiver g(r1 r1Var) {
-        return r1Var.f22533z;
+        return r1Var.f22560z;
     }
 
     public static int h(r1 r1Var) {
@@ -75,7 +75,7 @@ public final class r1 {
     }
 
     public static void i(r1 r1Var, int i10) {
-        r1Var.f22515f = i10;
+        r1Var.f22542f = i10;
     }
 
     public static void j(r1 r1Var, float f7) {
@@ -87,47 +87,47 @@ public final class r1 {
     }
 
     public static void l(r1 r1Var, boolean z10) {
-        r1Var.f22520l = z10;
+        r1Var.f22547l = z10;
     }
 
     public static float m(r1 r1Var) {
-        return r1Var.f22514e;
+        return r1Var.f22541e;
     }
 
     public static void n(r1 r1Var, float f7) {
-        r1Var.f22514e -= f7;
+        r1Var.f22541e -= f7;
     }
 
     public static boolean o(r1 r1Var) {
-        return r1Var.f22519k;
+        return r1Var.f22546k;
     }
 
     public static void p(r1 r1Var, boolean z10) {
-        r1Var.f22519k = z10;
+        r1Var.f22546k = z10;
     }
 
     public final void q() {
-        ImageReceiver imageReceiver = this.f22533z;
+        ImageReceiver imageReceiver = this.f22560z;
         if (imageReceiver != null) {
             imageReceiver.onAttachedToWindow();
         }
-        th.b bVar = this.f22531x;
+        th.b bVar = this.f22558x;
         if (bVar != null) {
-            bVar.f46562b.a();
-            bVar.f46563c.onAttachedToWindow();
+            bVar.f46590b.a();
+            bVar.f46591c.onAttachedToWindow();
             bVar.E.e();
         }
     }
 
     public final void r() {
-        ImageReceiver imageReceiver = this.f22533z;
+        ImageReceiver imageReceiver = this.f22560z;
         if (imageReceiver != null) {
             imageReceiver.onDetachedFromWindow();
         }
-        th.b bVar = this.f22531x;
+        th.b bVar = this.f22558x;
         if (bVar != null) {
-            bVar.f46562b.b();
-            bVar.f46563c.onDetachedFromWindow();
+            bVar.f46590b.b();
+            bVar.f46591c.onDetachedFromWindow();
             bVar.E.f();
         }
     }

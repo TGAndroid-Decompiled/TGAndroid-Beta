@@ -15,10 +15,10 @@ import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.Components.d51;
 import org.telegram.ui.Components.ly;
 public final class f6 implements ly {
-    public final q6 f7233a;
+    public final q6 f7261a;
 
     public f6(q6 q6Var) {
-        this.f7233a = q6Var;
+        this.f7261a = q6Var;
     }
 
     @Override
@@ -58,7 +58,7 @@ public final class f6 implements ly {
 
     @Override
     public final boolean k() {
-        rg.b editText = ((rg.x2) this.f7233a.J0).getEditText();
+        rg.b editText = ((rg.x2) this.f7261a.J0).getEditText();
         if (editText == null || editText.length() == 0) {
             return false;
         }
@@ -71,7 +71,7 @@ public final class f6 implements ly {
         rg.x2 x2Var;
         rg.b editText;
         Emoji.EmojiSpan[] emojiSpanArr;
-        rg.k kVar = this.f7233a.J0;
+        rg.k kVar = this.f7261a.J0;
         if ((kVar instanceof rg.x2) && (editText = (x2Var = (rg.x2) kVar).getEditText()) != null) {
             int selectionEnd = editText.getSelectionEnd();
             if (selectionEnd < 0) {
@@ -97,10 +97,10 @@ public final class f6 implements ly {
 
     @Override
     public final void n() {
-        q6 q6Var = this.f7233a;
+        q6 q6Var = this.f7261a;
         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(q6Var.getContext(), 0, q6Var.G1);
-        alertDialog$Builder.f20198a.R = LocaleController.getString(R.string.ClearRecentEmojiTitle);
-        alertDialog$Builder.f20198a.T = LocaleController.getString(R.string.ClearRecentEmojiText);
+        alertDialog$Builder.f20225a.R = LocaleController.getString(R.string.ClearRecentEmojiTitle);
+        alertDialog$Builder.f20225a.T = LocaleController.getString(R.string.ClearRecentEmojiText);
         alertDialog$Builder.k(LocaleController.getString(R.string.ClearButton), new a1.c(this, 25));
         i2.g.r(R.string.Cancel, alertDialog$Builder, null);
     }
@@ -113,7 +113,7 @@ public final class f6 implements ly {
     @Override
     public final void x(long j3, TLRPC.Document document, String str, boolean z10) {
         org.telegram.ui.Components.z5 z5Var;
-        rg.b editText = ((rg.x2) this.f7233a.J0).getEditText();
+        rg.b editText = ((rg.x2) this.f7261a.J0).getEditText();
         if (editText != null) {
             int selectionEnd = editText.getSelectionEnd();
             if (selectionEnd < 0) {
@@ -122,7 +122,7 @@ public final class f6 implements ly {
             try {
                 SpannableString spannableString = new SpannableString(str);
                 if (document != null) {
-                    z5Var = new org.telegram.ui.Components.z5(document.f19875id, 1.0f, editText.getPaint().getFontMetricsInt());
+                    z5Var = new org.telegram.ui.Components.z5(document.f19902id, 1.0f, editText.getPaint().getFontMetricsInt());
                     z5Var.document = document;
                 } else {
                     z5Var = new org.telegram.ui.Components.z5(j3, 1.0f, editText.getPaint().getFontMetricsInt());

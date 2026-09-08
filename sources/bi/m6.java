@@ -25,15 +25,15 @@ public final class m6 extends xw0 {
                 super.e(z10, z11);
                 float f7 = 1.0f;
                 if (z11) {
-                    ViewPropertyAnimator animate = eg1Var.f36054n.f41085a.animate();
+                    ViewPropertyAnimator animate = eg1Var.f36081n.f41112a.animate();
                     if (z10) {
                         f7 = 0.0f;
                     }
                     animate.alpha(f7).start();
                     return;
                 }
-                eg1Var.f36054n.f41085a.animate().cancel();
-                TextView textView = eg1Var.f36054n.f41085a;
+                eg1Var.f36081n.f41112a.animate().cancel();
+                TextView textView = eg1Var.f36081n.f41112a;
                 if (z10) {
                     f7 = 0.0f;
                 }
@@ -60,7 +60,7 @@ public final class m6 extends xw0 {
         switch (this.K) {
             case 0:
                 s6 s6Var = ((n6) this.L).d;
-                super.onMeasure(i10, wl.d(s6Var.f3693e, s6Var.f3695n - s6Var.f3696r.getPaddingTop(), 1073741824));
+                super.onMeasure(i10, wl.d(s6Var.f3720e, s6Var.f3722n - s6Var.f3723r.getPaddingTop(), 1073741824));
                 return;
             default:
                 super.onMeasure(i10, i11);

@@ -24,24 +24,24 @@ import org.telegram.ui.Components.x9;
 import w7.x5;
 import yf.p;
 public final class b extends FrameLayout implements z5 {
-    public final f6 f11349a;
-    public final x9 f11350b;
-    public final TextView f11351c;
+    public final f6 f11375a;
+    public final x9 f11376b;
+    public final TextView f11377c;
     public final TextView d;
-    public final ImageView f11352e;
+    public final ImageView f11378e;
 
     public b(Context context, f6 f6Var) {
         super(context);
-        this.f11349a = f6Var;
+        this.f11375a = f6Var;
         x9 x9Var = new x9(context);
-        this.f11350b = x9Var;
+        this.f11376b = x9Var;
         x9Var.setRoundRadius(AndroidUtilities.dp(7.3125f));
         addView(x9Var, x5.d(26, 26.0f, 19, 16.0f, 0.0f, 0.0f, 0.0f));
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setOrientation(1);
         linearLayout.setGravity(16);
         TextView textView = new TextView(context);
-        this.f11351c = textView;
+        this.f11377c = textView;
         textView.setTextSize(1, 16.0f);
         textView.setSingleLine(true);
         TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
@@ -55,7 +55,7 @@ public final class b extends FrameLayout implements z5 {
         linearLayout.addView(textView2, x5.k(0.0f, 2.0f, 0.0f, 0.0f, -1, -2));
         addView(linearLayout, x5.d(-1, -2.0f, 19, 58.0f, 0.0f, 48.0f, 1.0f));
         ImageView imageView = new ImageView(context);
-        this.f11352e = imageView;
+        this.f11378e = imageView;
         imageView.setImageResource(R.drawable.msg_inputarrow);
         imageView.setScaleType(ImageView.ScaleType.CENTER);
         addView(imageView, x5.d(24, 24.0f, 21, 0.0f, 0.0f, 11.0f, 0.0f));
@@ -67,7 +67,7 @@ public final class b extends FrameLayout implements z5 {
         if (chat == null) {
             return;
         }
-        TLRPC.ChatFull chatFull = MessagesController.getInstance(i10).getChatFull(chat.f19869id);
+        TLRPC.ChatFull chatFull = MessagesController.getInstance(i10).getChatFull(chat.f19896id);
         setTitle(DialogObject.getShortName(chat));
         if (chatFull != null) {
             i11 = chatFull.linked_peers.size();
@@ -75,15 +75,15 @@ public final class b extends FrameLayout implements z5 {
             i11 = 0;
         }
         setSubtitle(LocaleController.formatPluralString("CommunityWithChats", i11, new Object[0]));
-        this.f11350b.e(chat, new i9(chat));
+        this.f11376b.e(chat, new i9(chat));
     }
 
     @Override
     public final void d() {
-        int i10 = j6.f21061z6;
-        f6 f6Var = this.f11349a;
-        this.f11352e.setColorFilter(j6.v0(i10, f6Var));
-        this.f11351c.setTextColor(j6.v0(j6.G6, f6Var));
+        int i10 = j6.f21088z6;
+        f6 f6Var = this.f11375a;
+        this.f11378e.setColorFilter(j6.v0(i10, f6Var));
+        this.f11377c.setTextColor(j6.v0(j6.G6, f6Var));
         this.d.setTextColor(j6.v0(i10, f6Var));
     }
 
@@ -91,17 +91,17 @@ public final class b extends FrameLayout implements z5 {
     public final void dispatchDraw(Canvas canvas) {
         Paint paint;
         Drawable drawable = j6.S0;
-        x9 x9Var = this.f11350b;
+        x9 x9Var = this.f11376b;
         p.a(canvas, drawable, (x9Var.getWidth() / 2.0f) + x9Var.getLeft(), (x9Var.getHeight() / 2.0f) + x9Var.getTop(), x9Var.getHeight());
         super.dispatchDraw(canvas);
-        f6 f6Var = this.f11349a;
+        f6 f6Var = this.f11375a;
         if (f6Var != null) {
             paint = f6Var.G("paintDivider");
         } else {
             paint = null;
         }
         if (paint == null) {
-            paint = j6.f20785k0;
+            paint = j6.f20812k0;
         }
         canvas.drawLine(AndroidUtilities.dp(58.0f), getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight() - 1, paint);
     }
@@ -120,6 +120,6 @@ public final class b extends FrameLayout implements z5 {
     }
 
     public void setTitle(CharSequence charSequence) {
-        this.f11351c.setText(charSequence);
+        this.f11377c.setText(charSequence);
     }
 }

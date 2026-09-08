@@ -14,53 +14,53 @@ import android.graphics.drawable.Drawable;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 public final class ma extends Drawable {
-    public float f28423a = 1.0f;
-    public final Paint f28424b = new Paint(1);
-    public final Rect f28425c = new Rect();
+    public float f28450a = 1.0f;
+    public final Paint f28451b = new Paint(1);
+    public final Rect f28452c = new Rect();
     public final Path d = new Path();
-    public final float f28426e;
-    public final float f28427f;
-    public final Drawable f28428g;
+    public final float f28453e;
+    public final float f28454f;
+    public final Drawable f28455g;
     public final float h;
-    public final na f28429i;
+    public final na f28456i;
 
     public ma(na naVar, float f7, float f10, Drawable drawable, float f11) {
-        this.f28429i = naVar;
-        this.f28426e = f7;
-        this.f28427f = f10;
-        this.f28428g = drawable;
+        this.f28456i = naVar;
+        this.f28453e = f7;
+        this.f28454f = f10;
+        this.f28455g = drawable;
         this.h = f11;
     }
 
     @Override
     public final void draw(Canvas canvas) {
         Bitmap b10;
-        na naVar = this.f28429i;
-        ja jaVar = naVar.f28702a;
-        Matrix matrix = naVar.f28715p;
+        na naVar = this.f28456i;
+        ja jaVar = naVar.f28729a;
+        Matrix matrix = naVar.f28742p;
         Paint paint = null;
         if (jaVar != null && (b10 = jaVar.b()) != null) {
-            if (naVar.f28714o == null || naVar.f28713n != b10) {
-                naVar.f28713n = b10;
+            if (naVar.f28741o == null || naVar.f28740n != b10) {
+                naVar.f28740n = b10;
                 Shader.TileMode tileMode = Shader.TileMode.CLAMP;
                 BitmapShader bitmapShader = new BitmapShader(b10, tileMode, tileMode);
-                naVar.f28714o = bitmapShader;
+                naVar.f28741o = bitmapShader;
                 naVar.h.setShader(bitmapShader);
             }
             matrix.reset();
-            matrix.postTranslate((-0.0f) - this.f28426e, (-0.0f) - this.f28427f);
-            View view = jaVar.f27408b;
+            matrix.postTranslate((-0.0f) - this.f28453e, (-0.0f) - this.f28454f);
+            View view = jaVar.f27435b;
             if (view != null) {
-                matrix.preScale(view.getWidth() / b10.getWidth(), jaVar.f27408b.getHeight() / b10.getHeight());
+                matrix.preScale(view.getWidth() / b10.getWidth(), jaVar.f27435b.getHeight() / b10.getHeight());
             }
-            naVar.f28714o.setLocalMatrix(matrix);
-            naVar.h.setAlpha((int) (this.f28423a * 255.0f));
+            naVar.f28741o.setLocalMatrix(matrix);
+            naVar.h.setAlpha((int) (this.f28450a * 255.0f));
             paint = naVar.h;
         }
         Paint paint2 = paint;
         Rect bounds = getBounds();
-        Drawable drawable = this.f28428g;
-        Paint paint3 = this.f28424b;
+        Drawable drawable = this.f28455g;
+        Paint paint3 = this.f28451b;
         float f7 = this.h;
         if (paint2 == null && (jaVar == null || !jaVar.c())) {
             if (drawable != null) {
@@ -83,7 +83,7 @@ public final class ma extends Drawable {
             canvas.saveLayerAlpha(bounds.left, bounds.top, bounds.right, bounds.bottom, 255, 31);
             drawable.setBounds(bounds);
             drawable.draw(canvas);
-            Rect rect = this.f28425c;
+            Rect rect = this.f28452c;
             if (jaVar != null && jaVar.c()) {
                 canvas.save();
                 getPadding(rect);
@@ -144,7 +144,7 @@ public final class ma extends Drawable {
 
     @Override
     public final boolean getPadding(Rect rect) {
-        Drawable drawable = this.f28428g;
+        Drawable drawable = this.f28455g;
         if (drawable != null) {
             return drawable.getPadding(rect);
         }
@@ -154,7 +154,7 @@ public final class ma extends Drawable {
 
     @Override
     public final void setAlpha(int i10) {
-        this.f28423a = i10 / 255.0f;
+        this.f28450a = i10 / 255.0f;
     }
 
     @Override

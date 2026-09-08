@@ -42,7 +42,7 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 public class SecretMediaViewer implements NotificationCenter.NotificationCenterDelegate, GestureDetector.OnGestureListener, GestureDetector.OnDoubleTapListener {
-    public static volatile SecretMediaViewer f34056x1;
+    public static volatile SecretMediaViewer f34083x1;
     public float A0;
     public float B0;
     public float C0;
@@ -91,74 +91,74 @@ public class SecretMediaViewer implements NotificationCenter.NotificationCenterD
     public float Y0;
     public qu0 Z;
     public boolean Z0;
-    public int f34057a;
-    public au0 f34058a0;
-    public boolean f34059a1;
+    public int f34084a;
+    public au0 f34085a0;
+    public boolean f34086a1;
     private float animationValue;
-    public Activity f34060b;
-    public int f34061b0;
-    public boolean f34062b1;
-    public WindowManager.LayoutParams f34063c;
-    public boolean f34064c0;
-    public boolean f34065c1;
+    public Activity f34087b;
+    public int f34088b0;
+    public boolean f34089b1;
+    public WindowManager.LayoutParams f34090c;
+    public boolean f34091c0;
+    public boolean f34092c1;
     public j0 d;
-    public boolean f34066d0;
-    public boolean f34067d1;
-    public ah.w f34068e;
-    public float f34069e0;
-    public boolean f34070e1;
-    public View f34071f;
-    public long f34072f0;
-    public boolean f34073f1;
-    public WindowInsets f34074g0;
-    public org.telegram.ui.Components.nm0 f34075g1;
-    public MessageObject f34076h0;
-    public boolean f34077h1;
-    public ImageReceiver.BitmapHolder f34078i0;
-    public final w41 f34079i1;
-    public boolean f34080j0;
-    public final int[] f34081j1;
-    public final int[] f34083k1;
+    public boolean f34093d0;
+    public boolean f34094d1;
+    public ah.w f34095e;
+    public float f34096e0;
+    public boolean f34097e1;
+    public View f34098f;
+    public long f34099f0;
+    public boolean f34100f1;
+    public WindowInsets f34101g0;
+    public org.telegram.ui.Components.nm0 f34102g1;
+    public MessageObject f34103h0;
+    public boolean f34104h1;
+    public ImageReceiver.BitmapHolder f34105i0;
+    public final w41 f34106i1;
+    public boolean f34107j0;
+    public final int[] f34108j1;
+    public final int[] f34110k1;
     public kb0 l1;
     public int m0;
-    public boolean f34085m1;
-    public d51 f34086n;
-    public long f34087n0;
-    public int f34088n1;
-    public Runnable f34089o0;
-    public boolean f34090o1;
-    public boolean f34091p0;
-    public Runnable f34092p1;
-    public float f34093q0;
-    public boolean f34094q1;
-    public di.f4 f34095r;
-    public float f34096r0;
-    public final w41 f34097r1;
-    public boolean f34098s;
-    public float f34099s0;
-    public float[] f34100s1;
-    public float f34101t0;
-    public final Path f34102t1;
-    public float f34103u0;
-    public final t0 f34104u1;
+    public boolean f34112m1;
+    public d51 f34113n;
+    public long f34114n0;
+    public int f34115n1;
+    public Runnable f34116o0;
+    public boolean f34117o1;
+    public boolean f34118p0;
+    public Runnable f34119p1;
+    public float f34120q0;
+    public boolean f34121q1;
+    public di.f4 f34122r;
+    public float f34123r0;
+    public final w41 f34124r1;
+    public boolean f34125s;
+    public float f34126s0;
+    public float[] f34127s1;
+    public float f34128t0;
+    public final Path f34129t1;
+    public float f34130u0;
+    public final t0 f34131u1;
     public long v;
-    public float f34105v0;
-    public final t0 f34106v1;
-    public l4 f34107w;
-    public float f34108w0;
-    public boolean f34109w1;
-    public TextureView f34110x;
-    public float f34111x0;
-    public c51 f34112y;
-    public float f34113y0;
-    public float f34114z0;
+    public float f34132v0;
+    public final t0 f34133v1;
+    public l4 f34134w;
+    public float f34135w0;
+    public boolean f34136w1;
+    public TextureView f34137x;
+    public float f34138x0;
+    public c51 f34139y;
+    public float f34140y0;
+    public float f34141z0;
     public final ImageReceiver h = new ImageReceiver();
-    public boolean f34082k0 = true;
-    public final PhotoBackgroundDrawable f34084l0 = new PhotoBackgroundDrawable();
+    public boolean f34109k0 = true;
+    public final PhotoBackgroundDrawable f34111l0 = new PhotoBackgroundDrawable();
 
     public class PhotoBackgroundDrawable extends ColorDrawable {
-        public rx0 f34115a;
-        public int f34116b;
+        public rx0 f34142a;
+        public int f34143b;
 
         public PhotoBackgroundDrawable() {
             super(-16777216);
@@ -169,13 +169,13 @@ public class SecretMediaViewer implements NotificationCenter.NotificationCenterD
             rx0 rx0Var;
             super.draw(canvas);
             if (getAlpha() != 0) {
-                if (this.f34116b == 2 && (rx0Var = this.f34115a) != null) {
+                if (this.f34143b == 2 && (rx0Var = this.f34142a) != null) {
                     rx0Var.run();
-                    this.f34115a = null;
+                    this.f34142a = null;
                 } else {
                     invalidateSelf();
                 }
-                this.f34116b++;
+                this.f34143b++;
             }
         }
 
@@ -185,7 +185,7 @@ public class SecretMediaViewer implements NotificationCenter.NotificationCenterD
             SecretMediaViewer secretMediaViewer = SecretMediaViewer.this;
             kb0 kb0Var = secretMediaViewer.l1;
             if (kb0Var != null) {
-                if (secretMediaViewer.f34080j0 && i10 == 255) {
+                if (secretMediaViewer.f34107j0 && i10 == 255) {
                     z10 = true;
                 } else {
                     z10 = false;
@@ -209,22 +209,22 @@ public class SecretMediaViewer implements NotificationCenter.NotificationCenterD
 
     public SecretMediaViewer() {
         new Paint();
-        this.f34113y0 = 1.0f;
+        this.f34140y0 = 1.0f;
         this.M0 = new DecelerateInterpolator(1.5f);
         this.O0 = 1.0f;
-        this.f34067d1 = true;
-        this.f34079i1 = new w41(this, 2);
-        this.f34081j1 = new int[2];
-        this.f34083k1 = new int[2];
-        this.f34097r1 = new w41(this, 3);
-        this.f34102t1 = new Path();
-        this.f34104u1 = new t0("videoCrossfadeAlpha", 4);
-        this.f34106v1 = new t0("animationValue", 5);
+        this.f34094d1 = true;
+        this.f34106i1 = new w41(this, 2);
+        this.f34108j1 = new int[2];
+        this.f34110k1 = new int[2];
+        this.f34124r1 = new w41(this, 3);
+        this.f34129t1 = new Path();
+        this.f34131u1 = new t0("videoCrossfadeAlpha", 4);
+        this.f34133v1 = new t0("animationValue", 5);
     }
 
     public static WindowInsets a(SecretMediaViewer secretMediaViewer, WindowInsets windowInsets) {
-        WindowInsets windowInsets2 = secretMediaViewer.f34074g0;
-        secretMediaViewer.f34074g0 = windowInsets;
+        WindowInsets windowInsets2 = secretMediaViewer.f34101g0;
+        secretMediaViewer.f34101g0 = windowInsets;
         if (windowInsets2 == null || !windowInsets2.toString().equals(windowInsets.toString())) {
             secretMediaViewer.d.requestLayout();
         }
@@ -240,14 +240,14 @@ public class SecretMediaViewer implements NotificationCenter.NotificationCenterD
 
     public static SecretMediaViewer f() {
         SecretMediaViewer secretMediaViewer;
-        SecretMediaViewer secretMediaViewer2 = f34056x1;
+        SecretMediaViewer secretMediaViewer2 = f34083x1;
         if (secretMediaViewer2 == null) {
             synchronized (PhotoViewer.class) {
                 try {
-                    secretMediaViewer = f34056x1;
+                    secretMediaViewer = f34083x1;
                     if (secretMediaViewer == null) {
                         secretMediaViewer = new SecretMediaViewer();
-                        f34056x1 = secretMediaViewer;
+                        f34083x1 = secretMediaViewer;
                     }
                 } catch (Throwable th2) {
                     throw th2;
@@ -259,19 +259,19 @@ public class SecretMediaViewer implements NotificationCenter.NotificationCenterD
     }
 
     public static boolean g() {
-        if (f34056x1 != null) {
+        if (f34083x1 != null) {
             return true;
         }
         return false;
     }
 
     public final void c(float f7, float f10, float f11, boolean z10) {
-        if (this.f34113y0 == f7 && this.f34108w0 == f10 && this.f34111x0 == f11) {
+        if (this.f34140y0 == f7 && this.f34135w0 == f10 && this.f34138x0 == f11) {
             return;
         }
-        this.f34070e1 = z10;
+        this.f34097e1 = z10;
         this.B0 = f7;
-        this.f34114z0 = f10;
+        this.f34141z0 = f10;
         this.A0 = f11;
         this.J0 = System.currentTimeMillis();
         AnimatorSet animatorSet = new AnimatorSet();
@@ -290,33 +290,33 @@ public class SecretMediaViewer implements NotificationCenter.NotificationCenterD
     @Override
     public final void didReceivedNotification(int i10, int i11, Object... objArr) {
         if (i10 == NotificationCenter.messagesDeleted) {
-            if (!((Boolean) objArr[2]).booleanValue() && this.f34076h0 != null && ((Long) objArr[1]).longValue() == 0 && ((ArrayList) objArr[0]).contains(Integer.valueOf(this.f34076h0.getId()))) {
+            if (!((Boolean) objArr[2]).booleanValue() && this.f34103h0 != null && ((Long) objArr[1]).longValue() == 0 && ((ArrayList) objArr[0]).contains(Integer.valueOf(this.f34103h0.getId()))) {
                 if (this.J && !this.H) {
                     this.I = true;
                 } else if (!e(true, true)) {
-                    this.f34077h1 = true;
+                    this.f34104h1 = true;
                 }
             }
         } else if (i10 == NotificationCenter.didCreatedNewDeleteTask) {
-            if (this.f34076h0 != null && this.f34086n != null && ((Long) objArr[0]).longValue() == this.v) {
+            if (this.f34103h0 != null && this.f34113n != null && ((Long) objArr[0]).longValue() == this.v) {
                 SparseArray sparseArray = (SparseArray) objArr[1];
                 for (int i12 = 0; i12 < sparseArray.size(); i12++) {
                     int keyAt = sparseArray.keyAt(i12);
                     ArrayList arrayList = (ArrayList) sparseArray.get(keyAt);
                     for (int i13 = 0; i13 < arrayList.size(); i13++) {
-                        if (this.f34076h0.getId() == ((Integer) arrayList.get(i13)).intValue()) {
-                            this.f34076h0.messageOwner.destroyTime = keyAt;
-                            this.f34086n.invalidate();
+                        if (this.f34103h0.getId() == ((Integer) arrayList.get(i13)).intValue()) {
+                            this.f34103h0.messageOwner.destroyTime = keyAt;
+                            this.f34113n.invalidate();
                             return;
                         }
                     }
                 }
             }
-        } else if (i10 == NotificationCenter.updateMessageMedia && this.f34076h0.getId() == ((TLRPC.Message) objArr[0]).f19890id) {
+        } else if (i10 == NotificationCenter.updateMessageMedia && this.f34103h0.getId() == ((TLRPC.Message) objArr[0]).f19917id) {
             if (this.J && !this.H) {
                 this.I = true;
             } else if (!e(true, true)) {
-                this.f34077h1 = true;
+                this.f34104h1 = true;
             }
         }
     }
@@ -330,60 +330,60 @@ public class SecretMediaViewer implements NotificationCenter.NotificationCenterD
     }
 
     public float getVideoCrossfadeAlpha() {
-        return this.f34069e0;
+        return this.f34096e0;
     }
 
     public final void h(File file) {
-        if (this.f34060b == null) {
+        if (this.f34087b == null) {
             return;
         }
         i();
-        if (this.f34110x == null) {
-            l4 l4Var = new l4(this.f34060b);
-            this.f34107w = l4Var;
+        if (this.f34137x == null) {
+            l4 l4Var = new l4(this.f34087b);
+            this.f34134w = l4Var;
             l4Var.setVisibility(0);
-            this.f34068e.addView(this.f34107w, 0, w7.x5.e(-1, -1, 17));
-            TextureView textureView = new TextureView(this.f34060b);
-            this.f34110x = textureView;
+            this.f34095e.addView(this.f34134w, 0, w7.x5.e(-1, -1, 17));
+            TextureView textureView = new TextureView(this.f34087b);
+            this.f34137x = textureView;
             textureView.setOpaque(false);
-            this.f34107w.addView(this.f34110x, w7.x5.e(-1, -1, 17));
+            this.f34134w.addView(this.f34137x, w7.x5.e(-1, -1, 17));
         }
-        this.f34064c0 = false;
-        this.f34066d0 = false;
-        this.f34110x.setAlpha(1.0f);
-        if (this.f34112y == null) {
+        this.f34091c0 = false;
+        this.f34093d0 = false;
+        this.f34137x.setAlpha(1.0f);
+        if (this.f34139y == null) {
             c51 c51Var = new c51(this);
-            this.f34112y = c51Var;
-            c51Var.V(this.f34110x);
-            this.f34112y.J = new n7.z0(this, file, false, 9);
+            this.f34139y = c51Var;
+            c51Var.V(this.f34137x);
+            this.f34139y.J = new n7.z0(this, file, false, 9);
         }
-        this.f34112y.D(Uri.fromFile(file), "other");
-        this.f34112y.P(true);
+        this.f34139y.D(Uri.fromFile(file), "other");
+        this.f34139y.P(true);
         this.W.a(true, true);
     }
 
     public final void i() {
-        c51 c51Var = this.f34112y;
+        c51 c51Var = this.f34139y;
         if (c51Var != null) {
-            this.f34061b0 = 0;
+            this.f34088b0 = 0;
             c51Var.H();
-            this.f34112y = null;
+            this.f34139y = null;
         }
         try {
-            Activity activity = this.f34060b;
+            Activity activity = this.f34087b;
             if (activity != null) {
                 activity.getWindow().clearFlags(128);
             }
         } catch (Exception e7) {
             FileLog.e(e7);
         }
-        l4 l4Var = this.f34107w;
+        l4 l4Var = this.f34134w;
         if (l4Var != null) {
-            this.f34068e.removeView(l4Var);
-            this.f34107w = null;
+            this.f34095e.removeView(l4Var);
+            this.f34134w = null;
         }
-        if (this.f34110x != null) {
-            this.f34110x = null;
+        if (this.f34137x != null) {
+            this.f34137x = null;
         }
         this.E = false;
     }
@@ -392,17 +392,17 @@ public class SecretMediaViewer implements NotificationCenter.NotificationCenterD
         TextView currentView;
         boolean z11;
         CharSequence cloneSpans = org.telegram.ui.Components.z5.cloneSpans(charSequence, 3);
-        if (this.f34058a0 == null) {
-            FrameLayout frameLayout = new FrameLayout(this.f34068e.getContext());
+        if (this.f34085a0 == null) {
+            FrameLayout frameLayout = new FrameLayout(this.f34095e.getContext());
             this.X = frameLayout;
             this.Z.setContainer(frameLayout);
-            au0 au0Var = new au0(this, this.f34068e.getContext(), this.Z, this.X, 1);
-            this.f34058a0 = au0Var;
+            au0 au0Var = new au0(this, this.f34095e.getContext(), this.Z, this.X, 1);
+            this.f34085a0 = au0Var;
             this.Z.setScrollView(au0Var);
             this.X.setClipChildren(false);
-            this.f34058a0.addView(this.X, new ViewGroup.LayoutParams(-1, -2));
-            this.f34068e.addView(this.f34058a0, w7.x5.d(-1, -1.0f, 80, 0.0f, 0.0f, 0.0f, 0.0f));
-            this.Y.o(this.f34068e.getContext()).bringToFront();
+            this.f34085a0.addView(this.X, new ViewGroup.LayoutParams(-1, -2));
+            this.f34095e.addView(this.f34085a0, w7.x5.d(-1, -1.0f, 80, 0.0f, 0.0f, 0.0f, 0.0f));
+            this.Y.o(this.f34095e.getContext()).bringToFront();
         }
         boolean z12 = true;
         if (this.Z.getParent() != this.X) {
@@ -429,25 +429,25 @@ public class SecretMediaViewer implements NotificationCenter.NotificationCenterD
             this.Z.getNextView().setEllipsize(null);
         }
         currentView.setScrollX(0);
-        au0 au0Var2 = this.f34058a0;
-        au0Var2.f39032l0 = false;
+        au0 au0Var2 = this.f34085a0;
+        au0Var2.f39059l0 = false;
         if (z10) {
             if (Build.VERSION.SDK_INT >= 23) {
                 TransitionManager.endTransitions(au0Var2);
             }
             TransitionSet duration = new TransitionSet().addTransition(new z41(this, isEmpty2, isEmpty, 1)).addTransition(new z41(this, isEmpty2, isEmpty, 0)).setDuration(200L);
             if (!isEmpty2) {
-                this.f34058a0.f39032l0 = true;
+                this.f34085a0.f39059l0 = true;
                 duration.addTransition(new org.telegram.ui.Components.em0(this, 3));
             }
             if (isEmpty2 && !isEmpty) {
                 duration.addTarget((View) this.Z);
             }
-            TransitionManager.beginDelayedTransition(this.f34058a0, duration);
+            TransitionManager.beginDelayedTransition(this.f34085a0, duration);
             z11 = true;
         } else {
             this.Z.getCurrentView().setText((CharSequence) null);
-            au0 au0Var3 = this.f34058a0;
+            au0 au0Var3 = this.f34085a0;
             if (au0Var3 != null) {
                 au0Var3.scrollTo(0, 0);
             }
@@ -472,7 +472,7 @@ public class SecretMediaViewer implements NotificationCenter.NotificationCenterD
             this.Z.setTag(cloneSpans);
             try {
                 this.Z.a(cloneSpans, z10, false);
-                au0 au0Var4 = this.f34058a0;
+                au0 au0Var4 = this.f34085a0;
                 if (au0Var4 != null) {
                     au0Var4.H(au0Var4.getWidth(), au0Var4.getHeight());
                 }
@@ -482,7 +482,7 @@ public class SecretMediaViewer implements NotificationCenter.NotificationCenterD
             currentView.setScrollY(0);
             currentView.setTextColor(-1);
             qu0 qu0Var2 = this.Z;
-            if (this.f34082k0) {
+            if (this.f34109k0) {
                 i10 = 0;
             }
             qu0Var2.setVisibility(i10);
@@ -510,10 +510,10 @@ public class SecretMediaViewer implements NotificationCenter.NotificationCenterD
         } else {
             z12 = false;
         }
-        if (this.f34085m1 == z12 && z11) {
+        if (this.f34112m1 == z12 && z11) {
             return;
         }
-        this.f34085m1 = z12;
+        this.f34112m1 = z12;
         this.V.animate().cancel();
         float f11 = 0.0f;
         float f12 = 0.6f;
@@ -556,27 +556,27 @@ public class SecretMediaViewer implements NotificationCenter.NotificationCenterD
 
     public final void l() {
         int i10;
-        this.f34095r.p(true);
+        this.f34122r.p(true);
         if (this.J) {
             i10 = R.string.VideoShownOnce;
         } else {
             i10 = R.string.PhotoShownOnce;
         }
         String string = LocaleController.getString(i10);
-        di.f4 f4Var = this.f34095r;
+        di.f4 f4Var = this.f34122r;
         f4Var.h = di.f4.a(string, f4Var.getTextPaint());
-        this.f34095r.s(string);
-        this.f34095r.k(12.0f, 7.0f, 11.0f, 7.0f);
-        di.f4 f4Var2 = this.f34095r;
+        this.f34122r.s(string);
+        this.f34122r.k(12.0f, 7.0f, 11.0f, 7.0f);
+        di.f4 f4Var2 = this.f34122r;
         f4Var2.getClass();
-        f4Var2.f7202e0 = AndroidUtilities.dp(2);
-        di.f4 f4Var3 = this.f34095r;
+        f4Var2.f7230e0 = AndroidUtilities.dp(2);
+        di.f4 f4Var3 = this.f34122r;
         f4Var3.getClass();
-        f4Var3.f7200d0 = 0.0f;
+        f4Var3.f7228d0 = 0.0f;
         org.telegram.ui.Components.xi0 xi0Var = new org.telegram.ui.Components.xi0(R.raw.fire_on, AndroidUtilities.dp(34.0f), AndroidUtilities.dp(34.0f));
         xi0Var.start();
         f4Var3.j(xi0Var);
-        this.f34095r.u();
+        this.f34122r.u();
         MessagesController.getGlobalMainSettings().edit().putInt("viewoncehint", MessagesController.getGlobalMainSettings().getInt("viewoncehint", 0) + 1).commit();
     }
 
@@ -588,7 +588,7 @@ public class SecretMediaViewer implements NotificationCenter.NotificationCenterD
         float f13;
         float f14;
         float f15;
-        w41 w41Var = this.f34097r1;
+        w41 w41Var = this.f34124r1;
         AndroidUtilities.cancelRunOnUIThread(w41Var);
         if (z10 && this.J) {
             AndroidUtilities.runOnUIThread(w41Var, 3000L);
@@ -597,7 +597,7 @@ public class SecretMediaViewer implements NotificationCenter.NotificationCenterD
             this.F.setVisibility(0);
         }
         this.F.setEnabled(z10);
-        this.f34082k0 = z10;
+        this.f34109k0 = z10;
         k(z10, z11);
         float f16 = 0.0f;
         if (z11) {
@@ -611,14 +611,14 @@ public class SecretMediaViewer implements NotificationCenter.NotificationCenterD
             }
             arrayList.add(ObjectAnimator.ofFloat(z7Var, property, f12));
             e51 e51Var = this.U;
-            t0 t0Var = e51Var.f35939n;
+            t0 t0Var = e51Var.f35966n;
             if (z10) {
                 f13 = 1.0f;
             } else {
                 f13 = 0.0f;
             }
             arrayList.add(ObjectAnimator.ofFloat(e51Var, t0Var, f13));
-            au0 au0Var = this.f34058a0;
+            au0 au0Var = this.f34085a0;
             if (z10) {
                 f14 = 1.0f;
             } else {
@@ -632,7 +632,7 @@ public class SecretMediaViewer implements NotificationCenter.NotificationCenterD
                 f15 = 0.0f;
             }
             arrayList.add(ObjectAnimator.ofFloat(view, property, f15));
-            View view2 = this.f34071f;
+            View view2 = this.f34098f;
             if (z10) {
                 f16 = 1.0f;
             }
@@ -654,7 +654,7 @@ public class SecretMediaViewer implements NotificationCenter.NotificationCenterD
             f7 = 0.0f;
         }
         z7Var2.setAlpha(f7);
-        au0 au0Var2 = this.f34058a0;
+        au0 au0Var2 = this.f34085a0;
         if (z10) {
             f10 = 1.0f;
         } else {
@@ -668,21 +668,21 @@ public class SecretMediaViewer implements NotificationCenter.NotificationCenterD
             f11 = 0.0f;
         }
         view3.setAlpha(f11);
-        View view4 = this.f34071f;
+        View view4 = this.f34098f;
         if (z10) {
             f16 = 1.0f;
         }
         view4.setAlpha(f16);
         if (!z10) {
             this.F.setVisibility(8);
-            this.f34058a0.scrollTo(0, 0);
+            this.f34085a0.scrollTo(0, 0);
         }
     }
 
     public final void n(float f7) {
         ImageReceiver imageReceiver = this.h;
-        int imageWidth = ((int) ((imageReceiver.getImageWidth() * f7) - this.f34068e.getWidth())) / 2;
-        int imageHeight = ((int) ((imageReceiver.getImageHeight() * f7) - this.f34068e.getHeight())) / 2;
+        int imageWidth = ((int) ((imageReceiver.getImageWidth() * f7) - this.f34095e.getWidth())) / 2;
+        int imageHeight = ((int) ((imageReceiver.getImageHeight() * f7) - this.f34095e.getHeight())) / 2;
         if (imageWidth > 0) {
             this.V0 = -imageWidth;
             this.W0 = imageWidth;
@@ -716,10 +716,10 @@ public class SecretMediaViewer implements NotificationCenter.NotificationCenterD
 
     @Override
     public final boolean onFling(MotionEvent motionEvent, MotionEvent motionEvent2, float f7, float f10) {
-        if (this.f34113y0 != 1.0f) {
-            this.f34075g1.a();
-            this.f34075g1.c(Math.round(this.f34108w0), Math.round(this.f34111x0), Math.round(f7), Math.round(f10), (int) this.V0, (int) this.W0, (int) this.X0, (int) this.Y0);
-            this.f34068e.postInvalidate();
+        if (this.f34140y0 != 1.0f) {
+            this.f34102g1.a();
+            this.f34102g1.c(Math.round(this.f34135w0), Math.round(this.f34138x0), Math.round(f7), Math.round(f10), (int) this.V0, (int) this.W0, (int) this.X0, (int) this.Y0);
+            this.f34095e.postInvalidate();
             return false;
         }
         return false;
@@ -732,20 +732,20 @@ public class SecretMediaViewer implements NotificationCenter.NotificationCenterD
 
     @Override
     public final boolean onSingleTapConfirmed(MotionEvent motionEvent) {
-        if (this.f34073f1) {
+        if (this.f34100f1) {
             return false;
         }
-        if (this.f34112y != null && this.f34082k0 && motionEvent.getX() >= this.V.getX() && motionEvent.getY() >= this.V.getY() && motionEvent.getX() <= this.V.getX() + this.V.getMeasuredWidth() && motionEvent.getX() <= this.V.getX() + this.V.getMeasuredWidth()) {
-            c51 c51Var = this.f34112y;
+        if (this.f34139y != null && this.f34109k0 && motionEvent.getX() >= this.V.getX() && motionEvent.getY() >= this.V.getY() && motionEvent.getX() <= this.V.getX() + this.V.getMeasuredWidth() && motionEvent.getX() <= this.V.getX() + this.V.getMeasuredWidth()) {
+            c51 c51Var = this.f34139y;
             c51Var.P(!c51Var.d.u());
-            if (this.f34112y.d.u()) {
+            if (this.f34139y.d.u()) {
                 m(true, true);
                 return true;
             }
             k(true, true);
             return true;
         }
-        m(!this.f34082k0, true);
+        m(!this.f34109k0, true);
         return true;
     }
 
@@ -756,12 +756,12 @@ public class SecretMediaViewer implements NotificationCenter.NotificationCenterD
 
     public void setAnimationValue(float f7) {
         this.animationValue = f7;
-        this.f34068e.invalidate();
+        this.f34095e.invalidate();
     }
 
     public void setVideoCrossfadeAlpha(float f7) {
-        this.f34069e0 = f7;
-        this.f34068e.invalidate();
+        this.f34096e0 = f7;
+        this.f34095e.invalidate();
     }
 
     @Override

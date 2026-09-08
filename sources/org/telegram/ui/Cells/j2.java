@@ -23,7 +23,7 @@ public final class j2 extends bi.j9 {
     public final boolean d(long j3) {
         r2 r2Var = this.S;
         int i10 = r2Var.F0;
-        uy uyVar = r2Var.f22664z4;
+        uy uyVar = r2Var.f22691z4;
         if (uyVar != null && !r2Var.O0) {
             if (j3 > 0) {
                 TLRPC.User user = MessagesController.getInstance(i10).getUser(Long.valueOf(j3));
@@ -46,7 +46,7 @@ public final class j2 extends bi.j9 {
     @Override
     public final void e() {
         r2 r2Var = this.S;
-        n2 n2Var = r2Var.f22548d0;
+        n2 n2Var = r2Var.f22575d0;
         if (n2Var == null) {
             return;
         }
@@ -56,7 +56,7 @@ public final class j2 extends bi.j9 {
     @Override
     public final void f(long j3) {
         r2 r2Var = this.S;
-        n2 n2Var = r2Var.f22548d0;
+        n2 n2Var = r2Var.f22575d0;
         if (n2Var == null) {
             return;
         }

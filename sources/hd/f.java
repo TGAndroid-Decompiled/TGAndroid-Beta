@@ -91,7 +91,7 @@ public abstract class f extends b8 {
             }
             return h.b(Long.valueOf(jArr[0]));
         }
-        return o.f10956a;
+        return o.f10982a;
     }
 
     public static List h(Object[] objArr) {
@@ -103,6 +103,6 @@ public abstract class f extends b8 {
             }
             return h.b(objArr[0]);
         }
-        return o.f10956a;
+        return o.f10982a;
     }
 }

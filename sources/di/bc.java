@@ -16,16 +16,16 @@ import org.telegram.ui.Components.hk0;
 import org.telegram.ui.Components.iv0;
 import org.telegram.ui.Components.ye0;
 public final class bc extends FrameLayout {
-    public final Rect f6970a;
-    public final Rect f6971b;
-    public RenderNode f6972c;
+    public final Rect f6998a;
+    public final Rect f6999b;
+    public RenderNode f7000c;
     public final pc d;
 
     public bc(pc pcVar, Activity activity) {
         super(activity);
         this.d = pcVar;
-        this.f6970a = new Rect();
-        this.f6971b = new Rect();
+        this.f6998a = new Rect();
+        this.f6999b = new Rect();
     }
 
     @Override
@@ -34,11 +34,11 @@ public final class bc extends FrameLayout {
         boolean z10;
         int i10 = Build.VERSION.SDK_INT;
         if (i10 >= 31 && canvas.isHardwareAccelerated() && !AndroidUtilities.makingGlobalBlurBitmap) {
-            if (this.f6972c == null) {
-                this.f6972c = new RenderNode("StoryRecorder.PreviewView");
+            if (this.f7000c == null) {
+                this.f7000c = new RenderNode("StoryRecorder.PreviewView");
             }
-            this.f6972c.setPosition(0, 0, getWidth(), getHeight());
-            recordingCanvas = this.f6972c.beginRecording();
+            this.f7000c.setPosition(0, 0, getWidth(), getHeight());
+            recordingCanvas = this.f7000c.beginRecording();
             z10 = true;
         } else {
             recordingCanvas = canvas;
@@ -46,12 +46,12 @@ public final class bc extends FrameLayout {
         }
         super.dispatchDraw(recordingCanvas);
         if (z10 && i10 >= 31) {
-            this.f6972c.endRecording();
-            org.telegram.ui.Components.ja jaVar = this.d.f7896r0;
+            this.f7000c.endRecording();
+            org.telegram.ui.Components.ja jaVar = this.d.f7924r0;
             if (jaVar != null) {
-                jaVar.g(this, this.f6972c);
+                jaVar.g(this, this.f7000c);
             }
-            canvas.drawRenderNode(this.f6972c);
+            canvas.drawRenderNode(this.f7000c);
         }
     }
 
@@ -71,9 +71,9 @@ public final class bc extends FrameLayout {
             int i14 = i12 - i10;
             int i15 = i13 - i11;
             int dp = AndroidUtilities.dp(40.0f);
-            Rect rect = this.f6970a;
+            Rect rect = this.f6998a;
             rect.set(0, i15 - AndroidUtilities.dp(120.0f), dp, i15);
-            Rect rect2 = this.f6971b;
+            Rect rect2 = this.f6999b;
             rect2.set(i14 - AndroidUtilities.dp(40.0f), i15 - AndroidUtilities.dp(120.0f), i14, i15);
             setSystemGestureExclusionRects(Arrays.asList(rect, rect2));
         }
@@ -85,23 +85,23 @@ public final class bc extends FrameLayout {
         pc pcVar = this.d;
         af0 af0Var = pcVar.F1;
         if (af0Var != null) {
-            hk0 hk0Var = af0Var.f24356e;
-            hk0Var.f26743a = 0.0f;
-            hk0Var.f26744b = 0.0f;
-            hk0Var.f26745c = af0Var.getMeasuredWidth();
+            hk0 hk0Var = af0Var.f24383e;
+            hk0Var.f26770a = 0.0f;
+            hk0Var.f26771b = 0.0f;
+            hk0Var.f26772c = af0Var.getMeasuredWidth();
             hk0Var.d = pcVar.F1.getMeasuredHeight();
         }
         ye0 ye0Var = pcVar.E1;
         if (ye0Var != null) {
             iv0 iv0Var = ye0Var.d;
-            iv0Var.f27271a = ye0Var.getMeasuredWidth();
-            iv0Var.f27272b = pcVar.E1.getMeasuredHeight();
+            iv0Var.f27298a = ye0Var.getMeasuredWidth();
+            iv0Var.f27299b = pcVar.E1.getMeasuredHeight();
         }
     }
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        ?? r02 = this.d.f7911v2;
+        ?? r02 = this.d.f7939v2;
         if (r02 != 0) {
             r02.l(motionEvent);
             return true;

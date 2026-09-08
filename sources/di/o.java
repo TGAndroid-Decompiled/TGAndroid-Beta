@@ -2,21 +2,21 @@ package di;
 
 import org.telegram.messenger.Utilities;
 public final class o implements Utilities.Callback {
-    public final int f7707a;
-    public final fc f7708b;
+    public final int f7735a;
+    public final fc f7736b;
 
     public o(fc fcVar, int i10) {
-        this.f7707a = i10;
-        this.f7708b = fcVar;
+        this.f7735a = i10;
+        this.f7736b = fcVar;
     }
 
     @Override
     public final void run(Object obj) {
         Integer num = (Integer) obj;
-        switch (this.f7707a) {
+        switch (this.f7735a) {
             case 0:
                 int intValue = num.intValue();
-                fc fcVar = this.f7708b;
+                fc fcVar = this.f7736b;
                 fcVar.setPeriod(intValue);
                 Utilities.Callback callback = fcVar.B1;
                 if (callback != null) {
@@ -25,7 +25,7 @@ public final class o implements Utilities.Callback {
                 }
                 return;
             default:
-                Utilities.Callback callback2 = this.f7708b.C1;
+                Utilities.Callback callback2 = this.f7736b.C1;
                 if (callback2 != null) {
                     callback2.run(num);
                     return;

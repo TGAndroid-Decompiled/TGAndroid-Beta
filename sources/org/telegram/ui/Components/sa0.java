@@ -5,28 +5,28 @@ import android.graphics.Paint;
 import android.text.style.ReplacementSpan;
 import android.view.KeyEvent;
 public final class sa0 extends ReplacementSpan {
-    public final int f30244a;
-    public final KeyEvent.Callback f30245b;
+    public final int f30271a;
+    public final KeyEvent.Callback f30272b;
 
     public sa0(KeyEvent.Callback callback, int i10) {
-        this.f30244a = i10;
-        this.f30245b = callback;
+        this.f30271a = i10;
+        this.f30272b = callback;
     }
 
     @Override
     public final void draw(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
-        int i15 = this.f30244a;
+        int i15 = this.f30271a;
     }
 
     @Override
     public final int getSize(Paint paint, CharSequence charSequence, int i10, int i11, Paint.FontMetricsInt fontMetricsInt) {
-        switch (this.f30244a) {
+        switch (this.f30271a) {
             case 0:
-                return ((ua0) this.f30245b).f30847x;
+                return ((ua0) this.f30272b).f30874x;
             case 1:
-                return (int) ((org.telegram.ui.tj0) this.f30245b).f40780n0;
+                return (int) ((org.telegram.ui.tj0) this.f30272b).f40807n0;
             default:
-                return (int) ((ug.n1) this.f30245b).f47175t0;
+                return (int) ((ug.n1) this.f30272b).f47203t0;
         }
     }
 

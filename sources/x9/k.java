@@ -3,18 +3,18 @@ package x9;
 import java.io.File;
 import java.nio.charset.Charset;
 public final class k implements c {
-    public static final Charset f49321c = Charset.forName("UTF-8");
-    public final File f49322a;
-    public j f49323b;
+    public static final Charset f49350c = Charset.forName("UTF-8");
+    public final File f49351a;
+    public j f49352b;
 
     public k(File file) {
-        this.f49322a = file;
+        this.f49351a = file;
     }
 
     @Override
     public final void b() {
-        w9.h.c(this.f49323b, "There was a problem closing the Crashlytics log file.");
-        this.f49323b = null;
+        w9.h.c(this.f49352b, "There was a problem closing the Crashlytics log file.");
+        this.f49352b = null;
     }
 
     @Override

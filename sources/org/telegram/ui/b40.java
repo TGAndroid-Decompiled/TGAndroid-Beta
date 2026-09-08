@@ -15,7 +15,7 @@ public final class b40 extends r4 {
     public final void c() {
         j60 j60Var = this.U;
         AccountInstance accountInstance = j60Var.d;
-        c40 c40Var = j60Var.f37515b;
+        c40 c40Var = j60Var.f37542b;
         long dialogId = c40Var.getDialogId();
         if (dialogId > 0) {
             TLRPC.User user = accountInstance.getMessagesController().getUser(Long.valueOf(dialogId));

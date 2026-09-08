@@ -17,7 +17,7 @@ public final class qs extends org.telegram.ui.Cells.r8 {
     public int c(int i10) {
         switch (this.Q) {
             case 2:
-                ((a11) this.R).f34291e.getClass();
+                ((a11) this.R).f34318e.getClass();
                 return i10;
             default:
                 return i10;
@@ -41,9 +41,9 @@ public final class qs extends org.telegram.ui.Cells.r8 {
                 int dp2 = AndroidUtilities.dp(21.0f);
                 int measuredHeight3 = getMeasuredHeight();
                 zx0 zx0Var = (zx0) this.R;
-                int measuredHeight4 = (measuredHeight3 - zx0Var.d.f33834v0.getMeasuredHeight()) / 2;
-                org.telegram.ui.Components.x9 x9Var2 = zx0Var.d.f33834v0;
-                x9Var2.layout(dp2, measuredHeight4, x9Var2.getMeasuredWidth() + dp2, zx0Var.d.f33834v0.getMeasuredHeight() + measuredHeight4);
+                int measuredHeight4 = (measuredHeight3 - zx0Var.d.f33861v0.getMeasuredHeight()) / 2;
+                org.telegram.ui.Components.x9 x9Var2 = zx0Var.d.f33861v0;
+                x9Var2.layout(dp2, measuredHeight4, x9Var2.getMeasuredWidth() + dp2, zx0Var.d.f33861v0.getMeasuredHeight() + measuredHeight4);
                 return;
             default:
                 super.onLayout(z10, i10, i11, i12, i13);
@@ -63,8 +63,8 @@ public final class qs extends org.telegram.ui.Cells.r8 {
             case 1:
                 super.onMeasure(i10, i11);
                 zx0 zx0Var = (zx0) this.R;
-                zx0Var.d.f33834v0.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(30.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(30.0f), 1073741824));
-                zx0Var.d.f33834v0.setRoundRadius(AndroidUtilities.dp(30.0f));
+                zx0Var.d.f33861v0.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(30.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(30.0f), 1073741824));
+                zx0Var.d.f33861v0.setRoundRadius(AndroidUtilities.dp(30.0f));
                 return;
             default:
                 super.onMeasure(i10, i11);

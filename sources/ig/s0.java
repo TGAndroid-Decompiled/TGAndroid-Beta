@@ -5,30 +5,30 @@ import android.view.KeyEvent;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 public final class s0 implements TextView.OnEditorActionListener {
-    public final int f12201a;
-    public final Object f12202b;
+    public final int f12227a;
+    public final Object f12228b;
 
     public s0(Object obj, int i10) {
-        this.f12201a = i10;
-        this.f12202b = obj;
+        this.f12227a = i10;
+        this.f12228b = obj;
     }
 
     @Override
     public final boolean onEditorAction(TextView textView, int i10, KeyEvent keyEvent) {
         ji.g1 g1Var;
-        switch (this.f12201a) {
+        switch (this.f12227a) {
             case 0:
-                u0 u0Var = (u0) this.f12202b;
+                u0 u0Var = (u0) this.f12228b;
                 m0 m0Var = u0Var.F;
                 boolean z10 = false;
                 if (i10 == 6) {
-                    u0Var.f12236x = false;
+                    u0Var.f12262x = false;
                     AndroidUtilities.cancelRunOnUIThread(m0Var);
                     z10 = true;
-                    if (TextUtils.isEmpty(u0Var.f12231f.getText())) {
-                        u0Var.f12237y = null;
+                    if (TextUtils.isEmpty(u0Var.f12257f.getText())) {
+                        u0Var.f12263y = null;
                         u0Var.d.b();
-                        u0Var.f12229c.Y2.N(true);
+                        u0Var.f12255c.Y2.N(true);
                     } else {
                         AndroidUtilities.runOnUIThread(m0Var);
                     }
@@ -36,9 +36,9 @@ public final class s0 implements TextView.OnEditorActionListener {
                 }
                 return z10;
             case 1:
-                ji.h1 h1Var = (ji.h1) this.f12202b;
-                if (i10 == 5 && (g1Var = h1Var.f13947c) != null && !h1Var.f13953w) {
-                    if (h1Var.f13951r) {
+                ji.h1 h1Var = (ji.h1) this.f12228b;
+                if (i10 == 5 && (g1Var = h1Var.f13973c) != null && !h1Var.f13979w) {
+                    if (h1Var.f13977r) {
                         h1Var.p();
                     } else {
                         g1Var.C(h1Var);
@@ -47,7 +47,7 @@ public final class s0 implements TextView.OnEditorActionListener {
                 }
                 return false;
             default:
-                zh.g gVar = (zh.g) this.f12202b;
+                zh.g gVar = (zh.g) this.f12228b;
                 if (i10 == 5) {
                     gVar.k0();
                     return true;

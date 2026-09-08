@@ -6,21 +6,21 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
 public final class pw0 implements org.telegram.ui.Components.og {
-    public final PopupNotificationActivity f39647a;
+    public final PopupNotificationActivity f39674a;
 
     public pw0(PopupNotificationActivity popupNotificationActivity) {
-        this.f39647a = popupNotificationActivity;
+        this.f39674a = popupNotificationActivity;
     }
 
     @Override
     public final void G(CharSequence charSequence, boolean z10, int i10, int i11, long j3) {
-        PopupNotificationActivity popupNotificationActivity = this.f39647a;
+        PopupNotificationActivity popupNotificationActivity = this.f39674a;
         if (popupNotificationActivity.Q == null) {
             return;
         }
         int i12 = popupNotificationActivity.S;
-        if (i12 >= 0 && i12 < popupNotificationActivity.f33759a0.size()) {
-            popupNotificationActivity.f33759a0.remove(popupNotificationActivity.S);
+        if (i12 >= 0 && i12 < popupNotificationActivity.f33786a0.size()) {
+            popupNotificationActivity.f33786a0.remove(popupNotificationActivity.S);
         }
         MessagesController.getInstance(popupNotificationActivity.Q.currentAccount).markDialogAsRead(popupNotificationActivity.Q.getDialogId(), popupNotificationActivity.Q.getId(), Math.max(0, popupNotificationActivity.Q.getId()), popupNotificationActivity.Q.messageOwner.date, true, 0L, 0, true, 0);
         popupNotificationActivity.Q = null;
@@ -84,7 +84,7 @@ public final class pw0 implements org.telegram.ui.Components.og {
 
     @Override
     public final void x1() {
-        PopupNotificationActivity popupNotificationActivity = this.f39647a;
+        PopupNotificationActivity popupNotificationActivity = this.f39674a;
         MessageObject messageObject = popupNotificationActivity.Q;
         if (messageObject != null) {
             MessagesController.getInstance(messageObject.currentAccount).sendTyping(popupNotificationActivity.Q.getDialogId(), 0L, 0, popupNotificationActivity.K);

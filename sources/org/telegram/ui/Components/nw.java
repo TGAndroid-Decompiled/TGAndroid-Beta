@@ -16,7 +16,7 @@ public final class nw extends ll0 {
     public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
         org.telegram.ui.st q6 = org.telegram.ui.st.q();
         kz kzVar = this.Z2;
-        boolean r10 = q6.r(motionEvent, kzVar.f27948h0, kzVar.f27947g2, this.f28224p2);
+        boolean r10 = q6.r(motionEvent, kzVar.f27975h0, kzVar.f27974g2, this.f28251p2);
         if (!super.onInterceptTouchEvent(motionEvent) && !r10) {
             return false;
         }
@@ -26,12 +26,12 @@ public final class nw extends ll0 {
     @Override
     public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
         kz kzVar = this.Z2;
-        if (kzVar.f27974q0 && kzVar.f27965n0.G > 1) {
+        if (kzVar.f28001q0 && kzVar.f27992n0.G > 1) {
             this.X2 = true;
-            kzVar.f27951i0.h1(0, 0);
-            kzVar.f27968o0.setVisibility(0);
-            kzVar.f27971p0.k(0, 0);
-            kzVar.f27974q0 = false;
+            kzVar.f27978i0.h1(0, 0);
+            kzVar.f27995o0.setVisibility(0);
+            kzVar.f27998p0.k(0, 0);
+            kzVar.f28001q0 = false;
             this.X2 = false;
         }
         super.onLayout(z10, i10, i11, i12, i13);
@@ -42,7 +42,7 @@ public final class nw extends ll0 {
     public final void onMeasure(int i10, int i11) {
         super.onMeasure(i10, i11);
         if (!this.Y2) {
-            this.Z2.f27965n0.l();
+            this.Z2.f27992n0.l();
             this.Y2 = true;
         }
     }

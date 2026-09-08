@@ -9,32 +9,32 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 public final class pq extends org.telegram.ui.Components.kl0 {
-    public final Context f39615c;
+    public final Context f39642c;
     public boolean d;
-    public final qq f39616e;
+    public final qq f39643e;
 
     public pq(qq qqVar, Context context) {
-        this.f39616e = qqVar;
-        if (qqVar.f39969y == 2) {
+        this.f39643e = qqVar;
+        if (qqVar.f39996y == 2) {
             C(true);
         }
-        this.f39615c = context;
+        this.f39642c = context;
     }
 
     @Override
     public final boolean D(s4.c1 c1Var) {
         TLRPC.Chat chat;
-        int i10 = c1Var.f45742f;
-        qq qqVar = this.f39616e;
+        int i10 = c1Var.f45770f;
+        qq qqVar = this.f39643e;
         TLRPC.TL_chatBannedRights tL_chatBannedRights = qqVar.P;
-        int i11 = qqVar.f39969y;
+        int i11 = qqVar.f39996y;
         TLRPC.TL_chatAdminRights tL_chatAdminRights = qqVar.N;
-        if (!qqVar.f39965w.creator || ((i11 != 0 && (i11 != 2 || !qqVar.K)) || i10 != 4 || c1Var.b() != qqVar.f39944e0)) {
+        if (!qqVar.f39992w.creator || ((i11 != 0 && (i11 != 2 || !qqVar.K)) || i10 != 4 || c1Var.b() != qqVar.f39971e0)) {
             if (qqVar.I) {
                 if ((i11 == 0 || i11 == 2) && i10 == 4) {
                     int b10 = c1Var.b();
                     if (b10 == qqVar.W) {
-                        if (!tL_chatAdminRights.add_admins && ((chat = qqVar.f39965w) == null || !chat.creator)) {
+                        if (!tL_chatAdminRights.add_admins && ((chat = qqVar.f39992w) == null || !chat.creator)) {
                             return false;
                         }
                     } else if (i11 != 2 || qqVar.K) {
@@ -52,31 +52,31 @@ public final class pq extends org.telegram.ui.Components.kl0 {
                             if (b10 == qqVar.Z) {
                                 return tL_chatAdminRights.manage_direct_messages;
                             }
-                            if (b10 == qqVar.f39934a0) {
+                            if (b10 == qqVar.f39961a0) {
                                 return tL_chatAdminRights.manage_welcome_messages;
                             }
-                            if (b10 == qqVar.f39937b0) {
+                            if (b10 == qqVar.f39964b0) {
                                 return tL_chatAdminRights.edit_messages;
                             }
-                            if (b10 == qqVar.f39940c0) {
+                            if (b10 == qqVar.f39967c0) {
                                 return tL_chatAdminRights.delete_messages;
                             }
                             if (b10 == qqVar.K0) {
                                 return tL_chatAdminRights.manage_call;
                             }
-                            if (b10 == qqVar.f39942d0) {
+                            if (b10 == qqVar.f39969d0) {
                                 return tL_chatAdminRights.add_admins;
                             }
-                            if (b10 == qqVar.f39944e0) {
+                            if (b10 == qqVar.f39971e0) {
                                 return tL_chatAdminRights.anonymous;
                             }
-                            if (b10 == qqVar.f39946f0) {
+                            if (b10 == qqVar.f39973f0) {
                                 return tL_chatAdminRights.ban_users;
                             }
-                            if (b10 == qqVar.f39947g0) {
+                            if (b10 == qqVar.f39974g0) {
                                 return tL_chatAdminRights.invite_users;
                             }
-                            if (b10 == qqVar.f39948h0) {
+                            if (b10 == qqVar.f39975h0) {
                                 if (tL_chatAdminRights.pin_messages) {
                                     if (tL_chatBannedRights != null && !tL_chatBannedRights.pin_messages) {
                                         return false;
@@ -84,7 +84,7 @@ public final class pq extends org.telegram.ui.Components.kl0 {
                                 } else {
                                     return false;
                                 }
-                            } else if (b10 == qqVar.f39949i0) {
+                            } else if (b10 == qqVar.f39976i0) {
                                 return tL_chatAdminRights.manage_ranks;
                             } else {
                                 if (b10 == qqVar.m0) {
@@ -99,7 +99,7 @@ public final class pq extends org.telegram.ui.Components.kl0 {
                                 if (b10 == qqVar.W0) {
                                     return tL_chatAdminRights.delete_stories;
                                 }
-                                if (b10 == qqVar.f39954n0) {
+                                if (b10 == qqVar.f39981n0) {
                                     return tL_chatAdminRights.manage_linked_peers;
                                 }
                             }
@@ -120,13 +120,13 @@ public final class pq extends org.telegram.ui.Components.kl0 {
 
     @Override
     public final int h() {
-        return this.f39616e.V;
+        return this.f39643e.V;
     }
 
     @Override
     public final long i(int i10) {
-        qq qqVar = this.f39616e;
-        if (qqVar.f39969y == 2) {
+        qq qqVar = this.f39643e;
+        if (qqVar.f39996y == 2) {
             if (i10 == qqVar.W) {
                 return 1L;
             }
@@ -136,55 +136,55 @@ public final class pq extends org.telegram.ui.Components.kl0 {
             if (i10 == qqVar.Y) {
                 return 3L;
             }
-            if (i10 == qqVar.f39937b0) {
+            if (i10 == qqVar.f39964b0) {
                 return 4L;
             }
-            if (i10 == qqVar.f39940c0) {
+            if (i10 == qqVar.f39967c0) {
                 return 5L;
             }
-            if (i10 == qqVar.f39942d0) {
+            if (i10 == qqVar.f39969d0) {
                 return 6L;
             }
-            if (i10 == qqVar.f39944e0) {
+            if (i10 == qqVar.f39971e0) {
                 return 7L;
             }
-            if (i10 == qqVar.f39946f0) {
+            if (i10 == qqVar.f39973f0) {
                 return 8L;
             }
-            if (i10 == qqVar.f39947g0) {
+            if (i10 == qqVar.f39974g0) {
                 return 9L;
             }
-            if (i10 == qqVar.f39948h0) {
+            if (i10 == qqVar.f39975h0) {
                 return 10L;
             }
-            if (i10 == qqVar.f39955o0) {
+            if (i10 == qqVar.f39982o0) {
                 return 11L;
             }
-            if (i10 == qqVar.f39956p0) {
+            if (i10 == qqVar.f39983p0) {
                 return 12L;
             }
-            if (i10 == qqVar.f39957q0) {
+            if (i10 == qqVar.f39984q0) {
                 return 13L;
             }
-            if (i10 == qqVar.f39959r0) {
+            if (i10 == qqVar.f39986r0) {
                 return 14L;
             }
-            if (i10 == qqVar.f39961s0) {
+            if (i10 == qqVar.f39988s0) {
                 return 15L;
             }
-            if (i10 == qqVar.f39962t0) {
+            if (i10 == qqVar.f39989t0) {
                 return 16L;
             }
-            if (i10 == qqVar.f39963u0) {
+            if (i10 == qqVar.f39990u0) {
                 return 17L;
             }
-            if (i10 == qqVar.f39964v0) {
+            if (i10 == qqVar.f39991v0) {
                 return 18L;
             }
-            if (i10 == qqVar.f39966w0) {
+            if (i10 == qqVar.f39993w0) {
                 return 19L;
             }
-            if (i10 == qqVar.f39970y0) {
+            if (i10 == qqVar.f39997y0) {
                 return 20L;
             }
             if (i10 == qqVar.B0) {
@@ -208,7 +208,7 @@ public final class pq extends org.telegram.ui.Components.kl0 {
             if (i10 == qqVar.M0) {
                 return 27L;
             }
-            if (i10 == qqVar.f39968x0) {
+            if (i10 == qqVar.f39995x0) {
                 return 28L;
             }
             if (i10 == qqVar.m0) {
@@ -229,7 +229,7 @@ public final class pq extends org.telegram.ui.Components.kl0 {
             if (i10 == qqVar.G0) {
                 return 34L;
             }
-            if (i10 == qqVar.f39971z0) {
+            if (i10 == qqVar.f39998z0) {
                 return 35L;
             }
             if (i10 == qqVar.N0) {
@@ -259,22 +259,22 @@ public final class pq extends org.telegram.ui.Components.kl0 {
             if (i10 == qqVar.Z) {
                 return 44L;
             }
-            if (i10 == qqVar.f39949i0) {
+            if (i10 == qqVar.f39976i0) {
                 return 45L;
             }
-            if (i10 == qqVar.f39950j0) {
+            if (i10 == qqVar.f39977j0) {
                 return 46L;
             }
-            if (i10 == qqVar.f39951k0) {
+            if (i10 == qqVar.f39978k0) {
                 return 47L;
             }
-            if (i10 == qqVar.f39952l0) {
+            if (i10 == qqVar.f39979l0) {
                 return 48L;
             }
-            if (i10 == qqVar.f39954n0) {
+            if (i10 == qqVar.f39981n0) {
                 return 49L;
             }
-            if (i10 == qqVar.f39934a0) {
+            if (i10 == qqVar.f39961a0) {
                 return 50L;
             }
             return 0L;
@@ -284,25 +284,25 @@ public final class pq extends org.telegram.ui.Components.kl0 {
 
     @Override
     public final int j(int i10) {
-        qq qqVar = this.f39616e;
-        if (i10 != qqVar.H0 && i10 != qqVar.J0 && i10 != qqVar.I0 && i10 != qqVar.B0 && i10 != qqVar.C0 && i10 != qqVar.E0 && i10 != qqVar.D0 && i10 != qqVar.G0 && i10 != qqVar.F0 && i10 != qqVar.f39950j0 && i10 != qqVar.P0 && i10 != qqVar.Q0 && i10 != qqVar.R0 && i10 != qqVar.U0 && i10 != qqVar.V0 && i10 != qqVar.W0) {
-            if (i10 != qqVar.f39971z0 && i10 != qqVar.N0 && i10 != qqVar.S0) {
+        qq qqVar = this.f39643e;
+        if (i10 != qqVar.H0 && i10 != qqVar.J0 && i10 != qqVar.I0 && i10 != qqVar.B0 && i10 != qqVar.C0 && i10 != qqVar.E0 && i10 != qqVar.D0 && i10 != qqVar.G0 && i10 != qqVar.F0 && i10 != qqVar.f39977j0 && i10 != qqVar.P0 && i10 != qqVar.Q0 && i10 != qqVar.R0 && i10 != qqVar.U0 && i10 != qqVar.V0 && i10 != qqVar.W0) {
+            if (i10 != qqVar.f39998z0 && i10 != qqVar.N0 && i10 != qqVar.S0) {
                 if (i10 == 0) {
                     return 0;
                 }
-                if (i10 != 1 && i10 != qqVar.f39955o0 && i10 != qqVar.f39957q0 && i10 != qqVar.L0 && i10 != qqVar.f39961s0) {
-                    if (i10 != 2 && i10 != qqVar.f39963u0) {
-                        if (i10 != qqVar.X && i10 != qqVar.Y && i10 != qqVar.Z && i10 != qqVar.f39937b0 && i10 != qqVar.f39940c0 && i10 != qqVar.f39942d0 && i10 != qqVar.f39946f0 && i10 != qqVar.f39947g0 && i10 != qqVar.f39948h0 && i10 != qqVar.f39949i0 && i10 != qqVar.f39970y0 && i10 != qqVar.f39944e0 && i10 != qqVar.K0 && i10 != qqVar.W && i10 != qqVar.m0 && i10 != qqVar.f39951k0 && i10 != qqVar.f39954n0 && i10 != qqVar.f39934a0) {
-                            if (i10 == qqVar.f39959r0 || i10 == qqVar.f39966w0 || i10 == qqVar.f39952l0) {
+                if (i10 != 1 && i10 != qqVar.f39982o0 && i10 != qqVar.f39984q0 && i10 != qqVar.L0 && i10 != qqVar.f39988s0) {
+                    if (i10 != 2 && i10 != qqVar.f39990u0) {
+                        if (i10 != qqVar.X && i10 != qqVar.Y && i10 != qqVar.Z && i10 != qqVar.f39964b0 && i10 != qqVar.f39967c0 && i10 != qqVar.f39969d0 && i10 != qqVar.f39973f0 && i10 != qqVar.f39974g0 && i10 != qqVar.f39975h0 && i10 != qqVar.f39976i0 && i10 != qqVar.f39997y0 && i10 != qqVar.f39971e0 && i10 != qqVar.K0 && i10 != qqVar.W && i10 != qqVar.m0 && i10 != qqVar.f39978k0 && i10 != qqVar.f39981n0 && i10 != qqVar.f39961a0) {
+                            if (i10 == qqVar.f39986r0 || i10 == qqVar.f39993w0 || i10 == qqVar.f39979l0) {
                                 return 1;
                             }
                             if (i10 == qqVar.M0) {
                                 return 6;
                             }
-                            if (i10 == qqVar.f39964v0) {
+                            if (i10 == qqVar.f39991v0) {
                                 return 11;
                             }
-                            if (i10 != qqVar.f39968x0) {
+                            if (i10 != qqVar.f39995x0) {
                                 return 2;
                             }
                             return 8;
@@ -330,12 +330,12 @@ public final class pq extends org.telegram.ui.Components.kl0 {
         org.telegram.ui.Cells.c6 c6Var;
         int i12;
         org.telegram.ui.ActionBar.f6 f6Var;
-        Context context = this.f39615c;
-        qq qqVar = this.f39616e;
+        Context context = this.f39642c;
+        qq qqVar = this.f39643e;
         switch (i10) {
             case 0:
                 View yaVar = new org.telegram.ui.Cells.ya(context, null);
-                yaVar.setBackgroundColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f20663d6, false));
+                yaVar.setBackgroundColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f20690d6, false));
                 c6Var = yaVar;
                 break;
             case 1:
@@ -344,19 +344,19 @@ public final class pq extends org.telegram.ui.Components.kl0 {
             case 2:
             default:
                 View eaVar = new org.telegram.ui.Cells.ea(context);
-                eaVar.setBackgroundColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f20663d6, false));
+                eaVar.setBackgroundColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f20690d6, false));
                 c6Var = eaVar;
                 break;
             case 3:
-                View l4Var = new org.telegram.ui.Cells.l4(this.f39615c, org.telegram.ui.ActionBar.j6.L6, 21, 15, true, null);
-                l4Var.setBackgroundColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f20663d6, false));
+                View l4Var = new org.telegram.ui.Cells.l4(this.f39642c, org.telegram.ui.ActionBar.j6.L6, 21, 15, true, null);
+                l4Var.setBackgroundColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f20690d6, false));
                 z1Var = l4Var;
                 c6Var = z1Var;
                 break;
             case 4:
             case 9:
                 View v8Var = new org.telegram.ui.Cells.v8(context);
-                v8Var.setBackgroundColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f20663d6, false));
+                v8Var.setBackgroundColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f20690d6, false));
                 c6Var = v8Var;
                 break;
             case 5:
@@ -364,28 +364,28 @@ public final class pq extends org.telegram.ui.Components.kl0 {
                 break;
             case 6:
                 View c9Var = new org.telegram.ui.Cells.c9(context, null, false);
-                c9Var.setBackgroundColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f20663d6, false));
+                c9Var.setBackgroundColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f20690d6, false));
                 c6Var = c9Var;
                 break;
             case 7:
                 org.telegram.ui.Cells.c6 c6Var2 = new org.telegram.ui.Cells.c6(context, 0, null, null);
-                c6Var2.setBackgroundColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f20663d6, false));
+                c6Var2.setBackgroundColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f20690d6, false));
                 c6Var2.b(new l0(this, 4));
                 c6Var = c6Var2;
                 break;
             case 8:
                 FrameLayout frameLayout = new FrameLayout(context);
                 qqVar.d = frameLayout;
-                int i13 = org.telegram.ui.ActionBar.j6.f20607a7;
+                int i13 = org.telegram.ui.ActionBar.j6.f20634a7;
                 frameLayout.setBackgroundColor(org.telegram.ui.ActionBar.j6.w0(null, i13, false));
-                qqVar.f39943e = new FrameLayout(context);
+                qqVar.f39970e = new FrameLayout(context);
                 org.telegram.ui.Components.q6 q6Var = new org.telegram.ui.Components.q6(context, true, false, false);
-                qqVar.f39945f = q6Var;
+                qqVar.f39972f = q6Var;
                 q6Var.setTypeface(AndroidUtilities.bold());
-                qqVar.f39945f.setTextColor(-1);
-                qqVar.f39945f.setTextSize(AndroidUtilities.dp(14.0f));
-                qqVar.f39945f.setGravity(17);
-                org.telegram.ui.Components.q6 q6Var2 = qqVar.f39945f;
+                qqVar.f39972f.setTextColor(-1);
+                qqVar.f39972f.setTextSize(AndroidUtilities.dp(14.0f));
+                qqVar.f39972f.setGravity(17);
+                org.telegram.ui.Components.q6 q6Var2 = qqVar.f39972f;
                 StringBuilder sb2 = new StringBuilder();
                 org.telegram.messenger.wl.l(R.string.AddBotButton, " ", sb2);
                 if (qqVar.K) {
@@ -395,10 +395,10 @@ public final class pq extends org.telegram.ui.Components.kl0 {
                 }
                 sb2.append(LocaleController.getString(i11));
                 q6Var2.setText(sb2.toString());
-                qqVar.f39943e.addView(qqVar.f39945f, w7.x5.e(-2, -2, 17));
-                qqVar.f39943e.setBackground(org.telegram.ui.ActionBar.y5.f(new float[]{4.0f}, org.telegram.ui.ActionBar.j6.Oh));
-                qqVar.f39943e.setOnClickListener(new a(this, 15));
-                qqVar.d.addView(qqVar.f39943e, w7.x5.d(-1, 48.0f, 119, 14.0f, 28.0f, 14.0f, 14.0f));
+                qqVar.f39970e.addView(qqVar.f39972f, w7.x5.e(-2, -2, 17));
+                qqVar.f39970e.setBackground(org.telegram.ui.ActionBar.y5.f(new float[]{4.0f}, org.telegram.ui.ActionBar.j6.Oh));
+                qqVar.f39970e.setOnClickListener(new a(this, 15));
+                qqVar.d.addView(qqVar.f39970e, w7.x5.d(-1, 48.0f, 119, 14.0f, 28.0f, 14.0f, 14.0f));
                 qqVar.d.setLayoutParams(new s4.p0(-1, -2));
                 View view = new View(context);
                 view.setBackgroundColor(org.telegram.ui.ActionBar.j6.w0(null, i13, false));
@@ -408,19 +408,19 @@ public final class pq extends org.telegram.ui.Components.kl0 {
                 c6Var = qqVar.d;
                 break;
             case 10:
-                org.telegram.ui.Cells.z1 z1Var2 = new org.telegram.ui.Cells.z1(4, 21, this.f39615c, qqVar.getResourceProvider(), false);
+                org.telegram.ui.Cells.z1 z1Var2 = new org.telegram.ui.Cells.z1(4, 21, this.f39642c, qqVar.getResourceProvider(), false);
                 z1Var2.setPad(1);
                 z1Var2.getCheckBoxRound().setDrawBackgroundAsArc(14);
-                z1Var2.getCheckBoxRound().b(org.telegram.ui.ActionBar.j6.V6, org.telegram.ui.ActionBar.j6.f20719g7, org.telegram.ui.ActionBar.j6.f20792k7);
+                z1Var2.getCheckBoxRound().b(org.telegram.ui.ActionBar.j6.V6, org.telegram.ui.ActionBar.j6.f20746g7, org.telegram.ui.ActionBar.j6.f20819k7);
                 z1Var2.setEnabled(true);
-                z1Var2.setBackgroundColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f20663d6, false));
+                z1Var2.setBackgroundColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f20690d6, false));
                 z1Var = z1Var2;
                 c6Var = z1Var;
                 break;
             case 11:
                 i12 = ((org.telegram.ui.ActionBar.n2) qqVar).currentAccount;
                 f6Var = ((org.telegram.ui.ActionBar.n2) qqVar).resourceProvider;
-                c6Var = new org.telegram.ui.Components.a01(i12, -qqVar.f39960s, this.f39615c, f6Var);
+                c6Var = new org.telegram.ui.Components.a01(i12, -qqVar.f39987s, this.f39642c, f6Var);
                 break;
         }
         return new s4.c1(c6Var);
@@ -429,17 +429,17 @@ public final class pq extends org.telegram.ui.Components.kl0 {
     @Override
     public final void y(s4.c1 c1Var) {
         int b10 = c1Var.b();
-        qq qqVar = this.f39616e;
-        if (b10 == qqVar.f39963u0) {
-            qq.f0(qqVar, c1Var.f45738a);
+        qq qqVar = this.f39643e;
+        if (b10 == qqVar.f39990u0) {
+            qq.f0(qqVar, c1Var.f45766a);
         }
     }
 
     @Override
     public final void z(s4.c1 c1Var) {
         int b10 = c1Var.b();
-        qq qqVar = this.f39616e;
-        if (b10 == qqVar.f39964v0 && qqVar.getParentActivity() != null) {
+        qq qqVar = this.f39643e;
+        if (b10 == qqVar.f39991v0 && qqVar.getParentActivity() != null) {
             AndroidUtilities.hideKeyboard(qqVar.getParentActivity().getCurrentFocus());
         }
     }

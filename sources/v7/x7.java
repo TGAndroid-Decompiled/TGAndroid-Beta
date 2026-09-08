@@ -51,7 +51,7 @@ public abstract class x7 {
     public static int[] f(Collection collection) {
         if (collection instanceof h9.b) {
             h9.b bVar = (h9.b) collection;
-            return Arrays.copyOfRange(bVar.f10917a, bVar.f10918b, bVar.f10919c);
+            return Arrays.copyOfRange(bVar.f10943a, bVar.f10944b, bVar.f10945c);
         }
         Object[] array = collection.toArray();
         int length = array.length;
@@ -79,9 +79,9 @@ public abstract class x7 {
                 int i11 = i10 + 1;
                 char charAt = str.charAt(i10);
                 if (charAt < 128) {
-                    b10 = h9.c.f10920a[charAt];
+                    b10 = h9.c.f10946a[charAt];
                 } else {
-                    byte[] bArr = h9.c.f10920a;
+                    byte[] bArr = h9.c.f10946a;
                     b10 = -1;
                 }
                 if (b10 >= 0 && b10 < 10) {
@@ -93,9 +93,9 @@ public abstract class x7 {
                             int i12 = i11 + 1;
                             char charAt2 = str.charAt(i11);
                             if (charAt2 < 128) {
-                                b11 = h9.c.f10920a[charAt2];
+                                b11 = h9.c.f10946a[charAt2];
                             } else {
-                                byte[] bArr2 = h9.c.f10920a;
+                                byte[] bArr2 = h9.c.f10946a;
                                 b11 = -1;
                             }
                             if (b11 < 0 || b11 >= 10 || j3 < j11) {

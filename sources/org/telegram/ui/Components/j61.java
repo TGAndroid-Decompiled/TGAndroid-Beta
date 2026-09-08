@@ -21,50 +21,50 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 public final class j61 extends org.telegram.ui.ActionBar.f3 {
-    public final Drawable f27361b;
-    public final i61 f27362c;
+    public final Drawable f27388b;
+    public final i61 f27389c;
     public AnimatorSet d;
-    public final View f27363e;
-    public final LinearLayout f27364f;
+    public final View f27390e;
+    public final LinearLayout f27391f;
     public int h;
-    public final int[] f27365n;
+    public final int[] f27392n;
 
     public j61(Context context, BetaUpdate betaUpdate) {
         super(context, false);
-        this.f27365n = new int[2];
+        this.f27392n = new int[2];
         setCanceledOnTouchOutside(false);
         setApplyTopPadding(false);
         setApplyBottomPadding(false);
         Drawable mutate = context.getResources().getDrawable(R.drawable.sheet_shadow_round).mutate();
-        this.f27361b = mutate;
-        mutate.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f20734h5, false), PorterDuff.Mode.MULTIPLY));
+        this.f27388b = mutate;
+        mutate.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f20761h5, false), PorterDuff.Mode.MULTIPLY));
         ah.y yVar = new ah.y(this, context, 23);
         yVar.setWillNotDraw(false);
         this.containerView = yVar;
         i61 i61Var = new i61(this, context);
-        this.f27362c = i61Var;
+        this.f27389c = i61Var;
         i61Var.setFillViewport(true);
         i61Var.setWillNotDraw(false);
         i61Var.setClipToPadding(false);
         i61Var.setVerticalScrollBarEnabled(false);
         yVar.addView(i61Var, w7.x5.d(-1, -1.0f, 51, 0.0f, 0.0f, 0.0f, 130.0f));
         LinearLayout linearLayout = new LinearLayout(context);
-        this.f27364f = linearLayout;
+        this.f27391f = linearLayout;
         linearLayout.setOrientation(1);
         i61Var.addView(linearLayout, w7.x5.x(-1, -2, 51));
         TextView textView = new TextView(context);
         org.telegram.messenger.wl.j(20.0f, 1, textView);
-        int i10 = org.telegram.ui.ActionBar.j6.f20770j5;
+        int i10 = org.telegram.ui.ActionBar.j6.f20797j5;
         textView.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, i10, false));
         textView.setSingleLine(true);
         textView.setEllipsize(TextUtils.TruncateAt.END);
         textView.setText(LocaleController.getString(R.string.AppUpdateBeta));
         linearLayout.addView(textView, w7.x5.t(-2, -2, 49, 23, 16, 23, 0));
         TextView textView2 = new TextView(getContext());
-        textView2.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f20915r5, false));
+        textView2.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f20942r5, false));
         textView2.setTextSize(1, 14.0f);
         textView2.setMovementMethod(new AndroidUtilities.LinkMovementMethodMy());
-        int i11 = org.telegram.ui.ActionBar.j6.f20790k5;
+        int i11 = org.telegram.ui.ActionBar.j6.f20817k5;
         textView2.setLinkTextColor(org.telegram.ui.ActionBar.j6.w0(null, i11, false));
         textView2.setText(LocaleController.formatString(R.string.AppBetaUpdateVersion, betaUpdate.version, Integer.valueOf(betaUpdate.versionCode)));
         textView2.setGravity(49);
@@ -83,7 +83,7 @@ public final class j61 extends org.telegram.ui.ActionBar.f3 {
         FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(-1, AndroidUtilities.getShadowHeight(), 83);
         layoutParams.bottomMargin = AndroidUtilities.dp(130.0f);
         View view = new View(context);
-        this.f27363e = view;
+        this.f27390e = view;
         view.setBackgroundColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.V5, false));
         view.setAlpha(0.0f);
         view.setTag(1);
@@ -96,23 +96,23 @@ public final class j61 extends org.telegram.ui.ActionBar.f3 {
         } else {
             dVar.g(LocaleController.formatString(R.string.AppUpdateDownloadNow, new Object[0]), false, true);
             dVar.setOnClickListener(new View.OnClickListener(this) {
-                public final j61 f26620b;
+                public final j61 f26647b;
 
                 {
-                    this.f26620b = this;
+                    this.f26647b = this;
                 }
 
                 @Override
                 public final void onClick(View view2) {
                     switch (r2) {
                         case 0:
-                            j61 j61Var = this.f26620b;
+                            j61 j61Var = this.f26647b;
                             j61Var.getClass();
                             ApplicationLoader.applicationLoaderInstance.downloadUpdate();
                             j61Var.dismiss();
                             return;
                         default:
-                            this.f26620b.dismiss();
+                            this.f26647b.dismiss();
                             return;
                     }
                 }
@@ -122,23 +122,23 @@ public final class j61 extends org.telegram.ui.ActionBar.f3 {
         di.d dVar2 = new di.d(context, null, false);
         dVar2.g(LocaleController.getString(R.string.AppUpdateRemindMeLater), false, true);
         dVar2.setOnClickListener(new View.OnClickListener(this) {
-            public final j61 f26620b;
+            public final j61 f26647b;
 
             {
-                this.f26620b = this;
+                this.f26647b = this;
             }
 
             @Override
             public final void onClick(View view2) {
                 switch (r2) {
                     case 0:
-                        j61 j61Var = this.f26620b;
+                        j61 j61Var = this.f26647b;
                         j61Var.getClass();
                         ApplicationLoader.applicationLoaderInstance.downloadUpdate();
                         j61Var.dismiss();
                         return;
                     default:
-                        this.f26620b.dismiss();
+                        this.f26647b.dismiss();
                         return;
                 }
             }
@@ -147,9 +147,9 @@ public final class j61 extends org.telegram.ui.ActionBar.f3 {
     }
 
     public static void m(j61 j61Var) {
-        LinearLayout linearLayout = j61Var.f27364f;
+        LinearLayout linearLayout = j61Var.f27391f;
         View childAt = linearLayout.getChildAt(0);
-        int[] iArr = j61Var.f27365n;
+        int[] iArr = j61Var.f27392n;
         childAt.getLocationInWindow(iArr);
         int max = Math.max(iArr[1] - AndroidUtilities.dp(24.0f), 0);
         if (linearLayout.getMeasuredHeight() + iArr[1] <= j61Var.containerView.getTranslationY() + (j61Var.container.getMeasuredHeight() - AndroidUtilities.dp(113.0f))) {
@@ -159,7 +159,7 @@ public final class j61 extends org.telegram.ui.ActionBar.f3 {
         }
         if (j61Var.h != max) {
             j61Var.h = max;
-            j61Var.f27362c.invalidate();
+            j61Var.f27389c.invalidate();
         }
     }
 
@@ -171,7 +171,7 @@ public final class j61 extends org.telegram.ui.ActionBar.f3 {
     public final void o(boolean z10) {
         Integer num;
         float f7;
-        View view = this.f27363e;
+        View view = this.f27390e;
         if ((z10 && view.getTag() != null) || (!z10 && view.getTag() == null)) {
             if (z10) {
                 num = null;

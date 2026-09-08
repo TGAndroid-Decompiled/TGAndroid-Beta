@@ -18,15 +18,15 @@ public final class bs0 extends org.telegram.ui.co {
         xu0 xu0Var = this.Sc;
         iu0 iu0Var = xu0Var.S;
         if (this.Qc) {
-            if (this.f35298j0 != null) {
+            if (this.f35325j0 != null) {
                 la("");
-                this.f35298j0.H(iu0Var.f27264w, false);
+                this.f35325j0.H(iu0Var.f27291w, false);
             }
-            org.telegram.ui.yk ykVar = this.f35359o1;
+            org.telegram.ui.yk ykVar = this.f35386o1;
             if (ykVar != null) {
-                ykVar.e(iu0Var.f27265x, false);
+                ykVar.e(iu0Var.f27292x, false);
             }
-            xu0Var.f32726v1.getMediaDataController().portSavedSearchResults(getClassGuid(), iu0Var.f27265x, iu0Var.f27264w, iu0Var.f27261n, iu0Var.h, this.Rc, iu0Var.v, iu0Var.f27263s);
+            xu0Var.f32753v1.getMediaDataController().portSavedSearchResults(getClassGuid(), iu0Var.f27292x, iu0Var.f27291w, iu0Var.f27288n, iu0Var.h, this.Rc, iu0Var.v, iu0Var.f27290s);
             this.Qc = false;
         }
         super.onTransitionAnimationStart(z10, z11);

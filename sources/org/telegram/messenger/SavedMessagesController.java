@@ -50,7 +50,7 @@ public class SavedMessagesController {
             SavedDialog savedDialog = new SavedDialog();
             savedDialog.dialogId = MessageObject.getSavedDialogId(UserConfig.getInstance(i10).getClientUserId(), message);
             savedDialog.pinned = false;
-            savedDialog.top_message_id = message.f19890id;
+            savedDialog.top_message_id = message.f19917id;
             savedDialog.message = new MessageObject(i10, message, null, null, null, null, null, false, false, 0L, false, false, z10);
             return savedDialog;
         }
@@ -68,7 +68,7 @@ public class SavedMessagesController {
             while (true) {
                 if (i11 < arrayList.size()) {
                     message = arrayList.get(i11);
-                    if (savedDialog.top_message_id == message.f19890id) {
+                    if (savedDialog.top_message_id == message.f19917id) {
                         break;
                     }
                     i11++;
@@ -998,9 +998,9 @@ public class SavedMessagesController {
         for (int i12 = 0; i12 < arrayList.size(); i12++) {
             TLRPC.Message message = arrayList.get(i12);
             long savedDialogId = MessageObject.getSavedDialogId(clientUserId, message);
-            if (savedDialogId == clientUserId || (message.f19890id >= 0 && (message.send_state == 0 || message.fwd_from == null))) {
+            if (savedDialogId == clientUserId || (message.f19917id >= 0 && (message.send_state == 0 || message.fwd_from == null))) {
                 TLRPC.Message message2 = (TLRPC.Message) iVar.f(savedDialogId);
-                if (message2 == null || message2.f19890id < message.f19890id) {
+                if (message2 == null || message2.f19917id < message.f19917id) {
                     iVar.k(message, savedDialogId);
                 }
                 Integer num = (Integer) iVar2.f(savedDialogId);
@@ -1023,12 +1023,12 @@ public class SavedMessagesController {
                     SavedDialog savedDialog = this.cachedDialogs.get(i14);
                     if (savedDialog.dialogId == j3) {
                         int i15 = savedDialog.top_message_id;
-                        int i16 = message3.f19890id;
+                        int i16 = message3.f19917id;
                         if (i15 < i16 || (i16 < 0 && message3.date > savedDialog.getDate())) {
-                            if (savedDialog.top_message_id < message3.f19890id) {
+                            if (savedDialog.top_message_id < message3.f19917id) {
                                 int i17 = 0;
                                 for (int i18 = 0; i18 < arrayList.size(); i18++) {
-                                    if (arrayList.get(i18).f19890id > savedDialog.top_message_id) {
+                                    if (arrayList.get(i18).f19917id > savedDialog.top_message_id) {
                                         i17++;
                                     }
                                 }
@@ -1068,12 +1068,12 @@ public class SavedMessagesController {
                     SavedDialog savedDialog2 = this.loadedDialogs.get(i19);
                     if (savedDialog2.dialogId == j3) {
                         int i20 = savedDialog2.top_message_id;
-                        int i21 = message3.f19890id;
+                        int i21 = message3.f19917id;
                         if (i20 < i21 || (i21 < 0 && message3.date > savedDialog2.getDate())) {
-                            if (savedDialog2.top_message_id < message3.f19890id) {
+                            if (savedDialog2.top_message_id < message3.f19917id) {
                                 int i22 = 0;
                                 for (int i23 = 0; i23 < arrayList.size(); i23++) {
-                                    if (arrayList.get(i23).f19890id > savedDialog2.top_message_id) {
+                                    if (arrayList.get(i23).f19917id > savedDialog2.top_message_id) {
                                         i22++;
                                     }
                                 }

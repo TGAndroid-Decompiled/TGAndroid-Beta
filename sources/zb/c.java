@@ -21,34 +21,34 @@ import x7.m4;
 import x7.n6;
 import x7.y;
 public final class c implements b {
-    public final Context f51498a;
-    public final n6 f51499b;
-    public final String f51500c;
+    public final Context f51529a;
+    public final n6 f51530b;
+    public final String f51531c;
     public boolean d;
-    public m0 f51501e;
+    public m0 f51532e;
 
     public c(Context context, yb.a aVar) {
         String str;
-        this.f51498a = context;
+        this.f51529a = context;
         Locale.getDefault().getLanguage().equals(Locale.ENGLISH.getLanguage());
-        this.f51499b = new n6(1, -1, aVar.f49335a, 1);
-        k6.e.f14816b.getClass();
+        this.f51530b = new n6(1, -1, aVar.f49364a, 1);
+        k6.e.f14842b.getClass();
         if (k6.e.a(context) >= 200400000) {
             str = "com.google.android.gms.vision.ica";
         } else {
             str = "com.google.android.gms.vision.dynamite";
         }
-        this.f51500c = str;
+        this.f51531c = str;
     }
 
     @Override
     public final ArrayList a(vb.a aVar) {
         Bitmap createBitmap;
-        if (this.f51501e == null) {
+        if (this.f51532e == null) {
             zzb();
         }
-        if (this.f51501e != null) {
-            int i10 = aVar.f47771e;
+        if (this.f51532e != null) {
+            int i10 = aVar.f47799e;
             if (i10 != -1) {
                 if (i10 != 17) {
                     if (i10 != 35) {
@@ -64,11 +64,11 @@ public final class c implements b {
                 l.h(null);
                 throw null;
             }
-            Bitmap bitmap = aVar.f47768a;
+            Bitmap bitmap = aVar.f47796a;
             l.h(bitmap);
             int i11 = aVar.d;
-            int i12 = aVar.f47769b;
-            int i13 = aVar.f47770c;
+            int i12 = aVar.f47797b;
+            int i13 = aVar.f47798c;
             if (i11 == 0) {
                 createBitmap = Bitmap.createBitmap(bitmap, 0, 0, i12, i13);
             } else {
@@ -77,11 +77,11 @@ public final class c implements b {
                 createBitmap = Bitmap.createBitmap(bitmap, 0, 0, i12, i13, matrix, true);
             }
             try {
-                m0 m0Var = this.f51501e;
+                m0 m0Var = this.f51532e;
                 l.h(m0Var);
                 x6.b bVar = new x6.b(createBitmap);
                 Parcel O0 = m0Var.O0();
-                int i14 = y.f49262a;
+                int i14 = y.f49291a;
                 O0.writeStrongBinder(bVar);
                 O0.writeInt(1);
                 int q6 = e0.q(O0, 20293);
@@ -93,7 +93,7 @@ public final class c implements b {
                 Q0.recycle();
                 ArrayList arrayList = new ArrayList();
                 for (m4 m4Var : m4VarArr) {
-                    arrayList.add(new xb.a(m4Var.f49078c, m4Var.d, m4Var.f49077b, m4Var.f49076a));
+                    arrayList.add(new xb.a(m4Var.f49107c, m4Var.d, m4Var.f49106b, m4Var.f49105a));
                 }
                 return arrayList;
             } catch (RemoteException e7) {
@@ -106,13 +106,13 @@ public final class c implements b {
     @Override
     public final void zzb() {
         IInterface aVar;
-        String str = this.f51500c;
-        Context context = this.f51498a;
+        String str = this.f51531c;
+        Context context = this.f51529a;
         Log.d("LegacyLabelDelegate", "Try to load legacy label module.");
-        if (this.f51501e == null) {
+        if (this.f51532e == null) {
             try {
-                IBinder b10 = y6.e.c(context, y6.e.f49545b, str).b("com.google.android.gms.vision.label.ChimeraNativeImageLabelerCreator");
-                int i10 = k2.f49057b;
+                IBinder b10 = y6.e.c(context, y6.e.f49574b, str).b("com.google.android.gms.vision.label.ChimeraNativeImageLabelerCreator");
+                int i10 = k2.f49086b;
                 if (b10 == null) {
                     aVar = null;
                 } else {
@@ -123,8 +123,8 @@ public final class c implements b {
                         aVar = new a9.a(b10, "com.google.android.gms.vision.label.internal.client.INativeImageLabelerCreator", 10);
                     }
                 }
-                m0 W0 = ((j1) aVar).W0(new x6.b(context), this.f51499b);
-                this.f51501e = W0;
+                m0 W0 = ((j1) aVar).W0(new x6.b(context), this.f51530b);
+                this.f51532e = W0;
                 if (W0 == null && !this.d) {
                     Log.d("LegacyLabelDelegate", "Request ICA optional module download.");
                     j.b(context);
@@ -149,14 +149,14 @@ public final class c implements b {
 
     @Override
     public final void zzc() {
-        m0 m0Var = this.f51501e;
+        m0 m0Var = this.f51532e;
         if (m0Var != null) {
             try {
                 m0Var.S0(m0Var.O0(), 2);
             } catch (RemoteException e7) {
                 Log.e("LegacyLabelDelegate", "Failed to release legacy image labeler.", e7);
             }
-            this.f51501e = null;
+            this.f51532e = null;
         }
     }
 }

@@ -16,24 +16,24 @@ public final class p1 extends ll0 {
     public ok0 X2;
     public boolean Y2;
     public float Z2;
-    public float f7813a3;
-    public boolean f7814b3;
-    public final SparseArray f7815c3;
-    public final ArrayList f7816d3;
-    public final ArrayList f7817e3;
-    public final ArrayList f7818f3;
-    public final ArrayList f7819g3;
-    public final PorterDuffColorFilter f7820h3;
+    public float f7841a3;
+    public boolean f7842b3;
+    public final SparseArray f7843c3;
+    public final ArrayList f7844d3;
+    public final ArrayList f7845e3;
+    public final ArrayList f7846f3;
+    public final ArrayList f7847g3;
+    public final PorterDuffColorFilter f7848h3;
 
     public p1(Context context) {
         super(context, null);
-        this.f7814b3 = false;
-        this.f7815c3 = new SparseArray();
-        this.f7816d3 = new ArrayList();
-        this.f7817e3 = new ArrayList();
-        this.f7818f3 = new ArrayList();
-        this.f7819g3 = new ArrayList();
-        this.f7820h3 = new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN);
+        this.f7842b3 = false;
+        this.f7843c3 = new SparseArray();
+        this.f7844d3 = new ArrayList();
+        this.f7845e3 = new ArrayList();
+        this.f7846f3 = new ArrayList();
+        this.f7847g3 = new ArrayList();
+        this.f7848h3 = new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN);
     }
 
     public static void v1(p1 p1Var, int i10, int i11) {
@@ -49,13 +49,13 @@ public final class p1 extends ll0 {
                 } else {
                     i12 = 1;
                 }
-                ok0Var.f29098b = i12;
+                ok0Var.f29125b = i12;
                 p1Var.X2.c(i10, i11, false, false);
                 return;
             }
             m1 m1Var = new m1(p1Var, p1Var.getContext(), 0);
-            m1Var.f45906a = i10;
-            m1Var.f15042p = i11;
+            m1Var.f45934a = i10;
+            m1Var.f15068p = i11;
             sVar.w0(m1Var);
         }
     }
@@ -72,7 +72,7 @@ public final class p1 extends ll0 {
         }
         int saveCount = canvas.getSaveCount();
         canvas.save();
-        canvas.clipRect(0.0f, this.Z2, getWidth(), this.f7813a3);
+        canvas.clipRect(0.0f, this.Z2, getWidth(), this.f7841a3);
         if (!this.Y2) {
             super.dispatchDraw(canvas);
             canvas.restore();
@@ -82,7 +82,7 @@ public final class p1 extends ll0 {
         if (!rect.isEmpty()) {
             this.D1.setBounds(rect);
             canvas.save();
-            q0.a aVar = this.f28222o2;
+            q0.a aVar = this.f28249o2;
             if (aVar != null) {
                 aVar.accept(canvas);
             }
@@ -92,9 +92,9 @@ public final class p1 extends ll0 {
         int i10 = 0;
         int i11 = 0;
         while (true) {
-            sparseArray = this.f7815c3;
+            sparseArray = this.f7843c3;
             int size = sparseArray.size();
-            arrayList = this.f7816d3;
+            arrayList = this.f7844d3;
             if (i11 >= size) {
                 break;
             }
@@ -108,8 +108,8 @@ public final class p1 extends ll0 {
             View childAt = getChildAt(i12);
             if (childAt instanceof o1) {
                 o1 o1Var = (o1) childAt;
-                if (o1Var.getY() < this.f7813a3 && o1Var.getY() + o1Var.getHeight() > this.Z2) {
-                    if (this.f7814b3) {
+                if (o1Var.getY() < this.f7841a3 && o1Var.getY() + o1Var.getHeight() > this.Z2) {
+                    if (this.f7842b3) {
                         top = (int) o1Var.getY();
                     } else {
                         top = o1Var.getTop();
@@ -127,9 +127,9 @@ public final class p1 extends ll0 {
                 }
             }
         }
-        ArrayList arrayList5 = this.f7819g3;
+        ArrayList arrayList5 = this.f7847g3;
         arrayList5.clear();
-        ArrayList arrayList6 = this.f7818f3;
+        ArrayList arrayList6 = this.f7846f3;
         arrayList5.addAll(arrayList6);
         arrayList6.clear();
         canvas.save();
@@ -138,7 +138,7 @@ public final class p1 extends ll0 {
         int i13 = 0;
         while (true) {
             int size2 = sparseArray.size();
-            arrayList2 = this.f7817e3;
+            arrayList2 = this.f7845e3;
             if (i13 >= size2) {
                 break;
             }
@@ -212,7 +212,7 @@ public final class p1 extends ll0 {
         if (o0Var instanceof s4.c0) {
             ok0 ok0Var = new ok0(this, (s4.c0) o0Var);
             this.X2 = ok0Var;
-            ok0Var.f29103i = new l1(this, 0);
+            ok0Var.f29130i = new l1(this, 0);
             ok0Var.h = new a1.c(this, 21);
         }
     }

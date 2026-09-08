@@ -15,23 +15,23 @@ import z7.sf;
 import z7.uf;
 import z7.wf;
 public final class r extends b2.g {
-    public final int f46459b;
+    public final int f46487b;
 
     public r(int i10) {
         super(4);
-        this.f46459b = i10;
+        this.f46487b = i10;
     }
 
     @Override
     public final Object N0(Object obj) {
-        switch (this.f46459b) {
+        switch (this.f46487b) {
             case 0:
                 qb.g c10 = qb.g.c();
                 Context b10 = qb.g.c().b();
                 ArrayList arrayList = new ArrayList();
                 ((o) obj).getClass();
                 rb.a aVar = new rb.a(22);
-                j5.a aVar2 = j5.a.f13508e;
+                j5.a aVar2 = j5.a.f13534e;
                 l5.s.b(b10);
                 l5.s.a().c(aVar2);
                 j5.a.d.contains(new i5.c("json"));
@@ -40,7 +40,7 @@ public final class r extends b2.g {
             case 1:
                 v8 v8Var = (v8) obj;
                 qb.g c11 = qb.g.c();
-                return new y8(c11.b(), (qb.k) c11.a(qb.k.class), new w8(qb.g.c().b(), v8Var), v8Var.f47647a);
+                return new y8(c11.b(), (qb.k) c11.a(qb.k.class), new w8(qb.g.c().b(), v8Var), v8Var.f47675a);
             case 2:
                 qb.g c12 = qb.g.c();
                 return new la(c12.b(), (qb.k) c12.a(qb.k.class), new ka(qb.g.c().b(), (ia) obj));

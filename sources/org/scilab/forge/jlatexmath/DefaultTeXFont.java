@@ -116,11 +116,11 @@ public class DefaultTeXFont implements TeXFont {
         if (charFont == null) {
             return getDefaultChar(c10, i10);
         }
-        return getChar(new CharFont((char) (charFont.f17043c + i11), charFont.fontId), i10);
+        return getChar(new CharFont((char) (charFont.f17070c + i11), charFont.fontId), i10);
     }
 
     private Metrics getMetrics(CharFont charFont, float f7) {
-        float[] metrics = fontInfo[charFont.fontId].getMetrics(charFont.f17043c);
+        float[] metrics = fontInfo[charFont.fontId].getMetrics(charFont.f17070c);
         return new Metrics(metrics[0], metrics[1], metrics[2], metrics[3], f7 * TeXFormula.PIXELS_PER_POINT, f7);
     }
 
@@ -269,7 +269,7 @@ public class DefaultTeXFont implements TeXFont {
     public float getKern(CharFont charFont, CharFont charFont2, int i10) {
         int i11 = charFont.fontId;
         if (i11 == charFont2.fontId) {
-            return fontInfo[i11].getKern(charFont.f17043c, charFont2.f17043c, getSizeFactor(i10) * TeXFormula.PIXELS_PER_POINT);
+            return fontInfo[i11].getKern(charFont.f17070c, charFont2.f17070c, getSizeFactor(i10) * TeXFormula.PIXELS_PER_POINT);
         }
         return 0.0f;
     }
@@ -278,7 +278,7 @@ public class DefaultTeXFont implements TeXFont {
     public CharFont getLigature(CharFont charFont, CharFont charFont2) {
         int i10 = charFont.fontId;
         if (i10 == charFont2.fontId) {
-            return fontInfo[i10].getLigature(charFont.f17043c, charFont2.f17043c);
+            return fontInfo[i10].getLigature(charFont.f17070c, charFont2.f17070c);
         }
         return null;
     }
@@ -291,7 +291,7 @@ public class DefaultTeXFont implements TeXFont {
     @Override
     public Char getNextLarger(Char r52, int i10) {
         CharFont nextLarger = fontInfo[r52.getFontCode()].getNextLarger(r52.getChar());
-        return new Char(nextLarger.f17043c, fontInfo[nextLarger.fontId].getFont(), nextLarger.fontId, getMetrics(nextLarger, getSizeFactor(i10)));
+        return new Char(nextLarger.f17070c, fontInfo[nextLarger.fontId].getFont(), nextLarger.fontId, getMetrics(nextLarger, getSizeFactor(i10)));
     }
 
     @Override
@@ -469,29 +469,29 @@ public class DefaultTeXFont implements TeXFont {
         if (z10 && charFont.fontId == charFont.boldFontId) {
             i11 = fontInfo2.getBoldId();
             fontInfo2 = fontInfo[i11];
-            charFont = new CharFont(charFont.f17043c, i11, i10);
+            charFont = new CharFont(charFont.f17070c, i11, i10);
         }
         if (this.isRoman) {
             i11 = fontInfo2.getRomanId();
             fontInfo2 = fontInfo[i11];
-            charFont = new CharFont(charFont.f17043c, i11, i10);
+            charFont = new CharFont(charFont.f17070c, i11, i10);
         }
         if (this.isSs) {
             i11 = fontInfo2.getSsId();
             fontInfo2 = fontInfo[i11];
-            charFont = new CharFont(charFont.f17043c, i11, i10);
+            charFont = new CharFont(charFont.f17070c, i11, i10);
         }
         if (this.isTt) {
             i11 = fontInfo2.getTtId();
             fontInfo2 = fontInfo[i11];
-            charFont = new CharFont(charFont.f17043c, i11, i10);
+            charFont = new CharFont(charFont.f17070c, i11, i10);
         }
         if (this.isIt) {
             i11 = fontInfo2.getItId();
             fontInfo2 = fontInfo[i11];
-            charFont = new CharFont(charFont.f17043c, i11, i10);
+            charFont = new CharFont(charFont.f17070c, i11, i10);
         }
-        return new Char(charFont.f17043c, fontInfo2.getFont(), i11, getMetrics(charFont, this.factor * sizeFactor));
+        return new Char(charFont.f17070c, fontInfo2.getFont(), i11, getMetrics(charFont, this.factor * sizeFactor));
     }
 
     public static void addTeXFontDescription(Object obj, InputStream inputStream, String str) {

@@ -13,42 +13,42 @@ import org.telegram.ui.ExternalActionActivity;
 import org.telegram.ui.lx0;
 import org.telegram.ui.pn0;
 public final class y5 implements Runnable {
-    public final int f19671a = 0;
-    public final Object f19672b;
-    public final int f19673c;
+    public final int f19698a = 0;
+    public final Object f19699b;
+    public final int f19700c;
     public final Object d;
-    public final Object f19674e;
-    public final Object f19675f;
+    public final Object f19701e;
+    public final Object f19702f;
     public final Object h;
-    public final Object f19676n;
-    public final Object f19677r;
+    public final Object f19703n;
+    public final Object f19704r;
 
     public y5(int i10, File file, String str, org.telegram.ui.ActionBar.b2 b2Var, boolean[] zArr, String str2, Utilities.Callback callback, boolean[] zArr2) {
-        this.f19673c = i10;
-        this.f19675f = file;
+        this.f19700c = i10;
+        this.f19702f = file;
         this.d = str;
-        this.f19672b = b2Var;
+        this.f19699b = b2Var;
         this.h = zArr;
-        this.f19674e = str2;
-        this.f19677r = callback;
-        this.f19676n = zArr2;
+        this.f19701e = str2;
+        this.f19704r = callback;
+        this.f19703n = zArr2;
     }
 
     @Override
     public final void run() {
         Activity activity;
-        int i10 = this.f19671a;
-        int i11 = this.f19673c;
-        Object obj = this.f19677r;
-        Object obj2 = this.f19676n;
+        int i10 = this.f19698a;
+        int i11 = this.f19700c;
+        Object obj = this.f19704r;
+        Object obj2 = this.f19703n;
         Object obj3 = this.h;
-        Object obj4 = this.f19672b;
-        Object obj5 = this.f19674e;
+        Object obj4 = this.f19699b;
+        Object obj5 = this.f19701e;
         Object obj6 = this.d;
-        Object obj7 = this.f19675f;
+        Object obj7 = this.f19702f;
         switch (i10) {
             case 0:
-                MediaController.lambda$saveFile$50(this.f19673c, (File) obj7, (String) obj6, (org.telegram.ui.ActionBar.b2) obj4, (boolean[]) obj3, (String) obj5, (Utilities.Callback) obj, (boolean[]) obj2);
+                MediaController.lambda$saveFile$50(this.f19700c, (File) obj7, (String) obj6, (org.telegram.ui.ActionBar.b2) obj4, (boolean[]) obj3, (String) obj5, (Utilities.Callback) obj, (boolean[]) obj2);
                 return;
             case 1:
                 ExternalActionActivity externalActionActivity = (ExternalActionActivity) obj7;
@@ -58,7 +58,7 @@ public final class y5 implements Runnable {
                 TL_account.getAuthorizationForm getauthorizationform = (TL_account.getAuthorizationForm) obj;
                 String str = (String) obj6;
                 String str2 = (String) obj5;
-                ArrayList arrayList = ExternalActionActivity.f33395x;
+                ArrayList arrayList = ExternalActionActivity.f33422x;
                 try {
                     b2Var.dismiss();
                 } catch (Exception e7) {
@@ -71,12 +71,12 @@ public final class y5 implements Runnable {
                     if (AndroidUtilities.isTablet()) {
                         externalActionActivity.d.c(-1, pn0Var);
                     } else {
-                        externalActionActivity.f33399c.c(-1, pn0Var);
+                        externalActionActivity.f33426c.c(-1, pn0Var);
                     }
                     if (!AndroidUtilities.isTablet()) {
-                        externalActionActivity.f33400e.setVisibility(8);
+                        externalActionActivity.f33427e.setVisibility(8);
                     }
-                    externalActionActivity.f33399c.c0();
+                    externalActionActivity.f33426c.c0();
                     if (AndroidUtilities.isTablet()) {
                         externalActionActivity.d.c0();
                         return;
@@ -101,11 +101,11 @@ public final class y5 implements Runnable {
                     BillingController billingController = BillingController.getInstance();
                     AccountInstance accountInstance = n2Var.getAccountInstance();
                     pf.b bVar = new pf.b(7, false);
-                    bVar.h0(BillingController.PREMIUM_PRODUCT_DETAILS);
+                    bVar.i0(BillingController.PREMIUM_PRODUCT_DETAILS);
                     lx0Var.a();
-                    String str3 = lx0Var.f38513g.f4418a;
+                    String str3 = lx0Var.f38540g.f4445a;
                     if (!TextUtils.isEmpty(str3)) {
-                        bVar.f44047c = str3;
+                        bVar.f44074c = str3;
                         billingController.launchBillingFlow(activity2, accountInstance, tL_inputStorePaymentPremiumSubscription, Collections.singletonList(bVar.w()), fVar, false);
                         return;
                     }
@@ -117,24 +117,24 @@ public final class y5 implements Runnable {
     }
 
     public y5(TLObject tLObject, org.telegram.ui.ActionBar.n2 n2Var, TLRPC.TL_inputStorePaymentPremiumSubscription tL_inputStorePaymentPremiumSubscription, lx0 lx0Var, c5.f fVar, int i10, TLRPC.TL_error tL_error, TLRPC.TL_payments_canPurchaseStore tL_payments_canPurchaseStore) {
-        this.f19675f = tLObject;
+        this.f19702f = tLObject;
         this.d = n2Var;
-        this.f19674e = tL_inputStorePaymentPremiumSubscription;
-        this.f19672b = lx0Var;
+        this.f19701e = tL_inputStorePaymentPremiumSubscription;
+        this.f19699b = lx0Var;
         this.h = fVar;
-        this.f19673c = i10;
-        this.f19676n = tL_error;
-        this.f19677r = tL_payments_canPurchaseStore;
+        this.f19700c = i10;
+        this.f19703n = tL_error;
+        this.f19704r = tL_payments_canPurchaseStore;
     }
 
     public y5(ExternalActionActivity externalActionActivity, org.telegram.ui.ActionBar.b2 b2Var, TLObject tLObject, int i10, TL_account.authorizationForm authorizationform, TL_account.getAuthorizationForm getauthorizationform, String str, String str2) {
-        this.f19675f = externalActionActivity;
-        this.f19672b = b2Var;
+        this.f19702f = externalActionActivity;
+        this.f19699b = b2Var;
         this.h = tLObject;
-        this.f19673c = i10;
-        this.f19676n = authorizationform;
-        this.f19677r = getauthorizationform;
+        this.f19700c = i10;
+        this.f19703n = authorizationform;
+        this.f19704r = getauthorizationform;
         this.d = str;
-        this.f19674e = str2;
+        this.f19701e = str2;
     }
 }

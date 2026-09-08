@@ -1,38 +1,41 @@
 package a3;
 public final class i0 implements Runnable {
-    public final int f117a;
-    public final pf.b f118b;
-    public final i2.h f119c;
+    public final int f135a = 0;
+    public final pf.b f136b;
+    public final long f137c;
+    public final int d;
 
-    public i0(pf.b bVar, i2.h hVar, int i10) {
-        this.f117a = i10;
-        this.f118b = bVar;
-        this.f119c = hVar;
+    public i0(pf.b bVar, int i10, long j3) {
+        this.f136b = bVar;
+        this.d = i10;
+        this.f137c = j3;
     }
 
     @Override
     public final void run() {
-        switch (this.f117a) {
+        int i10 = this.f135a;
+        int i11 = this.d;
+        long j3 = this.f137c;
+        pf.b bVar = this.f136b;
+        switch (i10) {
             case 0:
-                pf.b bVar = this.f118b;
-                i2.h hVar = this.f119c;
-                String str = e2.d0.f8737a;
-                j2.f fVar = ((i2.c0) bVar.f44047c).f11471a.f11533s;
-                j2.a p5 = fVar.p();
-                fVar.q(p5, 1015, new j2.c(p5, hVar, 20));
+                String str = e2.d0.f8765a;
+                j2.f fVar = ((i2.c0) ((l0) bVar.f44074c)).f11497a.f11559s;
+                j2.a n10 = fVar.n((u2.f0) fVar.d.f6404e);
+                fVar.q(n10, 1018, new j2.c(n10, i11, j3));
                 return;
             default:
-                pf.b bVar2 = this.f118b;
-                i2.h hVar2 = this.f119c;
-                synchronized (hVar2) {
-                }
-                String str2 = e2.d0.f8737a;
-                i2.f0 f0Var = ((i2.c0) bVar2.f44047c).f11471a;
-                j2.f fVar2 = f0Var.f11533s;
-                j2.a n10 = fVar2.n((u2.f0) fVar2.d.f6377e);
-                fVar2.q(n10, 1020, new fi.f(n10, hVar2, 17));
-                f0Var.Q = null;
+                String str2 = e2.d0.f8765a;
+                j2.f fVar2 = ((i2.c0) ((l0) bVar.f44074c)).f11497a.f11559s;
+                j2.a n11 = fVar2.n((u2.f0) fVar2.d.f6404e);
+                fVar2.q(n11, 1021, new j2.c(n11, j3, i11));
                 return;
         }
+    }
+
+    public i0(pf.b bVar, long j3, int i10) {
+        this.f136b = bVar;
+        this.f137c = j3;
+        this.d = i10;
     }
 }

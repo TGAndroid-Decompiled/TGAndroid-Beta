@@ -6,24 +6,24 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 public final class aa0 implements Runnable {
-    public final int f34364a;
-    public final co f34365b;
-    public final long f34366c;
+    public final int f34391a;
+    public final co f34392b;
+    public final long f34393c;
     public final TLRPC.Chat d;
 
     public aa0(co coVar, long j3, TLRPC.Chat chat, int i10) {
-        this.f34364a = i10;
-        this.f34365b = coVar;
-        this.f34366c = j3;
+        this.f34391a = i10;
+        this.f34392b = coVar;
+        this.f34393c = j3;
         this.d = chat;
     }
 
     @Override
     public final void run() {
-        int i10 = this.f34364a;
+        int i10 = this.f34391a;
         TLRPC.Chat chat = this.d;
-        long j3 = this.f34366c;
-        co coVar = this.f34365b;
+        long j3 = this.f34393c;
+        co coVar = this.f34392b;
         switch (i10) {
             case 0:
                 Pattern pattern = LaunchActivity.B1;

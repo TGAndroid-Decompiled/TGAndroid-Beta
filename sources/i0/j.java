@@ -8,9 +8,9 @@ public final class j extends i {
     @Override
     public final Typeface j(Object obj) {
         try {
-            Object newInstance = Array.newInstance(this.f11440f, 1);
+            Object newInstance = Array.newInstance(this.f11466f, 1);
             Array.set(newInstance, 0, obj);
-            return (Typeface) this.f11445l.invoke(null, newInstance, "sans-serif", -1, -1);
+            return (Typeface) this.f11471l.invoke(null, newInstance, "sans-serif", -1, -1);
         } catch (IllegalAccessException | InvocationTargetException e7) {
             throw new RuntimeException(e7);
         }

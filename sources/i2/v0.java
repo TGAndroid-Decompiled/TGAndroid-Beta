@@ -3,40 +3,40 @@ package i2;
 import android.util.Pair;
 import java.util.ArrayList;
 public final class v0 {
-    public final j2.f f11760c;
+    public final j2.f f11786c;
     public final e2.z d;
-    public final fi.f f11761e;
-    public long f11762f;
-    public int f11763g;
+    public final fi.f f11787e;
+    public long f11788f;
+    public int f11789g;
     public boolean h;
-    public t0 f11764i;
-    public t0 f11765j;
-    public t0 f11766k;
-    public t0 f11767l;
-    public t0 f11768m;
-    public int f11769n;
-    public Object f11770o;
-    public long f11771p;
-    public final b2.h1 f11758a = new b2.h1();
-    public final b2.j1 f11759b = new b2.j1();
-    public ArrayList f11772q = new ArrayList();
+    public t0 f11790i;
+    public t0 f11791j;
+    public t0 f11792k;
+    public t0 f11793l;
+    public t0 f11794m;
+    public int f11795n;
+    public Object f11796o;
+    public long f11797p;
+    public final b2.h1 f11784a = new b2.h1();
+    public final b2.j1 f11785b = new b2.j1();
+    public ArrayList f11798q = new ArrayList();
 
     public v0(j2.f fVar, e2.z zVar, fi.f fVar2) {
-        this.f11760c = fVar;
+        this.f11786c = fVar;
         this.d = zVar;
-        this.f11761e = fVar2;
+        this.f11787e = fVar2;
     }
 
     public static u2.f0 o(b2.k1 k1Var, Object obj, long j3, long j10, b2.j1 j1Var, b2.h1 h1Var) {
         k1Var.g(obj, h1Var);
-        k1Var.n(h1Var.f2056c, j1Var);
+        k1Var.n(h1Var.f2083c, j1Var);
         k1Var.b(obj);
-        int i10 = h1Var.f2059g.f1968a;
+        int i10 = h1Var.f2086g.f1995a;
         if (i10 != 0) {
             if (i10 == 1) {
                 h1Var.f(0);
             }
-            h1Var.f2059g.getClass();
+            h1Var.f2086g.getClass();
             h1Var.g(0);
         }
         k1Var.g(obj, h1Var);
@@ -48,47 +48,47 @@ public final class v0 {
     }
 
     public final t0 a() {
-        t0 t0Var = this.f11764i;
+        t0 t0Var = this.f11790i;
         if (t0Var == null) {
             return null;
         }
-        if (t0Var == this.f11765j) {
-            this.f11765j = t0Var.f11743m;
+        if (t0Var == this.f11791j) {
+            this.f11791j = t0Var.f11769m;
         }
-        if (t0Var == this.f11766k) {
-            this.f11766k = t0Var.f11743m;
+        if (t0Var == this.f11792k) {
+            this.f11792k = t0Var.f11769m;
         }
         t0Var.i();
-        int i10 = this.f11769n - 1;
-        this.f11769n = i10;
+        int i10 = this.f11795n - 1;
+        this.f11795n = i10;
         if (i10 == 0) {
-            this.f11767l = null;
-            t0 t0Var2 = this.f11764i;
-            this.f11770o = t0Var2.f11734b;
-            this.f11771p = t0Var2.f11738g.f11749a.d;
+            this.f11793l = null;
+            t0 t0Var2 = this.f11790i;
+            this.f11796o = t0Var2.f11760b;
+            this.f11797p = t0Var2.f11764g.f11775a.d;
         }
-        this.f11764i = this.f11764i.f11743m;
+        this.f11790i = this.f11790i.f11769m;
         l();
-        return this.f11764i;
+        return this.f11790i;
     }
 
     public final void b() {
-        if (this.f11769n == 0) {
+        if (this.f11795n == 0) {
             return;
         }
-        t0 t0Var = this.f11764i;
+        t0 t0Var = this.f11790i;
         e2.d.h(t0Var);
-        this.f11770o = t0Var.f11734b;
-        this.f11771p = t0Var.f11738g.f11749a.d;
+        this.f11796o = t0Var.f11760b;
+        this.f11797p = t0Var.f11764g.f11775a.d;
         while (t0Var != null) {
             t0Var.i();
-            t0Var = t0Var.f11743m;
+            t0Var = t0Var.f11769m;
         }
-        this.f11764i = null;
-        this.f11767l = null;
-        this.f11765j = null;
-        this.f11766k = null;
-        this.f11769n = 0;
+        this.f11790i = null;
+        this.f11793l = null;
+        this.f11791j = null;
+        this.f11792k = null;
+        this.f11795n = 0;
         l();
     }
 
@@ -101,32 +101,32 @@ public final class v0 {
         long j12;
         long j13;
         long q6;
-        u0 u0Var = t0Var.f11738g;
-        long j14 = (t0Var.f11746p + u0Var.f11752e) - j3;
+        u0 u0Var = t0Var.f11764g;
+        long j14 = (t0Var.f11772p + u0Var.f11778e) - j3;
         if (u0Var.h) {
-            u0 u0Var2 = t0Var.f11738g;
-            u2.f0 f0Var = u0Var2.f11749a;
-            long j15 = u0Var2.f11751c;
-            int d = k1Var.d(k1Var.b(f0Var.f46667a), this.f11758a, this.f11759b, this.f11763g, this.h);
+            u0 u0Var2 = t0Var.f11764g;
+            u2.f0 f0Var = u0Var2.f11775a;
+            long j15 = u0Var2.f11777c;
+            int d = k1Var.d(k1Var.b(f0Var.f46695a), this.f11784a, this.f11785b, this.f11789g, this.h);
             if (d != -1) {
-                b2.h1 h1Var2 = this.f11758a;
-                int i10 = k1Var.f(d, h1Var2, true).f2056c;
-                Object obj2 = h1Var2.f2055b;
+                b2.h1 h1Var2 = this.f11784a;
+                int i10 = k1Var.f(d, h1Var2, true).f2083c;
+                Object obj2 = h1Var2.f2082b;
                 obj2.getClass();
                 long j16 = f0Var.d;
-                if (k1Var.m(i10, this.f11759b, 0L).f2117n == d) {
-                    Pair j17 = k1Var.j(this.f11759b, this.f11758a, i10, -9223372036854775807L, Math.max(0L, j14));
+                if (k1Var.m(i10, this.f11785b, 0L).f2144n == d) {
+                    Pair j17 = k1Var.j(this.f11785b, this.f11784a, i10, -9223372036854775807L, Math.max(0L, j14));
                     if (j17 != null) {
                         Object obj3 = j17.first;
                         long longValue = ((Long) j17.second).longValue();
-                        t0 t0Var2 = t0Var.f11743m;
-                        if (t0Var2 != null && t0Var2.f11734b.equals(obj3)) {
-                            q6 = t0Var2.f11738g.f11749a.d;
+                        t0 t0Var2 = t0Var.f11769m;
+                        if (t0Var2 != null && t0Var2.f11760b.equals(obj3)) {
+                            q6 = t0Var2.f11764g.f11775a.d;
                         } else {
                             q6 = q(obj3);
                             if (q6 == -1) {
-                                q6 = this.f11762f;
-                                this.f11762f = 1 + q6;
+                                q6 = this.f11788f;
+                                this.f11788f = 1 + q6;
                             }
                         }
                         obj = obj3;
@@ -140,10 +140,10 @@ public final class v0 {
                     j12 = 0;
                     j13 = j16;
                 }
-                u2.f0 o9 = o(k1Var, obj, j11, j13, this.f11759b, this.f11758a);
+                u2.f0 o9 = o(k1Var, obj, j11, j13, this.f11785b, this.f11784a);
                 if (j12 != -9223372036854775807L && j15 != -9223372036854775807L) {
-                    int i11 = k1Var.g(f0Var.f46667a, h1Var2).f2059g.f1968a;
-                    h1Var2.f2059g.getClass();
+                    int i11 = k1Var.g(f0Var.f46695a, h1Var2).f2086g.f1995a;
+                    h1Var2.f2086g.getClass();
                     if (i11 > 0) {
                         h1Var2.g(0);
                     }
@@ -152,26 +152,26 @@ public final class v0 {
             }
             return null;
         }
-        u2.f0 f0Var2 = u0Var.f11749a;
-        Object obj4 = f0Var2.f46667a;
-        int i12 = f0Var2.f46670e;
-        b2.h1 h1Var3 = this.f11758a;
+        u2.f0 f0Var2 = u0Var.f11775a;
+        Object obj4 = f0Var2.f46695a;
+        int i12 = f0Var2.f46698e;
+        b2.h1 h1Var3 = this.f11784a;
         k1Var.g(obj4, h1Var3);
-        boolean z10 = u0Var.f11754g;
+        boolean z10 = u0Var.f11780g;
         if (f0Var2.b()) {
-            int i13 = f0Var2.f46668b;
-            int i14 = h1Var3.f2059g.a(i13).f1945a;
+            int i13 = f0Var2.f46696b;
+            int i14 = h1Var3.f2086g.a(i13).f1972a;
             if (i14 != -1) {
-                int a2 = h1Var3.f2059g.a(i13).a(f0Var2.f46669c);
+                int a2 = h1Var3.f2086g.a(i13).a(f0Var2.f46697c);
                 if (a2 < i14) {
-                    return e(k1Var, f0Var2.f46667a, i13, a2, u0Var.f11751c, f0Var2.d, z10);
+                    return e(k1Var, f0Var2.f46695a, i13, a2, u0Var.f11777c, f0Var2.d, z10);
                 }
-                long j18 = u0Var.f11751c;
+                long j18 = u0Var.f11777c;
                 if (j18 == -9223372036854775807L) {
-                    int i15 = h1Var3.f2056c;
+                    int i15 = h1Var3.f2083c;
                     long max = Math.max(0L, j14);
                     j10 = 0;
-                    Pair j19 = k1Var.j(this.f11759b, h1Var3, i15, -9223372036854775807L, max);
+                    Pair j19 = k1Var.j(this.f11785b, h1Var3, i15, -9223372036854775807L, max);
                     h1Var = h1Var3;
                     k1Var2 = k1Var;
                     if (j19 == null) {
@@ -183,11 +183,11 @@ public final class v0 {
                     j10 = 0;
                     k1Var2 = k1Var;
                 }
-                int i16 = f0Var2.f46668b;
+                int i16 = f0Var2.f46696b;
                 k1Var2.g(obj4, h1Var);
                 h1Var.d(i16);
-                h1Var.f2059g.a(i16).getClass();
-                return f(k1Var, f0Var2.f46667a, Math.max(j10, j18), u0Var.f11751c, f0Var2.d, z10);
+                h1Var.f2086g.a(i16).getClass();
+                return f(k1Var, f0Var2.f46695a, Math.max(j10, j18), u0Var.f11777c, f0Var2.d, z10);
             }
             return null;
         }
@@ -196,29 +196,29 @@ public final class v0 {
         }
         int e7 = h1Var3.e(i12);
         h1Var3.g(i12);
-        if (e7 != h1Var3.f2059g.a(i12).f1945a) {
-            return e(k1Var, f0Var2.f46667a, f0Var2.f46670e, e7, u0Var.f11752e, f0Var2.d, z10);
+        if (e7 != h1Var3.f2086g.a(i12).f1972a) {
+            return e(k1Var, f0Var2.f46695a, f0Var2.f46698e, e7, u0Var.f11778e, f0Var2.d, z10);
         }
         k1Var.g(obj4, h1Var3);
         h1Var3.d(i12);
-        h1Var3.f2059g.a(i12).getClass();
-        return f(k1Var, f0Var2.f46667a, 0L, u0Var.f11752e, f0Var2.d, false);
+        h1Var3.f2086g.a(i12).getClass();
+        return f(k1Var, f0Var2.f46695a, 0L, u0Var.f11778e, f0Var2.d, false);
     }
 
     public final u0 d(b2.k1 k1Var, u2.f0 f0Var, long j3, long j10) {
-        k1Var.g(f0Var.f46667a, this.f11758a);
+        k1Var.g(f0Var.f46695a, this.f11784a);
         if (f0Var.b()) {
-            return e(k1Var, f0Var.f46667a, f0Var.f46668b, f0Var.f46669c, j3, f0Var.d, false);
+            return e(k1Var, f0Var.f46695a, f0Var.f46696b, f0Var.f46697c, j3, f0Var.d, false);
         }
-        return f(k1Var, f0Var.f46667a, j10, j3, f0Var.d, false);
+        return f(k1Var, f0Var.f46695a, j10, j3, f0Var.d, false);
     }
 
     public final u0 e(b2.k1 k1Var, Object obj, int i10, int i11, long j3, long j10, boolean z10) {
         u2.f0 f0Var = new u2.f0(i10, i11, -1, j10, obj);
-        b2.h1 h1Var = this.f11758a;
+        b2.h1 h1Var = this.f11784a;
         long a2 = k1Var.g(obj, h1Var).a(i10, i11);
         if (i11 == h1Var.e(i10)) {
-            h1Var.f2059g.getClass();
+            h1Var.f2086g.getClass();
         }
         h1Var.g(i10);
         long j11 = 0;
@@ -232,12 +232,12 @@ public final class v0 {
         long j12;
         long j13;
         long j14;
-        b2.h1 h1Var = this.f11758a;
+        b2.h1 h1Var = this.f11784a;
         k1Var.g(obj, h1Var);
         int b10 = h1Var.b(j3);
         boolean z11 = false;
         if (b10 == -1) {
-            if (h1Var.f2059g.f1968a > 0) {
+            if (h1Var.f2086g.f1995a > 0) {
                 h1Var.g(0);
             }
         } else {
@@ -275,26 +275,26 @@ public final class v0 {
     }
 
     public final t0 g() {
-        return this.f11766k;
+        return this.f11792k;
     }
 
     public final u0 h(b2.k1 k1Var, u0 u0Var) {
         boolean z10;
         long j3;
         long j10;
-        u2.f0 f0Var = u0Var.f11749a;
+        u2.f0 f0Var = u0Var.f11775a;
         boolean b10 = f0Var.b();
-        int i10 = f0Var.f46670e;
+        int i10 = f0Var.f46698e;
         if (!b10 && i10 == -1) {
             z10 = true;
         } else {
             z10 = false;
         }
-        int i11 = f0Var.f46668b;
+        int i11 = f0Var.f46696b;
         boolean j11 = j(k1Var, f0Var);
         boolean i12 = i(k1Var, f0Var, z10);
-        Object obj = f0Var.f46667a;
-        b2.h1 h1Var = this.f11758a;
+        Object obj = f0Var.f46695a;
+        b2.h1 h1Var = this.f11784a;
         k1Var.g(obj, h1Var);
         if (!f0Var.b() && i10 != -1) {
             h1Var.d(i10);
@@ -303,7 +303,7 @@ public final class v0 {
             j3 = -9223372036854775807L;
         }
         if (f0Var.b()) {
-            j10 = h1Var.a(i11, f0Var.f46669c);
+            j10 = h1Var.a(i11, f0Var.f46697c);
         } else if (j3 != -9223372036854775807L && j3 != Long.MIN_VALUE) {
             j10 = j3;
         } else {
@@ -314,13 +314,13 @@ public final class v0 {
         } else if (i10 != -1) {
             h1Var.g(i10);
         }
-        return new u0(f0Var, u0Var.f11750b, u0Var.f11751c, j3, j10, u0Var.f11753f, false, z10, j11, i12);
+        return new u0(f0Var, u0Var.f11776b, u0Var.f11777c, j3, j10, u0Var.f11779f, false, z10, j11, i12);
     }
 
     public final boolean i(b2.k1 k1Var, u2.f0 f0Var, boolean z10) {
-        int b10 = k1Var.b(f0Var.f46667a);
-        if (!k1Var.m(k1Var.f(b10, this.f11758a, false).f2056c, this.f11759b, 0L).f2112i) {
-            if (k1Var.d(b10, this.f11758a, this.f11759b, this.f11763g, this.h) == -1 && z10) {
+        int b10 = k1Var.b(f0Var.f46695a);
+        if (!k1Var.m(k1Var.f(b10, this.f11784a, false).f2083c, this.f11785b, 0L).f2139i) {
+            if (k1Var.d(b10, this.f11784a, this.f11785b, this.f11789g, this.h) == -1 && z10) {
                 return true;
             }
         }
@@ -329,15 +329,15 @@ public final class v0 {
 
     public final boolean j(b2.k1 k1Var, u2.f0 f0Var) {
         boolean z10;
-        if (!f0Var.b() && f0Var.f46670e == -1) {
+        if (!f0Var.b() && f0Var.f46698e == -1) {
             z10 = true;
         } else {
             z10 = false;
         }
-        Object obj = f0Var.f46667a;
+        Object obj = f0Var.f46695a;
         if (z10) {
-            int i10 = k1Var.g(obj, this.f11758a).f2056c;
-            if (k1Var.m(i10, this.f11759b, 0L).f2118o == k1Var.b(obj)) {
+            int i10 = k1Var.g(obj, this.f11784a).f2083c;
+            if (k1Var.m(i10, this.f11785b, 0L).f2145o == k1Var.b(obj)) {
                 return true;
             }
         }
@@ -345,13 +345,13 @@ public final class v0 {
     }
 
     public final void k() {
-        t0 t0Var = this.f11768m;
+        t0 t0Var = this.f11794m;
         if (t0Var == null || t0Var.h()) {
-            this.f11768m = null;
-            for (int i10 = 0; i10 < this.f11772q.size(); i10++) {
-                t0 t0Var2 = (t0) this.f11772q.get(i10);
+            this.f11794m = null;
+            for (int i10 = 0; i10 < this.f11798q.size(); i10++) {
+                t0 t0Var2 = (t0) this.f11798q.get(i10);
                 if (!t0Var2.h()) {
-                    this.f11768m = t0Var2;
+                    this.f11794m = t0Var2;
                     return;
                 }
             }
@@ -361,30 +361,30 @@ public final class v0 {
     public final void l() {
         u2.f0 f0Var;
         e9.f0 u10 = e9.i0.u();
-        for (t0 t0Var = this.f11764i; t0Var != null; t0Var = t0Var.f11743m) {
-            u10.b(t0Var.f11738g.f11749a);
+        for (t0 t0Var = this.f11790i; t0Var != null; t0Var = t0Var.f11769m) {
+            u10.b(t0Var.f11764g.f11775a);
         }
-        t0 t0Var2 = this.f11765j;
+        t0 t0Var2 = this.f11791j;
         if (t0Var2 == null) {
             f0Var = null;
         } else {
-            f0Var = t0Var2.f11738g.f11749a;
+            f0Var = t0Var2.f11764g.f11775a;
         }
         this.d.c(new hg.t(this, u10, f0Var, 5));
     }
 
     public final void m(long j3) {
         boolean z10;
-        t0 t0Var = this.f11767l;
+        t0 t0Var = this.f11793l;
         if (t0Var != null) {
-            if (t0Var.f11743m == null) {
+            if (t0Var.f11769m == null) {
                 z10 = true;
             } else {
                 z10 = false;
             }
             e2.d.g(z10);
-            if (t0Var.f11736e) {
-                t0Var.f11733a.u(j3 - t0Var.f11746p);
+            if (t0Var.f11762e) {
+                t0Var.f11759a.u(j3 - t0Var.f11772p);
             }
         }
     }
@@ -392,33 +392,33 @@ public final class v0 {
     public final int n(t0 t0Var) {
         e2.d.h(t0Var);
         int i10 = 0;
-        if (t0Var.equals(this.f11767l)) {
+        if (t0Var.equals(this.f11793l)) {
             return 0;
         }
-        this.f11767l = t0Var;
+        this.f11793l = t0Var;
         while (true) {
-            t0Var = t0Var.f11743m;
+            t0Var = t0Var.f11769m;
             if (t0Var == null) {
                 break;
             }
-            if (t0Var == this.f11765j) {
-                t0 t0Var2 = this.f11764i;
-                this.f11765j = t0Var2;
-                this.f11766k = t0Var2;
+            if (t0Var == this.f11791j) {
+                t0 t0Var2 = this.f11790i;
+                this.f11791j = t0Var2;
+                this.f11792k = t0Var2;
                 i10 = 3;
             }
-            if (t0Var == this.f11766k) {
-                this.f11766k = this.f11765j;
+            if (t0Var == this.f11792k) {
+                this.f11792k = this.f11791j;
                 i10 |= 2;
             }
             t0Var.i();
-            this.f11769n--;
+            this.f11795n--;
         }
-        t0 t0Var3 = this.f11767l;
+        t0 t0Var3 = this.f11793l;
         t0Var3.getClass();
-        if (t0Var3.f11743m != null) {
+        if (t0Var3.f11769m != null) {
             t0Var3.b();
-            t0Var3.f11743m = null;
+            t0Var3.f11769m = null;
             t0Var3.c();
         }
         l();
@@ -429,38 +429,38 @@ public final class v0 {
         long q6;
         int b10;
         Object obj2 = obj;
-        b2.h1 h1Var = this.f11758a;
-        int i10 = k1Var.g(obj2, h1Var).f2056c;
-        Object obj3 = this.f11770o;
-        if (obj3 != null && (b10 = k1Var.b(obj3)) != -1 && k1Var.f(b10, h1Var, false).f2056c == i10) {
-            q6 = this.f11771p;
+        b2.h1 h1Var = this.f11784a;
+        int i10 = k1Var.g(obj2, h1Var).f2083c;
+        Object obj3 = this.f11796o;
+        if (obj3 != null && (b10 = k1Var.b(obj3)) != -1 && k1Var.f(b10, h1Var, false).f2083c == i10) {
+            q6 = this.f11797p;
         } else {
-            t0 t0Var = this.f11764i;
+            t0 t0Var = this.f11790i;
             while (true) {
                 if (t0Var != null) {
-                    if (t0Var.f11734b.equals(obj2)) {
-                        q6 = t0Var.f11738g.f11749a.d;
+                    if (t0Var.f11760b.equals(obj2)) {
+                        q6 = t0Var.f11764g.f11775a.d;
                         break;
                     }
-                    t0Var = t0Var.f11743m;
+                    t0Var = t0Var.f11769m;
                 } else {
-                    t0 t0Var2 = this.f11764i;
+                    t0 t0Var2 = this.f11790i;
                     while (true) {
                         if (t0Var2 != null) {
-                            int b11 = k1Var.b(t0Var2.f11734b);
-                            if (b11 != -1 && k1Var.f(b11, h1Var, false).f2056c == i10) {
-                                q6 = t0Var2.f11738g.f11749a.d;
+                            int b11 = k1Var.b(t0Var2.f11760b);
+                            if (b11 != -1 && k1Var.f(b11, h1Var, false).f2083c == i10) {
+                                q6 = t0Var2.f11764g.f11775a.d;
                                 break;
                             }
-                            t0Var2 = t0Var2.f11743m;
+                            t0Var2 = t0Var2.f11769m;
                         } else {
                             q6 = q(obj2);
                             if (q6 == -1) {
-                                q6 = this.f11762f;
-                                this.f11762f = 1 + q6;
-                                if (this.f11764i == null) {
-                                    this.f11770o = obj2;
-                                    this.f11771p = q6;
+                                q6 = this.f11788f;
+                                this.f11788f = 1 + q6;
+                                if (this.f11790i == null) {
+                                    this.f11796o = obj2;
+                                    this.f11797p = q6;
                                 }
                             }
                         }
@@ -469,33 +469,33 @@ public final class v0 {
             }
         }
         k1Var.g(obj2, h1Var);
-        int i11 = h1Var.f2056c;
-        b2.j1 j1Var = this.f11759b;
+        int i11 = h1Var.f2083c;
+        b2.j1 j1Var = this.f11785b;
         k1Var.n(i11, j1Var);
         boolean z10 = false;
-        for (int b12 = k1Var.b(obj); b12 >= j1Var.f2117n; b12--) {
+        for (int b12 = k1Var.b(obj); b12 >= j1Var.f2144n; b12--) {
             boolean z11 = true;
             k1Var.f(b12, h1Var, true);
-            if (h1Var.f2059g.f1968a <= 0) {
+            if (h1Var.f2086g.f1995a <= 0) {
                 z11 = false;
             }
             z10 |= z11;
             if (h1Var.c(h1Var.d) != -1) {
-                obj2 = h1Var.f2055b;
+                obj2 = h1Var.f2082b;
                 obj2.getClass();
             }
             if (z10 && (!z11 || h1Var.d != 0)) {
                 break;
             }
         }
-        return o(k1Var, obj2, j3, q6, this.f11759b, this.f11758a);
+        return o(k1Var, obj2, j3, q6, this.f11785b, this.f11784a);
     }
 
     public final long q(Object obj) {
-        for (int i10 = 0; i10 < this.f11772q.size(); i10++) {
-            t0 t0Var = (t0) this.f11772q.get(i10);
-            if (t0Var.f11734b.equals(obj)) {
-                return t0Var.f11738g.f11749a.d;
+        for (int i10 = 0; i10 < this.f11798q.size(); i10++) {
+            t0 t0Var = (t0) this.f11798q.get(i10);
+            if (t0Var.f11760b.equals(obj)) {
+                return t0Var.f11764g.f11775a.d;
             }
         }
         return -1L;
@@ -504,30 +504,30 @@ public final class v0 {
     public final int r(b2.k1 k1Var) {
         b2.k1 k1Var2;
         t0 t0Var;
-        t0 t0Var2 = this.f11764i;
+        t0 t0Var2 = this.f11790i;
         if (t0Var2 == null) {
             return 0;
         }
-        int b10 = k1Var.b(t0Var2.f11734b);
+        int b10 = k1Var.b(t0Var2.f11760b);
         while (true) {
             k1Var2 = k1Var;
-            b10 = k1Var2.d(b10, this.f11758a, this.f11759b, this.f11763g, this.h);
+            b10 = k1Var2.d(b10, this.f11784a, this.f11785b, this.f11789g, this.h);
             while (true) {
                 t0Var2.getClass();
-                t0Var = t0Var2.f11743m;
-                if (t0Var == null || t0Var2.f11738g.h) {
+                t0Var = t0Var2.f11769m;
+                if (t0Var == null || t0Var2.f11764g.h) {
                     break;
                 }
                 t0Var2 = t0Var;
             }
-            if (b10 == -1 || t0Var == null || k1Var2.b(t0Var.f11734b) != b10) {
+            if (b10 == -1 || t0Var == null || k1Var2.b(t0Var.f11760b) != b10) {
                 break;
             }
             t0Var2 = t0Var;
             k1Var = k1Var2;
         }
         int n10 = n(t0Var2);
-        t0Var2.f11738g = h(k1Var2, t0Var2.f11738g);
+        t0Var2.f11764g = h(k1Var2, t0Var2.f11764g);
         return n10;
     }
 

@@ -2,19 +2,19 @@ package sh;
 
 import android.view.View;
 public final class a implements View.OnAttachStateChangeListener {
-    public final b f46381a;
+    public final b f46409a;
 
     public a(b bVar) {
-        this.f46381a = bVar;
+        this.f46409a = bVar;
     }
 
     @Override
     public final void onViewAttachedToWindow(View view) {
-        this.f46381a.f46384c.e();
+        this.f46409a.f46412c.e();
     }
 
     @Override
     public final void onViewDetachedFromWindow(View view) {
-        this.f46381a.f46384c.f();
+        this.f46409a.f46412c.f();
     }
 }

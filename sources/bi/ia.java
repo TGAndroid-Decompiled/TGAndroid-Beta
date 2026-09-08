@@ -48,20 +48,20 @@ import org.telegram.ui.t71;
 import org.telegram.ui.v60;
 import org.telegram.ui.v70;
 public final class ia implements Runnable {
-    public final int f3109a;
-    public final int f3110b;
-    public final Object f3111c;
+    public final int f3136a;
+    public final int f3137b;
+    public final Object f3138c;
     public final Object d;
-    public final Object f3112e;
-    public final Object f3113f;
+    public final Object f3139e;
+    public final Object f3140f;
     public final Object h;
 
     public ia(int i10, int i11, Object obj, Object obj2, Object obj3, Object obj4, TLObject tLObject) {
-        this.f3109a = i11;
-        this.f3111c = tLObject;
-        this.f3110b = i10;
-        this.f3112e = obj;
-        this.f3113f = obj2;
+        this.f3136a = i11;
+        this.f3138c = tLObject;
+        this.f3137b = i10;
+        this.f3139e = obj;
+        this.f3140f = obj2;
         this.d = obj3;
         this.h = obj4;
     }
@@ -69,36 +69,36 @@ public final class ia implements Runnable {
     @Override
     public final void run() {
         TLRPC.PhotoSize photoSize;
-        switch (this.f3109a) {
+        switch (this.f3136a) {
             case 0:
-                int i10 = this.f3110b;
-                ja.a((ja) this.f3112e, (TLObject) this.f3111c, this.f3113f, (ArrayList) this.d, (boolean[]) this.h, i10);
+                int i10 = this.f3137b;
+                ja.a((ja) this.f3139e, (TLObject) this.f3138c, this.f3140f, (ArrayList) this.d, (boolean[]) this.h, i10);
                 return;
             case 1:
-                ((ChatObject.Call) this.f3112e).lambda$loadUnknownParticipants$5(this.f3110b, (TLObject) this.f3111c, (ChatObject.Call.OnParticipantsLoad) this.f3113f, (ArrayList) this.d, (HashSet) this.h);
+                ((ChatObject.Call) this.f3139e).lambda$loadUnknownParticipants$5(this.f3137b, (TLObject) this.f3138c, (ChatObject.Call.OnParticipantsLoad) this.f3140f, (ArrayList) this.d, (HashSet) this.h);
                 return;
             case 2:
-                ((LocaleController) this.f3112e).lambda$saveRemoteLocaleStrings$10(this.f3110b, (LocaleController.LocaleInfo) this.f3111c, (TLRPC.TL_langPackDifference) this.f3113f, (HashMap) this.d, (Runnable) this.h);
+                ((LocaleController) this.f3139e).lambda$saveRemoteLocaleStrings$10(this.f3137b, (LocaleController.LocaleInfo) this.f3138c, (TLRPC.TL_langPackDifference) this.f3140f, (HashMap) this.d, (Runnable) this.h);
                 return;
             case 3:
-                ((MediaDataController) this.f3112e).lambda$removeMultipleStickerSets$111((boolean[]) this.h, (ArrayList) this.d, (Context) this.f3111c, (org.telegram.ui.ActionBar.n2) this.f3113f, this.f3110b);
+                ((MediaDataController) this.f3139e).lambda$removeMultipleStickerSets$111((boolean[]) this.h, (ArrayList) this.d, (Context) this.f3138c, (org.telegram.ui.ActionBar.n2) this.f3140f, this.f3137b);
                 return;
             case 4:
-                v70 v70Var = (v70) this.f3112e;
+                v70 v70Var = (v70) this.f3139e;
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) this.d;
-                TLObject tLObject = (TLObject) this.f3111c;
+                TLObject tLObject = (TLObject) this.f3138c;
                 org.telegram.ui.d1 d1Var = (org.telegram.ui.d1) this.h;
-                v70Var.f41439r = false;
-                if (!((org.telegram.ui.g4) this.f3113f).f36550e.isEmpty()) {
+                v70Var.f41466r = false;
+                if (!((org.telegram.ui.g4) this.f3140f).f36577e.isEmpty()) {
                     if (tL_error == null) {
                         TLRPC.TL_contacts_resolvedPeer tL_contacts_resolvedPeer = (TLRPC.TL_contacts_resolvedPeer) tLObject;
                         if (!tL_contacts_resolvedPeer.chats.isEmpty()) {
-                            int i11 = this.f3110b;
+                            int i11 = this.f3137b;
                             MessagesController.getInstance(i11).putUsers(tL_contacts_resolvedPeer.users, false);
                             MessagesController.getInstance(i11).putChats(tL_contacts_resolvedPeer.chats, false);
                             MessagesStorage.getInstance(i11).putUsersAndChats(tL_contacts_resolvedPeer.users, tL_contacts_resolvedPeer.chats, false, true);
                             TLRPC.Chat chat = tL_contacts_resolvedPeer.chats.get(0);
-                            v70Var.f41438n = chat;
+                            v70Var.f41465n = chat;
                             if (chat.left && !chat.kicked) {
                                 d1Var.a(0, false);
                                 return;
@@ -115,13 +115,13 @@ public final class ia implements Runnable {
                 }
                 return;
             case 5:
-                TLObject tLObject2 = (TLObject) this.f3111c;
-                org.telegram.ui.ActionBar.b2 b2Var = (org.telegram.ui.ActionBar.b2) this.f3112e;
-                Context context = (Context) this.f3113f;
+                TLObject tLObject2 = (TLObject) this.f3138c;
+                org.telegram.ui.ActionBar.b2 b2Var = (org.telegram.ui.ActionBar.b2) this.f3139e;
+                Context context = (Context) this.f3140f;
                 org.telegram.ui.ActionBar.f6 f6Var = (org.telegram.ui.ActionBar.f6) this.d;
                 v60 v60Var = (v60) this.h;
                 boolean z10 = tLObject2 instanceof TLRPC.Updates;
-                int i12 = this.f3110b;
+                int i12 = this.f3137b;
                 int i13 = 0;
                 if (z10) {
                     TLRPC.Updates updates = (TLRPC.Updates) tLObject2;
@@ -138,7 +138,7 @@ public final class ia implements Runnable {
                     b2Var.dismiss();
                     if (groupCall != null) {
                         TLRPC.TL_inputGroupCall tL_inputGroupCall = new TLRPC.TL_inputGroupCall();
-                        tL_inputGroupCall.f19886id = groupCall.f19879id;
+                        tL_inputGroupCall.f19913id = groupCall.f19906id;
                         tL_inputGroupCall.access_hash = groupCall.access_hash;
                         org.telegram.ui.k9.o0(context, i12, tL_inputGroupCall, groupCall.invite_link, f6Var, true, true);
                         AndroidUtilities.runOnUIThread(v60Var);
@@ -153,7 +153,7 @@ public final class ia implements Runnable {
                     TLRPC.TL_inputGroupCall tL_inputGroupCall2 = new TLRPC.TL_inputGroupCall();
                     exportgroupcallinvite.call = tL_inputGroupCall2;
                     TLRPC.GroupCall groupCall2 = groupcall.call;
-                    tL_inputGroupCall2.f19886id = groupCall2.f19879id;
+                    tL_inputGroupCall2.f19913id = groupCall2.f19906id;
                     tL_inputGroupCall2.access_hash = groupCall2.access_hash;
                     ConnectionsManager.getInstance(i12).sendRequest(exportgroupcallinvite, new ii(b2Var, context, i12, exportgroupcallinvite, f6Var, v60Var));
                     return;
@@ -163,44 +163,44 @@ public final class ia implements Runnable {
                     return;
                 }
             case 6:
-                new t71((Context) this.f3112e, (TLRPC.Chat) this.f3111c, (TLRPC.User) this.f3113f, new ah.g(this.f3110b, (MessagesStorage.BooleanCallback) this.d, 28), (org.telegram.ui.ActionBar.f6) this.h).show();
+                new t71((Context) this.f3139e, (TLRPC.Chat) this.f3138c, (TLRPC.User) this.f3140f, new ah.g(this.f3137b, (MessagesStorage.BooleanCallback) this.d, 28), (org.telegram.ui.ActionBar.f6) this.h).show();
                 return;
             case 7:
-                org.telegram.ui.Components.w9.a((org.telegram.ui.Components.w9) this.f3112e, (Runnable[]) this.f3111c, (Bitmap) this.f3113f, (y50) this.d, this.f3110b, (w7.i0[]) this.h);
+                org.telegram.ui.Components.w9.a((org.telegram.ui.Components.w9) this.f3139e, (Runnable[]) this.f3138c, (Bitmap) this.f3140f, (y50) this.d, this.f3137b, (w7.i0[]) this.h);
                 return;
             case 8:
-                pg0.m((pg0) this.f3112e, (Integer[]) this.f3113f, this.f3110b, (TLObject) this.f3111c, (ArrayList) this.d, (TLRPC.PollAnswerVoters) this.h);
+                pg0.m((pg0) this.f3139e, (Integer[]) this.f3140f, this.f3137b, (TLObject) this.f3138c, (ArrayList) this.d, (TLRPC.PollAnswerVoters) this.h);
                 return;
             case 9:
-                ss.Y((ss) this.f3112e, (TLRPC.FileLocation) this.f3113f, (TLRPC.InputFile) this.d, (TLObject) this.f3111c, (TLRPC.FileLocation) this.h, this.f3110b);
+                ss.Y((ss) this.f3139e, (TLRPC.FileLocation) this.f3140f, (TLRPC.InputFile) this.d, (TLObject) this.f3138c, (TLRPC.FileLocation) this.h, this.f3137b);
                 return;
             case 10:
-                TLRPC.TL_urlAuthResultRequest tL_urlAuthResultRequest = (TLRPC.TL_urlAuthResultRequest) this.f3112e;
-                String[] strArr = (String[]) this.f3111c;
-                Context context2 = (Context) this.f3113f;
+                TLRPC.TL_urlAuthResultRequest tL_urlAuthResultRequest = (TLRPC.TL_urlAuthResultRequest) this.f3139e;
+                String[] strArr = (String[]) this.f3138c;
+                Context context2 = (Context) this.f3140f;
                 jl0 jl0Var = (jl0) this.d;
                 org.telegram.ui.ActionBar.n2 n2Var = (org.telegram.ui.ActionBar.n2) this.h;
                 if (!tL_urlAuthResultRequest.match_codes.isEmpty() && TextUtils.isEmpty(strArr[0])) {
-                    ll0.c(context2, this.f3110b, tL_urlAuthResultRequest.match_codes, tL_urlAuthResultRequest.domain, new oj0(3, strArr, jl0Var), true, new ah.j(19), n2Var.getResourceProvider());
+                    ll0.c(context2, this.f3137b, tL_urlAuthResultRequest.match_codes, tL_urlAuthResultRequest.domain, new oj0(3, strArr, jl0Var), true, new ah.j(19), n2Var.getResourceProvider());
                     return;
                 }
                 jl0Var.run();
                 return;
             case 11:
-                org.telegram.ui.ActionBar.n2 n2Var2 = (org.telegram.ui.ActionBar.n2) this.f3111c;
-                List<Purchase> list = (List) this.f3113f;
+                org.telegram.ui.ActionBar.n2 n2Var2 = (org.telegram.ui.ActionBar.n2) this.f3138c;
+                List<Purchase> list = (List) this.f3140f;
                 c5.f fVar = (c5.f) this.d;
                 lx0 lx0Var = (lx0) this.h;
-                if (((c5.h) this.f3112e).f4397a == 0) {
+                if (((c5.h) this.f3139e).f4424a == 0) {
                     ri0 ri0Var = new ri0(1, n2Var2);
-                    int i14 = this.f3110b;
+                    int i14 = this.f3137b;
                     if (list != null && !list.isEmpty() && !UserConfig.getInstance(i14).isPremium()) {
                         for (Purchase purchase : list) {
                             if (purchase.b().contains("telegram_premium")) {
                                 TLRPC.TL_payments_assignPlayMarketTransaction tL_payments_assignPlayMarketTransaction = new TLRPC.TL_payments_assignPlayMarketTransaction();
                                 TLRPC.TL_dataJSON tL_dataJSON = new TLRPC.TL_dataJSON();
                                 tL_payments_assignPlayMarketTransaction.receipt = tL_dataJSON;
-                                tL_dataJSON.data = purchase.f4864a;
+                                tL_dataJSON.data = purchase.f4891a;
                                 TLRPC.TL_inputStorePaymentPremiumSubscription tL_inputStorePaymentPremiumSubscription = new TLRPC.TL_inputStorePaymentPremiumSubscription();
                                 tL_inputStorePaymentPremiumSubscription.restore = true;
                                 if (fVar != null) {
@@ -224,12 +224,12 @@ public final class ia implements Runnable {
                 }
                 return;
             case 12:
-                org.telegram.ui.web.d1 d1Var2 = (org.telegram.ui.web.d1) this.f3112e;
-                org.telegram.ui.web.z0 z0Var = (org.telegram.ui.web.z0) this.f3113f;
+                org.telegram.ui.web.d1 d1Var2 = (org.telegram.ui.web.d1) this.f3139e;
+                org.telegram.ui.web.z0 z0Var = (org.telegram.ui.web.z0) this.f3140f;
                 k9 k9Var = (k9) this.d;
                 TLRPC.TL_error tL_error2 = (TLRPC.TL_error) this.h;
-                boolean z11 = ((TLObject) this.f3111c) instanceof TLRPC.TL_boolTrue;
-                int i15 = this.f3110b;
+                boolean z11 = ((TLObject) this.f3138c) instanceof TLRPC.TL_boolTrue;
+                int i15 = this.f3137b;
                 if (z11) {
                     try {
                         JSONObject jSONObject = new JSONObject();
@@ -246,22 +246,22 @@ public final class ia implements Runnable {
                 } else {
                     String[] strArr2 = {"cancelled"};
                     AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(d1Var2.getContext());
-                    alertDialog$Builder.f20198a.R = LocaleController.getString(R.string.BotWebViewRequestWriteTitle);
-                    alertDialog$Builder.f20198a.T = LocaleController.getString(R.string.BotWebViewRequestWriteMessage);
+                    alertDialog$Builder.f20225a.R = LocaleController.getString(R.string.BotWebViewRequestWriteTitle);
+                    alertDialog$Builder.f20225a.T = LocaleController.getString(R.string.BotWebViewRequestWriteMessage);
                     alertDialog$Builder.k(LocaleController.getString(R.string.BotWebViewRequestAllow), new qv0(23, d1Var2, strArr2));
                     alertDialog$Builder.h(LocaleController.getString(R.string.BotWebViewRequestDontAllow), new sw0(7));
-                    d1Var2.Y(3, alertDialog$Builder.f20198a, new org.telegram.ui.web.y(strArr2, i15, z0Var, k9Var, 1));
+                    d1Var2.Y(3, alertDialog$Builder.f20225a, new org.telegram.ui.web.y(strArr2, i15, z0Var, k9Var, 1));
                     return;
                 }
             case 13:
-                TLObject tLObject3 = (TLObject) this.f3111c;
-                TLRPC.PhotoSize photoSize2 = (TLRPC.PhotoSize) this.f3112e;
-                TLRPC.PhotoSize photoSize3 = (TLRPC.PhotoSize) this.f3113f;
+                TLObject tLObject3 = (TLObject) this.f3138c;
+                TLRPC.PhotoSize photoSize2 = (TLRPC.PhotoSize) this.f3139e;
+                TLRPC.PhotoSize photoSize3 = (TLRPC.PhotoSize) this.f3140f;
                 dj djVar = (dj) this.d;
                 org.telegram.ui.ActionBar.d5 d5Var = (org.telegram.ui.ActionBar.d5) this.h;
                 if (tLObject3 instanceof TLRPC.TL_photos_photo) {
                     TLRPC.TL_photos_photo tL_photos_photo = (TLRPC.TL_photos_photo) tLObject3;
-                    int i16 = this.f3110b;
+                    int i16 = this.f3137b;
                     MessagesController.getInstance(i16).putUsers(tL_photos_photo.users, false);
                     TLRPC.User user = MessagesController.getInstance(i16).getUser(Long.valueOf(UserConfig.getInstance(i16).clientUserId));
                     TLRPC.Photo photo = tL_photos_photo.photo;
@@ -296,11 +296,11 @@ public final class ia implements Runnable {
                 }
                 return;
             default:
-                TLObject tLObject4 = (TLObject) this.f3111c;
-                org.telegram.ui.ActionBar.f3[] f3VarArr = (org.telegram.ui.ActionBar.f3[]) this.f3113f;
+                TLObject tLObject4 = (TLObject) this.f3138c;
+                org.telegram.ui.ActionBar.f3[] f3VarArr = (org.telegram.ui.ActionBar.f3[]) this.f3140f;
                 org.telegram.ui.ActionBar.f6 f6Var2 = (org.telegram.ui.ActionBar.f6) this.d;
                 TLRPC.TL_messages_checkChatInvite tL_messages_checkChatInvite = (TLRPC.TL_messages_checkChatInvite) this.h;
-                ((di.d) this.f3112e).setLoading(false);
+                ((di.d) this.f3139e).setLoading(false);
                 if (tLObject4 instanceof TLRPC.ChatInvite) {
                     TLRPC.ChatInvite chatInvite = (TLRPC.ChatInvite) tLObject4;
                     TL_stars.TL_starsSubscriptionPricing tL_starsSubscriptionPricing = chatInvite.subscription_pricing;
@@ -309,7 +309,7 @@ public final class ia implements Runnable {
                         return;
                     }
                     final long j3 = tL_starsSubscriptionPricing.amount;
-                    final int i17 = this.f3110b;
+                    final int i17 = this.f3137b;
                     zh.s5.y(i17, false).j0(tL_messages_checkChatInvite.hash, chatInvite, new Utilities.Callback2() {
                         @Override
                         public final void run(Object obj2, Object obj3) {
@@ -327,91 +327,91 @@ public final class ia implements Runnable {
     }
 
     public ia(ja jaVar, TLObject tLObject, Object obj, ArrayList arrayList, boolean[] zArr, int i10) {
-        this.f3109a = 0;
-        this.f3112e = jaVar;
-        this.f3111c = tLObject;
-        this.f3113f = obj;
+        this.f3136a = 0;
+        this.f3139e = jaVar;
+        this.f3138c = tLObject;
+        this.f3140f = obj;
         this.d = arrayList;
         this.h = zArr;
-        this.f3110b = i10;
+        this.f3137b = i10;
     }
 
     public ia(Object obj, int i10, Object obj2, Object obj3, Object obj4, Object obj5, int i11) {
-        this.f3109a = i11;
-        this.f3112e = obj;
-        this.f3110b = i10;
-        this.f3111c = obj2;
-        this.f3113f = obj3;
+        this.f3136a = i11;
+        this.f3139e = obj;
+        this.f3137b = i10;
+        this.f3138c = obj2;
+        this.f3140f = obj3;
         this.d = obj4;
         this.h = obj5;
     }
 
     public ia(Object obj, Object obj2, Object obj3, int i10, Object obj4, Object obj5, int i11) {
-        this.f3109a = i11;
-        this.f3112e = obj;
-        this.f3111c = obj2;
-        this.f3113f = obj3;
-        this.f3110b = i10;
+        this.f3136a = i11;
+        this.f3139e = obj;
+        this.f3138c = obj2;
+        this.f3140f = obj3;
+        this.f3137b = i10;
         this.d = obj4;
         this.h = obj5;
     }
 
     public ia(Object obj, Object obj2, Object obj3, Object obj4, int i10, Object obj5, int i11) {
-        this.f3109a = i11;
-        this.f3112e = obj;
-        this.f3111c = obj2;
-        this.f3113f = obj3;
+        this.f3136a = i11;
+        this.f3139e = obj;
+        this.f3138c = obj2;
+        this.f3140f = obj3;
         this.d = obj4;
-        this.f3110b = i10;
+        this.f3137b = i10;
         this.h = obj5;
     }
 
     public ia(MediaDataController mediaDataController, boolean[] zArr, ArrayList arrayList, Context context, org.telegram.ui.ActionBar.n2 n2Var, int i10) {
-        this.f3109a = 3;
-        this.f3112e = mediaDataController;
+        this.f3136a = 3;
+        this.f3139e = mediaDataController;
         this.h = zArr;
         this.d = arrayList;
-        this.f3111c = context;
-        this.f3113f = n2Var;
-        this.f3110b = i10;
+        this.f3138c = context;
+        this.f3140f = n2Var;
+        this.f3137b = i10;
     }
 
     public ia(pg0 pg0Var, Integer[] numArr, int i10, TLObject tLObject, ArrayList arrayList, TLRPC.PollAnswerVoters pollAnswerVoters) {
-        this.f3109a = 8;
-        this.f3112e = pg0Var;
-        this.f3113f = numArr;
-        this.f3110b = i10;
-        this.f3111c = tLObject;
+        this.f3136a = 8;
+        this.f3139e = pg0Var;
+        this.f3140f = numArr;
+        this.f3137b = i10;
+        this.f3138c = tLObject;
         this.d = arrayList;
         this.h = pollAnswerVoters;
     }
 
     public ia(ss ssVar, TLRPC.FileLocation fileLocation, TLRPC.InputFile inputFile, TLObject tLObject, TLRPC.FileLocation fileLocation2, int i10) {
-        this.f3109a = 9;
-        this.f3112e = ssVar;
-        this.f3113f = fileLocation;
+        this.f3136a = 9;
+        this.f3139e = ssVar;
+        this.f3140f = fileLocation;
         this.d = inputFile;
-        this.f3111c = tLObject;
+        this.f3138c = tLObject;
         this.h = fileLocation2;
-        this.f3110b = i10;
+        this.f3137b = i10;
     }
 
     public ia(v70 v70Var, org.telegram.ui.g4 g4Var, TLRPC.TL_error tL_error, TLObject tLObject, int i10, org.telegram.ui.d1 d1Var) {
-        this.f3109a = 4;
-        this.f3112e = v70Var;
-        this.f3113f = g4Var;
+        this.f3136a = 4;
+        this.f3139e = v70Var;
+        this.f3140f = g4Var;
         this.d = tL_error;
-        this.f3111c = tLObject;
-        this.f3110b = i10;
+        this.f3138c = tLObject;
+        this.f3137b = i10;
         this.h = d1Var;
     }
 
     public ia(org.telegram.ui.web.d1 d1Var, TLObject tLObject, int i10, org.telegram.ui.web.z0 z0Var, k9 k9Var, TLRPC.TL_error tL_error) {
-        this.f3109a = 12;
-        this.f3112e = d1Var;
-        this.f3111c = tLObject;
-        this.f3110b = i10;
-        this.f3113f = z0Var;
+        this.f3136a = 12;
+        this.f3139e = d1Var;
+        this.f3138c = tLObject;
+        this.f3137b = i10;
+        this.f3140f = z0Var;
         this.d = k9Var;
         this.h = tL_error;
     }

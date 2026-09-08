@@ -7,11 +7,11 @@ import org.telegram.ui.Components.nu0;
 import org.telegram.ui.Components.pt0;
 import org.telegram.ui.Components.tk0;
 public final class i extends nu0 {
-    public final t f4812q3;
+    public final t f4839q3;
 
     public i(t tVar, Context context) {
         super(context);
-        this.f4812q3 = tVar;
+        this.f4839q3 = tVar;
     }
 
     @Override
@@ -26,10 +26,10 @@ public final class i extends nu0 {
             }
         }
         float f7 = i11;
-        t tVar = this.f4812q3;
+        t tVar = this.f4839q3;
         q qVar = tVar.J;
-        if (tVar.f4832b) {
-            pt0 pt0Var = tVar.f4837r;
+        if (tVar.f4859b) {
+            pt0 pt0Var = tVar.f4864r;
             int i13 = 0;
             for (int i14 = 0; i14 < pt0Var.getChildCount(); i14++) {
                 int bottom2 = pt0Var.getChildAt(i14).getBottom() - pt0Var.getPaddingTop();
@@ -37,7 +37,7 @@ public final class i extends nu0 {
                     i13 = bottom2;
                 }
             }
-            f7 = AndroidUtilities.lerp(f7, i13, tVar.f4833c);
+            f7 = AndroidUtilities.lerp(f7, i13, tVar.f4860c);
         }
         if (tVar.v.h() <= 0) {
             i10 = 8;
@@ -48,23 +48,23 @@ public final class i extends nu0 {
 
     @Override
     public final int getAnimateToColumnsCount() {
-        return this.f4812q3.f4834e;
+        return this.f4839q3.f4861e;
     }
 
     @Override
     public final float getChangeColumnsProgress() {
-        return this.f4812q3.f4833c;
+        return this.f4839q3.f4860c;
     }
 
     @Override
     public final int getColumnsCount() {
-        return this.f4812q3.d;
+        return this.f4839q3.d;
     }
 
     @Override
     public final tk0 getMovingAdapter() {
-        t tVar = this.f4812q3;
-        if (tVar.G.f45905y == 0 && !tVar.W.G.C1) {
+        t tVar = this.f4839q3;
+        if (tVar.G.f45933y == 0 && !tVar.W.G.C1) {
             return tVar.v;
         }
         return null;
@@ -72,17 +72,17 @@ public final class i extends nu0 {
 
     @Override
     public final tk0 getSupportingAdapter() {
-        return this.f4812q3.f4839w;
+        return this.f4839q3.f4866w;
     }
 
     @Override
     public final pt0 getSupportingListView() {
-        return this.f4812q3.f4837r;
+        return this.f4839q3.f4864r;
     }
 
     @Override
     public final boolean y1() {
-        return this.f4812q3.f4832b;
+        return this.f4839q3.f4859b;
     }
 
     @Override

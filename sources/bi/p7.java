@@ -18,21 +18,21 @@ import org.telegram.ui.jj1;
 import org.telegram.ui.mi;
 import org.telegram.ui.ua0;
 public final class p7 implements RequestDelegate {
-    public final int f3505a;
-    public final int f3506b;
-    public final Object f3507c;
+    public final int f3532a;
+    public final int f3533b;
+    public final Object f3534c;
 
     public p7(int i10, ua0 ua0Var) {
-        this.f3505a = 0;
-        this.f3506b = i10;
-        this.f3507c = ua0Var;
+        this.f3532a = 0;
+        this.f3533b = i10;
+        this.f3534c = ua0Var;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        int i10 = this.f3505a;
-        int i11 = this.f3506b;
-        Object obj = this.f3507c;
+        int i10 = this.f3532a;
+        int i11 = this.f3533b;
+        Object obj = this.f3534c;
         switch (i10) {
             case 0:
                 AndroidUtilities.runOnUIThread(new ah.p(tLObject, i11, (ua0) obj, 2));
@@ -45,7 +45,7 @@ public final class p7 implements RequestDelegate {
                     for (int i12 = 0; i12 < tL_stories_stories.stories.size(); i12++) {
                         arrayList.add(l8Var.y(tL_stories_stories.stories.get(i12)));
                     }
-                    AndroidUtilities.runOnUIThread(new k8(l8Var, arrayList, tL_stories_stories, this.f3506b, 0));
+                    AndroidUtilities.runOnUIThread(new k8(l8Var, arrayList, tL_stories_stories, this.f3533b, 0));
                     return;
                 }
                 AndroidUtilities.runOnUIThread(new g8(l8Var, 1));
@@ -92,8 +92,8 @@ public final class p7 implements RequestDelegate {
     }
 
     public p7(Object obj, int i10, int i11) {
-        this.f3505a = i11;
-        this.f3507c = obj;
-        this.f3506b = i10;
+        this.f3532a = i11;
+        this.f3534c = obj;
+        this.f3533b = i10;
     }
 }

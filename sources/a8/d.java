@@ -14,22 +14,22 @@ import n6.p;
 import v8.o;
 import y8.y0;
 public final class d {
-    public final int f319a;
+    public final int f331a;
 
     public d(int i10) {
-        this.f319a = i10;
+        this.f331a = i10;
     }
 
     public com.google.android.gms.common.api.c a(Context context, Looper looper, p3 commonSettings, Object obj, k kVar, l lVar) {
-        switch (this.f319a) {
+        switch (this.f331a) {
             case 1:
                 c6.e eVar = (c6.e) obj;
                 n6.l.i(eVar, "Setting the API options is required.");
-                return new w(context, looper, commonSettings, eVar.f4487a, 0, eVar.f4489c, eVar.d, kVar, lVar);
+                return new w(context, looper, commonSettings, eVar.f4514a, 0, eVar.f4516c, eVar.d, kVar, lVar);
             case 2:
                 c6.e eVar2 = (c6.e) obj;
                 n6.l.i(eVar2, "Setting the API options is required.");
-                return new v(context, looper, commonSettings, eVar2.f4487a, 0, eVar2.f4488b, eVar2.f4489c, kVar, lVar);
+                return new v(context, looper, commonSettings, eVar2.f4514a, 0, eVar2.f4515b, eVar2.f4516c, kVar, lVar);
             case 3:
                 com.google.android.gms.common.api.a aVar = (com.google.android.gms.common.api.a) obj;
                 return new n6.g(context, looper, 161, commonSettings, kVar, lVar, 0);
@@ -40,7 +40,7 @@ public final class d {
             case 13:
             case 14:
             default:
-                switch (this.f319a) {
+                switch (this.f331a) {
                     case 0:
                         com.google.android.gms.common.api.a apiOptions = (com.google.android.gms.common.api.a) obj;
                         i.e(context, "context");
@@ -108,7 +108,7 @@ public final class d {
                 if (oVar == null) {
                     oVar = new o(new com.google.android.gms.internal.cast.a());
                 }
-                return new e8.b(context, looper, commonSettings, kVar, lVar, oVar.f47737a);
+                return new e8.b(context, looper, commonSettings, kVar, lVar, oVar.f47765a);
             case 16:
                 return new i7.g(context, looper, commonSettings, (w5.b) obj, kVar, lVar);
             case 17:

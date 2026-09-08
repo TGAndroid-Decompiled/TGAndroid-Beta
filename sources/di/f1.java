@@ -6,20 +6,20 @@ import org.telegram.messenger.SharedConfig;
 import org.telegram.ui.Components.x01;
 import org.telegram.ui.j60;
 public final class f1 implements DialogInterface.OnDismissListener {
-    public final int f7191a;
+    public final int f7219a;
 
     public f1(int i10) {
-        this.f7191a = i10;
+        this.f7219a = i10;
     }
 
     @Override
     public final void onDismiss(DialogInterface dialogInterface) {
-        switch (this.f7191a) {
+        switch (this.f7219a) {
             case 0:
                 int i10 = t2.G;
                 return;
             case 1:
-                org.telegram.ui.b.f34575a = false;
+                org.telegram.ui.b.f34602a = false;
                 return;
             case 2:
                 return;
@@ -27,7 +27,7 @@ public final class f1 implements DialogInterface.OnDismissListener {
                 SharedConfig.BackgroundActivityPrefs.increaseDismissedCount();
                 return;
             case 4:
-                int i11 = x01.f32380e;
+                int i11 = x01.f32407e;
                 return;
             case 5:
                 j60 j60Var = j60.D3;
@@ -41,7 +41,7 @@ public final class f1 implements DialogInterface.OnDismissListener {
     }
 
     public f1(boolean[] zArr) {
-        this.f7191a = 2;
+        this.f7219a = 2;
     }
 
     private final void a(DialogInterface dialogInterface) {

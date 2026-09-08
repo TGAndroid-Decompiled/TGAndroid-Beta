@@ -9,28 +9,28 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.Components.vi;
 public final class a8 implements Utilities.CallbackReturn {
-    public final int f6907a;
-    public final KeyEvent.Callback f6908b;
+    public final int f6935a;
+    public final KeyEvent.Callback f6936b;
 
     public a8(KeyEvent.Callback callback, int i10) {
-        this.f6907a = i10;
-        this.f6908b = callback;
+        this.f6935a = i10;
+        this.f6936b = callback;
     }
 
     @Override
     public final Object run(Object obj) {
-        switch (this.f6907a) {
+        switch (this.f6935a) {
             case 0:
                 MessageObject messageObject = (MessageObject) obj;
-                ((g8) this.f6908b).f7288r0 = messageObject;
+                ((g8) this.f6936b).f7316r0 = messageObject;
                 return Boolean.valueOf(MediaController.getInstance().setPlaylist(org.telegram.messenger.w1.l(messageObject), messageObject, 0L));
             case 1:
-                ei.d dVar = (ei.d) this.f6908b;
-                return dVar.f9124n[((Integer) obj).intValue() % dVar.f9124n.length];
+                ei.d dVar = (ei.d) this.f6936b;
+                return dVar.f9152n[((Integer) obj).intValue() % dVar.f9152n.length];
             case 2:
-                return new org.telegram.ui.web.g1(2, (org.telegram.ui.k0) this.f6908b, (Integer) obj);
+                return new org.telegram.ui.web.g1(2, (org.telegram.ui.k0) this.f6936b, (Integer) obj);
             case 3:
-                rg.o0 o0Var = (rg.o0) this.f6908b;
+                rg.o0 o0Var = (rg.o0) this.f6936b;
                 if (((Integer) obj).intValue() == 2) {
                     vi viVar = new vi(o0Var.getContext(), new rg.y(o0Var), false, false, false, o0Var.Q1);
                     viVar.drawNavigationBar = true;
@@ -40,16 +40,16 @@ public final class a8 implements Utilities.CallbackReturn {
                     viVar.J1(1, false);
                     viVar.r1();
                     MediaController.forceBroadcastNewPhotos = true;
-                    viVar.f31291j0.f0();
+                    viVar.f31318j0.f0();
                     viVar.show();
                 }
                 return Boolean.TRUE;
             case 4:
-                Paint[] paintArr = ((wg.r) this.f6908b).h;
+                Paint[] paintArr = ((wg.r) this.f6936b).h;
                 return paintArr[((Integer) obj).intValue() % paintArr.length];
             default:
-                zh.x6 x6Var = (zh.x6) this.f6908b;
-                return x6Var.f52851n[((Integer) obj).intValue() % x6Var.f52851n.length];
+                zh.x6 x6Var = (zh.x6) this.f6936b;
+                return x6Var.f52882n[((Integer) obj).intValue() % x6Var.f52882n.length];
         }
     }
 }

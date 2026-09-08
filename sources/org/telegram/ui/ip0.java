@@ -4,7 +4,7 @@ import android.content.Context;
 import android.view.View;
 import org.telegram.tgnet.tl.TL_stars;
 public final class ip0 extends org.telegram.ui.Components.g51 {
-    public static final int f37420a = 0;
+    public static final int f37447a = 0;
 
     static {
         org.telegram.ui.Components.g51.setup(new org.telegram.ui.Components.g51());
@@ -15,21 +15,21 @@ public final class ip0 extends org.telegram.ui.Components.g51 {
         jp0 jp0Var = (jp0) view;
         TL_stars.SavedStarGift savedStarGift = (TL_stars.SavedStarGift) h51Var.G;
         yh.i1 i1Var = jp0Var.h;
-        yh.e1 e1Var = jp0Var.f37829e;
-        jp0Var.f37826a = savedStarGift.gift.f20097id;
+        yh.e1 e1Var = jp0Var.f37856e;
+        jp0Var.f37853a = savedStarGift.gift.f20124id;
         jp0Var.setPadding(0, 0, 0, 0);
         jp0Var.c(savedStarGift.gift.getDocument(), savedStarGift.gift);
-        jp0Var.f37827b = (TL_stars.starGiftAttributeBackdrop) zh.s5.l(savedStarGift.gift.attributes, TL_stars.starGiftAttributeBackdrop.class);
-        jp0Var.f37828c = (TL_stars.starGiftAttributePattern) zh.s5.l(savedStarGift.gift.attributes, TL_stars.starGiftAttributePattern.class);
-        e1Var.d(jp0Var.f37827b);
-        e1Var.e(jp0Var.f37828c);
+        jp0Var.f37854b = (TL_stars.starGiftAttributeBackdrop) zh.s5.l(savedStarGift.gift.attributes, TL_stars.starGiftAttributeBackdrop.class);
+        jp0Var.f37855c = (TL_stars.starGiftAttributePattern) zh.s5.l(savedStarGift.gift.attributes, TL_stars.starGiftAttributePattern.class);
+        e1Var.d(jp0Var.f37854b);
+        e1Var.e(jp0Var.f37855c);
         if (i1Var != null) {
-            i1Var.setBackdrop(jp0Var.f37827b);
+            i1Var.setBackdrop(jp0Var.f37854b);
             String k10 = i2.g.k(savedStarGift.gift.num, ',', new StringBuilder("#"));
-            i1Var.f50333b = k10;
-            i1Var.f50332a.e(9, k10, false);
+            i1Var.f50362b = k10;
+            i1Var.f50361a.e(9, k10, false);
         }
-        jp0Var.b(h51Var.f26588e, false);
+        jp0Var.b(h51Var.f26615e, false);
     }
 
     @Override

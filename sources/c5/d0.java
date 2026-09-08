@@ -47,18 +47,18 @@ public final class d0 extends c {
         }
         b0 b0Var = new b0(this, i10, 0);
         ?? obj = new Object();
-        obj.f5794c = new Object();
+        obj.f5821c = new Object();
         j4 j4Var = new j4(obj);
-        obj.f5793b = j4Var;
-        obj.f5792a = b0.class;
+        obj.f5820b = j4Var;
+        obj.f5819a = b0.class;
         try {
             b0Var.j(obj);
-            obj.f5792a = "billingOverrideService.getBillingOverride";
+            obj.f5819a = "billingOverrideService.getBillingOverride";
             return j4Var;
         } catch (Exception e7) {
             g2 g2Var = new g2(e7);
-            z5 z5Var = g4.f5780f;
-            i4 i4Var = j4Var.f5813b;
+            z5 z5Var = g4.f5807f;
+            i4 i4Var = j4Var.f5840b;
             if (z5Var.d(i4Var, null, g2Var)) {
                 g4.d(i4Var);
             }
@@ -67,10 +67,10 @@ public final class d0 extends c {
     }
 
     public final void F(int i10, int i11, h hVar) {
-        int i12 = e0.f4374a;
+        int i12 = e0.f4401a;
         g3 b10 = e0.b(i10, i11, hVar, null, m3.BROADCAST_ACTION_UNSPECIFIED);
         Objects.requireNonNull(b10, "ApiFailure should not be null");
-        this.h.l0(b10);
+        this.h.m0(b10);
     }
 
     public final void G(int i10, q0.a aVar, Runnable runnable) {
@@ -89,17 +89,17 @@ public final class d0 extends c {
         }
         if (!E.isDone()) {
             ?? obj = new Object();
-            obj.f5906n = E;
+            obj.f5933n = E;
             ?? obj2 = new Object();
-            obj2.f5896a = obj;
-            obj.f5907r = scheduledExecutorService.schedule((Runnable) obj2, 28500L, timeUnit);
-            E.b(obj2, p0.f5858a);
+            obj2.f5923a = obj;
+            obj.f5934r = scheduledExecutorService.schedule((Runnable) obj2, 28500L, timeUnit);
+            E.b(obj2, p0.f5885a);
             E = obj;
         }
         ?? obj3 = new Object();
-        obj3.f13550a = i10;
-        obj3.f13551b = aVar;
-        obj3.f13552c = runnable;
+        obj3.f13576a = i10;
+        obj3.f13577b = aVar;
+        obj3.f13578c = runnable;
         obj3.d = this;
         E.b(new q0(E, obj3), e());
     }
@@ -118,7 +118,7 @@ public final class d0 extends c {
         G(4, new q0.a() {
             @Override
             public final void accept(Object obj) {
-                String str = iVar.f4403a;
+                String str = iVar.f4430a;
                 jVar.a((h) obj, str);
             }
         }, new v(this, iVar, jVar));
@@ -130,13 +130,13 @@ public final class d0 extends c {
         try {
             i10 = ((Integer) E(2).get(28500L, TimeUnit.MILLISECONDS)).intValue();
         } catch (TimeoutException e7) {
-            F(102, 28, g0.f4396p);
+            F(102, 28, g0.f4423p);
             com.google.android.gms.internal.play_billing.u.i("BillingClientTesting", "Asynchronous call to Billing Override Service timed out.", e7);
         } catch (Exception e10) {
             if (e10 instanceof InterruptedException) {
                 Thread.currentThread().interrupt();
             }
-            F(95, 28, g0.f4396p);
+            F(95, 28, g0.f4423p);
             com.google.android.gms.internal.play_billing.u.i("BillingClientTesting", "An error occurred while retrieving billing override.", e10);
         }
         if (i10 > 0) {
@@ -148,7 +148,7 @@ public final class d0 extends c {
         try {
             return super.b(activity, gVar);
         } catch (Exception e11) {
-            h hVar = g0.f4387f;
+            h hVar = g0.f4414f;
             F(103, 2, hVar);
             com.google.android.gms.internal.play_billing.u.i("BillingClientTesting", "An internal error occurred.", e11);
             return hVar;
@@ -165,12 +165,12 @@ public final class d0 extends c {
         synchronized (this) {
             if (J()) {
                 com.google.android.gms.internal.play_billing.u.g("BillingClientTesting", "Billing Override Service connection is valid. No need to re-initialize.");
-                int i10 = e0.f4374a;
+                int i10 = e0.f4401a;
                 i3 c10 = e0.c(26, m3.BROADCAST_ACTION_UNSPECIFIED);
                 Objects.requireNonNull(c10, "ApiSuccess should not be null");
                 pf.b bVar = this.h;
                 bVar.getClass();
-                bVar.t0(c10, (p3) bVar.f44046b);
+                bVar.u0(c10, (p3) bVar.f44073b);
             } else {
                 int i11 = 1;
                 if (this.D == 1) {

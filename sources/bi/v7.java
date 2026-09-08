@@ -20,12 +20,12 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.er0;
 import org.telegram.ui.f11;
 public final class v7 implements RequestDelegate {
-    public final int f3902a;
-    public final Object f3903b;
+    public final int f3929a;
+    public final Object f3930b;
 
     public v7(Object obj, int i10) {
-        this.f3902a = i10;
-        this.f3903b = obj;
+        this.f3929a = i10;
+        this.f3930b = obj;
     }
 
     @Override
@@ -34,11 +34,11 @@ public final class v7 implements RequestDelegate {
         Locale locale;
         final Comparator f11Var2;
         Locale locale2;
-        int i10 = this.f3902a;
-        Object obj = this.f3903b;
+        int i10 = this.f3929a;
+        Object obj = this.f3930b;
         switch (i10) {
             case 0:
-                AndroidUtilities.runOnUIThread(new a3.c((di.o9) obj, 22));
+                AndroidUtilities.runOnUIThread(new a3.d((di.o9) obj, 22));
                 return;
             case 1:
                 AndroidUtilities.runOnUIThread(new a1.e(24, (d8) obj, tLObject));
@@ -243,7 +243,7 @@ public final class v7 implements RequestDelegate {
             default:
                 zh.n8 n8Var = (zh.n8) obj;
                 if (tLObject instanceof TLRPC.TL_boolTrue) {
-                    MessagesStorage.getInstance(n8Var.f52337c).putMessages(new ArrayList<>(Arrays.asList(n8Var.K.messageOwner)), true, true, true, 0, 0, 0L);
+                    MessagesStorage.getInstance(n8Var.f52368c).putMessages(new ArrayList<>(Arrays.asList(n8Var.K.messageOwner)), true, true, true, 0, 0, 0L);
                     return;
                 } else {
                     n8Var.getClass();

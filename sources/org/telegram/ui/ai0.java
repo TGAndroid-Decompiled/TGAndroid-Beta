@@ -1,14 +1,14 @@
 package org.telegram.ui;
 public final class ai0 implements Runnable {
-    public final int f34456a;
-    public final int f34457b;
-    public final Object f34458c;
+    public final int f34483a;
+    public final int f34484b;
+    public final Object f34485c;
     public final Object d;
 
     public ai0(Object obj, int i10, Object obj2, int i11) {
-        this.f34456a = i11;
-        this.f34458c = obj;
-        this.f34457b = i10;
+        this.f34483a = i11;
+        this.f34485c = obj;
+        this.f34484b = i10;
         this.d = obj2;
     }
 
@@ -18,9 +18,9 @@ public final class ai0 implements Runnable {
     }
 
     public ai0(Object obj, Object obj2, int i10, int i11) {
-        this.f34456a = i11;
-        this.f34458c = obj;
+        this.f34483a = i11;
+        this.f34485c = obj;
         this.d = obj2;
-        this.f34457b = i10;
+        this.f34484b = i10;
     }
 }

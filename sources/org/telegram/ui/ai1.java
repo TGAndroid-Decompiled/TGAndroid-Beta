@@ -94,16 +94,16 @@ public final class ai1 extends org.telegram.ui.Components.i81 {
         bi1 bi1Var = this.V;
         eh0 eh0Var = (eh0) bi1Var;
         if (eh0Var.F != null) {
-            eh0Var.m0(eh0Var.f34816c.getCurrentPosition(), true);
+            eh0Var.m0(eh0Var.f34843c.getCurrentPosition(), true);
             eh0Var.n0(0.0f, false);
         }
         eh0Var.d0();
-        ai1 ai1Var = eh0Var.f34816c;
+        ai1 ai1Var = eh0Var.f34843c;
         if (ai1Var != null) {
             int currentPosition = ai1Var.getCurrentPosition();
-            if (currentPosition != 2 && eh0Var.f36081x) {
+            if (currentPosition != 2 && eh0Var.f36108x) {
                 eh0Var.W(2);
-                eh0Var.f36081x = false;
+                eh0Var.f36108x = false;
             }
             if (currentPosition != 3) {
                 eh0Var.W(3);
@@ -123,7 +123,7 @@ public final class ai1 extends org.telegram.ui.Components.i81 {
         eh0 eh0Var = (eh0) bi1Var;
         boolean z11 = !z10;
         if (eh0Var.F != null) {
-            float positionAnimated = eh0Var.f34816c.getPositionAnimated();
+            float positionAnimated = eh0Var.f34843c.getPositionAnimated();
             eh0Var.n0(positionAnimated, z11);
             if (!z10) {
                 eh0Var.m0(Math.round(positionAnimated), true);
@@ -131,7 +131,7 @@ public final class ai1 extends org.telegram.ui.Components.i81 {
         }
         eh0Var.h0();
         eh0Var.d0();
-        eh0Var.f34815b.invalidate();
+        eh0Var.f34842b.invalidate();
         bi1Var.U();
         bi1Var.checkSystemBarColors();
     }

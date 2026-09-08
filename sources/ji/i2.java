@@ -1,29 +1,29 @@
 package ji;
 public final class i2 implements Runnable {
-    public final int f13979a;
-    public final v3 f13980b;
-    public final int f13981c;
+    public final int f14005a;
+    public final v3 f14006b;
+    public final int f14007c;
 
     public i2(v3 v3Var, int i10, int i11) {
-        this.f13979a = i11;
-        this.f13980b = v3Var;
-        this.f13981c = i10;
+        this.f14005a = i11;
+        this.f14006b = v3Var;
+        this.f14007c = i10;
     }
 
     @Override
     public final void run() {
-        switch (this.f13979a) {
+        switch (this.f14005a) {
             case 0:
-                this.f13980b.c4(this.f13981c);
+                this.f14006b.c4(this.f14007c);
                 return;
             case 1:
-                this.f13980b.e4(this.f13981c);
+                this.f14006b.e4(this.f14007c);
                 return;
             case 2:
-                this.f13980b.scrollBy(0, this.f13981c);
+                this.f14006b.scrollBy(0, this.f14007c);
                 return;
             default:
-                this.f13980b.d4(this.f13981c);
+                this.f14006b.d4(this.f14007c);
                 return;
         }
     }

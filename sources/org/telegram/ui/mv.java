@@ -15,18 +15,18 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.ActionBarLayout;
 import org.telegram.ui.Components.ScrollSlidingTextTabStrip;
 public final class mv extends FrameLayout {
-    public int f38766a;
-    public boolean f38767b;
-    public boolean f38768c;
+    public int f38793a;
+    public boolean f38794b;
+    public boolean f38795c;
     public int d;
-    public int f38769e;
-    public VelocityTracker f38770f;
+    public int f38796e;
+    public VelocityTracker f38797f;
     public boolean h;
-    public final ov f38771n;
+    public final ov f38798n;
 
     public mv(ov ovVar, Context context) {
         super(context);
-        this.f38771n = ovVar;
+        this.f38798n = ovVar;
     }
 
     public final boolean a() {
@@ -36,11 +36,11 @@ public final class mv extends FrameLayout {
     public final boolean b(MotionEvent motionEvent, boolean z10) {
         int i10;
         org.telegram.ui.ActionBar.k kVar;
-        ov ovVar = this.f38771n;
-        nv[] nvVarArr = ovVar.f39321f;
-        ScrollSlidingTextTabStrip scrollSlidingTextTabStrip = ovVar.f39320e;
+        ov ovVar = this.f38798n;
+        nv[] nvVarArr = ovVar.f39348f;
+        ScrollSlidingTextTabStrip scrollSlidingTextTabStrip = ovVar.f39347e;
         SparseIntArray sparseIntArray = scrollSlidingTextTabStrip.O;
-        int i11 = scrollSlidingTextTabStrip.f24131n;
+        int i11 = scrollSlidingTextTabStrip.f24158n;
         if (z10) {
             i10 = 1;
         } else {
@@ -51,16 +51,16 @@ public final class mv extends FrameLayout {
             return false;
         }
         getParent().requestDisallowInterceptTouchEvent(true);
-        this.f38768c = false;
-        this.f38767b = true;
+        this.f38795c = false;
+        this.f38794b = true;
         this.d = (int) motionEvent.getX();
         kVar = ((org.telegram.ui.ActionBar.n2) ovVar).actionBar;
         kVar.setEnabled(false);
-        ovVar.f39320e.setEnabled(false);
+        ovVar.f39347e.setEnabled(false);
         nv nvVar = nvVarArr[1];
-        nvVar.f39039f = i12;
+        nvVar.f39066f = i12;
         nvVar.setVisibility(0);
-        ovVar.f39323r = z10;
+        ovVar.f39350r = z10;
         ovVar.m0(true);
         if (z10) {
             nvVarArr[1].setTranslationX(nvVarArr[0].getMeasuredWidth());
@@ -77,7 +77,7 @@ public final class mv extends FrameLayout {
         org.telegram.ui.ActionBar.k kVar;
         org.telegram.ui.ActionBar.k kVar2;
         super.dispatchDraw(canvas);
-        ov ovVar = this.f38771n;
+        ov ovVar = this.f38798n;
         d5Var = ((org.telegram.ui.ActionBar.n2) ovVar).parentLayout;
         if (d5Var != null) {
             d5Var2 = ((org.telegram.ui.ActionBar.n2) ovVar).parentLayout;
@@ -92,9 +92,9 @@ public final class mv extends FrameLayout {
     public final void onDraw(Canvas canvas) {
         org.telegram.ui.ActionBar.k kVar;
         org.telegram.ui.ActionBar.k kVar2;
-        ov ovVar = this.f38771n;
+        ov ovVar = this.f38798n;
         Paint paint = ovVar.d;
-        paint.setColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f20663d6, false));
+        paint.setColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f20690d6, false));
         kVar = ((org.telegram.ui.ActionBar.n2) ovVar).actionBar;
         kVar2 = ((org.telegram.ui.ActionBar.n2) ovVar).actionBar;
         canvas.drawRect(0.0f, kVar2.getTranslationY() + kVar.getMeasuredHeight(), getMeasuredWidth(), getMeasuredHeight(), paint);
@@ -102,7 +102,7 @@ public final class mv extends FrameLayout {
 
     @Override
     public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        if (!a() && !this.f38771n.f39320e.H && !onTouchEvent(motionEvent)) {
+        if (!a() && !this.f38798n.f39347e.H && !onTouchEvent(motionEvent)) {
             return false;
         }
         return true;
@@ -114,8 +114,8 @@ public final class mv extends FrameLayout {
         org.telegram.ui.ActionBar.k kVar2;
         org.telegram.ui.ActionBar.k kVar3;
         setMeasuredDimension(View.MeasureSpec.getSize(i10), View.MeasureSpec.getSize(i11));
-        ov ovVar = this.f38771n;
-        nv[] nvVarArr = ovVar.f39321f;
+        ov ovVar = this.f38798n;
+        nv[] nvVarArr = ovVar.f39348f;
         kVar = ((org.telegram.ui.ActionBar.n2) ovVar).actionBar;
         measureChildWithMargins(kVar, i10, 0, i11, 0);
         kVar2 = ((org.telegram.ui.ActionBar.n2) ovVar).actionBar;
@@ -128,7 +128,7 @@ public final class mv extends FrameLayout {
                 if (ll0Var != null) {
                     ll0Var.setPadding(0, measuredHeight, 0, 0);
                 }
-                bi.o0 o0Var = nvVarArr[i12].f39038e;
+                bi.o0 o0Var = nvVarArr[i12].f39065e;
                 if (o0Var != null) {
                     o0Var.setPadding(0, measuredHeight, 0, 0);
                 }
@@ -164,70 +164,70 @@ public final class mv extends FrameLayout {
         boolean z12;
         boolean z13;
         int i10;
-        ov ovVar = this.f38771n;
-        nv[] nvVarArr = ovVar.f39321f;
+        ov ovVar = this.f38798n;
+        nv[] nvVarArr = ovVar.f39348f;
         d5Var = ((org.telegram.ui.ActionBar.n2) ovVar).parentLayout;
         boolean z14 = false;
         if (((ActionBarLayout) d5Var).j() || a()) {
             return false;
         }
         if (motionEvent != null) {
-            if (this.f38770f == null) {
-                this.f38770f = VelocityTracker.obtain();
+            if (this.f38797f == null) {
+                this.f38797f = VelocityTracker.obtain();
             }
-            this.f38770f.addMovement(motionEvent);
+            this.f38797f.addMovement(motionEvent);
         }
-        if (motionEvent != null && motionEvent.getAction() == 0 && !this.f38767b && !this.f38768c) {
-            this.f38766a = motionEvent.getPointerId(0);
-            this.f38768c = true;
+        if (motionEvent != null && motionEvent.getAction() == 0 && !this.f38794b && !this.f38795c) {
+            this.f38793a = motionEvent.getPointerId(0);
+            this.f38795c = true;
             this.d = (int) motionEvent.getX();
-            this.f38769e = (int) motionEvent.getY();
-            this.f38770f.clear();
-        } else if (motionEvent != null && motionEvent.getAction() == 2 && motionEvent.getPointerId(0) == this.f38766a) {
+            this.f38796e = (int) motionEvent.getY();
+            this.f38797f.clear();
+        } else if (motionEvent != null && motionEvent.getAction() == 2 && motionEvent.getPointerId(0) == this.f38793a) {
             int x10 = (int) (motionEvent.getX() - this.d);
-            int abs = Math.abs(((int) motionEvent.getY()) - this.f38769e);
-            if (this.f38767b && (((z12 = ovVar.f39323r) && x10 > 0) || (!z12 && x10 < 0))) {
+            int abs = Math.abs(((int) motionEvent.getY()) - this.f38796e);
+            if (this.f38794b && (((z12 = ovVar.f39350r) && x10 > 0) || (!z12 && x10 < 0))) {
                 if (x10 < 0) {
                     z13 = true;
                 } else {
                     z13 = false;
                 }
                 if (!b(motionEvent, z13)) {
-                    this.f38768c = true;
-                    this.f38767b = false;
+                    this.f38795c = true;
+                    this.f38794b = false;
                     nvVarArr[0].setTranslationX(0.0f);
                     nv nvVar5 = nvVarArr[1];
-                    if (ovVar.f39323r) {
+                    if (ovVar.f39350r) {
                         i10 = nvVarArr[0].getMeasuredWidth();
                     } else {
                         i10 = -nvVarArr[0].getMeasuredWidth();
                     }
                     nvVar5.setTranslationX(i10);
-                    ovVar.f39320e.j(0.0f, nvVarArr[1].f39039f);
+                    ovVar.f39347e.j(0.0f, nvVarArr[1].f39066f);
                 }
             }
-            if (this.f38768c && !this.f38767b) {
+            if (this.f38795c && !this.f38794b) {
                 if (Math.abs(x10) >= AndroidUtilities.getPixelsInCM(0.3f, true) && Math.abs(x10) > abs) {
                     if (x10 < 0) {
                         z14 = true;
                     }
                     b(motionEvent, z14);
                 }
-            } else if (this.f38767b) {
+            } else if (this.f38794b) {
                 nvVarArr[0].setTranslationX(x10);
-                if (ovVar.f39323r) {
+                if (ovVar.f39350r) {
                     nvVarArr[1].setTranslationX(nvVarArr[0].getMeasuredWidth() + x10);
                 } else {
                     nvVarArr[1].setTranslationX(x10 - nvVarArr[0].getMeasuredWidth());
                 }
-                ovVar.f39320e.j(Math.abs(x10) / nvVarArr[0].getMeasuredWidth(), nvVarArr[1].f39039f);
+                ovVar.f39347e.j(Math.abs(x10) / nvVarArr[0].getMeasuredWidth(), nvVarArr[1].f39066f);
             }
-        } else if (motionEvent == null || (motionEvent.getPointerId(0) == this.f38766a && (motionEvent.getAction() == 3 || motionEvent.getAction() == 1 || motionEvent.getAction() == 6))) {
-            this.f38770f.computeCurrentVelocity(1000, ovVar.v);
+        } else if (motionEvent == null || (motionEvent.getPointerId(0) == this.f38793a && (motionEvent.getAction() == 3 || motionEvent.getAction() == 1 || motionEvent.getAction() == 6))) {
+            this.f38797f.computeCurrentVelocity(1000, ovVar.v);
             if (motionEvent != null && motionEvent.getAction() != 3) {
-                f7 = this.f38770f.getXVelocity();
-                f10 = this.f38770f.getYVelocity();
-                if (!this.f38767b && Math.abs(f7) >= 3000.0f && Math.abs(f7) > Math.abs(f10)) {
+                f7 = this.f38797f.getXVelocity();
+                f10 = this.f38797f.getYVelocity();
+                if (!this.f38794b && Math.abs(f7) >= 3000.0f && Math.abs(f7) > Math.abs(f10)) {
                     if (f7 < 0.0f) {
                         z11 = true;
                     } else {
@@ -239,7 +239,7 @@ public final class mv extends FrameLayout {
                 f7 = 0.0f;
                 f10 = 0.0f;
             }
-            if (this.f38767b) {
+            if (this.f38794b) {
                 float x11 = nvVarArr[0].getX();
                 ovVar.h = new AnimatorSet();
                 if (Math.abs(x11) < nvVarArr[0].getMeasuredWidth() / 3.0f && (Math.abs(f7) < 3500.0f || Math.abs(f7) < Math.abs(f10))) {
@@ -247,24 +247,24 @@ public final class mv extends FrameLayout {
                 } else {
                     z10 = false;
                 }
-                ovVar.f39324s = z10;
+                ovVar.f39351s = z10;
                 Property property = View.TRANSLATION_X;
                 if (z10) {
                     measuredWidth = Math.abs(x11);
-                    if (ovVar.f39323r) {
+                    if (ovVar.f39350r) {
                         ovVar.h.playTogether(ObjectAnimator.ofFloat(nvVarArr[0], property, 0.0f), ObjectAnimator.ofFloat(nvVarArr[1], property, nvVar4.getMeasuredWidth()));
                     } else {
                         ovVar.h.playTogether(ObjectAnimator.ofFloat(nvVarArr[0], property, 0.0f), ObjectAnimator.ofFloat(nvVarArr[1], property, -nvVar3.getMeasuredWidth()));
                     }
                 } else {
                     measuredWidth = nvVarArr[0].getMeasuredWidth() - Math.abs(x11);
-                    if (ovVar.f39323r) {
+                    if (ovVar.f39350r) {
                         ovVar.h.playTogether(ObjectAnimator.ofFloat(nvVarArr[0], property, -nvVar2.getMeasuredWidth()), ObjectAnimator.ofFloat(nvVarArr[1], property, 0.0f));
                     } else {
                         ovVar.h.playTogether(ObjectAnimator.ofFloat(nvVarArr[0], property, nvVar.getMeasuredWidth()), ObjectAnimator.ofFloat(nvVarArr[1], property, 0.0f));
                     }
                 }
-                ovVar.h.setInterpolator(ov.f39316x);
+                ovVar.h.setInterpolator(ov.f39343x);
                 int measuredWidth3 = getMeasuredWidth();
                 float f11 = measuredWidth3 / 2;
                 float distanceInfluenceForSnapDuration = (AndroidUtilities.distanceInfluenceForSnapDuration(Math.min(1.0f, (measuredWidth * 1.0f) / measuredWidth3)) * f11) + f11;
@@ -277,21 +277,21 @@ public final class mv extends FrameLayout {
                 ovVar.h.setDuration(Math.max(150, Math.min(measuredWidth2, 600)));
                 ovVar.h.addListener(new org.telegram.ui.Components.k61(this, 18));
                 ovVar.h.start();
-                ovVar.f39322n = true;
-                this.f38767b = false;
+                ovVar.f39349n = true;
+                this.f38794b = false;
             } else {
-                this.f38768c = false;
+                this.f38795c = false;
                 kVar = ((org.telegram.ui.ActionBar.n2) ovVar).actionBar;
                 kVar.setEnabled(true);
-                ovVar.f39320e.setEnabled(true);
+                ovVar.f39347e.setEnabled(true);
             }
-            VelocityTracker velocityTracker = this.f38770f;
+            VelocityTracker velocityTracker = this.f38797f;
             if (velocityTracker != null) {
                 velocityTracker.recycle();
-                this.f38770f = null;
+                this.f38797f = null;
             }
         }
-        return this.f38767b;
+        return this.f38794b;
     }
 
     @Override

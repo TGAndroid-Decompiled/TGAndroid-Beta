@@ -14,8 +14,8 @@ public final class pz0 extends n01 {
     public final void dispatchDraw(Canvas canvas) {
         bi.y3 y3Var;
         super.dispatchDraw(canvas);
-        org.telegram.ui.Components.q5 q5Var = this.f32479e;
-        if (q5Var != null && (y3Var = q5Var.f29584k) != null) {
+        org.telegram.ui.Components.q5 q5Var = this.f32506e;
+        if (q5Var != null && (y3Var = q5Var.f29611k) != null) {
             y3Var.startAnimation();
         }
     }

@@ -43,38 +43,38 @@ import org.telegram.ui.co;
 import w7.x5;
 public final class y1 extends n2 implements NotificationCenter.NotificationCenterDelegate {
     public static org.telegram.ui.ActionBar.b2 h;
-    public d61 f12289a;
-    public final ArrayList f12290b;
-    public NumberTextView f12291c;
+    public d61 f12315a;
+    public final ArrayList f12316b;
+    public NumberTextView f12317c;
     public org.telegram.ui.ActionBar.v0 d;
-    public int f12292e;
-    public boolean f12293f;
+    public int f12318e;
+    public boolean f12319f;
 
     public y1() {
         super(null);
-        this.f12290b = new ArrayList();
-        this.f12293f = true;
+        this.f12316b = new ArrayList();
+        this.f12319f = true;
     }
 
     public static void U(y1 y1Var, int i10, ArrayList arrayList) {
-        if (i10 == y1Var.f12292e) {
+        if (i10 == y1Var.f12318e) {
             for (int i11 = 0; i11 < arrayList.size(); i11++) {
                 if (((h51) arrayList.get(i11)).G instanceof a2) {
-                    ((a2) ((h51) arrayList.get(i11)).G).f11994c = i11;
+                    ((a2) ((h51) arrayList.get(i11)).G).f12020c = i11;
                 }
             }
             b2 f7 = b2.f(y1Var.currentAccount);
-            ArrayList arrayList2 = f7.f12007b;
+            ArrayList arrayList2 = f7.f12033b;
             ArrayList arrayList3 = new ArrayList();
-            for (int i12 = 0; i12 < arrayList2.size(); i12 = com.google.android.gms.internal.vision.e2.e(((a2) arrayList2.get(i12)).f11992a, i12, 1, arrayList3)) {
+            for (int i12 = 0; i12 < arrayList2.size(); i12 = com.google.android.gms.internal.vision.e2.e(((a2) arrayList2.get(i12)).f12018a, i12, 1, arrayList3)) {
             }
             Collections.sort(arrayList2, new a4.e(20));
             for (int i13 = 0; i13 < arrayList2.size(); i13++) {
-                if (((a2) arrayList2.get(i13)).f11992a != ((Integer) arrayList3.get(i13)).intValue()) {
+                if (((a2) arrayList2.get(i13)).f12018a != ((Integer) arrayList3.get(i13)).intValue()) {
                     TLRPC.TL_messages_reorderQuickReplies tL_messages_reorderQuickReplies = new TLRPC.TL_messages_reorderQuickReplies();
-                    for (int i14 = 0; i14 < arrayList2.size(); i14 = com.google.android.gms.internal.vision.e2.e(((a2) arrayList2.get(i14)).f11992a, i14, 1, tL_messages_reorderQuickReplies.order)) {
+                    for (int i14 = 0; i14 < arrayList2.size(); i14 = com.google.android.gms.internal.vision.e2.e(((a2) arrayList2.get(i14)).f12018a, i14, 1, tL_messages_reorderQuickReplies.order)) {
                     }
-                    ConnectionsManager.getInstance(f7.f12006a).sendRequest(tL_messages_reorderQuickReplies, new c7(5));
+                    ConnectionsManager.getInstance(f7.f12032a).sendRequest(tL_messages_reorderQuickReplies, new c7(5));
                     f7.l();
                     return;
                 }
@@ -86,24 +86,24 @@ public final class y1 extends n2 implements NotificationCenter.NotificationCente
         String string = LocaleController.getString(R.string.BusinessReplies);
         String string2 = LocaleController.getString(R.string.BusinessRepliesInfo);
         h51 h51Var = new h51(2);
-        h51Var.f26594l = string;
-        h51Var.f26597o = string2;
-        h51Var.f26595m = "RestrictedEmoji";
-        h51Var.f26596n = "📝";
+        h51Var.f26621l = string;
+        h51Var.f26624o = string2;
+        h51Var.f26622m = "RestrictedEmoji";
+        h51Var.f26623n = "📝";
         arrayList.add(h51Var);
         v51Var.U();
         b2 f7 = b2.f(y1Var.currentAccount);
-        ArrayList arrayList2 = f7.f12007b;
+        ArrayList arrayList2 = f7.f12033b;
         int i10 = 0;
         int i11 = 0;
         int i12 = 0;
         for (int i13 = 0; i13 < arrayList2.size(); i13++) {
-            if (i11 == 0 && !"hello".equalsIgnoreCase(((a2) arrayList2.get(i13)).f11993b)) {
+            if (i11 == 0 && !"hello".equalsIgnoreCase(((a2) arrayList2.get(i13)).f12019b)) {
                 i11 = 0;
             } else {
                 i11 = 1;
             }
-            if (i12 == 0 && !"away".equalsIgnoreCase(((a2) arrayList2.get(i13)).f11993b)) {
+            if (i12 == 0 && !"away".equalsIgnoreCase(((a2) arrayList2.get(i13)).f12019b)) {
                 i12 = 0;
             } else {
                 i12 = 1;
@@ -112,13 +112,13 @@ public final class y1 extends n2 implements NotificationCenter.NotificationCente
                 break;
             }
         }
-        if (arrayList2.size() + (i11 ^ 1) + (i12 ^ 1) < MessagesController.getInstance(f7.f12006a).quickRepliesLimit) {
+        if (arrayList2.size() + (i11 ^ 1) + (i12 ^ 1) < MessagesController.getInstance(f7.f12032a).quickRepliesLimit) {
             h51 c10 = h51.c(1, R.drawable.msg_viewintopic, LocaleController.getString(R.string.BusinessRepliesAdd));
-            c10.f26599q = true;
+            c10.f26626q = true;
             arrayList.add(c10);
         }
-        y1Var.f12292e = v51Var.M();
-        ArrayList arrayList3 = b2.f(y1Var.currentAccount).f12007b;
+        y1Var.f12318e = v51Var.M();
+        ArrayList arrayList3 = b2.f(y1Var.currentAccount).f12033b;
         int size = arrayList3.size();
         while (i10 < size) {
             Object obj = arrayList3.get(i10);
@@ -126,7 +126,7 @@ public final class y1 extends n2 implements NotificationCenter.NotificationCente
             a2 a2Var = (a2) obj;
             h51 h51Var2 = new h51(16);
             h51Var2.G = a2Var;
-            h51Var2.K(y1Var.f12290b.contains(Integer.valueOf(a2Var.f11992a)));
+            h51Var2.K(y1Var.f12316b.contains(Integer.valueOf(a2Var.f12018a)));
             arrayList.add(h51Var2);
         }
         v51Var.L();
@@ -137,28 +137,28 @@ public final class y1 extends n2 implements NotificationCenter.NotificationCente
     public static void W(y1 y1Var, h51 h51Var, View view) {
         if (h51Var.d == 1) {
             d0(y1Var.getParentActivity(), y1Var.currentAccount, null, null, y1Var.getResourceProvider(), new bi.o1(y1Var, 23));
-        } else if (h51Var.f44071a == 16 && (h51Var.G instanceof a2)) {
-            if (!y1Var.f12290b.isEmpty()) {
+        } else if (h51Var.f44098a == 16 && (h51Var.G instanceof a2)) {
+            if (!y1Var.f12316b.isEmpty()) {
                 y1Var.e0(h51Var, view);
                 return;
             }
             a2 a2Var = (a2) h51Var.G;
-            if (!a2Var.f11997g) {
+            if (!a2Var.f12023g) {
                 Bundle e7 = p6.e(5, "chatMode");
                 e7.putLong("user_id", y1Var.getUserConfig().getClientUserId());
-                e7.putString("quick_reply", a2Var.f11993b);
+                e7.putString("quick_reply", a2Var.f12019b);
                 co coVar = new co(e7);
-                coVar.nb(a2Var.f11992a);
+                coVar.nb(a2Var.f12018a);
                 y1Var.presentFragment(coVar);
             }
         }
     }
 
     public static void X(y1 y1Var) {
-        y1Var.f12290b.clear();
-        AndroidUtilities.forEachViews((RecyclerView) y1Var.f12289a, (e2.h) new bi.f(4));
+        y1Var.f12316b.clear();
+        AndroidUtilities.forEachViews((RecyclerView) y1Var.f12315a, (e2.h) new bi.f(4));
         y1Var.actionBar.r();
-        y1Var.f12289a.v1(false);
+        y1Var.f12315a.v1(false);
     }
 
     public static int c0(y1 y1Var) {
@@ -198,7 +198,7 @@ public final class y1 extends n2 implements NotificationCenter.NotificationCente
             i11 = R.string.BusinessRepliesEditTitle;
         }
         String string = LocaleController.getString(i11);
-        org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder2.f20198a;
+        org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder2.f20225a;
         b2Var.R = string;
         final r1 r1Var = new r1(activity, f6Var);
         MediaDataController.getInstance(i10).fetchNewEmojiKeywords(AndroidUtilities.getCurrentKeyboardLanguage(), true);
@@ -210,16 +210,16 @@ public final class y1 extends n2 implements NotificationCenter.NotificationCente
                 charSequence = str;
             }
         } else {
-            charSequence = a2Var.f11993b;
+            charSequence = a2Var.f12019b;
         }
         r1Var.setText(charSequence);
-        int i13 = j6.f20770j5;
+        int i13 = j6.f20797j5;
         r1Var.setTextColor(j6.v0(i13, f6Var));
         r1Var.setHintColor(j6.v0(j6.Xh, f6Var));
         r1Var.setHintText(LocaleController.getString(R.string.BusinessRepliesNamePlaceholder));
         r1Var.setSingleLine(true);
         r1Var.setFocusable(true);
-        r1Var.setLineColors(j6.v0(j6.f20791k6, f6Var), j6.v0(j6.f20809l6, f6Var), j6.v0(j6.f20880p7, f6Var));
+        r1Var.setLineColors(j6.v0(j6.f20818k6, f6Var), j6.v0(j6.f20836l6, f6Var), j6.v0(j6.f20907p7, f6Var));
         r1Var.setImeOptions(6);
         r1Var.setBackgroundDrawable(null);
         r1Var.setPadding(0, 0, AndroidUtilities.dp(42.0f), 0);
@@ -236,7 +236,7 @@ public final class y1 extends n2 implements NotificationCenter.NotificationCente
         textView.setText(LocaleController.getString(i12));
         frameLayout.addView(textView, x5.e(-1, -2, 83));
         TextView textView2 = new TextView(activity);
-        wl.n(j6.f20898q7, f6Var, textView2, 1, 16.0f);
+        wl.n(j6.f20925q7, f6Var, textView2, 1, 16.0f);
         textView2.setText(LocaleController.getString(R.string.BusinessRepliesNameBusy));
         textView2.setAlpha(0.0f);
         frameLayout.addView(textView2, x5.e(-1, -2, 83));
@@ -246,7 +246,7 @@ public final class y1 extends n2 implements NotificationCenter.NotificationCente
         f7.addView(frameLayout, x5.k(24.0f, 5.0f, 24.0f, 12.0f, -1, -2));
         f7.addView(r1Var, x5.k(24.0f, 0.0f, 24.0f, 10.0f, -1, -2));
         alertDialog$Builder2.n(f7);
-        b2Var.f20224a = AndroidUtilities.dp(292.0f);
+        b2Var.f20251a = AndroidUtilities.dp(292.0f);
         r1Var.setOnEditorActionListener(new u1(r1Var, i10, a2Var, textView2, r3Var, callback, b2VarArr, view));
         alertDialog$Builder2.k(LocaleController.getString(R.string.Done), new n1(r1Var, r3Var, i10, a2Var, textView2, callback));
         alertDialog$Builder2.h(LocaleController.getString(R.string.Cancel), new i0.b(8));
@@ -297,7 +297,7 @@ public final class y1 extends n2 implements NotificationCenter.NotificationCente
             });
             b2VarArr[0].show();
         }
-        b2VarArr[r32].f20238h0 = r32;
+        b2VarArr[r32].f20265h0 = r32;
         r1Var.setSelection(r1Var.getText().length());
     }
 
@@ -309,62 +309,62 @@ public final class y1 extends n2 implements NotificationCenter.NotificationCente
         this.actionBar.setActionBarMenuOnItemClick(new p1(this));
         org.telegram.ui.ActionBar.z j3 = this.actionBar.j(null);
         NumberTextView numberTextView = new NumberTextView(getParentActivity());
-        this.f12291c = numberTextView;
+        this.f12317c = numberTextView;
         numberTextView.setTextSize(18);
-        this.f12291c.setTypeface(AndroidUtilities.bold());
-        this.f12291c.setTextColor(j6.w0(null, j6.f21044y8, false));
-        j3.addView(this.f12291c, x5.m(1.0f, 0, -1, 72, 0, 0));
-        this.f12291c.setOnTouchListener(new ci.d(2));
+        this.f12317c.setTypeface(AndroidUtilities.bold());
+        this.f12317c.setTextColor(j6.w0(null, j6.f21071y8, false));
+        j3.addView(this.f12317c, x5.m(1.0f, 0, -1, 72, 0, 0));
+        this.f12317c.setOnTouchListener(new ci.d(2));
         org.telegram.ui.ActionBar.v0 a2 = j3.a(1, R.drawable.msg_edit);
         this.d = a2;
         a2.setContentDescription(LocaleController.getString(R.string.Edit));
         j3.a(2, R.drawable.msg_delete).setContentDescription(LocaleController.getString(R.string.Delete));
         q1 q1Var = new q1(context, null, 0);
-        q1Var.setBackgroundColor(j6.w0(null, j6.f20607a7, false));
+        q1Var.setBackgroundColor(j6.w0(null, j6.f20634a7, false));
         d61 d61Var = new d61(this, new Utilities.Callback2(this) {
-            public final y1 f12141b;
+            public final y1 f12167b;
 
             {
-                this.f12141b = this;
+                this.f12167b = this;
             }
 
             @Override
             public final void run(Object obj, Object obj2) {
                 switch (r2) {
                     case 0:
-                        y1.V(this.f12141b, (ArrayList) obj, (v51) obj2);
+                        y1.V(this.f12167b, (ArrayList) obj, (v51) obj2);
                         return;
                     default:
-                        y1.U(this.f12141b, ((Integer) obj).intValue(), (ArrayList) obj2);
+                        y1.U(this.f12167b, ((Integer) obj).intValue(), (ArrayList) obj2);
                         return;
                 }
             }
         }, new m1(this), new m1(this));
-        this.f12289a = d61Var;
+        this.f12315a = d61Var;
         d61Var.o1();
-        d61 d61Var2 = this.f12289a;
-        d61Var2.Y2.f31135r = false;
+        d61 d61Var2 = this.f12315a;
+        d61Var2.Y2.f31162r = false;
         d61Var2.A1(new Utilities.Callback2(this) {
-            public final y1 f12141b;
+            public final y1 f12167b;
 
             {
-                this.f12141b = this;
+                this.f12167b = this;
             }
 
             @Override
             public final void run(Object obj, Object obj2) {
                 switch (r2) {
                     case 0:
-                        y1.V(this.f12141b, (ArrayList) obj, (v51) obj2);
+                        y1.V(this.f12167b, (ArrayList) obj, (v51) obj2);
                         return;
                     default:
-                        y1.U(this.f12141b, ((Integer) obj).intValue(), (ArrayList) obj2);
+                        y1.U(this.f12167b, ((Integer) obj).intValue(), (ArrayList) obj2);
                         return;
                 }
             }
         }, false);
-        q1Var.addView(this.f12289a, x5.c(-1.0f, -1));
-        this.actionBar.A(this.f12289a, true);
+        q1Var.addView(this.f12315a, x5.c(-1.0f, -1));
+        this.actionBar.A(this.f12315a, true);
         this.fragmentView = q1Var;
         return q1Var;
     }
@@ -373,7 +373,7 @@ public final class y1 extends n2 implements NotificationCenter.NotificationCente
     public final void didReceivedNotification(int i10, int i11, Object... objArr) {
         d61 d61Var;
         v51 v51Var;
-        if (i10 == NotificationCenter.quickRepliesUpdated && (d61Var = this.f12289a) != null && (v51Var = d61Var.Y2) != null) {
+        if (i10 == NotificationCenter.quickRepliesUpdated && (d61Var = this.f12315a) != null && (v51Var = d61Var.Y2) != null) {
             v51Var.N(true);
         }
     }
@@ -384,17 +384,17 @@ public final class y1 extends n2 implements NotificationCenter.NotificationCente
         float f10;
         a2 a2Var = (a2) h51Var.G;
         x1 x1Var = (x1) view;
-        Integer valueOf = Integer.valueOf(a2Var.f11992a);
-        ArrayList arrayList = this.f12290b;
+        Integer valueOf = Integer.valueOf(a2Var.f12018a);
+        ArrayList arrayList = this.f12316b;
         if (arrayList.contains(valueOf)) {
-            arrayList.remove(Integer.valueOf(a2Var.f11992a));
+            arrayList.remove(Integer.valueOf(a2Var.f12018a));
         } else {
-            arrayList.add(Integer.valueOf(a2Var.f11992a));
+            arrayList.add(Integer.valueOf(a2Var.f12018a));
         }
         boolean z11 = true;
-        this.f12289a.v1(!arrayList.isEmpty());
-        boolean contains = arrayList.contains(Integer.valueOf(a2Var.f11992a));
-        h51Var.f26588e = contains;
+        this.f12315a.v1(!arrayList.isEmpty());
+        boolean contains = arrayList.contains(Integer.valueOf(a2Var.f12018a));
+        h51Var.f26615e = contains;
         x1Var.d.a(contains, true);
         if (this.actionBar.s() == arrayList.isEmpty()) {
             if (arrayList.isEmpty()) {
@@ -403,7 +403,7 @@ public final class y1 extends n2 implements NotificationCenter.NotificationCente
                 this.actionBar.O(null, null);
             }
         }
-        this.f12291c.a(Math.max(1, arrayList.size()), true);
+        this.f12317c.a(Math.max(1, arrayList.size()), true);
         if (arrayList.size() == 1) {
             z10 = true;
         } else {
@@ -411,25 +411,25 @@ public final class y1 extends n2 implements NotificationCenter.NotificationCente
         }
         if (z10) {
             a2 c10 = b2.f(this.currentAccount).c(((Integer) arrayList.get(0)).intValue());
-            z10 = (c10 == null || b2.g(c10.f11993b)) ? false : false;
+            z10 = (c10 == null || b2.g(c10.f12019b)) ? false : false;
         }
-        if (this.f12293f != z10) {
-            this.f12293f = z10;
+        if (this.f12319f != z10) {
+            this.f12319f = z10;
             ViewPropertyAnimator animate = this.d.animate();
             float f11 = 1.0f;
-            if (this.f12293f) {
+            if (this.f12319f) {
                 f7 = 1.0f;
             } else {
                 f7 = 0.0f;
             }
             ViewPropertyAnimator alpha = animate.alpha(f7);
-            if (this.f12293f) {
+            if (this.f12319f) {
                 f10 = 1.0f;
             } else {
                 f10 = 0.7f;
             }
             ViewPropertyAnimator scaleX = alpha.scaleX(f10);
-            if (!this.f12293f) {
+            if (!this.f12319f) {
                 f11 = 0.7f;
             }
             wl.q(scaleX.scaleY(f11), pr.h, 340L);
@@ -456,7 +456,7 @@ public final class y1 extends n2 implements NotificationCenter.NotificationCente
 
     @Override
     public final void onInsets(int i10, int i11, int i12, int i13) {
-        this.f12289a.setPadding(0, 0, 0, i13);
-        this.f12289a.setClipToPadding(false);
+        this.f12315a.setPadding(0, 0, 0, i13);
+        this.f12315a.setClipToPadding(false);
     }
 }

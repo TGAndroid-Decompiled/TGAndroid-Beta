@@ -5,17 +5,17 @@ import java.io.Serializable;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.er0;
 public class BotWebViewContainer$WebViewProxy {
-    public d1 f41989a;
-    public final z0 f41990b;
+    public d1 f42016a;
+    public final z0 f42017b;
 
     public BotWebViewContainer$WebViewProxy(z0 z0Var, d1 d1Var) {
-        this.f41990b = z0Var;
-        this.f41989a = d1Var;
+        this.f42017b = z0Var;
+        this.f42016a = d1Var;
     }
 
     @JavascriptInterface
     public void postEvent(String str, String str2) {
-        if (this.f41989a == null) {
+        if (this.f42016a == null) {
             return;
         }
         AndroidUtilities.runOnUIThread(new er0(this, str, str2, 18));

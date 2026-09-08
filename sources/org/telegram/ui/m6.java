@@ -8,25 +8,25 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 public final class m6 implements Utilities.Callback2 {
-    public final int f38577a;
-    public final Object f38578b;
-    public final Object f38579c;
+    public final int f38604a;
+    public final Object f38605b;
+    public final Object f38606c;
     public final Object d;
 
     public m6(Object obj, Object obj2, Object obj3, int i10) {
-        this.f38577a = i10;
-        this.f38578b = obj;
-        this.f38579c = obj2;
+        this.f38604a = i10;
+        this.f38605b = obj;
+        this.f38606c = obj2;
         this.d = obj3;
     }
 
     @Override
     public final void run(Object obj, Object obj2) {
-        int i10 = this.f38577a;
+        int i10 = this.f38604a;
         int i11 = 0;
         Object obj3 = this.d;
-        Object obj4 = this.f38579c;
-        Object obj5 = this.f38578b;
+        Object obj4 = this.f38606c;
+        Object obj5 = this.f38605b;
         switch (i10) {
             case 0:
                 org.telegram.ui.ActionBar.n5 n5Var = (org.telegram.ui.ActionBar.n5) obj3;
@@ -42,12 +42,12 @@ public final class m6 implements Utilities.Callback2 {
                 Boolean bool = (Boolean) obj;
                 TLRPC.WebPage webPage = (TLRPC.WebPage) obj2;
                 if (bool.booleanValue() && !(webPage instanceof TLRPC.TL_webPagePending)) {
-                    Iterator it = coVar.f35344mb.keySet().iterator();
-                    while (it.hasNext() && coVar.f35344mb.size() > 5) {
+                    Iterator it = coVar.f35371mb.keySet().iterator();
+                    while (it.hasNext() && coVar.f35371mb.size() > 5) {
                         it.next();
                         it.remove();
                     }
-                    coVar.f35344mb.put(getwebpagepreview.message, webPage);
+                    coVar.f35371mb.put(getwebpagepreview.message, webPage);
                 }
                 kgVar.run(bool, webPage);
                 return;
@@ -144,7 +144,7 @@ public final class m6 implements Utilities.Callback2 {
                 if (passkeys != null) {
                     f3Var.dismiss();
                     while (i11 < passkeys.passkeys.size()) {
-                        if (TextUtils.equals(passkeys.passkeys.get(i11).f20075id, passkey.f20075id)) {
+                        if (TextUtils.equals(passkeys.passkeys.get(i11).f20102id, passkey.f20102id)) {
                             passkeys.passkeys.remove(i11);
                             i11--;
                         }

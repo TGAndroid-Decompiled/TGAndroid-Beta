@@ -4,24 +4,24 @@ import android.animation.ValueAnimator;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
 public final class xa implements ValueAnimator.AnimatorUpdateListener {
-    public final int f3999a;
-    public final pb f4000b;
+    public final int f4026a;
+    public final pb f4027b;
 
     public xa(pb pbVar, int i10) {
-        this.f3999a = i10;
-        this.f4000b = pbVar;
+        this.f4026a = i10;
+        this.f4027b = pbVar;
     }
 
     @Override
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
         o5 currentPeerView;
-        switch (this.f3999a) {
+        switch (this.f4026a) {
             case 0:
                 float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                pb pbVar = this.f4000b;
+                pb pbVar = this.f4027b;
                 pbVar.U = floatValue;
                 pbVar.o();
-                db dbVar = pbVar.f3572s;
+                db dbVar = pbVar.f3599s;
                 if (dbVar != null) {
                     dbVar.invalidate();
                 }
@@ -33,10 +33,10 @@ public final class xa implements ValueAnimator.AnimatorUpdateListener {
                 return;
             case 1:
                 float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                pb pbVar2 = this.f4000b;
+                pb pbVar2 = this.f4027b;
                 pbVar2.U = floatValue2;
                 eb ebVar = pbVar2.v;
-                if (ebVar != null && floatValue2 > 0.6f && b0.f2786c && ebVar.f2787a) {
+                if (ebVar != null && floatValue2 > 0.6f && b0.f2813c && ebVar.f2814a) {
                     ebVar.a(false);
                 }
                 t1 t1Var2 = pbVar2.A0;
@@ -44,7 +44,7 @@ public final class xa implements ValueAnimator.AnimatorUpdateListener {
                     t1Var2.v((1.0f - pbVar2.V) * pbVar2.U);
                 }
                 pbVar2.o();
-                db dbVar2 = pbVar2.f3572s;
+                db dbVar2 = pbVar2.f3599s;
                 if (dbVar2 != null) {
                     dbVar2.invalidate();
                     return;
@@ -52,10 +52,10 @@ public final class xa implements ValueAnimator.AnimatorUpdateListener {
                 return;
             case 2:
                 float floatValue3 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                pb pbVar3 = this.f4000b;
+                pb pbVar3 = this.f4027b;
                 pbVar3.Z = floatValue3;
-                pbVar3.f3540d0 = Utilities.clamp(pbVar3.Z / AndroidUtilities.dp(200.0f), 1.0f, 0.0f);
-                fb fbVar = pbVar3.f3561n0;
+                pbVar3.f3567d0 = Utilities.clamp(pbVar3.Z / AndroidUtilities.dp(200.0f), 1.0f, 0.0f);
+                fb fbVar = pbVar3.f3588n0;
                 if (fbVar == null) {
                     currentPeerView = null;
                 } else {
@@ -68,8 +68,8 @@ public final class xa implements ValueAnimator.AnimatorUpdateListener {
                 return;
             default:
                 float floatValue4 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                pb pbVar4 = this.f4000b;
-                pbVar4.f3543e0 = floatValue4;
+                pb pbVar4 = this.f4027b;
+                pbVar4.f3570e0 = floatValue4;
                 pbVar4.v.invalidate();
                 return;
         }

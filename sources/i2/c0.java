@@ -9,16 +9,16 @@ import di.nb;
 import fi.j4;
 import java.util.ArrayList;
 import org.telegram.ui.Components.g71;
-public final class c0 implements k2.j, SurfaceHolder.Callback, TextureView.SurfaceTextureListener {
-    public final f0 f11471a;
+public final class c0 implements a3.l0, k2.j, SurfaceHolder.Callback, TextureView.SurfaceTextureListener {
+    public final f0 f11497a;
 
     public c0(f0 f0Var) {
-        this.f11471a = f0Var;
+        this.f11497a = f0Var;
     }
 
     @Override
     public final void onSurfaceTextureAvailable(SurfaceTexture surfaceTexture, int i10, int i11) {
-        f0 f0Var = this.f11471a;
+        f0 f0Var = this.f11497a;
         org.telegram.messenger.b1 b1Var = f0Var.m0;
         if (b1Var != null) {
             b1Var.execute(new a0(this, surfaceTexture, i10, i11, 0));
@@ -32,8 +32,8 @@ public final class c0 implements k2.j, SurfaceHolder.Callback, TextureView.Surfa
 
     @Override
     public final boolean onSurfaceTextureDestroyed(SurfaceTexture surfaceTexture) {
-        f0 f0Var = this.f11471a;
-        ArrayList arrayList = f0Var.f11528n0;
+        f0 f0Var = this.f11497a;
+        ArrayList arrayList = f0Var.f11554n0;
         int size = arrayList.size();
         int i10 = 0;
         while (i10 < size) {
@@ -55,7 +55,7 @@ public final class c0 implements k2.j, SurfaceHolder.Callback, TextureView.Surfa
 
     @Override
     public final void onSurfaceTextureSizeChanged(SurfaceTexture surfaceTexture, int i10, int i11) {
-        f0 f0Var = this.f11471a;
+        f0 f0Var = this.f11497a;
         org.telegram.messenger.b1 b1Var = f0Var.m0;
         if (b1Var != null) {
             b1Var.execute(new hg.n(this, surfaceTexture, i10, i11));
@@ -66,13 +66,13 @@ public final class c0 implements k2.j, SurfaceHolder.Callback, TextureView.Surfa
 
     @Override
     public final void onSurfaceTextureUpdated(SurfaceTexture surfaceTexture) {
-        f0 f0Var = this.f11471a;
+        f0 f0Var = this.f11497a;
         org.telegram.messenger.b1 b1Var = f0Var.m0;
         if (b1Var != null) {
             b1Var.execute(new j4(11, this, surfaceTexture));
             return;
         }
-        ArrayList arrayList = f0Var.f11528n0;
+        ArrayList arrayList = f0Var.f11554n0;
         int size = arrayList.size();
         int i10 = 0;
         while (i10 < size) {
@@ -84,12 +84,12 @@ public final class c0 implements k2.j, SurfaceHolder.Callback, TextureView.Surfa
 
     @Override
     public final void surfaceChanged(SurfaceHolder surfaceHolder, int i10, int i11, int i12) {
-        this.f11471a.m1(i11, i12);
+        this.f11497a.m1(i11, i12);
     }
 
     @Override
     public final void surfaceCreated(SurfaceHolder surfaceHolder) {
-        f0 f0Var = this.f11471a;
+        f0 f0Var = this.f11497a;
         if (f0Var.U) {
             f0Var.t1(surfaceHolder.getSurface());
         }
@@ -97,7 +97,7 @@ public final class c0 implements k2.j, SurfaceHolder.Callback, TextureView.Surfa
 
     @Override
     public final void surfaceDestroyed(SurfaceHolder surfaceHolder) {
-        f0 f0Var = this.f11471a;
+        f0 f0Var = this.f11497a;
         if (f0Var.U) {
             f0Var.t1(null);
         }

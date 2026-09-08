@@ -4,33 +4,33 @@ import android.view.View;
 import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.messenger.AndroidUtilities;
 public final class sy0 implements e2.h {
-    public final int f40571a;
-    public final ProfileActivity f40572b;
+    public final int f40598a;
+    public final ProfileActivity f40599b;
 
     public sy0(ProfileActivity profileActivity, int i10) {
-        this.f40571a = i10;
-        this.f40572b = profileActivity;
+        this.f40598a = i10;
+        this.f40599b = profileActivity;
     }
 
     @Override
     public final void accept(Object obj) {
         View view = (View) obj;
-        switch (this.f40571a) {
+        switch (this.f40598a) {
             case 0:
                 if (view instanceof org.telegram.ui.Cells.c9) {
                     org.telegram.ui.Cells.c9 c9Var = (org.telegram.ui.Cells.c9) view;
-                    wh.p pVar = c9Var.f21704a;
-                    ProfileActivity profileActivity = this.f40572b;
-                    pVar.setLoading(profileActivity.f33921i5);
-                    c9Var.f21705b.setLoading(profileActivity.f33921i5);
+                    wh.p pVar = c9Var.f21731a;
+                    ProfileActivity profileActivity = this.f40599b;
+                    pVar.setLoading(profileActivity.f33948i5);
+                    c9Var.f21732b.setLoading(profileActivity.f33948i5);
                     return;
                 }
                 return;
             default:
                 boolean z10 = view instanceof org.telegram.ui.Cells.l4;
-                ProfileActivity profileActivity2 = this.f40572b;
+                ProfileActivity profileActivity2 = this.f40599b;
                 if (z10) {
-                    ((org.telegram.ui.Cells.l4) view).setTextColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.L6, profileActivity2.f34031z0));
+                    ((org.telegram.ui.Cells.l4) view).setTextColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.L6, profileActivity2.f34058z0));
                 } else if (view instanceof org.telegram.ui.Cells.c9) {
                     ((org.telegram.ui.Cells.c9) view).e();
                 } else if (view instanceof org.telegram.ui.Cells.r8) {
@@ -41,10 +41,10 @@ public final class sy0 implements e2.h {
                     ((org.telegram.ui.Cells.i5) view).getCheckBox().invalidate();
                 } else if (view instanceof ig.j1) {
                     ig.j1 j1Var = (ig.j1) view;
-                    org.telegram.ui.Components.cq cqVar = j1Var.f12117r;
+                    org.telegram.ui.Components.cq cqVar = j1Var.f12143r;
                     int dp = AndroidUtilities.dp(8.0f);
-                    int i10 = org.telegram.ui.ActionBar.j6.f20862o6;
-                    org.telegram.ui.ActionBar.f6 f6Var = j1Var.f12111a;
+                    int i10 = org.telegram.ui.ActionBar.j6.f20889o6;
+                    org.telegram.ui.ActionBar.f6 f6Var = j1Var.f12137a;
                     int v02 = org.telegram.ui.ActionBar.j6.v0(i10, f6Var);
                     j1Var.a(v02);
                     int l1 = org.telegram.ui.ActionBar.j6.l1(0.1f, v02);
@@ -59,7 +59,7 @@ public final class sy0 implements e2.h {
                     ((org.telegram.ui.Cells.g6) view).d();
                 }
                 a11 a11Var = profileActivity2.d;
-                profileActivity2.f33856a.getClass();
+                profileActivity2.f33883a.getClass();
                 RecyclerView.R(view);
                 a11Var.getClass();
                 profileActivity2.d.getClass();

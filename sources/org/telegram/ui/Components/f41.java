@@ -27,26 +27,26 @@ public final class f41 extends bb {
     public final ImageView X;
     public final FrameLayout Y;
     public final di.d Z;
-    public CharSequence f25902a0;
-    public boolean f25903b0;
-    public CharSequence f25904c0;
-    public st f25905d0;
-    public String f25906e0;
-    public String f25907f0;
-    public int f25908g0;
-    public final String[] f25909h0;
-    public final String[] f25910i0;
-    public v51 f25911j0;
-    public boolean f25912k0;
-    public int f25913l0;
+    public CharSequence f25929a0;
+    public boolean f25930b0;
+    public CharSequence f25931c0;
+    public st f25932d0;
+    public String f25933e0;
+    public String f25934f0;
+    public int f25935g0;
+    public final String[] f25936h0;
+    public final String[] f25937i0;
+    public v51 f25938j0;
+    public boolean f25939k0;
+    public int f25940l0;
 
     public f41(Context context, org.telegram.ui.ActionBar.f6 f6Var) {
         super(context, null, false, false, 2, f6Var);
-        this.f25908g0 = 1;
-        this.f25909h0 = new String[]{"formal", "neutral", "casual"};
-        this.f25910i0 = new String[]{"Formal", "Neutral", "Casual"};
-        this.f25912k0 = true;
-        this.f25913l0 = -1;
+        this.f25935g0 = 1;
+        this.f25936h0 = new String[]{"formal", "neutral", "casual"};
+        this.f25937i0 = new String[]{"Formal", "Neutral", "Casual"};
+        this.f25939k0 = true;
+        this.f25940l0 = -1;
         ImageView imageView = new ImageView(context);
         this.X = imageView;
         imageView.setScaleType(ImageView.ScaleType.CENTER);
@@ -54,17 +54,17 @@ public final class f41 extends bb {
         int i10 = org.telegram.ui.ActionBar.j6.G6;
         imageView.setColorFilter(getThemedColor(i10));
         imageView.setBackground(org.telegram.ui.ActionBar.j6.f0(org.telegram.ui.ActionBar.j6.l1(0.1f, getThemedColor(i10)), 1, -1));
-        this.f24647e.addView(imageView, w7.x5.d(54, 54.0f, 85, 0.0f, 0.0f, 8.0f, 0.0f));
+        this.f24674e.addView(imageView, w7.x5.d(54, 54.0f, 85, 0.0f, 0.0f, 8.0f, 0.0f));
         w7.z5.b(imageView, 0.1f, 1.5f);
         imageView.setOnClickListener(new w31(this, 2));
         String B = u31.B();
-        this.f25907f0 = B;
+        this.f25934f0 = B;
         if (B == null) {
-            this.f25907f0 = TranslateController.currentLanguage();
+            this.f25934f0 = TranslateController.currentLanguage();
         }
         this.L = false;
         this.K = AndroidUtilities.dp(12.0f);
-        int i11 = org.telegram.ui.ActionBar.j6.f20607a7;
+        int i11 = org.telegram.ui.ActionBar.j6.f20634a7;
         setBackgroundColor(getThemedColor(i11));
         FrameLayout frameLayout = new FrameLayout(context);
         this.Y = frameLayout;
@@ -87,12 +87,12 @@ public final class f41 extends bb {
         this.d.o1();
         this.d.setOnItemClickListener(new bi.x5(14, this, f6Var));
         s4.j jVar = new s4.j();
-        jVar.f45777m = false;
+        jVar.f45805m = false;
         jVar.C = false;
         jVar.o(pr.h);
         jVar.n(350L);
         this.d.setItemAnimator(jVar);
-        this.f25911j0.N(false);
+        this.f25938j0.N(false);
     }
 
     public static void P(f41 f41Var, View view) {
@@ -100,58 +100,58 @@ public final class f41 extends bb {
         n70 F = n70.F(f41Var.container, f41Var.resourcesProvider, view);
         F.X = AndroidUtilities.dp(450.0f);
         int i10 = 0;
-        F.f28661t = false;
+        F.f28688t = false;
         F.Y = true;
         ScrollView scrollView = new ScrollView(f41Var.getContext());
         LinearLayout linearLayout = new LinearLayout(f41Var.getContext());
         linearLayout.setOrientation(1);
         scrollView.addView(linearLayout);
         F.q(scrollView);
-        for (int i11 = 0; i11 < f41Var.f25909h0.length; i11++) {
-            if (f41Var.f25908g0 == i11) {
+        for (int i11 = 0; i11 < f41Var.f25936h0.length; i11++) {
+            if (f41Var.f25935g0 == i11) {
                 z10 = true;
             } else {
                 z10 = false;
             }
-            f41Var.T(F, linearLayout, z10, f41Var.f25910i0[i11], new m8(f41Var, i11, 12));
+            f41Var.T(F, linearLayout, z10, f41Var.f25937i0[i11], new m8(f41Var, i11, 12));
         }
         View k1Var = new org.telegram.ui.ActionBar.k1(f41Var.getContext(), f41Var.resourcesProvider);
         k1Var.setTag(R.id.fit_width_tag, 1);
         linearLayout.addView(k1Var, w7.x5.n(-1, 8));
         ArrayList<TranslateController.Language> suggestedLanguages = TranslateController.getSuggestedLanguages(null);
         ArrayList<TranslateController.Language> languages = TranslateController.getLanguages();
-        if (!TextUtils.isEmpty(f41Var.f25907f0)) {
-            f41Var.T(F, linearLayout, true, u31.y(u31.D(f41Var.f25907f0, null, null)), null);
+        if (!TextUtils.isEmpty(f41Var.f25934f0)) {
+            f41Var.T(F, linearLayout, true, u31.y(u31.D(f41Var.f25934f0, null, null)), null);
         }
         int size = suggestedLanguages.size();
         int i12 = 0;
         while (i12 < size) {
             int i13 = i12 + 1;
             final TranslateController.Language language = suggestedLanguages.get(i12);
-            if (!TextUtils.equals(language.code, f41Var.f25907f0)) {
+            if (!TextUtils.equals(language.code, f41Var.f25934f0)) {
                 f41Var.T(F, linearLayout, false, language.displayName, new Runnable(f41Var) {
-                    public final f41 f31087b;
+                    public final f41 f31114b;
 
                     {
-                        this.f31087b = f41Var;
+                        this.f31114b = f41Var;
                     }
 
                     @Override
                     public final void run() {
                         switch (r3) {
                             case 0:
-                                f41 f41Var2 = this.f31087b;
+                                f41 f41Var2 = this.f31114b;
                                 f41Var2.U();
                                 String str = language.code;
-                                f41Var2.f25907f0 = str;
+                                f41Var2.f25934f0 = str;
                                 u31.I(str);
                                 f41Var2.V();
                                 return;
                             default:
-                                f41 f41Var3 = this.f31087b;
+                                f41 f41Var3 = this.f31114b;
                                 f41Var3.U();
                                 String str2 = language.code;
-                                f41Var3.f25907f0 = str2;
+                                f41Var3.f25934f0 = str2;
                                 u31.I(str2);
                                 f41Var3.V();
                                 return;
@@ -169,29 +169,29 @@ public final class f41 extends bb {
             TranslateController.Language language2 = languages.get(i10);
             i10++;
             final TranslateController.Language language3 = language2;
-            f41Var.T(F, linearLayout, TextUtils.equals(language3.code, f41Var.f25907f0), language3.displayName, new Runnable(f41Var) {
-                public final f41 f31087b;
+            f41Var.T(F, linearLayout, TextUtils.equals(language3.code, f41Var.f25934f0), language3.displayName, new Runnable(f41Var) {
+                public final f41 f31114b;
 
                 {
-                    this.f31087b = f41Var;
+                    this.f31114b = f41Var;
                 }
 
                 @Override
                 public final void run() {
                     switch (r3) {
                         case 0:
-                            f41 f41Var2 = this.f31087b;
+                            f41 f41Var2 = this.f31114b;
                             f41Var2.U();
                             String str = language3.code;
-                            f41Var2.f25907f0 = str;
+                            f41Var2.f25934f0 = str;
                             u31.I(str);
                             f41Var2.V();
                             return;
                         default:
-                            f41 f41Var3 = this.f31087b;
+                            f41 f41Var3 = this.f31114b;
                             f41Var3.U();
                             String str2 = language3.code;
-                            f41Var3.f25907f0 = str2;
+                            f41Var3.f25934f0 = str2;
                             u31.I(str2);
                             f41Var3.V();
                             return;
@@ -210,7 +210,7 @@ public final class f41 extends bb {
     }
 
     public static void R(f41 f41Var, TLRPC.TL_messages_translateResult tL_messages_translateResult, TLRPC.TL_error tL_error) {
-        f41Var.f25913l0 = -1;
+        f41Var.f25940l0 = -1;
         di.d dVar = f41Var.Z;
         dVar.setLoading(false);
         if (tL_error != null) {
@@ -218,9 +218,9 @@ public final class f41 extends bb {
             dVar.setText(LocaleController.getString(R.string.OK));
             dVar.setOnClickListener(new w31(f41Var, 0));
         } else if (tL_messages_translateResult != null && !tL_messages_translateResult.result.isEmpty()) {
-            f41Var.f25904c0 = MessageObject.formatTextWithEntities(tL_messages_translateResult.result.get(0));
-            f41Var.f25903b0 = false;
-            f41Var.f25911j0.N(true);
+            f41Var.f25931c0 = MessageObject.formatTextWithEntities(tL_messages_translateResult.result.get(0));
+            f41Var.f25930b0 = false;
+            f41Var.f25938j0.N(true);
         } else {
             dVar.setText(LocaleController.getString(R.string.OK));
             dVar.setOnClickListener(new w31(f41Var, 1));
@@ -228,12 +228,12 @@ public final class f41 extends bb {
     }
 
     public static void S(f41 f41Var, org.telegram.ui.ActionBar.f6 f6Var, int i10) {
-        h51 G = f41Var.f25911j0.G(i10 - 1);
+        h51 G = f41Var.f25938j0.G(i10 - 1);
         if (G != null) {
             int i11 = G.d;
             if (i11 == 1) {
-                CharSequence charSequence = f41Var.f25904c0;
-                if (charSequence != null && !f41Var.f25903b0) {
+                CharSequence charSequence = f41Var.f25931c0;
+                if (charSequence != null && !f41Var.f25930b0) {
                     AndroidUtilities.addToClipboard(charSequence);
                 }
             } else if (i11 == 2) {
@@ -273,16 +273,16 @@ public final class f41 extends bb {
     }
 
     public final void U() {
-        if (this.f25913l0 >= 0) {
-            ConnectionsManager.getInstance(this.currentAccount).cancelRequest(this.f25913l0, true);
-            this.f25913l0 = -1;
+        if (this.f25940l0 >= 0) {
+            ConnectionsManager.getInstance(this.currentAccount).cancelRequest(this.f25940l0, true);
+            this.f25940l0 = -1;
         }
     }
 
     public final void V() {
         String charSequence;
         TLRPC.TL_textWithEntities tL_textWithEntities = new TLRPC.TL_textWithEntities();
-        CharSequence[] charSequenceArr = {this.f25902a0};
+        CharSequence[] charSequenceArr = {this.f25929a0};
         tL_textWithEntities.entities = MediaDataController.getInstance(this.currentAccount).getEntities(charSequenceArr, true);
         CharSequence charSequence2 = charSequenceArr[0];
         if (charSequence2 == null) {
@@ -291,25 +291,25 @@ public final class f41 extends bb {
             charSequence = charSequence2.toString();
         }
         tL_textWithEntities.text = charSequence;
-        if (this.f25905d0 != null) {
+        if (this.f25932d0 != null) {
             this.Z.setLoading(true);
         }
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
         spannableStringBuilder.append((CharSequence) LocaleController.getString(R.string.Loading));
         spannableStringBuilder.setSpan(new i90(null, AndroidUtilities.dp(120.0f), 0, null), 0, spannableStringBuilder.length(), 33);
-        this.f25904c0 = spannableStringBuilder;
-        this.f25903b0 = true;
+        this.f25931c0 = spannableStringBuilder;
+        this.f25930b0 = true;
         TLRPC.TL_messages_translateText tL_messages_translateText = new TLRPC.TL_messages_translateText();
-        tL_messages_translateText.to_lang = this.f25907f0;
+        tL_messages_translateText.to_lang = this.f25934f0;
         tL_messages_translateText.flags |= 2;
         tL_messages_translateText.text.add(tL_textWithEntities);
-        int i10 = this.f25908g0;
+        int i10 = this.f25935g0;
         if (i10 != 1) {
             tL_messages_translateText.flags |= 4;
-            tL_messages_translateText.tone = this.f25909h0[i10];
+            tL_messages_translateText.tone = this.f25936h0[i10];
         }
-        this.f25913l0 = ConnectionsManager.getInstance(this.currentAccount).sendRequestTyped(tL_messages_translateText, new Object(), new x31(this, 1));
-        this.f25911j0.N(true);
+        this.f25940l0 = ConnectionsManager.getInstance(this.currentAccount).sendRequestTyped(tL_messages_translateText, new Object(), new x31(this, 1));
+        this.f25938j0.N(true);
     }
 
     @Override
@@ -327,13 +327,13 @@ public final class f41 extends bb {
     @Override
     public final void show() {
         super.show();
-        xa xaVar = this.f24647e;
+        xa xaVar = this.f24674e;
         if (xaVar != null) {
             xaVar.setTitle("Translate");
         }
-        this.f25911j0.N(false);
+        this.f25938j0.N(false);
         V();
-        if (this.f25905d0 != null) {
+        if (this.f25932d0 != null) {
             di.d dVar = this.Z;
             dVar.setText("Use This Translation");
             dVar.setOnClickListener(new w31(this, 3));
@@ -343,8 +343,8 @@ public final class f41 extends bb {
     @Override
     public final kl0 v(ll0 ll0Var) {
         v51 v51Var = new v51(ll0Var, getContext(), this.currentAccount, 0, true, new x31(this, 0), this.resourcesProvider);
-        this.f25911j0 = v51Var;
-        v51Var.f31135r = false;
+        this.f25938j0 = v51Var;
+        v51Var.f31162r = false;
         return v51Var;
     }
 

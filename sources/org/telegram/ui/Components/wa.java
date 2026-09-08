@@ -7,20 +7,20 @@ import android.view.MotionEvent;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 public final class wa extends ov0 {
-    public final boolean f32221w0;
-    public final boolean f32222x0;
-    public final bb f32223y0;
+    public final boolean f32248w0;
+    public final boolean f32249x0;
+    public final bb f32250y0;
 
     public wa(bb bbVar, Context context, boolean z10, boolean z11) {
         super(context, null);
-        this.f32223y0 = bbVar;
-        this.f32221w0 = z10;
-        this.f32222x0 = z11;
+        this.f32250y0 = bbVar;
+        this.f32248w0 = z10;
+        this.f32249x0 = z11;
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
-        bb bbVar = this.f32223y0;
+        bb bbVar = this.f32250y0;
         bbVar.I(canvas, this);
         super.dispatchDraw(canvas);
         bbVar.H(canvas, this);
@@ -31,7 +31,7 @@ public final class wa extends ov0 {
         Drawable drawable;
         if (motionEvent.getAction() == 0) {
             float y3 = motionEvent.getY();
-            bb bbVar = this.f32223y0;
+            bb bbVar = this.f32250y0;
             drawable = ((org.telegram.ui.ActionBar.f3) bbVar).shadowDrawable;
             if (y3 < drawable.getBounds().top) {
                 bbVar.dismiss();
@@ -42,8 +42,8 @@ public final class wa extends ov0 {
 
     @Override
     public final boolean drawChild(Canvas canvas, View view, long j3) {
-        if (!this.f32222x0) {
-            this.f32223y0.getClass();
+        if (!this.f32249x0) {
+            this.f32250y0.getClass();
         }
         return super.drawChild(canvas, view, j3);
     }
@@ -61,10 +61,10 @@ public final class wa extends ov0 {
         int i13;
         hu huVar;
         int size = View.MeasureSpec.getSize(i11);
-        bb bbVar = this.f32223y0;
+        bb bbVar = this.f32250y0;
         bbVar.h = size;
         bbVar.D(i10, i11);
-        if (this.f32221w0) {
+        if (this.f32248w0) {
             i11 = View.MeasureSpec.makeMeasureSpec(bbVar.h, 1073741824);
         }
         if (bbVar.Q != null) {
@@ -74,7 +74,7 @@ public final class wa extends ov0 {
             hu huVar2 = bbVar.Q;
             if (huVar2 != null && !huVar2.N && AndroidUtilities.dp(20.0f) >= 0) {
                 hu huVar3 = bbVar.Q;
-                if (!huVar3.f26850e && !huVar3.O) {
+                if (!huVar3.f26877e && !huVar3.O) {
                     huVar3.j();
                 }
             }

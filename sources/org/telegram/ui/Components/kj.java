@@ -4,17 +4,17 @@ import android.view.View;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 public final class kj implements bl0, pj {
-    public final yj f27836a;
+    public final yj f27863a;
 
     public kj(yj yjVar) {
-        this.f27836a = yjVar;
+        this.f27863a = yjVar;
     }
 
     @Override
     public boolean a(int i10, View view) {
         Object O;
-        yj yjVar = this.f27836a;
-        s4.h0 adapter = yjVar.f32933s.getAdapter();
+        yj yjVar = this.f27863a;
+        s4.h0 adapter = yjVar.f32960s.getAdapter();
         uj ujVar = yjVar.F;
         if (adapter == ujVar) {
             O = ujVar.E(i10);
@@ -31,8 +31,8 @@ public final class kj implements bl0, pj {
 
     @Override
     public void b(TLRPC.User user, boolean z10, int i10, long j3) {
-        yj yjVar = this.f27836a;
-        yjVar.f28753b.dismiss(true);
+        yj yjVar = this.f27863a;
+        yjVar.f28780b.dismiss(true);
         yjVar.J.b(user, z10, i10, j3);
     }
 

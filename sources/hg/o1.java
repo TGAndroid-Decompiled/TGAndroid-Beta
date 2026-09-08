@@ -21,31 +21,31 @@ import org.telegram.ui.Components.kl0;
 import org.telegram.ui.Components.t00;
 import org.telegram.ui.co;
 public final class o1 extends kl0 implements NotificationCenter.NotificationCenterDelegate {
-    public final Context f11193c;
-    public final co f11195f;
+    public final Context f11219c;
+    public final co f11221f;
     public int h;
-    public int f11196n;
-    public final f6 f11198s;
+    public int f11222n;
+    public final f6 f11224s;
     public final int v;
-    public final boolean f11199w;
-    public String f11200x;
-    public d8 f11201y;
+    public final boolean f11225w;
+    public String f11226x;
+    public d8 f11227y;
     public final HashSet d = new HashSet();
-    public final ArrayList f11194e = new ArrayList();
-    public final int f11197r = UserConfig.selectedAccount;
+    public final ArrayList f11220e = new ArrayList();
+    public final int f11223r = UserConfig.selectedAccount;
     public final nb E = new nb(this, 21);
 
     public o1(Context context, co coVar, f6 f6Var, int i10, boolean z10) {
-        this.f11198s = f6Var;
-        this.f11193c = context;
-        this.f11195f = coVar;
+        this.f11224s = f6Var;
+        this.f11219c = context;
+        this.f11221f = coVar;
         this.v = i10;
-        this.f11199w = z10;
+        this.f11225w = z10;
     }
 
     @Override
     public final boolean D(s4.c1 c1Var) {
-        int i10 = c1Var.f45742f;
+        int i10 = c1Var.f45770f;
         if (i10 != 0 && i10 != 2) {
             return false;
         }
@@ -54,7 +54,7 @@ public final class o1 extends kl0 implements NotificationCenter.NotificationCent
 
     public final Object E(int i10) {
         if (i10 >= 0) {
-            ArrayList arrayList = this.f11194e;
+            ArrayList arrayList = this.f11220e;
             if (i10 < arrayList.size()) {
                 return arrayList.get(i10);
             }
@@ -65,19 +65,19 @@ public final class o1 extends kl0 implements NotificationCenter.NotificationCent
 
     @Override
     public final void didReceivedNotification(int i10, int i11, Object... objArr) {
-        if (i10 == NotificationCenter.storiesListUpdated && objArr[0] == this.f11201y) {
+        if (i10 == NotificationCenter.storiesListUpdated && objArr[0] == this.f11227y) {
             l();
         }
     }
 
     @Override
     public final int h() {
-        return this.f11194e.size() + this.f11196n;
+        return this.f11220e.size() + this.f11222n;
     }
 
     @Override
     public final int j(int i10) {
-        if (i10 < this.f11194e.size()) {
+        if (i10 < this.f11220e.size()) {
             return 0;
         }
         return 1;
@@ -87,11 +87,11 @@ public final class o1 extends kl0 implements NotificationCenter.NotificationCent
     public final void l() {
         ArrayList<MessageObject> messages;
         int h = h();
-        ArrayList arrayList = this.f11194e;
+        ArrayList arrayList = this.f11220e;
         arrayList.clear();
         HashSet hashSet = this.d;
         hashSet.clear();
-        int i10 = this.f11197r;
+        int i10 = this.f11223r;
         int i11 = this.v;
         if (i11 == 0) {
             messages = MediaDataController.getInstance(i10).getFoundMessageObjects();
@@ -106,18 +106,18 @@ public final class o1 extends kl0 implements NotificationCenter.NotificationCent
                 hashSet.add(Integer.valueOf(messageObject.getId()));
             }
         }
-        int i14 = this.f11196n;
+        int i14 = this.f11222n;
         this.h = arrayList.size();
         if (i11 != 0) {
             if (!HashtagSearchController.getInstance(i10).isEndReached(i11) && this.h != 0) {
                 i12 = Utilities.clamp(HashtagSearchController.getInstance(i10).getCount(i11) - this.h, 3, 0);
             }
-            this.f11196n = i12;
+            this.f11222n = i12;
         } else {
             if (!MediaDataController.getInstance(i10).searchEndReached() && this.h != 0) {
                 i12 = Utilities.clamp(MediaDataController.getInstance(i10).getSearchCount() - this.h, 3, 0);
             }
-            this.f11196n = i12;
+            this.f11222n = i12;
         }
         int h10 = h();
         if (h < h10) {
@@ -135,16 +135,16 @@ public final class o1 extends kl0 implements NotificationCenter.NotificationCent
         int i11;
         boolean z10;
         int i12;
-        int i13 = c1Var.f45742f;
-        View view = c1Var.f45738a;
+        int i13 = c1Var.f45770f;
+        View view = c1Var.f45766a;
         if (i13 == 0) {
             r2 r2Var = (r2) view;
-            r2Var.f22625s2 = true;
+            r2Var.f22652s2 = true;
             MessageObject messageObject = (MessageObject) E(i10);
             long dialogId = messageObject.getDialogId();
             int i14 = messageObject.messageOwner.date;
-            if (this.f11199w) {
-                r2Var.f22617r0 = true;
+            if (this.f11225w) {
+                r2Var.f22644r0 = true;
                 long savedDialogId = messageObject.getSavedDialogId();
                 TLRPC.Message message = messageObject.messageOwner;
                 TLRPC.MessageFwdHeader messageFwdHeader = message.fwd_from;
@@ -162,7 +162,7 @@ public final class o1 extends kl0 implements NotificationCenter.NotificationCent
                 i11 = i12;
                 z10 = false;
             } else {
-                if (messageObject.isOutOwner() || ChatObject.isMonoForum(this.f11197r, dialogId)) {
+                if (messageObject.isOutOwner() || ChatObject.isMonoForum(this.f11223r, dialogId)) {
                     dialogId = messageObject.getFromChatId();
                 }
                 i11 = i14;
@@ -171,7 +171,7 @@ public final class o1 extends kl0 implements NotificationCenter.NotificationCent
             r2Var.W(dialogId, messageObject, i11, z10, false);
             r2Var.setDialogCellDelegate(new l1(this));
         } else if (i13 == 2) {
-            ((n1) view).a(this.f11201y);
+            ((n1) view).a(this.f11227y);
         }
     }
 
@@ -180,8 +180,8 @@ public final class o1 extends kl0 implements NotificationCenter.NotificationCent
         View r2Var;
         t00 t00Var;
         if (i10 != 0) {
-            f6 f6Var = this.f11198s;
-            Context context = this.f11193c;
+            f6 f6Var = this.f11224s;
+            Context context = this.f11219c;
             if (i10 != 1) {
                 if (i10 != 2) {
                     r2Var = null;
@@ -196,7 +196,7 @@ public final class o1 extends kl0 implements NotificationCenter.NotificationCent
             }
             r2Var = t00Var;
         } else {
-            r2Var = new r2(null, this.f11193c, true, this.f11197r, this.f11198s);
+            r2Var = new r2(null, this.f11219c, true, this.f11223r, this.f11224s);
         }
         return com.google.android.gms.internal.vision.e2.l(r2Var, r2Var, -1, -2);
     }

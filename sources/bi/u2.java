@@ -29,20 +29,20 @@ import org.telegram.ui.j60;
 import org.telegram.ui.qq;
 import org.telegram.ui.uy;
 public final class u2 implements Runnable {
-    public final int f3786a = 0;
-    public final boolean f3787b;
-    public final long f3788c;
+    public final int f3813a = 0;
+    public final boolean f3814b;
+    public final long f3815c;
     public final Object d;
-    public final Object f3789e;
-    public final Object f3790f;
+    public final Object f3816e;
+    public final Object f3817f;
     public final Object h;
 
     public u2(o5 o5Var, MessagesController messagesController, long j3, boolean z10, String str, TLObject tLObject) {
         this.d = o5Var;
-        this.f3789e = messagesController;
-        this.f3788c = j3;
-        this.f3787b = z10;
-        this.f3790f = str;
+        this.f3816e = messagesController;
+        this.f3815c = j3;
+        this.f3814b = z10;
+        this.f3817f = str;
         this.h = tLObject;
     }
 
@@ -50,12 +50,12 @@ public final class u2 implements Runnable {
     public final void run() {
         SpannableStringBuilder replaceTags;
         org.telegram.ui.Components.z5 z5Var;
-        int i10 = this.f3786a;
-        long j3 = this.f3788c;
-        boolean z10 = this.f3787b;
-        Object obj = this.f3790f;
+        int i10 = this.f3813a;
+        long j3 = this.f3815c;
+        boolean z10 = this.f3814b;
+        Object obj = this.f3817f;
         Object obj2 = this.h;
-        Object obj3 = this.f3789e;
+        Object obj3 = this.f3816e;
         Object obj4 = this.d;
         switch (i10) {
             case 0:
@@ -64,11 +64,11 @@ public final class u2 implements Runnable {
                 String str = (String) obj;
                 TLObject tLObject = (TLObject) obj2;
                 u8 storiesController = messagesController.getStoriesController();
-                final long j10 = this.f3788c;
-                final boolean z11 = this.f3787b;
+                final long j10 = this.f3815c;
+                final boolean z11 = this.f3814b;
                 storiesController.i0(j10, z11, false);
                 o0.a aVar = new o0.a(3, (byte) 0);
-                aVar.f16769b = new Runnable() {
+                aVar.f16796b = new Runnable() {
                     @Override
                     public final void run() {
                         switch (r5) {
@@ -81,7 +81,7 @@ public final class u2 implements Runnable {
                         }
                     }
                 };
-                aVar.f16770c = new Runnable() {
+                aVar.f16797c = new Runnable() {
                     @Override
                     public final void run() {
                         switch (r5) {
@@ -99,8 +99,8 @@ public final class u2 implements Runnable {
                 } else {
                     replaceTags = AndroidUtilities.replaceTags(LocaleController.formatString(R.string.StoriesMovedToContacts, ContactsController.formatName(str, null, 10)));
                 }
-                qc V = new yc(o5Var.f3413d1, o5Var.B0).V(Arrays.asList(tLObject), replaceTags, null, aVar);
-                V.f29672a = 2;
+                qc V = new yc(o5Var.f3440d1, o5Var.B0).V(Arrays.asList(tLObject), replaceTags, null, aVar);
+                V.f29699a = 2;
                 V.k(true);
                 return;
             case 1:
@@ -111,9 +111,9 @@ public final class u2 implements Runnable {
                 if (tL_error != null) {
                     if (tL_error.text.contains("BOOSTS_REQUIRED")) {
                         if (z10) {
-                            MessagesController messagesController2 = MessagesController.getInstance(u8Var.f3805a);
+                            MessagesController messagesController2 = MessagesController.getInstance(u8Var.f3832a);
                             ChannelBoostsController boostsController = messagesController2.getBoostsController();
-                            long j11 = this.f3788c;
+                            long j11 = this.f3815c;
                             boostsController.getBoostsStats(j11, new i(u8Var, hVar, messagesController2, j11, 1));
                             return;
                         }
@@ -124,7 +124,7 @@ public final class u2 implements Runnable {
                         if (z10 && R != null) {
                             AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(R.getContext(), 0, f6Var);
                             String string = LocaleController.getString(R.string.LiveStoryAlreadyStreamingTitle);
-                            org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20198a;
+                            org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20225a;
                             b2Var.R = string;
                             b2Var.T = LocaleController.getString(R.string.LiveStoryAlreadyStreaming);
                             i2.g.B(R.string.OK, alertDialog$Builder, null);
@@ -153,7 +153,7 @@ public final class u2 implements Runnable {
                 EditTextBoldCursor editTextBoldCursor = (EditTextBoldCursor) obj3;
                 String str2 = (String) obj;
                 TLRPC.Document document = (TLRPC.Document) obj2;
-                ChatActivityEnterView chatActivityEnterView = ((hg) obj4).f26730a;
+                ChatActivityEnterView chatActivityEnterView = ((hg) obj4).f26757a;
                 if (editTextBoldCursor != null) {
                     int selectionEnd = editTextBoldCursor.getSelectionEnd();
                     if (selectionEnd < 0) {
@@ -190,12 +190,12 @@ public final class u2 implements Runnable {
                 }
                 return;
             case 3:
-                j60.y((j60) obj4, (org.telegram.ui.ActionBar.b2[]) obj3, this.f3787b, (TLRPC.TL_error) obj, this.f3788c, (TL_phone.inviteToGroupCall) obj2);
+                j60.y((j60) obj4, (org.telegram.ui.ActionBar.b2[]) obj3, this.f3814b, (TLRPC.TL_error) obj, this.f3815c, (TL_phone.inviteToGroupCall) obj2);
                 return;
             case 4:
                 i01 i01Var = (i01) obj4;
-                ProfileActivity profileActivity = i01Var.f37149b;
-                qq qqVar = new qq(profileActivity.f33888e1, -j3, (TLRPC.TL_chatAdminRights) obj3, null, null, (String) obj, 2, true, !z10, null);
+                ProfileActivity profileActivity = i01Var.f37176b;
+                qq qqVar = new qq(profileActivity.f33915e1, -j3, (TLRPC.TL_chatAdminRights) obj3, null, null, (String) obj, 2, true, !z10, null);
                 qqVar.X0 = new h01(i01Var, (uy) obj2);
                 profileActivity.presentFragment(qqVar);
                 return;
@@ -207,7 +207,7 @@ public final class u2 implements Runnable {
                     TL_account.Password password = (TL_account.Password) tLObject2;
                     twoStepVerificationActivity.I = password;
                     TwoStepVerificationActivity.m0(password);
-                    gVar.h0(this.f3787b, this.f3788c, twoStepVerificationActivity.l0(), twoStepVerificationActivity);
+                    gVar.h0(this.f3814b, this.f3815c, twoStepVerificationActivity.l0(), twoStepVerificationActivity);
                     return;
                 }
                 return;
@@ -216,46 +216,46 @@ public final class u2 implements Runnable {
 
     public u2(u8 u8Var, TLRPC.TL_error tL_error, boolean z10, long j3, e2.h hVar, org.telegram.ui.ActionBar.f6 f6Var) {
         this.d = u8Var;
-        this.f3789e = tL_error;
-        this.f3787b = z10;
-        this.f3788c = j3;
-        this.f3790f = hVar;
+        this.f3816e = tL_error;
+        this.f3814b = z10;
+        this.f3815c = j3;
+        this.f3817f = hVar;
         this.h = f6Var;
     }
 
     public u2(hg hgVar, EditTextBoldCursor editTextBoldCursor, String str, TLRPC.Document document, long j3, boolean z10) {
         this.d = hgVar;
-        this.f3789e = editTextBoldCursor;
-        this.f3790f = str;
+        this.f3816e = editTextBoldCursor;
+        this.f3817f = str;
         this.h = document;
-        this.f3788c = j3;
-        this.f3787b = z10;
+        this.f3815c = j3;
+        this.f3814b = z10;
     }
 
     public u2(j60 j60Var, org.telegram.ui.ActionBar.b2[] b2VarArr, boolean z10, TLRPC.TL_error tL_error, long j3, TL_phone.inviteToGroupCall invitetogroupcall) {
         this.d = j60Var;
-        this.f3789e = b2VarArr;
-        this.f3787b = z10;
-        this.f3790f = tL_error;
-        this.f3788c = j3;
+        this.f3816e = b2VarArr;
+        this.f3814b = z10;
+        this.f3817f = tL_error;
+        this.f3815c = j3;
         this.h = invitetogroupcall;
     }
 
     public u2(i01 i01Var, long j3, TLRPC.TL_chatAdminRights tL_chatAdminRights, String str, boolean z10, uy uyVar) {
         this.d = i01Var;
-        this.f3788c = j3;
-        this.f3789e = tL_chatAdminRights;
-        this.f3790f = str;
-        this.f3787b = z10;
+        this.f3815c = j3;
+        this.f3816e = tL_chatAdminRights;
+        this.f3817f = str;
+        this.f3814b = z10;
         this.h = uyVar;
     }
 
     public u2(zh.g gVar, TLRPC.TL_error tL_error, TLObject tLObject, TwoStepVerificationActivity twoStepVerificationActivity, boolean z10, long j3) {
         this.d = gVar;
-        this.f3789e = tL_error;
+        this.f3816e = tL_error;
         this.h = tLObject;
-        this.f3790f = twoStepVerificationActivity;
-        this.f3787b = z10;
-        this.f3788c = j3;
+        this.f3817f = twoStepVerificationActivity;
+        this.f3814b = z10;
+        this.f3815c = j3;
     }
 }

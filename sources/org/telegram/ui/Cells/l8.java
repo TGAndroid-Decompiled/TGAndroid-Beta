@@ -8,7 +8,7 @@ import org.telegram.ui.Components.g51;
 import org.telegram.ui.Components.h51;
 import org.telegram.ui.Components.ll0;
 public final class l8 extends g51 {
-    public static final int f22256a = 0;
+    public static final int f22283a = 0;
 
     static {
         g51.setup(new g51());
@@ -18,9 +18,9 @@ public final class l8 extends g51 {
     public final void attachedView(ll0 ll0Var, View view, h51 h51Var) {
         boolean z10;
         m8 m8Var = (m8) view;
-        m8Var.b(h51Var.f26588e, true);
+        m8Var.b(h51Var.f26615e, true);
         if (ll0Var instanceof d61) {
-            z10 = ((d61) ll0Var).f25281c3;
+            z10 = ((d61) ll0Var).f25308c3;
         } else {
             z10 = false;
         }

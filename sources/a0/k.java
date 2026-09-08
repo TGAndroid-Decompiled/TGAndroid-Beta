@@ -25,7 +25,7 @@ public class k {
         synchronized (this.f26c) {
             xa.c cVar = this.f25b;
             cVar.getClass();
-            Object obj = ((LinkedHashMap) cVar.f49331b).get(key);
+            Object obj = ((LinkedHashMap) cVar.f49360b).get(key);
             if (obj != null) {
                 this.f27e++;
                 return obj;
@@ -42,7 +42,7 @@ public class k {
             this.d++;
             xa.c cVar = this.f25b;
             cVar.getClass();
-            put = ((LinkedHashMap) cVar.f49331b).put(key, obj);
+            put = ((LinkedHashMap) cVar.f49360b).put(key, obj);
             if (put != null) {
                 this.d--;
             }

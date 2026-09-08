@@ -16,21 +16,21 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.voip.VoIPService;
 public final class x20 extends FrameLayout {
-    public float f32412a;
-    public float f32413b;
-    public boolean f32414c;
+    public float f32439a;
+    public float f32440b;
+    public boolean f32441c;
     public AnimatorSet d;
-    public final w20 f32415e;
-    public final ue f32416f;
+    public final w20 f32442e;
+    public final ue f32443f;
     public final float h;
-    public final z20 f32417n;
+    public final z20 f32444n;
 
     public x20(z20 z20Var, Context context, float f7) {
         super(context);
-        this.f32417n = z20Var;
+        this.f32444n = z20Var;
         this.h = f7;
-        this.f32415e = new w20(this);
-        this.f32416f = new ue(7);
+        this.f32442e = new w20(this);
+        this.f32443f = new ue(7);
     }
 
     @Override
@@ -38,27 +38,27 @@ public final class x20 extends FrameLayout {
         super.onMeasure(i10, i11);
         Point point = AndroidUtilities.displaySize;
         int i12 = point.x;
-        z20 z20Var = this.f32417n;
+        z20 z20Var = this.f32444n;
         if (i12 != z20Var.I || z20Var.J != point.y) {
             z20Var.I = i12;
             z20Var.J = point.y;
             if (z20Var.K < 0.0f) {
                 SharedPreferences sharedPreferences = ApplicationLoader.applicationContext.getSharedPreferences("groupcallpipconfig", 0);
-                this.f32417n.K = sharedPreferences.getFloat("relativeX", 1.0f);
-                this.f32417n.L = sharedPreferences.getFloat("relativeY", 0.4f);
+                this.f32444n.K = sharedPreferences.getFloat("relativeX", 1.0f);
+                this.f32444n.L = sharedPreferences.getFloat("relativeY", 0.4f);
             }
-            z20 z20Var2 = z20.f33054d0;
+            z20 z20Var2 = z20.f33081d0;
             if (z20Var2 != null) {
-                z20 z20Var3 = this.f32417n;
+                z20 z20Var3 = this.f32444n;
                 float f7 = z20Var3.K;
                 float f10 = z20Var3.L;
                 float f11 = -AndroidUtilities.dp(36.0f);
-                z20Var2.f33065r.x = (int) com.google.android.gms.internal.vision.e2.z(AndroidUtilities.displaySize.x - (2.0f * f11), AndroidUtilities.dp(105.0f), f7, f11);
-                z20Var2.f33065r.y = (int) ((AndroidUtilities.displaySize.y - AndroidUtilities.dp(105.0f)) * f10);
+                z20Var2.f33092r.x = (int) com.google.android.gms.internal.vision.e2.z(AndroidUtilities.displaySize.x - (2.0f * f11), AndroidUtilities.dp(105.0f), f7, f11);
+                z20Var2.f33092r.y = (int) ((AndroidUtilities.displaySize.y - AndroidUtilities.dp(105.0f)) * f10);
                 z20Var2.h();
-                x20 x20Var = z20Var2.f33056a;
+                x20 x20Var = z20Var2.f33083a;
                 if (x20Var.getParent() != null) {
-                    z20Var2.f33064n.updateViewLayout(x20Var, z20Var2.f33065r);
+                    z20Var2.f33091n.updateViewLayout(x20Var, z20Var2.f33092r);
                 }
             }
         }
@@ -78,7 +78,7 @@ public final class x20 extends FrameLayout {
         double d;
         boolean z12 = false;
         int i10 = 0;
-        if (z20.f33054d0 == null) {
+        if (z20.f33081d0 == null) {
             return false;
         }
         float rawX = motionEvent.getRawX();
@@ -92,39 +92,39 @@ public final class x20 extends FrameLayout {
                         return true;
                     }
                 } else {
-                    float f10 = rawX - this.f32412a;
-                    float f11 = rawY - this.f32413b;
-                    if (!this.f32417n.W) {
+                    float f10 = rawX - this.f32439a;
+                    float f11 = rawY - this.f32440b;
+                    if (!this.f32444n.W) {
                         float f12 = (f11 * f11) + (f10 * f10);
                         float f13 = this.h;
                         if (f12 > f13 * f13) {
                             if (parent != null) {
                                 parent.requestDisallowInterceptTouchEvent(true);
                             }
-                            AndroidUtilities.cancelRunOnUIThread(this.f32415e);
-                            z20 z20Var4 = this.f32417n;
+                            AndroidUtilities.cancelRunOnUIThread(this.f32442e);
+                            z20 z20Var4 = this.f32444n;
                             z20Var4.W = true;
                             z20Var4.f(true);
-                            this.f32417n.e(false);
-                            this.f32412a = rawX;
-                            this.f32413b = rawY;
+                            this.f32444n.e(false);
+                            this.f32439a = rawX;
+                            this.f32440b = rawY;
                             f10 = 0.0f;
                             f11 = 0.0f;
                         }
                     }
-                    z20 z20Var5 = this.f32417n;
+                    z20 z20Var5 = this.f32444n;
                     if (!z20Var5.W) {
                         return true;
                     }
                     z20Var5.O += f10;
                     z20Var5.P += f11;
-                    this.f32412a = rawX;
-                    this.f32413b = rawY;
+                    this.f32439a = rawX;
+                    this.f32440b = rawY;
                     z20Var5.i();
-                    float measuredWidth = (getMeasuredWidth() / 2.0f) + this.f32417n.O;
-                    float measuredHeight = (getMeasuredHeight() / 2.0f) + this.f32417n.P;
-                    float measuredWidth2 = (z20Var2.f33058b.getMeasuredWidth() / 2.0f) + (z20Var2.N - this.f32417n.Q);
-                    float measuredHeight2 = (z20Var3.f33058b.getMeasuredHeight() / 2.0f) + (z20Var3.M - this.f32417n.R);
+                    float measuredWidth = (getMeasuredWidth() / 2.0f) + this.f32444n.O;
+                    float measuredHeight = (getMeasuredHeight() / 2.0f) + this.f32444n.P;
+                    float measuredWidth2 = (z20Var2.f33085b.getMeasuredWidth() / 2.0f) + (z20Var2.N - this.f32444n.Q);
+                    float measuredHeight2 = (z20Var3.f33085b.getMeasuredHeight() / 2.0f) + (z20Var3.M - this.f32444n.R);
                     float f14 = measuredWidth - measuredWidth2;
                     float f15 = measuredHeight - measuredHeight2;
                     float f16 = (f15 * f15) + (f14 * f14);
@@ -135,7 +135,7 @@ public final class x20 extends FrameLayout {
                         } else {
                             d = 90.0d;
                         }
-                        this.f32417n.U.setRemoveAngle(d - degrees);
+                        this.f32444n.U.setRemoveAngle(d - degrees);
                         if (f16 < AndroidUtilities.dp(50.0f) * AndroidUtilities.dp(50.0f)) {
                             z10 = true;
                         } else {
@@ -146,33 +146,33 @@ public final class x20 extends FrameLayout {
                         z10 = false;
                         z11 = false;
                     }
-                    z20 z20Var6 = this.f32417n;
-                    if (!z20Var6.F && z20Var6.f33057a0 != z10) {
-                        z20Var6.f33057a0 = z10;
-                        ValueAnimator valueAnimator = z20Var6.f33061c0;
+                    z20 z20Var6 = this.f32444n;
+                    if (!z20Var6.F && z20Var6.f33084a0 != z10) {
+                        z20Var6.f33084a0 = z10;
+                        ValueAnimator valueAnimator = z20Var6.f33088c0;
                         if (valueAnimator != null) {
                             valueAnimator.removeAllListeners();
-                            z20Var6.f33061c0.cancel();
+                            z20Var6.f33088c0.cancel();
                         }
-                        float f17 = z20Var6.f33059b0;
+                        float f17 = z20Var6.f33086b0;
                         if (z10) {
                             f7 = 1.0f;
                         } else {
                             f7 = 0.0f;
                         }
                         ValueAnimator ofFloat = ValueAnimator.ofFloat(f17, f7);
-                        z20Var6.f33061c0 = ofFloat;
+                        z20Var6.f33088c0 = ofFloat;
                         ofFloat.addUpdateListener(new l6(z20Var6, 25));
-                        z20Var6.f33061c0.addListener(new org.telegram.ui.to(11, z20Var6, z10));
-                        z20Var6.f33061c0.setDuration(250L);
-                        z20Var6.f33061c0.setInterpolator(pr.f29466f);
-                        z20Var6.f33061c0.start();
+                        z20Var6.f33088c0.addListener(new org.telegram.ui.to(11, z20Var6, z10));
+                        z20Var6.f33088c0.setDuration(250L);
+                        z20Var6.f33088c0.setInterpolator(pr.f29493f);
+                        z20Var6.f33088c0.start();
                     }
-                    z20 z20Var7 = this.f32417n;
+                    z20 z20Var7 = this.f32444n;
                     f30 f30Var = z20Var7.U;
-                    if (z20Var7.f33069y != z11) {
-                        z20Var7.f33069y = z11;
-                        z20Var7.f33060c.invalidate();
+                    if (z20Var7.f33096y != z11) {
+                        z20Var7.f33096y = z11;
+                        z20Var7.f33087c.invalidate();
                         if (!z20Var7.F) {
                             xi0 xi0Var = z20Var7.v;
                             if (z11) {
@@ -188,48 +188,48 @@ public final class x20 extends FrameLayout {
                             }
                         }
                     }
-                    if (f30Var.f25893s != z11) {
+                    if (f30Var.f25920s != z11) {
                         f30Var.invalidate();
                     }
-                    f30Var.f25893s = z11;
+                    f30Var.f25920s = z11;
                     return true;
                 }
             }
-            AndroidUtilities.cancelRunOnUIThread(this.f32416f);
-            AndroidUtilities.cancelRunOnUIThread(this.f32415e);
-            z20 z20Var8 = this.f32417n;
-            if (z20Var8.f33069y) {
-                if (this.f32414c && VoIPService.getSharedInstance() != null) {
+            AndroidUtilities.cancelRunOnUIThread(this.f32443f);
+            AndroidUtilities.cancelRunOnUIThread(this.f32442e);
+            z20 z20Var8 = this.f32444n;
+            if (z20Var8.f33096y) {
+                if (this.f32441c && VoIPService.getSharedInstance() != null) {
                     VoIPService.getSharedInstance().setMicMute(true, false, false);
                 }
-                this.f32414c = false;
-                z20 z20Var9 = this.f32417n;
+                this.f32441c = false;
+                z20 z20Var9 = this.f32444n;
                 aj0 aj0Var = z20Var9.V;
                 xi0 xi0Var2 = z20Var9.v;
-                ah.y yVar = z20Var9.f33058b;
-                x20 x20Var2 = z20Var9.f33056a;
-                di.r6 r6Var = z20Var9.f33060c;
-                z20 z20Var10 = z20.f33054d0;
+                ah.y yVar = z20Var9.f33085b;
+                x20 x20Var2 = z20Var9.f33083a;
+                di.r6 r6Var = z20Var9.f33087c;
+                z20 z20Var10 = z20.f33081d0;
                 if (z20Var10 == null) {
                     return false;
                 }
                 z20Var9.F = true;
-                z20.f33055e0 = true;
+                z20.f33082e0 = true;
                 z20Var9.U.K = true;
                 z20Var10.e(false);
-                float measuredWidth3 = (x20Var2.getMeasuredWidth() / 2.0f) + z20Var9.f33065r.x;
+                float measuredWidth3 = (x20Var2.getMeasuredWidth() / 2.0f) + z20Var9.f33092r.x;
                 float measuredWidth4 = ((yVar.getMeasuredWidth() / 2.0f) + (z20Var9.N - z20Var9.Q)) - measuredWidth3;
-                float measuredHeight3 = ((yVar.getMeasuredHeight() / 2.0f) + (z20Var9.M - z20Var9.R)) - ((x20Var2.getMeasuredHeight() / 2.0f) + z20Var9.f33065r.y);
-                z20 z20Var11 = z20.f33054d0;
-                WindowManager windowManager = z20Var11.f33064n;
-                x20 x20Var3 = z20Var11.f33056a;
-                ah.y yVar2 = z20Var11.f33058b;
+                float measuredHeight3 = ((yVar.getMeasuredHeight() / 2.0f) + (z20Var9.M - z20Var9.R)) - ((x20Var2.getMeasuredHeight() / 2.0f) + z20Var9.f33092r.y);
+                z20 z20Var11 = z20.f33081d0;
+                WindowManager windowManager = z20Var11.f33091n;
+                x20 x20Var3 = z20Var11.f33083a;
+                ah.y yVar2 = z20Var11.f33085b;
                 FrameLayout frameLayout = z20Var11.d;
-                org.telegram.ui.u7 u7Var = z20Var11.f33062e;
+                org.telegram.ui.u7 u7Var = z20Var11.f33089e;
                 z20Var9.d();
-                z20.f33054d0 = null;
+                z20.f33081d0 = null;
                 AnimatorSet animatorSet = new AnimatorSet();
-                int i11 = xi0Var2.f32553b0;
+                int i11 = xi0Var2.f32580b0;
                 if (i11 < 33) {
                     x20Var = x20Var3;
                     j3 = ((1.0f - (i11 / 33.0f)) * ((float) xi0Var2.p())) / 2.0f;
@@ -237,15 +237,15 @@ public final class x20 extends FrameLayout {
                     x20Var = x20Var3;
                     j3 = 0;
                 }
-                float f18 = z20Var9.f33065r.x;
+                float f18 = z20Var9.f33092r.x;
                 ValueAnimator ofFloat2 = ValueAnimator.ofFloat(f18, measuredWidth4 + f18);
                 ofFloat2.addUpdateListener(z20Var9.S);
                 ValueAnimator duration = ofFloat2.setDuration(250L);
-                pr prVar = pr.f29466f;
+                pr prVar = pr.f29493f;
                 duration.setInterpolator(prVar);
                 animatorSet.playTogether(ofFloat2);
-                float f19 = z20Var9.f33065r.y;
-                ValueAnimator ofFloat3 = ValueAnimator.ofFloat(f19, (f19 + measuredHeight3) - AndroidUtilities.dp(30.0f), z20Var9.f33065r.y + measuredHeight3);
+                float f19 = z20Var9.f33092r.y;
+                ValueAnimator ofFloat3 = ValueAnimator.ofFloat(f19, (f19 + measuredHeight3) - AndroidUtilities.dp(30.0f), z20Var9.f33092r.y + measuredHeight3);
                 ofFloat3.addUpdateListener(z20Var9.T);
                 ofFloat3.setDuration(250L).setInterpolator(prVar);
                 animatorSet.playTogether(ofFloat3);
@@ -266,7 +266,7 @@ public final class x20 extends FrameLayout {
                 long j10 = j3 + 530;
                 ObjectAnimator ofFloat5 = ObjectAnimator.ofFloat(r6Var, property, 1.0f, 1.05f);
                 ofFloat5.setDuration(j10);
-                pr prVar2 = pr.f29469j;
+                pr prVar2 = pr.f29496j;
                 ofFloat5.setInterpolator(prVar2);
                 animatorSet.playTogether(ofFloat5);
                 ObjectAnimator ofFloat6 = ObjectAnimator.ofFloat(r6Var, property2, 1.0f, 1.05f);
@@ -303,7 +303,7 @@ public final class x20 extends FrameLayout {
             }
             z20Var8.X = false;
             z20Var8.a();
-            if (this.f32414c) {
+            if (this.f32441c) {
                 if (VoIPService.getSharedInstance() != null) {
                     VoIPService.getSharedInstance().setMicMute(true, false, false);
                     try {
@@ -311,54 +311,54 @@ public final class x20 extends FrameLayout {
                     } catch (Exception unused2) {
                     }
                 }
-                this.f32414c = false;
-            } else if (motionEvent.getAction() == 1 && !this.f32417n.W) {
+                this.f32441c = false;
+            } else if (motionEvent.getAction() == 1 && !this.f32444n.W) {
                 if (VoIPService.getSharedInstance() != null) {
-                    this.f32417n.e(!z20Var.f33067w);
+                    this.f32444n.e(!z20Var.f33094w);
                     return false;
                 }
                 return false;
             } else {
                 z12 = false;
             }
-            if (parent != null && this.f32417n.W) {
+            if (parent != null && this.f32444n.W) {
                 parent.requestDisallowInterceptTouchEvent(z12);
                 Point point = AndroidUtilities.displaySize;
                 int i12 = point.x;
                 int i13 = point.y;
-                float f21 = this.f32417n.f33065r.x;
+                float f21 = this.f32444n.f33092r.x;
                 float measuredWidth5 = getMeasuredWidth() + f21;
-                float f22 = this.f32417n.f33065r.y;
+                float f22 = this.f32444n.f33092r.y;
                 float measuredHeight4 = getMeasuredHeight() + f22;
                 this.d = new AnimatorSet();
                 float f23 = -AndroidUtilities.dp(36.0f);
                 if (f21 < f23) {
-                    ValueAnimator ofFloat11 = ValueAnimator.ofFloat(this.f32417n.f33065r.x, f23);
-                    ofFloat11.addUpdateListener(this.f32417n.S);
+                    ValueAnimator ofFloat11 = ValueAnimator.ofFloat(this.f32444n.f33092r.x, f23);
+                    ofFloat11.addUpdateListener(this.f32444n.S);
                     this.d.playTogether(ofFloat11);
                     f21 = f23;
                 } else if (measuredWidth5 > i12 - f23) {
                     float measuredWidth6 = (i12 - getMeasuredWidth()) - f23;
-                    ValueAnimator ofFloat12 = ValueAnimator.ofFloat(this.f32417n.f33065r.x, measuredWidth6);
-                    ofFloat12.addUpdateListener(this.f32417n.S);
+                    ValueAnimator ofFloat12 = ValueAnimator.ofFloat(this.f32444n.f33092r.x, measuredWidth6);
+                    ofFloat12.addUpdateListener(this.f32444n.S);
                     this.d.playTogether(ofFloat12);
                     f21 = measuredWidth6;
                 }
                 int dp = AndroidUtilities.dp(36.0f) + i13;
                 if (f22 < AndroidUtilities.statusBarHeight - AndroidUtilities.dp(36.0f)) {
                     f22 = AndroidUtilities.statusBarHeight - AndroidUtilities.dp(36.0f);
-                    ValueAnimator ofFloat13 = ValueAnimator.ofFloat(this.f32417n.f33065r.y, f22);
-                    ofFloat13.addUpdateListener(this.f32417n.T);
+                    ValueAnimator ofFloat13 = ValueAnimator.ofFloat(this.f32444n.f33092r.y, f22);
+                    ofFloat13.addUpdateListener(this.f32444n.T);
                     this.d.playTogether(ofFloat13);
                 } else if (measuredHeight4 > dp) {
                     f22 = dp - getMeasuredHeight();
-                    ValueAnimator ofFloat14 = ValueAnimator.ofFloat(this.f32417n.f33065r.y, f22);
-                    ofFloat14.addUpdateListener(this.f32417n.T);
+                    ValueAnimator ofFloat14 = ValueAnimator.ofFloat(this.f32444n.f33092r.y, f22);
+                    ofFloat14.addUpdateListener(this.f32444n.T);
                     this.d.playTogether(ofFloat14);
                 }
-                this.d.setDuration(150L).setInterpolator(pr.f29466f);
+                this.d.setDuration(150L).setInterpolator(pr.f29493f);
                 this.d.start();
-                z20 z20Var12 = this.f32417n;
+                z20 z20Var12 = this.f32444n;
                 if (z20Var12.K >= 0.0f) {
                     float[] fArr3 = z20Var12.H;
                     Point point2 = AndroidUtilities.displaySize;
@@ -368,33 +368,33 @@ public final class x20 extends FrameLayout {
                     fArr3[0] = Math.min(1.0f, Math.max(0.0f, fArr3[0]));
                     fArr3[1] = Math.min(1.0f, Math.max(0.0f, fArr3[1]));
                     SharedPreferences.Editor edit = ApplicationLoader.applicationContext.getSharedPreferences("groupcallpipconfig", 0).edit();
-                    z20 z20Var13 = this.f32417n;
+                    z20 z20Var13 = this.f32444n;
                     float f25 = z20Var13.H[0];
                     z20Var13.K = f25;
                     SharedPreferences.Editor putFloat = edit.putFloat("relativeX", f25);
-                    z20 z20Var14 = this.f32417n;
+                    z20 z20Var14 = this.f32444n;
                     float f26 = z20Var14.H[1];
                     z20Var14.L = f26;
                     putFloat.putFloat("relativeY", f26).apply();
                 }
             }
-            z20 z20Var15 = this.f32417n;
+            z20 z20Var15 = this.f32444n;
             z20Var15.W = false;
             z20Var15.f(false);
             return true;
         }
-        getLocationOnScreen(this.f32417n.G);
-        z20 z20Var16 = this.f32417n;
+        getLocationOnScreen(this.f32444n.G);
+        z20 z20Var16 = this.f32444n;
         int i14 = z20Var16.G[0];
-        WindowManager.LayoutParams layoutParams = z20Var16.f33065r;
+        WindowManager.LayoutParams layoutParams = z20Var16.f33092r;
         z20Var16.Q = i14 - layoutParams.x;
         z20Var16.R = iArr[1] - layoutParams.y;
-        this.f32412a = rawX;
-        this.f32413b = rawY;
+        this.f32439a = rawX;
+        this.f32440b = rawY;
         System.currentTimeMillis();
-        AndroidUtilities.runOnUIThread(this.f32415e, 300L);
-        z20 z20Var17 = this.f32417n;
-        WindowManager.LayoutParams layoutParams2 = z20Var17.f33065r;
+        AndroidUtilities.runOnUIThread(this.f32442e, 300L);
+        z20 z20Var17 = this.f32444n;
+        WindowManager.LayoutParams layoutParams2 = z20Var17.f33092r;
         z20Var17.O = layoutParams2.x;
         z20Var17.P = layoutParams2.y;
         z20Var17.X = true;

@@ -31,7 +31,7 @@ public final class d8 extends l8 {
     @Override
     public final MessageObject f(int i10) {
         if (i10 >= 0) {
-            ArrayList arrayList = this.f3275i;
+            ArrayList arrayList = this.f3302i;
             if (i10 < arrayList.size()) {
                 return (MessageObject) arrayList.get(i10);
             }
@@ -52,7 +52,7 @@ public final class d8 extends l8 {
 
     @Override
     public final int i() {
-        return this.f3275i.size();
+        return this.f3302i.size();
     }
 
     @Override
@@ -87,7 +87,7 @@ public final class d8 extends l8 {
         this.G = true;
         String str2 = this.D;
         boolean isEmpty = TextUtils.isEmpty(str2);
-        int i11 = this.f3271c;
+        int i11 = this.f3298c;
         if (!isEmpty) {
             tLObject = MessagesController.getInstance(i11).getUserOrChat(str2);
             if (tLObject == null) {
@@ -96,8 +96,8 @@ public final class d8 extends l8 {
                     public final void accept(Object obj) {
                         Long l4 = (Long) obj;
                         d8 d8Var = d8.this;
-                        g8 g8Var = d8Var.f3283q;
-                        TLObject userOrChat = MessagesController.getInstance(d8Var.f3271c).getUserOrChat(d8Var.D);
+                        g8 g8Var = d8Var.f3310q;
+                        TLObject userOrChat = MessagesController.getInstance(d8Var.f3298c).getUserOrChat(d8Var.D);
                         d8Var.G = false;
                         if (userOrChat != null) {
                             d8Var.q(i10, list, z10);

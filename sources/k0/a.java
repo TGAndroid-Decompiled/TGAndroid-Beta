@@ -13,53 +13,53 @@ import java.security.Signature;
 import javax.crypto.Cipher;
 import javax.crypto.Mac;
 public final class a extends FingerprintManager.AuthenticationCallback {
-    public final m f14427a;
+    public final m f14453a;
 
     public a(m mVar) {
-        this.f14427a = mVar;
+        this.f14453a = mVar;
     }
 
     @Override
     public final void onAuthenticationError(int i10, CharSequence charSequence) {
-        ((w) ((aa.a) this.f14427a.f283b).d).a(i10, charSequence);
+        ((w) ((aa.a) this.f14453a.f295b).d).a(i10, charSequence);
     }
 
     @Override
     public final void onAuthenticationFailed() {
-        WeakReference weakReference = ((w) ((aa.a) this.f14427a.f283b).d).f1061a;
-        if (weakReference.get() != null && ((y) weakReference.get()).f1072n) {
+        WeakReference weakReference = ((w) ((aa.a) this.f14453a.f295b).d).f1073a;
+        if (weakReference.get() != null && ((y) weakReference.get()).f1084n) {
             y yVar = (y) weakReference.get();
-            if (yVar.f1079u == null) {
-                yVar.f1079u = new z();
+            if (yVar.f1091u == null) {
+                yVar.f1091u = new z();
             }
-            y.h(yVar.f1079u, Boolean.TRUE);
+            y.h(yVar.f1091u, Boolean.TRUE);
         }
     }
 
     @Override
     public final void onAuthenticationHelp(int i10, CharSequence charSequence) {
-        WeakReference weakReference = ((w) ((aa.a) this.f14427a.f283b).d).f1061a;
+        WeakReference weakReference = ((w) ((aa.a) this.f14453a.f295b).d).f1073a;
         if (weakReference.get() != null) {
             y yVar = (y) weakReference.get();
-            if (yVar.f1078t == null) {
-                yVar.f1078t = new z();
+            if (yVar.f1090t == null) {
+                yVar.f1090t = new z();
             }
-            y.h(yVar.f1078t, charSequence);
+            y.h(yVar.f1090t, charSequence);
         }
     }
 
     @Override
     public final void onAuthenticationSucceeded(FingerprintManager.AuthenticationResult authenticationResult) {
-        m mVar = this.f14427a;
+        m mVar = this.f14453a;
         aa.a L = b.L(b.f(authenticationResult));
         mVar.getClass();
         u uVar = null;
         if (L != null) {
-            Cipher cipher = (Cipher) L.f372c;
+            Cipher cipher = (Cipher) L.f384c;
             if (cipher != null) {
                 uVar = new u(cipher);
             } else {
-                Signature signature = (Signature) L.f371b;
+                Signature signature = (Signature) L.f383b;
                 if (signature != null) {
                     uVar = new u(signature);
                 } else {
@@ -70,6 +70,6 @@ public final class a extends FingerprintManager.AuthenticationCallback {
                 }
             }
         }
-        ((w) ((aa.a) mVar.f283b).d).b(new t(uVar, 2));
+        ((w) ((aa.a) mVar.f295b).d).b(new t(uVar, 2));
     }
 }

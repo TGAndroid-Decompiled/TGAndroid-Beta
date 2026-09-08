@@ -1,23 +1,23 @@
 package org.telegram.messenger.camera;
 public final class b implements Runnable {
-    public final int f17332a;
-    public final Camera2Session f17333b;
-    public final Runnable f17334c;
+    public final int f17359a;
+    public final Camera2Session f17360b;
+    public final Runnable f17361c;
 
     public b(Camera2Session camera2Session, Runnable runnable, int i10) {
-        this.f17332a = i10;
-        this.f17333b = camera2Session;
-        this.f17334c = runnable;
+        this.f17359a = i10;
+        this.f17360b = camera2Session;
+        this.f17361c = runnable;
     }
 
     @Override
     public final void run() {
-        switch (this.f17332a) {
+        switch (this.f17359a) {
             case 0:
-                this.f17333b.lambda$destroy$4(this.f17334c);
+                Camera2Session.e(this.f17360b, this.f17361c);
                 return;
             default:
-                this.f17333b.lambda$destroy$3(this.f17334c);
+                Camera2Session.d(this.f17360b, this.f17361c);
                 return;
         }
     }

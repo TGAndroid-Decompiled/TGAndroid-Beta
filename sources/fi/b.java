@@ -5,22 +5,22 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class b implements RequestDelegate {
-    public final int f9550a;
-    public final m f9551b;
-    public final org.telegram.ui.ActionBar.b2 f9552c;
+    public final int f9578a;
+    public final m f9579b;
+    public final org.telegram.ui.ActionBar.b2 f9580c;
 
     public b(m mVar, org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        this.f9550a = i10;
-        this.f9551b = mVar;
-        this.f9552c = b2Var;
+        this.f9578a = i10;
+        this.f9579b = mVar;
+        this.f9580c = b2Var;
     }
 
     @Override
     public final void run(final TLObject tLObject, final TLRPC.TL_error tL_error) {
-        switch (this.f9550a) {
+        switch (this.f9578a) {
             case 0:
-                final m mVar = this.f9551b;
-                final org.telegram.ui.ActionBar.b2 b2Var = this.f9552c;
+                final m mVar = this.f9579b;
+                final org.telegram.ui.ActionBar.b2 b2Var = this.f9580c;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
@@ -36,8 +36,8 @@ public final class b implements RequestDelegate {
                 });
                 return;
             default:
-                final m mVar2 = this.f9551b;
-                final org.telegram.ui.ActionBar.b2 b2Var2 = this.f9552c;
+                final m mVar2 = this.f9579b;
+                final org.telegram.ui.ActionBar.b2 b2Var2 = this.f9580c;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {

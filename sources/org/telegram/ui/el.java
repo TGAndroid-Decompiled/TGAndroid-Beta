@@ -3,10 +3,10 @@ package org.telegram.ui;
 import android.graphics.Canvas;
 import android.graphics.RectF;
 public final class el implements org.telegram.ui.Components.ek0 {
-    public final co f36117a;
+    public final co f36144a;
 
     public el(co coVar) {
-        this.f36117a = coVar;
+        this.f36144a = coVar;
     }
 
     @Override

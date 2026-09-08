@@ -14,21 +14,21 @@ import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.zt0;
 import zh.s5;
 public final class f implements Runnable {
-    public final int f45179a;
-    public final int f45180b;
-    public final Object f45181c;
+    public final int f45207a;
+    public final int f45208b;
+    public final Object f45209c;
 
     public f(int i10, d5 d5Var) {
-        this.f45179a = 4;
-        this.f45180b = i10;
-        this.f45181c = d5Var;
+        this.f45207a = 4;
+        this.f45208b = i10;
+        this.f45209c = d5Var;
     }
 
     @Override
     public final void run() {
-        int i10 = this.f45179a;
-        int i11 = this.f45180b;
-        Object obj = this.f45181c;
+        int i10 = this.f45207a;
+        int i11 = this.f45208b;
+        Object obj = this.f45209c;
         switch (i10) {
             case 0:
                 k kVar = (k) obj;
@@ -48,7 +48,7 @@ public final class f implements Runnable {
                 }
                 ValueAnimator duration = ValueAnimator.ofFloat(0.0f, 1.0f).setDuration(150L);
                 kVar.P = duration;
-                duration.setInterpolator(pr.f29466f);
+                duration.setInterpolator(pr.f29493f);
                 kVar.P.addUpdateListener(new g(kVar, 5));
                 kVar.P.addListener(new h(kVar, 2));
                 kVar.P.start();
@@ -57,7 +57,7 @@ public final class f implements Runnable {
                 zt0 zt0Var = (zt0) obj;
                 qg.q1 q1Var = zt0Var.K1;
                 zt0Var.s0(q1Var, null);
-                qg.s0.e(i11).j(q1Var.f44543c);
+                qg.s0.e(i11).j(q1Var.f44571c);
                 return;
             case 2:
                 o2 o2Var = (o2) obj;
@@ -66,7 +66,7 @@ public final class f implements Runnable {
                 o2Var.h();
                 return;
             case 3:
-                d90 d90Var = ((ug.s0) obj).f47207e;
+                d90 d90Var = ((ug.s0) obj).f47235e;
                 try {
                     if (d90Var.getLayout().getLineForOffset(i11) == 0) {
                         d90Var.getEditableText().insert(i11, "\n");
@@ -86,14 +86,14 @@ public final class f implements Runnable {
                 of.f.s(((zh.g) obj).getParentActivity(), LocaleController.getString(i11));
                 return;
             default:
-                ConnectionsManager.getInstance(((s5) obj).f52566a).cancelRequest(i11, true);
+                ConnectionsManager.getInstance(((s5) obj).f52597a).cancelRequest(i11, true);
                 return;
         }
     }
 
     public f(Object obj, int i10, int i11) {
-        this.f45179a = i11;
-        this.f45181c = obj;
-        this.f45180b = i10;
+        this.f45207a = i11;
+        this.f45209c = obj;
+        this.f45208b = i10;
     }
 }

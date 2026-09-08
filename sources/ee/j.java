@@ -2,7 +2,7 @@ package ee;
 public final class j extends kotlin.jvm.internal.m implements rd.a {
     @Override
     public final vd.b computeReflected() {
-        kotlin.jvm.internal.q.f15054a.getClass();
+        kotlin.jvm.internal.q.f15080a.getClass();
         return this;
     }
 

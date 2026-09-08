@@ -10,12 +10,12 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 public final class n9 implements View.OnClickListener {
-    public final int f7692a;
-    public final ba f7693b;
+    public final int f7720a;
+    public final ba f7721b;
 
     public n9(ba baVar, int i10) {
-        this.f7692a = i10;
-        this.f7693b = baVar;
+        this.f7720a = i10;
+        this.f7721b = baVar;
     }
 
     @Override
@@ -31,21 +31,21 @@ public final class n9 implements View.OnClickListener {
         int i17;
         int i18;
         org.telegram.ui.ActionBar.f6 f6Var;
-        switch (this.f7692a) {
+        switch (this.f7720a) {
             case 0:
-                ba baVar = this.f7693b;
+                ba baVar = this.f7721b;
                 HashMap hashMap = baVar.d;
-                ArrayList arrayList = baVar.f6958c;
+                ArrayList arrayList = baVar.f6986c;
                 ia iaVar = baVar.W;
                 d dVar = baVar.v;
                 if (!dVar.N) {
                     i10 = ((org.telegram.ui.ActionBar.f3) iaVar).currentAccount;
-                    HashMap hashMap2 = iaVar.f7394e;
+                    HashMap hashMap2 = iaVar.f7422e;
                     ArrayList arrayList2 = iaVar.d;
-                    HashMap hashMap3 = iaVar.f7397r;
-                    ArrayList arrayList3 = iaVar.f7396n;
+                    HashMap hashMap3 = iaVar.f7425r;
+                    ArrayList arrayList3 = iaVar.f7424n;
                     MessagesController messagesController = MessagesController.getInstance(i10);
-                    int i19 = baVar.f6956a;
+                    int i19 = baVar.f6984a;
                     if (i19 == 5) {
                         p9 p9Var = iaVar.V;
                         if (p9Var != null) {
@@ -55,7 +55,7 @@ public final class n9 implements View.OnClickListener {
                         return;
                     } else if (i19 == 1) {
                         TLRPC.TL_editCloseFriends tL_editCloseFriends = new TLRPC.TL_editCloseFriends();
-                        tL_editCloseFriends.f19919id.addAll(arrayList);
+                        tL_editCloseFriends.f19946id.addAll(arrayList);
                         dVar.setLoading(true);
                         i18 = ((org.telegram.ui.ActionBar.f3) iaVar).currentAccount;
                         ConnectionsManager.getInstance(i18).sendRequest(tL_editCloseFriends, new bi.m1(7, baVar, messagesController));
@@ -67,7 +67,7 @@ public final class n9 implements View.OnClickListener {
                             int i21 = iaVar.N;
                             i17 = ((org.telegram.ui.ActionBar.f3) iaVar).currentAccount;
                             gaVar = new ga(i21, i17, new ArrayList(l1));
-                            ArrayList arrayList4 = gaVar.f7300c;
+                            ArrayList arrayList4 = gaVar.f7328c;
                             arrayList4.clear();
                             arrayList4.addAll(arrayList3);
                             HashMap hashMap4 = gaVar.d;
@@ -84,7 +84,7 @@ public final class n9 implements View.OnClickListener {
                             int i22 = iaVar.N;
                             i15 = ((org.telegram.ui.ActionBar.f3) iaVar).currentAccount;
                             gaVar = new ga(i22, i15, new ArrayList(l12));
-                            ArrayList arrayList5 = gaVar.f7300c;
+                            ArrayList arrayList5 = gaVar.f7328c;
                             arrayList5.clear();
                             arrayList5.addAll(arrayList2);
                             HashMap hashMap5 = gaVar.d;
@@ -101,7 +101,7 @@ public final class n9 implements View.OnClickListener {
                             return;
                         }
                         iaVar.f1();
-                        iaVar.f7390b.D(0);
+                        iaVar.f7418b.D(0);
                         return;
                     } else if (i19 == 3) {
                         if (iaVar.Z) {
@@ -110,7 +110,7 @@ public final class n9 implements View.OnClickListener {
                                 iaVar.f1();
                                 i12 = ((org.telegram.ui.ActionBar.f3) iaVar).currentAccount;
                                 ga gaVar2 = new ga(3, i12, new ArrayList(l13));
-                                ArrayList arrayList6 = gaVar2.f7300c;
+                                ArrayList arrayList6 = gaVar2.f7328c;
                                 arrayList6.clear();
                                 arrayList6.addAll(arrayList);
                                 HashMap hashMap6 = gaVar2.d;
@@ -123,7 +123,7 @@ public final class n9 implements View.OnClickListener {
                         } else if (!ia.l1(arrayList, hashMap).isEmpty()) {
                             iaVar.N = 3;
                             iaVar.f1();
-                            iaVar.f7390b.D(0);
+                            iaVar.f7418b.D(0);
                             return;
                         } else {
                             return;
@@ -134,7 +134,7 @@ public final class n9 implements View.OnClickListener {
                         i11 = ((org.telegram.ui.ActionBar.f3) iaVar).currentAccount;
                         bi.u8 storiesController = MessagesController.getInstance(i11).getStoriesController();
                         o9 o9Var = new o9(baVar, 1);
-                        int i23 = storiesController.f3805a;
+                        int i23 = storiesController.f3832a;
                         TLRPC.TL_contacts_setBlocked tL_contacts_setBlocked = new TLRPC.TL_contacts_setBlocked();
                         tL_contacts_setBlocked.my_stories_from = true;
                         HashSet hashSet = storiesController.L;
@@ -151,7 +151,7 @@ public final class n9 implements View.OnClickListener {
                             TLRPC.InputPeer inputPeer = MessagesController.getInstance(i23).getInputPeer(l4.longValue());
                             if (inputPeer != null && !(inputPeer instanceof TLRPC.TL_inputPeerEmpty)) {
                                 hashSet.add(l4);
-                                tL_contacts_setBlocked.f19916id.add(inputPeer);
+                                tL_contacts_setBlocked.f19943id.add(inputPeer);
                             }
                         }
                         storiesController.N = hashSet.size() + storiesController.N;
@@ -161,17 +161,17 @@ public final class n9 implements View.OnClickListener {
                     } else {
                         iaVar.N = i19;
                         iaVar.f1();
-                        iaVar.f7390b.D(0);
+                        iaVar.f7418b.D(0);
                         return;
                     }
                 }
                 return;
             case 1:
-                ba baVar2 = this.f7693b;
+                ba baVar2 = this.f7721b;
                 ia iaVar2 = baVar2.W;
                 if (iaVar2.O) {
                     iaVar2.M = 5;
-                    iaVar2.f7390b.D(1);
+                    iaVar2.f7418b.D(1);
                     return;
                 }
                 Context context = baVar2.getContext();
@@ -182,10 +182,10 @@ public final class n9 implements View.OnClickListener {
                 iaVar3.show();
                 return;
             default:
-                ba baVar3 = this.f7693b;
+                ba baVar3 = this.f7721b;
                 HashMap hashMap7 = baVar3.d;
-                a0.i iVar = baVar3.f6957b;
-                ArrayList arrayList7 = baVar3.f6958c;
+                a0.i iVar = baVar3.f6985b;
+                ArrayList arrayList7 = baVar3.f6986c;
                 int size2 = arrayList7.size();
                 int i24 = 0;
                 while (i24 < size2) {
@@ -205,7 +205,7 @@ public final class n9 implements View.OnClickListener {
                 arrayList7.clear();
                 hashMap7.clear();
                 baVar3.W.J.clear();
-                baVar3.f6965x.f7241c.a();
+                baVar3.f6993x.f7269c.a();
                 baVar3.f(true);
                 baVar3.e(true);
                 return;

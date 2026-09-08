@@ -42,19 +42,19 @@ public final class wa extends ra {
         vaVar.c(getScaleX());
         z0Var.e(d);
         gzVar.getClass();
-        String str = d.f597f;
-        str = str == null ? MessageObject.findAnimatedEmojiEmoticon(org.telegram.ui.Components.q5.f(gzVar.f36813b, d.f598g)) : str;
-        if (str != null && (arrayList = (ArrayList) gzVar.f36815e.get(str)) != null && !arrayList.isEmpty()) {
+        String str = d.f609f;
+        str = str == null ? MessageObject.findAnimatedEmojiEmoticon(org.telegram.ui.Components.q5.f(gzVar.f36840b, d.f610g)) : str;
+        if (str != null && (arrayList = (ArrayList) gzVar.f36842e.get(str)) != null && !arrayList.isEmpty()) {
             int min = Math.min(1, arrayList.size());
             for (int i10 = 0; i10 < min; i10++) {
                 gzVar.m((TLRPC.Document) arrayList.get(i10));
             }
         }
-        if (this.I.f597f != null && (tL_availableReaction = MediaDataController.getInstance(UserConfig.selectedAccount).getReactionsMap().get(this.I.f597f)) != null) {
+        if (this.I.f609f != null && (tL_availableReaction = MediaDataController.getInstance(UserConfig.selectedAccount).getReactionsMap().get(this.I.f609f)) != null) {
             this.L.setImage(ImageLocation.getForDocument(tL_availableReaction.center_icon), "40_40_lastreactframe", null, "webp", tL_availableReaction, 1);
         }
         org.telegram.ui.Components.p6 p6Var = this.N;
-        p6Var.f29285b = 17;
+        p6Var.f29312b = 17;
         p6Var.u(AndroidUtilities.getTypeface("fonts/rcondensedbold.ttf"));
         this.N.t(AndroidUtilities.dp(18.0f));
         this.N.G = AndroidUtilities.displaySize.x;
@@ -89,7 +89,7 @@ public final class wa extends ra {
         float d = this.M.d(f7, false);
         Rect rect = AndroidUtilities.rectTmp2;
         rect.set((int) centerX, (int) AndroidUtilities.lerp(centerY, f10, d), (int) centerX2, (int) AndroidUtilities.lerp(centerY2, f11, d));
-        if (vaVar.f3911a == 1) {
+        if (vaVar.f3938a == 1) {
             i10 = -1;
         } else {
             i10 = -16777216;
@@ -149,7 +149,7 @@ public final class wa extends ra {
     }
 
     public org.telegram.ui.Components.q5 getAnimatedEmojiDrawable() {
-        return this.K.f728b;
+        return this.K.f740b;
     }
 
     @Override

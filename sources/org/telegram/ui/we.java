@@ -18,37 +18,37 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.TopicsController;
 import org.telegram.tgnet.TLRPC;
 public final class we implements View.OnClickListener {
-    public final int f41984a;
-    public final co f41985b;
+    public final int f42011a;
+    public final co f42012b;
 
     public we(co coVar, int i10) {
-        this.f41984a = i10;
-        this.f41985b = coVar;
+        this.f42011a = i10;
+        this.f42012b = coVar;
     }
 
     @Override
     public final void onClick(View view) {
         boolean z10;
         int i10;
-        int i11 = this.f41984a;
+        int i11 = this.f42011a;
         String str = "";
         MessageObject messageObject = null;
         int i12 = 0;
-        co coVar = this.f41985b;
+        co coVar = this.f42012b;
         switch (i11) {
             case 0:
-                co coVar2 = this.f41985b;
+                co coVar2 = this.f42012b;
                 sg.k0.C1(coVar2, coVar2.D1, coVar2.E1, coVar2.T5, false);
                 return;
             case 1:
                 coVar.getClass();
                 Bundle bundle = new Bundle();
-                bundle.putLong("user_id", coVar.f35394r);
+                bundle.putLong("user_id", coVar.f35421r);
                 coVar.presentFragment(new ProfileActivity(bundle, null));
                 return;
             case 2:
                 if (coVar.K3 != null) {
-                    coVar.Lb(!coVar.f35497yc.f15369f);
+                    coVar.Lb(!coVar.f35524yc.f15396f);
                     return;
                 }
                 return;
@@ -59,20 +59,20 @@ public final class we implements View.OnClickListener {
                 fk fkVar = coVar.I1;
                 if (fkVar != null) {
                     fkVar.setReversed(true);
-                    coVar.I1.getAdapter().f11141k0 = true;
+                    coVar.I1.getAdapter().f11167k0 = true;
                     coVar.m7();
                 }
                 coVar.S2.setVisibility(8);
                 coVar.T2.setVisibility(8);
-                coVar.f35350n3 = true;
-                coVar.f35361o3 = null;
-                coVar.f35373p3 = null;
-                coVar.f35298j0.setSearchFieldHint(LocaleController.getString(R.string.SearchMembers));
-                coVar.f35298j0.setSearchFieldCaption(LocaleController.getString(R.string.SearchFrom));
-                AndroidUtilities.showKeyboard(coVar.f35298j0.getSearchField());
-                org.telegram.ui.ActionBar.v0 v0Var = coVar.f35298j0;
-                v0Var.f21398r = null;
-                di.h2 h2Var = v0Var.f21383e;
+                coVar.f35377n3 = true;
+                coVar.f35388o3 = null;
+                coVar.f35400p3 = null;
+                coVar.f35325j0.setSearchFieldHint(LocaleController.getString(R.string.SearchMembers));
+                coVar.f35325j0.setSearchFieldCaption(LocaleController.getString(R.string.SearchFrom));
+                AndroidUtilities.showKeyboard(coVar.f35325j0.getSearchField());
+                org.telegram.ui.ActionBar.v0 v0Var = coVar.f35325j0;
+                v0Var.f21425r = null;
+                di.h2 h2Var = v0Var.f21410e;
                 if (h2Var != null) {
                     h2Var.setText("");
                     return;
@@ -80,11 +80,11 @@ public final class we implements View.OnClickListener {
                 return;
             case 5:
                 if (coVar.getParentActivity() != null) {
-                    org.telegram.ui.ActionBar.v0 v0Var2 = coVar.f35298j0;
+                    org.telegram.ui.ActionBar.v0 v0Var2 = coVar.f35325j0;
                     if (v0Var2 != null) {
                         AndroidUtilities.hideKeyboard(v0Var2.getSearchField());
                     }
-                    coVar.showDialog(org.telegram.ui.Components.e5.p(coVar.getParentActivity(), new fl(coVar), coVar.f35247ea).f20204a);
+                    coVar.showDialog(org.telegram.ui.Components.e5.p(coVar.getParentActivity(), new fl(coVar), coVar.f35274ea).f20231a);
                     return;
                 }
                 return;
@@ -92,22 +92,22 @@ public final class we implements View.OnClickListener {
                 coVar.A7(true);
                 return;
             case 7:
-                MessageObject messageObject2 = coVar.f35229d5;
+                MessageObject messageObject2 = coVar.f35256d5;
                 if (messageObject2 != null) {
                     coVar.J9(messageObject2, false, false);
-                    of.f.r(coVar.getParentActivity(), Uri.parse(coVar.f35229d5.sponsoredUrl), true, false, false, null, null, false, coVar.getMessagesController().sponsoredLinksInappAllow, false);
+                    of.f.r(coVar.getParentActivity(), Uri.parse(coVar.f35256d5.sponsoredUrl), true, false, false, null, null, false, coVar.getMessagesController().sponsoredLinksInappAllow, false);
                     return;
                 }
                 return;
             case 8:
-                if (AndroidUtilities.addToClipboard(coVar.f35229d5.sponsoredInfo)) {
-                    org.telegram.messenger.wl.o(R.string.TextCopied, new org.telegram.ui.Components.yc(org.telegram.ui.Components.lb.a(coVar.getParentActivity()), coVar.f35247ea));
+                if (AndroidUtilities.addToClipboard(coVar.f35256d5.sponsoredInfo)) {
+                    org.telegram.messenger.wl.o(R.string.TextCopied, new org.telegram.ui.Components.yc(org.telegram.ui.Components.lb.a(coVar.getParentActivity()), coVar.f35274ea));
                     return;
                 }
                 return;
             case 9:
-                if (AndroidUtilities.addToClipboard(coVar.f35229d5.sponsoredAdditionalInfo)) {
-                    org.telegram.messenger.wl.o(R.string.TextCopied, new org.telegram.ui.Components.yc(org.telegram.ui.Components.lb.a(coVar.getParentActivity()), coVar.f35247ea));
+                if (AndroidUtilities.addToClipboard(coVar.f35256d5.sponsoredAdditionalInfo)) {
+                    org.telegram.messenger.wl.o(R.string.TextCopied, new org.telegram.ui.Components.yc(org.telegram.ui.Components.lb.a(coVar.getParentActivity()), coVar.f35274ea));
                     return;
                 }
                 return;
@@ -115,7 +115,7 @@ public final class we implements View.OnClickListener {
                 if (coVar.X0 != null && coVar.getParentActivity() != null) {
                     org.telegram.ui.ActionBar.f3 i13 = org.telegram.messenger.wl.i(1, coVar.X0.getContext(), null, false);
                     Activity parentActivity = coVar.getParentActivity();
-                    ao aoVar = coVar.f35247ea;
+                    ao aoVar = coVar.f35274ea;
                     final ?? frameLayout = new FrameLayout(parentActivity);
                     LinearLayout f7 = org.telegram.messenger.w1.f(parentActivity, 1);
                     TextView textView = new TextView(parentActivity);
@@ -198,7 +198,7 @@ public final class we implements View.OnClickListener {
                     skVar.setPadding(AndroidUtilities.dp(12.0f), 0, AndroidUtilities.dp(12.0f), 0);
                     skVar.setText(LocaleController.getString(R.string.SponsoredMessageAlertLearnMoreUrl));
                     skVar.setTextColor(org.telegram.ui.ActionBar.j6.v0(i15, aoVar));
-                    skVar.setBackground(org.telegram.ui.ActionBar.y5.e(new float[]{4.0f}, org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f20734h5, aoVar)));
+                    skVar.setBackground(org.telegram.ui.ActionBar.y5.e(new float[]{4.0f}, org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f20761h5, aoVar)));
                     skVar.setTextSize(1, 14.0f);
                     skVar.setGravity(16);
                     org.telegram.ui.Components.d90 d90Var4 = new org.telegram.ui.Components.d90(parentActivity, null);
@@ -233,27 +233,27 @@ public final class we implements View.OnClickListener {
                 coVar.showDialog(new sg.a1((org.telegram.ui.ActionBar.n2) coVar, 28, true));
                 return;
             case 13:
-                co coVar3 = this.f41985b;
+                co coVar3 = this.f42012b;
                 long j3 = coVar3.T5;
-                TLRPC.User user = coVar3.f35249f;
-                TLRPC.Chat chat = coVar3.f35237e;
+                TLRPC.User user = coVar3.f35276f;
+                TLRPC.Chat chat = coVar3.f35264e;
                 TLRPC.EncryptedChat encryptedChat = coVar3.h;
                 if (coVar3.N1.getTag(R.id.object_tag) != null) {
                     z10 = true;
                 } else {
                     z10 = false;
                 }
-                org.telegram.ui.Components.e5.j0(coVar3, j3, user, chat, encryptedChat, z10, coVar3.Z7, new ch(coVar3, 2), coVar3.f35247ea);
+                org.telegram.ui.Components.e5.j0(coVar3, j3, user, chat, encryptedChat, z10, coVar3.Z7, new ch(coVar3, 2), coVar3.f35274ea);
                 return;
             case 14:
                 co.j0(coVar);
                 return;
             case 15:
-                if (coVar.f35216c4 != null) {
+                if (coVar.f35243c4 != null) {
                     TopicsController topicsController = coVar.getMessagesController().getTopicsController();
-                    long j10 = coVar.f35237e.f19869id;
-                    TLRPC.TL_forumTopic tL_forumTopic = coVar.f35216c4;
-                    int i16 = tL_forumTopic.f19921id;
+                    long j10 = coVar.f35264e.f19896id;
+                    TLRPC.TL_forumTopic tL_forumTopic = coVar.f35243c4;
+                    int i16 = tL_forumTopic.f19948id;
                     tL_forumTopic.closed = false;
                     topicsController.toggleCloseTopic(j10, i16, false);
                 }
@@ -264,18 +264,18 @@ public final class we implements View.OnClickListener {
             case 16:
                 long j11 = coVar.T5;
                 if (coVar.h != null) {
-                    j11 = coVar.f35249f.f20016id;
+                    j11 = coVar.f35276f.f20043id;
                 }
                 coVar.Yb = false;
-                coVar.getMessagesController().hidePeerSettingsBar(j11, coVar.f35249f, coVar.f35237e);
+                coVar.getMessagesController().hidePeerSettingsBar(j11, coVar.f35276f, coVar.f35264e);
                 coVar.Qc(true);
                 coVar.oc(true);
                 return;
             case 17:
-                co coVar4 = this.f41985b;
+                co coVar4 = this.f42012b;
                 coVar4.D4 = true;
-                if (coVar4.F9() && !coVar4.f35277h4) {
-                    coVar4.F((int) coVar4.f35228d4, 0, 0, 0, true, true);
+                if (coVar4.F9() && !coVar4.f35304h4) {
+                    coVar4.F((int) coVar4.f35255d4, 0, 0, 0, true, true);
                     return;
                 }
                 int i17 = coVar4.L4;
@@ -325,14 +325,14 @@ public final class we implements View.OnClickListener {
                 SparseArray[] sparseArrayArr = coVar.W5;
                 for (int i18 = 1; i18 >= 0; i18--) {
                     if (messageObject == null && sparseArrayArr[i18].size() != 0) {
-                        messageObject = (MessageObject) coVar.f35364o6[i18].get(sparseArrayArr[i18].keyAt(0));
+                        messageObject = (MessageObject) coVar.f35391o6[i18].get(sparseArrayArr[i18].keyAt(0));
                     }
                     sparseArrayArr[i18].clear();
                     coVar.X5[i18].clear();
                     coVar.Y5[i18].clear();
                 }
                 coVar.c9();
-                if (messageObject != null && ((i10 = messageObject.messageOwner.f19890id) > 0 || (i10 < 0 && coVar.h != null))) {
+                if (messageObject != null && ((i10 = messageObject.messageOwner.f19917id) > 0 || (i10 < 0 && coVar.h != null))) {
                     coVar.Bb(messageObject);
                 }
                 coVar.yc(0, true);
@@ -343,7 +343,7 @@ public final class we implements View.OnClickListener {
                 co.f1(coVar);
                 return;
             case 27:
-                co coVar5 = this.f41985b;
+                co coVar5 = this.f42012b;
                 MessageObject messageObject3 = coVar5.p5;
                 if (messageObject3 != null) {
                     coVar5.F(messageObject3.getId(), 0, 0, 0, true, true);

@@ -25,20 +25,20 @@ import w7.x5;
 public abstract class j1 extends LinearLayout {
     public boolean E;
     public boolean F;
-    public final f6 f12111a;
-    public final TextView f12112b;
-    public final TextView[] f12113c;
+    public final f6 f12137a;
+    public final TextView f12138b;
+    public final TextView[] f12139c;
     public final ImageView d;
-    public final FrameLayout f12114e;
-    public final ViewGroup[] f12115f;
+    public final FrameLayout f12140e;
+    public final ViewGroup[] f12141f;
     public final TextView[] h;
-    public final TextView[][] f12116n;
-    public final cq f12117r;
-    public final FrameLayout f12118s;
+    public final TextView[][] f12142n;
+    public final cq f12143r;
+    public final FrameLayout f12144s;
     public final LinearLayout v;
-    public int f12119w;
-    public int f12120x;
-    public boolean f12121y;
+    public int f12145w;
+    public int f12146x;
+    public boolean f12147y;
 
     public j1(Context context, f6 f6Var) {
         super(context);
@@ -51,14 +51,14 @@ public abstract class j1 extends LinearLayout {
         int i14;
         int i15;
         int i16;
-        this.f12113c = new TextView[2];
-        this.f12115f = new ViewGroup[7];
+        this.f12139c = new TextView[2];
+        this.f12141f = new ViewGroup[7];
         this.h = new TextView[7];
-        this.f12116n = new TextView[7];
-        this.f12119w = 1;
-        this.f12120x = 0;
-        this.f12121y = true;
-        this.f12111a = f6Var;
+        this.f12142n = new TextView[7];
+        this.f12145w = 1;
+        this.f12146x = 0;
+        this.f12147y = true;
+        this.f12137a = f6Var;
         setOrientation(1);
         setClipChildren(false);
         int i17 = 0;
@@ -67,7 +67,7 @@ public abstract class j1 extends LinearLayout {
                 ViewGroup g5Var = new g5(context, 4);
                 g5Var.setMinimumHeight(AndroidUtilities.dp(60.0f));
                 TextView textView = new TextView(context);
-                this.f12112b = textView;
+                this.f12138b = textView;
                 if (LocaleController.isRTL) {
                     i12 = 5;
                 } else {
@@ -85,38 +85,38 @@ public abstract class j1 extends LinearLayout {
                 }
                 textView2.setGravity(i13);
                 this.h[i17].setTextSize(1, 13.0f);
-                this.h[i17].setTextColor(j6.v0(j6.f21061z6, f6Var));
+                this.h[i17].setTextColor(j6.v0(j6.f21088z6, f6Var));
                 g5Var.addView(this.h[i17], x5.i(-2.0f, -2.0f, 8388659, 0.0f, 33.0f, 0.0f, 10.0f));
                 LinearLayout linearLayout = new LinearLayout(context);
                 this.v = linearLayout;
                 linearLayout.setOrientation(1);
-                this.f12118s = new FrameLayout(context);
-                this.f12116n[i17] = new TextView[2];
+                this.f12144s = new FrameLayout(context);
+                this.f12142n[i17] = new TextView[2];
                 for (int i19 = 0; i19 < 2; i19++) {
-                    this.f12116n[i17][i19] = new TextView(context);
-                    this.f12116n[i17][i19].setTextSize(1, 14.0f);
-                    this.f12116n[i17][i19].setTextColor(j6.v0(j6.f21061z6, f6Var));
-                    TextView textView3 = this.f12116n[i17][i19];
+                    this.f12142n[i17][i19] = new TextView(context);
+                    this.f12142n[i17][i19].setTextSize(1, 14.0f);
+                    this.f12142n[i17][i19].setTextColor(j6.v0(j6.f21088z6, f6Var));
+                    TextView textView3 = this.f12142n[i17][i19];
                     if (LocaleController.isRTL) {
                         i16 = 3;
                     } else {
                         i16 = 5;
                     }
                     textView3.setGravity(i16);
-                    this.f12118s.addView(this.f12116n[i17][i19], x5.i(-1.0f, -1.0f, 119, 0.0f, 0.0f, 20.0f, 0.0f));
+                    this.f12144s.addView(this.f12142n[i17][i19], x5.i(-1.0f, -1.0f, 119, 0.0f, 0.0f, 20.0f, 0.0f));
                 }
                 for (int i20 = 0; i20 < 2; i20++) {
-                    this.f12113c[i20] = new TextView(context);
-                    this.f12113c[i20].setTextSize(1, 14.0f);
-                    this.f12113c[i20].setTextColor(j6.v0(j6.f21061z6, f6Var));
-                    TextView textView4 = this.f12113c[i20];
+                    this.f12139c[i20] = new TextView(context);
+                    this.f12139c[i20].setTextSize(1, 14.0f);
+                    this.f12139c[i20].setTextColor(j6.v0(j6.f21088z6, f6Var));
+                    TextView textView4 = this.f12139c[i20];
                     if (LocaleController.isRTL) {
                         i15 = 3;
                     } else {
                         i15 = 5;
                     }
                     textView4.setGravity(i15);
-                    this.f12118s.addView(this.f12113c[i20], x5.i(-1.0f, -1.0f, 119, 0.0f, 0.0f, 20.0f, 0.0f));
+                    this.f12144s.addView(this.f12139c[i20], x5.i(-1.0f, -1.0f, 119, 0.0f, 0.0f, 20.0f, 0.0f));
                 }
                 ImageView imageView = new ImageView(context);
                 this.d = imageView;
@@ -124,11 +124,11 @@ public abstract class j1 extends LinearLayout {
                 imageView.setScaleX(0.6f);
                 imageView.setScaleY(0.6f);
                 imageView.setImageResource(R.drawable.arrow_more);
-                imageView.setColorFilter(new PorterDuffColorFilter(j6.v0(j6.f21061z6, f6Var), PorterDuff.Mode.SRC_IN));
-                this.f12118s.addView(imageView, x5.h(20.0f, 20.0f, 8388629));
-                this.v.addView(this.f12118s, new LinearLayout.LayoutParams(x5.z(-1.0f), x5.z(-1.0f), Gravity.getAbsoluteGravity(119, LocaleController.isRTL ? 1 : 0)));
+                imageView.setColorFilter(new PorterDuffColorFilter(j6.v0(j6.f21088z6, f6Var), PorterDuff.Mode.SRC_IN));
+                this.f12144s.addView(imageView, x5.h(20.0f, 20.0f, 8388629));
+                this.v.addView(this.f12144s, new LinearLayout.LayoutParams(x5.z(-1.0f), x5.z(-1.0f), Gravity.getAbsoluteGravity(119, LocaleController.isRTL ? 1 : 0)));
                 cq cqVar = new cq(context);
-                this.f12117r = cqVar;
+                this.f12143r = cqVar;
                 cqVar.getDrawable().F = true;
                 cqVar.setTextSize(AndroidUtilities.dp(13.0f));
                 cqVar.setPadding(AndroidUtilities.dp(6.0f), 0, AndroidUtilities.dp(6.0f), 0);
@@ -139,7 +139,7 @@ public abstract class j1 extends LinearLayout {
                 }
                 cqVar.setGravity(i14);
                 int dp = AndroidUtilities.dp(8.0f);
-                int i21 = j6.f20862o6;
+                int i21 = j6.f20889o6;
                 int v02 = j6.v0(i21, f6Var);
                 a(v02);
                 int l1 = j6.l1(0.1f, v02);
@@ -154,10 +154,10 @@ public abstract class j1 extends LinearLayout {
                 cqVar.setVisibility(8);
                 this.v.addView(cqVar, x5.u(-1.0f, 17.0f, 8388613, 0.0f, 4.0f, 18.0f, 0.0f));
                 FrameLayout frameLayout = new FrameLayout(context);
-                this.f12114e = frameLayout;
+                this.f12140e = frameLayout;
                 frameLayout.addView(this.v, x5.i(-1.0f, -2.0f, 8388693, 0.0f, 0.0f, 0.0f, 0.0f));
                 g5Var.addView(frameLayout, x5.i(-1.0f, -2.0f, 8388693, 0.0f, 0.0f, 0.0f, 12.0f));
-                this.f12115f[i17] = g5Var;
+                this.f12141f[i17] = g5Var;
                 addView(g5Var, x5.i(-1.0f, -2.0f, 51, 18.0f, 0.0f, 8.0f, 0.0f));
             } else {
                 ViewGroup f11 = wl.f(context, 0);
@@ -172,19 +172,19 @@ public abstract class j1 extends LinearLayout {
                 }
                 textView5.setGravity(i10);
                 FrameLayout frameLayout2 = new FrameLayout(context);
-                this.f12116n[i17] = new TextView[2];
+                this.f12142n[i17] = new TextView[2];
                 for (int i22 = 0; i22 < 2; i22++) {
-                    this.f12116n[i17][i22] = new TextView(context);
-                    this.f12116n[i17][i22].setTextSize(1, 14.0f);
-                    this.f12116n[i17][i22].setTextColor(j6.v0(j6.f21061z6, f6Var));
-                    TextView textView6 = this.f12116n[i17][i22];
+                    this.f12142n[i17][i22] = new TextView(context);
+                    this.f12142n[i17][i22].setTextSize(1, 14.0f);
+                    this.f12142n[i17][i22].setTextColor(j6.v0(j6.f21088z6, f6Var));
+                    TextView textView6 = this.f12142n[i17][i22];
                     if (LocaleController.isRTL) {
                         i11 = 3;
                     } else {
                         i11 = 5;
                     }
                     textView6.setGravity(i11);
-                    frameLayout2.addView(this.f12116n[i17][i22], x5.e(-1, -1, 119));
+                    frameLayout2.addView(this.f12142n[i17][i22], x5.e(-1, -1, 119));
                 }
                 if (LocaleController.isRTL) {
                     f11.addView(frameLayout2, x5.q(-2, -1, 51));
@@ -193,7 +193,7 @@ public abstract class j1 extends LinearLayout {
                     f11.addView(this.h[i17], x5.q(-2, -1, 51));
                     f11.addView(frameLayout2, x5.q(-1, -1, 53));
                 }
-                this.f12115f[i17] = f11;
+                this.f12141f[i17] = f11;
                 if (i17 == 1) {
                     f7 = 1.0f;
                 } else {
@@ -222,9 +222,9 @@ public abstract class j1 extends LinearLayout {
         float f7;
         super.onDraw(canvas);
         if (this.E) {
-            Paint T0 = j6.T0("paintDivider", this.f12111a);
+            Paint T0 = j6.T0("paintDivider", this.f12137a);
             if (T0 == null) {
-                T0 = j6.f20785k0;
+                T0 = j6.f20812k0;
             }
             Paint paint = T0;
             float f10 = 21.33f;
@@ -250,12 +250,12 @@ public abstract class j1 extends LinearLayout {
         int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824);
         if (!this.F) {
             int dp2 = AndroidUtilities.dp(60.0f);
-            int i12 = this.f12119w;
-            cq cqVar = this.f12117r;
+            int i12 = this.f12145w;
+            cq cqVar = this.f12143r;
             if (i12 <= 2 && cqVar.getVisibility() != 0) {
                 dp = 0;
             } else {
-                int dp3 = AndroidUtilities.dp(15.0f) + this.f12120x;
+                int dp3 = AndroidUtilities.dp(15.0f) + this.f12146x;
                 if (cqVar.getVisibility() == 0) {
                     f7 = 21.0f;
                 } else {
@@ -270,21 +270,21 @@ public abstract class j1 extends LinearLayout {
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        cq cqVar = this.f12117r;
+        cq cqVar = this.f12143r;
         if (cqVar != null && cqVar.getVisibility() == 0) {
             float x10 = motionEvent.getX();
-            ViewGroup[] viewGroupArr = this.f12115f;
+            ViewGroup[] viewGroupArr = this.f12141f;
             float x11 = x10 - viewGroupArr[0].getX();
-            FrameLayout frameLayout = this.f12114e;
+            FrameLayout frameLayout = this.f12140e;
             float x12 = x11 - frameLayout.getX();
-            FrameLayout frameLayout2 = this.f12118s;
+            FrameLayout frameLayout2 = this.f12144s;
             return cqVar.getClickBounds().contains((int) ((x12 - frameLayout2.getX()) - cqVar.getX()), (int) ((((motionEvent.getY() - viewGroupArr[0].getY()) - frameLayout.getY()) - frameLayout2.getY()) - cqVar.getY()));
         }
         return super.onTouchEvent(motionEvent);
     }
 
     public void setOnTimezoneSwitchClick(View.OnClickListener onClickListener) {
-        cq cqVar = this.f12117r;
+        cq cqVar = this.f12143r;
         if (cqVar != null) {
             cqVar.setOnClickListener(onClickListener);
         }

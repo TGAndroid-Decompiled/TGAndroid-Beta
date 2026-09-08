@@ -11,10 +11,10 @@ import org.telegram.ui.Components.d51;
 import org.telegram.ui.Components.ly;
 import org.telegram.ui.StickersActivity;
 public final class t1 implements ly {
-    public final c2 f14183a;
+    public final c2 f14209a;
 
     public t1(c2 c2Var) {
-        this.f14183a = c2Var;
+        this.f14209a = c2Var;
     }
 
     @Override
@@ -51,7 +51,7 @@ public final class t1 implements ly {
     public final void i(int i10) {
         h1 focusedEditTextOrNull;
         boolean z10 = false;
-        c2 c2Var = this.f14183a;
+        c2 c2Var = this.f14209a;
         if (i10 != 0 && (focusedEditTextOrNull = c2Var.P.getFocusedEditTextOrNull()) != null) {
             c2Var.R0 = focusedEditTextOrNull;
             c2Var.S0 = Math.max(0, focusedEditTextOrNull.getSelectionEnd());
@@ -70,7 +70,7 @@ public final class t1 implements ly {
 
     @Override
     public final boolean k() {
-        h1 a02 = c2.a0(this.f14183a);
+        h1 a02 = c2.a0(this.f14209a);
         if (a02 == null || a02.length() == 0) {
             return false;
         }
@@ -80,7 +80,7 @@ public final class t1 implements ly {
 
     @Override
     public final void l(String str) {
-        c2 c2Var = this.f14183a;
+        c2 c2Var = this.f14209a;
         h1 a02 = c2.a0(c2Var);
         if (a02 != null) {
             int b02 = c2.b0(c2Var, a02);
@@ -104,18 +104,18 @@ public final class t1 implements ly {
 
     @Override
     public final void t(ArrayList arrayList) {
-        this.f14183a.presentFragment(new StickersActivity(5, arrayList));
+        this.f14209a.presentFragment(new StickersActivity(5, arrayList));
     }
 
     @Override
     public final void w() {
-        this.f14183a.presentFragment(new StickersActivity(0, null));
+        this.f14209a.presentFragment(new StickersActivity(0, null));
     }
 
     @Override
     public final void x(long j3, TLRPC.Document document, String str, boolean z10) {
         org.telegram.ui.Components.z5 z5Var;
-        c2 c2Var = this.f14183a;
+        c2 c2Var = this.f14209a;
         h1 a02 = c2.a0(c2Var);
         if (a02 != null) {
             int b02 = c2.b0(c2Var, a02);
@@ -144,7 +144,7 @@ public final class t1 implements ly {
 
     @Override
     public final boolean z() {
-        return this.f14183a.C0;
+        return this.f14209a.C0;
     }
 
     @Override

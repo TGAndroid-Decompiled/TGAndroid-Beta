@@ -7,12 +7,12 @@ import androidx.appcompat.widget.ActionBarContextView;
 import java.lang.ref.WeakReference;
 import n4.y;
 public final class d extends a implements l.j {
-    public Context f14387c;
+    public Context f14413c;
     public ActionBarContextView d;
-    public y f14388e;
-    public WeakReference f14389f;
+    public y f14414e;
+    public WeakReference f14415f;
     public boolean h;
-    public l.l f14390n;
+    public l.l f14416n;
 
     @Override
     public final void a() {
@@ -20,12 +20,12 @@ public final class d extends a implements l.j {
             return;
         }
         this.h = true;
-        this.f14388e.I(this);
+        this.f14414e.I(this);
     }
 
     @Override
     public final View b() {
-        WeakReference weakReference = this.f14389f;
+        WeakReference weakReference = this.f14415f;
         if (weakReference != null) {
             return (View) weakReference.get();
         }
@@ -34,7 +34,7 @@ public final class d extends a implements l.j {
 
     @Override
     public final l.l c() {
-        return this.f14390n;
+        return this.f14416n;
     }
 
     @Override
@@ -54,7 +54,7 @@ public final class d extends a implements l.j {
 
     @Override
     public final void g() {
-        this.f14388e.J(this, this.f14390n);
+        this.f14414e.J(this, this.f14416n);
     }
 
     @Override
@@ -71,12 +71,12 @@ public final class d extends a implements l.j {
         } else {
             weakReference = null;
         }
-        this.f14389f = weakReference;
+        this.f14415f = weakReference;
     }
 
     @Override
     public final void j(int i10) {
-        k(this.f14387c.getString(i10));
+        k(this.f14413c.getString(i10));
     }
 
     @Override
@@ -86,7 +86,7 @@ public final class d extends a implements l.j {
 
     @Override
     public final void l(int i10) {
-        m(this.f14387c.getString(i10));
+        m(this.f14413c.getString(i10));
     }
 
     @Override
@@ -105,12 +105,12 @@ public final class d extends a implements l.j {
 
     @Override
     public final void o(boolean z10) {
-        this.f14383b = z10;
+        this.f14409b = z10;
         this.d.setTitleOptional(z10);
     }
 
     @Override
     public final boolean s(l.l lVar, MenuItem menuItem) {
-        return ((fg.f) this.f14388e.f16496b).H(this, menuItem);
+        return ((fg.f) this.f14414e.f16523b).H(this, menuItem);
     }
 }

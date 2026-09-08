@@ -34,62 +34,62 @@ public final class t8 implements NotificationCenter.NotificationCenterDelegate {
     public MessageObject K;
     public TL_bots.botPreviewMedia L;
     public final u8 M;
-    public final boolean f3739b;
-    public final di.o8 f3740c;
+    public final boolean f3766b;
+    public final di.o8 f3767c;
     public boolean d;
-    public String f3741e;
-    public final String f3742f;
+    public String f3768e;
+    public final String f3769f;
     public float h;
-    public float f3743n;
-    public float f3744r;
-    public boolean f3745s;
+    public float f3770n;
+    public float f3771r;
+    public boolean f3772s;
     public boolean v;
-    public int f3746w;
-    public long f3748y;
-    public long f3747x = -1;
-    public final long f3738a = Utilities.random.nextLong();
+    public int f3773w;
+    public long f3775y;
+    public long f3774x = -1;
+    public final long f3765a = Utilities.random.nextLong();
 
     public t8(u8 u8Var, di.o8 o8Var) {
         this.M = u8Var;
-        this.f3740c = o8Var;
-        this.f3739b = o8Var.f7756g;
+        this.f3767c = o8Var;
+        this.f3766b = o8Var.f7784g;
         File file = o8Var.N0;
         if (file != null) {
-            this.f3742f = file.getAbsolutePath();
+            this.f3769f = file.getAbsolutePath();
         }
-        boolean z10 = o8Var.f7785w;
+        boolean z10 = o8Var.f7813w;
         this.H = z10;
         this.I = z10;
         long j3 = o8Var.J0;
         if (j3 != 0) {
             this.J = j3;
-        } else if (o8Var.f7756g) {
-            this.J = o8Var.f7751e;
+        } else if (o8Var.f7784g) {
+            this.J = o8Var.f7779e;
         } else {
-            TLRPC.InputPeer inputPeer = o8Var.f7784v0;
+            TLRPC.InputPeer inputPeer = o8Var.f7812v0;
             if (inputPeer != null && !(inputPeer instanceof TLRPC.TL_inputPeerSelf)) {
                 this.J = DialogObject.getPeerDialogId(inputPeer);
             } else {
-                this.J = UserConfig.getInstance(u8Var.f3805a).clientUserId;
+                this.J = UserConfig.getInstance(u8Var.f3832a).clientUserId;
             }
         }
     }
 
     public final void a() {
         boolean z10 = this.I;
-        di.o8 o8Var = this.f3740c;
+        di.o8 o8Var = this.f3767c;
         u8 u8Var = this.M;
         if (z10) {
-            u8Var.f3824w.b(o8Var);
-            ((ArrayList) u8Var.f3806b.f(this.J)).remove(this);
+            u8Var.f3851w.b(o8Var);
+            ((ArrayList) u8Var.f3833b.f(this.J)).remove(this);
         }
         this.v = true;
         if (o8Var.E()) {
             MediaController.getInstance().cancelVideoConvert(this.E);
         }
-        FileLoader.getInstance(u8Var.f3805a).cancelFileUpload(this.f3741e, false);
-        if (this.f3746w >= 0) {
-            ConnectionsManager.getInstance(u8Var.f3805a).cancelRequest(this.f3746w, true);
+        FileLoader.getInstance(u8Var.f3832a).cancelFileUpload(this.f3768e, false);
+        if (this.f3773w >= 0) {
+            ConnectionsManager.getInstance(u8Var.f3832a).cancelRequest(this.f3773w, true);
         }
         b();
     }
@@ -104,7 +104,7 @@ public final class t8 implements NotificationCenter.NotificationCenterDelegate {
         HashMap hashMap;
         ArrayList arrayList;
         u8 u8Var = this.M;
-        int i10 = u8Var.f3805a;
+        int i10 = u8Var.f3832a;
         NotificationCenter.getInstance(i10).removeObserver(this, NotificationCenter.fileUploaded);
         NotificationCenter.getInstance(i10).removeObserver(this, NotificationCenter.fileUploadFailed);
         NotificationCenter.getInstance(i10).removeObserver(this, NotificationCenter.fileUploadProgressChanged);
@@ -113,10 +113,10 @@ public final class t8 implements NotificationCenter.NotificationCenterDelegate {
         NotificationCenter.getInstance(i10).removeObserver(this, NotificationCenter.fileNewChunkAvailable);
         boolean z10 = this.I;
         long j3 = this.J;
-        if (!z10 && (arrayList = (ArrayList) u8Var.f3806b.f(j3)) != null) {
+        if (!z10 && (arrayList = (ArrayList) u8Var.f3833b.f(j3)) != null) {
             arrayList.remove(this);
         }
-        ArrayList arrayList2 = (ArrayList) u8Var.f3807c.f(j3);
+        ArrayList arrayList2 = (ArrayList) u8Var.f3834c.f(j3);
         if (arrayList2 != null) {
             arrayList2.remove(this);
             if (arrayList2.isEmpty()) {
@@ -125,14 +125,14 @@ public final class t8 implements NotificationCenter.NotificationCenterDelegate {
                 u8Var.d++;
             }
         }
-        boolean z11 = this.f3739b;
-        di.o8 o8Var = this.f3740c;
-        if (z11 && (hashMap = (HashMap) u8Var.f3808e.f(j3)) != null) {
-            hashMap.remove(Integer.valueOf(o8Var.f7754f));
+        boolean z11 = this.f3766b;
+        di.o8 o8Var = this.f3767c;
+        if (z11 && (hashMap = (HashMap) u8Var.f3835e.f(j3)) != null) {
+            hashMap.remove(Integer.valueOf(o8Var.f7782f));
         }
         if (this.L != null) {
             l8 A = u8Var.A(this.J, 4, -1, false);
-            if (o8Var != null && o8Var.f7756g) {
+            if (o8Var != null && o8Var.f7784g) {
                 if (A instanceof b8) {
                     ((b8) A).G(o8Var.L0, this.L);
                 }
@@ -142,14 +142,14 @@ public final class t8 implements NotificationCenter.NotificationCenterDelegate {
                 LongSparseArray longSparseArray5 = ci.y.F;
                 if (longSparseArray5 != null && (longSparseArray4 = (LongSparseArray) longSparseArray5.get(i10)) != null) {
                     b8 b8Var = (b8) longSparseArray4.get(j3);
-                    int i11 = b8Var.f3271c;
+                    int i11 = b8Var.f3298c;
                     ArrayList arrayList3 = b8Var.G;
                     if (i11 == i10) {
                         if (TextUtils.equals(b8Var.E, str)) {
                             b8Var.G(inputMedia, botpreviewmedia);
                         } else if (!TextUtils.isEmpty(str) && !arrayList3.contains(str)) {
                             arrayList3.add(str);
-                            g8 g8Var = b8Var.f3283q;
+                            g8 g8Var = b8Var.f3310q;
                             AndroidUtilities.cancelRunOnUIThread(g8Var);
                             AndroidUtilities.runOnUIThread(g8Var);
                         }
@@ -157,10 +157,10 @@ public final class t8 implements NotificationCenter.NotificationCenterDelegate {
                 }
                 LongSparseArray longSparseArray6 = ci.y.E;
                 if (longSparseArray6 != null && (longSparseArray3 = (LongSparseArray) longSparseArray6.get(i10)) != null && (yVar2 = (ci.y) longSparseArray3.get(j3)) != null) {
-                    ArrayList arrayList4 = yVar2.f4852f;
+                    ArrayList arrayList4 = yVar2.f4879f;
                     for (int i12 = 0; i12 < arrayList4.size(); i12++) {
                         b8 b8Var2 = (b8) arrayList4.get(i12);
-                        if (b8Var2.f3271c == i10 && TextUtils.equals(b8Var2.E, str)) {
+                        if (b8Var2.f3298c == i10 && TextUtils.equals(b8Var2.E, str)) {
                             b8Var2.G(inputMedia, botpreviewmedia);
                         }
                     }
@@ -174,14 +174,14 @@ public final class t8 implements NotificationCenter.NotificationCenterDelegate {
                 LongSparseArray longSparseArray7 = ci.y.F;
                 if (longSparseArray7 != null && (longSparseArray2 = (LongSparseArray) longSparseArray7.get(i10)) != null) {
                     b8 b8Var3 = (b8) longSparseArray2.get(j3);
-                    int i13 = b8Var3.f3271c;
+                    int i13 = b8Var3.f3298c;
                     ArrayList arrayList5 = b8Var3.G;
                     if (i13 == i10) {
                         if (TextUtils.equals(b8Var3.E, str2)) {
                             b8Var3.I(botpreviewmedia2);
                         } else if (!TextUtils.isEmpty(str2) && !arrayList5.contains(str2)) {
                             arrayList5.add(str2);
-                            g8 g8Var2 = b8Var3.f3283q;
+                            g8 g8Var2 = b8Var3.f3310q;
                             AndroidUtilities.cancelRunOnUIThread(g8Var2);
                             AndroidUtilities.runOnUIThread(g8Var2);
                         }
@@ -189,10 +189,10 @@ public final class t8 implements NotificationCenter.NotificationCenterDelegate {
                 }
                 LongSparseArray longSparseArray8 = ci.y.E;
                 if (longSparseArray8 != null && (longSparseArray = (LongSparseArray) longSparseArray8.get(i10)) != null && (yVar = (ci.y) longSparseArray.get(j3)) != null) {
-                    ArrayList arrayList6 = yVar.f4852f;
+                    ArrayList arrayList6 = yVar.f4879f;
                     for (int i14 = 0; i14 < arrayList6.size(); i14++) {
                         b8 b8Var4 = (b8) arrayList6.get(i14);
-                        if (b8Var4.f3271c == i10 && TextUtils.equals(b8Var4.E, str2)) {
+                        if (b8Var4.f3298c == i10 && TextUtils.equals(b8Var4.E, str2)) {
                             b8Var4.I(botpreviewmedia2);
                         }
                     }
@@ -205,7 +205,7 @@ public final class t8 implements NotificationCenter.NotificationCenterDelegate {
             o8Var.i(false);
             this.d = true;
         }
-        NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.uploadStoryEnd, this.f3741e);
+        NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.uploadStoryEnd, this.f3768e);
     }
 
     public final void c(org.telegram.tgnet.TLRPC.InputFile r20) {
@@ -214,46 +214,46 @@ public final class t8 implements NotificationCenter.NotificationCenterDelegate {
 
     public final void d() {
         boolean z10;
-        di.o8 o8Var = this.f3740c;
-        if (o8Var.f7744b0) {
+        di.o8 o8Var = this.f3767c;
+        if (o8Var.f7772b0) {
             TLRPC.TL_inputFileStoryDocument tL_inputFileStoryDocument = new TLRPC.TL_inputFileStoryDocument();
-            tL_inputFileStoryDocument.doc = MessagesController.toInputDocument(this.f3740c.f7747c0);
+            tL_inputFileStoryDocument.doc = MessagesController.toInputDocument(this.f3767c.f7775c0);
             c(tL_inputFileStoryDocument);
-        } else if ((o8Var.f7756g || (o8Var.f7768n && o8Var.f7780t != null)) && !o8Var.f7761j && o8Var.f7771o0 == null) {
+        } else if ((o8Var.f7784g || (o8Var.f7796n && o8Var.f7808t != null)) && !o8Var.f7789j && o8Var.f7799o0 == null) {
             c(null);
             return;
         }
-        di.ga gaVar = this.f3740c.E0;
-        if (gaVar != null && gaVar.f7298a == 1) {
+        di.ga gaVar = this.f3767c.E0;
+        if (gaVar != null && gaVar.f7326a == 1) {
             z10 = true;
         } else {
             z10 = false;
         }
         this.G = z10;
-        NotificationCenter.getInstance(this.M.f3805a).addObserver(this, NotificationCenter.fileUploaded);
-        NotificationCenter.getInstance(this.M.f3805a).addObserver(this, NotificationCenter.fileUploadFailed);
-        NotificationCenter.getInstance(this.M.f3805a).addObserver(this, NotificationCenter.fileUploadProgressChanged);
-        NotificationCenter.getInstance(this.M.f3805a).addObserver(this, NotificationCenter.filePreparingFailed);
-        NotificationCenter.getInstance(this.M.f3805a).addObserver(this, NotificationCenter.filePreparingStarted);
-        NotificationCenter.getInstance(this.M.f3805a).addObserver(this, NotificationCenter.fileNewChunkAvailable);
-        boolean E = this.f3740c.E();
-        this.f3745s = E;
+        NotificationCenter.getInstance(this.M.f3832a).addObserver(this, NotificationCenter.fileUploaded);
+        NotificationCenter.getInstance(this.M.f3832a).addObserver(this, NotificationCenter.fileUploadFailed);
+        NotificationCenter.getInstance(this.M.f3832a).addObserver(this, NotificationCenter.fileUploadProgressChanged);
+        NotificationCenter.getInstance(this.M.f3832a).addObserver(this, NotificationCenter.filePreparingFailed);
+        NotificationCenter.getInstance(this.M.f3832a).addObserver(this, NotificationCenter.filePreparingStarted);
+        NotificationCenter.getInstance(this.M.f3832a).addObserver(this, NotificationCenter.fileNewChunkAvailable);
+        boolean E = this.f3767c.E();
+        this.f3772s = E;
         if (E) {
             TLRPC.TL_message tL_message = new TLRPC.TL_message();
-            tL_message.f19890id = 1;
-            String absolutePath = di.o8.x(this.M.f3805a, true).getAbsolutePath();
+            tL_message.f19917id = 1;
+            String absolutePath = di.o8.x(this.M.f3832a, true).getAbsolutePath();
             tL_message.attachPath = absolutePath;
-            this.f3741e = absolutePath;
-            this.E = new MessageObject(this.M.f3805a, (TLRPC.Message) tL_message, (MessageObject) null, false, false);
-            this.f3740c.s(new r8(this, 1));
+            this.f3768e = absolutePath;
+            this.E = new MessageObject(this.M.f3832a, (TLRPC.Message) tL_message, (MessageObject) null, false, false);
+            this.f3767c.s(new r8(this, 1));
         } else {
-            File w10 = di.o8.w(this.M.f3805a, "jpg");
-            this.f3741e = w10.getAbsolutePath();
+            File w10 = di.o8.w(this.M.f3832a, "jpg");
+            this.f3768e = w10.getAbsolutePath();
             Utilities.themeQueue.postRunnable(new s8(0, this, w10));
         }
         Intent intent = new Intent(ApplicationLoader.applicationContext, StoryUploadingService.class);
-        intent.putExtra("path", this.f3741e);
-        intent.putExtra("currentAccount", this.M.f3805a);
+        intent.putExtra("path", this.f3768e);
+        intent.putExtra("currentAccount", this.M.f3832a);
         try {
             ApplicationLoader.applicationContext.startService(intent);
         } catch (Throwable th2) {
@@ -265,7 +265,7 @@ public final class t8 implements NotificationCenter.NotificationCenterDelegate {
     public final void didReceivedNotification(int i10, int i11, Object... objArr) {
         if (i10 == NotificationCenter.filePreparingStarted) {
             if (objArr[0] == this.E) {
-                this.f3741e = (String) objArr[1];
+                this.f3768e = (String) objArr[1];
                 e();
                 return;
             }
@@ -279,63 +279,63 @@ public final class t8 implements NotificationCenter.NotificationCenterDelegate {
                 long longValue = ((Long) objArr[2]).longValue();
                 long longValue2 = ((Long) objArr[3]).longValue();
                 float floatValue = ((Float) objArr[4]).floatValue();
-                this.f3743n = floatValue;
-                this.h = (this.f3744r * 0.7f) + (floatValue * 0.3f);
-                NotificationCenter.getInstance(u8Var.f3805a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.uploadStoryProgress, this.f3741e, Float.valueOf(this.h));
-                if (this.f3747x < 0 && this.f3743n * ((float) this.f3748y) >= 1000.0f) {
-                    this.f3747x = longValue;
+                this.f3770n = floatValue;
+                this.h = (this.f3771r * 0.7f) + (floatValue * 0.3f);
+                NotificationCenter.getInstance(u8Var.f3832a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.uploadStoryProgress, this.f3768e, Float.valueOf(this.h));
+                if (this.f3774x < 0 && this.f3770n * ((float) this.f3775y) >= 1000.0f) {
+                    this.f3774x = longValue;
                 }
-                FileLoader.getInstance(u8Var.f3805a).checkUploadNewDataAvailable(str, false, Math.max(1L, longValue), longValue2, Float.valueOf(this.f3743n));
-                if (longValue2 > 0 && this.f3747x < 0) {
-                    this.f3747x = longValue2;
+                FileLoader.getInstance(u8Var.f3832a).checkUploadNewDataAvailable(str, false, Math.max(1L, longValue), longValue2, Float.valueOf(this.f3770n));
+                if (longValue2 > 0 && this.f3774x < 0) {
+                    this.f3774x = longValue2;
                 }
             }
         } else if (i10 == NotificationCenter.filePreparingFailed) {
             if (objArr[0] == this.E) {
-                if (!this.f3739b) {
-                    di.o8 o8Var = this.f3740c;
-                    o8Var.f7785w = true;
-                    o8Var.f7787x = new TLRPC.TL_error();
-                    TLRPC.TL_error tL_error = o8Var.f7787x;
+                if (!this.f3766b) {
+                    di.o8 o8Var = this.f3767c;
+                    o8Var.f7813w = true;
+                    o8Var.f7815x = new TLRPC.TL_error();
+                    TLRPC.TL_error tL_error = o8Var.f7815x;
                     tL_error.code = 400;
                     tL_error.text = "FILE_PREPARE_FAILED";
                     this.d = true;
                     this.I = true;
                     this.H = true;
-                    u8Var.f3824w.d(o8Var);
+                    u8Var.f3851w.d(o8Var);
                 }
                 b();
             }
         } else if (i10 == NotificationCenter.fileUploaded) {
             String str2 = (String) objArr[0];
-            String str3 = this.f3741e;
+            String str3 = this.f3768e;
             if (str3 != null && str2.equals(str3)) {
                 c((TLRPC.InputFile) objArr[1]);
             }
         } else if (i10 == NotificationCenter.fileUploadFailed) {
             String str4 = (String) objArr[0];
-            String str5 = this.f3741e;
+            String str5 = this.f3768e;
             if (str5 != null && str4.equals(str5)) {
                 NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.showBulletin, 1, LocaleController.getString(R.string.StoryUploadError));
                 b();
             }
-        } else if (i10 == NotificationCenter.fileUploadProgressChanged && ((String) objArr[0]).equals(this.f3741e)) {
+        } else if (i10 == NotificationCenter.fileUploadProgressChanged && ((String) objArr[0]).equals(this.f3768e)) {
             float min = Math.min(1.0f, ((float) ((Long) objArr[1]).longValue()) / ((float) ((Long) objArr[2]).longValue()));
-            this.f3744r = min;
-            this.h = (min * 0.7f) + (this.f3743n * 0.3f);
-            NotificationCenter.getInstance(u8Var.f3805a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.uploadStoryProgress, this.f3741e, Float.valueOf(this.h));
+            this.f3771r = min;
+            this.h = (min * 0.7f) + (this.f3770n * 0.3f);
+            NotificationCenter.getInstance(u8Var.f3832a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.uploadStoryProgress, this.f3768e, Float.valueOf(this.h));
         }
     }
 
     public final void e() {
         int i10;
-        di.o8 o8Var = this.f3740c;
+        di.o8 o8Var = this.f3767c;
         o8Var.getClass();
-        FileLoader fileLoader = FileLoader.getInstance(this.M.f3805a);
-        String str = this.f3741e;
+        FileLoader fileLoader = FileLoader.getInstance(this.M.f3832a);
+        String str = this.f3768e;
         boolean z10 = !o8Var.K;
         long j3 = 0;
-        if (this.f3745s) {
+        if (this.f3772s) {
             VideoEditedInfo videoEditedInfo = this.F;
             if (videoEditedInfo != null) {
                 j3 = videoEditedInfo.estimatedSize;

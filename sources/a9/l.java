@@ -2,8 +2,8 @@ package a9;
 
 import java.util.Set;
 public abstract class l extends h implements Set, j$.util.Set {
-    public static final int f354c = 0;
-    public transient m f355b;
+    public static final int f366c = 0;
+    public transient m f367b;
 
     @Override
     public final boolean equals(Object obj) {

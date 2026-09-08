@@ -10,16 +10,16 @@ import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.ActionBar.j5;
 import org.telegram.ui.Components.ll0;
 public final class m0 extends CountDownTimer {
-    public final t0 f47151a;
+    public final t0 f47179a;
 
     public m0(t0 t0Var) {
         super(Long.MAX_VALUE, 1000L);
-        this.f47151a = t0Var;
+        this.f47179a = t0Var;
     }
 
     @Override
     public final void onTick(long j3) {
-        t0 t0Var = this.f47151a;
+        t0 t0Var = this.f47179a;
         ll0 ll0Var = t0Var.d;
         ArrayList arrayList = t0Var.Y;
         ArrayList arrayList2 = new ArrayList(arrayList.size());
@@ -42,7 +42,7 @@ public final class m0 extends CountDownTimer {
                 if (childAt instanceof yg.l) {
                     yg.l lVar = (yg.l) childAt;
                     if (arrayList2.contains(lVar.getBoost())) {
-                        j5 j5Var = lVar.f48508e;
+                        j5 j5Var = lVar.f48537e;
                         bi.j5 j5Var2 = lVar.d;
                         int i12 = lVar.I.cooldown_until_date;
                         if (i12 > 0) {

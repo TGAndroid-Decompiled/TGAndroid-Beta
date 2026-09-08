@@ -17,11 +17,11 @@ public final class p0 extends v51 {
         e1 e1Var;
         super.v(c1Var, i10);
         e3 e3Var = this.N;
-        if (e3Var.f3017y) {
-            View view = c1Var.f45738a;
-            if ((view instanceof z0) && (e1Var = (z0Var = (z0) view).K) != null && e1Var.f2898a == e3Var.f3016x) {
+        if (e3Var.f3044y) {
+            View view = c1Var.f45766a;
+            if ((view instanceof z0) && (e1Var = (z0Var = (z0) view).K) != null && e1Var.f2925a == e3Var.f3043x) {
                 z0Var.b();
-                e3Var.f3017y = false;
+                e3Var.f3044y = false;
             }
         }
     }
@@ -32,11 +32,11 @@ public final class p0 extends v51 {
         e1 e1Var;
         super.y(c1Var);
         e3 e3Var = this.N;
-        if (e3Var.f3017y) {
-            View view = c1Var.f45738a;
-            if ((view instanceof z0) && (e1Var = (z0Var = (z0) view).K) != null && e1Var.f2898a == e3Var.f3016x) {
+        if (e3Var.f3044y) {
+            View view = c1Var.f45766a;
+            if ((view instanceof z0) && (e1Var = (z0Var = (z0) view).K) != null && e1Var.f2925a == e3Var.f3043x) {
                 z0Var.b();
-                e3Var.f3017y = false;
+                e3Var.f3044y = false;
             }
         }
     }

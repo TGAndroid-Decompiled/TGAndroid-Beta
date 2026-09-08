@@ -7,29 +7,29 @@ import java.util.Iterator;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.Executor;
 public final class u {
-    public static u f8782f;
-    public boolean f8783a;
-    public int f8784b;
-    public final Object f8785c;
+    public static u f8810f;
+    public boolean f8811a;
+    public int f8812b;
+    public final Object f8813c;
     public final Object d;
-    public final Object f8786e;
+    public final Object f8814e;
 
     public u(com.google.android.gms.common.api.internal.r rVar, com.google.android.gms.common.api.internal.p pVar, k6.c[] cVarArr, boolean z10, int i10) {
-        this.f8786e = rVar;
-        this.f8785c = pVar;
+        this.f8814e = rVar;
+        this.f8813c = pVar;
         this.d = cVarArr;
-        this.f8783a = z10;
-        this.f8784b = i10;
+        this.f8811a = z10;
+        this.f8812b = i10;
     }
 
     public static synchronized u a(Context context) {
         u uVar;
         synchronized (u.class) {
             try {
-                if (f8782f == null) {
-                    f8782f = new u(context);
+                if (f8810f == null) {
+                    f8810f = new u(context);
                 }
-                uVar = f8782f;
+                uVar = f8810f;
             } catch (Throwable th2) {
                 throw th2;
             }
@@ -39,8 +39,8 @@ public final class u {
 
     public int b() {
         int i10;
-        synchronized (this.f8786e) {
-            i10 = this.f8784b;
+        synchronized (this.f8814e) {
+            i10 = this.f8812b;
         }
         return i10;
     }
@@ -50,21 +50,21 @@ public final class u {
         Iterator it = copyOnWriteArrayList.iterator();
         while (it.hasNext()) {
             t tVar = (t) it.next();
-            if (tVar.f8779a.get() == null) {
+            if (tVar.f8807a.get() == null) {
                 copyOnWriteArrayList.remove(tVar);
             }
         }
-        synchronized (this.f8786e) {
+        synchronized (this.f8814e) {
             try {
-                if (this.f8783a && this.f8784b == i10) {
+                if (this.f8811a && this.f8812b == i10) {
                     return;
                 }
-                this.f8783a = true;
-                this.f8784b = i10;
+                this.f8811a = true;
+                this.f8812b = i10;
                 Iterator it2 = ((CopyOnWriteArrayList) this.d).iterator();
                 while (it2.hasNext()) {
                     t tVar2 = (t) it2.next();
-                    tVar2.f8780b.execute(new nb(tVar2, 7));
+                    tVar2.f8808b.execute(new nb(tVar2, 7));
                 }
             } catch (Throwable th2) {
                 throw th2;
@@ -74,10 +74,10 @@ public final class u {
 
     public u(Context context) {
         Executor g10 = a.g();
-        this.f8785c = g10;
+        this.f8813c = g10;
         this.d = new CopyOnWriteArrayList();
-        this.f8786e = new Object();
-        this.f8784b = 0;
+        this.f8814e = new Object();
+        this.f8812b = 0;
         g10.execute(new b7(18, this, context));
     }
 }

@@ -6,12 +6,12 @@ public final class an0 extends s4.j {
     public final boolean r(s4.c1 c1Var, b2.q0 q0Var, int i10, int i11, int i12, int i13) {
         gn0 gn0Var;
         fn0 fn0Var;
-        View view = c1Var.f45738a;
-        if ((view instanceof gn0) && (fn0Var = (gn0Var = (gn0) view).f26461a) != null) {
-            fn0Var.f565i = fn0Var.N;
-            fn0Var.f563g = fn0Var.O;
+        View view = c1Var.f45766a;
+        if ((view instanceof gn0) && (fn0Var = (gn0Var = (gn0) view).f26488a) != null) {
+            fn0Var.f577i = fn0Var.N;
+            fn0Var.f575g = fn0Var.O;
             fn0Var.h = fn0Var.P;
-            gn0Var.f26462b.d(0.0f, true);
+            gn0Var.f26489b.d(0.0f, true);
             gn0Var.invalidate();
         }
         int translationX = i10 + ((int) view.getTranslationX());
@@ -29,7 +29,7 @@ public final class an0 extends s4.j {
         if (i15 != 0) {
             view.setTranslationY(-i15);
         }
-        this.f45806r.add(new s4.i(c1Var, translationX, translationY, i12, i13));
+        this.f45834r.add(new s4.i(c1Var, translationX, translationY, i12, i13));
         return true;
     }
 

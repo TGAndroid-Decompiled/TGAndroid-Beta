@@ -9,17 +9,17 @@ import org.telegram.messenger.Utilities;
 import org.telegram.ui.Components.ov0;
 import org.telegram.ui.Components.pr;
 public final class b4 extends org.telegram.ui.ActionBar.f3 {
-    public final a4 f6942b;
-    public ValueAnimator f6943c;
+    public final a4 f6970b;
+    public ValueAnimator f6971c;
     public o1.k d;
-    public Boolean f6944e;
-    public Utilities.Callback f6945f;
+    public Boolean f6972e;
+    public Utilities.Callback f6973f;
 
     public b4(Context context, org.telegram.ui.ActionBar.f6 f6Var, String str, float f7) {
         super(1, context, f6Var, false);
         fixNavigationBar(-14737633);
         a4 a4Var = new a4(UserConfig.selectedAccount, context, new bi.b(), f7, str);
-        this.f6942b = a4Var;
+        this.f6970b = a4Var;
         a4Var.G.setVisibility(8);
         a4Var.setMultipleOnClick(false);
         a4Var.setOnBackClickListener(new y3(this, 0));
@@ -33,7 +33,7 @@ public final class b4 extends org.telegram.ui.ActionBar.f3 {
 
     @Override
     public final boolean canDismissWithSwipe() {
-        return !this.f6942b.f8379w;
+        return !this.f6970b.f8407w;
     }
 
     @Override
@@ -44,7 +44,7 @@ public final class b4 extends org.telegram.ui.ActionBar.f3 {
 
     @Override
     public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        if (motionEvent.getAction() == 0 && motionEvent.getY() < this.f6942b.g()) {
+        if (motionEvent.getAction() == 0 && motionEvent.getY() < this.f6970b.g()) {
             dismiss();
             return true;
         }
@@ -53,30 +53,30 @@ public final class b4 extends org.telegram.ui.ActionBar.f3 {
 
     public final void n(boolean z10, y3 y3Var) {
         float height;
-        a4 a4Var = this.f6942b;
+        a4 a4Var = this.f6970b;
         float translationY = a4Var.getTranslationY();
         if (z10) {
             height = 0.0f;
         } else {
             height = (this.containerView.getHeight() - a4Var.g()) + (AndroidUtilities.navigationBarHeight * 2.5f);
         }
-        this.f6944e = Boolean.valueOf(z10);
+        this.f6972e = Boolean.valueOf(z10);
         if (z10) {
-            o1.k kVar = new o1.k(a4Var, o1.h.f16807n, height);
+            o1.k kVar = new o1.k(a4Var, o1.h.f16834n, height);
             this.d = kVar;
-            kVar.f16825u.a(0.75f);
-            this.d.f16825u.b(350.0f);
+            kVar.f16852u.a(0.75f);
+            this.d.f16852u.b(350.0f);
             this.d.a(new z3(this, height, y3Var));
             this.d.f();
             return;
         }
         ValueAnimator ofFloat = ValueAnimator.ofFloat(translationY, height);
-        this.f6943c = ofFloat;
+        this.f6971c = ofFloat;
         ofFloat.addUpdateListener(new ah.d0(this, 19));
-        this.f6943c.addListener(new bi.t(3, this, y3Var));
-        this.f6943c.setDuration(450L);
-        this.f6943c.setInterpolator(pr.h);
-        this.f6943c.start();
+        this.f6971c.addListener(new bi.t(3, this, y3Var));
+        this.f6971c.setDuration(450L);
+        this.f6971c.setInterpolator(pr.h);
+        this.f6971c.start();
     }
 
     @Override

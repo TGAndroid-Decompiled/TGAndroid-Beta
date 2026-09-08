@@ -10,9 +10,9 @@ import org.telegram.ui.Components.CheckBoxSquare;
 import org.telegram.ui.Components.a90;
 import org.telegram.ui.Components.d90;
 public final class o6 extends FrameLayout {
-    public final a90 f22436a;
-    public final d90 f22437b;
-    public final CheckBoxSquare f22438c;
+    public final a90 f22463a;
+    public final d90 f22464b;
+    public final CheckBoxSquare f22465c;
 
     public o6(Context context, org.telegram.ui.ActionBar.f6 f6Var) {
         super(context);
@@ -21,7 +21,7 @@ public final class o6 extends FrameLayout {
         float f7;
         float f10;
         CheckBoxSquare checkBoxSquare = new CheckBoxSquare(context, null, false);
-        this.f22438c = checkBoxSquare;
+        this.f22465c = checkBoxSquare;
         checkBoxSquare.setDuplicateParentStateEnabled(false);
         checkBoxSquare.setFocusable(false);
         checkBoxSquare.setFocusableInTouchMode(false);
@@ -33,9 +33,9 @@ public final class o6 extends FrameLayout {
         }
         addView(checkBoxSquare, w7.x5.d(18, 18.0f, i10 | 16, 21.0f, 0.0f, 21.0f, 0.0f));
         a90 a90Var = new a90(this);
-        this.f22436a = a90Var;
+        this.f22463a = a90Var;
         d90 d90Var = new d90(context, a90Var, f6Var);
-        this.f22437b = d90Var;
+        this.f22464b = d90Var;
         d90Var.setTextColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.G6, f6Var));
         d90Var.setLinkTextColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.J6, f6Var));
         d90Var.setTextSize(1, 15.0f);
@@ -64,20 +64,20 @@ public final class o6 extends FrameLayout {
     }
 
     public CheckBoxSquare getCheckBox() {
-        return this.f22438c;
+        return this.f22465c;
     }
 
     public TextView getTextView() {
-        return this.f22437b;
+        return this.f22464b;
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        a90 a90Var = this.f22436a;
+        a90 a90Var = this.f22463a;
         if (a90Var != null) {
             canvas.save();
-            d90 d90Var = this.f22437b;
+            d90 d90Var = this.f22464b;
             canvas.translate(d90Var.getLeft(), d90Var.getTop());
             if (a90Var.f(canvas)) {
                 invalidate();
@@ -87,10 +87,10 @@ public final class o6 extends FrameLayout {
     }
 
     public void setChecked(boolean z10) {
-        this.f22438c.a(z10, true);
+        this.f22465c.a(z10, true);
     }
 
     public void setText(CharSequence charSequence) {
-        this.f22437b.setText(charSequence);
+        this.f22464b.setText(charSequence);
     }
 }

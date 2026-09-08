@@ -24,11 +24,11 @@ public final class n1 extends gt {
         if (q5Var != null) {
             q5Var.setAlpha((int) (f7 * 255.0f));
             q5Var.draw(canvas);
-        } else if (o1Var.f7714e != null) {
+        } else if (o1Var.f7742e != null) {
             canvas.save();
-            canvas.clipRect(o1Var.f7714e.getImageX(), o1Var.f7714e.getImageY(), o1Var.f7714e.getImageX2(), o1Var.f7714e.getImageY2());
-            o1Var.f7714e.setAlpha(f7);
-            o1Var.f7714e.draw(canvas);
+            canvas.clipRect(o1Var.f7742e.getImageX(), o1Var.f7742e.getImageY(), o1Var.f7742e.getImageX2(), o1Var.f7742e.getImageY2());
+            o1Var.f7742e.setAlpha(f7);
+            o1Var.f7742e.draw(canvas);
             canvas.restore();
         }
     }
@@ -39,7 +39,7 @@ public final class n1 extends gt {
         if (this.O == null) {
             return;
         }
-        s4.m0 m0Var = this.R.f1870c0;
+        s4.m0 m0Var = this.R.f1897c0;
         boolean z11 = true;
         if ((m0Var == null || !m0Var.k()) && this.O.size() > 4 && this.Q) {
             z10 = false;
@@ -71,11 +71,11 @@ public final class n1 extends gt {
             if (i10 < arrayList.size()) {
                 o1 o1Var = (o1) arrayList.get(i10);
                 o1Var.getClass();
-                org.telegram.ui.Components.q5 q5Var = o1Var.f7713c;
+                org.telegram.ui.Components.q5 q5Var = o1Var.f7741c;
                 if (q5Var != null) {
-                    q5Var.setColorFilter(this.R.f7820h3);
+                    q5Var.setColorFilter(this.R.f7848h3);
                 }
-                o1Var.f7716n.draw(canvas, o1Var.h[this.K]);
+                o1Var.f7744n.draw(canvas, o1Var.h[this.K]);
                 i10++;
             } else {
                 return;
@@ -96,16 +96,16 @@ public final class n1 extends gt {
                 float alpha = o1Var.getAlpha() * f7;
                 Rect rect = AndroidUtilities.rectTmp2;
                 rect.set(o1Var.getPaddingLeft() + ((int) o1Var.getX()), o1Var.getPaddingTop(), (o1Var.getWidth() + ((int) o1Var.getX())) - o1Var.getPaddingRight(), o1Var.getHeight() - o1Var.getPaddingBottom());
-                org.telegram.ui.Components.q5 q5Var2 = o1Var.f7713c;
+                org.telegram.ui.Components.q5 q5Var2 = o1Var.f7741c;
                 if (q5Var2 != null) {
                     q5Var2.setBounds(rect);
                 }
-                ImageReceiver imageReceiver = o1Var.f7714e;
+                ImageReceiver imageReceiver = o1Var.f7742e;
                 if (imageReceiver != null) {
                     imageReceiver.setImageCoords(rect);
                 }
-                PorterDuffColorFilter porterDuffColorFilter = this.R.f7820h3;
-                if (porterDuffColorFilter != null && (q5Var = o1Var.f7713c) != null) {
+                PorterDuffColorFilter porterDuffColorFilter = this.R.f7848h3;
+                if (porterDuffColorFilter != null && (q5Var = o1Var.f7741c) != null) {
                     q5Var.setColorFilter(porterDuffColorFilter);
                 }
                 if (scale != 1.0f) {

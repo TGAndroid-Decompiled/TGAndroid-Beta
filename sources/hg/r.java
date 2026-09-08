@@ -13,30 +13,30 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class r implements RequestDelegate {
-    public final int f11224a;
-    public final Object f11225b;
-    public final Object f11226c;
+    public final int f11250a;
+    public final Object f11251b;
+    public final Object f11252c;
     public final int d;
-    public final int f11227e;
-    public final TLObject f11228f;
+    public final int f11253e;
+    public final TLObject f11254f;
 
     public r(Object obj, Object obj2, int i10, int i11, TLObject tLObject, int i12) {
-        this.f11224a = i12;
-        this.f11225b = obj;
-        this.f11226c = obj2;
+        this.f11250a = i12;
+        this.f11251b = obj;
+        this.f11252c = obj2;
         this.d = i10;
-        this.f11227e = i11;
-        this.f11228f = tLObject;
+        this.f11253e = i11;
+        this.f11254f = tLObject;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
         ConcurrentHashMap<Long, Integer> concurrentHashMap;
-        switch (this.f11224a) {
+        switch (this.f11250a) {
             case 0:
-                i0 i0Var = (i0) this.f11225b;
-                String str = (String) this.f11226c;
-                TLRPC.TL_messages_search tL_messages_search = (TLRPC.TL_messages_search) this.f11228f;
+                i0 i0Var = (i0) this.f11251b;
+                String str = (String) this.f11252c;
+                TLRPC.TL_messages_search tL_messages_search = (TLRPC.TL_messages_search) this.f11254f;
                 ArrayList arrayList = new ArrayList();
                 if (tL_error == null) {
                     TLRPC.messages_Messages messages_messages = (TLRPC.messages_Messages) tLObject;
@@ -45,28 +45,28 @@ public final class r implements RequestDelegate {
                     int i10 = 0;
                     for (int i11 = 0; i11 < messages_messages.chats.size(); i11++) {
                         TLRPC.Chat chat = messages_messages.chats.get(i11);
-                        iVar.k(chat, chat.f19869id);
+                        iVar.k(chat, chat.f19896id);
                     }
                     for (int i12 = 0; i12 < messages_messages.users.size(); i12++) {
                         TLRPC.User user = messages_messages.users.get(i12);
-                        iVar2.k(user, user.f20016id);
+                        iVar2.k(user, user.f20043id);
                     }
                     while (i10 < messages_messages.messages.size()) {
                         a0.i iVar3 = iVar;
-                        MessageObject messageObject = new MessageObject(i0Var.f11093s0, messages_messages.messages.get(i10), iVar2, iVar3, false, true);
+                        MessageObject messageObject = new MessageObject(i0Var.f11119s0, messages_messages.messages.get(i10), iVar2, iVar3, false, true);
                         arrayList.add(messageObject);
                         messageObject.setQuery(str);
                         i10++;
                         iVar = iVar3;
                     }
                 }
-                AndroidUtilities.runOnUIThread(new s(i0Var, this.d, this.f11227e, tL_error, str, tLObject, tL_messages_search, arrayList, 0));
+                AndroidUtilities.runOnUIThread(new s(i0Var, this.d, this.f11253e, tL_error, str, tLObject, tL_messages_search, arrayList, 0));
                 return;
             case 1:
-                i0 i0Var2 = (i0) this.f11225b;
-                String str2 = (String) this.f11226c;
-                TLRPC.TL_messages_searchGlobal tL_messages_searchGlobal = (TLRPC.TL_messages_searchGlobal) this.f11228f;
-                int i13 = i0Var2.f11093s0;
+                i0 i0Var2 = (i0) this.f11251b;
+                String str2 = (String) this.f11252c;
+                TLRPC.TL_messages_searchGlobal tL_messages_searchGlobal = (TLRPC.TL_messages_searchGlobal) this.f11254f;
+                int i13 = i0Var2.f11119s0;
                 ArrayList arrayList2 = new ArrayList();
                 if (tL_error == null) {
                     TLRPC.messages_Messages messages_messages2 = (TLRPC.messages_Messages) tLObject;
@@ -74,16 +74,16 @@ public final class r implements RequestDelegate {
                     a0.i iVar5 = new a0.i();
                     for (int i14 = 0; i14 < messages_messages2.chats.size(); i14++) {
                         TLRPC.Chat chat2 = messages_messages2.chats.get(i14);
-                        iVar4.k(chat2, chat2.f19869id);
+                        iVar4.k(chat2, chat2.f19896id);
                     }
                     for (int i15 = 0; i15 < messages_messages2.users.size(); i15++) {
                         TLRPC.User user2 = messages_messages2.users.get(i15);
-                        iVar5.k(user2, user2.f20016id);
+                        iVar5.k(user2, user2.f20043id);
                     }
                     int i16 = 0;
                     while (i16 < messages_messages2.messages.size()) {
                         a0.i iVar6 = iVar4;
-                        MessageObject messageObject2 = new MessageObject(i0Var2.f11093s0, messages_messages2.messages.get(i16), iVar5, iVar6, false, true);
+                        MessageObject messageObject2 = new MessageObject(i0Var2.f11119s0, messages_messages2.messages.get(i16), iVar5, iVar6, false, true);
                         arrayList2.add(messageObject2);
                         messageObject2.setQuery(str2);
                         i16++;
@@ -106,16 +106,16 @@ public final class r implements RequestDelegate {
                         }
                     }
                 }
-                s sVar = new s(i0Var2, this.d, this.f11227e, tL_error, str2, tLObject, tL_messages_searchGlobal, arrayList2, 1);
+                s sVar = new s(i0Var2, this.d, this.f11253e, tL_error, str2, tLObject, tL_messages_searchGlobal, arrayList2, 1);
                 if (hashSet.isEmpty()) {
                     AndroidUtilities.runOnUIThread(sVar);
                     return;
                 } else {
-                    MessagesStorage.getInstance(i13).getStorageQueue().postRunnable(new a3.j0(i0Var2, hashSet, sVar, 29));
+                    MessagesStorage.getInstance(i13).getStorageQueue().postRunnable(new a3.k0(i0Var2, hashSet, sVar, 29));
                     return;
                 }
             default:
-                ((FileLoadOperation) this.f11225b).lambda$startDownloadRequest$29((FileLoadOperation.RequestInfo) this.f11226c, this.d, this.f11227e, this.f11228f, tLObject, tL_error);
+                ((FileLoadOperation) this.f11251b).lambda$startDownloadRequest$29((FileLoadOperation.RequestInfo) this.f11252c, this.d, this.f11253e, this.f11254f, tLObject, tL_error);
                 return;
         }
     }

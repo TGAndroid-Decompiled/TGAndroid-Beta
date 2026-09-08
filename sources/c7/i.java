@@ -7,11 +7,11 @@ import org.json.JSONException;
 import org.json.JSONObject;
 public final class i extends l {
     public static final Parcelable.Creator<i> CREATOR = new r0(15);
-    public final n7.s0 f4625a;
-    public final n7.s0 f4626b;
-    public final n7.s0 f4627c;
+    public final n7.s0 f4652a;
+    public final n7.s0 f4653b;
+    public final n7.s0 f4654c;
     public final n7.s0 d;
-    public final n7.s0 f4628e;
+    public final n7.s0 f4655e;
 
     public i(byte[] bArr, byte[] bArr2, byte[] bArr3, byte[] bArr4, byte[] bArr5) {
         n7.s0 t10;
@@ -28,21 +28,21 @@ public final class i extends l {
         } else {
             t10 = n7.s0.t(bArr5.length, bArr5);
         }
-        this.f4625a = t11;
-        this.f4626b = t12;
-        this.f4627c = t13;
+        this.f4652a = t11;
+        this.f4653b = t12;
+        this.f4654c = t13;
         this.d = t14;
-        this.f4628e = t10;
+        this.f4655e = t10;
     }
 
     public final JSONObject b() {
         byte[] u10;
         try {
             JSONObject jSONObject = new JSONObject();
-            jSONObject.put("clientDataJSON", u6.b.c(this.f4626b.u()));
-            jSONObject.put("authenticatorData", u6.b.c(this.f4627c.u()));
+            jSONObject.put("clientDataJSON", u6.b.c(this.f4653b.u()));
+            jSONObject.put("authenticatorData", u6.b.c(this.f4654c.u()));
             jSONObject.put("signature", u6.b.c(this.d.u()));
-            n7.s0 s0Var = this.f4628e;
+            n7.s0 s0Var = this.f4655e;
             if (s0Var != null) {
                 if (s0Var == null) {
                     u10 = null;
@@ -61,7 +61,7 @@ public final class i extends l {
     public final boolean equals(Object obj) {
         if (obj instanceof i) {
             i iVar = (i) obj;
-            if (n6.l.l(this.f4625a, iVar.f4625a) && n6.l.l(this.f4626b, iVar.f4626b) && n6.l.l(this.f4627c, iVar.f4627c) && n6.l.l(this.d, iVar.d) && n6.l.l(this.f4628e, iVar.f4628e)) {
+            if (n6.l.l(this.f4652a, iVar.f4652a) && n6.l.l(this.f4653b, iVar.f4653b) && n6.l.l(this.f4654c, iVar.f4654c) && n6.l.l(this.d, iVar.d) && n6.l.l(this.f4655e, iVar.f4655e)) {
                 return true;
             }
             return false;
@@ -70,22 +70,22 @@ public final class i extends l {
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{Integer.valueOf(Arrays.hashCode(new Object[]{this.f4625a})), Integer.valueOf(Arrays.hashCode(new Object[]{this.f4626b})), Integer.valueOf(Arrays.hashCode(new Object[]{this.f4627c})), Integer.valueOf(Arrays.hashCode(new Object[]{this.d})), Integer.valueOf(Arrays.hashCode(new Object[]{this.f4628e}))});
+        return Arrays.hashCode(new Object[]{Integer.valueOf(Arrays.hashCode(new Object[]{this.f4652a})), Integer.valueOf(Arrays.hashCode(new Object[]{this.f4653b})), Integer.valueOf(Arrays.hashCode(new Object[]{this.f4654c})), Integer.valueOf(Arrays.hashCode(new Object[]{this.d})), Integer.valueOf(Arrays.hashCode(new Object[]{this.f4655e}))});
     }
 
     public final String toString() {
         byte[] u10;
         m2.t tVar = new m2.t(getClass().getSimpleName(), 7);
         n7.k0 k0Var = n7.m0.d;
-        byte[] u11 = this.f4625a.u();
+        byte[] u11 = this.f4652a.u();
         tVar.T(k0Var.c(u11.length, u11), "keyHandle");
-        byte[] u12 = this.f4626b.u();
+        byte[] u12 = this.f4653b.u();
         tVar.T(k0Var.c(u12.length, u12), "clientDataJSON");
-        byte[] u13 = this.f4627c.u();
+        byte[] u13 = this.f4654c.u();
         tVar.T(k0Var.c(u13.length, u13), "authenticatorData");
         byte[] u14 = this.d.u();
         tVar.T(k0Var.c(u14.length, u14), "signature");
-        n7.s0 s0Var = this.f4628e;
+        n7.s0 s0Var = this.f4655e;
         if (s0Var == null) {
             u10 = null;
         } else {
@@ -101,11 +101,11 @@ public final class i extends l {
     public final void writeToParcel(Parcel parcel, int i10) {
         byte[] u10;
         int q6 = w7.e0.q(parcel, 20293);
-        w7.e0.c(parcel, 2, this.f4625a.u());
-        w7.e0.c(parcel, 3, this.f4626b.u());
-        w7.e0.c(parcel, 4, this.f4627c.u());
+        w7.e0.c(parcel, 2, this.f4652a.u());
+        w7.e0.c(parcel, 3, this.f4653b.u());
+        w7.e0.c(parcel, 4, this.f4654c.u());
         w7.e0.c(parcel, 5, this.d.u());
-        n7.s0 s0Var = this.f4628e;
+        n7.s0 s0Var = this.f4655e;
         if (s0Var == null) {
             u10 = null;
         } else {

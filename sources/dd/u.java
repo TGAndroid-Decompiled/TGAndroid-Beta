@@ -8,10 +8,10 @@ public enum u extends b2 {
     public final void d(l lVar, a aVar) {
         if (aVar.o()) {
             lVar.d(false);
-            lVar.f6778c = b2.H;
+            lVar.f6806c = b2.H;
             return;
         }
         lVar.h("</");
-        lVar.f6778c = b2.f6735f;
+        lVar.f6806c = b2.f6762f;
     }
 }

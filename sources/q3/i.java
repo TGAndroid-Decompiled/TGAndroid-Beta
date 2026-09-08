@@ -16,11 +16,11 @@ import java.util.Locale;
 import org.telegram.ui.sw0;
 import v7.r6;
 public final class i extends w7.l {
-    public static final sw0 f44153b = new sw0(13);
-    public final g f44154a;
+    public static final sw0 f44181b = new sw0(13);
+    public final g f44182a;
 
     public i(g gVar) {
-        this.f44154a = gVar;
+        this.f44182a = gVar;
     }
 
     public static a d(v vVar, int i10, int i11) {
@@ -53,7 +53,7 @@ public final class i extends w7.l {
         String str2 = new String(bArr, i14, u10 - i14, s10);
         int r10 = r(x10) + u10;
         if (i12 <= r10) {
-            copyOfRange = d0.f8738b;
+            copyOfRange = d0.f8766b;
         } else {
             copyOfRange = Arrays.copyOfRange(bArr, r10, i12);
         }
@@ -62,9 +62,9 @@ public final class i extends w7.l {
 
     public static c e(v vVar, int i10, int i11, boolean z10, int i12, g gVar) {
         long j3;
-        int i13 = vVar.f8790b;
-        int v = v(i13, vVar.f8789a);
-        String str = new String(vVar.f8789a, i13, v - i13, StandardCharsets.ISO_8859_1);
+        int i13 = vVar.f8818b;
+        int v = v(i13, vVar.f8817a);
+        String str = new String(vVar.f8817a, i13, v - i13, StandardCharsets.ISO_8859_1);
         vVar.J(v + 1);
         int j10 = vVar.j();
         int j11 = vVar.j();
@@ -80,7 +80,7 @@ public final class i extends w7.l {
         }
         ArrayList arrayList = new ArrayList();
         int i14 = i13 + i10;
-        while (vVar.f8790b < i14) {
+        while (vVar.f8818b < i14) {
             j h = h(i11, vVar, z10, i12, gVar);
             if (h != null) {
                 arrayList.add(h);
@@ -92,9 +92,9 @@ public final class i extends w7.l {
     public static d f(v vVar, int i10, int i11, boolean z10, int i12, g gVar) {
         boolean z11;
         boolean z12;
-        int i13 = vVar.f8790b;
-        int v = v(i13, vVar.f8789a);
-        String str = new String(vVar.f8789a, i13, v - i13, StandardCharsets.ISO_8859_1);
+        int i13 = vVar.f8818b;
+        int v = v(i13, vVar.f8817a);
+        String str = new String(vVar.f8817a, i13, v - i13, StandardCharsets.ISO_8859_1);
         vVar.J(v + 1);
         int x10 = vVar.x();
         if ((x10 & 2) != 0) {
@@ -110,14 +110,14 @@ public final class i extends w7.l {
         int x11 = vVar.x();
         String[] strArr = new String[x11];
         for (int i14 = 0; i14 < x11; i14++) {
-            int i15 = vVar.f8790b;
-            int v9 = v(i15, vVar.f8789a);
-            strArr[i14] = new String(vVar.f8789a, i15, v9 - i15, StandardCharsets.ISO_8859_1);
+            int i15 = vVar.f8818b;
+            int v9 = v(i15, vVar.f8817a);
+            strArr[i14] = new String(vVar.f8817a, i15, v9 - i15, StandardCharsets.ISO_8859_1);
             vVar.J(v9 + 1);
         }
         ArrayList arrayList = new ArrayList();
         int i16 = i13 + i10;
-        while (vVar.f8790b < i16) {
+        while (vVar.f8818b < i16) {
             j h = h(i11, vVar, z10, i12, gVar);
             if (h != null) {
                 arrayList.add(h);
@@ -165,7 +165,7 @@ public final class i extends w7.l {
         String l10 = l(bArr, r10, u11, s10);
         int r11 = r(x10) + u11;
         if (i11 <= r11) {
-            copyOfRange = d0.f8738b;
+            copyOfRange = d0.f8766b;
         } else {
             copyOfRange = Arrays.copyOfRange(bArr, r11, i11);
         }
@@ -200,7 +200,7 @@ public final class i extends w7.l {
         String str = new String(bArr, 0, v, StandardCharsets.ISO_8859_1);
         int i11 = v + 1;
         if (i10 <= i11) {
-            copyOfRange = d0.f8738b;
+            copyOfRange = d0.f8766b;
         } else {
             copyOfRange = Arrays.copyOfRange(bArr, i11, i10);
         }
@@ -327,8 +327,8 @@ public final class i extends w7.l {
     }
 
     public static int w(int i10, v vVar) {
-        byte[] bArr = vVar.f8789a;
-        int i11 = vVar.f8790b;
+        byte[] bArr = vVar.f8817a;
+        int i11 = vVar.f8818b;
         int i12 = i11;
         while (true) {
             int i13 = i12 + 1;

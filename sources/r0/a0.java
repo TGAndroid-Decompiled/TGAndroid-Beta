@@ -40,10 +40,10 @@ public abstract class a0 {
         b1 x0Var;
         if (w0.d && view.isAttachedToWindow()) {
             try {
-                Object obj = w0.f44740a.get(view.getRootView());
+                Object obj = w0.f44768a.get(view.getRootView());
                 if (obj != null) {
-                    Rect rect = (Rect) w0.f44741b.get(obj);
-                    Rect rect2 = (Rect) w0.f44742c.get(obj);
+                    Rect rect = (Rect) w0.f44769b.get(obj);
+                    Rect rect2 = (Rect) w0.f44770c.get(obj);
                     if (rect != null && rect2 != null) {
                         int i10 = Build.VERSION.SDK_INT;
                         if (i10 >= 34) {
@@ -58,8 +58,8 @@ public abstract class a0 {
                         x0Var.e(i0.c.b(rect.left, rect.top, rect.right, rect.bottom));
                         x0Var.g(i0.c.b(rect2.left, rect2.top, rect2.right, rect2.bottom));
                         l1 b10 = x0Var.b();
-                        b10.f44711a.r(b10);
-                        b10.f44711a.d(view.getRootView());
+                        b10.f44739a.r(b10);
+                        b10.f44739a.d(view.getRootView());
                         return b10;
                     }
                 }

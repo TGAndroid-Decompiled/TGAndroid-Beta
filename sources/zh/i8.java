@@ -1,7 +1,7 @@
 package zh;
 public final class i8 {
-    public boolean f52054a;
-    public boolean f52055b;
-    public long f52056c;
+    public boolean f52085a;
+    public boolean f52086b;
+    public long f52087c;
     public long d;
 }

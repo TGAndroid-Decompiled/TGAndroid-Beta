@@ -3,29 +3,29 @@ package org.telegram.ui.Components;
 import android.graphics.drawable.Drawable;
 import org.telegram.messenger.ImageReceiver;
 public final class go implements ImageReceiver.ImageReceiverDelegate {
-    public boolean f26469a;
-    public final ig.g f26470b;
-    public final io f26471c;
+    public boolean f26496a;
+    public final ig.g f26497b;
+    public final io f26498c;
 
     public go(ig.i iVar, ig.g gVar) {
-        this.f26471c = iVar;
-        this.f26470b = gVar;
+        this.f26498c = iVar;
+        this.f26497b = gVar;
     }
 
     @Override
     public final void didSetImageBitmap(int i10, String str, Drawable drawable) {
         xi0 xi0Var;
         yf.e eVar;
-        if (!this.f26469a) {
+        if (!this.f26496a) {
             if ((i10 == 0 || i10 == 3) && drawable != null) {
-                this.f26469a = true;
+                this.f26496a = true;
                 boolean z10 = drawable instanceof xi0;
-                ig.g gVar = this.f26470b;
+                ig.g gVar = this.f26497b;
                 if (z10 && (eVar = (xi0Var = (xi0) drawable).D0) != null && eVar.g()) {
                     xi0Var.C0 = new uc(20, this, gVar);
                     return;
                 }
-                io.a(this.f26471c);
+                io.a(this.f26498c);
                 gVar.run();
             }
         }

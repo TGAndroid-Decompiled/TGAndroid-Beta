@@ -1,24 +1,24 @@
 package dd;
 public final class i extends j {
     @Override
-    public final k f() {
-        q();
+    public final k b() {
+        k();
         return this;
     }
 
     @Override
-    public final j q() {
-        super.f();
-        this.v = new cd.c();
+    public final j k() {
+        super.b();
+        this.f6799k = new cd.c();
         return this;
     }
 
     @Override
     public final String toString() {
-        cd.c cVar = this.v;
-        if (cVar != null && cVar.f4755a > 0) {
-            return "<" + o() + " " + this.v.toString() + ">";
+        cd.c cVar = this.f6799k;
+        if (cVar != null && cVar.f4782a > 0) {
+            return "<" + i() + " " + this.f6799k.toString() + ">";
         }
-        return "<" + o() + ">";
+        return "<" + i() + ">";
     }
 }

@@ -15,20 +15,20 @@ import m2.t;
 import n4.y;
 import v0.p;
 public final class h {
-    public static h f14822b;
-    public Context f14823a;
+    public static h f14848b;
+    public Context f14849a;
 
     public h(Context context, int i10) {
         switch (i10) {
             case 2:
                 kotlin.jvm.internal.i.e(context, "context");
-                this.f14823a = context;
+                this.f14849a = context;
                 return;
             case 3:
-                this.f14823a = context;
+                this.f14849a = context;
                 return;
             default:
-                this.f14823a = context.getApplicationContext();
+                this.f14849a = context.getApplicationContext();
                 return;
         }
     }
@@ -38,10 +38,10 @@ public final class h {
             return hVar.e();
         }
         if (obj instanceof v0.n) {
-            for (p pVar : ((v0.n) obj).f47271a) {
+            for (p pVar : ((v0.n) obj).f47299a) {
             }
         }
-        Context ctx = hVar.f14823a;
+        Context ctx = hVar.f14849a;
         kotlin.jvm.internal.i.e(ctx, "ctx");
         if (!ctx.getPackageManager().hasSystemFeature("android.software.leanback") && !ctx.getPackageManager().hasSystemFeature("android.hardware.type.automotive")) {
             int i10 = Build.VERSION.SDK_INT;
@@ -68,15 +68,15 @@ public final class h {
         n6.l.h(context);
         synchronized (h.class) {
             try {
-                if (f14822b == null) {
+                if (f14848b == null) {
                     o.a(context);
-                    f14822b = new h(context, 0);
+                    f14848b = new h(context, 0);
                 }
             } catch (Throwable th2) {
                 throw th2;
             }
         }
-        return f14822b;
+        return f14848b;
     }
 
     public static final l f(PackageInfo packageInfo, l... lVarArr) {
@@ -101,54 +101,54 @@ public final class h {
     }
 
     public l5.j a() {
-        Context context = this.f14823a;
+        Context context = this.f14849a;
         if (context != null) {
             ?? obj = new Object();
-            obj.f15286a = n5.a.a(l5.m.f15293a);
+            obj.f15313a = n5.a.a(l5.m.f15320a);
             l.d dVar = new l.d(context, 6);
-            obj.f15287b = dVar;
-            obj.f15288c = n5.a.a(new y(25, dVar, new u4(dVar, 5)));
-            l.d dVar2 = obj.f15287b;
+            obj.f15314b = dVar;
+            obj.f15315c = n5.a.a(new y(25, dVar, new u4(dVar, 5)));
+            l.d dVar2 = obj.f15314b;
             obj.d = new g0(dVar2, 22);
             fd.a a2 = n5.a.a(new o0.a(16, obj.d, n5.a.a(new mg.n(dVar2, 16))));
-            obj.f15289e = a2;
+            obj.f15316e = a2;
             rb.a aVar = new rb.a(19);
-            l.d dVar3 = obj.f15287b;
+            l.d dVar3 = obj.f15314b;
             t tVar = new t(dVar3, a2, aVar, 19);
-            fd.a aVar2 = obj.f15286a;
-            fd.a aVar3 = obj.f15288c;
+            fd.a aVar2 = obj.f15313a;
+            fd.a aVar3 = obj.f15315c;
             ?? obj2 = new Object();
-            obj2.f4796a = aVar2;
-            obj2.f4797b = aVar3;
-            obj2.f4798c = tVar;
+            obj2.f4823a = aVar2;
+            obj2.f4824b = aVar3;
+            obj2.f4825c = tVar;
             obj2.d = a2;
-            obj2.f4799e = a2;
+            obj2.f4826e = a2;
             ?? obj3 = new Object();
-            obj3.f15634a = dVar3;
-            obj3.f15635b = aVar3;
-            obj3.f15636c = a2;
+            obj3.f15661a = dVar3;
+            obj3.f15662b = aVar3;
+            obj3.f15663c = a2;
             obj3.d = tVar;
-            obj3.f15637e = aVar2;
-            obj3.f15638f = a2;
+            obj3.f15664e = aVar2;
+            obj3.f15665f = a2;
             obj3.h = a2;
             ?? obj4 = new Object();
-            obj4.f9492a = aVar2;
-            obj4.f9493b = a2;
-            obj4.f9494c = tVar;
+            obj4.f9520a = aVar2;
+            obj4.f9521b = a2;
+            obj4.f9522c = tVar;
             obj4.d = a2;
-            obj.f15290f = n5.a.a(new aa.a(obj2, obj3, obj4, false, 27));
+            obj.f15317f = n5.a.a(new aa.a(obj2, obj3, obj4, false, 27));
             return obj;
         }
         throw new IllegalStateException(Context.class.getCanonicalName() + " must be set");
     }
 
     public PackageInfo d(int i10, String str) {
-        return this.f14823a.getPackageManager().getPackageInfo(str, i10);
+        return this.f14849a.getPackageManager().getPackageInfo(str, i10);
     }
 
     public v0.j e() {
         String string;
-        Context context = this.f14823a;
+        Context context = this.f14849a;
         PackageInfo packageInfo = context.getPackageManager().getPackageInfo(context.getPackageName(), 132);
         ArrayList arrayList = new ArrayList();
         ServiceInfo[] serviceInfoArr = packageInfo.services;

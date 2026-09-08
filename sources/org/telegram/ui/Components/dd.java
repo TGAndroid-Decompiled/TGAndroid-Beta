@@ -1,6 +1,6 @@
 package org.telegram.ui.Components;
 public class dd {
-    public int f25368a;
-    public boolean f25369b;
-    public long f25370c;
+    public int f25395a;
+    public boolean f25396b;
+    public long f25397c;
 }

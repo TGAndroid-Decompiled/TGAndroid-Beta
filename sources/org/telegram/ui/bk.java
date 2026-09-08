@@ -9,10 +9,10 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.SharedConfig;
 public final class bk extends s4.s0 {
-    public boolean f34825b;
+    public boolean f34852b;
     public final co d;
-    public float f34824a = 0.0f;
-    public final int f34826c = AndroidUtilities.dp(100.0f);
+    public float f34851a = 0.0f;
+    public final int f34853c = AndroidUtilities.dp(100.0f);
 
     public bk(co coVar) {
         this.d = coVar;
@@ -22,15 +22,15 @@ public final class bk extends s4.s0 {
     public final void a(RecyclerView recyclerView, int i10) {
         co coVar = this.d;
         if (i10 == 0) {
-            org.telegram.ui.Cells.t1 t1Var = coVar.f35372p2;
+            org.telegram.ui.Cells.t1 t1Var = coVar.f35399p2;
             if (t1Var != null) {
-                coVar.f35349n2.e(t1Var, -1, coVar.f35384q2, coVar.f35397r2, true);
-                coVar.f35372p2 = null;
+                coVar.f35376n2.e(t1Var, -1, coVar.f35411q2, coVar.f35424r2, true);
+                coVar.f35399p2 = null;
             }
             coVar.j3 = false;
-            coVar.f35313k3 = false;
-            coVar.f35325l3 = false;
-            coVar.f35336m3 = false;
+            coVar.f35340k3 = false;
+            coVar.f35352l3 = false;
+            coVar.f35363m3 = false;
             coVar.f9(true);
             coVar.g9(true);
             if (SharedConfig.getDevicePerformanceClass() == 0) {
@@ -38,14 +38,14 @@ public final class bk extends s4.s0 {
                 NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.startAllHeavyOperations, 512);
             }
             NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.startSpoilers, new Object[0]);
-            coVar.f35473x0.setOverScrollMode(0);
-            coVar.f35221c9.W();
+            coVar.f35500x0.setOverScrollMode(0);
+            coVar.f35248c9.W();
             coVar.Wc(false);
             coVar.q9(1);
-            coVar.f35419sa = false;
+            coVar.f35446sa = false;
             return;
         }
-        di.f4 f4Var = coVar.f35487y1;
+        di.f4 f4Var = coVar.f35514y1;
         if (f4Var != null && f4Var.V) {
             f4Var.e(true);
         }
@@ -55,14 +55,14 @@ public final class bk extends s4.s0 {
         }
         if (i10 == 2) {
             coVar.D4 = true;
-            coVar.f35325l3 = true;
+            coVar.f35352l3 = true;
         } else if (i10 == 1) {
-            coVar.f35372p2 = null;
+            coVar.f35399p2 = null;
             coVar.D4 = true;
             coVar.j3 = true;
-            coVar.f35313k3 = true;
-            coVar.f35336m3 = true;
-            coVar.f35325l3 = true;
+            coVar.f35340k3 = true;
+            coVar.f35363m3 = true;
+            coVar.f35352l3 = true;
         }
         if (SharedConfig.getDevicePerformanceClass() == 0) {
             int i12 = co.Hc;
@@ -83,28 +83,28 @@ public final class bk extends s4.s0 {
         boolean z12;
         boolean z13;
         co coVar = this.d;
-        co coVar2 = coVar.f35234da;
+        co coVar2 = coVar.f35261da;
         if (coVar2 == null) {
             coVar2 = coVar;
         }
-        coVar.f35473x0.invalidate();
+        coVar.f35500x0.invalidate();
         boolean z14 = true;
         if (i11 < 0) {
             z10 = true;
         } else {
             z10 = false;
         }
-        this.f34825b = z10;
-        int L0 = coVar.f35498z0.L0();
+        this.f34852b = z10;
+        int L0 = coVar.f35525z0.L0();
         aa.a aVar = null;
-        if (((i11 != 0 && coVar.f35419sa && recyclerView.getScrollState() == 2) || recyclerView.getScrollState() == 1) && coVar.N4 != 0) {
-            if (this.f34825b && !coVar.O4) {
-                if (!coVar.f35473x0.X1 && L0 != -1) {
-                    int N0 = coVar.f35498z0.N0();
+        if (((i11 != 0 && coVar.f35446sa && recyclerView.getScrollState() == 2) || recyclerView.getScrollState() == 1) && coVar.N4 != 0) {
+            if (this.f34852b && !coVar.O4) {
+                if (!coVar.f35500x0.X1 && L0 != -1) {
+                    int N0 = coVar.f35525z0.N0();
                     MessageObject messageObject = null;
                     while (true) {
                         if (N0 >= L0) {
-                            View m10 = coVar.f35498z0.m(N0);
+                            View m10 = coVar.f35525z0.m(N0);
                             if (m10 instanceof org.telegram.ui.Cells.t1) {
                                 messageObject = ((org.telegram.ui.Cells.t1) m10).getMessageObject();
                             } else if (m10 instanceof org.telegram.ui.Cells.w0) {
@@ -139,14 +139,14 @@ public final class bk extends s4.s0 {
             coVar.X0.getClass();
             coVar.h9(true);
         }
-        if (i11 != 0 && coVar.j3 && !coVar.f35253f3) {
+        if (i11 != 0 && coVar.j3 && !coVar.f35280f3) {
             if (coVar.L7 != Integer.MAX_VALUE) {
                 coVar.Ia();
                 coVar.Wc(false);
             }
             coVar.Fb(true);
         }
-        if (coVar.t9() && i11 != 0 && coVar.f35313k3 && !coVar.f35253f3) {
+        if (coVar.t9() && i11 != 0 && coVar.f35340k3 && !coVar.f35280f3) {
             if (coVar.L7 != Integer.MAX_VALUE) {
                 coVar.Ia();
                 coVar.Wc(false);
@@ -158,62 +158,62 @@ public final class bk extends s4.s0 {
             coVar.A0.h();
             if (L0 == 0 && coVar.E6[0]) {
                 if (i11 >= 0) {
-                    coVar.f35271g9 = false;
+                    coVar.f35298g9 = false;
                     coVar.vc();
                 }
             } else {
-                aa.a[] aVarArr = coVar.f35299j1.f14967e;
+                aa.a[] aVarArr = coVar.f35326j1.f14993e;
                 if (1 < aVarArr.length) {
                     aVar = aVarArr[1];
                 }
-                if (aVar != null && ((le.b) aVar.f372c).f15369f) {
+                if (aVar != null && ((le.b) aVar.f384c).f15396f) {
                     z12 = true;
                 } else {
                     z12 = false;
                 }
-                int i12 = this.f34826c;
+                int i12 = this.f34853c;
                 if (i11 > 0) {
                     if (!z12) {
-                        float f7 = this.f34824a + i11;
-                        this.f34824a = f7;
+                        float f7 = this.f34851a + i11;
+                        this.f34851a = f7;
                         if (f7 > i12) {
-                            this.f34824a = 0.0f;
-                            coVar.f35271g9 = true;
+                            this.f34851a = 0.0f;
+                            coVar.f35298g9 = true;
                             coVar.vc();
-                            coVar.f35311k1 = true;
+                            coVar.f35338k1 = true;
                         }
                     }
-                } else if (coVar.f35311k1 && z12) {
-                    float f10 = this.f34824a + i11;
-                    this.f34824a = f10;
+                } else if (coVar.f35338k1 && z12) {
+                    float f10 = this.f34851a + i11;
+                    this.f34851a = f10;
                     if (f10 < (-i12)) {
-                        coVar.f35271g9 = false;
+                        coVar.f35298g9 = false;
                         coVar.vc();
-                        this.f34824a = 0.0f;
+                        this.f34851a = 0.0f;
                     }
                 }
             }
         }
         coVar.r9();
-        coVar.f35221c9.H();
-        ArrayList arrayList = coVar.f35483xa.F;
+        coVar.f35248c9.H();
+        ArrayList arrayList = coVar.f35510xa.F;
         for (int i13 = 0; i13 < arrayList.size(); i13++) {
-            if (!((fz) arrayList.get(i13)).f36498c) {
-                ((fz) arrayList.get(i13)).f36497b -= i11;
+            if (!((fz) arrayList.get(i13)).f36525c) {
+                ((fz) arrayList.get(i13)).f36524b -= i11;
             }
         }
         ah.e1 e1Var = ah.e1.B;
         if (e1Var != null) {
-            e1Var.f521r -= i11;
+            e1Var.f533r -= i11;
             if (i11 != 0) {
-                e1Var.f524u = true;
+                e1Var.f536u = true;
             }
         }
         if (Build.VERSION.SDK_INT >= 31 && (fVar = coVar2.F) != null) {
             fVar.f(i10, i11);
         }
         coVar.i7(false);
-        di.f4 f4Var = coVar.f35474x1;
+        di.f4 f4Var = coVar.f35501x1;
         if (f4Var != null) {
             if (f4Var.V) {
                 f4Var.e(true);
@@ -227,7 +227,7 @@ public final class bk extends s4.s0 {
         if (ylVar != null && ylVar.V) {
             ylVar.e(true);
         }
-        di.f4 f4Var2 = coVar.f35499z1;
+        di.f4 f4Var2 = coVar.f35526z1;
         if (f4Var2 != null && f4Var2.V) {
             f4Var2.e(true);
         } else {
@@ -242,17 +242,17 @@ public final class bk extends s4.s0 {
         if (mkVar != null) {
             mkVar.l0();
         }
-        zh.a4 a4Var = coVar.f35393qc;
+        zh.a4 a4Var = coVar.f35420qc;
         if (a4Var != null) {
             a4Var.invalidate();
         }
         ih.a aVar2 = coVar.Qb;
-        if (aVar2 != null && aVar2.f12300b > 0) {
-            int childCount = aVar2.f12299a.getChildCount();
+        if (aVar2 != null && aVar2.f12326b > 0) {
+            int childCount = aVar2.f12325a.getChildCount();
             int i14 = 0;
             while (true) {
                 if (i14 < childCount) {
-                    View childAt = aVar2.f12299a.getChildAt(i14);
+                    View childAt = aVar2.f12325a.getChildAt(i14);
                     if (childAt instanceof org.telegram.ui.Cells.t1) {
                         z11 = aVar2.a(((org.telegram.ui.Cells.t1) childAt).getMessageObject());
                     } else if (childAt instanceof org.telegram.ui.Cells.w0) {

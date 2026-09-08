@@ -23,57 +23,57 @@ import org.telegram.ui.Components.m70;
 import org.telegram.ui.Components.pr;
 public class ea extends NestedScrollView implements m70 {
     public final org.telegram.ui.Cells.aa W;
-    public final o1.k f2921a0;
-    public final da f2922b0;
-    public boolean f2923c0;
-    public float f2924d0;
-    public float f2925e0;
-    public float f2926f0;
-    public float f2927g0;
-    public float f2928h0;
-    public float f2929i0;
-    public float f2930j0;
-    public final OverScroller f2931k0;
-    public boolean f2932l0;
+    public final o1.k f2948a0;
+    public final da f2949b0;
+    public boolean f2950c0;
+    public float f2951d0;
+    public float f2952e0;
+    public float f2953f0;
+    public float f2954g0;
+    public float f2955h0;
+    public float f2956i0;
+    public float f2957j0;
+    public final OverScroller f2958k0;
+    public boolean f2959l0;
     public int m0;
-    public int f2933n0;
-    public int f2934o0;
-    public int f2935p0;
-    public int f2936q0;
-    public final FrameLayout f2937r0;
-    public boolean f2938s0;
-    public boolean f2939t0;
-    public int f2940u0;
-    public boolean f2941v0;
-    public boolean f2942w0;
+    public int f2960n0;
+    public int f2961o0;
+    public int f2962p0;
+    public int f2963q0;
+    public final FrameLayout f2964r0;
+    public boolean f2965s0;
+    public boolean f2966t0;
+    public int f2967u0;
+    public boolean f2968v0;
+    public boolean f2969w0;
 
     public ea(Context context, org.telegram.ui.ActionBar.f6 f6Var) {
         super(context);
         Paint paint = new Paint(1);
-        this.f2936q0 = -1;
+        this.f2963q0 = -1;
         new GradientDrawable(GradientDrawable.Orientation.TOP_BOTTOM, new int[]{0, i0.a.k(-16777216, 51)});
         FrameLayout frameLayout = new FrameLayout(context);
-        this.f2937r0 = frameLayout;
+        this.f2964r0 = frameLayout;
         setClipChildren(false);
         setOverScrollMode(2);
         NotificationCenter.listenEmojiLoading(this);
         da daVar = new da(this, getContext());
-        this.f2922b0 = daVar;
+        this.f2949b0 = daVar;
         org.telegram.ui.Cells.aa aaVar = new org.telegram.ui.Cells.aa(daVar, f6Var);
         this.W = aaVar;
-        aaVar.f21777i0 = false;
+        aaVar.f21804i0 = false;
         frameLayout.addView(daVar, -1, -2);
         addView(frameLayout, new ViewGroup.LayoutParams(-1, -2));
         paint.setColor(-16777216);
         setFadingEdgeLength(AndroidUtilities.dp(12.0f));
         setVerticalFadingEdgeEnabled(true);
         setWillNotDraw(false);
-        o1.k kVar = new o1.k(daVar, o1.h.f16807n, 0.0f);
-        this.f2921a0 = kVar;
-        kVar.f16825u.b(100.0f);
-        kVar.f16821j = 1.0f;
+        o1.k kVar = new o1.k(daVar, o1.h.f16834n, 0.0f);
+        this.f2948a0 = kVar;
+        kVar.f16852u.b(100.0f);
+        kVar.f16848j = 1.0f;
         kVar.b(new x9(0, this));
-        kVar.f16825u.a(1.0f);
+        kVar.f16852u.a(1.0f);
         try {
             NestedScrollView.class.getDeclaredMethod("d", null).setAccessible(true);
         } catch (Exception e7) {
@@ -82,9 +82,9 @@ public class ea extends NestedScrollView implements m70 {
         try {
             Field declaredField = NestedScrollView.class.getDeclaredField("d");
             declaredField.setAccessible(true);
-            this.f2931k0 = (OverScroller) declaredField.get(this);
+            this.f2958k0 = (OverScroller) declaredField.get(this);
         } catch (Exception e10) {
-            this.f2931k0 = null;
+            this.f2958k0 = null;
             FileLog.e(e10);
         }
     }
@@ -92,52 +92,52 @@ public class ea extends NestedScrollView implements m70 {
     @Override
     public final void B(int i10) {
         OverScroller overScroller;
-        if (this.f2923c0 && i10 == 0) {
-            this.f2923c0 = false;
-            if (this.f2924d0 != 0.0f && (overScroller = this.f2931k0) != null && overScroller.isFinished()) {
-                K(this.f2926f0);
+        if (this.f2950c0 && i10 == 0) {
+            this.f2950c0 = false;
+            if (this.f2951d0 != 0.0f && (overScroller = this.f2958k0) != null && overScroller.isFinished()) {
+                K(this.f2953f0);
             }
         }
     }
 
     public final void C() {
-        if (!this.f2941v0) {
+        if (!this.f2968v0) {
             return;
         }
-        this.f2941v0 = false;
-        float f7 = this.f2922b0.f2884w;
+        this.f2968v0 = false;
+        float f7 = this.f2949b0.f2911w;
         ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
         ofFloat.addUpdateListener(new w9(this, getScrollY(), f7, 0));
         ofFloat.setDuration(250L);
-        ofFloat.setInterpolator(pr.f29466f);
+        ofFloat.setInterpolator(pr.f29493f);
         ofFloat.start();
     }
 
     public final void D(boolean z10) {
-        if (this.f2941v0 && !z10) {
+        if (this.f2968v0 && !z10) {
             return;
         }
-        this.f2941v0 = true;
-        float f7 = this.f2922b0.f2884w;
+        this.f2968v0 = true;
+        float f7 = this.f2949b0.f2911w;
         ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
         ofFloat.addUpdateListener(new w9(this, getScrollY(), f7, 1));
         ofFloat.setDuration(250L);
-        ofFloat.setInterpolator(pr.f29466f);
+        ofFloat.setInterpolator(pr.f29493f);
         ofFloat.start();
     }
 
     public final void J() {
         scrollTo(0, 0);
-        this.f2941v0 = false;
-        da daVar = this.f2922b0;
-        daVar.f2884w = 0.0f;
+        this.f2968v0 = false;
+        da daVar = this.f2949b0;
+        daVar.f2911w = 0.0f;
         daVar.invalidate();
     }
 
     public final void K(float f7) {
-        o1.k kVar = this.f2921a0;
-        if (!kVar.f16818f) {
-            kVar.f16814a = f7;
+        o1.k kVar = this.f2948a0;
+        if (!kVar.f16845f) {
+            kVar.f16841a = f7;
             kVar.f();
         }
         if (getScrollY() < AndroidUtilities.dp(2.0f)) {
@@ -152,15 +152,15 @@ public class ea extends NestedScrollView implements m70 {
     @Override
     public final void a(RectF rectF) {
         ca caVar;
-        da daVar = this.f2922b0;
-        ca[] caVarArr = daVar.f2882r;
-        if (caVarArr != null && (caVar = caVarArr[0]) != null && caVar.f2837p != null) {
+        da daVar = this.f2949b0;
+        ca[] caVarArr = daVar.f2909r;
+        if (caVarArr != null && (caVar = caVarArr[0]) != null && caVar.f2864p != null) {
             int i10 = daVar.F;
             int i11 = daVar.F;
-            ca caVar2 = daVar.f2882r[0];
-            rectF.set(daVar.E, (AndroidUtilities.lerp(caVar.f2834m, caVar.f2833l, daVar.f2884w) + i10) - daVar.f2882r[0].f2837p.b(), getWidth() - daVar.E, AndroidUtilities.lerp(caVar2.f2834m, caVar2.f2833l, daVar.f2884w) + i11);
+            ca caVar2 = daVar.f2909r[0];
+            rectF.set(daVar.E, (AndroidUtilities.lerp(caVar.f2861m, caVar.f2860l, daVar.f2911w) + i10) - daVar.f2909r[0].f2864p.b(), getWidth() - daVar.E, AndroidUtilities.lerp(caVar2.f2861m, caVar2.f2860l, daVar.f2911w) + i11);
             float x10 = daVar.getX() - getScrollX();
-            FrameLayout frameLayout = this.f2937r0;
+            FrameLayout frameLayout = this.f2964r0;
             rectF.offset(frameLayout.getX() + x10, frameLayout.getY() + (daVar.getY() - getScrollY()));
         }
     }
@@ -168,18 +168,18 @@ public class ea extends NestedScrollView implements m70 {
     @Override
     public final void c(Canvas canvas, float f7) {
         ca caVar;
-        da daVar = this.f2922b0;
-        ca[] caVarArr = daVar.f2882r;
-        ca[] caVarArr2 = daVar.f2882r;
-        if (caVarArr != null && (caVar = caVarArr[0]) != null && caVar.f2837p != null) {
+        da daVar = this.f2949b0;
+        ca[] caVarArr = daVar.f2909r;
+        ca[] caVarArr2 = daVar.f2909r;
+        if (caVarArr != null && (caVar = caVarArr[0]) != null && caVar.f2864p != null) {
             canvas.save();
             float x10 = daVar.getX() - getScrollX();
-            FrameLayout frameLayout = this.f2937r0;
+            FrameLayout frameLayout = this.f2964r0;
             float x11 = frameLayout.getX() + x10 + daVar.E;
             float y3 = frameLayout.getY() + (daVar.getY() - getScrollY()) + daVar.F;
             ca caVar2 = caVarArr2[0];
-            canvas.translate(x11, (y3 + AndroidUtilities.lerp(caVar2.f2834m, caVar2.f2833l, daVar.f2884w)) - caVarArr2[0].f2837p.b());
-            z9 z9Var = caVarArr2[0].f2837p;
+            canvas.translate(x11, (y3 + AndroidUtilities.lerp(caVar2.f2861m, caVar2.f2860l, daVar.f2911w)) - caVarArr2[0].f2864p.b());
+            z9 z9Var = caVarArr2[0].f2864p;
             int width = getWidth();
             int i10 = daVar.E;
             z9Var.a(canvas, (width - i10) - i10);
@@ -193,14 +193,14 @@ public class ea extends NestedScrollView implements m70 {
     public final void computeScroll() {
         OverScroller overScroller;
         super.computeScroll();
-        if (!this.f2923c0 && this.f2924d0 != 0.0f && (overScroller = this.f2931k0) != null && overScroller.isFinished()) {
+        if (!this.f2950c0 && this.f2951d0 != 0.0f && (overScroller = this.f2958k0) != null && overScroller.isFinished()) {
             K(0.0f);
         }
     }
 
     @Override
     public final void draw(Canvas canvas) {
-        if (this.f2939t0) {
+        if (this.f2966t0) {
             return;
         }
         int width = getWidth();
@@ -208,7 +208,7 @@ public class ea extends NestedScrollView implements m70 {
         int scrollY = getScrollY();
         int save = canvas.save();
         int i10 = height + scrollY;
-        canvas.clipRect(0, scrollY, width, this.f2940u0 + i10);
+        canvas.clipRect(0, scrollY, width, this.f2967u0 + i10);
         canvas.clipRect(0, scrollY, width, i10);
         super.draw(canvas);
         canvas.restoreToCount(save);
@@ -219,27 +219,27 @@ public class ea extends NestedScrollView implements m70 {
         float f7;
         int i13;
         iArr[1] = 0;
-        if (!this.f2923c0 || (((this.f2924d0) <= 0.0f || i11 <= 0) && (f7 >= 0.0f || i11 >= 0))) {
+        if (!this.f2950c0 || (((this.f2951d0) <= 0.0f || i11 <= 0) && (f7 >= 0.0f || i11 >= 0))) {
             return false;
         }
         float f10 = i11;
         float f11 = f7 - f10;
         if (i13 > 0) {
             if (f11 < 0.0f) {
-                this.f2924d0 = 0.0f;
+                this.f2951d0 = 0.0f;
                 iArr[1] = (int) (f10 + f11 + 0);
             } else {
-                this.f2924d0 = f11;
+                this.f2951d0 = f11;
                 iArr[1] = i11;
             }
         } else if (f11 > 0.0f) {
-            this.f2924d0 = 0.0f;
+            this.f2951d0 = 0.0f;
             iArr[1] = (int) (f10 + f11 + 0);
         } else {
-            this.f2924d0 = f11;
+            this.f2951d0 = f11;
             iArr[1] = i11;
         }
-        this.f2922b0.setTranslationY(this.f2924d0);
+        this.f2949b0.setTranslationY(this.f2951d0);
         this.W.x();
         return true;
     }
@@ -250,24 +250,24 @@ public class ea extends NestedScrollView implements m70 {
     }
 
     public float getMaxTop() {
-        FrameLayout frameLayout = this.f2937r0;
+        FrameLayout frameLayout = this.f2964r0;
         return frameLayout.getTop() - (frameLayout.getBottom() - getMeasuredHeight());
     }
 
     public int getPendingMarginTopDiff() {
-        int i10 = this.f2936q0;
+        int i10 = this.f2963q0;
         if (i10 >= 0) {
-            return i10 - ((ViewGroup.MarginLayoutParams) this.f2937r0.getLayoutParams()).topMargin;
+            return i10 - ((ViewGroup.MarginLayoutParams) this.f2964r0.getLayoutParams()).topMargin;
         }
         return 0;
     }
 
     public float getProgressToBlackout() {
-        return Utilities.clamp((getScrollY() - this.f2922b0.getTranslationY()) / Math.min(this.f2935p0, AndroidUtilities.dp(40.0f)), 1.0f, 0.0f);
+        return Utilities.clamp((getScrollY() - this.f2949b0.getTranslationY()) / Math.min(this.f2962p0, AndroidUtilities.dp(40.0f)), 1.0f, 0.0f);
     }
 
     public float getTextTop() {
-        return (this.f2922b0.getTranslationY() + this.f2937r0.getTop()) - getScrollY();
+        return (this.f2949b0.getTranslationY() + this.f2964r0.getTop()) - getScrollY();
     }
 
     @Override
@@ -281,13 +281,13 @@ public class ea extends NestedScrollView implements m70 {
         float f10;
         float f11;
         if (i13 != 0) {
-            int round = Math.round((1.0f - Math.abs((-this.f2924d0) / this.f2937r0.getTop())) * i13);
+            int round = Math.round((1.0f - Math.abs((-this.f2951d0) / this.f2964r0.getTop())) * i13);
             if (round != 0) {
-                boolean z10 = this.f2923c0;
-                da daVar = this.f2922b0;
+                boolean z10 = this.f2950c0;
+                da daVar = this.f2949b0;
                 if (!z10) {
-                    if (!this.f2921a0.f16818f) {
-                        OverScroller overScroller = this.f2931k0;
+                    if (!this.f2948a0.f16845f) {
+                        OverScroller overScroller = this.f2958k0;
                         if (overScroller != null) {
                             f7 = overScroller.getCurrVelocity();
                         } else {
@@ -302,20 +302,20 @@ public class ea extends NestedScrollView implements m70 {
                             }
                             float min = Math.min(f11, f7);
                             round = (int) ((round * min) / f7);
-                            f10 = min * (-this.f2925e0);
+                            f10 = min * (-this.f2952e0);
                         } else {
                             f10 = 0.0f;
                         }
                         if (round != 0) {
-                            float f12 = this.f2924d0 - round;
-                            this.f2924d0 = f12;
+                            float f12 = this.f2951d0 - round;
+                            this.f2951d0 = f12;
                             daVar.setTranslationY(f12);
                         }
                         K(f10);
                     }
                 } else {
-                    float f13 = this.f2924d0 - round;
-                    this.f2924d0 = f13;
+                    float f13 = this.f2951d0 - round;
+                    this.f2951d0 = f13;
                     daVar.setTranslationY(f13);
                 }
             }
@@ -335,8 +335,8 @@ public class ea extends NestedScrollView implements m70 {
     @Override
     public final void k(int i10) {
         super.k(i10);
-        this.f2925e0 = Math.signum(i10);
-        this.f2926f0 = 0.0f;
+        this.f2952e0 = Math.signum(i10);
+        this.f2953f0 = 0.0f;
     }
 
     @Override
@@ -364,9 +364,9 @@ public class ea extends NestedScrollView implements m70 {
     @Override
     public final boolean z(int i10, int i11) {
         if (i11 == 0) {
-            this.f2921a0.c();
-            this.f2923c0 = true;
-            this.f2924d0 = this.f2922b0.getTranslationY();
+            this.f2948a0.c();
+            this.f2950c0 = true;
+            this.f2951d0 = this.f2949b0.getTranslationY();
         }
         return true;
     }
@@ -380,6 +380,6 @@ public class ea extends NestedScrollView implements m70 {
     public void G(CharacterStyle characterStyle, View view) {
     }
 
-    public void H(URLSpan uRLSpan, View view, a3.c cVar) {
+    public void H(URLSpan uRLSpan, View view, a3.d dVar) {
     }
 }

@@ -40,7 +40,7 @@ public final class q5 extends f5 {
     public void n(int i10, int i11, int i12) {
         switch (this.R) {
             case 1:
-                if (!((wd1) this.S).f41927d2) {
+                if (!((wd1) this.S).f41954d2) {
                     super.n(i10, i11, i12);
                     return;
                 }
@@ -55,7 +55,7 @@ public final class q5 extends f5 {
     public void o(int i10, int i11, int i12, int i13, int i14, int i15, boolean z10, boolean z11) {
         switch (this.R) {
             case 1:
-                if (!((wd1) this.S).f41927d2) {
+                if (!((wd1) this.S).f41954d2) {
                     super.o(i10, i11, i12, i13, i14, i15, z10, z11);
                     return;
                 }

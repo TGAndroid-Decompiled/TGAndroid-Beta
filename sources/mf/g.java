@@ -3,8 +3,8 @@ package mf;
 import java.util.logging.Logger;
 import m2.u;
 public final class g extends kf.a {
-    public static final Logger f16215s = Logger.getLogger(g.class.getName());
-    public byte f16216r;
+    public static final Logger f16242s = Logger.getLogger(g.class.getName());
+    public byte f16243r;
 
     public static boolean b(m mVar) {
         boolean z10;
@@ -26,11 +26,11 @@ public final class g extends kf.a {
     public static u c(e eVar) {
         b b10 = eVar.b();
         eVar.c(3, b.ISO_8859_1);
-        return new u(1, eVar.d(200, b10), eVar.c((int) eVar.f16206a.e(), b10));
+        return new u(1, eVar.d(200, b10), eVar.c((int) eVar.f16233a.e(), b10));
     }
 
     public static String e(e eVar) {
-        return eVar.c((int) eVar.f16206a.e(), eVar.b());
+        return eVar.c((int) eVar.f16233a.e(), eVar.b());
     }
 
     public final void d(mf.e r12) {

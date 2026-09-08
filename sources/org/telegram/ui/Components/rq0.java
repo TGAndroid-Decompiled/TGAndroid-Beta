@@ -12,7 +12,7 @@ import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.eg1;
 public final class rq0 implements v10, org.telegram.ui.oy {
-    public final xu0 f30073a;
+    public final xu0 f30100a;
 
     @Override
     public boolean B() {
@@ -25,7 +25,7 @@ public final class rq0 implements v10, org.telegram.ui.oy {
     }
 
     public void a(boolean z10) {
-        xu0 xu0Var = this.f30073a;
+        xu0 xu0Var = this.f30100a;
         if (!z10) {
             xu0Var.requestLayout();
         }
@@ -35,9 +35,9 @@ public final class rq0 implements v10, org.telegram.ui.oy {
     @Override
     public boolean u(org.telegram.ui.uy uyVar, ArrayList arrayList, CharSequence charSequence, boolean z10, boolean z11, int i10, int i11, eg1 eg1Var) {
         UndoView undoView;
-        xu0 xu0Var = this.f30073a;
+        xu0 xu0Var = this.f30100a;
         SparseArray[] sparseArrayArr = xu0Var.Z0;
-        org.telegram.ui.ActionBar.n2 n2Var = xu0Var.f32726v1;
+        org.telegram.ui.ActionBar.n2 n2Var = xu0Var.f32753v1;
         ArrayList<MessageObject> arrayList2 = new ArrayList<>();
         int i12 = 1;
         while (true) {
@@ -62,11 +62,11 @@ public final class rq0 implements v10, org.telegram.ui.oy {
             sparseArrayArr[i12].clear();
             i12--;
         }
-        xu0Var.f32677a1 = 0;
+        xu0Var.f32704a1 = 0;
         xu0Var.b1(false);
         hu0 hu0Var = xu0Var.R;
         if (hu0Var != null) {
-            hu0Var.f26864w.clear();
+            hu0Var.f26891w.clear();
         }
         if (arrayList.size() <= 1 && ((MessagesStorage.TopicKey) arrayList.get(0)).dialogId != n2Var.getUserConfig().getClientUserId() && charSequence == null) {
             long j3 = ((MessagesStorage.TopicKey) arrayList.get(0)).dialogId;

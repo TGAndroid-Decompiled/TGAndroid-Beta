@@ -8,7 +8,7 @@ import org.telegram.ui.Components.g51;
 import org.telegram.ui.Components.ll0;
 import org.telegram.ui.Components.t00;
 public final class n extends g51 {
-    public static final int f45648a = 0;
+    public static final int f45676a = 0;
 
     static {
         g51.setup(new g51());

@@ -20,19 +20,19 @@ public final class p extends a1 {
         if (oVar2 == null) {
             oVar2 = sVar.v;
         }
-        if (oVar2 != null && (oVar = (b2.o) this.H.get(oVar2.f2224c)) != null) {
+        if (oVar2 != null && (oVar = (b2.o) this.H.get(oVar2.f2251c)) != null) {
             oVar2 = oVar;
         }
-        p0 p0Var = sVar.f2364l;
+        p0 p0Var = sVar.f2391l;
         p0 p0Var2 = null;
         if (p0Var != null) {
-            o0[] o0VarArr = p0Var.f2234a;
+            o0[] o0VarArr = p0Var.f2261a;
             int length = o0VarArr.length;
             int i10 = 0;
             while (true) {
                 if (i10 < length) {
                     o0 o0Var = o0VarArr[i10];
-                    if ((o0Var instanceof q3.n) && "com.apple.streaming.transportStreamTimestamp".equals(((q3.n) o0Var).f44163b)) {
+                    if ((o0Var instanceof q3.n) && "com.apple.streaming.transportStreamTimestamp".equals(((q3.n) o0Var).f44191b)) {
                         break;
                     }
                     i10++;
@@ -52,10 +52,10 @@ public final class p extends a1 {
                     p0Var2 = new p0(o0VarArr2);
                 }
             }
-            if (oVar2 == sVar.v || p0Var != sVar.f2364l) {
+            if (oVar2 == sVar.v || p0Var != sVar.f2391l) {
                 b2.r a2 = sVar.a();
-                a2.f2316u = oVar2;
-                a2.f2306k = p0Var;
+                a2.f2343u = oVar2;
+                a2.f2333k = p0Var;
                 sVar = new b2.s(a2);
             }
             return super.p(sVar);
@@ -64,8 +64,8 @@ public final class p extends a1 {
         if (oVar2 == sVar.v) {
         }
         b2.r a22 = sVar.a();
-        a22.f2316u = oVar2;
-        a22.f2306k = p0Var;
+        a22.f2343u = oVar2;
+        a22.f2333k = p0Var;
         sVar = new b2.s(a22);
         return super.p(sVar);
     }

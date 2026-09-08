@@ -6,14 +6,14 @@ import ji.u4;
 import org.telegram.messenger.BotWebViewVibrationEffect;
 import org.telegram.ui.Components.pr;
 public final class m0 implements Runnable {
-    public final int f44481a;
-    public final q0 f44482b;
-    public final f1 f44483c;
+    public final int f44509a;
+    public final q0 f44510b;
+    public final f1 f44511c;
 
     public m0(q0 q0Var, f1 f1Var, int i10) {
-        this.f44481a = i10;
-        this.f44482b = q0Var;
-        this.f44483c = f1Var;
+        this.f44509a = i10;
+        this.f44510b = q0Var;
+        this.f44511c = f1Var;
     }
 
     @Override
@@ -21,25 +21,25 @@ public final class m0 implements Runnable {
         boolean z10;
         boolean z11;
         float f7;
-        int i10 = this.f44481a;
-        f1 f1Var = this.f44483c;
-        q0 q0Var = this.f44482b;
+        int i10 = this.f44509a;
+        f1 f1Var = this.f44511c;
+        q0 q0Var = this.f44510b;
         switch (i10) {
             case 0:
-                q0Var.f44520c = f1Var;
+                q0Var.f44548c = f1Var;
                 if (q0Var.h == null) {
                     q0Var.h = new RectF();
                 }
-                q0Var.f44520c.a(q0Var.h);
-                u4 u4Var = q0Var.f44518a;
+                q0Var.f44548c.a(q0Var.h);
+                u4 u4Var = q0Var.f44546a;
                 if (u4Var != null) {
                     u4Var.n();
                     return;
                 }
                 return;
             default:
-                if (f1Var != null && q0Var.f44532q == 0) {
-                    q0Var.f44532q = r1.b(q0Var.f44523g);
+                if (f1Var != null && q0Var.f44560q == 0) {
+                    q0Var.f44560q = r1.b(q0Var.f44551g);
                 }
                 boolean z12 = q0Var.H;
                 if (f1Var != null) {
@@ -72,7 +72,7 @@ public final class m0 implements Runnable {
                     q0Var.K.setInterpolator(pr.h);
                     q0Var.K.start();
                     q0Var.d = f1Var;
-                    u4 u4Var2 = q0Var.f44518a;
+                    u4 u4Var2 = q0Var.f44546a;
                     if (u4Var2 != null) {
                         u4Var2.n();
                     }
@@ -83,7 +83,7 @@ public final class m0 implements Runnable {
                     return;
                 } else if (f1Var != q0Var.d) {
                     q0Var.d = f1Var;
-                    u4 u4Var3 = q0Var.f44518a;
+                    u4 u4Var3 = q0Var.f44546a;
                     if (u4Var3 != null) {
                         u4Var3.n();
                         return;

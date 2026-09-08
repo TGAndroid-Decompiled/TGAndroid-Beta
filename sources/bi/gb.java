@@ -13,16 +13,16 @@ import org.telegram.messenger.FileLog;
 import org.telegram.messenger.FileStreamLoadOperation;
 import org.telegram.tgnet.TLRPC;
 public final class gb implements h5 {
-    public final l8 f3039a;
-    public final ArrayList f3040b;
-    public final Context f3041c;
+    public final l8 f3066a;
+    public final ArrayList f3067b;
+    public final Context f3068c;
     public final pb d;
 
     public gb(pb pbVar, l8 l8Var, ArrayList arrayList, Context context) {
         this.d = pbVar;
-        this.f3039a = l8Var;
-        this.f3040b = arrayList;
-        this.f3041c = context;
+        this.f3066a = l8Var;
+        this.f3067b = arrayList;
+        this.f3068c = context;
     }
 
     public final void a(int i10, long j3) {
@@ -37,9 +37,9 @@ public final class gb implements h5 {
     public final void b(boolean z10) {
         int i10;
         pb pbVar = this.d;
-        org.telegram.ui.ActionBar.n2 n2Var = pbVar.f3545f;
-        if (pbVar.f3534b) {
-            if (!pbVar.f3537c) {
+        org.telegram.ui.ActionBar.n2 n2Var = pbVar.f3572f;
+        if (pbVar.f3561b) {
+            if (!pbVar.f3564c) {
                 if (z10) {
                     AndroidUtilities.requestAdjustNothing(n2Var.getParentActivity(), n2Var.getClassGuid());
                     return;
@@ -50,7 +50,7 @@ public final class gb implements h5 {
             }
             return;
         }
-        WindowManager.LayoutParams layoutParams = pbVar.f3569r;
+        WindowManager.LayoutParams layoutParams = pbVar.f3596r;
         if (z10) {
             i10 = 48;
         } else {
@@ -58,7 +58,7 @@ public final class gb implements h5 {
         }
         layoutParams.softInputMode = i10;
         try {
-            pbVar.f3560n.updateViewLayout(pbVar.f3572s, layoutParams);
+            pbVar.f3587n.updateViewLayout(pbVar.f3599s, layoutParams);
         } catch (Exception e7) {
             FileLog.e(e7);
         }
@@ -85,16 +85,16 @@ public final class gb implements h5 {
             }
             boolean equals = TextUtils.equals(uri2, uri3);
             boolean z10 = true;
-            if (equals && (obVar = pbVar.f3588z0) != null) {
+            if (equals && (obVar = pbVar.f3615z0) != null) {
                 if (equals) {
                     pbVar.G0 = n5Var;
-                    n5Var.f3366c = obVar;
-                    n5Var.f3365b = null;
+                    n5Var.f3393c = obVar;
+                    n5Var.f3392b = null;
                     obVar.setSpeed(pb.B1);
                     n5 n5Var2 = pbVar.G0;
-                    n5Var2.f3364a = pbVar.f3588z0.firstFrameRendered;
-                    n5Var2.f3367e = pbVar.f3587y0;
-                    n5Var2.f3368f = pbVar.B0;
+                    n5Var2.f3391a = pbVar.f3615z0.firstFrameRendered;
+                    n5Var2.f3394e = pbVar.f3614y0;
+                    n5Var2.f3395f = pbVar.B0;
                     n5Var2.d = pbVar.C0;
                     FileLog.d("StoryViewer requestPlayer: same url");
                 }
@@ -106,25 +106,25 @@ public final class gb implements h5 {
                 }
                 t1 t1Var = pbVar.A0;
                 if (t1Var != null) {
-                    if (t1Var.f3720n) {
+                    if (t1Var.f3747n) {
                         t1Var.s(null);
                     } else {
                         t1Var.e();
                     }
                     pbVar.A0 = null;
                 }
-                ob obVar2 = pbVar.f3588z0;
+                ob obVar2 = pbVar.f3615z0;
                 if (obVar2 != null) {
                     obVar2.release(null);
-                    pbVar.f3588z0 = null;
+                    pbVar.f3615z0 = null;
                 }
                 n5 n5Var3 = pbVar.G0;
                 if (n5Var3 != null) {
-                    n5Var3.f3366c = null;
-                    n5Var3.f3365b = null;
-                    n5Var3.f3364a = false;
-                    n5Var3.f3367e = null;
-                    n5Var3.f3368f = null;
+                    n5Var3.f3393c = null;
+                    n5Var3.f3392b = null;
+                    n5Var3.f3391a = false;
+                    n5Var3.f3394e = null;
+                    n5Var3.f3395f = null;
                     n5Var3.d = null;
                     n5Var3.b();
                     pbVar.G0 = null;
@@ -136,43 +136,43 @@ public final class gb implements h5 {
                         if (i10 >= arrayList.size()) {
                             break;
                         } else if (((ob) arrayList.get(i10)).uri.equals(uri)) {
-                            pbVar.f3588z0 = (ob) arrayList.remove(i10);
+                            pbVar.f3615z0 = (ob) arrayList.remove(i10);
                             break;
                         } else {
                             i10++;
                         }
                     }
-                    if (pbVar.f3588z0 == null) {
+                    if (pbVar.f3615z0 == null) {
                         ob obVar3 = new ob(pbVar, pbVar.C0, pbVar.B0);
-                        pbVar.f3588z0 = obVar3;
+                        pbVar.f3615z0 = obVar3;
                         obVar3.document = document;
                     }
-                    ob obVar4 = pbVar.f3588z0;
+                    ob obVar4 = pbVar.f3615z0;
                     obVar4.uri = uri;
                     obVar4.setSpeed(pb.B1);
                     n5 n5Var4 = pbVar.G0;
-                    ob obVar5 = pbVar.f3588z0;
-                    n5Var4.f3366c = obVar5;
-                    n5Var4.f3364a = false;
-                    n5Var4.f3367e = pbVar.f3587y0;
-                    n5Var4.f3368f = pbVar.B0;
+                    ob obVar5 = pbVar.f3615z0;
+                    n5Var4.f3393c = obVar5;
+                    n5Var4.f3391a = false;
+                    n5Var4.f3394e = pbVar.f3614y0;
+                    n5Var4.f3395f = pbVar.B0;
                     n5Var4.d = pbVar.C0;
-                    n5Var4.f3365b = null;
+                    n5Var4.f3392b = null;
                     FileStreamLoadOperation.setPriorityForDocument(obVar5.document, 3);
-                    FileLoader.getInstance(pbVar.h).changePriority(3, pbVar.f3588z0.document, null, null, null, null, null);
+                    FileLoader.getInstance(pbVar.h).changePriority(3, pbVar.f3615z0.document, null, null, null, null, null);
                     if (j3 == 0) {
-                        long j11 = pbVar.f3576t1;
+                        long j11 = pbVar.f3603t1;
                         if (j11 != 0) {
-                            pbVar.G0.f3364a = true;
+                            pbVar.G0.f3391a = true;
                             j10 = j11;
                             FileLog.d("StoryViewer requestPlayer: currentPlayerScope.player start " + uri);
-                            ((ob) pbVar.G0.f3366c).start(false, pbVar.w(), uri, j10, pb.D1, pb.B1);
+                            ((ob) pbVar.G0.f3393c).start(false, pbVar.w(), uri, j10, pb.D1, pb.B1);
                             pbVar.G0.b();
                         }
                     }
                     j10 = j3;
                     FileLog.d("StoryViewer requestPlayer: currentPlayerScope.player start " + uri);
-                    ((ob) pbVar.G0.f3366c).start(false, pbVar.w(), uri, j10, pb.D1, pb.B1);
+                    ((ob) pbVar.G0.f3393c).start(false, pbVar.w(), uri, j10, pb.D1, pb.B1);
                     pbVar.G0.b();
                 } else {
                     FileLog.d("StoryViewer requestPlayer: url is null (1)");
@@ -182,7 +182,7 @@ public final class gb implements h5 {
                 z10 = false;
             }
             i(false, z10);
-            pbVar.f3576t1 = 0L;
+            pbVar.f3603t1 = 0L;
             pbVar.P();
             return;
         }
@@ -192,7 +192,7 @@ public final class gb implements h5 {
         }
         t1 t1Var2 = pbVar.A0;
         if (t1Var2 != null) {
-            if (t1Var2.f3720n) {
+            if (t1Var2.f3747n) {
                 t1Var2.s(null);
             } else {
                 t1Var2.e();
@@ -200,30 +200,30 @@ public final class gb implements h5 {
             pbVar.A0 = null;
         }
         FileLog.d("StoryViewer requestPlayer ignored, because closed: " + pbVar.H0 + ", " + pbVar.U);
-        n5Var.f3364a = false;
-        n5Var.f3366c = null;
-        n5Var.f3365b = null;
+        n5Var.f3391a = false;
+        n5Var.f3393c = null;
+        n5Var.f3392b = null;
     }
 
     public final void d(float f7) {
         pb pbVar = this.d;
-        if (pbVar.f3570r0 != f7) {
-            pbVar.f3570r0 = f7;
+        if (pbVar.f3597r0 != f7) {
+            pbVar.f3597r0 = f7;
             pbVar.v.invalidate();
         }
     }
 
     public final void e() {
-        this.d.f3559m1 = false;
+        this.d.f3586m1 = false;
     }
 
     public final void f(boolean z10) {
         ob obVar;
         pb pbVar = this.d;
-        if (!pbVar.f3547f1 && z10 && pbVar.f3556k0) {
-            pbVar.f3556k0 = false;
+        if (!pbVar.f3574f1 && z10 && pbVar.f3583k0) {
+            pbVar.f3583k0 = false;
             n5 n5Var = pbVar.G0;
-            if (n5Var != null && (obVar = (ob) n5Var.f3366c) != null) {
+            if (n5Var != null && (obVar = (ob) n5Var.f3393c) != null) {
                 obVar.setSeeking(false);
             }
             o5 t10 = pbVar.t();
@@ -231,7 +231,7 @@ public final class gb implements h5 {
                 t10.invalidate();
             }
         }
-        pbVar.f3547f1 = z10;
+        pbVar.f3574f1 = z10;
         pbVar.P();
     }
 
@@ -282,38 +282,38 @@ public final class gb implements h5 {
     public final void j() {
         int indexOf;
         pb pbVar = this.d;
-        l8 l8Var = this.f3039a;
+        l8 l8Var = this.f3066a;
         if (l8Var != null) {
-            if (pbVar.f3561n0.f3829x0 == null) {
+            if (pbVar.f3588n0.f3856x0 == null) {
                 return;
             }
-            ArrayList arrayList = new ArrayList(pbVar.f3561n0.f3829x0);
-            if (pbVar.f3561n0.getCurrentPeerView() == null) {
+            ArrayList arrayList = new ArrayList(pbVar.f3588n0.f3856x0);
+            if (pbVar.f3588n0.getCurrentPeerView() == null) {
                 indexOf = -1;
             } else {
-                indexOf = arrayList.indexOf(pbVar.f3561n0.getCurrentPeerView().getCurrentDay());
+                indexOf = arrayList.indexOf(pbVar.f3588n0.getCurrentPeerView().getCurrentDay());
             }
             if (indexOf >= 0) {
                 arrayList.remove(indexOf);
-                if (!pbVar.f3561n0.E(true)) {
+                if (!pbVar.f3588n0.E(true)) {
                     pbVar.q(false);
                     return;
                 }
-                pbVar.f3561n0.G0 = new a3.j0(this, l8Var, arrayList, 10);
+                pbVar.f3588n0.G0 = new a3.k0(this, l8Var, arrayList, 10);
                 return;
             }
             pbVar.q(false);
             return;
         }
-        ArrayList arrayList2 = new ArrayList(this.f3040b);
-        int indexOf2 = arrayList2.indexOf(Long.valueOf(pbVar.f3561n0.getCurrentPeerView().getCurrentPeer()));
+        ArrayList arrayList2 = new ArrayList(this.f3067b);
+        int indexOf2 = arrayList2.indexOf(Long.valueOf(pbVar.f3588n0.getCurrentPeerView().getCurrentPeer()));
         if (indexOf2 >= 0) {
             arrayList2.remove(indexOf2);
-            if (!pbVar.f3561n0.E(true)) {
+            if (!pbVar.f3588n0.E(true)) {
                 pbVar.q(false);
                 return;
             }
-            pbVar.f3561n0.G0 = new ah.p(this, arrayList2, indexOf2, 3);
+            pbVar.f3588n0.G0 = new ah.p(this, arrayList2, indexOf2, 3);
             return;
         }
         pbVar.q(false);

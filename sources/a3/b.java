@@ -1,8 +1,28 @@
 package a3;
 
-import android.media.MediaFormat;
-public final class b implements x {
+import java.util.concurrent.Executor;
+import org.telegram.messenger.AndroidUtilities;
+public final class b implements Executor {
+    public final int f73a;
+
+    public b(int i10) {
+        this.f73a = i10;
+    }
+
     @Override
-    public final void c(long j3, long j10, b2.s sVar, MediaFormat mediaFormat) {
+    public final void execute(Runnable runnable) {
+        switch (this.f73a) {
+            case 0:
+                return;
+            case 1:
+                AndroidUtilities.runOnUIThread(runnable);
+                return;
+            default:
+                runnable.run();
+                return;
+        }
+    }
+
+    private final void a(Runnable runnable) {
     }
 }

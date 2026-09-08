@@ -21,132 +21,132 @@ import org.telegram.tgnet.TLRPC;
 public final class uj extends ym {
     public int Y2;
     public final ArrayList Z2;
-    public final ArrayList f41155a3;
-    public final ArrayList f41156b3;
-    public final ArrayList f41157c3;
-    public final ArrayList f41158d3;
-    public int f41159e3;
-    public int f41160f3;
-    public int f41161g3;
-    public long f41162h3;
-    public float f41163i3;
+    public final ArrayList f41182a3;
+    public final ArrayList f41183b3;
+    public final ArrayList f41184c3;
+    public final ArrayList f41185d3;
+    public int f41186e3;
+    public int f41187f3;
+    public int f41188g3;
+    public long f41189h3;
+    public float f41190i3;
     public float j3;
-    public boolean f41164k3;
-    public final float f41165l3;
-    public final Paint f41166m3;
-    public final Paint f41167n3;
-    public final o1.j f41168o3;
-    public final o1.k f41169p3;
-    public final o1.j f41170q3;
-    public final o1.k f41171r3;
-    public final o1.j f41172s3;
-    public final o1.k f41173t3;
-    public boolean f41174u3;
-    public final Path f41175v3;
-    public boolean f41176w3;
-    public int f41177x3;
+    public boolean f41191k3;
+    public final float f41192l3;
+    public final Paint f41193m3;
+    public final Paint f41194n3;
+    public final o1.j f41195o3;
+    public final o1.k f41196p3;
+    public final o1.j f41197q3;
+    public final o1.k f41198r3;
+    public final o1.j f41199s3;
+    public final o1.k f41200t3;
+    public boolean f41201u3;
+    public final Path f41202v3;
+    public boolean f41203w3;
+    public int f41204x3;
     public final co y3;
 
     public uj(co coVar, Context context, ao aoVar) {
         super(coVar, context, aoVar);
         this.y3 = coVar;
         this.Z2 = new ArrayList();
-        this.f41155a3 = new ArrayList();
-        this.f41156b3 = new ArrayList();
-        this.f41157c3 = new ArrayList();
-        this.f41158d3 = new ArrayList(10);
-        this.f41165l3 = 2000.0f;
+        this.f41182a3 = new ArrayList();
+        this.f41183b3 = new ArrayList();
+        this.f41184c3 = new ArrayList();
+        this.f41185d3 = new ArrayList(10);
+        this.f41192l3 = 2000.0f;
         Paint paint = new Paint(1);
-        this.f41166m3 = paint;
+        this.f41193m3 = paint;
         Paint paint2 = new Paint(1);
-        this.f41167n3 = paint2;
+        this.f41194n3 = paint2;
         o1.j jVar = new o1.j(0.0f);
-        this.f41168o3 = jVar;
+        this.f41195o3 = jVar;
         o1.k kVar = new o1.k(jVar);
         kVar.h = 0.0f;
-        kVar.f16819g = 2000.0f;
-        kVar.f16825u = org.telegram.ui.Cells.p6.l(0.0f, 1500.0f, 1.0f);
+        kVar.f16846g = 2000.0f;
+        kVar.f16852u = org.telegram.ui.Cells.p6.l(0.0f, 1500.0f, 1.0f);
         kVar.b(new o1.g(this) {
-            public final uj f40463b;
+            public final uj f40490b;
 
             {
-                this.f40463b = this;
+                this.f40490b = this;
             }
 
             @Override
             public final void a(o1.h hVar, float f7, float f10) {
                 switch (r2) {
                     case 0:
-                        this.f40463b.invalidate();
+                        this.f40490b.invalidate();
                         return;
                     case 1:
-                        this.f40463b.invalidate();
+                        this.f40490b.invalidate();
                         return;
                     default:
-                        this.f40463b.invalidate();
+                        this.f40490b.invalidate();
                         return;
                 }
             }
         });
-        this.f41169p3 = kVar;
+        this.f41196p3 = kVar;
         o1.j jVar2 = new o1.j(0.0f);
-        this.f41170q3 = jVar2;
+        this.f41197q3 = jVar2;
         o1.k kVar2 = new o1.k(jVar2);
         kVar2.h = 0.0f;
-        kVar2.f16825u = org.telegram.ui.Cells.p6.l(0.0f, 400.0f, 0.5f);
+        kVar2.f16852u = org.telegram.ui.Cells.p6.l(0.0f, 400.0f, 0.5f);
         kVar2.b(new o1.g(this) {
-            public final uj f40463b;
+            public final uj f40490b;
 
             {
-                this.f40463b = this;
+                this.f40490b = this;
             }
 
             @Override
             public final void a(o1.h hVar, float f7, float f10) {
                 switch (r2) {
                     case 0:
-                        this.f40463b.invalidate();
+                        this.f40490b.invalidate();
                         return;
                     case 1:
-                        this.f40463b.invalidate();
+                        this.f40490b.invalidate();
                         return;
                     default:
-                        this.f40463b.invalidate();
+                        this.f40490b.invalidate();
                         return;
                 }
             }
         });
-        this.f41171r3 = kVar2;
+        this.f41198r3 = kVar2;
         o1.j jVar3 = new o1.j(0.0f);
-        this.f41172s3 = jVar3;
+        this.f41199s3 = jVar3;
         o1.k kVar3 = new o1.k(jVar3);
         kVar3.h = 0.0f;
-        kVar3.f16825u = org.telegram.ui.Cells.p6.l(0.0f, 200.0f, 1.0f);
+        kVar3.f16852u = org.telegram.ui.Cells.p6.l(0.0f, 200.0f, 1.0f);
         kVar3.b(new o1.g(this) {
-            public final uj f40463b;
+            public final uj f40490b;
 
             {
-                this.f40463b = this;
+                this.f40490b = this;
             }
 
             @Override
             public final void a(o1.h hVar, float f7, float f10) {
                 switch (r2) {
                     case 0:
-                        this.f40463b.invalidate();
+                        this.f40490b.invalidate();
                         return;
                     case 1:
-                        this.f40463b.invalidate();
+                        this.f40490b.invalidate();
                         return;
                     default:
-                        this.f40463b.invalidate();
+                        this.f40490b.invalidate();
                         return;
                 }
             }
         });
-        this.f41173t3 = kVar3;
-        this.f41175v3 = new Path();
-        this.f41177x3 = 0;
+        this.f41200t3 = kVar3;
+        this.f41202v3 = new Path();
+        this.f41204x3 = 0;
         Paint.Style style = Paint.Style.STROKE;
         paint.setStyle(style);
         Paint.Cap cap = Paint.Cap.ROUND;
@@ -177,7 +177,7 @@ public final class uj extends ym {
     public final void dispatchDraw(Canvas canvas) {
         float f7;
         co coVar = this.y3;
-        coVar.f35442u8 = null;
+        coVar.f35469u8 = null;
         canvas.save();
         if (coVar.V9 != null && coVar.R9) {
             boolean z10 = coVar.S9;
@@ -186,12 +186,12 @@ public final class uj extends ym {
         if (coVar.N9 != 0.0f) {
             int save = canvas.save();
             if (coVar.U9 != 0.0f) {
-                f7 = (coVar.f35473x0.getMeasuredHeight() - coVar.N9) * coVar.U9;
+                f7 = (coVar.f35500x0.getMeasuredHeight() - coVar.N9) * coVar.U9;
             } else {
                 f7 = 0.0f;
             }
             float f10 = (-coVar.N9) - f7;
-            coVar.f35495ya = f10;
+            coVar.f35522ya = f10;
             canvas.translate(0.0f, f10);
             v1(canvas, null);
             super.dispatchDraw(canvas);
@@ -258,11 +258,11 @@ public final class uj extends ym {
         vh.i iVar;
         org.telegram.ui.ActionBar.k kVar;
         co coVar = this.y3;
-        vm vmVar = coVar.f35221c9;
+        vm vmVar = coVar.f35248c9;
         vmVar.getClass();
         if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
-            AndroidUtilities.cancelRunOnUIThread(vmVar.f21774g0);
-            vmVar.f21803z = false;
+            AndroidUtilities.cancelRunOnUIThread(vmVar.f21801g0);
+            vmVar.f21830z = false;
         }
         if (this.X1 || ((iVar = coVar.X9) != null && iVar.a())) {
             return false;
@@ -288,20 +288,20 @@ public final class uj extends ym {
             this.Y2 = i15;
         }
         int measuredHeight = getMeasuredHeight();
-        if (this.f41177x3 != measuredHeight) {
-            this.f41176w3 = true;
-            wj wjVar = coVar.f35486y0;
+        if (this.f41204x3 != measuredHeight) {
+            this.f41203w3 = true;
+            wj wjVar = coVar.f35513y0;
             if (wjVar != null) {
                 wjVar.g();
             }
             coVar.W8.a();
-            this.f41176w3 = false;
-            this.f41177x3 = measuredHeight;
+            this.f41203w3 = false;
+            this.f41204x3 = measuredHeight;
         }
         coVar.R5 = false;
-        vm vmVar = coVar.f35221c9;
+        vm vmVar = coVar.f35248c9;
         if (vmVar != null && vmVar.y()) {
-            coVar.f35221c9.x();
+            coVar.f35248c9.x();
         }
         coVar.p9();
         coVar.D9();
@@ -312,15 +312,15 @@ public final class uj extends ym {
         org.telegram.ui.ActionBar.k kVar;
         aq aqVar;
         co coVar = this.y3;
-        le.b bVar = coVar.f35446uc;
-        vm vmVar = coVar.f35221c9;
+        le.b bVar = coVar.f35473uc;
+        vm vmVar = coVar.f35248c9;
         vmVar.getClass();
         if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
-            AndroidUtilities.cancelRunOnUIThread(vmVar.f21774g0);
-            vmVar.f21803z = false;
+            AndroidUtilities.cancelRunOnUIThread(vmVar.f21801g0);
+            vmVar.f21830z = false;
         }
         if (motionEvent.getAction() == 0) {
-            coVar.f35419sa = true;
+            coVar.f35446sa = true;
         }
         if (coVar.N9 != 0.0f && (motionEvent.getAction() == 1 || motionEvent.getAction() == 3)) {
             float min = Math.min(1.0f, coVar.N9 / AndroidUtilities.dp(110.0f));
@@ -330,40 +330,40 @@ public final class uj extends ym {
                     ValueAnimator ofFloat = ValueAnimator.ofFloat(f7, AndroidUtilities.dp(8.0f) + f7);
                     coVar.Q9 = ofFloat;
                     ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener(this) {
-                        public final uj f40766b;
+                        public final uj f40793b;
 
                         {
-                            this.f40766b = this;
+                            this.f40793b = this;
                         }
 
                         @Override
                         public final void onAnimationUpdate(ValueAnimator valueAnimator) {
                             switch (r2) {
                                 case 0:
-                                    co coVar2 = this.f40766b.y3;
+                                    co coVar2 = this.f40793b.y3;
                                     coVar2.N9 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                                    coVar2.f35473x0.invalidate();
+                                    coVar2.f35500x0.invalidate();
                                     return;
                                 case 1:
-                                    co coVar3 = this.f40766b.y3;
+                                    co coVar3 = this.f40793b.y3;
                                     coVar3.N9 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                                    coVar3.f35473x0.invalidate();
+                                    coVar3.f35500x0.invalidate();
                                     return;
                                 case 2:
-                                    co coVar4 = this.f40766b.y3;
+                                    co coVar4 = this.f40793b.y3;
                                     coVar4.N9 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                                    coVar4.f35473x0.invalidate();
+                                    coVar4.f35500x0.invalidate();
                                     return;
                                 default:
-                                    co coVar5 = this.f40766b.y3;
+                                    co coVar5 = this.f40793b.y3;
                                     coVar5.N9 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                                    coVar5.f35473x0.invalidate();
+                                    coVar5.f35500x0.invalidate();
                                     return;
                             }
                         }
                     });
                     ofFloat.setDuration(200L);
-                    org.telegram.ui.Components.pr prVar = org.telegram.ui.Components.pr.f29466f;
+                    org.telegram.ui.Components.pr prVar = org.telegram.ui.Components.pr.f29493f;
                     ofFloat.setInterpolator(prVar);
                     ofFloat.start();
                     final aq aqVar2 = coVar.P9;
@@ -385,7 +385,7 @@ public final class uj extends ym {
                                     aqVar3.getClass();
                                     aqVar3.K = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                                     aqVar3.T.invalidate();
-                                    View view = aqVar3.f34505a0;
+                                    View view = aqVar3.f34532a0;
                                     if (view != null) {
                                         view.invalidate();
                                         return;
@@ -395,7 +395,7 @@ public final class uj extends ym {
                                     aq aqVar4 = aqVar2;
                                     aqVar4.getClass();
                                     aqVar4.L = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                                    View view2 = aqVar4.f34505a0;
+                                    View view2 = aqVar4.f34532a0;
                                     if (view2 != null) {
                                         view2.invalidate();
                                         return;
@@ -414,7 +414,7 @@ public final class uj extends ym {
                                     aqVar3.getClass();
                                     aqVar3.K = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                                     aqVar3.T.invalidate();
-                                    View view = aqVar3.f34505a0;
+                                    View view = aqVar3.f34532a0;
                                     if (view != null) {
                                         view.invalidate();
                                         return;
@@ -424,7 +424,7 @@ public final class uj extends ym {
                                     aq aqVar4 = aqVar2;
                                     aqVar4.getClass();
                                     aqVar4.L = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                                    View view2 = aqVar4.f34505a0;
+                                    View view2 = aqVar4.f34532a0;
                                     if (view2 != null) {
                                         view2.invalidate();
                                         return;
@@ -454,70 +454,70 @@ public final class uj extends ym {
                         }
                         ValueAnimator ofFloat4 = ValueAnimator.ofFloat(coVar.N9, AndroidUtilities.dp(111.0f));
                         ofFloat4.addUpdateListener(new ValueAnimator.AnimatorUpdateListener(this) {
-                            public final uj f40766b;
+                            public final uj f40793b;
 
                             {
-                                this.f40766b = this;
+                                this.f40793b = this;
                             }
 
                             @Override
                             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
                                 switch (r2) {
                                     case 0:
-                                        co coVar2 = this.f40766b.y3;
+                                        co coVar2 = this.f40793b.y3;
                                         coVar2.N9 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                                        coVar2.f35473x0.invalidate();
+                                        coVar2.f35500x0.invalidate();
                                         return;
                                     case 1:
-                                        co coVar3 = this.f40766b.y3;
+                                        co coVar3 = this.f40793b.y3;
                                         coVar3.N9 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                                        coVar3.f35473x0.invalidate();
+                                        coVar3.f35500x0.invalidate();
                                         return;
                                     case 2:
-                                        co coVar4 = this.f40766b.y3;
+                                        co coVar4 = this.f40793b.y3;
                                         coVar4.N9 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                                        coVar4.f35473x0.invalidate();
+                                        coVar4.f35500x0.invalidate();
                                         return;
                                     default:
-                                        co coVar5 = this.f40766b.y3;
+                                        co coVar5 = this.f40793b.y3;
                                         coVar5.N9 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                                        coVar5.f35473x0.invalidate();
+                                        coVar5.f35500x0.invalidate();
                                         return;
                                 }
                             }
                         });
                         ofFloat4.setDuration(400L);
-                        ofFloat4.setInterpolator(org.telegram.ui.Components.pr.f29466f);
+                        ofFloat4.setInterpolator(org.telegram.ui.Components.pr.f29493f);
                         ValueAnimator ofFloat5 = ValueAnimator.ofFloat(AndroidUtilities.dp(111.0f), 0.0f);
                         ofFloat5.addUpdateListener(new ValueAnimator.AnimatorUpdateListener(this) {
-                            public final uj f40766b;
+                            public final uj f40793b;
 
                             {
-                                this.f40766b = this;
+                                this.f40793b = this;
                             }
 
                             @Override
                             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
                                 switch (r2) {
                                     case 0:
-                                        co coVar2 = this.f40766b.y3;
+                                        co coVar2 = this.f40793b.y3;
                                         coVar2.N9 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                                        coVar2.f35473x0.invalidate();
+                                        coVar2.f35500x0.invalidate();
                                         return;
                                     case 1:
-                                        co coVar3 = this.f40766b.y3;
+                                        co coVar3 = this.f40793b.y3;
                                         coVar3.N9 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                                        coVar3.f35473x0.invalidate();
+                                        coVar3.f35500x0.invalidate();
                                         return;
                                     case 2:
-                                        co coVar4 = this.f40766b.y3;
+                                        co coVar4 = this.f40793b.y3;
                                         coVar4.N9 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                                        coVar4.f35473x0.invalidate();
+                                        coVar4.f35500x0.invalidate();
                                         return;
                                     default:
-                                        co coVar5 = this.f40766b.y3;
+                                        co coVar5 = this.f40793b.y3;
                                         coVar5.N9 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                                        coVar5.f35473x0.invalidate();
+                                        coVar5.f35500x0.invalidate();
                                         return;
                                 }
                             }
@@ -535,34 +535,34 @@ public final class uj extends ym {
                     bVar.a(false, true);
                 }
                 ofFloat6.addUpdateListener(new ValueAnimator.AnimatorUpdateListener(this) {
-                    public final uj f40766b;
+                    public final uj f40793b;
 
                     {
-                        this.f40766b = this;
+                        this.f40793b = this;
                     }
 
                     @Override
                     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
                         switch (r2) {
                             case 0:
-                                co coVar2 = this.f40766b.y3;
+                                co coVar2 = this.f40793b.y3;
                                 coVar2.N9 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                                coVar2.f35473x0.invalidate();
+                                coVar2.f35500x0.invalidate();
                                 return;
                             case 1:
-                                co coVar3 = this.f40766b.y3;
+                                co coVar3 = this.f40793b.y3;
                                 coVar3.N9 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                                coVar3.f35473x0.invalidate();
+                                coVar3.f35500x0.invalidate();
                                 return;
                             case 2:
-                                co coVar4 = this.f40766b.y3;
+                                co coVar4 = this.f40793b.y3;
                                 coVar4.N9 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                                coVar4.f35473x0.invalidate();
+                                coVar4.f35500x0.invalidate();
                                 return;
                             default:
-                                co coVar5 = this.f40766b.y3;
+                                co coVar5 = this.f40793b.y3;
                                 coVar5.N9 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                                coVar5.f35473x0.invalidate();
+                                coVar5.f35500x0.invalidate();
                                 return;
                         }
                     }
@@ -577,7 +577,7 @@ public final class uj extends ym {
             kVar = ((org.telegram.ui.ActionBar.n2) coVar).actionBar;
             if (!kVar.s() && !coVar.A9()) {
                 x1(motionEvent);
-                if (coVar.f35258f9 || onTouchEvent) {
+                if (coVar.f35285f9 || onTouchEvent) {
                     return true;
                 }
             } else {
@@ -598,21 +598,21 @@ public final class uj extends ym {
     @Override
     public final void requestDisallowInterceptTouchEvent(boolean z10) {
         super.requestDisallowInterceptTouchEvent(z10);
-        if (this.y3.f35233d9 != null) {
+        if (this.y3.f35260d9 != null) {
             x1(null);
         }
     }
 
     @Override
     public final void requestLayout() {
-        if (this.f41176w3) {
+        if (this.f41203w3) {
             return;
         }
         ih.a aVar = this.y3.Qb;
-        if (aVar.f12300b != 0) {
-            int childCount = aVar.f12299a.getChildCount();
+        if (aVar.f12326b != 0) {
+            int childCount = aVar.f12325a.getChildCount();
             for (int i10 = 0; i10 < childCount; i10++) {
-                aVar.f12299a.getChildAt(i10).forceLayout();
+                aVar.f12325a.getChildAt(i10).forceLayout();
             }
         }
         super.requestLayout();
@@ -671,7 +671,7 @@ public final class uj extends ym {
             }
             arrayList2.clear();
         }
-        ArrayList arrayList3 = this.f41155a3;
+        ArrayList arrayList3 = this.f41182a3;
         int size2 = arrayList3.size();
         if (size2 > 0) {
             for (int i11 = 0; i11 < size2; i11++) {
@@ -694,7 +694,7 @@ public final class uj extends ym {
             }
             arrayList3.clear();
         }
-        ArrayList arrayList4 = this.f41156b3;
+        ArrayList arrayList4 = this.f41183b3;
         int size3 = arrayList4.size();
         if (size3 > 0) {
             int i12 = 0;
@@ -737,7 +737,7 @@ public final class uj extends ym {
                     } else {
                         arrayList = arrayList4;
                     }
-                    if (t1Var3.getTransitionParams().f22798v0) {
+                    if (t1Var3.getTransitionParams().f22825v0) {
                         canvas.translate(E22, y10);
                         t1Var3.setInvalidatesParent(true);
                         t1Var3.I1(f11, canvas, z11);
@@ -755,7 +755,7 @@ public final class uj extends ym {
         } else {
             f7 = 8.0f;
         }
-        ArrayList arrayList5 = this.f41157c3;
+        ArrayList arrayList5 = this.f41184c3;
         int size4 = arrayList5.size();
         if (size4 > 0) {
             for (int i13 = 0; i13 < size4; i13++) {
@@ -788,7 +788,7 @@ public final class uj extends ym {
                         }
                         canvas.clipRect(f18 + AndroidUtilities.dp(f7), f19 + AndroidUtilities.dp(f7), f20 - AndroidUtilities.dp(f7), f21 - AndroidUtilities.dp(f7));
                     }
-                    if (!z10 && t1Var4.getTransitionParams().f22798v0) {
+                    if (!z10 && t1Var4.getTransitionParams().f22825v0) {
                         canvas.translate(E24, y11);
                         t1Var4.setInvalidatesParent(true);
                         t1Var4.d2(canvas, f10, null);
@@ -815,58 +815,58 @@ public final class uj extends ym {
         if (motionEvent != null) {
             coVar.D4 = true;
         }
-        if (motionEvent != null && motionEvent.getAction() == 0 && !coVar.f35258f9 && !coVar.f35246e9 && coVar.f35233d9 == null) {
+        if (motionEvent != null && motionEvent.getAction() == 0 && !coVar.f35285f9 && !coVar.f35273e9 && coVar.f35260d9 == null) {
             z10 = ((org.telegram.ui.ActionBar.n2) coVar).inPreviewMode;
             if (!z10) {
                 View pressedChildView = getPressedChildView();
                 if (pressedChildView instanceof org.telegram.ui.Cells.t1) {
-                    if (coVar.f35233d9 != null) {
+                    if (coVar.f35260d9 != null) {
                         co.V1(coVar, 0.0f);
                     }
-                    coVar.f35233d9 = (org.telegram.ui.Cells.t1) pressedChildView;
+                    coVar.f35260d9 = (org.telegram.ui.Cells.t1) pressedChildView;
                     MessageObject T1 = co.T1(coVar);
                     boolean F6 = coVar.F6(T1);
                     int i10 = coVar.R3;
-                    if ((i10 == 0 || i10 == 5 || i10 == 8 || (i10 == 3 && coVar.f35228d4 == coVar.getUserConfig().getClientUserId())) && (((arrayList = coVar.f35188a4) == null || !arrayList.contains(T1)) && ((coVar.E8(T1) != 1 || (T1.getDialogId() != coVar.L6 && !T1.needDrawBluredPreview())) && ((coVar.h != null || T1.getId() >= 0) && (((chat2 = coVar.f35237e) == null || !ChatObject.isForum(chat2) || F6) && !coVar.b9() && (!T1.isEphemeral() || !T1.isOut())))))) {
-                        this.f41161g3 = motionEvent.getPointerId(0);
-                        coVar.f35246e9 = true;
-                        this.f41159e3 = (int) motionEvent.getX();
-                        this.f41160f3 = (int) motionEvent.getY();
+                    if ((i10 == 0 || i10 == 5 || i10 == 8 || (i10 == 3 && coVar.f35255d4 == coVar.getUserConfig().getClientUserId())) && (((arrayList = coVar.f35215a4) == null || !arrayList.contains(T1)) && ((coVar.E8(T1) != 1 || (T1.getDialogId() != coVar.L6 && !T1.needDrawBluredPreview())) && ((coVar.h != null || T1.getId() >= 0) && (((chat2 = coVar.f35264e) == null || !ChatObject.isForum(chat2) || F6) && !coVar.b9() && (!T1.isEphemeral() || !T1.isOut())))))) {
+                        this.f41188g3 = motionEvent.getPointerId(0);
+                        coVar.f35273e9 = true;
+                        this.f41186e3 = (int) motionEvent.getX();
+                        this.f41187f3 = (int) motionEvent.getY();
                         return;
                     }
                     co.V1(coVar, 0.0f);
-                    coVar.f35233d9 = null;
+                    coVar.f35260d9 = null;
                     return;
                 }
                 return;
             }
         }
-        if (coVar.f35233d9 != null && motionEvent != null && motionEvent.getAction() == 2 && motionEvent.getPointerId(0) == this.f41161g3) {
-            int max = Math.max(AndroidUtilities.dp(-80.0f), Math.min(0, (int) (motionEvent.getX() - this.f41159e3)));
-            int abs = Math.abs(((int) motionEvent.getY()) - this.f41160f3);
-            if (getScrollState() == 0 && coVar.f35246e9 && !coVar.f35258f9 && max <= (-AndroidUtilities.getPixelsInCM(0.4f, true)) && Math.abs(max) / 3 > abs) {
+        if (coVar.f35260d9 != null && motionEvent != null && motionEvent.getAction() == 2 && motionEvent.getPointerId(0) == this.f41188g3) {
+            int max = Math.max(AndroidUtilities.dp(-80.0f), Math.min(0, (int) (motionEvent.getX() - this.f41186e3)));
+            int abs = Math.abs(((int) motionEvent.getY()) - this.f41187f3);
+            if (getScrollState() == 0 && coVar.f35273e9 && !coVar.f35285f9 && max <= (-AndroidUtilities.getPixelsInCM(0.4f, true)) && Math.abs(max) / 3 > abs) {
                 MotionEvent obtain = MotionEvent.obtain(0L, 0L, 3, 0.0f, 0.0f, 0);
-                coVar.f35233d9.onTouchEvent(obtain);
+                coVar.f35260d9.onTouchEvent(obtain);
                 super.onInterceptTouchEvent(obtain);
                 obtain.recycle();
-                coVar.f35498z0.R = false;
-                coVar.f35246e9 = false;
-                coVar.f35258f9 = true;
-                this.f41159e3 = (int) motionEvent.getX();
+                coVar.f35525z0.R = false;
+                coVar.f35273e9 = false;
+                coVar.f35285f9 = true;
+                this.f41186e3 = (int) motionEvent.getX();
                 if (getParent() != null) {
                     getParent().requestDisallowInterceptTouchEvent(true);
                 }
-            } else if (coVar.f35258f9) {
+            } else if (coVar.f35285f9) {
                 if (Math.abs(max) >= AndroidUtilities.dp(50.0f)) {
-                    if (!this.f41164k3) {
+                    if (!this.f41191k3) {
                         try {
                             performHapticFeedback(3, 2);
                         } catch (Exception unused) {
                         }
-                        this.f41164k3 = true;
+                        this.f41191k3 = true;
                     }
                 } else {
-                    this.f41164k3 = false;
+                    this.f41191k3 = false;
                 }
                 float f11 = max;
                 co.V1(coVar, f11);
@@ -874,15 +874,15 @@ public final class uj extends ym {
                 if (T12 != null && (T12.isRoundVideo() || T12.isVideo())) {
                     coVar.Mc(false, false);
                 }
-                org.telegram.ui.Cells.t1 t1Var = coVar.f35233d9;
+                org.telegram.ui.Cells.t1 t1Var = coVar.f35260d9;
                 if (com.google.android.gms.internal.vision.e2.u(t1Var)) {
                     y1(t1Var, f11);
                 }
                 invalidate();
             }
-        } else if (coVar.f35233d9 != null) {
+        } else if (coVar.f35260d9 != null) {
             if (motionEvent != null) {
-                if (motionEvent.getPointerId(0) == this.f41161g3) {
+                if (motionEvent.getPointerId(0) == this.f41188g3) {
                     if (motionEvent.getAction() != 3 && motionEvent.getAction() != 1 && motionEvent.getAction() != 6) {
                         return;
                     }
@@ -891,7 +891,7 @@ public final class uj extends ym {
                 }
             }
             if (motionEvent != null && motionEvent.getAction() != 3) {
-                org.telegram.ui.Cells.t1 t1Var2 = coVar.f35233d9;
+                org.telegram.ui.Cells.t1 t1Var2 = coVar.f35260d9;
                 if (com.google.android.gms.internal.vision.e2.u(t1Var2)) {
                     f10 = t1Var2.E2(false);
                 } else {
@@ -901,11 +901,11 @@ public final class uj extends ym {
                     MessageObject T13 = co.T1(coVar);
                     boolean F62 = coVar.F6(T13);
                     rk rkVar = coVar.O0;
-                    if ((rkVar != null && rkVar.getVisibility() == 0 && ((!coVar.I0 || !F62) && !T13.wasJustSent)) || ((chat = coVar.f35237e) != null && ((ChatObject.isNotInChat(chat) && !coVar.F9()) || ((ChatObject.isChannel(coVar.f35237e) && !ChatObject.canPost(coVar.f35237e) && !coVar.f35237e.megagroup) || !ChatObject.canSendMessages(coVar.f35237e))))) {
+                    if ((rkVar != null && rkVar.getVisibility() == 0 && ((!coVar.I0 || !F62) && !T13.wasJustSent)) || ((chat = coVar.f35264e) != null && ((ChatObject.isNotInChat(chat) && !coVar.F9()) || ((ChatObject.isChannel(coVar.f35264e) && !ChatObject.canPost(coVar.f35264e) && !coVar.f35264e.megagroup) || !ChatObject.canSendMessages(coVar.f35264e))))) {
                         if (T13.getGroupId() != 0 && (y82 = coVar.y8(T13.getGroupId())) != null && (messageObject = y82.captionMessage) != null) {
                             T13 = messageObject;
                         }
-                        coVar.f35352n5 = T13;
+                        coVar.f35379n5 = T13;
                         Bundle e7 = org.telegram.messenger.w1.e(3, "onlySelect", "dialogsType", true);
                         e7.putBoolean("quote", true);
                         e7.putBoolean("reply_to", true);
@@ -924,7 +924,7 @@ public final class uj extends ym {
                     }
                 }
             }
-            org.telegram.ui.Cells.t1 t1Var3 = coVar.f35233d9;
+            org.telegram.ui.Cells.t1 t1Var3 = coVar.f35260d9;
             if (com.google.android.gms.internal.vision.e2.u(t1Var3)) {
                 f7 = t1Var3.getSlidingOffsetX();
             } else {
@@ -932,14 +932,14 @@ public final class uj extends ym {
             }
             this.j3 = f7;
             if (f7 == 0.0f) {
-                coVar.f35233d9 = null;
+                coVar.f35260d9 = null;
             }
-            this.f41162h3 = System.currentTimeMillis();
-            this.f41163i3 = 0.0f;
+            this.f41189h3 = System.currentTimeMillis();
+            this.f41190i3 = 0.0f;
             invalidate();
-            coVar.f35246e9 = false;
-            coVar.f35258f9 = false;
-            coVar.f35498z0.R = true;
+            coVar.f35273e9 = false;
+            coVar.f35285f9 = false;
+            coVar.f35525z0.R = true;
         }
     }
 

@@ -3,22 +3,22 @@ package bi;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 public final class ha implements Utilities.Callback {
-    public final int f3075a;
-    public final ja f3076b;
+    public final int f3102a;
+    public final ja f3103b;
 
     public ha(ja jaVar, int i10) {
-        this.f3075a = i10;
-        this.f3076b = jaVar;
+        this.f3102a = i10;
+        this.f3103b = jaVar;
     }
 
     @Override
     public final void run(Object obj) {
-        switch (this.f3075a) {
+        switch (this.f3102a) {
             case 0:
-                ja.c(this.f3076b, (TLRPC.TL_messages_stickerSet) obj);
+                ja.c(this.f3103b, (TLRPC.TL_messages_stickerSet) obj);
                 return;
             default:
-                ja.b(this.f3076b, (TLRPC.TL_messages_stickerSet) obj);
+                ja.b(this.f3103b, (TLRPC.TL_messages_stickerSet) obj);
                 return;
         }
     }

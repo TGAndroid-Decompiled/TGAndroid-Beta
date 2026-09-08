@@ -17,24 +17,24 @@ import w7.la;
 import w7.na;
 import w7.y6;
 public final class a {
-    public volatile Bitmap f47768a;
-    public final int f47769b;
-    public final int f47770c;
+    public volatile Bitmap f47796a;
+    public final int f47797b;
+    public final int f47798c;
     public final int d;
-    public final int f47771e;
+    public final int f47799e;
 
     public a(Bitmap bitmap, int i10) {
         l.h(bitmap);
-        this.f47768a = bitmap;
-        this.f47769b = bitmap.getWidth();
-        this.f47770c = bitmap.getHeight();
+        this.f47796a = bitmap;
+        this.f47797b = bitmap.getWidth();
+        this.f47798c = bitmap.getHeight();
         boolean z10 = true;
         if (i10 != 0 && i10 != 90 && i10 != 180 && i10 != 270) {
             z10 = false;
         }
         l.a("Invalid rotation. Only 0, 90, 180, 270 are supported currently.", z10);
         this.d = i10;
-        this.f47771e = -1;
+        this.f47799e = -1;
     }
 
     public static a a(Bitmap bitmap, int i10) {
@@ -64,9 +64,9 @@ public final class a {
         }
         long elapsedRealtime2 = SystemClock.elapsedRealtime() - elapsedRealtime;
         j7 j7Var = j7.INPUT_IMAGE_CONSTRUCTION;
-        Task task2 = a2.f48212e;
+        Task task2 = a2.f48241e;
         long elapsedRealtime3 = SystemClock.elapsedRealtime();
-        HashMap hashMap = a2.f48215i;
+        HashMap hashMap = a2.f48244i;
         if (hashMap.get(j7Var) == null) {
             task = task2;
             aVar = aVar2;
@@ -79,12 +79,12 @@ public final class a {
         }
         hashMap.put(j7Var, Long.valueOf(elapsedRealtime3));
         ?? obj = new Object();
-        obj.f15636c = y6.BITMAP;
-        obj.f15635b = d7.BITMAP;
+        obj.f15663c = y6.BITMAP;
+        obj.f15662b = d7.BITMAP;
         obj.d = Integer.valueOf(allocationByteCount & Integer.MAX_VALUE);
-        obj.f15638f = Integer.valueOf(height & Integer.MAX_VALUE);
-        obj.f15637e = Integer.valueOf(width & Integer.MAX_VALUE);
-        obj.f15634a = Long.valueOf(Long.MAX_VALUE & elapsedRealtime2);
+        obj.f15665f = Integer.valueOf(height & Integer.MAX_VALUE);
+        obj.f15664e = Integer.valueOf(width & Integer.MAX_VALUE);
+        obj.f15661a = Long.valueOf(Long.MAX_VALUE & elapsedRealtime2);
         obj.h = Integer.valueOf(i10 & Integer.MAX_VALUE);
         e7 e7Var = new e7(obj);
         a6 a6Var = new a6(3, false);
@@ -93,9 +93,9 @@ public final class a {
         if (task.isSuccessful()) {
             a10 = (String) task.getResult();
         } else {
-            a10 = i.f16554c.a(a2.f48214g);
+            a10 = i.f16581c.a(a2.f48243g);
         }
-        m.f44293a.execute(new v(a2, aVar3, a10));
+        m.f44321a.execute(new v(a2, aVar3, a10));
         return aVar;
     }
 }

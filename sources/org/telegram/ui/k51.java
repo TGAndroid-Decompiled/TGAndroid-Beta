@@ -50,48 +50,48 @@ public final class k51 extends Dialog {
     public org.telegram.ui.Components.l8 V;
     public boolean W;
     public te X;
-    public a3.g0 Y;
+    public a3.h0 Y;
     public final f51 Z;
-    public final Context f37917a;
-    public float f37918a0;
-    public final j0 f37919b;
-    public boolean f37920b0;
-    public final ah.w f37921c;
-    public org.telegram.ui.ActionBar.b2 f37922c0;
+    public final Context f37944a;
+    public float f37945a0;
+    public final j0 f37946b;
+    public boolean f37947b0;
+    public final ah.w f37948c;
+    public org.telegram.ui.ActionBar.b2 f37949c0;
     public org.telegram.ui.Components.w01 d;
-    public ValueAnimator f37923d0;
-    public i0.c f37924e;
-    public ValueAnimator f37925e0;
-    public Bitmap f37926f;
+    public ValueAnimator f37950d0;
+    public i0.c f37951e;
+    public ValueAnimator f37952e0;
+    public Bitmap f37953f;
     public BitmapShader h;
-    public Paint f37927n;
-    public Matrix f37928r;
-    public float f37929s;
+    public Paint f37954n;
+    public Matrix f37955r;
+    public float f37956s;
     public float v;
-    public org.telegram.ui.Components.g71 f37930w;
-    public di.f4 f37931x;
-    public TextView f37932y;
+    public org.telegram.ui.Components.g71 f37957w;
+    public di.f4 f37958x;
+    public TextView f37959y;
 
     public k51(Activity activity) {
         super(activity, R.style.TransparentDialog);
-        this.f37924e = i0.c.f11424e;
+        this.f37951e = i0.c.f11450e;
         this.R = new RectF();
         this.T = 0.0f;
         this.U = 0.0f;
         this.Z = new f51(this, 0);
-        this.f37918a0 = 0.0f;
-        this.f37920b0 = false;
-        this.f37917a = activity;
+        this.f37945a0 = 0.0f;
+        this.f37947b0 = false;
+        this.f37944a = activity;
         AndroidUtilities.enableEdgeToEdge(getWindow());
         j0 j0Var = new j0(this, activity, 22);
-        this.f37919b = j0Var;
+        this.f37946b = j0Var;
         j0Var.setOnClickListener(new g51(this, 0));
         ah.w wVar = new ah.w(this, activity);
-        this.f37921c = wVar;
+        this.f37948c = wVar;
         wVar.setClipToPadding(false);
         j0Var.addView(wVar, w7.x5.e(-1, -1, 119));
         h51 h51Var = new h51(this, 0);
-        WeakHashMap weakHashMap = r0.i0.f44697a;
+        WeakHashMap weakHashMap = r0.i0.f44725a;
         r0.a0.j(j0Var, h51Var);
         if (SharedConfig.raiseToListen) {
             this.E = new org.telegram.ui.Components.ht();
@@ -101,16 +101,16 @@ public final class k51 extends Dialog {
     public final void c(boolean z10, f51 f51Var) {
         float f7;
         long j3;
-        ValueAnimator valueAnimator = this.f37923d0;
+        ValueAnimator valueAnimator = this.f37950d0;
         if (valueAnimator != null) {
             valueAnimator.cancel();
         }
-        ValueAnimator valueAnimator2 = this.f37925e0;
+        ValueAnimator valueAnimator2 = this.f37952e0;
         if (valueAnimator2 != null) {
             valueAnimator2.cancel();
         }
         d();
-        float f10 = this.f37929s;
+        float f10 = this.f37956s;
         float f11 = 0.0f;
         if (z10) {
             f7 = 1.0f;
@@ -118,46 +118,46 @@ public final class k51 extends Dialog {
             f7 = 0.0f;
         }
         ValueAnimator ofFloat = ValueAnimator.ofFloat(f10, f7);
-        this.f37923d0 = ofFloat;
+        this.f37950d0 = ofFloat;
         ofFloat.addUpdateListener(new ah.l0(11, this, z10));
-        this.f37923d0.addListener(new ah.r0(this, z10, f51Var, 11));
+        this.f37950d0.addListener(new ah.r0(this, z10, f51Var, 11));
         if (!z10 && this.Y == null) {
             j3 = 330;
         } else {
             j3 = 520;
         }
-        ValueAnimator valueAnimator3 = this.f37923d0;
+        ValueAnimator valueAnimator3 = this.f37950d0;
         org.telegram.ui.Components.pr prVar = org.telegram.ui.Components.pr.h;
         valueAnimator3.setInterpolator(prVar);
-        this.f37923d0.setDuration(j3);
-        this.f37923d0.start();
+        this.f37950d0.setDuration(j3);
+        this.f37950d0.start();
         float f12 = this.v;
         if (z10) {
             f11 = 1.0f;
         }
         ValueAnimator ofFloat2 = ValueAnimator.ofFloat(f12, f11);
-        this.f37925e0 = ofFloat2;
+        this.f37952e0 = ofFloat2;
         ofFloat2.addUpdateListener(new b21(this, 7));
-        this.f37925e0.addListener(new e50(8, this, z10));
-        this.f37925e0.setDuration(((float) j3) * 1.5f);
-        this.f37925e0.setInterpolator(prVar);
-        this.f37925e0.start();
+        this.f37952e0.addListener(new e50(8, this, z10));
+        this.f37952e0.setDuration(((float) j3) * 1.5f);
+        this.f37952e0.setInterpolator(prVar);
+        this.f37952e0.start();
     }
 
     public final void d() {
         if (!this.H) {
-            j0 j0Var = this.f37919b;
+            j0 j0Var = this.f37946b;
             if (j0Var.getWidth() > 0) {
                 org.telegram.ui.Cells.t1 t1Var = this.O;
                 if (t1Var != null) {
                     int[] iArr = new int[2];
                     t1Var.getLocationOnScreen(iArr);
                     int width = j0Var.getWidth();
-                    i0.c cVar = this.f37924e;
-                    this.F = (iArr[0] - this.f37924e.f11425a) - ((((width - cVar.f11425a) - cVar.f11427c) - this.O.getWidth()) / 2.0f);
+                    i0.c cVar = this.f37951e;
+                    this.F = (iArr[0] - this.f37951e.f11451a) - ((((width - cVar.f11451a) - cVar.f11453c) - this.O.getWidth()) / 2.0f);
                     int height = j0Var.getHeight();
-                    i0.c cVar2 = this.f37924e;
-                    this.G = org.telegram.messenger.w1.y(((height - cVar2.f11426b) - cVar2.d) - this.O.getHeight(), this.K, 2.0f, iArr[1] - this.f37924e.f11426b);
+                    i0.c cVar2 = this.f37951e;
+                    this.G = org.telegram.messenger.w1.y(((height - cVar2.f11452b) - cVar2.d) - this.O.getHeight(), this.K, 2.0f, iArr[1] - this.f37951e.f11452b);
                     if (!this.J) {
                         this.J = true;
                         float clamp = (Utilities.clamp((this.O.getHeight() / 2.0f) + iArr[1], j0Var.getHeight() * 0.7f, j0Var.getHeight() * 0.3f) - (this.O.getHeight() / 2.0f)) - ((j0Var.getHeight() - this.O.getHeight()) / 2.0f);
@@ -181,27 +181,27 @@ public final class k51 extends Dialog {
     @Override
     public final void dismiss() {
         i51 i51Var;
-        if (!this.f37920b0) {
-            org.telegram.ui.ActionBar.b2 b2Var = this.f37922c0;
+        if (!this.f37947b0) {
+            org.telegram.ui.ActionBar.b2 b2Var = this.f37949c0;
             if (b2Var != null) {
                 b2Var.dismiss();
-                this.f37922c0 = null;
+                this.f37949c0 = null;
             }
-            this.f37920b0 = true;
-            di.f4 f4Var = this.f37931x;
+            this.f37947b0 = true;
+            di.f4 f4Var = this.f37958x;
             if (f4Var != null) {
                 f4Var.e(true);
             }
-            org.telegram.ui.Components.g71 g71Var = this.f37930w;
+            org.telegram.ui.Components.g71 g71Var = this.f37957w;
             if (g71Var != null) {
                 g71Var.B();
-                this.f37930w.H();
-                this.f37930w = null;
+                this.f37957w.H();
+                this.f37957w = null;
             }
             if (!this.S && (i51Var = this.N) != null && i51Var.getSeekBarWaveform() != null) {
                 org.telegram.ui.Components.io0 seekBarWaveform = this.N.getSeekBarWaveform();
-                seekBarWaveform.L = this.f37929s;
-                org.telegram.ui.Cells.t1 t1Var = seekBarWaveform.f27219n;
+                seekBarWaveform.L = this.f37956s;
+                org.telegram.ui.Cells.t1 t1Var = seekBarWaveform.f27246n;
                 if (t1Var != null) {
                     t1Var.invalidate();
                 }
@@ -209,30 +209,30 @@ public final class k51 extends Dialog {
             this.H = false;
             d();
             c(false, new f51(this, 3));
-            j0 j0Var = this.f37919b;
+            j0 j0Var = this.f37946b;
             j0Var.invalidate();
-            a3.g0 g0Var = this.Y;
-            if (g0Var != null) {
+            a3.h0 h0Var = this.Y;
+            if (h0Var != null) {
                 org.telegram.ui.Cells.t1 t1Var2 = this.O;
                 if (t1Var2 != null) {
-                    t1Var2.f22939fd = true;
+                    t1Var2.f22966fd = true;
                 }
-                AndroidUtilities.runOnUIThread(g0Var);
+                AndroidUtilities.runOnUIThread(h0Var);
                 this.Y = null;
-                org.telegram.ui.Components.w01 w01Var = new org.telegram.ui.Components.w01(this.f37917a, null);
+                org.telegram.ui.Components.w01 w01Var = new org.telegram.ui.Components.w01(this.f37944a, null);
                 this.d = w01Var;
                 j0Var.addView(w01Var, w7.x5.e(-1, -1, 119));
                 org.telegram.ui.Components.w01 w01Var2 = this.d;
                 i51 i51Var2 = this.N;
                 f51 f51Var = new f51(this, 1);
-                org.telegram.ui.Components.u01 u01Var = w01Var2.f32052a;
+                org.telegram.ui.Components.u01 u01Var = w01Var2.f32079a;
                 if (u01Var != null) {
                     u01Var.e(i51Var2, 1.5f, f51Var);
-                    Choreographer.getInstance().postFrameCallback(w01Var2.f32053b);
+                    Choreographer.getInstance().postFrameCallback(w01Var2.f32080b);
                 } else {
                     org.telegram.ui.Components.v01 v01Var = new org.telegram.ui.Components.v01(i51Var2, f51Var);
-                    v01Var.f31037g = 1.5f;
-                    w01Var2.f32054c.add(v01Var);
+                    v01Var.f31064g = 1.5f;
+                    w01Var2.f32081c.add(v01Var);
                 }
                 WindowManager.LayoutParams attributes = getWindow().getAttributes();
                 attributes.flags |= 16;
@@ -241,13 +241,13 @@ public final class k51 extends Dialog {
             org.telegram.ui.Components.ht htVar = this.E;
             if (htVar != null) {
                 PowerManager.WakeLock wakeLock = htVar.h;
-                SensorManager sensorManager = htVar.f26833a;
-                if (htVar.f26838n) {
-                    Sensor sensor = htVar.f26837f;
+                SensorManager sensorManager = htVar.f26860a;
+                if (htVar.f26865n) {
+                    Sensor sensor = htVar.f26864f;
                     if (sensor != null) {
                         sensorManager.unregisterListener(htVar, sensor);
                     }
-                    Sensor sensor2 = htVar.f26836e;
+                    Sensor sensor2 = htVar.f26863e;
                     if (sensor2 != null) {
                         sensorManager.unregisterListener(htVar, sensor2);
                     }
@@ -255,11 +255,11 @@ public final class k51 extends Dialog {
                     if (sensor3 != null) {
                         sensorManager.unregisterListener(htVar, sensor3);
                     }
-                    sensorManager.unregisterListener(htVar, htVar.f26835c);
+                    sensorManager.unregisterListener(htVar, htVar.f26862c);
                     if (wakeLock != null && wakeLock.isHeld()) {
                         wakeLock.release();
                     }
-                    htVar.f26838n = false;
+                    htVar.f26865n = false;
                 }
             }
         }
@@ -267,12 +267,12 @@ public final class k51 extends Dialog {
 
     public final void e() {
         if (this.d == null) {
-            this.N.setTranslationX(AndroidUtilities.lerp(this.F, 0.0f, this.f37929s));
-            this.N.setTranslationY(AndroidUtilities.lerp(this.G, this.I, this.f37929s));
-            di.f4 f4Var = this.f37931x;
+            this.N.setTranslationX(AndroidUtilities.lerp(this.F, 0.0f, this.f37956s));
+            this.N.setTranslationY(AndroidUtilities.lerp(this.G, this.I, this.f37956s));
+            di.f4 f4Var = this.f37958x;
             if (f4Var != null) {
-                f4Var.setTranslationX(AndroidUtilities.lerp(this.F, 0.0f, this.f37929s));
-                this.f37931x.setTranslationY(AndroidUtilities.lerp(this.G, this.I, this.f37929s));
+                f4Var.setTranslationX(AndroidUtilities.lerp(this.F, 0.0f, this.f37956s));
+                this.f37958x.setTranslationY(AndroidUtilities.lerp(this.G, this.I, this.f37956s));
             }
         }
     }
@@ -282,32 +282,32 @@ public final class k51 extends Dialog {
         MessageObject messageObject;
         int i10;
         int i11;
-        org.telegram.ui.ActionBar.b2 b2Var = this.f37922c0;
+        org.telegram.ui.ActionBar.b2 b2Var = this.f37949c0;
         if (b2Var != null) {
             b2Var.dismiss();
-            this.f37922c0 = null;
-        } else if (!this.f37920b0 && (messageObject = this.M) != null && !messageObject.isOutOwner()) {
+            this.f37949c0 = null;
+        } else if (!this.f37947b0 && (messageObject = this.M) != null && !messageObject.isOutOwner()) {
             AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(getContext(), 0, this.L);
             if (this.S) {
                 i10 = R.string.VideoOnceCloseTitle;
             } else {
                 i10 = R.string.VoiceOnceCloseTitle;
             }
-            alertDialog$Builder.f20198a.R = LocaleController.getString(i10);
+            alertDialog$Builder.f20225a.R = LocaleController.getString(i10);
             if (this.S) {
                 i11 = R.string.VideoOnceCloseMessage;
             } else {
                 i11 = R.string.VoiceOnceCloseMessage;
             }
-            alertDialog$Builder.f20198a.T = LocaleController.getString(i11);
+            alertDialog$Builder.f20225a.T = LocaleController.getString(i11);
             alertDialog$Builder.k(LocaleController.getString(R.string.Continue), new h51(this, 1));
             alertDialog$Builder.h(LocaleController.getString(R.string.Delete), new h51(this, 2));
-            org.telegram.ui.ActionBar.b2 b2Var2 = alertDialog$Builder.f20198a;
-            this.f37922c0 = b2Var2;
+            org.telegram.ui.ActionBar.b2 b2Var2 = alertDialog$Builder.f20225a;
+            this.f37949c0 = b2Var2;
             b2Var2.show();
-            TextView textView = (TextView) this.f37922c0.d(-2);
+            TextView textView = (TextView) this.f37949c0.d(-2);
             if (textView != null) {
-                textView.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f20898q7, false));
+                textView.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f20925q7, false));
             }
         } else {
             super.onBackPressed();
@@ -320,7 +320,7 @@ public final class k51 extends Dialog {
         Window window = getWindow();
         window.setWindowAnimations(R.style.DialogNoAnimation);
         ViewGroup.LayoutParams layoutParams = new ViewGroup.LayoutParams(-1, -1);
-        j0 j0Var = this.f37919b;
+        j0 j0Var = this.f37946b;
         setContentView(j0Var, layoutParams);
         WindowManager.LayoutParams attributes = window.getAttributes();
         attributes.width = -1;
@@ -359,13 +359,13 @@ public final class k51 extends Dialog {
             org.telegram.ui.Components.ht htVar = this.E;
             if (htVar != null) {
                 PowerManager.WakeLock wakeLock = htVar.h;
-                SensorManager sensorManager = htVar.f26833a;
-                if (!htVar.f26838n) {
-                    Sensor sensor = htVar.f26837f;
+                SensorManager sensorManager = htVar.f26860a;
+                if (!htVar.f26865n) {
+                    Sensor sensor = htVar.f26864f;
                     if (sensor != null) {
                         sensorManager.registerListener(htVar, sensor, 30000);
                     }
-                    Sensor sensor2 = htVar.f26836e;
+                    Sensor sensor2 = htVar.f26863e;
                     if (sensor2 != null) {
                         sensorManager.registerListener(htVar, sensor2, 30000);
                     }
@@ -373,11 +373,11 @@ public final class k51 extends Dialog {
                     if (sensor3 != null) {
                         sensorManager.registerListener(htVar, sensor3, 30000);
                     }
-                    sensorManager.registerListener(htVar, htVar.f26835c, 3);
+                    sensorManager.registerListener(htVar, htVar.f26862c, 3);
                     if (wakeLock != null && Build.MANUFACTURER.equalsIgnoreCase("samsung")) {
                         wakeLock.acquire();
                     }
-                    htVar.f26838n = true;
+                    htVar.f26865n = true;
                 }
             }
         }

@@ -12,16 +12,16 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class e20 extends pg.b {
     public final Context d;
-    public final FiltersSetupActivity f35912e;
+    public final FiltersSetupActivity f35939e;
 
     public e20(FiltersSetupActivity filtersSetupActivity, Context context) {
-        this.f35912e = filtersSetupActivity;
+        this.f35939e = filtersSetupActivity;
         this.d = context;
     }
 
     @Override
     public final boolean D(s4.c1 c1Var) {
-        int i10 = c1Var.f45742f;
+        int i10 = c1Var.f45770f;
         if (i10 != 3 && i10 != 0 && i10 != 5 && i10 != 1) {
             return true;
         }
@@ -30,18 +30,18 @@ public final class e20 extends pg.b {
 
     @Override
     public final int h() {
-        return this.f35912e.f33411n.size();
+        return this.f35939e.f33438n.size();
     }
 
     @Override
     public final int j(int i10) {
         c20 c20Var;
         if (i10 >= 0) {
-            FiltersSetupActivity filtersSetupActivity = this.f35912e;
-            if (i10 >= filtersSetupActivity.f33411n.size() || (c20Var = (c20) filtersSetupActivity.f33411n.get(i10)) == null) {
+            FiltersSetupActivity filtersSetupActivity = this.f35939e;
+            if (i10 >= filtersSetupActivity.f33438n.size() || (c20Var = (c20) filtersSetupActivity.f33438n.get(i10)) == null) {
                 return 3;
             }
-            return c20Var.f44071a;
+            return c20Var.f44098a;
         }
         return 3;
     }
@@ -68,7 +68,7 @@ public final class e20 extends pg.b {
                             if (i10 != 6) {
                                 ?? frameLayout = new FrameLayout(context);
                                 TextView textView = new TextView(context);
-                                frameLayout.f36237a = textView;
+                                frameLayout.f36264a = textView;
                                 org.telegram.messenger.wl.r(textView, org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.G6, false), 1, 16.0f, 1);
                                 textView.setMaxLines(1);
                                 textView.setSingleLine(true);
@@ -87,8 +87,8 @@ public final class e20 extends pg.b {
                                 }
                                 frameLayout.addView(textView, w7.x5.d(-2, -2.0f, i12, 22.0f, 10.0f, 22.0f, 0.0f));
                                 TextView textView2 = new TextView(context);
-                                frameLayout.f36238b = textView2;
-                                org.telegram.messenger.wl.r(textView2, org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f21061z6, false), 1, 13.0f, 1);
+                                frameLayout.f36265b = textView2;
+                                org.telegram.messenger.wl.r(textView2, org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f21088z6, false), 1, 13.0f, 1);
                                 textView2.setMaxLines(1);
                                 textView2.setSingleLine(true);
                                 textView2.setEllipsize(truncateAt);
@@ -105,7 +105,7 @@ public final class e20 extends pg.b {
                                 }
                                 frameLayout.addView(textView2, w7.x5.d(-2, -2.0f, i14, 22.0f, 35.0f, 22.0f, 0.0f));
                                 org.telegram.ui.Components.xh0 xh0Var = new org.telegram.ui.Components.xh0(context);
-                                frameLayout.f36239c = xh0Var;
+                                frameLayout.f36266c = xh0Var;
                                 xh0Var.setText(LocaleController.getString(R.string.Add));
                                 xh0Var.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.Sh, false));
                                 xh0Var.setProgressColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.Nh, false));
@@ -121,18 +121,18 @@ public final class e20 extends pg.b {
                         } else {
                             ?? frameLayout2 = new FrameLayout(context);
                             org.telegram.ui.ActionBar.j5 j5Var = new org.telegram.ui.ActionBar.j5(context);
-                            frameLayout2.f36531a = j5Var;
+                            frameLayout2.f36558a = j5Var;
                             j5Var.setTextSize(16);
                             if (LocaleController.isRTL) {
                                 i15 = 5;
                             }
                             j5Var.setGravity(i15);
-                            int i16 = org.telegram.ui.ActionBar.j6.f20862o6;
+                            int i16 = org.telegram.ui.ActionBar.j6.f20889o6;
                             j5Var.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, i16, false));
                             j5Var.setTag(Integer.valueOf(i16));
                             frameLayout2.addView(j5Var);
                             ImageView imageView = new ImageView(context);
-                            frameLayout2.f36532b = imageView;
+                            frameLayout2.f36559b = imageView;
                             imageView.setScaleType(ImageView.ScaleType.CENTER);
                             frameLayout2.addView(imageView);
                             a20Var = frameLayout2;
@@ -141,8 +141,8 @@ public final class e20 extends pg.b {
                         a20Var = new org.telegram.ui.Cells.e9(context);
                     }
                 } else {
-                    a20 a20Var2 = new a20(this.f35912e, context);
-                    a20Var2.setBackgroundColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f20663d6, false));
+                    a20 a20Var2 = new a20(this.f35939e, context);
+                    a20Var2.setBackgroundColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f20690d6, false));
                     a20Var2.setOnReorderButtonTouchListener(new di.q1(6, this, a20Var2));
                     a20Var2.setOnOptionsClick(new a(this, 28));
                     a20Var = a20Var2;
@@ -152,7 +152,7 @@ public final class e20 extends pg.b {
                 SpannableStringBuilder replaceTags = AndroidUtilities.replaceTags(LocaleController.formatString(R.string.CreateNewFilterInfo, new Object[0]));
                 ?? frameLayout3 = new FrameLayout(context);
                 ?? imageView2 = new ImageView(context);
-                frameLayout3.f34607a = imageView2;
+                frameLayout3.f34634a = imageView2;
                 imageView2.f(i17, 90, 90, null);
                 imageView2.setScaleType(ImageView.ScaleType.CENTER);
                 imageView2.d();

@@ -5,19 +5,19 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.MrzRecognizer;
 public final class w21 implements t9 {
-    public final int f41750a;
-    public final org.telegram.ui.ActionBar.n2 f41751b;
+    public final int f41777a;
+    public final org.telegram.ui.ActionBar.n2 f41778b;
 
     public w21(int i10, org.telegram.ui.ActionBar.n2 n2Var) {
-        this.f41750a = i10;
-        this.f41751b = n2Var;
+        this.f41777a = i10;
+        this.f41778b = n2Var;
     }
 
     @Override
     public final void K(String str) {
         String b10 = of.f.b(str);
         if (!TextUtils.isEmpty(b10)) {
-            MessagesController.getInstance(this.f41750a).getUserNameResolver().resolve(b10, new xb(this.f41751b, 4));
+            MessagesController.getInstance(this.f41777a).getUserNameResolver().resolve(b10, new xb(this.f41778b, 4));
         } else {
             AndroidUtilities.runOnUIThread(new org.telegram.ui.Components.ue(28));
         }

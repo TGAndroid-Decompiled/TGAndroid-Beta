@@ -72,55 +72,55 @@ public abstract class v extends FrameLayout implements NotificationCenter.Notifi
     public final n U;
     public final ImageView V;
     public final ImageView W;
-    public final le.b f3846a;
-    public final org.telegram.ui.Components.o5 f3847a0;
-    public final int f3848b;
-    public final ArrayList f3849b0;
-    public final Drawable f3850c;
-    public float f3851c0;
+    public final le.b f3873a;
+    public final org.telegram.ui.Components.o5 f3874a0;
+    public final int f3875b;
+    public final ArrayList f3876b0;
+    public final Drawable f3877c;
+    public float f3878c0;
     public final p d;
-    public float f3852d0;
-    public int f3853e;
-    public final uy f3854e0;
-    public final int f3855f;
-    public CharSequence f3856f0;
-    public boolean f3857g0;
+    public float f3879d0;
+    public int f3880e;
+    public final uy f3881e0;
+    public final int f3882f;
+    public CharSequence f3883f0;
+    public boolean f3884g0;
     public final m h;
-    public int f3858h0;
-    public SpannableStringBuilder f3859i0;
-    public ValueAnimator f3860j0;
-    public s f3861k0;
-    public boolean f3862l0;
+    public int f3885h0;
+    public SpannableStringBuilder f3886i0;
+    public ValueAnimator f3887j0;
+    public s f3888k0;
+    public boolean f3889l0;
     public boolean m0;
-    public bj0 f3863n;
-    public float f3864n0;
-    public int f3865o0;
-    public u f3866p0;
-    public org.telegram.ui.ActionBar.k f3867q0;
-    public final m f3868r;
-    public k9 f3869r0;
-    public final u8 f3870s;
-    public float f3871s0;
-    public final float f3872t0;
-    public final float f3873u0;
+    public bj0 f3890n;
+    public float f3891n0;
+    public int f3892o0;
+    public u f3893p0;
+    public org.telegram.ui.ActionBar.k f3894q0;
+    public final m f3895r;
+    public k9 f3896r0;
+    public final u8 f3897s;
+    public float f3898s0;
+    public final float f3899t0;
+    public final float f3900u0;
     public final ArrayList v;
-    public final float f3874v0;
-    public final ArrayList f3875w;
-    public final a4.e f3876w0;
-    public final ArrayList f3877x;
-    public LinearGradient f3878x0;
-    public final ArrayList f3879y;
-    public Matrix f3880y0;
-    public Paint f3881z0;
+    public final float f3901v0;
+    public final ArrayList f3902w;
+    public final a4.e f3903w0;
+    public final ArrayList f3904x;
+    public LinearGradient f3905x0;
+    public final ArrayList f3906y;
+    public Matrix f3907y0;
+    public Paint f3908z0;
 
     public v(Context context, uy uyVar, int i10, int i11) {
         super(context);
         float f7;
-        this.f3846a = new le.b(1, this, pr.h, 380L, false);
+        this.f3873a = new le.b(1, this, pr.h, 380L, false);
         this.v = new ArrayList();
-        this.f3875w = new ArrayList();
-        this.f3877x = new ArrayList();
-        this.f3879y = new ArrayList();
+        this.f3902w = new ArrayList();
+        this.f3904x = new ArrayList();
+        this.f3906y = new ArrayList();
         lx lxVar = (lx) this;
         q qVar = new q(lxVar, false);
         this.E = qVar;
@@ -135,39 +135,39 @@ public abstract class v extends FrameLayout implements NotificationCenter.Notifi
         this.O = -1;
         this.P = new ArrayList();
         this.Q = new ArrayList();
-        this.f3849b0 = new ArrayList();
-        this.f3851c0 = -1.0f;
-        this.f3862l0 = true;
-        this.f3872t0 = 1.0f;
-        this.f3873u0 = 0.95f;
-        this.f3874v0 = 0.9f;
-        this.f3876w0 = new a4.e(5);
+        this.f3876b0 = new ArrayList();
+        this.f3878c0 = -1.0f;
+        this.f3889l0 = true;
+        this.f3899t0 = 1.0f;
+        this.f3900u0 = 0.95f;
+        this.f3901v0 = 0.9f;
+        this.f3903w0 = new a4.e(5);
         this.B0 = 0.3f;
         this.E0 = 1.0f;
         new OvershootInterpolator(0.9f);
         this.J0 = new OvershootInterpolator(0.95f);
         com.google.firebase.messaging.m mVar = new com.google.firebase.messaging.m(this);
         this.L0 = mVar;
-        this.f3848b = i11;
-        this.f3855f = i10;
-        this.f3854e0 = uyVar;
-        this.f3871s0 = AndroidUtilities.dp(68.0f);
-        this.f3870s = MessagesController.getInstance(i10).getStoriesController();
+        this.f3875b = i11;
+        this.f3882f = i10;
+        this.f3881e0 = uyVar;
+        this.f3898s0 = AndroidUtilities.dp(68.0f);
+        this.f3897s = MessagesController.getInstance(i10).getStoriesController();
         m mVar2 = new m(lxVar, context, 0);
         this.h = mVar2;
         mVar2.setPadding(AndroidUtilities.dp(3.0f), 0, AndroidUtilities.dp(3.0f), 0);
         mVar2.setClipToPadding(false);
         mVar2.setClipChildren(false);
-        gdVar.h = new a3.c(lxVar, 12);
+        gdVar.h = new a3.d(lxVar, 12);
         ah.j jVar = new ah.j(lxVar, 1);
-        gdVar.f26356l = true;
-        gdVar.f26354j = jVar;
+        gdVar.f26383l = true;
+        gdVar.f26381j = jVar;
         mVar2.j(new ah.e0(lxVar, 1));
         s4.j jVar2 = new s4.j();
         this.R = jVar2;
         jVar2.C = false;
         jVar2.n(150L);
-        jVar2.f45777m = false;
+        jVar2.f45805m = false;
         mVar2.setItemAnimator(jVar2);
         s4.c0 c0Var = new s4.c0(0, false);
         this.S = c0Var;
@@ -201,8 +201,8 @@ public abstract class v extends FrameLayout implements NotificationCenter.Notifi
         imageView.setFocusableInTouchMode(true);
         addView(imageView, w7.x5.c(22.0f, 90));
         org.telegram.ui.Components.o5 o5Var = new org.telegram.ui.Components.o5(AndroidUtilities.dp(26.0f), null);
-        this.f3847a0 = o5Var;
-        o5Var.f28957a = true;
+        this.f3874a0 = o5Var;
+        o5Var.f28984a = true;
         o5Var.setCallback(this);
         ImageView imageView2 = new ImageView(context);
         this.W = imageView2;
@@ -215,16 +215,16 @@ public abstract class v extends FrameLayout implements NotificationCenter.Notifi
         paint.setColor(-2762018);
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeWidth(AndroidUtilities.dp(1.0f));
-        this.f3850c = getContext().getDrawable(R.drawable.msg_mini_addstory);
+        this.f3877c = getContext().getDrawable(R.drawable.msg_mini_addstory);
         m mVar3 = new m(lxVar, getContext(), 1);
-        this.f3868r = mVar3;
+        this.f3895r = mVar3;
         getContext();
         mVar3.setLayoutManager(new s4.c0(0, false));
         mVar3.i(new o(0));
         ?? jVar3 = new s4.j();
         this.d = jVar3;
         jVar3.C = false;
-        jVar3.f45777m = false;
+        jVar3.f45805m = false;
         mVar3.setItemAnimator(jVar3);
         mVar3.setAdapter(qVar2);
         mVar3.setClipChildren(false);
@@ -236,7 +236,7 @@ public abstract class v extends FrameLayout implements NotificationCenter.Notifi
     }
 
     public int getTextColor() {
-        if (this.f3848b == 0) {
+        if (this.f3875b == 0) {
             return f(org.telegram.ui.ActionBar.j6.A8);
         }
         return f(org.telegram.ui.ActionBar.j6.P8);
@@ -255,7 +255,7 @@ public abstract class v extends FrameLayout implements NotificationCenter.Notifi
 
     public final void b() {
         int i10;
-        this.N = 1.0f - AndroidUtilities.lerp(1.0f - this.f3851c0, 1.0f, 1.0f - this.f3852d0);
+        this.N = 1.0f - AndroidUtilities.lerp(1.0f - this.f3878c0, 1.0f, 1.0f - this.f3879d0);
         d();
         float f7 = this.N;
         if (f7 == 1.0f) {
@@ -271,7 +271,7 @@ public abstract class v extends FrameLayout implements NotificationCenter.Notifi
                 AndroidUtilities.runOnUIThread(new e(this, 0));
             }
             int i11 = this.O;
-            m mVar = this.f3868r;
+            m mVar = this.f3895r;
             m mVar2 = this.h;
             if (i11 == 0) {
                 AndroidUtilities.forEachViews((RecyclerView) mVar2, (e2.h) new f(0));
@@ -281,18 +281,18 @@ public abstract class v extends FrameLayout implements NotificationCenter.Notifi
                     this.M0 = System.currentTimeMillis() + 60000;
                 }
             } else {
-                int i12 = this.f3855f;
+                int i12 = this.f3882f;
                 if (i11 == 1) {
                     ArrayList arrayList = this.Q;
                     arrayList.clear();
                     int i13 = 0;
                     while (true) {
-                        ArrayList arrayList2 = this.f3877x;
+                        ArrayList arrayList2 = this.f3904x;
                         if (i13 >= arrayList2.size()) {
                             break;
                         }
-                        if (((r) arrayList2.get(i13)).f3618c != UserConfig.getInstance(i12).getClientUserId() || m()) {
-                            arrayList.add(Long.valueOf(((r) arrayList2.get(i13)).f3618c));
+                        if (((r) arrayList2.get(i13)).f3645c != UserConfig.getInstance(i12).getClientUserId() || m()) {
+                            arrayList.add(Long.valueOf(((r) arrayList2.get(i13)).f3645c));
                             if (arrayList.size() == 3) {
                                 break;
                             }
@@ -308,10 +308,10 @@ public abstract class v extends FrameLayout implements NotificationCenter.Notifi
                     ah.g gVar = MessagesController.getInstance(i12).getStoriesController().K;
                     AndroidUtilities.cancelRunOnUIThread(gVar);
                     gVar.run();
-                    k9 k9Var = this.f3869r0;
+                    k9 k9Var = this.f3896r0;
                     if (k9Var != null) {
                         k9Var.a();
-                        this.f3869r0 = null;
+                        this.f3896r0 = null;
                     }
                 }
             }
@@ -324,19 +324,19 @@ public abstract class v extends FrameLayout implements NotificationCenter.Notifi
         int N0;
         s4.c0 c0Var = this.S;
         int N02 = c0Var.N0() + 10;
-        ArrayList arrayList = this.f3877x;
+        ArrayList arrayList = this.f3904x;
         int size = arrayList.size();
-        u8 u8Var = this.f3870s;
+        u8 u8Var = this.f3897s;
         boolean z10 = false;
-        if (N02 > size || ((N0 = c0Var.N0() + 9) < arrayList.size() && u8Var.D(0, ((r) arrayList.get(N0)).f3618c) == 0)) {
-            if (this.f3848b == 1) {
+        if (N02 > size || ((N0 = c0Var.N0() + 9) < arrayList.size() && u8Var.D(0, ((r) arrayList.get(N0)).f3645c) == 0)) {
+            if (this.f3875b == 1) {
                 z10 = true;
             }
             if (z10) {
-                if (!u8Var.f3827z) {
+                if (!u8Var.f3854z) {
                     return;
                 }
-            } else if (!u8Var.f3818p) {
+            } else if (!u8Var.f3845p) {
                 return;
             }
             u8Var.Q(z10);
@@ -347,8 +347,8 @@ public abstract class v extends FrameLayout implements NotificationCenter.Notifi
         int i10;
         int i11;
         int i12;
-        float a2 = w7.p.a(Math.min(this.N, this.f3852d0), 0.0f, 1.0f);
-        float f7 = this.f3846a.f15368e;
+        float a2 = w7.p.a(Math.min(this.N, this.f3879d0), 0.0f, 1.0f);
+        float f7 = this.f3873a.f15395e;
         float f10 = 1.0f - f7;
         float f11 = f7 * a2;
         float f12 = f10 * a2;
@@ -396,7 +396,7 @@ public abstract class v extends FrameLayout implements NotificationCenter.Notifi
     @Override
     public final void didReceivedNotification(int i10, int i11, Object... objArr) {
         boolean z10;
-        if (i10 == NotificationCenter.storiesUpdated && this.f3862l0) {
+        if (i10 == NotificationCenter.storiesUpdated && this.f3889l0) {
             if (getVisibility() == 0) {
                 z10 = true;
             } else {
@@ -415,7 +415,7 @@ public abstract class v extends FrameLayout implements NotificationCenter.Notifi
     public final u e(long j3) {
         m mVar;
         if (this.O == 2) {
-            mVar = this.f3868r;
+            mVar = this.f3895r;
         } else {
             mVar = this.h;
         }
@@ -432,7 +432,7 @@ public abstract class v extends FrameLayout implements NotificationCenter.Notifi
     }
 
     public final int f(int i10) {
-        uy uyVar = this.f3854e0;
+        uy uyVar = this.f3881e0;
         if (uyVar != null && uyVar.getResourceProvider() != null) {
             return uyVar.getThemedColor(i10);
         }
@@ -452,7 +452,7 @@ public abstract class v extends FrameLayout implements NotificationCenter.Notifi
     }
 
     public float getOverScrollCoef() {
-        return this.f3872t0;
+        return this.f3899t0;
     }
 
     public di.f4 getPremiumHint() {
@@ -460,12 +460,12 @@ public abstract class v extends FrameLayout implements NotificationCenter.Notifi
     }
 
     public final void h() {
-        if (!this.f3870s.H()) {
+        if (!this.f3897s.H()) {
             return;
         }
         ArrayList arrayList = new ArrayList();
-        arrayList.add(Long.valueOf(UserConfig.getInstance(this.f3855f).clientUserId));
-        this.f3854e0.getOrCreateStoryViewer().G(getContext(), null, arrayList, 0, null, null, d9.a(this.f3868r), false);
+        arrayList.add(Long.valueOf(UserConfig.getInstance(this.f3882f).clientUserId));
+        this.f3881e0.getOrCreateStoryViewer().G(getContext(), null, arrayList, 0, null, null, d9.a(this.f3895r), false);
     }
 
     public final void i(u uVar, boolean z10) {
@@ -476,9 +476,9 @@ public abstract class v extends FrameLayout implements NotificationCenter.Notifi
             } catch (Exception unused) {
             }
             boolean z11 = uVar.F;
-            u8 u8Var = this.f3870s;
+            u8 u8Var = this.f3897s;
             if (z11 && !u8Var.H()) {
-                if (!MessagesController.getInstance(this.f3855f).storiesEnabled()) {
+                if (!MessagesController.getInstance(this.f3882f).storiesEnabled()) {
                     n();
                 } else {
                     j(0L);
@@ -486,19 +486,19 @@ public abstract class v extends FrameLayout implements NotificationCenter.Notifi
             } else if (u8Var.I(uVar.E) || u8Var.K(uVar.E)) {
                 TL_stories.PeerStories y3 = u8Var.y(uVar.E);
                 long j3 = uVar.E;
-                k9 k9Var = this.f3869r0;
+                k9 k9Var = this.f3896r0;
                 if (k9Var != null) {
                     k9Var.a();
-                    this.f3869r0 = null;
+                    this.f3896r0 = null;
                 }
-                a3.g0 g0Var = new a3.g0(this, uVar, j3, 1);
+                a3.h0 h0Var = new a3.h0(this, uVar, j3, 1);
                 if (z10) {
-                    g0Var.run();
+                    h0Var.run();
                     return;
                 }
-                k9 n10 = p9.n(y3, g0Var);
-                uVar.f3772e = n10;
-                this.f3869r0 = n10;
+                k9 n10 = p9.n(y3, h0Var);
+                uVar.f3799e = n10;
+                this.f3896r0 = n10;
                 if (n10 != null) {
                     u8Var.e0(uVar.E, true);
                 }
@@ -510,11 +510,11 @@ public abstract class v extends FrameLayout implements NotificationCenter.Notifi
         org.telegram.ui.ActionBar.f6 f6Var;
         u uVar;
         n8 o9;
-        uy uyVar = this.f3854e0;
-        int i10 = this.f3855f;
+        uy uyVar = this.f3881e0;
+        int i10 = this.f3882f;
         int i11 = (j3 > 0L ? 1 : (j3 == 0L ? 0 : -1));
         if (i11 == 0 && (o9 = MessagesController.getInstance(i10).getStoriesController().o()) != null && o9.a(i10, 1)) {
-            uyVar.showDialog(new sg.k0(o9.b(), this.f3855f, getContext(), this.f3854e0, null));
+            uyVar.showDialog(new sg.k0(o9.b(), this.f3882f, getContext(), this.f3881e0, null));
             return;
         }
         int i12 = 0;
@@ -557,9 +557,9 @@ public abstract class v extends FrameLayout implements NotificationCenter.Notifi
     public final boolean k(long j3) {
         int i10 = 0;
         while (true) {
-            ArrayList arrayList = this.f3877x;
+            ArrayList arrayList = this.f3904x;
             if (i10 < arrayList.size()) {
-                if (((r) arrayList.get(i10)).f3618c == j3) {
+                if (((r) arrayList.get(i10)).f3645c == j3) {
                     break;
                 }
                 i10++;
@@ -585,8 +585,8 @@ public abstract class v extends FrameLayout implements NotificationCenter.Notifi
         boolean z11;
         float f10;
         float f11;
-        if (this.f3851c0 != f7) {
-            this.f3851c0 = f7;
+        if (this.f3878c0 != f7) {
+            this.f3878c0 = f7;
             b();
             if (f7 > this.B0) {
                 z11 = true;
@@ -603,7 +603,7 @@ public abstract class v extends FrameLayout implements NotificationCenter.Notifi
                 }
                 float f12 = 1.0f;
                 if (z10) {
-                    float f13 = this.f3852d0;
+                    float f13 = this.f3879d0;
                     if (z11) {
                         f10 = 1.0f;
                     } else {
@@ -612,33 +612,33 @@ public abstract class v extends FrameLayout implements NotificationCenter.Notifi
                     ValueAnimator ofFloat = ValueAnimator.ofFloat(f13, f10);
                     this.C0 = ofFloat;
                     ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener(this) {
-                        public final v f2809b;
+                        public final v f2836b;
 
                         {
-                            this.f2809b = this;
+                            this.f2836b = this;
                         }
 
                         @Override
                         public final void onAnimationUpdate(ValueAnimator valueAnimator) {
                             switch (r2) {
                                 case 0:
-                                    v vVar = this.f2809b;
+                                    v vVar = this.f2836b;
                                     vVar.getClass();
-                                    vVar.f3852d0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                                    vVar.f3879d0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                                     vVar.b();
                                     return;
                                 case 1:
-                                    v vVar2 = this.f2809b;
+                                    v vVar2 = this.f2836b;
                                     vVar2.getClass();
                                     vVar2.G0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                                     return;
                                 case 2:
-                                    v vVar3 = this.f2809b;
+                                    v vVar3 = this.f2836b;
                                     vVar3.getClass();
                                     vVar3.E0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                                     return;
                                 default:
-                                    v vVar4 = this.f2809b;
+                                    v vVar4 = this.f2836b;
                                     vVar4.getClass();
                                     vVar4.I0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                                     vVar4.invalidate();
@@ -647,7 +647,7 @@ public abstract class v extends FrameLayout implements NotificationCenter.Notifi
                         }
                     });
                     this.C0.setInterpolator(pr.h);
-                    float f14 = this.f3851c0;
+                    float f14 = this.f3878c0;
                     if (z11) {
                         f11 = f14;
                     } else {
@@ -656,33 +656,33 @@ public abstract class v extends FrameLayout implements NotificationCenter.Notifi
                     ValueAnimator ofFloat2 = ValueAnimator.ofFloat(f14, f11);
                     this.F0 = ofFloat2;
                     ofFloat2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener(this) {
-                        public final v f2809b;
+                        public final v f2836b;
 
                         {
-                            this.f2809b = this;
+                            this.f2836b = this;
                         }
 
                         @Override
                         public final void onAnimationUpdate(ValueAnimator valueAnimator) {
                             switch (r2) {
                                 case 0:
-                                    v vVar = this.f2809b;
+                                    v vVar = this.f2836b;
                                     vVar.getClass();
-                                    vVar.f3852d0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                                    vVar.f3879d0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                                     vVar.b();
                                     return;
                                 case 1:
-                                    v vVar2 = this.f2809b;
+                                    v vVar2 = this.f2836b;
                                     vVar2.getClass();
                                     vVar2.G0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                                     return;
                                 case 2:
-                                    v vVar3 = this.f2809b;
+                                    v vVar3 = this.f2836b;
                                     vVar3.getClass();
                                     vVar3.E0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                                     return;
                                 default:
-                                    v vVar4 = this.f2809b;
+                                    v vVar4 = this.f2836b;
                                     vVar4.getClass();
                                     vVar4.I0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                                     vVar4.invalidate();
@@ -699,40 +699,40 @@ public abstract class v extends FrameLayout implements NotificationCenter.Notifi
                     arrayList.add(this.F0);
                     if (this.A0) {
                         this.K0.setDuration(1000L);
-                        float f15 = this.f3852d0;
+                        float f15 = this.f3879d0;
                         if (!z11) {
                             f12 = 0.0f;
                         }
                         ValueAnimator ofFloat3 = ValueAnimator.ofFloat(f15, f12);
                         this.D0 = ofFloat3;
                         ofFloat3.addUpdateListener(new ValueAnimator.AnimatorUpdateListener(this) {
-                            public final v f2809b;
+                            public final v f2836b;
 
                             {
-                                this.f2809b = this;
+                                this.f2836b = this;
                             }
 
                             @Override
                             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
                                 switch (r2) {
                                     case 0:
-                                        v vVar = this.f2809b;
+                                        v vVar = this.f2836b;
                                         vVar.getClass();
-                                        vVar.f3852d0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                                        vVar.f3879d0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                                         vVar.b();
                                         return;
                                     case 1:
-                                        v vVar2 = this.f2809b;
+                                        v vVar2 = this.f2836b;
                                         vVar2.getClass();
                                         vVar2.G0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                                         return;
                                     case 2:
-                                        v vVar3 = this.f2809b;
+                                        v vVar3 = this.f2836b;
                                         vVar3.getClass();
                                         vVar3.E0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                                         return;
                                     default:
-                                        v vVar4 = this.f2809b;
+                                        v vVar4 = this.f2836b;
                                         vVar4.getClass();
                                         vVar4.I0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                                         vVar4.invalidate();
@@ -740,47 +740,47 @@ public abstract class v extends FrameLayout implements NotificationCenter.Notifi
                                 }
                             }
                         });
-                        OvershootInterpolator overshootInterpolator = new OvershootInterpolator(this.f3873u0);
+                        OvershootInterpolator overshootInterpolator = new OvershootInterpolator(this.f3900u0);
                         this.J0 = overshootInterpolator;
                         this.D0.setInterpolator(overshootInterpolator);
                         this.D0.setDuration(750L);
                         arrayList.add(this.D0);
                     } else {
-                        float f16 = this.f3852d0;
+                        float f16 = this.f3879d0;
                         if (!z11) {
                             f12 = 0.0f;
                         }
                         this.H0 = ValueAnimator.ofFloat(f16, f12);
-                        this.H0.setInterpolator(new OvershootInterpolator(this.f3874v0));
+                        this.H0.setInterpolator(new OvershootInterpolator(this.f3901v0));
                         this.H0.setDuration(350L);
                         this.H0.addUpdateListener(new ValueAnimator.AnimatorUpdateListener(this) {
-                            public final v f2809b;
+                            public final v f2836b;
 
                             {
-                                this.f2809b = this;
+                                this.f2836b = this;
                             }
 
                             @Override
                             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
                                 switch (r2) {
                                     case 0:
-                                        v vVar = this.f2809b;
+                                        v vVar = this.f2836b;
                                         vVar.getClass();
-                                        vVar.f3852d0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                                        vVar.f3879d0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                                         vVar.b();
                                         return;
                                     case 1:
-                                        v vVar2 = this.f2809b;
+                                        v vVar2 = this.f2836b;
                                         vVar2.getClass();
                                         vVar2.G0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                                         return;
                                     case 2:
-                                        v vVar3 = this.f2809b;
+                                        v vVar3 = this.f2836b;
                                         vVar3.getClass();
                                         vVar3.E0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                                         return;
                                     default:
-                                        v vVar4 = this.f2809b;
+                                        v vVar4 = this.f2836b;
                                         vVar4.getClass();
                                         vVar4.I0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                                         vVar4.invalidate();
@@ -797,7 +797,7 @@ public abstract class v extends FrameLayout implements NotificationCenter.Notifi
                 if (!z11) {
                     f12 = 0.0f;
                 }
-                this.f3852d0 = f12;
+                this.f3879d0 = f12;
                 b();
                 AndroidUtilities.forEachViews((RecyclerView) this.h, (e2.h) new f(1));
             }
@@ -805,10 +805,10 @@ public abstract class v extends FrameLayout implements NotificationCenter.Notifi
     }
 
     public final boolean m() {
-        long j3 = UserConfig.getInstance(this.f3855f).clientUserId;
-        u8 u8Var = this.f3870s;
+        long j3 = UserConfig.getInstance(this.f3882f).clientUserId;
+        u8 u8Var = this.f3897s;
         if (!u8Var.J(j3)) {
-            if (!u8Var.H() || u8Var.f3810g.size() > 3) {
+            if (!u8Var.H() || u8Var.f3837g.size() > 3) {
                 return false;
             }
             return true;
@@ -847,15 +847,15 @@ public abstract class v extends FrameLayout implements NotificationCenter.Notifi
     }
 
     public final void o() {
-        o20 o20Var = p9.f3511b;
+        o20 o20Var = p9.f3538b;
         if (o20Var != null) {
             o20Var.d(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.lk, false), org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.mk, false), 0, 0);
         }
-        o20 o20Var2 = p9.f3512c;
+        o20 o20Var2 = p9.f3539c;
         if (o20Var2 != null) {
             o20Var2.d(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.nk, false), org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.ok, false), 0, 0);
         }
-        o20[] o20VarArr = p9.f3510a;
+        o20[] o20VarArr = p9.f3537a;
         o20 o20Var3 = o20VarArr[0];
         if (o20Var3 != null) {
             o20Var3.d(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.jk, false), org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.kk, false), 0, 0);
@@ -866,7 +866,7 @@ public abstract class v extends FrameLayout implements NotificationCenter.Notifi
         }
         if (p9.d != null) {
             int w02 = org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.xj, false);
-            int w03 = org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f20898q7, false);
+            int w03 = org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f20925q7, false);
             p9.d.d(i0.a.d(0.25f, w02, w03), w03, 0, 0);
         }
         int textColor = getTextColor();
@@ -877,36 +877,36 @@ public abstract class v extends FrameLayout implements NotificationCenter.Notifi
         }
         this.V.setColorFilter(getTextLogoColor(), PorterDuff.Mode.MULTIPLY);
         AndroidUtilities.forEachViews((RecyclerView) this.h, (e2.h) new j(textColor, 0));
-        AndroidUtilities.forEachViews((RecyclerView) this.f3868r, (e2.h) new f(2));
+        AndroidUtilities.forEachViews((RecyclerView) this.f3895r, (e2.h) new f(2));
     }
 
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
         p(false, false);
-        NotificationCenter.getInstance(this.f3855f).addObserver(this, NotificationCenter.storiesUpdated);
+        NotificationCenter.getInstance(this.f3882f).addObserver(this, NotificationCenter.storiesUpdated);
         com.google.firebase.messaging.m mVar = this.L0;
-        mVar.f6371a = true;
-        AnimatorSet animatorSet = (AnimatorSet) mVar.f6373c;
+        mVar.f6398a = true;
+        AnimatorSet animatorSet = (AnimatorSet) mVar.f6400c;
         if (!animatorSet.isRunning()) {
             animatorSet.start();
         }
-        this.f3847a0.a();
+        this.f3874a0.a();
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        NotificationCenter.getInstance(this.f3855f).removeObserver(this, NotificationCenter.storiesUpdated);
+        NotificationCenter.getInstance(this.f3882f).removeObserver(this, NotificationCenter.storiesUpdated);
         com.google.firebase.messaging.m mVar = this.L0;
-        mVar.f6371a = false;
-        ((AnimatorSet) mVar.f6373c).cancel();
-        k9 k9Var = this.f3869r0;
+        mVar.f6398a = false;
+        ((AnimatorSet) mVar.f6400c).cancel();
+        k9 k9Var = this.f3896r0;
         if (k9Var != null) {
             k9Var.a();
-            this.f3869r0 = null;
+            this.f3896r0 = null;
         }
-        this.f3847a0.b();
+        this.f3874a0.b();
     }
 
     @Override
@@ -926,17 +926,17 @@ public abstract class v extends FrameLayout implements NotificationCenter.Notifi
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
         if (this.O == 2) {
-            int size = this.f3879y.size();
+            int size = this.f3906y.size();
             int dp = AndroidUtilities.dp((size * 26.33f) - (Math.max(0, size - 1) * 16.0f));
-            m mVar = this.f3868r;
+            m mVar = this.f3895r;
             int x10 = (int) (mVar.getX() + dp);
             int y3 = (int) (mVar.getY() + mVar.getHeight());
             gd gdVar = this.I;
             gdVar.getClass();
             RectF rectF = AndroidUtilities.rectTmp;
             rectF.set((int) mVar.getX(), (int) mVar.getY(), x10, y3);
-            gdVar.f26353i = false;
-            gdVar.f26349c = 0;
+            gdVar.f26380i = false;
+            gdVar.f26376c = 0;
             gdVar.a(rectF);
             if (gdVar.b(motionEvent)) {
                 return true;
@@ -953,29 +953,29 @@ public abstract class v extends FrameLayout implements NotificationCenter.Notifi
         boolean z13;
         boolean z14;
         String string;
-        if ((this.O == 1 || this.f3864n0 != 0.0f) && !z11) {
+        if ((this.O == 1 || this.f3891n0 != 0.0f) && !z11) {
             this.K = true;
             return;
         }
         ArrayList arrayList3 = this.v;
         arrayList3.clear();
-        ArrayList arrayList4 = this.f3877x;
+        ArrayList arrayList4 = this.f3904x;
         arrayList3.addAll(arrayList4);
-        ArrayList arrayList5 = this.f3875w;
+        ArrayList arrayList5 = this.f3902w;
         arrayList5.clear();
-        ArrayList arrayList6 = this.f3879y;
+        ArrayList arrayList6 = this.f3906y;
         arrayList5.addAll(arrayList6);
         arrayList4.clear();
-        int i10 = this.f3848b;
-        int i11 = this.f3855f;
+        int i10 = this.f3875b;
+        int i11 = this.f3882f;
         if (i10 != 1) {
             arrayList4.add(new r(UserConfig.getInstance(i11).getClientUserId()));
         }
-        u8 u8Var = this.f3870s;
+        u8 u8Var = this.f3897s;
         if (i10 == 1) {
             arrayList = u8Var.h;
         } else {
-            arrayList = u8Var.f3810g;
+            arrayList = u8Var.f3837g;
         }
         for (int i12 = 0; i12 < arrayList.size(); i12++) {
             long peerDialogId = DialogObject.getPeerDialogId(((TL_stories.PeerStories) arrayList.get(i12)).peer);
@@ -993,7 +993,7 @@ public abstract class v extends FrameLayout implements NotificationCenter.Notifi
             z12 = false;
         }
         int max = Math.max(1, Math.max(u8Var.C(z12), size));
-        this.f3856f0 = null;
+        this.f3883f0 = null;
         boolean G = u8Var.G();
         org.telegram.ui.Components.q6 q6Var = this.T;
         if (G) {
@@ -1001,37 +1001,37 @@ public abstract class v extends FrameLayout implements NotificationCenter.Notifi
             if (u8Var.K(UserConfig.getInstance(i11).getClientUserId())) {
                 String string2 = LocaleController.getString(R.string.UploadingStory);
                 if (string2.indexOf("…") > 0) {
-                    if (this.f3859i0 == null) {
+                    if (this.f3886i0 == null) {
                         SpannableStringBuilder valueOf = SpannableStringBuilder.valueOf(string2);
                         vb vbVar = new vb();
                         valueOf.setSpan(vbVar, valueOf.length() - 1, valueOf.length(), 0);
-                        vbVar.f3919a = q6Var;
-                        vbVar.f3924n = true;
-                        this.f3859i0 = valueOf;
+                        vbVar.f3946a = q6Var;
+                        vbVar.f3951n = true;
+                        this.f3886i0 = valueOf;
                     }
-                    this.f3856f0 = this.f3859i0;
+                    this.f3883f0 = this.f3886i0;
                 } else {
-                    this.f3856f0 = string2;
+                    this.f3883f0 = string2;
                 }
             } else {
-                if (this.f3871s0 < AndroidUtilities.dp(50.0f)) {
+                if (this.f3898s0 < AndroidUtilities.dp(50.0f)) {
                     string = null;
                 } else {
                     string = LocaleController.getString(R.string.MyStory);
                 }
-                this.f3856f0 = string;
+                this.f3883f0 = string;
             }
         } else {
             arrayList2 = arrayList4;
-            if (this.f3871s0 < AndroidUtilities.dp(50.0f)) {
+            if (this.f3898s0 < AndroidUtilities.dp(50.0f)) {
                 formatPluralString = null;
             } else {
                 formatPluralString = LocaleController.formatPluralString("Stories", max, new Object[0]);
             }
-            this.f3856f0 = formatPluralString;
+            this.f3883f0 = formatPluralString;
         }
-        if (!this.f3857g0) {
-            CharSequence charSequence = this.f3856f0;
+        if (!this.f3884g0) {
+            CharSequence charSequence = this.f3883f0;
             if (z10 && !LocaleController.isRTL) {
                 z14 = true;
             } else {
@@ -1039,15 +1039,15 @@ public abstract class v extends FrameLayout implements NotificationCenter.Notifi
             }
             q6Var.c(charSequence, z14, true);
         }
-        if (TextUtils.isEmpty(this.f3856f0) && !this.f3857g0) {
+        if (TextUtils.isEmpty(this.f3883f0) && !this.f3884g0) {
             z13 = false;
         } else {
             z13 = true;
         }
-        this.f3846a.a(z13, z10);
+        this.f3873a.a(z13, z10);
         arrayList6.clear();
         for (int i13 = 0; i13 < arrayList2.size(); i13++) {
-            if (((r) arrayList2.get(i13)).f3618c != UserConfig.getInstance(i11).clientUserId || m()) {
+            if (((r) arrayList2.get(i13)).f3645c != UserConfig.getInstance(i11).clientUserId || m()) {
                 arrayList6.add((r) arrayList2.get(i13));
                 if (arrayList6.size() >= 3) {
                     break;
@@ -1055,7 +1055,7 @@ public abstract class v extends FrameLayout implements NotificationCenter.Notifi
             }
         }
         m mVar = this.h;
-        m mVar2 = this.f3868r;
+        m mVar2 = this.f3895r;
         if (z10) {
             if (this.O == 2) {
                 mVar2.setItemAnimator(this.d);
@@ -1075,7 +1075,7 @@ public abstract class v extends FrameLayout implements NotificationCenter.Notifi
     }
 
     public void setActionBar(org.telegram.ui.ActionBar.k kVar) {
-        this.f3867q0 = kVar;
+        this.f3894q0 = kVar;
     }
 
     public void setClipTop(int i10) {
@@ -1089,11 +1089,11 @@ public abstract class v extends FrameLayout implements NotificationCenter.Notifi
     }
 
     public void setMenuItemsOffset(float f7) {
-        this.f3871s0 = f7;
+        this.f3898s0 = f7;
     }
 
     public void setOverscroll(float f7) {
-        this.f3864n0 = f7 / AndroidUtilities.dp(90.0f);
+        this.f3891n0 = f7 / AndroidUtilities.dp(90.0f);
         invalidate();
         this.h.invalidate();
     }

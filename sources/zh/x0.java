@@ -15,12 +15,12 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.Utilities;
 public final class x0 implements Utilities.Callback3 {
-    public final int f52815a;
-    public final NotificationCenter.NotificationCenterDelegate f52816b;
+    public final int f52846a;
+    public final NotificationCenter.NotificationCenterDelegate f52847b;
 
     public x0(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, int i10) {
-        this.f52815a = i10;
-        this.f52816b = notificationCenterDelegate;
+        this.f52846a = i10;
+        this.f52847b = notificationCenterDelegate;
     }
 
     @Override
@@ -29,19 +29,19 @@ public final class x0 implements Utilities.Callback3 {
         int i10;
         di.t tVar;
         float f7;
-        switch (this.f52815a) {
+        switch (this.f52846a) {
             case 0:
-                ((w3) this.f52816b).o2((View) obj2, (CharSequence) obj, ((Boolean) obj3).booleanValue());
+                ((w3) this.f52847b).o2((View) obj2, (CharSequence) obj, ((Boolean) obj3).booleanValue());
                 return;
             case 1:
-                w3.v0((w3) this.f52816b, (ArrayList) obj, (Utilities.Callback2) obj2, (Runnable) obj3);
+                w3.v0((w3) this.f52847b, (ArrayList) obj, (Utilities.Callback2) obj2, (Runnable) obj3);
                 return;
             default:
-                pc pcVar = (pc) this.f52816b;
+                pc pcVar = (pc) this.f52847b;
                 Boolean bool = (Boolean) obj;
                 ArrayList arrayList = (ArrayList) obj2;
                 ArrayList arrayList2 = (ArrayList) obj3;
-                if (pcVar.f7860f0 == 0 && arrayList != null && !arrayList.isEmpty() && pcVar.f7891p2 == null && !pcVar.W && pcVar.J()) {
+                if (pcVar.f7888f0 == 0 && arrayList != null && !arrayList.isEmpty() && pcVar.f7919p2 == null && !pcVar.W && pcVar.J()) {
                     pcVar.H1 = null;
                     pcVar.I1 = null;
                     pcVar.J1 = null;
@@ -56,7 +56,7 @@ public final class x0 implements Utilities.Callback3 {
                                     Object obj4 = a2.get(i11);
                                     i11++;
                                     tVar = (di.t) obj4;
-                                    if (tVar.f8151e.size() >= size) {
+                                    if (tVar.f8179e.size() >= size) {
                                     }
                                 } else {
                                     tVar = null;
@@ -75,19 +75,19 @@ public final class x0 implements Utilities.Callback3 {
                                 return;
                             }
                             cc ccVar = pcVar.A0;
-                            pcVar.f7924z0 = tVar;
+                            pcVar.f7952z0 = tVar;
                             ccVar.o(tVar);
                             pcVar.I0.setSelected(tVar);
                             int indexOf = di.t.a().indexOf(tVar);
                             if (indexOf >= 0) {
-                                pcVar.I0.f8440a.u0(indexOf);
+                                pcVar.I0.f8468a.u0(indexOf);
                             }
                             sb sbVar2 = pcVar.B0;
                             if (sbVar2 != null) {
                                 sbVar2.recordHevc = !pcVar.A0.j();
                             }
                             pcVar.G0.setDrawable(new di.u(tVar, false));
-                            pcVar.c0(pcVar.H0, pcVar.I0.f8443e, true);
+                            pcVar.c0(pcVar.H0, pcVar.I0.f8471e, true);
                             di.l7 l7Var = pcVar.O0;
                             if (pcVar.A0.j()) {
                                 f7 = pcVar.A0.getFilledProgress();
@@ -103,8 +103,8 @@ public final class x0 implements Utilities.Callback3 {
                         if (i12 < arrayList.size()) {
                             di.o8 l4 = di.o8.l((MediaController.PhotoEntry) arrayList.get(i12));
                             l4.M0 = (Bitmap) arrayList2.get(i12);
-                            l4.J0 = pcVar.f7909v0;
-                            l4.K0 = pcVar.f7913w0;
+                            l4.J0 = pcVar.f7937v0;
+                            l4.K0 = pcVar.f7941w0;
                             l4.A();
                             if (bool.booleanValue()) {
                                 if (pcVar.A0.l(l4)) {
@@ -138,8 +138,8 @@ public final class x0 implements Utilities.Callback3 {
                         } else {
                             z10 = false;
                         }
-                        l7Var2.f7552n0 = -1.0f;
-                        l7Var2.f7553o0 = z10;
+                        l7Var2.f7580n0 = -1.0f;
+                        l7Var2.f7581o0 = z10;
                         l7Var2.invalidate();
                         pcVar.I1 = new ArrayList();
                         pcVar.J1 = new ArrayList();
@@ -151,7 +151,7 @@ public final class x0 implements Utilities.Callback3 {
                         pcVar.m0(true);
                         pcVar.f(false);
                         pcVar.K(1, true);
-                        fb fbVar = pcVar.f7853d1;
+                        fb fbVar = pcVar.f7881d1;
                         if (fbVar != null) {
                             oa oaVar = fbVar.h;
                             if (!fbVar.I && !fbVar.M && (i10 = MessagesController.getGlobalMainSettings().getInt("multistorieshint", 0)) < 3) {
@@ -164,8 +164,8 @@ public final class x0 implements Utilities.Callback3 {
                         }
                         ob obVar = pcVar.M0;
                         if (obVar != null) {
-                            pcVar.f7879l2 = obVar.f8369e.e0();
-                            pcVar.f7881m2 = pcVar.M0.getSelectedAlbum();
+                            pcVar.f7907l2 = obVar.f8397e.e0();
+                            pcVar.f7909m2 = pcVar.M0.getSelectedAlbum();
                             return;
                         }
                         return;
@@ -179,8 +179,8 @@ public final class x0 implements Utilities.Callback3 {
                     pcVar.f(false);
                     ob obVar2 = pcVar.M0;
                     if (obVar2 != null) {
-                        pcVar.f7879l2 = obVar2.f8369e.e0();
-                        pcVar.f7881m2 = pcVar.M0.getSelectedAlbum();
+                        pcVar.f7907l2 = obVar2.f8397e.e0();
+                        pcVar.f7909m2 = pcVar.M0.getSelectedAlbum();
                         return;
                     }
                     return;

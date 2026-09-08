@@ -45,11 +45,11 @@ import org.telegram.ui.Components.z5;
 import org.telegram.ui.ov0;
 import org.telegram.ui.sn;
 public final class b implements androidx.car.app.messaging.model.b, bg.a, c3.q, cf.b, da.c, fb.n, com.google.android.gms.common.api.internal.s, y2.o, n2.m, q9.d, og, k1, t0, r0.r, xf.a {
-    public static b f44271b;
-    public final int f44272a;
+    public static b f44299b;
+    public final int f44300a;
 
     public b(int i10) {
-        this.f44272a = i10;
+        this.f44300a = i10;
     }
 
     public static da.a s2(ob.a aVar) {
@@ -66,7 +66,7 @@ public final class b implements androidx.car.app.messaging.model.b, bg.a, c3.q, 
             if (bitmap != null) {
                 ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
                 e2.d.g(bitmap.compress(Bitmap.CompressFormat.PNG, 0, byteArrayOutputStream));
-                a2.putByteArray(d2.b.f6489x, byteArrayOutputStream.toByteArray());
+                a2.putByteArray(d2.b.f6516x, byteArrayOutputStream.toByteArray());
             }
             arrayList.add(a2);
         }
@@ -81,15 +81,15 @@ public final class b implements androidx.car.app.messaging.model.b, bg.a, c3.q, 
     }
 
     public static Calendar u2() {
-        if (f44271b == null) {
-            f44271b = new b(25);
+        if (f44299b == null) {
+            f44299b = new b(25);
         }
-        f44271b.getClass();
+        f44299b.getClass();
         return Calendar.getInstance();
     }
 
     public static String v2(ad.c cVar) {
-        String str = cVar.f404a;
+        String str = cVar.f416a;
         if ("br".equals(str)) {
             return "\n";
         }
@@ -123,7 +123,7 @@ public final class b implements androidx.car.app.messaging.model.b, bg.a, c3.q, 
 
     @Override
     public Object D(cf.c cVar) {
-        switch (this.f44272a) {
+        switch (this.f44300a) {
             case 14:
                 g gVar = (g) cVar.a(g.class);
                 return new rb.a(0);
@@ -290,11 +290,11 @@ public final class b implements androidx.car.app.messaging.model.b, bg.a, c3.q, 
         b7.b bVar = new b7.b(1, (TaskCompletionSource) obj2);
         Parcel obtain = Parcel.obtain();
         obtain.writeInterfaceToken("com.google.android.gms.auth.api.phone.internal.ISmsRetrieverApiService");
-        int i10 = j7.c.f13556a;
+        int i10 = j7.c.f13582a;
         obtain.writeStrongBinder(bVar);
         Parcel obtain2 = Parcel.obtain();
         try {
-            dVar.f13557a.transact(1, obtain, obtain2, 0);
+            dVar.f13583a.transact(1, obtain, obtain2, 0);
             obtain2.readException();
         } finally {
             obtain.recycle();
@@ -339,7 +339,7 @@ public final class b implements androidx.car.app.messaging.model.b, bg.a, c3.q, 
 
     @Override
     public boolean f() {
-        switch (this.f44272a) {
+        switch (this.f44300a) {
             case 17:
                 return true;
             default:
@@ -364,12 +364,12 @@ public final class b implements androidx.car.app.messaging.model.b, bg.a, c3.q, 
 
     @Override
     public n2.l h0(n2.j jVar, b2.s sVar) {
-        return n2.l.f16403u;
+        return n2.l.f16430u;
     }
 
     @Override
     public Object h2() {
-        switch (this.f44272a) {
+        switch (this.f44300a) {
             case 8:
                 return new LinkedHashSet();
             default:
@@ -468,7 +468,7 @@ public final class b implements androidx.car.app.messaging.model.b, bg.a, c3.q, 
     }
 
     public b(j7.a aVar) {
-        this.f44272a = 11;
+        this.f44300a = 11;
     }
 
     @Override

@@ -6,10 +6,10 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 public abstract class k {
-    public static final int f15967a = 0;
+    public static final int f15994a = 0;
 
     static {
-        int i10 = e9.m0.f8975c;
+        int i10 = e9.m0.f9003c;
         Object[] objArr = new Object[32];
         objArr[0] = "android.media.metadata.TITLE";
         objArr[1] = "android.media.metadata.ARTIST";
@@ -46,30 +46,30 @@ public abstract class k {
         Long l4;
         bb.a aVar = new bb.a();
         aVar.e("android.media.metadata.MEDIA_ID", str);
-        CharSequence charSequence = n0Var.f2196a;
+        CharSequence charSequence = n0Var.f2223a;
         Bundle bundle = n0Var.I;
-        Integer num = n0Var.f2209p;
-        Uri uri2 = n0Var.f2206m;
+        Integer num = n0Var.f2236p;
+        Uri uri2 = n0Var.f2233m;
         if (charSequence != null) {
             aVar.f(charSequence, "android.media.metadata.TITLE");
         }
-        CharSequence charSequence2 = n0Var.f2199e;
+        CharSequence charSequence2 = n0Var.f2226e;
         if (charSequence2 != null) {
             aVar.f(charSequence2, "android.media.metadata.DISPLAY_TITLE");
         }
-        CharSequence charSequence3 = n0Var.f2200f;
+        CharSequence charSequence3 = n0Var.f2227f;
         if (charSequence3 != null) {
             aVar.f(charSequence3, "android.media.metadata.DISPLAY_SUBTITLE");
         }
-        CharSequence charSequence4 = n0Var.f2201g;
+        CharSequence charSequence4 = n0Var.f2228g;
         if (charSequence4 != null) {
             aVar.f(charSequence4, "android.media.metadata.DISPLAY_DESCRIPTION");
         }
-        CharSequence charSequence5 = n0Var.f2197b;
+        CharSequence charSequence5 = n0Var.f2224b;
         if (charSequence5 != null) {
             aVar.f(charSequence5, "android.media.metadata.ARTIST");
         }
-        CharSequence charSequence6 = n0Var.f2198c;
+        CharSequence charSequence6 = n0Var.f2225c;
         if (charSequence6 != null) {
             aVar.f(charSequence6, "android.media.metadata.ALBUM");
         }
@@ -77,7 +77,7 @@ public abstract class k {
         if (charSequence7 != null) {
             aVar.f(charSequence7, "android.media.metadata.ALBUM_ARTIST");
         }
-        Integer num2 = n0Var.f2213t;
+        Integer num2 = n0Var.f2240t;
         if (num2 != null) {
             aVar.c(num2.intValue(), "android.media.metadata.YEAR");
         }
@@ -103,11 +103,11 @@ public abstract class k {
             j3 = -1;
         }
         aVar.c(j3, "android.media.metadata.DURATION");
-        n4.i0 d = d(n0Var.f2202i);
+        n4.i0 d = d(n0Var.f2229i);
         if (d != null) {
             aVar.d("android.media.metadata.USER_RATING", d);
         }
-        n4.i0 d10 = d(n0Var.f2203j);
+        n4.i0 d10 = d(n0Var.f2230j);
         if (d10 != null) {
             aVar.d("android.media.metadata.RATING", d10);
         }
@@ -127,13 +127,13 @@ public abstract class k {
                 }
             }
         }
-        return new n4.m(aVar.f2531a);
+        return new n4.m(aVar.f2558a);
     }
 
     public static b2.c1 c(n4.i0 i0Var) {
         if (i0Var != null) {
-            float f7 = i0Var.f16453b;
-            int i10 = i0Var.f16452a;
+            float f7 = i0Var.f16480b;
+            int i10 = i0Var.f16479a;
             boolean z10 = true;
             switch (i10) {
                 case 1:
@@ -198,21 +198,21 @@ public abstract class k {
             float f10 = 0.0f;
             switch (f7) {
                 case 1:
-                    if (((b2.u) c1Var).f2390c) {
+                    if (((b2.u) c1Var).f2417c) {
                         f10 = 1.0f;
                     }
                     return new n4.i0(1, f10);
                 case 2:
-                    if (((b2.f1) c1Var).f2040c) {
+                    if (((b2.f1) c1Var).f2067c) {
                         f10 = 1.0f;
                     }
                     return new n4.i0(2, f10);
                 case 3:
                 case 4:
                 case 5:
-                    return n4.i0.d(((b2.d1) c1Var).f1997c, f7);
+                    return n4.i0.d(((b2.d1) c1Var).f2024c, f7);
                 case 6:
-                    return n4.i0.c(((b2.t0) c1Var).f2386b);
+                    return n4.i0.c(((b2.t0) c1Var).f2413b);
             }
         }
         return null;
@@ -225,11 +225,11 @@ public abstract class k {
         } else {
             nVar = new mg.n(1);
         }
-        AudioAttributes.Builder builder = (AudioAttributes.Builder) nVar.f16292b;
-        builder.setContentType(eVar.f2004a);
-        builder.setFlags(eVar.f2005b);
-        nVar.z(eVar.f2006c);
-        AudioAttributes audioAttributes = nVar.d().f16424a;
+        AudioAttributes.Builder builder = (AudioAttributes.Builder) nVar.f16319b;
+        builder.setContentType(eVar.f2031a);
+        builder.setFlags(eVar.f2032b);
+        nVar.z(eVar.f2033c);
+        AudioAttributes audioAttributes = nVar.d().f16451a;
         audioAttributes.getClass();
         int flags = audioAttributes.getFlags();
         int usage = audioAttributes.getUsage();
@@ -272,7 +272,7 @@ public abstract class k {
             return 2;
         }
         if (c1Var instanceof b2.d1) {
-            int i10 = ((b2.d1) c1Var).f1996b;
+            int i10 = ((b2.d1) c1Var).f2023b;
             int i11 = 3;
             if (i10 != 3) {
                 i11 = 4;

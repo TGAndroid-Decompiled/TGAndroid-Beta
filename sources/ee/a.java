@@ -14,27 +14,27 @@ import zd.f1;
 import zd.g2;
 import zd.w0;
 public abstract class a {
-    public static final d9.f f9060a = new d9.f("NO_DECISION", 1);
-    public static final d9.f f9061b = new d9.f("CLOSED", 1);
-    public static final d9.f f9062c = new d9.f("UNDEFINED", 1);
+    public static final d9.f f9088a = new d9.f("NO_DECISION", 1);
+    public static final d9.f f9089b = new d9.f("CLOSED", 1);
+    public static final d9.f f9090c = new d9.f("UNDEFINED", 1);
     public static final d9.f d = new d9.f("REUSABLE_CLAIMED", 1);
-    public static final d9.f f9063e = new d9.f("CONDITION_FALSE", 1);
-    public static final d9.f f9064f = new d9.f("NO_THREAD_ELEMENTS", 1);
+    public static final d9.f f9091e = new d9.f("CONDITION_FALSE", 1);
+    public static final d9.f f9092f = new d9.f("NO_THREAD_ELEMENTS", 1);
 
     public static final Object a(t tVar, long j3, rd.p pVar) {
         while (true) {
-            if (tVar.f9092c >= j3 && !tVar.d()) {
+            if (tVar.f9120c >= j3 && !tVar.d()) {
                 return tVar;
             }
-            AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = d.f9067a;
+            AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = d.f9095a;
             Object obj = atomicReferenceFieldUpdater.get(tVar);
-            d9.f fVar = f9061b;
+            d9.f fVar = f9089b;
             if (obj == fVar) {
                 return fVar;
             }
             t tVar2 = (t) ((d) obj);
             if (tVar2 == null) {
-                tVar2 = (t) pVar.invoke(Long.valueOf(tVar.f9092c + 1), tVar);
+                tVar2 = (t) pVar.invoke(Long.valueOf(tVar.f9120c + 1), tVar);
                 while (!atomicReferenceFieldUpdater.compareAndSet(tVar, null, tVar2)) {
                     if (atomicReferenceFieldUpdater.get(tVar) != null) {
                         break;
@@ -49,7 +49,7 @@ public abstract class a {
     }
 
     public static final t b(Object obj) {
-        if (obj != f9061b) {
+        if (obj != f9089b) {
             return (t) obj;
         }
         throw new IllegalStateException("Does not contain segment");
@@ -57,7 +57,7 @@ public abstract class a {
 
     public static final void c(id.h hVar, Throwable th2) {
         Throwable runtimeException;
-        for (ae.b bVar : f.f9070a) {
+        for (ae.b bVar : f.f9098a) {
             try {
                 bVar.c(th2);
             } catch (Throwable th3) {
@@ -80,7 +80,7 @@ public abstract class a {
     }
 
     public static final boolean d(Object obj) {
-        if (obj == f9061b) {
+        if (obj == f9089b) {
             return true;
         }
         return false;
@@ -101,17 +101,17 @@ public abstract class a {
     }
 
     public static final void f(id.h hVar, Object obj) {
-        if (obj != f9064f) {
+        if (obj != f9092f) {
             if (obj instanceof y) {
                 y yVar = (y) obj;
-                b2[] b2VarArr = yVar.f9101b;
+                b2[] b2VarArr = yVar.f9129b;
                 int length = b2VarArr.length - 1;
                 if (length < 0) {
                     return;
                 }
                 b2 b2Var = b2VarArr[length];
                 kotlin.jvm.internal.i.b(null);
-                Object obj2 = yVar.f9100a[length];
+                Object obj2 = yVar.f9128a[length];
                 throw null;
             }
             Object fold = hVar.fold(null, w.d);
@@ -127,7 +127,7 @@ public abstract class a {
         if (cVar instanceof h) {
             h hVar = (h) cVar;
             a0 a0Var = hVar.d;
-            kd.c cVar2 = hVar.f9073e;
+            kd.c cVar2 = hVar.f9101e;
             Throwable a2 = gd.f.a(obj);
             if (a2 == null) {
                 vVar = obj;
@@ -136,26 +136,26 @@ public abstract class a {
             }
             cVar2.getContext();
             if (a0Var.e()) {
-                hVar.f9074f = vVar;
-                hVar.f51565c = 1;
+                hVar.f9102f = vVar;
+                hVar.f51596c = 1;
                 a0Var.c(cVar2.getContext(), hVar);
                 return;
             }
             w0 a10 = c2.a();
-            if (a10.f51611c >= 4294967296L) {
-                hVar.f9074f = vVar;
-                hVar.f51565c = 1;
-                hd.e eVar = a10.f51612e;
+            if (a10.f51642c >= 4294967296L) {
+                hVar.f9102f = vVar;
+                hVar.f51596c = 1;
+                hd.e eVar = a10.f51643e;
                 if (eVar == null) {
                     eVar = new hd.e();
-                    a10.f51612e = eVar;
+                    a10.f51643e = eVar;
                 }
                 eVar.addLast(hVar);
                 return;
             }
             a10.h(true);
             try {
-                f1 f1Var = (f1) cVar2.getContext().get(b0.f51522b);
+                f1 f1Var = (f1) cVar2.getContext().get(b0.f51553b);
                 if (f1Var != null && !f1Var.isActive()) {
                     CancellationException cancellationException = f1Var.getCancellationException();
                     hVar.c(vVar, cancellationException);
@@ -164,7 +164,7 @@ public abstract class a {
                     Object obj2 = hVar.h;
                     id.h context = cVar2.getContext();
                     Object k10 = k(context, obj2);
-                    if (k10 != f9064f) {
+                    if (k10 != f9092f) {
                         g2Var = e0.v(cVar2, context, k10);
                     } else {
                         g2Var = null;
@@ -203,14 +203,14 @@ public abstract class a {
 
     public static final Object k(id.h hVar, Object obj) {
         if (obj == null) {
-            obj = hVar.fold(0, w.f9095c);
+            obj = hVar.fold(0, w.f9123c);
             kotlin.jvm.internal.i.b(obj);
         }
         if (obj == 0) {
-            return f9064f;
+            return f9092f;
         }
         if (obj instanceof Integer) {
-            return hVar.fold(new y(((Number) obj).intValue(), hVar), w.f9096e);
+            return hVar.fold(new y(((Number) obj).intValue(), hVar), w.f9124e);
         }
         a4.a.y(obj);
         throw null;

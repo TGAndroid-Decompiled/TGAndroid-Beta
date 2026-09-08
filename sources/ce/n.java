@@ -3,7 +3,7 @@ package ce;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
 public final class n extends de.b implements l, b {
-    public static final AtomicReferenceFieldUpdater f4792e = AtomicReferenceFieldUpdater.newUpdater(n.class, Object.class, "_state$volatile");
+    public static final AtomicReferenceFieldUpdater f4819e = AtomicReferenceFieldUpdater.newUpdater(n.class, Object.class, "_state$volatile");
     private volatile Object _state$volatile;
     public int d;
 
@@ -14,12 +14,12 @@ public final class n extends de.b implements l, b {
     @Override
     public final Object a(Object obj, kd.c cVar) {
         d(obj);
-        return gd.i.f10588a;
+        return gd.i.f10616a;
     }
 
     public final Object c() {
-        Object obj = f4792e.get(this);
-        if (obj == de.e.f6798a) {
+        Object obj = f4819e.get(this);
+        if (obj == de.e.f6826a) {
             return null;
         }
         return obj;
@@ -30,10 +30,10 @@ public final class n extends de.b implements l, b {
         p[] pVarArr;
         d9.f fVar;
         if (obj == null) {
-            obj = de.e.f6798a;
+            obj = de.e.f6826a;
         }
         synchronized (this) {
-            AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = f4792e;
+            AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = f4819e;
             if (kotlin.jvm.internal.i.a(atomicReferenceFieldUpdater.get(this), obj)) {
                 return;
             }
@@ -42,16 +42,16 @@ public final class n extends de.b implements l, b {
             if ((i11 & 1) == 0) {
                 int i12 = i11 + 1;
                 this.d = i12;
-                p[] pVarArr2 = this.f6792a;
+                p[] pVarArr2 = this.f6820a;
                 while (true) {
                     if (pVarArr2 != null) {
                         for (p pVar : pVarArr2) {
                             if (pVar != null) {
-                                AtomicReference atomicReference = pVar.f4795a;
+                                AtomicReference atomicReference = pVar.f4822a;
                                 while (true) {
                                     Object obj2 = atomicReference.get();
-                                    if (obj2 != null && obj2 != (fVar = o.f4794b)) {
-                                        d9.f fVar2 = o.f4793a;
+                                    if (obj2 != null && obj2 != (fVar = o.f4821b)) {
+                                        d9.f fVar2 = o.f4820a;
                                         if (obj2 == fVar2) {
                                             while (!atomicReference.compareAndSet(obj2, fVar)) {
                                                 if (atomicReference.get() != obj2) {
@@ -64,7 +64,7 @@ public final class n extends de.b implements l, b {
                                                     break;
                                                 }
                                             }
-                                            ((zd.m) obj2).resumeWith(gd.i.f10588a);
+                                            ((zd.m) obj2).resumeWith(gd.i.f10616a);
                                             break;
                                         }
                                     }
@@ -78,7 +78,7 @@ public final class n extends de.b implements l, b {
                             this.d = i12 + 1;
                             return;
                         }
-                        pVarArr = this.f6792a;
+                        pVarArr = this.f6820a;
                     }
                     pVarArr2 = pVarArr;
                     i12 = i10;

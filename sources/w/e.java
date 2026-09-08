@@ -5,20 +5,20 @@ import java.util.ArrayDeque;
 import java.util.Arrays;
 import java.util.Iterator;
 public final class e implements AutoCloseable {
-    public final String[] f47901a;
-    public final ArrayDeque f47902b;
+    public final String[] f47929a;
+    public final ArrayDeque f47930b;
 
     public e(Object obj, String str, ArrayDeque arrayDeque) {
-        this.f47902b = arrayDeque;
+        this.f47930b = arrayDeque;
         if (obj != null) {
             arrayDeque.addFirst(new d(obj, str));
             if (Log.isLoggable("CarApp.Bun", 2)) {
                 StringBuilder sb2 = new StringBuilder();
                 int min = Math.min(arrayDeque.size(), 11);
-                if (this.f47901a == null) {
-                    this.f47901a = new String[12];
+                if (this.f47929a == null) {
+                    this.f47929a = new String[12];
                 }
-                String str2 = this.f47901a[min];
+                String str2 = this.f47929a[min];
                 if (str2 == null) {
                     char[] cArr = new char[min];
                     Arrays.fill(cArr, ' ');
@@ -28,7 +28,7 @@ public final class e implements AutoCloseable {
                     } else {
                         str2 = str3;
                     }
-                    this.f47901a[min] = str2;
+                    this.f47929a[min] = str2;
                 }
                 sb2.append(str2);
                 sb2.append(h.i(obj.getClass()) + " " + str);
@@ -39,7 +39,7 @@ public final class e implements AutoCloseable {
 
     public final String a() {
         StringBuilder sb2 = new StringBuilder();
-        ArrayDeque arrayDeque = this.f47902b;
+        ArrayDeque arrayDeque = this.f47930b;
         int min = Math.min(arrayDeque.size(), 8);
         Iterator descendingIterator = arrayDeque.descendingIterator();
         while (descendingIterator.hasNext()) {
@@ -58,6 +58,6 @@ public final class e implements AutoCloseable {
 
     @Override
     public final void close() {
-        this.f47902b.removeFirst();
+        this.f47930b.removeFirst();
     }
 }

@@ -20,6 +20,7 @@ import android.view.TextureView;
 import android.view.View;
 import androidx.fragment.app.t;
 import androidx.lifecycle.a0;
+import androidx.media3.decoder.ffmpeg.FfmpegAudioRenderer;
 import bi.gb;
 import bi.o5;
 import com.android.billingclient.api.ProxyBillingActivityV2;
@@ -79,11 +80,11 @@ import org.telegram.ui.Components.g71;
 import org.telegram.ui.kv0;
 import rg.d2;
 public final class m implements ek0, a0, kv0, androidx.activity.result.b, v0, OnSuccessListener, SuccessContinuation, p, d71, n, i1, s, a2, j0, g1, k2.n {
-    public final int f315a;
-    public Object f316b;
+    public final int f327a;
+    public Object f328b;
 
     public m(int i10, boolean z10) {
-        this.f315a = i10;
+        this.f327a = i10;
     }
 
     public static com.google.android.gms.common.api.internal.p U(Looper looper, Object obj, String str) {
@@ -94,35 +95,35 @@ public final class m implements ek0, a0, kv0, androidx.activity.result.b, v0, On
 
     @Override
     public void A(CharSequence charSequence) {
-        q3 q3Var = ((z0) this.f316b).S;
+        q3 q3Var = ((z0) this.f328b).S;
         if (q3Var != null) {
             q3Var.getClass();
             if (charSequence != null && charSequence.length() > 0) {
-                q3Var.f14129a.s4(charSequence.toString());
+                q3Var.f14155a.s4(charSequence.toString());
             }
         }
     }
 
     @Override
     public void B(View view, j1 j1Var, boolean z10, boolean z11) {
-        g0 g0Var = (g0) this.f316b;
-        g0Var.f535a.ab(null, g0Var.f538e, g0Var.f536b, view, 0.0f, 0.0f, j1Var, false, z10, z11, false);
-        AndroidUtilities.runOnUIThread(new a3.c(this, 2));
+        g0 g0Var = (g0) this.f328b;
+        g0Var.f547a.ab(null, g0Var.f550e, g0Var.f548b, view, 0.0f, 0.0f, j1Var, false, z10, z11, false);
+        AndroidUtilities.runOnUIThread(new a3.d(this, 2));
     }
 
     @Override
     public void C(h1 h1Var) {
         ji.a aVar;
-        j5 j5Var = (j5) this.f316b;
-        h5 h5Var = j5Var.f13997s;
-        if (h5Var != null && (aVar = j5Var.f13749a) != null) {
-            v3 v3Var = ((a3) h5Var).f13761a;
-            ArrayList arrayList = v3Var.f14256l3;
-            long j3 = aVar.f13748t;
+        j5 j5Var = (j5) this.f328b;
+        h5 h5Var = j5Var.f14023s;
+        if (h5Var != null && (aVar = j5Var.f13775a) != null) {
+            v3 v3Var = ((a3) h5Var).f13787a;
+            ArrayList arrayList = v3Var.f14282l3;
+            long j3 = aVar.f13774t;
             if (j3 != 0) {
                 int i10 = -1;
                 for (int i11 = 0; i11 < arrayList.size(); i11++) {
-                    if (((ji.a) arrayList.get(i11)).f13739k.contains(Long.valueOf(j3))) {
+                    if (((ji.a) arrayList.get(i11)).f13765k.contains(Long.valueOf(j3))) {
                         i10 = i11;
                     }
                 }
@@ -132,8 +133,8 @@ public final class m implements ek0, a0, kv0, androidx.activity.result.b, v0, On
                         g2Var.d();
                     }
                     ji.a aVar2 = new ji.a(new TL_iv.pageBlockParagraph(), 0, 0);
-                    ArrayList arrayList2 = aVar.f13739k;
-                    ArrayList arrayList3 = aVar2.f13739k;
+                    ArrayList arrayList2 = aVar.f13765k;
+                    ArrayList arrayList3 = aVar2.f13765k;
                     arrayList3.addAll(arrayList2);
                     if (!arrayList3.isEmpty()) {
                         a4.a.x(1, arrayList3);
@@ -153,22 +154,22 @@ public final class m implements ek0, a0, kv0, androidx.activity.result.b, v0, On
 
     @Override
     public p9 D() {
-        return (z0) this.f316b;
+        return (z0) this.f328b;
     }
 
     @Override
     public void E0(MessageObject messageObject) {
-        ((gb) ((o5) this.f316b).Q1).f(true);
+        ((gb) ((o5) this.f328b).Q1).f(true);
     }
 
     @Override
     public ji.a F() {
-        return ((z0) this.f316b).f13749a;
+        return ((z0) this.f328b).f13775a;
     }
 
     @Override
     public a0.i G() {
-        switch (this.f315a) {
+        switch (this.f327a) {
             case 22:
                 return null;
             default:
@@ -178,21 +179,21 @@ public final class m implements ek0, a0, kv0, androidx.activity.result.b, v0, On
 
     @Override
     public void H(MessageObject messageObject) {
-        ((gb) ((o5) this.f316b).Q1).f(false);
+        ((gb) ((o5) this.f328b).Q1).f(false);
     }
 
     @Override
     public void K() {
-        ((androidx.media3.decoder.ffmpeg.b) this.f316b).Z = true;
+        ((FfmpegAudioRenderer) this.f328b).Z = true;
     }
 
     @Override
     public boolean L() {
-        z0 z0Var = (z0) this.f316b;
+        z0 z0Var = (z0) this.f328b;
         q3 q3Var = z0Var.S;
         if (q3Var != null) {
-            ji.a aVar = z0Var.f13749a;
-            if (q3Var.f14129a.R4()) {
+            ji.a aVar = z0Var.f13775a;
+            if (q3Var.f14155a.R4()) {
                 return true;
             }
             return false;
@@ -202,11 +203,11 @@ public final class m implements ek0, a0, kv0, androidx.activity.result.b, v0, On
 
     @Override
     public void M(int i10, int i11) {
-        z0 z0Var = (z0) this.f316b;
+        z0 z0Var = (z0) this.f328b;
         q3 q3Var = z0Var.S;
         if (q3Var != null) {
-            ji.a aVar = z0Var.f13749a;
-            g2 g2Var = q3Var.f14129a.J3;
+            ji.a aVar = z0Var.f13775a;
+            g2 g2Var = q3Var.f14155a.J3;
             if (g2Var != null) {
                 g2Var.f(i10, i11);
             }
@@ -215,13 +216,13 @@ public final class m implements ek0, a0, kv0, androidx.activity.result.b, v0, On
 
     @Override
     public void N(Editable editable) {
-        ((j5) this.f316b).h();
+        ((j5) this.f328b).h();
     }
 
     @Override
     public void O(k2.k kVar) {
-        y yVar = ((androidx.media3.decoder.ffmpeg.b) this.f316b).I;
-        Handler handler = (Handler) yVar.f16496b;
+        y yVar = ((FfmpegAudioRenderer) this.f328b).I;
+        Handler handler = (Handler) yVar.f16523b;
         if (handler != null) {
             handler.post(new k2.h(yVar, kVar, 0));
         }
@@ -229,22 +230,22 @@ public final class m implements ek0, a0, kv0, androidx.activity.result.b, v0, On
 
     @Override
     public void P() {
-        z0 z0Var = (z0) this.f316b;
+        z0 z0Var = (z0) this.f328b;
         q3 q3Var = z0Var.S;
         if (q3Var != null) {
-            ji.a aVar = z0Var.f13749a;
-            v3 v3Var = q3Var.f14129a;
+            ji.a aVar = z0Var.f13775a;
+            v3 v3Var = q3Var.f14155a;
             g2 g2Var = v3Var.J3;
             if (g2Var != null) {
                 g2Var.g();
             }
-            v3Var.f14249h3.onContentChanged();
+            v3Var.f14275h3.onContentChanged();
         }
     }
 
     @Override
     public boolean Q(int i10) {
-        switch (this.f315a) {
+        switch (this.f327a) {
             case 22:
                 return true;
             default:
@@ -264,8 +265,8 @@ public final class m implements ek0, a0, kv0, androidx.activity.result.b, v0, On
 
     @Override
     public void V(k2.k kVar) {
-        y yVar = ((androidx.media3.decoder.ffmpeg.b) this.f316b).I;
-        Handler handler = (Handler) yVar.f16496b;
+        y yVar = ((FfmpegAudioRenderer) this.f328b).I;
+        Handler handler = (Handler) yVar.f16523b;
         if (handler != null) {
             handler.post(new k2.h(yVar, kVar, 1));
         }
@@ -277,12 +278,12 @@ public final class m implements ek0, a0, kv0, androidx.activity.result.b, v0, On
 
     @Override
     public void Y(ArrayList arrayList) {
-        switch (this.f315a) {
+        switch (this.f327a) {
             case 22:
-                k1 k1Var = (k1) this.f316b;
+                k1 k1Var = (k1) this.f328b;
                 String str = k1Var.Z;
                 if (str != null) {
-                    k1Var.U(str, k1Var.f11131c0, k1Var.f11132d0, k1Var.f11129b0, k1Var.f11128a0);
+                    k1Var.U(str, k1Var.f11157c0, k1Var.f11158d0, k1Var.f11155b0, k1Var.f11154a0);
                     return;
                 }
                 return;
@@ -297,22 +298,22 @@ public final class m implements ek0, a0, kv0, androidx.activity.result.b, v0, On
 
     @Override
     public void a(h1 h1Var) {
-        switch (this.f315a) {
+        switch (this.f327a) {
             case 26:
-                q3 q3Var = ((z0) this.f316b).S;
+                q3 q3Var = ((z0) this.f328b).S;
                 if (q3Var != null) {
-                    v3 v3Var = q3Var.f14129a;
+                    v3 v3Var = q3Var.f14155a;
                     v3.L1(v3Var, h1Var);
-                    v3Var.f14249h3.v(h1Var, true);
+                    v3Var.f14275h3.v(h1Var, true);
                     return;
                 }
                 return;
             default:
-                h5 h5Var = ((j5) this.f316b).f13997s;
+                h5 h5Var = ((j5) this.f328b).f14023s;
                 if (h5Var != null) {
-                    v3 v3Var2 = ((a3) h5Var).f13761a;
+                    v3 v3Var2 = ((a3) h5Var).f13787a;
                     v3.L1(v3Var2, h1Var);
-                    v3Var2.f14249h3.v(h1Var, true);
+                    v3Var2.f14275h3.v(h1Var, true);
                     return;
                 }
                 return;
@@ -320,26 +321,26 @@ public final class m implements ek0, a0, kv0, androidx.activity.result.b, v0, On
     }
 
     public void a0() {
-        ((t) this.f316b).d.R();
+        ((t) this.f328b).d.R();
     }
 
     @Override
     public void accept(Object obj, Object obj2) {
-        switch (this.f315a) {
+        switch (this.f327a) {
             case 19:
                 q qVar = new q(1, (TaskCompletionSource) obj2);
                 g6.i iVar = (g6.i) ((g6.s) obj).u();
                 Parcel O0 = iVar.O0();
                 v.d(O0, qVar);
-                O0.writeStringArray((String[]) this.f316b);
+                O0.writeStringArray((String[]) this.f328b);
                 iVar.T0(O0, 6);
                 return;
             default:
                 i7.a aVar = new i7.a((TaskCompletionSource) obj2);
                 i7.i iVar2 = (i7.i) ((i7.c) obj).u();
-                String str = ((i7.b) this.f316b).f11882k;
+                String str = ((i7.b) this.f328b).f11908k;
                 Parcel K0 = iVar2.K0();
-                int i10 = i7.f.f11886a;
+                int i10 = i7.f.f11912a;
                 K0.writeStrongBinder(aVar);
                 K0.writeString(str);
                 iVar2.L0(K0, 2);
@@ -349,35 +350,35 @@ public final class m implements ek0, a0, kv0, androidx.activity.result.b, v0, On
 
     @Override
     public void b(long j3) {
-        y yVar = ((androidx.media3.decoder.ffmpeg.b) this.f316b).I;
-        Handler handler = (Handler) yVar.f16496b;
+        y yVar = ((FfmpegAudioRenderer) this.f328b).I;
+        Handler handler = (Handler) yVar.f16523b;
         if (handler != null) {
             handler.post(new bi.g(yVar, j3, 12));
         }
     }
 
     public void c(HashMap hashMap) {
-        if (((SparseArray) this.f316b) == null) {
-            this.f316b = new SparseArray(hashMap.size());
+        if (((SparseArray) this.f328b) == null) {
+            this.f328b = new SparseArray(hashMap.size());
         }
         for (Map.Entry entry : hashMap.entrySet()) {
-            ((SparseArray) this.f316b).put(((String) entry.getKey()).hashCode(), (String) entry.getValue());
+            ((SparseArray) this.f328b).put(((String) entry.getKey()).hashCode(), (String) entry.getValue());
         }
     }
 
     @Override
     public void c0() {
-        z0 z0Var = (z0) this.f316b;
+        z0 z0Var = (z0) this.f328b;
         q3 q3Var = z0Var.S;
         if (q3Var != null) {
-            ji.a aVar = z0Var.f13749a;
-            v3.N1(q3Var.f14129a);
+            ji.a aVar = z0Var.f13775a;
+            v3.N1(q3Var.f14155a);
         }
     }
 
     @Override
     public void d() {
-        ((androidx.media3.decoder.ffmpeg.b) this.f316b).f1679f0 = true;
+        ((FfmpegAudioRenderer) this.f328b).f1701f0 = true;
     }
 
     @Override
@@ -387,9 +388,9 @@ public final class m implements ek0, a0, kv0, androidx.activity.result.b, v0, On
 
     @Override
     public void f(int i10) {
-        switch (this.f315a) {
+        switch (this.f327a) {
             case 22:
-                ((k1) this.f316b).l();
+                ((k1) this.f328b).l();
                 return;
             default:
                 AndroidUtilities.runOnUIThread(new t0(this, 0));
@@ -404,10 +405,10 @@ public final class m implements ek0, a0, kv0, androidx.activity.result.b, v0, On
 
     @Override
     public void g() {
-        z0 z0Var = (z0) this.f316b;
+        z0 z0Var = (z0) this.f328b;
         q3 q3Var = z0Var.S;
         if (q3Var != null) {
-            v3.O1(q3Var.f14129a, z0Var.f13749a);
+            v3.O1(q3Var.f14155a, z0Var.f13775a);
         }
     }
 
@@ -418,9 +419,9 @@ public final class m implements ek0, a0, kv0, androidx.activity.result.b, v0, On
 
     @Override
     public Object h2() {
-        Class cls = (Class) this.f316b;
+        Class cls = (Class) this.f328b;
         try {
-            return fb.s.f9458a.a(cls);
+            return fb.s.f9486a.a(cls);
         } catch (Exception e7) {
             throw new RuntimeException("Unable to create instance of " + cls + ". Registering an InstanceCreator or a TypeAdapter for this type, or adding a no-args constructor may fix this problem.", e7);
         }
@@ -434,11 +435,11 @@ public final class m implements ek0, a0, kv0, androidx.activity.result.b, v0, On
     @Override
     public void j(Object obj) {
         Bundle extras;
-        ProxyBillingActivityV2 proxyBillingActivityV2 = (ProxyBillingActivityV2) this.f316b;
+        ProxyBillingActivityV2 proxyBillingActivityV2 = (ProxyBillingActivityV2) this.f328b;
         androidx.activity.result.a aVar = (androidx.activity.result.a) obj;
         proxyBillingActivityV2.getClass();
-        Intent intent = aVar.f895b;
-        int i10 = aVar.f894a;
+        Intent intent = aVar.f907b;
+        int i10 = aVar.f906a;
         if (intent == null) {
             extras = null;
         } else {
@@ -452,7 +453,7 @@ public final class m implements ek0, a0, kv0, androidx.activity.result.b, v0, On
             extras.putInt("INTERNAL_LOG_ERROR_REASON", 134);
             extras.putString("INTERNAL_LOG_ERROR_ADDITIONAL_DETAILS", "External offer flow finished with error resultCode: " + i10);
         }
-        int i11 = u.e("ProxyBillingActivityV2", intent).f4397a;
+        int i11 = u.e("ProxyBillingActivityV2", intent).f4424a;
         ResultReceiver resultReceiver = proxyBillingActivityV2.O;
         if (resultReceiver != null) {
             resultReceiver.send(i11, extras);
@@ -472,13 +473,13 @@ public final class m implements ek0, a0, kv0, androidx.activity.result.b, v0, On
 
     @Override
     public void m(k6.a aVar) {
-        x xVar = (x) this.f316b;
-        xVar.f5132o.lock();
+        x xVar = (x) this.f328b;
+        xVar.f5159o.lock();
         try {
-            xVar.f5129l = aVar;
+            xVar.f5156l = aVar;
             x.l(xVar);
         } finally {
-            xVar.f5132o.unlock();
+            xVar.f5159o.unlock();
         }
     }
 
@@ -491,16 +492,16 @@ public final class m implements ek0, a0, kv0, androidx.activity.result.b, v0, On
     public void o(h1 h1Var, int i10, int i11) {
         h5 h5Var;
         q9 textSelectionHelper;
-        j5 j5Var = (j5) this.f316b;
-        if (!j5Var.f13998w && i10 != i11 && (h5Var = j5Var.f13997s) != null && (textSelectionHelper = ((a3) h5Var).f13761a.getTextSelectionHelper()) != null) {
+        j5 j5Var = (j5) this.f328b;
+        if (!j5Var.f14024w && i10 != i11 && (h5Var = j5Var.f14023s) != null && (textSelectionHelper = ((a3) h5Var).f13787a.getTextSelectionHelper()) != null) {
             h1Var.post(new y4(this, h1Var, i11, textSelectionHelper, i10, 3));
         }
     }
 
     @Override
     public void onAudioSessionIdChanged(int i10) {
-        y yVar = ((androidx.media3.decoder.ffmpeg.b) this.f316b).I;
-        Handler handler = (Handler) yVar.f16496b;
+        y yVar = ((FfmpegAudioRenderer) this.f328b).I;
+        Handler handler = (Handler) yVar.f16523b;
         if (handler != null) {
             handler.post(new ah.g(yVar, i10, 12));
         }
@@ -512,8 +513,8 @@ public final class m implements ek0, a0, kv0, androidx.activity.result.b, v0, On
 
     @Override
     public void onSkipSilenceEnabledChanged(boolean z10) {
-        y yVar = ((androidx.media3.decoder.ffmpeg.b) this.f316b).I;
-        Handler handler = (Handler) yVar.f16496b;
+        y yVar = ((FfmpegAudioRenderer) this.f328b).I;
+        Handler handler = (Handler) yVar.f16523b;
         if (handler != null) {
             handler.post(new ah.u(8, yVar, z10));
         }
@@ -521,9 +522,9 @@ public final class m implements ek0, a0, kv0, androidx.activity.result.b, v0, On
 
     @Override
     public void onStateChanged(boolean z10, int i10) {
-        d7 d7Var = (d7) this.f316b;
+        d7 d7Var = (d7) this.f328b;
         z6 z6Var = d7Var.M;
-        g71 g71Var = d7Var.f7099x;
+        g71 g71Var = d7Var.f7127x;
         if (g71Var == null) {
             return;
         }
@@ -536,7 +537,7 @@ public final class m implements ek0, a0, kv0, androidx.activity.result.b, v0, On
 
     @Override
     public void onSuccess(Object obj) {
-        ((d6.a) this.f316b).getClass();
+        ((d6.a) this.f328b).getClass();
         v7.h5.a("com.google.android.gms.cast.MAP_CAST_STATUS_CODES_TO_CAST_REASON_CODES", (Bundle) obj);
     }
 
@@ -547,11 +548,11 @@ public final class m implements ek0, a0, kv0, androidx.activity.result.b, v0, On
 
     @Override
     public void onVideoSizeChanged(int i10, int i11, int i12, float f7) {
-        d2 d2Var = ((d7) this.f316b).f7097w;
+        d2 d2Var = ((d7) this.f328b).f7125w;
         if (d2Var != null) {
             float f10 = i10 / i11;
-            if (Math.abs(d2Var.f45168y0 - f10) >= 1.0E-4f) {
-                d2Var.f45168y0 = f10;
+            if (Math.abs(d2Var.f45196y0 - f10) >= 1.0E-4f) {
+                d2Var.f45196y0 = f10;
                 d2Var.requestLayout();
             }
         }
@@ -560,16 +561,16 @@ public final class m implements ek0, a0, kv0, androidx.activity.result.b, v0, On
     @Override
     public void p(int i10) {
         k6.a aVar;
-        x xVar = (x) this.f316b;
-        Lock lock = xVar.f5132o;
+        x xVar = (x) this.f328b;
+        Lock lock = xVar.f5159o;
         lock.lock();
         try {
-            if (!xVar.f5131n && (aVar = xVar.f5130m) != null && aVar.c()) {
-                xVar.f5131n = true;
-                xVar.f5124e.onConnectionSuspended(i10);
+            if (!xVar.f5158n && (aVar = xVar.f5157m) != null && aVar.c()) {
+                xVar.f5158n = true;
+                xVar.f5151e.onConnectionSuspended(i10);
                 lock.unlock();
             }
-            xVar.f5131n = false;
+            xVar.f5158n = false;
             x.k(xVar, i10);
             lock.unlock();
         } catch (Throwable th2) {
@@ -580,8 +581,8 @@ public final class m implements ek0, a0, kv0, androidx.activity.result.b, v0, On
 
     @Override
     public void q(int i10, long j3, long j10) {
-        y yVar = ((androidx.media3.decoder.ffmpeg.b) this.f316b).I;
-        Handler handler = (Handler) yVar.f16496b;
+        y yVar = ((FfmpegAudioRenderer) this.f328b).I;
+        Handler handler = (Handler) yVar.f16523b;
         if (handler != null) {
             handler.post(new k2.i(yVar, i10, j3, j10, 0));
         }
@@ -589,7 +590,7 @@ public final class m implements ek0, a0, kv0, androidx.activity.result.b, v0, On
 
     @Override
     public void s() {
-        ((m0) this.f316b).f7623e.invalidate();
+        ((m0) this.f328b).f7651e.invalidate();
     }
 
     @Override
@@ -602,10 +603,10 @@ public final class m implements ek0, a0, kv0, androidx.activity.result.b, v0, On
         JSONObject jSONObject;
         FileWriter fileWriter;
         Void r13 = (Void) obj;
-        da.b bVar = (da.b) this.f316b;
-        a4.m mVar = (a4.m) bVar.f6655f;
-        da.d dVar = (da.d) bVar.f6652b;
-        String str = (String) mVar.f283b;
+        da.b bVar = (da.b) this.f328b;
+        a4.m mVar = (a4.m) bVar.f6682f;
+        da.d dVar = (da.d) bVar.f6679b;
+        String str = (String) mVar.f295b;
         FileWriter fileWriter2 = null;
         try {
             HashMap i02 = a4.m.i0(dVar);
@@ -627,16 +628,16 @@ public final class m implements ek0, a0, kv0, androidx.activity.result.b, v0, On
             jSONObject = null;
         }
         if (jSONObject != null) {
-            da.a O = ((xa.c) bVar.f6653c).O(jSONObject);
-            i iVar = (i) bVar.f6654e;
-            long j3 = O.f6648c;
+            da.a O = ((xa.c) bVar.f6680c).O(jSONObject);
+            i iVar = (i) bVar.f6681e;
+            long j3 = O.f6675c;
             iVar.getClass();
             if (Log.isLoggable("FirebaseCrashlytics", 2)) {
                 Log.v("FirebaseCrashlytics", "Writing settings to cache file...", null);
             }
             try {
                 jSONObject.put("expires_at", j3);
-                fileWriter = new FileWriter((File) iVar.f312b);
+                fileWriter = new FileWriter((File) iVar.f324b);
                 try {
                     try {
                         fileWriter.write(jSONObject.toString());
@@ -646,12 +647,12 @@ public final class m implements ek0, a0, kv0, androidx.activity.result.b, v0, On
                         Log.e("FirebaseCrashlytics", "Failed to cache settings", e);
                         w9.h.c(fileWriter, "Failed to close settings writer.");
                         da.b.f("Loaded settings: ", jSONObject);
-                        String str4 = dVar.f6662f;
-                        SharedPreferences.Editor edit = ((Context) bVar.f6651a).getSharedPreferences("com.google.firebase.crashlytics", 0).edit();
+                        String str4 = dVar.f6689f;
+                        SharedPreferences.Editor edit = ((Context) bVar.f6678a).getSharedPreferences("com.google.firebase.crashlytics", 0).edit();
                         edit.putString("existing_instance_identifier", str4);
                         edit.apply();
                         ((AtomicReference) bVar.h).set(O);
-                        ((TaskCompletionSource) ((AtomicReference) bVar.f6657i).get()).trySetResult(O);
+                        ((TaskCompletionSource) ((AtomicReference) bVar.f6684i).get()).trySetResult(O);
                         return Tasks.forResult(null);
                     }
                 } catch (Throwable th2) {
@@ -670,46 +671,46 @@ public final class m implements ek0, a0, kv0, androidx.activity.result.b, v0, On
             }
             w9.h.c(fileWriter, "Failed to close settings writer.");
             da.b.f("Loaded settings: ", jSONObject);
-            String str42 = dVar.f6662f;
-            SharedPreferences.Editor edit2 = ((Context) bVar.f6651a).getSharedPreferences("com.google.firebase.crashlytics", 0).edit();
+            String str42 = dVar.f6689f;
+            SharedPreferences.Editor edit2 = ((Context) bVar.f6678a).getSharedPreferences("com.google.firebase.crashlytics", 0).edit();
             edit2.putString("existing_instance_identifier", str42);
             edit2.apply();
             ((AtomicReference) bVar.h).set(O);
-            ((TaskCompletionSource) ((AtomicReference) bVar.f6657i).get()).trySetResult(O);
+            ((TaskCompletionSource) ((AtomicReference) bVar.f6684i).get()).trySetResult(O);
         }
         return Tasks.forResult(null);
     }
 
     @Override
     public q9 u() {
-        q3 q3Var = ((z0) this.f316b).S;
+        q3 q3Var = ((z0) this.f328b).S;
         if (q3Var == null) {
             return null;
         }
-        return q3Var.f14129a.getTextSelectionHelper();
+        return q3Var.f14155a.getTextSelectionHelper();
     }
 
     @Override
     public void v(Bundle bundle) {
-        x xVar = (x) this.f316b;
-        xVar.f5132o.lock();
+        x xVar = (x) this.f328b;
+        xVar.f5159o.lock();
         try {
-            Bundle bundle2 = xVar.f5128k;
+            Bundle bundle2 = xVar.f5155k;
             if (bundle2 == null) {
-                xVar.f5128k = bundle;
+                xVar.f5155k = bundle;
             } else if (bundle != null) {
                 bundle2.putAll(bundle);
             }
-            xVar.f5129l = k6.a.f14804e;
+            xVar.f5156l = k6.a.f14830e;
             x.l(xVar);
         } finally {
-            xVar.f5132o.unlock();
+            xVar.f5159o.unlock();
         }
     }
 
     @Override
     public a0.i w() {
-        switch (this.f315a) {
+        switch (this.f327a) {
             case 22:
                 return null;
             default:
@@ -720,9 +721,9 @@ public final class m implements ek0, a0, kv0, androidx.activity.result.b, v0, On
     @Override
     public void x() {
         x2.p pVar;
-        androidx.media3.decoder.ffmpeg.b bVar = (androidx.media3.decoder.ffmpeg.b) this.f316b;
-        synchronized (bVar.f11494a) {
-            pVar = bVar.H;
+        FfmpegAudioRenderer ffmpegAudioRenderer = (FfmpegAudioRenderer) this.f328b;
+        synchronized (ffmpegAudioRenderer.f11520a) {
+            pVar = ffmpegAudioRenderer.H;
         }
         if (pVar != null) {
             pVar.h();
@@ -732,16 +733,16 @@ public final class m implements ek0, a0, kv0, androidx.activity.result.b, v0, On
     @Override
     public void z(Exception exc) {
         e2.a.f("DecoderAudioRenderer", "Audio sink error", exc);
-        y yVar = ((androidx.media3.decoder.ffmpeg.b) this.f316b).I;
-        Handler handler = (Handler) yVar.f16496b;
+        y yVar = ((FfmpegAudioRenderer) this.f328b).I;
+        Handler handler = (Handler) yVar.f16523b;
         if (handler != null) {
             handler.post(new k2.f(yVar, exc, 1));
         }
     }
 
     public m(r rVar, String[] strArr) {
-        this.f315a = 19;
-        this.f316b = strArr;
+        this.f327a = 19;
+        this.f328b = strArr;
     }
 
     @Override
@@ -749,24 +750,24 @@ public final class m implements ek0, a0, kv0, androidx.activity.result.b, v0, On
     }
 
     public m(Object obj, int i10) {
-        this.f315a = i10;
-        this.f316b = obj;
+        this.f327a = i10;
+        this.f328b = obj;
     }
 
     public m(int i10) {
-        this.f315a = i10;
+        this.f327a = i10;
         switch (i10) {
             case 10:
-                this.f316b = Collections.newSetFromMap(new WeakHashMap());
+                this.f328b = Collections.newSetFromMap(new WeakHashMap());
                 return;
             case 20:
-                this.f316b = new m(21);
+                this.f328b = new m(21);
                 return;
             case 21:
-                this.f316b = new i(fc.a.h, 20);
+                this.f328b = new i(fc.a.h, 20);
                 return;
             default:
-                this.f316b = new e2.v(10);
+                this.f328b = new e2.v(10);
                 return;
         }
     }

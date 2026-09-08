@@ -6,24 +6,24 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import v7.c9;
 public abstract class a0 extends FrameLayout implements l4 {
-    public a f13749a;
-    public final j5.b f13750b;
-    public int f13751c;
+    public a f13775a;
+    public final j5.b f13776b;
+    public int f13777c;
     public int d;
-    public int f13752e;
-    public int f13753f;
+    public int f13778e;
+    public int f13779f;
     public int h;
 
     public a0(Context context) {
         super(context);
         ?? obj = new Object();
-        obj.f13512a = Long.MIN_VALUE;
-        obj.f13513b = -1;
-        this.f13750b = obj;
+        obj.f13538a = Long.MIN_VALUE;
+        obj.f13539b = -1;
+        this.f13776b = obj;
     }
 
     public final void c(a aVar) {
-        this.f13750b.a(aVar, new fi.f(this, 22));
+        this.f13776b.a(aVar, new fi.f(this, 22));
     }
 
     public int e() {
@@ -33,27 +33,27 @@ public abstract class a0 extends FrameLayout implements l4 {
     public void f(int i10) {
         int e7;
         int i11;
-        int d = c9.d(this.f13749a);
+        int d = c9.d(this.f13775a);
         int i12 = 0;
         if (i10 <= 0 && d <= 0) {
             e7 = 0;
         } else {
             e7 = e();
         }
-        a aVar = this.f13749a;
-        if (aVar != null && aVar.f13742n) {
-            int i13 = aVar.f13740l;
+        a aVar = this.f13775a;
+        if (aVar != null && aVar.f13768n) {
+            int i13 = aVar.f13766l;
             if (i13 <= 0) {
                 i11 = 0;
             } else {
                 i11 = AndroidUtilities.dp(com.google.android.gms.internal.vision.e2.w(i13, 1, 16, 10));
             }
         } else {
-            i11 = this.f13752e;
+            i11 = this.f13778e;
         }
-        a aVar2 = this.f13749a;
-        if (aVar2 != null && aVar2.f13743o) {
-            int i14 = aVar2.f13741m;
+        a aVar2 = this.f13775a;
+        if (aVar2 != null && aVar2.f13769o) {
+            int i14 = aVar2.f13767m;
             if (i14 > 0) {
                 i12 = AndroidUtilities.dp(com.google.android.gms.internal.vision.e2.w(i14, 1, 16, 10));
             }
@@ -63,7 +63,7 @@ public abstract class a0 extends FrameLayout implements l4 {
         int i15 = i10 + e7;
         int i16 = d + e7;
         int i17 = this.d;
-        int i18 = this.f13753f;
+        int i18 = this.f13779f;
         if (LocaleController.isRTL) {
             setPadding(i17 + i16, i11, i18 + i15, i12);
         } else {
@@ -73,10 +73,10 @@ public abstract class a0 extends FrameLayout implements l4 {
 
     public final void g(int i10, int i11, int i12, int i13) {
         this.d = i10;
-        this.f13752e = i11;
-        this.f13753f = i12;
+        this.f13778e = i11;
+        this.f13779f = i12;
         this.h = i13;
-        int i14 = this.f13751c;
+        int i14 = this.f13777c;
         if (LocaleController.isRTL) {
             setPadding(i10, i11, i12 + i14, i13);
         } else {

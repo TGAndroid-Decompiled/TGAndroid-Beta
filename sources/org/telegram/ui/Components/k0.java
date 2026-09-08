@@ -11,19 +11,19 @@ import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.FileLog;
 import org.telegram.ui.LaunchActivity;
 public final class k0 implements org.telegram.ui.ActionBar.a2 {
-    public final int f27602a;
-    public final Context f27603b;
+    public final int f27629a;
+    public final Context f27630b;
 
     public k0(Context context, int i10) {
-        this.f27602a = i10;
-        this.f27603b = context;
+        this.f27629a = i10;
+        this.f27630b = context;
     }
 
     @Override
     public final void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        switch (this.f27602a) {
+        switch (this.f27629a) {
             case 0:
-                Context context = this.f27603b;
+                Context context = this.f27630b;
                 try {
                     context.startActivity(new Intent("android.settings.MANAGE_UNKNOWN_APP_SOURCES", Uri.parse("package:" + context.getPackageName())));
                     return;
@@ -32,7 +32,7 @@ public final class k0 implements org.telegram.ui.ActionBar.a2 {
                     return;
                 }
             case 1:
-                Context context2 = this.f27603b;
+                Context context2 = this.f27630b;
                 try {
                     Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
                     intent.setData(Uri.parse("package:" + ApplicationLoader.applicationContext.getPackageName()));
@@ -43,10 +43,10 @@ public final class k0 implements org.telegram.ui.ActionBar.a2 {
                     return;
                 }
             case 2:
-                of.f.s(this.f27603b, BuildVars.PLAYSTORE_APP_URL);
+                of.f.s(this.f27630b, BuildVars.PLAYSTORE_APP_URL);
                 return;
             default:
-                Context context3 = this.f27603b;
+                Context context3 = this.f27630b;
                 if (context3 != null) {
                     try {
                         if (Build.VERSION.SDK_INT >= 23) {

@@ -16,20 +16,20 @@ import org.telegram.ui.Components.q5;
 import org.telegram.ui.sk;
 import w7.x5;
 public final class z1 extends FrameLayout {
-    public final ImageView f42338a;
-    public final TextView f42339b;
-    public final sk f42340c;
+    public final ImageView f42365a;
+    public final TextView f42366b;
+    public final sk f42367c;
     public q5 d;
-    public String f42341e;
-    public boolean f42342f;
+    public String f42368e;
+    public boolean f42369f;
 
     public z1(Context context) {
         super(context);
         ImageView imageView = new ImageView(context);
-        this.f42338a = imageView;
+        this.f42365a = imageView;
         addView(imageView, x5.d(32, 32.0f, 19, 16.0f, 0.0f, 0.0f, 0.0f));
         TextView textView = new TextView(context);
-        this.f42339b = textView;
+        this.f42366b = textView;
         textView.setTextColor(j6.w0(null, j6.G6, false));
         textView.setTextSize(1, 16.0f);
         textView.setMaxLines(1);
@@ -37,8 +37,8 @@ public final class z1 extends FrameLayout {
         textView.setEllipsize(truncateAt);
         addView(textView, x5.d(-1, -2.0f, 55, 68.0f, 7.0f, 54.0f, 0.0f));
         sk skVar = new sk(this, context, 6);
-        this.f42340c = skVar;
-        skVar.setTextColor(j6.w0(null, j6.f21042y6, false));
+        this.f42367c = skVar;
+        skVar.setTextColor(j6.w0(null, j6.f21069y6, false));
         skVar.setTextSize(1, 13.0f);
         skVar.setMaxLines(1);
         skVar.setEllipsize(truncateAt);
@@ -54,8 +54,8 @@ public final class z1 extends FrameLayout {
     @Override
     public final void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
-        if (this.f42342f) {
-            canvas.drawRect(AndroidUtilities.dp(64.0f), getHeight() - 1, getWidth(), getHeight(), j6.f20785k0);
+        if (this.f42369f) {
+            canvas.drawRect(AndroidUtilities.dp(64.0f), getHeight() - 1, getWidth(), getHeight(), j6.f20812k0);
         }
     }
 

@@ -10,10 +10,10 @@ import org.telegram.ui.ActionBar.a2;
 import org.telegram.ui.ActionBar.b2;
 import rg.o2;
 public final class i implements q9.d, OnFailureListener, s5.e, pa.a, a2 {
-    public final int f45052a;
+    public final int f45080a;
 
     public i(int i10) {
-        this.f45052a = i10;
+        this.f45080a = i10;
     }
 
     @Override
@@ -37,7 +37,7 @@ public final class i implements q9.d, OnFailureListener, s5.e, pa.a, a2 {
                 } else {
                     decode = Base64.decode(string, 0);
                 }
-                a2.f372c = decode;
+                a2.f384c = decode;
                 arrayList.add(a2.f());
             }
             return arrayList;
@@ -48,7 +48,7 @@ public final class i implements q9.d, OnFailureListener, s5.e, pa.a, a2 {
 
     @Override
     public void g(b2 b2Var, int i10) {
-        switch (this.f45052a) {
+        switch (this.f45080a) {
             case 27:
                 b2Var.dismiss();
                 return;
@@ -69,10 +69,10 @@ public final class i implements q9.d, OnFailureListener, s5.e, pa.a, a2 {
 
     @Override
     public void onFailure(Exception exc) {
-        int i10 = o2.f45376r0;
+        int i10 = o2.f45404r0;
     }
 
     public i(Object obj, int i10) {
-        this.f45052a = i10;
+        this.f45080a = i10;
     }
 }

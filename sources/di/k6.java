@@ -6,16 +6,16 @@ import android.view.MotionEvent;
 import org.telegram.messenger.AndroidUtilities;
 public final class k6 extends rg.d {
     public final Paint h;
-    public long f7469n;
-    public float f7470r;
-    public float f7471s;
+    public long f7497n;
+    public float f7498r;
+    public float f7499s;
     public int v;
-    public int f7472w;
-    public final rb f7473x;
+    public int f7500w;
+    public final rb f7501x;
 
     public k6(rb rbVar, Context context, j6 j6Var) {
         super(context, j6Var);
-        this.f7473x = rbVar;
+        this.f7501x = rbVar;
         Paint paint = new Paint();
         this.h = paint;
         setWillNotDraw(false);
@@ -26,7 +26,7 @@ public final class k6 extends rg.d {
 
     @Override
     public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        if (this.f7473x.f7976m2) {
+        if (this.f7501x.f8004m2) {
             return false;
         }
         return super.dispatchTouchEvent(motionEvent);
@@ -40,7 +40,7 @@ public final class k6 extends rg.d {
     @Override
     public final void onMeasure(int i10, int i11) {
         super.onMeasure(i10, i11);
-        rb rbVar = this.f7473x;
+        rb rbVar = this.f7501x;
         k6 k6Var = rbVar.R0;
         if (rbVar.R1 <= 0) {
             rbVar.R1 = k6Var.getMeasuredWidth();

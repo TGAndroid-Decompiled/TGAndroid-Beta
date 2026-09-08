@@ -56,57 +56,57 @@ public final class m extends bb implements GiftAuctionController.OnAuctionUpdate
     public final long X;
     public final h51 Y;
     public final zh.a Z;
-    public final i f50404a0;
-    public final yf.n f50405b0;
-    public final h f50406c0;
-    public final sg.v0 f50407d0;
-    public final sg.v0 f50408e0;
-    public final sg.v0 f50409f0;
-    public final org.telegram.ui.Cells.l4 f50410g0;
-    public final q6 f50411h0;
-    public final k f50412i0;
-    public final k[] f50413j0;
-    public final FrameLayout f50414k0;
-    public GiftAuctionController.Auction f50415l0;
+    public final i f50433a0;
+    public final yf.n f50434b0;
+    public final h f50435c0;
+    public final sg.v0 f50436d0;
+    public final sg.v0 f50437e0;
+    public final sg.v0 f50438f0;
+    public final org.telegram.ui.Cells.l4 f50439g0;
+    public final q6 f50440h0;
+    public final k f50441i0;
+    public final k[] f50442j0;
+    public final FrameLayout f50443k0;
+    public GiftAuctionController.Auction f50444l0;
     public final l m0;
-    public Runnable f50416n0;
-    public long f50417o0;
-    public long f50418p0;
-    public boolean f50419q0;
-    public final nq[] f50420r0;
-    public z5 f50421s0;
-    public final le.b f50422t0;
-    public final le.b f50423u0;
-    public final nq[] f50424v0;
-    public boolean f50425w0;
-    public v51 f50426x0;
-    public boolean f50427y0;
-    public boolean f50428z0;
+    public Runnable f50445n0;
+    public long f50446o0;
+    public long f50447p0;
+    public boolean f50448q0;
+    public final nq[] f50449r0;
+    public z5 f50450s0;
+    public final le.b f50451t0;
+    public final le.b f50452u0;
+    public final nq[] f50453v0;
+    public boolean f50454w0;
+    public v51 f50455x0;
+    public boolean f50456y0;
+    public boolean f50457z0;
 
     public m(Context context, f6 f6Var, l lVar, GiftAuctionController.Auction auction) {
         super(context, null, false, false, 2, f6Var);
         int i10;
         boolean z10;
-        this.f50413j0 = new k[3];
-        this.f50419q0 = true;
-        this.f50420r0 = new nq[1];
+        this.f50442j0 = new k[3];
+        this.f50448q0 = true;
+        this.f50449r0 = new nq[1];
         f fVar = new f(this);
         pr prVar = pr.h;
-        this.f50422t0 = new le.b(0, fVar, prVar, 380L, false);
-        this.f50423u0 = new le.b(0, new f(this), prVar, 380L, false);
-        this.f50424v0 = new nq[1];
-        this.f50415l0 = auction;
+        this.f50451t0 = new le.b(0, fVar, prVar, 380L, false);
+        this.f50452u0 = new le.b(0, new f(this), prVar, 380L, false);
+        this.f50453v0 = new nq[1];
+        this.f50444l0 = auction;
         this.m0 = lVar;
         long j3 = auction.giftId;
         this.X = j3;
         this.R = true;
         this.v = 0.2f;
         GiftAuctionController.Auction subscribeToGiftAuction = GiftAuctionController.getInstance(this.currentAccount).subscribeToGiftAuction(j3, this);
-        this.f50405b0 = new yf.n(new f(this));
+        this.f50434b0 = new yf.n(new f(this));
         this.L = false;
         this.K = AndroidUtilities.dp(12.0f);
         fixNavigationBar();
-        v.S(this.f24647e, context, f6Var, subscribeToGiftAuction.gift);
+        v.S(this.f24674e, context, f6Var, subscribeToGiftAuction.gift);
         TLRPC.User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(UserConfig.getInstance(this.currentAccount).getClientUserId()));
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setOrientation(1);
@@ -115,11 +115,11 @@ public final class m extends bb implements GiftAuctionController.OnAuctionUpdate
         linearLayout.setClickable(true);
         this.Y = h51.j(-1, linearLayout);
         h hVar = new h(this, context, f6Var);
-        this.f50406c0 = hVar;
+        this.f50435c0 = hVar;
         hVar.O = true;
-        this.f50415l0.getMinimumBid();
-        this.f50415l0.getCurrentMyBid();
-        long currentTopBid = this.f50415l0.getCurrentTopBid();
+        this.f50444l0.getMinimumBid();
+        this.f50444l0.getCurrentMyBid();
+        long currentTopBid = this.f50444l0.getCurrentTopBid();
         if (currentTopBid > 100000) {
             i10 = ((((int) currentTopBid) * 3) / 2000) * 1000;
         } else if (currentTopBid > 30000) {
@@ -165,28 +165,28 @@ public final class m extends bb implements GiftAuctionController.OnAuctionUpdate
         for (int i14 = 0; i14 < arrayList.size(); i14++) {
             iArr2[i14] = ((Integer) arrayList.get(i14)).intValue();
         }
-        h hVar2 = this.f50406c0;
-        hVar2.f52158e0 = iArr2;
+        h hVar2 = this.f50435c0;
+        hVar2.f52189e0 = iArr2;
         linearLayout.addView(hVar2, x5.t(-1, -2, 0, 0, -40, 0, -48));
         LinearLayout linearLayout2 = new LinearLayout(context);
         linearLayout2.setOrientation(0);
         sg.v0 v0Var = new sg.v0(context, f6Var);
-        this.f50407d0 = v0Var;
+        this.f50436d0 = v0Var;
         int dp = AndroidUtilities.dp(12.0f);
-        int i15 = j6.f20607a7;
+        int i15 = j6.f20634a7;
         int themedColor = getThemedColor(i15);
-        int h = i0.a.h(getThemedColor(j6.f20753i6), getThemedColor(i15));
+        int h = i0.a.h(getThemedColor(j6.f20780i6), getThemedColor(i15));
         v0Var.setBackground(j6.i0(dp, dp, dp, dp, themedColor, h, h));
         v0Var.setOnClickListener(new g(this, 2));
-        ((TextView) v0Var.f46299c).setText(LocaleController.getString(R.string.Gift2AuctionBidInfoMinimumBid));
+        ((TextView) v0Var.f46327c).setText(LocaleController.getString(R.string.Gift2AuctionBidInfoMinimumBid));
         sg.v0 v0Var2 = new sg.v0(context, f6Var);
-        this.f50408e0 = v0Var2;
+        this.f50437e0 = v0Var2;
         v0Var2.setBackground(j6.b0(AndroidUtilities.dp(12.0f), getThemedColor(i15)));
-        ((TextView) v0Var2.f46299c).setText(LocaleController.getString(R.string.Gift2AuctionBidInfoUntilNextRound));
+        ((TextView) v0Var2.f46327c).setText(LocaleController.getString(R.string.Gift2AuctionBidInfoUntilNextRound));
         sg.v0 v0Var3 = new sg.v0(context, f6Var);
-        this.f50409f0 = v0Var3;
+        this.f50438f0 = v0Var3;
         v0Var3.setBackground(j6.b0(AndroidUtilities.dp(12.0f), getThemedColor(i15)));
-        ((TextView) v0Var3.f46299c).setText(LocaleController.getString(R.string.Gift2AuctionBidInfoLeft));
+        ((TextView) v0Var3.f46327c).setText(LocaleController.getString(R.string.Gift2AuctionBidInfoLeft));
         linearLayout2.addView(v0Var, x5.l(1.0f, 0, -1));
         linearLayout2.addView(new View(context), x5.l(0.0f, 10, -1));
         linearLayout2.addView(v0Var2, x5.l(1.0f, 0, -1));
@@ -209,10 +209,10 @@ public final class m extends bb implements GiftAuctionController.OnAuctionUpdate
         }
         int i17 = j6.L6;
         org.telegram.ui.Cells.l4 l4Var = new org.telegram.ui.Cells.l4(context, i17, 21, 0, 0, false, true, f6Var);
-        this.f50410g0 = l4Var;
+        this.f50439g0 = l4Var;
         linearLayout.addView(l4Var, x5.k(0.0f, 5.0f, 0.0f, 0.0f, -1, -2));
         q6 q6Var = new q6(context, false, false, false);
-        this.f50411h0 = q6Var;
+        this.f50440h0 = q6Var;
         q6Var.setTextSize(AndroidUtilities.dp(12.5f));
         q6Var.setPadding(AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(8.0f), 0);
         q6Var.setSizeableBackground(j6.Z(0, 0, 9, 9));
@@ -220,8 +220,8 @@ public final class m extends bb implements GiftAuctionController.OnAuctionUpdate
         l4Var.setOnWidthUpdateListener(new sg.p0(this, 17));
         l4Var.addView(q6Var, x5.d(-1, 17.0f, 51, 0.0f, 12.0f, 0.0f, 0.0f));
         k kVar = new k(context, f6Var);
-        this.f50412i0 = kVar;
-        kVar.f50352b.setTextColor(getThemedColor(i17));
+        this.f50441i0 = kVar;
+        kVar.f50381b.setTextColor(getThemedColor(i17));
         kVar.c(user);
         linearLayout.addView(kVar, x5.k(0.0f, 0.0f, 0.0f, -7.0f, -1, -2));
         org.telegram.ui.Cells.l4 l4Var2 = new org.telegram.ui.Cells.l4(context, i17, 21, 15, 0, false, false, f6Var);
@@ -229,27 +229,27 @@ public final class m extends bb implements GiftAuctionController.OnAuctionUpdate
         linearLayout.addView(l4Var2, x5.n(-1, -2));
         int i18 = 0;
         while (true) {
-            k[] kVarArr = this.f50413j0;
+            k[] kVarArr = this.f50442j0;
             if (i18 >= kVarArr.length) {
                 break;
             }
             kVarArr[i18] = new k(context, f6Var);
             int i19 = i18 + 1;
-            this.f50413j0[i18].b(i19, true, false);
-            this.f50413j0[i18].setBackground(j6.K0(false));
-            k kVar2 = this.f50413j0[i18];
+            this.f50442j0[i18].b(i19, true, false);
+            this.f50442j0[i18].setBackground(j6.K0(false));
+            k kVar2 = this.f50442j0[i18];
             if (i18 < 2) {
                 z10 = true;
             } else {
                 z10 = false;
             }
-            kVar2.f50355f = z10;
+            kVar2.f50384f = z10;
             kVar2.setOnClickListener(new ah.f(25));
-            linearLayout.addView(this.f50413j0[i18], x5.n(-1, -2));
+            linearLayout.addView(this.f50442j0[i18], x5.n(-1, -2));
             i18 = i19;
         }
         ?? dVar = new di.d(context, f6Var, true);
-        this.f50404a0 = dVar;
+        this.f50433a0 = dVar;
         dVar.e();
         FrameLayout.LayoutParams d = x5.d(-1, 48.0f, 80, 16.0f, 16.0f, 16.0f, 16.0f);
         int i20 = d.leftMargin;
@@ -263,9 +263,9 @@ public final class m extends bb implements GiftAuctionController.OnAuctionUpdate
         this.d.setOnItemClickListener(new n7(4));
         long j10 = subscribeToGiftAuction.auctionUserState.bid_amount;
         if (j10 > 0) {
-            this.f50406c0.setValue((int) j10);
+            this.f50435c0.setValue((int) j10);
         } else {
-            this.f50406c0.setValue((int) subscribeToGiftAuction.getMinimumBid());
+            this.f50435c0.setValue((int) subscribeToGiftAuction.getMinimumBid());
         }
         e0(false);
         this.d.setOverScrollMode(2);
@@ -280,10 +280,10 @@ public final class m extends bb implements GiftAuctionController.OnAuctionUpdate
         w7.z5.a(aVar);
         aVar.setOnClickListener(new o91(context, 1, f6Var));
         FrameLayout frameLayout = new FrameLayout(context);
-        this.f50414k0 = frameLayout;
+        this.f50443k0 = frameLayout;
         this.container.addView(frameLayout, x5.e(-1, 100, 48));
         a0();
-        this.f50426x0.N(false);
+        this.f50455x0.N(false);
     }
 
     public static void P(m mVar, long j3) {
@@ -304,7 +304,7 @@ public final class m extends bb implements GiftAuctionController.OnAuctionUpdate
             bundle.putBoolean("open_gifts", true);
             U.presentFragment(new ProfileActivity(bundle, null));
         }
-        Runnable runnable = mVar.f50416n0;
+        Runnable runnable = mVar.f50445n0;
         if (runnable != null) {
             runnable.run();
         }
@@ -312,10 +312,10 @@ public final class m extends bb implements GiftAuctionController.OnAuctionUpdate
     }
 
     public static void Q(m mVar) {
-        int value = mVar.f50406c0.getValue();
-        int minimumBid = (int) mVar.f50415l0.getMinimumBid();
+        int value = mVar.f50435c0.getValue();
+        int minimumBid = (int) mVar.f50444l0.getMinimumBid();
         if (value < minimumBid) {
-            AndroidUtilities.shakeView(mVar.f50404a0);
+            AndroidUtilities.shakeView(mVar.f50433a0);
             new yc(mVar.container, mVar.resourcesProvider).Q(R.raw.info, 36, AndroidUtilities.replaceTags(LocaleController.formatPluralString("Gift2AuctionMinimumBidIncreased", minimumBid, new Object[0]))).j();
             return;
         }
@@ -333,9 +333,9 @@ public final class m extends bb implements GiftAuctionController.OnAuctionUpdate
     public static void S(m mVar, long j3, Boolean bool, String str) {
         boolean z10;
         int i10;
-        FrameLayout frameLayout = mVar.f50414k0;
-        mVar.f50404a0.setLoading(false);
-        mVar.f50428z0 = false;
+        FrameLayout frameLayout = mVar.f50443k0;
+        mVar.f50433a0.setLoading(false);
+        mVar.f50457z0 = false;
         if (bool != null) {
             if (j3 > 0) {
                 z10 = true;
@@ -343,21 +343,21 @@ public final class m extends bb implements GiftAuctionController.OnAuctionUpdate
                 z10 = false;
             }
             mc mcVar = new mc(mVar.getContext(), mVar.resourcesProvider);
-            mcVar.f28432a.setImageResource(R.drawable.filled_gift_sell_24);
+            mcVar.f28459a.setImageResource(R.drawable.filled_gift_sell_24);
             if (z10) {
                 i10 = R.string.Gift2AuctionsBidHasBeenIncreased;
             } else {
                 i10 = R.string.Gift2AuctionsBidHasBeenPlaced;
             }
             String string = LocaleController.getString(i10);
-            TextView textView = mcVar.f28433b;
+            TextView textView = mcVar.f28460b;
             textView.setText(string);
             textView.setSingleLine(true);
             textView.setTextSize(1, 15.0f);
             textView.setMaxLines(1);
             textView.setTypeface(AndroidUtilities.bold());
-            String formatString = LocaleController.formatString(R.string.Gift2AuctionPlaceACustomBidHint, Integer.valueOf(mVar.f50415l0.gift.gifts_per_round));
-            TextView textView2 = mcVar.f28434c;
+            String formatString = LocaleController.formatString(R.string.Gift2AuctionPlaceACustomBidHint, Integer.valueOf(mVar.f50444l0.gift.gifts_per_round));
+            TextView textView2 = mcVar.f28461c;
             textView2.setText(formatString);
             textView2.setSingleLine(false);
             textView2.setMaxLines(5);
@@ -372,10 +372,10 @@ public final class m extends bb implements GiftAuctionController.OnAuctionUpdate
     }
 
     public static void T(m mVar, int i10) {
-        mVar.f50406c0.f(bi.z.b(mVar.currentAccount, i10, 3), bi.z.b(mVar.currentAccount, i10, 4), true);
-        mVar.c0(mVar.f50425w0);
-        mVar.d0(mVar.f50425w0);
-        mVar.Z(mVar.f50425w0);
+        mVar.f50435c0.f(bi.z.b(mVar.currentAccount, i10, 3), bi.z.b(mVar.currentAccount, i10, 4), true);
+        mVar.c0(mVar.f50454w0);
+        mVar.d0(mVar.f50454w0);
+        mVar.Z(mVar.f50454w0);
         mVar.W();
     }
 
@@ -389,18 +389,18 @@ public final class m extends bb implements GiftAuctionController.OnAuctionUpdate
         View[] viewArr = new View[1];
         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(context, 0, mVar.resourcesProvider);
         String string = LocaleController.getString(R.string.Gift2AuctionPlaceACustomBid);
-        org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20198a;
+        org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20225a;
         b2Var.R = string;
-        b2Var.T = LocaleController.formatString(R.string.Gift2AuctionPlaceACustomBidHint, Integer.valueOf(mVar.f50415l0.gift.gifts_per_round));
+        b2Var.T = LocaleController.formatString(R.string.Gift2AuctionPlaceACustomBidHint, Integer.valueOf(mVar.f50444l0.gift.gifts_per_round));
         b6 b6Var = new b6(context, mVar.resourcesProvider, context.getResources().getDrawable(R.drawable.star_small_inner).mutate());
         b6Var.setTextSize(1, 18.0f);
-        b6Var.setTextColor(j6.v0(j6.f20770j5, mVar.resourcesProvider));
+        b6Var.setTextColor(j6.v0(j6.f20797j5, mVar.resourcesProvider));
         b6Var.setHintColor(j6.v0(j6.Xh, mVar.resourcesProvider));
         b6Var.setHintText(LocaleController.getString(R.string.Gift2AuctionPlaceACustomBidHint2));
         b6Var.setFocusable(true);
         b6Var.setInputType(2);
         b6Var.setFilters(new InputFilter[]{new InputFilter.LengthFilter(9)});
-        b6Var.setLineColors(j6.v0(j6.f20791k6, mVar.resourcesProvider), j6.v0(j6.f20809l6, mVar.resourcesProvider), j6.v0(j6.f20880p7, mVar.resourcesProvider));
+        b6Var.setLineColors(j6.v0(j6.f20818k6, mVar.resourcesProvider), j6.v0(j6.f20836l6, mVar.resourcesProvider), j6.v0(j6.f20907p7, mVar.resourcesProvider));
         b6Var.setImeOptions(268435462);
         b6Var.setBackgroundDrawable(null);
         b6Var.hintLayoutOffset = AndroidUtilities.dp(24.0f);
@@ -411,7 +411,7 @@ public final class m extends bb implements GiftAuctionController.OnAuctionUpdate
         linearLayout.addView(b6Var, x5.k(24.0f, 0.0f, 24.0f, 10.0f, -1, -2));
         alertDialog$Builder.c();
         alertDialog$Builder.n(linearLayout);
-        b2Var.f20224a = AndroidUtilities.dp(300.0f);
+        b2Var.f20251a = AndroidUtilities.dp(300.0f);
         alertDialog$Builder.k(LocaleController.getString(R.string.Gift2AuctionPlaceABid), new sg.x(10, mVar, b6Var));
         alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), new t0.a(25));
         org.telegram.ui.ActionBar.b2[] b2VarArr = {b2Var};
@@ -424,20 +424,20 @@ public final class m extends bb implements GiftAuctionController.OnAuctionUpdate
         View d = b2VarArr[0].d(-1);
         viewArr[0] = d;
         d.setAlpha(0.6f);
-        b2VarArr[0].f20238h0 = false;
+        b2VarArr[0].f20265h0 = false;
         b6Var.setSelection(b6Var.getText().length());
     }
 
     public final void V() {
         boolean z10;
         float f7;
-        if (this.f50425w0 && !isDismissed()) {
+        if (this.f50454w0 && !isDismissed()) {
             z10 = true;
         } else {
             z10 = false;
         }
-        if (this.f50427y0 != z10) {
-            this.f50427y0 = z10;
+        if (this.f50456y0 != z10) {
+            this.f50456y0 = z10;
             zh.a aVar = this.Z;
             if (aVar != null) {
                 aVar.setEnabled(z10);
@@ -465,14 +465,14 @@ public final class m extends bb implements GiftAuctionController.OnAuctionUpdate
 
     public final void W() {
         long j3;
-        h hVar = this.f50406c0;
+        h hVar = this.f50435c0;
         int value = hVar.getValue();
         if (hVar.getProgress() > 0.99f) {
             hVar.g(LocaleController.getString(R.string.Gift2AuctionTapToBidMore));
             return;
         }
         long j10 = value;
-        TL_stars.TL_StarGiftAuctionUserState tL_StarGiftAuctionUserState = this.f50415l0.auctionUserState;
+        TL_stars.TL_StarGiftAuctionUserState tL_StarGiftAuctionUserState = this.f50444l0.auctionUserState;
         long j11 = tL_StarGiftAuctionUserState.bid_amount;
         if (j10 == j11) {
             hVar.g(LocaleController.getString(R.string.Gift2AuctionYourBid));
@@ -488,44 +488,44 @@ public final class m extends bb implements GiftAuctionController.OnAuctionUpdate
     }
 
     public final void X(int i10) {
-        if (this.f50428z0) {
+        if (this.f50457z0) {
             return;
         }
-        long j3 = this.f50415l0.auctionUserState.bid_amount;
+        long j3 = this.f50444l0.auctionUserState.bid_amount;
         long j10 = i10;
         if (j3 > 0) {
             j10 -= j3;
         }
         long j11 = j10;
-        if (s5.y(this.currentAccount, false).f52569e && s5.y(this.currentAccount, false).q(false, false, null).amount < j11) {
+        if (s5.y(this.currentAccount, false).f52600e && s5.y(this.currentAccount, false).q(false, false, null).amount < j11) {
             new k7(getContext(), this.resourcesProvider, j11, 14, null, null, 0L).show();
             return;
         }
-        this.f50428z0 = true;
-        this.f50404a0.setLoading(true);
+        this.f50457z0 = true;
+        this.f50433a0.setLoading(true);
         GiftAuctionController.getInstance(this.currentAccount).sendBid(this.X, this.m0, i10, new gi.o0(this, j3, 3));
     }
 
     public final void Y() {
         FrameLayout frameLayout;
         Drawable drawable = this.shadowDrawable;
-        if (drawable != null && this.containerView != null && (frameLayout = this.f50414k0) != null) {
+        if (drawable != null && this.containerView != null && (frameLayout = this.f50443k0) != null) {
             frameLayout.setTranslationY(Math.max(0.0f, ((this.containerView.getY() + drawable.getBounds().top) - frameLayout.getMeasuredHeight()) + AndroidUtilities.dp(10.0f)));
         }
     }
 
     public final void Z(boolean z10) {
-        long value = this.f50406c0.getValue();
-        long currentMyBid = this.f50415l0.getCurrentMyBid();
-        i iVar = this.f50404a0;
+        long value = this.f50435c0.getValue();
+        long currentMyBid = this.f50444l0.getCurrentMyBid();
+        i iVar = this.f50433a0;
         if (value == currentMyBid) {
             iVar.g(LocaleController.getString(R.string.OK), z10, true);
             iVar.setOnClickListener(new g(this, 0));
             return;
         }
-        TL_stars.TL_StarGiftAuctionUserState tL_StarGiftAuctionUserState = this.f50415l0.auctionUserState;
+        TL_stars.TL_StarGiftAuctionUserState tL_StarGiftAuctionUserState = this.f50444l0.auctionUserState;
         long j3 = tL_StarGiftAuctionUserState.bid_amount;
-        nq[] nqVarArr = this.f50424v0;
+        nq[] nqVarArr = this.f50453v0;
         if (j3 < value && !tL_StarGiftAuctionUserState.returned) {
             iVar.g(v7.V0(false, LocaleController.formatString(R.string.Gift2AuctionPlaceBidAdd, LocaleController.formatNumber(value - j3, ',')), nqVarArr), z10, true);
         } else {
@@ -535,11 +535,11 @@ public final class m extends bb implements GiftAuctionController.OnAuctionUpdate
     }
 
     public final void a0() {
-        int d = i0.a.d(this.f50422t0.f15368e, i0.a.d(this.f50423u0.f15368e, getThemedColor(j6.L6), getThemedColor(j6.f20898q7)), getThemedColor(j6.uj));
-        this.f50410g0.setTextColor(d);
-        q6 q6Var = this.f50411h0;
+        int d = i0.a.d(this.f50451t0.f15395e, i0.a.d(this.f50452u0.f15395e, getThemedColor(j6.L6), getThemedColor(j6.f20925q7)), getThemedColor(j6.uj));
+        this.f50439g0.setTextColor(d);
+        q6 q6Var = this.f50440h0;
         q6Var.setTextColor(d);
-        this.f50412i0.f50352b.setTextColor(d);
+        this.f50441i0.f50381b.setTextColor(d);
         if (j6.B1(q6Var.getSizeableBackground(), j6.l1(0.15f, d), false)) {
             q6Var.invalidate();
         }
@@ -547,7 +547,7 @@ public final class m extends bb implements GiftAuctionController.OnAuctionUpdate
 
     public final void b0(long j3, boolean z10) {
         String formatDurationNoHours;
-        q6 q6Var = (q6) this.f50408e0.f46298b;
+        q6 q6Var = (q6) this.f50437e0.f46326b;
         if (j3 >= 3600) {
             formatDurationNoHours = AndroidUtilities.formatFullDuration((int) j3);
         } else {
@@ -558,23 +558,23 @@ public final class m extends bb implements GiftAuctionController.OnAuctionUpdate
 
     public final void c0(boolean z10) {
         int i10;
-        long value = this.f50406c0.getValue();
-        int approximatedMyPlace = this.f50415l0.getApproximatedMyPlace();
-        int approximatePlaceFromStars = this.f50415l0.approximatePlaceFromStars(value);
-        long max = Math.max(value, this.f50415l0.getCurrentMyBid());
-        k kVar = this.f50412i0;
+        long value = this.f50435c0.getValue();
+        int approximatedMyPlace = this.f50444l0.getApproximatedMyPlace();
+        int approximatePlaceFromStars = this.f50444l0.approximatePlaceFromStars(value);
+        long max = Math.max(value, this.f50444l0.getCurrentMyBid());
+        k kVar = this.f50441i0;
         kVar.a(max, false);
         if (approximatedMyPlace > 0) {
             approximatePlaceFromStars = Math.min(approximatedMyPlace, approximatePlaceFromStars);
         }
         kVar.b(approximatePlaceFromStars, false, z10);
-        GiftAuctionController.Auction auction = this.f50415l0;
+        GiftAuctionController.Auction auction = this.f50444l0;
         TL_stars.TL_starGiftAuctionState tL_starGiftAuctionState = auction.auctionStateActive;
-        q6 q6Var = this.f50411h0;
-        if (tL_starGiftAuctionState != null && approximatePlaceFromStars > 0 && auction.gift.title != null && auction.getBidStatus() == GiftAuctionController.Auction.BidStatus.WINNING && !this.f50415l0.isUpcoming()) {
-            GiftAuctionController.Auction auction2 = this.f50415l0;
+        q6 q6Var = this.f50440h0;
+        if (tL_starGiftAuctionState != null && approximatePlaceFromStars > 0 && auction.gift.title != null && auction.getBidStatus() == GiftAuctionController.Auction.BidStatus.WINNING && !this.f50444l0.isUpcoming()) {
+            GiftAuctionController.Auction auction2 = this.f50444l0;
             if (auction2.auctionStateActive.last_gift_num + approximatePlaceFromStars <= auction2.gift.availability_total) {
-                q6Var.setText(this.f50415l0.gift.title + " #" + LocaleController.formatNumber(i10, ','));
+                q6Var.setText(this.f50444l0.gift.title + " #" + LocaleController.formatNumber(i10, ','));
                 return;
             }
         }
@@ -583,11 +583,11 @@ public final class m extends bb implements GiftAuctionController.OnAuctionUpdate
 
     public final void d0(boolean z10) {
         boolean z11;
-        GiftAuctionController.Auction.BidStatus bidStatus = this.f50415l0.getBidStatus();
-        long j3 = this.f50415l0.auctionUserState.bid_amount;
-        org.telegram.ui.Cells.l4 l4Var = this.f50410g0;
+        GiftAuctionController.Auction.BidStatus bidStatus = this.f50444l0.getBidStatus();
+        long j3 = this.f50444l0.auctionUserState.bid_amount;
+        org.telegram.ui.Cells.l4 l4Var = this.f50439g0;
         boolean z12 = false;
-        if (this.f50406c0.getValue() > j3) {
+        if (this.f50435c0.getValue() > j3) {
             l4Var.c(LocaleController.getString(R.string.Gift2AuctionBidStatusFuture), z10);
         } else {
             z11 = true;
@@ -602,55 +602,55 @@ public final class m extends bb implements GiftAuctionController.OnAuctionUpdate
             } else {
                 l4Var.c(LocaleController.getString(R.string.Gift2AuctionBidStatusFuture), z10);
             }
-            this.f50422t0.a(z12, z10);
-            this.f50423u0.a(z11, z10);
+            this.f50451t0.a(z12, z10);
+            this.f50452u0.a(z11, z10);
         }
         z11 = false;
-        this.f50422t0.a(z12, z10);
-        this.f50423u0.a(z11, z10);
+        this.f50451t0.a(z12, z10);
+        this.f50452u0.a(z11, z10);
     }
 
     @Override
     public final void dismiss() {
         GiftAuctionController.getInstance(this.currentAccount).unsubscribeFromGiftAuction(this.X, this);
-        this.f50405b0.b();
+        this.f50434b0.b();
         super.dismiss();
     }
 
     public final void e0(boolean z10) {
         org.telegram.ui.ActionBar.n2 R;
         int i10;
-        ((q6) this.f50407d0.f46298b).c(v7.X0(false, "⭐️" + LocaleController.formatNumberWithMillion((int) this.f50415l0.getMinimumBid(), ','), 0.78f, this.f50420r0), z10, true);
-        if (this.f50415l0.auctionStateActive != null) {
+        ((q6) this.f50436d0.f46326b).c(v7.X0(false, "⭐️" + LocaleController.formatNumberWithMillion((int) this.f50444l0.getMinimumBid(), ','), 0.78f, this.f50449r0), z10, true);
+        if (this.f50444l0.auctionStateActive != null) {
             int currentTime = ConnectionsManager.getInstance(this.currentAccount).getCurrentTime();
-            boolean isUpcoming = this.f50415l0.isUpcoming(currentTime);
-            yf.n nVar = this.f50405b0;
+            boolean isUpcoming = this.f50444l0.isUpcoming(currentTime);
+            yf.n nVar = this.f50434b0;
             if (isUpcoming) {
-                long max = Math.max(0, this.f50415l0.auctionStateActive.start_date - currentTime);
+                long max = Math.max(0, this.f50444l0.auctionStateActive.start_date - currentTime);
                 nVar.a(max);
                 b0(max, z10);
             } else {
-                long max2 = Math.max(0, this.f50415l0.auctionStateActive.next_round_at - currentTime);
+                long max2 = Math.max(0, this.f50444l0.auctionStateActive.next_round_at - currentTime);
                 nVar.a(max2);
                 b0(max2, z10);
             }
-            z5 z5Var = this.f50421s0;
-            sg.v0 v0Var = this.f50409f0;
-            if (z5Var == null && this.f50415l0.gift.sticker != null) {
-                this.f50421s0 = new z5(this.f50415l0.gift.sticker.f19875id, ((q6) v0Var.f46298b).getPaint().getFontMetricsInt());
+            z5 z5Var = this.f50450s0;
+            sg.v0 v0Var = this.f50438f0;
+            if (z5Var == null && this.f50444l0.gift.sticker != null) {
+                this.f50450s0 = new z5(this.f50444l0.gift.sticker.f19902id, ((q6) v0Var.f46326b).getPaint().getFontMetricsInt());
             }
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
-            if (this.f50421s0 != null) {
+            if (this.f50450s0 != null) {
                 spannableStringBuilder.append((CharSequence) "* ");
-                spannableStringBuilder.setSpan(this.f50421s0, 0, 1, 33);
+                spannableStringBuilder.setSpan(this.f50450s0, 0, 1, 33);
             }
-            spannableStringBuilder.append((CharSequence) LocaleController.formatNumber(this.f50415l0.auctionStateActive.gifts_left, ','));
-            ((q6) v0Var.f46298b).c(spannableStringBuilder, z10, true);
-            TextView textView = (TextView) this.f50408e0.f46299c;
-            if (this.f50415l0.isUpcoming()) {
+            spannableStringBuilder.append((CharSequence) LocaleController.formatNumber(this.f50444l0.auctionStateActive.gifts_left, ','));
+            ((q6) v0Var.f46326b).c(spannableStringBuilder, z10, true);
+            TextView textView = (TextView) this.f50437e0.f46327c;
+            if (this.f50444l0.isUpcoming()) {
                 i10 = R.string.Gift2AuctionBidInfoUntilStart;
             } else {
-                TL_stars.TL_starGiftAuctionState tL_starGiftAuctionState = this.f50415l0.auctionStateActive;
+                TL_stars.TL_starGiftAuctionState tL_starGiftAuctionState = this.f50444l0.auctionStateActive;
                 if (tL_starGiftAuctionState.current_round == tL_starGiftAuctionState.total_rounds) {
                     i10 = R.string.Gift2AuctionBidInfoUntilEndRound;
                 } else {
@@ -658,41 +658,41 @@ public final class m extends bb implements GiftAuctionController.OnAuctionUpdate
                 }
             }
             textView.setText(LocaleController.getString(i10));
-            k[] kVarArr = this.f50413j0;
-            int min = Math.min(kVarArr.length, this.f50415l0.auctionStateActive.top_bidders.size());
+            k[] kVarArr = this.f50442j0;
+            int min = Math.min(kVarArr.length, this.f50444l0.auctionStateActive.top_bidders.size());
             if (min > 0) {
                 int i11 = 0;
                 while (i11 < min) {
                     int i12 = i11 + 1;
-                    Long l4 = this.f50415l0.auctionStateActive.top_bidders.get(i11);
+                    Long l4 = this.f50444l0.auctionStateActive.top_bidders.get(i11);
                     long longValue = l4.longValue();
                     TLRPC.User user = MessagesController.getInstance(this.currentAccount).getUser(l4);
                     if (user != null) {
                         kVarArr[i11].c(user);
                     }
-                    kVarArr[i11].a(this.f50415l0.approximateBidAmountFromPlace(i12), z10);
+                    kVarArr[i11].a(this.f50444l0.approximateBidAmountFromPlace(i12), z10);
                     kVarArr[i11].setOnClickListener(new bi.o2(this, longValue, 4));
                     i11 = i12;
                 }
             }
         }
-        GiftAuctionController.Auction auction = this.f50415l0;
-        h hVar = this.f50406c0;
+        GiftAuctionController.Auction auction = this.f50444l0;
+        h hVar = this.f50435c0;
         hVar.setStarsTop(auction.approximateBidAmountFromPlace(auction.gift.gifts_per_round) + 1);
-        hVar.setTopText(LocaleController.formatPluralString("StarsReactionTopX", this.f50415l0.gift.gifts_per_round, new Object[0]));
+        hVar.setTopText(LocaleController.formatPluralString("StarsReactionTopX", this.f50444l0.gift.gifts_per_round, new Object[0]));
         c0(z10);
         d0(z10);
         Z(z10);
         W();
-        long peerDialogId = DialogObject.getPeerDialogId(this.f50415l0.auctionUserState.peer);
-        long j3 = this.f50415l0.auctionUserState.acquired_count;
-        if (this.f50418p0 < j3 && !this.f50419q0 && (R = LaunchActivity.R()) != null) {
-            long j10 = this.f50417o0;
+        long peerDialogId = DialogObject.getPeerDialogId(this.f50444l0.auctionUserState.peer);
+        long j3 = this.f50444l0.auctionUserState.acquired_count;
+        if (this.f50447p0 < j3 && !this.f50448q0 && (R = LaunchActivity.R()) != null) {
+            long j10 = this.f50446o0;
             if (j10 != 0) {
                 co R9 = co.R9(j10);
                 R9.whenFullyVisible(new og.b(R9, 1));
                 R.presentFragment(R9);
-                Runnable runnable = this.f50416n0;
+                Runnable runnable = this.f50445n0;
                 if (runnable != null) {
                     runnable.run();
                 }
@@ -700,10 +700,10 @@ public final class m extends bb implements GiftAuctionController.OnAuctionUpdate
             }
         }
         if (peerDialogId != 0) {
-            this.f50417o0 = peerDialogId;
+            this.f50446o0 = peerDialogId;
         }
-        this.f50418p0 = j3;
-        this.f50419q0 = false;
+        this.f50447p0 = j3;
+        this.f50448q0 = false;
     }
 
     @Override
@@ -715,7 +715,7 @@ public final class m extends bb implements GiftAuctionController.OnAuctionUpdate
     @Override
     public final void onDismissAnimationStart() {
         super.onDismissAnimationStart();
-        this.f50425w0 = false;
+        this.f50454w0 = false;
         V();
         qc.h(this.container);
     }
@@ -723,22 +723,22 @@ public final class m extends bb implements GiftAuctionController.OnAuctionUpdate
     @Override
     public final void onOpenAnimationEnd() {
         super.onOpenAnimationEnd();
-        this.f50425w0 = true;
+        this.f50454w0 = true;
         V();
         qc.a(this.container, new c9(16));
     }
 
     @Override
     public final void onUpdate(GiftAuctionController.Auction auction) {
-        this.f50415l0 = auction;
-        e0(this.f50425w0);
+        this.f50444l0 = auction;
+        e0(this.f50454w0);
     }
 
     @Override
     public final kl0 v(ll0 ll0Var) {
         v51 v51Var = new v51(this.d, getContext(), this.currentAccount, 0, true, new ii.a(this, 13), this.resourcesProvider);
-        this.f50426x0 = v51Var;
-        v51Var.f31135r = false;
+        this.f50455x0 = v51Var;
+        v51Var.f31162r = false;
         return v51Var;
     }
 

@@ -49,20 +49,20 @@ public class za extends FrameLayout implements NotificationCenter.NotificationCe
     public long U;
     public boolean V;
     public boolean W;
-    public final bi.i5 f23632a;
-    public final org.telegram.ui.ActionBar.j5 f23633b;
-    public final org.telegram.ui.ActionBar.j5 f23634c;
+    public final bi.i5 f23659a;
+    public final org.telegram.ui.ActionBar.j5 f23660b;
+    public final org.telegram.ui.ActionBar.j5 f23661c;
     public final ImageView d;
-    public final mp f23635e;
-    public final CheckBoxSquare f23636f;
+    public final mp f23662e;
+    public final CheckBoxSquare f23663f;
     public final ImageView h;
-    public final TextView f23637n;
-    public final TextView f23638r;
-    public Drawable f23639s;
+    public final TextView f23664n;
+    public final TextView f23665r;
+    public Drawable f23666s;
     public final org.telegram.ui.Components.o5 v;
-    public final org.telegram.ui.Components.o5 f23640w;
-    public ImageView f23641x;
-    public final org.telegram.ui.ActionBar.f6 f23642y;
+    public final org.telegram.ui.Components.o5 f23667w;
+    public ImageView f23668x;
+    public final org.telegram.ui.ActionBar.f6 f23669y;
 
     public za(Context context, int i10, int i11, boolean z10) {
         this(i10, i11, context, null, z10, false);
@@ -71,11 +71,11 @@ public class za extends FrameLayout implements NotificationCenter.NotificationCe
     public final void a(String str, boolean z10, boolean z11, boolean z12, View.OnClickListener onClickListener) {
         int v02;
         int i10;
-        TextView textView = this.f23637n;
+        TextView textView = this.f23664n;
         if (textView == null) {
             return;
         }
-        org.telegram.ui.ActionBar.f6 f6Var = this.f23642y;
+        org.telegram.ui.ActionBar.f6 f6Var = this.f23669y;
         if (z11) {
             v02 = org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.Dh, f6Var);
         } else if (z10) {
@@ -83,7 +83,7 @@ public class za extends FrameLayout implements NotificationCenter.NotificationCe
         } else if (z12 && TextUtils.isEmpty(str)) {
             v02 = org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.Oh, f6Var);
         } else {
-            v02 = org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f20816ld, f6Var);
+            v02 = org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f20843ld, f6Var);
         }
         textView.setTextColor(v02);
         if (!z10 && !z11) {
@@ -128,7 +128,7 @@ public class za extends FrameLayout implements NotificationCenter.NotificationCe
         float f12;
         float f13;
         int i13;
-        bi.i5 i5Var = this.f23632a;
+        bi.i5 i5Var = this.f23659a;
         FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) i5Var.getLayoutParams();
         float f14 = 0.0f;
         if (LocaleController.isRTL) {
@@ -144,10 +144,10 @@ public class za extends FrameLayout implements NotificationCenter.NotificationCe
         }
         layoutParams.rightMargin = AndroidUtilities.dp(f10);
         i5Var.setLayoutParams(layoutParams);
-        FrameLayout.LayoutParams layoutParams2 = (FrameLayout.LayoutParams) this.f23633b.getLayoutParams();
+        FrameLayout.LayoutParams layoutParams2 = (FrameLayout.LayoutParams) this.f23660b.getLayoutParams();
         boolean z10 = LocaleController.isRTL;
         int i14 = 0;
-        CheckBoxSquare checkBoxSquare = this.f23636f;
+        CheckBoxSquare checkBoxSquare = this.f23663f;
         if (z10) {
             if (checkBoxSquare != null) {
                 i13 = 18;
@@ -168,7 +168,7 @@ public class za extends FrameLayout implements NotificationCenter.NotificationCe
             f11 = i14 + 28;
         }
         layoutParams2.rightMargin = AndroidUtilities.dp(f11);
-        FrameLayout.LayoutParams layoutParams3 = (FrameLayout.LayoutParams) this.f23634c.getLayoutParams();
+        FrameLayout.LayoutParams layoutParams3 = (FrameLayout.LayoutParams) this.f23661c.getLayoutParams();
         float f15 = 28.0f;
         if (LocaleController.isRTL) {
             f12 = 28.0f;
@@ -180,7 +180,7 @@ public class za extends FrameLayout implements NotificationCenter.NotificationCe
             f15 = i10 + 64 + i11;
         }
         layoutParams3.rightMargin = AndroidUtilities.dp(f15);
-        mp mpVar = this.f23635e;
+        mp mpVar = this.f23662e;
         if (mpVar != null) {
             FrameLayout.LayoutParams layoutParams4 = (FrameLayout.LayoutParams) mpVar.getLayoutParams();
             if (LocaleController.isRTL) {
@@ -198,7 +198,7 @@ public class za extends FrameLayout implements NotificationCenter.NotificationCe
 
     public final void c(boolean z10, boolean z11) {
         int i10 = 0;
-        mp mpVar = this.f23635e;
+        mp mpVar = this.f23662e;
         if (mpVar != null) {
             if (mpVar.getVisibility() != 0) {
                 mpVar.setVisibility(0);
@@ -206,7 +206,7 @@ public class za extends FrameLayout implements NotificationCenter.NotificationCe
             mpVar.a(z10, z11);
             return;
         }
-        CheckBoxSquare checkBoxSquare = this.f23636f;
+        CheckBoxSquare checkBoxSquare = this.f23663f;
         if (checkBoxSquare != null) {
             if (checkBoxSquare.getVisibility() != 0) {
                 checkBoxSquare.setVisibility(0);
@@ -226,28 +226,28 @@ public class za extends FrameLayout implements NotificationCenter.NotificationCe
     @Override
     public final void didReceivedNotification(int i10, int i11, Object... objArr) {
         if (i10 == NotificationCenter.emojiLoaded) {
-            this.f23633b.invalidate();
+            this.f23660b.invalidate();
         }
     }
 
     @Override
     public final boolean drawChild(Canvas canvas, View view, long j3) {
-        if (this.V && view == this.f23632a) {
+        if (this.V && view == this.f23659a) {
             yf.p.a(canvas, org.telegram.ui.ActionBar.j6.S0, (view.getWidth() / 2.0f) + view.getX(), (view.getHeight() / 2.0f) + view.getY(), view.getHeight());
         }
         return super.drawChild(canvas, view, j3);
     }
 
     public final void e(Object obj, CharSequence charSequence, CharSequence charSequence2, boolean z10) {
-        org.telegram.ui.ActionBar.j5 j5Var = this.f23633b;
+        org.telegram.ui.ActionBar.j5 j5Var = this.f23660b;
         if (obj == null && charSequence == null && charSequence2 == null) {
             this.I = null;
             this.H = null;
             this.F = false;
             this.G = null;
             j5Var.l("", false);
-            this.f23634c.l("", false);
-            this.f23632a.setImageDrawable(null);
+            this.f23661c.l("", false);
+            this.f23659a.setImageDrawable(null);
             return;
         }
         this.I = charSequence2;
@@ -273,11 +273,11 @@ public class za extends FrameLayout implements NotificationCenter.NotificationCe
         int i10;
         String string;
         Object user;
-        boolean z11 = wk0Var.f42428e;
+        boolean z11 = wk0Var.f42455e;
         int i11 = this.P;
         if (z11) {
-            int i12 = wk0Var.f42427c;
-            if (i12 <= 0 && wk0Var.f42429f) {
+            int i12 = wk0Var.f42454c;
+            if (i12 <= 0 && wk0Var.f42456f) {
                 string = LocaleController.getString(R.string.NotificationEnabledAutomatically);
             } else if (i12 <= 0) {
                 string = LocaleController.getString(R.string.NotificationEnabled);
@@ -285,9 +285,9 @@ public class za extends FrameLayout implements NotificationCenter.NotificationCe
                 string = LocaleController.getString(R.string.NotificationDisabled);
             }
         } else {
-            boolean z12 = wk0Var.f42426b;
-            int i13 = wk0Var.f42427c;
-            int i14 = wk0Var.f42425a;
+            boolean z12 = wk0Var.f42453b;
+            int i13 = wk0Var.f42454c;
+            int i14 = wk0Var.f42452a;
             boolean z13 = true;
             if (i13 == 3 && i14 != Integer.MAX_VALUE) {
                 int currentTime = i14 - ConnectionsManager.getInstance(i11).getCurrentTime();
@@ -324,7 +324,7 @@ public class za extends FrameLayout implements NotificationCenter.NotificationCe
             if (string == null) {
                 string = LocaleController.getString(R.string.NotificationsOff);
             }
-            if (wk0Var.f42429f) {
+            if (wk0Var.f42456f) {
                 string = p6.t(string, ", Auto");
             }
         }
@@ -359,13 +359,13 @@ public class za extends FrameLayout implements NotificationCenter.NotificationCe
     }
 
     public CharSequence getName() {
-        return this.f23633b.getText();
+        return this.f23660b.getText();
     }
 
     public final void h(int i10, h51 h51Var, boolean z10) {
         CharSequence string;
         CharSequence string2;
-        long j3 = h51Var.f26605x;
+        long j3 = h51Var.f26632x;
         if (j3 > 0) {
             TLRPC.User user = MessagesController.getInstance(i10).getUser(Long.valueOf(j3));
             String publicUsername = UserObject.getPublicUsername(user);
@@ -430,7 +430,7 @@ public class za extends FrameLayout implements NotificationCenter.NotificationCe
         } else {
             i12 = 0;
         }
-        this.f23633b.setPadding(i11, 0, i12, 0);
+        this.f23660b.setPadding(i11, 0, i12, 0);
         if (z10) {
             boolean z12 = LocaleController.isRTL;
             if (z12) {
@@ -441,14 +441,14 @@ public class za extends FrameLayout implements NotificationCenter.NotificationCe
             if (z12) {
                 i10 = 0;
             }
-            this.f23634c.setPadding(i13, 0, i10, 0);
+            this.f23661c.setPadding(i13, 0, i10, 0);
         }
     }
 
     @Override
     public final void invalidate() {
         super.invalidate();
-        CheckBoxSquare checkBoxSquare = this.f23636f;
+        CheckBoxSquare checkBoxSquare = this.f23663f;
         if (checkBoxSquare != null) {
             checkBoxSquare.invalidate();
         }
@@ -462,7 +462,7 @@ public class za extends FrameLayout implements NotificationCenter.NotificationCe
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
         NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.emojiLoaded);
-        this.f23640w.a();
+        this.f23667w.a();
         this.v.a();
     }
 
@@ -470,7 +470,7 @@ public class za extends FrameLayout implements NotificationCenter.NotificationCe
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
         NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.emojiLoaded);
-        this.f23640w.b();
+        this.f23667w.b();
         this.v.b();
         this.T.g();
     }
@@ -492,35 +492,35 @@ public class za extends FrameLayout implements NotificationCenter.NotificationCe
             } else {
                 i10 = 0;
             }
-            canvas.drawLine(dp, measuredHeight, measuredWidth - i10, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.j6.f20785k0);
+            canvas.drawLine(dp, measuredHeight, measuredWidth - i10, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.j6.f20812k0);
         }
     }
 
     @Override
     public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        CheckBoxSquare checkBoxSquare = this.f23636f;
+        CheckBoxSquare checkBoxSquare = this.f23663f;
         if (checkBoxSquare != null && checkBoxSquare.getVisibility() == 0) {
             accessibilityNodeInfo.setCheckable(true);
             accessibilityNodeInfo.setChecked(checkBoxSquare.h);
             accessibilityNodeInfo.setClassName("android.widget.CheckBox");
         } else {
-            mp mpVar = this.f23635e;
+            mp mpVar = this.f23662e;
             if (mpVar != null && mpVar.getVisibility() == 0) {
                 accessibilityNodeInfo.setCheckable(true);
-                accessibilityNodeInfo.setChecked(mpVar.f28477a.f23907q);
+                accessibilityNodeInfo.setChecked(mpVar.f28504a.f23934q);
                 accessibilityNodeInfo.setClassName("android.widget.CheckBox");
             }
         }
         StringBuilder sb2 = new StringBuilder();
-        org.telegram.ui.ActionBar.j5 j5Var = this.f23633b;
+        org.telegram.ui.ActionBar.j5 j5Var = this.f23660b;
         if (j5Var != null) {
             CharSequence text = j5Var.getText();
             if (!TextUtils.isEmpty(text)) {
                 sb2.append(text);
             }
         }
-        TextView textView = this.f23637n;
+        TextView textView = this.f23664n;
         if (textView != null && textView.getVisibility() == 0) {
             CharSequence text2 = textView.getText();
             if (!TextUtils.isEmpty(text2)) {
@@ -530,7 +530,7 @@ public class za extends FrameLayout implements NotificationCenter.NotificationCe
                 sb2.append(text2);
             }
         }
-        org.telegram.ui.ActionBar.j5 j5Var2 = this.f23634c;
+        org.telegram.ui.ActionBar.j5 j5Var2 = this.f23661c;
         if (j5Var2 != null) {
             CharSequence text3 = j5Var2.getText();
             if (!TextUtils.isEmpty(text3)) {
@@ -559,7 +559,7 @@ public class za extends FrameLayout implements NotificationCenter.NotificationCe
 
     public void setAddButtonVisible(boolean z10) {
         int i10;
-        TextView textView = this.f23638r;
+        TextView textView = this.f23665r;
         if (textView == null) {
             return;
         }
@@ -588,7 +588,7 @@ public class za extends FrameLayout implements NotificationCenter.NotificationCe
         float f15;
         float f16;
         this.W = true;
-        org.telegram.ui.ActionBar.j5 j5Var = this.f23633b;
+        org.telegram.ui.ActionBar.j5 j5Var = this.f23660b;
         j5Var.setTextSize(15);
         boolean z10 = LocaleController.isRTL;
         int i14 = 3;
@@ -609,7 +609,7 @@ public class za extends FrameLayout implements NotificationCenter.NotificationCe
             f10 = 30.0f;
         }
         j5Var.setLayoutParams(w7.x5.d(-1, 20.0f, i15, f7, 10.0f, f10, 0.0f));
-        org.telegram.ui.ActionBar.j5 j5Var2 = this.f23634c;
+        org.telegram.ui.ActionBar.j5 j5Var2 = this.f23661c;
         j5Var2.setTextSize(13);
         boolean z11 = LocaleController.isRTL;
         if (z11) {
@@ -630,7 +630,7 @@ public class za extends FrameLayout implements NotificationCenter.NotificationCe
         }
         j5Var2.setLayoutParams(w7.x5.d(-1, 20.0f, i16, f11, 32.0f, f12, 0.0f));
         int dp = AndroidUtilities.dp(22.0f);
-        bi.i5 i5Var = this.f23632a;
+        bi.i5 i5Var = this.f23659a;
         i5Var.setRoundRadius(dp);
         boolean z12 = LocaleController.isRTL;
         if (z12) {
@@ -650,7 +650,7 @@ public class za extends FrameLayout implements NotificationCenter.NotificationCe
             f14 = 0.0f;
         }
         i5Var.setLayoutParams(w7.x5.d(44, 44.0f, i17, f13, 6.0f, f14, 0.0f));
-        mp mpVar = this.f23635e;
+        mp mpVar = this.f23662e;
         if (mpVar != null) {
             boolean z13 = LocaleController.isRTL;
             if (z13) {
@@ -672,7 +672,7 @@ public class za extends FrameLayout implements NotificationCenter.NotificationCe
     }
 
     public void setCheckDisabled(boolean z10) {
-        CheckBoxSquare checkBoxSquare = this.f23636f;
+        CheckBoxSquare checkBoxSquare = this.f23663f;
         if (checkBoxSquare != null) {
             checkBoxSquare.setDisabled(z10);
         }
@@ -682,29 +682,29 @@ public class za extends FrameLayout implements NotificationCenter.NotificationCe
         float f7;
         float f10;
         if (onClickListener == null) {
-            ImageView imageView = this.f23641x;
+            ImageView imageView = this.f23668x;
             if (imageView != null) {
                 removeView(imageView);
-                this.f23641x = null;
+                this.f23668x = null;
                 return;
             }
             return;
         }
-        if (this.f23641x == null) {
+        if (this.f23668x == null) {
             ImageView imageView2 = new ImageView(getContext());
-            this.f23641x = imageView2;
+            this.f23668x = imageView2;
             imageView2.setScaleType(ImageView.ScaleType.CENTER);
-            w7.z5.a(this.f23641x);
-            this.f23641x.setImageResource(R.drawable.ic_close_white);
-            ImageView imageView3 = this.f23641x;
+            w7.z5.a(this.f23668x);
+            this.f23668x.setImageResource(R.drawable.ic_close_white);
+            ImageView imageView3 = this.f23668x;
             int i10 = org.telegram.ui.ActionBar.j6.A6;
-            org.telegram.ui.ActionBar.f6 f6Var = this.f23642y;
+            org.telegram.ui.ActionBar.f6 f6Var = this.f23669y;
             imageView3.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.j6.v0(i10, f6Var), PorterDuff.Mode.SRC_IN));
-            ImageView imageView4 = this.f23641x;
-            int v02 = org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f20753i6, f6Var);
+            ImageView imageView4 = this.f23668x;
+            int v02 = org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f20780i6, f6Var);
             int i11 = 5;
             imageView4.setBackground(org.telegram.ui.ActionBar.j6.f0(v02, 5, -1));
-            ImageView imageView5 = this.f23641x;
+            ImageView imageView5 = this.f23668x;
             boolean z10 = LocaleController.isRTL;
             if (z10) {
                 i11 = 3;
@@ -722,7 +722,7 @@ public class za extends FrameLayout implements NotificationCenter.NotificationCe
             }
             addView(imageView5, w7.x5.d(30, 30.0f, i12, f7, 0.0f, f10, 0.0f));
         }
-        this.f23641x.setOnClickListener(onClickListener);
+        this.f23668x.setOnClickListener(onClickListener);
     }
 
     public void setCurrentId(int i10) {
@@ -730,7 +730,7 @@ public class za extends FrameLayout implements NotificationCenter.NotificationCe
     }
 
     public void setNameTypeface(Typeface typeface) {
-        this.f23633b.setTypeface(typeface);
+        this.f23660b.setTypeface(typeface);
     }
 
     public void setQuery(String str) {
@@ -749,10 +749,10 @@ public class za extends FrameLayout implements NotificationCenter.NotificationCe
         float f7;
         this.P = UserConfig.selectedAccount;
         this.T = new l6(this);
-        this.f23642y = f6Var;
+        this.f23669y = f6Var;
         if (z11) {
             TextView textView = new TextView(context);
-            this.f23638r = textView;
+            this.f23665r = textView;
             textView.setGravity(17);
             wl.x(org.telegram.ui.ActionBar.j6.Sh, f6Var, textView, 1, 14.0f);
             textView.setBackground(org.telegram.ui.ActionBar.y5.f(new float[]{14.0f}, org.telegram.ui.ActionBar.j6.Oh));
@@ -763,17 +763,17 @@ public class za extends FrameLayout implements NotificationCenter.NotificationCe
         } else {
             i12 = 0;
         }
-        this.Q = org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f21042y6, f6Var);
+        this.Q = org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f21069y6, f6Var);
         this.R = org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.il, f6Var);
         this.E = new org.telegram.ui.Components.i9((org.telegram.ui.ActionBar.f6) null);
         bi.i5 i5Var = new bi.i5(this, context, 3);
-        this.f23632a = i5Var;
+        this.f23659a = i5Var;
         i5Var.setRoundRadius(AndroidUtilities.dp(24.0f));
         boolean z13 = LocaleController.isRTL;
         addView(i5Var, w7.x5.d(46, 46.0f, (z13 ? 5 : 3) | 48, z13 ? 0.0f : i10 + 7, 6.0f, z13 ? i10 + 7 : 0.0f, 0.0f));
         setClipChildren(false);
         org.telegram.ui.ActionBar.j5 j5Var = new org.telegram.ui.ActionBar.j5(context);
-        this.f23633b = j5Var;
+        this.f23660b = j5Var;
         j5Var.setTextColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.G6, f6Var));
         j5Var.setTypeface(AndroidUtilities.bold());
         j5Var.setTextSize(16);
@@ -793,9 +793,9 @@ public class za extends FrameLayout implements NotificationCenter.NotificationCe
         }
         addView(j5Var, w7.x5.d(-1, 20.0f, i14, f10, 10.0f, f7, 0.0f));
         this.v = new org.telegram.ui.Components.o5(AndroidUtilities.dp(20.0f), j5Var);
-        this.f23640w = new org.telegram.ui.Components.o5(AndroidUtilities.dp(20.0f), j5Var);
+        this.f23667w = new org.telegram.ui.Components.o5(AndroidUtilities.dp(20.0f), j5Var);
         org.telegram.ui.ActionBar.j5 j5Var2 = new org.telegram.ui.ActionBar.j5(context);
-        this.f23634c = j5Var2;
+        this.f23661c = j5Var2;
         j5Var2.setTextSize(15);
         j5Var2.setGravity((LocaleController.isRTL ? 5 : 3) | 48);
         boolean z15 = LocaleController.isRTL;
@@ -804,7 +804,7 @@ public class za extends FrameLayout implements NotificationCenter.NotificationCe
         this.d = imageView;
         ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
         imageView.setScaleType(scaleType);
-        int v02 = org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f20827m6, f6Var);
+        int v02 = org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f20854m6, f6Var);
         PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
         imageView.setColorFilter(new PorterDuffColorFilter(v02, mode));
         imageView.setVisibility(8);
@@ -812,15 +812,15 @@ public class za extends FrameLayout implements NotificationCenter.NotificationCe
         addView(imageView, w7.x5.d(-2, -2.0f, (z16 ? 5 : 3) | 16, z16 ? 0.0f : 16.0f, 0.0f, z16 ? 16.0f : 0.0f, 0.0f));
         if (i11 == 2) {
             CheckBoxSquare checkBoxSquare = new CheckBoxSquare(context, null, false);
-            this.f23636f = checkBoxSquare;
+            this.f23663f = checkBoxSquare;
             boolean z17 = LocaleController.isRTL;
             addView(checkBoxSquare, w7.x5.d(18, 18.0f, (z17 ? 3 : 5) | 16, z17 ? 19.0f : 0.0f, 0.0f, z17 ? 0.0f : 19.0f, 0.0f));
         } else if (i11 == 1) {
             mp mpVar = new mp(context, 21, f6Var);
-            this.f23635e = mpVar;
+            this.f23662e = mpVar;
             mpVar.setDrawUnchecked(false);
             mpVar.setDrawBackgroundAsArc(3);
-            mpVar.b(-1, org.telegram.ui.ActionBar.j6.f20663d6, org.telegram.ui.ActionBar.j6.f20792k7);
+            mpVar.b(-1, org.telegram.ui.ActionBar.j6.f20690d6, org.telegram.ui.ActionBar.j6.f20819k7);
             boolean z18 = LocaleController.isRTL;
             addView(mpVar, w7.x5.d(24, 24.0f, (z18 ? 5 : 3) | 48, z18 ? 0.0f : i10 + 24, 36.0f, z18 ? i10 + 24 : 0.0f, 0.0f));
         } else if (i11 == 3) {
@@ -835,10 +835,10 @@ public class za extends FrameLayout implements NotificationCenter.NotificationCe
         }
         if (z10) {
             TextView textView2 = new TextView(context);
-            this.f23637n = textView2;
+            this.f23664n = textView2;
             w7.z5.b(textView2, 0.05f, 1.2f);
             textView2.setTextSize(1, 14.0f);
-            textView2.setTextColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f20983uh, f6Var));
+            textView2.setTextColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f21010uh, f6Var));
             textView2.setImportantForAccessibility(2);
             boolean z20 = LocaleController.isRTL;
             addView(textView2, w7.x5.d(-2, -2.0f, (z20 ? 3 : 5) | 48, z20 ? 23.0f : 0.0f, 10.0f, z20 ? 0.0f : 23.0f, 0.0f));

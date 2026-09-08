@@ -8,19 +8,19 @@ public final class na0 extends ll0 {
     public boolean X2;
     public boolean Y2;
     public int Z2;
-    public int f28721a3;
-    public final oa0 f28722b3;
+    public int f28748a3;
+    public final oa0 f28749b3;
 
     public na0(oa0 oa0Var, Context context, org.telegram.ui.ActionBar.f6 f6Var) {
         super(context, f6Var);
-        this.f28722b3 = oa0Var;
+        this.f28749b3 = oa0Var;
         setOnScrollListener(new ah.e0(this, 29));
         i(new ma0(this));
     }
 
     @Override
     public final void k0(int i10, int i11) {
-        oa0 oa0Var = this.f28722b3;
+        oa0 oa0Var = this.f28749b3;
         oa0Var.invalidate();
         oa0Var.b();
     }
@@ -28,22 +28,22 @@ public final class na0 extends ll0 {
     @Override
     public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
         boolean z10;
-        oa0 oa0Var = this.f28722b3;
-        hg.k1 k1Var = oa0Var.f29021f;
-        hg.q1 q1Var = oa0Var.f29020e;
-        if (!oa0Var.f29019c.f45731t ? this.Y2 || q1Var == null || q1Var.f11222e == null || !q1Var.f11223f || motionEvent.getY() >= q1Var.f11222e.getBottom() : this.Y2 || q1Var == null || q1Var.f11222e == null || !q1Var.f11223f || motionEvent.getY() <= q1Var.f11222e.getTop()) {
-            if (!this.X2 && org.telegram.ui.st.q().r(motionEvent, oa0Var.f29018b, null, this.f28224p2)) {
+        oa0 oa0Var = this.f28749b3;
+        hg.k1 k1Var = oa0Var.f29048f;
+        hg.q1 q1Var = oa0Var.f29047e;
+        if (!oa0Var.f29046c.f45759t ? this.Y2 || q1Var == null || q1Var.f11248e == null || !q1Var.f11249f || motionEvent.getY() >= q1Var.f11248e.getBottom() : this.Y2 || q1Var == null || q1Var.f11248e == null || !q1Var.f11249f || motionEvent.getY() <= q1Var.f11248e.getTop()) {
+            if (!this.X2 && org.telegram.ui.st.q().r(motionEvent, oa0Var.f29045b, null, this.f28251p2)) {
                 z10 = true;
             } else {
                 z10 = false;
             }
             if (((k1Var.N() && motionEvent.getAction() == 0) || motionEvent.getAction() == 2) && k1Var.N()) {
-                if (k1Var.f11144n0 == null) {
-                    hg.g1 g1Var = new hg.g1(k1Var, k1Var.f11135f, k1Var.f11143n, k1Var.f11148r, 0);
-                    k1Var.f11144n0 = g1Var;
+                if (k1Var.f11170n0 == null) {
+                    hg.g1 g1Var = new hg.g1(k1Var, k1Var.f11161f, k1Var.f11169n, k1Var.f11174r, 0);
+                    k1Var.f11170n0 = g1Var;
                     g1Var.a();
                 }
-                k1Var.f11144n0.b();
+                k1Var.f11170n0.b();
             }
             if (super.onInterceptTouchEvent(motionEvent) || z10) {
                 return true;
@@ -59,7 +59,7 @@ public final class na0 extends ll0 {
         int i15;
         int i16 = i12 - i10;
         int i17 = i13 - i11;
-        oa0 oa0Var = this.f28722b3;
+        oa0 oa0Var = this.f28749b3;
         boolean g10 = oa0Var.g();
         s4.c0 currentLayoutManager = oa0Var.getCurrentLayoutManager();
         if (g10) {
@@ -73,7 +73,7 @@ public final class na0 extends ll0 {
             if (g10) {
                 i15 = 0;
             } else {
-                i15 = this.f28721a3 - i17;
+                i15 = this.f28748a3 - i17;
             }
             i14 = top - i15;
         } else {
@@ -86,24 +86,24 @@ public final class na0 extends ll0 {
             super.onLayout(false, i10, i11, i12, i13);
             oa0Var.G = false;
             oa0Var.H = false;
-        } else if (N0 != -1 && i16 == this.Z2 && i17 - this.f28721a3 != 0) {
+        } else if (N0 != -1 && i16 == this.Z2 && i17 - this.f28748a3 != 0) {
             oa0Var.G = true;
             currentLayoutManager.i1(N0, i14, false);
             super.onLayout(false, i10, i11, i12, i13);
             oa0Var.G = false;
         }
-        this.f28721a3 = i17;
+        this.f28748a3 = i17;
         this.Z2 = i16;
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
         int size = View.MeasureSpec.getSize(i11);
-        oa0 oa0Var = this.f28722b3;
-        hg.q1 q1Var = oa0Var.f29020e;
+        oa0 oa0Var = this.f28749b3;
+        hg.q1 q1Var = oa0Var.f29047e;
         if (q1Var != null) {
             q1Var.d = Integer.valueOf(size);
-            di.eb ebVar = q1Var.f11222e;
+            di.eb ebVar = q1Var.f11248e;
             if (ebVar != null) {
                 ebVar.requestLayout();
             }
@@ -115,13 +115,13 @@ public final class na0 extends ll0 {
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        oa0 oa0Var = this.f28722b3;
-        hg.q1 q1Var = oa0Var.f29020e;
-        if (oa0Var.f29019c.f45731t) {
-            if (!this.Y2 && q1Var != null && q1Var.f11222e != null && q1Var.f11223f && motionEvent.getY() > q1Var.f11222e.getTop()) {
+        oa0 oa0Var = this.f28749b3;
+        hg.q1 q1Var = oa0Var.f29047e;
+        if (oa0Var.f29046c.f45759t) {
+            if (!this.Y2 && q1Var != null && q1Var.f11248e != null && q1Var.f11249f && motionEvent.getY() > q1Var.f11248e.getTop()) {
                 return false;
             }
-        } else if (!this.Y2 && q1Var != null && q1Var.f11222e != null && q1Var.f11223f && motionEvent.getY() < q1Var.f11222e.getBottom()) {
+        } else if (!this.Y2 && q1Var != null && q1Var.f11248e != null && q1Var.f11249f && motionEvent.getY() < q1Var.f11248e.getBottom()) {
             return false;
         }
         return super.onTouchEvent(motionEvent);
@@ -129,7 +129,7 @@ public final class na0 extends ll0 {
 
     @Override
     public final void requestLayout() {
-        if (this.f28722b3.G) {
+        if (this.f28749b3.G) {
             return;
         }
         super.requestLayout();
@@ -138,7 +138,7 @@ public final class na0 extends ll0 {
     @Override
     public void setTranslationY(float f7) {
         super.setTranslationY(f7);
-        oa0 oa0Var = this.f28722b3;
+        oa0 oa0Var = this.f28749b3;
         oa0Var.invalidate();
         oa0Var.b();
     }

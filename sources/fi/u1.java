@@ -49,17 +49,17 @@ import org.telegram.ui.oy;
 import org.telegram.ui.uy;
 import w7.x5;
 public final class u1 implements oy, org.telegram.ui.ActionBar.a2, ResultCallback {
-    public final int f9991a = 1;
-    public final int f9992b;
-    public final long f9993c;
+    public final int f10019a = 1;
+    public final int f10020b;
+    public final long f10021c;
     public final Object d;
-    public final Object f9994e;
+    public final Object f10022e;
 
     public u1(int i10, long j3, TLRPC.TL_attachMenuBot tL_attachMenuBot, Runnable runnable) {
-        this.f9992b = i10;
-        this.f9993c = j3;
+        this.f10020b = i10;
+        this.f10021c = j3;
         this.d = tL_attachMenuBot;
-        this.f9994e = runnable;
+        this.f10022e = runnable;
     }
 
     @Override
@@ -74,10 +74,10 @@ public final class u1 implements oy, org.telegram.ui.ActionBar.a2, ResultCallbac
 
     @Override
     public void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        int i11 = this.f9991a;
-        Object obj = this.f9994e;
-        int i12 = this.f9992b;
-        long j3 = this.f9993c;
+        int i11 = this.f10019a;
+        Object obj = this.f10022e;
+        int i12 = this.f10020b;
+        long j3 = this.f10021c;
         Object obj2 = this.d;
         switch (i11) {
             case 1:
@@ -155,13 +155,13 @@ public final class u1 implements oy, org.telegram.ui.ActionBar.a2, ResultCallbac
     public void onComplete(Object obj) {
         int i10;
         t11 t11Var = (t11) this.d;
-        kp kpVar = (kp) this.f9994e;
+        kp kpVar = (kp) this.f10022e;
         Pair pair = (Pair) obj;
-        if (pair != null && ((Long) pair.first).longValue() == this.f9993c) {
-            Drawable drawable = kpVar.f27883b;
+        if (pair != null && ((Long) pair.first).longValue() == this.f10021c) {
+            Drawable drawable = kpVar.f27910b;
             if (drawable instanceof dc0) {
                 dc0 dc0Var = (dc0) drawable;
-                if (this.f9992b >= 0) {
+                if (this.f10020b >= 0) {
                     i10 = 100;
                 } else {
                     i10 = -100;
@@ -190,19 +190,19 @@ public final class u1 implements oy, org.telegram.ui.ActionBar.a2, ResultCallbac
         int i13;
         int i14;
         uy uyVar2 = (uy) this.d;
-        final TL_bots.botVerifierSettings botverifiersettings = (TL_bots.botVerifierSettings) this.f9994e;
+        final TL_bots.botVerifierSettings botverifiersettings = (TL_bots.botVerifierSettings) this.f10022e;
         if (arrayList.isEmpty()) {
             return false;
         }
         final long j3 = ((MessagesStorage.TopicKey) arrayList.get(0)).dialogId;
         Activity parentActivity = uyVar2.getParentActivity();
-        final int i15 = this.f9992b;
+        final int i15 = this.f10020b;
         v1 v1Var = new v1(eg1Var, uyVar2, j3, i15);
         if (parentActivity == null) {
             return true;
         }
         MessagesController messagesController = MessagesController.getInstance(i15);
-        final long j10 = this.f9993c;
+        final long j10 = this.f10021c;
         messagesController.getUser(Long.valueOf(j10));
         int i16 = (j3 > 0L ? 1 : (j3 == 0L ? 0 : -1));
         if (i16 >= 0) {
@@ -243,7 +243,7 @@ public final class u1 implements oy, org.telegram.ui.ActionBar.a2, ResultCallbac
         f7.setClipChildren(false);
         f7.setClipToPadding(false);
         FrameLayout frameLayout = new FrameLayout(activity);
-        frameLayout.setBackground(j6.c0(AndroidUtilities.dp(28.0f), AndroidUtilities.dp(28.0f), j6.w0(null, j6.f20656ci, false)));
+        frameLayout.setBackground(j6.c0(AndroidUtilities.dp(28.0f), AndroidUtilities.dp(28.0f), j6.w0(null, j6.f20683ci, false)));
         x9 x9Var = new x9(activity);
         x9Var.setRoundRadius(AndroidUtilities.dp(28.0f));
         i9 i9Var = new i9((f6) null);
@@ -251,12 +251,12 @@ public final class u1 implements oy, org.telegram.ui.ActionBar.a2, ResultCallbac
         x9Var.e(user2, i9Var);
         frameLayout.addView(x9Var, x5.e(28, 28, 51));
         x9 x9Var2 = new x9(activity);
-        x9Var2.setEmojiColorFilter(new PorterDuffColorFilter(j6.w0(null, j6.f21064z9, false), PorterDuff.Mode.SRC_IN));
+        x9Var2.setEmojiColorFilter(new PorterDuffColorFilter(j6.w0(null, j6.f21091z9, false), PorterDuff.Mode.SRC_IN));
         final v1 v1Var2 = v1Var;
         x9Var2.setAnimatedEmojiDrawable(q5.n(i15, botverifiersettings.icon, null, 3));
         frameLayout.addView(x9Var2, x5.d(20, 20.0f, 19, 34.0f, 0.0f, 0.0f, 0.0f));
         j5 j5Var = new j5(activity);
-        j5Var.setTextColor(j6.w0(null, j6.f20770j5, false));
+        j5Var.setTextColor(j6.w0(null, j6.f20797j5, false));
         j5Var.setTextSize(13);
         j5Var.setEllipsizeByGradient(true);
         j5Var.l(str2, false);
@@ -301,8 +301,8 @@ public final class u1 implements oy, org.telegram.ui.ActionBar.a2, ResultCallbac
         editTextBoldCursor.setInputType(180225);
         editTextBoldCursor.setTypeface(Typeface.DEFAULT);
         editTextBoldCursor.setSelectAllOnFocus(true);
-        editTextBoldCursor.setHighlightColor(j6.w0(null, j6.f20981uf, false));
-        editTextBoldCursor.setHandlesColor(j6.w0(null, j6.f20998vf, false));
+        editTextBoldCursor.setHighlightColor(j6.w0(null, j6.f21008uf, false));
+        editTextBoldCursor.setHandlesColor(j6.w0(null, j6.f21025vf, false));
         if (LocaleController.isRTL) {
             i12 = 5;
         } else {
@@ -387,9 +387,9 @@ public final class u1 implements oy, org.telegram.ui.ActionBar.a2, ResultCallbac
 
     public u1(EditText editText, long j3, int i10, EditText editText2) {
         this.d = editText;
-        this.f9993c = j3;
-        this.f9992b = i10;
-        this.f9994e = editText2;
+        this.f10021c = j3;
+        this.f10020b = i10;
+        this.f10022e = editText2;
     }
 
     @Override
@@ -399,15 +399,15 @@ public final class u1 implements oy, org.telegram.ui.ActionBar.a2, ResultCallbac
 
     public u1(t11 t11Var, long j3, kp kpVar, int i10) {
         this.d = t11Var;
-        this.f9993c = j3;
-        this.f9994e = kpVar;
-        this.f9992b = i10;
+        this.f10021c = j3;
+        this.f10022e = kpVar;
+        this.f10020b = i10;
     }
 
     public u1(uy uyVar, int i10, long j3, TL_bots.botVerifierSettings botverifiersettings) {
         this.d = uyVar;
-        this.f9992b = i10;
-        this.f9993c = j3;
-        this.f9994e = botverifiersettings;
+        this.f10020b = i10;
+        this.f10021c = j3;
+        this.f10022e = botverifiersettings;
     }
 }

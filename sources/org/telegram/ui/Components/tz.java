@@ -1,41 +1,41 @@
 package org.telegram.ui.Components;
 public final class tz implements Runnable {
-    public final int f30744a;
-    public final boolean f30745b;
-    public final boolean f30746c;
+    public final int f30771a;
+    public final boolean f30772b;
+    public final boolean f30773c;
     public final boolean d;
-    public final Object f30747e;
+    public final Object f30774e;
 
     public tz(Object obj, boolean z10, boolean z11, boolean z12, int i10) {
-        this.f30744a = i10;
-        this.f30747e = obj;
-        this.f30745b = z10;
-        this.f30746c = z11;
+        this.f30771a = i10;
+        this.f30774e = obj;
+        this.f30772b = z10;
+        this.f30773c = z11;
         this.d = z12;
     }
 
     @Override
     public final void run() {
-        switch (this.f30744a) {
+        switch (this.f30771a) {
             case 0:
-                vz vzVar = (vz) this.f30747e;
-                if (this.f30745b) {
+                vz vzVar = (vz) this.f30774e;
+                if (this.f30772b) {
                     zz zzVar = vzVar.J;
-                    zzVar.f33277a = true;
-                    zzVar.f33280b = true;
+                    zzVar.f33304a = true;
+                    zzVar.f33307b = true;
                 }
-                if (this.f30746c) {
-                    vzVar.f32036x = true;
+                if (this.f30773c) {
+                    vzVar.f32063x = true;
                 }
                 long currentTimeMillis = System.currentTimeMillis();
-                if (this.d || Math.abs(vzVar.f32024a0 - currentTimeMillis) > 30) {
-                    vzVar.f32024a0 = currentTimeMillis;
-                    vzVar.f32029d0.run();
+                if (this.d || Math.abs(vzVar.f32051a0 - currentTimeMillis) > 30) {
+                    vzVar.f32051a0 = currentTimeMillis;
+                    vzVar.f32056d0.run();
                     return;
                 }
                 return;
             default:
-                ((org.telegram.ui.wg0) this.f30747e).w1(this.f30745b, this.f30746c, this.d);
+                ((org.telegram.ui.wg0) this.f30774e).w1(this.f30772b, this.f30773c, this.d);
                 return;
         }
     }

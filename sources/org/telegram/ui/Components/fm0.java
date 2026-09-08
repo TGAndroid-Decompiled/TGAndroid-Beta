@@ -7,42 +7,42 @@ import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.cc1;
 public final class fm0 extends AnimatorListenerAdapter {
-    public final int f26129a;
-    public final boolean f26130b;
-    public final float f26131c;
+    public final int f26156a;
+    public final boolean f26157b;
+    public final float f26158c;
     public final KeyEvent.Callback d;
 
     public fm0(KeyEvent.Callback callback, boolean z10, float f7, int i10) {
-        this.f26129a = i10;
+        this.f26156a = i10;
         this.d = callback;
-        this.f26130b = z10;
-        this.f26131c = f7;
+        this.f26157b = z10;
+        this.f26158c = f7;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
         float f7;
-        switch (this.f26129a) {
+        switch (this.f26156a) {
             case 0:
                 im0 im0Var = (im0) this.d;
-                cc1 cc1Var = im0Var.f27171e;
-                im0Var.f27176h0 = null;
-                boolean z10 = this.f26130b;
+                cc1 cc1Var = im0Var.f27198e;
+                im0Var.f27203h0 = null;
+                boolean z10 = this.f26157b;
                 if (z10) {
                     f7 = 1.0f;
                 } else {
                     f7 = 0.0f;
                 }
-                im0Var.f27177i0 = f7;
+                im0Var.f27204i0 = f7;
                 for (int i10 = 0; i10 < cc1Var.getChildCount(); i10++) {
                     cc1Var.getChildAt(i10).invalidate();
                 }
                 cc1Var.invalidate();
                 im0Var.p();
                 if (!z10) {
-                    float childCount = im0Var.f27179k0 * cc1Var.getChildCount();
-                    float f10 = this.f26131c;
-                    float scrollX = (im0Var.getScrollX() + f10) / (im0Var.f27178j0 * cc1Var.getChildCount());
+                    float childCount = im0Var.f27206k0 * cc1Var.getChildCount();
+                    float f10 = this.f26158c;
+                    float scrollX = (im0Var.getScrollX() + f10) / (im0Var.f27205j0 * cc1Var.getChildCount());
                     float measuredWidth = (childCount - im0Var.getMeasuredWidth()) / childCount;
                     if (scrollX > measuredWidth) {
                         scrollX = measuredWidth;
@@ -52,7 +52,7 @@ public final class fm0 extends AnimatorListenerAdapter {
                     if (f11 - f10 < 0.0f) {
                         f11 = f10;
                     }
-                    im0Var.f27180l0 = (im0Var.getScrollX() + f10) - f11;
+                    im0Var.f27207l0 = (im0Var.getScrollX() + f10) - f11;
                     int i11 = (int) (f11 - f10);
                     im0Var.m0 = i11;
                     if (i11 < 0) {
@@ -65,7 +65,7 @@ public final class fm0 extends AnimatorListenerAdapter {
                         }
                         childAt.getLayoutParams().width = AndroidUtilities.dp(33.0f);
                     }
-                    im0Var.f27175g0 = false;
+                    im0Var.f27202g0 = false;
                     im0Var.getLayoutParams().height = AndroidUtilities.dp(36.0f);
                     cc1Var.requestLayout();
                     return;
@@ -73,7 +73,7 @@ public final class fm0 extends AnimatorListenerAdapter {
                 return;
             default:
                 super.onAnimationEnd(animator);
-                if (!this.f26130b) {
+                if (!this.f26157b) {
                     super/*android.app.Dialog*/.dismiss();
                     return;
                 }
@@ -83,13 +83,13 @@ public final class fm0 extends AnimatorListenerAdapter {
 
     @Override
     public void onAnimationStart(Animator animator) {
-        switch (this.f26129a) {
+        switch (this.f26156a) {
             case 1:
                 super.onAnimationStart(animator);
-                xh.l lVar = ((xh.m) this.d).f49441y;
+                xh.l lVar = ((xh.m) this.d).f49470y;
                 lVar.setVisibility(0);
-                if (this.f26130b) {
-                    float f7 = this.f26131c;
+                if (this.f26157b) {
+                    float f7 = this.f26158c;
                     lVar.setScaleX(f7);
                     lVar.setScaleY(f7);
                     return;

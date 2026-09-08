@@ -21,23 +21,23 @@ import ji.k5;
 import org.telegram.ui.Cells.l7;
 import org.telegram.ui.ai0;
 public final class s0 {
-    public boolean f43908a;
-    public final Object f43909b;
-    public final Object f43910c;
+    public boolean f43935a;
+    public final Object f43936b;
+    public final Object f43937c;
     public final Object d;
-    public final Object f43911e;
-    public final Serializable f43912f;
-    public Object f43913g;
+    public final Object f43938e;
+    public final Serializable f43939f;
+    public Object f43940g;
     public Object h;
 
     public s0(Context context, e eVar) {
-        this.f43912f = new ArrayList();
-        this.f43913g = new androidx.mediarouter.app.g(this, 8);
+        this.f43939f = new ArrayList();
+        this.f43940g = new androidx.mediarouter.app.g(this, 8);
         this.h = new l7(this, 27);
-        this.f43909b = context;
-        this.f43910c = eVar;
+        this.f43936b = context;
+        this.f43937c = eVar;
         this.d = new Handler();
-        this.f43911e = context.getPackageManager();
+        this.f43938e = context.getPackageManager();
     }
 
     public FileInputStream a(AssetManager assetManager, String str) {
@@ -46,7 +46,7 @@ public final class s0 {
         } catch (FileNotFoundException e7) {
             String message = e7.getMessage();
             if (message != null && message.contains("compressed")) {
-                ((r4.c) this.f43910c).v();
+                ((r4.c) this.f43937c).v();
                 return null;
             }
             return null;
@@ -54,16 +54,16 @@ public final class s0 {
     }
 
     public void b(int i10, Serializable serializable) {
-        ((Executor) this.f43909b).execute(new ai0(this, i10, serializable, 13));
+        ((Executor) this.f43936b).execute(new ai0(this, i10, serializable, 13));
     }
 
     public void c() {
         boolean f7;
         int i10;
-        e eVar = (e) this.f43910c;
-        PackageManager packageManager = (PackageManager) this.f43911e;
-        ArrayList arrayList = (ArrayList) this.f43912f;
-        if (this.f43908a) {
+        e eVar = (e) this.f43937c;
+        PackageManager packageManager = (PackageManager) this.f43938e;
+        ArrayList arrayList = (ArrayList) this.f43939f;
+        if (this.f43935a) {
             ArrayList arrayList2 = new ArrayList();
             if (Build.VERSION.SDK_INT >= 30) {
                 Intent intent = new Intent("android.media.MediaRoute2ProviderService");
@@ -82,7 +82,7 @@ public final class s0 {
                 }
                 ServiceInfo serviceInfo = it.next().serviceInfo;
                 if (serviceInfo != null) {
-                    if (x.f43944c == null) {
+                    if (x.f43971c == null) {
                         f7 = false;
                     } else {
                         f7 = x.c().f();
@@ -104,7 +104,7 @@ public final class s0 {
                     int i13 = 0;
                     while (true) {
                         if (i13 < size2) {
-                            ComponentName componentName = ((r0) arrayList.get(i13)).f43903r;
+                            ComponentName componentName = ((r0) arrayList.get(i13)).f43930r;
                             if (componentName.getPackageName().equals(str) && componentName.getClassName().equals(str2)) {
                                 break;
                             }
@@ -115,10 +115,10 @@ public final class s0 {
                         }
                     }
                     if (i13 < 0) {
-                        r0 r0Var = new r0((Context) this.f43909b, new ComponentName(serviceInfo.packageName, serviceInfo.name));
+                        r0 r0Var = new r0((Context) this.f43936b, new ComponentName(serviceInfo.packageName, serviceInfo.name));
                         r0Var.F = new k5(this, r0Var);
-                        if (!r0Var.f43905w) {
-                            r0Var.f43905w = true;
+                        if (!r0Var.f43932w) {
+                            r0Var.f43932w = true;
                             r0Var.r();
                         }
                         i10 = i11 + 1;
@@ -126,12 +126,12 @@ public final class s0 {
                         eVar.a(r0Var, false);
                     } else if (i13 >= i11) {
                         r0 r0Var2 = (r0) arrayList.get(i13);
-                        if (!r0Var2.f43905w) {
-                            r0Var2.f43905w = true;
+                        if (!r0Var2.f43932w) {
+                            r0Var2.f43932w = true;
                             r0Var2.r();
                         }
-                        if (r0Var2.f43907y == null) {
-                            if (!r0Var2.f43905w || (((n) r0Var2.h) == null && r0Var2.v.isEmpty())) {
+                        if (r0Var2.f43934y == null) {
+                            if (!r0Var2.f43932w || (((n) r0Var2.h) == null && r0Var2.v.isEmpty())) {
                                 z10 = false;
                             }
                             if (z10) {
@@ -152,16 +152,16 @@ public final class s0 {
                     if (d != null) {
                         r0Var3.getClass();
                         x.b();
-                        r0Var3.f5969f = null;
+                        r0Var3.f5996f = null;
                         r0Var3.h(null);
                         eVar.m(d, null);
-                        eVar.f43805a.b(514, d);
-                        eVar.f43814l.remove(d);
+                        eVar.f43832a.b(514, d);
+                        eVar.f43841l.remove(d);
                     }
                     arrayList.remove(r0Var3);
                     r0Var3.F = null;
-                    if (r0Var3.f43905w) {
-                        r0Var3.f43905w = false;
+                    if (r0Var3.f43932w) {
+                        r0Var3.f43932w = false;
                         r0Var3.r();
                     }
                 }
@@ -170,11 +170,11 @@ public final class s0 {
     }
 
     public s0(AssetManager assetManager, Executor executor, r4.c cVar, String str, File file) {
-        this.f43908a = false;
-        this.f43909b = executor;
-        this.f43910c = cVar;
-        this.f43912f = str;
-        this.f43911e = file;
+        this.f43935a = false;
+        this.f43936b = executor;
+        this.f43937c = cVar;
+        this.f43939f = str;
+        this.f43938e = file;
         int i10 = Build.VERSION.SDK_INT;
         byte[] bArr = null;
         if (i10 >= 24 && i10 <= 34) {
@@ -184,15 +184,15 @@ public final class s0 {
                     bArr = r4.d.h;
                     break;
                 case 26:
-                    bArr = r4.d.f44901g;
+                    bArr = r4.d.f44929g;
                     break;
                 case 27:
-                    bArr = r4.d.f44900f;
+                    bArr = r4.d.f44928f;
                     break;
                 case 28:
                 case 29:
                 case 30:
-                    bArr = r4.d.f44899e;
+                    bArr = r4.d.f44927e;
                     break;
                 case 31:
                 case 32:

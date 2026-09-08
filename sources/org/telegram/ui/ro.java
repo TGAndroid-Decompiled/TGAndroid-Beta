@@ -16,21 +16,21 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.Vector;
 import org.telegram.tgnet.tl.TL_bots;
 public final class ro implements RequestDelegate {
-    public final int f40210a;
-    public final Object f40211b;
-    public final Object f40212c;
+    public final int f40237a;
+    public final Object f40238b;
+    public final Object f40239c;
 
     public ro(int i10, Object obj, Object obj2) {
-        this.f40210a = i10;
-        this.f40211b = obj;
-        this.f40212c = obj2;
+        this.f40237a = i10;
+        this.f40238b = obj;
+        this.f40239c = obj2;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        int i10 = this.f40210a;
-        Object obj = this.f40212c;
-        Object obj2 = this.f40211b;
+        int i10 = this.f40237a;
+        Object obj = this.f40239c;
+        Object obj2 = this.f40238b;
         switch (i10) {
             case 0:
                 xo xoVar = (xo) obj2;
@@ -50,7 +50,7 @@ public final class ro implements RequestDelegate {
                 return;
             case 3:
                 org.telegram.ui.Components.m5 m5Var = (org.telegram.ui.Components.m5) obj2;
-                NotificationCenter.getInstance(m5Var.f28384e).doOnIdle(new org.telegram.ui.Components.l5(m5Var, (ArrayList) obj, tLObject, 0));
+                NotificationCenter.getInstance(m5Var.f28411e).doOnIdle(new org.telegram.ui.Components.l5(m5Var, (ArrayList) obj, tLObject, 0));
                 return;
             case 4:
                 AndroidUtilities.runOnUIThread(new org.telegram.ui.ActionBar.p((org.telegram.ui.Components.k8) obj2, (org.telegram.ui.ActionBar.b2) obj, tLObject, 7));
@@ -114,7 +114,7 @@ public final class ro implements RequestDelegate {
                 return;
             case 24:
                 q70 q70Var = (q70) obj2;
-                if (Objects.equals(q70Var.f39748a.f40087e, (String) obj)) {
+                if (Objects.equals(q70Var.f39775a.f40114e, (String) obj)) {
                     AndroidUtilities.runOnUIThread(new yt(27, q70Var, tLObject));
                     return;
                 }

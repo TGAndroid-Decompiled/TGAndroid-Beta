@@ -7,19 +7,19 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.tl.TL_stars;
 public final class ab implements Predicate {
-    public final int f34369a;
+    public final int f34396a;
 
     public ab(int i10) {
-        this.f34369a = i10;
+        this.f34396a = i10;
     }
 
     public Predicate and(Predicate predicate) {
-        int i10 = this.f34369a;
+        int i10 = this.f34396a;
         return Predicate$CC.$default$and(this, predicate);
     }
 
     public Predicate negate() {
-        switch (this.f34369a) {
+        switch (this.f34396a) {
             case 0:
                 return Predicate$CC.$default$negate(this);
             case 1:
@@ -32,13 +32,13 @@ public final class ab implements Predicate {
     }
 
     public Predicate or(Predicate predicate) {
-        int i10 = this.f34369a;
+        int i10 = this.f34396a;
         return Predicate$CC.$default$or(this, predicate);
     }
 
     @Override
     public final boolean test(Object obj) {
-        switch (this.f34369a) {
+        switch (this.f34396a) {
             case 0:
                 if (((String) obj) != null) {
                     return true;

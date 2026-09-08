@@ -71,7 +71,7 @@ public class AudioRecoder {
             for (int i11 = 0; i11 < this.audioInputs.size() && isInputAvailable(); i11++) {
                 ag.a aVar = this.audioInputs.get(i11);
                 if (aVar.c()) {
-                    s10 = (short) ((((short) (aVar.a() * aVar.f425a)) / this.audioInputs.size()) + s10);
+                    s10 = (short) ((((short) (aVar.a() * aVar.f437a)) / this.audioInputs.size()) + s10);
                     z10 = true;
                 }
             }

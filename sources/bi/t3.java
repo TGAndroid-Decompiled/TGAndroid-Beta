@@ -56,9 +56,9 @@ public final class t3 extends vi {
                 if (t3Var != null) {
                     t3Var.setFocusable(false);
                 }
-                n3 n3Var = o5Var.f3406b2;
+                n3 n3Var = o5Var.f3433b2;
                 if (n3Var != null && n3Var.getEditField() != null) {
-                    o5Var.f3406b2.getEditField().requestFocus();
+                    o5Var.f3433b2.getEditField().requestFocus();
                     return;
                 }
                 return;

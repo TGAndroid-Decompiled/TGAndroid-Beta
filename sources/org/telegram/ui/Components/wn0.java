@@ -1,9 +1,9 @@
 package org.telegram.ui.Components;
 public final class wn0 {
-    public final int f32300a;
-    public int f32301b;
+    public final int f32327a;
+    public int f32328b;
 
     public wn0(int i10) {
-        this.f32300a = i10;
+        this.f32327a = i10;
     }
 }

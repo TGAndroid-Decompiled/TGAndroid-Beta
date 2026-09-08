@@ -1,10 +1,10 @@
 package k1;
 public final class p implements ce.c {
-    public final int f14464a = 0;
-    public final ce.c f14465b;
+    public final int f14490a = 0;
+    public final ce.c f14491b;
 
     public p(ce.c cVar, za.y yVar) {
-        this.f14465b = cVar;
+        this.f14491b = cVar;
     }
 
     @Override
@@ -13,6 +13,6 @@ public final class p implements ce.c {
     }
 
     public p(ce.c cVar) {
-        this.f14465b = cVar;
+        this.f14491b = cVar;
     }
 }

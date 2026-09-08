@@ -9,21 +9,21 @@ import android.graphics.PorterDuffXfermode;
 import android.graphics.RectF;
 import org.telegram.messenger.AndroidUtilities;
 public final class r0 extends j {
-    public final int f45467n = 2;
-    public final Paint f45468r;
-    public final Path f45469s;
+    public final int f45495n = 2;
+    public final Paint f45496r;
+    public final Path f45497s;
 
     public r0(s0 s0Var, Context context) {
         super(s0Var, context);
         Paint paint = new Paint(1);
-        this.f45468r = paint;
-        this.f45469s = new Path();
+        this.f45496r = paint;
+        this.f45497s = new Path();
         paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
     }
 
     @Override
     public final int a(float f7, float f10) {
-        switch (this.f45467n) {
+        switch (this.f45495n) {
             case 0:
                 float dp = AndroidUtilities.dp(19.5f);
                 float dp2 = AndroidUtilities.dp(1.0f) + dp;
@@ -122,7 +122,7 @@ public final class r0 extends j {
     @Override
     public final void onDraw(Canvas canvas) {
         Canvas canvas2;
-        switch (this.f45467n) {
+        switch (this.f45495n) {
             case 0:
                 super.onDraw(canvas);
                 int saveCount = canvas.getSaveCount();
@@ -144,7 +144,7 @@ public final class r0 extends j {
                     float min = Math.min(dp2, measuredWidth / 2.0f);
                     float f12 = measuredHeight / 2.0f;
                     float min2 = Math.min(dp2, f12);
-                    Path path = this.f45469s;
+                    Path path = this.f45497s;
                     path.rewind();
                     float f13 = min * 2.0f;
                     float f14 = dp + f13;
@@ -155,7 +155,7 @@ public final class r0 extends j {
                     float f17 = f10 - f13;
                     rectF.set(f17, dp, f10, f16);
                     path.arcTo(rectF, 270.0f, 90.0f);
-                    Paint paint = this.f45219a;
+                    Paint paint = this.f45247a;
                     canvas.drawPath(path, paint);
                     path.rewind();
                     float f18 = f11 - f15;
@@ -165,9 +165,9 @@ public final class r0 extends j {
                     path.arcTo(rectF, 90.0f, -90.0f);
                     canvas.drawPath(path, paint);
                     float f19 = dp + f12;
-                    Paint paint2 = this.f45221c;
+                    Paint paint2 = this.f45249c;
                     canvas.drawCircle(dp, f19, dpf2, paint2);
-                    Paint paint3 = this.f45220b;
+                    Paint paint3 = this.f45248b;
                     canvas.drawCircle(dp, f19, (dpf2 - AndroidUtilities.dp(1.0f)) + 1.0f, paint3);
                     canvas.drawCircle(f10, f19, dpf2, paint2);
                     canvas.drawCircle(f10, f19, (dpf2 - AndroidUtilities.dp(1.0f)) + 1.0f, paint3);
@@ -176,7 +176,7 @@ public final class r0 extends j {
                     float f21 = f11 - min2;
                     canvas.drawLine(dp, f20, dp, f21, paint);
                     canvas.drawLine(f10, f20, f10, f21, paint);
-                    Paint paint4 = this.f45468r;
+                    Paint paint4 = this.f45496r;
                     canvas.drawCircle(f10, f19, (AndroidUtilities.dp(1.0f) + dpf2) - 1.0f, paint4);
                     canvas.drawCircle(dp, f19, (dpf2 + AndroidUtilities.dp(1.0f)) - 1.0f, paint4);
                     canvas.restoreToCount(saveCount);
@@ -204,7 +204,7 @@ public final class r0 extends j {
                     float min3 = Math.min(dp4, measuredWidth2 / 2.0f);
                     float f25 = measuredHeight2 / 2.0f;
                     float min4 = Math.min(dp4, f25);
-                    Path path2 = this.f45469s;
+                    Path path2 = this.f45497s;
                     path2.rewind();
                     float f26 = min3 * 2.0f;
                     float f27 = dp3 + f26;
@@ -215,7 +215,7 @@ public final class r0 extends j {
                     float f30 = f23 - f26;
                     rectF2.set(f30, dp3, f23, f29);
                     path2.arcTo(rectF2, 270.0f, 90.0f);
-                    Paint paint5 = this.f45219a;
+                    Paint paint5 = this.f45247a;
                     canvas.drawPath(path2, paint5);
                     path2.rewind();
                     float f31 = f24 - f28;
@@ -225,9 +225,9 @@ public final class r0 extends j {
                     path2.arcTo(rectF2, 90.0f, -90.0f);
                     canvas.drawPath(path2, paint5);
                     float f32 = dp3 + f25;
-                    Paint paint6 = this.f45221c;
+                    Paint paint6 = this.f45249c;
                     canvas.drawCircle(dp3, f32, dpf22, paint6);
-                    Paint paint7 = this.f45220b;
+                    Paint paint7 = this.f45248b;
                     canvas.drawCircle(dp3, f32, (dpf22 - AndroidUtilities.dp(1.0f)) + 1.0f, paint7);
                     canvas.drawCircle(f23, f32, dpf22, paint6);
                     canvas.drawCircle(f23, f32, (dpf22 - AndroidUtilities.dp(1.0f)) + 1.0f, paint7);
@@ -236,7 +236,7 @@ public final class r0 extends j {
                     float f34 = f24 - min4;
                     canvas.drawLine(dp3, f33, dp3, f34, paint5);
                     canvas.drawLine(f23, f33, f23, f34, paint5);
-                    Paint paint8 = this.f45468r;
+                    Paint paint8 = this.f45496r;
                     canvas.drawCircle(f23, f32, (AndroidUtilities.dp(1.0f) + dpf22) - 1.0f, paint8);
                     canvas.drawCircle(dp3, f32, (dpf22 + AndroidUtilities.dp(1.0f)) - 1.0f, paint8);
                     canvas.restoreToCount(saveCount2);
@@ -264,7 +264,7 @@ public final class r0 extends j {
                     float min5 = Math.min(dp6, measuredWidth3 / 2.0f);
                     float f38 = measuredHeight3 / 2.0f;
                     float min6 = Math.min(dp6, f38);
-                    Path path3 = this.f45469s;
+                    Path path3 = this.f45497s;
                     path3.rewind();
                     float f39 = min5 * 2.0f;
                     float f40 = dp5 + f39;
@@ -275,7 +275,7 @@ public final class r0 extends j {
                     float f43 = f36 - f39;
                     rectF3.set(f43, dp5, f36, f42);
                     path3.arcTo(rectF3, 270.0f, 90.0f);
-                    Paint paint9 = this.f45219a;
+                    Paint paint9 = this.f45247a;
                     canvas.drawPath(path3, paint9);
                     path3.rewind();
                     float f44 = f37 - f41;
@@ -285,9 +285,9 @@ public final class r0 extends j {
                     path3.arcTo(rectF3, 90.0f, -90.0f);
                     canvas.drawPath(path3, paint9);
                     float f45 = dp5 + f38;
-                    Paint paint10 = this.f45221c;
+                    Paint paint10 = this.f45249c;
                     canvas.drawCircle(dp5, f45, dpf23, paint10);
-                    Paint paint11 = this.f45220b;
+                    Paint paint11 = this.f45248b;
                     canvas.drawCircle(dp5, f45, (dpf23 - AndroidUtilities.dp(1.0f)) + 1.0f, paint11);
                     canvas.drawCircle(f36, f45, dpf23, paint10);
                     canvas.drawCircle(f36, f45, (dpf23 - AndroidUtilities.dp(1.0f)) + 1.0f, paint11);
@@ -296,7 +296,7 @@ public final class r0 extends j {
                     float f47 = f37 - min6;
                     canvas.drawLine(dp5, f46, dp5, f47, paint9);
                     canvas.drawLine(f36, f46, f36, f47, paint9);
-                    Paint paint12 = this.f45468r;
+                    Paint paint12 = this.f45496r;
                     canvas.drawCircle(f36, f45, (AndroidUtilities.dp(1.0f) + dpf23) - 1.0f, paint12);
                     canvas.drawCircle(dp5, f45, (dpf23 + AndroidUtilities.dp(1.0f)) - 1.0f, paint12);
                     canvas.restoreToCount(saveCount3);
@@ -324,7 +324,7 @@ public final class r0 extends j {
                     float min7 = Math.min(dp8, measuredWidth4 / 2.0f);
                     float f51 = measuredHeight4 / 2.0f;
                     float min8 = Math.min(dp8, f51);
-                    Path path4 = this.f45469s;
+                    Path path4 = this.f45497s;
                     path4.rewind();
                     float f52 = min7 * 2.0f;
                     float f53 = dp7 + f52;
@@ -335,7 +335,7 @@ public final class r0 extends j {
                     float f56 = f49 - f52;
                     rectF4.set(f56, dp7, f49, f55);
                     path4.arcTo(rectF4, 270.0f, 90.0f);
-                    Paint paint13 = this.f45219a;
+                    Paint paint13 = this.f45247a;
                     canvas.drawPath(path4, paint13);
                     path4.rewind();
                     float f57 = f50 - f54;
@@ -345,9 +345,9 @@ public final class r0 extends j {
                     path4.arcTo(rectF4, 90.0f, -90.0f);
                     canvas.drawPath(path4, paint13);
                     float f58 = dp7 + f51;
-                    Paint paint14 = this.f45221c;
+                    Paint paint14 = this.f45249c;
                     canvas.drawCircle(dp7, f58, dpf24, paint14);
-                    Paint paint15 = this.f45220b;
+                    Paint paint15 = this.f45248b;
                     canvas.drawCircle(dp7, f58, (dpf24 - AndroidUtilities.dp(1.0f)) + 1.0f, paint15);
                     canvas.drawCircle(f49, f58, dpf24, paint14);
                     canvas.drawCircle(f49, f58, (dpf24 - AndroidUtilities.dp(1.0f)) + 1.0f, paint15);
@@ -356,7 +356,7 @@ public final class r0 extends j {
                     float f60 = f50 - min8;
                     canvas.drawLine(dp7, f59, dp7, f60, paint13);
                     canvas.drawLine(f49, f59, f49, f60, paint13);
-                    Paint paint16 = this.f45468r;
+                    Paint paint16 = this.f45496r;
                     canvas.drawCircle(f49, f58, (AndroidUtilities.dp(1.0f) + dpf24) - 1.0f, paint16);
                     canvas.drawCircle(dp7, f58, (dpf24 + AndroidUtilities.dp(1.0f)) - 1.0f, paint16);
                     canvas.restoreToCount(saveCount4);
@@ -384,7 +384,7 @@ public final class r0 extends j {
                     float min9 = Math.min(dp10, measuredWidth5 / 2.0f);
                     float f64 = measuredHeight5 / 2.0f;
                     float min10 = Math.min(dp10, f64);
-                    Path path5 = this.f45469s;
+                    Path path5 = this.f45497s;
                     path5.rewind();
                     float f65 = min9 * 2.0f;
                     float f66 = dp9 + f65;
@@ -395,7 +395,7 @@ public final class r0 extends j {
                     float f69 = f62 - f65;
                     rectF5.set(f69, dp9, f62, f68);
                     path5.arcTo(rectF5, 270.0f, 90.0f);
-                    Paint paint17 = this.f45219a;
+                    Paint paint17 = this.f45247a;
                     canvas.drawPath(path5, paint17);
                     path5.rewind();
                     float f70 = f63 - f67;
@@ -405,9 +405,9 @@ public final class r0 extends j {
                     path5.arcTo(rectF5, 90.0f, -90.0f);
                     canvas.drawPath(path5, paint17);
                     float f71 = dp9 + f64;
-                    Paint paint18 = this.f45221c;
+                    Paint paint18 = this.f45249c;
                     canvas.drawCircle(dp9, f71, dpf25, paint18);
-                    Paint paint19 = this.f45220b;
+                    Paint paint19 = this.f45248b;
                     canvas.drawCircle(dp9, f71, (dpf25 - AndroidUtilities.dp(1.0f)) + 1.0f, paint19);
                     canvas.drawCircle(f62, f71, dpf25, paint18);
                     canvas.drawCircle(f62, f71, (dpf25 - AndroidUtilities.dp(1.0f)) + 1.0f, paint19);
@@ -416,7 +416,7 @@ public final class r0 extends j {
                     float f73 = f63 - min10;
                     canvas.drawLine(dp9, f72, dp9, f73, paint17);
                     canvas.drawLine(f62, f72, f62, f73, paint17);
-                    Paint paint20 = this.f45468r;
+                    Paint paint20 = this.f45496r;
                     canvas.drawCircle(f62, f71, (AndroidUtilities.dp(1.0f) + dpf25) - 1.0f, paint20);
                     canvas.drawCircle(dp9, f71, (dpf25 + AndroidUtilities.dp(1.0f)) - 1.0f, paint20);
                     canvas.restoreToCount(saveCount5);
@@ -448,7 +448,7 @@ public final class r0 extends j {
                     float min11 = Math.min(dp12, measuredWidth6 / 2.0f);
                     float f77 = measuredHeight6 / 2.0f;
                     float min12 = Math.min(dp12, f77);
-                    Path path6 = this.f45469s;
+                    Path path6 = this.f45497s;
                     path6.rewind();
                     float f78 = min11 * 2.0f;
                     float f79 = dp11 + f78;
@@ -459,7 +459,7 @@ public final class r0 extends j {
                     float f82 = f75 - f78;
                     rectF6.set(f82, dp11, f75, f81);
                     path6.arcTo(rectF6, 270.0f, 90.0f);
-                    Paint paint21 = this.f45219a;
+                    Paint paint21 = this.f45247a;
                     canvas2.drawPath(path6, paint21);
                     path6.rewind();
                     float f83 = f76 - f80;
@@ -469,9 +469,9 @@ public final class r0 extends j {
                     path6.arcTo(rectF6, 90.0f, -90.0f);
                     canvas2.drawPath(path6, paint21);
                     float f84 = dp11 + f77;
-                    Paint paint22 = this.f45221c;
+                    Paint paint22 = this.f45249c;
                     canvas2.drawCircle(dp11, f84, dpf26, paint22);
-                    Paint paint23 = this.f45220b;
+                    Paint paint23 = this.f45248b;
                     canvas2.drawCircle(dp11, f84, (dpf26 - AndroidUtilities.dp(1.0f)) + 1.0f, paint23);
                     canvas2.drawCircle(f75, f84, dpf26, paint22);
                     canvas2.drawCircle(f75, f84, (dpf26 - AndroidUtilities.dp(1.0f)) + 1.0f, paint23);
@@ -480,7 +480,7 @@ public final class r0 extends j {
                     float f86 = f76 - min12;
                     canvas.drawLine(dp11, f85, dp11, f86, paint21);
                     canvas.drawLine(f75, f85, f75, f86, paint21);
-                    Paint paint24 = this.f45468r;
+                    Paint paint24 = this.f45496r;
                     canvas.drawCircle(f75, f84, (AndroidUtilities.dp(1.0f) + dpf26) - 1.0f, paint24);
                     canvas.drawCircle(dp11, f84, (dpf26 + AndroidUtilities.dp(1.0f)) - 1.0f, paint24);
                     canvas.restoreToCount(saveCount6);
@@ -493,40 +493,40 @@ public final class r0 extends j {
     public r0(y2 y2Var, Context context) {
         super(y2Var, context);
         Paint paint = new Paint(1);
-        this.f45468r = paint;
-        this.f45469s = new Path();
+        this.f45496r = paint;
+        this.f45497s = new Path();
         paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
     }
 
     public r0(v0 v0Var, Context context) {
         super(v0Var, context);
         Paint paint = new Paint(1);
-        this.f45468r = paint;
-        this.f45469s = new Path();
+        this.f45496r = paint;
+        this.f45497s = new Path();
         paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
     }
 
     public r0(x2 x2Var, Context context) {
         super(x2Var, context);
         Paint paint = new Paint(1);
-        this.f45468r = paint;
-        this.f45469s = new Path();
+        this.f45496r = paint;
+        this.f45497s = new Path();
         paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
     }
 
     public r0(z1 z1Var, Context context) {
         super(z1Var, context);
         Paint paint = new Paint(1);
-        this.f45468r = paint;
-        this.f45469s = new Path();
+        this.f45496r = paint;
+        this.f45497s = new Path();
         paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
     }
 
     public r0(g1 g1Var, Context context) {
         super(g1Var, context);
         Paint paint = new Paint(1);
-        this.f45468r = paint;
-        this.f45469s = new Path();
+        this.f45496r = paint;
+        this.f45497s = new Path();
         paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
     }
 }

@@ -12,12 +12,12 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.tgnet.tl.TL_stories;
 public final class l7 implements Comparator {
-    public final int f3267a;
-    public final Object f3268b;
+    public final int f3294a;
+    public final Object f3295b;
 
     public l7(Object obj, int i10) {
-        this.f3267a = i10;
-        this.f3268b = obj;
+        this.f3294a = i10;
+        this.f3295b = obj;
     }
 
     @Override
@@ -27,10 +27,10 @@ public final class l7 implements Comparator {
         int i10;
         int indexOf;
         int indexOf2;
-        switch (this.f3267a) {
+        switch (this.f3294a) {
             case 0:
-                u8 u8Var = (u8) this.f3268b;
-                int i11 = u8Var.f3805a;
+                u8 u8Var = (u8) this.f3295b;
+                int i11 = u8Var.f3832a;
                 TL_stories.PeerStories peerStories = (TL_stories.PeerStories) obj;
                 TL_stories.PeerStories peerStories2 = (TL_stories.PeerStories) obj2;
                 long peerDialogId = DialogObject.getPeerDialogId(peerStories.peer);
@@ -81,7 +81,7 @@ public final class l7 implements Comparator {
                 }
                 return (K2 ? 1 : 0) - (K ? 1 : 0);
             case 1:
-                ArrayList arrayList = (ArrayList) this.f3268b;
+                ArrayList arrayList = (ArrayList) this.f3295b;
                 MediaController.AlbumEntry albumEntry = (MediaController.AlbumEntry) obj;
                 MediaController.AlbumEntry albumEntry2 = (MediaController.AlbumEntry) obj2;
                 int i13 = albumEntry.bucketId;
@@ -95,7 +95,7 @@ public final class l7 implements Comparator {
                 }
                 return -1;
             case 2:
-                ji.k6 k6Var = (ji.k6) this.f3268b;
+                ji.k6 k6Var = (ji.k6) this.f3295b;
                 TL_iv.pageTableCell pagetablecell = (TL_iv.pageTableCell) obj;
                 TL_iv.pageTableCell pagetablecell2 = (TL_iv.pageTableCell) obj2;
                 int b10 = k6Var.b(pagetablecell);
@@ -105,15 +105,15 @@ public final class l7 implements Comparator {
                 }
                 return Integer.compare(k6Var.a(pagetablecell), k6Var.a(pagetablecell2));
             case 3:
-                r2.v vVar = (r2.v) this.f3268b;
+                r2.v vVar = (r2.v) this.f3295b;
                 return vVar.b(obj2) - vVar.b(obj);
             case 4:
-                SparseIntArray sparseIntArray = (SparseIntArray) this.f3268b;
-                return sparseIntArray.get(((sg.h) obj).f46109e, Integer.MAX_VALUE) - sparseIntArray.get(((sg.h) obj2).f46109e, Integer.MAX_VALUE);
+                SparseIntArray sparseIntArray = (SparseIntArray) this.f3295b;
+                return sparseIntArray.get(((sg.h) obj).f46137e, Integer.MAX_VALUE) - sparseIntArray.get(((sg.h) obj2).f46137e, Integer.MAX_VALUE);
             case 5:
-                return ((Collator) this.f3268b).compare((String) obj, (String) obj2);
+                return ((Collator) this.f3295b).compare((String) obj, (String) obj2);
             default:
-                float[] fArr = ((zh.q2) this.f3268b).f52461r;
+                float[] fArr = ((zh.q2) this.f3295b).f52492r;
                 return Float.compare(fArr[((Integer) obj).intValue()], fArr[((Integer) obj2).intValue()]);
         }
     }

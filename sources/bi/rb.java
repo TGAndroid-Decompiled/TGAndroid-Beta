@@ -8,25 +8,25 @@ import org.telegram.messenger.ImageReceiver;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.Components.xi0;
 public final class rb extends qb {
-    public final va f3676a;
-    public final TL_stories.TL_mediaAreaSuggestedReaction f3677b;
-    public final ah.z0 f3678c;
+    public final va f3703a;
+    public final TL_stories.TL_mediaAreaSuggestedReaction f3704b;
+    public final ah.z0 f3705c;
     public final ub d;
 
     public rb(ub ubVar, TL_stories.TL_mediaAreaSuggestedReaction tL_mediaAreaSuggestedReaction) {
         this.d = ubVar;
         va vaVar = new va(null);
-        this.f3676a = vaVar;
+        this.f3703a = vaVar;
         ah.z0 z0Var = new ah.z0(null);
-        this.f3678c = z0Var;
-        this.f3677b = tL_mediaAreaSuggestedReaction;
+        this.f3705c = z0Var;
+        this.f3704b = tL_mediaAreaSuggestedReaction;
         if (tL_mediaAreaSuggestedReaction.flipped) {
             vaVar.b(true, false);
         }
         if (tL_mediaAreaSuggestedReaction.dark) {
             vaVar.a();
         }
-        z0Var.f733i = true;
+        z0Var.f745i = true;
         z0Var.e(ah.j1.d(tL_mediaAreaSuggestedReaction.reaction));
     }
 
@@ -34,12 +34,12 @@ public final class rb extends qb {
     public final void a(Canvas canvas, float f7) {
         ImageReceiver imageReceiver;
         int i10;
-        ah.z0 z0Var = this.f3678c;
-        org.telegram.ui.Components.q5 q5Var = z0Var.f728b;
+        ah.z0 z0Var = this.f3705c;
+        org.telegram.ui.Components.q5 q5Var = z0Var.f740b;
         if (q5Var != null) {
-            imageReceiver = q5Var.f29584k;
+            imageReceiver = q5Var.f29611k;
         } else {
-            imageReceiver = z0Var.f727a;
+            imageReceiver = z0Var.f739a;
         }
         if (imageReceiver != null && imageReceiver.hasImageSet() && imageReceiver.hasImageLoaded()) {
             xi0 lottieAnimation = imageReceiver.getLottieAnimation();
@@ -48,17 +48,17 @@ public final class rb extends qb {
             }
             ub ubVar = this.d;
             double d = ubVar.d;
-            TL_stories.TL_mediaAreaSuggestedReaction tL_mediaAreaSuggestedReaction = this.f3677b;
+            TL_stories.TL_mediaAreaSuggestedReaction tL_mediaAreaSuggestedReaction = this.f3704b;
             TL_stories.MediaAreaCoordinates mediaAreaCoordinates = tL_mediaAreaSuggestedReaction.coordinates;
-            float f10 = (float) (((mediaAreaCoordinates.f20104x * d) / 100.0d) + ubVar.f3843b);
-            double d10 = ubVar.f3844c;
-            double d11 = ubVar.f3845e;
-            float f11 = (float) (((mediaAreaCoordinates.f20105y * d11) / 100.0d) + d10);
-            float f12 = ((float) ((d * mediaAreaCoordinates.f20103w) / 100.0d)) / 2.0f;
+            float f10 = (float) (((mediaAreaCoordinates.f20131x * d) / 100.0d) + ubVar.f3870b);
+            double d10 = ubVar.f3871c;
+            double d11 = ubVar.f3872e;
+            float f11 = (float) (((mediaAreaCoordinates.f20132y * d11) / 100.0d) + d10);
+            float f12 = ((float) ((d * mediaAreaCoordinates.f20130w) / 100.0d)) / 2.0f;
             float f13 = ((float) ((d11 * mediaAreaCoordinates.h) / 100.0d)) / 2.0f;
-            va vaVar = this.f3676a;
+            va vaVar = this.f3703a;
             vaVar.setBounds((int) (f10 - f12), (int) (f11 - f13), (int) (f12 + f10), (int) (f13 + f11));
-            vaVar.f3914e = (int) (255.0f * f7);
+            vaVar.f3941e = (int) (255.0f * f7);
             canvas.save();
             double d12 = tL_mediaAreaSuggestedReaction.coordinates.rotation;
             if (d12 != 0.0d) {
@@ -71,7 +71,7 @@ public final class rb extends qb {
             vaVar.draw(canvas);
             z0Var.c(rect);
             z0Var.h = f7;
-            if (vaVar.f3911a == 1) {
+            if (vaVar.f3938a == 1) {
                 i10 = -1;
             } else {
                 i10 = -16777216;
@@ -84,21 +84,21 @@ public final class rb extends qb {
 
     @Override
     public final void b(boolean z10) {
-        this.f3678c.b(z10);
+        this.f3705c.b(z10);
     }
 
     @Override
     public final void c(View view) {
-        ah.z0 z0Var = this.f3678c;
-        if (z0Var.f731f == view) {
+        ah.z0 z0Var = this.f3705c;
+        if (z0Var.f743f == view) {
             return;
         }
-        if (z0Var.f732g) {
+        if (z0Var.f744g) {
             z0Var.b(false);
-            z0Var.f731f = view;
+            z0Var.f743f = view;
             z0Var.b(true);
             return;
         }
-        z0Var.f731f = view;
+        z0Var.f743f = view;
     }
 }

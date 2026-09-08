@@ -1,29 +1,29 @@
 package org.telegram.ui.Components;
 public final class ym extends org.telegram.ui.su0 {
-    public boolean f32944a;
-    public final int f32945b;
-    public final tn f32946c;
+    public boolean f32971a;
+    public final int f32972b;
+    public final tn f32973c;
 
     public ym(tn tnVar, int i10) {
-        this.f32946c = tnVar;
-        this.f32945b = i10;
+        this.f32973c = tnVar;
+        this.f32972b = i10;
     }
 
     @Override
     public final void D() {
-        if (this.f32944a) {
-            this.f32946c.b0(this.f32945b);
+        if (this.f32971a) {
+            this.f32973c.b0(this.f32972b);
         }
     }
 
     @Override
     public final void I() {
-        this.f32946c.e0(this.f32945b, null);
+        this.f32973c.e0(this.f32972b, null);
     }
 
     @Override
     public final void V() {
-        this.f32944a = true;
+        this.f32971a = true;
     }
 
     @Override

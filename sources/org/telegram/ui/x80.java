@@ -3,18 +3,18 @@ package org.telegram.ui;
 import java.util.regex.Pattern;
 import org.telegram.messenger.FileLog;
 public final class x80 implements Runnable {
-    public final int f42615a;
-    public final r80 f42616b;
+    public final int f42642a;
+    public final r80 f42643b;
 
     public x80(r80 r80Var, int i10) {
-        this.f42615a = i10;
-        this.f42616b = r80Var;
+        this.f42642a = i10;
+        this.f42643b = r80Var;
     }
 
     @Override
     public final void run() {
-        int i10 = this.f42615a;
-        r80 r80Var = this.f42616b;
+        int i10 = this.f42642a;
+        r80 r80Var = this.f42643b;
         switch (i10) {
             case 0:
                 Pattern pattern = LaunchActivity.B1;

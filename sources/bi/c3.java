@@ -31,28 +31,28 @@ import org.telegram.ui.wg0;
 import org.telegram.ui.xm0;
 import org.telegram.ui.xp;
 public final class c3 implements RequestDelegate {
-    public final int f2811a;
-    public final Object f2812b;
-    public final Object f2813c;
+    public final int f2838a;
+    public final Object f2839b;
+    public final Object f2840c;
     public final Object d;
-    public final Object f2814e;
+    public final Object f2841e;
 
     public c3(di.o8 o8Var, TL_stories.StoryItem storyItem, TLRPC.TL_messages_getAttachedStickers tL_messages_getAttachedStickers, v7 v7Var) {
-        this.f2811a = 1;
-        this.f2813c = o8Var;
-        this.f2812b = storyItem;
+        this.f2838a = 1;
+        this.f2840c = o8Var;
+        this.f2839b = storyItem;
         this.d = tL_messages_getAttachedStickers;
-        this.f2814e = v7Var;
+        this.f2841e = v7Var;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
         TLRPC.TL_messages_exportedChatInvite tL_messages_exportedChatInvite;
-        int i10 = this.f2811a;
+        int i10 = this.f2838a;
         Object obj = this.d;
-        Object obj2 = this.f2814e;
-        Object obj3 = this.f2812b;
-        Object obj4 = this.f2813c;
+        Object obj2 = this.f2841e;
+        Object obj3 = this.f2839b;
+        Object obj4 = this.f2840c;
         switch (i10) {
             case 0:
                 AndroidUtilities.runOnUIThread(new z2((o5) obj4, (Runnable) obj, tL_error, (TL_stories.StoryItem) obj3, (di.ga) obj2));
@@ -63,7 +63,7 @@ public final class c3 implements RequestDelegate {
                 TLRPC.TL_messages_getAttachedStickers tL_messages_getAttachedStickers = (TLRPC.TL_messages_getAttachedStickers) obj;
                 v7 v7Var = (v7) obj2;
                 if (tL_error != null && FileRefController.isFileRefError(tL_error.text) && storyItem != null) {
-                    FileRefController.getInstance(o8Var.f7740a).requestReference(storyItem, tL_messages_getAttachedStickers, v7Var);
+                    FileRefController.getInstance(o8Var.f7768a).requestReference(storyItem, tL_messages_getAttachedStickers, v7Var);
                     return;
                 } else {
                     v7Var.run(tLObject, tL_error);
@@ -80,7 +80,7 @@ public final class c3 implements RequestDelegate {
                 TLRPC.TL_chatInviteExported tL_chatInviteExported = (TLRPC.TL_chatInviteExported) obj;
                 boolean[] zArr = (boolean[]) obj3;
                 org.telegram.ui.ActionBar.b2 b2Var = (org.telegram.ui.ActionBar.b2) obj2;
-                org.telegram.ui.ub ubVar = obVar.f39206a.f39822n;
+                org.telegram.ui.ub ubVar = obVar.f39233a.f39849n;
                 if (tL_error == null) {
                     tL_messages_exportedChatInvite = (TLRPC.TL_messages_exportedChatInvite) tLObject;
                     for (int i11 = 0; i11 < tL_messages_exportedChatInvite.users.size(); i11++) {
@@ -88,7 +88,7 @@ public final class c3 implements RequestDelegate {
                         if (ubVar.D0 == null) {
                             ubVar.D0 = new HashMap();
                         }
-                        ubVar.D0.put(Long.valueOf(user.f20016id), user);
+                        ubVar.D0.put(Long.valueOf(user.f20043id), user);
                     }
                 } else {
                     tL_messages_exportedChatInvite = null;
@@ -153,10 +153,10 @@ public final class c3 implements RequestDelegate {
     }
 
     public c3(Object obj, Object obj2, Object obj3, Object obj4, int i10) {
-        this.f2811a = i10;
-        this.f2813c = obj;
+        this.f2838a = i10;
+        this.f2840c = obj;
         this.d = obj2;
-        this.f2812b = obj3;
-        this.f2814e = obj4;
+        this.f2839b = obj3;
+        this.f2841e = obj4;
     }
 }

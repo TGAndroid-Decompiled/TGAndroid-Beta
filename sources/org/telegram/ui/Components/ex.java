@@ -16,21 +16,21 @@ public final class ex extends rv {
     @Override
     public final void X(boolean z10) {
         kz kzVar = this.X;
-        ArrayList arrayList = kzVar.f27972p1;
+        ArrayList arrayList = kzVar.f27999p1;
         TLRPC.StickerSet stickerSet = this.W;
         if (z10) {
-            if (!arrayList.contains(Long.valueOf(stickerSet.f19896id))) {
-                arrayList.add(Long.valueOf(stickerSet.f19896id));
+            if (!arrayList.contains(Long.valueOf(stickerSet.f19923id))) {
+                arrayList.add(Long.valueOf(stickerSet.f19923id));
             }
         } else {
-            arrayList.remove(Long.valueOf(stickerSet.f19896id));
+            arrayList.remove(Long.valueOf(stickerSet.f19923id));
         }
         kzVar.V();
     }
 
     @Override
     public final void dismiss() {
-        this.X.f27997w2 = false;
+        this.X.f28024w2 = false;
         super.dismiss();
     }
 }

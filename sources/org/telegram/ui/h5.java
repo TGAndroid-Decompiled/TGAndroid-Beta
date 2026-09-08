@@ -32,7 +32,7 @@ public abstract class h5 extends androidx.fragment.app.u {
             if (z10) {
                 j60 j60Var = j60.D3;
                 if (j60Var != null) {
-                    j60Var.f37564n.callOnClick();
+                    j60Var.f37591n.callOnClick();
                     return true;
                 }
             } else {
@@ -125,10 +125,10 @@ public abstract class h5 extends androidx.fragment.app.u {
     public final org.telegram.ui.ActionBar.b2 w(int i10, String str) {
         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(this);
         alertDialog$Builder.m(i10, 72, org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.L5, false), null);
-        alertDialog$Builder.f20198a.T = AndroidUtilities.replaceTags(str);
+        alertDialog$Builder.f20225a.T = AndroidUtilities.replaceTags(str);
         alertDialog$Builder.k(LocaleController.getString(R.string.PermissionOpenSettings), new z0(this, 4));
         alertDialog$Builder.h(LocaleController.getString(R.string.ContactsPermissionAlertNotNow), null);
-        return alertDialog$Builder.f20198a;
+        return alertDialog$Builder.f20225a;
     }
 
     public final void x(int i10, String str) {

@@ -7,21 +7,21 @@ import org.telegram.messenger.MessagesStorage;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
 public final class fx implements org.telegram.ui.Components.og {
-    public final uy f36489a;
+    public final uy f36516a;
 
     public fx(uy uyVar) {
-        this.f36489a = uyVar;
+        this.f36516a = uyVar;
     }
 
     @Override
     public final void G(CharSequence charSequence, boolean z10, int i10, int i11, long j3) {
-        uy uyVar = this.f36489a;
+        uy uyVar = this.f36516a;
         if (uyVar.C2 != null && !uyVar.I2.isEmpty()) {
             ArrayList arrayList = new ArrayList();
             for (int i12 = 0; i12 < uyVar.I2.size(); i12++) {
                 arrayList.add(MessagesStorage.TopicKey.of(((Long) uyVar.I2.get(i12)).longValue(), 0L));
             }
-            uy uyVar2 = this.f36489a;
+            uy uyVar2 = this.f36516a;
             uyVar2.C2.u(uyVar2, arrayList, charSequence, false, z10, i10, i11, null);
         }
     }
@@ -53,7 +53,7 @@ public final class fx implements org.telegram.ui.Components.og {
 
     @Override
     public final void f1(CharSequence charSequence, boolean z10, boolean z11) {
-        uy uyVar = this.f36489a;
+        uy uyVar = this.f36516a;
         AndroidUtilities.runOnUIThread(new jw(uyVar, 12), 100L);
         org.telegram.ui.Components.mq0 mq0Var = uyVar.G2;
         if (mq0Var != null) {

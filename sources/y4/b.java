@@ -6,21 +6,21 @@ import android.os.Parcelable;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 public abstract class b {
-    public final f f49535a;
-    public final f f49536b;
-    public final f f49537c;
+    public final f f49564a;
+    public final f f49565b;
+    public final f f49566c;
 
     public b(f fVar, f fVar2, f fVar3) {
-        this.f49535a = fVar;
-        this.f49536b = fVar2;
-        this.f49537c = fVar3;
+        this.f49564a = fVar;
+        this.f49565b = fVar2;
+        this.f49566c = fVar3;
     }
 
     public abstract c a();
 
     public final Class b(Class cls) {
         String name = cls.getName();
-        f fVar = this.f49537c;
+        f fVar = this.f49566c;
         Class cls2 = (Class) fVar.get(name);
         if (cls2 == null) {
             String name2 = cls.getPackage().getName();
@@ -33,7 +33,7 @@ public abstract class b {
     }
 
     public final Method c(String str) {
-        f fVar = this.f49535a;
+        f fVar = this.f49564a;
         Method method = (Method) fVar.get(str);
         if (method == null) {
             System.currentTimeMillis();
@@ -46,7 +46,7 @@ public abstract class b {
 
     public final Method d(Class cls) {
         String name = cls.getName();
-        f fVar = this.f49536b;
+        f fVar = this.f49565b;
         Method method = (Method) fVar.get(name);
         if (method == null) {
             Class b10 = b(cls);
@@ -64,18 +64,18 @@ public abstract class b {
         if (!e(i11)) {
             return i10;
         }
-        return ((c) this).f49538e.readInt();
+        return ((c) this).f49567e.readInt();
     }
 
     public final Parcelable g(Parcelable parcelable, int i10) {
         if (!e(i10)) {
             return parcelable;
         }
-        return ((c) this).f49538e.readParcelable(c.class.getClassLoader());
+        return ((c) this).f49567e.readParcelable(c.class.getClassLoader());
     }
 
     public final d h() {
-        String readString = ((c) this).f49538e.readString();
+        String readString = ((c) this).f49567e.readString();
         if (readString == null) {
             return null;
         }
@@ -99,26 +99,26 @@ public abstract class b {
 
     public final void j(int i10, int i11) {
         i(i11);
-        ((c) this).f49538e.writeInt(i10);
+        ((c) this).f49567e.writeInt(i10);
     }
 
     public final void k(Parcelable parcelable, int i10) {
         i(i10);
-        ((c) this).f49538e.writeParcelable(parcelable, 0);
+        ((c) this).f49567e.writeParcelable(parcelable, 0);
     }
 
     public final void l(d dVar) {
         if (dVar == null) {
-            ((c) this).f49538e.writeString(null);
+            ((c) this).f49567e.writeString(null);
             return;
         }
         try {
-            ((c) this).f49538e.writeString(b(dVar.getClass()).getName());
+            ((c) this).f49567e.writeString(b(dVar.getClass()).getName());
             c a2 = a();
             try {
                 d(dVar.getClass()).invoke(null, dVar, a2);
-                Parcel parcel = a2.f49538e;
-                int i10 = a2.f49541i;
+                Parcel parcel = a2.f49567e;
+                int i10 = a2.f49570i;
                 if (i10 >= 0) {
                     int i11 = a2.d.get(i10);
                     int dataPosition = parcel.dataPosition();

@@ -13,20 +13,20 @@ import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.Components.yc;
 import org.telegram.ui.LaunchActivity;
 public final class o6 implements Runnable {
-    public final int f52390a;
-    public final int f52391b;
-    public final KeyEvent.Callback f52392c;
+    public final int f52421a;
+    public final int f52422b;
+    public final KeyEvent.Callback f52423c;
     public final Object d;
-    public final TLObject f52393e;
-    public final Object f52394f;
+    public final TLObject f52424e;
+    public final Object f52425f;
 
     public o6(KeyEvent.Callback callback, Object obj, int i10, TLObject tLObject, Object obj2, int i11) {
-        this.f52390a = i11;
-        this.f52392c = callback;
+        this.f52421a = i11;
+        this.f52423c = callback;
         this.d = obj;
-        this.f52391b = i10;
-        this.f52393e = tLObject;
-        this.f52394f = obj2;
+        this.f52422b = i10;
+        this.f52424e = tLObject;
+        this.f52425f = obj2;
     }
 
     @Override
@@ -35,11 +35,11 @@ public final class o6 implements Runnable {
         boolean z11;
         TLRPC.DisallowedGiftsSettings disallowedGiftsSettings;
         TLRPC.DisallowedGiftsSettings disallowedGiftsSettings2;
-        int i10 = this.f52390a;
-        Object obj = this.f52394f;
-        TLObject tLObject = this.f52393e;
+        int i10 = this.f52421a;
+        Object obj = this.f52425f;
+        TLObject tLObject = this.f52424e;
         Object obj2 = this.d;
-        KeyEvent.Callback callback = this.f52392c;
+        KeyEvent.Callback callback = this.f52423c;
         switch (i10) {
             case 0:
                 String str = (String) obj;
@@ -48,7 +48,7 @@ public final class o6 implements Runnable {
                 if (f3Var != null) {
                     f3Var.dismiss();
                 }
-                s5.y(this.f52391b, false).S();
+                s5.y(this.f52422b, false).S();
                 org.telegram.ui.ActionBar.n2 U = LaunchActivity.U();
                 if (U != null) {
                     yc.a0(U).V(Collections.singletonList(tLObject), LocaleController.getString(R.string.StarsSubscriptionRenewedToast), AndroidUtilities.replaceTags(LocaleController.formatString(R.string.StarsSubscriptionRenewedToastText, str)), null).k(false);
@@ -59,20 +59,20 @@ public final class o6 implements Runnable {
                 yh.p1 p1Var = (yh.p1) callback;
                 Context context = (Context) obj2;
                 TL_stars.StarGift starGift = (TL_stars.StarGift) tLObject;
-                long j3 = p1Var.f50485c0;
+                long j3 = p1Var.f50514c0;
                 yh.m0 m0Var = new yh.m0(p1Var, (Utilities.Callback) obj, 2);
                 boolean z12 = starGift.limited;
-                if (z12 && (disallowedGiftsSettings2 = p1Var.f50484b0) != null && disallowedGiftsSettings2.disallow_limited_stargifts) {
+                if (z12 && (disallowedGiftsSettings2 = p1Var.f50513b0) != null && disallowedGiftsSettings2.disallow_limited_stargifts) {
                     z10 = true;
                 } else {
                     z10 = false;
                 }
-                if (z12 && (disallowedGiftsSettings = p1Var.f50484b0) != null && disallowedGiftsSettings.disallow_unique_stargifts) {
+                if (z12 && (disallowedGiftsSettings = p1Var.f50513b0) != null && disallowedGiftsSettings.disallow_unique_stargifts) {
                     z11 = true;
                 } else {
                     z11 = false;
                 }
-                new yh.s0(p1Var, context, this.f52391b, starGift, j3, m0Var, z10, z11).show();
+                new yh.s0(p1Var, context, this.f52422b, starGift, j3, m0Var, z10, z11).show();
                 return;
         }
     }

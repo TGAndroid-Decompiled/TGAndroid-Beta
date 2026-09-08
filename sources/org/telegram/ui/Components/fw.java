@@ -11,17 +11,17 @@ import org.telegram.messenger.Emoji;
 import org.telegram.messenger.EmojiData;
 import org.telegram.messenger.MessagesController;
 public final class fw implements bl0, le.d, gm0, ih.i {
-    public final int f26185a;
-    public final kz f26186b;
+    public final int f26212a;
+    public final kz f26213b;
 
     public fw(kz kzVar, int i10) {
-        this.f26185a = i10;
-        this.f26186b = kzVar;
+        this.f26212a = i10;
+        this.f26213b = kzVar;
     }
 
     @Override
     public void E(int i10, float f7, float f10, le.e eVar) {
-        this.f26186b.T();
+        this.f26213b.T();
     }
 
     @Override
@@ -37,7 +37,7 @@ public final class fw implements bl0, le.d, gm0, ih.i {
         int i15;
         float f10;
         boolean z11;
-        kz kzVar = this.f26186b;
+        kz kzVar = this.f26213b;
         int i16 = kzVar.C1;
         kx kxVar = kzVar.P;
         int[] iArr = kzVar.D1;
@@ -46,13 +46,13 @@ public final class fw implements bl0, le.d, gm0, ih.i {
             ty tyVar = (ty) view;
             String str3 = null;
             s4.c1 c1Var = null;
-            if (tyVar.f30738c) {
+            if (tyVar.f30765c) {
                 View F = kxVar.F(view);
                 if (F != null) {
                     c1Var = kxVar.T(F);
                 }
                 if (c1Var != null && c1Var.b() <= kzVar.getRecentEmoji().size()) {
-                    kzVar.f27986t1.n();
+                    kzVar.f28013t1.n();
                 }
                 kxVar.v1(view);
                 return true;
@@ -60,7 +60,7 @@ public final class fw implements bl0, le.d, gm0, ih.i {
                 return false;
             } else {
                 String replace = str.replace("🏻", "").replace("🏼", "").replace("🏽", "").replace("🏾", "").replace("🏿", "");
-                if (!tyVar.f30738c) {
+                if (!tyVar.f30765c) {
                     str3 = Emoji.emojiColor.get(replace);
                 }
                 boolean isCompound = CompoundEmoji.isCompound(replace);
@@ -74,16 +74,16 @@ public final class fw implements bl0, le.d, gm0, ih.i {
                     replace = kz.g(replace, str3);
                 } else {
                     int indexOf = CompoundEmoji.skinTones.indexOf(str3) + 1;
-                    uu uuVar = vuVar.f31985c;
-                    int[] iArr2 = uuVar.f30976n;
+                    uu uuVar = vuVar.f32012c;
+                    int[] iArr2 = uuVar.f31003n;
                     if (iArr2[0] != indexOf) {
                         iArr2[0] = indexOf;
                         uuVar.invalidate();
                     }
                 }
                 vuVar.getClass();
-                uu uuVar2 = vuVar.f31985c;
-                int i17 = vuVar.f31986e;
+                uu uuVar2 = vuVar.f32012c;
+                int i17 = vuVar.f32013e;
                 if (CompoundEmoji.getCompoundEmojiDrawable(replace) != null) {
                     z10 = true;
                 } else {
@@ -91,23 +91,23 @@ public final class fw implements bl0, le.d, gm0, ih.i {
                 }
                 vuVar.d = z10;
                 int i18 = 3;
-                Drawable[] drawableArr = uuVar2.f30972b;
-                int[] iArr3 = uuVar2.f30976n;
-                uuVar2.f30975f = z10;
-                uuVar2.f30974e = replace;
+                Drawable[] drawableArr = uuVar2.f30999b;
+                int[] iArr3 = uuVar2.f31003n;
+                uuVar2.f31002f = z10;
+                uuVar2.f31001e = replace;
                 int i19 = 5;
                 if (z10) {
                     drawableArr[0] = CompoundEmoji.getCompoundEmojiDrawable(replace, -1, -1);
-                    drawableArr[1] = CompoundEmoji.getCompoundEmojiDrawable(uuVar2.f30974e, 0, -2);
-                    drawableArr[2] = CompoundEmoji.getCompoundEmojiDrawable(uuVar2.f30974e, 1, -2);
-                    drawableArr[3] = CompoundEmoji.getCompoundEmojiDrawable(uuVar2.f30974e, 2, -2);
-                    drawableArr[4] = CompoundEmoji.getCompoundEmojiDrawable(uuVar2.f30974e, 3, -2);
-                    drawableArr[5] = CompoundEmoji.getCompoundEmojiDrawable(uuVar2.f30974e, 4, -2);
-                    drawableArr[6] = CompoundEmoji.getCompoundEmojiDrawable(uuVar2.f30974e, -2, 0);
-                    drawableArr[7] = CompoundEmoji.getCompoundEmojiDrawable(uuVar2.f30974e, -2, 1);
-                    drawableArr[8] = CompoundEmoji.getCompoundEmojiDrawable(uuVar2.f30974e, -2, 2);
-                    drawableArr[9] = CompoundEmoji.getCompoundEmojiDrawable(uuVar2.f30974e, -2, 3);
-                    drawableArr[10] = CompoundEmoji.getCompoundEmojiDrawable(uuVar2.f30974e, -2, 4);
+                    drawableArr[1] = CompoundEmoji.getCompoundEmojiDrawable(uuVar2.f31001e, 0, -2);
+                    drawableArr[2] = CompoundEmoji.getCompoundEmojiDrawable(uuVar2.f31001e, 1, -2);
+                    drawableArr[3] = CompoundEmoji.getCompoundEmojiDrawable(uuVar2.f31001e, 2, -2);
+                    drawableArr[4] = CompoundEmoji.getCompoundEmojiDrawable(uuVar2.f31001e, 3, -2);
+                    drawableArr[5] = CompoundEmoji.getCompoundEmojiDrawable(uuVar2.f31001e, 4, -2);
+                    drawableArr[6] = CompoundEmoji.getCompoundEmojiDrawable(uuVar2.f31001e, -2, 0);
+                    drawableArr[7] = CompoundEmoji.getCompoundEmojiDrawable(uuVar2.f31001e, -2, 1);
+                    drawableArr[8] = CompoundEmoji.getCompoundEmojiDrawable(uuVar2.f31001e, -2, 2);
+                    drawableArr[9] = CompoundEmoji.getCompoundEmojiDrawable(uuVar2.f31001e, -2, 3);
+                    drawableArr[10] = CompoundEmoji.getCompoundEmojiDrawable(uuVar2.f31001e, -2, 4);
                     Pair<Integer, Integer> isHandshake = CompoundEmoji.isHandshake(replace);
                     if (isHandshake != null) {
                         int intValue = ((Integer) isHandshake.first).intValue();
@@ -176,7 +176,7 @@ public final class fw implements bl0, le.d, gm0, ih.i {
                 int i23 = (i13 * i17) + dp3;
                 tyVar.getLocationOnScreen(iArr);
                 if (!vuVar.d) {
-                    int i24 = uuVar2.f30976n[0];
+                    int i24 = uuVar2.f31003n[0];
                     int i25 = i24 * i16;
                     int i26 = i24 * 4;
                     if (!AndroidUtilities.isTablet()) {
@@ -222,32 +222,32 @@ public final class fw implements bl0, le.d, gm0, ih.i {
         int i14;
         int i15;
         wy wyVar;
-        switch (this.f26185a) {
+        switch (this.f26212a) {
             case 2:
-                kz kzVar = this.f26186b;
-                qy qyVar = kzVar.f27951i0;
-                int i16 = kzVar.f27932c1;
-                py pyVar = kzVar.f27965n0;
-                sy syVar = kzVar.f27957k0;
-                if (i10 != kzVar.f27982s0 || !pyVar.f29518x.isEmpty()) {
-                    kzVar.f27948h0.B0();
-                    kzVar.f27971p0.k(i10, 0);
-                    if (i10 != kzVar.f27978r0 && i10 != kzVar.f27982s0) {
+                kz kzVar = this.f26213b;
+                qy qyVar = kzVar.f27978i0;
+                int i16 = kzVar.f27959c1;
+                py pyVar = kzVar.f27992n0;
+                sy syVar = kzVar.f27984k0;
+                if (i10 != kzVar.f28009s0 || !pyVar.f29545x.isEmpty()) {
+                    kzVar.f27975h0.B0();
+                    kzVar.f27998p0.k(i10, 0);
+                    if (i10 != kzVar.f28005r0 && i10 != kzVar.f28009s0) {
                         ArrayList<String> arrayList = MessagesController.getInstance(i16).gifSearchEmojies;
-                        kzVar.f27954j0.H(arrayList.get(i10 - kzVar.f27985t0));
-                        int i17 = i10 - kzVar.f27985t0;
+                        kzVar.f27981j0.H(arrayList.get(i10 - kzVar.f28012t0));
+                        int i17 = i10 - kzVar.f28012t0;
                         if (i17 > 0) {
                             syVar.a(arrayList.get(i17 - 1), true);
                         }
-                        if (i10 - kzVar.f27985t0 < arrayList.size() - 1) {
-                            syVar.a(arrayList.get((i10 - kzVar.f27985t0) + 1), true);
+                        if (i10 - kzVar.f28012t0 < arrayList.size() - 1) {
+                            syVar.a(arrayList.get((i10 - kzVar.f28012t0) + 1), true);
                         }
                     } else {
-                        kzVar.f27968o0.d.setText("");
-                        if (i10 == kzVar.f27982s0 && (i12 = pyVar.I) >= 1) {
+                        kzVar.f27995o0.d.setText("");
+                        if (i10 == kzVar.f28009s0 && (i12 = pyVar.I) >= 1) {
                             qyVar.h1(i12, -AndroidUtilities.dp(4.0f));
                         } else {
-                            ly lyVar = kzVar.f27986t1;
+                            ly lyVar = kzVar.f28013t1;
                             if (lyVar != null && lyVar.A()) {
                                 i11 = 0;
                             } else {
@@ -255,7 +255,7 @@ public final class fw implements bl0, le.d, gm0, ih.i {
                             }
                             qyVar.h1(i11, 0);
                         }
-                        if (i10 == kzVar.f27982s0) {
+                        if (i10 == kzVar.f28009s0) {
                             ArrayList<String> arrayList2 = MessagesController.getInstance(i16).gifSearchEmojies;
                             if (!arrayList2.isEmpty()) {
                                 syVar.a(arrayList2.get(0), true);
@@ -267,18 +267,18 @@ public final class fw implements bl0, le.d, gm0, ih.i {
                 }
                 return;
             default:
-                kz kzVar2 = this.f26186b;
+                kz kzVar2 = this.f26213b;
                 ww wwVar = kzVar2.G0;
-                ArrayList arrayList3 = kzVar2.f27935d1;
+                ArrayList arrayList3 = kzVar2.f27962d1;
                 xw xwVar = kzVar2.B0;
-                bz bzVar = kzVar2.f28003y0;
+                bz bzVar = kzVar2.f28030y0;
                 tw twVar = kzVar2.D0;
                 if (!kzVar2.S0) {
                     if (i10 == kzVar2.H1) {
-                        kzVar2.f27986t1.o(new d51(kzVar2.getContext(), new fx(kzVar2), kzVar2.f28000x1, kzVar2.f28004y1, kzVar2.f28007z1, null, kzVar2.Z1));
+                        kzVar2.f28013t1.o(new d51(kzVar2.getContext(), new fx(kzVar2), kzVar2.f28027x1, kzVar2.f28031y1, kzVar2.f28034z1, null, kzVar2.Z1));
                         return;
                     }
-                    if (wwVar != null && (wyVar = wwVar.f32778r) != null && wyVar.getSelectedCategory() != null) {
+                    if (wwVar != null && (wyVar = wwVar.f32805r) != null && wyVar.getSelectedCategory() != null) {
                         wwVar.c(null, false);
                         wyVar.E1(null);
                     }
@@ -347,7 +347,7 @@ public final class fw implements bl0, le.d, gm0, ih.i {
 
     @Override
     public void k(RectF rectF, View view) {
-        this.f26186b.C();
+        this.f26213b.C();
     }
 
     @Override

@@ -51,32 +51,32 @@ public final class h extends Drawable {
     public static final Path E;
     public static Paint F;
     public static WeakHashMap G;
-    public final Paint[] f48613a;
-    public final float[] f48614b;
-    public final Stack f48615c;
+    public final Paint[] f48642a;
+    public final float[] f48643b;
+    public final Stack f48644c;
     public int d;
-    public final float[] f48616e;
-    public final int[] f48617f;
-    public RectF f48618g;
+    public final float[] f48645e;
+    public final int[] f48646f;
+    public RectF f48647g;
     public final ArrayList h;
-    public View f48619i;
-    public long f48620j;
-    public float f48621k;
-    public float f48622l;
-    public float f48623m;
-    public float f48624n;
-    public boolean f48625o;
-    public boolean f48626p;
-    public Runnable f48627q;
-    public ValueAnimator f48628r;
-    public int f48629s;
-    public TimeInterpolator f48630t;
-    public boolean f48631u;
+    public View f48648i;
+    public long f48649j;
+    public float f48650k;
+    public float f48651l;
+    public float f48652m;
+    public float f48653n;
+    public boolean f48654o;
+    public boolean f48655p;
+    public Runnable f48656q;
+    public ValueAnimator f48657r;
+    public int f48658s;
+    public TimeInterpolator f48659t;
+    public boolean f48660u;
     public PorterDuffColorFilter v;
-    public int f48632w;
-    public int f48633x;
-    public boolean f48634y;
-    public final RectF f48635z;
+    public int f48661w;
+    public int f48662x;
+    public boolean f48663y;
+    public final RectF f48664z;
 
     static {
         int i10;
@@ -101,28 +101,28 @@ public final class h extends Drawable {
 
     public h() {
         float[] fArr = C;
-        this.f48613a = new Paint[fArr.length];
-        this.f48614b = new float[fArr.length];
-        this.f48615c = new Stack();
-        this.f48616e = new float[14];
-        this.f48617f = new int[fArr.length];
+        this.f48642a = new Paint[fArr.length];
+        this.f48643b = new float[fArr.length];
+        this.f48644c = new Stack();
+        this.f48645e = new float[14];
+        this.f48646f = new int[fArr.length];
         this.h = new ArrayList();
-        this.f48624n = -1.0f;
-        this.f48629s = 255;
-        this.f48630t = new hd(1);
-        this.f48635z = new RectF();
+        this.f48653n = -1.0f;
+        this.f48658s = 255;
+        this.f48659t = new hd(1);
+        this.f48664z = new RectF();
         for (int i10 = 0; i10 < fArr.length; i10++) {
-            this.f48613a[i10] = new Paint();
+            this.f48642a[i10] = new Paint();
             if (i10 == 0) {
-                this.f48613a[i10].setStrokeWidth(AndroidUtilities.dp(1.4f));
-                this.f48613a[i10].setStyle(Paint.Style.STROKE);
-                this.f48613a[i10].setStrokeCap(Paint.Cap.ROUND);
+                this.f48642a[i10].setStrokeWidth(AndroidUtilities.dp(1.4f));
+                this.f48642a[i10].setStyle(Paint.Style.STROKE);
+                this.f48642a[i10].setStrokeCap(Paint.Cap.ROUND);
             } else {
-                this.f48613a[i10].setStrokeWidth(AndroidUtilities.dp(1.2f));
-                this.f48613a[i10].setStyle(Paint.Style.STROKE);
-                this.f48613a[i10].setStrokeCap(Paint.Cap.ROUND);
+                this.f48642a[i10].setStrokeWidth(AndroidUtilities.dp(1.2f));
+                this.f48642a[i10].setStyle(Paint.Style.STROKE);
+                this.f48642a[i10].setStrokeCap(Paint.Cap.ROUND);
             }
-            this.f48614b[i10] = this.f48613a[i10].getStrokeWidth() * 0.5f;
+            this.f48643b[i10] = this.f48642a[i10].getStrokeWidth() * 0.5f;
         }
         SharedConfig.getDevicePerformanceClass();
         h(0);
@@ -287,7 +287,7 @@ public final class h extends Drawable {
                     path.addRect(bounds.left, bounds.top, bounds.right, bounds.bottom, Path.Direction.CW);
                 }
                 int i16 = 0;
-                if (!list.isEmpty() && ((h) list.get(0)).f48624n != -1.0f) {
+                if (!list.isEmpty() && ((h) list.get(0)).f48653n != -1.0f) {
                     canvas.save();
                     canvas.clipPath(path);
                     path.rewind();
@@ -300,7 +300,7 @@ public final class h extends Drawable {
                     canvas.restore();
                     i16 = 0;
                 }
-                if (((h) list.get(i16)).f48624n != -1.0f) {
+                if (((h) list.get(i16)).f48653n != -1.0f) {
                     z12 = true;
                 } else {
                     z12 = false;
@@ -318,19 +318,19 @@ public final class h extends Drawable {
                 Iterator it2 = list.iterator();
                 while (it2.hasNext()) {
                     h hVar = (h) it2.next();
-                    hVar.f48631u = z10;
-                    if (hVar.f48619i != view) {
-                        hVar.f48619i = view;
+                    hVar.f48660u = z10;
+                    if (hVar.f48648i != view) {
+                        hVar.f48648i = view;
                     }
-                    boolean z13 = hVar.f48626p;
-                    hVar.f48626p = false;
+                    boolean z13 = hVar.f48655p;
+                    hVar.f48655p = false;
                     if (z13) {
                         if (i12 == 1) {
                             textPaint = layout.getPaint();
                         } else {
-                            textPaint = j6.f20858o2;
+                            textPaint = j6.f20885o2;
                         }
-                        hVar.h(i0.a.d(Math.max(0.0f, hVar.f48624n), i10, textPaint.getColor()));
+                        hVar.h(i0.a.d(Math.max(0.0f, hVar.f48653n), i10, textPaint.getColor()));
                     } else {
                         hVar.h(i10);
                     }
@@ -360,16 +360,16 @@ public final class h extends Drawable {
         int i10;
         Rect bounds = getBounds();
         if (!bounds.isEmpty()) {
-            if (j.f48639q == null) {
-                j.f48639q = new j();
+            if (j.f48668q == null) {
+                j.f48668q = new j();
             }
-            j jVar = j.f48639q;
-            int i11 = jVar.f48648k;
-            o0.a[] aVarArr = jVar.f48642c;
+            j jVar = j.f48668q;
+            int i11 = jVar.f48677k;
+            o0.a[] aVarArr = jVar.f48671c;
             if (aVarArr[0] == null) {
                 aVarArr[0] = new o0.a(i11);
-                jVar.f48645g = new Paint();
-                jVar.f48646i = new ArrayList(100);
+                jVar.f48674g = new Paint();
+                jVar.f48675i = new ArrayList(100);
                 float f7 = i11;
                 int i12 = (int) (f7 / 10.0f);
                 int dp = (int) ((f7 / AndroidUtilities.dp(200.0f)) * 60.0f);
@@ -381,39 +381,39 @@ public final class h extends Drawable {
                     int i14 = 0;
                     for (int i15 = 10; i14 < i15; i15 = 10) {
                         h hVar = new h();
-                        hVar.f48633x = i11;
+                        hVar.f48662x = i11;
                         int i16 = i12 * i13;
                         int i17 = i12 * i14;
                         hVar.setBounds(i16, i17 - AndroidUtilities.dp(5.0f), AndroidUtilities.dp(3.0f) + i16 + i12, AndroidUtilities.dp(5.0f) + i17 + i12);
                         int min = Math.min(A * 5, dp);
                         hVar.d = min;
                         while (true) {
-                            Stack stack = hVar.f48615c;
+                            Stack stack = hVar.f48644c;
                             if (hVar.h.size() + stack.size() < min) {
                                 stack.push(new Object());
                             }
                         }
                         hVar.h(-1);
-                        jVar.f48646i.add(hVar);
+                        jVar.f48675i.add(hVar);
                         i14++;
                     }
                     i13++;
                 }
                 i10 = 128;
-                jVar.a(new Canvas((Bitmap) aVarArr[0].f16769b), new Rect(0, 0, i11, i11));
-                jVar.f48645g.setShader((BitmapShader) aVarArr[0].f16770c);
+                jVar.a(new Canvas((Bitmap) aVarArr[0].f16796b), new Rect(0, 0, i11, i11));
+                jVar.f48674g.setShader((BitmapShader) aVarArr[0].f16797c);
                 jVar.h = System.currentTimeMillis();
             } else {
                 i10 = 128;
-                if (jVar.f48653p && !LiteMode.isEnabled(128)) {
+                if (jVar.f48682p && !LiteMode.isEnabled(128)) {
                     jVar.d = 0;
-                    jVar.a(new Canvas((Bitmap) aVarArr[0].f16769b), new Rect(0, 0, i11, i11));
-                    jVar.f48645g.setShader((BitmapShader) aVarArr[0].f16770c);
+                    jVar.a(new Canvas((Bitmap) aVarArr[0].f16796b), new Rect(0, 0, i11, i11));
+                    jVar.f48674g.setShader((BitmapShader) aVarArr[0].f16797c);
                     jVar.h = System.currentTimeMillis();
-                    jVar.f48653p = false;
+                    jVar.f48682p = false;
                 }
             }
-            Paint paint = jVar.f48645g;
+            Paint paint = jVar.f48674g;
             paint.setColorFilter(this.v);
             canvas.drawRect(bounds, paint);
             if (LiteMode.isEnabled(i10)) {
@@ -421,18 +421,18 @@ public final class h extends Drawable {
                 d.getClass();
                 yf.h.c();
                 d.d.add(this);
-                if (j.f48639q == null) {
-                    j.f48639q = new j();
+                if (j.f48668q == null) {
+                    j.f48668q = new j();
                 }
-                j jVar2 = j.f48639q;
+                j jVar2 = j.f48668q;
                 jVar2.getClass();
                 int i18 = bounds.left;
-                int i19 = jVar2.f48648k;
+                int i19 = jVar2.f48677k;
                 int i20 = ((i18 % i19) + i19) % i19;
                 int i21 = ((bounds.top % i19) + i19) % i19;
                 int min2 = Math.min(bounds.width(), i19) + i20;
                 int min3 = Math.min(bounds.height(), i19) + i21;
-                Rect rect = jVar2.f48650m;
+                Rect rect = jVar2.f48679m;
                 rect.union(i20, i21, Math.min(min2, i19), Math.min(min3, i19));
                 if (min2 > i19) {
                     rect.union(0, i21, min2 - i19, Math.min(min3, i19));
@@ -443,16 +443,16 @@ public final class h extends Drawable {
                 if (min2 > i19 && min3 > i19) {
                     rect.union(0, 0, min2 - i19, min3 - i19);
                 }
-                if (!jVar2.f48649l && !rect.isEmpty()) {
-                    jVar2.f48649l = true;
-                    Choreographer.getInstance().postFrameCallback(jVar2.f48651n);
+                if (!jVar2.f48678l && !rect.isEmpty()) {
+                    jVar2.f48678l = true;
+                    Choreographer.getInstance().postFrameCallback(jVar2.f48680n);
                 }
             }
         }
     }
 
     public final void e(Path path) {
-        path.addCircle(this.f48621k, this.f48622l, w7.p.a(this.f48624n, 0.0f, 1.0f) * this.f48623m, Path.Direction.CW);
+        path.addCircle(this.f48650k, this.f48651l, w7.p.a(this.f48653n, 0.0f, 1.0f) * this.f48652m, Path.Direction.CW);
     }
 
     @Override
@@ -461,16 +461,16 @@ public final class h extends Drawable {
     }
 
     public final void h(int i10) {
-        if (this.f48632w != i10) {
+        if (this.f48661w != i10) {
             int i11 = 0;
             while (true) {
                 float[] fArr = C;
                 if (i11 < fArr.length) {
-                    this.f48613a[i11].setColor(i0.a.k(i10, (int) (this.f48629s * fArr[i11])));
+                    this.f48642a[i11].setColor(i0.a.k(i10, (int) (this.f48658s * fArr[i11])));
                     i11++;
                 } else {
                     this.v = new PorterDuffColorFilter(i10, PorterDuff.Mode.SRC_IN);
-                    this.f48632w = i10;
+                    this.f48661w = i10;
                     return;
                 }
             }
@@ -478,10 +478,10 @@ public final class h extends Drawable {
     }
 
     public final void i(float f7, float f10, float f11) {
-        if (this.f48618g == null) {
-            this.f48618g = new RectF();
+        if (this.f48647g == null) {
+            this.f48647g = new RectF();
         }
-        RectF rectF = this.f48618g;
+        RectF rectF = this.f48647g;
         if (rectF.left == 0.0f && rectF.right == f10 && rectF.top == f7 && rectF.bottom == f11) {
             return;
         }
@@ -495,9 +495,9 @@ public final class h extends Drawable {
     @Override
     public final void invalidateSelf() {
         super.invalidateSelf();
-        View view = this.f48619i;
+        View view = this.f48648i;
         if (view != null) {
-            if (view.getParent() != null && this.f48631u) {
+            if (view.getParent() != null && this.f48660u) {
                 ((View) view.getParent()).invalidate();
             } else if (view instanceof a0) {
                 ((a0) view).l();
@@ -510,55 +510,55 @@ public final class h extends Drawable {
     public final void j(float f7, float f10, float f11, boolean z10) {
         float f12;
         int alpha;
-        this.f48621k = f7;
-        this.f48622l = f10;
-        this.f48623m = f11;
+        this.f48650k = f7;
+        this.f48651l = f10;
+        this.f48652m = f11;
         float f13 = 0.0f;
         if (z10) {
             f12 = 1.0f;
         } else {
             f12 = 0.0f;
         }
-        this.f48624n = f12;
-        this.f48625o = z10;
-        ValueAnimator valueAnimator = this.f48628r;
+        this.f48653n = f12;
+        this.f48654o = z10;
+        ValueAnimator valueAnimator = this.f48657r;
         if (valueAnimator != null) {
             valueAnimator.cancel();
         }
-        if (this.f48625o) {
+        if (this.f48654o) {
             alpha = 255;
         } else {
-            alpha = this.f48613a[C.length - 1].getAlpha();
+            alpha = this.f48642a[C.length - 1].getAlpha();
         }
-        float f14 = this.f48624n;
+        float f14 = this.f48653n;
         if (!z10) {
             f13 = 1.0f;
         }
-        ValueAnimator duration = ValueAnimator.ofFloat(f14, f13).setDuration(w7.p.a(this.f48623m * 0.3f, 250.0f, 550.0f));
-        this.f48628r = duration;
-        duration.setInterpolator(this.f48630t);
-        this.f48628r.addUpdateListener(new q2(this, alpha, 6));
-        this.f48628r.addListener(new oj1(this, 10));
-        this.f48628r.start();
+        ValueAnimator duration = ValueAnimator.ofFloat(f14, f13).setDuration(w7.p.a(this.f48652m * 0.3f, 250.0f, 550.0f));
+        this.f48657r = duration;
+        duration.setInterpolator(this.f48659t);
+        this.f48657r.addUpdateListener(new q2(this, alpha, 6));
+        this.f48657r.addListener(new oj1(this, 10));
+        this.f48657r.start();
         invalidateSelf();
     }
 
     @Override
     public final void onBoundsChange(Rect rect) {
         super.onBoundsChange(rect);
-        RectF rectF = this.f48635z;
+        RectF rectF = this.f48664z;
         rectF.set(rect);
         rectF.inset(0.0f, AndroidUtilities.dp(2.5f));
     }
 
     @Override
     public final void setAlpha(int i10) {
-        this.f48629s = i10;
+        this.f48658s = i10;
         int i11 = 0;
         while (true) {
             float[] fArr = C;
             if (i11 < fArr.length) {
-                this.f48613a[i11].setAlpha((int) (fArr[i11] * i10));
+                this.f48642a[i11].setAlpha((int) (fArr[i11] * i10));
                 i11++;
             } else {
                 return;
@@ -572,10 +572,10 @@ public final class h extends Drawable {
         Iterator it = this.h.iterator();
         while (it.hasNext()) {
             c cVar = (c) it.next();
-            if (!getBounds().contains((int) cVar.f48581a, (int) cVar.f48582b)) {
+            if (!getBounds().contains((int) cVar.f48610a, (int) cVar.f48611b)) {
                 it.remove();
             }
-            Stack stack = this.f48615c;
+            Stack stack = this.f48644c;
             if (stack.size() < this.d) {
                 stack.push(cVar);
             }
@@ -584,7 +584,7 @@ public final class h extends Drawable {
 
     @Override
     public final void setColorFilter(ColorFilter colorFilter) {
-        for (Paint paint : this.f48613a) {
+        for (Paint paint : this.f48642a) {
             paint.setColorFilter(colorFilter);
         }
     }

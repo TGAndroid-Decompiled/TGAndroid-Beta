@@ -9,19 +9,19 @@ import android.os.Process;
 import android.util.Log;
 import java.util.Calendar;
 public final class o extends p {
-    public final int f10211c = 1;
+    public final int f10239c = 1;
     public final s d;
-    public final Object f10212e;
+    public final Object f10240e;
 
     public o(s sVar, aa.a aVar) {
         super(sVar);
         this.d = sVar;
-        this.f10212e = aVar;
+        this.f10240e = aVar;
     }
 
     @Override
     public final IntentFilter d() {
-        switch (this.f10211c) {
+        switch (this.f10239c) {
             case 0:
                 IntentFilter intentFilter = new IntentFilter();
                 intentFilter.addAction("android.os.action.POWER_SAVE_MODE_CHANGED");
@@ -41,20 +41,20 @@ public final class o extends p {
         boolean z10;
         long j3;
         Location location2;
-        switch (this.f10211c) {
+        switch (this.f10239c) {
             case 0:
-                if (((PowerManager) this.f10212e).isPowerSaveMode()) {
+                if (((PowerManager) this.f10240e).isPowerSaveMode()) {
                     return 2;
                 }
                 return 1;
             default:
-                aa.a aVar = (aa.a) this.f10212e;
+                aa.a aVar = (aa.a) this.f10240e;
                 bh.a aVar2 = (bh.a) aVar.d;
-                LocationManager locationManager = (LocationManager) aVar.f372c;
-                if (aVar2.f2649b > System.currentTimeMillis()) {
-                    z10 = aVar2.f2648a;
+                LocationManager locationManager = (LocationManager) aVar.f384c;
+                if (aVar2.f2676b > System.currentTimeMillis()) {
+                    z10 = aVar2.f2675a;
                 } else {
-                    Context context = (Context) aVar.f371b;
+                    Context context = (Context) aVar.f383b;
                     Location location3 = null;
                     if (f0.e.a(context, "android.permission.ACCESS_COARSE_LOCATION", Process.myPid(), Process.myUid(), context.getPackageName()) == 0) {
                         try {
@@ -91,13 +91,13 @@ public final class o extends p {
                         y yVar = y.d;
                         yVar.a(location.getLatitude(), location.getLongitude(), currentTimeMillis - 86400000);
                         yVar.a(location.getLatitude(), location.getLongitude(), currentTimeMillis);
-                        if (yVar.f10269c == 1) {
+                        if (yVar.f10297c == 1) {
                             z10 = true;
                         }
-                        long j10 = yVar.f10268b;
-                        long j11 = yVar.f10267a;
+                        long j10 = yVar.f10296b;
+                        long j11 = yVar.f10295a;
                         yVar.a(location.getLatitude(), location.getLongitude(), currentTimeMillis + 86400000);
-                        long j12 = yVar.f10268b;
+                        long j12 = yVar.f10296b;
                         if (j10 != -1 && j11 != -1) {
                             if (currentTimeMillis > j11) {
                                 j10 = j12;
@@ -108,8 +108,8 @@ public final class o extends p {
                         } else {
                             j3 = currentTimeMillis + 43200000;
                         }
-                        aVar2.f2648a = z10;
-                        aVar2.f2649b = j3;
+                        aVar2.f2675a = z10;
+                        aVar2.f2676b = j3;
                     } else {
                         Log.i("TwilightManager", "Could not get last known location. This is probably because the app does not have any location permissions. Falling back to hardcoded sunrise/sunset values.");
                         int i10 = Calendar.getInstance().get(11);
@@ -127,7 +127,7 @@ public final class o extends p {
 
     @Override
     public final void k() {
-        switch (this.f10211c) {
+        switch (this.f10239c) {
             case 0:
                 this.d.d(true);
                 return;
@@ -140,6 +140,6 @@ public final class o extends p {
     public o(s sVar, Context context) {
         super(sVar);
         this.d = sVar;
-        this.f10212e = (PowerManager) context.getApplicationContext().getSystemService("power");
+        this.f10240e = (PowerManager) context.getApplicationContext().getSystemService("power");
     }
 }

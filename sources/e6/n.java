@@ -20,50 +20,50 @@ import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.y11;
 import v7.z8;
 public final class n implements OnFailureListener, c3.p, c3.q, l2.h, no {
-    public final int f8893a;
-    public long f8894b;
-    public Object f8895c;
+    public final int f8921a;
+    public long f8922b;
+    public Object f8923c;
 
     public n(long j3, Object obj, int i10) {
-        this.f8893a = i10;
-        this.f8894b = j3;
-        this.f8895c = obj;
+        this.f8921a = i10;
+        this.f8922b = j3;
+        this.f8923c = obj;
     }
 
     public int A(int i10) {
-        n nVar = (n) this.f8895c;
+        n nVar = (n) this.f8923c;
         if (nVar == null) {
             if (i10 >= 64) {
-                return Long.bitCount(this.f8894b);
+                return Long.bitCount(this.f8922b);
             }
-            return Long.bitCount(this.f8894b & ((1 << i10) - 1));
+            return Long.bitCount(this.f8922b & ((1 << i10) - 1));
         } else if (i10 < 64) {
-            return Long.bitCount(this.f8894b & ((1 << i10) - 1));
+            return Long.bitCount(this.f8922b & ((1 << i10) - 1));
         } else {
-            return Long.bitCount(this.f8894b) + nVar.A(i10 - 64);
+            return Long.bitCount(this.f8922b) + nVar.A(i10 - 64);
         }
     }
 
     public void B() {
-        if (((n) this.f8895c) == null) {
-            this.f8895c = new n(6);
+        if (((n) this.f8923c) == null) {
+            this.f8923c = new n(6);
         }
     }
 
     public void C(yc.a aVar) {
-        this.f8894b++;
+        this.f8922b++;
         Thread thread = new Thread(aVar);
         thread.setDaemon(true);
-        thread.setName("NanoHttpd Request Processor (#" + this.f8894b + ")");
-        ((List) this.f8895c).add(aVar);
+        thread.setName("NanoHttpd Request Processor (#" + this.f8922b + ")");
+        ((List) this.f8923c).add(aVar);
         thread.start();
     }
 
     public boolean D(int i10) {
         if (i10 >= 64) {
             B();
-            return ((n) this.f8895c).D(i10 - 64);
-        } else if ((this.f8894b & (1 << i10)) != 0) {
+            return ((n) this.f8923c).D(i10 - 64);
+        } else if ((this.f8922b & (1 << i10)) != 0) {
             return true;
         } else {
             return false;
@@ -74,59 +74,59 @@ public final class n implements OnFailureListener, c3.p, c3.q, l2.h, no {
         boolean z11;
         if (i10 >= 64) {
             B();
-            ((n) this.f8895c).E(i10 - 64, z10);
+            ((n) this.f8923c).E(i10 - 64, z10);
             return;
         }
-        long j3 = this.f8894b;
+        long j3 = this.f8922b;
         if ((Long.MIN_VALUE & j3) != 0) {
             z11 = true;
         } else {
             z11 = false;
         }
         long j10 = (1 << i10) - 1;
-        this.f8894b = ((j3 & (~j10)) << 1) | (j3 & j10);
+        this.f8922b = ((j3 & (~j10)) << 1) | (j3 & j10);
         if (z10) {
             H(i10);
         } else {
             z(i10);
         }
-        if (!z11 && ((n) this.f8895c) == null) {
+        if (!z11 && ((n) this.f8923c) == null) {
             return;
         }
         B();
-        ((n) this.f8895c).E(0, z11);
+        ((n) this.f8923c).E(0, z11);
     }
 
     public boolean F(int i10) {
         boolean z10;
         if (i10 >= 64) {
             B();
-            return ((n) this.f8895c).F(i10 - 64);
+            return ((n) this.f8923c).F(i10 - 64);
         }
         long j3 = 1 << i10;
-        long j10 = this.f8894b;
+        long j10 = this.f8922b;
         if ((j10 & j3) != 0) {
             z10 = true;
         } else {
             z10 = false;
         }
         long j11 = j10 & (~j3);
-        this.f8894b = j11;
+        this.f8922b = j11;
         long j12 = j3 - 1;
-        this.f8894b = (j11 & j12) | Long.rotateRight((~j12) & j11, 1);
-        n nVar = (n) this.f8895c;
+        this.f8922b = (j11 & j12) | Long.rotateRight((~j12) & j11, 1);
+        n nVar = (n) this.f8923c;
         if (nVar != null) {
             if (nVar.D(0)) {
                 H(63);
             }
-            ((n) this.f8895c).F(0);
+            ((n) this.f8923c).F(0);
         }
         return z10;
     }
 
     public void G() {
-        this.f8894b = 0L;
-        n nVar = (n) this.f8895c;
+        this.f8922b = 0L;
+        n nVar = (n) this.f8923c;
         if (nVar != null) {
             nVar.G();
         }
@@ -135,45 +135,45 @@ public final class n implements OnFailureListener, c3.p, c3.q, l2.h, no {
     public void H(int i10) {
         if (i10 >= 64) {
             B();
-            ((n) this.f8895c).H(i10 - 64);
+            ((n) this.f8923c).H(i10 - 64);
             return;
         }
-        this.f8894b |= 1 << i10;
+        this.f8922b |= 1 << i10;
     }
 
     @Override
     public void P1(b0 b0Var) {
-        ((c3.q) this.f8895c).P1(new k3.d(this, b0Var, b0Var));
+        ((c3.q) this.f8923c).P1(new k3.d(this, b0Var, b0Var));
     }
 
     @Override
     public h0 R1(int i10, int i11) {
-        return ((c3.q) this.f8895c).R1(i10, i11);
+        return ((c3.q) this.f8923c).R1(i10, i11);
     }
 
     @Override
     public void Z0() {
-        ((c3.q) this.f8895c).Z0();
+        ((c3.q) this.f8923c).Z0();
     }
 
     @Override
     public long a(long j3) {
-        return ((c3.j) this.f8895c).f4273e[(int) j3] - this.f8894b;
+        return ((c3.j) this.f8923c).f4300e[(int) j3] - this.f8922b;
     }
 
     @Override
     public void b(int i10, int i11, byte[] bArr) {
-        ((c3.p) this.f8895c).b(i10, i11, bArr);
+        ((c3.p) this.f8923c).b(i10, i11, bArr);
     }
 
     @Override
     public long c(long j3, long j10) {
-        return ((c3.j) this.f8895c).d[(int) j3];
+        return ((c3.j) this.f8923c).d[(int) j3];
     }
 
     @Override
     public boolean d(byte[] bArr, int i10, int i11, boolean z10) {
-        return ((c3.p) this.f8895c).d(bArr, 0, i11, z10);
+        return ((c3.p) this.f8923c).d(bArr, 0, i11, z10);
     }
 
     @Override
@@ -188,63 +188,63 @@ public final class n implements OnFailureListener, c3.p, c3.q, l2.h, no {
 
     @Override
     public m2.j g(long j3) {
-        c3.j jVar = (c3.j) this.f8895c;
+        c3.j jVar = (c3.j) this.f8923c;
         int i10 = (int) j3;
-        return new m2.j(jVar.f4272c[i10], jVar.f4271b[i10], null);
+        return new m2.j(jVar.f4299c[i10], jVar.f4298b[i10], null);
     }
 
     @Override
     public long getLength() {
-        return ((c3.p) this.f8895c).getLength() - this.f8894b;
+        return ((c3.p) this.f8923c).getLength() - this.f8922b;
     }
 
     @Override
     public long getPosition() {
-        return ((c3.p) this.f8895c).getPosition() - this.f8894b;
+        return ((c3.p) this.f8923c).getPosition() - this.f8922b;
     }
 
     @Override
     public int h(int i10, int i11, byte[] bArr) {
-        return ((c3.p) this.f8895c).h(i10, i11, bArr);
+        return ((c3.p) this.f8923c).h(i10, i11, bArr);
     }
 
     @Override
     public boolean i(int i10, boolean z10) {
-        return ((c3.p) this.f8895c).i(i10, true);
+        return ((c3.p) this.f8923c).i(i10, true);
     }
 
     @Override
     public boolean j(byte[] bArr, int i10, int i11, boolean z10) {
-        return ((c3.p) this.f8895c).j(bArr, i10, i11, z10);
+        return ((c3.p) this.f8923c).j(bArr, i10, i11, z10);
     }
 
     @Override
     public long k() {
-        return ((c3.p) this.f8895c).k() - this.f8894b;
+        return ((c3.p) this.f8923c).k() - this.f8922b;
     }
 
     @Override
     public void l(int i10) {
-        ((c3.p) this.f8895c).l(i10);
+        ((c3.p) this.f8923c).l(i10);
     }
 
     @Override
     public void m() {
         Bundle bundle = new Bundle();
-        bundle.putLong("dialog_id", this.f8894b);
+        bundle.putLong("dialog_id", this.f8922b);
         ?? n2Var = new n2(bundle);
         n2Var.d = new ArrayList();
-        n2Var.f38066e = new HashSet();
-        ProfileActivity profileActivity = (ProfileActivity) this.f8895c;
-        n2Var.f38066e = profileActivity.f33914h5;
+        n2Var.f38093e = new HashSet();
+        ProfileActivity profileActivity = (ProfileActivity) this.f8923c;
+        n2Var.f38093e = profileActivity.f33941h5;
         profileActivity.presentFragment((n2) n2Var);
     }
 
     @Override
     public void n() {
-        ProfileActivity profileActivity = (ProfileActivity) this.f8895c;
-        boolean z10 = !profileActivity.getMessagesController().isDialogMuted(this.f8894b, profileActivity.f33903g1);
-        profileActivity.getNotificationsController().muteDialog(this.f8894b, profileActivity.f33903g1, z10);
+        ProfileActivity profileActivity = (ProfileActivity) this.f8923c;
+        boolean z10 = !profileActivity.getMessagesController().isDialogMuted(this.f8922b, profileActivity.f33930g1);
+        profileActivity.getNotificationsController().muteDialog(this.f8922b, profileActivity.f33930g1, z10);
         if (profileActivity.fragmentView != null) {
             yc.A(profileActivity, z10, null).j();
         }
@@ -254,85 +254,85 @@ public final class n implements OnFailureListener, c3.p, c3.q, l2.h, no {
 
     @Override
     public long o(long j3, long j10) {
-        return d0.e(((c3.j) this.f8895c).f4273e, j3 + this.f8894b, true);
+        return d0.e(((c3.j) this.f8923c).f4300e, j3 + this.f8922b, true);
     }
 
     @Override
     public void onFailure(Exception exc) {
         int i10;
-        switch (this.f8893a) {
+        switch (this.f8921a) {
             case 0:
                 if (exc instanceof com.google.android.gms.common.api.f) {
                     i10 = ((com.google.android.gms.common.api.f) exc).getStatusCode();
                 } else {
                     i10 = 13;
                 }
-                long j3 = this.f8894b;
-                for (g6.o oVar : ((h) ((aa.a) this.f8895c).d).f8878c.d) {
+                long j3 = this.f8922b;
+                for (g6.o oVar : ((h) ((aa.a) this.f8923c).d).f8906c.d) {
                     oVar.b(j3, i10, null);
                 }
                 return;
             case 7:
-                ((z8) this.f8895c).f47681b.set(this.f8894b);
+                ((z8) this.f8923c).f47709b.set(this.f8922b);
                 return;
             case 8:
-                ((AtomicLong) ((o0.a) this.f8895c).f16770c).set(this.f8894b);
+                ((AtomicLong) ((o0.a) this.f8923c).f16797c).set(this.f8922b);
                 return;
             default:
-                ((z8) this.f8895c).f47681b.set(this.f8894b);
+                ((z8) this.f8923c).f47709b.set(this.f8922b);
                 return;
         }
     }
 
     @Override
     public void p() {
-        ProfileActivity profileActivity = (ProfileActivity) this.f8895c;
-        long j3 = this.f8894b;
+        ProfileActivity profileActivity = (ProfileActivity) this.f8923c;
+        long j3 = this.f8922b;
         if (j3 != 0) {
             Bundle bundle = new Bundle();
             bundle.putLong("dialog_id", j3);
-            bundle.putLong("topic_id", profileActivity.f33903g1);
-            profileActivity.presentFragment(new y11(bundle, profileActivity.f34031z0));
+            bundle.putLong("topic_id", profileActivity.f33930g1);
+            profileActivity.presentFragment(new y11(bundle, profileActivity.f34058z0));
         }
     }
 
     @Override
     public void q() {
-        ((c3.p) this.f8895c).q();
+        ((c3.p) this.f8923c).q();
     }
 
     @Override
     public void r(int i10) {
-        ((c3.p) this.f8895c).r(i10);
+        ((c3.p) this.f8923c).r(i10);
     }
 
     @Override
     public int read(byte[] bArr, int i10, int i11) {
-        return ((c3.p) this.f8895c).read(bArr, i10, i11);
+        return ((c3.p) this.f8923c).read(bArr, i10, i11);
     }
 
     @Override
     public void readFully(byte[] bArr, int i10, int i11) {
-        ((c3.p) this.f8895c).readFully(bArr, i10, i11);
+        ((c3.p) this.f8923c).readFully(bArr, i10, i11);
     }
 
     @Override
     public void s() {
-        ProfileActivity profileActivity = (ProfileActivity) this.f8895c;
+        ProfileActivity profileActivity = (ProfileActivity) this.f8923c;
         SharedPreferences notificationsSettings = MessagesController.getNotificationsSettings(ProfileActivity.c1(profileActivity));
         StringBuilder sb2 = new StringBuilder("sound_enabled_");
-        long j3 = this.f8894b;
-        boolean z10 = notificationsSettings.getBoolean(w1.i(j3, profileActivity.f33903g1, sb2), true);
+        long j3 = this.f8922b;
+        boolean z10 = notificationsSettings.getBoolean(w1.i(j3, profileActivity.f33930g1, sb2), true);
         boolean z11 = !z10 ? 1 : 0;
-        notificationsSettings.edit().putBoolean(w1.i(j3, profileActivity.f33903g1, new StringBuilder("sound_enabled_")), z11).apply();
+        notificationsSettings.edit().putBoolean(w1.i(j3, profileActivity.f33930g1, new StringBuilder("sound_enabled_")), z11).apply();
         if (yc.a(profileActivity)) {
-            yc.S(z10 ? 1 : 0, profileActivity, profileActivity.f34031z0).j();
+            yc.S(z10 ? 1 : 0, profileActivity, profileActivity.f34058z0).j();
         }
     }
 
     @Override
     public int skip(int i10) {
-        return ((c3.p) this.f8895c).skip(i10);
+        return ((c3.p) this.f8923c).skip(i10);
     }
 
     @Override
@@ -341,12 +341,12 @@ public final class n implements OnFailureListener, c3.p, c3.q, l2.h, no {
     }
 
     public String toString() {
-        switch (this.f8893a) {
+        switch (this.f8921a) {
             case 6:
-                if (((n) this.f8895c) == null) {
-                    return Long.toBinaryString(this.f8894b);
+                if (((n) this.f8923c) == null) {
+                    return Long.toBinaryString(this.f8922b);
                 }
-                return ((n) this.f8895c).toString() + "xx" + Long.toBinaryString(this.f8894b);
+                return ((n) this.f8923c).toString() + "xx" + Long.toBinaryString(this.f8922b);
             default:
                 return super.toString();
         }
@@ -359,30 +359,30 @@ public final class n implements OnFailureListener, c3.p, c3.q, l2.h, no {
 
     @Override
     public boolean v(int i10, boolean z10) {
-        return ((c3.p) this.f8895c).v(i10, true);
+        return ((c3.p) this.f8923c).v(i10, true);
     }
 
     @Override
     public long w(long j3) {
-        return ((c3.j) this.f8895c).f4270a;
+        return ((c3.j) this.f8923c).f4297a;
     }
 
     @Override
     public void x(int i10) {
-        ProfileActivity profileActivity = (ProfileActivity) this.f8895c;
+        ProfileActivity profileActivity = (ProfileActivity) this.f8923c;
         if (i10 == 0) {
-            if (profileActivity.getMessagesController().isDialogMuted(this.f8894b, profileActivity.f33903g1)) {
+            if (profileActivity.getMessagesController().isDialogMuted(this.f8922b, profileActivity.f33930g1)) {
                 n();
             }
             if (yc.a(profileActivity)) {
-                yc.z(profileActivity, 4, i10, profileActivity.f34031z0).j();
+                yc.z(profileActivity, 4, i10, profileActivity.f34058z0).j();
                 return;
             }
             return;
         }
-        profileActivity.getNotificationsController().muteUntil(this.f8894b, profileActivity.f33903g1, i10);
+        profileActivity.getNotificationsController().muteUntil(this.f8922b, profileActivity.f33930g1, i10);
         if (yc.a(profileActivity)) {
-            yc.z(profileActivity, 5, i10, profileActivity.f34031z0).j();
+            yc.z(profileActivity, 5, i10, profileActivity.f34058z0).j();
         }
         profileActivity.a5();
         profileActivity.g5(true);
@@ -390,42 +390,42 @@ public final class n implements OnFailureListener, c3.p, c3.q, l2.h, no {
 
     @Override
     public long y(long j3, long j10) {
-        return ((c3.j) this.f8895c).f4270a;
+        return ((c3.j) this.f8923c).f4297a;
     }
 
     public void z(int i10) {
         if (i10 >= 64) {
-            n nVar = (n) this.f8895c;
+            n nVar = (n) this.f8923c;
             if (nVar != null) {
                 nVar.z(i10 - 64);
                 return;
             }
             return;
         }
-        this.f8894b &= ~(1 << i10);
+        this.f8922b &= ~(1 << i10);
     }
 
     public n(Object obj, long j3, int i10) {
-        this.f8893a = i10;
-        this.f8895c = obj;
-        this.f8894b = j3;
+        this.f8921a = i10;
+        this.f8923c = obj;
+        this.f8922b = j3;
     }
 
     public n(c3.p pVar, long j3) {
-        this.f8893a = 2;
-        this.f8895c = pVar;
+        this.f8921a = 2;
+        this.f8923c = pVar;
         e2.d.b(pVar.getPosition() >= j3);
-        this.f8894b = j3;
+        this.f8922b = j3;
     }
 
     public n(int i10) {
-        this.f8893a = i10;
+        this.f8921a = i10;
         switch (i10) {
             case 9:
-                this.f8895c = DesugarCollections.synchronizedList(new ArrayList());
+                this.f8923c = DesugarCollections.synchronizedList(new ArrayList());
                 return;
             default:
-                this.f8894b = 0L;
+                this.f8922b = 0L;
                 return;
         }
     }

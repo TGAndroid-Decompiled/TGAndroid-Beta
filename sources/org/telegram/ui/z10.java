@@ -32,14 +32,14 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
 import org.telegram.ui.Components.EditTextBoldCursor;
 public final class z10 implements org.telegram.ui.Components.al0, org.telegram.ui.ActionBar.a2, oy, ContactsLoadingObserver.Callback, org.telegram.ui.Components.av0, org.telegram.ui.Components.bl0, ImageReceiver.ImageReceiverDelegate, OnCompleteListener, au, FileLoader.FileResolver {
-    public final int f43262a;
-    public final Object f43263b;
-    public final Object f43264c;
+    public final int f43289a;
+    public final Object f43290b;
+    public final Object f43291c;
 
     public z10(int i10, Object obj, Object obj2) {
-        this.f43262a = i10;
-        this.f43263b = obj;
-        this.f43264c = obj2;
+        this.f43289a = i10;
+        this.f43290b = obj;
+        this.f43291c = obj2;
     }
 
     @Override
@@ -54,8 +54,8 @@ public final class z10 implements org.telegram.ui.Components.al0, org.telegram.u
 
     @Override
     public boolean a(int i10, View view) {
-        id0 id0Var = (id0) this.f43263b;
-        Context context = (Context) this.f43264c;
+        id0 id0Var = (id0) this.f43290b;
+        Context context = (Context) this.f43291c;
         if (id0Var.G0 == 2) {
             Object J = id0Var.T.J(i10);
             if (J instanceof cd0) {
@@ -83,21 +83,21 @@ public final class z10 implements org.telegram.ui.Components.al0, org.telegram.u
 
     @Override
     public void a1(vt vtVar) {
-        pn0 pn0Var = (pn0) this.f43263b;
-        int intValue = ((Integer) ((View) this.f43264c).getTag()).intValue();
+        pn0 pn0Var = (pn0) this.f43290b;
+        int intValue = ((Integer) ((View) this.f43291c).getTag()).intValue();
         EditTextBoldCursor editTextBoldCursor = pn0Var.Y[intValue];
         if (intValue == 5) {
-            pn0Var.f39589s = vtVar.d;
+            pn0Var.f39616s = vtVar.d;
         } else {
             pn0Var.v = vtVar.d;
         }
-        editTextBoldCursor.setText(vtVar.f41693a);
+        editTextBoldCursor.setText(vtVar.f41720a);
     }
 
     @Override
     public void b(LocationController.SharingLocationInfo sharingLocationInfo) {
-        LaunchActivity launchActivity = (LaunchActivity) this.f43263b;
-        int[] iArr = (int[]) this.f43264c;
+        LaunchActivity launchActivity = (LaunchActivity) this.f43290b;
+        int[] iArr = (int[]) this.f43291c;
         Pattern pattern = LaunchActivity.B1;
         int i10 = sharingLocationInfo.messageObject.currentAccount;
         iArr[0] = i10;
@@ -110,19 +110,19 @@ public final class z10 implements org.telegram.ui.Components.al0, org.telegram.u
 
     @Override
     public void d(float f7, float f10, int i10, View view) {
-        switch (this.f43262a) {
+        switch (this.f43289a) {
             case 0:
-                FiltersSetupActivity.U((FiltersSetupActivity) this.f43263b, (Context) this.f43264c, view, i10);
+                FiltersSetupActivity.U((FiltersSetupActivity) this.f43290b, (Context) this.f43291c, view, i10);
                 return;
             default:
-                NotificationsCustomSettingsActivity.U((NotificationsCustomSettingsActivity) this.f43263b, (Context) this.f43264c, view, i10, f7, f10);
+                NotificationsCustomSettingsActivity.U((NotificationsCustomSettingsActivity) this.f43290b, (Context) this.f43291c, view, i10, f7, f10);
                 return;
         }
     }
 
     @Override
     public boolean d1(View view) {
-        switch (this.f43262a) {
+        switch (this.f43289a) {
             case 0:
                 return false;
             default:
@@ -133,11 +133,11 @@ public final class z10 implements org.telegram.ui.Components.al0, org.telegram.u
     @Override
     public void didSetImage(ImageReceiver imageReceiver, boolean z10, boolean z11, boolean z12) {
         Bitmap g02;
-        id0 id0Var = (id0) this.f43263b;
-        cd0 cd0Var = (cd0) this.f43264c;
+        id0 id0Var = (id0) this.f43290b;
+        cd0 cd0Var = (cd0) this.f43291c;
         id0Var.getClass();
-        if (z10 && !z11 && cd0Var.f35076e != null && (g02 = id0Var.g0(cd0Var)) != null) {
-            cd0Var.f35076e.setIcon(g02);
+        if (z10 && !z11 && cd0Var.f35103e != null && (g02 = id0Var.g0(cd0Var)) != null) {
+            cd0Var.f35103e.setIcon(g02);
         }
     }
 
@@ -151,24 +151,24 @@ public final class z10 implements org.telegram.ui.Components.al0, org.telegram.u
         ConferenceCall conferenceCall;
         ArrayList arrayList;
         TLRPC.EncryptedChat encryptedChat;
-        int i11 = this.f43262a;
+        int i11 = this.f43289a;
         org.telegram.ui.ActionBar.b2 b2Var2 = null;
         int i12 = 0;
-        Object obj = this.f43264c;
-        Object obj2 = this.f43263b;
+        Object obj = this.f43291c;
+        Object obj2 = this.f43290b;
         switch (i11) {
             case 1:
                 e20 e20Var = (e20) obj2;
                 MessagesController.DialogFilter dialogFilter = (MessagesController.DialogFilter) obj;
-                FiltersSetupActivity filtersSetupActivity = e20Var.f35912e;
+                FiltersSetupActivity filtersSetupActivity = e20Var.f35939e;
                 if (filtersSetupActivity.getParentActivity() != null) {
                     org.telegram.ui.ActionBar.b2 b2Var3 = new org.telegram.ui.ActionBar.b2(filtersSetupActivity.getParentActivity(), 3, null);
-                    b2Var3.f20237g0 = false;
+                    b2Var3.f20264g0 = false;
                     b2Var3.show();
                     b2Var2 = b2Var3;
                 }
                 TLRPC.TL_messages_updateDialogFilter tL_messages_updateDialogFilter = new TLRPC.TL_messages_updateDialogFilter();
-                tL_messages_updateDialogFilter.f19992id = dialogFilter.f17080id;
+                tL_messages_updateDialogFilter.f20019id = dialogFilter.f17107id;
                 filtersSetupActivity.getConnectionsManager().sendRequest(tL_messages_updateDialogFilter, new aa(e20Var, b2Var2, dialogFilter, 10));
                 return;
             case 2:
@@ -179,8 +179,8 @@ public final class z10 implements org.telegram.ui.Components.al0, org.telegram.u
                     VoIPService sharedInstance = VoIPService.getSharedInstance();
                     if (sharedInstance != null && (conferenceCall = sharedInstance.conference) != null && (tLObject instanceof TLRPC.User)) {
                         TLRPC.User user = (TLRPC.User) tLObject;
-                        conferenceCall.kick(user.f20016id);
-                        j60Var.f37513a1.addKickedUser(user.f20016id);
+                        conferenceCall.kick(user.f20043id);
+                        j60Var.f37540a1.addKickedUser(user.f20043id);
                         j60Var.k1().k(0L, 102, user, null, null, null);
                         return;
                     }
@@ -198,9 +198,9 @@ public final class z10 implements org.telegram.ui.Components.al0, org.telegram.u
                 }
             case 3:
                 f70 f70Var = (f70) obj2;
-                f70Var.f36307x.i((TLRPC.User) obj);
-                if (f70Var.f36287f.f24522r.length() > 0) {
-                    f70Var.f36287f.f24522r.setText((CharSequence) null);
+                f70Var.f36334x.i((TLRPC.User) obj);
+                if (f70Var.f36314f.f24549r.length() > 0) {
+                    f70Var.f36314f.f24549r.setText((CharSequence) null);
                     return;
                 }
                 return;
@@ -228,10 +228,10 @@ public final class z10 implements org.telegram.ui.Components.al0, org.telegram.u
             case 27:
             default:
                 boolean[] zArr = (boolean[]) obj;
-                PhotoViewer photoViewer = ((rs0) obj2).f40230b;
+                PhotoViewer photoViewer = ((rs0) obj2).f40257b;
                 av0 av0Var = photoViewer.d;
-                ArrayList arrayList2 = photoViewer.f33517a7;
-                ArrayList arrayList3 = photoViewer.f33546d7;
+                ArrayList arrayList2 = photoViewer.f33544a7;
+                ArrayList arrayList3 = photoViewer.f33573d7;
                 ArrayList arrayList4 = photoViewer.Y6;
                 ArrayList arrayList5 = photoViewer.e7;
                 ArrayList arrayList6 = photoViewer.f7;
@@ -272,15 +272,15 @@ public final class z10 implements org.telegram.ui.Components.al0, org.telegram.u
                         TLRPC.Message message = (TLRPC.Message) arrayList3.get(photoViewer.P4);
                         if (message != null) {
                             ArrayList<Integer> arrayList9 = new ArrayList<>();
-                            arrayList9.add(Integer.valueOf(message.f19890id));
+                            arrayList9.add(Integer.valueOf(message.f19917id));
                             MessagesController.getInstance(photoViewer.T).deleteMessages(arrayList9, null, null, MessageObject.getDialogId(message), message.quick_reply_shortcut_id, true, 0);
                             NotificationCenter.getInstance(photoViewer.T).lambda$postNotificationNameOnUIThread$1(NotificationCenter.reloadDialogPhotos, new Object[0]);
                         }
                         if (photoViewer.I1()) {
-                            if (photoViewer.f33741z5 > 0) {
+                            if (photoViewer.f33768z5 > 0) {
                                 MessagesController.getInstance(photoViewer.T).deleteUserPhoto(null);
                             } else {
-                                MessagesController.getInstance(photoViewer.T).changeChatAvatar(-photoViewer.f33741z5, null, null, null, null, 0.0d, null, null, null, null);
+                                MessagesController.getInstance(photoViewer.T).changeChatAvatar(-photoViewer.f33768z5, null, null, null, null, 0.0d, null, null, null, null);
                             }
                             photoViewer.G0(false, false);
                             return;
@@ -288,20 +288,20 @@ public final class z10 implements org.telegram.ui.Components.al0, org.telegram.u
                         TLRPC.Photo photo = (TLRPC.Photo) arrayList6.get(photoViewer.P4);
                         if (photo != null) {
                             TLRPC.TL_inputPhoto tL_inputPhoto = new TLRPC.TL_inputPhoto();
-                            tL_inputPhoto.f19888id = photo.f19893id;
+                            tL_inputPhoto.f19915id = photo.f19920id;
                             tL_inputPhoto.access_hash = photo.access_hash;
                             byte[] bArr = photo.file_reference;
                             tL_inputPhoto.file_reference = bArr;
                             if (bArr == null) {
                                 tL_inputPhoto.file_reference = new byte[0];
                             }
-                            if (photoViewer.f33741z5 > 0) {
+                            if (photoViewer.f33768z5 > 0) {
                                 MessagesController.getInstance(photoViewer.T).deleteUserPhoto(tL_inputPhoto);
                             }
-                            MessagesStorage.getInstance(photoViewer.T).clearUserPhoto(photoViewer.f33741z5, photo.f19893id);
+                            MessagesStorage.getInstance(photoViewer.T).clearUserPhoto(photoViewer.f33768z5, photo.f19920id);
                             arrayList2.remove(photoViewer.P4);
-                            photoViewer.f33537c7.remove(photoViewer.P4);
-                            photoViewer.f33527b7.remove(photoViewer.P4);
+                            photoViewer.f33564c7.remove(photoViewer.P4);
+                            photoViewer.f33554b7.remove(photoViewer.P4);
                             arrayList3.remove(photoViewer.P4);
                             arrayList6.remove(photoViewer.P4);
                             if (arrayList2.isEmpty()) {
@@ -362,11 +362,11 @@ public final class z10 implements org.telegram.ui.Components.al0, org.telegram.u
                 pe0Var.getClass();
                 Bundle bundle = new Bundle();
                 bundle.putString("email_unconfirmed_pattern", ((TLRPC.TL_auth_passwordRecovery) obj).email_pattern);
-                bundle.putString("password", pe0Var.f39489r);
-                bundle.putString("requestPhone", pe0Var.f39490s);
+                bundle.putString("password", pe0Var.f39516r);
+                bundle.putString("requestPhone", pe0Var.f39517s);
                 bundle.putString("phoneHash", pe0Var.v);
-                bundle.putString("phoneCode", pe0Var.f39491w);
-                pe0Var.f39493y.u1(7, true, bundle, false);
+                bundle.putString("phoneCode", pe0Var.f39518w);
+                pe0Var.f39520y.u1(7, true, bundle, false);
                 return;
             case 19:
                 zf0.o((zf0) obj2, (Context) obj);
@@ -374,16 +374,16 @@ public final class z10 implements org.telegram.ui.Components.al0, org.telegram.u
             case 21:
                 pn0 pn0Var = (pn0) obj2;
                 boolean[] zArr2 = (boolean[]) obj;
-                if (!pn0Var.f39596v0) {
-                    pn0Var.f39591s1.clear();
+                if (!pn0Var.f39623v0) {
+                    pn0Var.f39618s1.clear();
                 }
-                pn0Var.f39593t1.clear();
+                pn0Var.f39620t1.clear();
                 sm0 sm0Var = (sm0) pn0Var.B1;
-                sm0Var.d.j1(pn0Var.E, pn0Var.F, pn0Var.G, zArr2[0], null, null, sm0Var.f40475b);
+                sm0Var.d.j1(pn0Var.E, pn0Var.F, pn0Var.G, zArr2[0], null, null, sm0Var.f40502b);
                 pn0Var.finishFragment();
                 return;
             case 22:
-                int[] iArr = ((pn0) obj2).f39601x;
+                int[] iArr = ((pn0) obj2).f39628x;
                 iArr[2] = 0;
                 iArr[1] = 0;
                 iArr[0] = 0;
@@ -394,23 +394,23 @@ public final class z10 implements org.telegram.ui.Components.al0, org.telegram.u
                 return;
             case 25:
                 xo0 xo0Var = (xo0) obj2;
-                xo0Var.f42809b0 = true;
-                xo0Var.f42806a0.email_unconfirmed_pattern = (String) obj;
+                xo0Var.f42836b0 = true;
+                xo0Var.f42833a0.email_unconfirmed_pattern = (String) obj;
                 xo0Var.J0();
                 return;
             case 28:
-                PhotoViewer.C(((rs0) obj2).f40230b, (ArrayList) obj);
+                PhotoViewer.C(((rs0) obj2).f40257b, (ArrayList) obj);
                 return;
         }
     }
 
     @Override
     public File getFile() {
-        switch (this.f43262a) {
+        switch (this.f43289a) {
             case 26:
-                return FileLoader.getInstance(((PhotoViewer) this.f43263b).T).getPathToAttach((TLObject) this.f43264c, true);
+                return FileLoader.getInstance(((PhotoViewer) this.f43290b).T).getPathToAttach((TLObject) this.f43291c, true);
             default:
-                return FileLoader.getInstance(((PhotoViewer) this.f43263b).T).getPathToMessage((TLRPC.Message) this.f43264c);
+                return FileLoader.getInstance(((PhotoViewer) this.f43290b).T).getPathToMessage((TLRPC.Message) this.f43291c);
         }
     }
 
@@ -421,18 +421,18 @@ public final class z10 implements org.telegram.ui.Components.al0, org.telegram.u
 
     @Override
     public void onComplete(Task task) {
-        switch (this.f43262a) {
+        switch (this.f43289a) {
             case 15:
-                com.google.android.gms.internal.clearcut.u0 u0Var = (com.google.android.gms.internal.clearcut.u0) this.f43264c;
-                wg0 wg0Var = ((ge0) this.f43263b).W;
+                com.google.android.gms.internal.clearcut.u0 u0Var = (com.google.android.gms.internal.clearcut.u0) this.f43291c;
+                wg0 wg0Var = ((ge0) this.f43290b).W;
                 if (wg0Var.getParentActivity() != null) {
                     wg0Var.getParentActivity().startActivityForResult(u0Var.f(), 200);
                     return;
                 }
                 return;
             default:
-                com.google.android.gms.internal.clearcut.u0 u0Var2 = (com.google.android.gms.internal.clearcut.u0) this.f43264c;
-                wg0 wg0Var2 = ((lf0) this.f43263b).E;
+                com.google.android.gms.internal.clearcut.u0 u0Var2 = (com.google.android.gms.internal.clearcut.u0) this.f43291c;
+                wg0 wg0Var2 = ((lf0) this.f43290b).E;
                 if (wg0Var2.getParentActivity() != null && !wg0Var2.getParentActivity().isFinishing()) {
                     wg0Var2.getParentActivity().startActivityForResult(u0Var2.f(), 200);
                     return;
@@ -443,37 +443,37 @@ public final class z10 implements org.telegram.ui.Components.al0, org.telegram.u
 
     @Override
     public void onResult(boolean z10) {
-        LaunchActivity launchActivity = (LaunchActivity) this.f43263b;
-        Intent intent = (Intent) this.f43264c;
+        LaunchActivity launchActivity = (LaunchActivity) this.f43290b;
+        Intent intent = (Intent) this.f43291c;
         Pattern pattern = LaunchActivity.B1;
         launchActivity.X(intent, true, false, false, null, true, false);
     }
 
     @Override
     public void q0(View view, float f7, float f10) {
-        int i10 = this.f43262a;
+        int i10 = this.f43289a;
     }
 
     @Override
     public boolean u(uy uyVar, ArrayList arrayList, CharSequence charSequence, boolean z10, boolean z11, int i10, int i11, eg1 eg1Var) {
-        p80 p80Var = (p80) this.f43263b;
-        uy uyVar2 = (uy) this.f43264c;
+        p80 p80Var = (p80) this.f43290b;
+        uy uyVar2 = (uy) this.f43291c;
         CacheByChatsController.KeepMediaException keepMediaException = null;
         int i12 = 0;
         while (i12 < arrayList.size()) {
-            ArrayList arrayList2 = p80Var.f39430f0;
+            ArrayList arrayList2 = p80Var.f39457f0;
             CacheByChatsController.KeepMediaException keepMediaException2 = new CacheByChatsController.KeepMediaException(((MessagesStorage.TopicKey) arrayList.get(i12)).dialogId, CacheByChatsController.KEEP_MEDIA_ONE_DAY);
             arrayList2.add(keepMediaException2);
             i12++;
             keepMediaException = keepMediaException2;
         }
-        p80Var.f39428d0.saveKeepMediaExceptions(p80Var.f39427c0, p80Var.f39430f0);
+        p80Var.f39455d0.saveKeepMediaExceptions(p80Var.f39454c0, p80Var.f39457f0);
         Bundle bundle = new Bundle();
-        bundle.putInt("type", p80Var.f39427c0);
+        bundle.putInt("type", p80Var.f39454c0);
         m80 m80Var = new m80(bundle, uyVar2);
-        m80Var.d = p80Var.f39430f0;
+        m80Var.d = p80Var.f39457f0;
         m80Var.U();
-        p80Var.f39431g0.presentFragment(m80Var);
+        p80Var.f39458g0.presentFragment(m80Var);
         AndroidUtilities.runOnUIThread(new yt(29, m80Var, keepMediaException), 150L);
         return true;
     }

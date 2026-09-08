@@ -3,13 +3,13 @@ package p4;
 import android.os.Build;
 import android.os.Bundle;
 public final class y {
-    public int f43947a = 1;
-    public boolean f43948b;
-    public boolean f43949c;
+    public int f43974a = 1;
+    public boolean f43975b;
+    public boolean f43976c;
     public boolean d;
-    public Bundle f43950e;
+    public Bundle f43977e;
 
     public y() {
-        this.f43948b = Build.VERSION.SDK_INT >= 30;
+        this.f43975b = Build.VERSION.SDK_INT >= 30;
     }
 }

@@ -23,35 +23,35 @@ import org.telegram.ui.Components.yg;
 import org.telegram.ui.sw0;
 import yc.i;
 public final class d extends i {
-    public static final f f44051l;
-    public static final HashMap f44052m;
-    public final ExtendedDefaultDataSourceFactory f44053e;
-    public final sw0 f44054f;
-    public final na.d f44055g;
+    public static final f f44078l;
+    public static final HashMap f44079m;
+    public final ExtendedDefaultDataSourceFactory f44080e;
+    public final sw0 f44081f;
+    public final na.d f44082g;
     public final HashMap h;
-    public Pair f44056i;
-    public boolean f44057j;
-    public final AtomicInteger f44058k;
+    public Pair f44083i;
+    public boolean f44084j;
+    public final AtomicInteger f44085k;
 
     static {
         f fVar = new f(new e(Uri.parse("file:///android_asset/cast/default.png"), "image/png", "/assets/default"));
-        f44051l = fVar;
+        f44078l = fVar;
         f[] fVarArr = {fVar};
         HashMap hashMap = new HashMap();
-        f44052m = hashMap;
+        f44079m = hashMap;
         f fVar2 = fVarArr[0];
         hashMap.put(fVar2.d, fVar2);
     }
 
     public d() {
-        this.f49963c = new n(9);
+        this.f49992c = new n(9);
         this.h = new HashMap();
-        this.f44056i = null;
-        this.f44057j = false;
-        this.f44058k = new AtomicInteger();
-        this.f44054f = new sw0(12);
-        this.f44055g = new Object();
-        this.f44053e = new ExtendedDefaultDataSourceFactory(ApplicationLoader.applicationContext, "Mozilla/5.0 (X11; Linux x86_64; rv:10.0) Gecko/20150101 Firefox/47.0 (Chrome)");
+        this.f44083i = null;
+        this.f44084j = false;
+        this.f44085k = new AtomicInteger();
+        this.f44081f = new sw0(12);
+        this.f44082g = new Object();
+        this.f44080e = new ExtendedDefaultDataSourceFactory(ApplicationLoader.applicationContext, "Mozilla/5.0 (X11; Linux x86_64; rv:10.0) Gecko/20150101 Firefox/47.0 (Chrome)");
     }
 
     public static String i() {
@@ -86,9 +86,9 @@ public final class d extends i {
     @Override
     public final yc.g e(yc.d dVar) {
         String str;
-        int incrementAndGet = this.f44058k.incrementAndGet();
+        int incrementAndGet = this.f44085k.incrementAndGet();
         StringBuilder l4 = i2.g.l(incrementAndGet, "Request ", " ");
-        switch (dVar.f49939g) {
+        switch (dVar.f49968g) {
             case 1:
                 str = "GET";
                 break;
@@ -143,13 +143,13 @@ public final class d extends i {
         }
         l4.append(str);
         l4.append(" ");
-        l4.append(dVar.f49938f);
+        l4.append(dVar.f49967f);
         l4.append(" ");
-        l4.append((String) dVar.f49940i.get("range"));
+        l4.append((String) dVar.f49969i.get("range"));
         Log.d("CAST_SERVER", l4.toString());
         try {
             yc.g k10 = k(dVar);
-            yg ygVar = k10.f49955e;
+            yg ygVar = k10.f49984e;
             ygVar.put("Access-Control-Allow-Origin", "*");
             ygVar.put("Access-Control-Max-Age", "3628800");
             ygVar.put("Access-Control-Allow-Methods", "*");
@@ -158,7 +158,7 @@ public final class d extends i {
         } catch (Throwable unused) {
             Log.d("CAST_SERVER", "Error " + incrementAndGet);
             yc.g c10 = i.c(yc.f.INTERNAL_ERROR, "text/plain", "Error reading file");
-            yg ygVar2 = c10.f49955e;
+            yg ygVar2 = c10.f49984e;
             ygVar2.put("Access-Control-Allow-Origin", "*");
             ygVar2.put("Access-Control-Max-Age", "3628800");
             ygVar2.put("Access-Control-Allow-Methods", "*");
@@ -169,34 +169,34 @@ public final class d extends i {
 
     public final void h() {
         if (this.h.isEmpty()) {
-            if (this.f44057j) {
+            if (this.f44084j) {
                 try {
-                    i.d(this.f49961a);
-                    n nVar = this.f49963c;
+                    i.d(this.f49990a);
+                    n nVar = this.f49992c;
                     nVar.getClass();
-                    ArrayList arrayList = new ArrayList((List) nVar.f8895c);
+                    ArrayList arrayList = new ArrayList((List) nVar.f8923c);
                     int size = arrayList.size();
                     int i10 = 0;
                     while (i10 < size) {
                         Object obj = arrayList.get(i10);
                         i10++;
                         yc.a aVar = (yc.a) obj;
-                        i.d(aVar.f49924a);
-                        i.d(aVar.f49925b);
+                        i.d(aVar.f49953a);
+                        i.d(aVar.f49954b);
                     }
-                    Thread thread = this.f49962b;
+                    Thread thread = this.f49991b;
                     if (thread != null) {
                         thread.join();
                     }
                 } catch (Exception e7) {
                     i.d.log(Level.SEVERE, "Could not stop all connections", (Throwable) e7);
                 }
-                this.f44057j = false;
+                this.f44084j = false;
             }
-        } else if (!this.f44057j) {
+        } else if (!this.f44084j) {
             try {
                 f();
-                this.f44057j = true;
+                this.f44084j = true;
             } catch (IOException e10) {
                 throw new RuntimeException(e10);
             }
@@ -209,16 +209,16 @@ public final class d extends i {
 
     public final void l(File file, String str) {
         if (str != null && file != null) {
-            this.f44056i = new Pair(str, file);
+            this.f44083i = new Pair(str, file);
         } else {
-            Pair pair = this.f44056i;
+            Pair pair = this.f44083i;
             if (pair != null && ((File) pair.second).exists()) {
                 try {
-                    ((File) this.f44056i.second).delete();
+                    ((File) this.f44083i.second).delete();
                 } catch (Exception unused) {
                 }
             }
-            this.f44056i = null;
+            this.f44083i = null;
         }
         h();
     }

@@ -116,8 +116,8 @@ public final class d implements OnFailureListener, oy, a2, d5, tc0, MediaDataCon
                 return;
             case 8:
                 tn tnVar = (tn) this.f42e;
-                tnVar.f30642j0.d((TLRPC.TL_messageMediaPoll) this.f40b, tnVar.O, tnVar.l1, (ArrayList) this.f41c, z10, i10, ((Long) this.d).longValue());
-                tnVar.f28753b.dismiss(true);
+                tnVar.f30669j0.d((TLRPC.TL_messageMediaPoll) this.f40b, tnVar.O, tnVar.l1, (ArrayList) this.f41c, z10, i10, ((Long) this.d).longValue());
+                tnVar.f28780b.dismiss(true);
                 return;
             case 9:
                 qt qtVar = (qt) this.f42e;
@@ -187,7 +187,7 @@ public final class d implements OnFailureListener, oy, a2, d5, tc0, MediaDataCon
                     } else {
                         ek0Var.K = str3;
                     }
-                    yc0 yc0Var2 = ek0Var.f36109e;
+                    yc0 yc0Var2 = ek0Var.f36136e;
                     if (yc0Var2 != null) {
                         yc0Var2.getEditText().setText(str);
                     } else {
@@ -206,7 +206,7 @@ public final class d implements OnFailureListener, oy, a2, d5, tc0, MediaDataCon
                 edit.putBoolean((String) obj2, ((boolean[]) obj)[0]);
                 edit.apply();
                 notificationsCustomSettingsActivity.l0(true);
-                notificationsCustomSettingsActivity.getNotificationsController().updateServerNotificationsSettings(notificationsCustomSettingsActivity.f33480s);
+                notificationsCustomSettingsActivity.getNotificationsController().updateServerNotificationsSettings(notificationsCustomSettingsActivity.f33507s);
                 return;
             default:
                 eg1 eg1Var = (eg1) obj4;
@@ -288,14 +288,14 @@ public final class d implements OnFailureListener, oy, a2, d5, tc0, MediaDataCon
                     i12.putLong("chat_id", -j3);
                 }
                 i12.putString("start_text", "@" + UserObject.getPublicUsername(user) + " " + str);
-                Activity activity = k3Var.f9773k0;
+                Activity activity = k3Var.f9801k0;
                 if (activity instanceof LaunchActivity) {
                     n2 lastFragment = ((LaunchActivity) activity).O().getLastFragment();
                     if (MessagesController.getInstance(k3Var.G).checkCanOpenChat(i12, lastFragment)) {
                         ad0Var.dismiss();
-                        k3Var.f9763c0 = true;
-                        AndroidUtilities.cancelRunOnUIThread(k3Var.f9784t0);
-                        k3Var.f9789x.i();
+                        k3Var.f9791c0 = true;
+                        AndroidUtilities.cancelRunOnUIThread(k3Var.f9812t0);
+                        k3Var.f9817x.i();
                         NotificationCenter.getInstance(k3Var.G).removeObserver(k3Var, NotificationCenter.webViewResultSent);
                         NotificationCenter.getGlobalInstance().removeObserver(k3Var, NotificationCenter.didSetNewTheme);
                         if (!k3Var.M0) {
@@ -303,7 +303,7 @@ public final class d implements OnFailureListener, oy, a2, d5, tc0, MediaDataCon
                             k3Var.M0 = true;
                         }
                         b5 b5Var = new b5(new co(i12));
-                        b5Var.f20269b = true;
+                        b5Var.f20296b = true;
                         lastFragment.presentFragment(b5Var);
                     }
                 }
@@ -315,7 +315,7 @@ public final class d implements OnFailureListener, oy, a2, d5, tc0, MediaDataCon
                 TLRPC.User user2 = (TLRPC.User) this.f40b;
                 String str2 = (String) this.f41c;
                 ad0 ad0Var2 = (ad0) this.d;
-                vi viVar = ((bi) this.f42e).f24714e;
+                vi viVar = ((bi) this.f42e).f24741e;
                 long j10 = ((MessagesStorage.TopicKey) arrayList.get(0)).dialogId;
                 Bundle i13 = a4.a.i("scrollToTopOnResume", true);
                 if (DialogObject.isEncryptedDialog(j10)) {
@@ -326,12 +326,12 @@ public final class d implements OnFailureListener, oy, a2, d5, tc0, MediaDataCon
                     i13.putLong("chat_id", -j10);
                 }
                 i13.putString("start_text", "@" + UserObject.getPublicUsername(user2) + " " + str2);
-                n2 n2Var = viVar.f31279f0;
+                n2 n2Var = viVar.f31306f0;
                 if (MessagesController.getInstance(viVar.J1).checkCanOpenChat(i13, n2Var)) {
                     ad0Var2.dismiss();
                     viVar.dismiss(true);
                     b5 b5Var2 = new b5(new co(i13));
-                    b5Var2.f20269b = true;
+                    b5Var2.f20296b = true;
                     n2Var.presentFragment(b5Var2);
                 }
                 return true;
@@ -371,7 +371,7 @@ public final class d implements OnFailureListener, oy, a2, d5, tc0, MediaDataCon
         }
         TextView textView = new TextView(context);
         textView.setTypeface(AndroidUtilities.getTypeface("fonts/num.otf"));
-        textView.setTextColor(j6.v0(j6.f20770j5, f6Var));
+        textView.setTextColor(j6.v0(j6.f20797j5, f6Var));
         StringBuilder sb2 = new StringBuilder("x");
         int i11 = (f7.floatValue() > 0.0f ? 1 : (f7.floatValue() == 0.0f ? 0 : -1));
         Object obj3 = f7;
@@ -402,9 +402,9 @@ public final class d implements OnFailureListener, oy, a2, d5, tc0, MediaDataCon
                                 String fixEmoji = Emoji.fixEmoji(((MediaDataController.KeywordResult) arrayList.get(i10)).emoji);
                                 for (int i11 = 0; i11 < availableEffects.effects.size(); i11++) {
                                     TLRPC.TL_availableEffect tL_availableEffect = availableEffects.effects.get(i11);
-                                    if (!hashSet.contains(Long.valueOf(tL_availableEffect.f19900id)) && (tL_availableEffect.emoticon.contains(fixEmoji) || fixEmoji.contains(tL_availableEffect.emoticon))) {
+                                    if (!hashSet.contains(Long.valueOf(tL_availableEffect.f19927id)) && (tL_availableEffect.emoticon.contains(fixEmoji) || fixEmoji.contains(tL_availableEffect.emoticon))) {
                                         (tL_availableEffect.effect_animation_id == 0 ? arrayList2 : arrayList3).add(j1.e(tL_availableEffect));
-                                        hashSet.add(Long.valueOf(tL_availableEffect.f19900id));
+                                        hashSet.add(Long.valueOf(tL_availableEffect.f19927id));
                                     }
                                 }
                             }

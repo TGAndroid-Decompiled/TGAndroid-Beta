@@ -2,15 +2,15 @@ package b2;
 
 import android.util.Pair;
 public abstract class k1 {
-    public static final g1 f2131a = new Object();
-    public static final String f2132b;
-    public static final String f2133c;
+    public static final g1 f2158a = new Object();
+    public static final String f2159b;
+    public static final String f2160c;
     public static final String d;
 
     static {
-        String str = e2.d0.f8737a;
-        f2132b = Integer.toString(0, 36);
-        f2133c = Integer.toString(1, 36);
+        String str = e2.d0.f8765a;
+        f2159b = Integer.toString(0, 36);
+        f2160c = Integer.toString(1, 36);
         d = Integer.toString(2, 36);
     }
 
@@ -31,13 +31,13 @@ public abstract class k1 {
     }
 
     public final int d(int i10, h1 h1Var, j1 j1Var, int i11, boolean z10) {
-        int i12 = f(i10, h1Var, false).f2056c;
-        if (m(i12, j1Var, 0L).f2118o == i10) {
+        int i12 = f(i10, h1Var, false).f2083c;
+        if (m(i12, j1Var, 0L).f2145o == i10) {
             int e7 = e(i12, i11, z10);
             if (e7 == -1) {
                 return -1;
             }
-            return m(e7, j1Var, 0L).f2117n;
+            return m(e7, j1Var, 0L).f2144n;
         }
         return i10 + 1;
     }
@@ -144,28 +144,28 @@ public abstract class k1 {
         e2.d.c(i10, o());
         m(i10, j1Var, j10);
         if (j3 == -9223372036854775807L) {
-            j3 = j1Var.f2115l;
+            j3 = j1Var.f2142l;
             if (j3 == -9223372036854775807L) {
                 return null;
             }
         }
-        int i11 = j1Var.f2117n;
+        int i11 = j1Var.f2144n;
         f(i11, h1Var, false);
-        while (i11 < j1Var.f2118o && h1Var.f2057e != j3) {
+        while (i11 < j1Var.f2145o && h1Var.f2084e != j3) {
             int i12 = i11 + 1;
-            if (f(i12, h1Var, false).f2057e > j3) {
+            if (f(i12, h1Var, false).f2084e > j3) {
                 break;
             }
             i11 = i12;
         }
         f(i11, h1Var, true);
-        long j11 = j3 - h1Var.f2057e;
+        long j11 = j3 - h1Var.f2084e;
         long j12 = h1Var.d;
         if (j12 != -9223372036854775807L) {
             j11 = Math.min(j11, j12 - 1);
         }
         long max = Math.max(0L, j11);
-        Object obj = h1Var.f2055b;
+        Object obj = h1Var.f2082b;
         obj.getClass();
         return Pair.create(obj, Long.valueOf(max));
     }

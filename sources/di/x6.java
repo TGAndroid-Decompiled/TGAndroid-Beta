@@ -9,28 +9,28 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.Utilities;
 public final class x6 implements Runnable {
-    public final int f8388a = 0;
-    public final int f8389b;
-    public final int f8390c;
+    public final int f8416a = 0;
+    public final int f8417b;
+    public final int f8418c;
     public final int d;
-    public final Object f8391e;
-    public final Object f8392f;
+    public final Object f8419e;
+    public final Object f8420f;
 
     public x6(int i10, int i11, int i12, Bitmap[] bitmapArr, Utilities.Callback callback) {
-        this.f8389b = i10;
-        this.f8390c = i11;
+        this.f8417b = i10;
+        this.f8418c = i11;
         this.d = i12;
-        this.f8391e = bitmapArr;
-        this.f8392f = callback;
+        this.f8419e = bitmapArr;
+        this.f8420f = callback;
     }
 
     @Override
     public final void run() {
-        switch (this.f8388a) {
+        switch (this.f8416a) {
             case 0:
-                Bitmap[] bitmapArr = (Bitmap[]) this.f8391e;
-                Utilities.Callback callback = (Utilities.Callback) this.f8392f;
-                Bitmap createBitmap = Bitmap.createBitmap(this.f8389b, this.f8390c, Bitmap.Config.ARGB_8888);
+                Bitmap[] bitmapArr = (Bitmap[]) this.f8419e;
+                Utilities.Callback callback = (Utilities.Callback) this.f8420f;
+                Bitmap createBitmap = Bitmap.createBitmap(this.f8417b, this.f8418c, Bitmap.Config.ARGB_8888);
                 Canvas canvas = new Canvas(createBitmap);
                 Path path = new Path();
                 RectF rectF = new RectF();
@@ -54,16 +54,16 @@ public final class x6 implements Runnable {
                 AndroidUtilities.runOnUIThread(new bi.s8(28, callback, createBitmap));
                 return;
             default:
-                ((MessagesStorage) this.f8391e).lambda$getDialogs$240(this.f8389b, this.f8390c, this.d, (long[]) this.f8392f);
+                ((MessagesStorage) this.f8419e).lambda$getDialogs$240(this.f8417b, this.f8418c, this.d, (long[]) this.f8420f);
                 return;
         }
     }
 
     public x6(MessagesStorage messagesStorage, int i10, int i11, int i12, long[] jArr) {
-        this.f8391e = messagesStorage;
-        this.f8389b = i10;
-        this.f8390c = i11;
+        this.f8419e = messagesStorage;
+        this.f8417b = i10;
+        this.f8418c = i11;
         this.d = i12;
-        this.f8392f = jArr;
+        this.f8420f = jArr;
     }
 }

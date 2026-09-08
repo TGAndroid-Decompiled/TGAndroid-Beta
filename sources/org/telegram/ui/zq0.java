@@ -14,12 +14,12 @@ import org.telegram.messenger.MediaController;
 import org.telegram.messenger.R;
 import org.telegram.ui.Components.RadialProgressView;
 public final class zq0 extends org.telegram.ui.Components.kl0 {
-    public final Context f43493c;
+    public final Context f43520c;
     public final br0 d;
 
     public zq0(br0 br0Var, Context context) {
         this.d = br0Var;
-        this.f43493c = context;
+        this.f43520c = context;
     }
 
     @Override
@@ -27,11 +27,11 @@ public final class zq0 extends org.telegram.ui.Components.kl0 {
         br0 br0Var = this.d;
         if (br0Var.J == null) {
             if (TextUtils.isEmpty(br0Var.v)) {
-                if (c1Var.f45742f != 3) {
+                if (c1Var.f45770f != 3) {
                     return false;
                 }
                 return true;
-            } else if (c1Var.b() >= br0Var.f34890f.size()) {
+            } else if (c1Var.b() >= br0Var.f34917f.size()) {
                 return false;
             } else {
                 return true;
@@ -45,13 +45,13 @@ public final class zq0 extends org.telegram.ui.Components.kl0 {
         br0 br0Var = this.d;
         MediaController.AlbumEntry albumEntry = br0Var.J;
         if (albumEntry == null) {
-            if (br0Var.f34890f.isEmpty()) {
-                if (!TextUtils.isEmpty(br0Var.v) || br0Var.f34898n.isEmpty()) {
+            if (br0Var.f34917f.isEmpty()) {
+                if (!TextUtils.isEmpty(br0Var.v) || br0Var.f34925n.isEmpty()) {
                     return 0;
                 }
-                return br0Var.f34898n.size() + 2;
+                return br0Var.f34925n.size() + 2;
             }
-            return br0Var.f34890f.size() + (!br0Var.f34905s ? 1 : 0);
+            return br0Var.f34917f.size() + (!br0Var.f34932s ? 1 : 0);
         }
         return albumEntry.photos.size();
     }
@@ -70,12 +70,12 @@ public final class zq0 extends org.telegram.ui.Components.kl0 {
         if (br0Var.J != null) {
             return 0;
         }
-        if (br0Var.f34890f.isEmpty()) {
-            if (i10 == br0Var.f34898n.size()) {
+        if (br0Var.f34917f.isEmpty()) {
+            if (i10 == br0Var.f34925n.size()) {
                 return 4;
             }
             return 3;
-        } else if (i10 < br0Var.f34890f.size()) {
+        } else if (i10 < br0Var.f34917f.size()) {
             return 0;
         } else {
             return 1;
@@ -88,11 +88,11 @@ public final class zq0 extends org.telegram.ui.Components.kl0 {
         boolean z10;
         br0 br0Var = this.d;
         MediaController.AlbumEntry albumEntry = br0Var.J;
-        ArrayList arrayList = br0Var.f34898n;
-        ArrayList arrayList2 = br0Var.f34885c;
-        HashMap hashMap = br0Var.f34883b;
-        int i11 = c1Var.f45742f;
-        View view = c1Var.f45738a;
+        ArrayList arrayList = br0Var.f34925n;
+        ArrayList arrayList2 = br0Var.f34912c;
+        HashMap hashMap = br0Var.f34910b;
+        int i11 = c1Var.f45770f;
+        View view = c1Var.f45766a;
         int i12 = -1;
         int i13 = 0;
         if (i11 != 0) {
@@ -139,19 +139,19 @@ public final class zq0 extends org.telegram.ui.Components.kl0 {
                 z10 = false;
             }
             s5Var.d(photoEntry2, z10, true, false, false);
-            if (br0Var.f34888e) {
+            if (br0Var.f34915e) {
                 i12 = arrayList2.indexOf(Integer.valueOf(photoEntry2.imageId));
             }
             s5Var.b(i12, hashMap.containsKey(Integer.valueOf(photoEntry2.imageId)), false);
             L1 = PhotoViewer.L1(photoEntry2.path);
         } else {
-            MediaController.SearchImage searchImage = (MediaController.SearchImage) br0Var.f34890f.get(i10);
+            MediaController.SearchImage searchImage = (MediaController.SearchImage) br0Var.f34917f.get(i10);
             s5Var.e(searchImage);
             s5Var.getVideoInfoContainer().setVisibility(4);
-            if (br0Var.f34888e) {
-                i12 = arrayList2.indexOf(searchImage.f17074id);
+            if (br0Var.f34915e) {
+                i12 = arrayList2.indexOf(searchImage.f17101id);
             }
-            s5Var.b(i12, hashMap.containsKey(searchImage.f17074id), false);
+            s5Var.b(i12, hashMap.containsKey(searchImage.f17101id), false);
             L1 = PhotoViewer.L1(searchImage.getPathToAttach());
         }
         imageView.getImageReceiver().setVisible(!L1, true);
@@ -163,9 +163,9 @@ public final class zq0 extends org.telegram.ui.Components.kl0 {
         ViewGroup viewGroup2;
         ViewGroup viewGroup3;
         br0 br0Var = this.d;
-        boolean z10 = br0Var.f34904r0;
+        boolean z10 = br0Var.f34931r0;
         int i11 = 0;
-        Context context = this.f43493c;
+        Context context = this.f43520c;
         if (i10 != 0) {
             if (i10 != 1) {
                 if (i10 != 2) {
@@ -178,8 +178,8 @@ public final class zq0 extends org.telegram.ui.Components.kl0 {
                         r8Var.setLayoutParams(new s4.p0(-1, -2));
                         viewGroup2 = r8Var;
                         if (z10) {
-                            r8Var.f22680a.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, br0Var.f34909v0, false));
-                            r8Var.f22683e.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f20926rg, false), PorterDuff.Mode.MULTIPLY));
+                            r8Var.f22707a.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, br0Var.f34936v0, false));
+                            r8Var.f22710e.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f20953rg, false), PorterDuff.Mode.MULTIPLY));
                             viewGroup2 = r8Var;
                         }
                     }

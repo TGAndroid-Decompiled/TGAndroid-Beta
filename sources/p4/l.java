@@ -6,17 +6,17 @@ import android.os.Parcelable;
 import java.util.ArrayList;
 import java.util.HashSet;
 public final class l {
-    public final Bundle f43862a;
-    public final ArrayList f43863b;
-    public final ArrayList f43864c;
+    public final Bundle f43889a;
+    public final ArrayList f43890b;
+    public final ArrayList f43891c;
     public final HashSet d;
 
     public l(String str, String str2) {
-        this.f43863b = new ArrayList();
-        this.f43864c = new ArrayList();
+        this.f43890b = new ArrayList();
+        this.f43891c = new ArrayList();
         this.d = new HashSet();
         Bundle bundle = new Bundle();
-        this.f43862a = bundle;
+        this.f43889a = bundle;
         if (str != null) {
             bundle.putString("id", str);
             if (str2 != null) {
@@ -38,7 +38,7 @@ public final class l {
                     i10++;
                     IntentFilter intentFilter = (IntentFilter) obj;
                     if (intentFilter != null) {
-                        ArrayList arrayList2 = this.f43864c;
+                        ArrayList arrayList2 = this.f43891c;
                         if (!arrayList2.contains(intentFilter)) {
                             arrayList2.add(intentFilter);
                         }
@@ -52,21 +52,21 @@ public final class l {
     }
 
     public final m b() {
-        ArrayList<? extends Parcelable> arrayList = new ArrayList<>(this.f43864c);
-        Bundle bundle = this.f43862a;
+        ArrayList<? extends Parcelable> arrayList = new ArrayList<>(this.f43891c);
+        Bundle bundle = this.f43889a;
         bundle.putParcelableArrayList("controlFilters", arrayList);
-        bundle.putStringArrayList("groupMemberIds", new ArrayList<>(this.f43863b));
+        bundle.putStringArrayList("groupMemberIds", new ArrayList<>(this.f43890b));
         bundle.putStringArrayList("allowedPackages", new ArrayList<>(this.d));
         return new m(bundle);
     }
 
     public l(m mVar) {
-        this.f43863b = new ArrayList();
-        this.f43864c = new ArrayList();
+        this.f43890b = new ArrayList();
+        this.f43891c = new ArrayList();
         this.d = new HashSet();
-        this.f43862a = new Bundle(mVar.f43867a);
-        this.f43863b = mVar.c();
-        this.f43864c = mVar.b();
+        this.f43889a = new Bundle(mVar.f43894a);
+        this.f43890b = mVar.c();
+        this.f43891c = mVar.b();
         this.d = mVar.a();
     }
 }

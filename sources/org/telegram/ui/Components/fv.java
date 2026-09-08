@@ -12,15 +12,15 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
 public final class fv extends kl0 {
-    public final rv f26184c;
+    public final rv f26211c;
 
     public fv(rv rvVar) {
-        this.f26184c = rvVar;
+        this.f26211c = rvVar;
     }
 
     @Override
     public final boolean D(s4.c1 c1Var) {
-        if (c1Var.f45742f == 1) {
+        if (c1Var.f45770f == 1) {
             return true;
         }
         return false;
@@ -28,8 +28,8 @@ public final class fv extends kl0 {
 
     public final int E(int i10) {
         int i11;
-        rv rvVar = this.f26184c;
-        bv bvVar = rvVar.f30095e;
+        rv rvVar = this.f26211c;
+        bv bvVar = rvVar.f30122e;
         if (rvVar.I) {
             i11 = 2;
         } else {
@@ -37,13 +37,13 @@ public final class fv extends kl0 {
         }
         int i12 = 0;
         while (true) {
-            ArrayList[] arrayListArr = bvVar.f29192c;
+            ArrayList[] arrayListArr = bvVar.f29219c;
             if (i12 >= arrayListArr.length || i12 == i10) {
                 break;
             }
             int size = arrayListArr[i12].size();
-            if (bvVar.f29192c.length > 1) {
-                size = Math.min(rvVar.f30102y.J * 2, size);
+            if (bvVar.f29219c.length > 1) {
+                size = Math.min(rvVar.f30129y.J * 2, size);
             }
             i11 += size + 2;
             i12++;
@@ -58,23 +58,23 @@ public final class fv extends kl0 {
         int i11;
         int min;
         ArrayList arrayList;
-        rv rvVar = this.f26184c;
-        bv bvVar = rvVar.f30095e;
+        rv rvVar = this.f26211c;
+        bv bvVar = rvVar.f30122e;
         i10 = ((org.telegram.ui.ActionBar.f3) rvVar).currentAccount;
-        if (!UserConfig.getInstance(i10).isPremium() && (arrayList = bvVar.f29191b) != null && arrayList.size() == 1 && MessageObject.isPremiumEmojiPack((TLRPC.TL_messages_stickerSet) bvVar.f29191b.get(0))) {
+        if (!UserConfig.getInstance(i10).isPremium() && (arrayList = bvVar.f29218b) != null && arrayList.size() == 1 && MessageObject.isPremiumEmojiPack((TLRPC.TL_messages_stickerSet) bvVar.f29218b.get(0))) {
             r22 = 1;
         } else {
             r22 = 0;
         }
         rvVar.I = r22;
         int i12 = r22 + 1;
-        if (bvVar.f29192c == null) {
+        if (bvVar.f29219c == null) {
             i11 = 0;
         } else {
             int i13 = 0;
             i11 = 0;
             while (true) {
-                ArrayList[] arrayListArr = bvVar.f29192c;
+                ArrayList[] arrayListArr = bvVar.f29219c;
                 if (i13 >= arrayListArr.length) {
                     break;
                 }
@@ -83,20 +83,20 @@ public final class fv extends kl0 {
                     if (arrayListArr.length == 1) {
                         min = arrayList2.size();
                     } else {
-                        min = Math.min(bvVar.f29194f.f30102y.J * 2, arrayList2.size());
+                        min = Math.min(bvVar.f29221f.f30129y.J * 2, arrayList2.size());
                     }
                     i11 = min + i11 + 1;
                 }
                 i13++;
             }
         }
-        return Math.max(0, bvVar.f29192c.length - 1) + i12 + i11;
+        return Math.max(0, bvVar.f29219c.length - 1) + i12 + i11;
     }
 
     @Override
     public final int j(int i10) {
-        rv rvVar = this.f26184c;
-        bv bvVar = rvVar.f30095e;
+        rv rvVar = this.f26211c;
+        bv bvVar = rvVar.f30122e;
         int i11 = 0;
         if (i10 == 0) {
             return 0;
@@ -112,7 +112,7 @@ public final class fv extends kl0 {
         }
         int i13 = 0;
         while (true) {
-            ArrayList[] arrayListArr = bvVar.f29192c;
+            ArrayList[] arrayListArr = bvVar.f29219c;
             if (i11 >= arrayListArr.length) {
                 return 1;
             }
@@ -120,8 +120,8 @@ public final class fv extends kl0 {
                 return 2;
             }
             int size = arrayListArr[i11].size();
-            if (bvVar.f29192c.length > 1) {
-                size = Math.min(rvVar.f30102y.J * 2, size);
+            if (bvVar.f29219c.length > 1) {
+                size = Math.min(rvVar.f30129y.J * 2, size);
             }
             int i14 = size + 1 + i13;
             if (i12 == i14) {
@@ -141,18 +141,18 @@ public final class fv extends kl0 {
     public final s4.c1 x(ViewGroup viewGroup, int i10) {
         View view;
         View view2;
-        rv rvVar = this.f26184c;
+        rv rvVar = this.f26211c;
         if (i10 == 0) {
             view = rvVar.d;
         } else {
             boolean z10 = true;
             if (i10 == 1) {
                 ?? view3 = new View(rvVar.getContext());
-                view3.f27267a = new ImageReceiver.BackgroundThreadDrawHolder[2];
+                view3.f27294a = new ImageReceiver.BackgroundThreadDrawHolder[2];
                 view2 = view3;
             } else if (i10 == 2) {
                 Context context = rvVar.getContext();
-                if (rvVar.f30095e.f29192c.length > 1) {
+                if (rvVar.f30122e.f29219c.length > 1) {
                     z10 = false;
                 }
                 view2 = new mv(rvVar, context, z10);

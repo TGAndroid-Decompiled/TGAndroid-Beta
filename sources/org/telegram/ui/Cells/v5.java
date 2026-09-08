@@ -10,24 +10,24 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import org.telegram.messenger.R;
 public final class v5 extends FrameLayout {
-    public final org.telegram.ui.Components.x9 f23370a;
-    public final TextView f23371b;
-    public final TextView f23372c;
+    public final org.telegram.ui.Components.x9 f23397a;
+    public final TextView f23398b;
+    public final TextView f23399c;
     public final View d;
-    public final x5 f23373e;
+    public final x5 f23400e;
 
     public v5(x5 x5Var, Context context) {
         super(context);
-        this.f23373e = x5Var;
+        this.f23400e = x5Var;
         org.telegram.ui.Components.x9 x9Var = new org.telegram.ui.Components.x9(context);
-        this.f23370a = x9Var;
+        this.f23397a = x9Var;
         addView(x9Var, w7.x5.c(-1.0f, -1));
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setOrientation(0);
         linearLayout.setBackgroundResource(R.drawable.album_shadow);
         addView(linearLayout, w7.x5.e(-1, 60, 83));
         TextView textView = new TextView(context);
-        this.f23371b = textView;
+        this.f23398b = textView;
         textView.setTextSize(1, 13.0f);
         textView.setTextColor(-1);
         textView.setSingleLine(true);
@@ -36,7 +36,7 @@ public final class v5 extends FrameLayout {
         textView.setMaxLines(1);
         textView.setGravity(80);
         TextView h = com.google.android.gms.internal.vision.e2.h(linearLayout, textView, w7.x5.m(1.0f, 0, -1, 8, 0, 5), context);
-        this.f23372c = h;
+        this.f23399c = h;
         h.setTextSize(1, 13.0f);
         h.setTextColor(-1);
         h.setSingleLine(true);
@@ -52,13 +52,13 @@ public final class v5 extends FrameLayout {
 
     @Override
     public final void onDraw(Canvas canvas) {
-        org.telegram.ui.Components.x9 x9Var = this.f23370a;
+        org.telegram.ui.Components.x9 x9Var = this.f23397a;
         if (x9Var.getImageReceiver().hasNotThumb() && x9Var.getImageReceiver().getCurrentAlpha() == 1.0f) {
             return;
         }
-        x5 x5Var = this.f23373e;
-        x5Var.f23534e.setColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.X9, false));
-        canvas.drawRect(0.0f, 0.0f, x9Var.getMeasuredWidth(), x9Var.getMeasuredHeight(), x5Var.f23534e);
+        x5 x5Var = this.f23400e;
+        x5Var.f23561e.setColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.X9, false));
+        canvas.drawRect(0.0f, 0.0f, x9Var.getMeasuredWidth(), x9Var.getMeasuredHeight(), x5Var.f23561e);
     }
 
     @Override

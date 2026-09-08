@@ -30,9 +30,9 @@ public final class s extends bb {
         x6 x6Var = new x6(context, 70, 0);
         frameLayout.addView(x6Var, w7.x5.c(-1.0f, -1));
         tg.e eVar = new tg.e(context, 1, 2);
-        tg.a aVar = eVar.f46519b;
-        aVar.f46507w = org.telegram.ui.ActionBar.j6.fk;
-        aVar.f46508x = org.telegram.ui.ActionBar.j6.gk;
+        tg.a aVar = eVar.f46547b;
+        aVar.f46535w = org.telegram.ui.ActionBar.j6.fk;
+        aVar.f46536x = org.telegram.ui.ActionBar.j6.gk;
         aVar.b();
         eVar.setStarParticlesView(x6Var);
         frameLayout.addView(eVar, w7.x5.d(170, 170.0f, 17, 0.0f, 32.0f, 0.0f, 24.0f));
@@ -40,7 +40,7 @@ public final class s extends bb {
         linearLayout.addView(frameLayout, w7.x5.c(150.0f, -1));
         TextView textView = new TextView(context);
         com.google.android.gms.internal.vision.e2.m(20.0f, 1, textView);
-        int i11 = org.telegram.ui.ActionBar.j6.f20770j5;
+        int i11 = org.telegram.ui.ActionBar.j6.f20797j5;
         textView.setTextColor(org.telegram.ui.ActionBar.j6.v0(i11, this.resourcesProvider));
         textView.setGravity(17);
         textView.setText(LocaleController.getString(R.string.ExplainStarsTitle));
@@ -57,7 +57,7 @@ public final class s extends bb {
         frameLayout2.addView(dVar, w7.x5.d(-1, 48.0f, 119, 10.0f, 10.0f, 10.0f, 10.0f));
         int i12 = this.backgroundPaddingLeft;
         frameLayout2.setPadding(i12, 0, i12, 0);
-        frameLayout2.setBackgroundColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f20734h5, false));
+        frameLayout2.setBackgroundColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f20761h5, false));
         this.containerView.addView(frameLayout2, w7.x5.e(-1, -2, 87));
         this.X.N(false);
     }

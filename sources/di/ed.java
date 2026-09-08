@@ -8,11 +8,11 @@ import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
 public final class ed extends View implements x2 {
-    public Paint f7184a;
-    public Paint f7185b;
-    public org.telegram.ui.Components.p6 f7186c;
+    public Paint f7212a;
+    public Paint f7213b;
+    public org.telegram.ui.Components.p6 f7214c;
     public boolean d;
-    public org.telegram.ui.Components.e6 f7187e;
+    public org.telegram.ui.Components.e6 f7215e;
 
     public final void a(long j3, boolean z10) {
         long j10 = j3 % 60;
@@ -27,14 +27,14 @@ public final class ed extends View implements x2 {
             sb2.append('0');
         }
         sb2.append(j10);
-        this.f7186c.q(sb2, z10, true);
+        this.f7214c.q(sb2, z10, true);
     }
 
     public final void b(boolean z10, boolean z11) {
         float f7;
         this.d = z10;
         if (!z11) {
-            org.telegram.ui.Components.e6 e6Var = this.f7187e;
+            org.telegram.ui.Components.e6 e6Var = this.f7215e;
             if (z10) {
                 f7 = 1.0f;
             } else {
@@ -48,10 +48,10 @@ public final class ed extends View implements x2 {
     @Override
     public final void onDraw(Canvas canvas) {
         float f7;
-        Paint paint = this.f7185b;
-        org.telegram.ui.Components.p6 p6Var = this.f7186c;
+        Paint paint = this.f7213b;
+        org.telegram.ui.Components.p6 p6Var = this.f7214c;
         super.onDraw(canvas);
-        org.telegram.ui.Components.e6 e6Var = this.f7187e;
+        org.telegram.ui.Components.e6 e6Var = this.f7215e;
         if (this.d) {
             f7 = 1.0f;
         } else {
@@ -62,7 +62,7 @@ public final class ed extends View implements x2 {
         float d10 = p6Var.d() + dp;
         RectF rectF = AndroidUtilities.rectTmp;
         rectF.set(((getWidth() - d10) / 2.0f) - AndroidUtilities.dp(8.0f), AndroidUtilities.dp(18.0f), ((getWidth() + d10) / 2.0f) + AndroidUtilities.dp(8.0f), AndroidUtilities.dp(40.0f));
-        canvas.drawRoundRect(rectF, AndroidUtilities.dp(18.0f), AndroidUtilities.dp(18.0f), this.f7184a);
+        canvas.drawRoundRect(rectF, AndroidUtilities.dp(18.0f), AndroidUtilities.dp(18.0f), this.f7212a);
         if (d > 0.0f) {
             paint.setAlpha((int) (Utilities.clamp((((float) Math.sin((((float) (System.currentTimeMillis() % 2000)) / 1000.0f) * 3.141592653589793d)) / 4.0f) + 0.75f, 1.0f, 0.0f) * 255.0f));
             invalidate();
@@ -79,13 +79,13 @@ public final class ed extends View implements x2 {
 
     @Override
     public void setInvert(float f7) {
-        this.f7184a.setColor(i0.a.d(f7, 1056964608, 268435456));
-        this.f7186c.r(i0.a.d(f7, -1, -16777216));
+        this.f7212a.setColor(i0.a.d(f7, 1056964608, 268435456));
+        this.f7214c.r(i0.a.d(f7, -1, -16777216));
     }
 
     @Override
     public final boolean verifyDrawable(Drawable drawable) {
-        if (this.f7186c != drawable && !super.verifyDrawable(drawable)) {
+        if (this.f7214c != drawable && !super.verifyDrawable(drawable)) {
             return false;
         }
         return true;

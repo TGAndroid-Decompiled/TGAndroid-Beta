@@ -27,28 +27,28 @@ import w7.x5;
 public final class i0 extends ni implements NotificationCenter.NotificationCenterDelegate, le.d {
     public final mz E;
     public final ri F;
-    public final le.b f12091n;
-    public final FrameLayout f12092r;
-    public final bi.o0 f12093s;
+    public final le.b f12117n;
+    public final FrameLayout f12118r;
+    public final bi.o0 f12119s;
     public final e0 v;
-    public final HashSet f12094w;
-    public final f0 f12095x;
-    public final g0 f12096y;
+    public final HashSet f12120w;
+    public final f0 f12121x;
+    public final g0 f12122y;
 
     public i0(Context context, f6 f6Var, vi viVar) {
         super(context, f6Var, viVar);
-        this.f12091n = new le.b(0, this, pr.h, 380L, false);
-        this.f12094w = new HashSet();
-        this.f12096y = new g0(this, context);
-        ui uiVar = new ui(context, j6.f20663d6, f6Var);
+        this.f12117n = new le.b(0, this, pr.h, 380L, false);
+        this.f12120w = new HashSet();
+        this.f12122y = new g0(this, context);
+        ui uiVar = new ui(context, j6.f20690d6, f6Var);
         uiVar.setVisibility(4);
         FrameLayout frameLayout = new FrameLayout(context);
-        this.f12092r = frameLayout;
-        ri riVar = new ri(context, f6Var, this.f28753b);
+        this.f12118r = frameLayout;
+        ri riVar = new ri(context, f6Var, this.f28780b);
         this.F = riVar;
         riVar.setPadding(AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f));
         c0 c0Var = new c0(this);
-        h2 h2Var = riVar.f24522r;
+        h2 h2Var = riVar.f24549r;
         h2Var.addTextChangedListener(c0Var);
         h2Var.setHint(LocaleController.getString(R.string.BusinessRepliesSearch));
         frameLayout.addView(uiVar, x5.g());
@@ -60,12 +60,12 @@ public final class i0 extends ni implements NotificationCenter.NotificationCente
         mzVar.c();
         addView(mzVar, x5.d(-1, -1.0f, 51, 0.0f, 52.0f, 0.0f, 0.0f));
         bi.o0 o0Var = new bi.o0(this, context, f6Var, 3);
-        this.f12093s = o0Var;
+        this.f12119s = o0Var;
         o0Var.o1();
-        this.f28754c = o0Var;
+        this.f28781c = o0Var;
         this.d = o0Var;
         this.h = true;
-        this.f28756f = true;
+        this.f28783f = true;
         NotificationCenter.getGlobalInstance().listen(o0Var, NotificationCenter.emojiLoaded, new bi.o1(this, 20));
         o0Var.setClipToPadding(false);
         getContext();
@@ -78,9 +78,9 @@ public final class i0 extends ni implements NotificationCenter.NotificationCente
         o0Var.setClipToPadding(false);
         addView(o0Var, x5.d(-1, -1.0f, 51, 0.0f, 0.0f, 0.0f, 0.0f));
         f0 f0Var = new f0(this, context);
-        this.f12095x = f0Var;
+        this.f12121x = f0Var;
         o0Var.setAdapter(f0Var);
-        o0Var.setGlowColor(j6.v0(j6.A5, this.f28752a));
+        o0Var.setGlowColor(j6.v0(j6.A5, this.f28779a));
         o0Var.setOnItemClickListener(new bi.d(this, 10));
         o0Var.setOnScrollListener(new ah.e0(this, 11));
         FrameLayout.LayoutParams e7 = x5.e(-1, 60, 51);
@@ -90,7 +90,7 @@ public final class i0 extends ni implements NotificationCenter.NotificationCente
     }
 
     public int getCurrentTop() {
-        bi.o0 o0Var = this.f12093s;
+        bi.o0 o0Var = this.f12119s;
         if (o0Var.getChildCount() != 0) {
             int i10 = 0;
             View childAt = o0Var.getChildAt(0);
@@ -114,13 +114,13 @@ public final class i0 extends ni implements NotificationCenter.NotificationCente
 
     @Override
     public final void G() {
-        this.f12093s.x0(0);
+        this.f12119s.x0(0);
     }
 
     public final void L() {
         boolean z10;
         int i10 = 0;
-        if (this.f12093s.getAdapter().h() == 2) {
+        if (this.f12119s.getAdapter().h() == 2) {
             z10 = true;
         } else {
             z10 = false;
@@ -135,7 +135,7 @@ public final class i0 extends ni implements NotificationCenter.NotificationCente
     public final void M() {
         View childAt;
         mz mzVar = this.E;
-        if (mzVar.getVisibility() != 0 || (childAt = this.f12093s.getChildAt(0)) == null) {
+        if (mzVar.getVisibility() != 0 || (childAt = this.f12119s.getChildAt(0)) == null) {
             return;
         }
         mzVar.setTranslationY((childAt.getTop() + (mzVar.getMeasuredHeight() - getMeasuredHeight())) / 2);
@@ -144,7 +144,7 @@ public final class i0 extends ni implements NotificationCenter.NotificationCente
     @Override
     public int getCurrentItemTop() {
         int i10;
-        bi.o0 o0Var = this.f12093s;
+        bi.o0 o0Var = this.f12119s;
         if (o0Var.getChildCount() <= 0) {
             return Integer.MAX_VALUE;
         }
@@ -156,14 +156,14 @@ public final class i0 extends ni implements NotificationCenter.NotificationCente
         } else {
             i10 = 0;
         }
-        le.b bVar = this.f12091n;
+        le.b bVar = this.f12117n;
         if (top >= 0 && vk0Var != null && vk0Var.b() == 0) {
             bVar.a(false, true);
         } else {
             bVar.a(true, true);
             top = i10;
         }
-        this.f12092r.setTranslationY(top);
+        this.f12118r.setTranslationY(top);
         return AndroidUtilities.dp(12.0f) + top;
     }
 
@@ -174,7 +174,7 @@ public final class i0 extends ni implements NotificationCenter.NotificationCente
 
     @Override
     public int getListTopPadding() {
-        return this.f12093s.getPaddingTop();
+        return this.f12119s.getPaddingTop();
     }
 
     @Override
@@ -187,7 +187,7 @@ public final class i0 extends ni implements NotificationCenter.NotificationCente
         k6 k6Var = new k6() {
             @Override
             public final void b() {
-                bi.o0 o0Var = i0.this.f12093s;
+                bi.o0 o0Var = i0.this.f12119s;
                 if (o0Var != null) {
                     int childCount = o0Var.getChildCount();
                     for (int i10 = 0; i10 < childCount; i10++) {
@@ -201,17 +201,17 @@ public final class i0 extends ni implements NotificationCenter.NotificationCente
             }
         };
         ArrayList<l6> arrayList = new ArrayList<>();
-        arrayList.add(new l6(this.E, 4, null, null, null, null, j6.f20646c7));
-        arrayList.add(new l6(this.E, 2048, null, null, null, null, j6.f20735h6));
+        arrayList.add(new l6(this.E, 4, null, null, null, null, j6.f20673c7));
+        arrayList.add(new l6(this.E, 2048, null, null, null, null, j6.f20762h6));
         int i10 = j6.A5;
-        bi.o0 o0Var = this.f12093s;
+        bi.o0 o0Var = this.f12119s;
         arrayList.add(new l6(o0Var, 32768, null, null, null, null, i10));
-        arrayList.add(new l6(o0Var, 4096, null, null, null, null, j6.f20753i6));
-        arrayList.add(new l6(o0Var, 0, new Class[]{View.class}, j6.f20785k0, null, null, j6.f20664d7));
-        int i11 = j6.f20897q5;
+        arrayList.add(new l6(o0Var, 4096, null, null, null, null, j6.f20780i6));
+        arrayList.add(new l6(o0Var, 0, new Class[]{View.class}, j6.f20812k0, null, null, j6.f20691d7));
+        int i11 = j6.f20924q5;
         arrayList.add(new l6(o0Var, 0, new Class[]{h0.class}, new String[]{"nameTextView"}, null, null, -1, null, i11));
         arrayList.add(new l6(o0Var, 0, new Class[]{h0.class}, new String[]{"statusTextView"}, null, null, -1, k6Var, i11));
-        arrayList.add(new l6(o0Var, 0, new Class[]{h0.class}, null, j6.f20910r0, null, j6.J7));
+        arrayList.add(new l6(o0Var, 0, new Class[]{h0.class}, null, j6.f20937r0, null, j6.J7));
         arrayList.add(new l6(null, 0, null, null, null, k6Var, j6.O7));
         arrayList.add(new l6(null, 0, null, null, null, k6Var, j6.P7));
         arrayList.add(new l6(null, 0, null, null, null, k6Var, j6.Q7));
@@ -231,21 +231,21 @@ public final class i0 extends ni implements NotificationCenter.NotificationCente
     @Override
     public void setTranslationY(float f7) {
         super.setTranslationY(f7);
-        this.f28753b.getSheetContainer().invalidate();
+        this.f28780b.getSheetContainer().invalidate();
     }
 
     public void setupBlurredSearchField(bh.b bVar) {
         ri riVar = this.F;
         if (riVar != null) {
-            riVar.setupBlurredBackground(bVar.c(riVar, fh.b.a(this.f28752a), false));
+            riVar.setupBlurredBackground(bVar.c(riVar, fh.b.a(this.f28779a), false));
         }
     }
 
     @Override
     public final void y(int i10, int i11) {
         int i12;
-        vi viVar = this.f28753b;
-        if (viVar.f31316r1.R() > AndroidUtilities.dp(20.0f)) {
+        vi viVar = this.f28780b;
+        if (viVar.f31343r1.R() > AndroidUtilities.dp(20.0f)) {
             i12 = AndroidUtilities.dp(8.0f);
             viVar.setAllowNestedScroll(false);
         } else {
@@ -259,7 +259,7 @@ public final class i0 extends ni implements NotificationCenter.NotificationCente
             i12 = (i11 / 5) * 2;
             viVar.setAllowNestedScroll(true);
         }
-        this.f12093s.n1(0, i12 + AndroidUtilities.statusBarHeight, 0, this.f28755e);
+        this.f12119s.n1(0, i12 + AndroidUtilities.statusBarHeight, 0, this.f28782e);
     }
 
     @Override

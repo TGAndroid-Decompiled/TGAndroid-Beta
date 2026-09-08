@@ -104,7 +104,7 @@ public final class i1 extends i81 {
                 return;
             case 7:
                 bb1 bb1Var = (bb1) this.U;
-                bb1Var.m0(bb1Var.f34703i0.getCurrentPosition(), true);
+                bb1Var.m0(bb1Var.f34730i0.getCurrentPosition(), true);
                 bb1Var.n0(0.0f, false);
                 bb1.W(bb1Var);
                 return;
@@ -118,7 +118,7 @@ public final class i1 extends i81 {
         c41 c41Var;
         switch (this.T) {
             case 6:
-                if ((getCurrentView() instanceof d41) && (c41Var = ((d41) getCurrentView()).f35650n) != null) {
+                if ((getCurrentView() instanceof d41) && (c41Var = ((d41) getCurrentView()).f35677n) != null) {
                     AndroidUtilities.hideKeyboard(c41Var);
                     return;
                 }
@@ -133,7 +133,7 @@ public final class i1 extends i81 {
         switch (this.T) {
             case 0:
                 t2 t2Var = (t2) this.U;
-                i1 i1Var = t2Var.f8170f;
+                i1 i1Var = t2Var.f8198f;
                 s2 s2Var = t2Var.h;
                 if (s2Var != null) {
                     s2Var.F = i1Var.getPositionAnimated();
@@ -160,15 +160,15 @@ public final class i1 extends i81 {
                 bq0 bq0Var = (bq0) this.U;
                 float positionAnimated = bq0Var.I.getPositionAnimated();
                 bq0Var.M.setSelected(positionAnimated);
-                bq0Var.f34864e.setProgressToGradient(1.0f - w7.p.a((positionAnimated - 0.333333f) / 0.333333f, 0.0f, 1.0f));
+                bq0Var.f34891e.setProgressToGradient(1.0f - w7.p.a((positionAnimated - 0.333333f) / 0.333333f, 0.0f, 1.0f));
                 bq0Var.G0();
                 vp0 C0 = bq0Var.C0();
                 d dVar = bq0Var.Q;
                 if (dVar != null && C0 != null && C0 != bq0Var.R) {
                     bq0Var.R = C0;
-                    n7.z0 z0Var = C0.f41606e;
-                    dVar.g((CharSequence) z0Var.f16703b, true, true);
-                    bq0Var.Q.f((SpannableStringBuilder) z0Var.f16704c, true);
+                    n7.z0 z0Var = C0.f41633e;
+                    dVar.g((CharSequence) z0Var.f16730b, true, true);
+                    bq0Var.Q.f((SpannableStringBuilder) z0Var.f16731c, true);
                 }
                 bq0Var.D0(1);
                 return;
@@ -180,7 +180,7 @@ public final class i1 extends i81 {
                 return;
             case 7:
                 bb1 bb1Var = (bb1) this.U;
-                float positionAnimated2 = bb1Var.f34703i0.getPositionAnimated();
+                float positionAnimated2 = bb1Var.f34730i0.getPositionAnimated();
                 bb1Var.n0(positionAnimated2, !z10);
                 if (!z10) {
                     bb1Var.m0(Math.round(positionAnimated2), true);
@@ -200,9 +200,9 @@ public final class i1 extends i81 {
             case 3:
                 if (i10 == 0) {
                     co coVar = (co) this.U;
-                    if (coVar.f35410s1) {
-                        coVar.f35410s1 = false;
-                        coVar.f35383q1.h.clear();
+                    if (coVar.f35437s1) {
+                        coVar.f35437s1 = false;
+                        coVar.f35410q1.h.clear();
                         return;
                     }
                     return;

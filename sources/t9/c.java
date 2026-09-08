@@ -13,7 +13,7 @@ import kotlin.jvm.internal.i;
 import y9.t0;
 import y9.t1;
 public final class c {
-    public static final c f46480a = new Object();
+    public static final c f46508a = new Object();
 
     public static ArrayList a(Context context) {
         ActivityManager activityManager;
@@ -31,7 +31,7 @@ public final class c {
             list = activityManager.getRunningAppProcesses();
         }
         if (list == null) {
-            list = o.f10956a;
+            list = o.f10982a;
         }
         ArrayList f7 = g.f(list);
         ArrayList arrayList = new ArrayList();
@@ -54,9 +54,9 @@ public final class c {
             ?? obj3 = new Object();
             String str2 = runningAppProcessInfo.processName;
             if (str2 != null) {
-                obj3.f9492a = str2;
-                obj3.f9493b = Integer.valueOf(runningAppProcessInfo.pid);
-                obj3.f9494c = Integer.valueOf(runningAppProcessInfo.importance);
+                obj3.f9520a = str2;
+                obj3.f9521b = Integer.valueOf(runningAppProcessInfo.pid);
+                obj3.f9522c = Integer.valueOf(runningAppProcessInfo.importance);
                 obj3.d = Boolean.valueOf(i.a(runningAppProcessInfo.processName, str));
                 arrayList2.add(obj3.g());
             } else {
@@ -78,7 +78,7 @@ public final class c {
             if (i10 < size) {
                 obj = a2.get(i10);
                 i10++;
-                if (((t0) ((t1) obj)).f49889b == myPid) {
+                if (((t0) ((t1) obj)).f49918b == myPid) {
                     break;
                 }
             } else {
@@ -97,9 +97,9 @@ public final class c {
             }
             i.e(processName, "processName");
             ?? obj2 = new Object();
-            obj2.f9492a = processName;
-            obj2.f9493b = Integer.valueOf(myPid);
-            obj2.f9494c = 0;
+            obj2.f9520a = processName;
+            obj2.f9521b = Integer.valueOf(myPid);
+            obj2.f9522c = 0;
             obj2.d = false;
             return obj2.g();
         }

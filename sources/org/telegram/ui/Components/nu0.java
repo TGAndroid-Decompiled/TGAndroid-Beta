@@ -9,25 +9,25 @@ import android.view.View;
 import java.util.ArrayList;
 import java.util.HashSet;
 public abstract class nu0 extends pt0 {
-    public final HashSet f28869f3;
-    public final ArrayList f28870g3;
-    public final ArrayList f28871h3;
-    public final ArrayList f28872i3;
+    public final HashSet f28896f3;
+    public final ArrayList f28897g3;
+    public final ArrayList f28898h3;
+    public final ArrayList f28899i3;
     public TextPaint j3;
-    public StaticLayout f28873k3;
-    public float f28874l3;
-    public float f28875m3;
-    public bi.xb f28876n3;
-    public int f28877o3;
-    public final ArrayList f28878p3;
+    public StaticLayout f28900k3;
+    public float f28901l3;
+    public float f28902m3;
+    public bi.xb f28903n3;
+    public int f28904o3;
+    public final ArrayList f28905p3;
 
     public nu0(Context context) {
         super(context, null);
-        this.f28869f3 = new HashSet();
-        this.f28870g3 = new ArrayList();
-        this.f28871h3 = new ArrayList();
-        this.f28872i3 = new ArrayList();
-        this.f28878p3 = new ArrayList();
+        this.f28896f3 = new HashSet();
+        this.f28897g3 = new ArrayList();
+        this.f28898h3 = new ArrayList();
+        this.f28899i3 = new ArrayList();
+        this.f28905p3 = new ArrayList();
     }
 
     public boolean A1() {

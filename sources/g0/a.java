@@ -37,18 +37,18 @@ public abstract class a {
     }
 
     public static void b(Canvas canvas, i0 i0Var, int i10, Paint paint) {
-        canvas.drawVertices(Canvas.VertexMode.TRIANGLES, i10 * 8, (float[]) i0Var.f8626b, 0, (float[]) i0Var.f8627c, 0, (int[]) i0Var.f8628e, 0, (short[]) i0Var.d, 0, i10 * 6, paint);
+        canvas.drawVertices(Canvas.VertexMode.TRIANGLES, i10 * 8, (float[]) i0Var.f8654b, 0, (float[]) i0Var.f8655c, 0, (int[]) i0Var.f8656e, 0, (short[]) i0Var.d, 0, i10 * 6, paint);
     }
 
     public static k2.b c(AudioManager audioManager, b2.e eVar) {
-        List directProfilesForAttributes = audioManager.getDirectProfilesForAttributes((AudioAttributes) eVar.b().f2408a);
+        List directProfilesForAttributes = audioManager.getDirectProfilesForAttributes((AudioAttributes) eVar.b().f2435a);
         HashMap hashMap = new HashMap();
         hashMap.put(2, new HashSet(x7.a(12)));
         for (int i10 = 0; i10 < directProfilesForAttributes.size(); i10++) {
             AudioProfile audioProfile = (AudioProfile) directProfilesForAttributes.get(i10);
             if (audioProfile.getEncapsulationType() != 1) {
                 int format = audioProfile.getFormat();
-                if (d0.K(format) || k2.b.f14517e.containsKey(Integer.valueOf(format))) {
+                if (d0.K(format) || k2.b.f14543e.containsKey(Integer.valueOf(format))) {
                     if (hashMap.containsKey(Integer.valueOf(format))) {
                         Set set = (Set) hashMap.get(Integer.valueOf(format));
                         set.getClass();
@@ -68,7 +68,7 @@ public abstract class a {
 
     public static u4 d(AudioManager audioManager, b2.e eVar) {
         audioManager.getClass();
-        List audioDevicesForAttributes = audioManager.getAudioDevicesForAttributes((AudioAttributes) eVar.b().f2408a);
+        List audioDevicesForAttributes = audioManager.getAudioDevicesForAttributes((AudioAttributes) eVar.b().f2435a);
         if (audioDevicesForAttributes.isEmpty()) {
             return null;
         }

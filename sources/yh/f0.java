@@ -7,11 +7,11 @@ import android.view.View;
 import org.telegram.ui.Components.dc0;
 import org.telegram.ui.Components.ov0;
 public final class f0 extends ov0 {
-    public final j0 f50268w0;
+    public final j0 f50297w0;
 
     public f0(j0 j0Var, Context context) {
         super(context, null);
-        this.f50268w0 = j0Var;
+        this.f50297w0 = j0Var;
     }
 
     @Override
@@ -29,15 +29,15 @@ public final class f0 extends ov0 {
         if (drawable instanceof dc0) {
             ((dc0) drawable).p();
         }
-        j0 j0Var = this.f50268w0;
-        j0Var.d.f10661a = j0Var.f50338c.c(drawable);
+        j0 j0Var = this.f50297w0;
+        j0Var.d.f10689a = j0Var.f50367c.c(drawable);
     }
 
     @Override
     public final boolean drawChild(Canvas canvas, View view, long j3) {
         if (view == this.L) {
-            j0 j0Var = this.f50268w0;
-            gh.a aVar = j0Var.d.f10661a;
+            j0 j0Var = this.f50297w0;
+            gh.a aVar = j0Var.d.f10689a;
             if (aVar instanceof gh.b) {
                 ((gh.b) aVar).b(getWidth(), getHeight());
             }
@@ -49,7 +49,7 @@ public final class f0 extends ov0 {
 
     @Override
     public final Drawable getNewDrawable() {
-        Drawable drawable = this.f50268w0.f50346y;
+        Drawable drawable = this.f50297w0.f50375y;
         if (drawable != null) {
             return drawable;
         }
@@ -59,6 +59,6 @@ public final class f0 extends ov0 {
     @Override
     public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
         super.onLayout(z10, i10, i11, i12, i13);
-        this.f50268w0.o();
+        this.f50297w0.o();
     }
 }

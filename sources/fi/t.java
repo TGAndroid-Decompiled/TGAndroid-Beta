@@ -4,7 +4,7 @@ import android.view.View;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.Components.h51;
 public final class t implements Utilities.Callback5, Utilities.Callback5Return {
-    public final u f9963a;
+    public final u f9991a;
 
     @Override
     public Object run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
@@ -13,7 +13,7 @@ public final class t implements Utilities.Callback5, Utilities.Callback5Return {
         ((Integer) obj3).intValue();
         ((Float) obj4).floatValue();
         ((Float) obj5).floatValue();
-        this.f9963a.getClass();
+        this.f9991a.getClass();
         return Boolean.FALSE;
     }
 
@@ -23,6 +23,6 @@ public final class t implements Utilities.Callback5, Utilities.Callback5Return {
         ((Integer) obj3).getClass();
         ((Float) obj4).getClass();
         ((Float) obj5).getClass();
-        u.V(this.f9963a, (h51) obj);
+        u.V(this.f9991a, (h51) obj);
     }
 }

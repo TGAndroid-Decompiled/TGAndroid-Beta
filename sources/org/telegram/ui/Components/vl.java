@@ -3,31 +3,31 @@ package org.telegram.ui.Components;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 public final class vl extends AnimatorListenerAdapter {
-    public final int f31352a;
-    public final ChatAttachAlertPhotoLayout f31353b;
+    public final int f31379a;
+    public final ChatAttachAlertPhotoLayout f31380b;
 
     public vl(ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout, int i10) {
-        this.f31352a = i10;
-        this.f31353b = chatAttachAlertPhotoLayout;
+        this.f31379a = i10;
+        this.f31380b = chatAttachAlertPhotoLayout;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        switch (this.f31352a) {
+        switch (this.f31379a) {
             case 0:
-                this.f31353b.m0 = null;
+                this.f31380b.m0 = null;
                 return;
             case 1:
-                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.f31353b;
-                chatAttachAlertPhotoLayout.f23847f1.unlock();
-                chatAttachAlertPhotoLayout.f23842d0 = false;
+                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.f31380b;
+                chatAttachAlertPhotoLayout.f23874f1.unlock();
+                chatAttachAlertPhotoLayout.f23869d0 = false;
                 dm dmVar = chatAttachAlertPhotoLayout.P;
                 if (dmVar != null) {
                     dmVar.invalidateOutline();
                     chatAttachAlertPhotoLayout.P.invalidate();
                 }
-                if (chatAttachAlertPhotoLayout.f23838b0) {
-                    chatAttachAlertPhotoLayout.f28753b.Z1.H();
+                if (chatAttachAlertPhotoLayout.f23865b0) {
+                    chatAttachAlertPhotoLayout.f28780b.Z1.H();
                 }
                 dm dmVar2 = chatAttachAlertPhotoLayout.P;
                 if (dmVar2 != null) {
@@ -40,13 +40,13 @@ public final class vl extends AnimatorListenerAdapter {
                 }
                 return;
             default:
-                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout2 = this.f31353b;
-                d91 d91Var = chatAttachAlertPhotoLayout2.f23858l0;
-                chatAttachAlertPhotoLayout2.f23847f1.unlock();
-                chatAttachAlertPhotoLayout2.f23853i1 = false;
-                chatAttachAlertPhotoLayout2.f28753b.getWindow().clearFlags(128);
+                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout2 = this.f31380b;
+                d91 d91Var = chatAttachAlertPhotoLayout2.f23885l0;
+                chatAttachAlertPhotoLayout2.f23874f1.unlock();
+                chatAttachAlertPhotoLayout2.f23880i1 = false;
+                chatAttachAlertPhotoLayout2.f28780b.getWindow().clearFlags(128);
                 chatAttachAlertPhotoLayout2.setCameraOpenProgress(0.0f);
-                chatAttachAlertPhotoLayout2.f23842d0 = false;
+                chatAttachAlertPhotoLayout2.f23869d0 = false;
                 tl tlVar2 = chatAttachAlertPhotoLayout2.E;
                 if (tlVar2 != null) {
                     tlVar2.invalidate();
@@ -56,8 +56,8 @@ public final class vl extends AnimatorListenerAdapter {
                     dmVar3.invalidateOutline();
                     chatAttachAlertPhotoLayout2.P.invalidate();
                 }
-                chatAttachAlertPhotoLayout2.f23838b0 = false;
-                ah.y yVar = chatAttachAlertPhotoLayout2.f23854j0;
+                chatAttachAlertPhotoLayout2.f23865b0 = false;
+                ah.y yVar = chatAttachAlertPhotoLayout2.f23881j0;
                 if (yVar != null) {
                     yVar.setVisibility(8);
                 }
@@ -65,7 +65,7 @@ public final class vl extends AnimatorListenerAdapter {
                     d91Var.setVisibility(8);
                     d91Var.setTag(null);
                 }
-                tl tlVar3 = chatAttachAlertPhotoLayout2.f23868r;
+                tl tlVar3 = chatAttachAlertPhotoLayout2.f23895r;
                 if (tlVar3 != null) {
                     tlVar3.setVisibility(8);
                 }

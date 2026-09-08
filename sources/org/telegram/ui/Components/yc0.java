@@ -17,7 +17,7 @@ public final class yc0 extends zc0 {
         h2Var.setSingleLine(true);
         h2Var.setInputType(1);
         h2Var.setTypeface(Typeface.DEFAULT);
-        h2Var.setCursorColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f20809l6, false));
+        h2Var.setCursorColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f20836l6, false));
         h2Var.setCursorWidth(1.5f);
         h2Var.setPadding(AndroidUtilities.dp(15.0f), 0, AndroidUtilities.dp(15.0f), 0);
         e(h2Var);

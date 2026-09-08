@@ -1,21 +1,21 @@
 package bi;
 public final class q8 implements Runnable {
-    public final int f3614a;
-    public final t8 f3615b;
+    public final int f3641a;
+    public final t8 f3642b;
 
     public q8(t8 t8Var, int i10) {
-        this.f3614a = i10;
-        this.f3615b = t8Var;
+        this.f3641a = i10;
+        this.f3642b = t8Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f3614a) {
+        switch (this.f3641a) {
             case 0:
-                this.f3615b.e();
+                this.f3642b.e();
                 return;
             default:
-                this.f3615b.b();
+                this.f3642b.b();
                 return;
         }
     }

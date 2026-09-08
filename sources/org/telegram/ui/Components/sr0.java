@@ -18,7 +18,7 @@ public final class sr0 extends org.telegram.ui.d21 {
         setClipBounds(rect);
         invalidate();
         xu0 xu0Var = this.H;
-        qt0[] qt0VarArr = xu0Var.f32702k0;
+        qt0[] qt0VarArr = xu0Var.f32729k0;
         if (qt0VarArr != null) {
             for (qt0 qt0Var : qt0VarArr) {
                 if (qt0Var != null && (wr0Var = qt0Var.h) != null) {
@@ -27,7 +27,7 @@ public final class sr0 extends org.telegram.ui.d21 {
                     int paddingRight = qt0Var.h.getPaddingRight();
                     wr0 wr0Var2 = qt0Var.h;
                     int Y = xu0Var.Y(xu0Var.v0());
-                    wr0Var2.f29489e3 = Y;
+                    wr0Var2.f29516e3 = Y;
                     wr0Var.setPadding(paddingLeft, Z, paddingRight, Y);
                 }
             }

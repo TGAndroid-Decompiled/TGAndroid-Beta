@@ -3,10 +3,10 @@ package hg;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class m0 extends s4.o {
-    public final s0 f11177b;
+    public final s0 f11203b;
 
     public m0(s0 s0Var) {
-        this.f11177b = s0Var;
+        this.f11203b = s0Var;
     }
 
     @Override
@@ -16,32 +16,32 @@ public final class m0 extends s4.o {
 
     @Override
     public final boolean b(int i10, int i11) {
-        s0 s0Var = this.f11177b;
+        s0 s0Var = this.f11203b;
         q0 q0Var = (q0) s0Var.Y2.get(i10);
         q0 q0Var2 = (q0) s0Var.X2.get(i11);
         if (q0Var.b(q0Var2)) {
             int i12 = q0Var.d;
             if (i12 == 4) {
-                TLObject tLObject = q0Var.f11219f;
+                TLObject tLObject = q0Var.f11245f;
                 if (tLObject instanceof TLRPC.User) {
-                    TLObject tLObject2 = q0Var2.f11219f;
+                    TLObject tLObject2 = q0Var2.f11245f;
                     if (tLObject2 instanceof TLRPC.User) {
-                        if (((TLRPC.User) tLObject).f20016id == ((TLRPC.User) tLObject2).f20016id) {
+                        if (((TLRPC.User) tLObject).f20043id == ((TLRPC.User) tLObject2).f20043id) {
                             return true;
                         }
                         return false;
                     }
                 }
                 if (tLObject instanceof TLRPC.Chat) {
-                    TLObject tLObject3 = q0Var2.f11219f;
-                    if ((tLObject3 instanceof TLRPC.Chat) && ((TLRPC.Chat) tLObject).f19869id == ((TLRPC.Chat) tLObject3).f19869id) {
+                    TLObject tLObject3 = q0Var2.f11245f;
+                    if ((tLObject3 instanceof TLRPC.Chat) && ((TLRPC.Chat) tLObject).f19896id == ((TLRPC.Chat) tLObject3).f19896id) {
                         return true;
                     }
                     return false;
                 }
                 return false;
             } else if (i12 == 6) {
-                return q0Var.f11217c.equals(q0Var2.f11217c);
+                return q0Var.f11243c.equals(q0Var2.f11243c);
             } else {
                 if (i12 == 7) {
                     return true;
@@ -54,11 +54,11 @@ public final class m0 extends s4.o {
 
     @Override
     public final int d() {
-        return this.f11177b.X2.size();
+        return this.f11203b.X2.size();
     }
 
     @Override
     public final int e() {
-        return this.f11177b.Y2.size();
+        return this.f11203b.Y2.size();
     }
 }

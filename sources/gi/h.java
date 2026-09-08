@@ -3,18 +3,18 @@ package gi;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
 public final class h implements Runnable {
-    public final int f10690a;
-    public final p f10691b;
+    public final int f10718a;
+    public final p f10719b;
 
     public h(p pVar, int i10) {
-        this.f10690a = i10;
-        this.f10691b = pVar;
+        this.f10718a = i10;
+        this.f10719b = pVar;
     }
 
     @Override
     public final void run() {
-        int i10 = this.f10690a;
-        p pVar = this.f10691b;
+        int i10 = this.f10718a;
+        p pVar = this.f10719b;
         switch (i10) {
             case 0:
                 p.W(pVar);

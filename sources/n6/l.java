@@ -9,9 +9,9 @@ import com.google.android.gms.tasks.TaskCompletionSource;
 import org.telegram.ui.Cells.p6;
 import v7.e5;
 public abstract class l {
-    public static final Object f16572a = new Object();
-    public static boolean f16573b;
-    public static int f16574c;
+    public static final Object f16599a = new Object();
+    public static boolean f16600b;
+    public static int f16601c;
 
     public static void a(String str, boolean z10) {
         if (z10) {
@@ -107,7 +107,7 @@ public abstract class l {
     }
 
     public static com.google.android.gms.common.api.f m(Status status) {
-        if (status.f4948c != null) {
+        if (status.f4975c != null) {
             return new com.google.android.gms.common.api.f(status);
         }
         return new com.google.android.gms.common.api.f(status);

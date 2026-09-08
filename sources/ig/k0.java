@@ -34,17 +34,17 @@ import org.telegram.ui.Components.yc;
 import org.telegram.ui.LaunchActivity;
 import w7.x5;
 public final class k0 extends bb {
-    public static final int f12123g0 = -1;
-    public static final int f12124h0 = -2;
+    public static final int f12149g0 = -1;
+    public static final int f12150h0 = -2;
     public final TL_account.TL_connectedBot X;
     public final TLRPC.User Y;
     public final a0 Z;
-    public final LinearLayout f12125a0;
-    public final di.d f12126b0;
-    public final di.d f12127c0;
-    public v51 f12128d0;
-    public boolean f12129e0;
-    public Boolean f12130f0;
+    public final LinearLayout f12151a0;
+    public final di.d f12152b0;
+    public final di.d f12153c0;
+    public v51 f12154d0;
+    public boolean f12155e0;
+    public Boolean f12156f0;
 
     public k0(Activity activity, TL_account.TL_connectedBot tL_connectedBot, m8 m8Var, f6 f6Var) {
         super(2, (Context) activity, f6Var, false);
@@ -56,10 +56,10 @@ public final class k0 extends bb {
         a0 a0Var = new a0(activity, this.currentAccount, new nb(this, 29), f6Var);
         this.Z = a0Var;
         TL_account.TL_businessBotRecipients tL_businessBotRecipients = tL_connectedBot.recipients;
-        this.f12129e0 = tL_businessBotRecipients.exclude_selected;
+        this.f12155e0 = tL_businessBotRecipients.exclude_selected;
         a0Var.i(tL_businessBotRecipients);
         LinearLayout linearLayout = new LinearLayout(activity);
-        this.f12125a0 = linearLayout;
+        this.f12151a0 = linearLayout;
         linearLayout.setOrientation(1);
         i9 i9Var = new i9((f6) null);
         x9 x9Var = new x9(activity);
@@ -74,10 +74,10 @@ public final class k0 extends bb {
         textView.setTypeface(AndroidUtilities.bold());
         textView.setText(UserObject.getUserName(user));
         linearLayout.addView(textView, x5.r(-1, -2, 1, 32.0f, 15.66f, 32.0f, 3.66f));
-        this.f24647e.setTitle(UserObject.getUserName(user));
+        this.f24674e.setTitle(UserObject.getUserName(user));
         TextView textView2 = new TextView(activity);
         textView2.setTextSize(1, 14.0f);
-        textView2.setTextColor(getThemedColor(j6.f21042y6));
+        textView2.setTextColor(getThemedColor(j6.f21069y6));
         textView2.setGravity(17);
         textView2.setText(LocaleController.getString(R.string.SessionBot));
         linearLayout.addView(textView2, x5.r(-1, -2, 1, 32.0f, 0.0f, 32.0f, 3.66f));
@@ -90,7 +90,7 @@ public final class k0 extends bb {
             textView3.setGravity(17);
             linearLayout.addView(textView3, x5.t(-1, -2, 1, 32, 0, 32, 18));
         }
-        int i10 = j6.f20607a7;
+        int i10 = j6.f20634a7;
         setBackgroundColor(getThemedColor(i10));
         fixNavigationBar(getThemedColor(i10));
         ll0 ll0Var = this.d;
@@ -103,14 +103,14 @@ public final class k0 extends bb {
         frameLayout.setBackground(new GradientDrawable(GradientDrawable.Orientation.TOP_BOTTOM, new int[]{j6.l1(0.0f, getThemedColor(i10)), getThemedColor(i10), getThemedColor(i10)}));
         di.d dVar = new di.d(activity, f6Var, true);
         dVar.setRoundRadius(24);
-        this.f12126b0 = dVar;
+        this.f12152b0 = dVar;
         dVar.setColor(getThemedColor(j6.wj));
         dVar.setText(LocaleController.getString(R.string.TerminateSession));
         dVar.setOnClickListener(new bi.x(this, tL_connectedBot, m8Var, 8));
         frameLayout.addView(dVar, x5.d(-1, 48.0f, 87, 0.0f, 0.0f, 0.0f, 0.0f));
         di.d dVar2 = new di.d(activity, f6Var, true);
         dVar2.setRoundRadius(24);
-        this.f12127c0 = dVar2;
+        this.f12153c0 = dVar2;
         dVar2.setText(LocaleController.getString(R.string.BusinessBotUpdate));
         dVar2.setOnClickListener(new bi.u1(11, this, tL_connectedBot));
         frameLayout.addView(dVar2, x5.d(-1, 48.0f, 87, 0.0f, 0.0f, 0.0f, 0.0f));
@@ -122,12 +122,12 @@ public final class k0 extends bb {
         e7.rightMargin += i13;
         this.containerView.addView(frameLayout, e7);
         s4.j jVar = new s4.j();
-        jVar.f45777m = false;
+        jVar.f45805m = false;
         jVar.C = false;
         jVar.o(pr.h);
         jVar.n(350L);
         this.d.setItemAnimator(jVar);
-        v51 v51Var = this.f12128d0;
+        v51 v51Var = this.f12154d0;
         if (v51Var != null) {
             v51Var.N(false);
         }
@@ -145,7 +145,7 @@ public final class k0 extends bb {
 
     public static void Q(k0 k0Var, TL_account.TL_connectedBot tL_connectedBot) {
         a0 a0Var = k0Var.Z;
-        di.d dVar = k0Var.f12127c0;
+        di.d dVar = k0Var.f12153c0;
         if (dVar.N) {
             return;
         }
@@ -163,7 +163,7 @@ public final class k0 extends bb {
     }
 
     public static void S(k0 k0Var, TL_account.TL_connectedBot tL_connectedBot, m8 m8Var) {
-        di.d dVar = k0Var.f12126b0;
+        di.d dVar = k0Var.f12152b0;
         if (dVar.N) {
             return;
         }
@@ -177,7 +177,7 @@ public final class k0 extends bb {
 
     @Override
     public final void B(float f7) {
-        j5 titleTextView = this.f24647e.getTitleTextView();
+        j5 titleTextView = this.f24674e.getTitleTextView();
         if (titleTextView != null) {
             titleTextView.setAlpha(f7);
         }
@@ -201,14 +201,14 @@ public final class k0 extends bb {
         } else {
             z11 = false;
         }
-        Boolean bool = this.f12130f0;
+        Boolean bool = this.f12156f0;
         if (bool != null && bool.booleanValue() == z11) {
             return;
         }
-        this.f12130f0 = Boolean.valueOf(z11);
+        this.f12156f0 = Boolean.valueOf(z11);
         float f17 = 0.0f;
-        di.d dVar = this.f12126b0;
-        di.d dVar2 = this.f12127c0;
+        di.d dVar = this.f12152b0;
+        di.d dVar2 = this.f12153c0;
         float f18 = 0.8f;
         if (!z10) {
             if (z11) {
@@ -279,10 +279,10 @@ public final class k0 extends bb {
         ViewPropertyAnimator duration = scaleX.scaleY(f11).setDuration(320L);
         pr prVar = pr.h;
         duration.setInterpolator(prVar).withEndAction(new Runnable(this) {
-            public final k0 f12109b;
+            public final k0 f12135b;
 
             {
-                this.f12109b = this;
+                this.f12135b = this;
             }
 
             @Override
@@ -290,9 +290,9 @@ public final class k0 extends bb {
                 switch (r3) {
                     case 0:
                         boolean z12 = z11;
-                        k0 k0Var = this.f12109b;
+                        k0 k0Var = this.f12135b;
                         if (!z12) {
-                            k0Var.f12127c0.setVisibility(8);
+                            k0Var.f12153c0.setVisibility(8);
                             return;
                         } else {
                             k0Var.getClass();
@@ -300,9 +300,9 @@ public final class k0 extends bb {
                         }
                     default:
                         boolean z13 = z11;
-                        k0 k0Var2 = this.f12109b;
+                        k0 k0Var2 = this.f12135b;
                         if (z13) {
-                            k0Var2.f12126b0.setVisibility(8);
+                            k0Var2.f12152b0.setVisibility(8);
                             return;
                         } else {
                             k0Var2.getClass();
@@ -327,10 +327,10 @@ public final class k0 extends bb {
             f18 = 1.0f;
         }
         scaleX2.scaleY(f18).setDuration(320L).setInterpolator(prVar).withEndAction(new Runnable(this) {
-            public final k0 f12109b;
+            public final k0 f12135b;
 
             {
-                this.f12109b = this;
+                this.f12135b = this;
             }
 
             @Override
@@ -338,9 +338,9 @@ public final class k0 extends bb {
                 switch (r3) {
                     case 0:
                         boolean z12 = z11;
-                        k0 k0Var = this.f12109b;
+                        k0 k0Var = this.f12135b;
                         if (!z12) {
-                            k0Var.f12127c0.setVisibility(8);
+                            k0Var.f12153c0.setVisibility(8);
                             return;
                         } else {
                             k0Var.getClass();
@@ -348,9 +348,9 @@ public final class k0 extends bb {
                         }
                     default:
                         boolean z13 = z11;
-                        k0 k0Var2 = this.f12109b;
+                        k0 k0Var2 = this.f12135b;
                         if (z13) {
-                            k0Var2.f12126b0.setVisibility(8);
+                            k0Var2.f12152b0.setVisibility(8);
                             return;
                         } else {
                             k0Var2.getClass();
@@ -382,8 +382,8 @@ public final class k0 extends bb {
     @Override
     public final kl0 v(ll0 ll0Var) {
         v51 v51Var = new v51(ll0Var, getContext(), this.currentAccount, 0, true, new ci.u(this, 23), this.resourcesProvider);
-        this.f12128d0 = v51Var;
-        v51Var.f31135r = false;
+        this.f12154d0 = v51Var;
+        v51Var.f31162r = false;
         return v51Var;
     }
 

@@ -25,9 +25,9 @@ public final class t0 extends bb {
     public final ArrayList X;
     public final ArrayList Y;
     public final TLRPC.Chat Z;
-    public final e0 f47209a0;
-    public s0 f47210b0;
-    public m0 f47211c0;
+    public final e0 f47237a0;
+    public s0 f47238b0;
+    public m0 f47239c0;
 
     public t0(n2 n2Var, TL_stories.TL_premium_myBoosts tL_premium_myBoosts, TLRPC.Chat chat) {
         super(n2Var, false);
@@ -43,7 +43,7 @@ public final class t0 extends bb {
             i10++;
             TL_stories.TL_myBoost tL_myBoost2 = tL_myBoost;
             TLRPC.Peer peer = tL_myBoost2.peer;
-            if (peer != null && DialogObject.getPeerDialogId(peer) != (-chat.f19869id)) {
+            if (peer != null && DialogObject.getPeerDialogId(peer) != (-chat.f19896id)) {
                 this.Y.add(tL_myBoost2);
             }
         }
@@ -51,9 +51,9 @@ public final class t0 extends bb {
         o20Var.setClickable(true);
         o20Var.setOrientation(1);
         o20Var.setPadding(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f));
-        o20Var.setBackgroundColor(j6.v0(j6.f20734h5, this.resourcesProvider));
+        o20Var.setBackgroundColor(j6.v0(j6.f20761h5, this.resourcesProvider));
         e0 e0Var = new e0(getContext(), this.resourcesProvider);
-        this.f47209a0 = e0Var;
+        this.f47237a0 = e0Var;
         e0Var.k();
         e0Var.setCounterColor(-6785796);
         e0Var.setOnClickListener(new wy0(17, this, chat));
@@ -86,12 +86,12 @@ public final class t0 extends bb {
             }
             lVar.c(arrayList.contains(lVar.getBoost()), true);
             t0Var.S(true);
-            t0Var.f47210b0.a(arrayList, chat);
+            t0Var.f47238b0.a(arrayList, chat);
         }
     }
 
     public final void S(boolean z10) {
-        e0 e0Var = this.f47209a0;
+        e0 e0Var = this.f47237a0;
         boolean z11 = false;
         e0Var.setShowZero(false);
         ArrayList arrayList = this.X;
@@ -110,18 +110,18 @@ public final class t0 extends bb {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        this.f47211c0 = new m0(this);
+        this.f47239c0 = new m0(this);
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        this.f47211c0.cancel();
+        this.f47239c0.cancel();
     }
 
     @Override
     public final void onOpenAnimationEnd() {
-        this.f47211c0.start();
+        this.f47239c0.start();
     }
 
     @Override

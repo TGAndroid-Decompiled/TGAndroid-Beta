@@ -8,20 +8,20 @@ import di.nb;
 import org.telegram.messenger.AnimationNotificationsLocker;
 import org.telegram.messenger.BotFullscreenButtons;
 public final class u2 implements View.OnLayoutChangeListener {
-    public final int f9995a;
-    public final Object f9996b;
+    public final int f10023a;
+    public final Object f10024b;
 
     public u2(Object obj, int i10) {
-        this.f9995a = i10;
-        this.f9996b = obj;
+        this.f10023a = i10;
+        this.f10024b = obj;
     }
 
     @Override
     public final void onLayoutChange(View view, int i10, int i11, int i12, int i13, int i14, int i15, int i16, int i17) {
         int i18;
-        int i19 = this.f9995a;
+        int i19 = this.f10023a;
         int i20 = 0;
-        Object obj = this.f9996b;
+        Object obj = this.f10024b;
         switch (i19) {
             case 0:
                 view.removeOnLayoutChangeListener(this);
@@ -29,21 +29,21 @@ public final class u2 implements View.OnLayoutChangeListener {
                 BotFullscreenButtons botFullscreenButtons = k3Var.m0;
                 a3 a3Var = k3Var.v;
                 a3Var.setSwipeOffsetY(a3Var.getHeight());
-                k3Var.f9765e.setAlpha(1.0f);
+                k3Var.f9793e.setAlpha(1.0f);
                 if (k3Var.G0 != Float.MAX_VALUE) {
                     a3Var.setSwipeOffsetAnimationDisallowed(true);
                     a3Var.setOffsetY(k3Var.G0);
                     a3Var.setSwipeOffsetAnimationDisallowed(false);
                 }
-                k3Var.f9789x.o(true, true);
+                k3Var.f9817x.o(true, true);
                 final AnimationNotificationsLocker animationNotificationsLocker = new AnimationNotificationsLocker();
                 animationNotificationsLocker.lock();
                 if (!k3Var.F0 && !k3Var.m()) {
-                    o1.k kVar = new o1.k(a3Var, q4.f9902b0, 0.0f);
+                    o1.k kVar = new o1.k(a3Var, q4.f9930b0, 0.0f);
                     o1.l lVar = new o1.l(0.0f);
                     lVar.a(0.75f);
                     lVar.b(500.0f);
-                    kVar.f16825u = lVar;
+                    kVar.f16852u = lVar;
                     kVar.a(new o1.f() {
                         @Override
                         public final void a(o1.h hVar, boolean z10, float f7, float f10) {
@@ -55,7 +55,7 @@ public final class u2 implements View.OnLayoutChangeListener {
                     a3Var.f(a3Var.getTopActionBarOffsetY() + (-a3Var.getOffsetY()), false, new nb(animationNotificationsLocker, 18));
                 }
                 a3Var.K = true;
-                if (k3Var.f9764d0 && botFullscreenButtons != null) {
+                if (k3Var.f9792d0 && botFullscreenButtons != null) {
                     botFullscreenButtons.setAlpha(0.0f);
                     botFullscreenButtons.animate().alpha(1.0f).setDuration(220L).start();
                     return;
@@ -73,7 +73,7 @@ public final class u2 implements View.OnLayoutChangeListener {
                     int paddingLeft = searchView.H.getPaddingLeft();
                     Rect rect = new Rect();
                     boolean a2 = m.s3.a(searchView);
-                    if (searchView.f991f0) {
+                    if (searchView.f1003f0) {
                         i20 = resources.getDimensionPixelSize(2131165225) + resources.getDimensionPixelSize(2131165226);
                     }
                     searchAutoComplete.getDropDownBackground().getPadding(rect);

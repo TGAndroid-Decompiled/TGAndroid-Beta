@@ -171,7 +171,7 @@ public class VideoAds {
             paint.setStrokeJoin(Paint.Join.ROUND);
             paint.setColor(-1);
             p6Var.setCallback(view);
-            p6Var.f29285b = 17;
+            p6Var.f29312b = 17;
             p6Var.t(AndroidUtilities.dp(12.0f));
             p6Var.u(AndroidUtilities.getTypeface("fonts/num.otf"));
             p6Var.G = AndroidUtilities.displaySize.x;
@@ -220,7 +220,7 @@ public class VideoAds {
             this.timer.q(str, true, true);
             this.timer.l(centerX - 1.0f, centerY - 1.0f, centerX + 1.0f, centerY + 1.0f);
             p6 p6Var = this.timer;
-            p6Var.f29303w = (int) (this.alpha * e7);
+            p6Var.f29330w = (int) (this.alpha * e7);
             p6Var.draw(canvas);
             canvas.restore();
             this.paint.setAlpha((int) (this.alpha * e7));
@@ -482,7 +482,7 @@ public class VideoAds {
     public void lambda$show$3(qc qcVar, TLRPC.TL_sponsoredMessage tL_sponsoredMessage) {
         qc qcVar2 = this.bulletin;
         if (qcVar2 != null && qcVar2 == qcVar) {
-            qcVar2.f29679j = (tL_sponsoredMessage.max_display_duration - tL_sponsoredMessage.min_display_duration) * 1000;
+            qcVar2.f29706j = (tL_sponsoredMessage.max_display_duration - tL_sponsoredMessage.min_display_duration) * 1000;
             qcVar2.i(true);
         }
     }
@@ -512,7 +512,7 @@ public class VideoAds {
                 }
             } else if (j10 <= 0) {
                 qc qcVar4 = this.bulletin;
-                qcVar4.f29679j = (int) j11;
+                qcVar4.f29706j = (int) j11;
                 qcVar4.i(true);
             } else {
                 AndroidUtilities.runOnUIThread(runnable, j10);
@@ -626,7 +626,7 @@ public class VideoAds {
             this.bulletin = null;
         }
         Context W = this.bulletinFactory.W();
-        f6 f6Var = this.bulletinFactory.f32883c;
+        f6 f6Var = this.bulletinFactory.f32910c;
         AdLayout adLayout = new AdLayout(W, f6Var) {
             {
                 VideoAds.this = this;
@@ -644,7 +644,7 @@ public class VideoAds {
         j5 j5Var = adLayout.titleTextView;
         Context W2 = this.bulletinFactory.W();
         int i10 = j6.Oh;
-        j5Var.i(new AdOptionsDrawable(W2, j6.v0(i10, this.bulletinFactory.f32883c)));
+        j5Var.i(new AdOptionsDrawable(W2, j6.v0(i10, this.bulletinFactory.f32910c)));
         adLayout.subtitleTextView.setText(tL_sponsoredMessage.message);
         TLRPC.MessageMedia messageMedia = tL_sponsoredMessage.media;
         if (messageMedia != null) {
@@ -668,12 +668,12 @@ public class VideoAds {
             }
         }
         final CloseDrawable closeDrawable = new CloseDrawable(adLayout.buttonView, tL_sponsoredMessage.min_display_duration, tL_sponsoredMessage.max_display_duration, this.currentBulletinPassedTime);
-        closeDrawable.setColor(j6.v0(i10, this.bulletinFactory.f32883c));
+        closeDrawable.setColor(j6.v0(i10, this.bulletinFactory.f32910c));
         adLayout.buttonView.setImageDrawable(closeDrawable);
         adLayout.buttonView.setOnClickListener(new u1(14, this, closeDrawable));
         final qc b10 = this.bulletinFactory.b(adLayout, tL_sponsoredMessage.max_display_duration * 1000);
         this.bulletin = b10;
-        b10.f29690u = false;
+        b10.f29717u = false;
         b10.i(false);
         final t tVar = new t(this, b10, tL_sponsoredMessage, 25);
         final long[] jArr = new long[1];
@@ -687,12 +687,12 @@ public class VideoAds {
         };
         AndroidUtilities.runOnUIThread(tVar, tL_sponsoredMessage.min_display_duration * 1000);
         qc qcVar2 = this.bulletin;
-        qcVar2.f29687r = false;
+        qcVar2.f29714r = false;
         qcVar2.v = new t(this, b10, new boolean[1], 26);
         adLayout.titleTextView.setRightDrawableOnClick(new f(this, b10, tL_sponsoredMessage, W, f6Var, adLayout, callback, 0));
         qc qcVar3 = this.bulletin;
         u1 u1Var = new u1(15, this, tL_sponsoredMessage);
-        ub ubVar = qcVar3.f29675e;
+        ub ubVar = qcVar3.f29702e;
         if (ubVar != null) {
             ubVar.setOnClickListener(u1Var);
         }

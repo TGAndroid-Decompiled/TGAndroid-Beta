@@ -5,7 +5,7 @@ import android.widget.EditText;
 import org.telegram.messenger.DispatchQueue;
 import org.telegram.messenger.Utilities;
 public final class ne1 extends org.telegram.ui.ActionBar.g5 {
-    public boolean f38938f = false;
+    public boolean f38965f = false;
     public final te1 h;
 
     public ne1(te1 te1Var) {
@@ -15,50 +15,50 @@ public final class ne1 extends org.telegram.ui.ActionBar.g5 {
     @Override
     public final void m() {
         te1 te1Var = this.h;
-        if (te1Var.f40728a.getVisibility() != 0) {
-            te1Var.f40728a.setVisibility(0);
-            te1Var.f40728a.setAlpha(0.0f);
+        if (te1Var.f40755a.getVisibility() != 0) {
+            te1Var.f40755a.setVisibility(0);
+            te1Var.f40755a.setAlpha(0.0f);
         }
-        te1Var.f40734r.setVisibility(8);
+        te1Var.f40761r.setVisibility(8);
         te1Var.d.l();
-        te1Var.f40728a.animate().alpha(1.0f).setDuration(150L).setListener(null).start();
-        te1Var.f40735s.animate().alpha(0.0f).setDuration(150L).setListener(new me1(this, 0)).start();
-        this.f38938f = false;
+        te1Var.f40755a.animate().alpha(1.0f).setDuration(150L).setListener(null).start();
+        te1Var.f40762s.animate().alpha(0.0f).setDuration(150L).setListener(new me1(this, 0)).start();
+        this.f38965f = false;
     }
 
     @Override
     public final void q(EditText editText) {
         String obj = editText.getText().toString();
-        se1 se1Var = this.h.f40731e;
-        if (se1Var.f40429e != null) {
-            Utilities.searchQueue.cancelRunnable(se1Var.f40429e);
-            se1Var.f40429e = null;
+        se1 se1Var = this.h.f40758e;
+        if (se1Var.f40456e != null) {
+            Utilities.searchQueue.cancelRunnable(se1Var.f40456e);
+            se1Var.f40456e = null;
         }
         if (TextUtils.isEmpty(obj)) {
-            se1Var.f40428c.clear();
+            se1Var.f40455c.clear();
             se1Var.d.clear();
             se1Var.l();
-            se1Var.h.f40734r.setVisibility(8);
+            se1Var.h.f40761r.setVisibility(8);
         } else {
-            int i10 = se1Var.f40430f + 1;
-            se1Var.f40430f = i10;
+            int i10 = se1Var.f40457f + 1;
+            se1Var.f40457f = i10;
             DispatchQueue dispatchQueue = Utilities.searchQueue;
             re1 re1Var = new re1(se1Var, obj, i10, 0);
-            se1Var.f40429e = re1Var;
+            se1Var.f40456e = re1Var;
             dispatchQueue.postRunnable(re1Var, 300L);
         }
-        if (!this.f38938f && !TextUtils.isEmpty(obj)) {
-            if (this.h.f40735s.getVisibility() != 0) {
-                this.h.f40735s.setVisibility(0);
-                this.h.f40735s.setAlpha(0.0f);
+        if (!this.f38965f && !TextUtils.isEmpty(obj)) {
+            if (this.h.f40762s.getVisibility() != 0) {
+                this.h.f40762s.setVisibility(0);
+                this.h.f40762s.setAlpha(0.0f);
             }
-            this.h.f40728a.animate().alpha(0.0f).setDuration(150L).setListener(new me1(this, 1)).start();
-            this.h.f40731e.d.clear();
-            this.h.f40731e.f40428c.clear();
-            this.h.f40731e.l();
-            this.h.f40735s.animate().setListener(null).alpha(1.0f).setDuration(150L).start();
-            this.f38938f = true;
-        } else if (this.f38938f && TextUtils.isEmpty(obj)) {
+            this.h.f40755a.animate().alpha(0.0f).setDuration(150L).setListener(new me1(this, 1)).start();
+            this.h.f40758e.d.clear();
+            this.h.f40758e.f40455c.clear();
+            this.h.f40758e.l();
+            this.h.f40762s.animate().setListener(null).alpha(1.0f).setDuration(150L).start();
+            this.f38965f = true;
+        } else if (this.f38965f && TextUtils.isEmpty(obj)) {
             m();
         }
     }

@@ -23,8 +23,8 @@ public final class p3 extends oa0 {
         RectF rectF = AndroidUtilities.rectTmp;
         rectF.set(rect);
         rectF.offset(0.0f, 0.0f);
-        canvas.drawRoundRect(rectF, f7, f7, (Paint) nVar.f6374a);
-        canvas.drawRoundRect(rectF, f7, f7, o5Var.f3443n2);
+        canvas.drawRoundRect(rectF, f7, f7, (Paint) nVar.f6401a);
+        canvas.drawRoundRect(rectF, f7, f7, o5Var.f3470n2);
         if (rectF.top < getMeasuredHeight() - 1) {
             canvas.drawRect(0.0f, getMeasuredHeight(), getMeasuredWidth(), getMeasuredHeight() - 1, o5Var.B0.G("paintDivider"));
         }

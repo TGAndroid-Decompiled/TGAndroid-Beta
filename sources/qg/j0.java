@@ -13,27 +13,27 @@ import org.telegram.messenger.Utilities;
 import org.telegram.ui.q31;
 import org.telegram.ui.sw0;
 public final class j0 {
-    public static final j0 f44450e;
-    public static final List f44451f;
-    public static final List f44452g;
+    public static final j0 f44478e;
+    public static final List f44479f;
+    public static final List f44480g;
     public static ArrayList h;
-    public static boolean f44453i;
-    public final String f44454a;
-    public final String f44455b;
-    public final String f44456c;
+    public static boolean f44481i;
+    public final String f44482a;
+    public final String f44483b;
+    public final String f44484c;
     public final n7.z0 d;
 
     static {
         j0 j0Var = new j0("roboto", "PhotoEditorTypefaceRoboto", new n7.z0(new sw0(17)));
-        f44450e = j0Var;
-        f44451f = Arrays.asList(j0Var, new j0("italic", "PhotoEditorTypefaceItalic", new n7.z0(new sw0(18))), new j0("serif", "PhotoEditorTypefaceSerif", new n7.z0(new sw0(19))), new j0("condensed", "PhotoEditorTypefaceCondensed", new n7.z0(new sw0(20))), new j0("mono", "PhotoEditorTypefaceMono", new n7.z0(new sw0(21))), new j0("mw_bold", "PhotoEditorTypefaceMerriweather", new n7.z0(new sw0(22))));
-        f44452g = Arrays.asList("Google Sans", "Dancing Script", "Carrois Gothic SC", "Cutive Mono", "Droid Sans Mono", "Coming Soon");
+        f44478e = j0Var;
+        f44479f = Arrays.asList(j0Var, new j0("italic", "PhotoEditorTypefaceItalic", new n7.z0(new sw0(18))), new j0("serif", "PhotoEditorTypefaceSerif", new n7.z0(new sw0(19))), new j0("condensed", "PhotoEditorTypefaceCondensed", new n7.z0(new sw0(20))), new j0("mono", "PhotoEditorTypefaceMono", new n7.z0(new sw0(21))), new j0("mw_bold", "PhotoEditorTypefaceMerriweather", new n7.z0(new sw0(22))));
+        f44480g = Arrays.asList("Google Sans", "Dancing Script", "Carrois Gothic SC", "Cutive Mono", "Droid Sans Mono", "Coming Soon");
     }
 
     public j0(String str, String str2, n7.z0 z0Var) {
-        this.f44454a = str;
-        this.f44455b = str2;
-        this.f44456c = null;
+        this.f44482a = str;
+        this.f44483b = str2;
+        this.f44484c = null;
         this.d = z0Var;
     }
 
@@ -48,11 +48,11 @@ public final class j0 {
     public static List c() {
         ArrayList arrayList = h;
         if (arrayList == null) {
-            if (arrayList == null && !f44453i) {
-                f44453i = true;
+            if (arrayList == null && !f44481i) {
+                f44481i = true;
                 Utilities.themeQueue.postRunnable(new q31(9));
             }
-            return f44451f;
+            return f44479f;
         }
         return arrayList;
     }
@@ -63,9 +63,9 @@ public final class j0 {
             return null;
         }
         randomAccessFile.seek(i10 + i0Var.d);
-        byte[] bArr = new byte[i0Var.f44446c];
+        byte[] bArr = new byte[i0Var.f44474c];
         randomAccessFile.read(bArr);
-        if (i0Var.f44444a == 1) {
+        if (i0Var.f44472a == 1) {
             charset = StandardCharsets.UTF_16BE;
         } else {
             charset = StandardCharsets.UTF_8;
@@ -75,16 +75,16 @@ public final class j0 {
 
     public final Typeface d() {
         n7.z0 z0Var = this.d;
-        if (((Typeface) z0Var.f16704c) == null) {
-            z0Var.f16704c = ((h0) z0Var.f16703b).a();
+        if (((Typeface) z0Var.f16731c) == null) {
+            z0Var.f16731c = ((h0) z0Var.f16730b).a();
         }
-        return (Typeface) z0Var.f16704c;
+        return (Typeface) z0Var.f16731c;
     }
 
     public j0(Font font, String str) {
-        this.f44454a = str;
-        this.f44456c = str;
-        this.f44455b = null;
+        this.f44482a = str;
+        this.f44484c = str;
+        this.f44483b = null;
         this.d = new n7.z0(new k5(font, 17));
     }
 }

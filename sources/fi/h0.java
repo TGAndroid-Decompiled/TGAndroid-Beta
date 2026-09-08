@@ -12,13 +12,13 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.e6;
 import org.telegram.ui.Components.pr;
 public final class h0 extends Drawable {
-    public final Paint f9695a = new Paint(1);
-    public final RectF f9696b = new RectF();
-    public final int f9697c;
+    public final Paint f9723a = new Paint(1);
+    public final RectF f9724b = new RectF();
+    public final int f9725c;
     public final Path d;
-    public boolean f9698e;
-    public int f9699f;
-    public final e6 f9700g;
+    public boolean f9726e;
+    public int f9727f;
+    public final e6 f9728g;
     public final e6 h;
 
     public h0(int i10) {
@@ -26,9 +26,9 @@ public final class h0 extends Drawable {
         this.d = path;
         nb nbVar = new nb(this, 10);
         pr prVar = pr.h;
-        this.f9700g = new e6(nbVar, 320L, prVar, 0);
+        this.f9728g = new e6(nbVar, 320L, prVar, 0);
         this.h = new e6(new nb(this, 10), 320L, prVar, 0);
-        this.f9697c = i10;
+        this.f9725c = i10;
         path.moveTo(-AndroidUtilities.dp(6.5f), 0.0f);
         path.lineTo(AndroidUtilities.dp(6.5f), 0.0f);
         path.lineTo(0.0f, -AndroidUtilities.dp(6.16f));
@@ -38,14 +38,14 @@ public final class h0 extends Drawable {
     @Override
     public final void draw(Canvas canvas) {
         Rect bounds = getBounds();
-        RectF rectF = this.f9696b;
+        RectF rectF = this.f9724b;
         rectF.set(bounds);
         rectF.inset(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f));
-        int i10 = this.f9697c;
-        Paint paint = this.f9695a;
+        int i10 = this.f9725c;
+        Paint paint = this.f9723a;
         canvas.drawRoundRect(rectF, i10, i10, paint);
-        float e7 = this.f9700g.e(this.f9698e);
-        float dp = (rectF.right + AndroidUtilities.dp(8.0f)) - this.h.d(this.f9699f, false);
+        float e7 = this.f9728g.e(this.f9726e);
+        float dp = (rectF.right + AndroidUtilities.dp(8.0f)) - this.h.d(this.f9727f, false);
         if (e7 > 0.0f) {
             canvas.save();
             canvas.translate(dp, com.google.android.gms.internal.vision.e2.z(1.0f, e7, AndroidUtilities.dp(6.16f), AndroidUtilities.dp(8.0f)));

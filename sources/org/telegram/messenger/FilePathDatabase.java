@@ -36,13 +36,13 @@ public class FilePathDatabase {
     }
 
     public static class PathData {
-        public final int f17070dc;
-        public final long f17071id;
+        public final int f17097dc;
+        public final long f17098id;
         public final int type;
 
         public PathData(long j3, int i10, int i11) {
-            this.f17071id = j3;
-            this.f17070dc = i10;
+            this.f17098id = j3;
+            this.f17097dc = i10;
             this.type = i11;
         }
     }
@@ -193,7 +193,7 @@ public class FilePathDatabase {
             this.database.beginTransaction();
             for (int i10 = 0; i10 < list.size(); i10++) {
                 SQLiteDatabase sQLiteDatabase = this.database;
-                sQLiteDatabase.executeFast("DELETE FROM paths_by_dialog_id WHERE path = '" + shield(((ai.b) list.get(i10)).f738a.getPath()) + "'").stepThis().dispose();
+                sQLiteDatabase.executeFast("DELETE FROM paths_by_dialog_id WHERE path = '" + shield(((ai.b) list.get(i10)).f750a.getPath()) + "'").stepThis().dispose();
             }
         } catch (Throwable th2) {
             try {

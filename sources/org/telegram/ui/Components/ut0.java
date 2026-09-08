@@ -11,19 +11,19 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 public final class ut0 extends FrameLayout {
-    public final org.telegram.ui.Cells.h6 f30970a;
+    public final org.telegram.ui.Cells.h6 f30997a;
 
     public ut0(int i10, Context context, boolean z10, org.telegram.ui.ActionBar.f6 f6Var, jq0 jq0Var) {
         super(context);
         int i11;
         int i12;
         org.telegram.ui.Cells.h6 h6Var = new org.telegram.ui.Cells.h6(context, f6Var);
-        this.f30970a = h6Var;
-        h6Var.setBackground(org.telegram.ui.ActionBar.j6.f0(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f20753i6, f6Var), 2, -1));
+        this.f30997a = h6Var;
+        h6Var.setBackground(org.telegram.ui.ActionBar.j6.f0(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f20780i6, f6Var), 2, -1));
         addView(h6Var, w7.x5.c(-2.0f, -1));
         View view = new View(context);
         GradientDrawable.Orientation orientation = GradientDrawable.Orientation.TOP_BOTTOM;
-        int i13 = org.telegram.ui.ActionBar.j6.f20663d6;
+        int i13 = org.telegram.ui.ActionBar.j6.f20690d6;
         view.setBackground(new GradientDrawable(orientation, new int[]{org.telegram.ui.ActionBar.j6.l1(0.4f, org.telegram.ui.ActionBar.j6.v0(i13, f6Var)), org.telegram.ui.ActionBar.j6.v0(i13, f6Var)}));
         addView(view, w7.x5.c(60.0f, -1));
         di.d dVar = new di.d(context, f6Var, true);
@@ -46,7 +46,7 @@ public final class ut0 extends FrameLayout {
         d90Var.setTextAlignment(4);
         d90Var.setGravity(17);
         d90Var.setTextColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.G6, f6Var));
-        d90Var.setLinkTextColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f20846n6, f6Var));
+        d90Var.setLinkTextColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f20873n6, f6Var));
         d90Var.setLineSpacing(AndroidUtilities.dp(3.0f), 1.0f);
         if (z10) {
             i12 = R.string.MoreSimilarBotsText;

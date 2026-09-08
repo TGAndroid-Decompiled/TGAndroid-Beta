@@ -1,6 +1,6 @@
 package org.telegram.ui;
 public final class vs0 extends org.telegram.ui.Cells.aa {
-    public final int f41692v0 = 0;
+    public final int f41719v0 = 0;
 
     public vs0(bi.da daVar, org.telegram.ui.ActionBar.f6 f6Var) {
         super(daVar, f6Var);
@@ -8,7 +8,7 @@ public final class vs0 extends org.telegram.ui.Cells.aa {
 
     @Override
     public final int p() {
-        switch (this.f41692v0) {
+        switch (this.f41719v0) {
             case 0:
                 return 0;
             default:

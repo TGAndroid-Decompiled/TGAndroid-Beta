@@ -4,13 +4,13 @@ import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessageObject;
 public final class pn extends w7.y5 {
-    public MessageObject f39542a;
-    public int f39543b = 0;
-    public boolean f39544c = true;
+    public MessageObject f39569a;
+    public int f39570b = 0;
+    public boolean f39571c = true;
     public int d = 0;
-    public int f39545e;
-    public boolean f39546f;
-    public int f39547g;
+    public int f39572e;
+    public boolean f39573f;
+    public int f39574g;
     public final co h;
 
     public pn(co coVar) {
@@ -19,20 +19,20 @@ public final class pn extends w7.y5 {
 
     @Override
     public final void a() {
-        MessageObject messageObject = this.f39542a;
+        MessageObject messageObject = this.f39569a;
         co coVar = this.h;
         if (messageObject != null) {
             coVar.A0.T();
-            int indexOf = coVar.f35440u6.indexOf(this.f39542a) + coVar.A0.J;
+            int indexOf = coVar.f35467u6.indexOf(this.f39569a) + coVar.A0.J;
             if (indexOf >= 0) {
-                coVar.f35498z0.i1(indexOf, (int) ((this.f39545e + this.f39547g) - coVar.f35418s9), this.f39546f);
+                coVar.f35525z0.i1(indexOf, (int) ((this.f39572e + this.f39574g) - coVar.f35445s9), this.f39573f);
             }
         } else {
             coVar.A0.T();
-            coVar.f35498z0.i1(this.f39543b, this.d, this.f39544c);
+            coVar.f35525z0.i1(this.f39570b, this.d, this.f39571c);
         }
-        this.f39542a = null;
-        coVar.f35336m3 = true;
+        this.f39569a = null;
+        coVar.f35363m3 = true;
         coVar.Wc(false);
         AndroidUtilities.runOnUIThread(new dj(this, 8));
     }
@@ -41,8 +41,8 @@ public final class pn extends w7.y5 {
     public final void c() {
         co coVar = this.h;
         coVar.I9 = coVar.getNotificationCenter().setAnimationInProgress(coVar.I9, co.Nc);
-        vk vkVar = coVar.f35470wa;
-        if (vkVar.f39337n) {
+        vk vkVar = coVar.f35497wa;
+        if (vkVar.f39364n) {
             vkVar.d();
         }
     }

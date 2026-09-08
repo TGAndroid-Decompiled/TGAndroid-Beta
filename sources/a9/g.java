@@ -12,7 +12,7 @@ import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.Iterator;
 public abstract class g {
-    public static final i0 f344a = new i0("PhoneskyVerificationUtils");
+    public static final i0 f356a = new i0("PhoneskyVerificationUtils");
 
     public static int a(Context context) {
         try {
@@ -29,7 +29,7 @@ public abstract class g {
 
     public static boolean b(Signature[] signatureArr) {
         String str;
-        i0 i0Var = f344a;
+        i0 i0Var = f356a;
         if (signatureArr != null && (r2 = signatureArr.length) != 0) {
             ArrayList arrayList = new ArrayList();
             for (Signature signature : signatureArr) {

@@ -16,37 +16,37 @@ import org.telegram.ui.ActionBar.f6;
 import org.telegram.ui.ActionBar.j6;
 import w7.x5;
 public final class j extends FrameLayout {
-    public final ImageView f9726a;
-    public final FrameLayout.LayoutParams f9727b;
-    public final FrameLayout.LayoutParams f9728c;
+    public final ImageView f9754a;
+    public final FrameLayout.LayoutParams f9755b;
+    public final FrameLayout.LayoutParams f9756c;
     public final TextView d;
-    public final TextView f9729e;
-    public final TextView f9730f;
+    public final TextView f9757e;
+    public final TextView f9758f;
 
     public j(Context context, f6 f6Var) {
         super(context);
         ImageView imageView = new ImageView(context);
-        this.f9726a = imageView;
+        this.f9754a = imageView;
         PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
         imageView.setColorFilter(new PorterDuffColorFilter(-1, mode));
         ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
         imageView.setScaleType(scaleType);
         FrameLayout.LayoutParams d = x5.d(28, 28.0f, 51, 17.0f, 14.33f, 0.0f, 0.0f);
-        this.f9727b = d;
+        this.f9755b = d;
         addView(imageView, d);
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setOrientation(1);
         FrameLayout.LayoutParams d10 = x5.d(-1, -2.0f, 55, 62.0f, 10.0f, 40.0f, 8.66f);
-        this.f9728c = d10;
+        this.f9756c = d10;
         addView(linearLayout, d10);
         TextView textView = new TextView(context);
         this.d = textView;
         wl.j(15.0f, 1, textView);
         textView.setTextColor(j6.v0(j6.G6, f6Var));
         TextView h = com.google.android.gms.internal.vision.e2.h(linearLayout, textView, x5.t(-1, -2, 55, 0, 0, 0, 0), context);
-        this.f9729e = h;
+        this.f9757e = h;
         h.setTextSize(1, 14.0f);
-        h.setTextColor(j6.v0(j6.f21061z6, f6Var));
+        h.setTextColor(j6.v0(j6.f21088z6, f6Var));
         linearLayout.addView(h, x5.t(-1, -2, 55, 0, 3, 0, 0));
         ImageView imageView2 = new ImageView(context);
         imageView2.setColorFilter(new PorterDuffColorFilter(j6.v0(j6.M6, f6Var), mode));
@@ -54,7 +54,7 @@ public final class j extends FrameLayout {
         imageView2.setScaleType(scaleType);
         addView(imageView2, x5.d(24, 24.0f, 21, 0.0f, 0.0f, 10.0f, 0.0f));
         TextView textView2 = new TextView(context);
-        this.f9730f = textView2;
+        this.f9758f = textView2;
         textView2.setTextColor(-1);
         textView2.setBackground(j6.b0(AndroidUtilities.dp(4.0f), j6.v0(j6.uj, f6Var)));
         textView2.setTextSize(1, 13.0f);
@@ -66,15 +66,15 @@ public final class j extends FrameLayout {
     }
 
     public final void a(int i10, int i11, CharSequence charSequence, CharSequence charSequence2) {
-        ImageView imageView = this.f9726a;
+        ImageView imageView = this.f9754a;
         imageView.setImageResource(i11);
         imageView.setBackground(j6.b0(AndroidUtilities.dp(9.0f), i10));
         TextView textView = this.d;
         textView.setText(charSequence);
         boolean isEmpty = TextUtils.isEmpty(charSequence2);
-        TextView textView2 = this.f9729e;
-        FrameLayout.LayoutParams layoutParams = this.f9728c;
-        FrameLayout.LayoutParams layoutParams2 = this.f9727b;
+        TextView textView2 = this.f9757e;
+        FrameLayout.LayoutParams layoutParams = this.f9756c;
+        FrameLayout.LayoutParams layoutParams2 = this.f9755b;
         if (isEmpty) {
             layoutParams2.topMargin = AndroidUtilities.dp(10.0f);
             layoutParams2.bottomMargin = AndroidUtilities.dp(10.0f);
@@ -104,7 +104,7 @@ public final class j extends FrameLayout {
 
     public void setPercent(CharSequence charSequence) {
         boolean isEmpty = TextUtils.isEmpty(charSequence);
-        TextView textView = this.f9730f;
+        TextView textView = this.f9758f;
         if (isEmpty) {
             textView.setVisibility(8);
             return;

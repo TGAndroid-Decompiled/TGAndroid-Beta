@@ -21,8 +21,8 @@ public final class n1 extends uy {
     public final void onFragmentDestroy() {
         super.onFragmentDestroy();
         p1 p1Var = this.C4;
-        if (!p1Var.f9881c0) {
-            p1Var.f9881c0 = true;
+        if (!p1Var.f9909c0) {
+            p1Var.f9909c0 = true;
             this.B4.run("USER_DECLINED", null);
         }
     }

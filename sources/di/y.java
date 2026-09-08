@@ -7,17 +7,17 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.Components.pr;
 public final class y extends FrameLayout {
-    public final v f8440a;
-    public t f8441b;
-    public Utilities.Callback f8442c;
+    public final v f8468a;
+    public t f8469b;
+    public Utilities.Callback f8470c;
     public float d;
-    public boolean f8443e;
-    public ValueAnimator f8444f;
+    public boolean f8471e;
+    public ValueAnimator f8472f;
 
     public y(Activity activity, y2 y2Var) {
         super(activity);
         v vVar = new v(this, activity);
-        this.f8440a = vVar;
+        this.f8468a = vVar;
         vVar.setAdapter(new w(this, activity, y2Var));
         vVar.setLayoutManager(new s4.c0(0, false));
         vVar.setClipToPadding(false);
@@ -28,17 +28,17 @@ public final class y extends FrameLayout {
     }
 
     public final void a(boolean z10, boolean z11) {
-        ValueAnimator valueAnimator = this.f8444f;
+        ValueAnimator valueAnimator = this.f8472f;
         if (valueAnimator != null) {
             valueAnimator.cancel();
         }
-        if (this.f8443e == z10) {
+        if (this.f8471e == z10) {
             return;
         }
-        this.f8443e = z10;
+        this.f8471e = z10;
         float f7 = 0.0f;
         int i10 = 0;
-        v vVar = this.f8440a;
+        v vVar = this.f8468a;
         if (z11) {
             vVar.setVisibility(0);
             float f10 = this.d;
@@ -46,12 +46,12 @@ public final class y extends FrameLayout {
                 f7 = 1.0f;
             }
             ValueAnimator ofFloat = ValueAnimator.ofFloat(f10, f7);
-            this.f8444f = ofFloat;
+            this.f8472f = ofFloat;
             ofFloat.addUpdateListener(new ah.d0(this, 17));
-            this.f8444f.addListener(new ah.q0(9, this, z10));
-            this.f8444f.setInterpolator(pr.h);
-            this.f8444f.setDuration(340L);
-            this.f8444f.start();
+            this.f8472f.addListener(new ah.q0(9, this, z10));
+            this.f8472f.setInterpolator(pr.h);
+            this.f8472f.setDuration(340L);
+            this.f8472f.start();
             return;
         }
         if (z10) {
@@ -66,11 +66,11 @@ public final class y extends FrameLayout {
     }
 
     public void setOnLayoutClick(Utilities.Callback<t> callback) {
-        this.f8442c = callback;
+        this.f8470c = callback;
     }
 
     public void setSelected(t tVar) {
-        this.f8441b = tVar;
-        AndroidUtilities.updateVisibleRows(this.f8440a);
+        this.f8469b = tVar;
+        AndroidUtilities.updateVisibleRows(this.f8468a);
     }
 }

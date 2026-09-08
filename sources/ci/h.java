@@ -32,8 +32,8 @@ public final class h extends nz {
         switch (this.X) {
             case 0:
                 iv0 iv0Var = (iv0) this.Y;
-                iv0Var.f27272b = 100.0f;
-                iv0Var.f27271a = 100.0f;
+                iv0Var.f27299b = 100.0f;
+                iv0Var.f27298a = 100.0f;
                 return iv0Var;
             default:
                 return super.D1(i10);
@@ -46,7 +46,7 @@ public final class h extends nz {
         switch (this.X) {
             case 0:
                 super.U(eVar, z0Var, view, cVar);
-                AccessibilityNodeInfo accessibilityNodeInfo = cVar.f45685a;
+                AccessibilityNodeInfo accessibilityNodeInfo = cVar.f45713a;
                 AccessibilityNodeInfo.CollectionItemInfo collectionItemInfo = accessibilityNodeInfo.getCollectionItemInfo();
                 if (collectionItemInfo != null) {
                     cVar2 = new he.c(collectionItemInfo);
@@ -54,7 +54,7 @@ public final class h extends nz {
                     cVar2 = null;
                 }
                 if (cVar2 != null) {
-                    Object obj = cVar2.f10970a;
+                    Object obj = cVar2.f10996a;
                     if (((AccessibilityNodeInfo.CollectionItemInfo) obj).isHeading()) {
                         accessibilityNodeInfo.setCollectionItemInfo(AccessibilityNodeInfo.CollectionItemInfo.obtain(((AccessibilityNodeInfo.CollectionItemInfo) obj).getRowIndex(), ((AccessibilityNodeInfo.CollectionItemInfo) obj).getRowSpan(), ((AccessibilityNodeInfo.CollectionItemInfo) obj).getColumnIndex(), ((AccessibilityNodeInfo.CollectionItemInfo) obj).getColumnSpan(), false));
                         return;
@@ -72,7 +72,7 @@ public final class h extends nz {
     public int W0(z0 z0Var) {
         switch (this.X) {
             case 1:
-                if (((d61) this.Y).f25279a3) {
+                if (((d61) this.Y).f25306a3) {
                     return AndroidUtilities.displaySize.y;
                 }
                 return super.W0(z0Var);

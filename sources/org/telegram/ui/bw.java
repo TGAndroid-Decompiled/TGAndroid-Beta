@@ -5,21 +5,21 @@ import android.view.View;
 import java.util.ArrayList;
 import org.telegram.messenger.MessageObject;
 public final class bw implements org.telegram.ui.Components.zk0 {
-    public final int f34935a;
-    public final uy f34936b;
+    public final int f34962a;
+    public final uy f34963b;
 
     public bw(uy uyVar, int i10) {
-        this.f34935a = i10;
-        this.f34936b = uyVar;
+        this.f34962a = i10;
+        this.f34963b = uyVar;
     }
 
     @Override
     public final void a(int i10, View view) {
         hg.q0 q0Var;
-        switch (this.f34935a) {
+        switch (this.f34962a) {
             case 0:
-                uy uyVar = this.f34936b;
-                Object obj = uyVar.C0.f32969v0.G(i10).G;
+                uy uyVar = this.f34963b;
+                Object obj = uyVar.C0.f32996v0.G(i10).G;
                 if (obj instanceof MessageObject) {
                     MessageObject messageObject = (MessageObject) obj;
                     Bundle bundle = new Bundle();
@@ -44,11 +44,11 @@ public final class bw implements org.telegram.ui.Components.zk0 {
                     return;
                 }
             default:
-                uy uyVar2 = this.f34936b;
-                uyVar2.f41242b0.I0(true);
-                ArrayList arrayList = uyVar2.f41242b0.X2;
+                uy uyVar2 = this.f34963b;
+                uyVar2.f41269b0.I0(true);
+                ArrayList arrayList = uyVar2.f41269b0.X2;
                 if (arrayList.isEmpty()) {
-                    q0Var = hg.s0.f11237c3[i10];
+                    q0Var = hg.s0.f11263c3[i10];
                 } else {
                     q0Var = (hg.q0) arrayList.get(i10);
                 }

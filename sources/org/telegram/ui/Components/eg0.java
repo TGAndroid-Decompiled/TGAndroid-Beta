@@ -16,9 +16,9 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
 import org.telegram.ui.PhotoViewer;
 public final class eg0 implements sf.a {
-    public static final hv0 f25673n0 = new hv0(new p2(22), new p2(23));
-    public static final hv0 f25674o0 = new hv0(new p2(24), new p2(25));
-    public static final eg0 f25675p0 = new eg0();
+    public static final hv0 f25700n0 = new hv0(new p2(22), new p2(23));
+    public static final hv0 f25701o0 = new hv0(new p2(24), new p2(25));
+    public static final eg0 f25702p0 = new eg0();
     public boolean E;
     public ValueAnimator F;
     public mg.n G;
@@ -39,59 +39,59 @@ public final class eg0 implements sf.a {
     public ImageView X;
     public boolean Y;
     public float Z;
-    public float f25677a0;
-    public WindowManager f25678b;
-    public bi.a4 f25679b0;
-    public WindowManager.LayoutParams f25680c;
-    public boolean f25681c0;
+    public float f25704a0;
+    public WindowManager f25705b;
+    public bi.a4 f25706b0;
+    public WindowManager.LayoutParams f25707c;
+    public boolean f25708c0;
     public org.telegram.ui.f d;
-    public boolean f25682d0;
-    public dg0 f25683e;
-    public View f25685f;
-    public boolean f25686f0;
+    public boolean f25709d0;
+    public dg0 f25710e;
+    public View f25712f;
+    public boolean f25713f0;
     public dg0 h;
-    public boolean f25689i0;
-    public View f25691k0;
-    public TextureView f25692l0;
+    public boolean f25716i0;
+    public View f25718k0;
+    public TextureView f25719l0;
     public boolean m0;
-    public boolean f25693n;
-    public qf0 f25694r;
-    public ScaleGestureDetector f25695s;
+    public boolean f25720n;
+    public qf0 f25721r;
+    public ScaleGestureDetector f25722s;
     public mg.n v;
-    public boolean f25696w;
-    public boolean f25697x;
-    public View f25698y;
-    public float f25676a = 1.4f;
+    public boolean f25723w;
+    public boolean f25724x;
+    public View f25725y;
+    public float f25703a = 1.4f;
     public float J = 1.0f;
     public final w61 Q = new w61(false);
-    public final zf0 f25684e0 = new zf0(this, 1);
-    public float[] f25687g0 = new float[2];
-    public final zf0 f25688h0 = new zf0(this, 2);
-    public final zf0 f25690j0 = new zf0(this, 3);
+    public final zf0 f25711e0 = new zf0(this, 1);
+    public float[] f25714g0 = new float[2];
+    public final zf0 f25715h0 = new zf0(this, 2);
+    public final zf0 f25717j0 = new zf0(this, 3);
 
     public static void j(boolean z10) {
-        f25675p0.k(z10, false);
+        f25702p0.k(z10, false);
     }
 
     public static hk0 o(float f7, boolean z10) {
         float dp;
         ?? obj = new Object();
         float f10 = 1.0f / f7;
-        eg0 eg0Var = f25675p0;
+        eg0 eg0Var = f25702p0;
         if (eg0Var.P && !z10) {
-            obj.f26743a = eg0Var.K;
-            obj.f26744b = eg0Var.L + AndroidUtilities.statusBarHeight;
-            obj.f26745c = eg0Var.H;
+            obj.f26770a = eg0Var.K;
+            obj.f26771b = eg0Var.L + AndroidUtilities.statusBarHeight;
+            obj.f26772c = eg0Var.H;
             obj.d = eg0Var.I;
             return obj;
         }
-        float f11 = ((SharedPreferences) eg0Var.n().f16292b).getFloat("x", -1.0f);
-        float f12 = ((SharedPreferences) eg0Var.n().f16292b).getFloat("y", -1.0f);
-        float f13 = ((SharedPreferences) eg0Var.n().f16292b).getFloat("scale_factor", 1.0f);
-        obj.f26745c = s(f10) * f13;
+        float f11 = ((SharedPreferences) eg0Var.n().f16319b).getFloat("x", -1.0f);
+        float f12 = ((SharedPreferences) eg0Var.n().f16319b).getFloat("y", -1.0f);
+        float f13 = ((SharedPreferences) eg0Var.n().f16319b).getFloat("scale_factor", 1.0f);
+        obj.f26772c = s(f10) * f13;
         obj.d = ((int) (s(f10) * f10)) * f13;
         if (f11 != -1.0f) {
-            float f14 = obj.f26745c;
+            float f14 = obj.f26772c;
             float f15 = (f14 / 2.0f) + f11;
             float f16 = AndroidUtilities.displaySize.x;
             if (f15 >= f16 / 2.0f) {
@@ -99,20 +99,20 @@ public final class eg0 implements sf.a {
             } else {
                 dp = AndroidUtilities.dp(16.0f);
             }
-            obj.f26743a = dp;
+            obj.f26770a = dp;
         } else {
-            obj.f26743a = (AndroidUtilities.displaySize.x - obj.f26745c) - AndroidUtilities.dp(16.0f);
+            obj.f26770a = (AndroidUtilities.displaySize.x - obj.f26772c) - AndroidUtilities.dp(16.0f);
         }
         if (f12 != -1.0f) {
-            obj.f26744b = w7.p.a(f12, AndroidUtilities.dp(16.0f), (AndroidUtilities.displaySize.y - AndroidUtilities.dp(16.0f)) - obj.d) + AndroidUtilities.statusBarHeight;
+            obj.f26771b = w7.p.a(f12, AndroidUtilities.dp(16.0f), (AndroidUtilities.displaySize.y - AndroidUtilities.dp(16.0f)) - obj.d) + AndroidUtilities.statusBarHeight;
             return obj;
         }
-        obj.f26744b = AndroidUtilities.dp(16.0f) + AndroidUtilities.statusBarHeight;
+        obj.f26771b = AndroidUtilities.dp(16.0f) + AndroidUtilities.statusBarHeight;
         return obj;
     }
 
     public static qf.e p() {
-        eg0 eg0Var = f25675p0;
+        eg0 eg0Var = f25702p0;
         if (eg0Var != null) {
             return eg0Var.W;
         }
@@ -135,12 +135,12 @@ public final class eg0 implements sf.a {
     }
 
     public static void v(boolean z10) {
-        eg0 eg0Var = f25675p0;
+        eg0 eg0Var = f25702p0;
         w61 w61Var = eg0Var.Q;
         w61Var.e(false);
         w61Var.d(!z10);
         w61Var.f(true);
-        bi.a4 a4Var = eg0Var.f25679b0;
+        bi.a4 a4Var = eg0Var.f25706b0;
         if (a4Var != null) {
             a4Var.invalidate();
         }
@@ -151,7 +151,7 @@ public final class eg0 implements sf.a {
     }
 
     public static void w(PhotoViewer photoViewer) {
-        eg0 eg0Var = f25675p0;
+        eg0 eg0Var = f25702p0;
         eg0Var.V = photoViewer;
         g71 g71Var = photoViewer.F2;
         qf.e eVar = eg0Var.W;
@@ -159,19 +159,19 @@ public final class eg0 implements sf.a {
             eVar.c();
             eg0Var.W = null;
         }
-        if (g71Var != null && tf.c.a(photoViewer.f33727y) == 1) {
-            qf.d dVar = new qf.d(photoViewer.f33727y, eg0Var);
-            dVar.f44344c = "photo-viewer-pip-" + g71Var.f26298a;
-            dVar.f44345e = 1;
+        if (g71Var != null && tf.c.a(photoViewer.f33754y) == 1) {
+            qf.d dVar = new qf.d(photoViewer.f33754y, eg0Var);
+            dVar.f44372c = "photo-viewer-pip-" + g71Var.f26325a;
+            dVar.f44373e = 1;
             dVar.d = AndroidUtilities.dp(10.0f);
-            dVar.f44349j = eg0Var.d;
-            dVar.f44350k = eg0Var.f25691k0;
+            dVar.f44377j = eg0Var.d;
+            dVar.f44378k = eg0Var.f25718k0;
             int i10 = eg0Var.S;
             int i11 = eg0Var.T;
             dVar.h = i10;
-            dVar.f44348i = i11;
-            dVar.f44347g = g71Var.d;
-            dVar.f44346f = true;
+            dVar.f44376i = i11;
+            dVar.f44375g = g71Var.d;
+            dVar.f44374f = true;
             eg0Var.W = dVar.a();
         }
         eg0Var.z();
@@ -187,7 +187,7 @@ public final class eg0 implements sf.a {
         if (photoViewer != null && photoViewer.F2 != null) {
             photoViewer.P8 = pVar;
         }
-        this.f25678b.removeView(this.d);
+        this.f25705b.removeView(this.d);
         this.m0 = true;
         this.d.invalidate();
     }
@@ -197,16 +197,16 @@ public final class eg0 implements sf.a {
         g71 g71Var;
         qf.e eVar = this.W;
         if (eVar != null && eVar.h.b()) {
-            WindowManager.LayoutParams layoutParams = this.f25680c;
-            int width = this.W.h.f46485a.width();
+            WindowManager.LayoutParams layoutParams = this.f25707c;
+            int width = this.W.h.f46513a.width();
             this.H = width;
             layoutParams.width = width;
-            WindowManager.LayoutParams layoutParams2 = this.f25680c;
-            int height = this.W.h.f46485a.height();
+            WindowManager.LayoutParams layoutParams2 = this.f25707c;
+            int height = this.W.h.f46513a.height();
             this.I = height;
             layoutParams2.height = height;
         }
-        this.f25678b.addView(this.d, this.f25680c);
+        this.f25705b.addView(this.d, this.f25707c);
         this.m0 = false;
         this.d.invalidate();
         PhotoViewer photoViewer = this.V;
@@ -223,9 +223,9 @@ public final class eg0 implements sf.a {
 
     @Override
     public final Bitmap c() {
-        TextureView textureView = this.f25692l0;
+        TextureView textureView = this.f25719l0;
         if (textureView != null && textureView.isAvailable()) {
-            return this.f25692l0.getBitmap();
+            return this.f25719l0.getBitmap();
         }
         return null;
     }
@@ -234,8 +234,8 @@ public final class eg0 implements sf.a {
     public final Bitmap e() {
         TextureView textureView;
         PhotoViewer photoViewer = this.V;
-        if (photoViewer != null && (textureView = photoViewer.f33711w3) != null && textureView.isAvailable()) {
-            return this.V.f33711w3.getBitmap();
+        if (photoViewer != null && (textureView = photoViewer.f33738w3) != null && textureView.isAvailable()) {
+            return this.V.f33738w3.getBitmap();
         }
         return null;
     }
@@ -252,34 +252,34 @@ public final class eg0 implements sf.a {
     @Override
     public final View h() {
         TextureView textureView = new TextureView(this.d.getContext());
-        this.f25692l0 = textureView;
+        this.f25719l0 = textureView;
         textureView.setVisibility(4);
-        this.f25692l0.setOpaque(false);
-        this.f25692l0.setSurfaceTextureListener(new j50(this, 1));
-        return this.f25692l0;
+        this.f25719l0.setOpaque(false);
+        this.f25719l0.setSurfaceTextureListener(new j50(this, 1));
+        return this.f25719l0;
     }
 
     public final void i() {
         org.telegram.ui.jt0 jt0Var;
         PhotoViewer photoViewer = this.V;
-        if (photoViewer == null || (jt0Var = photoViewer.f33534c4) == null) {
+        if (photoViewer == null || (jt0Var = photoViewer.f33561c4) == null) {
             return;
         }
         jt0Var.cancelRewind();
     }
 
     public final void k(boolean z10, boolean z11) {
-        if (this.f25681c0) {
+        if (this.f25708c0) {
             return;
         }
-        this.f25681c0 = true;
+        this.f25708c0 = true;
         ValueAnimator valueAnimator = this.F;
         if (valueAnimator != null) {
             valueAnimator.cancel();
         }
-        if (this.f25689i0) {
-            AndroidUtilities.cancelRunOnUIThread(this.f25690j0);
-            this.f25689i0 = false;
+        if (this.f25716i0) {
+            AndroidUtilities.cancelRunOnUIThread(this.f25717j0);
+            this.f25716i0 = false;
         }
         o1.k kVar = this.M;
         if (kVar != null) {
@@ -289,7 +289,7 @@ public final class eg0 implements sf.a {
         if (!z10 && this.d != null) {
             AnimatorSet animatorSet = new AnimatorSet();
             animatorSet.setDuration(250L);
-            animatorSet.setInterpolator(pr.f29466f);
+            animatorSet.setInterpolator(pr.f29493f);
             animatorSet.playTogether(ObjectAnimator.ofFloat(this.d, View.ALPHA, 0.0f), ObjectAnimator.ofFloat(this.d, View.SCALE_X, 0.1f), ObjectAnimator.ofFloat(this.d, View.SCALE_Y, 0.1f));
             animatorSet.addListener(new bg0(this, 1));
             animatorSet.start();
@@ -301,7 +301,7 @@ public final class eg0 implements sf.a {
     }
 
     public final long l() {
-        qf0 qf0Var = this.f25694r;
+        qf0 qf0Var = this.f25721r;
         if (qf0Var != null) {
             return qf0Var.getCurrentPosition();
         }
@@ -313,7 +313,7 @@ public final class eg0 implements sf.a {
     }
 
     public final long m() {
-        qf0 qf0Var = this.f25694r;
+        qf0 qf0Var = this.f25721r;
         if (qf0Var != null) {
             return qf0Var.getVideoDuration();
         }
@@ -337,14 +337,14 @@ public final class eg0 implements sf.a {
         if (this.O == null) {
             this.O = Float.valueOf(this.T / this.S);
             Point point = AndroidUtilities.displaySize;
-            this.f25676a = (Math.min(point.x, point.y) - AndroidUtilities.dp(32.0f)) / t();
+            this.f25703a = (Math.min(point.x, point.y) - AndroidUtilities.dp(32.0f)) / t();
             if (this.O.floatValue() < 1.0f) {
                 f7 = 0.6f;
             } else {
                 f7 = 0.45f;
             }
             w61 w61Var = this.Q;
-            w61Var.f32184q = f7;
+            w61Var.f32211q = f7;
             w61Var.a();
         }
         return this.O.floatValue();
@@ -363,27 +363,27 @@ public final class eg0 implements sf.a {
         try {
             org.telegram.ui.f fVar = this.d;
             if (fVar != null && fVar.getParent() != null) {
-                this.f25678b.removeViewImmediate(this.d);
+                this.f25705b.removeViewImmediate(this.d);
             }
         } catch (Exception unused) {
         }
-        this.f25679b0 = null;
-        this.f25685f = null;
+        this.f25706b0 = null;
+        this.f25712f = null;
         this.V = null;
         qf.e eVar = this.W;
         if (eVar != null) {
             eVar.c();
             this.W = null;
         }
-        this.f25694r = null;
+        this.f25721r = null;
         this.U = null;
-        this.f25698y = null;
-        this.f25696w = false;
+        this.f25725y = null;
+        this.f25723w = false;
         this.P = false;
-        this.f25681c0 = false;
-        this.f25686f0 = false;
+        this.f25708c0 = false;
+        this.f25713f0 = false;
         i();
-        AndroidUtilities.cancelRunOnUIThread(this.f25688h0);
+        AndroidUtilities.cancelRunOnUIThread(this.f25715h0);
     }
 
     public final void y(boolean z10) {
@@ -399,7 +399,7 @@ public final class eg0 implements sf.a {
         }
         ValueAnimator duration = ValueAnimator.ofFloat(f7, f10).setDuration(200L);
         this.F = duration;
-        duration.setInterpolator(pr.f29466f);
+        duration.setInterpolator(pr.f29493f);
         this.F.addUpdateListener(new h70(this, 3));
         this.F.addListener(new bg0(this, 0));
         this.F.start();
@@ -409,7 +409,7 @@ public final class eg0 implements sf.a {
         boolean y3;
         PhotoViewer photoViewer = this.V;
         if (photoViewer != null && this.X != null) {
-            qf0 qf0Var = this.f25694r;
+            qf0 qf0Var = this.f25721r;
             if (qf0Var != null) {
                 y3 = qf0Var.G;
             } else {
@@ -420,7 +420,7 @@ public final class eg0 implements sf.a {
                     return;
                 }
             }
-            zf0 zf0Var = this.f25684e0;
+            zf0 zf0Var = this.f25711e0;
             AndroidUtilities.cancelRunOnUIThread(zf0Var);
             if (!y3) {
                 if (this.Y) {

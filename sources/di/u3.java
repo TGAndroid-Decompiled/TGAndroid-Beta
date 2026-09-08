@@ -20,21 +20,21 @@ import org.telegram.ui.po;
 import org.telegram.ui.xo;
 import org.telegram.ui.xo0;
 public final class u3 implements RequestDelegate {
-    public final int f8230a;
-    public final boolean f8231b;
-    public final Object f8232c;
+    public final int f8258a;
+    public final boolean f8259b;
+    public final Object f8260c;
 
     public u3(int i10, Object obj, boolean z10) {
-        this.f8230a = i10;
-        this.f8232c = obj;
-        this.f8231b = z10;
+        this.f8258a = i10;
+        this.f8260c = obj;
+        this.f8259b = z10;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        int i10 = this.f8230a;
-        boolean z10 = this.f8231b;
-        Object obj = this.f8232c;
+        int i10 = this.f8258a;
+        boolean z10 = this.f8259b;
+        Object obj = this.f8260c;
         switch (i10) {
             case 0:
                 AndroidUtilities.runOnUIThread(new y0((w3) obj, tLObject, z10, 1));
@@ -78,19 +78,19 @@ public final class u3 implements RequestDelegate {
                 AndroidUtilities.runOnUIThread(new po(xoVar, 3));
                 return;
             case 6:
-                AndroidUtilities.runOnUIThread(new bi.e4((lp) obj, tL_error, tLObject, this.f8231b, 13));
+                AndroidUtilities.runOnUIThread(new bi.e4((lp) obj, tL_error, tLObject, this.f8259b, 13));
                 return;
             case 7:
                 AndroidUtilities.runOnUIThread(new org.telegram.ui.ActionBar.p((ae0) obj, tL_error, tLObject, z10));
                 return;
             case 8:
-                AndroidUtilities.runOnUIThread(new bi.e4((n70) obj, tL_error, tLObject, this.f8231b, 22));
+                AndroidUtilities.runOnUIThread(new bi.e4((n70) obj, tL_error, tLObject, this.f8259b, 22));
                 return;
             case 9:
-                AndroidUtilities.runOnUIThread(new bi.e4((bn0) obj, tL_error, tLObject, this.f8231b, 23));
+                AndroidUtilities.runOnUIThread(new bi.e4((bn0) obj, tL_error, tLObject, this.f8259b, 23));
                 return;
             case 10:
-                AndroidUtilities.runOnUIThread(new bi.e4((xo0) obj, tL_error, tLObject, this.f8231b, 26));
+                AndroidUtilities.runOnUIThread(new bi.e4((xo0) obj, tL_error, tLObject, this.f8259b, 26));
                 return;
             case 11:
                 br0 br0Var = (br0) obj;
@@ -100,10 +100,10 @@ public final class u3 implements RequestDelegate {
                 }
                 return;
             case 12:
-                AndroidUtilities.runOnUIThread(new bi.e4((hh1) obj, tL_error, tLObject, this.f8231b, 28));
+                AndroidUtilities.runOnUIThread(new bi.e4((hh1) obj, tL_error, tLObject, this.f8259b, 28));
                 return;
             default:
-                int[][] iArr = WallpapersListActivity.f34248k0;
+                int[][] iArr = WallpapersListActivity.f34275k0;
                 AndroidUtilities.runOnUIThread(new dm0((WallpapersListActivity) obj, tLObject, z10, 9));
                 return;
         }

@@ -12,11 +12,11 @@ import org.telegram.ui.ActionBar.j6;
 import org.telegram.ui.Components.nq;
 import w7.z5;
 public final class k3 extends TextView {
-    public final nq f50380a;
+    public final nq f50409a;
 
     public k3(Context context, f6 f6Var) {
         super(context);
-        int v02 = j6.v0(j6.f21044y8, f6Var);
+        int v02 = j6.v0(j6.f21071y8, f6Var);
         setTextColor(v02);
         setBackground(j6.Z(j6.l1(0.08f, v02), j6.l1(0.15f, v02), AndroidUtilities.dp(13.0f), AndroidUtilities.dp(13.0f)));
         setPadding(AndroidUtilities.dp(11.0f), 0, AndroidUtilities.dp(11.0f), 0);
@@ -24,7 +24,7 @@ public final class k3 extends TextView {
         setTypeface(AndroidUtilities.bold());
         z5.a(this);
         nq nqVar = new nq(R.drawable.arrows_select, 0);
-        this.f50380a = nqVar;
+        this.f50409a = nqVar;
         nqVar.spaceScaleX = 0.8f;
         nqVar.translate(0.0f, AndroidUtilities.dp(1.0f));
     }
@@ -61,7 +61,7 @@ public final class k3 extends TextView {
     public void setValue(CharSequence charSequence) {
         SpannableStringBuilder append = new SpannableStringBuilder(charSequence).append((CharSequence) " v");
         int length = append.length();
-        append.setSpan(this.f50380a, append.length() - 1, length, 33);
+        append.setSpan(this.f50409a, append.length() - 1, length, 33);
         setText(append);
     }
 }

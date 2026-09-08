@@ -10,21 +10,21 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
 public final class ob implements org.telegram.ui.Cells.t0 {
-    public final qb f39206a;
+    public final qb f39233a;
 
     public ob(qb qbVar) {
-        this.f39206a = qbVar;
+        this.f39233a = qbVar;
     }
 
     @Override
     public final org.telegram.ui.ActionBar.n2 K0() {
-        return this.f39206a.f39822n;
+        return this.f39233a.f39849n;
     }
 
     @Override
     public final void M0(TLRPC.TL_chatInviteExported tL_chatInviteExported) {
         Object obj;
-        ub ubVar = this.f39206a.f39822n;
+        ub ubVar = this.f39233a.f39849n;
         if (ubVar.E0) {
             return;
         }
@@ -35,7 +35,7 @@ public final class ob implements org.telegram.ui.Cells.t0 {
         }
         if (obj == null) {
             TLRPC.TL_messages_getExportedChatInvite tL_messages_getExportedChatInvite = new TLRPC.TL_messages_getExportedChatInvite();
-            tL_messages_getExportedChatInvite.peer = ubVar.getMessagesController().getInputPeer(-ubVar.f41039s.f19869id);
+            tL_messages_getExportedChatInvite.peer = ubVar.getMessagesController().getInputPeer(-ubVar.f41066s.f19896id);
             tL_messages_getExportedChatInvite.link = tL_chatInviteExported.link;
             ubVar.E0 = true;
             final boolean[] zArr = new boolean[1];
@@ -43,7 +43,7 @@ public final class ob implements org.telegram.ui.Cells.t0 {
             b2Var.setOnCancelListener(new DialogInterface.OnCancelListener() {
                 @Override
                 public final void onCancel(DialogInterface dialogInterface) {
-                    ob.this.f39206a.f39822n.E0 = false;
+                    ob.this.f39233a.f39849n.E0 = false;
                     zArr[0] = true;
                 }
             });
@@ -58,7 +58,7 @@ public final class ob implements org.telegram.ui.Cells.t0 {
 
     @Override
     public final long a() {
-        return -this.f39206a.f39822n.f41039s.f19869id;
+        return -this.f39233a.f39849n.f41066s.f19896id;
     }
 
     @Override
@@ -73,11 +73,11 @@ public final class ob implements org.telegram.ui.Cells.t0 {
 
     @Override
     public final void i0(org.telegram.ui.Cells.w0 w0Var) {
-        ub ubVar = this.f39206a.f39822n;
+        ub ubVar = this.f39233a.f39849n;
         MessageObject messageObject = w0Var.getMessageObject();
         if (messageObject.type == 22) {
             bd bdVar = new bd(a());
-            bdVar.f34750l0 = ubVar;
+            bdVar.f34777l0 = ubVar;
             ubVar.presentFragment(bdVar);
             return;
         }
@@ -92,14 +92,14 @@ public final class ob implements org.telegram.ui.Cells.t0 {
 
     @Override
     public final boolean j2(org.telegram.ui.Cells.w0 w0Var, float f7, float f10) {
-        ub ubVar = this.f39206a.f39822n;
+        ub ubVar = this.f39233a.f39849n;
         int i10 = ub.X0;
         return ubVar.P0(w0Var, 0.0f, 0.0f);
     }
 
     @Override
     public final void r1(long j3) {
-        ub ubVar = this.f39206a.f39822n;
+        ub ubVar = this.f39233a.f39849n;
         if (j3 < 0) {
             Bundle bundle = new Bundle();
             bundle.putLong("chat_id", -j3);

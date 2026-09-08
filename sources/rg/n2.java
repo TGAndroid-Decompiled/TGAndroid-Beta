@@ -2,9 +2,9 @@ package rg;
 
 import android.graphics.Bitmap;
 public final class n2 {
-    public Bitmap f45332a;
-    public int f45333b;
-    public int f45334c;
+    public Bitmap f45360a;
+    public int f45361b;
+    public int f45362c;
     public int d;
-    public int f45335e;
+    public int f45363e;
 }

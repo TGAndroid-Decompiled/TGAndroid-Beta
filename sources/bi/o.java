@@ -8,10 +8,10 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.ui.Components.vk0;
 public final class o extends s4.n0 {
-    public final int f3392a;
+    public final int f3419a;
 
     public o(int i10) {
-        this.f3392a = i10;
+        this.f3419a = i10;
     }
 
     @Override
@@ -19,7 +19,7 @@ public final class o extends s4.n0 {
         int dp;
         int dp2;
         int dp3;
-        switch (this.f3392a) {
+        switch (this.f3419a) {
             case 0:
                 recyclerView.getClass();
                 int S = RecyclerView.S(view);
@@ -99,7 +99,7 @@ public final class o extends s4.n0 {
                 vk0 vk0Var3 = (vk0) recyclerView.T(view);
                 if (vk0Var3 != null) {
                     int i12 = 0;
-                    if (vk0Var3.f45742f != 5) {
+                    if (vk0Var3.f45770f != 5) {
                         rect.right = 0;
                         rect.left = 0;
                         return;
@@ -149,7 +149,7 @@ public final class o extends s4.n0 {
         View view;
         float dp;
         int i10;
-        switch (this.f3392a) {
+        switch (this.f3419a) {
             case 10:
                 int width = recyclerView.getWidth();
                 int childCount = recyclerView.getChildCount();
@@ -174,7 +174,7 @@ public final class o extends s4.n0 {
                         } else {
                             i10 = 0;
                         }
-                        canvas.drawLine(dp, f7, width - i10, f7, org.telegram.ui.ActionBar.j6.f20785k0);
+                        canvas.drawLine(dp, f7, width - i10, f7, org.telegram.ui.ActionBar.j6.f20812k0);
                     }
                 }
                 return;

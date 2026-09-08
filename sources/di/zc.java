@@ -74,102 +74,102 @@ public final class zc extends View {
     public boolean X0;
     public final bi.z2 Y0;
     public long Z0;
-    public tc f8535a;
-    public sc f8536a0;
-    public long f8537a1;
-    public Runnable f8538b;
-    public int f8539b0;
-    public final org.telegram.ui.Components.e6 f8540b1;
-    public int f8541c;
-    public final org.telegram.ui.Components.e6 f8542c0;
-    public long f8543c1;
+    public tc f8563a;
+    public sc f8564a0;
+    public long f8565a1;
+    public Runnable f8566b;
+    public int f8567b0;
+    public final org.telegram.ui.Components.e6 f8568b1;
+    public int f8569c;
+    public final org.telegram.ui.Components.e6 f8570c0;
+    public long f8571c1;
     public Runnable d;
-    public final org.telegram.ui.Components.e6 f8544d0;
-    public bi.g f8545d1;
-    public long f8546e;
-    public final org.telegram.ui.Components.e6 f8547e0;
-    public long f8548e1;
-    public long f8549f;
-    public final org.telegram.ui.Components.e6 f8550f0;
-    public long f8551f1;
-    public final org.telegram.ui.Components.e6 f8552g0;
-    public float f8553g1;
+    public final org.telegram.ui.Components.e6 f8572d0;
+    public bi.g f8573d1;
+    public long f8574e;
+    public final org.telegram.ui.Components.e6 f8575e0;
+    public long f8576e1;
+    public long f8577f;
+    public final org.telegram.ui.Components.e6 f8578f0;
+    public long f8579f1;
+    public final org.telegram.ui.Components.e6 f8580g0;
+    public float f8581g1;
     public uc h;
-    public final org.telegram.ui.Components.e6 f8554h0;
-    public int f8555h1;
-    public final org.telegram.ui.Components.e6 f8556i0;
-    public int f8557i1;
-    public boolean f8558j0;
-    public int f8559j1;
-    public final org.telegram.ui.Components.ja f8560k0;
-    public int f8561k1;
-    public final org.telegram.ui.Components.na f8562l0;
+    public final org.telegram.ui.Components.e6 f8582h0;
+    public int f8583h1;
+    public final org.telegram.ui.Components.e6 f8584i0;
+    public int f8585i1;
+    public boolean f8586j0;
+    public int f8587j1;
+    public final org.telegram.ui.Components.ja f8588k0;
+    public int f8589k1;
+    public final org.telegram.ui.Components.na f8590l0;
     public boolean l1;
     public final org.telegram.ui.Components.na m0;
-    public boolean f8563m1;
-    public int f8564n;
-    public final org.telegram.ui.Components.na f8565n0;
-    public float f8566n1;
-    public final RectF f8567o0;
-    public boolean f8568o1;
-    public final Path f8569p0;
-    public VelocityTracker f8570p1;
-    public final f01 f8571q0;
-    public boolean f8572q1;
-    public final ArrayList f8573r;
-    public final Drawable f8574r0;
-    public boolean f8575r1;
-    public final ArrayList f8576s;
-    public final yc f8577s0;
-    public int f8578s1;
-    public final RectF f8579t0;
-    public final float[] f8580t1;
-    public final Paint f8581u0;
-    public int f8582u1;
+    public boolean f8591m1;
+    public int f8592n;
+    public final org.telegram.ui.Components.na f8593n0;
+    public float f8594n1;
+    public final RectF f8595o0;
+    public boolean f8596o1;
+    public final Path f8597p0;
+    public VelocityTracker f8598p1;
+    public final f01 f8599q0;
+    public boolean f8600q1;
+    public final ArrayList f8601r;
+    public final Drawable f8602r0;
+    public boolean f8603r1;
+    public final ArrayList f8604s;
+    public final yc f8605s0;
+    public int f8606s1;
+    public final RectF f8607t0;
+    public final float[] f8608t1;
+    public final Paint f8609u0;
+    public int f8610u1;
     public uc v;
-    public final Path f8583v0;
-    public int f8584v1;
-    public final Paint f8585w;
-    public final Path f8586w0;
-    public int f8587w1;
-    public final Path f8588x;
-    public final RectF f8589x0;
-    public int f8590x1;
-    public final Path f8591y;
-    public final Path f8592y0;
-    public int f8593y1;
-    public final Paint f8594z0;
-    public int f8595z1;
+    public final Path f8611v0;
+    public int f8612v1;
+    public final Paint f8613w;
+    public final Path f8614w0;
+    public int f8615w1;
+    public final Path f8616x;
+    public final RectF f8617x0;
+    public int f8618x1;
+    public final Path f8619y;
+    public final Path f8620y0;
+    public int f8621y1;
+    public final Paint f8622z0;
+    public int f8623z1;
 
     public zc(Context context, ViewGroup viewGroup, bc bcVar, org.telegram.ui.ActionBar.f6 f6Var, org.telegram.ui.Components.ja jaVar) {
         super(context);
-        this.f8564n = 0;
-        this.f8573r = new ArrayList();
-        this.f8576s = new ArrayList();
-        this.f8585w = new Paint(3);
-        this.f8588x = new Path();
-        this.f8591y = new Path();
-        this.f8539b0 = 1;
+        this.f8592n = 0;
+        this.f8601r = new ArrayList();
+        this.f8604s = new ArrayList();
+        this.f8613w = new Paint(3);
+        this.f8616x = new Path();
+        this.f8619y = new Path();
+        this.f8567b0 = 1;
         pr prVar = pr.h;
-        this.f8542c0 = new org.telegram.ui.Components.e6(this, 0L, 360L, prVar);
-        this.f8544d0 = new org.telegram.ui.Components.e6(this, 360L, prVar);
-        this.f8547e0 = new org.telegram.ui.Components.e6(this, 0L, 360L, prVar);
-        this.f8550f0 = new org.telegram.ui.Components.e6(this, 360L, prVar);
-        this.f8552g0 = new org.telegram.ui.Components.e6(this, 0L, 360L, prVar);
-        this.f8554h0 = new org.telegram.ui.Components.e6(this, 0L, 360L, prVar);
-        this.f8556i0 = new org.telegram.ui.Components.e6(this, 0L, 320L, prVar);
-        this.f8558j0 = true;
-        this.f8567o0 = new RectF();
-        this.f8569p0 = new Path();
-        this.f8577s0 = new yc();
-        this.f8579t0 = new RectF();
-        this.f8581u0 = new Paint(3);
-        this.f8583v0 = new Path();
-        this.f8586w0 = new Path();
-        this.f8589x0 = new RectF();
-        this.f8592y0 = new Path();
+        this.f8570c0 = new org.telegram.ui.Components.e6(this, 0L, 360L, prVar);
+        this.f8572d0 = new org.telegram.ui.Components.e6(this, 360L, prVar);
+        this.f8575e0 = new org.telegram.ui.Components.e6(this, 0L, 360L, prVar);
+        this.f8578f0 = new org.telegram.ui.Components.e6(this, 360L, prVar);
+        this.f8580g0 = new org.telegram.ui.Components.e6(this, 0L, 360L, prVar);
+        this.f8582h0 = new org.telegram.ui.Components.e6(this, 0L, 360L, prVar);
+        this.f8584i0 = new org.telegram.ui.Components.e6(this, 0L, 320L, prVar);
+        this.f8586j0 = true;
+        this.f8595o0 = new RectF();
+        this.f8597p0 = new Path();
+        this.f8605s0 = new yc();
+        this.f8607t0 = new RectF();
+        this.f8609u0 = new Paint(3);
+        this.f8611v0 = new Path();
+        this.f8614w0 = new Path();
+        this.f8617x0 = new RectF();
+        this.f8620y0 = new Path();
         Paint paint = new Paint(1);
-        this.f8594z0 = paint;
+        this.f8622z0 = paint;
         Paint paint2 = new Paint(1);
         this.A0 = paint2;
         Paint paint3 = new Paint(1);
@@ -198,17 +198,17 @@ public final class zc extends View {
         this.V0 = paint8;
         this.W0 = new nm0(getContext(), null);
         this.Z0 = -1L;
-        this.f8537a1 = -1L;
-        this.f8540b1 = new org.telegram.ui.Components.e6(0.0f, this, 0L, 340L, prVar);
-        this.f8543c1 = -1L;
-        this.f8555h1 = -1;
-        this.f8557i1 = -1;
-        this.f8559j1 = -1;
-        this.f8561k1 = -1;
-        this.f8566n1 = 1.0f;
-        this.f8572q1 = true;
-        this.f8575r1 = false;
-        this.f8580t1 = new float[8];
+        this.f8565a1 = -1L;
+        this.f8568b1 = new org.telegram.ui.Components.e6(0.0f, this, 0L, 340L, prVar);
+        this.f8571c1 = -1L;
+        this.f8583h1 = -1;
+        this.f8585i1 = -1;
+        this.f8587j1 = -1;
+        this.f8589k1 = -1;
+        this.f8594n1 = 1.0f;
+        this.f8600q1 = true;
+        this.f8603r1 = false;
+        this.f8608t1 = new float[8];
         paint7.setColor(Integer.MAX_VALUE);
         textPaint2.setTextSize(AndroidUtilities.dp(12.0f));
         textPaint2.setTypeface(AndroidUtilities.bold());
@@ -228,36 +228,36 @@ public final class zc extends View {
         paint3.setColor(-16777216);
         paint5.setColor(-1);
         paint4.setColor(637534208);
-        this.f8571q0 = new f01(LocaleController.getString(R.string.StoryTimeline), 12.0f, AndroidUtilities.bold());
+        this.f8599q0 = new f01(LocaleController.getString(R.string.StoryTimeline), 12.0f, AndroidUtilities.bold());
         Drawable mutate = getContext().getResources().getDrawable(R.drawable.timeline).mutate();
-        this.f8574r0 = mutate;
+        this.f8602r0 = mutate;
         PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
         mutate.setColorFilter(new PorterDuffColorFilter(-1, mode));
         Drawable mutate2 = getContext().getResources().getDrawable(R.drawable.filled_widget_music).mutate();
         this.K0 = mutate2;
         mutate2.setColorFilter(new PorterDuffColorFilter(-1, mode));
-        this.f8560k0 = jaVar;
-        this.f8562l0 = new org.telegram.ui.Components.na(jaVar, this, 0, false);
+        this.f8588k0 = jaVar;
+        this.f8590l0 = new org.telegram.ui.Components.na(jaVar, this, 0, false);
         this.m0 = new org.telegram.ui.Components.na(jaVar, this, 3, false);
-        this.f8565n0 = new org.telegram.ui.Components.na(jaVar, this, 4, false);
+        this.f8593n0 = new org.telegram.ui.Components.na(jaVar, this, 4, false);
         this.Y0 = new bi.z2(this, viewGroup, f6Var, jaVar, bcVar, 5);
     }
 
     public static void a(final zc zcVar, ViewGroup viewGroup, org.telegram.ui.ActionBar.f6 f6Var, org.telegram.ui.Components.ja jaVar, View view) {
         int i10;
-        ArrayList arrayList = zcVar.f8576s;
-        int i11 = zcVar.f8559j1;
+        ArrayList arrayList = zcVar.f8604s;
+        int i11 = zcVar.f8587j1;
         try {
             if (i11 == 2 && zcVar.N) {
                 i8 i8Var = new i8(zcVar.getContext(), 0);
-                i8Var.f7374b = 0.0f;
-                i8Var.f7375c = 1.5f;
+                i8Var.f7402b = 0.0f;
+                i8Var.f7403c = 1.5f;
                 i8Var.d(zcVar.V);
                 i8Var.h = new Utilities.Callback(zcVar) {
-                    public final zc f8085b;
+                    public final zc f8113b;
 
                     {
-                        this.f8085b = zcVar;
+                        this.f8113b = zcVar;
                     }
 
                     @Override
@@ -266,9 +266,9 @@ public final class zc extends View {
                         switch (r2) {
                             case 0:
                                 float floatValue = f7.floatValue();
-                                zc zcVar2 = this.f8085b;
+                                zc zcVar2 = this.f8113b;
                                 zcVar2.V = floatValue;
-                                tc tcVar = zcVar2.f8535a;
+                                tc tcVar = zcVar2.f8563a;
                                 if (tcVar != null) {
                                     tcVar.i(f7.floatValue());
                                     return;
@@ -276,18 +276,18 @@ public final class zc extends View {
                                 return;
                             case 1:
                                 float floatValue2 = f7.floatValue();
-                                zc zcVar3 = this.f8085b;
+                                zc zcVar3 = this.f8113b;
                                 zcVar3.L = floatValue2;
-                                tc tcVar2 = zcVar3.f8535a;
+                                tc tcVar2 = zcVar3.f8563a;
                                 if (tcVar2 != null) {
                                     tcVar2.c(f7.floatValue());
                                     return;
                                 }
                                 return;
                             default:
-                                zc zcVar4 = this.f8085b;
-                                zcVar4.h.f8269i = f7.floatValue();
-                                tc tcVar3 = zcVar4.f8535a;
+                                zc zcVar4 = this.f8113b;
+                                zcVar4.h.f8297i = f7.floatValue();
+                                tc tcVar3 = zcVar4.f8563a;
                                 if (tcVar3 != null) {
                                     tcVar3.y(f7.floatValue());
                                     return;
@@ -297,30 +297,30 @@ public final class zc extends View {
                     }
                 };
                 long min = Math.min(zcVar.getBaseDuration(), zcVar.getMaxScrollDuration());
-                int i12 = zcVar.f8584v1;
-                int i13 = zcVar.f8593y1;
-                int i14 = zcVar.f8590x1;
-                float min2 = Math.min((i12 - i13) - i14, ((((AndroidUtilities.lerp(zcVar.T, 1.0f, zcVar.f8550f0.f25565c) * ((float) zcVar.R)) + ((float) (zcVar.Q - zcVar.f8549f))) / ((float) min)) * zcVar.f8582u1) + i13 + i14);
+                int i12 = zcVar.f8612v1;
+                int i13 = zcVar.f8621y1;
+                int i14 = zcVar.f8618x1;
+                float min2 = Math.min((i12 - i13) - i14, ((((AndroidUtilities.lerp(zcVar.T, 1.0f, zcVar.f8578f0.f25592c) * ((float) zcVar.R)) + ((float) (zcVar.Q - zcVar.f8577f))) / ((float) min)) * zcVar.f8610u1) + i13 + i14);
                 n70 F = n70.F(viewGroup, f6Var, zcVar);
                 F.q(i8Var);
                 F.o();
                 F.c(R.drawable.msg_delete, LocaleController.getString(R.string.StoryAudioRemove), new qc(zcVar, 1), false);
                 F.V(5);
                 F.U = true;
-                F.a0((-(zcVar.f8584v1 - min2)) + AndroidUtilities.dp(18.0f), zcVar.F0.top);
+                F.a0((-(zcVar.f8612v1 - min2)) + AndroidUtilities.dp(18.0f), zcVar.F0.top);
                 F.Z();
                 F.R(jaVar, -view.getX(), -view.getY());
                 zcVar.performHapticFeedback(0, 1);
             } else if (i11 == 1 && zcVar.E) {
                 i8 i8Var2 = new i8(zcVar.getContext(), 0);
-                i8Var2.f7374b = 0.0f;
-                i8Var2.f7375c = 1.5f;
+                i8Var2.f7402b = 0.0f;
+                i8Var2.f7403c = 1.5f;
                 i8Var2.d(zcVar.L);
                 i8Var2.h = new Utilities.Callback(zcVar) {
-                    public final zc f8085b;
+                    public final zc f8113b;
 
                     {
-                        this.f8085b = zcVar;
+                        this.f8113b = zcVar;
                     }
 
                     @Override
@@ -329,9 +329,9 @@ public final class zc extends View {
                         switch (r2) {
                             case 0:
                                 float floatValue = f7.floatValue();
-                                zc zcVar2 = this.f8085b;
+                                zc zcVar2 = this.f8113b;
                                 zcVar2.V = floatValue;
-                                tc tcVar = zcVar2.f8535a;
+                                tc tcVar = zcVar2.f8563a;
                                 if (tcVar != null) {
                                     tcVar.i(f7.floatValue());
                                     return;
@@ -339,18 +339,18 @@ public final class zc extends View {
                                 return;
                             case 1:
                                 float floatValue2 = f7.floatValue();
-                                zc zcVar3 = this.f8085b;
+                                zc zcVar3 = this.f8113b;
                                 zcVar3.L = floatValue2;
-                                tc tcVar2 = zcVar3.f8535a;
+                                tc tcVar2 = zcVar3.f8563a;
                                 if (tcVar2 != null) {
                                     tcVar2.c(f7.floatValue());
                                     return;
                                 }
                                 return;
                             default:
-                                zc zcVar4 = this.f8085b;
-                                zcVar4.h.f8269i = f7.floatValue();
-                                tc tcVar3 = zcVar4.f8535a;
+                                zc zcVar4 = this.f8113b;
+                                zcVar4.h.f8297i = f7.floatValue();
+                                tc tcVar3 = zcVar4.f8563a;
                                 if (tcVar3 != null) {
                                     tcVar3.y(f7.floatValue());
                                     return;
@@ -360,30 +360,30 @@ public final class zc extends View {
                     }
                 };
                 long min3 = Math.min(zcVar.getBaseDuration(), zcVar.getMaxScrollDuration());
-                int i15 = zcVar.f8584v1;
-                int i16 = zcVar.f8593y1;
-                int i17 = zcVar.f8590x1;
-                float min4 = Math.min((i15 - i16) - i17, ((((AndroidUtilities.lerp(zcVar.K, 1.0f, zcVar.f8544d0.f25565c) * ((float) zcVar.H)) + ((float) (zcVar.I - zcVar.f8549f))) / ((float) min3)) * zcVar.f8582u1) + i16 + i17);
+                int i15 = zcVar.f8612v1;
+                int i16 = zcVar.f8621y1;
+                int i17 = zcVar.f8618x1;
+                float min4 = Math.min((i15 - i16) - i17, ((((AndroidUtilities.lerp(zcVar.K, 1.0f, zcVar.f8572d0.f25592c) * ((float) zcVar.H)) + ((float) (zcVar.I - zcVar.f8577f))) / ((float) min3)) * zcVar.f8610u1) + i16 + i17);
                 n70 F2 = n70.F(viewGroup, f6Var, zcVar);
                 F2.q(i8Var2);
                 F2.o();
                 F2.c(R.drawable.msg_delete, LocaleController.getString(R.string.StoryRoundRemove), new qc(zcVar, 2), false);
                 F2.V(5);
                 F2.U = true;
-                F2.a0((-(zcVar.f8584v1 - min4)) + AndroidUtilities.dp(18.0f), zcVar.f8589x0.top);
+                F2.a0((-(zcVar.f8612v1 - min4)) + AndroidUtilities.dp(18.0f), zcVar.f8617x0.top);
                 F2.Z();
                 F2.R(jaVar, -view.getX(), -view.getY());
                 zcVar.performHapticFeedback(0, 1);
             } else if (i11 == 0 && zcVar.h != null) {
                 i8 i8Var3 = new i8(zcVar.getContext(), 0);
-                i8Var3.f7374b = 0.0f;
-                i8Var3.f7375c = 1.5f;
-                i8Var3.d(zcVar.h.f8269i);
+                i8Var3.f7402b = 0.0f;
+                i8Var3.f7403c = 1.5f;
+                i8Var3.d(zcVar.h.f8297i);
                 i8Var3.h = new Utilities.Callback(zcVar) {
-                    public final zc f8085b;
+                    public final zc f8113b;
 
                     {
-                        this.f8085b = zcVar;
+                        this.f8113b = zcVar;
                     }
 
                     @Override
@@ -392,9 +392,9 @@ public final class zc extends View {
                         switch (r2) {
                             case 0:
                                 float floatValue = f7.floatValue();
-                                zc zcVar2 = this.f8085b;
+                                zc zcVar2 = this.f8113b;
                                 zcVar2.V = floatValue;
-                                tc tcVar = zcVar2.f8535a;
+                                tc tcVar = zcVar2.f8563a;
                                 if (tcVar != null) {
                                     tcVar.i(f7.floatValue());
                                     return;
@@ -402,18 +402,18 @@ public final class zc extends View {
                                 return;
                             case 1:
                                 float floatValue2 = f7.floatValue();
-                                zc zcVar3 = this.f8085b;
+                                zc zcVar3 = this.f8113b;
                                 zcVar3.L = floatValue2;
-                                tc tcVar2 = zcVar3.f8535a;
+                                tc tcVar2 = zcVar3.f8563a;
                                 if (tcVar2 != null) {
                                     tcVar2.c(f7.floatValue());
                                     return;
                                 }
                                 return;
                             default:
-                                zc zcVar4 = this.f8085b;
-                                zcVar4.h.f8269i = f7.floatValue();
-                                tc tcVar3 = zcVar4.f8535a;
+                                zc zcVar4 = this.f8113b;
+                                zcVar4.h.f8297i = f7.floatValue();
+                                tc tcVar3 = zcVar4.f8563a;
                                 if (tcVar3 != null) {
                                     tcVar3.y(f7.floatValue());
                                     return;
@@ -426,22 +426,22 @@ public final class zc extends View {
                 F3.q(i8Var3);
                 F3.V(5);
                 F3.U = true;
-                F3.a0(AndroidUtilities.dp(18.0f), zcVar.f8579t0.top);
+                F3.a0(AndroidUtilities.dp(18.0f), zcVar.f8607t0.top);
                 F3.Z();
                 F3.R(jaVar, -view.getX(), -view.getY());
                 zcVar.performHapticFeedback(0, 1);
-            } else if (i11 == 3 && (i10 = zcVar.f8561k1) >= 0 && i10 < arrayList.size()) {
-                uc ucVar = (uc) arrayList.get(zcVar.f8561k1);
+            } else if (i11 == 3 && (i10 = zcVar.f8589k1) >= 0 && i10 < arrayList.size()) {
+                uc ucVar = (uc) arrayList.get(zcVar.f8589k1);
                 i8 i8Var4 = new i8(zcVar.getContext(), 0);
-                i8Var4.f7374b = 0.0f;
-                i8Var4.f7375c = 1.5f;
-                i8Var4.d(ucVar.f8269i);
+                i8Var4.f7402b = 0.0f;
+                i8Var4.f7403c = 1.5f;
+                i8Var4.d(ucVar.f8297i);
                 i8Var4.h = new m2(7, zcVar, ucVar);
                 n70 F4 = n70.F(viewGroup, f6Var, zcVar);
                 F4.q(i8Var4);
                 F4.V(5);
                 F4.U = true;
-                F4.a0(AndroidUtilities.dp(18.0f), ucVar.f8270j.top);
+                F4.a0(AndroidUtilities.dp(18.0f), ucVar.f8298j.top);
                 F4.Z();
                 F4.R(jaVar, -view.getX(), -view.getY());
                 zcVar.performHapticFeedback(0, 1);
@@ -451,17 +451,17 @@ public final class zc extends View {
     }
 
     private float getAudioHeight() {
-        return AndroidUtilities.lerp(AndroidUtilities.dp(28.0f), AndroidUtilities.dp(38.0f), this.f8550f0.e(this.P));
+        return AndroidUtilities.lerp(AndroidUtilities.dp(28.0f), AndroidUtilities.dp(38.0f), this.f8578f0.e(this.P));
     }
 
     public long getBaseDuration() {
         uc ucVar = this.h;
         if (ucVar != null) {
-            return Math.max(1L, ucVar.f8266e);
+            return Math.max(1L, ucVar.f8294e);
         }
         uc ucVar2 = this.v;
         if (ucVar2 != null) {
-            return Math.max(1L, ucVar2.f8266e);
+            return Math.max(1L, ucVar2.f8294e);
         }
         if (this.E) {
             return Math.max(1L, this.H);
@@ -470,7 +470,7 @@ public final class zc extends View {
     }
 
     private float getCollageHeight() {
-        ArrayList arrayList = this.f8576s;
+        ArrayList arrayList = this.f8604s;
         if (arrayList.isEmpty()) {
             return 0.0f;
         }
@@ -479,7 +479,7 @@ public final class zc extends View {
             if (f7 > 0.0f) {
                 f7 += AndroidUtilities.dp(4.0f);
             }
-            f7 += AndroidUtilities.lerp(AndroidUtilities.dp(28.0f), AndroidUtilities.dp(38.0f), ((uc) arrayList.get(i10)).f8271k.f25565c);
+            f7 += AndroidUtilities.lerp(AndroidUtilities.dp(28.0f), AndroidUtilities.dp(38.0f), ((uc) arrayList.get(i10)).f8299k.f25592c);
         }
         return f7;
     }
@@ -488,7 +488,7 @@ public final class zc extends View {
         if (!this.E) {
             return 0.0f;
         }
-        return AndroidUtilities.lerp(AndroidUtilities.dp(28.0f), AndroidUtilities.dp(38.0f), this.f8544d0.e(this.G));
+        return AndroidUtilities.lerp(AndroidUtilities.dp(28.0f), AndroidUtilities.dp(38.0f), this.f8572d0.e(this.G));
     }
 
     private float getVideoHeight() {
@@ -496,7 +496,7 @@ public final class zc extends View {
         if (ucVar == null) {
             return 0.0f;
         }
-        return AndroidUtilities.lerp(AndroidUtilities.dp(28.0f), AndroidUtilities.dp(38.0f), ucVar.f8271k.f25565c);
+        return AndroidUtilities.lerp(AndroidUtilities.dp(28.0f), AndroidUtilities.dp(38.0f), ucVar.f8299k.f25592c);
     }
 
     public final int c(android.view.MotionEvent r21) {
@@ -507,25 +507,25 @@ public final class zc extends View {
     public final void computeScroll() {
         nm0 nm0Var = this.W0;
         if (nm0Var.b()) {
-            int i10 = nm0Var.f28825j;
+            int i10 = nm0Var.f28852j;
             long min = Math.min(getBaseDuration(), getMaxScrollDuration());
-            if (this.f8572q1) {
-                this.f8549f = Math.max(0.0f, (((i10 - this.f8593y1) - this.f8590x1) / this.f8582u1) * ((float) min));
+            if (this.f8600q1) {
+                this.f8577f = Math.max(0.0f, (((i10 - this.f8621y1) - this.f8618x1) / this.f8610u1) * ((float) min));
             } else if (!this.P) {
                 nm0Var.a();
                 return;
             } else {
-                int i11 = this.f8593y1;
-                int i12 = this.f8590x1;
-                float f7 = this.f8582u1;
+                int i11 = this.f8621y1;
+                int i12 = this.f8618x1;
+                float f7 = this.f8610u1;
                 float f10 = (float) min;
-                h(((((i10 - i11) - i12) / f7) * f10) - ((((this.f8578s1 - i11) - i12) / f7) * f10));
+                h(((((i10 - i11) - i12) / f7) * f10) - ((((this.f8606s1 - i11) - i12) / f7) * f10));
             }
             invalidate();
-            this.f8578s1 = i10;
-        } else if (this.f8575r1) {
-            this.f8575r1 = false;
-            tc tcVar = this.f8535a;
+            this.f8606s1 = i10;
+        } else if (this.f8603r1) {
+            this.f8603r1 = false;
+            tc tcVar = this.f8563a;
             if (tcVar != null) {
                 tcVar.r(false);
             }
@@ -542,7 +542,7 @@ public final class zc extends View {
         float clamp = (float) Utilities.clamp(j3, getBaseDuration(), 0L);
         uc ucVar = this.v;
         if (ucVar != null) {
-            f12 = (ucVar.f8268g * ((float) ucVar.f8266e)) + ((float) ucVar.f8267f);
+            f12 = (ucVar.f8296g * ((float) ucVar.f8294e)) + ((float) ucVar.f8295f);
         } else {
             if (this.h == null) {
                 j10 = this.Q;
@@ -551,7 +551,7 @@ public final class zc extends View {
             }
             f12 = (float) j10;
         }
-        float f13 = (this.f8582u1 * (((clamp + f12) - ((float) this.f8549f)) / ((float) min))) + this.f8593y1 + this.f8590x1;
+        float f13 = (this.f8610u1 * (((clamp + f12) - ((float) this.f8577f)) / ((float) min))) + this.f8621y1 + this.f8618x1;
         float f14 = (1.0f - f11) * (((f10 - f7) / 2.0f) / 2.0f);
         float f15 = f7 + f14;
         float f16 = f10 - f14;
@@ -585,9 +585,9 @@ public final class zc extends View {
         RectF rectF = AndroidUtilities.rectTmp;
         float f18 = 10.0f;
         rectF.set(f11 - AndroidUtilities.dp(10.0f), f7, AndroidUtilities.dp(10.0f) + f12, f10);
-        canvas.saveLayerAlpha(0.0f, 0.0f, this.f8584v1, this.f8587w1, 255, 31);
+        canvas.saveLayerAlpha(0.0f, 0.0f, this.f8612v1, this.f8615w1, 255, 31);
         int i10 = (int) (255.0f * f13);
-        Paint paint3 = this.f8594z0;
+        Paint paint3 = this.f8622z0;
         paint3.setAlpha(i10);
         canvas.drawRoundRect(rectF, AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), paint3);
         if (this.X0) {
@@ -656,7 +656,7 @@ public final class zc extends View {
     }
 
     public final long f() {
-        return this.f8539b0 * 59000;
+        return this.f8567b0 * 59000;
     }
 
     public final long g() {
@@ -667,7 +667,7 @@ public final class zc extends View {
         float f7;
         float collageHeight;
         float f10;
-        float f11 = this.f8595z1;
+        float f11 = this.f8623z1;
         float f12 = 0.0f;
         if (this.h != null) {
             f7 = getVideoHeight() + AndroidUtilities.dp(4.0f);
@@ -675,7 +675,7 @@ public final class zc extends View {
             f7 = 0.0f;
         }
         float f13 = f11 + f7;
-        if (this.f8576s.isEmpty()) {
+        if (this.f8604s.isEmpty()) {
             collageHeight = 0.0f;
         } else {
             collageHeight = getCollageHeight() + AndroidUtilities.dp(4.0f);
@@ -690,22 +690,22 @@ public final class zc extends View {
         if (this.N) {
             f12 = AndroidUtilities.dp(4.0f) + getAudioHeight();
         }
-        return (int) (f15 + f12 + this.f8595z1);
+        return (int) (f15 + f12 + this.f8623z1);
     }
 
     public int getMaxCount() {
-        return this.f8539b0;
+        return this.f8567b0;
     }
 
     public long getMaxScrollDuration() {
-        if (this.f8576s.isEmpty()) {
+        if (this.f8604s.isEmpty()) {
             return Math.max(120000L, ((float) f()) * 1.5f);
         }
         return 70000L;
     }
 
     public int getTimelineHeight() {
-        return AndroidUtilities.lerp(AndroidUtilities.dp(28.0f) + this.f8595z1 + this.f8595z1, getContentHeight(), this.f8556i0.f25565c);
+        return AndroidUtilities.lerp(AndroidUtilities.dp(28.0f) + this.f8623z1 + this.f8623z1, getContentHeight(), this.f8584i0.f25592c);
     }
 
     public final void h(float f7) {
@@ -730,15 +730,15 @@ public final class zc extends View {
             float f13 = (float) (clamp2 - j17);
             this.S = Utilities.clamp(this.S - (f13 / ((float) this.R)), 1.0f, 0.0f);
             this.T = Utilities.clamp(this.T - (f13 / ((float) this.R)), 1.0f, 0.0f);
-            tc tcVar2 = this.f8535a;
+            tc tcVar2 = this.f8563a;
             if (tcVar2 != null) {
                 tcVar2.R(this.S);
-                this.f8535a.O(this.T);
+                this.f8563a.O(this.T);
             }
         } else if (this.P) {
             if (ucVar != null) {
-                f10 = ucVar.f8268g;
-                j3 = ucVar.f8266e;
+                f10 = ucVar.f8296g;
+                j3 = ucVar.f8294e;
             } else {
                 f10 = this.J;
                 j3 = this.H;
@@ -746,14 +746,14 @@ public final class zc extends View {
             float f14 = f10 * ((float) j3);
             if (ucVar != null) {
                 f11 = ucVar.h;
-                j10 = ucVar.f8266e;
+                j10 = ucVar.f8294e;
             } else {
                 f11 = this.K;
                 j10 = this.H;
             }
             float f15 = f11 * ((float) j10);
             if (ucVar != null) {
-                f12 = (ucVar.h - ucVar.f8268g) * ((float) ucVar.f8266e);
+                f12 = (ucVar.h - ucVar.f8296g) * ((float) ucVar.f8294e);
             } else {
                 f12 = ((float) this.H) * (this.K - this.J);
             }
@@ -782,10 +782,10 @@ public final class zc extends View {
                     j14 = j22;
                 }
                 this.Q = Utilities.clamp(this.Q + j20, j14, j13);
-                tc tcVar3 = this.f8535a;
+                tc tcVar3 = this.f8563a;
                 if (tcVar3 != null) {
                     tcVar3.R(this.S);
-                    this.f8535a.O(this.T);
+                    this.f8563a.O(this.T);
                 }
             } else if (j21 < j18) {
                 float clamp5 = Utilities.clamp(((f14 - ((float) j19)) - ((float) j20)) / ((float) this.R), 1.0f - min, 0.0f);
@@ -803,10 +803,10 @@ public final class zc extends View {
                     j12 = j24;
                 }
                 this.Q = Utilities.clamp(this.Q + j20, j12, j11);
-                tc tcVar4 = this.f8535a;
+                tc tcVar4 = this.f8563a;
                 if (tcVar4 != null) {
                     tcVar4.R(this.S);
-                    this.f8535a.O(this.T);
+                    this.f8563a.O(this.T);
                 }
             } else {
                 this.Q = j21;
@@ -817,19 +817,19 @@ public final class zc extends View {
             this.Q = Utilities.clamp(j26, ((float) getBaseDuration()) - (this.T * f22), (-this.S) * f22);
         }
         invalidate();
-        tc tcVar5 = this.f8535a;
+        tc tcVar5 = this.f8563a;
         if (tcVar5 != null) {
             tcVar5.d0(this.Q + (this.S * ((float) this.R)));
         }
-        boolean z10 = this.f8563m1;
-        if (!z10 && (tcVar = this.f8535a) != null) {
+        boolean z10 = this.f8591m1;
+        if (!z10 && (tcVar = this.f8563a) != null) {
             tcVar.r(true);
             uc ucVar2 = this.h;
             if (ucVar2 != null) {
                 long j27 = this.Q + (this.S * ((float) this.R));
                 float f23 = ucVar2.h;
-                float f24 = (float) ucVar2.f8266e;
-                clamp = Utilities.clamp(j27, f23 * f24, ucVar2.f8268g * f24);
+                float f24 = (float) ucVar2.f8294e;
+                clamp = Utilities.clamp(j27, f23 * f24, ucVar2.f8296g * f24);
             } else if (this.E) {
                 long j28 = this.Q + (this.S * ((float) this.R));
                 float f25 = this.K;
@@ -839,32 +839,32 @@ public final class zc extends View {
                 float f27 = this.S;
                 clamp = Utilities.clamp(f27 * ((float) j16), this.R, 0L);
             }
-            if (this.h != null && Math.abs(this.f8546e - clamp) > 400) {
-                this.f8543c1 = this.f8546e;
-                this.f8540b1.d(1.0f, true);
+            if (this.h != null && Math.abs(this.f8574e - clamp) > 400) {
+                this.f8571c1 = this.f8574e;
+                this.f8568b1.d(1.0f, true);
             }
-            tc tcVar6 = this.f8535a;
-            this.f8546e = clamp;
+            tc tcVar6 = this.f8563a;
+            this.f8574e = clamp;
             tcVar6.m(clamp, false);
-        } else if (z10 || this.f8575r1) {
+        } else if (z10 || this.f8603r1) {
             uc ucVar3 = this.h;
             if (ucVar3 != null) {
                 long j29 = this.Q + (this.S * ((float) this.R));
                 float f28 = ucVar3.h;
-                float f29 = (float) ucVar3.f8266e;
-                this.f8546e = Utilities.clamp(j29, f28 * f29, ucVar3.f8268g * f29);
+                float f29 = (float) ucVar3.f8294e;
+                this.f8574e = Utilities.clamp(j29, f28 * f29, ucVar3.f8296g * f29);
             } else if (this.E && ucVar3 != null) {
                 long j30 = this.Q + (this.S * ((float) this.R));
                 float f30 = this.K;
-                float f31 = (float) ucVar3.f8266e;
-                this.f8546e = Utilities.clamp(j30, f30 * f31, this.J * f31);
+                float f31 = (float) ucVar3.f8294e;
+                this.f8574e = Utilities.clamp(j30, f30 * f31, this.J * f31);
             } else {
                 float f32 = this.S;
-                this.f8546e = Utilities.clamp(f32 * ((float) j15), this.R, 0L);
+                this.f8574e = Utilities.clamp(f32 * ((float) j15), this.R, 0L);
             }
-            tc tcVar7 = this.f8535a;
+            tc tcVar7 = this.f8563a;
             if (tcVar7 != null) {
-                tcVar7.m(this.f8546e, false);
+                tcVar7.m(this.f8574e, false);
             }
         }
     }
@@ -881,30 +881,30 @@ public final class zc extends View {
         if (ucVar != null) {
             uc ucVar2 = this.v;
             if (ucVar2 != ucVar && ucVar2 != null) {
-                if (this.f8564n == this.f8576s.indexOf(ucVar)) {
+                if (this.f8592n == this.f8604s.indexOf(ucVar)) {
                     uc ucVar3 = this.v;
-                    float f10 = (float) ucVar3.f8266e;
+                    float f10 = (float) ucVar3.f8294e;
                     float f11 = ucVar.h;
-                    float f12 = (float) ucVar.f8266e;
-                    float f13 = ucVar.f8268g;
+                    float f12 = (float) ucVar.f8294e;
+                    float f13 = ucVar.f8296g;
                     long j15 = (f10 * 0.0f) - (f13 * f12);
-                    float min = Math.min(f11 - f13, ((ucVar3.h - ucVar3.f8268g) * f10) / f12);
-                    long j16 = ucVar.f8267f;
+                    float min = Math.min(f11 - f13, ((ucVar3.h - ucVar3.f8296g) * f10) / f12);
+                    long j16 = ucVar.f8295f;
                     long j17 = f7;
                     long j18 = j16 + j17;
                     if (j18 > (f10 * 1.0f) - (f11 * f12)) {
                         uc ucVar4 = this.v;
-                        float clamp2 = Utilities.clamp((((ucVar4.h * ((float) ucVar4.f8266e)) - ((float) j16)) - ((float) j17)) / ((float) ucVar.f8266e), 1.0f, min);
+                        float clamp2 = Utilities.clamp((((ucVar4.h * ((float) ucVar4.f8294e)) - ((float) j16)) - ((float) j17)) / ((float) ucVar.f8294e), 1.0f, min);
                         ucVar.h = clamp2;
                         float clamp3 = Utilities.clamp(clamp2 - min, 1.0f, 0.0f);
-                        ucVar.f8268g = clamp3;
+                        ucVar.f8296g = clamp3;
                         uc ucVar5 = this.v;
                         float f14 = ucVar5.h;
-                        float f15 = (float) ucVar5.f8266e;
+                        float f15 = (float) ucVar5.f8294e;
                         float f16 = ucVar.h;
-                        float f17 = (float) ucVar.f8266e;
+                        float f17 = (float) ucVar.f8294e;
                         long j19 = (f14 * f15) - (f16 * f17);
-                        long j20 = (ucVar5.f8268g * f15) - (clamp3 * f17);
+                        long j20 = (ucVar5.f8296g * f15) - (clamp3 * f17);
                         if (j19 < j20) {
                             j14 = j20;
                             j13 = j19;
@@ -912,24 +912,24 @@ public final class zc extends View {
                             j13 = j20;
                             j14 = j19;
                         }
-                        ucVar.f8267f = Utilities.clamp(ucVar.f8267f + j17, j14, j13);
-                        tc tcVar2 = this.f8535a;
+                        ucVar.f8295f = Utilities.clamp(ucVar.f8295f + j17, j14, j13);
+                        tc tcVar2 = this.f8563a;
                         if (tcVar2 != null) {
-                            tcVar2.N(ucVar.f8268g, ucVar.f8263a);
-                            this.f8535a.S(ucVar.h, ucVar.f8263a);
+                            tcVar2.N(ucVar.f8296g, ucVar.f8291a);
+                            this.f8563a.S(ucVar.h, ucVar.f8291a);
                         }
                     } else if (j18 < j15) {
                         uc ucVar6 = this.v;
-                        float clamp4 = Utilities.clamp((((ucVar6.f8268g * ((float) ucVar6.f8266e)) - ((float) j16)) - ((float) j17)) / ((float) ucVar.f8266e), 1.0f - min, 0.0f);
-                        ucVar.f8268g = clamp4;
+                        float clamp4 = Utilities.clamp((((ucVar6.f8296g * ((float) ucVar6.f8294e)) - ((float) j16)) - ((float) j17)) / ((float) ucVar.f8294e), 1.0f - min, 0.0f);
+                        ucVar.f8296g = clamp4;
                         float clamp5 = Utilities.clamp(clamp4 + min, 1.0f, 0.0f);
                         ucVar.h = clamp5;
                         uc ucVar7 = this.v;
                         float f18 = ucVar7.h;
-                        float f19 = (float) ucVar7.f8266e;
-                        float f20 = (float) ucVar.f8266e;
+                        float f19 = (float) ucVar7.f8294e;
+                        float f20 = (float) ucVar.f8294e;
                         long j21 = (f18 * f19) - (clamp5 * f20);
-                        long j22 = (ucVar7.f8268g * f19) - (ucVar.f8268g * f20);
+                        long j22 = (ucVar7.f8296g * f19) - (ucVar.f8296g * f20);
                         if (j21 < j22) {
                             j12 = j22;
                             j11 = j21;
@@ -937,61 +937,61 @@ public final class zc extends View {
                             j11 = j22;
                             j12 = j21;
                         }
-                        ucVar.f8267f = Utilities.clamp(ucVar.f8267f + j17, j12, j11);
-                        tc tcVar3 = this.f8535a;
+                        ucVar.f8295f = Utilities.clamp(ucVar.f8295f + j17, j12, j11);
+                        tc tcVar3 = this.f8563a;
                         if (tcVar3 != null) {
-                            tcVar3.N(ucVar.f8268g, ucVar.f8263a);
-                            this.f8535a.S(ucVar.h, ucVar.f8263a);
+                            tcVar3.N(ucVar.f8296g, ucVar.f8291a);
+                            this.f8563a.S(ucVar.h, ucVar.f8291a);
                         }
                     } else {
-                        ucVar.f8267f = j18;
+                        ucVar.f8295f = j18;
                     }
                 } else {
-                    long j23 = ucVar.f8267f + f7;
-                    float f21 = (float) ucVar.f8266e;
-                    ucVar.f8267f = Utilities.clamp(j23, ((float) getBaseDuration()) - (ucVar.h * f21), (-ucVar.f8268g) * f21);
+                    long j23 = ucVar.f8295f + f7;
+                    float f21 = (float) ucVar.f8294e;
+                    ucVar.f8295f = Utilities.clamp(j23, ((float) getBaseDuration()) - (ucVar.h * f21), (-ucVar.f8296g) * f21);
                 }
             }
             invalidate();
-            tc tcVar4 = this.f8535a;
+            tc tcVar4 = this.f8563a;
             if (tcVar4 != null) {
-                tcVar4.a0(ucVar.f8263a, ucVar.f8267f);
+                tcVar4.a0(ucVar.f8291a, ucVar.f8295f);
             }
-            boolean z10 = this.f8563m1;
-            if (!z10 && (tcVar = this.f8535a) != null) {
+            boolean z10 = this.f8591m1;
+            if (!z10 && (tcVar = this.f8563a) != null) {
                 tcVar.r(true);
                 uc ucVar8 = this.v;
                 if (ucVar8 != ucVar && ucVar8 != null) {
-                    long j24 = ucVar.f8267f + (ucVar.f8268g * ((float) ucVar.f8266e));
+                    long j24 = ucVar.f8295f + (ucVar.f8296g * ((float) ucVar.f8294e));
                     float f22 = ucVar8.h;
-                    float f23 = (float) ucVar8.f8266e;
-                    clamp = Utilities.clamp(j24, f22 * f23, ucVar8.f8268g * f23);
+                    float f23 = (float) ucVar8.f8294e;
+                    clamp = Utilities.clamp(j24, f22 * f23, ucVar8.f8296g * f23);
                 } else {
-                    float f24 = ucVar.f8268g;
-                    clamp = Utilities.clamp(f24 * ((float) j10), ucVar.f8266e, 0L);
+                    float f24 = ucVar.f8296g;
+                    clamp = Utilities.clamp(f24 * ((float) j10), ucVar.f8294e, 0L);
                 }
                 uc ucVar9 = this.v;
-                if (ucVar9 != ucVar && ucVar9 != null && Math.abs(this.f8546e - clamp) > 400) {
-                    this.f8543c1 = this.f8546e;
-                    this.f8540b1.d(1.0f, true);
+                if (ucVar9 != ucVar && ucVar9 != null && Math.abs(this.f8574e - clamp) > 400) {
+                    this.f8571c1 = this.f8574e;
+                    this.f8568b1.d(1.0f, true);
                 }
-                tc tcVar5 = this.f8535a;
-                this.f8546e = clamp;
+                tc tcVar5 = this.f8563a;
+                this.f8574e = clamp;
                 tcVar5.m(clamp, false);
-            } else if (z10 || this.f8575r1) {
+            } else if (z10 || this.f8603r1) {
                 uc ucVar10 = this.v;
                 if (ucVar10 != ucVar && ucVar10 != null) {
-                    long j25 = ucVar.f8267f + (ucVar.f8268g * ((float) ucVar.f8266e));
+                    long j25 = ucVar.f8295f + (ucVar.f8296g * ((float) ucVar.f8294e));
                     float f25 = ucVar10.h;
-                    float f26 = (float) ucVar10.f8266e;
-                    this.f8546e = Utilities.clamp(j25, f25 * f26, ucVar10.f8268g * f26);
+                    float f26 = (float) ucVar10.f8294e;
+                    this.f8574e = Utilities.clamp(j25, f25 * f26, ucVar10.f8296g * f26);
                 } else {
-                    float f27 = ucVar.f8268g;
-                    this.f8546e = Utilities.clamp(f27 * ((float) j3), ucVar.f8266e, 0L);
+                    float f27 = ucVar.f8296g;
+                    this.f8574e = Utilities.clamp(f27 * ((float) j3), ucVar.f8294e, 0L);
                 }
-                tc tcVar6 = this.f8535a;
+                tc tcVar6 = this.f8563a;
                 if (tcVar6 != null) {
-                    tcVar6.m(this.f8546e, false);
+                    tcVar6.m(this.f8574e, false);
                 }
             }
         }
@@ -1014,18 +1014,18 @@ public final class zc extends View {
             float f10 = (float) (clamp2 - j15);
             this.J = Utilities.clamp(this.J - (f10 / ((float) this.H)), 1.0f, 0.0f);
             this.K = Utilities.clamp(this.K - (f10 / ((float) this.H)), 1.0f, 0.0f);
-            tc tcVar2 = this.f8535a;
+            tc tcVar2 = this.f8563a;
             if (tcVar2 != null) {
                 tcVar2.o(this.J);
-                this.f8535a.Z(this.K);
+                this.f8563a.Z(this.K);
             }
         } else if (this.G) {
             float f11 = ucVar.h;
-            float f12 = (float) ucVar.f8266e;
+            float f12 = (float) ucVar.f8294e;
             float f13 = this.K;
             float f14 = (float) this.H;
             long j16 = (f11 * f12) - (f13 * f14);
-            float f15 = ucVar.f8268g;
+            float f15 = ucVar.f8296g;
             float f16 = this.J;
             long j17 = (f15 * f12) - (f16 * f14);
             float min = Math.min(f13 - f16, ((f11 - f15) * f12) / f14);
@@ -1034,17 +1034,17 @@ public final class zc extends View {
             long j20 = j18 + j19;
             if (j20 > j16) {
                 uc ucVar2 = this.h;
-                float clamp3 = Utilities.clamp((((ucVar2.h * ((float) ucVar2.f8266e)) - ((float) j18)) - ((float) j19)) / ((float) this.H), 1.0f, min);
+                float clamp3 = Utilities.clamp((((ucVar2.h * ((float) ucVar2.f8294e)) - ((float) j18)) - ((float) j19)) / ((float) this.H), 1.0f, min);
                 this.K = clamp3;
                 float clamp4 = Utilities.clamp(clamp3 - min, 1.0f, 0.0f);
                 this.J = clamp4;
                 uc ucVar3 = this.h;
                 float f17 = ucVar3.h;
-                float f18 = (float) ucVar3.f8266e;
+                float f18 = (float) ucVar3.f8294e;
                 float f19 = this.K;
                 float f20 = (float) this.H;
                 long j21 = (f17 * f18) - (f19 * f20);
-                long j22 = (ucVar3.f8268g * f18) - (clamp4 * f20);
+                long j22 = (ucVar3.f8296g * f18) - (clamp4 * f20);
                 if (j21 < j22) {
                     j12 = j22;
                     j11 = j21;
@@ -1053,23 +1053,23 @@ public final class zc extends View {
                     j12 = j21;
                 }
                 this.I = Utilities.clamp(this.I + j19, j12, j11);
-                tc tcVar3 = this.f8535a;
+                tc tcVar3 = this.f8563a;
                 if (tcVar3 != null) {
                     tcVar3.o(this.J);
-                    this.f8535a.Z(this.K);
+                    this.f8563a.Z(this.K);
                 }
             } else if (j20 < j17) {
                 uc ucVar4 = this.h;
-                float clamp5 = Utilities.clamp((((ucVar4.f8268g * ((float) ucVar4.f8266e)) - ((float) j18)) - ((float) j19)) / ((float) this.H), 1.0f - min, 0.0f);
+                float clamp5 = Utilities.clamp((((ucVar4.f8296g * ((float) ucVar4.f8294e)) - ((float) j18)) - ((float) j19)) / ((float) this.H), 1.0f - min, 0.0f);
                 this.J = clamp5;
                 float clamp6 = Utilities.clamp(clamp5 + min, 1.0f, 0.0f);
                 this.K = clamp6;
                 uc ucVar5 = this.h;
                 float f21 = ucVar5.h;
-                float f22 = (float) ucVar5.f8266e;
+                float f22 = (float) ucVar5.f8294e;
                 float f23 = (float) this.H;
                 long j23 = (f21 * f22) - (clamp6 * f23);
-                long j24 = (ucVar5.f8268g * f22) - (this.J * f23);
+                long j24 = (ucVar5.f8296g * f22) - (this.J * f23);
                 if (j23 < j24) {
                     j10 = j24;
                     j3 = j23;
@@ -1078,10 +1078,10 @@ public final class zc extends View {
                     j10 = j23;
                 }
                 this.I = Utilities.clamp(this.I + j19, j10, j3);
-                tc tcVar4 = this.f8535a;
+                tc tcVar4 = this.f8563a;
                 if (tcVar4 != null) {
                     tcVar4.o(this.J);
-                    this.f8535a.Z(this.K);
+                    this.f8563a.Z(this.K);
                 }
             } else {
                 this.I = j20;
@@ -1092,44 +1092,44 @@ public final class zc extends View {
             this.I = Utilities.clamp(j25, ((float) getBaseDuration()) - (this.K * f24), (-this.J) * f24);
         }
         invalidate();
-        tc tcVar5 = this.f8535a;
+        tc tcVar5 = this.f8563a;
         if (tcVar5 != null) {
             tcVar5.I(this.I + (this.J * ((float) this.H)));
         }
-        boolean z10 = this.f8563m1;
-        if (!z10 && (tcVar = this.f8535a) != null) {
+        boolean z10 = this.f8591m1;
+        if (!z10 && (tcVar = this.f8563a) != null) {
             tcVar.r(true);
             uc ucVar6 = this.h;
             if (ucVar6 != null) {
                 long j26 = this.I + (this.J * ((float) this.H));
                 float f25 = ucVar6.h;
-                float f26 = (float) ucVar6.f8266e;
-                clamp = Utilities.clamp(j26, f25 * f26, ucVar6.f8268g * f26);
+                float f26 = (float) ucVar6.f8294e;
+                clamp = Utilities.clamp(j26, f25 * f26, ucVar6.f8296g * f26);
             } else {
                 float f27 = this.J;
                 clamp = Utilities.clamp(f27 * ((float) j14), this.H, 0L);
             }
-            if (this.h != null && Math.abs(this.f8546e - clamp) > 400) {
-                this.f8543c1 = this.f8546e;
-                this.f8540b1.d(1.0f, true);
+            if (this.h != null && Math.abs(this.f8574e - clamp) > 400) {
+                this.f8571c1 = this.f8574e;
+                this.f8568b1.d(1.0f, true);
             }
-            tc tcVar6 = this.f8535a;
-            this.f8546e = clamp;
+            tc tcVar6 = this.f8563a;
+            this.f8574e = clamp;
             tcVar6.m(clamp, false);
-        } else if (z10 || this.f8575r1) {
+        } else if (z10 || this.f8603r1) {
             uc ucVar7 = this.h;
             if (ucVar7 != null) {
                 long j27 = this.I + (this.J * ((float) this.H));
                 float f28 = ucVar7.h;
-                float f29 = (float) ucVar7.f8266e;
-                this.f8546e = Utilities.clamp(j27, f28 * f29, ucVar7.f8268g * f29);
+                float f29 = (float) ucVar7.f8294e;
+                this.f8574e = Utilities.clamp(j27, f28 * f29, ucVar7.f8296g * f29);
             } else {
                 float f30 = this.J;
-                this.f8546e = Utilities.clamp(f30 * ((float) j13), this.H, 0L);
+                this.f8574e = Utilities.clamp(f30 * ((float) j13), this.H, 0L);
             }
-            tc tcVar7 = this.f8535a;
+            tc tcVar7 = this.f8563a;
             if (tcVar7 != null) {
-                tcVar7.m(this.f8546e, false);
+                tcVar7.m(this.f8574e, false);
             }
         }
     }
@@ -1137,8 +1137,8 @@ public final class zc extends View {
     public final void k() {
         long min = Math.min(getBaseDuration(), getMaxScrollDuration());
         uc ucVar = this.h;
-        long j3 = ucVar.f8266e;
-        this.f8549f = Utilities.clamp((((ucVar.h + ucVar.f8268g) / 2.0f) * ((float) j3)) - (((float) min) / 2.0f), j3 - min, 0L);
+        long j3 = ucVar.f8294e;
+        this.f8577f = Utilities.clamp((((ucVar.h + ucVar.f8296g) / 2.0f) * ((float) j3)) - (((float) min) / 2.0f), j3 - min, 0L);
         invalidate();
     }
 
@@ -1158,13 +1158,13 @@ public final class zc extends View {
         long j3;
         uc ucVar;
         uc ucVar2 = this.h;
-        ArrayList arrayList = this.f8576s;
+        ArrayList arrayList = this.f8604s;
         if (ucVar2 != null || this.N || !arrayList.isEmpty()) {
             long min = Math.min(getBaseDuration(), getMaxScrollDuration());
-            float f10 = ((f7 - this.f8593y1) - this.f8590x1) / this.f8582u1;
+            float f10 = ((f7 - this.f8621y1) - this.f8618x1) / this.f8610u1;
             uc ucVar3 = this.v;
             if (ucVar3 != null) {
-                j3 = (ucVar3.f8268g * ((float) ucVar3.f8266e)) + ((float) ucVar3.f8267f);
+                j3 = (ucVar3.f8296g * ((float) ucVar3.f8294e)) + ((float) ucVar3.f8295f);
             } else {
                 j3 = 0;
             }
@@ -1176,35 +1176,35 @@ public final class zc extends View {
                     j3 = 0;
                 }
             }
-            long clamp = Utilities.clamp((f11 - ((float) j3)) + ((float) this.f8549f), (float) getBaseDuration(), 0.0f);
+            long clamp = Utilities.clamp((f11 - ((float) j3)) + ((float) this.f8577f), (float) getBaseDuration(), 0.0f);
             uc ucVar4 = this.h;
             if (ucVar4 != null) {
-                float f12 = ((float) clamp) / ((float) ucVar4.f8266e);
-                if (f12 < ucVar4.f8268g || f12 > ucVar4.h) {
+                float f12 = ((float) clamp) / ((float) ucVar4.f8294e);
+                if (f12 < ucVar4.f8296g || f12 > ucVar4.h) {
                     return false;
                 }
             }
-            if (this.v == null || (clamp >= 0 && clamp < (ucVar.h - ucVar.f8268g) * ((float) ucVar.f8266e))) {
+            if (this.v == null || (clamp >= 0 && clamp < (ucVar.h - ucVar.f8296g) * ((float) ucVar.f8294e))) {
                 if (this.N && ucVar4 == null && arrayList.isEmpty()) {
                     float f13 = ((float) clamp) / ((float) this.R);
                     if (f13 < this.S || f13 > this.T) {
                         return false;
                     }
                 }
-                this.f8546e = clamp;
+                this.f8574e = clamp;
                 invalidate();
-                tc tcVar = this.f8535a;
+                tc tcVar = this.f8563a;
                 if (tcVar != null) {
                     tcVar.m(clamp, z10);
                 }
-                bi.g gVar = this.f8545d1;
+                bi.g gVar = this.f8573d1;
                 if (gVar != null) {
                     AndroidUtilities.cancelRunOnUIThread(gVar);
-                    this.f8545d1 = null;
+                    this.f8573d1 = null;
                 }
                 if (z10) {
                     bi.g gVar2 = new bi.g(this, clamp, 7);
-                    this.f8545d1 = gVar2;
+                    this.f8573d1 = gVar2;
                     AndroidUtilities.runOnUIThread(gVar2, 150L);
                     return true;
                 }
@@ -1239,14 +1239,14 @@ public final class zc extends View {
             this.J = f7;
             this.K = f10;
             this.L = f11;
-            if (getMeasuredWidth() <= 0 || this.M != null || ((ucVar = this.h) != null && ucVar.f8266e < 1)) {
+            if (getMeasuredWidth() <= 0 || this.M != null || ((ucVar = this.h) != null && ucVar.f8294e < 1)) {
                 j11 = j12;
                 z13 = false;
                 z11 = true;
             } else {
                 String str2 = this.F;
-                int i10 = this.f8584v1;
-                int i11 = this.f8593y1;
+                int i10 = this.f8612v1;
+                int i11 = this.f8621y1;
                 int i12 = (i10 - i11) - i11;
                 int dp = AndroidUtilities.dp(38.0f);
                 long j13 = this.H;
@@ -1255,7 +1255,7 @@ public final class zc extends View {
                 }
                 uc ucVar2 = this.h;
                 if (ucVar2 != null) {
-                    maxScrollDuration = ucVar2.f8266e;
+                    maxScrollDuration = ucVar2.f8294e;
                 } else {
                     maxScrollDuration = getMaxScrollDuration();
                 }
@@ -1281,7 +1281,7 @@ public final class zc extends View {
             z12 = false;
         }
         this.E = z12;
-        if (j11 != j3 && this.h == null && this.f8536a0 != null) {
+        if (j11 != j3 && this.h == null && this.f8564a0 != null) {
             this.W = z11;
             p();
         }
@@ -1290,9 +1290,9 @@ public final class zc extends View {
             this.T = Utilities.clamp(((float) j3) / ((float) this.R), 1.0f, 0.0f);
         }
         if (!z10) {
-            this.f8544d0.f(this.G, z11);
-            this.f8550f0.f(this.P, z11);
-            this.f8542c0.f(this.E, z11);
+            this.f8572d0.f(this.G, z11);
+            this.f8578f0.f(this.P, z11);
+            this.f8570c0.f(this.E, z11);
         }
         invalidate();
     }
@@ -1310,30 +1310,30 @@ public final class zc extends View {
         }
         uc ucVar2 = this.h;
         if (ucVar2 != null) {
-            xc xcVar = ucVar2.f8265c;
+            xc xcVar = ucVar2.f8293c;
             if (xcVar != null) {
                 xcVar.b();
-                this.h.f8265c = null;
+                this.h.f8293c = null;
             }
             this.h = null;
         }
         if (str != null) {
-            this.f8549f = 0L;
+            this.f8577f = 0L;
             uc ucVar3 = new uc(this);
             this.h = ucVar3;
-            ucVar3.f8264b = z10;
+            ucVar3.f8292b = z10;
             ucVar3.d = str;
-            ucVar3.f8266e = j3;
-            ucVar3.f8269i = f7;
+            ucVar3.f8294e = j3;
+            ucVar3.f8297i = f7;
             uc.a(ucVar3, false);
         } else {
             this.h = null;
-            this.f8549f = 0L;
+            this.f8577f = 0L;
         }
         if (!this.E) {
             this.G = false;
         }
-        this.f8546e = 0L;
+        this.f8574e = 0L;
         invalidate();
     }
 
@@ -1342,23 +1342,23 @@ public final class zc extends View {
         this.L0.setTextSize(AndroidUtilities.dp(12.0f));
         this.P0.setTextSize(AndroidUtilities.dp(12.0f));
         int dp = AndroidUtilities.dp(12.0f);
-        this.f8593y1 = dp;
+        this.f8621y1 = dp;
         int dp2 = AndroidUtilities.dp(5.0f);
-        this.f8595z1 = dp2;
+        this.f8623z1 = dp2;
         setPadding(dp, dp2, AndroidUtilities.dp(12.0f), AndroidUtilities.dp(5.0f));
         int size = View.MeasureSpec.getSize(i10);
-        this.f8584v1 = size;
+        this.f8612v1 = size;
         int dp3 = AndroidUtilities.dp(388);
-        this.f8587w1 = dp3;
+        this.f8615w1 = dp3;
         setMeasuredDimension(size, dp3);
         int dp4 = AndroidUtilities.dp(10.0f);
-        this.f8590x1 = dp4;
-        this.f8582u1 = (this.f8584v1 - (dp4 * 2)) - (this.f8593y1 * 2);
+        this.f8618x1 = dp4;
+        this.f8610u1 = (this.f8612v1 - (dp4 * 2)) - (this.f8621y1 * 2);
         uc ucVar = this.h;
-        if (ucVar != null && ucVar.d != null && ucVar.f8265c == null) {
+        if (ucVar != null && ucVar.d != null && ucVar.f8293c == null) {
             uc.a(ucVar, false);
         }
-        ArrayList arrayList = this.f8576s;
+        ArrayList arrayList = this.f8604s;
         if (!arrayList.isEmpty()) {
             int size2 = arrayList.size();
             int i12 = 0;
@@ -1366,13 +1366,13 @@ public final class zc extends View {
                 Object obj = arrayList.get(i12);
                 i12++;
                 uc ucVar2 = (uc) obj;
-                if (ucVar2.d != null && ucVar2.f8265c == null) {
+                if (ucVar2.d != null && ucVar2.f8293c == null) {
                     uc.a(ucVar2, false);
                     uc.b(ucVar2);
                 }
             }
         }
-        if (this.O != null && this.f8536a0 == null) {
+        if (this.O != null && this.f8564a0 == null) {
             p();
         }
     }
@@ -1384,10 +1384,10 @@ public final class zc extends View {
 
     public final void p() {
         if (getMeasuredWidth() > 0) {
-            if (this.f8536a0 == null || this.W) {
-                this.f8536a0 = new sc(this, this.O, (getMeasuredWidth() - getPaddingLeft()) - getPaddingRight());
+            if (this.f8564a0 == null || this.W) {
+                this.f8564a0 = new sc(this, this.O, (getMeasuredWidth() - getPaddingLeft()) - getPaddingRight());
                 this.U = false;
-                this.f8552g0.d(1.0f, true);
+                this.f8580g0.d(1.0f, true);
             }
         }
     }
@@ -1395,7 +1395,7 @@ public final class zc extends View {
     public final void q() {
         uc ucVar;
         a4.e eVar = new a4.e(13);
-        ArrayList arrayList = this.f8576s;
+        ArrayList arrayList = this.f8604s;
         Collections.sort(arrayList, eVar);
         if (arrayList.isEmpty()) {
             ucVar = null;
@@ -1404,7 +1404,7 @@ public final class zc extends View {
         }
         this.v = ucVar;
         if (ucVar != null) {
-            long j3 = ucVar.f8267f;
+            long j3 = ucVar.f8295f;
         }
     }
 
@@ -1414,12 +1414,12 @@ public final class zc extends View {
         xc xcVar;
         int i10 = 0;
         while (true) {
-            arrayList2 = this.f8576s;
+            arrayList2 = this.f8604s;
             if (i10 >= arrayList2.size()) {
                 break;
             }
             uc ucVar = (uc) arrayList2.get(i10);
-            if (ucVar != null && (xcVar = ucVar.f8265c) != null) {
+            if (ucVar != null && (xcVar = ucVar.f8293c) != null) {
                 xcVar.b();
             }
             i10++;
@@ -1427,7 +1427,7 @@ public final class zc extends View {
         arrayList2.clear();
         int i11 = 0;
         while (true) {
-            arrayList3 = this.f8573r;
+            arrayList3 = this.f8601r;
             if (i11 >= arrayList3.size()) {
                 break;
             }
@@ -1438,20 +1438,20 @@ public final class zc extends View {
             i11++;
         }
         arrayList3.clear();
-        this.f8554h0.d(1.0f, true);
+        this.f8582h0.d(1.0f, true);
         if (arrayList != null) {
             for (int i12 = 0; i12 < arrayList.size(); i12++) {
                 arrayList3.add(null);
                 o8 o8Var = arrayList.get(i12);
                 if (o8Var.K) {
                     uc ucVar2 = new uc(this);
-                    ucVar2.f8263a = i12;
-                    ucVar2.f8264b = false;
+                    ucVar2.f8291a = i12;
+                    ucVar2.f8292b = false;
                     ucVar2.d = o8Var.L.getAbsolutePath();
-                    ucVar2.f8266e = o8Var.f7758h0;
-                    ucVar2.f8267f = o8Var.X;
-                    ucVar2.f8269i = o8Var.P;
-                    ucVar2.f8268g = o8Var.V;
+                    ucVar2.f8294e = o8Var.f7786h0;
+                    ucVar2.f8295f = o8Var.X;
+                    ucVar2.f8297i = o8Var.P;
+                    ucVar2.f8296g = o8Var.V;
                     ucVar2.h = o8Var.W;
                     uc.a(ucVar2, false);
                     uc.b(ucVar2);
@@ -1460,15 +1460,15 @@ public final class zc extends View {
             }
         }
         q();
-        this.f8564n = 0;
+        this.f8592n = 0;
     }
 
     public void setDelegate(tc tcVar) {
-        this.f8535a = tcVar;
+        this.f8563a = tcVar;
     }
 
     public void setMaxCount(int i10) {
-        this.f8539b0 = i10;
+        this.f8567b0 = i10;
     }
 
     public void setOnHeightChange(Runnable runnable) {
@@ -1476,7 +1476,7 @@ public final class zc extends View {
     }
 
     public void setOnTimelineClick(Runnable runnable) {
-        this.f8538b = runnable;
+        this.f8566b = runnable;
     }
 
     public void setProgress(long r12) {
@@ -1492,7 +1492,7 @@ public final class zc extends View {
         if (ucVar == null) {
             return;
         }
-        ucVar.f8268g = f7;
+        ucVar.f8296g = f7;
         invalidate();
     }
 

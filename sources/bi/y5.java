@@ -16,13 +16,13 @@ public final class y5 extends ll0 implements b9 {
 
     @Override
     public final void a(int[] iArr) {
-        iArr[0] = AndroidUtilities.dp(this.X2.f3693e);
+        iArr[0] = AndroidUtilities.dp(this.X2.f3720e);
         iArr[1] = getMeasuredHeight();
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        this.Y2.f3695n = View.MeasureSpec.getSize(i11);
+        this.Y2.f3722n = View.MeasureSpec.getSize(i11);
         super.onMeasure(i10, i11);
     }
 }

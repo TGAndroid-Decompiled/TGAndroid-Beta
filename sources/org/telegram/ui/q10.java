@@ -5,10 +5,10 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.R;
 public final class q10 extends org.telegram.ui.Components.kl0 {
-    public final x10 f39669c;
+    public final x10 f39696c;
 
     public q10(x10 x10Var) {
-        this.f39669c = x10Var;
+        this.f39696c = x10Var;
     }
 
     @Override
@@ -18,16 +18,16 @@ public final class q10 extends org.telegram.ui.Components.kl0 {
 
     @Override
     public final int h() {
-        x10 x10Var = this.f39669c;
-        if (x10Var.f42544f.isEmpty()) {
+        x10 x10Var = this.f39696c;
+        if (x10Var.f42571f.isEmpty()) {
             return 0;
         }
-        return x10Var.f42544f.size() + (!x10Var.N ? 1 : 0);
+        return x10Var.f42571f.size() + (!x10Var.N ? 1 : 0);
     }
 
     @Override
     public final int j(int i10) {
-        if (i10 >= this.f39669c.f42544f.size()) {
+        if (i10 >= this.f39696c.f42571f.size()) {
             return 3;
         }
         return 0;
@@ -37,18 +37,18 @@ public final class q10 extends org.telegram.ui.Components.kl0 {
     public final void v(s4.c1 c1Var, int i10) {
         boolean z10;
         boolean z11;
-        if (c1Var.f45742f == 0) {
-            org.telegram.ui.Cells.r2 r2Var = (org.telegram.ui.Cells.r2) c1Var.f45738a;
-            x10 x10Var = this.f39669c;
-            MessageObject messageObject = (MessageObject) x10Var.f42544f.get(i10);
-            r2Var.O = x10Var.f42555p0;
+        if (c1Var.f45770f == 0) {
+            org.telegram.ui.Cells.r2 r2Var = (org.telegram.ui.Cells.r2) c1Var.f45766a;
+            x10 x10Var = this.f39696c;
+            MessageObject messageObject = (MessageObject) x10Var.f42571f.get(i10);
+            r2Var.O = x10Var.f42582p0;
             r2Var.W(messageObject.getDialogId(), messageObject, messageObject.messageOwner.date, false, false);
             if (i10 != h() - 1) {
                 z10 = true;
             } else {
                 z10 = false;
             }
-            r2Var.f22625s2 = z10;
+            r2Var.f22652s2 = z10;
             if (r2Var.getMessage() != null && r2Var.getMessage().getId() == messageObject.getId()) {
                 z11 = true;
             } else {

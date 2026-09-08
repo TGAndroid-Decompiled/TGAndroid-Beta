@@ -6,17 +6,17 @@ import android.view.ViewConfiguration;
 import android.view.ViewGroup;
 import org.telegram.ui.Components.lv0;
 public abstract class a0 extends ViewGroup implements lv0 {
-    public boolean f21592a;
-    public androidx.emoji2.text.j f21593b;
-    public int f21594c;
+    public boolean f21619a;
+    public androidx.emoji2.text.j f21620b;
+    public int f21621c;
     public androidx.activity.i d;
-    public Runnable f21595e;
+    public Runnable f21622e;
 
     public a0(Context context) {
         super(context);
-        this.f21592a = false;
-        this.f21593b = null;
-        this.f21594c = 0;
+        this.f21619a = false;
+        this.f21620b = null;
+        this.f21621c = 0;
         this.d = null;
         setWillNotDraw(false);
         setFocusable(true);
@@ -43,7 +43,7 @@ public abstract class a0 extends ViewGroup implements lv0 {
 
     @Override
     public final void g(Runnable runnable) {
-        this.f21595e = runnable;
+        this.f21622e = runnable;
     }
 
     public int getBoundsLeft() {
@@ -61,7 +61,7 @@ public abstract class a0 extends ViewGroup implements lv0 {
 
     @Override
     public void invalidate() {
-        Runnable runnable = this.f21595e;
+        Runnable runnable = this.f21622e;
         if (runnable != null) {
             runnable.run();
         }
@@ -69,8 +69,8 @@ public abstract class a0 extends ViewGroup implements lv0 {
     }
 
     public final void k() {
-        this.f21592a = false;
-        androidx.emoji2.text.j jVar = this.f21593b;
+        this.f21619a = false;
+        androidx.emoji2.text.j jVar = this.f21620b;
         if (jVar != null) {
             removeCallbacks(jVar);
         }
@@ -89,10 +89,10 @@ public abstract class a0 extends ViewGroup implements lv0 {
     }
 
     public final void q() {
-        if (this.f21592a) {
+        if (this.f21619a) {
             return;
         }
-        this.f21592a = true;
+        this.f21619a = true;
         if (this.d == null) {
             this.d = new androidx.activity.i(this, 27);
         }

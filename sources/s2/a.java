@@ -6,10 +6,10 @@ import q3.i;
 import s3.c;
 import w7.l;
 public final class a {
-    public static final a f45689a = new Object();
+    public static final a f45717a = new Object();
 
     public final l a(s sVar) {
-        String str = sVar.f2370r;
+        String str = sVar.f2397r;
         if (str != null) {
             char c10 = 65535;
             switch (str.hashCode()) {
@@ -61,7 +61,7 @@ public final class a {
     }
 
     public final boolean b(s sVar) {
-        String str = sVar.f2370r;
+        String str = sVar.f2397r;
         if (!"application/id3".equals(str) && !"application/x-emsg".equals(str) && !"application/x-scte35".equals(str) && !"application/x-icy".equals(str) && !"application/vnd.dvb.ait".equals(str)) {
             return false;
         }

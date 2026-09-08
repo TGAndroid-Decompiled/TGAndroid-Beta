@@ -19,7 +19,7 @@ public final class gx0 extends org.telegram.ui.Components.ll0 {
         this.Z2 = jx0Var;
         Paint paint = new Paint(1);
         this.X2 = paint;
-        paint.setColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f20734h5, false));
+        paint.setColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f20761h5, false));
         this.Y2 = new Path();
     }
 
@@ -39,7 +39,7 @@ public final class gx0 extends org.telegram.ui.Components.ll0 {
 
     @Override
     public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        if (this.Z2.f37864n.f33791q0 >= 1.0f) {
+        if (this.Z2.f37891n.f33818q0 >= 1.0f) {
             return false;
         }
         return super.dispatchTouchEvent(motionEvent);
@@ -47,7 +47,7 @@ public final class gx0 extends org.telegram.ui.Components.ll0 {
 
     @Override
     public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        if (this.Z2.f37864n.f33791q0 >= 1.0f) {
+        if (this.Z2.f37891n.f33818q0 >= 1.0f) {
             return false;
         }
         return super.onInterceptTouchEvent(motionEvent);
@@ -56,7 +56,7 @@ public final class gx0 extends org.telegram.ui.Components.ll0 {
     @Override
     public final void onSizeChanged(int i10, int i11, int i12, int i13) {
         super.onSizeChanged(i10, i11, i12, i13);
-        PremiumPreviewFragment premiumPreviewFragment = this.Z2.f37864n;
+        PremiumPreviewFragment premiumPreviewFragment = this.Z2.f37891n;
         int i14 = 0;
         int i15 = 0;
         while (true) {

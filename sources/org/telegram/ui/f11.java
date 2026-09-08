@@ -2,10 +2,10 @@ package org.telegram.ui;
 
 import java.util.Comparator;
 public final class f11 implements Comparator {
-    public final int f36233a;
+    public final int f36260a;
 
     public f11(int i10) {
-        this.f36233a = i10;
+        this.f36260a = i10;
     }
 
     @Override

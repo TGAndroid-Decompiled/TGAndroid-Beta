@@ -8,25 +8,25 @@ import android.widget.ImageView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.pr;
 public final class y1 extends ImageView implements org.telegram.ui.ActionBar.z5 {
-    public final int f14337a;
-    public int f14338b;
-    public boolean f14339c;
+    public final int f14363a;
+    public int f14364b;
+    public boolean f14365c;
     public boolean d;
-    public int f14340e;
-    public int f14341f;
+    public int f14366e;
+    public int f14367f;
     public final org.telegram.ui.ActionBar.f6 h;
-    public boolean f14342n;
-    public boolean f14343r;
-    public boolean f14344s;
+    public boolean f14368n;
+    public boolean f14369r;
+    public boolean f14370s;
 
     public y1(Context context, int i10, org.telegram.ui.ActionBar.f6 f6Var) {
         super(context);
-        this.f14340e = 20;
-        this.f14341f = org.telegram.ui.ActionBar.j6.f20663d6;
-        this.f14342n = true;
-        this.f14344s = true;
-        this.f14338b = i10;
-        this.f14337a = i10;
+        this.f14366e = 20;
+        this.f14367f = org.telegram.ui.ActionBar.j6.f20690d6;
+        this.f14368n = true;
+        this.f14370s = true;
+        this.f14364b = i10;
+        this.f14363a = i10;
         this.h = f6Var;
         if (i10 != 0) {
             setImageResource(i10);
@@ -37,61 +37,61 @@ public final class y1 extends ImageView implements org.telegram.ui.ActionBar.z5 
     }
 
     public final void a() {
-        f(this.f14337a);
+        f(this.f14363a);
     }
 
     public final void b() {
-        if (!this.f14344s) {
+        if (!this.f14370s) {
             return;
         }
-        this.f14344s = false;
+        this.f14370s = false;
         d();
     }
 
     public final void c(int i10) {
-        if (this.f14341f == i10) {
+        if (this.f14367f == i10) {
             return;
         }
-        this.f14341f = i10;
+        this.f14367f = i10;
         d();
     }
 
     @Override
     public final void d() {
         int i10;
-        boolean z10 = this.f14343r;
+        boolean z10 = this.f14369r;
         org.telegram.ui.ActionBar.f6 f6Var = this.h;
         if (z10) {
-            if (this.f14344s) {
+            if (this.f14370s) {
                 i10 = org.telegram.ui.ActionBar.j6.Oh;
             } else {
                 i10 = org.telegram.ui.ActionBar.j6.G6;
             }
             int w02 = org.telegram.ui.ActionBar.j6.w0(null, i10, false);
-            setBackground(org.telegram.ui.ActionBar.j6.Z(org.telegram.ui.ActionBar.j6.v(org.telegram.ui.ActionBar.j6.v0(this.f14341f, f6Var), org.telegram.ui.ActionBar.j6.l1(0.1f, w02)), org.telegram.ui.ActionBar.j6.l1(0.1f, w02), AndroidUtilities.dp(this.f14340e), AndroidUtilities.dp(this.f14340e)));
+            setBackground(org.telegram.ui.ActionBar.j6.Z(org.telegram.ui.ActionBar.j6.v(org.telegram.ui.ActionBar.j6.v0(this.f14367f, f6Var), org.telegram.ui.ActionBar.j6.l1(0.1f, w02)), org.telegram.ui.ActionBar.j6.l1(0.1f, w02), AndroidUtilities.dp(this.f14366e), AndroidUtilities.dp(this.f14366e)));
             setColorFilter(new PorterDuffColorFilter(w02, PorterDuff.Mode.SRC_IN));
             return;
         }
-        setBackground(org.telegram.ui.ActionBar.j6.Z(org.telegram.ui.ActionBar.j6.v0(this.f14341f, f6Var), org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f20753i6, f6Var), AndroidUtilities.dp(this.f14340e), AndroidUtilities.dp(this.f14340e)));
+        setBackground(org.telegram.ui.ActionBar.j6.Z(org.telegram.ui.ActionBar.j6.v0(this.f14367f, f6Var), org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f20780i6, f6Var), AndroidUtilities.dp(this.f14366e), AndroidUtilities.dp(this.f14366e)));
         setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.G6, f6Var), PorterDuff.Mode.SRC_IN));
     }
 
     public final void e() {
-        this.f14339c = true;
-        a2 a2Var = new a2(getContext(), this.f14338b);
-        a2Var.d = this.f14341f;
+        this.f14365c = true;
+        a2 a2Var = new a2(getContext(), this.f14364b);
+        a2Var.d = this.f14367f;
         a2Var.a(this.d);
         setImageDrawable(a2Var);
     }
 
     public final void f(int i10) {
-        if (this.f14338b == i10) {
+        if (this.f14364b == i10) {
             return;
         }
-        this.f14338b = i10;
-        if (this.f14339c) {
+        this.f14364b = i10;
+        if (this.f14365c) {
             a2 a2Var = new a2(getContext(), i10);
-            a2Var.d = this.f14341f;
+            a2Var.d = this.f14367f;
             a2Var.a(this.d);
             AndroidUtilities.updateImageViewImageAnimated(this, a2Var);
             return;
@@ -106,12 +106,12 @@ public final class y1 extends ImageView implements org.telegram.ui.ActionBar.z5 
     @Override
     public void setEnabled(boolean z10) {
         float f7;
-        if (this.f14342n == z10) {
+        if (this.f14368n == z10) {
             return;
         }
         setClickable(z10);
         ViewPropertyAnimator animate = animate();
-        this.f14342n = z10;
+        this.f14368n = z10;
         if (z10) {
             f7 = 1.0f;
         } else {
@@ -129,10 +129,10 @@ public final class y1 extends ImageView implements org.telegram.ui.ActionBar.z5 
 
     @Override
     public void setSelected(boolean z10) {
-        if (this.f14343r == z10) {
+        if (this.f14369r == z10) {
             return;
         }
-        this.f14343r = z10;
+        this.f14369r = z10;
         d();
     }
 }

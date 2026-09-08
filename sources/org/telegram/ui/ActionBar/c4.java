@@ -4,28 +4,28 @@ import android.util.SparseIntArray;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 public final class c4 implements gg.a {
-    public i6 f20316a;
-    public TLRPC.TL_theme f20317b;
-    public TLRPC.TL_chatThemeUniqueGift f20318c;
+    public i6 f20343a;
+    public TLRPC.TL_theme f20344b;
+    public TLRPC.TL_chatThemeUniqueGift f20345c;
     public int d;
-    public int f20319e = -1;
-    public SparseIntArray f20320f;
-    public String f20321g;
+    public int f20346e = -1;
+    public SparseIntArray f20347f;
+    public String f20348g;
     public int h;
-    public int f20322i;
-    public int f20323j;
-    public int f20324k;
-    public int f20325l;
-    public int f20326m;
-    public int f20327n;
-    public int f20328o;
+    public int f20349i;
+    public int f20350j;
+    public int f20351k;
+    public int f20352l;
+    public int f20353m;
+    public int f20354n;
+    public int f20355o;
 
     public final long a() {
-        TLRPC.TL_theme tL_theme = this.f20317b;
+        TLRPC.TL_theme tL_theme = this.f20344b;
         if (tL_theme != null) {
-            return tL_theme.f20006id;
+            return tL_theme.f20033id;
         }
-        TLRPC.TL_chatThemeUniqueGift tL_chatThemeUniqueGift = this.f20318c;
+        TLRPC.TL_chatThemeUniqueGift tL_chatThemeUniqueGift = this.f20345c;
         if (tL_chatThemeUniqueGift != null) {
             return tL_chatThemeUniqueGift.gift.gift_id;
         }
@@ -34,11 +34,11 @@ public final class c4 implements gg.a {
 
     public final TLRPC.ThemeSettings b(int i10) {
         ArrayList<TLRPC.ThemeSettings> arrayList;
-        TLRPC.TL_theme tL_theme = this.f20317b;
+        TLRPC.TL_theme tL_theme = this.f20344b;
         if (tL_theme != null) {
             arrayList = tL_theme.settings;
         } else {
-            TLRPC.TL_chatThemeUniqueGift tL_chatThemeUniqueGift = this.f20318c;
+            TLRPC.TL_chatThemeUniqueGift tL_chatThemeUniqueGift = this.f20345c;
             if (tL_chatThemeUniqueGift != null) {
                 arrayList = tL_chatThemeUniqueGift.theme_settings;
             }

@@ -12,18 +12,18 @@ import org.telegram.messenger.MediaController;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.VideoEditedInfo;
 public final class jd1 extends su0 {
-    public final MediaController.PhotoEntry f37751a;
-    public final kd1 f37752b;
+    public final MediaController.PhotoEntry f37778a;
+    public final kd1 f37779b;
 
     public jd1(kd1 kd1Var, MediaController.PhotoEntry photoEntry) {
-        this.f37752b = kd1Var;
-        this.f37751a = photoEntry;
+        this.f37779b = kd1Var;
+        this.f37778a = photoEntry;
     }
 
     @Override
     public final void o(int i10, VideoEditedInfo videoEditedInfo, boolean z10, int i11, int i12, boolean z11) {
-        wd1 wd1Var = this.f37752b.f38010a;
-        MediaController.PhotoEntry photoEntry = this.f37751a;
+        wd1 wd1Var = this.f37779b.f38037a;
+        MediaController.PhotoEntry photoEntry = this.f37778a;
         if (photoEntry.imagePath != null) {
             File directory = FileLoader.getDirectory(4);
             File file = new File(directory, Utilities.random.nextInt() + ".jpg");
@@ -37,10 +37,10 @@ public final class jd1 extends su0 {
             File file2 = new File(photoEntry.imagePath);
             wd1Var.B1 = new hj1(file2, file2, "");
             wd1Var.C1 = loadBitmap;
-            wd1Var.f41920b2 = 0;
-            wd1Var.f41977x0.requestLayout();
+            wd1Var.f41947b2 = 0;
+            wd1Var.f42004x0.requestLayout();
             wd1Var.b1(false);
-            wd1Var.f41975w1 = null;
+            wd1Var.f42002w1 = null;
             wd1Var.i1();
         }
     }

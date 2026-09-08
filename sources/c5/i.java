@@ -7,20 +7,20 @@ import com.google.android.gms.internal.clearcut.e2;
 import java.util.HashMap;
 import org.telegram.ui.Cells.p6;
 public final class i implements com.google.android.gms.internal.clearcut.g {
-    public String f4403a;
+    public String f4430a;
 
     @Override
     public Object zzp() {
         Object obj;
         boolean z10;
-        String str = this.f4403a;
-        ContentResolver contentResolver = com.google.android.gms.internal.clearcut.d.f5569g.getContentResolver();
-        Uri uri = e2.f5586a;
+        String str = this.f4430a;
+        ContentResolver contentResolver = com.google.android.gms.internal.clearcut.d.f5596g.getContentResolver();
+        Uri uri = e2.f5613a;
         synchronized (e2.class) {
             e2.c(contentResolver);
-            obj = e2.f5594k;
+            obj = e2.f5621k;
         }
-        HashMap hashMap = e2.f5591g;
+        HashMap hashMap = e2.f5618g;
         Boolean bool = Boolean.FALSE;
         Boolean bool2 = (Boolean) e2.a(hashMap, str, bool);
         if (bool2 != null) {
@@ -29,7 +29,7 @@ public final class i implements com.google.android.gms.internal.clearcut.g {
             String b10 = e2.b(contentResolver, str);
             boolean z11 = false;
             if (b10 != null && !b10.equals("")) {
-                if (e2.f5588c.matcher(b10).matches()) {
+                if (e2.f5615c.matcher(b10).matches()) {
                     bool = Boolean.TRUE;
                     z11 = true;
                 } else if (!e2.d.matcher(b10).matches()) {

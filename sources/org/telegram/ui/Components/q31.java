@@ -8,14 +8,14 @@ import android.view.MotionEvent;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 public final class q31 extends q6 {
-    public final Paint f29564s;
+    public final Paint f29591s;
     public final a90 v;
-    public final s31 f29565w;
+    public final s31 f29592w;
 
     public q31(s31 s31Var, Context context) {
         super(context, false, false, false);
-        this.f29565w = s31Var;
-        this.f29564s = new Paint(1);
+        this.f29592w = s31Var;
+        this.f29591s = new Paint(1);
         this.v = new a90();
     }
 
@@ -26,11 +26,11 @@ public final class q31 extends q6 {
         } else {
             AndroidUtilities.rectTmp.set(0.0f, (getHeight() - AndroidUtilities.dp(18.0f)) / 2.0f, d(), (AndroidUtilities.dp(18.0f) + getHeight()) / 2.0f);
         }
-        u31 u31Var = this.f29565w.h;
+        u31 u31Var = this.f29592w.h;
         int i10 = org.telegram.ui.ActionBar.j6.Pi;
         String[] strArr = u31.R;
         int l1 = org.telegram.ui.ActionBar.j6.l1(0.1175f, u31Var.getThemedColor(i10));
-        Paint paint = this.f29564s;
+        Paint paint = this.f29591s;
         paint.setColor(l1);
         canvas.drawRoundRect(AndroidUtilities.rectTmp, AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), paint);
         if (this.v.f(canvas)) {
@@ -42,7 +42,7 @@ public final class q31 extends q6 {
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
         org.telegram.ui.ActionBar.f6 f6Var;
-        u31 u31Var = this.f29565w.h;
+        u31 u31Var = this.f29592w.h;
         int action = motionEvent.getAction();
         a90 a90Var = this.v;
         if (action == 0) {

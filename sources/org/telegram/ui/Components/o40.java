@@ -6,34 +6,34 @@ import java.util.HashMap;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.SendMessagesHelper;
 public final class o40 implements org.telegram.ui.ar0 {
-    public boolean f28950a;
-    public final HashMap f28951b;
-    public final ArrayList f28952c;
+    public boolean f28977a;
+    public final HashMap f28978b;
+    public final ArrayList f28979c;
     public final u40 d;
 
     public o40(u40 u40Var, HashMap hashMap, ArrayList arrayList) {
         this.d = u40Var;
-        this.f28951b = hashMap;
-        this.f28952c = arrayList;
+        this.f28978b = hashMap;
+        this.f28979c = arrayList;
     }
 
     @Override
     public final boolean e() {
-        return this.d.f30800b.e();
+        return this.d.f30827b.e();
     }
 
     @Override
     public final void h(int i10, boolean z10, boolean z11) {
         String str;
-        HashMap hashMap = this.f28951b;
+        HashMap hashMap = this.f28978b;
         if (!hashMap.isEmpty()) {
             u40 u40Var = this.d;
-            if (u40Var.f30800b != null && !this.f28950a && !z10) {
-                this.f28950a = true;
+            if (u40Var.f30827b != null && !this.f28977a && !z10) {
+                this.f28977a = true;
                 ArrayList arrayList = new ArrayList();
                 int i11 = 0;
                 while (true) {
-                    ArrayList arrayList2 = this.f28952c;
+                    ArrayList arrayList2 = this.f28979c;
                     if (i11 < arrayList2.size()) {
                         Object obj = hashMap.get(arrayList2.get(i11));
                         SendMessagesHelper.SendingMediaInfo sendingMediaInfo = new SendMessagesHelper.SendingMediaInfo();

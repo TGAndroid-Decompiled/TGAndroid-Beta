@@ -6,9 +6,9 @@ import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.Arrays;
 public abstract class p {
-    public static final byte[] f9229a = {0, 0, 0, 1};
-    public static final float[] f9230b = {1.0f, 1.0f, 1.0909091f, 0.90909094f, 1.4545455f, 1.2121212f, 2.1818182f, 1.8181819f, 2.909091f, 2.4242425f, 1.6363636f, 1.3636364f, 1.939394f, 1.6161616f, 1.3333334f, 1.5f, 2.0f};
-    public static final Object f9231c = new Object();
+    public static final byte[] f9257a = {0, 0, 0, 1};
+    public static final float[] f9258b = {1.0f, 1.0f, 1.0909091f, 0.90909094f, 1.4545455f, 1.2121212f, 2.1818182f, 1.8181819f, 2.909091f, 2.4242425f, 1.6363636f, 1.3636364f, 1.939394f, 1.6161616f, 1.3333334f, 1.5f, 2.0f};
+    public static final Object f9259c = new Object();
     public static int[] d = new int[10];
 
     public static void a(boolean[] zArr) {
@@ -78,16 +78,16 @@ public abstract class p {
 
     public static boolean c(byte[] bArr, int i10, b2.s sVar) {
         int i11;
-        if (Objects.equals(sVar.f2370r, "video/avc")) {
+        if (Objects.equals(sVar.f2397r, "video/avc")) {
             byte b10 = bArr[4];
             if (((b10 & 96) >> 5) == 0 && ((i11 = b10 & 31) == 1 || i11 == 9 || i11 == 14)) {
                 return false;
             }
-        } else if (Objects.equals(sVar.f2370r, "video/hevc")) {
-            a3.k e7 = e(new a4.h(bArr, 4, i10 + 4));
-            int i12 = e7.f129a;
+        } else if (Objects.equals(sVar.f2397r, "video/hevc")) {
+            a3.l e7 = e(new a4.h(bArr, 4, i10 + 4));
+            int i12 = e7.f153a;
             if (i12 != 35) {
-                if (i12 <= 14 && i12 % 2 == 0 && e7.f131c == sVar.I - 1) {
+                if (i12 <= 14 && i12 % 2 == 0 && e7.f155c == sVar.I - 1) {
                     return false;
                 }
             } else {
@@ -98,18 +98,18 @@ public abstract class p {
     }
 
     public static int d(b2.s sVar) {
-        if (Objects.equals(sVar.f2370r, "video/avc")) {
+        if (Objects.equals(sVar.f2397r, "video/avc")) {
             return 1;
         }
-        if (!Objects.equals(sVar.f2370r, "video/hevc") && r0.b(sVar.f2363k, "video/hevc") == null) {
+        if (!Objects.equals(sVar.f2397r, "video/hevc") && r0.b(sVar.f2390k, "video/hevc") == null) {
             return 0;
         }
         return 2;
     }
 
-    public static a3.k e(a4.h hVar) {
+    public static a3.l e(a4.h hVar) {
         hVar.s();
-        return new a3.k(hVar.i(6), hVar.i(6), hVar.i(3) - 1);
+        return new a3.l(hVar.i(6), hVar.i(6), hVar.i(3) - 1);
     }
 
     public static f2.i f(a4.h r19, boolean r20, int r21, f2.i r22) {
@@ -255,7 +255,7 @@ public abstract class p {
 
     public static int m(int i10, byte[] bArr) {
         int i11;
-        synchronized (f9231c) {
+        synchronized (f9259c) {
             int i12 = 0;
             int i13 = 0;
             while (i12 < i10) {

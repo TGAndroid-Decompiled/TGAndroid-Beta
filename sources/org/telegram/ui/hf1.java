@@ -3,12 +3,12 @@ package org.telegram.ui;
 import android.os.Build;
 import androidx.recyclerview.widget.RecyclerView;
 public final class hf1 extends s4.s0 {
-    public final int f36991a;
-    public final eg1 f36992b;
+    public final int f37018a;
+    public final eg1 f37019b;
 
     public hf1(eg1 eg1Var, int i10) {
-        this.f36991a = i10;
-        this.f36992b = eg1Var;
+        this.f37018a = i10;
+        this.f37019b = eg1Var;
     }
 
     @Override
@@ -17,15 +17,15 @@ public final class hf1 extends s4.s0 {
         boolean z10;
         eg1 eg1Var;
         bh.f fVar;
-        switch (this.f36991a) {
+        switch (this.f37018a) {
             case 0:
-                eg1 eg1Var2 = this.f36992b;
+                eg1 eg1Var2 = this.f37019b;
                 int L0 = eg1Var2.F.L0();
                 if (L0 != -1) {
                     s4.c1 K = recyclerView.K(L0);
                     boolean z11 = false;
                     if (K != null) {
-                        i12 = K.f45738a.getTop();
+                        i12 = K.f45766a.getTop();
                     } else {
                         i12 = 0;
                     }
@@ -47,10 +47,10 @@ public final class hf1 extends s4.s0 {
                 }
                 return;
             case 1:
-                this.f36992b.y0();
+                this.f37019b.y0();
                 return;
             default:
-                if (Build.VERSION.SDK_INT >= 31 && (fVar = (eg1Var = this.f36992b).f36041f1) != null) {
+                if (Build.VERSION.SDK_INT >= 31 && (fVar = (eg1Var = this.f37019b).f36068f1) != null) {
                     fVar.f(i10, i11);
                     eg1Var.x0();
                     return;

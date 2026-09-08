@@ -5,28 +5,28 @@ import android.animation.AnimatorListenerAdapter;
 import org.telegram.ui.Cells.t1;
 import org.telegram.ui.Components.io;
 public final class f extends AnimatorListenerAdapter {
-    public final t1 f14994a;
-    public final float f14995b;
-    public final float f14996c;
+    public final t1 f15020a;
+    public final float f15021b;
+    public final float f15022c;
     public final float d;
-    public final float f14997e;
-    public final o f14998f;
+    public final float f15023e;
+    public final o f15024f;
 
     public f(o oVar, t1 t1Var, float f7, float f10, float f11, float f12) {
-        this.f14998f = oVar;
-        this.f14994a = t1Var;
-        this.f14995b = f7;
-        this.f14996c = f10;
+        this.f15024f = oVar;
+        this.f15020a = t1Var;
+        this.f15021b = f7;
+        this.f15022c = f10;
         this.d = f11;
-        this.f14997e = f12;
+        this.f15023e = f12;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        t1 t1Var = this.f14994a;
+        t1 t1Var = this.f15020a;
         t1Var.getTransitionParams().j();
-        t1Var.getPhotoImage().setImageCoords(this.f14995b, this.f14996c, this.d, this.f14997e);
-        io ioVar = this.f14998f.P;
+        t1Var.getPhotoImage().setImageCoords(this.f15021b, this.f15022c, this.d, this.f15023e);
+        io ioVar = this.f15024f.P;
         if (ioVar != null) {
             ioVar.h.setAlpha(1.0f);
         }

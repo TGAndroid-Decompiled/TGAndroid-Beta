@@ -1,6 +1,6 @@
 package w7;
 public final class s3 implements ia.d {
-    public static final s3 f48284a = new Object();
+    public static final s3 f48313a = new Object();
 
     static {
         org.telegram.ui.Cells.p6.s(w.f.i(d.class, new a(1)));

@@ -10,12 +10,12 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 public final class t3 implements Utilities.Callback {
-    public final int f40607a;
-    public final Object f40608b;
+    public final int f40634a;
+    public final Object f40635b;
 
     public t3(Object obj, int i10) {
-        this.f40607a = i10;
-        this.f40608b = obj;
+        this.f40634a = i10;
+        this.f40635b = obj;
     }
 
     @Override
@@ -27,18 +27,18 @@ public final class t3 implements Utilities.Callback {
         float f11;
         float f12;
         float f13;
-        switch (this.f40607a) {
+        switch (this.f40634a) {
             case 0:
-                i4 i4Var = ((v3) this.f40608b).K;
+                i4 i4Var = ((v3) this.f40635b).K;
                 if (((Integer) obj).intValue() - AndroidUtilities.navigationBarHeight > AndroidUtilities.dp(20.0f)) {
                     z10 = true;
                 } else {
                     z10 = false;
                 }
-                i4Var.f37226o0 = z10;
+                i4Var.f37253o0 = z10;
                 return;
             case 1:
-                bd bdVar = (bd) this.f40608b;
+                bd bdVar = (bd) this.f40635b;
                 TLRPC.WallPaper wallPaper = (TLRPC.WallPaper) obj;
                 bdVar.E = wallPaper;
                 bdVar.F = wallPaper;
@@ -48,64 +48,64 @@ public final class t3 implements Utilities.Callback {
                 AndroidUtilities.runOnUIThread(new fc(bdVar, 1), 350L);
                 return;
             case 2:
-                ((pq) this.f40608b).f39616e.S = (String) obj;
+                ((pq) this.f40635b).f39643e.S = (String) obj;
                 return;
             case 3:
-                vr vrVar = ((rr) this.f40608b).d;
+                vr vrVar = ((rr) this.f40635b).d;
                 vrVar.A1 = ((Integer) obj).intValue();
-                AndroidUtilities.updateVisibleRow(vrVar.f41635c, vrVar.f41668r0);
+                AndroidUtilities.updateVisibleRow(vrVar.f41662c, vrVar.f41695r0);
                 return;
             case 4:
-                ss.U((ss) this.f40608b, (TL_account.TL_birthday) obj);
+                ss.U((ss) this.f40635b, (TL_account.TL_birthday) obj);
                 return;
             case 5:
                 Boolean bool = (Boolean) obj;
-                ((e20) this.f40608b).f35912e.Z(true);
+                ((e20) this.f40635b).f35939e.Z(true);
                 return;
             case 6:
                 TLRPC.TL_messages_stickerSet tL_messages_stickerSet = (TLRPC.TL_messages_stickerSet) obj;
-                ((w50) this.f40608b).c();
+                ((w50) this.f40635b).c();
                 return;
             case 7:
                 Boolean bool2 = (Boolean) obj;
-                ((nc0) this.f40608b).Y();
+                ((nc0) this.f40635b).Y();
                 return;
             case 8:
-                fg0 fg0Var = (fg0) this.f40608b;
+                fg0 fg0Var = (fg0) this.f40635b;
                 String str = (String) obj;
                 fg0Var.getClass();
                 FileLog.d("LoginBilling purchased done " + str);
                 if ("CANCELLED".equalsIgnoreCase(str)) {
-                    fg0Var.f36396b.setLoading(false);
+                    fg0Var.f36423b.setLoading(false);
                     return;
                 }
                 return;
             case 9:
-                cj0 cj0Var = (cj0) this.f40608b;
+                cj0 cj0Var = (cj0) this.f40635b;
                 Integer num = (Integer) obj;
                 cj0Var.getClass();
-                if (num.intValue() - cj0Var.f35134e.d > AndroidUtilities.dp(20.0f)) {
+                if (num.intValue() - cj0Var.f35161e.d > AndroidUtilities.dp(20.0f)) {
                     z11 = true;
                 } else {
                     z11 = false;
                 }
-                cj0Var.f35130b0 = z11;
+                cj0Var.f35157b0 = z11;
                 if (z11) {
-                    f7 = Math.min(cj0Var.f35132c0, (cj0Var.F.getHeight() - num.intValue()) - cj0Var.f35133d0.getMeasuredHeight());
+                    f7 = Math.min(cj0Var.f35159c0, (cj0Var.F.getHeight() - num.intValue()) - cj0Var.f35160d0.getMeasuredHeight());
                 } else {
-                    f7 = cj0Var.f35132c0;
+                    f7 = cj0Var.f35159c0;
                 }
-                cj0Var.f35133d0.animate().translationY(f7 - cj0Var.f35133d0.getTop()).setDuration(250L).setInterpolator(org.telegram.ui.ActionBar.p1.f21275w).start();
+                cj0Var.f35160d0.animate().translationY(f7 - cj0Var.f35160d0.getTop()).setDuration(250L).setInterpolator(org.telegram.ui.ActionBar.p1.f21302w).start();
                 return;
             case 10:
-                tj0 tj0Var = (tj0) this.f40608b;
-                tj0Var.f40777j0 = (String) obj;
-                w5 w5Var = tj0Var.f40786t0;
+                tj0 tj0Var = (tj0) this.f40635b;
+                tj0Var.f40804j0 = (String) obj;
+                w5 w5Var = tj0Var.f40813t0;
                 AndroidUtilities.cancelRunOnUIThread(w5Var);
                 AndroidUtilities.runOnUIThread(w5Var, 100L);
                 return;
             case 11:
-                ek0 ek0Var = (ek0) this.f40608b;
+                ek0 ek0Var = (ek0) this.f40635b;
                 ek0Var.getClass();
                 if (((Boolean) obj).booleanValue()) {
                     ek0Var.r();
@@ -113,22 +113,22 @@ public final class t3 implements Utilities.Callback {
                 }
                 return;
             case 12:
-                qp0.b((qp0) this.f40608b, (Canvas) obj);
+                qp0.b((qp0) this.f40635b, (Canvas) obj);
                 return;
             case 13:
                 Boolean bool3 = (Boolean) obj;
-                ((tp0) this.f40608b).f40811c.e();
+                ((tp0) this.f40635b).f40838c.e();
                 return;
             case 14:
-                ((di.i1) this.f40608b).D(((Integer) obj).intValue());
+                ((di.i1) this.f40635b).D(((Integer) obj).intValue());
                 return;
             case 15:
-                tw0 tw0Var = (tw0) this.f40608b;
-                tw0Var.f40849s = ((Integer) obj).intValue();
+                tw0 tw0Var = (tw0) this.f40635b;
+                tw0Var.f40876s = ((Integer) obj).intValue();
                 View x12 = tw0Var.d.x1(4);
                 if (x12 instanceof org.telegram.ui.Cells.e9) {
                     org.telegram.ui.Cells.e9 e9Var = (org.telegram.ui.Cells.e9) x12;
-                    if (e9Var.getFixedSize() <= 0 && tw0Var.f40849s > 0) {
+                    if (e9Var.getFixedSize() <= 0 && tw0Var.f40876s > 0) {
                         e9Var.setText(tw0Var.W());
                         tw0Var.V(true);
                         return;
@@ -138,14 +138,14 @@ public final class t3 implements Utilities.Callback {
                 tw0Var.V(true);
                 return;
             case 16:
-                PrivacySettingsActivity privacySettingsActivity = (PrivacySettingsActivity) this.f40608b;
+                PrivacySettingsActivity privacySettingsActivity = (PrivacySettingsActivity) this.f40635b;
                 ArrayList arrayList = privacySettingsActivity.P;
                 arrayList.clear();
                 arrayList.addAll((ArrayList) obj);
                 privacySettingsActivity.A0(true);
                 return;
             case 17:
-                org.telegram.ui.Components.d90[] d90VarArr = (org.telegram.ui.Components.d90[]) this.f40608b;
+                org.telegram.ui.Components.d90[] d90VarArr = (org.telegram.ui.Components.d90[]) this.f40635b;
                 Boolean bool4 = (Boolean) obj;
                 ViewPropertyAnimator animate = d90VarArr[0].animate();
                 float f14 = 0.0f;
@@ -187,27 +187,27 @@ public final class t3 implements Utilities.Callback {
                 scaleX2.scaleY(f15).setInterpolator(prVar).setDuration(600L).start();
                 return;
             case 18:
-                AndroidUtilities.runOnUIThread(new rx0(21, (a31) this.f40608b, (TLRPC.TL_exportedContactToken) obj));
+                AndroidUtilities.runOnUIThread(new rx0(21, (a31) this.f40635b, (TLRPC.TL_exportedContactToken) obj));
                 return;
             case 19:
-                StickersActivity.b0((StickersActivity) this.f40608b, (View) obj);
+                StickersActivity.b0((StickersActivity) this.f40635b, (View) obj);
                 return;
             case 20:
-                ThemeActivity.U((ThemeActivity) this.f40608b, (TL_account.contentSettings) obj);
+                ThemeActivity.U((ThemeActivity) this.f40635b, (TL_account.contentSettings) obj);
                 return;
             case 21:
-                wd1 wd1Var = (wd1) this.f40608b;
+                wd1 wd1Var = (wd1) this.f40635b;
                 wd1Var.getClass();
-                wd1Var.f41954n1 = ((Float) obj).floatValue();
-                wd1Var.f41977x0.invalidate();
+                wd1Var.f41981n1 = ((Float) obj).floatValue();
+                wd1Var.f42004x0.invalidate();
                 wd1Var.V0();
                 return;
             case 22:
-                ((di.i1) this.f40608b).D(((Integer) obj).intValue());
+                ((di.i1) this.f40635b).D(((Integer) obj).intValue());
                 return;
             default:
                 TLRPC.TL_messages_stickerSet tL_messages_stickerSet2 = (TLRPC.TL_messages_stickerSet) obj;
-                ((ui1) this.f40608b).E(true);
+                ((ui1) this.f40635b).E(true);
                 return;
         }
     }

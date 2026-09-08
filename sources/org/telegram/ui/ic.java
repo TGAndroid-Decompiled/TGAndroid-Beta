@@ -14,24 +14,24 @@ import android.widget.FrameLayout;
 import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.messenger.AndroidUtilities;
 public final class ic extends org.telegram.ui.ActionBar.j {
-    public final int f37293a;
-    public final Object f37294b;
+    public final int f37320a;
+    public final Object f37321b;
 
     public ic(Object obj, int i10) {
-        this.f37293a = i10;
-        this.f37294b = obj;
+        this.f37320a = i10;
+        this.f37321b = obj;
     }
 
     @Override
     public final void b(int i10) {
         Runnable runnable;
-        int i11 = this.f37293a;
-        Object obj = this.f37294b;
+        int i11 = this.f37320a;
+        Object obj = this.f37321b;
         switch (i11) {
             case 0:
                 bd bdVar = (bd) obj;
                 if (i10 == -1) {
-                    if (bdVar.f34736b >= bdVar.S0() && bdVar.Q0()) {
+                    if (bdVar.f34763b >= bdVar.S0() && bdVar.Q0()) {
                         bdVar.V0();
                         return;
                     } else {
@@ -60,14 +60,14 @@ public final class ic extends org.telegram.ui.ActionBar.j {
                     mc mcVar = new mc(bdVar, bdVar.getParentActivity(), canvas, (bdVar.L.getMeasuredWidth() / 2.0f) + f7, (bdVar.L.getMeasuredHeight() / 2.0f) + f10, max, paint, createBitmap, paint2, f7, f10, 0);
                     bdVar.m0 = mcVar;
                     mcVar.setOnTouchListener(new ci.d(2));
-                    bdVar.f34752n0 = 0.0f;
+                    bdVar.f34779n0 = 0.0f;
                     ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-                    bdVar.f34753o0 = ofFloat;
+                    bdVar.f34780o0 = ofFloat;
                     ofFloat.addUpdateListener(new di.yb(bdVar, 1));
-                    bdVar.f34753o0.addListener(new s0(bdVar, 20));
-                    bdVar.f34753o0.setDuration(400L);
-                    bdVar.f34753o0.setInterpolator(org.telegram.ui.Components.jt.f27568e);
-                    bdVar.f34753o0.start();
+                    bdVar.f34780o0.addListener(new s0(bdVar, 20));
+                    bdVar.f34780o0.setDuration(400L);
+                    bdVar.f34780o0.setInterpolator(org.telegram.ui.Components.jt.f27595e);
+                    bdVar.f34780o0.start();
                     frameLayout.addView(bdVar.m0, new ViewGroup.LayoutParams(-1, -1));
                     AndroidUtilities.runOnUIThread(new fc(bdVar, 0));
                     return;
@@ -94,8 +94,8 @@ public final class ic extends org.telegram.ui.ActionBar.j {
                     lpVar.finishFragment();
                     return;
                 } else if (i10 == 1) {
-                    org.telegram.ui.Components.or orVar = lpVar.f38445r;
-                    if (orVar == null || orVar.f29171c <= 0.0f) {
+                    org.telegram.ui.Components.or orVar = lpVar.f38472r;
+                    if (orVar == null || orVar.f29198c <= 0.0f) {
                         lpVar.Y();
                         return;
                     }
@@ -161,13 +161,13 @@ public final class ic extends org.telegram.ui.ActionBar.j {
             case 9:
                 org.telegram.ui.Components.vi viVar = (org.telegram.ui.Components.vi) obj;
                 if (i10 == -1) {
-                    if (!viVar.f31340y0.i()) {
+                    if (!viVar.f31367y0.i()) {
                         viVar.dismiss();
                         return;
                     }
                     return;
                 }
-                viVar.f31340y0.t(i10);
+                viVar.f31367y0.t(i10);
                 return;
             case 10:
                 if (i10 == -1) {
@@ -176,7 +176,7 @@ public final class ic extends org.telegram.ui.ActionBar.j {
                 }
                 return;
             case 11:
-                if (i10 == -1 && (runnable = ((org.telegram.ui.Components.kf0) obj).f27820r) != null) {
+                if (i10 == -1 && (runnable = ((org.telegram.ui.Components.kf0) obj).f27847r) != null) {
                     AndroidUtilities.runOnUIThread(runnable);
                     return;
                 }
@@ -257,12 +257,12 @@ public final class ic extends org.telegram.ui.ActionBar.j {
                         c00Var.c0();
                         return;
                     } else if (Math.abs(c00Var.T - 0.5f) < 0.1f) {
-                        for (int i12 = 0; i12 < c00Var.f34953a.getChildCount(); i12++) {
-                            View childAt = c00Var.f34953a.getChildAt(i12);
-                            c00Var.f34953a.getClass();
+                        for (int i12 = 0; i12 < c00Var.f34980a.getChildCount(); i12++) {
+                            View childAt = c00Var.f34980a.getChildAt(i12);
+                            c00Var.f34980a.getClass();
                             if (RecyclerView.R(childAt) == c00Var.L && (childAt instanceof org.telegram.ui.Components.z00)) {
-                                int i13 = -c00Var.f34960s;
-                                c00Var.f34960s = i13;
+                                int i13 = -c00Var.f34987s;
+                                c00Var.f34987s = i13;
                                 AndroidUtilities.shakeViewSpring(childAt, i13);
                                 return;
                             }

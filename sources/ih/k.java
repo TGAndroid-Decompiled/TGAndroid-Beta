@@ -11,16 +11,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.WeakHashMap;
 public final class k implements ViewTreeObserver.OnPreDrawListener, View.OnAttachStateChangeListener {
-    public static final int[] f12345f = new int[2];
+    public static final int[] f12371f = new int[2];
     public static final RectF h = new RectF();
-    public final View f12346a;
-    public ViewTreeObserver f12347b;
-    public boolean f12348c;
+    public final View f12372a;
+    public ViewTreeObserver f12373b;
+    public boolean f12374c;
     public final WeakHashMap d = new WeakHashMap();
-    public final RectF f12349e = new RectF();
+    public final RectF f12375e = new RectF();
 
     public k(View view) {
-        this.f12346a = view;
+        this.f12372a = view;
         view.addOnAttachStateChangeListener(this);
         a();
     }
@@ -60,12 +60,12 @@ public final class k implements ViewTreeObserver.OnPreDrawListener, View.OnAttac
 
     public final void a() {
         ViewTreeObserver viewTreeObserver;
-        View view = this.f12346a;
+        View view = this.f12372a;
         if (view.isAttachedToWindow() && (viewTreeObserver = view.getViewTreeObserver()) != null && viewTreeObserver.isAlive()) {
-            this.f12347b = viewTreeObserver;
-            if (!this.f12348c) {
+            this.f12373b = viewTreeObserver;
+            if (!this.f12374c) {
                 viewTreeObserver.addOnPreDrawListener(this);
-                this.f12348c = true;
+                this.f12374c = true;
             }
         }
     }
@@ -80,10 +80,10 @@ public final class k implements ViewTreeObserver.OnPreDrawListener, View.OnAttac
             weakHashMap.put(view, list);
         }
         list.add(jVar);
-        RectF rectF = this.f12349e;
+        RectF rectF = this.f12375e;
         c(view, viewGroup, rectF);
-        jVar.f12343c.set(rectF);
-        if (!this.f12348c) {
+        jVar.f12369c.set(rectF);
+        if (!this.f12374c) {
             a();
         }
         if (z10) {
@@ -93,14 +93,14 @@ public final class k implements ViewTreeObserver.OnPreDrawListener, View.OnAttac
 
     @Override
     public final boolean onPreDraw() {
-        ViewTreeObserver viewTreeObserver = this.f12346a.getViewTreeObserver();
-        ViewTreeObserver viewTreeObserver2 = this.f12347b;
+        ViewTreeObserver viewTreeObserver = this.f12372a.getViewTreeObserver();
+        ViewTreeObserver viewTreeObserver2 = this.f12373b;
         if (viewTreeObserver != viewTreeObserver2) {
-            if (this.f12348c && viewTreeObserver2 != null && viewTreeObserver2.isAlive()) {
-                this.f12347b.removeOnPreDrawListener(this);
+            if (this.f12374c && viewTreeObserver2 != null && viewTreeObserver2.isAlive()) {
+                this.f12373b.removeOnPreDrawListener(this);
             }
-            this.f12348c = false;
-            this.f12347b = null;
+            this.f12374c = false;
+            this.f12373b = null;
             a();
         }
         WeakHashMap weakHashMap = this.d;
@@ -111,11 +111,11 @@ public final class k implements ViewTreeObserver.OnPreDrawListener, View.OnAttac
                 if (view != null && list != null) {
                     for (j jVar : list) {
                         boolean z10 = jVar.d;
-                        RectF rectF = jVar.f12343c;
-                        ViewGroup viewGroup = jVar.f12341a;
-                        RectF rectF2 = this.f12349e;
+                        RectF rectF = jVar.f12369c;
+                        ViewGroup viewGroup = jVar.f12367a;
+                        RectF rectF2 = this.f12375e;
                         if (z10) {
-                            int[] iArr = f12345f;
+                            int[] iArr = f12371f;
                             view.getLocationOnScreen(iArr);
                             int i10 = iArr[0];
                             rectF2.set(i10, iArr[1], view.getWidth() + i10, view.getHeight() + iArr[1]);
@@ -123,11 +123,11 @@ public final class k implements ViewTreeObserver.OnPreDrawListener, View.OnAttac
                             rectF2.offset(-iArr[0], -iArr[1]);
                         } else if (!c(view, viewGroup, rectF2)) {
                         }
-                        if (!jVar.f12344e || !rectF2.equals(rectF)) {
+                        if (!jVar.f12370e || !rectF2.equals(rectF)) {
                             rectF.set(rectF2);
-                            jVar.f12344e = true;
+                            jVar.f12370e = true;
                             try {
-                                jVar.f12342b.k(new RectF(rectF2), view);
+                                jVar.f12368b.k(new RectF(rectF2), view);
                             } catch (Throwable unused) {
                             }
                         }
@@ -146,12 +146,12 @@ public final class k implements ViewTreeObserver.OnPreDrawListener, View.OnAttac
     @Override
     public final void onViewDetachedFromWindow(View view) {
         ViewTreeObserver viewTreeObserver;
-        if (view == this.f12346a) {
-            if (this.f12348c && (viewTreeObserver = this.f12347b) != null && viewTreeObserver.isAlive()) {
-                this.f12347b.removeOnPreDrawListener(this);
+        if (view == this.f12372a) {
+            if (this.f12374c && (viewTreeObserver = this.f12373b) != null && viewTreeObserver.isAlive()) {
+                this.f12373b.removeOnPreDrawListener(this);
             }
-            this.f12348c = false;
-            this.f12347b = null;
+            this.f12374c = false;
+            this.f12373b = null;
         }
     }
 }

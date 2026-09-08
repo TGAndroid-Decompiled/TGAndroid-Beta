@@ -12,22 +12,22 @@ import org.telegram.messenger.UserObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.ActionBarLayout;
 public final class ea0 implements oy {
-    public final int f35985a = 1;
-    public final LaunchActivity f35986b;
-    public final String f35987c;
+    public final int f36012a = 1;
+    public final LaunchActivity f36013b;
+    public final String f36014c;
     public final int d;
-    public final TLRPC.User f35988e;
+    public final TLRPC.User f36015e;
 
     public ea0(LaunchActivity launchActivity, String str, int i10, TLRPC.User user) {
-        this.f35986b = launchActivity;
-        this.f35987c = str;
+        this.f36013b = launchActivity;
+        this.f36014c = str;
         this.d = i10;
-        this.f35988e = user;
+        this.f36015e = user;
     }
 
     @Override
     public final boolean B() {
-        switch (this.f35985a) {
+        switch (this.f36012a) {
             case 0:
                 return false;
             default:
@@ -37,7 +37,7 @@ public final class ea0 implements oy {
 
     @Override
     public final boolean K(uy uyVar) {
-        switch (this.f35985a) {
+        switch (this.f36012a) {
             case 0:
                 return false;
             default:
@@ -47,11 +47,11 @@ public final class ea0 implements oy {
 
     @Override
     public final boolean u(uy uyVar, ArrayList arrayList, CharSequence charSequence, boolean z10, boolean z11, int i10, int i11, eg1 eg1Var) {
-        int i12 = this.f35985a;
-        TLRPC.User user = this.f35988e;
+        int i12 = this.f36012a;
+        TLRPC.User user = this.f36015e;
         int i13 = this.d;
-        String str = this.f35987c;
-        LaunchActivity launchActivity = this.f35986b;
+        String str = this.f36014c;
+        LaunchActivity launchActivity = this.f36013b;
         switch (i12) {
             case 0:
                 Pattern pattern = LaunchActivity.B1;
@@ -78,7 +78,7 @@ public final class ea0 implements oy {
                 long j10 = ((MessagesStorage.TopicKey) arrayList.get(0)).dialogId;
                 TLRPC.TL_inputMediaGame tL_inputMediaGame = new TLRPC.TL_inputMediaGame();
                 TLRPC.TL_inputGameShortName tL_inputGameShortName = new TLRPC.TL_inputGameShortName();
-                tL_inputMediaGame.f19931id = tL_inputGameShortName;
+                tL_inputMediaGame.f19958id = tL_inputGameShortName;
                 tL_inputGameShortName.short_name = str;
                 tL_inputGameShortName.bot_id = MessagesController.getInstance(i13).getInputUser(user);
                 SendMessagesHelper.getInstance(i13).sendGame(MessagesController.getInstance(i13).getInputPeer(j10), tL_inputMediaGame, 0L, 0L);
@@ -99,9 +99,9 @@ public final class ea0 implements oy {
     }
 
     public ea0(LaunchActivity launchActivity, TLRPC.User user, String str, int i10) {
-        this.f35986b = launchActivity;
-        this.f35988e = user;
-        this.f35987c = str;
+        this.f36013b = launchActivity;
+        this.f36015e = user;
+        this.f36014c = str;
         this.d = i10;
     }
 }

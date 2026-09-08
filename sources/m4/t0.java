@@ -17,10 +17,10 @@ import org.telegram.ui.Components.yk0;
 import org.telegram.ui.gs;
 import v7.l8;
 public final class t0 implements e1, n2.l, d9.e, a2, rv0, Utilities.Callback2Return, ih.i, yk0, fv0, gv0, LanguageDetector.ExceptionCallback {
-    public final int f16090a;
+    public final int f16117a;
 
     public t0(int i10) {
-        this.f16090a = i10;
+        this.f16117a = i10;
     }
 
     public static ActionMode.Callback2 d(Object obj) {
@@ -31,15 +31,15 @@ public final class t0 implements e1, n2.l, d9.e, a2, rv0, Utilities.Callback2Ret
     public Object apply(Object obj) {
         o2.q qVar = (o2.q) obj;
         qVar.e();
-        return e9.i0.v(e9.q.w(qVar.Y.f46774b, new t0.a(4)));
+        return e9.i0.v(e9.q.w(qVar.Y.f46802b, new t0.a(4)));
     }
 
     @Override
     public void b(Object obj, float f7) {
         gs gsVar = (gs) obj;
-        switch (this.f16090a) {
+        switch (this.f16117a) {
             case 22:
-                gsVar.f36762b = f7;
+                gsVar.f36789b = f7;
                 if (gsVar.getParent() != null) {
                     ((View) gsVar.getParent()).invalidate();
                     return;
@@ -48,14 +48,14 @@ public final class t0 implements e1, n2.l, d9.e, a2, rv0, Utilities.Callback2Ret
             case 23:
             case 25:
             default:
-                gsVar.f36764e = f7;
+                gsVar.f36791e = f7;
                 if (gsVar.getParent() != null) {
                     ((View) gsVar.getParent()).invalidate();
                     return;
                 }
                 return;
             case 24:
-                gsVar.f36763c = f7;
+                gsVar.f36790c = f7;
                 if (gsVar.getParent() != null) {
                     ((View) gsVar.getParent()).invalidate();
                     return;
@@ -73,7 +73,7 @@ public final class t0 implements e1, n2.l, d9.e, a2, rv0, Utilities.Callback2Ret
 
     @Override
     public void g(b2 b2Var, int i10) {
-        switch (this.f16090a) {
+        switch (this.f16117a) {
             case 11:
                 b2Var.dismiss();
                 return;
@@ -89,15 +89,15 @@ public final class t0 implements e1, n2.l, d9.e, a2, rv0, Utilities.Callback2Ret
     @Override
     public float get(Object obj) {
         gs gsVar = (gs) obj;
-        switch (this.f16090a) {
+        switch (this.f16117a) {
             case 21:
-                return gsVar.f36762b;
+                return gsVar.f36789b;
             case 22:
             case 24:
             default:
-                return gsVar.f36764e;
+                return gsVar.f36791e;
             case 23:
-                return gsVar.f36763c;
+                return gsVar.f36790c;
             case 25:
                 return gsVar.d;
         }
@@ -105,7 +105,7 @@ public final class t0 implements e1, n2.l, d9.e, a2, rv0, Utilities.Callback2Ret
 
     @Override
     public Object h(a0 a0Var, r rVar, int i10) {
-        switch (this.f16090a) {
+        switch (this.f16117a) {
             case 0:
                 a0Var.getClass();
                 throw new ClassCastException();
@@ -119,7 +119,7 @@ public final class t0 implements e1, n2.l, d9.e, a2, rv0, Utilities.Callback2Ret
                 a0Var.getClass();
                 throw new ClassCastException();
             default:
-                ob.a aVar = a0Var.f15829e;
+                ob.a aVar = a0Var.f15856e;
                 a0Var.s(rVar);
                 aVar.getClass();
                 return l8.b(new p1(-6));
@@ -150,14 +150,14 @@ public final class t0 implements e1, n2.l, d9.e, a2, rv0, Utilities.Callback2Ret
     }
 
     public t0(Object obj, int i10) {
-        this.f16090a = i10;
+        this.f16117a = i10;
     }
 
     @Override
     public Object run(Object obj, Object obj2) {
         Integer num = (Integer) obj;
         Integer num2 = (Integer) obj2;
-        switch (this.f16090a) {
+        switch (this.f16117a) {
             case 14:
                 if (num.intValue() == 0) {
                     return LocaleController.formatPluralString("MaximumReactionsValue", num2.intValue(), new Object[0]);
@@ -172,11 +172,11 @@ public final class t0 implements e1, n2.l, d9.e, a2, rv0, Utilities.Callback2Ret
     }
 
     public t0(String str, int i10, int i11, n nVar) {
-        this.f16090a = 0;
+        this.f16117a = 0;
     }
 
     public t0(String str, n nVar, int i10) {
-        this.f16090a = i10;
+        this.f16117a = i10;
     }
 
     @Override

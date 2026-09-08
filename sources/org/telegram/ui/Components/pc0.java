@@ -26,7 +26,7 @@ public final class pc0 extends co0 {
     @Override
     public final CharSequence d() {
         vc0 vc0Var = this.d;
-        Utilities.CallbackReturn callbackReturn = vc0Var.f31195s0;
+        Utilities.CallbackReturn callbackReturn = vc0Var.f31222s0;
         if (callbackReturn != null) {
             return (CharSequence) callbackReturn.run(Integer.valueOf(vc0Var.G));
         }

@@ -22,33 +22,33 @@ import org.telegram.messenger.SharedConfig;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PhotoViewer;
 public final class wo0 implements gv0, GenericProvider, org.telegram.ui.ActionBar.a2, ImageReceiver.ImageReceiverDelegate, LanguageDetector.ExceptionCallback, fv0, rc0, FlagSecureReason.FlagSecureCondition {
-    public final int f32304a;
+    public final int f32331a;
 
     public wo0(int i10) {
-        this.f32304a = i10;
+        this.f32331a = i10;
     }
 
     @Override
     public void b(Object obj, float f7) {
-        switch (this.f32304a) {
+        switch (this.f32331a) {
             case 0:
                 xo0 xo0Var = (xo0) obj;
-                xo0Var.f32640n = f7;
+                xo0Var.f32667n = f7;
                 xo0Var.invalidate();
                 return;
             case 11:
                 org.telegram.ui.Components.voip.h1 h1Var = (org.telegram.ui.Components.voip.h1) obj;
-                WindowManager.LayoutParams layoutParams = h1Var.f31520c;
+                WindowManager.LayoutParams layoutParams = h1Var.f31547c;
                 h1Var.Q = f7;
                 layoutParams.x = (int) f7;
-                AndroidUtilities.updateViewLayout(h1Var.f31519b, h1Var.d, layoutParams);
+                AndroidUtilities.updateViewLayout(h1Var.f31546b, h1Var.d, layoutParams);
                 return;
             default:
                 org.telegram.ui.Components.voip.h1 h1Var2 = (org.telegram.ui.Components.voip.h1) obj;
-                WindowManager.LayoutParams layoutParams2 = h1Var2.f31520c;
+                WindowManager.LayoutParams layoutParams2 = h1Var2.f31547c;
                 h1Var2.R = f7;
                 layoutParams2.y = (int) f7;
-                AndroidUtilities.updateViewLayout(h1Var2.f31519b, h1Var2.d, layoutParams2);
+                AndroidUtilities.updateViewLayout(h1Var2.f31546b, h1Var2.d, layoutParams2);
                 return;
         }
     }
@@ -68,7 +68,7 @@ public final class wo0 implements gv0, GenericProvider, org.telegram.ui.ActionBa
 
     @Override
     public String f(int i10) {
-        switch (this.f32304a) {
+        switch (this.f32331a) {
             case 18:
                 return String.format("%02d", Integer.valueOf(i10));
             case 19:
@@ -95,7 +95,7 @@ public final class wo0 implements gv0, GenericProvider, org.telegram.ui.ActionBa
 
     @Override
     public void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        switch (this.f32304a) {
+        switch (this.f32331a) {
             case 2:
                 b2Var.dismiss();
                 return;
@@ -106,7 +106,7 @@ public final class wo0 implements gv0, GenericProvider, org.telegram.ui.ActionBa
                 b2Var.dismiss();
                 return;
             case 5:
-                int i11 = ux0.f30990u0;
+                int i11 = ux0.f31017u0;
                 return;
             case 6:
                 b2Var.dismiss();
@@ -143,7 +143,7 @@ public final class wo0 implements gv0, GenericProvider, org.telegram.ui.ActionBa
     @Override
     public float get(Object obj) {
         org.telegram.ui.Components.voip.h1 h1Var = (org.telegram.ui.Components.voip.h1) obj;
-        switch (this.f32304a) {
+        switch (this.f32331a) {
             case 10:
                 return h1Var.Q;
             default:
@@ -158,17 +158,17 @@ public final class wo0 implements gv0, GenericProvider, org.telegram.ui.ActionBa
 
     @Override
     public Object provide(Object obj) {
-        switch (this.f32304a) {
+        switch (this.f32331a) {
             case 1:
                 Integer num = (Integer) obj;
-                int i10 = hq0.f26786a1;
+                int i10 = hq0.f26813a1;
                 return 0;
             case 20:
                 Void r82 = (Void) obj;
                 int dp = AndroidUtilities.dp(150.0f);
                 Bitmap createBitmap = Bitmap.createBitmap(AndroidUtilities.dp(200.0f), dp, Bitmap.Config.ARGB_8888);
                 Canvas canvas = new Canvas(createBitmap);
-                canvas.drawColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f20663d6, false));
+                canvas.drawColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f20690d6, false));
                 Paint paint = new Paint(1);
                 paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
                 canvas.drawCircle(createBitmap.getWidth() / 2.0f, createBitmap.getHeight() / 2.0f, dp / 2.0f, paint);

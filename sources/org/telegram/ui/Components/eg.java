@@ -15,7 +15,7 @@ public final class eg extends kz {
     public final void setTranslationY(float f7) {
         super.setTranslationY(f7);
         ChatActivityEnterView chatActivityEnterView = this.P2;
-        if (chatActivityEnterView.V0 != null && chatActivityEnterView.f23743n3 == 0) {
+        if (chatActivityEnterView.V0 != null && chatActivityEnterView.f23770n3 == 0) {
             chatActivityEnterView.Y2.x(f7);
         }
     }

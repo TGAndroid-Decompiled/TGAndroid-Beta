@@ -5,30 +5,30 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 public final class cl implements LayoutTransition.TransitionListener {
-    public bl f35167a;
-    public int f35168b;
-    public final org.telegram.ui.ActionBar.z f35169c;
+    public bl f35194a;
+    public int f35195b;
+    public final org.telegram.ui.ActionBar.z f35196c;
     public final co d;
 
     public cl(co coVar, org.telegram.ui.ActionBar.z zVar) {
         this.d = coVar;
-        this.f35169c = zVar;
+        this.f35196c = zVar;
     }
 
     @Override
     public final void endTransition(LayoutTransition layoutTransition, ViewGroup viewGroup, View view, int i10) {
-        int i11 = this.f35168b - 1;
-        this.f35168b = i11;
-        if (i11 == 0 && this.f35167a != null) {
-            this.f35169c.getViewTreeObserver().removeOnPreDrawListener(this.f35167a);
-            this.f35167a = null;
+        int i11 = this.f35195b - 1;
+        this.f35195b = i11;
+        if (i11 == 0 && this.f35194a != null) {
+            this.f35196c.getViewTreeObserver().removeOnPreDrawListener(this.f35194a);
+            this.f35194a = null;
         }
     }
 
     @Override
     public final void startTransition(LayoutTransition layoutTransition, ViewGroup viewGroup, View view, int i10) {
-        if (this.f35168b == 0 && this.f35167a == null) {
-            this.f35167a = new ViewTreeObserver.OnPreDrawListener() {
+        if (this.f35195b == 0 && this.f35194a == null) {
+            this.f35194a = new ViewTreeObserver.OnPreDrawListener() {
                 @Override
                 public final boolean onPreDraw() {
                     org.telegram.ui.ActionBar.k kVar;
@@ -37,8 +37,8 @@ public final class cl implements LayoutTransition.TransitionListener {
                     return true;
                 }
             };
-            this.f35169c.getViewTreeObserver().addOnPreDrawListener(this.f35167a);
+            this.f35196c.getViewTreeObserver().addOnPreDrawListener(this.f35194a);
         }
-        this.f35168b++;
+        this.f35195b++;
     }
 }

@@ -1,26 +1,23 @@
 package q2;
 
 import android.graphics.Bitmap;
-import h2.h;
-public final class a extends h {
-    public Bitmap f44122f;
-    public final c h;
+import h2.j;
+public final class a extends j {
+    public Bitmap f44149a;
+    public final c f44150b;
 
     public a(c cVar) {
-        this.h = cVar;
+        this.f44150b = cVar;
     }
 
     @Override
-    public final void i() {
-        this.f44122f = null;
-        this.f6773b = 0;
-        this.f10852c = 0L;
-        this.d = 0;
-        this.f10853e = false;
+    public final void clear() {
+        this.f44149a = null;
+        super.clear();
     }
 
     @Override
-    public final void j() {
-        this.h.n(this);
+    public final void release() {
+        this.f44150b.n(this);
     }
 }

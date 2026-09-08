@@ -1,5 +1,6 @@
 package a1;
 
+import a3.l0;
 import ah.h1;
 import ah.k1;
 import ah.m1;
@@ -29,7 +30,6 @@ import bi.f8;
 import bi.g8;
 import bi.gb;
 import bi.j0;
-import bi.l0;
 import bi.l8;
 import bi.m8;
 import bi.n5;
@@ -129,35 +129,35 @@ public final class e implements Runnable {
                 return;
             case 2:
                 x1 x1Var = (x1) this.f45c;
-                String str2 = d0.f8737a;
-                f0 f0Var = ((c0) ((pf.b) this.f44b).f44047c).f11471a;
-                f0Var.f11517h0 = x1Var;
-                f0Var.f11526m.e(25, new b0(x1Var));
+                String str2 = d0.f8765a;
+                f0 f0Var = ((c0) ((l0) ((pf.b) this.f44b).f44074c)).f11497a;
+                f0Var.f11543h0 = x1Var;
+                f0Var.f11552m.e(25, new b0(x1Var));
                 return;
             case 3:
-                String str3 = d0.f8737a;
-                j2.f fVar = ((c0) ((pf.b) this.f44b).f44047c).f11471a.f11533s;
+                String str3 = d0.f8765a;
+                j2.f fVar = ((c0) ((l0) ((pf.b) this.f44b).f44074c)).f11497a.f11559s;
                 j2.a p5 = fVar.p();
                 fVar.q(p5, 1030, new i0.b(p5, (Exception) this.f45c, 13));
                 return;
             case 4:
-                String str4 = d0.f8737a;
-                j2.f fVar2 = ((c0) ((pf.b) this.f44b).f44047c).f11471a.f11533s;
+                String str4 = d0.f8765a;
+                j2.f fVar2 = ((c0) ((l0) ((pf.b) this.f44b).f44074c)).f11497a.f11559s;
                 j2.a p10 = fVar2.p();
                 fVar2.q(p10, 1019, new i0.b(p10, (String) this.f45c, 20));
                 return;
             case 5:
                 ah.b0 b0Var = (ah.b0) this.f44b;
                 z5 z5Var = (z5) this.f45c;
-                SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(b0Var.f448n.getText());
+                SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(b0Var.f460n.getText());
                 for (z5 z5Var2 : (z5[]) spannableStringBuilder.getSpans(0, spannableStringBuilder.length(), z5.class)) {
                     if (z5Var2 == z5Var) {
-                        int editTextSelectionEnd = b0Var.f448n.getEditTextSelectionEnd();
+                        int editTextSelectionEnd = b0Var.f460n.getEditTextSelectionEnd();
                         int spanEnd = spannableStringBuilder.getSpanEnd(z5Var2);
                         int spanStart = spannableStringBuilder.getSpanStart(z5Var2);
-                        b0Var.f448n.getText().delete(spanStart, spanEnd);
+                        b0Var.f460n.getText().delete(spanStart, spanEnd);
                         int i12 = spanEnd - spanStart;
-                        x xVar = b0Var.f448n;
+                        x xVar = b0Var.f460n;
                         if (spanEnd <= editTextSelectionEnd) {
                             editTextSelectionEnd -= i12;
                         }
@@ -181,16 +181,16 @@ public final class e implements Runnable {
                 return;
             case 7:
                 z5 z5Var3 = (z5) this.f45c;
-                ah.b0 b0Var3 = ((z) this.f44b).f726e2;
-                SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(b0Var3.f448n.getText());
+                ah.b0 b0Var3 = ((z) this.f44b).f738e2;
+                SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(b0Var3.f460n.getText());
                 for (z5 z5Var4 : (z5[]) spannableStringBuilder2.getSpans(0, spannableStringBuilder2.length(), z5.class)) {
                     if (z5Var4 == z5Var3) {
-                        int editTextSelectionEnd2 = b0Var3.f448n.getEditTextSelectionEnd();
+                        int editTextSelectionEnd2 = b0Var3.f460n.getEditTextSelectionEnd();
                         int spanEnd2 = spannableStringBuilder2.getSpanEnd(z5Var4);
                         int spanStart2 = spannableStringBuilder2.getSpanStart(z5Var4);
-                        b0Var3.f448n.getText().delete(spanStart2, spanEnd2);
+                        b0Var3.f460n.getText().delete(spanStart2, spanEnd2);
                         int i13 = spanEnd2 - spanStart2;
-                        x xVar2 = b0Var3.f448n;
+                        x xVar2 = b0Var3.f460n;
                         if (spanEnd2 <= editTextSelectionEnd2) {
                             editTextSelectionEnd2 -= i13;
                         }
@@ -202,9 +202,9 @@ public final class e implements Runnable {
             case 8:
                 u0 u0Var = (u0) this.f44b;
                 fk0 fk0Var = (fk0) this.f45c;
-                u0Var.f694l = true;
-                u0Var.f685a.invalidate();
-                fk0Var.f26082b1 = false;
+                u0Var.f706l = true;
+                u0Var.f697a.invalidate();
+                fk0Var.f26109b1 = false;
                 fk0Var.invalidate();
                 u0Var.c(true);
                 return;
@@ -219,8 +219,8 @@ public final class e implements Runnable {
                 k1 k1Var = (k1) this.f44b;
                 h1 h1Var = (h1) this.f45c;
                 k1Var.getClass();
-                TLRPC.ReactionCount reactionCount = h1Var.f552a;
-                a0 a0Var = k1Var.f628z;
+                TLRPC.ReactionCount reactionCount = h1Var.f564a;
+                a0 a0Var = k1Var.f640z;
                 if (e2.u(a0Var)) {
                     ((n4) a0Var).f(reactionCount, true, 0.0f, 0.0f);
                 }
@@ -241,7 +241,7 @@ public final class e implements Runnable {
                 ((i) this.f44b).onResult((o) this.f45c);
                 return;
             case 14:
-                ((pb) this.f44b).H(ProfileActivity.m4(((e1) this.f45c).f2900c));
+                ((pb) this.f44b).H(ProfileActivity.m4(((e1) this.f45c).f2927c));
                 return;
             case 15:
                 e3 e3Var = (e3) this.f44b;
@@ -254,9 +254,9 @@ public final class e implements Runnable {
             case 16:
                 e3 e3Var2 = (e3) this.f44b;
                 e1 e1Var = (e1) this.f45c;
-                long j10 = e1Var.f2900c;
-                o5 o5Var = e3Var2.f2907i0;
-                if (j10 != UserConfig.getInstance(o5Var.C2).getClientUserId() && ((t1Var = e3Var2.f2906h0.A0) == null || j10 != DialogObject.getPeerDialogId(t1Var.i()))) {
+                long j10 = e1Var.f2927c;
+                o5 o5Var = e3Var2.f2934i0;
+                if (j10 != UserConfig.getInstance(o5Var.C2).getClientUserId() && ((t1Var = e3Var2.f2933h0.A0) == null || j10 != DialogObject.getPeerDialogId(t1Var.i()))) {
                     if (o5Var.O3 != null) {
                         for (int i14 = 0; i14 < o5Var.O3.peers.size(); i14++) {
                             if (j10 != DialogObject.getPeerDialogId(o5Var.O3.peers.get(i14).peer)) {
@@ -264,14 +264,14 @@ public final class e implements Runnable {
                         }
                     }
                     Context context = e3Var2.getContext();
-                    long j11 = e1Var.f2900c;
+                    long j11 = e1Var.f2927c;
                     j0 j0Var = new j0(0, e3Var2, e1Var);
                     bi.b bVar = new bi.b();
                     f3 f3Var = new f3(1, context, (f6) bVar, false);
                     f3Var.fixNavigationBar();
                     LinearLayout f7 = wl.f(context, 1);
                     TextView g10 = w1.g(context, 1, 20.0f);
-                    g10.setTextColor(bVar.G0(j6.f20770j5));
+                    g10.setTextColor(bVar.G0(j6.f20797j5));
                     g10.setTypeface(AndroidUtilities.bold());
                     g10.setText(LocaleController.getString(R.string.DeleteSingleMessagesTitle));
                     f7.addView(g10, x5.k(22.0f, 12.0f, 22.0f, 0.0f, -1, -2));
@@ -281,8 +281,8 @@ public final class e implements Runnable {
                     final z1 z1Var = new z1(4, 21, context, bVar, true);
                     mp checkBoxRound = z1Var.getCheckBoxRound();
                     int i15 = j6.V6;
-                    int i16 = j6.f20719g7;
-                    int i17 = j6.f20792k7;
+                    int i16 = j6.f20746g7;
+                    int i17 = j6.f20819k7;
                     checkBoxRound.b(i15, i16, i17);
                     z1Var.e(LocaleController.getString(R.string.DeleteReportSpam), null, false, true, false);
                     z1Var.setOnClickListener(new View.OnClickListener() {
@@ -304,7 +304,7 @@ public final class e implements Runnable {
                             }
                         }
                     });
-                    int i18 = j6.f20753i6;
+                    int i18 = j6.f20780i6;
                     z1Var.setBackground(j6.f0(bVar.G0(i18), 2, -1));
                     f7.addView(z1Var, x5.n(-1, -2));
                     final z1 z1Var2 = new z1(4, 21, context, bVar, true);
@@ -362,7 +362,7 @@ public final class e implements Runnable {
                     FrameLayout frameLayout = new FrameLayout(context);
                     di.d dVar = new di.d(context, bVar, true);
                     dVar.g(LocaleController.getString(R.string.DeleteProceedBtn), false, true);
-                    dVar.setOnClickListener(new l0(z1Var, z1Var2, z1Var3, j0Var, f3Var, 0));
+                    dVar.setOnClickListener(new bi.l0(z1Var, z1Var2, z1Var3, j0Var, f3Var, 0));
                     frameLayout.addView(dVar, x5.d(-1, 48.0f, 119, 16.0f, 16.0f, 16.0f, 16.0f));
                     f7.addView(frameLayout, x5.n(-1, -2));
                     f3Var.setCustomView(f7);
@@ -371,9 +371,9 @@ public final class e implements Runnable {
                 }
                 TL_phone.deleteGroupCallMessages deletegroupcallmessages = new TL_phone.deleteGroupCallMessages();
                 deletegroupcallmessages.call = e3Var2.O;
-                deletegroupcallmessages.messages.add(Integer.valueOf(e1Var.f2898a));
+                deletegroupcallmessages.messages.add(Integer.valueOf(e1Var.f2925a));
                 ConnectionsManager.getInstance(e3Var2.N).sendRequest(deletegroupcallmessages, null);
-                e3Var2.c(e1Var.f2898a);
+                e3Var2.c(e1Var.f2925a);
                 return;
             case 17:
                 t1 t1Var2 = (t1) this.f44b;
@@ -385,7 +385,7 @@ public final class e implements Runnable {
                     Object obj = arrayList.get(i19);
                     i19++;
                     TL_update.TL_updateGroupCallMessage tL_updateGroupCallMessage = (TL_update.TL_updateGroupCallMessage) obj;
-                    NotificationCenter.getInstance(t1Var2.f3718e).lambda$postNotificationNameOnUIThread$1(NotificationCenter.liveStoryMessageUpdate, Long.valueOf(tL_updateGroupCallMessage.call.f19886id), tL_updateGroupCallMessage, Boolean.TRUE);
+                    NotificationCenter.getInstance(t1Var2.f3745e).lambda$postNotificationNameOnUIThread$1(NotificationCenter.liveStoryMessageUpdate, Long.valueOf(tL_updateGroupCallMessage.call.f19913id), tL_updateGroupCallMessage, Boolean.TRUE);
                 }
                 return;
             case 18:
@@ -395,8 +395,8 @@ public final class e implements Runnable {
                 o5 o5Var2 = (o5) this.f44b;
                 f4 f4Var = (f4) this.f45c;
                 o5Var2.removeView(f4Var);
-                if (o5Var2.f3414d2 == f4Var) {
-                    o5Var2.f3414d2 = null;
+                if (o5Var2.f3441d2 == f4Var) {
+                    o5Var2.f3441d2 = null;
                     return;
                 }
                 return;
@@ -404,24 +404,24 @@ public final class e implements Runnable {
                 o5 o5Var3 = (o5) this.f44b;
                 pc E = pc.E((Activity) this.f45c, o5Var3.C2);
                 n5 n5Var = o5Var3.M2;
-                if (n5Var != null && (obVar = (ob) n5Var.f3366c) != null) {
+                if (n5Var != null && (obVar = (ob) n5Var.f3393c) != null) {
                     j3 = obVar.currentPosition;
                 } else {
                     j3 = 0;
                 }
                 File h = o5Var3.O1.h();
-                TL_stories.StoryItem storyItem = o5Var3.O1.f3310a;
+                TL_stories.StoryItem storyItem = o5Var3.O1.f3337a;
                 o8 o8Var = new o8();
-                o8Var.f7768n = true;
-                o8Var.f7780t = storyItem.media;
-                int i20 = o8Var.f7740a;
-                o8Var.f7774q = MessagesController.getInstance(i20).getPeer(storyItem.dialogId);
-                o8Var.f7776r = storyItem.f20107id;
-                o8Var.f7778s = storyItem.caption;
+                o8Var.f7796n = true;
+                o8Var.f7808t = storyItem.media;
+                int i20 = o8Var.f7768a;
+                o8Var.f7802q = MessagesController.getInstance(i20).getPeer(storyItem.dialogId);
+                o8Var.f7804r = storyItem.f20134id;
+                o8Var.f7806s = storyItem.caption;
                 o8Var.L = h;
                 o8Var.M = false;
-                o8Var.f7764k0 = 720;
-                o8Var.f7766l0 = 1280;
+                o8Var.f7792k0 = 720;
+                o8Var.f7794l0 = 1280;
                 TLRPC.MessageMedia messageMedia = storyItem.media;
                 if (messageMedia instanceof TLRPC.TL_messageMediaPhoto) {
                     o8Var.K = false;
@@ -437,9 +437,9 @@ public final class e implements Runnable {
                             if (i21 < storyItem.media.document.attributes.size()) {
                                 TLRPC.DocumentAttribute documentAttribute = storyItem.media.document.attributes.get(i21);
                                 if (documentAttribute instanceof TLRPC.TL_documentAttributeVideo) {
-                                    o8Var.f7764k0 = documentAttribute.f19876w;
-                                    o8Var.f7766l0 = documentAttribute.h;
-                                    o8Var.f7759i = documentAttribute.duration;
+                                    o8Var.f7792k0 = documentAttribute.f19903w;
+                                    o8Var.f7794l0 = documentAttribute.h;
+                                    o8Var.f7787i = documentAttribute.duration;
                                 } else {
                                     i21++;
                                 }
@@ -471,18 +471,18 @@ public final class e implements Runnable {
                 ic d = kc.d(o5Var3.J0);
                 RectF rectF = E.H;
                 WindowManager.LayoutParams layoutParams = E.h;
-                WindowManager windowManager = E.f7859f;
-                int i23 = E.f7848c;
+                WindowManager windowManager = E.f7887f;
+                int i23 = E.f7876c;
                 if (!E.d) {
                     if (MessagesController.getInstance(i23).isFrozen()) {
                         org.telegram.ui.b.b(i23);
                     } else {
-                        E.f7906u0 = false;
-                        E.f7855e = false;
+                        E.f7934u0 = false;
+                        E.f7883e = false;
                         E.B2 = false;
-                        if (windowManager != null && (ocVar = E.f7882n) != null && ocVar.getParent() == null) {
-                            AndroidUtilities.setPreferredMaxRefreshRate(windowManager, E.f7882n, layoutParams);
-                            windowManager.addView(E.f7882n, layoutParams);
+                        if (windowManager != null && (ocVar = E.f7910n) != null && ocVar.getParent() == null) {
+                            AndroidUtilities.setPreferredMaxRefreshRate(windowManager, E.f7910n, layoutParams);
+                            windowManager.addView(E.f7910n, layoutParams);
                             E.g0();
                         }
                         E.K1 = o8Var;
@@ -494,20 +494,20 @@ public final class e implements Runnable {
                             i10 = 0;
                         }
                         E.O1 = i10;
-                        E.f7900s0.f6994g = false;
+                        E.f7928s0.f7022g = false;
                         if (d != null) {
                             E.F = d;
-                            E.J = d.f7482a;
-                            rectF.set(d.f7484c);
-                            E.G = d.f7483b;
+                            E.J = d.f7510a;
+                            rectF.set(d.f7512c);
+                            E.G = d.f7511b;
                             E.F.e();
                         } else {
                             E.J = 0;
                             rectF.set(0.0f, AndroidUtilities.dp(100.0f), AndroidUtilities.displaySize.x, AndroidUtilities.dp(100.0f) + AndroidUtilities.displaySize.y);
                             E.G = AndroidUtilities.dp(8.0f);
                         }
-                        E.f7895r.c();
-                        bc bcVar = E.f7866h0;
+                        E.f7923r.c();
+                        bc bcVar = E.f7894h0;
                         int i24 = E.J;
                         if (i24 != 1 && i24 != 0) {
                             i11 = -14737633;
@@ -515,24 +515,24 @@ public final class e implements Runnable {
                             i11 = 0;
                         }
                         bcVar.setBackgroundColor(i11);
-                        E.f7895r.setTranslationX(0.0f);
-                        E.f7895r.setTranslationY(0.0f);
-                        E.f7895r.b(0.0f);
-                        E.f7895r.setScaleX(1.0f);
-                        E.f7895r.setScaleY(1.0f);
+                        E.f7923r.setTranslationX(0.0f);
+                        E.f7923r.setTranslationY(0.0f);
+                        E.f7923r.b(0.0f);
+                        E.f7923r.setScaleX(1.0f);
+                        E.f7923r.setScaleY(1.0f);
                         E.K = 0.0f;
-                        AndroidUtilities.lockOrientation(E.f7844b, 1);
+                        AndroidUtilities.lockOrientation(E.f7872b, 1);
                         o8 o8Var3 = E.K1;
                         if (o8Var3 != null) {
-                            E.f7850c1.setText(o8Var3.C0);
+                            E.f7878c1.setText(o8Var3.C0);
                         }
                         E.L(new ka(E, 7), j3);
-                        E.f7846b1.b(true, false);
+                        E.f7874b1.b(true, false);
                         E.K(1, false);
                         E.l0(-1, false, false);
                         E.e();
-                        E.f7909v0 = 0L;
-                        E.f7913w0 = "";
+                        E.f7937v0 = 0L;
+                        E.f7941w0 = "";
                     }
                 }
                 E.Q = new q2(o5Var3, 12);
@@ -541,14 +541,14 @@ public final class e implements Runnable {
             case 21:
                 f5 f5Var = (f5) this.f44b;
                 f5Var.getClass();
-                ((gb) f5Var.f2972l.Q1).h(new a1(((pb) this.f45c).f3545f, 14, false));
+                ((gb) f5Var.f2999l.Q1).h(new a1(((pb) this.f45c).f3572f, 14, false));
                 return;
             case 22:
                 c6 c6Var = (c6) this.f44b;
                 c6Var.h = null;
-                s6 s6Var = c6Var.f2819n;
+                s6 s6Var = c6Var.f2846n;
                 s6Var.Q = false;
-                s6Var.O.f2865c = ((String) this.f45c).toLowerCase();
+                s6Var.O.f2892c = ((String) this.f45c).toLowerCase();
                 s6.b(s6Var);
                 return;
             case 23:
@@ -565,9 +565,9 @@ public final class e implements Runnable {
             case 24:
                 d8 d8Var = (d8) this.f44b;
                 TLObject tLObject = (TLObject) this.f45c;
-                g8 g8Var = d8Var.f3283q;
-                int i25 = d8Var.f3271c;
-                ArrayList arrayList2 = d8Var.f3275i;
+                g8 g8Var = d8Var.f3310q;
+                int i25 = d8Var.f3298c;
+                ArrayList arrayList2 = d8Var.f3302i;
                 d8Var.I = 0;
                 if (tLObject instanceof TL_stories.TL_foundStories) {
                     TL_stories.TL_foundStories tL_foundStories = (TL_stories.TL_foundStories) tLObject;
@@ -609,14 +609,14 @@ public final class e implements Runnable {
                 arrayList5.clear();
                 arrayList5.addAll((List) this.f45c);
                 f8Var.d = true;
-                f8Var.f2982e = false;
+                f8Var.f3009e = false;
                 f8Var.d();
-                NotificationCenter.getInstance(f8Var.f2979a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.storyAlbumsCollectionsUpdate, Long.valueOf(f8Var.f2980b), f8Var);
+                NotificationCenter.getInstance(f8Var.f3006a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.storyAlbumsCollectionsUpdate, Long.valueOf(f8Var.f3007b), f8Var);
                 return;
             case 26:
                 f8 f8Var2 = (f8) this.f44b;
                 TLObject tLObject2 = (TLObject) this.f45c;
-                ArrayList arrayList6 = f8Var2.f2984g;
+                ArrayList arrayList6 = f8Var2.f3011g;
                 ArrayList arrayList7 = f8Var2.h;
                 if (tLObject2 instanceof TL_stories.TL_albums) {
                     TL_stories.TL_albums tL_albums = (TL_stories.TL_albums) tLObject2;
@@ -633,16 +633,16 @@ public final class e implements Runnable {
                     arrayList7.addAll(arrayList8);
                     arrayList6.clear();
                     arrayList6.addAll(arrayList8);
-                    f8Var2.f2983f = true;
-                    f8Var2.f2982e = false;
+                    f8Var2.f3010f = true;
+                    f8Var2.f3009e = false;
                     f8Var2.f(true);
                     return;
                 } else if (tLObject2 instanceof TL_stories.TL_albumsNotModified) {
                     arrayList7.clear();
                     arrayList7.addAll(arrayList6);
-                    f8Var2.f2983f = true;
-                    f8Var2.f2982e = false;
-                    NotificationCenter.getInstance(f8Var2.f2979a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.storyAlbumsCollectionsUpdate, Long.valueOf(f8Var2.f2980b), f8Var2);
+                    f8Var2.f3010f = true;
+                    f8Var2.f3009e = false;
+                    NotificationCenter.getInstance(f8Var2.f3006a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.storyAlbumsCollectionsUpdate, Long.valueOf(f8Var2.f3007b), f8Var2);
                     return;
                 } else {
                     return;
@@ -653,23 +653,23 @@ public final class e implements Runnable {
                 ((Utilities.Callback) this.f45c).run(l8Var);
                 return;
             case 28:
-                MessagesController.getInstance(((t8) this.f44b).M.f3805a).getStoriesController().Z((TL_stories.TL_updateStory) this.f45c);
+                MessagesController.getInstance(((t8) this.f44b).M.f3832a).getStoriesController().Z((TL_stories.TL_updateStory) this.f45c);
                 return;
             default:
                 t8 t8Var = (t8) this.f44b;
                 TLRPC.TL_error tL_error3 = (TLRPC.TL_error) this.f45c;
-                o8 o8Var4 = t8Var.f3740c;
-                o8Var4.f7785w = true;
+                o8 o8Var4 = t8Var.f3767c;
+                o8Var4.f7813w = true;
                 u8 u8Var = t8Var.M;
                 if (u8Var.n(tL_error3)) {
-                    o8Var4.f7787x = null;
+                    o8Var4.f7815x = null;
                 } else {
-                    o8Var4.f7787x = tL_error3;
+                    o8Var4.f7815x = tL_error3;
                 }
                 t8Var.d = true;
                 t8Var.I = true;
                 t8Var.H = true;
-                u8Var.f3824w.d(o8Var4);
+                u8Var.f3851w.d(o8Var4);
                 return;
         }
     }

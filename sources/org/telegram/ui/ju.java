@@ -8,12 +8,12 @@ import org.telegram.messenger.DownloadController;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class ju extends org.telegram.ui.Components.kl0 {
-    public final Context f37843c;
+    public final Context f37870c;
     public final DataAutoDownloadActivity d;
 
     public ju(DataAutoDownloadActivity dataAutoDownloadActivity, Context context) {
         this.d = dataAutoDownloadActivity;
-        this.f37843c = context;
+        this.f37870c = context;
     }
 
     @Override
@@ -45,7 +45,7 @@ public final class ju extends org.telegram.ui.Components.kl0 {
 
     @Override
     public final int h() {
-        return this.d.f33382x;
+        return this.d.f33409x;
     }
 
     @Override
@@ -61,10 +61,10 @@ public final class ju extends org.telegram.ui.Components.kl0 {
         if (i10 == i11) {
             return 0;
         }
-        if (i10 == dataAutoDownloadActivity.f33380s) {
+        if (i10 == dataAutoDownloadActivity.f33407s) {
             return 1;
         }
-        if (i10 != dataAutoDownloadActivity.f33379r && i10 != dataAutoDownloadActivity.v) {
+        if (i10 != dataAutoDownloadActivity.f33406r && i10 != dataAutoDownloadActivity.v) {
             i12 = dataAutoDownloadActivity.usageProgressRow;
             if (i10 != i12) {
                 i13 = dataAutoDownloadActivity.photosRow;
@@ -113,10 +113,10 @@ public final class ju extends org.telegram.ui.Components.kl0 {
         boolean z12;
         int i23;
         DataAutoDownloadActivity dataAutoDownloadActivity = this.d;
-        int i24 = dataAutoDownloadActivity.f33377f;
+        int i24 = dataAutoDownloadActivity.f33404f;
         DownloadController.Preset preset = dataAutoDownloadActivity.G;
-        int i25 = c1Var.f45742f;
-        View view = c1Var.f45738a;
+        int i25 = c1Var.f45770f;
+        View view = c1Var.f45766a;
         int i26 = 0;
         if (i25 != 0) {
             if (i25 != 2) {
@@ -125,13 +125,13 @@ public final class ju extends org.telegram.ui.Components.kl0 {
                     if (i25 != 4) {
                         if (i25 == 5) {
                             org.telegram.ui.Cells.e9 e9Var = (org.telegram.ui.Cells.e9) view;
-                            if (i10 == dataAutoDownloadActivity.f33381w) {
+                            if (i10 == dataAutoDownloadActivity.f33408w) {
                                 e9Var.setText(LocaleController.getString(R.string.AutoDownloadAudioInfo));
                                 e9Var.setFixedSize(0);
                                 e9Var.setImportantForAccessibility(1);
                                 return;
-                            } else if (i10 == dataAutoDownloadActivity.f33378n) {
-                                if (dataAutoDownloadActivity.f33379r == -1) {
+                            } else if (i10 == dataAutoDownloadActivity.f33405n) {
+                                if (dataAutoDownloadActivity.f33406r == -1) {
                                     if (i24 == 0) {
                                         e9Var.setText(LocaleController.getString(R.string.AutoDownloadOnMobileDataInfo));
                                     } else if (i24 == 1) {
@@ -272,7 +272,7 @@ public final class ju extends org.telegram.ui.Components.kl0 {
                 return;
             }
             org.telegram.ui.Cells.l4 l4Var = (org.telegram.ui.Cells.l4) view;
-            if (i10 == dataAutoDownloadActivity.f33379r) {
+            if (i10 == dataAutoDownloadActivity.f33406r) {
                 l4Var.setText(LocaleController.getString(R.string.AutoDownloadDataUsage));
                 return;
             } else if (i10 == dataAutoDownloadActivity.v) {
@@ -288,15 +288,15 @@ public final class ju extends org.telegram.ui.Components.kl0 {
             w8Var.setDrawCheckRipple(true);
             w8Var.f(LocaleController.getString(R.string.AutoDownloadMedia), preset.enabled, false);
             if (preset.enabled) {
-                i12 = org.telegram.ui.ActionBar.j6.f20700f6;
+                i12 = org.telegram.ui.ActionBar.j6.f20727f6;
             } else {
-                i12 = org.telegram.ui.ActionBar.j6.f20683e6;
+                i12 = org.telegram.ui.ActionBar.j6.f20710e6;
             }
             w8Var.setTag(Integer.valueOf(i12));
             if (preset.enabled) {
-                i13 = org.telegram.ui.ActionBar.j6.f20700f6;
+                i13 = org.telegram.ui.ActionBar.j6.f20727f6;
             } else {
-                i13 = org.telegram.ui.ActionBar.j6.f20683e6;
+                i13 = org.telegram.ui.ActionBar.j6.f20710e6;
             }
             w8Var.setBackgroundColor(org.telegram.ui.ActionBar.j6.w0(null, i13, false));
         }
@@ -305,7 +305,7 @@ public final class ju extends org.telegram.ui.Components.kl0 {
     @Override
     public final s4.c1 x(ViewGroup viewGroup, int i10) {
         org.telegram.ui.Components.sv0 sv0Var;
-        Context context = this.f37843c;
+        Context context = this.f37870c;
         if (i10 != 0) {
             if (i10 != 1) {
                 if (i10 != 2) {
@@ -328,7 +328,7 @@ public final class ju extends org.telegram.ui.Components.kl0 {
             }
         } else {
             org.telegram.ui.Cells.w8 w8Var = new org.telegram.ui.Cells.w8(context);
-            w8Var.d(org.telegram.ui.ActionBar.j6.f20718g6, org.telegram.ui.ActionBar.j6.O6, org.telegram.ui.ActionBar.j6.P6, org.telegram.ui.ActionBar.j6.Q6, org.telegram.ui.ActionBar.j6.R6);
+            w8Var.d(org.telegram.ui.ActionBar.j6.f20745g6, org.telegram.ui.ActionBar.j6.O6, org.telegram.ui.ActionBar.j6.P6, org.telegram.ui.ActionBar.j6.Q6, org.telegram.ui.ActionBar.j6.R6);
             w8Var.setTypeface(AndroidUtilities.bold());
             w8Var.setHeight(56);
             sv0Var = w8Var;

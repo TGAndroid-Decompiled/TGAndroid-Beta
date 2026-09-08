@@ -23,14 +23,14 @@ import org.telegram.ui.Components.h51;
 import org.telegram.ui.Components.i9;
 import w7.x5;
 public final class f extends n2 implements NotificationCenter.NotificationCenterDelegate {
-    public long f10679a;
-    public TLRPC.Chat f10680b;
-    public TLRPC.User f10681c;
+    public long f10707a;
+    public TLRPC.Chat f10708b;
+    public TLRPC.User f10709c;
     public FrameLayout d;
-    public d61 f10682e;
-    public e f10683f;
+    public d61 f10710e;
+    public e f10711f;
     public ArrayList h;
-    public NotificationCenter.ObserversGroup f10684n;
+    public NotificationCenter.ObserversGroup f10712n;
 
     public static void U(f fVar, h51 h51Var) {
         f fVar2;
@@ -43,30 +43,30 @@ public final class f extends n2 implements NotificationCenter.NotificationCenter
         Object obj = h51Var.G;
         if (obj instanceof TLRPC.Chat) {
             TLRPC.Chat chat = (TLRPC.Chat) obj;
-            fVar2.getMessagesController().getChat(Long.valueOf(-fVar2.f10679a));
-            fVar2.showDialog(new ii.b(fVar2.getParentActivity(), chat, fVar2.f10679a, new m2(12, fVar2, chat)));
+            fVar2.getMessagesController().getChat(Long.valueOf(-fVar2.f10707a));
+            fVar2.showDialog(new ii.b(fVar2.getParentActivity(), chat, fVar2.f10707a, new m2(12, fVar2, chat)));
         }
     }
 
     public final void V(String str, boolean z10) {
-        if (!ChatObject.isChannel(this.f10680b) && this.f10681c == null) {
+        if (!ChatObject.isChannel(this.f10708b) && this.f10709c == null) {
             b2 b2Var = new b2(getParentActivity(), 3, null);
             b2Var.q(250L);
-            getMessagesController().convertToMegaGroup(getParentActivity(), -this.f10679a, this, new ca.b(this, b2Var, str, z10, 1));
+            getMessagesController().convertToMegaGroup(getParentActivity(), -this.f10707a, this, new ca.b(this, b2Var, str, z10, 1));
             return;
         }
-        getMessagesController().createCommunity(str, this.f10679a, z10, new b(this, 1));
+        getMessagesController().createCommunity(str, this.f10707a, z10, new b(this, 1));
     }
 
     public final void W(long j3, boolean z10) {
-        if (!ChatObject.isChannel(this.f10680b) && this.f10681c == null) {
+        if (!ChatObject.isChannel(this.f10708b) && this.f10709c == null) {
             b2 b2Var = new b2(getParentActivity(), 3, null);
             b2Var.q(250L);
-            getMessagesController().convertToMegaGroup(getParentActivity(), -this.f10679a, this, new d(this, b2Var, j3, z10, 0));
+            getMessagesController().convertToMegaGroup(getParentActivity(), -this.f10707a, this, new d(this, b2Var, j3, z10, 0));
             return;
         }
         int i10 = this.currentAccount;
-        long j10 = -this.f10679a;
+        long j10 = -this.f10707a;
         MessagesController.getInstance(i10).linkCommunity(-j10, j3, z10, new o0(this, j10, 0));
     }
 
@@ -80,43 +80,43 @@ public final class f extends n2 implements NotificationCenter.NotificationCenter
         this.actionBar.setAllowOverlayTitle(true);
         this.actionBar.setActionBarMenuOnItemClick(new ah.t(this, 4));
         gh.c cVar = new gh.c();
-        cVar.a(getThemedColor(j6.f20663d6));
+        cVar.a(getThemedColor(j6.f20690d6));
         bh.b bVar = new bh.b(cVar);
         this.actionBar.setBackground(null);
         this.actionBar.M(bVar, fh.b.o(this.resourceProvider), false);
         this.actionBar.P0 = true;
         FrameLayout frameLayout = new FrameLayout(context);
         this.d = frameLayout;
-        frameLayout.setBackgroundColor(j6.w0(null, j6.f20607a7, false));
+        frameLayout.setBackgroundColor(j6.w0(null, j6.f20634a7, false));
         e eVar = new e(context, this.resourceProvider);
-        this.f10683f = eVar;
+        this.f10711f = eVar;
         eVar.setTitle(LocaleController.getString(R.string.CommunityTitle));
-        e eVar2 = this.f10683f;
-        if (this.f10681c != null) {
+        e eVar2 = this.f10711f;
+        if (this.f10709c != null) {
             i10 = R.string.CommunityDescriptionBot;
-        } else if (ChatObject.isChannelAndNotMegaGroup(this.f10680b)) {
+        } else if (ChatObject.isChannelAndNotMegaGroup(this.f10708b)) {
             i10 = R.string.CommunityDescriptionChannel;
         } else {
             i10 = R.string.CommunityDescriptionGroup;
         }
         eVar2.setSubtitle(LocaleController.getString(i10));
-        this.f10683f.setTag(-33024);
-        TLRPC.User user = this.f10681c;
+        this.f10711f.setTag(-33024);
+        TLRPC.User user = this.f10709c;
         if (user != null) {
-            this.f10683f.f10676a.e(user, new i9(0, this.f10681c));
+            this.f10711f.f10704a.e(user, new i9(0, this.f10709c));
         } else {
-            TLRPC.Chat chat = this.f10680b;
+            TLRPC.Chat chat = this.f10708b;
             if (chat != null) {
-                this.f10683f.f10676a.e(chat, new i9(this.f10680b));
+                this.f10711f.f10704a.e(chat, new i9(this.f10708b));
             }
         }
         d61 d61Var = new d61(this, new b(this, 0), new c(this), new c(this));
-        this.f10682e = d61Var;
+        this.f10710e = d61Var;
         d61Var.setClipToPadding(false);
-        d61 d61Var2 = this.f10682e;
-        d61Var2.Y2.f31135r = false;
+        d61 d61Var2 = this.f10710e;
+        d61Var2.Y2.f31162r = false;
         d61Var2.o1();
-        this.d.addView(this.f10682e, x5.c(-1.0f, -1));
+        this.d.addView(this.f10710e, x5.c(-1.0f, -1));
         this.d.addView(this.actionBar, x5.e(-1, -2, 48));
         FrameLayout frameLayout2 = this.d;
         this.fragmentView = frameLayout2;
@@ -128,8 +128,8 @@ public final class f extends n2 implements NotificationCenter.NotificationCenter
         int i12;
         if (i10 == NotificationCenter.chatInfoDidLoad) {
             TLRPC.ChatFull chatFull = (TLRPC.ChatFull) objArr[0];
-            long j3 = chatFull.f19870id;
-            View x12 = this.f10682e.x1((int) (j3 ^ (j3 >>> 32)));
+            long j3 = chatFull.f19897id;
+            View x12 = this.f10710e.x1((int) (j3 ^ (j3 >>> 32)));
             if (x12 instanceof h6) {
                 h6 h6Var = (h6) x12;
                 ArrayList<TL_communities.CommunityPeer> arrayList = chatFull.linked_peers;
@@ -141,7 +141,7 @@ public final class f extends n2 implements NotificationCenter.NotificationCenter
                 h6Var.setSubLabel(LocaleController.formatPluralString("Chats", i12, new Object[0]));
                 return;
             }
-            this.f10682e.Y2.N(false);
+            this.f10710e.Y2.N(false);
         }
     }
 
@@ -152,21 +152,21 @@ public final class f extends n2 implements NotificationCenter.NotificationCenter
 
     @Override
     public final boolean onFragmentCreate() {
-        this.f10679a = this.arguments.getLong("dialog_id", 0L);
-        this.f10680b = getMessagesController().getChat(Long.valueOf(-this.f10679a));
-        this.f10681c = getMessagesController().getUser(Long.valueOf(this.f10679a));
+        this.f10707a = this.arguments.getLong("dialog_id", 0L);
+        this.f10708b = getMessagesController().getChat(Long.valueOf(-this.f10707a));
+        this.f10709c = getMessagesController().getUser(Long.valueOf(this.f10707a));
         this.h = getMessagesController().getJoinedCommunities();
         getMessagesController().fetchJoinedCommunities(new o1(this, 16), this.classGuid);
-        this.f10684n = getNotificationCenter().createObserversGroup(this).add(NotificationCenter.chatInfoDidLoad);
+        this.f10712n = getNotificationCenter().createObserversGroup(this).add(NotificationCenter.chatInfoDidLoad);
         return super.onFragmentCreate();
     }
 
     @Override
     public final void onFragmentDestroy() {
-        NotificationCenter.ObserversGroup observersGroup = this.f10684n;
+        NotificationCenter.ObserversGroup observersGroup = this.f10712n;
         if (observersGroup != null) {
             observersGroup.removeAllObservers();
-            this.f10684n = null;
+            this.f10712n = null;
         }
         super.onFragmentDestroy();
     }
@@ -174,6 +174,6 @@ public final class f extends n2 implements NotificationCenter.NotificationCenter
     @Override
     public final void onInsets(int i10, int i11, int i12, int i13) {
         super.onInsets(i10, i11, i12, i13);
-        this.f10682e.setPadding(0, i11, 0, i13);
+        this.f10710e.setPadding(0, i11, 0, i13);
     }
 }

@@ -1,15 +1,15 @@
 package di;
 public final class f extends eh.b {
-    public final int f7188n;
+    public final int f7216n;
 
     public f(int i10, org.telegram.ui.ActionBar.f6 f6Var) {
         super(i10, f6Var);
-        this.f7188n = 2;
+        this.f7216n = 2;
     }
 
     @Override
     public int G() {
-        switch (this.f7188n) {
+        switch (this.f7216n) {
             case 2:
                 if (a()) {
                     return 301989887;
@@ -22,7 +22,7 @@ public final class f extends eh.b {
 
     @Override
     public int J() {
-        switch (this.f7188n) {
+        switch (this.f7216n) {
             case 2:
                 if (a()) {
                     return 83886079;
@@ -35,7 +35,7 @@ public final class f extends eh.b {
 
     @Override
     public boolean a() {
-        switch (this.f7188n) {
+        switch (this.f7216n) {
             case 0:
                 return true;
             case 1:
@@ -47,7 +47,7 @@ public final class f extends eh.b {
 
     @Override
     public int p() {
-        switch (this.f7188n) {
+        switch (this.f7216n) {
             case 2:
                 if (a()) {
                     return 117440511;
@@ -60,6 +60,6 @@ public final class f extends eh.b {
 
     public f(org.telegram.ui.ActionBar.f6 f6Var, int i10, float f7, int i11) {
         super(f6Var, i10, f7);
-        this.f7188n = i11;
+        this.f7216n = i11;
     }
 }

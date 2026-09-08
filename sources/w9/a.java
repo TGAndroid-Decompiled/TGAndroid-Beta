@@ -6,23 +6,23 @@ import android.os.Build;
 import java.util.ArrayList;
 import n7.z0;
 public final class a {
-    public final String f48369a;
-    public final String f48370b;
-    public final ArrayList f48371c;
+    public final String f48398a;
+    public final String f48399b;
+    public final ArrayList f48400c;
     public final String d;
-    public final String f48372e;
-    public final String f48373f;
-    public final String f48374g;
+    public final String f48401e;
+    public final String f48402f;
+    public final String f48403g;
     public final z0 h;
 
     public a(String str, String str2, ArrayList arrayList, String str3, String str4, String str5, String str6, z0 z0Var) {
-        this.f48369a = str;
-        this.f48370b = str2;
-        this.f48371c = arrayList;
+        this.f48398a = str;
+        this.f48399b = str2;
+        this.f48400c = arrayList;
         this.d = str3;
-        this.f48372e = str4;
-        this.f48373f = str5;
-        this.f48374g = str6;
+        this.f48401e = str4;
+        this.f48402f = str5;
+        this.f48403g = str6;
         this.h = z0Var;
     }
 

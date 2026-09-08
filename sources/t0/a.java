@@ -17,10 +17,10 @@ import org.telegram.ui.ActionBar.b2;
 import org.telegram.ui.Components.rc0;
 import yh.f4;
 public final class a implements pa.a, d9.e, a2, rc0, q3.g, Continuation, q9.d, Vector.TLDeserializer, GenericProvider {
-    public final int f46417a;
+    public final int f46445a;
 
     public a(int i10) {
-        this.f46417a = i10;
+        this.f46445a = i10;
     }
 
     public static FingerprintManager a(Object obj) {
@@ -30,14 +30,14 @@ public final class a implements pa.a, d9.e, a2, rc0, q3.g, Continuation, q9.d, V
     @Override
     public Object D(cf.c cVar) {
         Set s10 = cVar.s(xa.a.class);
-        xa.c cVar2 = xa.c.f49329c;
+        xa.c cVar2 = xa.c.f49358c;
         if (cVar2 == null) {
             synchronized (xa.c.class) {
                 try {
-                    cVar2 = xa.c.f49329c;
+                    cVar2 = xa.c.f49358c;
                     if (cVar2 == null) {
                         cVar2 = new xa.c(0);
-                        xa.c.f49329c = cVar2;
+                        xa.c.f49358c = cVar2;
                     }
                 } finally {
                 }
@@ -72,7 +72,7 @@ public final class a implements pa.a, d9.e, a2, rc0, q3.g, Continuation, q9.d, V
 
     @Override
     public String f(int i10) {
-        switch (this.f46417a) {
+        switch (this.f46445a) {
             case 6:
                 return String.valueOf(i10);
             default:
@@ -82,7 +82,7 @@ public final class a implements pa.a, d9.e, a2, rc0, q3.g, Continuation, q9.d, V
 
     @Override
     public void g(b2 b2Var, int i10) {
-        switch (this.f46417a) {
+        switch (this.f46445a) {
             case 5:
                 return;
             case 8:
@@ -109,7 +109,7 @@ public final class a implements pa.a, d9.e, a2, rc0, q3.g, Continuation, q9.d, V
     @Override
     public Object provide(Object obj) {
         Integer num = (Integer) obj;
-        int i10 = f4.f50275k0;
+        int i10 = f4.f50304k0;
         return 0;
     }
 
@@ -119,10 +119,10 @@ public final class a implements pa.a, d9.e, a2, rc0, q3.g, Continuation, q9.d, V
         File file;
         if (task.isSuccessful()) {
             w9.b bVar = (w9.b) task.getResult();
-            t9.b bVar2 = t9.b.f46479a;
-            bVar2.b("Crashlytics report successfully enqueued to DataTransport: " + bVar.f48376b);
+            t9.b bVar2 = t9.b.f46507a;
+            bVar2.b("Crashlytics report successfully enqueued to DataTransport: " + bVar.f48405b);
             z10 = true;
-            if (bVar.f48377c.delete()) {
+            if (bVar.f48406c.delete()) {
                 bVar2.b("Deleted report file: " + file.getPath());
             } else {
                 bVar2.d("Crashlytics could not delete report file: " + file.getPath(), null);
@@ -135,7 +135,7 @@ public final class a implements pa.a, d9.e, a2, rc0, q3.g, Continuation, q9.d, V
     }
 
     public a(n nVar) {
-        this.f46417a = 20;
+        this.f46445a = 20;
     }
 
     private final void b(b2 b2Var, int i10) {

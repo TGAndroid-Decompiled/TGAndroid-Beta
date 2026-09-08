@@ -11,21 +11,21 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 public final class p11 {
-    public final int f39383a;
-    public boolean f39384b;
-    public r11 f39385c;
-    public final boolean[] f39388g;
-    public boolean f39389i;
+    public final int f39410a;
+    public boolean f39411b;
+    public r11 f39412c;
+    public final boolean[] f39415g;
+    public boolean f39416i;
     public final ArrayList d = new ArrayList();
-    public final ArrayList f39386e = new ArrayList();
-    public final ArrayList f39387f = new ArrayList();
+    public final ArrayList f39413e = new ArrayList();
+    public final ArrayList f39414f = new ArrayList();
     public final ArrayList h = new ArrayList();
-    public final ArrayList f39390j = new ArrayList();
+    public final ArrayList f39417j = new ArrayList();
 
     public p11(int i10, int i11) {
         boolean[] zArr = new boolean[2];
-        this.f39388g = zArr;
-        this.f39383a = i11;
+        this.f39415g = zArr;
+        this.f39410a = i11;
         if (i11 <= 0) {
             zArr[0] = true;
         } else {
@@ -40,11 +40,11 @@ public final class p11 {
                 }
             }
             TLRPC.TL_inputStickerSetShortName tL_inputStickerSetShortName = new TLRPC.TL_inputStickerSetShortName();
-            String[] strArr = s11.f40276s;
+            String[] strArr = s11.f40303s;
             tL_inputStickerSetShortName.short_name = "FestiveFontEmoji";
             MediaDataController.getInstance(i10).getStickerSet(tL_inputStickerSetShortName, 0, false, new y(this, hashSet, arrayList, 7));
         }
-        String str = s11.f40276s[Utilities.random.nextInt(3)];
+        String str = s11.f40303s[Utilities.random.nextInt(3)];
         TLRPC.TL_inputStickerSetShortName tL_inputStickerSetShortName2 = new TLRPC.TL_inputStickerSetShortName();
         tL_inputStickerSetShortName2.short_name = "EmojiAnimations";
         MediaDataController.getInstance(i10).getStickerSet(tL_inputStickerSetShortName2, 0, false, new oj0(6, this, str));
@@ -60,7 +60,7 @@ public final class p11 {
                 i11 = 0;
             }
             if (p11Var != null) {
-                if (p11Var.f39383a == i11) {
+                if (p11Var.f39410a == i11) {
                     return p11Var;
                 }
                 p11Var.b(false);
@@ -75,11 +75,11 @@ public final class p11 {
     }
 
     public final void a() {
-        if (!this.f39384b && this.f39387f.size() >= this.f39386e.size()) {
-            boolean[] zArr = this.f39388g;
+        if (!this.f39411b && this.f39414f.size() >= this.f39413e.size()) {
+            boolean[] zArr = this.f39415g;
             int i10 = 0;
             if (zArr[0] && zArr[1]) {
-                this.f39384b = true;
+                this.f39411b = true;
                 ArrayList arrayList = this.h;
                 int size = arrayList.size();
                 while (i10 < size) {
@@ -93,14 +93,14 @@ public final class p11 {
     }
 
     public final void b(boolean z10) {
-        if (!z10 && !this.f39390j.isEmpty()) {
-            this.f39389i = true;
+        if (!z10 && !this.f39417j.isEmpty()) {
+            this.f39416i = true;
             return;
         }
         this.h.clear();
         int i10 = 0;
         while (true) {
-            ArrayList arrayList = this.f39386e;
+            ArrayList arrayList = this.f39413e;
             if (i10 < arrayList.size()) {
                 ((r11) arrayList.get(i10)).onDetachedFromWindow();
                 i10++;

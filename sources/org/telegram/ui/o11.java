@@ -23,29 +23,29 @@ public final class o11 extends FrameLayout {
     public boolean L;
     public final Rect M;
     public final ProfileActivity N;
-    public int f39075a;
-    public final Paint f39076b;
-    public boolean f39077c;
+    public int f39102a;
+    public final Paint f39103b;
+    public boolean f39104c;
     public final org.telegram.ui.Components.e6 d;
-    public int f39078e;
-    public int f39079f;
+    public int f39105e;
+    public int f39106f;
     public final org.telegram.ui.Components.h5 h;
-    public final org.telegram.ui.Components.h5 f39080n;
-    public int f39081r;
-    public int f39082s;
+    public final org.telegram.ui.Components.h5 f39107n;
+    public int f39108r;
+    public int f39109s;
     public int v;
-    public float f39083w;
-    public float f39084x;
-    public RadialGradient f39085y;
+    public float f39110w;
+    public float f39111x;
+    public RadialGradient f39112y;
 
     public o11(ProfileActivity profileActivity, Context context) {
         super(context);
         this.N = profileActivity;
-        this.f39076b = new Paint();
+        this.f39103b = new Paint();
         org.telegram.ui.Components.pr prVar = org.telegram.ui.Components.pr.h;
         this.d = new org.telegram.ui.Components.e6(this, 350L, prVar);
         this.h = new org.telegram.ui.Components.h5(this, 350L, prVar);
-        this.f39080n = new org.telegram.ui.Components.h5(this, 350L, prVar);
+        this.f39107n = new org.telegram.ui.Components.h5(this, 350L, prVar);
         this.E = new Matrix();
         this.F = new Paint(1);
         this.I = new org.telegram.ui.Components.o5(AndroidUtilities.dp(20.0f), 13, this, false);
@@ -58,37 +58,37 @@ public final class o11 extends FrameLayout {
     public final void a(MessagesController.PeerColor peerColor, boolean z10) {
         ProfileActivity profileActivity = this.N;
         if (peerColor != null) {
-            this.f39077c = true;
-            this.f39078e = peerColor.getBgColor1(org.telegram.ui.ActionBar.j6.I.q());
+            this.f39104c = true;
+            this.f39105e = peerColor.getBgColor1(org.telegram.ui.ActionBar.j6.I.q());
             int bgColor2 = peerColor.getBgColor2(org.telegram.ui.ActionBar.j6.I.q());
-            this.f39079f = bgColor2;
-            profileActivity.f33873c1 = i0.a.d(0.25f, this.f39078e, bgColor2);
+            this.f39106f = bgColor2;
+            profileActivity.f33900c1 = i0.a.d(0.25f, this.f39105e, bgColor2);
             int i10 = peerColor.patternColor;
             if (i10 != 0) {
                 this.G = i10;
                 this.H = org.telegram.ui.ActionBar.j6.l1(0.45f, i10);
             } else {
-                this.G = bq0.w0(this.f39078e);
-                this.H = org.telegram.ui.ActionBar.j6.l1(0.15f, bq0.w0(this.f39078e));
+                this.G = bq0.w0(this.f39105e);
+                this.H = org.telegram.ui.ActionBar.j6.l1(0.15f, bq0.w0(this.f39105e));
             }
         } else {
-            profileActivity.f33873c1 = this.f39075a;
-            this.f39077c = false;
-            int i11 = org.telegram.ui.ActionBar.j6.f20937s8;
-            if (AndroidUtilities.computePerceivedBrightness(org.telegram.ui.ActionBar.j6.v0(i11, profileActivity.f34031z0)) > 0.8f) {
+            profileActivity.f33900c1 = this.f39102a;
+            this.f39104c = false;
+            int i11 = org.telegram.ui.ActionBar.j6.f20964s8;
+            if (AndroidUtilities.computePerceivedBrightness(org.telegram.ui.ActionBar.j6.v0(i11, profileActivity.f34058z0)) > 0.8f) {
                 this.G = -1;
                 this.H = -1;
-            } else if (AndroidUtilities.computePerceivedBrightness(org.telegram.ui.ActionBar.j6.v0(i11, profileActivity.f34031z0)) < 0.2f) {
-                this.G = org.telegram.ui.ActionBar.j6.l1(0.5f, org.telegram.ui.ActionBar.j6.b(0.02f, 0.25f, org.telegram.ui.ActionBar.j6.v0(i11, profileActivity.f34031z0)));
-                this.H = org.telegram.ui.ActionBar.j6.l1(0.35f, org.telegram.ui.ActionBar.j6.b(0.02f, 0.25f, org.telegram.ui.ActionBar.j6.v0(i11, profileActivity.f34031z0)));
+            } else if (AndroidUtilities.computePerceivedBrightness(org.telegram.ui.ActionBar.j6.v0(i11, profileActivity.f34058z0)) < 0.2f) {
+                this.G = org.telegram.ui.ActionBar.j6.l1(0.5f, org.telegram.ui.ActionBar.j6.b(0.02f, 0.25f, org.telegram.ui.ActionBar.j6.v0(i11, profileActivity.f34058z0)));
+                this.H = org.telegram.ui.ActionBar.j6.l1(0.35f, org.telegram.ui.ActionBar.j6.b(0.02f, 0.25f, org.telegram.ui.ActionBar.j6.v0(i11, profileActivity.f34058z0)));
             } else {
-                this.G = bq0.w0(org.telegram.ui.ActionBar.j6.v0(i11, profileActivity.f34031z0));
-                this.H = org.telegram.ui.ActionBar.j6.l1(0.15f, bq0.w0(org.telegram.ui.ActionBar.j6.v0(i11, profileActivity.f34031z0)));
+                this.G = bq0.w0(org.telegram.ui.ActionBar.j6.v0(i11, profileActivity.f34058z0));
+                this.H = org.telegram.ui.ActionBar.j6.l1(0.15f, bq0.w0(org.telegram.ui.ActionBar.j6.v0(i11, profileActivity.f34058z0)));
             }
         }
         if (!z10) {
-            this.h.a(this.f39078e, true);
-            this.f39080n.a(this.f39079f, true);
+            this.h.a(this.f39105e, true);
+            this.f39107n.a(this.f39106f, true);
         }
         invalidate();
     }
@@ -146,15 +146,15 @@ public final class o11 extends FrameLayout {
         }
         float f12 = currentActionBarHeight + i10 + profileActivity.Q1 + profileActivity.T1;
         int i12 = (int) ((1.0f - profileActivity.E5) * f12);
-        Paint paint3 = this.f39076b;
+        Paint paint3 = this.f39103b;
         if (i12 != 0) {
-            paint3.setColor(this.f39075a);
-            int a2 = this.h.a(this.f39078e, false);
-            int a10 = this.f39080n.a(this.f39079f, false);
-            org.telegram.ui.Components.dh0 dh0Var = profileActivity.f33857a0;
+            paint3.setColor(this.f39102a);
+            int a2 = this.h.a(this.f39105e, false);
+            int a10 = this.f39107n.a(this.f39106f, false);
+            org.telegram.ui.Components.dh0 dh0Var = profileActivity.f33884a0;
             if (dh0Var != null) {
                 int i13 = this.H;
-                boolean z10 = this.f39077c;
+                boolean z10 = this.f39104c;
                 if (dh0Var.S == null || dh0Var.Q != i13 || dh0Var.R != z10) {
                     dh0Var.Q = i13;
                     dh0Var.R = z10;
@@ -162,10 +162,10 @@ public final class o11 extends FrameLayout {
                 }
             }
             int width = getWidth() / 2;
-            RadialGradient radialGradient = this.f39085y;
+            RadialGradient radialGradient = this.f39112y;
             Paint paint4 = this.F;
-            if (radialGradient == null || this.f39081r != a2 || this.f39082s != a10 || this.v != width) {
-                this.f39083w = AndroidUtilities.dp(96.0f) * 2;
+            if (radialGradient == null || this.f39108r != a2 || this.f39109s != a10 || this.v != width) {
+                this.f39110w = AndroidUtilities.dp(96.0f) * 2;
                 kVar2 = ((org.telegram.ui.ActionBar.n2) profileActivity).actionBar;
                 if (kVar2.getOccupyStatusBar()) {
                     i11 = AndroidUtilities.statusBarHeight;
@@ -173,23 +173,23 @@ public final class o11 extends FrameLayout {
                     i11 = 0;
                 }
                 kVar3 = ((org.telegram.ui.ActionBar.n2) profileActivity).actionBar;
-                this.f39084x = kVar3.getTranslationY() + ((org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() + i11) - (AndroidUtilities.density * 21.0f));
+                this.f39111x = kVar3.getTranslationY() + ((org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() + i11) - (AndroidUtilities.density * 21.0f));
                 this.v = width;
-                float f13 = this.f39084x;
-                float f14 = this.f39083w;
-                this.f39082s = a10;
-                this.f39081r = a2;
+                float f13 = this.f39111x;
+                float f14 = this.f39110w;
+                this.f39109s = a10;
+                this.f39108r = a2;
                 RadialGradient radialGradient2 = new RadialGradient(width, (f14 / 2.0f) + f13, f14, new int[]{a10, a2}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
-                this.f39085y = radialGradient2;
+                this.f39112y = radialGradient2;
                 radialGradient2.setLocalMatrix(this.E);
-                paint4.setShader(this.f39085y);
+                paint4.setShader(this.f39112y);
             }
             if (profileActivity.J1 == 0) {
                 f7 = 1.0f;
             } else {
                 f7 = profileActivity.S1;
             }
-            float e7 = this.d.e(this.f39077c) * f7;
+            float e7 = this.d.e(this.f39104c) * f7;
             if (e7 < 1.0f) {
                 paint2 = paint3;
                 canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), i12, paint2);
@@ -211,8 +211,8 @@ public final class o11 extends FrameLayout {
                 boolean z12 = true;
                 if (!z11) {
                     if (o5Var != null) {
-                        Drawable drawable = o5Var.f28961f[0];
-                        if ((drawable instanceof org.telegram.ui.Components.q5) && (y3Var = ((org.telegram.ui.Components.q5) drawable).f29584k) != null && y3Var.hasImageLoaded()) {
+                        Drawable drawable = o5Var.f28988f[0];
+                        if ((drawable instanceof org.telegram.ui.Components.q5) && (y3Var = ((org.telegram.ui.Components.q5) drawable).f29611k) != null && y3Var.hasImageLoaded()) {
                             this.L = true;
                         }
                     }
@@ -233,13 +233,13 @@ public final class o11 extends FrameLayout {
                     int measuredWidth = getMeasuredWidth();
                     float y3 = profileActivity.y3();
                     j0 j0Var = profileActivity.Y;
-                    float[][] fArr = zh.j0.f52060a;
+                    float[][] fArr = zh.j0.f52091a;
                     RectF rectF = AndroidUtilities.rectTmp;
                     f10 = 1.0f;
                     rectF.set(j0Var.getX(), j0Var.getY(), (j0Var.getScaleX() * j0Var.getWidth()) + j0Var.getX(), (j0Var.getScaleY() * j0Var.getHeight()) + j0Var.getY());
                     zh.j0.c(canvas2, o5Var, measuredWidth, A, y3, rectF, 1.0f);
                     canvas2.restore();
-                    chVar = profileActivity.f33907g5;
+                    chVar = profileActivity.f33934g5;
                     if (chVar != null && (zVar = (actionBar = ((org.telegram.ui.ActionBar.n2) chVar).getActionBar()).E) != null) {
                         int save = canvas2.save();
                         canvas2.translate(zVar.getX() + actionBar.getX(), zVar.getY() + actionBar.getY());
@@ -250,7 +250,7 @@ public final class o11 extends FrameLayout {
                 }
             }
             f10 = 1.0f;
-            chVar = profileActivity.f33907g5;
+            chVar = profileActivity.f33934g5;
             if (chVar != null) {
                 int save2 = canvas2.save();
                 canvas2.translate(zVar.getX() + actionBar.getX(), zVar.getY() + actionBar.getY());
@@ -263,20 +263,20 @@ public final class o11 extends FrameLayout {
             paint = paint3;
         }
         if (i12 != f12 && !profileActivity.G1) {
-            paint.setColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f20663d6, profileActivity.f34031z0));
+            paint.setColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f20690d6, profileActivity.f34058z0));
             this.M.set(0, i12, getMeasuredWidth(), (int) f12);
-            profileActivity.f33945m5.J(canvas2, getY(), this.M, paint, true);
+            profileActivity.f33972m5.J(canvas2, getY(), this.M, paint, true);
         }
     }
 
     @Override
     public final void setBackgroundColor(int i10) {
-        if (i10 != this.f39075a) {
-            this.f39075a = i10;
-            this.f39076b.setColor(i10);
+        if (i10 != this.f39102a) {
+            this.f39102a = i10;
+            this.f39103b.setColor(i10);
             invalidate();
-            if (!this.f39077c) {
-                this.N.f33873c1 = this.f39075a;
+            if (!this.f39104c) {
+                this.N.f33900c1 = this.f39102a;
             }
         }
     }

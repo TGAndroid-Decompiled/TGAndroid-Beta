@@ -7,7 +7,7 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 public final class i9 extends org.telegram.ui.Components.g51 {
-    public static final int f37261a = 0;
+    public static final int f37288a = 0;
 
     static {
         org.telegram.ui.Components.g51.setup(new org.telegram.ui.Components.g51());
@@ -19,9 +19,9 @@ public final class i9 extends org.telegram.ui.Components.g51 {
         j9 j9Var = (j9) view;
         TLRPC.Chat chat = (TLRPC.Chat) h51Var.G;
         View.OnClickListener onClickListener = h51Var.D;
-        j9Var.f37699c = chat;
-        org.telegram.ui.Components.xh0 xh0Var = j9Var.f37698b;
-        xh0Var.setTag(Long.valueOf(chat.f19869id));
+        j9Var.f37726c = chat;
+        org.telegram.ui.Components.xh0 xh0Var = j9Var.f37725b;
+        xh0Var.setTag(Long.valueOf(chat.f19896id));
         if (ChatObject.isChannel(chat) && !chat.megagroup) {
             if (!ChatObject.isPublic(chat)) {
                 lowerCase = LocaleController.getString(R.string.ChannelPrivate).toLowerCase();
@@ -35,7 +35,7 @@ public final class i9 extends org.telegram.ui.Components.g51 {
         } else {
             lowerCase = LocaleController.getString(R.string.MegaPublic).toLowerCase();
         }
-        j9Var.f37697a.t(chat, null, null, lowerCase, false, false);
+        j9Var.f37724a.t(chat, null, null, lowerCase, false, false);
         xh0Var.setOnClickListener(onClickListener);
     }
 

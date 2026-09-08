@@ -19,36 +19,36 @@ import org.telegram.ui.oy;
 import org.telegram.ui.tx;
 import org.telegram.ui.uy;
 public final class f2 implements Utilities.Callback {
-    public final int f17606a;
-    public final long f17607b;
-    public final Object f17608c;
+    public final int f17633a;
+    public final long f17634b;
+    public final Object f17635c;
     public final Object d;
-    public final Object f17609e;
+    public final Object f17636e;
 
     public f2(Object obj, long j3, Object obj2, Object obj3, int i10) {
-        this.f17606a = i10;
-        this.f17608c = obj;
-        this.f17607b = j3;
+        this.f17633a = i10;
+        this.f17635c = obj;
+        this.f17634b = j3;
         this.d = obj2;
-        this.f17609e = obj3;
+        this.f17636e = obj3;
     }
 
     @Override
     public final void run(Object obj) {
-        int i10 = this.f17606a;
-        long j3 = this.f17607b;
-        Object obj2 = this.f17609e;
+        int i10 = this.f17633a;
+        long j3 = this.f17634b;
+        Object obj2 = this.f17636e;
         Object obj3 = this.d;
-        Object obj4 = this.f17608c;
+        Object obj4 = this.f17635c;
         switch (i10) {
             case 0:
-                ((FactCheckController) obj4).lambda$loadMissing$3(this.f17607b, (ArrayList) obj3, (HashMap) obj2, (ArrayList) obj);
+                ((FactCheckController) obj4).lambda$loadMissing$3(this.f17634b, (ArrayList) obj3, (HashMap) obj2, (ArrayList) obj);
                 return;
             case 1:
-                ((MessagesController) obj4).lambda$checkSensitive$448(this.f17607b, (boolean[]) obj3, (Runnable) obj2, (Boolean) obj);
+                ((MessagesController) obj4).lambda$checkSensitive$448(this.f17634b, (boolean[]) obj3, (Runnable) obj2, (Boolean) obj);
                 return;
             case 2:
-                ((TranslateController) obj4).lambda$checkTranslation$6((MessageObject) obj3, (String) obj2, this.f17607b, (TLRPC.TL_textWithEntities) obj);
+                ((TranslateController) obj4).lambda$checkTranslation$6((MessageObject) obj3, (String) obj2, this.f17634b, (TLRPC.TL_textWithEntities) obj);
                 return;
             case 3:
                 tx txVar = (tx) obj4;
@@ -56,7 +56,7 @@ public final class f2 implements Utilities.Callback {
                 Runnable runnable = (Runnable) obj;
                 txVar.getClass();
                 ((org.telegram.ui.ActionBar.b2) obj3).dismiss();
-                uy uyVar = txVar.f40852b;
+                uy uyVar = txVar.f40879b;
                 uyVar.getMessagesController().loadChannelParticipants(Long.valueOf(j3));
                 oy oyVar = uyVar.C2;
                 uyVar.removeSelfFromStack();
@@ -94,7 +94,7 @@ public final class f2 implements Utilities.Callback {
                     float max = Math.max(createBitmap.getWidth() / bitmap.getWidth(), createBitmap.getHeight() / bitmap.getHeight());
                     canvas.scale(max, max);
                     canvas.drawBitmap(bitmap, (-bitmap.getWidth()) / 2.0f, (-bitmap.getHeight()) / 2.0f, paint);
-                    AndroidUtilities.runOnUIThread(new org.telegram.messenger.voip.f(photoViewer, photoEntry, this.f17607b, str, createBitmap, 6));
+                    AndroidUtilities.runOnUIThread(new org.telegram.messenger.voip.f(photoViewer, photoEntry, this.f17634b, str, createBitmap, 6));
                     return;
                 } catch (Exception e7) {
                     FileLog.e(e7);
@@ -111,18 +111,18 @@ public final class f2 implements Utilities.Callback {
     }
 
     public f2(Object obj, Dialog dialog, long j3, Object obj2, int i10) {
-        this.f17606a = i10;
-        this.f17608c = obj;
+        this.f17633a = i10;
+        this.f17635c = obj;
         this.d = dialog;
-        this.f17607b = j3;
-        this.f17609e = obj2;
+        this.f17634b = j3;
+        this.f17636e = obj2;
     }
 
     public f2(Object obj, Object obj2, Object obj3, long j3, int i10) {
-        this.f17606a = i10;
-        this.f17608c = obj;
+        this.f17633a = i10;
+        this.f17635c = obj;
         this.d = obj2;
-        this.f17609e = obj3;
-        this.f17607b = j3;
+        this.f17636e = obj3;
+        this.f17634b = j3;
     }
 }

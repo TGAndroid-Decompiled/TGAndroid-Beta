@@ -1,9 +1,9 @@
 package x7;
 public final class z6 {
-    public Long f49274a;
-    public Long f49275b;
-    public Long f49276c;
+    public Long f49303a;
+    public Long f49304b;
+    public Long f49305c;
     public Long d;
-    public Long f49277e;
-    public Long f49278f;
+    public Long f49306e;
+    public Long f49307f;
 }

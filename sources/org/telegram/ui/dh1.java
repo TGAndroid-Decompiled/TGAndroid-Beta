@@ -7,23 +7,23 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class dh1 implements Runnable {
-    public final int f35789a;
-    public final hh1 f35790b;
-    public final TLRPC.TL_error f35791c;
+    public final int f35816a;
+    public final hh1 f35817b;
+    public final TLRPC.TL_error f35818c;
 
     public dh1(hh1 hh1Var, TLRPC.TL_error tL_error, int i10) {
-        this.f35789a = i10;
-        this.f35790b = hh1Var;
-        this.f35791c = tL_error;
+        this.f35816a = i10;
+        this.f35817b = hh1Var;
+        this.f35818c = tL_error;
     }
 
     @Override
     public final void run() {
         String formatPluralString;
         String formatPluralString2;
-        int i10 = this.f35789a;
-        TLRPC.TL_error tL_error = this.f35791c;
-        hh1 hh1Var = this.f35790b;
+        int i10 = this.f35816a;
+        TLRPC.TL_error tL_error = this.f35818c;
+        hh1 hh1Var = this.f35817b;
         switch (i10) {
             case 0:
                 hh1Var.w0();
@@ -32,7 +32,7 @@ public final class dh1 implements Runnable {
                     AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(hh1Var.getParentActivity());
                     alertDialog$Builder.k(LocaleController.getString(R.string.OK), new yg1(hh1Var, 3));
                     String string = LocaleController.getString(R.string.PasswordReset);
-                    org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20198a;
+                    org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20225a;
                     b2Var.T = string;
                     b2Var.R = LocaleController.getString(R.string.TwoStepVerificationTitle);
                     Dialog showDialog = hh1Var.showDialog(b2Var);

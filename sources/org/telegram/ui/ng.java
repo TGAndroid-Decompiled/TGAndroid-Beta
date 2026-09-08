@@ -7,26 +7,26 @@ import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 public final class ng implements ValueAnimator.AnimatorUpdateListener {
-    public final int f38948a;
-    public final float f38949b;
-    public final Object f38950c;
+    public final int f38975a;
+    public final float f38976b;
+    public final Object f38977c;
 
     public ng(Object obj, float f7, int i10) {
-        this.f38948a = i10;
-        this.f38950c = obj;
-        this.f38949b = f7;
+        this.f38975a = i10;
+        this.f38977c = obj;
+        this.f38976b = f7;
     }
 
     @Override
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
         int i10;
-        switch (this.f38948a) {
+        switch (this.f38975a) {
             case 0:
-                co coVar = (co) this.f38950c;
+                co coVar = (co) this.f38977c;
                 coVar.getClass();
                 float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 coVar.H8 = floatValue;
-                coVar.L8 = floatValue / this.f38949b;
+                coVar.L8 = floatValue / this.f38976b;
                 View view = coVar.fragmentView;
                 if (view != null) {
                     view.invalidate();
@@ -34,31 +34,31 @@ public final class ng implements ValueAnimator.AnimatorUpdateListener {
                 }
                 return;
             case 1:
-                ArrayList arrayList = (ArrayList) this.f38950c;
+                ArrayList arrayList = (ArrayList) this.f38977c;
                 float floatValue2 = 1.0f - ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 for (int i11 = 0; i11 < arrayList.size(); i11++) {
                     View view2 = (View) arrayList.get(i11);
                     if (view2 != null) {
-                        view2.setTranslationY(this.f38949b * floatValue2);
+                        view2.setTranslationY(this.f38976b * floatValue2);
                     }
                 }
                 return;
             case 2:
-                ((org.telegram.ui.Components.tn) this.f38950c).E.setTranslationY(AndroidUtilities.lerp(this.f38949b, 0.0f, ((Float) valueAnimator.getAnimatedValue()).floatValue()));
+                ((org.telegram.ui.Components.tn) this.f38977c).E.setTranslationY(AndroidUtilities.lerp(this.f38976b, 0.0f, ((Float) valueAnimator.getAnimatedValue()).floatValue()));
                 return;
             case 3:
-                ((zv0) this.f38950c).R.setTranslationY(AndroidUtilities.lerp(this.f38949b, 0.0f, ((Float) valueAnimator.getAnimatedValue()).floatValue()));
+                ((zv0) this.f38977c).R.setTranslationY(AndroidUtilities.lerp(this.f38976b, 0.0f, ((Float) valueAnimator.getAnimatedValue()).floatValue()));
                 return;
             default:
-                i21 i21Var = (i21) this.f38950c;
+                i21 i21Var = (i21) this.f38977c;
                 i21Var.getClass();
                 float floatValue3 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                float lerp = AndroidUtilities.lerp(0.0f, this.f38949b, floatValue3);
-                i21Var.f37171a.setTranslationX(lerp);
-                i21Var.f37172b.setTranslationX(lerp);
-                ImageView imageView = i21Var.f37173c;
+                float lerp = AndroidUtilities.lerp(0.0f, this.f38976b, floatValue3);
+                i21Var.f37198a.setTranslationX(lerp);
+                i21Var.f37199b.setTranslationX(lerp);
+                ImageView imageView = i21Var.f37200c;
                 imageView.setTranslationX(lerp);
-                org.telegram.ui.Components.mp mpVar = i21Var.f37175f;
+                org.telegram.ui.Components.mp mpVar = i21Var.f37202f;
                 if (LocaleController.isRTL) {
                     i10 = AndroidUtilities.dp(32.0f);
                 } else {

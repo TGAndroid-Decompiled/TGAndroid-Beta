@@ -6,15 +6,15 @@ import java.io.DataInputStream;
 import java.io.EOFException;
 import java.io.IOException;
 public final class b extends p {
-    public final int f15405g;
+    public final int f15432g;
 
     public b(d dVar, p pVar, String str, int i10) {
         super(dVar, pVar, str);
-        this.f15405g = i10;
+        this.f15432g = i10;
     }
 
     public static void h(StringBuffer stringBuffer, p pVar) {
-        p pVar2 = (p) pVar.f2639c;
+        p pVar2 = (p) pVar.f2666c;
         if (pVar2 != null) {
             h(stringBuffer, pVar2);
             stringBuffer.append("/");
@@ -23,12 +23,12 @@ public final class b extends p {
     }
 
     public long i() {
-        return ((nf.a) ((d) this.f2638b)).e();
+        return ((nf.a) ((d) this.f2665b)).e();
     }
 
     public boolean j() {
         long j3;
-        b bVar = (b) this.f2641f;
+        b bVar = (b) this.f2668f;
         if (bVar != null) {
             j3 = bVar.i();
         } else {
@@ -51,12 +51,12 @@ public final class b extends p {
     }
 
     public short l() {
-        return ((DataInputStream) this.f2640e).readShort();
+        return ((DataInputStream) this.f2667e).readShort();
     }
 
     public String m() {
         byte[] bArr = new byte[(int) i()];
-        ((DataInputStream) this.f2640e).readFully(bArr);
+        ((DataInputStream) this.f2667e).readFully(bArr);
         String str = new String(bArr, "UTF-8");
         int indexOf = str.indexOf(0);
         if (indexOf < 0) {
@@ -68,7 +68,7 @@ public final class b extends p {
     public void n(int i10) {
         int i11 = 0;
         while (i11 < i10) {
-            int skipBytes = ((DataInputStream) this.f2640e).skipBytes(i10 - i11);
+            int skipBytes = ((DataInputStream) this.f2667e).skipBytes(i10 - i11);
             if (skipBytes > 0) {
                 i11 += skipBytes;
             } else {
@@ -79,23 +79,23 @@ public final class b extends p {
 
     @Override
     public final String toString() {
-        switch (this.f15405g) {
+        switch (this.f15432g) {
             case 0:
                 StringBuffer stringBuffer = new StringBuffer();
                 h(stringBuffer, this);
                 stringBuffer.append("[off=");
-                long j3 = ((d) ((p) this.f2639c).f2638b).f6347b;
-                d dVar = (d) this.f2638b;
-                stringBuffer.append(j3 - dVar.f6347b);
+                long j3 = ((d) ((p) this.f2666c).f2665b).f6374b;
+                d dVar = (d) this.f2665b;
+                stringBuffer.append(j3 - dVar.f6374b);
                 stringBuffer.append(",pos=");
-                stringBuffer.append(dVar.f6347b);
+                stringBuffer.append(dVar.f6374b);
                 stringBuffer.append(",len=");
                 nf.a aVar = (nf.a) dVar;
-                stringBuffer.append(aVar.e() + aVar.f6347b);
+                stringBuffer.append(aVar.e() + aVar.f6374b);
                 stringBuffer.append("]");
                 return stringBuffer.toString();
             default:
-                return a4.a.r(new StringBuilder("mp4[pos="), ((d) this.f2638b).f6347b, "]");
+                return a4.a.r(new StringBuilder("mp4[pos="), ((d) this.f2665b).f6374b, "]");
         }
     }
 }

@@ -27,7 +27,10 @@ import org.webrtc.VideoCapturer;
 import org.webrtc.voiceengine.WebRtcAudioRecord;
 public class VideoCapturerDevice {
     private static final int CAPTURE_FPS = 30;
+    private static final int CAPTURE_HEIGHT = 720;
+    private static final int CAPTURE_WIDTH = 1280;
     public static EglBase eglBase;
+    private static VideoCapturerDevice[] instance = new VideoCapturerDevice[2];
     public static Intent mediaProjectionPermissionResultData;
     private int currentHeight;
     private int currentWidth;
@@ -37,9 +40,6 @@ public class VideoCapturerDevice {
     private HandlerThread thread;
     private VideoCapturer videoCapturer;
     private SurfaceTextureHelper videoCapturerSurfaceTextureHelper;
-    private static final int CAPTURE_WIDTH = 1280;
-    private static final int CAPTURE_HEIGHT = 720;
-    private static VideoCapturerDevice[] instance = new VideoCapturerDevice[2];
 
     public class AnonymousClass1 extends MediaProjection.Callback {
         public AnonymousClass1() {
@@ -98,7 +98,7 @@ public class VideoCapturerDevice {
         return getScreenCaptureSize(16);
     }
 
-    private EglBase.Context getSharedEGLContext() {
+    private static EglBase.Context getSharedEGLContext() {
         if (eglBase == null) {
             eglBase = org.webrtc.e.d(null, EglBase.CONFIG_PLAIN);
         }
@@ -110,7 +110,7 @@ public class VideoCapturerDevice {
     }
 
     private void init(long j3, String str) {
-        AndroidUtilities.runOnUIThread(new a3.g0(this, j3, str, 12));
+        AndroidUtilities.runOnUIThread(new a3.h0(this, j3, str, 12));
     }
 
     public static void lambda$checkScreenCapturerSize$1(VideoCapturerDevice videoCapturerDevice, Point point) {
@@ -143,7 +143,7 @@ public class VideoCapturerDevice {
         this.nativeCapturerObserver = nativeGetJavaVideoCapturerObserver(this.nativePtr);
         this.videoCapturer.initialize(this.videoCapturerSurfaceTextureHelper, ApplicationLoader.applicationContext, this.nativeCapturerObserver);
         FileLog.d("VideoCapturerDevice init(" + j3 + "): videoCapturer.startCapture CAMERA");
-        this.videoCapturer.startCapture(CAPTURE_WIDTH, CAPTURE_HEIGHT, 30);
+        this.videoCapturer.startCapture(1280, 720, 30);
     }
 
     public void lambda$init$4(String str) {
@@ -161,7 +161,7 @@ public class VideoCapturerDevice {
                     this.currentWidth = screenCaptureSize.x;
                     this.currentHeight = screenCaptureSize.y;
                     this.videoCapturerSurfaceTextureHelper = SurfaceTextureHelper.create("ScreenCapturerThread", eglBase.getEglBaseContext());
-                    this.handler.post(new a3.g0(this, j3, screenCaptureSize, 13));
+                    this.handler.post(new a3.h0(this, j3, screenCaptureSize, 13));
                 }
             } else {
                 if (Camera2Enumerator.isSupported(ApplicationLoader.applicationContext)) {
@@ -262,7 +262,7 @@ public class VideoCapturerDevice {
             sb2.append(", ");
             sb2.append(i10);
             e2.t("): videoCapturer.startCapture", sb2);
-            this.videoCapturer.startCapture(CAPTURE_WIDTH, CAPTURE_HEIGHT, 30);
+            this.videoCapturer.startCapture(1280, 720, 30);
             return;
         }
         try {

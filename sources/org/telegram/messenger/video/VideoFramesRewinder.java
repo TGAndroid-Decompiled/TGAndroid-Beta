@@ -1,6 +1,6 @@
 package org.telegram.messenger.video;
 
-import a3.g0;
+import a3.h0;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
@@ -29,7 +29,7 @@ public class VideoFramesRewinder {
     private View parentView;
     private long prepareToMs;
     private float prepareWithSpeed;
-    int f19256w;
+    int f19283w;
     private final Paint paint = new Paint(2);
     private final int[] meta = new int[8];
     private final ArrayList<Frame> freeFrames = new ArrayList<>();
@@ -114,7 +114,7 @@ public class VideoFramesRewinder {
         int[] iArr = this.meta;
         int i12 = iArr[4];
         int i13 = 0;
-        int min = Math.min(this.f19256w / 4, iArr[0]);
+        int min = Math.min(this.f19283w / 4, iArr[0]);
         int min2 = Math.min(this.h / 4, this.meta[1]);
         int i14 = this.maxFrameSide;
         if (min > i14 || min2 > i14) {
@@ -172,7 +172,7 @@ public class VideoFramesRewinder {
             i12 = i10;
             i13 = 0;
         }
-        AndroidUtilities.runOnUIThread(new g0(this, arrayList, currentTimeMillis, 10));
+        AndroidUtilities.runOnUIThread(new h0(this, arrayList, currentTimeMillis, 10));
     }
 
     private void prepare(long j3) {
@@ -194,7 +194,7 @@ public class VideoFramesRewinder {
     }
 
     public void draw(Canvas canvas, int i10, int i11) {
-        this.f19256w = i10;
+        this.f19283w = i10;
         this.h = i11;
         if (this.mDecoder != null && this.currentFrame != null) {
             canvas.save();

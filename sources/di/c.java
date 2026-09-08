@@ -3,24 +3,24 @@ package di;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 public final class c extends AnimatorListenerAdapter {
-    public final int f6979a;
-    public final d f6980b;
+    public final int f7007a;
+    public final d f7008b;
 
     public c(d dVar, int i10) {
-        this.f6979a = i10;
-        this.f6980b = dVar;
+        this.f7007a = i10;
+        this.f7008b = dVar;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        switch (this.f6979a) {
+        switch (this.f7007a) {
             case 0:
-                d dVar = this.f6980b;
+                d dVar = this.f7008b;
                 dVar.J = false;
-                dVar.f7014e.q(null, false, true);
+                dVar.f7042e.q(null, false, true);
                 return;
             default:
-                d dVar2 = this.f6980b;
+                d dVar2 = this.f7008b;
                 dVar2.P = 1.0f;
                 dVar2.invalidate();
                 return;

@@ -13,42 +13,42 @@ public final class dv0 extends org.telegram.ui.Components.x50 {
     public final CharSequence d() {
         StringBuilder sb2 = new StringBuilder();
         sb2.append(LocaleController.getString("AccDescrVideoQuality", R.string.AccDescrVideoQuality));
-        if (this.d.f36193s.Y7 > 0) {
+        if (this.d.f36220s.Y7 > 0) {
             sb2.append(", ");
-            sb2.append(this.d.f36193s.X7 + 1);
+            sb2.append(this.d.f36220s.X7 + 1);
             sb2.append(" / ");
-            sb2.append(this.d.f36193s.Y7);
+            sb2.append(this.d.f36220s.Y7);
         }
         sb2.append(", ");
         sb2.append(this.d.h);
         sb2.append(" – ");
-        sb2.append(this.d.f36191n);
+        sb2.append(this.d.f36218n);
         return sb2.toString();
     }
 
     @Override
     public final int i() {
-        return Math.max(0, this.d.f36193s.Y7 - 1);
+        return Math.max(0, this.d.f36220s.Y7 - 1);
     }
 
     @Override
     public final int j() {
-        return this.d.f36193s.X7;
+        return this.d.f36220s.X7;
     }
 
     @Override
     public final void k(int i10) {
         int max;
-        if (this.d.f36193s.Y7 > 0 && (max = Math.max(0, Math.min(this.d.f36193s.Y7 - 1, i10))) != this.d.f36193s.X7) {
+        if (this.d.f36220s.Y7 > 0 && (max = Math.max(0, Math.min(this.d.f36220s.Y7 - 1, i10))) != this.d.f36220s.X7) {
             ev0 ev0Var = this.d;
-            ev0Var.f36192r = ev0Var.f36193s.X7;
-            this.d.f36193s.X7 = max;
-            this.d.f36193s.R0();
+            ev0Var.f36219r = ev0Var.f36220s.X7;
+            this.d.f36220s.X7 = max;
+            this.d.f36220s.R0();
             this.d.invalidate();
-            int i11 = this.d.f36193s.X7;
+            int i11 = this.d.f36220s.X7;
             ev0 ev0Var2 = this.d;
-            if (i11 != ev0Var2.f36192r) {
-                ev0Var2.f36193s.p2(1);
+            if (i11 != ev0Var2.f36219r) {
+                ev0Var2.f36220s.p2(1);
             }
         }
     }

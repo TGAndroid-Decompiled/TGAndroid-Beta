@@ -10,11 +10,11 @@ import k2.g0;
 public interface l {
     void a(long j3, int i10, int i11, int i12);
 
-    void b(int i10, h2.c cVar, long j3, int i11);
+    void b(int i10, h2.d dVar, long j3, int i11);
 
     void c(int i10);
 
-    void d(a3.l lVar, Handler handler);
+    void d(a3.m mVar, Handler handler);
 
     void e();
 

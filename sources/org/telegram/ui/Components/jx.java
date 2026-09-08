@@ -6,16 +6,16 @@ import android.view.View;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 public final class jx extends FrameLayout {
-    public final kz f27582a;
+    public final kz f27609a;
 
     public jx(kz kzVar, Context context) {
         super(context);
-        this.f27582a = kzVar;
+        this.f27609a = kzVar;
     }
 
     @Override
     public final boolean drawChild(Canvas canvas, View view, long j3) {
-        kz kzVar = this.f27582a;
+        kz kzVar = this.f27609a;
         jw jwVar = kzVar.I;
         kw kwVar = kzVar.V;
         kx kxVar = kzVar.P;
@@ -27,7 +27,7 @@ public final class jx extends FrameLayout {
         if (view == kxVar && kwVar != null) {
             y3 = Math.max(y3, kwVar.getY() + kwVar.getMeasuredHeight() + 1.0f);
         }
-        canvas.clipRect(0.0f, y3 - (AndroidUtilities.dp(16.0f) * kzVar.f27926b.f15368e), getMeasuredWidth(), getMeasuredHeight());
+        canvas.clipRect(0.0f, y3 - (AndroidUtilities.dp(16.0f) * kzVar.f27953b.f15395e), getMeasuredWidth(), getMeasuredHeight());
         boolean drawChild = super.drawChild(canvas, view, j3);
         canvas.restore();
         return drawChild;

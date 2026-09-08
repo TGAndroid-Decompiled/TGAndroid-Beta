@@ -9,18 +9,18 @@ import java.util.ListIterator;
 import java.util.RandomAccess;
 import java.util.function.UnaryOperator;
 public abstract class m extends h implements List, RandomAccess, j$.util.List {
-    public static final i f16659b = new i(x.f16693e, 0);
+    public static final i f16686b = new i(x.f16720e, 0);
 
     public static x t(int i10, Object[] objArr) {
         if (i10 == 0) {
-            return x.f16693e;
+            return x.f16720e;
         }
         return new x(i10, objArr);
     }
 
     public static x u(Object[] objArr) {
         if (objArr.length == 0) {
-            return x.f16693e;
+            return x.f16720e;
         }
         Object[] objArr2 = (Object[]) objArr.clone();
         int length = objArr2.length;
@@ -170,7 +170,7 @@ public abstract class m extends h implements List, RandomAccess, j$.util.List {
             return this;
         }
         if (i12 == 0) {
-            return x.f16693e;
+            return x.f16720e;
         }
         return new l(this, i10, i12);
     }
@@ -190,7 +190,7 @@ public abstract class m extends h implements List, RandomAccess, j$.util.List {
         int size = size();
         if (i10 >= 0 && i10 <= size) {
             if (isEmpty()) {
-                return f16659b;
+                return f16686b;
             }
             return new i(this, i10);
         }

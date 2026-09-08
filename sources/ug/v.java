@@ -8,15 +8,15 @@ import org.telegram.ui.Components.d5;
 import org.telegram.ui.Components.q6;
 import org.telegram.ui.Components.rv0;
 public final class v implements d5, rv0, wg.f, wg.k {
-    public final b0 f47216a;
+    public final b0 f47244a;
 
     public v(b0 b0Var) {
-        this.f47216a = b0Var;
+        this.f47244a = b0Var;
     }
 
     @Override
     public void J(int i10, int i11, boolean z10) {
-        b0 b0Var = this.f47216a;
+        b0 b0Var = this.f47244a;
         b0Var.m0 = i10 * 1000;
         b0Var.a0(false, true);
     }
@@ -28,26 +28,26 @@ public final class v implements d5, rv0, wg.f, wg.k {
         String string;
         String str2;
         String formatPluralString;
-        b0 b0Var = this.f47216a;
-        int i12 = b0Var.f47075h0;
-        int i13 = wg.d.f48522s;
+        b0 b0Var = this.f47244a;
+        int i12 = b0Var.f47103h0;
+        int i13 = wg.d.f48551s;
         if (i12 == 2) {
-            b0Var.f47080n0 = i10;
+            b0Var.f47108n0 = i10;
         } else {
-            b0Var.f47081o0 = i10;
+            b0Var.f47109o0 = i10;
         }
-        b0Var.f47083q0.f48494a.b(b0Var.V(), true);
-        if (b0Var.f47075h0 == 3) {
+        b0Var.f47111q0.f48523a.b(b0Var.V(), true);
+        if (b0Var.f47103h0 == 3) {
             b0Var.a0(true, true);
         } else {
             b0Var.a0(false, false);
         }
-        vg.b bVar = b0Var.f47074g0;
+        vg.b bVar = b0Var.f47102g0;
         int V = b0Var.V();
-        for (int i14 = 0; i14 < bVar.f47795f.getChildCount(); i14++) {
-            View childAt = bVar.f47795f.getChildAt(i14);
+        for (int i14 = 0; i14 < bVar.f47823f.getChildCount(); i14++) {
+            View childAt = bVar.f47823f.getChildAt(i14);
             if (childAt instanceof wg.x) {
-                q6 q6Var = ((wg.x) childAt).f48570r;
+                q6 q6Var = ((wg.x) childAt).f48599r;
                 if (V <= 0) {
                     formatPluralString = "";
                 } else {
@@ -60,7 +60,7 @@ public final class v implements d5, rv0, wg.f, wg.k {
                 wg.g gVar = (wg.g) childAt;
                 int F = bVar.F(gVar.getChat());
                 boolean isChannelAndNotMegaGroup = ChatObject.isChannelAndNotMegaGroup(gVar.v);
-                if (gVar.f48526w) {
+                if (gVar.f48555w) {
                     if (F >= 1) {
                         if (isChannelAndNotMegaGroup) {
                             str2 = "Subscribers";
@@ -88,7 +88,7 @@ public final class v implements d5, rv0, wg.f, wg.k {
             }
         }
         bVar.m(8);
-        bVar.q(bVar.f47794e.size() - 12, 12);
+        bVar.q(bVar.f47822e.size() - 12, 12);
     }
 
     @Override

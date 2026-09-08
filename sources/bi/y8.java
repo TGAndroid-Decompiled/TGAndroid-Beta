@@ -19,18 +19,18 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.Components.xi0;
 public final class y8 extends FrameLayout {
-    public final ArrayList f4020a;
-    public ValueAnimator f4021b;
-    public int f4022c;
+    public final ArrayList f4047a;
+    public ValueAnimator f4048b;
+    public int f4049c;
     public int d;
-    public final a3.c f4023e;
+    public final a3.d f4050e;
 
     public y8(Context context, db dbVar) {
         super(context);
-        this.f4022c = -1;
+        this.f4049c = -1;
         int i10 = 0;
         this.d = 0;
-        this.f4023e = new a3.c(this, 24);
+        this.f4050e = new a3.d(this, 24);
         ImageView imageView = new ImageView(context);
         imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
         addView(imageView, -1, -1);
@@ -54,7 +54,7 @@ public final class y8 extends FrameLayout {
         textView2.setGravity(1);
         linearLayout.addView(textView2, w7.x5.k(68.0f, 8.0f, 68.0f, 36.0f, -2, -2));
         ArrayList arrayList = new ArrayList(4);
-        this.f4020a = arrayList;
+        this.f4047a = arrayList;
         arrayList.add(new x8(context, R.raw.stories_intro_go_forward, LocaleController.getString(R.string.StoriesIntroGoForwardHeader), LocaleController.getString(R.string.StoriesIntroGoForwardSubHeader)));
         arrayList.add(new x8(context, R.raw.stories_intro_pause, LocaleController.getString(R.string.StoriesIntroPauseAndSeekHeader), LocaleController.getString(R.string.StoriesIntroPauseAndSeekSubHeader)));
         arrayList.add(new x8(context, R.raw.stories_intro_go_back, LocaleController.getString(R.string.StoriesIntroGoBackHeader), LocaleController.getString(R.string.StoriesIntroGoBackSubHeader)));
@@ -66,14 +66,14 @@ public final class y8 extends FrameLayout {
             Object obj = arrayList.get(i11);
             i11++;
             x8 x8Var = (x8) obj;
-            TextPaint textPaint = x8Var.f3993e;
-            String str = x8Var.f3990a;
+            TextPaint textPaint = x8Var.f4020e;
+            String str = x8Var.f4017a;
             int length = str.length();
-            Rect rect = x8Var.f3996r;
+            Rect rect = x8Var.f4023r;
             textPaint.getTextBounds(str, 0, length, rect);
             int width = rect.width();
-            TextPaint textPaint2 = x8Var.f3994f;
-            String str2 = x8Var.f3991b;
+            TextPaint textPaint2 = x8Var.f4021f;
+            String str2 = x8Var.f4018b;
             textPaint2.getTextBounds(str2, 0, str2.length(), rect);
             int max = Math.max(width, rect.width()) + AndroidUtilities.dp(8.0f) + AndroidUtilities.dp(88.0f);
             if (max > measuredWidth) {
@@ -82,7 +82,7 @@ public final class y8 extends FrameLayout {
         }
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(AndroidUtilities.dp(8.0f) + measuredWidth > dbVar.getMeasuredWidth() ? dbVar.getMeasuredWidth() - AndroidUtilities.dp(8.0f) : measuredWidth, AndroidUtilities.dp(64.0f));
         layoutParams.setMargins(0, AndroidUtilities.dp(5.0f), 0, AndroidUtilities.dp(5.0f));
-        ArrayList arrayList2 = this.f4020a;
+        ArrayList arrayList2 = this.f4047a;
         int size2 = arrayList2.size();
         while (i10 < size2) {
             Object obj2 = arrayList2.get(i10);
@@ -103,46 +103,46 @@ public final class y8 extends FrameLayout {
     }
 
     public final void a(boolean z10) {
-        ValueAnimator valueAnimator = this.f4021b;
+        ValueAnimator valueAnimator = this.f4048b;
         if (valueAnimator != null) {
             valueAnimator.cancel();
         }
         ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-        this.f4021b = ofFloat;
+        this.f4048b = ofFloat;
         if (z10) {
             ofFloat.setStartDelay(50L);
         }
-        this.f4021b.setDuration(350L);
-        this.f4021b.setInterpolator(new AccelerateDecelerateInterpolator());
-        this.f4021b.getCurrentPlayTime();
-        this.f4021b.addListener(new ah.b(this, 12));
-        this.f4021b.addUpdateListener(new ah.d0(this, 13));
-        this.f4021b.start();
-        AndroidUtilities.runOnUIThread(this.f4023e, (((x8) this.f4020a.get(this.d)).f3992c.p() * 2) + 100);
+        this.f4048b.setDuration(350L);
+        this.f4048b.setInterpolator(new AccelerateDecelerateInterpolator());
+        this.f4048b.getCurrentPlayTime();
+        this.f4048b.addListener(new ah.b(this, 12));
+        this.f4048b.addUpdateListener(new ah.d0(this, 13));
+        this.f4048b.start();
+        AndroidUtilities.runOnUIThread(this.f4050e, (((x8) this.f4047a.get(this.d)).f4019c.p() * 2) + 100);
     }
 
     public final void b() {
-        AndroidUtilities.cancelRunOnUIThread(this.f4023e);
-        ValueAnimator valueAnimator = this.f4021b;
+        AndroidUtilities.cancelRunOnUIThread(this.f4050e);
+        ValueAnimator valueAnimator = this.f4048b;
         if (valueAnimator != null) {
             valueAnimator.cancel();
-            this.f4021b = null;
+            this.f4048b = null;
         }
-        int i10 = this.f4022c;
-        ArrayList arrayList = this.f4020a;
+        int i10 = this.f4049c;
+        ArrayList arrayList = this.f4047a;
         if (i10 != -1) {
             x8 x8Var = (x8) arrayList.get(i10);
-            xi0 xi0Var = x8Var.f3992c;
+            xi0 xi0Var = x8Var.f4019c;
             xi0Var.K(0);
             xi0Var.stop();
-            x8Var.f3995n = 0.0f;
+            x8Var.f4022n = 0.0f;
             x8Var.invalidate();
         }
         x8 x8Var2 = (x8) arrayList.get(this.d);
-        xi0 xi0Var2 = x8Var2.f3992c;
+        xi0 xi0Var2 = x8Var2.f4019c;
         xi0Var2.K(0);
         xi0Var2.stop();
-        x8Var2.f3995n = 0.0f;
+        x8Var2.f4022n = 0.0f;
         x8Var2.invalidate();
         c();
     }
@@ -150,14 +150,14 @@ public final class y8 extends FrameLayout {
     public final void c() {
         int i10 = this.d + 1;
         this.d = i10;
-        ArrayList arrayList = this.f4020a;
+        ArrayList arrayList = this.f4047a;
         if (i10 >= arrayList.size()) {
             this.d = 0;
         }
-        int i11 = this.f4022c + 1;
-        this.f4022c = i11;
+        int i11 = this.f4049c + 1;
+        this.f4049c = i11;
         if (i11 >= arrayList.size()) {
-            this.f4022c = 0;
+            this.f4049c = 0;
         }
     }
 }

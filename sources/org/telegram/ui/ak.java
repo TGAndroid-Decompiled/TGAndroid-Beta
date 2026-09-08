@@ -1,17 +1,17 @@
 package org.telegram.ui;
 public final class ak implements Runnable {
-    public final int f34463a;
-    public final co f34464b;
+    public final int f34490a;
+    public final co f34491b;
 
     public ak(co coVar, int i10) {
-        this.f34463a = i10;
-        this.f34464b = coVar;
+        this.f34490a = i10;
+        this.f34491b = coVar;
     }
 
     @Override
     public final void run() {
-        int i10 = this.f34463a;
-        co coVar = this.f34464b;
+        int i10 = this.f34490a;
+        co coVar = this.f34491b;
         switch (i10) {
             case 0:
                 co.i2(coVar);

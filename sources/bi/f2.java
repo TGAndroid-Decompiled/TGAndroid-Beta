@@ -11,30 +11,30 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
 import org.telegram.ui.Components.pr;
 public final class f2 extends FrameLayout {
-    public final FrameLayout f2952a;
-    public final View f2953b;
-    public final ImageView f2954c;
+    public final FrameLayout f2979a;
+    public final View f2980b;
+    public final ImageView f2981c;
     public final e2 d;
-    public boolean f2955e;
-    public ValueAnimator f2956f;
+    public boolean f2982e;
+    public ValueAnimator f2983f;
     public boolean h;
-    public float f2957n;
-    public ValueAnimator f2958r;
+    public float f2984n;
+    public ValueAnimator f2985r;
 
     public f2(Context context, eh.b bVar) {
         super(context);
         w7.z5.a(this);
         FrameLayout frameLayout = new FrameLayout(context);
-        this.f2952a = frameLayout;
+        this.f2979a = frameLayout;
         bh.j jVar = new bh.j();
         jVar.a(bVar);
-        jVar.f2716g.setColor(-14670806);
+        jVar.f2743g.setColor(-14670806);
         jVar.invalidateSelf();
-        jVar.f2715f = AndroidUtilities.dp(1.0f);
+        jVar.f2742f = AndroidUtilities.dp(1.0f);
         frameLayout.setBackground(jVar);
         addView(frameLayout, w7.x5.e(40, 40, 17));
         View view = new View(context);
-        this.f2953b = view;
+        this.f2980b = view;
         view.setBackground(org.telegram.ui.ActionBar.j6.K(AndroidUtilities.dp(40.0f), -13522392));
         frameLayout.addView(view, w7.x5.e(38, 38, 17));
         view.setAlpha(0.0f);
@@ -44,7 +44,7 @@ public final class f2 extends FrameLayout {
         this.d = e2Var;
         addView(e2Var, w7.x5.e(42, 42, 17));
         ImageView imageView = new ImageView(context);
-        this.f2954c = imageView;
+        this.f2981c = imageView;
         imageView.setScaleType(ImageView.ScaleType.CENTER);
         imageView.setScaleX(0.75f);
         imageView.setScaleY(0.75f);
@@ -55,14 +55,14 @@ public final class f2 extends FrameLayout {
 
     public final void a(boolean z10, boolean z11) {
         int i10;
-        if (this.f2955e == z10 && z11) {
+        if (this.f2982e == z10 && z11) {
             return;
         }
-        this.f2955e = z10;
-        ValueAnimator valueAnimator = this.f2956f;
+        this.f2982e = z10;
+        ValueAnimator valueAnimator = this.f2983f;
         if (valueAnimator != null) {
             valueAnimator.cancel();
-            this.f2956f = null;
+            this.f2983f = null;
         }
         boolean z12 = true;
         float f7 = 1.0f;
@@ -85,11 +85,11 @@ public final class f2 extends FrameLayout {
                 f7 = 0.0f;
             }
             ValueAnimator ofFloat = ValueAnimator.ofFloat(alpha, f7);
-            this.f2956f = ofFloat;
+            this.f2983f = ofFloat;
             ofFloat.addUpdateListener(new d2(this, 0));
-            this.f2956f.setDuration(320L);
-            this.f2956f.setInterpolator(pr.h);
-            this.f2956f.start();
+            this.f2983f.setDuration(320L);
+            this.f2983f.setInterpolator(pr.h);
+            this.f2983f.start();
         }
         if (!this.h && z10) {
             z12 = false;
@@ -102,7 +102,7 @@ public final class f2 extends FrameLayout {
         boolean z12;
         int i11;
         this.h = z10;
-        ImageView imageView = this.f2954c;
+        ImageView imageView = this.f2981c;
         if (!z11) {
             if (z10) {
                 i11 = R.drawable.msg_voice_muted;
@@ -118,7 +118,7 @@ public final class f2 extends FrameLayout {
             }
             imageView.setImageResource(i10);
         }
-        if (!z10 && this.f2955e) {
+        if (!z10 && this.f2982e) {
             z12 = false;
         } else {
             z12 = true;
@@ -127,34 +127,34 @@ public final class f2 extends FrameLayout {
     }
 
     public final void c(boolean z10, boolean z11) {
-        ValueAnimator valueAnimator = this.f2958r;
+        ValueAnimator valueAnimator = this.f2985r;
         if (valueAnimator != null) {
             valueAnimator.cancel();
-            this.f2958r = null;
+            this.f2985r = null;
         }
         float f7 = 0.0f;
         if (!z11) {
             if (z10) {
                 f7 = 1.0f;
             }
-            this.f2957n = f7;
-            View view = this.f2953b;
+            this.f2984n = f7;
+            View view = this.f2980b;
             view.setAlpha(1.0f - f7);
-            view.setScaleX(1.0f - this.f2957n);
-            view.setScaleY(1.0f - this.f2957n);
-            this.f2954c.setColorFilter(new PorterDuffColorFilter(i0.a.d(this.f2957n, -1, -2960428), PorterDuff.Mode.SRC_IN));
-            this.f2952a.invalidate();
+            view.setScaleX(1.0f - this.f2984n);
+            view.setScaleY(1.0f - this.f2984n);
+            this.f2981c.setColorFilter(new PorterDuffColorFilter(i0.a.d(this.f2984n, -1, -2960428), PorterDuff.Mode.SRC_IN));
+            this.f2979a.invalidate();
             return;
         }
-        float f10 = this.f2957n;
+        float f10 = this.f2984n;
         if (z10) {
             f7 = 1.0f;
         }
         ValueAnimator ofFloat = ValueAnimator.ofFloat(f10, f7);
-        this.f2958r = ofFloat;
+        this.f2985r = ofFloat;
         ofFloat.addUpdateListener(new d2(this, 1));
-        this.f2958r.setInterpolator(pr.h);
-        this.f2958r.setDuration(420L);
-        this.f2958r.start();
+        this.f2985r.setInterpolator(pr.h);
+        this.f2985r.setDuration(420L);
+        this.f2985r.start();
     }
 }

@@ -10,7 +10,7 @@ public final class e extends d {
 
     public e(h hVar) {
         this.h = hVar;
-        this.f16326e = -1;
+        this.f16353e = -1;
     }
 
     @Override
@@ -26,7 +26,7 @@ public final class e extends d {
         cVar2.G = view;
         cVar2.E = renderNode;
         cVar2.F = f7;
-        cVar2.setDelegate(hVar.f16328a1);
+        cVar2.setDelegate(hVar.f16355a1);
         return bVar;
     }
 }

@@ -11,28 +11,28 @@ import org.telegram.ui.Components.pr;
 import s4.c1;
 import w7.x5;
 public abstract class h0 extends FrameLayout {
-    public org.telegram.ui.ActionBar.k f10692a;
-    public final kh.f f10693b;
-    public final FrameLayout f10694c;
+    public org.telegram.ui.ActionBar.k f10720a;
+    public final kh.f f10721b;
+    public final FrameLayout f10722c;
     public d61 d;
-    public boolean f10695e;
-    public final k0 f10696f;
+    public boolean f10723e;
+    public final k0 f10724f;
 
     public h0(k0 k0Var, Context context) {
         super(context);
-        this.f10696f = k0Var;
+        this.f10724f = k0Var;
         FrameLayout frameLayout = new FrameLayout(context);
-        this.f10694c = frameLayout;
+        this.f10722c = frameLayout;
         frameLayout.setPadding(0, 0, 0, 0);
         frameLayout.setClipToPadding(true);
         addView(frameLayout, x5.e(-1, -1, 119));
         ?? view = new View(getContext());
-        this.f10693b = view;
-        view.setupColorKey(j6.f20607a7);
+        this.f10721b = view;
+        view.setupColorKey(j6.f20634a7);
         view.setFadeZoneBottom(AndroidUtilities.dp(72.0f) + AndroidUtilities.navigationBarHeight);
         view.setFadeHeightBottom(AndroidUtilities.dp(24.0f));
         view.setFadeZoneTop(AndroidUtilities.dp(64.0f) + AndroidUtilities.statusBarHeight);
-        view.f14955a.b(-AndroidUtilities.dp(20.0f), false);
+        view.f14981a.b(-AndroidUtilities.dp(20.0f), false);
         frameLayout.addView((View) view, x5.g());
     }
 
@@ -42,7 +42,7 @@ public abstract class h0 extends FrameLayout {
         g0Var.n(350L);
         g0Var.o(pr.h);
         g0Var.C = false;
-        g0Var.f45777m = false;
+        g0Var.f45805m = false;
         this.d.setItemAnimator(g0Var);
     }
 
@@ -54,7 +54,7 @@ public abstract class h0 extends FrameLayout {
             if (T != null) {
                 h51 G = this.d.Y2.G(T.b());
                 if (G != null && G.d != 99) {
-                    f7 = Math.min(childAt.getY() + this.f10694c.getPaddingTop(), f7);
+                    f7 = Math.min(childAt.getY() + this.f10722c.getPaddingTop(), f7);
                 }
             }
         }
@@ -63,7 +63,7 @@ public abstract class h0 extends FrameLayout {
 
     public void c() {
         float b10 = b();
-        org.telegram.ui.ActionBar.k kVar = this.f10692a;
+        org.telegram.ui.ActionBar.k kVar = this.f10720a;
         if (kVar != null) {
             kVar.setTranslationY(Math.max(AndroidUtilities.statusBarHeight, b10));
         }

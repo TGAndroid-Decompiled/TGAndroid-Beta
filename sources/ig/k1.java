@@ -19,11 +19,11 @@ import org.telegram.ui.ActionBar.j6;
 import org.telegram.ui.Components.h90;
 import w7.x5;
 public final class k1 extends LinearLayout {
-    public final f6 f12131a;
-    public final h90 f12132b;
-    public final ImageReceiver f12133c;
+    public final f6 f12157a;
+    public final h90 f12158b;
+    public final ImageReceiver f12159c;
     public final TextView d;
-    public boolean f12134e;
+    public boolean f12160e;
 
     public k1(Context context, f6 f6Var) {
         super(context);
@@ -33,16 +33,16 @@ public final class k1 extends LinearLayout {
         int i13;
         int i14;
         ImageReceiver imageReceiver = new ImageReceiver(this);
-        this.f12133c = imageReceiver;
-        this.f12131a = f6Var;
+        this.f12159c = imageReceiver;
+        this.f12157a = f6Var;
         setOrientation(1);
         h90 h90Var = new h90();
-        this.f12132b = h90Var;
+        this.f12158b = h90Var;
         int i15 = j6.G6;
         int v02 = j6.v0(i15, f6Var);
         h90Var.f(j6.l1(0.05f, v02), j6.l1(0.15f, v02), j6.l1(0.1f, v02), j6.l1(0.3f, v02));
         h90Var.j(4.0f);
-        h90Var.f26690w.setStrokeWidth(AndroidUtilities.dp(1.0f));
+        h90Var.f26717w.setStrokeWidth(AndroidUtilities.dp(1.0f));
         imageReceiver.setRoundRadius(AndroidUtilities.dp(4.0f));
         TextView textView = new TextView(context);
         this.d = textView;
@@ -68,7 +68,7 @@ public final class k1 extends LinearLayout {
         addView(textView, x5.t(-1, -2, 55, i11, 10, i12, 4));
         TextView textView2 = new TextView(context);
         textView2.setGravity(LocaleController.isRTL ? 5 : 3);
-        textView2.setTextColor(j6.v0(j6.f21061z6, f6Var));
+        textView2.setTextColor(j6.v0(j6.f21088z6, f6Var));
         textView2.setText(LocaleController.getString(R.string.BusinessProfileLocation));
         textView2.setTextSize(1, 13.0f);
         boolean z11 = LocaleController.isRTL;
@@ -90,12 +90,12 @@ public final class k1 extends LinearLayout {
         if (tL_businessLocation != null) {
             this.d.setText(tL_businessLocation.address);
             if (tL_businessLocation.geo_point != null) {
-                this.f12133c.setImage(ImageLocation.getForWebFile(WebFile.createWithGeoPoint(tL_businessLocation.geo_point, AndroidUtilities.dp(44.0f), AndroidUtilities.dp(44.0f), 15, Math.min(2, (int) Math.ceil(AndroidUtilities.density)))), "44_44", this.f12132b, 0L, (String) null, (Object) null, 0);
+                this.f12159c.setImage(ImageLocation.getForWebFile(WebFile.createWithGeoPoint(tL_businessLocation.geo_point, AndroidUtilities.dp(44.0f), AndroidUtilities.dp(44.0f), 15, Math.min(2, (int) Math.ceil(AndroidUtilities.density)))), "44_44", this.f12158b, 0L, (String) null, (Object) null, 0);
             } else {
-                this.f12133c.setImageBitmap((Drawable) null);
+                this.f12159c.setImageBitmap((Drawable) null);
             }
         }
-        this.f12134e = z10;
+        this.f12160e = z10;
         setPadding(0, 0, 0, z10 ? 1 : 0);
         invalidate();
     }
@@ -110,14 +110,14 @@ public final class k1 extends LinearLayout {
             width = getWidth() - AndroidUtilities.dp(60.0f);
         }
         float f10 = width;
-        ImageReceiver imageReceiver = this.f12133c;
+        ImageReceiver imageReceiver = this.f12159c;
         imageReceiver.setImageCoords(f10, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(44.0f), AndroidUtilities.dp(44.0f));
         imageReceiver.draw(canvas);
         super.onDraw(canvas);
-        if (this.f12134e) {
-            Paint T0 = j6.T0("paintDivider", this.f12131a);
+        if (this.f12160e) {
+            Paint T0 = j6.T0("paintDivider", this.f12157a);
             if (T0 == null) {
-                T0 = j6.f20785k0;
+                T0 = j6.f20812k0;
             }
             Paint paint = T0;
             float f11 = 21.33f;
@@ -143,7 +143,7 @@ public final class k1 extends LinearLayout {
 
     @Override
     public final boolean verifyDrawable(Drawable drawable) {
-        if (drawable != this.f12132b && !super.verifyDrawable(drawable)) {
+        if (drawable != this.f12158b && !super.verifyDrawable(drawable)) {
             return false;
         }
         return true;

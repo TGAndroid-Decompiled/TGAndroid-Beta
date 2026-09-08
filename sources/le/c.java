@@ -4,32 +4,32 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import org.telegram.ui.Components.voip.s1;
 public final class c extends AnimatorListenerAdapter {
-    public final int f15370a;
-    public final float f15371b;
-    public final float f15372c;
+    public final int f15397a;
+    public final float f15398b;
+    public final float f15399c;
     public final Object d;
 
     public c(Object obj, float f7, float f10, int i10) {
-        this.f15370a = i10;
+        this.f15397a = i10;
         this.d = obj;
-        this.f15371b = f7;
-        this.f15372c = f10;
+        this.f15398b = f7;
+        this.f15399c = f10;
     }
 
     public void a() {
         e eVar = (e) this.d;
-        if (eVar.f15378g) {
-            eVar.d(this.f15371b + this.f15372c, 1.0f);
-            if (eVar.f15378g) {
-                eVar.f15378g = false;
+        if (eVar.f15405g) {
+            eVar.d(this.f15398b + this.f15399c, 1.0f);
+            if (eVar.f15405g) {
+                eVar.f15405g = false;
             }
-            eVar.f15374b.z(eVar.f15376e, eVar.f15373a);
+            eVar.f15401b.z(eVar.f15403e, eVar.f15400a);
         }
     }
 
     @Override
     public void onAnimationCancel(Animator animator) {
-        switch (this.f15370a) {
+        switch (this.f15397a) {
             case 0:
                 a();
                 return;
@@ -41,7 +41,7 @@ public final class c extends AnimatorListenerAdapter {
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        switch (this.f15370a) {
+        switch (this.f15397a) {
             case 0:
                 a();
                 return;
@@ -49,8 +49,8 @@ public final class c extends AnimatorListenerAdapter {
                 s1 s1Var = (s1) this.d;
                 s1Var.O = false;
                 s1Var.M = true;
-                s1Var.W = this.f15371b;
-                s1Var.f31782a0 = this.f15372c;
+                s1Var.W = this.f15398b;
+                s1Var.f31809a0 = this.f15399c;
                 s1Var.requestLayout();
                 return;
         }
@@ -58,7 +58,7 @@ public final class c extends AnimatorListenerAdapter {
 
     @Override
     public void onAnimationStart(Animator animator) {
-        switch (this.f15370a) {
+        switch (this.f15397a) {
             case 0:
                 ((e) this.d).getClass();
                 return;

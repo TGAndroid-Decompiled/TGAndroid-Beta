@@ -1,18 +1,18 @@
 package di;
 public final class c1 implements Runnable {
-    public final int f6983a;
-    public final d1 f6984b;
+    public final int f7011a;
+    public final d1 f7012b;
 
     public c1(d1 d1Var, int i10) {
-        this.f6983a = i10;
-        this.f6984b = d1Var;
+        this.f7011a = i10;
+        this.f7012b = d1Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f6983a) {
+        switch (this.f7011a) {
             case 0:
-                d1 d1Var = this.f6984b;
+                d1 d1Var = this.f7012b;
                 if (d1Var.K > 0) {
                     d1Var.dualToggleShape();
                     try {
@@ -24,7 +24,7 @@ public final class c1 implements Runnable {
                 }
                 return;
             default:
-                d1 d1Var2 = this.f6984b;
+                d1 d1Var2 = this.f7012b;
                 d1Var2.focusToPoint((int) d1Var2.I, (int) d1Var2.J);
                 return;
         }

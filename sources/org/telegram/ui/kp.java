@@ -9,15 +9,15 @@ import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.tgnet.TLRPC;
 public final class kp extends org.telegram.ui.Components.ll0 {
-    public static final int f38099b3 = 0;
+    public static final int f38126b3 = 0;
     public final jp X2;
     public boolean Y2;
     public final Paint Z2;
-    public final lp f38100a3;
+    public final lp f38127a3;
 
     public kp(lp lpVar, Context context) {
         super(context, null);
-        this.f38100a3 = lpVar;
+        this.f38127a3 = lpVar;
         this.Y2 = false;
         this.Z2 = new Paint(1);
         jp jpVar = new jp(this);
@@ -32,7 +32,7 @@ public final class kp extends org.telegram.ui.Components.ll0 {
     public final void dispatchDraw(Canvas canvas) {
         Canvas canvas2;
         int R;
-        int size = this.f38100a3.N.size();
+        int size = this.f38127a3.N.size();
         int i10 = Integer.MAX_VALUE;
         int i11 = Integer.MIN_VALUE;
         for (int i12 = 0; i12 < getChildCount(); i12++) {
@@ -43,7 +43,7 @@ public final class kp extends org.telegram.ui.Components.ll0 {
             }
         }
         if (i10 < i11) {
-            int v02 = org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f20663d6, this.f28224p2);
+            int v02 = org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f20690d6, this.f28251p2);
             Paint paint = this.Z2;
             paint.setColor(v02);
             canvas2 = canvas;
@@ -62,7 +62,7 @@ public final class kp extends org.telegram.ui.Components.ll0 {
     public final void v1(TLRPC.TL_username tL_username, boolean z10, boolean z11) {
         TLRPC.TL_username tL_username2;
         int min;
-        lp lpVar = this.f38100a3;
+        lp lpVar = this.f38127a3;
         ArrayList arrayList = lpVar.N;
         int i10 = 0;
         for (int i11 = 0; i11 < arrayList.size(); i11++) {
@@ -117,7 +117,7 @@ public final class kp extends org.telegram.ui.Components.ll0 {
                                 naVar.setLoading(lpVar.P.contains(tL_username2.username));
                                 TLRPC.TL_username tL_username3 = naVar.v;
                                 if (tL_username3 != null) {
-                                    naVar.a(tL_username3, naVar.f38890w, true, naVar.f38891x);
+                                    naVar.a(tL_username3, naVar.f38917w, true, naVar.f38918x);
                                 }
                             }
                         } else {
@@ -127,7 +127,7 @@ public final class kp extends org.telegram.ui.Components.ll0 {
                     if (i13 >= 0 && i12 != i13) {
                         int i18 = i13 - 1;
                         jp jpVar = this.X2;
-                        ArrayList arrayList2 = jpVar.f37825c.f38100a3.N;
+                        ArrayList arrayList2 = jpVar.f37852c.f38127a3.N;
                         if (i11 < arrayList2.size() && i18 < arrayList2.size()) {
                             arrayList2.add(i18, (TLRPC.TL_username) arrayList2.remove(i11));
                             jpVar.p(i12, i13);

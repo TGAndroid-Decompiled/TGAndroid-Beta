@@ -9,15 +9,15 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 public final class yi implements Utilities.Callback2 {
-    public final int f32927a;
-    public final gj f32928b;
-    public final MessagesController f32929c;
+    public final int f32954a;
+    public final gj f32955b;
+    public final MessagesController f32956c;
     public final int d;
 
     public yi(gj gjVar, MessagesController messagesController, int i10, int i11) {
-        this.f32927a = i11;
-        this.f32928b = gjVar;
-        this.f32929c = messagesController;
+        this.f32954a = i11;
+        this.f32955b = gjVar;
+        this.f32956c = messagesController;
         this.d = i10;
     }
 
@@ -26,15 +26,15 @@ public final class yi implements Utilities.Callback2 {
         String str;
         TLRPC.TL_documentAttributeAudio tL_documentAttributeAudio;
         TLRPC.TL_documentAttributeAudio tL_documentAttributeAudio2;
-        switch (this.f32927a) {
+        switch (this.f32954a) {
             case 0:
                 TLRPC.messages_BotResults messages_botresults = (TLRPC.messages_BotResults) obj;
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
-                gj gjVar = this.f32928b;
-                gjVar.f26397e0 = -1;
-                gjVar.f26406n0 = false;
+                gj gjVar = this.f32955b;
+                gjVar.f26424e0 = -1;
+                gjVar.f26433n0 = false;
                 if (messages_botresults != null) {
-                    this.f32929c.putUsers(messages_botresults.users, false);
+                    this.f32956c.putUsers(messages_botresults.users, false);
                     ArrayList<TLRPC.BotInlineResult> arrayList = messages_botresults.results;
                     int size = arrayList.size();
                     int i10 = 0;
@@ -49,7 +49,7 @@ public final class yi implements Utilities.Callback2 {
                                 tL_message.out = true;
                                 int i11 = gjVar.m0;
                                 gjVar.m0 = i11 - 1;
-                                tL_message.f19890id = i11;
+                                tL_message.f19917id = i11;
                                 tL_message.peer_id = new TLRPC.TL_peerUser();
                                 TLRPC.TL_peerUser tL_peerUser = new TLRPC.TL_peerUser();
                                 tL_message.from_id = tL_peerUser;
@@ -92,8 +92,8 @@ public final class yi implements Utilities.Callback2 {
                             }
                         }
                     }
-                    gjVar.f26404l0 = messages_botresults.next_offset;
-                    gjVar.f26400h0 = !TextUtils.isEmpty(str);
+                    gjVar.f26431l0 = messages_botresults.next_offset;
+                    gjVar.f26427h0 = !TextUtils.isEmpty(str);
                     gjVar.P();
                     return;
                 }
@@ -101,14 +101,14 @@ public final class yi implements Utilities.Callback2 {
             default:
                 TLRPC.messages_Messages messages_messages = (TLRPC.messages_Messages) obj;
                 TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj2;
-                gj gjVar2 = this.f32928b;
+                gj gjVar2 = this.f32955b;
                 ArrayList arrayList2 = gjVar2.M;
                 gjVar2.V = -1;
                 boolean z10 = false;
-                gjVar2.f26393a0 = false;
+                gjVar2.f26420a0 = false;
                 if (messages_messages != null) {
                     ArrayList<TLRPC.User> arrayList3 = messages_messages.users;
-                    MessagesController messagesController = this.f32929c;
+                    MessagesController messagesController = this.f32956c;
                     messagesController.putUsers(arrayList3, false);
                     messagesController.putChats(messages_messages.chats, false);
                     ArrayList<TLRPC.Message> arrayList4 = messages_messages.messages;
@@ -143,11 +143,11 @@ public final class yi implements Utilities.Callback2 {
                         }
                     }
                     int i16 = messages_messages.next_rate;
-                    gjVar2.f26395c0 = i16;
+                    gjVar2.f26422c0 = i16;
                     if (i16 != 0 || (messages_messages.count > 0 && arrayList2.size() < messages_messages.count)) {
                         z10 = true;
                     }
-                    gjVar2.f26396d0 = z10;
+                    gjVar2.f26423d0 = z10;
                     gjVar2.P();
                     return;
                 }

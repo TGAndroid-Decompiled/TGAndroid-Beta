@@ -45,17 +45,17 @@ public final class r4 extends ni implements NotificationCenter.NotificationCente
     public g4 U;
     public boolean V;
     public int W;
-    public k4 f9930n;
-    public ValueAnimator f9931r;
-    public boolean f9932s;
+    public k4 f9958n;
+    public ValueAnimator f9959r;
+    public boolean f9960s;
     public long v;
-    public long f9933w;
-    public long f9934x;
-    public int f9935y;
+    public long f9961w;
+    public long f9962x;
+    public int f9963y;
 
     @Override
     public final void D(ni niVar) {
-        k4 k4Var = this.f9930n;
+        k4 k4Var = this.f9958n;
         CharSequence userName = UserObject.getUserName(MessagesController.getInstance(this.F).getUser(Long.valueOf(this.v)));
         try {
             TextPaint textPaint = new TextPaint();
@@ -63,13 +63,13 @@ public final class r4 extends ni implements NotificationCenter.NotificationCente
             userName = Emoji.replaceEmoji(userName, textPaint.getFontMetricsInt(), false);
         } catch (Exception unused) {
         }
-        vi viVar = this.f28753b;
+        vi viVar = this.f28780b;
         viVar.X0.setTitle(userName);
         this.J.setSwipeOffsetY(0.0f);
         if (k4Var.getWebView() != null) {
             k4Var.getWebView().scrollTo(0, 0);
         }
-        org.telegram.ui.ActionBar.n2 n2Var = viVar.f31279f0;
+        org.telegram.ui.ActionBar.n2 n2Var = viVar.f31306f0;
         if (n2Var != null) {
             k4Var.setParentActivity(n2Var.getParentActivity());
         }
@@ -81,7 +81,7 @@ public final class r4 extends ni implements NotificationCenter.NotificationCente
 
     @Override
     public final void F() {
-        if (this.f9930n.N) {
+        if (this.f9958n.N) {
             L();
         }
         this.J.setSwipeOffsetAnimationDisallowed(false);
@@ -104,24 +104,24 @@ public final class r4 extends ni implements NotificationCenter.NotificationCente
                 str = null;
             }
             AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(getContext());
-            alertDialog$Builder.f20198a.R = str;
-            alertDialog$Builder.f20198a.T = LocaleController.getString(R.string.BotWebViewChangesMayNotBeSaved);
+            alertDialog$Builder.f20225a.R = str;
+            alertDialog$Builder.f20225a.T = LocaleController.getString(R.string.BotWebViewChangesMayNotBeSaved);
             alertDialog$Builder.k(LocaleController.getString(R.string.BotWebViewCloseAnyway), new i4(this));
             alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
-            org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20198a;
+            org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20225a;
             b2Var.show();
-            ((TextView) b2Var.d(-1)).setTextColor(j6.v0(j6.f20898q7, this.f28752a));
+            ((TextView) b2Var.d(-1)).setTextColor(j6.v0(j6.f20925q7, this.f28779a));
             return false;
         }
-        this.f28753b.dismiss();
+        this.f28780b.dismiss();
         return true;
     }
 
     public final void L() {
-        vi viVar = this.f28753b;
-        org.telegram.ui.ActionBar.n2 n2Var = viVar.f31279f0;
+        vi viVar = this.f28780b;
+        org.telegram.ui.ActionBar.n2 n2Var = viVar.f31306f0;
         if ((n2Var instanceof co) && ((co) n2Var).X0.R() > AndroidUtilities.dp(20.0f)) {
-            AndroidUtilities.hideKeyboard(viVar.f31279f0.getFragmentView());
+            AndroidUtilities.hideKeyboard(viVar.f31306f0.getFragmentView());
             AndroidUtilities.runOnUIThread(new g4(this, 1), 250L);
             return;
         }
@@ -132,15 +132,15 @@ public final class r4 extends ni implements NotificationCenter.NotificationCente
 
     @Override
     public final void didReceivedNotification(int i10, int i11, Object... objArr) {
-        k4 k4Var = this.f9930n;
+        k4 k4Var = this.f9958n;
         if (i10 == NotificationCenter.webViewResultSent) {
-            if (this.f9934x == ((Long) objArr[0]).longValue()) {
+            if (this.f9962x == ((Long) objArr[0]).longValue()) {
                 k4Var.i();
                 this.H = true;
-                this.f28753b.dismiss();
+                this.f28780b.dismiss();
             }
         } else if (i10 == NotificationCenter.didSetNewTheme) {
-            k4Var.f42052n.b(j6.v0(j6.f20734h5, this.f28752a), 153);
+            k4Var.f42079n.b(j6.v0(j6.f20761h5, this.f28779a), 153);
         }
     }
 
@@ -190,7 +190,7 @@ public final class r4 extends ni implements NotificationCenter.NotificationCente
     }
 
     public org.telegram.ui.web.d1 getWebViewContainer() {
-        return this.f9930n;
+        return this.f9958n;
     }
 
     @Override
@@ -200,7 +200,7 @@ public final class r4 extends ni implements NotificationCenter.NotificationCente
 
     @Override
     public final boolean i() {
-        if (this.f9930n.D()) {
+        if (this.f9958n.D()) {
             return true;
         }
         K();
@@ -211,14 +211,14 @@ public final class r4 extends ni implements NotificationCenter.NotificationCente
     public final void m() {
         NotificationCenter.getInstance(this.F).removeObserver(this, NotificationCenter.webViewResultSent);
         NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.didSetNewTheme);
-        org.telegram.ui.ActionBar.z n10 = this.f28753b.X0.n();
+        org.telegram.ui.ActionBar.z n10 = this.f28780b.X0.n();
         org.telegram.ui.ActionBar.v0 v0Var = this.K;
-        ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = v0Var.f21378b;
+        ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = v0Var.f21405b;
         if (actionBarPopupWindow$ActionBarPopupWindowLayout != null) {
             actionBarPopupWindow$ActionBarPopupWindowLayout.d();
         }
         n10.removeView(v0Var);
-        this.f9930n.i();
+        this.f9958n.i();
         this.T = true;
         AndroidUtilities.cancelRunOnUIThread(this.U);
     }
@@ -240,7 +240,7 @@ public final class r4 extends ni implements NotificationCenter.NotificationCente
 
     @Override
     public final void q() {
-        vi viVar = this.f28753b;
+        vi viVar = this.f28780b;
         viVar.setFocusable(false);
         viVar.getWindow().setSoftInputMode(48);
     }
@@ -249,9 +249,9 @@ public final class r4 extends ni implements NotificationCenter.NotificationCente
     public final void r() {
         this.K.setVisibility(8);
         this.P = false;
-        k4 k4Var = this.f9930n;
+        k4 k4Var = this.f9958n;
         boolean z10 = k4Var.R;
-        vi viVar = this.f28753b;
+        vi viVar = this.f28780b;
         if (!z10) {
             AndroidUtilities.updateImageViewImageAnimated(viVar.X0.getBackButton(), R.drawable.ic_ab_back);
         }
@@ -264,7 +264,7 @@ public final class r4 extends ni implements NotificationCenter.NotificationCente
 
     @Override
     public final void requestLayout() {
-        if (this.f9932s) {
+        if (this.f9960s) {
             return;
         }
         super.requestLayout();
@@ -285,7 +285,7 @@ public final class r4 extends ni implements NotificationCenter.NotificationCente
     }
 
     public void setDelegate(org.telegram.ui.web.i0 i0Var) {
-        this.f9930n.setDelegate(i0Var);
+        this.f9958n.setDelegate(i0Var);
     }
 
     public void setMeasureOffsetY(int i10) {
@@ -300,13 +300,13 @@ public final class r4 extends ni implements NotificationCenter.NotificationCente
     @Override
     public void setTranslationY(float f7) {
         super.setTranslationY(f7);
-        this.f28753b.getSheetContainer().invalidate();
+        this.f28780b.getSheetContainer().invalidate();
     }
 
     @Override
     public final void t(int i10) {
         l4 l4Var = this.I;
-        k4 k4Var = this.f9930n;
+        k4 k4Var = this.f9958n;
         if (i10 == -1) {
             if (!k4Var.D()) {
                 K();
@@ -315,11 +315,11 @@ public final class r4 extends ni implements NotificationCenter.NotificationCente
             return;
         }
         int i11 = R.id.menu_open_bot;
-        vi viVar = this.f28753b;
+        vi viVar = this.f28780b;
         if (i10 == i11) {
             Bundle bundle = new Bundle();
             bundle.putLong("user_id", this.v);
-            viVar.f31279f0.presentFragment(new co(bundle));
+            viVar.f31306f0.presentFragment(new co(bundle));
             viVar.dismiss();
             return;
         }
@@ -358,7 +358,7 @@ public final class r4 extends ni implements NotificationCenter.NotificationCente
         } else if (i10 == R.id.menu_report_bot) {
             int i13 = this.F;
             Context context = getContext();
-            yc ycVar = new yc(lb.a(getContext()), this.f28752a);
+            yc ycVar = new yc(lb.a(getContext()), this.f28779a);
             long j3 = this.v;
             int i14 = e41.v;
             e41.K(i13, context, j3, false, false, new ArrayList(), ycVar, null, new byte[0], null, null);
@@ -369,14 +369,14 @@ public final class r4 extends ni implements NotificationCenter.NotificationCente
     public final void v() {
         this.O = false;
         this.J.setSwipeOffsetAnimationDisallowed(false);
-        this.f9930n.setViewPortByMeasureSuppressed(false);
+        this.f9958n.setViewPortByMeasureSuppressed(false);
         requestLayout();
     }
 
     @Override
     public final void w(int i10, boolean z10) {
         boolean z11;
-        k4 k4Var = this.f9930n;
+        k4 k4Var = this.f9958n;
         a3 a3Var = this.J;
         if (z10) {
             k4Var.setViewPortByMeasureSuppressed(true);
@@ -387,25 +387,25 @@ public final class r4 extends ni implements NotificationCenter.NotificationCente
             } else {
                 z11 = false;
             }
-            int R = this.f28753b.f31316r1.R() + i10;
+            int R = this.f28780b.f31343r1.R() + i10;
             setMeasuredDimension(getMeasuredWidth(), i10);
             this.O = true;
             a3Var.setSwipeOffsetAnimationDisallowed(true);
             if (!z11) {
-                ValueAnimator valueAnimator = this.f9931r;
+                ValueAnimator valueAnimator = this.f9959r;
                 if (valueAnimator != null) {
                     valueAnimator.cancel();
-                    this.f9931r = null;
+                    this.f9959r = null;
                 }
                 if (k4Var.getWebView() != null) {
                     int scrollY = k4Var.getWebView().getScrollY();
                     int i11 = (R - i10) + scrollY;
                     ValueAnimator duration = ValueAnimator.ofInt(scrollY, i11).setDuration(250L);
-                    this.f9931r = duration;
+                    this.f9959r = duration;
                     duration.setInterpolator(ki.o.V);
-                    this.f9931r.addUpdateListener(new h4(this, 1));
-                    this.f9931r.addListener(new v2(this, i11, 1));
-                    this.f9931r.start();
+                    this.f9959r.addUpdateListener(new h4(this, 1));
+                    this.f9959r.addListener(new v2(this, i11, 1));
+                    this.f9959r.start();
                 }
             }
         }

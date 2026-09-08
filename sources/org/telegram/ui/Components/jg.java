@@ -9,10 +9,10 @@ import org.telegram.messenger.camera.CameraController;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.Components.ChatActivityEnterView;
 public final class jg implements Runnable {
-    public final ChatActivityEnterView f27503a;
+    public final ChatActivityEnterView f27530a;
 
     public jg(ChatActivityEnterView chatActivityEnterView) {
-        this.f27503a = chatActivityEnterView;
+        this.f27530a = chatActivityEnterView;
     }
 
     @Override
@@ -22,7 +22,7 @@ public final class jg implements Runnable {
         boolean z10;
         boolean z11;
         int i10;
-        ChatActivityEnterView chatActivityEnterView = this.f27503a;
+        ChatActivityEnterView chatActivityEnterView = this.f27530a;
         bf bfVar = chatActivityEnterView.G3;
         Activity activity = chatActivityEnterView.N2;
         og ogVar = chatActivityEnterView.Y2;
@@ -30,15 +30,15 @@ public final class jg implements Runnable {
             ogVar.C();
             chatActivityEnterView.I3 = true;
             chatActivityEnterView.H3 = false;
-            ChatActivityEnterView.SlideTextView slideTextView = chatActivityEnterView.f23721j1;
+            ChatActivityEnterView.SlideTextView slideTextView = chatActivityEnterView.f23748j1;
             if (slideTextView != null) {
                 slideTextView.setAlpha(1.0f);
-                chatActivityEnterView.f23721j1.setTranslationY(0.0f);
+                chatActivityEnterView.f23748j1.setTranslationY(0.0f);
             }
             SendMessageChatArguments sendMessageChatArguments = null;
-            chatActivityEnterView.f23672b3 = null;
-            chatActivityEnterView.f23665a3 = null;
-            if (chatActivityEnterView.f23677c1) {
+            chatActivityEnterView.f23699b3 = null;
+            chatActivityEnterView.f23692a3 = null;
+            if (chatActivityEnterView.f23704c1) {
                 if (Build.VERSION.SDK_INT >= 23) {
                     if (activity.checkSelfPermission("android.permission.RECORD_AUDIO") == 0) {
                         z10 = true;
@@ -84,10 +84,10 @@ public final class jg implements Runnable {
                     }
                     xg xgVar = chatActivityEnterView.Y0;
                     if (xgVar != null) {
-                        xgVar.f32523a = false;
+                        xgVar.f32550a = false;
                         xgVar.d = 0L;
-                        xgVar.f32526e = 0L;
-                        xgVar.f32524b = false;
+                        xgVar.f32553e = 0L;
+                        xgVar.f32551b = false;
                     }
                 }
             } else if (Build.VERSION.SDK_INT >= 23 && activity.checkSelfPermission("android.permission.RECORD_AUDIO") != 0) {
@@ -118,7 +118,7 @@ public final class jg implements Runnable {
                 if (xgVar2 != null) {
                     xgVar2.a(0L);
                 }
-                ug ugVar = chatActivityEnterView.f23726k1;
+                ug ugVar = chatActivityEnterView.f23753k1;
                 if (ugVar != null) {
                     ugVar.h = false;
                 }

@@ -1,18 +1,12 @@
 package a3;
-
-import android.content.Context;
-import android.os.Handler;
 public final class j {
-    public final Context f120a;
-    public boolean f121b;
-    public r2.k f122c;
-    public long d;
-    public Handler f123e;
-    public i2.c0 f124f;
-    public int f125g;
+    public final r2.l f138a;
+    public final int f139b;
+    public final n f140c;
 
-    public j(Context context) {
-        this.f120a = context;
-        this.f122c = new q2.b(context);
+    public j(n nVar, r2.l lVar, int i10, long j3) {
+        this.f140c = nVar;
+        this.f138a = lVar;
+        this.f139b = i10;
     }
 }

@@ -21,54 +21,54 @@ import org.telegram.ui.Components.xi0;
 public final class c0 extends View {
     public boolean E;
     public int F;
-    public final RectF f9575a;
-    public final Paint f9576b;
-    public final TextPaint f9577c;
+    public final RectF f9603a;
+    public final Paint f9604b;
+    public final TextPaint f9605c;
     public final z d;
-    public final xi0 f9578e;
-    public boolean f9579f;
+    public final xi0 f9606e;
+    public boolean f9607f;
     public float h;
-    public String f9580n;
-    public StaticLayout f9581r;
-    public float f9582s;
+    public String f9608n;
+    public StaticLayout f9609r;
+    public float f9610s;
     public boolean v;
-    public boolean f9583w;
-    public boolean f9584x;
-    public final org.telegram.ui.Cells.z f9585y;
+    public boolean f9611w;
+    public boolean f9612x;
+    public final org.telegram.ui.Cells.z f9613y;
 
     public c0(Context context) {
         super(context);
-        this.f9575a = new RectF();
+        this.f9603a = new RectF();
         Paint paint = new Paint(1);
-        this.f9576b = paint;
+        this.f9604b = paint;
         TextPaint textPaint = new TextPaint(1);
-        this.f9577c = textPaint;
+        this.f9605c = textPaint;
         z zVar = new z(this);
         this.d = zVar;
         xi0 xi0Var = new xi0(R.raw.bot_webview_sheet_to_cross, AndroidUtilities.dp(20.0f), AndroidUtilities.dp(20.0f));
-        this.f9578e = xi0Var;
-        this.f9580n = LocaleController.getString(R.string.BotsMenuTitle);
+        this.f9606e = xi0Var;
+        this.f9608n = LocaleController.getString(R.string.BotsMenuTitle);
         this.E = true;
-        paint.setColor(j6.w0(null, j6.f20653cf, false));
-        int w02 = j6.w0(null, j6.f20690ef, false);
-        zVar.f20388k = w02;
-        zVar.f20387j = w02;
+        paint.setColor(j6.w0(null, j6.f20680cf, false));
+        int w02 = j6.w0(null, j6.f20717ef, false);
+        zVar.f20415k = w02;
+        zVar.f20414j = w02;
         xi0Var.setColorFilter(new PorterDuffColorFilter(w02, PorterDuff.Mode.SRC_IN));
         textPaint.setColor(w02);
-        zVar.f20391n = true;
+        zVar.f20418n = true;
         zVar.h = false;
         zVar.a(0.0f, false);
         zVar.setCallback(this);
         textPaint.setTypeface(AndroidUtilities.bold());
-        zVar.f20380a.setStrokeCap(Paint.Cap.ROUND);
-        zVar.f20389l = true;
+        zVar.f20407a.setStrokeCap(Paint.Cap.ROUND);
+        zVar.f20416l = true;
         int dp = AndroidUtilities.dp(16.0f);
         int w03 = j6.w0(null, j6.Qh, false);
         org.telegram.ui.Cells.z i02 = j6.i0(dp, dp, dp, dp, 0, w03, w03);
-        this.f9585y = i02;
+        this.f9613y = i02;
         i02.setCallback(this);
         xi0Var.setCallback(this);
-        xi0Var.f32578v0 = this;
+        xi0Var.f32605v0 = this;
         setContentDescription(LocaleController.getString("AccDescrBotMenu", R.string.AccDescrBotMenu));
     }
 
@@ -80,39 +80,39 @@ public final class c0 extends View {
     @Override
     public final void drawableStateChanged() {
         super.drawableStateChanged();
-        this.f9585y.setState(getDrawableState());
+        this.f9613y.setState(getDrawableState());
     }
 
     @Override
     public final void jumpDrawablesToCurrentState() {
         super.jumpDrawablesToCurrentState();
-        this.f9585y.jumpToCurrentState();
+        this.f9613y.jumpToCurrentState();
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
         float f7;
         int size = (View.MeasureSpec.getSize(i11) + View.MeasureSpec.getSize(i10)) << 16;
-        if (this.F != size || this.f9581r == null) {
+        if (this.F != size || this.f9609r == null) {
             this.d.setBounds(0, 0, getMeasuredWidth(), getMeasuredHeight());
-            TextPaint textPaint = this.f9577c;
+            TextPaint textPaint = this.f9605c;
             textPaint.setTextSize(AndroidUtilities.dp(15.0f));
             this.F = size;
-            CharSequence replaceEmoji = Emoji.replaceEmoji(this.f9580n, textPaint.getFontMetricsInt(), false);
+            CharSequence replaceEmoji = Emoji.replaceEmoji(this.f9608n, textPaint.getFontMetricsInt(), false);
             int i12 = (int) (AndroidUtilities.displaySize.x * 0.6f);
             StaticLayout c10 = iw0.c(replaceEmoji, textPaint, i12, Layout.Alignment.ALIGN_NORMAL, 0.0f, false, TextUtils.TruncateAt.END, i12, 1, true);
-            this.f9581r = c10;
+            this.f9609r = c10;
             if (c10.getLineCount() > 0) {
-                f7 = this.f9581r.getLineWidth(0);
+                f7 = this.f9609r.getLineWidth(0);
             } else {
                 f7 = 0.0f;
             }
-            this.f9582s = f7;
+            this.f9610s = f7;
         }
         AndroidUtilities.dp(4.0f);
         int dp = AndroidUtilities.dp(40.0f);
-        if (this.f9579f) {
-            dp = org.telegram.messenger.w1.C(4.0f, (int) this.f9582s, dp);
+        if (this.f9607f) {
+            dp = org.telegram.messenger.w1.C(4.0f, (int) this.f9610s, dp);
         }
         super.onMeasure(View.MeasureSpec.makeMeasureSpec(dp, 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(32.0f), 1073741824));
     }
@@ -128,17 +128,17 @@ public final class c0 extends View {
             this.v = z10;
         }
         int i10 = 1;
-        if (this.f9583w) {
-            if (this.f9584x != z10) {
-                xi0 xi0Var = this.f9578e;
+        if (this.f9611w) {
+            if (this.f9612x != z10) {
+                xi0 xi0Var = this.f9606e;
                 xi0Var.stop();
                 xi0Var.h = true;
                 if (z10) {
-                    i10 = xi0Var.f32557e[0];
+                    i10 = xi0Var.f32584e[0];
                 }
                 xi0Var.N(i10);
                 xi0Var.start();
-                this.f9584x = z10;
+                this.f9612x = z10;
                 return;
             }
             return;
@@ -152,13 +152,13 @@ public final class c0 extends View {
     }
 
     public void setWebView(boolean z10) {
-        this.f9583w = z10;
+        this.f9611w = z10;
         invalidate();
     }
 
     @Override
     public final boolean verifyDrawable(Drawable drawable) {
-        if (!super.verifyDrawable(drawable) && this.f9585y != drawable) {
+        if (!super.verifyDrawable(drawable) && this.f9613y != drawable) {
             return false;
         }
         return true;

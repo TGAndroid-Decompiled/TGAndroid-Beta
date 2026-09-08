@@ -9,23 +9,23 @@ import org.telegram.messenger.CacheByChatsController;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public class a6 extends org.telegram.ui.ActionBar.n2 {
-    public y5 f34338a;
-    public org.telegram.ui.Components.ll0 f34339b;
-    public final ArrayList f34340c;
+    public y5 f34365a;
+    public org.telegram.ui.Components.ll0 f34366b;
+    public final ArrayList f34367c;
     public ArrayList d;
-    public int f34341e;
+    public int f34368e;
 
     public a6(Bundle bundle) {
         super(bundle);
-        this.f34340c = new ArrayList();
+        this.f34367c = new ArrayList();
         this.d = new ArrayList();
     }
 
     public final void U() {
         ArrayList arrayList;
         boolean z10 = this.isPaused;
-        ArrayList arrayList2 = this.f34340c;
-        if (!z10 && this.f34338a != null) {
+        ArrayList arrayList2 = this.f34367c;
+        if (!z10 && this.f34365a != null) {
             arrayList = new ArrayList();
             arrayList.addAll(arrayList2);
         } else {
@@ -48,7 +48,7 @@ public class a6 extends org.telegram.ui.ActionBar.n2 {
             arrayList2.add(new z5(4, null));
         }
         arrayList2.add(new z5(3, null));
-        y5 y5Var = this.f34338a;
+        y5 y5Var = this.f34365a;
         if (y5Var != null) {
             if (arrayList != null) {
                 y5Var.E(arrayList, arrayList2);
@@ -65,26 +65,26 @@ public class a6 extends org.telegram.ui.ActionBar.n2 {
         i2.g.x(false, this.actionBar);
         this.actionBar.setActionBarMenuOnItemClick(new ah.t(this, 22));
         this.actionBar.setTitle(LocaleController.getString(R.string.NotificationsExceptions));
-        this.f34339b = new org.telegram.ui.Components.ll0(context, null);
+        this.f34366b = new org.telegram.ui.Components.ll0(context, null);
         s4.j jVar = new s4.j();
         jVar.C = false;
-        jVar.f45777m = false;
-        this.f34339b.setItemAnimator(jVar);
-        this.f34339b.setLayoutManager(new s4.c0());
-        org.telegram.ui.Components.ll0 ll0Var = this.f34339b;
+        jVar.f45805m = false;
+        this.f34366b.setItemAnimator(jVar);
+        this.f34366b.setLayoutManager(new s4.c0());
+        org.telegram.ui.Components.ll0 ll0Var = this.f34366b;
         y5 y5Var = new y5(this);
-        this.f34338a = y5Var;
+        this.f34365a = y5Var;
         ll0Var.setAdapter(y5Var);
-        this.f34339b.setOnItemClickListener(new z0(this, 7));
-        frameLayout.addView(this.f34339b);
-        frameLayout.setBackgroundColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f20607a7, false));
+        this.f34366b.setOnItemClickListener(new z0(this, 7));
+        frameLayout.addView(this.f34366b);
+        frameLayout.setBackgroundColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f20634a7, false));
         U();
         return this.fragmentView;
     }
 
     @Override
     public final boolean onFragmentCreate() {
-        this.f34341e = getArguments().getInt("type");
+        this.f34368e = getArguments().getInt("type");
         U();
         return super.onFragmentCreate();
     }

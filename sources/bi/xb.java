@@ -8,24 +8,24 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.support.LongSparseLongArray;
 import org.telegram.tgnet.TLRPC;
 public final class xb {
-    public static final xb[] f4001f = new xb[4];
-    public final int f4002a;
-    public final LongSparseLongArray f4003b = new LongSparseLongArray();
-    public final ArrayList f4004c = new ArrayList();
+    public static final xb[] f4028f = new xb[4];
+    public final int f4029a;
+    public final LongSparseLongArray f4030b = new LongSparseLongArray();
+    public final ArrayList f4031c = new ArrayList();
     public final ArrayList d = new ArrayList();
-    public final wb f4005e;
+    public final wb f4032e;
 
     public xb(int i10) {
         new ArrayList();
-        this.f4005e = new wb(this);
-        this.f4002a = i10;
+        this.f4032e = new wb(this);
+        this.f4029a = i10;
     }
 
     public final void a(org.telegram.ui.Components.ia iaVar) {
         long j3;
         TLRPC.UserStatus userStatus;
         long currentTimeMillis = System.currentTimeMillis();
-        ArrayList arrayList = this.f4004c;
+        ArrayList arrayList = this.f4031c;
         arrayList.clear();
         for (int i10 = 0; i10 < iaVar.getChildCount(); i10++) {
             View childAt = iaVar.getChildAt(i10);
@@ -36,8 +36,8 @@ public final class xb {
             } else {
                 j3 = 0;
             }
-            int i11 = this.f4002a;
-            LongSparseLongArray longSparseLongArray = this.f4003b;
+            int i11 = this.f4029a;
+            LongSparseLongArray longSparseLongArray = this.f4030b;
             if (j3 > 0) {
                 TLRPC.User user = MessagesController.getInstance(i11).getUser(Long.valueOf(j3));
                 if (user != null && !user.bot && !user.self && !user.contact && (userStatus = user.status) != null && !(userStatus instanceof TLRPC.TL_userStatusEmpty) && currentTimeMillis - longSparseLongArray.get(j3, 0L) > 3600000) {
@@ -54,7 +54,7 @@ public final class xb {
         }
         if (!arrayList.isEmpty()) {
             this.d.addAll(arrayList);
-            wb wbVar = this.f4005e;
+            wb wbVar = this.f4032e;
             AndroidUtilities.cancelRunOnUIThread(wbVar);
             AndroidUtilities.runOnUIThread(wbVar, 300L);
         }

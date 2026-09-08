@@ -10,34 +10,34 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.LaunchActivity;
 public final class as implements MessagesStorage.LongCallback, al0 {
-    public final int f24448a;
-    public final es f24449b;
+    public final int f24475a;
+    public final es f24476b;
 
     public as(es esVar, int i10) {
-        this.f24448a = i10;
-        this.f24449b = esVar;
+        this.f24475a = i10;
+        this.f24476b = esVar;
     }
 
     @Override
     public void d(float f7, float f10, int i10, View view) {
         boolean z10;
         boolean[] zArr;
-        es esVar = this.f24449b;
+        es esVar = this.f24476b;
         h51 G = esVar.X.G(i10 - 1);
         if (G != null) {
-            ds dsVar = esVar.f25768k0;
-            ds dsVar2 = esVar.f25767j0;
-            ds dsVar3 = esVar.f25766i0;
-            ds dsVar4 = esVar.f25769l0;
-            TLRPC.TL_chatBannedRights tL_chatBannedRights = esVar.f25779w0;
+            ds dsVar = esVar.f25795k0;
+            ds dsVar2 = esVar.f25794j0;
+            ds dsVar3 = esVar.f25793i0;
+            ds dsVar4 = esVar.f25796l0;
+            TLRPC.TL_chatBannedRights tL_chatBannedRights = esVar.f25806w0;
             int i11 = G.d;
             if (i11 == 103) {
-                boolean z11 = !esVar.f25772p0;
-                esVar.f25772p0 = z11;
+                boolean z11 = !esVar.f25799p0;
+                esVar.f25799p0 = z11;
                 ((org.telegram.ui.Cells.v8) view).setChecked(z11);
                 return;
             }
-            int i12 = G.f44071a;
+            int i12 = G.f44098a;
             if (i12 == 37) {
                 int i13 = i11 >>> 24;
                 int i14 = 16777215 & i11;
@@ -54,12 +54,12 @@ public final class as implements MessagesStorage.LongCallback, al0 {
                 }
             } else if (i12 != 36 && i12 != 35) {
                 if (i12 == 39) {
-                    if (G.f26602t) {
+                    if (G.f26629t) {
                         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(esVar.getContext());
-                        alertDialog$Builder.f20198a.R = LocaleController.getString(R.string.UserRestrictionsCantModify);
-                        alertDialog$Builder.f20198a.T = LocaleController.getString(R.string.UserRestrictionsCantModifyDisabled);
+                        alertDialog$Builder.f20225a.R = LocaleController.getString(R.string.UserRestrictionsCantModify);
+                        alertDialog$Builder.f20225a.T = LocaleController.getString(R.string.UserRestrictionsCantModifyDisabled);
                         alertDialog$Builder.k(LocaleController.getString(R.string.OK), null);
-                        alertDialog$Builder.f20198a.show();
+                        alertDialog$Builder.f20225a.show();
                         return;
                     }
                     if (i11 == 2) {
@@ -80,7 +80,7 @@ public final class as implements MessagesStorage.LongCallback, al0 {
                     }
                     esVar.X.N(true);
                 } else if (i12 == 40) {
-                    esVar.f25781y0 = !esVar.f25781y0;
+                    esVar.f25808y0 = !esVar.f25808y0;
                     esVar.J();
                     esVar.X.N(true);
                     esVar.s();
@@ -94,15 +94,15 @@ public final class as implements MessagesStorage.LongCallback, al0 {
                     esVar.s();
                     esVar.O();
                 } else if (i12 == 38) {
-                    boolean z13 = esVar.f25764g0;
-                    esVar.f25764g0 = !z13;
+                    boolean z13 = esVar.f25791g0;
+                    esVar.f25791g0 = !z13;
                     if (!z13) {
-                        zArr = esVar.f25770n0;
+                        zArr = esVar.f25797n0;
                     } else {
                         zArr = esVar.m0;
                     }
-                    if (dsVar4.f25461g != 0) {
-                        dsVar4.f25459e = zArr;
+                    if (dsVar4.f25488g != 0) {
+                        dsVar4.f25486e = zArr;
                         dsVar4.f();
                         dsVar4.g();
                     }
@@ -120,12 +120,12 @@ public final class as implements MessagesStorage.LongCallback, al0 {
             } else if (i11 == 2) {
                 dsVar4.d();
             } else if (i12 == 35) {
-                if (G.f26602t) {
+                if (G.f26629t) {
                     AlertDialog$Builder alertDialog$Builder2 = new AlertDialog$Builder(esVar.getContext());
-                    alertDialog$Builder2.f20198a.R = LocaleController.getString(R.string.UserRestrictionsCantModify);
-                    alertDialog$Builder2.f20198a.T = LocaleController.getString(R.string.UserRestrictionsCantModifyDisabled);
+                    alertDialog$Builder2.f20225a.R = LocaleController.getString(R.string.UserRestrictionsCantModify);
+                    alertDialog$Builder2.f20225a.T = LocaleController.getString(R.string.UserRestrictionsCantModifyDisabled);
                     alertDialog$Builder2.k(LocaleController.getString(R.string.OK), null);
-                    alertDialog$Builder2.f20198a.show();
+                    alertDialog$Builder2.f20225a.show();
                     return;
                 }
                 if (i11 == 6) {
@@ -161,20 +161,20 @@ public final class as implements MessagesStorage.LongCallback, al0 {
                             tL_chatBannedRights.send_stickers = z14;
                             esVar.V();
                         } else if (i11 == 14) {
-                            if (!tL_chatBannedRights.send_plain && !esVar.f25778v0.send_plain) {
+                            if (!tL_chatBannedRights.send_plain && !esVar.f25805v0.send_plain) {
                                 tL_chatBannedRights.embed_links = !tL_chatBannedRights.embed_links;
                                 esVar.V();
                             } else {
                                 int i15 = 0;
                                 while (true) {
-                                    if (i15 >= esVar.X.f31138x.size()) {
+                                    if (i15 >= esVar.X.f31165x.size()) {
                                         break;
                                     }
                                     h51 G2 = esVar.X.G(i15);
-                                    if (G2.f44071a == 39 && G2.d == 0) {
+                                    if (G2.f44098a == 39 && G2.d == 0) {
                                         s4.c1 K = esVar.d.K(i15 + 1);
                                         if (K != null) {
-                                            View view2 = K.f45738a;
+                                            View view2 = K.f45766a;
                                             float f11 = -esVar.F0;
                                             esVar.F0 = f11;
                                             AndroidUtilities.shakeViewSpring(view2, f11);
@@ -215,9 +215,9 @@ public final class as implements MessagesStorage.LongCallback, al0 {
 
     @Override
     public void run(long j3) {
-        switch (this.f24448a) {
+        switch (this.f24475a) {
             case 0:
-                es esVar = this.f24449b;
+                es esVar = this.f24476b;
                 esVar.getClass();
                 org.telegram.ui.ActionBar.n2 R = LaunchActivity.R();
                 if (R != null) {
@@ -226,7 +226,7 @@ public final class as implements MessagesStorage.LongCallback, al0 {
                 esVar.dismiss();
                 return;
             default:
-                es esVar2 = this.f24449b;
+                es esVar2 = this.f24476b;
                 esVar2.getClass();
                 org.telegram.ui.ActionBar.n2 R2 = LaunchActivity.R();
                 if (R2 != null) {

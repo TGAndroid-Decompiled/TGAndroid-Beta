@@ -12,22 +12,22 @@ import org.telegram.ui.Components.z5;
 public abstract class o {
     public static void a(n01 n01Var, StringBuilder sb2) {
         if (n01Var != null) {
-            if ((n01Var.f28591a & 768) > 0) {
+            if ((n01Var.f28618a & 768) > 0) {
                 sb2.append("<spoiler>");
             }
-            if ((n01Var.f28591a & 1) > 0) {
+            if ((n01Var.f28618a & 1) > 0) {
                 sb2.append("<b>");
             }
-            if ((n01Var.f28591a & 2) > 0) {
+            if ((n01Var.f28618a & 2) > 0) {
                 sb2.append("<i>");
             }
-            if ((n01Var.f28591a & 16) > 0) {
+            if ((n01Var.f28618a & 16) > 0) {
                 sb2.append("<u>");
             }
-            if ((n01Var.f28591a & 8) > 0) {
+            if ((n01Var.f28618a & 8) > 0) {
                 sb2.append("<s>");
             }
-            if ((n01Var.f28591a & 128) > 0 && n01Var.d != null) {
+            if ((n01Var.f28618a & 128) > 0 && n01Var.d != null) {
                 sb2.append("<a href=\"");
                 sb2.append(n01Var.d.url);
                 sb2.append("\">");
@@ -37,22 +37,22 @@ public abstract class o {
 
     public static void b(n01 n01Var, StringBuilder sb2) {
         if (n01Var != null) {
-            if ((n01Var.f28591a & 128) > 0 && n01Var.d != null) {
+            if ((n01Var.f28618a & 128) > 0 && n01Var.d != null) {
                 sb2.append("</a>");
             }
-            if ((n01Var.f28591a & 8) > 0) {
+            if ((n01Var.f28618a & 8) > 0) {
                 sb2.append("</s>");
             }
-            if ((n01Var.f28591a & 16) > 0) {
+            if ((n01Var.f28618a & 16) > 0) {
                 sb2.append("</u>");
             }
-            if ((n01Var.f28591a & 2) > 0) {
+            if ((n01Var.f28618a & 2) > 0) {
                 sb2.append("</i>");
             }
-            if ((n01Var.f28591a & 1) > 0) {
+            if ((n01Var.f28618a & 1) > 0) {
                 sb2.append("</b>");
             }
-            if ((n01Var.f28591a & 768) > 0) {
+            if ((n01Var.f28618a & 768) > 0) {
                 sb2.append("</spoiler>");
             }
         }
@@ -78,7 +78,7 @@ public abstract class o {
             si0[] si0VarArr = (si0[]) spanned.getSpans(i15, nextSpanTransition, si0.class);
             if (si0VarArr != null) {
                 for (si0 si0Var : si0VarArr) {
-                    if (si0Var.f30311e) {
+                    if (si0Var.f30338e) {
                         str3 = "<blockquote collapsed>";
                     } else {
                         str3 = "<blockquote>";
@@ -96,7 +96,7 @@ public abstract class o {
                 if (o01VarArr != null) {
                     for (o01 o01Var : o01VarArr) {
                         if (o01Var != null) {
-                            a(o01Var.f28912b, sb2);
+                            a(o01Var.f28939b, sb2);
                         }
                     }
                 }
@@ -109,7 +109,7 @@ public abstract class o {
                     String str5 = "\">";
                     if (n51VarArr != null) {
                         for (n51 n51Var : n51VarArr) {
-                            a(n51Var.f28624a, sb2);
+                            a(n51Var.f28651a, sb2);
                             sb2.append("<a href=\"");
                             sb2.append(n51Var.getURL());
                             sb2.append("\">");
@@ -323,7 +323,7 @@ public abstract class o {
                     if (n51VarArr != null) {
                         for (n51 n51Var2 : n51VarArr) {
                             sb2.append("</a>");
-                            b(n51Var2.f28624a, sb2);
+                            b(n51Var2.f28651a, sb2);
                         }
                     }
                     length = i37;
@@ -338,7 +338,7 @@ public abstract class o {
                 if (o01VarArr != null) {
                     for (o01 o01Var2 : o01VarArr) {
                         if (o01Var2 != null) {
-                            b(o01Var2.f28912b, sb2);
+                            b(o01Var2.f28939b, sb2);
                         }
                     }
                 }

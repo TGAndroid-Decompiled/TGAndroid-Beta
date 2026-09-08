@@ -4,7 +4,7 @@ import bf.p;
 import bf.s;
 import java.util.regex.Pattern;
 public final class b extends h {
-    public static final Pattern f9034e = i.f9047m;
+    public static final Pattern f9062e = i.f9075m;
 
     @Override
     public final p b() {
@@ -14,13 +14,13 @@ public final class b extends h {
             this.d++;
             return gVar;
         }
-        if (this.d < this.f9043c.length()) {
-            String str = this.f9043c;
+        if (this.d < this.f9071c.length()) {
+            String str = this.f9071c;
             int i10 = this.d;
-            if (f9034e.matcher(str.substring(i10, i10 + 1)).matches()) {
-                String str2 = this.f9043c;
+            if (f9062e.matcher(str.substring(i10, i10 + 1)).matches()) {
+                String str2 = this.f9071c;
                 int i11 = this.d;
-                this.f9041a.getClass();
+                this.f9069a.getClass();
                 s sVar = new s(str2.substring(i11, i11 + 1));
                 this.d++;
                 return sVar;

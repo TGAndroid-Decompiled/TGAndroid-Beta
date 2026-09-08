@@ -11,18 +11,18 @@ import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.pr;
 public final class i9 extends FrameLayout {
-    public final int f7384a = 2;
-    public Object f7385b;
-    public float f7386c;
+    public final int f7412a = 2;
+    public Object f7413b;
+    public float f7414c;
     public Path d;
-    public Object f7387e;
+    public Object f7415e;
 
     public i9(Context context) {
         super(context);
     }
 
     public void a(float f7, float f10) {
-        float[] fArr = (float[]) this.f7387e;
+        float[] fArr = (float[]) this.f7415e;
         fArr[7] = f7;
         fArr[6] = f7;
         fArr[1] = f7;
@@ -40,16 +40,16 @@ public final class i9 extends FrameLayout {
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        switch (this.f7384a) {
+        switch (this.f7412a) {
             case 0:
-                if (motionEvent.getAction() == 0 && motionEvent.getY() < this.f7386c) {
-                    ((ia) this.f7387e).dismiss();
+                if (motionEvent.getAction() == 0 && motionEvent.getY() < this.f7414c) {
+                    ((ia) this.f7415e).dismiss();
                     return true;
                 }
                 return super.dispatchTouchEvent(motionEvent);
             case 1:
-                if (motionEvent.getAction() == 0 && motionEvent.getY() < this.f7386c) {
-                    ((gi.k0) this.f7387e).dismiss();
+                if (motionEvent.getAction() == 0 && motionEvent.getY() < this.f7414c) {
+                    ((gi.k0) this.f7415e).dismiss();
                     return true;
                 }
                 return super.dispatchTouchEvent(motionEvent);
@@ -60,23 +60,23 @@ public final class i9 extends FrameLayout {
 
     @Override
     public void onDraw(Canvas canvas) {
-        switch (this.f7384a) {
+        switch (this.f7412a) {
             case 2:
                 super.onDraw(canvas);
                 float measuredWidth = getMeasuredWidth() / 2.0f;
                 Path path = this.d;
                 path.rewind();
                 RectF rectF = AndroidUtilities.rectTmp;
-                rectF.set(0.0f, 0.0f, measuredWidth - AndroidUtilities.lerp(0, AndroidUtilities.dp(4.0f), this.f7386c), getMeasuredHeight());
-                a(AndroidUtilities.dp(8.0f), AndroidUtilities.lerp(0, AndroidUtilities.dp(8.0f), this.f7386c));
-                float[] fArr = (float[]) this.f7387e;
+                rectF.set(0.0f, 0.0f, measuredWidth - AndroidUtilities.lerp(0, AndroidUtilities.dp(4.0f), this.f7414c), getMeasuredHeight());
+                a(AndroidUtilities.dp(8.0f), AndroidUtilities.lerp(0, AndroidUtilities.dp(8.0f), this.f7414c));
+                float[] fArr = (float[]) this.f7415e;
                 Path.Direction direction = Path.Direction.CW;
                 path.addRoundRect(rectF, fArr, direction);
-                Paint paint = (Paint) this.f7385b;
+                Paint paint = (Paint) this.f7413b;
                 canvas.drawPath(path, paint);
                 path.rewind();
-                rectF.set(measuredWidth + AndroidUtilities.lerp(0, AndroidUtilities.dp(4.0f), this.f7386c), 0.0f, getMeasuredWidth(), getMeasuredHeight());
-                a(AndroidUtilities.lerp(0, AndroidUtilities.dp(8.0f), this.f7386c), AndroidUtilities.dp(8.0f));
+                rectF.set(measuredWidth + AndroidUtilities.lerp(0, AndroidUtilities.dp(4.0f), this.f7414c), 0.0f, getMeasuredWidth(), getMeasuredHeight());
+                a(AndroidUtilities.lerp(0, AndroidUtilities.dp(8.0f), this.f7414c), AndroidUtilities.dp(8.0f));
                 path.addRoundRect(rectF, fArr, direction);
                 canvas.drawPath(path, paint);
                 return;
@@ -88,7 +88,7 @@ public final class i9 extends FrameLayout {
 
     @Override
     public void onMeasure(int i10, int i11) {
-        switch (this.f7384a) {
+        switch (this.f7412a) {
             case 0:
                 super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i11), 1073741824));
                 return;
@@ -103,15 +103,15 @@ public final class i9 extends FrameLayout {
 
     public i9(gi.k0 k0Var, Context context) {
         super(context);
-        this.f7387e = k0Var;
-        this.f7385b = new org.telegram.ui.Components.e6(this, 250L, pr.h);
+        this.f7415e = k0Var;
+        this.f7413b = new org.telegram.ui.Components.e6(this, 250L, pr.h);
         this.d = new Path();
     }
 
     public i9(ia iaVar, Context context) {
         super(context);
-        this.f7387e = iaVar;
-        this.f7385b = new org.telegram.ui.Components.e6(this, 250L, pr.h);
+        this.f7415e = iaVar;
+        this.f7413b = new org.telegram.ui.Components.e6(this, 250L, pr.h);
         this.d = new Path();
     }
 }

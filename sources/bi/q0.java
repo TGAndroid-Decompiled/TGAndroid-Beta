@@ -15,11 +15,11 @@ public final class q0 extends s4.j {
 
     @Override
     public final void M() {
-        this.F.f3004c.invalidate();
+        this.F.f3031c.invalidate();
     }
 
     @Override
     public final void P(s4.c1 c1Var) {
-        this.F.f3004c.invalidate();
+        this.F.f3031c.invalidate();
     }
 }

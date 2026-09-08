@@ -23,21 +23,21 @@ public abstract class c extends pg.b {
     public boolean I;
     public boolean J;
     public final boolean d;
-    public final boolean f10996e;
+    public final boolean f11022e;
     public boolean h;
-    public boolean f10998n;
+    public boolean f11024n;
     public Location v;
-    public String f11001w;
-    public String f11002x;
-    public b f11003y;
-    public boolean f10997f = false;
-    public final ArrayList f10999r = new ArrayList();
-    public final ArrayList f11000s = new ArrayList();
+    public String f11027w;
+    public String f11028x;
+    public b f11029y;
+    public boolean f11023f = false;
+    public final ArrayList f11025r = new ArrayList();
+    public final ArrayList f11026s = new ArrayList();
     public final int G = UserConfig.selectedAccount;
 
     public c(boolean z10, boolean z11) {
         this.d = z10;
-        this.f10996e = z11;
+        this.f11022e = z11;
     }
 
     public final void F() {
@@ -60,8 +60,8 @@ public abstract class c extends pg.b {
             dispatchQueue.postRunnable(aVar, 400L);
             return;
         }
-        this.f11000s.clear();
-        this.f10999r.clear();
+        this.f11026s.clear();
+        this.f11025r.clear();
         this.J = false;
         l();
     }
@@ -84,7 +84,7 @@ public abstract class c extends pg.b {
                 location3 = new Location(location);
             }
             this.v = location3;
-            this.f11001w = str;
+            this.f11027w = str;
             if (this.h) {
                 this.h = false;
                 if (this.F != 0) {
@@ -94,7 +94,7 @@ public abstract class c extends pg.b {
             }
             h();
             this.h = true;
-            this.f10997f = true;
+            this.f11023f = true;
             MessagesController messagesController = MessagesController.getInstance(this.G);
             if (this.d) {
                 str2 = MessagesController.getInstance(this.G).storyVenueSearchBot;
@@ -140,13 +140,13 @@ public abstract class c extends pg.b {
                 } else {
                     tL_messages_getInlineBotResults.peer = MessagesController.getInstance(this.G).getInputPeer(this.H);
                 }
-                if (TextUtils.isEmpty(str) || (!this.d && !this.f10996e)) {
+                if (TextUtils.isEmpty(str) || (!this.d && !this.f11022e)) {
                     cVar = this;
                     str4 = str;
                     location4 = location;
-                    cVar.f10998n = false;
+                    cVar.f11024n = false;
                 } else {
-                    this.f10998n = true;
+                    this.f11024n = true;
                     Locale currentLocale = LocaleController.getInstance().getCurrentLocale();
                     if (this.d) {
                         if (currentLocale.getLanguage().contains("en")) {

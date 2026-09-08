@@ -17,26 +17,26 @@ import org.telegram.ui.Cells.p9;
 import org.telegram.ui.Cells.q9;
 import org.telegram.ui.Components.AnimatedArrowDrawable;
 public final class t0 extends FrameLayout implements org.telegram.ui.ActionBar.z5, p9 {
-    public final org.telegram.ui.ActionBar.f6 f14177a;
-    public final eb f14178b;
-    public final AnimatedArrowDrawable f14179c;
+    public final org.telegram.ui.ActionBar.f6 f14203a;
+    public final eb f14204b;
+    public final AnimatedArrowDrawable f14205c;
     public final h1 d;
-    public final Paint f14180e;
-    public a f14181f;
+    public final Paint f14206e;
+    public a f14207f;
     public c3 h;
-    public boolean f14182n;
+    public boolean f14208n;
 
     public t0(Context context, org.telegram.ui.ActionBar.f6 f6Var) {
         super(context);
-        this.f14180e = new Paint();
-        this.f14177a = f6Var;
+        this.f14206e = new Paint();
+        this.f14203a = f6Var;
         setClipToPadding(false);
         setWillNotDraw(false);
         AnimatedArrowDrawable animatedArrowDrawable = new AnimatedArrowDrawable(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.Dk, f6Var));
-        this.f14179c = animatedArrowDrawable;
+        this.f14205c = animatedArrowDrawable;
         animatedArrowDrawable.setCallback(new ah.g1(this, 2));
         eb ebVar = new eb(this, context, 6);
-        this.f14178b = ebVar;
+        this.f14204b = ebVar;
         ebVar.setOnClickListener(new ah.h0(this, 29));
         addView(ebVar, w7.x5.e(53, -1, 51));
         h1 h1Var = new h1(context, f6Var);
@@ -55,12 +55,12 @@ public final class t0 extends FrameLayout implements org.telegram.ui.ActionBar.z
     public final void d() {
         this.d.t();
         int i10 = org.telegram.ui.ActionBar.j6.Dk;
-        org.telegram.ui.ActionBar.f6 f6Var = this.f14177a;
+        org.telegram.ui.ActionBar.f6 f6Var = this.f14203a;
         int v02 = org.telegram.ui.ActionBar.j6.v0(i10, f6Var);
-        AnimatedArrowDrawable animatedArrowDrawable = this.f14179c;
-        animatedArrowDrawable.f23643a.setColor(v02);
+        AnimatedArrowDrawable animatedArrowDrawable = this.f14205c;
+        animatedArrowDrawable.f23670a.setColor(v02);
         animatedArrowDrawable.invalidateSelf();
-        this.f14180e.setColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.Fk, f6Var));
+        this.f14206e.setColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.Fk, f6Var));
     }
 
     @Override
@@ -68,7 +68,7 @@ public final class t0 extends FrameLayout implements org.telegram.ui.ActionBar.z
         q9 q9Var;
         c3 c3Var = this.h;
         if (c3Var != null) {
-            q9Var = c3Var.f13842a.getTextSelectionHelper();
+            q9Var = c3Var.f13868a.getTextSelectionHelper();
         } else {
             q9Var = null;
         }
@@ -103,20 +103,20 @@ public final class t0 extends FrameLayout implements org.telegram.ui.ActionBar.z
     }
 
     public a getRow() {
-        return this.f14181f;
+        return this.f14207f;
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
-        a aVar = this.f14181f;
+        a aVar = this.f14207f;
         if (aVar != null) {
-            TL_iv.PageBlock pageBlock = aVar.f13732b;
+            TL_iv.PageBlock pageBlock = aVar.f13758b;
             if ((pageBlock instanceof TL_iv.pageBlockDetails) && ((TL_iv.pageBlockDetails) pageBlock).open) {
                 return;
             }
         }
         int measuredHeight = getMeasuredHeight();
-        canvas.drawRect(0.0f, measuredHeight - 1, getMeasuredWidth(), measuredHeight, this.f14180e);
+        canvas.drawRect(0.0f, measuredHeight - 1, getMeasuredWidth(), measuredHeight, this.f14206e);
     }
 
     @Override

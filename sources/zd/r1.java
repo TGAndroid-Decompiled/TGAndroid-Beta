@@ -2,14 +2,14 @@ package zd;
 
 import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
 public final class r1 extends kotlin.jvm.internal.h implements rd.q {
-    public static final r1 f51593a = new kotlin.jvm.internal.h(3, u1.class, "onAwaitInternalRegFunc", "onAwaitInternalRegFunc(Lkotlinx/coroutines/selects/SelectInstance;Ljava/lang/Object;)V", 0);
+    public static final r1 f51624a = new kotlin.jvm.internal.h(3, u1.class, "onAwaitInternalRegFunc", "onAwaitInternalRegFunc(Lkotlinx/coroutines/selects/SelectInstance;Ljava/lang/Object;)V", 0);
 
     @Override
     public final Object c(Object obj, Object obj2, kd.c cVar) {
         Object u10;
         u1 u1Var = (u1) obj;
         if (obj2 == null) {
-            AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = u1.f51604a;
+            AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = u1.f51635a;
             do {
                 u10 = u1Var.u();
                 if (!(u10 instanceof a1)) {

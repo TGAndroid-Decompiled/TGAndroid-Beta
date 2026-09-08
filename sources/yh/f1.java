@@ -1,21 +1,21 @@
 package yh;
 public final class f1 implements Runnable {
-    public final int f50269a;
-    public final h1 f50270b;
-    public final boolean f50271c;
+    public final int f50298a;
+    public final h1 f50299b;
+    public final boolean f50300c;
 
     public f1(h1 h1Var, boolean z10, int i10) {
-        this.f50269a = i10;
-        this.f50270b = h1Var;
-        this.f50271c = z10;
+        this.f50298a = i10;
+        this.f50299b = h1Var;
+        this.f50300c = z10;
     }
 
     @Override
     public final void run() {
-        switch (this.f50269a) {
+        switch (this.f50298a) {
             case 0:
-                boolean z10 = this.f50271c;
-                h1 h1Var = this.f50270b;
+                boolean z10 = this.f50300c;
+                h1 h1Var = this.f50299b;
                 if (!z10) {
                     h1Var.G.setVisibility(8);
                     return;
@@ -24,8 +24,8 @@ public final class f1 implements Runnable {
                     return;
                 }
             default:
-                boolean z11 = this.f50271c;
-                h1 h1Var2 = this.f50270b;
+                boolean z11 = this.f50300c;
+                h1 h1Var2 = this.f50299b;
                 if (!z11) {
                     h1Var2.v.setVisibility(8);
                     return;

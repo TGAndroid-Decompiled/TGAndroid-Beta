@@ -1,18 +1,18 @@
 package a3;
+
+import android.content.Context;
+import android.os.Handler;
 public final class k {
-    public int f129a;
-    public int f130b;
-    public int f131c;
+    public final Context f144a;
+    public boolean f145b;
+    public r2.k f146c;
+    public long d;
+    public Handler f147e;
+    public i2.c0 f148f;
+    public int f149g;
 
-    public k() {
-        this.f129a = 0;
-        this.f130b = 0;
-        this.f131c = 0;
-    }
-
-    public k(int i10, int i11, int i12) {
-        this.f129a = i10;
-        this.f130b = i11;
-        this.f131c = i12;
+    public k(Context context) {
+        this.f144a = context;
+        this.f146c = new q2.b(context);
     }
 }

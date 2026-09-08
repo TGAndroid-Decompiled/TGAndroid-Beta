@@ -2,15 +2,15 @@ package bb;
 
 import java.util.regex.Pattern;
 public final class e {
-    public final qa.d f2542a;
-    public final aa.a f2543b;
-    public final m f2544c;
+    public final qa.d f2569a;
+    public final aa.a f2570b;
+    public final m f2571c;
     public final ie.d d = ie.e.a();
 
     public e(id.h hVar, qa.d dVar, za.b bVar, aa.a aVar, k1.f fVar) {
-        this.f2542a = dVar;
-        this.f2543b = aVar;
-        this.f2544c = new m(fVar);
+        this.f2569a = dVar;
+        this.f2570b = aVar;
+        this.f2571c = new m(fVar);
     }
 
     public static String b(String str) {
@@ -22,9 +22,9 @@ public final class e {
     }
 
     public final Boolean a() {
-        f fVar = this.f2544c.f2570b;
+        f fVar = this.f2571c.f2597b;
         if (fVar != null) {
-            return fVar.f2545a;
+            return fVar.f2572a;
         }
         kotlin.jvm.internal.i.h("sessionConfigs");
         throw null;

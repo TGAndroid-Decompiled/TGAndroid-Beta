@@ -15,10 +15,10 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.hj1;
 public final class cp implements ti {
-    public final lp f25072a;
+    public final lp f25099a;
 
     public cp(lp lpVar) {
-        this.f25072a = lpVar;
+        this.f25099a = lpVar;
     }
 
     @Override
@@ -35,8 +35,8 @@ public final class cp implements ti {
     @Override
     public final void K(Object obj) {
         zo zoVar = new zo(obj, null, true, 3);
-        lp lpVar = this.f25072a;
-        zoVar.V1 = lpVar.f28264f0;
+        lp lpVar = this.f25099a;
+        zoVar.V1 = lpVar.f28291f0;
         zoVar.c1(lpVar.v.a());
         zoVar.I1 = new bp(this, 1);
         lp.q(lpVar, zoVar);
@@ -44,9 +44,9 @@ public final class cp implements ti {
 
     @Override
     public final void l0(int i10, boolean z10, boolean z11, int i11, int i12, long j3, boolean z12, boolean z13, long j10) {
-        lp lpVar = this.f25072a;
+        lp lpVar = this.f25099a;
         try {
-            HashMap<Object, Object> selectedPhotos = lpVar.Y.f31291j0.getSelectedPhotos();
+            HashMap<Object, Object> selectedPhotos = lpVar.Y.f31318j0.getSelectedPhotos();
             if (!selectedPhotos.isEmpty()) {
                 MediaController.PhotoEntry photoEntry = (MediaController.PhotoEntry) selectedPhotos.values().iterator().next();
                 String str = photoEntry.imagePath;
@@ -60,10 +60,10 @@ public final class cp implements ti {
                     Bitmap loadBitmap = ImageLoader.loadBitmap(str, null, (float) realScreenSize.x, (float) realScreenSize.y, true);
                     loadBitmap.compress(Bitmap.CompressFormat.JPEG, 87, new FileOutputStream(file));
                     zo zoVar = new zo(new hj1(file, file, ""), loadBitmap, false, 2);
-                    zoVar.V1 = lpVar.f28264f0;
+                    zoVar.V1 = lpVar.f28291f0;
                     zoVar.F1 = false;
                     zoVar.E1 = false;
-                    zoVar.f41954n1 = 0.2f;
+                    zoVar.f41981n1 = 0.2f;
                     zoVar.c1(lpVar.v.a());
                     zoVar.I1 = new bp(this, 0);
                     lp.q(lpVar, zoVar);

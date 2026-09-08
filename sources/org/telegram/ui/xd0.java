@@ -9,24 +9,24 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class xd0 implements RequestDelegate {
-    public final int f42690a;
-    public final ge0 f42691b;
-    public final Bundle f42692c;
+    public final int f42717a;
+    public final ge0 f42718b;
+    public final Bundle f42719c;
     public final TLRPC.TL_auth_resetLoginEmail d;
 
     public xd0(ge0 ge0Var, Bundle bundle, TLRPC.TL_auth_resetLoginEmail tL_auth_resetLoginEmail, int i10) {
-        this.f42690a = i10;
-        this.f42691b = ge0Var;
-        this.f42692c = bundle;
+        this.f42717a = i10;
+        this.f42718b = ge0Var;
+        this.f42719c = bundle;
         this.d = tL_auth_resetLoginEmail;
     }
 
     @Override
     public final void run(final TLObject tLObject, final TLRPC.TL_error tL_error) {
-        switch (this.f42690a) {
+        switch (this.f42717a) {
             case 0:
-                final ge0 ge0Var = this.f42691b;
-                final Bundle bundle = this.f42692c;
+                final ge0 ge0Var = this.f42718b;
+                final Bundle bundle = this.f42719c;
                 final TLRPC.TL_auth_resetLoginEmail tL_auth_resetLoginEmail = this.d;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
@@ -53,7 +53,7 @@ public final class xd0 implements RequestDelegate {
                                         if (str.contains("TASK_ALREADY_EXISTS")) {
                                             AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(ge0Var2.getContext());
                                             String string = LocaleController.getString(R.string.LoginEmailResetPremiumRequiredTitle);
-                                            org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20198a;
+                                            org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20225a;
                                             b2Var.R = string;
                                             int i13 = R.string.LoginEmailResetPremiumRequiredMessage;
                                             gf.b c10 = gf.b.c();
@@ -80,8 +80,8 @@ public final class xd0 implements RequestDelegate {
                                     TLRPC.TL_auth_sentCode tL_auth_sentCode = (TLRPC.TL_auth_sentCode) tLObject2;
                                     TLRPC.auth_SentCodeType auth_sentcodetype = tL_auth_sentCode.type;
                                     if (auth_sentcodetype instanceof TLRPC.TL_auth_sentCodeTypeEmailCode) {
-                                        auth_sentcodetype.email_pattern = ge0Var2.f36652y.getString("emailPattern");
-                                        ge0Var2.f36651x = true;
+                                        auth_sentcodetype.email_pattern = ge0Var2.f36679y.getString("emailPattern");
+                                        ge0Var2.f36678x = true;
                                     }
                                     wg0Var2.g1(bundle2, tL_auth_sentCode, true);
                                     return;
@@ -102,8 +102,8 @@ public final class xd0 implements RequestDelegate {
                 });
                 return;
             default:
-                final ge0 ge0Var2 = this.f42691b;
-                final Bundle bundle2 = this.f42692c;
+                final ge0 ge0Var2 = this.f42718b;
+                final Bundle bundle2 = this.f42719c;
                 final TLRPC.TL_auth_resetLoginEmail tL_auth_resetLoginEmail2 = this.d;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
@@ -130,7 +130,7 @@ public final class xd0 implements RequestDelegate {
                                         if (str.contains("TASK_ALREADY_EXISTS")) {
                                             AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(ge0Var22.getContext());
                                             String string = LocaleController.getString(R.string.LoginEmailResetPremiumRequiredTitle);
-                                            org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20198a;
+                                            org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20225a;
                                             b2Var.R = string;
                                             int i13 = R.string.LoginEmailResetPremiumRequiredMessage;
                                             gf.b c10 = gf.b.c();
@@ -157,8 +157,8 @@ public final class xd0 implements RequestDelegate {
                                     TLRPC.TL_auth_sentCode tL_auth_sentCode = (TLRPC.TL_auth_sentCode) tLObject2;
                                     TLRPC.auth_SentCodeType auth_sentcodetype = tL_auth_sentCode.type;
                                     if (auth_sentcodetype instanceof TLRPC.TL_auth_sentCodeTypeEmailCode) {
-                                        auth_sentcodetype.email_pattern = ge0Var22.f36652y.getString("emailPattern");
-                                        ge0Var22.f36651x = true;
+                                        auth_sentcodetype.email_pattern = ge0Var22.f36679y.getString("emailPattern");
+                                        ge0Var22.f36678x = true;
                                     }
                                     wg0Var2.g1(bundle22, tL_auth_sentCode, true);
                                     return;

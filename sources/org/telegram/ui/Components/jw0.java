@@ -7,21 +7,21 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.DialogObject;
 import org.telegram.tgnet.TLRPC;
 public final class jw0 {
-    public final o5 f27580a;
-    public Drawable f27581b;
+    public final o5 f27607a;
+    public Drawable f27608b;
 
     public jw0(FrameLayout frameLayout) {
         this(18, frameLayout);
     }
 
     public final o5 a(TLRPC.User user, TLRPC.Chat chat, int i10, boolean z10) {
-        o5 o5Var = this.f27580a;
+        o5 o5Var = this.f27607a;
         if (chat != null && chat.verified) {
-            Drawable drawable = this.f27581b;
+            Drawable drawable = this.f27608b;
             if (drawable == null) {
-                drawable = new oq(org.telegram.ui.ActionBar.j6.f20695f1, org.telegram.ui.ActionBar.j6.f20748i1);
+                drawable = new oq(org.telegram.ui.ActionBar.j6.f20722f1, org.telegram.ui.ActionBar.j6.f20775i1);
             }
-            this.f27581b = drawable;
+            this.f27608b = drawable;
             o5Var.g(drawable, z10);
             o5Var.k(null);
             return o5Var;
@@ -30,11 +30,11 @@ public final class jw0 {
             o5Var.k(Integer.valueOf(i10));
             return o5Var;
         } else if (user != null && user.verified) {
-            Drawable drawable2 = this.f27581b;
+            Drawable drawable2 = this.f27608b;
             if (drawable2 == null) {
-                drawable2 = new oq(org.telegram.ui.ActionBar.j6.f20695f1, org.telegram.ui.ActionBar.j6.f20748i1);
+                drawable2 = new oq(org.telegram.ui.ActionBar.j6.f20722f1, org.telegram.ui.ActionBar.j6.f20775i1);
             }
-            this.f27581b = drawable2;
+            this.f27608b = drawable2;
             o5Var.g(drawable2, z10);
             o5Var.k(null);
             return o5Var;
@@ -43,7 +43,7 @@ public final class jw0 {
             o5Var.k(Integer.valueOf(i10));
             return o5Var;
         } else if (user != null && user.premium) {
-            o5Var.g(sg.d1.d().f46068e, z10);
+            o5Var.g(sg.d1.d().f46096e, z10);
             o5Var.k(Integer.valueOf(i10));
             return o5Var;
         } else {
@@ -54,6 +54,6 @@ public final class jw0 {
     }
 
     public jw0(int i10, View view) {
-        this.f27580a = new o5(AndroidUtilities.dp(i10), view);
+        this.f27607a = new o5(AndroidUtilities.dp(i10), view);
     }
 }

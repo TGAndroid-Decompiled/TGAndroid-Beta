@@ -12,27 +12,27 @@ import org.telegram.ui.Components.qc;
 import org.telegram.ui.Components.yc;
 import org.telegram.ui.LaunchActivity;
 public final class n4 implements e2.h {
-    public final int f3360a;
-    public final KeyEvent.Callback f3361b;
-    public final Object f3362c;
+    public final int f3387a;
+    public final KeyEvent.Callback f3388b;
+    public final Object f3389c;
     public final Object d;
-    public final Object f3363e;
+    public final Object f3390e;
 
     public n4(KeyEvent.Callback callback, Object obj, Object obj2, Object obj3, int i10) {
-        this.f3360a = i10;
-        this.f3361b = callback;
-        this.f3362c = obj;
+        this.f3387a = i10;
+        this.f3388b = callback;
+        this.f3389c = obj;
         this.d = obj2;
-        this.f3363e = obj3;
+        this.f3390e = obj3;
     }
 
     @Override
     public final void accept(Object obj) {
-        int i10 = this.f3360a;
-        Object obj2 = this.f3363e;
+        int i10 = this.f3387a;
+        Object obj2 = this.f3390e;
         Object obj3 = this.d;
-        Object obj4 = this.f3362c;
-        KeyEvent.Callback callback = this.f3361b;
+        Object obj4 = this.f3389c;
+        KeyEvent.Callback callback = this.f3388b;
         switch (i10) {
             case 0:
                 s4 s4Var = (s4) callback;
@@ -43,17 +43,17 @@ public final class n4 implements e2.h {
                 if (storyItem != null) {
                     org.telegram.ui.ActionBar.n2 R = LaunchActivity.R();
                     if (R != null) {
-                        storyItem.dialogId = z9Var.f4075b.longValue();
+                        storyItem.dialogId = z9Var.f4102b.longValue();
                         pb createOverlayStoryViewer = R.createOverlayStoryViewer();
                         createOverlayStoryViewer.F(s4Var.getContext(), storyItem, null);
-                        createOverlayStoryViewer.f3564o1 = new p4(pbVar, 0);
+                        createOverlayStoryViewer.f3591o1 = new p4(pbVar, 0);
                         pbVar.P();
                         return;
                     }
                     return;
                 }
-                qc Q = new yc(s4Var.f3687z0.f3409c1, f6Var).Q(R.raw.story_bomb2, 36, LocaleController.getString(R.string.StoryNotFound));
-                Q.f29672a = 3;
+                qc Q = new yc(s4Var.f3714z0.f3436c1, f6Var).Q(R.raw.story_bomb2, 36, LocaleController.getString(R.string.StoryNotFound));
+                Q.f29699a = 3;
                 Q.k(true);
                 return;
             default:

@@ -8,17 +8,17 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 public final class w7 extends s4.h0 {
-    public final int f41781c;
+    public final int f41808c;
     public final Object d;
 
     public w7(Object obj, int i10) {
-        this.f41781c = i10;
+        this.f41808c = i10;
         this.d = obj;
     }
 
     @Override
     public final int h() {
-        switch (this.f41781c) {
+        switch (this.f41808c) {
             case 0:
                 return ((h8) this.d).K;
             case 1:
@@ -30,13 +30,13 @@ public final class w7 extends s4.h0 {
             case 4:
                 return 1;
             default:
-                return ((aq0) this.d).f34530f.size();
+                return ((aq0) this.d).f34557f.size();
         }
     }
 
     @Override
     public long i(int i10) {
-        switch (this.f41781c) {
+        switch (this.f41808c) {
             case 0:
                 h8 h8Var = (h8) this.d;
                 return ((h8Var.I - (i10 / 12)) * 100) + (h8Var.J - (i10 % 12));
@@ -48,13 +48,13 @@ public final class w7 extends s4.h0 {
                 if (i10 >= c9Var.X2.size()) {
                     return 1L;
                 }
-                return ((org.telegram.ui.Components.b9) c9Var.X2.get(i10)).f24599a;
+                return ((org.telegram.ui.Components.b9) c9Var.X2.get(i10)).f24626a;
         }
     }
 
     @Override
     public int j(int i10) {
-        switch (this.f41781c) {
+        switch (this.f41808c) {
             case 2:
                 if (i10 >= ((org.telegram.ui.Components.c9) this.d).X2.size()) {
                     return 1;
@@ -72,20 +72,20 @@ public final class w7 extends s4.h0 {
 
     @Override
     public final s4.c1 x(ViewGroup viewGroup, int i10) {
-        switch (this.f41781c) {
+        switch (this.f41808c) {
             case 0:
                 return new s4.c1(new e8((h8) this.d, viewGroup.getContext()));
             case 1:
                 Context context = viewGroup.getContext();
                 ?? linearLayout = new LinearLayout(context);
                 Paint paint = new Paint(1);
-                linearLayout.f22701a = paint;
+                linearLayout.f22728a = paint;
                 Paint paint2 = new Paint(1);
-                linearLayout.f22702b = paint2;
+                linearLayout.f22729b = paint2;
                 linearLayout.setOrientation(1);
                 linearLayout.setWillNotDraw(false);
                 org.telegram.ui.Cells.q qVar = new org.telegram.ui.Cells.q(context);
-                linearLayout.f22703c = qVar;
+                linearLayout.f22730c = qVar;
                 qVar.setPadding(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f));
                 linearLayout.addView(qVar, w7.x5.q(58, 58, 1));
                 TextView textView = new TextView(context);
@@ -100,7 +100,7 @@ public final class w7 extends s4.h0 {
                 return new s4.c1(linearLayout);
             case 2:
                 org.telegram.ui.Components.c9 c9Var = (org.telegram.ui.Components.c9) this.d;
-                return new s4.c1(new org.telegram.ui.Components.d9(c9Var.f24925c3, c9Var.getContext()));
+                return new s4.c1(new org.telegram.ui.Components.d9(c9Var.f24952c3, c9Var.getContext()));
             case 3:
                 return new s4.c1(((org.telegram.ui.Components.qm) this.d).v);
             case 4:

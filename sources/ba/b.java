@@ -20,19 +20,19 @@ import java.util.concurrent.atomic.AtomicInteger;
 import w9.j;
 import y9.a2;
 public final class b {
-    public static final Charset f2519e = Charset.forName("UTF-8");
-    public static final int f2520f = 15;
-    public static final z9.b f2521g = new Object();
+    public static final Charset f2546e = Charset.forName("UTF-8");
+    public static final int f2547f = 15;
+    public static final z9.b f2548g = new Object();
     public static final e h = new e(3);
-    public static final a f2522i = new a(0);
-    public final AtomicInteger f2523a = new AtomicInteger(0);
-    public final c f2524b;
-    public final da.b f2525c;
+    public static final a f2549i = new a(0);
+    public final AtomicInteger f2550a = new AtomicInteger(0);
+    public final c f2551b;
+    public final da.b f2552c;
     public final j d;
 
     public b(c cVar, da.b bVar, j jVar) {
-        this.f2524b = cVar;
-        this.f2525c = bVar;
+        this.f2551b = cVar;
+        this.f2552c = bVar;
         this.d = jVar;
     }
 
@@ -53,7 +53,7 @@ public final class b {
                 if (read > 0) {
                     byteArrayOutputStream.write(bArr, 0, read);
                 } else {
-                    String str = new String(byteArrayOutputStream.toByteArray(), f2519e);
+                    String str = new String(byteArrayOutputStream.toByteArray(), f2546e);
                     fileInputStream.close();
                     return str;
                 }
@@ -69,7 +69,7 @@ public final class b {
     }
 
     public static void f(File file, String str) {
-        OutputStreamWriter outputStreamWriter = new OutputStreamWriter(new FileOutputStream(file), f2519e);
+        OutputStreamWriter outputStreamWriter = new OutputStreamWriter(new FileOutputStream(file), f2546e);
         try {
             outputStreamWriter.write(str);
             outputStreamWriter.close();
@@ -85,9 +85,9 @@ public final class b {
 
     public final ArrayList b() {
         ArrayList arrayList = new ArrayList();
-        c cVar = this.f2524b;
-        arrayList.addAll(c.e(cVar.f2529e.listFiles()));
-        arrayList.addAll(c.e(cVar.f2530f.listFiles()));
+        c cVar = this.f2551b;
+        arrayList.addAll(c.e(cVar.f2556e.listFiles()));
+        arrayList.addAll(c.e(cVar.f2557f.listFiles()));
         e eVar = h;
         Collections.sort(arrayList, eVar);
         List e7 = c.e(cVar.d.listFiles());
@@ -97,16 +97,16 @@ public final class b {
     }
 
     public final NavigableSet c() {
-        return new TreeSet(c.e(this.f2524b.f2528c.list())).descendingSet();
+        return new TreeSet(c.e(this.f2551b.f2555c.list())).descendingSet();
     }
 
     public final void d(a2 a2Var, String str, boolean z10) {
         String str2;
-        c cVar = this.f2524b;
-        int i10 = this.f2525c.d().f6646a.f5184a;
-        f2521g.getClass();
-        String y3 = z9.b.f51377a.y(a2Var);
-        String format = String.format(Locale.US, "%010d", Integer.valueOf(this.f2523a.getAndIncrement()));
+        c cVar = this.f2551b;
+        int i10 = this.f2552c.d().f6673a.f5211a;
+        f2548g.getClass();
+        String y3 = z9.b.f51408a.y(a2Var);
+        String format = String.format(Locale.US, "%010d", Integer.valueOf(this.f2550a.getAndIncrement()));
         if (z10) {
             str2 = "_";
         } else {
@@ -119,7 +119,7 @@ public final class b {
         }
         a aVar = new a(1);
         cVar.getClass();
-        File file = new File(cVar.f2528c, str);
+        File file = new File(cVar.f2555c, str);
         file.mkdirs();
         List<File> e10 = c.e(file.listFiles(aVar));
         Collections.sort(e10, new e(4));

@@ -3,11 +3,11 @@ package sc;
 import m2.t;
 import tc.g;
 public final class b {
-    public final t f45985a;
-    public final Exception f45986b;
+    public final t f46013a;
+    public final Exception f46014b;
 
     public b(t tVar, g gVar) {
-        this.f45986b = gVar;
-        this.f45985a = tVar;
+        this.f46014b = gVar;
+        this.f46013a = tVar;
     }
 }

@@ -10,7 +10,7 @@ public final class k extends oq {
     public final Drawable E;
     public final Drawable F;
     public final lx G;
-    public int f3181y;
+    public int f3208y;
 
     public k(lx lxVar, Drawable drawable, Drawable drawable2, Drawable drawable3, Drawable drawable4) {
         super(drawable, drawable2);
@@ -24,15 +24,15 @@ public final class k extends oq {
         int i10;
         int i11;
         lx lxVar = this.G;
-        int i12 = lxVar.f3848b;
+        int i12 = lxVar.f3875b;
         if (i12 == 0) {
-            i10 = org.telegram.ui.ActionBar.j6.f20937s8;
+            i10 = org.telegram.ui.ActionBar.j6.f20964s8;
         } else {
             i10 = org.telegram.ui.ActionBar.j6.M8;
         }
         int f7 = lxVar.f(i10);
-        if (this.f3181y != f7) {
-            this.f3181y = f7;
+        if (this.f3208y != f7) {
+            this.f3208y = f7;
             if (i12 == 0) {
                 i11 = org.telegram.ui.ActionBar.j6.A8;
             } else {

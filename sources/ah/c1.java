@@ -62,13 +62,13 @@ public final class c1 extends x9 {
             this.G = true;
             return;
         }
-        if (getImageReceiver().getLottieAnimation() != null && getImageReceiver().getLottieAnimation().f32566l0) {
+        if (getImageReceiver().getLottieAnimation() != null && getImageReceiver().getLottieAnimation().f32593l0) {
             this.G = true;
         }
-        if (!this.G && getImageReceiver().getLottieAnimation() != null && !getImageReceiver().getLottieAnimation().f32566l0) {
+        if (!this.G && getImageReceiver().getLottieAnimation() != null && !getImageReceiver().getLottieAnimation().f32593l0) {
             e1 e1Var = this.K;
-            if (e1Var.f506a == 2 && !e1Var.f528z) {
-                getImageReceiver().getLottieAnimation().L(getImageReceiver().getLottieAnimation().f32557e[0] - 1, false, false);
+            if (e1Var.f518a == 2 && !e1Var.f540z) {
+                getImageReceiver().getLottieAnimation().L(getImageReceiver().getLottieAnimation().f32584e[0] - 1, false, false);
             } else {
                 getImageReceiver().getLottieAnimation().L(0, false, false);
                 getImageReceiver().getLottieAnimation().start();

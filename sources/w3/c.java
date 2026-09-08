@@ -10,15 +10,15 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import u2.x0;
 public abstract class c {
-    public static final byte[] f47923a;
+    public static final byte[] f47952a;
 
     static {
-        String str = d0.f8737a;
-        f47923a = "OpusHead".getBytes(StandardCharsets.UTF_8);
+        String str = d0.f8765a;
+        f47952a = "OpusHead".getBytes(StandardCharsets.UTF_8);
     }
 
     public static void a(v vVar) {
-        int i10 = vVar.f8790b;
+        int i10 = vVar.f8818b;
         vVar.K(4);
         if (vVar.j() != 1751411826) {
             i10 += 4;
@@ -85,46 +85,46 @@ public abstract class c {
 
     public static p0 f(f2.d dVar) {
         f2.b bVar;
-        f2.e j3 = dVar.j(1751411826);
-        f2.e j10 = dVar.j(1801812339);
-        f2.e j11 = dVar.j(1768715124);
-        if (j3 != null && j10 != null && j11 != null) {
-            v vVar = j3.f9177c;
+        f2.e e7 = dVar.e(1751411826);
+        f2.e e10 = dVar.e(1801812339);
+        f2.e e11 = dVar.e(1768715124);
+        if (e7 != null && e10 != null && e11 != null) {
+            v vVar = e7.f9205c;
             vVar.J(16);
             if (vVar.j() == 1835299937) {
-                v vVar2 = j10.f9177c;
+                v vVar2 = e10.f9205c;
                 vVar2.J(12);
-                int j12 = vVar2.j();
-                String[] strArr = new String[j12];
-                for (int i10 = 0; i10 < j12; i10++) {
-                    int j13 = vVar2.j();
+                int j3 = vVar2.j();
+                String[] strArr = new String[j3];
+                for (int i10 = 0; i10 < j3; i10++) {
+                    int j10 = vVar2.j();
                     vVar2.K(4);
-                    strArr[i10] = vVar2.v(j13 - 8, StandardCharsets.UTF_8);
+                    strArr[i10] = vVar2.v(j10 - 8, StandardCharsets.UTF_8);
                 }
-                v vVar3 = j11.f9177c;
+                v vVar3 = e11.f9205c;
                 vVar3.J(8);
                 ArrayList arrayList = new ArrayList();
                 while (vVar3.a() > 8) {
-                    int i11 = vVar3.f8790b;
-                    int j14 = vVar3.j();
-                    int j15 = vVar3.j() - 1;
-                    if (j15 >= 0 && j15 < j12) {
-                        String str = strArr[j15];
-                        int i12 = i11 + j14;
+                    int i11 = vVar3.f8818b;
+                    int j11 = vVar3.j();
+                    int j12 = vVar3.j() - 1;
+                    if (j12 >= 0 && j12 < j3) {
+                        String str = strArr[j12];
+                        int i12 = i11 + j11;
                         while (true) {
-                            int i13 = vVar3.f8790b;
+                            int i13 = vVar3.f8818b;
                             if (i13 < i12) {
-                                int j16 = vVar3.j();
+                                int j13 = vVar3.j();
                                 if (vVar3.j() == 1684108385) {
-                                    int j17 = vVar3.j();
-                                    int j18 = vVar3.j();
-                                    int i14 = j16 - 16;
+                                    int j14 = vVar3.j();
+                                    int j15 = vVar3.j();
+                                    int i14 = j13 - 16;
                                     byte[] bArr = new byte[i14];
                                     vVar3.h(0, i14, bArr);
-                                    bVar = new f2.b(str, bArr, j18, j17);
+                                    bVar = new f2.b(str, bArr, j15, j14);
                                     break;
                                 }
-                                vVar3.J(i13 + j16);
+                                vVar3.J(i13 + j13);
                             } else {
                                 bVar = null;
                                 break;
@@ -134,9 +134,9 @@ public abstract class c {
                             arrayList.add(bVar);
                         }
                     } else {
-                        e2.n(j15, "Skipped metadata with unknown key index: ", "BoxParsers");
+                        e2.n(j12, "Skipped metadata with unknown key index: ", "BoxParsers");
                     }
-                    vVar3.J(i11 + j14);
+                    vVar3.J(i11 + j11);
                 }
                 if (!arrayList.isEmpty()) {
                     return new p0(arrayList);
@@ -171,7 +171,7 @@ public abstract class c {
         int i13;
         Integer num2;
         boolean z13;
-        int i14 = vVar.f8790b;
+        int i14 = vVar.f8818b;
         while (i14 - i10 < i11) {
             vVar.J(i14);
             int j3 = vVar.j();
@@ -267,7 +267,7 @@ public abstract class c {
                         z14 = true;
                     }
                     c3.b.c("tenc atom is mandatory", z14);
-                    String str2 = d0.f8737a;
+                    String str2 = d0.f8765a;
                     create = Pair.create(num, pVar);
                 }
                 if (create != null) {

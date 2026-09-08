@@ -11,11 +11,11 @@ import bi.z1;
 import org.telegram.ui.qp0;
 import org.telegram.ui.t3;
 public abstract class j0 {
-    public static final z1 f50112a = new z1(21);
-    public static final z1 f50113b = new z1(22);
-    public static Path f50114c;
+    public static final z1 f50141a = new z1(21);
+    public static final z1 f50142b = new z1(22);
+    public static Path f50143c;
     public static Outline d;
-    public static Rect f50115e;
+    public static Rect f50144e;
 
     public static void a(Canvas canvas, qp0 qp0Var, t3 t3Var) {
         Path path;
@@ -24,14 +24,14 @@ public abstract class j0 {
         ViewOutlineProvider outlineProvider = qp0Var.getOutlineProvider();
         if (!canvas.isHardwareAccelerated() && Build.VERSION.SDK_INT >= 24 && qp0Var.getClipToOutline() && outlineProvider != null) {
             if (Looper.myLooper() == Looper.getMainLooper()) {
-                if (f50114c == null) {
-                    f50114c = new Path();
+                if (f50143c == null) {
+                    f50143c = new Path();
                     d = new Outline();
-                    f50115e = new Rect();
+                    f50144e = new Rect();
                 }
-                path = f50114c;
+                path = f50143c;
                 outline = d;
-                rect = f50115e;
+                rect = f50144e;
                 outline.setEmpty();
                 rect.setEmpty();
             } else {

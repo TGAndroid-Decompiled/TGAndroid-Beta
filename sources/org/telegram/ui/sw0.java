@@ -14,10 +14,10 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.Utilities;
 public final class sw0 implements Utilities.Callback2Return, org.telegram.ui.ActionBar.a2, org.telegram.ui.Components.rv0, g2.g, q3.g, q9.e, pa.a, q9.d, qg.h0, androidx.car.app.utils.d {
-    public final int f40560a;
+    public final int f40587a;
 
     public sw0(int i10) {
-        this.f40560a = i10;
+        this.f40587a = i10;
     }
 
     public static AudioRecordingConfiguration d(Object obj) {
@@ -31,20 +31,20 @@ public final class sw0 implements Utilities.Callback2Return, org.telegram.ui.Act
     @Override
     public Object D(cf.c cVar) {
         qa.d lambda$getComponents$0;
-        switch (this.f40560a) {
+        switch (this.f40587a) {
             case 16:
                 lambda$getComponents$0 = FirebaseInstallationsRegistrar.lambda$getComponents$0(cVar);
                 return lambda$getComponents$0;
             case 28:
-                return (ScheduledExecutorService) ExecutorsRegistrar.f6302a.get();
+                return (ScheduledExecutorService) ExecutorsRegistrar.f6329a.get();
             default:
-                return (ScheduledExecutorService) ExecutorsRegistrar.f6304c.get();
+                return (ScheduledExecutorService) ExecutorsRegistrar.f6331c.get();
         }
     }
 
     @Override
     public Typeface a() {
-        switch (this.f40560a) {
+        switch (this.f40587a) {
             case 17:
                 return AndroidUtilities.getTypeface("fonts/rmedium.ttf");
             case 18:
@@ -82,7 +82,7 @@ public final class sw0 implements Utilities.Callback2Return, org.telegram.ui.Act
 
     @Override
     public void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        switch (this.f40560a) {
+        switch (this.f40587a) {
             case 1:
                 b2Var.dismiss();
                 return;

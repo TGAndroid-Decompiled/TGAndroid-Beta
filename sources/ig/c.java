@@ -30,20 +30,20 @@ public final class c extends n2 implements NotificationCenter.NotificationCenter
     public int E;
     public int F;
     public int G;
-    public or f12011a;
-    public org.telegram.ui.ActionBar.v0 f12012b;
-    public d61 f12013c;
+    public or f12037a;
+    public org.telegram.ui.ActionBar.v0 f12038b;
+    public d61 f12039c;
     public a0 d;
-    public boolean f12014e;
-    public boolean f12015f;
+    public boolean f12040e;
+    public boolean f12041f;
     public int h;
-    public TL_account.TL_businessAwayMessage f12016n;
-    public int f12017r;
-    public boolean f12018s;
+    public TL_account.TL_businessAwayMessage f12042n;
+    public int f12043r;
+    public boolean f12044s;
     public boolean v;
-    public boolean f12019w;
-    public int f12020x;
-    public int f12021y;
+    public boolean f12045w;
+    public int f12046x;
+    public int f12047y;
 
     public static void U(c cVar, ArrayList arrayList, v51 v51Var) {
         boolean z10;
@@ -51,16 +51,16 @@ public final class c extends n2 implements NotificationCenter.NotificationCenter
         String string = LocaleController.getString(R.string.BusinessAway);
         String string2 = LocaleController.getString(R.string.BusinessAwayInfo);
         h51 h51Var = new h51(2);
-        h51Var.f26594l = string;
-        h51Var.f26597o = string2;
-        h51Var.f26595m = "RestrictedEmoji";
-        h51Var.f26596n = "💤";
+        h51Var.f26621l = string;
+        h51Var.f26624o = string2;
+        h51Var.f26622m = "RestrictedEmoji";
+        h51Var.f26623n = "💤";
         arrayList.add(h51Var);
         h51 i10 = h51.i(1, LocaleController.getString(R.string.BusinessAwaySend));
-        i10.K(cVar.f12018s);
+        i10.K(cVar.f12044s);
         arrayList.add(i10);
         arrayList.add(h51.B(null));
-        if (cVar.f12018s) {
+        if (cVar.f12044s) {
             a2 d = b2.f(cVar.currentAccount).d("away");
             if (d != null) {
                 h51 h51Var2 = new h51(17);
@@ -68,23 +68,23 @@ public final class c extends n2 implements NotificationCenter.NotificationCenter
                 arrayList.add(h51Var2);
             } else {
                 h51 c10 = h51.c(2, R.drawable.msg2_chats_add, LocaleController.getString(R.string.BusinessAwayCreate));
-                c10.f26599q = true;
+                c10.f26626q = true;
                 arrayList.add(c10);
             }
             arrayList.add(h51.B(null));
             i2.g.p(R.string.BusinessAwaySchedule, arrayList);
             h51 w10 = h51.w(3, LocaleController.getString(R.string.BusinessAwayScheduleAlways));
             boolean z12 = false;
-            if (cVar.f12020x == 0) {
+            if (cVar.f12046x == 0) {
                 z10 = true;
             } else {
                 z10 = false;
             }
             w10.K(z10);
             arrayList.add(w10);
-            if (cVar.f12014e) {
+            if (cVar.f12040e) {
                 h51 w11 = h51.w(4, LocaleController.getString(R.string.BusinessAwayScheduleOutsideHours));
-                if (cVar.f12020x == 1) {
+                if (cVar.f12046x == 1) {
                     z11 = true;
                 } else {
                     z11 = false;
@@ -93,12 +93,12 @@ public final class c extends n2 implements NotificationCenter.NotificationCenter
                 arrayList.add(w11);
             }
             h51 w12 = h51.w(5, LocaleController.getString(R.string.BusinessAwayScheduleCustom));
-            if (cVar.f12020x == 2) {
+            if (cVar.f12046x == 2) {
                 z12 = true;
             }
             w12.K(z12);
             arrayList.add(w12);
-            if (cVar.f12020x == 2) {
+            if (cVar.f12046x == 2) {
                 arrayList.add(h51.B(null));
                 i2.g.p(R.string.BusinessAwaySchedule, arrayList);
                 arrayList.add(h51.f(LocaleController.getString(R.string.BusinessAwayScheduleCustomStart), LocaleController.formatShortDateTime(cVar.F), 8));
@@ -106,7 +106,7 @@ public final class c extends n2 implements NotificationCenter.NotificationCenter
             }
             arrayList.add(h51.B(null));
             h51 i11 = h51.i(10, LocaleController.getString(R.string.BusinessAwayOnlyOffline));
-            i11.K(cVar.f12019w);
+            i11.K(cVar.f12045w);
             arrayList.add(i11);
             i2.g.A(R.string.BusinessAwayOnlyOfflineInfo, arrayList);
             i2.g.p(R.string.BusinessRecipients, arrayList);
@@ -127,14 +127,14 @@ public final class c extends n2 implements NotificationCenter.NotificationCenter
         float f10;
         float f11;
         float f12;
-        if (this.f12012b == null) {
+        if (this.f12038b == null) {
             return;
         }
         boolean W = W();
-        this.f12012b.setEnabled(W);
+        this.f12038b.setEnabled(W);
         float f13 = 0.0f;
         if (z10) {
-            ViewPropertyAnimator animate = this.f12012b.animate();
+            ViewPropertyAnimator animate = this.f12038b.animate();
             if (W) {
                 f11 = 1.0f;
             } else {
@@ -153,21 +153,21 @@ public final class c extends n2 implements NotificationCenter.NotificationCenter
             scaleX.scaleY(f13).setDuration(180L).start();
             return;
         }
-        org.telegram.ui.ActionBar.v0 v0Var = this.f12012b;
+        org.telegram.ui.ActionBar.v0 v0Var = this.f12038b;
         if (W) {
             f7 = 1.0f;
         } else {
             f7 = 0.0f;
         }
         v0Var.setAlpha(f7);
-        org.telegram.ui.ActionBar.v0 v0Var2 = this.f12012b;
+        org.telegram.ui.ActionBar.v0 v0Var2 = this.f12038b;
         if (W) {
             f10 = 1.0f;
         } else {
             f10 = 0.0f;
         }
         v0Var2.setScaleX(f10);
-        org.telegram.ui.ActionBar.v0 v0Var3 = this.f12012b;
+        org.telegram.ui.ActionBar.v0 v0Var3 = this.f12038b;
         if (W) {
             f13 = 1.0f;
         }
@@ -177,9 +177,9 @@ public final class c extends n2 implements NotificationCenter.NotificationCenter
     public final boolean W() {
         boolean z10;
         a0 a0Var;
-        if (this.f12015f) {
-            boolean z11 = this.f12018s;
-            TL_account.TL_businessAwayMessage tL_businessAwayMessage = this.f12016n;
+        if (this.f12041f) {
+            boolean z11 = this.f12044s;
+            TL_account.TL_businessAwayMessage tL_businessAwayMessage = this.f12042n;
             if (tL_businessAwayMessage != null) {
                 z10 = true;
             } else {
@@ -188,9 +188,9 @@ public final class c extends n2 implements NotificationCenter.NotificationCenter
             if (z11 == z10) {
                 if (z11 && tL_businessAwayMessage != null) {
                     if (tL_businessAwayMessage.recipients.exclude_selected == this.v && ((a0Var = this.d) == null || !a0Var.g())) {
-                        int i10 = this.f12017r;
-                        int i11 = this.f12020x;
-                        if (i10 == i11 && this.f12016n.offline_only == this.f12019w && (i11 != 2 || (this.f12021y == this.F && this.E == this.G))) {
+                        int i10 = this.f12043r;
+                        int i11 = this.f12046x;
+                        if (i10 == i11 && this.f12042n.offline_only == this.f12045w && (i11 != 2 || (this.f12047y == this.F && this.E == this.G))) {
                         }
                     }
                 }
@@ -201,33 +201,33 @@ public final class c extends n2 implements NotificationCenter.NotificationCenter
     }
 
     public final void X() {
-        if (this.f12011a.f29171c <= 0.0f) {
+        if (this.f12037a.f29198c <= 0.0f) {
             if (!W()) {
                 finishFragment();
                 return;
             }
             a2 d = b2.f(this.currentAccount).d("away");
-            boolean z10 = this.f12018s;
+            boolean z10 = this.f12044s;
             if (z10 && d == null) {
                 BotWebViewVibrationEffect.APP_ERROR.vibrate();
-                View x12 = this.f12013c.x1(2);
+                View x12 = this.f12039c.x1(2);
                 int i10 = -this.h;
                 this.h = i10;
                 AndroidUtilities.shakeViewSpring(x12, i10);
-                d61 d61Var = this.f12013c;
+                d61 d61Var = this.f12039c;
                 d61Var.x0(d61Var.w1(2));
-            } else if (z10 && !this.d.k(this.f12013c)) {
+            } else if (z10 && !this.d.k(this.f12039c)) {
             } else {
-                this.f12011a.a(1.0f);
+                this.f12037a.a(1.0f);
                 TLRPC.UserFull userFull = getMessagesController().getUserFull(getUserConfig().getClientUserId());
                 TL_account.updateBusinessAwayMessage updatebusinessawaymessage = new TL_account.updateBusinessAwayMessage();
-                if (this.f12018s) {
+                if (this.f12044s) {
                     TL_account.TL_inputBusinessAwayMessage tL_inputBusinessAwayMessage = new TL_account.TL_inputBusinessAwayMessage();
                     updatebusinessawaymessage.message = tL_inputBusinessAwayMessage;
-                    tL_inputBusinessAwayMessage.offline_only = this.f12019w;
-                    tL_inputBusinessAwayMessage.shortcut_id = d.f11992a;
+                    tL_inputBusinessAwayMessage.offline_only = this.f12045w;
+                    tL_inputBusinessAwayMessage.shortcut_id = d.f12018a;
                     tL_inputBusinessAwayMessage.recipients = this.d.e();
-                    int i11 = this.f12020x;
+                    int i11 = this.f12046x;
                     if (i11 == 0) {
                         updatebusinessawaymessage.message.schedule = new TL_account.TL_businessAwayMessageScheduleAlways();
                     } else if (i11 == 1) {
@@ -243,8 +243,8 @@ public final class c extends n2 implements NotificationCenter.NotificationCenter
                         userFull.flags2 |= 8;
                         TL_account.TL_businessAwayMessage tL_businessAwayMessage = new TL_account.TL_businessAwayMessage();
                         userFull.business_away_message = tL_businessAwayMessage;
-                        tL_businessAwayMessage.offline_only = this.f12019w;
-                        tL_businessAwayMessage.shortcut_id = d.f11992a;
+                        tL_businessAwayMessage.offline_only = this.f12045w;
+                        tL_businessAwayMessage.shortcut_id = d.f12018a;
                         tL_businessAwayMessage.recipients = this.d.f();
                         userFull.business_away_message.schedule = updatebusinessawaymessage.message.schedule;
                     }
@@ -266,7 +266,7 @@ public final class c extends n2 implements NotificationCenter.NotificationCenter
         d61 d61Var;
         v51 v51Var;
         TL_account.TL_businessRecipients tL_businessRecipients;
-        if (this.f12015f) {
+        if (this.f12041f) {
             return;
         }
         TLRPC.UserFull userFull = getMessagesController().getUserFull(getUserConfig().getClientUserId());
@@ -275,19 +275,19 @@ public final class c extends n2 implements NotificationCenter.NotificationCenter
             return;
         }
         TL_account.TL_businessAwayMessage tL_businessAwayMessage = userFull.business_away_message;
-        this.f12016n = tL_businessAwayMessage;
+        this.f12042n = tL_businessAwayMessage;
         if (userFull.business_work_hours != null) {
             z10 = true;
         } else {
             z10 = false;
         }
-        this.f12014e = z10;
+        this.f12040e = z10;
         if (tL_businessAwayMessage != null) {
             z11 = true;
         } else {
             z11 = false;
         }
-        this.f12018s = z11;
+        this.f12044s = z11;
         if (tL_businessAwayMessage != null) {
             z12 = tL_businessAwayMessage.recipients.exclude_selected;
         } else {
@@ -299,7 +299,7 @@ public final class c extends n2 implements NotificationCenter.NotificationCenter
         } else {
             z13 = true;
         }
-        this.f12019w = z13;
+        this.f12045w = z13;
         a0 a0Var = this.d;
         if (a0Var != null) {
             if (tL_businessAwayMessage == null) {
@@ -309,46 +309,46 @@ public final class c extends n2 implements NotificationCenter.NotificationCenter
             }
             a0Var.j(tL_businessRecipients);
         }
-        TL_account.TL_businessAwayMessage tL_businessAwayMessage2 = this.f12016n;
+        TL_account.TL_businessAwayMessage tL_businessAwayMessage2 = this.f12042n;
         if (tL_businessAwayMessage2 != null) {
             TL_account.BusinessAwayMessageSchedule businessAwayMessageSchedule = tL_businessAwayMessage2.schedule;
             if (businessAwayMessageSchedule instanceof TL_account.TL_businessAwayMessageScheduleCustom) {
-                this.f12017r = 2;
-                this.f12020x = 2;
+                this.f12043r = 2;
+                this.f12046x = 2;
                 TL_account.TL_businessAwayMessageScheduleCustom tL_businessAwayMessageScheduleCustom = (TL_account.TL_businessAwayMessageScheduleCustom) businessAwayMessageSchedule;
                 int i10 = tL_businessAwayMessageScheduleCustom.start_date;
-                this.f12021y = i10;
+                this.f12047y = i10;
                 this.F = i10;
                 int i11 = tL_businessAwayMessageScheduleCustom.end_date;
                 this.E = i11;
                 this.G = i11;
-                d61Var = this.f12013c;
+                d61Var = this.f12039c;
                 if (d61Var != null && (v51Var = d61Var.Y2) != null) {
                     v51Var.N(true);
                 }
                 V(true);
-                this.f12015f = true;
+                this.f12041f = true;
             }
         }
         this.F = getConnectionsManager().getCurrentTime();
         this.G = getConnectionsManager().getCurrentTime() + 86400;
-        TL_account.TL_businessAwayMessage tL_businessAwayMessage3 = this.f12016n;
+        TL_account.TL_businessAwayMessage tL_businessAwayMessage3 = this.f12042n;
         if (tL_businessAwayMessage3 != null && (tL_businessAwayMessage3.schedule instanceof TL_account.TL_businessAwayMessageScheduleAlways)) {
-            this.f12017r = 0;
-            this.f12020x = 0;
+            this.f12043r = 0;
+            this.f12046x = 0;
         } else if (tL_businessAwayMessage3 != null && (tL_businessAwayMessage3.schedule instanceof TL_account.TL_businessAwayMessageScheduleOutsideWorkHours)) {
-            this.f12017r = 1;
-            this.f12020x = 1;
+            this.f12043r = 1;
+            this.f12046x = 1;
         } else {
-            this.f12017r = 0;
-            this.f12020x = 0;
+            this.f12043r = 0;
+            this.f12046x = 0;
         }
-        d61Var = this.f12013c;
+        d61Var = this.f12039c;
         if (d61Var != null) {
             v51Var.N(true);
         }
         V(true);
-        this.f12015f = true;
+        this.f12041f = true;
     }
 
     @Override
@@ -359,17 +359,17 @@ public final class c extends n2 implements NotificationCenter.NotificationCenter
         this.actionBar.setTitle(LocaleController.getString(R.string.BusinessAway));
         this.actionBar.setActionBarMenuOnItemClick(new ah.t(this, 10));
         Drawable mutate = context.getResources().getDrawable(R.drawable.ic_ab_done).mutate();
-        int i10 = j6.f20992v8;
+        int i10 = j6.f21019v8;
         mutate.setColorFilter(new PorterDuffColorFilter(j6.w0(null, i10, false), PorterDuff.Mode.MULTIPLY));
-        this.f12011a = new or(mutate, new sp(j6.w0(null, i10, false)));
-        this.f12012b = this.actionBar.n().i(AndroidUtilities.dp(56.0f), LocaleController.getString(R.string.Done), this.f12011a);
+        this.f12037a = new or(mutate, new sp(j6.w0(null, i10, false)));
+        this.f12038b = this.actionBar.n().i(AndroidUtilities.dp(56.0f), LocaleController.getString(R.string.Done), this.f12037a);
         V(false);
         FrameLayout frameLayout = new FrameLayout(context);
-        frameLayout.setBackgroundColor(j6.w0(null, j6.f20607a7, false));
+        frameLayout.setBackgroundColor(j6.w0(null, j6.f20634a7, false));
         a0 a0Var = new a0(this, new nb(this, 27));
         this.d = a0Var;
         a0Var.h = this.v;
-        TL_account.TL_businessAwayMessage tL_businessAwayMessage = this.f12016n;
+        TL_account.TL_businessAwayMessage tL_businessAwayMessage = this.f12042n;
         if (tL_businessAwayMessage == null) {
             tL_businessRecipients = null;
         } else {
@@ -377,12 +377,12 @@ public final class c extends n2 implements NotificationCenter.NotificationCenter
         }
         a0Var.j(tL_businessRecipients);
         d61 d61Var = new d61(this, new ci.u(this, 21), new a(this, 0), null);
-        this.f12013c = d61Var;
+        this.f12039c = d61Var;
         d61Var.o1();
-        d61 d61Var2 = this.f12013c;
-        d61Var2.Y2.f31135r = false;
+        d61 d61Var2 = this.f12039c;
+        d61Var2.Y2.f31162r = false;
         frameLayout.addView(d61Var2, x5.c(-1.0f, -1));
-        this.actionBar.A(this.f12013c, true);
+        this.actionBar.A(this.f12039c, true);
         Y();
         this.fragmentView = frameLayout;
         return frameLayout;
@@ -392,7 +392,7 @@ public final class c extends n2 implements NotificationCenter.NotificationCenter
     public final void didReceivedNotification(int i10, int i11, Object... objArr) {
         v51 v51Var;
         if (i10 == NotificationCenter.quickRepliesUpdated) {
-            d61 d61Var = this.f12013c;
+            d61 d61Var = this.f12039c;
             if (d61Var != null && (v51Var = d61Var.Y2) != null) {
                 v51Var.N(true);
             }
@@ -411,16 +411,16 @@ public final class c extends n2 implements NotificationCenter.NotificationCenter
     public final boolean onBackPressed(boolean z10) {
         if (W()) {
             if (z10) {
-                if (!this.f12018s) {
+                if (!this.f12044s) {
                     X();
                     return false;
                 }
                 AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(getParentActivity());
-                alertDialog$Builder.f20198a.R = LocaleController.getString(R.string.UnsavedChanges);
-                alertDialog$Builder.f20198a.T = LocaleController.getString(R.string.BusinessAwayUnsavedChanges);
+                alertDialog$Builder.f20225a.R = LocaleController.getString(R.string.UnsavedChanges);
+                alertDialog$Builder.f20225a.T = LocaleController.getString(R.string.BusinessAwayUnsavedChanges);
                 alertDialog$Builder.k(LocaleController.getString(R.string.ApplyTheme), new a(this, 1));
                 alertDialog$Builder.h(LocaleController.getString(R.string.PassportDiscard), new a(this, 2));
-                showDialog(alertDialog$Builder.f20198a);
+                showDialog(alertDialog$Builder.f20225a);
             }
             return false;
         }
@@ -445,7 +445,7 @@ public final class c extends n2 implements NotificationCenter.NotificationCenter
 
     @Override
     public final void onInsets(int i10, int i11, int i12, int i13) {
-        this.f12013c.setPadding(0, 0, 0, i13);
-        this.f12013c.setClipToPadding(false);
+        this.f12039c.setPadding(0, 0, 0, i13);
+        this.f12039c.setClipToPadding(false);
     }
 }

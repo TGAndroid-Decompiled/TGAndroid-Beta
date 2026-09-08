@@ -12,61 +12,61 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class xl0 extends Drawable {
-    public final RectF f32605a = new RectF();
-    public final Paint f32606b;
-    public final TextPaint f32607c;
+    public final RectF f32632a = new RectF();
+    public final Paint f32633b;
+    public final TextPaint f32634c;
     public int d;
-    public String f32608e;
-    public final int f32609f;
-    public int f32610g;
+    public String f32635e;
+    public final int f32636f;
+    public int f32637g;
     public final int h;
 
     public xl0(int i10) {
         Paint paint = new Paint(1);
-        this.f32606b = paint;
+        this.f32633b = paint;
         TextPaint textPaint = new TextPaint(1);
-        this.f32607c = textPaint;
-        this.f32610g = 255;
+        this.f32634c = textPaint;
+        this.f32637g = 255;
         this.h = 255;
-        this.f32609f = i10;
+        this.f32636f = i10;
         textPaint.setTextSize(AndroidUtilities.dp(11));
         textPaint.setTypeface(AndroidUtilities.bold());
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeWidth(AndroidUtilities.dp(1.0f));
         if (i10 == 0) {
-            this.f32608e = LocaleController.getString(R.string.ScamMessage);
+            this.f32635e = LocaleController.getString(R.string.ScamMessage);
         } else {
-            this.f32608e = LocaleController.getString(R.string.FakeMessage);
+            this.f32635e = LocaleController.getString(R.string.FakeMessage);
         }
-        this.d = (int) Math.ceil(textPaint.measureText(this.f32608e));
+        this.d = (int) Math.ceil(textPaint.measureText(this.f32635e));
     }
 
     public final void a() {
         String string;
-        if (this.f32609f == 0) {
+        if (this.f32636f == 0) {
             string = LocaleController.getString(R.string.ScamMessage);
         } else {
             string = LocaleController.getString(R.string.FakeMessage);
         }
-        if (!string.equals(this.f32608e)) {
-            this.f32608e = string;
-            this.d = (int) Math.ceil(this.f32607c.measureText(string));
+        if (!string.equals(this.f32635e)) {
+            this.f32635e = string;
+            this.d = (int) Math.ceil(this.f32634c.measureText(string));
         }
     }
 
     public final void b(int i10) {
-        this.f32607c.setColor(i10);
-        this.f32606b.setColor(i10);
-        this.f32610g = Color.alpha(i10);
+        this.f32634c.setColor(i10);
+        this.f32633b.setColor(i10);
+        this.f32637g = Color.alpha(i10);
     }
 
     @Override
     public final void draw(Canvas canvas) {
         Rect bounds = getBounds();
-        RectF rectF = this.f32605a;
+        RectF rectF = this.f32632a;
         rectF.set(bounds);
-        canvas.drawRoundRect(rectF, AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f), this.f32606b);
-        canvas.drawText(this.f32608e, rectF.left + AndroidUtilities.dp(5.0f), rectF.top + AndroidUtilities.dp(12.0f), this.f32607c);
+        canvas.drawRoundRect(rectF, AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f), this.f32633b);
+        canvas.drawText(this.f32635e, rectF.left + AndroidUtilities.dp(5.0f), rectF.top + AndroidUtilities.dp(12.0f), this.f32634c);
     }
 
     @Override
@@ -87,9 +87,9 @@ public final class xl0 extends Drawable {
     @Override
     public final void setAlpha(int i10) {
         if (this.h != i10) {
-            int i11 = (int) ((i10 / 255.0f) * this.f32610g);
-            this.f32606b.setAlpha(i11);
-            this.f32607c.setAlpha(i11);
+            int i11 = (int) ((i10 / 255.0f) * this.f32637g);
+            this.f32633b.setAlpha(i11);
+            this.f32634c.setAlpha(i11);
         }
     }
 

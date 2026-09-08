@@ -3,22 +3,22 @@ package k4;
 import c3.p;
 import e2.v;
 public final class d {
-    public final int f14731a;
-    public final long f14732b;
+    public final int f14757a;
+    public final long f14758b;
 
     public d(int i10, long j3, boolean z10) {
-        this.f14731a = i10;
-        this.f14732b = j3;
+        this.f14757a = i10;
+        this.f14758b = j3;
     }
 
     public static d b(p pVar, v vVar) {
-        pVar.b(0, 8, vVar.f8789a);
+        pVar.b(0, 8, vVar.f8817a);
         vVar.J(0);
         return new d(vVar.j(), vVar.o(), false);
     }
 
     public boolean a() {
-        int i10 = this.f14731a;
+        int i10 = this.f14757a;
         if (i10 == 0 || i10 == 1) {
             return true;
         }
@@ -27,7 +27,7 @@ public final class d {
 
     public d(int i10, long j3) {
         e2.d.b(j3 >= 0);
-        this.f14731a = i10;
-        this.f14732b = j3;
+        this.f14757a = i10;
+        this.f14758b = j3;
     }
 }

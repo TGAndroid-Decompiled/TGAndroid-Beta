@@ -3,29 +3,29 @@ package org.telegram.ui;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.tgnet.TLRPC;
 public final class fz {
-    public float f36496a;
-    public float f36497b;
-    public boolean f36498c;
+    public float f36523a;
+    public float f36524b;
+    public boolean f36525c;
     public float d;
-    public float f36499e;
-    public float f36500f;
-    public float f36501g;
+    public float f36526e;
+    public float f36527f;
+    public float f36528g;
     public boolean h;
-    public boolean f36502i;
-    public ah.e f36503j;
-    public long f36504k;
-    public boolean f36505l;
-    public boolean f36506m;
-    public boolean f36507n;
-    public float f36508o;
-    public int f36509p;
-    public TLRPC.Document f36510q;
-    public final ImageReceiver f36511r;
-    public String f36512s;
+    public boolean f36529i;
+    public ah.e f36530j;
+    public long f36531k;
+    public boolean f36532l;
+    public boolean f36533m;
+    public boolean f36534n;
+    public float f36535o;
+    public int f36536p;
+    public TLRPC.Document f36537q;
+    public final ImageReceiver f36538r;
+    public String f36539s;
 
     public fz() {
         ImageReceiver imageReceiver = new ImageReceiver();
-        this.f36511r = imageReceiver;
+        this.f36538r = imageReceiver;
         imageReceiver.setAllowLoadingOnAttachedOnly(true);
         imageReceiver.setAllowDrawWhileCacheGenerating(true);
     }

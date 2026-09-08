@@ -16,20 +16,20 @@ public final class ir extends s4.j {
 
     @Override
     public final void O() {
-        this.G.f41635c.invalidate();
+        this.G.f41662c.invalidate();
     }
 
     @Override
     public final void P(s4.c1 c1Var) {
-        this.G.f41635c.invalidate();
+        this.G.f41662c.invalidate();
     }
 
     @Override
     public final void m() {
-        boolean isEmpty = this.f45804p.isEmpty();
-        boolean isEmpty2 = this.f45806r.isEmpty();
-        boolean isEmpty3 = this.f45807s.isEmpty();
-        boolean isEmpty4 = this.f45805q.isEmpty();
+        boolean isEmpty = this.f45832p.isEmpty();
+        boolean isEmpty2 = this.f45834r.isEmpty();
+        boolean isEmpty3 = this.f45835s.isEmpty();
+        boolean isEmpty4 = this.f45833q.isEmpty();
         if (!isEmpty || !isEmpty2 || !isEmpty4 || !isEmpty3) {
             this.F.lock();
         }

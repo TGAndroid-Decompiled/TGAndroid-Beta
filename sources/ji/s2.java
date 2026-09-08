@@ -5,10 +5,10 @@ import org.telegram.messenger.RichMessageLayout;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.tgnet.tl.TL_keyboard;
 public final class s2 implements p5, f1 {
-    public final v3 f14160a;
+    public final v3 f14186a;
 
     public s2(v3 v3Var) {
-        this.f14160a = v3Var;
+        this.f14186a = v3Var;
     }
 
     public void a(h1 h1Var, k4 k4Var, boolean z10) {
@@ -17,8 +17,8 @@ public final class s2 implements p5, f1 {
         char c10;
         boolean z11;
         boolean z12;
-        v3 v3Var = this.f14160a;
-        t3 t3Var = v3Var.f14249h3;
+        v3 v3Var = this.f14186a;
+        t3 t3Var = v3Var.f14275h3;
         Editable text = h1Var.getText();
         if (text == null) {
             spanStart = -1;
@@ -32,7 +32,7 @@ public final class s2 implements p5, f1 {
         }
         if (spanStart >= 0 && spanEnd > spanStart) {
             if (!z10) {
-                TL_iv.textButton textbutton = k4Var.f14017a;
+                TL_iv.textButton textbutton = k4Var.f14043a;
                 if (textbutton != null) {
                     g2 g2Var = v3Var.J3;
                     if (g2Var != null) {
@@ -73,14 +73,14 @@ public final class s2 implements p5, f1 {
                     textbutton.style = richButtonStyle;
                     Editable text2 = h1Var.getText();
                     if (text2 != null && text2.getSpanStart(k4Var) >= 0) {
-                        RichMessageLayout.RichButtonSpan richButtonSpan = k4Var.f14018b;
-                        if (richButtonSpan != null && k4Var.f14019c == h1Var) {
+                        RichMessageLayout.RichButtonSpan richButtonSpan = k4Var.f14044b;
+                        if (richButtonSpan != null && k4Var.f14045c == h1Var) {
                             richButtonSpan.detach(h1Var);
-                            k4Var.f14019c = null;
+                            k4Var.f14045c = null;
                         }
                         text2.removeSpan(k4Var);
                         k4 k4Var2 = new k4(textbutton);
-                        k4Var2.a(v3Var.f14245f3, h1Var, v3Var.f14247g3);
+                        k4Var2.a(v3Var.f14271f3, h1Var, v3Var.f14273g3);
                         text2.setSpan(k4Var2, spanStart, spanEnd, 33);
                         h1Var.notifySpansChanged();
                         h1Var.requestLayout();

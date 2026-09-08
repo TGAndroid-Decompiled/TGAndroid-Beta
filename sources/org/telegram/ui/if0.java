@@ -15,20 +15,20 @@ import org.telegram.messenger.R;
 import org.telegram.tgnet.ConnectionsManager;
 public final class if0 extends org.telegram.ui.Components.tv0 {
     public final wg0 E;
-    public final org.telegram.ui.Components.aj0 f37349a;
-    public final TextView f37350b;
-    public final TextView f37351c;
+    public final org.telegram.ui.Components.aj0 f37376a;
+    public final TextView f37377b;
+    public final TextView f37378c;
     public final TextView d;
-    public final TextView f37352e;
-    public final TextView f37353f;
+    public final TextView f37379e;
+    public final TextView f37380f;
     public w5 h;
-    public Bundle f37354n;
-    public String f37355r;
-    public String f37356s;
+    public Bundle f37381n;
+    public String f37382r;
+    public String f37383s;
     public String v;
-    public int f37357w;
-    public int f37358x;
-    public Boolean f37359y;
+    public int f37384w;
+    public int f37385x;
+    public Boolean f37386y;
 
     public if0(wg0 wg0Var, Context context) {
         super(context);
@@ -40,7 +40,7 @@ public final class if0 extends org.telegram.ui.Components.tv0 {
         linearLayout.setGravity(17);
         FrameLayout frameLayout = new FrameLayout(context);
         ?? imageView = new ImageView(context);
-        this.f37349a = imageView;
+        this.f37376a = imageView;
         imageView.setAutoRepeat(true);
         imageView.f(R.raw.sandclock, 120, 120, null);
         frameLayout.addView((View) imageView, w7.x5.e(120, 120, 1));
@@ -53,28 +53,28 @@ public final class if0 extends org.telegram.ui.Components.tv0 {
         frameLayout.setVisibility(i10);
         linearLayout.addView(frameLayout, w7.x5.e(-1, -2, 1));
         TextView textView = new TextView(context);
-        this.f37350b = textView;
+        this.f37377b = textView;
         com.google.android.gms.internal.vision.e2.m(18.0f, 1, textView);
         textView.setText(LocaleController.getString(R.string.ResetAccount));
         textView.setGravity(17);
         textView.setLineSpacing(AndroidUtilities.dp(2.0f), 1.0f);
         linearLayout.addView(textView, w7.x5.d(-1, -2.0f, 1, 32.0f, 16.0f, 32.0f, 0.0f));
         TextView textView2 = new TextView(context);
-        this.f37351c = textView2;
+        this.f37378c = textView2;
         textView2.setTextSize(1, 14.0f);
         textView2.setGravity(1);
         textView2.setLineSpacing(AndroidUtilities.dp(2.0f), 1.0f);
         linearLayout.addView(textView2, w7.x5.t(-2, -2, 1, 12, 8, 12, 0));
         addView(linearLayout, w7.x5.l(1.0f, -1, 0));
         TextView textView3 = new TextView(context);
-        this.f37353f = textView3;
+        this.f37380f = textView3;
         textView3.setGravity(1);
         textView3.setText(LocaleController.getString("ResetAccountStatus", R.string.ResetAccountStatus));
         textView3.setTextSize(1, 14.0f);
         textView3.setLineSpacing(AndroidUtilities.dp(2.0f), 1.0f);
         addView(textView3, w7.x5.t(-2, -2, 49, 0, 24, 0, 0));
         TextView textView4 = new TextView(context);
-        this.f37352e = textView4;
+        this.f37379e = textView4;
         textView4.setGravity(1);
         textView4.setTextSize(1, 20.0f);
         textView4.setTypeface(AndroidUtilities.bold());
@@ -103,7 +103,7 @@ public final class if0 extends org.telegram.ui.Components.tv0 {
         this.E.k1(true, true);
         AndroidUtilities.cancelRunOnUIThread(this.h);
         this.h = null;
-        this.f37354n = null;
+        this.f37381n = null;
         return true;
     }
 
@@ -115,7 +115,7 @@ public final class if0 extends org.telegram.ui.Components.tv0 {
     @Override
     public final void k(Bundle bundle) {
         Bundle bundle2 = bundle.getBundle("resetview_params");
-        this.f37354n = bundle2;
+        this.f37381n = bundle2;
         if (bundle2 != null) {
             m(bundle2, true);
         }
@@ -123,7 +123,7 @@ public final class if0 extends org.telegram.ui.Components.tv0 {
 
     @Override
     public final void l(Bundle bundle) {
-        Bundle bundle2 = this.f37354n;
+        Bundle bundle2 = this.f37381n;
         if (bundle2 != null) {
             bundle.putBundle("resetview_params", bundle2);
         }
@@ -134,15 +134,15 @@ public final class if0 extends org.telegram.ui.Components.tv0 {
         if (bundle == null) {
             return;
         }
-        this.f37354n = bundle;
-        this.f37355r = bundle.getString("phoneFormated");
-        this.f37356s = bundle.getString("phoneHash");
+        this.f37381n = bundle;
+        this.f37382r = bundle.getString("phoneFormated");
+        this.f37383s = bundle.getString("phoneHash");
         this.v = bundle.getString("code");
-        this.f37357w = bundle.getInt("startTime");
-        this.f37358x = bundle.getInt("waitTime");
+        this.f37384w = bundle.getInt("startTime");
+        this.f37385x = bundle.getInt("waitTime");
         int i10 = R.string.ResetAccountInfo;
         gf.b c10 = gf.b.c();
-        this.f37351c.setText(AndroidUtilities.replaceTags(LocaleController.formatString("ResetAccountInfo", i10, LocaleController.addNbsp(c10.b("+" + this.f37355r)))));
+        this.f37378c.setText(AndroidUtilities.replaceTags(LocaleController.formatString("ResetAccountInfo", i10, LocaleController.addNbsp(c10.b("+" + this.f37382r)))));
         o();
         w5 w5Var = new w5(this, 9);
         this.h = w5Var;
@@ -152,10 +152,10 @@ public final class if0 extends org.telegram.ui.Components.tv0 {
     @Override
     public final void n() {
         int i10 = org.telegram.ui.ActionBar.j6.G6;
-        this.f37350b.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, i10, false));
-        this.f37351c.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, i10, false));
-        this.f37353f.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, i10, false));
-        this.f37352e.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, i10, false));
+        this.f37377b.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, i10, false));
+        this.f37378c.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, i10, false));
+        this.f37380f.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, i10, false));
+        this.f37379e.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, i10, false));
         int dp = AndroidUtilities.dp(6.0f);
         int w02 = org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.Wh, false);
         int w03 = org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.Q9, false);
@@ -167,9 +167,9 @@ public final class if0 extends org.telegram.ui.Components.tv0 {
         boolean z10;
         int i11;
         int i12;
-        int i13 = this.f37358x;
+        int i13 = this.f37385x;
         i10 = ((org.telegram.ui.ActionBar.n2) this.E).currentAccount;
-        int currentTime = i13 - (ConnectionsManager.getInstance(i10).getCurrentTime() - this.f37357w);
+        int currentTime = i13 - (ConnectionsManager.getInstance(i10).getCurrentTime() - this.f37384w);
         int i14 = 0;
         int max = Math.max(0, currentTime);
         int i15 = max / 86400;
@@ -177,7 +177,7 @@ public final class if0 extends org.telegram.ui.Components.tv0 {
         int i16 = max / 3600;
         int i17 = (max / 60) % 60;
         int i18 = max % 60;
-        TextView textView = this.f37352e;
+        TextView textView = this.f37379e;
         if (i15 >= 2) {
             textView.setText(LocaleController.formatPluralString("Days", round, new Object[0]));
         } else {
@@ -188,11 +188,11 @@ public final class if0 extends org.telegram.ui.Components.tv0 {
         } else {
             z10 = false;
         }
-        Boolean bool = this.f37359y;
+        Boolean bool = this.f37386y;
         if (bool != null && bool.booleanValue() == z10) {
             return;
         }
-        org.telegram.ui.Components.aj0 aj0Var = this.f37349a;
+        org.telegram.ui.Components.aj0 aj0Var = this.f37376a;
         if (!z10) {
             aj0Var.setAutoRepeat(true);
             if (!aj0Var.b()) {
@@ -212,11 +212,11 @@ public final class if0 extends org.telegram.ui.Components.tv0 {
         } else {
             i12 = 0;
         }
-        this.f37353f.setVisibility(i12);
+        this.f37380f.setVisibility(i12);
         if (!z10) {
             i14 = 4;
         }
         this.d.setVisibility(i14);
-        this.f37359y = Boolean.valueOf(z10);
+        this.f37386y = Boolean.valueOf(z10);
     }
 }

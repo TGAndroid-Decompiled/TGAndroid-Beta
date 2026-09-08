@@ -6,29 +6,29 @@ import android.view.MotionEvent;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 public final class rr extends ImageView {
-    public final int f30074a = 1;
-    public Object f30075b;
-    public final ViewGroup f30076c;
+    public final int f30101a = 1;
+    public Object f30102b;
+    public final ViewGroup f30103c;
 
     public rr(tr trVar, Context context, l.d dVar) {
         super(context);
-        this.f30076c = trVar;
-        this.f30075b = dVar;
+        this.f30103c = trVar;
+        this.f30102b = dVar;
     }
 
     @Override
     public boolean onTouchEvent(MotionEvent motionEvent) {
-        switch (this.f30074a) {
+        switch (this.f30101a) {
             case 0:
-                tr trVar = (tr) this.f30076c;
-                if ((motionEvent.getAction() == 1 || motionEvent.getAction() == 3) && (trVar.f30690n || trVar.f30689f)) {
-                    trVar.f30690n = false;
-                    trVar.f30689f = false;
-                    removeCallbacks(trVar.f30691r);
+                tr trVar = (tr) this.f30103c;
+                if ((motionEvent.getAction() == 1 || motionEvent.getAction() == 3) && (trVar.f30717n || trVar.f30716f)) {
+                    trVar.f30717n = false;
+                    trVar.f30716f = false;
+                    removeCallbacks(trVar.f30718r);
                     removeCallbacks(trVar.h);
                 }
                 super.onTouchEvent(motionEvent);
-                return ((GestureDetector) ((l.d) this.f30075b).f15072b).onTouchEvent(motionEvent);
+                return ((GestureDetector) ((l.d) this.f30102b).f15098b).onTouchEvent(motionEvent);
             default:
                 return super.onTouchEvent(motionEvent);
         }
@@ -36,6 +36,6 @@ public final class rr extends ImageView {
 
     public rr(fk0 fk0Var, Context context) {
         super(context);
-        this.f30076c = fk0Var;
+        this.f30103c = fk0Var;
     }
 }

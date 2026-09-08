@@ -9,7 +9,7 @@ import org.telegram.ui.Components.h51;
 import org.telegram.ui.Components.ll0;
 import org.telegram.ui.Components.v51;
 public final class c4 extends g51 {
-    public static final int f9596a = 0;
+    public static final int f9624a = 0;
 
     static {
         g51.setup(new g51());
@@ -18,10 +18,10 @@ public final class c4 extends g51 {
     @Override
     public final void bindView(View view, h51 h51Var, boolean z10, v51 v51Var, d61 d61Var) {
         d4 d4Var = (d4) view;
-        CharSequence charSequence = h51Var.f26594l;
-        CharSequence charSequence2 = h51Var.f26595m;
+        CharSequence charSequence = h51Var.f26621l;
+        CharSequence charSequence2 = h51Var.f26622m;
         d4Var.setText(charSequence);
-        d4Var.f9623r.setText(charSequence2);
+        d4Var.f9651r.setText(charSequence2);
     }
 
     @Override

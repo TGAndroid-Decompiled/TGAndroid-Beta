@@ -23,22 +23,22 @@ import org.telegram.ui.Components.u61;
 import org.telegram.ui.Components.vz;
 import org.telegram.ui.LaunchActivity;
 public final class a7 implements Utilities.Callback {
-    public final int f6904a;
-    public final int f6905b;
-    public final Object f6906c;
+    public final int f6932a;
+    public final int f6933b;
+    public final Object f6934c;
 
     public a7(Object obj, int i10, int i11) {
-        this.f6904a = i11;
-        this.f6906c = obj;
-        this.f6905b = i10;
+        this.f6932a = i11;
+        this.f6934c = obj;
+        this.f6933b = i10;
     }
 
     @Override
     public final void run(Object obj) {
         float f7;
-        int i10 = this.f6904a;
-        int i11 = this.f6905b;
-        Object obj2 = this.f6906c;
+        int i10 = this.f6932a;
+        int i11 = this.f6933b;
+        Object obj2 = this.f6934c;
         switch (i10) {
             case 0:
                 d7 d7Var = (d7) obj2;
@@ -52,23 +52,23 @@ public final class a7 implements Utilities.Callback {
                 o8Var.B0 = i13;
                 d7Var.T.setShader(new LinearGradient(0.0f, 0.0f, 0.0f, i11, iArr, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP));
                 d7Var.invalidate();
-                u61 u61Var = d7Var.f7085n;
+                u61 u61Var = d7Var.f7113n;
                 if (u61Var != null) {
                     int i14 = d7Var.U;
                     int i15 = d7Var.V;
-                    vz vzVar = u61Var.f30821b;
+                    vz vzVar = u61Var.f30848b;
                     if (vzVar == null) {
-                        u61Var.f30825n = i14;
-                        u61Var.f30826r = i15;
+                        u61Var.f30852n = i14;
+                        u61Var.f30853r = i15;
                     } else {
                         vzVar.i(i14, i15);
                     }
                 }
-                jf0 jf0Var = d7Var.f7092s;
+                jf0 jf0Var = d7Var.f7120s;
                 if (jf0Var != null) {
                     int i16 = d7Var.U;
                     int i17 = d7Var.V;
-                    vz vzVar2 = jf0Var.f27483l0;
+                    vz vzVar2 = jf0Var.f27510l0;
                     if (vzVar2 != null) {
                         vzVar2.i(i16, i17);
                         return;
@@ -79,7 +79,7 @@ public final class a7 implements Utilities.Callback {
                 }
                 return;
             case 1:
-                ig.y1 y1Var = ((ig.p1) obj2).f12180a;
+                ig.y1 y1Var = ((ig.p1) obj2).f12206a;
                 ig.y1.X(y1Var);
                 ig.b2.f(ig.y1.c0(y1Var)).k(i11, (String) obj);
                 return;
@@ -103,7 +103,7 @@ public final class a7 implements Utilities.Callback {
                         textView.setTextSize(1, 20.0f);
                         textView.setGravity(17);
                         textView.setText(LocaleController.formatPluralString("UnconfirmedAuthDeniedTitle", arrayList.size(), new Object[0]));
-                        textView.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f20770j5, false));
+                        textView.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f20797j5, false));
                         linearLayout.addView(textView, w7.x5.k(28.0f, 14.0f, 28.0f, 0.0f, -1, -2));
                         TextView textView2 = new TextView(waVar.getContext());
                         textView2.setTextSize(1, 14.0f);
@@ -120,12 +120,12 @@ public final class a7 implements Utilities.Callback {
                             }
                             textView2.setText(LocaleController.formatString(R.string.UnconfirmedAuthDeniedMessageMultiple, str));
                         }
-                        textView2.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f20770j5, false));
+                        textView2.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f20797j5, false));
                         linearLayout.addView(textView2, w7.x5.k(40.0f, 9.0f, 40.0f, 0.0f, -1, -2));
                         FrameLayout frameLayout = new FrameLayout(waVar.getContext());
                         frameLayout.setPadding(AndroidUtilities.dp(24.0f), AndroidUtilities.dp(10.0f), AndroidUtilities.dp(24.0f), AndroidUtilities.dp(10.0f));
                         int dp = AndroidUtilities.dp(12.0f);
-                        int i19 = org.telegram.ui.ActionBar.j6.f20898q7;
+                        int i19 = org.telegram.ui.ActionBar.j6.f20925q7;
                         int w02 = org.telegram.ui.ActionBar.j6.w0(null, i19, false);
                         if (org.telegram.ui.ActionBar.j6.I.q()) {
                             f7 = 0.2f;
@@ -166,7 +166,7 @@ public final class a7 implements Utilities.Callback {
                         org.telegram.messenger.w1.p(R.string.UnknownError, new org.telegram.ui.Components.yc(org.telegram.ui.Components.lb.a(waVar.getContext()), null), null);
                     }
                 }
-                waVar.f23503e.a(false, true);
+                waVar.f23530e.a(false, true);
                 MessagesController.getInstance(i11).getUnconfirmedAuthController().cleanup();
                 return;
             default:
@@ -174,11 +174,11 @@ public final class a7 implements Utilities.Callback {
                 TLRPC.TL_messageMediaGeoLive tL_messageMediaGeoLive = new TLRPC.TL_messageMediaGeoLive();
                 TLRPC.TL_geoPoint tL_geoPoint = new TLRPC.TL_geoPoint();
                 tL_messageMediaGeoLive.geo = tL_geoPoint;
-                tL_geoPoint.lat = AndroidUtilities.fixLocationCoord(glVar.f26444q0.getLatitude());
-                tL_messageMediaGeoLive.geo._long = AndroidUtilities.fixLocationCoord(glVar.f26444q0.getLongitude());
+                tL_geoPoint.lat = AndroidUtilities.fixLocationCoord(glVar.f26471q0.getLatitude());
+                tL_messageMediaGeoLive.geo._long = AndroidUtilities.fixLocationCoord(glVar.f26471q0.getLongitude());
                 tL_messageMediaGeoLive.period = i11;
-                glVar.f26455x0.b(tL_messageMediaGeoLive, glVar.f26457y0, true, 0, ((Long) obj).longValue());
-                glVar.f28753b.dismiss(true);
+                glVar.f26482x0.b(tL_messageMediaGeoLive, glVar.f26484y0, true, 0, ((Long) obj).longValue());
+                glVar.f28780b.dismiss(true);
                 return;
         }
     }

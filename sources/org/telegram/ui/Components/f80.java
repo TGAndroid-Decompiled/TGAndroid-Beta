@@ -51,13 +51,13 @@ public final class f80 extends org.telegram.ui.co {
             long j3 = this.Sc;
             TLRPC.Chat chat = messagesController.getChat(Long.valueOf(j3));
             if (ChatObject.canManageMyTag(chat)) {
-                qc J = yc.a0(this).J(R.raw.contact_check, LocaleController.getString(R.string.JoinedGroup), LocaleController.getString(R.string.JoinedGroupAddTag), new a3.g0(this, j3, chat, 21));
-                J.f29687r = false;
+                qc J = yc.a0(this).J(R.raw.contact_check, LocaleController.getString(R.string.JoinedGroup), LocaleController.getString(R.string.JoinedGroupAddTag), new a3.h0(this, j3, chat, 21));
+                J.f29714r = false;
                 J.k(true);
                 return;
             }
             qc Q = yc.a0(this).Q(R.raw.contact_check, 36, LocaleController.getString(R.string.JoinedGroup));
-            Q.f29687r = false;
+            Q.f29714r = false;
             Q.k(true);
         }
     }

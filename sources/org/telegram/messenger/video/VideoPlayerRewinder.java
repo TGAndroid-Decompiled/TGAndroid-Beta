@@ -28,7 +28,7 @@ public class VideoPlayerRewinder {
     private boolean wasMuted;
     private boolean wasPaused;
     private qf0 webView;
-    private float f19257x;
+    private float f19284x;
     private long rewindBackSeekPlayerPosition = -1;
     private float playSpeed = 1.0f;
     private final Runnable backSeek = new Runnable() {
@@ -261,8 +261,8 @@ public class VideoPlayerRewinder {
     }
 
     public void setX(float f7) {
-        this.value -= (this.f19257x - f7) / AndroidUtilities.dp(40.0f);
-        this.f19257x = f7;
+        this.value -= (this.f19284x - f7) / AndroidUtilities.dp(40.0f);
+        this.f19284x = f7;
         ko0 ko0Var = this.seekSpeedDrawable;
         if (ko0Var != null) {
             ko0Var.c(getRewindSpeed(), true);
@@ -288,7 +288,7 @@ public class VideoPlayerRewinder {
         this.wasPaused = (qf0Var == null || qf0Var.G) ? false : true;
         this.fastSeeking = false;
         this.rewindLastUpdatePlayerTime = 0L;
-        this.f19257x = f7;
+        this.f19284x = f7;
         this.value = getValueBySpeed(z10 ? 2.0f : -2.0f);
         this.rewindBackSeekLastPlayerPosition = -100L;
         if (ko0Var != null) {
@@ -384,7 +384,7 @@ public class VideoPlayerRewinder {
         this.wasPaused = (g71Var == null || g71Var.y()) ? false : true;
         this.fastSeeking = false;
         this.rewindLastUpdatePlayerTime = 0L;
-        this.f19257x = f7;
+        this.f19284x = f7;
         this.value = getValueBySpeed(z10 ? 2.0f : -2.0f);
         this.rewindBackSeekLastPlayerPosition = -100L;
         if (ko0Var != null) {

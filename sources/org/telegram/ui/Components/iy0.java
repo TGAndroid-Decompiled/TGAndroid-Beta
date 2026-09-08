@@ -32,9 +32,9 @@ public final class iy0 extends ll0 {
         org.telegram.ui.qt previewDelegate;
         org.telegram.ui.st q6 = org.telegram.ui.st.q();
         my0 my0Var = this.Z2;
-        iy0 iy0Var = my0Var.f28562e;
+        iy0 iy0Var = my0Var.f28589e;
         previewDelegate = my0Var.getPreviewDelegate();
-        boolean r10 = q6.r(motionEvent, iy0Var, previewDelegate, this.f28224p2);
+        boolean r10 = q6.r(motionEvent, iy0Var, previewDelegate, this.f28251p2);
         if (!super.onInterceptTouchEvent(motionEvent) && !r10) {
             return false;
         }

@@ -2,32 +2,32 @@ package ji;
 
 import org.telegram.tgnet.TLRPC;
 public final class u {
-    public int f14195a = 0;
-    public boolean f14196b;
-    public boolean f14197c;
+    public int f14221a = 0;
+    public boolean f14222b;
+    public boolean f14223c;
     public boolean d;
-    public String f14198e;
-    public float f14199f;
-    public TLRPC.Photo f14200g;
+    public String f14224e;
+    public float f14225f;
+    public TLRPC.Photo f14226g;
     public TLRPC.Document h;
-    public TLRPC.Document f14201i;
-    public int f14202j;
-    public int f14203k;
-    public int f14204l;
-    public int f14205m;
-    public boolean f14206n;
+    public TLRPC.Document f14227i;
+    public int f14228j;
+    public int f14229k;
+    public int f14230l;
+    public int f14231m;
+    public boolean f14232n;
 
     public final boolean a() {
-        if (this.f14195a == 1) {
+        if (this.f14221a == 1) {
             return true;
         }
         return false;
     }
 
     public final boolean b() {
-        if (this.f14195a == 2) {
-            if (!this.f14196b && !this.f14197c && !this.d) {
-                if (this.f14200g != null) {
+        if (this.f14221a == 2) {
+            if (!this.f14222b && !this.f14223c && !this.d) {
+                if (this.f14226g != null) {
                     return true;
                 }
                 return false;

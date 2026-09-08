@@ -6,11 +6,11 @@ import android.util.SparseArray;
 import e9.a1;
 import ji.u4;
 public final class b {
-    public static final b f14516c = new b(e9.i0.z(a.d));
+    public static final b f14542c = new b(e9.i0.z(a.d));
     public static final a1 d;
-    public static final e9.k0 f14517e;
-    public final SparseArray f14518a = new SparseArray();
-    public final int f14519b;
+    public static final e9.k0 f14543e;
+    public final SparseArray f14544a = new SparseArray();
+    public final int f14545b;
 
     static {
         Object[] objArr = {2, 5, 6};
@@ -25,19 +25,19 @@ public final class b {
         aVar.t(6, 8);
         aVar.t(8, 8);
         aVar.t(14, 8);
-        f14517e = aVar.c();
+        f14543e = aVar.c();
     }
 
     public b(a1 a1Var) {
         for (int i10 = 0; i10 < a1Var.d; i10++) {
             a aVar = (a) a1Var.get(i10);
-            this.f14518a.put(aVar.f14511a, aVar);
+            this.f14544a.put(aVar.f14537a, aVar);
         }
         int i11 = 0;
-        for (int i12 = 0; i12 < this.f14518a.size(); i12++) {
-            i11 = Math.max(i11, ((a) this.f14518a.valueAt(i12)).f14512b);
+        for (int i12 = 0; i12 < this.f14544a.size(); i12++) {
+            i11 = Math.max(i11, ((a) this.f14544a.valueAt(i12)).f14538b);
         }
-        this.f14519b = i11;
+        this.f14545b = i11;
     }
 
     public static a1 a(int i10, int[] iArr) {
@@ -67,7 +67,7 @@ public final class b {
         if (this != obj) {
             if (obj instanceof b) {
                 b bVar = (b) obj;
-                if (e2.d0.l(this.f14518a, bVar.f14518a) && this.f14519b == bVar.f14519b) {
+                if (e2.d0.l(this.f14544a, bVar.f14544a) && this.f14545b == bVar.f14545b) {
                     return true;
                 }
                 return false;
@@ -78,10 +78,10 @@ public final class b {
     }
 
     public final int hashCode() {
-        return (e2.d0.m(this.f14518a) * 31) + this.f14519b;
+        return (e2.d0.m(this.f14544a) * 31) + this.f14545b;
     }
 
     public final String toString() {
-        return "AudioCapabilities[maxChannelCount=" + this.f14519b + ", audioProfiles=" + this.f14518a + "]";
+        return "AudioCapabilities[maxChannelCount=" + this.f14545b + ", audioProfiles=" + this.f14544a + "]";
     }
 }

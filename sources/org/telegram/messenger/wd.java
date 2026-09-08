@@ -2,24 +2,24 @@ package org.telegram.messenger;
 
 import android.util.SparseArray;
 public final class wd implements Runnable {
-    public final int f19494a;
-    public final MessagesController f19495b;
-    public final SparseArray f19496c;
+    public final int f19521a;
+    public final MessagesController f19522b;
+    public final SparseArray f19523c;
 
     public wd(MessagesController messagesController, SparseArray sparseArray, int i10) {
-        this.f19494a = i10;
-        this.f19495b = messagesController;
-        this.f19496c = sparseArray;
+        this.f19521a = i10;
+        this.f19522b = messagesController;
+        this.f19523c = sparseArray;
     }
 
     @Override
     public final void run() {
-        switch (this.f19494a) {
+        switch (this.f19521a) {
             case 0:
-                this.f19495b.lambda$getDifference$352(this.f19496c);
+                this.f19522b.lambda$getDifference$352(this.f19523c);
                 return;
             default:
-                this.f19495b.lambda$getChannelDifference$339(this.f19496c);
+                this.f19522b.lambda$getChannelDifference$339(this.f19523c);
                 return;
         }
     }

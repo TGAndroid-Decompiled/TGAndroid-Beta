@@ -12,15 +12,15 @@ public final class vw extends org.telegram.ui.Components.zs {
     @Override
     public final void y() {
         ty tyVar = this.E;
-        if (tyVar.f40860c.L0() == 0) {
-            View m10 = tyVar.f40860c.m(0);
+        if (tyVar.f40887c.L0() == 0) {
+            View m10 = tyVar.f40887c.m(0);
             if (m10 != null) {
                 m10.invalidate();
             }
             if (tyVar.v == 2) {
                 tyVar.v = 1;
             }
-            ax axVar = tyVar.f40863n;
+            ax axVar = tyVar.f40890n;
             if (axVar != null) {
                 axVar.b();
             }

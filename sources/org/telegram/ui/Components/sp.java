@@ -9,25 +9,25 @@ import android.os.SystemClock;
 import org.telegram.messenger.AndroidUtilities;
 public class sp extends Drawable {
     public static final u1.a h = new u1.a();
-    public float f30382a;
-    public final float f30383b;
-    public long f30384c;
+    public float f30409a;
+    public final float f30410b;
+    public long f30411c;
     public final float[] d;
-    public final Paint f30385e;
-    public float f30386f;
-    public final RectF f30387g;
+    public final Paint f30412e;
+    public float f30413f;
+    public final RectF f30414g;
 
     public sp(int i10) {
-        this.f30382a = AndroidUtilities.dp(18.0f);
-        this.f30383b = AndroidUtilities.dp(2.25f);
-        this.f30384c = -1L;
+        this.f30409a = AndroidUtilities.dp(18.0f);
+        this.f30410b = AndroidUtilities.dp(2.25f);
+        this.f30411c = -1L;
         this.d = new float[2];
         Paint paint = new Paint();
-        this.f30385e = paint;
+        this.f30412e = paint;
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeCap(Paint.Cap.ROUND);
         paint.setStrokeJoin(Paint.Join.ROUND);
-        this.f30387g = new RectF();
+        this.f30414g = new RectF();
         b(i10);
     }
 
@@ -45,31 +45,31 @@ public class sp extends Drawable {
     }
 
     public final void b(int i10) {
-        this.f30385e.setColor(i10);
+        this.f30412e.setColor(i10);
     }
 
     @Override
     public final void draw(Canvas canvas) {
-        if (this.f30384c < 0) {
-            this.f30384c = SystemClock.elapsedRealtime();
+        if (this.f30411c < 0) {
+            this.f30411c = SystemClock.elapsedRealtime();
         }
         float[] fArr = this.d;
-        a(fArr, (float) ((SystemClock.elapsedRealtime() - this.f30384c) % 5400));
-        float f7 = this.f30386f;
+        a(fArr, (float) ((SystemClock.elapsedRealtime() - this.f30411c) % 5400));
+        float f7 = this.f30413f;
         float f10 = fArr[0];
-        Paint paint = this.f30385e;
-        canvas.drawArc(this.f30387g, f7 + f10, fArr[1] - f10, false, paint);
+        Paint paint = this.f30412e;
+        canvas.drawArc(this.f30414g, f7 + f10, fArr[1] - f10, false, paint);
         invalidateSelf();
     }
 
     @Override
     public int getIntrinsicHeight() {
-        return (int) (this.f30382a + this.f30383b);
+        return (int) (this.f30409a + this.f30410b);
     }
 
     @Override
     public int getIntrinsicWidth() {
-        return (int) (this.f30382a + this.f30383b);
+        return (int) (this.f30409a + this.f30410b);
     }
 
     @Override
@@ -79,35 +79,35 @@ public class sp extends Drawable {
 
     @Override
     public final void setAlpha(int i10) {
-        this.f30385e.setAlpha(i10);
+        this.f30412e.setAlpha(i10);
     }
 
     @Override
     public final void setBounds(int i10, int i11, int i12, int i13) {
         float f7 = i10;
         float f10 = i12 - i10;
-        float f11 = this.f30383b;
-        float f12 = this.f30382a;
+        float f11 = this.f30410b;
+        float f12 = this.f30409a;
         float f13 = i11;
         float f14 = i13 - i11;
-        this.f30387g.set(com.google.android.gms.internal.vision.e2.A(f10 - (f11 / 2.0f), f12, 2.0f, f7), (((f14 - (f11 / 2.0f)) - f12) / 2.0f) + f13, ((((f11 / 2.0f) + f10) + f12) / 2.0f) + f7, ((((f11 / 2.0f) + f14) + f12) / 2.0f) + f13);
+        this.f30414g.set(com.google.android.gms.internal.vision.e2.A(f10 - (f11 / 2.0f), f12, 2.0f, f7), (((f14 - (f11 / 2.0f)) - f12) / 2.0f) + f13, ((((f11 / 2.0f) + f10) + f12) / 2.0f) + f7, ((((f11 / 2.0f) + f14) + f12) / 2.0f) + f13);
         super.setBounds(i10, i11, i12, i13);
-        this.f30385e.setStrokeWidth(f11);
+        this.f30412e.setStrokeWidth(f11);
     }
 
     public sp(float f7, float f10, int i10) {
-        this.f30382a = AndroidUtilities.dp(18.0f);
-        this.f30383b = AndroidUtilities.dp(2.25f);
-        this.f30384c = -1L;
+        this.f30409a = AndroidUtilities.dp(18.0f);
+        this.f30410b = AndroidUtilities.dp(2.25f);
+        this.f30411c = -1L;
         this.d = new float[2];
         Paint paint = new Paint();
-        this.f30385e = paint;
+        this.f30412e = paint;
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeCap(Paint.Cap.ROUND);
         paint.setStrokeJoin(Paint.Join.ROUND);
-        this.f30387g = new RectF();
-        this.f30382a = f7;
-        this.f30383b = f10;
+        this.f30414g = new RectF();
+        this.f30409a = f7;
+        this.f30410b = f10;
         b(i10);
     }
 

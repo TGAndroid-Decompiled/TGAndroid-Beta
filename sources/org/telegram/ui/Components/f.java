@@ -8,16 +8,16 @@ import org.telegram.messenger.LanguageDetector;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class f implements LanguageDetector.ExceptionCallback, rc0, org.telegram.ui.ActionBar.a2, tc0 {
-    public final int f25818a;
+    public final int f25845a;
 
     public f(int i10) {
-        this.f25818a = i10;
+        this.f25845a = i10;
     }
 
     @Override
     public String f(int i10) {
         int i11;
-        switch (this.f25818a) {
+        switch (this.f25845a) {
             case 1:
                 return i2.g.i(i10, "");
             case 2:
@@ -164,7 +164,7 @@ public final class f implements LanguageDetector.ExceptionCallback, rc0, org.tel
 
     @Override
     public void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        switch (this.f25818a) {
+        switch (this.f25845a) {
             case 4:
                 b2Var.dismiss();
                 return;
@@ -184,6 +184,6 @@ public final class f implements LanguageDetector.ExceptionCallback, rc0, org.tel
 
     @Override
     public void s(vc0 vc0Var, int i10) {
-        Pattern pattern = e5.f25557a;
+        Pattern pattern = e5.f25584a;
     }
 }

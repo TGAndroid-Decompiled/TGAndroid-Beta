@@ -9,10 +9,10 @@ import org.telegram.ui.Components.jn0;
 import org.telegram.ui.Components.x61;
 import org.telegram.ui.Components.z61;
 public final class k0 extends c2.i {
-    public final f71 f14620i;
+    public final f71 f14646i;
 
     public k0(f71 f71Var) {
-        this.f14620i = f71Var;
+        this.f14646i = f71Var;
     }
 
     @Override
@@ -21,17 +21,17 @@ public final class k0 extends c2.i {
         if (remaining == 0) {
             return;
         }
-        String str = e2.d0.f8737a;
+        String str = e2.d0.f8765a;
         ByteBuffer order = byteBuffer.asReadOnlyBuffer().order(byteBuffer.order());
-        f71 f71Var = this.f14620i;
-        float[] fArr = f71Var.f25948b;
-        ByteBuffer byteBuffer2 = f71Var.f25949c;
-        FourierTransform.FFT fft = f71Var.f25947a;
-        g71 g71Var = f71Var.f25951f;
+        f71 f71Var = this.f14646i;
+        float[] fArr = f71Var.f25975b;
+        ByteBuffer byteBuffer2 = f71Var.f25976c;
+        FourierTransform.FFT fft = f71Var.f25974a;
+        g71 g71Var = f71Var.f25978f;
         z61 z61Var = g71Var.K;
-        Handler handler = g71Var.f26299a0;
+        Handler handler = g71Var.f26326a0;
         if (z61Var != null) {
-            if (order != c2.h.f4156a && g71Var.I) {
+            if (order != c2.h.f4183a && g71Var.I) {
                 if (z61Var.needUpdate()) {
                     int limit = order.limit();
                     int i10 = 0;
@@ -93,8 +93,8 @@ public final class k0 extends c2.i {
                                     i10++;
                                 }
                             }
-                            if (System.currentTimeMillis() - f71Var.f25950e >= 64) {
-                                f71Var.f25950e = System.currentTimeMillis();
+                            if (System.currentTimeMillis() - f71Var.f25977e >= 64) {
+                                f71Var.f25977e = System.currentTimeMillis();
                                 handler.postDelayed(new jn0(23, f71Var, fArr2), 130L);
                             }
                         }
@@ -124,8 +124,8 @@ public final class k0 extends c2.i {
 
     public final void k() {
         if (isActive()) {
-            int i10 = this.f4157b.f4153a;
-            this.f14620i.getClass();
+            int i10 = this.f4184b.f4180a;
+            this.f14646i.getClass();
         }
     }
 

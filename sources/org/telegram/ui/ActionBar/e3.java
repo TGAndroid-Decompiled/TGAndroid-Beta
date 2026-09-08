@@ -9,21 +9,21 @@ import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import org.telegram.messenger.AndroidUtilities;
 public final class e3 extends Drawable {
-    public final Paint f20376a;
-    public final Rect f20377b;
-    public final Rect f20378c;
+    public final Paint f20403a;
+    public final Rect f20404b;
+    public final Rect f20405c;
 
     public e3() {
         Paint paint = new Paint(1);
-        this.f20376a = paint;
-        this.f20377b = new Rect();
-        this.f20378c = new Rect();
+        this.f20403a = paint;
+        this.f20404b = new Rect();
+        this.f20405c = new Rect();
         paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC));
         paint.setColor(-16777216);
     }
 
     public final void a(int i10) {
-        Rect rect = this.f20377b;
+        Rect rect = this.f20404b;
         if (rect.left == 0 && rect.top == 0 && rect.right == 0 && rect.bottom == i10) {
             return;
         }
@@ -34,9 +34,9 @@ public final class e3 extends Drawable {
 
     @Override
     public final void draw(Canvas canvas) {
-        Rect rect = this.f20378c;
+        Rect rect = this.f20405c;
         if (!rect.isEmpty()) {
-            Paint paint = this.f20376a;
+            Paint paint = this.f20403a;
             if (paint.getAlpha() != 0 && !AndroidUtilities.makingGlobalBlurBitmap) {
                 canvas.drawRect(rect, paint);
             }
@@ -45,7 +45,7 @@ public final class e3 extends Drawable {
 
     @Override
     public final int getAlpha() {
-        return this.f20376a.getAlpha();
+        return this.f20403a.getAlpha();
     }
 
     @Override
@@ -56,10 +56,10 @@ public final class e3 extends Drawable {
     @Override
     public final void onBoundsChange(Rect rect) {
         super.onBoundsChange(rect);
-        Rect rect2 = this.f20378c;
+        Rect rect2 = this.f20405c;
         rect2.set(rect);
         int i10 = rect2.left;
-        Rect rect3 = this.f20377b;
+        Rect rect3 = this.f20404b;
         rect2.left = Math.max(0, rect3.left) + i10;
         rect2.top = Math.max(0, rect3.top) + rect2.top;
         rect2.right -= Math.max(0, rect3.right);
@@ -68,12 +68,12 @@ public final class e3 extends Drawable {
 
     @Override
     public final void setAlpha(int i10) {
-        this.f20376a.setAlpha(i10);
+        this.f20403a.setAlpha(i10);
         invalidateSelf();
     }
 
     @Override
     public final void setColorFilter(ColorFilter colorFilter) {
-        this.f20376a.setColorFilter(colorFilter);
+        this.f20403a.setColorFilter(colorFilter);
     }
 }

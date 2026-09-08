@@ -16,19 +16,19 @@ import java.util.concurrent.TimeUnit;
 import java.util.regex.Pattern;
 public final class a {
     public static int h;
-    public static PendingIntent f13521i;
-    public static final Pattern f13522j = Pattern.compile("\\|ID\\|([^|]+)\\|:?+(.*)");
-    public final Context f13524b;
-    public final b4.d f13525c;
+    public static PendingIntent f13547i;
+    public static final Pattern f13548j = Pattern.compile("\\|ID\\|([^|]+)\\|:?+(.*)");
+    public final Context f13550b;
+    public final b4.d f13551c;
     public final ScheduledThreadPoolExecutor d;
-    public Messenger f13527f;
-    public f f13528g;
-    public final a0.l f13523a = new a0.l(0);
-    public final Messenger f13526e = new Messenger(new c(this, Looper.getMainLooper()));
+    public Messenger f13553f;
+    public f f13554g;
+    public final a0.l f13549a = new a0.l(0);
+    public final Messenger f13552e = new Messenger(new c(this, Looper.getMainLooper()));
 
     public a(Context context) {
-        this.f13524b = context;
-        this.f13525c = new b4.d(context);
+        this.f13550b = context;
+        this.f13551c = new b4.d(context);
         ScheduledThreadPoolExecutor scheduledThreadPoolExecutor = new ScheduledThreadPoolExecutor(1);
         scheduledThreadPoolExecutor.setKeepAliveTime(60L, TimeUnit.SECONDS);
         scheduledThreadPoolExecutor.allowCoreThreadTimeOut(true);
@@ -48,12 +48,12 @@ public final class a {
     public static synchronized void c(Context context, Intent intent) {
         synchronized (a.class) {
             try {
-                if (f13521i == null) {
+                if (f13547i == null) {
                     Intent intent2 = new Intent();
                     intent2.setPackage("com.google.example.invalidpackage");
-                    f13521i = PendingIntent.getBroadcast(context, 0, intent2, l7.a.f15313a);
+                    f13547i = PendingIntent.getBroadcast(context, 0, intent2, l7.a.f15340a);
                 }
-                intent.putExtra("app", f13521i);
+                intent.putExtra("app", f13547i);
             } catch (Throwable th2) {
                 throw th2;
             }
@@ -63,32 +63,32 @@ public final class a {
     public final Task a(Bundle bundle) {
         String b10 = b();
         TaskCompletionSource taskCompletionSource = new TaskCompletionSource();
-        synchronized (this.f13523a) {
-            this.f13523a.put(b10, taskCompletionSource);
+        synchronized (this.f13549a) {
+            this.f13549a.put(b10, taskCompletionSource);
         }
         Intent intent = new Intent();
         intent.setPackage("com.google.android.gms");
-        if (this.f13525c.g() == 2) {
+        if (this.f13551c.g() == 2) {
             intent.setAction("com.google.iid.TOKEN_REQUEST");
         } else {
             intent.setAction("com.google.android.c2dm.intent.REGISTER");
         }
         intent.putExtras(bundle);
-        c(this.f13524b, intent);
+        c(this.f13550b, intent);
         intent.putExtra("kid", "|ID|" + b10 + "|");
         if (Log.isLoggable("Rpc", 3)) {
             Log.d("Rpc", "Sending ".concat(String.valueOf(intent.getExtras())));
         }
-        intent.putExtra("google.messenger", this.f13526e);
-        if (this.f13527f != null || this.f13528g != null) {
+        intent.putExtra("google.messenger", this.f13552e);
+        if (this.f13553f != null || this.f13554g != null) {
             Message obtain = Message.obtain();
             obtain.obj = intent;
             try {
-                Messenger messenger = this.f13527f;
+                Messenger messenger = this.f13553f;
                 if (messenger != null) {
                     messenger.send(obtain);
                 } else {
-                    Messenger messenger2 = this.f13528g.f13532a;
+                    Messenger messenger2 = this.f13554g.f13558a;
                     messenger2.getClass();
                     messenger2.send(obtain);
                 }
@@ -97,22 +97,22 @@ public final class a {
                     Log.d("Rpc", "Messenger failed, fallback to startService");
                 }
             }
-            taskCompletionSource.getTask().addOnCompleteListener(m.f13553a, new aa.a((Object) this, b10, (Object) this.d.schedule(new androidx.activity.i(taskCompletionSource, 22), 30L, TimeUnit.SECONDS), 21));
+            taskCompletionSource.getTask().addOnCompleteListener(m.f13579a, new aa.a((Object) this, b10, (Object) this.d.schedule(new androidx.activity.i(taskCompletionSource, 22), 30L, TimeUnit.SECONDS), 21));
             return taskCompletionSource.getTask();
         }
-        if (this.f13525c.g() == 2) {
-            this.f13524b.sendBroadcast(intent);
+        if (this.f13551c.g() == 2) {
+            this.f13550b.sendBroadcast(intent);
         } else {
-            this.f13524b.startService(intent);
+            this.f13550b.startService(intent);
         }
-        taskCompletionSource.getTask().addOnCompleteListener(m.f13553a, new aa.a((Object) this, b10, (Object) this.d.schedule(new androidx.activity.i(taskCompletionSource, 22), 30L, TimeUnit.SECONDS), 21));
+        taskCompletionSource.getTask().addOnCompleteListener(m.f13579a, new aa.a((Object) this, b10, (Object) this.d.schedule(new androidx.activity.i(taskCompletionSource, 22), 30L, TimeUnit.SECONDS), 21));
         return taskCompletionSource.getTask();
     }
 
     public final void d(String str, Bundle bundle) {
-        synchronized (this.f13523a) {
+        synchronized (this.f13549a) {
             try {
-                TaskCompletionSource taskCompletionSource = (TaskCompletionSource) this.f13523a.remove(str);
+                TaskCompletionSource taskCompletionSource = (TaskCompletionSource) this.f13549a.remove(str);
                 if (taskCompletionSource == null) {
                     Log.w("Rpc", "Missing callback for " + str);
                     return;

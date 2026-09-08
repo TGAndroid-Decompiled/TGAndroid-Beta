@@ -2,32 +2,32 @@ package j4;
 
 import c3.h0;
 public final class r {
-    public final h0 f13402a;
-    public long f13403b;
-    public boolean f13404c;
+    public final h0 f13428a;
+    public long f13429b;
+    public boolean f13430c;
     public int d;
-    public long f13405e;
-    public boolean f13406f;
-    public boolean f13407g;
+    public long f13431e;
+    public boolean f13432f;
+    public boolean f13433g;
     public boolean h;
-    public boolean f13408i;
-    public boolean f13409j;
-    public long f13410k;
-    public long f13411l;
-    public boolean f13412m;
+    public boolean f13434i;
+    public boolean f13435j;
+    public long f13436k;
+    public long f13437l;
+    public boolean f13438m;
 
     public r(h0 h0Var) {
-        this.f13402a = h0Var;
+        this.f13428a = h0Var;
     }
 
     public final void a(int i10) {
-        long j3 = this.f13411l;
+        long j3 = this.f13437l;
         if (j3 != -9223372036854775807L) {
-            long j10 = this.f13403b;
-            long j11 = this.f13410k;
+            long j10 = this.f13429b;
+            long j11 = this.f13436k;
             if (j10 != j11) {
-                boolean z10 = this.f13412m;
-                this.f13402a.c(j3, z10 ? 1 : 0, (int) (j10 - j11), i10, null);
+                boolean z10 = this.f13438m;
+                this.f13428a.c(j3, z10 ? 1 : 0, (int) (j10 - j11), i10, null);
             }
         }
     }

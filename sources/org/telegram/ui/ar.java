@@ -11,34 +11,34 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class ar implements Utilities.Callback {
-    public final int f34537a = 1;
-    public final int f34538b;
-    public final long f34539c;
+    public final int f34564a = 1;
+    public final int f34565b;
+    public final long f34566c;
     public final Object d;
-    public final Object f34540e;
-    public final Object f34541f;
-    public final Object f34542g;
+    public final Object f34567e;
+    public final Object f34568f;
+    public final Object f34569g;
     public final Serializable h;
 
     public ar(int i10, long j3, Activity activity, ArrayList arrayList, HashMap hashMap, Utilities.Callback callback, org.telegram.ui.ActionBar.f6 f6Var) {
-        this.f34538b = i10;
+        this.f34565b = i10;
         this.d = arrayList;
-        this.f34539c = j3;
-        this.f34540e = activity;
-        this.f34541f = f6Var;
-        this.f34542g = callback;
+        this.f34566c = j3;
+        this.f34567e = activity;
+        this.f34568f = f6Var;
+        this.f34569g = callback;
         this.h = hashMap;
     }
 
     @Override
     public final void run(Object obj) {
         boolean z10;
-        switch (this.f34537a) {
+        switch (this.f34564a) {
             case 0:
                 vr vrVar = (vr) this.d;
-                TLObject tLObject = (TLObject) this.f34540e;
-                TLRPC.TL_chatAdminRights tL_chatAdminRights = (TLRPC.TL_chatAdminRights) this.f34541f;
-                TLRPC.TL_chatBannedRights tL_chatBannedRights = (TLRPC.TL_chatBannedRights) this.f34542g;
+                TLObject tLObject = (TLObject) this.f34567e;
+                TLRPC.TL_chatAdminRights tL_chatAdminRights = (TLRPC.TL_chatAdminRights) this.f34568f;
+                TLRPC.TL_chatBannedRights tL_chatBannedRights = (TLRPC.TL_chatBannedRights) this.f34569g;
                 String str = (String) this.h;
                 int intValue = ((Integer) obj).intValue();
                 boolean[] zArr = new boolean[1];
@@ -49,19 +49,19 @@ public final class ar implements Utilities.Callback {
                 }
                 long j3 = vrVar.N;
                 TLRPC.TL_chatBannedRights tL_chatBannedRights2 = vrVar.E;
-                long j10 = this.f34539c;
+                long j10 = this.f34566c;
                 dr drVar = new dr(vrVar, j10, j3, tL_chatAdminRights, tL_chatBannedRights2, tL_chatBannedRights, str, intValue, zArr, j10);
-                drVar.X0 = new er(vrVar, intValue, j10, this.f34538b, z10, zArr);
+                drVar.X0 = new er(vrVar, intValue, j10, this.f34565b, z10, zArr);
                 vrVar.presentFragment(drVar);
                 return;
             default:
                 final ArrayList arrayList = (ArrayList) this.d;
-                final Activity activity = (Activity) this.f34540e;
-                final org.telegram.ui.ActionBar.f6 f6Var = (org.telegram.ui.ActionBar.f6) this.f34541f;
-                final Utilities.Callback callback = (Utilities.Callback) this.f34542g;
+                final Activity activity = (Activity) this.f34567e;
+                final org.telegram.ui.ActionBar.f6 f6Var = (org.telegram.ui.ActionBar.f6) this.f34568f;
+                final Utilities.Callback callback = (Utilities.Callback) this.f34569g;
                 final HashMap hashMap = (HashMap) this.h;
                 boolean booleanValue = ((Boolean) obj).booleanValue();
-                final int i10 = this.f34538b;
+                final int i10 = this.f34565b;
                 if (booleanValue) {
                     SharedPreferences.Editor edit = MessagesController.getInstance(i10).getMainSettings().edit();
                     int i11 = 0;
@@ -79,7 +79,7 @@ public final class ar implements Utilities.Callback {
                     }
                     edit.apply();
                 }
-                final long j11 = this.f34539c;
+                final long j11 = this.f34566c;
                 Runnable runnable = new Runnable() {
                     @Override
                     public final void run() {
@@ -100,11 +100,11 @@ public final class ar implements Utilities.Callback {
                         callback2.run(hashMap2);
                     }
                 };
-                if (!zh.s5.y(i10, false).f52569e) {
+                if (!zh.s5.y(i10, false).f52600e) {
                     zh.s5 y3 = zh.s5.y(i10, false);
-                    y3.f52569e = false;
+                    y3.f52600e = false;
                     y3.q(false, true, runnable);
-                    y3.f52569e = true;
+                    y3.f52600e = true;
                     return;
                 }
                 runnable.run();
@@ -114,11 +114,11 @@ public final class ar implements Utilities.Callback {
 
     public ar(vr vrVar, long j3, int i10, TLObject tLObject, TLRPC.TL_chatAdminRights tL_chatAdminRights, TLRPC.TL_chatBannedRights tL_chatBannedRights, String str, boolean z10) {
         this.d = vrVar;
-        this.f34539c = j3;
-        this.f34538b = i10;
-        this.f34540e = tLObject;
-        this.f34541f = tL_chatAdminRights;
-        this.f34542g = tL_chatBannedRights;
+        this.f34566c = j3;
+        this.f34565b = i10;
+        this.f34567e = tLObject;
+        this.f34568f = tL_chatAdminRights;
+        this.f34569g = tL_chatBannedRights;
         this.h = str;
     }
 }

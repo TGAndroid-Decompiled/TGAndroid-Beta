@@ -99,7 +99,7 @@ public class ChannelBoostsController {
                     i12++;
                     TL_stories.TL_myBoost tL_myBoost5 = tL_myBoost4;
                     TLRPC.Peer peer = tL_myBoost5.peer;
-                    if (peer != null && DialogObject.getPeerDialogId(peer) != (-this.currentChat.f19869id)) {
+                    if (peer != null && DialogObject.getPeerDialogId(peer) != (-this.currentChat.f19896id)) {
                         arrayList3.add(tL_myBoost5);
                     }
                 }
@@ -148,15 +148,15 @@ public class ChannelBoostsController {
             LaunchActivity launchActivity = LaunchActivity.G1;
             if (launchActivity == null || !launchActivity.isFinishing()) {
                 AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(R.getContext(), 0, R.getResourceProvider());
-                alertDialog$Builder.f20198a.R = LocaleController.getString(R.string.AppName);
+                alertDialog$Builder.f20225a.R = LocaleController.getString(R.string.AppName);
                 HashMap hashMap = new HashMap();
                 int i10 = org.telegram.ui.ActionBar.j6.L5;
                 hashMap.put("info1", Integer.valueOf(org.telegram.ui.ActionBar.j6.w0(null, i10, false)));
                 hashMap.put("info2", Integer.valueOf(org.telegram.ui.ActionBar.j6.w0(null, i10, false)));
                 alertDialog$Builder.m(R.raw.not_available, 52, org.telegram.ui.ActionBar.j6.w0(null, i10, false), hashMap);
-                alertDialog$Builder.f20198a.W = true;
-                alertDialog$Builder.f20198a.R = LocaleController.getString(R.string.ChannelPrivate);
-                alertDialog$Builder.f20198a.T = LocaleController.getString(R.string.ChannelCantOpenPrivate2);
+                alertDialog$Builder.f20225a.W = true;
+                alertDialog$Builder.f20225a.R = LocaleController.getString(R.string.ChannelPrivate);
+                alertDialog$Builder.f20225a.T = LocaleController.getString(R.string.ChannelCantOpenPrivate2);
                 i2.g.B(R.string.Close, alertDialog$Builder, null);
             }
         } else {

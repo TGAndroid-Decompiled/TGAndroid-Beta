@@ -14,15 +14,15 @@ import org.telegram.ui.ActionBar.j6;
 import org.telegram.ui.Components.zt;
 import w7.x5;
 public final class l extends LinearLayout {
-    public final zt f48532a;
-    public final TextView f48533b;
-    public k f48534c;
+    public final zt f48561a;
+    public final TextView f48562b;
+    public k f48563c;
 
     public l(Context context, f6 f6Var) {
         super(context);
         setOrientation(0);
         zt ztVar = new zt(context, f6Var);
-        this.f48532a = ztVar;
+        this.f48561a = ztVar;
         ztVar.setLines(1);
         ztVar.setSingleLine(true);
         InputFilter[] inputFilterArr = {new j(this)};
@@ -30,21 +30,21 @@ public final class l extends LinearLayout {
         ztVar.setFilters(inputFilterArr);
         ztVar.setTextSize(1, 16.0f);
         ztVar.setTextColor(j6.v0(j6.Ud, f6Var));
-        ztVar.setLinkTextColor(j6.v0(j6.f20740hc, f6Var));
-        ztVar.setHighlightColor(j6.v0(j6.f20981uf, f6Var));
+        ztVar.setLinkTextColor(j6.v0(j6.f20767hc, f6Var));
+        ztVar.setHighlightColor(j6.v0(j6.f21008uf, f6Var));
         int i10 = j6.Vd;
         ztVar.setHintColor(j6.v0(i10, f6Var));
         ztVar.setHintTextColor(j6.v0(i10, f6Var));
         ztVar.setCursorColor(j6.v0(j6.Wd, f6Var));
-        ztVar.setHandlesColor(j6.v0(j6.f20998vf, f6Var));
+        ztVar.setHandlesColor(j6.v0(j6.f21025vf, f6Var));
         ztVar.setBackground(null);
         ztVar.setHint(LocaleController.getString(R.string.BoostingGiveawayEnterYourPrize));
         ztVar.addTextChangedListener(new i2(this, 18));
         ztVar.setImeOptions(6);
         TextView textView = new TextView(context);
-        this.f48533b = textView;
+        this.f48562b = textView;
         textView.setTextSize(1, 16.0f);
-        textView.setTextColor(j6.v0(j6.f20770j5, f6Var));
+        textView.setTextColor(j6.v0(j6.f20797j5, f6Var));
         if (LocaleController.isRTL) {
             LinearLayout.LayoutParams t10 = x5.t(-1, -2, 16, 20, 0, 36, 0);
             t10.weight = 1.0f;
@@ -62,10 +62,10 @@ public final class l extends LinearLayout {
     }
 
     public void setAfterTextChangedListener(k kVar) {
-        this.f48534c = kVar;
+        this.f48563c = kVar;
     }
 
     public void setCount(int i10) {
-        this.f48533b.setText(String.valueOf(i10));
+        this.f48562b.setText(String.valueOf(i10));
     }
 }

@@ -76,14 +76,14 @@ public final class h {
     public Object B(b1 b1Var, androidx.datastore.preferences.protobuf.m mVar) {
         androidx.datastore.preferences.protobuf.h hVar = (androidx.datastore.preferences.protobuf.h) this.f18c;
         int A = hVar.A();
-        if (hVar.f1234a < 100) {
+        if (hVar.f1246a < 100) {
             int e7 = hVar.e(A);
             Object a2 = b1Var.a();
-            hVar.f1234a++;
+            hVar.f1246a++;
             b1Var.c(a2, this, mVar);
             b1Var.d(a2);
             hVar.a(0);
-            hVar.f1234a--;
+            hVar.f1246a--;
             hVar.d(e7);
             return a2;
         }
@@ -240,24 +240,24 @@ public final class h {
         byte[] bArr = hVar.d;
         int s10 = hVar.s();
         if (s10 > 0) {
-            int i10 = hVar.f1237e;
-            int i11 = hVar.f1239g;
+            int i10 = hVar.f1249e;
+            int i11 = hVar.f1251g;
             if (s10 <= i10 - i11) {
-                String str = new String(bArr, i11, s10, z.f1324a);
-                hVar.f1239g += s10;
+                String str = new String(bArr, i11, s10, z.f1336a);
+                hVar.f1251g += s10;
                 return str;
             }
         }
         if (s10 == 0) {
             return "";
         }
-        if (s10 <= hVar.f1237e) {
+        if (s10 <= hVar.f1249e) {
             hVar.D(s10);
-            String str2 = new String(bArr, hVar.f1239g, s10, z.f1324a);
-            hVar.f1239g += s10;
+            String str2 = new String(bArr, hVar.f1251g, s10, z.f1336a);
+            hVar.f1251g += s10;
             return str2;
         }
-        return new String(hVar.n(s10), z.f1324a);
+        return new String(hVar.n(s10), z.f1336a);
     }
 
     public void M(List list, boolean z10) {
@@ -302,22 +302,22 @@ public final class h {
         androidx.datastore.preferences.protobuf.h hVar = (androidx.datastore.preferences.protobuf.h) this.f18c;
         byte[] bArr = hVar.d;
         int s10 = hVar.s();
-        int i10 = hVar.f1239g;
-        int i11 = hVar.f1237e;
+        int i10 = hVar.f1251g;
+        int i11 = hVar.f1249e;
         if (s10 <= i11 - i10 && s10 > 0) {
-            hVar.f1239g = i10 + s10;
+            hVar.f1251g = i10 + s10;
         } else if (s10 == 0) {
             return "";
         } else {
             i10 = 0;
             if (s10 <= i11) {
                 hVar.D(s10);
-                hVar.f1239g = s10;
+                hVar.f1251g = s10;
             } else {
                 bArr = hVar.n(s10);
             }
         }
-        return u1.f1318a.e(i10, s10, bArr);
+        return u1.f1330a.e(i10, s10, bArr);
     }
 
     public int O() {
@@ -471,19 +471,19 @@ public final class h {
         if (iArr != null) {
             Arrays.fill(iArr, -1);
         }
-        o0 o0Var = recyclerView.f1896x;
-        if (recyclerView.f1894w != null && o0Var != null && o0Var.h) {
+        o0 o0Var = recyclerView.f1923x;
+        if (recyclerView.f1921w != null && o0Var != null && o0Var.h) {
             if (z10) {
                 if (!recyclerView.d.h()) {
-                    int h = recyclerView.f1894w.h();
+                    int h = recyclerView.f1921w.h();
                     c0 c0Var = (c0) o0Var;
                     s4.b0 b0Var = c0Var.B;
-                    if (b0Var != null && (i10 = b0Var.f45716a) >= 0) {
-                        z11 = b0Var.f45718c;
+                    if (b0Var != null && (i10 = b0Var.f45744a) >= 0) {
+                        z11 = b0Var.f45746c;
                     } else {
                         c0Var.f1();
                         z11 = c0Var.v;
-                        i10 = c0Var.f45735y;
+                        i10 = c0Var.f45763y;
                         if (i10 == -1) {
                             i10 = z11 ? h - 1 : 0;
                         }
@@ -499,9 +499,9 @@ public final class h {
             } else if (!recyclerView.Z()) {
                 int i13 = this.f16a;
                 int i14 = this.f17b;
-                z0 z0Var = recyclerView.f1891t0;
+                z0 z0Var = recyclerView.f1918t0;
                 c0 c0Var2 = (c0) o0Var;
-                if (c0Var2.f45726o != 0) {
+                if (c0Var2.f45754o != 0) {
                     i13 = i14;
                 }
                 if (c0Var2.r() != 0 && i13 != 0) {
@@ -510,14 +510,14 @@ public final class h {
                         i11 = 1;
                     }
                     c0Var2.m1(i11, Math.abs(i13), true, z0Var);
-                    c0Var2.A0(z0Var, c0Var2.f45727p, this);
+                    c0Var2.A0(z0Var, c0Var2.f45755p, this);
                 }
             }
             int i15 = this.d;
-            if (i15 > o0Var.f45847i) {
-                o0Var.f45847i = i15;
-                o0Var.f45848j = z10;
-                recyclerView.f1867b.l();
+            if (i15 > o0Var.f45875i) {
+                o0Var.f45875i = i15;
+                o0Var.f45876j = z10;
+                recyclerView.f1894b.l();
             }
         }
     }
@@ -580,25 +580,25 @@ public final class h {
         androidx.datastore.preferences.protobuf.h hVar = (androidx.datastore.preferences.protobuf.h) this.f18c;
         byte[] bArr = hVar.d;
         int s10 = hVar.s();
-        int i10 = hVar.f1237e;
-        int i11 = hVar.f1239g;
+        int i10 = hVar.f1249e;
+        int i11 = hVar.f1251g;
         if (s10 <= i10 - i11 && s10 > 0) {
             androidx.datastore.preferences.protobuf.g i12 = androidx.datastore.preferences.protobuf.g.i(i11, s10, bArr);
-            hVar.f1239g += s10;
+            hVar.f1251g += s10;
             return i12;
         } else if (s10 == 0) {
-            return androidx.datastore.preferences.protobuf.g.f1228c;
+            return androidx.datastore.preferences.protobuf.g.f1240c;
         } else {
             byte[] o9 = hVar.o(s10);
             if (o9 != null) {
                 return androidx.datastore.preferences.protobuf.g.i(0, o9.length, o9);
             }
-            int i13 = hVar.f1239g;
-            int i14 = hVar.f1237e;
+            int i13 = hVar.f1251g;
+            int i14 = hVar.f1249e;
             int i15 = i14 - i13;
-            hVar.f1240i += i14;
-            hVar.f1239g = 0;
-            hVar.f1237e = 0;
+            hVar.f1252i += i14;
+            hVar.f1251g = 0;
+            hVar.f1249e = 0;
             ArrayList p5 = hVar.p(s10 - i15);
             byte[] bArr2 = new byte[s10];
             System.arraycopy(bArr, i13, bArr2, 0, i15);
@@ -611,7 +611,7 @@ public final class h {
                 System.arraycopy(bArr3, 0, bArr2, i15, bArr3.length);
                 i15 += bArr3.length;
             }
-            androidx.datastore.preferences.protobuf.g gVar = androidx.datastore.preferences.protobuf.g.f1228c;
+            androidx.datastore.preferences.protobuf.g gVar = androidx.datastore.preferences.protobuf.g.f1240c;
             return new androidx.datastore.preferences.protobuf.g(bArr2);
         }
     }
@@ -727,7 +727,7 @@ public final class h {
                 throw new RuntimeException("unsupported field type.");
             case 10:
                 T(2);
-                return B(y0.f1321c.a(cls), mVar);
+                return B(y0.f1333c.a(cls), mVar);
             case 11:
                 return h();
             case 12:

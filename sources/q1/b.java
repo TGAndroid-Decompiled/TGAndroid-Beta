@@ -10,16 +10,16 @@ import androidx.emoji2.text.l;
 import com.google.firebase.messaging.s;
 import java.nio.ByteBuffer;
 public final class b extends InputConnectionWrapper {
-    public final EditText f44105a;
-    public final ob.a f44106b;
+    public final EditText f44132a;
+    public final ob.a f44133b;
 
     public b(EditText editText, InputConnection inputConnection, EditorInfo editorInfo) {
         super(inputConnection, false);
         int i10;
         ob.a aVar = new ob.a(19);
-        this.f44105a = editText;
-        this.f44106b = aVar;
-        if (l.f1349j != null) {
+        this.f44132a = editText;
+        this.f44133b = aVar;
+        if (l.f1361j != null) {
             l a2 = l.a();
             if (a2.b() != 1 || editorInfo == null) {
                 return;
@@ -27,13 +27,13 @@ public final class b extends InputConnectionWrapper {
             if (editorInfo.extras == null) {
                 editorInfo.extras = new Bundle();
             }
-            androidx.emoji2.text.f fVar = a2.f1353e;
+            androidx.emoji2.text.f fVar = a2.f1365e;
             fVar.getClass();
             Bundle bundle = editorInfo.extras;
-            p1.b bVar = (p1.b) ((s) fVar.f1341c).f6391b;
+            p1.b bVar = (p1.b) ((s) fVar.f1353c).f6418b;
             int a10 = bVar.a(4);
             if (a10 != 0) {
-                i10 = ((ByteBuffer) bVar.d).getInt(a10 + bVar.f43637a);
+                i10 = ((ByteBuffer) bVar.d).getInt(a10 + bVar.f43664a);
             } else {
                 i10 = 0;
             }
@@ -44,8 +44,8 @@ public final class b extends InputConnectionWrapper {
 
     @Override
     public final boolean deleteSurroundingText(int i10, int i11) {
-        Editable editableText = this.f44105a.getEditableText();
-        this.f44106b.getClass();
+        Editable editableText = this.f44132a.getEditableText();
+        this.f44133b.getClass();
         if (!ob.a.l3(this, editableText, i10, i11, false) && !super.deleteSurroundingText(i10, i11)) {
             return false;
         }
@@ -54,8 +54,8 @@ public final class b extends InputConnectionWrapper {
 
     @Override
     public final boolean deleteSurroundingTextInCodePoints(int i10, int i11) {
-        Editable editableText = this.f44105a.getEditableText();
-        this.f44106b.getClass();
+        Editable editableText = this.f44132a.getEditableText();
+        this.f44133b.getClass();
         if (ob.a.l3(this, editableText, i10, i11, true) || super.deleteSurroundingTextInCodePoints(i10, i11)) {
             return true;
         }

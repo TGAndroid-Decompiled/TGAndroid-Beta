@@ -6,36 +6,36 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.UserConfig;
 import org.telegram.ui.PremiumPreviewFragment;
 public final class zm0 implements zk0 {
-    public final int f33183a;
-    public final int f33184b;
-    public final org.telegram.ui.ActionBar.n2 f33185c;
+    public final int f33210a;
+    public final int f33211b;
+    public final org.telegram.ui.ActionBar.n2 f33212c;
     public final Object d;
 
     public zm0(Object obj, int i10, org.telegram.ui.ActionBar.n2 n2Var, int i11) {
-        this.f33183a = i11;
+        this.f33210a = i11;
         this.d = obj;
-        this.f33184b = i10;
-        this.f33185c = n2Var;
+        this.f33211b = i10;
+        this.f33212c = n2Var;
     }
 
     @Override
     public final void a(int i10, View view) {
         ah.j1 j1Var;
-        switch (this.f33183a) {
+        switch (this.f33210a) {
             case 0:
                 hn0 hn0Var = (hn0) this.d;
-                ArrayList arrayList = hn0Var.f26768r;
+                ArrayList arrayList = hn0Var.f26795r;
                 bi.o0 o0Var = hn0Var.d;
                 if (i10 >= 0 && i10 < arrayList.size()) {
-                    if (!UserConfig.getInstance(this.f33184b).isPremium()) {
-                        new sg.a1(this.f33185c, 24, true).show();
+                    if (!UserConfig.getInstance(this.f33211b).isPremium()) {
+                        new sg.a1(this.f33212c, 24, true).show();
                         return;
                     }
-                    long j3 = ((en0) arrayList.get(i10)).f25737a.h;
+                    long j3 = ((en0) arrayList.get(i10)).f25764a.h;
                     if (hn0Var.h == j3) {
                         j1Var = null;
                     } else {
-                        j1Var = ((en0) arrayList.get(i10)).f25737a;
+                        j1Var = ((en0) arrayList.get(i10)).f25764a;
                     }
                     if (hn0Var.f(j1Var)) {
                         for (int i11 = 0; i11 < o0Var.getChildCount(); i11++) {
@@ -70,8 +70,8 @@ public final class zm0 implements zk0 {
                 sg.o1 o1Var = (sg.o1) this.d;
                 if (view instanceof org.telegram.ui.uw0) {
                     org.telegram.ui.uw0 uw0Var = (org.telegram.ui.uw0) view;
-                    PremiumPreviewFragment.q0(this.f33184b, uw0Var.f41228f.f38147a);
-                    o1Var.showDialog(new sg.a1(this.f33185c, uw0Var.f41228f.f38147a, false));
+                    PremiumPreviewFragment.q0(this.f33211b, uw0Var.f41255f.f38174a);
+                    o1Var.showDialog(new sg.a1(this.f33212c, uw0Var.f41255f.f38174a, false));
                     return;
                 }
                 return;

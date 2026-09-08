@@ -2,27 +2,27 @@ package f4;
 
 import android.text.Layout;
 public final class g {
-    public String f9274a;
-    public int f9275b;
-    public boolean f9276c;
+    public String f9302a;
+    public int f9303b;
+    public boolean f9304c;
     public int d;
-    public boolean f9277e;
-    public float f9282k;
-    public String f9283l;
-    public Layout.Alignment f9286o;
-    public Layout.Alignment f9287p;
-    public b f9289r;
-    public String f9291t;
-    public String f9292u;
-    public int f9278f = -1;
-    public int f9279g = -1;
+    public boolean f9305e;
+    public float f9310k;
+    public String f9311l;
+    public Layout.Alignment f9314o;
+    public Layout.Alignment f9315p;
+    public b f9317r;
+    public String f9319t;
+    public String f9320u;
+    public int f9306f = -1;
+    public int f9307g = -1;
     public int h = -1;
-    public int f9280i = -1;
-    public int f9281j = -1;
-    public int f9284m = -1;
-    public int f9285n = -1;
-    public int f9288q = -1;
-    public float f9290s = Float.MAX_VALUE;
+    public int f9308i = -1;
+    public int f9309j = -1;
+    public int f9312m = -1;
+    public int f9313n = -1;
+    public int f9316q = -1;
+    public float f9318s = Float.MAX_VALUE;
 
     public final void a(g gVar) {
         int i10;
@@ -30,59 +30,59 @@ public final class g {
         Layout.Alignment alignment2;
         String str;
         if (gVar != null) {
-            if (!this.f9276c && gVar.f9276c) {
-                this.f9275b = gVar.f9275b;
-                this.f9276c = true;
+            if (!this.f9304c && gVar.f9304c) {
+                this.f9303b = gVar.f9303b;
+                this.f9304c = true;
             }
             if (this.h == -1) {
                 this.h = gVar.h;
             }
-            if (this.f9280i == -1) {
-                this.f9280i = gVar.f9280i;
+            if (this.f9308i == -1) {
+                this.f9308i = gVar.f9308i;
             }
-            if (this.f9274a == null && (str = gVar.f9274a) != null) {
-                this.f9274a = str;
+            if (this.f9302a == null && (str = gVar.f9302a) != null) {
+                this.f9302a = str;
             }
-            if (this.f9278f == -1) {
-                this.f9278f = gVar.f9278f;
+            if (this.f9306f == -1) {
+                this.f9306f = gVar.f9306f;
             }
-            if (this.f9279g == -1) {
-                this.f9279g = gVar.f9279g;
+            if (this.f9307g == -1) {
+                this.f9307g = gVar.f9307g;
             }
-            if (this.f9285n == -1) {
-                this.f9285n = gVar.f9285n;
+            if (this.f9313n == -1) {
+                this.f9313n = gVar.f9313n;
             }
-            if (this.f9286o == null && (alignment2 = gVar.f9286o) != null) {
-                this.f9286o = alignment2;
+            if (this.f9314o == null && (alignment2 = gVar.f9314o) != null) {
+                this.f9314o = alignment2;
             }
-            if (this.f9287p == null && (alignment = gVar.f9287p) != null) {
-                this.f9287p = alignment;
+            if (this.f9315p == null && (alignment = gVar.f9315p) != null) {
+                this.f9315p = alignment;
             }
-            if (this.f9288q == -1) {
-                this.f9288q = gVar.f9288q;
+            if (this.f9316q == -1) {
+                this.f9316q = gVar.f9316q;
             }
-            if (this.f9281j == -1) {
-                this.f9281j = gVar.f9281j;
-                this.f9282k = gVar.f9282k;
+            if (this.f9309j == -1) {
+                this.f9309j = gVar.f9309j;
+                this.f9310k = gVar.f9310k;
             }
-            if (this.f9289r == null) {
-                this.f9289r = gVar.f9289r;
+            if (this.f9317r == null) {
+                this.f9317r = gVar.f9317r;
             }
-            if (this.f9290s == Float.MAX_VALUE) {
-                this.f9290s = gVar.f9290s;
+            if (this.f9318s == Float.MAX_VALUE) {
+                this.f9318s = gVar.f9318s;
             }
-            if (this.f9291t == null) {
-                this.f9291t = gVar.f9291t;
+            if (this.f9319t == null) {
+                this.f9319t = gVar.f9319t;
             }
-            if (this.f9292u == null) {
-                this.f9292u = gVar.f9292u;
+            if (this.f9320u == null) {
+                this.f9320u = gVar.f9320u;
             }
-            if (!this.f9277e && gVar.f9277e) {
+            if (!this.f9305e && gVar.f9305e) {
                 this.d = gVar.d;
-                this.f9277e = true;
+                this.f9305e = true;
             }
-            if (this.f9284m == -1 && (i10 = gVar.f9284m) != -1) {
-                this.f9284m = i10;
+            if (this.f9312m == -1 && (i10 = gVar.f9312m) != -1) {
+                this.f9312m = i10;
             }
         }
     }

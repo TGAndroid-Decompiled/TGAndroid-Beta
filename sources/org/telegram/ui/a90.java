@@ -9,20 +9,20 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 public final class a90 implements Runnable {
-    public final int f34356a = 0;
-    public final LaunchActivity f34357b;
-    public final TLRPC.TL_error f34358c;
+    public final int f34383a = 0;
+    public final LaunchActivity f34384b;
+    public final TLRPC.TL_error f34385c;
     public final TLObject d;
-    public final int f34359e;
-    public final String f34360f;
+    public final int f34386e;
+    public final String f34387f;
     public final r80 h;
 
     public a90(LaunchActivity launchActivity, TLObject tLObject, int i10, String str, TLRPC.TL_error tL_error, r80 r80Var) {
-        this.f34357b = launchActivity;
+        this.f34384b = launchActivity;
         this.d = tLObject;
-        this.f34359e = i10;
-        this.f34360f = str;
-        this.f34358c = tL_error;
+        this.f34386e = i10;
+        this.f34387f = str;
+        this.f34385c = tL_error;
         this.h = r80Var;
     }
 
@@ -32,21 +32,21 @@ public final class a90 implements Runnable {
         org.telegram.ui.Components.yc a02;
         int i10;
         int i11;
-        int i12 = this.f34356a;
+        int i12 = this.f34383a;
         r80 r80Var = this.h;
-        String str2 = this.f34360f;
+        String str2 = this.f34387f;
         TLObject tLObject = this.d;
-        TLRPC.TL_error tL_error = this.f34358c;
+        TLRPC.TL_error tL_error = this.f34385c;
         switch (i12) {
             case 0:
                 Pattern pattern = LaunchActivity.B1;
                 boolean z10 = tLObject instanceof TLRPC.User;
-                LaunchActivity launchActivity = this.f34357b;
+                LaunchActivity launchActivity = this.f34384b;
                 if (z10) {
                     TLRPC.User user = (TLRPC.User) tLObject;
-                    MessagesController.getInstance(this.f34359e).putUser(user, false);
+                    MessagesController.getInstance(this.f34386e).putUser(user, false);
                     Bundle bundle = new Bundle();
-                    bundle.putLong("user_id", user.f20016id);
+                    bundle.putLong("user_id", user.f20043id);
                     launchActivity.p0(new co(bundle));
                 } else {
                     StringBuilder v = a4.a.v("cant import contact token. token=", str2, " err=");
@@ -57,7 +57,7 @@ public final class a90 implements Runnable {
                     }
                     v.append(str);
                     FileLog.e(v.toString());
-                    org.telegram.messenger.w1.p(R.string.NoUsernameFound, org.telegram.ui.Components.yc.a0((org.telegram.ui.ActionBar.n2) i2.g.h(1, launchActivity.f33429d0)), null);
+                    org.telegram.messenger.w1.p(R.string.NoUsernameFound, org.telegram.ui.Components.yc.a0((org.telegram.ui.ActionBar.n2) i2.g.h(1, launchActivity.f33456d0)), null);
                 }
                 try {
                     r80Var.run();
@@ -86,13 +86,13 @@ public final class a90 implements Runnable {
                     }
                 } else if (tLObject instanceof TL_stars.TL_payments_uniqueStarGift) {
                     TL_stars.TL_payments_uniqueStarGift tL_payments_uniqueStarGift = (TL_stars.TL_payments_uniqueStarGift) tLObject;
-                    LaunchActivity launchActivity2 = this.f34357b;
+                    LaunchActivity launchActivity2 = this.f34384b;
                     MessagesController.getInstance(launchActivity2.O).putUsers(tL_payments_uniqueStarGift.users, false);
                     MessagesController.getInstance(launchActivity2.O).putChats(tL_payments_uniqueStarGift.chats, false);
                     org.telegram.ui.ActionBar.n2 U2 = LaunchActivity.U();
                     TL_stars.StarGift starGift = tL_payments_uniqueStarGift.gift;
                     if (starGift instanceof TL_stars.TL_starGiftUnique) {
-                        zh.w3 w3Var = new zh.w3(launchActivity2, this.f34359e, 0L, null, null);
+                        zh.w3 w3Var = new zh.w3(launchActivity2, this.f34386e, 0L, null, null);
                         w3Var.h2(str2, (TL_stars.TL_starGiftUnique) starGift, null);
                         if (U2 != null) {
                             if (U2.getLastStoryViewer() != null && U2.getLastStoryViewer().K0) {
@@ -116,11 +116,11 @@ public final class a90 implements Runnable {
     }
 
     public a90(LaunchActivity launchActivity, TLRPC.TL_error tL_error, TLObject tLObject, int i10, String str, r80 r80Var) {
-        this.f34357b = launchActivity;
-        this.f34358c = tL_error;
+        this.f34384b = launchActivity;
+        this.f34385c = tL_error;
         this.d = tLObject;
-        this.f34359e = i10;
-        this.f34360f = str;
+        this.f34386e = i10;
+        this.f34387f = str;
         this.h = r80Var;
     }
 }

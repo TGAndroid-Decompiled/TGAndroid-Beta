@@ -47,12 +47,12 @@ import org.telegram.ui.oy;
 import org.telegram.ui.uy;
 import w7.f6;
 public final class f implements org.telegram.ui.ActionBar.a2, Utilities.Callback5, c3.g, e2.m, f2.t, xt, ji.o0, oy {
-    public final int f9643a;
-    public final Object f9644b;
+    public final int f9671a;
+    public final Object f9672b;
 
     public f(j2.a aVar, Object obj, int i10) {
-        this.f9643a = i10;
-        this.f9644b = obj;
+        this.f9671a = i10;
+        this.f9672b = obj;
     }
 
     @Override
@@ -67,27 +67,27 @@ public final class f implements org.telegram.ui.ActionBar.a2, Utilities.Callback
 
     @Override
     public void a(long j3, e2.v vVar) {
-        switch (this.f9643a) {
+        switch (this.f9671a) {
             case 19:
-                c3.b.d(j3, vVar, ((j4.c0) this.f9644b).f13238c);
+                c3.b.d(j3, vVar, ((j4.c0) this.f9672b).f13264c);
                 return;
             default:
-                c3.b.e(j3, vVar, ((j4.c0) this.f9644b).f13238c);
+                c3.b.e(j3, vVar, ((j4.c0) this.f9672b).f13264c);
                 return;
         }
     }
 
     public j5.b b(aa.a aVar) {
         InputStream inputStream;
-        j5.c cVar = (j5.c) this.f9644b;
-        URL url = (URL) aVar.f372c;
+        j5.c cVar = (j5.c) this.f9672b;
+        URL url = (URL) aVar.f384c;
         String c10 = f6.c("CctTransportBackend");
         if (Log.isLoggable(c10, 4)) {
             Log.i(c10, String.format("Making request to: %s", url));
         }
         HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
         httpURLConnection.setConnectTimeout(30000);
-        httpURLConnection.setReadTimeout(cVar.f13520g);
+        httpURLConnection.setReadTimeout(cVar.f13546g);
         httpURLConnection.setDoOutput(true);
         httpURLConnection.setInstanceFollowRedirects(false);
         httpURLConnection.setRequestMethod("POST");
@@ -95,7 +95,7 @@ public final class f implements org.telegram.ui.ActionBar.a2, Utilities.Callback
         httpURLConnection.setRequestProperty("Content-Encoding", "gzip");
         httpURLConnection.setRequestProperty("Content-Type", "application/json");
         httpURLConnection.setRequestProperty("Accept-Encoding", "gzip");
-        String str = (String) aVar.f371b;
+        String str = (String) aVar.f383b;
         if (str != null) {
             httpURLConnection.setRequestProperty("X-Goog-Api-Key", str);
         }
@@ -103,13 +103,13 @@ public final class f implements org.telegram.ui.ActionBar.a2, Utilities.Callback
             OutputStream outputStream = httpURLConnection.getOutputStream();
             try {
                 GZIPOutputStream gZIPOutputStream = new GZIPOutputStream(outputStream);
-                ji.u4 u4Var = cVar.f13515a;
+                ji.u4 u4Var = cVar.f13541a;
                 BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(gZIPOutputStream));
-                ka.d dVar = (ka.d) u4Var.f14221b;
-                ka.e eVar = new ka.e(bufferedWriter, dVar.f14880a, dVar.f14881b, dVar.f14882c, dVar.d);
+                ka.d dVar = (ka.d) u4Var.f14247b;
+                ka.e eVar = new ka.e(bufferedWriter, dVar.f14906a, dVar.f14907b, dVar.f14908c, dVar.d);
                 eVar.h((k5.i) aVar.d);
                 eVar.j();
-                eVar.f14884b.flush();
+                eVar.f14910b.flush();
                 gZIPOutputStream.close();
                 if (outputStream != null) {
                     outputStream.close();
@@ -133,7 +133,7 @@ public final class f implements org.telegram.ui.ActionBar.a2, Utilities.Callback
                         } else {
                             inputStream = inputStream2;
                         }
-                        j5.b bVar = new j5.b(responseCode, null, k5.m.a(new BufferedReader(new InputStreamReader(inputStream))).f14793a);
+                        j5.b bVar = new j5.b(responseCode, null, k5.m.a(new BufferedReader(new InputStreamReader(inputStream))).f14819a);
                         if (inputStream != null) {
                             inputStream.close();
                         }
@@ -183,19 +183,19 @@ public final class f implements org.telegram.ui.ActionBar.a2, Utilities.Callback
     }
 
     public void c(int i10) {
-        ji.a0 a0Var = (ji.a0) this.f9644b;
-        a0Var.f13751c = i10;
+        ji.a0 a0Var = (ji.a0) this.f9672b;
+        a0Var.f13777c = i10;
         a0Var.f(i10);
     }
 
     @Override
     public void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        switch (this.f9643a) {
+        switch (this.f9671a) {
             case 0:
-                ((e) this.f9644b).run();
+                ((e) this.f9672b).run();
                 return;
             case 1:
-                m mVar = (m) this.f9644b;
+                m mVar = (m) this.f9672b;
                 TL_bots.updateStarRefProgram updatestarrefprogram = new TL_bots.updateStarRefProgram();
                 updatestarrefprogram.bot = mVar.getMessagesController().getInputUser(mVar.P);
                 updatestarrefprogram.commission_permille = 0;
@@ -204,10 +204,10 @@ public final class f implements org.telegram.ui.ActionBar.a2, Utilities.Callback
                 mVar.getConnectionsManager().sendRequest(updatestarrefprogram, new b(mVar, b2Var2, 0));
                 return;
             case 13:
-                ig.y1 y1Var = ((ig.p1) this.f9644b).f12180a;
+                ig.y1 y1Var = ((ig.p1) this.f9672b).f12206a;
                 ig.b2 f7 = ig.b2.f(ig.y1.b0(y1Var));
-                ArrayList arrayList = y1Var.f12290b;
-                int i11 = f7.f12006a;
+                ArrayList arrayList = y1Var.f12316b;
+                int i11 = f7.f12032a;
                 int i12 = 0;
                 while (i12 < arrayList.size()) {
                     if (f7.c(((Integer) arrayList.get(i12)).intValue()) == null) {
@@ -219,12 +219,12 @@ public final class f implements org.telegram.ui.ActionBar.a2, Utilities.Callback
                 if (!arrayList.isEmpty()) {
                     for (int i13 = 0; i13 < arrayList.size(); i13++) {
                         ig.a2 c10 = f7.c(((Integer) arrayList.get(i13)).intValue());
-                        f7.f12007b.remove(c10);
-                        f7.a(c10.f11993b);
+                        f7.f12033b.remove(c10);
+                        f7.a(c10.f12019b);
                         TLRPC.TL_messages_deleteQuickReplyShortcut tL_messages_deleteQuickReplyShortcut = new TLRPC.TL_messages_deleteQuickReplyShortcut();
-                        tL_messages_deleteQuickReplyShortcut.shortcut_id = c10.f11992a;
+                        tL_messages_deleteQuickReplyShortcut.shortcut_id = c10.f12018a;
                         ConnectionsManager.getInstance(i11).sendRequest(tL_messages_deleteQuickReplyShortcut, new c7(6));
-                        if ("hello".equals(c10.f11993b)) {
+                        if ("hello".equals(c10.f12019b)) {
                             ConnectionsManager.getInstance(i11).sendRequest(new TL_account.updateBusinessGreetingMessage(), null);
                             TLRPC.UserFull userFull = MessagesController.getInstance(i11).getUserFull(UserConfig.getInstance(i11).getClientUserId());
                             if (userFull != null) {
@@ -232,7 +232,7 @@ public final class f implements org.telegram.ui.ActionBar.a2, Utilities.Callback
                                 userFull.business_greeting_message = null;
                                 MessagesStorage.getInstance(i11).updateUserInfo(userFull, true);
                             }
-                        } else if ("away".equals(c10.f11993b)) {
+                        } else if ("away".equals(c10.f12019b)) {
                             ConnectionsManager.getInstance(i11).sendRequest(new TL_account.updateBusinessAwayMessage(), null);
                             TLRPC.UserFull userFull2 = MessagesController.getInstance(i11).getUserFull(UserConfig.getInstance(i11).getClientUserId());
                             if (userFull2 != null) {
@@ -250,36 +250,36 @@ public final class f implements org.telegram.ui.ActionBar.a2, Utilities.Callback
                 ig.y1.X(y1Var);
                 return;
             default:
-                ((bi.e4) this.f9644b).run();
+                ((bi.e4) this.f9672b).run();
                 return;
         }
     }
 
     @Override
     public n70 i(ji.h1 h1Var) {
-        return n70.H((ji.c2) ((z2.b) this.f9644b).f50678a, h1Var);
+        return n70.H((ji.c2) ((z2.b) this.f9672b).f50707a, h1Var);
     }
 
     @Override
     public void invoke(Object obj) {
-        switch (this.f9643a) {
+        switch (this.f9671a) {
             case 4:
-                ((b2.z0) obj).onMediaMetadataChanged((b2.n0) this.f9644b);
+                ((b2.z0) obj).onMediaMetadataChanged((b2.n0) this.f9672b);
                 return;
             case 5:
-                ((b2.z0) obj).onAudioAttributesChanged((b2.e) this.f9644b);
+                ((b2.z0) obj).onAudioAttributesChanged((b2.e) this.f9672b);
                 return;
             case 6:
-                ((b2.z0) obj).onTrackSelectionParametersChanged((b2.q1) this.f9644b);
+                ((b2.z0) obj).onTrackSelectionParametersChanged((b2.q1) this.f9672b);
                 return;
             case 7:
-                ((b2.z0) obj).onCues((d2.c) this.f9644b);
+                ((b2.z0) obj).onCues((d2.c) this.f9672b);
                 return;
             case 8:
-                ((b2.z0) obj).onMediaMetadataChanged(((i2.c0) this.f9644b).f11471a.O);
+                ((b2.z0) obj).onMediaMetadataChanged(((i2.c0) this.f9672b).f11497a.O);
                 return;
             case 9:
-                ((b2.z0) obj).onMetadata((b2.p0) this.f9644b);
+                ((b2.z0) obj).onMetadata((b2.p0) this.f9672b);
                 return;
             case 10:
             case 11:
@@ -287,57 +287,57 @@ public final class f implements org.telegram.ui.ActionBar.a2, Utilities.Callback
             case 13:
             case 14:
             default:
-                ((j2.b) obj).c((u2.b0) this.f9644b);
+                ((j2.b) obj).c((u2.b0) this.f9672b);
                 return;
             case 15:
-                ((j2.b) obj).h((b2.u0) this.f9644b);
+                ((j2.b) obj).h((b2.u0) this.f9672b);
                 return;
             case 16:
-                ((j2.b) obj).onSeekStarted((j2.a) this.f9644b);
+                ((j2.b) obj).onSeekStarted((j2.a) this.f9672b);
                 return;
             case 17:
-                ((j2.b) obj).a((i2.h) this.f9644b);
+                ((j2.b) obj).a((i2.h) this.f9672b);
                 return;
         }
     }
 
     @Override
     public void j() {
-        switch (this.f9643a) {
+        switch (this.f9671a) {
             case 23:
-                ji.t0 t0Var = (ji.t0) this.f9644b;
+                ji.t0 t0Var = (ji.t0) this.f9672b;
                 ji.h1 h1Var = t0Var.d;
-                ji.a aVar = t0Var.f14181f;
+                ji.a aVar = t0Var.f14207f;
                 if (aVar != null) {
-                    aVar.f13747s = true;
-                    aVar.f13746r = h1Var.E;
+                    aVar.f13773s = true;
+                    aVar.f13772r = h1Var.E;
                 }
                 if (aVar != null) {
-                    TL_iv.PageBlock pageBlock = aVar.f13732b;
+                    TL_iv.PageBlock pageBlock = aVar.f13758b;
                     if (pageBlock instanceof TL_iv.pageBlockDetails) {
                         ((TL_iv.pageBlockDetails) pageBlock).title = i6.f(h1Var.getText());
                     }
                 }
                 ji.c3 c3Var = t0Var.h;
-                if (c3Var != null && t0Var.f14181f != null) {
-                    ji.v3.N1(c3Var.f13842a);
+                if (c3Var != null && t0Var.f14207f != null) {
+                    ji.v3.N1(c3Var.f13868a);
                     return;
                 }
                 return;
             case 28:
-                ((j5) this.f9644b).h();
+                ((j5) this.f9672b).h();
                 return;
             default:
-                s5 s5Var = (s5) this.f9644b;
-                ji.a aVar2 = s5Var.f13749a;
+                s5 s5Var = (s5) this.f9672b;
+                ji.a aVar2 = s5Var.f13775a;
                 if (aVar2 != null) {
-                    aVar2.f13747s = true;
-                    aVar2.f13746r = s5Var.f14167r.E;
+                    aVar2.f13773s = true;
+                    aVar2.f13772r = s5Var.f14193r.E;
                 }
                 s5Var.u();
                 ji.b3 b3Var = s5Var.E;
-                if (b3Var != null && s5Var.f13749a != null) {
-                    ji.v3.N1(b3Var.f13790a);
+                if (b3Var != null && s5Var.f13775a != null) {
+                    ji.v3.N1(b3Var.f13816a);
                     return;
                 }
                 return;
@@ -346,8 +346,8 @@ public final class f implements org.telegram.ui.ActionBar.a2, Utilities.Callback
 
     @Override
     public long l(long j3) {
-        c3.u uVar = (c3.u) this.f9644b;
-        return e2.d0.i((j3 * uVar.f4301e) / 1000000, 0L, uVar.f4305j - 1);
+        c3.u uVar = (c3.u) this.f9672b;
+        return e2.d0.i((j3 * uVar.f4328e) / 1000000, 0L, uVar.f4332j - 1);
     }
 
     @Override
@@ -356,16 +356,16 @@ public final class f implements org.telegram.ui.ActionBar.a2, Utilities.Callback
         ig.f1 f1Var;
         ig.f1 f1Var2;
         int i11;
-        switch (this.f9643a) {
+        switch (this.f9671a) {
             case 2:
                 View view = (View) obj2;
                 ((Integer) obj3).getClass();
                 ((Float) obj4).getClass();
                 ((Float) obj5).getClass();
-                ((e5) this.f9644b).V((h51) obj);
+                ((e5) this.f9672b).V((h51) obj);
                 return;
             case 11:
-                ig.g1 g1Var = (ig.g1) this.f9644b;
+                ig.g1 g1Var = (ig.g1) this.f9672b;
                 h51 h51Var = (h51) obj;
                 View view2 = (View) obj2;
                 ((Integer) obj3).getClass();
@@ -373,19 +373,19 @@ public final class f implements org.telegram.ui.ActionBar.a2, Utilities.Callback
                 ((Float) obj5).getClass();
                 int i12 = h51Var.d;
                 if (i12 == -1) {
-                    boolean z10 = !g1Var.f12082e;
-                    g1Var.f12082e = z10;
+                    boolean z10 = !g1Var.f12108e;
+                    g1Var.f12108e = z10;
                     ((w8) view2).setChecked(z10);
-                    g1Var.f12079a.Y2.N(true);
+                    g1Var.f12105a.Y2.N(true);
                     g1Var.Y(true);
                     return;
                 } else if (i12 == -2) {
                     ?? n2Var = new org.telegram.ui.ActionBar.n2(null);
-                    n2Var.f12057n = g1Var.f12085r;
-                    n2Var.f12054c = new di.m2(17, g1Var, view2);
+                    n2Var.f12083n = g1Var.f12111r;
+                    n2Var.f12080c = new di.m2(17, g1Var, view2);
                     g1Var.presentFragment((org.telegram.ui.ActionBar.n2) n2Var);
                     return;
-                } else if (h51Var.f44071a == 5 && i12 >= 0 && i12 < g1Var.h.length) {
+                } else if (h51Var.f44098a == 5 && i12 >= 0 && i12 < g1Var.h.length) {
                     if (!LocaleController.isRTL ? floatValue >= view2.getMeasuredWidth() - AndroidUtilities.dp(76.0f) : floatValue <= AndroidUtilities.dp(76.0f)) {
                         if (g1Var.h[h51Var.d].isEmpty()) {
                             ((i5) view2).setChecked(true);
@@ -402,20 +402,20 @@ public final class f implements org.telegram.ui.ActionBar.a2, Utilities.Callback
                     int i13 = (h51Var.d + 6) % 7;
                     int i14 = 0;
                     for (int i15 = 0; i15 < g1Var.h[i13].size(); i15++) {
-                        if (((ig.f1) g1Var.h[i13].get(i15)).f12068b > i14) {
-                            i14 = ((ig.f1) g1Var.h[i13].get(i15)).f12068b;
+                        if (((ig.f1) g1Var.h[i13].get(i15)).f12094b > i14) {
+                            i14 = ((ig.f1) g1Var.h[i13].get(i15)).f12094b;
                         }
                     }
                     int max = Math.max(0, i14 - 1439);
                     int i16 = (h51Var.d + 1) % 7;
                     int i17 = 1440;
                     for (int i18 = 0; i18 < g1Var.h[i16].size(); i18++) {
-                        if (((ig.f1) g1Var.h[i16].get(i18)).f12067a < i17) {
-                            i17 = ((ig.f1) g1Var.h[i16].get(i18)).f12067a;
+                        if (((ig.f1) g1Var.h[i16].get(i18)).f12093a < i17) {
+                            i17 = ((ig.f1) g1Var.h[i16].get(i18)).f12093a;
                         }
                     }
                     int i19 = i17 + 1439;
-                    CharSequence charSequence = h51Var.f26594l;
+                    CharSequence charSequence = h51Var.f26621l;
                     ArrayList arrayList = g1Var.h[h51Var.d];
                     int i20 = 0;
                     for (int i21 = 0; i21 < 7; i21++) {
@@ -425,7 +425,7 @@ public final class f implements org.telegram.ui.ActionBar.a2, Utilities.Callback
                         }
                     }
                     ig.i1 i1Var = new ig.i1(charSequence, arrayList, max, i19, 28 - i20);
-                    i1Var.f12101f = new ig.t0(g1Var, 2);
+                    i1Var.f12127f = new ig.t0(g1Var, 2);
                     i1Var.h = new j4(15, g1Var, h51Var);
                     g1Var.presentFragment(i1Var);
                     return;
@@ -433,35 +433,35 @@ public final class f implements org.telegram.ui.ActionBar.a2, Utilities.Callback
                     return;
                 }
             case 12:
-                final ig.i1 i1Var2 = (ig.i1) this.f9644b;
+                final ig.i1 i1Var2 = (ig.i1) this.f9672b;
                 h51 h51Var2 = (h51) obj;
                 final View view3 = (View) obj2;
                 ((Integer) obj3).getClass();
                 ((Float) obj4).getClass();
                 ((Float) obj5).getClass();
-                int i22 = i1Var2.f12099c;
+                int i22 = i1Var2.f12125c;
                 int i23 = i1Var2.d;
-                ArrayList arrayList3 = i1Var2.f12098b;
+                ArrayList arrayList3 = i1Var2.f12124b;
                 int i24 = h51Var2.d;
                 if (i24 == -1) {
-                    i1Var2.f12103r = !i1Var2.f12103r;
+                    i1Var2.f12129r = !i1Var2.f12129r;
                     arrayList3.clear();
-                    if (i1Var2.f12103r) {
+                    if (i1Var2.f12129r) {
                         arrayList3.add(new ig.f1(0, 1439));
                     }
                     w8 w8Var = (w8) view3;
-                    boolean z11 = i1Var2.f12103r;
-                    h51Var2.f26588e = z11;
+                    boolean z11 = i1Var2.f12129r;
+                    h51Var2.f26615e = z11;
                     w8Var.setChecked(z11);
-                    boolean z12 = i1Var2.f12103r;
+                    boolean z12 = i1Var2.f12129r;
                     if (z12) {
-                        i11 = j6.f20700f6;
+                        i11 = j6.f20727f6;
                     } else {
-                        i11 = j6.f20683e6;
+                        i11 = j6.f20710e6;
                     }
                     w8Var.b(j6.w0(null, i11, false), z12);
-                    i1Var2.f12102n.Y2.N(true);
-                    ig.t0 t0Var = i1Var2.f12101f;
+                    i1Var2.f12128n.Y2.N(true);
+                    ig.t0 t0Var = i1Var2.f12127f;
                     if (t0Var != null) {
                         t0Var.run();
                         return;
@@ -469,7 +469,7 @@ public final class f implements org.telegram.ui.ActionBar.a2, Utilities.Callback
                     return;
                 } else if (i24 == -2) {
                     if (!arrayList3.isEmpty() && !i1Var2.U()) {
-                        int i25 = ((ig.f1) i2.g.h(1, arrayList3)).f12068b;
+                        int i25 = ((ig.f1) i2.g.h(1, arrayList3)).f12094b;
                         int clamp = Utilities.clamp(i25 + 30, i23 - 1, i22);
                         arrayList3.add(new ig.f1(clamp, Utilities.clamp((i25 + 1560) / 2, i23, clamp + 1)));
                     } else {
@@ -479,13 +479,13 @@ public final class f implements org.telegram.ui.ActionBar.a2, Utilities.Callback
                         int clamp2 = Utilities.clamp(480, i23 - 1, i22);
                         arrayList3.add(new ig.f1(clamp2, Utilities.clamp(1200, i23, clamp2 + 1)));
                     }
-                    ig.t0 t0Var2 = i1Var2.f12101f;
+                    ig.t0 t0Var2 = i1Var2.f12127f;
                     if (t0Var2 != null) {
                         t0Var2.run();
                     }
-                    i1Var2.f12102n.Y2.N(true);
+                    i1Var2.f12128n.Y2.N(true);
                     return;
-                } else if (h51Var2.f44071a == 3 && (i10 = i24 / 3) >= 0 && i10 < arrayList3.size()) {
+                } else if (h51Var2.f44098a == 3 && (i10 = i24 / 3) >= 0 && i10 < arrayList3.size()) {
                     int i26 = i10 - 1;
                     if (i26 >= 0) {
                         f1Var = (ig.f1) arrayList3.get(i26);
@@ -503,11 +503,11 @@ public final class f implements org.telegram.ui.ActionBar.a2, Utilities.Callback
                     if (i28 == 0) {
                         Activity parentActivity = i1Var2.getParentActivity();
                         String string = LocaleController.getString(R.string.BusinessHoursDayOpenHourPicker);
-                        int i29 = f1Var3.f12067a;
+                        int i29 = f1Var3.f12093a;
                         if (f1Var != null) {
-                            i22 = f1Var.f12068b + 1;
+                            i22 = f1Var.f12094b + 1;
                         }
-                        org.telegram.ui.Components.e5.X(parentActivity, string, i29, i22, f1Var3.f12068b - 1, new Utilities.Callback() {
+                        org.telegram.ui.Components.e5.X(parentActivity, string, i29, i22, f1Var3.f12094b - 1, new Utilities.Callback() {
                             @Override
                             public final void run(Object obj6) {
                                 Integer num = (Integer) obj6;
@@ -516,12 +516,12 @@ public final class f implements org.telegram.ui.ActionBar.a2, Utilities.Callback
                                         i1 i1Var3 = i1Var2;
                                         boolean V = i1Var3.V();
                                         int intValue = num.intValue();
-                                        f1Var3.f12067a = intValue;
+                                        f1Var3.f12093a = intValue;
                                         ((r8) view3).u(f1.a(intValue), true);
                                         if (V != i1Var3.V()) {
-                                            i1Var3.f12102n.Y2.N(true);
+                                            i1Var3.f12128n.Y2.N(true);
                                         }
-                                        t0 t0Var3 = i1Var3.f12101f;
+                                        t0 t0Var3 = i1Var3.f12127f;
                                         if (t0Var3 != null) {
                                             t0Var3.run();
                                             return;
@@ -531,12 +531,12 @@ public final class f implements org.telegram.ui.ActionBar.a2, Utilities.Callback
                                         i1 i1Var4 = i1Var2;
                                         boolean V2 = i1Var4.V();
                                         int intValue2 = num.intValue();
-                                        f1Var3.f12068b = intValue2;
+                                        f1Var3.f12094b = intValue2;
                                         ((r8) view3).u(f1.a(intValue2), true);
                                         if (V2 != i1Var4.V()) {
-                                            i1Var4.f12102n.Y2.N(true);
+                                            i1Var4.f12128n.Y2.N(true);
                                         }
-                                        t0 t0Var4 = i1Var4.f12101f;
+                                        t0 t0Var4 = i1Var4.f12127f;
                                         if (t0Var4 != null) {
                                             t0Var4.run();
                                             return;
@@ -549,10 +549,10 @@ public final class f implements org.telegram.ui.ActionBar.a2, Utilities.Callback
                     } else if (i28 == 1) {
                         Activity parentActivity2 = i1Var2.getParentActivity();
                         String string2 = LocaleController.getString(R.string.BusinessHoursDayCloseHourPicker);
-                        int i30 = f1Var3.f12068b;
-                        int i31 = f1Var3.f12067a + 1;
+                        int i30 = f1Var3.f12094b;
+                        int i31 = f1Var3.f12093a + 1;
                         if (f1Var2 != null) {
-                            i23 = f1Var2.f12067a - 1;
+                            i23 = f1Var2.f12093a - 1;
                         }
                         org.telegram.ui.Components.e5.X(parentActivity2, string2, i30, i31, i23, new Utilities.Callback() {
                             @Override
@@ -563,12 +563,12 @@ public final class f implements org.telegram.ui.ActionBar.a2, Utilities.Callback
                                         i1 i1Var3 = i1Var2;
                                         boolean V = i1Var3.V();
                                         int intValue = num.intValue();
-                                        f1Var3.f12067a = intValue;
+                                        f1Var3.f12093a = intValue;
                                         ((r8) view3).u(f1.a(intValue), true);
                                         if (V != i1Var3.V()) {
-                                            i1Var3.f12102n.Y2.N(true);
+                                            i1Var3.f12128n.Y2.N(true);
                                         }
-                                        t0 t0Var3 = i1Var3.f12101f;
+                                        t0 t0Var3 = i1Var3.f12127f;
                                         if (t0Var3 != null) {
                                             t0Var3.run();
                                             return;
@@ -578,12 +578,12 @@ public final class f implements org.telegram.ui.ActionBar.a2, Utilities.Callback
                                         i1 i1Var4 = i1Var2;
                                         boolean V2 = i1Var4.V();
                                         int intValue2 = num.intValue();
-                                        f1Var3.f12068b = intValue2;
+                                        f1Var3.f12094b = intValue2;
                                         ((r8) view3).u(f1.a(intValue2), true);
                                         if (V2 != i1Var4.V()) {
-                                            i1Var4.f12102n.Y2.N(true);
+                                            i1Var4.f12128n.Y2.N(true);
                                         }
-                                        t0 t0Var4 = i1Var4.f12101f;
+                                        t0 t0Var4 = i1Var4.f12127f;
                                         if (t0Var4 != null) {
                                             t0Var4.run();
                                             return;
@@ -598,8 +598,8 @@ public final class f implements org.telegram.ui.ActionBar.a2, Utilities.Callback
                         if (arrayList3.isEmpty()) {
                             arrayList3.add(new ig.f1(0, 1439));
                         }
-                        i1Var2.f12102n.Y2.N(true);
-                        ig.t0 t0Var3 = i1Var2.f12101f;
+                        i1Var2.f12128n.Y2.N(true);
+                        ig.t0 t0Var3 = i1Var2.f12127f;
                         if (t0Var3 != null) {
                             t0Var3.run();
                             return;
@@ -615,7 +615,7 @@ public final class f implements org.telegram.ui.ActionBar.a2, Utilities.Callback
                 ((Integer) obj3).getClass();
                 ((Float) obj4).getClass();
                 ((Float) obj5).getClass();
-                ig.e2.U((ig.e2) this.f9644b, (h51) obj, (View) obj2);
+                ig.e2.U((ig.e2) this.f9672b, (h51) obj, (View) obj2);
                 return;
             default:
                 h51 h51Var3 = (h51) obj;
@@ -623,7 +623,7 @@ public final class f implements org.telegram.ui.ActionBar.a2, Utilities.Callback
                 Integer num = (Integer) obj3;
                 Float f7 = (Float) obj4;
                 Float f10 = (Float) obj5;
-                if (((ji.v3[]) this.f9644b)[0] != null) {
+                if (((ji.v3[]) this.f9672b)[0] != null) {
                     num.intValue();
                     f7.floatValue();
                     f10.floatValue();
@@ -639,7 +639,7 @@ public final class f implements org.telegram.ui.ActionBar.a2, Utilities.Callback
 
     @Override
     public boolean u(uy uyVar, ArrayList arrayList, CharSequence charSequence, boolean z10, boolean z11, int i10, int i11, eg1 eg1Var) {
-        ji.i4 i4Var = (ji.i4) this.f9644b;
+        ji.i4 i4Var = (ji.i4) this.f9672b;
         if (arrayList.isEmpty() || ((MessagesStorage.TopicKey) arrayList.get(0)).dialogId <= 0) {
             return false;
         }
@@ -649,12 +649,12 @@ public final class f implements org.telegram.ui.ActionBar.a2, Utilities.Callback
     }
 
     public f(j2.a aVar, u2.t tVar, u2.b0 b0Var, IOException iOException, boolean z10) {
-        this.f9643a = 18;
-        this.f9644b = b0Var;
+        this.f9671a = 18;
+        this.f9672b = b0Var;
     }
 
     public f(Object obj, int i10) {
-        this.f9643a = i10;
-        this.f9644b = obj;
+        this.f9671a = i10;
+        this.f9672b = obj;
     }
 }

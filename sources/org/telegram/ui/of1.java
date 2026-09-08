@@ -14,12 +14,12 @@ import org.telegram.messenger.TopicsController;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
 public final class of1 extends org.telegram.ui.ActionBar.j {
-    public final Context f39236a;
-    public final eg1 f39237b;
+    public final Context f39263a;
+    public final eg1 f39264b;
 
     public of1(eg1 eg1Var, Context context) {
-        this.f39237b = eg1Var;
-        this.f39236a = context;
+        this.f39264b = eg1Var;
+        this.f39263a = context;
     }
 
     @Override
@@ -31,11 +31,11 @@ public final class of1 extends org.telegram.ui.ActionBar.j {
         boolean z11;
         bg1 bg1Var;
         TLRPC.TL_forumTopic tL_forumTopic;
-        eg1 eg1Var = this.f39237b;
-        TopicsController topicsController = eg1Var.f36061s;
-        ArrayList arrayList = eg1Var.f36028b;
-        HashSet hashSet = eg1Var.f36026a0;
-        long j3 = eg1Var.f36025a;
+        eg1 eg1Var = this.f39264b;
+        TopicsController topicsController = eg1Var.f36088s;
+        ArrayList arrayList = eg1Var.f36055b;
+        HashSet hashSet = eg1Var.f36053a0;
+        long j3 = eg1Var.f36052a;
         if (i10 == -1) {
             if (hashSet.size() > 0) {
                 eg1Var.C0();
@@ -54,7 +54,7 @@ public final class of1 extends org.telegram.ui.ActionBar.j {
                 Bundle bundle = new Bundle();
                 bundle.putLong("chat_id", j3);
                 co coVar = new co(bundle);
-                coVar.f35307ja = true;
+                coVar.f35334ja = true;
                 eg1Var.presentFragment(coVar);
                 return;
             case 2:
@@ -71,10 +71,10 @@ public final class of1 extends org.telegram.ui.ActionBar.j {
                             i13++;
                         }
                     }
-                    long j10 = chatFull.f19870id;
+                    long j10 = chatFull.f19897id;
                     i11 = ((org.telegram.ui.ActionBar.n2) eg1Var).currentAccount;
-                    mf1 mf1Var = new mf1(this, this.f39236a, i11, iVar, chatFull.f19870id, eg1Var, j10);
-                    mf1Var.f24578l0 = new bi.p1(this, j10, 11);
+                    mf1 mf1Var = new mf1(this, this.f39263a, i11, iVar, chatFull.f19897id, eg1Var, j10);
+                    mf1Var.f24605l0 = new bi.p1(this, j10, 11);
                     mf1Var.show();
                     return;
                 }
@@ -89,8 +89,8 @@ public final class of1 extends org.telegram.ui.ActionBar.j {
                 if (hashSet.size() > 0) {
                     eg1Var.C0 = true;
                     eg1Var.N0 = true;
-                    TopicsController topicsController2 = eg1Var.f36061s;
-                    long j11 = eg1Var.f36025a;
+                    TopicsController topicsController2 = eg1Var.f36088s;
+                    long j11 = eg1Var.f36052a;
                     int intValue = ((Integer) hashSet.iterator().next()).intValue();
                     if (i10 == 4) {
                         z10 = true;
@@ -116,7 +116,7 @@ public final class of1 extends org.telegram.ui.ActionBar.j {
                 for (int i14 = 0; i14 < arrayList2.size(); i14++) {
                     TLRPC.TL_forumTopic findTopic = topicsController.findTopic(j3, ((Integer) arrayList2.get(i14)).intValue());
                     if (findTopic != null) {
-                        eg1Var.getMessagesController().markMentionsAsRead(-j3, findTopic.f19921id);
+                        eg1Var.getMessagesController().markMentionsAsRead(-j3, findTopic.f19948id);
                         MessagesController messagesController = eg1Var.getMessagesController();
                         long j12 = -j3;
                         int i15 = findTopic.top_message;
@@ -126,8 +126,8 @@ public final class of1 extends org.telegram.ui.ActionBar.j {
                         } else {
                             i12 = 0;
                         }
-                        messagesController.markDialogAsRead(j12, i15, 0, i12, false, findTopic.f19921id, 0, true, 0);
-                        eg1Var.getMessagesStorage().updateRepliesMaxReadId(eg1Var.f36025a, findTopic.f19921id, findTopic.top_message, 0, true);
+                        messagesController.markDialogAsRead(j12, i15, 0, i12, false, findTopic.f19948id, 0, true, 0);
+                        eg1Var.getMessagesStorage().updateRepliesMaxReadId(eg1Var.f36052a, findTopic.f19948id, findTopic.top_message, 0, true);
                     }
                 }
                 eg1Var.C0();
@@ -157,7 +157,7 @@ public final class of1 extends org.telegram.ui.ActionBar.j {
                 while (true) {
                     if (i17 < eg1Var.N.getChildCount()) {
                         View childAt = eg1Var.N.getChildAt(i17);
-                        if ((childAt instanceof bg1) && (tL_forumTopic = (bg1Var = (bg1) childAt).N) != null && tL_forumTopic.f19921id == 1) {
+                        if ((childAt instanceof bg1) && (tL_forumTopic = (bg1Var = (bg1) childAt).N) != null && tL_forumTopic.f19948id == 1) {
                             tL_forumTopic2 = tL_forumTopic;
                         } else {
                             i17++;
@@ -169,8 +169,8 @@ public final class of1 extends org.telegram.ui.ActionBar.j {
                 if (tL_forumTopic2 == null) {
                     while (true) {
                         if (i13 < arrayList.size()) {
-                            if (arrayList.get(i13) != null && ((vf1) arrayList.get(i13)).f41533c != null && ((vf1) arrayList.get(i13)).f41533c.f19921id == 1) {
-                                tL_forumTopic2 = ((vf1) arrayList.get(i13)).f41533c;
+                            if (arrayList.get(i13) != null && ((vf1) arrayList.get(i13)).f41560c != null && ((vf1) arrayList.get(i13)).f41560c.f19948id == 1) {
+                                tL_forumTopic2 = ((vf1) arrayList.get(i13)).f41560c;
                             } else {
                                 i13++;
                             }
@@ -178,13 +178,13 @@ public final class of1 extends org.telegram.ui.ActionBar.j {
                     }
                 }
                 if (tL_forumTopic2 != null) {
-                    if (eg1Var.f36068x <= 0) {
+                    if (eg1Var.f36095x <= 0) {
                         eg1Var.E = true;
-                        eg1Var.f36070y = 2;
+                        eg1Var.f36097y = 2;
                     }
                     eg1Var.getMessagesController().getTopicsController().toggleShowTopic(j3, 1, tL_forumTopic2.hidden);
                     if (bg1Var != null) {
-                        eg1Var.f36030b1 = bg1Var;
+                        eg1Var.f36057b1 = bg1Var;
                     }
                     eg1Var.N.y1(!tL_forumTopic2.hidden, bg1Var);
                     eg1Var.U0(true, true);

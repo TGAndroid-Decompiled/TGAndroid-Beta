@@ -24,7 +24,7 @@ public final class d0 extends bb {
     public final TLRPC.TL_payments_checkedGiftCode X;
     public final boolean Y;
     public c0 Z;
-    public final String f47103a0;
+    public final String f47131a0;
 
     public d0(n2 n2Var, TLRPC.TL_payments_checkedGiftCode tL_payments_checkedGiftCode, String str) {
         super(n2Var, true);
@@ -36,7 +36,7 @@ public final class d0 extends bb {
         }
         this.Y = z10;
         this.X = tL_payments_checkedGiftCode;
-        this.f47103a0 = str;
+        this.f47131a0 = str;
         setApplyTopPadding(false);
         setApplyBottomPadding(false);
         fixNavigationBar();
@@ -45,10 +45,10 @@ public final class d0 extends bb {
         d3 d3Var = this.container;
         c0Var.getClass();
         c0Var.d = tL_payments_checkedGiftCode.used_date == 0;
-        c0Var.f47806e = n2Var;
-        c0Var.f47807f = tL_payments_checkedGiftCode;
+        c0Var.f47834e = n2Var;
+        c0Var.f47835f = tL_payments_checkedGiftCode;
         c0Var.h = str;
-        c0Var.f47808n = d3Var;
+        c0Var.f47836n = d3Var;
     }
 
     public static boolean S(Intent intent, of.e eVar) {
@@ -89,7 +89,7 @@ public final class d0 extends bb {
         AtomicBoolean atomicBoolean = new AtomicBoolean(false);
         if (eVar != null) {
             eVar.d();
-            eVar.f17004b = new e(atomicBoolean, 1);
+            eVar.f17031b = new e(atomicBoolean, 1);
         }
         r3 r3Var = new r3(atomicBoolean, n2Var, str, eVar, 15);
         g gVar = new g(atomicBoolean, eVar, 1);

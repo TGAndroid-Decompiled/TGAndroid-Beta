@@ -11,7 +11,7 @@ public final class a61 extends nz {
 
     @Override
     public final int W0(s4.z0 z0Var) {
-        if (this.X.f25279a3) {
+        if (this.X.f25306a3) {
             return AndroidUtilities.displaySize.y;
         }
         return super.W0(z0Var);

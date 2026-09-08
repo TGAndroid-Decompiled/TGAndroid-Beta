@@ -43,10 +43,10 @@ import kotlin.jvm.internal.i;
 import n7.s0;
 import w7.d0;
 public final class a implements Parcelable.Creator {
-    public final int f47897a;
+    public final int f47925a;
 
     public a(int i10) {
-        this.f47897a = i10;
+        this.f47925a = i10;
     }
 
     @Override
@@ -67,7 +67,7 @@ public final class a implements Parcelable.Creator {
         String str4 = null;
         c.b bVar = null;
         String str5 = null;
-        switch (this.f47897a) {
+        switch (this.f47925a) {
             case 0:
                 Bundle readBundle = inParcel.readBundle(a.class.getClassLoader());
                 Objects.requireNonNull(readBundle);
@@ -139,40 +139,40 @@ public final class a implements Parcelable.Creator {
                 return new androidx.fragment.app.c(inParcel);
             case 12:
                 ?? obj = new Object();
-                obj.f1424a = inParcel.readString();
-                obj.f1425b = inParcel.readInt();
+                obj.f1436a = inParcel.readString();
+                obj.f1437b = inParcel.readInt();
                 return obj;
             case 13:
                 ?? obj2 = new Object();
-                obj2.f1467e = null;
-                obj2.f1468f = new ArrayList();
+                obj2.f1479e = null;
+                obj2.f1480f = new ArrayList();
                 obj2.h = new ArrayList();
-                obj2.f1464a = inParcel.createStringArrayList();
-                obj2.f1465b = inParcel.createStringArrayList();
-                obj2.f1466c = (androidx.fragment.app.b[]) inParcel.createTypedArray(androidx.fragment.app.b.CREATOR);
+                obj2.f1476a = inParcel.createStringArrayList();
+                obj2.f1477b = inParcel.createStringArrayList();
+                obj2.f1478c = (androidx.fragment.app.b[]) inParcel.createTypedArray(androidx.fragment.app.b.CREATOR);
                 obj2.d = inParcel.readInt();
-                obj2.f1467e = inParcel.readString();
-                obj2.f1468f = inParcel.createStringArrayList();
+                obj2.f1479e = inParcel.readString();
+                obj2.f1480f = inParcel.createStringArrayList();
                 obj2.h = inParcel.createTypedArrayList(androidx.fragment.app.c.CREATOR);
-                obj2.f1469n = inParcel.createTypedArrayList(e0.CREATOR);
+                obj2.f1481n = inParcel.createTypedArrayList(e0.CREATOR);
                 return obj2;
             case 14:
                 return new n0(inParcel);
             case 15:
                 ?? obj3 = new Object();
                 IBinder readStrongBinder = inParcel.readStrongBinder();
-                int i13 = c.c.f4097b;
+                int i13 = c.c.f4124b;
                 if (readStrongBinder != null) {
                     IInterface queryLocalInterface = readStrongBinder.queryLocalInterface(c.b.h);
                     if (queryLocalInterface != null && (queryLocalInterface instanceof c.b)) {
                         bVar = (c.b) queryLocalInterface;
                     } else {
                         ?? obj4 = new Object();
-                        obj4.f4096a = readStrongBinder;
+                        obj4.f4123a = readStrongBinder;
                         bVar = obj4;
                     }
                 }
-                obj3.f4099a = bVar;
+                obj3.f4126a = bVar;
                 return obj3;
             case 16:
                 try {
@@ -487,7 +487,7 @@ public final class a implements Parcelable.Creator {
 
     @Override
     public final Object[] newArray(int i10) {
-        switch (this.f47897a) {
+        switch (this.f47925a) {
             case 0:
                 return new b[i10];
             case 1:

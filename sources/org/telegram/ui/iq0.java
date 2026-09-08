@@ -7,12 +7,12 @@ import android.widget.FrameLayout;
 import java.util.ArrayList;
 import org.telegram.messenger.MediaController;
 public final class iq0 extends org.telegram.ui.Components.kl0 {
-    public final Context f37423c;
+    public final Context f37450c;
     public final kq0 d;
 
     public iq0(kq0 kq0Var, Context context) {
         this.d = kq0Var;
-        this.f37423c = context;
+        this.f37450c = context;
     }
 
     @Override
@@ -25,7 +25,7 @@ public final class iq0 extends org.telegram.ui.Components.kl0 {
         kq0 kq0Var = this.d;
         ArrayList arrayList = kq0Var.d;
         if (arrayList != null) {
-            return (int) Math.ceil(arrayList.size() / kq0Var.f38108f);
+            return (int) Math.ceil(arrayList.size() / kq0Var.f38135f);
         }
         return 0;
     }
@@ -37,12 +37,12 @@ public final class iq0 extends org.telegram.ui.Components.kl0 {
 
     @Override
     public final void v(s4.c1 c1Var, int i10) {
-        org.telegram.ui.Cells.x5 x5Var = (org.telegram.ui.Cells.x5) c1Var.f45738a;
+        org.telegram.ui.Cells.x5 x5Var = (org.telegram.ui.Cells.x5) c1Var.f45766a;
         kq0 kq0Var = this.d;
-        x5Var.setAlbumsCount(kq0Var.f38108f);
+        x5Var.setAlbumsCount(kq0Var.f38135f);
         int i11 = 0;
         while (true) {
-            int i12 = kq0Var.f38108f;
+            int i12 = kq0Var.f38135f;
             if (i11 < i12) {
                 int i13 = (i12 * i10) + i11;
                 if (i13 < kq0Var.d.size()) {
@@ -60,17 +60,17 @@ public final class iq0 extends org.telegram.ui.Components.kl0 {
 
     @Override
     public final s4.c1 x(ViewGroup viewGroup, int i10) {
-        Context context = this.f37423c;
+        Context context = this.f37450c;
         ?? frameLayout = new FrameLayout(context);
-        frameLayout.f23534e = new Paint();
-        frameLayout.f23532b = new MediaController.AlbumEntry[4];
-        frameLayout.f23531a = new org.telegram.ui.Cells.v5[4];
+        frameLayout.f23561e = new Paint();
+        frameLayout.f23559b = new MediaController.AlbumEntry[4];
+        frameLayout.f23558a = new org.telegram.ui.Cells.v5[4];
         for (int i11 = 0; i11 < 4; i11++) {
-            frameLayout.f23531a[i11] = new org.telegram.ui.Cells.v5(frameLayout, context);
-            frameLayout.addView(frameLayout.f23531a[i11]);
-            frameLayout.f23531a[i11].setVisibility(4);
-            frameLayout.f23531a[i11].setTag(Integer.valueOf(i11));
-            frameLayout.f23531a[i11].setOnClickListener(new org.telegram.ui.Cells.a(frameLayout, 9));
+            frameLayout.f23558a[i11] = new org.telegram.ui.Cells.v5(frameLayout, context);
+            frameLayout.addView(frameLayout.f23558a[i11]);
+            frameLayout.f23558a[i11].setVisibility(4);
+            frameLayout.f23558a[i11].setTag(Integer.valueOf(i11));
+            frameLayout.f23558a[i11].setOnClickListener(new org.telegram.ui.Cells.a(frameLayout, 9));
         }
         frameLayout.setDelegate(new vl0(this, 1));
         return new s4.c1(frameLayout);

@@ -9,9 +9,9 @@ import java.util.Comparator;
 import java.util.UUID;
 public final class o implements Comparator, Parcelable {
     public static final Parcelable.Creator<o> CREATOR = new m(0);
-    public final n[] f2222a;
-    public int f2223b;
-    public final String f2224c;
+    public final n[] f2249a;
+    public int f2250b;
+    public final String f2251c;
     public final int d;
 
     public o(String str, ArrayList arrayList) {
@@ -19,24 +19,24 @@ public final class o implements Comparator, Parcelable {
     }
 
     public final o a(String str) {
-        if (Objects.equals(this.f2224c, str)) {
+        if (Objects.equals(this.f2251c, str)) {
             return this;
         }
-        return new o(str, false, this.f2222a);
+        return new o(str, false, this.f2249a);
     }
 
     @Override
     public final int compare(Object obj, Object obj2) {
         n nVar = (n) obj;
         n nVar2 = (n) obj2;
-        UUID uuid = i.f2060a;
-        if (uuid.equals(nVar.f2174b)) {
-            if (uuid.equals(nVar2.f2174b)) {
+        UUID uuid = i.f2087a;
+        if (uuid.equals(nVar.f2201b)) {
+            if (uuid.equals(nVar2.f2201b)) {
                 return 0;
             }
             return 1;
         }
-        return nVar.f2174b.compareTo(nVar2.f2174b);
+        return nVar.f2201b.compareTo(nVar2.f2201b);
     }
 
     @Override
@@ -51,7 +51,7 @@ public final class o implements Comparator, Parcelable {
         }
         if (obj != null && o.class == obj.getClass()) {
             o oVar = (o) obj;
-            if (Objects.equals(this.f2224c, oVar.f2224c) && Arrays.equals(this.f2222a, oVar.f2222a)) {
+            if (Objects.equals(this.f2251c, oVar.f2251c) && Arrays.equals(this.f2249a, oVar.f2249a)) {
                 return true;
             }
         }
@@ -60,37 +60,37 @@ public final class o implements Comparator, Parcelable {
 
     public final int hashCode() {
         int hashCode;
-        if (this.f2223b == 0) {
-            String str = this.f2224c;
+        if (this.f2250b == 0) {
+            String str = this.f2251c;
             if (str == null) {
                 hashCode = 0;
             } else {
                 hashCode = str.hashCode();
             }
-            this.f2223b = (hashCode * 31) + Arrays.hashCode(this.f2222a);
+            this.f2250b = (hashCode * 31) + Arrays.hashCode(this.f2249a);
         }
-        return this.f2223b;
+        return this.f2250b;
     }
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
-        parcel.writeString(this.f2224c);
-        parcel.writeTypedArray(this.f2222a, 0);
+        parcel.writeString(this.f2251c);
+        parcel.writeTypedArray(this.f2249a, 0);
     }
 
     public o(String str, boolean z10, n... nVarArr) {
-        this.f2224c = str;
+        this.f2251c = str;
         nVarArr = z10 ? (n[]) nVarArr.clone() : nVarArr;
-        this.f2222a = nVarArr;
+        this.f2249a = nVarArr;
         this.d = nVarArr.length;
         Arrays.sort(nVarArr, this);
     }
 
     public o(Parcel parcel) {
-        this.f2224c = parcel.readString();
+        this.f2251c = parcel.readString();
         n[] nVarArr = (n[]) parcel.createTypedArray(n.CREATOR);
-        String str = e2.d0.f8737a;
-        this.f2222a = nVarArr;
+        String str = e2.d0.f8765a;
+        this.f2249a = nVarArr;
         this.d = nVarArr.length;
     }
 }

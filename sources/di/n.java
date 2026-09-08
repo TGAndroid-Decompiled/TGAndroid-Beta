@@ -1,21 +1,21 @@
 package di;
 public final class n implements Runnable {
-    public final int f7668a;
-    public final fc f7669b;
+    public final int f7696a;
+    public final fc f7697b;
 
     public n(fc fcVar, int i10) {
-        this.f7668a = i10;
-        this.f7669b = fcVar;
+        this.f7696a = i10;
+        this.f7697b = fcVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f7668a) {
+        switch (this.f7696a) {
             case 0:
-                this.f7669b.n();
+                this.f7697b.n();
                 return;
             case 1:
-                fc fcVar = this.f7669b;
+                fc fcVar = this.f7697b;
                 fcVar.K0 = false;
                 fcVar.L0 = Integer.MIN_VALUE;
                 fcVar.invalidate();
@@ -23,7 +23,7 @@ public final class n implements Runnable {
                 fcVar.T0.setVisibility(0);
                 return;
             default:
-                pc pcVar = this.f7669b.S1;
+                pc pcVar = this.f7697b.S1;
                 dc dcVar = pcVar.X0;
                 if (dcVar != null) {
                     dcVar.O = false;

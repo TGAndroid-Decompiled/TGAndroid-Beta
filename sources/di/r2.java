@@ -23,12 +23,12 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.ui.Components.de0;
 import org.telegram.ui.Components.i90;
 public final class r2 extends View {
-    public final Paint f8057a;
-    public final TextPaint f8058b;
-    public final ArrayList f8059c;
+    public final Paint f8085a;
+    public final TextPaint f8086b;
+    public final ArrayList f8087c;
     public float[] d;
-    public e1 f8060e;
-    public final t2 f8061f;
+    public e1 f8088e;
+    public final t2 f8089f;
 
     public r2(t2 t2Var, Context context) {
         super(context);
@@ -36,27 +36,27 @@ public final class r2 extends View {
         String a2;
         int i10;
         int i11;
-        this.f8061f = t2Var;
+        this.f8089f = t2Var;
         Paint paint = new Paint(1);
-        this.f8057a = paint;
+        this.f8085a = paint;
         TextPaint textPaint = new TextPaint(1);
-        this.f8058b = textPaint;
+        this.f8086b = textPaint;
         paint.setColor(436207615);
         textPaint.setTypeface(AndroidUtilities.getTypeface("fonts/rcondensedbold.ttf"));
         textPaint.setTextSize(AndroidUtilities.dpf2(21.3f));
         textPaint.setColor(-1);
         ArrayList arrayList = new ArrayList();
-        this.f8059c = arrayList;
+        this.f8087c = arrayList;
         setPadding(0, 0, 0, 0);
         if (t2Var.m0(4)) {
             o2 o2Var = new o2(this, 4, R.drawable.msg_limit_links, LocaleController.getString(R.string.StoryWidgetLink));
             i11 = ((org.telegram.ui.ActionBar.f3) t2Var).currentAccount;
             if (!UserConfig.getInstance(i11).isPremium()) {
                 Drawable mutate = getContext().getResources().getDrawable(R.drawable.msg_mini_lock3).mutate();
-                o2Var.f7720j = mutate;
+                o2Var.f7748j = mutate;
                 mutate.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.j6.l1(0.6f, -1), PorterDuff.Mode.SRC_IN));
                 Paint paint2 = new Paint(1);
-                o2Var.f7724n = paint2;
+                o2Var.f7752n = paint2;
                 paint2.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
             }
             arrayList.add(o2Var);
@@ -65,13 +65,13 @@ public final class r2 extends View {
             arrayList.add(new o2(this, 0, R.drawable.map_pin3, LocaleController.getString(R.string.StoryWidgetLocation)));
         }
         if (t2Var.m0(5)) {
-            nd ndVar = od.f7809b;
+            nd ndVar = od.f7837b;
             o2[] o2VarArr = {null};
             StringBuilder sb2 = new StringBuilder();
             if (ndVar == null) {
                 str = "🌤";
             } else {
-                str = ndVar.f7706c;
+                str = ndVar.f7734c;
             }
             sb2.append(str);
             sb2.append(" ");
@@ -115,7 +115,7 @@ public final class r2 extends View {
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
-        ArrayList arrayList = this.f8059c;
+        ArrayList arrayList = this.f8087c;
         int i10 = 0;
         int i11 = 0;
         while (true) {
@@ -136,28 +136,28 @@ public final class r2 extends View {
             Object obj = arrayList.get(i12);
             i12++;
             n2 n2Var = (n2) obj;
-            int i13 = n2Var.f7674e - 1;
+            int i13 = n2Var.f7702e - 1;
             float[] fArr2 = this.d;
             float f7 = fArr2[i13];
             if (f7 > 0.0f) {
                 fArr2[i13] = f7 + AndroidUtilities.dp(10.0f);
             }
             float[] fArr3 = this.d;
-            fArr3[i13] = fArr3[i13] + n2Var.h.d(n2Var.f7672b, false);
+            fArr3[i13] = fArr3[i13] + n2Var.h.d(n2Var.f7700b, false);
         }
         int size2 = arrayList.size();
         while (i10 < size2) {
             Object obj2 = arrayList.get(i10);
             i10++;
             n2 n2Var2 = (n2) obj2;
-            n2Var2.a(canvas, com.google.android.gms.internal.vision.e2.A((getMeasuredWidth() - getPaddingLeft()) - getPaddingRight(), this.d[n2Var2.f7674e - 1], 2.0f, getPaddingLeft()) + n2Var2.d, org.telegram.messenger.w1.D(48.0f, n2Var2.f7674e - 1, AndroidUtilities.dp(12.0f)));
+            n2Var2.a(canvas, com.google.android.gms.internal.vision.e2.A((getMeasuredWidth() - getPaddingLeft()) - getPaddingRight(), this.d[n2Var2.f7702e - 1], 2.0f, getPaddingLeft()) + n2Var2.d, org.telegram.messenger.w1.D(48.0f, n2Var2.f7702e - 1, AndroidUtilities.dp(12.0f)));
         }
     }
 
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        ArrayList arrayList = this.f8059c;
+        ArrayList arrayList = this.f8087c;
         int size = arrayList.size();
         int i10 = 0;
         while (i10 < size) {
@@ -170,7 +170,7 @@ public final class r2 extends View {
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        ArrayList arrayList = this.f8059c;
+        ArrayList arrayList = this.f8087c;
         int size = arrayList.size();
         int i10 = 0;
         while (i10 < size) {
@@ -184,7 +184,7 @@ public final class r2 extends View {
     public final void onMeasure(int i10, int i11) {
         int size = View.MeasureSpec.getSize(i10);
         int paddingLeft = (size - getPaddingLeft()) - getPaddingRight();
-        ArrayList arrayList = this.f8059c;
+        ArrayList arrayList = this.f8087c;
         int size2 = arrayList.size();
         int i12 = 0;
         int i13 = 1;
@@ -195,15 +195,15 @@ public final class r2 extends View {
             i14++;
             n2 n2Var = (n2) obj;
             n2Var.d = f7;
-            float dp = n2Var.f7672b + AndroidUtilities.dp(10.0f) + f7;
+            float dp = n2Var.f7700b + AndroidUtilities.dp(10.0f) + f7;
             if (dp > paddingLeft) {
                 i13++;
                 n2Var.d = 0.0f;
-                f7 = n2Var.f7672b + AndroidUtilities.dp(10.0f) + 0.0f;
+                f7 = n2Var.f7700b + AndroidUtilities.dp(10.0f) + 0.0f;
             } else {
                 f7 = dp;
             }
-            n2Var.f7674e = i13;
+            n2Var.f7702e = i13;
         }
         float[] fArr = this.d;
         if (fArr != null && fArr.length == i13) {
@@ -216,14 +216,14 @@ public final class r2 extends View {
             Object obj2 = arrayList.get(i12);
             i12++;
             n2 n2Var2 = (n2) obj2;
-            int i15 = n2Var2.f7674e - 1;
+            int i15 = n2Var2.f7702e - 1;
             float[] fArr2 = this.d;
             float f10 = fArr2[i15];
             if (f10 > 0.0f) {
                 fArr2[i15] = f10 + AndroidUtilities.dp(10.0f);
             }
             float[] fArr3 = this.d;
-            fArr3[i15] = fArr3[i15] + n2Var2.f7672b;
+            fArr3[i15] = fArr3[i15] + n2Var2.f7700b;
         }
         setMeasuredDimension(size, org.telegram.messenger.w1.D(12.0f, i13 - 1, org.telegram.messenger.w1.D(36.0f, i13, AndroidUtilities.dp(24.0f))));
     }
@@ -233,7 +233,7 @@ public final class r2 extends View {
         n2 n2Var;
         e1 e1Var;
         boolean z10;
-        ArrayList arrayList = this.f8059c;
+        ArrayList arrayList = this.f8087c;
         int size = arrayList.size();
         int i10 = 0;
         while (true) {
@@ -241,7 +241,7 @@ public final class r2 extends View {
                 Object obj = arrayList.get(i10);
                 i10++;
                 n2Var = (n2) obj;
-                if (n2Var.f7675f.contains(motionEvent.getX(), motionEvent.getY())) {
+                if (n2Var.f7703f.contains(motionEvent.getX(), motionEvent.getY())) {
                     break;
                 }
             } else {
@@ -256,11 +256,11 @@ public final class r2 extends View {
             i11++;
             n2 n2Var2 = (n2) obj2;
             if (n2Var2 != n2Var) {
-                n2Var2.f7676g.c(false);
+                n2Var2.f7704g.c(false);
             }
         }
         if (n2Var != null) {
-            org.telegram.ui.Components.zc zcVar = n2Var.f7676g;
+            org.telegram.ui.Components.zc zcVar = n2Var.f7704g;
             if (motionEvent.getAction() != 1 && motionEvent.getAction() != 3) {
                 z10 = true;
             } else {
@@ -268,8 +268,8 @@ public final class r2 extends View {
             }
             zcVar.c(z10);
         }
-        if (motionEvent.getAction() == 1 && n2Var != null && (e1Var = this.f8060e) != null) {
-            e1Var.run(Integer.valueOf(n2Var.f7671a));
+        if (motionEvent.getAction() == 1 && n2Var != null && (e1Var = this.f8088e) != null) {
+            e1Var.run(Integer.valueOf(n2Var.f7699a));
         }
         if (n2Var == null) {
             return false;

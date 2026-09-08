@@ -7,17 +7,17 @@ import java.util.Arrays;
 import n4.y;
 import w7.e0;
 public final class a extends o6.a {
-    public final int f14805a;
-    public final int f14806b;
-    public final PendingIntent f14807c;
+    public final int f14831a;
+    public final int f14832b;
+    public final PendingIntent f14833c;
     public final String d;
-    public static final a f14804e = new a(0);
+    public static final a f14830e = new a(0);
     public static final Parcelable.Creator<a> CREATOR = new g8.j(17);
 
     public a(int i10, int i11, PendingIntent pendingIntent, String str) {
-        this.f14805a = i10;
-        this.f14806b = i11;
-        this.f14807c = pendingIntent;
+        this.f14831a = i10;
+        this.f14832b = i11;
+        this.f14833c = pendingIntent;
         this.d = str;
     }
 
@@ -90,14 +90,14 @@ public final class a extends o6.a {
     }
 
     public final boolean b() {
-        if (this.f14806b != 0 && this.f14807c != null) {
+        if (this.f14832b != 0 && this.f14833c != null) {
             return true;
         }
         return false;
     }
 
     public final boolean c() {
-        if (this.f14806b == 0) {
+        if (this.f14832b == 0) {
             return true;
         }
         return false;
@@ -111,20 +111,20 @@ public final class a extends o6.a {
             return false;
         }
         a aVar = (a) obj;
-        if (this.f14806b == aVar.f14806b && n6.l.l(this.f14807c, aVar.f14807c) && n6.l.l(this.d, aVar.d)) {
+        if (this.f14832b == aVar.f14832b && n6.l.l(this.f14833c, aVar.f14833c) && n6.l.l(this.d, aVar.d)) {
             return true;
         }
         return false;
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{Integer.valueOf(this.f14806b), this.f14807c, this.d});
+        return Arrays.hashCode(new Object[]{Integer.valueOf(this.f14832b), this.f14833c, this.d});
     }
 
     public final String toString() {
         y yVar = new y(this);
-        yVar.y(d(this.f14806b), "statusCode");
-        yVar.y(this.f14807c, "resolution");
+        yVar.y(d(this.f14832b), "statusCode");
+        yVar.y(this.f14833c, "resolution");
         yVar.y(this.d, "message");
         return yVar.toString();
     }
@@ -133,10 +133,10 @@ public final class a extends o6.a {
     public final void writeToParcel(Parcel parcel, int i10) {
         int q6 = e0.q(parcel, 20293);
         e0.s(parcel, 1, 4);
-        parcel.writeInt(this.f14805a);
+        parcel.writeInt(this.f14831a);
         e0.s(parcel, 2, 4);
-        parcel.writeInt(this.f14806b);
-        e0.k(parcel, 3, this.f14807c, i10);
+        parcel.writeInt(this.f14832b);
+        e0.k(parcel, 3, this.f14833c, i10);
         e0.l(parcel, 4, this.d);
         e0.r(parcel, q6);
     }

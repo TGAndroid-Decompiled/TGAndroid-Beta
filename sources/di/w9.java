@@ -12,10 +12,10 @@ import org.telegram.ui.Components.fv0;
 import org.telegram.ui.Components.gv0;
 import org.telegram.ui.Components.hv0;
 public final class w9 implements Utilities.Callback2Return, eh.d, fv0, gv0, GenericProvider, q9.d {
-    public final int f8351a;
+    public final int f8379a;
 
     public w9(int i10) {
-        this.f8351a = i10;
+        this.f8379a = i10;
     }
 
     public static ShortcutManager a(Object obj) {
@@ -39,11 +39,11 @@ public final class w9 implements Utilities.Callback2Return, eh.d, fv0, gv0, Gene
 
     @Override
     public void b(Object obj, float f7) {
-        switch (this.f8351a) {
+        switch (this.f8379a) {
             case 18:
                 fi.k3 k3Var = (fi.k3) obj;
-                k3Var.f9760b = f7;
-                k3Var.f9765e.invalidate();
+                k3Var.f9788b = f7;
+                k3Var.f9793e.invalidate();
                 k3Var.W.setAlpha(f7);
                 k3Var.E();
                 k3Var.C();
@@ -68,14 +68,14 @@ public final class w9 implements Utilities.Callback2Return, eh.d, fv0, gv0, Gene
         float f14;
         float f15;
         float f16;
-        switch (this.f8351a) {
+        switch (this.f8379a) {
             case 2:
                 if (LiteMode.isEnabled(262144)) {
                     f7 = 0.85f;
                 } else {
                     f7 = 0.76f;
                 }
-                return fh.b.m(f7, org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f20663d6, f6Var), org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.Sd, f6Var));
+                return fh.b.m(f7, org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f20690d6, f6Var), org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.Sd, f6Var));
             case 3:
                 if (!LiteMode.isEnabled(256)) {
                     return org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.G8, false);
@@ -93,7 +93,7 @@ public final class w9 implements Utilities.Callback2Return, eh.d, fv0, gv0, Gene
                 } else {
                     f11 = 0.76f;
                 }
-                return fh.b.m(f11, org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f20663d6, f6Var), org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.Zk, f6Var));
+                return fh.b.m(f11, org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f20690d6, f6Var), org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.Zk, f6Var));
             case 5:
                 if (LiteMode.isEnabled(262144)) {
                     f12 = 0.85f;
@@ -108,7 +108,7 @@ public final class w9 implements Utilities.Callback2Return, eh.d, fv0, gv0, Gene
             case 8:
                 return org.telegram.ui.ActionBar.j6.l1(0.075f, -16777216);
             case 9:
-                return org.telegram.ui.ActionBar.j6.l1(0.88f, org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f20663d6, f6Var));
+                return org.telegram.ui.ActionBar.j6.l1(0.88f, org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f20690d6, f6Var));
             case 10:
                 int w03 = org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.G8, false);
                 if (z10) {
@@ -123,18 +123,18 @@ public final class w9 implements Utilities.Callback2Return, eh.d, fv0, gv0, Gene
                 } else {
                     f14 = 0.76f;
                 }
-                return fh.b.m(f14, org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f20663d6, f6Var), org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.Yk, f6Var));
+                return fh.b.m(f14, org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f20690d6, f6Var), org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.Yk, f6Var));
             case 12:
                 if (LiteMode.isEnabled(262144)) {
                     f15 = 0.85f;
                 } else {
                     f15 = 0.76f;
                 }
-                return org.telegram.ui.ActionBar.j6.l1(f15, org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f20663d6, f6Var));
+                return org.telegram.ui.ActionBar.j6.l1(f15, org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f20690d6, f6Var));
             case 13:
-                return org.telegram.ui.ActionBar.j6.l1(0.78f, org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f20734h5, f6Var));
+                return org.telegram.ui.ActionBar.j6.l1(0.78f, org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f20761h5, f6Var));
             case 14:
-                return org.telegram.ui.ActionBar.j6.l1(0.7f, org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f20663d6, f6Var));
+                return org.telegram.ui.ActionBar.j6.l1(0.7f, org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f20690d6, f6Var));
             case 15:
                 LiteMode.isEnabled(262144);
                 return 0;
@@ -144,27 +144,27 @@ public final class w9 implements Utilities.Callback2Return, eh.d, fv0, gv0, Gene
                 } else {
                     f16 = 0.76f;
                 }
-                return org.telegram.ui.ActionBar.j6.l1(f16, org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f20663d6, f6Var));
+                return org.telegram.ui.ActionBar.j6.l1(f16, org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f20690d6, f6Var));
         }
     }
 
     @Override
     public float get(Object obj) {
-        switch (this.f8351a) {
+        switch (this.f8379a) {
             case 17:
-                return ((fi.k3) obj).f9760b;
+                return ((fi.k3) obj).f9788b;
             case 18:
             default:
                 return ((fi.q4) obj).getSwipeOffsetY();
             case 19:
-                return ((fi.l4) obj).f9813c;
+                return ((fi.l4) obj).f9841c;
         }
     }
 
     @Override
     public Object provide(Object obj) {
         Void r12 = (Void) obj;
-        hv0 hv0Var = fi.q4.f9902b0;
+        hv0 hv0Var = fi.q4.f9930b0;
         return Boolean.FALSE;
     }
 

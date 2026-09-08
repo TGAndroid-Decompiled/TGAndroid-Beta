@@ -30,9 +30,9 @@ public final class b extends bb {
     public v51 X;
     public boolean Y;
     public final FrameLayout Z;
-    public final boolean f12357a0;
-    public final boolean f12358b0;
-    public int f12359c0;
+    public final boolean f12383a0;
+    public final boolean f12384b0;
+    public int f12385c0;
 
     public b(Context context, TLRPC.Chat chat, long j3, Utilities.Callback callback) {
         super(context, (f6) null, false);
@@ -40,12 +40,12 @@ public final class b extends bb {
         int i11;
         TLRPC.User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(j3));
         TLRPC.Chat chat2 = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-j3));
-        this.f12358b0 = UserObject.isBot(user);
-        this.f12357a0 = ChatObject.isChannelAndNotMegaGroup(chat2);
+        this.f12384b0 = UserObject.isBot(user);
+        this.f12383a0 = ChatObject.isChannelAndNotMegaGroup(chat2);
         this.L = false;
         this.K = AndroidUtilities.dp(12.0f);
-        this.f24647e.setTitle(y());
-        setBackgroundColor(j6.v0(j6.f20607a7, this.resourcesProvider));
+        this.f24674e.setTitle(y());
+        setBackgroundColor(j6.v0(j6.f20634a7, this.resourcesProvider));
         FrameLayout frameLayout = new FrameLayout(context);
         this.Z = frameLayout;
         frameLayout.setPadding(0, AndroidUtilities.dp(3.0f), 0, AndroidUtilities.dp(3.0f));
@@ -86,11 +86,11 @@ public final class b extends bb {
 
     public final void P(Utilities.Callback callback, boolean z10, boolean z11) {
         int i10;
-        if (z11 && !z10 && !this.f12358b0) {
+        if (z11 && !z10 && !this.f12384b0) {
             Context context = getContext();
             f6 f6Var = this.resourcesProvider;
             String string = LocaleController.getString(R.string.CommunityAddToCommunityTitle);
-            if (this.f12357a0) {
+            if (this.f12383a0) {
                 i10 = R.string.CommunityAddToCommunityChannelMessage;
             } else {
                 i10 = R.string.CommunityAddToCommunityGroupMessage;
@@ -107,14 +107,14 @@ public final class b extends bb {
         if (this.Y != z10) {
             this.Y = z10;
             ll0 ll0Var = this.d;
-            View T0 = ll0Var.T0(this.f12359c0 + 1);
+            View T0 = ll0Var.T0(this.f12385c0 + 1);
             if (T0 instanceof i6) {
                 ((i6) T0).a(!z10);
                 z11 = false;
             } else {
                 z11 = true;
             }
-            View T02 = ll0Var.T0(this.f12359c0 + 2);
+            View T02 = ll0Var.T0(this.f12385c0 + 2);
             if (T02 instanceof i6) {
                 ((i6) T02).a(z10);
             } else {
@@ -130,14 +130,14 @@ public final class b extends bb {
     public final kl0 v(ll0 ll0Var) {
         v51 v51Var = new v51(this.d, getContext(), this.currentAccount, 0, false, new a(this, 0), this.resourcesProvider);
         this.X = v51Var;
-        v51Var.f31135r = false;
+        v51Var.f31162r = false;
         return v51Var;
     }
 
     @Override
     public final CharSequence y() {
         int i10;
-        if (this.f12358b0) {
+        if (this.f12384b0) {
             i10 = R.string.CommunityAddBotTitle;
         } else {
             i10 = R.string.CommunityAddChatTitle;

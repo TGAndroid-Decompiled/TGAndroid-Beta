@@ -32,25 +32,25 @@ import org.telegram.ui.mj1;
 import org.telegram.ui.uy;
 import org.telegram.ui.web.HttpGetFileTask;
 public final class e1 implements Runnable {
-    public final int f9629a = 0;
-    public final TLObject f9630b;
-    public final int f9631c;
+    public final int f9657a = 0;
+    public final TLObject f9658b;
+    public final int f9659c;
     public final long d;
-    public final Object f9632e;
-    public final Object f9633f;
+    public final Object f9660e;
+    public final Object f9661f;
     public final Object h;
-    public final Object f9634n;
-    public final Object f9635r;
+    public final Object f9662n;
+    public final Object f9663r;
 
     public e1(TLObject tLObject, int i10, org.telegram.ui.ActionBar.b2 b2Var, Context context, long j3, f6 f6Var, org.telegram.ui.web.u uVar, org.telegram.tgnet.e eVar) {
-        this.f9630b = tLObject;
-        this.f9631c = i10;
-        this.f9632e = b2Var;
-        this.f9633f = context;
+        this.f9658b = tLObject;
+        this.f9659c = i10;
+        this.f9660e = b2Var;
+        this.f9661f = context;
         this.d = j3;
         this.h = f6Var;
-        this.f9634n = uVar;
-        this.f9635r = eVar;
+        this.f9662n = uVar;
+        this.f9663r = eVar;
     }
 
     @Override
@@ -61,19 +61,19 @@ public final class e1 implements Runnable {
         uy uyVar;
         TLObject tLObject;
         String[] split;
-        switch (this.f9629a) {
+        switch (this.f9657a) {
             case 0:
-                org.telegram.ui.ActionBar.b2 b2Var = (org.telegram.ui.ActionBar.b2) this.f9632e;
-                Context context = (Context) this.f9633f;
+                org.telegram.ui.ActionBar.b2 b2Var = (org.telegram.ui.ActionBar.b2) this.f9660e;
+                Context context = (Context) this.f9661f;
                 f6 f6Var = (f6) this.h;
-                org.telegram.ui.web.u uVar = (org.telegram.ui.web.u) this.f9634n;
-                org.telegram.tgnet.e eVar = (org.telegram.tgnet.e) this.f9635r;
-                TLObject tLObject2 = this.f9630b;
+                org.telegram.ui.web.u uVar = (org.telegram.ui.web.u) this.f9662n;
+                org.telegram.tgnet.e eVar = (org.telegram.tgnet.e) this.f9663r;
+                TLObject tLObject2 = this.f9658b;
                 if (tLObject2 instanceof TLRPC.TL_messages_preparedInlineMessage) {
                     TLRPC.TL_messages_preparedInlineMessage tL_messages_preparedInlineMessage = (TLRPC.TL_messages_preparedInlineMessage) tLObject2;
                     TLRPC.BotInlineMessage botInlineMessage = tL_messages_preparedInlineMessage.result.send_message;
                     boolean z10 = botInlineMessage instanceof TLRPC.TL_botInlineMessageMediaWebPage;
-                    int i12 = this.f9631c;
+                    int i12 = this.f9659c;
                     long j3 = this.d;
                     if (z10) {
                         TLRPC.TL_botInlineMessageMediaWebPage tL_botInlineMessageMediaWebPage = (TLRPC.TL_botInlineMessageMediaWebPage) botInlineMessage;
@@ -121,18 +121,18 @@ public final class e1 implements Runnable {
                 eVar.run("MESSAGE_EXPIRED", null);
                 return;
             default:
-                final LaunchActivity launchActivity = (LaunchActivity) this.f9632e;
-                String str3 = (String) this.f9633f;
+                final LaunchActivity launchActivity = (LaunchActivity) this.f9660e;
+                String str3 = (String) this.f9661f;
                 String str4 = (String) this.h;
-                final TLRPC.User user = (TLRPC.User) this.f9634n;
-                final String str5 = (String) this.f9635r;
-                ArrayList arrayList = launchActivity.f33433f0;
-                ArrayList arrayList2 = launchActivity.f33429d0;
+                final TLRPC.User user = (TLRPC.User) this.f9662n;
+                final String str5 = (String) this.f9663r;
+                ArrayList arrayList = launchActivity.f33460f0;
+                ArrayList arrayList2 = launchActivity.f33456d0;
                 ArrayList arrayList3 = launchActivity.E0;
-                TLObject tLObject3 = this.f9630b;
+                TLObject tLObject3 = this.f9658b;
                 if (tLObject3 instanceof TLRPC.TL_attachMenuBotsBot) {
                     TLRPC.TL_attachMenuBotsBot tL_attachMenuBotsBot = (TLRPC.TL_attachMenuBotsBot) tLObject3;
-                    final int i13 = this.f9631c;
+                    final int i13 = this.f9659c;
                     MessagesController.getInstance(i13).putUsers(tL_attachMenuBotsBot.users, false);
                     TLRPC.TL_attachMenuBot tL_attachMenuBot = tL_attachMenuBotsBot.bot;
                     if (str3 != null) {
@@ -184,13 +184,13 @@ public final class e1 implements Runnable {
                             if (coVar.i() != null) {
                                 tLObject = coVar.i();
                             } else {
-                                tLObject = coVar.f35237e;
+                                tLObject = coVar.f35264e;
                             }
                             if (!MediaDataController.canShowAttachMenuBot(tL_attachMenuBot, tLObject)) {
                                 a02 = yc.a0(n2Var);
                                 i11 = R.string.BotAlreadyAddedToAttachMenu;
                             } else {
-                                coVar.W9(user.f20016id, str5, false);
+                                coVar.W9(user.f20043id, str5, false);
                                 return;
                             }
                         } else {
@@ -199,7 +199,7 @@ public final class e1 implements Runnable {
                         }
                     } else {
                         x6 x6Var = new x6(launchActivity);
-                        x6Var.setColor(j6.w0(null, j6.f20757ia, false));
+                        x6Var.setColor(j6.w0(null, j6.f20784ia, false));
                         x6Var.setBackgroundColor(j6.w0(null, j6.L5, false));
                         x6Var.setAttachBot(tL_attachMenuBot);
                         final long j10 = this.d;
@@ -230,13 +230,13 @@ public final class e1 implements Runnable {
     }
 
     public e1(LaunchActivity launchActivity, TLObject tLObject, int i10, String str, String str2, TLRPC.User user, String str3, long j3) {
-        this.f9632e = launchActivity;
-        this.f9630b = tLObject;
-        this.f9631c = i10;
-        this.f9633f = str;
+        this.f9660e = launchActivity;
+        this.f9658b = tLObject;
+        this.f9659c = i10;
+        this.f9661f = str;
         this.h = str2;
-        this.f9634n = user;
-        this.f9635r = str3;
+        this.f9662n = user;
+        this.f9663r = str3;
         this.d = j3;
     }
 }

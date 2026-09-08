@@ -16,13 +16,13 @@ public class uu0 extends ru0 {
     public boolean E;
     public final xu0 F;
     public final boolean h;
-    public final int f30982n;
-    public final ArrayList f30983r;
-    public bi.l8 f30984s;
+    public final int f31009n;
+    public final ArrayList f31010r;
+    public bi.l8 f31011s;
     public final int v;
-    public final su0 f30985w;
-    public boolean f30986x;
-    public final ArrayList f30987y;
+    public final su0 f31012w;
+    public boolean f31013x;
+    public final ArrayList f31014y;
 
     public uu0(xu0 xu0Var, Context context, boolean z10) {
         this(xu0Var, context, 0, z10);
@@ -37,8 +37,8 @@ public class uu0 extends ru0 {
     public final String F(int i10) {
         MessageObject messageObject;
         TL_stories.StoryItem storyItem;
-        bi.l8 l8Var = this.f30984s;
-        if (l8Var == null || i10 < 0 || i10 >= l8Var.f3275i.size() || (messageObject = (MessageObject) this.f30984s.f3275i.get(i10)) == null || (storyItem = messageObject.storyItem) == null) {
+        bi.l8 l8Var = this.f31011s;
+        if (l8Var == null || i10 < 0 || i10 >= l8Var.f3302i.size() || (messageObject = (MessageObject) this.f31011s.f3302i.get(i10)) == null || (storyItem = messageObject.storyItem) == null) {
             return null;
         }
         return LocaleController.formatYearMont(storyItem.date, true);
@@ -57,18 +57,18 @@ public class uu0 extends ru0 {
 
     public final boolean M(int i10) {
         bi.l8 l8Var;
-        if (!this.h && (l8Var = this.f30984s) != null) {
+        if (!this.h && (l8Var = this.f31011s) != null) {
             if (l8Var instanceof bi.b8) {
                 xu0 xu0Var = this.F;
-                TLRPC.User user = MessagesController.getInstance(xu0Var.f32726v1.getCurrentAccount()).getUser(Long.valueOf(xu0Var.f32701j1));
+                TLRPC.User user = MessagesController.getInstance(xu0Var.f32753v1.getCurrentAccount()).getUser(Long.valueOf(xu0Var.f32728j1));
                 if (user != null && user.bot && user.bot_has_main_app && user.bot_can_edit) {
                     return true;
                 }
                 return false;
-            } else if (i10 >= 0 && i10 < l8Var.f3275i.size()) {
-                MessageObject messageObject = (MessageObject) this.f30984s.f3275i.get(i10);
-                bi.l8 l8Var2 = this.f30984s;
-                if (l8Var2.f3273f > 0) {
+            } else if (i10 >= 0 && i10 < l8Var.f3302i.size()) {
+                MessageObject messageObject = (MessageObject) this.f31011s.f3302i.get(i10);
+                bi.l8 l8Var2 = this.f31011s;
+                if (l8Var2.f3300f > 0) {
                     return true;
                 }
                 return l8Var2.m(messageObject.getId());
@@ -84,25 +84,25 @@ public class uu0 extends ru0 {
         qt0 qt0Var2;
         qt0 qt0Var3;
         qt0 qt0Var4;
-        bi.l8 l8Var = this.f30984s;
+        bi.l8 l8Var = this.f31011s;
         if (l8Var != null && !this.h) {
             xu0 xu0Var = this.F;
             boolean z10 = xu0Var.l1;
-            qt0[] qt0VarArr = xu0Var.f32702k0;
-            int[] iArr = xu0Var.f32705m1;
-            if ((!z10 || (xu0Var.f32703k1 && l8Var.g() > 1)) && this.f30984s.g() > 0 && !xu0Var.v0()) {
+            qt0[] qt0VarArr = xu0Var.f32729k0;
+            int[] iArr = xu0Var.f32732m1;
+            if ((!z10 || (xu0Var.f32730k1 && l8Var.g() > 1)) && this.f31011s.g() > 0 && !xu0Var.v0()) {
                 boolean z11 = false;
-                if (this.f30984s.g() < 5) {
-                    iArr[1] = this.f30984s.g();
+                if (this.f31011s.g() < 5) {
+                    iArr[1] = this.f31011s.g();
                     if (qt0VarArr != null && (qt0Var3 = qt0VarArr[0]) != null && (qt0Var4 = qt0VarArr[1]) != null && qt0Var3.h != null && qt0Var4.h != null) {
                         xu0Var.m1(false);
                     }
                     if (iArr[1] == 1) {
                         z11 = true;
                     }
-                    xu0Var.f32703k1 = z11;
-                } else if (xu0Var.f32703k1) {
-                    xu0Var.f32703k1 = false;
+                    xu0Var.f32730k1 = z11;
+                } else if (xu0Var.f32730k1) {
+                    xu0Var.f32730k1 = false;
                     iArr[1] = Math.max(2, SharedConfig.storiesColumnsCount);
                     if (qt0VarArr != null && (qt0Var = qt0VarArr[0]) != null && (qt0Var2 = qt0VarArr[1]) != null && qt0Var.h != null && qt0Var2.h != null) {
                         xu0Var.m1(false);
@@ -116,33 +116,33 @@ public class uu0 extends ru0 {
     public final int O() {
         xu0 xu0Var = this.F;
         ct0 ct0Var = xu0Var.H;
-        int[] iArr = xu0Var.f32705m1;
+        int[] iArr = xu0Var.f32732m1;
         if (this == ct0Var) {
             return iArr[0];
         }
         if (xu0.u(xu0Var, this) != -1) {
             return iArr[1];
         }
-        return xu0Var.f32714q1;
+        return xu0Var.f32741q1;
     }
 
     public final void P() {
-        if (this.f30984s == null) {
+        if (this.f31011s == null) {
             return;
         }
         int O = O();
-        this.f30984s.p(Math.min(100, Math.max(1, O / 2) * O * O), false);
+        this.f31011s.p(Math.min(100, Math.max(1, O / 2) * O * O), false);
     }
 
     @Override
     public final int h() {
         int i10 = 0;
-        if (this.f30984s == null) {
+        if (this.f31011s == null) {
             return 0;
         }
-        int size = this.f30983r.size();
-        if (!this.f30984s.l() || !this.F.i0()) {
-            i10 = this.f30984s.g();
+        int size = this.f31010r.size();
+        if (!this.f31011s.l() || !this.F.i0()) {
+            i10 = this.f31011s.g();
         }
         return size + i10;
     }
@@ -159,12 +159,12 @@ public class uu0 extends ru0 {
 
     @Override
     public void l() {
-        if (this.f30984s != null) {
+        if (this.f31011s != null) {
             xu0 xu0Var = this.F;
             if (xu0Var.r0()) {
-                ArrayList arrayList = this.f30983r;
+                ArrayList arrayList = this.f31010r;
                 arrayList.clear();
-                ArrayList E = MessagesController.getInstance(this.f30984s.f3271c).getStoriesController().E(xu0Var.f32701j1);
+                ArrayList E = MessagesController.getInstance(this.f31011s.f3298c).getStoriesController().E(xu0Var.f32728j1);
                 if (E != null) {
                     arrayList.addAll(E);
                 }
@@ -180,43 +180,43 @@ public class uu0 extends ru0 {
         boolean z11;
         char c10;
         boolean z12;
-        if (this.f30984s != null && c1Var.f45742f == 19) {
-            View view = c1Var.f45738a;
+        if (this.f31011s != null && c1Var.f45770f == 19) {
+            View view = c1Var.f45766a;
             if (view instanceof org.telegram.ui.Cells.t7) {
                 org.telegram.ui.Cells.t7 t7Var = (org.telegram.ui.Cells.t7) view;
-                t7Var.f23264d0 = true;
-                ArrayList arrayList = this.f30983r;
+                t7Var.f23291d0 = true;
+                ArrayList arrayList = this.f31010r;
                 if (i10 >= 0 && i10 < arrayList.size()) {
                     bi.t8 t8Var = (bi.t8) arrayList.get(i10);
-                    t7Var.f23268f0 = false;
+                    t7Var.f23295f0 = false;
                     if (t8Var.K == null) {
                         TL_stories.TL_storyItem tL_storyItem = new TL_stories.TL_storyItem();
-                        long j3 = t8Var.f3738a;
+                        long j3 = t8Var.f3765a;
                         int i11 = (int) (j3 ^ (j3 >>> 32));
                         tL_storyItem.messageId = i11;
-                        tL_storyItem.f20107id = i11;
-                        tL_storyItem.attachPath = t8Var.f3742f;
-                        MessageObject messageObject = new MessageObject(this.f30984s.f3271c, tL_storyItem);
+                        tL_storyItem.f20134id = i11;
+                        tL_storyItem.attachPath = t8Var.f3769f;
+                        MessageObject messageObject = new MessageObject(this.f31011s.f3298c, tL_storyItem);
                         t8Var.K = messageObject;
                         messageObject.uploadingStory = t8Var;
                     }
                     t7Var.k(t8Var.K, O(), false);
-                    t7Var.f23264d0 = true;
+                    t7Var.f23291d0 = true;
                     t7Var.setReorder(false);
                     t7Var.i(false, false);
                     return;
                 }
                 int size = i10 - arrayList.size();
-                if (size >= 0 && size < this.f30984s.f3275i.size()) {
-                    MessageObject messageObject2 = (MessageObject) this.f30984s.f3275i.get(size);
-                    if (messageObject2 != null && this.f30984s.m(messageObject2.getId())) {
+                if (size >= 0 && size < this.f31011s.f3302i.size()) {
+                    MessageObject messageObject2 = (MessageObject) this.f31011s.f3302i.get(size);
+                    if (messageObject2 != null && this.f31011s.m(messageObject2.getId())) {
                         z10 = true;
                     } else {
                         z10 = false;
                     }
-                    t7Var.f23268f0 = z10;
+                    t7Var.f23295f0 = z10;
                     xu0 xu0Var = this.F;
-                    if (!xu0Var.r0() && !t7Var.f23268f0) {
+                    if (!xu0Var.r0() && !t7Var.f23295f0) {
                         z11 = false;
                     } else {
                         z11 = true;
@@ -226,7 +226,7 @@ public class uu0 extends ru0 {
                     t7Var.k(messageObject2, O(), false);
                     if (xu0Var.C1 && messageObject2 != null) {
                         SparseArray[] sparseArrayArr = xu0Var.Z0;
-                        if (messageObject2.getDialogId() == xu0Var.f32701j1) {
+                        if (messageObject2.getDialogId() == xu0Var.f32728j1) {
                             c10 = 0;
                         } else {
                             c10 = 1;
@@ -240,12 +240,12 @@ public class uu0 extends ru0 {
                     } else {
                         t7Var.i(false, false);
                     }
-                    t7Var.l(this.f30986x, false);
+                    t7Var.l(this.f31013x, false);
                     return;
                 }
-                t7Var.f23268f0 = false;
+                t7Var.f23295f0 = false;
                 t7Var.k(null, O(), false);
-                t7Var.f23264d0 = true;
+                t7Var.f23291d0 = true;
             }
         }
     }
@@ -253,9 +253,9 @@ public class uu0 extends ru0 {
     @Override
     public final s4.c1 x(ViewGroup viewGroup, int i10) {
         s4.c1 x10 = super.x(viewGroup, i10);
-        View view = x10.f45738a;
+        View view = x10.f45766a;
         if (view instanceof org.telegram.ui.Cells.t7) {
-            ((org.telegram.ui.Cells.t7) view).f23264d0 = true;
+            ((org.telegram.ui.Cells.t7) view).f23291d0 = true;
         }
         return x10;
     }
@@ -264,37 +264,37 @@ public class uu0 extends ru0 {
         super(xu0Var, context);
         TLRPC.User user;
         this.F = xu0Var;
-        this.f30983r = new ArrayList();
-        this.f30987y = new ArrayList();
+        this.f31010r = new ArrayList();
+        this.f31014y = new ArrayList();
         this.h = z10;
-        this.f30982n = i10;
-        org.telegram.ui.ActionBar.n2 n2Var = xu0Var.f32726v1;
-        long j3 = xu0Var.f32701j1;
+        this.f31009n = i10;
+        org.telegram.ui.ActionBar.n2 n2Var = xu0Var.f32753v1;
+        long j3 = xu0Var.f32728j1;
         int currentAccount = n2Var.getCurrentAccount();
         if (!TextUtils.isEmpty(xu0Var.getStoriesHashtag())) {
             if (xu0Var.T1 == null) {
                 xu0Var.T1 = new bi.d8(currentAccount, TextUtils.isEmpty(xu0Var.getStoriesHashtagUsername()) ? null : xu0Var.getStoriesHashtagUsername(), xu0Var.getStoriesHashtag());
             }
-            this.f30984s = xu0Var.T1;
+            this.f31011s = xu0Var.T1;
         } else if (xu0Var.getStoriesArea() != null) {
             if (xu0Var.T1 == null) {
                 xu0Var.T1 = new bi.d8(currentAccount, xu0Var.getStoriesArea());
             }
-            this.f30984s = xu0Var.T1;
+            this.f31011s = xu0Var.T1;
         } else if ((z10 && !xu0Var.v0()) || (!z10 && xu0Var.q0())) {
-            this.f30984s = null;
+            this.f31011s = null;
         } else {
             boolean z11 = j3 > 0 && (user = MessagesController.getInstance(currentAccount).getUser(Long.valueOf(j3))) != null && user.bot;
             if (i10 > 0) {
-                this.f30984s = n2Var.getMessagesController().getStoriesController().A(xu0Var.f32701j1, 0, i10, true);
+                this.f31011s = n2Var.getMessagesController().getStoriesController().A(xu0Var.f32728j1, 0, i10, true);
             } else {
-                this.f30984s = n2Var.getMessagesController().getStoriesController().A(xu0Var.f32701j1, z11 ? 4 : z10 ? 1 : 0, -1, true);
+                this.f31011s = n2Var.getMessagesController().getStoriesController().A(xu0Var.f32728j1, z11 ? 4 : z10 ? 1 : 0, -1, true);
             }
         }
-        bi.l8 l8Var = this.f30984s;
+        bi.l8 l8Var = this.f31011s;
         if (l8Var != null) {
             this.v = l8Var.o();
-            this.f30985w = new su0(this, n2Var.getMessagesController().getStoriesController(), xu0Var.f32701j1, this.f30984s.f3271c);
+            this.f31012w = new su0(this, n2Var.getMessagesController().getStoriesController(), xu0Var.f32728j1, this.f31011s.f3298c);
         }
         N();
     }

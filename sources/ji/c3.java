@@ -3,16 +3,16 @@ package ji;
 import java.util.ArrayList;
 import org.telegram.tgnet.tl.TL_iv;
 public final class c3 {
-    public final v3 f13842a;
+    public final v3 f13868a;
 
     public c3(v3 v3Var) {
-        this.f13842a = v3Var;
+        this.f13868a = v3Var;
     }
 
     public final void a(a aVar) {
         a aVar2;
-        v3 v3Var = this.f13842a;
-        ArrayList arrayList = v3Var.f14256l3;
+        v3 v3Var = this.f13868a;
+        ArrayList arrayList = v3Var.f14282l3;
         int indexOf = arrayList.indexOf(aVar);
         if (indexOf >= 0 && v3.w3(aVar)) {
             int O3 = v3Var.O3(indexOf);
@@ -33,7 +33,7 @@ public final class c3 {
             } else {
                 aVar2 = null;
             }
-            if (aVar2 != null && !aVar2.f13737i && !v3.w3(aVar2) && !v3.D3(aVar2.f13732b)) {
+            if (aVar2 != null && !aVar2.f13763i && !v3.w3(aVar2) && !v3.D3(aVar2.f13758b)) {
                 aVar3 = aVar2;
             }
             if (arrayList.isEmpty()) {

@@ -9,8 +9,8 @@ public final class i implements Cloneable {
 
     public i(int i10) {
         if (i10 == 0) {
-            this.f20b = b0.a.f1914b;
-            this.f21c = b0.a.f1915c;
+            this.f20b = b0.a.f1941b;
+            this.f21c = b0.a.f1942c;
             return;
         }
         int i11 = i10 * 8;

@@ -2,11 +2,11 @@ package m;
 
 import ji.u4;
 public final class y0 extends u4 {
-    public final z0 f15720c;
+    public final z0 f15747c;
 
     public y0(z0 z0Var) {
         super(z0Var, 4);
-        this.f15720c = z0Var;
+        this.f15747c = z0Var;
     }
 
     @Override

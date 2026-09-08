@@ -9,10 +9,10 @@ import android.text.TextUtils;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
 public abstract class iw0 {
-    public static final Layout.Alignment[] f27279a = Layout.Alignment.values();
+    public static final Layout.Alignment[] f27306a = Layout.Alignment.values();
 
     public static Layout.Alignment a() {
-        Layout.Alignment[] alignmentArr = f27279a;
+        Layout.Alignment[] alignmentArr = f27306a;
         if (alignmentArr.length >= 5) {
             return alignmentArr[4];
         }

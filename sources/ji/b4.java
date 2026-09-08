@@ -4,7 +4,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.logging.Level;
 public final class b4 {
-    public final ArrayList f13791a;
+    public final ArrayList f13817a;
 
     public b4(int i10) {
         switch (i10) {
@@ -13,16 +13,16 @@ public final class b4 {
                 if (!file.exists()) {
                     file.mkdirs();
                 }
-                this.f13791a = new ArrayList();
+                this.f13817a = new ArrayList();
                 return;
             default:
-                this.f13791a = new ArrayList();
+                this.f13817a = new ArrayList();
                 return;
         }
     }
 
     public void a() {
-        ArrayList arrayList = this.f13791a;
+        ArrayList arrayList = this.f13817a;
         int size = arrayList.size();
         int i10 = 0;
         while (i10 < size) {
@@ -44,7 +44,7 @@ public final class b4 {
 
     public void b(StringBuilder sb2) {
         String str;
-        if (((Boolean) i2.g.z(1, this.f13791a)).booleanValue()) {
+        if (((Boolean) i2.g.z(1, this.f13817a)).booleanValue()) {
             str = "</ol>";
         } else {
             str = "</ul>";
@@ -53,7 +53,7 @@ public final class b4 {
     }
 
     public void c(StringBuilder sb2) {
-        while (!this.f13791a.isEmpty()) {
+        while (!this.f13817a.isEmpty()) {
             b(sb2);
         }
     }

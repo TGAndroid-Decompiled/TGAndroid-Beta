@@ -19,15 +19,15 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 import n4.y;
 public final class j implements ServiceConnection {
-    public int f13540a = 0;
-    public final Messenger f13541b;
-    public y f13542c;
+    public int f13566a = 0;
+    public final Messenger f13567b;
+    public y f13568c;
     public final ArrayDeque d;
-    public final SparseArray f13543e;
-    public final l f13544f;
+    public final SparseArray f13569e;
+    public final l f13570f;
 
     public j(l lVar) {
-        this.f13544f = lVar;
+        this.f13570f = lVar;
         Handler handler = new Handler(Looper.getMainLooper(), new Handler.Callback() {
             @Override
             public final boolean handleMessage(Message message) {
@@ -38,19 +38,19 @@ public final class j implements ServiceConnection {
                 j jVar = j.this;
                 synchronized (jVar) {
                     try {
-                        k kVar = (k) jVar.f13543e.get(i10);
+                        k kVar = (k) jVar.f13569e.get(i10);
                         if (kVar == 0) {
                             Log.w("MessengerIpcClient", "Received response for unknown request: " + i10);
                             return true;
                         }
-                        jVar.f13543e.remove(i10);
+                        jVar.f13569e.remove(i10);
                         jVar.c();
                         Bundle data = message.getData();
                         if (data.getBoolean("unsupported", false)) {
                             kVar.b(new Exception("Not supported by GmsCore", null));
                             return true;
                         }
-                        switch (kVar.f13548e) {
+                        switch (kVar.f13574e) {
                             case 0:
                                 if (data.getBoolean("ack", false)) {
                                     kVar.c(null);
@@ -72,9 +72,9 @@ public final class j implements ServiceConnection {
             }
         });
         Looper.getMainLooper();
-        this.f13541b = new Messenger(handler);
+        this.f13567b = new Messenger(handler);
         this.d = new ArrayDeque();
-        this.f13543e = new SparseArray();
+        this.f13569e = new SparseArray();
     }
 
     public final synchronized void a(String str) {
@@ -86,30 +86,30 @@ public final class j implements ServiceConnection {
             if (Log.isLoggable("MessengerIpcClient", 3)) {
                 Log.d("MessengerIpcClient", "Disconnected: ".concat(String.valueOf(str)));
             }
-            int i10 = this.f13540a;
+            int i10 = this.f13566a;
             if (i10 != 0) {
                 if (i10 != 1 && i10 != 2) {
                     if (i10 != 3) {
                         return;
                     }
-                    this.f13540a = 4;
+                    this.f13566a = 4;
                     return;
                 }
                 if (Log.isLoggable("MessengerIpcClient", 2)) {
                     Log.v("MessengerIpcClient", "Unbinding service");
                 }
-                this.f13540a = 4;
-                t6.a.a().b((Context) this.f13544f.f13551b, this);
+                this.f13566a = 4;
+                t6.a.a().b((Context) this.f13570f.f13577b, this);
                 ?? exc = new Exception(str, securityException);
                 Iterator it = this.d.iterator();
                 while (it.hasNext()) {
                     ((k) it.next()).b(exc);
                 }
                 this.d.clear();
-                for (int i11 = 0; i11 < this.f13543e.size(); i11++) {
-                    ((k) this.f13543e.valueAt(i11)).b(exc);
+                for (int i11 = 0; i11 < this.f13569e.size(); i11++) {
+                    ((k) this.f13569e.valueAt(i11)).b(exc);
                 }
-                this.f13543e.clear();
+                this.f13569e.clear();
                 return;
             }
             throw new IllegalStateException();
@@ -120,12 +120,12 @@ public final class j implements ServiceConnection {
 
     public final synchronized void c() {
         try {
-            if (this.f13540a == 2 && this.d.isEmpty() && this.f13543e.size() == 0) {
+            if (this.f13566a == 2 && this.d.isEmpty() && this.f13569e.size() == 0) {
                 if (Log.isLoggable("MessengerIpcClient", 2)) {
                     Log.v("MessengerIpcClient", "Finished handling requests, unbinding");
                 }
-                this.f13540a = 3;
-                t6.a.a().b((Context) this.f13544f.f13551b, this);
+                this.f13566a = 3;
+                t6.a.a().b((Context) this.f13570f.f13577b, this);
             }
         } catch (Throwable th2) {
             throw th2;
@@ -140,7 +140,7 @@ public final class j implements ServiceConnection {
         Context context;
         try {
             try {
-                i10 = this.f13540a;
+                i10 = this.f13566a;
                 z10 = false;
             } catch (Throwable th3) {
                 th = th3;
@@ -154,26 +154,26 @@ public final class j implements ServiceConnection {
                             return false;
                         }
                         this.d.add(kVar);
-                        ((ScheduledExecutorService) this.f13544f.f13552c).execute(new h(this, 0));
+                        ((ScheduledExecutorService) this.f13570f.f13578c).execute(new h(this, 0));
                         return true;
                     }
                     this.d.add(kVar);
                     return true;
                 }
                 this.d.add(kVar);
-                if (this.f13540a == 0) {
+                if (this.f13566a == 0) {
                     z10 = true;
                 }
                 n6.l.k(z10);
                 if (Log.isLoggable("MessengerIpcClient", 2)) {
                     Log.v("MessengerIpcClient", "Starting bind to GmsCore");
                 }
-                this.f13540a = 1;
+                this.f13566a = 1;
                 Intent intent = new Intent("com.google.android.c2dm.intent.REGISTER");
                 intent.setPackage("com.google.android.gms");
                 try {
                     a2 = t6.a.a();
-                    context = (Context) this.f13544f.f13551b;
+                    context = (Context) this.f13570f.f13577b;
                 } catch (SecurityException e7) {
                     e = e7;
                 }
@@ -181,7 +181,7 @@ public final class j implements ServiceConnection {
                     if (!a2.c(context, context.getClass().getName(), intent, this, 1, null)) {
                         a("Unable to bind to service");
                     } else {
-                        ((ScheduledExecutorService) this.f13544f.f13552c).schedule(new h(this, 1), 30L, TimeUnit.SECONDS);
+                        ((ScheduledExecutorService) this.f13570f.f13578c).schedule(new h(this, 1), 30L, TimeUnit.SECONDS);
                     }
                 } catch (SecurityException e10) {
                     e = e10;
@@ -203,7 +203,7 @@ public final class j implements ServiceConnection {
         if (Log.isLoggable("MessengerIpcClient", 2)) {
             Log.v("MessengerIpcClient", "Service connected");
         }
-        ((ScheduledExecutorService) this.f13544f.f13552c).execute(new s(16, this, iBinder));
+        ((ScheduledExecutorService) this.f13570f.f13578c).execute(new s(16, this, iBinder));
     }
 
     @Override
@@ -211,6 +211,6 @@ public final class j implements ServiceConnection {
         if (Log.isLoggable("MessengerIpcClient", 2)) {
             Log.v("MessengerIpcClient", "Service disconnected");
         }
-        ((ScheduledExecutorService) this.f13544f.f13552c).execute(new h(this, 2));
+        ((ScheduledExecutorService) this.f13570f.f13578c).execute(new h(this, 2));
     }
 }

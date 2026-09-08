@@ -22,22 +22,22 @@ public abstract class u1 extends kl0 {
     public ArrayList H;
     public String I;
     public int J;
-    public Context f11269c;
+    public Context f11295c;
     public ArrayList d;
-    public ArrayList f11270e;
-    public b2 f11271f;
+    public ArrayList f11296e;
+    public b2 f11297f;
     public a0.i h;
-    public Timer f11272n;
-    public boolean f11273r;
-    public boolean f11274s;
+    public Timer f11298n;
+    public boolean f11299r;
+    public boolean f11300s;
     public boolean v;
-    public boolean f11275w;
-    public long f11276x;
-    public boolean f11277y;
+    public boolean f11301w;
+    public long f11302x;
+    public boolean f11303y;
 
     @Override
     public final boolean D(s4.c1 c1Var) {
-        int i10 = c1Var.f45742f;
+        int i10 = c1Var.f45770f;
         if (i10 != 0 && i10 != 2 && i10 != 3) {
             return false;
         }
@@ -47,9 +47,9 @@ public abstract class u1 extends kl0 {
     public final Object E(int i10) {
         int size = this.d.size();
         int size2 = this.H.size();
-        b2 b2Var = this.f11271f;
-        int size3 = b2Var.f10982e.size();
-        int size4 = b2Var.f10986j.size();
+        b2 b2Var = this.f11297f;
+        int size3 = b2Var.f11008e.size();
+        int size4 = b2Var.f11012j.size();
         if (i10 >= 0 && i10 < size) {
             return this.d.get(i10);
         }
@@ -64,20 +64,20 @@ public abstract class u1 extends kl0 {
             i11 -= size2 + 1;
         }
         if (i11 >= 0 && i11 < size4) {
-            return b2Var.f10986j.get(i11);
+            return b2Var.f11012j.get(i11);
         }
         int i12 = i11 - size4;
         if (i12 <= 0 || i12 > size3) {
             return null;
         }
-        return b2Var.f10982e.get(i12 - 1);
+        return b2Var.f11008e.get(i12 - 1);
     }
 
     public abstract void F();
 
     public final void G(String str) {
         try {
-            Timer timer = this.f11272n;
+            Timer timer = this.f11298n;
             if (timer != null) {
                 timer.cancel();
             }
@@ -86,32 +86,32 @@ public abstract class u1 extends kl0 {
         }
         this.d.clear();
         this.H.clear();
-        this.f11270e.clear();
-        if (this.f11273r) {
-            this.f11271f.g(null, true, false, this.f11274s, this.v, this.f11276x, this.f11275w, 0, 0);
+        this.f11296e.clear();
+        if (this.f11299r) {
+            this.f11297f.g(null, true, false, this.f11300s, this.v, this.f11302x, this.f11301w, 0, 0);
         }
         l();
         if (!TextUtils.isEmpty(str)) {
             Timer timer2 = new Timer();
-            this.f11272n = timer2;
+            this.f11298n = timer2;
             timer2.schedule(new s1(this, str, 0), 200L, 300L);
         }
     }
 
     @Override
     public final int h() {
-        b2 b2Var = this.f11271f;
+        b2 b2Var = this.f11297f;
         this.J = -1;
         int size = this.d.size();
         if (!this.H.isEmpty()) {
             this.J = size;
             size += this.H.size() + 1;
         }
-        int size2 = b2Var.f10982e.size();
+        int size2 = b2Var.f11008e.size();
         if (size2 != 0) {
             size += size2 + 1;
         }
-        int size3 = b2Var.f10986j.size();
+        int size3 = b2Var.f11012j.size();
         if (size3 != 0) {
             return size + size3;
         }
@@ -144,7 +144,7 @@ public abstract class u1 extends kl0 {
     @Override
     public final s4.c1 x(ViewGroup viewGroup, int i10) {
         u3 u3Var;
-        Context context = this.f11269c;
+        Context context = this.f11295c;
         if (i10 != 0) {
             if (i10 != 1) {
                 if (i10 != 3) {
@@ -155,7 +155,7 @@ public abstract class u1 extends kl0 {
                             t00 t00Var = new t00(context, null);
                             t00Var.setIsSingleCell(true);
                             t00Var.setViewType(29);
-                            t00Var.setBackgroundColor(j6.w0(null, j6.f20663d6, false));
+                            t00Var.setBackgroundColor(j6.w0(null, j6.f20690d6, false));
                             u3Var = t00Var;
                         }
                     } else {

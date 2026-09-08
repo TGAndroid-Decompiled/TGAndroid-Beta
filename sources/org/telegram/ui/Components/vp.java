@@ -2,7 +2,7 @@ package org.telegram.ui.Components;
 
 import android.content.Context;
 public abstract class vp extends z4.g {
-    public up f31958w0;
+    public up f31985w0;
 
     public vp(Context context) {
         super(context);
@@ -20,7 +20,7 @@ public abstract class vp extends z4.g {
     }
 
     public void setAdapter(up upVar) {
-        this.f31958w0 = upVar;
+        this.f31985w0 = upVar;
         super.setAdapter((z4.a) upVar);
         if (upVar != null) {
             x(upVar.j(), false);

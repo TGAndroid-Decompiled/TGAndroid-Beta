@@ -16,13 +16,13 @@ public final class o8 extends l8 {
 
     public final void F(ArrayList arrayList) {
         int i10;
-        ArrayList arrayList2 = this.f3275i;
+        ArrayList arrayList2 = this.f3302i;
         arrayList2.size();
         int i11 = 0;
         int i12 = 0;
         while (true) {
             int size = arrayList.size();
-            i10 = this.f3271c;
+            i10 = this.f3298c;
             if (i11 >= size) {
                 break;
             }
@@ -47,7 +47,7 @@ public final class o8 extends l8 {
     @Override
     public final MessageObject f(int i10) {
         if (i10 >= 0) {
-            ArrayList arrayList = this.f3275i;
+            ArrayList arrayList = this.f3302i;
             if (i10 < arrayList.size()) {
                 return (MessageObject) arrayList.get(i10);
             }
@@ -58,7 +58,7 @@ public final class o8 extends l8 {
 
     @Override
     public final int g() {
-        return this.f3275i.size();
+        return this.f3302i.size();
     }
 
     @Override
@@ -68,7 +68,7 @@ public final class o8 extends l8 {
 
     @Override
     public final int i() {
-        return this.f3275i.size();
+        return this.f3302i.size();
     }
 
     @Override

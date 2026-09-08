@@ -6,12 +6,12 @@ import android.graphics.Paint;
 import android.graphics.RectF;
 import org.telegram.messenger.AndroidUtilities;
 public final class b2 extends j {
-    public final int f45137n;
-    public RectF f45138r;
+    public final int f45165n;
+    public RectF f45166r;
 
     public b2(k kVar, Context context, int i10) {
         super(kVar, context);
-        this.f45137n = i10;
+        this.f45165n = i10;
     }
 
     @Override
@@ -19,7 +19,7 @@ public final class b2 extends j {
         float measuredWidth;
         float measuredWidth2;
         float measuredWidth3;
-        switch (this.f45137n) {
+        switch (this.f45165n) {
             case 0:
                 float dp = AndroidUtilities.dp(19.5f);
                 float dp2 = AndroidUtilities.dp(1.0f) + dp;
@@ -70,9 +70,9 @@ public final class b2 extends j {
 
     @Override
     public final void onDraw(Canvas canvas) {
-        switch (this.f45137n) {
+        switch (this.f45165n) {
             case 0:
-                RectF rectF = this.f45138r;
+                RectF rectF = this.f45166r;
                 super.onDraw(canvas);
                 int saveCount = canvas.getSaveCount();
                 float showAlpha = getShowAlpha();
@@ -85,13 +85,13 @@ public final class b2 extends j {
                     float measuredWidth = (getMeasuredWidth() / 2) - dp;
                     float f7 = (2.0f * measuredWidth) + dp;
                     rectF.set(dp, dp, f7, f7);
-                    Paint paint = this.f45219a;
+                    Paint paint = this.f45247a;
                     canvas.drawArc(rectF, 0.0f, 180.0f, false, paint);
                     canvas.drawArc(rectF, 180.0f, 180.0f, false, paint);
                     float f10 = measuredWidth + dp;
-                    Paint paint2 = this.f45221c;
+                    Paint paint2 = this.f45249c;
                     canvas.drawCircle(dp, f10, dpf2, paint2);
-                    Paint paint3 = this.f45220b;
+                    Paint paint3 = this.f45248b;
                     canvas.drawCircle(dp, f10, dpf2 - AndroidUtilities.dp(1.0f), paint3);
                     canvas.drawCircle(f7, f10, dpf2, paint2);
                     canvas.drawCircle(f7, f10, dpf2 - AndroidUtilities.dp(1.0f), paint3);
@@ -100,7 +100,7 @@ public final class b2 extends j {
                 }
                 return;
             case 1:
-                RectF rectF2 = this.f45138r;
+                RectF rectF2 = this.f45166r;
                 super.onDraw(canvas);
                 int saveCount2 = canvas.getSaveCount();
                 float showAlpha2 = getShowAlpha();
@@ -113,13 +113,13 @@ public final class b2 extends j {
                     float measuredWidth2 = (getMeasuredWidth() / 2.0f) - dp2;
                     float f11 = (2.0f * measuredWidth2) + dp2;
                     rectF2.set(dp2, dp2, f11, f11);
-                    Paint paint4 = this.f45219a;
+                    Paint paint4 = this.f45247a;
                     canvas.drawArc(rectF2, 0.0f, 180.0f, false, paint4);
                     canvas.drawArc(rectF2, 180.0f, 180.0f, false, paint4);
                     float f12 = measuredWidth2 + dp2;
-                    Paint paint5 = this.f45221c;
+                    Paint paint5 = this.f45249c;
                     canvas.drawCircle(dp2, f12, dpf22, paint5);
-                    Paint paint6 = this.f45220b;
+                    Paint paint6 = this.f45248b;
                     canvas.drawCircle(dp2, f12, dpf22 - AndroidUtilities.dp(1.0f), paint6);
                     canvas.drawCircle(f11, f12, dpf22, paint5);
                     canvas.drawCircle(f11, f12, dpf22 - AndroidUtilities.dp(1.0f), paint6);
@@ -128,7 +128,7 @@ public final class b2 extends j {
                 }
                 return;
             default:
-                RectF rectF3 = this.f45138r;
+                RectF rectF3 = this.f45166r;
                 super.onDraw(canvas);
                 int saveCount3 = canvas.getSaveCount();
                 float showAlpha3 = getShowAlpha();
@@ -141,13 +141,13 @@ public final class b2 extends j {
                     float measuredWidth3 = (getMeasuredWidth() / 2) - dp3;
                     float f13 = (2.0f * measuredWidth3) + dp3;
                     rectF3.set(dp3, dp3, f13, f13);
-                    Paint paint7 = this.f45219a;
+                    Paint paint7 = this.f45247a;
                     canvas.drawArc(rectF3, 0.0f, 180.0f, false, paint7);
                     canvas.drawArc(rectF3, 180.0f, 180.0f, false, paint7);
                     float f14 = measuredWidth3 + dp3;
-                    Paint paint8 = this.f45221c;
+                    Paint paint8 = this.f45249c;
                     canvas.drawCircle(dp3, f14, dpf23, paint8);
-                    Paint paint9 = this.f45220b;
+                    Paint paint9 = this.f45248b;
                     canvas.drawCircle(dp3, f14, dpf23 - AndroidUtilities.dp(1.0f), paint9);
                     canvas.drawCircle(f13, f14, dpf23, paint8);
                     canvas.drawCircle(f13, f14, dpf23 - AndroidUtilities.dp(1.0f), paint9);
@@ -160,7 +160,7 @@ public final class b2 extends j {
 
     public b2(d2 d2Var, Context context) {
         super(d2Var, context);
-        this.f45137n = 1;
-        this.f45138r = new RectF();
+        this.f45165n = 1;
+        this.f45166r = new RectF();
     }
 }

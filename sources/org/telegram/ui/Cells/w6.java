@@ -9,8 +9,8 @@ import android.text.style.ImageSpan;
 import org.telegram.messenger.LocaleController;
 import org.telegram.ui.Components.c31;
 public final class w6 extends ImageSpan {
-    public static c31 f23474b;
-    public final int f23475a = 1;
+    public static c31 f23501b;
+    public final int f23502a = 1;
 
     public w6(Drawable drawable) {
         super(drawable);
@@ -18,7 +18,7 @@ public final class w6 extends ImageSpan {
 
     @Override
     public void draw(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
-        switch (this.f23475a) {
+        switch (this.f23502a) {
             case 0:
                 Drawable drawable = getDrawable();
                 canvas.save();
@@ -39,7 +39,7 @@ public final class w6 extends ImageSpan {
 
     @Override
     public int getSize(Paint paint, CharSequence charSequence, int i10, int i11, Paint.FontMetricsInt fontMetricsInt) {
-        switch (this.f23475a) {
+        switch (this.f23502a) {
             case 0:
                 Rect bounds = getDrawable().getBounds();
                 if (fontMetricsInt != null) {
@@ -63,7 +63,7 @@ public final class w6 extends ImageSpan {
 
     @Override
     public void updateDrawState(TextPaint textPaint) {
-        switch (this.f23475a) {
+        switch (this.f23502a) {
             case 1:
                 float textSize = textPaint.getTextSize() * 0.89f;
                 int i10 = (int) (0.02f * textSize);

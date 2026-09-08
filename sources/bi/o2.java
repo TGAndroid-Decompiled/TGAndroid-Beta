@@ -10,24 +10,24 @@ import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.uy;
 public final class o2 implements View.OnClickListener {
-    public final int f3395a;
-    public final long f3396b;
-    public final Object f3397c;
+    public final int f3422a;
+    public final long f3423b;
+    public final Object f3424c;
 
     public o2(Object obj, long j3, int i10) {
-        this.f3395a = i10;
-        this.f3397c = obj;
-        this.f3396b = j3;
+        this.f3422a = i10;
+        this.f3424c = obj;
+        this.f3423b = j3;
     }
 
     @Override
     public final void onClick(View view) {
-        switch (this.f3395a) {
+        switch (this.f3422a) {
             case 0:
-                o5 o5Var = (o5) this.f3397c;
+                o5 o5Var = (o5) this.f3424c;
                 o5Var.getClass();
                 Bundle bundle = new Bundle();
-                long j3 = this.f3396b;
+                long j3 = this.f3423b;
                 if (j3 >= 0) {
                     bundle.putLong("user_id", j3);
                 } else {
@@ -36,12 +36,12 @@ public final class o2 implements View.OnClickListener {
                 o5Var.J0.H(new ProfileActivity(bundle, null));
                 return;
             case 1:
-                g80.q((g80) this.f3397c, this.f3396b);
+                g80.q((g80) this.f3424c, this.f3423b);
                 return;
             case 2:
-                uy uyVar = (uy) this.f3397c;
+                uy uyVar = (uy) this.f3424c;
                 MessagesController messagesController = uyVar.getMessagesController();
-                long j10 = this.f3396b;
+                long j10 = this.f3423b;
                 boolean isDialogMuted = messagesController.isDialogMuted(j10, 0L);
                 if (!isDialogMuted) {
                     uyVar.getNotificationsController().setDialogNotificationsSettings(j10, 0L, 3);
@@ -52,22 +52,22 @@ public final class o2 implements View.OnClickListener {
                 uyVar.finishPreviewFragment();
                 return;
             case 3:
-                Utilities.Callback callback = ((rh.p) this.f3397c).f45654f;
+                Utilities.Callback callback = ((rh.p) this.f3424c).f45682f;
                 if (callback != null) {
-                    callback.run(Long.valueOf(this.f3396b));
+                    callback.run(Long.valueOf(this.f3423b));
                     return;
                 }
                 return;
             case 4:
-                yh.m.P((yh.m) this.f3397c, this.f3396b);
+                yh.m.P((yh.m) this.f3424c, this.f3423b);
                 return;
             default:
-                yh.p1 p1Var = (yh.p1) this.f3397c;
+                yh.p1 p1Var = (yh.p1) this.f3424c;
                 p1Var.getClass();
                 org.telegram.ui.ActionBar.n2 U = LaunchActivity.U();
                 if (U != null) {
                     p1Var.dismiss();
-                    U.presentFragment(ProfileActivity.m4(this.f3396b));
+                    U.presentFragment(ProfileActivity.m4(this.f3423b));
                     return;
                 }
                 return;

@@ -9,14 +9,14 @@ import android.graphics.drawable.Drawable;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.j6;
 public final class c extends Drawable {
-    public final int f11336a = 2;
-    public final int f11337b;
-    public final int f11338c;
+    public final int f11362a = 2;
+    public final int f11363b;
+    public final int f11364c;
     public Object d;
 
     public c(int i10, int i11, Drawable drawable) {
-        this.f11337b = i10;
-        this.f11338c = i11;
+        this.f11363b = i10;
+        this.f11364c = i11;
         this.d = drawable;
     }
 
@@ -24,18 +24,18 @@ public final class c extends Drawable {
     public final void draw(Canvas canvas) {
         int i10;
         float f7;
-        switch (this.f11336a) {
+        switch (this.f11362a) {
             case 0:
                 ((Drawable) this.d).draw(canvas);
                 return;
             case 1:
                 Rect bounds = getBounds();
-                canvas.drawCircle(bounds.centerX(), bounds.centerY(), this.f11338c / 2.0f, (Paint) this.d);
+                canvas.drawCircle(bounds.centerX(), bounds.centerY(), this.f11364c / 2.0f, (Paint) this.d);
                 return;
             default:
                 Rect bounds2 = getBounds();
-                int i11 = this.f11338c;
-                int i12 = this.f11337b;
+                int i11 = this.f11364c;
+                int i12 = this.f11363b;
                 if (i12 == 7) {
                     if (((RectF) this.d) == null) {
                         this.d = new RectF();
@@ -46,7 +46,7 @@ public final class c extends Drawable {
                     } else {
                         f7 = i11;
                     }
-                    canvas.drawRoundRect((RectF) this.d, f7, f7, j6.f21054z);
+                    canvas.drawRoundRect((RectF) this.d, f7, f7, j6.f21081z);
                     return;
                 }
                 if (i12 != 1 && i12 != 6) {
@@ -61,14 +61,14 @@ public final class c extends Drawable {
                     }
                     i10 = i11;
                 }
-                canvas.drawCircle(bounds2.centerX(), bounds2.centerY(), i10, j6.f21054z);
+                canvas.drawCircle(bounds2.centerX(), bounds2.centerY(), i10, j6.f21081z);
                 return;
         }
     }
 
     @Override
     public int getAlpha() {
-        switch (this.f11336a) {
+        switch (this.f11362a) {
             case 0:
                 return ((Drawable) this.d).getAlpha();
             default:
@@ -78,9 +78,9 @@ public final class c extends Drawable {
 
     @Override
     public int getIntrinsicHeight() {
-        switch (this.f11336a) {
+        switch (this.f11362a) {
             case 1:
-                return this.f11338c + this.f11337b;
+                return this.f11364c + this.f11363b;
             default:
                 return super.getIntrinsicHeight();
         }
@@ -88,9 +88,9 @@ public final class c extends Drawable {
 
     @Override
     public int getIntrinsicWidth() {
-        switch (this.f11336a) {
+        switch (this.f11362a) {
             case 1:
-                return this.f11338c + this.f11337b;
+                return this.f11364c + this.f11363b;
             default:
                 return super.getIntrinsicWidth();
         }
@@ -98,7 +98,7 @@ public final class c extends Drawable {
 
     @Override
     public final int getOpacity() {
-        switch (this.f11336a) {
+        switch (this.f11362a) {
             case 0:
                 return ((Drawable) this.d).getOpacity();
             case 1:
@@ -110,14 +110,14 @@ public final class c extends Drawable {
 
     @Override
     public void onBoundsChange(Rect rect) {
-        switch (this.f11336a) {
+        switch (this.f11362a) {
             case 0:
                 super.onBoundsChange(rect);
                 int width = rect.width();
-                int i10 = this.f11337b;
+                int i10 = this.f11363b;
                 int i11 = (width - i10) / 2;
                 int height = rect.height();
-                int i12 = this.f11338c;
+                int i12 = this.f11364c;
                 int i13 = (height - i12) / 2;
                 ((Drawable) this.d).setBounds(i11, i13, i10 + i11, i12 + i13);
                 return;
@@ -129,7 +129,7 @@ public final class c extends Drawable {
 
     @Override
     public final void setAlpha(int i10) {
-        switch (this.f11336a) {
+        switch (this.f11362a) {
             case 0:
                 ((Drawable) this.d).setAlpha(i10);
                 return;
@@ -143,7 +143,7 @@ public final class c extends Drawable {
 
     @Override
     public final void setColorFilter(ColorFilter colorFilter) {
-        switch (this.f11336a) {
+        switch (this.f11362a) {
             case 0:
                 return;
             case 1:
@@ -155,8 +155,8 @@ public final class c extends Drawable {
     }
 
     public c(int i10, int i11, int i12) {
-        this.f11337b = i10;
-        this.f11338c = i12;
+        this.f11363b = i10;
+        this.f11364c = i12;
         Paint paint = new Paint(1);
         this.d = paint;
         paint.setStyle(Paint.Style.STROKE);
@@ -165,8 +165,8 @@ public final class c extends Drawable {
     }
 
     public c(int i10, int i11) {
-        this.f11337b = i10;
-        this.f11338c = i11;
+        this.f11363b = i10;
+        this.f11364c = i11;
     }
 
     private final void a(int i10) {

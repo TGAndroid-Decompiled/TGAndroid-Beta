@@ -16,10 +16,10 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 public final class bj1 implements org.telegram.ui.ActionBar.a2, oy {
-    public final dj1 f34823a;
+    public final dj1 f34850a;
 
     public bj1(dj1 dj1Var) {
-        this.f34823a = dj1Var;
+        this.f34850a = dj1Var;
     }
 
     @Override
@@ -38,13 +38,13 @@ public final class bj1 implements org.telegram.ui.ActionBar.a2, oy {
         org.telegram.ui.ActionBar.k kVar2;
         int i11;
         String str;
-        dj1 dj1Var = this.f34823a;
-        WallpapersListActivity wallpapersListActivity = dj1Var.f35809a;
+        dj1 dj1Var = this.f34850a;
+        WallpapersListActivity wallpapersListActivity = dj1Var.f35836a;
         Activity parentActivity = wallpapersListActivity.getParentActivity();
-        LongSparseArray longSparseArray = wallpapersListActivity.f34265i0;
+        LongSparseArray longSparseArray = wallpapersListActivity.f34292i0;
         org.telegram.ui.ActionBar.b2 b2Var2 = new org.telegram.ui.ActionBar.b2(parentActivity, 3, null);
         wallpapersListActivity.P = b2Var2;
-        b2Var2.f20237g0 = false;
+        b2Var2.f20264g0 = false;
         b2Var2.show();
         new ArrayList();
         int[] iArr = {0};
@@ -52,11 +52,11 @@ public final class bj1 implements org.telegram.ui.ActionBar.a2, oy {
             Object valueAt = longSparseArray.valueAt(i12);
             if (valueAt instanceof gj1) {
                 gj1 gj1Var = (gj1) valueAt;
-                TLRPC.WallPaper wallPaper = gj1Var.f36706l;
-                if (wallPaper != null && wallPaper.f20021id < 0) {
-                    wallpapersListActivity.getMessagesStorage().deleteWallpaper(gj1Var.f36706l.f20021id);
-                    wallpapersListActivity.f34262f0.remove(gj1Var);
-                    wallpapersListActivity.f34258d0.remove(gj1Var.a());
+                TLRPC.WallPaper wallPaper = gj1Var.f36733l;
+                if (wallPaper != null && wallPaper.f20048id < 0) {
+                    wallpapersListActivity.getMessagesStorage().deleteWallpaper(gj1Var.f36733l.f20048id);
+                    wallpapersListActivity.f34289f0.remove(gj1Var);
+                    wallpapersListActivity.f34285d0.remove(gj1Var.a());
                 } else {
                     valueAt = wallPaper;
                 }
@@ -69,11 +69,11 @@ public final class bj1 implements org.telegram.ui.ActionBar.a2, oy {
                 savewallpaper.unsave = true;
                 if (valueAt instanceof TLRPC.TL_wallPaperNoFile) {
                     TLRPC.TL_inputWallPaperNoFile tL_inputWallPaperNoFile = new TLRPC.TL_inputWallPaperNoFile();
-                    tL_inputWallPaperNoFile.f19942id = wallPaper2.f20021id;
+                    tL_inputWallPaperNoFile.f19969id = wallPaper2.f20048id;
                     savewallpaper.wallpaper = tL_inputWallPaperNoFile;
                 } else {
                     TLRPC.TL_inputWallPaper tL_inputWallPaper = new TLRPC.TL_inputWallPaper();
-                    tL_inputWallPaper.f19941id = wallPaper2.f20021id;
+                    tL_inputWallPaper.f19968id = wallPaper2.f20048id;
                     tL_inputWallPaper.access_hash = wallPaper2.access_hash;
                     savewallpaper.wallpaper = tL_inputWallPaper;
                 }
@@ -114,11 +114,11 @@ public final class bj1 implements org.telegram.ui.ActionBar.a2, oy {
         int i16;
         int i17;
         String b10;
-        WallpapersListActivity wallpapersListActivity = this.f34823a.f35809a;
+        WallpapersListActivity wallpapersListActivity = this.f34850a.f35836a;
         StringBuilder sb2 = new StringBuilder();
         int i18 = 0;
         while (true) {
-            longSparseArray = wallpapersListActivity.f34265i0;
+            longSparseArray = wallpapersListActivity.f34292i0;
             if (i18 >= longSparseArray.size()) {
                 break;
             }

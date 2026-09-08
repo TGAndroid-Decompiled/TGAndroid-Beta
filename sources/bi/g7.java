@@ -10,31 +10,31 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class g7 implements RequestDelegate {
-    public final int f3024a;
-    public final u8 f3025b;
+    public final int f3051a;
+    public final u8 f3052b;
 
     public g7(u8 u8Var, int i10) {
-        this.f3024a = i10;
-        this.f3025b = u8Var;
+        this.f3051a = i10;
+        this.f3052b = u8Var;
     }
 
     @Override
     public final void run(final TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f3024a) {
+        switch (this.f3051a) {
             case 0:
                 TLRPC.Updates updates = (TLRPC.Updates) tLObject;
                 if (updates != null) {
-                    u8 u8Var = this.f3025b;
-                    MessagesController.getInstance(u8Var.f3805a).processUpdateArray(updates.updates, updates.users, updates.chats, false, updates.date);
+                    u8 u8Var = this.f3052b;
+                    MessagesController.getInstance(u8Var.f3832a).processUpdateArray(updates.updates, updates.users, updates.chats, false, updates.date);
                     AndroidUtilities.runOnUIThread(new r7(u8Var, 1));
                     return;
                 }
                 return;
             case 1:
-                AndroidUtilities.runOnUIThread(new a3.j0(this.f3025b, tLObject, tL_error, 7));
+                AndroidUtilities.runOnUIThread(new a3.k0(this.f3052b, tLObject, tL_error, 7));
                 return;
             case 2:
-                final u8 u8Var2 = this.f3025b;
+                final u8 u8Var2 = this.f3052b;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
@@ -42,7 +42,7 @@ public final class g7 implements RequestDelegate {
                             case 0:
                                 u8 u8Var3 = u8Var2;
                                 HashSet hashSet = u8Var3.L;
-                                int i10 = u8Var3.f3805a;
+                                int i10 = u8Var3.f3832a;
                                 TLObject tLObject2 = tLObject;
                                 boolean z10 = true;
                                 if (tLObject2 instanceof TLRPC.TL_contacts_blocked) {
@@ -86,7 +86,7 @@ public final class g7 implements RequestDelegate {
                                 return;
                             default:
                                 u8 u8Var4 = u8Var2;
-                                int i13 = u8Var4.f3805a;
+                                int i13 = u8Var4.f3832a;
                                 ArrayList arrayList3 = u8Var4.T;
                                 arrayList3.clear();
                                 arrayList3.add(new TLRPC.TL_inputPeerSelf());
@@ -111,7 +111,7 @@ public final class g7 implements RequestDelegate {
                 });
                 return;
             case 3:
-                final u8 u8Var3 = this.f3025b;
+                final u8 u8Var3 = this.f3052b;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
@@ -119,7 +119,7 @@ public final class g7 implements RequestDelegate {
                             case 0:
                                 u8 u8Var32 = u8Var3;
                                 HashSet hashSet = u8Var32.L;
-                                int i10 = u8Var32.f3805a;
+                                int i10 = u8Var32.f3832a;
                                 TLObject tLObject2 = tLObject;
                                 boolean z10 = true;
                                 if (tLObject2 instanceof TLRPC.TL_contacts_blocked) {
@@ -163,7 +163,7 @@ public final class g7 implements RequestDelegate {
                                 return;
                             default:
                                 u8 u8Var4 = u8Var3;
-                                int i13 = u8Var4.f3805a;
+                                int i13 = u8Var4.f3832a;
                                 ArrayList arrayList3 = u8Var4.T;
                                 arrayList3.clear();
                                 arrayList3.add(new TLRPC.TL_inputPeerSelf());
@@ -188,12 +188,12 @@ public final class g7 implements RequestDelegate {
                 });
                 return;
             case 4:
-                u8 u8Var4 = this.f3025b;
+                u8 u8Var4 = this.f3052b;
                 u8Var4.getClass();
                 AndroidUtilities.runOnUIThread(new r7(u8Var4, 0));
                 return;
             default:
-                u8 u8Var5 = this.f3025b;
+                u8 u8Var5 = this.f3052b;
                 u8Var5.getClass();
                 if (tL_error == null) {
                     AndroidUtilities.runOnUIThread(new r7(u8Var5, 0));

@@ -10,17 +10,17 @@ import org.telegram.ui.Components.hh;
 import org.telegram.ui.Components.ti;
 import org.telegram.ui.Components.vi;
 public final class n implements ti {
-    public final vi f14067a;
-    public final r f14068b;
+    public final vi f14093a;
+    public final r f14094b;
 
     public n(r rVar, vi viVar) {
-        this.f14068b = rVar;
-        this.f14067a = viVar;
+        this.f14094b = rVar;
+        this.f14093a = viVar;
     }
 
     @Override
     public final void B(hh hhVar) {
-        NotificationCenter.getInstance(this.f14068b.f14132n).doOnIdle(hhVar);
+        NotificationCenter.getInstance(this.f14094b.f14158n).doOnIdle(hhVar);
     }
 
     @Override
@@ -30,14 +30,14 @@ public final class n implements ti {
 
     @Override
     public final void l0(int i10, boolean z10, boolean z11, int i11, int i12, long j3, boolean z12, boolean z13, long j10) {
-        vi viVar = this.f14067a;
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = viVar.f31291j0;
-        v3 v3Var = this.f14068b.f14133r;
+        vi viVar = this.f14093a;
+        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = viVar.f31318j0;
+        v3 v3Var = this.f14094b.f14159r;
         if (i10 == 7 || i10 == 8) {
             HashMap<Object, Object> selectedPhotos = chatAttachAlertPhotoLayout.getSelectedPhotos();
             ArrayList<Object> selectedPhotosOrder = chatAttachAlertPhotoLayout.getSelectedPhotosOrder();
-            a aVar = v3Var.f14241b4;
-            v3Var.f14241b4 = null;
+            a aVar = v3Var.f14267b4;
+            v3Var.f14267b4 = null;
             int i13 = 0;
             while (true) {
                 if (i13 >= selectedPhotosOrder.size()) {
@@ -55,7 +55,7 @@ public final class n implements ti {
                 }
             }
         }
-        v3Var.f14241b4 = null;
+        v3Var.f14267b4 = null;
         viVar.dismiss(true);
     }
 

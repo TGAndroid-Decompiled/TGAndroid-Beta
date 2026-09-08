@@ -9,20 +9,20 @@ import org.telegram.messenger.wl;
 import org.telegram.ui.Components.hk0;
 import w7.x5;
 public final class y2 extends k {
-    public final u0 f45574q0;
-    public boolean f45575r0;
-    public int f45576s0;
-    public int f45577t0;
-    public final nd f45578u0;
+    public final u0 f45602q0;
+    public boolean f45603r0;
+    public int f45604s0;
+    public int f45605t0;
+    public final nd f45606u0;
 
     public y2(Context context, PointF pointF, int i10, nd ndVar, float f7, int i11) {
         super(context, pointF);
         u0 u0Var = new u0(context, f7);
-        this.f45574q0 = u0Var;
+        this.f45602q0 = u0Var;
         u0Var.setMaxWidth(i11);
-        u0Var.e(0, this.f45576s0);
-        this.f45578u0 = ndVar;
-        String str = ndVar.f7706c;
+        u0Var.e(0, this.f45604s0);
+        this.f45606u0 = ndVar;
+        String str = ndVar.f7734c;
         String a2 = ndVar.a();
         u0Var.d(i10, str);
         u0Var.setText(a2);
@@ -39,7 +39,7 @@ public final class y2 extends k {
     }
 
     public int getColor() {
-        return this.f45576s0;
+        return this.f45604s0;
     }
 
     @Override
@@ -64,30 +64,30 @@ public final class y2 extends k {
 
     @Override
     public float getStickyPaddingBottom() {
-        return this.f45574q0.J;
+        return this.f45602q0.J;
     }
 
     @Override
     public float getStickyPaddingLeft() {
-        return this.f45574q0.I;
+        return this.f45602q0.I;
     }
 
     @Override
     public float getStickyPaddingRight() {
-        return this.f45574q0.I;
+        return this.f45602q0.I;
     }
 
     @Override
     public float getStickyPaddingTop() {
-        return this.f45574q0.J;
+        return this.f45602q0.J;
     }
 
     public int getType() {
-        return this.f45577t0;
+        return this.f45605t0;
     }
 
     public int getTypesCount() {
-        return this.f45574q0.getTypesCount() - (!this.f45575r0 ? 1 : 0);
+        return this.f45602q0.getTypesCount() - (!this.f45603r0 ? 1 : 0);
     }
 
     @Override
@@ -103,21 +103,21 @@ public final class y2 extends k {
     }
 
     public void setColor(int i10) {
-        this.f45575r0 = true;
-        this.f45576s0 = i10;
+        this.f45603r0 = true;
+        this.f45604s0 = i10;
     }
 
     @Override
     public void setIsVideo(boolean z10) {
-        this.f45574q0.setIsVideo(true);
+        this.f45602q0.setIsVideo(true);
     }
 
     public void setMaxWidth(int i10) {
-        this.f45574q0.setMaxWidth(i10);
+        this.f45602q0.setMaxWidth(i10);
     }
 
     public void setType(int i10) {
-        this.f45577t0 = i10;
-        this.f45574q0.e(i10, this.f45576s0);
+        this.f45605t0 = i10;
+        this.f45602q0.e(i10, this.f45604s0);
     }
 }

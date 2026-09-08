@@ -45,15 +45,15 @@ public final class g2 extends i81 {
             FrameLayout frameLayout = (FrameLayout) view;
             if (frameLayout.getChildCount() > 0) {
                 view2 = frameLayout.getChildAt(0);
-                l2Var = w3Var.f52757b0;
-                if (l2Var != null && view2 == l2Var.Y && (i2Var3 = l2Var.f52761d0) != null) {
+                l2Var = w3Var.f52788b0;
+                if (l2Var != null && view2 == l2Var.Y && (i2Var3 = l2Var.f52792d0) != null) {
                     i2Var3.invalidate();
                 }
-                if (view2 == w3Var.Y && (i2Var2 = w3Var.f52761d0) != null) {
+                if (view2 == w3Var.Y && (i2Var2 = w3Var.f52792d0) != null) {
                     i2Var2.invalidate();
                 }
-                l2Var2 = w3Var.f52759c0;
-                if (l2Var2 == null && view2 == l2Var2.Y && (i2Var = l2Var2.f52761d0) != null) {
+                l2Var2 = w3Var.f52790c0;
+                if (l2Var2 == null && view2 == l2Var2.Y && (i2Var = l2Var2.f52792d0) != null) {
                     i2Var.invalidate();
                     return;
                 }
@@ -61,14 +61,14 @@ public final class g2 extends i81 {
             }
         }
         view2 = null;
-        l2Var = w3Var.f52757b0;
+        l2Var = w3Var.f52788b0;
         if (l2Var != null) {
             i2Var3.invalidate();
         }
         if (view2 == w3Var.Y) {
             i2Var2.invalidate();
         }
-        l2Var2 = w3Var.f52759c0;
+        l2Var2 = w3Var.f52790c0;
         if (l2Var2 == null) {
         }
     }
@@ -76,11 +76,11 @@ public final class g2 extends i81 {
     @Override
     public final void F() {
         super.F();
-        int i10 = this.f27015b;
+        int i10 = this.f27042b;
         w3 w3Var = this.T;
         boolean z10 = false;
         if (i10 != w3Var.L1(false)) {
-            if (this.f27015b > w3Var.L1(false)) {
+            if (this.f27042b > w3Var.L1(false)) {
                 z10 = true;
             }
             AndroidUtilities.runOnUIThread(new mr0(16, this, z10));

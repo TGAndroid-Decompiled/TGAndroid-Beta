@@ -24,11 +24,11 @@ public final class i extends oa0 {
         switch (this.V) {
             case 0:
                 m mVar = (m) this.W;
-                Paint paint = mVar.f7591e;
-                RectF rectF = mVar.f7619z0;
+                Paint paint = mVar.f7619e;
+                RectF rectF = mVar.f7647z0;
                 rectF.set(rect);
                 if (mVar.g()) {
-                    mVar.h(mVar.T, canvas, mVar.f7619z0, f7, false, -mVar.M.getX(), -mVar.M.getY(), false);
+                    mVar.h(mVar.T, canvas, mVar.f7647z0, f7, false, -mVar.M.getX(), -mVar.M.getY(), false);
                     return;
                 }
                 Paint c10 = mVar.T.c(1.0f);
@@ -61,7 +61,7 @@ public final class i extends oa0 {
     public void i() {
         switch (this.V) {
             case 1:
-                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = ((vi) this.W).f31291j0;
+                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = ((vi) this.W).f31318j0;
                 if (chatAttachAlertPhotoLayout != null) {
                     chatAttachAlertPhotoLayout.V();
                     return;
@@ -76,7 +76,7 @@ public final class i extends oa0 {
     public void n(boolean z10) {
         switch (this.V) {
             case 1:
-                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = ((vi) this.W).f31291j0;
+                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = ((vi) this.W).f31318j0;
                 if (chatAttachAlertPhotoLayout != null) {
                     chatAttachAlertPhotoLayout.V();
                     return;

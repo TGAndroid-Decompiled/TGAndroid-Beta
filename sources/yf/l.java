@@ -63,14 +63,14 @@ public abstract class l {
                     arrayList.add(tL_messageEntityStrike);
                 } else if (obj instanceof k) {
                     k kVar = (k) obj;
-                    int i10 = kVar.f50116a;
+                    int i10 = kVar.f50145a;
                     if (i10 == 0) {
                         TLRPC.TL_messageEntitySpoiler tL_messageEntitySpoiler = new TLRPC.TL_messageEntitySpoiler();
                         tL_messageEntitySpoiler.offset = spanStart;
                         tL_messageEntitySpoiler.length = spanEnd - spanStart;
                         arrayList.add(tL_messageEntitySpoiler);
                     } else if (i10 == 1) {
-                        if (!TextUtils.isEmpty(kVar.f50117b)) {
+                        if (!TextUtils.isEmpty(kVar.f50146b)) {
                             arrayList2.add(kVar);
                         } else {
                             TLRPC.TL_messageEntityPre tL_messageEntityPre = new TLRPC.TL_messageEntityPre();
@@ -111,13 +111,13 @@ public abstract class l {
                 k kVar2 = (k) arrayList2.get(i11);
                 int spanStart3 = fromHtml.getSpanStart(kVar2);
                 int spanEnd3 = fromHtml.getSpanEnd(kVar2);
-                spannableStringBuilder.setSpan(new CodeHighlighting.Span(true, 0, null, kVar2.f50117b, spannableStringBuilder.subSequence(spanStart3, spanEnd3).toString()), spanStart3, spanEnd3, 33);
+                spannableStringBuilder.setSpan(new CodeHighlighting.Span(true, 0, null, kVar2.f50146b, spannableStringBuilder.subSequence(spanStart3, spanEnd3).toString()), spanStart3, spanEnd3, 33);
             }
             for (int i12 = 0; i12 < arrayList3.size(); i12++) {
                 k kVar3 = (k) arrayList3.get(i12);
                 int spanStart4 = fromHtml.getSpanStart(kVar3);
                 int spanEnd4 = fromHtml.getSpanEnd(kVar3);
-                if (kVar3.f50116a == 3) {
+                if (kVar3.f50145a == 3) {
                     z10 = true;
                 } else {
                     z10 = false;

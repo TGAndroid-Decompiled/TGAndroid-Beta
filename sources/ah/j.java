@@ -1,9 +1,9 @@
 package ah;
 public final class j implements Runnable {
-    public final int f590a;
+    public final int f602a;
 
     public j(int i10) {
-        this.f590a = i10;
+        this.f602a = i10;
     }
 
     @Override
@@ -12,7 +12,7 @@ public final class j implements Runnable {
     }
 
     public j(Object obj, int i10) {
-        this.f590a = i10;
+        this.f602a = i10;
     }
 
     private final void a() {

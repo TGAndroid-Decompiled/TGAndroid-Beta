@@ -7,7 +7,7 @@ public abstract class x6 {
     public static int a(String str) {
         Integer num;
         try {
-            Map map = ResourceProvider.f4937a;
+            Map map = ResourceProvider.f4964a;
             num = (Integer) ResourceProvider.class.getMethod("findResourceByName", String.class).invoke(null, str);
         } catch (ClassNotFoundException | IllegalAccessException | NoSuchMethodException | InvocationTargetException unused) {
         }

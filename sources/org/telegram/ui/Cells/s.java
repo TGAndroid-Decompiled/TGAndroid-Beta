@@ -9,20 +9,20 @@ import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.jt;
 public final class s extends LinearLayout {
-    public static final int f22700f = 0;
-    public Paint f22701a;
-    public Paint f22702b;
-    public q f22703c;
+    public static final int f22727f = 0;
+    public Paint f22728a;
+    public Paint f22729b;
+    public q f22730c;
     public TextView d;
-    public float f22704e;
+    public float f22731e;
 
     public final void a(float f7) {
-        this.f22704e = f7;
+        this.f22731e = f7;
         TextView textView = this.d;
         int w02 = org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.G6, false);
         int i10 = org.telegram.ui.ActionBar.j6.I6;
         textView.setTextColor(i0.a.d(f7, w02, org.telegram.ui.ActionBar.j6.w0(null, i10, false)));
-        Paint paint = this.f22701a;
+        Paint paint = this.f22728a;
         paint.setColor(i0.a.d(f7, i0.a.k(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.M6, false), 63), org.telegram.ui.ActionBar.j6.w0(null, i10, false)));
         paint.setStrokeWidth(Math.max(2, AndroidUtilities.dp(AndroidUtilities.lerp(0.5f, 2.0f, f7))));
         invalidate();
@@ -35,13 +35,13 @@ public final class s extends LinearLayout {
         } else {
             f7 = 0.0f;
         }
-        float f10 = this.f22704e;
+        float f10 = this.f22731e;
         if (f7 == f10 && z11) {
             return;
         }
         if (z11) {
             ValueAnimator duration = ValueAnimator.ofFloat(f10, f7).setDuration(250L);
-            duration.setInterpolator(jt.f27568e);
+            duration.setInterpolator(jt.f27595e);
             duration.addUpdateListener(new r(this, 0));
             duration.start();
             return;
@@ -51,12 +51,12 @@ public final class s extends LinearLayout {
 
     @Override
     public final void draw(Canvas canvas) {
-        Paint paint = this.f22701a;
+        Paint paint = this.f22728a;
         float strokeWidth = paint.getStrokeWidth();
         RectF rectF = AndroidUtilities.rectTmp;
-        q qVar = this.f22703c;
+        q qVar = this.f22730c;
         rectF.set(qVar.getLeft() + strokeWidth, qVar.getTop() + strokeWidth, qVar.getRight() - strokeWidth, qVar.getBottom() - strokeWidth);
-        canvas.drawRoundRect(rectF, AndroidUtilities.dp(18.0f), AndroidUtilities.dp(18.0f), this.f22702b);
+        canvas.drawRoundRect(rectF, AndroidUtilities.dp(18.0f), AndroidUtilities.dp(18.0f), this.f22729b);
         super.draw(canvas);
         canvas.drawRoundRect(rectF, AndroidUtilities.dp(18.0f), AndroidUtilities.dp(18.0f), paint);
     }

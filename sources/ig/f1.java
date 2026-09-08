@@ -4,12 +4,12 @@ import java.util.Calendar;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class f1 {
-    public int f12067a;
-    public int f12068b;
+    public int f12093a;
+    public int f12094b;
 
     public f1(int i10, int i11) {
-        this.f12067a = i10;
-        this.f12068b = i11;
+        this.f12093a = i10;
+        this.f12094b = i11;
     }
 
     public static String a(int i10) {
@@ -24,6 +24,6 @@ public final class f1 {
     }
 
     public final String toString() {
-        return a(this.f12067a) + " - " + a(this.f12068b);
+        return a(this.f12093a) + " - " + a(this.f12094b);
     }
 }

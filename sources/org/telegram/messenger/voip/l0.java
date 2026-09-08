@@ -7,18 +7,18 @@ import org.telegram.ui.Components.v51;
 import org.telegram.ui.Components.wv0;
 import org.telegram.ui.nl;
 public final class l0 implements Runnable {
-    public final int f19380a;
-    public final int f19381b;
-    public final boolean f19382c;
+    public final int f19407a;
+    public final int f19408b;
+    public final boolean f19409c;
     public final Object d;
-    public final Object f19383e;
+    public final Object f19410e;
 
     public l0(int i10, int i11, Object obj, Object obj2, boolean z10) {
-        this.f19380a = i11;
+        this.f19407a = i11;
         this.d = obj;
-        this.f19383e = obj2;
-        this.f19381b = i10;
-        this.f19382c = z10;
+        this.f19410e = obj2;
+        this.f19408b = i10;
+        this.f19409c = z10;
     }
 
     @Override
@@ -27,26 +27,26 @@ public final class l0 implements Runnable {
     }
 
     public l0(nl nlVar, boolean z10, ArrayList arrayList, int i10) {
-        this.f19380a = 2;
+        this.f19407a = 2;
         this.d = nlVar;
-        this.f19382c = z10;
-        this.f19383e = arrayList;
-        this.f19381b = i10;
+        this.f19409c = z10;
+        this.f19410e = arrayList;
+        this.f19408b = i10;
     }
 
     public l0(wv0 wv0Var, boolean z10, int i10, t1 t1Var) {
-        this.f19380a = 5;
+        this.f19407a = 5;
         this.d = wv0Var;
-        this.f19382c = z10;
-        this.f19381b = i10;
-        this.f19383e = t1Var;
+        this.f19409c = z10;
+        this.f19408b = i10;
+        this.f19410e = t1Var;
     }
 
     public l0(v51 v51Var, int i10, TLRPC.TL_messages_searchGlobal tL_messages_searchGlobal, boolean z10, int i11) {
-        this.f19380a = i11;
+        this.f19407a = i11;
         this.d = v51Var;
-        this.f19381b = i10;
-        this.f19383e = tL_messages_searchGlobal;
-        this.f19382c = z10;
+        this.f19408b = i10;
+        this.f19410e = tL_messages_searchGlobal;
+        this.f19409c = z10;
     }
 }

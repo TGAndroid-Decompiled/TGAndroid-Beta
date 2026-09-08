@@ -6,7 +6,7 @@ public final class yv extends xv {
     public final zv K;
 
     public yv(zv zvVar, Context context, int i10, int i11) {
-        super(zvVar.f33237s, context, i10, i11);
+        super(zvVar.f33264s, context, i10, i11);
         this.K = zvVar;
     }
 

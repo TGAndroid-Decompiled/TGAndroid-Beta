@@ -1,26 +1,26 @@
 package di;
 public final class db implements Runnable {
-    public final int f7111a;
-    public final pc f7112b;
+    public final int f7139a;
+    public final pc f7140b;
 
     public db(pc pcVar, int i10) {
-        this.f7111a = i10;
-        this.f7112b = pcVar;
+        this.f7139a = i10;
+        this.f7140b = pcVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f7111a) {
+        switch (this.f7139a) {
             case 0:
-                pc pcVar = this.f7112b;
+                pc pcVar = this.f7140b;
                 pcVar.getClass();
                 pcVar.g(1.0f, true, new ka(pcVar, 6));
-                pcVar.f7846b1.b(true, true);
+                pcVar.f7874b1.b(true, true);
                 return;
             default:
-                pc pcVar2 = this.f7112b;
+                pc pcVar2 = this.f7140b;
                 pcVar2.f(false);
-                pcVar2.f7881m2 = null;
+                pcVar2.f7909m2 = null;
                 return;
         }
     }

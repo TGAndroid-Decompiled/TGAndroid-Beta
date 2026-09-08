@@ -4,21 +4,21 @@ import android.content.Context;
 import android.view.MotionEvent;
 import org.telegram.messenger.AndroidUtilities;
 public final class u6 extends z4.g {
-    public boolean f3797w0;
-    public final a7 f3798x0;
-    public final a7 f3799y0;
+    public boolean f3824w0;
+    public final a7 f3825x0;
+    public final a7 f3826y0;
 
     public u6(a7 a7Var, Context context) {
         super(context);
-        this.f3799y0 = a7Var;
-        this.f3798x0 = a7Var;
+        this.f3826y0 = a7Var;
+        this.f3825x0 = a7Var;
     }
 
     public final boolean A(MotionEvent motionEvent) {
         if (motionEvent.getAction() == 0) {
-            this.f3797w0 = true;
+            this.f3824w0 = true;
         }
-        if (this.f3797w0 && this.f3798x0.f2770x <= 0) {
+        if (this.f3824w0 && this.f3825x0.f2797x <= 0) {
             try {
                 return super.onInterceptTouchEvent(motionEvent);
             } catch (Exception unused) {
@@ -29,9 +29,9 @@ public final class u6 extends z4.g {
 
     public final boolean B(MotionEvent motionEvent) {
         if (motionEvent.getAction() == 0) {
-            this.f3797w0 = true;
+            this.f3824w0 = true;
         }
-        if (this.f3797w0 && this.f3798x0.f2770x <= 0) {
+        if (this.f3824w0 && this.f3825x0.f2797x <= 0) {
             return super.onTouchEvent(motionEvent);
         }
         return false;
@@ -41,7 +41,7 @@ public final class u6 extends z4.g {
     public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
         float currentTopOffset;
         float y3 = motionEvent.getY();
-        currentTopOffset = this.f3799y0.getCurrentTopOffset();
+        currentTopOffset = this.f3826y0.getCurrentTopOffset();
         if (y3 < currentTopOffset && motionEvent.getAction() == 0) {
             return false;
         }
@@ -53,7 +53,7 @@ public final class u6 extends z4.g {
         float currentTopOffset;
         float currentTopOffset2;
         float y3 = motionEvent.getY();
-        a7 a7Var = this.f3799y0;
+        a7 a7Var = this.f3826y0;
         currentTopOffset = a7Var.getCurrentTopOffset();
         if (y3 >= currentTopOffset) {
             currentTopOffset2 = a7Var.getCurrentTopOffset();
@@ -70,7 +70,7 @@ public final class u6 extends z4.g {
         float currentTopOffset;
         float currentTopOffset2;
         float y3 = motionEvent.getY();
-        a7 a7Var = this.f3799y0;
+        a7 a7Var = this.f3826y0;
         currentTopOffset = a7Var.getCurrentTopOffset();
         if (y3 >= currentTopOffset) {
             currentTopOffset2 = a7Var.getCurrentTopOffset();

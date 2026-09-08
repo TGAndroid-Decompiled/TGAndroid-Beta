@@ -3,11 +3,11 @@ package org.telegram.ui.web;
 import android.view.View;
 import java.util.concurrent.ExecutorService;
 public final class n implements e2.h {
-    public final int f42183a;
+    public final int f42210a;
 
     @Override
     public final void accept(Object obj) {
-        switch (this.f42183a) {
+        switch (this.f42210a) {
             case 0:
                 View view = (View) obj;
                 if (view instanceof i) {
@@ -23,7 +23,7 @@ public final class n implements e2.h {
                 }
                 return;
             case 2:
-                ((u2.y0) obj).f46860b.release();
+                ((u2.y0) obj).f46888b.release();
                 return;
             default:
                 ((ExecutorService) obj).shutdown();

@@ -34,7 +34,7 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.af1;
 public final class w21 extends FrameLayout implements NotificationCenter.NotificationCenterDelegate, le.d {
-    public static final int f32090f0 = 0;
+    public static final int f32117f0 = 0;
     public final ImageView E;
     public final FrameLayout F;
     public final m21 G;
@@ -54,25 +54,25 @@ public final class w21 extends FrameLayout implements NotificationCenter.Notific
     public ValueAnimator U;
     public long V;
     public boolean W;
-    public final le.b f32091a;
-    public Utilities.Callback2 f32092a0;
-    public final int f32093b;
-    public Runnable f32094b0;
-    public final long f32095c;
-    public Utilities.Callback2 f32096c0;
+    public final le.b f32118a;
+    public Utilities.Callback2 f32119a0;
+    public final int f32120b;
+    public Runnable f32121b0;
+    public final long f32122c;
+    public Utilities.Callback2 f32123c0;
     public final org.telegram.ui.ActionBar.f6 d;
-    public boolean f32097d0;
-    public final boolean f32098e;
-    public final HashSet f32099e0;
-    public final boolean f32100f;
+    public boolean f32124d0;
+    public final boolean f32125e;
+    public final HashSet f32126e0;
+    public final boolean f32127f;
     public final org.telegram.ui.co h;
-    public final boolean f32101n;
-    public final FrameLayout f32102r;
-    public final k21 f32103s;
+    public final boolean f32128n;
+    public final FrameLayout f32129r;
+    public final k21 f32130s;
     public final v21 v;
-    public final ImageView f32104w;
-    public final ImageView f32105x;
-    public final ImageView f32106y;
+    public final ImageView f32131w;
+    public final ImageView f32132x;
+    public final ImageView f32133y;
 
     public w21(Activity activity, org.telegram.ui.co coVar, int i10, long j3, org.telegram.ui.ActionBar.f6 f6Var) {
         super(activity);
@@ -81,33 +81,33 @@ public final class w21 extends FrameLayout implements NotificationCenter.Notific
         int i11;
         boolean z10;
         pr prVar = pr.h;
-        this.f32091a = new le.b(0, this, prVar, 380L, true);
+        this.f32118a = new le.b(0, this, prVar, 380L, true);
         this.J = new le.b(0, new b21(this), prVar, 320L, false);
         this.R = 0.0f;
-        this.f32099e0 = new HashSet();
+        this.f32126e0 = new HashSet();
         this.h = coVar;
-        this.f32093b = i10;
-        this.f32095c = j3;
+        this.f32120b = i10;
+        this.f32122c = j3;
         this.d = f6Var;
         long j10 = -j3;
-        this.f32098e = ChatObject.isMonoForum(MessagesController.getInstance(i10).getChat(Long.valueOf(j10)));
+        this.f32125e = ChatObject.isMonoForum(MessagesController.getInstance(i10).getChat(Long.valueOf(j10)));
         boolean isBotForumWithEditableTopics = UserObject.isBotForumWithEditableTopics(MessagesController.getInstance(i10).getUser(Long.valueOf(j3)));
-        this.f32100f = isBotForumWithEditableTopics;
-        this.f32101n = !org.telegram.messenger.w1.v("topics_end_reached_", j10, UserConfig.getInstance(i10).getPreferences(), false);
+        this.f32127f = isBotForumWithEditableTopics;
+        this.f32128n = !org.telegram.messenger.w1.v("topics_end_reached_", j10, UserConfig.getInstance(i10).getPreferences(), false);
         setClipChildren(true);
         setClipToPadding(true);
         setWillNotDraw(false);
         ?? frameLayout2 = new FrameLayout(activity);
-        this.f32102r = frameLayout2;
+        this.f32129r = frameLayout2;
         addView(frameLayout2, w7.x5.d(-1, 36.0f, 55, 7.0f, 7.0f, 7.0f, 7.0f));
         FrameLayout frameLayout3 = new FrameLayout(activity);
         this.F = frameLayout3;
         addView(frameLayout3, w7.x5.d(64, -1.0f, 115, 7.0f, 7.0f, 7.0f, 7.0f));
         k21 k21Var = new k21(this, activity, i10, new Utilities.Callback2(this) {
-            public final w21 f27327b;
+            public final w21 f27354b;
 
             {
-                this.f27327b = this;
+                this.f27354b = this;
             }
 
             @Override
@@ -128,27 +128,27 @@ public final class w21 extends FrameLayout implements NotificationCenter.Notific
                 boolean z16;
                 boolean z17;
                 int i13 = r2;
-                w21 w21Var = this.f27327b;
+                w21 w21Var = this.f27354b;
                 switch (i13) {
                     case 0:
                         ArrayList arrayList = (ArrayList) obj;
                         v51 v51Var = (v51) obj2;
-                        boolean z18 = w21Var.f32100f;
-                        int i14 = w21Var.f32093b;
+                        boolean z18 = w21Var.f32127f;
+                        int i14 = w21Var.f32120b;
                         MessagesController messagesController = MessagesController.getInstance(i14);
-                        long j16 = w21Var.f32095c;
+                        long j16 = w21Var.f32122c;
                         long j17 = -j16;
                         TLRPC.Chat chat = messagesController.getChat(Long.valueOf(j17));
                         TLRPC.User user2 = MessagesController.getInstance(i14).getUser(Long.valueOf(j16));
                         TopicsController topicsController2 = MessagesController.getInstance(i14).getTopicsController();
                         ArrayList<TLRPC.TL_forumTopic> topics = topicsController2.getTopics(j17);
-                        boolean z19 = w21Var.f32098e;
-                        int i15 = q21.f29556a;
+                        boolean z19 = w21Var.f32125e;
+                        int i15 = q21.f29583a;
                         h51 J = h51.J(q21.class);
                         J.d = 0;
                         J.B = 0L;
                         J.G = null;
-                        J.f26599q = z19;
+                        J.f26626q = z19;
                         if (w21Var.V == 0) {
                             z11 = true;
                         } else {
@@ -167,21 +167,21 @@ public final class w21 extends FrameLayout implements NotificationCenter.Notific
                                 int i18 = size;
                                 if (z18) {
                                     i12 = i17;
-                                    if (tL_forumTopic2.f19921id == 1) {
+                                    if (tL_forumTopic2.f19948id == 1) {
                                         size = i18;
                                         i16 = i12;
                                     }
                                 } else {
                                     i12 = i17;
                                 }
-                                if (w21Var.f32099e0.contains(Integer.valueOf(tL_forumTopic2.f19921id))) {
+                                if (w21Var.f32126e0.contains(Integer.valueOf(tL_forumTopic2.f19948id))) {
                                     size = i18;
                                     i16 = i12;
                                 } else {
                                     boolean z21 = tL_forumTopic2.pinned;
                                     if (!z21 && z20) {
                                         if (!arrayList.isEmpty()) {
-                                            ((h51) i2.g.h(1, arrayList)).f26606y |= 8;
+                                            ((h51) i2.g.h(1, arrayList)).f26633y |= 8;
                                         }
                                         v51Var.L();
                                         z20 = false;
@@ -190,8 +190,8 @@ public final class w21 extends FrameLayout implements NotificationCenter.Notific
                                         z20 = true;
                                     }
                                     h51 J2 = h51.J(q21.class);
-                                    J2.f26605x = j16;
-                                    J2.d = tL_forumTopic2.f19921id;
+                                    J2.f26632x = j16;
+                                    J2.d = tL_forumTopic2.f19948id;
                                     J2.G = tL_forumTopic2;
                                     if (z19) {
                                         z13 = z20;
@@ -206,7 +206,7 @@ public final class w21 extends FrameLayout implements NotificationCenter.Notific
                                         j12 = DialogObject.getPeerDialogId(tL_forumTopic2.from_id);
                                     } else {
                                         j11 = j18;
-                                        j12 = tL_forumTopic2.f19921id;
+                                        j12 = tL_forumTopic2.f19948id;
                                     }
                                     if (j11 == j12) {
                                         z14 = true;
@@ -227,18 +227,18 @@ public final class w21 extends FrameLayout implements NotificationCenter.Notific
                         if (z12) {
                             v51Var.L();
                         }
-                        if (topics != null && !topics.isEmpty() && !topicsController2.endIsReached(j17) && w21Var.f32101n) {
+                        if (topics != null && !topics.isEmpty() && !topicsController2.endIsReached(j17) && w21Var.f32128n) {
                             h51 J3 = h51.J(q21.class);
                             J3.d = -2;
-                            J3.f26600r = true;
+                            J3.f26627r = true;
                             arrayList.add(J3);
                             h51 J4 = h51.J(q21.class);
                             J4.d = -3;
-                            J4.f26600r = true;
+                            J4.f26627r = true;
                             arrayList.add(J4);
                             h51 J5 = h51.J(q21.class);
                             J5.d = -4;
-                            J5.f26600r = true;
+                            J5.f26627r = true;
                             arrayList.add(J5);
                         }
                         if (!z18 && !z19) {
@@ -260,25 +260,25 @@ public final class w21 extends FrameLayout implements NotificationCenter.Notific
                     default:
                         ArrayList arrayList2 = (ArrayList) obj;
                         v51 v51Var2 = (v51) obj2;
-                        boolean z22 = w21Var.f32098e;
-                        int i19 = w21Var.f32093b;
+                        boolean z22 = w21Var.f32125e;
+                        int i19 = w21Var.f32120b;
                         MessagesController messagesController2 = MessagesController.getInstance(i19);
-                        long j19 = w21Var.f32095c;
+                        long j19 = w21Var.f32122c;
                         long j20 = -j19;
                         TLRPC.Chat chat2 = messagesController2.getChat(Long.valueOf(j20));
                         TLRPC.User user3 = MessagesController.getInstance(i19).getUser(Long.valueOf(j19));
                         TopicsController topicsController3 = MessagesController.getInstance(i19).getTopicsController();
                         ArrayList<TLRPC.TL_forumTopic> topics2 = topicsController3.getTopics(j20);
-                        boolean z23 = w21Var.f32100f;
+                        boolean z23 = w21Var.f32127f;
                         if (!z23) {
-                            int i20 = u21.f30788a;
+                            int i20 = u21.f30815a;
                             h51 J7 = h51.J(u21.class);
                             J7.d = 0;
                             topicsController = topicsController3;
                             J7.B = 0L;
                             J7.G = null;
-                            J7.f26599q = z22;
-                            J7.f26606y = z23 ? 1 : 0;
+                            J7.f26626q = z22;
+                            J7.f26633y = z23 ? 1 : 0;
                             if (w21Var.V == 0) {
                                 z17 = true;
                             } else {
@@ -301,7 +301,7 @@ public final class w21 extends FrameLayout implements NotificationCenter.Notific
                                 TLRPC.Chat chat3 = chat2;
                                 if (z23) {
                                     user = user3;
-                                    if (tL_forumTopic4.f19921id == 1) {
+                                    if (tL_forumTopic4.f19948id == 1) {
                                         chat2 = chat3;
                                         size2 = i22;
                                         user3 = user;
@@ -309,7 +309,7 @@ public final class w21 extends FrameLayout implements NotificationCenter.Notific
                                 } else {
                                     user = user3;
                                 }
-                                if (w21Var.f32099e0.contains(Integer.valueOf(tL_forumTopic4.f19921id))) {
+                                if (w21Var.f32126e0.contains(Integer.valueOf(tL_forumTopic4.f19948id))) {
                                     chat2 = chat3;
                                     size2 = i22;
                                     user3 = user;
@@ -322,10 +322,10 @@ public final class w21 extends FrameLayout implements NotificationCenter.Notific
                                         v51Var2.M();
                                         z15 = true;
                                     }
-                                    int i23 = u21.f30788a;
+                                    int i23 = u21.f30815a;
                                     h51 J8 = h51.J(u21.class);
-                                    J8.f26605x = j19;
-                                    J8.d = tL_forumTopic4.f19921id;
+                                    J8.f26632x = j19;
+                                    J8.d = tL_forumTopic4.f19948id;
                                     J8.G = tL_forumTopic4;
                                     if (z22) {
                                         j13 = j19;
@@ -340,7 +340,7 @@ public final class w21 extends FrameLayout implements NotificationCenter.Notific
                                         j15 = DialogObject.getPeerDialogId(tL_forumTopic4.from_id);
                                     } else {
                                         j14 = j21;
-                                        j15 = tL_forumTopic4.f19921id;
+                                        j15 = tL_forumTopic4.f19948id;
                                     }
                                     if (j14 == j15) {
                                         z16 = true;
@@ -363,32 +363,32 @@ public final class w21 extends FrameLayout implements NotificationCenter.Notific
                         if (z15) {
                             v51Var2.L();
                         }
-                        if (topics2 != null && !topics2.isEmpty() && !topicsController.endIsReached(j20) && w21Var.f32101n) {
-                            int i24 = u21.f30788a;
+                        if (topics2 != null && !topics2.isEmpty() && !topicsController.endIsReached(j20) && w21Var.f32128n) {
+                            int i24 = u21.f30815a;
                             h51 J9 = h51.J(u21.class);
                             J9.d = -2;
-                            J9.f26600r = true;
-                            J9.f26588e = false;
+                            J9.f26627r = true;
+                            J9.f26615e = false;
                             arrayList2.add(J9);
                             h51 J10 = h51.J(u21.class);
                             J10.d = -3;
-                            J10.f26600r = true;
-                            J10.f26588e = false;
+                            J10.f26627r = true;
+                            J10.f26615e = false;
                             arrayList2.add(J10);
                             h51 J11 = h51.J(u21.class);
                             J11.d = -4;
-                            J11.f26600r = true;
-                            J11.f26588e = false;
+                            J11.f26627r = true;
+                            J11.f26615e = false;
                             arrayList2.add(J11);
                         }
                         if (!z23 && !z22) {
                             if ((chat4 != null && ChatObject.canCreateTopic(chat4)) || UserObject.isBotForumWithEditableTopics(user4)) {
-                                int i25 = u21.f30788a;
+                                int i25 = u21.f30815a;
                                 h51 J12 = h51.J(u21.class);
                                 J12.d = -2;
                                 J12.B = -2L;
                                 J12.G = null;
-                                J12.f26599q = false;
+                                J12.f26626q = false;
                                 arrayList2.add(J12);
                                 return;
                             }
@@ -398,12 +398,12 @@ public final class w21 extends FrameLayout implements NotificationCenter.Notific
                 }
             }
         }, new b21(this), new b21(this), f6Var);
-        this.f32103s = k21Var;
+        this.f32130s = k21Var;
         k21Var.A1(new Utilities.Callback2(this) {
-            public final w21 f27327b;
+            public final w21 f27354b;
 
             {
-                this.f27327b = this;
+                this.f27354b = this;
             }
 
             @Override
@@ -424,27 +424,27 @@ public final class w21 extends FrameLayout implements NotificationCenter.Notific
                 boolean z16;
                 boolean z17;
                 int i13 = r2;
-                w21 w21Var = this.f27327b;
+                w21 w21Var = this.f27354b;
                 switch (i13) {
                     case 0:
                         ArrayList arrayList = (ArrayList) obj;
                         v51 v51Var = (v51) obj2;
-                        boolean z18 = w21Var.f32100f;
-                        int i14 = w21Var.f32093b;
+                        boolean z18 = w21Var.f32127f;
+                        int i14 = w21Var.f32120b;
                         MessagesController messagesController = MessagesController.getInstance(i14);
-                        long j16 = w21Var.f32095c;
+                        long j16 = w21Var.f32122c;
                         long j17 = -j16;
                         TLRPC.Chat chat = messagesController.getChat(Long.valueOf(j17));
                         TLRPC.User user2 = MessagesController.getInstance(i14).getUser(Long.valueOf(j16));
                         TopicsController topicsController2 = MessagesController.getInstance(i14).getTopicsController();
                         ArrayList<TLRPC.TL_forumTopic> topics = topicsController2.getTopics(j17);
-                        boolean z19 = w21Var.f32098e;
-                        int i15 = q21.f29556a;
+                        boolean z19 = w21Var.f32125e;
+                        int i15 = q21.f29583a;
                         h51 J = h51.J(q21.class);
                         J.d = 0;
                         J.B = 0L;
                         J.G = null;
-                        J.f26599q = z19;
+                        J.f26626q = z19;
                         if (w21Var.V == 0) {
                             z11 = true;
                         } else {
@@ -463,21 +463,21 @@ public final class w21 extends FrameLayout implements NotificationCenter.Notific
                                 int i18 = size;
                                 if (z18) {
                                     i12 = i17;
-                                    if (tL_forumTopic2.f19921id == 1) {
+                                    if (tL_forumTopic2.f19948id == 1) {
                                         size = i18;
                                         i16 = i12;
                                     }
                                 } else {
                                     i12 = i17;
                                 }
-                                if (w21Var.f32099e0.contains(Integer.valueOf(tL_forumTopic2.f19921id))) {
+                                if (w21Var.f32126e0.contains(Integer.valueOf(tL_forumTopic2.f19948id))) {
                                     size = i18;
                                     i16 = i12;
                                 } else {
                                     boolean z21 = tL_forumTopic2.pinned;
                                     if (!z21 && z20) {
                                         if (!arrayList.isEmpty()) {
-                                            ((h51) i2.g.h(1, arrayList)).f26606y |= 8;
+                                            ((h51) i2.g.h(1, arrayList)).f26633y |= 8;
                                         }
                                         v51Var.L();
                                         z20 = false;
@@ -486,8 +486,8 @@ public final class w21 extends FrameLayout implements NotificationCenter.Notific
                                         z20 = true;
                                     }
                                     h51 J2 = h51.J(q21.class);
-                                    J2.f26605x = j16;
-                                    J2.d = tL_forumTopic2.f19921id;
+                                    J2.f26632x = j16;
+                                    J2.d = tL_forumTopic2.f19948id;
                                     J2.G = tL_forumTopic2;
                                     if (z19) {
                                         z13 = z20;
@@ -502,7 +502,7 @@ public final class w21 extends FrameLayout implements NotificationCenter.Notific
                                         j12 = DialogObject.getPeerDialogId(tL_forumTopic2.from_id);
                                     } else {
                                         j11 = j18;
-                                        j12 = tL_forumTopic2.f19921id;
+                                        j12 = tL_forumTopic2.f19948id;
                                     }
                                     if (j11 == j12) {
                                         z14 = true;
@@ -523,18 +523,18 @@ public final class w21 extends FrameLayout implements NotificationCenter.Notific
                         if (z12) {
                             v51Var.L();
                         }
-                        if (topics != null && !topics.isEmpty() && !topicsController2.endIsReached(j17) && w21Var.f32101n) {
+                        if (topics != null && !topics.isEmpty() && !topicsController2.endIsReached(j17) && w21Var.f32128n) {
                             h51 J3 = h51.J(q21.class);
                             J3.d = -2;
-                            J3.f26600r = true;
+                            J3.f26627r = true;
                             arrayList.add(J3);
                             h51 J4 = h51.J(q21.class);
                             J4.d = -3;
-                            J4.f26600r = true;
+                            J4.f26627r = true;
                             arrayList.add(J4);
                             h51 J5 = h51.J(q21.class);
                             J5.d = -4;
-                            J5.f26600r = true;
+                            J5.f26627r = true;
                             arrayList.add(J5);
                         }
                         if (!z18 && !z19) {
@@ -556,25 +556,25 @@ public final class w21 extends FrameLayout implements NotificationCenter.Notific
                     default:
                         ArrayList arrayList2 = (ArrayList) obj;
                         v51 v51Var2 = (v51) obj2;
-                        boolean z22 = w21Var.f32098e;
-                        int i19 = w21Var.f32093b;
+                        boolean z22 = w21Var.f32125e;
+                        int i19 = w21Var.f32120b;
                         MessagesController messagesController2 = MessagesController.getInstance(i19);
-                        long j19 = w21Var.f32095c;
+                        long j19 = w21Var.f32122c;
                         long j20 = -j19;
                         TLRPC.Chat chat2 = messagesController2.getChat(Long.valueOf(j20));
                         TLRPC.User user3 = MessagesController.getInstance(i19).getUser(Long.valueOf(j19));
                         TopicsController topicsController3 = MessagesController.getInstance(i19).getTopicsController();
                         ArrayList<TLRPC.TL_forumTopic> topics2 = topicsController3.getTopics(j20);
-                        boolean z23 = w21Var.f32100f;
+                        boolean z23 = w21Var.f32127f;
                         if (!z23) {
-                            int i20 = u21.f30788a;
+                            int i20 = u21.f30815a;
                             h51 J7 = h51.J(u21.class);
                             J7.d = 0;
                             topicsController = topicsController3;
                             J7.B = 0L;
                             J7.G = null;
-                            J7.f26599q = z22;
-                            J7.f26606y = z23 ? 1 : 0;
+                            J7.f26626q = z22;
+                            J7.f26633y = z23 ? 1 : 0;
                             if (w21Var.V == 0) {
                                 z17 = true;
                             } else {
@@ -597,7 +597,7 @@ public final class w21 extends FrameLayout implements NotificationCenter.Notific
                                 TLRPC.Chat chat3 = chat2;
                                 if (z23) {
                                     user = user3;
-                                    if (tL_forumTopic4.f19921id == 1) {
+                                    if (tL_forumTopic4.f19948id == 1) {
                                         chat2 = chat3;
                                         size2 = i22;
                                         user3 = user;
@@ -605,7 +605,7 @@ public final class w21 extends FrameLayout implements NotificationCenter.Notific
                                 } else {
                                     user = user3;
                                 }
-                                if (w21Var.f32099e0.contains(Integer.valueOf(tL_forumTopic4.f19921id))) {
+                                if (w21Var.f32126e0.contains(Integer.valueOf(tL_forumTopic4.f19948id))) {
                                     chat2 = chat3;
                                     size2 = i22;
                                     user3 = user;
@@ -618,10 +618,10 @@ public final class w21 extends FrameLayout implements NotificationCenter.Notific
                                         v51Var2.M();
                                         z15 = true;
                                     }
-                                    int i23 = u21.f30788a;
+                                    int i23 = u21.f30815a;
                                     h51 J8 = h51.J(u21.class);
-                                    J8.f26605x = j19;
-                                    J8.d = tL_forumTopic4.f19921id;
+                                    J8.f26632x = j19;
+                                    J8.d = tL_forumTopic4.f19948id;
                                     J8.G = tL_forumTopic4;
                                     if (z22) {
                                         j13 = j19;
@@ -636,7 +636,7 @@ public final class w21 extends FrameLayout implements NotificationCenter.Notific
                                         j15 = DialogObject.getPeerDialogId(tL_forumTopic4.from_id);
                                     } else {
                                         j14 = j21;
-                                        j15 = tL_forumTopic4.f19921id;
+                                        j15 = tL_forumTopic4.f19948id;
                                     }
                                     if (j14 == j15) {
                                         z16 = true;
@@ -659,32 +659,32 @@ public final class w21 extends FrameLayout implements NotificationCenter.Notific
                         if (z15) {
                             v51Var2.L();
                         }
-                        if (topics2 != null && !topics2.isEmpty() && !topicsController.endIsReached(j20) && w21Var.f32101n) {
-                            int i24 = u21.f30788a;
+                        if (topics2 != null && !topics2.isEmpty() && !topicsController.endIsReached(j20) && w21Var.f32128n) {
+                            int i24 = u21.f30815a;
                             h51 J9 = h51.J(u21.class);
                             J9.d = -2;
-                            J9.f26600r = true;
-                            J9.f26588e = false;
+                            J9.f26627r = true;
+                            J9.f26615e = false;
                             arrayList2.add(J9);
                             h51 J10 = h51.J(u21.class);
                             J10.d = -3;
-                            J10.f26600r = true;
-                            J10.f26588e = false;
+                            J10.f26627r = true;
+                            J10.f26615e = false;
                             arrayList2.add(J10);
                             h51 J11 = h51.J(u21.class);
                             J11.d = -4;
-                            J11.f26600r = true;
-                            J11.f26588e = false;
+                            J11.f26627r = true;
+                            J11.f26615e = false;
                             arrayList2.add(J11);
                         }
                         if (!z23 && !z22) {
                             if ((chat4 != null && ChatObject.canCreateTopic(chat4)) || UserObject.isBotForumWithEditableTopics(user4)) {
-                                int i25 = u21.f30788a;
+                                int i25 = u21.f30815a;
                                 h51 J12 = h51.J(u21.class);
                                 J12.d = -2;
                                 J12.B = -2L;
                                 J12.G = null;
-                                J12.f26599q = false;
+                                J12.f26626q = false;
                                 arrayList2.add(J12);
                                 return;
                             }
@@ -695,7 +695,7 @@ public final class w21 extends FrameLayout implements NotificationCenter.Notific
             }
         }, false);
         k21Var.setWillNotDraw(false);
-        k21Var.Y2.f31135r = false;
+        k21Var.Y2.f31162r = false;
         k21Var.getContext();
         hg.j0 j0Var = new hg.j0((ViewGroup) k21Var, 5);
         k21Var.X2 = j0Var;
@@ -712,17 +712,17 @@ public final class w21 extends FrameLayout implements NotificationCenter.Notific
             }
             v21Var.c(true, false, z10);
             v21Var.setOnClickListener(new View.OnClickListener(this) {
-                public final w21 f25880b;
+                public final w21 f25907b;
 
                 {
-                    this.f25880b = this;
+                    this.f25907b = this;
                 }
 
                 @Override
                 public final void onClick(View view) {
                     switch (r2) {
                         case 0:
-                            w21 w21Var = this.f25880b;
+                            w21 w21Var = this.f25907b;
                             Boolean bool = w21Var.T;
                             boolean z11 = false;
                             if (bool == null ? !w21Var.Q : !bool.booleanValue()) {
@@ -731,17 +731,17 @@ public final class w21 extends FrameLayout implements NotificationCenter.Notific
                             w21Var.d(z11);
                             return;
                         case 1:
-                            w21 w21Var2 = this.f25880b;
+                            w21 w21Var2 = this.f25907b;
                             m21 m21Var = w21Var2.G;
                             m21Var.v1(false);
-                            k21 k21Var2 = w21Var2.f32103s;
+                            k21 k21Var2 = w21Var2.f32130s;
                             k21Var2.v1(false);
                             w21Var2.J.a(false, true);
                             AndroidUtilities.updateVisibleRows(m21Var);
                             AndroidUtilities.updateVisibleRows(k21Var2);
                             return;
                         default:
-                            this.f25880b.f32092a0.run(0, Boolean.FALSE);
+                            this.f25907b.f32119a0.run(0, Boolean.FALSE);
                             return;
                     }
                 }
@@ -754,10 +754,10 @@ public final class w21 extends FrameLayout implements NotificationCenter.Notific
         }
         ViewGroup viewGroup = frameLayout;
         m21 m21Var = new m21(activity, i10, new Utilities.Callback2(this) {
-            public final w21 f27327b;
+            public final w21 f27354b;
 
             {
-                this.f27327b = this;
+                this.f27354b = this;
             }
 
             @Override
@@ -778,27 +778,27 @@ public final class w21 extends FrameLayout implements NotificationCenter.Notific
                 boolean z16;
                 boolean z17;
                 int i13 = r2;
-                w21 w21Var = this.f27327b;
+                w21 w21Var = this.f27354b;
                 switch (i13) {
                     case 0:
                         ArrayList arrayList = (ArrayList) obj;
                         v51 v51Var = (v51) obj2;
-                        boolean z18 = w21Var.f32100f;
-                        int i14 = w21Var.f32093b;
+                        boolean z18 = w21Var.f32127f;
+                        int i14 = w21Var.f32120b;
                         MessagesController messagesController = MessagesController.getInstance(i14);
-                        long j16 = w21Var.f32095c;
+                        long j16 = w21Var.f32122c;
                         long j17 = -j16;
                         TLRPC.Chat chat = messagesController.getChat(Long.valueOf(j17));
                         TLRPC.User user2 = MessagesController.getInstance(i14).getUser(Long.valueOf(j16));
                         TopicsController topicsController2 = MessagesController.getInstance(i14).getTopicsController();
                         ArrayList<TLRPC.TL_forumTopic> topics = topicsController2.getTopics(j17);
-                        boolean z19 = w21Var.f32098e;
-                        int i15 = q21.f29556a;
+                        boolean z19 = w21Var.f32125e;
+                        int i15 = q21.f29583a;
                         h51 J = h51.J(q21.class);
                         J.d = 0;
                         J.B = 0L;
                         J.G = null;
-                        J.f26599q = z19;
+                        J.f26626q = z19;
                         if (w21Var.V == 0) {
                             z11 = true;
                         } else {
@@ -817,21 +817,21 @@ public final class w21 extends FrameLayout implements NotificationCenter.Notific
                                 int i18 = size;
                                 if (z18) {
                                     i12 = i17;
-                                    if (tL_forumTopic2.f19921id == 1) {
+                                    if (tL_forumTopic2.f19948id == 1) {
                                         size = i18;
                                         i16 = i12;
                                     }
                                 } else {
                                     i12 = i17;
                                 }
-                                if (w21Var.f32099e0.contains(Integer.valueOf(tL_forumTopic2.f19921id))) {
+                                if (w21Var.f32126e0.contains(Integer.valueOf(tL_forumTopic2.f19948id))) {
                                     size = i18;
                                     i16 = i12;
                                 } else {
                                     boolean z21 = tL_forumTopic2.pinned;
                                     if (!z21 && z20) {
                                         if (!arrayList.isEmpty()) {
-                                            ((h51) i2.g.h(1, arrayList)).f26606y |= 8;
+                                            ((h51) i2.g.h(1, arrayList)).f26633y |= 8;
                                         }
                                         v51Var.L();
                                         z20 = false;
@@ -840,8 +840,8 @@ public final class w21 extends FrameLayout implements NotificationCenter.Notific
                                         z20 = true;
                                     }
                                     h51 J2 = h51.J(q21.class);
-                                    J2.f26605x = j16;
-                                    J2.d = tL_forumTopic2.f19921id;
+                                    J2.f26632x = j16;
+                                    J2.d = tL_forumTopic2.f19948id;
                                     J2.G = tL_forumTopic2;
                                     if (z19) {
                                         z13 = z20;
@@ -856,7 +856,7 @@ public final class w21 extends FrameLayout implements NotificationCenter.Notific
                                         j12 = DialogObject.getPeerDialogId(tL_forumTopic2.from_id);
                                     } else {
                                         j11 = j18;
-                                        j12 = tL_forumTopic2.f19921id;
+                                        j12 = tL_forumTopic2.f19948id;
                                     }
                                     if (j11 == j12) {
                                         z14 = true;
@@ -877,18 +877,18 @@ public final class w21 extends FrameLayout implements NotificationCenter.Notific
                         if (z12) {
                             v51Var.L();
                         }
-                        if (topics != null && !topics.isEmpty() && !topicsController2.endIsReached(j17) && w21Var.f32101n) {
+                        if (topics != null && !topics.isEmpty() && !topicsController2.endIsReached(j17) && w21Var.f32128n) {
                             h51 J3 = h51.J(q21.class);
                             J3.d = -2;
-                            J3.f26600r = true;
+                            J3.f26627r = true;
                             arrayList.add(J3);
                             h51 J4 = h51.J(q21.class);
                             J4.d = -3;
-                            J4.f26600r = true;
+                            J4.f26627r = true;
                             arrayList.add(J4);
                             h51 J5 = h51.J(q21.class);
                             J5.d = -4;
-                            J5.f26600r = true;
+                            J5.f26627r = true;
                             arrayList.add(J5);
                         }
                         if (!z18 && !z19) {
@@ -910,25 +910,25 @@ public final class w21 extends FrameLayout implements NotificationCenter.Notific
                     default:
                         ArrayList arrayList2 = (ArrayList) obj;
                         v51 v51Var2 = (v51) obj2;
-                        boolean z22 = w21Var.f32098e;
-                        int i19 = w21Var.f32093b;
+                        boolean z22 = w21Var.f32125e;
+                        int i19 = w21Var.f32120b;
                         MessagesController messagesController2 = MessagesController.getInstance(i19);
-                        long j19 = w21Var.f32095c;
+                        long j19 = w21Var.f32122c;
                         long j20 = -j19;
                         TLRPC.Chat chat2 = messagesController2.getChat(Long.valueOf(j20));
                         TLRPC.User user3 = MessagesController.getInstance(i19).getUser(Long.valueOf(j19));
                         TopicsController topicsController3 = MessagesController.getInstance(i19).getTopicsController();
                         ArrayList<TLRPC.TL_forumTopic> topics2 = topicsController3.getTopics(j20);
-                        boolean z23 = w21Var.f32100f;
+                        boolean z23 = w21Var.f32127f;
                         if (!z23) {
-                            int i20 = u21.f30788a;
+                            int i20 = u21.f30815a;
                             h51 J7 = h51.J(u21.class);
                             J7.d = 0;
                             topicsController = topicsController3;
                             J7.B = 0L;
                             J7.G = null;
-                            J7.f26599q = z22;
-                            J7.f26606y = z23 ? 1 : 0;
+                            J7.f26626q = z22;
+                            J7.f26633y = z23 ? 1 : 0;
                             if (w21Var.V == 0) {
                                 z17 = true;
                             } else {
@@ -951,7 +951,7 @@ public final class w21 extends FrameLayout implements NotificationCenter.Notific
                                 TLRPC.Chat chat3 = chat2;
                                 if (z23) {
                                     user = user3;
-                                    if (tL_forumTopic4.f19921id == 1) {
+                                    if (tL_forumTopic4.f19948id == 1) {
                                         chat2 = chat3;
                                         size2 = i22;
                                         user3 = user;
@@ -959,7 +959,7 @@ public final class w21 extends FrameLayout implements NotificationCenter.Notific
                                 } else {
                                     user = user3;
                                 }
-                                if (w21Var.f32099e0.contains(Integer.valueOf(tL_forumTopic4.f19921id))) {
+                                if (w21Var.f32126e0.contains(Integer.valueOf(tL_forumTopic4.f19948id))) {
                                     chat2 = chat3;
                                     size2 = i22;
                                     user3 = user;
@@ -972,10 +972,10 @@ public final class w21 extends FrameLayout implements NotificationCenter.Notific
                                         v51Var2.M();
                                         z15 = true;
                                     }
-                                    int i23 = u21.f30788a;
+                                    int i23 = u21.f30815a;
                                     h51 J8 = h51.J(u21.class);
-                                    J8.f26605x = j19;
-                                    J8.d = tL_forumTopic4.f19921id;
+                                    J8.f26632x = j19;
+                                    J8.d = tL_forumTopic4.f19948id;
                                     J8.G = tL_forumTopic4;
                                     if (z22) {
                                         j13 = j19;
@@ -990,7 +990,7 @@ public final class w21 extends FrameLayout implements NotificationCenter.Notific
                                         j15 = DialogObject.getPeerDialogId(tL_forumTopic4.from_id);
                                     } else {
                                         j14 = j21;
-                                        j15 = tL_forumTopic4.f19921id;
+                                        j15 = tL_forumTopic4.f19948id;
                                     }
                                     if (j14 == j15) {
                                         z16 = true;
@@ -1013,32 +1013,32 @@ public final class w21 extends FrameLayout implements NotificationCenter.Notific
                         if (z15) {
                             v51Var2.L();
                         }
-                        if (topics2 != null && !topics2.isEmpty() && !topicsController.endIsReached(j20) && w21Var.f32101n) {
-                            int i24 = u21.f30788a;
+                        if (topics2 != null && !topics2.isEmpty() && !topicsController.endIsReached(j20) && w21Var.f32128n) {
+                            int i24 = u21.f30815a;
                             h51 J9 = h51.J(u21.class);
                             J9.d = -2;
-                            J9.f26600r = true;
-                            J9.f26588e = false;
+                            J9.f26627r = true;
+                            J9.f26615e = false;
                             arrayList2.add(J9);
                             h51 J10 = h51.J(u21.class);
                             J10.d = -3;
-                            J10.f26600r = true;
-                            J10.f26588e = false;
+                            J10.f26627r = true;
+                            J10.f26615e = false;
                             arrayList2.add(J10);
                             h51 J11 = h51.J(u21.class);
                             J11.d = -4;
-                            J11.f26600r = true;
-                            J11.f26588e = false;
+                            J11.f26627r = true;
+                            J11.f26615e = false;
                             arrayList2.add(J11);
                         }
                         if (!z23 && !z22) {
                             if ((chat4 != null && ChatObject.canCreateTopic(chat4)) || UserObject.isBotForumWithEditableTopics(user4)) {
-                                int i25 = u21.f30788a;
+                                int i25 = u21.f30815a;
                                 h51 J12 = h51.J(u21.class);
                                 J12.d = -2;
                                 J12.B = -2L;
                                 J12.G = null;
-                                J12.f26599q = false;
+                                J12.f26626q = false;
                                 arrayList2.add(J12);
                                 return;
                             }
@@ -1050,10 +1050,10 @@ public final class w21 extends FrameLayout implements NotificationCenter.Notific
         }, new b21(this), new b21(this), f6Var);
         this.G = m21Var;
         m21Var.A1(new Utilities.Callback2(this) {
-            public final w21 f27327b;
+            public final w21 f27354b;
 
             {
-                this.f27327b = this;
+                this.f27354b = this;
             }
 
             @Override
@@ -1074,27 +1074,27 @@ public final class w21 extends FrameLayout implements NotificationCenter.Notific
                 boolean z16;
                 boolean z17;
                 int i13 = r2;
-                w21 w21Var = this.f27327b;
+                w21 w21Var = this.f27354b;
                 switch (i13) {
                     case 0:
                         ArrayList arrayList = (ArrayList) obj;
                         v51 v51Var = (v51) obj2;
-                        boolean z18 = w21Var.f32100f;
-                        int i14 = w21Var.f32093b;
+                        boolean z18 = w21Var.f32127f;
+                        int i14 = w21Var.f32120b;
                         MessagesController messagesController = MessagesController.getInstance(i14);
-                        long j16 = w21Var.f32095c;
+                        long j16 = w21Var.f32122c;
                         long j17 = -j16;
                         TLRPC.Chat chat = messagesController.getChat(Long.valueOf(j17));
                         TLRPC.User user2 = MessagesController.getInstance(i14).getUser(Long.valueOf(j16));
                         TopicsController topicsController2 = MessagesController.getInstance(i14).getTopicsController();
                         ArrayList<TLRPC.TL_forumTopic> topics = topicsController2.getTopics(j17);
-                        boolean z19 = w21Var.f32098e;
-                        int i15 = q21.f29556a;
+                        boolean z19 = w21Var.f32125e;
+                        int i15 = q21.f29583a;
                         h51 J = h51.J(q21.class);
                         J.d = 0;
                         J.B = 0L;
                         J.G = null;
-                        J.f26599q = z19;
+                        J.f26626q = z19;
                         if (w21Var.V == 0) {
                             z11 = true;
                         } else {
@@ -1113,21 +1113,21 @@ public final class w21 extends FrameLayout implements NotificationCenter.Notific
                                 int i18 = size;
                                 if (z18) {
                                     i12 = i17;
-                                    if (tL_forumTopic2.f19921id == 1) {
+                                    if (tL_forumTopic2.f19948id == 1) {
                                         size = i18;
                                         i16 = i12;
                                     }
                                 } else {
                                     i12 = i17;
                                 }
-                                if (w21Var.f32099e0.contains(Integer.valueOf(tL_forumTopic2.f19921id))) {
+                                if (w21Var.f32126e0.contains(Integer.valueOf(tL_forumTopic2.f19948id))) {
                                     size = i18;
                                     i16 = i12;
                                 } else {
                                     boolean z21 = tL_forumTopic2.pinned;
                                     if (!z21 && z20) {
                                         if (!arrayList.isEmpty()) {
-                                            ((h51) i2.g.h(1, arrayList)).f26606y |= 8;
+                                            ((h51) i2.g.h(1, arrayList)).f26633y |= 8;
                                         }
                                         v51Var.L();
                                         z20 = false;
@@ -1136,8 +1136,8 @@ public final class w21 extends FrameLayout implements NotificationCenter.Notific
                                         z20 = true;
                                     }
                                     h51 J2 = h51.J(q21.class);
-                                    J2.f26605x = j16;
-                                    J2.d = tL_forumTopic2.f19921id;
+                                    J2.f26632x = j16;
+                                    J2.d = tL_forumTopic2.f19948id;
                                     J2.G = tL_forumTopic2;
                                     if (z19) {
                                         z13 = z20;
@@ -1152,7 +1152,7 @@ public final class w21 extends FrameLayout implements NotificationCenter.Notific
                                         j12 = DialogObject.getPeerDialogId(tL_forumTopic2.from_id);
                                     } else {
                                         j11 = j18;
-                                        j12 = tL_forumTopic2.f19921id;
+                                        j12 = tL_forumTopic2.f19948id;
                                     }
                                     if (j11 == j12) {
                                         z14 = true;
@@ -1173,18 +1173,18 @@ public final class w21 extends FrameLayout implements NotificationCenter.Notific
                         if (z12) {
                             v51Var.L();
                         }
-                        if (topics != null && !topics.isEmpty() && !topicsController2.endIsReached(j17) && w21Var.f32101n) {
+                        if (topics != null && !topics.isEmpty() && !topicsController2.endIsReached(j17) && w21Var.f32128n) {
                             h51 J3 = h51.J(q21.class);
                             J3.d = -2;
-                            J3.f26600r = true;
+                            J3.f26627r = true;
                             arrayList.add(J3);
                             h51 J4 = h51.J(q21.class);
                             J4.d = -3;
-                            J4.f26600r = true;
+                            J4.f26627r = true;
                             arrayList.add(J4);
                             h51 J5 = h51.J(q21.class);
                             J5.d = -4;
-                            J5.f26600r = true;
+                            J5.f26627r = true;
                             arrayList.add(J5);
                         }
                         if (!z18 && !z19) {
@@ -1206,25 +1206,25 @@ public final class w21 extends FrameLayout implements NotificationCenter.Notific
                     default:
                         ArrayList arrayList2 = (ArrayList) obj;
                         v51 v51Var2 = (v51) obj2;
-                        boolean z22 = w21Var.f32098e;
-                        int i19 = w21Var.f32093b;
+                        boolean z22 = w21Var.f32125e;
+                        int i19 = w21Var.f32120b;
                         MessagesController messagesController2 = MessagesController.getInstance(i19);
-                        long j19 = w21Var.f32095c;
+                        long j19 = w21Var.f32122c;
                         long j20 = -j19;
                         TLRPC.Chat chat2 = messagesController2.getChat(Long.valueOf(j20));
                         TLRPC.User user3 = MessagesController.getInstance(i19).getUser(Long.valueOf(j19));
                         TopicsController topicsController3 = MessagesController.getInstance(i19).getTopicsController();
                         ArrayList<TLRPC.TL_forumTopic> topics2 = topicsController3.getTopics(j20);
-                        boolean z23 = w21Var.f32100f;
+                        boolean z23 = w21Var.f32127f;
                         if (!z23) {
-                            int i20 = u21.f30788a;
+                            int i20 = u21.f30815a;
                             h51 J7 = h51.J(u21.class);
                             J7.d = 0;
                             topicsController = topicsController3;
                             J7.B = 0L;
                             J7.G = null;
-                            J7.f26599q = z22;
-                            J7.f26606y = z23 ? 1 : 0;
+                            J7.f26626q = z22;
+                            J7.f26633y = z23 ? 1 : 0;
                             if (w21Var.V == 0) {
                                 z17 = true;
                             } else {
@@ -1247,7 +1247,7 @@ public final class w21 extends FrameLayout implements NotificationCenter.Notific
                                 TLRPC.Chat chat3 = chat2;
                                 if (z23) {
                                     user = user3;
-                                    if (tL_forumTopic4.f19921id == 1) {
+                                    if (tL_forumTopic4.f19948id == 1) {
                                         chat2 = chat3;
                                         size2 = i22;
                                         user3 = user;
@@ -1255,7 +1255,7 @@ public final class w21 extends FrameLayout implements NotificationCenter.Notific
                                 } else {
                                     user = user3;
                                 }
-                                if (w21Var.f32099e0.contains(Integer.valueOf(tL_forumTopic4.f19921id))) {
+                                if (w21Var.f32126e0.contains(Integer.valueOf(tL_forumTopic4.f19948id))) {
                                     chat2 = chat3;
                                     size2 = i22;
                                     user3 = user;
@@ -1268,10 +1268,10 @@ public final class w21 extends FrameLayout implements NotificationCenter.Notific
                                         v51Var2.M();
                                         z15 = true;
                                     }
-                                    int i23 = u21.f30788a;
+                                    int i23 = u21.f30815a;
                                     h51 J8 = h51.J(u21.class);
-                                    J8.f26605x = j19;
-                                    J8.d = tL_forumTopic4.f19921id;
+                                    J8.f26632x = j19;
+                                    J8.d = tL_forumTopic4.f19948id;
                                     J8.G = tL_forumTopic4;
                                     if (z22) {
                                         j13 = j19;
@@ -1286,7 +1286,7 @@ public final class w21 extends FrameLayout implements NotificationCenter.Notific
                                         j15 = DialogObject.getPeerDialogId(tL_forumTopic4.from_id);
                                     } else {
                                         j14 = j21;
-                                        j15 = tL_forumTopic4.f19921id;
+                                        j15 = tL_forumTopic4.f19948id;
                                     }
                                     if (j14 == j15) {
                                         z16 = true;
@@ -1309,32 +1309,32 @@ public final class w21 extends FrameLayout implements NotificationCenter.Notific
                         if (z15) {
                             v51Var2.L();
                         }
-                        if (topics2 != null && !topics2.isEmpty() && !topicsController.endIsReached(j20) && w21Var.f32101n) {
-                            int i24 = u21.f30788a;
+                        if (topics2 != null && !topics2.isEmpty() && !topicsController.endIsReached(j20) && w21Var.f32128n) {
+                            int i24 = u21.f30815a;
                             h51 J9 = h51.J(u21.class);
                             J9.d = -2;
-                            J9.f26600r = true;
-                            J9.f26588e = false;
+                            J9.f26627r = true;
+                            J9.f26615e = false;
                             arrayList2.add(J9);
                             h51 J10 = h51.J(u21.class);
                             J10.d = -3;
-                            J10.f26600r = true;
-                            J10.f26588e = false;
+                            J10.f26627r = true;
+                            J10.f26615e = false;
                             arrayList2.add(J10);
                             h51 J11 = h51.J(u21.class);
                             J11.d = -4;
-                            J11.f26600r = true;
-                            J11.f26588e = false;
+                            J11.f26627r = true;
+                            J11.f26615e = false;
                             arrayList2.add(J11);
                         }
                         if (!z23 && !z22) {
                             if ((chat4 != null && ChatObject.canCreateTopic(chat4)) || UserObject.isBotForumWithEditableTopics(user4)) {
-                                int i25 = u21.f30788a;
+                                int i25 = u21.f30815a;
                                 h51 J12 = h51.J(u21.class);
                                 J12.d = -2;
                                 J12.B = -2L;
                                 J12.G = null;
-                                J12.f26599q = false;
+                                J12.f26626q = false;
                                 arrayList2.add(J12);
                                 return;
                             }
@@ -1344,7 +1344,7 @@ public final class w21 extends FrameLayout implements NotificationCenter.Notific
                 }
             }
         }, false);
-        m21Var.Y2.f31135r = false;
+        m21Var.Y2.f31162r = false;
         m21Var.setClipToPadding(false);
         m21Var.setClipChildren(false);
         if (isBotForumWithEditableTopics) {
@@ -1355,17 +1355,17 @@ public final class w21 extends FrameLayout implements NotificationCenter.Notific
         viewGroup.addView(m21Var, w7.x5.d(-1, -1.0f, 119, 0.0f, f7, 0.0f, 0.0f));
         m21Var.j(new l21(this, 1));
         ImageView i12 = i(activity, R.drawable.menu_sidebar_left, new View.OnClickListener(this) {
-            public final w21 f25880b;
+            public final w21 f25907b;
 
             {
-                this.f25880b = this;
+                this.f25907b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        w21 w21Var = this.f25880b;
+                        w21 w21Var = this.f25907b;
                         Boolean bool = w21Var.T;
                         boolean z11 = false;
                         if (bool == null ? !w21Var.Q : !bool.booleanValue()) {
@@ -1374,34 +1374,34 @@ public final class w21 extends FrameLayout implements NotificationCenter.Notific
                         w21Var.d(z11);
                         return;
                     case 1:
-                        w21 w21Var2 = this.f25880b;
+                        w21 w21Var2 = this.f25907b;
                         m21 m21Var2 = w21Var2.G;
                         m21Var2.v1(false);
-                        k21 k21Var2 = w21Var2.f32103s;
+                        k21 k21Var2 = w21Var2.f32130s;
                         k21Var2.v1(false);
                         w21Var2.J.a(false, true);
                         AndroidUtilities.updateVisibleRows(m21Var2);
                         AndroidUtilities.updateVisibleRows(k21Var2);
                         return;
                     default:
-                        this.f25880b.f32092a0.run(0, Boolean.FALSE);
+                        this.f25907b.f32119a0.run(0, Boolean.FALSE);
                         return;
                 }
             }
         });
-        this.f32106y = i12;
+        this.f32133y = i12;
         ImageView i13 = i(activity, R.drawable.menu_sidebar_left, new View.OnClickListener(this) {
-            public final w21 f25880b;
+            public final w21 f25907b;
 
             {
-                this.f25880b = this;
+                this.f25907b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        w21 w21Var = this.f25880b;
+                        w21 w21Var = this.f25907b;
                         Boolean bool = w21Var.T;
                         boolean z11 = false;
                         if (bool == null ? !w21Var.Q : !bool.booleanValue()) {
@@ -1410,17 +1410,17 @@ public final class w21 extends FrameLayout implements NotificationCenter.Notific
                         w21Var.d(z11);
                         return;
                     case 1:
-                        w21 w21Var2 = this.f25880b;
+                        w21 w21Var2 = this.f25907b;
                         m21 m21Var2 = w21Var2.G;
                         m21Var2.v1(false);
-                        k21 k21Var2 = w21Var2.f32103s;
+                        k21 k21Var2 = w21Var2.f32130s;
                         k21Var2.v1(false);
                         w21Var2.J.a(false, true);
                         AndroidUtilities.updateVisibleRows(m21Var2);
                         AndroidUtilities.updateVisibleRows(k21Var2);
                         return;
                     default:
-                        this.f25880b.f32092a0.run(0, Boolean.FALSE);
+                        this.f25907b.f32119a0.run(0, Boolean.FALSE);
                         return;
                 }
             }
@@ -1429,17 +1429,17 @@ public final class w21 extends FrameLayout implements NotificationCenter.Notific
         frameLayout2.addView(i12, w7.x5.e(44, 36, 51));
         viewGroup.addView(i13, w7.x5.e(64, 48, 51));
         ImageView i14 = i(activity, R.drawable.msg_select, new View.OnClickListener(this) {
-            public final w21 f25880b;
+            public final w21 f25907b;
 
             {
-                this.f25880b = this;
+                this.f25907b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        w21 w21Var = this.f25880b;
+                        w21 w21Var = this.f25907b;
                         Boolean bool = w21Var.T;
                         boolean z11 = false;
                         if (bool == null ? !w21Var.Q : !bool.booleanValue()) {
@@ -1448,34 +1448,34 @@ public final class w21 extends FrameLayout implements NotificationCenter.Notific
                         w21Var.d(z11);
                         return;
                     case 1:
-                        w21 w21Var2 = this.f25880b;
+                        w21 w21Var2 = this.f25907b;
                         m21 m21Var2 = w21Var2.G;
                         m21Var2.v1(false);
-                        k21 k21Var2 = w21Var2.f32103s;
+                        k21 k21Var2 = w21Var2.f32130s;
                         k21Var2.v1(false);
                         w21Var2.J.a(false, true);
                         AndroidUtilities.updateVisibleRows(m21Var2);
                         AndroidUtilities.updateVisibleRows(k21Var2);
                         return;
                     default:
-                        this.f25880b.f32092a0.run(0, Boolean.FALSE);
+                        this.f25907b.f32119a0.run(0, Boolean.FALSE);
                         return;
                 }
             }
         });
-        this.f32104w = i14;
+        this.f32131w = i14;
         ImageView i15 = i(activity, R.drawable.msg_select, new View.OnClickListener(this) {
-            public final w21 f25880b;
+            public final w21 f25907b;
 
             {
-                this.f25880b = this;
+                this.f25907b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        w21 w21Var = this.f25880b;
+                        w21 w21Var = this.f25907b;
                         Boolean bool = w21Var.T;
                         boolean z11 = false;
                         if (bool == null ? !w21Var.Q : !bool.booleanValue()) {
@@ -1484,22 +1484,22 @@ public final class w21 extends FrameLayout implements NotificationCenter.Notific
                         w21Var.d(z11);
                         return;
                     case 1:
-                        w21 w21Var2 = this.f25880b;
+                        w21 w21Var2 = this.f25907b;
                         m21 m21Var2 = w21Var2.G;
                         m21Var2.v1(false);
-                        k21 k21Var2 = w21Var2.f32103s;
+                        k21 k21Var2 = w21Var2.f32130s;
                         k21Var2.v1(false);
                         w21Var2.J.a(false, true);
                         AndroidUtilities.updateVisibleRows(m21Var2);
                         AndroidUtilities.updateVisibleRows(k21Var2);
                         return;
                     default:
-                        this.f25880b.f32092a0.run(0, Boolean.FALSE);
+                        this.f25907b.f32119a0.run(0, Boolean.FALSE);
                         return;
                 }
             }
         });
-        this.f32105x = i15;
+        this.f32132x = i15;
         frameLayout2.addView(i14, w7.x5.e(44, 36, 51));
         viewGroup.addView(i15, w7.x5.e(64, 48, 51));
         MessagesController.getInstance(i10).getTopicsController().loadTopics(j10, false, 3);
@@ -1523,18 +1523,18 @@ public final class w21 extends FrameLayout implements NotificationCenter.Notific
     }
 
     public static void a(w21 w21Var, h51 h51Var) {
-        if (w21Var.f32098e) {
-            Utilities.Callback2 callback2 = w21Var.f32096c0;
+        if (w21Var.f32125e) {
+            Utilities.Callback2 callback2 = w21Var.f32123c0;
             if (callback2 != null) {
                 callback2.run(Long.valueOf(h51Var.B), Boolean.FALSE);
             }
         } else if (h51Var.B == -2) {
-            Runnable runnable = w21Var.f32094b0;
+            Runnable runnable = w21Var.f32121b0;
             if (runnable != null) {
                 runnable.run();
             }
         } else {
-            Utilities.Callback2 callback22 = w21Var.f32092a0;
+            Utilities.Callback2 callback22 = w21Var.f32119a0;
             if (callback22 != null) {
                 callback22.run(Integer.valueOf(h51Var.d), Boolean.FALSE);
             }
@@ -1542,8 +1542,8 @@ public final class w21 extends FrameLayout implements NotificationCenter.Notific
     }
 
     public static void b(w21 w21Var, ArrayList arrayList) {
-        long j3 = w21Var.f32095c;
-        TopicsController topicsController = MessagesController.getInstance(w21Var.f32093b).getTopicsController();
+        long j3 = w21Var.f32122c;
+        TopicsController topicsController = MessagesController.getInstance(w21Var.f32120b).getTopicsController();
         ArrayList<Integer> arrayList2 = new ArrayList<>();
         int i10 = 0;
         while (i10 < arrayList.size()) {
@@ -1573,9 +1573,9 @@ public final class w21 extends FrameLayout implements NotificationCenter.Notific
         n70 n70Var2;
         org.telegram.ui.ActionBar.f6 f6Var2 = w21Var.d;
         org.telegram.ui.co coVar = w21Var.h;
-        long j3 = w21Var.f32095c;
-        int i18 = w21Var.f32093b;
-        if (w21Var.G.f25281c3 || w21Var.f32103s.f25281c3) {
+        long j3 = w21Var.f32122c;
+        int i18 = w21Var.f32120b;
+        if (w21Var.G.f25308c3 || w21Var.f32130s.f25308c3) {
             return false;
         }
         Object obj = h51Var.G;
@@ -1603,7 +1603,7 @@ public final class w21 extends FrameLayout implements NotificationCenter.Notific
             }
             TLRPC.Chat chat2 = chat;
             I.c(R.drawable.msg_clear, LocaleController.getString(R.string.ClearHistory), new bi.x7(w21Var, I, peerDialogId, chat2, 29), false);
-            long j10 = chat2.f19869id;
+            long j10 = chat2.f19896id;
             if (ChatObject.isMonoForum(chat2) && ChatObject.canManageMonoForum(i18, chat2)) {
                 long j11 = chat2.linked_monoforum_id;
                 if (j11 != 0) {
@@ -1650,44 +1650,44 @@ public final class w21 extends FrameLayout implements NotificationCenter.Notific
             }
             if (ChatObject.canManageTopics(chat4) || UserObject.isBotForumWithEditableTopics(user)) {
                 I.c(R.drawable.outline_profile_edit_24, LocaleController.getString(R.string.EditTopic), new Runnable(w21Var) {
-                    public final w21 f25528b;
+                    public final w21 f25555b;
 
                     {
-                        this.f25528b = w21Var;
+                        this.f25555b = w21Var;
                     }
 
                     @Override
                     public final void run() {
                         boolean z12;
                         int i21 = r4;
-                        w21 w21Var2 = this.f25528b;
+                        w21 w21Var2 = this.f25555b;
                         TLRPC.TL_forumTopic tL_forumTopic2 = tL_forumTopic;
                         n70 n70Var3 = I;
                         switch (i21) {
                             case 0:
                                 n70Var3.u();
-                                w21Var2.h.presentFragment(af1.a0(-w21Var2.f32095c, tL_forumTopic2.f19921id));
+                                w21Var2.h.presentFragment(af1.a0(-w21Var2.f32122c, tL_forumTopic2.f19948id));
                                 return;
                             case 1:
                                 w21Var2.getClass();
                                 n70Var3.u();
-                                MessagesController.getInstance(w21Var2.f32093b).getTopicsController().toggleCloseTopic(-w21Var2.f32095c, tL_forumTopic2.f19921id, true ^ tL_forumTopic2.closed);
+                                MessagesController.getInstance(w21Var2.f32120b).getTopicsController().toggleCloseTopic(-w21Var2.f32122c, tL_forumTopic2.f19948id, true ^ tL_forumTopic2.closed);
                                 return;
                             default:
                                 n70Var3.u();
                                 HashSet hashSet = new HashSet();
-                                hashSet.add(Integer.valueOf(tL_forumTopic2.f19921id));
+                                hashSet.add(Integer.valueOf(tL_forumTopic2.f19948id));
                                 ue ueVar = new ue(12);
-                                w21 w21Var3 = this.f25528b;
+                                w21 w21Var3 = this.f25555b;
                                 AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(w21Var3.getContext());
                                 String pluralString = LocaleController.getPluralString("DeleteTopics", hashSet.size());
-                                org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20198a;
+                                org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20225a;
                                 b2Var.R = pluralString;
                                 ArrayList arrayList = new ArrayList(hashSet);
                                 long j12 = w21Var3.V;
                                 if (hashSet.size() == 1) {
                                     z12 = false;
-                                    b2Var.T = LocaleController.formatString(R.string.DeleteSelectedTopic, MessagesController.getInstance(w21Var3.f32093b).getTopicsController().findTopic(-w21Var3.f32095c, ((Integer) arrayList.get(0)).intValue()).title);
+                                    b2Var.T = LocaleController.formatString(R.string.DeleteSelectedTopic, MessagesController.getInstance(w21Var3.f32120b).getTopicsController().findTopic(-w21Var3.f32122c, ((Integer) arrayList.get(0)).intValue()).title);
                                 } else {
                                     z12 = false;
                                     b2Var.T = LocaleController.getString(R.string.DeleteSelectedTopics);
@@ -1697,7 +1697,7 @@ public final class w21 extends FrameLayout implements NotificationCenter.Notific
                                 b2Var.show();
                                 TextView textView = (TextView) b2Var.d(-1);
                                 if (textView != null) {
-                                    textView.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f20898q7, z12));
+                                    textView.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f20925q7, z12));
                                     return;
                                 }
                                 return;
@@ -1705,8 +1705,8 @@ public final class w21 extends FrameLayout implements NotificationCenter.Notific
                     }
                 }, false);
             }
-            long j12 = w21Var.f32095c;
-            long j13 = tL_forumTopic.f19921id;
+            long j12 = w21Var.f32122c;
+            long j13 = tL_forumTopic.f19948id;
             int currentAccount = coVar.getCurrentAccount();
             org.telegram.ui.ActionBar.f6 resourceProvider = coVar.getResourceProvider();
             jo joVar = new jo(I, currentAccount, j12, j13, coVar, resourceProvider);
@@ -1719,7 +1719,7 @@ public final class w21 extends FrameLayout implements NotificationCenter.Notific
             J.c(R.drawable.msg_customize, LocaleController.getString(R.string.NotificationsCustomize), new org.telegram.messenger.t2(I, j12, j13, coVar, resourceProvider, 7), false);
             J.c(0, "", new bi.i0(I, currentAccount, j12, j13, coVar, resourceProvider), false);
             new org.telegram.messenger.o9(currentAccount, j12, j13, J.y(), y10).run();
-            boolean isDialogMuted = messagesController.isDialogMuted(j3, tL_forumTopic.f19921id);
+            boolean isDialogMuted = messagesController.isDialogMuted(j3, tL_forumTopic.f19948id);
             if (isDialogMuted) {
                 i12 = R.drawable.msg_unmute;
             } else {
@@ -1750,44 +1750,44 @@ public final class w21 extends FrameLayout implements NotificationCenter.Notific
                 }
                 z10 = true;
                 n70Var.c(i16, LocaleController.getString(i17), new Runnable(w21Var) {
-                    public final w21 f25528b;
+                    public final w21 f25555b;
 
                     {
-                        this.f25528b = w21Var;
+                        this.f25555b = w21Var;
                     }
 
                     @Override
                     public final void run() {
                         boolean z122;
                         int i212 = r4;
-                        w21 w21Var2 = this.f25528b;
+                        w21 w21Var2 = this.f25555b;
                         TLRPC.TL_forumTopic tL_forumTopic2 = tL_forumTopic;
                         n70 n70Var3 = n70Var;
                         switch (i212) {
                             case 0:
                                 n70Var3.u();
-                                w21Var2.h.presentFragment(af1.a0(-w21Var2.f32095c, tL_forumTopic2.f19921id));
+                                w21Var2.h.presentFragment(af1.a0(-w21Var2.f32122c, tL_forumTopic2.f19948id));
                                 return;
                             case 1:
                                 w21Var2.getClass();
                                 n70Var3.u();
-                                MessagesController.getInstance(w21Var2.f32093b).getTopicsController().toggleCloseTopic(-w21Var2.f32095c, tL_forumTopic2.f19921id, true ^ tL_forumTopic2.closed);
+                                MessagesController.getInstance(w21Var2.f32120b).getTopicsController().toggleCloseTopic(-w21Var2.f32122c, tL_forumTopic2.f19948id, true ^ tL_forumTopic2.closed);
                                 return;
                             default:
                                 n70Var3.u();
                                 HashSet hashSet = new HashSet();
-                                hashSet.add(Integer.valueOf(tL_forumTopic2.f19921id));
+                                hashSet.add(Integer.valueOf(tL_forumTopic2.f19948id));
                                 ue ueVar = new ue(12);
-                                w21 w21Var3 = this.f25528b;
+                                w21 w21Var3 = this.f25555b;
                                 AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(w21Var3.getContext());
                                 String pluralString = LocaleController.getPluralString("DeleteTopics", hashSet.size());
-                                org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20198a;
+                                org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20225a;
                                 b2Var.R = pluralString;
                                 ArrayList arrayList = new ArrayList(hashSet);
                                 long j122 = w21Var3.V;
                                 if (hashSet.size() == 1) {
                                     z122 = false;
-                                    b2Var.T = LocaleController.formatString(R.string.DeleteSelectedTopic, MessagesController.getInstance(w21Var3.f32093b).getTopicsController().findTopic(-w21Var3.f32095c, ((Integer) arrayList.get(0)).intValue()).title);
+                                    b2Var.T = LocaleController.formatString(R.string.DeleteSelectedTopic, MessagesController.getInstance(w21Var3.f32120b).getTopicsController().findTopic(-w21Var3.f32122c, ((Integer) arrayList.get(0)).intValue()).title);
                                 } else {
                                     z122 = false;
                                     b2Var.T = LocaleController.getString(R.string.DeleteSelectedTopics);
@@ -1797,7 +1797,7 @@ public final class w21 extends FrameLayout implements NotificationCenter.Notific
                                 b2Var.show();
                                 TextView textView = (TextView) b2Var.d(-1);
                                 if (textView != null) {
-                                    textView.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f20898q7, z122));
+                                    textView.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f20925q7, z122));
                                     return;
                                 }
                                 return;
@@ -1810,44 +1810,44 @@ public final class w21 extends FrameLayout implements NotificationCenter.Notific
             r62 = z10;
             if (ChatObject.canDeleteTopic(i18, chat4, tL_forumTopic)) {
                 n70Var.c(R.drawable.msg_delete, LocaleController.getPluralString("DeleteTopics", z10 ? 1 : 0), new Runnable(w21Var) {
-                    public final w21 f25528b;
+                    public final w21 f25555b;
 
                     {
-                        this.f25528b = w21Var;
+                        this.f25555b = w21Var;
                     }
 
                     @Override
                     public final void run() {
                         boolean z122;
                         int i212 = r4;
-                        w21 w21Var2 = this.f25528b;
+                        w21 w21Var2 = this.f25555b;
                         TLRPC.TL_forumTopic tL_forumTopic2 = tL_forumTopic;
                         n70 n70Var3 = n70Var;
                         switch (i212) {
                             case 0:
                                 n70Var3.u();
-                                w21Var2.h.presentFragment(af1.a0(-w21Var2.f32095c, tL_forumTopic2.f19921id));
+                                w21Var2.h.presentFragment(af1.a0(-w21Var2.f32122c, tL_forumTopic2.f19948id));
                                 return;
                             case 1:
                                 w21Var2.getClass();
                                 n70Var3.u();
-                                MessagesController.getInstance(w21Var2.f32093b).getTopicsController().toggleCloseTopic(-w21Var2.f32095c, tL_forumTopic2.f19921id, true ^ tL_forumTopic2.closed);
+                                MessagesController.getInstance(w21Var2.f32120b).getTopicsController().toggleCloseTopic(-w21Var2.f32122c, tL_forumTopic2.f19948id, true ^ tL_forumTopic2.closed);
                                 return;
                             default:
                                 n70Var3.u();
                                 HashSet hashSet = new HashSet();
-                                hashSet.add(Integer.valueOf(tL_forumTopic2.f19921id));
+                                hashSet.add(Integer.valueOf(tL_forumTopic2.f19948id));
                                 ue ueVar = new ue(12);
-                                w21 w21Var3 = this.f25528b;
+                                w21 w21Var3 = this.f25555b;
                                 AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(w21Var3.getContext());
                                 String pluralString = LocaleController.getPluralString("DeleteTopics", hashSet.size());
-                                org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20198a;
+                                org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20225a;
                                 b2Var.R = pluralString;
                                 ArrayList arrayList = new ArrayList(hashSet);
                                 long j122 = w21Var3.V;
                                 if (hashSet.size() == 1) {
                                     z122 = false;
-                                    b2Var.T = LocaleController.formatString(R.string.DeleteSelectedTopic, MessagesController.getInstance(w21Var3.f32093b).getTopicsController().findTopic(-w21Var3.f32095c, ((Integer) arrayList.get(0)).intValue()).title);
+                                    b2Var.T = LocaleController.formatString(R.string.DeleteSelectedTopic, MessagesController.getInstance(w21Var3.f32120b).getTopicsController().findTopic(-w21Var3.f32122c, ((Integer) arrayList.get(0)).intValue()).title);
                                 } else {
                                     z122 = false;
                                     b2Var.T = LocaleController.getString(R.string.DeleteSelectedTopics);
@@ -1857,7 +1857,7 @@ public final class w21 extends FrameLayout implements NotificationCenter.Notific
                                 b2Var.show();
                                 TextView textView = (TextView) b2Var.d(-1);
                                 if (textView != null) {
-                                    textView.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f20898q7, z122));
+                                    textView.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f20925q7, z122));
                                     return;
                                 }
                                 return;
@@ -1870,15 +1870,15 @@ public final class w21 extends FrameLayout implements NotificationCenter.Notific
         if (view instanceof r21) {
             aw awVar = new aw(i15, b10);
             Paint paint = new Paint((int) r62);
-            awVar.f24461c = paint;
-            awVar.f24460b = new RectF();
+            awVar.f24488c = paint;
+            awVar.f24487b = new RectF();
             paint.setColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.G8, f6Var));
             n70Var.W(awVar);
             n70Var.a0(AndroidUtilities.dp(16.0f), 0.0f);
         } else {
             int dp = AndroidUtilities.dp(5.0f);
             int dp2 = AndroidUtilities.dp(5.0f);
-            int v02 = org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f20663d6, f6Var);
+            int v02 = org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f20690d6, f6Var);
             float f7 = b10;
             float f10 = dp;
             float f11 = dp2;
@@ -1913,8 +1913,8 @@ public final class w21 extends FrameLayout implements NotificationCenter.Notific
             return;
         }
         this.W = z10;
-        long j3 = this.f32095c;
-        int i10 = this.f32093b;
+        long j3 = this.f32122c;
+        int i10 = this.f32120b;
         if (z10) {
             NotificationCenter.getInstance(i10).addObserver(this, NotificationCenter.topicsDidLoaded);
             NotificationCenter.getInstance(i10).addObserver(this, NotificationCenter.updateInterfaces);
@@ -1967,13 +1967,13 @@ public final class w21 extends FrameLayout implements NotificationCenter.Notific
     @Override
     public final void didReceivedNotification(int i10, int i11, Object... objArr) {
         int i12 = NotificationCenter.topicsDidLoaded;
-        long j3 = this.f32095c;
+        long j3 = this.f32122c;
         if (i10 == i12) {
             if (((Long) objArr[0]).longValue() == (-j3)) {
                 o();
             }
         } else if (i10 == NotificationCenter.updateInterfaces && (((Integer) objArr[0]).intValue() & MessagesController.UPDATE_MASK_SELECT_DIALOG) > 0) {
-            MessagesController.getInstance(this.f32093b).getTopicsController().sortTopics(-j3, false);
+            MessagesController.getInstance(this.f32120b).getTopicsController().sortTopics(-j3, false);
             o();
         }
     }
@@ -1985,7 +1985,7 @@ public final class w21 extends FrameLayout implements NotificationCenter.Notific
             this.K.setBounds((int) frameLayout.getTranslationX(), (int) this.N, (int) (frameLayout.getTranslationX() + AndroidUtilities.dp(78.0f)), (int) (getMeasuredHeight() - this.M));
             this.K.draw(canvas);
         }
-        FrameLayout frameLayout2 = this.f32102r;
+        FrameLayout frameLayout2 = this.f32129r;
         if (frameLayout2.getVisibility() == 0) {
             this.L.setAlpha((int) (frameLayout2.getAlpha() * 255.0f));
             this.L.setBounds(0, (int) frameLayout2.getTranslationY(), getMeasuredWidth(), (int) (frameLayout2.getTranslationY() + AndroidUtilities.dp(50.0f)));
@@ -2001,10 +2001,10 @@ public final class w21 extends FrameLayout implements NotificationCenter.Notific
     public final boolean drawChild(Canvas canvas, View view, long j3) {
         canvas.save();
         if (view == this.F) {
-            canvas.clipPath(this.K.h.f6826k);
+            canvas.clipPath(this.K.h.f6854k);
         }
-        if (view == this.f32102r) {
-            canvas.clipPath(this.L.h.f6826k);
+        if (view == this.f32129r) {
+            canvas.clipPath(this.L.h.f6854k);
         }
         boolean drawChild = super.drawChild(canvas, view, j3);
         canvas.restore();
@@ -2023,13 +2023,13 @@ public final class w21 extends FrameLayout implements NotificationCenter.Notific
 
     public final void f(boolean z10) {
         boolean z11;
-        ArrayList<TLRPC.TL_forumTopic> topics = MessagesController.getInstance(this.f32093b).getTopicsController().getTopics(-this.f32095c);
-        if (topics != null && !topics.isEmpty() && !this.f32097d0) {
+        ArrayList<TLRPC.TL_forumTopic> topics = MessagesController.getInstance(this.f32120b).getTopicsController().getTopics(-this.f32122c);
+        if (topics != null && !topics.isEmpty() && !this.f32124d0) {
             z11 = true;
         } else {
             z11 = false;
         }
-        this.f32091a.a(z11, z10);
+        this.f32118a.a(z11, z10);
     }
 
     public final void g() {
@@ -2037,8 +2037,8 @@ public final class w21 extends FrameLayout implements NotificationCenter.Notific
         int i11;
         int i12;
         le.b bVar = this.J;
-        float f7 = bVar.f15368e;
-        ImageView imageView = this.f32104w;
+        float f7 = bVar.f15395e;
+        ImageView imageView = this.f32131w;
         imageView.setAlpha(f7);
         imageView.setScaleX(AndroidUtilities.lerp(0.4f, 1.0f, f7));
         imageView.setScaleY(AndroidUtilities.lerp(0.4f, 1.0f, f7));
@@ -2050,7 +2050,7 @@ public final class w21 extends FrameLayout implements NotificationCenter.Notific
             i10 = 8;
         }
         imageView.setVisibility(i10);
-        ImageView imageView2 = this.f32105x;
+        ImageView imageView2 = this.f32132x;
         imageView2.setAlpha(f7);
         imageView2.setScaleX(AndroidUtilities.lerp(0.4f, 1.0f, f7));
         imageView2.setScaleY(AndroidUtilities.lerp(0.4f, 1.0f, f7));
@@ -2060,8 +2060,8 @@ public final class w21 extends FrameLayout implements NotificationCenter.Notific
             i11 = 8;
         }
         imageView2.setVisibility(i11);
-        float f10 = 1.0f - bVar.f15368e;
-        ImageView imageView3 = this.f32106y;
+        float f10 = 1.0f - bVar.f15395e;
+        ImageView imageView3 = this.f32133y;
         imageView3.setAlpha(f10);
         imageView3.setScaleX(AndroidUtilities.lerp(0.4f, 1.0f, f10));
         imageView3.setScaleY(AndroidUtilities.lerp(0.4f, 1.0f, f10));
@@ -2084,42 +2084,42 @@ public final class w21 extends FrameLayout implements NotificationCenter.Notific
 
     public s21 getCurrentTabsPosition() {
         if (this.Q) {
-            return s21.f30177b;
+            return s21.f30204b;
         }
         if (this.P) {
-            return s21.f30178c;
+            return s21.f30205c;
         }
-        return s21.f30176a;
+        return s21.f30203a;
     }
 
     public float getSideMenuT() {
-        return this.R * this.f32091a.f15368e;
+        return this.R * this.f32118a.f15395e;
     }
 
     public final void h() {
         int i10;
         float lerp = AndroidUtilities.lerp(1.0f, 0.0f, this.R);
-        FrameLayout frameLayout = this.f32102r;
+        FrameLayout frameLayout = this.f32129r;
         frameLayout.setAlpha(lerp);
-        if ((1.0f - this.R) * this.f32091a.f15368e > 0.0f) {
+        if ((1.0f - this.R) * this.f32118a.f15395e > 0.0f) {
             i10 = 0;
         } else {
             i10 = 8;
         }
         frameLayout.setVisibility(i10);
         if (this.P) {
-            frameLayout.setTranslationY(((getMeasuredHeight() - AndroidUtilities.dp(50.0f)) - this.M) + AndroidUtilities.lerp(AndroidUtilities.dp(43.0f), 0, j(s21.f30178c)));
+            frameLayout.setTranslationY(((getMeasuredHeight() - AndroidUtilities.dp(50.0f)) - this.M) + AndroidUtilities.lerp(AndroidUtilities.dp(43.0f), 0, j(s21.f30205c)));
         } else {
-            frameLayout.setTranslationY(this.N + AndroidUtilities.lerp(-AndroidUtilities.dp(43.0f), 0, j(s21.f30176a)));
+            frameLayout.setTranslationY(this.N + AndroidUtilities.lerp(-AndroidUtilities.dp(43.0f), 0, j(s21.f30203a)));
         }
     }
 
     public final float j(s21 s21Var) {
         float f7;
-        float f10 = this.f32091a.f15368e;
-        if (s21Var == s21.f30177b) {
+        float f10 = this.f32118a.f15395e;
+        if (s21Var == s21.f30204b) {
             f7 = this.R;
-        } else if ((s21Var == s21.f30176a && !this.P) || (s21Var == s21.f30178c && this.P)) {
+        } else if ((s21Var == s21.f30203a && !this.P) || (s21Var == s21.f30205c && this.P)) {
             f7 = 1.0f - this.R;
         } else {
             return 0.0f;
@@ -2136,7 +2136,7 @@ public final class w21 extends FrameLayout implements NotificationCenter.Notific
                     break;
                 }
                 h51 G = m21Var.Y2.G(RecyclerView.R(m21Var.getChildAt(i10)));
-                if (G == null || !G.f26600r) {
+                if (G == null || !G.f26627r) {
                     i10++;
                 } else {
                     return true;
@@ -2145,12 +2145,12 @@ public final class w21 extends FrameLayout implements NotificationCenter.Notific
         } else {
             int i11 = 0;
             while (true) {
-                k21 k21Var = this.f32103s;
+                k21 k21Var = this.f32130s;
                 if (i11 >= k21Var.getChildCount()) {
                     break;
                 }
                 h51 G2 = k21Var.Y2.G(RecyclerView.R(k21Var.getChildAt(i11)));
-                if (G2 != null && G2.f26600r) {
+                if (G2 != null && G2.f26627r) {
                     return true;
                 }
                 i11++;
@@ -2160,23 +2160,23 @@ public final class w21 extends FrameLayout implements NotificationCenter.Notific
     }
 
     public final void l() {
-        TopicsController topicsController = MessagesController.getInstance(this.f32093b).getTopicsController();
-        long j3 = this.f32095c;
+        TopicsController topicsController = MessagesController.getInstance(this.f32120b).getTopicsController();
+        long j3 = this.f32122c;
         if (!topicsController.endIsReached(-j3)) {
             topicsController.loadTopics(-j3);
         }
     }
 
     public final void m(long j3, boolean z10) {
-        if (this.f32098e) {
-            Utilities.Callback2 callback2 = this.f32096c0;
+        if (this.f32125e) {
+            Utilities.Callback2 callback2 = this.f32123c0;
             if (callback2 != null) {
                 callback2.run(Long.valueOf(j3), Boolean.valueOf(z10));
                 return;
             }
             return;
         }
-        Utilities.Callback2 callback22 = this.f32092a0;
+        Utilities.Callback2 callback22 = this.f32119a0;
         if (callback22 != null) {
             callback22.run(Integer.valueOf((int) j3), Boolean.valueOf(z10));
         }
@@ -2188,7 +2188,7 @@ public final class w21 extends FrameLayout implements NotificationCenter.Notific
             meVar.run();
         }
         h();
-        float j3 = j(s21.f30177b);
+        float j3 = j(s21.f30204b);
         int i10 = 0;
         FrameLayout frameLayout = this.F;
         frameLayout.setTranslationX(AndroidUtilities.lerp(-AndroidUtilities.dp(78.0f), 0, j3));
@@ -2196,22 +2196,22 @@ public final class w21 extends FrameLayout implements NotificationCenter.Notific
             i10 = 8;
         }
         frameLayout.setVisibility(i10);
-        int i11 = org.telegram.ui.ActionBar.j6.f21061z6;
+        int i11 = org.telegram.ui.ActionBar.j6.f21088z6;
         org.telegram.ui.ActionBar.f6 f6Var = this.d;
         int v02 = org.telegram.ui.ActionBar.j6.v0(i11, f6Var);
         int i12 = org.telegram.ui.ActionBar.j6.Oh;
         int d = i0.a.d(1.0f - this.R, v02, org.telegram.ui.ActionBar.j6.v0(i12, f6Var));
         PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
-        this.f32106y.setColorFilter(new PorterDuffColorFilter(d, mode));
+        this.f32133y.setColorFilter(new PorterDuffColorFilter(d, mode));
         this.E.setColorFilter(new PorterDuffColorFilter(i0.a.d(this.R, org.telegram.ui.ActionBar.j6.v0(i11, f6Var), org.telegram.ui.ActionBar.j6.v0(i12, f6Var)), mode));
-        this.f32104w.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.j6.v0(i12, f6Var), mode));
-        this.f32105x.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.j6.v0(i12, f6Var), mode));
+        this.f32131w.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.j6.v0(i12, f6Var), mode));
+        this.f32132x.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.j6.v0(i12, f6Var), mode));
         invalidate();
     }
 
     public final void o() {
         f(true);
-        k21 k21Var = this.f32103s;
+        k21 k21Var = this.f32130s;
         boolean canScrollHorizontally = k21Var.canScrollHorizontally(-1);
         k21Var.Y2.N(true);
         if (!canScrollHorizontally) {
@@ -2245,8 +2245,8 @@ public final class w21 extends FrameLayout implements NotificationCenter.Notific
     }
 
     public void setAllTopicsHidden(boolean z10) {
-        if (this.f32097d0 != z10) {
-            this.f32097d0 = z10;
+        if (this.f32124d0 != z10) {
+            this.f32124d0 = z10;
             f(true);
         }
     }
@@ -2254,7 +2254,7 @@ public final class w21 extends FrameLayout implements NotificationCenter.Notific
     public void setCurrentTopic(long j3) {
         boolean z10;
         this.V = j3;
-        k21 k21Var = this.f32103s;
+        k21 k21Var = this.f32130s;
         k21Var.Y2.N(true);
         k21Var.invalidate();
         this.G.Y2.N(true);
@@ -2270,15 +2270,15 @@ public final class w21 extends FrameLayout implements NotificationCenter.Notific
     }
 
     public void setOnDialogSelected(Utilities.Callback2<Long, Boolean> callback2) {
-        this.f32096c0 = callback2;
+        this.f32123c0 = callback2;
     }
 
     public void setOnNewTopicSelected(Runnable runnable) {
-        this.f32094b0 = runnable;
+        this.f32121b0 = runnable;
     }
 
     public void setOnTopicSelected(Utilities.Callback2<Integer, Boolean> callback2) {
-        this.f32092a0 = callback2;
+        this.f32119a0 = callback2;
     }
 
     public void setSideMenuBackgroundDrawable(dh.d dVar) {

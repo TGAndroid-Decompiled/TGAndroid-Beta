@@ -13,52 +13,52 @@ import org.telegram.ui.ActionBar.f6;
 import org.telegram.ui.Components.u70;
 import org.telegram.ui.Components.w70;
 public final class g1 implements Runnable {
-    public final int f9682a = 0;
-    public final org.telegram.ui.ActionBar.b2 f9683b;
-    public final long f9684c;
+    public final int f9710a = 0;
+    public final org.telegram.ui.ActionBar.b2 f9711b;
+    public final long f9712c;
     public final Context d;
-    public final int f9685e;
-    public final TLObject f9686f;
+    public final int f9713e;
+    public final TLObject f9714f;
     public final Object h;
-    public final Object f9687n;
-    public final Object f9688r;
-    public final Object f9689s;
+    public final Object f9715n;
+    public final Object f9716r;
+    public final Object f9717s;
 
     public g1(org.telegram.ui.ActionBar.b2 b2Var, Context context, int i10, long j3, TLRPC.TL_messages_preparedInlineMessage tL_messages_preparedInlineMessage, File[] fileArr, f6 f6Var, org.telegram.ui.web.u uVar, org.telegram.tgnet.e eVar) {
-        this.f9683b = b2Var;
+        this.f9711b = b2Var;
         this.d = context;
-        this.f9685e = i10;
-        this.f9684c = j3;
-        this.f9686f = tL_messages_preparedInlineMessage;
+        this.f9713e = i10;
+        this.f9712c = j3;
+        this.f9714f = tL_messages_preparedInlineMessage;
         this.h = fileArr;
-        this.f9687n = f6Var;
-        this.f9688r = uVar;
-        this.f9689s = eVar;
+        this.f9715n = f6Var;
+        this.f9716r = uVar;
+        this.f9717s = eVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f9682a) {
+        switch (this.f9710a) {
             case 0:
-                TLRPC.TL_messages_preparedInlineMessage tL_messages_preparedInlineMessage = (TLRPC.TL_messages_preparedInlineMessage) this.f9686f;
-                f6 f6Var = (f6) this.f9687n;
-                org.telegram.ui.web.u uVar = (org.telegram.ui.web.u) this.f9688r;
-                org.telegram.tgnet.e eVar = (org.telegram.tgnet.e) this.f9689s;
-                this.f9683b.dismiss();
-                new p1(this.d, this.f9685e, this.f9684c, tL_messages_preparedInlineMessage, ((File[]) this.h)[0], null, f6Var, uVar, eVar).show();
+                TLRPC.TL_messages_preparedInlineMessage tL_messages_preparedInlineMessage = (TLRPC.TL_messages_preparedInlineMessage) this.f9714f;
+                f6 f6Var = (f6) this.f9715n;
+                org.telegram.ui.web.u uVar = (org.telegram.ui.web.u) this.f9716r;
+                org.telegram.tgnet.e eVar = (org.telegram.tgnet.e) this.f9717s;
+                this.f9711b.dismiss();
+                new p1(this.d, this.f9713e, this.f9712c, tL_messages_preparedInlineMessage, ((File[]) this.h)[0], null, f6Var, uVar, eVar).show();
                 return;
             default:
-                org.telegram.ui.ActionBar.b2 b2Var = this.f9683b;
+                org.telegram.ui.ActionBar.b2 b2Var = this.f9711b;
                 AccountInstance accountInstance = (AccountInstance) this.h;
-                u70 u70Var = (u70) this.f9687n;
-                org.telegram.ui.ActionBar.n2 n2Var = (org.telegram.ui.ActionBar.n2) this.f9688r;
-                TLRPC.Peer peer = (TLRPC.Peer) this.f9689s;
+                u70 u70Var = (u70) this.f9715n;
+                org.telegram.ui.ActionBar.n2 n2Var = (org.telegram.ui.ActionBar.n2) this.f9716r;
+                TLRPC.Peer peer = (TLRPC.Peer) this.f9717s;
                 try {
                     b2Var.dismiss();
                 } catch (Exception e7) {
                     FileLog.e(e7);
                 }
-                TLObject tLObject = this.f9686f;
+                TLObject tLObject = this.f9714f;
                 if (tLObject != null) {
                     TL_phone.joinAsPeers joinaspeers = (TL_phone.joinAsPeers) tLObject;
                     if (joinaspeers.peers.size() == 1) {
@@ -66,13 +66,13 @@ public final class g1 implements Runnable {
                         return;
                     }
                     w70.G = joinaspeers.peers;
-                    long j3 = this.f9684c;
+                    long j3 = this.f9712c;
                     w70.I = j3;
                     w70.H = SystemClock.elapsedRealtime();
                     w70.J = accountInstance.getCurrentAccount();
                     accountInstance.getMessagesController().putChats(joinaspeers.chats, false);
                     accountInstance.getMessagesController().putUsers(joinaspeers.users, false);
-                    w70.v(this.d, j3, joinaspeers.peers, n2Var, this.f9685e, peer, u70Var);
+                    w70.v(this.d, j3, joinaspeers.peers, n2Var, this.f9713e, peer, u70Var);
                     return;
                 }
                 return;
@@ -80,14 +80,14 @@ public final class g1 implements Runnable {
     }
 
     public g1(org.telegram.ui.ActionBar.b2 b2Var, TLObject tLObject, AccountInstance accountInstance, u70 u70Var, long j3, Context context, org.telegram.ui.ActionBar.n2 n2Var, int i10, TLRPC.Peer peer) {
-        this.f9683b = b2Var;
-        this.f9686f = tLObject;
+        this.f9711b = b2Var;
+        this.f9714f = tLObject;
         this.h = accountInstance;
-        this.f9687n = u70Var;
-        this.f9684c = j3;
+        this.f9715n = u70Var;
+        this.f9712c = j3;
         this.d = context;
-        this.f9688r = n2Var;
-        this.f9685e = i10;
-        this.f9689s = peer;
+        this.f9716r = n2Var;
+        this.f9713e = i10;
+        this.f9717s = peer;
     }
 }

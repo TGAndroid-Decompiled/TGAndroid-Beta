@@ -11,12 +11,12 @@ import org.telegram.ui.ActionBar.z5;
 import org.telegram.ui.Components.x9;
 import w7.x5;
 public final class n extends FrameLayout implements z5 {
-    public final x9 f10731a;
+    public final x9 f10759a;
 
     public n(Context context) {
         super(context);
         x9 x9Var = new x9(context);
-        this.f10731a = x9Var;
+        this.f10759a = x9Var;
         x9Var.setRoundRadius(AndroidUtilities.dp(20.0f));
         addView(x9Var, x5.d(72, 72.0f, 81, 0.0f, 0.0f, 0.0f, 28.0f));
     }
@@ -25,7 +25,7 @@ public final class n extends FrameLayout implements z5 {
     public final void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
         Drawable drawable = j6.S0;
-        x9 x9Var = this.f10731a;
+        x9 x9Var = this.f10759a;
         yf.p.a(canvas, drawable, (x9Var.getWidth() / 2.0f) + x9Var.getLeft(), (x9Var.getHeight() / 2.0f) + x9Var.getTop(), x9Var.getHeight());
     }
 

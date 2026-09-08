@@ -13,41 +13,41 @@ import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.pr;
 public final class t2 extends View {
-    public final Paint f52607a;
-    public final Paint f52608b;
-    public final Paint f52609c;
+    public final Paint f52638a;
+    public final Paint f52639b;
+    public final Paint f52640c;
     public final RadialGradient[] d;
-    public final Matrix f52610e;
-    public final org.telegram.ui.Components.e6 f52611f;
+    public final Matrix f52641e;
+    public final org.telegram.ui.Components.e6 f52642f;
     public final RadialGradient h;
-    public final Path f52612n;
-    public int f52613r;
-    public int f52614s;
+    public final Path f52643n;
+    public int f52644r;
+    public int f52645s;
 
     public t2(Context context) {
         super(context);
-        this.f52607a = new Paint(1);
-        this.f52608b = new Paint(1);
+        this.f52638a = new Paint(1);
+        this.f52639b = new Paint(1);
         Paint paint = new Paint(1);
-        this.f52609c = paint;
+        this.f52640c = paint;
         this.d = new RadialGradient[2];
-        this.f52610e = new Matrix();
-        this.f52611f = new org.telegram.ui.Components.e6(1.0f, this, 0L, 420L, pr.h);
+        this.f52641e = new Matrix();
+        this.f52642f = new org.telegram.ui.Components.e6(1.0f, this, 0L, 420L, pr.h);
         this.h = new RadialGradient(0.0f, 0.0f, 100.0f, new int[]{0, -1, -1, 0}, new float[]{0.15f, 0.35f, 0.65f, 0.88f}, Shader.TileMode.CLAMP);
-        this.f52612n = new Path();
+        this.f52643n = new Path();
         paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_IN));
     }
 
     public final void a(int i10, int i11) {
-        if (this.f52613r == i10 && this.f52614s == i11) {
+        if (this.f52644r == i10 && this.f52645s == i11) {
             return;
         }
         RadialGradient[] radialGradientArr = this.d;
         radialGradientArr[0] = radialGradientArr[1];
-        this.f52613r = i10;
-        this.f52614s = i11;
+        this.f52644r = i10;
+        this.f52645s = i11;
         radialGradientArr[1] = new RadialGradient(0.0f, 0.0f, 100.0f, new int[]{i10, i11}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
-        this.f52611f.d(0.0f, true);
+        this.f52642f.d(0.0f, true);
         invalidate();
     }
 
@@ -55,16 +55,16 @@ public final class t2 extends View {
     public final void onDraw(Canvas canvas) {
         Paint paint;
         int i10 = 0;
-        float d = this.f52611f.d(1.0f, false);
+        float d = this.f52642f.d(1.0f, false);
         float currentTimeMillis = (((float) (System.currentTimeMillis() % 15000)) / 15000.0f) * 360.0f;
         if (getAlpha() > 0.0f) {
             invalidate();
         }
         Paint.Style style = Paint.Style.STROKE;
-        Paint paint2 = this.f52608b;
+        Paint paint2 = this.f52639b;
         paint2.setStyle(style);
         paint2.setStrokeWidth(AndroidUtilities.dp(2.0f));
-        Path path = this.f52612n;
+        Path path = this.f52643n;
         path.rewind();
         float width = getWidth() / 2.0f;
         float height = getHeight() / 2.0f;
@@ -82,7 +82,7 @@ public final class t2 extends View {
         while (true) {
             RadialGradient[] radialGradientArr = this.d;
             int length = radialGradientArr.length;
-            Matrix matrix = this.f52610e;
+            Matrix matrix = this.f52641e;
             if (i10 < length) {
                 if (radialGradientArr[i10] == null) {
                     paint = paint2;
@@ -96,7 +96,7 @@ public final class t2 extends View {
                         matrix.postTranslate(width, height);
                         radialGradientArr[i10].setLocalMatrix(matrix);
                         RadialGradient radialGradient = radialGradientArr[i10];
-                        Paint paint3 = this.f52607a;
+                        Paint paint3 = this.f52638a;
                         paint3.setShader(radialGradient);
                         float f10 = pow * 255.0f;
                         paint3.setAlpha((int) (0.3f * f10));
@@ -115,7 +115,7 @@ public final class t2 extends View {
                 matrix.postTranslate(width, height);
                 RadialGradient radialGradient2 = this.h;
                 radialGradient2.setLocalMatrix(matrix);
-                Paint paint4 = this.f52609c;
+                Paint paint4 = this.f52640c;
                 paint4.setShader(radialGradient2);
                 canvas.drawRect(0.0f, 0.0f, getWidth(), getHeight(), paint4);
                 canvas.restore();

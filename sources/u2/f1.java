@@ -1,19 +1,19 @@
 package u2;
 public final class f1 implements g1 {
-    public final int f46671a;
+    public final int f46699a;
 
     public f1(int i10) {
-        this.f46671a = i10;
+        this.f46699a = i10;
     }
 
     @Override
     public final g1 a(int i10, int i11) {
-        return new f1((this.f46671a - i11) + i10);
+        return new f1((this.f46699a - i11) + i10);
     }
 
     @Override
     public final int b() {
-        if (this.f46671a > 0) {
+        if (this.f46699a > 0) {
             return 0;
         }
         return -1;
@@ -31,7 +31,7 @@ public final class f1 implements g1 {
     @Override
     public final int d(int i10) {
         int i11 = i10 + 1;
-        if (i11 < this.f46671a) {
+        if (i11 < this.f46699a) {
             return i11;
         }
         return -1;
@@ -39,12 +39,12 @@ public final class f1 implements g1 {
 
     @Override
     public final g1 e(int i10, int i11) {
-        return new f1(this.f46671a + i11);
+        return new f1(this.f46699a + i11);
     }
 
     @Override
     public final int g() {
-        int i10 = this.f46671a;
+        int i10 = this.f46699a;
         if (i10 > 0) {
             return i10 - 1;
         }
@@ -53,7 +53,7 @@ public final class f1 implements g1 {
 
     @Override
     public final int getLength() {
-        return this.f46671a;
+        return this.f46699a;
     }
 
     @Override

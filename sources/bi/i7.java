@@ -31,75 +31,75 @@ import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.il0;
 import org.telegram.ui.j71;
 public final class i7 implements Runnable {
-    public final int f3099a;
-    public final boolean f3100b;
-    public final boolean f3101c;
+    public final int f3126a;
+    public final boolean f3127b;
+    public final boolean f3128c;
     public final Object d;
-    public final Object f3102e;
-    public final Object f3103f;
+    public final Object f3129e;
+    public final Object f3130f;
 
     public i7(u8 u8Var, boolean z10, TL_stories.TL_stories_getAllStories tL_stories_getAllStories, TLObject tLObject, boolean z11) {
-        this.f3099a = 0;
+        this.f3126a = 0;
         this.d = u8Var;
-        this.f3100b = z10;
-        this.f3102e = tL_stories_getAllStories;
-        this.f3103f = tLObject;
-        this.f3101c = z11;
+        this.f3127b = z10;
+        this.f3129e = tL_stories_getAllStories;
+        this.f3130f = tLObject;
+        this.f3128c = z11;
     }
 
     @Override
     public final void run() {
         boolean z10;
         Utilities.Callback callback;
-        int i10 = this.f3099a;
-        boolean z11 = this.f3101c;
-        boolean z12 = this.f3100b;
-        Object obj = this.f3103f;
-        Object obj2 = this.f3102e;
+        int i10 = this.f3126a;
+        boolean z11 = this.f3128c;
+        boolean z12 = this.f3127b;
+        Object obj = this.f3130f;
+        Object obj2 = this.f3129e;
         Object obj3 = this.d;
         switch (i10) {
             case 0:
                 u8 u8Var = (u8) obj3;
                 TL_stories.TL_stories_getAllStories tL_stories_getAllStories = (TL_stories.TL_stories_getAllStories) obj2;
                 TLObject tLObject = (TLObject) obj;
-                int i11 = u8Var.f3805a;
-                SharedPreferences sharedPreferences = u8Var.f3814l;
+                int i11 = u8Var.f3832a;
+                SharedPreferences sharedPreferences = u8Var.f3841l;
                 if (z12) {
-                    u8Var.f3820r = false;
+                    u8Var.f3847r = false;
                 } else {
-                    u8Var.f3819q = false;
+                    u8Var.f3846q = false;
                 }
                 FileLog.d("StoriesController loaded stories from server state=" + tL_stories_getAllStories.state + " more=" + tL_stories_getAllStories.next + "  " + tLObject);
                 if (tLObject instanceof TL_stories.TL_stories_allStories) {
                     TL_stories.TL_stories_allStories tL_stories_allStories = (TL_stories.TL_stories_allStories) tLObject;
                     MessagesStorage.getInstance(i11).putUsersAndChats(tL_stories_allStories.users, null, true, true);
                     if (!z12) {
-                        u8Var.f3823u = tL_stories_allStories.count;
-                        u8Var.f3818p = tL_stories_allStories.has_more;
-                        u8Var.f3817o = tL_stories_allStories.state;
-                        sharedPreferences.edit().putString("last_stories_state", u8Var.f3817o).putBoolean("last_stories_has_more", u8Var.f3818p).putInt("total_stores", u8Var.f3823u).apply();
+                        u8Var.f3850u = tL_stories_allStories.count;
+                        u8Var.f3845p = tL_stories_allStories.has_more;
+                        u8Var.f3844o = tL_stories_allStories.state;
+                        sharedPreferences.edit().putString("last_stories_state", u8Var.f3844o).putBoolean("last_stories_has_more", u8Var.f3845p).putInt("total_stores", u8Var.f3850u).apply();
                     } else {
                         u8Var.v = tL_stories_allStories.count;
-                        u8Var.f3827z = tL_stories_allStories.has_more;
-                        u8Var.f3826y = tL_stories_allStories.state;
-                        sharedPreferences.edit().putString("last_stories_state_hidden", u8Var.f3826y).putBoolean("last_stories_has_more_hidden", u8Var.f3827z).putInt("total_stores_hidden", u8Var.v).apply();
+                        u8Var.f3854z = tL_stories_allStories.has_more;
+                        u8Var.f3853y = tL_stories_allStories.state;
+                        sharedPreferences.edit().putString("last_stories_state_hidden", u8Var.f3853y).putBoolean("last_stories_has_more_hidden", u8Var.f3854z).putInt("total_stores_hidden", u8Var.v).apply();
                     }
                     u8Var.Y(tL_stories_allStories, z12, false, z11);
                     return;
                 } else if (tLObject instanceof TL_stories.TL_stories_allStoriesNotModified) {
                     if (!z12) {
-                        u8Var.f3818p = sharedPreferences.getBoolean("last_stories_has_more", false);
-                        u8Var.f3817o = ((TL_stories.TL_stories_allStoriesNotModified) tLObject).state;
-                        sharedPreferences.edit().putString("last_stories_state", u8Var.f3817o).apply();
+                        u8Var.f3845p = sharedPreferences.getBoolean("last_stories_has_more", false);
+                        u8Var.f3844o = ((TL_stories.TL_stories_allStoriesNotModified) tLObject).state;
+                        sharedPreferences.edit().putString("last_stories_state", u8Var.f3844o).apply();
                     } else {
-                        u8Var.f3827z = sharedPreferences.getBoolean("last_stories_has_more_hidden", false);
-                        u8Var.f3826y = ((TL_stories.TL_stories_allStoriesNotModified) tLObject).state;
-                        sharedPreferences.edit().putString("last_stories_state_hidden", u8Var.f3826y).apply();
+                        u8Var.f3854z = sharedPreferences.getBoolean("last_stories_has_more_hidden", false);
+                        u8Var.f3853y = ((TL_stories.TL_stories_allStoriesNotModified) tLObject).state;
+                        sharedPreferences.edit().putString("last_stories_state_hidden", u8Var.f3853y).apply();
                     }
                     if (z12) {
-                        z10 = u8Var.f3827z;
+                        z10 = u8Var.f3854z;
                     } else {
-                        z10 = u8Var.f3818p;
+                        z10 = u8Var.f3845p;
                     }
                     if (z10) {
                         NotificationCenter.getInstance(i11).lambda$postNotificationNameOnUIThread$1(NotificationCenter.storiesUpdated, new Object[0]);
@@ -113,8 +113,8 @@ public final class i7 implements Runnable {
                 h9 h9Var = (h9) obj3;
                 ArrayList arrayList = (ArrayList) obj2;
                 ah.j jVar = (ah.j) obj;
-                int i12 = h9Var.f3073a;
-                MessagesStorage messagesStorage = h9Var.f3074b;
+                int i12 = h9Var.f3100a;
+                MessagesStorage messagesStorage = h9Var.f3101b;
                 SQLiteDatabase database = messagesStorage.getDatabase();
                 for (int i13 = 0; i13 < arrayList.size(); i13++) {
                     TL_stories.PeerStories peerStories = (TL_stories.PeerStories) arrayList.get(i13);
@@ -123,7 +123,7 @@ public final class i7 implements Runnable {
                         ArrayList<TL_stories.StoryItem> arrayList2 = peerStories.stories;
                         for (int i14 = 0; i14 < arrayList2.size(); i14++) {
                             if (arrayList2.get(i14) instanceof TL_stories.TL_storyItemSkipped) {
-                                TL_stories.StoryItem f7 = h9Var.f(arrayList2.get(i14).f20107id, peerDialogId);
+                                TL_stories.StoryItem f7 = h9Var.f(arrayList2.get(i14).f20134id, peerDialogId);
                                 if (f7 instanceof TL_stories.TL_storyItem) {
                                     arrayList2.set(i14, f7);
                                 }
@@ -190,7 +190,7 @@ public final class i7 implements Runnable {
                 ArrayList arrayList6 = new ArrayList();
                 HashMap hashMap = new HashMap();
                 ArrayList arrayList7 = new ArrayList();
-                il0 il0Var = new il0(j71Var, str, this.f3100b, arrayList4, reactionsMap, arrayList5, linkedHashSet, linkedHashSet2, arrayList7, arrayList6, this.f3101c);
+                il0 il0Var = new il0(j71Var, str, this.f3127b, arrayList4, reactionsMap, arrayList5, linkedHashSet, linkedHashSet2, arrayList7, arrayList6, this.f3128c);
                 int i16 = j71Var.W;
                 if (i16 == 13) {
                     Utilities.doCallbacks(new Utilities.Callback() {
@@ -310,11 +310,11 @@ public final class i7 implements Runnable {
             default:
                 Bitmap[] bitmapArr = (Bitmap[]) obj2;
                 CountDownLatch countDownLatch = (CountDownLatch) obj;
-                qg.q0 q0Var = ((qg.a1) obj3).f44378y.f44389c;
-                iv0 iv0Var = q0Var.f44523g;
-                o0.a h = q0Var.h(new RectF(0.0f, 0.0f, iv0Var.f27271a, iv0Var.f27272b), false, z12, z11);
+                qg.q0 q0Var = ((qg.a1) obj3).f44406y.f44417c;
+                iv0 iv0Var = q0Var.f44551g;
+                o0.a h = q0Var.h(new RectF(0.0f, 0.0f, iv0Var.f27298a, iv0Var.f27299b), false, z12, z11);
                 if (h != null) {
-                    bitmapArr[0] = (Bitmap) h.f16769b;
+                    bitmapArr[0] = (Bitmap) h.f16796b;
                 }
                 countDownLatch.countDown();
                 return;
@@ -322,29 +322,29 @@ public final class i7 implements Runnable {
     }
 
     public i7(Object obj, Object obj2, boolean z10, boolean z11, Object obj3, int i10) {
-        this.f3099a = i10;
+        this.f3126a = i10;
         this.d = obj;
-        this.f3102e = obj2;
-        this.f3100b = z10;
-        this.f3101c = z11;
-        this.f3103f = obj3;
+        this.f3129e = obj2;
+        this.f3127b = z10;
+        this.f3128c = z11;
+        this.f3130f = obj3;
     }
 
     public i7(ProfileActivity profileActivity, TLRPC.User user, String str, boolean z10, boolean z11) {
-        this.f3099a = 2;
+        this.f3126a = 2;
         this.d = profileActivity;
-        this.f3102e = user;
-        this.f3103f = str;
-        this.f3100b = z10;
-        this.f3101c = z11;
+        this.f3129e = user;
+        this.f3130f = str;
+        this.f3127b = z10;
+        this.f3128c = z11;
     }
 
     public i7(qg.a1 a1Var, boolean z10, boolean z11, Bitmap[] bitmapArr, CountDownLatch countDownLatch) {
-        this.f3099a = 5;
+        this.f3126a = 5;
         this.d = a1Var;
-        this.f3100b = z10;
-        this.f3101c = z11;
-        this.f3102e = bitmapArr;
-        this.f3103f = countDownLatch;
+        this.f3127b = z10;
+        this.f3128c = z11;
+        this.f3129e = bitmapArr;
+        this.f3130f = countDownLatch;
     }
 }

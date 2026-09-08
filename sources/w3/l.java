@@ -1,10 +1,10 @@
 package w3;
 public final class l {
-    public final long f47995a;
-    public final int f47996b;
+    public final long f48024a;
+    public final int f48025b;
 
     public l(long j3, int i10) {
-        this.f47995a = j3;
-        this.f47996b = i10;
+        this.f48024a = j3;
+        this.f48025b = i10;
     }
 }

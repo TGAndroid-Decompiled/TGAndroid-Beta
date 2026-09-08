@@ -14,19 +14,19 @@ public enum j0 extends b2 {
                     if (d != '>') {
                         if (d != 65535) {
                             lVar.f(d);
-                            lVar.f6778c = g0Var;
+                            lVar.f6806c = g0Var;
                             return;
                         }
                         lVar.l(this);
-                        lVar.f6778c = b2.f6726a;
+                        lVar.f6806c = b2.f6753a;
                         return;
                     }
                     lVar.f(d);
-                    lVar.f6778c = b2.f6735f;
+                    lVar.f6806c = b2.f6762f;
                     return;
                 }
                 lVar.f(d);
-                lVar.f6778c = b2.U;
+                lVar.f6806c = b2.U;
                 return;
             }
             lVar.f(d);
@@ -34,6 +34,6 @@ public enum j0 extends b2 {
         }
         lVar.m(this);
         lVar.f((char) 65533);
-        lVar.f6778c = g0Var;
+        lVar.f6806c = g0Var;
     }
 }

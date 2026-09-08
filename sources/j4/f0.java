@@ -1,10 +1,10 @@
 package j4;
 public final class f0 {
-    public final String f13292a;
-    public final int f13293b;
-    public final int f13294c;
+    public final String f13318a;
+    public final int f13319b;
+    public final int f13320c;
     public int d;
-    public String f13295e;
+    public String f13321e;
 
     public f0(int i10, int i11) {
         this(Integer.MIN_VALUE, i10, i11);
@@ -14,12 +14,12 @@ public final class f0 {
         int i10;
         int i11 = this.d;
         if (i11 == Integer.MIN_VALUE) {
-            i10 = this.f13293b;
+            i10 = this.f13319b;
         } else {
-            i10 = i11 + this.f13294c;
+            i10 = i11 + this.f13320c;
         }
         this.d = i10;
-        this.f13295e = this.f13292a + this.d;
+        this.f13321e = this.f13318a + this.d;
     }
 
     public final void b() {
@@ -36,10 +36,10 @@ public final class f0 {
         } else {
             str = a4.a.m(i10, "/");
         }
-        this.f13292a = str;
-        this.f13293b = i11;
-        this.f13294c = i12;
+        this.f13318a = str;
+        this.f13319b = i11;
+        this.f13320c = i12;
         this.d = Integer.MIN_VALUE;
-        this.f13295e = "";
+        this.f13321e = "";
     }
 }

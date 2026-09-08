@@ -4,7 +4,7 @@ import j$.util.DesugarCollections;
 import java.util.HashMap;
 import java.util.Map;
 public abstract class e1 {
-    public static final Map f44425a;
+    public static final Map f44453a;
 
     static {
         HashMap hashMap = new HashMap();
@@ -110,6 +110,6 @@ public abstract class e1 {
         hashMap18.put("attributes", new String[]{"inPosition", "inTexcoord"});
         hashMap18.put("uniforms", new String[]{"mvpMatrix", "texture", "mask", "clear", "color", "type", "color", "resolution", "center", "radius", "thickness", "rounding", "fill", "rotation", "middle", "arrowTriangleLength", "composite"});
         hashMap.put("shape", DesugarCollections.unmodifiableMap(hashMap18));
-        f44425a = DesugarCollections.unmodifiableMap(hashMap);
+        f44453a = DesugarCollections.unmodifiableMap(hashMap);
     }
 }

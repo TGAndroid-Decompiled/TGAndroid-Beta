@@ -9,18 +9,18 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import ih.k;
 public abstract class d {
-    public static final Matrix f11339a = new Matrix();
-    public static final RectF f11340b = new RectF();
-    public static final RectF f11341c = new RectF();
+    public static final Matrix f11365a = new Matrix();
+    public static final RectF f11366b = new RectF();
+    public static final RectF f11367c = new RectF();
 
     public static void a(ch.a aVar, Canvas canvas, RectF rectF, View view, ViewGroup viewGroup, int i10) {
         boolean z10;
         if (i10 > 0) {
-            RectF rectF2 = f11341c;
+            RectF rectF2 = f11367c;
             if (k.c(view, viewGroup, rectF2)) {
                 float f7 = rectF2.left;
                 float f10 = rectF2.top;
-                RectF rectF3 = f11340b;
+                RectF rectF3 = f11366b;
                 rectF3.set(rectF);
                 rectF3.offset(-f7, -f10);
                 boolean z11 = true;
@@ -57,10 +57,10 @@ public abstract class d {
     public static void c(gh.b bVar, View view) {
         Bitmap bitmap;
         if (bVar != null && view != null && view.getWidth() != 0 && view.getHeight() != 0 && (bitmap = bVar.d) != null && !bitmap.isRecycled() && bitmap.getWidth() != 0 && bitmap.getHeight() != 0) {
-            Matrix matrix = f11339a;
+            Matrix matrix = f11365a;
             matrix.reset();
             matrix.setScale(view.getWidth() / bitmap.getWidth(), view.getHeight() / bitmap.getHeight());
-            bVar.f10647b.set(matrix);
+            bVar.f10675b.set(matrix);
         }
     }
 

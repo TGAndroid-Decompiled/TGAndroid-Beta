@@ -5,11 +5,11 @@ import java.util.Arrays;
 import java.util.Iterator;
 import v7.t7;
 public final class u extends kd.i implements rd.p {
-    public Object f10966b;
-    public Iterator f10967c;
+    public Object f10992b;
+    public Iterator f10993c;
     public int d;
-    public int f10968e;
-    public Object f10969f;
+    public int f10994e;
+    public Object f10995f;
     public final Iterator h;
 
     public u(Iterator it, id.c cVar) {
@@ -20,13 +20,13 @@ public final class u extends kd.i implements rd.p {
     @Override
     public final id.c create(Object obj, id.c cVar) {
         u uVar = new u(this.h, cVar);
-        uVar.f10969f = obj;
+        uVar.f10995f = obj;
         return uVar;
     }
 
     @Override
     public final Object invoke(Object obj, Object obj2) {
-        return ((u) create((wd.c) obj, (id.c) obj2)).invokeSuspend(gd.i.f10588a);
+        return ((u) create((wd.c) obj, (id.c) obj2)).invokeSuspend(gd.i.f10616a);
     }
 
     @Override
@@ -39,8 +39,8 @@ public final class u extends kd.i implements rd.p {
         t tVar;
         wd.c cVar2;
         Object[] array;
-        jd.a aVar = jd.a.f13614a;
-        int i12 = this.f10968e;
+        jd.a aVar = jd.a.f13640a;
+        int i12 = this.f10994e;
         if (i12 != 0) {
             if (i12 != 1) {
                 if (i12 != 2) {
@@ -50,24 +50,24 @@ public final class u extends kd.i implements rd.p {
                                 throw new IllegalStateException("call to 'resume' before 'invoke' with coroutine");
                             }
                         } else {
-                            tVar = (t) this.f10966b;
-                            cVar2 = (wd.c) this.f10969f;
+                            tVar = (t) this.f10992b;
+                            cVar2 = (wd.c) this.f10995f;
                             t7.b(obj);
                             tVar.n();
                         }
                     } else {
-                        Iterator it2 = this.f10967c;
-                        t tVar2 = (t) this.f10966b;
-                        wd.c cVar3 = (wd.c) this.f10969f;
+                        Iterator it2 = this.f10993c;
+                        t tVar2 = (t) this.f10992b;
+                        wd.c cVar3 = (wd.c) this.f10995f;
                         t7.b(obj);
                         tVar2.n();
                         while (true) {
-                            int i13 = tVar2.f10964b;
-                            Object[] objArr = tVar2.f10963a;
+                            int i13 = tVar2.f10990b;
+                            Object[] objArr = tVar2.f10989a;
                             if (it2.hasNext()) {
                                 Object next = it2.next();
                                 if (tVar2.i() != i13) {
-                                    int i14 = tVar2.f10965c;
+                                    int i14 = tVar2.f10991c;
                                     int i15 = tVar2.d;
                                     objArr[(i14 + i15) % i13] = next;
                                     tVar2.d = i15 + 1;
@@ -77,7 +77,7 @@ public final class u extends kd.i implements rd.p {
                                             if (i16 > 20) {
                                                 i16 = 20;
                                             }
-                                            if (tVar2.f10965c == 0) {
+                                            if (tVar2.f10991c == 0) {
                                                 array = Arrays.copyOf(objArr, i16);
                                                 kotlin.jvm.internal.i.d(array, "copyOf(...)");
                                             } else {
@@ -86,12 +86,12 @@ public final class u extends kd.i implements rd.p {
                                             tVar2 = new t(tVar2.d, array);
                                         } else {
                                             ArrayList arrayList2 = new ArrayList(tVar2);
-                                            this.f10969f = cVar3;
-                                            this.f10966b = tVar2;
-                                            this.f10967c = it2;
-                                            this.f10968e = 3;
+                                            this.f10995f = cVar3;
+                                            this.f10992b = tVar2;
+                                            this.f10993c = it2;
+                                            this.f10994e = 3;
                                             cVar3.c(arrayList2, this);
-                                            jd.a aVar2 = jd.a.f13614a;
+                                            jd.a aVar2 = jd.a.f13640a;
                                             return aVar;
                                         }
                                     }
@@ -107,39 +107,39 @@ public final class u extends kd.i implements rd.p {
                     }
                     if (tVar.d > 20) {
                         ArrayList arrayList3 = new ArrayList(tVar);
-                        this.f10969f = cVar2;
-                        this.f10966b = tVar;
-                        this.f10967c = null;
-                        this.f10968e = 4;
+                        this.f10995f = cVar2;
+                        this.f10992b = tVar;
+                        this.f10993c = null;
+                        this.f10994e = 4;
                         cVar2.c(arrayList3, this);
-                        jd.a aVar3 = jd.a.f13614a;
+                        jd.a aVar3 = jd.a.f13640a;
                         return aVar;
                     }
                     if (!tVar.isEmpty()) {
-                        this.f10969f = null;
-                        this.f10966b = null;
-                        this.f10967c = null;
-                        this.f10968e = 5;
+                        this.f10995f = null;
+                        this.f10992b = null;
+                        this.f10993c = null;
+                        this.f10994e = 5;
                         cVar2.c(tVar, this);
-                        jd.a aVar4 = jd.a.f13614a;
+                        jd.a aVar4 = jd.a.f13640a;
                         return aVar;
                     }
-                    return gd.i.f10588a;
+                    return gd.i.f10616a;
                 }
                 t7.b(obj);
-                return gd.i.f10588a;
+                return gd.i.f10616a;
             }
             i10 = this.d;
-            Iterator it3 = this.f10967c;
-            ArrayList arrayList4 = (ArrayList) this.f10966b;
+            Iterator it3 = this.f10993c;
+            ArrayList arrayList4 = (ArrayList) this.f10992b;
             t7.b(obj);
             arrayList = new ArrayList(20);
-            cVar = (wd.c) this.f10969f;
+            cVar = (wd.c) this.f10995f;
             it = it3;
             i11 = i10;
         } else {
             t7.b(obj);
-            wd.c cVar4 = (wd.c) this.f10969f;
+            wd.c cVar4 = (wd.c) this.f10995f;
             arrayList = new ArrayList(20);
             i10 = 0;
             cVar = cVar4;
@@ -153,26 +153,26 @@ public final class u extends kd.i implements rd.p {
             } else {
                 arrayList.add(next2);
                 if (arrayList.size() == 20) {
-                    this.f10969f = cVar;
-                    this.f10966b = arrayList;
-                    this.f10967c = it;
+                    this.f10995f = cVar;
+                    this.f10992b = arrayList;
+                    this.f10993c = it;
                     this.d = i11;
-                    this.f10968e = 1;
+                    this.f10994e = 1;
                     cVar.c(arrayList, this);
-                    jd.a aVar5 = jd.a.f13614a;
+                    jd.a aVar5 = jd.a.f13640a;
                     return aVar;
                 }
             }
         }
         if (!arrayList.isEmpty()) {
-            this.f10969f = null;
-            this.f10966b = null;
-            this.f10967c = null;
-            this.f10968e = 2;
+            this.f10995f = null;
+            this.f10992b = null;
+            this.f10993c = null;
+            this.f10994e = 2;
             cVar.c(arrayList, this);
-            jd.a aVar6 = jd.a.f13614a;
+            jd.a aVar6 = jd.a.f13640a;
             return aVar;
         }
-        return gd.i.f10588a;
+        return gd.i.f10616a;
     }
 }

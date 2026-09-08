@@ -6,30 +6,30 @@ import java.util.Arrays;
 import n4.y;
 import n6.l;
 public final class j {
-    public final String f14868a;
-    public final String f14869b;
-    public final String f14870c;
+    public final String f14894a;
+    public final String f14895b;
+    public final String f14896c;
     public final String d;
-    public final String f14871e;
-    public final String f14872f;
-    public final String f14873g;
+    public final String f14897e;
+    public final String f14898f;
+    public final String f14899g;
 
     public j(String str, String str2, String str3, String str4, String str5, String str6, String str7) {
         boolean z10;
-        int i10 = u6.e.f46959a;
+        int i10 = u6.e.f46987a;
         if (str != null && !str.trim().isEmpty()) {
             z10 = false;
         } else {
             z10 = true;
         }
         l.j("ApplicationId must be set.", true ^ z10);
-        this.f14869b = str;
-        this.f14868a = str2;
-        this.f14870c = str3;
+        this.f14895b = str;
+        this.f14894a = str2;
+        this.f14896c = str3;
         this.d = str4;
-        this.f14871e = str5;
-        this.f14872f = str6;
-        this.f14873g = str7;
+        this.f14897e = str5;
+        this.f14898f = str6;
+        this.f14899g = str7;
     }
 
     public static j a(Context context) {
@@ -46,24 +46,24 @@ public final class j {
             return false;
         }
         j jVar = (j) obj;
-        if (!l.l(this.f14869b, jVar.f14869b) || !l.l(this.f14868a, jVar.f14868a) || !l.l(this.f14870c, jVar.f14870c) || !l.l(this.d, jVar.d) || !l.l(this.f14871e, jVar.f14871e) || !l.l(this.f14872f, jVar.f14872f) || !l.l(this.f14873g, jVar.f14873g)) {
+        if (!l.l(this.f14895b, jVar.f14895b) || !l.l(this.f14894a, jVar.f14894a) || !l.l(this.f14896c, jVar.f14896c) || !l.l(this.d, jVar.d) || !l.l(this.f14897e, jVar.f14897e) || !l.l(this.f14898f, jVar.f14898f) || !l.l(this.f14899g, jVar.f14899g)) {
             return false;
         }
         return true;
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{this.f14869b, this.f14868a, this.f14870c, this.d, this.f14871e, this.f14872f, this.f14873g});
+        return Arrays.hashCode(new Object[]{this.f14895b, this.f14894a, this.f14896c, this.d, this.f14897e, this.f14898f, this.f14899g});
     }
 
     public final String toString() {
         y yVar = new y(this);
-        yVar.y(this.f14869b, "applicationId");
-        yVar.y(this.f14868a, "apiKey");
-        yVar.y(this.f14870c, "databaseUrl");
-        yVar.y(this.f14871e, "gcmSenderId");
-        yVar.y(this.f14872f, "storageBucket");
-        yVar.y(this.f14873g, "projectId");
+        yVar.y(this.f14895b, "applicationId");
+        yVar.y(this.f14894a, "apiKey");
+        yVar.y(this.f14896c, "databaseUrl");
+        yVar.y(this.f14897e, "gcmSenderId");
+        yVar.y(this.f14898f, "storageBucket");
+        yVar.y(this.f14899g, "projectId");
         return yVar.toString();
     }
 }

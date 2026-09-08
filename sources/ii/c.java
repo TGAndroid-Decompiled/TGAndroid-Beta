@@ -53,10 +53,10 @@ public final class c extends bb {
         dVar2.setOnClickListener(new u1(12, this, runnable));
         v0 v0Var = new v0(context, 2);
         TextView textView = (TextView) v0Var.d;
-        TextView textView2 = (TextView) v0Var.f3884c;
+        TextView textView2 = (TextView) v0Var.f3911c;
         this.X = v0Var;
         v0Var.setPadding(AndroidUtilities.dp(20.0f), 0, AndroidUtilities.dp(20.0f), AndroidUtilities.dp(17.0f));
-        ((x9) v0Var.f3883b).e(chat, new i9(chat));
+        ((x9) v0Var.f3910b).e(chat, new i9(chat));
         textView2.setText(DialogObject.getName(chat));
         int i13 = j6.G6;
         textView2.setTextColor(getThemedColor(i13));
@@ -80,7 +80,7 @@ public final class c extends bb {
     public final kl0 v(ll0 ll0Var) {
         v51 v51Var = new v51(this.d, getContext(), this.currentAccount, 0, true, new a(this, 1), this.resourcesProvider);
         this.Y = v51Var;
-        v51Var.f31135r = false;
+        v51Var.f31162r = false;
         return v51Var;
     }
 

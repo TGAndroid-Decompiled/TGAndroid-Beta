@@ -8,21 +8,21 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 public final class ze1 extends j71 {
-    public boolean f43390d2;
-    public final af1 f43391e2;
+    public boolean f43417d2;
+    public final af1 f43418e2;
 
     public ze1(af1 af1Var, af1 af1Var2, Activity activity) {
         super(af1Var2, activity, false, null, 3, null);
-        this.f43391e2 = af1Var;
-        this.f43390d2 = true;
+        this.f43418e2 = af1Var;
+        this.f43417d2 = true;
     }
 
     @Override
     public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
         super.onLayout(z10, i10, i11, i12, i13);
-        if (this.f43390d2) {
-            this.f43390d2 = false;
-            this.f43391e2.f34414f.s(null);
+        if (this.f43417d2) {
+            this.f43417d2 = false;
+            this.f43418e2.f34441f.s(null);
         }
     }
 
@@ -31,7 +31,7 @@ public final class ze1 extends j71 {
         int i10;
         int i11;
         long j3;
-        af1 af1Var = this.f43391e2;
+        af1 af1Var = this.f43418e2;
         i10 = ((org.telegram.ui.ActionBar.n2) af1Var).currentAccount;
         boolean z10 = false;
         if (!TextUtils.isEmpty(UserConfig.getInstance(i10).defaultTopicIcons)) {
@@ -41,7 +41,7 @@ public final class ze1 extends j71 {
             if (stickerSetByEmojiOrName == null) {
                 j3 = 0;
             } else {
-                j3 = stickerSetByEmojiOrName.set.f19896id;
+                j3 = stickerSetByEmojiOrName.set.f19923id;
             }
             if (j3 == MediaDataController.getStickerSetId(document)) {
                 z10 = true;

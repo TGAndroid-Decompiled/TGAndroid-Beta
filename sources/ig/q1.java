@@ -8,16 +8,16 @@ import org.telegram.ui.ActionBar.d5;
 import org.telegram.ui.Components.kz;
 import org.telegram.ui.Components.ov0;
 public final class q1 extends ov0 {
-    public final int f12189w0;
+    public final int f12215w0;
 
     public q1(Context context, d5 d5Var, int i10) {
         super(context, d5Var);
-        this.f12189w0 = i10;
+        this.f12215w0 = i10;
     }
 
     @Override
     public boolean P() {
-        switch (this.f12189w0) {
+        switch (this.f12215w0) {
             case 2:
                 return false;
             case 3:
@@ -32,7 +32,7 @@ public final class q1 extends ov0 {
 
     @Override
     public void addView(View view) {
-        switch (this.f12189w0) {
+        switch (this.f12215w0) {
             case 4:
                 if (view instanceof kz) {
                     ViewGroup.LayoutParams layoutParams = ((kz) view).getLayoutParams();
@@ -59,7 +59,7 @@ public final class q1 extends ov0 {
 
     @Override
     public void onMeasure(int i10, int i11) {
-        switch (this.f12189w0) {
+        switch (this.f12215w0) {
             case 0:
                 super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i11), 1073741824));
                 return;

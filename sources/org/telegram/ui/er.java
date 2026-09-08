@@ -5,35 +5,35 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class er implements nq {
-    public final int f36149a;
-    public final long f36150b;
-    public final int f36151c;
+    public final int f36176a;
+    public final long f36177b;
+    public final int f36178c;
     public final boolean d;
-    public final boolean[] f36152e;
-    public final vr f36153f;
+    public final boolean[] f36179e;
+    public final vr f36180f;
 
     public er(vr vrVar, int i10, long j3, int i11, boolean z10, boolean[] zArr) {
-        this.f36153f = vrVar;
-        this.f36149a = i10;
-        this.f36150b = j3;
-        this.f36151c = i11;
+        this.f36180f = vrVar;
+        this.f36176a = i10;
+        this.f36177b = j3;
+        this.f36178c = i11;
         this.d = z10;
-        this.f36152e = zArr;
+        this.f36179e = zArr;
     }
 
     @Override
     public final void a(TLRPC.User user) {
-        vr.c0(this.f36153f, user);
+        vr.c0(this.f36180f, user);
     }
 
     @Override
     public final void b(int i10, TLRPC.TL_chatAdminRights tL_chatAdminRights, TLRPC.TL_chatBannedRights tL_chatBannedRights, String str) {
         TLRPC.ChatParticipant tL_chatParticipant;
         TLRPC.ChannelParticipant tL_channelParticipant;
-        vr vrVar = this.f36153f;
+        vr vrVar = this.f36180f;
         ArrayList arrayList = vrVar.F;
-        long j3 = this.f36150b;
-        int i11 = this.f36149a;
+        long j3 = this.f36177b;
+        int i11 = this.f36176a;
         if (i11 == 0) {
             int i12 = 0;
             while (true) {
@@ -60,7 +60,7 @@ public final class er implements nq {
                             tL_channelParticipant.peer = tL_peerChannel;
                             tL_peerChannel.channel_id = -j3;
                         }
-                        tL_channelParticipant.date = this.f36151c;
+                        tL_channelParticipant.date = this.f36178c;
                         tL_channelParticipant.flags |= 4;
                         tL_channelParticipant.rank = str;
                         arrayList.set(i12, tL_channelParticipant);
@@ -75,16 +75,16 @@ public final class er implements nq {
                     tL_chatParticipant.user_id = chatParticipant.user_id;
                     tL_chatParticipant.date = chatParticipant.date;
                     tL_chatParticipant.inviter_id = chatParticipant.inviter_id;
-                    int indexOf = vrVar.f41670s.participants.participants.indexOf(chatParticipant);
+                    int indexOf = vrVar.f41697s.participants.participants.indexOf(chatParticipant);
                     if (indexOf >= 0) {
-                        vrVar.f41670s.participants.participants.set(indexOf, tL_chatParticipant);
+                        vrVar.f41697s.participants.participants.set(indexOf, tL_chatParticipant);
                     }
                     vrVar.r0();
                 }
                 i12++;
             }
             if (i10 == 1 && !this.d) {
-                this.f36152e[0] = true;
+                this.f36179e[0] = true;
             }
         } else if (i11 == 1 && i10 == 0) {
             vrVar.v0(j3);

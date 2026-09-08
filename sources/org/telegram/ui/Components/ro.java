@@ -9,27 +9,27 @@ import android.widget.LinearLayout;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
 public abstract class ro extends LinearLayout {
-    public fk0 f30054a;
-    public ActionBarPopupWindow$ActionBarPopupWindowLayout f30055b;
-    public FrameLayout f30056c;
+    public fk0 f30081a;
+    public ActionBarPopupWindow$ActionBarPopupWindowLayout f30082b;
+    public FrameLayout f30083c;
     public int d;
-    public float f30057e;
-    public float f30058f;
+    public float f30084e;
+    public float f30085f;
     public float h;
-    public float f30059n;
-    public float f30060r;
+    public float f30086n;
+    public float f30087r;
 
     public final void a() {
-        FrameLayout frameLayout = this.f30056c;
+        FrameLayout frameLayout = this.f30083c;
         if (frameLayout != null) {
-            frameLayout.setTranslationY(this.h + this.f30059n + this.f30060r);
+            frameLayout.setTranslationY(this.h + this.f30086n + this.f30087r);
         }
     }
 
     public final void b() {
-        float f7 = (1.0f - this.f30058f) * this.f30057e;
-        this.f30055b.setTranslationX(f7);
-        FrameLayout frameLayout = this.f30056c;
+        float f7 = (1.0f - this.f30085f) * this.f30084e;
+        this.f30082b.setTranslationX(f7);
+        FrameLayout frameLayout = this.f30083c;
         if (frameLayout != null) {
             frameLayout.setTranslationX(f7);
         }
@@ -52,25 +52,25 @@ public abstract class ro extends LinearLayout {
         } else {
             i12 = i11;
         }
-        fk0 fk0Var = this.f30054a;
-        if (fk0Var != null && this.f30055b != null) {
+        fk0 fk0Var = this.f30081a;
+        if (fk0Var != null && this.f30082b != null) {
             fk0Var.getLayoutParams().width = -2;
             int i16 = 0;
-            ((LinearLayout.LayoutParams) this.f30054a.getLayoutParams()).rightMargin = 0;
-            this.f30057e = 0.0f;
+            ((LinearLayout.LayoutParams) this.f30081a.getLayoutParams()).rightMargin = 0;
+            this.f30084e = 0.0f;
             super.onMeasure(i14, i12);
-            int measuredWidth = this.f30054a.getMeasuredWidth();
-            if (this.f30055b.getSwipeBack() != null && this.f30055b.getSwipeBack().getMeasuredWidth() > measuredWidth) {
-                measuredWidth = this.f30055b.getSwipeBack().getMeasuredWidth();
+            int measuredWidth = this.f30081a.getMeasuredWidth();
+            if (this.f30082b.getSwipeBack() != null && this.f30082b.getSwipeBack().getMeasuredWidth() > measuredWidth) {
+                measuredWidth = this.f30082b.getSwipeBack().getMeasuredWidth();
             }
-            if (this.f30055b.getMeasuredWidth() > measuredWidth) {
-                measuredWidth = this.f30055b.getMeasuredWidth();
+            if (this.f30082b.getMeasuredWidth() > measuredWidth) {
+                measuredWidth = this.f30082b.getMeasuredWidth();
             }
-            if (this.f30054a.q()) {
+            if (this.f30081a.q()) {
                 i14 = View.MeasureSpec.makeMeasureSpec(measuredWidth, 1073741824);
             }
-            fk0 fk0Var2 = this.f30054a;
-            if (!fk0Var2.f26090e1 && fk0Var2.Q0 && fk0Var2.getMeasuredWidth() > 0) {
+            fk0 fk0Var2 = this.f30081a;
+            if (!fk0Var2.f26117e1 && fk0Var2.Q0 && fk0Var2.getMeasuredWidth() > 0) {
                 int min = Math.min(AndroidUtilities.dp(320.0f), fk0Var2.getMeasuredWidth() - AndroidUtilities.dp(16.0f));
                 StaticLayout staticLayout = new StaticLayout(fk0Var2.R0.getText(), fk0Var2.R0.getPaint(), min, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
                 fk0Var2.T0 = staticLayout.getHeight();
@@ -98,80 +98,80 @@ public abstract class ro extends LinearLayout {
                 } else {
                     max = AndroidUtilities.dp(20.0f);
                 }
-                ((FrameLayout.LayoutParams) fk0Var2.f26122z0.getLayoutParams()).topMargin = max;
-                ((FrameLayout.LayoutParams) fk0Var2.f26080b.getLayoutParams()).topMargin = max;
-                fk0Var2.f26090e1 = true;
+                ((FrameLayout.LayoutParams) fk0Var2.f26149z0.getLayoutParams()).topMargin = max;
+                ((FrameLayout.LayoutParams) fk0Var2.f26107b.getLayoutParams()).topMargin = max;
+                fk0Var2.f26117e1 = true;
             }
-            int totalWidth = this.f30054a.getTotalWidth();
-            if (this.f30055b.getSwipeBack() != null) {
-                viewGroup = this.f30055b.getSwipeBack();
+            int totalWidth = this.f30081a.getTotalWidth();
+            if (this.f30082b.getSwipeBack() != null) {
+                viewGroup = this.f30082b.getSwipeBack();
             } else {
-                viewGroup = this.f30055b;
+                viewGroup = this.f30082b;
             }
             View childAt = viewGroup.getChildAt(0);
             int dp = AndroidUtilities.dp(16.0f) + childAt.getMeasuredWidth();
             int dp2 = AndroidUtilities.dp(36.0f) + AndroidUtilities.dp(16.0f) + dp;
-            int hintTextWidth = this.f30054a.getHintTextWidth();
+            int hintTextWidth = this.f30081a.getHintTextWidth();
             if (hintTextWidth > dp2) {
                 dp2 = hintTextWidth;
             } else if (dp2 > measuredWidth) {
                 dp2 = measuredWidth;
             }
-            this.f30054a.G = AndroidUtilities.dp(36.0f);
-            if (this.f30054a.q()) {
-                this.f30054a.getLayoutParams().width = totalWidth;
-                this.f30054a.G = Math.max((totalWidth - childAt.getMeasuredWidth()) - AndroidUtilities.dp(36.0f), AndroidUtilities.dp(36.0f));
+            this.f30081a.G = AndroidUtilities.dp(36.0f);
+            if (this.f30081a.q()) {
+                this.f30081a.getLayoutParams().width = totalWidth;
+                this.f30081a.G = Math.max((totalWidth - childAt.getMeasuredWidth()) - AndroidUtilities.dp(36.0f), AndroidUtilities.dp(36.0f));
             } else if (totalWidth > dp2) {
                 int dp3 = ((dp2 - AndroidUtilities.dp(16.0f)) / AndroidUtilities.dp(36.0f)) + 1;
                 int dp4 = AndroidUtilities.dp(8.0f) + (AndroidUtilities.dp(36.0f) * dp3);
                 if (AndroidUtilities.dp(24.0f) + hintTextWidth > dp4) {
                     dp4 = AndroidUtilities.dp(24.0f) + hintTextWidth;
                 }
-                if (dp4 <= totalWidth && dp3 != this.f30054a.getItemsCount()) {
+                if (dp4 <= totalWidth && dp3 != this.f30081a.getItemsCount()) {
                     totalWidth = dp4;
                 }
-                this.f30054a.getLayoutParams().width = totalWidth;
+                this.f30081a.getLayoutParams().width = totalWidth;
             } else {
-                this.f30054a.getLayoutParams().width = -2;
+                this.f30081a.getLayoutParams().width = -2;
             }
-            if (this.f30054a.getMeasuredWidth() == measuredWidth && this.f30054a.q()) {
+            if (this.f30081a.getMeasuredWidth() == measuredWidth && this.f30081a.q()) {
                 float measuredWidth2 = (measuredWidth - childAt.getMeasuredWidth()) * 0.25f;
-                this.f30057e = measuredWidth2;
-                fk0 fk0Var3 = this.f30054a;
+                this.f30084e = measuredWidth2;
+                fk0 fk0Var3 = this.f30081a;
                 int i20 = (int) (fk0Var3.G - measuredWidth2);
                 fk0Var3.G = i20;
                 if (i20 < AndroidUtilities.dp(36.0f)) {
-                    this.f30057e = 0.0f;
-                    this.f30054a.G = AndroidUtilities.dp(36.0f);
+                    this.f30084e = 0.0f;
+                    this.f30081a.G = AndroidUtilities.dp(36.0f);
                 }
                 b();
             } else {
-                if (this.f30055b.getSwipeBack() != null) {
-                    i13 = this.f30055b.getSwipeBack().getMeasuredWidth() - this.f30055b.getSwipeBack().getChildAt(0).getMeasuredWidth();
+                if (this.f30082b.getSwipeBack() != null) {
+                    i13 = this.f30082b.getSwipeBack().getMeasuredWidth() - this.f30082b.getSwipeBack().getChildAt(0).getMeasuredWidth();
                 } else {
                     i13 = 0;
                 }
-                if (this.f30054a.getLayoutParams().width != -2 && this.f30054a.getLayoutParams().width + i13 > measuredWidth) {
-                    i13 = AndroidUtilities.dp(8.0f) + (measuredWidth - this.f30054a.getLayoutParams().width);
+                if (this.f30081a.getLayoutParams().width != -2 && this.f30081a.getLayoutParams().width + i13 > measuredWidth) {
+                    i13 = AndroidUtilities.dp(8.0f) + (measuredWidth - this.f30081a.getLayoutParams().width);
                 }
                 if (i13 >= 0) {
                     i16 = i13;
                 }
-                ((LinearLayout.LayoutParams) this.f30054a.getLayoutParams()).rightMargin = i16;
-                this.f30057e = 0.0f;
+                ((LinearLayout.LayoutParams) this.f30081a.getLayoutParams()).rightMargin = i16;
+                this.f30084e = 0.0f;
                 b();
             }
-            if (this.f30056c != null) {
-                if (this.f30054a.q()) {
-                    this.f30056c.getLayoutParams().width = AndroidUtilities.dp(16.0f) + childAt.getMeasuredWidth();
+            if (this.f30083c != null) {
+                if (this.f30081a.q()) {
+                    this.f30083c.getLayoutParams().width = AndroidUtilities.dp(16.0f) + childAt.getMeasuredWidth();
                     b();
                 } else {
-                    this.f30056c.getLayoutParams().width = -1;
+                    this.f30083c.getLayoutParams().width = -1;
                 }
-                if (this.f30055b.getSwipeBack() != null) {
-                    ((LinearLayout.LayoutParams) this.f30056c.getLayoutParams()).rightMargin = AndroidUtilities.dp(36.0f) + i16;
+                if (this.f30082b.getSwipeBack() != null) {
+                    ((LinearLayout.LayoutParams) this.f30083c.getLayoutParams()).rightMargin = AndroidUtilities.dp(36.0f) + i16;
                 } else {
-                    ((LinearLayout.LayoutParams) this.f30056c.getLayoutParams()).rightMargin = AndroidUtilities.dp(36.0f);
+                    ((LinearLayout.LayoutParams) this.f30083c.getLayoutParams()).rightMargin = AndroidUtilities.dp(36.0f);
                 }
             }
             super.onMeasure(i14, i12);
@@ -182,8 +182,8 @@ public abstract class ro extends LinearLayout {
     }
 
     public void setExpandSize(float f7) {
-        this.f30055b.setTranslationY(f7);
-        this.f30059n = f7;
+        this.f30082b.setTranslationY(f7);
+        this.f30086n = f7;
         a();
     }
 
@@ -192,27 +192,27 @@ public abstract class ro extends LinearLayout {
     }
 
     public void setPopupAlpha(float f7) {
-        this.f30055b.setAlpha(f7);
-        FrameLayout frameLayout = this.f30056c;
+        this.f30082b.setAlpha(f7);
+        FrameLayout frameLayout = this.f30083c;
         if (frameLayout != null) {
             frameLayout.setAlpha(f7);
         }
     }
 
     public void setPopupWindowLayout(ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout) {
-        this.f30055b = actionBarPopupWindow$ActionBarPopupWindowLayout;
+        this.f30082b = actionBarPopupWindow$ActionBarPopupWindowLayout;
         actionBarPopupWindow$ActionBarPopupWindowLayout.setOnSizeChangedListener(new b3(9, this, actionBarPopupWindow$ActionBarPopupWindowLayout));
         if (actionBarPopupWindow$ActionBarPopupWindowLayout.getSwipeBack() != null) {
             ug0 swipeBack = actionBarPopupWindow$ActionBarPopupWindowLayout.getSwipeBack();
-            swipeBack.f30896x.add(new tg0() {
+            swipeBack.f30923x.add(new tg0() {
                 @Override
                 public final void a(float f7, float f10) {
                     ro roVar = ro.this;
-                    FrameLayout frameLayout = roVar.f30056c;
+                    FrameLayout frameLayout = roVar.f30083c;
                     if (frameLayout != null) {
                         frameLayout.setAlpha(1.0f - f10);
                     }
-                    roVar.f30058f = f10;
+                    roVar.f30085f = f10;
                     roVar.b();
                 }
             });
@@ -220,25 +220,25 @@ public abstract class ro extends LinearLayout {
     }
 
     public void setReactionsLayout(fk0 fk0Var) {
-        this.f30054a = fk0Var;
+        this.f30081a = fk0Var;
         if (fk0Var != null) {
             fk0Var.setChatScrimView(this);
         }
     }
 
     public void setReactionsTransitionProgress(float f7) {
-        this.f30055b.setReactionsTransitionProgress(f7);
-        FrameLayout frameLayout = this.f30056c;
+        this.f30082b.setReactionsTransitionProgress(f7);
+        FrameLayout frameLayout = this.f30083c;
         if (frameLayout != null) {
             frameLayout.setAlpha(f7);
             float f10 = (f7 * 0.5f) + 0.5f;
-            FrameLayout frameLayout2 = this.f30056c;
+            FrameLayout frameLayout2 = this.f30083c;
             frameLayout2.setPivotX(frameLayout2.getMeasuredWidth());
-            this.f30056c.setPivotY(0.0f);
-            this.f30060r = (1.0f - f7) * (-this.f30055b.getMeasuredHeight());
+            this.f30083c.setPivotY(0.0f);
+            this.f30087r = (1.0f - f7) * (-this.f30082b.getMeasuredHeight());
             a();
-            this.f30056c.setScaleX(f10);
-            this.f30056c.setScaleY(f10);
+            this.f30083c.setScaleX(f10);
+            this.f30083c.setScaleY(f10);
         }
     }
 }

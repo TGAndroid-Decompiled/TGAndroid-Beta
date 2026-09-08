@@ -8,67 +8,67 @@ import org.telegram.messenger.PushListenerController;
 import org.telegram.messenger.RichMessageLayout;
 import org.telegram.messenger.SendMessagesHelper;
 public final class vg implements Runnable {
-    public final int f19247a;
-    public final Object f19248b;
+    public final int f19274a;
+    public final Object f19275b;
 
     public vg(Object obj, int i10) {
-        this.f19247a = i10;
-        this.f19248b = obj;
+        this.f19274a = i10;
+        this.f19275b = obj;
     }
 
     @Override
     public final void run() {
-        switch (this.f19247a) {
+        switch (this.f19274a) {
             case 0:
-                ((MusicPlayerService) this.f19248b).stopSelf();
+                ((MusicPlayerService) this.f19275b).stopSelf();
                 return;
             case 1:
-                NotificationBadge.HuaweiHomeBadger.lambda$executeBadge$0((Bundle) this.f19248b);
+                NotificationBadge.HuaweiHomeBadger.lambda$executeBadge$0((Bundle) this.f19275b);
                 return;
             case 2:
-                ((NotificationsSettingsFacade) this.f19248b).lambda$applyDialogNotificationsSettings$0();
+                ((NotificationsSettingsFacade) this.f19275b).lambda$applyDialogNotificationsSettings$0();
                 return;
             case 3:
-                ((CancellationSignal) this.f19248b).cancel();
+                ((CancellationSignal) this.f19275b).cancel();
                 return;
             case 4:
-                ((ProxyRotationController) this.f19248b).lambda$new$2();
+                ((ProxyRotationController) this.f19275b).lambda$new$2();
                 return;
             case 5:
-                ((PushListenerController.GooglePushListenerServiceProvider) this.f19248b).lambda$onRequestPushToken$1();
+                ((PushListenerController.GooglePushListenerServiceProvider) this.f19275b).lambda$onRequestPushToken$1();
                 return;
             case 6:
-                ((RichMessageLayout.PreviewView) this.f19248b).lambda$onTouchEvent$0();
+                ((RichMessageLayout.PreviewView) this.f19275b).lambda$onTouchEvent$0();
                 return;
             case 7:
-                ((RichMessageLayout.RichButtonRowBlock) this.f19248b).invalidate();
+                ((RichMessageLayout.RichButtonRowBlock) this.f19275b).invalidate();
                 return;
             case 8:
-                ((RichMessageLayout.RichButtonSpan) this.f19248b).invalidate();
+                ((RichMessageLayout.RichButtonSpan) this.f19275b).invalidate();
                 return;
             case 9:
-                RichMessageLayout.RichUnsupportedBlock.lambda$new$0((RichMessageLayout) this.f19248b);
+                RichMessageLayout.RichUnsupportedBlock.lambda$new$0((RichMessageLayout) this.f19275b);
                 return;
             case 10:
-                ((RichMessageLayout.Text) this.f19248b).lambda$scheduleLongPress$2();
+                ((RichMessageLayout.Text) this.f19275b).lambda$scheduleLongPress$2();
                 return;
             case 11:
-                ((SecretChatHelper) this.f19248b).lambda$startSecretChat$25();
+                ((SecretChatHelper) this.f19275b).lambda$startSecretChat$25();
                 return;
             case 12:
-                ((SendMessagesHelper) this.f19248b).lambda$new$0();
+                ((SendMessagesHelper) this.f19275b).lambda$new$0();
                 return;
             case 13:
-                ((MessagesStorage.StringCallback) this.f19248b).run(null);
+                ((MessagesStorage.StringCallback) this.f19275b).run(null);
                 return;
             case 14:
-                ((SendMessagesHelper.LocationProvider) this.f19248b).lambda$start$0();
+                ((SendMessagesHelper.LocationProvider) this.f19275b).lambda$start$0();
                 return;
             case 15:
-                ((TelegramMediaSession) this.f19248b).onAccountSwitched();
+                ((TelegramMediaSession) this.f19275b).onAccountSwitched();
                 return;
             default:
-                ((TranslateController) this.f19248b).loadTranslatingDialogsCached();
+                ((TranslateController) this.f19275b).loadTranslatingDialogsCached();
                 return;
         }
     }

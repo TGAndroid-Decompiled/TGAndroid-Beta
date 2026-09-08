@@ -27,9 +27,9 @@ public final class b3 extends co {
         if (!this.Qc) {
             this.Qc = true;
             qc O = yc.a0(this).O(this.Rc.getDocument(), LocaleController.getString(R.string.BoughtResoldGiftToTitle), LocaleController.formatString(R.string.BoughtResoldGiftToText, DialogObject.getShortName(this.currentAccount, this.Sc)));
-            O.f29687r = false;
+            O.f29714r = false;
             O.j();
-            r00 r00Var = this.f35342m9;
+            r00 r00Var = this.f35369m9;
             if (r00Var != null) {
                 r00Var.c(true);
             }

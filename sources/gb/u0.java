@@ -12,7 +12,7 @@ public class u0 extends db.u {
                 if (c10 != 7) {
                     if (c10 == 8) {
                         aVar.t();
-                        return db.k.f6682a;
+                        return db.k.f6709a;
                     }
                     throw new IllegalStateException("Unexpected token: ".concat(i2.g.E(i10)));
                 }
@@ -29,7 +29,7 @@ public class u0 extends db.u {
             if (z10) {
                 if (z10) {
                     db.m mVar = (db.m) iVar;
-                    Serializable serializable = mVar.f6684a;
+                    Serializable serializable = mVar.f6711a;
                     if (serializable instanceof Number) {
                         bVar.q(mVar.r());
                         return;
@@ -47,7 +47,7 @@ public class u0 extends db.u {
             if (z11) {
                 bVar.b();
                 if (z11) {
-                    ArrayList arrayList = ((db.h) iVar).f6681a;
+                    ArrayList arrayList = ((db.h) iVar).f6708a;
                     int size = arrayList.size();
                     int i10 = 0;
                     while (i10 < size) {
@@ -61,7 +61,7 @@ public class u0 extends db.u {
                 throw new IllegalStateException("Not a JSON Array: " + iVar);
             } else if (iVar instanceof db.l) {
                 bVar.c();
-                Iterator it = ((fb.k) iVar.i().f6683a.entrySet()).iterator();
+                Iterator it = ((fb.k) iVar.i().f6710a.entrySet()).iterator();
                 while (((fb.j) it).hasNext()) {
                     fb.l b10 = ((fb.j) it).b();
                     bVar.g((String) b10.getKey());
@@ -138,7 +138,7 @@ public class u0 extends db.u {
                     hVar2 = a(aVar, x12);
                 }
                 if (hVar instanceof db.h) {
-                    ((db.h) hVar).f6681a.add(hVar2);
+                    ((db.h) hVar).f6708a.add(hVar2);
                 } else {
                     ((db.l) hVar).o(str, hVar2);
                 }

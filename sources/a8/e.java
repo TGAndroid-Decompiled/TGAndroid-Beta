@@ -10,21 +10,21 @@ import com.google.android.gms.tasks.TaskCompletionSource;
 import kotlin.jvm.internal.i;
 import v7.f5;
 public final class e extends Binder implements b, IInterface {
-    public final int f320a;
-    public final TaskCompletionSource f321b;
+    public final int f332a;
+    public final TaskCompletionSource f333b;
 
     public e(int i10, TaskCompletionSource taskCompletionSource) {
-        this.f320a = i10;
-        this.f321b = taskCompletionSource;
+        this.f332a = i10;
+        this.f333b = taskCompletionSource;
         attachInterface(this, "com.google.android.gms.recaptchabase.internal.IRecaptchaBaseCallbacks");
     }
 
     @Override
     public final void S(Status status, l8.b bVar) {
-        switch (this.f320a) {
+        switch (this.f332a) {
             case 0:
                 i.e(status, "status");
-                f5.a(status, bVar, this.f321b);
+                f5.a(status, bVar, this.f333b);
                 return;
             default:
                 return;
@@ -65,12 +65,12 @@ public final class e extends Binder implements b, IInterface {
 
     @Override
     public final void s(Status status, l8.d dVar) {
-        switch (this.f320a) {
+        switch (this.f332a) {
             case 0:
                 return;
             default:
                 i.e(status, "status");
-                f5.a(status, dVar, this.f321b);
+                f5.a(status, dVar, this.f333b);
                 return;
         }
     }

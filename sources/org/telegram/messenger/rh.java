@@ -3,21 +3,21 @@ package org.telegram.messenger;
 import android.os.SystemClock;
 import org.telegram.messenger.SharedConfig;
 public final class rh implements Runnable {
-    public final int f18911a;
-    public final SharedConfig.ProxyInfo f18912b;
-    public final long f18913c;
+    public final int f18938a;
+    public final SharedConfig.ProxyInfo f18939b;
+    public final long f18940c;
 
     public rh(SharedConfig.ProxyInfo proxyInfo, long j3, int i10) {
-        this.f18911a = i10;
-        this.f18912b = proxyInfo;
-        this.f18913c = j3;
+        this.f18938a = i10;
+        this.f18939b = proxyInfo;
+        this.f18940c = j3;
     }
 
     @Override
     public final void run() {
-        int i10 = this.f18911a;
-        long j3 = this.f18913c;
-        SharedConfig.ProxyInfo proxyInfo = this.f18912b;
+        int i10 = this.f18938a;
+        long j3 = this.f18940c;
+        SharedConfig.ProxyInfo proxyInfo = this.f18939b;
         switch (i10) {
             case 0:
                 ProxyRotationController.lambda$new$0(proxyInfo, j3);

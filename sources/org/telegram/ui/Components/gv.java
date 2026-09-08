@@ -35,7 +35,7 @@ public final class gv extends gt {
         if (!z10) {
             for (int i12 = 0; i12 < this.N.size(); i12++) {
                 iv ivVar = (iv) this.N.get(i12);
-                if (ivVar.f27270e != 0.0f || ivVar.d != null || ivVar.getTranslationX() != 0.0f || ivVar.getTranslationY() != 0.0f || ivVar.getAlpha() != 1.0f) {
+                if (ivVar.f27297e != 0.0f || ivVar.d != null || ivVar.getTranslationX() != 0.0f || ivVar.getTranslationY() != 0.0f || ivVar.getAlpha() != 1.0f) {
                     break;
                 }
             }
@@ -57,7 +57,7 @@ public final class gv extends gt {
             ArrayList arrayList = this.O;
             if (i10 < arrayList.size()) {
                 iv ivVar = (iv) arrayList.get(i10);
-                ivVar.f27268b.draw(canvas, ivVar.f27267a[this.K]);
+                ivVar.f27295b.draw(canvas, ivVar.f27294a[this.K]);
                 i10++;
             } else {
                 return;
@@ -71,14 +71,14 @@ public final class gv extends gt {
         if (this.N != null) {
             for (int i10 = 0; i10 < this.N.size(); i10++) {
                 iv ivVar = (iv) this.N.get(i10);
-                z5 z5Var = ivVar.f27269c;
-                if (z5Var != null && (q5Var = (q5) this.P.f26876y.f30093b.get(z5Var.getDocumentId())) != null && q5Var.f29584k != null && ivVar.f27268b != null) {
+                z5 z5Var = ivVar.f27296c;
+                if (z5Var != null && (q5Var = (q5) this.P.f26903y.f30120b.get(z5Var.getDocumentId())) != null && q5Var.f29611k != null && ivVar.f27295b != null) {
                     q5Var.setAlpha((int) (ivVar.getAlpha() * 255.0f * f7));
                     float width = ((ivVar.getWidth() - ivVar.getPaddingLeft()) - ivVar.getPaddingRight()) / 2.0f;
                     float height = ((ivVar.getHeight() - ivVar.getPaddingTop()) - ivVar.getPaddingBottom()) / 2.0f;
                     float right = (ivVar.getRight() + ivVar.getLeft()) / 2.0f;
                     float paddingTop = ivVar.getPaddingTop() + height;
-                    float f10 = ivVar.f27270e;
+                    float f10 = ivVar.f27297e;
                     float f11 = 1.0f;
                     if (f10 != 0.0f) {
                         f11 = 1.0f * (((1.0f - f10) * 0.2f) + 0.8f);
@@ -97,11 +97,11 @@ public final class gv extends gt {
         while (true) {
             ArrayList arrayList = this.O;
             if (i10 >= arrayList.size()) {
-                viewGroup = ((org.telegram.ui.ActionBar.f3) this.P.f26876y).containerView;
+                viewGroup = ((org.telegram.ui.ActionBar.f3) this.P.f26903y).containerView;
                 viewGroup.invalidate();
                 return;
             }
-            ((iv) arrayList.get(i10)).f27267a[this.K].release();
+            ((iv) arrayList.get(i10)).f27294a[this.K].release();
             i10++;
         }
     }
@@ -109,16 +109,16 @@ public final class gv extends gt {
     @Override
     public final void i(long j3) {
         q5 q5Var;
-        rv rvVar = this.P.f26876y;
+        rv rvVar = this.P.f26903y;
         ArrayList arrayList = this.O;
         arrayList.clear();
         for (int i10 = 0; i10 < this.N.size(); i10++) {
             iv ivVar = (iv) this.N.get(i10);
-            z5 z5Var = ivVar.f27269c;
-            ImageReceiver.BackgroundThreadDrawHolder[] backgroundThreadDrawHolderArr = ivVar.f27267a;
-            if (z5Var != null && (q5Var = (q5) rvVar.f30093b.get(z5Var.getDocumentId())) != null && q5Var.f29584k != null) {
+            z5 z5Var = ivVar.f27296c;
+            ImageReceiver.BackgroundThreadDrawHolder[] backgroundThreadDrawHolderArr = ivVar.f27294a;
+            if (z5Var != null && (q5Var = (q5) rvVar.f30120b.get(z5Var.getDocumentId())) != null && q5Var.f29611k != null) {
                 q5Var.t(j3);
-                bi.y3 y3Var = q5Var.f29584k;
+                bi.y3 y3Var = q5Var.f29611k;
                 int i11 = this.K;
                 ImageReceiver.BackgroundThreadDrawHolder drawInBackgroundThread = y3Var.setDrawInBackgroundThread(backgroundThreadDrawHolderArr[i11], i11);
                 backgroundThreadDrawHolderArr[i11] = drawInBackgroundThread;
@@ -133,7 +133,7 @@ public final class gv extends gt {
                     rvVar.T = new PorterDuffColorFilter(themedColor, PorterDuff.Mode.SRC_IN);
                 }
                 q5Var.setColorFilter(rvVar.T);
-                ivVar.f27268b = q5Var.f29584k;
+                ivVar.f27295b = q5Var.f29611k;
                 arrayList.add(ivVar);
             }
         }

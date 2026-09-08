@@ -31,27 +31,27 @@ public final class p4 extends a0 implements org.telegram.ui.ActionBar.z5, p9, l0
     public Drawable J;
     public int K;
     public final k0 L;
-    public final int f14113n;
-    public final org.telegram.ui.ActionBar.f6 f14114r;
-    public final Paint f14115s;
+    public final int f14139n;
+    public final org.telegram.ui.ActionBar.f6 f14140r;
+    public final Paint f14141s;
     public final Paint v;
-    public final Paint f14116w;
-    public final TextPaint f14117x;
-    public final ImageReceiver f14118y;
+    public final Paint f14142w;
+    public final TextPaint f14143x;
+    public final ImageReceiver f14144y;
 
     public p4(Context context, int i10, org.telegram.ui.ActionBar.f6 f6Var) {
         super(context);
-        this.f14115s = new Paint(1);
+        this.f14141s = new Paint(1);
         this.v = new Paint(1);
-        this.f14116w = new Paint(1);
+        this.f14142w = new Paint(1);
         TextPaint textPaint = new TextPaint(1);
-        this.f14117x = textPaint;
-        this.f14113n = i10;
-        this.f14114r = f6Var;
+        this.f14143x = textPaint;
+        this.f14139n = i10;
+        this.f14140r = f6Var;
         setWillNotDraw(false);
         textPaint.setTextSize(AndroidUtilities.dp(15.0f));
         textPaint.setTextAlign(Paint.Align.CENTER);
-        this.f14118y = new ImageReceiver(this);
+        this.f14144y = new ImageReceiver(this);
         this.E = getContext().getResources().getDrawable(R.drawable.msg_map).mutate();
         g(AndroidUtilities.dp(16.0f), AndroidUtilities.dp(6.0f), AndroidUtilities.dp(16.0f), AndroidUtilities.dp(4.0f));
         View view = new View(context);
@@ -60,14 +60,14 @@ public final class p4 extends a0 implements org.telegram.ui.ActionBar.z5, p9, l0
         addView(view, w7.x5.e(-1, -2, 51));
         k0 k0Var = new k0(context, f6Var, new a6.i(this, 29));
         this.L = k0Var;
-        addView(k0Var.f14007a, w7.x5.e(-2, -2, 51));
+        addView(k0Var.f14033a, w7.x5.e(-2, -2, 51));
         d();
     }
 
     private TL_iv.pageBlockMap getMap() {
-        a aVar = this.f13749a;
+        a aVar = this.f13775a;
         if (aVar != null) {
-            TL_iv.PageBlock pageBlock = aVar.f13732b;
+            TL_iv.PageBlock pageBlock = aVar.f13758b;
             if (pageBlock instanceof TL_iv.pageBlockMap) {
                 return (TL_iv.pageBlockMap) pageBlock;
             }
@@ -88,13 +88,13 @@ public final class p4 extends a0 implements org.telegram.ui.ActionBar.z5, p9, l0
 
     @Override
     public final void d() {
-        int i10 = org.telegram.ui.ActionBar.j6.f20887pe;
-        org.telegram.ui.ActionBar.f6 f6Var = this.f14114r;
-        this.f14115s.setColor(org.telegram.ui.ActionBar.j6.v0(i10, f6Var));
+        int i10 = org.telegram.ui.ActionBar.j6.f20914pe;
+        org.telegram.ui.ActionBar.f6 f6Var = this.f14140r;
+        this.f14141s.setColor(org.telegram.ui.ActionBar.j6.v0(i10, f6Var));
         this.v.setColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.Gd, f6Var));
-        this.f14116w.setColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f20981uf, f6Var));
+        this.f14142w.setColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f21008uf, f6Var));
         int i11 = org.telegram.ui.ActionBar.j6.G6;
-        this.f14117x.setColor(org.telegram.ui.ActionBar.j6.l1(0.5f, org.telegram.ui.ActionBar.j6.v0(i11, f6Var)));
+        this.f14143x.setColor(org.telegram.ui.ActionBar.j6.l1(0.5f, org.telegram.ui.ActionBar.j6.v0(i11, f6Var)));
         this.E.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.j6.l1(0.5f, org.telegram.ui.ActionBar.j6.v0(i11, f6Var)), PorterDuff.Mode.SRC_IN));
         k0 k0Var = this.L;
         if (k0Var != null) {
@@ -120,7 +120,7 @@ public final class p4 extends a0 implements org.telegram.ui.ActionBar.z5, p9, l0
 
     @Override
     public h1 getCaptionEditText() {
-        return this.L.f14007a;
+        return this.L.f14033a;
     }
 
     public int[] getColorKeys() {
@@ -129,11 +129,11 @@ public final class p4 extends a0 implements org.telegram.ui.ActionBar.z5, p9, l0
 
     @Override
     public a getRow() {
-        return this.f13749a;
+        return this.f13775a;
     }
 
     public final void h(a aVar, n4 n4Var) {
-        this.f13749a = aVar;
+        this.f13775a = aVar;
         this.G = n4Var;
         c(aVar);
         this.I = null;
@@ -145,7 +145,7 @@ public final class p4 extends a0 implements org.telegram.ui.ActionBar.z5, p9, l0
 
     public final void i() {
         TL_iv.pageBlockMap map = getMap();
-        ImageReceiver imageReceiver = this.f14118y;
+        ImageReceiver imageReceiver = this.f14144y;
         if (map != null && (map.geo instanceof TLRPC.TL_geoPoint)) {
             int measuredWidth = getMeasuredWidth();
             int i10 = this.K;
@@ -156,14 +156,14 @@ public final class p4 extends a0 implements org.telegram.ui.ActionBar.z5, p9, l0
                 String str = map.geo.lat + "_" + map.geo._long + "_" + i11 + "x" + i12;
                 if (!str.equals(this.I)) {
                     this.I = str;
-                    int i13 = MessagesController.getInstance(this.f14113n).mapProvider;
+                    int i13 = MessagesController.getInstance(this.f14139n).mapProvider;
                     this.H = i13;
                     if (i13 == 2) {
                         imageReceiver.setImage(ImageLocation.getForWebFile(WebFile.createWithGeoPoint(map.geo, i11, i12, 15, Math.min(2, (int) Math.ceil(AndroidUtilities.density)))), null, null, null, null, 0);
                         return;
                     }
                     TLRPC.GeoPoint geoPoint = map.geo;
-                    imageReceiver.setImage(AndroidUtilities.formapMapUrl(this.f14113n, geoPoint.lat, geoPoint._long, i11, i12, true, 15, -1), null, null, null, 0L);
+                    imageReceiver.setImage(AndroidUtilities.formapMapUrl(this.f14139n, geoPoint.lat, geoPoint._long, i11, i12, true, 15, -1), null, null, null, 0L);
                     return;
                 }
                 return;
@@ -177,7 +177,7 @@ public final class p4 extends a0 implements org.telegram.ui.ActionBar.z5, p9, l0
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        this.f14118y.onAttachedToWindow();
+        this.f14144y.onAttachedToWindow();
         this.I = null;
         i();
     }
@@ -185,7 +185,7 @@ public final class p4 extends a0 implements org.telegram.ui.ActionBar.z5, p9, l0
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        this.f14118y.onDetachedFromWindow();
+        this.f14144y.onDetachedFromWindow();
     }
 
     @Override
@@ -193,9 +193,9 @@ public final class p4 extends a0 implements org.telegram.ui.ActionBar.z5, p9, l0
         Canvas canvas2;
         q9 textSelectionHelper;
         if (getMap() != null) {
-            ImageReceiver imageReceiver = this.f14118y;
+            ImageReceiver imageReceiver = this.f14144y;
             canvas2 = canvas;
-            canvas2.drawRect(imageReceiver.getImageX(), imageReceiver.getImageY(), imageReceiver.getImageX2(), imageReceiver.getImageY2(), this.f14115s);
+            canvas2.drawRect(imageReceiver.getImageX(), imageReceiver.getImageY(), imageReceiver.getImageX2(), imageReceiver.getImageY2(), this.f14141s);
             int centerX = (int) imageReceiver.getCenterX();
             int centerY = (int) imageReceiver.getCenterY();
             Drawable drawable = this.E;
@@ -225,11 +225,11 @@ public final class p4 extends a0 implements org.telegram.ui.ActionBar.z5, p9, l0
             canvas2 = canvas;
         }
         n4 n4Var = this.G;
-        if (n4Var != null && (textSelectionHelper = ((r3) n4Var).f14144a.getTextSelectionHelper()) != null && textSelectionHelper.y() && (getParent() instanceof RecyclerView)) {
+        if (n4Var != null && (textSelectionHelper = ((r3) n4Var).f14170a.getTextSelectionHelper()) != null && textSelectionHelper.y() && (getParent() instanceof RecyclerView)) {
             ((RecyclerView) getParent()).getClass();
             int R = RecyclerView.R(this);
-            if (R >= 0 && R > textSelectionHelper.f22500u0 && R <= textSelectionHelper.f22503x0) {
-                canvas2.drawRect(getPaddingLeft(), getPaddingTop(), getWidth() - getPaddingRight(), getPaddingTop() + this.K, this.f14116w);
+            if (R >= 0 && R > textSelectionHelper.f22527u0 && R <= textSelectionHelper.f22530x0) {
+                canvas2.drawRect(getPaddingLeft(), getPaddingTop(), getWidth() - getPaddingRight(), getPaddingTop() + this.K, this.f14142w);
             }
         }
     }
@@ -240,7 +240,7 @@ public final class p4 extends a0 implements org.telegram.ui.ActionBar.z5, p9, l0
         int paddingRight = getPaddingRight();
         int i14 = i12 - i10;
         int max = Math.max(0, (i14 - paddingLeft) - paddingRight);
-        this.f14118y.setImageCoords(paddingLeft, getPaddingTop(), max, this.K);
+        this.f14144y.setImageCoords(paddingLeft, getPaddingTop(), max, this.K);
         int paddingTop = getPaddingTop() + this.K;
         this.F.layout(paddingLeft, getPaddingTop(), max + paddingLeft, paddingTop);
         this.L.g(paddingLeft, paddingRight, i14, getPaddingTop() + this.K);
@@ -254,8 +254,8 @@ public final class p4 extends a0 implements org.telegram.ui.ActionBar.z5, p9, l0
         int paddingRight = getPaddingRight();
         int max = Math.max(0, (size - paddingLeft) - paddingRight);
         TL_iv.pageBlockMap map = getMap();
-        if (map != null && map.f20093w > 0 && map.h > 0) {
-            this.K = Math.max(Math.min((int) (((max - AndroidUtilities.dp(32.0f)) * map.h) / map.f20093w), AndroidUtilities.dp(420.0f)), AndroidUtilities.dp(120.0f));
+        if (map != null && map.f20120w > 0 && map.h > 0) {
+            this.K = Math.max(Math.min((int) (((max - AndroidUtilities.dp(32.0f)) * map.h) / map.f20120w), AndroidUtilities.dp(420.0f)), AndroidUtilities.dp(120.0f));
         } else {
             this.K = (AndroidUtilities.dp(200.0f) - getPaddingTop()) - getPaddingBottom();
         }

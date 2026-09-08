@@ -23,7 +23,7 @@ public final class g extends bb {
 
     public g(Activity activity, f6 f6Var, TL_stats.TL_statsPollStats tL_statsPollStats) {
         super(activity, null, true, false, 2, f6Var);
-        setBackgroundColor(j6.v0(j6.f20607a7, f6Var));
+        setBackgroundColor(j6.v0(j6.f20634a7, f6Var));
         this.occupyNavigationBar = true;
         this.drawNavigationBar = false;
         this.L = false;
@@ -34,7 +34,7 @@ public final class g extends bb {
         ll0Var.setPadding(i10, 0, i10, AndroidUtilities.navigationBarHeight);
         this.d.setClipToPadding(false);
         this.d.setSections(true);
-        z n10 = this.f24647e.n();
+        z n10 = this.f24674e.n();
         n10.a(-1, R.drawable.ic_close_white);
         n10.setTranslationX(-AndroidUtilities.dp(5.0f));
         this.X.N(false);
@@ -51,7 +51,7 @@ public final class g extends bb {
     public final kl0 v(ll0 ll0Var) {
         v51 v51Var = new v51(ll0Var, getContext(), this.currentAccount, 0, true, new ii.a(this, 9), this.resourcesProvider);
         this.X = v51Var;
-        v51Var.f31135r = false;
+        v51Var.f31162r = false;
         return v51Var;
     }
 

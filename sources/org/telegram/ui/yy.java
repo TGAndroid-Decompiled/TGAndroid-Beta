@@ -4,25 +4,25 @@ import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import org.telegram.messenger.MessagesController;
 public final class yy implements DialogInterface.OnClickListener {
-    public final int f43235a;
-    public final int f43236b;
-    public final Object f43237c;
+    public final int f43262a;
+    public final int f43263b;
+    public final Object f43264c;
 
     public yy(Object obj, int i10, int i11) {
-        this.f43235a = i11;
-        this.f43237c = obj;
-        this.f43236b = i10;
+        this.f43262a = i11;
+        this.f43264c = obj;
+        this.f43263b = i10;
     }
 
     @Override
     public final void onClick(DialogInterface dialogInterface, int i10) {
-        switch (this.f43235a) {
+        switch (this.f43262a) {
             case 0:
-                dz dzVar = ((zy) this.f43237c).f43573b;
+                dz dzVar = ((zy) this.f43264c).f43600b;
                 if (i10 == 0) {
-                    dzVar.f35890e.remove(this.f43236b - dzVar.f35892n);
+                    dzVar.f35917e.remove(this.f43263b - dzVar.f35919n);
                     dzVar.Z();
-                    cz czVar = dzVar.f35891f;
+                    cz czVar = dzVar.f35918f;
                     if (czVar != null) {
                         czVar.a();
                         return;
@@ -31,17 +31,17 @@ public final class yy implements DialogInterface.OnClickListener {
                 }
                 return;
             case 1:
-                NotificationsSettingsActivity.X((NotificationsSettingsActivity) this.f43237c, this.f43236b, i10);
+                NotificationsSettingsActivity.X((NotificationsSettingsActivity) this.f43264c, this.f43263b, i10);
                 return;
             default:
-                ThemeActivity themeActivity = (ThemeActivity) this.f43237c;
+                ThemeActivity themeActivity = (ThemeActivity) this.f43264c;
                 themeActivity.getClass();
                 SharedPreferences.Editor edit = MessagesController.getGlobalMainSettings().edit();
                 edit.putInt("sortContactsBy", i10);
                 edit.commit();
-                gc1 gc1Var = themeActivity.f34174a;
+                gc1 gc1Var = themeActivity.f34201a;
                 if (gc1Var != null) {
-                    gc1Var.m(this.f43236b);
+                    gc1Var.m(this.f43263b);
                     return;
                 }
                 return;

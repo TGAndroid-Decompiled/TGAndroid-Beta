@@ -10,7 +10,7 @@ import org.telegram.ui.Components.h51;
 import org.telegram.ui.Components.ll0;
 import org.telegram.ui.Components.v51;
 public final class v extends g51 {
-    public static final int f4844a = 0;
+    public static final int f4871a = 0;
 
     static {
         g51.setup(new g51());
@@ -20,12 +20,12 @@ public final class v extends g51 {
     public final void bindView(View view, h51 h51Var, boolean z10, v51 v51Var, d61 d61Var) {
         w wVar = (w) view;
         TranslateController.Language language = (TranslateController.Language) h51Var.G;
-        wVar.f4845a.setText(language.displayName);
-        wVar.f4846b.setText(language.ownDisplayName);
-        if (wVar.f4847c != z10) {
+        wVar.f4872a.setText(language.displayName);
+        wVar.f4873b.setText(language.ownDisplayName);
+        if (wVar.f4874c != z10) {
             wVar.invalidate();
         }
-        wVar.f4847c = z10;
+        wVar.f4874c = z10;
         wVar.setWillNotDraw(!z10);
     }
 

@@ -16,13 +16,13 @@ public final class bd0 extends hg.u0 {
     @Override
     public final void l() {
         id0 id0Var = this.N;
-        org.telegram.ui.ActionBar.v0 v0Var = id0Var.f37332w;
+        org.telegram.ui.ActionBar.v0 v0Var = id0Var.f37359w;
         if (v0Var != null) {
             v0Var.setShowSearchProgress(id0Var.W.J);
         }
-        TextView textView = id0Var.f37325r;
+        TextView textView = id0Var.f37352r;
         if (textView != null) {
-            textView.setText(AndroidUtilities.replaceTags(LocaleController.formatString("NoPlacesFoundInfo", R.string.NoPlacesFoundInfo, id0Var.W.f11002x)));
+            textView.setText(AndroidUtilities.replaceTags(LocaleController.formatString("NoPlacesFoundInfo", R.string.NoPlacesFoundInfo, id0Var.W.f11028x)));
         }
         super.l();
     }

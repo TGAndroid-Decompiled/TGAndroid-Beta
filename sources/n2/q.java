@@ -7,7 +7,7 @@ import ji.u4;
 public interface q {
     o B0(byte[] bArr, List list, int i10, HashMap hashMap);
 
-    h2.a C(byte[] bArr);
+    h2.b C(byte[] bArr);
 
     byte[] G();
 

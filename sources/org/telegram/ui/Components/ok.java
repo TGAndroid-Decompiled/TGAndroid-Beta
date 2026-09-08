@@ -35,7 +35,7 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.LaunchActivity;
 public final class ok extends ni {
-    public static final int f29084g0 = 0;
+    public static final int f29111g0 = 0;
     public final ig.e0 E;
     public final org.telegram.ui.ActionBar.v0 F;
     public final org.telegram.ui.ActionBar.v0 G;
@@ -55,19 +55,19 @@ public final class ok extends ni {
     public boolean U;
     public int V;
     public boolean W;
-    public final boolean f29085a0;
-    public boolean f29086b0;
-    public boolean f29087c0;
-    public boolean f29088d0;
-    public final androidx.mediarouter.app.g f29089e0;
-    public ValueAnimator f29090f0;
-    public int f29091n;
-    public final dk f29092r;
-    public final dk f29093s;
+    public final boolean f29112a0;
+    public boolean f29113b0;
+    public boolean f29114c0;
+    public boolean f29115d0;
+    public final androidx.mediarouter.app.g f29116e0;
+    public ValueAnimator f29117f0;
+    public int f29118n;
+    public final dk f29119r;
+    public final dk f29120s;
     public final hk v;
-    public final hk f29094w;
-    public final pz f29095x;
-    public final nk f29096y;
+    public final hk f29121w;
+    public final pz f29122x;
+    public final nk f29123y;
 
     public ok(int i10, Context context, org.telegram.ui.ActionBar.f6 f6Var, vi viVar) {
         super(context, f6Var, viVar);
@@ -81,7 +81,7 @@ public final class ok extends ni {
         this.S = new ArrayList();
         this.T = new HashMap();
         this.V = -1;
-        this.f29089e0 = new androidx.mediarouter.app.g(this, 7);
+        this.f29116e0 = new androidx.mediarouter.app.g(this, 7);
         hk hkVar = new hk(this, context);
         this.v = hkVar;
         if (i10 == 1) {
@@ -89,14 +89,14 @@ public final class ok extends ni {
         } else {
             z10 = false;
         }
-        this.f29085a0 = z10;
+        this.f29112a0 = z10;
         if (i10 == 2) {
             z11 = true;
         } else {
             z11 = false;
         }
-        this.f29088d0 = z11;
-        this.f29087c0 = SharedConfig.sortFilesByName;
+        this.f29115d0 = z11;
+        this.f29114c0 = SharedConfig.sortFilesByName;
         try {
             if (z11) {
                 try {
@@ -112,8 +112,8 @@ public final class ok extends ni {
                                 try {
                                     if (j10 <= MessagesController.getInstance(UserConfig.selectedAccount).ringtoneSizeMax && (TextUtils.isEmpty(string) || "audio/mpeg".equals(string) || !"audio/mpeg4".equals(string))) {
                                         ik ikVar = new ik();
-                                        ikVar.f27152b = file.getName();
-                                        ikVar.f27155f = file;
+                                        ikVar.f27179b = file.getName();
+                                        ikVar.f27182f = file;
                                         String name = file.getName();
                                         String[] split = name.split("\\.");
                                         if (split.length > 1) {
@@ -122,12 +122,12 @@ public final class ok extends ni {
                                             str = "?";
                                         }
                                         ikVar.d = str;
-                                        ikVar.f27153c = AndroidUtilities.formatFileSize(file.length());
+                                        ikVar.f27180c = AndroidUtilities.formatFileSize(file.length());
                                         String lowerCase = name.toLowerCase();
                                         if (lowerCase.endsWith(".jpg") || lowerCase.endsWith(".png") || lowerCase.endsWith(".gif") || lowerCase.endsWith(".jpeg")) {
-                                            ikVar.f27154e = file.getAbsolutePath();
+                                            ikVar.f27181e = file.getAbsolutePath();
                                         }
-                                        this.v.f26741e.add(ikVar);
+                                        this.v.f26768e.add(ikVar);
                                     }
                                 } catch (Throwable th2) {
                                     th = th2;
@@ -150,12 +150,12 @@ public final class ok extends ni {
                 }
             } else {
                 L(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS));
-                Collections.sort(hkVar.f26741e, new bk(this, 1));
+                Collections.sort(hkVar.f26768e, new bk(this, 1));
             }
         } catch (Exception e10) {
             FileLog.e(e10);
         }
-        this.f29086b0 = false;
+        this.f29113b0 = false;
         if (!this.P) {
             this.P = true;
             IntentFilter intentFilter = new IntentFilter();
@@ -170,12 +170,12 @@ public final class ok extends ni {
             intentFilter.addAction("android.intent.action.MEDIA_UNMOUNTED");
             intentFilter.addDataScheme("file");
             if (Build.VERSION.SDK_INT >= 33) {
-                ApplicationLoader.applicationContext.registerReceiver(this.f29089e0, intentFilter, 4);
+                ApplicationLoader.applicationContext.registerReceiver(this.f29116e0, intentFilter, 4);
             } else {
-                ApplicationLoader.applicationContext.registerReceiver(this.f29089e0, intentFilter);
+                ApplicationLoader.applicationContext.registerReceiver(this.f29116e0, intentFilter);
             }
         }
-        org.telegram.ui.ActionBar.z n10 = this.f28753b.X0.n();
+        org.telegram.ui.ActionBar.z n10 = this.f28780b.X0.n();
         org.telegram.ui.ActionBar.v0 a2 = n10.a(0, R.drawable.outline_header_search);
         a2.F();
         a2.H = new ig.d2(this, 5);
@@ -183,11 +183,11 @@ public final class ok extends ni {
         a2.setSearchFieldHint(LocaleController.getString(R.string.Search));
         a2.setContentDescription(LocaleController.getString(R.string.Search));
         EditTextBoldCursor searchField = a2.getSearchField();
-        int i12 = org.telegram.ui.ActionBar.j6.f20770j5;
-        searchField.setTextColor(org.telegram.ui.ActionBar.j6.v0(i12, this.f28752a));
-        searchField.setCursorColor(org.telegram.ui.ActionBar.j6.v0(i12, this.f28752a));
-        searchField.setHintTextColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.Vd, this.f28752a));
-        if (this.f29087c0) {
+        int i12 = org.telegram.ui.ActionBar.j6.f20797j5;
+        searchField.setTextColor(org.telegram.ui.ActionBar.j6.v0(i12, this.f28779a));
+        searchField.setCursorColor(org.telegram.ui.ActionBar.j6.v0(i12, this.f28779a));
+        searchField.setHintTextColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.Vd, this.f28779a));
+        if (this.f29114c0) {
             i11 = R.drawable.msg_contacts_time;
         } else {
             i11 = R.drawable.msg_contacts_name;
@@ -204,25 +204,25 @@ public final class ok extends ni {
         m6Var.setVisibility(8);
         m6Var.setOnTouchListener(new ci.d(14));
         dk dkVar = new dk(this, context, f6Var, 0);
-        this.f29093s = dkVar;
+        this.f29120s = dkVar;
         dkVar.setSectionsType(2);
         dkVar.setVerticalScrollBarEnabled(false);
         pz pzVar = new pz(AndroidUtilities.dp(56.0f), 0, dkVar);
-        this.f29095x = pzVar;
+        this.f29122x = pzVar;
         dkVar.setLayoutManager(pzVar);
         dkVar.setClipToPadding(false);
         hk hkVar2 = new hk(this, context);
-        this.f29094w = hkVar2;
+        this.f29121w = hkVar2;
         dkVar.setAdapter(hkVar2);
         addView(dkVar, w7.x5.c(-1.0f, -1));
         dkVar.setVisibility(8);
         dk dkVar2 = new dk(this, context, f6Var, 1);
-        this.f29092r = dkVar2;
+        this.f29119r = dkVar2;
         dkVar2.o1();
-        this.f28754c = dkVar2;
+        this.f28781c = dkVar2;
         this.d = dkVar2;
         this.h = true;
-        this.f28756f = true;
+        this.f28783f = true;
         dkVar2.setSectionsType(2);
         dkVar2.setVerticalScrollBarEnabled(false);
         ig.e0 e0Var = new ig.e0(this, AndroidUtilities.dp(56.0f) + AndroidUtilities.statusBarHeight, dkVar2, 2);
@@ -231,13 +231,13 @@ public final class ok extends ni {
         dkVar2.setClipToPadding(false);
         dkVar2.setAdapter(this.v);
         addView(dkVar2, w7.x5.c(-1.0f, -1));
-        this.f29096y = new nk(this, context);
+        this.f29123y = new nk(this, context);
         dkVar2.setOnScrollListener(new ah.e0(this, 20));
         dkVar2.setOnItemClickListener(new zk0(this) {
-            public final ok f33165b;
+            public final ok f33192b;
 
             {
-                this.f33165b = this;
+                this.f33192b = this;
             }
 
             @Override
@@ -245,20 +245,20 @@ public final class ok extends ni {
                 hg.q0 q0Var;
                 switch (r2) {
                     case 0:
-                        ok.K(this.f33165b, view, i13);
+                        ok.K(this.f33192b, view, i13);
                         return;
                     default:
-                        ok okVar = this.f33165b;
+                        ok okVar = this.f33192b;
                         hg.s0 s0Var = okVar.H;
                         s0Var.I0(true);
-                        nk nkVar = okVar.f29096y;
+                        nk nkVar = okVar.f29123y;
                         ArrayList arrayList = s0Var.X2;
                         if (arrayList.isEmpty()) {
-                            q0Var = hg.s0.f11237c3[i13];
+                            q0Var = hg.s0.f11263c3[i13];
                         } else {
                             q0Var = (hg.q0) arrayList.get(i13);
                         }
-                        vi viVar2 = nkVar.X.f28753b;
+                        vi viVar2 = nkVar.X.f28780b;
                         ArrayList arrayList2 = nkVar.R;
                         if (!arrayList2.isEmpty()) {
                             for (int i14 = 0; i14 < arrayList2.size(); i14++) {
@@ -279,10 +279,10 @@ public final class ok extends ni {
         hg.s0 s0Var = new hg.s0(context, f6Var);
         this.H = s0Var;
         s0Var.setOnItemClickListener(new zk0(this) {
-            public final ok f33165b;
+            public final ok f33192b;
 
             {
-                this.f33165b = this;
+                this.f33192b = this;
             }
 
             @Override
@@ -290,20 +290,20 @@ public final class ok extends ni {
                 hg.q0 q0Var;
                 switch (r2) {
                     case 0:
-                        ok.K(this.f33165b, view, i13);
+                        ok.K(this.f33192b, view, i13);
                         return;
                     default:
-                        ok okVar = this.f33165b;
+                        ok okVar = this.f33192b;
                         hg.s0 s0Var2 = okVar.H;
                         s0Var2.I0(true);
-                        nk nkVar = okVar.f29096y;
+                        nk nkVar = okVar.f29123y;
                         ArrayList arrayList = s0Var2.X2;
                         if (arrayList.isEmpty()) {
-                            q0Var = hg.s0.f11237c3[i13];
+                            q0Var = hg.s0.f11263c3[i13];
                         } else {
                             q0Var = (hg.q0) arrayList.get(i13);
                         }
-                        vi viVar2 = nkVar.X.f28753b;
+                        vi viVar2 = nkVar.X.f28780b;
                         ArrayList arrayList2 = nkVar.R;
                         if (!arrayList2.isEmpty()) {
                             for (int i14 = 0; i14 < arrayList2.size(); i14++) {
@@ -320,7 +320,7 @@ public final class ok extends ni {
                 }
             }
         });
-        s0Var.setBackgroundColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f20734h5, this.f28752a));
+        s0Var.setBackgroundColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f20761h5, this.f28779a));
         addView(s0Var, w7.x5.e(-1, 44, 48));
         s0Var.setTranslationY(-AndroidUtilities.dp(44.0f));
         s0Var.setVisibility(4);
@@ -335,33 +335,33 @@ public final class ok extends ni {
         org.telegram.ui.co coVar;
         boolean z11;
         int i11;
-        vi viVar = okVar.f28753b;
-        dk dkVar = okVar.f29092r;
+        vi viVar = okVar.f28780b;
+        dk dkVar = okVar.f29119r;
         s4.h0 adapter = dkVar.getAdapter();
         hk hkVar = okVar.v;
         if (adapter == hkVar) {
             O = hkVar.E(i10);
         } else {
-            nk nkVar = okVar.f29096y;
+            nk nkVar = okVar.f29123y;
             O = nkVar.O(nkVar.S(i10), nkVar.Q(i10));
         }
         if (O instanceof ik) {
             ik ikVar = (ik) O;
-            File file = ikVar.f27155f;
+            File file = ikVar.f27182f;
             if (Build.VERSION.SDK_INT >= 30) {
                 z10 = Environment.isExternalStorageManager();
             } else {
                 z10 = false;
             }
-            if (!BuildVars.NO_SCOPED_STORAGE && (((i11 = ikVar.f27151a) == R.drawable.files_storage || i11 == R.drawable.files_internal) && !z10)) {
+            if (!BuildVars.NO_SCOPED_STORAGE && (((i11 = ikVar.f27178a) == R.drawable.files_storage || i11 == R.drawable.files_internal) && !z10)) {
                 okVar.Q.w();
                 return;
             } else if (file == null) {
-                int i12 = ikVar.f27151a;
+                int i12 = ikVar.f27178a;
                 if (i12 == R.drawable.files_gallery) {
                     HashMap hashMap = new HashMap();
                     ArrayList arrayList = new ArrayList();
-                    org.telegram.ui.ActionBar.n2 n2Var = viVar.f31279f0;
+                    org.telegram.ui.ActionBar.n2 n2Var = viVar.f31306f0;
                     if (n2Var instanceof org.telegram.ui.co) {
                         coVar = (org.telegram.ui.co) n2Var;
                     } else {
@@ -375,10 +375,10 @@ public final class ok extends ni {
                         z11 = false;
                     }
                     org.telegram.ui.br0 br0Var = new org.telegram.ui.br0(0, albumEntry, hashMap, arrayList, 0, z11, coVar2, false);
-                    br0Var.f34897l0 = true;
-                    br0Var.f34906s0 = new m2.t(okVar, hashMap, arrayList);
+                    br0Var.f34924l0 = true;
+                    br0Var.f34933s0 = new m2.t(okVar, hashMap, arrayList);
                     br0Var.f0(okVar.V, false);
-                    org.telegram.ui.ActionBar.n2 n2Var2 = viVar.f31279f0;
+                    org.telegram.ui.ActionBar.n2 n2Var2 = viVar.f31306f0;
                     if (n2Var2 != null) {
                         n2Var2.presentFragment(br0Var);
                     } else {
@@ -400,8 +400,8 @@ public final class ok extends ni {
                     int topForScroll = okVar.getTopForScroll();
                     okVar.Q();
                     gk gkVar = (gk) i2.g.z(1, hkVar.d);
-                    viVar.X0.setTitle(gkVar.f26416b);
-                    File file2 = gkVar.f26415a;
+                    viVar.X0.setTitle(gkVar.f26443b);
+                    File file2 = gkVar.f26442a;
                     if (file2 != null) {
                         okVar.N(file2);
                     } else {
@@ -419,8 +419,8 @@ public final class ok extends ni {
                 if (G != null) {
                     G.b();
                     childAt.getTop();
-                    obj.f26415a = okVar.O;
-                    obj.f26416b = viVar.X0.getTitle();
+                    obj.f26442a = okVar.O;
+                    obj.f26443b = viVar.X0.getTitle();
                     okVar.Q();
                     hkVar.d.add(obj);
                     if (!okVar.N(file)) {
@@ -428,7 +428,7 @@ public final class ok extends ni {
                         return;
                     }
                     okVar.R(1);
-                    viVar.X0.setTitle(ikVar.f27152b);
+                    viVar.X0.setTitle(ikVar.f27179b);
                     return;
                 }
                 return;
@@ -441,7 +441,7 @@ public final class ok extends ni {
     }
 
     private int getTopForScroll() {
-        dk dkVar = this.f29092r;
+        dk dkVar = this.f29119r;
         View childAt = dkVar.getChildAt(0);
         s4.c1 G = dkVar.G(childAt);
         int i10 = -dkVar.getPaddingTop();
@@ -457,7 +457,7 @@ public final class ok extends ni {
         if (hkVar != null) {
             hkVar.l();
         }
-        nk nkVar = this.f29096y;
+        nk nkVar = this.f29123y;
         if (nkVar != null) {
             nkVar.l();
         }
@@ -467,20 +467,20 @@ public final class ok extends ni {
     public final void D(ni niVar) {
         this.R.clear();
         this.T.clear();
-        this.f29096y.R.clear();
+        this.f29123y.R.clear();
         this.S.clear();
         this.v.d.clear();
         O();
         V();
         T();
-        this.f28753b.X0.setTitle(LocaleController.getString(R.string.SelectFile));
+        this.f28780b.X0.setTitle(LocaleController.getString(R.string.SelectFile));
         this.G.setVisibility(0);
         this.E.h1(0, 0);
     }
 
     @Override
     public final void G() {
-        this.f29092r.x0(0);
+        this.f29119r.x0(0);
     }
 
     @Override
@@ -495,7 +495,7 @@ public final class ok extends ni {
             arrayList.add((MessageObject) hashMap.get(p10Var));
         }
         final ArrayList arrayList2 = new ArrayList(this.S);
-        vi viVar = this.f28753b;
+        vi viVar = this.f28780b;
         CharSequence[] charSequenceArr = {viVar.m1().getText()};
         final ArrayList<TLRPC.MessageEntity> entities = MediaDataController.getInstance(viVar.J1).getEntities(charSequenceArr, true);
         final String charSequence = charSequenceArr[0].toString();
@@ -505,7 +505,7 @@ public final class ok extends ni {
                 ok okVar = ok.this;
                 okVar.K = true;
                 okVar.Q.k(arrayList2, charSequence, entities, arrayList, z10, i10, j3, z11, ((Long) obj).longValue());
-                okVar.f28753b.dismiss(true);
+                okVar.f28780b.dismiss(true);
             }
         }, 0L);
     }
@@ -520,8 +520,8 @@ public final class ok extends ni {
                     L(file2);
                 } else if (!file2.equals(checkDirectory)) {
                     ik ikVar = new ik();
-                    ikVar.f27152b = file2.getName();
-                    ikVar.f27155f = file2;
+                    ikVar.f27179b = file2.getName();
+                    ikVar.f27182f = file2;
                     String name = file2.getName();
                     String[] split = name.split("\\.");
                     if (split.length > 1) {
@@ -530,12 +530,12 @@ public final class ok extends ni {
                         str = "?";
                     }
                     ikVar.d = str;
-                    ikVar.f27153c = AndroidUtilities.formatFileSize(file2.length());
+                    ikVar.f27180c = AndroidUtilities.formatFileSize(file2.length());
                     String lowerCase = name.toLowerCase();
                     if (lowerCase.endsWith(".jpg") || lowerCase.endsWith(".png") || lowerCase.endsWith(".gif") || lowerCase.endsWith(".jpeg")) {
-                        ikVar.f27154e = file2.getAbsolutePath();
+                        ikVar.f27181e = file2.getAbsolutePath();
                     }
-                    this.v.f26741e.add(ikVar);
+                    this.v.f26768e.add(ikVar);
                 }
             }
         }
@@ -550,9 +550,9 @@ public final class ok extends ni {
         } else {
             str = null;
         }
-        if (file.length() != 0 && str != null && uf.c.f47029i.contains(str)) {
+        if (file.length() != 0 && str != null && uf.c.f47057i.contains(str)) {
             if (file.length() > MessagesController.getInstance(UserConfig.selectedAccount).ringtoneSizeMax) {
-                new yc(this.f28753b.getContainer(), null).u(LocaleController.formatString("TooLargeError", R.string.TooLargeError, new Object[0]), LocaleController.formatString("ErrorRingtoneSizeTooBig", R.string.ErrorRingtoneSizeTooBig, Integer.valueOf(MessagesController.getInstance(UserConfig.selectedAccount).ringtoneSizeMax / 1024)), null).j();
+                new yc(this.f28780b.getContainer(), null).u(LocaleController.formatString("TooLargeError", R.string.TooLargeError, new Object[0]), LocaleController.formatString("ErrorRingtoneSizeTooBig", R.string.ErrorRingtoneSizeTooBig, Integer.valueOf(MessagesController.getInstance(UserConfig.selectedAccount).ringtoneSizeMax / 1024)), null).j();
                 return false;
             }
             try {
@@ -565,10 +565,10 @@ public final class ok extends ni {
             if (i10 <= MessagesController.getInstance(UserConfig.selectedAccount).ringtoneDurationMax * 1000) {
                 return true;
             }
-            new yc(this.f28753b.getContainer(), null).u(LocaleController.formatString("TooLongError", R.string.TooLongError, new Object[0]), LocaleController.formatString("ErrorRingtoneDurationTooLong", R.string.ErrorRingtoneDurationTooLong, Integer.valueOf(MessagesController.getInstance(UserConfig.selectedAccount).ringtoneDurationMax)), null).j();
+            new yc(this.f28780b.getContainer(), null).u(LocaleController.formatString("TooLongError", R.string.TooLongError, new Object[0]), LocaleController.formatString("ErrorRingtoneDurationTooLong", R.string.ErrorRingtoneDurationTooLong, Integer.valueOf(MessagesController.getInstance(UserConfig.selectedAccount).ringtoneDurationMax)), null).j();
             return false;
         }
-        new yc(this.f28753b.getContainer(), null).u(LocaleController.formatString("InvalidFormatError", R.string.InvalidFormatError, new Object[0]), LocaleController.getString(R.string.ErrorRingtoneInvalidFormat), null).j();
+        new yc(this.f28780b.getContainer(), null).u(LocaleController.formatString("InvalidFormatError", R.string.InvalidFormatError, new Object[0]), LocaleController.getString(R.string.ErrorRingtoneInvalidFormat), null).j();
         return false;
     }
 
@@ -576,12 +576,12 @@ public final class ok extends ni {
         String str;
         this.N = false;
         boolean canRead = file.canRead();
-        dk dkVar = this.f29092r;
+        dk dkVar = this.f29119r;
         hk hkVar = this.v;
         if (!canRead) {
             if ((file.getAbsolutePath().startsWith(Environment.getExternalStorageDirectory().toString()) || file.getAbsolutePath().startsWith("/sdcard") || file.getAbsolutePath().startsWith("/mnt/sdcard")) && !Environment.getExternalStorageState().equals("mounted") && !Environment.getExternalStorageState().equals("mounted_ro")) {
                 this.O = file;
-                hkVar.f26740c.clear();
+                hkVar.f26767c.clear();
                 Environment.getExternalStorageState();
                 AndroidUtilities.clearDrawableAnimation(dkVar);
                 this.U = true;
@@ -598,19 +598,19 @@ public final class ok extends ni {
                 return false;
             }
             this.O = file;
-            ArrayList arrayList = hkVar.f26740c;
+            ArrayList arrayList = hkVar.f26767c;
             ArrayList arrayList2 = hkVar.d;
-            ArrayList arrayList3 = hkVar.f26740c;
+            ArrayList arrayList3 = hkVar.f26767c;
             arrayList.clear();
             File checkDirectory = FileLoader.checkDirectory(6);
             for (File file2 : listFiles) {
                 if (file2.getName().indexOf(46) != 0 && !file2.equals(checkDirectory)) {
                     ik ikVar = new ik();
-                    ikVar.f27152b = file2.getName();
-                    ikVar.f27155f = file2;
+                    ikVar.f27179b = file2.getName();
+                    ikVar.f27182f = file2;
                     if (file2.isDirectory()) {
-                        ikVar.f27151a = R.drawable.files_folder;
-                        ikVar.f27153c = LocaleController.getString(R.string.Folder);
+                        ikVar.f27178a = R.drawable.files_folder;
+                        ikVar.f27180c = LocaleController.getString(R.string.Folder);
                     } else {
                         this.N = true;
                         String name = file2.getName();
@@ -621,32 +621,32 @@ public final class ok extends ni {
                             str = "?";
                         }
                         ikVar.d = str;
-                        ikVar.f27153c = AndroidUtilities.formatFileSize(file2.length());
+                        ikVar.f27180c = AndroidUtilities.formatFileSize(file2.length());
                         String lowerCase = name.toLowerCase();
                         if (lowerCase.endsWith(".jpg") || lowerCase.endsWith(".png") || lowerCase.endsWith(".gif") || lowerCase.endsWith(".jpeg")) {
-                            ikVar.f27154e = file2.getAbsolutePath();
+                            ikVar.f27181e = file2.getAbsolutePath();
                         }
                     }
                     arrayList3.add(ikVar);
                 }
             }
             ik ikVar2 = new ik();
-            ikVar2.f27152b = "..";
+            ikVar2.f27179b = "..";
             if (arrayList2.size() > 0) {
-                File file3 = ((gk) i2.g.h(1, arrayList2)).f26415a;
+                File file3 = ((gk) i2.g.h(1, arrayList2)).f26442a;
                 if (file3 == null) {
-                    ikVar2.f27153c = LocaleController.getString(R.string.Folder);
+                    ikVar2.f27180c = LocaleController.getString(R.string.Folder);
                 } else {
-                    ikVar2.f27153c = file3.toString();
+                    ikVar2.f27180c = file3.toString();
                 }
             } else {
-                ikVar2.f27153c = LocaleController.getString(R.string.Folder);
+                ikVar2.f27180c = LocaleController.getString(R.string.Folder);
             }
-            ikVar2.f27151a = R.drawable.files_folder;
-            ikVar2.f27155f = null;
+            ikVar2.f27178a = R.drawable.files_folder;
+            ikVar2.f27182f = null;
             arrayList3.add(0, ikVar2);
             if (this.O != null) {
-                Collections.sort(hkVar.f26740c, new bk(this, 0));
+                Collections.sort(hkVar.f26767c, new bk(this, 0));
             }
             V();
             AndroidUtilities.clearDrawableAnimation(dkVar);
@@ -671,41 +671,41 @@ public final class ok extends ni {
 
     public final void Q() {
         View m10;
-        hk hkVar = this.f29094w;
+        hk hkVar = this.f29121w;
         hkVar.d.clear();
         ArrayList arrayList = hkVar.d;
         hk hkVar2 = this.v;
         arrayList.addAll(hkVar2.d);
-        ArrayList arrayList2 = hkVar.f26740c;
+        ArrayList arrayList2 = hkVar.f26767c;
         arrayList2.clear();
-        arrayList2.addAll(hkVar2.f26740c);
-        ArrayList arrayList3 = hkVar.f26741e;
+        arrayList2.addAll(hkVar2.f26767c);
+        ArrayList arrayList3 = hkVar.f26768e;
         arrayList3.clear();
-        arrayList3.addAll(hkVar2.f26741e);
+        arrayList3.addAll(hkVar2.f26768e);
         hkVar.l();
-        dk dkVar = this.f29093s;
+        dk dkVar = this.f29120s;
         dkVar.setVisibility(0);
-        dk dkVar2 = this.f29092r;
+        dk dkVar2 = this.f29119r;
         dkVar.setPadding(dkVar2.getPaddingLeft(), dkVar2.getPaddingTop(), dkVar2.getPaddingRight(), dkVar2.getPaddingBottom());
         ig.e0 e0Var = this.E;
         int L0 = e0Var.L0();
         if (L0 >= 0 && (m10 = e0Var.m(L0)) != null) {
-            this.f29095x.h1(L0, m10.getTop() - dkVar.getPaddingTop());
+            this.f29122x.h1(L0, m10.getTop() - dkVar.getPaddingTop());
         }
     }
 
     public final void R(int i10) {
         dk dkVar;
         float dp;
-        ValueAnimator valueAnimator = this.f29090f0;
+        ValueAnimator valueAnimator = this.f29117f0;
         if (valueAnimator != null) {
             valueAnimator.cancel();
         }
-        this.f29091n = i10;
+        this.f29118n = i10;
         int i11 = 0;
         while (true) {
             int childCount = getChildCount();
-            dkVar = this.f29092r;
+            dkVar = this.f29119r;
             if (i11 < childCount) {
                 if (getChildAt(i11) == dkVar) {
                     break;
@@ -716,7 +716,7 @@ public final class ok extends ni {
                 break;
             }
         }
-        dk dkVar2 = this.f29093s;
+        dk dkVar2 = this.f29120s;
         if (i10 == 1) {
             dp = AndroidUtilities.dp(150.0f);
             dkVar2.setAlpha(1.0f);
@@ -728,7 +728,7 @@ public final class ok extends ni {
             dkVar2.setVisibility(0);
             dkVar.setTranslationX(dp);
             dkVar.setAlpha(0.0f);
-            this.f29090f0 = ValueAnimator.ofFloat(1.0f, 0.0f);
+            this.f29117f0 = ValueAnimator.ofFloat(1.0f, 0.0f);
         } else {
             dp = AndroidUtilities.dp(150.0f);
             dkVar.setAlpha(0.0f);
@@ -741,34 +741,34 @@ public final class ok extends ni {
             removeView(dkVar2);
             addView(dkVar2, i11 + 1);
             dkVar2.setVisibility(0);
-            this.f29090f0 = ValueAnimator.ofFloat(0.0f, 1.0f);
+            this.f29117f0 = ValueAnimator.ofFloat(0.0f, 1.0f);
         }
-        this.f29090f0.addUpdateListener(new ak(this, i10, dp, 0));
-        this.f29090f0.addListener(new j6(this, 10));
+        this.f29117f0.addUpdateListener(new ak(this, i10, dp, 0));
+        this.f29117f0.addListener(new j6(this, 10));
         if (i10 == 1) {
-            this.f29090f0.setDuration(220L);
+            this.f29117f0.setDuration(220L);
         } else {
-            this.f29090f0.setDuration(200L);
+            this.f29117f0.setDuration(200L);
         }
-        this.f29090f0.setInterpolator(pr.f29466f);
-        this.f29090f0.start();
+        this.f29117f0.setInterpolator(pr.f29493f);
+        this.f29117f0.start();
     }
 
     public final void S(String str) {
-        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(getContext(), 0, this.f28752a);
+        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(getContext(), 0, this.f28779a);
         String string = LocaleController.getString(R.string.AppName);
-        org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20198a;
+        org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20225a;
         b2Var.R = string;
         b2Var.T = str;
         i2.g.B(R.string.OK, alertDialog$Builder, null);
     }
 
     public final void T() {
-        s4.h0 adapter = this.f29092r.getAdapter();
+        s4.h0 adapter = this.f29119r.getAdapter();
         int i10 = 0;
         boolean z10 = true;
-        nk nkVar = this.f29096y;
-        if (adapter != nkVar ? this.v.h() != 1 : !nkVar.f28774s.isEmpty() || !nkVar.P.isEmpty()) {
+        nk nkVar = this.f29123y;
+        if (adapter != nkVar ? this.v.h() != 1 : !nkVar.f28801s.isEmpty() || !nkVar.P.isEmpty()) {
             z10 = false;
         }
         if (!z10) {
@@ -781,7 +781,7 @@ public final class ok extends ni {
     public final void U() {
         View childAt;
         bi.m6 m6Var = this.L;
-        if (m6Var.getVisibility() != 0 || (childAt = this.f29092r.getChildAt(0)) == null) {
+        if (m6Var.getVisibility() != 0 || (childAt = this.f29119r.getChildAt(0)) == null) {
             return;
         }
         float translationY = m6Var.getTranslationY();
@@ -809,7 +809,7 @@ public final class ok extends ni {
 
     @Override
     public int getCurrentItemTop() {
-        dk dkVar = this.f29092r;
+        dk dkVar = this.f29119r;
         if (dkVar.getChildCount() <= 0) {
             return Integer.MAX_VALUE;
         }
@@ -833,7 +833,7 @@ public final class ok extends ni {
 
     @Override
     public int getListTopPadding() {
-        return this.f29092r.getPaddingTop();
+        return this.f29119r.getPaddingTop();
     }
 
     @Override
@@ -844,18 +844,18 @@ public final class ok extends ni {
     @Override
     public ArrayList<org.telegram.ui.ActionBar.l6> getThemeDescriptions() {
         ArrayList<org.telegram.ui.ActionBar.l6> arrayList = new ArrayList<>();
-        arrayList.add(new org.telegram.ui.ActionBar.l6(this.F.getSearchField(), 16777216, null, null, null, null, org.telegram.ui.ActionBar.j6.f20770j5));
+        arrayList.add(new org.telegram.ui.ActionBar.l6(this.F.getSearchField(), 16777216, null, null, null, null, org.telegram.ui.ActionBar.j6.f20797j5));
         int i10 = org.telegram.ui.ActionBar.j6.A5;
-        dk dkVar = this.f29092r;
+        dk dkVar = this.f29119r;
         arrayList.add(new org.telegram.ui.ActionBar.l6(dkVar, 32768, null, null, null, null, i10));
-        arrayList.add(new org.telegram.ui.ActionBar.l6(dkVar, 32, new Class[]{org.telegram.ui.Cells.a7.class}, null, null, null, org.telegram.ui.ActionBar.j6.f20627b7));
-        arrayList.add(new org.telegram.ui.ActionBar.l6(dkVar, 48, new Class[]{org.telegram.ui.Cells.a7.class}, null, null, null, org.telegram.ui.ActionBar.j6.f20607a7));
-        arrayList.add(new org.telegram.ui.ActionBar.l6(dkVar, 4096, null, null, null, null, org.telegram.ui.ActionBar.j6.f20753i6));
-        arrayList.add(new org.telegram.ui.ActionBar.l6(dkVar, 0, new Class[]{View.class}, org.telegram.ui.ActionBar.j6.f20785k0, null, null, org.telegram.ui.ActionBar.j6.f20664d7));
+        arrayList.add(new org.telegram.ui.ActionBar.l6(dkVar, 32, new Class[]{org.telegram.ui.Cells.a7.class}, null, null, null, org.telegram.ui.ActionBar.j6.f20654b7));
+        arrayList.add(new org.telegram.ui.ActionBar.l6(dkVar, 48, new Class[]{org.telegram.ui.Cells.a7.class}, null, null, null, org.telegram.ui.ActionBar.j6.f20634a7));
+        arrayList.add(new org.telegram.ui.ActionBar.l6(dkVar, 4096, null, null, null, null, org.telegram.ui.ActionBar.j6.f20780i6));
+        arrayList.add(new org.telegram.ui.ActionBar.l6(dkVar, 0, new Class[]{View.class}, org.telegram.ui.ActionBar.j6.f20812k0, null, null, org.telegram.ui.ActionBar.j6.f20691d7));
         arrayList.add(new org.telegram.ui.ActionBar.l6(dkVar, 4, new Class[]{org.telegram.ui.Cells.j7.class}, new String[]{"nameTextView"}, null, null, -1, null, org.telegram.ui.ActionBar.j6.G6));
         arrayList.add(new org.telegram.ui.ActionBar.l6(dkVar, 4, new Class[]{org.telegram.ui.Cells.j7.class}, new String[]{"dateTextView"}, null, null, -1, null, org.telegram.ui.ActionBar.j6.A6));
-        arrayList.add(new org.telegram.ui.ActionBar.l6(dkVar, 8192, new Class[]{org.telegram.ui.Cells.j7.class}, new String[]{"checkBox"}, null, null, -1, null, org.telegram.ui.ActionBar.j6.f20754i7));
-        arrayList.add(new org.telegram.ui.ActionBar.l6(dkVar, 16384, new Class[]{org.telegram.ui.Cells.j7.class}, new String[]{"checkBox"}, null, null, -1, null, org.telegram.ui.ActionBar.j6.f20792k7));
+        arrayList.add(new org.telegram.ui.ActionBar.l6(dkVar, 8192, new Class[]{org.telegram.ui.Cells.j7.class}, new String[]{"checkBox"}, null, null, -1, null, org.telegram.ui.ActionBar.j6.f20781i7));
+        arrayList.add(new org.telegram.ui.ActionBar.l6(dkVar, 16384, new Class[]{org.telegram.ui.Cells.j7.class}, new String[]{"checkBox"}, null, null, -1, null, org.telegram.ui.ActionBar.j6.f20819k7));
         arrayList.add(new org.telegram.ui.ActionBar.l6(dkVar, 8, new Class[]{org.telegram.ui.Cells.j7.class}, new String[]{"thumbImageView"}, null, null, -1, null, org.telegram.ui.ActionBar.j6.zi));
         arrayList.add(new org.telegram.ui.ActionBar.l6(dkVar, 40, new Class[]{org.telegram.ui.Cells.j7.class}, new String[]{"thumbImageView"}, null, null, -1, null, org.telegram.ui.ActionBar.j6.Ai));
         arrayList.add(new org.telegram.ui.ActionBar.l6(dkVar, 4, new Class[]{org.telegram.ui.Cells.j7.class}, new String[]{"extTextView"}, null, null, -1, null, org.telegram.ui.ActionBar.j6.Bi));
@@ -875,9 +875,9 @@ public final class ok extends ni {
         }
         Q();
         gk gkVar = (gk) i2.g.z(1, hkVar.d);
-        this.f28753b.X0.setTitle(gkVar.f26416b);
+        this.f28780b.X0.setTitle(gkVar.f26443b);
         int topForScroll = getTopForScroll();
-        File file = gkVar.f26415a;
+        File file = gkVar.f26442a;
         if (file != null) {
             N(file);
         } else {
@@ -893,14 +893,14 @@ public final class ok extends ni {
     public final void m() {
         try {
             if (this.P) {
-                ApplicationLoader.applicationContext.unregisterReceiver(this.f29089e0);
+                ApplicationLoader.applicationContext.unregisterReceiver(this.f29116e0);
                 this.P = false;
             }
         } catch (Exception e7) {
             FileLog.e(e7);
         }
-        this.f28753b.X0.h(true);
-        org.telegram.ui.ActionBar.z n10 = this.f28753b.X0.n();
+        this.f28780b.X0.h(true);
+        org.telegram.ui.ActionBar.z n10 = this.f28780b.X0.n();
         n10.removeView(this.G);
         n10.removeView(this.F);
     }
@@ -932,7 +932,7 @@ public final class ok extends ni {
     @Override
     public void setTranslationY(float f7) {
         super.setTranslationY(f7);
-        this.f28753b.getSheetContainer().invalidate();
+        this.f28780b.getSheetContainer().invalidate();
     }
 
     @Override
@@ -940,14 +940,14 @@ public final class ok extends ni {
         int i11;
         if (i10 == 6) {
             SharedConfig.toggleSortFilesByName();
-            this.f29087c0 = SharedConfig.sortFilesByName;
+            this.f29114c0 = SharedConfig.sortFilesByName;
             hk hkVar = this.v;
-            Collections.sort(hkVar.f26741e, new bk(this, 1));
+            Collections.sort(hkVar.f26768e, new bk(this, 1));
             if (this.O != null) {
-                Collections.sort(hkVar.f26740c, new bk(this, 0));
+                Collections.sort(hkVar.f26767c, new bk(this, 0));
             }
             hkVar.l();
-            if (this.f29087c0) {
+            if (this.f29114c0) {
                 i11 = R.drawable.msg_contacts_time;
             } else {
                 i11 = R.drawable.msg_contacts_name;

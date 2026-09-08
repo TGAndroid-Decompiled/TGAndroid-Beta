@@ -6,21 +6,21 @@ import org.telegram.messenger.MediaDataController;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 public final class z8 extends org.telegram.ui.j71 {
-    public boolean f33095d2;
-    public final f9 f33096e2;
+    public boolean f33122d2;
+    public final f9 f33123e2;
 
     public z8(f9 f9Var, f9 f9Var2, Activity activity, int i10) {
         super(f9Var2, activity, false, null, 4, true, null, 16, i10);
-        this.f33096e2 = f9Var;
-        this.f33095d2 = true;
+        this.f33123e2 = f9Var;
+        this.f33122d2 = true;
     }
 
     @Override
     public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
         super.onLayout(z10, i10, i11, i12, i13);
-        if (this.f33095d2) {
-            this.f33095d2 = false;
-            this.f33096e2.f25966b.s(null);
+        if (this.f33122d2) {
+            this.f33122d2 = false;
+            this.f33123e2.f25993b.s(null);
         }
     }
 
@@ -32,7 +32,7 @@ public final class z8 extends org.telegram.ui.j71 {
         long j3;
         int i11;
         boolean z11 = this.R;
-        f9 f9Var = this.f33096e2;
+        f9 f9Var = this.f33123e2;
         if (z11) {
             i11 = ((org.telegram.ui.ActionBar.n2) f9Var).currentAccount;
             tL_emojiList = MediaDataController.getInstance(i11).profileAvatarConstructorDefault;
@@ -43,7 +43,7 @@ public final class z8 extends org.telegram.ui.j71 {
         long j10 = 0;
         if (tL_emojiList != null) {
             if (document != null) {
-                j3 = document.f19875id;
+                j3 = document.f19902id;
             } else if (l4 != null) {
                 j3 = l4.longValue();
             } else {

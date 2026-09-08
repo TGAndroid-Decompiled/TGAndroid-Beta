@@ -6,20 +6,20 @@ import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.MessageObject;
 import org.telegram.tgnet.TLRPC;
 public final class l8 implements Function {
-    public final int f38218a;
+    public final int f38245a;
 
     public l8(int i10) {
-        this.f38218a = i10;
+        this.f38245a = i10;
     }
 
     public Function andThen(Function function) {
-        int i10 = this.f38218a;
+        int i10 = this.f38245a;
         return Function$CC.$default$andThen(this, function);
     }
 
     @Override
     public final Object apply(Object obj) {
-        switch (this.f38218a) {
+        switch (this.f38245a) {
             case 0:
                 return Long.valueOf(DialogObject.getPeerDialogId((TLRPC.Peer) obj));
             case 1:
@@ -37,14 +37,14 @@ public final class l8 implements Function {
             case 5:
                 return Long.valueOf(DialogObject.getPeerDialogId(((TLRPC.GroupCallParticipant) obj).peer));
             case 6:
-                return ((vt) obj).f41693a;
+                return ((vt) obj).f41720a;
             default:
-                return ((vt) obj).f41693a;
+                return ((vt) obj).f41720a;
         }
     }
 
     public Function compose(Function function) {
-        int i10 = this.f38218a;
+        int i10 = this.f38245a;
         return Function$CC.$default$compose(this, function);
     }
 }

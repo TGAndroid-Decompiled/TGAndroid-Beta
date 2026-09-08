@@ -4,16 +4,16 @@ import android.content.Context;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class n4 extends vc0 {
-    public final int[] f28606w0;
+    public final int[] f28633w0;
 
     public n4(Context context, org.telegram.ui.ActionBar.f6 f6Var, int[] iArr) {
         super(context, f6Var);
-        this.f28606w0 = iArr;
+        this.f28633w0 = iArr;
     }
 
     @Override
     public final CharSequence d(int i10) {
-        int i11 = this.f28606w0[i10];
+        int i11 = this.f28633w0[i10];
         if (i11 == 0) {
             return LocaleController.getString(R.string.MuteNever);
         }

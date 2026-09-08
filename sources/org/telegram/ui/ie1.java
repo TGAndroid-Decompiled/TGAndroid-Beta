@@ -8,28 +8,28 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 public final class ie1 extends FrameLayout {
-    public final int f37347a;
-    public final le1 f37348b;
+    public final int f37374a;
+    public final le1 f37375b;
 
     public ie1(le1 le1Var, Context context, int i10) {
         super(context);
-        this.f37347a = i10;
-        this.f37348b = le1Var;
+        this.f37374a = i10;
+        this.f37375b = le1Var;
     }
 
     @Override
     public void dispatchDraw(Canvas canvas) {
         Canvas canvas2;
         org.telegram.ui.Cells.t1 t1Var;
-        switch (this.f37347a) {
+        switch (this.f37374a) {
             case 0:
-                le1 le1Var = this.f37348b;
-                if (le1Var.f38329x > 0.0f && le1Var.v != null) {
-                    le1Var.f38328w.reset();
-                    float width = getWidth() / le1Var.f38326r.getWidth();
-                    le1Var.f38328w.postScale(width, width);
-                    le1Var.f38327s.setLocalMatrix(le1Var.f38328w);
-                    le1Var.v.setAlpha((int) (le1Var.f38329x * 255.0f));
+                le1 le1Var = this.f37375b;
+                if (le1Var.f38356x > 0.0f && le1Var.v != null) {
+                    le1Var.f38355w.reset();
+                    float width = getWidth() / le1Var.f38353r.getWidth();
+                    le1Var.f38355w.postScale(width, width);
+                    le1Var.f38354s.setLocalMatrix(le1Var.f38355w);
+                    le1Var.v.setAlpha((int) (le1Var.f38356x * 255.0f));
                     canvas2 = canvas;
                     canvas2.drawRect(0.0f, 0.0f, getWidth(), getHeight(), le1Var.v);
                 } else {
@@ -50,10 +50,10 @@ public final class ie1 extends FrameLayout {
 
     @Override
     public boolean dispatchKeyEventPreIme(KeyEvent keyEvent) {
-        switch (this.f37347a) {
+        switch (this.f37374a) {
             case 0:
                 if (keyEvent != null && keyEvent.getKeyCode() == 4 && keyEvent.getAction() == 1) {
-                    this.f37348b.c(true);
+                    this.f37375b.c(true);
                     return true;
                 }
                 return super.dispatchKeyEventPreIme(keyEvent);
@@ -64,14 +64,14 @@ public final class ie1 extends FrameLayout {
 
     @Override
     public boolean drawChild(Canvas canvas, View view, long j3) {
-        switch (this.f37347a) {
+        switch (this.f37374a) {
             case 1:
-                le1 le1Var = this.f37348b;
+                le1 le1Var = this.f37375b;
                 if (view != le1Var.J && view != le1Var.I) {
                     return super.drawChild(canvas, view, j3);
                 }
                 canvas.save();
-                canvas.clipRect(0.0f, AndroidUtilities.lerp(le1Var.L, 0.0f, le1Var.f38329x), getWidth(), AndroidUtilities.lerp(le1Var.M, getHeight(), le1Var.f38329x));
+                canvas.clipRect(0.0f, AndroidUtilities.lerp(le1Var.L, 0.0f, le1Var.f38356x), getWidth(), AndroidUtilities.lerp(le1Var.M, getHeight(), le1Var.f38356x));
                 boolean drawChild = super.drawChild(canvas, view, j3);
                 canvas.restore();
                 return drawChild;
@@ -82,10 +82,10 @@ public final class ie1 extends FrameLayout {
 
     @Override
     public void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        switch (this.f37347a) {
+        switch (this.f37374a) {
             case 0:
                 super.onLayout(z10, i10, i11, i12, i13);
-                this.f37348b.d();
+                this.f37375b.d();
                 return;
             default:
                 super.onLayout(z10, i10, i11, i12, i13);
@@ -95,11 +95,11 @@ public final class ie1 extends FrameLayout {
 
     @Override
     public void onMeasure(int i10, int i11) {
-        switch (this.f37347a) {
+        switch (this.f37374a) {
             case 2:
                 int size = View.MeasureSpec.getSize(i10);
                 int size2 = View.MeasureSpec.getSize(i11);
-                le1 le1Var = this.f37348b;
+                le1 le1Var = this.f37375b;
                 le1Var.e();
                 for (int i12 = 0; i12 < getChildCount(); i12++) {
                     View childAt = getChildAt(i12);
@@ -134,11 +134,11 @@ public final class ie1 extends FrameLayout {
 
     @Override
     public void onSizeChanged(int i10, int i11, int i12, int i13) {
-        switch (this.f37347a) {
+        switch (this.f37374a) {
             case 0:
                 super.onSizeChanged(i10, i11, i12, i13);
-                le1 le1Var = this.f37348b;
-                hh.d.c(le1Var.E, le1Var.f38317b);
+                le1 le1Var = this.f37375b;
+                hh.d.c(le1Var.E, le1Var.f38344b);
                 le1Var.F.d();
                 return;
             default:

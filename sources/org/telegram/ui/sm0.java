@@ -12,16 +12,16 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 public final class sm0 implements fn0 {
-    public final TLRPC.SecureValueType f40474a;
-    public final boolean f40475b;
-    public final int f40476c;
+    public final TLRPC.SecureValueType f40501a;
+    public final boolean f40502b;
+    public final int f40503c;
     public final pn0 d;
 
     public sm0(pn0 pn0Var, TLRPC.SecureValueType secureValueType, boolean z10, int i10) {
         this.d = pn0Var;
-        this.f40474a = secureValueType;
-        this.f40475b = z10;
-        this.f40476c = i10;
+        this.f40501a = secureValueType;
+        this.f40502b = z10;
+        this.f40503c = i10;
     }
 
     public static void a(sm0 sm0Var, SecureDocument secureDocument, TLRPC.TL_secureFile tL_secureFile) {
@@ -29,14 +29,14 @@ public final class sm0 implements fn0 {
         File pathToAttach = FileLoader.getInstance(UserConfig.selectedAccount).getPathToAttach(secureDocument);
         File pathToAttach2 = FileLoader.getInstance(UserConfig.selectedAccount).getPathToAttach(tL_secureFile);
         pathToAttach.renameTo(pathToAttach2);
-        ImageLoader.getInstance().replaceImageInCache(secureDocument.secureFile.dc_id + "_" + secureDocument.secureFile.f20004id, tL_secureFile.dc_id + "_" + tL_secureFile.f20004id, null, false);
+        ImageLoader.getInstance().replaceImageInCache(secureDocument.secureFile.dc_id + "_" + secureDocument.secureFile.f20031id, tL_secureFile.dc_id + "_" + tL_secureFile.f20031id, null, false);
     }
 
     public static TLRPC.InputSecureFile b(SecureDocument secureDocument) {
         if (secureDocument.inputFile != null) {
             TLRPC.TL_inputSecureFileUploaded tL_inputSecureFileUploaded = new TLRPC.TL_inputSecureFileUploaded();
             TLRPC.TL_inputFile tL_inputFile = secureDocument.inputFile;
-            tL_inputSecureFileUploaded.f19937id = tL_inputFile.f19883id;
+            tL_inputSecureFileUploaded.f19964id = tL_inputFile.f19910id;
             tL_inputSecureFileUploaded.parts = tL_inputFile.parts;
             tL_inputSecureFileUploaded.md5_checksum = tL_inputFile.md5_checksum;
             tL_inputSecureFileUploaded.file_hash = secureDocument.fileHash;
@@ -45,7 +45,7 @@ public final class sm0 implements fn0 {
         }
         TLRPC.TL_inputSecureFile tL_inputSecureFile = new TLRPC.TL_inputSecureFile();
         TLRPC.TL_secureFile tL_secureFile = secureDocument.secureFile;
-        tL_inputSecureFile.f19936id = tL_secureFile.f20004id;
+        tL_inputSecureFile.f19963id = tL_secureFile.f20031id;
         tL_inputSecureFile.access_hash = tL_secureFile.access_hash;
         return tL_inputSecureFile;
     }
@@ -64,11 +64,11 @@ public final class sm0 implements fn0 {
             cf.c k12 = pn0Var.k1(AndroidUtilities.getStringBytes(str2));
             TLRPC.TL_secureData tL_secureData = new TLRPC.TL_secureData();
             tL_inputSecureValue.data = tL_secureData;
-            tL_secureData.data = (byte[]) k12.f4798c;
+            tL_secureData.data = (byte[]) k12.f4825c;
             tL_secureData.data_hash = (byte[]) k12.d;
-            tL_secureData.secret = (byte[]) k12.f4796a;
+            tL_secureData.secret = (byte[]) k12.f4823a;
         } else if (!TextUtils.isEmpty(str)) {
-            TLRPC.SecureValueType secureValueType = this.f40474a;
+            TLRPC.SecureValueType secureValueType = this.f40501a;
             if (secureValueType instanceof TLRPC.TL_secureValueTypeEmail) {
                 TLRPC.TL_securePlainEmail tL_securePlainEmail = new TLRPC.TL_securePlainEmail();
                 tL_securePlainEmail.email = str;
@@ -88,7 +88,7 @@ public final class sm0 implements fn0 {
         } else {
             tL_inputSecureValue = null;
         }
-        boolean z10 = this.f40475b;
+        boolean z10 = this.f40502b;
         if (!z10 && tL_inputSecureValue == null) {
             if (aVar != null) {
                 aVar.b(null, null);
@@ -104,9 +104,9 @@ public final class sm0 implements fn0 {
                 cf.c k13 = pn0Var.k1(AndroidUtilities.getStringBytes(str3));
                 TLRPC.TL_secureData tL_secureData2 = new TLRPC.TL_secureData();
                 tL_inputSecureValue4.data = tL_secureData2;
-                tL_secureData2.data = (byte[]) k13.f4798c;
+                tL_secureData2.data = (byte[]) k13.f4825c;
                 tL_secureData2.data_hash = (byte[]) k13.d;
-                tL_secureData2.secret = (byte[]) k13.f4796a;
+                tL_secureData2.secret = (byte[]) k13.f4823a;
             }
             if (secureDocument2 != null) {
                 tL_inputSecureValue4.front_side = b(secureDocument2);
@@ -140,7 +140,7 @@ public final class sm0 implements fn0 {
                 tL_inputSecureValue2 = tL_inputSecureValue4;
                 TL_account.saveSecureValue savesecurevalue = new TL_account.saveSecureValue();
                 savesecurevalue.value = tL_inputSecureValue;
-                savesecurevalue.secure_secret_id = pn0Var.f39553b1;
+                savesecurevalue.secure_secret_id = pn0Var.f39580b1;
                 i10 = ((org.telegram.ui.ActionBar.n2) pn0Var).currentAccount;
                 ConnectionsManager.getInstance(i10).sendRequest(savesecurevalue, new rm0(this, aVar, str, savesecurevalue, tL_secureRequiredType2, tL_secureRequiredType, arrayList, secureDocument, secureDocument2, secureDocument3, arrayList2, str2, str3, runnable, this, tL_inputSecureValue2));
             }
@@ -148,7 +148,7 @@ public final class sm0 implements fn0 {
         tL_inputSecureValue2 = null;
         TL_account.saveSecureValue savesecurevalue2 = new TL_account.saveSecureValue();
         savesecurevalue2.value = tL_inputSecureValue;
-        savesecurevalue2.secure_secret_id = pn0Var.f39553b1;
+        savesecurevalue2.secure_secret_id = pn0Var.f39580b1;
         i10 = ((org.telegram.ui.ActionBar.n2) pn0Var).currentAccount;
         ConnectionsManager.getInstance(i10).sendRequest(savesecurevalue2, new rm0(this, aVar, str, savesecurevalue2, tL_secureRequiredType2, tL_secureRequiredType, arrayList, secureDocument, secureDocument2, secureDocument3, arrayList2, str2, str3, runnable, this, tL_inputSecureValue2));
     }

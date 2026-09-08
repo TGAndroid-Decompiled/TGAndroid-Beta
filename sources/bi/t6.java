@@ -15,7 +15,7 @@ public final class t6 extends w5 {
         super(context);
         this.O = a7Var;
         this.N = pbVar;
-        this.f3954w = -1;
+        this.f3981w = -1;
         this.E = new ArrayList();
         this.F = new ArrayList();
         this.G = new ArrayList();
@@ -29,7 +29,7 @@ public final class t6 extends w5 {
         lb lbVar;
         a7 a7Var = this.O;
         u6 u6Var = a7Var.E;
-        if (!a7Var.f2769w) {
+        if (!a7Var.f2796w) {
             if (u6Var.getCurrentItem() != i10) {
                 try {
                     u6Var.x(i10, false);
@@ -40,11 +40,11 @@ public final class t6 extends w5 {
                 }
             }
             pb pbVar = this.N;
-            if (pbVar.O0 != null && (lbVar = pbVar.f3575t0) != null) {
+            if (pbVar.O0 != null && (lbVar = pbVar.f3602t0) != null) {
                 if (i10 < 10) {
                     lbVar.e(false);
                 } else if (i10 >= this.E.size() - 10) {
-                    pbVar.f3575t0.e(true);
+                    pbVar.f3602t0.e(true);
                 }
             }
         }

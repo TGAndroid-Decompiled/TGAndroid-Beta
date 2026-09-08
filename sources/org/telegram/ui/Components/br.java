@@ -60,10 +60,10 @@ public abstract class br {
         h.setGravity(17);
         linearLayout.addView(h, w7.x5.t(-1, -2, 55, 16, 0, 16, 22));
         org.telegram.ui.Cells.i3 i3Var = new org.telegram.ui.Cells.i3(context, LocaleController.getString(R.string.CreateManagedBotName), false, false, -1, f6Var);
-        org.telegram.ui.Cells.g3 g3Var = i3Var.f22074b;
+        org.telegram.ui.Cells.g3 g3Var = i3Var.f22101b;
         g3Var.setImeOptions(5);
         int dp = AndroidUtilities.dp(16.0f);
-        int i13 = org.telegram.ui.ActionBar.j6.f20663d6;
+        int i13 = org.telegram.ui.ActionBar.j6.f20690d6;
         i3Var.setBackground(org.telegram.ui.ActionBar.j6.b0(dp, org.telegram.ui.ActionBar.j6.v0(i13, f6Var)));
         i3Var.setText(tL_requestPeerTypeCreateBot.suggested_name);
         linearLayout.addView(i3Var, w7.x5.t(-1, -2, 55, 12, 0, 12, 0));
@@ -73,7 +73,7 @@ public abstract class br {
         org.telegram.ui.Cells.i3 i3Var2 = new org.telegram.ui.Cells.i3(context, LocaleController.getString(R.string.CreateManagedBotUsername), false, false, 29, f6Var);
         LinearLayout linearLayout2 = new LinearLayout(context);
         linearLayout2.setOrientation(0);
-        org.telegram.ui.Cells.g3 g3Var2 = i3Var2.f22074b;
+        org.telegram.ui.Cells.g3 g3Var2 = i3Var2.f22101b;
         i3Var2.removeView(g3Var2);
         g3Var2.setHintColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.H6, f6Var));
         g3Var2.setRightText("bot");
@@ -117,7 +117,7 @@ public abstract class br {
         linearLayout3.addView(g10, w7.x5.p(0, 48, 119.0f, 1, 5, 0, 0, 0));
         i11.useBackgroundTopPadding = false;
         i11.smoothKeyboardAnimationEnabled = true;
-        i11.setBackgroundColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f20607a7, f6Var));
+        i11.setBackgroundColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f20634a7, f6Var));
         i11.fixNavigationBar();
         final boolean[] zArr = new boolean[1];
         String[] strArr = new String[1];

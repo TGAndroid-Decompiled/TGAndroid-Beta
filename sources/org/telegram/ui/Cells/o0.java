@@ -33,38 +33,38 @@ public final class o0 {
     public final nm0 E;
     public n0 F;
     public na G;
-    public final t1 f22380a;
-    public int f22381b;
-    public long f22382c;
+    public final t1 f22407a;
+    public int f22408b;
+    public long f22409c;
     public MessageObject d;
-    public long f22383e;
-    public StaticLayout f22385g;
+    public long f22410e;
+    public StaticLayout f22412g;
     public float h;
-    public float f22386i;
-    public int f22387j;
-    public float f22392o;
-    public float f22393p;
-    public h90 f22396s;
-    public final org.telegram.ui.Components.e6 f22398u;
+    public float f22413i;
+    public int f22414j;
+    public float f22419o;
+    public float f22420p;
+    public h90 f22423s;
+    public final org.telegram.ui.Components.e6 f22425u;
     public f01 v;
-    public final zc f22401y;
-    public final TextPaint f22384f = new TextPaint(1);
-    public final Paint f22388k = new Paint(1);
-    public final Path f22389l = new Path();
-    public final float f22390m = -1.0f;
-    public int f22391n = AndroidUtilities.dp(66.0f);
-    public final ArrayList f22394q = new ArrayList();
-    public final Path f22395r = new Path();
-    public final RectF f22399w = new RectF();
-    public final RectF f22400x = new RectF();
-    public final Paint f22402z = new Paint(1);
-    public boolean f22397t = true;
+    public final zc f22428y;
+    public final TextPaint f22411f = new TextPaint(1);
+    public final Paint f22415k = new Paint(1);
+    public final Path f22416l = new Path();
+    public final float f22417m = -1.0f;
+    public int f22418n = AndroidUtilities.dp(66.0f);
+    public final ArrayList f22421q = new ArrayList();
+    public final Path f22422r = new Path();
+    public final RectF f22426w = new RectF();
+    public final RectF f22427x = new RectF();
+    public final Paint f22429z = new Paint(1);
+    public boolean f22424t = true;
 
     public o0(t1 t1Var) {
-        this.f22380a = t1Var;
+        this.f22407a = t1Var;
         this.E = new nm0(t1Var.getContext(), null);
-        this.f22401y = new zc(t1Var);
-        this.f22398u = new org.telegram.ui.Components.e6(t1Var, 350L, pr.h);
+        this.f22428y = new zc(t1Var);
+        this.f22425u = new org.telegram.ui.Components.e6(t1Var, 350L, pr.h);
     }
 
     public final boolean a(android.view.MotionEvent r21) {
@@ -74,10 +74,10 @@ public final class o0 {
     public final void b() {
         nm0 nm0Var = this.E;
         if (nm0Var.b()) {
-            float f7 = nm0Var.f28825j;
-            this.f22392o = f7;
-            this.f22392o = Utilities.clamp(f7, this.f22393p - (this.f22399w.width() - AndroidUtilities.dp(14.0f)), 0.0f);
-            this.f22380a.a3();
+            float f7 = nm0Var.f28852j;
+            this.f22419o = f7;
+            this.f22419o = Utilities.clamp(f7, this.f22420p - (this.f22426w.width() - AndroidUtilities.dp(14.0f)), 0.0f);
+            this.f22407a.a3();
         }
     }
 
@@ -86,7 +86,7 @@ public final class o0 {
     }
 
     public final boolean d() {
-        if (this.d.channelJoinedExpanded && this.f22394q.size() > 0) {
+        if (this.d.channelJoinedExpanded && this.f22421q.size() > 0) {
             return true;
         }
         return false;
@@ -102,43 +102,43 @@ public final class o0 {
         TLObject tLObject2;
         int i11;
         int i12;
-        this.f22381b = messageObject.currentAccount;
+        this.f22408b = messageObject.currentAccount;
         this.d = messageObject;
-        this.f22382c = messageObject.getDialogId();
-        MessagesController.getInstance(this.f22381b).getChat(Long.valueOf(-this.f22382c));
-        this.f22383e = -this.f22382c;
+        this.f22409c = messageObject.getDialogId();
+        MessagesController.getInstance(this.f22408b).getChat(Long.valueOf(-this.f22409c));
+        this.f22410e = -this.f22409c;
         Typeface bold = AndroidUtilities.bold();
-        TextPaint textPaint = this.f22384f;
+        TextPaint textPaint = this.f22411f;
         textPaint.setTypeface(bold);
         textPaint.setTextSize(AndroidUtilities.dp(14.0f));
-        int i13 = org.telegram.ui.ActionBar.j6.f20759ic;
-        t1 t1Var = this.f22380a;
+        int i13 = org.telegram.ui.ActionBar.j6.f20786ic;
+        t1 t1Var = this.f22407a;
         textPaint.setColor(org.telegram.ui.ActionBar.j6.v0(i13, t1Var.Id));
-        this.f22385g = new StaticLayout(LocaleController.getString(R.string.ChannelJoined), textPaint, this.d.getMaxMessageTextWidth(), Layout.Alignment.ALIGN_CENTER, 1.0f, 0.0f, false);
+        this.f22412g = new StaticLayout(LocaleController.getString(R.string.ChannelJoined), textPaint, this.d.getMaxMessageTextWidth(), Layout.Alignment.ALIGN_CENTER, 1.0f, 0.0f, false);
         this.h = staticLayout.getWidth();
-        this.f22386i = 0.0f;
-        for (int i14 = 0; i14 < this.f22385g.getLineCount(); i14++) {
-            this.h = Math.min(this.h, this.f22385g.getLineLeft(i14));
-            this.f22386i = Math.max(this.f22386i, this.f22385g.getLineRight(i14));
+        this.f22413i = 0.0f;
+        for (int i14 = 0; i14 < this.f22412g.getLineCount(); i14++) {
+            this.h = Math.min(this.h, this.f22412g.getLineLeft(i14));
+            this.f22413i = Math.max(this.f22413i, this.f22412g.getLineRight(i14));
         }
-        this.f22387j = this.f22385g.getHeight();
+        this.f22414j = this.f22412g.getHeight();
         Paint.Style style = Paint.Style.STROKE;
-        Paint paint = this.f22402z;
+        Paint paint = this.f22429z;
         paint.setStyle(style);
         paint.setStrokeCap(Paint.Cap.ROUND);
         paint.setStrokeJoin(Paint.Join.ROUND);
         paint.setColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.W5, t1Var.Id));
-        t1Var.f23110s0 = AndroidUtilities.dp(14.66f) + this.f22387j;
+        t1Var.f23137s0 = AndroidUtilities.dp(14.66f) + this.f22414j;
         int i15 = 0;
         while (true) {
-            arrayList = this.f22394q;
+            arrayList = this.f22421q;
             if (i15 >= arrayList.size()) {
                 break;
             }
             n0 n0Var = (n0) arrayList.get(i15);
             int i16 = 0;
             while (true) {
-                ImageReceiver[] imageReceiverArr = n0Var.f22317c;
+                ImageReceiver[] imageReceiverArr = n0Var.f22344c;
                 if (i16 < imageReceiverArr.length) {
                     imageReceiverArr[i16].onDetachedFromWindow();
                     i16++;
@@ -147,7 +147,7 @@ public final class o0 {
             i15++;
         }
         arrayList.clear();
-        MessagesController.ChannelRecommendations channelRecommendations = MessagesController.getInstance(this.f22381b).getChannelRecommendations(this.f22382c);
+        MessagesController.ChannelRecommendations channelRecommendations = MessagesController.getInstance(this.f22408b).getChannelRecommendations(this.f22409c);
         if (channelRecommendations != null && channelRecommendations.chats != null) {
             arrayList2 = new ArrayList(channelRecommendations.chats);
         } else {
@@ -162,20 +162,20 @@ public final class o0 {
             }
             i17++;
         }
-        if (!arrayList2.isEmpty() && (UserConfig.getInstance(this.f22381b).isPremium() || arrayList2.size() != 1)) {
+        if (!arrayList2.isEmpty() && (UserConfig.getInstance(this.f22408b).isPremium() || arrayList2.size() != 1)) {
             z10 = false;
         } else {
             z10 = true;
         }
-        this.f22397t = z10;
+        this.f22424t = z10;
         if (!z10) {
             int size = arrayList2.size();
-            if (!UserConfig.getInstance(this.f22381b).isPremium() && channelRecommendations.more > 0) {
-                size = Math.min(size - 1, MessagesController.getInstance(this.f22381b).recommendedChannelsLimitDefault);
+            if (!UserConfig.getInstance(this.f22408b).isPremium() && channelRecommendations.more > 0) {
+                size = Math.min(size - 1, MessagesController.getInstance(this.f22408b).recommendedChannelsLimitDefault);
             }
             int min = Math.min(size, 10);
             for (int i18 = 0; i18 < min; i18++) {
-                arrayList.add(new n0(this.f22381b, t1Var, (TLObject) arrayList2.get(i18)));
+                arrayList.add(new n0(this.f22408b, t1Var, (TLObject) arrayList2.get(i18)));
             }
             if (min < arrayList2.size()) {
                 TLObject tLObject4 = null;
@@ -192,25 +192,25 @@ public final class o0 {
                 if (min >= 0 && (i11 = min + 2) < arrayList2.size()) {
                     tLObject4 = (TLObject) arrayList2.get(i11);
                 }
-                arrayList.add(new n0(this.f22381b, t1Var, new TLObject[]{tLObject, tLObject2, tLObject4}, (arrayList2.size() + channelRecommendations.more) - min));
+                arrayList.add(new n0(this.f22408b, t1Var, new TLObject[]{tLObject, tLObject2, tLObject4}, (arrayList2.size() + channelRecommendations.more) - min));
             }
         }
         if (this.v == null) {
-            if (this.f22382c > 0) {
+            if (this.f22409c > 0) {
                 i10 = R.string.SimilarBots;
             } else {
                 i10 = R.string.SimilarChannels;
             }
             f01 f01Var = new f01(LocaleController.getString(i10), 14.0f, AndroidUtilities.bold());
-            f01Var.f25857o = true;
+            f01Var.f25884o = true;
             this.v = f01Var;
         }
         if (d()) {
-            t1Var.f23110s0 = AndroidUtilities.dp(144.0f) + t1Var.f23110s0;
-            this.f22388k.setColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f20920ra, t1Var.Id));
+            t1Var.f23137s0 = AndroidUtilities.dp(144.0f) + t1Var.f23137s0;
+            this.f22415k.setColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f20947ra, t1Var.Id));
         }
-        float size2 = ((arrayList.size() - 1) * AndroidUtilities.dp(9.0f)) + (arrayList.size() * this.f22391n);
-        this.f22393p = size2;
-        this.f22392o = Utilities.clamp(this.f22392o, size2, 0.0f);
+        float size2 = ((arrayList.size() - 1) * AndroidUtilities.dp(9.0f)) + (arrayList.size() * this.f22418n);
+        this.f22420p = size2;
+        this.f22419o = Utilities.clamp(this.f22419o, size2, 0.0f);
     }
 }

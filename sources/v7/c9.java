@@ -3,7 +3,7 @@ package v7;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.sl0;
 public abstract class c9 {
-    public static t7.r f47415a;
+    public static t7.r f47443a;
 
     public static void a(sl0 sl0Var, org.telegram.ui.ActionBar.f6 f6Var) {
         boolean q6;
@@ -21,7 +21,7 @@ public abstract class c9 {
             return 0;
         }
         int c10 = c(aVar);
-        int max = Math.max(0, aVar.f13733c);
+        int max = Math.max(0, aVar.f13759c);
         if (max > 0) {
             i10 = AndroidUtilities.dp(com.google.android.gms.internal.vision.e2.w(max, 1, 24, 28));
         }
@@ -33,7 +33,7 @@ public abstract class c9 {
         if (aVar == null) {
             size = 0;
         } else {
-            size = aVar.f13739k.size();
+            size = aVar.f13765k.size();
         }
         if (size <= 0) {
             return 0;
@@ -46,7 +46,7 @@ public abstract class c9 {
         if (aVar == null) {
             size = 0;
         } else {
-            size = aVar.f13739k.size();
+            size = aVar.f13765k.size();
         }
         if (size <= 0) {
             return 0;
@@ -58,10 +58,10 @@ public abstract class c9 {
         y8 y8Var;
         synchronized (c9.class) {
             try {
-                if (f47415a == null) {
-                    f47415a = new t7.r(1);
+                if (f47443a == null) {
+                    f47443a = new t7.r(1);
                 }
-                y8Var = (y8) f47415a.O0(v8Var);
+                y8Var = (y8) f47443a.O0(v8Var);
             } catch (Throwable th2) {
                 throw th2;
             }

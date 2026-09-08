@@ -16,9 +16,9 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
 import org.telegram.ui.Components.xi0;
 public final class e7 extends Drawable {
-    public final Paint f21861a;
-    public final xi0 f21862b;
-    public final Drawable f21863c;
+    public final Paint f21888a;
+    public final xi0 f21889b;
+    public final Drawable f21890c;
     public int d;
 
     public e7(Context context, org.telegram.ui.Components.x9 x9Var, boolean z10, org.telegram.ui.ActionBar.f6 f6Var) {
@@ -33,12 +33,12 @@ public final class e7 extends Drawable {
         RectF rectF = AndroidUtilities.rectTmp;
         rectF.set(0.0f, 0.0f, getBounds().width(), getBounds().height());
         int i10 = this.d;
-        Paint paint = this.f21861a;
+        Paint paint = this.f21888a;
         paint.setAlpha(i10);
         float min = (this.d / 255.0f) * (Math.min(getBounds().width(), getBounds().height()) / 2.0f);
         canvas.drawRoundRect(rectF, min, min, paint);
         canvas.restore();
-        Drawable drawable = this.f21862b;
+        Drawable drawable = this.f21889b;
         if (drawable != null) {
             f7 = 20.0f;
         } else {
@@ -48,7 +48,7 @@ public final class e7 extends Drawable {
         Rect rect = AndroidUtilities.rectTmp2;
         rect.set(getBounds().centerX() - dp, getBounds().centerY() - dp, getBounds().centerX() + dp, getBounds().centerY() + dp);
         if (drawable == null) {
-            drawable = this.f21863c;
+            drawable = this.f21890c;
         }
         if (drawable != null) {
             drawable.setBounds(rect);
@@ -79,20 +79,20 @@ public final class e7 extends Drawable {
 
     public e7(Context context, View view, boolean z10, int i10, org.telegram.ui.ActionBar.f6 f6Var) {
         Paint paint = new Paint(1);
-        this.f21861a = paint;
+        this.f21888a = paint;
         this.d = 255;
         paint.setShader(new LinearGradient(0.0f, 0.0f, AndroidUtilities.dp(56.0f), AndroidUtilities.dp(56.0f), new int[]{org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.hk, f6Var), org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.ik, f6Var)}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP));
         if (z10) {
             xi0 xi0Var = new xi0(R.raw.story_repost, AndroidUtilities.dp(42.0f), AndroidUtilities.dp(42.0f), true, null);
-            this.f21862b = xi0Var;
-            xi0Var.f32578v0 = view;
+            this.f21889b = xi0Var;
+            xi0Var.f32605v0 = view;
             AndroidUtilities.runOnUIThread(new q0(xi0Var, 1), 450L);
-            this.f21863c = null;
+            this.f21890c = null;
             return;
         }
-        this.f21862b = null;
+        this.f21889b = null;
         Drawable mutate = context.getResources().getDrawable(i10).mutate();
-        this.f21863c = mutate;
+        this.f21890c = mutate;
         mutate.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
     }
 

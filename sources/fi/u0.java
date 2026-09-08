@@ -5,22 +5,22 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import org.telegram.messenger.Utilities;
 public final class u0 implements LocationListener {
-    public final LocationManager f9988a;
-    public final LocationListener[] f9989b;
-    public final Utilities.Callback f9990c;
+    public final LocationManager f10016a;
+    public final LocationListener[] f10017b;
+    public final Utilities.Callback f10018c;
     public final w0 d;
 
     public u0(w0 w0Var, LocationManager locationManager, LocationListener[] locationListenerArr, Utilities.Callback callback) {
         this.d = w0Var;
-        this.f9988a = locationManager;
-        this.f9989b = locationListenerArr;
-        this.f9990c = callback;
+        this.f10016a = locationManager;
+        this.f10017b = locationListenerArr;
+        this.f10018c = callback;
     }
 
     @Override
     public final void onLocationChanged(Location location) {
-        this.f9988a.removeUpdates(this.f9989b[0]);
+        this.f10016a.removeUpdates(this.f10017b[0]);
         this.d.getClass();
-        this.f9990c.run(w0.h(location));
+        this.f10018c.run(w0.h(location));
     }
 }

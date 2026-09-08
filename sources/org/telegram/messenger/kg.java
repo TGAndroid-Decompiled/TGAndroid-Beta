@@ -3,37 +3,37 @@ package org.telegram.messenger;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class kg implements Runnable {
-    public final int f18170a = 0;
-    public final long f18171b;
-    public final long f18172c;
+    public final int f18197a = 0;
+    public final long f18198b;
+    public final long f18199c;
     public final boolean d;
-    public final Object f18173e;
-    public final TLObject f18174f;
+    public final Object f18200e;
+    public final TLObject f18201f;
 
     public kg(MessagesStorage messagesStorage, long j3, boolean z10, TLRPC.InputPeer inputPeer, long j10) {
-        this.f18173e = messagesStorage;
-        this.f18171b = j3;
+        this.f18200e = messagesStorage;
+        this.f18198b = j3;
         this.d = z10;
-        this.f18174f = inputPeer;
-        this.f18172c = j10;
+        this.f18201f = inputPeer;
+        this.f18199c = j10;
     }
 
     @Override
     public final void run() {
         TLRPC.PeerSettings peerSettings;
-        int i10 = this.f18170a;
-        TLObject tLObject = this.f18174f;
-        Object obj = this.f18173e;
+        int i10 = this.f18197a;
+        TLObject tLObject = this.f18201f;
+        Object obj = this.f18200e;
         switch (i10) {
             case 0:
-                ((MessagesStorage) obj).lambda$loadPendingTasks$15(this.f18171b, this.d, (TLRPC.InputPeer) tLObject, this.f18172c);
+                ((MessagesStorage) obj).lambda$loadPendingTasks$15(this.f18198b, this.d, (TLRPC.InputPeer) tLObject, this.f18199c);
                 return;
             default:
                 zh.s5 s5Var = (zh.s5) obj;
-                int i11 = s5Var.f52566a;
+                int i11 = s5Var.f52597a;
                 if (tLObject instanceof TLRPC.TL_boolTrue) {
-                    long j3 = this.f18171b;
-                    long j10 = this.f18172c;
+                    long j3 = this.f18198b;
+                    long j10 = this.f18199c;
                     if (j3 != 0) {
                         s5Var.b0(-j3, j10, this.d);
                         return;
@@ -54,10 +54,10 @@ public final class kg implements Runnable {
     }
 
     public kg(zh.s5 s5Var, TLObject tLObject, long j3, long j10, boolean z10) {
-        this.f18173e = s5Var;
-        this.f18174f = tLObject;
-        this.f18171b = j3;
-        this.f18172c = j10;
+        this.f18200e = s5Var;
+        this.f18201f = tLObject;
+        this.f18198b = j3;
+        this.f18199c = j10;
         this.d = z10;
     }
 }

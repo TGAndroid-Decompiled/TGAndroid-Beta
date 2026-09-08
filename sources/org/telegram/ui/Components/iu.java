@@ -79,8 +79,8 @@ public final class iu extends wh.p {
                 this.S = e90Var;
                 a90Var.a(e90Var, null);
                 SpannableString spannableString = new SpannableString(layout.getText());
-                int spanStart = spannableString.getSpanStart(this.S.f25623i);
-                int spanEnd = spannableString.getSpanEnd(this.S.f25623i);
+                int spanStart = spannableString.getSpanStart(this.S.f25650i);
+                int spanEnd = spannableString.getSpanEnd(this.S.f25650i);
                 x80 b10 = this.S.b();
                 b10.d(layout, spanStart, getPaddingTop());
                 layout.getSelectionPath(spanStart, spanEnd, b10);
@@ -90,7 +90,7 @@ public final class iu extends wh.p {
             if (motionEvent.getAction() == 1) {
                 a90Var.d(true);
                 e90 e90Var2 = this.S;
-                if (e90Var2 != null && (characterStyle = e90Var2.f25623i) == a2) {
+                if (e90Var2 != null && (characterStyle = e90Var2.f25650i) == a2) {
                     if (characterStyle != null) {
                         ((ClickableSpan) characterStyle).onClick(this);
                     }

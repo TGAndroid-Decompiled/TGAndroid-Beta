@@ -5,11 +5,11 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.Components.h51;
 public final class x2 implements zh.j2, Utilities.Callback5, Utilities.Callback5Return {
-    public final g4 f50625a;
+    public final g4 f50654a;
 
     @Override
     public void b(TL_stars.TL_starGiftUnique tL_starGiftUnique, long j3, boolean z10) {
-        g4.U(this.f50625a, tL_starGiftUnique, j3, z10);
+        g4.U(this.f50654a, tL_starGiftUnique, j3, z10);
     }
 
     @Override
@@ -19,7 +19,7 @@ public final class x2 implements zh.j2, Utilities.Callback5, Utilities.Callback5
         ((Integer) obj3).intValue();
         ((Float) obj4).floatValue();
         ((Float) obj5).floatValue();
-        this.f50625a.getClass();
+        this.f50654a.getClass();
         return Boolean.FALSE;
     }
 
@@ -29,6 +29,6 @@ public final class x2 implements zh.j2, Utilities.Callback5, Utilities.Callback5
         ((Integer) obj3).getClass();
         ((Float) obj4).getClass();
         ((Float) obj5).getClass();
-        g4.Y(this.f50625a, (h51) obj);
+        g4.Y(this.f50654a, (h51) obj);
     }
 }

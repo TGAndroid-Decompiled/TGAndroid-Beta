@@ -2,15 +2,15 @@ package org.telegram.ui.Components;
 
 import android.view.View;
 public final class re implements d5, bl0 {
-    public final ChatActivityEnterView f30018a;
+    public final ChatActivityEnterView f30045a;
 
     public re(ChatActivityEnterView chatActivityEnterView) {
-        this.f30018a = chatActivityEnterView;
+        this.f30045a = chatActivityEnterView;
     }
 
     @Override
     public void J(int i10, int i11, boolean z10) {
-        ChatActivityEnterView chatActivityEnterView = this.f30018a;
+        ChatActivityEnterView chatActivityEnterView = this.f30045a;
         boolean T0 = chatActivityEnterView.T0(i10, z10, i11, true, 0L);
         nf nfVar = chatActivityEnterView.L0;
         if (nfVar != null) {
@@ -22,7 +22,7 @@ public final class re implements d5, bl0 {
     @Override
     public boolean a(int i10, View view) {
         if (view instanceof fi.a0) {
-            ChatActivityEnterView chatActivityEnterView = this.f30018a;
+            ChatActivityEnterView chatActivityEnterView = this.f30045a;
             chatActivityEnterView.setFieldText(((fi.a0) view).getCommand() + " ");
             chatActivityEnterView.m0.c();
             return true;

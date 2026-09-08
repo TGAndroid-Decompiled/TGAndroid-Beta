@@ -3,21 +3,21 @@ package org.telegram.ui;
 import android.text.Editable;
 import android.text.TextWatcher;
 public final class ld implements TextWatcher {
-    public final int f38303a;
+    public final int f38330a;
 
     @Override
     public final void afterTextChanged(Editable editable) {
-        int i10 = this.f38303a;
+        int i10 = this.f38330a;
     }
 
     @Override
     public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-        int i13 = this.f38303a;
+        int i13 = this.f38330a;
     }
 
     @Override
     public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-        int i13 = this.f38303a;
+        int i13 = this.f38330a;
     }
 
     private final void a(Editable editable) {

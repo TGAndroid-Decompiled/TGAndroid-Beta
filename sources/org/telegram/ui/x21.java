@@ -9,28 +9,28 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
 public final class x21 implements Runnable {
-    public final int f42577a;
-    public final a31 f42578b;
+    public final int f42604a;
+    public final a31 f42605b;
 
     public x21(a31 a31Var, int i10) {
-        this.f42577a = i10;
-        this.f42578b = a31Var;
+        this.f42604a = i10;
+        this.f42605b = a31Var;
     }
 
     @Override
     public final void run() {
         long j3;
         String str;
-        switch (this.f42577a) {
+        switch (this.f42604a) {
             case 0:
-                a31 a31Var = this.f42578b;
+                a31 a31Var = this.f42605b;
                 AndroidUtilities.cancelRunOnUIThread(a31Var.N);
-                boolean z10 = a31Var.f34320r;
+                boolean z10 = a31Var.f34347r;
                 if (z10) {
                     if (z10 && a31Var.F == null) {
                         org.telegram.ui.Components.xi0 xi0Var = new org.telegram.ui.Components.xi0(R.raw.qr_matrix, AndroidUtilities.dp(200.0f), AndroidUtilities.dp(200.0f));
                         a31Var.F = xi0Var;
-                        xi0Var.f32578v0 = a31Var;
+                        xi0Var.f32605v0 = a31Var;
                         xi0Var.getPaint().setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_IN));
                         a31Var.F.I(1);
                         a31Var.F.start();
@@ -40,7 +40,7 @@ public final class x21 implements Runnable {
                         if (a31Var.J != 0) {
                             a31Var.I = null;
                             Utilities.themeQueue.postRunnable(new y21(a31Var, a31Var.getWidth(), a31Var.getHeight(), 2));
-                            a31Var.f34321s.q("", true, true);
+                            a31Var.f34348s.q("", true, true);
                         }
                         MessagesController messagesController = MessagesController.getInstance(UserConfig.selectedAccount);
                         if (a31Var.J == 0) {
@@ -55,7 +55,7 @@ public final class x21 implements Runnable {
                         long max = Math.max(0L, (i10 - (System.currentTimeMillis() / 1000)) - 1);
                         int i11 = (int) (max % 60);
                         int min = Math.min(99, (int) (max / 60));
-                        org.telegram.ui.Components.jo0 jo0Var = a31Var.f34321s;
+                        org.telegram.ui.Components.jo0 jo0Var = a31Var.f34348s;
                         StringBuilder sb2 = new StringBuilder();
                         if (min >= 10) {
                             str = "";
@@ -80,17 +80,17 @@ public final class x21 implements Runnable {
                 }
                 return;
             default:
-                a31 a31Var2 = this.f42578b;
+                a31 a31Var2 = this.f42605b;
                 a31Var2.S = false;
                 Bitmap bitmap = a31Var2.h;
                 if (bitmap != null) {
                     a31Var2.h = null;
-                    a31Var2.f34323x.d(0.0f, true);
-                    Bitmap bitmap2 = a31Var2.f34319n;
+                    a31Var2.f34350x.d(0.0f, true);
+                    Bitmap bitmap2 = a31Var2.f34346n;
                     if (bitmap2 != null) {
                         bitmap2.recycle();
                     }
-                    a31Var2.f34319n = bitmap;
+                    a31Var2.f34346n = bitmap;
                     a31Var2.invalidate();
                     return;
                 }

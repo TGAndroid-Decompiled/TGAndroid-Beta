@@ -10,15 +10,15 @@ import org.telegram.ui.Cells.p6;
 import y9.b0;
 import y9.k0;
 public final class b {
-    public Object f6651a;
-    public Object f6652b;
-    public Object f6653c;
+    public Object f6678a;
+    public Object f6679b;
+    public Object f6680c;
     public Object d;
-    public Object f6654e;
-    public Object f6655f;
-    public Object f6656g;
+    public Object f6681e;
+    public Object f6682f;
+    public Object f6683g;
     public Object h;
-    public Object f6657i;
+    public Object f6684i;
 
     public static void f(String str, JSONObject jSONObject) {
         StringBuilder u10 = a4.a.u(str);
@@ -31,68 +31,68 @@ public final class b {
 
     public b0 a() {
         String str;
-        if (((Integer) this.f6651a) == null) {
+        if (((Integer) this.f6678a) == null) {
             str = " pid";
         } else {
             str = "";
         }
-        if (((String) this.f6652b) == null) {
+        if (((String) this.f6679b) == null) {
             str = str.concat(" processName");
         }
-        if (((Integer) this.f6653c) == null) {
+        if (((Integer) this.f6680c) == null) {
             str = p6.t(str, " reasonCode");
         }
         if (((Integer) this.d) == null) {
             str = p6.t(str, " importance");
         }
-        if (((Long) this.f6654e) == null) {
+        if (((Long) this.f6681e) == null) {
             str = p6.t(str, " pss");
         }
-        if (((Long) this.f6655f) == null) {
+        if (((Long) this.f6682f) == null) {
             str = p6.t(str, " rss");
         }
-        if (((Long) this.f6656g) == null) {
+        if (((Long) this.f6683g) == null) {
             str = p6.t(str, " timestamp");
         }
         if (str.isEmpty()) {
-            return new b0(((Integer) this.f6651a).intValue(), (String) this.f6652b, ((Integer) this.f6653c).intValue(), ((Integer) this.d).intValue(), ((Long) this.f6654e).longValue(), ((Long) this.f6655f).longValue(), ((Long) this.f6656g).longValue(), (String) this.h, (List) this.f6657i);
+            return new b0(((Integer) this.f6678a).intValue(), (String) this.f6679b, ((Integer) this.f6680c).intValue(), ((Integer) this.d).intValue(), ((Long) this.f6681e).longValue(), ((Long) this.f6682f).longValue(), ((Long) this.f6683g).longValue(), (String) this.h, (List) this.f6684i);
         }
         throw new IllegalStateException("Missing required properties:".concat(str));
     }
 
     public k0 b() {
         String str;
-        if (((Integer) this.f6651a) == null) {
+        if (((Integer) this.f6678a) == null) {
             str = " arch";
         } else {
             str = "";
         }
-        if (((String) this.f6652b) == null) {
+        if (((String) this.f6679b) == null) {
             str = str.concat(" model");
         }
-        if (((Integer) this.f6653c) == null) {
+        if (((Integer) this.f6680c) == null) {
             str = p6.t(str, " cores");
         }
         if (((Long) this.d) == null) {
             str = p6.t(str, " ram");
         }
-        if (((Long) this.f6654e) == null) {
+        if (((Long) this.f6681e) == null) {
             str = p6.t(str, " diskSpace");
         }
-        if (((Boolean) this.f6655f) == null) {
+        if (((Boolean) this.f6682f) == null) {
             str = p6.t(str, " simulator");
         }
-        if (((Integer) this.f6656g) == null) {
+        if (((Integer) this.f6683g) == null) {
             str = p6.t(str, " state");
         }
         if (((String) this.h) == null) {
             str = p6.t(str, " manufacturer");
         }
-        if (((String) this.f6657i) == null) {
+        if (((String) this.f6684i) == null) {
             str = p6.t(str, " modelClass");
         }
         if (str.isEmpty()) {
-            return new k0(((Integer) this.f6651a).intValue(), (String) this.f6652b, ((Integer) this.f6653c).intValue(), ((Long) this.d).longValue(), ((Long) this.f6654e).longValue(), ((Boolean) this.f6655f).booleanValue(), ((Integer) this.f6656g).intValue(), (String) this.h, (String) this.f6657i);
+            return new k0(((Integer) this.f6678a).intValue(), (String) this.f6679b, ((Integer) this.f6680c).intValue(), ((Long) this.d).longValue(), ((Long) this.f6681e).longValue(), ((Boolean) this.f6682f).booleanValue(), ((Integer) this.f6683g).intValue(), (String) this.h, (String) this.f6684i);
         }
         throw new IllegalStateException("Missing required properties:".concat(str));
     }
@@ -101,13 +101,13 @@ public final class b {
         a aVar = null;
         try {
             if (!j.b(2, i10)) {
-                JSONObject B = ((i) this.f6654e).B();
+                JSONObject B = ((i) this.f6681e).B();
                 if (B != null) {
-                    a O = ((xa.c) this.f6653c).O(B);
+                    a O = ((xa.c) this.f6680c).O(B);
                     f("Loaded cached settings: ", B);
                     ((ob.a) this.d).getClass();
                     long currentTimeMillis = System.currentTimeMillis();
-                    if (!j.b(3, i10) && O.f6648c < currentTimeMillis) {
+                    if (!j.b(3, i10) && O.f6675c < currentTimeMillis) {
                         if (Log.isLoggable("FirebaseCrashlytics", 2)) {
                             Log.v("FirebaseCrashlytics", "Cached settings have expired.", null);
                             return null;

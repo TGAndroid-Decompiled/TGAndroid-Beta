@@ -8,15 +8,15 @@ import org.telegram.ui.ActionBar.j6;
 import org.telegram.ui.Components.d90;
 import w7.x5;
 public final class d4 extends org.telegram.ui.Cells.l4 {
-    public final d90 f9623r;
+    public final d90 f9651r;
 
     public d4(Context context, f6 f6Var) {
         super(context, f6Var);
         int i10;
         d90 d90Var = new d90(context, f6Var);
-        this.f9623r = d90Var;
+        this.f9651r = d90Var;
         d90Var.setTextSize(1, 14.0f);
-        d90Var.setTextColor(j6.v0(j6.f21061z6, f6Var));
+        d90Var.setTextColor(j6.v0(j6.f21088z6, f6Var));
         d90Var.setLinkTextColor(j6.v0(j6.L6, f6Var));
         d90Var.setPadding(AndroidUtilities.dp(4.0f), 0, AndroidUtilities.dp(4.0f), 0);
         if (LocaleController.isRTL) {

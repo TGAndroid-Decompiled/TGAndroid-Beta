@@ -6,22 +6,22 @@ import org.telegram.ui.Components.rw0;
 import org.telegram.ui.Components.vw0;
 public final class k2 extends vw0 {
     public final l2 A3;
-    public final boolean f7461z3;
+    public final boolean f7489z3;
 
     public k2(l2 l2Var, Context context, int i10, org.telegram.ui.ActionBar.f6 f6Var, boolean z10) {
         super(context, i10, f6Var);
         this.A3 = l2Var;
-        this.f7461z3 = z10;
+        this.f7489z3 = z10;
     }
 
     @Override
     public final rw0[] A1(rw0[] rw0VarArr) {
-        if (rw0VarArr != null && this.f7461z3) {
+        if (rw0VarArr != null && this.f7489z3) {
             int i10 = 0;
             while (true) {
                 if (i10 < rw0VarArr.length) {
                     rw0 rw0Var = rw0VarArr[i10];
-                    if (rw0Var != null && rw0Var.f30106b) {
+                    if (rw0Var != null && rw0Var.f30133b) {
                         break;
                     }
                     i10++;

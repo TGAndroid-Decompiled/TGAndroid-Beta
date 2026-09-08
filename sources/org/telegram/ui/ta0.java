@@ -5,15 +5,15 @@ import org.telegram.messenger.FileLog;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.tl.TL_stories;
 public final class ta0 implements e2.h {
-    public final int f40698a;
-    public final LaunchActivity f40699b;
-    public final r80 f40700c;
+    public final int f40725a;
+    public final LaunchActivity f40726b;
+    public final r80 f40727c;
     public final Long d;
 
     public ta0(LaunchActivity launchActivity, r80 r80Var, Long l4, int i10) {
-        this.f40698a = i10;
-        this.f40699b = launchActivity;
-        this.f40700c = r80Var;
+        this.f40725a = i10;
+        this.f40726b = launchActivity;
+        this.f40727c = r80Var;
         this.d = l4;
     }
 
@@ -25,10 +25,10 @@ public final class ta0 implements e2.h {
         org.telegram.ui.Components.yc X2;
         int i12;
         int i13;
-        int i14 = this.f40698a;
+        int i14 = this.f40725a;
         Long l4 = this.d;
-        r80 r80Var = this.f40700c;
-        LaunchActivity launchActivity = this.f40699b;
+        r80 r80Var = this.f40727c;
+        LaunchActivity launchActivity = this.f40726b;
         TL_stories.StoryItem storyItem = (TL_stories.StoryItem) obj;
         switch (i14) {
             case 0:

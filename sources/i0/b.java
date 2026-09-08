@@ -11,15 +11,15 @@ import org.telegram.messenger.Utilities;
 import org.telegram.ui.ActionBar.a2;
 import org.telegram.ui.ActionBar.b2;
 public final class b implements d9.e, m, a2, hh.b, n {
-    public final int f11423a;
+    public final int f11449a;
 
     public b(int i10) {
-        this.f11423a = i10;
+        this.f11449a = i10;
     }
 
     @Override
     public Object a(Bitmap bitmap) {
-        switch (this.f11423a) {
+        switch (this.f11449a) {
             case 9:
                 if (bitmap != null && !bitmap.isRecycled()) {
                     Bitmap stackBlurBitmapWithScaleFactor = Utilities.stackBlurBitmapWithScaleFactor(bitmap, Math.max(bitmap.getWidth() / 90.0f, bitmap.getHeight() / 120.0f));
@@ -55,7 +55,7 @@ public final class b implements d9.e, m, a2, hh.b, n {
 
     @Override
     public void g(b2 b2Var, int i10) {
-        switch (this.f11423a) {
+        switch (this.f11449a) {
             case 7:
                 b2Var.dismiss();
                 return;
@@ -67,7 +67,7 @@ public final class b implements d9.e, m, a2, hh.b, n {
 
     @Override
     public void invoke(Object obj) {
-        switch (this.f11423a) {
+        switch (this.f11449a) {
             case 5:
                 ((z0) obj).onPlayerError(new o(2, new RuntimeException("Player release timed out."), 1003));
                 return;
@@ -135,26 +135,26 @@ public final class b implements d9.e, m, a2, hh.b, n {
     }
 
     public b(j2.a aVar, int i10, int i11) {
-        this.f11423a = i11;
+        this.f11449a = i11;
     }
 
     public b(j2.a aVar, int i10, int i11, boolean z10) {
-        this.f11423a = 24;
+        this.f11449a = 24;
     }
 
     public b(j2.a aVar, Object obj, int i10) {
-        this.f11423a = i10;
+        this.f11449a = i10;
     }
 
     public b(j2.a aVar, String str, long j3, long j10) {
-        this.f11423a = 18;
+        this.f11449a = 18;
     }
 
     public b(j2.a aVar, boolean z10) {
-        this.f11423a = 17;
+        this.f11449a = 17;
     }
 
     public b(j2.a aVar, boolean z10, int i10, int i11) {
-        this.f11423a = i11;
+        this.f11449a = i11;
     }
 }

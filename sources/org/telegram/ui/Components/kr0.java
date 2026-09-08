@@ -15,13 +15,13 @@ public final class kr0 extends uu0 {
         super.l();
         xu0 xu0Var = this.G;
         qt0 W = xu0Var.W(9);
-        if (W != null && W.f29821r.getVisibility() == 0) {
-            xu0Var.f32692f0.l();
+        if (W != null && W.f29848r.getVisibility() == 0) {
+            xu0Var.f32719f0.l();
         }
         if (W != null) {
-            hs0 hs0Var = W.f29823w;
-            bi.l8 l8Var = this.f30984s;
-            if (l8Var != null && (l8Var.k() || (xu0Var.i0() && this.f30984s.g() > 0))) {
+            hs0 hs0Var = W.f29850w;
+            bi.l8 l8Var = this.f31011s;
+            if (l8Var != null && (l8Var.k() || (xu0Var.i0() && this.f31011s.g() > 0))) {
                 z10 = true;
             } else {
                 z10 = false;

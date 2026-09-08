@@ -8,47 +8,47 @@ import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.tgnet.TLObject;
 public class l9 extends View {
-    public final k9 f28120a;
-    public sg.c1 f28121b;
-    public f01 f28122c;
+    public final k9 f28147a;
+    public sg.c1 f28148b;
+    public f01 f28149c;
     public Paint d;
 
     public l9(Context context, boolean z10) {
         super(context);
-        this.f28120a = new k9(this, z10);
+        this.f28147a = new k9(this, z10);
     }
 
     public final void a(boolean z10) {
-        this.f28120a.b(z10, true);
+        this.f28147a.b(z10, true);
     }
 
     public final void b(int i10, TLObject tLObject, int i11) {
-        this.f28120a.l(i10, tLObject, i11);
+        this.f28147a.l(i10, tLObject, i11);
     }
 
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        this.f28120a.g();
+        this.f28147a.g();
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        this.f28120a.h();
+        this.f28147a.h();
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        this.f28120a.i(canvas);
-        if (this.f28122c != null) {
+        this.f28147a.i(canvas);
+        if (this.f28149c != null) {
             RectF rectF = AndroidUtilities.rectTmp;
             rectF.set(getWidth() - AndroidUtilities.dp(22.0f), getHeight() - AndroidUtilities.dp(22.0f), getWidth() - AndroidUtilities.dp(0.0f), getHeight() - AndroidUtilities.dp(0.0f));
-            this.f28121b.e(rectF);
+            this.f28148b.e(rectF);
             canvas.drawCircle(rectF.centerX(), rectF.centerY(), (rectF.width() / 2.0f) + AndroidUtilities.dp(1.33f), this.d);
-            canvas.drawCircle(rectF.centerX(), rectF.centerY(), rectF.width() / 2.0f, this.f28121b.f46035f);
-            this.f28122c.c(rectF.centerX() - (this.f28122c.f25847c / 2.0f), rectF.centerY(), 1.0f, -1, canvas);
+            canvas.drawCircle(rectF.centerX(), rectF.centerY(), rectF.width() / 2.0f, this.f28148b.f46063f);
+            this.f28149c.c(rectF.centerX() - (this.f28149c.f25874c / 2.0f), rectF.centerY(), 1.0f, -1, canvas);
         }
     }
 
@@ -56,38 +56,38 @@ public class l9 extends View {
     public void onMeasure(int i10, int i11) {
         super.onMeasure(i10, i11);
         int measuredWidth = getMeasuredWidth();
-        k9 k9Var = this.f28120a;
-        k9Var.f27769p = measuredWidth;
-        k9Var.f27768o = getMeasuredHeight();
+        k9 k9Var = this.f28147a;
+        k9Var.f27796p = measuredWidth;
+        k9Var.f27795o = getMeasuredHeight();
     }
 
     public void setAvatarsTextSize(int i10) {
-        this.f28120a.j(i10);
+        this.f28147a.j(i10);
     }
 
     public void setCentered(boolean z10) {
-        this.f28120a.f27765l = z10;
+        this.f28147a.f27792l = z10;
     }
 
     public void setCount(int i10) {
-        this.f28120a.k(i10);
+        this.f28147a.k(i10);
     }
 
     public void setDelegate(Runnable runnable) {
-        this.f28120a.f27763j = runnable;
+        this.f28147a.f27790j = runnable;
     }
 
     public void setSize(int i10) {
-        this.f28120a.f27772s = i10;
+        this.f28147a.f27799s = i10;
     }
 
     public void setStepFactor(float f7) {
-        this.f28120a.f27773t = f7;
+        this.f28147a.f27800t = f7;
     }
 
     public void setStyle(int i10) {
-        k9 k9Var = this.f28120a;
-        k9Var.f27764k = i10;
+        k9 k9Var = this.f28147a;
+        k9Var.f27791k = i10;
         k9Var.f();
     }
 }

@@ -4,16 +4,16 @@ import android.graphics.Canvas;
 import android.graphics.RectF;
 import org.telegram.messenger.MessageObject;
 public final class he1 implements org.telegram.ui.Components.ek0 {
-    public final co f36974a;
-    public final MessageObject f36975b;
-    public final org.telegram.ui.Components.fk0 f36976c;
+    public final co f37001a;
+    public final MessageObject f37002b;
+    public final org.telegram.ui.Components.fk0 f37003c;
     public final le1 d;
 
     public he1(le1 le1Var, co coVar, MessageObject messageObject, org.telegram.ui.Components.fk0 fk0Var) {
         this.d = le1Var;
-        this.f36974a = coVar;
-        this.f36975b = messageObject;
-        this.f36976c = fk0Var;
+        this.f37001a = coVar;
+        this.f37002b = messageObject;
+        this.f37003c = fk0Var;
     }
 
     @Override

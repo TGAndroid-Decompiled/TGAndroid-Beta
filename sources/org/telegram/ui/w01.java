@@ -11,7 +11,7 @@ public final class w01 extends org.telegram.ui.Cells.i5 {
 
     @Override
     public final int a(int i10) {
-        this.v.f34291e.getClass();
+        this.v.f34318e.getClass();
         return i10;
     }
 }

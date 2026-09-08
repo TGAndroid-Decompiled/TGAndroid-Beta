@@ -1,9 +1,9 @@
 package org.telegram.ui;
 public final class vb1 extends org.telegram.ui.ActionBar.j {
-    public final ThemeActivity f41510a;
+    public final ThemeActivity f41537a;
 
     public vb1(ThemeActivity themeActivity) {
-        this.f41510a = themeActivity;
+        this.f41537a = themeActivity;
     }
 
     @Override

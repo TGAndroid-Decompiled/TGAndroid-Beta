@@ -14,7 +14,7 @@ public final class i3 extends q9 {
     @Override
     public final boolean D() {
         v3 v3Var = this.L0;
-        CharSequence s10 = v3Var.f14259n3.s();
+        CharSequence s10 = v3Var.f14285n3.s();
         if (s10 != null && s10.length() != 0) {
             v3Var.a5(s10);
             return true;
@@ -25,7 +25,7 @@ public final class i3 extends q9 {
     @Override
     public final void E() {
         v3 v3Var = this.L0;
-        CharSequence s10 = v3Var.f14259n3.s();
+        CharSequence s10 = v3Var.f14285n3.s();
         if (s10 != null && s10.length() > 0) {
             v3Var.a5(s10);
         }
@@ -54,9 +54,9 @@ public final class i3 extends q9 {
     @Override
     public final void L(float f7, float f10) {
         v3 v3Var = this.L0;
-        v3Var.f14269s3 = true;
-        v3Var.f14270t3 = f7;
-        v3Var.f14271u3 = f10;
+        v3Var.f14295s3 = true;
+        v3Var.f14296t3 = f7;
+        v3Var.f14297u3 = f10;
     }
 
     @Override
@@ -66,23 +66,23 @@ public final class i3 extends q9 {
         String str;
         int length;
         v3 v3Var = this.L0;
-        i3 i3Var = v3Var.f14259n3;
-        ArrayList arrayList = v3Var.f14256l3;
-        if (!arrayList.isEmpty() && i3Var.y() && i3Var.f22500u0 == 0 && i3Var.f22501v0 == 0 && i3Var.f22502w0 <= 0 && i3Var.f22503x0 == (size = arrayList.size() - 1)) {
+        i3 i3Var = v3Var.f14285n3;
+        ArrayList arrayList = v3Var.f14282l3;
+        if (!arrayList.isEmpty() && i3Var.y() && i3Var.f22527u0 == 0 && i3Var.f22528v0 == 0 && i3Var.f22529w0 <= 0 && i3Var.f22530x0 == (size = arrayList.size() - 1)) {
             a aVar = (a) arrayList.get(size);
-            if (g6.p(aVar.f13732b)) {
-                str = i6.l(g6.k(aVar.f13732b));
+            if (g6.p(aVar.f13758b)) {
+                str = i6.l(g6.k(aVar.f13758b));
             } else {
                 str = "";
             }
             int i10 = !str.isEmpty();
-            if (i3Var.f22504y0 == i10) {
+            if (i3Var.f22531y0 == i10) {
                 if (i10 == 1) {
                     length = str.length();
                 } else {
-                    length = g6.z(aVar.f13732b).length();
+                    length = g6.z(aVar.f13758b).length();
                 }
-                if (i3Var.f22505z0 >= length) {
+                if (i3Var.f22532z0 >= length) {
                     z10 = true;
                     return !z10;
                 }

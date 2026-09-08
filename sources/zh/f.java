@@ -8,13 +8,13 @@ import org.telegram.messenger.FileLog;
 import org.telegram.ui.Components.ll0;
 import org.telegram.ui.Components.ov0;
 public final class f extends ov0 implements r0.m {
-    public final b2.q0 f51840w0;
-    public final g f51841x0;
+    public final b2.q0 f51871w0;
+    public final g f51872x0;
 
     public f(g gVar, Context context) {
         super(context, null);
-        this.f51841x0 = gVar;
-        this.f51840w0 = new Object();
+        this.f51872x0 = gVar;
+        this.f51871w0 = new Object();
     }
 
     @Override
@@ -24,29 +24,29 @@ public final class f extends ov0 implements r0.m {
         org.telegram.ui.ActionBar.k kVar2;
         boolean z10;
         int max;
-        g gVar = this.f51841x0;
-        if (viewGroup == gVar.f51908e && gVar.F.isAttachedToWindow()) {
+        g gVar = this.f51872x0;
+        if (viewGroup == gVar.f51939e && gVar.F.isAttachedToWindow()) {
             kVar = ((org.telegram.ui.ActionBar.n2) gVar).actionBar;
-            boolean z11 = kVar.f21103n0;
+            boolean z11 = kVar.f21130n0;
             int top = (((View) gVar.F.getParent()).getTop() - AndroidUtilities.statusBarHeight) - org.telegram.ui.ActionBar.k.getCurrentActionBarHeight();
             int bottom = ((View) gVar.F.getParent()).getBottom();
             boolean z12 = false;
             if (i11 < 0) {
                 kVar2 = ((org.telegram.ui.ActionBar.n2) gVar).actionBar;
-                if (gVar.f51908e.getHeight() - bottom < 0) {
+                if (gVar.f51939e.getHeight() - bottom < 0) {
                     z10 = true;
                 } else {
                     z10 = false;
                 }
                 kVar2.setCastShadows(z10);
-                if (gVar.f51908e.getHeight() - bottom >= 0) {
+                if (gVar.f51939e.getHeight() - bottom >= 0) {
                     ll0 currentListView = gVar.F.getCurrentListView();
                     int L0 = ((s4.c0) currentListView.getLayoutManager()).L0();
                     int i14 = -1;
                     if (L0 != -1) {
                         s4.c1 K = currentListView.K(L0);
                         if (K != null) {
-                            i14 = K.f45738a.getTop();
+                            i14 = K.f45766a.getTop();
                         }
                         int paddingTop = currentListView.getPaddingTop();
                         if (i14 != paddingTop || L0 != 0) {
@@ -79,9 +79,9 @@ public final class f extends ov0 implements r0.m {
                 }
             } else if (i11 > 0) {
                 ll0 currentListView3 = gVar.F.getCurrentListView();
-                if (gVar.f51908e.getHeight() - bottom >= 0 && currentListView3 != null && !currentListView3.canScrollVertically(1)) {
+                if (gVar.f51939e.getHeight() - bottom >= 0 && currentListView3 != null && !currentListView3.canScrollVertically(1)) {
                     iArr[1] = i11;
-                    gVar.f51908e.B0();
+                    gVar.f51939e.B0();
                 }
             }
         }
@@ -91,19 +91,19 @@ public final class f extends ov0 implements r0.m {
     public final void i(ViewGroup viewGroup, int i10, int i11, int i12, int i13, int i14, int[] iArr) {
         org.telegram.ui.ActionBar.k kVar;
         boolean z10;
-        g gVar = this.f51841x0;
+        g gVar = this.f51872x0;
         try {
-            if (viewGroup == gVar.f51908e && gVar.F.isAttachedToWindow()) {
+            if (viewGroup == gVar.f51939e && gVar.F.isAttachedToWindow()) {
                 ll0 currentListView = gVar.F.getCurrentListView();
                 int bottom = ((View) gVar.F.getParent()).getBottom();
                 kVar = ((org.telegram.ui.ActionBar.n2) gVar).actionBar;
-                if (gVar.f51908e.getHeight() - bottom < 0) {
+                if (gVar.f51939e.getHeight() - bottom < 0) {
                     z10 = true;
                 } else {
                     z10 = false;
                 }
                 kVar.setCastShadows(z10);
-                if (gVar.f51908e.getHeight() - bottom >= 0) {
+                if (gVar.f51939e.getHeight() - bottom >= 0) {
                     iArr[1] = i13;
                     currentListView.scrollBy(0, i13);
                 }
@@ -116,7 +116,7 @@ public final class f extends ov0 implements r0.m {
 
     @Override
     public final void n(int i10, View view) {
-        this.f51840w0.f2260a = 0;
+        this.f51871w0.f2287a = 0;
     }
 
     @Override
@@ -134,7 +134,7 @@ public final class f extends ov0 implements r0.m {
 
     @Override
     public final void s(View view, View view2, int i10, int i11) {
-        this.f51840w0.f2260a = i10;
+        this.f51871w0.f2287a = i10;
     }
 
     @Override

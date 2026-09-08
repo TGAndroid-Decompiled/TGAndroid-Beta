@@ -674,7 +674,7 @@ public class ConnectionsManager extends BaseController {
     }
 
     public void checkWebProxyInternal(fg.b bVar, int i10, RequestTimeDelegate requestTimeDelegate) {
-        native_checkProxy(this.currentAccount, "127.0.0.1", i10, "", "", bVar.f9482f, requestTimeDelegate);
+        native_checkProxy(this.currentAccount, "127.0.0.1", i10, "", "", bVar.f9510f, requestTimeDelegate);
     }
 
     public static int generateClassGuid() {
@@ -972,7 +972,7 @@ public class ConnectionsManager extends BaseController {
                 }
                 i17 = 0;
             }
-            if ((i10 & 2) != 0 && g71.f26296k0.isEmpty()) {
+            if ((i10 & 2) != 0 && g71.f26323k0.isEmpty()) {
                 y2.f.b(ApplicationLoader.applicationContext).d(i17, Math.max(0L, (System.currentTimeMillis() - j3) - native_getCurrentPingTime(this.currentAccount)));
             }
             if (BuildVars.DEBUG_PRIVATE_VERSION) {
@@ -1340,12 +1340,12 @@ public class ConnectionsManager extends BaseController {
         int i11;
         String str5 = "";
         if (z10 && bVar != null && bVar.e()) {
-            String str6 = bVar.f9479b;
-            int i12 = bVar.f9480c;
+            String str6 = bVar.f9507b;
+            int i12 = bVar.f9508c;
             String str7 = bVar.d;
-            String str8 = bVar.f9481e;
-            String str9 = bVar.f9482f;
-            if (bVar.f9478a == 3) {
+            String str8 = bVar.f9509e;
+            String str9 = bVar.f9510f;
+            if (bVar.f9506a == 3) {
                 i10 = fg.k.k(str6, str9);
                 if (i10 == 0) {
                     i10 = 9;
@@ -1355,12 +1355,12 @@ public class ConnectionsManager extends BaseController {
                 str5 = "127.0.0.1";
                 str = str2;
             } else {
-                synchronized (fg.k.f9503t) {
+                synchronized (fg.k.f9531t) {
                     try {
-                        fg.k kVar = fg.k.f9504u;
+                        fg.k kVar = fg.k.f9532u;
                         if (kVar != null) {
                             kVar.m();
-                            fg.k.f9504u = null;
+                            fg.k.f9532u = null;
                         }
                     } finally {
                     }
@@ -1464,15 +1464,15 @@ public class ConnectionsManager extends BaseController {
 
     public long checkProxy(fg.b bVar, RequestTimeDelegate requestTimeDelegate) {
         if (bVar != null && bVar.e()) {
-            if (bVar.f9478a == 3) {
-                fg.f fVar = fg.f.f9491e;
+            if (bVar.f9506a == 3) {
+                fg.f fVar = fg.f.f9519e;
                 if (fVar == null) {
                     synchronized (fg.f.class) {
                         try {
-                            fVar = fg.f.f9491e;
+                            fVar = fg.f.f9519e;
                             if (fVar == null) {
                                 fVar = new fg.f(0);
-                                fg.f.f9491e = fVar;
+                                fg.f.f9519e = fVar;
                             }
                         } finally {
                         }
@@ -1490,7 +1490,7 @@ public class ConnectionsManager extends BaseController {
                     return 0L;
                 }
             } else {
-                return native_checkProxy(this.currentAccount, bVar.f9479b, bVar.f9480c, bVar.d, bVar.f9481e, bVar.f9482f, requestTimeDelegate);
+                return native_checkProxy(this.currentAccount, bVar.f9507b, bVar.f9508c, bVar.d, bVar.f9509e, bVar.f9510f, requestTimeDelegate);
             }
         }
         return 0L;
@@ -1615,11 +1615,11 @@ public class ConnectionsManager extends BaseController {
         SharedPreferences sharedPreferences = ApplicationLoader.applicationContext.getSharedPreferences("mainconfig", 0);
         fg.b b10 = fg.b.b(sharedPreferences);
         if (sharedPreferences.getBoolean("proxy_enabled", false) && b10.e()) {
-            if (b10.f9478a == 3) {
-                int k10 = fg.k.k(b10.f9479b, b10.f9482f);
-                native_setProxySettings(this.currentAccount, "127.0.0.1", k10 != 0 ? k10 : 9, "", "", b10.f9482f);
+            if (b10.f9506a == 3) {
+                int k10 = fg.k.k(b10.f9507b, b10.f9510f);
+                native_setProxySettings(this.currentAccount, "127.0.0.1", k10 != 0 ? k10 : 9, "", "", b10.f9510f);
             } else {
-                native_setProxySettings(this.currentAccount, b10.f9479b, b10.f9480c, b10.d, b10.f9481e, b10.f9482f);
+                native_setProxySettings(this.currentAccount, b10.f9507b, b10.f9508c, b10.d, b10.f9509e, b10.f9510f);
             }
         }
         try {

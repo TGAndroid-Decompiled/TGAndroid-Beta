@@ -11,7 +11,7 @@ public final class n61 extends b20 {
     public n61(o61 o61Var, Context context, org.telegram.ui.ActionBar.f6 f6Var) {
         super(context, f6Var);
         this.K = o61Var;
-        di.h2 h2Var = this.f24522r;
+        di.h2 h2Var = this.f24549r;
         this.J = h2Var;
         h2Var.setImeOptions(268435459);
         h2Var.setHint(LocaleController.getString(R.string.VoipGroupSearchMembers));

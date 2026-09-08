@@ -21,26 +21,26 @@ import org.telegram.messenger.wl;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.xh0;
 public final class w extends FrameLayout implements Checkable {
-    public final boolean f23389a;
-    public final TextView f23390b;
-    public final TextView f23391c;
+    public final boolean f23416a;
+    public final TextView f23417b;
+    public final TextView f23418c;
     public final org.telegram.ui.Components.x9 d;
-    public final xh0 f23392e;
-    public final xh0 f23393f;
+    public final xh0 f23419e;
+    public final xh0 f23420f;
     public boolean h;
-    public Button f23394n;
-    public AnimatorSet f23395r;
-    public TLRPC.StickerSetCovered f23396s;
+    public Button f23421n;
+    public AnimatorSet f23422r;
+    public TLRPC.StickerSetCovered f23423s;
     public v v;
-    public boolean f23397w;
+    public boolean f23424w;
 
     public w(Context context, boolean z10) {
         super(context);
-        this.f23389a = z10;
+        this.f23416a = z10;
         if (z10) {
             xh0 xh0Var = new xh0(context);
-            this.f23393f = xh0Var;
-            this.f23394n = xh0Var;
+            this.f23420f = xh0Var;
+            this.f23421n = xh0Var;
             xh0Var.setText(LocaleController.getString(R.string.Add));
             xh0Var.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.Sh, false));
             xh0Var.setProgressColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.Nh, false));
@@ -50,7 +50,7 @@ public final class w extends FrameLayout implements Checkable {
             addView(xh0Var, w7.x5.i(-2.0f, 28.0f, 8388661, 0.0f, 18.0f, 14.0f, 0.0f));
             int dp = AndroidUtilities.dp(60.0f);
             xh0 xh0Var2 = new xh0(context);
-            this.f23392e = xh0Var2;
+            this.f23419e = xh0Var2;
             xh0Var2.setAllCaps(false);
             xh0Var2.setMinWidth(dp);
             xh0Var2.setMinimumWidth(dp);
@@ -68,11 +68,11 @@ public final class w extends FrameLayout implements Checkable {
             xh0Var2.setOnClickListener(aVar);
             c(false);
         } else {
-            this.f23393f = null;
-            this.f23392e = null;
+            this.f23420f = null;
+            this.f23419e = null;
         }
         TextView textView = new TextView(context);
-        this.f23390b = textView;
+        this.f23417b = textView;
         wl.r(textView, org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.G6, false), 1, 16.0f, 1);
         textView.setMaxLines(1);
         textView.setSingleLine(true);
@@ -80,8 +80,8 @@ public final class w extends FrameLayout implements Checkable {
         textView.setGravity(w7.x5.y());
         addView(textView, w7.x5.i(-2.0f, -2.0f, 8388611, 71.0f, 10.0f, 21.0f, 0.0f));
         TextView textView2 = new TextView(context);
-        this.f23391c = textView2;
-        wl.r(textView2, org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f21061z6, false), 1, 13.0f, 1);
+        this.f23418c = textView2;
+        wl.r(textView2, org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f21088z6, false), 1, 13.0f, 1);
         textView2.setMaxLines(1);
         textView2.setSingleLine(true);
         textView2.setGravity(w7.x5.y());
@@ -97,22 +97,22 @@ public final class w extends FrameLayout implements Checkable {
         v vVar;
         int i10;
         int i11;
-        if (this.f23389a && this.f23397w != z10) {
-            this.f23397w = z10;
+        if (this.f23416a && this.f23424w != z10) {
+            this.f23424w = z10;
             c(z11);
             if (z12 && (vVar = this.v) != null) {
                 ah.i0 i0Var = (ah.i0) vVar;
-                org.telegram.ui.p pVar = ((org.telegram.ui.o) i0Var.f587b).d;
-                TLRPC.StickerSetCovered stickerSetCovered = (TLRPC.StickerSetCovered) i0Var.f588c;
-                a0.i iVar = pVar.f39366a;
+                org.telegram.ui.p pVar = ((org.telegram.ui.o) i0Var.f599b).d;
+                TLRPC.StickerSetCovered stickerSetCovered = (TLRPC.StickerSetCovered) i0Var.f600c;
+                a0.i iVar = pVar.f39393a;
                 if (z10) {
                     a(false, false, false);
-                    if (iVar.h(stickerSetCovered.set.f19896id) < 0) {
-                        xh0 xh0Var = this.f23393f;
+                    if (iVar.h(stickerSetCovered.set.f19923id) < 0) {
+                        xh0 xh0Var = this.f23420f;
                         if (xh0Var != null) {
                             xh0Var.a(true, true);
                         }
-                        iVar.k(stickerSetCovered, stickerSetCovered.set.f19896id);
+                        iVar.k(stickerSetCovered, stickerSetCovered.set.f19923id);
                     } else {
                         return;
                     }
@@ -138,12 +138,12 @@ public final class w extends FrameLayout implements Checkable {
         float f7;
         int i10;
         xh0 xh0Var;
-        if (this.f23389a) {
-            AnimatorSet animatorSet = this.f23395r;
+        if (this.f23416a) {
+            AnimatorSet animatorSet = this.f23422r;
             if (animatorSet != null) {
                 animatorSet.cancel();
             }
-            boolean z11 = this.f23397w;
+            boolean z11 = this.f23424w;
             float f10 = 0.0f;
             if (z11) {
                 f7 = 1.0f;
@@ -154,21 +154,21 @@ public final class w extends FrameLayout implements Checkable {
                 f10 = 1.0f;
             }
             int i11 = 4;
-            xh0 xh0Var2 = this.f23393f;
-            xh0 xh0Var3 = this.f23392e;
+            xh0 xh0Var2 = this.f23420f;
+            xh0 xh0Var3 = this.f23419e;
             if (z10) {
                 if (z11) {
                     xh0Var = xh0Var3;
                 } else {
                     xh0Var = xh0Var2;
                 }
-                this.f23394n = xh0Var;
+                this.f23421n = xh0Var;
                 xh0Var2.setVisibility(0);
                 xh0Var3.setVisibility(0);
                 AnimatorSet animatorSet2 = new AnimatorSet();
-                this.f23395r = animatorSet2;
+                this.f23422r = animatorSet2;
                 animatorSet2.setDuration(250L);
-                AnimatorSet animatorSet3 = this.f23395r;
+                AnimatorSet animatorSet3 = this.f23422r;
                 Property property = View.ALPHA;
                 ObjectAnimator ofFloat = ObjectAnimator.ofFloat(xh0Var3, property, f7);
                 Property property2 = View.SCALE_X;
@@ -176,9 +176,9 @@ public final class w extends FrameLayout implements Checkable {
                 float[] fArr = {f7};
                 Property property3 = View.SCALE_Y;
                 animatorSet3.playTogether(ofFloat, ofFloat2, ObjectAnimator.ofFloat(xh0Var3, property3, fArr), ObjectAnimator.ofFloat(xh0Var2, property, f10), ObjectAnimator.ofFloat(xh0Var2, property2, f10), ObjectAnimator.ofFloat(xh0Var2, property3, f10));
-                this.f23395r.addListener(new org.telegram.ui.s0(this, 8));
-                this.f23395r.setInterpolator(new OvershootInterpolator(1.02f));
-                this.f23395r.start();
+                this.f23422r.addListener(new org.telegram.ui.s0(this, 8));
+                this.f23422r.setInterpolator(new OvershootInterpolator(1.02f));
+                this.f23422r.start();
                 return;
             }
             if (z11) {
@@ -190,7 +190,7 @@ public final class w extends FrameLayout implements Checkable {
             xh0Var3.setAlpha(f7);
             xh0Var3.setScaleX(f7);
             xh0Var3.setScaleY(f7);
-            if (!this.f23397w) {
+            if (!this.f23424w) {
                 i11 = 0;
             }
             xh0Var2.setVisibility(i11);
@@ -201,18 +201,18 @@ public final class w extends FrameLayout implements Checkable {
     }
 
     public TLRPC.StickerSetCovered getStickersSet() {
-        return this.f23396s;
+        return this.f23423s;
     }
 
     @Override
     public final boolean isChecked() {
-        return this.f23397w;
+        return this.f23424w;
     }
 
     @Override
     public final void measureChildWithMargins(View view, int i10, int i11, int i12, int i13) {
-        if (this.f23389a && view == this.f23390b) {
-            i11 += Math.max(this.f23393f.getMeasuredWidth(), this.f23392e.getMeasuredWidth());
+        if (this.f23416a && view == this.f23417b) {
+            i11 += Math.max(this.f23420f.getMeasuredWidth(), this.f23419e.getMeasuredWidth());
         }
         super.measureChildWithMargins(view, i10, i11, i12, i13);
     }
@@ -220,7 +220,7 @@ public final class w extends FrameLayout implements Checkable {
     @Override
     public final void onDraw(Canvas canvas) {
         if (this.h) {
-            canvas.drawLine(0.0f, getHeight() - 1, getWidth() - getPaddingRight(), getHeight() - 1, org.telegram.ui.ActionBar.j6.f20785k0);
+            canvas.drawLine(0.0f, getHeight() - 1, getWidth() - getPaddingRight(), getHeight() - 1, org.telegram.ui.ActionBar.j6.f20812k0);
         }
     }
 
@@ -240,8 +240,8 @@ public final class w extends FrameLayout implements Checkable {
 
     @Override
     public final void toggle() {
-        if (this.f23389a) {
-            setChecked(!this.f23397w);
+        if (this.f23416a) {
+            setChecked(!this.f23424w);
         }
     }
 }

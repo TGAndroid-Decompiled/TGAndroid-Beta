@@ -17,26 +17,26 @@ import org.telegram.tgnet.TLRPC;
 public final class ky extends kl0 {
     public boolean E;
     public final kz F;
-    public final fy f27914c;
+    public final fy f27941c;
     public long d;
-    public TLRPC.StickerSet f27915e;
-    public ArrayList f27916f;
+    public TLRPC.StickerSet f27942e;
+    public ArrayList f27943f;
     public final ArrayList h = new ArrayList();
-    public final ArrayList f27917n = new ArrayList();
-    public final ArrayList f27918r = new ArrayList();
-    public final ArrayList f27919s = new ArrayList();
+    public final ArrayList f27944n = new ArrayList();
+    public final ArrayList f27945r = new ArrayList();
+    public final ArrayList f27946s = new ArrayList();
     public String v;
-    public String f27920w;
-    public jy f27921x;
-    public boolean f27922y;
+    public String f27947w;
+    public jy f27948x;
+    public boolean f27949y;
 
     public ky(kz kzVar, Context context) {
         this.F = kzVar;
-        ?? aVar = new oh.a(context, kzVar.f27932c1, new d(this, 11), new kv(this, 1), kzVar.Z1);
-        this.f27914c = aVar;
+        ?? aVar = new oh.a(context, kzVar.f27959c1, new d(this, 11), new kv(this, 1), kzVar.Z1);
+        this.f27941c = aVar;
         aVar.setPadding(AndroidUtilities.dp(10.0f), 0, AndroidUtilities.dp(10.0f), AndroidUtilities.dp(5.0f));
         aVar.setClipToPadding(false);
-        aVar.Y2.f31135r = false;
+        aVar.Y2.f31162r = false;
         aVar.setNestedScrollingEnabled(false);
         aVar.setDrawSelection(false);
         aVar.setOnTouchListener(new m.c2(this, 1));
@@ -56,12 +56,12 @@ public final class ky extends kl0 {
         if (str3 == null) {
             return;
         }
-        MediaDataController.getInstance(kzVar.f27932c1).searchStickers(true, str2, str3, new bi.r3((Object) kyVar, str3, arrayList, (Object) runnable, 8), z10);
+        MediaDataController.getInstance(kzVar.f27959c1).searchStickers(true, str2, str3, new bi.r3((Object) kyVar, str3, arrayList, (Object) runnable, 8), z10);
     }
 
     @Override
     public final boolean D(s4.c1 c1Var) {
-        int i10 = c1Var.f45742f;
+        int i10 = c1Var.f45770f;
         if (i10 != 0 && i10 != 4) {
             return false;
         }
@@ -78,24 +78,24 @@ public final class ky extends kl0 {
             tx txVar = kzVar.R;
             if (adapter != txVar) {
                 kxVar.setAdapter(txVar);
-                this.f27922y = false;
+                this.f27949y = false;
             }
             this.d = 0L;
-            kzVar.f27926b.a(false, true);
+            kzVar.f27953b.a(false, true);
             l();
         } else {
             this.v = str.toLowerCase();
         }
-        jy jyVar = this.f27921x;
+        jy jyVar = this.f27948x;
         if (jyVar != null) {
             AndroidUtilities.cancelRunOnUIThread(jyVar);
         }
         if (!TextUtils.isEmpty(this.v)) {
-            this.f27917n.clear();
+            this.f27944n.clear();
             this.E = false;
             kzVar.V.e(true);
             jy jyVar2 = new jy(this);
-            this.f27921x = jyVar2;
+            this.f27948x = jyVar2;
             if (z10) {
                 j3 = 300;
             }
@@ -106,13 +106,13 @@ public final class ky extends kl0 {
     @Override
     public final int h() {
         if (this.d != 0) {
-            return this.f27916f.size() + 4;
+            return this.f27943f.size() + 4;
         }
         ArrayList arrayList = this.h;
         boolean isEmpty = arrayList.isEmpty();
-        ArrayList arrayList2 = this.f27919s;
-        ArrayList arrayList3 = this.f27918r;
-        if (isEmpty && arrayList3.isEmpty() && arrayList2.isEmpty() && !this.f27922y) {
+        ArrayList arrayList2 = this.f27946s;
+        ArrayList arrayList3 = this.f27945r;
+        if (isEmpty && arrayList3.isEmpty() && arrayList2.isEmpty() && !this.f27949y) {
             return this.F.getRecentEmoji().size() + 1;
         }
         int i10 = 2;
@@ -138,7 +138,7 @@ public final class ky extends kl0 {
 
     @Override
     public final void l() {
-        this.f27914c.Y2.N(false);
+        this.f27941c.Y2.N(false);
         super.l();
     }
 
@@ -178,16 +178,16 @@ public final class ky extends kl0 {
                         }
                     } else {
                         ViewGroup.LayoutParams p0Var = new s4.p0(-1, AndroidUtilities.dp(79.0f));
-                        View view2 = this.f27914c;
+                        View view2 = this.f27941c;
                         view2.setLayoutParams(p0Var);
                         yVar = view2;
                     }
                 } else {
-                    yVar = new org.telegram.ui.Cells.o8(kzVar.getContext(), true, false, kzVar.Z1, kzVar.f27953i2);
+                    yVar = new org.telegram.ui.Cells.o8(kzVar.getContext(), true, false, kzVar.Z1, kzVar.f27980i2);
                 }
             } else {
                 View view3 = new View(kzVar.getContext());
-                view3.setLayoutParams(new s4.p0(-1, kzVar.f27928b1));
+                view3.setLayoutParams(new s4.p0(-1, kzVar.f27955b1));
                 yVar = view3;
             }
         } else {

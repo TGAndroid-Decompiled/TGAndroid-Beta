@@ -12,29 +12,29 @@ import org.telegram.messenger.ChatThemeController;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 public final class zc extends FrameLayout {
-    public final int f43368a;
-    public final org.telegram.ui.ActionBar.f6 f43369b;
-    public final ArrayList f43370c;
+    public final int f43395a;
+    public final org.telegram.ui.ActionBar.f6 f43396b;
+    public final ArrayList f43397c;
     public final ec1 d;
-    public final org.telegram.ui.Components.t00 f43371e;
-    public boolean f43372f;
+    public final org.telegram.ui.Components.t00 f43398e;
+    public boolean f43399f;
     public final xc h;
-    public boolean f43373n;
-    public Utilities.Callback f43374r;
-    public String f43375s;
+    public boolean f43400n;
+    public Utilities.Callback f43401r;
+    public String f43402s;
     public TLRPC.WallPaper v;
-    public final HashMap f43376w;
-    public final HashMap f43377x;
+    public final HashMap f43403w;
+    public final HashMap f43404x;
 
     public zc(int i10, Activity activity, org.telegram.ui.ActionBar.f6 f6Var) {
         super(activity);
-        this.f43370c = new ArrayList();
-        this.f43376w = new HashMap();
-        this.f43377x = new HashMap();
-        this.f43368a = i10;
-        this.f43369b = f6Var;
+        this.f43397c = new ArrayList();
+        this.f43403w = new HashMap();
+        this.f43404x = new HashMap();
+        this.f43395a = i10;
+        this.f43396b = f6Var;
         org.telegram.ui.Components.t00 t00Var = new org.telegram.ui.Components.t00(getContext(), f6Var);
-        this.f43371e = t00Var;
+        this.f43398e = t00Var;
         t00Var.setViewType(14);
         t00Var.setVisibility(0);
         addView(t00Var, w7.x5.d(-1, 104.0f, 8388611, 16.0f, 13.0f, 16.0f, 6.0f));
@@ -58,7 +58,7 @@ public final class zc extends FrameLayout {
         chatThemeController.preloadAllWallpaperImages(true);
         chatThemeController.preloadAllWallpaperImages(false);
         chatThemeController.requestAllChatThemes(new yc(this, i10), true);
-        if (!this.f43373n) {
+        if (!this.f43400n) {
             AndroidUtilities.updateViewVisibilityAnimated(t00Var, true, 1.0f, true, false);
         } else {
             AndroidUtilities.updateViewVisibilityAnimated(t00Var, false, 1.0f, true, false);
@@ -68,17 +68,17 @@ public final class zc extends FrameLayout {
     public final void a(String str, boolean z10) {
         ArrayList arrayList;
         int R;
-        this.f43375s = str;
+        this.f43402s = str;
         int i10 = -1;
         int i11 = 0;
         while (true) {
-            arrayList = this.f43370c;
+            arrayList = this.f43397c;
             boolean z11 = true;
             if (i11 >= arrayList.size()) {
                 break;
             }
             org.telegram.ui.Components.kp kpVar = (org.telegram.ui.Components.kp) arrayList.get(i11);
-            if (!TextUtils.equals(this.f43375s, kpVar.a()) && (!TextUtils.isEmpty(str) || !kpVar.f27882a.f20361a)) {
+            if (!TextUtils.equals(this.f43402s, kpVar.a()) && (!TextUtils.isEmpty(str) || !kpVar.f27909a.f20388a)) {
                 z11 = false;
             }
             kpVar.d = z11;
@@ -108,19 +108,19 @@ public final class zc extends FrameLayout {
         this.v = wallPaper;
         AndroidUtilities.forEachViews((RecyclerView) this.d, (e2.h) new vc(this, 1));
         if (this.v != null) {
-            ArrayList arrayList = this.f43370c;
-            if ((arrayList.isEmpty() || ((org.telegram.ui.Components.kp) arrayList.get(0)).f27882a.f20361a) && this.f43372f) {
-                arrayList.add(0, new org.telegram.ui.Components.kp(org.telegram.ui.ActionBar.d4.a(this.f43368a)));
+            ArrayList arrayList = this.f43397c;
+            if ((arrayList.isEmpty() || ((org.telegram.ui.Components.kp) arrayList.get(0)).f27909a.f20388a) && this.f43399f) {
+                arrayList.add(0, new org.telegram.ui.Components.kp(org.telegram.ui.ActionBar.d4.a(this.f43395a)));
                 this.h.l();
             }
         }
     }
 
     public void setOnEmoticonSelected(Utilities.Callback<String> callback) {
-        this.f43374r = callback;
+        this.f43401r = callback;
     }
 
     public void setWithRemovedStub(boolean z10) {
-        this.f43372f = z10;
+        this.f43399f = z10;
     }
 }

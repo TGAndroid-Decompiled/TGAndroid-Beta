@@ -13,27 +13,27 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.dc0;
 import org.telegram.ui.go;
 public class ia extends LinearLayout {
-    public org.telegram.ui.Components.v9 f22128a;
-    public org.telegram.ui.Components.v9 f22129b;
-    public Drawable f22130c;
+    public org.telegram.ui.Components.v9 f22155a;
+    public org.telegram.ui.Components.v9 f22156b;
+    public Drawable f22157c;
     public Drawable d;
-    public final t1[] f22131e;
-    public final Drawable f22132f;
+    public final t1[] f22158e;
+    public final Drawable f22159f;
     public final org.telegram.ui.ActionBar.d5 h;
-    public final int f22133n;
-    public org.telegram.ui.ActionBar.n2 f22134r;
-    public int f22135s;
+    public final int f22160n;
+    public org.telegram.ui.ActionBar.n2 f22161r;
+    public int f22162s;
     public final g v;
-    public Drawable f22136w;
-    public boolean f22137x;
-    public final org.telegram.ui.Components.e6 f22138y;
+    public Drawable f22163w;
+    public boolean f22164x;
+    public final org.telegram.ui.Components.e6 f22165y;
 
     public ia(Context context, org.telegram.ui.ActionBar.d5 d5Var, int i10) {
         this(context, d5Var, i10, 0L, null);
     }
 
     public final boolean a() {
-        int i10 = this.f22133n;
+        int i10 = this.f22160n;
         if (i10 != 3 && i10 != 0) {
             return false;
         }
@@ -42,14 +42,14 @@ public class ia extends LinearLayout {
 
     @Override
     public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        if (this.f22133n != 2 && !a()) {
+        if (this.f22160n != 2 && !a()) {
             return false;
         }
         return super.dispatchTouchEvent(motionEvent);
     }
 
     public t1[] getCells() {
-        return this.f22131e;
+        return this.f22158e;
     }
 
     @Override
@@ -57,7 +57,7 @@ public class ia extends LinearLayout {
         super.invalidate();
         int i10 = 0;
         while (true) {
-            t1[] t1VarArr = this.f22131e;
+            t1[] t1VarArr = this.f22158e;
             if (i10 < t1VarArr.length) {
                 t1VarArr[i10].invalidate();
                 i10++;
@@ -70,7 +70,7 @@ public class ia extends LinearLayout {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        Drawable drawable = this.f22136w;
+        Drawable drawable = this.f22163w;
         if (drawable instanceof go) {
             ((go) drawable).f(this);
         }
@@ -79,17 +79,17 @@ public class ia extends LinearLayout {
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        org.telegram.ui.Components.v9 v9Var = this.f22128a;
+        org.telegram.ui.Components.v9 v9Var = this.f22155a;
         if (v9Var != null) {
             v9Var.dispose();
-            this.f22128a = null;
+            this.f22155a = null;
         }
-        org.telegram.ui.Components.v9 v9Var2 = this.f22129b;
+        org.telegram.ui.Components.v9 v9Var2 = this.f22156b;
         if (v9Var2 != null) {
             v9Var2.dispose();
-            this.f22129b = null;
+            this.f22156b = null;
         }
-        Drawable drawable = this.f22136w;
+        Drawable drawable = this.f22163w;
         if (drawable instanceof go) {
             ((go) drawable).g(this);
         }
@@ -100,30 +100,30 @@ public class ia extends LinearLayout {
         float themeAnimationValue;
         Drawable drawable;
         int i10;
-        Drawable drawable2 = this.f22136w;
+        Drawable drawable2 = this.f22163w;
         if (drawable2 == null) {
             drawable2 = org.telegram.ui.ActionBar.j6.s0();
         }
         if (org.telegram.ui.ActionBar.j6.d != null) {
             invalidate();
         }
-        Drawable drawable3 = this.f22130c;
-        org.telegram.ui.Components.e6 e6Var = this.f22138y;
+        Drawable drawable3 = this.f22157c;
+        org.telegram.ui.Components.e6 e6Var = this.f22165y;
         if (drawable2 != drawable3 && drawable2 != null) {
-            if (org.telegram.ui.ActionBar.j6.sl != null || this.f22137x) {
+            if (org.telegram.ui.ActionBar.j6.sl != null || this.f22164x) {
                 this.d = drawable3;
-                this.f22129b = this.f22128a;
+                this.f22156b = this.f22155a;
             } else {
-                org.telegram.ui.Components.v9 v9Var = this.f22128a;
+                org.telegram.ui.Components.v9 v9Var = this.f22155a;
                 if (v9Var != null) {
                     v9Var.dispose();
-                    this.f22128a = null;
+                    this.f22155a = null;
                 }
             }
-            this.f22130c = drawable2;
+            this.f22157c = drawable2;
             e6Var.d(0.0f, true);
         }
-        boolean z10 = this.f22137x;
+        boolean z10 = this.f22164x;
         org.telegram.ui.ActionBar.d5 d5Var = this.h;
         if (z10) {
             themeAnimationValue = e6Var.d(1.0f, false);
@@ -134,10 +134,10 @@ public class ia extends LinearLayout {
             if (i11 == 0) {
                 drawable = this.d;
             } else {
-                drawable = this.f22130c;
+                drawable = this.f22157c;
             }
             if (drawable != null) {
-                if (i11 == 1 && this.d != null && (d5Var != null || this.f22137x)) {
+                if (i11 == 1 && this.d != null && (d5Var != null || this.f22164x)) {
                     i10 = (int) (255.0f * themeAnimationValue);
                 } else {
                     i10 = 255;
@@ -172,16 +172,16 @@ public class ia extends LinearLayout {
                     } else {
                         drawable.setBounds(0, 0, getMeasuredWidth(), getMeasuredHeight());
                         if (drawable instanceof org.telegram.ui.Components.w9) {
-                            this.f22128a = ((org.telegram.ui.Components.w9) drawable).c(canvas, this);
+                            this.f22155a = ((org.telegram.ui.Components.w9) drawable).c(canvas, this);
                         } else {
                             drawable.draw(canvas);
                         }
                     }
                     if (i11 == 0 && this.d != null && themeAnimationValue >= 1.0f) {
-                        org.telegram.ui.Components.v9 v9Var2 = this.f22129b;
+                        org.telegram.ui.Components.v9 v9Var2 = this.f22156b;
                         if (v9Var2 != null) {
                             v9Var2.dispose();
-                            this.f22129b = null;
+                            this.f22156b = null;
                         }
                         this.d = null;
                         invalidate();
@@ -191,14 +191,14 @@ public class ia extends LinearLayout {
         }
         int measuredWidth2 = getMeasuredWidth();
         int measuredHeight2 = getMeasuredHeight();
-        Drawable drawable4 = this.f22132f;
+        Drawable drawable4 = this.f22159f;
         drawable4.setBounds(0, 0, measuredWidth2, measuredHeight2);
         drawable4.draw(canvas);
     }
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        if (this.f22133n != 2 && !a()) {
+        if (this.f22160n != 2 && !a()) {
             return false;
         }
         return super.onInterceptTouchEvent(motionEvent);
@@ -206,26 +206,26 @@ public class ia extends LinearLayout {
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        if (this.f22133n != 2 && !a()) {
+        if (this.f22160n != 2 && !a()) {
             return false;
         }
         return super.onTouchEvent(motionEvent);
     }
 
     public void setOverrideBackground(Drawable drawable) {
-        this.f22136w = drawable;
+        this.f22163w = drawable;
         if (drawable != null) {
             drawable.setCallback(this);
         }
-        if ((this.f22136w instanceof go) && isAttachedToWindow()) {
-            ((go) this.f22136w).f(this);
+        if ((this.f22163w instanceof go) && isAttachedToWindow()) {
+            ((go) this.f22163w).f(this);
         }
         invalidate();
     }
 
     @Override
     public final boolean verifyDrawable(Drawable drawable) {
-        if (drawable != this.f22136w && drawable != this.d && !super.verifyDrawable(drawable)) {
+        if (drawable != this.f22163w && drawable != this.d && !super.verifyDrawable(drawable)) {
             return false;
         }
         return true;

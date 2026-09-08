@@ -16,17 +16,17 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.tgnet.TLRPC;
 public final class qx0 extends kl0 {
-    public final Context f29832c;
+    public final Context f29859c;
     public int d;
-    public final SparseArray f29833e = new SparseArray();
-    public final SparseArray f29834f = new SparseArray();
+    public final SparseArray f29860e = new SparseArray();
+    public final SparseArray f29861f = new SparseArray();
     public int h;
-    public int f29835n;
-    public final ux0 f29836r;
+    public int f29862n;
+    public final ux0 f29863r;
 
     public qx0(ux0 ux0Var, Context context) {
-        this.f29836r = ux0Var;
-        this.f29832c = context;
+        this.f29863r = ux0Var;
+        this.f29859c = context;
     }
 
     @Override
@@ -41,9 +41,9 @@ public final class qx0 extends kl0 {
 
     @Override
     public final int j(int i10) {
-        ux0 ux0Var = this.f29836r;
+        ux0 ux0Var = this.f29863r;
         if (ux0Var.W != null) {
-            Object obj = this.f29833e.get(i10);
+            Object obj = this.f29860e.get(i10);
             if (obj != null) {
                 if (obj instanceof TLRPC.Document) {
                     return 0;
@@ -64,22 +64,22 @@ public final class qx0 extends kl0 {
         List list;
         int i10;
         int i11;
-        ux0 ux0Var = this.f29836r;
+        ux0 ux0Var = this.f29863r;
         int i12 = 0;
         if (ux0Var.W != null) {
-            int measuredWidth = ux0Var.f30994c.getMeasuredWidth();
+            int measuredWidth = ux0Var.f31021c.getMeasuredWidth();
             if (measuredWidth == 0) {
                 measuredWidth = AndroidUtilities.displaySize.x;
             }
             int dp = measuredWidth / AndroidUtilities.dp(72.0f);
             this.d = dp;
             ux0Var.M.y1(dp);
-            SparseArray sparseArray = this.f29833e;
+            SparseArray sparseArray = this.f29860e;
             sparseArray.clear();
-            SparseArray sparseArray2 = this.f29834f;
+            SparseArray sparseArray2 = this.f29861f;
             sparseArray2.clear();
             this.h = 0;
-            this.f29835n = 0;
+            this.f29862n = 0;
             for (int i13 = 0; i13 < ux0Var.W.size(); i13++) {
                 TLRPC.StickerSetCovered stickerSetCovered = (TLRPC.StickerSetCovered) ux0Var.W.get(i13);
                 if (stickerSetCovered instanceof TLRPC.TL_stickerSetFullCovered) {
@@ -91,7 +91,7 @@ public final class qx0 extends kl0 {
                     list = list.subList(0, Math.min(list.size(), this.d));
                 }
                 if (list != null && (!list.isEmpty() || stickerSetCovered.cover != null)) {
-                    this.f29835n++;
+                    this.f29862n++;
                     sparseArray2.put(this.h, stickerSetCovered);
                     int i14 = this.h;
                     this.h = i14 + 1;
@@ -142,7 +142,7 @@ public final class qx0 extends kl0 {
 
     @Override
     public final void u(int i10) {
-        ArrayList arrayList = this.f29836r.Y;
+        ArrayList arrayList = this.f29863r.Y;
         if (arrayList != null) {
             this.h = arrayList.size();
         }
@@ -151,12 +151,12 @@ public final class qx0 extends kl0 {
 
     @Override
     public final void v(s4.c1 c1Var, int i10) {
-        View view = c1Var.f45738a;
-        ux0 ux0Var = this.f29836r;
+        View view = c1Var.f45766a;
+        ux0 ux0Var = this.f29863r;
         ArrayList arrayList = ux0Var.W;
         if (arrayList != null) {
-            int i11 = c1Var.f45742f;
-            SparseArray sparseArray = this.f29833e;
+            int i11 = c1Var.f45770f;
+            SparseArray sparseArray = this.f29860e;
             if (i11 != 0) {
                 if (i11 != 1) {
                     if (i11 == 2) {
@@ -168,14 +168,14 @@ public final class qx0 extends kl0 {
                 ((org.telegram.ui.Cells.k3) view).setHeight(AndroidUtilities.dp(82.0f));
                 return;
             }
-            ((org.telegram.ui.Cells.f8) view).d((TLRPC.Document) sparseArray.get(i10), null, this.f29834f.get(i10), null, false, false);
+            ((org.telegram.ui.Cells.f8) view).d((TLRPC.Document) sparseArray.get(i10), null, this.f29861f.get(i10), null, false, false);
         } else if (ux0Var.X != null) {
             ((org.telegram.ui.Cells.f8) view).setSticker((SendMessagesHelper.ImportingSticker) ux0Var.Y.get(i10));
-        } else if (c1Var.f45742f != 3) {
+        } else if (c1Var.f45770f != 3) {
             org.telegram.ui.Cells.f8 f8Var = (org.telegram.ui.Cells.f8) view;
             TLRPC.TL_messages_stickerSet tL_messages_stickerSet = ux0Var.S;
             if (tL_messages_stickerSet != null) {
-                f8Var.d(tL_messages_stickerSet.documents.get(i10), null, ux0Var.S, null, ux0Var.f31002h0, ux0Var.R);
+                f8Var.d(tL_messages_stickerSet.documents.get(i10), null, ux0Var.S, null, ux0Var.f31029h0, ux0Var.R);
                 f8Var.J.setOnClickListener(new ct(15, this, f8Var));
             }
         }
@@ -188,8 +188,8 @@ public final class qx0 extends kl0 {
         FrameLayout frameLayout2;
         org.telegram.ui.ActionBar.f6 f6Var2;
         org.telegram.ui.ActionBar.f6 f6Var3;
-        ux0 ux0Var = this.f29836r;
-        Context context = this.f29832c;
+        ux0 ux0Var = this.f29863r;
+        Context context = this.f29859c;
         if (i10 == 0) {
             f6Var = ((org.telegram.ui.ActionBar.f3) ux0Var).resourcesProvider;
             px0 px0Var = new px0(this, context, f6Var);
@@ -199,7 +199,7 @@ public final class qx0 extends kl0 {
             if (i10 != 1) {
                 if (i10 == 2) {
                     f6Var2 = ((org.telegram.ui.ActionBar.f3) ux0Var).resourcesProvider;
-                    frameLayout2 = new org.telegram.ui.Cells.r3(8, this.f29832c, f6Var2, true, false);
+                    frameLayout2 = new org.telegram.ui.Cells.r3(8, this.f29859c, f6Var2, true, false);
                 } else if (i10 == 3) {
                     f6Var3 = ((org.telegram.ui.ActionBar.f3) ux0Var).resourcesProvider;
                     FrameLayout frameLayout3 = new FrameLayout(context);
@@ -213,11 +213,11 @@ public final class qx0 extends kl0 {
                     int dp2 = AndroidUtilities.dp(56.0f);
                     int dp3 = AndroidUtilities.dp(56.0f);
                     oqVar.h = dp2;
-                    oqVar.f29164n = dp3;
+                    oqVar.f29191n = dp3;
                     int dp4 = AndroidUtilities.dp(24.0f);
                     int dp5 = AndroidUtilities.dp(24.0f);
-                    oqVar.f29162e = dp4;
-                    oqVar.f29163f = dp5;
+                    oqVar.f29189e = dp4;
+                    oqVar.f29190f = dp5;
                     view.setBackground(oqVar);
                     w7.z5.a(view);
                     frameLayout3.addView(view, w7.x5.e(56, 56, 17));

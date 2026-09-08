@@ -27,14 +27,14 @@ public final class hz0 extends s4.j {
 
     @Override
     public final void m() {
-        boolean isEmpty = this.f45804p.isEmpty();
-        boolean isEmpty2 = this.f45806r.isEmpty();
-        boolean isEmpty3 = this.f45807s.isEmpty();
-        boolean isEmpty4 = this.f45805q.isEmpty();
+        boolean isEmpty = this.f45832p.isEmpty();
+        boolean isEmpty2 = this.f45834r.isEmpty();
+        boolean isEmpty3 = this.f45835s.isEmpty();
+        boolean isEmpty4 = this.f45833q.isEmpty();
         if (!isEmpty || !isEmpty2 || !isEmpty4 || !isEmpty3) {
             ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
             ofFloat.addUpdateListener(new c3(this, 26));
-            ofFloat.setDuration(this.f45829e);
+            ofFloat.setDuration(this.f45857e);
             ofFloat.start();
             this.F = this.G.getNotificationCenter().setAnimationInProgress(this.F, null);
         }

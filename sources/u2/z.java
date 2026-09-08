@@ -1,9 +1,9 @@
 package u2;
 public final class z extends b2.k1 {
-    public final b2.k0 f46861e;
+    public final b2.k0 f46889e;
 
     public z(b2.k0 k0Var) {
-        this.f46861e = k0Var;
+        this.f46889e = k0Var;
     }
 
     @Override
@@ -26,7 +26,7 @@ public final class z extends b2.k1 {
         if (z10) {
             obj = y.h;
         }
-        h1Var.h(num, obj, 0, -9223372036854775807L, 0L, b2.b.f1966c, true);
+        h1Var.h(num, obj, 0, -9223372036854775807L, 0L, b2.b.f1993c, true);
         return h1Var;
     }
 
@@ -42,8 +42,8 @@ public final class z extends b2.k1 {
 
     @Override
     public final b2.j1 m(int i10, b2.j1 j1Var, long j3) {
-        j1Var.b(b2.j1.f2097q, this.f46861e, null, -9223372036854775807L, -9223372036854775807L, -9223372036854775807L, false, true, null, 0L, -9223372036854775807L, 0, 0, 0L);
-        j1Var.f2114k = true;
+        j1Var.b(b2.j1.f2124q, this.f46889e, null, -9223372036854775807L, -9223372036854775807L, -9223372036854775807L, false, true, null, 0L, -9223372036854775807L, 0, 0, 0L);
+        j1Var.f2141k = true;
         return j1Var;
     }
 

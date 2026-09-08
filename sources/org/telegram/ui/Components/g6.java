@@ -12,46 +12,46 @@ import java.util.Comparator;
 import java.util.HashMap;
 import org.telegram.messenger.AndroidUtilities;
 public abstract class g6 extends LinearLayout {
-    public static final Comparator f26257r = Comparator$EL.thenComparingInt(Comparator$CC.comparingInt(new bi.o6(8)), new bi.o6(9));
-    public final HashMap f26258a;
-    public final ArrayList f26259b;
-    public final le.j f26260c;
+    public static final Comparator f26284r = Comparator$EL.thenComparingInt(Comparator$CC.comparingInt(new bi.o6(8)), new bi.o6(9));
+    public final HashMap f26285a;
+    public final ArrayList f26286b;
+    public final le.j f26287c;
     public boolean d;
-    public int f26261e;
-    public int f26262f;
+    public int f26288e;
+    public int f26289f;
     public Runnable h;
-    public float f26263n;
+    public float f26290n;
 
     public g6(Context context) {
         super(context);
-        this.f26258a = new HashMap();
-        this.f26259b = new ArrayList();
-        this.f26260c = new le.j(new t(this, 11), pr.h, 420L);
+        this.f26285a = new HashMap();
+        this.f26286b = new ArrayList();
+        this.f26287c = new le.j(new t(this, 11), pr.h, 420L);
     }
 
     public final void a() {
-        this.f26262f = 0;
-        this.f26261e = 0;
+        this.f26289f = 0;
+        this.f26288e = 0;
         int childCount = getChildCount();
         for (int i10 = 0; i10 < childCount; i10++) {
             View childAt = getChildAt(i10);
-            f6 f6Var = (f6) this.f26258a.get(childAt);
-            if (childAt.getVisibility() == 0 && f6Var != null && f6Var.f25926b) {
-                this.f26261e = childAt.getMeasuredWidth() + this.f26261e;
-                this.f26262f = childAt.getMeasuredHeight() + this.f26262f;
+            f6 f6Var = (f6) this.f26285a.get(childAt);
+            if (childAt.getVisibility() == 0 && f6Var != null && f6Var.f25953b) {
+                this.f26288e = childAt.getMeasuredWidth() + this.f26288e;
+                this.f26289f = childAt.getMeasuredHeight() + this.f26289f;
             }
         }
     }
 
     public final void b() {
-        ArrayList arrayList = this.f26260c.f15391b;
+        ArrayList arrayList = this.f26287c.f15418b;
         int size = arrayList.size();
         int i10 = 0;
         while (i10 < size) {
             Object obj = arrayList.get(i10);
             i10++;
             le.g gVar = (le.g) obj;
-            View view = ((f6) gVar.f15379a).f25925a;
+            View view = ((f6) gVar.f15406a).f25952a;
             RectF b10 = gVar.b();
             if (getOrientation() == 1) {
                 view.setTranslationY((getPaddingTop() + b10.top) - view.getTop());
@@ -60,9 +60,9 @@ public abstract class g6 extends LinearLayout {
             }
             f(view, gVar.c());
         }
-        float f7 = getMetadata().f15389g.f15396a;
-        if (this.f26263n != f7) {
-            this.f26263n = f7;
+        float f7 = getMetadata().f15416g.f15423a;
+        if (this.f26290n != f7) {
+            this.f26290n = f7;
             Runnable runnable = this.h;
             if (runnable != null) {
                 runnable.run();
@@ -71,12 +71,12 @@ public abstract class g6 extends LinearLayout {
     }
 
     public final float c(float f7) {
-        return (f7 * getMetadata().f15386c.f15396a) + getMetadata().f15389g.f15396a;
+        return (f7 * getMetadata().f15413c.f15423a) + getMetadata().f15416g.f15423a;
     }
 
     public final boolean d(View view) {
-        f6 f6Var = (f6) this.f26258a.get(view);
-        if (f6Var != null && f6Var.f25926b) {
+        f6 f6Var = (f6) this.f26285a.get(view);
+        if (f6Var != null && f6Var.f25953b) {
             return true;
         }
         return false;
@@ -92,7 +92,7 @@ public abstract class g6 extends LinearLayout {
     }
 
     public final void g(View view) {
-        f6 f6Var = (f6) this.f26258a.get(view);
+        f6 f6Var = (f6) this.f26285a.get(view);
     }
 
     public float getAnimatedHeightWithPadding() {
@@ -100,23 +100,23 @@ public abstract class g6 extends LinearLayout {
     }
 
     public int getEntriesCount() {
-        return this.f26260c.f15391b.size();
+        return this.f26287c.f15418b.size();
     }
 
     public le.i getMetadata() {
-        return this.f26260c.d;
+        return this.f26287c.d;
     }
 
     public int getSumHeightOfAllVisibleChild() {
-        return this.f26262f;
+        return this.f26289f;
     }
 
     public int getSumWidthOfAllVisibleChild() {
-        return this.f26261e;
+        return this.f26288e;
     }
 
     public final void h(int i10, View view) {
-        f6 f6Var = (f6) this.f26258a.get(view);
+        f6 f6Var = (f6) this.f26285a.get(view);
         if (f6Var != null) {
             f6Var.d = i10;
         }
@@ -124,14 +124,14 @@ public abstract class g6 extends LinearLayout {
 
     public final void i(View view, boolean z10, boolean z11) {
         f6 f6Var;
-        if (view != null && (f6Var = (f6) this.f26258a.get(view)) != null) {
-            View view2 = f6Var.f25925a;
-            if (f6Var.f25926b != z10) {
-                f6Var.f25926b = z10;
+        if (view != null && (f6Var = (f6) this.f26285a.get(view)) != null) {
+            View view2 = f6Var.f25952a;
+            if (f6Var.f25953b != z10) {
+                f6Var.f25953b = z10;
                 if (z10) {
                     view2.setVisibility(0);
                 }
-                if (!z10 && !f6Var.f25927c) {
+                if (!z10 && !f6Var.f25954c) {
                     view2.setVisibility(8);
                 }
                 if (!z11) {
@@ -145,27 +145,27 @@ public abstract class g6 extends LinearLayout {
     @Override
     public void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
         super.onLayout(z10, i10, i11, i12, i13);
-        ArrayList arrayList = this.f26259b;
+        ArrayList arrayList = this.f26286b;
         arrayList.clear();
         int childCount = getChildCount();
         for (int i14 = 0; i14 < childCount; i14++) {
             View childAt = getChildAt(i14);
-            f6 f6Var = (f6) this.f26258a.get(childAt);
+            f6 f6Var = (f6) this.f26285a.get(childAt);
             if (f6Var != null) {
-                f6Var.f25928e = i14;
-                if (childAt.getVisibility() == 0 && f6Var.f25926b) {
+                f6Var.f25955e = i14;
+                if (childAt.getVisibility() == 0 && f6Var.f25953b) {
                     arrayList.add(f6Var);
                 }
             }
         }
-        Collections.sort(arrayList, f26257r);
-        this.f26260c.r(arrayList, !this.d);
+        Collections.sort(arrayList, f26284r);
+        this.f26287c.r(arrayList, !this.d);
         int size = arrayList.size();
         int i15 = 0;
         while (i15 < size) {
             Object obj = arrayList.get(i15);
             i15++;
-            ((f6) obj).f25927c = true;
+            ((f6) obj).f25954c = true;
         }
         this.d = false;
         b();
@@ -181,13 +181,13 @@ public abstract class g6 extends LinearLayout {
     public final void onViewAdded(View view) {
         super.onViewAdded(view);
         view.setVisibility(8);
-        this.f26258a.put(view, new f6(view));
+        this.f26285a.put(view, new f6(view));
     }
 
     @Override
     public final void onViewRemoved(View view) {
         super.onViewRemoved(view);
-        this.f26258a.remove(view);
+        this.f26285a.remove(view);
     }
 
     public void setOnAnimatedHeightChangedListener(Runnable runnable) {

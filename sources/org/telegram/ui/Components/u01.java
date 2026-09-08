@@ -43,32 +43,32 @@ public final class u01 extends DispatchQueue {
     public final ArrayList U;
     public boolean V;
     public final ArrayList W;
-    public boolean f30754a;
-    public final AtomicBoolean f30755b;
-    public final SurfaceTexture f30756c;
+    public boolean f30781a;
+    public final AtomicBoolean f30782b;
+    public final SurfaceTexture f30783c;
     public q01 d;
-    public int f30757e;
-    public int f30758f;
+    public int f30784e;
+    public int f30785f;
     public EGL10 h;
-    public EGLDisplay f30759n;
-    public EGLConfig f30760r;
-    public EGLSurface f30761s;
+    public EGLDisplay f30786n;
+    public EGLConfig f30787r;
+    public EGLSurface f30788s;
     public EGLContext v;
-    public int f30762w;
-    public int f30763x;
-    public int f30764y;
+    public int f30789w;
+    public int f30790x;
+    public int f30791y;
 
     public u01(SurfaceTexture surfaceTexture, q01 q01Var, q01 q01Var2, int i10, int i11) {
         super("ThanosEffect.DrawingThread", false);
-        this.f30755b = new AtomicBoolean(true);
+        this.f30782b = new AtomicBoolean(true);
         this.T = new ArrayList();
         this.U = new ArrayList();
         this.V = false;
         this.W = new ArrayList();
-        this.f30756c = surfaceTexture;
+        this.f30783c = surfaceTexture;
         this.d = q01Var2;
-        this.f30757e = i10;
-        this.f30758f = i11;
+        this.f30784e = i10;
+        this.f30785f = i11;
         start();
     }
 
@@ -99,7 +99,7 @@ public final class u01 extends DispatchQueue {
     }
 
     public final void c(Matrix matrix, Bitmap bitmap, Runnable runnable, Runnable runnable2) {
-        if (!this.f30755b.get()) {
+        if (!this.f30782b.get()) {
             AndroidUtilities.runOnUIThread(new s01(runnable, runnable2, 0));
             w01.b(this.d);
             this.d = null;
@@ -112,7 +112,7 @@ public final class u01 extends DispatchQueue {
     }
 
     public final void e(View view, float f7, Runnable runnable) {
-        if (!this.f30755b.get()) {
+        if (!this.f30782b.get()) {
             if (view != null) {
                 view.setVisibility(8);
             }
@@ -134,7 +134,7 @@ public final class u01 extends DispatchQueue {
     }
 
     public final void f(ArrayList arrayList, Runnable runnable) {
-        if (!this.f30755b.get()) {
+        if (!this.f30782b.get()) {
             for (int i10 = 0; i10 < arrayList.size(); i10++) {
                 ((View) arrayList.get(i10)).setVisibility(8);
             }
@@ -167,7 +167,7 @@ public final class u01 extends DispatchQueue {
         int i12;
         int i13;
         int i14;
-        if (this.f30755b.get()) {
+        if (this.f30782b.get()) {
             GLES20.glClear(16384);
             int i15 = 0;
             int i16 = 0;
@@ -177,12 +177,12 @@ public final class u01 extends DispatchQueue {
                     ArrayList arrayList = this.T;
                     int i17 = 0;
                     for (int i18 = 0; i18 < arrayList.size(); i18++) {
-                        i17 += ((t01) arrayList.get(i18)).f30486u;
+                        i17 += ((t01) arrayList.get(i18)).f30513u;
                     }
-                    float f13 = t01Var.f30486u;
+                    float f13 = t01Var.f30513u;
                     float f14 = f13 / i17;
                     int[] iArr = t01Var.B;
-                    int i19 = t01Var.f30485t;
+                    int i19 = t01Var.f30512t;
                     int devicePerformanceClass = SharedConfig.getDevicePerformanceClass();
                     int i20 = 120000;
                     if (devicePerformanceClass != 1) {
@@ -194,77 +194,77 @@ public final class u01 extends DispatchQueue {
                     } else {
                         i11 = 60000;
                     }
-                    if (!t01Var.E.f30754a) {
+                    if (!t01Var.E.f30781a) {
                         i20 = i11;
                     }
                     if (t01Var.D) {
                         i20 /= 2;
                     }
                     float max = Math.max(AndroidUtilities.dpf2(0.4f), 1.0f);
-                    t01Var.f30484s = Utilities.clamp((int) ((i10 * i19) / (max * max)), (int) (i20 * f14), 10);
+                    t01Var.f30511s = Utilities.clamp((int) ((i10 * i19) / (max * max)), (int) (i20 * f14), 10);
                     float f15 = i19;
                     float f16 = f15 / f13;
                     int round = (int) Math.round(Math.sqrt(clamp / f16));
-                    t01Var.f30487w = round;
-                    t01Var.v = Math.round(t01Var.f30484s / round);
+                    t01Var.f30514w = round;
+                    t01Var.v = Math.round(t01Var.f30511s / round);
                     while (true) {
                         i12 = t01Var.v;
-                        i13 = t01Var.f30487w;
+                        i13 = t01Var.f30514w;
                         i14 = i12 * i13;
-                        if (i14 >= t01Var.f30484s) {
+                        if (i14 >= t01Var.f30511s) {
                             break;
                         } else if (i12 / i13 < f16) {
                             t01Var.v = i12 + 1;
                         } else {
-                            t01Var.f30487w = i13 + 1;
+                            t01Var.f30514w = i13 + 1;
                         }
                     }
-                    t01Var.f30484s = i14;
-                    t01Var.f30488x = Math.max(f15 / i12, f13 / i13);
+                    t01Var.f30511s = i14;
+                    t01Var.f30515x = Math.max(f15 / i12, f13 / i13);
                     GLES20.glGenBuffers(2, iArr, i15);
                     for (int i21 = 0; i21 < 2; i21++) {
                         GLES20.glBindBuffer(34962, iArr[i21]);
-                        GLES20.glBufferData(34962, t01Var.f30484s * 28, null, 35048);
+                        GLES20.glBufferData(34962, t01Var.f30511s * 28, null, 35048);
                     }
-                    if (t01Var.f30471e != null) {
+                    if (t01Var.f30498e != null) {
                         this.U.add(t01Var);
                     }
                 }
                 this.V = true;
                 int[] iArr2 = t01Var.B;
                 boolean z10 = t01Var.D;
-                float f17 = t01Var.f30478m;
-                int i22 = t01Var.f30486u;
-                int i23 = t01Var.f30485t;
-                Matrix matrix = t01Var.f30483r;
+                float f17 = t01Var.f30505m;
+                int i22 = t01Var.f30513u;
+                int i23 = t01Var.f30512t;
+                Matrix matrix = t01Var.f30510r;
                 u01 u01Var = t01Var.E;
                 long nanoTime = System.nanoTime();
-                if (t01Var.f30469b < 0) {
+                if (t01Var.f30496b < 0) {
                     d = 0.0d;
                 } else {
                     d = (nanoTime - j3) / 1.0E9d;
                 }
-                t01Var.f30469b = nanoTime;
-                if (t01Var.f30479n && !t01Var.f30480o) {
+                t01Var.f30496b = nanoTime;
+                if (t01Var.f30506n && !t01Var.f30507o) {
                     matrix.reset();
                     matrix.postScale(i23, i22);
-                    matrix.postTranslate(t01Var.f30474i, t01Var.f30475j);
+                    matrix.postTranslate(t01Var.f30501i, t01Var.f30502j);
                     t01Var.c();
                 }
-                t01Var.f30470c = (float) ((f17 * d) + t01Var.f30470c);
-                GLES20.glUniformMatrix3fv(u01Var.f30763x, 1, false, t01Var.f30481p, 0);
-                int i24 = u01Var.f30764y;
+                t01Var.f30497c = (float) ((f17 * d) + t01Var.f30497c);
+                GLES20.glUniformMatrix3fv(u01Var.f30790x, 1, false, t01Var.f30508p, 0);
+                int i24 = u01Var.f30791y;
                 if (t01Var.d) {
                     f7 = 1.0f;
                 } else {
                     f7 = 0.0f;
                 }
                 GLES20.glUniform1f(i24, f7);
-                GLES20.glUniform1f(u01Var.E, t01Var.f30470c);
+                GLES20.glUniform1f(u01Var.E, t01Var.f30497c);
                 GLES20.glUniform1f(u01Var.F, ((float) d) * f17);
-                GLES20.glUniform1f(u01Var.G, t01Var.f30484s);
-                GLES20.glUniform3f(u01Var.I, t01Var.v, t01Var.f30487w, t01Var.f30488x);
-                GLES20.glUniform2f(u01Var.P, t01Var.f30473g, t01Var.h);
+                GLES20.glUniform1f(u01Var.G, t01Var.f30511s);
+                GLES20.glUniform3f(u01Var.I, t01Var.v, t01Var.f30514w, t01Var.f30515x);
+                GLES20.glUniform2f(u01Var.P, t01Var.f30500g, t01Var.h);
                 int i25 = u01Var.Q;
                 if (z10) {
                     f10 = 0.8f;
@@ -280,14 +280,14 @@ public final class u01 extends DispatchQueue {
                 }
                 GLES20.glUniform1f(i26, f11);
                 GLES20.glUniform2f(u01Var.J, i23, i22);
-                GLES20.glUniform1f(u01Var.K, t01Var.f30489y);
+                GLES20.glUniform1f(u01Var.K, t01Var.f30516y);
                 GLES20.glUniform2f(u01Var.L, 0.0f, 0.0f);
-                GLES20.glUniform1f(u01Var.N, t01Var.f30476k);
-                GLES20.glUniform1f(u01Var.O, t01Var.f30477l);
+                GLES20.glUniform1f(u01Var.N, t01Var.f30503k);
+                GLES20.glUniform1f(u01Var.O, t01Var.f30504l);
                 GLES20.glActiveTexture(33984);
                 GLES20.glBindTexture(3553, t01Var.A[0]);
                 GLES20.glUniform1i(u01Var.M, 0);
-                GLES20.glBindBuffer(34962, iArr2[t01Var.f30490z]);
+                GLES20.glBindBuffer(34962, iArr2[t01Var.f30517z]);
                 GLES20.glVertexAttribPointer(0, 2, 5126, false, 28, 0);
                 GLES20.glEnableVertexAttribArray(0);
                 GLES20.glVertexAttribPointer(1, 2, 5126, false, 28, 8);
@@ -296,7 +296,7 @@ public final class u01 extends DispatchQueue {
                 GLES20.glEnableVertexAttribArray(2);
                 GLES20.glVertexAttribPointer(3, 1, 5126, false, 28, 24);
                 GLES20.glEnableVertexAttribArray(3);
-                GLES30.glBindBufferBase(35982, 0, iArr2[1 - t01Var.f30490z]);
+                GLES30.glBindBufferBase(35982, 0, iArr2[1 - t01Var.f30517z]);
                 GLES20.glVertexAttribPointer(0, 2, 5126, false, 28, 0);
                 GLES20.glEnableVertexAttribArray(0);
                 GLES20.glVertexAttribPointer(1, 2, 5126, false, 28, 8);
@@ -306,14 +306,14 @@ public final class u01 extends DispatchQueue {
                 GLES20.glVertexAttribPointer(3, 1, 5126, false, 28, 24);
                 GLES20.glEnableVertexAttribArray(3);
                 GLES30.glBeginTransformFeedback(0);
-                GLES20.glDrawArrays(0, 0, t01Var.f30484s);
+                GLES20.glDrawArrays(0, 0, t01Var.f30511s);
                 GLES30.glEndTransformFeedback();
                 GLES20.glBindBuffer(34962, 0);
                 GLES20.glBindBuffer(35982, 0);
                 t01Var.d = false;
-                t01Var.f30490z = 1 - t01Var.f30490z;
-                float f18 = t01Var.f30470c;
-                float f19 = t01Var.f30477l;
+                t01Var.f30517z = 1 - t01Var.f30517z;
+                float f18 = t01Var.f30497c;
+                float f19 = t01Var.f30504l;
                 if (t01Var.D) {
                     f12 = 2.0f;
                 } else {
@@ -338,7 +338,7 @@ public final class u01 extends DispatchQueue {
                     } catch (Exception e7) {
                         FileLog.e(e7);
                         for (int i27 = 0; i27 < this.U.size(); i27++) {
-                            AndroidUtilities.runOnUIThread(((t01) this.U.get(i27)).f30471e);
+                            AndroidUtilities.runOnUIThread(((t01) this.U.get(i27)).f30498e);
                         }
                         this.U.clear();
                         for (int i28 = 0; i28 < this.T.size(); i28++) {
@@ -351,9 +351,9 @@ public final class u01 extends DispatchQueue {
                     }
                 }
             }
-            this.h.eglSwapBuffers(this.f30759n, this.f30761s);
+            this.h.eglSwapBuffers(this.f30786n, this.f30788s);
             for (int i29 = 0; i29 < this.U.size(); i29++) {
-                AndroidUtilities.runOnUIThread(((t01) this.U.get(i29)).f30471e);
+                AndroidUtilities.runOnUIThread(((t01) this.U.get(i29)).f30498e);
             }
             this.U.clear();
             if (this.T.isEmpty() && this.V) {
@@ -366,7 +366,7 @@ public final class u01 extends DispatchQueue {
         EGL10 egl10 = (EGL10) EGLContext.getEGL();
         this.h = egl10;
         EGLDisplay eglGetDisplay = egl10.eglGetDisplay(0);
-        this.f30759n = eglGetDisplay;
+        this.f30786n = eglGetDisplay;
         EGL10 egl102 = this.h;
         if (eglGetDisplay == EGL10.EGL_NO_DISPLAY) {
             FileLog.e("ThanosEffect: eglDisplay == egl.EGL_NO_DISPLAY");
@@ -376,26 +376,26 @@ public final class u01 extends DispatchQueue {
             j();
         } else {
             EGLConfig[] eGLConfigArr = new EGLConfig[1];
-            if (!this.h.eglChooseConfig(this.f30759n, new int[]{12324, 8, 12323, 8, 12322, 8, 12321, 8, 12352, 64, 12344}, eGLConfigArr, 1, new int[1])) {
+            if (!this.h.eglChooseConfig(this.f30786n, new int[]{12324, 8, 12323, 8, 12322, 8, 12321, 8, 12352, 64, 12344}, eGLConfigArr, 1, new int[1])) {
                 FileLog.e("ThanosEffect: failed eglChooseConfig");
                 i();
                 return;
             }
             EGLConfig eGLConfig = eGLConfigArr[0];
-            this.f30760r = eGLConfig;
-            EGLContext eglCreateContext = this.h.eglCreateContext(this.f30759n, eGLConfig, EGL10.EGL_NO_CONTEXT, new int[]{12440, 3, 12344});
+            this.f30787r = eGLConfig;
+            EGLContext eglCreateContext = this.h.eglCreateContext(this.f30786n, eGLConfig, EGL10.EGL_NO_CONTEXT, new int[]{12440, 3, 12344});
             this.v = eglCreateContext;
             if (eglCreateContext == null) {
                 FileLog.e("ThanosEffect: eglContext == null");
                 j();
                 return;
             }
-            EGLSurface eglCreateWindowSurface = this.h.eglCreateWindowSurface(this.f30759n, this.f30760r, this.f30756c, null);
-            this.f30761s = eglCreateWindowSurface;
+            EGLSurface eglCreateWindowSurface = this.h.eglCreateWindowSurface(this.f30786n, this.f30787r, this.f30783c, null);
+            this.f30788s = eglCreateWindowSurface;
             if (eglCreateWindowSurface == null) {
                 FileLog.e("ThanosEffect: eglSurface == null");
                 j();
-            } else if (!this.h.eglMakeCurrent(this.f30759n, eglCreateWindowSurface, eglCreateWindowSurface, this.v)) {
+            } else if (!this.h.eglMakeCurrent(this.f30786n, eglCreateWindowSurface, eglCreateWindowSurface, this.v)) {
                 FileLog.e("ThanosEffect: failed eglMakeCurrent");
                 j();
             } else {
@@ -422,43 +422,43 @@ public final class u01 extends DispatchQueue {
                         return;
                     }
                     int glCreateProgram = GLES20.glCreateProgram();
-                    this.f30762w = glCreateProgram;
+                    this.f30789w = glCreateProgram;
                     if (glCreateProgram == 0) {
                         FileLog.e("ThanosEffect: drawProgram == 0");
                         j();
                         return;
                     }
                     GLES20.glAttachShader(glCreateProgram, glCreateShader);
-                    GLES20.glAttachShader(this.f30762w, glCreateShader2);
-                    GLES30.glTransformFeedbackVaryings(this.f30762w, new String[]{"outUV", "outPosition", "outVelocity", "outTime"}, 35980);
-                    GLES20.glLinkProgram(this.f30762w);
-                    GLES20.glGetProgramiv(this.f30762w, 35714, iArr, 0);
+                    GLES20.glAttachShader(this.f30789w, glCreateShader2);
+                    GLES30.glTransformFeedbackVaryings(this.f30789w, new String[]{"outUV", "outPosition", "outVelocity", "outTime"}, 35980);
+                    GLES20.glLinkProgram(this.f30789w);
+                    GLES20.glGetProgramiv(this.f30789w, 35714, iArr, 0);
                     if (iArr[0] != 1) {
-                        FileLog.e("ThanosEffect, link program error: " + GLES20.glGetProgramInfoLog(this.f30762w));
+                        FileLog.e("ThanosEffect, link program error: " + GLES20.glGetProgramInfoLog(this.f30789w));
                         j();
                         return;
                     }
-                    this.f30763x = GLES20.glGetUniformLocation(this.f30762w, "matrix");
-                    this.J = GLES20.glGetUniformLocation(this.f30762w, "rectSize");
-                    this.L = GLES20.glGetUniformLocation(this.f30762w, "rectPos");
-                    this.f30764y = GLES20.glGetUniformLocation(this.f30762w, "reset");
-                    this.E = GLES20.glGetUniformLocation(this.f30762w, "time");
-                    this.F = GLES20.glGetUniformLocation(this.f30762w, "deltaTime");
-                    this.G = GLES20.glGetUniformLocation(this.f30762w, "particlesCount");
-                    this.H = GLES20.glGetUniformLocation(this.f30762w, "size");
-                    this.I = GLES20.glGetUniformLocation(this.f30762w, "gridSize");
-                    this.M = GLES20.glGetUniformLocation(this.f30762w, "tex");
-                    this.K = GLES20.glGetUniformLocation(this.f30762w, "seed");
-                    this.N = GLES20.glGetUniformLocation(this.f30762w, "dp");
-                    this.O = GLES20.glGetUniformLocation(this.f30762w, "longevity");
-                    this.P = GLES20.glGetUniformLocation(this.f30762w, "offset");
-                    this.Q = GLES20.glGetUniformLocation(this.f30762w, "scale");
-                    this.R = GLES20.glGetUniformLocation(this.f30762w, "uvOffset");
-                    GLES20.glViewport(0, 0, this.f30757e, this.f30758f);
+                    this.f30790x = GLES20.glGetUniformLocation(this.f30789w, "matrix");
+                    this.J = GLES20.glGetUniformLocation(this.f30789w, "rectSize");
+                    this.L = GLES20.glGetUniformLocation(this.f30789w, "rectPos");
+                    this.f30791y = GLES20.glGetUniformLocation(this.f30789w, "reset");
+                    this.E = GLES20.glGetUniformLocation(this.f30789w, "time");
+                    this.F = GLES20.glGetUniformLocation(this.f30789w, "deltaTime");
+                    this.G = GLES20.glGetUniformLocation(this.f30789w, "particlesCount");
+                    this.H = GLES20.glGetUniformLocation(this.f30789w, "size");
+                    this.I = GLES20.glGetUniformLocation(this.f30789w, "gridSize");
+                    this.M = GLES20.glGetUniformLocation(this.f30789w, "tex");
+                    this.K = GLES20.glGetUniformLocation(this.f30789w, "seed");
+                    this.N = GLES20.glGetUniformLocation(this.f30789w, "dp");
+                    this.O = GLES20.glGetUniformLocation(this.f30789w, "longevity");
+                    this.P = GLES20.glGetUniformLocation(this.f30789w, "offset");
+                    this.Q = GLES20.glGetUniformLocation(this.f30789w, "scale");
+                    this.R = GLES20.glGetUniformLocation(this.f30789w, "uvOffset");
+                    GLES20.glViewport(0, 0, this.f30784e, this.f30785f);
                     GLES20.glDisable(3042);
                     GLES20.glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
-                    GLES20.glUseProgram(this.f30762w);
-                    GLES20.glUniform2f(this.H, this.f30757e, this.f30758f);
+                    GLES20.glUseProgram(this.f30789w);
+                    GLES20.glUniform2f(this.H, this.f30784e, this.f30785f);
                     return;
                 }
                 FileLog.e("ThanosEffect: vertexShader == 0 || fragmentShader == 0");
@@ -481,7 +481,7 @@ public final class u01 extends DispatchQueue {
                                 View view = (View) message.obj;
                                 while (i11 < arrayList.size()) {
                                     t01 t01Var = (t01) arrayList.get(i11);
-                                    if (t01Var.f30468a.contains(view)) {
+                                    if (t01Var.f30495a.contains(view)) {
                                         t01Var.a();
                                         arrayList.remove(i11);
                                         i11--;
@@ -494,7 +494,7 @@ public final class u01 extends DispatchQueue {
                         }
                         while (i11 < arrayList.size()) {
                             t01 t01Var2 = (t01) arrayList.get(i11);
-                            t01Var2.f30473g += message.arg1;
+                            t01Var2.f30500g += message.arg1;
                             t01Var2.h += message.arg2;
                             i11++;
                         }
@@ -508,9 +508,9 @@ public final class u01 extends DispatchQueue {
             }
             int i12 = message.arg1;
             int i13 = message.arg2;
-            if (this.f30755b.get()) {
-                this.f30757e = i12;
-                this.f30758f = i13;
+            if (this.f30782b.get()) {
+                this.f30784e = i12;
+                this.f30785f = i13;
                 GLES20.glViewport(0, 0, i12, i13);
                 GLES20.glUniform2f(this.H, i12, i13);
             }
@@ -521,7 +521,7 @@ public final class u01 extends DispatchQueue {
     }
 
     public final void i() {
-        if (!this.f30755b.get()) {
+        if (!this.f30782b.get()) {
             FileLog.d("ThanosEffect: kill failed, already dead");
             return;
         }
@@ -537,7 +537,7 @@ public final class u01 extends DispatchQueue {
 
     public final void j() {
         ArrayList arrayList;
-        AtomicBoolean atomicBoolean = this.f30755b;
+        AtomicBoolean atomicBoolean = this.f30782b;
         if (!atomicBoolean.get()) {
             FileLog.d("ThanosEffect: killInternal failed, already dead");
             return;
@@ -554,7 +554,7 @@ public final class u01 extends DispatchQueue {
             i10++;
         }
         arrayList.clear();
-        SurfaceTexture surfaceTexture = this.f30756c;
+        SurfaceTexture surfaceTexture = this.f30783c;
         if (surfaceTexture != null) {
             surfaceTexture.release();
         }
@@ -584,7 +584,7 @@ public final class u01 extends DispatchQueue {
             FileLog.e(e7);
             while (i10 < arrayList.size()) {
                 t01 t01Var = (t01) arrayList.get(i10);
-                Runnable runnable = t01Var.f30471e;
+                Runnable runnable = t01Var.f30498e;
                 if (runnable != null) {
                     AndroidUtilities.runOnUIThread(runnable);
                 }

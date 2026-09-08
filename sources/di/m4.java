@@ -11,14 +11,14 @@ import org.telegram.messenger.ChannelBoostsController;
 import org.telegram.ui.Components.h51;
 import org.telegram.ui.t60;
 public final class m4 implements e2.h {
-    public final int f7637a;
-    public final int f7638b;
-    public final Object f7639c;
+    public final int f7665a;
+    public final int f7666b;
+    public final Object f7667c;
 
     public m4(Object obj, int i10, int i11) {
-        this.f7637a = i11;
-        this.f7639c = obj;
-        this.f7638b = i10;
+        this.f7665a = i11;
+        this.f7667c = obj;
+        this.f7666b = i10;
     }
 
     @Override
@@ -26,14 +26,14 @@ public final class m4 implements e2.h {
         boolean z10;
         m4.l lVar;
         m4.l lVar2;
-        int i10 = this.f7637a;
-        int i11 = this.f7638b;
-        Object obj2 = this.f7639c;
+        int i10 = this.f7665a;
+        int i11 = this.f7666b;
+        Object obj2 = this.f7667c;
         switch (i10) {
             case 0:
                 u4 u4Var = (u4) obj2;
                 View view = (View) obj;
-                p4 p4Var = u4Var.f8234b;
+                p4 p4Var = u4Var.f8262b;
                 if (view instanceof t4) {
                     p4Var.getClass();
                     int R = RecyclerView.R(view);
@@ -64,7 +64,7 @@ public final class m4 implements e2.h {
                         e2.a.o("MediaSessionStub", "Library operation failed", e);
                         String str = m4.l.d;
                         m4.n1 n1Var = new m4.n1("no error message provided", -1, Bundle.EMPTY);
-                        lVar = new m4.l(n1Var.f16013a, SystemClock.elapsedRealtime(), n1Var);
+                        lVar = new m4.l(n1Var.f16040a, SystemClock.elapsedRealtime(), n1Var);
                         lVar2 = lVar;
                         m4.q qVar = rVar.d;
                         e2.d.h(qVar);
@@ -74,7 +74,7 @@ public final class m4 implements e2.h {
                         e2.a.o("MediaSessionStub", "Library operation cancelled", e10);
                         String str2 = m4.l.d;
                         m4.n1 n1Var2 = new m4.n1("no error message provided", 1, Bundle.EMPTY);
-                        lVar = new m4.l(n1Var2.f16013a, SystemClock.elapsedRealtime(), n1Var2);
+                        lVar = new m4.l(n1Var2.f16040a, SystemClock.elapsedRealtime(), n1Var2);
                         lVar2 = lVar;
                         m4.q qVar2 = rVar.d;
                         e2.d.h(qVar2);
@@ -85,7 +85,7 @@ public final class m4 implements e2.h {
                         e2.a.o("MediaSessionStub", "Library operation failed", e);
                         String str3 = m4.l.d;
                         m4.n1 n1Var3 = new m4.n1("no error message provided", -1, Bundle.EMPTY);
-                        lVar = new m4.l(n1Var3.f16013a, SystemClock.elapsedRealtime(), n1Var3);
+                        lVar = new m4.l(n1Var3.f16040a, SystemClock.elapsedRealtime(), n1Var3);
                         lVar2 = lVar;
                         m4.q qVar22 = rVar.d;
                         e2.d.h(qVar22);

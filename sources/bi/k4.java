@@ -5,19 +5,19 @@ import android.graphics.RectF;
 import android.view.View;
 import org.telegram.ui.Components.ek0;
 public final class k4 implements ek0 {
-    public final o5 f3194a;
+    public final o5 f3221a;
 
     public k4(o5 o5Var) {
-        this.f3194a = o5Var;
+        this.f3221a = o5Var;
     }
 
     @Override
     public final void B(View view, ah.j1 j1Var, boolean z10, boolean z11) {
-        a3.j0 j0Var = new a3.j0(this, j1Var, view, 4);
+        a3.k0 k0Var = new a3.k0(this, j1Var, view, 4);
         if (!z10) {
-            this.f3194a.n0(j0Var);
+            this.f3221a.n0(k0Var);
         } else {
-            j0Var.run();
+            k0Var.run();
         }
     }
 
@@ -33,7 +33,7 @@ public final class k4 implements ek0 {
 
     @Override
     public final boolean t() {
-        ((gb) this.f3194a.Q1).b(false);
+        ((gb) this.f3221a.Q1).b(false);
         return false;
     }
 

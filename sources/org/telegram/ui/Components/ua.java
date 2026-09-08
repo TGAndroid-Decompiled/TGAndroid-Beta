@@ -17,7 +17,7 @@ public abstract class ua extends bb {
 
     @Override
     public final void setTitle(CharSequence charSequence) {
-        this.f24647e.setTitle(charSequence);
+        this.f24674e.setTitle(charSequence);
     }
 
     @Override

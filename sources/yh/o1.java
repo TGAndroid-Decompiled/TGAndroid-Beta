@@ -12,26 +12,26 @@ import org.telegram.ui.Components.pr;
 import org.telegram.ui.cc1;
 import w7.x5;
 public final class o1 extends FrameLayout {
-    public final cc1 f50468a;
-    public int f50469b;
-    public final e6 f50470c;
+    public final cc1 f50497a;
+    public int f50498b;
+    public final e6 f50499c;
     public final ArrayList d;
-    public final RectF f50471e;
-    public final RectF f50472f;
+    public final RectF f50500e;
+    public final RectF f50501f;
     public final RectF h;
-    public final Paint f50473n;
-    public int f50474r;
+    public final Paint f50502n;
+    public int f50503r;
 
     public o1(Context context) {
         super(context);
         this.d = new ArrayList();
-        this.f50471e = new RectF();
-        this.f50472f = new RectF();
+        this.f50500e = new RectF();
+        this.f50501f = new RectF();
         this.h = new RectF();
-        this.f50473n = new Paint(1);
-        this.f50474r = Integer.MIN_VALUE;
+        this.f50502n = new Paint(1);
+        this.f50503r = Integer.MIN_VALUE;
         cc1 cc1Var = new cc1(this, context, 18);
-        this.f50468a = cc1Var;
+        this.f50497a = cc1Var;
         cc1Var.setClipToPadding(false);
         cc1Var.setClipChildren(false);
         cc1Var.setOrientation(0);
@@ -40,7 +40,7 @@ public final class o1 extends FrameLayout {
         setHorizontalScrollBarEnabled(false);
         setClipToPadding(false);
         setClipChildren(false);
-        this.f50470c = new e6(cc1Var, 0L, 320L, pr.h);
+        this.f50499c = new e6(cc1Var, 0L, 320L, pr.h);
     }
 
     @Override

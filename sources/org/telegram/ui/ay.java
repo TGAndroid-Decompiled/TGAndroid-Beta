@@ -11,17 +11,17 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.VideoEditedInfo;
 import org.telegram.tgnet.TLRPC;
 public final class ay extends su0 {
-    public final boolean[] f34564a;
-    public final uy f34565b;
+    public final boolean[] f34591a;
+    public final uy f34592b;
 
     public ay(uy uyVar, boolean[] zArr) {
-        this.f34565b = uyVar;
-        this.f34564a = zArr;
+        this.f34592b = uyVar;
+        this.f34591a = zArr;
     }
 
     @Override
     public final CharSequence C(int i10) {
-        uy uyVar = this.f34565b;
+        uy uyVar = this.f34592b;
         if (i10 >= 0 && i10 < uyVar.D2.size() && ((MediaController.PhotoEntry) uyVar.D2.get(i10)).isVideo) {
             return null;
         }
@@ -31,7 +31,7 @@ public final class ay extends su0 {
     @Override
     public final void D() {
         int i10;
-        uy uyVar = this.f34565b;
+        uy uyVar = this.f34592b;
         org.telegram.ui.Components.mq0 mq0Var = uyVar.G2;
         if (mq0Var != null) {
             i10 = ((org.telegram.ui.ActionBar.n2) uyVar).currentAccount;
@@ -42,7 +42,7 @@ public final class ay extends su0 {
     @Override
     public final cv0 E(MessageObject messageObject, TLRPC.FileLocation fileLocation, int i10, boolean z10, boolean z11) {
         org.telegram.ui.Components.x9 x9Var;
-        uy uyVar = this.f34565b;
+        uy uyVar = this.f34592b;
         org.telegram.ui.Components.mq0 mq0Var = uyVar.G2;
         if (mq0Var != null) {
             x9Var = mq0Var.f(i10);
@@ -55,20 +55,20 @@ public final class ay extends su0 {
         int[] iArr = new int[2];
         x9Var.getLocationInWindow(iArr);
         cv0 cv0Var = new cv0();
-        cv0Var.f35541b = iArr[0];
-        cv0Var.f35542c = iArr[1];
+        cv0Var.f35568b = iArr[0];
+        cv0Var.f35569c = iArr[1];
         cv0Var.d = uyVar.G2;
         ImageReceiver imageReceiver = x9Var.getImageReceiver();
-        cv0Var.f35540a = imageReceiver;
-        cv0Var.f35543e = imageReceiver.getBitmapSafe();
-        cv0Var.f35548k = x9Var.getScaleX();
+        cv0Var.f35567a = imageReceiver;
+        cv0Var.f35570e = imageReceiver.getBitmapSafe();
+        cv0Var.f35575k = x9Var.getScaleX();
         cv0Var.h = new int[]{AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f)};
         return cv0Var;
     }
 
     @Override
     public final long a() {
-        uy uyVar = this.f34565b;
+        uy uyVar = this.f34592b;
         if (uyVar.I2.isEmpty()) {
             return 0L;
         }
@@ -83,7 +83,7 @@ public final class ay extends su0 {
     @Override
     public final CharSequence b0(int i10) {
         int i11;
-        uy uyVar = this.f34565b;
+        uy uyVar = this.f34592b;
         ArrayList arrayList = uyVar.D2;
         if (arrayList != null && !arrayList.isEmpty()) {
             int size = uyVar.D2.size();
@@ -122,7 +122,7 @@ public final class ay extends su0 {
 
     @Override
     public final void e(CharSequence charSequence) {
-        uy uyVar = this.f34565b;
+        uy uyVar = this.f34592b;
         ex exVar = uyVar.B1;
         if (exVar != null) {
             exVar.setFieldText(charSequence);
@@ -147,7 +147,7 @@ public final class ay extends su0 {
     @Override
     public final ImageReceiver.BitmapHolder j(int i10) {
         org.telegram.ui.Components.x9 x9Var;
-        org.telegram.ui.Components.mq0 mq0Var = this.f34565b.G2;
+        org.telegram.ui.Components.mq0 mq0Var = this.f34592b.G2;
         if (mq0Var != null) {
             x9Var = mq0Var.f(i10);
         } else {
@@ -163,7 +163,7 @@ public final class ay extends su0 {
     public final void o(int i10, VideoEditedInfo videoEditedInfo, boolean z10, int i11, int i12, boolean z11) {
         int i13;
         ArrayList arrayList;
-        uy uyVar = this.f34565b;
+        uy uyVar = this.f34592b;
         ArrayList arrayList2 = uyVar.I2;
         if (uyVar.B1 != null && (arrayList = uyVar.D2) != null && !arrayList.isEmpty()) {
             ex exVar = uyVar.B1;
@@ -201,7 +201,7 @@ public final class ay extends su0 {
         if (t12.Q1() && (f12 = t12.f1()) != null) {
             charSequence = f12.getText();
         }
-        uy uyVar = this.f34565b;
+        uy uyVar = this.f34592b;
         if (charSequence != null && (exVar = uyVar.B1) != null) {
             exVar.setFieldText(charSequence);
         }
@@ -219,7 +219,7 @@ public final class ay extends su0 {
 
     @Override
     public final boolean x(int i10) {
-        return this.f34564a[i10];
+        return this.f34591a[i10];
     }
 
     @Override

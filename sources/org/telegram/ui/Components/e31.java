@@ -8,22 +8,22 @@ import android.graphics.drawable.Drawable;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 public final class e31 extends View {
-    public float f25542a;
-    public final Paint f25543b;
-    public final Paint f25544c;
+    public float f25569a;
+    public final Paint f25570b;
+    public final Paint f25571c;
     public Drawable d;
-    public boolean f25545e;
-    public int f25546f;
+    public boolean f25572e;
+    public int f25573f;
     public final RectF h;
 
     public e31(Context context) {
         super(context);
         Paint paint = new Paint(1);
-        this.f25543b = paint;
+        this.f25570b = paint;
         Paint paint2 = new Paint(1);
-        this.f25544c = paint2;
-        this.f25545e = true;
-        this.f25546f = 0;
+        this.f25571c = paint2;
+        this.f25572e = true;
+        this.f25573f = 0;
         this.h = new RectF();
         paint.setColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.P9, false));
         paint2.setStrokeWidth(AndroidUtilities.dp(2.0f));
@@ -64,35 +64,35 @@ public final class e31 extends View {
         boolean z10;
         float f7;
         Canvas canvas2 = canvas;
-        if (this.f25545e) {
-            if (this.f25546f == 0) {
+        if (this.f25572e) {
+            if (this.f25573f == 0) {
                 z10 = true;
             } else {
                 z10 = false;
             }
             if (z10) {
-                f7 = this.f25542a;
+                f7 = this.f25569a;
             } else {
                 f7 = 1.0f;
             }
             float dp = AndroidUtilities.dp((f7 * 26.0f) + 6.0f);
             RectF rectF = this.h;
             rectF.set(0.0f, 0.0f, getWidth(), getHeight());
-            canvas2.drawRoundRect(rectF, dp, dp, this.f25543b);
+            canvas2.drawRoundRect(rectF, dp, dp, this.f25570b);
         }
-        int i10 = this.f25546f;
-        Paint paint = this.f25544c;
+        int i10 = this.f25573f;
+        Paint paint = this.f25571c;
         if (i10 != 0) {
             if (i10 == 1) {
                 float dp2 = AndroidUtilities.dp(21.0f);
                 float width = getWidth() - AndroidUtilities.dp(21.0f);
                 float height = getHeight() / 2.0f;
                 canvas2.save();
-                canvas2.translate((-AndroidUtilities.dp(2.0f)) * this.f25542a, 0.0f);
-                canvas2.rotate(this.f25542a * 90.0f, getWidth() / 2.0f, getHeight() / 2.0f);
-                canvas2.drawLine(dp2 + ((width - dp2) * this.f25542a), height, width, height, paint);
-                int dp3 = AndroidUtilities.dp((this.f25542a * (-1.0f)) + 9.0f);
-                int dp4 = AndroidUtilities.dp((this.f25542a * 7.0f) + 9.0f);
+                canvas2.translate((-AndroidUtilities.dp(2.0f)) * this.f25569a, 0.0f);
+                canvas2.rotate(this.f25569a * 90.0f, getWidth() / 2.0f, getHeight() / 2.0f);
+                canvas2.drawLine(dp2 + ((width - dp2) * this.f25569a), height, width, height, paint);
+                int dp3 = AndroidUtilities.dp((this.f25569a * (-1.0f)) + 9.0f);
+                int dp4 = AndroidUtilities.dp((this.f25569a * 7.0f) + 9.0f);
                 double d = width;
                 double d10 = dp3;
                 double d11 = height;
@@ -103,7 +103,7 @@ public final class e31 extends View {
                 canvas.restore();
             }
         } else {
-            float max = (Math.max(0.4f, this.f25542a) - 0.4f) / 0.6f;
+            float max = (Math.max(0.4f, this.f25569a) - 0.4f) / 0.6f;
             if (max != 0.0f) {
                 float A = (org.telegram.messenger.wl.A(21.0f, 2, getWidth()) * max) + AndroidUtilities.dp(21.0f);
                 float height2 = getHeight() / 2.0f;
@@ -128,21 +128,21 @@ public final class e31 extends View {
 
     @Override
     public void setBackgroundColor(int i10) {
-        this.f25543b.setColor(i10);
+        this.f25570b.setColor(i10);
         invalidate();
     }
 
     public void setColor(int i10) {
-        this.f25544c.setColor(i10);
+        this.f25571c.setColor(i10);
         invalidate();
     }
 
     public void setDrawBackground(boolean z10) {
-        this.f25545e = z10;
+        this.f25572e = z10;
     }
 
     public void setProgress(float f7) {
-        this.f25542a = f7;
+        this.f25569a = f7;
         invalidate();
     }
 
@@ -152,7 +152,7 @@ public final class e31 extends View {
     }
 
     public void setTransformType(int i10) {
-        this.f25546f = i10;
+        this.f25573f = i10;
         invalidate();
     }
 

@@ -16,44 +16,44 @@ public abstract class gt implements NotificationCenter.NotificationCenterDelegat
     public boolean I;
     public int J;
     public final int K;
-    public boolean f26499a;
-    public Bitmap f26500b;
-    public Canvas f26501c;
+    public boolean f26526a;
+    public Bitmap f26527b;
+    public Canvas f26528c;
     public Bitmap d;
-    public Canvas f26502e;
-    public boolean f26503f;
-    public int f26504n;
-    public boolean f26505r;
+    public Canvas f26529e;
+    public boolean f26530f;
+    public int f26531n;
+    public boolean f26532r;
     public int v;
-    public int f26507w;
-    public int f26508x;
-    public final DispatchQueue f26509y;
+    public int f26534w;
+    public int f26535x;
+    public final DispatchQueue f26536y;
     public int h = 1;
-    public final Paint f26506s = new Paint(1);
+    public final Paint f26533s = new Paint(1);
     public final et F = new et(this, 0);
     public final et H = new et(this, 1);
 
     public gt() {
         if (L == null) {
             ?? obj = new Object();
-            obj.f26182b = new DispatchQueue[2];
+            obj.f26209b = new DispatchQueue[2];
             L = obj;
         }
         ft ftVar = L;
-        int i10 = ftVar.f26181a + 1;
-        ftVar.f26181a = i10;
+        int i10 = ftVar.f26208a + 1;
+        ftVar.f26208a = i10;
         if (i10 > 1) {
-            ftVar.f26181a = 0;
+            ftVar.f26208a = 0;
         }
-        DispatchQueue[] dispatchQueueArr = (DispatchQueue[]) ftVar.f26182b;
-        int i11 = ftVar.f26181a;
+        DispatchQueue[] dispatchQueueArr = (DispatchQueue[]) ftVar.f26209b;
+        int i11 = ftVar.f26208a;
         DispatchQueue dispatchQueue = dispatchQueueArr[i11];
         if (dispatchQueue == null) {
-            dispatchQueue = new DispatchQueue("draw_background_queue_" + ftVar.f26181a);
+            dispatchQueue = new DispatchQueue("draw_background_queue_" + ftVar.f26208a);
             dispatchQueueArr[i11] = dispatchQueue;
         }
-        this.f26509y = dispatchQueue;
-        this.K = L.f26181a;
+        this.f26536y = dispatchQueue;
+        this.K = L.f26208a;
     }
 
     public void a(Canvas canvas, long j3, int i10, int i11, float f7) {
@@ -64,16 +64,16 @@ public abstract class gt implements NotificationCenter.NotificationCenterDelegat
             }
             return;
         }
-        this.f26507w = i11;
-        this.f26508x = i10;
+        this.f26534w = i11;
+        this.f26535x = i10;
         if (this.G) {
             this.G = false;
             Bitmap bitmap = this.d;
-            Canvas canvas2 = this.f26502e;
-            this.d = this.f26500b;
-            this.f26502e = this.f26501c;
-            this.f26500b = bitmap;
-            this.f26501c = canvas2;
+            Canvas canvas2 = this.f26529e;
+            this.d = this.f26527b;
+            this.f26529e = this.f26528c;
+            this.f26527b = bitmap;
+            this.f26528c = canvas2;
         }
         Bitmap bitmap2 = this.d;
         if (bitmap2 == null || this.I) {
@@ -84,28 +84,28 @@ public abstract class gt implements NotificationCenter.NotificationCenterDelegat
                 AndroidUtilities.recycleBitmaps(arrayList);
                 this.d = null;
             }
-            int i12 = this.f26507w + 0;
+            int i12 = this.f26534w + 0;
             Bitmap bitmap3 = this.d;
-            if (bitmap3 != null && bitmap3.getHeight() == i12 && this.d.getWidth() == this.f26508x) {
+            if (bitmap3 != null && bitmap3.getHeight() == i12 && this.d.getWidth() == this.f26535x) {
                 this.d.eraseColor(0);
             } else {
-                this.d = Bitmap.createBitmap(this.f26508x, i12, Bitmap.Config.ARGB_8888);
-                this.f26502e = new Canvas(this.d);
+                this.d = Bitmap.createBitmap(this.f26535x, i12, Bitmap.Config.ARGB_8888);
+                this.f26529e = new Canvas(this.d);
             }
-            this.f26502e.save();
-            this.f26502e.translate(0.0f, 0);
-            d(this.f26502e, f7);
-            this.f26502e.restore();
+            this.f26529e.save();
+            this.f26529e.translate(0.0f, 0);
+            d(this.f26529e, f7);
+            this.f26529e.restore();
         }
-        if (!this.f26503f && !this.f26505r) {
-            this.f26503f = true;
+        if (!this.f26530f && !this.f26532r) {
+            this.f26530f = true;
             i(j3);
             this.J = this.v;
-            this.f26509y.postRunnable(this.F);
+            this.f26536y.postRunnable(this.F);
         }
         Bitmap bitmap4 = this.d;
         if (bitmap4 != null) {
-            Paint paint = this.f26506s;
+            Paint paint = this.f26533s;
             paint.setAlpha((int) (f7 * 255.0f));
             canvas.save();
             canvas.translate(0.0f, -0);
@@ -129,48 +129,48 @@ public abstract class gt implements NotificationCenter.NotificationCenterDelegat
             Integer num = (Integer) objArr[0];
             if (this.h < num.intValue()) {
                 if (num.intValue() != 512 || SharedConfig.getDevicePerformanceClass() < 2) {
-                    int intValue = num.intValue() | this.f26504n;
-                    this.f26504n = intValue;
-                    if (intValue != 0 && !this.f26505r) {
-                        this.f26505r = true;
+                    int intValue = num.intValue() | this.f26531n;
+                    this.f26531n = intValue;
+                    if (intValue != 0 && !this.f26532r) {
+                        this.f26532r = true;
                     }
                 }
             }
         } else if (i10 == NotificationCenter.startAllHeavyOperations) {
             Integer num2 = (Integer) objArr[0];
-            if (this.h < num2.intValue() && (i12 = this.f26504n) != 0) {
+            if (this.h < num2.intValue() && (i12 = this.f26531n) != 0) {
                 int i13 = (~num2.intValue()) & i12;
-                this.f26504n = i13;
-                if (i13 == 0 && this.f26505r) {
-                    this.f26505r = false;
+                this.f26531n = i13;
+                if (i13 == 0 && this.f26532r) {
+                    this.f26532r = false;
                 }
             }
         }
     }
 
     public final void e() {
-        if (this.f26499a) {
+        if (this.f26526a) {
             return;
         }
-        this.f26499a = true;
+        this.f26526a = true;
         this.E = false;
         int currentHeavyOperationFlags = NotificationCenter.getGlobalInstance().getCurrentHeavyOperationFlags() & (~this.h);
-        this.f26504n = currentHeavyOperationFlags;
-        if (currentHeavyOperationFlags == 0 && this.f26505r) {
-            this.f26505r = false;
+        this.f26531n = currentHeavyOperationFlags;
+        if (currentHeavyOperationFlags == 0 && this.f26532r) {
+            this.f26532r = false;
         }
         NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.stopAllHeavyOperations);
         NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.startAllHeavyOperations);
     }
 
     public final void f() {
-        if (!this.f26499a) {
+        if (!this.f26526a) {
             return;
         }
-        if (!this.f26503f) {
+        if (!this.f26530f) {
             j();
         }
-        this.f26499a = false;
+        this.f26526a = false;
         NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.stopAllHeavyOperations);
         NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.startAllHeavyOperations);
     }
@@ -185,14 +185,14 @@ public abstract class gt implements NotificationCenter.NotificationCenterDelegat
         if (bitmap != null) {
             arrayList.add(bitmap);
         }
-        Bitmap bitmap2 = this.f26500b;
+        Bitmap bitmap2 = this.f26527b;
         if (bitmap2 != null) {
             arrayList.add(bitmap2);
         }
         this.d = null;
-        this.f26500b = null;
-        this.f26501c = null;
-        this.f26502e = null;
+        this.f26527b = null;
+        this.f26528c = null;
+        this.f26529e = null;
         AndroidUtilities.recycleBitmaps(arrayList);
     }
 
@@ -209,8 +209,8 @@ public abstract class gt implements NotificationCenter.NotificationCenterDelegat
 
     public final void l(int i10) {
         this.h = 7;
-        if (this.f26499a) {
-            this.f26504n = NotificationCenter.getGlobalInstance().getCurrentHeavyOperationFlags() & (~this.h);
+        if (this.f26526a) {
+            this.f26531n = NotificationCenter.getGlobalInstance().getCurrentHeavyOperationFlags() & (~this.h);
         }
     }
 

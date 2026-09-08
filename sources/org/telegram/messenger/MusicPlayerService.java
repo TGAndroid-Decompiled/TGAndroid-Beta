@@ -133,7 +133,7 @@ public class MusicPlayerService extends Service implements NotificationCenter.No
         } else {
             i9Var = new org.telegram.ui.Components.i9((TLRPC.Chat) tLObject);
         }
-        i9Var.f27040r = 1;
+        i9Var.f27067r = 1;
         float f11 = i10;
         Bitmap createBitmap = Bitmap.createBitmap(AndroidUtilities.dp(f11), AndroidUtilities.dp(f11), Bitmap.Config.ARGB_8888);
         i9Var.setBounds(0, 0, createBitmap.getWidth(), createBitmap.getHeight());
@@ -202,7 +202,7 @@ public class MusicPlayerService extends Service implements NotificationCenter.No
         if (MediaController.getInstance().isDownloadingCurrentMessage()) {
             android.support.v4.media.session.f0 f0Var = this.playbackState;
             f0Var.c(6, 0L, 1.0f);
-            f0Var.f817e = 0L;
+            f0Var.f829e = 0L;
         } else {
             MessageObject playingMessageObject = MediaController.getInstance().getPlayingMessageObject();
             if (playingMessageObject != null && playingMessageObject.isMusic()) {
@@ -237,7 +237,7 @@ public class MusicPlayerService extends Service implements NotificationCenter.No
                 i10 = 2;
             }
             f0Var3.c(i10, j3, getPlaybackSpeed(z10, playingMessageObject));
-            f0Var3.f817e = j10;
+            f0Var3.f829e = j10;
             if (playingMessageObject != null && playingMessageObject.isMusic()) {
                 int i13 = SharedConfig.repeatMode;
                 if (i13 != 1) {

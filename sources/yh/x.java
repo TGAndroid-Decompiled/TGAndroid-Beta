@@ -30,7 +30,7 @@ public final class x extends zh.t3 {
 
     @Override
     public final boolean drawChild(Canvas canvas, View view, long j3) {
-        if (view == this.f52617b) {
+        if (view == this.f52648b) {
             return true;
         }
         return super.drawChild(canvas, view, j3);
@@ -49,7 +49,7 @@ public final class x extends zh.t3 {
     @Override
     public final void invalidate() {
         super.invalidate();
-        z zVar = this.D0.f50217c0;
+        z zVar = this.D0.f50246c0;
         if (zVar != null) {
             zVar.invalidate();
         }
@@ -57,7 +57,7 @@ public final class x extends zh.t3 {
 
     @Override
     public final void j(int i10) {
-        this.D0.f50217c0.setRibbonColor(i10);
+        this.D0.f50246c0.setRibbonColor(i10);
     }
 
     @Override

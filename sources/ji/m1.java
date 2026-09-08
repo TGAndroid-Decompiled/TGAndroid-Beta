@@ -4,28 +4,28 @@ import android.view.View;
 import java.util.ArrayList;
 import org.telegram.tgnet.tl.TL_iv;
 public final class m1 implements Runnable {
-    public final int f14052a;
-    public final c2 f14053b;
-    public final a f14054c;
+    public final int f14078a;
+    public final c2 f14079b;
+    public final a f14080c;
 
     public m1(c2 c2Var, a aVar, int i10) {
-        this.f14052a = i10;
-        this.f14053b = c2Var;
-        this.f14054c = aVar;
+        this.f14078a = i10;
+        this.f14079b = c2Var;
+        this.f14080c = aVar;
     }
 
     @Override
     public final void run() {
-        int i10 = this.f14052a;
-        a aVar = this.f14054c;
-        c2 c2Var = this.f14053b;
+        int i10 = this.f14078a;
+        a aVar = this.f14080c;
+        c2 c2Var = this.f14079b;
         switch (i10) {
             case 0:
                 v3 v3Var = c2Var.P;
-                ArrayList arrayList = v3.f14239s4;
+                ArrayList arrayList = v3.f14265s4;
                 TL_iv.pageBlockPullquote pageblockpullquote = new TL_iv.pageBlockPullquote();
                 pageblockpullquote.caption = new TL_iv.textEmpty();
-                v3Var.T4(this.f14054c, pageblockpullquote, 0, 0, false, false);
+                v3Var.T4(this.f14080c, pageblockpullquote, 0, 0, false, false);
                 return;
             case 1:
                 c2Var.P.U4(aVar, new TL_iv.pageBlockPreformatted());
@@ -38,10 +38,10 @@ public final class m1 implements Runnable {
                 return;
             case 4:
                 v3 v3Var2 = c2Var.P;
-                ArrayList arrayList2 = v3.f14239s4;
+                ArrayList arrayList2 = v3.f14265s4;
                 TL_iv.pageBlockBlockquote pageblockblockquote = new TL_iv.pageBlockBlockquote();
                 pageblockblockquote.caption = new TL_iv.textEmpty();
-                v3Var2.T4(this.f14054c, pageblockblockquote, 0, 0, false, false);
+                v3Var2.T4(this.f14080c, pageblockblockquote, 0, 0, false, false);
                 return;
             case 5:
                 c2Var.P.V4(aVar, 0);

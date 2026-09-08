@@ -6,7 +6,7 @@ import java.util.AbstractCollection;
 import java.util.Arrays;
 import java.util.Collection;
 public abstract class k extends AbstractCollection implements Serializable {
-    public static final Object[] f49055a = new Object[0];
+    public static final Object[] f49084a = new Object[0];
 
     @Override
     public final boolean add(Object obj) {
@@ -54,7 +54,7 @@ public abstract class k extends AbstractCollection implements Serializable {
 
     @Override
     public final Object[] toArray() {
-        return toArray(f49055a);
+        return toArray(f49084a);
     }
 
     @Override

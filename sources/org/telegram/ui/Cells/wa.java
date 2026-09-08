@@ -12,28 +12,28 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UnconfirmedAuthController;
 public final class wa extends FrameLayout {
-    public static final int f23499f = 0;
-    public final LinearLayout f23500a;
-    public final TextView f23501b;
-    public final TextView f23502c;
+    public static final int f23526f = 0;
+    public final LinearLayout f23527a;
+    public final TextView f23528b;
+    public final TextView f23529c;
     public final va d;
-    public final va f23503e;
+    public final va f23530e;
 
     public wa(Activity activity) {
         super(activity);
         setClickable(true);
         LinearLayout linearLayout = new LinearLayout(activity);
-        this.f23500a = linearLayout;
+        this.f23527a = linearLayout;
         linearLayout.setOrientation(1);
         TextView textView = new TextView(activity);
-        this.f23501b = textView;
+        this.f23528b = textView;
         textView.setGravity(17);
         textView.setTextSize(1, 14.0f);
         textView.setTypeface(AndroidUtilities.bold());
         textView.setText(LocaleController.getString(R.string.UnconfirmedAuthTitle));
         linearLayout.addView(textView, w7.x5.p(-1, -2, 0.0f, 55, 28, 8, 28, 0));
         TextView textView2 = new TextView(activity);
-        this.f23502c = textView2;
+        this.f23529c = textView2;
         textView2.setGravity(17);
         textView2.setTextSize(1, 13.0f);
         textView2.setLineSpacing(AndroidUtilities.dpf2(2.0f), 1.0f);
@@ -51,7 +51,7 @@ public final class wa extends FrameLayout {
         linearLayout2.addView(vaVar, w7.x5.n(-2, 30));
         linearLayout2.addView(new Space(activity), w7.x5.o(-2, 1, 17.0f, 1));
         va vaVar2 = new va(activity);
-        this.f23503e = vaVar2;
+        this.f23530e = vaVar2;
         vaVar2.setPadding(AndroidUtilities.dp(10.0f), AndroidUtilities.dp(5.0f), AndroidUtilities.dp(10.0f), AndroidUtilities.dp(7.0f));
         vaVar2.setTypeface(AndroidUtilities.bold());
         vaVar2.setTextSize(1, 14.22f);
@@ -78,8 +78,8 @@ public final class wa extends FrameLayout {
 
     public final void b() {
         float f7;
-        this.f23501b.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.G6, false));
-        this.f23502c.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f21042y6, false));
+        this.f23528b.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.G6, false));
+        this.f23529c.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f21069y6, false));
         int i10 = org.telegram.ui.ActionBar.j6.I6;
         int w02 = org.telegram.ui.ActionBar.j6.w0(null, i10, false);
         va vaVar = this.d;
@@ -92,9 +92,9 @@ public final class wa extends FrameLayout {
             f7 = 0.15f;
         }
         vaVar.setBackground(org.telegram.ui.ActionBar.j6.f0(org.telegram.ui.ActionBar.j6.l1(f7, w03), 7, AndroidUtilities.dp(8.0f)));
-        int i11 = org.telegram.ui.ActionBar.j6.f20898q7;
+        int i11 = org.telegram.ui.ActionBar.j6.f20925q7;
         int w04 = org.telegram.ui.ActionBar.j6.w0(null, i11, false);
-        va vaVar2 = this.f23503e;
+        va vaVar2 = this.f23530e;
         vaVar2.setTextColor(w04);
         int w05 = org.telegram.ui.ActionBar.j6.w0(null, i11, false);
         if (org.telegram.ui.ActionBar.j6.I.q()) {
@@ -111,7 +111,7 @@ public final class wa extends FrameLayout {
         }
         int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec((size - getPaddingLeft()) - getPaddingRight(), 1073741824);
         int makeMeasureSpec2 = View.MeasureSpec.makeMeasureSpec(AndroidUtilities.displaySize.y, Integer.MIN_VALUE);
-        LinearLayout linearLayout = this.f23500a;
+        LinearLayout linearLayout = this.f23527a;
         linearLayout.measure(makeMeasureSpec, makeMeasureSpec2);
         super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(getPaddingBottom() + getPaddingTop() + linearLayout.getMeasuredHeight() + 1, 1073741824));
     }

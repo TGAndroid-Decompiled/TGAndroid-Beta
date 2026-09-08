@@ -10,24 +10,24 @@ import org.telegram.ui.ActionBar.b2;
 import org.telegram.ui.Components.rc0;
 import org.telegram.ui.Components.wk0;
 public final class w implements e2.m, d9.e, wk0, rc0, a2 {
-    public final int f11773a;
-    public final int f11774b;
+    public final int f11799a;
+    public final int f11800b;
 
     public w(int i10, int i11) {
-        this.f11773a = i11;
-        this.f11774b = i10;
+        this.f11799a = i11;
+        this.f11800b = i10;
     }
 
     @Override
     public Object apply(Object obj) {
         Integer num = (Integer) obj;
-        return Integer.valueOf(this.f11774b);
+        return Integer.valueOf(this.f11800b);
     }
 
     @Override
     public String f(int i10) {
-        int i11 = this.f11773a;
-        int i12 = this.f11774b;
+        int i11 = this.f11799a;
+        int i12 = this.f11800b;
         switch (i11) {
             case 4:
                 if (i10 == 0) {
@@ -50,23 +50,23 @@ public final class w implements e2.m, d9.e, wk0, rc0, a2 {
 
     @Override
     public void g(b2 b2Var, int i10) {
-        MessagesController.getInstance(this.f11774b).performLogout(1);
+        MessagesController.getInstance(this.f11800b).performLogout(1);
     }
 
     @Override
     public void invoke(Object obj) {
-        switch (this.f11773a) {
+        switch (this.f11799a) {
             case 0:
-                ((b2.z0) obj).onRepeatModeChanged(this.f11774b);
+                ((b2.z0) obj).onRepeatModeChanged(this.f11800b);
                 return;
             default:
-                ((b2.z0) obj).onAudioSessionIdChanged(this.f11774b);
+                ((b2.z0) obj).onAudioSessionIdChanged(this.f11800b);
                 return;
         }
     }
 
     @Override
     public int run() {
-        return this.f11774b;
+        return this.f11800b;
     }
 }

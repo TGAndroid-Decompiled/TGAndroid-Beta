@@ -6,9 +6,9 @@ import android.text.style.URLSpan;
 import android.view.View;
 import org.telegram.tgnet.TLObject;
 public class l51 extends URLSpan {
-    public final boolean f28062a;
-    public final n01 f28063b;
-    public TLObject f28064c;
+    public final boolean f28089a;
+    public final n01 f28090b;
+    public TLObject f28091c;
     public String d;
 
     public l51(String str) {
@@ -31,11 +31,11 @@ public class l51 extends URLSpan {
         int i10 = textPaint.linkColor;
         int color = textPaint.getColor();
         super.updateDrawState(textPaint);
-        n01 n01Var = this.f28063b;
+        n01 n01Var = this.f28090b;
         if (n01Var != null) {
             n01Var.a(textPaint);
         }
-        if (i10 == color && !this.f28062a) {
+        if (i10 == color && !this.f28089a) {
             z10 = true;
         } else {
             z10 = false;
@@ -45,12 +45,12 @@ public class l51 extends URLSpan {
 
     public l51(String str, int i10) {
         this(str, (n01) null);
-        this.f28062a = true;
+        this.f28089a = true;
     }
 
     public l51(String str, n01 n01Var) {
         super(str != null ? str.replace((char) 8238, ' ') : str);
-        this.f28062a = false;
-        this.f28063b = n01Var;
+        this.f28089a = false;
+        this.f28090b = n01Var;
     }
 }

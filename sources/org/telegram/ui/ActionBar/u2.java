@@ -6,11 +6,11 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 public final class u2 extends TextView {
-    public final f3 f21367a;
+    public final f3 f21394a;
 
     public u2(f3 f3Var, Context context) {
         super(context);
-        this.f21367a = f3Var;
+        this.f21394a = f3Var;
     }
 
     @Override
@@ -19,7 +19,7 @@ public final class u2 extends TextView {
         View view;
         View view2;
         super.onMeasure(i10, i11);
-        f3 f3Var = this.f21367a;
+        f3 f3Var = this.f21394a;
         z10 = f3Var.multipleLinesTitle;
         if (z10) {
             int measuredHeight = getMeasuredHeight();

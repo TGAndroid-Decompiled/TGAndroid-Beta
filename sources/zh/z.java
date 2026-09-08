@@ -4,10 +4,10 @@ import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 public final class z implements TextWatcher {
-    public final a0 f52904a;
+    public final a0 f52935a;
 
     public z(a0 a0Var) {
-        this.f52904a = a0Var;
+        this.f52935a = a0Var;
     }
 
     @Override
@@ -24,14 +24,14 @@ public final class z implements TextWatcher {
         if (!z10 && (indexOf = (obj = editable.toString()).indexOf(46)) >= 0 && (obj.length() - indexOf) - 1 > 2) {
             editable.delete(indexOf + 3, obj.length());
         }
-        a0 a0Var = this.f52904a;
+        a0 a0Var = this.f52935a;
         if (!z10) {
-            i10 = zf.a.h(editable.toString(), a0Var.m0.f51622a);
+            i10 = zf.a.h(editable.toString(), a0Var.m0.f51653a);
         } else {
-            i10 = zf.a.i(0L, a0Var.m0.f51622a);
+            i10 = zf.a.i(0L, a0Var.m0.f51653a);
         }
         a0Var.U(i10, false, false, true);
-        a0Var.f51648c0.c(a0Var.f51649d0.isFocused(), true ^ TextUtils.isEmpty(a0Var.f51649d0.getText()));
+        a0Var.f51679c0.c(a0Var.f51680d0.isFocused(), true ^ TextUtils.isEmpty(a0Var.f51680d0.getText()));
     }
 
     @Override

@@ -8,23 +8,23 @@ import java.util.ArrayList;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.Utilities;
 public final class xc {
-    public long f8428a;
-    public volatile long f8429b;
-    public int f8430c;
-    public volatile int f8432f;
-    public volatile int f8433g;
+    public long f8456a;
+    public volatile long f8457b;
+    public int f8458c;
+    public volatile int f8460f;
+    public volatile int f8461g;
     public final boolean h;
-    public boolean f8434i;
-    public long f8435j;
-    public Path f8438m;
-    public final zc f8439n;
+    public boolean f8462i;
+    public long f8463j;
+    public Path f8466m;
+    public final zc f8467n;
     public final ArrayList d = new ArrayList();
-    public boolean f8436k = false;
-    public final Paint f8437l = new Paint(3);
-    public MediaMetadataRetriever f8431e = new MediaMetadataRetriever();
+    public boolean f8464k = false;
+    public final Paint f8465l = new Paint(3);
+    public MediaMetadataRetriever f8459e = new MediaMetadataRetriever();
 
     public xc(zc zcVar, boolean z10, final String str, final int i10, final int i11, final Long l4, final long j3, final long j10, final long j11, final Runnable runnable) {
-        this.f8439n = zcVar;
+        this.f8467n = zcVar;
         this.h = z10;
         Utilities.themeQueue.postRunnable(new Runnable() {
             @Override
@@ -35,7 +35,7 @@ public final class xc {
     }
 
     public final void b() {
-        this.f8434i = true;
+        this.f8462i = true;
         Utilities.themeQueue.cancelRunnable(new nb(this, 6));
         ArrayList arrayList = this.d;
         int size = arrayList.size();
@@ -43,27 +43,27 @@ public final class xc {
         while (i10 < size) {
             Object obj = arrayList.get(i10);
             i10++;
-            Bitmap bitmap = ((wc) obj).f8355a;
+            Bitmap bitmap = ((wc) obj).f8383a;
             if (bitmap != null) {
                 bitmap.recycle();
             }
         }
         this.d.clear();
-        MediaMetadataRetriever mediaMetadataRetriever = this.f8431e;
+        MediaMetadataRetriever mediaMetadataRetriever = this.f8459e;
         if (mediaMetadataRetriever != null) {
             try {
                 mediaMetadataRetriever.release();
             } catch (Exception e7) {
-                this.f8431e = null;
+                this.f8459e = null;
                 FileLog.e(e7);
             }
         }
     }
 
     public final void c() {
-        if (!this.f8436k && this.f8431e != null && this.d.size() < this.f8430c) {
-            this.f8436k = true;
-            this.f8435j += this.f8429b;
+        if (!this.f8464k && this.f8459e != null && this.d.size() < this.f8458c) {
+            this.f8464k = true;
+            this.f8463j += this.f8457b;
             Utilities.themeQueue.cancelRunnable(new nb(this, 6));
             Utilities.themeQueue.postRunnable(new nb(this, 6));
         }

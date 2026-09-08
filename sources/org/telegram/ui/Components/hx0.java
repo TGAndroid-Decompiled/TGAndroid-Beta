@@ -4,11 +4,11 @@ import android.content.Context;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.tgnet.TLRPC;
 public final class hx0 extends hq0 {
-    public final ux0 f26888b1;
+    public final ux0 f26915b1;
 
     public hx0(ux0 ux0Var, Context context, String str, String str2, org.telegram.ui.ActionBar.f6 f6Var) {
         super(context, null, str, false, str2, false, f6Var);
-        this.f26888b1 = ux0Var;
+        this.f26915b1 = ux0Var;
     }
 
     @Override
@@ -22,7 +22,7 @@ public final class hx0 extends hq0 {
     @Override
     public final void dismissInternal() {
         super.dismissInternal();
-        org.telegram.ui.ActionBar.n2 n2Var = this.f26888b1.L;
+        org.telegram.ui.ActionBar.n2 n2Var = this.f26915b1.L;
         if (n2Var instanceof org.telegram.ui.co) {
             AndroidUtilities.requestAdjustResize(n2Var.getParentActivity(), n2Var.getClassGuid());
             if (((org.telegram.ui.co) n2Var).Y.getVisibility() == 0) {

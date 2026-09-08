@@ -12,7 +12,7 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.tl.TL_account;
 public final class wl0 extends org.telegram.ui.Components.g51 {
-    public static final int f42433a = 0;
+    public static final int f42460a = 0;
 
     static {
         org.telegram.ui.Components.g51.setup(new org.telegram.ui.Components.g51());
@@ -23,15 +23,15 @@ public final class wl0 extends org.telegram.ui.Components.g51 {
         xl0 xl0Var = (xl0) view;
         TL_account.Passkey passkey = (TL_account.Passkey) h51Var.G;
         View.OnClickListener onClickListener = h51Var.D;
-        TextView textView = xl0Var.f42757f;
-        TextView textView2 = xl0Var.f42756e;
-        org.telegram.ui.ActionBar.f6 f6Var = xl0Var.f42754b;
-        FrameLayout frameLayout = xl0Var.f42755c;
+        TextView textView = xl0Var.f42784f;
+        TextView textView2 = xl0Var.f42783e;
+        org.telegram.ui.ActionBar.f6 f6Var = xl0Var.f42781b;
+        FrameLayout frameLayout = xl0Var.f42782c;
         org.telegram.ui.Components.x9 x9Var = xl0Var.d;
-        xl0Var.f42759r = passkey.f20075id;
+        xl0Var.f42786r = passkey.f20102id;
         long j3 = passkey.software_emoji_id;
         if (j3 != 0) {
-            x9Var.setAnimatedEmojiDrawable(org.telegram.ui.Components.q5.n(xl0Var.f42753a, j3, null, 3));
+            x9Var.setAnimatedEmojiDrawable(org.telegram.ui.Components.q5.n(xl0Var.f42780a, j3, null, 3));
             frameLayout.setBackground(null);
             x9Var.setColorFilter(null);
             x9Var.setScaleX(1.0f);
@@ -58,7 +58,7 @@ public final class wl0 extends org.telegram.ui.Components.g51 {
             textView.setText(LocaleController.formatString(R.string.PasskeyCreatedOn, LocaleController.formatDateTime(passkey.date, false)));
         }
         xl0Var.h.setOnClickListener(onClickListener);
-        xl0Var.f42758n = z10;
+        xl0Var.f42785n = z10;
         xl0Var.setWillNotDraw(!z10);
     }
 

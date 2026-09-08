@@ -29,20 +29,20 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.xh0;
 public final class o3 extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {
     public boolean E;
-    public final int f22420a;
-    public final TextView f22421b;
-    public final TextView f22422c;
+    public final int f22447a;
+    public final TextView f22448b;
+    public final TextView f22449c;
     public final org.telegram.ui.Components.x9 d;
-    public final xh0 f22423e;
-    public final TextView f22424f;
+    public final xh0 f22450e;
+    public final TextView f22451f;
     public final sg.r0 h;
-    public AnimatorSet f22425n;
-    public TLRPC.StickerSetCovered f22426r;
-    public boolean f22427s;
+    public AnimatorSet f22452n;
+    public TLRPC.StickerSetCovered f22453r;
+    public boolean f22454s;
     public boolean v;
-    public boolean f22428w;
-    public boolean f22429x;
-    public Long f22430y;
+    public boolean f22455w;
+    public boolean f22456x;
+    public Long f22457y;
 
     public o3(Context context, org.telegram.ui.ActionBar.f6 f6Var) {
         super(context);
@@ -56,9 +56,9 @@ public final class o3 extends FrameLayout implements NotificationCenter.Notifica
         float f12;
         float f13;
         float f14;
-        this.f22420a = UserConfig.selectedAccount;
+        this.f22447a = UserConfig.selectedAccount;
         TextView textView = new TextView(context);
-        this.f22421b = textView;
+        this.f22448b = textView;
         wl.r(textView, org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.G6, false), 1, 16.0f, 1);
         textView.setMaxLines(1);
         textView.setSingleLine(true);
@@ -88,8 +88,8 @@ public final class o3 extends FrameLayout implements NotificationCenter.Notifica
         }
         addView(textView, w7.x5.d(-2, -2.0f, i11, f7, 10.0f, f10, 0.0f));
         TextView textView2 = new TextView(context);
-        this.f22422c = textView2;
-        wl.r(textView2, org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f21061z6, false), 1, 13.0f, 1);
+        this.f22449c = textView2;
+        wl.r(textView2, org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f21088z6, false), 1, 13.0f, 1);
         textView2.setMaxLines(1);
         textView2.setSingleLine(true);
         textView2.setEllipsize(truncateAt);
@@ -134,12 +134,12 @@ public final class o3 extends FrameLayout implements NotificationCenter.Notifica
         }
         addView(x9Var, w7.x5.d(48, 48.0f, i14, f13, 8.0f, f14, 0.0f));
         xh0 xh0Var = new xh0(context);
-        this.f22423e = xh0Var;
+        this.f22450e = xh0Var;
         xh0Var.setText(LocaleController.getString(R.string.Add));
         xh0Var.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.Sh, false));
         addView(xh0Var, w7.x5.i(-2.0f, 28.0f, 8388661, 0.0f, 18.0f, 14.0f, 0.0f));
         TextView textView3 = new TextView(context);
-        this.f22424f = textView3;
+        this.f22451f = textView3;
         textView3.setGravity(17);
         org.telegram.messenger.w1.q(textView3, org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.Rh, false), 1, 14.0f);
         textView3.setText(LocaleController.getString(R.string.StickersRemove));
@@ -161,7 +161,7 @@ public final class o3 extends FrameLayout implements NotificationCenter.Notifica
         } catch (Exception unused) {
         }
         addView(this.h, w7.x5.i(-2.0f, 28.0f, 8388661, 0.0f, 16.0f, 10.0f, 0.0f));
-        xh0 xh0Var2 = this.f22423e;
+        xh0 xh0Var2 = this.f22450e;
         xh0Var2.setProgressColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.Nh, false));
         int w02 = org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.Oh, false);
         org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.Qh, false);
@@ -184,17 +184,17 @@ public final class o3 extends FrameLayout implements NotificationCenter.Notifica
         ImageLocation forSticker;
         TLRPC.StickerSet stickerSet;
         ArrayList<TLRPC.Document> arrayList;
-        AnimatorSet animatorSet = this.f22425n;
+        AnimatorSet animatorSet = this.f22452n;
         TLRPC.Document document = null;
         if (animatorSet != null) {
             animatorSet.cancel();
-            this.f22425n = null;
+            this.f22452n = null;
         }
-        this.f22428w = z10;
-        this.f22426r = stickerSetCovered;
+        this.f22455w = z10;
+        this.f22453r = stickerSetCovered;
         setWillNotDraw(!z10);
-        String str2 = this.f22426r.set.title;
-        TextView textView = this.f22421b;
+        String str2 = this.f22453r.set.title;
+        TextView textView = this.f22448b;
         textView.setText(str2);
         textView.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
         TLRPC.StickerSet stickerSet2 = stickerSetCovered.set;
@@ -203,14 +203,14 @@ public final class o3 extends FrameLayout implements NotificationCenter.Notifica
         } else {
             str = "Stickers";
         }
-        this.f22422c.setText(LocaleController.formatPluralString(str, stickerSet2.count, new Object[0]));
+        this.f22449c.setText(LocaleController.formatPluralString(str, stickerSet2.count, new Object[0]));
         boolean z15 = stickerSetCovered instanceof TLRPC.TL_stickerSetNoCovered;
-        int i10 = this.f22420a;
+        int i10 = this.f22447a;
         if (z15 && (stickerSet = stickerSetCovered.set) != null) {
-            this.f22430y = Long.valueOf(stickerSet.f19896id);
-            if (!this.f22429x) {
+            this.f22457y = Long.valueOf(stickerSet.f19923id);
+            if (!this.f22456x) {
                 NotificationCenter.getInstance(i10).addObserver(this, NotificationCenter.groupStickersDidLoad);
-                this.f22429x = true;
+                this.f22456x = true;
             }
             TLRPC.TL_messages_stickerSet stickerSet3 = MediaDataController.getInstance(i10).getStickerSet(MediaDataController.getInputStickerSet(stickerSetCovered.set), Integer.valueOf(stickerSetCovered.set.hash), false);
             if (stickerSet3 != null && (arrayList = stickerSet3.documents) != null && !arrayList.isEmpty()) {
@@ -219,7 +219,7 @@ public final class o3 extends FrameLayout implements NotificationCenter.Notifica
                 while (true) {
                     if (i11 >= stickerSet3.documents.size()) {
                         break;
-                    } else if (stickerSet3.documents.get(i11).f19875id == stickerSetCovered.set.thumb_document_id) {
+                    } else if (stickerSet3.documents.get(i11).f19902id == stickerSetCovered.set.thumb_document_id) {
                         document = stickerSet3.documents.get(i11);
                         break;
                     } else {
@@ -234,7 +234,7 @@ public final class o3 extends FrameLayout implements NotificationCenter.Notifica
                     document = stickerSetCovered.covers.get(0);
                     if (stickerSetCovered.set != null) {
                         for (int i12 = 0; i12 < stickerSetCovered.covers.size(); i12++) {
-                            if (stickerSetCovered.covers.get(i12).f19875id == stickerSetCovered.set.thumb_document_id) {
+                            if (stickerSetCovered.covers.get(i12).f19902id == stickerSetCovered.set.thumb_document_id) {
                                 document2 = stickerSetCovered.covers.get(i12);
                             }
                         }
@@ -245,7 +245,7 @@ public final class o3 extends FrameLayout implements NotificationCenter.Notifica
                         ArrayList<TLRPC.Document> arrayList2 = tL_stickerSetFullCovered.documents;
                         TLRPC.Document document3 = arrayList2.get(0);
                         for (int i13 = 0; i13 < arrayList2.size(); i13++) {
-                            if (arrayList2.get(i13).f19875id == stickerSetCovered.set.thumb_document_id) {
+                            if (arrayList2.get(i13).f19902id == stickerSetCovered.set.thumb_document_id) {
                                 document2 = arrayList2.get(i13);
                             }
                         }
@@ -263,7 +263,7 @@ public final class o3 extends FrameLayout implements NotificationCenter.Notifica
                 if (closestPhotoSizeWithSize == null) {
                     closestPhotoSizeWithSize = document;
                 }
-                SvgHelper.SvgDrawable svgThumb = DocumentObject.getSvgThumb(stickerSetCovered.set.thumbs, org.telegram.ui.ActionBar.j6.f20607a7, 1.0f);
+                SvgHelper.SvgDrawable svgThumb = DocumentObject.getSvgThumb(stickerSetCovered.set.thumbs, org.telegram.ui.ActionBar.j6.f20634a7, 1.0f);
                 boolean z16 = closestPhotoSizeWithSize instanceof TLRPC.Document;
                 if (z16) {
                     forSticker = ImageLocation.getForDocument(FileLoader.getClosestPhotoSizeWithSize(document.thumbs, 90), document);
@@ -294,15 +294,15 @@ public final class o3 extends FrameLayout implements NotificationCenter.Notifica
             stickerSetCovered2 = stickerSetCovered;
             x9Var.i(null, null, "webp", null, stickerSetCovered2);
         }
-        xh0 xh0Var = this.f22423e;
+        xh0 xh0Var = this.f22450e;
         xh0Var.setVisibility(0);
         this.E = z11;
-        if (!z11 && !MediaDataController.getInstance(i10).isStickerPackInstalled(stickerSetCovered2.set.f19896id)) {
+        if (!z11 && !MediaDataController.getInstance(i10).isStickerPackInstalled(stickerSetCovered2.set.f19923id)) {
             z13 = false;
         } else {
             z13 = true;
         }
-        this.f22427s = z13;
+        this.f22454s = z13;
         if (!UserConfig.getInstance(i10).isPremium() && MessageObject.isPremiumEmojiPack(stickerSetCovered2)) {
             z14 = true;
         } else {
@@ -310,7 +310,7 @@ public final class o3 extends FrameLayout implements NotificationCenter.Notifica
         }
         this.v = z14;
         sg.r0 r0Var = this.h;
-        TextView textView2 = this.f22424f;
+        TextView textView2 = this.f22451f;
         if (z12) {
             if (z14) {
                 r0Var.setVisibility(0);
@@ -318,17 +318,17 @@ public final class o3 extends FrameLayout implements NotificationCenter.Notifica
                 xh0Var.setVisibility(0);
             } else {
                 r0Var.setVisibility(0);
-                if (this.f22427s) {
+                if (this.f22454s) {
                     textView2.setVisibility(0);
                 } else {
                     xh0Var.setVisibility(0);
                 }
             }
             AnimatorSet animatorSet2 = new AnimatorSet();
-            this.f22425n = animatorSet2;
+            this.f22452n = animatorSet2;
             animatorSet2.setDuration(250L);
-            AnimatorSet animatorSet3 = this.f22425n;
-            if (this.f22427s && !this.v) {
+            AnimatorSet animatorSet3 = this.f22452n;
+            if (this.f22454s && !this.v) {
                 f7 = 1.0f;
             } else {
                 f7 = 0.0f;
@@ -336,7 +336,7 @@ public final class o3 extends FrameLayout implements NotificationCenter.Notifica
             float[] fArr = {f7};
             Property property = View.ALPHA;
             ObjectAnimator ofFloat = ObjectAnimator.ofFloat(textView2, property, fArr);
-            if (this.f22427s && !this.v) {
+            if (this.f22454s && !this.v) {
                 f10 = 1.0f;
             } else {
                 f10 = 0.0f;
@@ -344,7 +344,7 @@ public final class o3 extends FrameLayout implements NotificationCenter.Notifica
             float[] fArr2 = {f10};
             Property property2 = View.SCALE_X;
             ObjectAnimator ofFloat2 = ObjectAnimator.ofFloat(textView2, property2, fArr2);
-            if (this.f22427s && !this.v) {
+            if (this.f22454s && !this.v) {
                 f11 = 1.0f;
             } else {
                 f11 = 0.0f;
@@ -352,13 +352,13 @@ public final class o3 extends FrameLayout implements NotificationCenter.Notifica
             float[] fArr3 = {f11};
             Property property3 = View.SCALE_Y;
             ObjectAnimator ofFloat3 = ObjectAnimator.ofFloat(textView2, property3, fArr3);
-            if (!this.f22427s && !this.v) {
+            if (!this.f22454s && !this.v) {
                 f12 = 1.0f;
             } else {
                 f12 = 0.0f;
             }
             ObjectAnimator ofFloat4 = ObjectAnimator.ofFloat(xh0Var, property, f12);
-            if (!this.f22427s && !this.v) {
+            if (!this.f22454s && !this.v) {
                 f13 = 1.0f;
             } else {
                 f13 = 0.0f;
@@ -382,9 +382,9 @@ public final class o3 extends FrameLayout implements NotificationCenter.Notifica
                 f16 = 1.0f;
             }
             animatorSet3.playTogether(ofFloat, ofFloat2, ofFloat3, ofFloat4, ofFloat5, ofFloat6, ofFloat7, ObjectAnimator.ofFloat(r0Var, property3, f16));
-            this.f22425n.addListener(new m3(this));
-            this.f22425n.setInterpolator(new OvershootInterpolator(1.02f));
-            this.f22425n.start();
+            this.f22452n.addListener(new m3(this));
+            this.f22452n.setInterpolator(new OvershootInterpolator(1.02f));
+            this.f22452n.start();
         } else if (z14) {
             r0Var.setVisibility(0);
             r0Var.setAlpha(1.0f);
@@ -403,7 +403,7 @@ public final class o3 extends FrameLayout implements NotificationCenter.Notifica
             r0Var.setAlpha(0.0f);
             r0Var.setScaleX(0.0f);
             r0Var.setScaleY(0.0f);
-            if (this.f22427s) {
+            if (this.f22454s) {
                 textView2.setVisibility(0);
                 textView2.setAlpha(1.0f);
                 textView2.setScaleX(1.0f);
@@ -429,12 +429,12 @@ public final class o3 extends FrameLayout implements NotificationCenter.Notifica
     public final void didReceivedNotification(int i10, int i11, Object... objArr) {
         if (i10 == NotificationCenter.groupStickersDidLoad) {
             long longValue = ((Long) objArr[0]).longValue();
-            Long l4 = this.f22430y;
+            Long l4 = this.f22457y;
             if (l4 != null && l4.longValue() == longValue) {
-                this.f22430y = null;
+                this.f22457y = null;
                 TLRPC.TL_stickerSetNoCovered tL_stickerSetNoCovered = new TLRPC.TL_stickerSetNoCovered();
                 tL_stickerSetNoCovered.set = ((TLRPC.TL_messages_stickerSet) objArr[1]).set;
-                a(tL_stickerSetNoCovered, this.f22428w, this.E, true);
+                a(tL_stickerSetNoCovered, this.f22455w, this.E, true);
             }
         }
     }
@@ -444,19 +444,19 @@ public final class o3 extends FrameLayout implements NotificationCenter.Notifica
     }
 
     public TLRPC.StickerSetCovered getStickerSet() {
-        return this.f22426r;
+        return this.f22453r;
     }
 
     public TextView getTextView() {
-        return this.f22421b;
+        return this.f22448b;
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        if (this.f22429x) {
-            NotificationCenter.getInstance(this.f22420a).removeObserver(this, NotificationCenter.groupStickersDidLoad);
-            this.f22429x = false;
+        if (this.f22456x) {
+            NotificationCenter.getInstance(this.f22447a).removeObserver(this, NotificationCenter.groupStickersDidLoad);
+            this.f22456x = false;
         }
     }
 
@@ -464,7 +464,7 @@ public final class o3 extends FrameLayout implements NotificationCenter.Notifica
     public final void onDraw(Canvas canvas) {
         float dp;
         int i10;
-        if (this.f22428w) {
+        if (this.f22455w) {
             if (LocaleController.isRTL) {
                 dp = 0.0f;
             } else {
@@ -477,15 +477,15 @@ public final class o3 extends FrameLayout implements NotificationCenter.Notifica
             } else {
                 i10 = 0;
             }
-            canvas.drawLine(dp, height, width - i10, getHeight() - 1, org.telegram.ui.ActionBar.j6.f20785k0);
+            canvas.drawLine(dp, height, width - i10, getHeight() - 1, org.telegram.ui.ActionBar.j6.f20812k0);
         }
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(64.0f) + (this.f22428w ? 1 : 0), 1073741824));
-        int measuredWidth = this.f22423e.getMeasuredWidth();
-        TextView textView = this.f22424f;
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(64.0f) + (this.f22455w ? 1 : 0), 1073741824));
+        int measuredWidth = this.f22450e.getMeasuredWidth();
+        TextView textView = this.f22451f;
         int measuredWidth2 = textView.getMeasuredWidth();
         FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) textView.getLayoutParams();
         if (measuredWidth2 < measuredWidth) {
@@ -493,11 +493,11 @@ public final class o3 extends FrameLayout implements NotificationCenter.Notifica
         } else {
             layoutParams.rightMargin = AndroidUtilities.dp(14.0f);
         }
-        measureChildWithMargins(this.f22421b, i10, measuredWidth, i11, 0);
+        measureChildWithMargins(this.f22448b, i10, measuredWidth, i11, 0);
     }
 
     public void setAddOnClickListener(View.OnClickListener onClickListener) {
-        this.f22423e.setOnClickListener(onClickListener);
-        this.f22424f.setOnClickListener(onClickListener);
+        this.f22450e.setOnClickListener(onClickListener);
+        this.f22451f.setOnClickListener(onClickListener);
     }
 }
