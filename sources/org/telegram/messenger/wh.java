@@ -1,34 +1,35 @@
 package org.telegram.messenger;
 
-import android.animation.ValueAnimator;
-import android.view.View;
-import android.view.Window;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.RichMessageLayout;
-import org.telegram.ui.Components.g71;
-public final class wh implements ValueAnimator.AnimatorUpdateListener {
-    public final int f19534a;
-    public final Object f19535b;
-    public final Object f19536c;
+import android.content.Context;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLRPC;
+public final class wh implements Utilities.Callback2 {
+    public final int f16896a = 0;
+    public final int f16897b;
+    public final Object f16898c;
+    public final Object d;
 
-    public wh(int i10, Object obj, Object obj2) {
-        this.f19534a = i10;
-        this.f19535b = obj;
-        this.f19536c = obj2;
+    public wh(Context context, int i10, Utilities.Callback2 callback2) {
+        this.f16898c = callback2;
+        this.d = context;
+        this.f16897b = i10;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f19534a) {
+    public final void run(Object obj, Object obj2) {
+        switch (this.f16896a) {
             case 0:
-                ((RichMessageLayout.SpoilerReveal) this.f19535b).lambda$start$0((View) this.f19536c, valueAnimator);
-                return;
-            case 1:
-                AndroidUtilities.lambda$setNavigationBarColor$23((AndroidUtilities.IntColorCallback) this.f19535b, (Window) this.f19536c, valueAnimator);
+                PasskeysController.lambda$create$7((Utilities.Callback2) this.f16898c, (Context) this.d, this.f16897b, (v0.c) obj, (Throwable) obj2);
                 return;
             default:
-                ((MediaController) this.f19535b).lambda$cleanupPlayer$10((g71) this.f19536c, valueAnimator);
+                ((TranslateController) this.f16898c).lambda$pushToSummarize$19(this.f16897b, (Utilities.Callback) this.d, (TLRPC.TL_textWithEntities) obj, (TLRPC.TL_error) obj2);
                 return;
         }
+    }
+
+    public wh(TranslateController translateController, int i10, Utilities.Callback callback) {
+        this.f16898c = translateController;
+        this.f16897b = i10;
+        this.d = callback;
     }
 }

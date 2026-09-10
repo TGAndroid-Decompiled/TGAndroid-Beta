@@ -1,9 +1,9 @@
 package k1;
 public final class g extends b0 {
-    public final Throwable f14474a;
+    public final Throwable f12011a;
 
     public g(Throwable finalException) {
         kotlin.jvm.internal.i.e(finalException, "finalException");
-        this.f14474a = finalException;
+        this.f12011a = finalException;
     }
 }

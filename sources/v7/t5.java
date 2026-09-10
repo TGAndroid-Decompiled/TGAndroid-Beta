@@ -7,7 +7,7 @@ public abstract class t5 {
         }
         if (i10 >= 0) {
             if (i11 < 0) {
-                throw new IllegalArgumentException(i2.g.i(i11, "negative size: "));
+                throw new IllegalArgumentException(hc.b.j(i11, "negative size: "));
             }
             a2 = u5.a("%s (%s) must be less than size (%s)", "index", Integer.valueOf(i10), Integer.valueOf(i11));
         } else {
@@ -47,6 +47,6 @@ public abstract class t5 {
         if (i11 >= 0) {
             return u5.a("%s (%s) must not be greater than size (%s)", str, Integer.valueOf(i10), Integer.valueOf(i11));
         }
-        throw new IllegalArgumentException(i2.g.i(i11, "negative size: "));
+        throw new IllegalArgumentException(hc.b.j(i11, "negative size: "));
     }
 }

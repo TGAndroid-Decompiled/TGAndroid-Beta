@@ -1,66 +1,56 @@
 package bi;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffXfermode;
-import android.graphics.Rect;
-import android.graphics.drawable.Drawable;
-import org.telegram.messenger.AndroidUtilities;
+import android.net.Uri;
+import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.ui.Components.f01;
-public final class u0 extends Drawable {
-    public final float f3807a = 0.75f;
-    public final Drawable f3808b;
-    public final f01 f3809c;
+import org.telegram.messenger.Utilities;
+public final class u0 implements Utilities.Callback {
+    public final int f3708a;
+    public final y0 f3709b;
 
-    public u0(Context context, int i10) {
-        this.f3808b = context.getResources().getDrawable(R.drawable.filled_stream_crown).mutate();
-        f01 f01Var = new f01(i2.g.i(i10, ""), 8.0f, AndroidUtilities.getTypeface("fonts/num.otf"));
-        this.f3809c = f01Var;
-        f01Var.f25872a.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
+    public u0(y0 y0Var, int i10) {
+        this.f3708a = i10;
+        this.f3709b = y0Var;
     }
 
     @Override
-    public final void draw(Canvas canvas) {
-        Rect bounds = getBounds();
-        canvas.saveLayerAlpha(bounds.left, bounds.top, bounds.right, bounds.bottom, 255, 31);
-        Drawable drawable = this.f3808b;
-        drawable.setBounds(bounds);
-        drawable.draw(canvas);
-        int centerY = bounds.centerY();
-        this.f3809c.c(bounds.centerX() - (this.f3809c.f25874c / 2.0f), AndroidUtilities.dp(0.15f) + centerY, drawable.getAlpha() / 255.0f, -1, canvas);
-        canvas.restore();
-    }
-
-    @Override
-    public final int getAlpha() {
-        return this.f3808b.getAlpha();
-    }
-
-    @Override
-    public final int getIntrinsicHeight() {
-        return (int) (this.f3808b.getIntrinsicHeight() * this.f3807a);
-    }
-
-    @Override
-    public final int getIntrinsicWidth() {
-        return (int) (this.f3808b.getIntrinsicWidth() * this.f3807a);
-    }
-
-    @Override
-    public final int getOpacity() {
-        return -2;
-    }
-
-    @Override
-    public final void setAlpha(int i10) {
-        this.f3808b.setAlpha(i10);
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
-        this.f3808b.setColorFilter(colorFilter);
+    public final void run(Object obj) {
+        switch (this.f3708a) {
+            case 0:
+                Float f7 = (Float) obj;
+                x0 x0Var = this.f3709b.f3957n;
+                if (x0Var != null) {
+                    x0Var.setProgress(f7.floatValue());
+                    return;
+                }
+                return;
+            case 1:
+                Uri uri = (Uri) obj;
+                y0 y0Var = this.f3709b;
+                if (y0Var.f3955c && y0Var.f3958r != null) {
+                    y0Var.f3957n.b(R.raw.ic_save_to_gallery, 3500, LocaleController.getString("VideoSavedHint"));
+                    y0Var.f3955c = false;
+                    y0Var.d();
+                    y0Var.v = uri;
+                    return;
+                }
+                return;
+            default:
+                Uri uri2 = (Uri) obj;
+                y0 y0Var2 = this.f3709b;
+                y0Var2.f3955c = false;
+                y0Var2.d();
+                x0 x0Var2 = y0Var2.f3957n;
+                if (x0Var2 != null) {
+                    x0Var2.a();
+                    y0Var2.f3957n = null;
+                }
+                x0 x0Var3 = new x0(y0Var2.getContext());
+                y0Var2.f3957n = x0Var3;
+                x0Var3.b(R.raw.ic_save_to_gallery, 2500, LocaleController.getString("PhotoSavedHint"));
+                y0Var2.f3954b.addView(y0Var2.f3957n);
+                y0Var2.v = uri2;
+                return;
+        }
     }
 }

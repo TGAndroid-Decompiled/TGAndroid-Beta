@@ -6,12 +6,12 @@ import android.os.Parcelable;
 import w7.e0;
 public final class h extends o6.a {
     public static final Parcelable.Creator<h> CREATOR = new e6.i(19);
-    public final String f10489a;
-    public final Bundle f10490b;
-    public final Bundle f10491c;
+    public final String f8628a;
+    public final Bundle f8629b;
+    public final Bundle f8630c;
     public final String d;
-    public final String f10492e;
-    public final String f10493f;
+    public final String e;
+    public final String f8631f;
 
     public h(String type, Bundle credentialRetrievalData, Bundle candidateQueryData, String requestMatcher, String requestType, String protocolType) {
         boolean z10;
@@ -21,12 +21,12 @@ public final class h extends o6.a {
         kotlin.jvm.internal.i.e(requestMatcher, "requestMatcher");
         kotlin.jvm.internal.i.e(requestType, "requestType");
         kotlin.jvm.internal.i.e(protocolType, "protocolType");
-        this.f10489a = type;
-        this.f10490b = credentialRetrievalData;
-        this.f10491c = candidateQueryData;
+        this.f8628a = type;
+        this.f8629b = credentialRetrievalData;
+        this.f8630c = candidateQueryData;
         this.d = requestMatcher;
-        this.f10492e = requestType;
-        this.f10493f = protocolType;
+        this.e = requestType;
+        this.f8631f = protocolType;
         boolean z11 = true;
         if (!xd.j.e(requestType) && !xd.j.e(protocolType)) {
             z10 = true;
@@ -45,12 +45,12 @@ public final class h extends o6.a {
     public final void writeToParcel(Parcel dest, int i10) {
         kotlin.jvm.internal.i.e(dest, "dest");
         int q6 = e0.q(dest, 20293);
-        e0.l(dest, 1, this.f10489a);
-        e0.b(dest, 2, this.f10490b);
-        e0.b(dest, 3, this.f10491c);
+        e0.l(dest, 1, this.f8628a);
+        e0.b(dest, 2, this.f8629b);
+        e0.b(dest, 3, this.f8630c);
         e0.l(dest, 4, this.d);
-        e0.l(dest, 5, this.f10492e);
-        e0.l(dest, 6, this.f10493f);
+        e0.l(dest, 5, this.e);
+        e0.l(dest, 6, this.f8631f);
         e0.r(dest, q6);
     }
 }

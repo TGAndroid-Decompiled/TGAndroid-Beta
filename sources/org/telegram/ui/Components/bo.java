@@ -1,41 +1,50 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class bo extends AnimatorListenerAdapter {
-    public final int f24779a;
-    public final co f24780b;
+import java.util.concurrent.atomic.AtomicReference;
+public final class bo implements Runnable {
+    public final int f21864a;
+    public final jo f21865b;
 
-    public bo(co coVar, int i10) {
-        this.f24779a = i10;
-        this.f24780b = coVar;
+    public bo(jo joVar, int i10) {
+        this.f21864a = i10;
+        this.f21865b = joVar;
     }
 
     @Override
-    public void onAnimationCancel(Animator animator) {
-        switch (this.f24779a) {
+    public final void run() {
+        switch (this.f21864a) {
             case 0:
-                this.f24780b.Q = null;
+                jo joVar = this.f21865b;
+                AtomicReference atomicReference = joVar.f24469n;
+                org.telegram.ui.ActionBar.l5 l5Var = (org.telegram.ui.ActionBar.l5) atomicReference.get();
+                if (l5Var != null) {
+                    joVar.removeView(l5Var);
+                    atomicReference.set(null);
+                    return;
+                }
                 return;
-            default:
-                super.onAnimationCancel(animator);
-                return;
-        }
-    }
-
-    @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f24779a) {
-            case 0:
-                co coVar = this.f24780b;
-                if (coVar.Q == animator) {
-                    coVar.getSubtitleTextView().setVisibility(4);
-                    coVar.Q = null;
+            case 1:
+                jo joVar2 = this.f21865b;
+                AtomicReference atomicReference2 = joVar2.v;
+                org.telegram.ui.ActionBar.l5 l5Var2 = (org.telegram.ui.ActionBar.l5) atomicReference2.get();
+                if (l5Var2 != null) {
+                    joVar2.removeView(l5Var2);
+                    atomicReference2.set(null);
+                    if (!joVar2.f24455b) {
+                        joVar2.setClipChildren(true);
+                        return;
+                    }
                     return;
                 }
                 return;
             default:
-                this.f24780b.Q = null;
+                jo joVar3 = this.f21865b;
+                joVar3.f24466j0 = false;
+                joVar3.f24464h0.c(false);
+                if (joVar3.a()) {
+                    joVar3.f();
+                    return;
+                }
                 return;
         }
     }

@@ -1,52 +1,25 @@
 package org.telegram.ui.ActionBar;
+public final class c4 {
+    public static final c4 f17572a;
+    public static final c4 f17573b;
+    public static final c4 f17574c;
+    public static final c4[] d;
 
-import android.util.SparseIntArray;
-import java.util.ArrayList;
-import org.telegram.tgnet.TLRPC;
-public final class c4 implements gg.a {
-    public i6 f20343a;
-    public TLRPC.TL_theme f20344b;
-    public TLRPC.TL_chatThemeUniqueGift f20345c;
-    public int d;
-    public int f20346e = -1;
-    public SparseIntArray f20347f;
-    public String f20348g;
-    public int h;
-    public int f20349i;
-    public int f20350j;
-    public int f20351k;
-    public int f20352l;
-    public int f20353m;
-    public int f20354n;
-    public int f20355o;
-
-    public final long a() {
-        TLRPC.TL_theme tL_theme = this.f20344b;
-        if (tL_theme != null) {
-            return tL_theme.f20033id;
-        }
-        TLRPC.TL_chatThemeUniqueGift tL_chatThemeUniqueGift = this.f20345c;
-        if (tL_chatThemeUniqueGift != null) {
-            return tL_chatThemeUniqueGift.gift.gift_id;
-        }
-        return 0L;
+    static {
+        ?? r02 = new Enum("NONE", 0);
+        f17572a = r02;
+        ?? r12 = new Enum("VERTICAL", 1);
+        f17573b = r12;
+        ?? r32 = new Enum("FULL", 2);
+        f17574c = r32;
+        d = new c4[]{r02, r12, r32};
     }
 
-    public final TLRPC.ThemeSettings b(int i10) {
-        ArrayList<TLRPC.ThemeSettings> arrayList;
-        TLRPC.TL_theme tL_theme = this.f20344b;
-        if (tL_theme != null) {
-            arrayList = tL_theme.settings;
-        } else {
-            TLRPC.TL_chatThemeUniqueGift tL_chatThemeUniqueGift = this.f20345c;
-            if (tL_chatThemeUniqueGift != null) {
-                arrayList = tL_chatThemeUniqueGift.theme_settings;
-            }
-            return null;
-        }
-        if (arrayList != null && i10 >= 0 && arrayList.size() > i10) {
-            return arrayList.get(i10);
-        }
-        return null;
+    public static c4 valueOf(String str) {
+        return (c4) Enum.valueOf(c4.class, str);
+    }
+
+    public static c4[] values() {
+        return (c4[]) d.clone();
     }
 }

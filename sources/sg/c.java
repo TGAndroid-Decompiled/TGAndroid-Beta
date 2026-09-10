@@ -1,36 +1,37 @@
 package sg;
 
-import android.content.Context;
-import android.view.View;
-import java.util.ArrayList;
-import org.telegram.messenger.UserConfig;
-public final class c extends b {
-    public d d;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.fb1;
+import org.telegram.ui.w5;
+import xh.x3;
+public final class c implements Runnable {
+    public final int f41876a = 0;
+    public final TLRPC.Chat f41877b;
 
-    @Override
-    public final s4.h0 a() {
-        d dVar = new d(UserConfig.selectedAccount, this.f46050a);
-        this.d = dVar;
-        dVar.f46089r = this;
-        return dVar;
+    public c(TLRPC.Chat chat) {
+        this.f41877b = chat;
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(i10, i11);
-        d dVar = this.d;
-        Context context = getContext();
-        int measuredWidth = getMeasuredWidth();
-        int measuredHeight = getMeasuredHeight();
-        ArrayList arrayList = dVar.f46087f;
-        f fVar = new f(context, dVar.f46085c);
-        int i12 = 0;
-        for (int i13 = 0; i13 < arrayList.size(); i13++) {
-            fVar.a((e) arrayList.get(i13));
-            fVar.measure(View.MeasureSpec.makeMeasureSpec(measuredWidth, 1073741824), View.MeasureSpec.makeMeasureSpec(measuredHeight, Integer.MIN_VALUE));
-            ((e) arrayList.get(i13)).f46103e = i12;
-            i12 += fVar.getMeasuredHeight();
+    public final void run() {
+        switch (this.f41876a) {
+            case 0:
+                TLRPC.Chat chat = this.f41877b;
+                if (chat != null) {
+                    ?? obj = new Object();
+                    obj.f18485a = true;
+                    LaunchActivity.R().showAsSheet(new w5(-chat.f17195id), obj);
+                    return;
+                }
+                return;
+            default:
+                x3.d2(fb1.d0(this.f41877b, true));
+                return;
         }
-        dVar.f46088n = i12;
+    }
+
+    public c(x3 x3Var, TLRPC.Chat chat) {
+        this.f41877b = chat;
     }
 }

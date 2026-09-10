@@ -1,48 +1,28 @@
 package org.telegram.messenger;
 
-import java.util.Comparator;
-import org.telegram.messenger.MessagesController;
-import org.telegram.tgnet.TLRPC;
-public final class s9 implements Comparator {
-    public final int f18997a;
-    public final MessagesController f18998b;
+import org.telegram.tgnet.TLObject;
+public final class s9 implements Runnable {
+    public final int f16295a;
+    public final MediaDataController f16296b;
+    public final String f16297c;
+    public final TLObject d;
 
-    public s9(MessagesController messagesController, int i10) {
-        this.f18997a = i10;
-        this.f18998b = messagesController;
+    public s9(MediaDataController mediaDataController, String str, TLObject tLObject, int i10) {
+        this.f16295a = i10;
+        this.f16296b = mediaDataController;
+        this.f16297c = str;
+        this.d = tLObject;
     }
 
     @Override
-    public final int compare(Object obj, Object obj2) {
-        int lambda$new$9;
-        int lambda$new$10;
-        int lambda$new$11;
-        int lambda$new$12;
-        int lambda$processUpdatesQueue$327;
-        int lambda$renameSavedReactionTag$484;
-        int lambda$updateSavedReactionTags$483;
-        switch (this.f18997a) {
+    public final void run() {
+        switch (this.f16295a) {
             case 0:
-                lambda$new$9 = this.f18998b.lambda$new$9((TLRPC.Dialog) obj, (TLRPC.Dialog) obj2);
-                return lambda$new$9;
-            case 1:
-                lambda$new$10 = this.f18998b.lambda$new$10((TLRPC.Dialog) obj, (TLRPC.Dialog) obj2);
-                return lambda$new$10;
-            case 2:
-                lambda$new$11 = this.f18998b.lambda$new$11((MessagesController.CommunityPeerDialog) obj, (MessagesController.CommunityPeerDialog) obj2);
-                return lambda$new$11;
-            case 3:
-                lambda$new$12 = this.f18998b.lambda$new$12((TLRPC.Update) obj, (TLRPC.Update) obj2);
-                return lambda$new$12;
-            case 4:
-                lambda$processUpdatesQueue$327 = this.f18998b.lambda$processUpdatesQueue$327((TLRPC.Updates) obj, (TLRPC.Updates) obj2);
-                return lambda$processUpdatesQueue$327;
-            case 5:
-                lambda$renameSavedReactionTag$484 = this.f18998b.lambda$renameSavedReactionTag$484((TLRPC.TL_savedReactionTag) obj, (TLRPC.TL_savedReactionTag) obj2);
-                return lambda$renameSavedReactionTag$484;
+                this.f16296b.lambda$fetchStickerSetInternal$41(this.f16297c, this.d);
+                return;
             default:
-                lambda$updateSavedReactionTags$483 = this.f18998b.lambda$updateSavedReactionTags$483((TLRPC.TL_savedReactionTag) obj, (TLRPC.TL_savedReactionTag) obj2);
-                return lambda$updateSavedReactionTags$483;
+                this.f16296b.lambda$verifyAnimatedStickerMessageInternal$69(this.f16297c, this.d);
+                return;
         }
     }
 }

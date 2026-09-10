@@ -1,22 +1,22 @@
 package za;
 public final class h implements ia.d {
-    public static final h f51461a = new Object();
-    public static final ia.c f51462b = ia.c.c("sessionId");
-    public static final ia.c f51463c = ia.c.c("firstSessionId");
+    public static final h f47901a = new Object();
+    public static final ia.c f47902b = ia.c.c("sessionId");
+    public static final ia.c f47903c = ia.c.c("firstSessionId");
     public static final ia.c d = ia.c.c("sessionIndex");
-    public static final ia.c f51464e = ia.c.c("eventTimestampUs");
-    public static final ia.c f51465f = ia.c.c("dataCollectionStatus");
-    public static final ia.c f51466g = ia.c.c("firebaseInstallationId");
+    public static final ia.c e = ia.c.c("eventTimestampUs");
+    public static final ia.c f47904f = ia.c.c("dataCollectionStatus");
+    public static final ia.c f47905g = ia.c.c("firebaseInstallationId");
 
     @Override
     public final void a(Object obj, Object obj2) {
-        j0 j0Var = (j0) obj;
+        k0 k0Var = (k0) obj;
         ia.e eVar = (ia.e) obj2;
-        eVar.a(f51462b, j0Var.f51479a);
-        eVar.a(f51463c, j0Var.f51480b);
-        eVar.e(d, j0Var.f51481c);
-        eVar.f(f51464e, j0Var.d);
-        eVar.a(f51465f, j0Var.f51482e);
-        eVar.a(f51466g, j0Var.f51483f);
+        eVar.a(f47902b, k0Var.f47924a);
+        eVar.a(f47903c, k0Var.f47925b);
+        eVar.e(d, k0Var.f47926c);
+        eVar.f(e, k0Var.d);
+        eVar.a(f47904f, k0Var.e);
+        eVar.a(f47905g, k0Var.f47927f);
     }
 }

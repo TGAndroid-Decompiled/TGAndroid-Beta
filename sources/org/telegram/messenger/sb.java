@@ -1,45 +1,72 @@
 package org.telegram.messenger;
 
 import java.util.ArrayList;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class sb implements RequestDelegate {
-    public final int f19001a;
-    public final MessagesController f19002b;
-    public final long f19003c;
+public final class sb implements Runnable {
+    public final int f16302a;
+    public final MessagesController f16303b;
+    public final long f16304c;
     public final long d;
-    public final ArrayList f19004e;
+    public final int e;
+    public final ArrayList f16305f;
 
-    public sb(int i10, long j3, long j10, ArrayList arrayList, MessagesController messagesController) {
-        this.f19001a = i10;
-        this.f19002b = messagesController;
-        this.f19003c = j3;
+    public sb(MessagesController messagesController, long j3, int i10, long j10, ArrayList arrayList, int i11) {
+        this.f16302a = i11;
+        this.f16303b = messagesController;
+        this.f16304c = j3;
+        this.e = i10;
         this.d = j10;
-        this.f19004e = arrayList;
+        this.f16305f = arrayList;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f19001a) {
+    public final void run() {
+        switch (this.f16302a) {
             case 0:
-                this.f19002b.lambda$checkUnreadPollVotesInternal2$430(this.f19003c, this.d, this.f19004e, tLObject, tL_error);
+                int i10 = this.e;
+                ArrayList arrayList = this.f16305f;
+                this.f16303b.lambda$checkUnreadReactionsInternal2$424(this.f16304c, this.d, i10, arrayList);
                 return;
             case 1:
-                this.f19002b.lambda$checkUnreadPollVotesInternal2$432(this.f19003c, this.d, this.f19004e, tLObject, tL_error);
+                int i11 = this.e;
+                ArrayList arrayList2 = this.f16305f;
+                this.f16303b.lambda$checkUnreadPollVotesInternal2$435(this.f16304c, this.d, i11, arrayList2);
                 return;
             case 2:
-                this.f19002b.lambda$checkUnreadPollVotesInternal2$434(this.f19003c, this.d, this.f19004e, tLObject, tL_error);
+                int i12 = this.e;
+                ArrayList arrayList3 = this.f16305f;
+                this.f16303b.lambda$checkUnreadReactionsInternal2$426(this.f16304c, this.d, i12, arrayList3);
                 return;
             case 3:
-                this.f19002b.lambda$checkUnreadReactionsInternal2$423(this.f19003c, this.d, this.f19004e, tLObject, tL_error);
+                int i13 = this.e;
+                ArrayList arrayList4 = this.f16305f;
+                this.f16303b.lambda$checkUnreadPollVotesInternal2$433(this.f16304c, this.d, i13, arrayList4);
                 return;
             case 4:
-                this.f19002b.lambda$checkUnreadReactionsInternal2$425(this.f19003c, this.d, this.f19004e, tLObject, tL_error);
+                int i14 = this.e;
+                ArrayList arrayList5 = this.f16305f;
+                this.f16303b.lambda$checkUnreadReactionsInternal2$428(this.f16304c, this.d, i14, arrayList5);
+                return;
+            case 5:
+                long j3 = this.d;
+                ArrayList arrayList6 = this.f16305f;
+                int i15 = this.e;
+                this.f16303b.lambda$checkUnreadReactionsInternal2$422(this.f16304c, i15, j3, arrayList6);
                 return;
             default:
-                this.f19002b.lambda$checkUnreadReactionsInternal2$427(this.f19003c, this.d, this.f19004e, tLObject, tL_error);
+                long j10 = this.d;
+                ArrayList arrayList7 = this.f16305f;
+                int i16 = this.e;
+                this.f16303b.lambda$checkUnreadPollVotesInternal2$429(this.f16304c, i16, j10, arrayList7);
                 return;
         }
+    }
+
+    public sb(MessagesController messagesController, long j3, long j10, int i10, ArrayList arrayList, int i11) {
+        this.f16302a = i11;
+        this.f16303b = messagesController;
+        this.f16304c = j3;
+        this.d = j10;
+        this.e = i10;
+        this.f16305f = arrayList;
     }
 }

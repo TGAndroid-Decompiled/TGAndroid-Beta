@@ -1,67 +1,51 @@
 package org.telegram.ui;
 
-import android.content.Context;
 import org.telegram.messenger.AndroidUtilities;
-public final class rz0 extends org.telegram.ui.Components.y80 {
-    public final ProfileActivity P0;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.Components.UndoView;
+public final class rz0 implements oq {
+    public final TLRPC.Chat f36493a;
+    public final rq f36494b;
+    public final ProfileActivity f36495c;
 
-    public rz0(ProfileActivity profileActivity, Context context) {
-        super(context);
-        this.P0 = profileActivity;
+    public rz0(ProfileActivity profileActivity, TLRPC.Chat chat, rq rqVar) {
+        this.f36495c = profileActivity;
+        this.f36493a = chat;
+        this.f36494b = rqVar;
     }
 
     @Override
-    public final void setAlpha(float f7) {
-        super.setAlpha(f7);
-        this.P0.B3();
+    public final void a(TLRPC.User user) {
+        int i10;
+        ProfileActivity profileActivity = this.f36495c;
+        UndoView undoView = profileActivity.M;
+        long j3 = -profileActivity.f30389f1;
+        if (profileActivity.E2.megagroup) {
+            i10 = 10;
+        } else {
+            i10 = 9;
+        }
+        undoView.m(j3, user, i10);
     }
 
     @Override
-    public final void setTextColor(int i10) {
-        int l1;
-        super.setTextColor(i10);
-        ProfileActivity profileActivity = this.P0;
-        org.telegram.ui.ActionBar.j5[] j5VarArr = profileActivity.f34001r;
-        org.telegram.ui.ActionBar.j5 j5Var = j5VarArr[2];
-        if (j5Var != null) {
-            j5Var.setTextColor(i10);
-            j5VarArr[3].setTextColor(i10);
-        }
-        m11 m11Var = profileActivity.f33897b6;
-        if (m11Var != null && m11Var.f38570c != (l1 = org.telegram.ui.ActionBar.j6.l1(1.4f, org.telegram.ui.ActionBar.j6.b(-0.02f, 0.15f, i10)))) {
-            m11Var.f38570c = l1;
-            m11Var.invalidateSelf();
-        }
-    }
-
-    @Override
-    public final void setTranslationX(float f7) {
-        super.setTranslationX(f7);
-        ProfileActivity profileActivity = this.P0;
-        profileActivity.Z3();
-        profileActivity.getClass();
-        profileActivity.f34001r[2].setTranslationX(f7);
-        profileActivity.f34001r[3].setTranslationX(f7);
-        org.telegram.ui.Components.hw0 hw0Var = profileActivity.T;
-        if (hw0Var != null) {
-            hw0Var.setTranslationX(f7 - profileActivity.Z3());
-        }
-    }
-
-    @Override
-    public final void setTranslationY(float f7) {
-        super.setTranslationY(f7);
-        ProfileActivity profileActivity = this.P0;
-        org.telegram.ui.ActionBar.j5[] j5VarArr = profileActivity.f34001r;
-        if (profileActivity.T != null) {
-            AndroidUtilities.dp(3.0f);
-            profileActivity.T.getVisibilityFactor();
-        }
-        j5VarArr[2].setTranslationY(f7);
-        j5VarArr[3].setTranslationY(f7);
-        org.telegram.ui.Components.hw0 hw0Var = profileActivity.T;
-        if (hw0Var != null) {
-            hw0Var.setTranslationY(f7 - AndroidUtilities.dp(5.0f));
+    public final void b(int i10, TLRPC.TL_chatAdminRights tL_chatAdminRights, TLRPC.TL_chatBannedRights tL_chatBannedRights, String str) {
+        TLRPC.Chat chat;
+        ProfileActivity profileActivity = this.f36495c;
+        profileActivity.removeSelfFromStack();
+        TLRPC.User user = profileActivity.getMessagesController().getUser(Long.valueOf(profileActivity.f30381e1));
+        if (user != null && (chat = this.f36493a) != null && profileActivity.f30381e1 != 0) {
+            rq rqVar = this.f36494b;
+            if (rqVar.Q && rqVar.getParentLayout() != null) {
+                for (org.telegram.ui.ActionBar.p2 p2Var : rqVar.getParentLayout().getFragmentStack()) {
+                    if (p2Var instanceof wb) {
+                        wb wbVar = (wb) p2Var;
+                        wbVar.W0();
+                        AndroidUtilities.runOnUIThread(new pf0(wbVar, user, chat, 25));
+                        return;
+                    }
+                }
+            }
         }
     }
 }

@@ -1,20 +1,15 @@
 package w7;
 
-import android.util.Log;
+import java.lang.ref.Reference;
+import java.util.ArrayList;
 public abstract class m6 {
-    public static void a(Exception exc, String str, Object... objArr) {
-        if (Log.isLoggable("Vision", 6)) {
-            if (Log.isLoggable("Vision", 3)) {
-                Log.e("Vision", String.format(str, objArr), exc);
+    public static void a(ArrayList arrayList, Object obj) {
+        for (int size = arrayList.size() - 1; size >= 0; size--) {
+            Object obj2 = ((Reference) arrayList.get(size)).get();
+            if (obj2 == null || obj2 == obj) {
+                arrayList.remove(size);
                 return;
             }
-            String format = String.format(str, objArr);
-            String valueOf = String.valueOf(exc);
-            StringBuilder sb2 = new StringBuilder(valueOf.length() + format.length() + 2);
-            sb2.append(format);
-            sb2.append(": ");
-            sb2.append(valueOf);
-            Log.e("Vision", sb2.toString());
         }
     }
 }

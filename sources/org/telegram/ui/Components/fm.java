@@ -1,39 +1,43 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Outline;
 import android.view.View;
-import android.view.ViewOutlineProvider;
-import org.telegram.messenger.AndroidUtilities;
-public final class fm extends ViewOutlineProvider {
-    public final hm f26155a;
+import org.telegram.messenger.MediaController;
+public final class fm implements wl0 {
+    public final ChatAttachAlertPhotoLayout f23031a;
 
-    public fm(hm hmVar) {
-        this.f26155a = hmVar;
+    public fm(ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout) {
+        this.f23031a = chatAttachAlertPhotoLayout;
     }
 
     @Override
-    public final void getOutline(View view, Outline outline) {
-        org.telegram.ui.Cells.s5 s5Var = (org.telegram.ui.Cells.s5) view;
-        if (s5Var.getTag() == null) {
-            return;
+    public final void a(boolean z10) {
+        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.f23031a;
+        chatAttachAlertPhotoLayout.L = z10 ? 1 : 0;
+        chatAttachAlertPhotoLayout.E.c1(true);
+    }
+
+    @Override
+    public final boolean b(int i10) {
+        if (this.f23031a.G.j(i10) == 0) {
+            return true;
         }
-        int intValue = ((Integer) s5Var.getTag()).intValue();
-        hm hmVar = this.f26155a;
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = hmVar.v;
-        if (hmVar.d && chatAttachAlertPhotoLayout.T0 == chatAttachAlertPhotoLayout.U0 && !chatAttachAlertPhotoLayout.O0) {
-            intValue++;
+        return false;
+    }
+
+    @Override
+    public final void c(View view, boolean z10) {
+        if (z10 == this.f23031a.K && (view instanceof org.telegram.ui.Cells.t5)) {
+            org.telegram.ui.Cells.t5 t5Var = (org.telegram.ui.Cells.t5) view;
+            t5Var.f20441w.a(t5Var);
         }
-        if (chatAttachAlertPhotoLayout.f23876g1) {
-            intValue++;
+    }
+
+    @Override
+    public final boolean d(int i10) {
+        MediaController.PhotoEntry M = this.f23031a.G.M(i10);
+        if (M != null && ChatAttachAlertPhotoLayout.f20985s1.containsKey(Integer.valueOf(M.imageId))) {
+            return true;
         }
-        if (intValue == 0) {
-            int dp = AndroidUtilities.dp(16.0f);
-            outline.setRoundRect(0, 0, view.getMeasuredWidth() + dp, view.getMeasuredHeight() + dp, dp);
-        } else if (intValue == chatAttachAlertPhotoLayout.M0 - 1) {
-            int dp2 = AndroidUtilities.dp(16.0f);
-            outline.setRoundRect(-dp2, 0, view.getMeasuredWidth(), view.getMeasuredHeight() + dp2, dp2);
-        } else {
-            outline.setRect(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight());
-        }
+        return false;
     }
 }

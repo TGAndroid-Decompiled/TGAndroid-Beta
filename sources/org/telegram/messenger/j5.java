@@ -1,29 +1,29 @@
 package org.telegram.messenger;
-public final class j5 implements Runnable {
-    public final int f18055a;
-    public final LocaleController f18056b;
-    public final int f18057c;
 
-    public j5(LocaleController localeController, int i10, int i11) {
-        this.f18055a = i11;
-        this.f18056b = localeController;
-        this.f18057c = i10;
+import org.telegram.messenger.ImageLoader;
+public final class j5 implements Runnable {
+    public final int f15501a;
+    public final ImageLoader.HttpImageTask f15502b;
+
+    public j5(ImageLoader.HttpImageTask httpImageTask, int i10) {
+        this.f15501a = i10;
+        this.f15502b = httpImageTask;
     }
 
     @Override
     public final void run() {
-        switch (this.f18055a) {
+        switch (this.f15501a) {
             case 0:
-                LocaleController.u(this.f18056b, this.f18057c);
+                this.f15502b.lambda$onCancelled$6();
                 return;
             case 1:
-                LocaleController.h(this.f18056b, this.f18057c);
+                this.f15502b.lambda$onCancelled$8();
                 return;
             case 2:
-                LocaleController.k(this.f18056b, this.f18057c);
+                this.f15502b.lambda$onPostExecute$5();
                 return;
             default:
-                LocaleController.q(this.f18056b, this.f18057c);
+                this.f15502b.lambda$onCancelled$7();
                 return;
         }
     }

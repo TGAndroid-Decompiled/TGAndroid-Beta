@@ -1,50 +1,42 @@
 package org.telegram.ui.Components;
+public final class a00 implements Runnable {
+    public final int f21331a;
+    public final boolean f21332b;
+    public final boolean f21333c;
+    public final boolean d;
+    public final Object e;
 
-import android.graphics.RectF;
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-public final class a00 implements al0, bl0 {
-    public final k00 f24227a;
-
-    public a00(k00 k00Var) {
-        this.f24227a = k00Var;
+    public a00(Object obj, boolean z10, boolean z11, boolean z12, int i10) {
+        this.f21331a = i10;
+        this.e = obj;
+        this.f21332b = z10;
+        this.f21333c = z11;
+        this.d = z12;
     }
 
     @Override
-    public boolean a(int r24, android.view.View r25) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.a00.a(int, android.view.View):boolean");
-    }
-
-    @Override
-    public void d(float f7, float f10, int i10, View view) {
-        k00 k00Var = this.f24227a;
-        e00 e00Var = k00Var.J;
-        if (!((org.telegram.ui.tw) e00Var).f40868b.f41314j2) {
-            i00 i00Var = (i00) view;
-            if (k00Var.f27648n) {
-                if (i10 != 0) {
-                    int dp = AndroidUtilities.dp(6.0f);
-                    RectF rectF = i00Var.f26934f;
-                    float f11 = dp;
-                    if (rectF.left - f11 < f7 && rectF.right + f11 > f7) {
-                        org.telegram.ui.tw twVar = (org.telegram.ui.tw) k00Var.J;
-                        twVar.d(twVar.f40868b.getMessagesController().getDialogFilters().get(i00Var.f26927b.f26244a));
-                    }
+    public final void run() {
+        switch (this.f21331a) {
+            case 0:
+                c00 c00Var = (c00) this.e;
+                if (this.f21332b) {
+                    g00 g00Var = c00Var.J;
+                    g00Var.f23136a = true;
+                    g00Var.f23139b = true;
                 }
-            } else if (i10 == k00Var.K && e00Var != null) {
-                ((org.telegram.ui.tw) e00Var).f40868b.x4(true, false);
-            } else {
-                k00Var.f(i00Var.f26927b, i10);
-            }
+                if (this.f21333c) {
+                    c00Var.f21943x = true;
+                }
+                long currentTimeMillis = System.currentTimeMillis();
+                if (this.d || Math.abs(c00Var.f21932a0 - currentTimeMillis) > 30) {
+                    c00Var.f21932a0 = currentTimeMillis;
+                    c00Var.f21937d0.run();
+                    return;
+                }
+                return;
+            default:
+                ((org.telegram.ui.xg0) this.e).w1(this.f21332b, this.f21333c, this.d);
+                return;
         }
-    }
-
-    @Override
-    public boolean d1(View view) {
-        return false;
-    }
-
-    @Override
-    public void q0(View view, float f7, float f10) {
     }
 }

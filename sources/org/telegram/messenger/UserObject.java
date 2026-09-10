@@ -75,7 +75,7 @@ public class UserObject {
         if ((peerColor instanceof TLRPC.TL_peerColor) && (peerColor.flags & 1) != 0) {
             return peerColor.color;
         }
-        return (int) (user.f20043id % 7);
+        return (int) (user.f17342id % 7);
     }
 
     public static long getEmojiId(TLRPC.User user) {
@@ -213,7 +213,7 @@ public class UserObject {
         if (user != null && !isDeleted(user)) {
             String removeRTL = AndroidUtilities.removeRTL(AndroidUtilities.removeDiacritics(ContactsController.formatName(user.first_name, user.last_name)));
             if (removeRTL.length() == 0 && !TextUtils.isEmpty(user.phone)) {
-                return w1.j(new StringBuilder("+"), user.phone, gf.b.c());
+                return a2.j(new StringBuilder("+"), user.phone, gf.b.c());
             }
             return removeRTL;
         }
@@ -254,7 +254,7 @@ public class UserObject {
     }
 
     public static boolean isAnonymous(TLRPC.User user) {
-        if (user != null && user.f20043id == 2666000) {
+        if (user != null && user.f17342id == 2666000) {
             return true;
         }
         return false;
@@ -315,7 +315,7 @@ public class UserObject {
 
     public static boolean areGiftsDisabled(TLRPC.UserFull userFull) {
         TLRPC.DisallowedGiftsSettings disallowedGiftsSettings;
-        return (userFull == null || userFull.f20044id != UserConfig.getInstance(UserConfig.selectedAccount).getClientUserId()) && userFull != null && (disallowedGiftsSettings = userFull.disallowed_stargifts) != null && disallowedGiftsSettings.disallow_limited_stargifts && disallowedGiftsSettings.disallow_unlimited_stargifts && disallowedGiftsSettings.disallow_unique_stargifts && disallowedGiftsSettings.disallow_premium_gifts;
+        return (userFull == null || userFull.f17343id != UserConfig.getInstance(UserConfig.selectedAccount).getClientUserId()) && userFull != null && (disallowedGiftsSettings = userFull.disallowed_stargifts) != null && disallowedGiftsSettings.disallow_limited_stargifts && disallowedGiftsSettings.disallow_unlimited_stargifts && disallowedGiftsSettings.disallow_unique_stargifts && disallowedGiftsSettings.disallow_premium_gifts;
     }
 
     public static Long getEmojiStatusDocumentId(TLRPC.EmojiStatus emojiStatus) {
@@ -354,7 +354,7 @@ public class UserObject {
 
     public static boolean isReplyUser(TLRPC.User user) {
         if (user != null) {
-            long j3 = user.f20043id;
+            long j3 = user.f17342id;
             return j3 == 708513 || j3 == 1271266957;
         }
         return false;

@@ -1,38 +1,41 @@
 package org.telegram.messenger;
 
-import android.content.SharedPreferences;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
+import org.telegram.messenger.MediaController;
 public final class w6 implements Runnable {
-    public final int f19492a;
-    public final MediaDataController f19493b;
-    public final TLRPC.TL_error f19494c;
-    public final TLObject d;
-    public final SharedPreferences f19495e;
-    public final boolean[] f19496f;
+    public final int f16839a;
+    public final int f16840b;
+    public final int f16841c;
+    public final Object d;
 
-    public w6(MediaDataController mediaDataController, TLRPC.TL_error tL_error, TLObject tLObject, SharedPreferences sharedPreferences, boolean[] zArr, int i10) {
-        this.f19492a = i10;
-        this.f19493b = mediaDataController;
-        this.f19494c = tL_error;
-        this.d = tLObject;
-        this.f19495e = sharedPreferences;
-        this.f19496f = zArr;
+    public w6(int i10, int i11, String str) {
+        this.f16839a = 3;
+        this.f16840b = i10;
+        this.f16841c = i11;
+        this.d = str;
     }
 
     @Override
     public final void run() {
-        switch (this.f19492a) {
+        switch (this.f16839a) {
             case 0:
-                SharedPreferences sharedPreferences = this.f19495e;
-                boolean[] zArr = this.f19496f;
-                this.f19493b.lambda$loadRecentAndTopReactions$237(this.f19494c, this.d, sharedPreferences, zArr);
+                ((MediaController.AnonymousClass8) this.d).lambda$onStateChanged$0(this.f16840b, this.f16841c);
+                return;
+            case 1:
+                ((MediaDataController) this.d).lambda$processLoadedStickers$106(this.f16840b, this.f16841c);
+                return;
+            case 2:
+                ((NotificationsController) this.d).lambda$deleteNotificationChannelGlobal$43(this.f16840b, this.f16841c);
                 return;
             default:
-                SharedPreferences sharedPreferences2 = this.f19495e;
-                boolean[] zArr2 = this.f19496f;
-                this.f19493b.lambda$loadRecentAndTopReactions$235(this.f19494c, this.d, sharedPreferences2, zArr2);
+                PushListenerController.lambda$sendRegistrationToServer$0(this.f16840b, this.f16841c, (String) this.d);
                 return;
         }
+    }
+
+    public w6(Object obj, int i10, int i11, int i12) {
+        this.f16839a = i12;
+        this.d = obj;
+        this.f16840b = i10;
+        this.f16841c = i11;
     }
 }

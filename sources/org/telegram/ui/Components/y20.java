@@ -1,30 +1,68 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.view.View;
-import android.view.WindowManager;
-import android.widget.FrameLayout;
-import org.telegram.messenger.NotificationCenter;
-public final class y20 extends AnimatorListenerAdapter {
-    public final View f32854a;
-    public final View f32855b;
-    public final WindowManager f32856c;
-    public final View d;
-    public final View f32857e;
-    public final z20 f32858f;
+import java.util.ArrayList;
+import org.telegram.messenger.ChatObject;
+import org.telegram.messenger.MessageObject;
+import org.telegram.tgnet.TLRPC;
+public final class y20 extends s4.o {
+    public final ArrayList f29227b;
+    public final ArrayList f29228c;
+    public final b30 d;
 
-    public y20(z20 z20Var, x20 x20Var, ah.y yVar, WindowManager windowManager, FrameLayout frameLayout, org.telegram.ui.u7 u7Var) {
-        this.f32858f = z20Var;
-        this.f32854a = x20Var;
-        this.f32855b = yVar;
-        this.f32856c = windowManager;
-        this.d = frameLayout;
-        this.f32857e = u7Var;
+    public y20(b30 b30Var, ArrayList arrayList, ArrayList arrayList2) {
+        this.d = b30Var;
+        this.f29227b = arrayList;
+        this.f29228c = arrayList2;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        NotificationCenter.getInstance(this.f32858f.h).doOnIdle(new bi.z2(this.f32854a, this.f32855b, this.f32856c, this.d, this.f32857e, 22));
+    public final boolean a(int i10, int i11) {
+        return true;
+    }
+
+    @Override
+    public final boolean b(int i10, int i11) {
+        TLRPC.GroupCallParticipant groupCallParticipant;
+        TLRPC.GroupCallParticipant groupCallParticipant2;
+        ArrayList arrayList = this.f29227b;
+        int size = arrayList.size();
+        b30 b30Var = this.d;
+        if (i10 < size && i11 < b30Var.e.size()) {
+            return ((ChatObject.VideoParticipant) arrayList.get(i10)).equals(b30Var.e.get(i11));
+        }
+        int size2 = i10 - arrayList.size();
+        int size3 = i11 - b30Var.e.size();
+        ArrayList arrayList2 = this.f29228c;
+        if (size3 >= 0 && size3 < b30Var.f21694f.size() && size2 >= 0 && size2 < arrayList2.size()) {
+            if (MessageObject.getPeerId(((TLRPC.GroupCallParticipant) arrayList2.get(size2)).peer) != MessageObject.getPeerId(((TLRPC.GroupCallParticipant) b30Var.f21694f.get(size3)).peer)) {
+                return false;
+            }
+            return true;
+        }
+        if (i10 < arrayList.size()) {
+            groupCallParticipant = ((ChatObject.VideoParticipant) arrayList.get(i10)).participant;
+        } else {
+            groupCallParticipant = (TLRPC.GroupCallParticipant) arrayList2.get(size2);
+        }
+        if (i11 < b30Var.e.size()) {
+            groupCallParticipant2 = ((ChatObject.VideoParticipant) b30Var.e.get(i11)).participant;
+        } else {
+            groupCallParticipant2 = (TLRPC.GroupCallParticipant) b30Var.f21694f.get(size3);
+        }
+        if (MessageObject.getPeerId(groupCallParticipant.peer) != MessageObject.getPeerId(groupCallParticipant2.peer)) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public final int d() {
+        b30 b30Var = this.d;
+        return b30Var.f21694f.size() + b30Var.e.size();
+    }
+
+    @Override
+    public final int e() {
+        return this.f29228c.size() + this.f29227b.size();
     }
 }

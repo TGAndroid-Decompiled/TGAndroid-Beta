@@ -1,64 +1,83 @@
 package org.telegram.ui.Components;
 
-import android.graphics.ColorFilter;
-import android.graphics.Paint;
-import android.graphics.RectF;
+import android.content.Context;
+import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
-import android.view.animation.DecelerateInterpolator;
+import android.view.MotionEvent;
+import androidx.core.widget.NestedScrollView;
 import org.telegram.messenger.AndroidUtilities;
-public abstract class eq extends Drawable {
-    public final Paint f25773a;
-    public long f25774b;
-    public final RectF f25775c;
-    public float d;
-    public boolean f25776e;
-    public int f25777f;
-    public int f25778g;
+public final class eq extends NestedScrollView {
+    public boolean W;
+    public final iq f22742a0;
 
-    public eq() {
-        this(2.0f);
-    }
-
-    public abstract int a();
-
-    @Override
-    public final void draw(android.graphics.Canvas r18) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.eq.draw(android.graphics.Canvas):void");
+    public eq(iq iqVar, Context context) {
+        super(context);
+        this.f22742a0 = iqVar;
     }
 
     @Override
-    public final int getIntrinsicHeight() {
-        return AndroidUtilities.dp(24.0f);
+    public final void onDraw(Canvas canvas) {
+        int i10;
+        int i11;
+        iq iqVar = this.f22742a0;
+        int i12 = iqVar.f24064f;
+        i10 = ((org.telegram.ui.ActionBar.h3) iqVar).backgroundPaddingTop;
+        int scrollY = (int) ((getScrollY() + (i12 - i10)) - getTranslationY());
+        Drawable drawable = iqVar.f24062b;
+        int measuredWidth = getMeasuredWidth();
+        i11 = ((org.telegram.ui.ActionBar.h3) iqVar).backgroundPaddingTop;
+        drawable.setBounds(0, scrollY, measuredWidth, AndroidUtilities.dp(19.0f) + i11 + iqVar.f24063c.getMeasuredHeight() + scrollY);
+        drawable.draw(canvas);
     }
 
     @Override
-    public final int getIntrinsicWidth() {
-        return AndroidUtilities.dp(24.0f);
+    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        if (motionEvent.getAction() == 0) {
+            iq iqVar = this.f22742a0;
+            if (iqVar.f24064f != 0 && motionEvent.getY() < iqVar.f24064f) {
+                iqVar.dismiss();
+                return true;
+            }
+        }
+        return super.onInterceptTouchEvent(motionEvent);
     }
 
     @Override
-    public final int getOpacity() {
-        return -2;
-    }
-
-    public eq(float f7) {
-        Paint paint = new Paint(1);
-        this.f25773a = paint;
-        new DecelerateInterpolator();
-        this.f25775c = new RectF();
-        this.f25778g = 255;
-        paint.setColor(-1);
-        paint.setStrokeWidth(AndroidUtilities.dp(f7));
-        paint.setStrokeCap(Paint.Cap.ROUND);
-        paint.setStyle(Paint.Style.STROKE);
-        this.f25777f = AndroidUtilities.dp(8.0f);
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        super.onLayout(z10, i10, i11, i12, i13);
+        iq.m(this.f22742a0);
     }
 
     @Override
-    public final void setAlpha(int i10) {
+    public final void onMeasure(int r9, int r10) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.eq.onMeasure(int, int):void");
     }
 
     @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
+    public final void onScrollChanged(int i10, int i11, int i12, int i13) {
+        super.onScrollChanged(i10, i11, i12, i13);
+        iq.m(this.f22742a0);
+    }
+
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        if (!this.f22742a0.isDismissed() && super.onTouchEvent(motionEvent)) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public final void requestLayout() {
+        if (this.W) {
+            return;
+        }
+        super.requestLayout();
+    }
+
+    @Override
+    public final void setTranslationY(float f7) {
+        super.setTranslationY(f7);
+        iq.m(this.f22742a0);
     }
 }

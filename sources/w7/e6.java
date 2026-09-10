@@ -1,33 +1,28 @@
 package w7;
 
-import android.content.ComponentName;
 import android.content.Context;
-import android.content.pm.PackageManager;
-import org.telegram.messenger.ApplicationLoader;
-import org.telegram.ui.lb0;
+import android.widget.TextView;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.Components.m90;
 public abstract class e6 {
-    public static boolean a(lb0 lb0Var) {
-        Context context = ApplicationLoader.applicationContext;
-        int componentEnabledSetting = context.getPackageManager().getComponentEnabledSetting(lb0Var.a(context));
-        if (componentEnabledSetting == 1 || (componentEnabledSetting == 0 && lb0Var == lb0.h)) {
-            return true;
+    public static m90 a(Context context, float f7, int i10, boolean z10, org.telegram.ui.ActionBar.f6 f6Var) {
+        int i11 = org.telegram.ui.ActionBar.j6.gc;
+        m90 m90Var = new m90(context, null);
+        m90Var.setTextSize(1, f7);
+        m90Var.setTextColor(org.telegram.ui.ActionBar.j6.v0(i10, f6Var));
+        m90Var.setLinkTextColor(org.telegram.ui.ActionBar.j6.v0(i11, f6Var));
+        if (z10) {
+            m90Var.setTypeface(AndroidUtilities.bold());
         }
-        return false;
+        return m90Var;
     }
 
-    public static void b(lb0 lb0Var) {
-        lb0[] values;
-        int i10;
-        Context context = ApplicationLoader.applicationContext;
-        PackageManager packageManager = context.getPackageManager();
-        for (lb0 lb0Var2 : lb0.values()) {
-            ComponentName a2 = lb0Var2.a(context);
-            if (lb0Var2 == lb0Var) {
-                i10 = 1;
-            } else {
-                i10 = 2;
-            }
-            packageManager.setComponentEnabledSetting(a2, i10, 1);
+    public static TextView b(Context context, float f7, int i10, boolean z10, org.telegram.ui.ActionBar.f6 f6Var) {
+        TextView g10 = org.telegram.messenger.a2.g(context, 1, f7);
+        g10.setTextColor(org.telegram.ui.ActionBar.j6.v0(i10, f6Var));
+        if (z10) {
+            g10.setTypeface(AndroidUtilities.bold());
         }
+        return g10;
     }
 }

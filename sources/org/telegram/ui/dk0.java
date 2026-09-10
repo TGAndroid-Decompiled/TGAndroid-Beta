@@ -5,36 +5,36 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.MrzRecognizer;
 public final class dk0 implements t9 {
-    public final ek0 f35838a;
+    public final ek0 f31934a;
 
     public dk0(ek0 ek0Var) {
-        this.f35838a = ek0Var;
+        this.f31934a = ek0Var;
     }
 
     @Override
-    public final void K(String str) {
+    public final void J(String str) {
         int i10;
-        String b10 = of.f.b(str);
+        String b10 = nf.f.b(str);
         if (!TextUtils.isEmpty(b10)) {
-            i10 = ((org.telegram.ui.ActionBar.f3) this.f35838a).currentAccount;
-            MessagesController.getInstance(i10).getUserNameResolver().resolve(b10, new bi.f(27));
+            i10 = ((org.telegram.ui.ActionBar.h3) this.f31934a).currentAccount;
+            MessagesController.getInstance(i10).getUserNameResolver().resolve(b10, new gg.g0(24));
             return;
         }
-        AndroidUtilities.runOnUIThread(new org.telegram.ui.Components.ue(25));
+        AndroidUtilities.runOnUIThread(new org.telegram.ui.Components.c30(19));
     }
 
     @Override
-    public final String K0() {
+    public final String J0() {
         return null;
     }
 
     @Override
-    public final boolean f1(String str, l9 l9Var) {
+    public final boolean e1(String str, l9 l9Var) {
         return false;
     }
 
     @Override
-    public final void W0(MrzRecognizer.Result result) {
+    public final void T0(MrzRecognizer.Result result) {
     }
 
     @Override

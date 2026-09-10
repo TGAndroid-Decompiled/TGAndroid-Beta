@@ -1,17 +1,39 @@
 package org.telegram.ui;
 
-import android.app.Activity;
-public final class gl extends org.telegram.ui.Components.w50 {
-    public final co f36738d1;
+import android.graphics.Canvas;
+import android.graphics.RectF;
+public final class gl implements org.telegram.ui.Components.ok0 {
+    public final eo f33132a;
 
-    public gl(co coVar, Activity activity, org.telegram.ui.Components.o50 o50Var, org.telegram.ui.ActionBar.f6 f6Var) {
-        super(activity, o50Var, f6Var, true);
-        this.f36738d1 = coVar;
+    public gl(eo eoVar) {
+        this.f33132a = eoVar;
     }
 
     @Override
-    public final void m(boolean z10, boolean z11) {
-        super.m(z10, z11);
-        this.f36738d1.f35485vc.a(z10, true);
+    public final boolean j() {
+        return true;
+    }
+
+    @Override
+    public final boolean k() {
+        return false;
+    }
+
+    @Override
+    public final void l(android.view.View r24, yg.p0 r25, boolean r26, boolean r27) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.gl.l(android.view.View, yg.p0, boolean, boolean):void");
+    }
+
+    @Override
+    public final boolean t() {
+        return false;
+    }
+
+    @Override
+    public final void s() {
+    }
+
+    @Override
+    public final void r(Canvas canvas, RectF rectF, float f7, float f10, float f11, int i10, boolean z10) {
     }
 }

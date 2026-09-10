@@ -1,20 +1,38 @@
 package di;
-public final class s {
-    public final t f8114a;
-    public final int f8115b;
-    public final int f8116c;
 
-    public s(t tVar, int i10, int i11) {
-        this.f8114a = tVar;
-        this.f8115b = i10;
-        this.f8116c = i11;
+import bi.k6;
+import org.telegram.messenger.FileLog;
+public final class s extends v7.n {
+    public final u f6882a;
+
+    public s(u uVar) {
+        this.f6882a = uVar;
     }
 
-    public final float a(float f7) {
-        return (f7 / this.f8114a.d[this.f8116c]) * this.f8115b;
+    @Override
+    public final void a(int i10, CharSequence charSequence) {
+        FileLog.d("BotBiometry onAuthenticationError " + i10 + " \"" + ((Object) charSequence) + "\"");
+        u uVar = this.f6882a;
+        k6 k6Var = uVar.f6934j;
+        if (k6Var != null) {
+            uVar.f6934j = null;
+            k6Var.run(Boolean.FALSE, null);
+        }
     }
 
-    public final float b(float f7) {
-        return (f7 / this.f8114a.d[this.f8116c]) * (this.f8115b + 1);
+    @Override
+    public final void b() {
+        FileLog.d("BotBiometry onAuthenticationFailed");
+    }
+
+    @Override
+    public final void c(androidx.biometric.t tVar) {
+        FileLog.d("BotBiometry onAuthenticationSucceeded");
+        u uVar = this.f6882a;
+        k6 k6Var = uVar.f6934j;
+        if (k6Var != null) {
+            uVar.f6934j = null;
+            k6Var.run(Boolean.TRUE, tVar);
+        }
     }
 }

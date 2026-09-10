@@ -12,15 +12,15 @@ import java.util.concurrent.Executor;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 public abstract class a {
-    public static ExecutorService f8748a;
-    public static final Object f8749b = new Object();
+    public static ExecutorService f7172a;
+    public static final Object f7173b = new Object();
 
     public static String a(String str, Throwable th2) {
         String replace;
         if (th2 == null) {
             replace = null;
         } else {
-            synchronized (f8749b) {
+            synchronized (f7173b) {
                 Throwable th3 = th2;
                 while (true) {
                     if (th3 != null) {
@@ -81,19 +81,19 @@ public abstract class a {
     }
 
     public static void d(String str, String str2) {
-        synchronized (f8749b) {
+        synchronized (f7173b) {
             Log.d(str, a(str2, null));
         }
     }
 
     public static void e(String str, String str2) {
-        synchronized (f8749b) {
+        synchronized (f7173b) {
             Log.e(str, a(str2, null));
         }
     }
 
     public static void f(String str, String str2, Throwable th2) {
-        synchronized (f8749b) {
+        synchronized (f7173b) {
             Log.e(str, a(str2, th2));
         }
     }
@@ -102,11 +102,11 @@ public abstract class a {
         ExecutorService executorService;
         synchronized (a.class) {
             try {
-                if (f8748a == null) {
-                    String str = d0.f8765a;
-                    f8748a = Executors.newSingleThreadExecutor(new androidx.emoji2.text.a("ExoPlayer:BackgroundExecutor", 1));
+                if (f7172a == null) {
+                    String str = d0.f7188a;
+                    f7172a = Executors.newSingleThreadExecutor(new androidx.emoji2.text.a("ExoPlayer:BackgroundExecutor", 1));
                 }
-                executorService = f8748a;
+                executorService = f7172a;
             } catch (Throwable th2) {
                 throw th2;
             }
@@ -155,7 +155,7 @@ public abstract class a {
     }
 
     public static void i(String str, String str2) {
-        synchronized (f8749b) {
+        synchronized (f7173b) {
             Log.i(str, a(str2, null));
         }
     }
@@ -280,13 +280,13 @@ public abstract class a {
     }
 
     public static void n(String str, String str2) {
-        synchronized (f8749b) {
+        synchronized (f7173b) {
             Log.w(str, a(str2, null));
         }
     }
 
     public static void o(String str, String str2, Throwable th2) {
-        synchronized (f8749b) {
+        synchronized (f7173b) {
             Log.w(str, a(str2, th2));
         }
     }

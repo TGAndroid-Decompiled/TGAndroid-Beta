@@ -1,18 +1,22 @@
 package sg;
+public final class j implements Runnable {
+    public final int f41935a;
+    public final m f41936b;
 
-import android.graphics.Bitmap;
-import java.util.ArrayList;
-public final class j extends b {
-    public final ArrayList d;
-    public final Bitmap f46146e;
-    public final int f46147f;
-
-    public j(android.content.Context r22, int r23, org.telegram.ui.ActionBar.f6 r24) {
-        throw new UnsupportedOperationException("Method not decompiled: sg.j.<init>(android.content.Context, int, org.telegram.ui.ActionBar.f6):void");
+    public j(m mVar, int i10) {
+        this.f41935a = i10;
+        this.f41936b = mVar;
     }
 
     @Override
-    public final s4.h0 a() {
-        return new hg.n0(this, 5);
+    public final void run() {
+        switch (this.f41935a) {
+            case 0:
+                this.f41936b.dismiss();
+                return;
+            default:
+                this.f41936b.onBackPressed();
+                return;
+        }
     }
 }

@@ -1,21 +1,25 @@
 package org.telegram.ui.Components;
 
-import android.animation.ValueAnimator;
-public final class tj0 implements ValueAnimator.AnimatorUpdateListener {
-    public final float f30641a;
-    public final fk0 f30642b;
+import androidx.recyclerview.widget.RecyclerView;
+public final class tj0 extends s4.s0 {
+    public final s4.c0 f27418a;
+    public final zj0 f27419b;
 
-    public tj0(fk0 fk0Var, float f7) {
-        this.f30642b = fk0Var;
-        this.f30641a = f7;
+    public tj0(zj0 zj0Var, s4.c0 c0Var) {
+        this.f27419b = zj0Var;
+        this.f27418a = c0Var;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        fk0 fk0Var = this.f30642b;
-        fk0Var.f26133o0 = floatValue;
-        fk0Var.f26132n0 = (1.0f - fk0Var.f26133o0) * this.f30641a;
-        fk0Var.invalidate();
+    public final void b(RecyclerView recyclerView, int i10, int i11) {
+        int loadCount;
+        zj0 zj0Var = this.f27419b;
+        if (zj0Var.f29708w && zj0Var.f29709x && !zj0Var.v) {
+            int N0 = this.f27418a.N0();
+            loadCount = zj0Var.getLoadCount();
+            if (N0 >= (zj0Var.f29704f.h() - 1) - loadCount) {
+                zj0Var.c();
+            }
+        }
     }
 }

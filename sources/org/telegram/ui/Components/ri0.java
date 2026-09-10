@@ -1,77 +1,65 @@
 package org.telegram.ui.Components;
 
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
 import android.graphics.Paint;
-import android.text.TextPaint;
-import android.text.style.LineHeightSpan;
-import android.text.style.MetricAffectingSpan;
+import android.graphics.Path;
+import android.graphics.drawable.Drawable;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.SharedConfig;
-public final class ri0 extends MetricAffectingSpan implements LineHeightSpan {
-    public si0 f30057a;
+public final class ri0 extends Drawable {
+    public Path f26673a;
+    public Paint f26674b;
+    public float f26675c;
 
-    @Override
-    public final void chooseHeight(CharSequence charSequence, int i10, int i11, int i12, int i13, Paint.FontMetricsInt fontMetricsInt) {
-        int i14;
-        int i15;
-        si0 si0Var = this.f30057a;
-        if (si0Var.f30336b) {
-            int i16 = 2;
-            if (si0Var.f30339f) {
-                i14 = 7;
-            } else {
-                i14 = 2;
-            }
-            if (i10 <= si0Var.f30337c) {
-                int i17 = fontMetricsInt.ascent;
-                if (si0Var.f30340n) {
-                    i15 = 2;
-                } else {
-                    i15 = 0;
-                }
-                fontMetricsInt.ascent = i17 - AndroidUtilities.dp(i15 + i14);
-                int i18 = fontMetricsInt.top;
-                if (!this.f30057a.f30340n) {
-                    i16 = 0;
-                }
-                fontMetricsInt.top = i18 - AndroidUtilities.dp(i16 + i14);
-            }
-            if (i11 >= this.f30057a.d) {
-                float f7 = i14;
-                fontMetricsInt.descent = AndroidUtilities.dp(f7) + fontMetricsInt.descent;
-                fontMetricsInt.bottom = AndroidUtilities.dp(f7) + fontMetricsInt.bottom;
-            }
-        }
+    public final void a() {
+        int dp = AndroidUtilities.dp(18.0f);
+        Path path = this.f26673a;
+        path.reset();
+        float f7 = dp >> 1;
+        path.moveTo(f7, AndroidUtilities.dpf2(4.98f));
+        path.lineTo(AndroidUtilities.dpf2(4.95f), AndroidUtilities.dpf2(9.0f));
+        path.lineTo(dp - AndroidUtilities.dpf2(4.95f), AndroidUtilities.dpf2(9.0f));
+        path.lineTo(f7, AndroidUtilities.dpf2(4.98f));
+        Paint paint = this.f26674b;
+        paint.setStyle(Paint.Style.FILL_AND_STROKE);
+        paint.setStrokeJoin(Paint.Join.ROUND);
+        paint.setStrokeWidth(AndroidUtilities.dpf2(1.0f));
+        this.f26675c = AndroidUtilities.density;
     }
 
     @Override
-    public final void updateDrawState(TextPaint textPaint) {
-        float f7;
-        if (textPaint == null) {
-            return;
+    public final void draw(Canvas canvas) {
+        Paint paint = this.f26674b;
+        if (this.f26675c != AndroidUtilities.density) {
+            a();
         }
-        if (this.f30057a.f30335a) {
-            f7 = 16.0f;
-        } else {
-            f7 = SharedConfig.fontSize - 2;
-        }
-        textPaint.setTextSize(AndroidUtilities.dp(f7));
+        canvas.save();
+        canvas.translate(getBounds().left, getBounds().top);
+        canvas.drawPath(this.f26673a, paint);
+        canvas.drawRect(AndroidUtilities.dpf2(7.56f), AndroidUtilities.dpf2(8.0f), AndroidUtilities.dp(18.0f) - AndroidUtilities.dpf2(7.56f), AndroidUtilities.dpf2(11.1f), paint);
+        canvas.restore();
     }
 
     @Override
-    public final void updateMeasureState(TextPaint textPaint) {
-        float f7;
-        float f10;
-        if (this.f30057a.f30335a) {
-            f7 = 16.0f;
-        } else {
-            f7 = SharedConfig.fontSize - 2;
-        }
-        textPaint.setTextSize(AndroidUtilities.dp(f7));
-        if (this.f30057a.f30335a) {
-            f10 = 1.1f;
-        } else {
-            f10 = 1.0f;
-        }
-        textPaint.setTextScaleX(f10);
+    public final int getIntrinsicHeight() {
+        return AndroidUtilities.dp(18.0f);
+    }
+
+    @Override
+    public final int getIntrinsicWidth() {
+        return AndroidUtilities.dp(18.0f);
+    }
+
+    @Override
+    public final int getOpacity() {
+        return 0;
+    }
+
+    @Override
+    public final void setAlpha(int i10) {
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

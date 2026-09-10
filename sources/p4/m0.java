@@ -8,24 +8,24 @@ import android.os.Messenger;
 import android.os.RemoteException;
 import android.util.Log;
 import android.util.SparseArray;
-import org.telegram.ui.Cells.p6;
+import org.telegram.ui.Cells.r6;
 public final class m0 implements IBinder.DeathRecipient {
-    public final Messenger f43895a;
-    public final g.d f43896b;
-    public final Messenger f43897c;
-    public int f43899f;
-    public int f43900g;
-    public final r0 f43901i;
+    public final Messenger f39739a;
+    public final g.d f39740b;
+    public final Messenger f39741c;
+    public int f39742f;
+    public int f39743g;
+    public final r0 f39744i;
     public int d = 1;
-    public int f43898e = 1;
+    public int e = 1;
     public final SparseArray h = new SparseArray();
 
     public m0(r0 r0Var, Messenger messenger) {
-        this.f43901i = r0Var;
-        this.f43895a = messenger;
+        this.f39744i = r0Var;
+        this.f39739a = messenger;
         g.d dVar = new g.d(this);
-        this.f43896b = dVar;
-        this.f43897c = new Messenger(dVar);
+        this.f39740b = dVar;
+        this.f39741c = new Messenger(dVar);
     }
 
     public final void a(int i10) {
@@ -41,15 +41,15 @@ public final class m0 implements IBinder.DeathRecipient {
         obtain.arg2 = i12;
         obtain.obj = bundle;
         obtain.setData(bundle2);
-        obtain.replyTo = this.f43897c;
+        obtain.replyTo = this.f39741c;
         try {
-            this.f43895a.send(obtain);
+            this.f39739a.send(obtain);
             return true;
         } catch (DeadObjectException unused) {
             return false;
-        } catch (RemoteException e7) {
+        } catch (RemoteException e) {
             if (i10 != 2) {
-                Log.e("MediaRouteProviderProxy", "Could not send message to service.", e7);
+                Log.e("MediaRouteProviderProxy", "Could not send message to service.", e);
                 return false;
             }
             return false;
@@ -58,20 +58,20 @@ public final class m0 implements IBinder.DeathRecipient {
 
     @Override
     public final void binderDied() {
-        this.f43901i.f43931s.post(new l0(this, 1));
+        this.f39744i.f39771s.post(new l0(this, 1));
     }
 
     public final void c(int i10, int i11) {
-        Bundle e7 = p6.e(i11, "volume");
+        Bundle e = r6.e(i11, "volume");
         int i12 = this.d;
         this.d = i12 + 1;
-        b(7, i12, i10, null, e7);
+        b(7, i12, i10, null, e);
     }
 
     public final void d(int i10, int i11) {
-        Bundle e7 = p6.e(i11, "volume");
+        Bundle e = r6.e(i11, "volume");
         int i12 = this.d;
         this.d = i12 + 1;
-        b(8, i12, i10, null, e7);
+        b(8, i12, i10, null, e);
     }
 }

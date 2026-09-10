@@ -1,80 +1,26 @@
 package org.telegram.ui.Components;
 
-import android.hardware.Sensor;
-import android.hardware.SensorEventListener;
-import android.hardware.SensorManager;
-import android.media.AudioManager;
-import android.os.PowerManager;
-import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.BuildVars;
-import org.telegram.messenger.FileLog;
-public final class ht implements SensorEventListener {
-    public int E;
-    public int F;
-    public long G;
-    public boolean I;
-    public boolean J;
-    public float L;
-    public final SensorManager f26860a;
-    public final AudioManager f26861b;
-    public final Sensor f26862c;
-    public final Sensor d;
-    public final Sensor f26863e;
-    public final Sensor f26864f;
-    public final PowerManager.WakeLock h;
-    public boolean f26865n;
-    public boolean f26866r;
-    public g71 f26867s;
-    public boolean v;
-    public long f26868w;
-    public int f26869x;
-    public int f26870y;
-    public long H = 0;
-    public float K = -100.0f;
-    public final float[] M = new float[3];
-    public final float[] N = new float[3];
-    public final float[] O = new float[3];
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.text.style.ReplacementSpan;
+import org.telegram.messenger.AndroidUtilities;
+public final class ht extends ReplacementSpan {
+    public int f23758b;
+    public final Paint f23757a = new Paint(1);
+    public float f23759c = 3.0f;
 
-    public ht() {
-        SensorManager sensorManager = (SensorManager) ApplicationLoader.applicationContext.getSystemService("sensor");
-        this.f26860a = sensorManager;
-        this.f26862c = sensorManager.getDefaultSensor(8);
-        Sensor defaultSensor = sensorManager.getDefaultSensor(10);
-        this.f26863e = defaultSensor;
-        Sensor defaultSensor2 = sensorManager.getDefaultSensor(9);
-        this.f26864f = defaultSensor2;
-        if (defaultSensor == null || defaultSensor2 == null) {
-            if (BuildVars.LOGS_ENABLED) {
-                FileLog.d("gravity or linear sensor not found");
-            }
-            this.d = sensorManager.getDefaultSensor(1);
-            this.f26863e = null;
-            this.f26864f = null;
+    @Override
+    public final void draw(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
+        int color = paint.getColor();
+        Paint paint2 = this.f23757a;
+        if (color != 0) {
+            paint2.setColor(paint.getColor());
         }
-        this.h = ((PowerManager) ApplicationLoader.applicationContext.getSystemService("power")).newWakeLock(32, "telegram:proximity_lock2");
-        this.f26861b = (AudioManager) ApplicationLoader.applicationContext.getSystemService("audio");
-    }
-
-    public final void a() {
-        int i10;
-        g71 g71Var = this.f26867s;
-        if (g71Var == null) {
-            return;
-        }
-        if (this.f26866r) {
-            i10 = 0;
-        } else {
-            i10 = 3;
-        }
-        g71Var.S(i10);
+        canvas.drawCircle(f7 + (AndroidUtilities.dpf2(this.f23759c) / 2.0f), ((i14 - i12) / 2) + this.f23758b, AndroidUtilities.dpf2(3.0f) / 2.0f, paint2);
     }
 
     @Override
-    public final void onSensorChanged(android.hardware.SensorEvent r25) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ht.onSensorChanged(android.hardware.SensorEvent):void");
-    }
-
-    @Override
-    public final void onAccuracyChanged(Sensor sensor, int i10) {
+    public final int getSize(Paint paint, CharSequence charSequence, int i10, int i11, Paint.FontMetricsInt fontMetricsInt) {
+        return AndroidUtilities.dp(this.f23759c);
     }
 }

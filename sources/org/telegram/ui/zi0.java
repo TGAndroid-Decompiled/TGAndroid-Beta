@@ -3,15 +3,15 @@ package org.telegram.ui;
 import java.util.ArrayList;
 import org.telegram.messenger.MessageObject;
 public final class zi0 extends g.p {
-    public final cj0 f43473c;
+    public final cj0 f39354c;
 
     public zi0(cj0 cj0Var) {
-        this.f43473c = cj0Var;
+        this.f39354c = cj0Var;
     }
 
     @Override
     public final int i(int i10) {
-        cj0 cj0Var = this.f43473c;
+        cj0 cj0Var = this.f39354c;
         ArrayList arrayList = cj0Var.N;
         MessageObject messageObject = (MessageObject) arrayList.get((arrayList.size() - 1) - i10);
         MessageObject.GroupedMessages l4 = cj0Var.l(messageObject);

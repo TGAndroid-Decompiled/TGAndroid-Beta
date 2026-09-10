@@ -1,9 +1,10 @@
 package ch;
-
-import android.graphics.Canvas;
-import android.graphics.RectF;
 public interface a {
-    void e(bh.a aVar, RectF rectF);
+    int h();
 
-    void f(Canvas canvas, RectF rectF);
+    int p();
+
+    int w();
+
+    int x();
 }

@@ -1,6 +1,5 @@
 package v3;
 
-import a6.m;
 import b2.p0;
 import c3.h0;
 import c3.k;
@@ -16,44 +15,44 @@ import e9.g0;
 import e9.i0;
 import java.util.List;
 public final class d implements o {
-    public final int f47359a;
-    public final long f47360b;
-    public final v f47361c;
+    public final int f42892a;
+    public final long f42893b;
+    public final v f42894c;
     public final z d;
-    public final w f47362e;
-    public final m f47363f;
-    public final n f47364g;
+    public final w e;
+    public final pb.c f42895f;
+    public final n f42896g;
     public q h;
-    public h0 f47365i;
-    public h0 f47366j;
-    public int f47367k;
-    public p0 f47368l;
-    public long f47369m;
-    public long f47370n;
-    public long f47371o;
-    public long f47372p;
-    public int f47373q;
-    public f f47374r;
-    public boolean f47375s;
-    public boolean f47376t;
-    public long f47377u;
+    public h0 f42897i;
+    public h0 f42898j;
+    public int f42899k;
+    public p0 f42900l;
+    public long f42901m;
+    public long f42902n;
+    public long f42903o;
+    public long f42904p;
+    public int f42905q;
+    public f f42906r;
+    public boolean f42907s;
+    public boolean f42908t;
+    public long f42909u;
 
     public d(int i10) {
         this(i10, -9223372036854775807L);
     }
 
     public final void a() {
-        f fVar = this.f47374r;
+        f fVar = this.f42906r;
         if ((fVar instanceof a) && ((k) fVar).f()) {
-            long j3 = this.f47372p;
-            if (j3 != -1 && j3 != this.f47374r.d()) {
-                a aVar = (a) this.f47374r;
-                this.f47374r = new a(this.f47372p, aVar.f47352i, aVar.f47353j, aVar.f47354k, aVar.h);
+            long j3 = this.f42904p;
+            if (j3 != -1 && j3 != this.f42906r.d()) {
+                a aVar = (a) this.f42906r;
+                this.f42906r = new a(this.f42904p, aVar.f42885i, aVar.f42886j, aVar.f42887k, aVar.h);
                 q qVar = this.h;
                 qVar.getClass();
-                qVar.P1(this.f47374r);
-                this.f47365i.getClass();
-                this.f47374r.l();
+                qVar.G(this.f42906r);
+                this.f42897i.getClass();
+                this.f42906r.l();
             }
         }
     }
@@ -74,20 +73,20 @@ public final class d implements o {
     @Override
     public final void g(q qVar) {
         this.h = qVar;
-        h0 R1 = qVar.R1(0, 1);
-        this.f47365i = R1;
-        this.f47366j = R1;
-        this.h.Z0();
+        h0 I = qVar.I(0, 1);
+        this.f42897i = I;
+        this.f42898j = I;
+        this.h.B();
     }
 
     @Override
     public final void h(long j3, long j10) {
-        this.f47367k = 0;
-        this.f47369m = -9223372036854775807L;
-        this.f47370n = 0L;
-        this.f47373q = 0;
-        this.f47377u = j10;
-        if (!(this.f47374r instanceof b)) {
+        this.f42899k = 0;
+        this.f42901m = -9223372036854775807L;
+        this.f42902n = 0L;
+        this.f42905q = 0;
+        this.f42909u = j10;
+        if (!(this.f42906r instanceof b)) {
             return;
         }
         throw null;
@@ -95,8 +94,8 @@ public final class d implements o {
 
     @Override
     public final List i() {
-        g0 g0Var = i0.f8985b;
-        return a1.f8948e;
+        g0 g0Var = i0.f7384b;
+        return a1.e;
     }
 
     @Override
@@ -105,17 +104,17 @@ public final class d implements o {
     }
 
     public d(int i10, long j3) {
-        this.f47359a = i10;
-        this.f47360b = j3;
-        this.f47361c = new v(10);
+        this.f42892a = i10;
+        this.f42893b = j3;
+        this.f42894c = new v(10);
         this.d = new Object();
-        this.f47362e = new w();
-        this.f47369m = -9223372036854775807L;
-        this.f47363f = new m(7);
+        this.e = new w();
+        this.f42901m = -9223372036854775807L;
+        this.f42895f = new pb.c();
         n nVar = new n();
-        this.f47364g = nVar;
-        this.f47366j = nVar;
-        this.f47372p = -1L;
+        this.f42896g = nVar;
+        this.f42898j = nVar;
+        this.f42904p = -1L;
     }
 
     @Override

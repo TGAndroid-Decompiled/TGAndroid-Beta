@@ -15,7 +15,7 @@ public class w0 extends db.u {
                 if (c10 == 7) {
                     z10 = aVar.n();
                 } else {
-                    throw new RuntimeException("Invalid bitset value type: " + i2.g.E(x10) + "; at path " + aVar.h());
+                    throw new RuntimeException("Invalid bitset value type: " + hc.b.E(x10) + "; at path " + aVar.h());
                 }
             } else {
                 int p5 = aVar.p();
@@ -24,9 +24,9 @@ public class w0 extends db.u {
                 } else if (p5 == 1) {
                     z10 = true;
                 } else {
-                    StringBuilder l4 = i2.g.l(p5, "Invalid bitset value ", ", expected 0 or 1; at path ");
-                    l4.append(aVar.j());
-                    throw new RuntimeException(l4.toString());
+                    StringBuilder m10 = hc.b.m(p5, "Invalid bitset value ", ", expected 0 or 1; at path ");
+                    m10.append(aVar.j());
+                    throw new RuntimeException(m10.toString());
                 }
             }
             if (z10) {

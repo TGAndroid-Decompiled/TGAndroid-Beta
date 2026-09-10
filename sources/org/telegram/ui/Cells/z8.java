@@ -1,31 +1,35 @@
 package org.telegram.ui.Cells;
 
+import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.util.Property;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
+import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.wl;
+import org.telegram.messenger.em;
 public final class z8 extends FrameLayout {
     public static Paint d;
-    public final TextView f23656a;
-    public int f23657b;
-    public float f23658c;
+    public static final int[] e = {-1031100, -29183, -12769, -8792480, -12521994, -12140801, -2984711, -45162, -4473925};
+    public static final int[] f20793f = {-65536, -29183, -256, -16711936, -16711681, -16776961, -2984711, -65281, -1};
+    public final TextView f20794a;
+    public boolean f20795b;
+    public int f20796c;
 
-    public z8(Context context) {
+    public z8(Context context, org.telegram.ui.ActionBar.f6 f6Var) {
         super(context);
         int i10;
-        int i11;
-        this.f23658c = 1.0f;
         if (d == null) {
             d = new Paint(1);
         }
         TextView textView = new TextView(context);
-        this.f23656a = textView;
-        wl.r(textView, -14606047, 1, 16.0f, 1);
+        this.f20794a = textView;
+        em.n(org.telegram.ui.ActionBar.j6.G6, f6Var, textView, 1, 16.0f);
+        textView.setLines(1);
         textView.setMaxLines(1);
         textView.setSingleLine(true);
         if (LocaleController.isRTL) {
@@ -34,46 +38,94 @@ public final class z8 extends FrameLayout {
             i10 = 3;
         }
         textView.setGravity(i10 | 16);
-        textView.setPadding(0, 0, 0, AndroidUtilities.dp(3.0f));
-        boolean z10 = LocaleController.isRTL;
-        int i12 = (z10 ? 5 : 3) | 48;
-        if (z10) {
-            i11 = 21;
-        } else {
-            i11 = 57;
-        }
-        addView(textView, w7.x5.d(-1, -1.0f, i12, i11, 0.0f, z10 ? 57 : 21, 0.0f));
+        addView(textView, w7.a6.d(-1, -1.0f, (LocaleController.isRTL ? 5 : 3) | 48, 21.0f, 0.0f, 21.0f, 0.0f));
     }
 
-    @Override
-    public float getAlpha() {
-        return this.f23658c;
+    public final void a(ArrayList arrayList, boolean z10) {
+        float f7;
+        float f10;
+        setEnabled(z10);
+        TextView textView = this.f20794a;
+        float f11 = 0.5f;
+        if (arrayList != null) {
+            if (z10) {
+                f10 = 1.0f;
+            } else {
+                f10 = 0.5f;
+            }
+            float[] fArr = {f10};
+            Property property = View.ALPHA;
+            arrayList.add(ObjectAnimator.ofFloat(textView, property, fArr));
+            if (z10) {
+                f11 = 1.0f;
+            }
+            arrayList.add(ObjectAnimator.ofFloat(this, property, f11));
+            return;
+        }
+        if (z10) {
+            f7 = 1.0f;
+        } else {
+            f7 = 0.5f;
+        }
+        textView.setAlpha(f7);
+        if (z10) {
+            f11 = 1.0f;
+        }
+        setAlpha(f11);
+    }
+
+    public final void b(int i10, String str, boolean z10) {
+        boolean z11;
+        this.f20794a.setText(str);
+        this.f20795b = z10;
+        this.f20796c = i10;
+        if (!z10 && i10 == 0) {
+            z11 = true;
+        } else {
+            z11 = false;
+        }
+        setWillNotDraw(z11);
+        invalidate();
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
+        Canvas canvas2;
         int measuredWidth;
-        int i10 = this.f23657b;
-        if (i10 != 0) {
-            d.setColor(i10);
-            d.setAlpha((int) (this.f23658c * 255.0f));
-            if (!LocaleController.isRTL) {
-                measuredWidth = AndroidUtilities.dp(28.0f);
+        float dp;
+        int i10;
+        if (this.f20795b) {
+            if (LocaleController.isRTL) {
+                dp = 0.0f;
             } else {
-                measuredWidth = getMeasuredWidth() - AndroidUtilities.dp(28.0f);
+                dp = AndroidUtilities.dp(20.0f);
             }
-            canvas.drawCircle(measuredWidth, getMeasuredHeight() / 2, AndroidUtilities.dp(10.0f), d);
+            float measuredHeight = getMeasuredHeight() - 1;
+            int measuredWidth2 = getMeasuredWidth();
+            if (LocaleController.isRTL) {
+                i10 = AndroidUtilities.dp(20.0f);
+            } else {
+                i10 = 0;
+            }
+            canvas2 = canvas;
+            canvas2.drawLine(dp, measuredHeight, measuredWidth2 - i10, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.j6.f18049k0);
+        } else {
+            canvas2 = canvas;
+        }
+        int i11 = this.f20796c;
+        if (i11 != 0) {
+            d.setColor(i11);
+            if (LocaleController.isRTL) {
+                measuredWidth = AndroidUtilities.dp(33.0f);
+            } else {
+                measuredWidth = getMeasuredWidth() - AndroidUtilities.dp(33.0f);
+            }
+            canvas2.drawCircle(measuredWidth, getMeasuredHeight() / 2, AndroidUtilities.dp(10.0f), d);
         }
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(50.0f), 1073741824));
-    }
-
-    @Override
-    public void setAlpha(float f7) {
-        this.f23658c = f7;
-        invalidate();
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(50.0f) + (this.f20795b ? 1 : 0), 1073741824));
     }
 }

@@ -1,66 +1,36 @@
 package org.telegram.ui.Components;
 
+import android.content.Context;
 import android.view.MotionEvent;
-import org.telegram.tgnet.TLRPC;
-public final class fx extends a51 {
-    public final kz f26218b;
+import android.widget.ImageView;
+import org.telegram.messenger.AndroidUtilities;
+public final class fx extends ImageView {
+    public final rz f23096a;
 
-    public fx(kz kzVar) {
-        this.f26218b = kzVar;
+    public fx(rz rzVar, Context context) {
+        super(context);
+        this.f23096a = rzVar;
     }
 
     @Override
-    public final boolean a() {
-        return this.f26218b.f28013t1.b();
-    }
-
-    @Override
-    public final String[] b() {
-        return this.f26218b.W0;
-    }
-
-    @Override
-    public final boolean c() {
-        return this.f26218b.f28013t1.c();
-    }
-
-    @Override
-    public final boolean d(t41 t41Var, MotionEvent motionEvent) {
-        org.telegram.ui.st q6 = org.telegram.ui.st.q();
-        kz kzVar = this.f26218b;
-        kzVar.getMeasuredHeight();
-        return q6.r(motionEvent, t41Var, kzVar.f27974g2, kzVar.Z1);
-    }
-
-    @Override
-    public final boolean e(t41 t41Var, k kVar, MotionEvent motionEvent) {
-        org.telegram.ui.st q6 = org.telegram.ui.st.q();
-        kz kzVar = this.f26218b;
-        kzVar.getMeasuredHeight();
-        return q6.s(motionEvent, t41Var, kVar, kzVar.f27974g2, kzVar.Z1);
-    }
-
-    @Override
-    public final void f(TLRPC.Document document, Object obj, boolean z10, int i10) {
-        this.f26218b.f28013t1.m(null, document, null, obj, null, z10, i10);
-    }
-
-    @Override
-    public final void g(TLRPC.StickerSetCovered stickerSetCovered, boolean z10) {
-        kz kzVar = this.f26218b;
-        kzVar.f28013t1.r(stickerSetCovered);
-        if (z10) {
-            kzVar.Z(true);
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        sy syVar;
+        int action = motionEvent.getAction();
+        rz rzVar = this.f23096a;
+        if (action == 0) {
+            rzVar.P1 = true;
+            rzVar.Q1 = false;
+            AndroidUtilities.runOnUIThread(new zd(rzVar, 350, 2), 350);
+        } else if (motionEvent.getAction() == 3 || motionEvent.getAction() == 1) {
+            rzVar.P1 = false;
+            if (!rzVar.Q1 && (syVar = rzVar.f26858t1) != null && syVar.k()) {
+                try {
+                    rzVar.f26870x.performHapticFeedback(3);
+                } catch (Exception unused) {
+                }
+            }
         }
-    }
-
-    @Override
-    public final void h(TLRPC.StickerSetCovered stickerSetCovered) {
-        this.f26218b.f28013t1.h(stickerSetCovered);
-    }
-
-    @Override
-    public final void i(String[] strArr) {
-        this.f26218b.W0 = strArr;
+        super.onTouchEvent(motionEvent);
+        return true;
     }
 }

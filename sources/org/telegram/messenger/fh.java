@@ -1,25 +1,21 @@
 package org.telegram.messenger;
 public final class fh implements Runnable {
-    public final int f17695a;
-    public final NotificationsController f17696b;
-    public final long f17697c;
-    public final int d;
+    public final int f15194a;
+    public final NotificationCenter f15195b;
 
-    public fh(NotificationsController notificationsController, long j3, int i10, int i11) {
-        this.f17695a = i11;
-        this.f17696b = notificationsController;
-        this.f17697c = j3;
-        this.d = i10;
+    public fh(NotificationCenter notificationCenter, int i10) {
+        this.f15194a = i10;
+        this.f15195b = notificationCenter;
     }
 
     @Override
     public final void run() {
-        switch (this.f17695a) {
+        switch (this.f15194a) {
             case 0:
-                this.f17696b.lambda$processDeleteStory$15(this.f17697c, this.d);
+                NotificationCenter.g(this.f15195b);
                 return;
             default:
-                this.f17696b.lambda$processReadStories$16(this.f17697c, this.d);
+                NotificationCenter.b(this.f15195b);
                 return;
         }
     }

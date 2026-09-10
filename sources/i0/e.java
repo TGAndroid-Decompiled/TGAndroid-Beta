@@ -2,14 +2,14 @@ package i0;
 
 import android.graphics.Path;
 import android.util.Log;
-import v7.g8;
+import v7.j8;
 public final class e {
-    public char f11455a;
-    public final float[] f11456b;
+    public char f10078a;
+    public final float[] f10079b;
 
     public e(char c10, float[] fArr) {
-        this.f11455a = c10;
-        this.f11456b = fArr;
+        this.f10078a = c10;
+        this.f10079b = fArr;
     }
 
     public static void a(Path path, float f7, float f10, float f11, float f12, float f13, float f14, float f15, boolean z10, boolean z11) {
@@ -149,8 +149,8 @@ public final class e {
         int i13 = 0;
         while (i13 < length) {
             e eVar3 = eVarArr2[i13];
-            char c13 = eVar3.f11455a;
-            float[] fArr3 = eVar3.f11456b;
+            char c13 = eVar3.f10078a;
+            float[] fArr3 = eVar3.f10079b;
             float f19 = fArr2[c11];
             float f20 = fArr2[1];
             float f21 = fArr2[2];
@@ -532,7 +532,7 @@ public final class e {
             fArr2[3] = f22;
             fArr2[4] = f25;
             fArr2[5] = f26;
-            c12 = eVar3.f11455a;
+            c12 = eVar3.f10078a;
             i13++;
             eVarArr2 = eVarArr;
             path2 = path;
@@ -541,8 +541,8 @@ public final class e {
     }
 
     public e(e eVar) {
-        this.f11455a = eVar.f11455a;
-        float[] fArr = eVar.f11456b;
-        this.f11456b = g8.b(fArr, fArr.length);
+        this.f10078a = eVar.f10078a;
+        float[] fArr = eVar.f10079b;
+        this.f10079b = j8.b(fArr, fArr.length);
     }
 }

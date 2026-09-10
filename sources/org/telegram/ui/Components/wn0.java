@@ -1,9 +1,13 @@
 package org.telegram.ui.Components;
-public final class wn0 {
-    public final int f32327a;
-    public int f32328b;
+public final class wn0 extends s4.j {
+    public final org.telegram.ui.gy F;
 
-    public wn0(int i10) {
-        this.f32327a = i10;
+    public wn0(org.telegram.ui.gy gyVar) {
+        this.F = gyVar;
+    }
+
+    @Override
+    public final void P(s4.c1 c1Var) {
+        this.F.invalidate();
     }
 }

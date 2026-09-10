@@ -1,33 +1,46 @@
 package org.telegram.messenger;
 
-import org.telegram.tgnet.TLObject;
+import java.util.ArrayList;
 public final class oc implements Runnable {
-    public final int f18591a = 1;
-    public final MessagesController f18592b;
-    public final long f18593c;
-    public final TLObject d;
+    public final int f15964a = 1;
+    public final MessagesController f15965b;
+    public final long f15966c;
+    public final long d;
+    public final ArrayList e;
 
-    public oc(MessagesController messagesController, long j3, TLObject tLObject) {
-        this.f18592b = messagesController;
-        this.f18593c = j3;
-        this.d = tLObject;
+    public oc(MessagesController messagesController, long j3, long j10, ArrayList arrayList) {
+        this.f15965b = messagesController;
+        this.f15966c = j3;
+        this.d = j10;
+        this.e = arrayList;
     }
 
     @Override
     public final void run() {
-        switch (this.f18591a) {
+        switch (this.f15964a) {
             case 0:
-                this.f18592b.lambda$deleteUserPhoto$114(this.d, this.f18593c);
+                this.f15965b.lambda$processUpdateArray$419(this.f15966c, this.e, this.d);
+                return;
+            case 1:
+                this.f15965b.lambda$checkUnreadPollVotesInternal2$431(this.f15966c, this.d, 0, this.e);
                 return;
             default:
-                this.f18592b.lambda$loadPeerSettings$79(this.f18593c, this.d);
+                this.f15965b.lambda$deleteMessagesByPush$370(this.e, this.f15966c, this.d);
                 return;
         }
     }
 
-    public oc(MessagesController messagesController, TLObject tLObject, long j3) {
-        this.f18592b = messagesController;
-        this.d = tLObject;
-        this.f18593c = j3;
+    public oc(MessagesController messagesController, long j3, ArrayList arrayList, long j10) {
+        this.f15965b = messagesController;
+        this.f15966c = j3;
+        this.e = arrayList;
+        this.d = j10;
+    }
+
+    public oc(MessagesController messagesController, ArrayList arrayList, long j3, long j10) {
+        this.f15965b = messagesController;
+        this.e = arrayList;
+        this.f15966c = j3;
+        this.d = j10;
     }
 }

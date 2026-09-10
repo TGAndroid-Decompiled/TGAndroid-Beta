@@ -1,26 +1,28 @@
 package org.telegram.messenger;
 
 import org.telegram.messenger.LanguageDetector;
-import org.telegram.messenger.TranslateController;
-import org.telegram.tgnet.tl.TL_stories;
 public final class ll implements LanguageDetector.StringCallback, LanguageDetector.ExceptionCallback {
-    public final TranslateController f18339a;
-    public final TL_stories.StoryItem f18340b;
-    public final TranslateController.StoryKey f18341c;
+    public final TranslateController f15735a;
+    public final MessageObject f15736b;
+    public final long f15737c;
+    public final int d;
 
-    public ll(TranslateController translateController, TL_stories.StoryItem storyItem, TranslateController.StoryKey storyKey) {
-        this.f18339a = translateController;
-        this.f18340b = storyItem;
-        this.f18341c = storyKey;
+    public ll(TranslateController translateController, MessageObject messageObject, long j3, int i10) {
+        this.f15735a = translateController;
+        this.f15736b = messageObject;
+        this.f15737c = j3;
+        this.d = i10;
     }
 
     @Override
     public void run(Exception exc) {
-        this.f18339a.lambda$detectStoryLanguage$34(this.f18340b, this.f18341c, exc);
+        this.f15735a.lambda$checkLanguage$15(this.f15736b, this.f15737c, this.d, exc);
     }
 
     @Override
     public void run(String str) {
-        this.f18339a.lambda$detectStoryLanguage$32(this.f18340b, this.f18341c, str);
+        long j3 = this.f15737c;
+        int i10 = this.d;
+        this.f15735a.lambda$checkLanguage$13(this.f15736b, j3, i10, str);
     }
 }

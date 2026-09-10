@@ -1,27 +1,24 @@
 package org.telegram.messenger.voip;
-
-import android.media.AudioManager;
-import org.telegram.messenger.voip.VoIPService;
 public final class s0 implements Runnable {
-    public final int f19445a;
-    public final AudioManager f19446b;
+    public final int f16785a;
+    public final VoIPService f16786b;
 
-    public s0(AudioManager audioManager, int i10) {
-        this.f19445a = i10;
-        this.f19446b = audioManager;
+    public s0(VoIPService voIPService, int i10) {
+        this.f16785a = i10;
+        this.f16786b = voIPService;
     }
 
     @Override
     public final void run() {
-        switch (this.f19445a) {
+        switch (this.f16785a) {
             case 0:
-                VoIPService.AnonymousClass1.lambda$run$1(this.f19446b);
+                VoIPService.i0(this.f16786b);
                 return;
             case 1:
-                VoIPService.lambda$onDestroy$98(this.f19446b);
+                VoIPService.H(this.f16786b);
                 return;
             default:
-                VoIPService.lambda$updateBluetoothHeadsetState$112(this.f19446b);
+                VoIPService.K0(this.f16786b);
                 return;
         }
     }

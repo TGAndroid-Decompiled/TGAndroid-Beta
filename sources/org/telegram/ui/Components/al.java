@@ -1,30 +1,32 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class al extends hg.u0 {
-    public final gl N;
+import org.telegram.messenger.IMapsProvider;
+public final class al implements Runnable {
+    public final int f21530a;
+    public final ll f21531b;
+    public final IMapsProvider.IMapView f21532c;
 
-    public al(gl glVar, Context context, org.telegram.ui.ActionBar.f6 f6Var, boolean z10) {
-        super(context, f6Var, z10, false);
-        this.N = glVar;
+    public al(ll llVar, IMapsProvider.IMapView iMapView, int i10) {
+        this.f21530a = i10;
+        this.f21531b = llVar;
+        this.f21532c = iMapView;
     }
 
     @Override
-    public final void l() {
-        gl glVar = this.N;
-        al alVar = glVar.R;
-        org.telegram.ui.ActionBar.v0 v0Var = glVar.E;
-        if (v0Var != null) {
-            v0Var.setShowSearchProgress(alVar.J);
+    public final void run() {
+        switch (this.f21530a) {
+            case 0:
+                ll.S(this.f21531b, this.f21532c);
+                return;
+            default:
+                IMapsProvider.IMapView iMapView = this.f21532c;
+                try {
+                    iMapView.onCreate(null);
+                } catch (Exception unused) {
+                }
+                AndroidUtilities.runOnUIThread(new al(this.f21531b, iMapView, 0));
+                return;
         }
-        TextView textView = glVar.f26483y;
-        if (textView != null) {
-            textView.setText(AndroidUtilities.replaceTags(LocaleController.formatString("NoPlacesFoundInfo", R.string.NoPlacesFoundInfo, alVar.f11028x)));
-        }
-        super.l();
     }
 }

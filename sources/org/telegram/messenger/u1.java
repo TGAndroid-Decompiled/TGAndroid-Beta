@@ -1,86 +1,27 @@
 package org.telegram.messenger;
 
-import org.telegram.messenger.ContactsController;
-import org.telegram.messenger.MediaController;
-import org.telegram.messenger.SvgHelper;
+import java.util.HashMap;
 public final class u1 implements Runnable {
-    public final int f19138a;
+    public final int f16448a;
+    public final ContactsController f16449b;
+    public final HashMap f16450c;
+    public final HashMap d;
 
-    public u1(int i10) {
-        this.f19138a = i10;
+    public u1(ContactsController contactsController, HashMap hashMap, HashMap hashMap2, int i10) {
+        this.f16448a = i10;
+        this.f16449b = contactsController;
+        this.f16450c = hashMap;
+        this.d = hashMap2;
     }
 
     @Override
     public final void run() {
-        switch (this.f19138a) {
+        switch (this.f16448a) {
             case 0:
-                ContactsController.MyContentObserver.lambda$new$0();
-                return;
-            case 1:
-                MediaController.GalleryObserverExternal.lambda$onChange$0();
-                return;
-            case 2:
-                AppStartReceiver.a();
-                return;
-            case 3:
-                FileLog.dumpANR();
-                return;
-            case 4:
-                ApplicationLoader.startPushService();
-                return;
-            case 5:
-                ApplicationLoader.lambda$initPushServices$0();
-                return;
-            case 6:
-                BotGuardHelper.a();
-                return;
-            case 7:
-                CodeHighlighting.f();
-                return;
-            case 8:
-                Emoji.lambda$static$0();
-                return;
-            case 9:
-                KeepAliveJob.b();
-                return;
-            case 10:
-                KeepAliveJob.a();
-                return;
-            case 11:
-                LocaleController.lambda$applyLanguage$9();
-                return;
-            case 12:
-                LocationController.lambda$setLastKnownLocation$10();
-                return;
-            case 13:
-                LocationSharingService.lambda$onCreate$0();
-                return;
-            case 14:
-                MediaDataController.lambda$cleanup$1();
-                return;
-            case 15:
-                org.telegram.ui.ActionBar.j6.E(false);
-                return;
-            case 16:
-                NotificationCenter.lambda$listen$3();
-                return;
-            case 17:
-                NotificationsController.lambda$dismissNotification$37();
-                return;
-            case 18:
-                SharedConfig.saveConfig();
-                return;
-            case 19:
-                SharedConfig.lambda$checkSdCard$0();
-                return;
-            case 20:
-                SharedConfig.lambda$checkSdCard$2();
-                return;
-            case 21:
-                SharedConfig.lambda$checkSaveToGalleryFiles$5();
+                this.f16449b.lambda$processLoadedContacts$35(this.f16450c, this.d);
                 return;
             default:
-                SvgHelper.SvgDrawable.shiftRunnable = null;
+                this.f16449b.lambda$processLoadedContacts$34(this.f16450c, this.d);
                 return;
         }
     }

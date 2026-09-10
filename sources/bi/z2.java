@@ -1,54 +1,25 @@
 package bi;
 
-import android.graphics.SurfaceTexture;
-import org.telegram.messenger.camera.CameraController;
-import org.telegram.messenger.camera.CameraSession;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_phone;
-import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.j60;
-public final class z2 implements Runnable {
-    public final int f4071a;
-    public final Object f4072b;
-    public final Object f4073c;
-    public final Object d;
-    public final Object f4074e;
-    public final Object f4075f;
+import android.graphics.Canvas;
+import android.graphics.RectF;
+import org.telegram.ui.Components.wr;
+public abstract class z2 {
+    public int f3997a;
+    public float f3998b;
+    public float f3999c;
+    public float d = 0.0f;
+    public int e = 0;
+    public final RectF f4000f = new RectF();
+    public final org.telegram.ui.Components.xc f4001g;
+    public final org.telegram.ui.Components.d6 h;
 
-    public z2(o5 o5Var, Runnable runnable, TLRPC.TL_error tL_error, TL_stories.StoryItem storyItem, di.ga gaVar) {
-        this.f4071a = 1;
-        this.f4073c = o5Var;
-        this.f4072b = runnable;
-        this.d = tL_error;
-        this.f4074e = storyItem;
-        this.f4075f = gaVar;
+    public z2(d3 d3Var) {
+        this.f4001g = new org.telegram.ui.Components.xc(d3Var);
+        this.h = new org.telegram.ui.Components.d6(d3Var, 350L, wr.h);
     }
 
-    private final void a() {
-        j60.B((j60) this.f4073c, (org.telegram.ui.ActionBar.b2) this.d, (TLObject) this.f4074e, (TL_phone.exportGroupCallInvite) this.f4075f, (TLRPC.TL_error) this.f4072b);
-    }
+    public abstract void a(Canvas canvas, float f7, float f10);
 
-    @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: bi.z2.run():void");
-    }
-
-    public z2(Object obj, Object obj2, Object obj3, Object obj4, Object obj5, int i10) {
-        this.f4071a = i10;
-        this.f4073c = obj;
-        this.d = obj2;
-        this.f4074e = obj3;
-        this.f4075f = obj4;
-        this.f4072b = obj5;
-    }
-
-    public z2(CameraController cameraController, CameraSession cameraSession, Runnable runnable, SurfaceTexture surfaceTexture, Runnable runnable2) {
-        this.f4071a = 11;
-        this.f4073c = cameraController;
-        this.d = cameraSession;
-        this.f4072b = runnable;
-        this.f4074e = surfaceTexture;
-        this.f4075f = runnable2;
+    public void b(boolean z10) {
     }
 }

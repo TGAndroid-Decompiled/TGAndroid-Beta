@@ -10,15 +10,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
 public abstract class p {
-    public final b f10447a;
-    public final String f10448b;
-    public aa.a f10449c;
+    public final b f8588a;
+    public final String f8589b;
+    public aa.a f8590c;
     public final List d;
 
     public p(String str) {
         a.b(str);
-        this.f10448b = str;
-        this.f10447a = new b("MediaControlChannel", null);
+        this.f8589b = str;
+        this.f8588a = new b("MediaControlChannel", null);
         this.d = DesugarCollections.synchronizedList(new ArrayList());
     }
 
@@ -27,37 +27,37 @@ public abstract class p {
     }
 
     public final long b() {
-        aa.a aVar = this.f10449c;
+        aa.a aVar = this.f8590c;
         if (aVar == null) {
-            b bVar = this.f10447a;
-            Log.e(bVar.f10414a, bVar.d("Attempt to generate requestId without a sink", new Object[0]));
+            b bVar = this.f8588a;
+            Log.e(bVar.f8558a, bVar.d("Attempt to generate requestId without a sink", new Object[0]));
             return 0L;
         }
-        return ((AtomicLong) aVar.f384c).getAndIncrement();
+        return ((AtomicLong) aVar.f356c).getAndIncrement();
     }
 
     public final void c(long j3, String str) {
-        aa.a aVar = this.f10449c;
+        aa.a aVar = this.f8590c;
         if (aVar == null) {
-            b bVar = this.f10447a;
-            Log.e(bVar.f10414a, bVar.d("Attempt to send text message without a sink", new Object[0]));
+            b bVar = this.f8588a;
+            Log.e(bVar.f8558a, bVar.d("Attempt to send text message without a sink", new Object[0]));
             return;
         }
-        f0 f0Var = (f0) aVar.f383b;
+        f0 f0Var = (f0) aVar.f355b;
         if (f0Var != null) {
             e0 e0Var = (e0) f0Var;
-            String str2 = this.f10448b;
+            String str2 = this.f8589b;
             a.b(str2);
             if (!TextUtils.isEmpty(str)) {
                 if (str.length() <= 524288) {
-                    com.google.android.gms.common.api.internal.v e7 = com.google.android.gms.common.api.internal.w.e();
-                    e7.f5144c = new b0(e0Var, str2, str, 1);
-                    e7.f5142a = 8405;
-                    e0Var.e(1, e7.a()).addOnFailureListener(new e6.n(aVar, j3, 0));
+                    com.google.android.gms.common.api.internal.v e = com.google.android.gms.common.api.internal.w.e();
+                    e.f4957c = new b0(e0Var, str2, str, 1);
+                    e.f4955a = 8405;
+                    e0Var.e(1, e.a()).addOnFailureListener(new e6.n(aVar, j3, 0));
                     return;
                 }
                 b bVar2 = e0.G;
-                Log.w(bVar2.f10414a, bVar2.d("Message send failed. Message exceeds maximum size", new Object[0]));
+                Log.w(bVar2.f8558a, bVar2.d("Message send failed. Message exceeds maximum size", new Object[0]));
                 throw new IllegalArgumentException("Message exceeds maximum size524288");
             }
             throw new IllegalArgumentException("The message payload cannot be null or empty");

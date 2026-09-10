@@ -1,28 +1,41 @@
 package org.telegram.messenger;
-
-import org.telegram.tgnet.TLRPC;
 public final class tf implements Runnable {
-    public final int f19110a;
-    public final MessagesStorage f19111b;
-    public final TLRPC.EncryptedChat f19112c;
+    public final int f16413a;
+    public final MessagesStorage f16414b;
+    public final long f16415c;
 
-    public tf(MessagesStorage messagesStorage, TLRPC.EncryptedChat encryptedChat, int i10) {
-        this.f19110a = i10;
-        this.f19111b = messagesStorage;
-        this.f19112c = encryptedChat;
+    public tf(int i10, long j3, MessagesStorage messagesStorage) {
+        this.f16413a = i10;
+        this.f16414b = messagesStorage;
+        this.f16415c = j3;
     }
 
     @Override
     public final void run() {
-        switch (this.f19110a) {
+        switch (this.f16413a) {
             case 0:
-                this.f19111b.lambda$updateEncryptedChat$174(this.f19112c);
+                this.f16414b.lambda$deleteStoryPushMessage$39(this.f16415c);
                 return;
             case 1:
-                this.f19111b.lambda$updateEncryptedChatLayer$173(this.f19112c);
+                this.f16414b.lambda$clearUserPhotos$92(this.f16415c);
+                return;
+            case 2:
+                this.f16414b.lambda$removeAllTopics$56(this.f16415c);
+                return;
+            case 3:
+                this.f16414b.lambda$deleteWallpaper$79(this.f16415c);
+                return;
+            case 4:
+                this.f16414b.lambda$deleteSavedDialog$55(this.f16415c);
+                return;
+            case 5:
+                this.f16414b.lambda$onDeleteQueryComplete$91(this.f16415c);
+                return;
+            case 6:
+                this.f16414b.lambda$removePendingTask$11(this.f16415c);
                 return;
             default:
-                this.f19111b.lambda$updateEncryptedChatTTL$172(this.f19112c);
+                this.f16414b.lambda$loadChannelAdmins$123(this.f16415c);
                 return;
         }
     }

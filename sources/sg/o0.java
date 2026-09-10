@@ -1,138 +1,129 @@
 package sg;
 
 import android.content.Context;
-import android.graphics.Paint;
+import android.text.SpannableStringBuilder;
+import android.text.TextUtils;
 import android.view.View;
-import android.widget.FrameLayout;
-import java.util.ArrayList;
+import android.view.ViewGroup;
+import android.widget.TextView;
+import com.google.android.gms.internal.vision.e2;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
-import org.telegram.messenger.Utilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.R;
+import org.telegram.messenger.UserConfig;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.ActionBar.f6;
+import org.telegram.ui.ActionBar.h3;
 import org.telegram.ui.ActionBar.j6;
-import org.telegram.ui.Components.pr;
-import org.telegram.ui.lb0;
-import w7.x5;
-public final class o0 extends FrameLayout implements m0 {
-    public final f6 f46217a;
-    public final ArrayList f46218b;
-    public final n0 f46219c;
-    public final n0 d;
-    public final n0 f46220e;
-    public final boolean f46221f;
+import org.telegram.ui.Cells.c7;
+import org.telegram.ui.Cells.m4;
+import org.telegram.ui.Components.m90;
+import org.telegram.ui.Components.ul0;
+import pg.f2;
+public final class o0 extends ul0 {
+    public final u0 f41964c;
 
-    public o0(Context context, f6 f6Var) {
-        super(context);
-        lb0[] values;
-        this.f46218b = new ArrayList();
-        this.f46217a = f6Var;
-        for (lb0 lb0Var : lb0.values()) {
-            if (lb0Var.f38291e) {
-                this.f46218b.add(lb0Var);
-            }
-            if (this.f46218b.size() == 3) {
-                break;
-            }
-        }
-        if (this.f46218b.size() < 3) {
-            FileLog.e(new IllegalArgumentException("There should be at least 3 premium icons!"));
-            this.f46221f = true;
-            return;
-        }
-        this.f46219c = a(context, 0);
-        this.d = a(context, 1);
-        this.f46220e = a(context, 2);
-        setClipChildren(false);
-    }
-
-    public final n0 a(Context context, int i10) {
-        lb0 lb0Var = (lb0) this.f46218b.get(i10);
-        ?? qVar = new org.telegram.ui.Cells.q(context);
-        y1 y1Var = new y1(20);
-        qVar.f46211e = y1Var;
-        Paint paint = new Paint(1);
-        qVar.f46212f = paint;
-        y1Var.f46387r = 12;
-        y1Var.f46388s = 8;
-        y1Var.f46389t = 6;
-        if (i10 == 1) {
-            y1Var.N = 1001;
-        }
-        if (i10 == 0) {
-            y1Var.N = 1002;
-        }
-        y1Var.O = this.f46217a;
-        y1Var.P = j6.Zj;
-        y1Var.c();
-        paint.setColor(-1);
-        qVar.setLayoutParams(x5.d(-2, -2.0f, 17, 0.0f, 52.0f, 0.0f, 0.0f));
-        qVar.setForeground(lb0Var.f38290c);
-        qVar.setBackgroundResource(lb0Var.f38289b);
-        qVar.setPadding(AndroidUtilities.dp(8.0f));
-        qVar.setBackgroundOuterPadding(AndroidUtilities.dp(32.0f));
-        addView(qVar);
-        return qVar;
+    public o0(u0 u0Var) {
+        this.f41964c = u0Var;
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(i10, i11);
-        if (this.f46221f) {
-            return;
+    public final boolean D(s4.c1 c1Var) {
+        if (c1Var.f41613f == 3) {
+            return true;
         }
-        int min = Math.min(View.MeasureSpec.getSize(i10), View.MeasureSpec.getSize(i11));
-        int dp = AndroidUtilities.dp(76.0f);
-        FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) this.f46219c.getLayoutParams();
-        layoutParams.height = dp;
-        layoutParams.width = dp;
-        float f7 = dp;
-        layoutParams.bottomMargin = (int) ((min * 0.1f) + f7);
-        FrameLayout.LayoutParams layoutParams2 = (FrameLayout.LayoutParams) this.d.getLayoutParams();
-        layoutParams2.height = dp;
-        layoutParams2.width = dp;
-        int i12 = (int) (f7 * 0.95f);
-        layoutParams2.rightMargin = i12;
-        FrameLayout.LayoutParams layoutParams3 = (FrameLayout.LayoutParams) this.f46220e.getLayoutParams();
-        layoutParams3.height = dp;
-        layoutParams3.width = dp;
-        layoutParams3.leftMargin = i12;
+        return false;
     }
 
     @Override
-    public void setOffset(float f7) {
-        if (this.f46221f) {
-            return;
+    public final int h() {
+        return this.f41964c.Y.size() + 3;
+    }
+
+    @Override
+    public final int j(int i10) {
+        if (i10 != 0) {
+            int i11 = 1;
+            if (i10 != 1) {
+                i11 = 2;
+                if (i10 != 2) {
+                    return 3;
+                }
+            }
+            return i11;
         }
-        float abs = Math.abs(f7 / getMeasuredWidth());
-        float interpolation = pr.f29495i.getInterpolation(abs);
-        int right = getRight();
-        n0 n0Var = this.f46220e;
-        n0Var.setTranslationX(((n0Var.getWidth() * 1.5f) + (right - n0Var.getRight()) + AndroidUtilities.dp(32.0f)) * interpolation);
-        n0Var.setTranslationY(AndroidUtilities.dp(16.0f) * interpolation);
-        float f10 = 1.0f;
-        float clamp = Utilities.clamp(AndroidUtilities.lerp(1.0f, 1.5f, interpolation), 1.0f, 0.0f);
-        n0Var.setScaleX(clamp);
-        n0Var.setScaleY(clamp);
-        int top = getTop();
-        n0 n0Var2 = this.f46219c;
-        n0Var2.setTranslationY((((top - n0Var2.getTop()) - (n0Var2.getHeight() * 1.8f)) - AndroidUtilities.dp(32.0f)) * abs);
-        n0Var2.setTranslationX(AndroidUtilities.dp(16.0f) * abs);
-        float clamp2 = Utilities.clamp(AndroidUtilities.lerp(1.0f, 1.8f, abs), 1.0f, 0.0f);
-        n0Var2.setScaleX(clamp2);
-        n0Var2.setScaleY(clamp2);
-        float interpolation2 = pr.f29494g.getInterpolation(abs);
-        int left = getLeft();
-        n0 n0Var3 = this.d;
-        n0Var3.setTranslationX((((left - n0Var3.getLeft()) - (n0Var3.getWidth() * 2.5f)) + AndroidUtilities.dp(32.0f)) * interpolation2);
-        n0Var3.setTranslationY(((n0Var3.getHeight() * 2.5f) + (getBottom() - n0Var3.getBottom()) + AndroidUtilities.dp(32.0f)) * interpolation2);
-        float clamp3 = Utilities.clamp(AndroidUtilities.lerp(1.0f, 2.5f, abs), 1.0f, 0.0f);
-        n0Var3.setScaleX(clamp3);
-        n0Var3.setScaleY(clamp3);
-        if (abs < 0.4f) {
-            f10 = abs / 0.4f;
+        return 0;
+    }
+
+    @Override
+    public final void v(s4.c1 c1Var, int i10) {
+        String str;
+        int i11 = c1Var.f41613f;
+        View view = c1Var.f41610a;
+        u0 u0Var = this.f41964c;
+        if (i11 == 3) {
+            TL_stories.TL_myBoost tL_myBoost = (TL_stories.TL_myBoost) u0Var.Y.get(i10 - 3);
+            wg.k kVar = (wg.k) view;
+            kVar.setBoost(tL_myBoost);
+            kVar.c(u0Var.X.contains(tL_myBoost), false);
+        } else if (i11 == 2) {
+            m4 m4Var = (m4) view;
+            m4Var.setTextSize(15.0f);
+            m4Var.setPadding(0, 0, 0, AndroidUtilities.dp(2.0f));
+            m4Var.setText(LocaleController.getString(R.string.BoostingRemoveBoostFrom));
+        } else if (i11 == 0) {
+            t0 t0Var = (t0) view;
+            u0Var.f42011b0 = t0Var;
+            TLRPC.Chat chat = u0Var.Z;
+            m90 m90Var = t0Var.e;
+            try {
+                int i12 = (int) MessagesController.getInstance(UserConfig.selectedAccount).boostsPerSentGift;
+                if (chat == null) {
+                    str = "";
+                } else {
+                    str = chat.title;
+                }
+                SpannableStringBuilder replaceTags = AndroidUtilities.replaceTags(LocaleController.formatPluralString("BoostingReassignBoostTextPluralWithLink", i12, str, "%3$s"));
+                SpannableStringBuilder replaceSingleTag = AndroidUtilities.replaceSingleTag(LocaleController.getString("BoostingReassignBoostTextLink", R.string.BoostingReassignBoostTextLink), j6.gc, 2, new qg.q0(u0Var, 15));
+                int indexOf = TextUtils.indexOf(replaceTags, "%3$s");
+                replaceTags.replace(indexOf, indexOf + 4, (CharSequence) replaceSingleTag);
+                m90Var.setText(replaceTags, TextView.BufferType.EDITABLE);
+                m90Var.post(new f2(t0Var, indexOf, 1));
+            } catch (Exception e) {
+                FileLog.e(e);
+            }
         }
-        n0Var.h = f10;
-        n0Var2.h = f10;
-        n0Var3.h = f10;
+    }
+
+    @Override
+    public final s4.c1 x(ViewGroup viewGroup, int i10) {
+        View view;
+        f6 f6Var;
+        Context context = viewGroup.getContext();
+        u0 u0Var = this.f41964c;
+        if (i10 != 0) {
+            if (i10 != 1) {
+                if (i10 != 2) {
+                    if (i10 == 3) {
+                        f6Var = ((h3) u0Var).resourcesProvider;
+                        view = new wg.k(context, true, false, f6Var, true);
+                    } else {
+                        view = new View(context);
+                    }
+                } else {
+                    view = new m4(context, 22);
+                }
+            } else {
+                view = new c7(context, j6.w0(null, j6.f17872a7, false), 0);
+            }
+        } else {
+            t0 t0Var = new t0(context);
+            t0Var.a(u0Var.X, u0Var.Z);
+            view = t0Var;
+        }
+        return e2.j(view, view, -1, -2);
     }
 }

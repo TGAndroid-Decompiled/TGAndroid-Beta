@@ -6,25 +6,25 @@ import com.google.android.gms.internal.vision.e2;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 public final class j extends h {
-    public static final Pattern f9084e = Pattern.compile(" *$");
+    public static final Pattern e = Pattern.compile(" *$");
 
     @Override
     public final p b() {
         int i10;
         this.d++;
-        p pVar = (p) this.f9070b.d;
+        p pVar = (p) this.f7455b.d;
         if (pVar instanceof s) {
             s sVar = (s) pVar;
-            if (sVar.f2670g.endsWith(" ")) {
-                String str = sVar.f2670g;
-                Matcher matcher = f9084e.matcher(str);
+            if (sVar.f2249g.endsWith(" ")) {
+                String str = sVar.f2249g;
+                Matcher matcher = e.matcher(str);
                 if (matcher.find()) {
                     i10 = matcher.end() - matcher.start();
                 } else {
                     i10 = 0;
                 }
                 if (i10 > 0) {
-                    sVar.f2670g = e2.i(i10, 0, str);
+                    sVar.f2249g = e2.h(i10, 0, str);
                 }
                 if (i10 >= 2) {
                     return new bf.g(1);

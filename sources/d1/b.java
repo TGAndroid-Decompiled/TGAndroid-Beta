@@ -3,33 +3,33 @@ package d1;
 import org.json.JSONException;
 import v0.i;
 public final class b implements Runnable {
-    public final int f6484a;
-    public final e f6485b;
-    public final JSONException f6486c;
+    public final int f6175a;
+    public final e f6176b;
+    public final JSONException f6177c;
 
     public b(e eVar, JSONException jSONException, int i10) {
-        this.f6484a = i10;
-        this.f6485b = eVar;
-        this.f6486c = jSONException;
+        this.f6175a = i10;
+        this.f6176b = eVar;
+        this.f6177c = jSONException;
     }
 
     @Override
     public final void run() {
         y0.a aVar;
-        switch (this.f6484a) {
+        switch (this.f6175a) {
             case 0:
-                i iVar = this.f6485b.f6493f;
+                i iVar = this.f6176b.f6183f;
                 if (iVar != null) {
-                    iVar.onError(new y0.a(new x0.a(4), this.f6486c.getMessage()));
+                    iVar.onError(new y0.a(new x0.a(4), this.f6177c.getMessage()));
                     return;
                 } else {
                     kotlin.jvm.internal.i.h("callback");
                     throw null;
                 }
             default:
-                i iVar2 = this.f6485b.f6493f;
+                i iVar2 = this.f6176b.f6183f;
                 if (iVar2 != null) {
-                    String message = this.f6486c.getMessage();
+                    String message = this.f6177c.getMessage();
                     if (message != null && message.length() > 0) {
                         aVar = new y0.a(new x0.a(4), message);
                     } else {

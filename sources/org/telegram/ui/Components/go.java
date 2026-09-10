@@ -1,42 +1,49 @@
 package org.telegram.ui.Components;
 
-import android.graphics.drawable.Drawable;
-import org.telegram.messenger.ImageReceiver;
-public final class go implements ImageReceiver.ImageReceiverDelegate {
-    public boolean f26496a;
-    public final ig.g f26497b;
-    public final io f26498c;
+import org.telegram.tgnet.TLRPC;
+public final class go implements n8 {
+    public final org.telegram.ui.ActionBar.p1[] f23392a;
+    public final jo f23393b;
 
-    public go(ig.i iVar, ig.g gVar) {
-        this.f26498c = iVar;
-        this.f26497b = gVar;
+    public go(jo joVar, org.telegram.ui.ActionBar.p1[] p1VarArr) {
+        this.f23393b = joVar;
+        this.f23392a = p1VarArr;
     }
 
     @Override
-    public final void didSetImageBitmap(int i10, String str, Drawable drawable) {
-        xi0 xi0Var;
-        yf.e eVar;
-        if (!this.f26496a) {
-            if ((i10 == 0 || i10 == 3) && drawable != null) {
-                this.f26496a = true;
-                boolean z10 = drawable instanceof xi0;
-                ig.g gVar = this.f26497b;
-                if (z10 && (eVar = (xi0Var = (xi0) drawable).D0) != null && eVar.g()) {
-                    xi0Var.C0 = new uc(20, this, gVar);
-                    return;
+    public final void U0(int i10, int i11) {
+        int i12;
+        org.telegram.ui.eo eoVar = this.f23393b.G;
+        if (eoVar != null) {
+            eoVar.getMessagesController().setDialogHistoryTTL(eoVar.a(), i10);
+            TLRPC.ChatFull chatFull = eoVar.Z7;
+            TLRPC.UserFull userFull = eoVar.f32262a8;
+            if (userFull != null || chatFull != null) {
+                eoVar.Q7();
+                UndoView undoView = eoVar.y3;
+                if (undoView != null) {
+                    long a2 = eoVar.a();
+                    TLRPC.User i13 = eoVar.i();
+                    if (userFull != null) {
+                        i12 = userFull.ttl_period;
+                    } else {
+                        i12 = chatFull.ttl_period;
+                    }
+                    undoView.k(a2, i11, i13, Integer.valueOf(i12), null, null);
                 }
-                io.a(this.f26498c);
-                gVar.run();
             }
         }
     }
 
     @Override
-    public final void onAnimationReady(ImageReceiver imageReceiver) {
-        org.telegram.messenger.h5.b(this, imageReceiver);
+    public final void dismiss() {
+        org.telegram.ui.ActionBar.p1 p1Var = this.f23392a[0];
+        if (p1Var != null) {
+            p1Var.dismiss();
+        }
     }
 
     @Override
-    public final void didSetImage(ImageReceiver imageReceiver, boolean z10, boolean z11, boolean z12) {
+    public final void i1() {
     }
 }

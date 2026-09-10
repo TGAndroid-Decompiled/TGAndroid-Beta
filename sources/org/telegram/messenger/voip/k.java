@@ -1,43 +1,32 @@
 package org.telegram.messenger.voip;
-
-import org.telegram.messenger.voip.VideoCapturerDevice;
 public final class k implements Runnable {
-    public final int f19401a;
+    public final int f16746a = 0;
+    public final VideoCapturerDevice f16747b;
+    public final long f16748c;
+    public final int d;
 
-    public k(int i10) {
-        this.f19401a = i10;
+    public k(VideoCapturerDevice videoCapturerDevice, int i10, long j3) {
+        this.f16747b = videoCapturerDevice;
+        this.d = i10;
+        this.f16748c = j3;
     }
 
     @Override
     public final void run() {
-        switch (this.f19401a) {
+        switch (this.f16746a) {
             case 0:
-                VideoCapturerDevice.AnonymousClass1.lambda$onStop$0();
-                return;
-            case 1:
-                VideoCapturerDevice.AnonymousClass2.lambda$onFirstFrameAvailable$0();
-                return;
-            case 2:
-                VoIPPreNotificationService.d();
-                return;
-            case 3:
-                VoIPService.E();
-                return;
-            case 4:
-                VoIPService.R0();
-                return;
-            case 5:
-                VoIPService.O();
-                return;
-            case 6:
-                VoIPService.a1();
-                return;
-            case 7:
-                VoIPService.n0();
+                VideoCapturerDevice.b(this.f16747b, this.d, this.f16748c);
                 return;
             default:
-                VoIPService.r0();
+                long j3 = this.f16748c;
+                VideoCapturerDevice.h(this.f16747b, this.d, j3);
                 return;
         }
+    }
+
+    public k(VideoCapturerDevice videoCapturerDevice, long j3, int i10) {
+        this.f16747b = videoCapturerDevice;
+        this.f16748c = j3;
+        this.d = i10;
     }
 }

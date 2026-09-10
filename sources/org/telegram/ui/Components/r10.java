@@ -1,63 +1,75 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Typeface;
-import android.text.TextUtils;
-import android.widget.TextView;
+import java.util.Iterator;
 import org.telegram.messenger.AndroidUtilities;
-public final class r10 extends e8 {
-    public final Context E;
-    public final FragmentContextView F;
-    public final int f29906y;
+import org.telegram.messenger.LocationController;
+import org.telegram.messenger.MediaController;
+public final class r10 implements org.telegram.ui.ActionBar.s0, le.k, org.telegram.ui.ActionBar.c2, lv0 {
+    public final FragmentContextView f26549a;
 
-    public r10(FragmentContextView fragmentContextView, Context context, Context context2, int i10) {
-        super(context);
-        this.f29906y = i10;
-        this.F = fragmentContextView;
-        this.E = context2;
+    public r10(FragmentContextView fragmentContextView) {
+        this.f26549a = fragmentContextView;
     }
 
     @Override
-    public final TextView a() {
-        switch (this.f29906y) {
-            case 0:
-                TextView textView = new TextView(this.E);
-                textView.setMaxLines(1);
-                textView.setLines(1);
-                textView.setSingleLine(true);
-                textView.setEllipsize(TextUtils.TruncateAt.END);
-                textView.setTextSize(1, 15.0f);
-                textView.setGravity(19);
-                FragmentContextView fragmentContextView = this.F;
-                int i10 = fragmentContextView.T;
-                if (i10 != 0 && i10 != 2) {
-                    if (i10 == 4) {
-                        textView.setGravity(51);
-                        textView.setTextColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f20982t7, fragmentContextView.f24019p0));
-                        textView.setTypeface(AndroidUtilities.bold());
-                        textView.setTextSize(1, 15.0f);
-                    } else if (i10 == 1 || i10 == 3) {
-                        textView.setGravity(19);
-                        textView.setTextColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.A7, fragmentContextView.f24019p0));
-                        textView.setTypeface(AndroidUtilities.bold());
-                        textView.setTextSize(1, 14.0f);
-                    }
-                } else {
-                    textView.setGravity(19);
-                    textView.setTypeface(Typeface.DEFAULT);
-                    textView.setTextSize(1, 15.0f);
-                }
-                return textView;
-            default:
-                TextView textView2 = new TextView(this.E);
-                textView2.setMaxLines(1);
-                textView2.setLines(1);
-                textView2.setSingleLine(true);
-                textView2.setEllipsize(TextUtils.TruncateAt.END);
-                textView2.setGravity(3);
-                textView2.setTextSize(1, 13.0f);
-                textView2.setTextColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f21053x7, this.F.f24019p0));
-                return textView2;
+    public void b(LocationController.SharingLocationInfo sharingLocationInfo) {
+        float[] fArr = FragmentContextView.M0;
+        this.f26549a.k(sharingLocationInfo);
+    }
+
+    @Override
+    public void e(le.l lVar) {
+        FragmentContextView fragmentContextView = this.f26549a;
+        le.l lVar2 = fragmentContextView.K0;
+        float f7 = 1.0f - lVar2.f12892a.d.f12885c.f12893a;
+        fragmentContextView.d.setAlpha(f7);
+        fragmentContextView.d.setScaleX(AndroidUtilities.lerp(0.7f, 1.0f, f7));
+        fragmentContextView.d.setScaleY(AndroidUtilities.lerp(0.7f, 1.0f, f7));
+        Iterator it = lVar2.iterator();
+        while (it.hasNext()) {
+            le.g gVar = (le.g) it.next();
+            float c10 = gVar.c();
+            Object obj = gVar.f12879a;
+            float lerp = AndroidUtilities.lerp(0.7f, 1.0f, c10);
+            kh.c cVar = ((d20) obj).f22276b;
+            cVar.setAlpha(gVar.c());
+            cVar.setScaleX(lerp);
+            cVar.setScaleY(lerp);
         }
+    }
+
+    @Override
+    public void f(org.telegram.ui.ActionBar.d2 d2Var, int i10) {
+        FragmentContextView fragmentContextView = this.f26549a;
+        org.telegram.ui.ActionBar.p2 p2Var = fragmentContextView.h;
+        if (p2Var instanceof org.telegram.ui.wy) {
+            for (int i11 = 0; i11 < 4; i11++) {
+                LocationController.getInstance(i11).removeAllLocationSharings();
+            }
+            return;
+        }
+        LocationController.getInstance(p2Var.getCurrentAccount()).removeSharingLocation(fragmentContextView.f21134n.a());
+    }
+
+    @Override
+    public void m(int i10) {
+        float[] fArr = FragmentContextView.M0;
+        if (i10 >= 0) {
+            float[] fArr2 = FragmentContextView.M0;
+            if (i10 < 6) {
+                MediaController mediaController = MediaController.getInstance();
+                FragmentContextView fragmentContextView = this.f26549a;
+                float playbackSpeed = mediaController.getPlaybackSpeed(fragmentContextView.V);
+                float f7 = fArr2[i10];
+                MediaController.getInstance().setPlaybackSpeed(fragmentContextView.V, f7);
+                if (playbackSpeed != f7) {
+                    fragmentContextView.l(playbackSpeed, f7, false);
+                }
+            }
+        }
+    }
+
+    @Override
+    public void a() {
     }
 }

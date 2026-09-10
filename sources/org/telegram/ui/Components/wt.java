@@ -1,48 +1,23 @@
 package org.telegram.ui.Components;
+public final class wt extends n6 {
+    public final int W;
+    public final EditTextBoldCursor X;
 
-import android.view.ActionMode;
-import android.view.Menu;
-import android.view.MenuItem;
-public final class wt implements ActionMode.Callback {
-    public final ActionMode.Callback f32364a;
-    public final zt f32365b;
-
-    public wt(zt ztVar, ActionMode.Callback callback) {
-        this.f32365b = ztVar;
-        this.f32364a = callback;
+    public wt(int i10, EditTextBoldCursor editTextBoldCursor) {
+        super(false, false, false, false);
+        this.W = i10;
+        this.X = editTextBoldCursor;
     }
 
     @Override
-    public final boolean onActionItemClicked(ActionMode actionMode, MenuItem menuItem) {
-        if (this.f32365b.performMenuAction(menuItem.getItemId())) {
-            actionMode.finish();
-            return true;
+    public final void invalidateSelf() {
+        switch (this.W) {
+            case 0:
+                this.X.invalidate();
+                return;
+            default:
+                this.X.invalidate();
+                return;
         }
-        try {
-            return this.f32364a.onActionItemClicked(actionMode, menuItem);
-        } catch (Exception unused) {
-            return true;
-        }
-    }
-
-    @Override
-    public final boolean onCreateActionMode(ActionMode actionMode, Menu menu) {
-        zt ztVar = this.f32365b;
-        ztVar.copyPasteShowed = true;
-        ztVar.onContextMenuOpen();
-        return this.f32364a.onCreateActionMode(actionMode, menu);
-    }
-
-    @Override
-    public final void onDestroyActionMode(ActionMode actionMode) {
-        zt ztVar = this.f32365b;
-        ztVar.copyPasteShowed = false;
-        ztVar.onContextMenuClose();
-        this.f32364a.onDestroyActionMode(actionMode);
-    }
-
-    @Override
-    public final boolean onPrepareActionMode(ActionMode actionMode, Menu menu) {
-        return this.f32364a.onPrepareActionMode(actionMode, menu);
     }
 }

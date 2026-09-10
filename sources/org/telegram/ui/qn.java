@@ -1,96 +1,58 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.view.MotionEvent;
 import android.view.View;
-import java.util.ArrayList;
-import java.util.Collections;
-public final class qn extends View {
-    public final ArrayList f39945a;
-    public final ArrayList f39946b;
-    public final co f39947c;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.MessageObject;
+public final class qn extends w7.b6 {
+    public MessageObject f36101a;
+    public int f36102b = 0;
+    public boolean f36103c = true;
+    public int d = 0;
+    public int e;
+    public boolean f36104f;
+    public int f36105g;
+    public final eo h;
 
-    public qn(co coVar, Context context) {
-        super(context);
-        this.f39947c = coVar;
-        this.f39945a = new ArrayList();
-        this.f39946b = new ArrayList();
+    public qn(eo eoVar) {
+        this.h = eoVar;
     }
 
+    @Override
     public final void a() {
-        ArrayList arrayList = this.f39945a;
-        arrayList.clear();
-        co coVar = this.f39947c;
-        arrayList.add(coVar.K1);
-        arrayList.add(coVar.f35500x0);
-        arrayList.add(coVar.X);
-        arrayList.add(coVar.K3);
-        arrayList.add(coVar.I1);
-        arrayList.add(coVar.X2);
-        arrayList.add(coVar.Y);
-        arrayList.add(coVar.f35326j1);
-        arrayList.add(coVar.S);
-        arrayList.add(coVar.R1);
-        arrayList.removeAll(Collections.singleton(null));
-    }
-
-    @Override
-    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        return false;
-    }
-
-    @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        co coVar = this.f39947c;
-        coVar.f35434rc = true;
-        ArrayList arrayList = this.f39946b;
-        int size = arrayList.size();
-        int i10 = 0;
-        while (i10 < size) {
-            Object obj = arrayList.get(i10);
-            i10++;
-            ((View) obj).setVisibility(0);
-        }
-        arrayList.clear();
-        coVar.f35434rc = false;
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        a();
-        co coVar = this.f39947c;
-        coVar.f35434rc = true;
-        ArrayList arrayList = this.f39945a;
-        int size = arrayList.size();
-        int i10 = 0;
-        while (i10 < size) {
-            Object obj = arrayList.get(i10);
-            i10++;
-            View view = (View) obj;
-            if (view.getVisibility() == 0) {
-                view.setVisibility(8);
-                this.f39946b.add(view);
+        MessageObject messageObject = this.f36101a;
+        eo eoVar = this.h;
+        if (messageObject != null) {
+            eoVar.A0.T();
+            int indexOf = eoVar.f32509u6.indexOf(this.f36101a) + eoVar.A0.J;
+            if (indexOf >= 0) {
+                eoVar.f32567z0.i1(indexOf, (int) ((this.e + this.f36105g) - eoVar.f32487s9), this.f36104f);
             }
+        } else {
+            eoVar.A0.T();
+            eoVar.f32567z0.i1(this.f36102b, this.d, this.f36103c);
         }
-        coVar.f35434rc = false;
+        this.f36101a = null;
+        eoVar.f32405m3 = true;
+        eoVar.Wc(false);
+        AndroidUtilities.runOnUIThread(new fj(this, 8));
     }
 
     @Override
-    public void setTranslationX(float f7) {
-        super.setTranslationX(f7);
-        a();
-        ArrayList arrayList = this.f39945a;
-        int size = arrayList.size();
-        int i10 = 0;
-        while (i10 < size) {
-            Object obj = arrayList.get(i10);
-            i10++;
-            View view = (View) obj;
-            if (view != null) {
-                view.setTranslationX(f7);
-            }
+    public final void c() {
+        eo eoVar = this.h;
+        eoVar.I9 = eoVar.getNotificationCenter().setAnimationInProgress(eoVar.I9, eo.Nc);
+        xk xkVar = eoVar.f32539wa;
+        if (xkVar.f36468n) {
+            xkVar.d();
+        }
+    }
+
+    @Override
+    public final void d(View view) {
+        if (view instanceof org.telegram.ui.Cells.t1) {
+            org.telegram.ui.Cells.t1 t1Var = (org.telegram.ui.Cells.t1) view;
+            t1Var.setDelegate(null);
+            t1Var.setResourcesProvider(null);
         }
     }
 }

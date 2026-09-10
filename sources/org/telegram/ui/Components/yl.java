@@ -1,39 +1,70 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.view.accessibility.AccessibilityNodeInfo;
-import org.telegram.ui.wd1;
-public final class yl extends org.telegram.ui.ActionBar.v0 {
-    public final int f32967v0;
-    public final Object f32968w0;
+import android.view.MotionEvent;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.PhotoViewer;
+public final class yl extends vl0 {
+    public final int X2;
+    public final ChatAttachAlertPhotoLayout Y2;
 
-    public yl(ni niVar, Context context, org.telegram.ui.ActionBar.z zVar, org.telegram.ui.ActionBar.f6 f6Var, int i10) {
-        super(context, zVar, 0, 0, false, f6Var);
-        this.f32967v0 = i10;
-        this.f32968w0 = niVar;
+    public yl(ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout, Context context, org.telegram.ui.ActionBar.f6 f6Var, int i10) {
+        super(context, f6Var);
+        this.X2 = i10;
+        this.Y2 = chatAttachAlertPhotoLayout;
     }
 
     @Override
-    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        switch (this.f32967v0) {
-            case 0:
-                super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-                accessibilityNodeInfo.setText(((ChatAttachAlertPhotoLayout) this.f32968w0).f23904x.getText());
-                return;
+    public boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        switch (this.X2) {
             case 1:
-                super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-                accessibilityNodeInfo.setText(((qm) this.f32968w0).f29799x.getText());
+                if (motionEvent.getAction() == 0 && motionEvent.getY() < this.Y2.f26422b.f29354b2[0] - AndroidUtilities.dp(80.0f)) {
+                    return false;
+                }
+                return super.onInterceptTouchEvent(motionEvent);
+            default:
+                return super.onInterceptTouchEvent(motionEvent);
+        }
+    }
+
+    @Override
+    public void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        switch (this.X2) {
+            case 1:
+                super.onLayout(z10, i10, i11, i12, i13);
+                PhotoViewer.t1().y0();
                 return;
             default:
-                super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-                accessibilityNodeInfo.setText(((wd1) this.f32968w0).h.getText());
+                super.onLayout(z10, i10, i11, i12, i13);
                 return;
         }
     }
 
-    public yl(wd1 wd1Var, Context context, org.telegram.ui.ActionBar.z zVar) {
-        super(context, zVar, 0, 0);
-        this.f32967v0 = 2;
-        this.f32968w0 = wd1Var;
+    @Override
+    public boolean onTouchEvent(MotionEvent motionEvent) {
+        switch (this.X2) {
+            case 1:
+                if (motionEvent.getAction() == 0 && motionEvent.getY() < this.Y2.f26422b.f29354b2[0] - AndroidUtilities.dp(80.0f)) {
+                    return false;
+                }
+                return super.onTouchEvent(motionEvent);
+            default:
+                return super.onTouchEvent(motionEvent);
+        }
+    }
+
+    @Override
+    public void requestLayout() {
+        switch (this.X2) {
+            case 0:
+                if (!this.Y2.J0) {
+                    super.requestLayout();
+                    return;
+                }
+                return;
+            default:
+                super.requestLayout();
+                return;
+        }
     }
 }

@@ -1,37 +1,90 @@
 package org.telegram.ui.Components;
 
-import android.animation.ValueAnimator;
+import android.app.Activity;
+import android.view.View;
+import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-public final class a9 implements ValueAnimator.AnimatorUpdateListener {
-    public final float f24331a;
-    public final float f24332b;
-    public final boolean f24333c;
-    public final f9 d;
+public final class a9 extends vl0 {
+    public final ArrayList X2;
+    public final int Y2;
+    public int Z2;
+    public final org.telegram.ui.w7 f21437a3;
+    public z8 f21438b3;
+    public final d9 f21439c3;
 
-    public a9(f9 f9Var, float f7, float f10, boolean z10) {
-        this.d = f9Var;
-        this.f24331a = f7;
-        this.f24332b = f10;
-        this.f24333c = z10;
+    public a9(d9 d9Var, Activity activity) {
+        super(activity, null);
+        this.f21439c3 = d9Var;
+        this.X2 = new ArrayList();
+        this.Y2 = 200;
+        this.Z2 = -1;
+        s4.c0 c0Var = new s4.c0();
+        c0Var.j1(0);
+        setLayoutManager(c0Var);
+        for (int i10 = 0; i10 < 7; i10++) {
+            ?? obj = new Object();
+            int i11 = this.Y2;
+            this.Y2 = i11 + 1;
+            obj.f29613a = i11;
+            int[] iArr = d9.f22323c0[i10];
+            obj.f29615c = iArr[0];
+            obj.d = iArr[1];
+            obj.e = iArr[2];
+            obj.f29616f = iArr[3];
+            this.X2.add(obj);
+        }
+        for (int i12 = 0; i12 < 30; i12++) {
+            ?? obj2 = new Object();
+            int i13 = this.Y2;
+            this.Y2 = i13 + 1;
+            obj2.f29613a = i13;
+            int[] iArr2 = d9.f22324d0[i12];
+            obj2.f29615c = iArr2[0];
+            obj2.d = iArr2[1];
+            obj2.e = 0;
+            obj2.f29616f = 0;
+            obj2.f29614b = true;
+            this.X2.add(obj2);
+        }
+        setPadding(AndroidUtilities.dp(4.0f), 0, AndroidUtilities.dp(4.0f), 0);
+        setClipToPadding(false);
+        this.f27971h1 = true;
+        setOnItemClickListener(new k(this, 2));
+        org.telegram.ui.w7 w7Var = new org.telegram.ui.w7(this, 2);
+        this.f21437a3 = w7Var;
+        setAdapter(w7Var);
+        setOverScrollMode(1);
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        org.telegram.ui.ActionBar.k kVar;
-        org.telegram.ui.ActionBar.k kVar2;
-        float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        f9 f9Var = this.d;
-        f9Var.N = floatValue;
-        float lerp = AndroidUtilities.lerp(this.f24331a, this.f24332b, floatValue);
-        kVar = ((org.telegram.ui.ActionBar.n2) f9Var).actionBar;
-        kVar.getTitleTextView().setAlpha(f9Var.N);
-        if (f9Var.F && !this.f24333c) {
-            f9Var.i0(1.0f - f9Var.N, false);
+    public final void onMeasure(int i10, int i11) {
+        int size = View.MeasureSpec.getSize(i10) / this.f21437a3.h();
+        d9 d9Var = this.f21439c3;
+        d9Var.P = size;
+        if (size < AndroidUtilities.dp(39.0f)) {
+            d9Var.P = AndroidUtilities.dp(39.0f);
+        } else if (d9Var.P > AndroidUtilities.dp(150.0f)) {
+            d9Var.P = AndroidUtilities.dp(48.0f);
         }
-        f9Var.f25999r.setTranslationY(lerp);
-        f9Var.f26002x.setTranslationY(lerp);
-        f9Var.fragmentView.invalidate();
-        kVar2 = ((org.telegram.ui.ActionBar.n2) f9Var).actionBar;
-        kVar2.invalidate();
+        super.onMeasure(i10, i11);
+    }
+
+    public final void v1(z8 z8Var) {
+        int i10 = 0;
+        while (true) {
+            ArrayList arrayList = this.X2;
+            if (i10 < arrayList.size()) {
+                if (((z8) arrayList.get(i10)).equals(z8Var)) {
+                    this.Z2 = ((z8) arrayList.get(i10)).f29613a;
+                    break;
+                }
+                i10++;
+            } else {
+                this.f21438b3 = z8Var;
+                this.Z2 = 1;
+                break;
+            }
+        }
+        this.f21437a3.l();
     }
 }

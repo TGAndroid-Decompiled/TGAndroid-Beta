@@ -1,101 +1,58 @@
 package org.telegram.messenger;
 
+import org.telegram.messenger.NotificationCenter;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.Components.q80;
+import org.telegram.ui.TwoStepVerificationActivity;
 public final class ca implements RequestDelegate {
-    public final int f17355a;
-    public final MessagesController f17356b;
+    public final int f14860a;
+    public final Object f14861b;
+    public final boolean f14862c;
+    public final long d;
+    public final Object e;
 
-    public ca(MessagesController messagesController, int i10) {
-        this.f17355a = i10;
-        this.f17356b = messagesController;
+    public ca(MessagesController messagesController, boolean z10, TLRPC.User user, long j3) {
+        this.f14860a = 0;
+        this.f14861b = messagesController;
+        this.f14862c = z10;
+        this.e = user;
+        this.d = j3;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f17355a) {
+        switch (this.f14860a) {
             case 0:
-                this.f17356b.lambda$updateTimerProc$152(tLObject, tL_error);
+                long j3 = this.d;
+                ((MessagesController) this.f14861b).lambda$deleteParticipantFromChat$316(this.f14862c, (TLRPC.User) this.e, j3, tLObject, tL_error);
                 return;
             case 1:
-                this.f17356b.lambda$updateTimerProc$153(tLObject, tL_error);
+                ((MessagesController) this.f14861b).lambda$checkChatInviter$375((TLRPC.Chat) this.e, this.f14862c, this.d, tLObject, tL_error);
                 return;
             case 2:
-                this.f17356b.lambda$loadCurrentState$325(tLObject, tL_error);
-                return;
-            case 3:
-                this.f17356b.lambda$getContentSettings$502(tLObject, tL_error);
-                return;
-            case 4:
-                this.f17356b.lambda$sendBotStart$293(tLObject, tL_error);
-                return;
-            case 5:
-                this.f17356b.lambda$loadSignUpNotificationsSettings$207(tLObject, tL_error);
-                return;
-            case 6:
-                this.f17356b.lambda$reloadDialogsReadValue$64(tLObject, tL_error);
-                return;
-            case 7:
-                this.f17356b.lambda$completeReadTask$238(tLObject, tL_error);
-                return;
-            case 8:
-                this.f17356b.lambda$markMentionMessageAsRead$234(tLObject, tL_error);
-                return;
-            case 9:
-                this.f17356b.lambda$toggleChannelForum$286(tLObject, tL_error);
-                return;
-            case 10:
-                this.f17356b.lambda$setDialogHistoryTTL$137(tLObject, tL_error);
-                return;
-            case 11:
-                this.f17356b.lambda$loadUnreadDialogs$362(tLObject, tL_error);
-                return;
-            case 12:
-                this.f17356b.lambda$checkTosUpdate$163(tLObject, tL_error);
-                return;
-            case 13:
-                this.f17356b.lambda$reloadReactionsNotifySettings$205(tLObject, tL_error);
-                return;
-            case 14:
-                this.f17356b.lambda$loadHintDialogs$196(tLObject, tL_error);
-                return;
-            case 15:
-                this.f17356b.lambda$reloadUser$56(tLObject, tL_error);
-                return;
-            case 16:
-                this.f17356b.lambda$processUpdateArray$414(tLObject, tL_error);
-                return;
-            case 17:
-                this.f17356b.lambda$markMessageContentAsRead$232(tLObject, tL_error);
-                return;
-            case 18:
-                this.f17356b.lambda$loadRemoteFilters$30(tLObject, tL_error);
-                return;
-            case 19:
-                this.f17356b.lambda$didReceivedNotification$43(tLObject, tL_error);
-                return;
-            case 20:
-                this.f17356b.lambda$loadGlobalNotificationsSettings$203(tLObject, tL_error);
-                return;
-            case 21:
-                this.f17356b.lambda$performLogout$322(tLObject, tL_error);
-                return;
-            case 22:
-                this.f17356b.lambda$checkPeerColors$491(tLObject, tL_error);
-                return;
-            case 23:
-                this.f17356b.lambda$checkPeerColors$493(tLObject, tL_error);
-                return;
-            case 24:
-                this.f17356b.lambda$loadSuggestedFilters$25(tLObject, tL_error);
-                return;
-            case 25:
-                this.f17356b.lambda$toggleChannelInvitesHistory$288(tLObject, tL_error);
+                q80.s((q80) this.f14861b, this.d, this.f14862c, (TLRPC.TL_messages_importChatInvite) this.e, tLObject, tL_error);
                 return;
             default:
-                this.f17356b.lambda$toggleChannelSignatures$284(tLObject, tL_error);
+                AndroidUtilities.runOnUIThread(new org.telegram.ui.Components.gg((xh.h) this.f14861b, tL_error, tLObject, (TwoStepVerificationActivity) this.e, this.f14862c, this.d));
                 return;
         }
+    }
+
+    public ca(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, Object obj, boolean z10, long j3, int i10) {
+        this.f14860a = i10;
+        this.f14861b = notificationCenterDelegate;
+        this.e = obj;
+        this.f14862c = z10;
+        this.d = j3;
+    }
+
+    public ca(q80 q80Var, long j3, boolean z10, TLRPC.TL_messages_importChatInvite tL_messages_importChatInvite) {
+        this.f14860a = 2;
+        this.f14861b = q80Var;
+        this.d = j3;
+        this.f14862c = z10;
+        this.e = tL_messages_importChatInvite;
     }
 }

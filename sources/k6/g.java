@@ -8,35 +8,35 @@ import android.os.Build;
 import android.util.Log;
 import java.util.concurrent.atomic.AtomicBoolean;
 public abstract class g {
-    public static boolean f14845b = false;
-    public static boolean f14846c = false;
-    public static final int f14847e = 0;
-    public static final AtomicBoolean f14844a = new AtomicBoolean();
+    public static boolean f12358b = false;
+    public static boolean f12359c = false;
+    public static final int e = 0;
+    public static final AtomicBoolean f12357a = new AtomicBoolean();
     public static final AtomicBoolean d = new AtomicBoolean();
 
     public static boolean a(Context context) {
         try {
-            if (!f14846c) {
+            if (!f12359c) {
                 try {
-                    PackageInfo d10 = w6.b.a(context).d(64, "com.google.android.gms");
-                    h.c(context);
-                    if (d10 != null && !h.g(d10, false) && h.g(d10, true)) {
-                        f14845b = true;
+                    PackageInfo c10 = w6.b.a(context).c(64, "com.google.android.gms");
+                    h.b(context);
+                    if (c10 != null && !h.e(c10, false) && h.e(c10, true)) {
+                        f12358b = true;
                     } else {
-                        f14845b = false;
+                        f12358b = false;
                     }
-                    f14846c = true;
+                    f12359c = true;
                 } catch (PackageManager.NameNotFoundException e7) {
                     Log.w("GooglePlayServicesUtil", "Cannot find Google Play services package name.", e7);
-                    f14846c = true;
+                    f12359c = true;
                 }
             }
-            if (!f14845b && "user".equals(Build.TYPE)) {
+            if (!f12358b && "user".equals(Build.TYPE)) {
                 return false;
             }
             return true;
         } catch (Throwable th2) {
-            f14846c = true;
+            f12359c = true;
             throw th2;
         }
     }

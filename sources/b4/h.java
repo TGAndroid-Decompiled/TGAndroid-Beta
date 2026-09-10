@@ -2,18 +2,18 @@ package b4;
 
 import android.util.SparseArray;
 public final class h {
-    public final int f2494a;
-    public final int f2495b;
-    public final SparseArray f2496c = new SparseArray();
+    public final int f2091a;
+    public final int f2092b;
+    public final SparseArray f2093c = new SparseArray();
     public final SparseArray d = new SparseArray();
-    public final SparseArray f2497e = new SparseArray();
-    public final SparseArray f2498f = new SparseArray();
-    public final SparseArray f2499g = new SparseArray();
+    public final SparseArray e = new SparseArray();
+    public final SparseArray f2094f = new SparseArray();
+    public final SparseArray f2095g = new SparseArray();
     public b h;
-    public d f2500i;
+    public d f2096i;
 
     public h(int i10, int i11) {
-        this.f2494a = i10;
-        this.f2495b = i11;
+        this.f2091a = i10;
+        this.f2092b = i11;
     }
 }

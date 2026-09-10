@@ -11,34 +11,44 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
-public final class si0 implements org.telegram.ui.Components.ek0 {
-    public final org.telegram.ui.ActionBar.n2 f40486a;
-    public final cj0 f40487b;
+public final class si0 implements org.telegram.ui.Components.ok0 {
+    public final org.telegram.ui.ActionBar.p2 f36690a;
+    public final cj0 f36691b;
 
-    public si0(cj0 cj0Var, org.telegram.ui.ActionBar.n2 n2Var) {
-        this.f40487b = cj0Var;
-        this.f40486a = n2Var;
+    public si0(cj0 cj0Var, org.telegram.ui.ActionBar.p2 p2Var) {
+        this.f36691b = cj0Var;
+        this.f36690a = p2Var;
     }
 
     @Override
-    public final void B(View view, ah.j1 j1Var, boolean z10, boolean z11) {
+    public final boolean j() {
+        return true;
+    }
+
+    @Override
+    public final boolean k() {
+        return false;
+    }
+
+    @Override
+    public final void l(View view, yg.p0 p0Var, boolean z10, boolean z11) {
         boolean z12;
         boolean z13;
         TLRPC.TL_availableEffect effect;
-        ah.j1 j1Var2;
-        org.telegram.ui.ActionBar.n2 n2Var;
+        yg.p0 p0Var2;
+        org.telegram.ui.ActionBar.p2 p2Var;
         boolean z14;
         long j3;
         boolean z15;
-        ah.j1 j1Var3;
-        ah.j1 j1Var4 = j1Var;
-        if (j1Var4 != null) {
-            cj0 cj0Var = this.f40487b;
-            qi0 qi0Var = cj0Var.f35162e0;
-            oi0 oi0Var = cj0Var.f35155a0;
-            int i10 = cj0Var.f35158c;
+        yg.p0 p0Var3;
+        yg.p0 p0Var4 = p0Var;
+        if (p0Var4 != null) {
+            cj0 cj0Var = this.f36691b;
+            qi0 qi0Var = cj0Var.f31689e0;
+            oi0 oi0Var = cj0Var.f31683a0;
+            int i10 = cj0Var.f31686c;
             if (qi0Var != null) {
-                if (!UserConfig.getInstance(i10).isPremium() && j1Var4.d) {
+                if (!UserConfig.getInstance(i10).isPremium() && p0Var4.d) {
                     z12 = true;
                 } else {
                     z12 = false;
@@ -49,7 +59,7 @@ public final class si0 implements org.telegram.ui.Components.ek0 {
                     if (messageObject != null) {
                         TLRPC.Message message = messageObject.messageOwner;
                         long j10 = message.effect;
-                        long j11 = j1Var4.f607c;
+                        long j11 = p0Var4.f47100c;
                         if (j11 == j10) {
                             message.flags2 &= -5;
                             message.effect = 0L;
@@ -69,20 +79,20 @@ public final class si0 implements org.telegram.ui.Components.ek0 {
                                 z15 = false;
                             }
                             t1Var2.X3(messageObject, l4, z15, false, false, false);
-                            qi0 qi0Var2 = cj0Var.f35162e0;
+                            qi0 qi0Var2 = cj0Var.f31689e0;
                             if (z14) {
-                                j1Var3 = null;
+                                p0Var3 = null;
                             } else {
-                                j1Var3 = j1Var4;
+                                p0Var3 = p0Var4;
                             }
-                            qi0Var2.setSelectedReactionAnimated(j1Var3);
-                            if (cj0Var.f35162e0.getReactionsWindow() != null && cj0Var.f35162e0.getReactionsWindow().f707m != null) {
-                                ah.o0 o0Var = cj0Var.f35162e0.getReactionsWindow().f707m;
+                            qi0Var2.setSelectedReactionAnimated(p0Var3);
+                            if (cj0Var.f31689e0.getReactionsWindow() != null && cj0Var.f31689e0.getReactionsWindow().f46959m != null) {
+                                yg.y yVar = cj0Var.f31689e0.getReactionsWindow().f46959m;
                                 if (z14) {
-                                    j1Var4 = null;
+                                    p0Var4 = null;
                                 }
-                                o0Var.setSelectedReaction(j1Var4);
-                                cj0Var.f35162e0.getReactionsWindow().f697a.invalidate();
+                                yVar.setSelectedReaction(p0Var4);
+                                cj0Var.f31689e0.getReactionsWindow().f46950a.invalidate();
                             }
                         } else {
                             j3 = j10;
@@ -106,8 +116,8 @@ public final class si0 implements org.telegram.ui.Components.ek0 {
                     } else {
                         return;
                     }
-                } else if (cj0Var.f35170l0 != null) {
-                    long j12 = j1Var4.f607c;
+                } else if (cj0Var.f31697l0 != null) {
+                    long j12 = p0Var4.f47100c;
                     if (j12 == cj0Var.I) {
                         cj0Var.I = 0L;
                         z13 = true;
@@ -126,28 +136,28 @@ public final class si0 implements org.telegram.ui.Components.ek0 {
                         } else {
                             effect = MessagesController.getInstance(i10).getEffect(cj0Var.I);
                         }
-                        org.telegram.ui.Components.o5 o5Var = cj0Var.J;
-                        if (o5Var != null) {
+                        org.telegram.ui.Components.n5 n5Var = cj0Var.J;
+                        if (n5Var != null) {
                             if (cj0Var.I != 0 && effect != null) {
-                                o5Var.g(Emoji.getEmojiDrawable(effect.emoticon), true);
+                                n5Var.g(Emoji.getEmojiDrawable(effect.emoticon), true);
                             } else {
-                                o5Var.g(null, true);
+                                n5Var.g(null, true);
                             }
                         }
-                        qi0 qi0Var3 = cj0Var.f35162e0;
+                        qi0 qi0Var3 = cj0Var.f31689e0;
                         if (z13) {
-                            j1Var2 = null;
+                            p0Var2 = null;
                         } else {
-                            j1Var2 = j1Var4;
+                            p0Var2 = p0Var4;
                         }
-                        qi0Var3.setSelectedReactionAnimated(j1Var2);
-                        if (cj0Var.f35162e0.getReactionsWindow() != null && cj0Var.f35162e0.getReactionsWindow().f707m != null) {
-                            ah.o0 o0Var2 = cj0Var.f35162e0.getReactionsWindow().f707m;
+                        qi0Var3.setSelectedReactionAnimated(p0Var2);
+                        if (cj0Var.f31689e0.getReactionsWindow() != null && cj0Var.f31689e0.getReactionsWindow().f46959m != null) {
+                            yg.y yVar2 = cj0Var.f31689e0.getReactionsWindow().f46959m;
                             if (z13) {
-                                j1Var4 = null;
+                                p0Var4 = null;
                             }
-                            o0Var2.setSelectedReaction(j1Var4);
-                            cj0Var.f35162e0.getReactionsWindow().f697a.invalidate();
+                            yVar2.setSelectedReaction(p0Var4);
+                            cj0Var.f31689e0.getReactionsWindow().f46950a.invalidate();
                         }
                     }
                     oi0Var.c();
@@ -158,25 +168,15 @@ public final class si0 implements org.telegram.ui.Components.ek0 {
                         if (j13 != 0) {
                             tL_message.flags2 |= 4;
                         }
-                        cj0Var.f35155a0.d(null, 0, null, new MessageObject(i10, tL_message, false, false), 0, false, false, 0.0f, 0.0f, true);
+                        cj0Var.f31683a0.d(null, 0, null, new MessageObject(i10, tL_message, false, false), 0, false, false, 0.0f, 0.0f, true);
                     }
                 }
-                if (z12 && (n2Var = this.f40486a) != null) {
-                    new org.telegram.ui.Components.yc(cj0Var.G, cj0Var.f35156b).Q(R.raw.star_premium_2, 36, AndroidUtilities.premiumText(LocaleController.getString(R.string.AnimatedEffectPremium), new ri0(0, n2Var))).j();
+                if (z12 && (p2Var = this.f36690a) != null) {
+                    new org.telegram.ui.Components.wc(cj0Var.G, cj0Var.f31684b).Q(R.raw.star_premium_2, 36, AndroidUtilities.premiumText(LocaleController.getString(R.string.AnimatedEffectPremium), new ri0(0, p2Var))).j();
                 }
                 cj0Var.H.invalidate();
             }
         }
-    }
-
-    @Override
-    public final boolean S() {
-        return false;
-    }
-
-    @Override
-    public final boolean n() {
-        return true;
     }
 
     @Override
@@ -185,10 +185,10 @@ public final class si0 implements org.telegram.ui.Components.ek0 {
     }
 
     @Override
-    public final void J() {
+    public final void s() {
     }
 
     @Override
-    public final void I(Canvas canvas, RectF rectF, float f7, float f10, float f11, int i10, boolean z10) {
+    public final void r(Canvas canvas, RectF rectF, float f7, float f10, float f11, int i10, boolean z10) {
     }
 }

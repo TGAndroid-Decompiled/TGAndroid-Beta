@@ -1,20 +1,20 @@
 package x2;
 
-import u2.o1;
+import u2.q1;
 public final class t {
-    public final int f48790a;
-    public final int[] f48791b;
-    public final o1[] f48792c;
+    public final int f44551a;
+    public final int[] f44552b;
+    public final q1[] f44553c;
     public final int[] d;
-    public final int[][][] f48793e;
-    public final o1 f48794f;
+    public final int[][][] e;
+    public final q1 f44554f;
 
-    public t(int[] iArr, o1[] o1VarArr, int[] iArr2, int[][][] iArr3, o1 o1Var) {
-        this.f48791b = iArr;
-        this.f48792c = o1VarArr;
-        this.f48793e = iArr3;
+    public t(int[] iArr, q1[] q1VarArr, int[] iArr2, int[][][] iArr3, q1 q1Var) {
+        this.f44552b = iArr;
+        this.f44553c = q1VarArr;
+        this.e = iArr3;
         this.d = iArr2;
-        this.f48794f = o1Var;
-        this.f48790a = iArr.length;
+        this.f44554f = q1Var;
+        this.f44551a = iArr.length;
     }
 }

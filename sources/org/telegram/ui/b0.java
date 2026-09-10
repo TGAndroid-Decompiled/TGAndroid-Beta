@@ -1,57 +1,98 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.ApplicationLoader;
-import org.telegram.ui.web.HttpGetFileTask;
+import android.view.WindowManager;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.FileLog;
 public final class b0 implements Runnable {
-    public final int f34603a;
-    public final float f34604b;
-    public final Object f34605c;
+    public final int f31112a;
+    public final j4 f31113b;
 
-    public b0(Object obj, float f7, int i10) {
-        this.f34603a = i10;
-        this.f34605c = obj;
-        this.f34604b = f7;
+    public b0(j4 j4Var, int i10) {
+        this.f31112a = i10;
+        this.f31113b = j4Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f34603a) {
+        float f7;
+        switch (this.f31112a) {
             case 0:
-                ((i4) this.f34605c).f37247h0.M.c(this.f34604b, true);
-                return;
+                j4 j4Var = this.f31113b;
+                j4Var.getClass();
+                try {
+                    if (j4Var.f33906f0.getParent() != null) {
+                        ((WindowManager) j4Var.L.getSystemService("window")).removeView(j4Var.f33906f0);
+                        return;
+                    }
+                    return;
+                } catch (Exception e) {
+                    FileLog.e(e);
+                    return;
+                }
             case 1:
-                org.telegram.ui.Components.ib ibVar = (org.telegram.ui.Components.ib) this.f34605c;
-                if (ibVar.f27085a.getTranslationX() == this.f34604b) {
-                    ibVar.f27095y.b();
+                j4 j4Var2 = this.f31113b;
+                k0 k0Var = j4Var2.f33907g0;
+                if (k0Var != null && j4Var2.f33906f0 != null) {
+                    k0Var.setLayerType(0, null);
+                    j4Var2.Z = 0;
+                    AndroidUtilities.hideKeyboard(j4Var2.L.getCurrentFocus());
                     return;
                 }
                 return;
             case 2:
-                org.telegram.ui.Components.voip.y0 y0Var = (org.telegram.ui.Components.voip.y0) this.f34605c;
-                float f7 = this.f34604b;
-                ni1 ni1Var = y0Var.f31970c;
-                if (f7 > 0.0f) {
-                    int i10 = ni1Var.f31449w;
-                    if (i10 < 2) {
-                        ni1Var.c(i10 + 1, true);
-                    }
-                } else {
-                    int i11 = ni1Var.f31449w;
-                    if (i11 > 0) {
-                        ni1Var.c(i11 - 1, true);
-                    }
-                }
-                y0Var.f31969b = false;
+                AndroidUtilities.runOnUIThread(new b0(this.f31113b, 11));
                 return;
             case 3:
-                ((j80) this.f34605c).f37721f.f38249e.smoothScrollTo(0, (int) this.f34604b);
+                j4 j4Var3 = this.f31113b;
+                float currentProgress = 0.7f - j4Var3.f33908h0.f38106d0.getCurrentProgress();
+                if (currentProgress > 0.0f) {
+                    if (currentProgress < 0.25f) {
+                        f7 = 0.01f;
+                    } else {
+                        f7 = 0.02f;
+                    }
+                    org.telegram.ui.Components.w80 w80Var = j4Var3.f33908h0.f38106d0;
+                    w80Var.a(w80Var.getCurrentProgress() + f7, true);
+                    AndroidUtilities.runOnUIThread(j4Var3.f33910j0, 100L);
+                    return;
+                }
                 return;
             case 4:
-                float f10 = this.f34604b;
-                ApplicationLoader.applicationContext.getSharedPreferences("media_saved_pos", 0).edit().putFloat((String) this.f34605c, f10).commit();
+                AndroidUtilities.runOnUIThread(new b0(this.f31113b, 11));
+                return;
+            case 5:
+                this.f31113b.K.dismiss(true);
+                return;
+            case 6:
+                this.f31113b.K.dismiss(true);
+                return;
+            case 7:
+                j4 j4Var4 = this.f31113b;
+                k0 k0Var2 = j4Var4.f33907g0;
+                if (k0Var2 != null) {
+                    k0Var2.setLayerType(0, null);
+                    j4Var4.Z = 0;
+                    j4Var4.M();
+                    return;
+                }
+                return;
+            case 8:
+                this.f31113b.c0();
+                return;
+            case 9:
+                this.f31113b.h0();
+                return;
+            case 10:
+                org.telegram.ui.ActionBar.p2 U = LaunchActivity.U();
+                if (U != 0) {
+                    ?? obj = new Object();
+                    obj.f18485a = true;
+                    U.showAsSheet(new org.telegram.ui.web.b2(new s(this.f31113b, 3)), obj);
+                    return;
+                }
                 return;
             default:
-                HttpGetFileTask.b((HttpGetFileTask) this.f34605c, this.f34604b);
+                this.f31113b.f0();
                 return;
         }
     }

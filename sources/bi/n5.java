@@ -2,36 +2,34 @@ package bi;
 
 import android.content.Context;
 import android.view.View;
-import java.util.ArrayList;
-public final class n5 {
-    public boolean f3391a;
-    public Object f3392b;
-    public Object d;
-    public Object f3396g;
-    public Object f3393c = k2.b.f14542c;
-    public Object f3394e = k2.e0.f14596a;
-    public Object f3395f = k2.u.f14700a;
+import org.telegram.ui.Components.j61;
+import org.telegram.ui.Components.r61;
+import org.telegram.ui.Components.u51;
+import org.telegram.ui.Components.v51;
+import org.telegram.ui.Components.vl0;
+public final class n5 extends u51 {
+    public static final int f3234a = 0;
 
-    public n5(Context context) {
-        this.f3392b = context;
+    static {
+        u51.setup(new u51());
     }
 
-    public k2.d0 a() {
-        e2.d.g(!this.f3391a);
-        this.f3391a = true;
-        if (((aa.a) this.d) == null) {
-            this.d = new aa.a(new c2.h[0]);
+    @Override
+    public final void bindView(View view, v51 v51Var, boolean z10, j61 j61Var, r61 r61Var) {
+        o5 o5Var = (o5) view;
+        o5Var.a(v51Var.d, v51Var.f27842z, (r9) v51Var.G);
+        o5Var.b(v51Var.e, false);
+        boolean z11 = v51Var.f27824f;
+        if (o5Var.f3313f != z11) {
+            o5Var.f3313f = z11;
+            o5Var.E.a(z11);
+            o5Var.invalidate();
         }
-        if (((pf.b) this.f3396g) == null) {
-            this.f3396g = new pf.b((Context) this.f3392b, 26);
-        }
-        return new k2.d0(this);
+        o5Var.setOnCheckboxClick(v51Var.D);
     }
 
-    public void b() {
-        ArrayList arrayList = (ArrayList) this.f3396g;
-        for (int i10 = 0; i10 < arrayList.size(); i10++) {
-            ((View) arrayList.get(i10)).invalidate();
-        }
+    @Override
+    public final View createView(Context context, vl0 vl0Var, int i10, int i11, org.telegram.ui.ActionBar.f6 f6Var) {
+        return new o5(context, f6Var);
     }
 }

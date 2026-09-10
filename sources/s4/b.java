@@ -1,84 +1,84 @@
 package s4;
 public final class b implements e0 {
-    public final e0 f45741a;
-    public int f45742b = 0;
-    public int f45743c = -1;
+    public final e0 f41586a;
+    public int f41587b = 0;
+    public int f41588c = -1;
     public int d = -1;
 
     public b(e0 e0Var) {
-        this.f45741a = e0Var;
+        this.f41586a = e0Var;
     }
 
     @Override
-    public final void D(int i10, int i11) {
+    public final void C(int i10, int i11) {
         a();
-        this.f45741a.D(i10, i11);
+        this.f41586a.C(i10, i11);
     }
 
     @Override
-    public final void P0(int i10, int i11) {
+    public final void O0(int i10, int i11) {
         int i12;
-        if (this.f45742b == 2 && (i12 = this.f45743c) >= i10 && i12 <= i10 + i11) {
+        if (this.f41587b == 2 && (i12 = this.f41588c) >= i10 && i12 <= i10 + i11) {
             this.d += i11;
-            this.f45743c = i10;
+            this.f41588c = i10;
             return;
         }
         a();
-        this.f45743c = i10;
+        this.f41588c = i10;
         this.d = i11;
-        this.f45742b = 2;
+        this.f41587b = 2;
     }
 
     public final void a() {
-        int i10 = this.f45742b;
+        int i10 = this.f41587b;
         if (i10 == 0) {
             return;
         }
-        e0 e0Var = this.f45741a;
+        e0 e0Var = this.f41586a;
         if (i10 != 1) {
             if (i10 != 2) {
                 if (i10 == 3) {
-                    e0Var.m1(this.f45743c, this.d);
+                    e0Var.k1(this.f41588c, this.d);
                 }
             } else {
-                e0Var.P0(this.f45743c, this.d);
+                e0Var.O0(this.f41588c, this.d);
             }
         } else {
-            e0Var.k0(this.f45743c, this.d);
+            e0Var.j0(this.f41588c, this.d);
         }
-        this.f45742b = 0;
+        this.f41587b = 0;
     }
 
     @Override
-    public final void k0(int i10, int i11) {
+    public final void j0(int i10, int i11) {
         int i12;
-        if (this.f45742b == 1 && i10 >= (i12 = this.f45743c)) {
+        if (this.f41587b == 1 && i10 >= (i12 = this.f41588c)) {
             int i13 = this.d;
             if (i10 <= i12 + i13) {
                 this.d = i13 + i11;
-                this.f45743c = Math.min(i10, i12);
+                this.f41588c = Math.min(i10, i12);
                 return;
             }
         }
         a();
-        this.f45743c = i10;
+        this.f41588c = i10;
         this.d = i11;
-        this.f45742b = 1;
+        this.f41587b = 1;
     }
 
     @Override
-    public final void m1(int i10, int i11) {
+    public final void k1(int i10, int i11) {
         int i12;
         int i13;
         int i14;
-        if (this.f45742b == 3 && i10 <= (i13 = this.d + (i12 = this.f45743c)) && (i14 = i10 + i11) >= i12) {
-            this.f45743c = Math.min(i10, i12);
-            this.d = Math.max(i13, i14) - this.f45743c;
+        if (this.f41587b == 3 && i10 <= (i13 = this.d + (i12 = this.f41588c)) && (i14 = i10 + i11) >= i12) {
+            this.f41588c = Math.min(i10, i12);
+            this.d = Math.max(i13, i14) - this.f41588c;
             return;
         }
         a();
-        this.f45743c = i10;
+        this.f41588c = i10;
         this.d = i11;
-        this.f45742b = 3;
+        this.f41587b = 3;
     }
 }

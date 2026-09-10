@@ -1,78 +1,43 @@
 package org.telegram.ui.Cells;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Path;
-import android.graphics.Rect;
-import android.graphics.RectF;
 import android.view.View;
 import android.widget.FrameLayout;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.MediaController;
+import android.widget.ImageView;
+import android.widget.TextView;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.messenger.em;
 public final class n5 extends FrameLayout {
-    public final s5 f22359a;
-
-    public n5(s5 s5Var, Context context) {
-        super(context);
-        this.f22359a = s5Var;
-    }
+    public ImageView f19569a;
+    public ImageView f19570b;
+    public TextView f19571c;
+    public int d;
 
     @Override
-    public final boolean drawChild(Canvas canvas, View view, long j3) {
-        float measuredWidth;
-        float measuredHeight;
-        int i10;
-        s5 s5Var = this.f22359a;
-        o5 o5Var = s5Var.f22858a;
-        if (s5Var.M != null && view == o5Var) {
-            boolean drawChild = super.drawChild(canvas, view, j3);
-            if (s5Var.N) {
-                Rect rect = s5.f22857a0;
-                MediaController.PhotoEntry photoEntry = s5Var.G;
-                if (photoEntry == null || !photoEntry.isAttachSpoilerRevealed) {
-                    s5Var.M.c(canvas, s5Var.f22859b, o5Var.getMeasuredWidth(), o5Var.getMeasuredHeight(), 1.0f, false);
-                    MediaController.PhotoEntry photoEntry2 = s5Var.G;
-                    if (photoEntry2 != null && photoEntry2.starsAmount > 0 && o5Var.f32513y != null) {
-                        Path path = o5Var.E;
-                        if (path == null) {
-                            o5Var.E = new Path();
-                        } else {
-                            path.rewind();
-                        }
-                        int i11 = o5Var.f32505c;
-                        if (i11 != -1 && (i10 = o5Var.d) != -1) {
-                            measuredWidth = i11;
-                            measuredHeight = i10;
-                        } else {
-                            measuredWidth = o5Var.getMeasuredWidth();
-                            measuredHeight = o5Var.getMeasuredHeight();
-                        }
-                        float dp = o5Var.f32513y.f25874c + AndroidUtilities.dp(18.0f);
-                        float f7 = (measuredWidth - dp) / 2.0f;
-                        float f10 = measuredHeight / 2.0f;
-                        RectF rectF = AndroidUtilities.rectTmp;
-                        float dp2 = AndroidUtilities.dp(28.0f) / 2.0f;
-                        rectF.set(f7, f10 - dp2, dp + f7, f10 + dp2);
-                        o5Var.E.addRoundRect(rectF, dp2, dp2, Path.Direction.CW);
-                        canvas.save();
-                        canvas.clipPath(o5Var.E);
-                        ImageReceiver imageReceiver = o5Var.f32504b;
-                        if (imageReceiver != null && o5Var.f32510s) {
-                            imageReceiver.setColorFilter(o5Var.F);
-                            float alpha = o5Var.f32504b.getAlpha();
-                            o5Var.f32504b.setAlpha(1.0f);
-                            o5Var.f32504b.draw(canvas);
-                            o5Var.f32504b.setAlpha(alpha);
-                            o5Var.f32504b.setColorFilter(null);
-                        }
-                        o5Var.f32513y.c(f7 + AndroidUtilities.dp(9.0f), f10, 1.0f, -1, canvas);
-                        canvas.restore();
-                    }
-                }
-            }
-            return drawChild;
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(this.d, 1073741824), em.C(2.0f, this.d, 1073741824));
+    }
+
+    public void setItemSize(int i10) {
+        this.d = i10;
+    }
+
+    public void setType(int i10) {
+        TextView textView = this.f19571c;
+        ImageView imageView = this.f19570b;
+        ImageView imageView2 = this.f19569a;
+        if (i10 == 0) {
+            imageView2.setImageResource(R.drawable.permissions_camera1);
+            imageView.setImageResource(R.drawable.permissions_camera2);
+            textView.setText(LocaleController.getString(R.string.CameraPermissionText));
+            imageView2.setLayoutParams(w7.a6.d(44, 44.0f, 17, 5.0f, 0.0f, 0.0f, 27.0f));
+            imageView.setLayoutParams(w7.a6.d(44, 44.0f, 17, 5.0f, 0.0f, 0.0f, 27.0f));
+            return;
         }
-        return super.drawChild(canvas, view, j3);
+        imageView2.setImageResource(R.drawable.permissions_gallery1);
+        imageView.setImageResource(R.drawable.permissions_gallery2);
+        textView.setText(LocaleController.getString(R.string.GalleryPermissionText));
+        imageView2.setLayoutParams(w7.a6.d(44, 44.0f, 17, 0.0f, 0.0f, 2.0f, 27.0f));
+        imageView.setLayoutParams(w7.a6.d(44, 44.0f, 17, 0.0f, 0.0f, 2.0f, 27.0f));
     }
 }

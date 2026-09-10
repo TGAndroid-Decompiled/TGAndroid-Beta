@@ -1,38 +1,38 @@
 package v7;
 public final class u4 implements ia.d {
-    public static final u4 f47611a = new Object();
-    public static final ia.c f47612b = new ia.c("appId", i2.g.n(org.telegram.ui.Cells.p6.k(h.class, new e(1))));
-    public static final ia.c f47613c = new ia.c("appVersion", i2.g.n(org.telegram.ui.Cells.p6.k(h.class, new e(2))));
-    public static final ia.c d = new ia.c("firebaseProjectId", i2.g.n(org.telegram.ui.Cells.p6.k(h.class, new e(3))));
-    public static final ia.c f47614e = new ia.c("mlSdkVersion", i2.g.n(org.telegram.ui.Cells.p6.k(h.class, new e(4))));
-    public static final ia.c f47615f = new ia.c("tfliteSchemaVersion", i2.g.n(org.telegram.ui.Cells.p6.k(h.class, new e(5))));
-    public static final ia.c f47616g = new ia.c("gcmSenderId", i2.g.n(org.telegram.ui.Cells.p6.k(h.class, new e(6))));
-    public static final ia.c h = new ia.c("apiKey", i2.g.n(org.telegram.ui.Cells.p6.k(h.class, new e(7))));
-    public static final ia.c f47617i = new ia.c("languages", i2.g.n(org.telegram.ui.Cells.p6.k(h.class, new e(8))));
-    public static final ia.c f47618j = new ia.c("mlSdkInstanceId", i2.g.n(org.telegram.ui.Cells.p6.k(h.class, new e(9))));
-    public static final ia.c f47619k = new ia.c("isClearcutClient", i2.g.n(org.telegram.ui.Cells.p6.k(h.class, new e(10))));
-    public static final ia.c f47620l = new ia.c("isStandaloneMlkit", i2.g.n(org.telegram.ui.Cells.p6.k(h.class, new e(11))));
-    public static final ia.c f47621m = new ia.c("isJsonLogging", i2.g.n(org.telegram.ui.Cells.p6.k(h.class, new e(12))));
-    public static final ia.c f47622n = new ia.c("buildLevel", i2.g.n(org.telegram.ui.Cells.p6.k(h.class, new e(13))));
-    public static final ia.c f47623o = new ia.c("optionalModuleVersion", i2.g.n(org.telegram.ui.Cells.p6.k(h.class, new e(14))));
+    public static final u4 f43127a = new Object();
+    public static final ia.c f43128b = new ia.c("appId", hc.b.p(org.telegram.ui.Cells.r6.k(h.class, new e(1))));
+    public static final ia.c f43129c = new ia.c("appVersion", hc.b.p(org.telegram.ui.Cells.r6.k(h.class, new e(2))));
+    public static final ia.c d = new ia.c("firebaseProjectId", hc.b.p(org.telegram.ui.Cells.r6.k(h.class, new e(3))));
+    public static final ia.c e = new ia.c("mlSdkVersion", hc.b.p(org.telegram.ui.Cells.r6.k(h.class, new e(4))));
+    public static final ia.c f43130f = new ia.c("tfliteSchemaVersion", hc.b.p(org.telegram.ui.Cells.r6.k(h.class, new e(5))));
+    public static final ia.c f43131g = new ia.c("gcmSenderId", hc.b.p(org.telegram.ui.Cells.r6.k(h.class, new e(6))));
+    public static final ia.c h = new ia.c("apiKey", hc.b.p(org.telegram.ui.Cells.r6.k(h.class, new e(7))));
+    public static final ia.c f43132i = new ia.c("languages", hc.b.p(org.telegram.ui.Cells.r6.k(h.class, new e(8))));
+    public static final ia.c f43133j = new ia.c("mlSdkInstanceId", hc.b.p(org.telegram.ui.Cells.r6.k(h.class, new e(9))));
+    public static final ia.c f43134k = new ia.c("isClearcutClient", hc.b.p(org.telegram.ui.Cells.r6.k(h.class, new e(10))));
+    public static final ia.c f43135l = new ia.c("isStandaloneMlkit", hc.b.p(org.telegram.ui.Cells.r6.k(h.class, new e(11))));
+    public static final ia.c f43136m = new ia.c("isJsonLogging", hc.b.p(org.telegram.ui.Cells.r6.k(h.class, new e(12))));
+    public static final ia.c f43137n = new ia.c("buildLevel", hc.b.p(org.telegram.ui.Cells.r6.k(h.class, new e(13))));
+    public static final ia.c f43138o = new ia.c("optionalModuleVersion", hc.b.p(org.telegram.ui.Cells.r6.k(h.class, new e(14))));
 
     @Override
     public final void a(Object obj, Object obj2) {
-        d8 d8Var = (d8) obj;
+        e8 e8Var = (e8) obj;
         ia.e eVar = (ia.e) obj2;
-        eVar.a(f47612b, d8Var.f47450a);
-        eVar.a(f47613c, d8Var.f47451b);
+        eVar.a(f43128b, e8Var.f42984a);
+        eVar.a(f43129c, e8Var.f42985b);
         eVar.a(d, null);
-        eVar.a(f47614e, d8Var.f47452c);
-        eVar.a(f47615f, d8Var.d);
-        eVar.a(f47616g, null);
+        eVar.a(e, e8Var.f42986c);
+        eVar.a(f43130f, e8Var.d);
+        eVar.a(f43131g, null);
         eVar.a(h, null);
-        eVar.a(f47617i, d8Var.f47453e);
-        eVar.a(f47618j, d8Var.f47454f);
-        eVar.a(f47619k, d8Var.f47455g);
-        eVar.a(f47620l, d8Var.h);
-        eVar.a(f47621m, d8Var.f47456i);
-        eVar.a(f47622n, d8Var.f47457j);
-        eVar.a(f47623o, d8Var.f47458k);
+        eVar.a(f43132i, e8Var.e);
+        eVar.a(f43133j, e8Var.f42987f);
+        eVar.a(f43134k, e8Var.f42988g);
+        eVar.a(f43135l, e8Var.h);
+        eVar.a(f43136m, e8Var.f42989i);
+        eVar.a(f43137n, e8Var.f42990j);
+        eVar.a(f43138o, e8Var.f42991k);
     }
 }

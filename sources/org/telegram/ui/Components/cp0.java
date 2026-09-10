@@ -1,51 +1,34 @@
 package org.telegram.ui.Components;
 
-import android.view.KeyEvent;
+import android.content.Context;
+import android.view.MotionEvent;
 import android.view.View;
-import android.view.WindowInsets;
-public final class cp0 implements r0.n, org.telegram.ui.ActionBar.l1 {
-    public final int f25100a;
-    public final hq0 f25101b;
+import android.widget.FrameLayout;
+import org.telegram.messenger.AndroidUtilities;
+public final class cp0 extends FrameLayout {
+    public final ff f22212a;
 
-    public cp0(hq0 hq0Var, int i10) {
-        this.f25100a = i10;
-        this.f25101b = hq0Var;
+    public cp0(ff ffVar, Context context) {
+        super(context);
+        this.f22212a = ffVar;
     }
 
     @Override
-    public r0.l1 T0(View view, r0.l1 l1Var) {
-        WindowInsets g10 = l1Var.g();
-        hq0 hq0Var = this.f25101b;
-        hq0Var.processLegacyContainerInsets(g10);
-        i0.c f7 = l1Var.f44739a.f(519);
-        if (!hq0Var.G0.equals(f7)) {
-            hq0Var.G0 = f7;
-            hq0Var.container.requestLayout();
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        ff ffVar = this.f22212a;
+        View contentView = ffVar.getContentView();
+        contentView.getLocationInWindow(r3);
+        int[] iArr = {iArr[0] + ffVar.E, iArr[1] + ffVar.F};
+        int[] iArr2 = new int[2];
+        getLocationInWindow(iArr2);
+        if ((motionEvent.getAction() != 0 || motionEvent.getX() > iArr[0]) && motionEvent.getX() < contentView.getWidth() + iArr[0] && motionEvent.getY() > iArr[1] && motionEvent.getY() < contentView.getHeight() + iArr[1]) {
+            motionEvent.offsetLocation(iArr2[0] - iArr[0], (AndroidUtilities.statusBarHeight + iArr2[1]) - iArr[1]);
+            return contentView.dispatchTouchEvent(motionEvent);
         }
-        return r0.l1.f44738b;
-    }
-
-    @Override
-    public void n(KeyEvent keyEvent) {
-        org.telegram.ui.ActionBar.n1 n1Var;
-        org.telegram.ui.ActionBar.n1 n1Var2;
-        switch (this.f25100a) {
-            case 1:
-                hq0 hq0Var = this.f25101b;
-                hq0Var.getClass();
-                if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && (n1Var = hq0Var.J0) != null && n1Var.isShowing()) {
-                    hq0Var.J0.d(true);
-                    return;
-                }
-                return;
-            default:
-                hq0 hq0Var2 = this.f25101b;
-                hq0Var2.getClass();
-                if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && (n1Var2 = hq0Var2.J0) != null && n1Var2.isShowing()) {
-                    hq0Var2.J0.d(true);
-                    return;
-                }
-                return;
+        if (!ffVar.A && !ffVar.D) {
+            ffVar.D = true;
+            ffVar.l(new o1.k[0]);
         }
+        return true;
     }
 }

@@ -11,9 +11,9 @@ import java.util.function.BiConsumer;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 public abstract class k0 implements Map, Serializable, j$.util.Map {
-    public transient m0 f8994a;
-    public transient m0 f8995b;
-    public transient d0 f8996c;
+    public transient m0 f7392a;
+    public transient m0 f7393b;
+    public transient d0 f7394c;
 
     public static k0 a(Map map) {
         int i10;
@@ -26,12 +26,12 @@ public abstract class k0 implements Map, Serializable, j$.util.Map {
         } else {
             i10 = 4;
         }
-        a5.a aVar = new a5.a(i10, 5);
+        a5.a aVar = new a5.a(i10, 6);
         if (e2.u(entrySet)) {
-            int size = (entrySet.size() + aVar.f297b) * 2;
-            Object[] objArr = (Object[]) aVar.f298c;
+            int size = (entrySet.size() + aVar.f275b) * 2;
+            Object[] objArr = (Object[]) aVar.f276c;
             if (size > objArr.length) {
-                aVar.f298c = Arrays.copyOf(objArr, com.google.android.gms.common.api.internal.w.h(objArr.length, size));
+                aVar.f276c = Arrays.copyOf(objArr, com.google.android.gms.common.api.internal.w.h(objArr.length, size));
             }
         }
         for (Map.Entry entry : entrySet) {
@@ -81,10 +81,10 @@ public abstract class k0 implements Map, Serializable, j$.util.Map {
 
     @Override
     public d0 values() {
-        d0 d0Var = this.f8996c;
+        d0 d0Var = this.f7394c;
         if (d0Var == null) {
             d0 d = d();
-            this.f8996c = d;
+            this.f7394c = d;
             return d;
         }
         return d0Var;
@@ -92,10 +92,10 @@ public abstract class k0 implements Map, Serializable, j$.util.Map {
 
     @Override
     public final Set entrySet() {
-        m0 m0Var = this.f8994a;
+        m0 m0Var = this.f7392a;
         if (m0Var == null) {
             c1 b10 = b();
-            this.f8994a = b10;
+            this.f7392a = b10;
             return b10;
         }
         return m0Var;
@@ -125,10 +125,10 @@ public abstract class k0 implements Map, Serializable, j$.util.Map {
 
     @Override
     public final int hashCode() {
-        m0 m0Var = this.f8994a;
+        m0 m0Var = this.f7392a;
         if (m0Var == null) {
             m0Var = b();
-            this.f8994a = m0Var;
+            this.f7392a = m0Var;
         }
         return q.m(m0Var);
     }
@@ -143,10 +143,10 @@ public abstract class k0 implements Map, Serializable, j$.util.Map {
 
     @Override
     public final Set keySet() {
-        m0 m0Var = this.f8995b;
+        m0 m0Var = this.f7393b;
         if (m0Var == null) {
             d1 c10 = c();
-            this.f8995b = c10;
+            this.f7393b = c10;
             return c10;
         }
         return m0Var;

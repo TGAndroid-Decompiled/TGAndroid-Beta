@@ -1,137 +1,79 @@
 package org.telegram.ui;
 
-import android.text.Editable;
-import android.text.TextUtils;
-import android.text.TextWatcher;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.FileLog;
-public final class eh1 implements TextWatcher {
-    public final int f36110a;
-    public final hh1 f36111b;
+import org.telegram.ui.Components.EditTextBoldCursor;
+public final class eh1 implements Runnable {
+    public final int f32209a;
+    public final mh1 f32210b;
 
-    public eh1(hh1 hh1Var, int i10) {
-        this.f36110a = i10;
-        this.f36111b = hh1Var;
+    public eh1(mh1 mh1Var, int i10) {
+        this.f32209a = i10;
+        this.f32210b = mh1Var;
     }
 
     @Override
-    public final void afterTextChanged(Editable editable) {
-        org.telegram.ui.Components.xi0 xi0Var;
-        switch (this.f36110a) {
+    public final void run() {
+        switch (this.f32209a) {
             case 0:
-                this.f36111b.getClass();
+                mh1 mh1Var = this.f32210b;
+                EditTextBoldCursor editTextBoldCursor = mh1Var.f34966n;
+                if (editTextBoldCursor != null && editTextBoldCursor.getVisibility() == 0) {
+                    mh1Var.f34966n.requestFocus();
+                    AndroidUtilities.showKeyboard(mh1Var.f34966n);
+                    return;
+                }
                 return;
             case 1:
-                hh1 hh1Var = this.f36111b;
-                if (!hh1Var.M) {
-                    int i10 = hh1Var.O;
-                    if (i10 == 0) {
-                        org.telegram.ui.Components.xi0 animatedDrawable = hh1Var.f37029a.getAnimatedDrawable();
-                        if (hh1Var.f37044n.length() > 0) {
-                            if (hh1Var.f37044n.getTransformationMethod() == null) {
-                                org.telegram.ui.Components.xi0[] xi0VarArr = hh1Var.f37039f0;
-                                if (animatedDrawable != xi0VarArr[3] && animatedDrawable != (xi0Var = xi0VarArr[5])) {
-                                    hh1Var.f37029a.setAnimation(xi0Var);
-                                    hh1Var.f37039f0[5].Q(0.0f, false);
-                                    hh1Var.f37029a.d();
-                                    return;
-                                }
-                                return;
-                            }
-                            org.telegram.ui.Components.xi0[] xi0VarArr2 = hh1Var.f37039f0;
-                            if (animatedDrawable != xi0VarArr2[3]) {
-                                org.telegram.ui.Components.xi0 xi0Var2 = xi0VarArr2[2];
-                                if (animatedDrawable != xi0Var2) {
-                                    hh1Var.f37029a.setAnimation(xi0Var2);
-                                    hh1Var.f37039f0[2].N(49);
-                                    hh1Var.f37039f0[2].Q(0.0f, false);
-                                    hh1Var.f37029a.d();
-                                    return;
-                                } else if (xi0Var2.f32580b0 < 49) {
-                                    xi0Var2.N(49);
-                                    return;
-                                } else {
-                                    return;
-                                }
-                            }
-                            return;
-                        }
-                        if (animatedDrawable != hh1Var.f37039f0[3] || hh1Var.f37044n.getTransformationMethod() != null) {
-                            org.telegram.ui.Components.xi0[] xi0VarArr3 = hh1Var.f37039f0;
-                            if (animatedDrawable != xi0VarArr3[5]) {
-                                xi0VarArr3[2].N(-1);
-                                org.telegram.ui.Components.xi0 xi0Var3 = hh1Var.f37039f0[2];
-                                if (animatedDrawable != xi0Var3) {
-                                    hh1Var.f37029a.setAnimation(xi0Var3);
-                                    hh1Var.f37039f0[2].L(49, false, false);
-                                }
-                                hh1Var.f37029a.d();
-                                return;
-                            }
-                        }
-                        hh1Var.f37029a.setAnimation(hh1Var.f37039f0[4]);
-                        hh1Var.f37039f0[4].Q(0.0f, false);
-                        hh1Var.f37029a.d();
-                        return;
-                    } else if (i10 == 1) {
-                        try {
-                            hh1Var.f37039f0[6].N((int) ((Math.min(1.0f, hh1Var.f37044n.getLayout().getLineWidth(0) / hh1Var.f37044n.getWidth()) * 142.0f) + 18.0f));
-                            hh1Var.f37029a.d();
-                            return;
-                        } catch (Exception e7) {
-                            FileLog.e(e7);
-                            return;
-                        }
-                    } else if (i10 == 8 && editable.length() > 0) {
-                        hh1Var.H0(true);
-                        return;
+                mh1 mh1Var2 = this.f32210b;
+                de0 de0Var = mh1Var2.f34969w;
+                if (de0Var != null && de0Var.getVisibility() == 0) {
+                    mh1Var2.f34969w.f32906f[0].requestFocus();
+                    return;
+                }
+                return;
+            case 2:
+                int i10 = 0;
+                while (true) {
+                    hs[] hsVarArr = this.f32210b.f34969w.f32906f;
+                    if (i10 < hsVarArr.length) {
+                        hsVarArr[i10].i(0.0f);
+                        i10++;
                     } else {
                         return;
                     }
                 }
-                return;
-            default:
-                hh1 hh1Var2 = this.f36111b;
-                if (hh1Var2.F) {
-                    if (hh1Var2.E.getVisibility() != 0 && !TextUtils.isEmpty(editable)) {
-                        AndroidUtilities.updateViewVisibilityAnimated(hh1Var2.E, true, 0.1f, true);
-                        return;
-                    } else if (hh1Var2.E.getVisibility() != 8 && TextUtils.isEmpty(editable)) {
-                        AndroidUtilities.updateViewVisibilityAnimated(hh1Var2.E, false, 0.1f, true);
-                        return;
-                    } else {
+            case 3:
+                mh1 mh1Var3 = this.f32210b;
+                EditTextBoldCursor editTextBoldCursor2 = mh1Var3.f34966n;
+                if (editTextBoldCursor2 != null) {
+                    if (editTextBoldCursor2.length() != 0) {
+                        mh1Var3.f34961f0[2].P(49);
+                        mh1Var3.f34961f0[2].S(0.0f, false);
+                        mh1Var3.f34952a.d();
                         return;
                     }
+                    mh1Var3.F0(true);
+                    return;
+                }
+                return;
+            case 4:
+                mh1 mh1Var4 = this.f32210b;
+                if (mh1Var4.f34962g0 != null) {
+                    mh1Var4.F0(false);
+                    return;
+                }
+                return;
+            case 5:
+                mh1.f0(this.f32210b);
+                return;
+            case 6:
+                AndroidUtilities.runOnUIThread(new eh1(this.f32210b, 7), 150L);
+                return;
+            default:
+                for (hs hsVar : this.f32210b.f34969w.f32906f) {
+                    hsVar.i(0.0f);
                 }
                 return;
         }
-    }
-
-    @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-        int i13 = this.f36110a;
-    }
-
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-        int i13 = this.f36110a;
-    }
-
-    private final void a(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void b(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void c(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void d(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void e(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void f(int i10, int i11, int i12, CharSequence charSequence) {
     }
 }

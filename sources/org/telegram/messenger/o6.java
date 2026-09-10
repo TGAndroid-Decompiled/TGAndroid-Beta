@@ -1,68 +1,57 @@
 package org.telegram.messenger;
 
-import java.io.File;
-import java.util.ArrayList;
-import org.telegram.messenger.MediaController;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_account;
+import org.telegram.messenger.MediaDataController;
+import org.telegram.tgnet.tl.TL_stories;
 public final class o6 implements Runnable {
-    public final int f18564a;
-    public final int f18565b;
-    public final Object f18566c;
+    public final int f15933a = 1;
+    public final MediaController f15934b;
+    public final int f15935c;
+    public final int d;
+    public final long e;
+    public final long f15936f;
+    public final MessageSuggestionParams h;
+    public final MessageObject f15937n;
+    public final MessageObject f15938r;
+    public final TL_stories.StoryItem f15939s;
+    public final Object v;
 
-    public o6(int i10, Object obj, int i11) {
-        this.f18564a = i11;
-        this.f18565b = i10;
-        this.f18566c = obj;
+    public o6(MediaController mediaController, int i10, int i11, long j3, long j10, MessageSuggestionParams messageSuggestionParams, MessageObject messageObject, MessageObject messageObject2, TL_stories.StoryItem storyItem, SendMessageChatArguments sendMessageChatArguments) {
+        this.f15934b = mediaController;
+        this.f15935c = i10;
+        this.d = i11;
+        this.e = j3;
+        this.f15936f = j10;
+        this.h = messageSuggestionParams;
+        this.f15937n = messageObject;
+        this.f15938r = messageObject2;
+        this.f15939s = storyItem;
+        this.v = sendMessageChatArguments;
     }
 
     @Override
     public final void run() {
-        switch (this.f18564a) {
+        switch (this.f15933a) {
             case 0:
-                ((MediaController.AnonymousClass4) this.f18566c).lambda$onCallStateChanged$0(this.f18565b);
-                return;
-            case 1:
-                MessagesController.AnonymousClass1.lambda$setLocal$2(this.f18565b, (TLRPC.TL_help_appConfig) this.f18566c);
-                return;
-            case 2:
-                MessagesController.AnonymousClass4.lambda$setLocal$2(this.f18565b, (TLRPC.messages_AvailableEffects) this.f18566c);
-                return;
-            case 3:
-                MessagesController.AnonymousClass5.lambda$setLocal$1(this.f18565b, (TL_account.TL_webBrowserSettings) this.f18566c);
-                return;
-            case 4:
-                AutoDeleteMediaTask.b(this.f18565b, (File) this.f18566c);
-                return;
-            case 5:
-                FileLoader.lambda$deleteFiles$16((ArrayList) this.f18566c, this.f18565b);
-                return;
-            case 6:
-                ((FilesMigrationService) this.f18566c).lambda$updateProgress$1(this.f18565b);
-                return;
-            case 7:
-                MediaController.lambda$saveFile$47((org.telegram.ui.ActionBar.b2) this.f18566c, this.f18565b);
-                return;
-            case 8:
-                PushListenerController.lambda$sendRegistrationToServer$1((String) this.f18566c, this.f18565b);
-                return;
-            case 9:
-                PushListenerController.lambda$processRemoteMessage$2(this.f18565b, (TLRPC.TL_updates) this.f18566c);
-                return;
-            case 10:
-                SendMessagesHelper.lambda$handleError$119(this.f18565b, (AccountInstance) this.f18566c);
+                MessageObject messageObject = this.f15938r;
+                TL_stories.StoryItem storyItem = this.f15939s;
+                this.f15934b.lambda$prepareResumedRecording$25(this.f15935c, (MediaDataController.DraftVoice) this.v, this.d, this.e, this.f15936f, this.h, this.f15937n, messageObject, storyItem);
                 return;
             default:
-                Utilities.lambda$doCallbacks$0(this.f18565b, (Utilities.Callback[]) this.f18566c);
+                this.f15934b.lambda$startRecording$37(this.f15935c, this.d, this.e, this.f15936f, this.h, this.f15937n, this.f15938r, this.f15939s, (SendMessageChatArguments) this.v);
                 return;
         }
     }
 
-    public o6(Object obj, int i10, int i11) {
-        this.f18564a = i11;
-        this.f18566c = obj;
-        this.f18565b = i10;
+    public o6(MediaController mediaController, int i10, MediaDataController.DraftVoice draftVoice, int i11, long j3, long j10, MessageSuggestionParams messageSuggestionParams, MessageObject messageObject, MessageObject messageObject2, TL_stories.StoryItem storyItem) {
+        this.f15934b = mediaController;
+        this.f15935c = i10;
+        this.v = draftVoice;
+        this.d = i11;
+        this.e = j3;
+        this.f15936f = j10;
+        this.h = messageSuggestionParams;
+        this.f15937n = messageObject;
+        this.f15938r = messageObject2;
+        this.f15939s = storyItem;
     }
 }

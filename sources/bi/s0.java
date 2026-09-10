@@ -1,51 +1,46 @@
 package bi;
 
-import android.util.SparseIntArray;
-public final class s0 extends b {
-    public final int h;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class s0 implements Runnable {
+    public final int f3637a;
+    public final y0 f3638b;
 
-    public s0(int i10) {
-        this.h = i10;
+    public s0(y0 y0Var, int i10) {
+        this.f3637a = i10;
+        this.f3638b = y0Var;
     }
 
     @Override
-    public void b() {
-        switch (this.h) {
+    public final void run() {
+        switch (this.f3637a) {
             case 0:
-                this.f2808b.put(org.telegram.ui.ActionBar.j6.f20691d7, 352321535);
+                this.f3638b.b();
                 return;
             case 1:
-                int i10 = org.telegram.ui.ActionBar.j6.f20634a7;
-                int i11 = org.telegram.ui.ActionBar.j6.f20761h5;
-                int G0 = G0(i11);
-                SparseIntArray sparseIntArray = this.f2808b;
-                sparseIntArray.put(i10, G0);
-                sparseIntArray.put(org.telegram.ui.ActionBar.j6.f20691d7, -15264235);
-                sparseIntArray.put(org.telegram.ui.ActionBar.j6.Xd, org.telegram.ui.ActionBar.j6.l1(0.45f, -1));
-                sparseIntArray.put(org.telegram.ui.ActionBar.j6.f20779i5, 352321535);
-                sparseIntArray.put(org.telegram.ui.ActionBar.j6.He, G0(i11));
+                y0 y0Var = this.f3638b;
+                y0Var.e = false;
+                v0 v0Var = y0Var.f3959s;
+                if (v0Var != null) {
+                    v0Var.a(true);
+                    y0Var.f3959s = null;
+                }
+                x0 x0Var = y0Var.f3957n;
+                if (x0Var != null) {
+                    x0Var.a();
+                }
+                y0Var.f3955c = false;
+                y0Var.d();
                 return;
             default:
+                y0 y0Var2 = this.f3638b;
+                if (y0Var2.f3955c && y0Var2.f3958r != null) {
+                    y0Var2.f3957n.b(R.raw.error, 3500, LocaleController.getString("VideoConvertFail"));
+                    y0Var2.f3955c = false;
+                    y0Var2.d();
+                    return;
+                }
                 return;
         }
-    }
-
-    public s0() {
-        this.h = 2;
-        this.f2808b.put(org.telegram.ui.ActionBar.j6.f20690d6, -14537933);
-        this.f2808b.put(org.telegram.ui.ActionBar.j6.f20761h5, -14537933);
-        this.f2808b.put(org.telegram.ui.ActionBar.j6.f20634a7, -13616313);
-        this.f2808b.put(org.telegram.ui.ActionBar.j6.e7, -14142917);
-        this.f2808b.put(org.telegram.ui.ActionBar.j6.f7, -8090220);
-        this.f2808b.put(org.telegram.ui.ActionBar.j6.f20683ci, -14142917);
-        this.f2808b.put(org.telegram.ui.ActionBar.j6.G8, -13616313);
-        this.f2808b.put(org.telegram.ui.ActionBar.j6.H8, -14733761);
-        this.f2808b.put(org.telegram.ui.ActionBar.j6.F8, -1);
-        this.f2808b.put(org.telegram.ui.ActionBar.j6.E8, -1);
-        this.f2808b.put(org.telegram.ui.ActionBar.j6.Fi, -231982259);
-        this.f2808b.put(org.telegram.ui.ActionBar.j6.f21017v6, -11683585);
-        this.f2808b.put(org.telegram.ui.ActionBar.j6.f20999u6, -10637330);
-        this.f2808b.put(org.telegram.ui.ActionBar.j6.W6, -12692893);
-        this.f2808b.put(org.telegram.ui.ActionBar.j6.f20781i7, -15033089);
     }
 }

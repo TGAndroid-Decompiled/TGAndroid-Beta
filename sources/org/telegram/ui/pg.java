@@ -1,42 +1,45 @@
 package org.telegram.ui;
 
-import android.content.DialogInterface;
-import org.telegram.tgnet.ConnectionsManager;
-public final class pg implements DialogInterface.OnCancelListener {
-    public final int f39532a;
-    public final Object f39533b;
+import org.telegram.messenger.Utilities;
+public final class pg implements Utilities.Callback2 {
+    public final int f35832a;
+    public final eo f35833b;
+    public final String f35834c;
 
-    public pg(Object obj, int i10) {
-        this.f39532a = i10;
-        this.f39533b = obj;
+    public pg(eo eoVar, String str, int i10) {
+        this.f35832a = i10;
+        this.f35833b = eoVar;
+        this.f35834c = str;
     }
 
     @Override
-    public final void onCancel(DialogInterface dialogInterface) {
-        switch (this.f39532a) {
+    public final void run(Object obj, Object obj2) {
+        Boolean bool = (Boolean) obj;
+        Boolean bool2 = (Boolean) obj2;
+        switch (this.f35832a) {
             case 0:
-                co coVar = (co) this.f39533b;
-                coVar.f35234b9 = true;
-                coVar.Z8 = 0;
-                coVar.f35419qb = 0;
-                coVar.N4 = 0;
-                coVar.r9();
-                coVar.Nb(false);
-                return;
-            case 1:
-                xo xoVar = (xo) this.f39533b;
-                xoVar.M0 = false;
-                xoVar.f42796b = null;
-                xoVar.N0 = false;
-                return;
-            case 2:
-                ((xp) this.f39533b).f42879n = null;
+                if (bool.booleanValue()) {
+                    boolean booleanValue = bool2.booleanValue();
+                    eo eoVar = this.f35833b;
+                    String str = this.f35834c;
+                    if (booleanValue) {
+                        eoVar.getMessagesController().addWebBrowserException(str, false);
+                    }
+                    eoVar.getParentActivity();
+                    nf.f.n(str);
+                    return;
+                }
                 return;
             default:
-                fc0 fc0Var = (fc0) this.f39533b;
-                if (fc0Var.h >= 0) {
-                    ConnectionsManager.getInstance(fc0Var.f36395b).cancelRequest(fc0Var.h, true);
-                    fc0Var.h = -1;
+                eo eoVar2 = this.f35833b;
+                eoVar2.getClass();
+                if (bool.booleanValue()) {
+                    boolean booleanValue2 = bool2.booleanValue();
+                    String str2 = this.f35834c;
+                    if (booleanValue2) {
+                        eoVar2.getMessagesController().addWebBrowserException(str2, true);
+                    }
+                    nf.f.m(eoVar2.getParentActivity(), str2, false, null);
                     return;
                 }
                 return;

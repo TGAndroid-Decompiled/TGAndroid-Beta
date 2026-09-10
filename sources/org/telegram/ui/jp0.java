@@ -1,104 +1,70 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import android.widget.FrameLayout;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.DocumentObject;
-import org.telegram.messenger.FileLoader;
-import org.telegram.messenger.ImageLocation;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stars;
-public final class jp0 extends FrameLayout {
-    public long f37853a;
-    public TL_stars.starGiftAttributeBackdrop f37854b;
-    public TL_stars.starGiftAttributePattern f37855c;
-    public final FrameLayout d;
-    public final yh.e1 f37856e;
-    public final org.telegram.ui.Components.x9 f37857f;
-    public final yh.i1 h;
-    public TLRPC.Document f37858n;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class jp0 extends Drawable {
+    public final org.telegram.ui.Components.t01 f34146a;
+    public final Drawable f34147b;
+    public final qg.c1 f34148c;
 
-    public jp0(Context context, org.telegram.ui.ActionBar.f6 f6Var, boolean z10) {
-        super(context);
-        FrameLayout frameLayout = new FrameLayout(context);
-        this.d = frameLayout;
-        yh.e1 e1Var = new yh.e1(frameLayout, f6Var, false);
-        this.f37856e = e1Var;
-        frameLayout.setBackground(e1Var);
-        addView(frameLayout, w7.x5.e(-1, -1, 119));
-        w7.z5.b(frameLayout, 0.025f, 1.25f);
-        org.telegram.ui.Components.x9 x9Var = new org.telegram.ui.Components.x9(context);
-        this.f37857f = x9Var;
-        frameLayout.addView(x9Var, w7.x5.d(80, 80.0f, 17, 0.0f, 12.0f, 0.0f, 12.0f));
+    public jp0(int i10, Context context, org.telegram.ui.ActionBar.f6 f6Var, boolean z10) {
+        String str;
         if (z10) {
-            yh.i1 i1Var = new yh.i1(context);
-            this.h = i1Var;
-            addView(i1Var, w7.x5.d(-2, -2.0f, 53, 0.0f, 2.0f, 1.0f, 0.0f));
-            return;
+            str = "BoostLevelPlus";
+        } else {
+            str = "BoostLevel";
         }
-        this.h = null;
+        this.f34146a = new org.telegram.ui.Components.t01(LocaleController.formatPluralString(str, i10, new Object[0]), 12.0f, AndroidUtilities.bold());
+        Drawable mutate = context.getResources().getDrawable(R.drawable.mini_switch_lock).mutate();
+        this.f34147b = mutate;
+        mutate.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
+        this.f34148c = new qg.c1(org.telegram.ui.ActionBar.j6.Lj, org.telegram.ui.ActionBar.j6.Mj, -1, -1, f6Var);
     }
 
-    public final void a(int i10, TL_stars.TL_starGiftUnique tL_starGiftUnique) {
-        int i11;
-        int i12;
-        this.f37853a = tL_starGiftUnique.f20124id;
-        boolean z10 = true;
-        if (i10 % 3 != 1) {
-            z10 = false;
-        }
-        if (z10) {
-            i11 = AndroidUtilities.dp(4.0f);
-        } else {
-            i11 = 0;
-        }
-        if (z10) {
-            i12 = AndroidUtilities.dp(4.0f);
-        } else {
-            i12 = 0;
-        }
-        setPadding(i11, 0, i12, 0);
-        c(tL_starGiftUnique.getDocument(), tL_starGiftUnique);
-        this.f37854b = (TL_stars.starGiftAttributeBackdrop) zh.s5.l(tL_starGiftUnique.attributes, TL_stars.starGiftAttributeBackdrop.class);
-        this.f37855c = (TL_stars.starGiftAttributePattern) zh.s5.l(tL_starGiftUnique.attributes, TL_stars.starGiftAttributePattern.class);
-        TL_stars.starGiftAttributeBackdrop stargiftattributebackdrop = this.f37854b;
-        yh.e1 e1Var = this.f37856e;
-        e1Var.d(stargiftattributebackdrop);
-        e1Var.e(this.f37855c);
+    @Override
+    public final void draw(Canvas canvas) {
+        int i10 = getBounds().left;
+        int centerY = getBounds().centerY();
+        RectF rectF = AndroidUtilities.rectTmp;
+        float f7 = centerY;
+        rectF.set(i10, f7 - (AndroidUtilities.dp(18.33f) / 2.0f), getIntrinsicWidth() + i10, (AndroidUtilities.dp(18.33f) / 2.0f) + f7);
+        qg.c1 c1Var = this.f34148c;
+        c1Var.e(rectF);
+        canvas.drawRoundRect(rectF, AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f), c1Var.f40690f);
+        Drawable drawable = this.f34147b;
+        drawable.setBounds(AndroidUtilities.dp(3.33f) + i10, (int) (f7 - ((drawable.getIntrinsicHeight() * 0.875f) / 2.0f)), (int) ((drawable.getIntrinsicWidth() * 0.875f) + AndroidUtilities.dp(3.33f) + i10), (int) a4.a.A(drawable.getIntrinsicHeight(), 0.875f, 2.0f, f7));
+        drawable.draw(canvas);
+        this.f34146a.c((drawable.getIntrinsicWidth() * 0.875f) + AndroidUtilities.dp(3.66f) + i10, f7, 1.0f, -1, canvas);
     }
 
-    public final void b(boolean z10, boolean z11) {
-        float f7;
-        this.f37856e.f(z10, z11);
-        if (z10) {
-            f7 = 0.9f;
-        } else {
-            f7 = 1.0f;
-        }
-        org.telegram.ui.Components.x9 x9Var = this.f37857f;
-        if (z11) {
-            x9Var.animate().scaleX(f7).scaleY(f7).start();
-            return;
-        }
-        x9Var.animate().cancel();
-        x9Var.setScaleX(f7);
-        x9Var.setScaleY(f7);
+    @Override
+    public final int getIntrinsicHeight() {
+        return AndroidUtilities.dp(18.33f);
     }
 
-    public final void c(TLRPC.Document document, TL_stars.StarGift starGift) {
-        org.telegram.ui.Components.x9 x9Var = this.f37857f;
-        if (document == null) {
-            x9Var.b();
-            this.f37858n = null;
-        } else if (this.f37858n == document) {
-        } else {
-            this.f37858n = document;
-            TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(document.thumbs, AndroidUtilities.dp(100.0f));
-            x9Var.l(ImageLocation.getForDocument(document), "100_100", ImageLocation.getForDocument(closestPhotoSizeWithSize, document), "100_100", DocumentObject.getSvgThumb(document, org.telegram.ui.ActionBar.j6.f20634a7, 0.3f), starGift);
-        }
+    @Override
+    public final int getIntrinsicWidth() {
+        return (int) (this.f34146a.l() + (this.f34147b.getIntrinsicWidth() * 0.875f) + AndroidUtilities.dp(9.66f));
     }
 
-    public long getGiftId() {
-        return this.f37853a;
+    @Override
+    public final int getOpacity() {
+        return -2;
+    }
+
+    @Override
+    public final void setAlpha(int i10) {
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

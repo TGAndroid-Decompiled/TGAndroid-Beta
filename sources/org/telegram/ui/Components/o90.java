@@ -1,202 +1,93 @@
 package org.telegram.ui.Components;
 
-import org.telegram.tgnet.tl.TL_iv;
-public final class o90 extends v7.i0 {
-    public int f29036a;
-    public final TL_iv.PageBlock f29037b;
-    public TL_iv.textConcat f29038c = new TL_iv.textConcat();
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
+import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.R;
+public final class o90 extends View {
+    public final Drawable f25698a;
+    public final Paint f25699b;
+    public final Paint f25700c;
+    public final d6 d;
+    public boolean e;
 
-    public o90(TL_iv.PageBlock pageBlock) {
-        this.f29037b = pageBlock;
+    public o90(Context context) {
+        super(context);
+        Paint paint = new Paint(1);
+        this.f25699b = paint;
+        Paint paint2 = new Paint(1);
+        this.f25700c = paint2;
+        this.d = new d6(this, 0L, 320L, wr.h);
+        w7.c6.a(this);
+        this.f25698a = context.getResources().getDrawable(R.drawable.media_live_on).mutate();
+        Paint.Style style = Paint.Style.STROKE;
+        paint2.setStyle(style);
+        paint2.setColor(-65536);
+        paint2.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
+        paint.setStyle(style);
+        paint.setColor(-1);
     }
 
-    public static TL_iv.RichText x(TL_iv.textConcat textconcat) {
-        if (textconcat.texts.isEmpty()) {
-            return new TL_iv.textEmpty();
-        }
-        if (textconcat.texts.size() == 1) {
-            return textconcat.texts.get(0);
-        }
-        return textconcat;
-    }
-
-    @Override
-    public final void a(bf.b bVar) {
-        int i10 = this.f29036a;
-        if (i10 >= 64) {
+    public final void a(boolean z10, boolean z11) {
+        if (this.e == z10) {
             return;
         }
-        this.f29036a = i10 + 1;
-        try {
-            v(bVar);
-        } finally {
-            this.f29036a--;
+        this.e = z10;
+        if (!z11) {
+            this.d.a(z10);
         }
+        invalidate();
     }
 
     @Override
-    public final void b(bf.c cVar) {
-        int i10 = this.f29036a;
-        if (i10 >= 64) {
-            return;
-        }
-        this.f29036a = i10 + 1;
-        try {
-            v(cVar);
-        } finally {
-            this.f29036a--;
-        }
-    }
-
-    @Override
-    public final void c(bf.d dVar) {
-        TL_iv.textFixed textfixed = new TL_iv.textFixed();
-        textfixed.text = r90.j(dVar.h);
-        w(textfixed);
-    }
-
-    @Override
-    public final void d(bf.e eVar) {
-        if (eVar instanceof ue.a) {
-            TL_iv.textStrike textstrike = new TL_iv.textStrike();
-            textstrike.text = y(eVar);
-            w(textstrike);
-        } else if (eVar instanceof zc.d) {
-            w(r90.c(((zc.d) eVar).f51548g));
-        } else {
-            v(eVar);
-        }
-    }
-
-    @Override
-    public final void e(bf.g gVar) {
-        TL_iv.textItalic textitalic = new TL_iv.textItalic();
-        textitalic.text = y(gVar);
-        w(textitalic);
-    }
-
-    @Override
-    public final void i(bf.k kVar) {
-        w(y(kVar));
-    }
-
-    @Override
-    public final void k(bf.n nVar) {
-        if (nVar instanceof zc.a) {
-            if (!this.f29038c.texts.isEmpty()) {
-                w(r90.j("\n"));
+    public final void onDraw(Canvas canvas) {
+        Canvas canvas2;
+        float e = this.d.e(!this.e);
+        int width = getWidth();
+        Drawable drawable = this.f25698a;
+        drawable.setBounds((width - drawable.getIntrinsicWidth()) / 2, (getHeight() - drawable.getIntrinsicHeight()) / 2, (drawable.getIntrinsicWidth() + getWidth()) / 2, (drawable.getIntrinsicHeight() + getHeight()) / 2);
+        Rect bounds = drawable.getBounds();
+        float width2 = (bounds.width() * 0.325f) + bounds.left;
+        float height = (bounds.height() * 0.152f) + bounds.top;
+        float height2 = bounds.bottom - (bounds.height() * 0.152f);
+        float width3 = bounds.right - (bounds.width() * 0.101f);
+        int i10 = (e > 0.0f ? 1 : (e == 0.0f ? 0 : -1));
+        if (i10 > 0) {
+            Paint paint = this.f25700c;
+            paint.setStrokeWidth(AndroidUtilities.dp(4.0f));
+            canvas.saveLayerAlpha(bounds.left, bounds.top, bounds.right, bounds.bottom, 255, 31);
+            drawable.draw(canvas);
+            if (this.e) {
+                canvas.drawLine(width3 - AndroidUtilities.dp(4.0f), height2 - AndroidUtilities.dp(4.0f), AndroidUtilities.lerp(width3 - AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f) + width2, e), AndroidUtilities.lerp(height2 - AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f) + height, e), paint);
+                canvas2 = canvas;
+            } else {
+                canvas2 = canvas;
+                canvas2.drawLine(width2 + AndroidUtilities.dp(4.0f), height + AndroidUtilities.dp(4.0f), AndroidUtilities.lerp(AndroidUtilities.dp(4.0f) + width2, width3 - AndroidUtilities.dp(4.0f), e), AndroidUtilities.lerp(AndroidUtilities.dp(4.0f) + height, height2 - AndroidUtilities.dp(4.0f), e), paint);
             }
-            w(r90.c(((zc.a) nVar).f51543g));
-            w(r90.j("\n"));
-            return;
-        }
-        v(nVar);
-    }
-
-    @Override
-    public final void l(bf.o oVar) {
-        int i10 = this.f29036a;
-        if (i10 >= 64) {
-            return;
-        }
-        this.f29036a = i10 + 1;
-        try {
-            v(oVar);
-        } finally {
-            this.f29036a--;
-        }
-    }
-
-    @Override
-    public final void m(bf.q qVar) {
-        int i10 = this.f29036a;
-        if (i10 >= 64) {
-            return;
-        }
-        this.f29036a = i10 + 1;
-        try {
-            v(qVar);
-        } finally {
-            this.f29036a--;
-        }
-    }
-
-    @Override
-    public final void n(bf.r rVar) {
-        if (!this.f29038c.texts.isEmpty()) {
-            w(r90.j("\n\n"));
-        }
-        v(rVar);
-    }
-
-    @Override
-    public final void o(bf.s sVar) {
-        w(r90.j(sVar.f2670g));
-    }
-
-    @Override
-    public final void q(bf.d dVar) {
-        w(r90.j(dVar.h));
-    }
-
-    @Override
-    public final void r(bf.g gVar) {
-        w(r90.j("\n"));
-    }
-
-    @Override
-    public final void s(bf.k kVar) {
-        String str = kVar.h;
-        if (str == null) {
-            str = "";
-        }
-        String trim = str.trim();
-        if (trim.startsWith("mailto:")) {
-            TL_iv.RichText textemail = new TL_iv.textEmail();
-            textemail.text = y(kVar);
-            textemail.email = trim.substring(7);
-            w(textemail);
-        } else if (trim.startsWith("tel:")) {
-            TL_iv.textPhone textphone = new TL_iv.textPhone();
-            textphone.text = y(kVar);
-            textphone.phone = trim.substring(4);
-            w(textphone);
+            canvas2.restore();
         } else {
-            TL_iv.RichText texturl = new TL_iv.textUrl();
-            texturl.text = y(kVar);
-            texturl.url = trim;
-            w(texturl);
+            canvas2 = canvas;
+            drawable.draw(canvas2);
+        }
+        if (i10 > 0) {
+            Paint paint2 = this.f25699b;
+            paint2.setStrokeWidth(AndroidUtilities.dp(2.0f));
+            if (this.e) {
+                canvas2.drawLine(width3, height2, AndroidUtilities.lerp(width3, width2, e), AndroidUtilities.lerp(height2, height, e), paint2);
+            } else {
+                canvas.drawLine(width2, height, AndroidUtilities.lerp(width2, width3, e), AndroidUtilities.lerp(height, height2, e), paint2);
+            }
         }
     }
 
     @Override
-    public final void t(bf.g gVar) {
-        String str;
-        if (this.f29037b instanceof TL_iv.pageBlockBlockquote) {
-            str = "\n";
-        } else {
-            str = " ";
-        }
-        w(r90.j(str));
-    }
-
-    @Override
-    public final void u(bf.g gVar) {
-        TL_iv.textBold textbold = new TL_iv.textBold();
-        textbold.text = y(gVar);
-        w(textbold);
-    }
-
-    public final void w(TL_iv.RichText richText) {
-        this.f29038c.texts.add(richText);
-    }
-
-    public final TL_iv.RichText y(bf.p pVar) {
-        TL_iv.textConcat textconcat = this.f29038c;
-        this.f29038c = new TL_iv.textConcat();
-        v(pVar);
-        TL_iv.RichText x10 = x(this.f29038c);
-        this.f29038c = textconcat;
-        return x10;
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(45.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(45.0f), 1073741824));
     }
 }

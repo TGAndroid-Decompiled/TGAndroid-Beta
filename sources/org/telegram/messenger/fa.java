@@ -1,33 +1,37 @@
 package org.telegram.messenger;
+public final class fa implements Runnable {
+    public final int f15159a;
+    public final MessagesController f15160b;
+    public final long f15161c;
+    public final int d;
+    public final boolean e;
+    public final int f15162f;
+    public final int h;
 
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class fa implements RequestDelegate {
-    public final int f17665a;
-    public final BaseController f17666b;
-    public final int f17667c;
-
-    public fa(BaseController baseController, int i10, int i11) {
-        this.f17665a = i11;
-        this.f17666b = baseController;
-        this.f17667c = i10;
+    public fa(MessagesController messagesController, long j3, int i10, boolean z10, int i11, int i12, int i13) {
+        this.f15159a = i13;
+        this.f15160b = messagesController;
+        this.f15161c = j3;
+        this.d = i10;
+        this.e = z10;
+        this.f15162f = i11;
+        this.h = i12;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f17665a) {
+    public final void run() {
+        switch (this.f15159a) {
             case 0:
-                ((MessagesController) this.f17666b).lambda$migrateDialogs$216(this.f17667c, tLObject, tL_error);
-                return;
-            case 1:
-                ((MessagesController) this.f17666b).lambda$loadPinnedDialogs$367(this.f17667c, tLObject, tL_error);
-                return;
-            case 2:
-                ((MessagesController) this.f17666b).lambda$loadGlobalNotificationsSettings$201(this.f17667c, tLObject, tL_error);
+                int i10 = this.f15162f;
+                int i11 = this.h;
+                int i12 = this.d;
+                this.f15160b.lambda$markDialogAsRead$243(this.f15161c, i12, this.e, i10, i11);
                 return;
             default:
-                ((ContactsController) this.f17666b).lambda$loadPrivacySettings$65(this.f17667c, tLObject, tL_error);
+                int i13 = this.f15162f;
+                int i14 = this.h;
+                int i15 = this.d;
+                this.f15160b.lambda$markDialogAsRead$244(this.f15161c, i15, this.e, i13, i14);
                 return;
         }
     }

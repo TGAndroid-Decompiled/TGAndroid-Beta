@@ -1,32 +1,32 @@
 package b2;
 public class z {
-    public static final z f2453i = new z(new y());
-    public static final String f2454j = Integer.toString(0, 36);
-    public static final String f2455k = Integer.toString(1, 36);
-    public static final String f2456l = Integer.toString(2, 36);
-    public static final String f2457m = Integer.toString(3, 36);
-    public static final String f2458n = Integer.toString(4, 36);
-    public static final String f2459o = Integer.toString(5, 36);
-    public static final String f2460p = Integer.toString(6, 36);
-    public static final String f2461q = Integer.toString(7, 36);
-    public final long f2462a;
-    public final long f2463b;
-    public final long f2464c;
+    public static final z f2053i = new z(new y());
+    public static final String f2054j = Integer.toString(0, 36);
+    public static final String f2055k = Integer.toString(1, 36);
+    public static final String f2056l = Integer.toString(2, 36);
+    public static final String f2057m = Integer.toString(3, 36);
+    public static final String f2058n = Integer.toString(4, 36);
+    public static final String f2059o = Integer.toString(5, 36);
+    public static final String f2060p = Integer.toString(6, 36);
+    public static final String f2061q = Integer.toString(7, 36);
+    public final long f2062a;
+    public final long f2063b;
+    public final long f2064c;
     public final long d;
-    public final boolean f2465e;
-    public final boolean f2466f;
-    public final boolean f2467g;
+    public final boolean e;
+    public final boolean f2065f;
+    public final boolean f2066g;
     public final boolean h;
 
     public z(y yVar) {
-        this.f2462a = e2.d0.e0(yVar.f2447a);
-        this.f2464c = e2.d0.e0(yVar.f2448b);
-        this.f2463b = yVar.f2447a;
-        this.d = yVar.f2448b;
-        this.f2465e = yVar.f2449c;
-        this.f2466f = yVar.d;
-        this.f2467g = yVar.f2450e;
-        this.h = yVar.f2451f;
+        this.f2062a = e2.d0.e0(yVar.f2048a);
+        this.f2064c = e2.d0.e0(yVar.f2049b);
+        this.f2063b = yVar.f2048a;
+        this.d = yVar.f2049b;
+        this.e = yVar.f2050c;
+        this.f2065f = yVar.d;
+        this.f2066g = yVar.e;
+        this.h = yVar.f2051f;
     }
 
     public final boolean equals(Object obj) {
@@ -37,15 +37,15 @@ public class z {
             return false;
         }
         z zVar = (z) obj;
-        if (this.f2463b == zVar.f2463b && this.d == zVar.d && this.f2465e == zVar.f2465e && this.f2466f == zVar.f2466f && this.f2467g == zVar.f2467g && this.h == zVar.h) {
+        if (this.f2063b == zVar.f2063b && this.d == zVar.d && this.e == zVar.e && this.f2065f == zVar.f2065f && this.f2066g == zVar.f2066g && this.h == zVar.h) {
             return true;
         }
         return false;
     }
 
     public final int hashCode() {
-        long j3 = this.f2463b;
+        long j3 = this.f2063b;
         long j10 = this.d;
-        return (((((((((((int) (j3 ^ (j3 >>> 32))) * 31) + ((int) (j10 ^ (j10 >>> 32)))) * 31) + (this.f2465e ? 1 : 0)) * 31) + (this.f2466f ? 1 : 0)) * 31) + (this.f2467g ? 1 : 0)) * 31) + (this.h ? 1 : 0);
+        return (((((((((((int) (j3 ^ (j3 >>> 32))) * 31) + ((int) (j10 ^ (j10 >>> 32)))) * 31) + (this.e ? 1 : 0)) * 31) + (this.f2065f ? 1 : 0)) * 31) + (this.f2066g ? 1 : 0)) * 31) + (this.h ? 1 : 0);
     }
 }

@@ -1,16 +1,16 @@
 package x7;
 public final class g7 {
-    public final Long f49035a;
-    public final n7 f49036b;
-    public final Boolean f49037c;
+    public final Long f44775a;
+    public final n7 f44776b;
+    public final Boolean f44777c;
     public final Boolean d;
-    public final Boolean f49038e;
+    public final Boolean e;
 
-    public g7(cf.c cVar) {
-        this.f49035a = (Long) cVar.f4823a;
-        this.f49036b = (n7) cVar.f4824b;
-        this.f49037c = (Boolean) cVar.f4825c;
-        this.d = (Boolean) cVar.d;
-        this.f49038e = (Boolean) cVar.f4826e;
+    public g7(bi.u6 u6Var) {
+        this.f44775a = (Long) u6Var.f3719a;
+        this.f44776b = (n7) u6Var.f3720b;
+        this.f44777c = (Boolean) u6Var.f3721c;
+        this.d = (Boolean) u6Var.d;
+        this.e = (Boolean) u6Var.e;
     }
 }

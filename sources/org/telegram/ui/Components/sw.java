@@ -1,20 +1,57 @@
 package org.telegram.ui.Components;
-public final class sw implements Runnable {
-    public final int f30458a;
-    public final yy f30459b;
 
-    public sw(yy yyVar, int i10) {
-        this.f30458a = i10;
-        this.f30459b = yyVar;
+import android.content.Context;
+import android.view.MotionEvent;
+public final class sw extends vl0 {
+    public boolean X2;
+    public boolean Y2;
+    public final rz Z2;
+
+    public sw(rz rzVar, Context context) {
+        super(context, null);
+        this.Z2 = rzVar;
     }
 
     @Override
-    public final void run() {
-        switch (this.f30458a) {
-            case 0:
-            default:
-                this.f30459b.d();
-                return;
+    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        org.telegram.ui.tt q6 = org.telegram.ui.tt.q();
+        rz rzVar = this.Z2;
+        boolean r10 = q6.r(motionEvent, rzVar.f26820h0, rzVar.f26819g2, this.f27987p2);
+        if (!super.onInterceptTouchEvent(motionEvent) && !r10) {
+            return false;
         }
+        return true;
+    }
+
+    @Override
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        rz rzVar = this.Z2;
+        if (rzVar.f26846q0 && rzVar.f26837n0.G > 1) {
+            this.X2 = true;
+            rzVar.f26823i0.h1(0, 0);
+            rzVar.f26840o0.setVisibility(0);
+            rzVar.f26843p0.k(0, 0);
+            rzVar.f26846q0 = false;
+            this.X2 = false;
+        }
+        super.onLayout(z10, i10, i11, i12, i13);
+        rz.f(rzVar, true);
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(i10, i11);
+        if (!this.Y2) {
+            this.Z2.f26837n0.l();
+            this.Y2 = true;
+        }
+    }
+
+    @Override
+    public final void requestLayout() {
+        if (this.X2) {
+            return;
+        }
+        super.requestLayout();
     }
 }

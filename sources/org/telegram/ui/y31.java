@@ -1,33 +1,34 @@
 package org.telegram.ui;
 
-import android.content.Context;
 import org.telegram.messenger.AndroidUtilities;
-public final class y31 implements a41 {
-    public final org.telegram.ui.ActionBar.n2 f43005a;
-    public final Context f43006b;
-    public final org.telegram.ui.ActionBar.f6 f43007c;
-    public final org.telegram.ui.Components.jn0 d;
+import org.telegram.messenger.Utilities;
+public final class y31 implements d41 {
+    public final boolean[] f38889a;
+    public final Utilities.Callback f38890b;
+    public final org.telegram.ui.Components.wc f38891c;
 
-    public y31(org.telegram.ui.ActionBar.n2 n2Var, Context context, org.telegram.ui.ActionBar.f6 f6Var, org.telegram.ui.Components.jn0 jn0Var) {
-        this.f43005a = n2Var;
-        this.f43006b = context;
-        this.f43007c = f6Var;
-        this.d = jn0Var;
+    public y31(boolean[] zArr, Utilities.Callback callback, org.telegram.ui.Components.wc wcVar) {
+        this.f38889a = zArr;
+        this.f38890b = callback;
+        this.f38891c = wcVar;
     }
 
     @Override
     public final void a() {
-        AndroidUtilities.runOnUIThread(new s31(this.f43005a, this.f43006b, this.f43007c, this.d, 2), 200L);
+        Utilities.Callback callback;
+        boolean[] zArr = this.f38889a;
+        if (!zArr[0] && (callback = this.f38890b) != null) {
+            zArr[0] = true;
+            callback.run(Boolean.TRUE);
+        }
+        AndroidUtilities.runOnUIThread(new k01(this.f38891c, 7), 200L);
     }
 
     @Override
     public final void b() {
-        AndroidUtilities.runOnUIThread(new rx0(26, this.f43005a, this.d), 200L);
     }
 
     @Override
     public final void c() {
-        org.telegram.ui.ActionBar.n2 n2Var = this.f43005a;
-        n2Var.showDialog(new sg.a1(n2Var, 3, true));
     }
 }

@@ -1,22 +1,28 @@
 package yg;
 
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.text.style.ReplacementSpan;
-import org.telegram.messenger.AndroidUtilities;
-public final class a extends ReplacementSpan {
-    public final int f50187a;
+import android.animation.ValueAnimator;
+public final class a implements ValueAnimator.AnimatorUpdateListener {
+    public final int f46931a;
+    public final c f46932b;
+    public final e0 f46933c;
 
-    public a(int i10) {
-        this.f50187a = i10;
+    public a(c cVar, e0 e0Var, int i10) {
+        this.f46931a = i10;
+        this.f46932b = cVar;
+        this.f46933c = e0Var;
     }
 
     @Override
-    public final int getSize(Paint paint, CharSequence charSequence, int i10, int i11, Paint.FontMetricsInt fontMetricsInt) {
-        return AndroidUtilities.dp(this.f50187a);
-    }
-
-    @Override
-    public final void draw(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f46931a) {
+            case 0:
+                this.f46932b.f46949f = ((Integer) valueAnimator.getAnimatedValue()).intValue();
+                this.f46933c.invalidate();
+                return;
+            default:
+                this.f46932b.f46949f = ((Integer) valueAnimator.getAnimatedValue()).intValue();
+                this.f46933c.invalidate();
+                return;
+        }
     }
 }

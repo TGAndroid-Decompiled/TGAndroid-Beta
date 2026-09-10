@@ -1,44 +1,41 @@
 package org.telegram.ui.Components;
 
-import java.util.ArrayList;
-import org.telegram.messenger.MessagesStorage;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.tl.TL_bots;
-public final class ps {
-    public final int f29505a;
-    public final ls f29506b;
-    public boolean f29507c;
-    public boolean d;
-    public boolean f29508e;
-    public long f29509f;
-    public String f29510g;
-    public final ArrayList h = new ArrayList();
-    public boolean f29511i = false;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.LinearGradient;
+import android.graphics.Matrix;
+import android.graphics.Paint;
+import android.graphics.Shader;
+import android.view.View;
+public final class ps extends View {
+    public final Paint f26242a;
+    public final Matrix f26243b;
+    public LinearGradient f26244c;
+    public int d;
+    public float e;
+    public float f26245f;
 
-    public ps(int i10, ls lsVar) {
-        this.f29505a = i10;
-        this.f29506b = lsVar;
+    public ps(Context context) {
+        super(context);
+        this.f26242a = new Paint(1);
+        this.f26243b = new Matrix();
     }
 
-    public final void a() {
-        if (!this.f29507c && !this.f29508e) {
-            this.f29507c = true;
-            boolean z10 = this.d;
-            int i10 = this.f29505a;
-            if (!z10) {
-                os osVar = new os(this, 0);
-                MessagesStorage messagesStorage = MessagesStorage.getInstance(i10);
-                messagesStorage.getStorageQueue().postRunnable(new org.telegram.ui.ActionBar.p(this, messagesStorage, osVar, 14));
-                return;
-            }
-            TL_bots.getPopularAppBots getpopularappbots = new TL_bots.getPopularAppBots();
-            getpopularappbots.limit = 20;
-            String str = this.f29510g;
-            if (str == null) {
-                str = "";
-            }
-            getpopularappbots.offset = str;
-            ConnectionsManager.getInstance(i10).sendRequest(getpopularappbots, new y1(this, 3));
+    @Override
+    public final void onDraw(Canvas canvas) {
+        canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), this.e + this.f26245f, this.f26242a);
+    }
+
+    public void setColor(int i10) {
+        if (this.d != i10) {
+            this.d = i10;
+            int alpha = Color.alpha(i10);
+            LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, 0.0f, 1.0f, new int[]{i0.a.k(i10, (alpha * 232) / 255), i0.a.k(i10, (alpha * 192) / 255), i0.a.k(i10, (alpha * 144) / 255), i0.a.k(i10, 0)}, (float[]) null, Shader.TileMode.CLAMP);
+            this.f26244c = linearGradient;
+            this.f26242a.setShader(linearGradient);
+            this.f26244c.setLocalMatrix(this.f26243b);
+            invalidate();
         }
     }
 }

@@ -12,53 +12,53 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
-import m.p3;
+import m.r3;
 public final class e extends n6.g {
     public final GoogleSignInOptions U;
 
-    public e(Context context, Looper looper, p3 p3Var, GoogleSignInOptions googleSignInOptions, com.google.android.gms.common.api.k kVar, com.google.android.gms.common.api.l lVar) {
-        super(context, looper, 91, p3Var, kVar, lVar, 0);
+    public e(Context context, Looper looper, r3 r3Var, GoogleSignInOptions googleSignInOptions, com.google.android.gms.common.api.k kVar, com.google.android.gms.common.api.l lVar) {
+        super(context, looper, 91, r3Var, kVar, lVar, 0);
         z5.a aVar;
-        Set<Scope> set = (Set) p3Var.f15662b;
+        Set<Scope> set = (Set) r3Var.f13138b;
         if (googleSignInOptions != null) {
             ?? obj = new Object();
-            obj.f50789a = new HashSet();
+            obj.f47268a = new HashSet();
             obj.h = new HashMap();
-            obj.f50789a = new HashSet(googleSignInOptions.f4910b);
-            obj.f50790b = googleSignInOptions.f4912e;
-            obj.f50791c = googleSignInOptions.f4913f;
+            obj.f47268a = new HashSet(googleSignInOptions.f4739b);
+            obj.f47269b = googleSignInOptions.e;
+            obj.f47270c = googleSignInOptions.f4741f;
             obj.d = googleSignInOptions.d;
-            obj.f50792e = googleSignInOptions.h;
-            obj.f50793f = googleSignInOptions.f4911c;
-            obj.f50794g = googleSignInOptions.f4914n;
-            obj.h = GoogleSignInOptions.c(googleSignInOptions.f4915r);
-            obj.f50795i = googleSignInOptions.f4916s;
+            obj.e = googleSignInOptions.h;
+            obj.f47271f = googleSignInOptions.f4740c;
+            obj.f47272g = googleSignInOptions.f4742n;
+            obj.h = GoogleSignInOptions.c(googleSignInOptions.f4743r);
+            obj.f47273i = googleSignInOptions.f4744s;
             aVar = obj;
         } else {
             ?? obj2 = new Object();
-            obj2.f50789a = new HashSet();
+            obj2.f47268a = new HashSet();
             obj2.h = new HashMap();
             aVar = obj2;
         }
-        aVar.f50795i = i7.e.a();
+        aVar.f47273i = i7.e.a();
         if (!set.isEmpty()) {
             for (Scope scope : set) {
-                HashSet hashSet = aVar.f50789a;
+                HashSet hashSet = aVar.f47268a;
                 hashSet.add(scope);
                 hashSet.addAll(Arrays.asList(new Scope[0]));
             }
         }
-        HashSet hashSet2 = aVar.f50789a;
+        HashSet hashSet2 = aVar.f47268a;
         if (hashSet2.contains(GoogleSignInOptions.E)) {
-            Scope scope2 = GoogleSignInOptions.f4908y;
+            Scope scope2 = GoogleSignInOptions.f4737y;
             if (hashSet2.contains(scope2)) {
                 hashSet2.remove(scope2);
             }
         }
-        if (aVar.d && (aVar.f50793f == null || !hashSet2.isEmpty())) {
-            hashSet2.add(GoogleSignInOptions.f4907x);
+        if (aVar.d && (aVar.f47271f == null || !hashSet2.isEmpty())) {
+            hashSet2.add(GoogleSignInOptions.f4736x);
         }
-        this.U = new GoogleSignInOptions(3, new ArrayList(hashSet2), aVar.f50793f, aVar.d, aVar.f50790b, aVar.f50791c, aVar.f50792e, aVar.f50794g, aVar.h, aVar.f50795i);
+        this.U = new GoogleSignInOptions(3, new ArrayList(hashSet2), aVar.f47271f, aVar.d, aVar.f47269b, aVar.f47270c, aVar.e, aVar.f47272g, aVar.h, aVar.f47273i);
     }
 
     @Override
@@ -68,7 +68,7 @@ public final class e extends n6.g {
 
     @Override
     public final Intent o() {
-        return h.a(this.f16566n, this.U);
+        return h.a(this.f13864n, this.U);
     }
 
     @Override

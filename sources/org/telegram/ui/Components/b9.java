@@ -1,39 +1,40 @@
 package org.telegram.ui.Components;
 
-import j$.util.Objects;
-public final class b9 {
-    public int f24626a;
-    public boolean f24627b;
-    public int f24628c;
-    public int d;
-    public int f24629e;
-    public int f24630f;
+import android.content.Context;
+import android.graphics.Paint;
+import android.graphics.drawable.Drawable;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+public final class b9 extends View {
+    public z8 f21757a;
+    public final d6 f21758b;
+    public boolean f21759c;
+    public boolean d;
+    public final x20 e;
+    public Drawable f21760f;
+    public Drawable h;
+    public boolean f21761n;
+    public Paint f21762r;
+    public Paint f21763s;
+    public boolean v;
+    public final d9 f21764w;
 
-    public final b9 a() {
-        ?? obj = new Object();
-        obj.f24628c = this.f24628c;
-        obj.d = this.d;
-        obj.f24629e = this.f24629e;
-        obj.f24630f = this.f24630f;
-        obj.f24627b = this.f24627b;
-        return obj;
+    public b9(d9 d9Var, Context context) {
+        super(context);
+        this.f21764w = d9Var;
+        d6 d6Var = new d6(400L, AndroidUtilities.overshootInterpolator);
+        this.f21758b = d6Var;
+        this.e = new x20();
+        d6Var.f22293a = this;
     }
 
-    public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (!(obj instanceof b9)) {
-            return false;
-        }
-        b9 b9Var = (b9) obj;
-        if (this.f24628c == b9Var.f24628c && this.d == b9Var.d && this.f24629e == b9Var.f24629e && this.f24630f == b9Var.f24630f) {
-            return true;
-        }
-        return false;
+    @Override
+    public final void onDraw(android.graphics.Canvas r15) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.b9.onDraw(android.graphics.Canvas):void");
     }
 
-    public final int hashCode() {
-        return Objects.hash(Integer.valueOf(this.f24626a), Integer.valueOf(this.f24628c), Integer.valueOf(this.d), Integer.valueOf(this.f24629e), Integer.valueOf(this.f24630f));
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(this.f21764w.P, 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(48.0f), 1073741824));
     }
 }

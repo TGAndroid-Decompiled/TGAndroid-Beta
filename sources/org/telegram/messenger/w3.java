@@ -1,24 +1,27 @@
 package org.telegram.messenger;
+public final class w3 implements Runnable {
+    public final int f16825a;
+    public final FileUploadOperation f16826b;
 
-import android.view.View;
-import org.telegram.messenger.FilesMigrationService;
-public final class w3 implements View.OnClickListener {
-    public final int f19484a;
-    public final Object f19485b;
-
-    public w3(Object obj, int i10) {
-        this.f19484a = i10;
-        this.f19485b = obj;
+    public w3(FileUploadOperation fileUploadOperation, int i10) {
+        this.f16825a = i10;
+        this.f16826b = fileUploadOperation;
     }
 
     @Override
-    public final void onClick(View view) {
-        switch (this.f19484a) {
+    public final void run() {
+        switch (this.f16825a) {
             case 0:
-                FilesMigrationService.FilesMigrationBottomSheet.m((FilesMigrationService.FilesMigrationBottomSheet) this.f19485b, view);
+                FileUploadOperation.f(this.f16826b);
+                return;
+            case 1:
+                FileUploadOperation.e(this.f16826b);
+                return;
+            case 2:
+                FileUploadOperation.d(this.f16826b);
                 return;
             default:
-                MessagesController.lambda$checkSensitive$445((boolean[]) this.f19485b, view);
+                FileUploadOperation.b(this.f16826b);
                 return;
         }
     }

@@ -1,36 +1,25 @@
 package org.telegram.messenger;
 public final class q5 implements Runnable {
-    public final int f18785a;
-    public final LocationController f18786b;
+    public final int f16109a;
+    public final LocaleController f16110b;
+    public final String f16111c;
+    public final Runnable d;
 
-    public q5(LocationController locationController, int i10) {
-        this.f18785a = i10;
-        this.f18786b = locationController;
+    public q5(LocaleController localeController, String str, Runnable runnable, int i10) {
+        this.f16109a = i10;
+        this.f16110b = localeController;
+        this.f16111c = str;
+        this.d = runnable;
     }
 
     @Override
     public final void run() {
-        switch (this.f18785a) {
+        switch (this.f16109a) {
             case 0:
-                this.f18786b.lambda$onConnected$3();
-                return;
-            case 1:
-                this.f18786b.lambda$setProximityLocation$13();
-                return;
-            case 2:
-                this.f18786b.lambda$new$0();
-                return;
-            case 3:
-                this.f18786b.lambda$removeAllLocationSharings$23();
-                return;
-            case 4:
-                this.f18786b.lambda$removeAllLocationSharings$24();
-                return;
-            case 5:
-                this.f18786b.lambda$cleanup$9();
+                this.f16110b.lambda$checkForcePatchLangpack$6(this.f16111c, this.d);
                 return;
             default:
-                this.f18786b.lambda$loadSharingLocations$17();
+                this.f16110b.lambda$checkForcePatchLangpack$5(this.f16111c, this.d);
                 return;
         }
     }

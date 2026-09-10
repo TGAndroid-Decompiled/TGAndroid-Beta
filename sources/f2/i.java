@@ -1,18 +1,21 @@
 package f2;
-public final class i {
-    public final int f9213a;
-    public final boolean f9214b;
-    public final int f9215c;
-    public final int d;
-    public final int[] f9216e;
-    public final int f9217f;
 
-    public i(int i10, int i11, int i12, int i13, boolean z10, int[] iArr) {
-        this.f9213a = i10;
-        this.f9214b = z10;
-        this.f9215c = i11;
-        this.d = i12;
-        this.f9216e = iArr;
-        this.f9217f = i13;
+import e9.a1;
+import e9.i0;
+public final class i {
+    public final i0 f7696a;
+    public final int[] f7697b;
+
+    public i(a1 a1Var, int[] iArr, int i10) {
+        switch (i10) {
+            case 1:
+                this.f7696a = i0.v(a1Var);
+                this.f7697b = iArr;
+                return;
+            default:
+                this.f7696a = i0.v(a1Var);
+                this.f7697b = iArr;
+                return;
+        }
     }
 }

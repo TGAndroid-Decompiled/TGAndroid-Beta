@@ -2,43 +2,43 @@ package gb;
 
 import j$.util.concurrent.ConcurrentHashMap;
 public final class j implements db.v {
-    public static final i f10567c = new i(0);
+    public static final i f8701c = new i(0);
     public static final i d = new i(0);
-    public final pf.b f10568a;
-    public final ConcurrentHashMap f10569b = new ConcurrentHashMap();
+    public final n4.y f8702a;
+    public final ConcurrentHashMap f8703b = new ConcurrentHashMap();
 
-    public j(pf.b bVar) {
-        this.f10568a = bVar;
+    public j(n4.y yVar) {
+        this.f8702a = yVar;
     }
 
-    public final db.u a(pf.b bVar, db.g gVar, kb.a aVar, eb.a aVar2, boolean z10) {
+    public final db.u a(n4.y yVar, db.g gVar, kb.a aVar, eb.a aVar2, boolean z10) {
         db.o oVar;
         i iVar;
         db.u uVar;
-        Object h22 = bVar.T(new kb.a(aVar2.value())).h2();
+        Object n22 = yVar.l(new kb.a(aVar2.value())).n2();
         boolean nullSafe = aVar2.nullSafe();
-        if (h22 instanceof db.u) {
-            uVar = (db.u) h22;
-        } else if (h22 instanceof db.v) {
-            db.v vVar = (db.v) h22;
+        if (n22 instanceof db.u) {
+            uVar = (db.u) n22;
+        } else if (n22 instanceof db.v) {
+            db.v vVar = (db.v) n22;
             if (z10) {
-                db.v vVar2 = (db.v) this.f10569b.putIfAbsent(aVar.f14914a, vVar);
+                db.v vVar2 = (db.v) this.f8703b.putIfAbsent(aVar.f12419a, vVar);
                 if (vVar2 != null) {
                     vVar = vVar2;
                 }
             }
             uVar = vVar.create(gVar, aVar);
         } else {
-            boolean z11 = h22 instanceof db.o;
+            boolean z11 = n22 instanceof db.o;
             if (z11) {
                 if (z11) {
-                    oVar = (db.o) h22;
+                    oVar = (db.o) n22;
                 } else {
                     oVar = null;
                 }
                 db.o oVar2 = oVar;
                 if (z10) {
-                    iVar = f10567c;
+                    iVar = f8701c;
                 } else {
                     iVar = d;
                 }
@@ -46,7 +46,7 @@ public final class j implements db.v {
                 nullSafe = false;
                 uVar = a0Var;
             } else {
-                throw new IllegalArgumentException("Invalid attempt to bind an instance of " + h22.getClass().getName() + " as a @JsonAdapter for " + fb.d.k(aVar.f14915b) + ". @JsonAdapter value must be a TypeAdapter, TypeAdapterFactory, JsonSerializer or JsonDeserializer.");
+                throw new IllegalArgumentException("Invalid attempt to bind an instance of " + n22.getClass().getName() + " as a @JsonAdapter for " + fb.d.k(aVar.f12420b) + ". @JsonAdapter value must be a TypeAdapter, TypeAdapterFactory, JsonSerializer or JsonDeserializer.");
             }
         }
         if (uVar != null && nullSafe) {
@@ -57,10 +57,10 @@ public final class j implements db.v {
 
     @Override
     public final db.u create(db.g gVar, kb.a aVar) {
-        eb.a aVar2 = (eb.a) aVar.f14914a.getAnnotation(eb.a.class);
+        eb.a aVar2 = (eb.a) aVar.f12419a.getAnnotation(eb.a.class);
         if (aVar2 == null) {
             return null;
         }
-        return a(this.f10568a, gVar, aVar, aVar2, true);
+        return a(this.f8702a, gVar, aVar, aVar2, true);
     }
 }

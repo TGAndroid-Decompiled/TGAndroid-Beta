@@ -2,36 +2,36 @@ package i0;
 
 import android.graphics.Insets;
 public final class c {
-    public static final c f11450e = new c(0, 0, 0, 0);
-    public final int f11451a;
-    public final int f11452b;
-    public final int f11453c;
+    public static final c e = new c(0, 0, 0, 0);
+    public final int f10074a;
+    public final int f10075b;
+    public final int f10076c;
     public final int d;
 
     public c(int i10, int i11, int i12, int i13) {
-        this.f11451a = i10;
-        this.f11452b = i11;
-        this.f11453c = i12;
+        this.f10074a = i10;
+        this.f10075b = i11;
+        this.f10076c = i12;
         this.d = i13;
     }
 
     public static c a(c cVar, c cVar2) {
-        return b(Math.max(cVar.f11451a, cVar2.f11451a), Math.max(cVar.f11452b, cVar2.f11452b), Math.max(cVar.f11453c, cVar2.f11453c), Math.max(cVar.d, cVar2.d));
+        return b(Math.max(cVar.f10074a, cVar2.f10074a), Math.max(cVar.f10075b, cVar2.f10075b), Math.max(cVar.f10076c, cVar2.f10076c), Math.max(cVar.d, cVar2.d));
     }
 
     public static c b(int i10, int i11, int i12, int i13) {
         if (i10 == 0 && i11 == 0 && i12 == 0 && i13 == 0) {
-            return f11450e;
+            return e;
         }
         return new c(i10, i11, i12, i13);
     }
 
     public static c c(Insets insets) {
-        return b(b.b(insets), b.d(insets), b.e(insets), b.f(insets));
+        return b(dh.a.c(insets), b.b(insets), b.c(insets), b.d(insets));
     }
 
     public final Insets d() {
-        return b2.c.i(this.f11451a, this.f11452b, this.f11453c, this.d);
+        return b2.c.i(this.f10074a, this.f10075b, this.f10076c, this.d);
     }
 
     public final boolean equals(Object obj) {
@@ -42,17 +42,17 @@ public final class c {
             return false;
         }
         c cVar = (c) obj;
-        if (this.d == cVar.d && this.f11451a == cVar.f11451a && this.f11453c == cVar.f11453c && this.f11452b == cVar.f11452b) {
+        if (this.d == cVar.d && this.f10074a == cVar.f10074a && this.f10076c == cVar.f10076c && this.f10075b == cVar.f10075b) {
             return true;
         }
         return false;
     }
 
     public final int hashCode() {
-        return (((((this.f11451a * 31) + this.f11452b) * 31) + this.f11453c) * 31) + this.d;
+        return (((((this.f10074a * 31) + this.f10075b) * 31) + this.f10076c) * 31) + this.d;
     }
 
     public final String toString() {
-        return "Insets{left=" + this.f11451a + ", top=" + this.f11452b + ", right=" + this.f11453c + ", bottom=" + this.d + '}';
+        return "Insets{left=" + this.f10074a + ", top=" + this.f10075b + ", right=" + this.f10076c + ", bottom=" + this.d + '}';
     }
 }

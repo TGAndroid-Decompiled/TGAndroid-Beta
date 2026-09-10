@@ -1,28 +1,27 @@
 package org.telegram.messenger;
-public final class re implements Runnable {
-    public final int f18923a;
-    public final MessagesStorage f18924b;
-    public final long f18925c;
-    public final long d;
-    public final String f18926e;
 
-    public re(MessagesStorage messagesStorage, long j3, long j10, String str, int i10) {
-        this.f18923a = i10;
-        this.f18924b = messagesStorage;
-        this.f18925c = j3;
-        this.d = j10;
-        this.f18926e = str;
+import java.util.function.ToLongFunction;
+import org.telegram.messenger.NotificationsController;
+public final class re implements ToLongFunction {
+    public final int f16232a;
+
+    public re(int i10) {
+        this.f16232a = i10;
     }
 
     @Override
-    public final void run() {
-        switch (this.f18923a) {
+    public final long applyAsLong(Object obj) {
+        long j3;
+        long j10;
+        switch (this.f16232a) {
             case 0:
-                this.f18924b.lambda$updateRanksInLastMessages$45(this.f18925c, this.d, this.f18926e);
-                return;
+                return Long.parseLong((String) obj);
+            case 1:
+                j3 = ((NotificationsController.StoryNotification) obj).date;
+                return j3;
             default:
-                this.f18924b.lambda$updateRanksInLastMessages$46(this.f18925c, this.d, this.f18926e);
-                return;
+                j10 = ((NotificationsController.StoryNotification) obj).date;
+                return j10;
         }
     }
 }

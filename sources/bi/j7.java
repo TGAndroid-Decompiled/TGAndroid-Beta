@@ -1,54 +1,53 @@
 package bi;
 
+import android.content.Context;
+import android.graphics.Paint;
+import android.view.MotionEvent;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ContactsController;
-import org.telegram.messenger.LocationController;
-import org.telegram.messenger.SavedMessagesController;
-import org.telegram.messenger.SecretChatHelper;
-import org.telegram.messenger.SendMessagesHelper;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.id0;
-public final class j7 implements RequestDelegate {
-    public final int f3168a;
-    public final long f3169b;
-    public final Object f3170c;
+public final class j7 extends pg.d {
+    public final Paint h;
+    public long f2962n;
+    public float f2963r;
+    public float f2964s;
+    public int v;
+    public int f2965w;
+    public final ad f2966x;
 
-    public j7(Object obj, long j3, int i10) {
-        this.f3168a = i10;
-        this.f3170c = obj;
-        this.f3169b = j3;
+    public j7(ad adVar, Context context, i7 i7Var) {
+        super(context, i7Var);
+        this.f2966x = adVar;
+        Paint paint = new Paint();
+        this.h = paint;
+        setWillNotDraw(false);
+        paint.setStrokeWidth(AndroidUtilities.dp(2.0f));
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setColor(-1);
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f3168a) {
-            case 0:
-                AndroidUtilities.runOnUIThread(new a3.h0((u8) this.f3170c, this.f3169b, tLObject, 2));
-                return;
-            case 1:
-                ((ContactsController) this.f3170c).lambda$loadContacts$28(this.f3169b, tLObject, tL_error);
-                return;
-            case 2:
-                ((LocationController) this.f3170c).lambda$loadLiveLocations$26(this.f3169b, tLObject, tL_error);
-                return;
-            case 3:
-                ((SavedMessagesController) this.f3170c).lambda$hasSavedMessages$15(this.f3169b, tLObject, tL_error);
-                return;
-            case 4:
-                ((SecretChatHelper) this.f3170c).lambda$declineSecretChat$20(this.f3169b, tLObject, tL_error);
-                return;
-            case 5:
-                ((SendMessagesHelper) this.f3170c).lambda$sendGame$47(this.f3169b, tLObject, tL_error);
-                return;
-            default:
-                id0 id0Var = (id0) this.f3170c;
-                if (tLObject != null) {
-                    AndroidUtilities.runOnUIThread(new a3.h0(id0Var, tLObject, this.f3169b, 28));
-                    return;
-                }
-                return;
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        if (this.f2966x.f3523m2) {
+            return false;
         }
+        return super.dispatchTouchEvent(motionEvent);
+    }
+
+    @Override
+    public final void onDraw(android.graphics.Canvas r14) {
+        throw new UnsupportedOperationException("Method not decompiled: bi.j7.onDraw(android.graphics.Canvas):void");
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(i10, i11);
+        ad adVar = this.f2966x;
+        j7 j7Var = adVar.R0;
+        if (adVar.R1 <= 0) {
+            adVar.R1 = j7Var.getMeasuredWidth();
+        }
+        if (adVar.S1 <= 0) {
+            adVar.S1 = j7Var.getMeasuredHeight();
+        }
+        adVar.H0();
     }
 }

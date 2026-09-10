@@ -1,96 +1,131 @@
 package zh;
 
-import android.content.Context;
-import android.view.View;
-import java.util.ArrayList;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.ui.Components.a81;
-import org.telegram.ui.Components.h51;
-public final class t7 extends a81 {
-    public final Context f52698a;
-    public final int f52699b;
-    public final boolean f52700c;
-    public final int d;
-    public final org.telegram.ui.ActionBar.f6 f52701e;
-    public final long f52702f;
-    public final ArrayList f52703g = new ArrayList();
+import android.view.SurfaceView;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.video.VideoPlayerHolderBase;
+public final class t7 extends VideoPlayerHolderBase {
+    public boolean f48904a;
+    public final u7 f48905b;
 
-    public t7(Context context, int i10, boolean z10, long j3, int i11, org.telegram.ui.ActionBar.f6 f6Var) {
-        this.f52698a = context;
-        this.f52699b = i10;
-        this.f52700c = z10;
-        this.d = i11;
-        this.f52701e = f6Var;
-        this.f52702f = j3;
-        i();
+    public t7(u7 u7Var, SurfaceView surfaceView, m7 m7Var) {
+        this.f48905b = u7Var;
+        if (u7Var.f48918a) {
+            with(surfaceView);
+        } else {
+            with(m7Var);
+        }
     }
 
     @Override
-    public final View d(int i10) {
-        return new s7(this.f52698a, this.f52700c, this.f52702f, i10, this.f52699b, this.d, this.f52701e);
+    public final boolean needRepeat() {
+        return this.f48905b.f48945m1;
     }
 
     @Override
-    public final int e() {
-        return this.f52703g.size();
-    }
-
-    @Override
-    public final CharSequence g(int i10) {
-        int h = h(i10);
-        if (h != 0) {
-            if (h != 1) {
-                if (h != 2) {
-                    return "";
-                }
-                return LocaleController.getString(R.string.StarsTransactionsOutgoing);
+    public final void onRenderedFirstFrame() {
+        u7 u7Var = this.f48905b;
+        k2.v vVar = u7Var.G0;
+        if (vVar != null) {
+            vVar.f12224a = true;
+            this.firstFrameRendered = true;
+            vVar.b();
+            if (this.paused && u7Var.C0 != null) {
+                prepareStub();
             }
-            return LocaleController.getString(R.string.StarsTransactionsIncoming);
-        }
-        return LocaleController.getString(R.string.StarsTransactionsAll);
-    }
-
-    @Override
-    public final int h(int i10) {
-        if (i10 >= 0) {
-            ArrayList arrayList = this.f52703g;
-            if (i10 < arrayList.size()) {
-                return ((h51) arrayList.get(i10)).f26634z;
-            }
-            return 0;
-        }
-        return 0;
-    }
-
-    public final void i() {
-        ArrayList arrayList = this.f52703g;
-        arrayList.clear();
-        int i10 = this.f52699b;
-        long j3 = this.f52702f;
-        if (j3 == 0) {
-            s5 y3 = s5.y(i10, this.f52700c);
-            arrayList.add(h51.C(0));
-            if (y3.O(1)) {
-                arrayList.add(h51.C(1));
-            }
-            if (y3.O(2)) {
-                arrayList.add(h51.C(2));
-                return;
-            }
-            return;
-        }
-        o g10 = o.g(i10);
-        arrayList.add(h51.C(0));
-        if (!g10.k(j3).f52316a[1].isEmpty()) {
-            arrayList.add(h51.C(1));
-        }
-        if (!g10.k(j3).f52316a[2].isEmpty()) {
-            arrayList.add(h51.C(2));
         }
     }
 
     @Override
-    public final void b(View view, int i10, int i11) {
+    public final void onStateChanged(boolean z10, int i10) {
+        if (i10 == 3 || i10 == 2) {
+            if (this.firstFrameRendered && i10 == 2) {
+                this.f48904a = true;
+                AndroidUtilities.runOnUIThread(new Runnable(this) {
+                    public final t7 f48875b;
+
+                    {
+                        this.f48875b = this;
+                    }
+
+                    @Override
+                    public final void run() {
+                        switch (r2) {
+                            case 0:
+                                a3 t10 = this.f48875b.f48905b.t();
+                                if (t10 != null) {
+                                    z2 z2Var = t10.O1;
+                                    if (z2Var.f49129a != null) {
+                                        StringBuilder sb2 = new StringBuilder("StoryViewer displayed story buffering dialogId=");
+                                        sb2.append(t10.getCurrentPeer());
+                                        sb2.append(" storyId=");
+                                        hc.b.q(z2Var.f49129a.f17435id, sb2);
+                                        return;
+                                    }
+                                    return;
+                                }
+                                return;
+                            default:
+                                a3 t11 = this.f48875b.f48905b.t();
+                                if (t11 != null) {
+                                    z2 z2Var2 = t11.O1;
+                                    if (z2Var2.f49129a != null) {
+                                        StringBuilder sb3 = new StringBuilder("StoryViewer displayed story playing dialogId=");
+                                        sb3.append(t11.getCurrentPeer());
+                                        sb3.append(" storyId=");
+                                        hc.b.q(z2Var2.f49129a.f17435id, sb3);
+                                        return;
+                                    }
+                                    return;
+                                }
+                                return;
+                        }
+                    }
+                });
+            }
+            if (this.f48904a && i10 == 3) {
+                this.f48904a = false;
+                AndroidUtilities.runOnUIThread(new Runnable(this) {
+                    public final t7 f48875b;
+
+                    {
+                        this.f48875b = this;
+                    }
+
+                    @Override
+                    public final void run() {
+                        switch (r2) {
+                            case 0:
+                                a3 t10 = this.f48875b.f48905b.t();
+                                if (t10 != null) {
+                                    z2 z2Var = t10.O1;
+                                    if (z2Var.f49129a != null) {
+                                        StringBuilder sb2 = new StringBuilder("StoryViewer displayed story buffering dialogId=");
+                                        sb2.append(t10.getCurrentPeer());
+                                        sb2.append(" storyId=");
+                                        hc.b.q(z2Var.f49129a.f17435id, sb2);
+                                        return;
+                                    }
+                                    return;
+                                }
+                                return;
+                            default:
+                                a3 t11 = this.f48875b.f48905b.t();
+                                if (t11 != null) {
+                                    z2 z2Var2 = t11.O1;
+                                    if (z2Var2.f49129a != null) {
+                                        StringBuilder sb3 = new StringBuilder("StoryViewer displayed story playing dialogId=");
+                                        sb3.append(t11.getCurrentPeer());
+                                        sb3.append(" storyId=");
+                                        hc.b.q(z2Var2.f49129a.f17435id, sb3);
+                                        return;
+                                    }
+                                    return;
+                                }
+                                return;
+                        }
+                    }
+                });
+            }
+        }
     }
 }

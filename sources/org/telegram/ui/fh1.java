@@ -1,52 +1,62 @@
 package org.telegram.ui;
 
-import android.widget.TextView;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.tgnet.tl.TL_account;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class fh1 extends org.telegram.ui.ActionBar.j {
-    public final hh1 f36434a;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class fh1 implements RequestDelegate {
+    public final int f32836a;
+    public final mh1 f32837b;
 
-    public fh1(hh1 hh1Var) {
-        this.f36434a = hh1Var;
+    public fh1(mh1 mh1Var, int i10) {
+        this.f32836a = i10;
+        this.f32837b = mh1Var;
     }
 
     @Override
-    public final void b(int i10) {
-        String string;
-        org.telegram.ui.ActionBar.d5 d5Var;
-        hh1 hh1Var = this.f36434a;
-        if (i10 == -1) {
-            if (hh1Var.G >= 0) {
-                d5Var = ((org.telegram.ui.ActionBar.n2) hh1Var).parentLayout;
-                if (d5Var.getFragmentStack().size() == 1) {
-                    hh1Var.I0();
-                    return;
-                }
-            }
-            hh1Var.finishFragment();
-        } else if (i10 == 1) {
-            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(hh1Var.getParentActivity());
-            TL_account.Password password = hh1Var.U;
-            if (password != null && password.has_password) {
-                string = LocaleController.getString(R.string.CancelEmailQuestion);
-            } else {
-                string = LocaleController.getString(R.string.CancelPasswordQuestion);
-            }
-            String string2 = LocaleController.getString(R.string.CancelEmailQuestionTitle);
-            String string3 = LocaleController.getString(R.string.Abort);
-            org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20225a;
-            b2Var.T = string;
-            b2Var.R = string2;
-            alertDialog$Builder.k(string3, new vl0(this, 24));
-            alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
-            org.telegram.ui.ActionBar.b2 b2Var2 = alertDialog$Builder.f20225a;
-            hh1Var.showDialog(b2Var2);
-            TextView textView = (TextView) b2Var2.d(-1);
-            if (textView != null) {
-                textView.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f20925q7, false));
-            }
+    public final void run(final TLObject tLObject, final TLRPC.TL_error tL_error) {
+        switch (this.f32836a) {
+            case 0:
+                final mh1 mh1Var = this.f32837b;
+                AndroidUtilities.runOnUIThread(new Runnable() {
+                    @Override
+                    public final void run() {
+                        switch (r4) {
+                            case 0:
+                                mh1.b0(mh1Var, tL_error, tLObject);
+                                return;
+                            default:
+                                mh1.h0(mh1Var, tL_error, tLObject);
+                                return;
+                        }
+                    }
+                });
+                return;
+            case 1:
+                AndroidUtilities.runOnUIThread(new ih1(this.f32837b, tL_error, 0));
+                return;
+            case 2:
+                AndroidUtilities.runOnUIThread(new ih1(this.f32837b, tL_error, 1));
+                return;
+            case 3:
+                AndroidUtilities.runOnUIThread(new ih1(this.f32837b, tL_error, 2));
+                return;
+            default:
+                final mh1 mh1Var2 = this.f32837b;
+                AndroidUtilities.runOnUIThread(new Runnable() {
+                    @Override
+                    public final void run() {
+                        switch (r4) {
+                            case 0:
+                                mh1.b0(mh1Var2, tL_error, tLObject);
+                                return;
+                            default:
+                                mh1.h0(mh1Var2, tL_error, tLObject);
+                                return;
+                        }
+                    }
+                });
+                return;
         }
     }
 }

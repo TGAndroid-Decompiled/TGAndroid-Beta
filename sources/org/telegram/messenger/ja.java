@@ -1,75 +1,101 @@
 package org.telegram.messenger;
 
-import java.util.ArrayList;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.MessagesStorage;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stars;
 public final class ja implements RequestDelegate {
-    public final int f18073a;
-    public final Object f18074b;
-    public final long f18075c;
-    public final Object d;
-    public final Object f18076e;
+    public final int f15524a;
+    public final MessagesController f15525b;
 
-    public ja(Object obj, Object obj2, long j3, Object obj3, int i10) {
-        this.f18073a = i10;
-        this.f18074b = obj;
-        this.d = obj2;
-        this.f18075c = j3;
-        this.f18076e = obj3;
+    public ja(MessagesController messagesController, int i10) {
+        this.f15524a = i10;
+        this.f15525b = messagesController;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f18073a) {
+        switch (this.f15524a) {
             case 0:
-                ((MessagesController) this.f18074b).lambda$deleteSavedDialog$143(this.f18075c, (int[]) this.d, (TLRPC.InputPeer) this.f18076e, tLObject, tL_error);
+                this.f15525b.lambda$updateTimerProc$152(tLObject, tL_error);
                 return;
             case 1:
-                ((MessagesController) this.f18074b).lambda$getSavedReactionTags$486(this.f18075c, (TLRPC.messages_SavedReactionTags) this.d, (TLRPC.TL_messages_getSavedReactionTags) this.f18076e, tLObject, tL_error);
+                this.f15525b.lambda$updateTimerProc$153(tLObject, tL_error);
                 return;
             case 2:
-                ((MessagesController) this.f18074b).lambda$addUsersToChannel$274((org.telegram.ui.ActionBar.n2) this.d, (TLRPC.TL_channels_inviteToChannel) this.f18076e, this.f18075c, tLObject, tL_error);
+                this.f15525b.lambda$loadCurrentState$325(tLObject, tL_error);
                 return;
             case 3:
-                ((TopicsController) this.f18074b).lambda$pinTopic$20((org.telegram.ui.ActionBar.n2) this.d, this.f18075c, (ArrayList) this.f18076e, tLObject, tL_error);
+                this.f15525b.lambda$getContentSettings$502(tLObject, tL_error);
                 return;
             case 4:
-                AndroidUtilities.runOnUIThread(new org.telegram.messenger.voip.f((org.telegram.ui.ActionBar.b2) this.f18074b, tLObject, this.f18075c, (AccountInstance) this.d, (MessagesStorage.BooleanCallback) this.f18076e, 5));
+                this.f15525b.lambda$sendBotStart$293(tLObject, tL_error);
                 return;
             case 5:
-                AndroidUtilities.runOnUIThread(new bi.n9((org.telegram.ui.ActionBar.n2) this.f18074b, tLObject, (MessagesController.DialogFilter) this.d, tL_error, (Runnable) this.f18076e, this.f18075c, 3));
+                this.f15525b.lambda$loadSignUpNotificationsSettings$207(tLObject, tL_error);
                 return;
             case 6:
-                AndroidUtilities.runOnUIThread(new org.telegram.messenger.voip.f((zh.o) this.f18074b, (org.telegram.ui.ActionBar.b2) this.d, tLObject, this.f18075c, (Utilities.Callback) this.f18076e));
+                this.f15525b.lambda$reloadDialogsReadValue$64(tLObject, tL_error);
                 return;
             case 7:
-                AndroidUtilities.runOnUIThread(new bi.n9((zh.w3) this.f18074b, tLObject, (String) this.d, (TL_stars.InputSavedStarGift) this.f18076e, tL_error, this.f18075c, 4));
+                this.f15525b.lambda$completeReadTask$238(tLObject, tL_error);
+                return;
+            case 8:
+                this.f15525b.lambda$markMentionMessageAsRead$234(tLObject, tL_error);
+                return;
+            case 9:
+                this.f15525b.lambda$toggleChannelForum$286(tLObject, tL_error);
+                return;
+            case 10:
+                this.f15525b.lambda$setDialogHistoryTTL$137(tLObject, tL_error);
+                return;
+            case 11:
+                this.f15525b.lambda$loadUnreadDialogs$362(tLObject, tL_error);
+                return;
+            case 12:
+                this.f15525b.lambda$checkTosUpdate$163(tLObject, tL_error);
+                return;
+            case 13:
+                this.f15525b.lambda$reloadReactionsNotifySettings$205(tLObject, tL_error);
+                return;
+            case 14:
+                this.f15525b.lambda$loadHintDialogs$196(tLObject, tL_error);
+                return;
+            case 15:
+                this.f15525b.lambda$reloadUser$56(tLObject, tL_error);
+                return;
+            case 16:
+                this.f15525b.lambda$processUpdateArray$414(tLObject, tL_error);
+                return;
+            case 17:
+                this.f15525b.lambda$markMessageContentAsRead$232(tLObject, tL_error);
+                return;
+            case 18:
+                this.f15525b.lambda$loadRemoteFilters$30(tLObject, tL_error);
+                return;
+            case 19:
+                this.f15525b.lambda$didReceivedNotification$43(tLObject, tL_error);
+                return;
+            case 20:
+                this.f15525b.lambda$loadGlobalNotificationsSettings$203(tLObject, tL_error);
+                return;
+            case 21:
+                this.f15525b.lambda$performLogout$322(tLObject, tL_error);
+                return;
+            case 22:
+                this.f15525b.lambda$checkPeerColors$491(tLObject, tL_error);
+                return;
+            case 23:
+                this.f15525b.lambda$checkPeerColors$493(tLObject, tL_error);
+                return;
+            case 24:
+                this.f15525b.lambda$loadSuggestedFilters$25(tLObject, tL_error);
+                return;
+            case 25:
+                this.f15525b.lambda$toggleChannelInvitesHistory$288(tLObject, tL_error);
                 return;
             default:
-                AndroidUtilities.runOnUIThread(new org.telegram.messenger.voip.f((zh.s5) this.f18074b, tLObject, (MessageObject) this.d, this.f18075c, (Runnable) this.f18076e, 10));
+                this.f15525b.lambda$toggleChannelSignatures$284(tLObject, tL_error);
                 return;
         }
-    }
-
-    public ja(Object obj, Object obj2, Object obj3, long j3, int i10) {
-        this.f18073a = i10;
-        this.f18074b = obj;
-        this.d = obj2;
-        this.f18076e = obj3;
-        this.f18075c = j3;
-    }
-
-    public ja(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, long j3, Object obj, Object obj2, int i10) {
-        this.f18073a = i10;
-        this.f18074b = notificationCenterDelegate;
-        this.f18075c = j3;
-        this.d = obj;
-        this.f18076e = obj2;
     }
 }

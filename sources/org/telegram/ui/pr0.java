@@ -5,18 +5,18 @@ import android.text.style.ClickableSpan;
 import android.widget.TextView;
 import org.telegram.messenger.Utilities;
 public final class pr0 implements Utilities.Callback2 {
-    public final int f39656a;
-    public final PhotoViewer f39657b;
+    public final int f35896a;
+    public final PhotoViewer f35897b;
 
     public pr0(PhotoViewer photoViewer, int i10) {
-        this.f39656a = i10;
-        this.f39657b = photoViewer;
+        this.f35896a = i10;
+        this.f35897b = photoViewer;
     }
 
     @Override
     public final void run(Object obj, Object obj2) {
-        int i10 = this.f39656a;
-        PhotoViewer photoViewer = this.f39657b;
+        int i10 = this.f35896a;
+        PhotoViewer photoViewer = this.f35897b;
         switch (i10) {
             case 0:
                 Drawable[] drawableArr = PhotoViewer.T8;

@@ -1,30 +1,37 @@
 package org.telegram.ui;
 
-import android.widget.Toast;
-import java.util.List;
-import org.telegram.tgnet.ResultCallback;
-import org.telegram.tgnet.TLRPC;
-public final class v21 implements ResultCallback {
-    public final g31 f41419a;
+import android.content.Intent;
+import android.net.Uri;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.FileLog;
+public final class v21 implements org.telegram.ui.ActionBar.c2, r0.n {
+    public final k31 f37399a;
 
-    public v21(g31 g31Var) {
-        this.f41419a = g31Var;
+    public v21(k31 k31Var) {
+        this.f37399a = k31Var;
     }
 
     @Override
-    public final void onComplete(Object obj) {
-        List list = (List) obj;
-        this.f41419a.c0(list);
-        g31.S = list;
+    public r0.l1 Q0(View view, r0.l1 l1Var) {
+        i0.c defaultWindowInsets = AndroidUtilities.getDefaultWindowInsets(l1Var, false);
+        k31 k31Var = this.f37399a;
+        k31Var.Q = defaultWindowInsets;
+        k31Var.fragmentView.requestLayout();
+        return r0.l1.f41073b;
     }
 
     @Override
-    public final void onError(Throwable th2) {
-        org.telegram.tgnet.l.a(this, th2);
-    }
-
-    @Override
-    public final void onError(TLRPC.TL_error tL_error) {
-        Toast.makeText(this.f41419a.getParentActivity(), tL_error.text, 0).show();
+    public void f(org.telegram.ui.ActionBar.d2 d2Var, int i10) {
+        k31 k31Var = this.f37399a;
+        k31Var.getClass();
+        try {
+            Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
+            intent.setData(Uri.parse("package:" + ApplicationLoader.applicationContext.getPackageName()));
+            k31Var.getParentActivity().startActivity(intent);
+        } catch (Exception e) {
+            FileLog.e(e);
+        }
     }
 }

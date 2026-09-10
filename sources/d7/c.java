@@ -1,14 +1,14 @@
 package d7;
 
-import c5.m;
+import a6.i;
 public final class c {
-    public static final c f6653b;
-    public final m f6654a = new m(1);
+    public static final c f6331b;
+    public final i f6332a = new i(15);
 
     static {
         c cVar = new c();
         synchronized (c.class) {
-            f6653b = cVar;
+            f6331b = cVar;
         }
     }
 }

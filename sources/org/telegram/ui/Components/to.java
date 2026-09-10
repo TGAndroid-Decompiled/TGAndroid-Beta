@@ -1,54 +1,14 @@
 package org.telegram.ui.Components;
+public interface to {
+    void dismiss();
 
-import org.telegram.ui.bb1;
-public final class to implements Runnable {
-    public final int f30695a;
-    public final lp f30696b;
+    void l();
 
-    public to(lp lpVar, int i10) {
-        this.f30695a = i10;
-        this.f30696b = lpVar;
-    }
+    void n();
 
-    @Override
-    public final void run() {
-        switch (this.f30695a) {
-            case 0:
-                this.f30696b.h.l();
-                return;
-            case 1:
-                this.f30696b.s(true);
-                return;
-            case 2:
-                lp lpVar = this.f30696b;
-                org.telegram.ui.co coVar = lpVar.v;
-                org.telegram.ui.ActionBar.n2 d02 = bb1.d0(coVar.getMessagesController().getChat(Long.valueOf(-coVar.a())), true);
-                ?? obj = new Object();
-                obj.f21169a = true;
-                d02.setResourceProvider(coVar.getResourceProvider());
-                obj.f21171c = new ue(3);
-                obj.d = new to(lpVar, 3);
-                obj.f21170b = new to(lpVar, 4);
-                obj.f21172e = true;
-                lpVar.X = d02;
-                coVar.showAsSheet(d02, obj);
-                return;
-            case 3:
-                this.f30696b.u();
-                return;
-            case 4:
-                this.f30696b.X = null;
-                return;
-            case 5:
-                this.f30696b.u();
-                return;
-            case 6:
-                this.f30696b.X = null;
-                return;
-            default:
-                lp lpVar2 = this.f30696b;
-                lpVar2.U.f(lpVar2.G, true);
-                return;
-        }
-    }
+    void o();
+
+    void r();
+
+    void t(int i10);
 }

@@ -1,25 +1,25 @@
 package org.telegram.messenger;
-
-import org.telegram.messenger.Utilities;
 public final class nh implements Runnable {
-    public final int f18513a;
-    public final Utilities.Callback2 f18514b;
-    public final Exception f18515c;
+    public final int f15893a;
+    public final NotificationsController f15894b;
+    public final long f15895c;
+    public final int d;
 
-    public nh(Utilities.Callback2 callback2, Exception exc, int i10) {
-        this.f18513a = i10;
-        this.f18514b = callback2;
-        this.f18515c = exc;
+    public nh(NotificationsController notificationsController, long j3, int i10, int i11) {
+        this.f15893a = i11;
+        this.f15894b = notificationsController;
+        this.f15895c = j3;
+        this.d = i10;
     }
 
     @Override
     public final void run() {
-        switch (this.f18513a) {
+        switch (this.f15893a) {
             case 0:
-                PasskeysController.lambda$create$3(this.f18514b, this.f18515c);
+                this.f15894b.lambda$processDeleteStory$15(this.f15895c, this.d);
                 return;
             default:
-                PasskeysController.lambda$create$8(this.f18514b, this.f18515c);
+                this.f15894b.lambda$processReadStories$16(this.f15895c, this.d);
                 return;
         }
     }

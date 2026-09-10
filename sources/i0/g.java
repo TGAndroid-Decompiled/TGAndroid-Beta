@@ -15,19 +15,19 @@ import java.lang.reflect.Array;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import v7.h8;
-import v7.i8;
-public class g extends h8 {
-    public static Class f11459a = null;
-    public static Constructor f11460b = null;
-    public static Method f11461c = null;
+import v7.k8;
+import v7.l8;
+public class g extends k8 {
+    public static Class f10082a = null;
+    public static Constructor f10083b = null;
+    public static Method f10084c = null;
     public static Method d = null;
-    public static boolean f11462e = false;
+    public static boolean e = false;
 
     public static boolean g(Object obj, String str, int i10, boolean z10) {
         h();
         try {
-            return ((Boolean) f11461c.invoke(obj, str, Integer.valueOf(i10), Boolean.valueOf(z10))).booleanValue();
+            return ((Boolean) f10084c.invoke(obj, str, Integer.valueOf(i10), Boolean.valueOf(z10))).booleanValue();
         } catch (IllegalAccessException | InvocationTargetException e7) {
             throw new RuntimeException(e7);
         }
@@ -37,10 +37,10 @@ public class g extends h8 {
         Method method;
         Class<?> cls;
         Method method2;
-        if (f11462e) {
+        if (e) {
             return;
         }
-        f11462e = true;
+        e = true;
         Constructor<?> constructor = null;
         try {
             cls = Class.forName("android.graphics.FontFamily");
@@ -54,9 +54,9 @@ public class g extends h8 {
             cls = null;
             method2 = null;
         }
-        f11460b = constructor;
-        f11459a = cls;
-        f11461c = method2;
+        f10083b = constructor;
+        f10082a = cls;
+        f10084c = method2;
         d = method;
     }
 
@@ -65,17 +65,17 @@ public class g extends h8 {
         h0.f[] fVarArr;
         h();
         try {
-            Object newInstance = f11460b.newInstance(null);
-            for (h0.f fVar : eVar.f10829a) {
-                File d10 = i8.d(context);
+            Object newInstance = f10083b.newInstance(null);
+            for (h0.f fVar : eVar.f9168a) {
+                File d10 = l8.d(context);
                 if (d10 == null) {
                     return null;
                 }
                 try {
-                    if (!i8.b(d10, resources, fVar.f10834f)) {
+                    if (!l8.b(d10, resources, fVar.f9172f)) {
                         return null;
                     }
-                    if (!g(newInstance, d10.getPath(), fVar.f10831b, fVar.f10832c)) {
+                    if (!g(newInstance, d10.getPath(), fVar.f9170b, fVar.f9171c)) {
                         return null;
                     }
                     d10.delete();
@@ -87,7 +87,7 @@ public class g extends h8 {
             }
             h();
             try {
-                Object newInstance2 = Array.newInstance(f11459a, 1);
+                Object newInstance2 = Array.newInstance(f10082a, 1);
                 Array.set(newInstance2, 0, newInstance);
                 return (Typeface) d.invoke(null, newInstance2);
             } catch (IllegalAccessException | InvocationTargetException e7) {
@@ -105,7 +105,7 @@ public class g extends h8 {
         String readlink;
         if (iVarArr.length >= 1) {
             try {
-                ParcelFileDescriptor openFileDescriptor = context.getContentResolver().openFileDescriptor(f(iVarArr, i10).f16816a, "r", null);
+                ParcelFileDescriptor openFileDescriptor = context.getContentResolver().openFileDescriptor(f(iVarArr, i10).f14101a, "r", null);
                 if (openFileDescriptor == null) {
                     if (openFileDescriptor != null) {
                         openFileDescriptor.close();

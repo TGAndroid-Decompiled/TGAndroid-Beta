@@ -8,8 +8,8 @@ import n6.l;
 import w7.e0;
 public class h extends o6.a {
     public static final Parcelable.Creator<h> CREATOR = new j(16);
-    public final int f13609a;
-    public final Float f13610b;
+    public final int f11832a;
+    public final Float f11833b;
 
     public h(int i10, Float f7) {
         boolean z10 = true;
@@ -17,8 +17,8 @@ public class h extends o6.a {
             z10 = false;
         }
         l.a("Invalid PatternItem: type=" + i10 + " length=" + f7, z10);
-        this.f13609a = i10;
-        this.f13610b = f7;
+        this.f11832a = i10;
+        this.f11833b = f7;
     }
 
     public final boolean equals(Object obj) {
@@ -29,26 +29,26 @@ public class h extends o6.a {
             return false;
         }
         h hVar = (h) obj;
-        if (this.f13609a == hVar.f13609a && l.l(this.f13610b, hVar.f13610b)) {
+        if (this.f11832a == hVar.f11832a && l.l(this.f11833b, hVar.f11833b)) {
             return true;
         }
         return false;
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{Integer.valueOf(this.f13609a), this.f13610b});
+        return Arrays.hashCode(new Object[]{Integer.valueOf(this.f11832a), this.f11833b});
     }
 
     public String toString() {
-        return "[PatternItem: type=" + this.f13609a + " length=" + this.f13610b + "]";
+        return "[PatternItem: type=" + this.f11832a + " length=" + this.f11833b + "]";
     }
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
         int q6 = e0.q(parcel, 20293);
         e0.s(parcel, 2, 4);
-        parcel.writeInt(this.f13609a);
-        e0.e(parcel, 3, this.f13610b);
+        parcel.writeInt(this.f11832a);
+        e0.e(parcel, 3, this.f11833b);
         e0.r(parcel, q6);
     }
 }

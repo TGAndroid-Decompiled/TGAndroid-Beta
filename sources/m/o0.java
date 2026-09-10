@@ -9,11 +9,11 @@ public interface o0 {
 
     void c(int i10);
 
+    CharSequence d();
+
     void dismiss();
 
-    CharSequence e();
-
-    Drawable h();
+    Drawable e();
 
     void i(CharSequence charSequence);
 

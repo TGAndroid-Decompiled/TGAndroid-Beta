@@ -1,72 +1,55 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.view.MotionEvent;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-public final class q31 extends q6 {
-    public final Paint f29591s;
-    public final a90 v;
-    public final s31 f29592w;
+import android.graphics.ColorFilter;
+import android.graphics.drawable.Drawable;
+import android.os.SystemClock;
+import android.text.TextPaint;
+import org.telegram.messenger.R;
+public final class q31 extends Drawable {
+    public final hj0 f26312a;
+    public int f26313b;
+    public final TextPaint f26314c;
 
-    public q31(s31 s31Var, Context context) {
-        super(context, false, false, false);
-        this.f29592w = s31Var;
-        this.f29591s = new Paint(1);
-        this.v = new a90();
+    public q31(TextPaint textPaint) {
+        hi.s0 s0Var = new hi.s0(this, 5);
+        this.f26314c = textPaint;
+        float textSize = textPaint.getTextSize() * 0.89f;
+        hj0 hj0Var = new hj0(R.raw.dots_loading, (int) textSize, (int) (textSize * 1.25f));
+        this.f26312a = hj0Var;
+        hj0Var.setCallback(s0Var);
+        hj0Var.K(1);
+        hj0Var.M((int) ((((float) SystemClock.elapsedRealtime()) / 16.0f) % 60.0f));
+        hj0Var.J(true);
+        hj0Var.start();
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        if (LocaleController.isRTL) {
-            AndroidUtilities.rectTmp.set(getWidth() - d(), (getHeight() - AndroidUtilities.dp(18.0f)) / 2.0f, getWidth(), (AndroidUtilities.dp(18.0f) + getHeight()) / 2.0f);
-        } else {
-            AndroidUtilities.rectTmp.set(0.0f, (getHeight() - AndroidUtilities.dp(18.0f)) / 2.0f, d(), (AndroidUtilities.dp(18.0f) + getHeight()) / 2.0f);
+    public final void draw(Canvas canvas) {
+        int color = this.f26314c.getColor();
+        int i10 = this.f26313b;
+        hj0 hj0Var = this.f26312a;
+        if (color != i10) {
+            hj0Var.f23646a0 = true;
+            hj0Var.Q(color, "Comp 1");
+            hj0Var.o();
+            hj0Var.J(true);
+            hj0Var.U(0L);
+            this.f26313b = color;
         }
-        u31 u31Var = this.f29592w.h;
-        int i10 = org.telegram.ui.ActionBar.j6.Pi;
-        String[] strArr = u31.R;
-        int l1 = org.telegram.ui.ActionBar.j6.l1(0.1175f, u31Var.getThemedColor(i10));
-        Paint paint = this.f29591s;
-        paint.setColor(l1);
-        canvas.drawRoundRect(AndroidUtilities.rectTmp, AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), paint);
-        if (this.v.f(canvas)) {
-            invalidate();
-        }
-        super.onDraw(canvas);
+        hj0Var.draw(canvas);
     }
 
     @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        org.telegram.ui.ActionBar.f6 f6Var;
-        u31 u31Var = this.f29592w.h;
-        int action = motionEvent.getAction();
-        a90 a90Var = this.v;
-        if (action == 0) {
-            f6Var = ((org.telegram.ui.ActionBar.f3) u31Var).resourcesProvider;
-            e90 e90Var = new e90(null, f6Var, motionEvent.getX(), motionEvent.getY(), 0);
-            e90Var.d(org.telegram.ui.ActionBar.j6.l1(0.1175f, u31Var.getThemedColor(org.telegram.ui.ActionBar.j6.Pi)));
-            x80 b10 = e90Var.b();
-            if (LocaleController.isRTL) {
-                AndroidUtilities.rectTmp.set(getWidth() - d(), (getHeight() - AndroidUtilities.dp(18.0f)) / 2.0f, getWidth(), (AndroidUtilities.dp(18.0f) + getHeight()) / 2.0f);
-            } else {
-                AndroidUtilities.rectTmp.set(0.0f, (getHeight() - AndroidUtilities.dp(18.0f)) / 2.0f, d(), (AndroidUtilities.dp(18.0f) + getHeight()) / 2.0f);
-            }
-            b10.addRect(AndroidUtilities.rectTmp, Path.Direction.CW);
-            a90Var.a(e90Var, null);
-            invalidate();
-            return true;
-        }
-        if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
-            if (motionEvent.getAction() == 1) {
-                performClick();
-            }
-            a90Var.d(true);
-            invalidate();
-        }
-        return super.onTouchEvent(motionEvent);
+    public final int getOpacity() {
+        return -2;
+    }
+
+    @Override
+    public final void setAlpha(int i10) {
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

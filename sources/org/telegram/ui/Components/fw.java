@@ -1,356 +1,116 @@
 package org.telegram.ui.Components;
 
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.Paint;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
-import android.util.Pair;
-import android.view.View;
-import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.CompoundEmoji;
-import org.telegram.messenger.Emoji;
-import org.telegram.messenger.EmojiData;
-import org.telegram.messenger.MessagesController;
-public final class fw implements bl0, le.d, gm0, ih.i {
-    public final int f26212a;
-    public final kz f26213b;
+public final class fw extends Drawable {
+    public final int f23093a;
+    public RectF f23094b;
+    public Paint f23095c;
 
-    public fw(kz kzVar, int i10) {
-        this.f26212a = i10;
-        this.f26213b = kzVar;
+    public fw(int i10, byte b10) {
+        this.f23093a = i10;
     }
 
     @Override
-    public void E(int i10, float f7, float f10, le.e eVar) {
-        this.f26213b.T();
-    }
-
-    @Override
-    public boolean a(int i10, View view) {
-        String str;
-        boolean z10;
-        String str2;
-        int i11;
-        float f7;
-        int i12;
-        int i13;
-        int i14;
-        int i15;
-        float f10;
-        boolean z11;
-        kz kzVar = this.f26213b;
-        int i16 = kzVar.C1;
-        kx kxVar = kzVar.P;
-        int[] iArr = kzVar.D1;
-        vu vuVar = kzVar.B1;
-        if (view instanceof ty) {
-            ty tyVar = (ty) view;
-            String str3 = null;
-            s4.c1 c1Var = null;
-            if (tyVar.f30765c) {
-                View F = kxVar.F(view);
-                if (F != null) {
-                    c1Var = kxVar.T(F);
-                }
-                if (c1Var != null && c1Var.b() <= kzVar.getRecentEmoji().size()) {
-                    kzVar.f28013t1.n();
-                }
-                kxVar.v1(view);
-                return true;
-            } else if (tyVar.getSpan() != null || (str = (String) tyVar.getTag()) == null) {
-                return false;
-            } else {
-                String replace = str.replace("🏻", "").replace("🏼", "").replace("🏽", "").replace("🏾", "").replace("🏿", "");
-                if (!tyVar.f30765c) {
-                    str3 = Emoji.emojiColor.get(replace);
-                }
-                boolean isCompound = CompoundEmoji.isCompound(replace);
-                if (!isCompound && !EmojiData.emojiColoredMap.contains(replace)) {
-                    return false;
-                }
-                kzVar.R1 = tyVar;
-                kzVar.U1 = kzVar.S1;
-                kzVar.V1 = kzVar.T1;
-                if (isCompound) {
-                    replace = kz.g(replace, str3);
-                } else {
-                    int indexOf = CompoundEmoji.skinTones.indexOf(str3) + 1;
-                    uu uuVar = vuVar.f32012c;
-                    int[] iArr2 = uuVar.f31003n;
-                    if (iArr2[0] != indexOf) {
-                        iArr2[0] = indexOf;
-                        uuVar.invalidate();
-                    }
-                }
-                vuVar.getClass();
-                uu uuVar2 = vuVar.f32012c;
-                int i17 = vuVar.f32013e;
-                if (CompoundEmoji.getCompoundEmojiDrawable(replace) != null) {
-                    z10 = true;
-                } else {
-                    z10 = false;
-                }
-                vuVar.d = z10;
-                int i18 = 3;
-                Drawable[] drawableArr = uuVar2.f30999b;
-                int[] iArr3 = uuVar2.f31003n;
-                uuVar2.f31002f = z10;
-                uuVar2.f31001e = replace;
-                int i19 = 5;
-                if (z10) {
-                    drawableArr[0] = CompoundEmoji.getCompoundEmojiDrawable(replace, -1, -1);
-                    drawableArr[1] = CompoundEmoji.getCompoundEmojiDrawable(uuVar2.f31001e, 0, -2);
-                    drawableArr[2] = CompoundEmoji.getCompoundEmojiDrawable(uuVar2.f31001e, 1, -2);
-                    drawableArr[3] = CompoundEmoji.getCompoundEmojiDrawable(uuVar2.f31001e, 2, -2);
-                    drawableArr[4] = CompoundEmoji.getCompoundEmojiDrawable(uuVar2.f31001e, 3, -2);
-                    drawableArr[5] = CompoundEmoji.getCompoundEmojiDrawable(uuVar2.f31001e, 4, -2);
-                    drawableArr[6] = CompoundEmoji.getCompoundEmojiDrawable(uuVar2.f31001e, -2, 0);
-                    drawableArr[7] = CompoundEmoji.getCompoundEmojiDrawable(uuVar2.f31001e, -2, 1);
-                    drawableArr[8] = CompoundEmoji.getCompoundEmojiDrawable(uuVar2.f31001e, -2, 2);
-                    drawableArr[9] = CompoundEmoji.getCompoundEmojiDrawable(uuVar2.f31001e, -2, 3);
-                    drawableArr[10] = CompoundEmoji.getCompoundEmojiDrawable(uuVar2.f31001e, -2, 4);
-                    Pair<Integer, Integer> isHandshake = CompoundEmoji.isHandshake(replace);
-                    if (isHandshake != null) {
-                        int intValue = ((Integer) isHandshake.first).intValue();
-                        if (iArr3[0] != intValue) {
-                            iArr3[0] = intValue;
-                            uuVar2.invalidate();
-                        }
-                        int intValue2 = ((Integer) isHandshake.second).intValue();
-                        if (iArr3[1] != intValue2) {
-                            iArr3[1] = intValue2;
-                            uuVar2.invalidate();
-                        }
-                        if (iArr3[0] == iArr3[1]) {
-                            z11 = true;
-                        } else {
-                            z11 = false;
-                        }
-                        uuVar2.G = z11;
-                    }
-                    uuVar2.I = true;
-                } else {
-                    for (int i20 = 0; i20 < 6; i20++) {
-                        if (i20 != 0) {
-                            str2 = kz.g(replace, CompoundEmoji.skinTones.get(i20 - 1));
-                        } else {
-                            str2 = replace;
-                        }
-                        drawableArr[i20] = Emoji.getEmojiBigDrawable(str2);
-                    }
-                }
-                uuVar2.invalidate();
-                int i21 = i17 * 6;
-                if (vuVar.d) {
-                    i11 = 3;
-                } else {
-                    i11 = 0;
-                }
-                vuVar.setWidth(AndroidUtilities.dp(i11 + 30) + i21);
-                float f11 = 15.0f;
-                if (vuVar.d) {
-                    f7 = 11.66f;
-                } else {
-                    f7 = 15.0f;
-                }
-                int dp = AndroidUtilities.dp(f7);
-                if (vuVar.d) {
-                    i12 = 2;
-                } else {
-                    i12 = 1;
-                }
-                vuVar.setHeight((i12 * i17) + dp);
-                int i22 = i17 * 6;
-                if (!vuVar.d) {
-                    i18 = 0;
-                }
-                int dp2 = AndroidUtilities.dp(i18 + 30) + i22;
-                if (vuVar.d) {
-                    f11 = 11.66f;
-                }
-                int dp3 = AndroidUtilities.dp(f11);
-                if (vuVar.d) {
-                    i13 = 2;
-                } else {
-                    i13 = 1;
-                }
-                int i23 = (i13 * i17) + dp3;
-                tyVar.getLocationOnScreen(iArr);
-                if (!vuVar.d) {
-                    int i24 = uuVar2.f31003n[0];
-                    int i25 = i24 * i16;
-                    int i26 = i24 * 4;
-                    if (!AndroidUtilities.isTablet()) {
-                        i19 = 1;
-                    }
-                    i14 = AndroidUtilities.dp(i26 - i19) + i25;
-                } else {
-                    i14 = 0;
-                }
-                if (iArr[0] - i14 < AndroidUtilities.dp(5.0f)) {
-                    i14 = org.telegram.messenger.wl.D(5.0f, iArr[0] - i14, i14);
-                } else if ((iArr[0] - i14) + dp2 > AndroidUtilities.displaySize.x - AndroidUtilities.dp(5.0f)) {
-                    i14 += ((iArr[0] - i14) + dp2) - (AndroidUtilities.displaySize.x - AndroidUtilities.dp(5.0f));
-                }
-                int i27 = -i14;
-                if (tyVar.getTop() < 0) {
-                    i15 = tyVar.getTop();
-                } else {
-                    i15 = 0;
-                }
-                if (AndroidUtilities.isTablet()) {
-                    f10 = 30.0f;
-                } else {
-                    f10 = 22.0f;
-                }
-                uuVar2.setArrowX((AndroidUtilities.dp(f10) - i27) + ((int) AndroidUtilities.dpf2(0.5f)));
-                vuVar.setFocusable(true);
-                vuVar.showAsDropDown(view, i27, (((view.getMeasuredHeight() - i16) / 2) + ((-view.getMeasuredHeight()) - i23)) - i15);
-                kzVar.h.requestDisallowInterceptTouchEvent(true);
-                kxVar.c1(true);
-                kxVar.v1(view);
-                return true;
-            }
-        }
-        return false;
-    }
-
-    @Override
-    public void b(int i10) {
-        int i11;
-        int i12;
-        int i13;
-        int i14;
-        int i15;
-        wy wyVar;
-        switch (this.f26212a) {
+    public final void draw(Canvas canvas) {
+        switch (this.f23093a) {
+            case 0:
+                RectF rectF = this.f23094b;
+                rectF.set(0.0f, 0.0f, AndroidUtilities.dp(30.0f), AndroidUtilities.dp(30.0f));
+                canvas.drawRoundRect(rectF, AndroidUtilities.dpf2(8.0f), AndroidUtilities.dpf2(8.0f), this.f23095c);
+                return;
+            case 1:
+                RectF rectF2 = this.f23094b;
+                rectF2.set(getBounds());
+                float height = rectF2.height() * 0.2f;
+                canvas.drawRoundRect(rectF2, height, height, this.f23095c);
+                return;
             case 2:
-                kz kzVar = this.f26213b;
-                qy qyVar = kzVar.f27978i0;
-                int i16 = kzVar.f27959c1;
-                py pyVar = kzVar.f27992n0;
-                sy syVar = kzVar.f27984k0;
-                if (i10 != kzVar.f28009s0 || !pyVar.f29545x.isEmpty()) {
-                    kzVar.f27975h0.B0();
-                    kzVar.f27998p0.k(i10, 0);
-                    if (i10 != kzVar.f28005r0 && i10 != kzVar.f28009s0) {
-                        ArrayList<String> arrayList = MessagesController.getInstance(i16).gifSearchEmojies;
-                        kzVar.f27981j0.H(arrayList.get(i10 - kzVar.f28012t0));
-                        int i17 = i10 - kzVar.f28012t0;
-                        if (i17 > 0) {
-                            syVar.a(arrayList.get(i17 - 1), true);
-                        }
-                        if (i10 - kzVar.f28012t0 < arrayList.size() - 1) {
-                            syVar.a(arrayList.get((i10 - kzVar.f28012t0) + 1), true);
-                        }
-                    } else {
-                        kzVar.f27995o0.d.setText("");
-                        if (i10 == kzVar.f28009s0 && (i12 = pyVar.I) >= 1) {
-                            qyVar.h1(i12, -AndroidUtilities.dp(4.0f));
-                        } else {
-                            ly lyVar = kzVar.f28013t1;
-                            if (lyVar != null && lyVar.A()) {
-                                i11 = 0;
-                            } else {
-                                i11 = 1;
-                            }
-                            qyVar.h1(i11, 0);
-                        }
-                        if (i10 == kzVar.f28009s0) {
-                            ArrayList<String> arrayList2 = MessagesController.getInstance(i16).gifSearchEmojies;
-                            if (!arrayList2.isEmpty()) {
-                                syVar.a(arrayList2.get(0), true);
-                            }
-                        }
-                    }
-                    kzVar.H(2);
-                    return;
-                }
+                RectF rectF3 = this.f23094b;
+                rectF3.set(getBounds());
+                rectF3.inset(AndroidUtilities.dp(1.0f), (rectF3.height() - AndroidUtilities.dp(28.0f)) / 2.0f);
+                canvas.drawRoundRect(rectF3, AndroidUtilities.dp(14.0f), AndroidUtilities.dp(14.0f), this.f23095c);
                 return;
             default:
-                kz kzVar2 = this.f26213b;
-                ww wwVar = kzVar2.G0;
-                ArrayList arrayList3 = kzVar2.f27962d1;
-                xw xwVar = kzVar2.B0;
-                bz bzVar = kzVar2.f28030y0;
-                tw twVar = kzVar2.D0;
-                if (!kzVar2.S0) {
-                    if (i10 == kzVar2.H1) {
-                        kzVar2.f28013t1.o(new d51(kzVar2.getContext(), new fx(kzVar2), kzVar2.f28027x1, kzVar2.f28031y1, kzVar2.f28034z1, null, kzVar2.Z1));
-                        return;
-                    }
-                    if (wwVar != null && (wyVar = wwVar.f32805r) != null && wyVar.getSelectedCategory() != null) {
-                        wwVar.c(null, false);
-                        wyVar.E1(null);
-                    }
-                    if (i10 == kzVar2.F1) {
-                        twVar.B0();
-                        kzVar2.J(bzVar.E("recent"), 0);
-                        kzVar2.H(0);
-                        int i18 = kzVar2.F1;
-                        if (i18 > 0) {
-                            i15 = i18;
-                        } else {
-                            i15 = kzVar2.E1;
-                        }
-                        xwVar.k(i18, i15);
-                        return;
-                    } else if (i10 == kzVar2.G1) {
-                        twVar.B0();
-                        kzVar2.J(bzVar.E("fav"), 0);
-                        kzVar2.H(0);
-                        int i19 = kzVar2.G1;
-                        if (i19 > 0) {
-                            i14 = i19;
-                        } else {
-                            i14 = kzVar2.E1;
-                        }
-                        xwVar.k(i19, i14);
-                        return;
-                    } else if (i10 == kzVar2.I1) {
-                        twVar.B0();
-                        kzVar2.J(bzVar.E("premium"), 0);
-                        kzVar2.H(0);
-                        int i20 = kzVar2.I1;
-                        if (i20 > 0) {
-                            i13 = i20;
-                        } else {
-                            i13 = kzVar2.E1;
-                        }
-                        xwVar.k(i20, i13);
-                        return;
-                    } else {
-                        int i21 = i10 - kzVar2.E1;
-                        if (i21 < arrayList3.size()) {
-                            if (i21 >= arrayList3.size()) {
-                                i21 = arrayList3.size() - 1;
-                            }
-                            kzVar2.I0 = false;
-                            twVar.B0();
-                            kzVar2.J(bzVar.E(arrayList3.get(i21)), 0);
-                            kzVar2.H(0);
-                            kzVar2.p(0);
-                            int i22 = kzVar2.G1;
-                            if (i22 <= 0 && (i22 = kzVar2.F1) <= 0) {
-                                i22 = kzVar2.E1;
-                            }
-                            xwVar.k(i10, i22);
-                            kzVar2.X1 = false;
-                            kzVar2.a0();
-                            return;
-                        }
-                        return;
-                    }
-                }
+                RectF rectF4 = this.f23094b;
+                rectF4.set(getBounds());
+                rectF4.inset(0.0f, (rectF4.height() - AndroidUtilities.dp(28.0f)) / 2.0f);
+                canvas.drawRoundRect(rectF4, AndroidUtilities.dp(14.0f), AndroidUtilities.dp(14.0f), this.f23095c);
                 return;
         }
     }
 
     @Override
-    public void k(RectF rectF, View view) {
-        this.f26213b.C();
+    public final int getOpacity() {
+        switch (this.f23093a) {
+            case 0:
+                return -3;
+            case 1:
+                return -3;
+            case 2:
+                return -2;
+            default:
+                return -2;
+        }
     }
 
     @Override
-    public void z(float f7, int i10) {
+    public final void setAlpha(int i10) {
+        switch (this.f23093a) {
+            case 0:
+                this.f23095c.setAlpha(i10);
+                return;
+            case 1:
+                this.f23095c.setAlpha(i10);
+                return;
+            case 2:
+                this.f23095c.setAlpha(i10);
+                return;
+            default:
+                this.f23095c.setAlpha(i10);
+                return;
+        }
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
+        switch (this.f23093a) {
+            case 0:
+                return;
+            case 1:
+                this.f23095c.setColorFilter(colorFilter);
+                return;
+            case 2:
+            default:
+                return;
+        }
+    }
+
+    public fw() {
+        this.f23093a = 1;
+        this.f23094b = new RectF();
+        this.f23095c = new Paint(1);
+    }
+
+    public fw(int i10) {
+        this.f23093a = 0;
+        Paint paint = new Paint();
+        this.f23095c = paint;
+        this.f23094b = new RectF();
+        paint.setAlpha(45);
+        paint.setColor(i10);
+    }
+
+    private final void a(ColorFilter colorFilter) {
+    }
+
+    private final void b(ColorFilter colorFilter) {
+    }
+
+    private final void c(ColorFilter colorFilter) {
     }
 }

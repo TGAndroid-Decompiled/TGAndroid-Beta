@@ -1,55 +1,105 @@
 package sg;
 
+import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
-import android.widget.FrameLayout;
-import org.telegram.ui.ActionBar.f6;
-import org.telegram.ui.ActionBar.j6;
-import org.telegram.ui.Components.ll0;
-import w7.x5;
-public abstract class b extends FrameLayout implements m0 {
-    public final f6 f46050a;
-    public final ll0 f46051b;
-    public final s4.c0 f46052c;
+import android.graphics.Rect;
+import android.graphics.RectF;
+import android.view.View;
+import android.view.animation.OvershootInterpolator;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.Components.n6;
+import org.telegram.ui.Components.wr;
+import org.telegram.ui.mv0;
+public final class b extends View {
+    public final n6 f41872a;
+    public float f41873b;
+    public ValueAnimator f41874c;
+    public int d;
+    public final Paint e;
 
-    public b(Context context, f6 f6Var) {
+    public b(Context context) {
         super(context);
-        this.f46050a = f6Var;
-        ll0 ll0Var = new ll0(context, f6Var);
-        this.f46051b = ll0Var;
-        ll0Var.setNestedScrollingEnabled(true);
-        ll0Var.setAdapter(a());
-        s4.c0 c0Var = new s4.c0(1, false);
-        this.f46052c = c0Var;
-        ll0Var.setLayoutManager(c0Var);
-        ll0Var.setClipToPadding(false);
-        addView(ll0Var, x5.c(-1.0f, -1));
+        this.f41873b = 1.0f;
+        n6 n6Var = new n6(false, false, true, false);
+        this.f41872a = n6Var;
+        n6Var.k(0.3f, 250L, wr.h);
+        n6Var.setCallback(this);
+        n6Var.t(AndroidUtilities.dp(11.5f));
+        n6Var.u(AndroidUtilities.bold());
+        n6Var.r(-1);
+        n6Var.q("", true, true);
+        n6Var.f25425b = 17;
+        Paint paint = new Paint(1);
+        this.e = paint;
+        paint.setColor(-6915073);
+        setVisibility(8);
     }
 
-    public abstract s4.h0 a();
-
-    @Override
-    public final void dispatchDraw(Canvas canvas) {
-        super.dispatchDraw(canvas);
-        Paint T0 = j6.T0("paintDivider", this.f46050a);
-        if (T0 == null) {
-            T0 = j6.f20812k0;
+    public final void a(int i10, boolean z10) {
+        if (!s.i()) {
+            i10 = 0;
         }
-        canvas.drawLine(0.0f, getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight() - 1, T0);
-    }
-
-    @Override
-    public void setOffset(float f7) {
-        if (Math.abs(f7 / getMeasuredWidth()) == 1.0f) {
-            ll0 ll0Var = this.f46051b;
-            if (ll0Var.K(0) == null || ll0Var.K(0).f45766a.getTop() != ll0Var.getPaddingTop()) {
-                ll0Var.u0(0);
+        if (i10 > 0) {
+            setVisibility(0);
+        }
+        n6 n6Var = this.f41872a;
+        if (z10) {
+            n6Var.b();
+        }
+        if (z10 && i10 != this.d && i10 > 0) {
+            ValueAnimator valueAnimator = this.f41874c;
+            if (valueAnimator != null) {
+                valueAnimator.cancel();
+                this.f41874c = null;
             }
+            ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+            this.f41874c = ofFloat;
+            ofFloat.addUpdateListener(new qg.o(this, 4));
+            this.f41874c.addListener(new mv0(this, 25));
+            this.f41874c.setInterpolator(new OvershootInterpolator(2.0f));
+            this.f41874c.setDuration(200L);
+            this.f41874c.start();
+        }
+        this.d = i10;
+        int length = n6Var.f25428g.length();
+        n6Var.q("x" + i10, z10, true);
+        int length2 = n6Var.f25428g.length();
+        invalidate();
+        if (length != length2) {
+            requestLayout();
         }
     }
 
-    public void setTopOffset(int i10) {
-        this.f46051b.setPadding(0, i10, 0, 0);
+    @Override
+    public final void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+        canvas.save();
+        canvas.translate(AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f));
+        Rect rect = AndroidUtilities.rectTmp2;
+        int dp = AndroidUtilities.dp(8.0f);
+        n6 n6Var = this.f41872a;
+        rect.set(0, 0, dp + ((int) n6Var.d()), AndroidUtilities.dp(20.0f));
+        RectF rectF = AndroidUtilities.rectTmp;
+        rectF.set(rect);
+        if (this.f41873b != 1.0f) {
+            canvas.save();
+            float f7 = this.f41873b;
+            canvas.scale(f7, f7, rect.centerX(), rect.centerY());
+        }
+        canvas.drawRoundRect(rectF, AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f), this.e);
+        rect.set(0, 0, (int) rectF.width(), AndroidUtilities.dp(19.0f));
+        n6Var.setBounds(rect);
+        n6Var.draw(canvas);
+        if (this.f41873b != 1.0f) {
+            canvas.restore();
+        }
+        canvas.restore();
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec((int) (this.f41872a.e() + AndroidUtilities.dp(15.0f)), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(26.0f), 1073741824));
     }
 }

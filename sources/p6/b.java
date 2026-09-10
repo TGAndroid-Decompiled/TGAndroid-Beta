@@ -6,16 +6,16 @@ import com.google.android.gms.common.api.internal.v;
 import com.google.android.gms.common.api.internal.w;
 import com.google.android.gms.common.api.j;
 import com.google.android.gms.tasks.Task;
-import k2.g0;
+import l2.h;
 import n6.o;
 public final class b extends j {
-    public static final e f43982k = new e("ClientTelemetry.API", new d(11), new Object());
+    public static final e f39816k = new e("ClientTelemetry.API", new d(11), new Object());
 
     public final Task f(o oVar) {
-        v e7 = w.e();
-        e7.d = new k6.c[]{k7.b.f14860a};
-        e7.f5143b = false;
-        e7.f5144c = new g0(oVar, 15);
-        return e(2, e7.a());
+        v e = w.e();
+        e.d = new k6.c[]{k7.b.f12371a};
+        e.f4956b = false;
+        e.f4957c = new h(oVar, 14);
+        return e(2, e.a());
     }
 }

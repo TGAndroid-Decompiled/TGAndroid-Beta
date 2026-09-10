@@ -1,51 +1,21 @@
 package org.telegram.ui;
 
+import android.app.Activity;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.UndoView;
-public final class oz0 implements nq {
-    public final TLRPC.Chat f39390a;
-    public final qq f39391b;
-    public final ProfileActivity f39392c;
+public final class oz0 extends org.telegram.ui.Components.sq0 {
+    public final pz0 f35650b1;
 
-    public oz0(ProfileActivity profileActivity, TLRPC.Chat chat, qq qqVar) {
-        this.f39392c = profileActivity;
-        this.f39390a = chat;
-        this.f39391b = qqVar;
+    public oz0(pz0 pz0Var, Activity activity, String str) {
+        super(activity, null, str, false, null, false, null);
+        this.f35650b1 = pz0Var;
     }
 
     @Override
-    public final void a(TLRPC.User user) {
-        int i10;
-        ProfileActivity profileActivity = this.f39392c;
-        UndoView undoView = profileActivity.M;
-        long j3 = -profileActivity.f33923f1;
-        if (profileActivity.E2.megagroup) {
-            i10 = 10;
-        } else {
-            i10 = 9;
+    public final void R0(a0.i iVar, int i10, TLRPC.TL_forumTopic tL_forumTopic, boolean z10) {
+        if (!z10) {
+            return;
         }
-        undoView.m(j3, user, i10);
-    }
-
-    @Override
-    public final void b(int i10, TLRPC.TL_chatAdminRights tL_chatAdminRights, TLRPC.TL_chatBannedRights tL_chatBannedRights, String str) {
-        TLRPC.Chat chat;
-        ProfileActivity profileActivity = this.f39392c;
-        profileActivity.removeSelfFromStack();
-        TLRPC.User user = profileActivity.getMessagesController().getUser(Long.valueOf(profileActivity.f33915e1));
-        if (user != null && (chat = this.f39390a) != null && profileActivity.f33915e1 != 0) {
-            qq qqVar = this.f39391b;
-            if (qqVar.Q && qqVar.getParentLayout() != null) {
-                for (org.telegram.ui.ActionBar.n2 n2Var : qqVar.getParentLayout().getFragmentStack()) {
-                    if (n2Var instanceof ub) {
-                        ub ubVar = (ub) n2Var;
-                        ubVar.W0();
-                        AndroidUtilities.runOnUIThread(new pf0(ubVar, user, chat, 25));
-                        return;
-                    }
-                }
-            }
-        }
+        AndroidUtilities.runOnUIThread(new ey0(this, iVar, i10, 10), 250L);
     }
 }

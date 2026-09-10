@@ -1,404 +1,134 @@
 package org.telegram.ui.Components;
 
-import android.animation.AnimatorSet;
-import android.animation.ObjectAnimator;
-import android.animation.ValueAnimator;
-import android.content.Context;
-import android.content.SharedPreferences;
-import android.graphics.Point;
-import android.util.Property;
-import android.view.MotionEvent;
-import android.view.View;
-import android.view.ViewParent;
-import android.view.WindowManager;
-import android.widget.FrameLayout;
+import android.graphics.Bitmap;
+import android.graphics.BitmapShader;
+import android.graphics.LinearGradient;
+import android.graphics.Matrix;
+import android.graphics.Paint;
+import android.graphics.RectF;
+import android.graphics.Shader;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.voip.VoIPService;
-public final class x20 extends FrameLayout {
-    public float f32439a;
-    public float f32440b;
-    public boolean f32441c;
-    public AnimatorSet d;
-    public final w20 f32442e;
-    public final ue f32443f;
-    public final float h;
-    public final z20 f32444n;
+import org.telegram.messenger.Utilities;
+public class x20 {
+    public boolean f28913a;
+    public boolean f28914b;
+    public int d;
+    public int e;
+    public int f28916f;
+    public int f28917g;
+    public Shader f28918i;
+    public boolean f28922m;
+    public final Paint f28915c = new Paint(1);
+    public final RectF h = new RectF();
+    public final Matrix f28919j = new Matrix();
+    public Bitmap f28920k = null;
+    public final int[] f28921l = new int[4];
 
-    public x20(z20 z20Var, Context context, float f7) {
-        super(context);
-        this.f32444n = z20Var;
-        this.h = f7;
-        this.f32442e = new w20(this);
-        this.f32443f = new ue(7);
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(i10, i11);
-        Point point = AndroidUtilities.displaySize;
-        int i12 = point.x;
-        z20 z20Var = this.f32444n;
-        if (i12 != z20Var.I || z20Var.J != point.y) {
-            z20Var.I = i12;
-            z20Var.J = point.y;
-            if (z20Var.K < 0.0f) {
-                SharedPreferences sharedPreferences = ApplicationLoader.applicationContext.getSharedPreferences("groupcallpipconfig", 0);
-                this.f32444n.K = sharedPreferences.getFloat("relativeX", 1.0f);
-                this.f32444n.L = sharedPreferences.getFloat("relativeY", 0.4f);
-            }
-            z20 z20Var2 = z20.f33081d0;
-            if (z20Var2 != null) {
-                z20 z20Var3 = this.f32444n;
-                float f7 = z20Var3.K;
-                float f10 = z20Var3.L;
-                float f11 = -AndroidUtilities.dp(36.0f);
-                z20Var2.f33092r.x = (int) com.google.android.gms.internal.vision.e2.z(AndroidUtilities.displaySize.x - (2.0f * f11), AndroidUtilities.dp(105.0f), f7, f11);
-                z20Var2.f33092r.y = (int) ((AndroidUtilities.displaySize.y - AndroidUtilities.dp(105.0f)) * f10);
-                z20Var2.h();
-                x20 x20Var = z20Var2.f33083a;
-                if (x20Var.getParent() != null) {
-                    z20Var2.f33091n.updateViewLayout(x20Var, z20Var2.f33092r);
-                }
-            }
+    public final int a() {
+        int i10 = this.d;
+        int i11 = this.e;
+        if (i11 != 0) {
+            i10 = i0.a.d(0.5f, i10, i11);
         }
+        int i12 = this.f28916f;
+        if (i12 != 0) {
+            i10 = i0.a.d(0.5f, i10, i12);
+        }
+        int i13 = this.f28917g;
+        if (i13 != 0) {
+            return i0.a.d(0.5f, i10, i13);
+        }
+        return i10;
     }
 
-    @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        int[] iArr;
-        z20 z20Var;
-        x20 x20Var;
-        long j3;
-        z20 z20Var2;
-        z20 z20Var3;
-        boolean z10;
-        boolean z11;
+    public final void b(float f7, float f10, float f11, float f12) {
+        RectF rectF = AndroidUtilities.rectTmp;
+        rectF.set(f7, f10, f11, f12);
+        c(rectF);
+    }
+
+    public final void c(RectF rectF) {
+        RectF rectF2 = this.h;
+        if (rectF2.top == rectF.top && rectF2.bottom == rectF.bottom && rectF2.left == rectF.left && rectF2.right == rectF.right) {
+            return;
+        }
+        rectF2.set(rectF);
+        e();
+    }
+
+    public final void d(int i10, int i11, int i12, int i13) {
         float f7;
-        double d;
-        boolean z12 = false;
-        int i10 = 0;
-        if (z20.f33081d0 == null) {
-            return false;
+        float f10;
+        if (this.f28918i != null && this.d == i10 && this.e == i11 && this.f28916f == i12 && this.f28917g == i13) {
+            return;
         }
-        float rawX = motionEvent.getRawX();
-        float rawY = motionEvent.getRawY();
-        ViewParent parent = getParent();
-        int action = motionEvent.getAction();
-        if (action != 0) {
-            if (action != 1) {
-                if (action != 2) {
-                    if (action != 3) {
-                        return true;
-                    }
-                } else {
-                    float f10 = rawX - this.f32439a;
-                    float f11 = rawY - this.f32440b;
-                    if (!this.f32444n.W) {
-                        float f12 = (f11 * f11) + (f10 * f10);
-                        float f13 = this.h;
-                        if (f12 > f13 * f13) {
-                            if (parent != null) {
-                                parent.requestDisallowInterceptTouchEvent(true);
-                            }
-                            AndroidUtilities.cancelRunOnUIThread(this.f32442e);
-                            z20 z20Var4 = this.f32444n;
-                            z20Var4.W = true;
-                            z20Var4.f(true);
-                            this.f32444n.e(false);
-                            this.f32439a = rawX;
-                            this.f32440b = rawY;
-                            f10 = 0.0f;
-                            f11 = 0.0f;
-                        }
-                    }
-                    z20 z20Var5 = this.f32444n;
-                    if (!z20Var5.W) {
-                        return true;
-                    }
-                    z20Var5.O += f10;
-                    z20Var5.P += f11;
-                    this.f32439a = rawX;
-                    this.f32440b = rawY;
-                    z20Var5.i();
-                    float measuredWidth = (getMeasuredWidth() / 2.0f) + this.f32444n.O;
-                    float measuredHeight = (getMeasuredHeight() / 2.0f) + this.f32444n.P;
-                    float measuredWidth2 = (z20Var2.f33085b.getMeasuredWidth() / 2.0f) + (z20Var2.N - this.f32444n.Q);
-                    float measuredHeight2 = (z20Var3.f33085b.getMeasuredHeight() / 2.0f) + (z20Var3.M - this.f32444n.R);
-                    float f14 = measuredWidth - measuredWidth2;
-                    float f15 = measuredHeight - measuredHeight2;
-                    float f16 = (f15 * f15) + (f14 * f14);
-                    if (f16 < AndroidUtilities.dp(80.0f) * AndroidUtilities.dp(80.0f)) {
-                        double degrees = Math.toDegrees(Math.atan(f14 / f15));
-                        if ((measuredWidth > measuredWidth2 && measuredHeight < measuredHeight2) || (measuredWidth < measuredWidth2 && measuredHeight < measuredHeight2)) {
-                            d = 270.0d;
-                        } else {
-                            d = 90.0d;
-                        }
-                        this.f32444n.U.setRemoveAngle(d - degrees);
-                        if (f16 < AndroidUtilities.dp(50.0f) * AndroidUtilities.dp(50.0f)) {
-                            z10 = true;
-                        } else {
-                            z10 = false;
-                        }
-                        z11 = true;
-                    } else {
-                        z10 = false;
-                        z11 = false;
-                    }
-                    z20 z20Var6 = this.f32444n;
-                    if (!z20Var6.F && z20Var6.f33084a0 != z10) {
-                        z20Var6.f33084a0 = z10;
-                        ValueAnimator valueAnimator = z20Var6.f33088c0;
-                        if (valueAnimator != null) {
-                            valueAnimator.removeAllListeners();
-                            z20Var6.f33088c0.cancel();
-                        }
-                        float f17 = z20Var6.f33086b0;
-                        if (z10) {
-                            f7 = 1.0f;
-                        } else {
-                            f7 = 0.0f;
-                        }
-                        ValueAnimator ofFloat = ValueAnimator.ofFloat(f17, f7);
-                        z20Var6.f33088c0 = ofFloat;
-                        ofFloat.addUpdateListener(new l6(z20Var6, 25));
-                        z20Var6.f33088c0.addListener(new org.telegram.ui.to(11, z20Var6, z10));
-                        z20Var6.f33088c0.setDuration(250L);
-                        z20Var6.f33088c0.setInterpolator(pr.f29493f);
-                        z20Var6.f33088c0.start();
-                    }
-                    z20 z20Var7 = this.f32444n;
-                    f30 f30Var = z20Var7.U;
-                    if (z20Var7.f33096y != z11) {
-                        z20Var7.f33096y = z11;
-                        z20Var7.f33087c.invalidate();
-                        if (!z20Var7.F) {
-                            xi0 xi0Var = z20Var7.v;
-                            if (z11) {
-                                i10 = 33;
-                            }
-                            xi0Var.N(i10);
-                            z20Var7.V.d();
-                        }
-                        if (z11) {
-                            try {
-                                f30Var.performHapticFeedback(3, 2);
-                            } catch (Exception unused) {
-                            }
-                        }
-                    }
-                    if (f30Var.f25920s != z11) {
-                        f30Var.invalidate();
-                    }
-                    f30Var.f25920s = z11;
-                    return true;
-                }
-            }
-            AndroidUtilities.cancelRunOnUIThread(this.f32443f);
-            AndroidUtilities.cancelRunOnUIThread(this.f32442e);
-            z20 z20Var8 = this.f32444n;
-            if (z20Var8.f33096y) {
-                if (this.f32441c && VoIPService.getSharedInstance() != null) {
-                    VoIPService.getSharedInstance().setMicMute(true, false, false);
-                }
-                this.f32441c = false;
-                z20 z20Var9 = this.f32444n;
-                aj0 aj0Var = z20Var9.V;
-                xi0 xi0Var2 = z20Var9.v;
-                ah.y yVar = z20Var9.f33085b;
-                x20 x20Var2 = z20Var9.f33083a;
-                di.r6 r6Var = z20Var9.f33087c;
-                z20 z20Var10 = z20.f33081d0;
-                if (z20Var10 == null) {
-                    return false;
-                }
-                z20Var9.F = true;
-                z20.f33082e0 = true;
-                z20Var9.U.K = true;
-                z20Var10.e(false);
-                float measuredWidth3 = (x20Var2.getMeasuredWidth() / 2.0f) + z20Var9.f33092r.x;
-                float measuredWidth4 = ((yVar.getMeasuredWidth() / 2.0f) + (z20Var9.N - z20Var9.Q)) - measuredWidth3;
-                float measuredHeight3 = ((yVar.getMeasuredHeight() / 2.0f) + (z20Var9.M - z20Var9.R)) - ((x20Var2.getMeasuredHeight() / 2.0f) + z20Var9.f33092r.y);
-                z20 z20Var11 = z20.f33081d0;
-                WindowManager windowManager = z20Var11.f33091n;
-                x20 x20Var3 = z20Var11.f33083a;
-                ah.y yVar2 = z20Var11.f33085b;
-                FrameLayout frameLayout = z20Var11.d;
-                org.telegram.ui.u7 u7Var = z20Var11.f33089e;
-                z20Var9.d();
-                z20.f33081d0 = null;
-                AnimatorSet animatorSet = new AnimatorSet();
-                int i11 = xi0Var2.f32580b0;
-                if (i11 < 33) {
-                    x20Var = x20Var3;
-                    j3 = ((1.0f - (i11 / 33.0f)) * ((float) xi0Var2.p())) / 2.0f;
-                } else {
-                    x20Var = x20Var3;
-                    j3 = 0;
-                }
-                float f18 = z20Var9.f33092r.x;
-                ValueAnimator ofFloat2 = ValueAnimator.ofFloat(f18, measuredWidth4 + f18);
-                ofFloat2.addUpdateListener(z20Var9.S);
-                ValueAnimator duration = ofFloat2.setDuration(250L);
-                pr prVar = pr.f29493f;
-                duration.setInterpolator(prVar);
-                animatorSet.playTogether(ofFloat2);
-                float f19 = z20Var9.f33092r.y;
-                ValueAnimator ofFloat3 = ValueAnimator.ofFloat(f19, (f19 + measuredHeight3) - AndroidUtilities.dp(30.0f), z20Var9.f33092r.y + measuredHeight3);
-                ofFloat3.addUpdateListener(z20Var9.T);
-                ofFloat3.setDuration(250L).setInterpolator(prVar);
-                animatorSet.playTogether(ofFloat3);
-                float[] fArr = {x20Var.getScaleX(), 0.1f};
-                Property property = View.SCALE_X;
-                x20 x20Var4 = x20Var;
-                animatorSet.playTogether(ObjectAnimator.ofFloat(x20Var4, property, fArr).setDuration(180L));
-                float[] fArr2 = {x20Var4.getScaleY(), 0.1f};
-                Property property2 = View.SCALE_Y;
-                animatorSet.playTogether(ObjectAnimator.ofFloat(x20Var4, property2, fArr2).setDuration(180L));
-                Property property3 = View.ALPHA;
-                ObjectAnimator ofFloat4 = ObjectAnimator.ofFloat(x20Var4, property3, 1.0f, 0.0f);
-                float f20 = (float) 350;
-                ofFloat4.setStartDelay(f20 * 0.7f);
-                ofFloat4.setDuration(f20 * 0.3f);
-                animatorSet.playTogether(ofFloat4);
-                AndroidUtilities.runOnUIThread(new ue(6), 370L);
-                long j10 = j3 + 530;
-                ObjectAnimator ofFloat5 = ObjectAnimator.ofFloat(r6Var, property, 1.0f, 1.05f);
-                ofFloat5.setDuration(j10);
-                pr prVar2 = pr.f29496j;
-                ofFloat5.setInterpolator(prVar2);
-                animatorSet.playTogether(ofFloat5);
-                ObjectAnimator ofFloat6 = ObjectAnimator.ofFloat(r6Var, property2, 1.0f, 1.05f);
-                ofFloat6.setDuration(j10);
-                ofFloat6.setInterpolator(prVar2);
-                animatorSet.playTogether(ofFloat6);
-                ObjectAnimator ofFloat7 = ObjectAnimator.ofFloat(r6Var, property, 1.0f, 0.3f);
-                ofFloat7.setStartDelay(j10);
-                ofFloat7.setDuration(350L);
-                pr prVar3 = pr.h;
-                ofFloat7.setInterpolator(prVar3);
-                animatorSet.playTogether(ofFloat7);
-                ObjectAnimator ofFloat8 = ObjectAnimator.ofFloat(r6Var, property2, 1.0f, 0.3f);
-                ofFloat8.setStartDelay(j10);
-                ofFloat8.setDuration(350L);
-                ofFloat8.setInterpolator(prVar3);
-                animatorSet.playTogether(ofFloat8);
-                ObjectAnimator ofFloat9 = ObjectAnimator.ofFloat(r6Var, View.TRANSLATION_Y, 0.0f, AndroidUtilities.dp(60.0f));
-                ofFloat9.setStartDelay(j10);
-                ofFloat9.setDuration(350L);
-                ofFloat9.setInterpolator(prVar3);
-                animatorSet.playTogether(ofFloat9);
-                ObjectAnimator ofFloat10 = ObjectAnimator.ofFloat(r6Var, property3, 1.0f, 0.0f);
-                ofFloat10.setStartDelay(j10);
-                ofFloat10.setDuration(350L);
-                ofFloat10.setInterpolator(prVar3);
-                animatorSet.playTogether(ofFloat10);
-                animatorSet.addListener(new y20(z20Var9, x20Var4, yVar2, windowManager, frameLayout, u7Var));
-                animatorSet.start();
-                xi0Var2.N(66);
-                aj0Var.i();
-                aj0Var.d();
-                return false;
-            }
-            z20Var8.X = false;
-            z20Var8.a();
-            if (this.f32441c) {
-                if (VoIPService.getSharedInstance() != null) {
-                    VoIPService.getSharedInstance().setMicMute(true, false, false);
-                    try {
-                        performHapticFeedback(3, 2);
-                    } catch (Exception unused2) {
-                    }
-                }
-                this.f32441c = false;
-            } else if (motionEvent.getAction() == 1 && !this.f32444n.W) {
-                if (VoIPService.getSharedInstance() != null) {
-                    this.f32444n.e(!z20Var.f33094w);
-                    return false;
-                }
-                return false;
+        this.d = i10;
+        int[] iArr = this.f28921l;
+        iArr[0] = i10;
+        this.e = i11;
+        iArr[1] = i11;
+        this.f28916f = i12;
+        iArr[2] = i12;
+        this.f28917g = i13;
+        iArr[3] = i13;
+        Paint paint = this.f28915c;
+        if (i11 == 0) {
+            this.f28918i = null;
+            paint.setShader(null);
+            paint.setColor(i10);
+        } else if (i12 == 0) {
+            if (this.f28913a && this.f28914b) {
+                LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, 80.0f, 80.0f, new int[]{i10, i11}, (float[]) null, Shader.TileMode.CLAMP);
+                this.f28918i = linearGradient;
+                paint.setShader(linearGradient);
             } else {
-                z12 = false;
+                if (this.f28913a) {
+                    f10 = 80.0f;
+                } else {
+                    f10 = 0.0f;
+                }
+                LinearGradient linearGradient2 = new LinearGradient(f10, 0.0f, 0.0f, 80.0f, new int[]{i10, i11}, (float[]) null, Shader.TileMode.CLAMP);
+                this.f28918i = linearGradient2;
+                paint.setShader(linearGradient2);
             }
-            if (parent != null && this.f32444n.W) {
-                parent.requestDisallowInterceptTouchEvent(z12);
-                Point point = AndroidUtilities.displaySize;
-                int i12 = point.x;
-                int i13 = point.y;
-                float f21 = this.f32444n.f33092r.x;
-                float measuredWidth5 = getMeasuredWidth() + f21;
-                float f22 = this.f32444n.f33092r.y;
-                float measuredHeight4 = getMeasuredHeight() + f22;
-                this.d = new AnimatorSet();
-                float f23 = -AndroidUtilities.dp(36.0f);
-                if (f21 < f23) {
-                    ValueAnimator ofFloat11 = ValueAnimator.ofFloat(this.f32444n.f33092r.x, f23);
-                    ofFloat11.addUpdateListener(this.f32444n.S);
-                    this.d.playTogether(ofFloat11);
-                    f21 = f23;
-                } else if (measuredWidth5 > i12 - f23) {
-                    float measuredWidth6 = (i12 - getMeasuredWidth()) - f23;
-                    ValueAnimator ofFloat12 = ValueAnimator.ofFloat(this.f32444n.f33092r.x, measuredWidth6);
-                    ofFloat12.addUpdateListener(this.f32444n.S);
-                    this.d.playTogether(ofFloat12);
-                    f21 = measuredWidth6;
+        } else if (this.f28922m) {
+            if (this.f28913a && this.f28914b) {
+                LinearGradient linearGradient3 = new LinearGradient(0.0f, 0.0f, 80.0f, 80.0f, new int[]{i10, i11, i12}, (float[]) null, Shader.TileMode.CLAMP);
+                this.f28918i = linearGradient3;
+                paint.setShader(linearGradient3);
+            } else {
+                if (this.f28913a) {
+                    f7 = 80.0f;
+                } else {
+                    f7 = 0.0f;
                 }
-                int dp = AndroidUtilities.dp(36.0f) + i13;
-                if (f22 < AndroidUtilities.statusBarHeight - AndroidUtilities.dp(36.0f)) {
-                    f22 = AndroidUtilities.statusBarHeight - AndroidUtilities.dp(36.0f);
-                    ValueAnimator ofFloat13 = ValueAnimator.ofFloat(this.f32444n.f33092r.y, f22);
-                    ofFloat13.addUpdateListener(this.f32444n.T);
-                    this.d.playTogether(ofFloat13);
-                } else if (measuredHeight4 > dp) {
-                    f22 = dp - getMeasuredHeight();
-                    ValueAnimator ofFloat14 = ValueAnimator.ofFloat(this.f32444n.f33092r.y, f22);
-                    ofFloat14.addUpdateListener(this.f32444n.T);
-                    this.d.playTogether(ofFloat14);
-                }
-                this.d.setDuration(150L).setInterpolator(pr.f29493f);
-                this.d.start();
-                z20 z20Var12 = this.f32444n;
-                if (z20Var12.K >= 0.0f) {
-                    float[] fArr3 = z20Var12.H;
-                    Point point2 = AndroidUtilities.displaySize;
-                    float f24 = -AndroidUtilities.dp(36.0f);
-                    fArr3[0] = (f21 - f24) / ((point2.x - (f24 * 2.0f)) - AndroidUtilities.dp(105.0f));
-                    fArr3[1] = f22 / (point2.y - AndroidUtilities.dp(105.0f));
-                    fArr3[0] = Math.min(1.0f, Math.max(0.0f, fArr3[0]));
-                    fArr3[1] = Math.min(1.0f, Math.max(0.0f, fArr3[1]));
-                    SharedPreferences.Editor edit = ApplicationLoader.applicationContext.getSharedPreferences("groupcallpipconfig", 0).edit();
-                    z20 z20Var13 = this.f32444n;
-                    float f25 = z20Var13.H[0];
-                    z20Var13.K = f25;
-                    SharedPreferences.Editor putFloat = edit.putFloat("relativeX", f25);
-                    z20 z20Var14 = this.f32444n;
-                    float f26 = z20Var14.H[1];
-                    z20Var14.L = f26;
-                    putFloat.putFloat("relativeY", f26).apply();
-                }
+                LinearGradient linearGradient4 = new LinearGradient(f7, 0.0f, 0.0f, 80.0f, new int[]{i10, i11, i12}, (float[]) null, Shader.TileMode.CLAMP);
+                this.f28918i = linearGradient4;
+                paint.setShader(linearGradient4);
             }
-            z20 z20Var15 = this.f32444n;
-            z20Var15.W = false;
-            z20Var15.f(false);
-            return true;
+        } else {
+            if (this.f28920k == null) {
+                this.f28920k = Bitmap.createBitmap(60, 80, Bitmap.Config.ARGB_8888);
+            }
+            Utilities.generateGradient(this.f28920k, 0, 0.0f, iArr);
+            Bitmap bitmap = this.f28920k;
+            Shader.TileMode tileMode = Shader.TileMode.CLAMP;
+            BitmapShader bitmapShader = new BitmapShader(bitmap, tileMode, tileMode);
+            this.f28918i = bitmapShader;
+            paint.setShader(bitmapShader);
         }
-        getLocationOnScreen(this.f32444n.G);
-        z20 z20Var16 = this.f32444n;
-        int i14 = z20Var16.G[0];
-        WindowManager.LayoutParams layoutParams = z20Var16.f33092r;
-        z20Var16.Q = i14 - layoutParams.x;
-        z20Var16.R = iArr[1] - layoutParams.y;
-        this.f32439a = rawX;
-        this.f32440b = rawY;
-        System.currentTimeMillis();
-        AndroidUtilities.runOnUIThread(this.f32442e, 300L);
-        z20 z20Var17 = this.f32444n;
-        WindowManager.LayoutParams layoutParams2 = z20Var17.f33092r;
-        z20Var17.O = layoutParams2.x;
-        z20Var17.P = layoutParams2.y;
-        z20Var17.X = true;
-        z20Var17.a();
-        return true;
+        e();
+    }
+
+    public void e() {
+        if (this.f28918i == null) {
+            return;
+        }
+        RectF rectF = this.h;
+        Matrix matrix = this.f28919j;
+        matrix.reset();
+        matrix.postTranslate(rectF.left, rectF.top);
+        matrix.preScale(rectF.width() / 60.0f, rectF.height() / 80.0f);
+        this.f28918i.setLocalMatrix(matrix);
     }
 }

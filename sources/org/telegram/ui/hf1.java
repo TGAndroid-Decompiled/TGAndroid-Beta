@@ -1,61 +1,54 @@
 package org.telegram.ui;
 
-import android.os.Build;
-import androidx.recyclerview.widget.RecyclerView;
-public final class hf1 extends s4.s0 {
-    public final int f37018a;
-    public final eg1 f37019b;
+import android.view.View;
+import org.telegram.messenger.MessagesController;
+import org.telegram.tgnet.TLRPC;
+public final class hf1 implements vh.d, MessagesController.ErrorDelegate, r0.n, org.telegram.ui.Components.ml0 {
+    public final ig1 f33382a;
 
-    public hf1(eg1 eg1Var, int i10) {
-        this.f37018a = i10;
-        this.f37019b = eg1Var;
+    public hf1(ig1 ig1Var) {
+        this.f33382a = ig1Var;
     }
 
     @Override
-    public final void b(RecyclerView recyclerView, int i10, int i11) {
-        int i12;
-        boolean z10;
-        eg1 eg1Var;
-        bh.f fVar;
-        switch (this.f37018a) {
-            case 0:
-                eg1 eg1Var2 = this.f37019b;
-                int L0 = eg1Var2.F.L0();
-                if (L0 != -1) {
-                    s4.c1 K = recyclerView.K(L0);
-                    boolean z11 = false;
-                    if (K != null) {
-                        i12 = K.f45766a.getTop();
-                    } else {
-                        i12 = 0;
-                    }
-                    if (L0 == 0) {
-                        int i13 = 0 - i12;
-                        if (i12 < 0) {
-                            z10 = true;
-                        } else {
-                            z10 = false;
-                        }
-                        Math.abs(i13);
-                    } else if (L0 > 0) {
-                        z10 = true;
-                    } else {
-                        z10 = false;
-                    }
-                    eg1Var2.G0((z10 || !eg1Var2.K) ? true : true, true);
-                    return;
-                }
-                return;
-            case 1:
-                this.f37019b.y0();
-                return;
-            default:
-                if (Build.VERSION.SDK_INT >= 31 && (fVar = (eg1Var = this.f37019b).f36068f1) != null) {
-                    fVar.f(i10, i11);
-                    eg1Var.x0();
-                    return;
-                }
-                return;
+    public r0.l1 Q0(View view, r0.l1 l1Var) {
+        int i10 = l1Var.f41074a.f(519).d;
+        ig1 ig1Var = this.f33382a;
+        ig1Var.f33693e1 = i10;
+        eg1 eg1Var = ig1Var.f33715r0;
+        if (eg1Var != null) {
+            eg1Var.setPadding(0, 0, 0, i10);
         }
+        yf1 yf1Var = ig1Var.f33709n;
+        if (yf1Var != null) {
+            yf1Var.f38992a.setTranslationY((-ig1Var.f33693e1) - ig1Var.f33691d1);
+        }
+        ig1Var.h.setTranslationY(((-ig1Var.X0) - ig1Var.f33693e1) - ig1Var.f33691d1);
+        ig1Var.B0();
+        return r0.l1.f41073b;
+    }
+
+    @Override
+    public boolean mo18c(float f7, float f10, int i10, View view) {
+        return ig1.W(this.f33382a, view, f7);
+    }
+
+    @Override
+    public void g(boolean z10, boolean z11) {
+        ig1 ig1Var = this.f33382a;
+        ig1Var.U0.i(ig1Var.R0.c(), z10, z11);
+    }
+
+    @Override
+    public boolean run(TLRPC.TL_error tL_error) {
+        return ig1.U(this.f33382a, tL_error);
+    }
+
+    @Override
+    public void h() {
+    }
+
+    @Override
+    public void p(float f7) {
     }
 }

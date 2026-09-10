@@ -1,45 +1,45 @@
 package org.telegram.messenger;
+public final class zc implements Runnable {
+    public final int f17146a;
+    public final MessagesController f17147b;
+    public final int f17148c;
+    public final long d;
+    public final long e;
 
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_bots;
-public final class zc implements Utilities.Callback {
-    public final int f19846a = 1;
-    public final MessagesController f19847b;
-    public final int f19848c;
-    public final Object d;
-    public final Object f19849e;
-    public final TLObject f19850f;
-    public final Runnable f19851g;
-
-    public zc(MessagesController messagesController, TLRPC.TL_messages_invitedUsers tL_messages_invitedUsers, int[] iArr, int i10, TLRPC.Chat chat, Runnable runnable) {
-        this.f19847b = messagesController;
-        this.d = tL_messages_invitedUsers;
-        this.f19849e = iArr;
-        this.f19848c = i10;
-        this.f19850f = chat;
-        this.f19851g = runnable;
+    public zc(int i10, long j3, long j10, MessagesController messagesController) {
+        this.f17146a = 2;
+        this.f17147b = messagesController;
+        this.d = j3;
+        this.e = j10;
+        this.f17148c = i10;
     }
 
     @Override
-    public final void run(Object obj) {
-        switch (this.f19846a) {
+    public final void run() {
+        switch (this.f17146a) {
             case 0:
-                this.f19847b.lambda$openApp$500((boolean[]) this.d, (TL_bots.BotInfo[]) this.f19849e, (TLRPC.User) this.f19850f, this.f19848c, (c3) this.f19851g, (TL_bots.BotInfo) obj);
+                long j3 = this.d;
+                long j10 = this.e;
+                this.f17147b.lambda$sendTyping$173(this.f17148c, j3, j10);
+                return;
+            case 1:
+                long j11 = this.d;
+                long j12 = this.e;
+                this.f17147b.lambda$sendTyping$171(this.f17148c, j11, j12);
                 return;
             default:
-                this.f19847b.lambda$addUsersToChat$297((TLRPC.TL_messages_invitedUsers) this.d, (int[]) this.f19849e, this.f19848c, (TLRPC.Chat) this.f19850f, this.f19851g, (TLRPC.TL_messages_invitedUsers) obj);
+                long j13 = this.e;
+                int i10 = this.f17148c;
+                this.f17147b.lambda$checkDeletingTask$84(this.d, j13, i10);
                 return;
         }
     }
 
-    public zc(MessagesController messagesController, boolean[] zArr, TL_bots.BotInfo[] botInfoArr, TLRPC.User user, int i10, c3 c3Var) {
-        this.f19847b = messagesController;
-        this.d = zArr;
-        this.f19849e = botInfoArr;
-        this.f19850f = user;
-        this.f19848c = i10;
-        this.f19851g = c3Var;
+    public zc(MessagesController messagesController, int i10, long j3, long j10, int i11) {
+        this.f17146a = i11;
+        this.f17147b = messagesController;
+        this.f17148c = i10;
+        this.d = j3;
+        this.e = j10;
     }
 }

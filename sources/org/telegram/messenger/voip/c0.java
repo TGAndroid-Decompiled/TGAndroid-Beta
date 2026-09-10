@@ -1,23 +1,28 @@
 package org.telegram.messenger.voip;
 
+import org.telegram.messenger.MessagesStorage;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class c0 implements RequestDelegate {
-    public final int f19359a;
+    public final int f16701a;
+    public final VoIPService f16702b;
+    public final MessagesStorage f16703c;
 
-    public c0(int i10) {
-        this.f19359a = i10;
+    public c0(VoIPService voIPService, MessagesStorage messagesStorage, int i10) {
+        this.f16701a = i10;
+        this.f16702b = voIPService;
+        this.f16703c = messagesStorage;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f19359a) {
+        switch (this.f16701a) {
             case 0:
-                VoIPService.lambda$callFailed$113(tLObject, tL_error);
+                this.f16702b.lambda$acceptIncomingCall$103(this.f16703c, tLObject, tL_error);
                 return;
             default:
-                VoIPService.lambda$createGroupInstance$67(tLObject, tL_error);
+                this.f16702b.lambda$startOutgoingCall$11(this.f16703c, tLObject, tL_error);
                 return;
         }
     }

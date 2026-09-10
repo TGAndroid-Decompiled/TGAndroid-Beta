@@ -1,29 +1,25 @@
 package org.telegram.messenger.voip;
 
-import org.telegram.messenger.voip.VoIPService;
+import android.media.AudioManager;
 public final class r0 implements Runnable {
-    public final int f19439a;
-    public final Object f19440b;
+    public final int f16778a;
+    public final VoIPService f16779b;
+    public final AudioManager f16780c;
 
-    public r0(Object obj, int i10) {
-        this.f19439a = i10;
-        this.f19440b = obj;
+    public r0(VoIPService voIPService, AudioManager audioManager, int i10) {
+        this.f16778a = i10;
+        this.f16779b = voIPService;
+        this.f16780c = audioManager;
     }
 
     @Override
     public final void run() {
-        switch (this.f19439a) {
+        switch (this.f16778a) {
             case 0:
-                ((VoIPService.AnonymousClass1) this.f19440b).lambda$run$0();
-                return;
-            case 1:
-                ((VoIPService.AnonymousClass9) this.f19440b).lambda$run$0();
-                return;
-            case 2:
-                VoIPPendingCall.a((VoIPPendingCall) this.f19440b);
+                VoIPService.z(this.f16779b, this.f16780c);
                 return;
             default:
-                ((NativeInstance) this.f19440b).stopGroup();
+                VoIPService.s1(this.f16779b, this.f16780c);
                 return;
         }
     }

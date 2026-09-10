@@ -1,17 +1,24 @@
 package di;
 
-import androidx.recyclerview.widget.RecyclerView;
-public final class j3 extends s4.s0 {
-    public final x3 f7453a;
+import android.content.Context;
+import android.graphics.Point;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.ActionBar.f6;
+public final class j3 extends a0 {
+    public final n3 f6702s;
 
-    public j3(x3 x3Var) {
-        this.f7453a = x3Var;
+    public j3(n3 n3Var, Context context, f6 f6Var) {
+        super(context, f6Var);
+        this.f6702s = n3Var;
     }
 
     @Override
-    public final void b(RecyclerView recyclerView, int i10, int i11) {
-        x3 x3Var = this.f7453a;
-        x3Var.getClass();
-        x3Var.invalidate();
+    public final void onMeasure(int i10, int i11) {
+        if (!this.f6702s.f6788d0 && AndroidUtilities.isTablet() && !AndroidUtilities.isInMultiwindow && !AndroidUtilities.isSmallTablet()) {
+            Point point = AndroidUtilities.displaySize;
+            i10 = View.MeasureSpec.makeMeasureSpec((int) (Math.min(point.x, point.y) * 0.8f), 1073741824);
+        }
+        super.onMeasure(i10, i11);
     }
 }

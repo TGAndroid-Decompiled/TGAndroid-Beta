@@ -11,11 +11,11 @@ public class b1 extends db.u {
             if (p5 <= 255 && p5 >= -128) {
                 return Byte.valueOf((byte) p5);
             }
-            StringBuilder l4 = i2.g.l(p5, "Lossy conversion from ", " to byte; at path ");
-            l4.append(aVar.j());
-            throw new RuntimeException(l4.toString());
-        } catch (NumberFormatException e7) {
-            throw new RuntimeException(e7);
+            StringBuilder m10 = hc.b.m(p5, "Lossy conversion from ", " to byte; at path ");
+            m10.append(aVar.j());
+            throw new RuntimeException(m10.toString());
+        } catch (NumberFormatException e) {
+            throw new RuntimeException(e);
         }
     }
 

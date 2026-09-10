@@ -1,26 +1,26 @@
 package org.telegram.ui;
-public final class pd0 implements org.telegram.ui.ActionBar.a2 {
-    public final int f39506a;
-    public final wg0 f39507b;
+public final class pd0 implements org.telegram.ui.ActionBar.c2 {
+    public final int f35793a;
+    public final xg0 f35794b;
 
-    public pd0(wg0 wg0Var, int i10) {
-        this.f39506a = i10;
-        this.f39507b = wg0Var;
+    public pd0(xg0 xg0Var, int i10) {
+        this.f35793a = i10;
+        this.f35794b = xg0Var;
     }
 
     @Override
-    public final void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        switch (this.f39506a) {
+    public final void f(org.telegram.ui.ActionBar.d2 d2Var, int i10) {
+        switch (this.f35793a) {
             case 0:
-                wg0 wg0Var = this.f39507b;
-                wg0Var.f42388b[wg0Var.f42386a].d();
-                wg0Var.k1(true, true);
+                xg0 xg0Var = this.f35794b;
+                xg0Var.f38719b[xg0Var.f38717a].d();
+                xg0Var.k1(true, true);
                 return;
             default:
-                wg0 wg0Var2 = this.f39507b;
-                wg0Var2.f42402l0 = true;
-                if (wg0Var2.f42386a != 0) {
-                    wg0Var2.u1(0, true, null, true);
+                xg0 xg0Var2 = this.f35794b;
+                xg0Var2.f38732l0 = true;
+                if (xg0Var2.f38717a != 0) {
+                    xg0Var2.u1(0, true, null, true);
                     return;
                 }
                 return;

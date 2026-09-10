@@ -3,7 +3,7 @@ package org.telegram.ui.ActionBar;
 import android.graphics.Point;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.NotificationCenter;
-public final class s5 extends w7.i0 {
+public final class s5 extends w7.x5 {
     @Override
     public final void b(int i10, int i11) {
         boolean z10;

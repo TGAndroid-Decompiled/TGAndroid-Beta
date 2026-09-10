@@ -1,96 +1,43 @@
 package org.telegram.ui;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
 import org.telegram.messenger.AndroidUtilities;
-public final class xi extends AnimatorListenerAdapter {
-    public final int f42763a;
-    public final co f42764b;
+public final class xi implements Runnable {
+    public final int f38758a;
+    public final yi f38759b;
+    public final int f38760c;
+    public final boolean d;
+    public final org.telegram.ui.Components.pk0 e;
+    public final float f38761f;
+    public final float h;
+    public final yg.p0 f38762n;
 
-    public xi(co coVar, int i10) {
-        this.f42763a = i10;
-        this.f42764b = coVar;
+    public xi(yi yiVar, int i10, boolean z10, org.telegram.ui.Components.pk0 pk0Var, float f7, float f10, yg.p0 p0Var, int i11) {
+        this.f38758a = i11;
+        this.f38759b = yiVar;
+        this.f38760c = i10;
+        this.d = z10;
+        this.e = pk0Var;
+        this.f38761f = f7;
+        this.h = f10;
+        this.f38762n = p0Var;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        uj ujVar;
-        switch (this.f42763a) {
+    public final void run() {
+        int i10;
+        switch (this.f38758a) {
             case 0:
-                co coVar = this.f42764b;
-                gl glVar = coVar.f35228b3;
-                if (glVar != null) {
-                    glVar.setIsMessageTransition(false);
-                    coVar.f35228b3.h(true);
-                    coVar.f35228b3.setVisibility(4);
-                    return;
-                }
-                return;
-            case 1:
-                co coVar2 = this.f42764b;
-                coVar2.A9 = AndroidUtilities.dp(30.0f);
-                coVar2.o9();
-                return;
-            case 2:
-                co coVar3 = this.f42764b;
-                if (coVar3.fragmentView != null && (ujVar = coVar3.f35500x0) != null) {
-                    ujVar.invalidate();
-                    coVar3.fragmentView.invalidate();
-                    return;
-                }
-                return;
-            case 3:
-                this.f42764b.P.setVisibility(4);
-                return;
-            case 4:
-                AndroidUtilities.runOnUIThread(new dj(this, 3), 2000L);
-                return;
-            case 5:
-                co coVar4 = this.f42764b;
-                if (animator.equals(coVar4.f35292g3)) {
-                    coVar4.f35292g3 = null;
-                    return;
-                }
-                return;
-            case 6:
-                co coVar5 = this.f42764b;
-                if (animator.equals(coVar5.f35292g3)) {
-                    coVar5.f35292g3 = null;
-                    return;
-                }
-                return;
-            case 7:
-                co coVar6 = this.f42764b;
-                if (animator.equals(coVar6.f35303h3)) {
-                    coVar6.f35315i3 = 1.0f;
-                    coVar6.lc();
-                    coVar6.f35303h3 = null;
-                    return;
-                }
-                return;
-            case 8:
-                co coVar7 = this.f42764b;
-                if (animator.equals(coVar7.f35303h3)) {
-                    coVar7.f35315i3 = 0.0f;
-                    coVar7.lc();
-                    coVar7.f35303h3 = null;
-                    return;
-                }
-                return;
-            case 9:
-                this.f42764b.T4 = null;
-                return;
-            case 10:
-                co coVar8 = this.f42764b;
-                coVar8.Da = 1.0f;
-                coVar8.Y.setVisibility(4);
-                coVar8.O0.setVisibility(4);
-                coVar8.o9();
+                AndroidUtilities.runOnUIThread(new xi(this.f38759b, this.f38760c, this.d, this.e, this.f38761f, this.h, this.f38762n, 1), 50L);
                 return;
             default:
-                co coVar9 = this.f42764b;
-                coVar9.Da = 0.0f;
-                coVar9.o9();
+                eo eoVar = this.f38759b.f39011s;
+                org.telegram.ui.Cells.a0 q82 = eoVar.q8(this.f38760c, true);
+                if (this.d) {
+                    i10 = ((org.telegram.ui.ActionBar.p2) eoVar).currentAccount;
+                    yg.l0.d(eoVar, this.e, q82, null, this.f38761f, this.h, this.f38762n, i10, 1);
+                    yg.l0.f();
+                    return;
+                }
                 return;
         }
     }

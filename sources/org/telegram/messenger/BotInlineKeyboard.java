@@ -146,11 +146,11 @@ public class BotInlineKeyboard {
         public static final int SUGGESTION_DECLINE = 1;
         public static final int SUGGESTION_EDIT = 3;
         public final int icon;
-        public final int f17093id;
+        public final int f14631id;
         public final int text;
 
         public ButtonCustom(int i10, int i11, int i12) {
-            this.f17093id = i10;
+            this.f14631id = i10;
             this.text = i11;
             this.icon = i12;
         }
@@ -195,7 +195,7 @@ public class BotInlineKeyboard {
 
         @Override
         public final boolean isEmpty() {
-            return m0.a(this);
+            return n0.a(this);
         }
 
         private KeyboardSourceArray(Button[][] buttonArr, int i10) {

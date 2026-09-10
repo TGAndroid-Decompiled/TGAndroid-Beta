@@ -3,14 +3,14 @@ package org.telegram.ui;
 import android.content.Context;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-public final class fq0 extends org.telegram.ui.Components.ov0 {
-    public int f36474w0;
-    public boolean f36475x0;
-    public final kq0 f36476y0;
+public final class fq0 extends org.telegram.ui.Components.aw0 {
+    public int f32894w0;
+    public boolean f32895x0;
+    public final kq0 f32896y0;
 
     public fq0(kq0 kq0Var, Context context) {
         super(context, null);
-        this.f36476y0 = kq0Var;
+        this.f32896y0 = kq0Var;
     }
 
     @Override
@@ -27,24 +27,24 @@ public final class fq0 extends org.telegram.ui.Components.ov0 {
         setMeasuredDimension(size, size2);
         int dp = AndroidUtilities.dp(20.0f);
         int i13 = 0;
-        kq0 kq0Var = this.f36476y0;
+        kq0 kq0Var = this.f32896y0;
         if (dp >= 0) {
             if (!AndroidUtilities.isInMultiwindow) {
                 size2 -= kq0Var.M.getEmojiPadding();
                 i11 = View.MeasureSpec.makeMeasureSpec(size2, 1073741824);
             }
         } else {
-            this.f36475x0 = true;
+            this.f32895x0 = true;
             kq0Var.M.j();
-            this.f36475x0 = false;
+            this.f32895x0 = false;
         }
         int i14 = i11;
         int childCount = getChildCount();
         while (i13 < childCount) {
             View childAt = getChildAt(i13);
             if (childAt != null && childAt.getVisibility() != 8) {
-                org.telegram.ui.Components.hu huVar = kq0Var.M;
-                if (huVar != null && huVar.l(childAt)) {
+                org.telegram.ui.Components.nu nuVar = kq0Var.M;
+                if (nuVar != null && nuVar.l(childAt)) {
                     if (!AndroidUtilities.isInMultiwindow && !AndroidUtilities.isTablet()) {
                         childAt.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(childAt.getLayoutParams().height, 1073741824));
                     } else if (AndroidUtilities.isTablet()) {
@@ -73,7 +73,7 @@ public final class fq0 extends org.telegram.ui.Components.ov0 {
 
     @Override
     public final void requestLayout() {
-        if (this.f36475x0) {
+        if (this.f32895x0) {
             return;
         }
         super.requestLayout();

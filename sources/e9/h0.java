@@ -4,27 +4,27 @@ import java.util.Iterator;
 import java.util.ListIterator;
 import v7.t6;
 public final class h0 extends i0 {
-    public final transient int f8981c;
+    public final transient int f7381c;
     public final transient int d;
-    public final i0 f8982e;
+    public final i0 e;
 
     public h0(i0 i0Var, int i10, int i11) {
-        this.f8982e = i0Var;
-        this.f8981c = i10;
+        this.e = i0Var;
+        this.f7381c = i10;
         this.d = i11;
     }
 
     @Override
     public final i0 subList(int i10, int i11) {
         t6.f(i10, i11, this.d);
-        int i12 = this.f8981c;
-        return this.f8982e.subList(i10 + i12, i11 + i12);
+        int i12 = this.f7381c;
+        return this.e.subList(i10 + i12, i11 + i12);
     }
 
     @Override
     public final Object get(int i10) {
         t6.c(i10, this.d);
-        return this.f8982e.get(i10 + this.f8981c);
+        return this.e.get(i10 + this.f7381c);
     }
 
     @Override
@@ -39,17 +39,17 @@ public final class h0 extends i0 {
 
     @Override
     public final Object[] o() {
-        return this.f8982e.o();
+        return this.e.o();
     }
 
     @Override
     public final int p() {
-        return this.f8982e.q() + this.f8981c + this.d;
+        return this.e.q() + this.f7381c + this.d;
     }
 
     @Override
     public final int q() {
-        return this.f8982e.q() + this.f8981c;
+        return this.e.q() + this.f7381c;
     }
 
     @Override

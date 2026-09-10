@@ -1,26 +1,26 @@
 package gh;
 
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import dh.f;
-public final class c implements a {
-    public final Paint f10680a = new Paint(1);
+import org.telegram.messenger.AndroidUtilities;
+public final class c implements Runnable {
+    public final int f9110a;
+    public final e f9111b;
 
-    public final void a(int i10) {
-        this.f10680a.setColor(i10);
+    public c(e eVar, int i10) {
+        this.f9110a = i10;
+        this.f9111b = eVar;
     }
 
     @Override
-    public final dh.d k() {
-        return new f(this);
-    }
-
-    @Override
-    public final void v(Canvas canvas, float f7, float f10, float f11, float f12) {
-        canvas.drawRect(f7, f10, f11, f12, this.f10680a);
-    }
-
-    @Override
-    public final void e() {
+    public final void run() {
+        switch (this.f9110a) {
+            case 0:
+                this.f9111b.a();
+                return;
+            default:
+                e eVar = this.f9111b;
+                AndroidUtilities.runOnUIThread(eVar.f9131y, 400L);
+                eVar.c();
+                return;
+        }
     }
 }

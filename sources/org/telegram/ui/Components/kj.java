@@ -1,42 +1,22 @@
 package org.telegram.ui.Components;
 
+import android.content.Context;
 import android.view.View;
-import java.util.ArrayList;
-import org.telegram.tgnet.TLRPC;
-public final class kj implements bl0, pj {
-    public final yj f27863a;
+public final class kj extends s4.d0 {
+    public final ai.q f24737r;
 
-    public kj(yj yjVar) {
-        this.f27863a = yjVar;
+    public kj(ai.q qVar, Context context) {
+        super(context);
+        this.f24737r = qVar;
     }
 
     @Override
-    public boolean a(int i10, View view) {
-        Object O;
-        yj yjVar = this.f27863a;
-        s4.h0 adapter = yjVar.f32960s.getAdapter();
-        uj ujVar = yjVar.F;
-        if (adapter == ujVar) {
-            O = ujVar.E(i10);
-        } else {
-            sj sjVar = yjVar.E;
-            O = sjVar.O(sjVar.S(i10), sjVar.Q(i10));
-        }
-        if (O != null) {
-            yjVar.L((xj) view, O);
-            return true;
-        }
-        return false;
+    public final int k(int i10, View view) {
+        return org.telegram.messenger.a2.z(7.0f, ((mj) this.f24737r.R).f25239n.getPaddingTop(), super.k(i10, view));
     }
 
     @Override
-    public void b(TLRPC.User user, boolean z10, int i10, long j3) {
-        yj yjVar = this.f27863a;
-        yjVar.f28780b.dismiss(true);
-        yjVar.J.b(user, z10, i10, j3);
-    }
-
-    @Override
-    public void c(ArrayList arrayList, String str, boolean z10, int i10, long j3, boolean z11) {
+    public final int m(int i10) {
+        return super.m(i10) * 2;
     }
 }

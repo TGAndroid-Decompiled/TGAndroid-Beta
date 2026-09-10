@@ -3,44 +3,44 @@ package b2;
 import java.util.Arrays;
 public final class j {
     public static final j h = new j(1, 2, 3, null, -1, -1);
-    public static final String f2100i;
-    public static final String f2101j;
-    public static final String f2102k;
-    public static final String f2103l;
-    public static final String f2104m;
-    public static final String f2105n;
-    public final int f2106a;
-    public final int f2107b;
-    public final int f2108c;
+    public static final String f1720i;
+    public static final String f1721j;
+    public static final String f1722k;
+    public static final String f1723l;
+    public static final String f1724m;
+    public static final String f1725n;
+    public final int f1726a;
+    public final int f1727b;
+    public final int f1728c;
     public final byte[] d;
-    public final int f2109e;
-    public final int f2110f;
-    public int f2111g;
+    public final int e;
+    public final int f1729f;
+    public int f1730g;
 
     static {
-        String str = e2.d0.f8765a;
-        f2100i = Integer.toString(0, 36);
-        f2101j = Integer.toString(1, 36);
-        f2102k = Integer.toString(2, 36);
-        f2103l = Integer.toString(3, 36);
-        f2104m = Integer.toString(4, 36);
-        f2105n = Integer.toString(5, 36);
+        String str = e2.d0.f7188a;
+        f1720i = Integer.toString(0, 36);
+        f1721j = Integer.toString(1, 36);
+        f1722k = Integer.toString(2, 36);
+        f1723l = Integer.toString(3, 36);
+        f1724m = Integer.toString(4, 36);
+        f1725n = Integer.toString(5, 36);
     }
 
     public j(int i10, int i11, int i12, byte[] bArr, int i13, int i14) {
-        this.f2106a = i10;
-        this.f2107b = i11;
-        this.f2108c = i12;
+        this.f1726a = i10;
+        this.f1727b = i11;
+        this.f1728c = i12;
         this.d = bArr;
-        this.f2109e = i13;
-        this.f2110f = i14;
+        this.e = i13;
+        this.f1729f = i14;
     }
 
     public static String a(int i10) {
         if (i10 != -1) {
             if (i10 != 1) {
                 if (i10 != 2) {
-                    return i2.g.i(i10, "Undefined color range ");
+                    return hc.b.j(i10, "Undefined color range ");
                 }
                 return "Limited range";
             }
@@ -54,7 +54,7 @@ public final class j {
             if (i10 != 6) {
                 if (i10 != 1) {
                     if (i10 != 2) {
-                        return i2.g.i(i10, "Undefined color space ");
+                        return hc.b.j(i10, "Undefined color space ");
                     }
                     return "BT601";
                 }
@@ -73,7 +73,7 @@ public final class j {
                         if (i10 != 3) {
                             if (i10 != 6) {
                                 if (i10 != 7) {
-                                    return i2.g.i(i10, "Undefined color transfer ");
+                                    return hc.b.j(i10, "Undefined color transfer ");
                                 }
                                 return "HLG";
                             }
@@ -94,15 +94,15 @@ public final class j {
         if (jVar == null) {
             return true;
         }
-        int i10 = jVar.f2106a;
+        int i10 = jVar.f1726a;
         if (i10 == -1 || i10 == 1 || i10 == 2) {
-            int i11 = jVar.f2107b;
+            int i11 = jVar.f1727b;
             if (i11 == -1 || i11 == 2) {
-                int i12 = jVar.f2108c;
+                int i12 = jVar.f1728c;
                 if ((i12 == -1 || i12 == 3) && jVar.d == null) {
-                    int i13 = jVar.f2110f;
+                    int i13 = jVar.f1729f;
                     if (i13 == -1 || i13 == 8) {
-                        int i14 = jVar.f2109e;
+                        int i14 = jVar.e;
                         if (i14 == -1 || i14 == 8) {
                             return true;
                         }
@@ -153,7 +153,7 @@ public final class j {
     }
 
     public final boolean d() {
-        if (this.f2106a != -1 && this.f2107b != -1 && this.f2108c != -1) {
+        if (this.f1726a != -1 && this.f1727b != -1 && this.f1728c != -1) {
             return true;
         }
         return false;
@@ -165,7 +165,7 @@ public final class j {
         }
         if (obj != null && j.class == obj.getClass()) {
             j jVar = (j) obj;
-            if (this.f2106a == jVar.f2106a && this.f2107b == jVar.f2107b && this.f2108c == jVar.f2108c && Arrays.equals(this.d, jVar.d) && this.f2109e == jVar.f2109e && this.f2110f == jVar.f2110f) {
+            if (this.f1726a == jVar.f1726a && this.f1727b == jVar.f1727b && this.f1728c == jVar.f1728c && Arrays.equals(this.d, jVar.d) && this.e == jVar.e && this.f1729f == jVar.f1729f) {
                 return true;
             }
         }
@@ -173,21 +173,21 @@ public final class j {
     }
 
     public final int hashCode() {
-        if (this.f2111g == 0) {
-            this.f2111g = ((((Arrays.hashCode(this.d) + ((((((527 + this.f2106a) * 31) + this.f2107b) * 31) + this.f2108c) * 31)) * 31) + this.f2109e) * 31) + this.f2110f;
+        if (this.f1730g == 0) {
+            this.f1730g = ((((Arrays.hashCode(this.d) + ((((((527 + this.f1726a) * 31) + this.f1727b) * 31) + this.f1728c) * 31)) * 31) + this.e) * 31) + this.f1729f;
         }
-        return this.f2111g;
+        return this.f1730g;
     }
 
     public final String toString() {
         boolean z10;
         String str;
         StringBuilder sb2 = new StringBuilder("ColorInfo(");
-        sb2.append(b(this.f2106a));
+        sb2.append(b(this.f1726a));
         sb2.append(", ");
-        sb2.append(a(this.f2107b));
+        sb2.append(a(this.f1727b));
         sb2.append(", ");
-        sb2.append(c(this.f2108c));
+        sb2.append(c(this.f1728c));
         sb2.append(", ");
         if (this.d != null) {
             z10 = true;
@@ -197,7 +197,7 @@ public final class j {
         sb2.append(z10);
         sb2.append(", ");
         String str2 = "NA";
-        int i10 = this.f2109e;
+        int i10 = this.e;
         if (i10 == -1) {
             str = "NA";
         } else {
@@ -205,7 +205,7 @@ public final class j {
         }
         sb2.append(str);
         sb2.append(", ");
-        int i11 = this.f2110f;
+        int i11 = this.f1729f;
         if (i11 != -1) {
             str2 = a4.a.m(i11, "bit Chroma");
         }

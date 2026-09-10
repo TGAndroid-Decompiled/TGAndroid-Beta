@@ -113,7 +113,7 @@ public class SaveToGallerySettingsHelper {
         }
 
         public void save(String str, SharedPreferences sharedPreferences) {
-            sharedPreferences.edit().putBoolean(org.telegram.ui.Cells.p6.t(str, "_save_gallery_photo"), this.savePhoto).putBoolean(org.telegram.ui.Cells.p6.t(str, "_save_gallery_video"), this.saveVideo).putLong(org.telegram.ui.Cells.p6.t(str, "_save_gallery_limitVideo"), this.limitVideo).apply();
+            sharedPreferences.edit().putBoolean(org.telegram.ui.Cells.r6.t(str, "_save_gallery_photo"), this.savePhoto).putBoolean(org.telegram.ui.Cells.r6.t(str, "_save_gallery_video"), this.saveVideo).putLong(org.telegram.ui.Cells.r6.t(str, "_save_gallery_limitVideo"), this.limitVideo).apply();
         }
 
         @Override

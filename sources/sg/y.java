@@ -1,47 +1,43 @@
 package sg;
 
-import android.view.View;
-import org.telegram.ui.Components.bl0;
-import org.telegram.ui.PremiumPreviewFragment;
-public final class y implements org.telegram.ui.ActionBar.a2, bl0 {
-    public final int f46368a;
-    public final k0 f46369b;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.tl.TL_stories;
+import org.telegram.ui.ActionBar.p2;
+import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.eo;
+import org.telegram.ui.me;
+import org.telegram.ui.web.x1;
+public final class y implements Utilities.Callback {
+    public final a0 f42025a;
+    public final TL_stories.TL_prepaidStarsGiveaway f42026b;
+    public final long f42027c;
+    public final long d;
+    public final TL_stories.PrepaidGiveaway e;
 
-    public y(k0 k0Var, int i10) {
-        this.f46368a = i10;
-        this.f46369b = k0Var;
+    public y(a0 a0Var, TL_stories.TL_prepaidStarsGiveaway tL_prepaidStarsGiveaway, long j3, long j10, TL_stories.PrepaidGiveaway prepaidGiveaway) {
+        this.f42025a = a0Var;
+        this.f42026b = tL_prepaidStarsGiveaway;
+        this.f42027c = j3;
+        this.d = j10;
+        this.e = prepaidGiveaway;
     }
 
     @Override
-    public boolean a(int i10, View view) {
-        k0 k0Var = this.f46369b;
-        k0Var.d.getOnItemClickListener().a(i10, view);
-        if (k0Var.f46165h0 != 19) {
-            try {
-                view.performHapticFeedback(0);
-            } catch (Exception unused) {
+    public final void run(Object obj) {
+        Void r62 = (Void) obj;
+        a0 a0Var = this.f42025a;
+        a0Var.dismiss();
+        if (this.f42026b != null) {
+            p2 U = LaunchActivity.U();
+            if (U != null) {
+                eo R9 = eo.R9(this.f42027c);
+                R9.whenFullyVisible(new me(R9, this.d, 6));
+                U.presentFragment(R9);
+                return;
             }
+            return;
         }
-        return false;
-    }
-
-    @Override
-    public void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        switch (this.f46368a) {
-            case 0:
-                k0 k0Var = this.f46369b;
-                k0Var.K0.presentFragment(new PremiumPreviewFragment(0, null));
-                k0Var.dismiss();
-                b2Var.dismiss();
-                return;
-            case 1:
-                b2Var.dismiss();
-                this.f46369b.n1();
-                return;
-            default:
-                this.f46369b.dismiss();
-                ug.n1.e0(0, null);
-                return;
-        }
+        AndroidUtilities.runOnUIThread(new x1(23, a0Var, this.e), 220L);
     }
 }

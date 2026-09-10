@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.util.Collections;
 import java.util.Map;
 import org.telegram.messenger.FileLoader;
-import org.telegram.ui.Cells.p6;
+import org.telegram.ui.Cells.r6;
 public final class EncryptedFileDataSource extends c {
     private int bytesRemaining;
     EncryptedFileInputStream fileInputStream;
@@ -31,8 +31,8 @@ public final class EncryptedFileDataSource extends c {
     public void close() {
         try {
             this.fileInputStream.close();
-        } catch (IOException e7) {
-            e7.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
         if (this.opened) {
             this.opened = false;
@@ -54,12 +54,12 @@ public final class EncryptedFileDataSource extends c {
 
     @Override
     public long open(m mVar) {
-        Uri uri = mVar.f10358a;
-        long j3 = mVar.f10362f;
-        long j10 = mVar.f10361e;
+        Uri uri = mVar.f8508a;
+        long j3 = mVar.f8511f;
+        long j10 = mVar.e;
         this.uri = uri;
-        File file = new File(mVar.f10358a.getPath());
-        EncryptedFileInputStream encryptedFileInputStream = new EncryptedFileInputStream(file, new File(FileLoader.getInternalCacheDir(), p6.t(file.getName(), ".key")));
+        File file = new File(mVar.f8508a.getPath());
+        EncryptedFileInputStream encryptedFileInputStream = new EncryptedFileInputStream(file, new File(FileLoader.getInternalCacheDir(), r6.t(file.getName(), ".key")));
         this.fileInputStream = encryptedFileInputStream;
         encryptedFileInputStream.skip(j10);
         transferInitializing(mVar);
@@ -92,8 +92,8 @@ public final class EncryptedFileDataSource extends c {
         int min = Math.min(i11, i12);
         try {
             this.fileInputStream.read(bArr, i10, min);
-        } catch (IOException e7) {
-            e7.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
         this.bytesRemaining -= min;
         bytesTransferred(min);

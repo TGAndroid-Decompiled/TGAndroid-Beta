@@ -1,30 +1,32 @@
 package org.telegram.messenger;
+public final class ol implements Runnable {
+    public final int f16009a = 0;
+    public final TranslateController f16010b;
+    public final long f16011c;
+    public final Object d;
 
-import org.telegram.messenger.LanguageDetector;
-import org.telegram.messenger.TranslateController;
-import org.telegram.messenger.Utilities;
-public final class ol implements LanguageDetector.StringCallback, LanguageDetector.ExceptionCallback {
-    public final TranslateController f18656a;
-    public final MessageObject f18657b;
-    public final TranslateController.MessageKey f18658c;
-    public final Utilities.Callback d;
-
-    public ol(TranslateController translateController, MessageObject messageObject, TranslateController.MessageKey messageKey, Utilities.Callback callback) {
-        this.f18656a = translateController;
-        this.f18657b = messageObject;
-        this.f18658c = messageKey;
-        this.d = callback;
+    public ol(TranslateController translateController, long j3, String str) {
+        this.f16010b = translateController;
+        this.f16011c = j3;
+        this.d = str;
     }
 
     @Override
-    public void run(Exception exc) {
-        this.f18656a.lambda$detectPhotoLanguage$42(this.f18657b, this.f18658c, this.d, exc);
+    public final void run() {
+        switch (this.f16009a) {
+            case 0:
+                this.f16010b.lambda$setDialogTranslateTo$0(this.f16011c, (String) this.d);
+                return;
+            default:
+                long j3 = this.f16011c;
+                this.f16010b.lambda$invalidateTranslation$9((MessageObject) this.d, j3);
+                return;
+        }
     }
 
-    @Override
-    public void run(String str) {
-        TranslateController.MessageKey messageKey = this.f18658c;
-        Utilities.Callback callback = this.d;
-        this.f18656a.lambda$detectPhotoLanguage$40(this.f18657b, messageKey, callback, str);
+    public ol(TranslateController translateController, MessageObject messageObject, long j3) {
+        this.f16010b = translateController;
+        this.d = messageObject;
+        this.f16011c = j3;
     }
 }

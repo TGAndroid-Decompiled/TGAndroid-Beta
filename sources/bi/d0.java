@@ -1,22 +1,3 @@
 package bi;
-
-import android.view.TextureView;
-public abstract class d0 extends TextureView {
-    @Override
-    public void invalidate() {
-        if (b0.f2813c) {
-            b0.f2812b.add(this);
-        } else {
-            super.invalidate();
-        }
-    }
-
-    @Override
-    public final void invalidate(int i10, int i11, int i12, int i13) {
-        if (b0.f2813c) {
-            b0.f2812b.add(this);
-        } else {
-            super.invalidate(i10, i11, i12, i13);
-        }
-    }
+public final class d0 extends ne {
 }

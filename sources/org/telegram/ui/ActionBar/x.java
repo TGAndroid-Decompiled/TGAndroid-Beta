@@ -3,41 +3,41 @@ package org.telegram.ui.ActionBar;
 import android.view.KeyEvent;
 import android.view.View;
 public final class x implements View.OnClickListener {
-    public final int f21501a;
-    public final KeyEvent.Callback f21502b;
+    public final int f18724a;
+    public final KeyEvent.Callback f18725b;
 
     public x(KeyEvent.Callback callback, int i10) {
-        this.f21501a = i10;
-        this.f21502b = callback;
+        this.f18724a = i10;
+        this.f18725b = callback;
     }
 
     @Override
     public final void onClick(View view) {
-        switch (this.f21501a) {
+        switch (this.f18724a) {
             case 0:
-                z zVar = (z) this.f21502b;
-                k kVar = zVar.f21573b;
-                v0 v0Var = (v0) view;
-                if (v0Var.q()) {
-                    if (kVar.f21145u0.a()) {
-                        v0Var.M(null, null);
+                z zVar = (z) this.f18725b;
+                l lVar = zVar.f18793b;
+                w0 w0Var = (w0) view;
+                if (w0Var.q()) {
+                    if (lVar.f18404u0.a()) {
+                        w0Var.M(null, null);
                         return;
                     }
                     return;
-                } else if (v0Var.G) {
-                    kVar.v(v0Var.L(true));
+                } else if (w0Var.G) {
+                    lVar.v(w0Var.L(true));
                     return;
                 } else {
                     zVar.o(((Integer) view.getTag()).intValue());
                     return;
                 }
             case 1:
-                ((f2) this.f21502b).dismiss();
+                ((h2) this.f18725b).dismiss();
                 return;
             default:
-                f3 f3Var = (f3) this.f21502b;
-                f3Var.getClass();
-                f3Var.dismissWithButtonClick(((Integer) view.getTag()).intValue());
+                h3 h3Var = (h3) this.f18725b;
+                h3Var.getClass();
+                h3Var.dismissWithButtonClick(((Integer) view.getTag()).intValue());
                 return;
         }
     }

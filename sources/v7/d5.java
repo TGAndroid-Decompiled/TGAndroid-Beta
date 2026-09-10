@@ -20,8 +20,8 @@ public abstract class d5 {
             }
             Log.d("SAVerificationClientU", "Wrong number of signatures returned");
             return false;
-        } catch (PackageManager.NameNotFoundException e7) {
-            String valueOf = String.valueOf(e7);
+        } catch (PackageManager.NameNotFoundException e) {
+            String valueOf = String.valueOf(e);
             StringBuilder sb2 = new StringBuilder(valueOf.length() + 34);
             sb2.append("Unexpected NameNotFoundException: ");
             sb2.append(valueOf);

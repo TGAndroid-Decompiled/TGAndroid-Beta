@@ -1,85 +1,84 @@
 package j4;
 
-import c3.h0;
-import i2.l0;
+import i2.k0;
 public final class n implements i {
-    public static final float[] f13374l = {1.0f, 1.0f, 1.0909091f, 0.90909094f, 1.4545455f, 1.2121212f, 1.0f};
-    public final c0 f13375a;
-    public final e2.v f13376b;
-    public final boolean[] f13377c = new boolean[4];
+    public static final float[] f11627l = {1.0f, 1.0f, 1.0909091f, 0.90909094f, 1.4545455f, 1.2121212f, 1.0f};
+    public final d0 f11628a;
+    public final e2.v f11629b;
+    public final boolean[] f11630c = new boolean[4];
     public final l d;
-    public final l0 f13378e;
-    public m f13379f;
-    public long f13380g;
+    public final k0 e;
+    public m f11631f;
+    public long f11632g;
     public String h;
-    public h0 f13381i;
-    public boolean f13382j;
-    public long f13383k;
+    public c3.h0 f11633i;
+    public boolean f11634j;
+    public long f11635k;
 
-    public n(c0 c0Var) {
-        this.f13375a = c0Var;
+    public n(d0 d0Var) {
+        this.f11628a = d0Var;
         ?? obj = new Object();
-        obj.f13367e = new byte[128];
+        obj.e = new byte[128];
         this.d = obj;
-        this.f13383k = -9223372036854775807L;
-        this.f13378e = new l0(178);
-        this.f13376b = new e2.v();
+        this.f11635k = -9223372036854775807L;
+        this.e = new k0(178);
+        this.f11629b = new e2.v();
     }
 
     @Override
-    public final void b(e2.v r20) {
-        throw new UnsupportedOperationException("Method not decompiled: j4.n.b(e2.v):void");
+    public final void a(e2.v r20) {
+        throw new UnsupportedOperationException("Method not decompiled: j4.n.a(e2.v):void");
     }
 
     @Override
-    public final void d() {
-        f2.p.a(this.f13377c);
+    public final void b() {
+        f2.o.a(this.f11630c);
         l lVar = this.d;
-        lVar.f13364a = false;
-        lVar.f13366c = 0;
-        lVar.f13365b = 0;
-        m mVar = this.f13379f;
+        lVar.f11619a = false;
+        lVar.f11621c = 0;
+        lVar.f11620b = 0;
+        m mVar = this.f11631f;
         if (mVar != null) {
-            mVar.f13369b = false;
-            mVar.f13370c = false;
+            mVar.f11623b = false;
+            mVar.f11624c = false;
             mVar.d = false;
-            mVar.f13371e = -1;
+            mVar.e = -1;
         }
-        l0 l0Var = this.f13378e;
-        if (l0Var != null) {
-            l0Var.g();
+        k0 k0Var = this.e;
+        if (k0Var != null) {
+            k0Var.g();
         }
-        this.f13380g = 0L;
-        this.f13383k = -9223372036854775807L;
+        this.f11632g = 0L;
+        this.f11635k = -9223372036854775807L;
     }
 
     @Override
-    public final void e(c3.q qVar, f0 f0Var) {
-        f0Var.a();
-        f0Var.b();
-        this.h = f0Var.f13321e;
-        f0Var.b();
-        h0 R1 = qVar.R1(f0Var.d, 2);
-        this.f13381i = R1;
-        this.f13379f = new m(R1);
-        this.f13375a.b(qVar, f0Var);
+    public final void c(c3.q qVar, g0 g0Var) {
+        g0Var.a();
+        g0Var.b();
+        this.h = g0Var.e;
+        g0Var.b();
+        c3.h0 I = qVar.I(g0Var.d, 2);
+        this.f11633i = I;
+        this.f11631f = new m(I);
+        this.f11628a.b(qVar, g0Var);
     }
 
     @Override
-    public final void f(boolean z10) {
-        e2.d.h(this.f13379f);
+    public final void d(boolean z10) {
+        e2.d.h(this.f11631f);
         if (z10) {
-            this.f13379f.b(0, this.f13380g, this.f13382j);
-            m mVar = this.f13379f;
-            mVar.f13369b = false;
-            mVar.f13370c = false;
+            this.f11631f.b(0, this.f11632g, this.f11634j);
+            m mVar = this.f11631f;
+            mVar.f11623b = false;
+            mVar.f11624c = false;
             mVar.d = false;
-            mVar.f13371e = -1;
+            mVar.e = -1;
         }
     }
 
     @Override
-    public final void g(int i10, long j3) {
-        this.f13383k = j3;
+    public final void e(int i10, long j3) {
+        this.f11635k = j3;
     }
 }

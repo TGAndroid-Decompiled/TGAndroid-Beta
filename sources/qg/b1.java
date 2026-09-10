@@ -1,14 +1,18 @@
 package qg;
-public interface b1 {
-    void a();
 
-    void b();
+import android.graphics.ColorFilter;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
+public final class b1 extends BitmapDrawable {
+    public int[] f40684a;
+    public Drawable f40685b;
 
-    void c();
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
+    }
 
-    boolean d();
-
-    void e();
-
-    void f();
+    @Override
+    public final void setColorFilter(int i10, PorterDuff.Mode mode) {
+    }
 }

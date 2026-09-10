@@ -1,160 +1,112 @@
 package bi;
 
-import android.animation.ValueAnimator;
-import android.content.Context;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
+import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.R;
-import org.telegram.ui.Components.pr;
-public final class f2 extends FrameLayout {
-    public final FrameLayout f2979a;
-    public final View f2980b;
-    public final ImageView f2981c;
-    public final e2 d;
-    public boolean f2982e;
-    public ValueAnimator f2983f;
-    public boolean h;
-    public float f2984n;
-    public ValueAnimator f2985r;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.messenger.UserConfig;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.Components.wx0;
+import org.telegram.ui.TwoStepVerificationActivity;
+import org.telegram.ui.j60;
+import org.telegram.ui.ky;
+import org.telegram.ui.mh0;
+import org.telegram.ui.wo0;
+import org.telegram.ui.zh0;
+public final class f2 implements RequestDelegate {
+    public final int f2688a;
+    public final Object f2689b;
+    public final boolean f2690c;
+    public final Object d;
 
-    public f2(Context context, eh.b bVar) {
-        super(context);
-        w7.z5.a(this);
-        FrameLayout frameLayout = new FrameLayout(context);
-        this.f2979a = frameLayout;
-        bh.j jVar = new bh.j();
-        jVar.a(bVar);
-        jVar.f2743g.setColor(-14670806);
-        jVar.invalidateSelf();
-        jVar.f2742f = AndroidUtilities.dp(1.0f);
-        frameLayout.setBackground(jVar);
-        addView(frameLayout, w7.x5.e(40, 40, 17));
-        View view = new View(context);
-        this.f2980b = view;
-        view.setBackground(org.telegram.ui.ActionBar.j6.K(AndroidUtilities.dp(40.0f), -13522392));
-        frameLayout.addView(view, w7.x5.e(38, 38, 17));
-        view.setAlpha(0.0f);
-        view.setScaleX(0.0f);
-        view.setScaleY(0.0f);
-        e2 e2Var = new e2(context);
-        this.d = e2Var;
-        addView(e2Var, w7.x5.e(42, 42, 17));
-        ImageView imageView = new ImageView(context);
-        this.f2981c = imageView;
-        imageView.setScaleType(ImageView.ScaleType.CENTER);
-        imageView.setScaleX(0.75f);
-        imageView.setScaleY(0.75f);
-        imageView.setColorFilter(new PorterDuffColorFilter(-2960428, PorterDuff.Mode.SRC_IN));
-        frameLayout.addView(imageView, w7.x5.e(40, 40, 17));
-        b(false, false);
+    public f2(Object obj, Object obj2, boolean z10, int i10) {
+        this.f2688a = i10;
+        this.d = obj;
+        this.f2689b = obj2;
+        this.f2690c = z10;
     }
 
-    public final void a(boolean z10, boolean z11) {
-        int i10;
-        if (this.f2982e == z10 && z11) {
-            return;
+    @Override
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        TLRPC.TL_chatInviteExported tL_chatInviteExported;
+        switch (this.f2688a) {
+            case 0:
+                AndroidUtilities.runOnUIThread(new g2((h2) this.d, tLObject, (String) this.f2689b, this.f2690c, 0));
+                return;
+            case 1:
+                fg.d2 d2Var = (fg.d2) this.d;
+                String str = (String) this.f2689b;
+                a0.i iVar = d2Var.h;
+                ArrayList arrayList = d2Var.f7983g;
+                int i10 = d2Var.f7988m;
+                if (tL_error == null) {
+                    TLRPC.TL_channels_channelParticipants tL_channels_channelParticipants = (TLRPC.TL_channels_channelParticipants) tLObject;
+                    d2Var.f7989n = str.toLowerCase();
+                    MessagesController.getInstance(i10).putUsers(tL_channels_channelParticipants.users, false);
+                    MessagesController.getInstance(i10).putChats(tL_channels_channelParticipants.chats, false);
+                    arrayList.clear();
+                    iVar.b();
+                    arrayList.addAll(tL_channels_channelParticipants.participants);
+                    long clientUserId = UserConfig.getInstance(i10).getClientUserId();
+                    int size = tL_channels_channelParticipants.participants.size();
+                    for (int i11 = 0; i11 < size; i11++) {
+                        TLRPC.ChannelParticipant channelParticipant = tL_channels_channelParticipants.participants.get(i11);
+                        long peerId = MessageObject.getPeerId(channelParticipant.peer);
+                        if (!this.f2690c && peerId == clientUserId) {
+                            arrayList.remove(channelParticipant);
+                        } else {
+                            iVar.k(channelParticipant, peerId);
+                        }
+                    }
+                    return;
+                }
+                return;
+            case 2:
+                AndroidUtilities.runOnUIThread(new e2((Object) ((org.telegram.ui.le) this.d), (Object) tL_error, tLObject, (Object) ((TwoStepVerificationActivity) this.f2689b), this.f2690c, 13));
+                return;
+            case 3:
+                AndroidUtilities.runOnUIThread(new g2((wx0) this.d, tLObject, this.f2690c, (org.telegram.ui.ActionBar.d2) this.f2689b, 19));
+                return;
+            case 4:
+                AndroidUtilities.runOnUIThread(new e2((Object) ((ky) this.d), (Object) tL_error, tLObject, (Object) ((String) this.f2689b), this.f2690c, 19));
+                return;
+            case 5:
+                AndroidUtilities.runOnUIThread(new g2((j60) this.d, tLObject, (TLRPC.ChatFull) this.f2689b, this.f2690c, 21));
+                return;
+            case 6:
+                zh0 zh0Var = (zh0) this.d;
+                TLRPC.TL_chatInviteExported tL_chatInviteExported2 = (TLRPC.TL_chatInviteExported) this.f2689b;
+                if (tL_error == null) {
+                    TLRPC.TL_messages_exportedChatInvites tL_messages_exportedChatInvites = (TLRPC.TL_messages_exportedChatInvites) tLObject;
+                    if (tL_messages_exportedChatInvites.invites.size() > 0 && tL_chatInviteExported2 != null) {
+                        for (int i12 = 0; i12 < tL_messages_exportedChatInvites.invites.size(); i12++) {
+                            if (((TLRPC.TL_chatInviteExported) tL_messages_exportedChatInvites.invites.get(i12)).link.equals(tL_chatInviteExported2.link)) {
+                                tL_chatInviteExported = (TLRPC.TL_chatInviteExported) tL_messages_exportedChatInvites.invites.remove(i12);
+                                AndroidUtilities.runOnUIThread(new mh0(zh0Var, tL_chatInviteExported, tL_error, tLObject, this.f2690c, 0));
+                                return;
+                            }
+                        }
+                    }
+                }
+                tL_chatInviteExported = null;
+                AndroidUtilities.runOnUIThread(new mh0(zh0Var, tL_chatInviteExported, tL_error, tLObject, this.f2690c, 0));
+                return;
+            case 7:
+                AndroidUtilities.runOnUIThread(new e2((NotificationCenter.NotificationCenterDelegate) ((wo0) this.d), (TLObject) tL_error, this.f2690c, tLObject, (Object) ((String) this.f2689b), 21));
+                return;
+            default:
+                AndroidUtilities.runOnUIThread(new xh.m5((xh.n5) this.d, (int[]) this.f2689b, tLObject, this.f2690c));
+                return;
         }
-        this.f2982e = z10;
-        ValueAnimator valueAnimator = this.f2983f;
-        if (valueAnimator != null) {
-            valueAnimator.cancel();
-            this.f2983f = null;
-        }
-        boolean z12 = true;
-        float f7 = 1.0f;
-        e2 e2Var = this.d;
-        if (!z11) {
-            if (z10) {
-                f7 = 0.0f;
-            }
-            e2Var.setAlpha(f7);
-            if (z10) {
-                i10 = 8;
-            } else {
-                i10 = 0;
-            }
-            e2Var.setVisibility(i10);
-        } else {
-            e2Var.setVisibility(0);
-            float alpha = e2Var.getAlpha();
-            if (z10) {
-                f7 = 0.0f;
-            }
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(alpha, f7);
-            this.f2983f = ofFloat;
-            ofFloat.addUpdateListener(new d2(this, 0));
-            this.f2983f.setDuration(320L);
-            this.f2983f.setInterpolator(pr.h);
-            this.f2983f.start();
-        }
-        if (!this.h && z10) {
-            z12 = false;
-        }
-        c(z12, z11);
     }
 
-    public final void b(boolean z10, boolean z11) {
-        int i10;
-        boolean z12;
-        int i11;
-        this.h = z10;
-        ImageView imageView = this.f2981c;
-        if (!z11) {
-            if (z10) {
-                i11 = R.drawable.msg_voice_muted;
-            } else {
-                i11 = R.drawable.msg_voice_unmuted;
-            }
-            AndroidUtilities.updateImageViewImageAnimated(imageView, i11);
-        } else {
-            if (z10) {
-                i10 = R.drawable.msg_voice_muted;
-            } else {
-                i10 = R.drawable.msg_voice_unmuted;
-            }
-            imageView.setImageResource(i10);
-        }
-        if (!z10 && this.f2982e) {
-            z12 = false;
-        } else {
-            z12 = true;
-        }
-        c(z12, z11);
-    }
-
-    public final void c(boolean z10, boolean z11) {
-        ValueAnimator valueAnimator = this.f2985r;
-        if (valueAnimator != null) {
-            valueAnimator.cancel();
-            this.f2985r = null;
-        }
-        float f7 = 0.0f;
-        if (!z11) {
-            if (z10) {
-                f7 = 1.0f;
-            }
-            this.f2984n = f7;
-            View view = this.f2980b;
-            view.setAlpha(1.0f - f7);
-            view.setScaleX(1.0f - this.f2984n);
-            view.setScaleY(1.0f - this.f2984n);
-            this.f2981c.setColorFilter(new PorterDuffColorFilter(i0.a.d(this.f2984n, -1, -2960428), PorterDuff.Mode.SRC_IN));
-            this.f2979a.invalidate();
-            return;
-        }
-        float f10 = this.f2984n;
-        if (z10) {
-            f7 = 1.0f;
-        }
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(f10, f7);
-        this.f2985r = ofFloat;
-        ofFloat.addUpdateListener(new d2(this, 1));
-        this.f2985r.setInterpolator(pr.h);
-        this.f2985r.setDuration(420L);
-        this.f2985r.start();
+    public f2(Object obj, boolean z10, Object obj2, int i10) {
+        this.f2688a = i10;
+        this.d = obj;
+        this.f2690c = z10;
+        this.f2689b = obj2;
     }
 }

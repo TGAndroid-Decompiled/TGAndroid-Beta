@@ -1,37 +1,24 @@
 package org.telegram.messenger;
-
-import org.telegram.tgnet.TLRPC;
 public final class za implements Runnable {
-    public final int f19832a;
-    public final MessagesController f19833b;
-    public final TLRPC.Chat f19834c;
+    public final int f17141a;
+    public final Runnable f17142b;
 
-    public za(MessagesController messagesController, TLRPC.Chat chat, int i10) {
-        this.f19832a = i10;
-        this.f19833b = messagesController;
-        this.f19834c = chat;
+    public za(int i10, Runnable runnable) {
+        this.f17141a = i10;
+        this.f17142b = runnable;
     }
 
     @Override
     public final void run() {
-        switch (this.f19832a) {
+        switch (this.f17141a) {
             case 0:
-                this.f19833b.lambda$addOrRemoveActiveVoiceChat$61(this.f19834c);
+                MessagesController.lambda$unblockPeer$110(this.f17142b);
                 return;
             case 1:
-                this.f19833b.lambda$processLoadedDialogs$218(this.f19834c);
-                return;
-            case 2:
-                this.f19833b.lambda$processUpdateArray$413(this.f19834c);
-                return;
-            case 3:
-                this.f19833b.lambda$putChat$58(this.f19834c);
-                return;
-            case 4:
-                this.f19833b.lambda$putChat$59(this.f19834c);
+                this.f17142b.run();
                 return;
             default:
-                this.f19833b.lambda$putChat$60(this.f19834c);
+                AndroidUtilities.runOnUIThread(this.f17142b);
                 return;
         }
     }

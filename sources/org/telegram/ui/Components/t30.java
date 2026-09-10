@@ -1,50 +1,68 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class t30 extends AnimatorListenerAdapter {
-    public final int f30551a;
-    public final v30 f30552b;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.drawable.Drawable;
+import android.view.accessibility.AccessibilityEvent;
+import android.widget.ImageView;
+public final class t30 extends ImageView {
+    public final int f27301a;
+    public final int f27302b;
+    public final Object f27303c;
 
-    public t30(v30 v30Var, int i10) {
-        this.f30551a = i10;
-        this.f30552b = v30Var;
+    public t30(Object obj, Context context, int i10, int i11) {
+        super(context);
+        this.f27301a = i11;
+        this.f27303c = obj;
+        this.f27302b = i10;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f30551a) {
-            case 0:
-                v30 v30Var = this.f30552b;
-                if (v30Var.f31102b0 == animator) {
-                    v30Var.f31102b0 = null;
-                    v30Var.b();
+    public void onDraw(Canvas canvas) {
+        switch (this.f27301a) {
+            case 1:
+                super.onDraw(canvas);
+                org.telegram.ui.b20 b20Var = (org.telegram.ui.b20) this.f27303c;
+                q90 q90Var = b20Var.f31139s;
+                if (b20Var.f31138r) {
+                    int i10 = this.f27302b / 2;
+                    q90Var.setBounds(i10, i10, getWidth() - i10, getHeight() - i10);
+                    q90Var.draw(canvas);
                     return;
                 }
                 return;
             default:
-                v30 v30Var2 = this.f30552b;
-                if (v30Var2.f31100a0 == animator) {
-                    v30Var2.f31100a0 = null;
-                    return;
-                }
+                super.onDraw(canvas);
                 return;
         }
     }
 
     @Override
-    public void onAnimationStart(Animator animator) {
-        switch (this.f30551a) {
-            case 1:
-                u30 u30Var = this.f30552b.W;
-                if (u30Var != null) {
-                    ((org.telegram.ui.us0) u30Var).f41242a.f33576e0.requestLayout();
+    public void onInitializeAccessibilityEvent(AccessibilityEvent accessibilityEvent) {
+        switch (this.f27301a) {
+            case 0:
+                super.onInitializeAccessibilityEvent(accessibilityEvent);
+                if (accessibilityEvent.getEventType() == 32768) {
+                    ((u30) this.f27303c).f27557c.f27806b.x(this.f27302b, true);
                     return;
                 }
                 return;
             default:
-                super.onAnimationStart(animator);
+                super.onInitializeAccessibilityEvent(accessibilityEvent);
                 return;
+        }
+    }
+
+    @Override
+    public boolean verifyDrawable(Drawable drawable) {
+        switch (this.f27301a) {
+            case 1:
+                if (drawable != ((org.telegram.ui.b20) this.f27303c).f31139s && !super.verifyDrawable(drawable)) {
+                    return false;
+                }
+                return true;
+            default:
+                return super.verifyDrawable(drawable);
         }
     }
 }

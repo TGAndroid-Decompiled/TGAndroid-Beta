@@ -1,138 +1,177 @@
 package dh;
 
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.RectF;
-import java.util.ArrayList;
-import java.util.Arrays;
-import org.telegram.ui.PrivacyControlActivity;
-import org.telegram.ui.b70;
-import yf.f0;
-public final class a implements hh.f, b70 {
-    public final int f6841a;
-    public final boolean f6842b;
-    public final Object f6843c;
+import android.content.pm.ShortcutManager;
+import android.graphics.Bitmap;
+import android.window.OnBackInvokedDispatcher;
+import bi.u6;
+import ch.d;
+import com.google.firebase.datatransport.TransportRegistrar;
+import di.n3;
+import di.o4;
+import di.t4;
+import i5.f;
+import org.telegram.messenger.GenericProvider;
+import org.telegram.messenger.LiteMode;
+import org.telegram.messenger.Utilities;
+import org.telegram.ui.ActionBar.c2;
+import org.telegram.ui.ActionBar.d2;
+import org.telegram.ui.ActionBar.f6;
+import org.telegram.ui.ActionBar.j6;
+import org.telegram.ui.Components.qv0;
+import org.telegram.ui.Components.rv0;
+import org.telegram.ui.Components.sv0;
+public final class a implements d, qv0, rv0, GenericProvider, q9.d, c2, fh.b {
+    public final int f6497a;
 
-    public a(int i10, Object obj, boolean z10) {
-        this.f6843c = obj;
-        this.f6841a = i10;
-        this.f6842b = z10;
+    public a(int i10) {
+        this.f6497a = i10;
+    }
+
+    public static ShortcutManager d(Object obj) {
+        return (ShortcutManager) obj;
+    }
+
+    public static OnBackInvokedDispatcher h(Object obj) {
+        return (OnBackInvokedDispatcher) obj;
+    }
+
+    public static Class i() {
+        return ShortcutManager.class;
     }
 
     @Override
-    public void a(Canvas canvas, RectF rectF, float[] fArr) {
-        Paint paint;
-        Path.Direction direction;
+    public Object P1(u6 u6Var) {
+        f lambda$getComponents$0;
+        lambda$getComponents$0 = TransportRegistrar.lambda$getComponents$0(u6Var);
+        return lambda$getComponents$0;
+    }
+
+    @Override
+    public Object a(Bitmap bitmap) {
+        switch (this.f6497a) {
+            case 25:
+                if (bitmap != null && !bitmap.isRecycled()) {
+                    Bitmap stackBlurBitmapWithScaleFactor = Utilities.stackBlurBitmapWithScaleFactor(bitmap, Math.max(bitmap.getWidth() / 90.0f, bitmap.getHeight() / 120.0f));
+                    stackBlurBitmapWithScaleFactor.setHasAlpha(false);
+                    return stackBlurBitmapWithScaleFactor;
+                }
+                return null;
+            case 26:
+                int i10 = 0;
+                if (bitmap != null && !bitmap.isRecycled()) {
+                    int height = bitmap.getHeight();
+                    i10 = Utilities.averageBitmapColor(bitmap, 0, (height * 9) / 10, bitmap.getWidth(), height);
+                }
+                return Integer.valueOf(i10);
+            default:
+                int i11 = 0;
+                if (bitmap != null && !bitmap.isRecycled()) {
+                    i11 = Utilities.averageBitmapColor(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight() / 10);
+                }
+                return Integer.valueOf(i11);
+        }
+    }
+
+    @Override
+    public void b(Object obj, float f7) {
+        switch (this.f6497a) {
+            case 10:
+                n3 n3Var = (n3) obj;
+                n3Var.f6784b = f7;
+                n3Var.e.invalidate();
+                n3Var.W.setAlpha(f7);
+                n3Var.E();
+                n3Var.C();
+                return;
+            case 11:
+            default:
+                ((t4) obj).setSwipeOffsetY(f7);
+                return;
+            case 12:
+                ((o4) obj).setLoadProgress(f7);
+                return;
+        }
+    }
+
+    @Override
+    public void f(d2 d2Var, int i10) {
+        switch (this.f6497a) {
+            case 23:
+                d2Var.dismiss();
+                return;
+            default:
+                d2Var.dismiss();
+                return;
+        }
+    }
+
+    @Override
+    public int g(f6 f6Var, boolean z10) {
         float f7;
-        d dVar = (d) this.f6843c;
-        float[] fArr2 = d.C;
-        c cVar = dVar.h;
-        Path path = new Path();
-        Path.Direction direction2 = Path.Direction.CW;
-        path.addRoundRect(rectF, fArr, direction2);
-        Paint paint2 = new Paint(1);
-        paint2.setStyle(Paint.Style.FILL);
-        paint2.setColor(this.f6841a);
-        float f10 = dVar.f6868l;
-        if (f10 > 0.0f) {
-            paint2.setShadowLayer(f10, 0.0f, dVar.f6869m, dVar.d);
-        }
-        canvas.drawPath(path, paint2);
-        if (dVar.f6868l > 0.0f) {
-            paint2.clearShadowLayer();
-            canvas.drawPath(path, paint2);
-        }
-        if (this.f6842b) {
-            float[] copyOf = Arrays.copyOf(cVar.f6847b, 8);
-            boolean c10 = f0.c(copyOf);
-            float min = Math.min(rectF.width(), rectF.height()) / 2.0f;
-            Paint paint3 = new Paint(1);
-            if (Color.alpha(dVar.f6863f) > 0 && copyOf[0] > 0.0f) {
-                Arrays.fill(fArr2, 0.0f);
-                fArr2[0] = copyOf[0];
-                fArr2[1] = copyOf[1];
-                fArr2[2] = copyOf[2];
-                fArr2[3] = copyOf[3];
-                if (c10 && copyOf[0] > min) {
-                    fArr2[3] = min;
-                    fArr2[2] = min;
-                    fArr2[1] = min;
-                    fArr2[0] = min;
+        float f10;
+        float f11;
+        float f12;
+        switch (this.f6497a) {
+            case 0:
+                return j6.l1(0.075f, -16777216);
+            case 1:
+                return j6.l1(0.88f, j6.v0(j6.f17928d6, f6Var));
+            case 2:
+                int w02 = j6.w0(null, j6.G8, false);
+                if (z10) {
+                    f7 = 0.85f;
+                } else {
+                    f7 = 0.825f;
                 }
-                Path path2 = new Path();
-                float f11 = rectF.left;
-                float f12 = rectF.top;
-                f7 = 0.0f;
-                paint = paint3;
-                path2.addRoundRect(f11, f12, rectF.right, Math.min(Math.max(copyOf[0], copyOf[2]) + f12, rectF.bottom), fArr2, direction2);
-                direction = direction2;
-                float f13 = rectF.left;
-                float f14 = rectF.top;
-                path2.addRoundRect(f13, cVar.f6852i + f14, rectF.right, Math.min(Math.max(copyOf[0], copyOf[2]) + f14, rectF.bottom), fArr2, Path.Direction.CCW);
-                paint.setColor(dVar.f6863f);
-                canvas.drawPath(path2, paint);
-            } else {
-                paint = paint3;
-                direction = direction2;
-                f7 = 0.0f;
-            }
-            if (Color.alpha(dVar.f6864g) > 0 && copyOf[4] > f7) {
-                Arrays.fill(fArr2, 0.0f);
-                fArr2[4] = copyOf[4];
-                fArr2[5] = copyOf[5];
-                fArr2[6] = copyOf[6];
-                fArr2[7] = copyOf[7];
-                if (c10 && copyOf[0] > min) {
-                    fArr2[7] = min;
-                    fArr2[6] = min;
-                    fArr2[5] = min;
-                    fArr2[4] = min;
+                return j6.l1(f7, w02);
+            case 3:
+                if (LiteMode.isEnabled(262144)) {
+                    f10 = 0.85f;
+                } else {
+                    f10 = 0.76f;
                 }
-                Path path3 = new Path();
-                path3.addRoundRect(rectF.left, Math.max(rectF.bottom - Math.max(copyOf[4], copyOf[6]), rectF.top), rectF.right, rectF.bottom, fArr2, direction);
-                path3.addRoundRect(rectF.left, Math.max(rectF.bottom - Math.max(copyOf[4], copyOf[6]), rectF.top), rectF.right, rectF.bottom - cVar.f6853j, fArr2, Path.Direction.CCW);
-                paint.setColor(dVar.f6864g);
-                canvas.drawPath(path3, paint);
-            }
+                return c.m(f10, j6.v0(j6.f17928d6, f6Var), j6.v0(j6.Yk, f6Var));
+            case 4:
+                if (LiteMode.isEnabled(262144)) {
+                    f11 = 0.85f;
+                } else {
+                    f11 = 0.76f;
+                }
+                return j6.l1(f11, j6.v0(j6.f17928d6, f6Var));
+            case 5:
+                return j6.l1(0.78f, j6.v0(j6.f17998h5, f6Var));
+            case 6:
+                return j6.l1(0.7f, j6.v0(j6.f17928d6, f6Var));
+            case 7:
+                LiteMode.isEnabled(262144);
+                return 0;
+            default:
+                if (LiteMode.isEnabled(262144)) {
+                    f12 = 0.85f;
+                } else {
+                    f12 = 0.76f;
+                }
+                return j6.l1(f12, j6.v0(j6.f17928d6, f6Var));
         }
     }
 
     @Override
-    public void b(ArrayList arrayList, boolean z10, boolean z11) {
-        char c10;
-        PrivacyControlActivity privacyControlActivity = (PrivacyControlActivity) this.f6843c;
-        boolean[] zArr = privacyControlActivity.E;
-        int i10 = privacyControlActivity.T;
-        int i11 = this.f6841a;
-        boolean z12 = this.f6842b;
-        int i12 = 0;
-        boolean z13 = true;
-        if (i11 == i10) {
-            privacyControlActivity.H = arrayList;
-            zArr[privacyControlActivity.I] = (z12 && z11) ? false : false;
-            while (i12 < privacyControlActivity.H.size()) {
-                privacyControlActivity.G.remove(privacyControlActivity.H.get(i12));
-                i12++;
-            }
-        } else {
-            boolean[] zArr2 = privacyControlActivity.f33866y;
-            int i13 = privacyControlActivity.I;
-            if (i13 == 2) {
-                c10 = 0;
-            } else {
-                c10 = 1;
-            }
-            zArr2[c10] = z10;
-            zArr[i13] = (z12 && z11) ? false : false;
-            privacyControlActivity.G = arrayList;
-            while (i12 < privacyControlActivity.G.size()) {
-                privacyControlActivity.H.remove(privacyControlActivity.G.get(i12));
-                i12++;
-            }
+    public float get(Object obj) {
+        switch (this.f6497a) {
+            case 9:
+                return ((n3) obj).f6784b;
+            case 10:
+            default:
+                return ((t4) obj).getSwipeOffsetY();
+            case 11:
+                return ((o4) obj).f6834c;
         }
-        privacyControlActivity.E0();
-        privacyControlActivity.f33833a.l();
+    }
+
+    @Override
+    public Object provide(Object obj) {
+        Void r12 = (Void) obj;
+        sv0 sv0Var = t4.f6914b0;
+        return Boolean.FALSE;
     }
 }

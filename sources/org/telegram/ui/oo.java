@@ -1,82 +1,29 @@
 package org.telegram.ui;
 
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MessagesStorage;
-import org.telegram.messenger.NotificationCenter;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-public final class oo implements org.telegram.ui.ActionBar.a2, MessagesStorage.LongCallback, dd0, MessagesStorage.BooleanCallback {
-    public final int f39314a;
-    public final xo f39315b;
+public final class oo implements RequestDelegate {
+    public final int f35577a;
+    public final yo f35578b;
 
-    public oo(xo xoVar, int i10) {
-        this.f39314a = i10;
-        this.f39315b = xoVar;
+    public oo(yo yoVar, int i10) {
+        this.f35577a = i10;
+        this.f35578b = yoVar;
     }
 
     @Override
-    public void b(TLRPC.MessageMedia messageMedia, int i10, boolean z10, int i11, long j3) {
-        TLRPC.TL_channelLocation tL_channelLocation = new TLRPC.TL_channelLocation();
-        tL_channelLocation.address = messageMedia.address;
-        tL_channelLocation.geo_point = messageMedia.geo;
-        xo xoVar = this.f39315b;
-        TLRPC.ChatFull chatFull = xoVar.f42828y0;
-        chatFull.location = tL_channelLocation;
-        chatFull.flags |= 32768;
-        xoVar.p0(false, true);
-        xoVar.getMessagesController().loadFullChat(xoVar.f42824w0, 0, true);
-    }
-
-    @Override
-    public void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        switch (this.f39314a) {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f35577a) {
             case 0:
-                this.f39315b.j0();
+                AndroidUtilities.runOnUIThread(new s1(this.f35578b, tL_error, tLObject, 27));
                 return;
             case 1:
-                this.f39315b.finishFragment();
-                return;
-            case 2:
-                this.f39315b.j0();
+                AndroidUtilities.runOnUIThread(new qo(this.f35578b, 1));
                 return;
             default:
-                this.f39315b.finishFragment();
-                return;
-        }
-    }
-
-    @Override
-    public void run(boolean z10) {
-        xo xoVar = this.f39315b;
-        xoVar.getClass();
-        if (AndroidUtilities.isTablet()) {
-            xoVar.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.closeChats, Long.valueOf(-xoVar.f42824w0));
-        } else {
-            xoVar.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.closeChats, new Object[0]);
-        }
-        xoVar.finishFragment();
-        xoVar.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needDeleteDialog, Long.valueOf(-xoVar.f42826x0.f19896id), null, xoVar.f42826x0, Boolean.valueOf(z10));
-    }
-
-    @Override
-    public void run(long j3) {
-        switch (this.f39314a) {
-            case 4:
-                this.f39315b.t0(Long.valueOf(j3));
-                return;
-            default:
-                xo xoVar = this.f39315b;
-                if (j3 == 0) {
-                    xoVar.N0 = false;
-                    return;
-                }
-                xoVar.f42824w0 = j3;
-                xoVar.f42826x0 = xoVar.getMessagesController().getChat(Long.valueOf(j3));
-                xoVar.N0 = false;
-                TLRPC.ChatFull chatFull = xoVar.f42828y0;
-                if (chatFull != null) {
-                    chatFull.hidden_prehistory = true;
-                }
-                xoVar.j0();
+                AndroidUtilities.runOnUIThread(new qo(this.f35578b, 4));
                 return;
         }
     }

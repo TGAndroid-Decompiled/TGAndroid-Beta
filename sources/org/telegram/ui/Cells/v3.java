@@ -11,21 +11,21 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.tgnet.TLRPC;
 public abstract class v3 extends FrameLayout {
-    public org.telegram.ui.Components.x9 f23387a;
-    public org.telegram.ui.ActionBar.j5 f23388b;
-    public org.telegram.ui.ActionBar.j5 f23389c;
+    public org.telegram.ui.Components.w9 f20540a;
+    public org.telegram.ui.ActionBar.l5 f20541b;
+    public org.telegram.ui.ActionBar.l5 f20542c;
     public ImageView d;
-    public org.telegram.ui.Components.i9 f23390e;
-    public TLRPC.User f23391f;
+    public org.telegram.ui.Components.g9 e;
+    public TLRPC.User f20543f;
     public Paint h;
-    public int f23392n;
-    public boolean f23393r;
+    public int f20544n;
+    public boolean f20545r;
 
     public final void a(int i10, int i11) {
-        this.f23392n = i10;
+        this.f20544n = i10;
         ImageView imageView = this.d;
         imageView.setColorFilter(new PorterDuffColorFilter(i11, PorterDuff.Mode.MULTIPLY));
-        this.f23389c.setTextColor(i11);
+        this.f20542c.setTextColor(i11);
         org.telegram.ui.ActionBar.j6.B1(imageView.getDrawable(), i11 & 620756991, true);
     }
 
@@ -34,7 +34,7 @@ public abstract class v3 extends FrameLayout {
         Canvas canvas2;
         float dp;
         int i10;
-        if (this.f23393r) {
+        if (this.f20545r) {
             if (LocaleController.isRTL) {
                 dp = 0.0f;
             } else {
@@ -56,11 +56,11 @@ public abstract class v3 extends FrameLayout {
     }
 
     public CharSequence getName() {
-        return this.f23388b.getText();
+        return this.f20541b.getText();
     }
 
     public TLRPC.User getUser() {
-        return this.f23391f;
+        return this.f20543f;
     }
 
     @Override
@@ -74,7 +74,7 @@ public abstract class v3 extends FrameLayout {
     }
 
     public void setDrawDivider(boolean z10) {
-        this.f23393r = z10;
+        this.f20545r = z10;
         invalidate();
     }
 }

@@ -1,17 +1,43 @@
 package org.telegram.ui;
 
-import android.content.Context;
-public final class u01 extends org.telegram.ui.Cells.c9 {
-    public final a11 f40906r;
+import android.view.View;
+import org.telegram.messenger.MessagesController;
+import org.telegram.tgnet.TLRPC;
+public final class u01 implements View.OnClickListener {
+    public final int f37071a;
+    public final f11 f37072b;
 
-    public u01(a11 a11Var, Context context, org.telegram.ui.ActionBar.f6 f6Var, boolean z10, boolean z11) {
-        super(18, context, f6Var, z10, z11);
-        this.f40906r = a11Var;
+    public u01(f11 f11Var, int i10) {
+        this.f37071a = i10;
+        this.f37072b = f11Var;
     }
 
     @Override
-    public final int a(int i10) {
-        this.f40906r.f34318e.getClass();
-        return i10;
+    public final void onClick(View view) {
+        switch (this.f37071a) {
+            case 0:
+                f11 f11Var = this.f37072b;
+                ProfileActivity profileActivity = f11Var.e;
+                TLRPC.User user = profileActivity.getMessagesController().getUser(Long.valueOf(profileActivity.f30381e1));
+                MessagesController messagesController = profileActivity.getMessagesController();
+                ProfileActivity profileActivity2 = f11Var.e;
+                messagesController.openApp(profileActivity2, user, null, profileActivity2.getClassGuid(), null);
+                return;
+            default:
+                ProfileActivity profileActivity3 = this.f37072b.e;
+                profileActivity3.O4 = !profileActivity3.O4;
+                if (!profileActivity3.N4) {
+                    profileActivity3.N4 = true;
+                }
+                profileActivity3.F4();
+                view.requestLayout();
+                profileActivity3.d.m(profileActivity3.O3);
+                int i10 = profileActivity3.U5;
+                if (i10 >= 0) {
+                    profileActivity3.f30365c.h1(i10, profileActivity3.V5 - profileActivity3.f30350a.getPaddingTop());
+                    return;
+                }
+                return;
+        }
     }
 }

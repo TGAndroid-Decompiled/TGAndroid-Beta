@@ -3,14 +3,14 @@ package id;
 import java.io.Serializable;
 import rd.p;
 public final class b implements h, Serializable {
-    public final h f11977a;
-    public final f f11978b;
+    public final h f10562a;
+    public final f f10563b;
 
     public b(f element, h left) {
         kotlin.jvm.internal.i.e(left, "left");
         kotlin.jvm.internal.i.e(element, "element");
-        this.f11977a = left;
-        this.f11978b = element;
+        this.f10562a = left;
+        this.f10563b = element;
     }
 
     public final boolean equals(Object obj) {
@@ -22,7 +22,7 @@ public final class b implements h, Serializable {
                 b bVar2 = bVar;
                 int i11 = 2;
                 while (true) {
-                    h hVar = bVar2.f11977a;
+                    h hVar = bVar2.f10562a;
                     if (hVar instanceof b) {
                         bVar2 = (b) hVar;
                     } else {
@@ -35,7 +35,7 @@ public final class b implements h, Serializable {
                 }
                 b bVar3 = this;
                 while (true) {
-                    h hVar2 = bVar3.f11977a;
+                    h hVar2 = bVar3.f10562a;
                     if (hVar2 instanceof b) {
                         bVar3 = (b) hVar2;
                     } else {
@@ -49,12 +49,12 @@ public final class b implements h, Serializable {
                 if (i11 == i10) {
                     b bVar4 = this;
                     while (true) {
-                        f fVar = bVar4.f11978b;
+                        f fVar = bVar4.f10563b;
                         if (!kotlin.jvm.internal.i.a(bVar.get(fVar.getKey()), fVar)) {
                             z10 = false;
                             break;
                         }
-                        h hVar3 = bVar4.f11977a;
+                        h hVar3 = bVar4.f10562a;
                         if (hVar3 instanceof b) {
                             bVar4 = (b) hVar3;
                         } else {
@@ -76,7 +76,7 @@ public final class b implements h, Serializable {
 
     @Override
     public final Object fold(Object obj, p pVar) {
-        return pVar.invoke(this.f11977a.fold(obj, pVar), this.f11978b);
+        return pVar.invoke(this.f10562a.fold(obj, pVar), this.f10563b);
     }
 
     @Override
@@ -84,11 +84,11 @@ public final class b implements h, Serializable {
         kotlin.jvm.internal.i.e(key, "key");
         b bVar = this;
         while (true) {
-            f fVar = bVar.f11978b.get(key);
+            f fVar = bVar.f10563b.get(key);
             if (fVar != null) {
                 return fVar;
             }
-            h hVar = bVar.f11977a;
+            h hVar = bVar.f10562a;
             if (hVar instanceof b) {
                 bVar = (b) hVar;
             } else {
@@ -98,15 +98,15 @@ public final class b implements h, Serializable {
     }
 
     public final int hashCode() {
-        return this.f11978b.hashCode() + this.f11977a.hashCode();
+        return this.f10563b.hashCode() + this.f10562a.hashCode();
     }
 
     @Override
     public final h minusKey(g key) {
         kotlin.jvm.internal.i.e(key, "key");
-        f fVar = this.f11978b;
+        f fVar = this.f10563b;
         f fVar2 = fVar.get(key);
-        h hVar = this.f11977a;
+        h hVar = this.f10562a;
         if (fVar2 != null) {
             return hVar;
         }
@@ -114,7 +114,7 @@ public final class b implements h, Serializable {
         if (minusKey == hVar) {
             return this;
         }
-        if (minusKey == i.f11980a) {
+        if (minusKey == i.f10565a) {
             return fVar;
         }
         return new b(fVar, minusKey);
@@ -123,7 +123,7 @@ public final class b implements h, Serializable {
     @Override
     public final h plus(h context) {
         kotlin.jvm.internal.i.e(context, "context");
-        if (context == i.f11980a) {
+        if (context == i.f10565a) {
             return this;
         }
         return (h) context.fold(this, new b1.e(5));

@@ -1,28 +1,19 @@
 package org.telegram.ui;
-
-import org.telegram.messenger.AndroidUtilities;
 public final class ve1 implements Runnable {
-    public final int f41553a;
-    public final af1 f41554b;
+    public final int f37545a;
+    public final we1 f37546b;
+    public final String f37547c;
+    public final int d;
 
-    public ve1(af1 af1Var, int i10) {
-        this.f41553a = i10;
-        this.f41554b = af1Var;
+    public ve1(we1 we1Var, String str, int i10, int i11) {
+        this.f37545a = i11;
+        this.f37546b = we1Var;
+        this.f37547c = str;
+        this.d = i10;
     }
 
     @Override
     public final void run() {
-        switch (this.f41553a) {
-            case 0:
-                af1 af1Var = this.f41554b;
-                af1Var.getClass();
-                new sg.a1((org.telegram.ui.ActionBar.n2) af1Var, 11, false).show();
-                return;
-            default:
-                af1 af1Var2 = this.f41554b;
-                af1Var2.f34440e.requestFocus();
-                AndroidUtilities.showKeyboard(af1Var2.f34440e);
-                return;
-        }
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ve1.run():void");
     }
 }

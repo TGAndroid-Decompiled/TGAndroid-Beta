@@ -1,33 +1,28 @@
 package bi;
 
-import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
-public final class y4 implements Runnable {
-    public final int f4039a;
-    public final ActionBarPopupWindow$ActionBarPopupWindowLayout f4040b;
-    public final int f4041c;
+import android.view.View;
+import android.widget.TextView;
+public final class y4 implements View.OnLayoutChangeListener {
+    public final int f3966a;
+    public final Object f3967b;
 
-    public y4(ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout, int i10, int i11) {
-        this.f4039a = i11;
-        this.f4040b = actionBarPopupWindow$ActionBarPopupWindowLayout;
-        this.f4041c = i10;
+    public y4(Object obj, int i10) {
+        this.f3966a = i10;
+        this.f3967b = obj;
     }
 
     @Override
-    public final void run() {
-        switch (this.f4039a) {
+    public final void onLayoutChange(View view, int i10, int i11, int i12, int i13, int i14, int i15, int i16, int i17) {
+        switch (this.f3966a) {
             case 0:
-                ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = this.f4040b;
-                if (actionBarPopupWindow$ActionBarPopupWindowLayout.getSwipeBack() != null) {
-                    actionBarPopupWindow$ActionBarPopupWindowLayout.getSwipeBack().e(this.f4041c);
-                    return;
-                }
+                ((b5) this.f3967b).d();
                 return;
             default:
-                ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout2 = this.f4040b;
-                if (actionBarPopupWindow$ActionBarPopupWindowLayout2.getSwipeBack() != null) {
-                    actionBarPopupWindow$ActionBarPopupWindowLayout2.getSwipeBack().e(this.f4041c);
-                    return;
-                }
+                jg.c cVar = (jg.c) this.f3967b;
+                TextView textView = cVar.f11895c;
+                textView.setPivotX(textView.getMeasuredWidth() * 0.7f);
+                TextView textView2 = cVar.f11894b;
+                textView2.setPivotX(textView2.getMeasuredWidth() * 0.7f);
                 return;
         }
     }

@@ -1,28 +1,48 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-public final class uv extends x9 {
-    public final xv G;
-
-    public uv(xv xvVar, Context context) {
-        super(context);
-        this.G = xvVar;
-    }
-
-    @Override
-    public final void invalidate() {
-        if (ah.y0.b(this)) {
-            return;
-        }
-        super.invalidate();
-        this.G.f();
-    }
+import android.text.Selection;
+import android.text.Spannable;
+import android.text.method.LinkMovementMethod;
+import android.view.MotionEvent;
+import android.widget.TextView;
+import org.telegram.messenger.FileLog;
+public final class uv extends LinkMovementMethod {
+    public final int f27753a;
 
     @Override
-    public final void invalidate(int i10, int i11, int i12, int i13) {
-        if (ah.y0.b(this)) {
-            return;
+    public final boolean onTouchEvent(TextView textView, Spannable spannable, MotionEvent motionEvent) {
+        switch (this.f27753a) {
+            case 0:
+                try {
+                    boolean onTouchEvent = super.onTouchEvent(textView, spannable, motionEvent);
+                    if (motionEvent.getAction() != 1 && motionEvent.getAction() != 3) {
+                        return onTouchEvent;
+                    }
+                    Selection.removeSelection(spannable);
+                    return onTouchEvent;
+                } catch (Exception e) {
+                    FileLog.e(e);
+                    return false;
+                }
+            case 1:
+                try {
+                    return super.onTouchEvent(textView, spannable, motionEvent);
+                } catch (Exception e7) {
+                    FileLog.e(e7);
+                    return false;
+                }
+            default:
+                try {
+                    boolean onTouchEvent2 = super.onTouchEvent(textView, spannable, motionEvent);
+                    if (motionEvent.getAction() != 1 && motionEvent.getAction() != 3) {
+                        return onTouchEvent2;
+                    }
+                    Selection.removeSelection(spannable);
+                    return onTouchEvent2;
+                } catch (Exception e10) {
+                    FileLog.e(e10);
+                    return false;
+                }
         }
-        super.invalidate(i10, i11, i12, i13);
     }
 }

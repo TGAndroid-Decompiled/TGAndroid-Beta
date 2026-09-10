@@ -1,194 +1,39 @@
 package org.telegram.ui.Components;
 
-import android.graphics.RectF;
-import android.os.Build;
-import java.util.ArrayList;
-import java.util.HashMap;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.MediaController;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.VideoEditedInfo;
-import org.telegram.tgnet.TLRPC;
-public final class lm extends org.telegram.ui.su0 {
-    public ArrayList f28272a = new ArrayList();
-    public final pm f28273b;
+import android.graphics.Outline;
+import android.view.View;
+import android.view.ViewOutlineProvider;
+import org.telegram.messenger.AndroidUtilities;
+public final class lm extends ViewOutlineProvider {
+    public final nm f25055a;
 
-    public lm(pm pmVar) {
-        this.f28273b = pmVar;
+    public lm(nm nmVar) {
+        this.f25055a = nmVar;
     }
 
     @Override
-    public final void D() {
-        pm pmVar = this.f28273b;
-        pmVar.c();
-        pmVar.i(pmVar.P.P, false);
-    }
-
-    @Override
-    public final org.telegram.ui.cv0 E(MessageObject messageObject, TLRPC.FileLocation fileLocation, int i10, boolean z10, boolean z11) {
-        MediaController.PhotoEntry photoEntry;
-        ArrayList arrayList;
-        pm pmVar = this.f28273b;
-        ArrayList arrayList2 = pmVar.f29454b;
-        qm qmVar = pmVar.P;
-        if (i10 >= 0 && i10 < this.f28272a.size() && x(i10) && (photoEntry = (MediaController.PhotoEntry) this.f28272a.get(i10)) != null) {
-            int size = arrayList2.size();
-            om omVar = null;
-            nm nmVar = null;
-            for (int i11 = 0; i11 < size; i11++) {
-                omVar = (om) arrayList2.get(i11);
-                if (omVar != null && (arrayList = omVar.h) != null) {
-                    int size2 = arrayList.size();
-                    int i12 = 0;
-                    while (true) {
-                        if (i12 >= size2) {
-                            break;
-                        }
-                        nm nmVar2 = (nm) arrayList.get(i12);
-                        if (nmVar2 != null && nmVar2.f28819b == photoEntry && nmVar2.f28826k > 0.5d) {
-                            nmVar = (nm) arrayList.get(i12);
-                            break;
-                        }
-                        i12++;
-                    }
-                    if (nmVar != null) {
-                        break;
-                    }
-                }
-            }
-            if (omVar != null && nmVar != null) {
-                org.telegram.ui.cv0 cv0Var = new org.telegram.ui.cv0();
-                int[] iArr = new int[2];
-                pmVar.getLocationInWindow(iArr);
-                if (Build.VERSION.SDK_INT < 26) {
-                    iArr[0] = iArr[0] - qmVar.f28780b.getLeftInset();
-                }
-                cv0Var.f35568b = iArr[0];
-                cv0Var.f35569c = iArr[1] + ((int) omVar.f29136a);
-                cv0Var.f35575k = 1.0f;
-                cv0Var.d = pmVar;
-                ImageReceiver imageReceiver = nmVar.f28820c;
-                cv0Var.f35567a = imageReceiver;
-                cv0Var.f35570e = imageReceiver.getBitmapSafe();
-                cv0Var.h = r5;
-                RectF rectF = nmVar.f28832q;
-                int[] iArr2 = {(int) rectF.left, (int) rectF.top, (int) rectF.right, (int) rectF.bottom};
-                cv0Var.f35574j = (int) (-pmVar.getY());
-                cv0Var.f35573i = pmVar.getHeight() - ((int) (((-pmVar.getY()) + qmVar.f29796r.getHeight()) - qmVar.f28780b.l1()));
-                return cv0Var;
-            }
+    public final void getOutline(View view, Outline outline) {
+        org.telegram.ui.Cells.t5 t5Var = (org.telegram.ui.Cells.t5) view;
+        if (t5Var.getTag() == null) {
+            return;
         }
-        return null;
-    }
-
-    @Override
-    public final int H() {
-        return this.f28273b.h.size();
-    }
-
-    @Override
-    public final int Q(Object obj) {
-        int indexOf;
-        Integer valueOf = Integer.valueOf(((MediaController.PhotoEntry) obj).imageId);
-        pm pmVar = this.f28273b;
-        if (pmVar.h.size() <= 1 || (indexOf = pmVar.h.indexOf(valueOf)) < 0) {
-            return -1;
+        int intValue = ((Integer) t5Var.getTag()).intValue();
+        nm nmVar = this.f25055a;
+        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = nmVar.v;
+        if (nmVar.d && chatAttachAlertPhotoLayout.T0 == chatAttachAlertPhotoLayout.U0 && !chatAttachAlertPhotoLayout.O0) {
+            intValue++;
         }
-        pmVar.h.remove(indexOf);
-        pmVar.c();
-        return indexOf;
-    }
-
-    @Override
-    public final int R(int i10) {
-        MediaController.PhotoEntry photoEntry;
-        if (i10 < 0 || i10 >= this.f28272a.size() || (photoEntry = (MediaController.PhotoEntry) this.f28272a.get(i10)) == null) {
-            return -1;
+        if (chatAttachAlertPhotoLayout.f21001g1) {
+            intValue++;
         }
-        return this.f28273b.h.indexOf(Integer.valueOf(photoEntry.imageId));
-    }
-
-    @Override
-    public final void W(int i10) {
-        MediaController.PhotoEntry photoEntry;
-        ArrayList arrayList;
-        boolean z10;
-        if (i10 >= 0 && i10 < this.f28272a.size() && (photoEntry = (MediaController.PhotoEntry) this.f28272a.get(i10)) != null) {
-            int i11 = photoEntry.imageId;
-            pm pmVar = this.f28273b;
-            pmVar.invalidate();
-            for (int i12 = 0; i12 < pmVar.f29454b.size(); i12++) {
-                om omVar = (om) pmVar.f29454b.get(i12);
-                if (omVar != null && (arrayList = omVar.h) != null) {
-                    for (int i13 = 0; i13 < arrayList.size(); i13++) {
-                        nm nmVar = (nm) arrayList.get(i13);
-                        if (nmVar != null && nmVar.f28819b.imageId == i11) {
-                            nm.a(nmVar, photoEntry);
-                        }
-                    }
-                    jm jmVar = omVar.f29144k;
-                    if (jmVar != null && jmVar.f27565g != null) {
-                        z10 = false;
-                        for (int i14 = 0; i14 < omVar.f29144k.f27565g.size(); i14++) {
-                            if (((MediaController.PhotoEntry) omVar.f29144k.f27565g.get(i14)).imageId == i11) {
-                                omVar.f29144k.f27565g.set(i14, photoEntry);
-                                z10 = true;
-                            }
-                        }
-                    } else {
-                        z10 = false;
-                    }
-                    if (z10) {
-                        om.a(omVar, omVar.f29144k, true);
-                    }
-                }
-            }
-            pmVar.g();
-            pmVar.invalidate();
+        if (intValue == 0) {
+            int dp = AndroidUtilities.dp(16.0f);
+            outline.setRoundRect(0, 0, view.getMeasuredWidth() + dp, view.getMeasuredHeight() + dp, dp);
+        } else if (intValue == chatAttachAlertPhotoLayout.M0 - 1) {
+            int dp2 = AndroidUtilities.dp(16.0f);
+            outline.setRoundRect(-dp2, 0, view.getMeasuredWidth(), view.getMeasuredHeight() + dp2, dp2);
+        } else {
+            outline.setRect(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight());
         }
-    }
-
-    @Override
-    public final ArrayList c() {
-        return this.f28273b.h;
-    }
-
-    @Override
-    public final int k(int i10, VideoEditedInfo videoEditedInfo) {
-        if (i10 < 0 || i10 >= this.f28272a.size()) {
-            return -1;
-        }
-        Integer valueOf = Integer.valueOf(((MediaController.PhotoEntry) this.f28272a.get(i10)).imageId);
-        pm pmVar = this.f28273b;
-        int indexOf = pmVar.h.indexOf(valueOf);
-        if (indexOf >= 0) {
-            if (pmVar.h.size() <= 1) {
-                return -1;
-            }
-            pmVar.h.remove(indexOf);
-            pmVar.c();
-            return indexOf;
-        }
-        pmVar.h.add(valueOf);
-        pmVar.c();
-        return pmVar.h.size() - 1;
-    }
-
-    @Override
-    public final boolean u() {
-        return false;
-    }
-
-    @Override
-    public final HashMap v() {
-        return this.f28273b.d;
-    }
-
-    @Override
-    public final boolean x(int i10) {
-        if (i10 >= 0 && i10 < this.f28272a.size()) {
-            return this.f28273b.h.contains(Integer.valueOf(((MediaController.PhotoEntry) this.f28272a.get(i10)).imageId));
-        }
-        return false;
     }
 }

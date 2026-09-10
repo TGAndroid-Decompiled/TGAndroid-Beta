@@ -1,39 +1,31 @@
 package org.telegram.messenger;
 
-import org.telegram.messenger.UnconfirmedAuthController;
+import android.view.View;
+import java.util.List;
 import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.ResultCallback;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_account;
-import org.telegram.tgnet.tl.TL_payments;
-public final class c1 implements Utilities.Callback2 {
-    public final int f17319a;
-    public final Object f17320b;
-    public final Object f17321c;
+public final class c1 implements Utilities.Callback {
+    public final int f14825a;
+    public final Object f14826b;
 
-    public c1(int i10, Object obj, Object obj2) {
-        this.f17319a = i10;
-        this.f17320b = obj;
-        this.f17321c = obj2;
+    public c1(Object obj, int i10) {
+        this.f14825a = i10;
+        this.f14826b = obj;
     }
 
     @Override
-    public final void run(Object obj, Object obj2) {
-        switch (this.f17319a) {
+    public final void run(Object obj) {
+        switch (this.f14825a) {
             case 0:
-                ((ChatThemeController) this.f17320b).lambda$requestNextChatThemes$21((ResultCallback) this.f17321c, (TL_account.ChatThemes) obj, (TLRPC.TL_error) obj2);
+                ChatThemeController.q((ChatThemeController) this.f14826b, (List) obj);
                 return;
             case 1:
-                ((GiftAuctionController) this.f17320b).lambda$requestGiftAuctionInternal$4((Utilities.Callback2) this.f17321c, (TL_payments.TL_StarGiftAuctionState) obj, (TLRPC.TL_error) obj2);
-                return;
-            case 2:
-                ((MessagesController) this.f17320b).lambda$fetchJoinedCommunities$251((Utilities.Callback) this.f17321c, (TLRPC.messages_Chats) obj, (TLRPC.TL_error) obj2);
-                return;
-            case 3:
-                PasskeysController.lambda$create$4((org.telegram.ui.ActionBar.b2) this.f17320b, (Utilities.Callback2) this.f17321c, (TL_account.Passkey) obj, (TLRPC.TL_error) obj2);
+                TLRPC.TL_messages_stickerSet tL_messages_stickerSet = (TLRPC.TL_messages_stickerSet) obj;
+                ((Runnable) this.f14826b).run();
                 return;
             default:
-                ((UnconfirmedAuthController.UnconfirmedAuth) this.f17320b).lambda$confirm$0((Utilities.Callback) this.f17321c, (TLRPC.Bool) obj, (TLRPC.TL_error) obj2);
+                Object[] objArr = (Object[]) obj;
+                ((View) this.f14826b).invalidate();
                 return;
         }
     }

@@ -4,7 +4,7 @@ import android.os.Build;
 import java.util.Locale;
 import kotlin.jvm.internal.i;
 public abstract class a {
-    public static final int f16365a = 0;
+    public static final int f13674a = 0;
 
     static {
         int i10 = Build.VERSION.SDK_INT;

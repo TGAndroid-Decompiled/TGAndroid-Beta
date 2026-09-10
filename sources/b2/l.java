@@ -1,16 +1,16 @@
 package b2;
 public final class l {
-    public static final l f2161c = new l(new Object());
+    public static final l f1777c = new l(new Object());
     public static final String d;
-    public static final String f2162e;
-    public final int f2163a = 0;
-    public final int f2164b = 0;
+    public static final String e;
+    public final int f1778a = 0;
+    public final int f1779b = 0;
 
     static {
-        String str = e2.d0.f8765a;
+        String str = e2.d0.f7188a;
         Integer.toString(0, 36);
         d = Integer.toString(1, 36);
-        f2162e = Integer.toString(2, 36);
+        e = Integer.toString(2, 36);
         Integer.toString(3, 36);
     }
 
@@ -21,7 +21,7 @@ public final class l {
         if (this != obj) {
             if (obj instanceof l) {
                 l lVar = (l) obj;
-                if (this.f2163a == lVar.f2163a && this.f2164b == lVar.f2164b) {
+                if (this.f1778a == lVar.f1778a && this.f1779b == lVar.f1779b) {
                     return true;
                 }
                 return false;
@@ -32,6 +32,6 @@ public final class l {
     }
 
     public final int hashCode() {
-        return (((16337 + this.f2163a) * 31) + this.f2164b) * 31;
+        return (((16337 + this.f1778a) * 31) + this.f1779b) * 31;
     }
 }

@@ -1,51 +1,62 @@
 package org.telegram.messenger;
 
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.RequestDelegate;
+import java.util.ArrayList;
+import org.telegram.messenger.MediaController;
+import org.telegram.messenger.MessagesController;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-public final class z6 implements RequestDelegate {
-    public final int f19820a;
-    public final Object f19821b;
-    public final long f19822c;
-    public final long d;
-    public final Object f19823e;
+public final class z6 implements Runnable {
+    public final int f17122a = 0;
+    public final boolean f17123b;
+    public final boolean f17124c;
+    public final Object d;
+    public final Object e;
+    public final Object f17125f;
+    public final Object h;
+    public final Object f17126n;
 
-    public z6(Object obj, Object obj2, long j3, long j10, int i10) {
-        this.f19820a = i10;
-        this.f19821b = obj;
-        this.f19823e = obj2;
-        this.f19822c = j3;
-        this.d = j10;
+    public z6(MediaController.MediaLoader mediaLoader, boolean z10, TLRPC.PhotoSize photoSize, MessageObject messageObject, TLRPC.Photo photo, boolean z11, TLRPC.Document document) {
+        this.d = mediaLoader;
+        this.f17123b = z10;
+        this.e = photoSize;
+        this.f17125f = messageObject;
+        this.h = photo;
+        this.f17124c = z11;
+        this.f17126n = document;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f19820a) {
+    public final void run() {
+        switch (this.f17122a) {
             case 0:
-                ((MediaDataController) this.f19821b).lambda$loadPinnedMessageInternal$164(this.f19822c, this.d, (TLRPC.TL_channels_getMessages) this.f19823e, tLObject, tL_error);
+                ((MediaController.MediaLoader) this.d).lambda$processLivePhotoMessage$5(this.f17123b, (TLRPC.PhotoSize) this.e, (MessageObject) this.f17125f, (TLRPC.Photo) this.h, this.f17124c, (TLRPC.Document) this.f17126n);
                 return;
             case 1:
-                ((MediaDataController) this.f19821b).lambda$getMediaCounts$129((int[]) this.f19823e, this.f19822c, this.d, tLObject, tL_error);
-                return;
-            case 2:
-                ((MessagesController) this.f19821b).lambda$requestContactToken$476((Utilities.Callback) this.f19823e, this.f19822c, this.d, tLObject, tL_error);
-                return;
-            case 3:
-                ((TopicsController) this.f19821b).lambda$getTopicRepliesCount$30((TLRPC.TL_forumTopic) this.f19823e, this.f19822c, this.d, tLObject, tL_error);
+                ((MediaDataController) this.d).lambda$fillWithAnimatedEmoji$225((Integer) this.e, (ArrayList) this.f17125f, this.f17123b, this.f17124c, (ArrayList[]) this.h, (Runnable) this.f17126n);
                 return;
             default:
-                zh.w3 w3Var = (zh.w3) this.f19821b;
-                zh.w3.J0(this.f19822c, this.d, (Utilities.Callback) this.f19823e, tLObject, tL_error, w3Var);
+                ((MessagesController) this.d).lambda$addUserToChat$302((MessagesController.ErrorDelegate) this.e, (TLRPC.TL_error) this.f17125f, (org.telegram.ui.ActionBar.p2) this.h, (TLObject) this.f17126n, this.f17123b, this.f17124c);
                 return;
         }
     }
 
-    public z6(MediaDataController mediaDataController, long j3, long j10, TLRPC.TL_channels_getMessages tL_channels_getMessages) {
-        this.f19820a = 0;
-        this.f19821b = mediaDataController;
-        this.f19822c = j3;
-        this.d = j10;
-        this.f19823e = tL_channels_getMessages;
+    public z6(MediaDataController mediaDataController, Integer num, ArrayList arrayList, boolean z10, boolean z11, ArrayList[] arrayListArr, Runnable runnable) {
+        this.d = mediaDataController;
+        this.e = num;
+        this.f17125f = arrayList;
+        this.f17123b = z10;
+        this.f17124c = z11;
+        this.h = arrayListArr;
+        this.f17126n = runnable;
+    }
+
+    public z6(MessagesController messagesController, MessagesController.ErrorDelegate errorDelegate, TLRPC.TL_error tL_error, org.telegram.ui.ActionBar.p2 p2Var, TLObject tLObject, boolean z10, boolean z11) {
+        this.d = messagesController;
+        this.e = errorDelegate;
+        this.f17125f = tL_error;
+        this.h = p2Var;
+        this.f17126n = tLObject;
+        this.f17123b = z10;
+        this.f17124c = z11;
     }
 }

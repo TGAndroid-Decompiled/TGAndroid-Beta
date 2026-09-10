@@ -8,7 +8,7 @@ public abstract class h5 {
     public static Map a(String str, Bundle bundle) {
         Map map = (Map) bundle.getSerializable(str);
         if (map == null) {
-            return com.google.android.gms.internal.cast.u0.f5498n;
+            return com.google.android.gms.internal.cast.u0.f5277n;
         }
         HashMap hashMap = new HashMap();
         for (Map.Entry entry : map.entrySet()) {

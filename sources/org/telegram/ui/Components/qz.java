@@ -1,173 +1,174 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.RectF;
-import android.view.MotionEvent;
+import android.animation.ObjectAnimator;
+import android.os.SystemClock;
 import android.view.View;
+import android.view.ViewConfiguration;
+import android.widget.FrameLayout;
+import android.widget.HorizontalScrollView;
+import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Utilities;
-public final class qz extends View {
-    public final Paint f29865a;
-    public final Paint f29866b;
-    public final Path f29867c;
-    public int d;
-    public int f29868e;
-    public f01[] f29869f;
-    public RectF[] h;
-    public float f29870n;
-    public org.telegram.ui.zo0 f29871r;
-    public int f29872s;
+public class qz extends s4.s0 {
+    public final int f26496a;
+    public boolean f26497b;
+    public final rz f26498c;
 
-    public qz(Context context) {
-        super(context);
-        this.f29865a = new Paint(1);
-        this.f29866b = new Paint(1);
-        this.f29867c = new Path();
-        this.d = -1;
-        this.f29868e = -1;
-        this.f29872s = -1;
-    }
-
-    public final void a(float f7, int i10, int i11, Canvas canvas) {
-        f01[] f01VarArr = this.f29869f;
-        int length = f01VarArr.length;
-        int i12 = 0;
-        float f10 = f7;
-        while (i12 < length) {
-            f01 f01Var = f01VarArr[i12];
-            int i13 = i11;
-            f01Var.c(f10, i10 / 2.0f, 1.0f, i13, canvas);
-            f10 += f01Var.l() + AndroidUtilities.dp(24.0f);
-            i12++;
-            i11 = i13;
-        }
+    public qz(rz rzVar, int i10) {
+        this.f26498c = rzVar;
+        this.f26496a = i10;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        if (this.f29869f == null) {
+    public void a(RecyclerView recyclerView, int i10) {
+        ObjectAnimator objectAnimator;
+        ez ezVar;
+        float f7;
+        int i11;
+        rz rzVar = this.f26498c;
+        ObjectAnimator[] objectAnimatorArr = rzVar.R0;
+        s4.y0 y0Var = recyclerView.getLayoutManager().e;
+        boolean z10 = true;
+        if (y0Var != null && y0Var.e) {
+            this.f26497b = true;
             return;
         }
-        int width = getWidth();
-        int height = getHeight();
-        int dp = AndroidUtilities.dp(4.0f) + org.telegram.messenger.w1.D(24.0f, this.f29869f.length, AndroidUtilities.dp(4.0f));
-        int i10 = 0;
-        while (true) {
-            f01[] f01VarArr = this.f29869f;
-            if (i10 >= f01VarArr.length) {
-                break;
-            }
-            dp = (int) (f01VarArr[i10].l() + dp);
-            i10++;
-        }
-        float dp2 = (height - AndroidUtilities.dp(36.0f)) / 2.0f;
-        float dp3 = (AndroidUtilities.dp(36.0f) + height) / 2.0f;
-        float f7 = (width - dp) / 2.0f;
-        float dp4 = AndroidUtilities.dp(16.0f) + f7;
-        RectF rectF = AndroidUtilities.rectTmp;
-        rectF.set(f7, dp2, dp + f7, dp3);
-        canvas.drawRoundRect(rectF, AndroidUtilities.dp(18.0f), AndroidUtilities.dp(18.0f), this.f29865a);
-        float dp5 = f7 + AndroidUtilities.dp(16.0f);
-        for (int i11 = 0; i11 < this.f29869f.length; i11++) {
-            this.h[i11].set(dp5 - AndroidUtilities.dp(16.0f), dp2, this.f29869f[i11].l() + dp5 + AndroidUtilities.dp(16.0f), dp3);
-            dp5 += this.f29869f[i11].l() + AndroidUtilities.dp(24.0f);
-        }
-        AndroidUtilities.dp(4.0f);
-        int clamp = Utilities.clamp((int) Math.floor(this.f29870n), this.f29869f.length - 1, 0);
-        int clamp2 = Utilities.clamp((int) Math.ceil(this.f29870n), this.f29869f.length - 1, 0);
-        float dp6 = this.h[clamp].left + AndroidUtilities.dp(4.0f);
-        float dp7 = this.h[clamp2].left + AndroidUtilities.dp(4.0f);
-        float f10 = this.f29870n;
-        float lerp = AndroidUtilities.lerp(dp6, dp7, (float) (f10 - Math.floor(f10)));
-        float dp8 = this.h[clamp].right - AndroidUtilities.dp(4.0f);
-        float dp9 = this.h[clamp2].right - AndroidUtilities.dp(4.0f);
-        float f11 = this.f29870n;
-        float lerp2 = AndroidUtilities.lerp(dp8, dp9, (float) (f11 - Math.floor(f11)));
-        RectF rectF2 = AndroidUtilities.rectTmp;
-        rectF2.set(lerp, (height - AndroidUtilities.dp(28.0f)) / 2.0f, lerp2, (AndroidUtilities.dp(28.0f) + height) / 2.0f);
-        Path path = this.f29867c;
-        path.rewind();
-        path.addRoundRect(rectF2, AndroidUtilities.dp(15.0f), AndroidUtilities.dp(15.0f), Path.Direction.CW);
-        canvas.drawRoundRect(rectF2, AndroidUtilities.dp(15.0f), AndroidUtilities.dp(15.0f), this.f29866b);
-        a(dp4, height, this.d, canvas);
-        canvas.save();
-        canvas.clipPath(path);
-        a(dp4, height, this.f29868e, canvas);
-        canvas.restore();
-    }
-
-    @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        int i10 = 0;
-        if (this.f29869f == null || this.h == null) {
-            return false;
-        }
-        while (true) {
-            RectF[] rectFArr = this.h;
-            if (i10 < rectFArr.length) {
-                if (rectFArr[i10].contains(motionEvent.getX(), motionEvent.getY())) {
-                    break;
+        int i12 = this.f26496a;
+        if (i10 == 0) {
+            if (!this.f26497b) {
+                int[] iArr = rzVar.Q0;
+                sy syVar = rzVar.f26858t1;
+                if ((syVar == null || !syVar.z()) && i12 != 0) {
+                    float f10 = 48.0f;
+                    if (i12 == 1) {
+                        f7 = 36.0f;
+                    } else {
+                        f7 = 48.0f;
+                    }
+                    float dpf2 = AndroidUtilities.dpf2(f7);
+                    float f11 = iArr[i12] / (-dpf2);
+                    if (f11 > 0.0f && f11 < 1.0f) {
+                        HorizontalScrollView y3 = rzVar.y(i12);
+                        int i13 = (f11 > 0.5f ? 1 : (f11 == 0.5f ? 0 : -1));
+                        if (i13 > 0) {
+                            i11 = (int) (-Math.ceil(dpf2));
+                        } else {
+                            i11 = 0;
+                        }
+                        if (i13 > 0) {
+                            rzVar.i(i12, i11, false);
+                        }
+                        if (i12 == 1) {
+                            rzVar.m(i11);
+                        }
+                        ObjectAnimator objectAnimator2 = objectAnimatorArr[i12];
+                        if (objectAnimator2 == null) {
+                            ObjectAnimator ofFloat = ObjectAnimator.ofFloat(y3, View.TRANSLATION_Y, y3.getTranslationY(), i11);
+                            objectAnimatorArr[i12] = ofFloat;
+                            ofFloat.addUpdateListener(new org.telegram.ui.ActionBar.s2(rzVar, i12, 3));
+                            objectAnimatorArr[i12].setDuration(200L);
+                        } else {
+                            objectAnimator2.setFloatValues(y3.getTranslationY(), i11);
+                        }
+                        objectAnimatorArr[i12].start();
+                    } else {
+                        vl0 x10 = rzVar.x(i12);
+                        if (i12 == 1) {
+                            f10 = 38.0f;
+                        }
+                        int dp = AndroidUtilities.dp(f10);
+                        s4.c1 K = x10.K(0);
+                        if (K != null) {
+                            int bottom = K.f41610a.getBottom();
+                            int i14 = iArr[i12];
+                            float f12 = (bottom - (dp + i14)) / rzVar.f26801b1;
+                            if (f12 > 0.0f || f12 < 1.0f) {
+                                if (f12 <= 0.5f) {
+                                    z10 = false;
+                                }
+                                rzVar.i(i12, i14, z10);
+                            }
+                        }
+                    }
                 }
-                i10++;
+            }
+            if (rzVar.J0) {
+                rzVar.J0 = false;
+            }
+            this.f26497b = false;
+            return;
+        }
+        if (i10 == 1) {
+            if (rzVar.J0) {
+                rzVar.J0 = false;
+            }
+            if (i12 != 0) {
+                if (i12 != 1) {
+                    if (i12 == 2) {
+                        ezVar = rzVar.f26840o0;
+                    } else {
+                        throw new IllegalArgumentException(hc.b.j(i12, "Unexpected argument: "));
+                    }
+                } else {
+                    ezVar = rzVar.V;
+                }
             } else {
-                i10 = -1;
-                break;
+                ezVar = rzVar.G0;
             }
-        }
-        if (i10 >= 0 && i10 != this.f29872s) {
-            this.f29872s = i10;
-            org.telegram.ui.zo0 zo0Var = this.f29871r;
-            if (zo0Var != null) {
-                zo0Var.run(Integer.valueOf(i10));
+            if (ezVar != null) {
+                ezVar.b();
             }
+            this.f26497b = false;
         }
-        if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
-            this.f29872s = -1;
+        if (!this.f26497b && (objectAnimator = objectAnimatorArr[i12]) != null && objectAnimator.isRunning()) {
+            objectAnimatorArr[i12].cancel();
         }
-        if (motionEvent.getAction() == 0 && i10 >= 0) {
-            return true;
+        if (i12 == 0) {
+            if (rzVar.T0 == null) {
+                fg.h1 h1Var = new fg.h1(rzVar, rzVar.f26805c1, rzVar.f26858t1.a(), rzVar.f26858t1.f(), 1);
+                rzVar.T0 = h1Var;
+                h1Var.a();
+            }
+            rzVar.T0.b();
         }
-        return super.onTouchEvent(motionEvent);
     }
 
     @Override
-    public void setBackgroundColor(int i10) {
-        this.f29865a.setColor(i10);
-        invalidate();
-    }
-
-    public void setSelected(float f7) {
-        if (Math.abs(f7 - this.f29870n) > 0.001f) {
-            invalidate();
+    public void b(RecyclerView recyclerView, int i10, int i11) {
+        int dp;
+        rz rzVar = this.f26498c;
+        int i12 = this.f26496a;
+        rzVar.p(i12);
+        rz.e(rzVar, i12, i11);
+        if (i12 != 0) {
+            if (i12 != 1) {
+                if (i12 == 2) {
+                    rz.f(rzVar, false);
+                }
+            } else {
+                rzVar.l(false);
+            }
+        } else {
+            rzVar.q(false);
         }
-        this.f29870n = f7;
-    }
-
-    public void setSelectedColor(int i10) {
-        this.f29866b.setColor(i10);
-        invalidate();
-    }
-
-    public void setSelectedTextColor(int i10) {
-        this.f29868e = i10;
-        invalidate();
-    }
-
-    public void setTabs(CharSequence... charSequenceArr) {
-        this.f29869f = new f01[charSequenceArr.length];
-        this.h = new RectF[charSequenceArr.length];
-        for (int i10 = 0; i10 < charSequenceArr.length; i10++) {
-            this.f29869f[i10] = new f01(charSequenceArr[i10], 14.0f, AndroidUtilities.bold());
-            this.h[i10] = new RectF();
+        if (!this.f26497b) {
+            float f7 = i11;
+            FrameLayout frameLayout = rzVar.f26836n;
+            if (SystemClock.elapsedRealtime() - rzVar.F2 >= ViewConfiguration.getTapTimeout()) {
+                rzVar.H += f7;
+                if (rzVar.h.getCurrentItem() == 0) {
+                    dp = AndroidUtilities.dp(38.0f);
+                } else {
+                    dp = AndroidUtilities.dp(48.0f);
+                }
+                float f10 = rzVar.H;
+                if (f10 >= dp) {
+                    rzVar.O(false);
+                } else if (f10 <= (-dp)) {
+                    rzVar.O(true);
+                } else if ((frameLayout.getTag() == null && rzVar.H < 0.0f) || (frameLayout.getTag() != null && rzVar.H > 0.0f)) {
+                    rzVar.H = 0.0f;
+                }
+            }
         }
-        invalidate();
-    }
-
-    public void setTextColor(int i10) {
-        this.d = i10;
-        invalidate();
     }
 }

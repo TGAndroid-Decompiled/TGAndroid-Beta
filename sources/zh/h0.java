@@ -1,44 +1,53 @@
 package zh;
 
-import android.text.Editable;
-import android.text.TextUtils;
-import android.text.TextWatcher;
-public final class h0 implements TextWatcher {
-    public final i0 f52003a;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.RectF;
+import android.view.View;
+import android.widget.TextView;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.m20;
+public final class h0 extends TextView {
+    public int f48458a;
+    public final m20 f48459b;
 
-    public h0(i0 i0Var) {
-        this.f52003a = i0Var;
+    public h0(Context context) {
+        super(context);
+        this.f48458a = -1;
+        this.f48459b = new m20();
     }
 
     @Override
-    public final void afterTextChanged(Editable editable) {
-        boolean z10;
-        zf.a i10;
-        String obj;
-        int indexOf;
-        if (editable != null && !editable.toString().isEmpty() && !".".equals(editable.toString())) {
-            z10 = false;
-        } else {
-            z10 = true;
+    public final void onDraw(Canvas canvas) {
+        if (this.f48458a < 0) {
+            int i10 = 0;
+            if (getLayout() != null) {
+                i10 = (int) getLayout().getLineWidth(0);
+            }
+            this.f48458a = i10;
         }
-        if (!z10 && (indexOf = (obj = editable.toString()).indexOf(46)) >= 0 && (obj.length() - indexOf) - 1 > 2) {
-            editable.delete(indexOf + 3, obj.length());
+        if (this.f48458a > AndroidUtilities.dp(100.0f)) {
+            canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), 255, 31);
+            super.onDraw(canvas);
+            canvas.save();
+            RectF rectF = AndroidUtilities.rectTmp;
+            rectF.set(getWidth() - AndroidUtilities.dp(15.0f), 0.0f, getWidth(), getHeight());
+            this.f48459b.b(canvas, rectF, 2, 1.0f);
+            canvas.restore();
+            canvas.restore();
+            return;
         }
-        i0 i0Var = this.f52003a;
-        if (!z10) {
-            i10 = zf.a.h(editable.toString(), i0Var.E.f51653a);
-        } else {
-            i10 = zf.a.i(0L, i0Var.E.f51653a);
-        }
-        i0Var.n(i10, false, false, true);
-        i0Var.f52037b.c(i0Var.f52038c.isFocused(), true ^ TextUtils.isEmpty(i0Var.f52038c.getText()));
+        super.onDraw(canvas);
     }
 
     @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(100.0f), Integer.MIN_VALUE), i11);
     }
 
     @Override
-    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+    public final void setText(CharSequence charSequence, TextView.BufferType bufferType) {
+        super.setText(charSequence, bufferType);
+        this.f48458a = -1;
     }
 }

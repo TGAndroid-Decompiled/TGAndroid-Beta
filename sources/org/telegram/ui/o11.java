@@ -1,283 +1,58 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Matrix;
-import android.graphics.Paint;
-import android.graphics.RadialGradient;
-import android.graphics.Rect;
-import android.graphics.RectF;
-import android.graphics.Shader;
-import android.graphics.drawable.Drawable;
-import android.widget.FrameLayout;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MessagesController;
-public final class o11 extends FrameLayout {
-    public final Matrix E;
-    public final Paint F;
-    public int G;
-    public int H;
-    public final org.telegram.ui.Components.o5 I;
-    public final org.telegram.ui.Components.e6 J;
-    public boolean K;
-    public boolean L;
-    public final Rect M;
-    public final ProfileActivity N;
-    public int f39102a;
-    public final Paint f39103b;
-    public boolean f39104c;
-    public final org.telegram.ui.Components.e6 d;
-    public int f39105e;
-    public int f39106f;
-    public final org.telegram.ui.Components.h5 h;
-    public final org.telegram.ui.Components.h5 f39107n;
-    public int f39108r;
-    public int f39109s;
-    public int v;
-    public float f39110w;
-    public float f39111x;
-    public RadialGradient f39112y;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.SerializedData;
+public final class o11 {
+    public final String f35381a;
+    public final Runnable f35382b;
+    public final String f35383c;
+    public final String[] d;
+    public final int e;
+    public final int f35384f;
+    public int f35385g;
+    public String h;
 
-    public o11(ProfileActivity profileActivity, Context context) {
-        super(context);
-        this.N = profileActivity;
-        this.f39103b = new Paint();
-        org.telegram.ui.Components.pr prVar = org.telegram.ui.Components.pr.h;
-        this.d = new org.telegram.ui.Components.e6(this, 350L, prVar);
-        this.h = new org.telegram.ui.Components.h5(this, 350L, prVar);
-        this.f39107n = new org.telegram.ui.Components.h5(this, 350L, prVar);
-        this.E = new Matrix();
-        this.F = new Paint(1);
-        this.I = new org.telegram.ui.Components.o5(AndroidUtilities.dp(20.0f), 13, this, false);
-        this.J = new org.telegram.ui.Components.e6(this, 0L, 440L, prVar);
-        new org.telegram.ui.Components.e6(this, 0L, 440L, prVar);
-        this.M = new Rect();
-        setWillNotDraw(false);
+    public o11(String str, int i10, int i11, Runnable runnable) {
+        this(i10, str, null, null, null, i11, runnable);
     }
 
-    public final void a(MessagesController.PeerColor peerColor, boolean z10) {
-        ProfileActivity profileActivity = this.N;
-        if (peerColor != null) {
-            this.f39104c = true;
-            this.f39105e = peerColor.getBgColor1(org.telegram.ui.ActionBar.j6.I.q());
-            int bgColor2 = peerColor.getBgColor2(org.telegram.ui.ActionBar.j6.I.q());
-            this.f39106f = bgColor2;
-            profileActivity.f33900c1 = i0.a.d(0.25f, this.f39105e, bgColor2);
-            int i10 = peerColor.patternColor;
-            if (i10 != 0) {
-                this.G = i10;
-                this.H = org.telegram.ui.ActionBar.j6.l1(0.45f, i10);
-            } else {
-                this.G = bq0.w0(this.f39105e);
-                this.H = org.telegram.ui.ActionBar.j6.l1(0.15f, bq0.w0(this.f39105e));
-            }
-        } else {
-            profileActivity.f33900c1 = this.f39102a;
-            this.f39104c = false;
-            int i11 = org.telegram.ui.ActionBar.j6.f20964s8;
-            if (AndroidUtilities.computePerceivedBrightness(org.telegram.ui.ActionBar.j6.v0(i11, profileActivity.f34058z0)) > 0.8f) {
-                this.G = -1;
-                this.H = -1;
-            } else if (AndroidUtilities.computePerceivedBrightness(org.telegram.ui.ActionBar.j6.v0(i11, profileActivity.f34058z0)) < 0.2f) {
-                this.G = org.telegram.ui.ActionBar.j6.l1(0.5f, org.telegram.ui.ActionBar.j6.b(0.02f, 0.25f, org.telegram.ui.ActionBar.j6.v0(i11, profileActivity.f34058z0)));
-                this.H = org.telegram.ui.ActionBar.j6.l1(0.35f, org.telegram.ui.ActionBar.j6.b(0.02f, 0.25f, org.telegram.ui.ActionBar.j6.v0(i11, profileActivity.f34058z0)));
-            } else {
-                this.G = bq0.w0(org.telegram.ui.ActionBar.j6.v0(i11, profileActivity.f34058z0));
-                this.H = org.telegram.ui.ActionBar.j6.l1(0.15f, bq0.w0(org.telegram.ui.ActionBar.j6.v0(i11, profileActivity.f34058z0)));
-            }
-        }
-        if (!z10) {
-            this.h.a(this.f39105e, true);
-            this.f39107n.a(this.f39106f, true);
-        }
-        invalidate();
+    public final void a(String str) {
+        this.h = str;
     }
 
-    public final void b(long j3, boolean z10) {
-        org.telegram.ui.Components.o5 o5Var = this.I;
-        boolean z11 = true;
-        o5Var.j(j3, true);
-        o5Var.k(Integer.valueOf(this.G));
-        if (!this.K && (j3 == 0 || j3 == -1)) {
-            z11 = false;
+    public final boolean equals(Object obj) {
+        if ((obj instanceof o11) && this.f35384f == ((o11) obj).f35384f) {
+            return true;
         }
-        this.K = z11;
-        invalidate();
+        return false;
     }
 
-    @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        this.I.a();
+    public final String toString() {
+        SerializedData serializedData = new SerializedData();
+        serializedData.writeInt32(this.f35385g);
+        serializedData.writeInt32(1);
+        serializedData.writeInt32(this.f35384f);
+        return Utilities.bytesToHex(serializedData.toByteArray());
     }
 
-    @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        this.I.b();
+    public o11(int i10, String str, String str2, int i11, Runnable runnable) {
+        this(i10, str, null, str2, null, i11, runnable);
     }
 
-    @Override
-    public final void onDraw(Canvas canvas) {
-        org.telegram.ui.ActionBar.k kVar;
-        int i10;
-        Canvas canvas2;
-        Paint paint;
-        org.telegram.ui.ActionBar.k kVar2;
-        int i11;
-        org.telegram.ui.ActionBar.k kVar3;
-        float f7;
-        Paint paint2;
-        float f10;
-        org.telegram.ui.Components.ch chVar;
-        org.telegram.ui.ActionBar.k actionBar;
-        org.telegram.ui.ActionBar.z zVar;
-        org.telegram.ui.ActionBar.k kVar4;
-        float f11;
-        org.telegram.ui.ActionBar.k kVar5;
-        bi.y3 y3Var;
-        int currentActionBarHeight = org.telegram.ui.ActionBar.k.getCurrentActionBarHeight();
-        ProfileActivity profileActivity = this.N;
-        kVar = ((org.telegram.ui.ActionBar.n2) profileActivity).actionBar;
-        if (kVar.getOccupyStatusBar()) {
-            i10 = AndroidUtilities.statusBarHeight;
-        } else {
-            i10 = 0;
-        }
-        float f12 = currentActionBarHeight + i10 + profileActivity.Q1 + profileActivity.T1;
-        int i12 = (int) ((1.0f - profileActivity.E5) * f12);
-        Paint paint3 = this.f39103b;
-        if (i12 != 0) {
-            paint3.setColor(this.f39102a);
-            int a2 = this.h.a(this.f39105e, false);
-            int a10 = this.f39107n.a(this.f39106f, false);
-            org.telegram.ui.Components.dh0 dh0Var = profileActivity.f33884a0;
-            if (dh0Var != null) {
-                int i13 = this.H;
-                boolean z10 = this.f39104c;
-                if (dh0Var.S == null || dh0Var.Q != i13 || dh0Var.R != z10) {
-                    dh0Var.Q = i13;
-                    dh0Var.R = z10;
-                    dh0Var.g();
-                }
-            }
-            int width = getWidth() / 2;
-            RadialGradient radialGradient = this.f39112y;
-            Paint paint4 = this.F;
-            if (radialGradient == null || this.f39108r != a2 || this.f39109s != a10 || this.v != width) {
-                this.f39110w = AndroidUtilities.dp(96.0f) * 2;
-                kVar2 = ((org.telegram.ui.ActionBar.n2) profileActivity).actionBar;
-                if (kVar2.getOccupyStatusBar()) {
-                    i11 = AndroidUtilities.statusBarHeight;
-                } else {
-                    i11 = 0;
-                }
-                kVar3 = ((org.telegram.ui.ActionBar.n2) profileActivity).actionBar;
-                this.f39111x = kVar3.getTranslationY() + ((org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() + i11) - (AndroidUtilities.density * 21.0f));
-                this.v = width;
-                float f13 = this.f39111x;
-                float f14 = this.f39110w;
-                this.f39109s = a10;
-                this.f39108r = a2;
-                RadialGradient radialGradient2 = new RadialGradient(width, (f14 / 2.0f) + f13, f14, new int[]{a10, a2}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
-                this.f39112y = radialGradient2;
-                radialGradient2.setLocalMatrix(this.E);
-                paint4.setShader(this.f39112y);
-            }
-            if (profileActivity.J1 == 0) {
-                f7 = 1.0f;
-            } else {
-                f7 = profileActivity.S1;
-            }
-            float e7 = this.d.e(this.f39104c) * f7;
-            if (e7 < 1.0f) {
-                paint2 = paint3;
-                canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), i12, paint2);
-            } else {
-                paint2 = paint3;
-            }
-            if (e7 > 0.0f) {
-                paint4.setAlpha((int) (e7 * 255.0f));
-                paint = paint2;
-                canvas2 = canvas;
-                canvas2.drawRect(0.0f, 0.0f, getMeasuredWidth(), i12, paint4);
-            } else {
-                canvas2 = canvas;
-                paint = paint2;
-            }
-            if (this.K) {
-                boolean z11 = this.L;
-                org.telegram.ui.Components.o5 o5Var = this.I;
-                boolean z12 = true;
-                if (!z11) {
-                    if (o5Var != null) {
-                        Drawable drawable = o5Var.f28988f[0];
-                        if ((drawable instanceof org.telegram.ui.Components.q5) && (y3Var = ((org.telegram.ui.Components.q5) drawable).f29611k) != null && y3Var.hasImageLoaded()) {
-                            this.L = true;
-                        }
-                    }
-                    z12 = false;
-                }
-                float e10 = this.J.e(z12);
-                if ((!profileActivity.G1 || profileActivity.J1 != 2) && e10 > 0.0f && profileActivity.Y != null) {
-                    canvas2.save();
-                    canvas2.clipRect(0, 0, getMeasuredWidth(), i12);
-                    kVar4 = ((org.telegram.ui.ActionBar.n2) profileActivity).actionBar;
-                    if (kVar4.getOccupyStatusBar()) {
-                        f11 = AndroidUtilities.statusBarHeight;
-                    } else {
-                        f11 = 0.0f;
-                    }
-                    kVar5 = ((org.telegram.ui.ActionBar.n2) profileActivity).actionBar;
-                    float A = com.google.android.gms.internal.vision.e2.A(kVar5.getHeight(), f11, 2.0f, profileActivity.U3() + f11);
-                    int measuredWidth = getMeasuredWidth();
-                    float y3 = profileActivity.y3();
-                    j0 j0Var = profileActivity.Y;
-                    float[][] fArr = zh.j0.f52091a;
-                    RectF rectF = AndroidUtilities.rectTmp;
-                    f10 = 1.0f;
-                    rectF.set(j0Var.getX(), j0Var.getY(), (j0Var.getScaleX() * j0Var.getWidth()) + j0Var.getX(), (j0Var.getScaleY() * j0Var.getHeight()) + j0Var.getY());
-                    zh.j0.c(canvas2, o5Var, measuredWidth, A, y3, rectF, 1.0f);
-                    canvas2.restore();
-                    chVar = profileActivity.f33934g5;
-                    if (chVar != null && (zVar = (actionBar = ((org.telegram.ui.ActionBar.n2) chVar).getActionBar()).E) != null) {
-                        int save = canvas2.save();
-                        canvas2.translate(zVar.getX() + actionBar.getX(), zVar.getY() + actionBar.getY());
-                        canvas2.saveLayerAlpha(0.0f, 0.0f, zVar.getMeasuredWidth(), zVar.getMeasuredHeight(), (int) ((f10 - profileActivity.S1) * 255.0f), 31);
-                        zVar.draw(canvas2);
-                        canvas2.restoreToCount(save);
-                    }
-                }
-            }
-            f10 = 1.0f;
-            chVar = profileActivity.f33934g5;
-            if (chVar != null) {
-                int save2 = canvas2.save();
-                canvas2.translate(zVar.getX() + actionBar.getX(), zVar.getY() + actionBar.getY());
-                canvas2.saveLayerAlpha(0.0f, 0.0f, zVar.getMeasuredWidth(), zVar.getMeasuredHeight(), (int) ((f10 - profileActivity.S1) * 255.0f), 31);
-                zVar.draw(canvas2);
-                canvas2.restoreToCount(save2);
-            }
-        } else {
-            canvas2 = canvas;
-            paint = paint3;
-        }
-        if (i12 != f12 && !profileActivity.G1) {
-            paint.setColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f20690d6, profileActivity.f34058z0));
-            this.M.set(0, i12, getMeasuredWidth(), (int) f12);
-            profileActivity.f33972m5.J(canvas2, getY(), this.M, paint, true);
-        }
+    public o11(int i10, String str, String str2, String str3, int i11, Runnable runnable) {
+        this(i10, str, str2, str3, null, i11, runnable);
     }
 
-    @Override
-    public final void setBackgroundColor(int i10) {
-        if (i10 != this.f39102a) {
-            this.f39102a = i10;
-            this.f39103b.setColor(i10);
-            invalidate();
-            if (!this.f39104c) {
-                this.N.f33900c1 = this.f39102a;
-            }
+    public o11(int i10, String str, String str2, String str3, String str4, int i11, Runnable runnable) {
+        this.f35384f = i10;
+        this.f35381a = str;
+        this.f35383c = str2;
+        this.f35382b = runnable;
+        this.e = i11;
+        if (str3 != null && str4 != null) {
+            this.d = new String[]{str3, str4};
+        } else if (str3 != null) {
+            this.d = new String[]{str3};
         }
     }
 }

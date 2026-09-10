@@ -1,32 +1,30 @@
 package org.telegram.messenger;
 
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class h8 implements RequestDelegate {
-    public final int f17877a;
-    public final int f17878b;
-    public final String f17879c;
-    public final String d;
-    public final BaseController f17880e;
+import android.net.Uri;
+import java.util.ArrayList;
+import org.telegram.messenger.MediaDataController;
+import org.telegram.messenger.MessagesStorage;
+import org.telegram.messenger.Utilities;
+public final class h8 implements MediaDataController.KeywordResultCallback, MessagesStorage.LongCallback {
+    public final BaseController f15348a;
+    public final Object f15349b;
+    public final Object f15350c;
+    public final Object d;
 
-    public h8(BaseController baseController, int i10, String str, String str2, int i11) {
-        this.f17877a = i11;
-        this.f17880e = baseController;
-        this.f17878b = i10;
-        this.f17879c = str;
-        this.d = str2;
+    public h8(BaseController baseController, Object obj, Object obj2, Object obj3) {
+        this.f15348a = baseController;
+        this.f15349b = obj;
+        this.f15350c = obj2;
+        this.d = obj3;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f17877a) {
-            case 0:
-                ((MediaDataController) this.f17880e).lambda$fetchNewEmojiKeywords$212(this.f17878b, this.f17879c, this.d, tLObject, tL_error);
-                return;
-            default:
-                ((MessagesController) this.f17880e).lambda$checkPromoInfoInternal$169(this.f17878b, this.f17879c, this.d, tLObject, tL_error);
-                return;
-        }
+    public void run(long j3) {
+        ((SendMessagesHelper) this.f15348a).lambda$prepareImportHistory$105((Uri) this.f15349b, (ArrayList) this.f15350c, (MessagesStorage.LongCallback) this.d, j3);
+    }
+
+    @Override
+    public void run(ArrayList arrayList, String str) {
+        ((MediaDataController) this.f15348a).lambda$searchStickers$248((MediaDataController.SearchStickersKey) this.f15349b, (MediaDataController.SearchStickersResult) this.f15350c, (Utilities.Callback) this.d, arrayList, str);
     }
 }

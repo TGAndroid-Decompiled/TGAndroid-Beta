@@ -4,19 +4,19 @@ import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.view.ViewConfiguration;
 import android.view.ViewGroup;
-import org.telegram.ui.Components.lv0;
-public abstract class a0 extends ViewGroup implements lv0 {
-    public boolean f21619a;
-    public androidx.emoji2.text.j f21620b;
-    public int f21621c;
+import org.telegram.ui.Components.xv0;
+public abstract class a0 extends ViewGroup implements xv0 {
+    public boolean f18864a;
+    public androidx.emoji2.text.j f18865b;
+    public int f18866c;
     public androidx.activity.i d;
-    public Runnable f21622e;
+    public Runnable e;
 
     public a0(Context context) {
         super(context);
-        this.f21619a = false;
-        this.f21620b = null;
-        this.f21621c = 0;
+        this.f18864a = false;
+        this.f18865b = null;
+        this.f18866c = 0;
         this.d = null;
         setWillNotDraw(false);
         setFocusable(true);
@@ -43,7 +43,7 @@ public abstract class a0 extends ViewGroup implements lv0 {
 
     @Override
     public final void g(Runnable runnable) {
-        this.f21622e = runnable;
+        this.e = runnable;
     }
 
     public int getBoundsLeft() {
@@ -61,7 +61,7 @@ public abstract class a0 extends ViewGroup implements lv0 {
 
     @Override
     public void invalidate() {
-        Runnable runnable = this.f21622e;
+        Runnable runnable = this.e;
         if (runnable != null) {
             runnable.run();
         }
@@ -69,8 +69,8 @@ public abstract class a0 extends ViewGroup implements lv0 {
     }
 
     public final void k() {
-        this.f21619a = false;
-        androidx.emoji2.text.j jVar = this.f21620b;
+        this.f18864a = false;
+        androidx.emoji2.text.j jVar = this.f18865b;
         if (jVar != null) {
             removeCallbacks(jVar);
         }
@@ -89,12 +89,12 @@ public abstract class a0 extends ViewGroup implements lv0 {
     }
 
     public final void q() {
-        if (this.f21619a) {
+        if (this.f18864a) {
             return;
         }
-        this.f21619a = true;
+        this.f18864a = true;
         if (this.d == null) {
-            this.d = new androidx.activity.i(this, 27);
+            this.d = new androidx.activity.i(this, 25);
         }
         postDelayed(this.d, ViewConfiguration.getTapTimeout());
     }

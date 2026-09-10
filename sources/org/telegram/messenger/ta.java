@@ -1,40 +1,33 @@
 package org.telegram.messenger;
 
-import org.telegram.tgnet.TLObject;
+import j$.util.concurrent.ConcurrentHashMap;
+import xf.r;
 public final class ta implements Runnable {
-    public final int f19087a;
-    public final MessagesController f19088b;
-    public final TLObject f19089c;
+    public final int f16393a;
+    public final MessagesController f16394b;
+    public final r f16395c;
+    public final ConcurrentHashMap d;
+    public final ConcurrentHashMap e;
 
-    public ta(MessagesController messagesController, TLObject tLObject, int i10) {
-        this.f19087a = i10;
-        this.f19088b = messagesController;
-        this.f19089c = tLObject;
+    public ta(MessagesController messagesController, r rVar, ConcurrentHashMap concurrentHashMap, ConcurrentHashMap concurrentHashMap2, int i10) {
+        this.f16393a = i10;
+        this.f16394b = messagesController;
+        this.f16395c = rVar;
+        this.d = concurrentHashMap;
+        this.e = concurrentHashMap2;
     }
 
     @Override
     public final void run() {
-        switch (this.f19087a) {
+        switch (this.f16393a) {
             case 0:
-                this.f19088b.lambda$loadHintDialogs$195(this.f19089c);
+                this.f16394b.lambda$processUpdateArray$400(this.f16395c, this.d, this.e);
                 return;
             case 1:
-                this.f19088b.lambda$getContentSettings$501(this.f19089c);
-                return;
-            case 2:
-                this.f19088b.lambda$reloadReactionsNotifySettings$204(this.f19089c);
-                return;
-            case 3:
-                this.f19088b.lambda$loadGlobalNotificationsSettings$202(this.f19089c);
-                return;
-            case 4:
-                this.f19088b.lambda$loadUnreadDialogs$361(this.f19089c);
-                return;
-            case 5:
-                this.f19088b.lambda$loadSuggestedFilters$24(this.f19089c);
+                this.f16394b.lambda$processUpdateArray$401(this.f16395c, this.d, this.e);
                 return;
             default:
-                this.f19088b.lambda$loadSignUpNotificationsSettings$206(this.f19089c);
+                this.f16394b.lambda$processUpdateArray$405(this.f16395c, this.d, this.e);
                 return;
         }
     }

@@ -1,41 +1,52 @@
 package bi;
+public final class sa implements Runnable {
+    public final int f3657a;
+    public final kb f3658b;
 
-import android.content.Context;
-import android.view.View;
-import android.widget.FrameLayout;
-import org.telegram.tgnet.tl.TL_stories;
-public final class sa extends FrameLayout {
-    public final TL_stories.MediaArea f3737a;
-    public final rg.u0 f3738b;
-
-    public sa(Context context, rg.u0 u0Var, TL_stories.MediaArea mediaArea) {
-        super(context);
-        this.f3737a = mediaArea;
-        this.f3738b = u0Var;
-        addView(u0Var);
+    public sa(kb kbVar, int i10) {
+        this.f3657a = i10;
+        this.f3658b = kbVar;
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        rg.u0 u0Var = this.f3738b;
-        u0Var.measure(i10, i11);
-        int measuredWidth = (u0Var.getMeasuredWidth() - u0Var.getPaddingLeft()) - u0Var.getPaddingRight();
-        int measuredHeight = (u0Var.getMeasuredHeight() - u0Var.getPaddingTop()) - u0Var.getPaddingBottom();
-        float f7 = measuredWidth;
-        float f10 = f7 / 2.0f;
-        u0Var.setPivotX(u0Var.getPaddingLeft() + f10);
-        float f11 = measuredHeight;
-        float f12 = f11 / 2.0f;
-        u0Var.setPivotY(u0Var.getPaddingTop() + f12);
-        int size = View.MeasureSpec.getSize(i10);
-        int size2 = View.MeasureSpec.getSize(i11);
-        setMeasuredDimension(size, size2);
-        float f13 = size;
-        float f14 = size2;
-        float min = Math.min(f13 / f7, f14 / f11);
-        u0Var.setTranslationX((f13 / 2.0f) - (f10 + u0Var.getPaddingLeft()));
-        u0Var.setTranslationY((f14 / 2.0f) - (f12 + u0Var.getPaddingTop()));
-        u0Var.setScaleX(min);
-        u0Var.setScaleY(min);
+    public final void run() {
+        switch (this.f3657a) {
+            case 0:
+                rb rbVar = this.f3658b.W;
+                org.telegram.ui.Components.pc.h(rbVar.container);
+                rb.D(rbVar);
+                return;
+            case 1:
+                kb kbVar = this.f3658b;
+                kbVar.v.setLoading(false);
+                rb rbVar2 = kbVar.W;
+                rbVar2.f1();
+                rbVar2.f3615b.D(0);
+                return;
+            case 2:
+                this.f3658b.U = false;
+                return;
+            case 3:
+                rb rbVar3 = this.f3658b.W;
+                rbVar3.M = 6;
+                rbVar3.f3615b.D(1);
+                return;
+            case 4:
+                kb kbVar2 = this.f3658b;
+                kbVar2.f3010n.m(2);
+                kbVar2.f3009f.forceLayout();
+                kbVar2.j();
+                return;
+            default:
+                kb kbVar3 = this.f3658b;
+                rb rbVar4 = kbVar3.W;
+                if (kbVar3.f3006a == 0) {
+                    rbVar4.dismiss();
+                    return;
+                } else {
+                    rbVar4.onBackPressed();
+                    return;
+                }
+        }
     }
 }

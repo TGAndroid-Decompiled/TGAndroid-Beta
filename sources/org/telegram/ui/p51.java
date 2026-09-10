@@ -1,43 +1,64 @@
 package org.telegram.ui;
 
-import android.animation.ValueAnimator;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.concurrent.CountDownLatch;
 import org.telegram.messenger.AndroidUtilities;
-public final class p51 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f39434a;
-    public final j71 f39435b;
-    public final boolean f39436c;
+import org.telegram.messenger.ImageLoader;
+import org.telegram.messenger.NotificationCenter;
+public final class p51 implements Runnable {
+    public final int f35684a;
+    public final l71 f35685b;
 
-    public p51(j71 j71Var, boolean z10, int i10) {
-        this.f39434a = i10;
-        this.f39435b = j71Var;
-        this.f39436c = z10;
+    public p51(l71 l71Var, int i10) {
+        this.f35684a = i10;
+        this.f35685b = l71Var;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f39434a) {
+    public final void run() {
+        switch (this.f35684a) {
             case 0:
-                j71 j71Var = this.f39435b;
-                g61 g61Var = j71Var.f37673h0;
-                w51 w51Var = j71Var.f37675i0;
-                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                if (!this.f39436c) {
-                    floatValue = 1.0f - floatValue;
+                l71 l71Var = this.f35685b;
+                l71Var.getClass();
+                HashSet hashSet = yg.f0.f46995a;
+                ff.c cacheOutQueue = ImageLoader.getInstance().getCacheOutQueue();
+                if (cacheOutQueue.f7947b == null) {
+                    cacheOutQueue.f7947b = new CountDownLatch(1);
                 }
-                float f7 = 1.0f - floatValue;
-                g61Var.setAlpha(f7);
-                g61Var.setTranslationY(AndroidUtilities.dp(8.0f) * floatValue);
-                w51Var.setAlpha(floatValue);
-                w51Var.setTranslationY(AndroidUtilities.dp(8.0f) * f7);
-                j71Var.f37677j0.setAlpha(w51Var.getAlpha() * floatValue);
+                yg.f0.f46996b = true;
+                yg.f0.e = false;
+                yg.f0.f46999g = false;
+                AndroidUtilities.runOnUIThread(new p51(l71Var, 2), 0L);
+                return;
+            case 1:
+                l71 l71Var2 = this.f35685b;
+                ArrayList arrayList = l71Var2.A1;
+                if (arrayList != null) {
+                    arrayList.clear();
+                }
+                ArrayList arrayList2 = l71Var2.B1;
+                if (arrayList2 != null) {
+                    arrayList2.clear();
+                }
+                ArrayList arrayList3 = l71Var2.D1;
+                if (arrayList3 != null) {
+                    arrayList3.clear();
+                }
+                l71Var2.f34587q0.E(true);
+                return;
+            case 2:
+                this.f35685b.U1.start();
+                return;
+            case 3:
+                this.f35685b.B(true, true, true);
                 return;
             default:
-                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                if (!this.f39436c) {
-                    floatValue2 = 1.0f - floatValue2;
-                }
-                j71 j71Var2 = this.f39435b;
-                j71Var2.f37677j0.setAlpha(j71Var2.f37675i0.getAlpha() * floatValue2);
+                l71 l71Var3 = this.f35685b;
+                NotificationCenter globalInstance = NotificationCenter.getGlobalInstance();
+                p51 p51Var = l71Var3.R1;
+                globalInstance.removeDelayed(p51Var);
+                NotificationCenter.getGlobalInstance().doOnIdle(p51Var);
                 return;
         }
     }

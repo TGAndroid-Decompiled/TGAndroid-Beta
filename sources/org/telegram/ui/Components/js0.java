@@ -1,26 +1,52 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.widget.FrameLayout;
-public final class js0 extends FragmentContextView {
-    public final xu0 N0;
+import android.graphics.Rect;
+import android.view.View;
+import androidx.recyclerview.widget.RecyclerView;
+public final class js0 extends s4.n0 {
+    public final ds0 f24494a;
 
-    public js0(xu0 xu0Var, Context context, org.telegram.ui.ActionBar.n2 n2Var, xu0 xu0Var2, org.telegram.ui.ActionBar.f6 f6Var) {
-        super(context, n2Var, xu0Var2, false, f6Var);
-        this.N0 = xu0Var;
+    public js0(ds0 ds0Var) {
+        this.f24494a = ds0Var;
     }
 
     @Override
-    public final void setVisibility(int i10) {
+    public final void a(Rect rect, View view, RecyclerView recyclerView, s4.z0 z0Var) {
         boolean z10;
-        xu0 xu0Var = this.N0;
-        js jsVar = xu0Var.P0;
-        FrameLayout frameLayout = xu0Var.Q0;
-        if (i10 == 0) {
-            z10 = true;
-        } else {
-            z10 = false;
+        boolean z11;
+        if (view instanceof org.telegram.ui.Cells.u7) {
+            org.telegram.ui.Cells.u7 u7Var = (org.telegram.ui.Cells.u7) view;
+            ds0 ds0Var = this.f24494a;
+            ds0Var.f21595r.getClass();
+            int R = RecyclerView.R(u7Var);
+            int i10 = ds0Var.f21596s.J;
+            boolean z12 = true;
+            if (R < i10) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            u7Var.f20494a0 = z10;
+            int i11 = R % i10;
+            if (i11 == 0) {
+                z11 = true;
+            } else {
+                z11 = false;
+            }
+            u7Var.V = z11;
+            if (i11 != i10 - 1) {
+                z12 = false;
+            }
+            u7Var.W = z12;
+            rect.left = 0;
+            rect.top = 0;
+            rect.bottom = 0;
+            rect.right = 0;
+            return;
         }
-        jsVar.i(frameLayout, z10, true);
+        rect.left = 0;
+        rect.top = 0;
+        rect.bottom = 0;
+        rect.right = 0;
     }
 }

@@ -1,93 +1,82 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.RectF;
-import android.view.MotionEvent;
-import android.view.View;
-import android.widget.FrameLayout;
+import android.graphics.Typeface;
+import android.text.TextPaint;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.ThemeEditorView;
-public final class b11 extends FrameLayout {
-    public boolean f24537a;
-    public final RectF f24538b;
-    public Boolean f24539c;
-    public final ThemeEditorView.EditorAlert d;
+import org.telegram.tgnet.TLRPC;
+public final class b11 {
+    public int f21677a;
+    public int f21678b;
+    public int f21679c;
+    public TLRPC.MessageEntity d;
+    public boolean e;
 
-    public b11(ThemeEditorView.EditorAlert editorAlert, Context context) {
-        super(context);
-        this.d = editorAlert;
-        this.f24537a = false;
-        this.f24538b = new RectF();
+    public b11() {
     }
 
-    @Override
-    public final void onDraw(android.graphics.Canvas r13) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.b11.onDraw(android.graphics.Canvas):void");
-    }
-
-    @Override
-    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        if (motionEvent.getAction() == 0) {
-            ThemeEditorView.EditorAlert editorAlert = this.d;
-            if (editorAlert.E != 0 && motionEvent.getY() < editorAlert.E) {
-                editorAlert.dismiss();
-                return true;
+    public final void a(TextPaint textPaint) {
+        Typeface typeface;
+        if (this.e) {
+            if ((this.f21677a & 2) != 0) {
+                typeface = AndroidUtilities.getTypeface("fonts/mw_bolditalic.ttf");
+            } else {
+                typeface = AndroidUtilities.getTypeface("fonts/mw_bold.ttf");
+            }
+        } else {
+            int i10 = this.f21677a;
+            if ((i10 & 4) == 0 && (i10 & 2048) == 0) {
+                int i11 = i10 & 1;
+                if (i11 != 0 && (i10 & 2) != 0) {
+                    typeface = AndroidUtilities.getTypeface("fonts/rmediumitalic.ttf");
+                } else if (i11 != 0) {
+                    typeface = AndroidUtilities.bold();
+                } else if ((i10 & 2) != 0) {
+                    typeface = AndroidUtilities.getTypeface("fonts/ritalic.ttf");
+                } else {
+                    typeface = null;
+                }
+            } else {
+                typeface = Typeface.MONOSPACE;
             }
         }
-        return super.onInterceptTouchEvent(motionEvent);
+        if (typeface != null) {
+            textPaint.setTypeface(typeface);
+        }
+        if ((this.f21677a & 16) != 0) {
+            textPaint.setFlags(textPaint.getFlags() | 8);
+        } else {
+            textPaint.setFlags(textPaint.getFlags() & (-9));
+        }
+        int i12 = this.f21677a;
+        if ((i12 & 8) == 0 && (i12 & 8192) == 0) {
+            textPaint.setFlags(textPaint.getFlags() & (-17));
+        } else {
+            textPaint.setFlags(textPaint.getFlags() | 16);
+        }
+        if ((this.f21677a & 512) != 0) {
+            textPaint.bgColor = org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.R9, false);
+        }
+        int i13 = this.f21677a;
+        if ((i13 & 8192) != 0) {
+            textPaint.setColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f18162q7, false));
+        } else if ((i13 & 4096) != 0) {
+            textPaint.setColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.Oh, false));
+        }
     }
 
-    @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        super.onLayout(z10, i10, i11, i12, i13);
-        ThemeEditorView.EditorAlert.s(this.d);
+    public final void b(b11 b11Var) {
+        TLRPC.MessageEntity messageEntity;
+        this.f21677a |= b11Var.f21677a;
+        if (this.d == null && (messageEntity = b11Var.d) != null) {
+            this.d = messageEntity;
+        }
     }
 
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        boolean z10;
-        int i12;
-        int i13;
-        int size = View.MeasureSpec.getSize(i10);
-        int size2 = View.MeasureSpec.getSize(i11);
-        ThemeEditorView.EditorAlert editorAlert = this.d;
-        c11 c11Var = editorAlert.f24199c;
-        z10 = ((org.telegram.ui.ActionBar.f3) editorAlert).isFullscreen;
-        if (!z10) {
-            this.f24537a = true;
-            i12 = ((org.telegram.ui.ActionBar.f3) editorAlert).backgroundPaddingLeft;
-            int i14 = AndroidUtilities.statusBarHeight;
-            i13 = ((org.telegram.ui.ActionBar.f3) editorAlert).backgroundPaddingLeft;
-            setPadding(i12, i14, i13, 0);
-            this.f24537a = false;
-        }
-        int dp = (AndroidUtilities.dp(8.0f) + (size2 - AndroidUtilities.statusBarHeight)) - Math.min(size, size2 - AndroidUtilities.statusBarHeight);
-        if (c11Var.getPaddingTop() != dp) {
-            this.f24537a = true;
-            c11Var.getPaddingTop();
-            c11Var.setPadding(0, dp, 0, AndroidUtilities.dp(48.0f));
-            if (editorAlert.f24198b.getVisibility() == 0) {
-                editorAlert.setScrollOffsetY(c11Var.getPaddingTop());
-                editorAlert.G = 0;
-            }
-            this.f24537a = false;
-        }
-        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
-    }
-
-    @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        if (!this.d.isDismissed() && super.onTouchEvent(motionEvent)) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final void requestLayout() {
-        if (this.f24537a) {
-            return;
-        }
-        super.requestLayout();
+    public b11(b11 b11Var) {
+        this.f21677a = b11Var.f21677a;
+        this.f21678b = b11Var.f21678b;
+        this.f21679c = b11Var.f21679c;
+        this.d = b11Var.d;
+        this.e = b11Var.e;
     }
 }

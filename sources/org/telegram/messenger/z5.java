@@ -1,23 +1,23 @@
 package org.telegram.messenger;
-public final class z5 implements Runnable {
-    public final int f19817a;
-    public final MediaController f19818b;
-    public final int f19819c;
 
-    public z5(MediaController mediaController, int i10, int i11) {
-        this.f19817a = i11;
-        this.f19818b = mediaController;
-        this.f19819c = i10;
+import android.location.Location;
+public final class z5 implements q0.a {
+    public final int f17120a;
+    public final LocationController f17121b;
+
+    public z5(LocationController locationController, int i10) {
+        this.f17120a = i10;
+        this.f17121b = locationController;
     }
 
     @Override
-    public final void run() {
-        switch (this.f19817a) {
+    public final void accept(Object obj) {
+        switch (this.f17120a) {
             case 0:
-                this.f19818b.lambda$onAudioFocusChange$5(this.f19819c);
+                this.f17121b.lambda$onConnected$4((Integer) obj);
                 return;
             default:
-                this.f19818b.lambda$stopRecording$42(this.f19819c);
+                this.f17121b.setLastKnownLocation((Location) obj);
                 return;
         }
     }

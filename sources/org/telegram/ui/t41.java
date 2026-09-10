@@ -1,46 +1,70 @@
 package org.telegram.ui;
 
-import android.app.Activity;
-import android.graphics.Canvas;
-public final class t41 extends org.telegram.ui.Components.q6 {
-    public boolean f40643s;
-    public final org.telegram.ui.Components.e6 v;
-    public final SaveToGallerySettingsActivity f40644w;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class t41 implements org.telegram.ui.Components.no0 {
+    public final org.telegram.ui.Components.oo0 f36835a;
+    public final w41 f36836b;
+    public final w41 f36837c;
+    public final w41 d;
+    public final u41 e;
 
-    public t41(SaveToGallerySettingsActivity saveToGallerySettingsActivity, Activity activity) {
-        super(activity, true, true, false);
-        this.f40644w = saveToGallerySettingsActivity;
-        this.v = new org.telegram.ui.Components.e6(this);
-        getDrawable().D = true;
+    public t41(u41 u41Var, org.telegram.ui.Components.oo0 oo0Var, w41 w41Var, w41 w41Var2, w41 w41Var3) {
+        this.e = u41Var;
+        this.f36835a = oo0Var;
+        this.f36836b = w41Var;
+        this.f36837c = w41Var2;
+        this.d = w41Var3;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        float f7;
-        if (this.f40643s) {
-            f7 = 1.0f;
+    public final void W(float f7, boolean z10) {
+        long j3;
+        SaveToGallerySettingsActivity saveToGallerySettingsActivity = this.e.d;
+        boolean isAttachedToWindow = this.f36835a.isAttachedToWindow();
+        if (f7 > 0.7f) {
+            j3 = (((float) 4089446400L) * ((f7 - 0.7f) / 0.3f)) + ((float) 104857600);
         } else {
-            f7 = 0.0f;
+            j3 = (((float) 104333312) * (f7 / 0.7f)) + 524288.0f;
         }
-        org.telegram.ui.Components.e6 e6Var = this.v;
-        e6Var.d(f7, false);
-        int i10 = org.telegram.ui.ActionBar.j6.f21069y6;
-        SaveToGallerySettingsActivity saveToGallerySettingsActivity = this.f40644w;
-        setTextColor(i0.a.d(e6Var.f25592c, saveToGallerySettingsActivity.getThemedColor(i10), saveToGallerySettingsActivity.getThemedColor(org.telegram.ui.ActionBar.j6.f20873n6)));
-        super.dispatchDraw(canvas);
+        w41 w41Var = this.d;
+        w41 w41Var2 = this.f36836b;
+        w41 w41Var3 = this.f36837c;
+        if (f7 >= 1.0f) {
+            w41Var2.e(false, isAttachedToWindow);
+            w41Var3.e(false, isAttachedToWindow);
+            w41Var.e(true, isAttachedToWindow);
+            AndroidUtilities.updateViewVisibilityAnimated(w41Var3, false, 0.8f, isAttachedToWindow);
+        } else if (f7 == 0.0f) {
+            w41Var2.e(true, isAttachedToWindow);
+            w41Var3.e(false, isAttachedToWindow);
+            w41Var.e(false, isAttachedToWindow);
+            AndroidUtilities.updateViewVisibilityAnimated(w41Var3, false, 0.8f, isAttachedToWindow);
+        } else {
+            w41Var3.c(LocaleController.formatString("UpToFileSize", R.string.UpToFileSize, AndroidUtilities.formatFileSize(j3, true, false)), false, true);
+            w41Var2.e(false, isAttachedToWindow);
+            w41Var3.e(true, isAttachedToWindow);
+            w41Var.e(false, isAttachedToWindow);
+            AndroidUtilities.updateViewVisibilityAnimated(w41Var3, true, 0.8f, isAttachedToWindow);
+        }
+        if (z10) {
+            saveToGallerySettingsActivity.X().limitVideo = j3;
+            saveToGallerySettingsActivity.Y();
+        }
     }
 
-    public final void e(boolean z10, boolean z11) {
-        float f7;
-        if (this.f40643s != z10) {
-            this.f40643s = z10;
-            if (z10) {
-                f7 = 1.0f;
-            } else {
-                f7 = 0.0f;
-            }
-            this.v.d(f7, z11);
-            invalidate();
-        }
+    @Override
+    public final CharSequence getContentDescription() {
+        return null;
+    }
+
+    @Override
+    public final int k0() {
+        return 0;
+    }
+
+    @Override
+    public final void y() {
     }
 }

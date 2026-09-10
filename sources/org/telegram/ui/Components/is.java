@@ -1,41 +1,50 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.LinearGradient;
-import android.graphics.Matrix;
-import android.graphics.Paint;
-import android.graphics.Shader;
-import android.view.View;
-public final class is extends View {
-    public final Paint f27275a;
-    public final Matrix f27276b;
-    public LinearGradient f27277c;
-    public int d;
-    public float f27278e;
-    public float f27279f;
+import j$.util.function.Predicate$CC;
+import java.util.function.Predicate;
+import org.telegram.messenger.MessageObject;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class is implements Predicate {
+    public final int f24072a;
+    public final TLObject f24073b;
 
-    public is(Context context) {
-        super(context);
-        this.f27275a = new Paint(1);
-        this.f27276b = new Matrix();
+    public is(int i10, TLObject tLObject) {
+        this.f24072a = i10;
+        this.f24073b = tLObject;
+    }
+
+    public Predicate and(Predicate predicate) {
+        int i10 = this.f24072a;
+        return Predicate$CC.$default$and(this, predicate);
+    }
+
+    public Predicate negate() {
+        switch (this.f24072a) {
+            case 0:
+                return Predicate$CC.$default$negate(this);
+            default:
+                return Predicate$CC.$default$negate(this);
+        }
+    }
+
+    public Predicate or(Predicate predicate) {
+        int i10 = this.f24072a;
+        return Predicate$CC.$default$or(this, predicate);
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), this.f27278e + this.f27279f, this.f27275a);
-    }
-
-    public void setColor(int i10) {
-        if (this.d != i10) {
-            this.d = i10;
-            int alpha = Color.alpha(i10);
-            LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, 0.0f, 1.0f, new int[]{i0.a.k(i10, (alpha * 232) / 255), i0.a.k(i10, (alpha * 192) / 255), i0.a.k(i10, (alpha * 144) / 255), i0.a.k(i10, 0)}, (float[]) null, Shader.TileMode.CLAMP);
-            this.f27277c = linearGradient;
-            this.f27275a.setShader(linearGradient);
-            this.f27277c.setLocalMatrix(this.f27276b);
-            invalidate();
+    public final boolean test(Object obj) {
+        switch (this.f24072a) {
+            case 0:
+                return MessageObject.peersEqual((TLRPC.InputPeer) this.f24073b, ((MessageObject) obj).messageOwner.from_id);
+            default:
+                MessageObject messageObject = (MessageObject) obj;
+                TLObject tLObject = this.f24073b;
+                if (!(tLObject instanceof TLRPC.User) ? !(!(tLObject instanceof TLRPC.Chat) || messageObject.messageOwner.from_id.user_id != ((TLRPC.Chat) tLObject).f17195id) : messageObject.messageOwner.from_id.user_id == ((TLRPC.User) tLObject).f17342id) {
+                    return true;
+                }
+                return false;
         }
     }
 }

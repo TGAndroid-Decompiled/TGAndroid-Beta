@@ -19,8 +19,8 @@ public abstract class t extends s {
     public abstract boolean C1(View view);
 
     @Override
-    public final void Z0(pf.e r22, s4.z0 r23, s4.a0 r24, s4.z r25) {
-        throw new UnsupportedOperationException("Method not decompiled: s4.t.Z0(pf.e, s4.z0, s4.a0, s4.z):void");
+    public final void Z0(of.e r22, s4.z0 r23, s4.a0 r24, s4.z r25) {
+        throw new UnsupportedOperationException("Method not decompiled: s4.t.Z0(of.e, s4.z0, s4.a0, s4.z):void");
     }
 
     @Override
@@ -29,7 +29,7 @@ public abstract class t extends s {
     }
 
     @Override
-    public final void e1(pf.e eVar, int i10, int i11) {
+    public final void e1(of.e eVar, int i10, int i11) {
         if (i10 >= 0) {
             int r10 = r();
             if (this.v) {
@@ -72,8 +72,8 @@ public abstract class t extends s {
     @Override
     public final void w1(View view, int i10, boolean z10) {
         r rVar = (r) view.getLayoutParams();
-        Rect rect = rVar.f45886b;
+        Rect rect = rVar.f41717b;
         int i11 = rect.top + rect.bottom + ((ViewGroup.MarginLayoutParams) rVar).topMargin + ((ViewGroup.MarginLayoutParams) rVar).bottomMargin;
-        x1(o0.s(false, this.K[rVar.f45894f], i10, rect.left + rect.right + ((ViewGroup.MarginLayoutParams) rVar).leftMargin + ((ViewGroup.MarginLayoutParams) rVar).rightMargin, ((ViewGroup.MarginLayoutParams) rVar).width), o0.s(true, this.f45756q.k(), this.f45878l, i11, ((ViewGroup.MarginLayoutParams) rVar).height), view, z10);
+        x1(o0.s(false, this.K[rVar.f41723f], i10, rect.left + rect.right + ((ViewGroup.MarginLayoutParams) rVar).leftMargin + ((ViewGroup.MarginLayoutParams) rVar).rightMargin, ((ViewGroup.MarginLayoutParams) rVar).width), o0.s(true, this.f41600q.k(), this.f41710l, i11, ((ViewGroup.MarginLayoutParams) rVar).height), view, z10);
     }
 }

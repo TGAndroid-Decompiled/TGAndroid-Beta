@@ -1,31 +1,28 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import org.telegram.messenger.NotificationCenter;
-public final class d20 extends AnimatorListenerAdapter {
-    public final int f25208a;
-    public final e20 f25209b;
+import android.text.TextUtils;
+import android.view.ViewGroup;
+import org.telegram.messenger.voip.GroupCallMessage;
+public final class d20 implements oe.a {
+    public final ViewGroup f22275a;
+    public final kh.c f22276b;
 
-    public d20(e20 e20Var, int i10) {
-        this.f25208a = i10;
-        this.f25209b = e20Var;
+    public d20(bi.l4 l4Var, GroupCallMessage groupCallMessage) {
+        kh.c cVar = new kh.c(l4Var.getContext());
+        this.f22276b = cVar;
+        cVar.setBackgroundColor(i0.a.k(-16777216, 34));
+        uh.o oVar = cVar.v;
+        oVar.setMaxLines(1);
+        oVar.setSingleLine(true);
+        oVar.setEllipsize(TextUtils.TruncateAt.END);
+        cVar.set(groupCallMessage);
+        cVar.setAlpha(0.0f);
+        this.f22275a = l4Var;
+        l4Var.addView(cVar);
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f25208a) {
-            case 0:
-                e20 e20Var = this.f25209b;
-                NotificationCenter.getInstance(e20Var.f25553r.f25900a).onAnimationFinish(e20Var.f25551f);
-                e20Var.requestLayout();
-                return;
-            default:
-                e20 e20Var2 = this.f25209b;
-                e20Var2.d = null;
-                e20Var2.f25547a = null;
-                e20Var2.f25548b = false;
-                return;
-        }
+    public final void a() {
+        this.f22275a.removeView(this.f22276b);
     }
 }

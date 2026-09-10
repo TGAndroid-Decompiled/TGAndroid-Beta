@@ -1,108 +1,261 @@
 package dh;
 
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.Rect;
-import java.util.Arrays;
-import w7.p;
-import yf.f0;
-public final class c {
-    public int d;
-    public boolean f6849e;
-    public int f6850f;
-    public float f6852i;
-    public float f6853j;
-    public final Rect f6846a = new Rect();
-    public final float[] f6847b = new float[8];
-    public final float[] f6848c = new float[8];
-    public float f6851g = 0.75f;
-    public final float h = 1.5f;
-    public final Path f6854k = new Path();
-    public boolean f6855l = true;
-    public final Rect f6856m = new Rect();
-    public final Path f6857n = new Path();
-    public final Path f6858o = new Path();
-
-    public final void a() {
-        float[] fArr = this.f6847b;
-        this.f6855l = f0.c(fArr);
-        Rect rect = this.f6846a;
-        Rect rect2 = this.f6856m;
-        rect2.set(rect);
-        int i10 = this.d;
-        rect2.inset(i10, i10);
-        Path path = this.f6854k;
-        path.rewind();
-        Path.Direction direction = Path.Direction.CW;
-        path.addRoundRect(rect2.left, rect2.top, rect2.right, rect2.bottom, this.f6847b, direction);
-        path.close();
-        float min = Math.min(rect2.width(), rect2.height()) / 2.0f;
-        float[] fArr2 = d.C;
-        Arrays.fill(fArr2, 0.0f);
-        fArr2[0] = fArr[0];
-        fArr2[1] = fArr[1];
-        fArr2[2] = fArr[2];
-        fArr2[3] = fArr[3];
-        if (this.f6855l && fArr[0] > min) {
-            fArr2[3] = min;
-            fArr2[2] = min;
-            fArr2[1] = min;
-            fArr2[0] = min;
-        }
-        Path path2 = this.f6857n;
-        path2.rewind();
-        float f7 = rect2.left;
-        int i11 = rect2.top;
-        path2.addRoundRect(f7, i11, rect2.right, Math.min(i11 + fArr[0], rect2.bottom), fArr2, direction);
-        int i12 = rect2.top;
-        float min2 = Math.min(i12 + fArr[0], rect2.bottom);
-        Path.Direction direction2 = Path.Direction.CCW;
-        path2.addRoundRect(rect2.left, i12 + this.f6852i, rect2.right, min2, fArr2, direction2);
-        path2.close();
-        Arrays.fill(fArr2, 0.0f);
-        fArr2[4] = fArr[4];
-        fArr2[5] = fArr[5];
-        fArr2[6] = fArr[6];
-        fArr2[7] = fArr[7];
-        if (this.f6855l && fArr[0] > min) {
-            fArr2[7] = min;
-            fArr2[6] = min;
-            fArr2[5] = min;
-            fArr2[4] = min;
-        }
-        Path path3 = this.f6858o;
-        path3.rewind();
-        path3.addRoundRect(rect2.left, Math.max(rect2.bottom - fArr[4], rect2.top), rect2.right, rect2.bottom, fArr2, direction);
-        path3.addRoundRect(rect2.left, Math.max(rect2.bottom - fArr[4], rect2.top), rect2.right, rect2.bottom - this.f6853j, fArr2, direction2);
-        path3.close();
+import android.graphics.Color;
+import androidx.emoji2.text.w;
+import ch.e;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.SharedConfig;
+import org.telegram.ui.ActionBar.f6;
+import org.telegram.ui.ActionBar.j6;
+import w7.q;
+public abstract class c {
+    public static e a(f6 f6Var) {
+        e eVar = new e(f6Var);
+        eVar.e = new a(4);
+        eVar.d(385875968, 402653183);
+        eVar.c(385875968, 402653183);
+        eVar.b(285212672, 83886079);
+        float dpf2 = AndroidUtilities.dpf2(2.0f);
+        float dpf22 = AndroidUtilities.dpf2(0.33333334f);
+        eVar.f4692n = dpf2;
+        eVar.f4693r = dpf22;
+        float dpf23 = AndroidUtilities.dpf2(0.4f);
+        float dpf24 = AndroidUtilities.dpf2(0.4f);
+        eVar.f4691f = dpf23;
+        eVar.h = dpf24;
+        return eVar;
     }
 
-    public final void b(Canvas canvas, Paint paint) {
-        Rect rect;
-        if (this.f6855l) {
-            float f7 = this.f6856m.bottom;
-            float f10 = this.f6847b[0];
-            canvas.drawRoundRect(rect.left, rect.top, rect.right, f7, f10, f10, paint);
-            return;
-        }
-        canvas.drawPath(this.f6854k, paint);
+    public static e b(f6 f6Var) {
+        e eVar = new e(f6Var);
+        eVar.e = new b(0, f6Var);
+        eVar.d(-1, 687865855);
+        eVar.c(-1, 352321535);
+        eVar.b(536870912, 0);
+        float dpf2 = AndroidUtilities.dpf2(0.5f);
+        float dpf22 = AndroidUtilities.dpf2(0.5f);
+        eVar.f4691f = dpf2;
+        eVar.h = dpf22;
+        return eVar;
     }
 
-    public final void c(Canvas canvas, Paint paint, boolean z10) {
-        Rect rect;
-        if (z10) {
-            float f7 = this.f6856m.top;
-            float[] fArr = this.f6847b;
-            float a2 = p.a((fArr[0] * 2.0f) + f7, f7, rect.bottom);
-            canvas.save();
-            Rect rect2 = this.f6846a;
-            canvas.clipRect(rect2.left, rect2.top, rect2.right, a2);
-            float f10 = fArr[0];
-            canvas.drawRoundRect(rect.left, rect.top, rect.right, a2, f10, f10, paint);
-            canvas.restore();
-            return;
+    public static boolean c(int i10, f6 f6Var) {
+        boolean q6;
+        if (f6Var != null) {
+            q6 = f6Var.a();
+        } else {
+            q6 = j6.I.q();
         }
-        b(canvas, paint);
+        boolean chatBlurEnabled = SharedConfig.chatBlurEnabled();
+        if (chatBlurEnabled && !q6 && MessagesController.getInstance(i10).config.disableBlurInLightTheme.get()) {
+            chatBlurEnabled = false;
+        }
+        if (chatBlurEnabled && q6 && MessagesController.getInstance(i10).config.disableBlurInDarkTheme.get()) {
+            return false;
+        }
+        return chatBlurEnabled;
+    }
+
+    public static e d(f6 f6Var) {
+        e eVar = new e(f6Var);
+        eVar.e = new a(8);
+        eVar.d(-1, 687865855);
+        eVar.c(-1, 352321535);
+        eVar.b(1073741824, 0);
+        float dpf2 = AndroidUtilities.dpf2(3.6666667f);
+        float dpf22 = AndroidUtilities.dpf2(0.6666667f);
+        eVar.f4692n = dpf2;
+        eVar.f4693r = dpf22;
+        float dpf23 = AndroidUtilities.dpf2(0.5f);
+        float dpf24 = AndroidUtilities.dpf2(0.5f);
+        eVar.f4691f = dpf23;
+        eVar.h = dpf24;
+        return eVar;
+    }
+
+    public static e e(f6 f6Var) {
+        e eVar = new e(f6Var);
+        eVar.e = new w(24);
+        eVar.d(687865855, 687865855);
+        eVar.c(352321535, 352321535);
+        eVar.b(536870912, 0);
+        float dpf2 = AndroidUtilities.dpf2(3.3333333f);
+        float dpf22 = AndroidUtilities.dpf2(0.6666667f);
+        eVar.f4692n = dpf2;
+        eVar.f4693r = dpf22;
+        float dpf23 = AndroidUtilities.dpf2(1.0f);
+        float dpf24 = AndroidUtilities.dpf2(0.6666667f);
+        eVar.f4691f = dpf23;
+        eVar.h = dpf24;
+        return eVar;
+    }
+
+    public static e f(f6 f6Var) {
+        e eVar = new e(f6Var);
+        eVar.e = new a(3);
+        eVar.d(285212672, 117440511);
+        eVar.c(536870912, 301989887);
+        eVar.b(536870912, 83886079);
+        float dpf2 = AndroidUtilities.dpf2(2.667f);
+        float dpf22 = AndroidUtilities.dpf2(0.85f);
+        eVar.f4692n = dpf2;
+        eVar.f4693r = dpf22;
+        float dpf23 = AndroidUtilities.dpf2(0.4f);
+        float dpf24 = AndroidUtilities.dpf2(0.4f);
+        eVar.f4691f = dpf23;
+        eVar.h = dpf24;
+        return eVar;
+    }
+
+    public static e g(f6 f6Var) {
+        e eVar = new e(f6Var);
+        eVar.e = new w(25);
+        eVar.d(1157627903, 0);
+        eVar.c(587202559, 0);
+        eVar.b(939524096, 0);
+        eVar.f4692n = AndroidUtilities.dpf2(3.5f);
+        eVar.f4693r = 0.0f;
+        float dpf2 = AndroidUtilities.dpf2(0.6666667f);
+        float dpf22 = AndroidUtilities.dpf2(0.6666667f);
+        eVar.f4691f = dpf2;
+        eVar.h = dpf22;
+        return eVar;
+    }
+
+    public static e h(f6 f6Var) {
+        return g(f6Var);
+    }
+
+    public static e i(f6 f6Var) {
+        e eVar = new e(f6Var);
+        eVar.e = new a(7);
+        eVar.d(687865855, 687865855);
+        eVar.c(352321535, 352321535);
+        float dpf2 = AndroidUtilities.dpf2(0.6666667f);
+        float dpf22 = AndroidUtilities.dpf2(0.6666667f);
+        eVar.f4691f = dpf2;
+        eVar.h = dpf22;
+        return eVar;
+    }
+
+    public static e j(f6 f6Var) {
+        e eVar = new e(f6Var);
+        eVar.e = new a(5);
+        eVar.d(-1, 553648127);
+        eVar.c(0, 553648127);
+        eVar.b(1207959552, 83886079);
+        eVar.f4692n = AndroidUtilities.dpf2(0.6666667f);
+        eVar.f4693r = 0.0f;
+        float dpf2 = AndroidUtilities.dpf2(0.67f);
+        float dpf22 = AndroidUtilities.dpf2(0.67f);
+        eVar.f4691f = dpf2;
+        eVar.h = dpf22;
+        return eVar;
+    }
+
+    public static e k(f6 f6Var) {
+        e eVar = new e(f6Var);
+        eVar.e = new a(2);
+        eVar.d(1157627903, 0);
+        eVar.c(587202559, 0);
+        eVar.b(637534208, 0);
+        eVar.f4692n = AndroidUtilities.dpf2(4.0f);
+        eVar.f4693r = 0.0f;
+        float dpf2 = AndroidUtilities.dpf2(0.6666667f);
+        float dpf22 = AndroidUtilities.dpf2(0.6666667f);
+        eVar.f4691f = dpf2;
+        eVar.h = dpf22;
+        return eVar;
+    }
+
+    public static e l(f6 f6Var) {
+        e eVar = new e(f6Var);
+        eVar.d(0, 687865855);
+        eVar.c(0, 352321535);
+        eVar.b(805306368, 83886079);
+        float dpf2 = AndroidUtilities.dpf2(4.0f);
+        float dpf22 = AndroidUtilities.dpf2(0.33333334f);
+        eVar.f4692n = dpf2;
+        eVar.f4693r = dpf22;
+        float dpf23 = AndroidUtilities.dpf2(0.4f);
+        float dpf24 = AndroidUtilities.dpf2(0.4f);
+        eVar.f4691f = dpf23;
+        eVar.h = dpf24;
+        return eVar;
+    }
+
+    public static int m(float f7, int i10, int i11) {
+        float a2 = q.a(f7, 0.0f, 1.0f);
+        if (a2 <= 0.0f) {
+            return Color.argb(0, 0, 0, 0);
+        }
+        if (a2 >= 1.0f) {
+            return Color.argb(255, Color.red(i11), Color.green(i11), Color.blue(i11));
+        }
+        int red = Color.red(i10);
+        int green = Color.green(i10);
+        int blue = Color.blue(i10);
+        int red2 = Color.red(i11);
+        int green2 = Color.green(i11);
+        int blue2 = Color.blue(i11);
+        float f10 = 1.0f - a2;
+        return Color.argb(q.b(Math.round(a2 * 255.0f), 0, 255), q.b(Math.round((red2 - (red * f10)) / a2), 0, 255), q.b(Math.round((green2 - (green * f10)) / a2), 0, 255), q.b(Math.round((blue2 - (blue * f10)) / a2), 0, 255));
+    }
+
+    public static e n(f6 f6Var) {
+        e eVar = new e(f6Var);
+        eVar.e = new w(26);
+        eVar.d(285212672, 117440511);
+        eVar.c(536870912, 301989887);
+        eVar.b(536870912, 83886079);
+        float dpf2 = AndroidUtilities.dpf2(2.667f);
+        float dpf22 = AndroidUtilities.dpf2(0.85f);
+        eVar.f4692n = dpf2;
+        eVar.f4693r = dpf22;
+        float dpf23 = AndroidUtilities.dpf2(0.4f);
+        float dpf24 = AndroidUtilities.dpf2(0.4f);
+        eVar.f4691f = dpf23;
+        eVar.h = dpf24;
+        return eVar;
+    }
+
+    public static e o(f6 f6Var) {
+        e eVar = new e(f6Var);
+        eVar.e = new b(2, f6Var);
+        eVar.d(-1, 553648127);
+        eVar.c(-1, 352321535);
+        eVar.b(536870912, 0);
+        float dpf2 = AndroidUtilities.dpf2(0.55f);
+        float dpf22 = AndroidUtilities.dpf2(0.55f);
+        eVar.f4691f = dpf2;
+        eVar.h = dpf22;
+        return eVar;
+    }
+
+    public static e p(f6 f6Var) {
+        e eVar = new e(f6Var);
+        eVar.e = new a(6);
+        eVar.d(0, 0);
+        eVar.c(0, 0);
+        eVar.b(0, 0);
+        eVar.f4692n = 0.0f;
+        eVar.f4693r = 0.0f;
+        eVar.f4691f = 0.0f;
+        eVar.h = 0.0f;
+        return eVar;
+    }
+
+    public static e q(f6 f6Var) {
+        e eVar = new e(f6Var);
+        eVar.e = new b(1, f6Var);
+        eVar.d(0, 0);
+        eVar.c(0, 0);
+        eVar.b(0, 0);
+        eVar.f4692n = 0.0f;
+        eVar.f4693r = 0.0f;
+        eVar.f4691f = 0.0f;
+        eVar.h = 0.0f;
+        return eVar;
     }
 }

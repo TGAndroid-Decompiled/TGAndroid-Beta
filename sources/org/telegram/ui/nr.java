@@ -1,21 +1,27 @@
 package org.telegram.ui;
 
-import android.app.Activity;
-public final class nr extends org.telegram.ui.Components.n20 {
-    public final vr f39035b;
+import java.util.ArrayList;
+import org.telegram.tgnet.TLRPC;
+public final class nr implements z60 {
+    public final e70 f35327a;
+    public final wr f35328b;
 
-    public nr(vr vrVar, Activity activity, vr vrVar2) {
-        super(activity, vrVar2);
-        this.f39035b = vrVar;
+    public nr(wr wrVar, e70 e70Var) {
+        this.f35328b = wrVar;
+        this.f35327a = e70Var;
     }
 
     @Override
-    public final void n() {
-        vr vrVar = this.f39035b;
-        vrVar.getMessagesController().convertToGigaGroup(vrVar.getParentActivity(), vrVar.f41694r, vrVar, new z0(this, 24));
+    public final void j(TLRPC.User user) {
+        this.f35328b.t0(user.f17342id, null, null, null, "", true, 0, false);
     }
 
     @Override
-    public final void m() {
+    public final void k(int i10, ArrayList arrayList) {
+        if (this.f35327a.getParentActivity() == null) {
+            return;
+        }
+        wr wrVar = this.f35328b;
+        wrVar.getMessagesController().addUsersToChat(wrVar.f38354r, wrVar, arrayList, i10, new i3(this, 2), new mr(0), null);
     }
 }

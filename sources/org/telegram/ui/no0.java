@@ -1,36 +1,70 @@
 package org.telegram.ui;
 
-import android.os.AsyncTask;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class no0 extends AsyncTask {
-    public final uc.a f39023a;
-    public final xo0 f39024b;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.AnimatorSet;
+public final class no0 extends AnimatorListenerAdapter {
+    public final int f35315a;
+    public final boolean f35316b;
+    public final wo0 f35317c;
 
-    public no0(xo0 xo0Var, uc.a aVar) {
-        this.f39024b = xo0Var;
-        this.f39023a = aVar;
+    public no0(wo0 wo0Var, boolean z10, int i10) {
+        this.f35315a = i10;
+        this.f35317c = wo0Var;
+        this.f35316b = z10;
     }
 
     @Override
-    public final java.lang.Object doInBackground(java.lang.Object[] r17) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.no0.doInBackground(java.lang.Object[]):java.lang.Object");
+    public final void onAnimationCancel(Animator animator) {
+        switch (this.f35315a) {
+            case 0:
+                wo0 wo0Var = this.f35317c;
+                AnimatorSet animatorSet = wo0Var.v;
+                if (animatorSet != null && animatorSet.equals(animator)) {
+                    wo0Var.v = null;
+                    return;
+                }
+                return;
+            default:
+                wo0 wo0Var2 = this.f35317c;
+                AnimatorSet animatorSet2 = wo0Var2.v;
+                if (animatorSet2 != null && animatorSet2.equals(animator)) {
+                    wo0Var2.v = null;
+                    return;
+                }
+                return;
+        }
     }
 
     @Override
-    public final void onPostExecute(Object obj) {
-        String str = (String) obj;
-        xo0 xo0Var = this.f39024b;
-        if (xo0Var.Q0) {
-            return;
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f35315a) {
+            case 0:
+                wo0 wo0Var = this.f35317c;
+                AnimatorSet animatorSet = wo0Var.v;
+                if (animatorSet != null && animatorSet.equals(animator)) {
+                    if (!this.f35316b) {
+                        wo0Var.f38281r.setVisibility(4);
+                        return;
+                    } else {
+                        wo0Var.f38276n.getContentView().setVisibility(4);
+                        return;
+                    }
+                }
+                return;
+            default:
+                wo0 wo0Var2 = this.f35317c;
+                AnimatorSet animatorSet2 = wo0Var2.v;
+                if (animatorSet2 != null && animatorSet2.equals(animator)) {
+                    if (!this.f35316b) {
+                        wo0Var2.f38283s.setVisibility(4);
+                        return;
+                    } else {
+                        wo0Var2.U.setVisibility(4);
+                        return;
+                    }
+                }
+                return;
         }
-        if (str == null) {
-            org.telegram.ui.Components.e5.w0(xo0Var, LocaleController.getString(R.string.PaymentConnectionFailed));
-        } else {
-            xo0Var.f42868w0 = str;
-            xo0Var.t0();
-        }
-        xo0Var.H0(true, false);
-        xo0Var.D0(false);
     }
 }

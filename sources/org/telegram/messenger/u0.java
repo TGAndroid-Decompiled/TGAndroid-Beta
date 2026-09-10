@@ -1,50 +1,79 @@
 package org.telegram.messenger;
 
-import android.content.SharedPreferences;
-import org.telegram.messenger.ChatObject;
-import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_phone;
+import org.telegram.ui.gi0;
 public final class u0 implements RequestDelegate {
-    public final int f19135a;
-    public final boolean f19136b;
-    public final Object f19137c;
+    public final int f16445a;
+    public final int f16446b;
+    public final long f16447c;
     public final Object d;
+    public final Object e;
 
-    public u0(Object obj, Object obj2, boolean z10, int i10) {
-        this.f19135a = i10;
-        this.f19137c = obj;
-        this.d = obj2;
-        this.f19136b = z10;
+    public u0(int i10, bi.d dVar, org.telegram.ui.ActionBar.h3 h3Var, long j3) {
+        this.f16445a = 3;
+        this.f16446b = i10;
+        this.d = dVar;
+        this.e = h3Var;
+        this.f16447c = j3;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f19135a) {
+        switch (this.f16445a) {
             case 0:
-                ((ChatObject.Call) this.f19137c).lambda$loadMembers$3(this.f19136b, (TL_phone.getGroupParticipants) this.d, tLObject, tL_error);
+                long j3 = this.f16447c;
+                ((ChatMessagesMetadataController) this.d).lambda$loadStoriesForMessages$2(this.f16446b, (MessageObject) this.e, j3, tLObject, tL_error);
                 return;
             case 1:
-                ((MediaDataController) this.f19137c).lambda$loadAvatarConstructor$242((SharedPreferences) this.d, this.f19136b, tLObject, tL_error);
+                long j10 = this.f16447c;
+                ((MediaDataController) this.d).lambda$loadStickers$101(this.f16446b, (Utilities.Callback) this.e, j10, tLObject, tL_error);
                 return;
             case 2:
-                ((MediaDataController) this.f19137c).lambda$loadStickersByEmojiOrName$85((String) this.d, this.f19136b, tLObject, tL_error);
+                long j11 = this.f16447c;
+                ((MessagesController) this.d).lambda$checkPromoInfoInternal$167(this.f16446b, (TLRPC.TL_help_promoData) this.e, j11, tLObject, tL_error);
                 return;
             case 3:
-                ((MessagesController) this.f19137c).lambda$getBlockedPeers$113(this.f19136b, (TLRPC.TL_contacts_getBlocked) this.d, tLObject, tL_error);
+                AndroidUtilities.runOnUIThread(new di.s3(tLObject, this.f16446b, (bi.d) this.d, (org.telegram.ui.ActionBar.h3) this.e, this.f16447c, tL_error));
+                return;
+            case 4:
+                AndroidUtilities.runOnUIThread(new di.s3((gi0) this.d, tL_error, tLObject, this.f16447c, this.f16446b, (TLRPC.Chat) this.e, 4));
+                return;
+            case 5:
+                AndroidUtilities.runOnUIThread(new k0((xh.p) this.d, (xh.o) this.e, this.f16446b, tLObject, this.f16447c, 10));
+                return;
+            case 6:
+                AndroidUtilities.runOnUIThread(new p7((bi.d) this.d, (org.telegram.ui.ActionBar.h3[]) this.e, this.f16446b, this.f16447c, 14));
                 return;
             default:
-                ((MessagesController.CommonChatsList) this.f19137c).lambda$load$1((int[]) this.d, this.f19136b, tLObject, tL_error);
+                AndroidUtilities.runOnUIThread(new k0((zh.i5) this.d, tLObject, this.f16446b, (String) this.e, this.f16447c, 12));
                 return;
         }
     }
 
-    public u0(Object obj, boolean z10, TLObject tLObject, int i10) {
-        this.f19135a = i10;
-        this.f19137c = obj;
-        this.f19136b = z10;
-        this.d = tLObject;
+    public u0(Object obj, int i10, Object obj2, long j3, int i11) {
+        this.f16445a = i11;
+        this.d = obj;
+        this.f16446b = i10;
+        this.e = obj2;
+        this.f16447c = j3;
+    }
+
+    public u0(Object obj, Object obj2, int i10, long j3, int i11) {
+        this.f16445a = i11;
+        this.d = obj;
+        this.e = obj2;
+        this.f16446b = i10;
+        this.f16447c = j3;
+    }
+
+    public u0(gi0 gi0Var, long j3, int i10, TLRPC.Chat chat) {
+        this.f16445a = 4;
+        this.d = gi0Var;
+        this.f16447c = j3;
+        this.f16446b = i10;
+        this.e = chat;
     }
 }

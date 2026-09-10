@@ -1,59 +1,52 @@
 package org.telegram.ui.web;
 
-import java.io.BufferedInputStream;
-import java.io.FilterInputStream;
-public final class o1 extends FilterInputStream {
-    public o1(BufferedInputStream bufferedInputStream) {
-        super(bufferedInputStream);
+import java.util.ArrayList;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.SharedConfig;
+import org.telegram.messenger.Utilities;
+public final class o1 {
+    public static ArrayList d;
+    public final String f38031a;
+    public final String f38032b;
+    public final String f38033c;
+
+    public o1(String str, String str2, String str3) {
+        this.f38031a = str;
+        this.f38032b = str2;
+        this.f38033c = str3;
     }
 
-    public static int a(int i10) {
-        if (i10 >= 48 && i10 <= 57) {
-            return i10 - 48;
+    public static o1 a() {
+        ArrayList b10 = b();
+        if (b10.isEmpty()) {
+            return new o1("Google", "https://www.google.com/search?q=", "https://suggestqueries.google.com/complete/search?client=chrome&amp;q=");
         }
-        if (i10 >= 65 && i10 <= 70) {
-            return i10 - 55;
-        }
-        if (i10 >= 97 && i10 <= 102) {
-            return i10 - 87;
-        }
-        return 0;
+        return (o1) b10.get(Utilities.clamp(SharedConfig.searchEngineType, b10.size() - 1, 0));
     }
 
-    @Override
-    public final int read() {
-        int read = ((FilterInputStream) this).in.read();
-        if (read == 61) {
-            int read2 = ((FilterInputStream) this).in.read();
-            int read3 = ((FilterInputStream) this).in.read();
-            if (read2 == -1 || read3 == -1) {
-                return -1;
+    public static ArrayList b() {
+        if (d == null) {
+            d = new ArrayList();
+            int i10 = 1;
+            while (true) {
+                String c10 = c(LocaleController.getString("SearchEngine" + i10 + "Name"));
+                if (c10 == null) {
+                    break;
+                }
+                String c11 = c(LocaleController.getString("SearchEngine" + i10 + "SearchURL"));
+                String c12 = c(LocaleController.getString("SearchEngine" + i10 + "AutocompleteURL"));
+                c(LocaleController.getString("SearchEngine" + i10 + "PrivacyPolicyURL"));
+                d.add(new o1(c10, c11, c12));
+                i10++;
             }
-            if (read2 == 13 && read3 == 10) {
-                return read();
-            }
-            return (read2 == 10 || read3 == 10) ? read3 : (a(read2) << 4) | a(read3);
         }
-        return read;
+        return d;
     }
 
-    @Override
-    public final int read(byte[] bArr, int i10, int i11) {
-        int i12 = 0;
-        int i13 = 0;
-        while (true) {
-            if (i12 >= i11) {
-                break;
-            }
-            int read = read();
-            if (read != -1) {
-                bArr[i10 + i12] = (byte) read;
-                i13++;
-                i12++;
-            } else if (i13 == 0) {
-                return -1;
-            }
+    public static String c(String str) {
+        if (str != null && !str.startsWith("LOC_ERR") && !"reserved".equals(str)) {
+            return str;
         }
-        return i13;
+        return null;
     }
 }

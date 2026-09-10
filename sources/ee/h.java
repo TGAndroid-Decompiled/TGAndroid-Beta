@@ -9,19 +9,19 @@ import zd.e0;
 import zd.l0;
 import zd.w0;
 public final class h extends l0 implements kd.d, id.c {
-    public static final AtomicReferenceFieldUpdater f9100n = AtomicReferenceFieldUpdater.newUpdater(h.class, Object.class, "_reusableCancellableContinuation$volatile");
+    public static final AtomicReferenceFieldUpdater f7482n = AtomicReferenceFieldUpdater.newUpdater(h.class, Object.class, "_reusableCancellableContinuation$volatile");
     private volatile Object _reusableCancellableContinuation$volatile;
     public final a0 d;
-    public final kd.c f9101e;
-    public Object f9102f;
+    public final kd.c e;
+    public Object f7483f;
     public final Object h;
 
     public h(a0 a0Var, kd.c cVar) {
         super(-1);
         this.d = a0Var;
-        this.f9101e = cVar;
-        this.f9102f = a.f9090c;
-        Object fold = cVar.getContext().fold(0, w.f9123c);
+        this.e = cVar;
+        this.f7483f = a.f7473c;
+        Object fold = cVar.getContext().fold(0, x.f7504c);
         kotlin.jvm.internal.i.b(fold);
         this.h = fold;
     }
@@ -36,7 +36,7 @@ public final class h extends l0 implements kd.d, id.c {
 
     @Override
     public final kd.d getCallerFrame() {
-        kd.c cVar = this.f9101e;
+        kd.c cVar = this.e;
         if (e2.u(cVar)) {
             return cVar;
         }
@@ -45,20 +45,20 @@ public final class h extends l0 implements kd.d, id.c {
 
     @Override
     public final id.h getContext() {
-        return this.f9101e.getContext();
+        return this.e.getContext();
     }
 
     @Override
     public final Object j() {
-        Object obj = this.f9102f;
-        this.f9102f = a.f9090c;
+        Object obj = this.f7483f;
+        this.f7483f = a.f7473c;
         return obj;
     }
 
     @Override
     public final void resumeWith(Object obj) {
         Object vVar;
-        kd.c cVar = this.f9101e;
+        kd.c cVar = this.e;
         id.h context = cVar.getContext();
         Throwable a2 = gd.f.a(obj);
         if (a2 == null) {
@@ -68,19 +68,19 @@ public final class h extends l0 implements kd.d, id.c {
         }
         a0 a0Var = this.d;
         if (a0Var.e()) {
-            this.f9102f = vVar;
-            this.f51596c = 0;
+            this.f7483f = vVar;
+            this.f48023c = 0;
             a0Var.c(context, this);
             return;
         }
         w0 a10 = c2.a();
-        if (a10.f51642c >= 4294967296L) {
-            this.f9102f = vVar;
-            this.f51596c = 0;
-            hd.e eVar = a10.f51643e;
+        if (a10.f48061c >= 4294967296L) {
+            this.f7483f = vVar;
+            this.f48023c = 0;
+            hd.e eVar = a10.e;
             if (eVar == null) {
                 eVar = new hd.e();
-                a10.f51643e = eVar;
+                a10.e = eVar;
             }
             eVar.addLast(this);
             return;
@@ -101,7 +101,7 @@ public final class h extends l0 implements kd.d, id.c {
     }
 
     public final String toString() {
-        return "DispatchedContinuation[" + this.d + ", " + e0.t(this.f9101e) + ']';
+        return "DispatchedContinuation[" + this.d + ", " + e0.t(this.e) + ']';
     }
 
     @Override

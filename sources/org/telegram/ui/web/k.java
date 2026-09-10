@@ -1,11 +1,11 @@
 package org.telegram.ui.web;
 public final class k {
-    public final String f42174a;
-    public long f42175b;
-    public double f42176c;
+    public final String f37986a;
+    public long f37987b;
+    public double f37988c;
 
     public k(String str, long j3) {
-        this.f42174a = str;
-        this.f42175b = j3;
+        this.f37986a = str;
+        this.f37987b = j3;
     }
 }

@@ -1,80 +1,42 @@
 package zh;
 
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.Utilities;
+import android.graphics.Paint;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stars;
-public final class w1 implements Utilities.Callback {
-    public final int f52776a;
-    public final w3 f52777b;
+import org.telegram.ui.Components.gk;
+import org.telegram.ui.Components.ua0;
+public final class w1 implements ua0 {
+    public final a3 f48999a;
 
-    public w1(w3 w3Var, int i10) {
-        this.f52776a = i10;
-        this.f52777b = w3Var;
+    public w1(a3 a3Var) {
+        this.f48999a = a3Var;
     }
 
     @Override
-    public final void run(Object obj) {
-        TLRPC.Message message;
-        switch (this.f52776a) {
-            case 0:
-                w3 w3Var = this.f52777b;
-                w3Var.getClass();
-                if (((Boolean) obj).booleanValue()) {
-                    w3Var.skipDismissAnimation();
-                }
-                w3Var.dismiss();
-                return;
-            case 1:
-                TL_stars.starGiftUpgradePreview stargiftupgradepreview = (TL_stars.starGiftUpgradePreview) obj;
-                w3 w3Var2 = this.f52777b;
-                w3Var2.getClass();
-                if (stargiftupgradepreview != null) {
-                    w3Var2.f52801h1 = stargiftupgradepreview.sample_attributes;
-                    w3Var2.f52803i1 = stargiftupgradepreview.prices;
-                    w3Var2.f52805j1 = stargiftupgradepreview.next_prices;
-                    w3Var2.b2();
-                    return;
-                }
-                return;
-            case 2:
-                this.f52777b.dismiss(((Boolean) obj).booleanValue());
-                return;
-            default:
-                TL_stars.SavedStarGift savedStarGift = (TL_stars.SavedStarGift) obj;
-                w3 w3Var3 = this.f52777b;
-                w3Var3.K0 = false;
-                w3Var3.L0 = true;
-                if (savedStarGift != null) {
-                    w3Var3.f52797f1 = Boolean.valueOf(savedStarGift.unsaved);
-                    MessageObject messageObject = w3Var3.E0;
-                    if (messageObject != null && (message = messageObject.messageOwner) != null) {
-                        TLRPC.MessageAction messageAction = message.action;
-                        if (messageAction instanceof TLRPC.TL_messageActionStarGiftUnique) {
-                            TLRPC.TL_messageActionStarGiftUnique tL_messageActionStarGiftUnique = (TLRPC.TL_messageActionStarGiftUnique) messageAction;
-                            boolean z10 = tL_messageActionStarGiftUnique.saved;
-                            boolean z11 = !savedStarGift.unsaved;
-                            if (z10 != z11) {
-                                tL_messageActionStarGiftUnique.saved = z11;
-                            } else {
-                                return;
-                            }
-                        } else if (messageAction instanceof TLRPC.TL_messageActionStarGift) {
-                            TLRPC.TL_messageActionStarGift tL_messageActionStarGift = (TLRPC.TL_messageActionStarGift) messageAction;
-                            boolean z12 = tL_messageActionStarGift.saved;
-                            boolean z13 = !savedStarGift.unsaved;
-                            if (z12 != z13) {
-                                tL_messageActionStarGift.saved = z13;
-                            } else {
-                                return;
-                            }
-                        }
-                        w3Var3.i2(messageObject, null);
-                        return;
-                    }
-                    return;
-                }
-                return;
-        }
+    public final void K(String str) {
+        t1 t1Var = this.f48999a.f48157b2;
+        t1Var.U();
+        t1Var.U0.h(str);
+    }
+
+    @Override
+    public final void d(TLRPC.BotInlineResult botInlineResult, boolean z10, int i10) {
+        a3 a3Var = this.f48999a;
+        org.telegram.ui.Components.d5.a0(a3Var.C2, 1, a3Var.B1, new gk(i10, 1, this, botInlineResult, z10));
+    }
+
+    @Override
+    public final Paint.FontMetricsInt o() {
+        return this.f48999a.f48157b2.getEditField().getPaint().getFontMetricsInt();
+    }
+
+    @Override
+    public final void v(TLRPC.TL_document tL_document, String str, Object obj) {
+        a3 a3Var = this.f48999a;
+        org.telegram.ui.Components.d5.a0(a3Var.C2, 1, a3Var.B1, new gg.u1(this, tL_document, str, obj, 16));
+    }
+
+    @Override
+    public final void z(int i10, int i11, CharSequence charSequence, boolean z10) {
+        this.f48999a.f48157b2.O0(i10, i11, charSequence, z10);
     }
 }

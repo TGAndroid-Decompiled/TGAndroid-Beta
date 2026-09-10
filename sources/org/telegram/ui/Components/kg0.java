@@ -1,11 +1,25 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-public final class kg0 extends ng0 {
-    public final lg0 f27850e;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class kg0 extends AnimatorListenerAdapter {
+    public final int f24711a;
+    public final og0 f24712b;
 
-    public kg0(lg0 lg0Var, Context context) {
-        super(lg0Var.f28199s, context);
-        this.f27850e = lg0Var;
+    public kg0(og0 og0Var, int i10) {
+        this.f24711a = i10;
+        this.f24712b = og0Var;
+    }
+
+    @Override
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f24711a) {
+            case 0:
+                this.f24712b.F = null;
+                return;
+            default:
+                this.f24712b.u();
+                return;
+        }
     }
 }

@@ -7,7 +7,7 @@ import java.io.UnsupportedEncodingException;
 import java.util.Arrays;
 import n6.x;
 public abstract class l extends b8.b implements x {
-    public final int f14854b;
+    public final int f12365b;
 
     public l(byte[] bArr) {
         super("com.google.android.gms.common.internal.ICertData", 7);
@@ -18,14 +18,14 @@ public abstract class l extends b8.b implements x {
             z10 = false;
         }
         n6.l.b(z10);
-        this.f14854b = Arrays.hashCode(bArr);
+        this.f12365b = Arrays.hashCode(bArr);
     }
 
     public static byte[] L0(String str) {
         try {
             return str.getBytes("ISO-8859-1");
-        } catch (UnsupportedEncodingException e7) {
-            throw new AssertionError(e7);
+        } catch (UnsupportedEncodingException e) {
+            throw new AssertionError(e);
         }
     }
 
@@ -36,7 +36,7 @@ public abstract class l extends b8.b implements x {
                 return false;
             }
             parcel2.writeNoException();
-            parcel2.writeInt(this.f14854b);
+            parcel2.writeInt(this.f12365b);
             return true;
         }
         x6.b bVar = new x6.b(M0());
@@ -51,17 +51,17 @@ public abstract class l extends b8.b implements x {
         if (obj != null && (obj instanceof x)) {
             try {
                 x xVar = (x) obj;
-                if (((l) xVar).f14854b == this.f14854b) {
+                if (((l) xVar).f12365b == this.f12365b) {
                     return Arrays.equals(M0(), (byte[]) x6.b.M0(new x6.b(((l) xVar).M0())));
                 }
-            } catch (RemoteException e7) {
-                Log.e("GoogleCertificates", "Failed to get Google certificates from remote", e7);
+            } catch (RemoteException e) {
+                Log.e("GoogleCertificates", "Failed to get Google certificates from remote", e);
             }
         }
         return false;
     }
 
     public final int hashCode() {
-        return this.f14854b;
+        return this.f12365b;
     }
 }

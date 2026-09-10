@@ -1,46 +1,35 @@
 package org.telegram.ui.Components;
 
-import android.os.Build;
-import androidx.recyclerview.widget.RecyclerView;
-import j$.util.Objects;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.view.View;
+import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
-public final class ox extends jz {
-    public final kz d;
+public final class ox extends FrameLayout {
+    public final rz f25928a;
 
-    public ox(kz kzVar) {
-        super(kzVar, 1);
-        this.d = kzVar;
+    public ox(rz rzVar, Context context) {
+        super(context);
+        this.f25928a = rzVar;
     }
 
     @Override
-    public final void a(RecyclerView recyclerView, int i10) {
-        if (i10 == 0) {
-            this.d.f27969f0 = false;
+    public final boolean drawChild(Canvas canvas, View view, long j3) {
+        rz rzVar = this.f25928a;
+        ow owVar = rzVar.I;
+        pw pwVar = rzVar.V;
+        px pxVar = rzVar.P;
+        if (view != pxVar && view != pwVar) {
+            return super.drawChild(canvas, view, j3);
         }
-        super.a(recyclerView, i10);
-    }
-
-    @Override
-    public final void b(RecyclerView recyclerView, int i10, int i11) {
-        bh.f fVar;
-        kz kzVar = this.d;
-        ky kyVar = kzVar.S;
-        lx lxVar = kzVar.Q;
-        kzVar.W(lxVar.I0());
-        if (Build.VERSION.SDK_INT >= 31 && (fVar = kzVar.f27983j2) != null) {
-            fVar.f(i10, i11);
-            kzVar.C();
+        canvas.save();
+        float y3 = owVar.getY() + owVar.getMeasuredHeight() + 1.0f;
+        if (view == pxVar && pwVar != null) {
+            y3 = Math.max(y3, pwVar.getY() + pwVar.getMeasuredHeight() + 1.0f);
         }
-        super.b(recyclerView, i10, i11);
-        if (kyVar != null && kzVar.P.getAdapter() == kyVar) {
-            ky kyVar2 = kyVar.f27948x.f27611a;
-            if (!kyVar2.F.V.F && !kyVar2.E) {
-                if (lxVar.N0() + 20 > kyVar.h()) {
-                    jy jyVar = kyVar.f27948x;
-                    Objects.requireNonNull(jyVar);
-                    AndroidUtilities.runOnUIThread(new sw(jyVar, 1));
-                }
-            }
-        }
+        canvas.clipRect(0.0f, y3 - (AndroidUtilities.dp(16.0f) * rzVar.f26799b.e), getMeasuredWidth(), getMeasuredHeight());
+        boolean drawChild = super.drawChild(canvas, view, j3);
+        canvas.restore();
+        return drawChild;
     }
 }

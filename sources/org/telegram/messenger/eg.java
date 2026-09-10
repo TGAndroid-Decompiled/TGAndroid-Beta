@@ -2,27 +2,40 @@ package org.telegram.messenger;
 
 import java.util.ArrayList;
 public final class eg implements Runnable {
-    public final int f17589a;
-    public final MessagesStorage f17590b;
-    public final ArrayList f17591c;
-    public final ArrayList d;
+    public final int f15092a;
+    public final MessagesStorage f15093b;
+    public final ArrayList f15094c;
+    public final int d;
 
-    public eg(MessagesStorage messagesStorage, ArrayList arrayList, ArrayList arrayList2, int i10) {
-        this.f17589a = i10;
-        this.f17590b = messagesStorage;
-        this.f17591c = arrayList;
-        this.d = arrayList2;
+    public eg(int i10, ArrayList arrayList, MessagesStorage messagesStorage) {
+        this.f15092a = 1;
+        this.f15093b = messagesStorage;
+        this.f15094c = arrayList;
+        this.d = i10;
     }
 
     @Override
     public final void run() {
-        switch (this.f17589a) {
+        switch (this.f15092a) {
             case 0:
-                this.f17590b.lambda$setDialogsPinned$252(this.f17591c, this.d);
+                this.f15093b.lambda$putWallpapers$78(this.d, this.f15094c);
+                return;
+            case 1:
+                this.f15093b.lambda$unpinAllDialogsExceptNew$247(this.f15094c, this.d);
+                return;
+            case 2:
+                this.f15093b.lambda$getDownloadQueue$185(this.d, this.f15094c);
                 return;
             default:
-                this.f17590b.lambda$loadTopics$50(this.f17591c, this.d);
+                this.f15093b.lambda$putWidgetDialogs$166(this.d, this.f15094c);
                 return;
         }
+    }
+
+    public eg(MessagesStorage messagesStorage, int i10, ArrayList arrayList, int i11) {
+        this.f15092a = i11;
+        this.f15093b = messagesStorage;
+        this.d = i10;
+        this.f15094c = arrayList;
     }
 }

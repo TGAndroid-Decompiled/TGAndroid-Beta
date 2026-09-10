@@ -1,37 +1,42 @@
 package org.telegram.messenger;
 
-import org.telegram.tgnet.TLObject;
+import java.util.ArrayList;
+import org.telegram.tgnet.TLRPC;
 public final class e7 implements Runnable {
-    public final int f17553a;
-    public final MediaDataController f17554b;
-    public final TLObject f17555c;
+    public final int f15057a;
+    public final MediaDataController f15058b;
+    public final TLRPC.messages_Messages f15059c;
+    public final int d;
+    public final long e;
+    public final ArrayList f15060f;
+    public final int h;
+    public final int f15061n;
+    public final boolean f15062r;
+    public final int f15063s;
+    public final int v;
 
-    public e7(MediaDataController mediaDataController, TLObject tLObject, int i10) {
-        this.f17553a = i10;
-        this.f17554b = mediaDataController;
-        this.f17555c = tLObject;
+    public e7(MediaDataController mediaDataController, TLRPC.messages_Messages messages_messages, int i10, long j3, ArrayList arrayList, int i11, int i12, boolean z10, int i13, int i14, int i15) {
+        this.f15057a = i15;
+        this.f15058b = mediaDataController;
+        this.f15059c = messages_messages;
+        this.d = i10;
+        this.e = j3;
+        this.f15060f = arrayList;
+        this.h = i11;
+        this.f15061n = i12;
+        this.f15062r = z10;
+        this.f15063s = i13;
+        this.v = i14;
     }
 
     @Override
     public final void run() {
-        switch (this.f17553a) {
+        switch (this.f15057a) {
             case 0:
-                this.f17554b.lambda$checkPremiumGiftStickers$75(this.f17555c);
-                return;
-            case 1:
-                this.f17554b.lambda$loadReactions$13(this.f17555c);
-                return;
-            case 2:
-                this.f17554b.lambda$checkTonGiftStickers$77(this.f17555c);
-                return;
-            case 3:
-                this.f17554b.lambda$checkDefaultTopicIcons$81(this.f17555c);
-                return;
-            case 4:
-                this.f17554b.lambda$clearRecentStickers$18(this.f17555c);
+                this.f15058b.lambda$processLoadedMedia$133(this.f15059c, this.d, this.e, this.f15060f, this.h, this.f15061n, this.f15062r, this.f15063s, this.v);
                 return;
             default:
-                this.f17554b.lambda$checkGenericAnimations$79(this.f17555c);
+                this.f15058b.lambda$processLoadedMedia$134(this.f15059c, this.d, this.e, this.f15060f, this.h, this.f15061n, this.f15062r, this.f15063s, this.v);
                 return;
         }
     }

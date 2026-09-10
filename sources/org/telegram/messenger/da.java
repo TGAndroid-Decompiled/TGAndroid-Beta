@@ -1,29 +1,33 @@
 package org.telegram.messenger;
-public final class da implements Runnable {
-    public final int f17491a;
-    public final MessagesController f17492b;
-    public final int f17493c;
 
-    public da(MessagesController messagesController, int i10, int i11) {
-        this.f17491a = i11;
-        this.f17492b = messagesController;
-        this.f17493c = i10;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_communities;
+public final class da implements Utilities.Callback2 {
+    public final int f14995a;
+    public final MessagesController f14996b;
+    public final Utilities.Callback2 f14997c;
+
+    public da(MessagesController messagesController, Utilities.Callback2 callback2, int i10) {
+        this.f14995a = i10;
+        this.f14996b = messagesController;
+        this.f14997c = callback2;
     }
 
     @Override
-    public final void run() {
-        switch (this.f17491a) {
+    public final void run(Object obj, Object obj2) {
+        switch (this.f14995a) {
             case 0:
-                this.f17492b.lambda$updateTimerProc$157(this.f17493c);
+                this.f14996b.lambda$toggleChatNoForwards$278(this.f14997c, (TLRPC.Updates) obj, (TLRPC.TL_error) obj2);
                 return;
             case 1:
-                this.f17492b.lambda$onFolderEmpty$197(this.f17493c);
+                this.f14996b.lambda$fetchCommunityPendingJoinRequests$246(this.f14997c, (TL_communities.PeerLinkRequests) obj, (TLRPC.TL_error) obj2);
                 return;
             case 2:
-                this.f17492b.lambda$ensureMessagesLoaded$462(this.f17493c);
+                this.f14996b.lambda$fetchCommunityJoinedChats$247(this.f14997c, (TL_communities.ParticipantJoinedChats) obj, (TLRPC.TL_error) obj2);
                 return;
             default:
-                this.f17492b.lambda$didAddedNewTask$81(this.f17493c);
+                this.f14996b.lambda$fetchChatsToAddToCommunity$252(this.f14997c, (TLRPC.messages_Chats) obj, (TLRPC.TL_error) obj2);
                 return;
         }
     }

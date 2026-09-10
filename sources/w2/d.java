@@ -1,12 +1,6 @@
 package w2;
 
-import v8.s;
+import m.g3;
 public interface d {
-    public static final s C;
-
-    static {
-        ?? obj = new Object();
-        obj.f47778a = new rb.a(28);
-        C = obj;
-    }
+    public static final g3 C = new g3(24);
 }

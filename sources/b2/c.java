@@ -67,7 +67,7 @@ public abstract class c {
                     break;
                 }
             }
-            if (i12 == 1 && z6.f48371a == null) {
+            if (i12 == 1 && z6.f43842a == null) {
                 if (Build.VERSION.SDK_INT < 35) {
                     int c10 = c(false);
                     int c11 = c(true);
@@ -75,12 +75,12 @@ public abstract class c {
                         if (c11 == 0) {
                         }
                     }
-                    z6.f48371a = Boolean.valueOf(z10);
+                    z6.f43842a = Boolean.valueOf(z10);
                     if (!z10) {
                     }
                 }
                 z10 = false;
-                z6.f48371a = Boolean.valueOf(z10);
+                z6.f43842a = Boolean.valueOf(z10);
                 if (!z10) {
                 }
             }
@@ -95,14 +95,14 @@ public abstract class c {
         List<MediaCodecInfo.VideoCapabilities.PerformancePoint> supportedPerformancePoints;
         try {
             r rVar = new r();
-            rVar.f2339q = r0.n("video/avc");
+            rVar.f1946q = r0.n("video/avc");
             s sVar = new s(rVar);
-            String str = sVar.f2397r;
+            String str = sVar.f2002r;
             if (str != null) {
                 List d10 = r2.w.d(str, z10, false);
                 String b10 = r2.w.b(sVar);
                 if (b10 == null) {
-                    d = e9.a1.f8948e;
+                    d = e9.a1.e;
                 } else {
                     d = r2.w.d(b10, z10, false);
                 }
@@ -129,17 +129,17 @@ public abstract class c {
 
     public static e9.a1 d(e eVar) {
         e9.f0 u10 = e9.i0.u();
-        e9.k0 k0Var = k2.b.f14543e;
-        e9.m0 m0Var = k0Var.f8995b;
+        e9.k0 k0Var = k2.b.e;
+        e9.m0 m0Var = k0Var.f7393b;
         if (m0Var == null) {
             m0Var = k0Var.c();
-            k0Var.f8995b = m0Var;
+            k0Var.f7393b = m0Var;
         }
         e9.o1 it = m0Var.iterator();
         while (it.hasNext()) {
             Integer num = (Integer) it.next();
             int intValue = num.intValue();
-            if (Build.VERSION.SDK_INT >= e2.d0.q(intValue) && AudioTrack.isDirectPlaybackSupported(new AudioFormat.Builder().setChannelMask(12).setEncoding(intValue).setSampleRate(48000).build(), (AudioAttributes) eVar.b().f2435a)) {
+            if (Build.VERSION.SDK_INT >= e2.d0.q(intValue) && AudioTrack.isDirectPlaybackSupported(new AudioFormat.Builder().setChannelMask(12).setEncoding(intValue).setSampleRate(48000).build(), (AudioAttributes) eVar.b().f2037a)) {
                 u10.b(num);
             }
         }
@@ -150,7 +150,7 @@ public abstract class c {
     public static int e(int i10, int i11, e eVar) {
         for (int i12 = 10; i12 > 0; i12--) {
             int s10 = e2.d0.s(i12);
-            if (s10 != 0 && AudioTrack.isDirectPlaybackSupported(new AudioFormat.Builder().setEncoding(i10).setSampleRate(i11).setChannelMask(s10).build(), (AudioAttributes) eVar.b().f2435a)) {
+            if (s10 != 0 && AudioTrack.isDirectPlaybackSupported(new AudioFormat.Builder().setEncoding(i10).setSampleRate(i11).setChannelMask(s10).build(), (AudioAttributes) eVar.b().f2037a)) {
                 return i12;
             }
         }
@@ -162,8 +162,8 @@ public abstract class c {
             return k2.e.d;
         }
         ?? obj = new Object();
-        obj.f408a = true;
-        obj.f410c = z10;
+        obj.f378a = true;
+        obj.f380c = z10;
         return obj.a();
     }
 

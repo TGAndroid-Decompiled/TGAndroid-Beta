@@ -1,35 +1,28 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.LaunchActivity;
-public final class td0 extends sd0 {
-    public final ud0 f30619b0;
+import org.telegram.messenger.FileLog;
+public final class td0 extends v7.n {
+    public final be0 f27394a;
 
-    public td0(ud0 ud0Var, LaunchActivity launchActivity) {
-        super(launchActivity);
-        this.f30619b0 = ud0Var;
+    public td0(be0 be0Var) {
+        this.f27394a = be0Var;
     }
 
     @Override
-    public final void f(float f7) {
-        LaunchActivity launchActivity = LaunchActivity.G1;
-        if (launchActivity == null) {
-            return;
-        }
-        org.telegram.ui.ActionBar.z3 z3Var = launchActivity.f33498z0;
-        z3Var.setScaleX(AndroidUtilities.lerp(1.0f, 1.25f, f7));
-        z3Var.setScaleY(AndroidUtilities.lerp(1.0f, 1.25f, f7));
+    public final void a(int i10, CharSequence charSequence) {
+        FileLog.d("PasscodeView onAuthenticationError " + i10 + " \"" + ((Object) charSequence) + "\"");
+        this.f27394a.m(true);
     }
 
     @Override
-    public final void h() {
-        ud0.a(this.f30619b0);
-        LaunchActivity launchActivity = LaunchActivity.G1;
-        if (launchActivity == null) {
-            return;
-        }
-        org.telegram.ui.ActionBar.z3 z3Var = launchActivity.f33498z0;
-        z3Var.setScaleX(1.0f);
-        z3Var.setScaleY(1.0f);
+    public final void b() {
+        FileLog.d("PasscodeView onAuthenticationFailed");
+        this.f27394a.m(true);
+    }
+
+    @Override
+    public final void c(androidx.biometric.t tVar) {
+        FileLog.d("PasscodeView onAuthenticationSucceeded");
+        this.f27394a.k(true);
     }
 }

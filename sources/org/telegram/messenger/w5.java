@@ -1,30 +1,36 @@
 package org.telegram.messenger;
+public final class w5 implements Runnable {
+    public final int f16837a;
+    public final LocationController f16838b;
 
-import android.content.DialogInterface;
-import org.telegram.messenger.MediaController;
-public final class w5 implements DialogInterface.OnCancelListener {
-    public final int f19490a;
-    public final Object f19491b;
-
-    public w5(Object obj, int i10) {
-        this.f19490a = i10;
-        this.f19491b = obj;
+    public w5(LocationController locationController, int i10) {
+        this.f16837a = i10;
+        this.f16838b = locationController;
     }
 
     @Override
-    public final void onCancel(DialogInterface dialogInterface) {
-        switch (this.f19490a) {
+    public final void run() {
+        switch (this.f16837a) {
             case 0:
-                MediaController.lambda$saveFile$44((boolean[]) this.f19491b, dialogInterface);
+                this.f16838b.lambda$onConnected$3();
                 return;
             case 1:
-                MediaController.lambda$saveFile$51((boolean[]) this.f19491b, dialogInterface);
+                this.f16838b.lambda$setProximityLocation$13();
                 return;
             case 2:
-                MessagesController.lambda$openByUserName$457((boolean[]) this.f19491b, dialogInterface);
+                this.f16838b.lambda$new$0();
+                return;
+            case 3:
+                this.f16838b.lambda$removeAllLocationSharings$23();
+                return;
+            case 4:
+                this.f16838b.lambda$removeAllLocationSharings$24();
+                return;
+            case 5:
+                this.f16838b.lambda$cleanup$9();
                 return;
             default:
-                ((MediaController.MediaLoader) this.f19491b).lambda$new$0(dialogInterface);
+                this.f16838b.lambda$loadSharingLocations$17();
                 return;
         }
     }

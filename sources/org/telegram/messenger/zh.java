@@ -1,30 +1,38 @@
 package org.telegram.messenger;
-public final class zh implements Runnable {
-    public final int f19873a;
-    public final SavedMessagesController f19874b;
 
-    public zh(SavedMessagesController savedMessagesController, int i10) {
-        this.f19873a = i10;
-        this.f19874b = savedMessagesController;
+import android.os.SystemClock;
+import org.telegram.messenger.SharedConfig;
+public final class zh implements Runnable {
+    public final int f17171a;
+    public final SharedConfig.ProxyInfo f17172b;
+    public final long f17173c;
+
+    public zh(SharedConfig.ProxyInfo proxyInfo, long j3, int i10) {
+        this.f17171a = i10;
+        this.f17172b = proxyInfo;
+        this.f17173c = j3;
     }
 
     @Override
     public final void run() {
-        switch (this.f19873a) {
+        int i10 = this.f17171a;
+        long j3 = this.f17173c;
+        SharedConfig.ProxyInfo proxyInfo = this.f17172b;
+        switch (i10) {
             case 0:
-                this.f19874b.update();
-                return;
-            case 1:
-                SavedMessagesController.k(this.f19874b);
-                return;
-            case 2:
-                SavedMessagesController.h(this.f19874b);
-                return;
-            case 3:
-                SavedMessagesController.j(this.f19874b);
+                ProxyRotationController.lambda$new$0(proxyInfo, j3);
                 return;
             default:
-                SavedMessagesController.b(this.f19874b);
+                proxyInfo.availableCheckTime = SystemClock.elapsedRealtime();
+                proxyInfo.checking = false;
+                if (j3 == -1) {
+                    proxyInfo.available = false;
+                    proxyInfo.ping = 0L;
+                } else {
+                    proxyInfo.ping = j3;
+                    proxyInfo.available = true;
+                }
+                NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.proxyCheckDone, proxyInfo);
                 return;
         }
     }

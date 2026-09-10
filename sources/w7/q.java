@@ -1,11 +1,22 @@
 package w7;
 public abstract class q {
-    public static m1.c a(String name) {
-        ge.d dVar = zd.m0.f51602b;
-        zd.i1 i1Var = new zd.i1();
-        dVar.getClass();
-        ee.e b10 = zd.e0.b(v7.n8.c(dVar, i1Var));
-        kotlin.jvm.internal.i.e(name, "name");
-        return new m1.c(name, m1.a.f15766b, b10);
+    public static float a(float f7, float f10, float f11) {
+        if (f7 < f10) {
+            return f10;
+        }
+        if (f7 > f11) {
+            return f11;
+        }
+        return f7;
+    }
+
+    public static int b(int i10, int i11, int i12) {
+        if (i10 < i11) {
+            return i11;
+        }
+        if (i10 > i12) {
+            return i12;
+        }
+        return i10;
     }
 }

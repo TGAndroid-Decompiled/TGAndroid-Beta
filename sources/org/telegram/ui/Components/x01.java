@@ -1,27 +1,39 @@
 package org.telegram.ui.Components;
 
-import android.app.Activity;
-import android.view.MotionEvent;
-import android.widget.FrameLayout;
-public final class x01 extends FrameLayout {
-    public static final int f32407e = 0;
-    public float f32408a;
-    public float f32409b;
-    public boolean f32410c;
-    public final ThemeEditorView d;
+import android.text.TextPaint;
+import android.text.style.MetricAffectingSpan;
+public class x01 extends MetricAffectingSpan {
+    public final TextPaint f28900a;
+    public final String f28901b;
 
-    public x01(ThemeEditorView themeEditorView, Activity activity) {
-        super(activity);
-        this.d = themeEditorView;
+    public x01(TextPaint textPaint, String str) {
+        this.f28900a = textPaint;
+        this.f28901b = str;
     }
 
     @Override
-    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        return true;
+    public final void updateDrawState(TextPaint textPaint) {
+        TextPaint textPaint2 = this.f28900a;
+        if (textPaint2 != null) {
+            textPaint.setColor(textPaint2.getColor());
+            textPaint.setTypeface(textPaint2.getTypeface());
+            textPaint.setFlags(textPaint2.getFlags());
+            textPaint.setTextSize(textPaint2.getTextSize());
+            textPaint.baselineShift = textPaint2.baselineShift;
+            textPaint.bgColor = textPaint2.bgColor;
+        }
     }
 
     @Override
-    public final boolean onTouchEvent(android.view.MotionEvent r23) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.x01.onTouchEvent(android.view.MotionEvent):boolean");
+    public final void updateMeasureState(TextPaint textPaint) {
+        TextPaint textPaint2 = this.f28900a;
+        if (textPaint2 != null) {
+            textPaint.setColor(textPaint2.getColor());
+            textPaint.setTypeface(textPaint2.getTypeface());
+            textPaint.setFlags(textPaint2.getFlags());
+            textPaint.setTextSize(textPaint2.getTextSize());
+            textPaint.baselineShift = textPaint2.baselineShift;
+            textPaint.bgColor = textPaint2.bgColor;
+        }
     }
 }

@@ -1,17 +1,29 @@
 package w7;
-
-import android.graphics.Rect;
-import android.text.Layout;
-import android.text.StaticLayout;
-import android.text.TextPaint;
 public abstract class g {
-    public static StaticLayout f48133a;
-
-    public static ji.b0 a(int i10, int i11, int i12, int i13) {
-        Rect rect = new Rect(i10, i11, i12, i13);
-        if (f48133a == null) {
-            f48133a = new StaticLayout(" ", new TextPaint(), 1, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+    public static id.c a(id.c cVar, id.c cVar2, rd.p pVar) {
+        kotlin.jvm.internal.i.e(pVar, "<this>");
+        if (pVar instanceof kd.a) {
+            return ((kd.a) pVar).create(cVar, cVar2);
         }
-        return new ji.b0(f48133a, rect);
+        id.h context = cVar2.getContext();
+        if (context == id.i.f10565a) {
+            return new jd.b(cVar2, cVar, pVar);
+        }
+        return new jd.c(cVar2, context, pVar, cVar);
+    }
+
+    public static id.c b(id.c cVar) {
+        kd.c cVar2;
+        id.c intercepted;
+        kotlin.jvm.internal.i.e(cVar, "<this>");
+        if (cVar instanceof kd.c) {
+            cVar2 = (kd.c) cVar;
+        } else {
+            cVar2 = null;
+        }
+        if (cVar2 != null && (intercepted = cVar2.intercepted()) != null) {
+            return intercepted;
+        }
+        return cVar;
     }
 }

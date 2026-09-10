@@ -2,5 +2,5 @@ package b;
 
 import android.os.Binder;
 public abstract class b extends Binder implements c {
-    public static final int f1938a = 0;
+    public static final int f1574a = 0;
 }

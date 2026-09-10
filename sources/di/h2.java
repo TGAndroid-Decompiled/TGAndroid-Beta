@@ -1,251 +1,166 @@
 package di;
 
+import android.app.Activity;
 import android.content.Context;
-import android.graphics.Rect;
-import android.text.TextUtils;
-import android.view.KeyEvent;
-import android.view.MotionEvent;
-import android.view.View;
-import android.view.accessibility.AccessibilityNodeInfo;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.EditTextBoldCursor;
-import org.telegram.ui.Components.a20;
-import org.telegram.ui.Components.b20;
-import org.telegram.ui.Components.m30;
-import org.telegram.ui.Components.wm0;
-import org.telegram.ui.Components.yc0;
-import org.telegram.ui.UsersSelectActivity;
-import org.telegram.ui.fp;
-import org.telegram.ui.g10;
-import org.telegram.ui.j80;
-import org.telegram.ui.l80;
-import org.telegram.ui.lp;
-import org.telegram.ui.xe0;
-import org.telegram.ui.zx;
-public final class h2 extends EditTextBoldCursor {
-    public final int f7341b;
-    public final Object f7342c;
+import android.graphics.Paint;
+import java.util.ArrayList;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MediaDataController;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.messenger.R;
+import org.telegram.messenger.SendMessagesHelper;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.Components.kb;
+import org.telegram.ui.Components.wc;
+import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.eo;
+import org.telegram.ui.h41;
+public final class h2 implements Runnable {
+    public final int f6664a;
+    public final n3 f6665b;
 
-    public h2(Object obj, Context context, int i10) {
-        super(context);
-        this.f7341b = i10;
-        this.f7342c = obj;
+    public h2(n3 n3Var, int i10) {
+        this.f6664a = i10;
+        this.f6665b = n3Var;
     }
 
     @Override
-    public boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        switch (this.f7341b) {
-            case 6:
-                ((wm0) this.f7342c).getClass();
-                return super.dispatchTouchEvent(motionEvent);
-            default:
-                return super.dispatchTouchEvent(motionEvent);
-        }
-    }
-
-    @Override
-    public void onFocusChanged(boolean z10, int i10, Rect rect) {
-        float f7;
-        switch (this.f7341b) {
+    public final void run() {
+        int i10 = this.f6664a;
+        int i11 = 1;
+        n3 n3Var = this.f6665b;
+        switch (i10) {
             case 0:
-                super.onFocusChanged(z10, i10, rect);
-                if (!z10) {
-                    AndroidUtilities.hideKeyboard(((l2) this.f7342c).d);
+                n3.d(n3Var);
+                return;
+            case 1:
+                if (!n3Var.f6787c0 && n3Var.J != 0) {
+                    TLRPC.TL_messages_prolongWebView tL_messages_prolongWebView = new TLRPC.TL_messages_prolongWebView();
+                    tL_messages_prolongWebView.bot = MessagesController.getInstance(n3Var.G).getInputUser(n3Var.H);
+                    tL_messages_prolongWebView.peer = MessagesController.getInstance(n3Var.G).getInputPeer(n3Var.I);
+                    tL_messages_prolongWebView.query_id = n3Var.J;
+                    tL_messages_prolongWebView.silent = false;
+                    if (n3Var.K != 0) {
+                        TLRPC.InputReplyTo createReplyInput = SendMessagesHelper.getInstance(n3Var.G).createReplyInput(n3Var.K);
+                        tL_messages_prolongWebView.reply_to = createReplyInput;
+                        if (n3Var.L != 0) {
+                            createReplyInput.monoforum_peer_id = MessagesController.getInstance(n3Var.G).getInputPeer(n3Var.L);
+                            tL_messages_prolongWebView.reply_to.flags |= 32;
+                        }
+                        tL_messages_prolongWebView.flags |= 1;
+                    } else if (n3Var.L != 0) {
+                        TLRPC.TL_inputReplyToMonoForum tL_inputReplyToMonoForum = new TLRPC.TL_inputReplyToMonoForum();
+                        tL_messages_prolongWebView.reply_to = tL_inputReplyToMonoForum;
+                        tL_inputReplyToMonoForum.monoforum_peer_id = MessagesController.getInstance(n3Var.G).getInputPeer(n3Var.L);
+                        tL_messages_prolongWebView.flags |= 1;
+                    }
+                    ConnectionsManager.getInstance(n3Var.G).sendRequest(tL_messages_prolongWebView, new s2(n3Var, 0));
+                    return;
+                }
+                return;
+            case 2:
+                n3Var.D();
+                return;
+            case 3:
+                n3Var.v.requestLayout();
+                return;
+            case 4:
+                if (!n3Var.f6812x.D()) {
+                    n3Var.q();
                     return;
                 }
                 return;
             case 5:
-                super.onFocusChanged(z10, i10, rect);
-                yc0 yc0Var = (yc0) this.f7342c;
-                if (!z10 && !isFocused()) {
-                    f7 = 0.0f;
-                } else {
-                    f7 = 1.0f;
-                }
-                yc0Var.b(f7, f7, true);
+                n3Var.f6813x0 = true;
+                n3Var.k(true);
                 return;
-            default:
-                super.onFocusChanged(z10, i10, rect);
-                return;
-        }
-    }
-
-    @Override
-    public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        switch (this.f7341b) {
-            case 3:
-                super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-                StringBuilder sb2 = new StringBuilder();
-                sb2.append((CharSequence) getText());
-                lp lpVar = (lp) this.f7342c;
-                fp fpVar = lpVar.f38459f;
-                if (fpVar != null && fpVar.getTextView() != null && !TextUtils.isEmpty(lpVar.f38459f.getTextView().getText())) {
-                    sb2.append("\n");
-                    sb2.append(lpVar.f38459f.getTextView().getText());
-                }
-                accessibilityNodeInfo.setText(sb2);
-                return;
-            default:
-                super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-                return;
-        }
-    }
-
-    @Override
-    public boolean onKeyDown(int i10, KeyEvent keyEvent) {
-        switch (this.f7341b) {
-            case 2:
-                org.telegram.ui.ActionBar.v0 v0Var = (org.telegram.ui.ActionBar.v0) this.f7342c;
-                if (i10 == 67 && v0Var.f21410e.length() == 0 && ((v0Var.h.getVisibility() == 0 && v0Var.h.length() > 0) || v0Var.p())) {
-                    if (v0Var.p()) {
-                        hg.q0 q0Var = (hg.q0) i2.g.h(1, v0Var.f21414g0);
-                        org.telegram.ui.ActionBar.g5 g5Var = v0Var.H;
-                        if (g5Var != null) {
-                            g5Var.o(q0Var);
-                        }
-                        v0Var.C(q0Var);
-                        return true;
-                    }
-                    v0Var.f21427s.callOnClick();
-                    return true;
-                }
-                return super.onKeyDown(i10, keyEvent);
-            case 4:
-                b20 b20Var = (b20) this.f7342c;
-                if (i10 == 67 && b20Var.f24549r.length() == 0 && b20Var.e()) {
-                    if (!b20Var.e()) {
-                        return true;
-                    }
-                    hg.q0 q0Var2 = (hg.q0) i2.g.h(1, b20Var.F);
-                    a20 a20Var = b20Var.H;
-                    if (a20Var != null) {
-                        ((zx) a20Var).c(q0Var2);
-                    }
-                    b20Var.g(q0Var2);
-                    return true;
-                }
-                return super.onKeyDown(i10, keyEvent);
-            case 7:
-                j80 j80Var = (j80) this.f7342c;
-                l80 l80Var = j80Var.f37721f;
-                if (i10 == 67 && j80Var.d.length() == 0 && !l80Var.G.isEmpty()) {
-                    l80Var.f38250f.a((m30) i2.g.h(1, l80Var.G));
-                    l80Var.f38248c.e(!l80Var.G.isEmpty(), true);
-                    l80Var.c0();
-                    return true;
-                }
-                return super.onKeyDown(i10, keyEvent);
-            default:
-                return super.onKeyDown(i10, keyEvent);
-        }
-    }
-
-    @Override
-    public void onMeasure(int i10, int i11) {
-        switch (this.f7341b) {
-            case 2:
-                super.onMeasure(i10, i11);
-                setMeasuredDimension(AndroidUtilities.dp(3.0f) + Math.max(View.MeasureSpec.getSize(i10), getMeasuredWidth()), getMeasuredHeight());
-                return;
-            case 3:
-            default:
-                super.onMeasure(i10, i11);
-                return;
-            case 4:
-                super.onMeasure(i10, i11);
-                setPivotX(getPaddingLeft());
-                setPivotY(getMeasuredHeight() / 2.0f);
-                return;
-        }
-    }
-
-    @Override
-    public boolean onTextContextMenuItem(int i10) {
-        switch (this.f7341b) {
-            case 8:
-                if (i10 == 16908322 || i10 == 16908337) {
-                    ((xe0) this.f7342c).f42738y = true;
-                    postDelayed(new g10(this, 21), 1000L);
-                }
-                return super.onTextContextMenuItem(i10);
-            default:
-                return super.onTextContextMenuItem(i10);
-        }
-    }
-
-    @Override
-    public boolean onTouchEvent(MotionEvent motionEvent) {
-        switch (this.f7341b) {
-            case 0:
-                h2 h2Var = ((l2) this.f7342c).d;
-                if (!h2Var.isEnabled()) {
-                    return super.onTouchEvent(motionEvent);
-                }
-                if (motionEvent.getAction() == 0) {
-                    h2Var.requestFocus();
-                    AndroidUtilities.showKeyboard(h2Var);
-                }
-                return super.onTouchEvent(motionEvent);
-            case 1:
-                fa faVar = (fa) this.f7342c;
-                m30 m30Var = faVar.f7270e;
-                if (m30Var != null) {
-                    m30Var.a();
-                    faVar.f7270e = null;
-                }
-                if (motionEvent.getAction() == 0 && !AndroidUtilities.showKeyboard(this)) {
-                    faVar.fullScroll(130);
-                    clearFocus();
-                    requestFocus();
-                }
-                return super.onTouchEvent(motionEvent);
-            case 2:
-                boolean onTouchEvent = super.onTouchEvent(motionEvent);
-                if (motionEvent.getAction() == 1 && !AndroidUtilities.showKeyboard(this)) {
-                    clearFocus();
-                    requestFocus();
-                }
-                return onTouchEvent;
-            case 3:
-            case 4:
-            case 5:
-            case 7:
-            case 8:
-            default:
-                return super.onTouchEvent(motionEvent);
             case 6:
-                if (!isEnabled()) {
-                    return false;
+                n3Var.r();
+                return;
+            case 7:
+                Paint paint = n3Var.O;
+                d3 d3Var = n3Var.v;
+                if (d3Var.getSwipeOffsetY() > 0.0f) {
+                    paint.setAlpha((int) ((1.0f - w7.q.a(d3Var.getSwipeOffsetY() / d3Var.getHeight(), 0.0f, 1.0f)) * 64.0f));
+                } else {
+                    paint.setAlpha(64);
                 }
-                if (motionEvent.getAction() == 1) {
-                    ((wm0) this.f7342c).getClass();
+                n3Var.e.invalidate();
+                n3Var.f6812x.o(false, false);
+                if (n3Var.f6786c != null) {
+                    if (1.0f - (Math.min(d3Var.getTopActionBarOffsetY(), d3Var.getTranslationY() - d3Var.getTopActionBarOffsetY()) / d3Var.getTopActionBarOffsetY()) <= 0.5f) {
+                        i11 = 0;
+                    }
+                    float f7 = i11 * 100.0f;
+                    o1.k kVar = n3Var.f6786c;
+                    o1.l lVar = kVar.f14134u;
+                    if (((float) lVar.f14140i) != f7) {
+                        lVar.f14140i = f7;
+                        kVar.f();
+                    }
                 }
-                return super.onTouchEvent(motionEvent);
+                if (n3Var.f6788d0) {
+                    int i12 = n3Var.h.bottom;
+                } else {
+                    Math.max(0.0f, d3Var.getSwipeOffsetY());
+                }
+                System.currentTimeMillis();
+                return;
+            case 8:
+                n3Var.f6812x.o(true, false);
+                return;
             case 9:
-                UsersSelectActivity usersSelectActivity = (UsersSelectActivity) this.f7342c;
-                m30 m30Var2 = usersSelectActivity.P;
-                if (m30Var2 != null) {
-                    m30Var2.a();
-                    usersSelectActivity.P = null;
+                Activity activity = n3Var.f6796k0;
+                if (activity instanceof LaunchActivity) {
+                    ((LaunchActivity) activity).p0(eo.R9(n3Var.H));
                 }
-                if (motionEvent.getAction() == 0 && !AndroidUtilities.showKeyboard(this)) {
-                    clearFocus();
-                    requestFocus();
-                }
-                return super.onTouchEvent(motionEvent);
+                n3Var.k(true);
+                return;
             case 10:
-                yg.i iVar = (yg.i) this.f7342c;
-                m30 m30Var3 = iVar.f50212f;
-                if (m30Var3 != null) {
-                    m30Var3.a();
-                    iVar.f50212f = null;
+                e3 e3Var = n3Var.f6812x;
+                e3Var.getClass();
+                e3Var.P = System.currentTimeMillis();
+                e3Var.y("settings_button_pressed", null);
+                return;
+            case 11:
+                l3 l3Var = n3Var.f6814y;
+                e3 e3Var2 = n3Var.f6812x;
+                if (e3Var2.getWebView() != null) {
+                    e3Var2.getWebView().animate().cancel();
+                    e3Var2.getWebView().animate().alpha(0.0f).start();
                 }
-                if (motionEvent.getAction() == 0 && !AndroidUtilities.showKeyboard(this)) {
-                    iVar.fullScroll(130);
-                    clearFocus();
-                    requestFocus();
-                }
-                return super.onTouchEvent(motionEvent);
+                l3Var.setLoadProgress(0.0f);
+                l3Var.setAlpha(1.0f);
+                l3Var.setVisibility(0);
+                e3Var2.setBotUser(MessagesController.getInstance(n3Var.G).getUser(Long.valueOf(n3Var.H)));
+                e3Var2.t(n3Var.G, n3Var.H);
+                NotificationCenter.getInstance(e3Var2.M).doOnIdle(new org.telegram.ui.web.t(e3Var2, 2));
+                return;
+            case 12:
+                MediaDataController.getInstance(n3Var.G).installShortcut(n3Var.H, MediaDataController.SHORTCUT_TYPE_ATTACHED_BOT);
+                return;
+            case 13:
+                nf.f.s(n3Var.getContext(), LocaleController.getString(R.string.BotWebViewToSLink));
+                return;
+            case 14:
+                int i13 = n3Var.G;
+                Context context = n3Var.getContext();
+                wc wcVar = new wc(kb.a(n3Var.getContext()), n3Var.E);
+                long j3 = n3Var.H;
+                int i14 = h41.v;
+                h41.K(i13, context, j3, false, false, new ArrayList(), wcVar, null, new byte[0], null, null);
+                return;
+            case 15:
+                n3.j(n3Var.G, n3Var.H, new h2(n3Var, 16));
+                return;
+            case 16:
+                n3Var.k(false);
+                return;
+            default:
+                n3Var.k(false);
+                return;
         }
     }
 }

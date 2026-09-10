@@ -8,7 +8,7 @@ public enum d0 extends b2 {
     public final void d(l lVar, a aVar) {
         if (aVar.o()) {
             lVar.d(false);
-            j jVar = lVar.f6810i;
+            j jVar = lVar.f6473i;
             char i10 = aVar.i();
             jVar.getClass();
             jVar.h(String.valueOf(i10));
@@ -17,6 +17,6 @@ public enum d0 extends b2 {
             return;
         }
         lVar.h("</");
-        lVar.f6806c = b2.K;
+        lVar.f6470c = b2.K;
     }
 }

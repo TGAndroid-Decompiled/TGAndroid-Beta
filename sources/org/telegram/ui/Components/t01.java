@@ -1,160 +1,271 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.LinearGradient;
 import android.graphics.Matrix;
-import android.opengl.GLES20;
-import java.util.ArrayList;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.PorterDuffXfermode;
+import android.graphics.Shader;
+import android.graphics.Typeface;
+import android.os.Build;
+import android.text.Layout;
+import android.text.StaticLayout;
+import android.text.TextPaint;
+import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.FileLog;
 public final class t01 {
-    public final int[] A;
-    public final int[] B;
-    public Bitmap C;
-    public final boolean D;
-    public final u01 E;
-    public final ArrayList f30495a;
-    public long f30496b;
-    public float f30497c;
-    public boolean d;
-    public final Runnable f30498e;
-    public Runnable f30499f;
-    public float f30500g;
+    public final TextPaint f27245a;
+    public StaticLayout f27246b;
+    public float f27247c;
+    public float d;
+    public float e;
+    public int f27248f;
+    public Layout.Alignment f27249g;
     public float h;
-    public final float f30501i;
-    public final float f30502j;
-    public final float f30503k;
-    public final float f30504l;
-    public final float f30505m;
-    public boolean f30506n;
-    public final boolean f30507o;
-    public final float[] f30508p;
-    public final float[] f30509q;
-    public final Matrix f30510r;
-    public int f30511s;
-    public final int f30512t;
-    public final int f30513u;
-    public int v;
-    public int f30514w;
-    public float f30515x;
-    public final float f30516y;
-    public int f30517z;
+    public boolean f27250i;
+    public View f27251j;
+    public u5 f27252k;
+    public int f27253l;
+    public PorterDuffColorFilter f27254m;
+    public int f27255n;
+    public boolean f27256o;
+    public float f27257p;
+    public LinearGradient f27258q;
+    public Matrix f27259r;
+    public Paint f27260s;
+    public int f27261t;
 
-    public t01(u01 u01Var, Matrix matrix, Bitmap bitmap, Runnable runnable, Runnable runnable2) {
-        this.E = u01Var;
-        this.f30495a = new ArrayList();
-        this.f30496b = -1L;
-        this.f30497c = 0.0f;
-        this.d = true;
-        this.f30500g = 0.0f;
-        this.h = 0.0f;
-        this.f30501i = 0.0f;
-        this.f30502j = 0.0f;
-        this.f30503k = AndroidUtilities.density;
-        this.f30504l = 1.5f;
-        this.f30505m = 1.15f;
-        this.f30506n = true;
-        this.f30507o = false;
-        this.f30508p = new float[9];
-        this.f30509q = new float[9];
-        Matrix matrix2 = new Matrix();
-        this.f30510r = matrix2;
-        this.f30516y = (float) (Math.random() * 2.0d);
-        this.A = new int[1];
-        this.B = new int[2];
-        this.D = true;
-        float[] fArr = {0.0f, 0.0f, 0.0f, 1.0f, 1.0f, 0.0f, 1.0f, 1.0f};
-        matrix.mapPoints(fArr);
-        this.f30501i = fArr[0];
-        this.f30502j = fArr[1];
-        this.f30512t = (int) v7.z6.a(fArr[2], fArr[3], fArr[6], fArr[7]);
-        this.f30513u = (int) v7.z6.a(fArr[4], fArr[5], fArr[6], fArr[7]);
-        this.f30507o = true;
-        matrix2.set(matrix);
-        c();
-        this.f30498e = runnable;
-        this.f30499f = runnable2;
-        this.f30504l = 4.0f;
-        this.f30497c = -0.1f;
-        this.C = bitmap;
-    }
-
-    public static void b(Canvas canvas, org.telegram.ui.Cells.t1 t1Var, int i10, float f7, float f10) {
-        float f11;
-        canvas.save();
-        if (t1Var.a()) {
-            f11 = t1Var.getAlpha();
-        } else {
-            f11 = 1.0f;
-        }
-        canvas.translate(f7, f10);
-        boolean z10 = true;
-        t1Var.setInvalidatesParent(true);
-        if (i10 == 0) {
-            t1Var.m2(f11, canvas, true);
-        } else if (i10 == 1) {
-            t1Var.W1(canvas, f11);
-        } else if (i10 == 2) {
-            t1Var.I1(f11, canvas, (t1Var.getCurrentPosition() == null || (t1Var.getCurrentPosition().flags & 1) != 0) ? false : false);
-        } else if (t1Var.getCurrentPosition() == null || (t1Var.getCurrentPosition().flags & 1) != 0) {
-            t1Var.d2(canvas, f11, null);
-            t1Var.N1(canvas, f11);
-        }
-        t1Var.setInvalidatesParent(false);
-        canvas.restore();
+    public t01(CharSequence charSequence, TextPaint textPaint) {
+        this.e = 9999.0f;
+        this.f27248f = 1;
+        this.f27249g = Layout.Alignment.ALIGN_NORMAL;
+        this.f27253l = 0;
+        this.f27257p = -1.0f;
+        this.f27245a = textPaint;
+        r(charSequence);
     }
 
     public final void a() {
-        try {
-            GLES20.glDeleteBuffers(2, this.B, 0);
-        } catch (Exception e7) {
-            FileLog.e(e7);
+        Layout.Alignment alignment = Layout.Alignment.ALIGN_CENTER;
+        if (this.f27249g != alignment) {
+            this.f27249g = alignment;
+            r(this.f27246b.getText());
         }
-        u01 u01Var = this.E;
-        int i10 = u01Var.f30789w;
-        if (i10 != 0) {
-            try {
-                GLES20.glDeleteProgram(i10);
-            } catch (Exception e10) {
-                FileLog.e(e10);
+    }
+
+    public final float b() {
+        float f7 = 0.0f;
+        for (int i10 = 0; i10 < this.f27246b.getLineCount(); i10++) {
+            f7 = Math.max(f7, this.f27246b.getLineWidth(i10));
+        }
+        return f7;
+    }
+
+    public final void c(float f7, float f10, float f11, int i10, Canvas canvas) {
+        float height;
+        if (this.f27246b == null) {
+            return;
+        }
+        TextPaint textPaint = this.f27245a;
+        textPaint.setColor(i10);
+        textPaint.linkColor = i10;
+        int alpha = textPaint.getAlpha();
+        if (f11 != 1.0f) {
+            textPaint.setAlpha((int) (alpha * f11));
+        }
+        canvas.save();
+        if (this.f27248f > 1) {
+            height = 0.0f;
+        } else {
+            height = this.f27246b.getHeight() / 2.0f;
+        }
+        canvas.translate(f7, f10 - height);
+        d(canvas);
+        canvas.restore();
+        textPaint.setAlpha(alpha);
+    }
+
+    public final void d(Canvas canvas) {
+        StaticLayout staticLayout = this.f27246b;
+        if (staticLayout != null) {
+            float f7 = this.f27257p;
+            if (f7 >= 0.0f && this.f27247c > f7) {
+                canvas.saveLayerAlpha(0.0f, -this.f27261t, f7 - 1.0f, staticLayout.getHeight() + this.f27261t, 255, 31);
             }
-            u01Var.f30789w = 0;
-        }
-        try {
-            GLES20.glDeleteTextures(1, this.A, 0);
-        } catch (Exception e11) {
-            FileLog.e(e11);
-        }
-        Runnable runnable = this.f30499f;
-        if (runnable != null) {
-            w01.b(runnable);
-            this.f30499f = null;
+            canvas.save();
+            canvas.translate(-this.d, 0.0f);
+            boolean z10 = this.f27256o;
+            TextPaint textPaint = this.f27245a;
+            if (z10) {
+                canvas.drawText(this.f27246b.getText().toString(), 0.0f, -textPaint.getFontMetricsInt().ascent, textPaint);
+            } else {
+                this.f27246b.draw(canvas);
+            }
+            if (this.f27250i) {
+                if (this.f27254m == null || textPaint.getColor() != this.f27255n) {
+                    int color = textPaint.getColor();
+                    this.f27255n = color;
+                    this.f27254m = new PorterDuffColorFilter(color, PorterDuff.Mode.SRC_IN);
+                }
+                y5.drawAnimatedEmojis(canvas, this.f27246b, this.f27252k, 0.0f, null, 0.0f, 0.0f, 0.0f, 1.0f, this.f27254m);
+            }
+            canvas.restore();
+            float f10 = this.f27257p;
+            if (f10 >= 0.0f && this.f27247c > f10) {
+                if (this.f27258q == null) {
+                    this.f27258q = new LinearGradient(0.0f, 0.0f, AndroidUtilities.dp(8.0f), 0.0f, new int[]{16777215, -1}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
+                    this.f27259r = new Matrix();
+                    Paint paint = new Paint(1);
+                    this.f27260s = paint;
+                    paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
+                    this.f27260s.setShader(this.f27258q);
+                }
+                canvas.save();
+                this.f27259r.reset();
+                this.f27259r.postTranslate(this.f27257p - AndroidUtilities.dp(8.0f), 0.0f);
+                this.f27258q.setLocalMatrix(this.f27259r);
+                canvas.drawRect(this.f27257p - AndroidUtilities.dp(8.0f), 0.0f, this.f27257p, this.f27246b.getHeight(), this.f27260s);
+                canvas.restore();
+                canvas.restore();
+            }
         }
     }
 
-    public final void c() {
-        Matrix matrix = this.f30510r;
-        float[] fArr = this.f30509q;
-        matrix.getValues(fArr);
-        float f7 = fArr[0];
-        float[] fArr2 = this.f30508p;
-        fArr2[0] = f7;
-        fArr2[1] = fArr[3];
-        fArr2[2] = fArr[6];
-        fArr2[3] = fArr[1];
-        fArr2[4] = fArr[4];
-        fArr2[5] = fArr[7];
-        fArr2[6] = fArr[2];
-        fArr2[7] = fArr[5];
-        fArr2[8] = fArr[8];
-        this.f30506n = false;
+    public final void e(Canvas canvas, float f7, float f10) {
+        f(canvas, f7, f10, 1.0f);
     }
 
-    public t01(org.telegram.ui.Components.u01 r31, java.util.ArrayList r32, java.lang.Runnable r33) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.t01.<init>(org.telegram.ui.Components.u01, java.util.ArrayList, java.lang.Runnable):void");
+    public final void f(Canvas canvas, float f7, float f10, float f11) {
+        float height;
+        if (this.f27246b == null) {
+            return;
+        }
+        canvas.save();
+        if (this.f27248f > 1) {
+            height = 0.0f;
+        } else {
+            height = this.f27246b.getHeight() / 2.0f;
+        }
+        canvas.translate(f7, f10 - height);
+        TextPaint textPaint = this.f27245a;
+        int alpha = textPaint.getAlpha();
+        textPaint.setAlpha((int) (alpha * f11));
+        d(canvas);
+        textPaint.setAlpha(alpha);
+        canvas.restore();
     }
 
-    public t01(org.telegram.ui.Components.u01 r10, android.view.View r11, float r12, java.lang.Runnable r13) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.t01.<init>(org.telegram.ui.Components.u01, android.view.View, float, java.lang.Runnable):void");
+    public final void g(float f7) {
+        this.f27257p = f7;
+    }
+
+    public final float h() {
+        return this.f27247c;
+    }
+
+    public final Paint.FontMetricsInt i() {
+        return this.f27245a.getFontMetricsInt();
+    }
+
+    public final float j() {
+        return this.f27246b.getHeight();
+    }
+
+    public final CharSequence k() {
+        StaticLayout staticLayout = this.f27246b;
+        if (staticLayout != null && staticLayout.getText() != null) {
+            return this.f27246b.getText();
+        }
+        return "";
+    }
+
+    public final float l() {
+        float f7 = this.f27257p;
+        if (f7 >= 0.0f) {
+            return Math.min(f7, this.f27247c);
+        }
+        return this.f27247c;
+    }
+
+    public final void m(float f7) {
+        if (this.h != f7) {
+            this.h = f7;
+            r(this.f27246b.getText());
+        }
+    }
+
+    public final void n(int i10) {
+        this.f27248f = i10;
+        r(this.f27246b.getText());
+    }
+
+    public final void o(int i10) {
+        this.f27245a.setColor(i10);
+    }
+
+    public final void p(int i10) {
+        if (this.f27253l != i10) {
+            this.f27253l = i10;
+            if (this.f27250i) {
+                y5.release(this.f27251j, this.f27252k);
+                this.f27252k = y5.update(this.f27253l, this.f27251j, this.f27252k, this.f27246b);
+            }
+        }
+    }
+
+    public final void q(float f7) {
+        this.e = f7;
+        r(this.f27246b.getText());
+    }
+
+    public final void r(CharSequence charSequence) {
+        if (this.f27248f > 1 && Build.VERSION.SDK_INT >= 23) {
+            this.f27246b = StaticLayout.Builder.obtain(charSequence, 0, charSequence.length(), this.f27245a, (int) Math.max(this.e, 1.0f)).setAlignment(this.f27249g).setMaxLines(this.f27248f).setLineSpacing(this.h, 1.0f).build();
+        } else {
+            this.f27246b = new StaticLayout(AndroidUtilities.replaceNewLines(charSequence), this.f27245a, (int) Math.max(this.e, 1.0f), this.f27249g, 1.0f, this.h, false);
+        }
+        if (this.f27249g == Layout.Alignment.ALIGN_CENTER) {
+            this.f27247c = this.f27246b.getWidth();
+            this.d = 0.0f;
+        } else {
+            this.f27247c = 0.0f;
+            this.d = this.f27246b.getWidth();
+            for (int i10 = 0; i10 < this.f27246b.getLineCount(); i10++) {
+                this.f27247c = Math.max(this.f27247c, this.f27246b.getLineWidth(i10));
+                this.d = Math.min(this.d, this.f27246b.getLineLeft(i10));
+            }
+        }
+        View view = this.f27251j;
+        if (view != null && view.isAttachedToWindow()) {
+            this.f27252k = y5.update(this.f27253l, this.f27251j, this.f27252k, this.f27246b);
+        }
+    }
+
+    public final void s(View view) {
+        this.f27250i = true;
+        this.f27251j = view;
+        if (view.isAttachedToWindow()) {
+            this.f27252k = y5.update(this.f27253l, view, this.f27252k, this.f27246b);
+        }
+        view.addOnAttachStateChangeListener(new ka(1, this, view));
+    }
+
+    public t01(String str, float f7) {
+        this(str, f7, null);
+    }
+
+    public t01(CharSequence charSequence, float f7, Typeface typeface) {
+        this.e = 9999.0f;
+        this.f27248f = 1;
+        this.f27249g = Layout.Alignment.ALIGN_NORMAL;
+        this.f27253l = 0;
+        this.f27257p = -1.0f;
+        TextPaint textPaint = new TextPaint(1);
+        this.f27245a = textPaint;
+        textPaint.setTextSize(AndroidUtilities.dp(f7));
+        textPaint.setTypeface(typeface);
+        r(charSequence);
     }
 }

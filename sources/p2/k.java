@@ -1,16 +1,16 @@
 package p2;
 public final class k {
-    public final long f43736a;
-    public final boolean f43737b;
-    public final long f43738c;
+    public final long f39587a;
+    public final boolean f39588b;
+    public final long f39589c;
     public final long d;
-    public final boolean f43739e;
+    public final boolean e;
 
     public k(long j3, boolean z10, long j10, long j11, boolean z11) {
-        this.f43736a = j3;
-        this.f43737b = z10;
-        this.f43738c = j10;
+        this.f39587a = j3;
+        this.f39588b = z10;
+        this.f39589c = j10;
         this.d = j11;
-        this.f43739e = z11;
+        this.e = z11;
     }
 }

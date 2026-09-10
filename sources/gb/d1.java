@@ -8,8 +8,8 @@ public class d1 extends db.u {
         }
         try {
             return Integer.valueOf(aVar.p());
-        } catch (NumberFormatException e7) {
-            throw new RuntimeException(e7);
+        } catch (NumberFormatException e) {
+            throw new RuntimeException(e);
         }
     }
 

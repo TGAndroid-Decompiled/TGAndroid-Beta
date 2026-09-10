@@ -1,51 +1,145 @@
 package org.telegram.ui;
 
-import android.app.Activity;
-import java.util.ArrayList;
-import java.util.List;
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
+import android.content.Context;
+import android.graphics.Rect;
+import android.os.Build;
+import android.util.Property;
+import android.view.View;
+import android.widget.ScrollView;
+import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_account;
-public final class lh1 implements RequestDelegate {
-    public final int f38390a;
-    public final Object f38391b;
-    public final Object f38392c;
-    public final Object d;
-    public final Object f38393e;
-    public final Object f38394f;
-    public final Object f38395g;
+public final class lh1 extends ScrollView {
+    public final int[] f34719a;
+    public final Rect f34720b;
+    public boolean f34721c;
+    public int d;
+    public final mh1 e;
 
-    public lh1(Object obj, Object obj2, Object obj3, Object obj4, Object obj5, Object obj6, int i10) {
-        this.f38390a = i10;
-        this.f38391b = obj;
-        this.f38392c = obj2;
-        this.d = obj3;
-        this.f38393e = obj4;
-        this.f38394f = obj5;
-        this.f38395g = obj6;
+    public lh1(mh1 mh1Var, Context context) {
+        super(context);
+        this.e = mh1Var;
+        this.f34719a = new int[2];
+        this.f34720b = new Rect();
+        this.f34721c = true;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f38390a) {
-            case 0:
-                AndroidUtilities.runOnUIThread(new ji.k((UserInfoActivity) this.f38391b, tL_error, (TLObject) this.f38392c, (TL_account.TL_birthday) this.d, (TLRPC.UserFull) this.f38393e, tLObject, (int[]) this.f38394f, (ArrayList) this.f38395g));
-                return;
-            case 1:
-                AndroidUtilities.runOnUIThread(new ji.k(tL_error, (ug.w) this.f38391b, tLObject, (List) this.f38392c, (c5.h) this.d, (ug.w) this.f38393e, (org.telegram.ui.ActionBar.n2) this.f38394f, (TLRPC.TL_inputStorePaymentPremiumGiveaway) this.f38395g, 3));
-                return;
-            case 2:
-                AndroidUtilities.runOnUIThread(new ji.k(tL_error, (Utilities.Callback) this.f38391b, tLObject, (List) this.f38392c, (c5.h) this.d, (Utilities.Callback) this.f38393e, (org.telegram.ui.ActionBar.n2) this.f38394f, (TLRPC.TL_inputStorePaymentPremiumGiftCode) this.f38395g, 4));
-                return;
-            case 3:
-                AndroidUtilities.runOnUIThread(new ji.k(tLObject, (c5.o) this.f38391b, (c5.h) this.f38392c, (bi.f0) this.d, (Activity) this.f38393e, (TLRPC.TL_inputStorePaymentStarsGiveaway) this.f38394f, (List) this.f38395g, tL_error, 5));
-                return;
-            default:
-                AndroidUtilities.runOnUIThread(new ji.k(tLObject, (c5.o) this.f38391b, (c5.h) this.f38392c, (org.telegram.ui.Components.d80) this.d, (Activity) this.f38393e, (TLRPC.TL_inputStorePaymentStarsGift) this.f38394f, (List) this.f38395g, tL_error, 6));
-                return;
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        this.f34721c = false;
+        super.onLayout(z10, i10, i11, i12, i13);
+    }
+
+    @Override
+    public final void onScrollChanged(int i10, int i11, int i12, int i13) {
+        org.telegram.ui.ActionBar.l lVar;
+        boolean z10;
+        boolean z11;
+        Integer num;
+        float f7;
+        org.telegram.ui.ActionBar.l lVar2;
+        super.onScrollChanged(i10, i11, i12, i13);
+        mh1 mh1Var = this.e;
+        TextView textView = mh1Var.f34956c;
+        if (textView != null) {
+            int[] iArr = this.f34719a;
+            textView.getLocationOnScreen(iArr);
+            int measuredHeight = mh1Var.f34956c.getMeasuredHeight() + iArr[1];
+            lVar = ((org.telegram.ui.ActionBar.p2) mh1Var).actionBar;
+            if (measuredHeight < lVar.getBottom()) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            if (mh1Var.f34956c.getTag() == null) {
+                z11 = true;
+            } else {
+                z11 = false;
+            }
+            if (z10 != z11) {
+                TextView textView2 = mh1Var.f34956c;
+                if (z10) {
+                    num = null;
+                } else {
+                    num = 1;
+                }
+                textView2.setTag(num);
+                AnimatorSet animatorSet = mh1Var.K;
+                if (animatorSet != null) {
+                    animatorSet.cancel();
+                    mh1Var.K = null;
+                }
+                AnimatorSet animatorSet2 = new AnimatorSet();
+                mh1Var.K = animatorSet2;
+                bi.s7 s7Var = mh1Var.f34971y;
+                float f10 = 0.0f;
+                if (z10) {
+                    f7 = 1.0f;
+                } else {
+                    f7 = 0.0f;
+                }
+                float[] fArr = {f7};
+                Property property = View.ALPHA;
+                ObjectAnimator ofFloat = ObjectAnimator.ofFloat(s7Var, property, fArr);
+                lVar2 = ((org.telegram.ui.ActionBar.p2) mh1Var).actionBar;
+                org.telegram.ui.ActionBar.l5 titleTextView = lVar2.getTitleTextView();
+                if (z10) {
+                    f10 = 1.0f;
+                }
+                animatorSet2.playTogether(ofFloat, ObjectAnimator.ofFloat(titleTextView, property, f10));
+                mh1Var.K.setDuration(150L);
+                mh1Var.K.addListener(new mv0(this, 15));
+                mh1Var.K.start();
+            }
+        }
+    }
+
+    @Override
+    public final void requestChildFocus(View view, View view2) {
+        if (Build.VERSION.SDK_INT < 29 && view2 != null && !this.f34721c) {
+            scrollToDescendant(view2);
+        }
+        super.requestChildFocus(view, view2);
+    }
+
+    @Override
+    public final boolean requestChildRectangleOnScreen(View view, Rect rect, boolean z10) {
+        if (Build.VERSION.SDK_INT < 23) {
+            int dp = AndroidUtilities.dp(120.0f) + rect.bottom;
+            rect.bottom = dp;
+            int i10 = this.d;
+            if (i10 != 0) {
+                rect.top -= i10;
+                rect.bottom = dp - i10;
+                this.d = 0;
+            }
+        }
+        return super.requestChildRectangleOnScreen(view, rect, z10);
+    }
+
+    @Override
+    public final void requestLayout() {
+        this.f34721c = true;
+        super.requestLayout();
+    }
+
+    @Override
+    public final void scrollToDescendant(View view) {
+        Rect rect = this.f34720b;
+        view.getDrawingRect(rect);
+        offsetDescendantRectToMyCoords(view, rect);
+        rect.bottom = AndroidUtilities.dp(120.0f) + rect.bottom;
+        int computeScrollDeltaToGetChildRectOnScreen = computeScrollDeltaToGetChildRectOnScreen(rect);
+        if (computeScrollDeltaToGetChildRectOnScreen < 0) {
+            int measuredHeight = (getMeasuredHeight() - view.getMeasuredHeight()) / 2;
+            this.d = measuredHeight;
+            computeScrollDeltaToGetChildRectOnScreen -= measuredHeight;
+        } else {
+            this.d = 0;
+        }
+        if (computeScrollDeltaToGetChildRectOnScreen != 0) {
+            smoothScrollBy(0, computeScrollDeltaToGetChildRectOnScreen);
         }
     }
 }

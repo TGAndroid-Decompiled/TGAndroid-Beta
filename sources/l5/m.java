@@ -1,4 +1,4 @@
 package l5;
 public abstract class m {
-    public static final rb.a f15320a = new rb.a(12);
+    public static final qb.b f12802a = new qb.b(12);
 }

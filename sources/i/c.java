@@ -2,10 +2,10 @@ package i;
 
 import android.animation.ObjectAnimator;
 import android.graphics.drawable.AnimationDrawable;
-import v7.f8;
-public final class c extends f8 {
-    public final ObjectAnimator f11432a;
-    public final boolean f11433b;
+import v7.i8;
+public final class c extends i8 {
+    public final ObjectAnimator f10057a;
+    public final boolean f10058b;
 
     public c(AnimationDrawable animationDrawable, boolean z10, boolean z11) {
         int i10;
@@ -19,12 +19,12 @@ public final class c extends f8 {
         }
         ?? obj = new Object();
         int numberOfFrames2 = animationDrawable.getNumberOfFrames();
-        obj.f11435b = numberOfFrames2;
-        int[] iArr = obj.f11434a;
+        obj.f10060b = numberOfFrames2;
+        int[] iArr = obj.f10059a;
         if (iArr == null || iArr.length < numberOfFrames2) {
-            obj.f11434a = new int[numberOfFrames2];
+            obj.f10059a = new int[numberOfFrames2];
         }
-        int[] iArr2 = obj.f11434a;
+        int[] iArr2 = obj.f10059a;
         int i13 = 0;
         for (int i14 = 0; i14 < numberOfFrames2; i14++) {
             if (z10) {
@@ -36,32 +36,32 @@ public final class c extends f8 {
             iArr2[i14] = duration;
             i13 += duration;
         }
-        obj.f11436c = i13;
+        obj.f10061c = i13;
         ObjectAnimator ofInt = ObjectAnimator.ofInt(animationDrawable, "currentIndex", i12, i10);
         j.a.a(ofInt, true);
-        ofInt.setDuration(obj.f11436c);
+        ofInt.setDuration(obj.f10061c);
         ofInt.setInterpolator(obj);
-        this.f11433b = z11;
-        this.f11432a = ofInt;
+        this.f10058b = z11;
+        this.f10057a = ofInt;
     }
 
     @Override
     public final boolean a() {
-        return this.f11433b;
+        return this.f10058b;
     }
 
     @Override
     public final void b() {
-        this.f11432a.reverse();
+        this.f10057a.reverse();
     }
 
     @Override
     public final void c() {
-        this.f11432a.start();
+        this.f10057a.start();
     }
 
     @Override
     public final void d() {
-        this.f11432a.cancel();
+        this.f10057a.cancel();
     }
 }

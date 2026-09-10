@@ -5,23 +5,24 @@ import android.view.View;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
-import org.telegram.ui.Components.jk0;
+import m.e3;
+import org.telegram.ui.Components.tk0;
 public abstract class m0 {
-    public k2.g0 f45854a;
-    public ArrayList f45855b;
-    public long f45856c;
+    public l2.g f41689a;
+    public ArrayList f41690b;
+    public long f41691c;
     public long d;
-    public long f45857e;
-    public long f45858f;
-    public long f45859g;
+    public long e;
+    public long f41692f;
+    public long f41693g;
     public TimeInterpolator h;
-    public TimeInterpolator f45860i;
-    public TimeInterpolator f45861j;
-    public TimeInterpolator f45862k;
-    public long f45863l;
+    public TimeInterpolator f41694i;
+    public TimeInterpolator f41695j;
+    public TimeInterpolator f41696k;
+    public long f41697l;
 
     public static int b(c1 c1Var) {
-        int i10 = c1Var.f45775l;
+        int i10 = c1Var.f41618l;
         int i11 = i10 & 14;
         if (c1Var.h()) {
             return 4;
@@ -41,29 +42,29 @@ public abstract class m0 {
     public abstract boolean c(c1 c1Var, List list);
 
     public final void d(c1 c1Var) {
-        k2.g0 g0Var = this.f45854a;
-        if (g0Var != null) {
-            RecyclerView recyclerView = (RecyclerView) g0Var.f14604b;
+        l2.g gVar = this.f41689a;
+        if (gVar != null) {
+            RecyclerView recyclerView = (RecyclerView) gVar.f12719b;
             boolean z10 = true;
             c1Var.q(true);
-            View view = c1Var.f45766a;
-            if (c1Var.f45773j != null && c1Var.f45774k == null) {
-                c1Var.f45773j = null;
+            View view = c1Var.f41610a;
+            if (c1Var.f41616j != null && c1Var.f41617k == null) {
+                c1Var.f41616j = null;
             }
-            c1Var.f45774k = null;
-            if ((c1Var.f45775l & 16) == 0) {
-                pf.e eVar = recyclerView.f1894b;
+            c1Var.f41617k = null;
+            if ((c1Var.f41618l & 16) == 0) {
+                of.e eVar = recyclerView.f1532b;
                 recyclerView.y0();
-                m2.t tVar = recyclerView.f1899e;
-                e6.n nVar = (e6.n) tVar.d;
-                l.d dVar = (l.d) tVar.f15845c;
-                int indexOfChild = ((RecyclerView) dVar.f15098b).indexOfChild(view);
+                e3 e3Var = recyclerView.e;
+                e6.n nVar = (e6.n) e3Var.f13002c;
+                gh.h hVar = (gh.h) e3Var.f13001b;
+                int indexOfChild = hVar.f9143a.indexOfChild(view);
                 if (indexOfChild == -1) {
-                    tVar.R(view);
-                } else if (nVar.D(indexOfChild)) {
-                    nVar.F(indexOfChild);
-                    tVar.R(view);
-                    dVar.C(indexOfChild);
+                    e3Var.X(view);
+                } else if (nVar.z(indexOfChild)) {
+                    nVar.C(indexOfChild);
+                    e3Var.X(view);
+                    hVar.a(indexOfChild);
                 } else {
                     z10 = false;
                 }
@@ -81,11 +82,11 @@ public abstract class m0 {
     }
 
     public final void e() {
-        ArrayList arrayList = this.f45855b;
+        ArrayList arrayList = this.f41690b;
         int size = arrayList.size();
         for (int i10 = 0; i10 < size; i10++) {
-            jk0 jk0Var = (jk0) arrayList.get(i10);
-            jk0Var.f27554a.c(jk0Var.f27555b, jk0Var.f27556c, jk0Var.d, false);
+            tk0 tk0Var = (tk0) arrayList.get(i10);
+            tk0Var.f27433a.c(tk0Var.f27434b, tk0Var.f27435c, tk0Var.d, false);
         }
         arrayList.clear();
     }
@@ -95,24 +96,24 @@ public abstract class m0 {
     public abstract void g();
 
     public long h() {
-        return this.f45856c;
+        return this.f41691c;
     }
 
     public long i() {
-        return Math.max(this.f45858f, this.f45859g);
+        return Math.max(this.f41692f, this.f41693g);
     }
 
     public long j() {
-        return this.f45857e;
+        return this.e;
     }
 
     public abstract boolean k();
 
     public b2.q0 l(z0 z0Var, c1 c1Var, int i10, List list) {
         ?? obj = new Object();
-        View view = c1Var.f45766a;
-        obj.f2287a = view.getLeft();
-        obj.f2288b = view.getTop();
+        View view = c1Var.f41610a;
+        obj.f1896a = view.getLeft();
+        obj.f1897b = view.getTop();
         view.getRight();
         view.getBottom();
         return obj;
@@ -121,17 +122,17 @@ public abstract class m0 {
     public abstract void m();
 
     public final void n(long j3) {
-        this.f45856c = j3;
-        this.f45857e = j3;
+        this.f41691c = j3;
+        this.e = j3;
         this.d = j3;
-        this.f45858f = j3;
-        this.f45859g = j3;
+        this.f41692f = j3;
+        this.f41693g = j3;
     }
 
     public final void o(TimeInterpolator timeInterpolator) {
         this.h = timeInterpolator;
-        this.f45860i = timeInterpolator;
-        this.f45861j = timeInterpolator;
-        this.f45862k = timeInterpolator;
+        this.f41694i = timeInterpolator;
+        this.f41695j = timeInterpolator;
+        this.f41696k = timeInterpolator;
     }
 }

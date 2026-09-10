@@ -1,48 +1,32 @@
 package org.telegram.ui.ActionBar;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.animation.AnimatorSet;
-import org.telegram.messenger.NotificationCenter;
-public final class c3 extends AnimatorListenerAdapter {
-    public final int f20341a;
-    public final d3 f20342b;
+import android.content.Context;
+import android.view.ViewGroup;
+import org.telegram.ui.Components.u6;
+public final class c3 {
+    public final h3 f17571a;
 
-    public c3(d3 d3Var, int i10) {
-        this.f20341a = i10;
-        this.f20342b = d3Var;
+    public c3(Context context, f6 f6Var) {
+        h3 h3Var = new h3(1, context, f6Var, false);
+        this.f17571a = h3Var;
+        h3Var.fixNavigationBar();
     }
 
-    @Override
-    public final void onAnimationEnd(Animator animator) {
-        int i10 = this.f20341a;
-        d3 d3Var = this.f20342b;
-        switch (i10) {
-            case 0:
-                d3Var.f20387y = 0.0f;
-                d3Var.G.containerView.setTranslationX(0.0f);
-                d3Var.G.container.invalidate();
-                return;
-            case 1:
-                d3Var.G.skipDismissAnimation = true;
-                d3Var.G.containerView.setTranslationX(d3Var.getMeasuredWidth());
-                d3Var.G.dismiss();
-                d3Var.G.container.invalidate();
-                return;
-            case 2:
-                d3Var.G.containerView.setTranslationY(0.0f);
-                d3Var.G.onContainerViewTranslation();
-                f3 f3Var = d3Var.G;
-                f3Var.onSmoothContainerViewLayout(f3Var.containerView.getTranslationY());
-                d3Var.invalidate();
-                return;
-            default:
-                AnimatorSet animatorSet = d3Var.h;
-                if (animatorSet != null && animatorSet.equals(animator)) {
-                    d3Var.h = null;
-                }
-                NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.startAllHeavyOperations, 512);
-                return;
-        }
+    public final void a() {
+        this.f17571a.applyBottomPadding = false;
+    }
+
+    public final void b(ViewGroup viewGroup) {
+        this.f17571a.customView = viewGroup;
+    }
+
+    public final void c(u6 u6Var) {
+        h3 h3Var = this.f17571a;
+        h3Var.customView = u6Var;
+        h3Var.customViewGravity = 49;
+    }
+
+    public final void d() {
+        this.f17571a.dimBehind = false;
     }
 }

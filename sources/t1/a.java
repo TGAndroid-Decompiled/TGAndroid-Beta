@@ -1,13 +1,13 @@
 package t1;
 
-import androidx.fragment.app.r;
+import androidx.fragment.app.s;
 import kotlin.jvm.internal.i;
 public final class a extends RuntimeException {
-    public final r f46451a;
+    public final s f42071a;
 
-    public a(r fragment, String str) {
+    public a(s fragment, String str) {
         super(str);
         i.e(fragment, "fragment");
-        this.f46451a = fragment;
+        this.f42071a = fragment;
     }
 }

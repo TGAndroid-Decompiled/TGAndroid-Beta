@@ -77,7 +77,7 @@ public class ImportingService extends Service implements NotificationCenter.Noti
             tVar.E.icon = 17301640;
             tVar.E.when = System.currentTimeMillis();
             e0.t tVar2 = this.builder;
-            tVar2.f8728y = NotificationsController.OTHER_NOTIFICATIONS_CHANNEL;
+            tVar2.f7155y = NotificationsController.OTHER_NOTIFICATIONS_CHANNEL;
             tVar2.g(LocaleController.getString(R.string.AppName));
             if (hasImportingHistory()) {
                 this.builder.p(LocaleController.getString(R.string.ImporImportingService));
@@ -88,9 +88,9 @@ public class ImportingService extends Service implements NotificationCenter.Noti
             }
         }
         e0.t tVar3 = this.builder;
-        tVar3.f8718n = 100;
-        tVar3.f8719o = 0;
-        tVar3.f8720p = true;
+        tVar3.f7145n = 100;
+        tVar3.f7146o = 0;
+        tVar3.f7147p = true;
         startForeground(5, tVar3.b());
         new e0.n0(ApplicationLoader.applicationContext).d(5, this.builder.b());
         return 2;

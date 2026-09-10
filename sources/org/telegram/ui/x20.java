@@ -1,46 +1,32 @@
 package org.telegram.ui;
 
-import java.util.Calendar;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class x20 implements org.telegram.ui.Components.rc0 {
-    public final int f42601a;
-    public final long f42602b;
-    public final Calendar f42603c;
-    public final int d;
+import android.view.View;
+public final class x20 implements View.OnClickListener {
+    public final int f38560a;
+    public final org.telegram.ui.Cells.z1[] f38561b;
 
-    public x20(long j3, Calendar calendar, int i10, int i11) {
-        this.f42601a = i11;
-        this.f42602b = j3;
-        this.f42603c = calendar;
-        this.d = i10;
+    public x20(org.telegram.ui.Cells.z1[] z1VarArr, int i10) {
+        this.f38560a = i10;
+        this.f38561b = z1VarArr;
     }
 
     @Override
-    public final String f(int i10) {
-        switch (this.f42601a) {
+    public final void onClick(View view) {
+        switch (this.f38560a) {
             case 0:
-                if (i10 == 0) {
-                    return LocaleController.getString(R.string.MessageScheduleToday);
-                }
-                long j3 = (i10 * 86400000) + this.f42602b;
-                Calendar calendar = this.f42603c;
-                calendar.setTimeInMillis(j3);
-                if (calendar.get(1) == this.d) {
-                    return LocaleController.getInstance().getFormatterWeek().format(j3) + " " + LocaleController.getInstance().getFormatterScheduleDay().format(j3);
-                }
-                return LocaleController.getInstance().getFormatterScheduleYear().format(j3);
+                Integer num = (Integer) view.getTag();
+                int intValue = num.intValue();
+                org.telegram.ui.Cells.z1[] z1VarArr = this.f38561b;
+                z1VarArr[intValue].c(!z1VarArr[num.intValue()].b(), true);
+                return;
+            case 1:
+                org.telegram.ui.Cells.z1 z1Var = this.f38561b[0];
+                z1Var.c(!z1Var.b(), true);
+                return;
             default:
-                if (i10 == 0) {
-                    return LocaleController.getString("MessageScheduleToday", R.string.MessageScheduleToday);
-                }
-                long j10 = (i10 * 86400000) + this.f42602b;
-                Calendar calendar2 = this.f42603c;
-                calendar2.setTimeInMillis(j10);
-                if (calendar2.get(1) == this.d) {
-                    return LocaleController.getInstance().getFormatterScheduleDay().format(j10);
-                }
-                return LocaleController.getInstance().getFormatterScheduleYear().format(j10);
+                org.telegram.ui.Cells.z1 z1Var2 = this.f38561b[0];
+                z1Var2.c(!z1Var2.b(), true);
+                return;
         }
     }
 }

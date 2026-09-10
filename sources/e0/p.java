@@ -6,10 +6,10 @@ public abstract class p {
     public static Notification.BubbleMetadata a(r rVar) {
         PendingIntent pendingIntent;
         boolean z10;
-        if (rVar == null || (pendingIntent = rVar.f8701a) == null) {
+        if (rVar == null || (pendingIntent = rVar.f7129a) == null) {
             return null;
         }
-        Notification.BubbleMetadata.Builder deleteIntent = new Notification.BubbleMetadata.Builder().setIcon(rVar.f8702b.m(null)).setIntent(pendingIntent).setDeleteIntent(null);
+        Notification.BubbleMetadata.Builder deleteIntent = new Notification.BubbleMetadata.Builder().setIcon(rVar.f7130b.m(null)).setIntent(pendingIntent).setDeleteIntent(null);
         boolean z11 = true;
         if ((rVar.d & 1) != 0) {
             z10 = true;
@@ -21,7 +21,7 @@ public abstract class p {
             z11 = false;
         }
         Notification.BubbleMetadata.Builder suppressNotification = autoExpandBubble.setSuppressNotification(z11);
-        int i10 = rVar.f8703c;
+        int i10 = rVar.f7131c;
         if (i10 != 0) {
             suppressNotification.setDesiredHeight(i10);
         }

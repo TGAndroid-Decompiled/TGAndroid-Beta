@@ -1,25 +1,28 @@
 package zh;
 
 import android.view.View;
-import org.telegram.ui.ai0;
-public final class o2 {
-    public final int f52398a;
-    public final float f52399b;
-    public final float f52400c;
-    public final int d;
-    public final int f52401e;
-    public final float f52402f;
-    public final View f52403g;
-    public final Runnable h;
+public final class o2 implements View.OnClickListener {
+    public final int f48736a;
+    public final v2 f48737b;
+    public final org.telegram.ui.ActionBar.f6 f48738c;
+    public final u7 d;
 
-    public o2(int i10, float f7, float f10, int i11, int i12, float f11, View view, ai0 ai0Var) {
-        this.f52398a = i10;
-        this.f52399b = f7;
-        this.f52400c = f10;
-        this.d = i11;
-        this.f52401e = i12;
-        this.f52402f = f11;
-        this.f52403g = view;
-        this.h = ai0Var;
+    public o2(v2 v2Var, org.telegram.ui.ActionBar.f6 f6Var, u7 u7Var, int i10) {
+        this.f48736a = i10;
+        this.f48737b = v2Var;
+        this.f48738c = f6Var;
+        this.d = u7Var;
+    }
+
+    @Override
+    public final void onClick(android.view.View r19) {
+        throw new UnsupportedOperationException("Method not decompiled: zh.o2.onClick(android.view.View):void");
+    }
+
+    public o2(v2 v2Var, u7 u7Var, org.telegram.ui.ActionBar.f6 f6Var) {
+        this.f48736a = 0;
+        this.f48737b = v2Var;
+        this.d = u7Var;
+        this.f48738c = f6Var;
     }
 }

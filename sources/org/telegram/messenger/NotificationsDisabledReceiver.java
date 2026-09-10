@@ -95,7 +95,7 @@ public class NotificationsDisabledReceiver extends BroadcastReceiver {
                                         FileLog.d("apply channel{else} " + stringExtra + " state");
                                     }
                                     SharedPreferences.Editor edit4 = notificationsSettings.edit();
-                                    String i12 = org.telegram.ui.Cells.p6.i("notify2_", sharedPrefKey);
+                                    String i12 = org.telegram.ui.Cells.r6.i("notify2_", sharedPrefKey);
                                     if (booleanExtra) {
                                         i10 = 2;
                                     }

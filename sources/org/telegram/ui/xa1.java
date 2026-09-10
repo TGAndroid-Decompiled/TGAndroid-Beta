@@ -1,19 +1,35 @@
 package org.telegram.ui;
-public final class xa1 {
-    public String f42682a;
-    public String f42683b;
-    public String f42684c;
-    public boolean d;
-    public String f42685e;
-    public String f42686f;
-    public String f42687g;
-    public boolean h;
-    public String f42688i;
-    public String f42689j;
-    public String f42690k;
-    public boolean f42691l;
-    public String f42692m;
-    public String f42693n;
-    public String f42694o;
-    public boolean f42695p;
+
+import org.telegram.tgnet.TLRPC;
+public final class xa1 implements oq {
+    public final TLRPC.TL_chatChannelParticipant f38654a;
+    public final boolean f38655b;
+    public final boolean[] f38656c;
+
+    public xa1(TLRPC.TL_chatChannelParticipant tL_chatChannelParticipant, boolean z10, boolean[] zArr) {
+        this.f38654a = tL_chatChannelParticipant;
+        this.f38655b = z10;
+        this.f38656c = zArr;
+    }
+
+    @Override
+    public final void b(int i10, TLRPC.TL_chatAdminRights tL_chatAdminRights, TLRPC.TL_chatBannedRights tL_chatBannedRights, String str) {
+        TLRPC.TL_chatChannelParticipant tL_chatChannelParticipant = this.f38654a;
+        if (i10 == 0) {
+            TLRPC.ChannelParticipant channelParticipant = tL_chatChannelParticipant.channelParticipant;
+            channelParticipant.admin_rights = null;
+            channelParticipant.rank = "";
+            return;
+        }
+        TLRPC.ChannelParticipant channelParticipant2 = tL_chatChannelParticipant.channelParticipant;
+        channelParticipant2.admin_rights = tL_chatAdminRights;
+        channelParticipant2.rank = str;
+        if (this.f38655b) {
+            this.f38656c[0] = true;
+        }
+    }
+
+    @Override
+    public final void a(TLRPC.User user) {
+    }
 }

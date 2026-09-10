@@ -1,16 +1,23 @@
 package org.telegram.ui.Components;
-public final class q50 {
-    public final boolean f29617a;
-    public final int f29618b;
-    public final int f29619c;
-    public final long d;
-    public final long f29620e;
 
-    public q50(long j3, int i10, int i11, boolean z10, long j10) {
-        this.f29617a = z10;
-        this.f29618b = i10;
-        this.f29619c = i11;
-        this.d = j3;
-        this.f29620e = j10;
+import android.content.Context;
+public final class q50 extends z50 {
+    public final f60 d;
+
+    public q50(f60 f60Var, Context context) {
+        super(f60Var, context);
+        this.d = f60Var;
+    }
+
+    @Override
+    public final void setAlpha(float f7) {
+        super.setAlpha(f7);
+        this.d.invalidate();
+    }
+
+    @Override
+    public final void setRotationY(float f7) {
+        super.setRotationY(f7);
+        this.d.invalidate();
     }
 }

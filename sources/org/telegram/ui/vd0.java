@@ -3,29 +3,29 @@ package org.telegram.ui;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 public final class vd0 extends AnimatorListenerAdapter {
-    public final int f41547a;
-    public final wg0 f41548b;
+    public final int f37538a;
+    public final xg0 f37539b;
 
-    public vd0(wg0 wg0Var, int i10) {
-        this.f41547a = i10;
-        this.f41548b = wg0Var;
+    public vd0(xg0 xg0Var, int i10) {
+        this.f37538a = i10;
+        this.f37539b = xg0Var;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        switch (this.f41547a) {
+        switch (this.f37538a) {
             case 0:
-                wg0 wg0Var = this.f41548b;
-                if (wg0Var.d == animator) {
-                    wg0Var.d = null;
+                xg0 xg0Var = this.f37539b;
+                if (xg0Var.d == animator) {
+                    xg0Var.d = null;
                     return;
                 }
                 return;
             default:
-                wg0 wg0Var2 = this.f41548b;
-                wg0Var2.f42390c.setVisibility(8);
-                if (wg0Var2.d == animator) {
-                    wg0Var2.d = null;
+                xg0 xg0Var2 = this.f37539b;
+                xg0Var2.f38721c.setVisibility(8);
+                if (xg0Var2.d == animator) {
+                    xg0Var2.d = null;
                     return;
                 }
                 return;
@@ -34,9 +34,9 @@ public final class vd0 extends AnimatorListenerAdapter {
 
     @Override
     public void onAnimationStart(Animator animator) {
-        switch (this.f41547a) {
+        switch (this.f37538a) {
             case 0:
-                this.f41548b.f42390c.setVisibility(0);
+                this.f37539b.f38721c.setVisibility(0);
                 return;
             default:
                 super.onAnimationStart(animator);

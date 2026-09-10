@@ -1,27 +1,31 @@
 package jg;
 
-import ah.d0;
-import android.animation.ValueAnimator;
-public final class h {
-    public final int f13726a;
-    public int f13727b;
-    public float f13728c;
-    public float d;
-    public ValueAnimator f13729e;
-    public float f13730f = 0.0f;
-    public final j f13731g;
+import android.graphics.Paint;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.ActionBar.f6;
+import org.telegram.ui.ActionBar.j6;
+public final class h extends f {
+    public final Paint f11927q;
+    public int f11928r;
+    public final f6 f11929s;
 
-    public h(j jVar, int i10) {
-        this.f13731g = jVar;
-        this.f13726a = i10;
+    public h(ig.a aVar, f6 f6Var) {
+        super(aVar, false, null);
+        Paint paint = new Paint();
+        this.f11927q = paint;
+        this.f11928r = 0;
+        this.f11929s = f6Var;
+        this.f11916c.setStrokeWidth(AndroidUtilities.dpf2(1.0f));
+        Paint paint2 = this.f11916c;
+        Paint.Style style = Paint.Style.STROKE;
+        paint2.setStyle(style);
+        paint.setStyle(style);
+        this.f11916c.setAntiAlias(false);
     }
 
+    @Override
     public final void a() {
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-        this.f13729e = ofFloat;
-        ofFloat.setDuration(600L);
-        this.f13729e.setInterpolator(g.C1);
-        this.f13729e.addUpdateListener(new d0(this, 28));
-        this.f13729e.start();
+        super.a();
+        this.f11928r = i0.a.d(0.3f, j6.v0(j6.f17928d6, this.f11929s), this.f11923m);
     }
 }

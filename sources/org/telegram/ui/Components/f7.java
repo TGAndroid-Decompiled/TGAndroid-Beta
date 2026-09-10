@@ -1,26 +1,44 @@
 package org.telegram.ui.Components;
+public final class f7 implements Runnable {
+    public final int f22913a;
+    public final j8 f22914b;
+    public final w70 f22915c;
 
-import android.net.Uri;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.Utilities;
-public final class f7 implements Utilities.Callback {
-    public final int f25969a;
-    public final k8 f25970b;
-
-    public f7(k8 k8Var, int i10) {
-        this.f25969a = i10;
-        this.f25970b = k8Var;
+    public f7(j8 j8Var, w70 w70Var, int i10) {
+        this.f22913a = i10;
+        this.f22914b = j8Var;
+        this.f22915c = w70Var;
     }
 
     @Override
-    public final void run(Object obj) {
-        switch (this.f25969a) {
+    public final void run() {
+        switch (this.f22913a) {
             case 0:
-                k8.u(this.f25970b, (MessageObject) obj);
+                j8 j8Var = this.f22914b;
+                j8Var.getClass();
+                this.f22915c.u();
+                j8Var.t0(1);
+                return;
+            case 1:
+                j8 j8Var2 = this.f22914b;
+                j8Var2.getClass();
+                this.f22915c.u();
+                j8Var2.t0(2);
+                return;
+            case 2:
+                j8 j8Var3 = this.f22914b;
+                j8Var3.getClass();
+                this.f22915c.u();
+                j8Var3.t0(4);
+                return;
+            case 3:
+                j8 j8Var4 = this.f22914b;
+                j8Var4.getClass();
+                this.f22915c.u();
+                j8Var4.t0(7);
                 return;
             default:
-                Uri uri = (Uri) obj;
-                k8.x(this.f25970b);
+                j8.q(this.f22914b, this.f22915c);
                 return;
         }
     }

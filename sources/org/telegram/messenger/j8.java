@@ -1,32 +1,23 @@
 package org.telegram.messenger;
 public final class j8 implements Runnable {
-    public final int f18065a;
-    public final BaseController f18066b;
-    public final long f18067c;
-    public final long d;
-    public final int f18068e;
-    public final int f18069f;
+    public final int f15512a;
+    public final MediaDataController f15513b;
+    public final boolean f15514c;
 
-    public j8(BaseController baseController, long j3, long j10, int i10, int i11, int i12) {
-        this.f18065a = i12;
-        this.f18066b = baseController;
-        this.f18067c = j3;
-        this.d = j10;
-        this.f18068e = i10;
-        this.f18069f = i11;
+    public j8(MediaDataController mediaDataController, boolean z10, int i10) {
+        this.f15512a = i10;
+        this.f15513b = mediaDataController;
+        this.f15514c = z10;
     }
 
     @Override
     public final void run() {
-        switch (this.f18065a) {
+        switch (this.f15512a) {
             case 0:
-                ((MediaDataController) this.f18066b).lambda$getMediaCountDatabase$139(this.f18067c, this.d, this.f18068e, this.f18069f);
-                return;
-            case 1:
-                ((MediaDataController) this.f18066b).lambda$putMediaCountDatabase$138(this.f18067c, this.d, this.f18068e, this.f18069f);
+                this.f15513b.lambda$loadFeaturedStickers$55(this.f15514c);
                 return;
             default:
-                ((MessagesStorage) this.f18066b).lambda$updateRepliesMaxReadId$193(this.f18067c, this.d, this.f18068e, this.f18069f);
+                this.f15513b.lambda$processLoadedFeaturedStickers$59(this.f15514c);
                 return;
         }
     }

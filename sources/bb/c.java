@@ -1,55 +1,30 @@
 package bb;
 
-import java.io.Serializable;
-import java.util.Map;
-import org.json.JSONObject;
+import android.util.Log;
 import rd.p;
-import zd.c0;
+import v7.u7;
 public final class c extends kd.j implements p {
-    public final int f2563a = 1;
-    public int f2564b;
-    public Object f2565c;
-    public Object d;
-    public Serializable f2566e;
-    public final Object f2567f;
-
-    public c(aa.a aVar, Map map, c cVar, d dVar, id.c cVar2) {
-        super(2, cVar2);
-        this.d = aVar;
-        this.f2565c = map;
-        this.f2566e = cVar;
-        this.f2567f = dVar;
-    }
+    public Object f2155a;
 
     @Override
     public final id.c create(Object obj, id.c cVar) {
-        switch (this.f2563a) {
-            case 0:
-                c cVar2 = new c((e) this.f2567f, cVar);
-                cVar2.f2565c = obj;
-                return cVar2;
-            default:
-                return new c((aa.a) this.d, this.f2565c, (c) this.f2566e, (d) this.f2567f, cVar);
-        }
+        ?? jVar = new kd.j(2, cVar);
+        jVar.f2155a = obj;
+        return jVar;
     }
 
     @Override
     public final Object invoke(Object obj, Object obj2) {
-        switch (this.f2563a) {
-            case 0:
-                return ((c) create((JSONObject) obj, (id.c) obj2)).invokeSuspend(gd.i.f10616a);
-            default:
-                return ((c) create((c0) obj, (id.c) obj2)).invokeSuspend(gd.i.f10616a);
-        }
+        gd.i iVar = gd.i.f8748a;
+        ((c) create((String) obj, (id.c) obj2)).invokeSuspend(iVar);
+        return iVar;
     }
 
     @Override
-    public final java.lang.Object invokeSuspend(java.lang.Object r18) {
-        throw new UnsupportedOperationException("Method not decompiled: bb.c.invokeSuspend(java.lang.Object):java.lang.Object");
-    }
-
-    public c(e eVar, id.c cVar) {
-        super(2, cVar);
-        this.f2567f = eVar;
+    public final Object invokeSuspend(Object obj) {
+        jd.a aVar = jd.a.f11861a;
+        u7.b(obj);
+        Log.e("SessionConfigFetcher", "Error failing to fetch the remote configs: " + ((String) this.f2155a));
+        return gd.i.f8748a;
     }
 }

@@ -84,7 +84,7 @@ public class SurfaceViewRenderer extends SurfaceView implements SurfaceHolder.Ca
             sb2.append(", frame size: ");
             sb2.append(this.rotatedFrameWidth);
             sb2.append("x");
-            i2.g.v(sb2, this.rotatedFrameHeight, ", requested surface size: ", min, "x");
+            hc.b.w(sb2, this.rotatedFrameHeight, ", requested surface size: ", min, "x");
             sb2.append(min2);
             sb2.append(", old surface size: ");
             sb2.append(this.surfaceWidth);
@@ -148,7 +148,7 @@ public class SurfaceViewRenderer extends SurfaceView implements SurfaceHolder.Ca
         if (i12 == 0 || i12 == 180) {
             i10 = i11;
         }
-        postOrRun(new hg.n(this, i13, i10, 13));
+        postOrRun(new fg.n(this, i13, i10, 13));
     }
 
     @Override

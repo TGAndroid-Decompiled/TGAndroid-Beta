@@ -3,91 +3,91 @@ package h2;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
 public final class k extends Thread {
-    public final int f10880a = 0;
-    public final Object f10881b;
+    public final int f9213a = 0;
+    public final Object f9214b;
 
     public k(l lVar) {
         super("ExoPlayer:SimpleDecoder");
-        this.f10881b = lVar;
+        this.f9214b = lVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f10880a) {
+        switch (this.f9213a) {
             case 0:
                 do {
                     try {
-                    } catch (InterruptedException e7) {
-                        throw new IllegalStateException(e7);
+                    } catch (InterruptedException e) {
+                        throw new IllegalStateException(e);
                     }
-                } while (((l) this.f10881b).j());
+                } while (((l) this.f9214b).j());
                 return;
             default:
-                tg.e eVar = (tg.e) this.f10881b;
-                eVar.f46555x = true;
+                rg.f fVar = (rg.f) this.f9214b;
+                fVar.f41492x = true;
                 try {
-                    tg.e.a(eVar);
-                    int glGetError = ((tg.e) this.f10881b).f46552r.glGetError();
+                    rg.f.a(fVar);
+                    int glGetError = ((rg.f) this.f9214b).f41489r.glGetError();
                     if (glGetError != 0) {
                         FileLog.e("GL error = 0x" + Integer.toHexString(glGetError));
                     }
                     long currentTimeMillis = System.currentTimeMillis();
-                    while (((tg.e) this.f10881b).f46555x) {
+                    while (((rg.f) this.f9214b).f41492x) {
                         while (true) {
-                            tg.e eVar2 = (tg.e) this.f10881b;
-                            tg.a aVar = eVar2.f46547b;
+                            rg.f fVar2 = (rg.f) this.f9214b;
+                            rg.a aVar = fVar2.f41485b;
                             if (aVar == null) {
                                 try {
                                     Thread.sleep(100L);
                                 } catch (InterruptedException unused) {
                                 }
                             } else {
-                                if (eVar2.E) {
-                                    synchronized (eVar2) {
-                                        if (eVar2.f46555x) {
-                                            aVar.onSurfaceCreated(eVar2.f46552r, eVar2.f46551n);
-                                            aVar.onSurfaceChanged(eVar2.f46552r, eVar2.f46554w, eVar2.v);
+                                if (fVar2.E) {
+                                    synchronized (fVar2) {
+                                        if (fVar2.f41492x) {
+                                            aVar.onSurfaceCreated(fVar2.f41489r, fVar2.f41488n);
+                                            aVar.onSurfaceChanged(fVar2.f41489r, fVar2.f41491w, fVar2.v);
                                         }
                                     }
-                                    ((tg.e) this.f10881b).E = false;
+                                    ((rg.f) this.f9214b).E = false;
                                 }
                                 try {
-                                    if (!tg.e.b((tg.e) this.f10881b)) {
+                                    if (!rg.f.b((rg.f) this.f9214b)) {
                                         long currentTimeMillis2 = System.currentTimeMillis();
-                                        tg.e.c((tg.e) this.f10881b, ((float) (currentTimeMillis2 - currentTimeMillis)) / 1000.0f);
-                                        if (!((tg.e) this.f10881b).P) {
-                                            ((tg.e) this.f10881b).P = true;
-                                            AndroidUtilities.runOnUIThread(((tg.e) this.f10881b).Q);
-                                            ((tg.e) this.f10881b).Q = null;
+                                        rg.f.c((rg.f) this.f9214b, ((float) (currentTimeMillis2 - currentTimeMillis)) / 1000.0f);
+                                        if (!((rg.f) this.f9214b).P) {
+                                            ((rg.f) this.f9214b).P = true;
+                                            AndroidUtilities.runOnUIThread(((rg.f) this.f9214b).Q);
+                                            ((rg.f) this.f9214b).Q = null;
                                         }
                                         currentTimeMillis = currentTimeMillis2;
                                     }
                                     try {
-                                        if (tg.e.b((tg.e) this.f10881b)) {
+                                        if (rg.f.b((rg.f) this.f9214b)) {
                                             Thread.sleep(100L);
                                         } else {
-                                            for (long currentTimeMillis3 = System.currentTimeMillis(); currentTimeMillis3 - currentTimeMillis < ((tg.e) this.f10881b).f46553s; currentTimeMillis3 = System.currentTimeMillis()) {
+                                            for (long currentTimeMillis3 = System.currentTimeMillis(); currentTimeMillis3 - currentTimeMillis < ((rg.f) this.f9214b).f41490s; currentTimeMillis3 = System.currentTimeMillis()) {
                                             }
                                         }
                                     } catch (InterruptedException unused2) {
                                     }
-                                } catch (Exception e10) {
-                                    FileLog.e(e10);
+                                } catch (Exception e7) {
+                                    FileLog.e(e7);
                                     return;
                                 }
                             }
                         }
                     }
                     return;
-                } catch (Exception e11) {
-                    FileLog.e(e11);
-                    ((tg.e) this.f10881b).f46555x = false;
+                } catch (Exception e10) {
+                    FileLog.e(e10);
+                    ((rg.f) this.f9214b).f41492x = false;
                     return;
                 }
         }
     }
 
-    public k(tg.e eVar) {
-        this.f10881b = eVar;
+    public k(rg.f fVar) {
+        this.f9214b = fVar;
     }
 }

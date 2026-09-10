@@ -1,62 +1,79 @@
 package org.telegram.ui.Components;
 
-import android.text.Editable;
-import android.text.TextWatcher;
-import org.telegram.messenger.DispatchQueue;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.messenger.Utilities;
-public final class mj implements TextWatcher {
-    public final yj f28484a;
-
-    public mj(yj yjVar) {
-        this.f28484a = yjVar;
-    }
+public final class mj extends qi {
+    public bi.y1 f25239n;
+    public int f25240r;
+    public ai.q f25241s;
+    public ya v;
+    public int f25242w;
+    public q0.a f25243x;
 
     @Override
-    public final void afterTextChanged(Editable editable) {
-        int currentTop;
-        String obj = editable.toString();
-        if (!obj.isEmpty()) {
-            mz mzVar = this.f28484a.G;
-            if (mzVar != null) {
-                mzVar.setText(LocaleController.getString(R.string.NoResult));
-            }
-        } else {
-            s4.h0 adapter = this.f28484a.f32960s.getAdapter();
-            yj yjVar = this.f28484a;
-            if (adapter != yjVar.E) {
-                currentTop = yjVar.getCurrentTop();
-                this.f28484a.G.setText(LocaleController.getString(R.string.NoContacts));
-                this.f28484a.G.c();
-                yj yjVar2 = this.f28484a;
-                yjVar2.f32960s.setAdapter(yjVar2.E);
-                this.f28484a.E.l();
-                if (currentTop > 0) {
-                    this.f28484a.v.h1(0, -currentTop);
-                }
-            }
+    public final void D(qi qiVar) {
+        yi yiVar = this.f26422b;
+        try {
+            yiVar.X0.getTitleTextView().setBuildFullLayout(true);
+        } catch (Exception unused) {
         }
-        uj ujVar = this.f28484a.F;
-        if (ujVar != null) {
-            if (ujVar.f30937f != null) {
-                Utilities.searchQueue.cancelRunnable(ujVar.f30937f);
-                ujVar.f30937f = null;
-            }
-            int i10 = ujVar.h + 1;
-            ujVar.h = i10;
-            DispatchQueue dispatchQueue = Utilities.searchQueue;
-            tj tjVar = new tj(ujVar, obj, i10, 0);
-            ujVar.f30937f = tjVar;
-            dispatchQueue.postRunnable(tjVar, 300L);
+        yiVar.X0.setTitle(LocaleController.getString(R.string.SelectColor));
+        this.f25241s.h1(0, 0);
+    }
+
+    @Override
+    public final void F() {
+        this.f25239n.x0(0);
+    }
+
+    @Override
+    public int getCurrentItemTop() {
+        bi.y1 y1Var = this.f25239n;
+        if (y1Var.getChildCount() <= 0) {
+            y1Var.setTopGlowOffset(y1Var.getPaddingTop());
+            return Integer.MAX_VALUE;
         }
+        View childAt = y1Var.getChildAt(0);
+        fl0 fl0Var = (fl0) y1Var.G(childAt);
+        int top = childAt.getTop();
+        int dp = AndroidUtilities.dp(7.0f);
+        if (top < AndroidUtilities.dp(7.0f) || fl0Var == null || fl0Var.b() != 0) {
+            top = dp;
+        }
+        y1Var.setTopGlowOffset(top);
+        return top;
     }
 
     @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+    public int getFirstOffset() {
+        return AndroidUtilities.dp(56.0f) + getListTopPadding();
     }
 
     @Override
-    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+    public int getListTopPadding() {
+        return this.f25239n.getPaddingTop();
+    }
+
+    @Override
+    public final int h() {
+        return 1;
+    }
+
+    public void setDelegate(q0.a aVar) {
+        this.f25243x = aVar;
+    }
+
+    @Override
+    public void setTranslationY(float f7) {
+        super.setTranslationY(f7);
+        this.f26422b.getSheetContainer().invalidate();
+        invalidate();
+    }
+
+    @Override
+    public final void y(int r9, int r10) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.mj.y(int, int):void");
     }
 }

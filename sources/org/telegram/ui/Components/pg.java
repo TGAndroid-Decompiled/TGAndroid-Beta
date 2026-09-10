@@ -1,223 +1,361 @@
 package org.telegram.ui.Components;
 
-import android.app.Dialog;
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.util.SparseArray;
-import android.widget.EditText;
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.content.Context;
+import android.graphics.Rect;
+import android.graphics.RectF;
+import android.net.Uri;
+import android.text.TextUtils;
+import android.view.ActionMode;
+import android.view.Menu;
+import android.view.MotionEvent;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputConnection;
+import android.webkit.MimeTypeMap;
 import java.io.File;
 import java.util.ArrayList;
+import org.telegram.messenger.AccountInstance;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
-import org.telegram.messenger.LiteMode;
-import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaController;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.MessagesStorage;
-import org.telegram.messenger.R;
-import org.telegram.ui.Components.ChatActivityEnterView;
-public final class pg implements Runnable {
-    public final int f29395a;
-    public final Object f29396b;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.SendMessageChatArguments;
+import org.telegram.messenger.SendMessagesHelper;
+import org.telegram.messenger.Utilities;
+import org.telegram.ui.PhotoViewer;
+public abstract class pg extends fu {
+    public ed f26117c;
+    public final ChatActivityEnterView d;
 
-    public pg(Object obj, int i10) {
-        this.f29395a = i10;
-        this.f29396b = obj;
+    public pg(ChatActivityEnterView chatActivityEnterView, Context context, org.telegram.ui.ActionBar.f6 f6Var) {
+        super(context, f6Var);
+        this.d = chatActivityEnterView;
     }
 
     @Override
-    public final void run() {
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout;
-        int i10 = this.f29395a;
-        Object obj = this.f29396b;
-        switch (i10) {
-            case 0:
-                ChatActivityEnterView chatActivityEnterView = ((sg) obj).V;
-                if (!MediaController.getInstance().isRecordingPaused()) {
-                    MessagesController.getGlobalMainSettings().edit().putInt("voicepausehint", 3).apply();
+    public final boolean dispatchKeyEvent(android.view.KeyEvent r6) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.pg.dispatchKeyEvent(android.view.KeyEvent):boolean");
+    }
+
+    @Override
+    public final void extendActionMode(ActionMode actionMode, Menu menu) {
+        ChatActivityEnterView chatActivityEnterView = this.d;
+        org.telegram.ui.eo eoVar = chatActivityEnterView.O2;
+        if (eoVar != null) {
+            eoVar.extendActionMode(menu);
+        } else {
+            chatActivityEnterView.h0(menu);
+        }
+    }
+
+    @Override
+    public final org.telegram.ui.ActionBar.f6 getResourcesProvider() {
+        return this.d.V3;
+    }
+
+    public final void m(Uri uri, String str) {
+        boolean z10;
+        org.telegram.ui.eo eoVar = this.d.O2;
+        if (eoVar != null && eoVar.u()) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        Utilities.globalQueue.postRunnable(new gf(this, uri, AndroidUtilities.generatePicturePath(z10, MimeTypeMap.getSingleton().getExtensionFromMimeType(str)), 1));
+    }
+
+    public final void n(File file, ArrayList arrayList) {
+        ChatActivityEnterView chatActivityEnterView = this.d;
+        org.telegram.ui.eo eoVar = chatActivityEnterView.O2;
+        if (eoVar != null && eoVar.getParentActivity() != null) {
+            MediaController.PhotoEntry photoEntry = (MediaController.PhotoEntry) arrayList.get(0);
+            if (chatActivityEnterView.f20956y2) {
+                AndroidUtilities.hideKeyboard(this);
+                AndroidUtilities.runOnUIThread(new c5.v(this, arrayList, file, false, 9), 100L);
+                return;
+            }
+            PhotoViewer.t1().K2(null, eoVar, chatActivityEnterView.V3);
+            PhotoViewer.t1().f2(arrayList, 0, 2, false, new og(this, photoEntry, file), chatActivityEnterView.O2);
+        }
+    }
+
+    public final void o(t0.i iVar, boolean z10, int i10, int i11) {
+        MessageObject threadMessage;
+        int i12;
+        MessageObject threadMessage2;
+        ChatActivityEnterView chatActivityEnterView = this.d;
+        org.telegram.ui.eo eoVar = chatActivityEnterView.O2;
+        of ofVar = chatActivityEnterView.L0;
+        SendMessageChatArguments sendMessageChatArguments = null;
+        if (ofVar != null) {
+            ofVar.h(true);
+            chatActivityEnterView.L0 = null;
+        }
+        org.telegram.ui.tn tnVar = chatActivityEnterView.U2;
+        if (tnVar != null && eoVar != null && tnVar.f36970f) {
+            eoVar.Rb();
+            return;
+        }
+        t0.h hVar = iVar.f42070a;
+        if (hVar.getDescription().hasMimeType("image/gif")) {
+            AccountInstance accountInstance = chatActivityEnterView.R;
+            Uri c10 = hVar.c();
+            long j3 = chatActivityEnterView.P2;
+            MessageObject messageObject = chatActivityEnterView.S2;
+            threadMessage2 = chatActivityEnterView.getThreadMessage();
+            org.telegram.ui.tn tnVar2 = chatActivityEnterView.U2;
+            if (eoVar != null) {
+                sendMessageChatArguments = eoVar.C8();
+            }
+            SendMessagesHelper.prepareSendingDocument(accountInstance, null, null, c10, null, "image/gif", j3, messageObject, threadMessage2, null, tnVar2, null, z10, 0, iVar, sendMessageChatArguments, false);
+        } else {
+            AccountInstance accountInstance2 = chatActivityEnterView.R;
+            Uri c11 = hVar.c();
+            long j10 = chatActivityEnterView.P2;
+            MessageObject messageObject2 = chatActivityEnterView.S2;
+            threadMessage = chatActivityEnterView.getThreadMessage();
+            org.telegram.ui.tn tnVar3 = chatActivityEnterView.U2;
+            if (eoVar == null) {
+                i12 = 0;
+            } else {
+                i12 = eoVar.R3;
+            }
+            if (eoVar != null) {
+                sendMessageChatArguments = eoVar.C8();
+            }
+            SendMessagesHelper.prepareSendingPhoto(accountInstance2, null, c11, j10, messageObject2, threadMessage, tnVar3, null, null, null, iVar, 0, null, z10, 0, i12, sendMessageChatArguments);
+        }
+        qg qgVar = chatActivityEnterView.Y2;
+        if (qgVar != null) {
+            qgVar.I(null, true, i10, i11, 0L);
+        }
+    }
+
+    @Override
+    public final void onContextMenuClose() {
+        qg qgVar = this.d.Y2;
+        if (qgVar != null) {
+            qgVar.b2();
+        }
+    }
+
+    @Override
+    public final void onContextMenuOpen() {
+        qg qgVar = this.d.Y2;
+        if (qgVar != null) {
+            qgVar.k();
+        }
+    }
+
+    @Override
+    public final InputConnection onCreateInputConnection(EditorInfo editorInfo) {
+        boolean z10;
+        ChatActivityEnterView chatActivityEnterView = this.d;
+        InputConnection onCreateInputConnection = super.onCreateInputConnection(editorInfo);
+        if (onCreateInputConnection == null) {
+            return null;
+        }
+        try {
+            int i10 = ChatActivityEnterView.f20816m5;
+            if (chatActivityEnterView.a2 != null) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            if (!z10 && !chatActivityEnterView.f20884k5) {
+                t0.b.b(editorInfo, new String[]{"image/gif", "image/*", "image/jpg", "image/png", "image/webp"});
+                return t0.f.a(onCreateInputConnection, editorInfo, new t(this, 18));
+            }
+            t0.b.b(editorInfo, null);
+            return t0.f.a(onCreateInputConnection, editorInfo, new t(this, 18));
+        } catch (Throwable th2) {
+            FileLog.e(th2);
+            return onCreateInputConnection;
+        }
+    }
+
+    @Override
+    public void onMeasure(int i10, int i11) {
+        boolean z10;
+        boolean z11;
+        boolean z12 = true;
+        if (getMeasuredWidth() == 0 && getMeasuredHeight() == 0) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        ChatActivityEnterView chatActivityEnterView = this.d;
+        chatActivityEnterView.S = z10;
+        super.onMeasure(i10, i11);
+        if (chatActivityEnterView.S) {
+            chatActivityEnterView.T = getLineCount();
+            if (chatActivityEnterView.T > 2 && !TextUtils.isEmpty(getText().toString().trim())) {
+                z11 = true;
+            } else {
+                z11 = false;
+            }
+            chatActivityEnterView.p1(z11);
+            chatActivityEnterView.v1((chatActivityEnterView.T <= 2 || TextUtils.isEmpty(getText().toString().trim())) ? false : false);
+        }
+        chatActivityEnterView.S = false;
+    }
+
+    @Override
+    public final void onScrollChanged(int i10, int i11, int i12, int i13) {
+        super.onScrollChanged(i10, i11, i12, i13);
+        qg qgVar = this.d.Y2;
+        if (qgVar != null) {
+            qgVar.m0();
+        }
+    }
+
+    @Override
+    public final void onSelectionChanged(int i10, int i11) {
+        super.onSelectionChanged(i10, i11);
+        qg qgVar = this.d.Y2;
+        if (qgVar != null) {
+            qgVar.F0(i10, i11);
+        }
+    }
+
+    @Override
+    public boolean onTextContextMenuItem(int i10) {
+        if (i10 == 16908322) {
+            ChatActivityEnterView chatActivityEnterView = this.d;
+            chatActivityEnterView.W1 = true;
+            ClipData primaryClip = ((ClipboardManager) getContext().getSystemService("clipboard")).getPrimaryClip();
+            if (primaryClip != null && primaryClip.getItemCount() == 1 && primaryClip.getDescription().hasMimeType("image/*") && chatActivityEnterView.a2 == null) {
+                m(primaryClip.getItemAt(0).getUri(), primaryClip.getDescription().getMimeType(0));
+            }
+        }
+        return super.onTextContextMenuItem(i10);
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent motionEvent) {
+        int i10;
+        ChatActivityEnterView chatActivityEnterView = this.d;
+        if (!chatActivityEnterView.D3 && chatActivityEnterView.A3 == null) {
+            if (!chatActivityEnterView.f20958z0 && !chatActivityEnterView.r0()) {
+                if (this.f26117c == null) {
+                    ed edVar = new ed(this);
+                    this.f26117c = edVar;
+                    edVar.h = new Runnable(this) {
+                        public final pg f25509b;
+
+                        {
+                            this.f25509b = this;
+                        }
+
+                        @Override
+                        public final void run() {
+                            int i11 = r2;
+                            pg pgVar = this.f25509b;
+                            switch (i11) {
+                                case 0:
+                                    ChatActivityEnterView chatActivityEnterView2 = pgVar.d;
+                                    int i12 = ChatActivityEnterView.f20816m5;
+                                    chatActivityEnterView2.u1();
+                                    return;
+                                default:
+                                    ChatActivityEnterView chatActivityEnterView3 = pgVar.d;
+                                    chatActivityEnterView3.f20882k3 = false;
+                                    chatActivityEnterView3.I0();
+                                    return;
+                            }
+                        }
+                    };
                 }
-                if (chatActivityEnterView.f23792r4) {
-                    chatActivityEnterView.I3 = true;
+                ed edVar2 = this.f26117c;
+                int measuredWidth = getMeasuredWidth();
+                int measuredHeight = getMeasuredHeight();
+                edVar2.getClass();
+                RectF rectF = AndroidUtilities.rectTmp;
+                float f7 = 0;
+                rectF.set(f7, f7, measuredWidth, measuredHeight);
+                edVar2.f22677i = false;
+                edVar2.f22674c = 0;
+                edVar2.a(rectF);
+                return this.f26117c.b(motionEvent);
+            } else if (chatActivityEnterView.t0() && motionEvent.getAction() == 0) {
+                if (chatActivityEnterView.Q1 != 0) {
+                    chatActivityEnterView.m1(0, false);
+                    chatActivityEnterView.U0.t(false);
+                    requestFocus();
                 }
-                MediaController.getInstance().toggleRecordingPause(chatActivityEnterView.O);
-                chatActivityEnterView.Y2.V0(0);
-                ChatActivityEnterView.SlideTextView slideTextView = chatActivityEnterView.f23748j1;
-                if (slideTextView != null) {
-                    slideTextView.setEnabled(false);
-                    return;
+                if (AndroidUtilities.usingHardwareInput) {
+                    i10 = 0;
+                } else {
+                    i10 = 2;
                 }
-                return;
-            case 1:
-                yc ycVar = (yc) obj;
-                new sg.a1(ycVar.W(), 42, ycVar.f32910c).show();
-                return;
-            case 2:
-                AndroidUtilities.removeFromParent((di.f4) obj);
-                return;
-            case 3:
-                AndroidUtilities.showKeyboard((EditText) obj);
-                return;
-            case 4:
-                SparseArray sparseArray = q5.f29597q;
-                ((q5) obj).v();
-                return;
-            case 5:
-                m5 m5Var = (m5) obj;
-                ArrayList arrayList = new ArrayList(m5Var.f28410c);
-                m5Var.f28410c.clear();
-                MessagesStorage.getInstance(m5Var.f28411e).getStorageQueue().postRunnable(new j5(m5Var, arrayList, 0));
-                m5Var.d = null;
-                return;
-            case 6:
-                ((o5) obj).invalidate();
-                return;
-            case 7:
-                ((o1.k) obj).f();
-                return;
-            case 8:
-                q6 q6Var = (q6) obj;
-                CharSequence charSequence = q6Var.f29626f;
-                if (charSequence != null) {
-                    q6Var.c(charSequence, q6Var.h, true);
-                    q6Var.f29626f = null;
-                    q6Var.h = false;
-                    return;
+                chatActivityEnterView.t1(i10, 0, true, true);
+                if (chatActivityEnterView.y3) {
+                    chatActivityEnterView.n1(false, true, false, true);
+                    chatActivityEnterView.f20882k3 = true;
+                    AndroidUtilities.runOnUIThread(new Runnable(this) {
+                        public final pg f25509b;
+
+                        {
+                            this.f25509b = this;
+                        }
+
+                        @Override
+                        public final void run() {
+                            int i11 = r2;
+                            pg pgVar = this.f25509b;
+                            switch (i11) {
+                                case 0:
+                                    ChatActivityEnterView chatActivityEnterView2 = pgVar.d;
+                                    int i12 = ChatActivityEnterView.f20816m5;
+                                    chatActivityEnterView2.u1();
+                                    return;
+                                default:
+                                    ChatActivityEnterView chatActivityEnterView3 = pgVar.d;
+                                    chatActivityEnterView3.f20882k3 = false;
+                                    chatActivityEnterView3.I0();
+                                    return;
+                            }
+                        }
+                    }, 200L);
+                    return true;
                 }
-                return;
-            case 9:
-                ((j8) obj).f27403n.f27756n.setVisibility(8);
-                return;
-            case 10:
-                ((q8) obj).f29646c.l1();
-                return;
-            case 11:
-                fa faVar = (fa) obj;
-                faVar.f26020o = true;
-                faVar.d.invalidate();
-                return;
-            case 12:
-                ea eaVar = (ea) obj;
-                if (!eaVar.f25660a) {
-                    fa faVar2 = eaVar.d;
-                    Bitmap[] bitmapArr = faVar2.f26013g;
-                    Canvas[] canvasArr = faVar2.h;
-                    faVar2.f26013g = faVar2.f26012f;
-                    faVar2.h = faVar2.f26014i;
-                    faVar2.f26012f = bitmapArr;
-                    faVar2.f26014i = canvasArr;
-                    faVar2.f26016k = false;
-                    di.r6 r6Var = faVar2.d;
-                    if (r6Var != null) {
-                        r6Var.invalidate();
-                        return;
-                    }
-                    return;
-                }
-                return;
-            case 13:
-                ja jaVar = ((pa) obj).f29368t;
-                if (jaVar != null) {
-                    jaVar.d();
-                    return;
-                }
-                return;
-            case 14:
-                ja jaVar2 = (ja) obj;
-                jaVar2.f27446o = jaVar2.f27445n.f29040b;
-                jaVar2.d();
-                return;
-            case 15:
-                qc qcVar = ((jb) obj).f27451b;
-                ub ubVar = qcVar.f29702e;
-                ubVar.transitionRunningEnter = false;
-                ubVar.onEnterTransitionEnd();
-                if (qcVar.f29717u) {
-                    qcVar.i(true);
-                    return;
-                }
-                return;
-            case 16:
-                jd jdVar = (jd) obj;
-                jdVar.getClass();
-                if (LiteMode.isEnabled(512)) {
-                    jdVar.invalidateSelf();
-                    return;
-                }
-                return;
-            case 17:
-                ld ldVar = (ld) obj;
-                if (ldVar.f28179o1) {
-                    ldVar.f28179o1 = false;
-                    ldVar.invalidate();
-                    return;
-                }
-                return;
-            case 18:
-                ((Dialog) obj).dismiss();
-                return;
-            case 19:
-                ChatActivityEnterView chatActivityEnterView2 = ((sf) obj).f30301f;
-                int i11 = ChatActivityEnterView.f23688m5;
-                chatActivityEnterView2.q1();
-                return;
-            case 20:
-                ((bh) obj).f24725s = null;
-                return;
-            case 21:
-                ((li) obj).B0.A1.l();
-                return;
-            case 22:
-                ok okVar = (ok) ((androidx.mediarouter.app.g) obj).f1776b;
+                chatActivityEnterView.I0();
+                return true;
+            } else {
                 try {
-                    File file = okVar.O;
-                    if (file == null) {
-                        okVar.O();
-                    } else {
-                        okVar.N(file);
-                    }
-                    okVar.V();
-                    return;
-                } catch (Exception e7) {
-                    FileLog.e(e7);
-                    return;
+                    return super.onTouchEvent(motionEvent);
+                } catch (Exception e) {
+                    FileLog.e(e);
                 }
-            case 23:
-                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout2 = ((xl) obj).f32631b;
-                boolean z10 = ChatAttachAlertPhotoLayout.f23858q1;
-                chatAttachAlertPhotoLayout2.p0(-1, true);
-                return;
-            case 24:
-                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout3 = ((ul) obj).f30946c;
-                if (chatAttachAlertPhotoLayout3.P != null && !chatAttachAlertPhotoLayout3.f28780b.isDismissed()) {
-                    chatAttachAlertPhotoLayout3.P.setSystemUiVisibility(1028);
-                    return;
-                }
-                return;
-            case 25:
-                qm qmVar = (qm) obj;
-                vi viVar = qmVar.f28780b;
-                if (qmVar.Q && (chatAttachAlertPhotoLayout = viVar.f31318j0) != null) {
-                    org.telegram.ui.ActionBar.f1 f1Var = chatAttachAlertPhotoLayout.f23868c1;
-                    f1Var.setIcon(R.drawable.ic_ab_back);
-                    f1Var.setText(LocaleController.getString(R.string.Back));
-                    f1Var.setRightIcon(0);
-                    return;
-                }
-                return;
-            case 26:
-                tn tnVar = (tn) obj;
-                tnVar.f30672k1 = -1;
-                tnVar.f30670j1 = null;
-                return;
-            case 27:
-                ((no) obj).n();
-                return;
-            case 28:
-                ((po) obj).setVisibility(8);
-                return;
-            default:
-                ((op) obj).f29182b.a();
-                return;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public final boolean requestFocus(int i10, Rect rect) {
+        ChatActivityEnterView chatActivityEnterView = this.d;
+        if (!chatActivityEnterView.f20958z0 && !chatActivityEnterView.r0()) {
+            return false;
+        }
+        chatActivityEnterView.getClass();
+        return super.requestFocus(i10, rect);
+    }
+
+    @Override
+    public final boolean requestRectangleOnScreen(Rect rect) {
+        rect.bottom = AndroidUtilities.dp(1000.0f) + rect.bottom;
+        return super.requestRectangleOnScreen(rect);
+    }
+
+    @Override
+    public void setOffsetY(float f7) {
+        super.setOffsetY(f7);
+        ChatActivityEnterView chatActivityEnterView = this.d;
+        if (chatActivityEnterView.l1.getForeground() != null) {
+            aw0 aw0Var = chatActivityEnterView.l1;
+            aw0Var.invalidateDrawable(aw0Var.getForeground());
         }
     }
 }

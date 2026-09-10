@@ -21,7 +21,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
-import n4.y;
 import org.telegram.messenger.FileStreamLoadOperation;
 public final class ExtendedDefaultDataSource implements h {
     private static final String SCHEME_ASSET = "asset";
@@ -115,8 +114,8 @@ public final class ExtendedDefaultDataSource implements h {
                 addListenersToDataSource(hVar);
             } catch (ClassNotFoundException unused) {
                 Log.w("ExtendedDefaultDataSource", "Attempting to play RTMP stream without depending on the RTMP extension");
-            } catch (Exception e7) {
-                throw new RuntimeException("Error instantiating RTMP extension", e7);
+            } catch (Exception e) {
+                throw new RuntimeException("Error instantiating RTMP extension", e);
             }
             if (this.rtmpDataSource == null) {
                 this.rtmpDataSource = this.baseDataSource;
@@ -191,15 +190,15 @@ public final class ExtendedDefaultDataSource implements h {
             z10 = false;
         }
         d.g(z10);
-        Uri uri = mVar.f10358a;
+        Uri uri = mVar.f8508a;
         if ("mtproto".equals(uri.getScheme())) {
-            uri = this.mtprotoUris.get(Long.parseLong(mVar.f10358a.toString().substring(8)));
+            uri = this.mtprotoUris.get(Long.parseLong(mVar.f8508a.toString().substring(8)));
             l a2 = mVar.a();
-            a2.f10354e = uri;
+            a2.e = uri;
             mVar = a2.d();
         }
         String scheme = uri.getScheme();
-        String str = d0.f8765a;
+        String str = d0.f7188a;
         String scheme2 = uri.getScheme();
         if (!TextUtils.isEmpty(scheme2) && !Objects.equals(scheme2, "file")) {
             if ("tg".equals(scheme)) {
@@ -238,7 +237,7 @@ public final class ExtendedDefaultDataSource implements h {
     }
 
     public ExtendedDefaultDataSource(Context context, String str, int i10, int i11, boolean z10) {
-        this(context, new r(str, i10, i11, z10, new y(15)), (LongSparseArray<Uri>) null);
+        this(context, new r(str, i10, i11, z10, new of.b(14)), (LongSparseArray<Uri>) null);
     }
 
     public ExtendedDefaultDataSource(Context context, h hVar, LongSparseArray<Uri> longSparseArray) {

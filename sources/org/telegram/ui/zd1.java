@@ -1,8 +1,6 @@
 package org.telegram.ui;
 
-import android.content.DialogInterface;
-public final class zd1 implements DialogInterface.OnCancelListener {
-    @Override
-    public final void onCancel(DialogInterface dialogInterface) {
-    }
+import org.telegram.tgnet.TLRPC;
+public interface zd1 {
+    void a(TLRPC.TL_wallPaper tL_wallPaper);
 }

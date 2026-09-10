@@ -1,14 +1,13 @@
 package v7;
 public abstract class a8 {
-    public static void a(int i10, int i11, int i12) {
-        if (i10 >= 0 && i11 <= i12) {
-            if (i10 <= i11) {
-                return;
-            }
-            throw new IllegalArgumentException(a4.a.l(i10, i11, "fromIndex: ", " > toIndex: "));
+    public static byte a(long j3) {
+        boolean z10;
+        if ((j3 >> 8) == 0) {
+            z10 = true;
+        } else {
+            z10 = false;
         }
-        StringBuilder k10 = com.google.android.gms.internal.vision.e2.k("fromIndex: ", i10, ", toIndex: ", i11, ", size: ");
-        k10.append(i12);
-        throw new IndexOutOfBoundsException(k10.toString());
+        t6.b(j3, "out of range: %s", z10);
+        return (byte) j3;
     }
 }

@@ -1,52 +1,60 @@
 package mh;
 
-import java.util.ArrayList;
-import java.util.List;
-import org.telegram.messenger.voip.GroupCallMessage;
-import org.telegram.messenger.voip.GroupCallMessagesController;
-import org.telegram.tgnet.TLRPC;
-import s4.c1;
-import s4.h0;
-public abstract class d extends h0 implements GroupCallMessagesController.CallMessageListener {
-    public List f16352c;
-    public boolean d;
-    public int f16353e;
-    public TLRPC.InputGroupCall f16354f;
+import android.content.Context;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.text.TextUtils;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.TextView;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.ui.ActionBar.a6;
+import org.telegram.ui.ActionBar.f6;
+import org.telegram.ui.ActionBar.j6;
+public final class d extends FrameLayout implements a6 {
+    public final f6 f13665a;
+    public final ImageView f13666b;
+    public final TextView f13667c;
 
-    @Override
-    public final int h() {
-        List list = this.f16352c;
-        if (list != null) {
-            return list.size();
-        }
-        return 0;
+    public d(Context context, f6 f6Var) {
+        super(context);
+        this.f13665a = f6Var;
+        ImageView imageView = new ImageView(context);
+        this.f13666b = imageView;
+        imageView.setScaleType(ImageView.ScaleType.CENTER);
+        imageView.setImageResource(R.drawable.msg_arrow_back);
+        addView(imageView, w7.a6.d(48, 48.0f, 8388627, 6.0f, 0.0f, 0.0f, 0.0f));
+        TextView textView = new TextView(context);
+        this.f13667c = textView;
+        textView.setText(LocaleController.getString(R.string.EmojiSearchBackToSearch));
+        textView.setTextSize(1, 15.0f);
+        textView.setTypeface(AndroidUtilities.bold());
+        textView.setSingleLine(true);
+        textView.setEllipsize(TextUtils.TruncateAt.END);
+        addView(textView, w7.a6.d(-2, -2.0f, 8388627, 50.0f, 0.0f, 16.0f, 0.0f));
+        e();
     }
 
     @Override
-    public final void onNewGroupCallMessage(long j3, GroupCallMessage groupCallMessage) {
-        if (this.f16352c == null) {
-            this.f16352c = new ArrayList();
-        }
-        this.f16352c.add(0, groupCallMessage);
-        o(0);
+    public final void e() {
+        int i10 = j6.Wk;
+        f6 f6Var = this.f13665a;
+        int i11 = (int) 153.0f;
+        this.f13667c.setTextColor(i0.a.k(j6.v0(i10, f6Var), i11));
+        PorterDuffColorFilter porterDuffColorFilter = new PorterDuffColorFilter(i0.a.k(j6.v0(i10, f6Var), i11), PorterDuff.Mode.MULTIPLY);
+        ImageView imageView = this.f13666b;
+        imageView.setColorFilter(porterDuffColorFilter);
+        imageView.setBackground(j6.f0(i0.a.k(j6.v0(i10, f6Var), (int) 25.5f), 1, -1));
     }
 
-    @Override
-    public final void onPopGroupCallMessage() {
-        List list = this.f16352c;
-        if (list != null && !list.isEmpty()) {
-            int size = this.f16352c.size() - 1;
-            this.f16352c.remove(size);
-            u(size);
-        }
+    public int[] getColorKeys() {
+        return null;
     }
 
-    @Override
-    public final void v(c1 c1Var, int i10) {
-        b bVar = (b) c1Var;
-        List list = this.f16352c;
-        if (list != null && list.size() > i10) {
-            ((c) bVar.f45766a).set((GroupCallMessage) this.f16352c.get(i10));
-        }
+    public void setOnBackClickListener(View.OnClickListener onClickListener) {
+        this.f13666b.setOnClickListener(onClickListener);
     }
 }

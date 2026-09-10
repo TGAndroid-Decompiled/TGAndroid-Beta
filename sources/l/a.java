@@ -11,24 +11,24 @@ import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.SubMenu;
 import android.view.View;
-import v7.o8;
+import v7.r8;
 public final class a implements l0.a {
-    public CharSequence f15081a;
-    public CharSequence f15082b;
-    public Intent f15083c;
+    public CharSequence f12578a;
+    public CharSequence f12579b;
+    public Intent f12580c;
     public char d;
-    public int f15084e;
-    public char f15085f;
-    public int f15086g;
+    public int e;
+    public char f12581f;
+    public int f12582g;
     public Drawable h;
-    public Context f15087i;
-    public CharSequence f15088j;
-    public CharSequence f15089k;
-    public ColorStateList f15090l;
-    public PorterDuff.Mode f15091m;
-    public boolean f15092n;
-    public boolean f15093o;
-    public int f15094p;
+    public Context f12583i;
+    public CharSequence f12584j;
+    public CharSequence f12585k;
+    public ColorStateList f12586l;
+    public PorterDuff.Mode f12587m;
+    public boolean f12588n;
+    public boolean f12589o;
+    public int f12590p;
 
     @Override
     public final l0.a a(o oVar) {
@@ -43,16 +43,16 @@ public final class a implements l0.a {
     public final void c() {
         Drawable drawable = this.h;
         if (drawable != null) {
-            if (this.f15092n || this.f15093o) {
-                Drawable d = o8.d(drawable);
+            if (this.f12588n || this.f12589o) {
+                Drawable d = r8.d(drawable);
                 this.h = d;
                 Drawable mutate = d.mutate();
                 this.h = mutate;
-                if (this.f15092n) {
-                    mutate.setTintList(this.f15090l);
+                if (this.f12588n) {
+                    mutate.setTintList(this.f12586l);
                 }
-                if (this.f15093o) {
-                    this.h.setTintMode(this.f15091m);
+                if (this.f12589o) {
+                    this.h.setTintMode(this.f12587m);
                 }
             }
         }
@@ -80,17 +80,17 @@ public final class a implements l0.a {
 
     @Override
     public final int getAlphabeticModifiers() {
-        return this.f15086g;
+        return this.f12582g;
     }
 
     @Override
     public final char getAlphabeticShortcut() {
-        return this.f15085f;
+        return this.f12581f;
     }
 
     @Override
     public final CharSequence getContentDescription() {
-        return this.f15088j;
+        return this.f12584j;
     }
 
     @Override
@@ -105,17 +105,17 @@ public final class a implements l0.a {
 
     @Override
     public final ColorStateList getIconTintList() {
-        return this.f15090l;
+        return this.f12586l;
     }
 
     @Override
     public final PorterDuff.Mode getIconTintMode() {
-        return this.f15091m;
+        return this.f12587m;
     }
 
     @Override
     public final Intent getIntent() {
-        return this.f15083c;
+        return this.f12580c;
     }
 
     @Override
@@ -130,7 +130,7 @@ public final class a implements l0.a {
 
     @Override
     public final int getNumericModifiers() {
-        return this.f15084e;
+        return this.e;
     }
 
     @Override
@@ -150,21 +150,21 @@ public final class a implements l0.a {
 
     @Override
     public final CharSequence getTitle() {
-        return this.f15081a;
+        return this.f12578a;
     }
 
     @Override
     public final CharSequence getTitleCondensed() {
-        CharSequence charSequence = this.f15082b;
+        CharSequence charSequence = this.f12579b;
         if (charSequence != null) {
             return charSequence;
         }
-        return this.f15081a;
+        return this.f12578a;
     }
 
     @Override
     public final CharSequence getTooltipText() {
-        return this.f15089k;
+        return this.f12585k;
     }
 
     @Override
@@ -179,7 +179,7 @@ public final class a implements l0.a {
 
     @Override
     public final boolean isCheckable() {
-        if ((this.f15094p & 1) != 0) {
+        if ((this.f12590p & 1) != 0) {
             return true;
         }
         return false;
@@ -187,7 +187,7 @@ public final class a implements l0.a {
 
     @Override
     public final boolean isChecked() {
-        if ((this.f15094p & 2) != 0) {
+        if ((this.f12590p & 2) != 0) {
             return true;
         }
         return false;
@@ -195,7 +195,7 @@ public final class a implements l0.a {
 
     @Override
     public final boolean isEnabled() {
-        if ((this.f15094p & 16) != 0) {
+        if ((this.f12590p & 16) != 0) {
             return true;
         }
         return false;
@@ -203,7 +203,7 @@ public final class a implements l0.a {
 
     @Override
     public final boolean isVisible() {
-        if ((this.f15094p & 8) == 0) {
+        if ((this.f12590p & 8) == 0) {
             return true;
         }
         return false;
@@ -221,45 +221,45 @@ public final class a implements l0.a {
 
     @Override
     public final MenuItem setAlphabeticShortcut(char c10) {
-        this.f15085f = Character.toLowerCase(c10);
+        this.f12581f = Character.toLowerCase(c10);
         return this;
     }
 
     @Override
     public final MenuItem setCheckable(boolean z10) {
-        this.f15094p = (z10 ? 1 : 0) | (this.f15094p & (-2));
+        this.f12590p = (z10 ? 1 : 0) | (this.f12590p & (-2));
         return this;
     }
 
     @Override
     public final MenuItem setChecked(boolean z10) {
         int i10;
-        int i11 = this.f15094p & (-3);
+        int i11 = this.f12590p & (-3);
         if (z10) {
             i10 = 2;
         } else {
             i10 = 0;
         }
-        this.f15094p = i10 | i11;
+        this.f12590p = i10 | i11;
         return this;
     }
 
     @Override
     public final MenuItem setContentDescription(CharSequence charSequence) {
-        this.f15088j = charSequence;
+        this.f12584j = charSequence;
         return this;
     }
 
     @Override
     public final MenuItem setEnabled(boolean z10) {
         int i10;
-        int i11 = this.f15094p & (-17);
+        int i11 = this.f12590p & (-17);
         if (z10) {
             i10 = 16;
         } else {
             i10 = 0;
         }
-        this.f15094p = i10 | i11;
+        this.f12590p = i10 | i11;
         return this;
     }
 
@@ -272,23 +272,23 @@ public final class a implements l0.a {
 
     @Override
     public final MenuItem setIconTintList(ColorStateList colorStateList) {
-        this.f15090l = colorStateList;
-        this.f15092n = true;
+        this.f12586l = colorStateList;
+        this.f12588n = true;
         c();
         return this;
     }
 
     @Override
     public final MenuItem setIconTintMode(PorterDuff.Mode mode) {
-        this.f15091m = mode;
-        this.f15093o = true;
+        this.f12587m = mode;
+        this.f12589o = true;
         c();
         return this;
     }
 
     @Override
     public final MenuItem setIntent(Intent intent) {
-        this.f15083c = intent;
+        this.f12580c = intent;
         return this;
     }
 
@@ -306,36 +306,36 @@ public final class a implements l0.a {
     @Override
     public final MenuItem setShortcut(char c10, char c11) {
         this.d = c10;
-        this.f15085f = Character.toLowerCase(c11);
+        this.f12581f = Character.toLowerCase(c11);
         return this;
     }
 
     @Override
     public final MenuItem setTitle(CharSequence charSequence) {
-        this.f15081a = charSequence;
+        this.f12578a = charSequence;
         return this;
     }
 
     @Override
     public final MenuItem setTitleCondensed(CharSequence charSequence) {
-        this.f15082b = charSequence;
+        this.f12579b = charSequence;
         return this;
     }
 
     @Override
     public final MenuItem setTooltipText(CharSequence charSequence) {
-        this.f15089k = charSequence;
+        this.f12585k = charSequence;
         return this;
     }
 
     @Override
     public final MenuItem setVisible(boolean z10) {
         int i10 = 8;
-        int i11 = this.f15094p & 8;
+        int i11 = this.f12590p & 8;
         if (z10) {
             i10 = 0;
         }
-        this.f15094p = i11 | i10;
+        this.f12590p = i11 | i10;
         return this;
     }
 
@@ -346,39 +346,39 @@ public final class a implements l0.a {
 
     @Override
     public final MenuItem setAlphabeticShortcut(char c10, int i10) {
-        this.f15085f = Character.toLowerCase(c10);
-        this.f15086g = KeyEvent.normalizeMetaState(i10);
+        this.f12581f = Character.toLowerCase(c10);
+        this.f12582g = KeyEvent.normalizeMetaState(i10);
         return this;
     }
 
     @Override
     public final l0.a setContentDescription(CharSequence charSequence) {
-        this.f15088j = charSequence;
+        this.f12584j = charSequence;
         return this;
     }
 
     @Override
     public final MenuItem setNumericShortcut(char c10, int i10) {
         this.d = c10;
-        this.f15084e = KeyEvent.normalizeMetaState(i10);
+        this.e = KeyEvent.normalizeMetaState(i10);
         return this;
     }
 
     @Override
     public final MenuItem setTitle(int i10) {
-        this.f15081a = this.f15087i.getResources().getString(i10);
+        this.f12578a = this.f12583i.getResources().getString(i10);
         return this;
     }
 
     @Override
     public final l0.a setTooltipText(CharSequence charSequence) {
-        this.f15089k = charSequence;
+        this.f12585k = charSequence;
         return this;
     }
 
     @Override
     public final MenuItem setIcon(int i10) {
-        this.h = this.f15087i.getDrawable(i10);
+        this.h = this.f12583i.getDrawable(i10);
         c();
         return this;
     }
@@ -386,9 +386,9 @@ public final class a implements l0.a {
     @Override
     public final MenuItem setShortcut(char c10, char c11, int i10, int i11) {
         this.d = c10;
-        this.f15084e = KeyEvent.normalizeMetaState(i10);
-        this.f15085f = Character.toLowerCase(c11);
-        this.f15086g = KeyEvent.normalizeMetaState(i11);
+        this.e = KeyEvent.normalizeMetaState(i10);
+        this.f12581f = Character.toLowerCase(c11);
+        this.f12582g = KeyEvent.normalizeMetaState(i11);
         return this;
     }
 

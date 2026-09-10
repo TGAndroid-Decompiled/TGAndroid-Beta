@@ -1,26 +1,32 @@
 package org.telegram.messenger;
 
-import org.telegram.tgnet.ResultCallback;
+import org.telegram.messenger.ChatObject;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-public final class y0 implements Runnable {
-    public final int f19676a;
-    public final ResultCallback f19677b;
-    public final TLRPC.TL_error f19678c;
+public final class y0 implements RequestDelegate {
+    public final int f17019a;
+    public final ChatObject.Call f17020b;
 
-    public y0(ResultCallback resultCallback, TLRPC.TL_error tL_error, int i10) {
-        this.f19676a = i10;
-        this.f19677b = resultCallback;
-        this.f19678c = tL_error;
+    public y0(ChatObject.Call call, int i10) {
+        this.f17019a = i10;
+        this.f17020b = call;
     }
 
     @Override
-    public final void run() {
-        switch (this.f19676a) {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f17019a) {
             case 0:
-                this.f19677b.onError(this.f19678c);
+                this.f17020b.lambda$loadGroupCall$11(tLObject, tL_error);
+                return;
+            case 1:
+                this.f17020b.lambda$reloadGroupCall$9(tLObject, tL_error);
+                return;
+            case 2:
+                this.f17020b.lambda$setTitle$4(tLObject, tL_error);
                 return;
             default:
-                this.f19677b.onError(this.f19678c);
+                this.f17020b.lambda$toggleRecord$13(tLObject, tL_error);
                 return;
         }
     }

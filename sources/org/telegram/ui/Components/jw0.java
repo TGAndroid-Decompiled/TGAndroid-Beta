@@ -1,59 +1,58 @@
 package org.telegram.ui.Components;
 
-import android.graphics.drawable.Drawable;
+import android.content.Context;
+import android.graphics.PointF;
 import android.view.View;
-import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.DialogObject;
-import org.telegram.tgnet.TLRPC;
-public final class jw0 {
-    public final o5 f27607a;
-    public Drawable f27608b;
+public class jw0 extends s4.d0 {
+    public final wr f24506r;
+    public int f24507s;
+    public float f24508t;
 
-    public jw0(FrameLayout frameLayout) {
-        this(18, frameLayout);
+    public jw0(Context context) {
+        super(context);
+        this.f24506r = wr.f28819f;
+        this.f24508t = 1.0f;
     }
 
-    public final o5 a(TLRPC.User user, TLRPC.Chat chat, int i10, boolean z10) {
-        o5 o5Var = this.f27607a;
-        if (chat != null && chat.verified) {
-            Drawable drawable = this.f27608b;
-            if (drawable == null) {
-                drawable = new oq(org.telegram.ui.ActionBar.j6.f20722f1, org.telegram.ui.ActionBar.j6.f20775i1);
-            }
-            this.f27608b = drawable;
-            o5Var.g(drawable, z10);
-            o5Var.k(null);
-            return o5Var;
-        } else if (chat != null && DialogObject.getEmojiStatusDocumentId(chat.emoji_status) != 0) {
-            o5Var.j(DialogObject.getEmojiStatusDocumentId(chat.emoji_status), z10);
-            o5Var.k(Integer.valueOf(i10));
-            return o5Var;
-        } else if (user != null && user.verified) {
-            Drawable drawable2 = this.f27608b;
-            if (drawable2 == null) {
-                drawable2 = new oq(org.telegram.ui.ActionBar.j6.f20722f1, org.telegram.ui.ActionBar.j6.f20775i1);
-            }
-            this.f27608b = drawable2;
-            o5Var.g(drawable2, z10);
-            o5Var.k(null);
-            return o5Var;
-        } else if (user != null && DialogObject.getEmojiStatusDocumentId(user.emoji_status) != 0) {
-            o5Var.j(DialogObject.getEmojiStatusDocumentId(user.emoji_status), z10);
-            o5Var.k(Integer.valueOf(i10));
-            return o5Var;
-        } else if (user != null && user.premium) {
-            o5Var.g(sg.d1.d().f46096e, z10);
-            o5Var.k(Integer.valueOf(i10));
-            return o5Var;
-        } else {
-            o5Var.g(null, z10);
-            o5Var.k(null);
-            return o5Var;
+    @Override
+    public final void g(View view, s4.x0 x0Var) {
+        int j3 = j(o(), view);
+        int k10 = k(p(), view);
+        int m10 = m((int) Math.sqrt((k10 * k10) + (j3 * j3)));
+        if (m10 > 0) {
+            x0Var.b(-j3, -k10, m10, this.f24506r);
         }
+        AndroidUtilities.runOnUIThread(new uq0(this, 8), Math.max(0, m10));
     }
 
-    public jw0(int i10, View view) {
-        this.f27607a = new o5(AndroidUtilities.dp(i10), view);
+    @Override
+    public final int k(int i10, View view) {
+        return super.k(i10, view) - this.f24507s;
+    }
+
+    @Override
+    public final int m(int i10) {
+        return Math.round(Math.min(super.m(i10), 500) * this.f24508t);
+    }
+
+    @Override
+    public final int n(int i10) {
+        return Math.round(Math.min(super.n(i10), 150) * this.f24508t);
+    }
+
+    @Override
+    public final void q(s4.x0 x0Var) {
+        PointF a2 = a(this.f41760a);
+        if (a2 != null && (a2.x != 0.0f || a2.y != 0.0f)) {
+            s4.y0.b(a2);
+            this.f41633k = a2;
+            this.f41637o = (int) (a2.x * 10000.0f);
+            this.f41638p = (int) (a2.y * 10000.0f);
+            x0Var.b((int) (this.f41637o * 1.2f), (int) (this.f41638p * 1.2f), (int) (n(10000) * 1.2f), this.f24506r);
+            return;
+        }
+        x0Var.d = this.f41760a;
+        h();
     }
 }

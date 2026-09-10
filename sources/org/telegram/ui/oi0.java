@@ -2,7 +2,7 @@ package org.telegram.ui;
 
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
-public final class oi0 extends gz {
+public final class oi0 extends iz {
     public final int[] N;
     public final cj0 O;
 
@@ -13,18 +13,18 @@ public final class oi0 extends gz {
     }
 
     @Override
-    public final void h(fz fzVar) {
+    public final void h(hz hzVar) {
         cj0 cj0Var = this.O;
         vi0 vi0Var = cj0Var.K;
-        if (fzVar != null) {
-            if (cj0Var.f35170l0 != null) {
-                fzVar.f36525c = true;
-                float f7 = (gz.f() * AndroidUtilities.density) / 1.3f;
+        if (hzVar != null) {
+            if (cj0Var.f31697l0 != null) {
+                hzVar.f33489c = true;
+                float f7 = (iz.f() * AndroidUtilities.density) / 1.3f;
                 float f10 = f7 / 3.0f;
-                fzVar.d = f10;
-                fzVar.f36526e = f10;
-                fzVar.f36523a = Utilities.clamp(cj0Var.f35170l0.right - (0.75f * f7), AndroidUtilities.displaySize.x - f7, 0.0f);
-                fzVar.f36524b = cj0Var.f35170l0.bottom - (f7 / 2.0f);
+                hzVar.d = f10;
+                hzVar.e = f10;
+                hzVar.f33487a = Utilities.clamp(cj0Var.f31697l0.right - (0.75f * f7), AndroidUtilities.displaySize.x - f7, 0.0f);
+                hzVar.f33488b = cj0Var.f31697l0.bottom - (f7 / 2.0f);
                 return;
             }
             org.telegram.ui.Cells.t1 t1Var = cj0Var.Q;
@@ -32,14 +32,14 @@ public final class oi0 extends gz {
                 org.telegram.ui.Cells.t1 t1Var2 = cj0Var.Q;
                 int[] iArr = this.N;
                 t1Var2.getLocationOnScreen(iArr);
-                fzVar.f36525c = true;
-                float f11 = (gz.f() * AndroidUtilities.density) / 1.3f;
+                hzVar.f33489c = true;
+                float f11 = (iz.f() * AndroidUtilities.density) / 1.3f;
                 float f12 = f11 / 3.0f;
-                fzVar.d = f12;
-                fzVar.f36526e = f12;
+                hzVar.d = f12;
+                hzVar.e = f12;
                 float f13 = f11 / 2.0f;
-                fzVar.f36523a = Utilities.clamp(((vi0Var.getScaleX() * cj0Var.Q.getTimeX()) + iArr[0]) - f13, AndroidUtilities.displaySize.x - f11, 0.0f);
-                fzVar.f36524b = ((vi0Var.getScaleY() * cj0Var.Q.getTimeY()) + iArr[1]) - f13;
+                hzVar.f33487a = Utilities.clamp(((vi0Var.getScaleX() * cj0Var.Q.getTimeX()) + iArr[0]) - f13, AndroidUtilities.displaySize.x - f11, 0.0f);
+                hzVar.f33488b = ((vi0Var.getScaleY() * cj0Var.Q.getTimeY()) + iArr[1]) - f13;
             }
         }
     }

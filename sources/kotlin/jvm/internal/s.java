@@ -21,7 +21,7 @@ public abstract class s {
                     return;
                 }
             }
-            ClassCastException classCastException = new ClassCastException(a4.a.C(obj.getClass().getName(), " cannot be cast to ", i2.g.i(i10, "kotlin.jvm.functions.Function")));
+            ClassCastException classCastException = new ClassCastException(a4.a.C(obj.getClass().getName(), " cannot be cast to ", hc.b.j(i10, "kotlin.jvm.functions.Function")));
             i.f(classCastException, s.class.getName());
             throw classCastException;
         }

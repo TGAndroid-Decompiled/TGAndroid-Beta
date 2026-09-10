@@ -3,15 +3,15 @@ package r7;
 import com.google.android.gms.tasks.TaskCompletionSource;
 import v7.f5;
 public final class g extends x {
-    public final TaskCompletionSource f44966b;
+    public final TaskCompletionSource f41284b;
 
     public g(TaskCompletionSource taskCompletionSource) {
-        this.f44966b = taskCompletionSource;
+        this.f41284b = taskCompletionSource;
     }
 
     @Override
     public final void p0(v vVar) {
-        f5.a(vVar.f44998a, Boolean.TRUE, this.f44966b);
+        f5.a(vVar.f41311a, Boolean.TRUE, this.f41284b);
     }
 
     @Override

@@ -1,15 +1,11 @@
 package org.telegram.ui.Components;
 
-import androidx.recyclerview.widget.RecyclerView;
-public final class t70 extends s4.s0 {
-    public final w70 f30573a;
-
-    public t70(w70 w70Var) {
-        this.f30573a = w70Var;
-    }
-
+import android.view.View;
+import android.widget.ScrollView;
+import org.telegram.messenger.AndroidUtilities;
+public final class t70 extends ScrollView {
     @Override
-    public final void b(RecyclerView recyclerView, int i10, int i11) {
-        w70.o(this.f30573a);
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(Math.min(AndroidUtilities.dp(260.0f), View.MeasureSpec.getSize(i11)), View.MeasureSpec.getMode(i11)));
     }
 }

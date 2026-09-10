@@ -1,45 +1,53 @@
 package org.telegram.messenger;
 
-import java.io.Serializable;
-import java.util.ArrayList;
+import org.telegram.messenger.FileLoader;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_bots;
 public final class h3 implements Runnable {
-    public final int f17858a = 0;
-    public final int f17859b;
-    public final long f17860c;
-    public final int d;
-    public final int f17861e;
-    public final Object f17862f;
-    public final Serializable h;
+    public final int f15327a = 0;
+    public final String f15328b;
+    public final boolean f15329c;
+    public final boolean d;
+    public final Object e;
+    public final Object f15330f;
+    public final Object h;
+    public final Object f15331n;
+    public final Object f15332r;
+    public final Object f15333s;
 
-    public h3(FilePathDatabase filePathDatabase, long j3, int i10, int i11, String str, int i12) {
-        this.f17862f = filePathDatabase;
-        this.f17860c = j3;
-        this.f17859b = i10;
-        this.d = i11;
-        this.h = str;
-        this.f17861e = i12;
+    public h3(FileLoader.AnonymousClass1 anonymousClass1, boolean z10, String str, boolean z11, TLRPC.InputFile inputFile, TLRPC.InputEncryptedFile inputEncryptedFile, byte[] bArr, byte[] bArr2, FileUploadOperation fileUploadOperation) {
+        this.e = anonymousClass1;
+        this.f15329c = z10;
+        this.f15328b = str;
+        this.d = z11;
+        this.f15330f = inputFile;
+        this.h = inputEncryptedFile;
+        this.f15331n = bArr;
+        this.f15332r = bArr2;
+        this.f15333s = fileUploadOperation;
     }
 
     @Override
     public final void run() {
-        switch (this.f17858a) {
+        switch (this.f15327a) {
             case 0:
-                int i10 = this.f17861e;
-                FilePathDatabase.a((FilePathDatabase) this.f17862f, this.f17860c, this.f17859b, this.d, (String) this.h, i10);
+                ((FileLoader.AnonymousClass1) this.e).lambda$didFinishUploadingFile$0(this.f15329c, this.f15328b, this.d, (TLRPC.InputFile) this.f15330f, (TLRPC.InputEncryptedFile) this.h, (byte[]) this.f15331n, (byte[]) this.f15332r, (FileUploadOperation) this.f15333s);
                 return;
             default:
-                int i11 = this.f17861e;
-                ((MessagesStorage) this.f17862f).lambda$updateRepliesCount$194(this.f17859b, this.f17860c, this.d, (ArrayList) this.h, i11);
+                ((MessagesController) this.e).lambda$openApp$498((org.telegram.ui.ActionBar.p2) this.f15330f, (nf.e) this.h, (boolean[]) this.f15331n, (TLRPC.User) this.f15332r, this.f15328b, this.f15329c, this.d, (TL_bots.BotInfo[]) this.f15333s);
                 return;
         }
     }
 
-    public h3(MessagesStorage messagesStorage, int i10, long j3, int i11, ArrayList arrayList, int i12) {
-        this.f17862f = messagesStorage;
-        this.f17859b = i10;
-        this.f17860c = j3;
-        this.d = i11;
-        this.h = arrayList;
-        this.f17861e = i12;
+    public h3(MessagesController messagesController, org.telegram.ui.ActionBar.p2 p2Var, nf.e eVar, boolean[] zArr, TLRPC.User user, String str, boolean z10, boolean z11, TL_bots.BotInfo[] botInfoArr) {
+        this.e = messagesController;
+        this.f15330f = p2Var;
+        this.h = eVar;
+        this.f15331n = zArr;
+        this.f15332r = user;
+        this.f15328b = str;
+        this.f15329c = z10;
+        this.d = z11;
+        this.f15333s = botInfoArr;
     }
 }

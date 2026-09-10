@@ -62,8 +62,8 @@ public abstract class c extends IntentService {
                 }
             }
             return false;
-        } catch (PackageManager.NameNotFoundException e7) {
-            Log.w("SAVerificationClientS", "Couldn't find package name ".concat(str), e7);
+        } catch (PackageManager.NameNotFoundException e) {
+            Log.w("SAVerificationClientS", "Couldn't find package name ".concat(str), e);
             return false;
         }
     }
@@ -150,9 +150,9 @@ public abstract class c extends IntentService {
             if ((!z10 || !z11) && System.nanoTime() - nanoTime < this.connectionTimeout * 1000000) {
                 try {
                     Thread.sleep(50L);
-                } catch (InterruptedException e7) {
+                } catch (InterruptedException e) {
                     if (this.dbg) {
-                        String valueOf = String.valueOf(e7);
+                        String valueOf = String.valueOf(e);
                         StringBuilder sb2 = new StringBuilder(valueOf.length() + 33);
                         sb2.append("Unexpected InterruptedException: ");
                         sb2.append(valueOf);
@@ -182,11 +182,11 @@ public abstract class c extends IntentService {
         notificationChannel.setShowBadge(false);
         ((NotificationManager) getApplicationContext().getSystemService(NotificationManager.class)).createNotificationChannel(notificationChannel);
         t tVar = new t(getApplicationContext(), "Assistant_verifier");
-        tVar.f8721q = "Assistant_verifier";
-        tVar.f8710e = t.d(getApplicationContext().getResources().getString(2131230721));
+        tVar.f7148q = "Assistant_verifier";
+        tVar.e = t.d(getApplicationContext().getResources().getString(2131230721));
         tVar.E.icon = 17301545;
-        tVar.f8714j = -2;
-        tVar.f8727x = 1;
+        tVar.f7141j = -2;
+        tVar.f7154x = 1;
         startForeground(10000, tVar.b());
     }
 }

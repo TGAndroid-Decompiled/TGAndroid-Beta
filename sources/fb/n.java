@@ -1,4 +1,4 @@
 package fb;
 public interface n {
-    Object h2();
+    Object n2();
 }

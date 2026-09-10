@@ -2,74 +2,48 @@ package sg;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.view.View;
+import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.q6;
-import org.telegram.ui.Components.sp;
-public final class q0 extends q6 {
-    public final int f46256s;
-    public final r0 v;
+import org.telegram.messenger.R;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.f6;
+import org.telegram.ui.ActionBar.j6;
+import org.telegram.ui.Components.g9;
+import org.telegram.ui.Components.w9;
+import w7.a6;
+public final class q0 extends FrameLayout {
+    public final w9 f41994a;
+    public final r0 f41995b;
+    public final Paint f41996c;
+    public TLRPC.Chat d;
+    public final g9 e;
 
-    public q0(r0 r0Var, Context context, int i10) {
-        super(context, true, true, true);
-        this.f46256s = i10;
-        this.v = r0Var;
+    public q0(Context context) {
+        super(context);
+        Paint paint = new Paint(1);
+        this.f41996c = paint;
+        this.e = new g9((f6) null);
+        w9 w9Var = new w9(getContext());
+        this.f41994a = w9Var;
+        w9Var.setRoundRadius(AndroidUtilities.dp(30.0f));
+        ?? view = new View(context);
+        Paint paint2 = new Paint(1);
+        view.f41999a = paint2;
+        view.f42000b = view.getContext().getDrawable(R.drawable.mini_boost_remove);
+        int i10 = j6.f17998h5;
+        paint2.setColor(j6.w0(null, i10, false));
+        this.f41995b = view;
+        view.setAlpha(0.0f);
+        addView(w9Var, a6.d(-1, -1.0f, 0, 5.0f, 5.0f, 5.0f, 5.0f));
+        addView((View) view, a6.d(28, 28.0f, 85, 0.0f, 0.0f, 0.0f, 3.0f));
+        paint.setColor(j6.w0(null, i10, false));
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        switch (this.f46256s) {
-            case 0:
-                r0 r0Var = this.v;
-                if (r0Var.M > 0.0f) {
-                    if (r0Var.L == null) {
-                        r0Var.L = new sp(r0Var.d.getTextColor());
-                    }
-                    int dp = (int) ((1.0f - r0Var.M) * AndroidUtilities.dp(24.0f));
-                    r0Var.L.setBounds(0, dp, getWidth(), getHeight() + dp);
-                    r0Var.L.setAlpha((int) (r0Var.M * 255.0f));
-                    r0Var.L.draw(canvas);
-                    invalidate();
-                }
-                float f7 = r0Var.M;
-                if (f7 < 1.0f) {
-                    if (f7 != 0.0f) {
-                        canvas.save();
-                        canvas.translate(0.0f, (int) (r0Var.M * AndroidUtilities.dp(-24.0f)));
-                        canvas.scale(1.0f, 1.0f - (r0Var.M * 0.4f));
-                        super.onDraw(canvas);
-                        canvas.restore();
-                        return;
-                    }
-                    super.onDraw(canvas);
-                    return;
-                }
-                return;
-            default:
-                r0 r0Var2 = this.v;
-                if (r0Var2.M > 0.0f) {
-                    if (r0Var2.L == null) {
-                        r0Var2.L = new sp(r0Var2.d.getTextColor());
-                    }
-                    int dp2 = (int) ((1.0f - r0Var2.M) * AndroidUtilities.dp(24.0f));
-                    r0Var2.L.setBounds(0, dp2, getWidth(), getHeight() + dp2);
-                    r0Var2.L.setAlpha((int) (r0Var2.M * 255.0f));
-                    r0Var2.L.draw(canvas);
-                    invalidate();
-                }
-                float f10 = r0Var2.M;
-                if (f10 < 1.0f) {
-                    if (f10 != 0.0f) {
-                        canvas.save();
-                        canvas.translate(0.0f, (int) (r0Var2.M * AndroidUtilities.dp(-24.0f)));
-                        canvas.scale(1.0f, 1.0f - (r0Var2.M * 0.4f));
-                        super.onDraw(canvas);
-                        canvas.restore();
-                        return;
-                    }
-                    super.onDraw(canvas);
-                    return;
-                }
-                return;
-        }
+    public final void dispatchDraw(Canvas canvas) {
+        canvas.drawCircle(getMeasuredWidth() / 2.0f, getMeasuredHeight() / 2.0f, (getMeasuredHeight() / 2.0f) - AndroidUtilities.dp(2.0f), this.f41996c);
+        super.dispatchDraw(canvas);
     }
 }

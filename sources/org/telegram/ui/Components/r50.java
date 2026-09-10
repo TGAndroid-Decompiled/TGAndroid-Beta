@@ -1,72 +1,33 @@
 package org.telegram.ui.Components;
 
-import android.view.animation.DecelerateInterpolator;
-import org.telegram.messenger.MediaController;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.VideoEditedInfo;
-public final class r50 implements Runnable {
-    public final int f29961a;
-    public final v50 f29962b;
+import android.animation.ValueAnimator;
+public final class r50 implements ValueAnimator.AnimatorUpdateListener {
+    public final boolean[] f26586a;
+    public final n50 f26587b;
+    public final f60 f26588c;
 
-    public r50(v50 v50Var, int i10) {
-        this.f29961a = i10;
-        this.f29962b = v50Var;
+    public r50(f60 f60Var, boolean[] zArr, n50 n50Var) {
+        this.f26588c = f60Var;
+        this.f26586a = zArr;
+        this.f26587b = n50Var;
     }
 
     @Override
-    public final void run() {
-        VideoEditedInfo videoEditedInfo;
-        int i10 = this.f29961a;
-        v50 v50Var = this.f29962b;
-        switch (i10) {
-            case 0:
-                v50Var.H0.m(false, false);
-                return;
-            case 1:
-                NotificationCenter.getInstance(v50Var.H0.f32151a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.stopAllHeavyOperations, 512);
-                return;
-            case 2:
-                w50 w50Var = v50Var.H0;
-                VideoEditedInfo videoEditedInfo2 = new VideoEditedInfo();
-                w50Var.N = videoEditedInfo2;
-                videoEditedInfo2.roundVideo = true;
-                videoEditedInfo2.startTime = -1L;
-                videoEditedInfo2.endTime = -1L;
-                videoEditedInfo2.file = w50Var.H;
-                videoEditedInfo2.encryptedFile = w50Var.I;
-                videoEditedInfo2.key = w50Var.J;
-                videoEditedInfo2.iv = w50Var.K;
-                videoEditedInfo2.estimatedSize = Math.max(1L, w50Var.L);
-                VideoEditedInfo videoEditedInfo3 = w50Var.N;
-                videoEditedInfo3.framerate = 25;
-                videoEditedInfo3.originalWidth = 360;
-                videoEditedInfo3.resultWidth = 360;
-                videoEditedInfo3.originalHeight = 360;
-                videoEditedInfo3.resultHeight = 360;
-                videoEditedInfo3.originalPath = w50Var.f32155b0.getAbsolutePath();
-                v50Var.h(w50Var.f32155b0);
-                w50Var.N.estimatedDuration = w50Var.f32163f0;
-                NotificationCenter.getInstance(w50Var.f32151a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.audioDidSent, Integer.valueOf(w50Var.Q), w50Var.N, w50Var.f32155b0.getAbsolutePath(), v50Var.A0);
-                return;
-            case 3:
-                if (v50Var.G0 && (videoEditedInfo = v50Var.H0.N) != null) {
-                    videoEditedInfo.notReadyYet = false;
-                }
-                v50Var.c(v50Var.f31123a, 0L, true);
-                MediaController.getInstance().requestRecordAudioFocus(false);
-                return;
-            case 4:
-                v50Var.H0.Y0 = null;
-                return;
-            case 5:
-                NotificationCenter.getInstance(v50Var.H0.f32151a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.stopAllHeavyOperations, 512);
-                return;
-            case 6:
-                v50Var.H0.m0.animate().setDuration(120L).alpha(0.0f).setInterpolator(new DecelerateInterpolator()).start();
-                return;
-            default:
-                v50Var.H0.m0.animate().setDuration(120L).alpha(0.0f).setInterpolator(new DecelerateInterpolator()).start();
-                return;
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        if (floatValue > 0.5f) {
+            boolean[] zArr = this.f26586a;
+            if (!zArr[0]) {
+                zArr[0] = true;
+                this.f26587b.run();
+            }
         }
+        if (floatValue >= 0.5f) {
+            floatValue -= 1.0f;
+        }
+        float f7 = floatValue * 180.0f;
+        f60 f60Var = this.f26588c;
+        f60Var.f22876b.setRotationY(f7);
+        f60Var.m0.setRotationY(f7);
     }
 }

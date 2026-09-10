@@ -1,36 +1,29 @@
 package org.telegram.messenger;
-public final class x5 implements Runnable {
-    public final int f19579a;
-    public final org.telegram.ui.ActionBar.b2 f19580b;
-    public final boolean[] f19581c;
 
-    public x5(org.telegram.ui.ActionBar.b2 b2Var, boolean[] zArr, int i10) {
-        this.f19579a = i10;
-        this.f19580b = b2Var;
-        this.f19581c = zArr;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class x5 implements RequestDelegate {
+    public final int f16945a;
+    public final LocationController f16946b;
+
+    public x5(LocationController locationController, int i10) {
+        this.f16945a = i10;
+        this.f16946b = locationController;
     }
 
     @Override
-    public final void run() {
-        switch (this.f19579a) {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f16945a) {
             case 0:
-                MediaController.lambda$saveFile$45(this.f19581c, this.f19580b);
+                this.f16946b.lambda$removeSharingLocation$19(tLObject, tL_error);
                 return;
             case 1:
-                MediaController.lambda$saveFile$49(this.f19580b, this.f19581c);
-                return;
-            case 2:
-                MediaController.lambda$saveFile$52(this.f19581c, this.f19580b);
+                this.f16946b.lambda$removeAllLocationSharings$22(tLObject, tL_error);
                 return;
             default:
-                MediaController.lambda$saveFile$54(this.f19580b, this.f19581c);
+                this.f16946b.lambda$markLiveLoactionsAsRead$27(tLObject, tL_error);
                 return;
         }
-    }
-
-    public x5(boolean[] zArr, org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        this.f19579a = i10;
-        this.f19581c = zArr;
-        this.f19580b = b2Var;
     }
 }

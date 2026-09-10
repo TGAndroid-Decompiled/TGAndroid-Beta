@@ -1,186 +1,80 @@
 package bi;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.RectF;
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.d90;
-import org.telegram.ui.Components.lq;
-public final class v0 extends LinearLayout {
-    public final int f3909a;
-    public Object f3910b;
-    public Object f3911c;
-    public View d;
+import java.io.File;
+import org.telegram.messenger.MediaController;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.messenger.VideoEncodingService;
+import org.telegram.tgnet.TLRPC;
+public final class v0 implements NotificationCenter.NotificationCenterDelegate {
+    public final int f3771a;
+    public final File f3772b;
+    public MessageObject f3773c;
+    public final t0 d;
+    public final u0 e;
+    public final s0 f3774f;
 
-    public v0(Context context, int i10) {
-        super(context);
-        this.f3909a = i10;
-        switch (i10) {
-            case 4:
-                super(context);
-                return;
-            default:
-                setOrientation(1);
-                org.telegram.ui.Components.x9 x9Var = new org.telegram.ui.Components.x9(context);
-                this.f3910b = x9Var;
-                x9Var.setRoundRadius(AndroidUtilities.dp(35.0f));
-                addView(x9Var, w7.x5.q(70, 70, 1));
-                TextView textView = new TextView(context);
-                this.f3911c = textView;
-                textView.setTypeface(AndroidUtilities.bold());
-                textView.setTextSize(1, 20.0f);
-                textView.setGravity(17);
-                addView(textView, w7.x5.r(-1, -2, 0, 0.0f, 11.33f, 0.0f, 7.0f));
-                TextView textView2 = new TextView(context);
-                this.d = textView2;
-                textView2.setTextSize(1, 14.0f);
-                textView2.setLineSpacing(AndroidUtilities.dp(2.0f), 1.0f);
-                textView2.setGravity(17);
-                addView(textView2, w7.x5.n(-1, -2));
-                return;
+    public v0(int i10, r9 r9Var, File file, t0 t0Var, u0 u0Var, s0 s0Var) {
+        this.f3771a = i10;
+        this.f3772b = file;
+        this.d = t0Var;
+        this.e = u0Var;
+        this.f3774f = s0Var;
+        if (this.f3773c != null) {
+            return;
         }
+        NotificationCenter.getInstance(i10).addObserver(this, NotificationCenter.filePreparingStarted);
+        NotificationCenter.getInstance(i10).addObserver(this, NotificationCenter.fileNewChunkAvailable);
+        NotificationCenter.getInstance(i10).addObserver(this, NotificationCenter.filePreparingFailed);
+        TLRPC.TL_message tL_message = new TLRPC.TL_message();
+        tL_message.f17216id = 1;
+        tL_message.attachPath = file.getAbsolutePath();
+        this.f3773c = new MessageObject(i10, (TLRPC.Message) tL_message, (MessageObject) null, false, false);
+        r9Var.s(new ai.b(this, 3));
+    }
+
+    public final void a(boolean z10) {
+        if (this.f3773c == null) {
+            return;
+        }
+        int i10 = this.f3771a;
+        NotificationCenter.getInstance(i10).removeObserver(this, NotificationCenter.filePreparingStarted);
+        NotificationCenter.getInstance(i10).removeObserver(this, NotificationCenter.fileNewChunkAvailable);
+        NotificationCenter.getInstance(i10).removeObserver(this, NotificationCenter.filePreparingFailed);
+        if (z10) {
+            MediaController.getInstance().cancelVideoConvert(this.f3773c);
+        }
+        this.f3773c = null;
     }
 
     @Override
-    public void dispatchDraw(Canvas canvas) {
-        switch (this.f3909a) {
-            case 0:
-                Path path = (Path) this.f3911c;
-                if (((z0) this.d).f4059a) {
-                    path.rewind();
-                    RectF rectF = AndroidUtilities.rectTmp;
-                    rectF.set(0.0f, 0.0f, getWidth(), getHeight());
-                    path.addRoundRect(rectF, AndroidUtilities.dp(13.0f), AndroidUtilities.dp(13.0f), Path.Direction.CW);
-                    canvas.save();
-                    canvas.clipPath(path);
-                    if (((zh.h8) this.f3910b) == null) {
-                        this.f3910b = new zh.h8(1, 250);
-                    }
-                    ((zh.h8) this.f3910b).f(0, 0, getWidth(), getHeight());
-                    zh.h8 h8Var = (zh.h8) this.f3910b;
-                    h8Var.h = 30.0f;
-                    h8Var.d();
-                    ((zh.h8) this.f3910b).b(canvas, -1, 0.85f);
-                    invalidate();
-                    canvas.restore();
+    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
+        if (i10 == NotificationCenter.filePreparingStarted) {
+            MessageObject messageObject = (MessageObject) objArr[0];
+        } else if (i10 == NotificationCenter.fileNewChunkAvailable) {
+            if (((MessageObject) objArr[0]) == this.f3773c) {
+                String str = (String) objArr[1];
+                ((Long) objArr[2]).getClass();
+                long longValue = ((Long) objArr[3]).longValue();
+                Float f7 = (Float) objArr[4];
+                f7.getClass();
+                this.e.run(f7);
+                if (longValue > 0) {
+                    this.d.run();
+                    VideoEncodingService.stop();
+                    a(false);
                 }
-                super.dispatchDraw(canvas);
-                return;
-            default:
-                super.dispatchDraw(canvas);
-                return;
-        }
-    }
-
-    @Override
-    public void onDraw(Canvas canvas) {
-        float f7;
-        switch (this.f3909a) {
-            case 3:
-                RectF rectF = (RectF) this.f3910b;
-                Paint paint = (Paint) this.f3911c;
-                lq lqVar = (lq) this.d;
-                paint.setColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f20779i5, lqVar.f28309d0));
-                int left = lqVar.E[0].getLeft() - AndroidUtilities.dp(13.0f);
-                float dp = AndroidUtilities.dp(91.0f);
-                org.telegram.ui.ActionBar.k0 k0Var = lqVar.F;
-                if (k0Var.getVisibility() == 0) {
-                    f7 = k0Var.getAlpha() * AndroidUtilities.dp(25.0f);
-                } else {
-                    f7 = 0.0f;
+            }
+        } else if (i10 == NotificationCenter.filePreparingFailed && ((MessageObject) objArr[0]) == this.f3773c) {
+            a(false);
+            try {
+                File file = this.f3772b;
+                if (file != null) {
+                    file.delete();
                 }
-                rectF.set(left, AndroidUtilities.dp(5.0f), left + ((int) (dp + f7)), AndroidUtilities.dp(37.0f));
-                canvas.drawRoundRect(rectF, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), paint);
-                return;
-            default:
-                super.onDraw(canvas);
-                return;
+            } catch (Exception unused) {
+            }
+            this.f3774f.run();
         }
-    }
-
-    public v0(lq lqVar, Context context) {
-        super(context);
-        this.f3909a = 3;
-        this.d = lqVar;
-        this.f3910b = new RectF();
-        this.f3911c = new Paint(1);
-    }
-
-    public v0(Context context, int i10, org.telegram.ui.ActionBar.f6 f6Var) {
-        super(context);
-        this.f3909a = i10;
-        switch (i10) {
-            case 5:
-                super(context);
-                setOrientation(1);
-                FrameLayout frameLayout = new FrameLayout(context);
-                frameLayout.setClipChildren(false);
-                frameLayout.setClipToPadding(false);
-                frameLayout.addView(new zh.x6(context, 70, 0), w7.x5.c(-1.0f, -1));
-                org.telegram.ui.Components.x9 x9Var = new org.telegram.ui.Components.x9(context);
-                this.f3910b = x9Var;
-                x9Var.setRoundRadius(AndroidUtilities.dp(50.0f));
-                frameLayout.addView(x9Var, w7.x5.d(100, 100.0f, 17, 0.0f, 32.0f, 0.0f, 24.0f));
-                addView(frameLayout, w7.x5.c(150.0f, -1));
-                TextView textView = new TextView(context);
-                this.f3911c = textView;
-                com.google.android.gms.internal.vision.e2.m(20.0f, 1, textView);
-                int i11 = org.telegram.ui.ActionBar.j6.f20797j5;
-                textView.setTextColor(org.telegram.ui.ActionBar.j6.v0(i11, f6Var));
-                textView.setGravity(17);
-                addView(textView, w7.x5.t(-2, -2, 1, 0, 2, 0, 0));
-                d90 d90Var = new d90(context, f6Var);
-                this.d = d90Var;
-                d90Var.setLinkTextColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.gc, f6Var));
-                d90Var.setTextSize(1, 14.0f);
-                d90Var.setTextColor(org.telegram.ui.ActionBar.j6.v0(i11, f6Var));
-                d90Var.setGravity(17);
-                addView(d90Var, w7.x5.t(-2, -2, 1, 0, 9, 0, 18));
-                return;
-            default:
-                setOrientation(1);
-                FrameLayout frameLayout2 = new FrameLayout(context);
-                frameLayout2.setClipChildren(false);
-                frameLayout2.setClipToPadding(false);
-                ei.d dVar = new ei.d(context, 70, 0);
-                frameLayout2.addView(dVar, w7.x5.c(-1.0f, -1));
-                tg.e eVar = new tg.e(context, 1, 4);
-                this.f3910b = eVar;
-                tg.a aVar = eVar.f46547b;
-                aVar.f46535w = org.telegram.ui.ActionBar.j6.fk;
-                aVar.f46536x = org.telegram.ui.ActionBar.j6.gk;
-                aVar.b();
-                eVar.setStarParticlesView(dVar);
-                frameLayout2.addView(eVar, w7.x5.d(170, 170.0f, 17, 0.0f, 32.0f, 0.0f, 24.0f));
-                eVar.setPaused(false);
-                addView(frameLayout2, w7.x5.c(180.0f, -1));
-                TextView textView2 = new TextView(context);
-                this.f3911c = textView2;
-                com.google.android.gms.internal.vision.e2.m(20.0f, 1, textView2);
-                int i12 = org.telegram.ui.ActionBar.j6.f20797j5;
-                textView2.setTextColor(org.telegram.ui.ActionBar.j6.v0(i12, f6Var));
-                textView2.setGravity(17);
-                addView(textView2, w7.x5.t(-2, -2, 1, 0, 2, 0, 0));
-                TextView textView3 = new TextView(context);
-                this.d = textView3;
-                textView3.setTextSize(1, 14.0f);
-                textView3.setTextColor(org.telegram.ui.ActionBar.j6.v0(i12, f6Var));
-                textView3.setGravity(17);
-                addView(textView3, w7.x5.t(-2, -2, 1, 0, 9, 0, 18));
-                return;
-        }
-    }
-
-    public v0(z0 z0Var, Context context) {
-        super(context);
-        this.f3909a = 0;
-        this.d = z0Var;
-        this.f3911c = new Path();
     }
 }

@@ -1,145 +1,183 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.drawable.Drawable;
+import android.graphics.Bitmap;
 import android.text.TextUtils;
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.TextView;
-import java.util.ArrayList;
-import java.util.List;
+import java.io.IOException;
+import java.io.RandomAccessFile;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ChatObject;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.DispatchQueuePoolBackground;
 import org.telegram.messenger.R;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLRPC;
-public final class fj0 extends FrameLayout {
-    public final t00 f26094a;
-    public final TextView f26095b;
-    public final l9 f26096c;
-    public final ImageView d;
-    public final x9 f26097e;
-    public final int f26098f;
-    public boolean h;
-    public final ArrayList f26099n;
-    public final ArrayList f26100r;
-    public final MessageObject f26101s;
-    public int v;
-    public q0.a f26102w;
+import org.telegram.messenger.Utilities;
+public class fj0 extends hj0 {
+    public volatile RLottieNative U0;
+    public boolean V0;
+    public boolean W0;
+    public volatile boolean X0;
+    public boolean Y0;
+    public final int Z0;
+    public int f23024a1;
 
-    public fj0(Context context, int i10, MessageObject messageObject) {
-        super(context);
-        this.f26099n = new ArrayList();
-        this.f26100r = new ArrayList();
-        this.f26098f = i10;
-        this.f26101s = messageObject;
-        t00 t00Var = new t00(context, null);
-        this.f26094a = t00Var;
-        t00Var.f(org.telegram.ui.ActionBar.j6.G8, org.telegram.ui.ActionBar.j6.f20780i6, -1);
-        t00Var.setViewType(13);
-        t00Var.setIsSingleCell(false);
-        addView(t00Var, w7.x5.c(-1.0f, -2));
-        TextView textView = new TextView(context);
-        this.f26095b = textView;
-        org.telegram.messenger.wl.r(textView, org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.E8, false), 1, 16.0f, 1);
-        textView.setEllipsize(TextUtils.TruncateAt.END);
-        addView(textView, w7.x5.i(-2.0f, -2.0f, 8388627, 40.0f, 0.0f, 62.0f, 0.0f));
-        l9 l9Var = new l9(context, false);
-        this.f26096c = l9Var;
-        l9Var.setStyle(11);
-        l9Var.setAvatarsTextSize(AndroidUtilities.dp(22.0f));
-        addView(l9Var, w7.x5.i(56.0f, -1.0f, 8388629, 0.0f, 0.0f, 0.0f, 0.0f));
-        ImageView imageView = new ImageView(context);
-        this.d = imageView;
-        addView(imageView, w7.x5.i(24.0f, 24.0f, 8388627, 11.0f, 0.0f, 0.0f, 0.0f));
-        Drawable mutate = context.getDrawable(R.drawable.msg_reactions).mutate();
-        mutate.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.F8, false), PorterDuff.Mode.MULTIPLY));
-        imageView.setImageDrawable(mutate);
-        imageView.setVisibility(8);
-        x9 x9Var = new x9(context);
-        this.f26097e = x9Var;
-        addView(x9Var, w7.x5.i(24.0f, 24.0f, 8388627, 11.0f, 0.0f, 0.0f, 0.0f));
-        textView.setAlpha(0.0f);
-        l9Var.setAlpha(0.0f);
-        setBackground(org.telegram.ui.ActionBar.j6.K0(false));
-    }
-
-    public final void a() {
-        int i10 = this.f26098f;
-        MessagesController messagesController = MessagesController.getInstance(i10);
-        TLRPC.TL_messages_getMessageReactionsList tL_messages_getMessageReactionsList = new TLRPC.TL_messages_getMessageReactionsList();
-        MessageObject messageObject = this.f26101s;
-        tL_messages_getMessageReactionsList.peer = messagesController.getInputPeer(messageObject.getDialogId());
-        tL_messages_getMessageReactionsList.f19989id = messageObject.getId();
-        tL_messages_getMessageReactionsList.limit = 3;
-        tL_messages_getMessageReactionsList.reaction = null;
-        tL_messages_getMessageReactionsList.offset = null;
-        ConnectionsManager.getInstance(i10).sendRequest(tL_messages_getMessageReactionsList, new y1(this, 10), 64);
-    }
-
-    public List<ej0> getSeenUsers() {
-        return this.f26099n;
+    public fj0(String str, int i10, int i11) {
+        super(i10, i11);
+        String str2;
+        this.Z0 = -1;
+        this.K = 1;
+        if ("🎲".equals(str)) {
+            str2 = AndroidUtilities.readRes(R.raw.diceloop);
+            this.Z0 = 60;
+        } else if ("🎯".equals(str)) {
+            str2 = AndroidUtilities.readRes(R.raw.dartloop);
+        } else {
+            str2 = null;
+        }
+        getPaint().setFlags(2);
+        if (TextUtils.isEmpty(str2)) {
+            return;
+        }
+        this.f23662n0 = RLottieNative.b(str2, this.e, null, null);
     }
 
     @Override
-    public final void onAttachedToWindow() {
-        long j3;
-        super.onAttachedToWindow();
-        int i10 = this.f26098f;
-        MessagesController messagesController = MessagesController.getInstance(i10);
-        MessageObject messageObject = this.f26101s;
-        TLRPC.Chat chat = messagesController.getChat(Long.valueOf(messageObject.getChatId()));
-        TLRPC.ChatFull chatFull = messagesController.getChatFull(messageObject.getChatId());
-        if (chat != null && messageObject.isOutOwner() && messageObject.isSent() && !messageObject.isEditing() && !messageObject.isSending() && !messageObject.isSendError() && !messageObject.isContentUnread() && !messageObject.isUnread() && ConnectionsManager.getInstance(i10).getCurrentTime() - messageObject.messageOwner.date < 604800 && ((ChatObject.isMegagroup(chat) || !ChatObject.isChannel(chat)) && chatFull != null && chatFull.participants_count <= MessagesController.getInstance(i10).chatReadMarkSizeThreshold && !(messageObject.messageOwner.action instanceof TLRPC.TL_messageActionChatJoinedByRequest))) {
-            TLRPC.TL_messages_getMessageReadParticipants tL_messages_getMessageReadParticipants = new TLRPC.TL_messages_getMessageReadParticipants();
-            tL_messages_getMessageReadParticipants.msg_id = messageObject.getId();
-            tL_messages_getMessageReadParticipants.peer = MessagesController.getInstance(i10).getInputPeer(messageObject.getDialogId());
-            TLRPC.Peer peer = messageObject.messageOwner.from_id;
-            if (peer != null) {
-                j3 = peer.user_id;
-            } else {
-                j3 = 0;
+    public int B(Bitmap bitmap, boolean z10) {
+        RLottieNative rLottieNative;
+        int i10 = this.K;
+        if (i10 == 1) {
+            rLottieNative = this.f23662n0;
+        } else if (i10 == 2) {
+            rLottieNative = this.U0;
+            if (this.X0) {
+                this.f23648b0 = this.f23024a1 - 1;
             }
-            ConnectionsManager.getInstance(i10).sendRequest(tL_messages_getMessageReadParticipants, new bi.l1(this, j3, chat, 2), 64);
-            return;
+        } else {
+            rLottieNative = this.f23662n0;
         }
-        a();
+        if (rLottieNative.c(this.f23648b0, bitmap, z10) < 0) {
+            return 2;
+        }
+        return 1;
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        int i12 = this.v;
-        if (i12 > 0) {
-            i10 = View.MeasureSpec.makeMeasureSpec(i12, 1073741824);
-        }
-        t00 t00Var = this.f26094a;
-        if (t00Var.getVisibility() == 0) {
-            this.h = true;
-            t00Var.setVisibility(8);
-            super.onMeasure(i10, i11);
-            t00Var.getLayoutParams().width = getMeasuredWidth();
-            t00Var.setVisibility(0);
-            this.h = false;
-            super.onMeasure(i10, i11);
+    public void C(boolean z10) {
+        this.f23660l0 = false;
+        this.m0 = true;
+        n();
+        l();
+        if (!this.Y0 && !this.V0) {
+            if (this.Q == null && !this.f23679z0) {
+                D(z10);
+                xf.e eVar = this.D0;
+                if (eVar != null) {
+                    RandomAccessFile randomAccessFile = eVar.f45128s;
+                    if (randomAccessFile != null) {
+                        try {
+                            randomAccessFile.close();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        eVar.f45128s = null;
+                    }
+                    eVar.f45127r = true;
+                    this.D0 = null;
+                }
+                E();
+                return;
+            }
+            this.W = true;
             return;
         }
-        super.onMeasure(i10, i11);
+        this.W0 = true;
     }
 
     @Override
-    public final void requestLayout() {
-        if (this.h) {
+    public final void D(boolean z10) {
+        RLottieNative rLottieNative = this.f23662n0;
+        RLottieNative rLottieNative2 = this.U0;
+        this.f23662n0 = null;
+        this.U0 = null;
+        if (rLottieNative == null && rLottieNative2 == null) {
             return;
         }
-        super.requestLayout();
+        hy hyVar = new hy(25, rLottieNative, rLottieNative2);
+        if (z10) {
+            DispatchQueuePoolBackground.execute(hyVar);
+        } else {
+            Utilities.globalQueue.postRunnable(hyVar);
+        }
     }
 
-    public void setSeenCallback(q0.a aVar) {
-        this.f26102w = aVar;
+    @Override
+    public void i() {
+        int i10 = this.K;
+        if (i10 == 1) {
+            int i11 = this.f23648b0 + 1;
+            int i12 = this.Z0;
+            if (i12 == -1) {
+                i12 = this.e[0];
+            }
+            if (i11 < i12) {
+                this.f23648b0 = i11;
+                return;
+            }
+            this.f23648b0 = 0;
+            this.O = false;
+            if (this.U0 != null) {
+                this.K = 2;
+            }
+            if (this.f23677y) {
+                this.f23675x = null;
+                this.f23677y = false;
+            }
+        } else if (i10 == 2) {
+            int i13 = this.f23648b0 + 1;
+            if (i13 < this.f23024a1) {
+                this.f23648b0 = i13;
+                return;
+            }
+            this.O = true;
+            this.N++;
+        }
+    }
+
+    @Override
+    public int j() {
+        if (this.m0) {
+            return 3;
+        }
+        if (this.f23662n0 == null || (this.K == 2 && this.U0 == null)) {
+            return 2;
+        }
+        return 1;
+    }
+
+    @Override
+    public void p() {
+        if (this.W) {
+            n();
+            if (this.Q == null && this.f23662n0 != null) {
+                D(true);
+            }
+        }
+        if (this.f23662n0 == null && this.U0 == null && this.D0 == null) {
+            E();
+            return;
+        }
+        this.U = true;
+        if (!v()) {
+            stop();
+        }
+        if (this.f23660l0) {
+            I();
+        }
+    }
+
+    @Override
+    public final boolean w() {
+        return this.Y0;
+    }
+
+    @Override
+    public final boolean z() {
+        return false;
     }
 }

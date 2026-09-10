@@ -1,42 +1,44 @@
 package org.telegram.messenger;
 public final class jf implements Runnable {
-    public final int f18095a;
-    public final MessagesStorage f18096b;
-    public final int f18097c;
+    public final int f15543a = 2;
+    public final MessagesStorage f15544b;
+    public final boolean f15545c;
+    public final int d;
+    public final long e;
 
-    public jf(MessagesStorage messagesStorage, int i10, int i11) {
-        this.f18095a = i11;
-        this.f18096b = messagesStorage;
-        this.f18097c = i10;
+    public jf(MessagesStorage messagesStorage, int i10, boolean z10, long j3) {
+        this.f15544b = messagesStorage;
+        this.d = i10;
+        this.f15545c = z10;
+        this.e = j3;
     }
 
     @Override
     public final void run() {
-        switch (this.f18095a) {
+        switch (this.f15543a) {
             case 0:
-                this.f18096b.lambda$readAllDialogs$65(this.f18097c);
+                this.f15544b.lambda$markMessagesAsDeleted$231(this.e, this.d, this.f15545c);
                 return;
             case 1:
-                this.f18096b.lambda$checkIfFolderEmptyInternal$245(this.f18097c);
-                return;
-            case 2:
-                this.f18096b.lambda$clearDownloadQueue$184(this.f18097c);
-                return;
-            case 3:
-                this.f18096b.lambda$putMessagesInternal$196(this.f18097c);
-                return;
-            case 4:
-                this.f18096b.lambda$getDownloadQueue$186(this.f18097c);
-                return;
-            case 5:
-                this.f18096b.lambda$getUnsentMessages$152(this.f18097c);
-                return;
-            case 6:
-                this.f18096b.lambda$checkIfFolderEmpty$246(this.f18097c);
+                this.f15544b.lambda$removeFromDownloadQueue$182(this.f15545c, this.d, this.e);
                 return;
             default:
-                this.f18096b.lambda$clearWidgetDialogs$167(this.f18097c);
+                this.f15544b.lambda$loadPendingTasks$31(this.d, this.f15545c, this.e);
                 return;
         }
+    }
+
+    public jf(MessagesStorage messagesStorage, long j3, int i10, boolean z10) {
+        this.f15544b = messagesStorage;
+        this.e = j3;
+        this.d = i10;
+        this.f15545c = z10;
+    }
+
+    public jf(MessagesStorage messagesStorage, boolean z10, int i10, long j3) {
+        this.f15544b = messagesStorage;
+        this.f15545c = z10;
+        this.d = i10;
+        this.e = j3;
     }
 }

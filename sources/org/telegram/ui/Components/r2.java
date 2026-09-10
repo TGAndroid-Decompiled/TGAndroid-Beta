@@ -1,15 +1,50 @@
 package org.telegram.ui.Components;
-public final class r2 implements org.telegram.ui.ActionBar.a2 {
-    public final int f29911a;
-    public final org.telegram.ui.ActionBar.n2 f29912b;
 
-    public r2(int i10, org.telegram.ui.ActionBar.n2 n2Var) {
-        this.f29911a = i10;
-        this.f29912b = n2Var;
+import android.content.Context;
+import android.net.Uri;
+import org.telegram.tgnet.TLRPC;
+public final class r2 implements Runnable {
+    public final int f26551a = 0;
+    public final long f26552b;
+    public final boolean f26553c;
+    public final Object d;
+    public final Object e;
+    public final Object f26554f;
+
+    public r2(Context context, String str, long j3, boolean z10, nf.e eVar) {
+        this.d = context;
+        this.e = str;
+        this.f26552b = j3;
+        this.f26553c = z10;
+        this.f26554f = eVar;
     }
 
     @Override
-    public final void g(org.telegram.ui.ActionBar.b2 r11, int r12) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.r2.g(org.telegram.ui.ActionBar.b2, int):void");
+    public final void run() {
+        boolean z10;
+        switch (this.f26551a) {
+            case 0:
+                Context context = (Context) this.d;
+                nf.e eVar = (nf.e) this.f26554f;
+                Uri parse = Uri.parse((String) this.e);
+                if (this.f26552b == 0) {
+                    z10 = true;
+                } else {
+                    z10 = false;
+                }
+                nf.f.q(context, parse, z10, this.f26553c, eVar);
+                return;
+            default:
+                j8.z((j8) this.d, this.f26552b, this.f26553c, (TLRPC.Document) this.e, (Runnable) this.f26554f);
+                return;
+        }
+    }
+
+    public r2(j8 j8Var, long j3, boolean z10, TLRPC.Document document, Runnable runnable) {
+        this.d = j8Var;
+        this.f26552b = j3;
+        this.f26553c = z10;
+        this.e = document;
+        this.f26554f = runnable;
     }
 }

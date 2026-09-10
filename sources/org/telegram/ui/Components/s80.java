@@ -1,39 +1,25 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.ViewTreeObserver;
-import android.widget.FrameLayout;
-import android.widget.PopupWindow;
-public final class s80 implements PopupWindow.OnDismissListener {
-    public final int f30247a;
-    public final FrameLayout f30248b;
-    public final View f30249c;
-    public final ViewTreeObserver.OnPreDrawListener d;
-    public final ViewGroup f30250e;
+import org.telegram.messenger.AndroidUtilities;
+public final class s80 implements Runnable {
+    public final int f26974a;
+    public final u80 f26975b;
+    public final boolean f26976c;
 
-    public s80(ViewGroup viewGroup, View view, FrameLayout frameLayout, ViewTreeObserver.OnPreDrawListener onPreDrawListener, int i10) {
-        this.f30247a = i10;
-        this.f30250e = viewGroup;
-        this.f30249c = view;
-        this.f30248b = frameLayout;
-        this.d = onPreDrawListener;
+    public s80(u80 u80Var, boolean z10, int i10) {
+        this.f26974a = i10;
+        this.f26975b = u80Var;
+        this.f26976c = z10;
     }
 
     @Override
-    public final void onDismiss() {
-        switch (this.f30247a) {
+    public final void run() {
+        switch (this.f26974a) {
             case 0:
-                ((w80) this.f30250e).f32233s = null;
-                di.r6 r6Var = (di.r6) this.f30249c;
-                r6Var.animate().cancel();
-                r6Var.animate().alpha(0.0f).setDuration(150L).setListener(new r80(this, 0));
+                AndroidUtilities.runOnUIThread(new s80(this.f26975b, this.f26976c, 1));
                 return;
             default:
-                ((org.telegram.ui.a00) this.f30250e).f41751x = null;
-                di.r6 r6Var2 = (di.r6) this.f30249c;
-                r6Var2.animate().cancel();
-                r6Var2.animate().alpha(0.0f).setDuration(150L).setListener(new k61(this, 23));
+                this.f26975b.setJoinRequest(this.f26976c);
                 return;
         }
     }

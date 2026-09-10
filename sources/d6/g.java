@@ -5,41 +5,41 @@ import android.os.Parcel;
 import android.os.RemoteException;
 import android.util.Log;
 public final class g {
-    public static final g6.b f6639c = new g6.b("SessionManager", null);
-    public final y f6640a;
-    public final Context f6641b;
+    public static final g6.b f6317c = new g6.b("SessionManager", null);
+    public final y f6318a;
+    public final Context f6319b;
 
     public g(y yVar, Context context) {
-        this.f6640a = yVar;
-        this.f6641b = context;
+        this.f6318a = yVar;
+        this.f6319b = context;
     }
 
     public final void a(h hVar) {
         n6.l.e("Must be called from the main thread.");
         try {
-            y yVar = this.f6640a;
+            y yVar = this.f6318a;
             z zVar = new z(hVar);
             Parcel O0 = yVar.O0();
             com.google.android.gms.internal.cast.v.d(O0, zVar);
             yVar.S0(O0, 2);
-        } catch (RemoteException e7) {
-            f6639c.a(e7, "Unable to call %s on %s.", "addSessionManagerListener", y.class.getSimpleName());
+        } catch (RemoteException e) {
+            f6317c.a(e, "Unable to call %s on %s.", "addSessionManagerListener", y.class.getSimpleName());
         }
     }
 
     public final void b(boolean z10) {
-        g6.b bVar = f6639c;
+        g6.b bVar = f6317c;
         n6.l.e("Must be called from the main thread.");
         try {
-            Log.i(bVar.f10414a, bVar.d("End session for %s", this.f6641b.getPackageName()));
-            y yVar = this.f6640a;
+            Log.i(bVar.f8558a, bVar.d("End session for %s", this.f6319b.getPackageName()));
+            y yVar = this.f6318a;
             Parcel O0 = yVar.O0();
-            int i10 = com.google.android.gms.internal.cast.v.f5514a;
+            int i10 = com.google.android.gms.internal.cast.v.f5290a;
             O0.writeInt(1);
             O0.writeInt(z10 ? 1 : 0);
             yVar.S0(O0, 6);
-        } catch (RemoteException e7) {
-            bVar.a(e7, "Unable to call %s on %s.", "endCurrentSession", y.class.getSimpleName());
+        } catch (RemoteException e) {
+            bVar.a(e, "Unable to call %s on %s.", "endCurrentSession", y.class.getSimpleName());
         }
     }
 
@@ -55,13 +55,13 @@ public final class g {
     public final f d() {
         n6.l.e("Must be called from the main thread.");
         try {
-            y yVar = this.f6640a;
+            y yVar = this.f6318a;
             Parcel Q0 = yVar.Q0(yVar.O0(), 1);
             x6.a L0 = x6.b.L0(Q0.readStrongBinder());
             Q0.recycle();
             return (f) x6.b.M0(L0);
-        } catch (RemoteException e7) {
-            f6639c.a(e7, "Unable to call %s on %s.", "getWrappedCurrentSession", y.class.getSimpleName());
+        } catch (RemoteException e) {
+            f6317c.a(e, "Unable to call %s on %s.", "getWrappedCurrentSession", y.class.getSimpleName());
             return null;
         }
     }

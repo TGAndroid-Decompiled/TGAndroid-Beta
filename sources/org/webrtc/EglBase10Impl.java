@@ -5,7 +5,6 @@ import android.graphics.Rect;
 import android.graphics.SurfaceTexture;
 import android.view.Surface;
 import android.view.SurfaceHolder;
-import com.google.android.gms.internal.vision.e2;
 import javax.microedition.khronos.egl.EGL10;
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.egl.EGLContext;
@@ -105,10 +104,6 @@ public class EglBase10Impl implements EglBase10 {
         }
 
         @Override
-        public void setSizeFromLayout() {
-        }
-
-        @Override
         public void addCallback(SurfaceHolder.Callback callback) {
         }
 
@@ -122,6 +117,10 @@ public class EglBase10Impl implements EglBase10 {
 
         @Override
         public void setKeepScreenOn(boolean z10) {
+        }
+
+        @Override
+        public void setSizeFromLayout() {
         }
 
         @Override
@@ -259,9 +258,9 @@ public class EglBase10Impl implements EglBase10 {
             if (eglCreatePbufferSurface != eGLSurface2) {
                 return;
             }
-            StringBuilder k10 = e2.k("Failed to create pixel buffer surface with size ", i10, "x", i11, ": 0x");
-            k10.append(Integer.toHexString(this.egl.eglGetError()));
-            throw new RuntimeException(k10.toString());
+            StringBuilder n10 = hc.b.n("Failed to create pixel buffer surface with size ", i10, "x", i11, ": 0x");
+            n10.append(Integer.toHexString(this.egl.eglGetError()));
+            throw new RuntimeException(n10.toString());
         }
         throw new RuntimeException("Already has an EGLSurface");
     }

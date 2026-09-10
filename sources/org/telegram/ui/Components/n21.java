@@ -1,52 +1,111 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.widget.ImageView;
+import android.content.Context;
+import android.view.View;
+import android.widget.LinearLayout;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.R;
-public final class n21 extends AnimatorListenerAdapter {
-    public final boolean f28630a;
-    public final w21 f28631b;
+public final class n21 extends LinearLayout implements org.telegram.ui.ActionBar.a6 {
+    public final org.telegram.ui.ActionBar.f6 f25383a;
+    public final w9 f25384b;
+    public final m90 f25385c;
+    public final m90 d;
+    public int e;
+    public int f25386f;
 
-    public n21(w21 w21Var, boolean z10) {
-        this.f28631b = w21Var;
-        this.f28630a = z10;
+    public n21(Context context, org.telegram.ui.ActionBar.f6 f6Var) {
+        super(context);
+        this.e = 90;
+        this.f25383a = f6Var;
+        setOrientation(1);
+        w9 w9Var = new w9(context);
+        this.f25384b = w9Var;
+        w9Var.getImageReceiver().setAutoRepeatCount(1);
+        w9Var.getImageReceiver().setAutoRepeat(1);
+        w9Var.setOnClickListener(new g80(this, 22));
+        addView(w9Var, w7.a6.t(90, 90, 17, 0, 9, 0, 9));
+        m90 m90Var = new m90(context, null);
+        this.f25385c = m90Var;
+        m90Var.setTextSize(1, 20.0f);
+        m90Var.setGravity(17);
+        m90Var.setTypeface(AndroidUtilities.bold());
+        m90Var.setTextAlignment(4);
+        addView(m90Var, w7.a6.t(-1, -2, 17, 48, 0, 48, 10));
+        m90 m90Var2 = new m90(context, null);
+        this.d = m90Var2;
+        m90Var2.setTextSize(1, 14.0f);
+        m90Var2.setGravity(17);
+        m90Var2.setTextAlignment(4);
+        addView(m90Var2, w7.a6.t(-1, -2, 17, 48, 0, 48, 17));
+        e();
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        float f7;
+    public final void e() {
         int i10;
-        w21 w21Var = this.f28631b;
-        long j3 = w21Var.f32122c;
-        if (w21Var.U == animator) {
-            boolean z10 = this.f28630a;
-            if (z10) {
-                f7 = 1.0f;
-            } else {
-                f7 = 0.0f;
-            }
-            w21Var.R = f7;
-            w21Var.n();
-            w21Var.S = false;
-            ImageView imageView = w21Var.E;
-            if (w21Var.P) {
-                i10 = R.drawable.menu_sidebar_top;
-            } else {
-                i10 = R.drawable.menu_sidebar_bottom;
-            }
-            imageView.setImageResource(i10);
-            w21Var.U = null;
-            MessagesController.getInstance(w21Var.f32120b).getMainSettings().edit().putBoolean(a4.a.o(j3, "topicssidetabs"), w21Var.Q).putBoolean(a4.a.o(j3, "topicssidetabsb"), w21Var.P).apply();
-            Boolean bool = w21Var.T;
-            if (bool != null && z10 != bool.booleanValue()) {
-                boolean booleanValue = w21Var.T.booleanValue();
-                w21Var.T = null;
-                w21Var.d(booleanValue);
-            }
-            AndroidUtilities.runOnUIThread(new jq0(this, 19));
+        int i11 = org.telegram.ui.ActionBar.j6.G6;
+        org.telegram.ui.ActionBar.f6 f6Var = this.f25383a;
+        int v02 = org.telegram.ui.ActionBar.j6.v0(i11, f6Var);
+        m90 m90Var = this.f25385c;
+        m90Var.setTextColor(v02);
+        int i12 = org.telegram.ui.ActionBar.j6.gc;
+        m90Var.setLinkTextColor(org.telegram.ui.ActionBar.j6.v0(i12, f6Var));
+        if (m90Var.getVisibility() != 0) {
+            i11 = org.telegram.ui.ActionBar.j6.B6;
         }
+        int v03 = org.telegram.ui.ActionBar.j6.v0(i11, f6Var);
+        m90 m90Var2 = this.d;
+        m90Var2.setTextColor(v03);
+        m90Var2.setLinkTextColor(org.telegram.ui.ActionBar.j6.v0(i12, f6Var));
+        int i13 = this.e;
+        if (m90Var.getVisibility() == 0) {
+            i10 = 0;
+        } else {
+            i10 = 9;
+        }
+        this.f25384b.setLayoutParams(w7.a6.t(i13, i13, 17, 0, i10, 0, 9));
+    }
+
+    public int[] getColorKeys() {
+        return null;
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), i11);
+    }
+
+    public void setEmoji(int i10) {
+        if (this.f25386f != i10) {
+            this.f25386f = i10;
+            hj0 hj0Var = new hj0(i10, AndroidUtilities.dp(90.0f), AndroidUtilities.dp(90.0f));
+            w9 w9Var = this.f25384b;
+            w9Var.setImageDrawable(hj0Var);
+            w9Var.getImageReceiver().setAutoRepeat(2);
+        }
+    }
+
+    public void setEmojiSize(int i10) {
+        if (this.e != i10) {
+            this.e = i10;
+            e();
+        }
+    }
+
+    public void setEmojiStatic(int i10) {
+        if (this.f25386f != i10) {
+            w9 w9Var = this.f25384b;
+            w9Var.b();
+            this.f25386f = i10;
+            w9Var.setImageResource(i10);
+        }
+    }
+
+    public void setText(CharSequence charSequence) {
+        this.f25385c.setVisibility(8);
+        m90 m90Var = this.d;
+        m90Var.setText(charSequence);
+        m90Var.setMaxWidth(bi.x4.a(charSequence, m90Var.getPaint()));
+        m90Var.requestLayout();
+        e();
     }
 }

@@ -1,16 +1,21 @@
 package org.telegram.messenger;
 
-import java.util.List;
-import org.telegram.messenger.TelegramMediaSession;
-public final class h4 implements TelegramMediaSession.BrowseChildrenCallback {
-    public final Runnable f17863a;
+import java.util.function.ToIntFunction;
+import org.telegram.messenger.GiftAuctionController;
+public final class h4 implements ToIntFunction {
+    public final int f15334a;
 
-    public h4(Runnable runnable) {
-        this.f17863a = runnable;
+    public h4(int i10) {
+        this.f15334a = i10;
     }
 
     @Override
-    public void onResult(List list) {
-        TelegramMediaSession.b(this.f17863a, list);
+    public final int applyAsInt(Object obj) {
+        switch (this.f15334a) {
+            case 0:
+                return GiftAuctionController.d((GiftAuctionController.Auction) obj);
+            default:
+                return Integer.parseInt((String) obj);
+        }
     }
 }

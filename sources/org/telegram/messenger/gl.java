@@ -1,32 +1,34 @@
 package org.telegram.messenger;
-public final class gl implements Runnable {
-    public final int f17840a = 0;
-    public final TranslateController f17841b;
-    public final long f17842c;
-    public final Object d;
 
-    public gl(TranslateController translateController, long j3, String str) {
-        this.f17841b = translateController;
-        this.f17842c = j3;
-        this.d = str;
+import org.telegram.messenger.Utilities;
+public final class gl implements Utilities.Callback2 {
+    public final int f15312a;
+    public final TranslateController f15313b;
+    public final Utilities.Callback4 f15314c;
+    public final boolean d;
+    public final int e;
+    public final String f15315f;
+    public final long f15316g;
+
+    public gl(TranslateController translateController, Utilities.Callback4 callback4, boolean z10, int i10, String str, long j3, int i11) {
+        this.f15312a = i11;
+        this.f15313b = translateController;
+        this.f15314c = callback4;
+        this.d = z10;
+        this.e = i10;
+        this.f15315f = str;
+        this.f15316g = j3;
     }
 
     @Override
-    public final void run() {
-        switch (this.f17840a) {
+    public final void run(Object obj, Object obj2) {
+        switch (this.f15312a) {
             case 0:
-                this.f17841b.lambda$setDialogTranslateTo$0(this.f17842c, (String) this.d);
+                this.f15313b.lambda$pushToTranslate$21(this.f15314c, this.d, this.e, this.f15315f, this.f15316g, (String) obj, (Boolean) obj2);
                 return;
             default:
-                long j3 = this.f17842c;
-                this.f17841b.lambda$invalidateTranslation$9((MessageObject) this.d, j3);
+                this.f15313b.lambda$pushToTranslate$20(this.f15314c, this.d, this.e, this.f15315f, this.f15316g, (String) obj, (Boolean) obj2);
                 return;
         }
-    }
-
-    public gl(TranslateController translateController, MessageObject messageObject, long j3) {
-        this.f17841b = translateController;
-        this.d = messageObject;
-        this.f17842c = j3;
     }
 }

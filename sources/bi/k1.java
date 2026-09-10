@@ -1,87 +1,52 @@
 package bi;
 
-import j$.util.Objects;
-import org.telegram.messenger.DispatchQueue;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.R;
-import org.telegram.messenger.Utilities;
-import org.telegram.messenger.voip.NativeInstance;
-import org.telegram.ui.Components.de0;
-public final class k1 implements Runnable {
-    public final int f3211a;
-    public final t1 f3212b;
+import android.content.DialogInterface;
+import org.telegram.messenger.MediaController;
+import org.telegram.messenger.SharedConfig;
+import org.telegram.ui.Components.l11;
+import org.telegram.ui.j60;
+public final class k1 implements DialogInterface.OnDismissListener {
+    public final int f2979a;
 
-    public k1(t1 t1Var, int i10) {
-        this.f3211a = i10;
-        this.f3212b = t1Var;
+    public k1(int i10) {
+        this.f2979a = i10;
     }
 
     @Override
-    public final void run() {
-        switch (this.f3211a) {
+    public final void onDismiss(DialogInterface dialogInterface) {
+        switch (this.f2979a) {
             case 0:
-                this.f3212b.p();
+                int i10 = f3.G;
                 return;
             case 1:
-                this.f3212b.q();
+                org.telegram.ui.b.f31111a = false;
                 return;
             case 2:
-                this.f3212b.t(true);
                 return;
             case 3:
-                t1 t1Var = this.f3212b;
-                NotificationCenter.getInstance(t1Var.f3745e).lambda$postNotificationNameOnUIThread$1(NotificationCenter.liveStoryUpdated, Long.valueOf(t1Var.v.f19906id));
-                t1Var.u(true);
+                SharedConfig.BackgroundActivityPrefs.increaseDismissedCount();
                 return;
             case 4:
-                this.f3212b.w();
+                int i11 = l11.e;
                 return;
             case 5:
-                this.f3212b.t(true);
+                j60 j60Var = j60.D3;
                 return;
             case 6:
-                t1 t1Var2 = this.f3212b;
-                if (t1Var2.E != null) {
-                    DispatchQueue dispatchQueue = Utilities.globalQueue;
-                    NativeInstance nativeInstance = t1Var2.E;
-                    Objects.requireNonNull(nativeInstance);
-                    dispatchQueue.postRunnable(new org.telegram.messenger.voip.r0(nativeInstance, 3));
-                    t1Var2.M.clear();
-                    t1Var2.E = null;
-                }
-                t1Var2.k();
-                return;
-            case 7:
-                this.f3212b.t(true);
-                return;
-            case 8:
-                this.f3212b.t(true);
-                return;
-            case 9:
-                t1 t1Var3 = this.f3212b;
-                if (t1Var3.E != null) {
-                    DispatchQueue dispatchQueue2 = Utilities.globalQueue;
-                    NativeInstance nativeInstance2 = t1Var3.E;
-                    Objects.requireNonNull(nativeInstance2);
-                    dispatchQueue2.postRunnable(new org.telegram.messenger.voip.r0(nativeInstance2, 3));
-                    t1Var3.M.clear();
-                    t1Var3.E = null;
-                }
-                t1Var3.k();
-                return;
-            case 10:
-                this.f3212b.p();
-                return;
-            case 11:
-                this.f3212b.q();
                 return;
             default:
-                t1 t1Var4 = this.f3212b;
-                if (!t1Var4.f3747n) {
-                    de0.d(R.raw.permission_request_camera, R.string.PermissionNoCameraMicVideo, new String[]{"android.permission.CAMERA", "android.permission.RECORD_AUDIO"}, new o1(t1Var4, 0));
-                    return;
-                }
+                MediaController.forceBroadcastNewPhotos = false;
                 return;
         }
+    }
+
+    public k1(boolean[] zArr) {
+        this.f2979a = 2;
+    }
+
+    private final void a(DialogInterface dialogInterface) {
+    }
+
+    private final void b(DialogInterface dialogInterface) {
     }
 }

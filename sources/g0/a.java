@@ -1,5 +1,6 @@
 package g0;
 
+import a6.i;
 import android.content.Intent;
 import android.content.pm.ShortcutInfo;
 import android.graphics.Bitmap;
@@ -16,13 +17,13 @@ import android.view.accessibility.AccessibilityNodeInfo;
 import e0.i0;
 import e2.d0;
 import e9.f0;
+import j2.h;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import ji.u4;
-import v7.x7;
+import v7.y7;
 public abstract class a {
     public static Paint a(Bitmap bitmap) {
         Shader.TileMode tileMode = Shader.TileMode.CLAMP;
@@ -37,24 +38,24 @@ public abstract class a {
     }
 
     public static void b(Canvas canvas, i0 i0Var, int i10, Paint paint) {
-        canvas.drawVertices(Canvas.VertexMode.TRIANGLES, i10 * 8, (float[]) i0Var.f8654b, 0, (float[]) i0Var.f8655c, 0, (int[]) i0Var.f8656e, 0, (short[]) i0Var.d, 0, i10 * 6, paint);
+        canvas.drawVertices(Canvas.VertexMode.TRIANGLES, i10 * 8, (float[]) i0Var.f7090b, 0, (float[]) i0Var.f7091c, 0, (int[]) i0Var.e, 0, (short[]) i0Var.d, 0, i10 * 6, paint);
     }
 
     public static k2.b c(AudioManager audioManager, b2.e eVar) {
-        List directProfilesForAttributes = audioManager.getDirectProfilesForAttributes((AudioAttributes) eVar.b().f2435a);
+        List directProfilesForAttributes = audioManager.getDirectProfilesForAttributes((AudioAttributes) eVar.b().f2037a);
         HashMap hashMap = new HashMap();
-        hashMap.put(2, new HashSet(x7.a(12)));
+        hashMap.put(2, new HashSet(y7.a(12)));
         for (int i10 = 0; i10 < directProfilesForAttributes.size(); i10++) {
             AudioProfile audioProfile = (AudioProfile) directProfilesForAttributes.get(i10);
             if (audioProfile.getEncapsulationType() != 1) {
                 int format = audioProfile.getFormat();
-                if (d0.K(format) || k2.b.f14543e.containsKey(Integer.valueOf(format))) {
+                if (d0.K(format) || k2.b.e.containsKey(Integer.valueOf(format))) {
                     if (hashMap.containsKey(Integer.valueOf(format))) {
                         Set set = (Set) hashMap.get(Integer.valueOf(format));
                         set.getClass();
-                        set.addAll(x7.a(audioProfile.getChannelMasks()));
+                        set.addAll(y7.a(audioProfile.getChannelMasks()));
                     } else {
-                        hashMap.put(Integer.valueOf(format), new HashSet(x7.a(audioProfile.getChannelMasks())));
+                        hashMap.put(Integer.valueOf(format), new HashSet(y7.a(audioProfile.getChannelMasks())));
                     }
                 }
             }
@@ -66,13 +67,13 @@ public abstract class a {
         return new k2.b(u10.i());
     }
 
-    public static u4 d(AudioManager audioManager, b2.e eVar) {
+    public static i d(AudioManager audioManager, b2.e eVar) {
         audioManager.getClass();
-        List audioDevicesForAttributes = audioManager.getAudioDevicesForAttributes((AudioAttributes) eVar.b().f2435a);
+        List audioDevicesForAttributes = audioManager.getAudioDevicesForAttributes((AudioAttributes) eVar.b().f2037a);
         if (audioDevicesForAttributes.isEmpty()) {
             return null;
         }
-        return new u4(j2.e.d(audioDevicesForAttributes.get(0)), 1);
+        return new i(h.c(audioDevicesForAttributes.get(0)), 27);
     }
 
     public static Object e(Bundle bundle) {

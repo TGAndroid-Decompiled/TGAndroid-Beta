@@ -1,42 +1,68 @@
 package org.telegram.ui;
 
-import android.graphics.Outline;
-import android.graphics.Rect;
-import android.view.View;
-import android.view.ViewOutlineProvider;
-import org.telegram.messenger.AndroidUtilities;
-public final class e61 extends ViewOutlineProvider {
-    public final Rect f35977a = new Rect();
-    public final Integer f35978b;
-    public final j71 f35979c;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.widget.FrameLayout;
+import java.util.ArrayList;
+public final class e61 extends AnimatorListenerAdapter {
+    public final int f32074a;
+    public final boolean f32075b;
+    public final l71 f32076c;
 
-    public e61(j71 j71Var, Integer num) {
-        this.f35979c = j71Var;
-        this.f35978b = num;
+    public e61(l71 l71Var, boolean z10, int i10) {
+        this.f32074a = i10;
+        this.f32076c = l71Var;
+        this.f32075b = z10;
     }
 
     @Override
-    public final void getOutline(View view, Outline outline) {
-        float intValue;
-        Integer num = this.f35978b;
-        if (num == null) {
-            intValue = view.getWidth() / 2.0f;
-        } else {
-            intValue = num.intValue();
+    public final void onAnimationEnd(Animator animator) {
+        int i10;
+        ArrayList arrayList;
+        ArrayList arrayList2;
+        int i11;
+        switch (this.f32074a) {
+            case 0:
+                l71 l71Var = this.f32076c;
+                y51 y51Var = l71Var.f34572i0;
+                int i12 = 8;
+                boolean z10 = this.f32075b;
+                if (z10) {
+                    i10 = 0;
+                } else {
+                    i10 = 8;
+                }
+                y51Var.setVisibility(i10);
+                i61 i61Var = l71Var.f34570h0;
+                if (!z10) {
+                    i12 = 0;
+                }
+                i61Var.setVisibility(i12);
+                l71Var.E1 = null;
+                if (!z10 && (arrayList2 = l71Var.A1) != null) {
+                    arrayList2.clear();
+                    ArrayList arrayList3 = l71Var.D1;
+                    if (arrayList3 != null) {
+                        arrayList3.clear();
+                    }
+                    l71Var.f34587q0.E(false);
+                }
+                if (!z10 && (arrayList = l71Var.B1) != null) {
+                    arrayList.clear();
+                    return;
+                }
+                return;
+            default:
+                l71 l71Var2 = this.f32076c;
+                FrameLayout frameLayout = l71Var2.f34574j0;
+                if (this.f32075b && l71Var2.f34572i0.getVisibility() == 0) {
+                    i11 = 0;
+                } else {
+                    i11 = 8;
+                }
+                frameLayout.setVisibility(i11);
+                l71Var2.H1 = null;
+                return;
         }
-        float dp = intValue + AndroidUtilities.dp(20.0f);
-        float width = (view.getWidth() - view.getPaddingLeft()) - view.getPaddingRight();
-        float height = (view.getHeight() - view.getPaddingBottom()) - view.getPaddingTop();
-        j71 j71Var = this.f35979c;
-        boolean n10 = j71Var.n();
-        Rect rect = this.f35977a;
-        if (n10) {
-            int paddingLeft = (int) ((dp - (j71Var.f37656a1 * dp)) + view.getPaddingLeft());
-            float z10 = com.google.android.gms.internal.vision.e2.z(1.0f, j71Var.f37659b1, height, view.getPaddingTop());
-            rect.set(paddingLeft, (int) com.google.android.gms.internal.vision.e2.z(1.0f, j71Var.f37659b1, AndroidUtilities.dp(j71Var.f37664d1), z10), (int) (((width - dp) * j71Var.f37656a1) + view.getPaddingLeft() + dp), (int) com.google.android.gms.internal.vision.e2.z(1.0f, j71Var.f37659b1, AndroidUtilities.dp(j71Var.f37664d1), view.getPaddingTop() + height));
-        } else {
-            rect.set((int) ((dp - (j71Var.f37656a1 * dp)) + view.getPaddingLeft()), view.getPaddingTop(), (int) (((width - dp) * j71Var.f37656a1) + view.getPaddingLeft() + dp), (int) ((height * j71Var.f37659b1) + view.getPaddingTop()));
-        }
-        outline.setRoundRect(rect, AndroidUtilities.dp(12.0f));
     }
 }

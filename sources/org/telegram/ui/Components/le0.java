@@ -1,25 +1,32 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class le0 extends AnimatorListenerAdapter {
-    public final int f28189a;
-    public final pe0 f28190b;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.messenger.Utilities;
+public final class le0 implements NotificationCenter.NotificationCenterDelegate {
+    public final int f24969a;
+    public final Utilities.Callback f24970b;
+    public final NotificationCenter.NotificationCenterDelegate[] f24971c;
 
-    public le0(pe0 pe0Var, int i10) {
-        this.f28189a = i10;
-        this.f28190b = pe0Var;
+    public le0(int i10, Utilities.Callback callback, NotificationCenter.NotificationCenterDelegate[] notificationCenterDelegateArr) {
+        this.f24969a = i10;
+        this.f24970b = callback;
+        this.f24971c = notificationCenterDelegateArr;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f28189a) {
-            case 0:
-                this.f28190b.f29391x = null;
-                return;
-            default:
-                this.f28190b.f29392y = null;
-                return;
+    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
+        int i12 = NotificationCenter.activityPermissionsGranted;
+        if (i10 == i12) {
+            int intValue = ((Integer) objArr[0]).intValue();
+            String[] strArr = (String[]) objArr[1];
+            int[] iArr = (int[]) objArr[2];
+            if (intValue == this.f24969a) {
+                Utilities.Callback callback = this.f24970b;
+                if (callback != null) {
+                    callback.run(iArr);
+                }
+                NotificationCenter.getGlobalInstance().removeObserver(this.f24971c[0], i12);
+            }
         }
     }
 }

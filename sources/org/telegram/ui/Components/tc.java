@@ -1,57 +1,63 @@
 package org.telegram.ui.Components;
 
-import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
-public final class tc implements Utilities.Callback {
-    public final int f30614a = 0;
-    public final long f30615b;
-    public final int f30616c;
-    public final Object d;
+import android.text.TextPaint;
+import android.text.style.ClickableSpan;
+import android.view.View;
+public final class tc extends ClickableSpan {
+    public final int f27389a;
+    public final Runnable f27390b;
 
-    public tc(int i10, qc qcVar, long j3) {
-        this.f30616c = i10;
-        this.d = qcVar;
-        this.f30615b = j3;
+    public tc(int i10, Runnable runnable) {
+        this.f27389a = i10;
+        this.f27390b = runnable;
     }
 
     @Override
-    public final void run(Object obj) {
-        Object string;
-        TLRPC.StickerSet stickerSet;
-        int i10 = this.f30614a;
-        int i11 = this.f30616c;
-        long j3 = this.f30615b;
-        Object obj2 = this.d;
-        switch (i10) {
+    public final void onClick(View view) {
+        switch (this.f27389a) {
             case 0:
-                qc qcVar = (qc) obj2;
-                TLRPC.TL_messages_stickerSet tL_messages_stickerSet = (TLRPC.TL_messages_stickerSet) obj;
-                if (tL_messages_stickerSet != null && (stickerSet = tL_messages_stickerSet.set) != null) {
-                    if (i11 == 1) {
-                        string = AndroidUtilities.replaceTags(LocaleController.formatString("TopicContainsEmojiPackSingle", R.string.TopicContainsEmojiPackSingle, stickerSet.title));
-                    } else if (i11 == 2) {
-                        string = AndroidUtilities.replaceTags(LocaleController.formatString("StoryContainsEmojiPackSingle", R.string.StoryContainsEmojiPackSingle, stickerSet.title));
-                    } else {
-                        string = AndroidUtilities.replaceTags(LocaleController.formatString("MessageContainsEmojiPackSingle", R.string.MessageContainsEmojiPackSingle, stickerSet.title));
-                    }
-                } else {
-                    string = LocaleController.getString(R.string.AddEmojiNotFound);
+                this.f27390b.run();
+                return;
+            case 1:
+                Runnable runnable = this.f27390b;
+                if (runnable != null) {
+                    runnable.run();
+                    return;
                 }
-                AndroidUtilities.runOnUIThread(new org.telegram.ui.fh(29, qcVar, string), Math.max(1L, 750 - (System.currentTimeMillis() - j3)));
+                return;
+            case 2:
+                Runnable runnable2 = this.f27390b;
+                if (runnable2 != null) {
+                    runnable2.run();
+                    return;
+                }
                 return;
             default:
-                ((xu0) obj2).getStoriesController().b(i11, j3, (ArrayList) obj);
+                Runnable runnable3 = this.f27390b;
+                if (runnable3 != null) {
+                    runnable3.run();
+                    return;
+                }
                 return;
         }
     }
 
-    public tc(xu0 xu0Var, long j3, int i10) {
-        this.d = xu0Var;
-        this.f30615b = j3;
-        this.f30616c = i10;
+    @Override
+    public final void updateDrawState(TextPaint textPaint) {
+        switch (this.f27389a) {
+            case 0:
+                super.updateDrawState(textPaint);
+                textPaint.setUnderlineText(false);
+                return;
+            case 1:
+                textPaint.setUnderlineText(false);
+                return;
+            case 2:
+                textPaint.setUnderlineText(false);
+                return;
+            default:
+                textPaint.setUnderlineText(false);
+                return;
+        }
     }
 }

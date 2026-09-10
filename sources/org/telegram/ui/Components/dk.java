@@ -1,70 +1,57 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.view.MotionEvent;
-public final class dk extends ll0 {
-    public final int X2;
-    public final Paint Y2;
-    public final ok Z2;
+import android.animation.ValueAnimator;
+import android.widget.FrameLayout;
+public final class dk implements ValueAnimator.AnimatorUpdateListener {
+    public final int f22438a;
+    public final int f22439b;
+    public final float f22440c;
+    public final FrameLayout d;
 
-    public dk(ok okVar, Context context, org.telegram.ui.ActionBar.f6 f6Var, int i10) {
-        super(context, f6Var);
-        this.X2 = i10;
-        switch (i10) {
-            case 1:
-                this.Z2 = okVar;
-                super(context, f6Var);
-                this.Y2 = new Paint();
-                return;
-            default:
-                this.Z2 = okVar;
-                this.Y2 = new Paint();
-                return;
-        }
+    public dk(FrameLayout frameLayout, int i10, float f7, int i11) {
+        this.f22438a = i11;
+        this.d = frameLayout;
+        this.f22439b = i10;
+        this.f22440c = f7;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        switch (this.X2) {
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f22438a) {
             case 0:
-                if (this.Z2.f29118n == 2 && getChildCount() > 0) {
-                    float f7 = 2.1474836E9f;
-                    for (int i10 = 0; i10 < getChildCount(); i10++) {
-                        if (getChildAt(i10).getY() < f7) {
-                            f7 = getChildAt(i10).getY();
-                        }
-                    }
-                    this.Y2.setColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f20761h5, false));
+                tk tkVar = (tk) this.d;
+                ik ikVar = tkVar.f27428r;
+                ik ikVar2 = tkVar.f27429s;
+                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                int i10 = this.f22439b;
+                float f7 = this.f22440c;
+                if (i10 == 1) {
+                    ikVar.setTranslationX(f7 * floatValue);
+                    ikVar.setAlpha(1.0f - floatValue);
+                    ikVar.invalidate();
+                    ikVar2.setAlpha(floatValue);
+                    float f10 = (floatValue * 0.05f) + 0.95f;
+                    ikVar2.setScaleX(f10);
+                    ikVar2.setScaleY(f10);
+                    return;
                 }
-                super.dispatchDraw(canvas);
+                ikVar2.setTranslationX(f7 * floatValue);
+                ikVar2.setAlpha(Math.max(0.0f, 1.0f - floatValue));
+                ikVar2.invalidate();
+                ikVar.setAlpha(floatValue);
+                float f11 = (floatValue * 0.05f) + 0.95f;
+                ikVar.setScaleX(f11);
+                ikVar.setScaleY(f11);
+                ikVar2.invalidate();
                 return;
             default:
-                if (this.Z2.f29118n == 1 && getChildCount() > 0) {
-                    float f10 = 2.1474836E9f;
-                    for (int i11 = 0; i11 < getChildCount(); i11++) {
-                        if (getChildAt(i11).getY() < f10) {
-                            f10 = getChildAt(i11).getY();
-                        }
-                    }
-                    this.Y2.setColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f20761h5, false));
-                }
-                super.dispatchDraw(canvas);
+                yb0 yb0Var = (yb0) this.d;
+                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                float f12 = 1.0f - floatValue2;
+                int i11 = (int) ((yb0Var.R * floatValue2) + (this.f22439b * f12));
+                yb0Var.T = i11;
+                yb0Var.e((yb0Var.S * floatValue2) + (this.f22440c * f12), i11);
                 return;
-        }
-    }
-
-    @Override
-    public boolean onTouchEvent(MotionEvent motionEvent) {
-        switch (this.X2) {
-            case 0:
-                if (this.Z2.f29118n != 0) {
-                    return false;
-                }
-                return super.onTouchEvent(motionEvent);
-            default:
-                return super.onTouchEvent(motionEvent);
         }
     }
 }

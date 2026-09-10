@@ -1,36 +1,47 @@
 package a9;
 
-import com.google.android.gms.tasks.TaskCompletionSource;
-public abstract class j0 implements Runnable {
-    private final TaskCompletionSource f363a;
+import android.os.Process;
+import android.os.RemoteException;
+import android.text.TextUtils;
+import android.util.Log;
+import java.util.IllegalFormatException;
+import java.util.Locale;
+public final class j0 {
+    public final String f335a;
 
-    public j0() {
-        this.f363a = null;
+    public j0(String str) {
+        int myUid = Process.myUid();
+        int myPid = Process.myPid();
+        this.f335a = ("UID: [" + myUid + "]  PID: [" + myPid + "] ").concat(str);
     }
 
-    public void a(Exception exc) {
-        TaskCompletionSource taskCompletionSource = this.f363a;
-        if (taskCompletionSource != null) {
-            taskCompletionSource.trySetException(exc);
+    public static String d(String str, String str2, Object... objArr) {
+        if (objArr.length > 0) {
+            try {
+                str2 = String.format(Locale.US, str2, objArr);
+            } catch (IllegalFormatException e) {
+                Log.e("PlayCore", "Unable to format ".concat(str2), e);
+                str2 = str2 + " [" + TextUtils.join(", ", objArr) + "]";
+            }
+        }
+        return a4.a.C(str, " : ", str2);
+    }
+
+    public final void a(RemoteException remoteException, String str, Object... objArr) {
+        if (Log.isLoggable("PlayCore", 6)) {
+            Log.e("PlayCore", d(this.f335a, str, objArr), remoteException);
         }
     }
 
-    public abstract void b();
-
-    public final TaskCompletionSource c() {
-        return this.f363a;
-    }
-
-    @Override
-    public final void run() {
-        try {
-            b();
-        } catch (Exception e7) {
-            a(e7);
+    public final void b(String str, Object... objArr) {
+        if (Log.isLoggable("PlayCore", 4)) {
+            Log.i("PlayCore", d(this.f335a, str, objArr));
         }
     }
 
-    public j0(TaskCompletionSource taskCompletionSource) {
-        this.f363a = taskCompletionSource;
+    public final void c(String str, Object... objArr) {
+        if (Log.isLoggable("PlayCore", 5)) {
+            Log.w("PlayCore", d(this.f335a, str, objArr));
+        }
     }
 }

@@ -1,132 +1,78 @@
 package org.telegram.ui.Cells;
 
 import android.content.Context;
-import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
+import android.graphics.Path;
 import android.graphics.Rect;
-import android.graphics.drawable.Drawable;
+import android.graphics.RectF;
+import android.view.View;
+import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.MediaController;
-import org.telegram.messenger.R;
-import org.telegram.ui.Components.hm;
-import org.telegram.ui.Components.pr;
-public final class o5 extends org.telegram.ui.Components.x9 {
-    public final Paint G;
-    public long H;
-    public Drawable I;
-    public Drawable J;
-    public final s5 K;
+public final class o5 extends FrameLayout {
+    public final t5 f19638a;
 
-    public o5(s5 s5Var, Context context) {
+    public o5(t5 t5Var, Context context) {
         super(context);
-        this.K = s5Var;
-        this.G = new Paint(1);
+        this.f19638a = t5Var;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        ImageReceiver imageReceiver;
-        Bitmap bitmap;
-        MediaController.PhotoEntry photoEntry;
-        Drawable drawable;
-        float floatValue;
-        org.telegram.ui.Components.q5 q5Var = this.f32506e;
-        if (q5Var != null) {
-            imageReceiver = q5Var.f29611k;
-        } else {
-            imageReceiver = this.f32503a;
-        }
-        if (imageReceiver != null) {
-            if (this.f32505c != -1 && this.d != -1) {
-                int height = getHeight();
-                int i10 = this.d;
-                imageReceiver.setImageCoords((getWidth() - this.f32505c) / 2, (height - i10) / 2, this.f32505c, i10);
-                int height2 = getHeight();
-                int i11 = this.d;
-                this.f32504b.setImageCoords((getWidth() - this.f32505c) / 2, (height2 - i11) / 2, this.f32505c, i11);
-            } else {
-                imageReceiver.setImageCoords(0.0f, 0.0f, getWidth(), getHeight());
-                this.f32504b.setImageCoords(0.0f, 0.0f, getWidth(), getHeight());
-            }
-            imageReceiver.draw(canvas);
-            s5 s5Var = this.K;
-            if (s5Var.N) {
-                Rect rect = s5.f22857a0;
-                MediaController.PhotoEntry photoEntry2 = s5Var.G;
-                if (photoEntry2 == null || !photoEntry2.isAttachSpoilerRevealed) {
-                    this.f32504b.draw(canvas);
-                    if (s5Var.M == null) {
-                        if (s5Var.L == null) {
-                            wh.h hVar = new wh.h();
-                            s5Var.L = hVar;
-                            hVar.h(i0.a.k(-1, (int) (Color.alpha(-1) * 0.325f)));
+    public final boolean drawChild(Canvas canvas, View view, long j3) {
+        float measuredWidth;
+        float measuredHeight;
+        int i10;
+        t5 t5Var = this.f19638a;
+        p5 p5Var = t5Var.f20434a;
+        if (t5Var.M != null && view == p5Var) {
+            boolean drawChild = super.drawChild(canvas, view, j3);
+            if (t5Var.N) {
+                Rect rect = t5.f20433a0;
+                MediaController.PhotoEntry photoEntry = t5Var.G;
+                if (photoEntry == null || !photoEntry.isAttachSpoilerRevealed) {
+                    t5Var.M.c(canvas, t5Var.f20435b, p5Var.getMeasuredWidth(), p5Var.getMeasuredHeight(), 1.0f, false);
+                    MediaController.PhotoEntry photoEntry2 = t5Var.G;
+                    if (photoEntry2 != null && photoEntry2.starsAmount > 0 && p5Var.f28737y != null) {
+                        Path path = p5Var.E;
+                        if (path == null) {
+                            p5Var.E = new Path();
+                        } else {
+                            path.rewind();
                         }
-                        s5Var.L.setBounds(0, 0, getWidth(), getHeight());
-                        s5Var.L.draw(canvas);
+                        int i11 = p5Var.f28730c;
+                        if (i11 != -1 && (i10 = p5Var.d) != -1) {
+                            measuredWidth = i11;
+                            measuredHeight = i10;
+                        } else {
+                            measuredWidth = p5Var.getMeasuredWidth();
+                            measuredHeight = p5Var.getMeasuredHeight();
+                        }
+                        float dp = p5Var.f28737y.f27247c + AndroidUtilities.dp(18.0f);
+                        float f7 = (measuredWidth - dp) / 2.0f;
+                        float f10 = measuredHeight / 2.0f;
+                        RectF rectF = AndroidUtilities.rectTmp;
+                        float dp2 = AndroidUtilities.dp(28.0f) / 2.0f;
+                        rectF.set(f7, f10 - dp2, dp + f7, f10 + dp2);
+                        p5Var.E.addRoundRect(rectF, dp2, dp2, Path.Direction.CW);
+                        canvas.save();
+                        canvas.clipPath(p5Var.E);
+                        ImageReceiver imageReceiver = p5Var.f28729b;
+                        if (imageReceiver != null && p5Var.f28734s) {
+                            imageReceiver.setColorFilter(p5Var.F);
+                            float alpha = p5Var.f28729b.getAlpha();
+                            p5Var.f28729b.setAlpha(1.0f);
+                            p5Var.f28729b.draw(canvas);
+                            p5Var.f28729b.setAlpha(alpha);
+                            p5Var.f28729b.setColorFilter(null);
+                        }
+                        p5Var.f28737y.c(f7 + AndroidUtilities.dp(9.0f), f10, 1.0f, -1, canvas);
+                        canvas.restore();
                     }
-                    invalidate();
                 }
             }
-            float f7 = s5Var.T;
-            int i12 = (f7 > 1.0f ? 1 : (f7 == 1.0f ? 0 : -1));
-            if (i12 != 0 && s5Var.R != null) {
-                Paint paint = this.G;
-                paint.setAlpha((int) (pr.f29493f.getInterpolation(1.0f - f7) * 255.0f));
-                canvas.drawBitmap(s5Var.R, 0.0f, 0.0f, paint);
-                long min = Math.min(16L, System.currentTimeMillis() - this.H);
-                Float f10 = s5Var.S;
-                if (f10 == null) {
-                    floatValue = 250.0f;
-                } else {
-                    floatValue = f10.floatValue();
-                }
-                s5Var.T = Math.min(1.0f, (((float) min) / floatValue) + s5Var.T);
-                this.H = System.currentTimeMillis();
-                invalidate();
-                if (s5Var.M != null) {
-                    s5Var.f22859b.invalidate();
-                }
-            } else if (i12 == 0 && (bitmap = s5Var.R) != null) {
-                bitmap.recycle();
-                s5Var.R = null;
-                s5Var.S = null;
-                invalidate();
-            }
-            if (s5Var.f22865s) {
-                q5 q5Var2 = s5Var.U;
-                if ((q5Var2 == null || !((hm) ((org.telegram.ui.Components.t) q5Var2).f30481b).f26784s) && (photoEntry = s5Var.G) != null && photoEntry.isLivePhoto()) {
-                    if (s5Var.G.isUnalivePhoto()) {
-                        if (this.J == null) {
-                            this.J = getContext().getResources().getDrawable(R.drawable.media_live_off).mutate();
-                        }
-                        drawable = this.J;
-                    } else {
-                        if (this.I == null) {
-                            this.I = getContext().getResources().getDrawable(R.drawable.media_live_on).mutate();
-                        }
-                        drawable = this.I;
-                    }
-                    drawable.setBounds((int) (imageReceiver.getImageX() + AndroidUtilities.dp(8.0f)), (int) (imageReceiver.getImageY() + AndroidUtilities.dp(8.0f)), (int) (imageReceiver.getImageX() + AndroidUtilities.dp(30.0f)), (int) (imageReceiver.getImageY() + AndroidUtilities.dp(26.0f)));
-                    drawable.draw(canvas);
-                }
-            }
+            return drawChild;
         }
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        boolean z10;
-        super.onMeasure(i10, i11);
-        s5 s5Var = this.K;
-        MediaController.PhotoEntry photoEntry = s5Var.G;
-        if (photoEntry != null && photoEntry.hasSpoiler) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        s5Var.h(z10);
+        return super.drawChild(canvas, view, j3);
     }
 }

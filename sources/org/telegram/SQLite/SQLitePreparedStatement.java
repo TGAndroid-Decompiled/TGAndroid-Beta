@@ -1,7 +1,7 @@
 package org.telegram.SQLite;
 
 import android.os.SystemClock;
-import com.google.android.gms.internal.vision.e2;
+import hc.b;
 import java.nio.ByteBuffer;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.FileLog;
@@ -89,15 +89,15 @@ public class SQLitePreparedStatement {
                     sb2.append(this.query);
                     sb2.append(" took ");
                     sb2.append(elapsedRealtime);
-                    e2.t("ms", sb2);
+                    b.v("ms", sb2);
                 }
             }
             try {
                 this.isFinalized = true;
                 finalize(this.sqliteStatementHandle);
-            } catch (SQLiteException e7) {
+            } catch (SQLiteException e) {
                 if (BuildVars.LOGS_ENABLED) {
-                    FileLog.e(e7.getMessage(), e7);
+                    FileLog.e(e.getMessage(), e);
                 }
             }
         }

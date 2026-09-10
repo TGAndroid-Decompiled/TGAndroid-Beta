@@ -1,38 +1,50 @@
 package zh;
 
-import org.telegram.messenger.BillingController;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.Components.ad;
-public final class q1 implements Runnable {
-    public final int f52482a;
-    public final org.telegram.tgnet.e f52483b;
-    public final ad[] f52484c;
-    public final TL_stars.UniqueStarGiftValueInfo d;
-    public final String f52485e;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class q1 extends AnimatorListenerAdapter {
+    public final int f48802a;
+    public final a3 f48803b;
 
-    public q1(org.telegram.tgnet.e eVar, ad[] adVarArr, TL_stars.UniqueStarGiftValueInfo uniqueStarGiftValueInfo, String str, int i10) {
-        this.f52482a = i10;
-        this.f52483b = eVar;
-        this.f52484c = adVarArr;
-        this.d = uniqueStarGiftValueInfo;
-        this.f52485e = str;
+    public q1(a3 a3Var, int i10) {
+        this.f48802a = i10;
+        this.f48803b = a3Var;
     }
 
     @Override
-    public final void run() {
-        int i10 = this.f52482a;
-        String str = this.f52485e;
-        TL_stars.UniqueStarGiftValueInfo uniqueStarGiftValueInfo = this.d;
-        ad[] adVarArr = this.f52484c;
-        org.telegram.tgnet.e eVar = this.f52483b;
-        switch (i10) {
+    public final void onAnimationEnd(Animator animator) {
+        v1 v1Var;
+        Runnable runnable;
+        switch (this.f48802a) {
             case 0:
-                eVar.run(adVarArr[0], LocaleController.formatString(R.string.GiftValueMinPriceInfo, BillingController.getInstance().formatCurrency(uniqueStarGiftValueInfo.floor_price, uniqueStarGiftValueInfo.currency), str));
+                a3 a3Var = this.f48803b;
+                a3Var.f48213t3 = 0.0f;
+                a3Var.f48207r3.setAlpha(1.0f);
+                a3Var.f48207r3.setVisibility(8);
+                a3Var.f48207r3.n();
                 return;
             default:
-                eVar.run(adVarArr[0], LocaleController.formatString(R.string.GiftValueAveragePriceInfo, BillingController.getInstance().formatCurrency(uniqueStarGiftValueInfo.average_price, uniqueStarGiftValueInfo.currency), str));
+                super.onAnimationEnd(animator);
+                a3 a3Var2 = this.f48803b;
+                a3Var2.N2.unlock();
+                a3Var2.H2 = a3Var2.f48197o2;
+                t1 t1Var = a3Var2.f48157b2;
+                if (t1Var != null && (runnable = t1Var.f20941w) != null) {
+                    runnable.run();
+                    t1Var.f20941w = null;
+                }
+                if (a3Var2.K1 && !a3Var2.f48218v2) {
+                    u7 u7Var = ((l7) a3Var2.Q1).d;
+                    if (u7Var.f48970x) {
+                        u7Var.f48970x = false;
+                        u7Var.P();
+                    }
+                }
+                if (!a3Var2.f48218v2 && (v1Var = a3Var2.f48166d3) != null) {
+                    v1Var.setVisibility(8);
+                }
+                a3Var2.V2 = true;
+                a3Var2.invalidate();
                 return;
         }
     }

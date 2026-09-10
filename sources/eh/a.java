@@ -1,10 +1,10 @@
 package eh;
+
+import android.graphics.Canvas;
 public interface a {
-    int G();
+    void b();
 
-    int J();
+    bh.d k();
 
-    int k0();
-
-    int p();
+    void u(Canvas canvas, float f7, float f10, float f11, float f12);
 }

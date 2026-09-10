@@ -1,68 +1,85 @@
 package org.telegram.ui;
 
-import android.view.MotionEvent;
-import android.view.View;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class bm0 implements View.OnTouchListener {
-    public final int f34868a;
-    public final pn0 f34869b;
+import android.content.Intent;
+import android.net.Uri;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.FileLog;
+import org.telegram.ui.Components.EditTextBoldCursor;
+public final class bm0 implements org.telegram.ui.ActionBar.c2, au, cn0 {
+    public final int f31293a;
+    public final on0 f31294b;
 
-    public bm0(pn0 pn0Var, int i10) {
-        this.f34868a = i10;
-        this.f34869b = pn0Var;
+    public bm0(on0 on0Var, int i10) {
+        this.f31293a = i10;
+        this.f31294b = on0Var;
     }
 
     @Override
-    public final boolean onTouch(View view, MotionEvent motionEvent) {
-        int i10 = this.f34868a;
-        pn0 pn0Var = this.f34869b;
-        switch (i10) {
-            case 0:
-                if (pn0Var.getParentActivity() == null) {
-                    return false;
-                }
-                if (motionEvent.getAction() == 1) {
-                    bu buVar = new bu(null, false);
-                    buVar.f34956r = new z10(23, pn0Var, view);
-                    pn0Var.presentFragment(buVar);
-                }
-                return true;
-            case 1:
-                if (pn0Var.getParentActivity() == null) {
-                    return false;
-                }
-                if (motionEvent.getAction() == 1) {
-                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(pn0Var.getParentActivity());
-                    String string = LocaleController.getString(R.string.PassportSelectGender);
-                    org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20225a;
-                    b2Var.R = string;
-                    alertDialog$Builder.f(new CharSequence[]{LocaleController.getString(R.string.PassportMale), LocaleController.getString(R.string.PassportFemale)}, new vv(pn0Var, 2));
-                    alertDialog$Builder.k(LocaleController.getString(R.string.Cancel), null);
-                    pn0Var.showDialog(b2Var);
-                }
-                return true;
+    public void a1(wt wtVar) {
+        String str;
+        switch (this.f31293a) {
             case 2:
-                if (pn0Var.getParentActivity() == null) {
-                    return false;
-                }
-                if (motionEvent.getAction() == 1) {
-                    bu buVar2 = new bu(null, false);
-                    buVar2.f34956r = new cm0(pn0Var, 2);
-                    pn0Var.presentFragment(buVar2);
-                }
-                return true;
+                on0 on0Var = this.f31294b;
+                on0Var.Y[5].setText(wtVar.f38386a);
+                on0Var.f35557s = wtVar.d;
+                return;
             default:
-                if (pn0Var.getParentActivity() == null) {
-                    return false;
+                on0 on0Var2 = this.f31294b;
+                on0Var2.Y[0].setText(wtVar.f38386a);
+                if (on0Var2.U0.indexOf(wtVar.f38386a) != -1) {
+                    on0Var2.Z0 = true;
+                    String str2 = (String) on0Var2.V0.get(wtVar.f38386a);
+                    on0Var2.Y[1].setText(str2);
+                    String str3 = (String) on0Var2.X0.get(str2);
+                    EditTextBoldCursor editTextBoldCursor = on0Var2.Y[2];
+                    if (str3 != null) {
+                        str = str3.replace('X', (char) 8211);
+                    } else {
+                        str = null;
+                    }
+                    editTextBoldCursor.setHintText(str);
+                    on0Var2.Z0 = false;
                 }
-                if (motionEvent.getAction() == 1) {
-                    bu buVar3 = new bu(null, false);
-                    buVar3.f34956r = new cm0(pn0Var, 3);
-                    pn0Var.presentFragment(buVar3);
+                AndroidUtilities.runOnUIThread(new yl0(on0Var2, 3), 300L);
+                on0Var2.Y[2].requestFocus();
+                EditTextBoldCursor editTextBoldCursor2 = on0Var2.Y[2];
+                editTextBoldCursor2.setSelection(editTextBoldCursor2.length());
+                return;
+        }
+    }
+
+    @Override
+    public void d(String str, String str2) {
+        this.f31294b.x1();
+    }
+
+    @Override
+    public void f(org.telegram.ui.ActionBar.d2 d2Var, int i10) {
+        switch (this.f31293a) {
+            case 0:
+                on0 on0Var = this.f31294b;
+                on0Var.getClass();
+                try {
+                    Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
+                    intent.setData(Uri.parse("package:" + ApplicationLoader.applicationContext.getPackageName()));
+                    on0Var.getParentActivity().startActivity(intent);
+                    return;
+                } catch (Exception e) {
+                    FileLog.e(e);
+                    return;
                 }
-                return true;
+            case 1:
+                this.f31294b.finishFragment();
+                return;
+            case 2:
+            case 3:
+            default:
+                on0.a0(this.f31294b);
+                return;
+            case 4:
+                on0.d0(this.f31294b);
+                return;
         }
     }
 }

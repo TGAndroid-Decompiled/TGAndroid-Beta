@@ -10,16 +10,16 @@ import java.util.ArrayList;
 import java.util.List;
 import w7.d0;
 public final class m implements Parcelable.Creator {
-    public final int f44982a;
+    public final int f41298a;
 
     public m(int i10) {
-        this.f44982a = i10;
+        this.f41298a = i10;
     }
 
     @Override
     public final Object createFromParcel(Parcel parcel) {
         Status status = null;
-        switch (this.f44982a) {
+        switch (this.f41298a) {
             case 0:
                 int z10 = d0.z(parcel);
                 IBinder iBinder = null;
@@ -150,8 +150,8 @@ public final class m implements Parcelable.Creator {
                 return new o(i11, nVar, iBinder3, iBinder4, pendingIntent2, iBinder5, str5);
             case 3:
                 int z17 = d0.z(parcel);
-                r rVar = t.f44995b;
-                List list = u.f44996e;
+                r rVar = t.f41309b;
+                List list = u.e;
                 String str6 = null;
                 String str7 = null;
                 String str8 = null;
@@ -210,7 +210,7 @@ public final class m implements Parcelable.Creator {
 
     @Override
     public final Object[] newArray(int i10) {
-        switch (this.f44982a) {
+        switch (this.f41298a) {
             case 0:
                 return new l[i10];
             case 1:

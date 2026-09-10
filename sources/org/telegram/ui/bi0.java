@@ -5,15 +5,15 @@ import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.tgnet.TLRPC;
 public abstract class bi0 extends FrameLayout {
-    public TLRPC.User f34838a;
-    public org.telegram.ui.Components.d90 f34839b;
-    public org.telegram.ui.Components.t00 f34840c;
+    public TLRPC.User f31270a;
+    public org.telegram.ui.Components.m90 f31271b;
+    public org.telegram.ui.Components.a10 f31272c;
     public boolean d;
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        org.telegram.ui.Components.d90 d90Var = this.f34839b;
-        org.telegram.ui.Components.t00 t00Var = this.f34840c;
+        org.telegram.ui.Components.m90 m90Var = this.f31271b;
+        org.telegram.ui.Components.a10 a10Var = this.f31272c;
         View view = (View) getParent();
         if (view != null && view.getWidth() > 0) {
             i10 = View.MeasureSpec.makeMeasureSpec(view.getWidth(), 1073741824);
@@ -21,20 +21,20 @@ public abstract class bi0 extends FrameLayout {
         int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(36.0f), 1073741824);
         boolean z10 = true;
         this.d = true;
-        if (t00Var.getVisibility() != 0) {
+        if (a10Var.getVisibility() != 0) {
             z10 = false;
         }
-        d90Var.setVisibility(8);
+        m90Var.setVisibility(8);
         if (z10) {
-            t00Var.setVisibility(8);
+            a10Var.setVisibility(8);
         }
         super.onMeasure(i10, makeMeasureSpec);
         if (z10) {
-            t00Var.getLayoutParams().width = getMeasuredWidth();
-            t00Var.setVisibility(0);
+            a10Var.getLayoutParams().width = getMeasuredWidth();
+            a10Var.setVisibility(0);
         }
-        d90Var.setVisibility(0);
-        d90Var.getLayoutParams().width = getMeasuredWidth() - AndroidUtilities.dp(24.0f);
+        m90Var.setVisibility(0);
+        m90Var.getLayoutParams().width = getMeasuredWidth() - AndroidUtilities.dp(24.0f);
         this.d = false;
         super.onMeasure(i10, makeMeasureSpec);
     }

@@ -2,18 +2,18 @@ package org.telegram.ui;
 
 import android.content.Context;
 import android.graphics.Canvas;
-public final class sb0 extends yd {
-    public final xb0 f40430c;
+public final class sb0 extends zd {
+    public final xb0 f36639c;
 
     public sb0(xb0 xb0Var, Context context) {
         super(context);
-        this.f40430c = xb0Var;
+        this.f36639c = xb0Var;
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
-        this.f40430c.getClass();
+        this.f36639c.getClass();
     }
 
     @Override

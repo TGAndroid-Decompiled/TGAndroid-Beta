@@ -1,40 +1,26 @@
 package org.telegram.messenger;
+public final class bi implements Runnable {
+    public final int f14805a;
+    public final String f14806b;
+    public final String f14807c;
+    public final long d;
 
-import java.util.Comparator;
-import org.telegram.messenger.SavedMessagesController;
-import org.telegram.messenger.SecretChatHelper;
-import org.telegram.messenger.SharedConfig;
-import org.telegram.tgnet.TLRPC;
-public final class bi implements Comparator {
-    public final int f17302a;
-
-    public bi(int i10) {
-        this.f17302a = i10;
+    public bi(int i10, long j3, String str, String str2) {
+        this.f14805a = i10;
+        this.f14806b = str;
+        this.f14807c = str2;
+        this.d = j3;
     }
 
     @Override
-    public final int compare(Object obj, Object obj2) {
-        int lambda$updateAllDialogs$0;
-        int lambda$resendMessages$13;
-        int lambda$checkSecretHoles$16;
-        int lambda$saveProxyList$4;
-        int lambda$sortTopics$9;
-        switch (this.f17302a) {
+    public final void run() {
+        switch (this.f14805a) {
             case 0:
-                lambda$updateAllDialogs$0 = SavedMessagesController.lambda$updateAllDialogs$0((SavedMessagesController.SavedDialog) obj, (SavedMessagesController.SavedDialog) obj2);
-                return lambda$updateAllDialogs$0;
-            case 1:
-                lambda$resendMessages$13 = SecretChatHelper.lambda$resendMessages$13((TLRPC.Message) obj, (TLRPC.Message) obj2);
-                return lambda$resendMessages$13;
-            case 2:
-                lambda$checkSecretHoles$16 = SecretChatHelper.lambda$checkSecretHoles$16((SecretChatHelper.TL_decryptedMessageHolder) obj, (SecretChatHelper.TL_decryptedMessageHolder) obj2);
-                return lambda$checkSecretHoles$16;
-            case 3:
-                lambda$saveProxyList$4 = SharedConfig.lambda$saveProxyList$4((SharedConfig.ProxyInfo) obj, (SharedConfig.ProxyInfo) obj2);
-                return lambda$saveProxyList$4;
+                PushListenerController.c(this.d, this.f14806b, this.f14807c);
+                return;
             default:
-                lambda$sortTopics$9 = TopicsController.lambda$sortTopics$9((TLRPC.TL_forumTopic) obj, (TLRPC.TL_forumTopic) obj2);
-                return lambda$sortTopics$9;
+                PushListenerController.h(this.d, this.f14806b, this.f14807c);
+                return;
         }
     }
 }

@@ -1,57 +1,61 @@
 package di;
 
-import com.google.android.gms.common.api.internal.BasePendingResult;
-import java.util.ArrayDeque;
-import java.util.TimerTask;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.wp;
-import org.telegram.ui.g10;
-import org.telegram.ui.rl0;
-public final class p2 extends TimerTask {
-    public final int f7849a;
-    public final Object f7850b;
+import android.graphics.drawable.Drawable;
+import org.telegram.ui.Components.w70;
+import org.telegram.ui.PhotoViewer;
+public final class p2 implements Runnable {
+    public final int f6840a;
+    public final w70 f6841b;
+    public final w70 f6842c;
 
-    public p2(Object obj, int i10) {
-        this.f7849a = i10;
-        this.f7850b = obj;
+    public p2(w70 w70Var, w70 w70Var2, int i10) {
+        this.f6840a = i10;
+        this.f6841b = w70Var;
+        this.f6842c = w70Var2;
     }
 
     @Override
     public final void run() {
-        BasePendingResult basePendingResult;
-        switch (this.f7849a) {
+        int i10 = this.f6840a;
+        w70 w70Var = this.f6842c;
+        w70 w70Var2 = this.f6841b;
+        switch (i10) {
             case 0:
-                AndroidUtilities.runOnUIThread(new bi.oa(this, 20));
+                w70Var2.K(w70Var);
                 return;
             case 1:
-                e6.c cVar = (e6.c) this.f7850b;
-                ArrayDeque arrayDeque = cVar.h;
-                if (!arrayDeque.isEmpty() && cVar.f8886k == null && cVar.f8879b != 0) {
-                    e6.h hVar = cVar.f8880c;
-                    int[] e7 = g6.a.e(arrayDeque);
-                    hVar.getClass();
-                    n6.l.e("Must be called from the main thread.");
-                    if (!hVar.w()) {
-                        basePendingResult = e6.h.t();
-                    } else {
-                        e6.k kVar = new e6.k(hVar, e7);
-                        e6.h.x(kVar);
-                        basePendingResult = kVar;
-                    }
-                    cVar.f8886k = basePendingResult;
-                    basePendingResult.i(new e6.r(cVar, 1));
-                    arrayDeque.clear();
-                    return;
-                }
+                w70Var2.K(w70Var);
                 return;
             case 2:
-                AndroidUtilities.runOnUIThread(new wp(this, 24));
+                w70Var2.K(w70Var);
                 return;
             case 3:
-                AndroidUtilities.runOnUIThread(new g10(this, 23));
+                w70Var2.K(w70Var);
+                return;
+            case 4:
+                w70Var2.K(w70Var);
+                return;
+            case 5:
+                w70Var2.K(w70Var);
+                return;
+            case 6:
+                w70Var2.K(w70Var);
+                return;
+            case 7:
+                w70Var2.K(w70Var);
+                return;
+            case 8:
+                w70Var2.K(w70Var);
+                return;
+            case 9:
+                w70Var2.K(w70Var);
+                return;
+            case 10:
+                Drawable[] drawableArr = PhotoViewer.T8;
+                w70Var2.K(w70Var);
                 return;
             default:
-                AndroidUtilities.runOnUIThread(new rl0(this, 5));
+                w70Var2.K(w70Var);
                 return;
         }
     }

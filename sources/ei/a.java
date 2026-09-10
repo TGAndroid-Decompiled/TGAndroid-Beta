@@ -1,79 +1,68 @@
 package ei;
 
-import android.content.Context;
-import android.os.Build;
-import android.os.Handler;
-import android.os.Looper;
-import androidx.profileinstaller.ProfileInstallerInitializer;
-import java.util.Random;
-import java.util.concurrent.LinkedBlockingQueue;
-import java.util.concurrent.ThreadPoolExecutor;
-import java.util.concurrent.TimeUnit;
-import org.telegram.messenger.LocaleController;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.drawable.Drawable;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.R;
-import zh.s;
-public final class a implements Runnable {
-    public final int f9145a;
-    public final Context f9146b;
+import org.telegram.ui.ActionBar.j6;
+public final class a extends Drawable {
+    public int f7527b;
+    public int f7528c = 255;
+    public final Drawable f7526a = ApplicationLoader.applicationContext.getResources().getDrawable(R.drawable.settings_arrow).mutate();
 
-    public a(Context context, int i10) {
-        this.f9145a = i10;
-        this.f9146b = context;
+    @Override
+    public final void draw(Canvas canvas) {
+        float exactCenterX = getBounds().exactCenterX();
+        float exactCenterY = getBounds().exactCenterY();
+        int w02 = j6.w0(null, j6.G6, false);
+        int w03 = j6.w0(null, j6.f17928d6, false);
+        int i10 = this.f7527b;
+        Drawable drawable = this.f7526a;
+        if (i10 != w03) {
+            this.f7527b = w03;
+            drawable.setColorFilter(new PorterDuffColorFilter(w03, PorterDuff.Mode.SRC_IN));
+        }
+        canvas.drawCircle(exactCenterX, exactCenterY, AndroidUtilities.dp(7.6666665f), j6.l0(i0.a.k(w03, this.f7528c)));
+        canvas.drawCircle(exactCenterX, exactCenterY, AndroidUtilities.dp(6.6666665f), j6.l0(i0.a.k(w02, this.f7528c)));
+        xf.p.d(drawable, exactCenterX, exactCenterY, 17);
+        canvas.translate(0.0f, AndroidUtilities.dp(0.66f));
+        canvas.save();
+        canvas.rotate(90.0f, exactCenterX, exactCenterY);
+        xf.p.b(canvas, drawable, 0.8f);
+        canvas.restore();
     }
 
     @Override
-    public final void run() {
-        Handler handler;
-        switch (this.f9145a) {
-            case 0:
-                new s(this.f9146b).show();
-                return;
-            case 1:
-                of.f.s(this.f9146b, LocaleController.getString(R.string.ChannelAffiliateProgramJoinButtonInfoLink));
-                return;
-            case 2:
-                if (Build.VERSION.SDK_INT >= 28) {
-                    handler = r4.f.a(Looper.getMainLooper());
-                } else {
-                    handler = new Handler(Looper.getMainLooper());
-                }
-                handler.postDelayed(new a(this.f9146b, 3), new Random().nextInt(Math.max(1000, 1)) + 5000);
-                return;
-            case 3:
-                new ThreadPoolExecutor(0, 1, 0L, TimeUnit.MILLISECONDS, new LinkedBlockingQueue()).execute(new a(this.f9146b, 4));
-                return;
-            case 4:
-                r4.d.s(this.f9146b, new a3.b(2), r4.d.f44924a, false);
-                return;
-            case 5:
-                new s(this.f9146b).show();
-                return;
-            case 6:
-                of.f.s(this.f9146b, LocaleController.getString(R.string.StarsTOSLink));
-                return;
-            case 7:
-                new s(this.f9146b).show();
-                return;
-            case 8:
-                of.f.s(this.f9146b, LocaleController.getString(R.string.StarsTOSLink));
-                return;
-            case 9:
-                of.f.s(this.f9146b, LocaleController.getString(R.string.StarsTOSLink));
-                return;
-            case 10:
-                of.f.s(this.f9146b, LocaleController.getString(R.string.PaidContentInfoLink));
-                return;
-            case 11:
-                of.f.s(this.f9146b, LocaleController.getString(R.string.StarsSubscribeInfoLink));
-                return;
-            default:
-                of.f.s(this.f9146b, LocaleController.getString(R.string.StarsReactionTermsLink));
-                return;
-        }
+    public final int getAlpha() {
+        return this.f7528c;
     }
 
-    public a(ProfileInstallerInitializer profileInstallerInitializer, Context context) {
-        this.f9145a = 2;
-        this.f9146b = context;
+    @Override
+    public final int getIntrinsicHeight() {
+        return AndroidUtilities.dp(13.333333f);
+    }
+
+    @Override
+    public final int getIntrinsicWidth() {
+        return AndroidUtilities.dp(13.333333f);
+    }
+
+    @Override
+    public final int getOpacity() {
+        return -3;
+    }
+
+    @Override
+    public final void setAlpha(int i10) {
+        this.f7528c = i10;
+        this.f7526a.setAlpha(i10);
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

@@ -1,14 +1,14 @@
 package k5;
 public final class p {
-    public static final p f14822a;
-    public static final p[] f14823b;
+    public static final p f12336a;
+    public static final p[] f12337b;
     p EF0;
 
     static {
         Enum r02 = new Enum("UNKNOWN", 0);
         ?? r12 = new Enum("ANDROID_FIREBASE", 1);
-        f14822a = r12;
-        f14823b = new p[]{r02, r12};
+        f12336a = r12;
+        f12337b = new p[]{r02, r12};
     }
 
     public static p valueOf(String str) {
@@ -16,6 +16,6 @@ public final class p {
     }
 
     public static p[] values() {
-        return (p[]) f14823b.clone();
+        return (p[]) f12337b.clone();
     }
 }

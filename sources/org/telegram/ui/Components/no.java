@@ -1,14 +1,6 @@
 package org.telegram.ui.Components;
+
+import org.telegram.tgnet.TLRPC;
 public interface no {
-    void dismiss();
-
-    void m();
-
-    void n();
-
-    void p();
-
-    void s();
-
-    void x(int i10);
+    void c(TLRPC.Document document);
 }

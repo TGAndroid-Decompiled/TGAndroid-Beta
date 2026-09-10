@@ -1,23 +1,37 @@
 package bi;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.voip.Instance;
-public final class s1 implements Instance.OnStateUpdatedListener {
-    public final t1 f3708a;
+import android.view.ViewGroup;
+import org.telegram.ui.l71;
+public final class s1 extends w7.b6 {
+    public final int f3639a;
+    public final ViewGroup f3640b;
 
-    public s1(t1 t1Var) {
-        this.f3708a = t1Var;
+    public s1(ViewGroup viewGroup, int i10) {
+        this.f3639a = i10;
+        this.f3640b = viewGroup;
     }
 
     @Override
-    public final void onStateUpdated(int i10, boolean z10) {
-        t1 t1Var = this.f3708a;
-        boolean m10 = t1Var.m();
-        t1Var.f3752y = i10;
-        FileLog.d("[LivePlayer] connectionState = " + i10);
-        if (m10 != t1Var.m()) {
-            AndroidUtilities.runOnUIThread(new a3.d(this, 14));
+    public final void a() {
+        switch (this.f3639a) {
+            case 0:
+                ((w1) this.f3640b).f3817b3 = false;
+                return;
+            default:
+                ((l71) this.f3640b).f34603w1 = false;
+                return;
+        }
+    }
+
+    @Override
+    public final void b() {
+        switch (this.f3639a) {
+            case 0:
+                ((w1) this.f3640b).f3817b3 = true;
+                return;
+            default:
+                ((l71) this.f3640b).f34603w1 = true;
+                return;
         }
     }
 }

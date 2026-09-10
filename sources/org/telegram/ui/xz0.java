@@ -1,25 +1,70 @@
 package org.telegram.ui;
 
-import org.telegram.tgnet.TLRPC;
-public final class xz0 extends qq {
-    public final boolean[] f42945d1;
-    public final TLRPC.User f42946e1;
-    public final ProfileActivity f42947f1;
+import android.graphics.Canvas;
+import android.graphics.RectF;
+import android.view.View;
+import android.view.ViewGroup;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ImageReceiver;
+public final class xz0 extends rv0 {
+    public final ProfileActivity T;
 
-    public xz0(ProfileActivity profileActivity, long j3, long j10, TLRPC.TL_chatAdminRights tL_chatAdminRights, TLRPC.TL_chatBannedRights tL_chatBannedRights, TLRPC.TL_chatBannedRights tL_chatBannedRights2, String str, int i10, boolean[] zArr, TLRPC.User user) {
-        super(j3, j10, tL_chatAdminRights, tL_chatBannedRights, tL_chatBannedRights2, str, i10, true, false, null);
-        this.f42947f1 = profileActivity;
-        this.f42945d1 = zArr;
-        this.f42946e1 = user;
+    public xz0(ProfileActivity profileActivity, ViewGroup viewGroup, ViewGroup viewGroup2) {
+        super(viewGroup, viewGroup2);
+        this.T = profileActivity;
     }
 
     @Override
-    public final void onTransitionAnimationEnd(boolean z10, boolean z11) {
-        if (!z10 && z11 && this.f42945d1[0]) {
-            ProfileActivity profileActivity = this.f42947f1;
-            if (org.telegram.ui.Components.yc.a(profileActivity)) {
-                org.telegram.ui.Components.yc.C(profileActivity, this.f42946e1.first_name).j();
+    public final void c(Canvas canvas, float f7, float f10, float f11, float f12, float f13) {
+        org.telegram.ui.ActionBar.l lVar;
+        org.telegram.ui.ActionBar.l lVar2;
+        org.telegram.ui.ActionBar.l lVar3;
+        if (f7 > 0.0f) {
+            RectF rectF = AndroidUtilities.rectTmp;
+            ProfileActivity profileActivity = this.T;
+            rectF.set(0.0f, 0.0f, profileActivity.f30441n0.getMeasuredWidth(), AndroidUtilities.dp(30.0f) + profileActivity.f30441n0.getMeasuredHeight());
+            canvas.saveLayerAlpha(rectF, (int) (255.0f * f7), 31);
+            profileActivity.Z.draw(canvas);
+            canvas.save();
+            lVar = ((org.telegram.ui.ActionBar.p2) profileActivity).actionBar;
+            float x10 = lVar.getX();
+            lVar2 = ((org.telegram.ui.ActionBar.p2) profileActivity).actionBar;
+            canvas.translate(x10, lVar2.getY());
+            lVar3 = ((org.telegram.ui.ActionBar.p2) profileActivity).actionBar;
+            lVar3.draw(canvas);
+            canvas.restore();
+            org.telegram.ui.Components.kj0 kj0Var = profileActivity.v;
+            if (kj0Var != null && kj0Var.getVisibility() == 0 && profileActivity.v.getAlpha() > 0.0f) {
+                canvas.save();
+                float f14 = (f7 * 0.5f) + 0.5f;
+                canvas.scale(f14, f14, (profileActivity.v.getMeasuredWidth() / 2.0f) + profileActivity.v.getX(), (profileActivity.v.getMeasuredHeight() / 2.0f) + profileActivity.v.getY());
+                canvas.translate(profileActivity.v.getX(), profileActivity.v.getY());
+                profileActivity.v.draw(canvas);
+                canvas.restore();
             }
+            canvas.restore();
         }
+    }
+
+    @Override
+    public final void e() {
+        super.e();
+        ProfileActivity profileActivity = this.T;
+        profileActivity.fragmentView.invalidate();
+        for (int i10 = 0; i10 < profileActivity.f30441n0.getChildCount(); i10++) {
+            profileActivity.f30441n0.getChildAt(i10).invalidate();
+        }
+        org.telegram.ui.Components.kj0 kj0Var = profileActivity.v;
+        if (kj0Var != null) {
+            kj0Var.invalidate();
+        }
+    }
+
+    @Override
+    public final boolean j(View view, ImageReceiver imageReceiver) {
+        if (super.j(view, imageReceiver) && this.T.f30350a.getScrollState() != 1) {
+            return true;
+        }
+        return false;
     }
 }

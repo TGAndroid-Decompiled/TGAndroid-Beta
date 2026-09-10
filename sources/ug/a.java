@@ -1,105 +1,86 @@
 package ug;
 
+import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.Rect;
-import android.graphics.drawable.Drawable;
-import android.text.SpannableString;
-import android.text.TextPaint;
-import android.text.style.ReplacementSpan;
-import android.util.Pair;
-import org.telegram.messenger.AndroidUtilities;
+import android.view.View;
+import android.widget.FrameLayout;
+import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.ui.Cells.t1;
-import org.telegram.ui.Components.p6;
-import org.telegram.ui.Components.pr;
-public final class a extends ReplacementSpan {
-    public final Drawable f47066a;
-    public final Drawable f47067b;
-    public boolean f47068c;
-    public boolean d;
-    public final p6 f47069e;
-    public final TextPaint f47070f;
-    public final int h;
+import org.telegram.ui.ActionBar.f6;
+import org.telegram.ui.ActionBar.j6;
+import w7.a6;
+public final class a extends FrameLayout {
+    public final bi.d f42665a;
+    public final View f42666b;
+    public final f6 f42667c;
+    public final Paint d;
+    public boolean e;
 
-    public a(t1 t1Var, TextPaint textPaint, int i10) {
-        this.f47070f = textPaint;
-        p6 p6Var = new p6(false, false, true, false);
-        this.f47069e = p6Var;
-        p6Var.k(0.3f, 250L, pr.h);
-        p6Var.setCallback(t1Var);
-        p6Var.t(AndroidUtilities.dp(11.5f));
-        p6Var.u(AndroidUtilities.bold());
-        p6Var.q("", true, true);
-        p6Var.f29312b = 17;
-        Drawable mutate = t1Var.getContext().getDrawable(R.drawable.mini_boost_profile_badge).mutate();
-        this.f47066a = mutate;
-        Drawable mutate2 = t1Var.getContext().getDrawable(R.drawable.mini_boost_profile_badge2).mutate();
-        this.f47067b = mutate2;
-        mutate.setBounds(0, 0, mutate.getIntrinsicWidth(), mutate.getIntrinsicHeight());
-        mutate2.setBounds(0, 0, mutate2.getIntrinsicWidth(), mutate2.getIntrinsicHeight());
-        this.h = i10;
-        p6Var.q(i10 > 1 ? String.valueOf(i10) : "", false, true);
+    public a(Context context, f6 f6Var) {
+        super(context);
+        this.d = new Paint(1);
+        this.f42667c = f6Var;
+        View view = new View(context);
+        this.f42666b = view;
+        addView(view, a6.n(-1, -1));
+        bi.d dVar = new bi.d(context, f6Var, true);
+        this.f42665a = dVar;
+        addView(dVar, a6.d(-1, 48.0f, 17, 14.0f, 0.0f, 14.0f, 0.0f));
     }
 
-    public static Pair a(t1 t1Var, TextPaint textPaint, int i10) {
-        SpannableString spannableString = new SpannableString("d");
-        a aVar = new a(t1Var, textPaint, i10);
-        spannableString.setSpan(aVar, 0, 1, 33);
-        return new Pair(spannableString, aVar);
+    public final void a(int i10, boolean z10) {
+        this.e = true;
+        bi.d dVar = this.f42665a;
+        dVar.k();
+        dVar.setShowZero(true);
+        dVar.setEnabled(true);
+        dVar.b(i10, z10);
+        dVar.g(LocaleController.getString(R.string.BoostingStartGiveaway), z10, true);
+        this.f42666b.setBackgroundColor(j6.v0(j6.f17998h5, this.f42667c));
     }
 
-    public final int b() {
-        int i10;
-        if (this.d) {
-            i10 = 8;
-        } else {
-            i10 = 0;
-        }
-        return (int) (this.f47069e.e() + AndroidUtilities.dp(i10 + 16));
+    public final void b(boolean z10) {
+        this.f42665a.setLoading(z10);
     }
 
     @Override
-    public final void draw(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
-        int i15;
-        TextPaint textPaint = this.f47070f;
-        int color = textPaint.getColor();
-        p6 p6Var = this.f47069e;
-        int color2 = p6Var.f29311a.getColor();
-        Drawable drawable = this.f47067b;
-        Drawable drawable2 = this.f47066a;
-        if (color != color2) {
-            p6Var.r(textPaint.getColor());
-            int color3 = p6Var.f29311a.getColor();
-            PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
-            drawable2.setColorFilter(new PorterDuffColorFilter(color3, mode));
-            drawable.setColorFilter(new PorterDuffColorFilter(p6Var.f29311a.getColor(), mode));
+    public final void dispatchDraw(Canvas canvas) {
+        super.dispatchDraw(canvas);
+        if (this.e) {
+            int v02 = j6.v0(j6.f17872a7, this.f42667c);
+            Paint paint = this.d;
+            paint.setColor(v02);
+            paint.setAlpha(255);
+            canvas.drawRect(0.0f, 0.0f, getWidth(), 1.0f, paint);
         }
-        canvas.save();
-        if (this.d && !this.f47068c) {
-            i15 = AndroidUtilities.dp(8.0f);
+    }
+
+    public void setCloseStyle(boolean z10) {
+        this.e = false;
+        bi.d dVar = this.f42665a;
+        dVar.setShowZero(false);
+        dVar.setEnabled(true);
+        dVar.g(LocaleController.formatString("Close", R.string.Close, new Object[0]), false, true);
+        this.e = z10;
+    }
+
+    public void setOkStyle(boolean z10) {
+        String formatString;
+        this.e = false;
+        bi.d dVar = this.f42665a;
+        dVar.setShowZero(false);
+        dVar.setEnabled(true);
+        if (z10) {
+            formatString = LocaleController.formatString("BoostingUseLink", R.string.BoostingUseLink, new Object[0]);
         } else {
-            i15 = 0;
+            formatString = LocaleController.formatString("OK", R.string.OK, new Object[0]);
         }
-        canvas.translate(f7 + i15, -AndroidUtilities.dp(0.2f));
-        if (this.h == 1) {
-            canvas.translate(AndroidUtilities.dp(1.5f), 0.0f);
-            drawable2.draw(canvas);
-        } else {
-            drawable.draw(canvas);
-        }
-        canvas.translate(AndroidUtilities.dp(16.0f), 0.0f);
-        Rect rect = AndroidUtilities.rectTmp2;
-        rect.set(0, 0, (int) p6Var.d(), (int) p6Var.f29314e);
-        p6Var.setBounds(rect);
-        p6Var.draw(canvas);
-        canvas.restore();
+        dVar.g(formatString, false, true);
     }
 
     @Override
-    public final int getSize(Paint paint, CharSequence charSequence, int i10, int i11, Paint.FontMetricsInt fontMetricsInt) {
-        return b();
+    public void setOnClickListener(View.OnClickListener onClickListener) {
+        this.f42665a.setOnClickListener(onClickListener);
     }
 }

@@ -1,6 +1,7 @@
 package org.telegram.messenger.voip;
 
 import android.graphics.Point;
+import bi.g3;
 import java.nio.ByteBuffer;
 import java.util.concurrent.CountDownLatch;
 import org.telegram.messenger.AndroidUtilities;
@@ -116,7 +117,7 @@ public class NativeInstance {
         if (this.isGroup && iArr != null && iArr.length == 0) {
             return;
         }
-        AndroidUtilities.runOnUIThread(new m(this, iArr, fArr, zArr, 1));
+        AndroidUtilities.runOnUIThread(new o(this, iArr, fArr, zArr, 1));
     }
 
     private void onCancelRequestBroadcastPart(long j3, int i10, int i11) {
@@ -125,9 +126,9 @@ public class NativeInstance {
 
     private void onEmitJoinPayload(String str, int i10) {
         try {
-            AndroidUtilities.runOnUIThread(new ah.p(this, i10, str, 20));
-        } catch (Exception e7) {
-            FileLog.e(e7);
+            AndroidUtilities.runOnUIThread(new g3(this, i10, str, 17));
+        } catch (Exception e) {
+            FileLog.e(e);
         }
     }
 
@@ -141,7 +142,7 @@ public class NativeInstance {
         if (this.unknownParticipantsCallback == null) {
             return;
         }
-        AndroidUtilities.runOnUIThread(new a3.h0(this, j3, iArr, 11));
+        AndroidUtilities.runOnUIThread(new a3.h0(this, j3, iArr, 5));
     }
 
     private void onRemoteMediaStateUpdated(int i10, int i11) {
@@ -285,8 +286,8 @@ public class NativeInstance {
         stopNative();
         try {
             this.stopBarrier.await();
-        } catch (Exception e7) {
-            FileLog.e(e7);
+        } catch (Exception e) {
+            FileLog.e(e);
         }
         return this.finalState;
     }

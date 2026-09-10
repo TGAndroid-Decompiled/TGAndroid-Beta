@@ -1,29 +1,27 @@
 package lg;
 
-import android.graphics.Paint;
-import org.telegram.ui.ActionBar.f6;
-import org.telegram.ui.ActionBar.j6;
-public final class a extends f {
-    public final f6 f15433q;
-    public final Paint f15434r;
-    public int f15435s;
+import org.telegram.ui.Components.q6;
+public final class a {
+    public final CharSequence f12932a;
+    public final int f12933b = 2;
+    public final Runnable f12934c;
+    public final float d;
+    public final float e;
+    public final q6 f12935f;
 
-    public a(kg.a aVar, f6 f6Var) {
-        super(aVar, false, null);
-        Paint paint = new Paint();
-        this.f15434r = paint;
-        this.f15435s = 0;
-        this.f15433q = f6Var;
-        Paint paint2 = this.f15466c;
-        Paint.Style style = Paint.Style.STROKE;
-        paint2.setStyle(style);
-        paint.setStyle(style);
-        this.f15466c.setAntiAlias(false);
+    public a(String str, Runnable runnable) {
+        this.f12932a = str;
+        this.f12934c = runnable;
     }
 
-    @Override
-    public final void a() {
-        super.a();
-        this.f15435s = i0.a.d(0.3f, j6.v0(j6.f20690d6, this.f15433q), this.f15474m);
+    public a(String str) {
+        this.f12932a = str;
+    }
+
+    public a(String str, float f7, float f10, q6 q6Var) {
+        this.f12932a = str;
+        this.d = f7;
+        this.e = f10;
+        this.f12935f = q6Var;
     }
 }

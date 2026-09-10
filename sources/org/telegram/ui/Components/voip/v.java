@@ -4,40 +4,40 @@ import android.animation.ValueAnimator;
 import org.telegram.ui.f50;
 import org.telegram.ui.j60;
 public final class v implements ValueAnimator.AnimatorUpdateListener {
-    public final int f31906a;
-    public final l0 f31907b;
+    public final int f28491a;
+    public final m0 f28492b;
 
-    public v(l0 l0Var, int i10) {
-        this.f31906a = i10;
-        this.f31907b = l0Var;
+    public v(m0 m0Var, int i10) {
+        this.f28491a = i10;
+        this.f28492b = m0Var;
     }
 
     @Override
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
         float f7;
-        switch (this.f31906a) {
+        switch (this.f28491a) {
             case 0:
-                l0 l0Var = this.f31907b;
-                l0Var.getClass();
-                l0Var.I0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                l0Var.invalidate();
+                m0 m0Var = this.f28492b;
+                m0Var.getClass();
+                m0Var.I0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                m0Var.invalidate();
                 return;
             default:
-                l0 l0Var2 = this.f31907b;
-                l0Var2.getClass();
+                m0 m0Var2 = this.f28492b;
+                m0Var2.getClass();
                 float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                l0Var2.f31626c = floatValue;
-                j60 j60Var = l0Var2.f31636j0;
-                j60Var.f37645z1.setAlpha(1.0f - floatValue);
+                m0Var2.f28243c = floatValue;
+                j60 j60Var = m0Var2.f28252j0;
+                j60Var.f34040z1.setAlpha(1.0f - floatValue);
                 f50 f50Var = j60Var.O;
                 if (f50Var.getTag() != null) {
                     f7 = 1.0f;
                 } else {
                     f7 = 0.0f;
                 }
-                f50Var.setAlpha((1.0f - j60Var.a2.f31626c) * f7);
-                j60Var.E1(j60Var.f37641y0);
-                l0Var2.l();
+                f50Var.setAlpha((1.0f - j60Var.a2.f28243c) * f7);
+                j60Var.E1(j60Var.f34036y0);
+                m0Var2.l();
                 return;
         }
     }

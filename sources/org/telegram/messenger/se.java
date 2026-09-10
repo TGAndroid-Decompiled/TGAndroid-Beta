@@ -1,53 +1,28 @@
 package org.telegram.messenger;
 
-import java.util.ArrayList;
-public final class se implements Runnable {
-    public final int f19010a;
-    public final MessagesStorage f19011b;
-    public final ArrayList f19012c;
-    public final long d;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class se implements RequestDelegate {
+    public final int f16313a;
+    public final Utilities.Callback4 f16314b;
 
-    public se(MessagesStorage messagesStorage, long j3, ArrayList arrayList, int i10) {
-        this.f19010a = i10;
-        this.f19011b = messagesStorage;
-        this.d = j3;
-        this.f19012c = arrayList;
+    public se(Utilities.Callback4 callback4, int i10) {
+        this.f16313a = i10;
+        this.f16314b = callback4;
     }
 
     @Override
-    public final void run() {
-        switch (this.f19010a) {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f16313a) {
             case 0:
-                this.f19011b.lambda$deleteUserChatHistory$86(this.f19012c, this.d);
-                return;
-            case 1:
-                this.f19011b.lambda$emptyMessagesMedia$99(this.f19012c, this.d);
-                return;
-            case 2:
-                this.f19011b.lambda$deleteSavedDialog$54(this.d, this.f19012c);
-                return;
-            case 3:
-                this.f19011b.lambda$updateChannelUsers$125(this.d, this.f19012c);
-                return;
-            case 4:
-                this.f19011b.lambda$markVoiceMessageContentAsRead$217(this.f19012c, this.d);
-                return;
-            case 5:
-                this.f19011b.lambda$markMessagesAsDeletedInternal$226(this.f19012c, this.d);
-                return;
-            case 6:
-                this.f19011b.lambda$removeTopics$58(this.f19012c, this.d);
+                MessagesController.AnonymousClass1.lambda$getRemote$0(this.f16314b, tLObject, tL_error);
                 return;
             default:
-                this.f19011b.lambda$createTaskForSecretChat$117(this.d, this.f19012c);
+                MessagesController.AnonymousClass4.lambda$getRemote$0(this.f16314b, tLObject, tL_error);
                 return;
         }
-    }
-
-    public se(MessagesStorage messagesStorage, ArrayList arrayList, long j3, int i10) {
-        this.f19010a = i10;
-        this.f19011b = messagesStorage;
-        this.f19012c = arrayList;
-        this.d = j3;
     }
 }

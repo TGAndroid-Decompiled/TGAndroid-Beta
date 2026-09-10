@@ -1,25 +1,30 @@
 package org.telegram.messenger;
-
-import java.util.ArrayList;
 public final class hi implements Runnable {
-    public final int f17921a;
-    public final SecretChatHelper f17922b;
-    public final ArrayList f17923c;
+    public final int f15391a;
+    public final SavedMessagesController f15392b;
 
-    public hi(SecretChatHelper secretChatHelper, ArrayList arrayList, int i10) {
-        this.f17921a = i10;
-        this.f17922b = secretChatHelper;
-        this.f17923c = arrayList;
+    public hi(SavedMessagesController savedMessagesController, int i10) {
+        this.f15391a = i10;
+        this.f15392b = savedMessagesController;
     }
 
     @Override
     public final void run() {
-        switch (this.f17921a) {
+        switch (this.f15391a) {
             case 0:
-                this.f17922b.lambda$resendMessages$14(this.f17923c);
+                this.f15392b.update();
+                return;
+            case 1:
+                SavedMessagesController.k(this.f15392b);
+                return;
+            case 2:
+                SavedMessagesController.h(this.f15392b);
+                return;
+            case 3:
+                SavedMessagesController.j(this.f15392b);
                 return;
             default:
-                this.f17922b.lambda$processPendingEncMessages$0(this.f17923c);
+                SavedMessagesController.b(this.f15392b);
                 return;
         }
     }

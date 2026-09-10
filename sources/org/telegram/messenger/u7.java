@@ -1,25 +1,33 @@
 package org.telegram.messenger;
 
-import java.util.ArrayList;
-public final class u7 implements Runnable {
-    public final int f19150a;
-    public final MediaDataController f19151b;
-    public final ArrayList f19152c;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class u7 implements RequestDelegate {
+    public final int f16466a;
+    public final MediaDataController f16467b;
+    public final int f16468c;
 
-    public u7(MediaDataController mediaDataController, ArrayList arrayList, int i10) {
-        this.f19150a = i10;
-        this.f19151b = mediaDataController;
-        this.f19152c = arrayList;
+    public u7(MediaDataController mediaDataController, int i10, int i11) {
+        this.f16466a = i11;
+        this.f16467b = mediaDataController;
+        this.f16468c = i10;
     }
 
     @Override
-    public final void run() {
-        switch (this.f19150a) {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f16466a) {
             case 0:
-                this.f19151b.lambda$loadRepliesOfDraftReplies$0(this.f19152c);
+                this.f16467b.lambda$loadArchivedStickersCount$72(this.f16468c, tLObject, tL_error);
+                return;
+            case 1:
+                this.f16467b.lambda$loadRecents$50(this.f16468c, tLObject, tL_error);
+                return;
+            case 2:
+                this.f16467b.lambda$loadRecents$51(this.f16468c, tLObject, tL_error);
                 return;
             default:
-                this.f19151b.lambda$broadcastPinnedMessage$168(this.f19152c);
+                this.f16467b.lambda$fetchEmojiStatuses$233(this.f16468c, tLObject, tL_error);
                 return;
         }
     }

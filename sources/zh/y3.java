@@ -1,551 +1,974 @@
 package zh;
 
-import android.graphics.Canvas;
-import android.graphics.Matrix;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.RadialGradient;
-import android.graphics.RectF;
-import android.graphics.Shader;
-import android.text.Spannable;
-import android.text.SpannableStringBuilder;
-import android.text.Spanned;
-import android.text.StaticLayout;
-import android.text.TextPaint;
 import android.text.TextUtils;
-import android.text.style.ForegroundColorSpan;
-import android.view.MotionEvent;
-import android.view.View;
+import j$.util.Comparator$CC;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.DialogObject;
-import org.telegram.messenger.Emoji;
-import org.telegram.messenger.ImageReceiver;
+import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.R;
+import org.telegram.messenger.MessagesStorage;
+import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.UserObject;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.Components.f01;
-import org.telegram.ui.Components.pr;
-import org.telegram.ui.Components.yc;
-import org.telegram.ui.Components.zc;
-import org.telegram.ui.LaunchActivity;
+import org.telegram.tgnet.tl.TL_stories;
 public final class y3 {
-    public float A;
-    public float B;
-    public f01 C;
-    public final RectF D;
-    public final Path E;
-    public final Paint F;
-    public final h8 G;
-    public final zc H;
-    public final zc I;
-    public boolean J;
-    public boolean K;
-    public int L;
-    public int M;
-    public TLRPC.TL_messageActionStarGiftUnique N;
-    public MessageObject O;
-    public boolean P;
-    public final le.e Q;
-    public yh.d0 R;
-    public final int f52903a;
-    public final View f52904b;
-    public final org.telegram.ui.ActionBar.f6 f52905c;
-    public final ImageReceiver d;
-    public final org.telegram.ui.Components.o5 f52906e;
-    public int f52908g;
-    public RadialGradient h;
-    public final yh.k1 f52910j;
-    public TL_stars.starGiftAttributeBackdrop f52911k;
-    public TL_stars.starGiftAttributePattern f52912l;
-    public TL_stars.starGiftAttributeModel f52913m;
-    public boolean f52916p;
-    public float f52917q;
-    public f01 f52918r;
-    public float f52919s;
-    public f01 f52920t;
-    public float f52921u;
-    public float v;
-    public float f52923x;
-    public final yh.k0 f52924y;
-    public boolean f52925z;
-    public final Paint f52907f = new Paint(1);
-    public final Matrix f52909i = new Matrix();
-    public final RectF f52914n = new RectF();
-    public final Path f52915o = new Path();
-    public final ArrayList f52922w = new ArrayList();
+    public int f49091a;
+    public final TL_stories.StoryItem f49092b;
+    public final long f49093c;
+    public final int d;
+    public boolean e;
+    public final boolean f49094f;
+    public final boolean f49097j;
+    public final boolean f49098k;
+    public boolean f49099l;
+    public String f49101n;
+    public final boolean f49104q;
+    public final ArrayList f49095g = new ArrayList();
+    public final ArrayList h = new ArrayList();
+    public final ArrayList f49096i = new ArrayList();
+    public boolean f49100m = true;
+    public int f49102o = -1;
+    public final HashSet f49103p = new HashSet();
+    public final ArrayList f49105r = new ArrayList();
+    public final m3 f49106s = new m3();
 
-    public y3(int i10, View view, org.telegram.ui.ActionBar.f6 f6Var) {
-        yh.k0 k0Var = new yh.k0();
-        this.f52924y = k0Var;
-        this.D = new RectF();
-        this.E = new Path();
-        this.F = new Paint();
-        this.G = new h8(1, 25);
-        this.Q = new le.e(0, new rg.p2(this, 22), pr.h, 320L);
-        this.f52903a = i10;
-        this.f52904b = view;
-        this.f52905c = f6Var;
-        this.f52910j = new yh.k1(view);
-        this.H = new zc(view);
-        this.I = new zc(view);
-        this.d = new ImageReceiver(view);
-        this.f52906e = new org.telegram.ui.Components.o5(AndroidUtilities.dp(28.0f), view);
-        k0Var.f50400r = view;
-        k0Var.d.setParentView(view);
-    }
-
-    public final void a(Canvas canvas) {
-        le.e eVar = this.Q;
-        float f7 = eVar.f15403e;
-        float f10 = f7 / 2.0f;
-        RectF rectF = this.f52914n;
-        rectF.set(0.0f, 0.0f, f7, this.M);
-        int height = ((int) (rectF.height() + rectF.width())) / 2;
-        if (this.f52911k != null && (this.h == null || this.f52908g != height)) {
-            this.f52908g = height;
-            TL_stars.starGiftAttributeBackdrop stargiftattributebackdrop = this.f52911k;
-            this.h = new RadialGradient(0.0f, 0.0f, height, new int[]{stargiftattributebackdrop.center_color | (-16777216), stargiftattributebackdrop.edge_color | (-16777216)}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
-        }
-        RadialGradient radialGradient = this.h;
-        Paint paint = this.f52907f;
-        if (radialGradient != null) {
-            Matrix matrix = this.f52909i;
-            matrix.reset();
-            matrix.postTranslate(f10, f10);
-            this.h.setLocalMatrix(matrix);
-            paint.setShader(this.h);
-        }
-        Path path = this.f52915o;
-        path.rewind();
-        path.addRoundRect(rectF, AndroidUtilities.dp(14.0f), AndroidUtilities.dp(14.0f), Path.Direction.CW);
-        canvas.save();
-        float a2 = this.I.a(0.0125f);
-        canvas.scale(a2, a2, rectF.centerX(), rectF.centerY());
-        canvas.save();
-        canvas.clipPath(path);
-        canvas.drawPaint(paint);
-        canvas.save();
-        canvas.translate(f10, AndroidUtilities.dp(65.0f));
-        TL_stars.starGiftAttributeBackdrop stargiftattributebackdrop2 = this.f52911k;
-        org.telegram.ui.Components.o5 o5Var = this.f52906e;
-        if (stargiftattributebackdrop2 != null) {
-            o5Var.k(Integer.valueOf(stargiftattributebackdrop2.pattern_color | (-16777216)));
-        }
-        j0.a(canvas, 1, o5Var, rectF.width(), rectF.height(), 1.0f, 1.1f);
-        canvas.restore();
-        ImageReceiver imageReceiver = this.d;
-        imageReceiver.setImageCoords(f10 - (AndroidUtilities.dp(110.0f) / 2.0f), AndroidUtilities.dp(10.0f), AndroidUtilities.dp(110.0f), AndroidUtilities.dp(110.0f));
-        imageReceiver.draw(canvas);
-        int l1 = org.telegram.ui.ActionBar.j6.l1(0.6f, -1);
-        TL_stars.starGiftAttributeBackdrop stargiftattributebackdrop3 = this.f52911k;
-        if (stargiftattributebackdrop3 != null) {
-            l1 = stargiftattributebackdrop3.text_color | (-16777216);
-        }
-        int i10 = l1;
-        this.f52918r.f25885p = eVar.f15403e - AndroidUtilities.dp(12.0f);
-        f01 f01Var = this.f52918r;
-        f01Var.c(f10 - (f01Var.f25874c / 2.0f), this.f52917q, 1.0f, -1, canvas);
-        this.f52920t.f25885p = eVar.f15403e - AndroidUtilities.dp(12.0f);
-        f01 f01Var2 = this.f52920t;
-        Canvas canvas2 = canvas;
-        int i11 = i10;
-        f01Var2.c(f10 - (f01Var2.f25874c / 2.0f), this.f52919s, 1.0f, i11, canvas2);
-        if (this.f52925z) {
-            yh.k0 k0Var = this.f52924y;
-            int i12 = k0Var.f50402t;
-            int i13 = k0Var.f50403u;
-            int i14 = (int) (f10 - (i12 / 2.0f));
-            int i15 = (int) this.f52923x;
-            k0Var.setBounds(i14, i15, i12 + i14, i13 + i15);
-            k0Var.draw(canvas2);
-        } else {
-            float dp = this.f52921u + AndroidUtilities.dp(9.0f) + this.v;
-            ArrayList arrayList = this.f52922w;
-            int size = arrayList.size();
-            int i16 = 0;
-            while (i16 < size) {
-                int i17 = i16 + 1;
-                x3 x3Var = (x3) arrayList.get(i16);
-                f01 f01Var3 = x3Var.f52874b;
-                float f11 = f10 - (dp / 2.0f);
-                f01Var3.c((f11 + this.f52921u) - f01Var3.f25874c, x3Var.f52873a, 1.0f, i11, canvas2);
-                canvas2 = canvas;
-                x3Var.f52875c.c(f11 + this.f52921u + AndroidUtilities.dp(9.0f), x3Var.f52873a, 1.0f, -1, canvas2);
-                i11 = i11;
-                i16 = i17;
-            }
-        }
-        int i18 = i11;
-        if (!this.f52916p) {
-            float f12 = this.A;
-            float a10 = org.telegram.messenger.w1.a(this.C.f25874c, AndroidUtilities.dp(30.0f), 2.0f, f10);
-            float f13 = this.A + this.B;
-            RectF rectF2 = this.D;
-            rectF2.set(f10 - ((this.C.f25874c + AndroidUtilities.dp(30.0f)) / 2.0f), f12, a10, f13);
-            Path path2 = this.E;
-            path2.rewind();
-            float f14 = this.B / 2.0f;
-            path2.addRoundRect(rectF2, f14, f14, Path.Direction.CW);
-            int l12 = org.telegram.ui.ActionBar.j6.l1(0.13f, -16777216);
-            Paint paint2 = this.F;
-            paint2.setColor(l12);
-            float a11 = this.H.a(0.075f);
-            canvas2.scale(a11, a11, rectF2.centerX(), rectF2.centerY());
-            canvas2.drawPath(path2, paint2);
-            canvas2.restore();
-            int dp2 = ((int) rectF.right) - AndroidUtilities.dp(46.67f);
-            int dp3 = ((int) rectF.top) - AndroidUtilities.dp(1.33f);
-            int dp4 = AndroidUtilities.dp(1.33f) + ((int) rectF.right);
-            int dp5 = AndroidUtilities.dp(46.67f) + ((int) rectF.top);
-            yh.k1 k1Var = this.f52910j;
-            k1Var.setBounds(dp2, dp3, dp4, dp5);
-            k1Var.h = i18;
-            k1Var.draw(canvas2);
-        }
-        canvas2.restore();
-    }
-
-    public final void b(Canvas canvas) {
-        if (this.f52916p) {
-            return;
-        }
-        canvas.save();
-        float a2 = this.I.a(0.0125f);
-        RectF rectF = this.f52914n;
-        canvas.scale(a2, a2, rectF.centerX(), rectF.centerY());
-        float a10 = this.H.a(0.075f);
-        RectF rectF2 = this.D;
-        canvas.scale(a10, a10, rectF2.centerX(), rectF2.centerY());
-        canvas.clipPath(this.E);
-        h8 h8Var = this.G;
-        h8Var.g(rectF2);
-        h8Var.d();
-        h8Var.a(canvas, org.telegram.ui.ActionBar.j6.l1(0.7f, -1));
-        this.C.c(rectF2.left + AndroidUtilities.dp(15.0f), rectF2.centerY(), 1.0f, -1, canvas);
-        canvas.restore();
-        View view = this.f52904b;
-        if (view instanceof org.telegram.ui.Cells.w0) {
-            ((org.telegram.ui.Cells.w0) view).K();
-        } else {
-            view.invalidate();
-        }
-    }
-
-    public final float c() {
-        return this.Q.f15403e;
-    }
-
-    public final boolean d() {
-        if (this.N != null) {
-            return true;
-        }
-        return false;
-    }
-
-    public final boolean e(float f7, float f10, MotionEvent motionEvent) {
+    public y3(int i10, long j3, TL_stories.StoryItem storyItem) {
         boolean z10;
+        int i11;
         boolean z11;
-        boolean contains = this.D.contains(motionEvent.getX() - f7, motionEvent.getY() - f10);
-        boolean contains2 = this.f52914n.contains(motionEvent.getX() - f7, motionEvent.getY() - f10);
-        int action = motionEvent.getAction();
-        zc zcVar = this.H;
-        zc zcVar2 = this.I;
-        if (action == 0) {
-            if (contains2 && !contains) {
-                z11 = true;
-            } else {
-                z11 = false;
-            }
-            zcVar2.c(z11);
-            zcVar.c(contains);
-        } else if (motionEvent.getAction() == 2) {
-            if (zcVar.h && !contains) {
-                zcVar.c(false);
-            } else if (zcVar2.h && !contains2) {
-                zcVar2.c(false);
-            }
-        } else if (motionEvent.getAction() == 1 && ((z10 = zcVar.h) || zcVar2.h)) {
-            yh.d0 d0Var = this.R;
-            if (d0Var != null) {
-                if (z10) {
-                    d0Var.run();
-                }
-            } else if (this.J) {
-                org.telegram.ui.ActionBar.n2 U = LaunchActivity.U();
-                if (U != null) {
-                    org.telegram.messenger.w1.o(R.string.UniqueGiftNotFoundBurned, yc.a0(U), R.raw.fire_on, 36);
-                }
-            } else {
-                w3 w3Var = new w3(this.f52904b.getContext(), this.f52903a, this.O.getDialogId(), this.f52905c, null);
-                w3Var.i2(this.O, null);
-                w3Var.show();
-            }
-            zcVar.c(false);
-            zcVar2.c(false);
-            return true;
-        } else if (motionEvent.getAction() == 3 && (zcVar.h || zcVar2.h)) {
-            zcVar.c(false);
-            zcVar2.c(false);
-            return true;
-        }
-        if (zcVar.h || zcVar2.h) {
-            return true;
-        }
-        return false;
-    }
-
-    public final void f(org.telegram.messenger.MessageObject r12, boolean r13) {
-        throw new UnsupportedOperationException("Method not decompiled: zh.y3.f(org.telegram.messenger.MessageObject, boolean):void");
-    }
-
-    public final void g(MessageObject messageObject, TLRPC.TL_messageActionStarGiftUnique tL_messageActionStarGiftUnique, TL_stars.TL_starGiftUnique tL_starGiftUnique) {
-        long dialogId;
-        float f7;
-        float f10;
-        float f11;
-        float f12;
-        int dp;
-        int i10;
-        float f13 = this.L;
-        boolean isOutOwner = messageObject.isOutOwner();
-        boolean z10 = !tL_messageActionStarGiftUnique.upgrade;
-        int i11 = this.f52903a;
-        if (z10 == isOutOwner) {
-            dialogId = UserConfig.getInstance(i11).getClientUserId();
+        TL_stories.StoryViews storyViews;
+        this.d = i10;
+        this.f49092b = storyItem;
+        if (j3 < 0) {
+            z10 = true;
         } else {
-            dialogId = messageObject.getDialogId();
+            z10 = false;
         }
-        TLRPC.Peer peer = tL_messageActionStarGiftUnique.from_id;
-        if (peer != null) {
-            dialogId = DialogObject.getPeerDialogId(peer);
-        }
-        String shortName = DialogObject.getShortName(dialogId);
-        float dp2 = AndroidUtilities.dp(10.0f) + 0.0f + AndroidUtilities.dp(110.0f) + AndroidUtilities.dp(9.33f);
-        int i12 = 0;
-        if (this.f52916p) {
-            this.f52918r = new f01(tL_starGiftUnique.title, 14.0f, AndroidUtilities.bold());
-        } else if (tL_messageActionStarGiftUnique.peer == null && !UserObject.isService(messageObject.getDialogId())) {
-            if (messageObject.getDialogId() == UserConfig.getInstance(i11).getClientUserId()) {
-                if (tL_starGiftUnique.crafted) {
-                    this.f52918r = new f01(LocaleController.getString(R.string.Gift2ActionCraftedTitle), 14.0f, AndroidUtilities.bold());
-                } else if (tL_messageActionStarGiftUnique.resale_amount != null) {
-                    this.f52918r = new f01(LocaleController.getString(R.string.Gift2ActionPurchasedTitle), 14.0f, AndroidUtilities.bold());
-                } else {
-                    this.f52918r = new f01(LocaleController.getString(R.string.Gift2ActionUpgradedTitle), 14.0f, AndroidUtilities.bold());
-                }
-            } else {
-                this.f52918r = new f01(LocaleController.formatString(R.string.Gift2UniqueTitle, shortName), 14.0f, AndroidUtilities.bold());
-            }
+        this.f49094f = z10;
+        this.f49093c = j3;
+        TL_stories.StoryViews storyViews2 = storyItem.views;
+        if (storyViews2 == null) {
+            i11 = 0;
         } else {
-            this.f52918r = new f01(LocaleController.getString(R.string.Gift2UniqueTitle2), 14.0f, AndroidUtilities.bold());
+            i11 = storyViews2.views_count;
         }
-        this.f52917q = (this.f52918r.j() / 2.0f) + dp2;
-        float j3 = this.f52918r.j() + dp2 + AndroidUtilities.dp(3.0f);
-        TLObject tLObject = null;
-        if (this.f52916p) {
-            f7 = 10.0f;
-            f10 = 3.0f;
-            this.f52920t = new f01(LocaleController.formatPluralStringComma("Gift2CollectionNumber", tL_starGiftUnique.num), 12.0f, AndroidUtilities.bold());
-            f11 = 2.0f;
+        this.f49091a = i11;
+        if (i11 < 200) {
+            this.f49104q = true;
+        }
+        if (a6.v(storyItem) && !UserConfig.getInstance(i10).isPremium()) {
+            z11 = true;
         } else {
-            f7 = 10.0f;
-            f10 = 3.0f;
-            StringBuilder sb2 = new StringBuilder();
-            sb2.append(tL_starGiftUnique.title);
-            sb2.append(" #");
-            f11 = 2.0f;
-            this.f52920t = new f01(i2.g.k(tL_starGiftUnique.num, ',', sb2), 12.0f, null);
+            z11 = false;
         }
-        this.f52919s = (this.f52920t.j() / f11) + j3;
-        float j10 = this.f52920t.j() + j3;
-        if (this.f52916p) {
-            f12 = 14.0f;
-        } else {
-            f12 = 11.0f;
+        this.f49097j = z11;
+        if (z11 && (storyViews = storyItem.views) != null && storyViews.reactions_count > 0) {
+            this.f49097j = false;
+            this.f49098k = true;
         }
-        float dp3 = j10 + AndroidUtilities.dp(f12);
-        ArrayList arrayList = this.f52922w;
-        arrayList.clear();
-        this.f52921u = 0.0f;
-        this.v = 0.0f;
-        TLRPC.TL_textWithEntities tL_textWithEntities = tL_messageActionStarGiftUnique.message;
-        yh.k0 k0Var = this.f52924y;
-        if (tL_textWithEntities != null) {
-            TextPaint textPaint = k0Var.f50387c;
-            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(tL_textWithEntities.text);
-            MessageObject.addEntitiesToText(spannableStringBuilder, tL_textWithEntities.entities, false, false, false, false);
-            Spannable replaceAnimatedEmoji = MessageObject.replaceAnimatedEmoji(Emoji.replaceEmoji(spannableStringBuilder, textPaint.getFontMetricsInt(), false), tL_textWithEntities.entities, textPaint.getFontMetricsInt());
-            if (!tL_messageActionStarGiftUnique.name_hidden) {
-                if (tL_messageActionStarGiftUnique.from_id != null) {
-                    tLObject = MessagesController.getInstance(i11).getUserOrChat(DialogObject.getPeerDialogId(tL_messageActionStarGiftUnique.from_id));
-                } else {
-                    tLObject = MessagesController.getInstance(i11).getUserOrChat(messageObject.getFromChatId());
-                }
-            }
-            this.f52925z = true;
-            k0Var.c(tLObject);
-            k0Var.f50395m = replaceAnimatedEmoji;
-            k0Var.f50401s = -1;
-            k0Var.b(((int) f13) - AndroidUtilities.dp(24.0f));
-            if (!this.K) {
-                StaticLayout staticLayout = k0Var.f50396n;
-                if (staticLayout != null) {
-                    i10 = staticLayout.getLineCount();
-                } else {
-                    i10 = 0;
-                }
-                if (i10 > 3) {
-                    this.K = true;
-                    StaticLayout staticLayout2 = k0Var.f50396n;
-                    if (staticLayout2 != null) {
-                        i12 = staticLayout2.getLineCount();
+        if (!this.f49097j) {
+            this.f49099l = true;
+            if (storyItem.views != null) {
+                for (int i12 = 0; i12 < storyItem.views.recent_viewers.size(); i12++) {
+                    Long l4 = storyItem.views.recent_viewers.get(i12);
+                    long longValue = l4.longValue();
+                    if (MessagesController.getInstance(i10).getUser(l4) != null) {
+                        TL_stories.TL_storyView tL_storyView = new TL_stories.TL_storyView();
+                        tL_storyView.user_id = longValue;
+                        tL_storyView.date = 0;
+                        this.f49095g.add(tL_storyView);
                     }
-                    this.L = (int) ((Math.min(0.4f, (i12 - 3) * 0.1f) + 1.0f) * this.L);
-                    g(messageObject, tL_messageActionStarGiftUnique, tL_starGiftUnique);
-                    return;
                 }
-            }
-            float dp4 = dp3 + AndroidUtilities.dp(4.0f);
-            this.f52923x = dp4;
-            dp3 = dp4 + k0Var.f50403u + AndroidUtilities.dp(f10);
-        } else {
-            this.f52925z = false;
-            k0Var.c(null);
-            k0Var.f50395m = null;
-            k0Var.f50401s = -1;
-            if (this.f52913m != null) {
-                if (!arrayList.isEmpty()) {
-                    dp3 += AndroidUtilities.dp(6.0f);
-                }
-                x3 x3Var = new x3(dp3, LocaleController.getString(R.string.Gift2AttributeModel), this.f52913m.name);
-                arrayList.add(x3Var);
-                float f14 = f13 * 0.5f;
-                f01 f01Var = x3Var.f52874b;
-                f01Var.f25885p = f14;
-                this.f52921u = Math.max(this.f52921u, f01Var.f25874c);
-                f01 f01Var2 = x3Var.f52875c;
-                f01Var2.f25885p = f14;
-                this.v = Math.max(this.v, f01Var2.f25874c);
-                dp3 += x3Var.a();
-            }
-            if (this.f52911k != null) {
-                if (!arrayList.isEmpty()) {
-                    dp3 += AndroidUtilities.dp(6.0f);
-                }
-                x3 x3Var2 = new x3(dp3, LocaleController.getString(R.string.Gift2AttributeBackdrop), this.f52911k.name);
-                arrayList.add(x3Var2);
-                float f15 = f13 * 0.5f;
-                f01 f01Var3 = x3Var2.f52874b;
-                f01Var3.f25885p = f15;
-                this.f52921u = Math.max(this.f52921u, f01Var3.f25874c);
-                f01 f01Var4 = x3Var2.f52875c;
-                f01Var4.f25885p = f15;
-                this.v = Math.max(this.v, f01Var4.f25874c);
-                dp3 = x3Var2.a() + dp3;
-            }
-            if (this.f52912l != null) {
-                if (!arrayList.isEmpty()) {
-                    dp3 += AndroidUtilities.dp(6.0f);
-                }
-                x3 x3Var3 = new x3(dp3, LocaleController.getString(R.string.Gift2AttributeSymbol), this.f52912l.name);
-                arrayList.add(x3Var3);
-                float f16 = f13 * 0.5f;
-                f01 f01Var5 = x3Var3.f52874b;
-                f01Var5.f25885p = f16;
-                this.f52921u = Math.max(this.f52921u, f01Var5.f25874c);
-                f01 f01Var6 = x3Var3.f52875c;
-                f01Var6.f25885p = f16;
-                this.v = Math.max(this.v, f01Var6.f25874c);
-                dp3 += x3Var3.a();
             }
         }
-        float dp5 = dp3 + AndroidUtilities.dp(11.66f);
-        if (!this.f52916p) {
-            this.A = dp5;
-            this.C = new f01(LocaleController.getString(R.string.Gift2UniqueView), 14.0f, AndroidUtilities.bold());
-            float dp6 = AndroidUtilities.dp(30.0f);
-            this.B = dp6;
-            dp5 += dp6;
-            dp = AndroidUtilities.dp(11.0f);
-        } else {
-            dp = AndroidUtilities.dp(f7);
-        }
-        this.M = (int) (dp5 + dp);
     }
 
-    public final void h(TL_stars.TL_starGiftUnique tL_starGiftUnique, long j3, TLRPC.TL_textWithEntities tL_textWithEntities, String str) {
-        Spanned spanned;
-        int i10;
-        float f7 = this.L;
-        float dp = AndroidUtilities.dp(10.0f) + 0.0f + AndroidUtilities.dp(110.0f) + AndroidUtilities.dp(9.33f);
-        int i11 = 0;
-        f01 f01Var = new f01(LocaleController.formatString(R.string.Gift2UniqueTitle, DialogObject.getShortName(j3)), 14.0f, AndroidUtilities.bold());
-        this.f52918r = f01Var;
-        this.f52917q = (f01Var.j() / 2.0f) + dp;
-        float j10 = this.f52918r.j() + dp + AndroidUtilities.dp(3.0f);
-        StringBuilder sb2 = new StringBuilder();
-        sb2.append(tL_starGiftUnique.title);
-        sb2.append(" #");
-        String k10 = i2.g.k(tL_starGiftUnique.num, ',', sb2);
-        TLObject tLObject = null;
-        f01 f01Var2 = new f01(k10, 12.0f, null);
-        this.f52920t = f01Var2;
-        this.f52919s = (f01Var2.j() / 2.0f) + j10;
-        float j11 = this.f52920t.j() + j10 + AndroidUtilities.dp(11.0f);
-        this.f52922w.clear();
-        this.f52921u = 0.0f;
-        this.v = 0.0f;
-        yh.k0 k0Var = this.f52924y;
-        TextPaint textPaint = k0Var.f50387c;
-        if (tL_textWithEntities != null && !TextUtils.isEmpty(tL_textWithEntities.text)) {
-            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(tL_textWithEntities.text);
-            MessageObject.addEntitiesToText(spannableStringBuilder, tL_textWithEntities.entities, false, false, false, false);
-            spanned = MessageObject.replaceAnimatedEmoji(Emoji.replaceEmoji(spannableStringBuilder, textPaint.getFontMetricsInt(), false), tL_textWithEntities.entities, textPaint.getFontMetricsInt());
-        } else {
-            SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(LocaleController.getString(R.string.GiftMessageHint));
-            spannableStringBuilder2.setSpan(new ForegroundColorSpan(-1593835521), 0, spannableStringBuilder2.length(), 33);
-            spanned = spannableStringBuilder2;
-        }
-        if (j3 != 0) {
-            tLObject = MessagesController.getInstance(this.f52903a).getUserOrChat(j3);
-        }
-        this.f52925z = true;
-        k0Var.c(tLObject);
-        k0Var.f50395m = spanned;
-        k0Var.f50401s = -1;
-        k0Var.b(((int) f7) - AndroidUtilities.dp(24.0f));
-        if (!this.K) {
-            StaticLayout staticLayout = k0Var.f50396n;
-            if (staticLayout != null) {
-                i10 = staticLayout.getLineCount();
+    public final void a() {
+        String str;
+        String str2;
+        String str3;
+        String str4;
+        boolean z10;
+        if (!this.f49094f) {
+            ArrayList arrayList = this.f49095g;
+            arrayList.clear();
+            m3 m3Var = this.f49106s;
+            boolean z11 = m3Var.f48684b;
+            ArrayList arrayList2 = this.h;
+            if (!z11 && TextUtils.isEmpty(m3Var.f48685c)) {
+                arrayList.addAll(arrayList2);
             } else {
-                i10 = 0;
-            }
-            if (i10 > 3) {
-                this.K = true;
-                StaticLayout staticLayout2 = k0Var.f50396n;
-                if (staticLayout2 != null) {
-                    i11 = staticLayout2.getLineCount();
+                if (!TextUtils.isEmpty(m3Var.f48685c)) {
+                    str = m3Var.f48685c.trim().toLowerCase();
+                    str2 = LocaleController.getInstance().getTranslitString(str);
+                    str4 = org.telegram.ui.Cells.r6.i(" ", str);
+                    str3 = org.telegram.ui.Cells.r6.i(" ", str2);
+                } else {
+                    str = null;
+                    str2 = null;
+                    str3 = null;
+                    str4 = null;
                 }
-                this.L = (int) ((Math.min(0.4f, (i11 - 3) * 0.1f) + 1.0f) * this.L);
-                h(tL_starGiftUnique, j3, tL_textWithEntities, str);
+                for (int i10 = 0; i10 < arrayList2.size(); i10++) {
+                    TLRPC.User user = MessagesController.getInstance(this.d).getUser(Long.valueOf(((TL_stories.StoryView) arrayList2.get(i10)).user_id));
+                    if (m3Var.f48684b && (user == null || !user.contact)) {
+                        z10 = false;
+                    } else {
+                        z10 = true;
+                    }
+                    if (z10 && str != null) {
+                        String lowerCase = ContactsController.formatName(user.first_name, user.last_name).toLowerCase();
+                        String publicUsername = UserObject.getPublicUsername(user);
+                        String translitSafe = AndroidUtilities.translitSafe(lowerCase);
+                        if ((lowerCase == null || (!lowerCase.startsWith(str) && !lowerCase.contains(str4))) && ((translitSafe == null || (!translitSafe.startsWith(str2) && !translitSafe.contains(str3))) && (publicUsername == null || (!publicUsername.startsWith(str2) && !publicUsername.contains(str3))))) {
+                            z10 = false;
+                        }
+                    }
+                    if (z10) {
+                        arrayList.add((TL_stories.StoryView) arrayList2.get(i10));
+                    }
+                }
+            }
+            if (!m3Var.f48683a) {
+                Collections.sort(arrayList, Comparator$CC.comparingInt(new hi.j6(17)));
+            }
+        }
+    }
+
+    public final int b() {
+        ArrayList arrayList;
+        if (this.f49094f) {
+            arrayList = this.f49096i;
+        } else {
+            arrayList = this.f49095g;
+        }
+        return arrayList.size();
+    }
+
+    public final void c() {
+        if (!this.e && this.f49100m && !this.f49097j) {
+            boolean z10 = this.f49094f;
+            int i10 = 100;
+            long j3 = this.f49093c;
+            m3 m3Var = this.f49106s;
+            int i11 = this.d;
+            TL_stories.StoryItem storyItem = this.f49092b;
+            if (z10) {
+                TL_stories.TL_getStoryReactionsList tL_getStoryReactionsList = new TL_stories.TL_getStoryReactionsList();
+                tL_getStoryReactionsList.forwards_first = m3Var.f48683a;
+                tL_getStoryReactionsList.f17436id = storyItem.f17435id;
+                tL_getStoryReactionsList.peer = MessagesController.getInstance(i11).getInputPeer(j3);
+                tL_getStoryReactionsList.limit = (this.f49099l || this.f49096i.size() < 20) ? 20 : 20;
+                String str = this.f49101n;
+                tL_getStoryReactionsList.offset = str;
+                if (str == null) {
+                    tL_getStoryReactionsList.offset = "";
+                } else {
+                    tL_getStoryReactionsList.flags |= 2;
+                }
+                this.e = true;
+                FileLog.d("SelfStoryViewsPage reactions load next " + storyItem.f17435id + " " + this.f49099l + " offset=" + tL_getStoryReactionsList.offset);
+                int sendRequest = ConnectionsManager.getInstance(i11).sendRequest(tL_getStoryReactionsList, new RequestDelegate(this) {
+                    public final y3 f49001b;
+
+                    {
+                        this.f49001b = this;
+                    }
+
+                    @Override
+                    public final void run(final TLObject tLObject, final TLRPC.TL_error tL_error) {
+                        switch (r3) {
+                            case 0:
+                                final y3 y3Var = this.f49001b;
+                                final int[] iArr = r2;
+                                AndroidUtilities.runOnUIThread(new Runnable() {
+                                    @Override
+                                    public final void run() {
+                                        boolean z11;
+                                        switch (r5) {
+                                            case 0:
+                                                y3 y3Var2 = y3Var;
+                                                ArrayList arrayList = y3Var2.f49105r;
+                                                ArrayList arrayList2 = y3Var2.h;
+                                                int i12 = y3Var2.d;
+                                                ArrayList arrayList3 = y3Var2.f49095g;
+                                                TL_stories.StoryItem storyItem2 = y3Var2.f49092b;
+                                                if (iArr[0] != y3Var2.f49102o) {
+                                                    FileLog.d("SelfStoryViewsPage " + storyItem2.f17435id + " localId != reqId");
+                                                    return;
+                                                }
+                                                y3Var2.e = false;
+                                                y3Var2.f49102o = -1;
+                                                TLObject tLObject2 = tLObject;
+                                                if (tLObject2 != null) {
+                                                    TL_stories.StoryViewsList storyViewsList = (TL_stories.StoryViewsList) tLObject2;
+                                                    a0.i iVar = MessagesController.getInstance(i12).getStoriesController().M;
+                                                    if (storyViewsList.views != null) {
+                                                        for (int i13 = 0; i13 < storyViewsList.views.size(); i13++) {
+                                                            TL_stories.StoryView storyView = storyViewsList.views.get(i13);
+                                                            if (iVar.d(storyView.user_id)) {
+                                                                iVar.k(Boolean.valueOf(storyView.blocked_my_stories_from), storyView.user_id);
+                                                            }
+                                                        }
+                                                    }
+                                                    MessagesController.getInstance(i12).putUsers(storyViewsList.users, false);
+                                                    MessagesController.getInstance(i12).putChats(storyViewsList.chats, false);
+                                                    boolean z12 = true;
+                                                    MessagesStorage.getInstance(i12).putUsersAndChats(storyViewsList.users, storyViewsList.chats, true, false);
+                                                    if (y3Var2.f49099l) {
+                                                        y3Var2.f49099l = false;
+                                                        for (int i14 = 0; i14 < arrayList3.size(); i14++) {
+                                                            y3Var2.f49103p.add(Long.valueOf(((TL_stories.StoryView) arrayList3.get(i14)).user_id));
+                                                        }
+                                                        arrayList3.clear();
+                                                        arrayList2.clear();
+                                                    }
+                                                    if (y3Var2.f49104q) {
+                                                        arrayList2.addAll(storyViewsList.views);
+                                                        y3Var2.a();
+                                                    } else {
+                                                        arrayList3.addAll(storyViewsList.views);
+                                                    }
+                                                    if (!storyViewsList.views.isEmpty()) {
+                                                        y3Var2.f49100m = true;
+                                                    } else {
+                                                        y3Var2.f49100m = false;
+                                                    }
+                                                    String str2 = storyViewsList.next_offset;
+                                                    y3Var2.f49101n = str2;
+                                                    if (TextUtils.isEmpty(str2)) {
+                                                        y3Var2.f49100m = false;
+                                                    }
+                                                    if (storyItem2.views == null) {
+                                                        storyItem2.views = new TL_stories.TL_storyViews();
+                                                    }
+                                                    int i15 = storyViewsList.count;
+                                                    TL_stories.StoryViews storyViews = storyItem2.views;
+                                                    if (i15 > storyViews.views_count) {
+                                                        storyViews.recent_viewers.clear();
+                                                        for (int i16 = 0; i16 < Math.min(3, storyViewsList.users.size()); i16 = com.google.android.gms.internal.vision.e2.f(storyViewsList.users.get(i16).f17342id, storyItem2.views.recent_viewers, i16, 1)) {
+                                                        }
+                                                        storyItem2.views.views_count = storyViewsList.count;
+                                                        z11 = true;
+                                                    } else {
+                                                        z11 = false;
+                                                    }
+                                                    TL_stories.StoryViews storyViews2 = storyItem2.views;
+                                                    int i17 = storyViews2.reactions_count;
+                                                    int i18 = storyViewsList.reactions_count;
+                                                    if (i17 != i18) {
+                                                        storyViews2.reactions_count = i18;
+                                                    } else {
+                                                        z12 = z11;
+                                                    }
+                                                    if (z12) {
+                                                        NotificationCenter.getInstance(i12).lambda$postNotificationNameOnUIThread$1(NotificationCenter.storiesUpdated, new Object[0]);
+                                                    }
+                                                } else {
+                                                    TLRPC.TL_error tL_error2 = tL_error;
+                                                    if (tL_error2 != null && "MSG_ID_INVALID".equals(tL_error2.text)) {
+                                                        y3Var2.f49091a = 0;
+                                                    }
+                                                    y3Var2.f49100m = false;
+                                                }
+                                                FileLog.d("SelfStoryViewsPage " + storyItem2.f17435id + " response  totalItems " + arrayList3.size() + " has next " + y3Var2.f49100m);
+                                                for (int i19 = 0; i19 < arrayList.size(); i19++) {
+                                                    ((z3) arrayList.get(i19)).e(y3Var2);
+                                                }
+                                                if (arrayList3.size() < 20 && y3Var2.f49100m) {
+                                                    y3Var2.c();
+                                                    return;
+                                                }
+                                                return;
+                                            default:
+                                                y3 y3Var3 = y3Var;
+                                                ArrayList arrayList4 = y3Var3.f49105r;
+                                                TL_stories.StoryItem storyItem3 = y3Var3.f49092b;
+                                                int i20 = y3Var3.d;
+                                                ArrayList arrayList5 = y3Var3.f49096i;
+                                                if (iArr[0] != y3Var3.f49102o) {
+                                                    FileLog.d("SelfStoryViewsPage reactions " + storyItem3.f17435id + " localId != reqId");
+                                                    return;
+                                                }
+                                                y3Var3.e = false;
+                                                y3Var3.f49102o = -1;
+                                                TLObject tLObject3 = tLObject;
+                                                if (tLObject3 != null) {
+                                                    TL_stories.TL_storyReactionsList tL_storyReactionsList = (TL_stories.TL_storyReactionsList) tLObject3;
+                                                    MessagesController.getInstance(i20).putUsers(tL_storyReactionsList.users, false);
+                                                    MessagesController.getInstance(i20).putChats(tL_storyReactionsList.chats, false);
+                                                    boolean z13 = true;
+                                                    MessagesStorage.getInstance(i20).putUsersAndChats(tL_storyReactionsList.users, tL_storyReactionsList.chats, true, false);
+                                                    if (y3Var3.f49099l) {
+                                                        y3Var3.f49099l = false;
+                                                        for (int i21 = 0; i21 < arrayList5.size(); i21++) {
+                                                            y3Var3.f49103p.add(Long.valueOf(DialogObject.getPeerDialogId(((TL_stories.StoryReaction) arrayList5.get(i21)).peer_id)));
+                                                        }
+                                                        arrayList5.clear();
+                                                        y3Var3.h.clear();
+                                                    }
+                                                    arrayList5.addAll(tL_storyReactionsList.reactions);
+                                                    if (!tL_storyReactionsList.reactions.isEmpty()) {
+                                                        y3Var3.f49100m = true;
+                                                    } else {
+                                                        y3Var3.f49100m = false;
+                                                    }
+                                                    String str3 = tL_storyReactionsList.next_offset;
+                                                    y3Var3.f49101n = str3;
+                                                    if (TextUtils.isEmpty(str3)) {
+                                                        y3Var3.f49100m = false;
+                                                    }
+                                                    if (storyItem3.views == null) {
+                                                        storyItem3.views = new TL_stories.TL_storyViews();
+                                                    }
+                                                    int i22 = y3Var3.f49091a;
+                                                    int i23 = tL_storyReactionsList.count;
+                                                    if (i22 == i23) {
+                                                        z13 = false;
+                                                    }
+                                                    y3Var3.f49091a = i23;
+                                                    if (z13) {
+                                                        NotificationCenter.getInstance(i20).lambda$postNotificationNameOnUIThread$1(NotificationCenter.storiesUpdated, new Object[0]);
+                                                    }
+                                                } else {
+                                                    TLRPC.TL_error tL_error3 = tL_error;
+                                                    if (tL_error3 != null && "MSG_ID_INVALID".equals(tL_error3.text)) {
+                                                        y3Var3.f49091a = 0;
+                                                    }
+                                                    y3Var3.f49100m = false;
+                                                }
+                                                FileLog.d("SelfStoryViewsPage reactions " + storyItem3.f17435id + " response  totalItems " + arrayList5.size() + " has next " + y3Var3.f49100m);
+                                                for (int i24 = 0; i24 < arrayList4.size(); i24++) {
+                                                    ((z3) arrayList4.get(i24)).e(y3Var3);
+                                                }
+                                                if (arrayList5.size() < 20 && y3Var3.f49100m) {
+                                                    y3Var3.c();
+                                                    return;
+                                                }
+                                                return;
+                                        }
+                                    }
+                                });
+                                return;
+                            default:
+                                final y3 y3Var2 = this.f49001b;
+                                final int[] iArr2 = r2;
+                                AndroidUtilities.runOnUIThread(new Runnable() {
+                                    @Override
+                                    public final void run() {
+                                        boolean z11;
+                                        switch (r5) {
+                                            case 0:
+                                                y3 y3Var22 = y3Var2;
+                                                ArrayList arrayList = y3Var22.f49105r;
+                                                ArrayList arrayList2 = y3Var22.h;
+                                                int i12 = y3Var22.d;
+                                                ArrayList arrayList3 = y3Var22.f49095g;
+                                                TL_stories.StoryItem storyItem2 = y3Var22.f49092b;
+                                                if (iArr2[0] != y3Var22.f49102o) {
+                                                    FileLog.d("SelfStoryViewsPage " + storyItem2.f17435id + " localId != reqId");
+                                                    return;
+                                                }
+                                                y3Var22.e = false;
+                                                y3Var22.f49102o = -1;
+                                                TLObject tLObject2 = tLObject;
+                                                if (tLObject2 != null) {
+                                                    TL_stories.StoryViewsList storyViewsList = (TL_stories.StoryViewsList) tLObject2;
+                                                    a0.i iVar = MessagesController.getInstance(i12).getStoriesController().M;
+                                                    if (storyViewsList.views != null) {
+                                                        for (int i13 = 0; i13 < storyViewsList.views.size(); i13++) {
+                                                            TL_stories.StoryView storyView = storyViewsList.views.get(i13);
+                                                            if (iVar.d(storyView.user_id)) {
+                                                                iVar.k(Boolean.valueOf(storyView.blocked_my_stories_from), storyView.user_id);
+                                                            }
+                                                        }
+                                                    }
+                                                    MessagesController.getInstance(i12).putUsers(storyViewsList.users, false);
+                                                    MessagesController.getInstance(i12).putChats(storyViewsList.chats, false);
+                                                    boolean z12 = true;
+                                                    MessagesStorage.getInstance(i12).putUsersAndChats(storyViewsList.users, storyViewsList.chats, true, false);
+                                                    if (y3Var22.f49099l) {
+                                                        y3Var22.f49099l = false;
+                                                        for (int i14 = 0; i14 < arrayList3.size(); i14++) {
+                                                            y3Var22.f49103p.add(Long.valueOf(((TL_stories.StoryView) arrayList3.get(i14)).user_id));
+                                                        }
+                                                        arrayList3.clear();
+                                                        arrayList2.clear();
+                                                    }
+                                                    if (y3Var22.f49104q) {
+                                                        arrayList2.addAll(storyViewsList.views);
+                                                        y3Var22.a();
+                                                    } else {
+                                                        arrayList3.addAll(storyViewsList.views);
+                                                    }
+                                                    if (!storyViewsList.views.isEmpty()) {
+                                                        y3Var22.f49100m = true;
+                                                    } else {
+                                                        y3Var22.f49100m = false;
+                                                    }
+                                                    String str2 = storyViewsList.next_offset;
+                                                    y3Var22.f49101n = str2;
+                                                    if (TextUtils.isEmpty(str2)) {
+                                                        y3Var22.f49100m = false;
+                                                    }
+                                                    if (storyItem2.views == null) {
+                                                        storyItem2.views = new TL_stories.TL_storyViews();
+                                                    }
+                                                    int i15 = storyViewsList.count;
+                                                    TL_stories.StoryViews storyViews = storyItem2.views;
+                                                    if (i15 > storyViews.views_count) {
+                                                        storyViews.recent_viewers.clear();
+                                                        for (int i16 = 0; i16 < Math.min(3, storyViewsList.users.size()); i16 = com.google.android.gms.internal.vision.e2.f(storyViewsList.users.get(i16).f17342id, storyItem2.views.recent_viewers, i16, 1)) {
+                                                        }
+                                                        storyItem2.views.views_count = storyViewsList.count;
+                                                        z11 = true;
+                                                    } else {
+                                                        z11 = false;
+                                                    }
+                                                    TL_stories.StoryViews storyViews2 = storyItem2.views;
+                                                    int i17 = storyViews2.reactions_count;
+                                                    int i18 = storyViewsList.reactions_count;
+                                                    if (i17 != i18) {
+                                                        storyViews2.reactions_count = i18;
+                                                    } else {
+                                                        z12 = z11;
+                                                    }
+                                                    if (z12) {
+                                                        NotificationCenter.getInstance(i12).lambda$postNotificationNameOnUIThread$1(NotificationCenter.storiesUpdated, new Object[0]);
+                                                    }
+                                                } else {
+                                                    TLRPC.TL_error tL_error2 = tL_error;
+                                                    if (tL_error2 != null && "MSG_ID_INVALID".equals(tL_error2.text)) {
+                                                        y3Var22.f49091a = 0;
+                                                    }
+                                                    y3Var22.f49100m = false;
+                                                }
+                                                FileLog.d("SelfStoryViewsPage " + storyItem2.f17435id + " response  totalItems " + arrayList3.size() + " has next " + y3Var22.f49100m);
+                                                for (int i19 = 0; i19 < arrayList.size(); i19++) {
+                                                    ((z3) arrayList.get(i19)).e(y3Var22);
+                                                }
+                                                if (arrayList3.size() < 20 && y3Var22.f49100m) {
+                                                    y3Var22.c();
+                                                    return;
+                                                }
+                                                return;
+                                            default:
+                                                y3 y3Var3 = y3Var2;
+                                                ArrayList arrayList4 = y3Var3.f49105r;
+                                                TL_stories.StoryItem storyItem3 = y3Var3.f49092b;
+                                                int i20 = y3Var3.d;
+                                                ArrayList arrayList5 = y3Var3.f49096i;
+                                                if (iArr2[0] != y3Var3.f49102o) {
+                                                    FileLog.d("SelfStoryViewsPage reactions " + storyItem3.f17435id + " localId != reqId");
+                                                    return;
+                                                }
+                                                y3Var3.e = false;
+                                                y3Var3.f49102o = -1;
+                                                TLObject tLObject3 = tLObject;
+                                                if (tLObject3 != null) {
+                                                    TL_stories.TL_storyReactionsList tL_storyReactionsList = (TL_stories.TL_storyReactionsList) tLObject3;
+                                                    MessagesController.getInstance(i20).putUsers(tL_storyReactionsList.users, false);
+                                                    MessagesController.getInstance(i20).putChats(tL_storyReactionsList.chats, false);
+                                                    boolean z13 = true;
+                                                    MessagesStorage.getInstance(i20).putUsersAndChats(tL_storyReactionsList.users, tL_storyReactionsList.chats, true, false);
+                                                    if (y3Var3.f49099l) {
+                                                        y3Var3.f49099l = false;
+                                                        for (int i21 = 0; i21 < arrayList5.size(); i21++) {
+                                                            y3Var3.f49103p.add(Long.valueOf(DialogObject.getPeerDialogId(((TL_stories.StoryReaction) arrayList5.get(i21)).peer_id)));
+                                                        }
+                                                        arrayList5.clear();
+                                                        y3Var3.h.clear();
+                                                    }
+                                                    arrayList5.addAll(tL_storyReactionsList.reactions);
+                                                    if (!tL_storyReactionsList.reactions.isEmpty()) {
+                                                        y3Var3.f49100m = true;
+                                                    } else {
+                                                        y3Var3.f49100m = false;
+                                                    }
+                                                    String str3 = tL_storyReactionsList.next_offset;
+                                                    y3Var3.f49101n = str3;
+                                                    if (TextUtils.isEmpty(str3)) {
+                                                        y3Var3.f49100m = false;
+                                                    }
+                                                    if (storyItem3.views == null) {
+                                                        storyItem3.views = new TL_stories.TL_storyViews();
+                                                    }
+                                                    int i22 = y3Var3.f49091a;
+                                                    int i23 = tL_storyReactionsList.count;
+                                                    if (i22 == i23) {
+                                                        z13 = false;
+                                                    }
+                                                    y3Var3.f49091a = i23;
+                                                    if (z13) {
+                                                        NotificationCenter.getInstance(i20).lambda$postNotificationNameOnUIThread$1(NotificationCenter.storiesUpdated, new Object[0]);
+                                                    }
+                                                } else {
+                                                    TLRPC.TL_error tL_error3 = tL_error;
+                                                    if (tL_error3 != null && "MSG_ID_INVALID".equals(tL_error3.text)) {
+                                                        y3Var3.f49091a = 0;
+                                                    }
+                                                    y3Var3.f49100m = false;
+                                                }
+                                                FileLog.d("SelfStoryViewsPage reactions " + storyItem3.f17435id + " response  totalItems " + arrayList5.size() + " has next " + y3Var3.f49100m);
+                                                for (int i24 = 0; i24 < arrayList4.size(); i24++) {
+                                                    ((z3) arrayList4.get(i24)).e(y3Var3);
+                                                }
+                                                if (arrayList5.size() < 20 && y3Var3.f49100m) {
+                                                    y3Var3.c();
+                                                    return;
+                                                }
+                                                return;
+                                        }
+                                    }
+                                });
+                                return;
+                        }
+                    }
+                });
+                this.f49102o = sendRequest;
+                final int[] iArr = {sendRequest};
                 return;
             }
+            TL_stories.TL_stories_getStoryViewsList tL_stories_getStoryViewsList = new TL_stories.TL_stories_getStoryViewsList();
+            tL_stories_getStoryViewsList.f17444id = storyItem.f17435id;
+            tL_stories_getStoryViewsList.peer = MessagesController.getInstance(i11).getInputPeer(j3);
+            if (this.f49104q) {
+                tL_stories_getStoryViewsList.f17445q = "";
+                tL_stories_getStoryViewsList.just_contacts = false;
+                tL_stories_getStoryViewsList.reactions_first = true;
+            } else {
+                String str2 = m3Var.f48685c;
+                tL_stories_getStoryViewsList.f17445q = str2;
+                if (!TextUtils.isEmpty(str2)) {
+                    tL_stories_getStoryViewsList.flags |= 2;
+                }
+                tL_stories_getStoryViewsList.just_contacts = m3Var.f48684b;
+                tL_stories_getStoryViewsList.reactions_first = m3Var.f48683a;
+            }
+            tL_stories_getStoryViewsList.limit = (this.f49099l || this.f49095g.size() < 20) ? 20 : 20;
+            String str3 = this.f49101n;
+            tL_stories_getStoryViewsList.offset = str3;
+            if (str3 == null) {
+                tL_stories_getStoryViewsList.offset = "";
+            }
+            this.e = true;
+            FileLog.d("SelfStoryViewsPage load next " + storyItem.f17435id + " " + this.f49099l + " offset=" + tL_stories_getStoryViewsList.offset + " q" + tL_stories_getStoryViewsList.f17445q + " " + tL_stories_getStoryViewsList.just_contacts + " " + tL_stories_getStoryViewsList.reactions_first);
+            int sendRequest2 = ConnectionsManager.getInstance(i11).sendRequest(tL_stories_getStoryViewsList, new RequestDelegate(this) {
+                public final y3 f49001b;
+
+                {
+                    this.f49001b = this;
+                }
+
+                @Override
+                public final void run(final TLObject tLObject, final TLRPC.TL_error tL_error) {
+                    switch (r3) {
+                        case 0:
+                            final y3 y3Var = this.f49001b;
+                            final int[] iArr2 = r2;
+                            AndroidUtilities.runOnUIThread(new Runnable() {
+                                @Override
+                                public final void run() {
+                                    boolean z11;
+                                    switch (r5) {
+                                        case 0:
+                                            y3 y3Var22 = y3Var;
+                                            ArrayList arrayList = y3Var22.f49105r;
+                                            ArrayList arrayList2 = y3Var22.h;
+                                            int i12 = y3Var22.d;
+                                            ArrayList arrayList3 = y3Var22.f49095g;
+                                            TL_stories.StoryItem storyItem2 = y3Var22.f49092b;
+                                            if (iArr2[0] != y3Var22.f49102o) {
+                                                FileLog.d("SelfStoryViewsPage " + storyItem2.f17435id + " localId != reqId");
+                                                return;
+                                            }
+                                            y3Var22.e = false;
+                                            y3Var22.f49102o = -1;
+                                            TLObject tLObject2 = tLObject;
+                                            if (tLObject2 != null) {
+                                                TL_stories.StoryViewsList storyViewsList = (TL_stories.StoryViewsList) tLObject2;
+                                                a0.i iVar = MessagesController.getInstance(i12).getStoriesController().M;
+                                                if (storyViewsList.views != null) {
+                                                    for (int i13 = 0; i13 < storyViewsList.views.size(); i13++) {
+                                                        TL_stories.StoryView storyView = storyViewsList.views.get(i13);
+                                                        if (iVar.d(storyView.user_id)) {
+                                                            iVar.k(Boolean.valueOf(storyView.blocked_my_stories_from), storyView.user_id);
+                                                        }
+                                                    }
+                                                }
+                                                MessagesController.getInstance(i12).putUsers(storyViewsList.users, false);
+                                                MessagesController.getInstance(i12).putChats(storyViewsList.chats, false);
+                                                boolean z12 = true;
+                                                MessagesStorage.getInstance(i12).putUsersAndChats(storyViewsList.users, storyViewsList.chats, true, false);
+                                                if (y3Var22.f49099l) {
+                                                    y3Var22.f49099l = false;
+                                                    for (int i14 = 0; i14 < arrayList3.size(); i14++) {
+                                                        y3Var22.f49103p.add(Long.valueOf(((TL_stories.StoryView) arrayList3.get(i14)).user_id));
+                                                    }
+                                                    arrayList3.clear();
+                                                    arrayList2.clear();
+                                                }
+                                                if (y3Var22.f49104q) {
+                                                    arrayList2.addAll(storyViewsList.views);
+                                                    y3Var22.a();
+                                                } else {
+                                                    arrayList3.addAll(storyViewsList.views);
+                                                }
+                                                if (!storyViewsList.views.isEmpty()) {
+                                                    y3Var22.f49100m = true;
+                                                } else {
+                                                    y3Var22.f49100m = false;
+                                                }
+                                                String str22 = storyViewsList.next_offset;
+                                                y3Var22.f49101n = str22;
+                                                if (TextUtils.isEmpty(str22)) {
+                                                    y3Var22.f49100m = false;
+                                                }
+                                                if (storyItem2.views == null) {
+                                                    storyItem2.views = new TL_stories.TL_storyViews();
+                                                }
+                                                int i15 = storyViewsList.count;
+                                                TL_stories.StoryViews storyViews = storyItem2.views;
+                                                if (i15 > storyViews.views_count) {
+                                                    storyViews.recent_viewers.clear();
+                                                    for (int i16 = 0; i16 < Math.min(3, storyViewsList.users.size()); i16 = com.google.android.gms.internal.vision.e2.f(storyViewsList.users.get(i16).f17342id, storyItem2.views.recent_viewers, i16, 1)) {
+                                                    }
+                                                    storyItem2.views.views_count = storyViewsList.count;
+                                                    z11 = true;
+                                                } else {
+                                                    z11 = false;
+                                                }
+                                                TL_stories.StoryViews storyViews2 = storyItem2.views;
+                                                int i17 = storyViews2.reactions_count;
+                                                int i18 = storyViewsList.reactions_count;
+                                                if (i17 != i18) {
+                                                    storyViews2.reactions_count = i18;
+                                                } else {
+                                                    z12 = z11;
+                                                }
+                                                if (z12) {
+                                                    NotificationCenter.getInstance(i12).lambda$postNotificationNameOnUIThread$1(NotificationCenter.storiesUpdated, new Object[0]);
+                                                }
+                                            } else {
+                                                TLRPC.TL_error tL_error2 = tL_error;
+                                                if (tL_error2 != null && "MSG_ID_INVALID".equals(tL_error2.text)) {
+                                                    y3Var22.f49091a = 0;
+                                                }
+                                                y3Var22.f49100m = false;
+                                            }
+                                            FileLog.d("SelfStoryViewsPage " + storyItem2.f17435id + " response  totalItems " + arrayList3.size() + " has next " + y3Var22.f49100m);
+                                            for (int i19 = 0; i19 < arrayList.size(); i19++) {
+                                                ((z3) arrayList.get(i19)).e(y3Var22);
+                                            }
+                                            if (arrayList3.size() < 20 && y3Var22.f49100m) {
+                                                y3Var22.c();
+                                                return;
+                                            }
+                                            return;
+                                        default:
+                                            y3 y3Var3 = y3Var;
+                                            ArrayList arrayList4 = y3Var3.f49105r;
+                                            TL_stories.StoryItem storyItem3 = y3Var3.f49092b;
+                                            int i20 = y3Var3.d;
+                                            ArrayList arrayList5 = y3Var3.f49096i;
+                                            if (iArr2[0] != y3Var3.f49102o) {
+                                                FileLog.d("SelfStoryViewsPage reactions " + storyItem3.f17435id + " localId != reqId");
+                                                return;
+                                            }
+                                            y3Var3.e = false;
+                                            y3Var3.f49102o = -1;
+                                            TLObject tLObject3 = tLObject;
+                                            if (tLObject3 != null) {
+                                                TL_stories.TL_storyReactionsList tL_storyReactionsList = (TL_stories.TL_storyReactionsList) tLObject3;
+                                                MessagesController.getInstance(i20).putUsers(tL_storyReactionsList.users, false);
+                                                MessagesController.getInstance(i20).putChats(tL_storyReactionsList.chats, false);
+                                                boolean z13 = true;
+                                                MessagesStorage.getInstance(i20).putUsersAndChats(tL_storyReactionsList.users, tL_storyReactionsList.chats, true, false);
+                                                if (y3Var3.f49099l) {
+                                                    y3Var3.f49099l = false;
+                                                    for (int i21 = 0; i21 < arrayList5.size(); i21++) {
+                                                        y3Var3.f49103p.add(Long.valueOf(DialogObject.getPeerDialogId(((TL_stories.StoryReaction) arrayList5.get(i21)).peer_id)));
+                                                    }
+                                                    arrayList5.clear();
+                                                    y3Var3.h.clear();
+                                                }
+                                                arrayList5.addAll(tL_storyReactionsList.reactions);
+                                                if (!tL_storyReactionsList.reactions.isEmpty()) {
+                                                    y3Var3.f49100m = true;
+                                                } else {
+                                                    y3Var3.f49100m = false;
+                                                }
+                                                String str32 = tL_storyReactionsList.next_offset;
+                                                y3Var3.f49101n = str32;
+                                                if (TextUtils.isEmpty(str32)) {
+                                                    y3Var3.f49100m = false;
+                                                }
+                                                if (storyItem3.views == null) {
+                                                    storyItem3.views = new TL_stories.TL_storyViews();
+                                                }
+                                                int i22 = y3Var3.f49091a;
+                                                int i23 = tL_storyReactionsList.count;
+                                                if (i22 == i23) {
+                                                    z13 = false;
+                                                }
+                                                y3Var3.f49091a = i23;
+                                                if (z13) {
+                                                    NotificationCenter.getInstance(i20).lambda$postNotificationNameOnUIThread$1(NotificationCenter.storiesUpdated, new Object[0]);
+                                                }
+                                            } else {
+                                                TLRPC.TL_error tL_error3 = tL_error;
+                                                if (tL_error3 != null && "MSG_ID_INVALID".equals(tL_error3.text)) {
+                                                    y3Var3.f49091a = 0;
+                                                }
+                                                y3Var3.f49100m = false;
+                                            }
+                                            FileLog.d("SelfStoryViewsPage reactions " + storyItem3.f17435id + " response  totalItems " + arrayList5.size() + " has next " + y3Var3.f49100m);
+                                            for (int i24 = 0; i24 < arrayList4.size(); i24++) {
+                                                ((z3) arrayList4.get(i24)).e(y3Var3);
+                                            }
+                                            if (arrayList5.size() < 20 && y3Var3.f49100m) {
+                                                y3Var3.c();
+                                                return;
+                                            }
+                                            return;
+                                    }
+                                }
+                            });
+                            return;
+                        default:
+                            final y3 y3Var2 = this.f49001b;
+                            final int[] iArr22 = r2;
+                            AndroidUtilities.runOnUIThread(new Runnable() {
+                                @Override
+                                public final void run() {
+                                    boolean z11;
+                                    switch (r5) {
+                                        case 0:
+                                            y3 y3Var22 = y3Var2;
+                                            ArrayList arrayList = y3Var22.f49105r;
+                                            ArrayList arrayList2 = y3Var22.h;
+                                            int i12 = y3Var22.d;
+                                            ArrayList arrayList3 = y3Var22.f49095g;
+                                            TL_stories.StoryItem storyItem2 = y3Var22.f49092b;
+                                            if (iArr22[0] != y3Var22.f49102o) {
+                                                FileLog.d("SelfStoryViewsPage " + storyItem2.f17435id + " localId != reqId");
+                                                return;
+                                            }
+                                            y3Var22.e = false;
+                                            y3Var22.f49102o = -1;
+                                            TLObject tLObject2 = tLObject;
+                                            if (tLObject2 != null) {
+                                                TL_stories.StoryViewsList storyViewsList = (TL_stories.StoryViewsList) tLObject2;
+                                                a0.i iVar = MessagesController.getInstance(i12).getStoriesController().M;
+                                                if (storyViewsList.views != null) {
+                                                    for (int i13 = 0; i13 < storyViewsList.views.size(); i13++) {
+                                                        TL_stories.StoryView storyView = storyViewsList.views.get(i13);
+                                                        if (iVar.d(storyView.user_id)) {
+                                                            iVar.k(Boolean.valueOf(storyView.blocked_my_stories_from), storyView.user_id);
+                                                        }
+                                                    }
+                                                }
+                                                MessagesController.getInstance(i12).putUsers(storyViewsList.users, false);
+                                                MessagesController.getInstance(i12).putChats(storyViewsList.chats, false);
+                                                boolean z12 = true;
+                                                MessagesStorage.getInstance(i12).putUsersAndChats(storyViewsList.users, storyViewsList.chats, true, false);
+                                                if (y3Var22.f49099l) {
+                                                    y3Var22.f49099l = false;
+                                                    for (int i14 = 0; i14 < arrayList3.size(); i14++) {
+                                                        y3Var22.f49103p.add(Long.valueOf(((TL_stories.StoryView) arrayList3.get(i14)).user_id));
+                                                    }
+                                                    arrayList3.clear();
+                                                    arrayList2.clear();
+                                                }
+                                                if (y3Var22.f49104q) {
+                                                    arrayList2.addAll(storyViewsList.views);
+                                                    y3Var22.a();
+                                                } else {
+                                                    arrayList3.addAll(storyViewsList.views);
+                                                }
+                                                if (!storyViewsList.views.isEmpty()) {
+                                                    y3Var22.f49100m = true;
+                                                } else {
+                                                    y3Var22.f49100m = false;
+                                                }
+                                                String str22 = storyViewsList.next_offset;
+                                                y3Var22.f49101n = str22;
+                                                if (TextUtils.isEmpty(str22)) {
+                                                    y3Var22.f49100m = false;
+                                                }
+                                                if (storyItem2.views == null) {
+                                                    storyItem2.views = new TL_stories.TL_storyViews();
+                                                }
+                                                int i15 = storyViewsList.count;
+                                                TL_stories.StoryViews storyViews = storyItem2.views;
+                                                if (i15 > storyViews.views_count) {
+                                                    storyViews.recent_viewers.clear();
+                                                    for (int i16 = 0; i16 < Math.min(3, storyViewsList.users.size()); i16 = com.google.android.gms.internal.vision.e2.f(storyViewsList.users.get(i16).f17342id, storyItem2.views.recent_viewers, i16, 1)) {
+                                                    }
+                                                    storyItem2.views.views_count = storyViewsList.count;
+                                                    z11 = true;
+                                                } else {
+                                                    z11 = false;
+                                                }
+                                                TL_stories.StoryViews storyViews2 = storyItem2.views;
+                                                int i17 = storyViews2.reactions_count;
+                                                int i18 = storyViewsList.reactions_count;
+                                                if (i17 != i18) {
+                                                    storyViews2.reactions_count = i18;
+                                                } else {
+                                                    z12 = z11;
+                                                }
+                                                if (z12) {
+                                                    NotificationCenter.getInstance(i12).lambda$postNotificationNameOnUIThread$1(NotificationCenter.storiesUpdated, new Object[0]);
+                                                }
+                                            } else {
+                                                TLRPC.TL_error tL_error2 = tL_error;
+                                                if (tL_error2 != null && "MSG_ID_INVALID".equals(tL_error2.text)) {
+                                                    y3Var22.f49091a = 0;
+                                                }
+                                                y3Var22.f49100m = false;
+                                            }
+                                            FileLog.d("SelfStoryViewsPage " + storyItem2.f17435id + " response  totalItems " + arrayList3.size() + " has next " + y3Var22.f49100m);
+                                            for (int i19 = 0; i19 < arrayList.size(); i19++) {
+                                                ((z3) arrayList.get(i19)).e(y3Var22);
+                                            }
+                                            if (arrayList3.size() < 20 && y3Var22.f49100m) {
+                                                y3Var22.c();
+                                                return;
+                                            }
+                                            return;
+                                        default:
+                                            y3 y3Var3 = y3Var2;
+                                            ArrayList arrayList4 = y3Var3.f49105r;
+                                            TL_stories.StoryItem storyItem3 = y3Var3.f49092b;
+                                            int i20 = y3Var3.d;
+                                            ArrayList arrayList5 = y3Var3.f49096i;
+                                            if (iArr22[0] != y3Var3.f49102o) {
+                                                FileLog.d("SelfStoryViewsPage reactions " + storyItem3.f17435id + " localId != reqId");
+                                                return;
+                                            }
+                                            y3Var3.e = false;
+                                            y3Var3.f49102o = -1;
+                                            TLObject tLObject3 = tLObject;
+                                            if (tLObject3 != null) {
+                                                TL_stories.TL_storyReactionsList tL_storyReactionsList = (TL_stories.TL_storyReactionsList) tLObject3;
+                                                MessagesController.getInstance(i20).putUsers(tL_storyReactionsList.users, false);
+                                                MessagesController.getInstance(i20).putChats(tL_storyReactionsList.chats, false);
+                                                boolean z13 = true;
+                                                MessagesStorage.getInstance(i20).putUsersAndChats(tL_storyReactionsList.users, tL_storyReactionsList.chats, true, false);
+                                                if (y3Var3.f49099l) {
+                                                    y3Var3.f49099l = false;
+                                                    for (int i21 = 0; i21 < arrayList5.size(); i21++) {
+                                                        y3Var3.f49103p.add(Long.valueOf(DialogObject.getPeerDialogId(((TL_stories.StoryReaction) arrayList5.get(i21)).peer_id)));
+                                                    }
+                                                    arrayList5.clear();
+                                                    y3Var3.h.clear();
+                                                }
+                                                arrayList5.addAll(tL_storyReactionsList.reactions);
+                                                if (!tL_storyReactionsList.reactions.isEmpty()) {
+                                                    y3Var3.f49100m = true;
+                                                } else {
+                                                    y3Var3.f49100m = false;
+                                                }
+                                                String str32 = tL_storyReactionsList.next_offset;
+                                                y3Var3.f49101n = str32;
+                                                if (TextUtils.isEmpty(str32)) {
+                                                    y3Var3.f49100m = false;
+                                                }
+                                                if (storyItem3.views == null) {
+                                                    storyItem3.views = new TL_stories.TL_storyViews();
+                                                }
+                                                int i22 = y3Var3.f49091a;
+                                                int i23 = tL_storyReactionsList.count;
+                                                if (i22 == i23) {
+                                                    z13 = false;
+                                                }
+                                                y3Var3.f49091a = i23;
+                                                if (z13) {
+                                                    NotificationCenter.getInstance(i20).lambda$postNotificationNameOnUIThread$1(NotificationCenter.storiesUpdated, new Object[0]);
+                                                }
+                                            } else {
+                                                TLRPC.TL_error tL_error3 = tL_error;
+                                                if (tL_error3 != null && "MSG_ID_INVALID".equals(tL_error3.text)) {
+                                                    y3Var3.f49091a = 0;
+                                                }
+                                                y3Var3.f49100m = false;
+                                            }
+                                            FileLog.d("SelfStoryViewsPage reactions " + storyItem3.f17435id + " response  totalItems " + arrayList5.size() + " has next " + y3Var3.f49100m);
+                                            for (int i24 = 0; i24 < arrayList4.size(); i24++) {
+                                                ((z3) arrayList4.get(i24)).e(y3Var3);
+                                            }
+                                            if (arrayList5.size() < 20 && y3Var3.f49100m) {
+                                                y3Var3.c();
+                                                return;
+                                            }
+                                            return;
+                                    }
+                                }
+                            });
+                            return;
+                    }
+                }
+            });
+            this.f49102o = sendRequest2;
+            final int[] iArr2 = {sendRequest2};
         }
-        float dp2 = j11 + AndroidUtilities.dp(4.0f);
-        this.f52923x = dp2;
-        float dp3 = dp2 + k0Var.f50403u + AndroidUtilities.dp(3.0f) + AndroidUtilities.dp(11.66f);
-        this.A = dp3;
-        this.C = new f01(str, 14.0f, AndroidUtilities.bold());
-        float dp4 = AndroidUtilities.dp(30.0f);
-        this.B = dp4;
-        this.M = (int) (dp3 + dp4 + AndroidUtilities.dp(11.0f));
+    }
+
+    public final void d() {
+        if (this.f49102o >= 0) {
+            ConnectionsManager.getInstance(this.d).cancelRequest(this.f49102o, false);
+        }
+        this.f49102o = -1;
+    }
+
+    public final void e(m3 m3Var, boolean z10, boolean z11) {
+        m3 m3Var2 = new m3();
+        m3Var2.f48683a = m3Var.f48683a;
+        m3Var2.f48684b = m3Var.f48684b;
+        m3Var2.f48685c = m3Var.f48685c;
+        int i10 = 0;
+        if (!z10) {
+            m3Var2.f48684b = false;
+        }
+        if (!z11) {
+            m3Var2.f48683a = true;
+        }
+        m3 m3Var3 = this.f49106s;
+        if (!m3Var3.equals(m3Var2)) {
+            m3Var3.f48683a = m3Var2.f48683a;
+            m3Var3.f48684b = m3Var2.f48684b;
+            m3Var3.f48685c = m3Var2.f48685c;
+            if (!this.f49094f && this.f49104q) {
+                a();
+                while (true) {
+                    ArrayList arrayList = this.f49105r;
+                    if (i10 < arrayList.size()) {
+                        ((z3) arrayList.get(i10)).e(this);
+                        i10++;
+                    } else {
+                        return;
+                    }
+                }
+            } else {
+                d();
+                this.f49095g.clear();
+                this.f49096i.clear();
+                this.f49099l = true;
+                this.e = false;
+                this.f49100m = true;
+                this.f49101n = "";
+                c();
+            }
+        }
     }
 }

@@ -1,104 +1,27 @@
 package org.telegram.ui.ActionBar;
 
-import android.graphics.Canvas;
-import android.graphics.LinearGradient;
-import android.graphics.Matrix;
-import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffXfermode;
-import android.graphics.Shader;
-import android.view.MotionEvent;
-import android.view.View;
-import android.view.animation.PathInterpolator;
-import android.widget.ListView;
-import org.telegram.messenger.AndroidUtilities;
-public final class u4 extends ListView {
-    public final v4 f21395a;
-    public final LinearGradient f21396b;
-    public final Paint f21397c;
-    public final Paint d;
-    public final Matrix f21398e;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.messenger.UserConfig;
+public final class u4 extends AnimatorListenerAdapter {
+    public final int f18653a;
+    public final x4 f18654b;
 
-    public u4(v4 v4Var) {
-        super(v4Var.f21438a);
-        int[] iArr = new int[8];
-        PathInterpolator pathInterpolator = yf.z.f50180i;
-        yf.z.a(pathInterpolator, -16777216, iArr);
-        Shader.TileMode tileMode = Shader.TileMode.CLAMP;
-        LinearGradient linearGradient = new LinearGradient(0.0f, AndroidUtilities.dp(16.0f), 0.0f, 0.0f, iArr, (float[]) null, tileMode);
-        int[] iArr2 = new int[8];
-        yf.z.a(pathInterpolator, -16777216, iArr2);
-        LinearGradient linearGradient2 = new LinearGradient(0.0f, 0.0f, 0.0f, AndroidUtilities.dp(16.0f), iArr2, (float[]) null, tileMode);
-        this.f21396b = linearGradient2;
-        Paint paint = new Paint(1);
-        this.f21397c = paint;
-        Paint paint2 = new Paint(1);
-        this.d = paint2;
-        this.f21398e = new Matrix();
-        paint.setShader(linearGradient);
-        PorterDuff.Mode mode = PorterDuff.Mode.DST_IN;
-        paint.setXfermode(new PorterDuffXfermode(mode));
-        paint2.setShader(linearGradient2);
-        paint2.setXfermode(new PorterDuffXfermode(mode));
-        this.f21395a = v4Var;
-        setVerticalScrollBarEnabled(false);
+    public u4(x4 x4Var, int i10) {
+        this.f18653a = i10;
+        this.f18654b = x4Var;
     }
 
     @Override
-    public final boolean awakenScrollBars() {
-        return super.awakenScrollBars();
-    }
-
-    @Override
-    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        if (v4.b(this.f21395a)) {
-            return true;
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f18653a) {
+            case 0:
+                NotificationCenter.getInstance(UserConfig.selectedAccount).doOnIdle(new q(this, 13));
+                return;
+            default:
+                NotificationCenter.getInstance(UserConfig.selectedAccount).doOnIdle(new q(this, 14));
+                return;
         }
-        return super.dispatchTouchEvent(motionEvent);
-    }
-
-    @Override
-    public final boolean drawChild(Canvas canvas, View view, long j3) {
-        boolean z10;
-        boolean z11;
-        float y3 = view.getY();
-        float height = y3 + view.getHeight();
-        if (y3 < AndroidUtilities.dp(16.0f)) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        if (height > getHeight() - AndroidUtilities.dp(16.0f)) {
-            z11 = true;
-        } else {
-            z11 = false;
-        }
-        if (!z10 && !z11) {
-            return super.drawChild(canvas, view, j3);
-        }
-        canvas.saveLayer(0.0f, y3, getWidth(), height, null);
-        boolean drawChild = super.drawChild(canvas, view, j3);
-        if (z10) {
-            canvas.drawRect(0.0f, 0.0f, getWidth(), AndroidUtilities.dp(16.0f), this.f21397c);
-        }
-        if (z11) {
-            canvas.drawRect(0.0f, getHeight() - AndroidUtilities.dp(16.0f), getWidth(), getHeight(), this.d);
-        }
-        canvas.restore();
-        return drawChild;
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        v4 v4Var = this.f21395a;
-        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(v4Var.I.getHeight() - v4Var.H.getHeight(), 1073741824));
-    }
-
-    @Override
-    public final void onSizeChanged(int i10, int i11, int i12, int i13) {
-        Matrix matrix = this.f21398e;
-        matrix.reset();
-        matrix.postTranslate(0.0f, i11 - AndroidUtilities.dp(16.0f));
-        this.f21396b.setLocalMatrix(matrix);
     }
 }

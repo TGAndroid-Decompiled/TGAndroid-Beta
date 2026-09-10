@@ -1,29 +1,23 @@
 package org.telegram.messenger;
 public final class x3 implements Runnable {
-    public final int f19573a;
-    public final boolean f19574b;
+    public final int f16939a;
+    public final FileUploadOperation f16940b;
+    public final int[] f16941c;
 
-    public x3(int i10, boolean z10) {
-        this.f19573a = i10;
-        this.f19574b = z10;
+    public x3(FileUploadOperation fileUploadOperation, int[] iArr, int i10) {
+        this.f16939a = i10;
+        this.f16940b = fileUploadOperation;
+        this.f16941c = iArr;
     }
 
     @Override
     public final void run() {
-        int i10 = this.f19573a;
-        boolean z10 = this.f19574b;
-        switch (i10) {
+        switch (this.f16939a) {
             case 0:
-                FingerprintController.b(z10);
-                return;
-            case 1:
-                FingerprintController.a(z10);
-                return;
-            case 2:
-                LiteMode.lambda$onPowerSaverApplied$0(z10);
+                this.f16940b.lambda$startUploadRequest$5(this.f16941c);
                 return;
             default:
-                NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.didSetNewTheme, Boolean.FALSE, Boolean.valueOf(z10));
+                this.f16940b.lambda$startUploadRequest$9(this.f16941c);
                 return;
         }
     }

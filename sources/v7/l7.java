@@ -1,63 +1,52 @@
 package v7;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Matrix;
-import java.io.ByteArrayInputStream;
+import android.util.Log;
+import android.util.LongSparseArray;
+import java.lang.reflect.Field;
 public abstract class l7 {
-    public static Bitmap a(int i10, int i11, byte[] bArr) {
-        BitmapFactory.Options options;
-        int i12 = 0;
-        if (i11 != -1) {
-            options = new BitmapFactory.Options();
-            options.inJustDecodeBounds = true;
-            BitmapFactory.decodeByteArray(bArr, 0, i10, options);
-            options.inJustDecodeBounds = false;
-            options.inSampleSize = 1;
-            for (int max = Math.max(options.outWidth, options.outHeight); max > i11; max /= 2) {
-                options.inSampleSize *= 2;
-            }
-        } else {
-            options = null;
-        }
-        Bitmap decodeByteArray = BitmapFactory.decodeByteArray(bArr, 0, i10, options);
-        if (options != null) {
-            options.inSampleSize = 1;
-        }
-        if (decodeByteArray != null) {
-            ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(bArr);
+    public static Field f43060a;
+    public static boolean f43061b;
+    public static Class f43062c;
+    public static boolean d;
+    public static Field e;
+    public static boolean f43063f;
+    public static Field f43064g;
+    public static boolean h;
+
+    public static void a(Object obj) {
+        LongSparseArray longSparseArray;
+        if (!d) {
             try {
-                r1.g gVar = new r1.g(byteArrayInputStream);
-                byteArrayInputStream.close();
-                switch (gVar.c()) {
-                    case 3:
-                    case 4:
-                        i12 = 180;
-                        break;
-                    case 5:
-                    case 8:
-                        i12 = 270;
-                        break;
-                    case 6:
-                    case 7:
-                        i12 = 90;
-                        break;
-                }
-                if (i12 != 0) {
-                    Matrix matrix = new Matrix();
-                    matrix.postRotate(i12);
-                    return Bitmap.createBitmap(decodeByteArray, 0, 0, decodeByteArray.getWidth(), decodeByteArray.getHeight(), matrix, false);
-                }
-                return decodeByteArray;
-            } catch (Throwable th2) {
+                f43062c = Class.forName("android.content.res.ThemedResourceCache");
+            } catch (ClassNotFoundException e7) {
+                Log.e("ResourcesFlusher", "Could not find ThemedResourceCache class", e7);
+            }
+            d = true;
+        }
+        Class cls = f43062c;
+        if (cls != null) {
+            if (!f43063f) {
                 try {
-                    byteArrayInputStream.close();
-                } catch (Throwable th3) {
-                    th2.addSuppressed(th3);
+                    Field declaredField = cls.getDeclaredField("mUnthemedEntries");
+                    e = declaredField;
+                    declaredField.setAccessible(true);
+                } catch (NoSuchFieldException e10) {
+                    Log.e("ResourcesFlusher", "Could not retrieve ThemedResourceCache#mUnthemedEntries field", e10);
                 }
-                throw th2;
+                f43063f = true;
+            }
+            Field field = e;
+            if (field != null) {
+                try {
+                    longSparseArray = (LongSparseArray) field.get(obj);
+                } catch (IllegalAccessException e11) {
+                    Log.e("ResourcesFlusher", "Could not retrieve value from ThemedResourceCache#mUnthemedEntries", e11);
+                    longSparseArray = null;
+                }
+                if (longSparseArray != null) {
+                    g.x.a(longSparseArray);
+                }
             }
         }
-        throw b2.s0.a(new IllegalStateException(), "Could not decode image data");
     }
 }

@@ -1,71 +1,42 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Path;
-import android.graphics.RectF;
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
-public final class mo extends ActionBarPopupWindow$ActionBarPopupWindowLayout {
-    public final int T;
-    public Object U;
+import android.graphics.drawable.Drawable;
+import org.telegram.messenger.ImageReceiver;
+public final class mo implements ImageReceiver.ImageReceiverDelegate {
+    public boolean f25261a;
+    public final gg.g f25262b;
+    public final oo f25263c;
 
-    public mo(Context context, int i10, int i11, org.telegram.ui.ActionBar.f6 f6Var, int i12) {
-        super(i10, i11, context, f6Var);
-        this.T = i12;
+    public mo(gg.i iVar, gg.g gVar) {
+        this.f25263c = iVar;
+        this.f25262b = gVar;
     }
 
     @Override
-    public boolean drawChild(Canvas canvas, View view, long j3) {
-        switch (this.T) {
-            case 0:
-                canvas.save();
-                Path path = (Path) this.U;
-                path.rewind();
-                RectF rectF = AndroidUtilities.rectTmp;
-                rectF.set(view.getLeft(), view.getTop(), view.getRight(), view.getBottom());
-                path.addRoundRect(rectF, AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), Path.Direction.CW);
-                canvas.clipPath(path);
-                boolean drawChild = super.drawChild(canvas, view, j3);
-                canvas.restore();
-                return drawChild;
-            case 1:
-                canvas.save();
-                Path path2 = (Path) this.U;
-                path2.rewind();
-                RectF rectF2 = AndroidUtilities.rectTmp;
-                rectF2.set(view.getLeft(), view.getTop(), view.getRight(), view.getBottom());
-                path2.addRoundRect(rectF2, AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), Path.Direction.CW);
-                canvas.clipPath(path2);
-                boolean drawChild2 = super.drawChild(canvas, view, j3);
-                canvas.restore();
-                return drawChild2;
-            default:
-                return super.drawChild(canvas, view, j3);
-        }
-    }
-
-    @Override
-    public void onMeasure(int i10, int i11) {
-        int i12;
-        switch (this.T) {
-            case 2:
-                n70 n70Var = (n70) this.U;
-                if (this == n70Var.A && (i12 = n70Var.X) > 0) {
-                    i11 = View.MeasureSpec.makeMeasureSpec(Math.min(i12, View.MeasureSpec.getSize(i11)), View.MeasureSpec.getMode(i11));
+    public final void didSetImageBitmap(int i10, String str, Drawable drawable) {
+        hj0 hj0Var;
+        xf.e eVar;
+        if (!this.f25261a) {
+            if ((i10 == 0 || i10 == 3) && drawable != null) {
+                this.f25261a = true;
+                boolean z10 = drawable instanceof hj0;
+                gg.g gVar = this.f25262b;
+                if (z10 && (eVar = (hj0Var = (hj0) drawable).D0) != null && eVar.g()) {
+                    hj0Var.C0 = new ee(17, this, gVar);
+                    return;
                 }
-                super.onMeasure(i10, i11);
-                return;
-            default:
-                super.onMeasure(i10, i11);
-                return;
+                oo.a(this.f25263c);
+                gVar.run();
+            }
         }
     }
 
-    public mo(n70 n70Var, Context context, int i10, org.telegram.ui.ActionBar.f6 f6Var, int i11) {
-        super(i10, i11, context, f6Var);
-        this.T = 2;
-        this.U = n70Var;
+    @Override
+    public final void onAnimationReady(ImageReceiver imageReceiver) {
+        org.telegram.messenger.m5.b(this, imageReceiver);
+    }
+
+    @Override
+    public final void didSetImage(ImageReceiver imageReceiver, boolean z10, boolean z11, boolean z12) {
     }
 }

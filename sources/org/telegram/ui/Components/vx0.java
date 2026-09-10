@@ -1,46 +1,86 @@
 package org.telegram.ui.Components;
 
-import android.app.Activity;
-import android.content.Context;
-import android.view.ViewGroup;
-import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.tgnet.TLRPC;
-public final class vx0 extends kl0 {
-    public final Context f32046c;
-    public final wx0 d;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.widget.TextView;
+import java.io.Serializable;
+import java.util.HashMap;
+import org.telegram.messenger.NotificationCenter;
+public final class vx0 implements TextWatcher {
+    public final int f28606a = 0;
+    public final EditTextBoldCursor f28607b;
+    public final Serializable f28608c;
+    public final Object d;
+    public final NotificationCenter.NotificationCenterDelegate e;
 
-    public vx0(wx0 wx0Var, Activity activity) {
-        this.d = wx0Var;
-        this.f32046c = activity;
+    public vx0(hy0 hy0Var, int[] iArr, TextView textView, EditTextBoldCursor editTextBoldCursor) {
+        this.e = hy0Var;
+        this.f28608c = iArr;
+        this.d = textView;
+        this.f28607b = editTextBoldCursor;
     }
 
     @Override
-    public final boolean D(s4.c1 c1Var) {
-        return false;
-    }
-
-    @Override
-    public final int h() {
-        return this.d.f32391c.size();
-    }
-
-    @Override
-    public final void v(s4.c1 c1Var, int i10) {
-        org.telegram.ui.Cells.w wVar = (org.telegram.ui.Cells.w) c1Var.f45766a;
-        ArrayList arrayList = this.d.f32391c;
-        TLRPC.StickerSetCovered stickerSetCovered = (TLRPC.StickerSetCovered) arrayList.get(i10);
-        boolean z10 = true;
-        if (i10 == arrayList.size() - 1) {
-            z10 = false;
+    public final void afterTextChanged(Editable editable) {
+        boolean z10;
+        switch (this.f28606a) {
+            case 0:
+                return;
+            default:
+                org.telegram.ui.on0 on0Var = (org.telegram.ui.on0) this.e;
+                String str = (String) this.f28608c;
+                if (((HashMap) this.d) == on0Var.f35561t1) {
+                    z10 = true;
+                } else {
+                    z10 = false;
+                }
+                EditTextBoldCursor editTextBoldCursor = this.f28607b;
+                org.telegram.ui.on0.J0(on0Var, editTextBoldCursor, str, editable, z10);
+                int intValue = ((Integer) editTextBoldCursor.getTag()).intValue();
+                EditTextBoldCursor editTextBoldCursor2 = on0Var.Y[intValue];
+                if (intValue == 6) {
+                    on0Var.Y0(true);
+                    return;
+                }
+                return;
         }
-        wVar.b(stickerSetCovered, z10);
     }
 
     @Override
-    public final s4.c1 x(ViewGroup viewGroup, int i10) {
-        org.telegram.ui.Cells.w wVar = new org.telegram.ui.Cells.w(this.f32046c, false);
-        wVar.setLayoutParams(new s4.p0(-1, AndroidUtilities.dp(82.0f)));
-        return new s4.c1(wVar);
+    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+        int i13 = this.f28606a;
+    }
+
+    @Override
+    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+        switch (this.f28606a) {
+            case 0:
+                if (((int[]) this.f28608c)[0] == 2) {
+                    ((hy0) this.e).m0((TextView) this.d, this.f28607b.getText().toString(), false);
+                    return;
+                }
+                return;
+            default:
+                return;
+        }
+    }
+
+    public vx0(org.telegram.ui.on0 on0Var, EditTextBoldCursor editTextBoldCursor, String str, HashMap hashMap) {
+        this.e = on0Var;
+        this.f28607b = editTextBoldCursor;
+        this.f28608c = str;
+        this.d = hashMap;
+    }
+
+    private final void a(Editable editable) {
+    }
+
+    private final void b(int i10, int i11, int i12, CharSequence charSequence) {
+    }
+
+    private final void c(int i10, int i11, int i12, CharSequence charSequence) {
+    }
+
+    private final void d(int i10, int i11, int i12, CharSequence charSequence) {
     }
 }

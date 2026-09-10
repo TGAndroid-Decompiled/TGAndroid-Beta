@@ -1,47 +1,69 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class mj1 {
-    public org.telegram.ui.Cells.z1 f38751a;
-    public org.telegram.ui.ActionBar.b2 f38752b;
-    public TextView f38753c;
+import android.view.View;
+import android.view.ViewGroup;
+public final class mj1 extends org.telegram.ui.Components.ul0 {
+    public final Context f34989c;
+    public final WallpapersListActivity d;
 
-    public static void a(Context context, e2.h hVar, Runnable runnable) {
-        ?? obj = new Object();
-        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(context);
-        alertDialog$Builder.f20225a.R = LocaleController.getString(R.string.TermsOfUse);
-        LinearLayout f7 = org.telegram.messenger.wl.f(context, 1);
-        TextView textView = new TextView(context);
-        textView.setLetterSpacing(0.025f);
-        textView.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f20797j5, false));
-        textView.setTextSize(1, 14.0f);
-        f7.addView(textView, w7.x5.t(-1, -2, 0, 24, 0, 24, 0));
-        org.telegram.ui.Cells.z1 z1Var = new org.telegram.ui.Cells.z1(context, 1, null);
-        obj.f38751a = z1Var;
-        z1Var.getTextView().getLayoutParams().width = -1;
-        obj.f38751a.getTextView().setTextSize(1, 14.0f);
-        f7.addView(obj.f38751a, w7.x5.t(-1, 48, 3, 8, 0, 8, 0));
-        boolean[] zArr = new boolean[1];
-        org.telegram.messenger.w1.n(R.string.BotWebAppDisclaimerSubtitle, textView);
-        obj.f38751a.e(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.BotWebAppDisclaimerCheck), new pv(context, 8)), "", false, false, false);
-        alertDialog$Builder.n(f7);
-        alertDialog$Builder.k(LocaleController.getString(R.string.Continue), new qv0(21, hVar, zArr));
-        alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), new sw0(5));
-        org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20225a;
-        obj.f38752b = b2Var;
-        b2Var.show();
-        TextView textView2 = (TextView) obj.f38752b.d(-1);
-        obj.f38753c = textView2;
-        textView2.setEnabled(false);
-        obj.f38753c.setAlpha(0.5f);
-        obj.f38751a.setOnClickListener(new j41(obj, 9));
-        obj.f38751a.setBackground(org.telegram.ui.ActionBar.j6.f0(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f20780i6, false), 7, -1));
-        obj.f38752b.setOnDismissListener(new org.telegram.ui.Components.n2(zArr, runnable));
+    public mj1(WallpapersListActivity wallpapersListActivity, Context context) {
+        this.d = wallpapersListActivity;
+        this.f34989c = context;
+    }
+
+    @Override
+    public final boolean D(s4.c1 c1Var) {
+        if (c1Var.f41613f == 0) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public final int h() {
+        return this.d.f30734a;
+    }
+
+    @Override
+    public final int j(int i10) {
+        int i11;
+        WallpapersListActivity wallpapersListActivity = this.d;
+        i11 = wallpapersListActivity.uploadImageRow;
+        if (i10 != i11 && i10 != wallpapersListActivity.f30749r && i10 != wallpapersListActivity.f30736b && i10 != wallpapersListActivity.h) {
+            if (i10 != wallpapersListActivity.f30738c && i10 != wallpapersListActivity.f30742f) {
+                if (i10 != wallpapersListActivity.f30748n && i10 != wallpapersListActivity.f30750s) {
+                    return 2;
+                }
+                return 3;
+            }
+            return 1;
+        }
+        return 0;
+    }
+
+    @Override
+    public final void v(s4.c1 r17, int r18) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.mj1.v(s4.c1, int):void");
+    }
+
+    @Override
+    public final s4.c1 x(ViewGroup viewGroup, int i10) {
+        View s8Var;
+        Context context = this.f34989c;
+        if (i10 != 0) {
+            if (i10 != 1) {
+                if (i10 != 3) {
+                    s8Var = new org.telegram.ui.Components.lj(this, context, 1);
+                } else {
+                    s8Var = new org.telegram.ui.Cells.f9(context);
+                }
+            } else {
+                s8Var = new org.telegram.ui.Cells.c7(context, (org.telegram.ui.Cells.r6) null);
+            }
+        } else {
+            s8Var = new org.telegram.ui.Cells.s8(context);
+        }
+        return new s4.c1(s8Var);
     }
 }

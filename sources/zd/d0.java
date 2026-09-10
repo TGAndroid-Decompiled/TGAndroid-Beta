@@ -1,13 +1,13 @@
 package zd;
 public final class d0 {
-    public static final d0 f51561a;
-    public static final d0[] f51562b;
+    public static final d0 f47995a;
+    public static final d0[] f47996b;
 
     static {
         ?? r02 = new Enum("DEFAULT", 0);
-        f51561a = r02;
+        f47995a = r02;
         d0[] d0VarArr = {r02, new Enum("LAZY", 1), new Enum("ATOMIC", 2), new Enum("UNDISPATCHED", 3)};
-        f51562b = d0VarArr;
+        f47996b = d0VarArr;
         w7.m.a(d0VarArr);
     }
 
@@ -16,6 +16,6 @@ public final class d0 {
     }
 
     public static d0[] values() {
-        return (d0[]) f51562b.clone();
+        return (d0[]) f47996b.clone();
     }
 }

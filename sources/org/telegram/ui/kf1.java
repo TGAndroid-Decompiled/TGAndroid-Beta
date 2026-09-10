@@ -1,96 +1,64 @@
 package org.telegram.ui;
 
-import android.content.SharedPreferences;
+import android.view.View;
+import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MessagesController;
-import org.telegram.tgnet.TLRPC;
-public final class kf1 implements org.telegram.ui.Components.no {
-    public final TLRPC.TL_forumTopic f38074a;
-    public final eg1 f38075b;
+import org.telegram.messenger.BuildVars;
+import org.telegram.messenger.FileLog;
+public final class kf1 extends s4.c0 {
+    public boolean I;
+    public final ig1 J;
 
-    public kf1(eg1 eg1Var, TLRPC.TL_forumTopic tL_forumTopic) {
-        this.f38075b = eg1Var;
-        this.f38074a = tL_forumTopic;
+    public kf1(ig1 ig1Var) {
+        this.J = ig1Var;
     }
 
     @Override
-    public final void dismiss() {
-        this.f38075b.finishPreviewFragment();
-    }
-
-    @Override
-    public final void n() {
-        int i10;
-        int i11;
-        eg1 eg1Var = this.f38075b;
-        eg1Var.finishPreviewFragment();
-        MessagesController messagesController = eg1Var.getMessagesController();
-        long j3 = eg1Var.f36052a;
-        TLRPC.TL_forumTopic tL_forumTopic = this.f38074a;
-        boolean isDialogMuted = messagesController.isDialogMuted(-j3, tL_forumTopic.f19948id);
-        eg1Var.getNotificationsController().muteDialog(-j3, tL_forumTopic.f19948id, !isDialogMuted);
-        if (org.telegram.ui.Components.yc.a(eg1Var)) {
-            if (!isDialogMuted) {
-                i10 = 3;
-            } else {
-                i10 = 4;
-            }
-            if (!isDialogMuted) {
-                i11 = Integer.MAX_VALUE;
-            } else {
-                i11 = 0;
-            }
-            org.telegram.ui.Components.yc.z(eg1Var, i10, i11, eg1Var.getResourceProvider()).j();
-        }
-    }
-
-    @Override
-    public final void p() {
-        this.f38075b.finishPreviewFragment();
-        AndroidUtilities.runOnUIThread(new w81(12, this, this.f38074a), 500L);
-    }
-
-    @Override
-    public final void s() {
-        int i10;
-        eg1 eg1Var = this.f38075b;
-        i10 = ((org.telegram.ui.ActionBar.n2) eg1Var).currentAccount;
-        SharedPreferences notificationsSettings = MessagesController.getNotificationsSettings(i10);
-        StringBuilder sb2 = new StringBuilder("sound_enabled_");
-        long j3 = eg1Var.f36052a;
-        TLRPC.TL_forumTopic tL_forumTopic = this.f38074a;
-        boolean z10 = notificationsSettings.getBoolean(org.telegram.messenger.w1.i(-j3, tL_forumTopic.f19948id, sb2), true);
-        boolean z11 = !z10 ? 1 : 0;
-        notificationsSettings.edit().putBoolean(org.telegram.messenger.w1.i(-j3, tL_forumTopic.f19948id, new StringBuilder("sound_enabled_")), z11).apply();
-        eg1Var.finishPreviewFragment();
-        if (org.telegram.ui.Components.yc.a(eg1Var)) {
-            org.telegram.ui.Components.yc.S(z10 ? 1 : 0, eg1Var, eg1Var.getResourceProvider()).j();
-        }
-    }
-
-    @Override
-    public final void x(int i10) {
-        eg1 eg1Var = this.f38075b;
-        long j3 = eg1Var.f36052a;
-        eg1Var.finishPreviewFragment();
-        TLRPC.TL_forumTopic tL_forumTopic = this.f38074a;
-        if (i10 == 0) {
-            if (eg1Var.getMessagesController().isDialogMuted(-j3, tL_forumTopic.f19948id)) {
-                eg1Var.getNotificationsController().muteDialog(-j3, tL_forumTopic.f19948id, false);
-            }
-            if (org.telegram.ui.Components.yc.a(eg1Var)) {
-                org.telegram.ui.Components.yc.z(eg1Var, 4, i10, eg1Var.getResourceProvider()).j();
+    public final void b0(of.e eVar, s4.z0 z0Var) {
+        if (BuildVars.DEBUG_PRIVATE_VERSION) {
+            try {
+                super.b0(eVar, z0Var);
                 return;
+            } catch (IndexOutOfBoundsException unused) {
+                throw new RuntimeException("Inconsistency detected. ");
             }
+        }
+        try {
+            super.b0(eVar, z0Var);
+        } catch (IndexOutOfBoundsException e) {
+            FileLog.e(e);
+            AndroidUtilities.runOnUIThread(new k01(this, 18));
+        }
+    }
+
+    @Override
+    public final void b1(View view, View view2, int i10, int i11) {
+        this.I = true;
+        super.b1(view, view2, i10, i11);
+        this.I = false;
+    }
+
+    @Override
+    public final void h1(int i10, int i11) {
+        if (this.I) {
+            i11 -= this.J.N.getPaddingTop();
+        }
+        super.h1(i10, i11);
+    }
+
+    @Override
+    public final int o0(int r19, of.e r20, s4.z0 r21) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.kf1.o0(int, of.e, s4.z0):int");
+    }
+
+    @Override
+    public final void v0(RecyclerView recyclerView, s4.z0 z0Var, int i10) {
+        if (this.J.f33723x > 0 && i10 == 1) {
+            super.v0(recyclerView, z0Var, i10);
             return;
         }
-        eg1Var.getNotificationsController().muteUntil(-j3, tL_forumTopic.f19948id, i10);
-        if (org.telegram.ui.Components.yc.a(eg1Var)) {
-            org.telegram.ui.Components.yc.z(eg1Var, 5, i10, eg1Var.getResourceProvider()).j();
-        }
-    }
-
-    @Override
-    public final void m() {
+        ii.o oVar = new ii.o(recyclerView.getContext(), 0);
+        oVar.f41760a = i10;
+        w0(oVar);
     }
 }

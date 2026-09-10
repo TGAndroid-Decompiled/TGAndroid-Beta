@@ -1,45 +1,154 @@
 package org.telegram.ui.ActionBar;
 
+import android.app.Activity;
+import android.graphics.Canvas;
+import android.graphics.Paint;
 import android.graphics.Point;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import java.util.WeakHashMap;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ImageLoader;
-import org.telegram.messenger.ImageLocation;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
-public final class b4 implements Utilities.Callback {
-    public final Utilities.Callback f20291a;
-    public final TLRPC.WallPaper f20292b;
-    public final int f20293c;
-    public final int d;
-    public final long f20294e;
+import org.telegram.messenger.BuildVars;
+import org.telegram.messenger.FileLog;
+public final class b4 extends FrameLayout {
+    public f5 f17549a;
+    public ActionBarLayout f17550b;
+    public boolean f17551c;
+    public final Paint d;
+    public r0.l1 e;
+    public i0.c f17552f;
+    public i0.c h;
 
-    public b4(Utilities.Callback callback, TLRPC.WallPaper wallPaper, int i10, int i11, long j3) {
-        this.f20291a = callback;
-        this.f20292b = wallPaper;
-        this.f20293c = i10;
-        this.d = i11;
-        this.f20294e = j3;
+    public b4(Activity activity) {
+        super(activity);
+        this.d = new Paint(1);
+        i0.c cVar = i0.c.e;
+        this.f17552f = cVar;
+        this.h = cVar;
+        o oVar = new o(this, 8);
+        WeakHashMap weakHashMap = r0.i0.f41062a;
+        r0.a0.j(this, oVar);
+        setSystemUiVisibility(1280);
     }
 
     @Override
-    public final void run(Object obj) {
-        dg.a aVar = (dg.a) obj;
-        Utilities.Callback callback = this.f20291a;
-        if (aVar != null) {
-            callback.run(aVar);
-            return;
+    public final void addView(View view, int i10, ViewGroup.LayoutParams layoutParams) {
+        super.addView(view, i10, layoutParams);
+        r0.l1 l1Var = this.e;
+        if (l1Var != null) {
+            if ((view instanceof ActionBarLayout) || view.getTag() == null) {
+                r0.i0.b(view, l1Var);
+            }
         }
-        TLRPC.WallPaper wallPaper = this.f20292b;
-        ImageLocation forDocument = ImageLocation.getForDocument(wallPaper.document);
-        ImageReceiver imageReceiver = new ImageReceiver();
-        imageReceiver.setAllowLoadingOnAttachedOnly(false);
+    }
+
+    @Override
+    public final void dispatchDraw(Canvas canvas) {
+        ActionBarLayout actionBarLayout = this.f17550b;
+        if (actionBarLayout != null && actionBarLayout.getParent() == this) {
+            this.f17550b.N(canvas, this);
+        }
+        super.dispatchDraw(canvas);
+    }
+
+    public Paint getInternalNavbarPaint() {
+        return this.d;
+    }
+
+    @Override
+    public final boolean hasOverlappingRendering() {
+        return false;
+    }
+
+    @Override
+    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        return ((ActionBarLayout) this.f17549a).j();
+    }
+
+    @Override
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        this.f17551c = true;
+        int childCount = getChildCount();
+        for (int i14 = 0; i14 < childCount; i14++) {
+            View childAt = getChildAt(i14);
+            if (childAt.getVisibility() != 8) {
+                FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) childAt.getLayoutParams();
+                try {
+                    childAt.layout(layoutParams.leftMargin, layoutParams.topMargin + getPaddingTop(), layoutParams.leftMargin + childAt.getMeasuredWidth(), layoutParams.topMargin + childAt.getMeasuredHeight() + getPaddingTop());
+                } catch (Exception e) {
+                    FileLog.e(e);
+                    if (BuildVars.DEBUG_VERSION) {
+                        throw e;
+                    }
+                }
+            }
+        }
+        this.f17551c = false;
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        int makeMeasureSpec;
+        int size = View.MeasureSpec.getSize(i10);
+        int size2 = View.MeasureSpec.getSize(i11);
+        setMeasuredDimension(size, size2);
+        i0.c cVar = this.f17552f;
+        int i12 = (size - cVar.f10074a) - cVar.f10076c;
+        int i13 = (size2 - cVar.f10075b) - cVar.d;
         Point point = AndroidUtilities.displaySize;
-        int min = Math.min(point.x, point.y);
-        Point point2 = AndroidUtilities.displaySize;
-        int max = Math.max(point2.x, point2.y);
-        imageReceiver.setImage(forDocument, (min / AndroidUtilities.density) + "_" + (max / AndroidUtilities.density) + "_f", null, ".jpg", wallPaper, 1);
-        imageReceiver.setDelegate(new org.telegram.tgnet.g(this.f20293c, this.d, this.f20294e, callback));
-        ImageLoader.getInstance().loadImageForImageReceiver(imageReceiver);
+        point.x = i12;
+        point.y = i13;
+        int childCount = getChildCount();
+        for (int i14 = 0; i14 < childCount; i14++) {
+            View childAt = getChildAt(i14);
+            if (childAt.getVisibility() != 8) {
+                FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) childAt.getLayoutParams();
+                int makeMeasureSpec2 = View.MeasureSpec.makeMeasureSpec((size - layoutParams.leftMargin) - layoutParams.rightMargin, 1073741824);
+                int i15 = layoutParams.height;
+                if (i15 > 0) {
+                    makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(i15, 1073741824);
+                } else {
+                    makeMeasureSpec = View.MeasureSpec.makeMeasureSpec((size2 - layoutParams.topMargin) - layoutParams.bottomMargin, 1073741824);
+                }
+                if ((childAt instanceof ActionBarLayout) && ((ActionBarLayout) childAt).e0()) {
+                    childAt.forceLayout();
+                }
+                childAt.measure(makeMeasureSpec2, makeMeasureSpec);
+            }
+        }
+    }
+
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        return false;
+    }
+
+    @Override
+    public final void requestLayout() {
+        if (!this.f17551c) {
+            super.requestLayout();
+        }
+    }
+
+    public void setActionBarLayout(ActionBarLayout actionBarLayout) {
+        this.f17550b = actionBarLayout;
+    }
+
+    public void setInternalNavigationBarColor(int i10) {
+        Paint paint = this.d;
+        if (paint.getColor() != i10) {
+            paint.setColor(i10);
+            invalidate();
+            int childCount = getChildCount();
+            for (int i11 = 0; i11 < childCount; i11++) {
+                getChildAt(i11).invalidate();
+            }
+        }
+    }
+
+    public void setParentActionBarLayout(f5 f5Var) {
+        this.f17549a = f5Var;
     }
 }

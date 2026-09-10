@@ -1,35 +1,23 @@
 package qg;
-public final class w0 implements Runnable {
-    public final int f44641a;
-    public final c1 f44642b;
 
-    public w0(c1 c1Var, int i10) {
-        this.f44641a = i10;
-        this.f44642b = c1Var;
+import android.content.Context;
+import android.widget.Scroller;
+public final class w0 extends Scroller {
+    public final x0 f40954a;
+
+    public w0(x0 x0Var, Context context) {
+        super(context);
+        this.f40954a = x0Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f44641a) {
-            case 0:
-                b1 b1Var = this.f44642b.f44415a;
-                if (b1Var != null) {
-                    b1Var.b();
-                    return;
-                }
-                return;
-            case 1:
-                c1 c1Var = this.f44642b;
-                c1Var.f44417c.a(c1Var.f44421r);
-                a1 a1Var = c1Var.d;
-                a1Var.getClass();
-                a1Var.postRunnable(new z0(a1Var, 2));
-                c1Var.d = null;
-                return;
-            default:
-                c1 c1Var2 = this.f44642b;
-                c1Var2.f44417c.q(c1Var2.f44424x);
-                return;
+    public final void startScroll(int i10, int i11, int i12, int i13, int i14) {
+        int i15;
+        if (this.f40954a.f40980x0) {
+            i15 = 3;
+        } else {
+            i15 = 1;
         }
+        super.startScroll(i10, i11, i12, i13, i15 * i14);
     }
 }

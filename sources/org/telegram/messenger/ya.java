@@ -1,23 +1,29 @@
 package org.telegram.messenger;
-public final class ya implements Runnable {
-    public final int f19728a;
-    public final q0.a f19729b;
-    public final int f19730c;
 
-    public ya(q0.a aVar, int i10, int i11) {
-        this.f19728a = i11;
-        this.f19729b = aVar;
-        this.f19730c = i10;
+import org.telegram.tgnet.TLObject;
+public final class ya implements Runnable {
+    public final int f17047a;
+    public final MessagesController f17048b;
+    public final TLObject f17049c;
+    public final org.telegram.ui.ActionBar.i6 d;
+    public final org.telegram.ui.ActionBar.h6 e;
+
+    public ya(MessagesController messagesController, TLObject tLObject, org.telegram.ui.ActionBar.i6 i6Var, org.telegram.ui.ActionBar.h6 h6Var, int i10) {
+        this.f17047a = i10;
+        this.f17048b = messagesController;
+        this.f17049c = tLObject;
+        this.d = i6Var;
+        this.e = h6Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f19728a) {
+        switch (this.f17047a) {
             case 0:
-                MessagesController.lambda$getNextReactionMentionInternal$1(this.f19729b, this.f19730c);
+                this.f17048b.lambda$didReceivedNotification$46(this.f17049c, this.d, this.e);
                 return;
             default:
-                MessagesController.lambda$getNextReactionMentionInternal$2(this.f19729b, this.f19730c);
+                this.f17048b.lambda$didReceivedNotification$48(this.f17049c, this.d, this.e);
                 return;
         }
     }

@@ -21,11 +21,11 @@ public abstract class n8 {
             } else {
                 try {
                     sb2 = obj.toString();
-                } catch (Exception e7) {
+                } catch (Exception e) {
                     String str2 = obj.getClass().getName() + '@' + Integer.toHexString(System.identityHashCode(obj));
-                    Logger.getLogger("com.google.common.base.Strings").logp(Level.WARNING, "com.google.common.base.Strings", "lenientToString", "Exception during lenientFormat for ".concat(str2), (Throwable) e7);
+                    Logger.getLogger("com.google.common.base.Strings").logp(Level.WARNING, "com.google.common.base.Strings", "lenientToString", "Exception during lenientFormat for ".concat(str2), (Throwable) e);
                     StringBuilder v = a4.a.v("<", str2, " threw ");
-                    v.append(e7.getClass().getName());
+                    v.append(e.getClass().getName());
                     v.append(">");
                     sb2 = v.toString();
                 }

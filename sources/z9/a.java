@@ -1,50 +1,90 @@
 package z9;
 
-import cf.c;
+import android.util.JsonReader;
+import android.view.WindowManager;
+import bi.u6;
 import com.google.firebase.sessions.FirebaseSessionsRegistrar;
-import org.telegram.ui.ActionBar.a2;
-import org.telegram.ui.ActionBar.b2;
-import org.telegram.ui.hh1;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.voip.NativeInstance;
+import org.telegram.ui.ActionBar.c2;
+import org.telegram.ui.ActionBar.d2;
+import org.telegram.ui.Components.qv0;
+import org.telegram.ui.Components.rv0;
 import q9.d;
-import zh.w3;
-public final class a implements d, a2 {
-    public final int f51407a;
+import zh.x0;
+public final class a implements b, d, NativeInstance.AudioLevelsCallback, qv0, rv0, c2 {
+    public final int f47855a;
 
     public a(int i10) {
-        this.f51407a = i10;
+        this.f47855a = i10;
     }
 
     @Override
-    public Object D(c cVar) {
-        switch (this.f51407a) {
-            case 7:
-                return FirebaseSessionsRegistrar.e(cVar);
-            case 8:
-                return FirebaseSessionsRegistrar.f(cVar);
-            case 9:
-                return FirebaseSessionsRegistrar.a(cVar);
+    public Object P1(u6 u6Var) {
+        switch (this.f47855a) {
+            case 2:
+                return FirebaseSessionsRegistrar.e(u6Var);
+            case 3:
+                return FirebaseSessionsRegistrar.f(u6Var);
+            case 4:
+                return FirebaseSessionsRegistrar.a(u6Var);
+            case 5:
+                return FirebaseSessionsRegistrar.b(u6Var);
+            case 6:
+                return FirebaseSessionsRegistrar.d(u6Var);
+            default:
+                return FirebaseSessionsRegistrar.c(u6Var);
+        }
+    }
+
+    @Override
+    public Object a(JsonReader jsonReader) {
+        return c.a(jsonReader);
+    }
+
+    @Override
+    public void b(Object obj, float f7) {
+        x0 x0Var = (x0) obj;
+        switch (this.f47855a) {
             case 10:
-                return FirebaseSessionsRegistrar.b(cVar);
-            case 11:
-                return FirebaseSessionsRegistrar.d(cVar);
+                WindowManager.LayoutParams layoutParams = x0Var.f49027c;
+                x0Var.N = f7;
+                layoutParams.x = (int) f7;
+                AndroidUtilities.updateViewLayout(x0Var.f49026b, x0Var.d, layoutParams);
+                return;
             default:
-                return FirebaseSessionsRegistrar.c(cVar);
+                WindowManager.LayoutParams layoutParams2 = x0Var.f49027c;
+                x0Var.O = f7;
+                layoutParams2.y = (int) f7;
+                AndroidUtilities.updateViewLayout(x0Var.f49026b, x0Var.d, layoutParams2);
+                return;
         }
     }
 
     @Override
-    public void g(b2 b2Var, int i10) {
-        switch (this.f51407a) {
+    public void f(d2 d2Var, int i10) {
+        switch (this.f47855a) {
             case 13:
-                w3.d2(new hh1(6, null));
+                d2Var.dismiss();
                 return;
             default:
-                int i11 = w3.f52785q1;
+                d2Var.dismiss();
                 return;
         }
     }
 
-    public a(w3 w3Var) {
-        this.f51407a = 13;
+    @Override
+    public float get(Object obj) {
+        x0 x0Var = (x0) obj;
+        switch (this.f47855a) {
+            case 9:
+                return x0Var.N;
+            default:
+                return x0Var.O;
+        }
+    }
+
+    @Override
+    public void run(int[] iArr, float[] fArr, boolean[] zArr) {
     }
 }

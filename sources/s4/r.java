@@ -1,11 +1,11 @@
 package s4;
 public final class r extends p0 {
-    public int f45893e;
-    public int f45894f;
+    public int e;
+    public int f41723f;
 
     public r(int i10, int i11) {
         super(i10, i11);
-        this.f45893e = -1;
-        this.f45894f = 0;
+        this.e = -1;
+        this.f41723f = 0;
     }
 }

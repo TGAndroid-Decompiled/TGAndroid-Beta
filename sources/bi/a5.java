@@ -1,100 +1,36 @@
 package bi;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.aj0;
-public final class a5 implements Utilities.Callback4 {
-    public final int f2780a;
-    public final f5 f2781b;
-    public final l5 f2782c;
+import android.view.View;
+import android.view.ViewTreeObserver;
+public final class a5 implements View.OnAttachStateChangeListener {
+    public final boolean f2312a;
+    public final View f2313b;
+    public final b5 f2314c;
 
-    public a5(f5 f5Var, l5 l5Var, int i10) {
-        this.f2780a = i10;
-        this.f2781b = f5Var;
-        this.f2782c = l5Var;
+    public a5(b5 b5Var, boolean z10, View view) {
+        this.f2314c = b5Var;
+        this.f2312a = z10;
+        this.f2313b = view;
     }
 
     @Override
-    public final void run(Object obj, Object obj2, Object obj3, Object obj4) {
-        switch (this.f2780a) {
-            case 0:
-                Long l4 = (Long) obj;
-                Runnable runnable = (Runnable) obj2;
-                Boolean bool = (Boolean) obj3;
-                Long l10 = (Long) obj4;
-                long currentTimeMillis = System.currentTimeMillis();
-                o5 o5Var = this.f2781b.f2999l;
-                n5 n5Var = o5Var.M2;
-                ob obVar = (ob) n5Var.f3393c;
-                if (obVar == null) {
-                    ((gb) o5Var.Q1).g(false);
-                    o5Var.setActive(true);
-                    o5Var.U3 = false;
-                    o5Var.f3456i1 = new a3(1, runnable);
-                    if (bool.booleanValue()) {
-                        o5Var.f1(false);
-                    }
-                    AndroidUtilities.runOnUIThread(runnable, 400L);
-                    return;
-                }
-                obVar.firstFrameRendered = false;
-                n5Var.f3391a = false;
-                obVar.setOnReadyListener(new b3(1, currentTimeMillis, runnable));
-                ((gb) o5Var.Q1).g(false);
-                aj0 aj0Var = o5Var.f3507z0;
-                if (aj0Var != null) {
-                    aj0Var.setAnimation(this.f2782c.f3293u);
-                }
-                if (o5Var.R2 > 0 && l4.longValue() > o5Var.R2 - 1400) {
-                    l4 = 0L;
-                }
-                o5Var.T0(l4.longValue(), true);
-                o5Var.U3 = false;
-                AndroidUtilities.runOnUIThread(runnable, 400L);
-                if (bool.booleanValue()) {
-                    o5Var.f1(false);
-                    return;
-                }
-                return;
-            default:
-                Long l11 = (Long) obj;
-                Runnable runnable2 = (Runnable) obj2;
-                Boolean bool2 = (Boolean) obj3;
-                Long l12 = (Long) obj4;
-                long currentTimeMillis2 = System.currentTimeMillis();
-                o5 o5Var2 = this.f2781b.f2999l;
-                n5 n5Var2 = o5Var2.M2;
-                ob obVar2 = (ob) n5Var2.f3393c;
-                if (obVar2 == null) {
-                    ((gb) o5Var2.Q1).g(false);
-                    o5Var2.setActive(true);
-                    o5Var2.U3 = false;
-                    o5Var2.f3456i1 = new a3(2, runnable2);
-                    if (bool2.booleanValue()) {
-                        o5Var2.f1(false);
-                    }
-                    AndroidUtilities.runOnUIThread(runnable2, 400L);
-                    return;
-                }
-                obVar2.firstFrameRendered = false;
-                n5Var2.f3391a = false;
-                obVar2.setOnReadyListener(new b3(2, currentTimeMillis2, runnable2));
-                ((gb) o5Var2.Q1).g(false);
-                aj0 aj0Var2 = o5Var2.f3507z0;
-                if (aj0Var2 != null) {
-                    aj0Var2.setAnimation(this.f2782c.f3293u);
-                }
-                if (o5Var2.R2 > 0 && l11.longValue() > o5Var2.R2 - 1400) {
-                    l11 = 0L;
-                }
-                o5Var2.T0(l11.longValue(), true);
-                o5Var2.U3 = false;
-                AndroidUtilities.runOnUIThread(runnable2, 400L);
-                if (bool2.booleanValue()) {
-                    o5Var2.f1(false);
-                    return;
-                }
-                return;
+    public final void onViewAttachedToWindow(View view) {
+        boolean z10 = this.f2312a;
+        b5 b5Var = this.f2314c;
+        if (z10) {
+            b5Var.f2358b = view.getRootView();
         }
+        View view2 = this.f2313b;
+        view2.getViewTreeObserver().addOnGlobalLayoutListener(b5Var.f2363j);
+        view2.addOnLayoutChangeListener(b5Var.f2362i);
+    }
+
+    @Override
+    public final void onViewDetachedFromWindow(View view) {
+        View view2 = this.f2313b;
+        ViewTreeObserver viewTreeObserver = view2.getViewTreeObserver();
+        b5 b5Var = this.f2314c;
+        viewTreeObserver.removeOnGlobalLayoutListener(b5Var.f2363j);
+        view2.removeOnLayoutChangeListener(b5Var.f2362i);
     }
 }

@@ -1,113 +1,79 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.CornerPathEffect;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffXfermode;
-import android.graphics.drawable.Drawable;
-import org.telegram.messenger.AndroidUtilities;
-public final class d10 extends Drawable {
-    public final Drawable f25197a;
-    public final Path f25198b;
-    public boolean f25199c = true;
-    public final Paint d;
-    public final Paint f25200e;
+import android.view.ViewGroup;
+import org.telegram.tgnet.tl.TL_chatlists;
+public final class d10 extends ul0 {
+    public final k10 f22272c;
 
-    public d10(Context context, int i10, int i11) {
-        this.f25197a = context.getResources().getDrawable(i10);
-        if (i11 >= 0) {
-            this.f25198b = new Path();
-            Paint paint = new Paint(1);
-            this.d = paint;
-            paint.setStyle(Paint.Style.STROKE);
-            paint.setColor(-16777216);
-            paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
-            paint.setPathEffect(new CornerPathEffect(AndroidUtilities.dp(1.0f)));
-            paint.setStrokeCap(Paint.Cap.ROUND);
-            paint.setStrokeJoin(Paint.Join.ROUND);
-            Paint paint2 = new Paint(1);
-            this.f25200e = paint2;
-            paint2.setStyle(Paint.Style.FILL);
-            int[] iArr = org.telegram.ui.ActionBar.j6.f20945r8;
-            paint2.setColor(org.telegram.ui.ActionBar.j6.w0(null, iArr[i11 % iArr.length], false));
-            paint2.setPathEffect(new CornerPathEffect(AndroidUtilities.dp(1.0f)));
-            return;
-        }
-        this.f25198b = null;
-        this.d = null;
-        this.f25200e = null;
-    }
-
-    public final int a(float f7) {
-        return AndroidUtilities.lerp(getBounds().left, getBounds().right, f7);
-    }
-
-    public final int b(float f7) {
-        return AndroidUtilities.lerp(getBounds().top, getBounds().bottom, f7);
+    public d10(k10 k10Var) {
+        this.f22272c = k10Var;
     }
 
     @Override
-    public final void draw(Canvas canvas) {
-        Drawable drawable = this.f25197a;
-        Path path = this.f25198b;
-        if (path != null) {
-            canvas.saveLayerAlpha(getBounds().left, getBounds().top, getBounds().right, getBounds().bottom, 255);
-            drawable.setBounds(getBounds());
-            drawable.draw(canvas);
-            boolean z10 = this.f25199c;
-            Paint paint = this.d;
-            if (z10) {
-                path.rewind();
-                path.moveTo(a(0.4871f), b(0.6025f));
-                path.lineTo(a(0.8974f), b(0.6025f));
-                path.lineTo(a(1.0f), b(0.7564f));
-                path.lineTo(a(0.8974f), b(0.9102f));
-                path.lineTo(a(0.4871f), b(0.9102f));
-                path.close();
-                this.f25199c = false;
-                paint.setStrokeWidth(AndroidUtilities.dp(3.0f));
+    public final boolean D(s4.c1 c1Var) {
+        if (c1Var.f41613f == 2) {
+            int b10 = c1Var.b();
+            k10 k10Var = this.f22272c;
+            if (b10 >= k10Var.f24552r0 && c1Var.b() <= k10Var.f24553s0) {
+                return true;
             }
-            canvas.drawPath(path, paint);
-            canvas.drawPath(path, this.f25200e);
-            canvas.restore();
-            return;
+            return false;
         }
-        drawable.setBounds(getBounds());
-        drawable.draw(canvas);
+        return false;
     }
 
     @Override
-    public final int getIntrinsicHeight() {
-        return this.f25197a.getIntrinsicHeight();
+    public final int h() {
+        return this.f22272c.f24549o0;
     }
 
     @Override
-    public final int getIntrinsicWidth() {
-        return this.f25197a.getIntrinsicWidth();
+    public final int j(int i10) {
+        k10 k10Var = this.f22272c;
+        k10Var.getClass();
+        if (i10 == 0) {
+            return 0;
+        }
+        if (i10 != k10Var.f24550p0 && i10 != k10Var.f24554t0 && i10 != k10Var.f24558x0) {
+            if (i10 != k10Var.f24551q0 && i10 != k10Var.f24555u0) {
+                return 2;
+            }
+            return 3;
+        }
+        return 1;
     }
 
     @Override
-    public final int getOpacity() {
-        return this.f25197a.getOpacity();
+    public final void v(s4.c1 r11, int r12) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.d10.v(s4.c1, int):void");
     }
 
     @Override
-    public final void setAlpha(int i10) {
-        this.f25197a.setAlpha(i10);
-    }
-
-    @Override
-    public final void setBounds(int i10, int i11, int i12, int i13) {
-        super.setBounds(i10, i11, i12, i13);
-        this.f25199c = true;
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
-        this.f25197a.setColorFilter(colorFilter);
+    public final s4.c1 x(ViewGroup viewGroup, int i10) {
+        j10 j10Var;
+        j10 j10Var2;
+        k10 k10Var = this.f22272c;
+        if (i10 == 0) {
+            boolean z10 = false;
+            j10Var = new j10(k10Var, k10Var.getContext(), ((k10Var.Z instanceof TL_chatlists.TL_chatlists_chatlistInviteAlready) || k10Var.f24536a0 != null) ? true : true, k10Var.f24541f0, k10Var.f24539d0, k10Var.f24540e0);
+            k10Var.f24548n0 = j10Var;
+        } else {
+            j10Var = null;
+            if (i10 == 1) {
+                ?? f9Var = new org.telegram.ui.Cells.f9(k10Var.getContext());
+                f9Var.setBackgroundColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f17872a7, false));
+                j10Var2 = f9Var;
+            } else if (i10 == 2) {
+                ?? g4Var = new org.telegram.ui.Cells.g4(k10Var.getContext(), 1, 0, false);
+                g4Var.setBackgroundColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f17928d6, false));
+                j10Var = g4Var;
+            } else if (i10 == 3) {
+                ?? h10Var = new h10(k10Var.getContext());
+                h10Var.setBackgroundColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f17928d6, false));
+                j10Var2 = h10Var;
+            }
+            j10Var = j10Var2;
+        }
+        return new s4.c1(j10Var);
     }
 }

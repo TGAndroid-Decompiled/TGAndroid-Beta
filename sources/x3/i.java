@@ -3,39 +3,39 @@ package x3;
 import c3.h0;
 import c3.q;
 import e2.v;
-import n7.z0;
+import n7.a1;
 public abstract class i {
-    public h0 f48831b;
-    public q f48832c;
+    public h0 f44587b;
+    public q f44588c;
     public g d;
-    public long f48833e;
-    public long f48834f;
-    public long f48835g;
+    public long e;
+    public long f44589f;
+    public long f44590g;
     public int h;
-    public int f48836i;
-    public long f48838k;
-    public boolean f48839l;
-    public boolean f48840m;
-    public final e f48830a = new e();
-    public z0 f48837j = new z0(25, false);
+    public int f44591i;
+    public long f44593k;
+    public boolean f44594l;
+    public boolean f44595m;
+    public final e f44586a = new e();
+    public a1 f44592j = new a1(25, (byte) 0);
 
     public void a(long j3) {
-        this.f48835g = j3;
+        this.f44590g = j3;
     }
 
     public abstract long b(v vVar);
 
-    public abstract boolean c(v vVar, long j3, z0 z0Var);
+    public abstract boolean c(v vVar, long j3, a1 a1Var);
 
     public void d(boolean z10) {
         if (z10) {
-            this.f48837j = new z0(25, false);
-            this.f48834f = 0L;
+            this.f44592j = new a1(25, (byte) 0);
+            this.f44589f = 0L;
             this.h = 0;
         } else {
             this.h = 1;
         }
-        this.f48833e = -1L;
-        this.f48835g = 0L;
+        this.e = -1L;
+        this.f44590g = 0L;
     }
 }

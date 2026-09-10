@@ -1,44 +1,22 @@
 package i2;
+public final class d0 implements v0 {
+    public final Object f10119a;
+    public final u2.b0 f10120b;
+    public b2.k1 f10121c;
 
-import android.media.MediaFormat;
-public final class d0 implements a3.y, i1 {
-    public a3.y f11502a;
-    public d0 f11503b;
-
-    public final void a() {
-        d0 d0Var = this.f11503b;
-        if (d0Var != null) {
-            d0Var.a();
-        }
-    }
-
-    public final void b() {
-        d0 d0Var = this.f11503b;
-        if (d0Var != null) {
-            d0Var.b();
-        }
+    public d0(Object obj, u2.b0 b0Var) {
+        this.f10119a = obj;
+        this.f10120b = b0Var;
+        this.f10121c = b0Var.f42276o;
     }
 
     @Override
-    public final void c(long j3, long j10, b2.s sVar, MediaFormat mediaFormat) {
-        a3.y yVar = this.f11502a;
-        if (yVar != null) {
-            yVar.c(j3, j10, sVar, mediaFormat);
-        }
+    public final Object a() {
+        return this.f10119a;
     }
 
     @Override
-    public final void d(int i10, Object obj) {
-        if (i10 != 7) {
-            if (i10 != 8) {
-                if (i10 != 10000 || obj == null) {
-                    return;
-                }
-                throw new ClassCastException();
-            }
-            this.f11503b = (d0) obj;
-            return;
-        }
-        this.f11502a = (a3.y) obj;
+    public final b2.k1 b() {
+        return this.f10121c;
     }
 }

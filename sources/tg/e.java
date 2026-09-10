@@ -1,565 +1,378 @@
 package tg;
 
-import android.animation.AnimatorSet;
-import android.animation.ValueAnimator;
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.SurfaceTexture;
-import android.opengl.GLUtils;
-import android.view.GestureDetector;
-import android.view.MotionEvent;
-import android.view.TextureView;
-import android.view.animation.LinearInterpolator;
-import android.view.animation.OvershootInterpolator;
-import bi.t5;
+import android.text.SpannableStringBuilder;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import android.widget.TextView;
 import com.google.android.gms.internal.vision.e2;
-import h2.k;
-import java.util.ArrayList;
-import java.util.Collections;
-import javax.microedition.khronos.egl.EGL10;
-import javax.microedition.khronos.egl.EGLConfig;
-import javax.microedition.khronos.egl.EGLContext;
-import javax.microedition.khronos.egl.EGLDisplay;
-import javax.microedition.khronos.egl.EGLSurface;
-import javax.microedition.khronos.opengles.GL10;
+import java.util.Date;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.EmuDetector;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.pr;
-import org.telegram.ui.Components.voip.w;
-import sg.z1;
-import zh.w7;
-public class e extends TextureView implements TextureView.SurfaceTextureListener {
-    public boolean E;
-    public boolean F;
-    public k G;
-    public final int H;
-    public final long I;
-    public final int J;
-    public int K;
-    public final ArrayList L;
-    public boolean M;
-    public z1 N;
-    public final int O;
-    public volatile boolean P;
-    public volatile w7 Q;
-    public final GestureDetector R;
-    public ValueAnimator S;
-    public AnimatorSet T;
-    public final c U;
-    public final b V;
-    public final b W;
-    public boolean f46545a;
-    public final b f46546a0;
-    public a f46547b;
-    public SurfaceTexture f46548c;
-    public EGLDisplay d;
-    public EGLSurface f46549e;
-    public EGLContext f46550f;
-    public EGL10 h;
-    public EGLConfig f46551n;
-    public GL10 f46552r;
-    public int f46553s;
-    public int v;
-    public int f46554w;
-    public boolean f46555x;
-    public boolean f46556y;
+import org.telegram.messenger.ChatObject;
+import org.telegram.messenger.DialogObject;
+import org.telegram.messenger.Emoji;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.R;
+import org.telegram.messenger.UserConfig;
+import org.telegram.messenger.UserObject;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.f6;
+import org.telegram.ui.ActionBar.j6;
+import org.telegram.ui.ActionBar.p2;
+import org.telegram.ui.Components.g9;
+import org.telegram.ui.Components.ul0;
+import org.telegram.ui.Components.w9;
+import org.telegram.ui.w71;
+import org.telegram.ui.web.y1;
+import s4.c1;
+import u2.k0;
+import ug.c0;
+import ug.d0;
+import ug.r;
+import ug.t;
+public abstract class e extends ul0 {
+    public final f6 f42155c;
+    public boolean d;
+    public p2 e;
+    public TLRPC.TL_payments_checkedGiftCode f42156f;
+    public String h;
+    public FrameLayout f42157n;
 
-    public e(Context context, int i10, int i11) {
-        super(context);
-        int i12;
-        long j3;
-        int i13 = 0;
-        this.f46555x = false;
-        this.f46556y = true;
-        this.E = false;
-        this.F = false;
-        this.L = new ArrayList();
-        this.T = new AnimatorSet();
-        this.U = new c(this, 0);
-        this.V = new ValueAnimator.AnimatorUpdateListener(this) {
-            public final e f46540b;
-
-            {
-                this.f46540b = this;
-            }
-
-            @Override
-            public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                switch (r2) {
-                    case 0:
-                        this.f46540b.f46547b.f46519e = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                        return;
-                    case 1:
-                        this.f46540b.f46547b.d = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                        return;
-                    default:
-                        this.f46540b.f46547b.f46521g = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                        return;
-                }
-            }
-        };
-        this.W = new ValueAnimator.AnimatorUpdateListener(this) {
-            public final e f46540b;
-
-            {
-                this.f46540b = this;
-            }
-
-            @Override
-            public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                switch (r2) {
-                    case 0:
-                        this.f46540b.f46547b.f46519e = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                        return;
-                    case 1:
-                        this.f46540b.f46547b.d = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                        return;
-                    default:
-                        this.f46540b.f46547b.f46521g = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                        return;
-                }
-            }
-        };
-        this.f46546a0 = new ValueAnimator.AnimatorUpdateListener(this) {
-            public final e f46540b;
-
-            {
-                this.f46540b = this;
-            }
-
-            @Override
-            public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                switch (r2) {
-                    case 0:
-                        this.f46540b.f46547b.f46519e = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                        return;
-                    case 1:
-                        this.f46540b.f46547b.d = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                        return;
-                    default:
-                        this.f46540b.f46547b.f46521g = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                        return;
-                }
-            }
-        };
-        this.O = i11;
-        if (i11 != 1 && i11 != 4 && i11 != 3) {
-            i12 = 5;
-        } else {
-            i12 = 1;
-        }
-        this.J = i12;
-        if (i11 == 4) {
-            j3 = 0;
-        } else {
-            j3 = 2000;
-        }
-        this.I = j3;
-        setOpaque(false);
-        setRenderer(new a(context, i10, i11));
-        this.H = (int) AndroidUtilities.screenRefreshRate;
-        setSurfaceTextureListener(this);
-        GestureDetector gestureDetector = new GestureDetector(context, new t5(1, this));
-        this.R = gestureDetector;
-        gestureDetector.setIsLongpressEnabled(true);
-        while (i13 < this.J) {
-            i13 = e2.e(i13, i13, 1, this.L);
-        }
-        Collections.shuffle(this.L);
-    }
-
-    public static void a(e eVar) {
-        int[] iArr;
-        EGL10 egl10 = (EGL10) EGLContext.getEGL();
-        eVar.h = egl10;
-        EGLDisplay eglGetDisplay = egl10.eglGetDisplay(EGL10.EGL_DEFAULT_DISPLAY);
-        eVar.d = eglGetDisplay;
-        if (eglGetDisplay != EGL10.EGL_NO_DISPLAY) {
-            if (eVar.h.eglInitialize(eglGetDisplay, new int[2])) {
-                int[] iArr2 = new int[1];
-                EGLConfig[] eGLConfigArr = new EGLConfig[1];
-                if (EmuDetector.with(eVar.getContext()).detect()) {
-                    iArr = new int[]{12324, 8, 12323, 8, 12322, 8, 12321, 8, 12325, 16, 12344};
-                } else {
-                    iArr = new int[]{12352, 4, 12324, 8, 12323, 8, 12322, 8, 12321, 8, 12325, 16, 12326, 0, 12338, 1, 12344};
-                }
-                eVar.f46551n = null;
-                if (eVar.h.eglChooseConfig(eVar.d, iArr, eGLConfigArr, 1, iArr2)) {
-                    if (iArr2[0] > 0) {
-                        eVar.f46551n = eGLConfigArr[0];
-                    }
-                    EGLConfig eGLConfig = eVar.f46551n;
-                    if (eGLConfig != null) {
-                        eVar.f46550f = eVar.h.eglCreateContext(eVar.d, eGLConfig, EGL10.EGL_NO_CONTEXT, new int[]{12440, 2, 12344});
-                        eVar.f();
-                        eVar.f46549e = eVar.h.eglCreateWindowSurface(eVar.d, eVar.f46551n, eVar.f46548c, null);
-                        eVar.f();
-                        EGLSurface eGLSurface = eVar.f46549e;
-                        if (eGLSurface != null && eGLSurface != EGL10.EGL_NO_SURFACE) {
-                            if (eVar.h.eglMakeCurrent(eVar.d, eGLSurface, eGLSurface, eVar.f46550f)) {
-                                eVar.f();
-                                eVar.f46552r = (GL10) eVar.f46550f.getGL();
-                                eVar.f();
-                                return;
-                            }
-                            throw new RuntimeException("eglMakeCurrent failed " + GLUtils.getEGLErrorString(eVar.h.eglGetError()));
-                        }
-                        int eglGetError = eVar.h.eglGetError();
-                        if (eglGetError == 12299) {
-                            FileLog.e("eglCreateWindowSurface returned EGL10.EGL_BAD_NATIVE_WINDOW");
-                            return;
-                        }
-                        throw new RuntimeException("eglCreateWindowSurface failed " + GLUtils.getEGLErrorString(eglGetError));
-                    }
-                    throw new RuntimeException("eglConfig not initialized");
-                }
-                throw new IllegalArgumentException("eglChooseConfig failed " + GLUtils.getEGLErrorString(eVar.h.eglGetError()));
-            }
-            throw new RuntimeException("eglInitialize failed " + GLUtils.getEGLErrorString(eVar.h.eglGetError()));
-        }
-        throw new RuntimeException("eglGetDisplay failed " + GLUtils.getEGLErrorString(eVar.h.eglGetError()));
-    }
-
-    public static boolean b(e eVar) {
-        boolean z10;
-        synchronized (eVar) {
-            z10 = eVar.f46556y;
-        }
-        if (!z10 && eVar.f46547b != null) {
-            return false;
-        }
-        return true;
-    }
-
-    public static void c(e eVar, float f7) {
-        synchronized (eVar) {
-            try {
-                eVar.e();
-                a aVar = eVar.f46547b;
-                if (aVar != null) {
-                    aVar.D = f7;
-                    aVar.onDrawFrame(eVar.f46552r);
-                }
-                int glGetError = eVar.f46552r.glGetError();
-                if (glGetError != 0) {
-                    FileLog.e("GL error = 0x" + Integer.toHexString(glGetError));
-                }
-                eVar.h.eglSwapBuffers(eVar.d, eVar.f46549e);
-            } catch (Throwable th2) {
-                throw th2;
-            }
-        }
-    }
-
-    public final void d() {
-        ValueAnimator valueAnimator = this.S;
-        if (valueAnimator != null) {
-            valueAnimator.removeAllListeners();
-            this.S.cancel();
-            this.S = null;
-        }
-        AnimatorSet animatorSet = this.T;
-        if (animatorSet != null) {
-            animatorSet.removeAllListeners();
-            this.T.cancel();
-            this.T = null;
-        }
-    }
-
-    public final void e() {
-        if (this.f46550f.equals(this.h.eglGetCurrentContext()) && this.f46549e.equals(this.h.eglGetCurrentSurface(12377))) {
-            return;
-        }
-        f();
-        EGL10 egl10 = this.h;
-        EGLDisplay eGLDisplay = this.d;
-        EGLSurface eGLSurface = this.f46549e;
-        if (egl10.eglMakeCurrent(eGLDisplay, eGLSurface, eGLSurface, this.f46550f)) {
-            f();
-            return;
-        }
-        throw new RuntimeException("eglMakeCurrent failed " + GLUtils.getEGLErrorString(this.h.eglGetError()));
-    }
-
-    public final void f() {
-        if (this.h.eglGetError() != 12288) {
-            FileLog.e("cannot swap buffers!");
-        }
-    }
-
-    public final void h(long j3) {
-        c cVar = this.U;
-        AndroidUtilities.cancelRunOnUIThread(cVar);
-        if (this.F) {
-            return;
-        }
-        AndroidUtilities.runOnUIThread(cVar, j3);
-    }
-
-    public final void i() {
-        float f7;
-        d();
-        a aVar = this.f46547b;
-        float f10 = aVar.d;
-        float f11 = aVar.f46521g;
-        float f12 = aVar.f46519e;
-        float f13 = f10 + f11;
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(1.0f, 0.0f);
-        this.S = ofFloat;
-        ofFloat.addUpdateListener(new w(this, f10, f12, f11, 2));
-        this.S.setDuration(600L);
-        this.S.setInterpolator(new OvershootInterpolator());
-        this.S.start();
-        z1 z1Var = this.N;
-        if (z1Var != null) {
-            float abs = Math.abs(f13);
-            if (abs < 60.0f) {
-                f7 = 5.0f;
-            } else if (abs < 180.0f) {
-                f7 = 9.0f;
-            } else {
-                f7 = 15.0f;
-            }
-            AnimatorSet animatorSet = new AnimatorSet();
-            ki.a aVar2 = new ki.a(z1Var, 18);
-            ValueAnimator ofFloat2 = ValueAnimator.ofFloat(1.0f, f7);
-            ofFloat2.addUpdateListener(aVar2);
-            ofFloat2.setDuration(600L);
-            ValueAnimator ofFloat3 = ValueAnimator.ofFloat(f7, 1.0f);
-            ofFloat3.addUpdateListener(aVar2);
-            ofFloat3.setDuration(2000L);
-            animatorSet.playTogether(ofFloat2, ofFloat3);
-            animatorSet.start();
-        }
-        h(this.I);
-    }
-
-    public final void j(long j3) {
-        a aVar = this.f46547b;
-        if (aVar != null) {
-            aVar.d = -180.0f;
-            AndroidUtilities.runOnUIThread(new c(this, 1), j3);
-        }
-    }
-
-    public void k() {
-        int i10;
-        if (!this.M) {
-            return;
-        }
-        int i11 = this.K;
-        ArrayList arrayList = this.L;
-        int intValue = ((Integer) arrayList.get(i11)).intValue();
-        int i12 = this.K + 1;
-        this.K = i12;
-        if (i12 >= arrayList.size()) {
-            Collections.shuffle(arrayList);
-            this.K = 0;
-        }
-        b bVar = this.f46546a0;
-        b bVar2 = this.W;
-        if (intValue == 0) {
-            int abs = Math.abs(Utilities.random.nextInt() % 4);
-            this.T = new AnimatorSet();
-            int i13 = this.O;
-            if (i13 == 4) {
-                float f7 = this.f46547b.d;
-                ValueAnimator ofFloat = ValueAnimator.ofFloat(f7, 360.0f + f7);
-                ofFloat.addUpdateListener(bVar2);
-                ofFloat.setDuration(12000L);
-                ofFloat.setInterpolator(new LinearInterpolator());
-                this.T.playTogether(ofFloat);
-            } else if (abs == 0 && i13 != 1 && i13 != 3) {
-                float f10 = 48;
-                ValueAnimator ofFloat2 = ValueAnimator.ofFloat(this.f46547b.f46521g, f10);
-                ofFloat2.addUpdateListener(bVar);
-                ofFloat2.setDuration(2300L);
-                ofFloat2.setInterpolator(pr.h);
-                ValueAnimator ofFloat3 = ValueAnimator.ofFloat(f10, 0.0f);
-                ofFloat3.addUpdateListener(bVar);
-                ofFloat3.setDuration(500L);
-                ofFloat3.setStartDelay(2300L);
-                ofFloat3.setInterpolator(AndroidUtilities.overshootInterpolator);
-                this.T.playTogether(ofFloat2, ofFloat3);
-            } else {
-                if (i13 != 1 && i13 != 3) {
-                    i10 = 485;
-                } else {
-                    i10 = 360;
-                }
-                if (abs == 2) {
-                    i10 = -i10;
-                }
-                float f11 = i10;
-                ValueAnimator ofFloat4 = ValueAnimator.ofFloat(this.f46547b.f46521g, f11);
-                ofFloat4.addUpdateListener(bVar2);
-                ofFloat4.setDuration(3000L);
-                ofFloat4.setInterpolator(pr.h);
-                ValueAnimator ofFloat5 = ValueAnimator.ofFloat(f11, 0.0f);
-                ofFloat5.addUpdateListener(bVar2);
-                ofFloat5.setDuration(1000L);
-                ofFloat5.setStartDelay(3000L);
-                ofFloat5.setInterpolator(AndroidUtilities.overshootInterpolator);
-                this.T.playTogether(ofFloat4, ofFloat5);
-            }
-            this.T.addListener(new d(this, 1));
-            this.T.start();
-        } else if (intValue == 1) {
-            this.T = new AnimatorSet();
-            ValueAnimator ofFloat6 = ValueAnimator.ofFloat(this.f46547b.d, 360.0f);
-            ofFloat6.addUpdateListener(bVar2);
-            ofFloat6.setDuration(8000L);
-            ofFloat6.setInterpolator(pr.f29493f);
-            this.T.playTogether(ofFloat6);
-            this.T.addListener(new d(this, 0));
-            this.T.start();
-        } else if (intValue == 2) {
-            this.T = new AnimatorSet();
-            ValueAnimator ofFloat7 = ValueAnimator.ofFloat(this.f46547b.d, 184.0f);
-            ofFloat7.addUpdateListener(bVar2);
-            ofFloat7.setDuration(600L);
-            pr prVar = pr.f29494g;
-            ofFloat7.setInterpolator(prVar);
-            ValueAnimator ofFloat8 = ValueAnimator.ofFloat(this.f46547b.f46521g, 50.0f);
-            ofFloat8.addUpdateListener(bVar);
-            ofFloat8.setDuration(600L);
-            ofFloat8.setInterpolator(prVar);
-            ValueAnimator ofFloat9 = ValueAnimator.ofFloat(180.0f, 0.0f);
-            ofFloat9.addUpdateListener(bVar2);
-            ofFloat9.setDuration(800L);
-            ofFloat9.setStartDelay(10000L);
-            ofFloat9.setInterpolator(AndroidUtilities.overshootInterpolator);
-            ValueAnimator ofFloat10 = ValueAnimator.ofFloat(60.0f, 0.0f);
-            ofFloat10.addUpdateListener(bVar);
-            ofFloat10.setDuration(800L);
-            ofFloat10.setStartDelay(10000L);
-            ofFloat10.setInterpolator(AndroidUtilities.overshootInterpolator);
-            ValueAnimator ofFloat11 = ValueAnimator.ofFloat(0.0f, 2.0f, -3.0f, 2.0f, -1.0f, 2.0f, -3.0f, 2.0f, -1.0f, 0.0f);
-            ofFloat11.addUpdateListener(this.V);
-            ofFloat11.setDuration(10000L);
-            ofFloat11.setInterpolator(new LinearInterpolator());
-            this.T.playTogether(ofFloat7, ofFloat8, ofFloat9, ofFloat10, ofFloat11);
-            this.T.addListener(new d(this, 3));
-            this.T.start();
-        } else {
-            this.T = new AnimatorSet();
-            ValueAnimator ofFloat12 = ValueAnimator.ofFloat(this.f46547b.d, 180.0f);
-            ofFloat12.addUpdateListener(bVar2);
-            ofFloat12.setDuration(600L);
-            pr prVar2 = pr.f29493f;
-            ofFloat12.setInterpolator(prVar2);
-            ValueAnimator ofFloat13 = ValueAnimator.ofFloat(180.0f, 360.0f);
-            ofFloat13.addUpdateListener(bVar2);
-            ofFloat13.setDuration(600L);
-            ofFloat13.setStartDelay(2000L);
-            ofFloat13.setInterpolator(prVar2);
-            this.T.playTogether(ofFloat12, ofFloat13);
-            this.T.addListener(new d(this, 2));
-            this.T.start();
-        }
+    public e(f6 f6Var) {
+        this.f42155c = f6Var;
     }
 
     @Override
-    public void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        this.M = true;
-        this.E = true;
-        h(this.I);
-    }
-
-    @Override
-    public void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        d();
-        a aVar = this.f46547b;
-        if (aVar != null) {
-            aVar.d = 0.0f;
-            aVar.f46521g = 0.0f;
-            aVar.f46519e = 0.0f;
-        }
-        this.M = false;
-    }
-
-    @Override
-    public final void onSurfaceTextureAvailable(SurfaceTexture surfaceTexture, int i10, int i11) {
-        this.G = new k(this);
-        this.f46548c = surfaceTexture;
-        this.f46554w = i10;
-        this.v = i11;
-        this.f46553s = Math.max(0, ((int) ((1.0f / this.H) * 1000.0f)) - 1);
-        this.G.start();
-    }
-
-    @Override
-    public final boolean onSurfaceTextureDestroyed(SurfaceTexture surfaceTexture) {
-        this.P = false;
-        if (this.G != null) {
-            this.f46555x = false;
-            this.G = null;
-        }
+    public final boolean D(c1 c1Var) {
         return false;
     }
 
-    @Override
-    public final void onSurfaceTextureSizeChanged(SurfaceTexture surfaceTexture, int i10, int i11) {
-        this.f46554w = i10;
-        this.v = i11;
-        a aVar = this.f46547b;
-        if (aVar != null) {
-            aVar.onSurfaceChanged(this.f46552r, i10, i11);
-        }
-    }
+    public abstract void E();
+
+    public abstract void F(TLObject tLObject);
 
     @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        if (motionEvent.getAction() == 0) {
-            getParent().requestDisallowInterceptTouchEvent(true);
-        } else if (motionEvent.getAction() == 3 || motionEvent.getAction() == 1) {
-            this.f46545a = false;
-            i();
-            getParent().requestDisallowInterceptTouchEvent(false);
-        }
-        return this.R.onTouchEvent(motionEvent);
+    public final int h() {
+        return 5;
     }
 
-    public void setBackgroundBitmap(Bitmap bitmap) {
-        a aVar = this.f46547b;
-        f fVar = aVar.f46518c;
-        if (fVar != null) {
-            fVar.V = bitmap;
+    @Override
+    public final int j(int i10) {
+        if (i10 != 0) {
+            int i11 = 1;
+            if (i10 != 1) {
+                i11 = 2;
+                if (i10 != 2) {
+                    i11 = 3;
+                    if (i10 != 3) {
+                        i11 = 4;
+                        if (i10 != 4) {
+                            return 5;
+                        }
+                    }
+                }
+            }
+            return i11;
         }
-        aVar.f46528o = bitmap;
+        return 0;
     }
 
-    public void setDialogVisible(boolean z10) {
-        this.F = z10;
-        if (z10) {
-            AndroidUtilities.cancelRunOnUIThread(this.U);
-            i();
+    @Override
+    public final void v(c1 c1Var, int i10) {
+        int i11;
+        int i12;
+        int i13;
+        char c10;
+        String formatPluralString;
+        c0 c0Var;
+        String string;
+        int i14 = c1Var.f41613f;
+        View view = c1Var.f41610a;
+        if (i14 != 0) {
+            if (i14 != 1) {
+                if (i14 != 2) {
+                    if (i14 != 3) {
+                        if (i14 == 4) {
+                            ug.a aVar = (ug.a) view;
+                            aVar.setOkStyle(this.d);
+                            aVar.setOnClickListener(new w71(16, this, aVar));
+                            TLRPC.TL_payments_checkedGiftCode tL_payments_checkedGiftCode = this.f42156f;
+                            if (tL_payments_checkedGiftCode.boost != null || tL_payments_checkedGiftCode.flags == -1) {
+                                aVar.e = false;
+                                bi.d dVar = aVar.f42665a;
+                                dVar.setShowZero(false);
+                                dVar.setEnabled(true);
+                                dVar.g(LocaleController.formatString("Close", R.string.Close, new Object[0]), false, true);
+                                aVar.setOnClickListener(new org.telegram.ui.web.c(this, 8));
+                                return;
+                            }
+                            return;
+                        }
+                        return;
+                    }
+                    d0 d0Var = (d0) view;
+                    d0Var.setTextGravity(17);
+                    d0Var.setTextColor(j6.w0(null, j6.G6, false));
+                    d0Var.setTopPadding(14);
+                    d0Var.setBottomPadding(15);
+                    TLRPC.TL_payments_checkedGiftCode tL_payments_checkedGiftCode2 = this.f42156f;
+                    if (tL_payments_checkedGiftCode2.boost != null) {
+                        String str = this.h;
+                        if (str != null && !str.isEmpty()) {
+                            d0Var.setFixedSize(14);
+                            d0Var.setText(null);
+                            return;
+                        }
+                        d0Var.setText(LocaleController.getString(R.string.BoostingLinkNotActivated));
+                        return;
+                    } else if (this.d) {
+                        if (tL_payments_checkedGiftCode2.to_id == -1) {
+                            string = LocaleController.getString(R.string.BoostingSendLinkToAnyone);
+                        } else {
+                            string = LocaleController.getString(R.string.BoostingSendLinkToFriends);
+                        }
+                        d0Var.setText(AndroidUtilities.replaceSingleTag(string, j6.gc, 0, new c(this, 1), this.f42155c));
+                        return;
+                    } else {
+                        Date date = new Date(this.f42156f.used_date * 1000);
+                        d0Var.setText(LocaleController.formatString("BoostingUsedLinkDate", R.string.BoostingUsedLinkDate, LocaleController.formatString("formatDateAtTime", R.string.formatDateAtTime, LocaleController.getInstance().getFormatterYear().format(date), LocaleController.getInstance().getFormatterDay().format(date))));
+                        return;
+                    }
+                }
+                c0 c0Var2 = (c0) view;
+                final TLRPC.TL_payments_checkedGiftCode tL_payments_checkedGiftCode3 = this.f42156f;
+                final y1 y1Var = new y1(this, 10);
+                w9 w9Var = c0Var2.h;
+                FrameLayout frameLayout = c0Var2.f42687w;
+                w9 w9Var2 = c0Var2.f42683f;
+                TextView textView = c0Var2.f42680a;
+                TextView textView2 = c0Var2.f42681b;
+                f6 f6Var = c0Var2.f42684n;
+                Date date2 = new Date(tL_payments_checkedGiftCode3.date * 1000);
+                c0Var2.e.setText(LocaleController.formatString("formatDateAtTime", R.string.formatDateAtTime, LocaleController.getInstance().getFormatterYear().format(date2), LocaleController.getInstance().getFormatterDay().format(date2)));
+                TextView textView3 = c0Var2.d;
+                if (tL_payments_checkedGiftCode3.via_giveaway) {
+                    i11 = j6.f18090m5;
+                } else {
+                    i11 = j6.f18034j5;
+                }
+                textView3.setTextColor(j6.v0(i11, f6Var));
+                TLRPC.Chat chat = MessagesController.getInstance(UserConfig.selectedAccount).getChat(Long.valueOf(-DialogObject.getPeerDialogId(tL_payments_checkedGiftCode3.from_id)));
+                boolean isChannelAndNotMegaGroup = ChatObject.isChannelAndNotMegaGroup(chat);
+                if (tL_payments_checkedGiftCode3.via_giveaway) {
+                    SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
+                    spannableStringBuilder.append((CharSequence) "**");
+                    spannableStringBuilder.append((CharSequence) LocaleController.getString(R.string.BoostingGiveaway));
+                    spannableStringBuilder.append((CharSequence) "**");
+                    textView3.setText(AndroidUtilities.replaceSingleTag(spannableStringBuilder.toString(), j6.gc, 0, new Runnable() {
+                        @Override
+                        public final void run() {
+                            switch (r3) {
+                                case 0:
+                                    y1Var.run(tL_payments_checkedGiftCode3);
+                                    return;
+                                default:
+                                    y1Var.run(tL_payments_checkedGiftCode3);
+                                    return;
+                            }
+                        }
+                    }, f6Var));
+                    textView3.setOnClickListener(new w71(18, y1Var, tL_payments_checkedGiftCode3));
+                } else {
+                    if (isChannelAndNotMegaGroup) {
+                        i12 = R.string.BoostingYouWereSelected;
+                    } else {
+                        i12 = R.string.BoostingYouWereSelectedGroup;
+                    }
+                    textView3.setText(LocaleController.getString(i12));
+                    textView3.setOnClickListener(null);
+                }
+                int i15 = tL_payments_checkedGiftCode3.months;
+                if (i15 == 12) {
+                    i13 = 1;
+                    formatPluralString = LocaleController.formatPluralString("Years", 1, new Object[0]);
+                    c10 = 0;
+                } else {
+                    i13 = 1;
+                    c10 = 0;
+                    formatPluralString = LocaleController.formatPluralString("Months", i15, new Object[0]);
+                }
+                TextView textView4 = c0Var2.f42682c;
+                int i16 = R.string.BoostingTelegramPremiumFor;
+                String str2 = formatPluralString;
+                Object[] objArr = new Object[i13];
+                objArr[c10] = str2;
+                textView4.setText(LocaleController.formatString("BoostingTelegramPremiumFor", i16, objArr));
+                if (chat != null) {
+                    SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder();
+                    spannableStringBuilder2.append((CharSequence) "**");
+                    spannableStringBuilder2.append((CharSequence) chat.title);
+                    spannableStringBuilder2.append((CharSequence) "**");
+                    textView.setText(Emoji.replaceEmoji(AndroidUtilities.replaceSingleTag(spannableStringBuilder2.toString(), j6.gc, 0, new k0(2, y1Var, chat), f6Var), textView.getPaint().getFontMetricsInt(), false));
+                    w9Var2.e(chat, new g9(chat));
+                    frameLayout.setOnClickListener(new w71(19, y1Var, chat));
+                    c0Var = c0Var2;
+                } else {
+                    c0Var = c0Var2;
+                    final TLRPC.User user = MessagesController.getInstance(UserConfig.selectedAccount).getUser(Long.valueOf(tL_payments_checkedGiftCode3.from_id.user_id));
+                    textView.setText(Emoji.replaceEmoji(UserObject.getFirstName(user), textView.getPaint().getFontMetricsInt(), false));
+                    w9Var2.e(user, new g9(0, user));
+                    frameLayout.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public final void onClick(View view2) {
+                            switch (r3) {
+                                case 0:
+                                    y1Var.run(user);
+                                    return;
+                                default:
+                                    y1Var.run(user);
+                                    return;
+                            }
+                        }
+                    });
+                }
+                if (tL_payments_checkedGiftCode3.to_id == -1 && tL_payments_checkedGiftCode3.via_giveaway) {
+                    SpannableStringBuilder spannableStringBuilder3 = new SpannableStringBuilder();
+                    spannableStringBuilder3.append((CharSequence) "**");
+                    spannableStringBuilder3.append((CharSequence) LocaleController.getString(R.string.BoostingIncompleteGiveaway));
+                    spannableStringBuilder3.append((CharSequence) "**");
+                    textView3.setText(AndroidUtilities.replaceSingleTag(spannableStringBuilder3.toString(), j6.gc, 0, new Runnable() {
+                        @Override
+                        public final void run() {
+                            switch (r3) {
+                                case 0:
+                                    y1Var.run(tL_payments_checkedGiftCode3);
+                                    return;
+                                default:
+                                    y1Var.run(tL_payments_checkedGiftCode3);
+                                    return;
+                            }
+                        }
+                    }, f6Var));
+                    textView2.setText(LocaleController.getString(R.string.BoostingNoRecipient));
+                    textView2.setTextColor(j6.v0(j6.f18034j5, f6Var));
+                    ((ViewGroup.MarginLayoutParams) textView2.getLayoutParams()).leftMargin = 0;
+                    ((ViewGroup.MarginLayoutParams) textView2.getLayoutParams()).rightMargin = 0;
+                    w9Var.setVisibility(8);
+                } else {
+                    final TLRPC.User user2 = MessagesController.getInstance(UserConfig.selectedAccount).getUser(Long.valueOf(tL_payments_checkedGiftCode3.to_id));
+                    if (user2 != null) {
+                        SpannableStringBuilder spannableStringBuilder4 = new SpannableStringBuilder();
+                        spannableStringBuilder4.append((CharSequence) "**");
+                        spannableStringBuilder4.append((CharSequence) UserObject.getFirstName(user2));
+                        spannableStringBuilder4.append((CharSequence) "**");
+                        textView2.setText(Emoji.replaceEmoji(AndroidUtilities.replaceSingleTag(spannableStringBuilder4.toString(), j6.gc, 0, new Runnable() {
+                            @Override
+                            public final void run() {
+                                switch (r3) {
+                                    case 0:
+                                        y1Var.run(user2);
+                                        return;
+                                    default:
+                                        y1Var.run(user2);
+                                        return;
+                                }
+                            }
+                        }, f6Var), textView2.getPaint().getFontMetricsInt(), false));
+                        w9Var.e(user2, new g9(0, user2));
+                        c0Var.f42688x.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public final void onClick(View view2) {
+                                switch (r3) {
+                                    case 0:
+                                        y1Var.run(user2);
+                                        return;
+                                    default:
+                                        y1Var.run(user2);
+                                        return;
+                                }
+                            }
+                        });
+                    }
+                }
+                if (tL_payments_checkedGiftCode3.boost != null) {
+                    c0Var.f42689y.setVisibility(8);
+                    return;
+                }
+                return;
+            }
+            t tVar = (t) view;
+            tVar.setSlug(this.h);
+            if (this.f42156f.boost != null && this.h == null) {
+                tVar.a(new c(this, 0));
+            }
+            String str3 = this.h;
+            if ((str3 == null || str3.isEmpty()) && this.f42156f.to_id == -1) {
+                tVar.a(new c(this, 0));
+                return;
+            }
             return;
         }
-        h(this.I);
-    }
-
-    public synchronized void setPaused(boolean z10) {
-        this.f46556y = z10;
-    }
-
-    public synchronized void setRenderer(a aVar) {
-        this.f46547b = aVar;
-        this.E = true;
-    }
-
-    public void setStarParticlesView(z1 z1Var) {
-        this.N = z1Var;
-    }
-
-    public void g() {
+        r rVar = (r) view;
+        if (this.d) {
+            rVar.f42715c.setText(LocaleController.formatString("BoostingGiftLink", R.string.BoostingGiftLink, new Object[0]));
+            rVar.d.setText(AndroidUtilities.replaceTags(LocaleController.formatString("BoostingLinkAllows", R.string.BoostingLinkAllows, new Object[0])));
+        } else {
+            rVar.f42715c.setText(LocaleController.formatString("BoostingUsedGiftLink", R.string.BoostingUsedGiftLink, new Object[0]));
+            rVar.d.setText(AndroidUtilities.replaceTags(LocaleController.formatString("BoostingLinkUsed", R.string.BoostingLinkUsed, new Object[0])));
+        }
+        TLRPC.TL_payments_checkedGiftCode tL_payments_checkedGiftCode4 = this.f42156f;
+        if (tL_payments_checkedGiftCode4.boost != null) {
+            long j3 = tL_payments_checkedGiftCode4.to_id;
+            final y1 y1Var2 = new y1(this, 10);
+            rVar.f42715c.setText(LocaleController.formatString("BoostingGiftLink", R.string.BoostingGiftLink, new Object[0]));
+            SpannableStringBuilder replaceTags = AndroidUtilities.replaceTags(LocaleController.getString(R.string.BoostingLinkAllowsToUser));
+            final TLRPC.User user3 = MessagesController.getInstance(UserConfig.selectedAccount).getUser(Long.valueOf(j3));
+            rVar.d.setText(AndroidUtilities.replaceCharSequence("%1$s", replaceTags, AndroidUtilities.replaceSingleTag("**" + UserObject.getUserName(user3) + "**", j6.gc, 2, new Runnable() {
+                @Override
+                public final void run() {
+                    switch (r3) {
+                        case 0:
+                            y1Var2.run(user3);
+                            return;
+                        default:
+                            y1Var2.run(user3);
+                            return;
+                    }
+                }
+            }, rVar.e)));
+        }
+        if (this.f42156f.to_id == -1) {
+            rVar.f42715c.setText(LocaleController.formatString("BoostingGiftLink", R.string.BoostingGiftLink, new Object[0]));
+            rVar.d.setText(AndroidUtilities.replaceTags(LocaleController.formatString("BoostingLinkAllowsAnyone", R.string.BoostingLinkAllowsAnyone, new Object[0])));
+        }
     }
 
     @Override
-    public final void onSurfaceTextureUpdated(SurfaceTexture surfaceTexture) {
+    public final c1 x(ViewGroup viewGroup, int i10) {
+        View tVar;
+        Context context = viewGroup.getContext();
+        f6 f6Var = this.f42155c;
+        if (i10 != 1) {
+            if (i10 != 2) {
+                if (i10 != 3) {
+                    if (i10 != 4) {
+                        if (i10 != 5) {
+                            tVar = new r(context, f6Var);
+                        } else {
+                            tVar = new View(context);
+                        }
+                    } else {
+                        tVar = new ug.a(context, f6Var);
+                        tVar.setPadding(0, 0, 0, AndroidUtilities.dp(14.0f));
+                    }
+                } else {
+                    tVar = new d0(context, f6Var);
+                }
+            } else {
+                tVar = new c0(context, f6Var);
+            }
+        } else {
+            tVar = new t(context, f6Var);
+        }
+        return e2.j(tVar, tVar, -1, -2);
     }
 }

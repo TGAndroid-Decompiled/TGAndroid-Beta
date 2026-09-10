@@ -1,10 +1,10 @@
 package i9;
 public final class n {
-    public static final n f11938c = new Object();
-    public volatile Thread f11939a;
-    public volatile n f11940b;
+    public static final n f10526c = new Object();
+    public volatile Thread f10527a;
+    public volatile n f10528b;
 
     public n() {
-        o.f11942f.g(this, Thread.currentThread());
+        o.f10529f.g(this, Thread.currentThread());
     }
 }

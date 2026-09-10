@@ -4,7 +4,7 @@ import android.os.Build;
 import android.os.Trace;
 import android.util.Log;
 public abstract class g {
-    public static final int f16373a = 0;
+    public static final int f13682a = 0;
 
     static {
         if (Build.VERSION.SDK_INT < 29) {
@@ -16,8 +16,8 @@ public abstract class g {
                 Trace.class.getMethod("asyncTraceBegin", cls, String.class, cls2);
                 Trace.class.getMethod("asyncTraceEnd", cls, String.class, cls2);
                 Trace.class.getMethod("traceCounter", cls, String.class, cls2);
-            } catch (Exception e7) {
-                Log.i("TraceCompat", "Unable to initialize via reflection.", e7);
+            } catch (Exception e) {
+                Log.i("TraceCompat", "Unable to initialize via reflection.", e);
             }
         }
     }

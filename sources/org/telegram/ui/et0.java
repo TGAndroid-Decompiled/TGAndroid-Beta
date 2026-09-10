@@ -19,69 +19,66 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.VideoEditedInfo;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-public final class et0 implements qt {
-    public final String f36197a;
-    public final VideoEditedInfo f36198b;
-    public final MediaController.PhotoEntry f36199c;
+public final class et0 implements rt {
+    public final String f32602a;
+    public final VideoEditedInfo f32603b;
+    public final MediaController.PhotoEntry f32604c;
     public final boolean d;
-    public final int f36200e;
-    public final int f36201f;
-    public final boolean f36202g;
+    public final int e;
+    public final int f32605f;
+    public final boolean f32606g;
     public final PhotoViewer h;
 
     public et0(PhotoViewer photoViewer, String str, VideoEditedInfo videoEditedInfo, MediaController.PhotoEntry photoEntry, boolean z10, int i10, int i11, boolean z11) {
         this.h = photoViewer;
-        this.f36197a = str;
-        this.f36198b = videoEditedInfo;
-        this.f36199c = photoEntry;
+        this.f32602a = str;
+        this.f32603b = videoEditedInfo;
+        this.f32604c = photoEntry;
         this.d = z10;
-        this.f36200e = i10;
-        this.f36201f = i11;
-        this.f36202g = z11;
+        this.e = i10;
+        this.f32605f = i11;
+        this.f32606g = z11;
     }
 
     @Override
-    public final boolean A() {
-        if (this.h.f33752x7 != null) {
-            return true;
-        }
+    public final boolean B() {
         return false;
     }
 
     @Override
-    public final boolean C() {
+    public final boolean C(TLRPC.Document document) {
         return false;
     }
 
     @Override
-    public final boolean D(TLRPC.Document document) {
-        return false;
-    }
-
-    @Override
-    public final String F(boolean z10) {
+    public final String E(boolean z10) {
         return null;
     }
 
     @Override
-    public final void G(CharSequence charSequence, String str, nf nfVar) {
+    public final void F(CharSequence charSequence, String str, pf pfVar) {
         PhotoViewer photoViewer = this.h;
-        photoViewer.f33742w7 = true;
+        photoViewer.f30215w7 = true;
         R();
-        photoViewer.p5.p(this.f36197a, this.f36198b, str, charSequence, false, 0L, null, null, photoViewer.v1(), this.f36199c.thumbPath, nfVar, null);
+        photoViewer.p5.p(this.f32602a, this.f32603b, str, charSequence, false, 0L, null, null, photoViewer.v1(), this.f32604c.thumbPath, pfVar, null);
+    }
+
+    @Override
+    public final boolean H() {
+        return false;
     }
 
     @Override
     public final boolean I() {
+        if (this.h.f30187t7 != null) {
+            return true;
+        }
         return false;
     }
 
     @Override
-    public final boolean J() {
-        if (this.h.f33714t7 != null) {
-            return true;
-        }
-        return false;
+    public final org.telegram.ui.Components.w70 K(bi.n7 n7Var) {
+        return null;
     }
 
     @Override
@@ -92,9 +89,9 @@ public final class et0 implements qt {
     @Override
     public final void O(String str) {
         PhotoViewer photoViewer = this.h;
-        photoViewer.f33742w7 = true;
+        photoViewer.f30215w7 = true;
         R();
-        photoViewer.p5.p(this.f36197a, this.f36198b, str, null, true, 0L, null, null, photoViewer.v1(), this.f36199c.thumbPath, null, null);
+        photoViewer.p5.p(this.f32602a, this.f32603b, str, null, true, 0L, null, null, photoViewer.v1(), this.f32604c.thumbPath, null, null);
     }
 
     @Override
@@ -108,14 +105,14 @@ public final class et0 implements qt {
     }
 
     public final void R() {
-        st q6 = st.q();
+        tt q6 = tt.q();
         ImageReceiver imageReceiver = q6.A;
-        MediaController.PhotoEntry photoEntry = this.f36199c;
+        MediaController.PhotoEntry photoEntry = this.f32604c;
         if (photoEntry.thumbPath != null) {
             try {
                 new File(photoEntry.thumbPath).delete();
-            } catch (Exception e7) {
-                FileLog.e(e7);
+            } catch (Exception e) {
+                FileLog.e(e);
             }
             photoEntry.thumbPath = null;
         }
@@ -197,9 +194,9 @@ public final class et0 implements qt {
     @Override
     public final void m(String str) {
         PhotoViewer photoViewer = this.h;
-        photoViewer.f33742w7 = true;
+        photoViewer.f30215w7 = true;
         R();
-        photoViewer.p5.p(this.f36197a, this.f36198b, str, null, false, 0L, null, null, photoViewer.v1(), this.f36199c.thumbPath, null, photoViewer.f33752x7);
+        photoViewer.p5.p(this.f32602a, this.f32603b, str, null, false, 0L, null, null, photoViewer.v1(), this.f32604c.thumbPath, null, photoViewer.f30225x7);
     }
 
     @Override
@@ -208,24 +205,19 @@ public final class et0 implements qt {
     }
 
     @Override
-    public final org.telegram.ui.Components.n70 t(ah.w wVar) {
-        return null;
-    }
-
-    @Override
-    public final void v(TLRPC.StickerSet stickerSet, String str) {
+    public final void u(TLRPC.StickerSet stickerSet, String str) {
         PhotoViewer photoViewer = this.h;
-        photoViewer.f33742w7 = true;
+        photoViewer.f30215w7 = true;
         R();
-        photoViewer.p5.p(this.f36197a, this.f36198b, str, null, false, 0L, stickerSet, photoViewer.f33714t7, photoViewer.v1(), this.f36199c.thumbPath, null, null);
+        photoViewer.p5.p(this.f32602a, this.f32603b, str, null, false, 0L, stickerSet, photoViewer.f30187t7, photoViewer.v1(), this.f32604c.thumbPath, null, null);
     }
 
     @Override
-    public final boolean x() {
+    public final boolean w() {
         PhotoViewer photoViewer = this.h;
-        av0 av0Var = photoViewer.d;
-        if (av0Var != null) {
-            if (!av0Var.P() || photoViewer.l4 != null) {
+        cv0 cv0Var = photoViewer.d;
+        if (cv0Var != null) {
+            if (!cv0Var.P() || photoViewer.l4 != null) {
                 return true;
             }
             return false;
@@ -234,48 +226,56 @@ public final class et0 implements qt {
     }
 
     @Override
-    public final void y(String str) {
+    public final void x(String str) {
         PhotoViewer photoViewer = this.h;
-        av0 av0Var = photoViewer.d;
-        if (av0Var != null) {
-            boolean P = av0Var.P();
-            MediaController.PhotoEntry photoEntry = this.f36199c;
+        cv0 cv0Var = photoViewer.d;
+        if (cv0Var != null) {
+            boolean P = cv0Var.P();
+            MediaController.PhotoEntry photoEntry = this.f32604c;
             if (P) {
                 if (photoViewer.l4 == null) {
                     return;
                 }
-                photoViewer.f33742w7 = true;
+                photoViewer.f30215w7 = true;
                 R();
-                photoViewer.p5.p(this.f36197a, this.f36198b, str, null, false, photoViewer.l4.a(), null, null, photoViewer.v1(), photoEntry.thumbPath, null, null);
+                photoViewer.p5.p(this.f32602a, this.f32603b, str, null, false, photoViewer.l4.a(), null, null, photoViewer.v1(), photoEntry.thumbPath, null, null);
                 return;
             }
-            photoViewer.f33742w7 = true;
+            photoViewer.f30215w7 = true;
             R();
-            photoEntry.imagePath = this.f36197a;
-            photoViewer.d.o(photoViewer.P4, this.f36198b, this.d, this.f36200e, this.f36201f, this.f36202g);
+            photoEntry.imagePath = this.f32602a;
+            photoViewer.d.o(photoViewer.P4, this.f32603b, this.d, this.e, this.f32605f, this.f32606g);
             NotificationCenter.getInstance(UserConfig.selectedAccount).postNotificationNameOnUIThread(NotificationCenter.customStickerCreated, Boolean.TRUE);
         }
     }
 
     @Override
-    public final MessageObject z() {
+    public final MessageObject y() {
         return null;
     }
 
     @Override
-    public final void B(TLRPC.Document document) {
+    public final boolean z() {
+        if (this.h.f30225x7 != null) {
+            return true;
+        }
+        return false;
     }
 
     @Override
-    public final void E(TLRPC.Document document) {
+    public final void A(TLRPC.Document document) {
     }
 
     @Override
-    public final void H(TLRPC.Document document) {
+    public final void D(TLRPC.Document document) {
     }
 
     @Override
-    public final void K() {
+    public final void G(TLRPC.Document document) {
+    }
+
+    @Override
+    public final void J() {
     }
 
     @Override
@@ -303,7 +303,7 @@ public final class et0 implements qt {
     }
 
     @Override
-    public final void u(TLRPC.Document document) {
+    public final void t(TLRPC.Document document) {
     }
 
     @Override
@@ -311,7 +311,7 @@ public final class et0 implements qt {
     }
 
     @Override
-    public final void w(TLObject tLObject, Object obj) {
+    public final void v(TLObject tLObject, Object obj) {
     }
 
     @Override

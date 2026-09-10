@@ -1,12 +1,12 @@
 package w3;
 public final class f {
-    public final long f47957a;
-    public final boolean f47958b;
-    public final int f47959c;
+    public final long f43450a;
+    public final boolean f43451b;
+    public final int f43452c;
 
     public f(int i10, long j3, boolean z10) {
-        this.f47957a = j3;
-        this.f47958b = z10;
-        this.f47959c = i10;
+        this.f43450a = j3;
+        this.f43451b = z10;
+        this.f43452c = i10;
     }
 }

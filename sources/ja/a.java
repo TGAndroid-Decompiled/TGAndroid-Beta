@@ -2,5 +2,5 @@ package ja;
 
 import ia.d;
 public interface a {
-    a j(Class cls, d dVar);
+    a m(Class cls, d dVar);
 }

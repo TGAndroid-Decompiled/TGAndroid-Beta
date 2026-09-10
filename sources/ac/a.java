@@ -2,17 +2,17 @@ package ac;
 
 import android.graphics.Bitmap;
 public final class a {
-    public final Bitmap f403a;
-    public final int f404b;
-    public final int f405c;
+    public final Bitmap f374a;
+    public final int f375b;
+    public final int f376c;
     public final int d;
-    public final int f406e;
+    public final int e;
 
     public a(Bitmap bitmap, int i10, int i11, int i12, int i13) {
-        this.f403a = bitmap;
-        this.f404b = i10;
-        this.f405c = i11;
+        this.f374a = bitmap;
+        this.f375b = i10;
+        this.f376c = i11;
         this.d = i12;
-        this.f406e = i13;
+        this.e = i13;
     }
 }

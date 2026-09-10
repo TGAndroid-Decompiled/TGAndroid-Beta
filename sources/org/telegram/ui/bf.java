@@ -1,63 +1,77 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.MessageSuggestionParams;
-import org.telegram.messenger.Utilities;
-public final class bf implements Utilities.Callback {
-    public final int f34811a;
-    public final co f34812b;
+import android.view.KeyEvent;
+import java.util.HashSet;
+import org.telegram.messenger.MessageObject;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class bf implements Runnable {
+    public final int f31246a;
+    public final Object f31247b;
+    public final Object f31248c;
+    public final Object d;
+    public final Object e;
+    public final Object f31249f;
+    public final Object h;
+    public final Object f31250n;
 
-    public bf(co coVar, int i10) {
-        this.f34811a = i10;
-        this.f34812b = coVar;
+    public bf(KeyEvent.Callback callback, Object obj, Object obj2, String str, Object obj3, TLObject tLObject, Object obj4, int i10) {
+        this.f31246a = i10;
+        this.f31247b = callback;
+        this.d = obj;
+        this.e = obj2;
+        this.f31248c = str;
+        this.f31249f = obj3;
+        this.h = tLObject;
+        this.f31250n = obj4;
     }
 
     @Override
-    public final void run(Object obj) {
-        int i10 = this.f34811a;
-        co coVar = this.f34812b;
-        switch (i10) {
-            case 0:
-                MessageSuggestionParams messageSuggestionParams = (MessageSuggestionParams) obj;
-                co coVar2 = this.f34812b;
-                coVar2.f35294g5 = messageSuggestionParams;
-                coVar2.p5.messageOwner.suggested_post = messageSuggestionParams.toTl();
-                coVar2.yb(true, null, coVar2.p5, null, null, null, false, true);
-                return;
-            case 1:
-                coVar.vb(true, false);
-                if (((Boolean) obj).booleanValue()) {
-                    coVar.finishFragment();
-                    return;
-                }
-                return;
-            case 2:
-                coVar.da((String) obj, false);
-                return;
-            case 3:
-                coVar.Db((MessageSuggestionParams) obj);
-                return;
-            case 4:
-                Long l4 = (Long) obj;
-                org.telegram.ui.Components.w21 w21Var = coVar.R1;
-                if (w21Var != null) {
-                    w21Var.m(l4.longValue(), true);
-                    return;
-                }
-                return;
-            case 5:
-                hs hsVar = coVar.f35251d0;
-                hsVar.f37128c.add(((org.telegram.ui.ActionBar.v0) obj).getIconView());
-                return;
-            case 6:
-                int intValue = ((Integer) obj).intValue();
-                int i11 = co.Hc;
-                coVar.Ba(intValue);
-                return;
-            default:
-                int intValue2 = ((Integer) obj).intValue();
-                int i12 = co.Hc;
-                coVar.Ba(intValue2);
-                return;
-        }
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.bf.run():void");
+    }
+
+    public bf(Object obj, Object obj2, Object obj3, Object obj4, Object obj5, Object obj6, Object obj7, int i10) {
+        this.f31246a = i10;
+        this.f31247b = obj;
+        this.d = obj2;
+        this.e = obj3;
+        this.f31249f = obj4;
+        this.f31248c = obj5;
+        this.h = obj6;
+        this.f31250n = obj7;
+    }
+
+    public bf(Object obj, Object obj2, String str, TLObject tLObject, Object obj3, Object obj4, Object obj5, int i10) {
+        this.f31246a = i10;
+        this.f31247b = obj;
+        this.d = obj2;
+        this.f31248c = str;
+        this.e = tLObject;
+        this.f31249f = obj3;
+        this.h = obj4;
+        this.f31250n = obj5;
+    }
+
+    public bf(pn pnVar, org.telegram.ui.ActionBar.d2 d2Var, TLObject tLObject, HashSet hashSet, TLRPC.TL_inputGroupCallInviteMessage tL_inputGroupCallInviteMessage, MessageObject messageObject, TLRPC.TL_error tL_error) {
+        this.f31246a = 2;
+        this.f31247b = pnVar;
+        this.d = d2Var;
+        this.f31249f = tLObject;
+        this.f31248c = hashSet;
+        this.h = tL_inputGroupCallInviteMessage;
+        this.e = messageObject;
+        this.f31250n = tL_error;
+    }
+
+    public bf(eo eoVar, TLRPC.TL_error tL_error, TLObject tLObject, TLObject tLObject2, ng ngVar, String str, nf.e eVar) {
+        this.f31246a = 1;
+        this.f31247b = eoVar;
+        this.d = tL_error;
+        this.e = tLObject;
+        this.f31249f = tLObject2;
+        this.h = ngVar;
+        this.f31248c = str;
+        this.f31250n = eVar;
     }
 }

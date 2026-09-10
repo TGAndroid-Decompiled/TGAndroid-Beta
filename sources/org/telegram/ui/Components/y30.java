@@ -1,63 +1,60 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Rect;
-import android.util.SparseArray;
-public final class y30 extends xu0 {
-    public final b40 f32865f2;
+import java.util.ArrayList;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ChatObject;
+import org.telegram.messenger.Utilities;
+public final class y30 implements Runnable {
+    public final int f29238a;
+    public final a40 f29239b;
+    public final String f29240c;
+    public final int d;
 
-    public y30(b40 b40Var, Context context, pu0 pu0Var, b40 b40Var2, x30 x30Var, org.telegram.ui.ActionBar.f6 f6Var) {
-        super(context, 0L, pu0Var, 0, null, null, null, 8, 0, b40Var2, x30Var, 0, f6Var, null);
-        this.f32865f2 = b40Var;
+    public y30(a40 a40Var, String str, int i10, int i11) {
+        this.f29238a = i11;
+        this.f29239b = a40Var;
+        this.f29240c = str;
+        this.d = i10;
     }
 
     @Override
-    public final int getInitialTab() {
-        return 8;
-    }
-
-    @Override
-    public final String getStoriesHashtag() {
-        return this.f32865f2.f24563b;
-    }
-
-    @Override
-    public final String getStoriesHashtagUsername() {
-        return this.f32865f2.f24564c;
-    }
-
-    @Override
-    public final boolean t0() {
-        return true;
-    }
-
-    @Override
-    public final void D0(SparseArray sparseArray) {
-    }
-
-    @Override
-    public final void K0(boolean z10) {
-    }
-
-    @Override
-    public final void M0(float f7) {
-    }
-
-    @Override
-    public final void N0(boolean z10) {
-    }
-
-    @Override
-    public final void b1(boolean z10) {
-    }
-
-    @Override
-    public final void o0() {
-    }
-
-    @Override
-    public final void P(Canvas canvas, float f7, Rect rect, Paint paint) {
+    public final void run() {
+        long j3;
+        switch (this.f29238a) {
+            case 0:
+                a40 a40Var = this.f29239b;
+                String str = this.f29240c;
+                int i10 = this.d;
+                if (a40Var.e != null) {
+                    a40Var.e = null;
+                    AndroidUtilities.runOnUIThread(new y30(a40Var, str, i10, 1));
+                    return;
+                }
+                return;
+            default:
+                a40 a40Var2 = this.f29239b;
+                String str2 = this.f29240c;
+                int i11 = this.d;
+                ArrayList arrayList = null;
+                a40Var2.e = null;
+                if (!ChatObject.isChannel(a40Var2.f21385w.V) && a40Var2.f21385w.W != null) {
+                    arrayList = new ArrayList(a40Var2.f21385w.W.participants.participants);
+                }
+                ArrayList arrayList2 = arrayList;
+                if (arrayList2 != null) {
+                    Utilities.searchQueue.postRunnable(new di.q((Object) a40Var2, (Object) str2, i11, arrayList2, 19));
+                } else {
+                    a40Var2.h = false;
+                }
+                fg.d2 d2Var = a40Var2.d;
+                boolean canAddUsers = ChatObject.canAddUsers(a40Var2.f21385w.V);
+                if (ChatObject.isChannel(a40Var2.f21385w.V)) {
+                    j3 = a40Var2.f21385w.V.f17195id;
+                } else {
+                    j3 = 0;
+                }
+                d2Var.g(str2, canAddUsers, false, true, false, j3, false, 2, i11);
+                return;
+        }
     }
 }

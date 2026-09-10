@@ -1,16 +1,33 @@
 package org.telegram.ui.Components;
 
-import android.view.MotionEvent;
-public interface i20 {
-    void b1();
+import android.transition.Transition;
+public final class i20 implements Transition.TransitionListener {
+    public final k20 f23874a;
 
-    boolean onDown(MotionEvent motionEvent);
+    public i20(k20 k20Var) {
+        this.f23874a = k20Var;
+    }
 
-    boolean onFling(MotionEvent motionEvent, MotionEvent motionEvent2, float f7, float f10);
+    @Override
+    public final void onTransitionCancel(Transition transition) {
+        this.f23874a.E.unlock();
+    }
 
-    void onLongPress(MotionEvent motionEvent);
+    @Override
+    public final void onTransitionEnd(Transition transition) {
+        this.f23874a.E.unlock();
+    }
 
-    boolean onScroll(MotionEvent motionEvent, MotionEvent motionEvent2, float f7, float f10);
+    @Override
+    public final void onTransitionStart(Transition transition) {
+        this.f23874a.E.lock();
+    }
 
-    boolean onSingleTapUp(MotionEvent motionEvent);
+    @Override
+    public final void onTransitionPause(Transition transition) {
+    }
+
+    @Override
+    public final void onTransitionResume(Transition transition) {
+    }
 }

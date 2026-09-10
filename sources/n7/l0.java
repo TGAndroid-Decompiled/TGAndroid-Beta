@@ -1,26 +1,30 @@
 package n7;
-public final class l0 extends m0 {
-    public l0(java.lang.String r2, java.lang.String r3) {
-        throw new UnsupportedOperationException("Method not decompiled: n7.l0.<init>(java.lang.String, java.lang.String):void");
+public final class l0 extends n0 {
+    public final char[] e;
+
+    public l0(k0 k0Var) {
+        super(k0Var, (Character) null);
+        this.e = new char[512];
+        char[] cArr = k0Var.f13969b;
+        if (cArr.length == 16) {
+            for (int i10 = 0; i10 < 256; i10++) {
+                char[] cArr2 = this.e;
+                cArr2[i10] = cArr[i10 >>> 4];
+                cArr2[i10 | 256] = cArr[i10 & 15];
+            }
+            return;
+        }
+        throw new IllegalArgumentException();
     }
 
     @Override
     public final void a(StringBuilder sb2, byte[] bArr, int i10) {
-        int i11 = 0;
         a.m(0, i10, bArr.length);
-        for (int i12 = i10; i12 >= 3; i12 -= 3) {
-            int i13 = ((bArr[i11 + 1] & 255) << 8) | ((bArr[i11] & 255) << 16) | (bArr[i11 + 2] & 255);
-            j0 j0Var = this.f16687a;
-            char[] cArr = j0Var.f16674b;
-            char[] cArr2 = j0Var.f16674b;
-            sb2.append(cArr[i13 >>> 18]);
-            sb2.append(cArr2[(i13 >>> 12) & 63]);
-            sb2.append(cArr2[(i13 >>> 6) & 63]);
-            sb2.append(cArr2[i13 & 63]);
-            i11 += 3;
-        }
-        if (i11 < i10) {
-            b(sb2, bArr, i11, i10 - i11);
+        for (int i11 = 0; i11 < i10; i11++) {
+            int i12 = bArr[i11] & 255;
+            char[] cArr = this.e;
+            sb2.append(cArr[i12]);
+            sb2.append(cArr[i12 | 256]);
         }
     }
 }

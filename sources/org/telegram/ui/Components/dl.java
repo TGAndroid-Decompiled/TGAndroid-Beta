@@ -1,33 +1,24 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.graphics.Point;
 import android.view.View;
-import android.widget.FrameLayout;
-import java.util.HashMap;
-import java.util.Map;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.IMapsProvider;
-public final class dl extends FrameLayout {
-    public final HashMap f25445a;
-    public final gl f25446b;
+public final class dl extends s4.d0 {
+    public final gg.j0 f22443r;
 
-    public dl(gl glVar, Context context) {
+    public dl(gg.j0 j0Var, Context context) {
         super(context);
-        this.f25446b = glVar;
-        this.f25445a = new HashMap();
+        this.f22443r = j0Var;
     }
 
-    public final void a() {
-        IMapsProvider.IMap iMap = this.f25446b.H;
-        if (iMap != null) {
-            IMapsProvider.IProjection projection = iMap.getProjection();
-            for (Map.Entry entry : this.f25445a.entrySet()) {
-                View view = (View) entry.getValue();
-                Point screenLocation = projection.toScreenLocation(((IMapsProvider.IMarker) entry.getKey()).getPosition());
-                view.setTranslationX(screenLocation.x - (view.getMeasuredWidth() / 2));
-                view.setTranslationY(AndroidUtilities.dp(22.0f) + (screenLocation.y - view.getMeasuredHeight()));
-            }
-        }
+    @Override
+    public final int k(int i10, View view) {
+        int k10 = super.k(i10, view);
+        ll llVar = (ll) this.f22443r.V;
+        return k10 - (llVar.P.getPaddingTop() - (llVar.A0 - llVar.f25054z0));
+    }
+
+    @Override
+    public final int m(int i10) {
+        return super.m(i10) * 4;
     }
 }

@@ -4,49 +4,49 @@ import android.net.Uri;
 import java.util.Collections;
 import java.util.Map;
 public final class b0 implements h {
-    public final h f10324a;
-    public long f10325b;
-    public Uri f10326c;
+    public final h f8478a;
+    public long f8479b;
+    public Uri f8480c;
 
     public b0(h hVar) {
         hVar.getClass();
-        this.f10324a = hVar;
-        this.f10326c = Uri.EMPTY;
+        this.f8478a = hVar;
+        this.f8480c = Uri.EMPTY;
         Map map = Collections.EMPTY_MAP;
     }
 
     @Override
     public final void addTransferListener(c0 c0Var) {
         c0Var.getClass();
-        this.f10324a.addTransferListener(c0Var);
+        this.f8478a.addTransferListener(c0Var);
     }
 
     @Override
     public final void close() {
-        this.f10324a.close();
+        this.f8478a.close();
     }
 
     @Override
     public final Map getResponseHeaders() {
-        return this.f10324a.getResponseHeaders();
+        return this.f8478a.getResponseHeaders();
     }
 
     @Override
     public final Uri getUri() {
-        return this.f10324a.getUri();
+        return this.f8478a.getUri();
     }
 
     @Override
     public final long open(m mVar) {
-        h hVar = this.f10324a;
-        this.f10326c = mVar.f10358a;
+        h hVar = this.f8478a;
+        this.f8480c = mVar.f8508a;
         Map map = Collections.EMPTY_MAP;
         try {
             return hVar.open(mVar);
         } finally {
             Uri uri = hVar.getUri();
             if (uri != null) {
-                this.f10326c = uri;
+                this.f8480c = uri;
             }
             hVar.getResponseHeaders();
         }
@@ -54,9 +54,9 @@ public final class b0 implements h {
 
     @Override
     public final int read(byte[] bArr, int i10, int i11) {
-        int read = this.f10324a.read(bArr, i10, i11);
+        int read = this.f8478a.read(bArr, i10, i11);
         if (read != -1) {
-            this.f10325b += read;
+            this.f8479b += read;
         }
         return read;
     }

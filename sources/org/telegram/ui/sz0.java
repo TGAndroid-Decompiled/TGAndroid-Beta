@@ -1,43 +1,34 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.Stories.ProfileStoriesView;
-public final class sz0 extends ProfileStoriesView {
-    public final Context f40602t0;
-    public final ProfileActivity f40603u0;
-
-    public sz0(ProfileActivity profileActivity, Context context, int i10, long j3, boolean z10, j0 j0Var, pz0 pz0Var, org.telegram.ui.ActionBar.f6 f6Var, Context context2) {
-        super(context, i10, j3, z10, j0Var, pz0Var, f6Var);
-        this.f40603u0 = profileActivity;
-        this.f40602t0 = context2;
+import android.graphics.Canvas;
+import android.view.accessibility.AccessibilityNodeInfo;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class sz0 extends s01 {
+    public sz0(Context context) {
+        super(context);
     }
 
     @Override
-    public final void e(a6.i iVar) {
-        TL_stories.PeerStories peerStories;
-        TL_stories.PeerStories peerStories2;
-        ProfileActivity profileActivity = this.f40603u0;
-        long a2 = profileActivity.a();
-        bi.u8 storiesController = profileActivity.getMessagesController().getStoriesController();
-        boolean I = storiesController.I(a2);
-        Context context = this.f40602t0;
-        if (!I && !storiesController.K(a2) && !storiesController.N(a2)) {
-            TLRPC.UserFull userFull = profileActivity.f34033v2;
-            if (userFull != null && (peerStories2 = userFull.stories) != null && !peerStories2.stories.isEmpty() && profileActivity.f33915e1 != profileActivity.getUserConfig().clientUserId) {
-                profileActivity.getOrCreateStoryViewer().E(context, profileActivity.f34033v2.stories, iVar);
-                return;
-            }
-            TLRPC.ChatFull chatFull = profileActivity.f34026u2;
-            if (chatFull != null && (peerStories = chatFull.stories) != null && !peerStories.stories.isEmpty()) {
-                profileActivity.getOrCreateStoryViewer().E(context, profileActivity.f34026u2.stories, iVar);
-                return;
-            } else {
-                profileActivity.K3();
-                return;
-            }
+    public final void dispatchDraw(Canvas canvas) {
+        gg.h1 h1Var;
+        super.dispatchDraw(canvas);
+        org.telegram.ui.Components.p5 p5Var = this.e;
+        if (p5Var != null && (h1Var = p5Var.f26033k) != null) {
+            h1Var.startAnimation();
         }
-        profileActivity.getOrCreateStoryViewer().D(context, a2, iVar);
+    }
+
+    @Override
+    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+        if (getImageReceiver().hasNotThumb()) {
+            accessibilityNodeInfo.setText(LocaleController.getString(R.string.AccDescrProfilePicture));
+            accessibilityNodeInfo.addAction(new AccessibilityNodeInfo.AccessibilityAction(16, LocaleController.getString(R.string.Open)));
+            accessibilityNodeInfo.addAction(new AccessibilityNodeInfo.AccessibilityAction(32, LocaleController.getString(R.string.AccDescrOpenInPhotoViewer)));
+            return;
+        }
+        accessibilityNodeInfo.setVisibleToUser(false);
     }
 }

@@ -1,12 +1,8 @@
 package org.telegram.ui.Cells;
-public interface y9 {
-    int getBottom();
+public final class y9 {
+    public final CharSequence f20760a;
 
-    int getTop();
-
-    float getX();
-
-    float getY();
-
-    void invalidate();
+    public y9(String str) {
+        this.f20760a = str;
+    }
 }

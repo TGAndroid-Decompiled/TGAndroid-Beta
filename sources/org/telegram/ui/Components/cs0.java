@@ -1,47 +1,37 @@
 package org.telegram.ui.Components;
 
-import androidx.recyclerview.widget.RecyclerView;
-public final class cs0 extends s4.s0 {
-    public final tr0 f25114a;
-    public final ur0 f25115b;
-    public final xu0 f25116c;
+import android.content.Context;
+import android.graphics.Rect;
+public final class cs0 extends org.telegram.ui.h21 {
+    public final iv0 H;
 
-    public cs0(xu0 xu0Var, tr0 tr0Var, ur0 ur0Var) {
-        this.f25116c = xu0Var;
-        this.f25114a = tr0Var;
-        this.f25115b = ur0Var;
+    public cs0(iv0 iv0Var, Context context, aw0 aw0Var, zh.w4 w4Var, as0 as0Var) {
+        super(context, aw0Var, w4Var, as0Var);
+        this.H = iv0Var;
     }
 
     @Override
-    public final void a(RecyclerView recyclerView, int i10) {
-        boolean z10;
-        if (i10 != 0) {
-            z10 = true;
-        } else {
-            z10 = false;
+    public final void a() {
+        gs0 gs0Var;
+        Rect rect = this.F;
+        rect.set(0, 0, getMeasuredWidth(), (int) getVisualHeight());
+        setClipBounds(rect);
+        invalidate();
+        iv0 iv0Var = this.H;
+        au0[] au0VarArr = iv0Var.f24107k0;
+        if (au0VarArr != null) {
+            for (au0 au0Var : au0VarArr) {
+                if (au0Var != null && (gs0Var = au0Var.h) != null) {
+                    int paddingLeft = gs0Var.getPaddingLeft();
+                    int Z = iv0Var.Z(au0Var.F);
+                    int paddingRight = au0Var.h.getPaddingRight();
+                    gs0 gs0Var2 = au0Var.h;
+                    int Y = iv0Var.Y(iv0Var.v0());
+                    gs0Var2.f29809e3 = Y;
+                    gs0Var.setPadding(paddingLeft, Z, paddingRight, Y);
+                }
+            }
         }
-        this.f25116c.f32707b1 = z10;
-    }
-
-    @Override
-    public final void b(RecyclerView recyclerView, int i10, int i11) {
-        int i12;
-        int i13;
-        xu0 xu0Var = this.f25116c;
-        mu0[] mu0VarArr = xu0Var.f32749t1;
-        ur0 ur0Var = this.f25115b;
-        tr0 tr0Var = this.f25114a;
-        xu0Var.G(tr0Var, (ll0) recyclerView, ur0Var);
-        if (i11 != 0 && ((i13 = xu0Var.f32729k0[0].F) == 0 || i13 == 5)) {
-            mu0VarArr[0].f28543a.isEmpty();
-        }
-        if (i11 != 0 && ((i12 = tr0Var.F) == 0 || xu0.p0(i12))) {
-            xu0.q(tr0Var, mu0VarArr, true);
-        }
-        tr0Var.h.K0(true);
-        if (tr0Var.G != null) {
-            tr0Var.invalidate();
-        }
-        xu0Var.o0();
+        iv0Var.K();
     }
 }

@@ -1,102 +1,138 @@
 package org.telegram.ui;
 
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Path;
+import android.graphics.RectF;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.voip.VoIPService;
-public final class fi1 implements View.OnClickListener {
-    public final int f36443a;
-    public final ui1 f36444b;
+public final class fi1 extends org.telegram.ui.Components.v81 {
+    public boolean T;
+    public final Path U;
+    public final gi1 V;
 
-    public fi1(ui1 ui1Var, int i10) {
-        this.f36443a = i10;
-        this.f36444b = ui1Var;
+    public fi1(gi1 gi1Var, Context context) {
+        super(context, null);
+        this.V = gi1Var;
+        this.U = new Path();
     }
 
     @Override
-    public final void onClick(View view) {
-        VoIPService sharedInstance;
-        int i10;
-        switch (this.f36443a) {
-            case 0:
-                if (VoIPService.getSharedInstance() != null) {
-                    ui1 ui1Var = this.f36444b;
-                    AndroidUtilities.cancelRunOnUIThread(ui1Var.S0);
-                    ui1Var.R0 = false;
-                    VoIPService.getSharedInstance().hangUp();
-                    return;
-                }
-                return;
-            case 1:
-                ui1 ui1Var2 = this.f36444b;
-                if (ui1Var2.f41164n0 && ui1Var2.m0 && System.currentTimeMillis() - ui1Var2.K0 > 500) {
-                    AndroidUtilities.cancelRunOnUIThread(ui1Var2.S0);
-                    ui1Var2.R0 = false;
-                    ui1Var2.K0 = System.currentTimeMillis();
-                    ui1Var2.Z.setRelativePosition(ui1Var2.Y);
-                    ui1Var2.f41135a0 = true;
-                    ui1Var2.H0 = true;
-                    ui1Var2.f41167q0 = ui1Var2.f41166p0;
-                    ui1Var2.H();
-                    return;
-                }
-                return;
-            case 2:
-                ui1 ui1Var3 = this.f36444b;
-                if (ui1Var3.H0 && System.currentTimeMillis() - ui1Var3.K0 > 500) {
-                    AndroidUtilities.cancelRunOnUIThread(ui1Var3.S0);
-                    ui1Var3.R0 = false;
-                    ui1Var3.K0 = System.currentTimeMillis();
-                    ui1Var3.Y.setRelativePosition(ui1Var3.Z);
-                    ui1Var3.f41135a0 = false;
-                    ui1Var3.H0 = false;
-                    ui1Var3.f41167q0 = ui1Var3.f41166p0;
-                    ui1Var3.H();
-                    return;
-                }
-                return;
-            case 3:
-                long currentTimeMillis = System.currentTimeMillis();
-                ui1 ui1Var4 = this.f36444b;
-                if (currentTimeMillis - ui1Var4.K0 >= 500) {
-                    ui1Var4.K0 = System.currentTimeMillis();
-                    boolean z10 = ui1Var4.C0;
-                    if (!z10 && ui1Var4.B0) {
-                        ui1Var4.m(!z10);
-                        return;
-                    }
-                    return;
-                }
-                return;
-            case 4:
-                long currentTimeMillis2 = System.currentTimeMillis();
-                ui1 ui1Var5 = this.f36444b;
-                if (currentTimeMillis2 - ui1Var5.K0 >= 500) {
-                    ui1Var5.K0 = System.currentTimeMillis();
-                    if (ui1Var5.B0) {
-                        ui1Var5.m(!ui1Var5.C0);
-                        return;
-                    }
-                    return;
-                }
-                return;
-            case 5:
-                ui1 ui1Var6 = this.f36444b;
-                if (ui1Var6.K.getTag() != null && (sharedInstance = VoIPService.getSharedInstance()) != null) {
-                    ui1Var6.B();
-                    if (sharedInstance.isBluetoothOn()) {
-                        i10 = 2;
-                    } else if (sharedInstance.isSpeakerphoneOn()) {
-                        i10 = 0;
-                    } else {
-                        i10 = 1;
-                    }
-                    sharedInstance.toggleSpeakerphoneOrShowRouteSheet(ui1Var6.f41137b, false, Integer.valueOf(i10));
-                    return;
-                }
-                return;
-            default:
-                this.f36444b.p();
-                return;
+    public final void dispatchDraw(Canvas canvas) {
+        if (this.T) {
+            Path path = this.U;
+            path.rewind();
+            float dpf2 = AndroidUtilities.dpf2(24.0f);
+            RectF rectF = AndroidUtilities.rectTmp;
+            rectF.set(0.0f, AndroidUtilities.statusBarHeight, getWidth(), getHeight());
+            path.addRoundRect(rectF, dpf2, dpf2, Path.Direction.CW);
+            canvas.save();
+            canvas.clipPath(path);
         }
+        super.dispatchDraw(canvas);
+        if (this.T) {
+            canvas.restore();
+        }
+    }
+
+    @Override
+    public float getAvailableTranslationX() {
+        return getMeasuredWidth();
+    }
+
+    @Override
+    public long getManualScrollDuration() {
+        return 320L;
+    }
+
+    @Override
+    public final boolean j(MotionEvent motionEvent) {
+        org.telegram.ui.ActionBar.p2 X = ((fh0) this.V).X();
+        if (!(X instanceof eh0)) {
+            return false;
+        }
+        return ((eh0) X).S(motionEvent, false);
+    }
+
+    @Override
+    public final boolean k(MotionEvent motionEvent) {
+        org.telegram.ui.ActionBar.p2 X = ((fh0) this.V).X();
+        if (X instanceof eh0) {
+            return ((eh0) X).S(motionEvent, true);
+        }
+        return false;
+    }
+
+    @Override
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        super.onLayout(z10, i10, i11, i12, i13);
+    }
+
+    @Override
+    public void setLayoutParams(ViewGroup.LayoutParams layoutParams) {
+        super.setLayoutParams(layoutParams);
+    }
+
+    public void setTabletLayout(boolean z10) {
+        if (this.T == z10) {
+            return;
+        }
+        this.T = z10;
+        invalidate();
+    }
+
+    @Override
+    public final void t(View view, View view2, int i10, int i11) {
+        this.V.U();
+    }
+
+    @Override
+    public final void u() {
+        wy wyVar;
+        gi1 gi1Var = this.V;
+        fh0 fh0Var = (fh0) gi1Var;
+        if (fh0Var.F != null) {
+            fh0Var.m0(fh0Var.f33117c.getCurrentPosition(), true);
+            fh0Var.n0(0.0f, false);
+        }
+        fh0Var.d0();
+        fi1 fi1Var = fh0Var.f33117c;
+        if (fi1Var != null) {
+            int currentPosition = fi1Var.getCurrentPosition();
+            if (currentPosition != 2 && fh0Var.f32834x) {
+                fh0Var.W(2);
+                fh0Var.f32834x = false;
+            }
+            if (currentPosition != 3) {
+                fh0Var.W(3);
+            }
+            Integer num = fh0Var.I;
+            if (num != null && currentPosition == 0 && (wyVar = fh0Var.J) != null) {
+                wyVar.w4(num.intValue());
+                fh0Var.I = null;
+            }
+        }
+        gi1Var.U();
+    }
+
+    @Override
+    public final void w(boolean z10) {
+        gi1 gi1Var = this.V;
+        fh0 fh0Var = (fh0) gi1Var;
+        boolean z11 = !z10;
+        if (fh0Var.F != null) {
+            float positionAnimated = fh0Var.f33117c.getPositionAnimated();
+            fh0Var.n0(positionAnimated, z11);
+            if (!z10) {
+                fh0Var.m0(Math.round(positionAnimated), true);
+            }
+        }
+        fh0Var.h0();
+        fh0Var.d0();
+        fh0Var.f33116b.invalidate();
+        gi1Var.U();
+        gi1Var.checkSystemBarColors();
     }
 }

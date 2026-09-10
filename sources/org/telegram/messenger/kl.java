@@ -1,61 +1,74 @@
 package org.telegram.messenger;
 
+import android.net.Uri;
+import java.util.ArrayList;
+import java.util.HashMap;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.MessagesStorage;
+import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.messenger.TranslateController;
-import org.telegram.tgnet.RequestDelegate;
+import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-public final class kl implements RequestDelegate {
-    public final int f18236a = 1;
-    public final long f18237b;
-    public final String f18238c;
-    public final Runnable d;
-    public final BaseController f18239e;
-    public final Object f18240f;
-    public final Object f18241g;
-    public final Object h;
+public final class kl implements Runnable {
+    public final int f15656a;
+    public final BaseController f15657b;
+    public final Object f15658c;
+    public final Object d;
+    public final long e;
+    public final Object f15659f;
 
-    public kl(MessagesController messagesController, long j3, String str, Runnable runnable, org.telegram.ui.ActionBar.n2 n2Var, TLRPC.TL_channels_updateUsername tL_channels_updateUsername, Runnable runnable2) {
-        this.f18239e = messagesController;
-        this.f18237b = j3;
-        this.f18238c = str;
-        this.d = runnable;
-        this.f18240f = n2Var;
-        this.f18241g = tL_channels_updateUsername;
-        this.h = runnable2;
+    public kl(BaseController baseController, Object obj, long j3, Object obj2, Object obj3, int i10) {
+        this.f15656a = i10;
+        this.f15657b = baseController;
+        this.f15659f = obj;
+        this.e = j3;
+        this.f15658c = obj2;
+        this.d = obj3;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f18236a) {
+    public final void run() {
+        switch (this.f15656a) {
             case 0:
-                ((TranslateController) this.f18239e).lambda$translatePhoto$46((MessageObject) this.f18240f, this.f18238c, (TranslateController.MessageKey) this.f18241g, this.d, this.f18237b, (TLRPC.TL_textWithEntities) this.h, tLObject, tL_error);
+                ((TranslateController) this.f15657b).lambda$pushPollToTranslate$25((TranslateController.PendingPollTranslation) this.f15659f, (TLObject) this.f15658c, (TLRPC.TL_error) this.d, this.e);
                 return;
             case 1:
-                ((MessagesController) this.f18239e).lambda$updateChannelUserName$292(this.f18237b, this.f18238c, this.d, (org.telegram.ui.ActionBar.n2) this.f18240f, (TLRPC.TL_channels_updateUsername) this.f18241g, (Runnable) this.h, tLObject, tL_error);
+                ((TranslateController) this.f15657b).lambda$pushRichMessageToTranslate$28((TranslateController.PendingRichTranslation) this.f15659f, (TLObject) this.f15658c, (TLRPC.TL_error) this.d, this.e);
+                return;
+            case 2:
+                ((MessagesController) this.f15657b).lambda$getSponsoredMessages$439((ArrayList) this.f15659f, this.e, (MessagesController.SponsoredMessagesInfo) this.f15658c, (Integer) this.d);
+                return;
+            case 3:
+                ((MessagesController) this.f15657b).lambda$getSavedReactionTags$485((TLObject) this.f15658c, this.e, (TLRPC.messages_SavedReactionTags) this.f15659f, (TLRPC.TL_messages_getSavedReactionTags) this.d);
+                return;
+            case 4:
+                ((MessagesController) this.f15657b).lambda$addUserToChat$306((TLRPC.Updates) this.f15659f, (Utilities.Callback) this.f15658c, (TLRPC.TL_messages_invitedUsers) this.d, this.e);
+                return;
+            case 5:
+                ((SendMessagesHelper) this.f15657b).lambda$prepareImportHistory$109((HashMap) this.f15659f, this.e, (SendMessagesHelper.ImportingHistory) this.f15658c, (MessagesStorage.LongCallback) this.d);
                 return;
             default:
-                ((MessagesController) this.f18239e).lambda$changeChatAvatar$319((TLRPC.TL_inputChatPhoto) this.f18240f, (TLRPC.FileLocation) this.f18241g, (TLRPC.FileLocation) this.h, this.f18238c, this.f18237b, this.d, tLObject, tL_error);
+                ((SendMessagesHelper) this.f15657b).lambda$prepareImportHistory$110((ArrayList) this.f15659f, this.e, (Uri) this.f15658c, (MessagesStorage.LongCallback) this.d);
                 return;
         }
     }
 
-    public kl(MessagesController messagesController, TLRPC.TL_inputChatPhoto tL_inputChatPhoto, TLRPC.FileLocation fileLocation, TLRPC.FileLocation fileLocation2, String str, long j3, Runnable runnable) {
-        this.f18239e = messagesController;
-        this.f18240f = tL_inputChatPhoto;
-        this.f18241g = fileLocation;
-        this.h = fileLocation2;
-        this.f18238c = str;
-        this.f18237b = j3;
-        this.d = runnable;
+    public kl(BaseController baseController, Object obj, Object obj2, TLObject tLObject, long j3, int i10) {
+        this.f15656a = i10;
+        this.f15657b = baseController;
+        this.f15659f = obj;
+        this.f15658c = obj2;
+        this.d = tLObject;
+        this.e = j3;
     }
 
-    public kl(TranslateController translateController, MessageObject messageObject, String str, TranslateController.MessageKey messageKey, Runnable runnable, long j3, TLRPC.TL_textWithEntities tL_textWithEntities) {
-        this.f18239e = translateController;
-        this.f18240f = messageObject;
-        this.f18238c = str;
-        this.f18241g = messageKey;
-        this.d = runnable;
-        this.f18237b = j3;
-        this.h = tL_textWithEntities;
+    public kl(MessagesController messagesController, TLObject tLObject, long j3, TLRPC.messages_SavedReactionTags messages_savedreactiontags, TLRPC.TL_messages_getSavedReactionTags tL_messages_getSavedReactionTags) {
+        this.f15656a = 3;
+        this.f15657b = messagesController;
+        this.f15658c = tLObject;
+        this.e = j3;
+        this.f15659f = messages_savedreactiontags;
+        this.d = tL_messages_getSavedReactionTags;
     }
 }

@@ -1,30 +1,59 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.R;
-public final class nv implements Runnable {
-    public final int f28906a;
-    public final ov f28907b;
+import android.animation.ValueAnimator;
+import android.view.View;
+import android.view.animation.OvershootInterpolator;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.messenger.UserConfig;
+import org.telegram.tgnet.TLRPC;
+public final class nv extends View {
+    public ImageReceiver.BackgroundThreadDrawHolder[] f25605a;
+    public gg.h1 f25606b;
+    public y5 f25607c;
+    public ValueAnimator d;
+    public float e;
 
-    public nv(ov ovVar, int i10) {
-        this.f28906a = i10;
-        this.f28907b = ovVar;
+    public TLRPC.Document getDocument() {
+        y5 y5Var = this.f25607c;
+        if (y5Var != null) {
+            TLRPC.Document document = y5Var.document;
+            if (document == null) {
+                return p5.f(UserConfig.selectedAccount, y5Var.getDocumentId());
+            }
+            return document;
+        }
+        return null;
     }
 
     @Override
-    public final void run() {
-        switch (this.f28906a) {
-            case 0:
-                this.f28907b.f29221f.dismiss();
-                return;
-            default:
-                rv rvVar = this.f28907b.f29221f;
-                rvVar.dismiss();
-                org.telegram.ui.ActionBar.n2 n2Var = rvVar.f30121c;
-                if (n2Var != null && n2Var.getParentActivity() != null) {
-                    org.telegram.messenger.w1.p(R.string.AddEmojiNotFound, yc.a0(n2Var), null);
-                    return;
+    public final void onMeasure(int i10, int i11) {
+        setPadding(AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f));
+        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824));
+    }
+
+    @Override
+    public void setPressed(boolean z10) {
+        ValueAnimator valueAnimator;
+        if (isPressed() != z10) {
+            super.setPressed(z10);
+            invalidate();
+            if (z10 && (valueAnimator = this.d) != null) {
+                valueAnimator.removeAllListeners();
+                this.d.cancel();
+            }
+            if (!z10) {
+                float f7 = this.e;
+                if (f7 != 0.0f) {
+                    ValueAnimator ofFloat = ValueAnimator.ofFloat(f7, 0.0f);
+                    this.d = ofFloat;
+                    ofFloat.addUpdateListener(new j6(this, 17));
+                    this.d.addListener(new rm(this, 8));
+                    this.d.setInterpolator(new OvershootInterpolator(5.0f));
+                    this.d.setDuration(350L);
+                    this.d.start();
                 }
-                return;
+            }
         }
     }
 }

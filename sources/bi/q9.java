@@ -1,38 +1,19 @@
 package bi;
+public final class q9 {
+    public int f3463a;
+    public int f3464b;
 
-import android.content.Context;
-import android.view.View;
-public final class q9 extends o5 {
-    public final r9 f3643e4;
-
-    public q9(r9 r9Var, Context context, pb pbVar, l5 l5Var, org.telegram.ui.ActionBar.f6 f6Var) {
-        super(context, pbVar, l5Var, f6Var);
-        this.f3643e4 = r9Var;
-    }
-
-    @Override
-    public final boolean K0() {
-        if (getParent() != null && ((Integer) ((View) getParent()).getTag()).intValue() == this.f3643e4.f3691g.getCurrentItem()) {
-            return true;
+    public final int a() {
+        if (this.f3463a == 6) {
+            int i10 = this.f3464b;
+            if (i10 == 7) {
+                return 1;
+            }
+            if (i10 == 6) {
+                return 2;
+            }
+            return 0;
         }
-        return false;
-    }
-
-    @Override
-    public final void invalidate() {
-        if (b0.f2813c) {
-            b0.f2812b.add(this);
-        } else {
-            super.invalidate();
-        }
-    }
-
-    @Override
-    public final void invalidate(int i10, int i11, int i12, int i13) {
-        if (b0.f2813c) {
-            b0.f2812b.add(this);
-        } else {
-            super.invalidate(i10, i11, i12, i13);
-        }
+        return 0;
     }
 }

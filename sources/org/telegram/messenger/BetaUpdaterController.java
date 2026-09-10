@@ -30,8 +30,8 @@ public class BetaUpdaterController {
     private String getCurrentVersion() {
         try {
             return ApplicationLoader.applicationContext.getPackageManager().getPackageInfo(ApplicationLoader.applicationContext.getPackageName(), 0).versionName;
-        } catch (Exception e7) {
-            FileLog.e(e7);
+        } catch (Exception e) {
+            FileLog.e(e);
             return "";
         }
     }
@@ -39,8 +39,8 @@ public class BetaUpdaterController {
     private int getCurrentVersionCode() {
         try {
             return ApplicationLoader.applicationContext.getPackageManager().getPackageInfo(ApplicationLoader.applicationContext.getPackageName(), 0).versionCode;
-        } catch (Exception e7) {
-            FileLog.e(e7);
+        } catch (Exception e) {
+            FileLog.e(e);
             return 0;
         }
     }
@@ -73,8 +73,8 @@ public class BetaUpdaterController {
             if (!TextUtils.isEmpty(this.path)) {
                 try {
                     new File(this.path).delete();
-                } catch (Exception e7) {
-                    FileLog.e(e7);
+                } catch (Exception e) {
+                    FileLog.e(e);
                 }
             }
             this.path = file.getAbsolutePath();
@@ -89,7 +89,7 @@ public class BetaUpdaterController {
     }
 
     public void lambda$downloadUpdate$5(File file) {
-        AndroidUtilities.runOnUIThread(new d3(11, this, file));
+        AndroidUtilities.runOnUIThread(new i3(11, this, file));
     }
 
     public void lambda$downloadUpdate$6(Float f7) {
@@ -188,7 +188,7 @@ public class BetaUpdaterController {
             }
             this.checkingForUpdate = true;
             this.firstCheck = false;
-            new org.telegram.ui.web.k1(new v(0, this, runnable)).execute("null");
+            new org.telegram.ui.web.j1(new v(0, this, runnable)).execute("null");
         }
     }
 
@@ -235,38 +235,38 @@ public class BetaUpdaterController {
         NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.appUpdateLoading, new Object[0]);
         if (!TextUtils.isEmpty(this.fileUrl)) {
             HttpGetFileTask overrideExtension = new HttpGetFileTask(new Utilities.Callback(this) {
-                public final BetaUpdaterController f19134b;
+                public final BetaUpdaterController f16444b;
 
                 {
-                    this.f19134b = this;
+                    this.f16444b = this;
                 }
 
                 @Override
                 public final void run(Object obj) {
                     switch (r2) {
                         case 0:
-                            this.f19134b.lambda$downloadUpdate$5((File) obj);
+                            this.f16444b.lambda$downloadUpdate$5((File) obj);
                             return;
                         default:
-                            this.f19134b.lambda$downloadUpdate$6((Float) obj);
+                            this.f16444b.lambda$downloadUpdate$6((Float) obj);
                             return;
                     }
                 }
             }, new Utilities.Callback(this) {
-                public final BetaUpdaterController f19134b;
+                public final BetaUpdaterController f16444b;
 
                 {
-                    this.f19134b = this;
+                    this.f16444b = this;
                 }
 
                 @Override
                 public final void run(Object obj) {
                     switch (r2) {
                         case 0:
-                            this.f19134b.lambda$downloadUpdate$5((File) obj);
+                            this.f16444b.lambda$downloadUpdate$5((File) obj);
                             return;
                         default:
-                            this.f19134b.lambda$downloadUpdate$6((Float) obj);
+                            this.f16444b.lambda$downloadUpdate$6((Float) obj);
                             return;
                     }
                 }

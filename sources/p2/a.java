@@ -7,39 +7,39 @@ import e2.d0;
 import java.util.HashMap;
 import java.util.List;
 public final class a implements t {
-    public final c f43667a;
+    public final c f39523a;
 
     public a(c cVar) {
-        this.f43667a = cVar;
+        this.f39523a = cVar;
     }
 
     @Override
     public final void a() {
-        this.f43667a.f43680e.remove(this);
+        this.f39523a.e.remove(this);
     }
 
     @Override
     public final boolean b(Uri uri, b0 b0Var, boolean z10) {
         b bVar;
-        c cVar = this.f43667a;
+        c cVar = this.f39523a;
         HashMap hashMap = cVar.d;
-        if (cVar.f43685w == null) {
+        if (cVar.f39539w == null) {
             long elapsedRealtime = SystemClock.elapsedRealtime();
-            o oVar = cVar.f43684s;
-            String str = d0.f8765a;
-            List list = oVar.f43766e;
+            o oVar = cVar.f39538s;
+            String str = d0.f7188a;
+            List list = oVar.e;
             int i10 = 0;
             for (int i11 = 0; i11 < list.size(); i11++) {
-                b bVar2 = (b) hashMap.get(((n) list.get(i11)).f43760a);
-                if (bVar2 != null && elapsedRealtime < bVar2.f43673n) {
+                b bVar2 = (b) hashMap.get(((n) list.get(i11)).f39609a);
+                if (bVar2 != null && elapsedRealtime < bVar2.f39528n) {
                     i10++;
                 }
             }
-            y2.g gVar = new y2.g(1, 0, cVar.f43684s.f43766e.size(), i10);
-            cVar.f43679c.getClass();
-            k4.d K3 = rb.a.K3(gVar, b0Var);
-            if (K3 != null && K3.f14757a == 2 && (bVar = (b) hashMap.get(uri)) != null) {
-                b.a(bVar, K3.f14758b);
+            y2.g gVar = new y2.g(1, 0, cVar.f39538s.e.size(), i10);
+            cVar.f39534c.getClass();
+            k4.d n32 = rb.a.n3(gVar, b0Var);
+            if (n32 != null && n32.f12278a == 2 && (bVar = (b) hashMap.get(uri)) != null) {
+                b.a(bVar, n32.f12279b);
             }
         }
         return false;

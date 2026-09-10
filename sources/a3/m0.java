@@ -1,12 +1,12 @@
 package a3;
 public interface m0 {
-    public static final na.d f158g = new Object();
+    public static final na.d f145g = new na.d(1);
 
-    void H();
+    void C();
 
-    void K();
+    void T();
 
-    void h0();
+    void l();
 
     void onFirstFrameRendered();
 }

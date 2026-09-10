@@ -1,39 +1,46 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.SharedConfig;
-public final class md0 extends AnimatorListenerAdapter {
-    public final int f28463a;
-    public final nd0 f28464b;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.drawable.Drawable;
+import android.widget.TextView;
+public final class md0 extends TextView {
+    public final nd0 f25221a;
 
-    public md0(nd0 nd0Var, int i10) {
-        this.f28463a = i10;
-        this.f28464b = nd0Var;
+    public md0(nd0 nd0Var, Context context, int i10) {
+        super(context);
+        this.f25221a = nd0Var;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        EditTextBoldCursor editTextBoldCursor;
-        switch (this.f28463a) {
-            case 0:
-                sd0 sd0Var = this.f28464b.d;
-                sd0Var.P = 1.0f;
-                sd0Var.f(1.0f);
-                return;
-            default:
-                nd0 nd0Var = this.f28464b;
-                Runnable runnable = nd0Var.f28761c;
-                if (runnable != null) {
-                    runnable.run();
-                }
-                if (SharedConfig.passcodeType == 1 && nd0Var.d.f30291x.getVisibility() != 0 && (editTextBoldCursor = nd0Var.d.f30288r) != null) {
-                    editTextBoldCursor.requestFocus();
-                    AndroidUtilities.showKeyboard(nd0Var.d.f30288r);
-                    return;
-                }
-                return;
+    public final void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+        nd0 nd0Var = this.f25221a;
+        if (nd0Var.e.getAdapter() instanceof kd0) {
+            ((kd0) nd0Var.e.getAdapter()).getClass();
         }
+    }
+
+    @Override
+    public final void setSelected(boolean z10) {
+        float f7;
+        float f10;
+        super.setSelected(z10);
+        Drawable background = getBackground();
+        nd0 nd0Var = this.f25221a;
+        if (background != null) {
+            if (z10) {
+                f10 = 0.1f;
+            } else {
+                f10 = 0.05f;
+            }
+            org.telegram.ui.ActionBar.j6.B1(background, nd0Var.c(f10), true);
+        }
+        if (z10) {
+            f7 = 0.8f;
+        } else {
+            f7 = 0.6f;
+        }
+        setTextColor(nd0Var.c(f7));
     }
 }

@@ -1,36 +1,52 @@
 package org.telegram.ui;
-public final class kh1 implements Runnable {
-    public final int f38097a;
-    public final UserInfoActivity f38098b;
 
-    public kh1(UserInfoActivity userInfoActivity, int i10) {
-        this.f38097a = i10;
-        this.f38098b = userInfoActivity;
+import android.widget.TextView;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.tgnet.tl.TL_account;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+public final class kh1 extends org.telegram.ui.ActionBar.k {
+    public final mh1 f34374a;
+
+    public kh1(mh1 mh1Var) {
+        this.f34374a = mh1Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f38097a) {
-            case 0:
-                this.f38098b.presentFragment(new PrivacyControlActivity(9, true));
-                return;
-            case 1:
-                org.telegram.ui.Components.x51 x51Var = this.f38098b.f34262x;
-                if (x51Var != null) {
-                    x51Var.Y2.N(true);
+    public final void b(int i10) {
+        String string;
+        org.telegram.ui.ActionBar.f5 f5Var;
+        mh1 mh1Var = this.f34374a;
+        if (i10 == -1) {
+            if (mh1Var.G >= 0) {
+                f5Var = ((org.telegram.ui.ActionBar.p2) mh1Var).parentLayout;
+                if (f5Var.getFragmentStack().size() == 1) {
+                    mh1Var.I0();
                     return;
                 }
-                return;
-            case 2:
-                UserInfoActivity userInfoActivity = this.f38098b;
-                userInfoActivity.getClass();
-                userInfoActivity.presentFragment(new PrivacyControlActivity(11, false));
-                return;
-            default:
-                UserInfoActivity userInfoActivity2 = this.f38098b;
-                userInfoActivity2.getClass();
-                userInfoActivity2.presentFragment(new PremiumPreviewFragment(0, "add_account"));
-                return;
+            }
+            mh1Var.finishFragment();
+        } else if (i10 == 1) {
+            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(mh1Var.getParentActivity());
+            TL_account.Password password = mh1Var.U;
+            if (password != null && password.has_password) {
+                string = LocaleController.getString(R.string.CancelEmailQuestion);
+            } else {
+                string = LocaleController.getString(R.string.CancelPasswordQuestion);
+            }
+            String string2 = LocaleController.getString(R.string.CancelEmailQuestionTitle);
+            String string3 = LocaleController.getString(R.string.Abort);
+            org.telegram.ui.ActionBar.d2 d2Var = alertDialog$Builder.f17528a;
+            d2Var.T = string;
+            d2Var.R = string2;
+            alertDialog$Builder.k(string3, new ul0(this, 24));
+            alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
+            org.telegram.ui.ActionBar.d2 d2Var2 = alertDialog$Builder.f17528a;
+            mh1Var.showDialog(d2Var2);
+            TextView textView = (TextView) d2Var2.d(-1);
+            if (textView != null) {
+                textView.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f18162q7, false));
+            }
         }
     }
 }

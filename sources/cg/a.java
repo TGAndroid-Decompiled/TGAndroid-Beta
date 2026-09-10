@@ -1,10 +1,15 @@
 package cg;
 
-import java.nio.ShortBuffer;
-import t7.u;
-public interface a {
-    public static final u f4827p = new u(6);
-    public static final ob.a f4828q = new ob.a(7);
+import android.graphics.Bitmap;
+import java.util.List;
+public final class a {
+    public final int f4675a;
+    public final Bitmap f4676b;
+    public final List f4677c;
 
-    void z(ShortBuffer shortBuffer, int i10, ShortBuffer shortBuffer2, int i11, int i12);
+    public a(Bitmap bitmap, int i10, List list) {
+        this.f4677c = list;
+        this.f4676b = bitmap;
+        this.f4675a = i10;
+    }
 }

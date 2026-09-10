@@ -3,7 +3,7 @@ package e5;
 import java.io.UnsupportedEncodingException;
 import java.nio.ByteBuffer;
 public abstract class b {
-    public static final char[] f8869a = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'};
+    public static final char[] f7282a = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'};
 
     public static int a(byte b10) {
         if (b10 < 0) {
@@ -16,8 +16,8 @@ public abstract class b {
         if (str != null) {
             try {
                 return str.getBytes("UTF-8");
-            } catch (UnsupportedEncodingException e7) {
-                throw new Error(e7);
+            } catch (UnsupportedEncodingException e) {
+                throw new Error(e);
             }
         }
         return null;
@@ -41,7 +41,7 @@ public abstract class b {
             }
             int i15 = i13 + 1;
             byte b10 = bArr[i14];
-            char[] cArr2 = f8869a;
+            char[] cArr2 = f7282a;
             cArr[i13] = cArr2[(b10 & 240) >>> 4];
             i13 += 2;
             cArr[i15] = cArr2[b10 & 15];
@@ -54,8 +54,8 @@ public abstract class b {
         byteBuffer.get(bArr);
         try {
             return new String(bArr, "ISO-8859-1");
-        } catch (UnsupportedEncodingException e7) {
-            throw new RuntimeException(e7);
+        } catch (UnsupportedEncodingException e) {
+            throw new RuntimeException(e);
         }
     }
 

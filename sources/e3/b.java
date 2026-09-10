@@ -12,40 +12,40 @@ import e9.g0;
 import e9.i0;
 import java.util.List;
 public final class b implements o {
-    public final v f8827a;
-    public final l f8828b;
-    public final boolean f8829c;
+    public final v f7244a;
+    public final l f7245b;
+    public final boolean f7246c;
     public final rb.a d;
-    public int f8830e;
-    public q f8831f;
-    public c f8832g;
+    public int e;
+    public q f7247f;
+    public c f7248g;
     public long h;
-    public e[] f8833i;
-    public long f8834j;
-    public e f8835k;
-    public int f8836l;
-    public long f8837m;
-    public long f8838n;
-    public int f8839o;
-    public boolean f8840p;
+    public e[] f7249i;
+    public long f7250j;
+    public e f7251k;
+    public int f7252l;
+    public long f7253m;
+    public long f7254n;
+    public int f7255o;
+    public boolean f7256p;
 
     public b(int i10, rb.a aVar) {
         this.d = aVar;
-        this.f8829c = (i10 & 1) == 0;
-        this.f8827a = new v(12);
-        this.f8828b = new Object();
-        this.f8831f = new qb.b(5);
-        this.f8833i = new e[0];
-        this.f8837m = -1L;
-        this.f8838n = -1L;
-        this.f8836l = -1;
+        this.f7246c = (i10 & 1) == 0;
+        this.f7244a = new v(12);
+        this.f7245b = new Object();
+        this.f7247f = new na.d(6);
+        this.f7249i = new e[0];
+        this.f7253m = -1L;
+        this.f7254n = -1L;
+        this.f7252l = -1;
         this.h = -9223372036854775807L;
     }
 
     @Override
     public final boolean b(p pVar) {
-        v vVar = this.f8827a;
-        pVar.b(0, 12, vVar.f8817a);
+        v vVar = this.f7244a;
+        pVar.b(0, 12, vVar.f7234a);
         vVar.J(0);
         if (vVar.l() == 1179011410) {
             vVar.K(4);
@@ -58,42 +58,42 @@ public final class b implements o {
 
     @Override
     public final void g(q qVar) {
-        this.f8830e = 0;
-        if (this.f8829c) {
+        this.e = 0;
+        if (this.f7246c) {
             qVar = new m(qVar, this.d);
         }
-        this.f8831f = qVar;
-        this.f8834j = -1L;
+        this.f7247f = qVar;
+        this.f7250j = -1L;
     }
 
     @Override
     public final void h(long j3, long j10) {
         e[] eVarArr;
-        this.f8834j = -1L;
-        this.f8835k = null;
-        for (e eVar : this.f8833i) {
-            if (eVar.f8857k == 0) {
-                eVar.f8855i = 0;
+        this.f7250j = -1L;
+        this.f7251k = null;
+        for (e eVar : this.f7249i) {
+            if (eVar.f7271k == 0) {
+                eVar.f7269i = 0;
             } else {
-                eVar.f8855i = eVar.f8860n[d0.e(eVar.f8859m, j3, true)];
+                eVar.f7269i = eVar.f7274n[d0.e(eVar.f7273m, j3, true)];
             }
         }
         if (j3 == 0) {
-            if (this.f8833i.length == 0) {
-                this.f8830e = 0;
+            if (this.f7249i.length == 0) {
+                this.e = 0;
                 return;
             } else {
-                this.f8830e = 3;
+                this.e = 3;
                 return;
             }
         }
-        this.f8830e = 6;
+        this.e = 6;
     }
 
     @Override
     public final List i() {
-        g0 g0Var = i0.f8985b;
-        return a1.f8948e;
+        g0 g0Var = i0.f7384b;
+        return a1.e;
     }
 
     @Override

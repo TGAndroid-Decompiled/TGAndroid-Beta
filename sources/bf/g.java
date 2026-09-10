@@ -2,11 +2,11 @@ package bf;
 
 import v7.i0;
 public final class g extends p {
-    public final int f2652g;
+    public final int f2232g;
 
     @Override
     public final void a(i0 i0Var) {
-        switch (this.f2652g) {
+        switch (this.f2232g) {
             case 0:
                 i0Var.e(this);
                 return;

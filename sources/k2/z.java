@@ -1,41 +1,38 @@
 package k2;
 
-import android.os.SystemClock;
+import android.media.AudioDeviceInfo;
+import android.media.AudioRouting;
+import android.media.AudioTrack;
+import android.os.Handler;
+import android.os.Looper;
+import bi.h8;
 public final class z {
-    public Exception f14718a;
-    public long f14719b = -9223372036854775807L;
-    public long f14720c = -9223372036854775807L;
+    public final AudioTrack f12242a;
+    public final h8 f12243b;
+    public y f12244c = new AudioRouting.OnRoutingChangedListener() {
+        @Override
+        public final void onRoutingChanged(AudioRouting audioRouting) {
+            z.a(z.this, audioRouting);
+        }
+    };
 
-    public final void a(Exception exc) {
-        boolean z10;
-        long elapsedRealtime = SystemClock.elapsedRealtime();
-        if (this.f14718a == null) {
-            this.f14718a = exc;
+    public z(AudioTrack audioTrack, h8 h8Var) {
+        this.f12242a = audioTrack;
+        this.f12243b = h8Var;
+        audioTrack.addOnRoutingChangedListener(this.f12244c, new Handler(Looper.myLooper()));
+    }
+
+    public static void a(z zVar, AudioRouting audioRouting) {
+        AudioDeviceInfo routedDevice;
+        if (zVar.f12244c != null && (routedDevice = audioRouting.getRoutedDevice()) != null) {
+            zVar.f12243b.c(routedDevice);
         }
-        if (this.f14719b == -9223372036854775807L) {
-            synchronized (d0.f14554o0) {
-                if (d0.f14556q0 > 0) {
-                    z10 = true;
-                } else {
-                    z10 = false;
-                }
-            }
-            if (!z10) {
-                this.f14719b = 200 + elapsedRealtime;
-            }
-        }
-        long j3 = this.f14719b;
-        if (j3 != -9223372036854775807L && elapsedRealtime >= j3) {
-            Exception exc2 = this.f14718a;
-            if (exc2 != exc) {
-                exc2.addSuppressed(exc);
-            }
-            Exception exc3 = this.f14718a;
-            this.f14718a = null;
-            this.f14719b = -9223372036854775807L;
-            this.f14720c = -9223372036854775807L;
-            throw exc3;
-        }
-        this.f14720c = elapsedRealtime + 50;
+    }
+
+    public final void b() {
+        y yVar = this.f12244c;
+        yVar.getClass();
+        this.f12242a.removeOnRoutingChangedListener(yVar);
+        this.f12244c = null;
     }
 }

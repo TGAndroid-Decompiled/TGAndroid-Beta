@@ -1,54 +1,36 @@
 package qg;
 
-import org.telegram.messenger.R;
-public final class c extends m {
+import android.content.Context;
+import android.view.View;
+import java.util.ArrayList;
+import org.telegram.messenger.UserConfig;
+public final class c extends b {
+    public d d;
+
     @Override
-    public final float a() {
-        return 0.3f;
+    public final s4.h0 a() {
+        d dVar = new d(UserConfig.selectedAccount, this.f40679a);
+        this.d = dVar;
+        dVar.f40704r = this;
+        return dVar;
     }
 
     @Override
-    public final float b() {
-        return (float) Math.toRadians(0.0d);
-    }
-
-    @Override
-    public final int c() {
-        return -10742;
-    }
-
-    @Override
-    public final float d() {
-        return 0.5f;
-    }
-
-    @Override
-    public final int e() {
-        return R.raw.photo_marker;
-    }
-
-    @Override
-    public final float f() {
-        return 0.45f;
-    }
-
-    @Override
-    public final float g() {
-        return 0.4f;
-    }
-
-    @Override
-    public final float h() {
-        return 1.5f;
-    }
-
-    @Override
-    public final float k() {
-        return 0.04f;
-    }
-
-    @Override
-    public final int l() {
-        return R.drawable.paint_elliptical_brush;
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(i10, i11);
+        d dVar = this.d;
+        Context context = getContext();
+        int measuredWidth = getMeasuredWidth();
+        int measuredHeight = getMeasuredHeight();
+        ArrayList arrayList = dVar.f40702f;
+        f fVar = new f(context, dVar.f40701c);
+        int i12 = 0;
+        for (int i13 = 0; i13 < arrayList.size(); i13++) {
+            fVar.a((e) arrayList.get(i13));
+            fVar.measure(View.MeasureSpec.makeMeasureSpec(measuredWidth, 1073741824), View.MeasureSpec.makeMeasureSpec(measuredHeight, Integer.MIN_VALUE));
+            ((e) arrayList.get(i13)).e = i12;
+            i12 += fVar.getMeasuredHeight();
+        }
+        dVar.f40703n = i12;
     }
 }

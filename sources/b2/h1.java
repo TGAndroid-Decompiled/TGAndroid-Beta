@@ -3,31 +3,31 @@ package b2;
 import j$.util.Objects;
 public final class h1 {
     public static final String h;
-    public static final String f2077i;
-    public static final String f2078j;
-    public static final String f2079k;
-    public static final String f2080l;
-    public Object f2081a;
-    public Object f2082b;
-    public int f2083c;
+    public static final String f1701i;
+    public static final String f1702j;
+    public static final String f1703k;
+    public static final String f1704l;
+    public Object f1705a;
+    public Object f1706b;
+    public int f1707c;
     public long d;
-    public long f2084e;
-    public boolean f2085f;
-    public b f2086g = b.f1993c;
+    public long e;
+    public boolean f1708f;
+    public b f1709g = b.f1628c;
 
     static {
-        String str = e2.d0.f8765a;
+        String str = e2.d0.f7188a;
         h = Integer.toString(0, 36);
-        f2077i = Integer.toString(1, 36);
-        f2078j = Integer.toString(2, 36);
-        f2079k = Integer.toString(3, 36);
-        f2080l = Integer.toString(4, 36);
+        f1701i = Integer.toString(1, 36);
+        f1702j = Integer.toString(2, 36);
+        f1703k = Integer.toString(3, 36);
+        f1704l = Integer.toString(4, 36);
     }
 
     public final long a(int i10, int i11) {
-        a a2 = this.f2086g.a(i10);
-        if (a2.f1972a != -1) {
-            return a2.f1976f[i11];
+        a a2 = this.f1709g.a(i10);
+        if (a2.f1609a != -1) {
+            return a2.f1612f[i11];
         }
         return -9223372036854775807L;
     }
@@ -36,15 +36,15 @@ public final class h1 {
         int i10;
         a a2;
         int i11;
-        b bVar = this.f2086g;
+        b bVar = this.f1709g;
         long j10 = this.d;
-        int i12 = bVar.f1995a;
+        int i12 = bVar.f1629a;
         if (j3 != Long.MIN_VALUE && (j10 == -9223372036854775807L || j3 < j10)) {
             int i13 = 0;
             while (i13 < i12) {
                 bVar.a(i13).getClass();
                 bVar.a(i13).getClass();
-                if (0 > j3 && ((i11 = (a2 = bVar.a(i13)).f1972a) == -1 || a2.a(-1) < i11)) {
+                if (0 > j3 && ((i11 = (a2 = bVar.a(i13)).f1609a) == -1 || a2.a(-1) < i11)) {
                     break;
                 }
                 i13++;
@@ -62,8 +62,8 @@ public final class h1 {
     }
 
     public final int c(long j3) {
-        b bVar = this.f2086g;
-        int i10 = bVar.f1995a;
+        b bVar = this.f1709g;
+        int i10 = bVar.f1629a;
         int i11 = i10 - 1;
         if (i11 == i10 - 1) {
             bVar.a(i11).getClass();
@@ -77,10 +77,10 @@ public final class h1 {
         }
         if (i11 >= 0) {
             a a2 = bVar.a(i11);
-            int i12 = a2.f1972a;
+            int i12 = a2.f1609a;
             if (i12 != -1) {
                 for (int i13 = 0; i13 < i12; i13++) {
-                    int i14 = a2.f1975e[i13];
+                    int i14 = a2.e[i13];
                     if (i14 != 0 && i14 != 1) {
                     }
                 }
@@ -91,12 +91,12 @@ public final class h1 {
     }
 
     public final long d(int i10) {
-        this.f2086g.a(i10).getClass();
+        this.f1709g.a(i10).getClass();
         return 0L;
     }
 
     public final int e(int i10) {
-        return this.f2086g.a(i10).a(-1);
+        return this.f1709g.a(i10).a(-1);
     }
 
     public final boolean equals(Object obj) {
@@ -105,7 +105,7 @@ public final class h1 {
         }
         if (obj != null && h1.class.equals(obj.getClass())) {
             h1 h1Var = (h1) obj;
-            if (Objects.equals(this.f2081a, h1Var.f2081a) && Objects.equals(this.f2082b, h1Var.f2082b) && this.f2083c == h1Var.f2083c && this.d == h1Var.d && this.f2084e == h1Var.f2084e && this.f2085f == h1Var.f2085f && Objects.equals(this.f2086g, h1Var.f2086g)) {
+            if (Objects.equals(this.f1705a, h1Var.f1705a) && Objects.equals(this.f1706b, h1Var.f1706b) && this.f1707c == h1Var.f1707c && this.d == h1Var.d && this.e == h1Var.e && this.f1708f == h1Var.f1708f && Objects.equals(this.f1709g, h1Var.f1709g)) {
                 return true;
             }
         }
@@ -113,8 +113,8 @@ public final class h1 {
     }
 
     public final boolean f(int i10) {
-        b bVar = this.f2086g;
-        int i11 = bVar.f1995a;
+        b bVar = this.f1709g;
+        int i11 = bVar.f1629a;
         if (i10 == i11 - 1 && i10 == i11 - 1) {
             bVar.a(i10).getClass();
             return false;
@@ -123,23 +123,23 @@ public final class h1 {
     }
 
     public final boolean g(int i10) {
-        this.f2086g.a(i10).getClass();
+        this.f1709g.a(i10).getClass();
         return false;
     }
 
     public final void h(Object obj, Object obj2, int i10, long j3, long j10, b bVar, boolean z10) {
-        this.f2081a = obj;
-        this.f2082b = obj2;
-        this.f2083c = i10;
+        this.f1705a = obj;
+        this.f1706b = obj2;
+        this.f1707c = i10;
         this.d = j3;
-        this.f2084e = j10;
-        this.f2086g = bVar;
-        this.f2085f = z10;
+        this.e = j10;
+        this.f1709g = bVar;
+        this.f1708f = z10;
     }
 
     public final int hashCode() {
         int hashCode;
-        Object obj = this.f2081a;
+        Object obj = this.f1705a;
         int i10 = 0;
         if (obj == null) {
             hashCode = 0;
@@ -147,12 +147,12 @@ public final class h1 {
             hashCode = obj.hashCode();
         }
         int i11 = (217 + hashCode) * 31;
-        Object obj2 = this.f2082b;
+        Object obj2 = this.f1706b;
         if (obj2 != null) {
             i10 = obj2.hashCode();
         }
         long j3 = this.d;
-        long j10 = this.f2084e;
-        return this.f2086g.hashCode() + ((((((((((i11 + i10) * 31) + this.f2083c) * 31) + ((int) (j3 ^ (j3 >>> 32)))) * 31) + ((int) (j10 ^ (j10 >>> 32)))) * 31) + (this.f2085f ? 1 : 0)) * 31);
+        long j10 = this.e;
+        return this.f1709g.hashCode() + ((((((((((i11 + i10) * 31) + this.f1707c) * 31) + ((int) (j3 ^ (j3 >>> 32)))) * 31) + ((int) (j10 ^ (j10 >>> 32)))) * 31) + (this.f1708f ? 1 : 0)) * 31);
     }
 }

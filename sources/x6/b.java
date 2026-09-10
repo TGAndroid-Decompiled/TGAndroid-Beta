@@ -2,15 +2,14 @@ package x6;
 
 import android.os.IBinder;
 import android.os.IInterface;
-import i2.g;
 import java.lang.reflect.Field;
 import n6.l;
 public final class b extends b8.b implements a {
-    public final Object f48943b;
+    public final Object f44689b;
 
     public b(Object obj) {
         super("com.google.android.gms.dynamic.IObjectWrapper", 7);
-        this.f48943b = obj;
+        this.f44689b = obj;
     }
 
     public static a L0(IBinder iBinder) {
@@ -26,7 +25,7 @@ public final class b extends b8.b implements a {
 
     public static Object M0(a aVar) {
         if (aVar instanceof b) {
-            return ((b) aVar).f48943b;
+            return ((b) aVar).f44689b;
         }
         IBinder asBinder = aVar.asBinder();
         Field[] declaredFields = asBinder.getClass().getDeclaredFields();
@@ -44,14 +43,14 @@ public final class b extends b8.b implements a {
                 field.setAccessible(true);
                 try {
                     return field.get(asBinder);
-                } catch (IllegalAccessException e7) {
-                    throw new IllegalArgumentException("Could not access the field in remoteBinder.", e7);
-                } catch (NullPointerException e10) {
-                    throw new IllegalArgumentException("Binder object is null.", e10);
+                } catch (IllegalAccessException e) {
+                    throw new IllegalArgumentException("Could not access the field in remoteBinder.", e);
+                } catch (NullPointerException e7) {
+                    throw new IllegalArgumentException("Binder object is null.", e7);
                 }
             }
             throw new IllegalArgumentException("IObjectWrapper declared field not private!");
         }
-        throw new IllegalArgumentException(g.i(declaredFields.length, "Unexpected number of IObjectWrapper declared fields: "));
+        throw new IllegalArgumentException(hc.b.j(declaredFields.length, "Unexpected number of IObjectWrapper declared fields: "));
     }
 }

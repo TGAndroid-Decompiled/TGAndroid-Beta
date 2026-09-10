@@ -12,46 +12,46 @@ import w7.i9;
 import w7.l8;
 import z7.lg;
 public final class n extends AbstractCollection {
-    public final int f9005a;
-    public final Object f9006b;
+    public final int f7402a;
+    public final Object f7403b;
 
     public n(int i10, Serializable serializable) {
-        this.f9005a = i10;
-        this.f9006b = serializable;
+        this.f7402a = i10;
+        this.f7403b = serializable;
     }
 
     @Override
     public final void clear() {
-        switch (this.f9005a) {
+        switch (this.f7402a) {
             case 0:
-                ((v0) this.f9006b).b();
+                ((v0) this.f7403b).b();
                 return;
             case 1:
-                ((v) this.f9006b).clear();
+                ((v) this.f7403b).clear();
                 return;
             case 2:
-                ((d) this.f9006b).clear();
+                ((d) this.f7403b).clear();
                 return;
             case 3:
-                ((x7.j) this.f9006b).clear();
+                ((x7.j) this.f7403b).clear();
                 return;
             case 4:
-                ((d) this.f9006b).clear();
+                ((d) this.f7403b).clear();
                 return;
             case 5:
-                ((z7.d) this.f9006b).clear();
+                ((z7.d) this.f7403b).clear();
                 return;
             default:
-                ((d) this.f9006b).clear();
+                ((d) this.f7403b).clear();
                 return;
         }
     }
 
     @Override
     public boolean contains(Object obj) {
-        switch (this.f9005a) {
+        switch (this.f7402a) {
             case 0:
-                for (Collection collection : ((v0) this.f9006b).a().values()) {
+                for (Collection collection : ((v0) this.f7403b).a().values()) {
                     if (collection.contains(obj)) {
                         return true;
                     }
@@ -63,70 +63,70 @@ public final class n extends AbstractCollection {
             default:
                 return super.contains(obj);
             case 2:
-                return ((d) this.f9006b).containsValue(obj);
+                return ((d) this.f7403b).containsValue(obj);
             case 4:
-                return ((d) this.f9006b).containsValue(obj);
+                return ((d) this.f7403b).containsValue(obj);
             case 6:
-                return ((d) this.f9006b).containsValue(obj);
+                return ((d) this.f7403b).containsValue(obj);
         }
     }
 
     @Override
     public boolean isEmpty() {
-        switch (this.f9005a) {
+        switch (this.f7402a) {
             case 2:
-                return ((d) this.f9006b).isEmpty();
+                return ((d) this.f7403b).isEmpty();
             case 3:
             case 5:
             default:
                 return super.isEmpty();
             case 4:
-                return ((d) this.f9006b).isEmpty();
+                return ((d) this.f7403b).isEmpty();
             case 6:
-                return ((d) this.f9006b).isEmpty();
+                return ((d) this.f7403b).isEmpty();
         }
     }
 
     @Override
     public final Iterator iterator() {
-        switch (this.f9005a) {
+        switch (this.f7402a) {
             case 0:
-                return new a((v0) this.f9006b);
+                return new a((v0) this.f7403b);
             case 1:
-                v vVar = (v) this.f9006b;
+                v vVar = (v) this.f7403b;
                 Map b10 = vVar.b();
                 if (b10 != null) {
                     return b10.values().iterator();
                 }
                 return new r(vVar, 2);
             case 2:
-                return new n1(((d) this.f9006b).entrySet().iterator());
+                return new n1(((d) this.f7403b).entrySet().iterator());
             case 3:
-                x7.j jVar = (x7.j) this.f9006b;
+                x7.j jVar = (x7.j) this.f7403b;
                 Map a2 = jVar.a();
                 if (a2 != null) {
                     return a2.values().iterator();
                 }
                 return new x7.g(jVar, 2);
             case 4:
-                return new com.google.android.gms.internal.clearcut.f1(((d) this.f9006b).entrySet().iterator(), 1);
+                return new com.google.android.gms.internal.clearcut.g1(((d) this.f7403b).entrySet().iterator(), 1);
             case 5:
-                z7.d dVar = (z7.d) this.f9006b;
+                z7.d dVar = (z7.d) this.f7403b;
                 Map a10 = dVar.a();
                 if (a10 != null) {
                     return a10.values().iterator();
                 }
                 return new z7.a(dVar, 2);
             default:
-                return new com.google.android.gms.internal.clearcut.f1(((d) this.f9006b).entrySet().iterator(), 2);
+                return new com.google.android.gms.internal.clearcut.g1(((d) this.f7403b).entrySet().iterator(), 2);
         }
     }
 
     @Override
     public boolean remove(Object obj) {
-        switch (this.f9005a) {
+        switch (this.f7402a) {
             case 2:
-                d dVar = (d) this.f9006b;
+                d dVar = (d) this.f7403b;
                 try {
                     return super.remove(obj);
                 } catch (UnsupportedOperationException unused) {
@@ -143,7 +143,7 @@ public final class n extends AbstractCollection {
             default:
                 return super.remove(obj);
             case 4:
-                d dVar2 = (d) this.f9006b;
+                d dVar2 = (d) this.f7403b;
                 try {
                     return super.remove(obj);
                 } catch (UnsupportedOperationException unused2) {
@@ -156,7 +156,7 @@ public final class n extends AbstractCollection {
                     return false;
                 }
             case 6:
-                d dVar3 = (d) this.f9006b;
+                d dVar3 = (d) this.f7403b;
                 try {
                     return super.remove(obj);
                 } catch (UnsupportedOperationException unused3) {
@@ -173,9 +173,9 @@ public final class n extends AbstractCollection {
 
     @Override
     public boolean removeAll(Collection collection) {
-        switch (this.f9005a) {
+        switch (this.f7402a) {
             case 2:
-                d dVar = (d) this.f9006b;
+                d dVar = (d) this.f7403b;
                 try {
                     collection.getClass();
                     return super.removeAll(collection);
@@ -193,7 +193,7 @@ public final class n extends AbstractCollection {
             default:
                 return super.removeAll(collection);
             case 4:
-                d dVar2 = (d) this.f9006b;
+                d dVar2 = (d) this.f7403b;
                 try {
                     if (collection != null) {
                         return super.removeAll(collection);
@@ -206,10 +206,10 @@ public final class n extends AbstractCollection {
                             hashSet2.add(entry2.getKey());
                         }
                     }
-                    return ((x7.f) dVar2.f8960e).b().removeAll(hashSet2);
+                    return ((x7.f) dVar2.e).b().removeAll(hashSet2);
                 }
             case 6:
-                d dVar3 = (d) this.f9006b;
+                d dVar3 = (d) this.f7403b;
                 try {
                     if (collection != null) {
                         return super.removeAll(collection);
@@ -222,16 +222,16 @@ public final class n extends AbstractCollection {
                             hashSet3.add(entry3.getKey());
                         }
                     }
-                    return ((lg) dVar3.f8960e).b().removeAll(hashSet3);
+                    return ((lg) dVar3.e).b().removeAll(hashSet3);
                 }
         }
     }
 
     @Override
     public boolean retainAll(Collection collection) {
-        switch (this.f9005a) {
+        switch (this.f7402a) {
             case 2:
-                d dVar = (d) this.f9006b;
+                d dVar = (d) this.f7403b;
                 try {
                     collection.getClass();
                     return super.retainAll(collection);
@@ -249,7 +249,7 @@ public final class n extends AbstractCollection {
             default:
                 return super.retainAll(collection);
             case 4:
-                d dVar2 = (d) this.f9006b;
+                d dVar2 = (d) this.f7403b;
                 try {
                     if (collection != null) {
                         return super.retainAll(collection);
@@ -262,10 +262,10 @@ public final class n extends AbstractCollection {
                             hashSet2.add(entry2.getKey());
                         }
                     }
-                    return ((x7.f) dVar2.f8960e).b().retainAll(hashSet2);
+                    return ((x7.f) dVar2.e).b().retainAll(hashSet2);
                 }
             case 6:
-                d dVar3 = (d) this.f9006b;
+                d dVar3 = (d) this.f7403b;
                 try {
                     if (collection != null) {
                         return super.retainAll(collection);
@@ -278,33 +278,33 @@ public final class n extends AbstractCollection {
                             hashSet3.add(entry3.getKey());
                         }
                     }
-                    return ((lg) dVar3.f8960e).b().retainAll(hashSet3);
+                    return ((lg) dVar3.e).b().retainAll(hashSet3);
                 }
         }
     }
 
     @Override
     public final int size() {
-        switch (this.f9005a) {
+        switch (this.f7402a) {
             case 0:
-                return ((v0) this.f9006b).f9047e;
+                return ((v0) this.f7403b).e;
             case 1:
-                return ((v) this.f9006b).size();
+                return ((v) this.f7403b).size();
             case 2:
-                return ((d) this.f9006b).f8958b.size();
+                return ((d) this.f7403b).f7364b.size();
             case 3:
-                return ((x7.j) this.f9006b).size();
+                return ((x7.j) this.f7403b).size();
             case 4:
-                return ((d) this.f9006b).f8958b.size();
+                return ((d) this.f7403b).f7364b.size();
             case 5:
-                return ((z7.d) this.f9006b).size();
+                return ((z7.d) this.f7403b).size();
             default:
-                return ((d) this.f9006b).f8958b.size();
+                return ((d) this.f7403b).f7364b.size();
         }
     }
 
     public n(AbstractMap abstractMap, int i10) {
-        this.f9005a = i10;
-        this.f9006b = abstractMap;
+        this.f7402a = i10;
+        this.f7403b = abstractMap;
     }
 }

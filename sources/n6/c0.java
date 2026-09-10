@@ -5,38 +5,38 @@ import android.content.ServiceConnection;
 import android.os.IBinder;
 import android.os.IInterface;
 public final class c0 implements ServiceConnection {
-    public final int f16536a;
-    public final g f16537b;
+    public final int f13837a;
+    public final g f13838b;
 
     public c0(g gVar, int i10) {
-        this.f16537b = gVar;
-        this.f16536a = i10;
+        this.f13838b = gVar;
+        this.f13837a = i10;
     }
 
     @Override
     public final void onServiceConnected(ComponentName componentName, IBinder iBinder) {
         y yVar;
-        g gVar = this.f16537b;
+        g gVar = this.f13838b;
         if (iBinder == null) {
             g.D(gVar);
             return;
         }
-        synchronized (gVar.f16570x) {
+        synchronized (gVar.f13868x) {
             try {
-                g gVar2 = this.f16537b;
+                g gVar2 = this.f13838b;
                 IInterface queryLocalInterface = iBinder.queryLocalInterface("com.google.android.gms.common.internal.IGmsServiceBroker");
                 if (queryLocalInterface != null && (queryLocalInterface instanceof y)) {
                     yVar = (y) queryLocalInterface;
                 } else {
                     yVar = new y(iBinder);
                 }
-                gVar2.f16571y = yVar;
+                gVar2.f13869y = yVar;
             } catch (Throwable th2) {
                 throw th2;
             }
         }
-        g gVar3 = this.f16537b;
-        int i10 = this.f16536a;
+        g gVar3 = this.f13838b;
+        int i10 = this.f13837a;
         e0 e0Var = new e0(gVar3, 0, null);
         a0 a0Var = gVar3.v;
         a0Var.sendMessage(a0Var.obtainMessage(7, i10, -1, e0Var));
@@ -45,11 +45,11 @@ public final class c0 implements ServiceConnection {
     @Override
     public final void onServiceDisconnected(ComponentName componentName) {
         g gVar;
-        synchronized (this.f16537b.f16570x) {
-            gVar = this.f16537b;
-            gVar.f16571y = null;
+        synchronized (this.f13838b.f13868x) {
+            gVar = this.f13838b;
+            gVar.f13869y = null;
         }
-        int i10 = this.f16536a;
+        int i10 = this.f13837a;
         a0 a0Var = gVar.v;
         a0Var.sendMessage(a0Var.obtainMessage(6, i10, 1));
     }

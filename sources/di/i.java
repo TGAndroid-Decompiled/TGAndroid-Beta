@@ -1,89 +1,35 @@
 package di;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Rect;
-import android.graphics.RectF;
-import android.view.KeyEvent;
-import org.telegram.ui.Components.ChatAttachAlertPhotoLayout;
-import org.telegram.ui.Components.oa0;
-import org.telegram.ui.Components.vi;
-public final class i extends oa0 {
-    public final int V;
-    public final KeyEvent.Callback W;
+import android.view.View;
+import org.telegram.ui.ActionBar.f6;
+import org.telegram.ui.Components.j61;
+import org.telegram.ui.Components.r61;
+import org.telegram.ui.Components.u51;
+import org.telegram.ui.Components.v51;
+import org.telegram.ui.Components.vl0;
+public final class i extends u51 {
+    static {
+        u51.setup(new u51());
+    }
 
-    public i(KeyEvent.Callback callback, Context context, long j3, org.telegram.ui.ActionBar.n2 n2Var, org.telegram.ui.ActionBar.f6 f6Var, int i10) {
-        super(context, j3, 0L, n2Var, f6Var);
-        this.V = i10;
-        this.W = callback;
+    public static v51 a(int i10, int i11, int i12, CharSequence charSequence, String str) {
+        v51 J = v51.J(i.class);
+        J.d = i10;
+        J.f27842z = i11;
+        J.f27828k = i12;
+        J.f27829l = charSequence;
+        J.f27830m = str;
+        return J;
     }
 
     @Override
-    public void f(Canvas canvas, Rect rect, float f7) {
-        switch (this.V) {
-            case 0:
-                m mVar = (m) this.W;
-                Paint paint = mVar.f7619e;
-                RectF rectF = mVar.f7647z0;
-                rectF.set(rect);
-                if (mVar.g()) {
-                    mVar.h(mVar.T, canvas, mVar.f7647z0, f7, false, -mVar.M.getX(), -mVar.M.getY(), false);
-                    return;
-                }
-                Paint c10 = mVar.T.c(1.0f);
-                if (c10 == null) {
-                    paint.setAlpha(128);
-                    canvas.drawRoundRect(rectF, f7, f7, paint);
-                    return;
-                }
-                canvas.drawRoundRect(rectF, f7, f7, c10);
-                paint.setAlpha(80);
-                canvas.drawRoundRect(rectF, f7, f7, paint);
-                return;
-            default:
-                super.f(canvas, rect, f7);
-                return;
-        }
+    public final void bindView(View view, v51 v51Var, boolean z10, j61 j61Var, r61 r61Var) {
+        ((j) view).a(v51Var.f27842z, v51Var.f27828k, v51Var.f27829l, v51Var.f27830m);
     }
 
     @Override
-    public boolean h() {
-        switch (this.V) {
-            case 0:
-                return true;
-            default:
-                return super.h();
-        }
-    }
-
-    @Override
-    public void i() {
-        switch (this.V) {
-            case 1:
-                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = ((vi) this.W).f31318j0;
-                if (chatAttachAlertPhotoLayout != null) {
-                    chatAttachAlertPhotoLayout.V();
-                    return;
-                }
-                return;
-            default:
-                return;
-        }
-    }
-
-    @Override
-    public void n(boolean z10) {
-        switch (this.V) {
-            case 1:
-                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = ((vi) this.W).f31318j0;
-                if (chatAttachAlertPhotoLayout != null) {
-                    chatAttachAlertPhotoLayout.V();
-                    return;
-                }
-                return;
-            default:
-                return;
-        }
+    public final View createView(Context context, vl0 vl0Var, int i10, int i11, f6 f6Var) {
+        return new j(context, f6Var);
     }
 }

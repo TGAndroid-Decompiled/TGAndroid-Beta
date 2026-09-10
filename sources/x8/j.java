@@ -1,7 +1,7 @@
 package x8;
 public abstract class j {
-    public static final com.google.android.gms.common.api.e f49312a = new com.google.android.gms.common.api.e("Wearable.API", new a8.d(18), new Object());
-    public static final k6.c[] f49313b = {new k6.c("app_client", 4), new k6.c("carrier_auth", 1), new k6.c("wear3_oem_companion", 1), new k6.c("wear_consent", 2), new k6.c("wear_consent_recordoptin", 1), new k6.c("wear_consent_supervised", 1), new k6.c("wear_fast_pair_account_key_sync", 1), new k6.c("wear_get_related_configs", 1), new k6.c("wear_get_node_id", 1), new k6.c("wear_retry_connection", 1), new k6.c("wear_set_cloud_sync_setting_by_node", 1), new k6.c("wear_update_config", 1), new k6.c("wear_update_connection_retry_strategy", 1), new k6.c("wearable_services", 1)};
+    public static final com.google.android.gms.common.api.e f45032a = new com.google.android.gms.common.api.e("Wearable.API", new a8.d(18), new Object());
+    public static final k6.c[] f45033b = {new k6.c("app_client", 4), new k6.c("carrier_auth", 1), new k6.c("wear3_oem_companion", 1), new k6.c("wear_consent", 2), new k6.c("wear_consent_recordoptin", 1), new k6.c("wear_consent_supervised", 1), new k6.c("wear_fast_pair_account_key_sync", 1), new k6.c("wear_get_related_configs", 1), new k6.c("wear_get_node_id", 1), new k6.c("wear_retry_connection", 1), new k6.c("wear_set_cloud_sync_setting_by_node", 1), new k6.c("wear_update_config", 1), new k6.c("wear_update_connection_retry_strategy", 1), new k6.c("wearable_services", 1)};
 
     public static String a(int i10) {
         switch (i10) {
@@ -14,7 +14,7 @@ public abstract class j {
             case 11:
             case 12:
             default:
-                return i2.g.i(i10, "unknown status code: ");
+                return hc.b.j(i10, "unknown status code: ");
             case 2:
                 return "SERVICE_VERSION_UPDATE_REQUIRED";
             case 3:

@@ -1,16 +1,8 @@
 package org.telegram.ui.ActionBar;
+public interface y4 {
+    void addStyle(int i10, int i11, int i12);
 
-import android.app.Activity;
-public final class y4 extends ActionBarLayout {
-    public final n f21569s1;
+    int getCurrentStyle(int i10, int i11);
 
-    public y4(Activity activity, n nVar) {
-        super(activity, false);
-        this.f21569s1 = nVar;
-    }
-
-    @Override
-    public final f3 getBottomSheet() {
-        return ((f3[]) this.f21569s1.f21229b)[0];
-    }
+    void removeStyle(int i10, int i11, int i12);
 }

@@ -1,82 +1,42 @@
 package org.telegram.ui.Components;
 
-import android.os.Bundle;
+import android.content.Context;
 import android.text.TextUtils;
-import android.view.View;
-import android.view.accessibility.AccessibilityNodeInfo;
-import java.util.HashMap;
-import java.util.WeakHashMap;
-public abstract class co0 extends View.AccessibilityDelegate {
-    public static final String f25096c = "android.widget.SeekBar";
-    public final HashMap f25097a = new HashMap(4);
-    public final bi.i2 f25098b = new bi.i2(this, 8);
+import java.util.ArrayList;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class co0 extends zs {
+    public final org.telegram.ui.wy f22208d0;
+    public final org.telegram.ui.gy f22209e0;
 
-    public abstract boolean a();
-
-    public abstract boolean b();
-
-    public abstract void c(boolean z10);
-
-    public CharSequence d() {
-        return null;
-    }
-
-    public void e(View view, AccessibilityNodeInfo accessibilityNodeInfo) {
-        accessibilityNodeInfo.setClassName(f25096c);
-        CharSequence d = d();
-        if (!TextUtils.isEmpty(d)) {
-            accessibilityNodeInfo.setText(d);
-        }
-        if (a()) {
-            accessibilityNodeInfo.addAction(AccessibilityNodeInfo.AccessibilityAction.ACTION_SCROLL_BACKWARD);
-        }
-        if (b()) {
-            accessibilityNodeInfo.addAction(AccessibilityNodeInfo.AccessibilityAction.ACTION_SCROLL_FORWARD);
-        }
-    }
-
-    public final void f(AccessibilityNodeInfo accessibilityNodeInfo) {
-        e(null, accessibilityNodeInfo);
-    }
-
-    public boolean g(View view, int i10, Bundle bundle) {
-        boolean z10 = false;
-        if (i10 != 4096 && i10 != 8192) {
-            return false;
-        }
-        if (i10 == 8192) {
-            z10 = true;
-        }
-        c(z10);
-        if (view != null) {
-            WeakHashMap weakHashMap = r0.i0.f44725a;
-            if (view.isAttachedToWindow()) {
-                HashMap hashMap = this.f25097a;
-                Runnable runnable = (Runnable) hashMap.get(view);
-                if (runnable == null) {
-                    runnable = new jn0(2, this, view);
-                    hashMap.put(view, runnable);
-                    view.addOnAttachStateChangeListener(this.f25098b);
-                } else {
-                    view.removeCallbacks(runnable);
-                }
-                view.postDelayed(runnable, 400L);
-            }
-        }
-        return true;
+    public co0(org.telegram.ui.gy gyVar, vl0 vl0Var, Context context, int i10, int i11, org.telegram.ui.wy wyVar) {
+        super(vl0Var, context, i10, i11);
+        this.f22209e0 = gyVar;
+        this.f22208d0 = wyVar;
     }
 
     @Override
-    public final void onInitializeAccessibilityNodeInfo(View view, AccessibilityNodeInfo accessibilityNodeInfo) {
-        super.onInitializeAccessibilityNodeInfo(view, accessibilityNodeInfo);
-        e(view, accessibilityNodeInfo);
-    }
-
-    @Override
-    public final boolean performAccessibilityAction(View view, int i10, Bundle bundle) {
-        if (super.performAccessibilityAction(view, i10, bundle)) {
-            return true;
+    public final void N(boolean z10) {
+        boolean z11;
+        ArrayList arrayList;
+        ArrayList arrayList2;
+        ArrayList arrayList3;
+        ArrayList arrayList4;
+        super.N(z10);
+        tn0 tn0Var = this.f22209e0.f23718g0;
+        if (!this.W && !this.X && (arrayList = this.P) != null && arrayList.isEmpty() && (arrayList2 = this.Q) != null && arrayList2.isEmpty() && (arrayList3 = this.S) != null && arrayList3.isEmpty() && (arrayList4 = this.R) != null && arrayList4.isEmpty()) {
+            z11 = false;
+        } else {
+            z11 = true;
         }
-        return g(view, i10, bundle);
+        tn0Var.e(z11, z10);
+        if (TextUtils.isEmpty(this.f29802b0)) {
+            tn0Var.d.setText(LocaleController.getString(R.string.NoChannelsTitle));
+            tn0Var.e.setVisibility(0);
+            tn0Var.e.setText(LocaleController.getString(R.string.NoChannelsMessage));
+            return;
+        }
+        tn0Var.d.setText(LocaleController.getString(R.string.NoResult));
+        tn0Var.e.setVisibility(8);
     }
 }

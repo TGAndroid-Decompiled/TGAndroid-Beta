@@ -1,48 +1,25 @@
 package org.telegram.ui.Components;
 
+import android.content.DialogInterface;
+import android.widget.EditText;
 import org.telegram.messenger.AndroidUtilities;
-public final class r1 implements Runnable {
-    public final int f29904a;
-    public final EditTextBoldCursor f29905b;
+public final class r1 implements DialogInterface.OnDismissListener {
+    public final int f26547a;
+    public final EditText f26548b;
 
-    public r1(int i10, EditTextBoldCursor editTextBoldCursor) {
-        this.f29904a = i10;
-        this.f29905b = editTextBoldCursor;
+    public r1(EditText editText, int i10) {
+        this.f26547a = i10;
+        this.f26548b = editText;
     }
 
     @Override
-    public final void run() {
-        switch (this.f29904a) {
+    public final void onDismiss(DialogInterface dialogInterface) {
+        switch (this.f26547a) {
             case 0:
-                EditTextBoldCursor editTextBoldCursor = this.f29905b;
-                editTextBoldCursor.requestFocus();
-                AndroidUtilities.showKeyboard(editTextBoldCursor);
-                return;
-            case 1:
-                AndroidUtilities.showKeyboard(this.f29905b);
-                return;
-            case 2:
-                AndroidUtilities.showKeyboard(this.f29905b);
-                return;
-            case 3:
-                AndroidUtilities.showKeyboard(this.f29905b);
-                return;
-            case 4:
-                AndroidUtilities.showKeyboard(this.f29905b);
-                return;
-            case 5:
-                AndroidUtilities.showKeyboard(this.f29905b);
-                return;
-            case 6:
-                EditTextBoldCursor editTextBoldCursor2 = this.f29905b;
-                editTextBoldCursor2.requestFocus();
-                AndroidUtilities.showKeyboard(editTextBoldCursor2);
+                AndroidUtilities.hideKeyboard(this.f26548b);
                 return;
             default:
-                EditTextBoldCursor editTextBoldCursor3 = this.f29905b;
-                editTextBoldCursor3.requestFocus();
-                editTextBoldCursor3.setSelection(0, editTextBoldCursor3.length());
-                AndroidUtilities.showKeyboard(editTextBoldCursor3);
+                AndroidUtilities.hideKeyboard(this.f26548b);
                 return;
         }
     }

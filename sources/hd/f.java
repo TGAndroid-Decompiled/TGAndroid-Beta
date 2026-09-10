@@ -4,9 +4,9 @@ import com.google.android.gms.internal.vision.e2;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import v7.b8;
+import v7.c8;
 import w7.t8;
-public abstract class f extends b8 {
+public abstract class f extends c8 {
     public static boolean a(Object[] objArr, Object obj) {
         int i10;
         kotlin.jvm.internal.i.e(objArr, "<this>");
@@ -85,13 +85,13 @@ public abstract class f extends b8 {
                 ArrayList arrayList = new ArrayList(jArr.length);
                 int length2 = jArr.length;
                 while (i10 < length2) {
-                    i10 = e2.g(jArr[i10], arrayList, i10, 1);
+                    i10 = e2.f(jArr[i10], arrayList, i10, 1);
                 }
                 return arrayList;
             }
             return h.b(Long.valueOf(jArr[0]));
         }
-        return o.f10982a;
+        return o.f9308a;
     }
 
     public static List h(Object[] objArr) {
@@ -103,6 +103,6 @@ public abstract class f extends b8 {
             }
             return h.b(objArr[0]);
         }
-        return o.f10982a;
+        return o.f9308a;
     }
 }

@@ -7,30 +7,30 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.FutureTask;
 import java.util.concurrent.atomic.AtomicBoolean;
 public final class b extends FutureTask {
-    public final a f48711a;
+    public final a f44478a;
 
     public b(a aVar, x xVar) {
         super(xVar);
-        this.f48711a = aVar;
+        this.f44478a = aVar;
     }
 
     @Override
     public final void done() {
-        a aVar = this.f48711a;
+        a aVar = this.f44478a;
         AtomicBoolean atomicBoolean = aVar.d;
         try {
             Object obj = get();
             if (!atomicBoolean.get()) {
                 aVar.b(obj);
             }
-        } catch (InterruptedException e7) {
-            Log.w("AsyncTask", e7);
+        } catch (InterruptedException e) {
+            Log.w("AsyncTask", e);
         } catch (CancellationException unused) {
             if (!atomicBoolean.get()) {
                 aVar.b(null);
             }
-        } catch (ExecutionException e10) {
-            throw new RuntimeException("An error occurred while executing doInBackground()", e10.getCause());
+        } catch (ExecutionException e7) {
+            throw new RuntimeException("An error occurred while executing doInBackground()", e7.getCause());
         } catch (Throwable th2) {
             throw new RuntimeException("An error occurred while executing doInBackground()", th2);
         }

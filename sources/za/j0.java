@@ -1,44 +1,36 @@
 package za;
+
+import java.util.Locale;
+import java.util.UUID;
 public final class j0 {
-    public final String f51479a;
-    public final String f51480b;
-    public final int f51481c;
-    public final long d;
-    public final j f51482e;
-    public final String f51483f;
+    public final q0 f47918a;
+    public final rd.a f47919b;
+    public final String f47920c;
+    public int d;
+    public a0 e;
 
-    public j0(String sessionId, String firstSessionId, int i10, long j3, j jVar, String str) {
-        kotlin.jvm.internal.i.e(sessionId, "sessionId");
-        kotlin.jvm.internal.i.e(firstSessionId, "firstSessionId");
-        this.f51479a = sessionId;
-        this.f51480b = firstSessionId;
-        this.f51481c = i10;
-        this.d = j3;
-        this.f51482e = jVar;
-        this.f51483f = str;
+    public j0() {
+        i0 i0Var = i0.f47914a;
+        this.f47918a = q0.f47944a;
+        this.f47919b = i0Var;
+        this.f47920c = a();
+        this.d = -1;
     }
 
-    public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (!(obj instanceof j0)) {
-            return false;
-        }
-        j0 j0Var = (j0) obj;
-        if (kotlin.jvm.internal.i.a(this.f51479a, j0Var.f51479a) && kotlin.jvm.internal.i.a(this.f51480b, j0Var.f51480b) && this.f51481c == j0Var.f51481c && this.d == j0Var.d && kotlin.jvm.internal.i.a(this.f51482e, j0Var.f51482e) && kotlin.jvm.internal.i.a(this.f51483f, j0Var.f51483f)) {
-            return true;
-        }
-        return false;
+    public final String a() {
+        String uuid = ((UUID) this.f47919b.invoke()).toString();
+        kotlin.jvm.internal.i.d(uuid, "uuidGenerator().toString()");
+        String lowerCase = xd.j.g(uuid, "-", "").toLowerCase(Locale.ROOT);
+        kotlin.jvm.internal.i.d(lowerCase, "this as java.lang.String).toLowerCase(Locale.ROOT)");
+        return lowerCase;
     }
 
-    public final int hashCode() {
-        long j3 = this.d;
-        int hashCode = this.f51482e.hashCode();
-        return this.f51483f.hashCode() + ((hashCode + ((((a4.a.h(this.f51479a.hashCode() * 31, 31, this.f51480b) + this.f51481c) * 31) + ((int) (j3 ^ (j3 >>> 32)))) * 31)) * 31);
-    }
-
-    public final String toString() {
-        return "SessionInfo(sessionId=" + this.f51479a + ", firstSessionId=" + this.f51480b + ", sessionIndex=" + this.f51481c + ", eventTimestampUs=" + this.d + ", dataCollectionStatus=" + this.f51482e + ", firebaseInstallationId=" + this.f51483f + ')';
+    public final a0 b() {
+        a0 a0Var = this.e;
+        if (a0Var != null) {
+            return a0Var;
+        }
+        kotlin.jvm.internal.i.h("currentSession");
+        throw null;
     }
 }

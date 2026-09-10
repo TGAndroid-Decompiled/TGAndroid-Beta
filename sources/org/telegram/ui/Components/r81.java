@@ -1,13 +1,14 @@
 package org.telegram.ui.Components;
-public final class r81 implements org.telegram.ui.ActionBar.a2 {
-    public final Object f30016a;
 
-    public r81(Object obj) {
-        this.f30016a = obj;
-    }
+import android.text.TextPaint;
+public final class r81 {
+    public int f26629a;
+    public CharSequence f26630b;
+    public int f26631c;
 
-    @Override
-    public void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        ((fu) this.f30016a).f26210a.d.r();
+    public final int a(TextPaint textPaint) {
+        int ceil = (int) Math.ceil(bi.x4.g(this.f26630b, textPaint));
+        this.f26631c = ceil;
+        return Math.max(0, ceil);
     }
 }

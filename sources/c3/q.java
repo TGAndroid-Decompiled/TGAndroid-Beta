@@ -1,10 +1,10 @@
 package c3;
 public interface q {
-    public static final ob.a f4320m = new ob.a(5);
+    public static final t7.u f4211p = new Object();
 
-    void P1(b0 b0Var);
+    void B();
 
-    h0 R1(int i10, int i11);
+    void G(b0 b0Var);
 
-    void Z0();
+    h0 I(int i10, int i11);
 }

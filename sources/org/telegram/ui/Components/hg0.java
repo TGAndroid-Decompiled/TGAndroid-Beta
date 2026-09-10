@@ -1,35 +1,35 @@
 package org.telegram.ui.Components;
 
-import java.util.Arrays;
-import java.util.Comparator;
-public final class hg0 implements Comparator {
-    public final pg0 f26758a;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class hg0 extends AnimatorListenerAdapter {
+    public final int f23627a;
+    public final PipRoundVideoView f23628b;
 
-    public hg0(pg0 pg0Var) {
-        this.f26758a = pg0Var;
-    }
-
-    public final int a(og0 og0Var) {
-        pg0 pg0Var = this.f26758a;
-        int size = pg0Var.f29402r.answers.size();
-        for (int i10 = 0; i10 < size; i10++) {
-            if (Arrays.equals(pg0Var.f29402r.answers.get(i10).option, og0Var.d)) {
-                return i10;
-            }
-        }
-        return 0;
+    public hg0(PipRoundVideoView pipRoundVideoView, int i10) {
+        this.f23627a = i10;
+        this.f23628b = pipRoundVideoView;
     }
 
     @Override
-    public final int compare(Object obj, Object obj2) {
-        int a2 = a((og0) obj);
-        int a10 = a((og0) obj2);
-        if (a2 > a10) {
-            return 1;
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f23627a) {
+            case 0:
+                PipRoundVideoView pipRoundVideoView = this.f23628b;
+                if (animator.equals(pipRoundVideoView.f21170r)) {
+                    pipRoundVideoView.f21170r = null;
+                    return;
+                }
+                return;
+            default:
+                PipRoundVideoView pipRoundVideoView2 = this.f23628b;
+                pipRoundVideoView2.a(false);
+                Runnable runnable = pipRoundVideoView2.f21171s;
+                if (runnable != null) {
+                    runnable.run();
+                    return;
+                }
+                return;
         }
-        if (a2 < a10) {
-            return -1;
-        }
-        return 0;
     }
 }

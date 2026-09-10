@@ -1,109 +1,147 @@
 package bi;
 
-import android.app.Activity;
-import java.util.ArrayList;
-import java.util.List;
+import android.content.Context;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.PointF;
+import android.media.AudioDeviceInfo;
+import android.net.Uri;
+import android.os.Build;
+import android.os.Handler;
+import android.os.Looper;
+import android.provider.Settings;
+import j$.util.Objects;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.dj;
-import org.telegram.ui.lh1;
-public final class h8 implements Runnable {
-    public final int f3095a;
-    public final Object f3096b;
-    public final Object f3097c;
+import org.telegram.ui.Components.wr;
+public final class h8 {
+    public boolean f2793a;
+    public final Object f2794b;
+    public Object f2795c;
     public final Object d;
-    public final Object f3098e;
-    public final Object f3099f;
-    public final Object h;
+    public final Object e;
+    public final Object f2796f;
+    public final Object f2797g;
+    public Object h;
+    public Object f2798i;
+    public Object f2799j;
 
-    public h8(Object obj, Object obj2, Object obj3, Object obj4, Object obj5, Object obj6, int i10) {
-        this.f3095a = i10;
-        this.f3096b = obj;
-        this.f3097c = obj2;
-        this.d = obj3;
-        this.f3098e = obj4;
-        this.f3099f = obj5;
-        this.h = obj6;
+    public h8(Context context, hi.y1 y1Var, b2.e eVar, a6.i iVar) {
+        Context applicationContext = context.getApplicationContext();
+        this.f2794b = applicationContext;
+        this.f2795c = y1Var;
+        this.f2799j = eVar;
+        this.f2798i = iVar;
+        String str = e2.d0.f7188a;
+        Looper myLooper = Looper.myLooper();
+        Handler handler = new Handler(myLooper == null ? Looper.getMainLooper() : myLooper, null);
+        this.d = handler;
+        this.e = Build.VERSION.SDK_INT >= 23 ? new k2.c(this) : null;
+        this.f2796f = new androidx.mediarouter.app.g(this, 5);
+        k2.b bVar = k2.b.f12073c;
+        String str2 = Build.MANUFACTURER;
+        Uri uriFor = (str2.equals("Amazon") || str2.equals("Xiaomi")) ? Settings.Global.getUriFor("external_surround_sound_enabled") : null;
+        this.f2797g = uriFor != null ? new k2.d(this, handler, applicationContext.getContentResolver(), uriFor) : null;
     }
 
-    private final void a() {
-        zh.s5 s5Var = (zh.s5) this.f3096b;
-        List list = (List) this.f3097c;
-        f0 f0Var = (f0) this.d;
-        TLRPC.TL_inputStorePaymentStarsGiveaway tL_inputStorePaymentStarsGiveaway = (TLRPC.TL_inputStorePaymentStarsGiveaway) this.f3098e;
-        c5.h hVar = (c5.h) this.f3099f;
-        Activity activity = (Activity) this.h;
-        if (list.isEmpty()) {
-            AndroidUtilities.runOnUIThread(new zh.i4(f0Var, 0));
-            return;
-        }
-        c5.o oVar = (c5.o) list.get(0);
-        if (oVar.a() == null) {
-            AndroidUtilities.runOnUIThread(new zh.i4(f0Var, 1));
-            return;
-        }
-        TLRPC.TL_payments_canPurchaseStore tL_payments_canPurchaseStore = new TLRPC.TL_payments_canPurchaseStore();
-        tL_payments_canPurchaseStore.purpose = tL_inputStorePaymentStarsGiveaway;
-        ConnectionsManager.getInstance(s5Var.f52597a).sendRequest(tL_payments_canPurchaseStore, new lh1(oVar, hVar, f0Var, activity, tL_inputStorePaymentStarsGiveaway, list, 3));
-    }
-
-    private final void b() {
-        zh.s5 s5Var = (zh.s5) this.f3096b;
-        Runnable runnable = (Runnable) this.f3097c;
-        MessageObject messageObject = (MessageObject) this.d;
-        TLRPC.InputInvoice inputInvoice = (TLRPC.InputInvoice) this.f3098e;
-        TLRPC.TL_payments_paymentFormStars tL_payments_paymentFormStars = (TLRPC.TL_payments_paymentFormStars) this.f3099f;
-        Utilities.Callback callback = (Utilities.Callback) this.h;
-        if (!s5Var.f52600e) {
-            zh.s5.e("NO_BALANCE");
-            runnable.run();
-            return;
-        }
-        s5Var.Y(messageObject, inputInvoice, tL_payments_paymentFormStars, runnable, callback);
-    }
-
-    private final void c() {
-        String str;
-        zh.s5 s5Var = (zh.s5) this.f3096b;
-        TLObject tLObject = (TLObject) this.f3097c;
-        MessageObject messageObject = (MessageObject) this.d;
-        TLRPC.TL_inputInvoiceMessage tL_inputInvoiceMessage = (TLRPC.TL_inputInvoiceMessage) this.f3098e;
-        dj djVar = (dj) this.f3099f;
-        TLRPC.TL_error tL_error = (TLRPC.TL_error) this.h;
-        if (tLObject instanceof TLRPC.TL_payments_paymentFormStars) {
-            s5Var.Y(messageObject, tL_inputInvoiceMessage, (TLRPC.TL_payments_paymentFormStars) tLObject, djVar, null);
-        } else {
-            if (tL_error == null) {
-                str = "NO_PAYMENT_FORM";
+    public void a(k2.b bVar) {
+        boolean z10;
+        String name;
+        if (this.f2793a && !bVar.equals((k2.b) this.h)) {
+            this.h = bVar;
+            k2.e0 e0Var = (k2.e0) ((hi.y1) this.f2795c).f9976b;
+            Looper myLooper = Looper.myLooper();
+            if (e0Var.f12106i0 == myLooper) {
+                z10 = true;
             } else {
-                str = tL_error.text;
+                z10 = false;
             }
-            zh.s5.e(str);
+            StringBuilder sb2 = new StringBuilder("Current looper (");
+            String str = "null";
+            if (myLooper == null) {
+                name = "null";
+            } else {
+                name = myLooper.getThread().getName();
+            }
+            sb2.append(name);
+            sb2.append(") is not the playback looper (");
+            Looper looper = e0Var.f12106i0;
+            if (looper != null) {
+                str = looper.getThread().getName();
+            }
+            sb2.append(str);
+            sb2.append(")");
+            e2.d.f(sb2.toString(), z10);
+            k2.b bVar2 = e0Var.f12125y;
+            if (bVar2 != null && !bVar.equals(bVar2)) {
+                e0Var.f12125y = bVar;
+                k2.n nVar = e0Var.f12121t;
+                if (nVar != null) {
+                    nVar.L();
+                }
+            }
         }
-        djVar.run();
     }
 
-    private final void e() {
-        ((boolean[]) this.f3097c)[0] = true;
-        ((zh.s5) this.f3096b).a0((MessageObject) this.d, (TLRPC.InputInvoice) this.f3098e, (TLRPC.TL_payments_paymentFormStars) this.f3099f, new zh.w0(1, (Utilities.Callback) this.h));
+    public void b(g8 g8Var) {
+        if (g8Var != null) {
+            this.f2795c = g8Var;
+        }
+        boolean z10 = false;
+        if (g8Var != null) {
+            float f7 = g8Var.d;
+            float f10 = g8Var.f2752c;
+            PointF[] pointFArr = g8Var.f2751b;
+            if (!this.f2793a) {
+                ((org.telegram.ui.Components.d6) this.e).d(f10, true);
+                ((org.telegram.ui.Components.d6) this.f2796f).d(f7, true);
+                for (int i10 = 0; i10 < Math.min(4, pointFArr.length); i10++) {
+                    ((org.telegram.ui.Components.d6[]) this.f2797g)[i10].d(pointFArr[i10].x - f10, true);
+                    ((org.telegram.ui.Components.d6[]) this.h)[i10].d(pointFArr[i10].y - f7, true);
+                }
+            }
+        }
+        if (g8Var != null) {
+            z10 = true;
+        }
+        this.f2793a = z10;
+        ((e0) this.f2794b).run();
     }
 
-    @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: bi.h8.run():void");
+    public void c(AudioDeviceInfo audioDeviceInfo) {
+        AudioDeviceInfo audioDeviceInfo2;
+        a6.i iVar = (a6.i) this.f2798i;
+        a6.i iVar2 = null;
+        if (iVar == null) {
+            audioDeviceInfo2 = null;
+        } else {
+            audioDeviceInfo2 = (AudioDeviceInfo) iVar.f301b;
+        }
+        if (Objects.equals(audioDeviceInfo, audioDeviceInfo2)) {
+            return;
+        }
+        if (audioDeviceInfo != null) {
+            iVar2 = new a6.i(audioDeviceInfo, 27);
+        }
+        this.f2798i = iVar2;
+        a(k2.b.c((Context) this.f2794b, (b2.e) this.f2799j, iVar2));
     }
 
-    public h8(org.telegram.ui.ub ubVar, TLRPC.ChannelParticipant channelParticipant, ArrayList arrayList, ArrayList arrayList2, ArrayList arrayList3, org.telegram.ui.sa saVar) {
-        this.f3095a = 5;
-        this.f3096b = ubVar;
-        this.f3099f = channelParticipant;
-        this.f3097c = arrayList;
-        this.d = arrayList2;
-        this.f3098e = arrayList3;
-        this.h = saVar;
+    public h8(e0 e0Var) {
+        Paint paint = new Paint(1);
+        this.f2798i = paint;
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setColor(-8697);
+        paint.setStrokeWidth(AndroidUtilities.dp(6.0f));
+        paint.setStrokeJoin(Paint.Join.ROUND);
+        paint.setStrokeCap(Paint.Cap.ROUND);
+        paint.setShadowLayer(1.0804527E9f, 0.0f, AndroidUtilities.dp(3.0f), AndroidUtilities.dp(6.0f));
+        this.f2799j = new Path();
+        this.f2794b = e0Var;
+        wr wrVar = wr.f28820g;
+        this.d = new org.telegram.ui.Components.d6(0.0f, e0Var, 0L, 320L, wrVar);
+        this.e = new org.telegram.ui.Components.d6(0.0f, e0Var, 0L, 160L, wrVar);
+        this.f2796f = new org.telegram.ui.Components.d6(0.0f, e0Var, 0L, 160L, wrVar);
+        this.f2797g = new org.telegram.ui.Components.d6[]{new org.telegram.ui.Components.d6(0.0f, e0Var, 0L, 160L, wrVar), new org.telegram.ui.Components.d6(0.0f, e0Var, 0L, 160L, wrVar), new org.telegram.ui.Components.d6(0.0f, e0Var, 0L, 160L, wrVar), new org.telegram.ui.Components.d6(0.0f, e0Var, 0L, 160L, wrVar)};
+        this.h = new org.telegram.ui.Components.d6[]{new org.telegram.ui.Components.d6(0.0f, e0Var, 0L, 160L, wrVar), new org.telegram.ui.Components.d6(0.0f, e0Var, 0L, 160L, wrVar), new org.telegram.ui.Components.d6(0.0f, e0Var, 0L, 160L, wrVar), new org.telegram.ui.Components.d6(0.0f, e0Var, 0L, 160L, wrVar)};
     }
 }

@@ -1,8 +1,21 @@
 package org.telegram.ui.Components;
 
-import android.graphics.drawable.BitmapDrawable;
-public final class q11 extends BitmapDrawable {
-    public q11(java.io.File r34, org.telegram.messenger.DocumentObject.ThemeDocument r35) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.q11.<init>(java.io.File, org.telegram.messenger.DocumentObject$ThemeDocument):void");
+import android.content.Context;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.Components.ThemeEditorView;
+public final class q11 extends vl0 {
+    public final ThemeEditorView.EditorAlert X2;
+
+    public q11(ThemeEditorView.EditorAlert editorAlert, Context context) {
+        super(context, null);
+        this.X2 = editorAlert;
+    }
+
+    @Override
+    public final boolean E0(float f7) {
+        if (f7 >= AndroidUtilities.dp(48.0f) + this.X2.E + AndroidUtilities.statusBarHeight) {
+            return true;
+        }
+        return false;
     }
 }

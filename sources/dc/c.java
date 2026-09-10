@@ -31,20 +31,20 @@ public enum c {
     GB18030(29, "GB2312", "EUC_CN", "GBK"),
     EUC_KR(30, "EUC-KR");
     
-    public static final HashMap f6721c = new HashMap();
+    public static final HashMap f6392c = new HashMap();
     public static final HashMap d = new HashMap();
-    public final int[] f6723a;
-    public final String[] f6724b;
+    public final int[] f6393a;
+    public final String[] f6394b;
 
     static {
         c[] values;
         for (c cVar : values()) {
             if (Charset.isSupported(cVar.name())) {
-                for (int i10 : cVar.f6723a) {
-                    f6721c.put(Integer.valueOf(i10), cVar);
+                for (int i10 : cVar.f6393a) {
+                    f6392c.put(Integer.valueOf(i10), cVar);
                 }
                 d.put(cVar.name(), cVar);
-                for (String str : cVar.f6724b) {
+                for (String str : cVar.f6394b) {
                     d.put(str, cVar);
                 }
             }
@@ -52,12 +52,12 @@ public enum c {
     }
 
     c(int i10, String... strArr) {
-        this.f6723a = new int[]{i10};
-        this.f6724b = strArr;
+        this.f6393a = new int[]{i10};
+        this.f6394b = strArr;
     }
 
     c(int[] iArr, String... strArr) {
-        this.f6723a = iArr;
-        this.f6724b = strArr;
+        this.f6393a = iArr;
+        this.f6394b = strArr;
     }
 }

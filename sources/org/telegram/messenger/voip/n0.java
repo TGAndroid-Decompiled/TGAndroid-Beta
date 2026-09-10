@@ -1,47 +1,47 @@
 package org.telegram.messenger.voip;
 
-import org.telegram.messenger.voip.Instance;
-import org.telegram.messenger.voip.NativeInstance;
-public final class n0 implements NativeInstance.AudioLevelsCallback, NativeInstance.VideoSourcesCallback, NativeInstance.RequestBroadcastPartCallback, NativeInstance.RequestCurrentTimeCallback, Instance.OnStateUpdatedListener {
-    public final int f19421a;
-    public final VoIPService f19422b;
-    public final int f19423c;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.Components.j61;
+import org.telegram.ui.Components.xs;
+import org.telegram.ui.Components.zs;
+public final class n0 implements RequestDelegate {
+    public final int f16756a;
+    public final int f16757b;
+    public final boolean f16758c;
+    public final Object d;
+    public final Object e;
 
-    public n0(VoIPService voIPService, int i10, int i11) {
-        this.f19421a = i11;
-        this.f19422b = voIPService;
-        this.f19423c = i10;
+    public n0(int i10, String str, VoIPService voIPService, boolean z10) {
+        this.f16756a = 0;
+        this.d = voIPService;
+        this.f16757b = i10;
+        this.f16758c = z10;
+        this.e = str;
     }
 
     @Override
-    public void onStateUpdated(int i10, boolean z10) {
-        this.f19422b.lambda$createGroupInstance$80(this.f19423c, i10, z10);
-    }
-
-    @Override
-    public void run(long j3) {
-        this.f19422b.lambda$createGroupInstance$79(this.f19423c, j3);
-    }
-
-    @Override
-    public void run(long j3, long j10, int i10, int i11) {
-        switch (this.f19421a) {
-            case 2:
-                this.f19422b.lambda$createGroupInstance$75(this.f19423c, j3, j10, i10, i11);
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f16756a) {
+            case 0:
+                ((VoIPService) this.d).lambda$startConferenceGroupCall$54(this.f16757b, this.f16758c, (String) this.e, tLObject, tL_error);
+                return;
+            case 1:
+                AndroidUtilities.runOnUIThread(new m4.f0((xs) this.d, this.f16757b, (TLRPC.TL_messages_searchGlobal) this.e, this.f16758c, tLObject, 3));
                 return;
             default:
-                this.f19422b.lambda$createGroupInstance$77(this.f19423c, j3, j10, i10, i11);
+                AndroidUtilities.runOnUIThread(new m4.f0((zs) this.d, this.f16757b, (TLRPC.TL_messages_searchGlobal) this.e, this.f16758c, tLObject, 4));
                 return;
         }
     }
 
-    @Override
-    public void run(long j3, int[] iArr) {
-        this.f19422b.lambda$createGroupInstance$70(this.f19423c, j3, iArr);
-    }
-
-    @Override
-    public void run(int[] iArr, float[] fArr, boolean[] zArr) {
-        this.f19422b.lambda$createGroupInstance$68(this.f19423c, iArr, fArr, zArr);
+    public n0(j61 j61Var, int i10, TLRPC.TL_messages_searchGlobal tL_messages_searchGlobal, boolean z10, int i11) {
+        this.f16756a = i11;
+        this.d = j61Var;
+        this.f16757b = i10;
+        this.e = tL_messages_searchGlobal;
+        this.f16758c = z10;
     }
 }

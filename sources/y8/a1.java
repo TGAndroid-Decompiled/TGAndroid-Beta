@@ -2,19 +2,18 @@ package y8;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import com.google.android.gms.internal.vision.e2;
 import java.util.Arrays;
 import java.util.Locale;
 public final class a1 extends o6.a {
     public static final Parcelable.Creator<a1> CREATOR = new c(26);
-    public final String f49591a;
-    public final int f49592b;
-    public final int f49593c;
+    public final String f46485a;
+    public final int f46486b;
+    public final int f46487c;
 
     public a1(String str, int i10, int i11) {
-        this.f49591a = str;
-        this.f49592b = i10;
-        this.f49593c = i11;
+        this.f46485a = str;
+        this.f46486b = i10;
+        this.f46487c = i11;
     }
 
     public final boolean equals(Object obj) {
@@ -25,7 +24,7 @@ public final class a1 extends o6.a {
         }
         if (obj != null && a1.class == obj.getClass()) {
             a1 a1Var = (a1) obj;
-            if (this.f49592b == a1Var.f49592b && this.f49593c == a1Var.f49593c && ((str2 = this.f49591a) == (str = a1Var.f49591a) || (str2 != null && str2.equals(str)))) {
+            if (this.f46486b == a1Var.f46486b && this.f46487c == a1Var.f46487c && ((str2 = this.f46485a) == (str = a1Var.f46485a) || (str2 != null && str2.equals(str)))) {
                 return true;
             }
         }
@@ -33,22 +32,22 @@ public final class a1 extends o6.a {
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{this.f49591a, Integer.valueOf(this.f49592b), Integer.valueOf(this.f49593c)});
+        return Arrays.hashCode(new Object[]{this.f46485a, Integer.valueOf(this.f46486b), Integer.valueOf(this.f46487c)});
     }
 
     public final String toString() {
         Locale locale = Locale.US;
-        return a4.a.s(e2.k("WebIconParcelable{", this.f49592b, "x", this.f49593c, " - "), this.f49591a, "}");
+        return a4.a.s(hc.b.n("WebIconParcelable{", this.f46486b, "x", this.f46487c, " - "), this.f46485a, "}");
     }
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
         int q6 = w7.e0.q(parcel, 20293);
-        w7.e0.l(parcel, 1, this.f49591a);
+        w7.e0.l(parcel, 1, this.f46485a);
         w7.e0.s(parcel, 2, 4);
-        parcel.writeInt(this.f49592b);
+        parcel.writeInt(this.f46486b);
         w7.e0.s(parcel, 3, 4);
-        parcel.writeInt(this.f49593c);
+        parcel.writeInt(this.f46487c);
         w7.e0.r(parcel, q6);
     }
 }

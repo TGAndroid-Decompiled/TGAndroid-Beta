@@ -12,10 +12,10 @@ public class i0 extends db.u {
         try {
             fb.d.d(v);
             return new BigInteger(v);
-        } catch (NumberFormatException e7) {
+        } catch (NumberFormatException e) {
             StringBuilder v9 = a4.a.v("Failed parsing '", v, "' as BigInteger; at path ");
             v9.append(aVar.j());
-            throw new RuntimeException(v9.toString(), e7);
+            throw new RuntimeException(v9.toString(), e);
         }
     }
 

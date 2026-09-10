@@ -1,73 +1,69 @@
 package zg;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.Rect;
-import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
-import android.text.TextPaint;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.R;
-public final class a extends Drawable {
-    public final TextPaint f51658a;
-    public final TextPaint f51659b;
-    public final RectF f51660c;
-    public final Drawable d;
-    public float f51661e;
-    public String f51662f;
+import android.os.Build;
+import android.view.View;
+import android.view.ViewGroup;
+import java.util.Iterator;
+import sg.f0;
+public final class a {
+    public final eh.a f48080a;
+    public pe.b f48081b;
+    public pe.b f48082c;
+    public gh.k d;
+    public ViewGroup e;
+    public boolean f48083f;
 
-    public a(Context context) {
-        TextPaint textPaint = new TextPaint(1);
-        this.f51658a = textPaint;
-        TextPaint textPaint2 = new TextPaint(1);
-        this.f51659b = textPaint2;
-        this.f51660c = new RectF();
-        textPaint.setColor(-1);
-        textPaint.setTypeface(AndroidUtilities.bold());
-        textPaint.setTextSize(AndroidUtilities.dp(12.0f));
-        textPaint2.setColor(-6915073);
-        this.d = context.getDrawable(R.drawable.mini_boost_badge);
+    public a(eh.a aVar) {
+        this.f48080a = aVar;
     }
 
-    @Override
-    public final void draw(Canvas canvas) {
-        Rect bounds = getBounds();
-        RectF rectF = this.f51660c;
-        rectF.set(bounds.left, bounds.top, bounds.right, bounds.bottom);
-        canvas.drawRoundRect(rectF, AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f), this.f51659b);
-        int dp = AndroidUtilities.dp(2.0f) + bounds.left;
-        int dp2 = AndroidUtilities.dp(1.0f) + bounds.top;
-        int dp3 = AndroidUtilities.dp(2.0f) + bounds.left;
-        Drawable drawable = this.d;
-        drawable.setBounds(dp, dp2, drawable.getIntrinsicWidth() + dp3, drawable.getIntrinsicHeight() + AndroidUtilities.dp(1.0f) + getBounds().top);
-        drawable.draw(canvas);
-        String str = this.f51662f;
-        if (str != null) {
-            canvas.drawText(str, AndroidUtilities.dp(16.5f) + bounds.left, AndroidUtilities.dp(13.0f) + bounds.top, this.f51658a);
+    public final bh.d a(View view) {
+        return c(view, null, false);
+    }
+
+    public final bh.d b(View view, ch.a aVar) {
+        return c(view, aVar, false);
+    }
+
+    public final bh.d c(View view, ch.a aVar, boolean z10) {
+        ViewGroup viewGroup;
+        bh.d k10 = this.f48080a.k();
+        if (this.f48083f && Build.VERSION.SDK_INT >= 33 && (k10 instanceof bh.e)) {
+            bh.e eVar = (bh.e) k10;
+            eVar.N = new f(eVar.I);
+        }
+        k10.n(aVar);
+        pe.b bVar = this.f48082c;
+        if (bVar != null && view != null) {
+            bVar.add(view);
+        }
+        gh.k kVar = this.d;
+        if (kVar != null && (viewGroup = this.e) != null && view != null) {
+            kVar.d(view, viewGroup, new f0(14, k10, view), z10);
+        }
+        pe.b bVar2 = this.f48081b;
+        if (bVar2 != null) {
+            bVar2.add(k10);
+        }
+        return k10;
+    }
+
+    public final void d() {
+        pe.b bVar = this.f48082c;
+        if (bVar != null) {
+            Iterator it = bVar.iterator();
+            while (it.hasNext()) {
+                ((View) it.next()).invalidate();
+            }
         }
     }
 
-    @Override
-    public final int getIntrinsicHeight() {
-        return AndroidUtilities.dp(18.0f);
+    public final void e(pe.b bVar) {
+        this.f48082c = bVar;
     }
 
-    @Override
-    public final int getIntrinsicWidth() {
-        return (int) (AndroidUtilities.dp(23.0f) + this.f51661e);
-    }
-
-    @Override
-    public final int getOpacity() {
-        return -1;
-    }
-
-    @Override
-    public final void setAlpha(int i10) {
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
+    public final void f(gh.k kVar, ViewGroup viewGroup) {
+        this.d = kVar;
+        this.e = viewGroup;
     }
 }

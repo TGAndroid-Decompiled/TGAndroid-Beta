@@ -1,7 +1,18 @@
 package org.telegram.ui.Components;
-public final class ga0 implements o1.f {
+
+import android.view.accessibility.AccessibilityNodeInfo;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class ga0 extends org.telegram.ui.s01 {
     @Override
-    public final void a(o1.h hVar, boolean z10, float f7, float f10) {
-        int i10 = oa0.U;
+    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+        if (getImageReceiver().hasNotThumb()) {
+            accessibilityNodeInfo.setText(LocaleController.getString(R.string.AccDescrProfilePicture));
+            accessibilityNodeInfo.addAction(new AccessibilityNodeInfo.AccessibilityAction(16, LocaleController.getString(R.string.Open)));
+            accessibilityNodeInfo.addAction(new AccessibilityNodeInfo.AccessibilityAction(32, LocaleController.getString(R.string.AccDescrOpenInPhotoViewer)));
+            return;
+        }
+        accessibilityNodeInfo.setVisibleToUser(false);
     }
 }

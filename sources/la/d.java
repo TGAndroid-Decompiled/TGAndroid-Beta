@@ -1,12 +1,12 @@
 package la;
 public final class d {
-    public static final d f15350a;
-    public static final d[] f15351b;
+    public static final d f12830a;
+    public static final d[] f12831b;
 
     static {
         ?? r02 = new Enum("DEFAULT", 0);
-        f15350a = r02;
-        f15351b = new d[]{r02, new Enum("SIGNED", 1), new Enum("FIXED", 2)};
+        f12830a = r02;
+        f12831b = new d[]{r02, new Enum("SIGNED", 1), new Enum("FIXED", 2)};
     }
 
     public static d valueOf(String str) {
@@ -14,6 +14,6 @@ public final class d {
     }
 
     public static d[] values() {
-        return (d[]) f15351b.clone();
+        return (d[]) f12831b.clone();
     }
 }

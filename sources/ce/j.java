@@ -1,24 +1,24 @@
 package ce;
 
-import za.y;
+import za.z;
 public final class j implements c {
-    public final int f4808a;
-    public final Object f4809b;
+    public final int f4661a;
+    public final Object f4662b;
 
     public j(Object obj, int i10) {
-        this.f4808a = i10;
-        this.f4809b = obj;
+        this.f4661a = i10;
+        this.f4662b = obj;
     }
 
     @Override
     public final Object a(Object obj, kd.c cVar) {
-        switch (this.f4808a) {
+        switch (this.f4661a) {
             case 0:
-                ((kotlin.jvm.internal.p) this.f4809b).f15079a = obj;
+                ((kotlin.jvm.internal.p) this.f4662b).f12576a = obj;
                 throw new de.a(this);
             default:
-                ((y) this.f4809b).f51521c.set((za.m) obj);
-                return gd.i.f10616a;
+                ((z) this.f4662b).f47963c.set((za.m) obj);
+                return gd.i.f8748a;
         }
     }
 }

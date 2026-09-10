@@ -1,58 +1,29 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapShader;
-import android.graphics.Matrix;
-import android.graphics.Shader;
-import android.os.Build;
-import java.lang.ref.WeakReference;
-public final class hc0 {
-    public final Shader.TileMode f26732a;
-    public final Matrix f26733b = new Matrix();
-    public boolean f26734c;
-    public BitmapShader d;
-    public WeakReference f26735e;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import org.telegram.messenger.AndroidUtilities;
+public final class hc0 extends org.telegram.ui.ActionBar.l5 {
+    public final Paint M0;
+    public final org.telegram.ui.ActionBar.f6 N0;
 
-    public hc0(Shader.TileMode tileMode) {
-        this.f26732a = tileMode;
+    public hc0(Context context, org.telegram.ui.ActionBar.f6 f6Var) {
+        super(context);
+        this.N0 = f6Var;
+        this.M0 = new Paint(1);
     }
 
-    public final void a(boolean z10) {
-        BitmapShader bitmapShader;
-        int i10;
-        if (this.f26734c != z10) {
-            this.f26734c = z10;
-            if (Build.VERSION.SDK_INT >= 33 && (bitmapShader = this.d) != null) {
-                if (z10) {
-                    i10 = 1;
-                } else {
-                    i10 = 2;
-                }
-                bitmapShader.setFilterMode(i10);
-            }
-        }
-    }
-
-    public final boolean b(Bitmap bitmap) {
-        int i10;
-        WeakReference weakReference = this.f26735e;
-        if (weakReference != null && weakReference.get() == bitmap) {
-            return false;
-        }
-        this.f26735e = new WeakReference(bitmap);
-        Shader.TileMode tileMode = this.f26732a;
-        BitmapShader bitmapShader = new BitmapShader(bitmap, tileMode, tileMode);
-        this.d = bitmapShader;
-        bitmapShader.setLocalMatrix(this.f26733b);
-        if (Build.VERSION.SDK_INT >= 33) {
-            BitmapShader bitmapShader2 = this.d;
-            if (this.f26734c) {
-                i10 = 1;
-            } else {
-                i10 = 2;
-            }
-            bitmapShader2.setFilterMode(i10);
-        }
-        return true;
+    @Override
+    public final void dispatchDraw(Canvas canvas) {
+        int v02 = org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.K5, this.N0);
+        Paint paint = this.M0;
+        paint.setColor(v02);
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setStrokeWidth(1.0f);
+        float height = getHeight() / 2.0f;
+        canvas.drawLine(0.0f, height, ((getWidth() / 2.0f) - (getTextWidth() / 2.0f)) - AndroidUtilities.dp(8.0f), height, paint);
+        canvas.drawLine((getTextWidth() / 2.0f) + (getWidth() / 2.0f) + AndroidUtilities.dp(8.0f), height, getWidth(), height, paint);
+        super.dispatchDraw(canvas);
     }
 }

@@ -1,87 +1,35 @@
 package org.telegram.messenger;
 
-import android.content.Context;
-import android.net.Uri;
-import android.view.View;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_account;
-import org.telegram.ui.kj1;
-import org.telegram.ui.lj1;
-import org.telegram.ui.qv0;
-public final class kh implements Utilities.Callback2 {
-    public final int f18202a = 1;
-    public final int f18203b;
-    public final Object f18204c;
-    public final Object d;
-    public final Object f18205e;
-    public final Object f18206f;
+import java.util.ArrayList;
+public final class kh implements Runnable {
+    public final int f15640a;
+    public final NotificationsController f15641b;
+    public final ArrayList f15642c;
 
-    public kh(di.d dVar, org.telegram.ui.ActionBar.f3 f3Var, int i10, View view, cf.c cVar) {
-        this.f18204c = dVar;
-        this.d = f3Var;
-        this.f18203b = i10;
-        this.f18205e = view;
-        this.f18206f = cVar;
+    public kh(NotificationsController notificationsController, ArrayList arrayList, int i10) {
+        this.f15640a = i10;
+        this.f15641b = notificationsController;
+        this.f15642c = arrayList;
     }
 
     @Override
-    public final void run(Object obj, Object obj2) {
-        switch (this.f18202a) {
+    public final void run() {
+        switch (this.f15640a) {
             case 0:
-                PasskeysController.lambda$create$9((org.telegram.ui.ActionBar.b2) this.f18204c, (Utilities.Callback2) this.d, (androidx.biometric.s) this.f18205e, (Context) this.f18206f, this.f18203b, (TL_account.passkeyRegistrationOptions) obj, (TLRPC.TL_error) obj2);
+                this.f15641b.lambda$removeDeletedHisoryFromNotifications$11(this.f15642c);
+                return;
+            case 1:
+                this.f15641b.lambda$processReadMessages$20(this.f15642c);
+                return;
+            case 2:
+                this.f15641b.lambda$forceShowPopupForReply$6(this.f15642c);
+                return;
+            case 3:
+                this.f15641b.lambda$removeDeletedMessagesFromNotifications$8(this.f15642c);
                 return;
             default:
-                di.d dVar = (di.d) this.f18204c;
-                org.telegram.ui.ActionBar.f3 f3Var = (org.telegram.ui.ActionBar.f3) this.d;
-                View view = (View) this.f18205e;
-                cf.c cVar = (cf.c) this.f18206f;
-                TLRPC.UrlAuthResult urlAuthResult = (TLRPC.UrlAuthResult) obj;
-                TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
-                dVar.setLoading(false);
-                if (urlAuthResult instanceof TLRPC.TL_urlAuthResultAccepted) {
-                    Uri parse = Uri.parse(((TLRPC.TL_urlAuthResultAccepted) urlAuthResult).url);
-                    String queryParameter = Uri.parse("?" + parse.getFragment()).getQueryParameter("tgWebAuthToken");
-                    if (queryParameter == null) {
-                        new org.telegram.ui.Components.yc(f3Var.topBulletinContainer, f3Var.getResourcesProvider()).c0("NO_TOKEN", false);
-                        return;
-                    }
-                    int i10 = this.f18203b;
-                    int currentDatacenterId = ConnectionsManager.getInstance(i10).getCurrentDatacenterId();
-                    boolean isTestBackend = ConnectionsManager.getInstance(i10).isTestBackend();
-                    StringBuilder k10 = com.google.android.gms.internal.vision.e2.k("wear-auth: sending /token account=", i10, " dcId=", currentDatacenterId, " isTest=");
-                    k10.append(isTestBackend);
-                    FileLog.d(k10.toString());
-                    Context applicationContext = view.getContext().getApplicationContext();
-                    try {
-                        byte[] c10 = lj1.c(cVar, queryParameter, currentDatacenterId, isTestBackend);
-                        com.google.android.gms.common.api.internal.t0 t0Var = new com.google.android.gms.internal.clearcut.u0(applicationContext, com.google.android.gms.common.api.i.f4985c).h;
-                        b8.e eVar = new b8.e(t0Var, (String) cVar.d, "/tg-wear-auth/token", c10);
-                        t0Var.f5138b.d(0, eVar);
-                        n6.l.n(eVar, y8.j0.f49639a).addOnSuccessListener(new qv0(20, cVar, dVar)).addOnFailureListener(new kj1(dVar, 1));
-                        f3Var.dismiss();
-                        return;
-                    } catch (Exception e7) {
-                        FileLog.e(e7);
-                        new org.telegram.ui.Components.yc(f3Var.topBulletinContainer, f3Var.getResourcesProvider()).c0(e7.getMessage(), false);
-                        return;
-                    }
-                } else if (tL_error != null) {
-                    org.telegram.ui.Cells.p6.q(f3Var.topBulletinContainer, f3Var.getResourcesProvider(), tL_error, false);
-                    return;
-                } else {
-                    new org.telegram.ui.Components.yc(f3Var.topBulletinContainer, f3Var.getResourcesProvider()).c0("NO_TOKEN", false);
-                    return;
-                }
+                this.f15641b.lambda$processDialogsUpdateRead$28(this.f15642c);
+                return;
         }
-    }
-
-    public kh(org.telegram.ui.ActionBar.b2 b2Var, Utilities.Callback2 callback2, androidx.biometric.s sVar, Context context, int i10) {
-        this.f18204c = b2Var;
-        this.d = callback2;
-        this.f18205e = sVar;
-        this.f18206f = context;
-        this.f18203b = i10;
     }
 }

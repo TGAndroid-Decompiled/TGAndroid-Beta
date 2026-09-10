@@ -1,26 +1,23 @@
 package org.telegram.messenger;
-
-import org.telegram.messenger.MessagesController;
-import org.telegram.tgnet.TLRPC;
 public final class fb implements Runnable {
-    public final int f17668a;
-    public final MessagesController.ErrorDelegate f17669b;
-    public final TLRPC.TL_error f17670c;
+    public final int f15163a;
+    public final q0.a f15164b;
+    public final int f15165c;
 
-    public fb(MessagesController.ErrorDelegate errorDelegate, TLRPC.TL_error tL_error, int i10) {
-        this.f17668a = i10;
-        this.f17669b = errorDelegate;
-        this.f17670c = tL_error;
+    public fb(q0.a aVar, int i10, int i11) {
+        this.f15163a = i11;
+        this.f15164b = aVar;
+        this.f15165c = i10;
     }
 
     @Override
     public final void run() {
-        switch (this.f17668a) {
+        switch (this.f15163a) {
             case 0:
-                this.f17669b.run(this.f17670c);
+                MessagesController.lambda$getNextReactionMentionInternal$1(this.f15164b, this.f15165c);
                 return;
             default:
-                this.f17669b.run(this.f17670c);
+                MessagesController.lambda$getNextReactionMentionInternal$2(this.f15164b, this.f15165c);
                 return;
         }
     }

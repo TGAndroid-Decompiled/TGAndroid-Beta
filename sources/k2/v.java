@@ -1,40 +1,37 @@
 package k2;
-public final class v {
-    public final b2.s f14701a;
-    public final int f14702b;
-    public final int f14703c;
-    public final int d;
-    public final int f14704e;
-    public final int f14705f;
-    public final int f14706g;
-    public final int h;
-    public final c2.e f14707i;
-    public final boolean f14708j;
-    public final boolean f14709k;
-    public final boolean f14710l;
 
-    public v(b2.s sVar, int i10, int i11, int i12, int i13, int i14, int i15, int i16, c2.e eVar, boolean z10, boolean z11, boolean z12) {
-        this.f14701a = sVar;
-        this.f14702b = i10;
-        this.f14703c = i11;
-        this.d = i12;
-        this.f14704e = i13;
-        this.f14705f = i14;
-        this.f14706g = i15;
-        this.h = i16;
-        this.f14707i = eVar;
-        this.f14708j = z10;
-        this.f14709k = z11;
-        this.f14710l = z12;
+import android.content.Context;
+import android.view.View;
+import java.util.ArrayList;
+public final class v {
+    public boolean f12224a;
+    public Object f12225b;
+    public Object d;
+    public Object f12228g;
+    public Object f12226c = b.f12073c;
+    public Object e = f0.f12130a;
+    public Object f12227f = u.f12223a;
+
+    public v(Context context) {
+        this.f12225b = context;
     }
 
-    public final k a() {
-        boolean z10;
-        if (this.f14703c == 1) {
-            z10 = true;
-        } else {
-            z10 = false;
+    public e0 a() {
+        e2.d.g(!this.f12224a);
+        this.f12224a = true;
+        if (((aa.a) this.d) == null) {
+            this.d = new aa.a(new c2.h[0]);
         }
-        return new k(this.f14706g, this.f14704e, this.f14705f, this.h, this.f14710l, z10);
+        if (((n4.y) this.f12228g) == null) {
+            this.f12228g = new n4.y((Context) this.f12225b, 26);
+        }
+        return new e0(this);
+    }
+
+    public void b() {
+        ArrayList arrayList = (ArrayList) this.f12228g;
+        for (int i10 = 0; i10 < arrayList.size(); i10++) {
+            ((View) arrayList.get(i10)).invalidate();
+        }
     }
 }

@@ -1,40 +1,26 @@
 package zh;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class r3 extends AnimatorListenerAdapter {
-    public final int f52538a;
-    public final t3 f52539b;
+import org.telegram.tgnet.tl.TL_stories;
+public final class r3 {
+    public final int f48827a;
+    public final TL_stories.StoryView f48828b;
+    public final TL_stories.StoryReaction f48829c;
 
-    public r3(t3 t3Var, int i10) {
-        this.f52538a = i10;
-        this.f52539b = t3Var;
+    public r3(int i10) {
+        this.f48827a = i10;
+        this.f48828b = null;
+        this.f48829c = null;
     }
 
-    @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f52538a) {
-            case 0:
-                this.f52539b.f52652d0 = false;
-                return;
-            case 1:
-                this.f52539b.f52652d0 = false;
-                return;
-            case 2:
-                this.f52539b.N.setVisibility(4);
-                return;
-            case 3:
-                t3 t3Var = this.f52539b;
-                t3Var.f52671s0 = t3Var.f52669r0;
-                t3Var.d(t3Var.U);
-                return;
-            default:
-                t3 t3Var2 = this.f52539b;
-                t3Var2.f52672t0 = 1.0f;
-                t3Var2.f52648b.setScaleX(1.0f);
-                t3Var2.f52648b.setScaleY(t3Var2.f52672t0);
-                t3Var2.invalidate();
-                return;
-        }
+    public r3(TL_stories.StoryView storyView) {
+        this.f48827a = 1;
+        this.f48828b = storyView;
+        this.f48829c = null;
+    }
+
+    public r3(TL_stories.StoryReaction storyReaction) {
+        this.f48827a = 1;
+        this.f48828b = null;
+        this.f48829c = storyReaction;
     }
 }

@@ -10,18 +10,18 @@ import androidx.appcompat.view.menu.ListMenuItemView;
 public final class i2 extends r1 {
     public e2 E;
     public l.n F;
-    public final int f15574x;
-    public final int f15575y;
+    public final int f13035x;
+    public final int f13036y;
 
     public i2(Context context, boolean z10) {
         super(context, z10);
         if (1 == h2.a(context.getResources().getConfiguration())) {
-            this.f15574x = 21;
-            this.f15575y = 22;
+            this.f13035x = 21;
+            this.f13036y = 22;
             return;
         }
-        this.f15574x = 22;
-        this.f15575y = 21;
+        this.f13035x = 22;
+        this.f13036y = 21;
     }
 
     @Override
@@ -48,9 +48,9 @@ public final class i2 extends r1 {
             }
             l.n nVar2 = this.F;
             if (nVar2 != nVar) {
-                l.l lVar = iVar.f15130a;
+                l.l lVar = iVar.f12623a;
                 if (nVar2 != null) {
-                    this.E.d(lVar, nVar2);
+                    this.E.h(lVar, nVar2);
                 }
                 this.F = nVar;
                 if (nVar != null) {
@@ -65,12 +65,12 @@ public final class i2 extends r1 {
     public final boolean onKeyDown(int i10, KeyEvent keyEvent) {
         l.i iVar;
         ListMenuItemView listMenuItemView = (ListMenuItemView) getSelectedView();
-        if (listMenuItemView != null && i10 == this.f15574x) {
+        if (listMenuItemView != null && i10 == this.f13035x) {
             if (listMenuItemView.isEnabled() && listMenuItemView.getItemData().hasSubMenu()) {
                 performItemClick(listMenuItemView, getSelectedItemPosition(), getSelectedItemId());
             }
             return true;
-        } else if (listMenuItemView != null && i10 == this.f15575y) {
+        } else if (listMenuItemView != null && i10 == this.f13036y) {
             setSelection(-1);
             ListAdapter adapter = getAdapter();
             if (adapter instanceof HeaderViewListAdapter) {
@@ -78,7 +78,7 @@ public final class i2 extends r1 {
             } else {
                 iVar = (l.i) adapter;
             }
-            iVar.f15130a.c(false);
+            iVar.f12623a.c(false);
             return true;
         } else {
             return super.onKeyDown(i10, keyEvent);

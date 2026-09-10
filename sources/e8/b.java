@@ -9,7 +9,7 @@ import android.os.Looper;
 import android.text.TextUtils;
 import com.google.android.gms.common.api.k;
 import com.google.android.gms.common.api.l;
-import m.p3;
+import m.r3;
 import v8.p;
 public final class b extends n6.g {
     public final Context U;
@@ -18,8 +18,8 @@ public final class b extends n6.g {
     public final int X;
     public final boolean Y;
 
-    public b(Context context, Looper looper, p3 p3Var, k kVar, l lVar, int i10) {
-        super(context, looper, 4, p3Var, kVar, lVar, 0);
+    public b(Context context, Looper looper, r3 r3Var, k kVar, l lVar, int i10) {
+        super(context, looper, 4, r3Var, kVar, lVar, 0);
         this.U = context;
         this.V = i10;
         this.W = null;
@@ -65,7 +65,7 @@ public final class b extends n6.g {
 
     @Override
     public final k6.c[] r() {
-        return p.f47768c;
+        return p.f43276c;
     }
 
     @Override

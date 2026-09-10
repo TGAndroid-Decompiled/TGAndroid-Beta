@@ -1,26 +1,23 @@
 package org.telegram.messenger;
-
-import android.net.Uri;
-import org.telegram.messenger.Utilities;
 public final class f6 implements Runnable {
-    public final int f17647a;
-    public final Utilities.Callback f17648b;
-    public final Uri f17649c;
+    public final int f15143a;
+    public final MediaController f15144b;
+    public final int f15145c;
 
-    public f6(Utilities.Callback callback, Uri uri, int i10) {
-        this.f17647a = i10;
-        this.f17648b = callback;
-        this.f17649c = uri;
+    public f6(MediaController mediaController, int i10, int i11) {
+        this.f15143a = i11;
+        this.f15144b = mediaController;
+        this.f15145c = i10;
     }
 
     @Override
     public final void run() {
-        switch (this.f17647a) {
+        switch (this.f15143a) {
             case 0:
-                this.f17648b.run(this.f17649c);
+                this.f15144b.lambda$onAudioFocusChange$5(this.f15145c);
                 return;
             default:
-                this.f17648b.run(this.f17649c);
+                this.f15144b.lambda$stopRecording$42(this.f15145c);
                 return;
         }
     }

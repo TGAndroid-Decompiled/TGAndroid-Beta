@@ -1,266 +1,149 @@
 package bi;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Rect;
-import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
-import android.view.MotionEvent;
+import android.text.TextUtils;
+import android.view.Surface;
 import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.wl;
-import org.telegram.ui.Components.xv;
-import org.telegram.ui.gj1;
-import org.telegram.ui.hf0;
-import org.telegram.ui.hj1;
-import org.telegram.ui.l70;
-import org.telegram.ui.md;
-import org.telegram.ui.xo;
-public final class i5 extends org.telegram.ui.Components.x9 {
-    public final int G;
-    public final Object H;
+import androidx.recyclerview.widget.RecyclerView;
+import java.util.ArrayList;
+import org.telegram.messenger.MessagesController;
+import org.telegram.tgnet.tl.TL_stories;
+import org.telegram.ui.Components.v51;
+public final class i5 implements e2.h {
+    public final int f2852a;
+    public final Object f2853b;
 
-    public i5(Object obj, Context context, int i10) {
-        super(context);
-        this.G = i10;
-        this.H = obj;
+    public i5(Object obj, int i10) {
+        this.f2852a = i10;
+        this.f2853b = obj;
     }
 
     @Override
-    public ImageReceiver c() {
-        switch (this.G) {
-            case 1:
-                return new y3(this, this, 1);
-            default:
-                return super.c();
-        }
-    }
-
-    @Override
-    public void invalidate(Rect rect) {
-        switch (this.G) {
-            case 7:
-                super.invalidate(rect);
-                ((org.telegram.ui.Components.e9) this.H).invalidate();
-                return;
-            default:
-                super.invalidate(rect);
-                return;
-        }
-    }
-
-    @Override
-    public void onDraw(Canvas canvas) {
-        Canvas canvas2;
-        switch (this.G) {
+    public final void accept(Object obj) {
+        boolean z10;
+        String str;
+        switch (this.f2852a) {
             case 0:
-                if (this.f32503a.getVisible()) {
-                    RectF rectF = AndroidUtilities.rectTmp;
-                    rectF.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
-                    ((k5) this.H).b(1.0f, canvas, rectF, true);
+                p5 p5Var = (p5) this.f2853b;
+                View view = (View) obj;
+                k5 k5Var = p5Var.f3388b;
+                if (view instanceof o5) {
+                    k5Var.getClass();
+                    int R = RecyclerView.R(view);
+                    v51 G = k5Var.Y2.G(R);
+                    if (G != null) {
+                        o5 o5Var = (o5) view;
+                        o5Var.setPosition(p5Var.b(R));
+                        if (p5Var.f3390f == G.d) {
+                            z10 = true;
+                        } else {
+                            z10 = false;
+                        }
+                        o5Var.b(z10, true);
+                        boolean contains = p5Var.e.contains(Integer.valueOf(G.d));
+                        if (o5Var.f3313f != contains) {
+                            o5Var.f3313f = contains;
+                            o5Var.invalidate();
+                        }
+                        view.setPressed(false);
+                        return;
+                    }
+                    return;
                 }
-                super.onDraw(canvas);
+                return;
+            case 1:
+                k5 k5Var2 = (k5) this.f2853b;
+                View view2 = (View) obj;
+                if (view2 instanceof o5) {
+                    oc ocVar = k5Var2.f2987f3;
+                    ocVar.f3388b.getClass();
+                    ((o5) view2).setPosition(ocVar.b(RecyclerView.R(view2)));
+                    view2.setPressed(false);
+                    return;
+                }
                 return;
             case 2:
-                org.telegram.ui.Cells.j7 j7Var = (org.telegram.ui.Cells.j7) this.H;
-                i5 i5Var = j7Var.f22211b;
-                float f7 = 1.0f;
-                if (i5Var.getImageReceiver().hasBitmapImage()) {
-                    f7 = 1.0f - i5Var.getImageReceiver().getCurrentAlpha();
-                }
-                j7Var.d.setAlpha(f7);
-                j7Var.f22210a.setAlpha(f7);
-                super.onDraw(canvas);
+                i9.P((i9) this.f2853b, (Long) obj);
                 return;
             case 3:
-                org.telegram.ui.Cells.za zaVar = (org.telegram.ui.Cells.za) this.H;
-                org.telegram.ui.Cells.l6 l6Var = zaVar.T;
-                if (zaVar.F) {
-                    l6Var.F.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
-                    p9.h(zaVar.U, canvas, this.f32503a, l6Var);
-                    return;
-                }
-                super.onDraw(canvas);
+                ((m4.l1) obj).f((b2.v0) this.f2853b);
                 return;
             case 4:
-                super.onDraw(canvas);
-                org.telegram.ui.Cells.db dbVar = (org.telegram.ui.Cells.db) this.H;
-                Object obj = dbVar.h;
-                if (!(obj instanceof gj1) && !(obj instanceof hj1)) {
-                    canvas2 = canvas;
-                } else {
-                    canvas.drawLine(1.0f, 0.0f, getMeasuredWidth() - 1, 0.0f, dbVar.f21836n.f21917n);
-                    canvas2 = canvas;
-                    canvas2.drawLine(0.0f, 0.0f, 0.0f, getMeasuredHeight(), dbVar.f21836n.f21917n);
-                    canvas2.drawLine(getMeasuredWidth() - 1, 0.0f, getMeasuredWidth() - 1, getMeasuredHeight(), dbVar.f21836n.f21917n);
-                    canvas2.drawLine(1.0f, getMeasuredHeight() - 1, getMeasuredWidth() - 1, getMeasuredHeight() - 1, dbVar.f21836n.f21917n);
-                }
-                if (dbVar.f21834e) {
-                    dbVar.f21836n.f21918r.setColor(org.telegram.ui.ActionBar.j6.f20666c0);
-                    int measuredWidth = getMeasuredWidth() / 2;
-                    int measuredHeight = getMeasuredHeight() / 2;
-                    canvas2.drawCircle(measuredWidth, measuredHeight, AndroidUtilities.dp(20.0f), dbVar.f21836n.f21918r);
-                    Drawable drawable = dbVar.f21836n.v;
-                    drawable.setBounds(wl.w(2, measuredWidth, drawable), wl.e(2, measuredHeight, dbVar.f21836n.v), wl.B(2, measuredWidth, dbVar.f21836n.v), wl.z(2, measuredHeight, dbVar.f21836n.v));
-                    dbVar.f21836n.v.draw(canvas2);
-                    return;
-                }
+                ((m4.l1) obj).n((Surface) this.f2853b);
                 return;
-            case 11:
-                if (((org.telegram.ui.web.d1) this.H).v) {
-                    super.onDraw(canvas);
-                    return;
-                }
-                Drawable drawable2 = this.f32503a.getDrawable();
-                if (drawable2 != null) {
-                    this.f32503a.setImageCoords(0.0f, 0.0f, getWidth(), (getWidth() / drawable2.getIntrinsicWidth()) * drawable2.getIntrinsicHeight());
-                    this.f32503a.draw(canvas);
-                    return;
-                }
-                return;
-            default:
-                super.onDraw(canvas);
-                return;
-        }
-    }
-
-    @Override
-    public void onMeasure(int i10, int i11) {
-        switch (this.G) {
-            case 1:
-                super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(240.0f), 1073741824));
-                return;
-            default:
-                super.onMeasure(i10, i11);
-                return;
-        }
-    }
-
-    @Override
-    public boolean onTouchEvent(MotionEvent motionEvent) {
-        switch (this.G) {
-            case 3:
-                if (((org.telegram.ui.Cells.za) this.H).T.a(motionEvent, this)) {
-                    return true;
-                }
-                return super.onTouchEvent(motionEvent);
-            default:
-                return super.onTouchEvent(motionEvent);
-        }
-    }
-
-    @Override
-    public boolean verifyDrawable(Drawable drawable) {
-        switch (this.G) {
-            case 1:
-                if (drawable != ((ig.e1) this.H).f12073r && !super.verifyDrawable(drawable)) {
-                    return false;
-                }
-                return true;
-            default:
-                return super.verifyDrawable(drawable);
-        }
-    }
-
-    public i5(org.telegram.ui.web.d1 d1Var, Context context) {
-        super(context);
-        this.G = 11;
-        this.H = d1Var;
-        this.f32503a = new y3(this, this, 6);
-    }
-
-    @Override
-    public void invalidate() {
-        switch (this.G) {
             case 5:
-                di.r6 r6Var = ((md) this.H).f38669f;
-                if (r6Var != null) {
-                    r6Var.invalidate();
-                }
-                super.invalidate();
+                ((m4.l1) obj).C((b2.n0) this.f2853b);
                 return;
             case 6:
-                di.r6 r6Var2 = ((xo) this.H).f42803f;
-                if (r6Var2 != null) {
-                    r6Var2.invalidate();
-                }
-                super.invalidate();
-                return;
-            case 7:
-                super.invalidate();
-                ((org.telegram.ui.Components.e9) this.H).invalidate();
-                return;
-            case 8:
-                if (ah.y0.b(this)) {
+                yg.s sVar = (yg.s) this.f2853b;
+                sVar.Q = (TL_stories.TL_premium_boostsStatus) obj;
+                if (!sVar.E.keySet().equals(sVar.G.keySet())) {
+                    sVar.Y(false);
                     return;
                 }
-                super.invalidate();
-                ((xv) this.H).f();
-                return;
-            case 9:
-                di.r6 r6Var3 = ((l70) this.H).f38237e;
-                if (r6Var3 != null) {
-                    r6Var3.invalidate();
-                }
-                super.invalidate();
-                return;
-            case 10:
-                di.r6 r6Var4 = ((hf0) this.H).h;
-                if (r6Var4 != null) {
-                    r6Var4.invalidate();
-                }
-                super.invalidate();
-                return;
-            default:
-                super.invalidate();
-                return;
-        }
-    }
-
-    @Override
-    public void invalidate(int i10, int i11, int i12, int i13) {
-        switch (this.G) {
-            case 5:
-                di.r6 r6Var = ((md) this.H).f38669f;
-                if (r6Var != null) {
-                    r6Var.invalidate();
-                }
-                super.invalidate(i10, i11, i12, i13);
-                return;
-            case 6:
-                di.r6 r6Var2 = ((xo) this.H).f42803f;
-                if (r6Var2 != null) {
-                    r6Var2.invalidate();
-                }
-                super.invalidate(i10, i11, i12, i13);
                 return;
             case 7:
-                super.invalidate(i10, i11, i12, i13);
-                ((org.telegram.ui.Components.e9) this.H).invalidate();
-                return;
-            case 8:
-                if (ah.y0.b(this)) {
+                z3.h hVar = (z3.h) this.f2853b;
+                z3.a aVar = (z3.a) obj;
+                z3.g gVar = new z3.g(aVar.f47197b, qb.b.D3(aVar.f47196a, aVar.f47198c));
+                hVar.f47207c.add(gVar);
+                long j3 = hVar.f47211j;
+                if (j3 == -9223372036854775807L || aVar.d >= j3) {
+                    hVar.a(gVar);
                     return;
                 }
-                super.invalidate(i10, i11, i12, i13);
+                return;
+            case 8:
+                ((e9.f0) this.f2853b).b((z3.a) obj);
                 return;
             case 9:
-                di.r6 r6Var3 = ((l70) this.H).f38237e;
-                if (r6Var3 != null) {
-                    r6Var3.invalidate();
+                zh.a3 a3Var = (zh.a3) this.f2853b;
+                TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus = (TL_stories.TL_premium_boostsStatus) obj;
+                if (tL_premium_boostsStatus == null) {
+                    zh.u7 u7Var = a3Var.J0;
+                    if (u7Var != null) {
+                        u7Var.f48943k1 = false;
+                        u7Var.P();
+                        return;
+                    }
+                    return;
                 }
-                super.invalidate(i10, i11, i12, i13);
+                a3Var.J3 = tL_premium_boostsStatus;
+                MessagesController.getInstance(a3Var.C2).getBoostsController().userCanBoostChannel(a3Var.B1, tL_premium_boostsStatus, new m4.q0(11, a3Var, tL_premium_boostsStatus));
                 return;
             case 10:
-                di.r6 r6Var4 = ((hf0) this.H).h;
-                if (r6Var4 != null) {
-                    r6Var4.invalidate();
+                zh.z3 z3Var = (zh.z3) obj;
+                zh.g4 g4Var = ((zh.d4) this.f2853b).e;
+                int i10 = 0;
+                while (true) {
+                    ArrayList arrayList = g4Var.G;
+                    if (i10 < arrayList.size()) {
+                        if (z3Var != arrayList.get(i10)) {
+                            ((zh.z3) arrayList.get(i10)).getClass();
+                        }
+                        i10++;
+                    } else {
+                        return;
+                    }
                 }
-                super.invalidate(i10, i11, i12, i13);
-                return;
             default:
-                super.invalidate(i10, i11, i12, i13);
+                zh.j6 j6Var = (zh.j6) this.f2853b;
+                TL_stories.StoryItem storyItem = (TL_stories.StoryItem) obj;
+                j6Var.f48555p = true;
+                if (storyItem != null && (str = storyItem.caption) != null) {
+                    j6Var.f48552m = true;
+                    j6Var.f48551l = str;
+                    j6Var.f48546f = TextUtils.isEmpty(str);
+                    View view3 = j6Var.f48557r;
+                    if (view3 != null) {
+                        view3.invalidate();
+                    }
+                    Runnable runnable = j6Var.f48558s;
+                    if (runnable != null) {
+                        runnable.run();
+                        return;
+                    }
+                    return;
+                }
                 return;
         }
     }

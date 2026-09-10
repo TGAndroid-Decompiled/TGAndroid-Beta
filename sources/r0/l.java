@@ -9,7 +9,7 @@ public interface l {
 
     void n(int i10, View view);
 
-    boolean p(View view, View view2, int i10, int i11);
+    boolean o(View view, View view2, int i10, int i11);
 
-    void s(View view, View view2, int i10, int i11);
+    void r(View view, View view2, int i10, int i11);
 }

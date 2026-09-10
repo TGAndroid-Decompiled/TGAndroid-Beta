@@ -1,26 +1,24 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Path;
-import android.graphics.Region;
+import android.app.Activity;
+import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
-public final class j3 extends x9 {
-    public final Path G;
+public final class j3 extends FrameLayout {
+    public final org.telegram.ui.Cells.z1[] f24206a;
 
-    public j3(Context context) {
-        super(context);
-        this.G = new Path();
+    public j3(Activity activity, org.telegram.ui.Cells.z1[] z1VarArr) {
+        super(activity);
+        this.f24206a = z1VarArr;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        canvas.save();
-        Path path = this.G;
-        path.rewind();
-        path.addCircle(AndroidUtilities.dp(54.0f), AndroidUtilities.dp(53.0f), AndroidUtilities.dp(14.0f), Path.Direction.CW);
-        canvas.clipPath(path, Region.Op.DIFFERENCE);
-        super.onDraw(canvas);
-        canvas.restore();
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(i10, i11);
+        org.telegram.ui.Cells.z1[] z1VarArr = this.f24206a;
+        if (z1VarArr[0] != null) {
+            int measuredWidth = getMeasuredWidth();
+            int measuredHeight = getMeasuredHeight();
+            setMeasuredDimension(measuredWidth, AndroidUtilities.dp(7.0f) + z1VarArr[0].getMeasuredHeight() + measuredHeight);
+        }
     }
 }

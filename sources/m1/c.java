@@ -4,51 +4,50 @@ import android.content.Context;
 import androidx.lifecycle.k0;
 import java.util.List;
 import k1.a0;
-import k2.g0;
 import rd.l;
 import zd.c0;
 public final class c {
-    public final String f15769a;
-    public final l f15770b;
-    public final c0 f15771c;
+    public final String f13219a;
+    public final l f13220b;
+    public final c0 f13221c;
     public final Object d;
-    public volatile g0 f15772e;
+    public volatile l2.h e;
 
     public c(String name, l lVar, c0 c0Var) {
         kotlin.jvm.internal.i.e(name, "name");
-        this.f15769a = name;
-        this.f15770b = lVar;
-        this.f15771c = c0Var;
+        this.f13219a = name;
+        this.f13220b = lVar;
+        this.f13221c = c0Var;
         this.d = new Object();
     }
 
-    public final g0 a(Object obj, vd.g property) {
-        g0 g0Var;
+    public final l2.h a(Object obj, vd.g property) {
+        l2.h hVar;
         Context thisRef = (Context) obj;
         kotlin.jvm.internal.i.e(thisRef, "thisRef");
         kotlin.jvm.internal.i.e(property, "property");
-        g0 g0Var2 = this.f15772e;
-        if (g0Var2 == null) {
+        l2.h hVar2 = this.e;
+        if (hVar2 == null) {
             synchronized (this.d) {
                 try {
-                    if (this.f15772e == null) {
+                    if (this.e == null) {
                         Context applicationContext = thisRef.getApplicationContext();
-                        l lVar = this.f15770b;
+                        l lVar = this.f13220b;
                         kotlin.jvm.internal.i.d(applicationContext, "applicationContext");
                         List migrations = (List) lVar.invoke(applicationContext);
-                        c0 c0Var = this.f15771c;
+                        c0 c0Var = this.f13221c;
                         b bVar = new b(applicationContext, this);
                         kotlin.jvm.internal.i.e(migrations, "migrations");
-                        this.f15772e = new g0(new a0(new k0(bVar, 2), hd.h.b(new bb.j(migrations, null, 1)), new ob.a(12), c0Var), 3);
+                        this.e = new l2.h(new a0(new k0(bVar, 2), hd.h.b(new bb.i(migrations, null, 1)), new na.d(12), c0Var), 3);
                     }
-                    g0Var = this.f15772e;
-                    kotlin.jvm.internal.i.b(g0Var);
+                    hVar = this.e;
+                    kotlin.jvm.internal.i.b(hVar);
                 } catch (Throwable th2) {
                     throw th2;
                 }
             }
-            return g0Var;
+            return hVar;
         }
-        return g0Var2;
+        return hVar2;
     }
 }

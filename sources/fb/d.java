@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
 public abstract class d {
-    public static final Type[] f9449a = new Type[0];
+    public static final Type[] f7902a = new Type[0];
 
     public static Type a(Type type) {
         if (type instanceof Class) {
@@ -194,7 +194,7 @@ public abstract class d {
     }
 
     public static void l(db.i iVar, lb.b bVar) {
-        h1.f10566z.getClass();
+        h1.f8700z.getClass();
         u0.b(iVar, bVar);
     }
 }

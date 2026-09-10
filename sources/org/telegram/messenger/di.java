@@ -1,30 +1,28 @@
 package org.telegram.messenger;
-public final class di implements Runnable {
-    public final int f17517a;
-    public final SecretChatHelper f17518b;
-    public final long f17519c;
 
-    public di(SecretChatHelper secretChatHelper, long j3, int i10) {
-        this.f17517a = i10;
-        this.f17518b = secretChatHelper;
-        this.f17519c = j3;
+import android.text.Spanned;
+import java.util.Comparator;
+import org.telegram.messenger.RichMessageLayout;
+public final class di implements Comparator {
+    public final int f15018a;
+    public final Spanned f15019b;
+
+    public di(Spanned spanned, int i10) {
+        this.f15018a = i10;
+        this.f15019b = spanned;
     }
 
     @Override
-    public final void run() {
-        switch (this.f17517a) {
+    public final int compare(Object obj, Object obj2) {
+        int lambda$withReplacements$0;
+        int lambda$new$0;
+        switch (this.f15018a) {
             case 0:
-                SecretChatHelper.x(this.f17518b, this.f17519c);
-                return;
-            case 1:
-                SecretChatHelper.t(this.f17518b, this.f17519c);
-                return;
-            case 2:
-                SecretChatHelper.j(this.f17518b, this.f17519c);
-                return;
+                lambda$withReplacements$0 = RichMessageLayout.RichBlock.lambda$withReplacements$0(this.f15019b, (org.telegram.ui.Cells.y9) obj, (org.telegram.ui.Cells.y9) obj2);
+                return lambda$withReplacements$0;
             default:
-                SecretChatHelper.w(this.f17518b, this.f17519c);
-                return;
+                lambda$new$0 = RichMessageLayout.Text.lambda$new$0(this.f15019b, (RichMessageLayout.RichButtonSpan) obj, (RichMessageLayout.RichButtonSpan) obj2);
+                return lambda$new$0;
         }
     }
 }

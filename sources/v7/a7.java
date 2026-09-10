@@ -1,40 +1,14 @@
 package v7;
 public abstract class a7 {
-    public static void a(bf.s sVar, bf.s sVar2, int i10) {
-        if (sVar != null && sVar2 != null && sVar != sVar2) {
-            StringBuilder sb2 = new StringBuilder(i10);
-            sb2.append(sVar.f2670g);
-            bf.p pVar = (bf.p) sVar2.f2668f;
-            for (bf.p pVar2 = (bf.p) sVar.f2668f; pVar2 != pVar; pVar2 = (bf.p) pVar2.f2668f) {
-                sb2.append(((bf.s) pVar2).f2670g);
-                pVar2.g();
-            }
-            sVar.f2670g = sb2.toString();
-        }
+    public static float a(float f7, float f10, float f11, float f12) {
+        double d = f7 - f11;
+        double d10 = f10 - f12;
+        return (float) Math.sqrt((d10 * d10) + (d * d));
     }
 
-    public static void b(bf.p pVar, bf.p pVar2) {
-        bf.s sVar = null;
-        bf.s sVar2 = null;
-        int i10 = 0;
-        while (pVar != null) {
-            if (pVar instanceof bf.s) {
-                sVar2 = (bf.s) pVar;
-                if (sVar == null) {
-                    sVar = sVar2;
-                }
-                i10 = sVar2.f2670g.length() + i10;
-            } else {
-                a(sVar, sVar2, i10);
-                sVar = null;
-                sVar2 = null;
-                i10 = 0;
-            }
-            if (pVar == pVar2) {
-                break;
-            }
-            pVar = (bf.p) pVar.f2668f;
-        }
-        a(sVar, sVar2, i10);
+    public static float b(int i10, int i11, int i12, int i13) {
+        double d = i10 - i12;
+        double d10 = i11 - i13;
+        return (float) Math.sqrt((d10 * d10) + (d * d));
     }
 }

@@ -1,29 +1,42 @@
 package org.telegram.ui.Components;
 
-import android.text.TextUtils;
-import android.view.View;
-public final class pf implements zk0 {
-    public final ChatActivityEnterView f29393a;
+import android.content.Context;
+import android.graphics.Paint;
+public final class pf extends di.b0 {
+    public boolean f26112s;
+    public final ChatActivityEnterView v;
 
-    public pf(ChatActivityEnterView chatActivityEnterView) {
-        this.f29393a = chatActivityEnterView;
+    public pf(ChatActivityEnterView chatActivityEnterView, Context context) {
+        super(context);
+        this.v = chatActivityEnterView;
+        this.f6530a = null;
+        Paint paint = new Paint(1);
+        this.d = paint;
+        this.f6533f = true;
+        this.f6531b = new Object();
+        bi.y1 y1Var = new bi.y1(this, context, 1);
+        this.f6532c = y1Var;
+        y1Var.setOverScrollMode(2);
+        y1Var.setClipToPadding(false);
+        y1Var.setClipToOutline(true);
+        y1Var.j(new bi.a2(this, 2));
+        addView(y1Var);
+        paint.setColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.Ii, false));
+        bh.d dVar = this.f6535r;
+        if (dVar != null) {
+            dVar.u();
+        }
+        invalidate();
+        setClipChildren(false);
+        this.f26112s = false;
     }
 
     @Override
-    public final void a(int i10, View view) {
-        if (view instanceof fi.a0) {
-            String command = ((fi.a0) view).getCommand();
-            if (!TextUtils.isEmpty(command)) {
-                ChatActivityEnterView chatActivityEnterView = this.f29393a;
-                if (chatActivityEnterView.c()) {
-                    e5.M(chatActivityEnterView.N2, chatActivityEnterView.P2, new b3(1, this, command), chatActivityEnterView.V3);
-                    return;
-                }
-                org.telegram.ui.co coVar = chatActivityEnterView.O2;
-                if (coVar == null || !coVar.e7(view)) {
-                    e5.a0(chatActivityEnterView.Q, 1, chatActivityEnterView.P2, new org.telegram.ui.nf(10, this, command));
-                }
-            }
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        super.onLayout(z10, i10, i11, i12, i13);
+        if (!this.f26112s) {
+            this.f26112s = true;
+            this.v.C1();
         }
     }
 }

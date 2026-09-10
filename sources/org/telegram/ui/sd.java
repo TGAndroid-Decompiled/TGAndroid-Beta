@@ -1,28 +1,23 @@
 package org.telegram.ui;
 
-import org.telegram.tgnet.TLRPC;
-public final class sd implements ug1 {
-    public final int f40440a;
-    public final ke f40441b;
-    public final TwoStepVerificationActivity f40442c;
+import android.view.View;
+public final class sd implements View.OnClickListener {
+    public final int f36655a;
+    public final org.telegram.ui.ActionBar.h3 f36656b;
 
-    public sd(ke keVar, TwoStepVerificationActivity twoStepVerificationActivity, int i10) {
-        this.f40440a = i10;
-        this.f40441b = keVar;
-        this.f40442c = twoStepVerificationActivity;
+    public sd(org.telegram.ui.ActionBar.h3 h3Var, int i10) {
+        this.f36655a = i10;
+        this.f36656b = h3Var;
     }
 
     @Override
-    public final void e(TLRPC.TL_inputCheckPasswordSRP tL_inputCheckPasswordSRP) {
-        switch (this.f40440a) {
+    public final void onClick(View view) {
+        switch (this.f36655a) {
             case 0:
-                this.f40441b.b0(false, tL_inputCheckPasswordSRP, this.f40442c);
-                return;
-            case 1:
-                this.f40441b.b0(true, tL_inputCheckPasswordSRP, this.f40442c);
+                this.f36656b.dismiss();
                 return;
             default:
-                this.f40441b.b0(true, tL_inputCheckPasswordSRP, this.f40442c);
+                this.f36656b.dismiss();
                 return;
         }
     }

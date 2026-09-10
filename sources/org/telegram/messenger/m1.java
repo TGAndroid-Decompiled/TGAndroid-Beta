@@ -1,41 +1,30 @@
 package org.telegram.messenger;
 
-import android.app.Activity;
-import java.util.HashMap;
-import org.telegram.ui.uy;
-public final class m1 implements Runnable {
-    public final int f18344a = 0;
-    public final boolean f18345b;
-    public final boolean f18346c;
-    public final boolean d;
-    public final Object f18347e;
-    public final Object f18348f;
+import java.text.Collator;
+import java.util.Comparator;
+import org.telegram.tgnet.TLRPC;
+public final class m1 implements Comparator {
+    public final int f15743a;
+    public final Collator f15744b;
+    public final Object f15745c;
 
-    public m1(ContactsController contactsController, HashMap hashMap, boolean z10, boolean z11, boolean z12) {
-        this.f18347e = contactsController;
-        this.f18348f = hashMap;
-        this.f18345b = z10;
-        this.f18346c = z11;
-        this.d = z12;
+    public m1(Object obj, Collator collator, int i10) {
+        this.f15743a = i10;
+        this.f15745c = obj;
+        this.f15744b = collator;
     }
 
     @Override
-    public final void run() {
-        switch (this.f18344a) {
+    public final int compare(Object obj, Object obj2) {
+        int lambda$buildContactsSectionsArrays$43;
+        int lambda$processLoadedContacts$30;
+        switch (this.f15743a) {
             case 0:
-                ((ContactsController) this.f18347e).lambda$syncPhoneBookByAlert$7((HashMap) this.f18348f, this.f18345b, this.f18346c, this.d);
-                return;
+                lambda$buildContactsSectionsArrays$43 = ((ContactsController) this.f15745c).lambda$buildContactsSectionsArrays$43(this.f15744b, (TLRPC.TL_contact) obj, (TLRPC.TL_contact) obj2);
+                return lambda$buildContactsSectionsArrays$43;
             default:
-                uy.i0((uy) this.f18347e, this.f18345b, this.f18346c, this.d, (Activity) this.f18348f);
-                return;
+                lambda$processLoadedContacts$30 = ContactsController.lambda$processLoadedContacts$30((a0.i) this.f15745c, this.f15744b, (TLRPC.TL_contact) obj, (TLRPC.TL_contact) obj2);
+                return lambda$processLoadedContacts$30;
         }
-    }
-
-    public m1(uy uyVar, boolean z10, boolean z11, boolean z12, Activity activity) {
-        this.f18347e = uyVar;
-        this.f18345b = z10;
-        this.f18346c = z11;
-        this.d = z12;
-        this.f18348f = activity;
     }
 }

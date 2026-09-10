@@ -11,15 +11,15 @@ import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
 import java.util.concurrent.locks.LockSupport;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import v7.k8;
+import v7.n8;
 public abstract class o extends j9.a implements w {
     public static final boolean d;
-    public static final s0 f11941e;
-    public static final k8 f11942f;
+    public static final s0 e;
+    public static final n8 f10529f;
     public static final Object h;
-    public volatile Object f11943a;
-    public volatile c f11944b;
-    public volatile n f11945c;
+    public volatile Object f10530a;
+    public volatile c f10531b;
+    public volatile n f10532c;
 
     static {
         boolean z10;
@@ -31,7 +31,7 @@ public abstract class o extends j9.a implements w {
             z10 = false;
         }
         d = z10;
-        f11941e = new s0(o.class, 1);
+        e = new s0(o.class, 1);
         Throwable th3 = null;
         try {
             th2 = null;
@@ -45,9 +45,9 @@ public abstract class o extends j9.a implements w {
                 dVar = new Object();
             }
         }
-        f11942f = dVar;
+        f10529f = dVar;
         if (th3 != null) {
-            s0 s0Var = f11941e;
+            s0 s0Var = e;
             Logger a2 = s0Var.a();
             Level level = Level.SEVERE;
             a2.log(level, "UnsafeAtomicHelper is broken!", th2);
@@ -59,10 +59,10 @@ public abstract class o extends j9.a implements w {
     public static void g(o oVar, boolean z10) {
         c cVar = null;
         while (true) {
-            for (n e7 = f11942f.e(oVar); e7 != null; e7 = e7.f11940b) {
-                Thread thread = e7.f11939a;
+            for (n e7 = f10529f.e(oVar); e7 != null; e7 = e7.f10528b) {
+                Thread thread = e7.f10527a;
                 if (thread != null) {
-                    e7.f11939a = null;
+                    e7.f10527a = null;
                     LockSupport.unpark(thread);
                 }
             }
@@ -71,30 +71,30 @@ public abstract class o extends j9.a implements w {
             }
             oVar.e();
             c cVar2 = cVar;
-            c d10 = f11942f.d(oVar);
+            c d10 = f10529f.d(oVar);
             c cVar3 = cVar2;
             while (d10 != null) {
-                c cVar4 = d10.f11922c;
-                d10.f11922c = cVar3;
+                c cVar4 = d10.f10512c;
+                d10.f10512c = cVar3;
                 cVar3 = d10;
                 d10 = cVar4;
             }
             while (cVar3 != null) {
-                cVar = cVar3.f11922c;
-                Runnable runnable = cVar3.f11920a;
+                cVar = cVar3.f10512c;
+                Runnable runnable = cVar3.f10510a;
                 Objects.requireNonNull(runnable);
                 if (runnable instanceof e) {
                     e eVar = (e) runnable;
-                    oVar = eVar.f11930a;
-                    if (oVar.f11943a == eVar) {
-                        if (f11942f.b(oVar, eVar, j(eVar.f11931b))) {
+                    oVar = eVar.f10519a;
+                    if (oVar.f10530a == eVar) {
+                        if (f10529f.b(oVar, eVar, j(eVar.f10520b))) {
                             break;
                         }
                     } else {
                         continue;
                     }
                 } else {
-                    Executor executor = cVar3.f11921b;
+                    Executor executor = cVar3.f10511b;
                     Objects.requireNonNull(executor);
                     h(runnable, executor);
                 }
@@ -108,7 +108,7 @@ public abstract class o extends j9.a implements w {
         try {
             executor.execute(runnable);
         } catch (Exception e7) {
-            Logger a2 = f11941e.a();
+            Logger a2 = e.a();
             Level level = Level.SEVERE;
             a2.log(level, "RuntimeException while executing runnable " + runnable + " with executor " + executor, (Throwable) e7);
         }
@@ -122,9 +122,9 @@ public abstract class o extends j9.a implements w {
                 }
                 return obj;
             }
-            throw new ExecutionException(((b) obj).f11918a);
+            throw new ExecutionException(((b) obj).f10508a);
         }
-        Throwable th2 = ((a) obj).f11915b;
+        Throwable th2 = ((a) obj).f10505b;
         CancellationException cancellationException = new CancellationException("Task was cancelled.");
         cancellationException.initCause(th2);
         throw cancellationException;
@@ -138,14 +138,14 @@ public abstract class o extends j9.a implements w {
     public void a(Runnable runnable, Executor executor) {
         c cVar;
         c cVar2 = c.d;
-        if (!isDone() && (cVar = this.f11944b) != cVar2) {
+        if (!isDone() && (cVar = this.f10531b) != cVar2) {
             c cVar3 = new c(runnable, executor);
             do {
-                cVar3.f11922c = cVar;
-                if (f11942f.a(this, cVar, cVar3)) {
+                cVar3.f10512c = cVar;
+                if (f10529f.a(this, cVar, cVar3)) {
                     return;
                 }
-                cVar = this.f11944b;
+                cVar = this.f10531b;
             } while (cVar != cVar2);
             h(runnable, executor);
         }
@@ -214,13 +214,13 @@ public abstract class o extends j9.a implements w {
     }
 
     public boolean isCancelled() {
-        return this.f11943a instanceof a;
+        return this.f10530a instanceof a;
     }
 
     @Override
     public boolean isDone() {
         boolean z10;
-        Object obj = this.f11943a;
+        Object obj = this.f10530a;
         if (obj != null) {
             z10 = true;
         } else {
@@ -237,21 +237,21 @@ public abstract class o extends j9.a implements w {
     }
 
     public final void l(n nVar) {
-        nVar.f11939a = null;
+        nVar.f10527a = null;
         while (true) {
-            n nVar2 = this.f11945c;
-            if (nVar2 != n.f11938c) {
+            n nVar2 = this.f10532c;
+            if (nVar2 != n.f10526c) {
                 n nVar3 = null;
                 while (nVar2 != null) {
-                    n nVar4 = nVar2.f11940b;
-                    if (nVar2.f11939a != null) {
+                    n nVar4 = nVar2.f10528b;
+                    if (nVar2.f10527a != null) {
                         nVar3 = nVar2;
                     } else if (nVar3 != null) {
-                        nVar3.f11940b = nVar4;
-                        if (nVar3.f11939a == null) {
+                        nVar3.f10528b = nVar4;
+                        if (nVar3.f10527a == null) {
                             break;
                         }
-                    } else if (!f11942f.c(this, nVar2, nVar4)) {
+                    } else if (!f10529f.c(this, nVar2, nVar4)) {
                         break;
                     }
                     nVar2 = nVar4;
@@ -266,7 +266,7 @@ public abstract class o extends j9.a implements w {
         if (obj == null) {
             obj = h;
         }
-        if (!f11942f.b(this, null, obj)) {
+        if (!f10529f.b(this, null, obj)) {
             return false;
         }
         g(this, false);
@@ -274,7 +274,7 @@ public abstract class o extends j9.a implements w {
     }
 
     public boolean n(Throwable th2) {
-        if (!f11942f.b(this, null, new b(th2))) {
+        if (!f10529f.b(this, null, new b(th2))) {
             return false;
         }
         g(this, false);
@@ -291,23 +291,23 @@ public abstract class o extends j9.a implements w {
     @Override
     public Object get() {
         Object obj;
-        n nVar = n.f11938c;
+        n nVar = n.f10526c;
         if (!Thread.interrupted()) {
-            Object obj2 = this.f11943a;
+            Object obj2 = this.f10530a;
             if ((obj2 != null) & (!(obj2 instanceof e))) {
                 return i(obj2);
             }
-            n nVar2 = this.f11945c;
+            n nVar2 = this.f10532c;
             if (nVar2 != nVar) {
                 n nVar3 = new n();
                 do {
-                    k8 k8Var = f11942f;
-                    k8Var.f(nVar3, nVar2);
-                    if (k8Var.c(this, nVar2, nVar3)) {
+                    n8 n8Var = f10529f;
+                    n8Var.f(nVar3, nVar2);
+                    if (n8Var.c(this, nVar2, nVar3)) {
                         do {
                             LockSupport.park(this);
                             if (!Thread.interrupted()) {
-                                obj = this.f11943a;
+                                obj = this.f10530a;
                             } else {
                                 l(nVar3);
                                 throw new InterruptedException();
@@ -315,13 +315,13 @@ public abstract class o extends j9.a implements w {
                         } while (!((obj != null) & (!(obj instanceof e))));
                         return i(obj);
                     }
-                    nVar2 = this.f11945c;
+                    nVar2 = this.f10532c;
                 } while (nVar2 != nVar);
-                Object obj3 = this.f11943a;
+                Object obj3 = this.f10530a;
                 Objects.requireNonNull(obj3);
                 return i(obj3);
             }
-            Object obj32 = this.f11943a;
+            Object obj32 = this.f10530a;
             Objects.requireNonNull(obj32);
             return i(obj32);
         }

@@ -1,25 +1,30 @@
 package qg;
-public final class o0 implements Runnable {
-    public final int f44522a;
-    public final q0 f44523b;
-    public final a5.a f44524c;
 
-    public o0(q0 q0Var, a5.a aVar, int i10) {
-        this.f44522a = i10;
-        this.f44523b = q0Var;
-        this.f44524c = aVar;
-    }
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.RectF;
+import org.telegram.messenger.AndroidUtilities;
+public final class o0 extends org.telegram.ui.Cells.q {
+    public w1 e;
+    public Paint f40847f;
+    public float h;
 
     @Override
-    public final void run() {
-        switch (this.f44522a) {
-            case 0:
-                this.f44523b.p(this.f44524c, true);
-                return;
-            default:
-                q0 q0Var = this.f44523b;
-                q0Var.f44550f.f(new o0(q0Var, this.f44524c, 0));
-                return;
-        }
+    public final void draw(Canvas canvas) {
+        int dp = AndroidUtilities.dp(10.0f);
+        w1 w1Var = this.e;
+        w1Var.f40957c.set(AndroidUtilities.dp(5.0f), AndroidUtilities.dp(5.0f), getMeasuredWidth() - AndroidUtilities.dp(5.0f), getMeasuredHeight() - AndroidUtilities.dp(5.0f));
+        float f7 = -dp;
+        w1Var.f40955a.set(f7, f7, getWidth() + dp, getHeight() + dp);
+        canvas.save();
+        float f10 = 1.0f - this.h;
+        canvas.scale(f10, f10, getMeasuredWidth() / 2.0f, getMeasuredHeight() / 2.0f);
+        w1Var.d(canvas);
+        canvas.restore();
+        invalidate();
+        RectF rectF = AndroidUtilities.rectTmp;
+        rectF.set(0.0f, 0.0f, getWidth(), getHeight());
+        canvas.drawRoundRect(rectF, AndroidUtilities.dp(18.0f), AndroidUtilities.dp(18.0f), this.f40847f);
+        super.draw(canvas);
     }
 }

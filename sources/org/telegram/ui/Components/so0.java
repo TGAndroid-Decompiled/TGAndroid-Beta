@@ -1,34 +1,27 @@
 package org.telegram.ui.Components;
+public final class so0 extends n6 {
+    public final int W = 0;
+    public final Object X;
 
-import android.content.Context;
-import android.view.MotionEvent;
-import android.view.View;
-import android.widget.FrameLayout;
-import org.telegram.messenger.AndroidUtilities;
-public final class so0 extends FrameLayout {
-    public final ff f30408a;
-
-    public so0(ff ffVar, Context context) {
-        super(context);
-        this.f30408a = ffVar;
+    public so0(Runnable runnable) {
+        super(false, true, true, true);
+        this.X = runnable;
     }
 
     @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        ff ffVar = this.f30408a;
-        View contentView = ffVar.getContentView();
-        contentView.getLocationInWindow(r3);
-        int[] iArr = {iArr[0] + ffVar.E, iArr[1] + ffVar.F};
-        int[] iArr2 = new int[2];
-        getLocationInWindow(iArr2);
-        if ((motionEvent.getAction() != 0 || motionEvent.getX() > iArr[0]) && motionEvent.getX() < contentView.getWidth() + iArr[0] && motionEvent.getY() > iArr[1] && motionEvent.getY() < contentView.getHeight() + iArr[1]) {
-            motionEvent.offsetLocation(iArr2[0] - iArr[0], (AndroidUtilities.statusBarHeight + iArr2[1]) - iArr[1]);
-            return contentView.dispatchTouchEvent(motionEvent);
+    public final void invalidateSelf() {
+        switch (this.W) {
+            case 0:
+                ((Runnable) this.X).run();
+                return;
+            default:
+                ((org.telegram.ui.e31) this.X).invalidate();
+                return;
         }
-        if (!ffVar.A && !ffVar.D) {
-            ffVar.D = true;
-            ffVar.l(new o1.k[0]);
-        }
-        return true;
+    }
+
+    public so0(org.telegram.ui.e31 e31Var) {
+        super(false, true, false, false);
+        this.X = e31Var;
     }
 }

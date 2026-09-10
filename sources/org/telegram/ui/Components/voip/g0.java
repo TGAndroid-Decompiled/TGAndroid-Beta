@@ -2,41 +2,52 @@ package org.telegram.ui.Components.voip;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.drawable.ShapeDrawable;
-import android.widget.FrameLayout;
-import android.widget.TextView;
-import org.telegram.ui.Components.l9;
-import org.telegram.ui.Components.pr;
-import org.telegram.ui.a40;
-public final class g0 extends FrameLayout {
-    public final ShapeDrawable f31521a;
-    public final a40 f31522b;
+import android.graphics.drawable.Drawable;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.Components.tr;
+import org.telegram.ui.b40;
+public final class g0 extends View {
+    public final org.telegram.ui.Cells.z f28131a;
+    public final b40 f28132b;
 
-    public g0(a40 a40Var, Context context, ShapeDrawable shapeDrawable) {
+    public g0(b40 b40Var, Context context, org.telegram.ui.Cells.z zVar) {
         super(context);
-        this.f31522b = a40Var;
-        this.f31521a = shapeDrawable;
+        this.f28132b = b40Var;
+        this.f28131a = zVar;
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
-        a40 a40Var = this.f31522b;
-        l9 l9Var = a40Var.J;
-        TextView textView = a40Var.K;
-        float f7 = a40Var.O;
-        ShapeDrawable shapeDrawable = this.f31521a;
-        if (f7 == 1.0f) {
-            shapeDrawable.setBounds(0, 0, getMeasuredWidth(), getMeasuredHeight());
-            l9Var.setTranslationX(0.0f);
-            textView.setTranslationX(0.0f);
-        } else {
-            float interpolation = 1.0f - pr.f29493f.getInterpolation(f7);
-            float left = (a40Var.P - getLeft()) * interpolation;
-            shapeDrawable.setBounds((int) left, 0, getMeasuredWidth() + ((int) ((a40Var.R - getRight()) * interpolation)), getMeasuredHeight());
-            l9Var.setTranslationX(left);
-            textView.setTranslationX(-((a40Var.Q - textView.getLeft()) * interpolation));
-        }
-        shapeDrawable.draw(canvas);
+        b40 b40Var = this.f28132b;
+        tr trVar = b40Var.f28244c0;
+        float measuredWidth = (1.0f - trVar.f27473g) * b40Var.f28245d0.getMeasuredWidth();
+        canvas.save();
+        int dp = AndroidUtilities.dp(50.0f) + ((int) ((b40Var.f28246e0.getMeasuredWidth() * trVar.f27473g) + measuredWidth));
+        int measuredHeight = getMeasuredHeight();
+        org.telegram.ui.Cells.z zVar = this.f28131a;
+        zVar.setBounds(0, 0, dp, measuredHeight);
+        zVar.draw(canvas);
         super.dispatchDraw(canvas);
+    }
+
+    @Override
+    public final void drawableStateChanged() {
+        super.drawableStateChanged();
+        this.f28131a.setState(getDrawableState());
+    }
+
+    @Override
+    public final void jumpDrawablesToCurrentState() {
+        super.jumpDrawablesToCurrentState();
+        this.f28131a.jumpToCurrentState();
+    }
+
+    @Override
+    public final boolean verifyDrawable(Drawable drawable) {
+        if (this.f28131a != drawable && !super.verifyDrawable(drawable)) {
+            return false;
+        }
+        return true;
     }
 }

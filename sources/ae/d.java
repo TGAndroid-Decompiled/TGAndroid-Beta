@@ -1,6 +1,7 @@
 package ae;
 
 import be.h;
+import ee.v;
 import gd.i;
 import i9.s;
 import ie.g;
@@ -13,14 +14,14 @@ import rd.l;
 import zd.i2;
 import zd.t;
 public final class d extends j implements l {
-    public final int f428b;
-    public final Object f429c;
+    public final int f396b;
+    public final Object f397c;
     public final Object d;
 
     public d(int i10, Object obj, Object obj2) {
         super(1);
-        this.f428b = i10;
-        this.f429c = obj;
+        this.f396b = i10;
+        this.f397c = obj;
         this.d = obj2;
     }
 
@@ -34,25 +35,25 @@ public final class d extends j implements l {
         i2 i2Var;
         i iVar;
         Throwable th2;
-        d9.f fVar;
-        switch (this.f428b) {
+        v vVar;
+        switch (this.f396b) {
             case 0:
                 Throwable th3 = (Throwable) obj;
-                ((e) this.f429c).f430c.removeCallbacks((s) this.d);
-                return i.f10616a;
+                ((e) this.f397c).f398c.removeCallbacks((s) this.d);
+                return i.f8748a;
             default:
                 Throwable th4 = (Throwable) obj;
-                ((g) this.f429c).invoke(th4);
-                be.b bVar = (be.b) ((com.google.firebase.messaging.s) this.d).d;
+                ((g) this.f397c).invoke(th4);
+                be.b bVar = (be.b) ((ki.f) this.d).f12540c;
                 bVar.getClass();
-                AtomicLongFieldUpdater atomicLongFieldUpdater = be.b.f2620b;
-                AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = be.b.f2625i;
-                d9.f fVar2 = be.d.f2644r;
+                AtomicLongFieldUpdater atomicLongFieldUpdater = be.b.f2203b;
+                AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = be.b.f2207i;
+                v vVar2 = be.d.f2225r;
                 while (true) {
                     z10 = true;
-                    if (atomicReferenceFieldUpdater.compareAndSet(bVar, fVar2, th4)) {
+                    if (atomicReferenceFieldUpdater.compareAndSet(bVar, vVar2, th4)) {
                         z11 = true;
-                    } else if (atomicReferenceFieldUpdater.get(bVar) != fVar2) {
+                    } else if (atomicReferenceFieldUpdater.get(bVar) != vVar2) {
                         z11 = false;
                     }
                 }
@@ -78,58 +79,58 @@ public final class d extends j implements l {
                 }
                 bVar.c();
                 if (z11) {
-                    AtomicReferenceFieldUpdater atomicReferenceFieldUpdater2 = be.b.f2626j;
+                    AtomicReferenceFieldUpdater atomicReferenceFieldUpdater2 = be.b.f2208j;
                     while (true) {
                         Object obj2 = atomicReferenceFieldUpdater2.get(bVar);
                         if (obj2 == null) {
-                            fVar = be.d.f2642p;
+                            vVar = be.d.f2223p;
                         } else {
-                            fVar = be.d.f2643q;
+                            vVar = be.d.f2224q;
                         }
-                        while (!atomicReferenceFieldUpdater2.compareAndSet(bVar, obj2, fVar)) {
+                        while (!atomicReferenceFieldUpdater2.compareAndSet(bVar, obj2, vVar)) {
                             if (atomicReferenceFieldUpdater2.get(bVar) != obj2) {
                                 break;
                             }
                         }
                         if (obj2 != null) {
                             kotlin.jvm.internal.s.a(1, obj2);
-                            ((l) obj2).invoke((Throwable) be.b.f2625i.get(bVar));
+                            ((l) obj2).invoke((Throwable) be.b.f2207i.get(bVar));
                         }
                     }
                 }
                 while (true) {
                     bVar.getClass();
-                    AtomicLongFieldUpdater atomicLongFieldUpdater3 = be.b.f2621c;
+                    AtomicLongFieldUpdater atomicLongFieldUpdater3 = be.b.f2204c;
                     long j11 = atomicLongFieldUpdater3.get(bVar);
-                    long j12 = be.b.f2620b.get(bVar);
+                    long j12 = be.b.f2203b.get(bVar);
                     if (bVar.i(j12, z10)) {
-                        eVar = new be.e((Throwable) be.b.f2625i.get(bVar));
+                        eVar = new be.e((Throwable) be.b.f2207i.get(bVar));
                     } else {
-                        be.f fVar3 = be.g.f2646a;
+                        be.f fVar = be.g.f2227a;
                         if (j11 < (j12 & 1152921504606846975L)) {
-                            d9.f fVar4 = be.d.f2637k;
-                            h hVar = (h) be.b.f2624g.get(bVar);
+                            v vVar3 = be.d.f2218k;
+                            h hVar = (h) be.b.f2206g.get(bVar);
                             while (true) {
-                                if (bVar.i(be.b.f2620b.get(bVar), z10)) {
-                                    eVar = new be.e((Throwable) be.b.f2625i.get(bVar));
+                                if (bVar.i(be.b.f2203b.get(bVar), z10)) {
+                                    eVar = new be.e((Throwable) be.b.f2207i.get(bVar));
                                 } else {
                                     long andIncrement = atomicLongFieldUpdater3.getAndIncrement(bVar);
-                                    long j13 = be.d.f2630b;
+                                    long j13 = be.d.f2212b;
                                     long j14 = andIncrement / j13;
                                     int i12 = (int) (andIncrement % j13);
-                                    if (hVar.f9120c != j14) {
-                                        h e7 = bVar.e(j14, hVar);
-                                        if (e7 == null) {
+                                    if (hVar.f7499c != j14) {
+                                        h e = bVar.e(j14, hVar);
+                                        if (e == null) {
                                             continue;
                                             z10 = true;
                                         } else {
-                                            hVar = e7;
+                                            hVar = e;
                                         }
                                     }
-                                    Object o9 = bVar.o(hVar, i12, andIncrement, fVar4);
-                                    if (o9 == be.d.f2639m) {
-                                        if (fVar4 instanceof i2) {
-                                            i2Var = (i2) fVar4;
+                                    Object o9 = bVar.o(hVar, i12, andIncrement, vVar3);
+                                    if (o9 == be.d.f2220m) {
+                                        if (vVar3 instanceof i2) {
+                                            i2Var = (i2) vVar3;
                                         } else {
                                             i2Var = null;
                                         }
@@ -138,12 +139,12 @@ public final class d extends j implements l {
                                         }
                                         bVar.q(andIncrement);
                                         hVar.i();
-                                    } else if (o9 == be.d.f2641o) {
+                                    } else if (o9 == be.d.f2222o) {
                                         if (andIncrement < bVar.g()) {
                                             hVar.b();
                                         }
                                         z10 = true;
-                                    } else if (o9 != be.d.f2640n) {
+                                    } else if (o9 != be.d.f2221n) {
                                         hVar.b();
                                         eVar = o9;
                                     } else {
@@ -152,18 +153,18 @@ public final class d extends j implements l {
                                 }
                             }
                         }
-                        eVar = fVar3;
+                        eVar = fVar;
                     }
                     if (eVar instanceof be.f) {
                         eVar = null;
                     }
-                    i iVar2 = i.f10616a;
+                    i iVar2 = i.f8748a;
                     if (eVar == null) {
                         iVar = null;
                     } else {
                         k kVar = (k) eVar;
                         if (kVar instanceof k1.j) {
-                            t tVar = ((k1.j) kVar).f14478b;
+                            t tVar = ((k1.j) kVar).f12015b;
                             if (th4 == null) {
                                 th2 = new CancellationException("DataStore scope was cancelled before updateData could complete");
                             } else {

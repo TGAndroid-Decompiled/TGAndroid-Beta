@@ -1,25 +1,38 @@
 package org.telegram.messenger.voip;
-
-import org.telegram.tgnet.TLRPC;
 public final class e0 implements Runnable {
-    public final int f19372a;
-    public final VoIPService f19373b;
-    public final TLRPC.GroupCallParticipant f19374c;
+    public final int f16712a;
+    public final VoIPService f16713b;
+    public final int f16714c;
 
-    public e0(VoIPService voIPService, TLRPC.GroupCallParticipant groupCallParticipant, int i10) {
-        this.f19372a = i10;
-        this.f19373b = voIPService;
-        this.f19374c = groupCallParticipant;
+    public e0(VoIPService voIPService, int i10, int i11) {
+        this.f16712a = i11;
+        this.f16713b = voIPService;
+        this.f16714c = i10;
     }
 
     @Override
     public final void run() {
-        switch (this.f19372a) {
+        switch (this.f16712a) {
             case 0:
-                this.f19373b.lambda$startConferenceGroupCall$37(this.f19374c);
+                VoIPService.W(this.f16713b, this.f16714c);
+                return;
+            case 1:
+                VoIPService.q0(this.f16713b, this.f16714c);
+                return;
+            case 2:
+                VoIPService.O0(this.f16713b, this.f16714c);
+                return;
+            case 3:
+                VoIPService.R(this.f16713b, this.f16714c);
+                return;
+            case 4:
+                VoIPService.j1(this.f16713b, this.f16714c);
+                return;
+            case 5:
+                VoIPService.t0(this.f16713b, this.f16714c);
                 return;
             default:
-                this.f19373b.lambda$startGroupCall$26(this.f19374c);
+                VoIPService.z0(this.f16713b, this.f16714c);
                 return;
         }
     }

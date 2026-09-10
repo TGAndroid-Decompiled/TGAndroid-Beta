@@ -1,86 +1,54 @@
 package ee;
 
-import java.util.Arrays;
-import java.util.concurrent.atomic.AtomicIntegerFieldUpdater;
-import zd.t0;
-import zd.u0;
-public class x {
-    public static final AtomicIntegerFieldUpdater f9126b = AtomicIntegerFieldUpdater.newUpdater(x.class, "_size$volatile");
-    private volatile int _size$volatile;
-    public t0[] f9127a;
+import zd.b2;
+public final class x extends kotlin.jvm.internal.j implements rd.p {
+    public static final x f7504c = new x(2, 0);
+    public static final x d = new x(2, 1);
+    public static final x e = new x(2, 2);
+    public final int f7505b;
 
-    public final void a(t0 t0Var) {
-        t0Var.e((u0) this);
-        t0[] t0VarArr = this.f9127a;
-        AtomicIntegerFieldUpdater atomicIntegerFieldUpdater = f9126b;
-        if (t0VarArr == null) {
-            t0VarArr = new t0[4];
-            this.f9127a = t0VarArr;
-        } else if (atomicIntegerFieldUpdater.get(this) >= t0VarArr.length) {
-            Object[] copyOf = Arrays.copyOf(t0VarArr, atomicIntegerFieldUpdater.get(this) * 2);
-            kotlin.jvm.internal.i.d(copyOf, "copyOf(...)");
-            t0VarArr = (t0[]) copyOf;
-            this.f9127a = t0VarArr;
+    public x(int i10, int i11) {
+        super(i10);
+        this.f7505b = i11;
+    }
+
+    @Override
+    public final Object invoke(Object obj, Object obj2) {
+        Integer num;
+        int i10;
+        switch (this.f7505b) {
+            case 0:
+                id.f fVar = (id.f) obj2;
+                if (fVar instanceof b2) {
+                    if (obj instanceof Integer) {
+                        num = (Integer) obj;
+                    } else {
+                        num = null;
+                    }
+                    if (num != null) {
+                        i10 = num.intValue();
+                    } else {
+                        i10 = 1;
+                    }
+                    if (i10 == 0) {
+                        return fVar;
+                    }
+                    return Integer.valueOf(i10 + 1);
+                }
+                return obj;
+            case 1:
+                b2 b2Var = (b2) obj;
+                id.f fVar2 = (id.f) obj2;
+                if (b2Var == null) {
+                    if (fVar2 instanceof b2) {
+                        return (b2) fVar2;
+                    }
+                    return null;
+                }
+                return b2Var;
+            default:
+                id.f fVar3 = (id.f) obj2;
+                return (z) obj;
         }
-        int i10 = atomicIntegerFieldUpdater.get(this);
-        atomicIntegerFieldUpdater.set(this, i10 + 1);
-        t0VarArr[i10] = t0Var;
-        t0Var.f51628b = i10;
-        e(i10);
-    }
-
-    public final t0 b() {
-        t0 t0Var;
-        synchronized (this) {
-            t0[] t0VarArr = this.f9127a;
-            if (t0VarArr != null) {
-                t0Var = t0VarArr[0];
-            } else {
-                t0Var = null;
-            }
-        }
-        return t0Var;
-    }
-
-    public final void c(t0 t0Var) {
-        synchronized (this) {
-            if (t0Var.a() != null) {
-                d(t0Var.f51628b);
-            }
-        }
-    }
-
-    public final zd.t0 d(int r9) {
-        throw new UnsupportedOperationException("Method not decompiled: ee.x.d(int):zd.t0");
-    }
-
-    public final void e(int i10) {
-        while (i10 > 0) {
-            t0[] t0VarArr = this.f9127a;
-            kotlin.jvm.internal.i.b(t0VarArr);
-            int i11 = (i10 - 1) / 2;
-            t0 t0Var = t0VarArr[i11];
-            kotlin.jvm.internal.i.b(t0Var);
-            t0 t0Var2 = t0VarArr[i10];
-            kotlin.jvm.internal.i.b(t0Var2);
-            if (t0Var.compareTo(t0Var2) <= 0) {
-                return;
-            }
-            f(i10, i11);
-            i10 = i11;
-        }
-    }
-
-    public final void f(int i10, int i11) {
-        t0[] t0VarArr = this.f9127a;
-        kotlin.jvm.internal.i.b(t0VarArr);
-        t0 t0Var = t0VarArr[i11];
-        kotlin.jvm.internal.i.b(t0Var);
-        t0 t0Var2 = t0VarArr[i10];
-        kotlin.jvm.internal.i.b(t0Var2);
-        t0VarArr[i10] = t0Var;
-        t0VarArr[i11] = t0Var2;
-        t0Var.f51628b = i10;
-        t0Var2.f51628b = i11;
     }
 }

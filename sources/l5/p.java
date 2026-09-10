@@ -5,26 +5,26 @@ import com.google.android.gms.internal.cast.c0;
 import java.util.concurrent.Executor;
 import java.util.concurrent.ExecutorService;
 public final class p implements Executor {
-    public final int f15324a = 1;
-    public final Object f15325b;
+    public final int f12806a = 1;
+    public final Object f12807b;
 
     public p(Looper looper) {
-        this.f15325b = new c0(looper, 4);
+        this.f12807b = new c0(looper, 4);
     }
 
     @Override
     public final void execute(Runnable runnable) {
-        switch (this.f15324a) {
+        switch (this.f12806a) {
             case 0:
-                ((Executor) this.f15325b).execute(new o(0, runnable));
+                ((Executor) this.f12807b).execute(new o(0, runnable));
                 return;
             default:
-                ((c0) this.f15325b).post(runnable);
+                ((c0) this.f12807b).post(runnable);
                 return;
         }
     }
 
     public p(ExecutorService executorService) {
-        this.f15325b = executorService;
+        this.f12807b = executorService;
     }
 }

@@ -1,175 +1,120 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.view.MotionEvent;
-import android.widget.FrameLayout;
-import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-public abstract class ni extends FrameLayout {
-    public final org.telegram.ui.ActionBar.f6 f28779a;
-    public final vi f28780b;
-    public ll0 f28781c;
-    public ll0 d;
-    public int f28782e;
-    public boolean f28783f;
-    public boolean h;
+public final class ni extends org.telegram.ui.ActionBar.r1 {
+    public final oi f25528x;
 
-    public ni(Context context, org.telegram.ui.ActionBar.f6 f6Var, vi viVar) {
-        super(context);
-        this.f28779a = f6Var;
-        this.f28780b = viVar;
+    public ni(oi oiVar, oi oiVar2) {
+        super(oiVar2);
+        this.f25528x = oiVar;
     }
 
-    public boolean C(int i10) {
-        return false;
-    }
-
-    public boolean I(int i10, boolean z10, int i11, boolean z11, long j3) {
-        return false;
-    }
-
-    public boolean J() {
-        return !(this instanceof fi.r4);
-    }
-
-    public boolean b() {
-        return true;
-    }
-
-    public boolean c() {
-        return true;
-    }
-
-    public boolean e() {
-        return false;
-    }
-
-    public boolean f() {
-        return false;
-    }
-
-    public boolean g() {
-        return false;
-    }
-
-    public int getButtonsHideOffset() {
-        float f7;
-        if (h() != 0) {
-            f7 = 12.0f;
-        } else {
-            f7 = 17.0f;
+    @Override
+    public final boolean b() {
+        rz rzVar;
+        yi yiVar = this.f25528x.B0;
+        if (!yiVar.isDismissed() && yiVar.f29407s1) {
+            qi qiVar = yiVar.f29427y0;
+            if (qiVar == yiVar.m0 || qiVar == yiVar.f29389n0 || yiVar.m1().m()) {
+                qi qiVar2 = yiVar.f29427y0;
+                zn znVar = yiVar.m0;
+                if (qiVar2 != znVar || ((rzVar = znVar.E) != null && rzVar.getVisibility() == 0)) {
+                    qi qiVar3 = yiVar.f29427y0;
+                    zn znVar2 = yiVar.f29389n0;
+                    if (qiVar3 == znVar2) {
+                        rz rzVar2 = znVar2.E;
+                        if (rzVar2 != null && rzVar2.getVisibility() == 0) {
+                            return false;
+                        }
+                        return true;
+                    }
+                } else {
+                    return true;
+                }
+            } else {
+                return true;
+            }
         }
-        return AndroidUtilities.dp(f7);
-    }
-
-    public int getCurrentItemTop() {
-        return 0;
-    }
-
-    public int getCustomActionBarBackground() {
-        return 0;
-    }
-
-    public int getCustomBackground() {
-        return 0;
-    }
-
-    public int getFirstOffset() {
-        return 0;
-    }
-
-    public ch.a getIBlur3Capture() {
-        return null;
-    }
-
-    public int getListTopPadding() {
-        return 0;
-    }
-
-    public int getSelectedItemsCount() {
-        return 0;
-    }
-
-    public ArrayList<org.telegram.ui.ActionBar.l6> getThemeDescriptions() {
-        return null;
-    }
-
-    public int h() {
-        return 0;
-    }
-
-    public boolean i() {
         return false;
     }
 
-    public boolean l(MotionEvent motionEvent) {
-        return false;
+    @Override
+    public final void e(float f7, float f10, boolean z10) {
+        oi oiVar = this.f25528x;
+        yi yiVar = oiVar.B0;
+        yiVar.f29385l2 = f7;
+        float f11 = yiVar.f29361d2;
+        if (f11 > 0.0f) {
+            yiVar.f29385l2 = com.google.android.gms.internal.vision.e2.z(1.0f, f10, f11 - yiVar.f29364e2, f7);
+        }
+        yiVar.X0.setTranslationY(yiVar.f29385l2);
+        yiVar.f29350a1.setTranslationY(yiVar.f29385l2);
+        org.telegram.ui.ActionBar.w0 w0Var = yiVar.f29363e1;
+        if (w0Var != null) {
+            w0Var.setTranslationY(yiVar.f29385l2);
+        }
+        org.telegram.ui.ActionBar.w0 w0Var2 = yiVar.f29357c1;
+        if (w0Var2 != null) {
+            w0Var2.setTranslationY(yiVar.f29350a1.getTranslationY());
+        }
+        bi.x4 x4Var = yiVar.f29360d1;
+        if (x4Var != null) {
+            x4Var.setTranslationY(yiVar.f29350a1.getTranslationY());
+        }
+        yiVar.f29367f1.setTranslationY(yiVar.f29385l2);
+        yiVar.a2(0);
+        yiVar.setCurrentPanTranslationY(yiVar.f29385l2);
+        oiVar.invalidate();
+        yiVar.D0.invalidate();
+        yiVar.U1();
+        qi qiVar = yiVar.f29427y0;
+        if (qiVar != null) {
+            qiVar.k(yiVar.f29385l2);
+        }
     }
 
-    public boolean n() {
-        return false;
+    @Override
+    public final void f() {
+        boolean z10;
+        int i10;
+        yi yiVar = this.f25528x.B0;
+        yiVar.X1(yiVar.f29427y0, 0);
+        yiVar.f29358c2 = yiVar.f29354b2[0];
+        yiVar.f29427y0.v();
+        if ((yiVar.f29427y0 instanceof di.u4) && !yiVar.D1) {
+            z10 = ((org.telegram.ui.ActionBar.h3) yiVar).keyboardVisible;
+            if (z10) {
+                i10 = AndroidUtilities.dp(84.0f);
+            } else {
+                i10 = 0;
+            }
+            for (int i11 = 0; i11 < yiVar.f29423x0.size(); i11++) {
+                ((di.u4) yiVar.f29423x0.valueAt(i11)).setMeasureOffsetY(i10);
+            }
+        }
     }
 
-    public boolean p() {
-        return true;
-    }
-
-    public abstract void y(int i10, int i11);
-
-    public void A() {
-    }
-
-    public void B(int i10) {
-    }
-
-    public void D(ni niVar) {
-    }
-
-    public void F() {
-    }
-
-    public void G() {
-    }
-
-    public void a(CharSequence charSequence) {
-    }
-
-    public void d() {
-    }
-
-    public void j() {
-    }
-
-    public void k(float f7) {
-    }
-
-    public void m() {
-    }
-
-    public void o(int i10) {
-    }
-
-    public void q() {
-    }
-
-    public void r() {
-    }
-
-    public void s(float f7) {
-    }
-
-    public void t(int i10) {
-    }
-
-    public void u() {
-    }
-
-    public void v() {
-    }
-
-    public void x() {
-    }
-
-    public void w(int i10, boolean z10) {
+    @Override
+    public final void g(int i10, boolean z10) {
+        int i11;
+        oi oiVar = this.f25528x;
+        yi yiVar = oiVar.B0;
+        int i12 = yiVar.f29358c2;
+        if (i12 > 0 && i12 != (i11 = yiVar.f29354b2[0]) && z10) {
+            yiVar.f29361d2 = i12;
+            yiVar.f29364e2 = i11;
+        } else {
+            yiVar.f29361d2 = -1.0f;
+        }
+        oiVar.invalidate();
+        ai aiVar = yiVar.f29424x1;
+        if ((yiVar.f29427y0 instanceof di.u4) && !yiVar.D1) {
+            if (z10) {
+                aiVar.setVisibility(8);
+            } else {
+                aiVar.setVisibility(0);
+            }
+        }
+        yiVar.f29427y0.w(i10, z10);
     }
 }

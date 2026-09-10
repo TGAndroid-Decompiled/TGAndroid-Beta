@@ -1,15 +1,20 @@
 package org.telegram.ui.Components;
-public final class d50 implements Runnable {
-    public final int f25254a;
-    public final w50 f25255b;
 
-    public d50(w50 w50Var, int i10) {
-        this.f25254a = i10;
-        this.f25255b = w50Var;
-    }
+import org.telegram.tgnet.TLRPC;
+public interface d50 {
+    void C(float f7);
 
-    @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.d50.run():void");
-    }
+    void K(boolean z10, boolean z11);
+
+    void P();
+
+    void Q(TLRPC.InputFile inputFile, TLRPC.InputFile inputFile2, double d, String str, TLRPC.PhotoSize photoSize, TLRPC.PhotoSize photoSize2, boolean z10, TLRPC.VideoSize videoSize);
+
+    boolean e();
+
+    org.telegram.ui.ev0 getCloseIntoObject();
+
+    String getInitialSearchString();
+
+    boolean t();
 }

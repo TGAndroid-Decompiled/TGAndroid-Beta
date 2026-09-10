@@ -1,5 +1,5 @@
 package org.telegram.ui;
-public final class nt0 extends org.telegram.ui.Components.g71 {
+public final class nt0 extends org.telegram.ui.Components.t71 {
     public final PhotoViewer m0;
 
     public nt0(PhotoViewer photoViewer) {
@@ -10,7 +10,7 @@ public final class nt0 extends org.telegram.ui.Components.g71 {
     public final void B() {
         super.B();
         PhotoViewer photoViewer = this.m0;
-        if (photoViewer.f33720u4 == 0) {
+        if (photoViewer.f30193u4 == 0) {
             PhotoViewer.Y(photoViewer, false);
         }
         if (!photoViewer.N8) {
@@ -34,7 +34,7 @@ public final class nt0 extends org.telegram.ui.Components.g71 {
     public final void K(long j3) {
         L(j3, false);
         PhotoViewer photoViewer = this.m0;
-        if (photoViewer.f33689r1) {
+        if (photoViewer.f30162r1) {
             PhotoViewer.Z(photoViewer, j3);
         }
         if (!photoViewer.N8) {
@@ -58,19 +58,19 @@ public final class nt0 extends org.telegram.ui.Components.g71 {
         boolean z10 = true;
         photoViewer.R = true;
         if (photoViewer.D2) {
-            photoViewer.f33576e0.invalidate();
+            photoViewer.f30049e0.invalidate();
         }
         photoViewer.z3();
-        if (!b5.d.u() && !photoViewer.f33687r) {
+        if (!b5.d.u() && !photoViewer.f30160r) {
             z10 = false;
         }
         O(z10);
         if (!photoViewer.N8) {
             b5.d.D(n());
-            i2.f0 f0Var = this.d;
+            i2.e0 e0Var = this.d;
             float f7 = 1.0f;
-            if (f0Var != null && (h = f0Var.h()) != null) {
-                f7 = h.f2427a;
+            if (e0Var != null && (h = e0Var.h()) != null) {
+                f7 = h.f2029a;
             }
             b5.d.z(f7);
         }

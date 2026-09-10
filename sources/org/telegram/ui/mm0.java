@@ -1,79 +1,54 @@
 package org.telegram.ui;
 
-import android.text.TextUtils;
-import java.util.Locale;
+import android.text.Editable;
+import android.text.TextWatcher;
 import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MrzRecognizer;
 import org.telegram.messenger.R;
-public final class mm0 implements t9 {
-    public final pn0 f38761a;
+import org.telegram.ui.Components.EditTextBoldCursor;
+public final class mm0 implements TextWatcher {
+    public final EditTextBoldCursor f35002a;
+    public final String f35003b;
+    public final on0 f35004c;
 
-    public mm0(pn0 pn0Var) {
-        this.f38761a = pn0Var;
+    public mm0(on0 on0Var, EditTextBoldCursor editTextBoldCursor, String str) {
+        this.f35004c = on0Var;
+        this.f35002a = editTextBoldCursor;
+        this.f35003b = str;
     }
 
     @Override
-    public final String K0() {
-        return null;
-    }
-
-    @Override
-    public final void W0(MrzRecognizer.Result result) {
-        boolean isEmpty = TextUtils.isEmpty(result.firstName);
-        pn0 pn0Var = this.f38761a;
-        if (!isEmpty) {
-            pn0Var.Y[0].setText(result.firstName);
-        }
-        if (!TextUtils.isEmpty(result.middleName)) {
-            pn0Var.Y[1].setText(result.middleName);
-        }
-        if (!TextUtils.isEmpty(result.lastName)) {
-            pn0Var.Y[2].setText(result.lastName);
-        }
-        int i10 = result.gender;
-        if (i10 != 0) {
-            if (i10 != 1) {
-                if (i10 == 2) {
-                    pn0Var.f39625w = "female";
-                    pn0Var.Y[4].setText(LocaleController.getString(R.string.PassportFemale));
+    public final void afterTextChanged(Editable editable) {
+        boolean z10;
+        EditTextBoldCursor editTextBoldCursor = this.f35002a;
+        int intValue = ((Integer) editTextBoldCursor.getTag()).intValue();
+        int i10 = 0;
+        while (true) {
+            if (i10 < editable.length()) {
+                char charAt = editable.charAt(i10);
+                if ((charAt < '0' || charAt > '9') && ((charAt < 'a' || charAt > 'z') && ((charAt < 'A' || charAt > 'Z') && charAt != ' ' && charAt != '\'' && charAt != ',' && charAt != '.' && charAt != '&' && charAt != '-' && charAt != '/'))) {
+                    z10 = true;
+                    break;
                 }
+                i10++;
             } else {
-                pn0Var.f39625w = "male";
-                pn0Var.Y[4].setText(LocaleController.getString(R.string.PassportMale));
+                z10 = false;
+                break;
             }
         }
-        if (!TextUtils.isEmpty(result.nationality)) {
-            String str = result.nationality;
-            pn0Var.f39616s = str;
-            String str2 = (String) pn0Var.Y0.get(str);
-            if (str2 != null) {
-                pn0Var.Y[5].setText(str2);
-            }
+        on0 on0Var = this.f35004c;
+        if (z10 && !on0Var.f35562u0) {
+            editTextBoldCursor.setErrorText(LocaleController.getString(R.string.PassportUseLatinOnly));
+            return;
         }
-        if (!TextUtils.isEmpty(result.issuingCountry)) {
-            String str3 = result.issuingCountry;
-            pn0Var.v = str3;
-            String str4 = (String) pn0Var.Y0.get(str3);
-            if (str4 != null) {
-                pn0Var.Y[6].setText(str4);
-            }
-        }
-        int i11 = result.birthDay;
-        if (i11 > 0 && result.birthMonth > 0 && result.birthYear > 0) {
-            pn0Var.Y[3].setText(String.format(Locale.US, "%02d.%02d.%d", Integer.valueOf(i11), Integer.valueOf(result.birthMonth), Integer.valueOf(result.birthYear)));
-        }
+        on0Var.f35560t0[intValue] = z10;
+        on0.J0(on0Var, editTextBoldCursor, this.f35003b, editable, false);
     }
 
     @Override
-    public final boolean f1(String str, l9 l9Var) {
-        return false;
+    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
     }
 
     @Override
-    public final void K(String str) {
-    }
-
-    @Override
-    public final void onDismiss() {
+    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
     }
 }

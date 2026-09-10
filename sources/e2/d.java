@@ -5,7 +5,7 @@ import android.os.Bundle;
 import e9.a1;
 import e9.f0;
 import e9.i0;
-import i2.t0;
+import i2.s0;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -33,8 +33,8 @@ public abstract class d {
         throw new IndexOutOfBoundsException();
     }
 
-    public static void d(t0 t0Var) {
-        t0Var.getClass();
+    public static void d(s0 s0Var) {
+        s0Var.getClass();
     }
 
     public static void e(Object obj, String str) {
@@ -114,7 +114,7 @@ public abstract class d {
 
     public static void o(MediaFormat mediaFormat, List list) {
         for (int i10 = 0; i10 < list.size(); i10++) {
-            mediaFormat.setByteBuffer(i2.g.i(i10, "csd-"), ByteBuffer.wrap((byte[]) list.get(i10)));
+            mediaFormat.setByteBuffer(hc.b.j(i10, "csd-"), ByteBuffer.wrap((byte[]) list.get(i10)));
         }
     }
 

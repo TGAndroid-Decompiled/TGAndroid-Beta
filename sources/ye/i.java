@@ -4,37 +4,37 @@ import bf.p;
 import java.util.ArrayList;
 public final class i {
     public StringBuilder d;
-    public String f50058e;
-    public String f50059f;
-    public char f50060g;
+    public String e;
+    public String f46910f;
+    public char f46911g;
     public StringBuilder h;
-    public int f50055a = 1;
-    public final StringBuilder f50056b = new StringBuilder();
-    public final ArrayList f50057c = new ArrayList();
-    public boolean f50061i = false;
+    public int f46907a = 1;
+    public final StringBuilder f46908b = new StringBuilder();
+    public final ArrayList f46909c = new ArrayList();
+    public boolean f46912i = false;
 
     public final void a() {
         String str;
-        if (!this.f50061i) {
+        if (!this.f46912i) {
             return;
         }
-        String a2 = af.a.a(this.f50059f);
+        String a2 = af.a.a(this.f46910f);
         StringBuilder sb2 = this.h;
         if (sb2 != null) {
             str = af.a.a(sb2.toString());
         } else {
             str = null;
         }
-        String str2 = this.f50058e;
+        String str2 = this.e;
         ?? pVar = new p();
-        pVar.f2662g = str2;
+        pVar.f2242g = str2;
         pVar.h = a2;
-        pVar.f2663i = str;
-        this.f50057c.add(pVar);
+        pVar.f2243i = str;
+        this.f46909c.add(pVar);
         this.d = null;
-        this.f50061i = false;
-        this.f50058e = null;
-        this.f50059f = null;
+        this.f46912i = false;
+        this.e = null;
+        this.f46910f = null;
         this.h = null;
     }
 }

@@ -1,65 +1,49 @@
 package org.telegram.ui;
 
-import java.util.ArrayList;
-import org.telegram.tgnet.TLRPC;
+import org.telegram.messenger.AndroidUtilities;
 public final class cw0 implements Runnable {
-    public final int f35587a = 1;
-    public final lw0 f35588b;
-    public final boolean f35589c;
-    public final TLRPC.PollAnswer d;
-    public final org.telegram.ui.ActionBar.n2 f35590e;
-    public final ArrayList f35591f;
+    public final int f31782a;
+    public final ow0 f31783b;
 
-    public cw0(lw0 lw0Var, boolean z10, TLRPC.PollAnswer pollAnswer, org.telegram.ui.ActionBar.n2 n2Var, ArrayList arrayList) {
-        this.f35588b = lw0Var;
-        this.f35589c = z10;
-        this.d = pollAnswer;
-        this.f35590e = n2Var;
-        this.f35591f = arrayList;
+    public cw0(ow0 ow0Var, int i10) {
+        this.f31782a = i10;
+        this.f31783b = ow0Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f35587a) {
+        switch (this.f31782a) {
             case 0:
-                lw0 lw0Var = this.f35588b;
-                lw0Var.getClass();
-                boolean z10 = this.f35589c;
-                org.telegram.ui.ActionBar.n2 n2Var = this.f35590e;
-                if (!z10) {
-                    n2Var.getSendMessagesHelper().sendVote(lw0Var.H, null, null);
-                } else {
-                    ArrayList<TLRPC.PollAnswer> arrayList = this.f35591f;
-                    arrayList.remove(this.d);
-                    n2Var.getSendMessagesHelper().sendVote(lw0Var.H, arrayList, null);
+                ow0 ow0Var = this.f31783b;
+                AndroidUtilities.runOnUIThread(new cw0(ow0Var, 3));
+                org.telegram.ui.Cells.t1 t1Var = ow0Var.L;
+                if (t1Var != null) {
+                    t1Var.setVisibility(0);
+                    org.telegram.ui.Cells.t1 t1Var2 = ow0Var.L;
+                    t1Var2.L7 = null;
+                    t1Var2.invalidate();
                 }
-                lw0Var.c(true);
+                an anVar = ow0Var.f35630e0;
+                if (anVar != null) {
+                    AndroidUtilities.runOnUIThread(anVar);
+                    ow0Var.f35630e0 = null;
+                    return;
+                }
+                return;
+            case 1:
+                this.f31783b.c(false);
+                return;
+            case 2:
+                this.f31783b.c(false);
                 return;
             default:
-                lw0 lw0Var2 = this.f35588b;
-                lw0Var2.getClass();
-                boolean z11 = this.f35589c;
-                TLRPC.PollAnswer pollAnswer = this.d;
-                org.telegram.ui.ActionBar.n2 n2Var2 = this.f35590e;
-                if (!z11) {
-                    ArrayList<TLRPC.PollAnswer> arrayList2 = new ArrayList<>(1);
-                    arrayList2.add(pollAnswer);
-                    n2Var2.getSendMessagesHelper().sendVote(lw0Var2.H, arrayList2, null);
-                } else {
-                    ArrayList<TLRPC.PollAnswer> arrayList3 = this.f35591f;
-                    arrayList3.add(pollAnswer);
-                    n2Var2.getSendMessagesHelper().sendVote(lw0Var2.H, arrayList3, null);
-                }
-                lw0Var2.c(true);
+                super/*android.app.Dialog*/.dismiss();
                 return;
         }
     }
 
-    public cw0(lw0 lw0Var, boolean z10, org.telegram.ui.ActionBar.n2 n2Var, ArrayList arrayList, TLRPC.PollAnswer pollAnswer) {
-        this.f35588b = lw0Var;
-        this.f35589c = z10;
-        this.f35590e = n2Var;
-        this.f35591f = arrayList;
-        this.d = pollAnswer;
+    public cw0(ow0 ow0Var, boolean z10) {
+        this.f31782a = 0;
+        this.f31783b = ow0Var;
     }
 }

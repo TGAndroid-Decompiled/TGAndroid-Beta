@@ -21,10 +21,10 @@ public abstract class l7 {
             } else {
                 try {
                     j3 = obj.toString();
-                } catch (Exception e7) {
+                } catch (Exception e) {
                     String C = a4.a.C(obj.getClass().getName(), "@", Integer.toHexString(System.identityHashCode(obj)));
-                    Logger.getLogger("com.google.common.base.Strings").logp(Level.WARNING, "com.google.common.base.Strings", "lenientToString", "Exception during lenientFormat for ".concat(C), (Throwable) e7);
-                    j3 = org.telegram.ui.Cells.p6.j("<", C, " threw ", e7.getClass().getName(), ">");
+                    Logger.getLogger("com.google.common.base.Strings").logp(Level.WARNING, "com.google.common.base.Strings", "lenientToString", "Exception during lenientFormat for ".concat(C), (Throwable) e);
+                    j3 = org.telegram.ui.Cells.r6.j("<", C, " threw ", e.getClass().getName(), ">");
                 }
             }
             objArr[i11] = j3;

@@ -1,132 +1,136 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.text.Layout;
-import android.text.SpannableString;
-import android.text.style.CharacterStyle;
-import android.text.style.ClickableSpan;
+import android.graphics.drawable.Drawable;
+import android.view.ActionMode;
+import android.view.Menu;
 import android.view.MotionEvent;
-import android.view.ViewConfiguration;
-import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Emoji;
-public final class iu extends wh.p {
-    public final a90 R;
-    public e90 S;
-    public boolean T;
-    public boolean U;
-    public boolean V;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.R;
+import org.telegram.messenger.XiaomiUtilities;
+public final class iu extends fu {
+    public Drawable f24077c;
+    public final int d;
+    public final nu e;
 
-    public iu(Context context) {
-        super(context, null, true);
-        this.R = new a90(this);
+    public iu(nu nuVar, Context context, org.telegram.ui.ActionBar.f6 f6Var, int i10) {
+        super(context, f6Var);
+        this.e = nuVar;
+        this.d = i10;
+        this.f24077c = null;
     }
 
     @Override
-    public final ClickableSpan a(int i10, int i11) {
-        Layout layout = getLayout();
-        if (layout == null) {
-            return null;
-        }
-        int paddingLeft = i10 - getPaddingLeft();
-        int paddingTop = i11 - getPaddingTop();
-        int lineForVertical = layout.getLineForVertical(paddingTop);
-        float f7 = paddingLeft;
-        int offsetForHorizontal = layout.getOffsetForHorizontal(lineForVertical, f7);
-        float lineLeft = getLayout().getLineLeft(lineForVertical);
-        if (lineLeft <= f7 && layout.getLineWidth(lineForVertical) + lineLeft >= f7 && paddingTop >= 0 && paddingTop <= layout.getHeight()) {
-            ClickableSpan[] clickableSpanArr = (ClickableSpan[]) new SpannableString(layout.getText()).getSpans(offsetForHorizontal, offsetForHorizontal, ClickableSpan.class);
-            if (clickableSpanArr.length != 0 && !AndroidUtilities.isAccessibilityScreenReaderEnabled()) {
-                return clickableSpanArr[0];
-            }
-        }
-        return null;
+    public final int emojiCacheType() {
+        return this.e.h();
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        float paddingLeft;
-        canvas.save();
-        if (!this.T) {
-            float f7 = 0.0f;
-            if (this.U) {
-                paddingLeft = 0.0f;
+    public final void extendActionMode(ActionMode actionMode, Menu menu) {
+        boolean z10;
+        nu nuVar = this.e;
+        if (nuVar.a()) {
+            if (nuVar.L == 3) {
+                z10 = true;
             } else {
-                paddingLeft = getPaddingLeft();
+                z10 = false;
             }
-            if (!this.V) {
-                f7 = getPaddingTop();
+            org.telegram.ui.eo.k8(menu, null, z10, true, true, true);
+            return;
+        }
+        nuVar.i(menu);
+    }
+
+    @Override
+    public final int getActionModeStyle() {
+        int i10 = this.d;
+        if (i10 == 2 || i10 == 3) {
+            return 2;
+        }
+        return super.getActionModeStyle();
+    }
+
+    @Override
+    public final void onLineCountChanged(int i10, int i11) {
+        this.e.q(i10, i11);
+    }
+
+    @Override
+    public final void onSelectionChanged(int i10, int i11) {
+        boolean z10;
+        super.onSelectionChanged(i10, i11);
+        nu nuVar = this.e;
+        am0 am0Var = nuVar.f25597c;
+        if (am0Var != null) {
+            boolean z11 = false;
+            if (i11 != i10) {
+                z10 = true;
+            } else {
+                z10 = false;
             }
-            canvas.translate(paddingLeft, f7);
+            if (nuVar.a() && z10) {
+                XiaomiUtilities.isMIUI();
+                z11 = true;
+            }
+            if (nuVar.f25599n != z11) {
+                nuVar.f25599n = z11;
+                if (z11) {
+                    this.f24077c = am0Var.d;
+                    am0Var.a(R.drawable.msg_edit, true);
+                    return;
+                }
+                am0Var.b(this.f24077c, true);
+                this.f24077c = null;
+            }
         }
-        if (this.R.f(canvas)) {
-            invalidate();
-        }
-        canvas.restore();
-        super.onDraw(canvas);
     }
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        CharacterStyle characterStyle;
-        a90 a90Var = this.R;
-        if (a90Var != null) {
-            Layout layout = getLayout();
-            ClickableSpan a2 = a((int) motionEvent.getX(), (int) motionEvent.getY());
-            if (a2 != null && motionEvent.getAction() == 0) {
-                e90 e90Var = new e90(a2, null, motionEvent.getX(), motionEvent.getY(), 0);
-                this.S = e90Var;
-                a90Var.a(e90Var, null);
-                SpannableString spannableString = new SpannableString(layout.getText());
-                int spanStart = spannableString.getSpanStart(this.S.f25650i);
-                int spanEnd = spannableString.getSpanEnd(this.S.f25650i);
-                x80 b10 = this.S.b();
-                b10.d(layout, spanStart, getPaddingTop());
-                layout.getSelectionPath(spanStart, spanEnd, b10);
-                AndroidUtilities.runOnUIThread(new wp(this, e90Var, a2), ViewConfiguration.getLongPressTimeout());
-                return true;
-            }
-            if (motionEvent.getAction() == 1) {
-                a90Var.d(true);
-                e90 e90Var2 = this.S;
-                if (e90Var2 != null && (characterStyle = e90Var2.f25650i) == a2) {
-                    if (characterStyle != null) {
-                        ((ClickableSpan) characterStyle).onClick(this);
-                    }
-                    this.S = null;
-                    return true;
+        int i10;
+        ju juVar;
+        nu nuVar = this.e;
+        if (nuVar.e && motionEvent.getAction() == 0) {
+            nuVar.u();
+            if (nuVar.f25603x && (juVar = nuVar.d) != null) {
+                juVar.t(false);
+                nuVar.f25603x = false;
+                nuVar.k(true);
+                AndroidUtilities.showKeyboard(this);
+            } else {
+                if (AndroidUtilities.usingHardwareInput) {
+                    i10 = 0;
+                } else {
+                    i10 = 2;
                 }
-                this.S = null;
+                nuVar.x(i10);
             }
-            if (motionEvent.getAction() == 3) {
-                a90Var.d(true);
-                this.S = null;
+            nuVar.v();
+        }
+        if (motionEvent.getAction() == 0) {
+            boolean isFocused = isFocused();
+            requestFocus();
+            if (!AndroidUtilities.showKeyboard(this)) {
+                clearFocus();
+                requestFocus();
+            }
+            if (!isFocused) {
+                setSelection(getText().length());
             }
         }
-        if (this.S != null || super.onTouchEvent(motionEvent)) {
-            return true;
+        try {
+            return super.onTouchEvent(motionEvent);
+        } catch (Exception e) {
+            FileLog.e(e);
+            return false;
         }
-        return false;
     }
 
     @Override
-    public void setDisablePaddingsOffset(boolean z10) {
-        this.T = z10;
-    }
-
-    @Override
-    public void setDisablePaddingsOffsetX(boolean z10) {
-        this.U = z10;
-    }
-
-    @Override
-    public void setDisablePaddingsOffsetY(boolean z10) {
-        this.V = z10;
-    }
-
-    @Override
-    public final void setText(CharSequence charSequence, TextView.BufferType bufferType) {
-        super.setText(Emoji.replaceEmoji(charSequence, getPaint().getFontMetricsInt(), false), bufferType);
+    public final void scrollTo(int i10, int i11) {
+        if (this.e.t(i11)) {
+            super.scrollTo(i10, i11);
+        }
     }
 }

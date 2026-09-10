@@ -5,38 +5,38 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.play.core.integrity.IntegrityTokenResponse;
 import org.telegram.tgnet.TLRPC;
 public final class ld0 implements OnSuccessListener {
-    public final int f38331a = 0;
-    public final wg0 f38332b;
-    public final String f38333c;
+    public final int f34656a = 0;
+    public final xg0 f34657b;
+    public final String f34658c;
     public final TLRPC.auth_SentCode d;
-    public final Bundle f38334e;
-    public final boolean f38335f;
+    public final Bundle e;
+    public final boolean f34659f;
 
-    public ld0(wg0 wg0Var, Bundle bundle, TLRPC.auth_SentCode auth_sentcode, String str, boolean z10) {
-        this.f38332b = wg0Var;
-        this.f38334e = bundle;
+    public ld0(xg0 xg0Var, Bundle bundle, TLRPC.auth_SentCode auth_sentcode, String str, boolean z10) {
+        this.f34657b = xg0Var;
+        this.e = bundle;
         this.d = auth_sentcode;
-        this.f38333c = str;
-        this.f38335f = z10;
+        this.f34658c = str;
+        this.f34659f = z10;
     }
 
     @Override
     public final void onSuccess(Object obj) {
-        switch (this.f38331a) {
+        switch (this.f34656a) {
             case 0:
-                wg0.X(this.f38332b, this.f38334e, this.d, this.f38333c, this.f38335f, (IntegrityTokenResponse) obj);
+                xg0.X(this.f34657b, this.e, this.d, this.f34658c, this.f34659f, (IntegrityTokenResponse) obj);
                 return;
             default:
-                wg0.V(this.f38332b, this.f38333c, this.d, this.f38334e, this.f38335f, (m8.d) obj);
+                xg0.V(this.f34657b, this.f34658c, this.d, this.e, this.f34659f, (m8.d) obj);
                 return;
         }
     }
 
-    public ld0(wg0 wg0Var, String str, TLRPC.auth_SentCode auth_sentcode, Bundle bundle, boolean z10) {
-        this.f38332b = wg0Var;
-        this.f38333c = str;
+    public ld0(xg0 xg0Var, String str, TLRPC.auth_SentCode auth_sentcode, Bundle bundle, boolean z10) {
+        this.f34657b = xg0Var;
+        this.f34658c = str;
         this.d = auth_sentcode;
-        this.f38334e = bundle;
-        this.f38335f = z10;
+        this.e = bundle;
+        this.f34659f = z10;
     }
 }

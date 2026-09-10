@@ -1,22 +1,18 @@
 package wh;
 
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.text.style.ReplacementSpan;
-import org.telegram.messenger.Emoji;
-public final class b extends ReplacementSpan {
-    public final Emoji.EmojiSpan f48609a;
+import android.content.Context;
+import android.widget.FrameLayout;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.ActionBar.f6;
+public final class b extends FrameLayout {
+    public static final int f44029c = 0;
+    public final f6 f44030a;
+    public final int f44031b;
 
-    public b(Emoji.EmojiSpan emojiSpan) {
-        this.f48609a = emojiSpan;
-    }
-
-    @Override
-    public final int getSize(Paint paint, CharSequence charSequence, int i10, int i11, Paint.FontMetricsInt fontMetricsInt) {
-        return this.f48609a.getSize(paint, charSequence, i10, i11, fontMetricsInt);
-    }
-
-    @Override
-    public final void draw(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
+    public b(Context context, int i10, f6 f6Var) {
+        super(context);
+        this.f44031b = i10;
+        this.f44030a = f6Var;
+        setPadding(AndroidUtilities.dp(18.0f), AndroidUtilities.dp(9.0f), AndroidUtilities.dp(18.0f), AndroidUtilities.dp(9.0f));
     }
 }

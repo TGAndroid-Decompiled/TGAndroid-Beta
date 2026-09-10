@@ -1,41 +1,24 @@
 package org.telegram.ui;
 
+import android.graphics.Paint;
 import android.view.ViewGroup;
-import android.view.ViewTreeObserver;
-import org.telegram.messenger.ChatObject;
-public final class y40 implements ViewTreeObserver.OnPreDrawListener {
-    public final ChatObject.VideoParticipant f43009a;
-    public final boolean f43010b;
-    public final j60 f43011c;
+public final class y40 extends Paint {
+    public final j60 f38893a;
 
-    public y40(j60 j60Var, ChatObject.VideoParticipant videoParticipant, boolean z10) {
-        this.f43011c = j60Var;
-        this.f43009a = videoParticipant;
-        this.f43010b = z10;
+    public y40(j60 j60Var) {
+        this.f38893a = j60Var;
     }
 
     @Override
-    public final boolean onPreDraw() {
+    public final void setAlpha(int i10) {
         ViewGroup viewGroup;
-        j60 j60Var = this.f43011c;
-        p50 p50Var = j60Var.Q;
-        p50Var.getViewTreeObserver().removeOnPreDrawListener(this);
-        j60Var.f37606q2 = null;
-        a40 a40Var = j60Var.a2;
-        ChatObject.VideoParticipant videoParticipant = this.f43009a;
-        a40Var.j(videoParticipant);
-        if (j60Var.f37614s0) {
-            j60Var.f37614s0 = false;
-            j60Var.O0(true);
-            if (this.f43010b && videoParticipant != null) {
-                p50Var.u0(0);
-            }
-            j60Var.f37614s0 = true;
-        } else {
-            j60Var.O0(true);
+        ViewGroup viewGroup2;
+        super.setAlpha(i10);
+        j60 j60Var = this.f38893a;
+        viewGroup = ((org.telegram.ui.ActionBar.h3) j60Var).containerView;
+        if (viewGroup != null) {
+            viewGroup2 = ((org.telegram.ui.ActionBar.h3) j60Var).containerView;
+            viewGroup2.invalidate();
         }
-        viewGroup = ((org.telegram.ui.ActionBar.f3) j60Var).containerView;
-        viewGroup.requestLayout();
-        return false;
     }
 }

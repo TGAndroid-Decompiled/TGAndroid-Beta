@@ -1,123 +1,149 @@
 package tg;
 
-import android.content.Context;
-import android.graphics.Bitmap;
-import android.opengl.GLES20;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.nio.FloatBuffer;
-import java.nio.charset.StandardCharsets;
-import java.util.Locale;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-public final class f {
-    public static final String[] f46557a0 = {"models/star.binobj"};
-    public static final String[] f46558b0 = {"models/diamond_outer_2.binobj", "models/diamond_outer.binobj", "models/diamond.binobj"};
-    public static final String[] f46559c0 = {"models/coin_outer.binobj", "models/coin_inner.binobj", "models/coin_logo.binobj", "models/coin_stars.binobj"};
-    public static final String[] f46560d0 = {"models/coin_outer.binobj", "models/coin_inner.binobj", "models/deal_logo.binobj", "models/coin_stars.binobj"};
-    public boolean D;
-    public final int E;
-    public final int F;
-    public final int G;
-    public final int H;
-    public final int I;
-    public final int J;
-    public final int K;
-    public final int L;
-    public final int M;
-    public final int N;
-    public final int O;
-    public final int P;
-    public final int Q;
-    public final int R;
-    public final int S;
-    public final int T;
-    public final Bitmap U;
-    public Bitmap V;
-    public final int W;
-    public final int X;
-    public final int[] Y;
-    public final int f46561a;
-    public final int f46562b;
-    public final int f46563c;
-    public final FloatBuffer[] d;
-    public final FloatBuffer[] f46564e;
-    public final FloatBuffer[] f46565f;
-    public final int f46566g;
-    public final int h;
-    public final int f46567i;
-    public final int f46568j;
-    public final int f46569k;
-    public final int f46570l;
-    public final int f46571m;
-    public final int f46572n;
-    public final int f46573o;
-    public final int f46574p;
-    public final int f46575q;
-    public final int f46576r;
-    public float f46577s;
-    public final int[] f46578t;
-    public int f46582y;
-    public int f46583z;
-    public float f46579u = 0.0f;
-    public float v = 2.0f;
-    public float f46580w = 0.13f;
-    public float f46581x = 1.0f;
-    public float A = 0.2f;
-    public int B = -1;
-    public int C = -1;
-    public float Z = 0.0f;
+import android.text.TextUtils;
+import android.view.View;
+import org.telegram.messenger.DialogObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.Components.vq;
+import org.telegram.ui.w71;
+import sg.f1;
+public final class f extends ng.a {
+    public TLRPC.User f42158c;
+    public TLRPC.InputPeer d;
+    public TLRPC.Chat e;
+    public TLRPC.TL_help_country f42159f;
+    public CharSequence f42160g;
+    public String h;
+    public int f42161i;
+    public int f42162j;
+    public boolean f42163k;
+    public int f42164l;
+    public w71 f42165m;
+    public w71 f42166n;
+    public f1 f42167o;
+    public f1 f42168p;
+    public View f42169q;
+    public vq f42170r;
 
-    public f(android.content.Context r33, int r34) {
-        throw new UnsupportedOperationException("Method not decompiled: tg.f.<init>(android.content.Context, int):void");
+    public f(int i10, boolean z10) {
+        super(i10, z10);
+        this.f42164l = -1;
     }
 
-    public static String b(Context context, String str) {
-        StringBuilder sb2 = new StringBuilder();
-        try {
-            InputStream open = context.getAssets().open(str);
-            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(open, StandardCharsets.UTF_8));
-            while (true) {
-                String readLine = bufferedReader.readLine();
-                if (readLine == null) {
-                    break;
+    public static f b(CharSequence charSequence) {
+        f fVar = new f(8, false);
+        fVar.f42160g = charSequence;
+        return fVar;
+    }
+
+    public static f c(TLRPC.User user, boolean z10) {
+        f fVar = new f(3, true);
+        fVar.f42158c = user;
+        fVar.d = null;
+        fVar.e = null;
+        fVar.f42163k = z10;
+        return fVar;
+    }
+
+    @Override
+    public final boolean a(ng.a aVar) {
+        boolean z10;
+        boolean z11;
+        if (this != aVar) {
+            if (f.class == aVar.getClass()) {
+                f fVar = (f) aVar;
+                if (this.f42163k == fVar.f42163k) {
+                    if (this.f14046a == 8) {
+                        if (TextUtils.equals(this.h, fVar.h)) {
+                            if (this.f42165m == null) {
+                                z10 = true;
+                            } else {
+                                z10 = false;
+                            }
+                            if (fVar.f42165m == null) {
+                                z11 = true;
+                            } else {
+                                z11 = false;
+                            }
+                            if (z10 == z11) {
+                            }
+                        }
+                    }
                 }
-                sb2.append(readLine);
-                sb2.append("\n");
             }
-            bufferedReader.close();
-            open.close();
-        } catch (IOException e7) {
-            e7.printStackTrace();
+            return false;
         }
-        return sb2.toString();
+        return true;
     }
 
-    public static String c(String str) {
-        Matcher matcher = Pattern.compile("RGB#([0-9a-fA-F]{6})").matcher(str);
-        StringBuffer stringBuffer = new StringBuffer();
-        while (matcher.find()) {
-            String group = matcher.group(1);
-            matcher.appendReplacement(stringBuffer, String.format(Locale.US, "vec3(%.3f, %.3f, %.3f)", Double.valueOf(Integer.parseInt(group.substring(0, 2), 16) / 255.0d), Double.valueOf(Integer.parseInt(group.substring(2, 4), 16) / 255.0d), Double.valueOf(Integer.parseInt(group.substring(4, 6), 16) / 255.0d)));
+    public final boolean equals(Object obj) {
+        long j3;
+        if (this != obj) {
+            if (obj != null && f.class == obj.getClass()) {
+                f fVar = (f) obj;
+                int i10 = this.f14046a;
+                if (i10 == fVar.f14046a) {
+                    if (i10 != -1 || this.f42164l == fVar.f42164l) {
+                        if (i10 == 3) {
+                            TLRPC.User user = this.f42158c;
+                            long j10 = 0;
+                            if (user != null) {
+                                j3 = user.f17342id;
+                            } else {
+                                TLRPC.Chat chat = this.e;
+                                if (chat != null) {
+                                    j3 = -chat.f17195id;
+                                } else {
+                                    TLRPC.InputPeer inputPeer = this.d;
+                                    if (inputPeer != null) {
+                                        j3 = DialogObject.getPeerDialogId(inputPeer);
+                                    } else {
+                                        j3 = 0;
+                                    }
+                                }
+                            }
+                            TLRPC.User user2 = fVar.f42158c;
+                            if (user2 != null) {
+                                j10 = user2.f17342id;
+                            } else {
+                                TLRPC.Chat chat2 = fVar.e;
+                                if (chat2 != null) {
+                                    j10 = -chat2.f17195id;
+                                } else {
+                                    TLRPC.InputPeer inputPeer2 = fVar.d;
+                                    if (inputPeer2 != null) {
+                                        j10 = DialogObject.getPeerDialogId(inputPeer2);
+                                    }
+                                }
+                            }
+                            if (j3 != j10) {
+                                return false;
+                            }
+                        }
+                        int i11 = this.f14046a;
+                        if (i11 != 6 || this.f42159f == fVar.f42159f) {
+                            if (i11 != 7 || TextUtils.equals(this.f42160g, fVar.f42160g)) {
+                                if (this.f14046a != 8 || TextUtils.equals(this.f42160g, fVar.f42160g)) {
+                                    if (this.f14046a != 9 || (TextUtils.equals(this.f42160g, fVar.f42160g) && this.f42161i == fVar.f42161i && this.f42162j == fVar.f42162j)) {
+                                        if (this.f14046a != 10 || this.f42169q == fVar.f42169q) {
+                                            return true;
+                                        }
+                                        return false;
+                                    }
+                                    return false;
+                                }
+                                return false;
+                            }
+                            return false;
+                        }
+                        return false;
+                    }
+                    return false;
+                }
+                return false;
+            }
+            return false;
         }
-        matcher.appendTail(stringBuffer);
-        return stringBuffer.toString();
-    }
-
-    public final void a(int i10, boolean z10) {
-        int i11 = i10 * 3;
-        GLES20.glBindBuffer(34962, this.Y[i11]);
-        GLES20.glVertexAttribPointer(this.f46570l, 2, 5126, false, 0, 0);
-        GLES20.glBindBuffer(34962, this.Y[i11 + 1]);
-        GLES20.glVertexAttribPointer(this.f46571m, 3, 5126, false, 0, 0);
-        GLES20.glBindBuffer(34962, this.Y[i11 + 2]);
-        GLES20.glVertexAttribPointer(this.f46569k, 3, 5126, false, 0, 0);
-        GLES20.glUniform1i(this.O, i10);
-        GLES20.glUniform1i(this.P, i10);
-        GLES20.glUniform1i(this.Q, z10 ? 1 : 0);
-        GLES20.glUniform1i(this.R, this.X);
-        GLES20.glDrawArrays(4, 0, this.f46578t[i10] / 3);
+        return true;
     }
 }

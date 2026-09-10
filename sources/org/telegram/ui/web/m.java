@@ -1,21 +1,21 @@
 package org.telegram.ui.web;
 public final class m implements Runnable {
-    public final int f42203a;
-    public final q f42204b;
+    public final int f38013a;
+    public final p f38014b;
 
-    public m(q qVar, int i10) {
-        this.f42203a = i10;
-        this.f42204b = qVar;
+    public m(p pVar, int i10) {
+        this.f38013a = i10;
+        this.f38014b = pVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f42203a) {
+        switch (this.f38013a) {
             case 0:
-                this.f42204b.g0();
+                this.f38014b.g0();
                 return;
             default:
-                this.f42204b.g0();
+                this.f38014b.g0();
                 return;
         }
     }

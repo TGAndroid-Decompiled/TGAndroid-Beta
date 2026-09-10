@@ -10,21 +10,21 @@ import android.view.KeyEvent;
 import android.view.ViewConfiguration;
 import java.lang.ref.WeakReference;
 public abstract class p {
-    public boolean f16499c;
-    public androidx.mediarouter.app.c f16500e;
-    public final Object f16497a = new Object();
-    public final o f16498b = new o(this);
+    public boolean f13802c;
+    public androidx.mediarouter.app.c e;
+    public final Object f13800a = new Object();
+    public final o f13801b = new o(this);
     public WeakReference d = new WeakReference(null);
 
     public final void C(r rVar, Handler handler) {
-        synchronized (this.f16497a) {
+        synchronized (this.f13800a) {
             try {
                 this.d = new WeakReference(rVar);
-                androidx.mediarouter.app.c cVar = this.f16500e;
+                androidx.mediarouter.app.c cVar = this.e;
                 if (cVar != null) {
                     cVar.removeCallbacksAndMessages(null);
                 }
-                this.f16500e = new androidx.mediarouter.app.c(this, handler.getLooper(), 6);
+                this.e = new androidx.mediarouter.app.c(this, handler.getLooper(), 6);
             } catch (Throwable th2) {
                 throw th2;
             }
@@ -35,17 +35,17 @@ public abstract class p {
         long j3;
         boolean z10;
         boolean z11;
-        if (this.f16499c) {
+        if (this.f13802c) {
             boolean z12 = false;
-            this.f16499c = false;
+            this.f13802c = false;
             handler.removeMessages(1);
-            h0 h0Var = rVar.f16508g;
+            h0 h0Var = rVar.f13809g;
             if (h0Var == null) {
                 j3 = 0;
             } else {
-                j3 = h0Var.f16471e;
+                j3 = h0Var.e;
             }
-            if (h0Var != null && h0Var.f16468a == 3) {
+            if (h0Var != null && h0Var.f13774a == 3) {
                 z10 = true;
             } else {
                 z10 = false;
@@ -72,9 +72,9 @@ public abstract class p {
         KeyEvent keyEvent;
         long j3;
         if (Build.VERSION.SDK_INT < 27) {
-            synchronized (this.f16497a) {
+            synchronized (this.f13800a) {
                 rVar = (r) this.d.get();
-                cVar = this.f16500e;
+                cVar = this.e;
             }
             if (rVar != null && cVar != null && (keyEvent = (KeyEvent) intent.getParcelableExtra("android.intent.extra.KEY_EVENT")) != null && keyEvent.getAction() == 0) {
                 a0 c10 = rVar.c();
@@ -83,21 +83,21 @@ public abstract class p {
                     a(rVar, cVar);
                     return false;
                 } else if (keyEvent.getRepeatCount() == 0) {
-                    if (this.f16499c) {
+                    if (this.f13802c) {
                         cVar.removeMessages(1);
-                        this.f16499c = false;
-                        h0 h0Var = rVar.f16508g;
+                        this.f13802c = false;
+                        h0 h0Var = rVar.f13809g;
                         if (h0Var == null) {
                             j3 = 0;
                         } else {
-                            j3 = h0Var.f16471e;
+                            j3 = h0Var.e;
                         }
                         if ((j3 & 32) != 0) {
                             y();
                         }
                         return true;
                     }
-                    this.f16499c = true;
+                    this.f13802c = true;
                     cVar.sendMessageDelayed(cVar.obtainMessage(1, c10), ViewConfiguration.getDoubleTapTimeout());
                     return true;
                 } else {

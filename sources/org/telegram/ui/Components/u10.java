@@ -1,28 +1,19 @@
 package org.telegram.ui.Components;
 
-import android.text.TextUtils;
-import android.view.ViewGroup;
-import org.telegram.messenger.voip.GroupCallMessage;
-public final class u10 implements oe.a {
-    public final ViewGroup f30794a;
-    public final mh.c f30795b;
+import android.view.View;
+public final class u10 implements View.OnClickListener {
+    public final int f27547a;
+    public final Object f27548b;
+    public final Object f27549c;
 
-    public u10(bi.g5 g5Var, GroupCallMessage groupCallMessage) {
-        mh.c cVar = new mh.c(g5Var.getContext());
-        this.f30795b = cVar;
-        cVar.setBackgroundColor(i0.a.k(-16777216, 34));
-        wh.p pVar = cVar.v;
-        pVar.setMaxLines(1);
-        pVar.setSingleLine(true);
-        pVar.setEllipsize(TextUtils.TruncateAt.END);
-        cVar.set(groupCallMessage);
-        cVar.setAlpha(0.0f);
-        this.f30794a = g5Var;
-        g5Var.addView(cVar);
+    public u10(int i10, Object obj, Object obj2) {
+        this.f27547a = i10;
+        this.f27548b = obj;
+        this.f27549c = obj2;
     }
 
     @Override
-    public final void a() {
-        this.f30794a.removeView(this.f30795b);
+    public final void onClick(android.view.View r20) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.u10.onClick(android.view.View):void");
     }
 }

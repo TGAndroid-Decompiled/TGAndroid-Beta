@@ -1,8 +1,8 @@
 package wa;
 public final class e {
-    public final d f48506a;
+    public final d f43963a;
 
     public e(d dVar) {
-        this.f48506a = dVar;
+        this.f43963a = dVar;
     }
 }

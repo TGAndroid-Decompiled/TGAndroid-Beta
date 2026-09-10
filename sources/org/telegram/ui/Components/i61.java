@@ -1,38 +1,19 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import androidx.core.widget.NestedScrollView;
-public final class i61 extends NestedScrollView {
-    public boolean W;
-    public final j61 f27003a0;
-
-    public i61(j61 j61Var, Context context) {
-        super(context);
-        this.f27003a0 = j61Var;
-    }
+import android.view.View;
+public final class i61 extends View {
+    public int f23915a;
 
     @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        super.onLayout(z10, i10, i11, i12, i13);
-        j61.m(this.f27003a0);
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(this.f23915a, 1073741824));
     }
 
-    @Override
-    public final void onMeasure(int r9, int r10) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.i61.onMeasure(int, int):void");
-    }
-
-    @Override
-    public final void onScrollChanged(int i10, int i11, int i12, int i13) {
-        super.onScrollChanged(i10, i11, i12, i13);
-        j61.m(this.f27003a0);
-    }
-
-    @Override
-    public final void requestLayout() {
-        if (this.W) {
+    public void setHeight(int i10) {
+        if (this.f23915a == i10) {
             return;
         }
-        super.requestLayout();
+        this.f23915a = i10;
+        requestLayout();
     }
 }

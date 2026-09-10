@@ -1,20 +1,50 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.Utilities;
-public final class fr0 implements Utilities.Callback {
-    public final org.telegram.ui.Cells.t7 f26201a;
-    public final float f26202b;
-    public final float f26203c;
+import android.view.View;
+import android.widget.FrameLayout;
+import org.telegram.messenger.BirthdayController;
+public final class fr0 implements View.OnClickListener {
+    public final int f23072a;
+    public final boolean f23073b;
+    public final int f23074c;
+    public final FrameLayout d;
 
-    public fr0(org.telegram.ui.Cells.t7 t7Var, float f7, float f10) {
-        this.f26201a = t7Var;
-        this.f26202b = f7;
-        this.f26203c = f10;
+    public fr0(FrameLayout frameLayout, boolean z10, int i10, int i11) {
+        this.f23072a = i11;
+        this.d = frameLayout;
+        this.f23073b = z10;
+        this.f23074c = i10;
     }
 
     @Override
-    public final void run(Object obj) {
-        Boolean bool = (Boolean) obj;
-        this.f26201a.n(this.f26202b, this.f26203c);
+    public final void onClick(View view) {
+        switch (this.f23072a) {
+            case 0:
+                iv0 iv0Var = (iv0) this.d;
+                org.telegram.ui.ActionBar.p2 p2Var = iv0Var.f24131v1;
+                if (this.f23073b) {
+                    iv0Var.O0(p2Var, iv0Var.f24106j1, this.f23074c);
+                    return;
+                }
+                p2Var.getMessagesController().getMainSettings().edit().putBoolean("story_keep", true).apply();
+                bi.ce.E(p2Var.getParentActivity(), p2Var.getCurrentAccount()).R(null);
+                return;
+            default:
+                wr0 wr0Var = (wr0) this.d;
+                if (wr0Var.e.h() && wr0Var.h.getCurrentPosition() != 0) {
+                    wr0Var.a();
+                    return;
+                }
+                boolean z10 = this.f23073b;
+                int i10 = this.f23074c;
+                if (z10) {
+                    wh.p1 p1Var = new wh.p1(wr0Var.getContext(), i10, wr0Var.f44319c, null, null);
+                    p1Var.V(BirthdayController.getInstance(i10).isToday(wr0Var.f44319c));
+                    p1Var.show();
+                    return;
+                }
+                sg.p1.e0(2, BirthdayController.getInstance(i10).getState());
+                return;
+        }
     }
 }

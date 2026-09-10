@@ -1,29 +1,39 @@
 package bi;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-public final class h4 extends ta {
-    public final pb H;
-    public final o5 I;
+import android.view.ViewGroup;
+import org.telegram.ui.Components.tp;
+public final class h4 extends tp {
+    public final int d;
+    public final ViewGroup e;
 
-    public h4(o5 o5Var, Context context, l4 l4Var, org.telegram.ui.ActionBar.f6 f6Var, pb pbVar) {
-        super(context, l4Var, f6Var);
-        this.I = o5Var;
-        this.H = pbVar;
+    public h4(ViewGroup viewGroup, Context context, org.telegram.ui.ActionBar.f6 f6Var, int i10) {
+        super(context, 21, f6Var);
+        this.d = i10;
+        this.e = viewGroup;
     }
 
     @Override
-    public final void b(boolean z10) {
-        h5 h5Var = this.I.Q1;
-        if (h5Var != null) {
-            pb pbVar = ((gb) h5Var).d;
-            pbVar.f3580i1 = z10;
-            pbVar.P();
+    public final void invalidate() {
+        switch (this.d) {
+            case 0:
+                super.invalidate();
+                ((j4) this.e).invalidate();
+                return;
+            case 1:
+                super.invalidate();
+                ((org.telegram.ui.Cells.r2) this.e).invalidate();
+                return;
+            default:
+                super.invalidate();
+                ((org.telegram.ui.web.i) this.e).invalidate();
+                return;
         }
     }
 
-    @Override
-    public final Bitmap getPlayingBitmap() {
-        return this.I.getPlayingBitmap();
+    public h4(j4 j4Var, Context context, org.telegram.ui.ActionBar.f6 f6Var) {
+        super(context, 24, f6Var);
+        this.d = 0;
+        this.e = j4Var;
     }
 }

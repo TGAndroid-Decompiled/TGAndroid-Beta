@@ -44,9 +44,9 @@ public final class AiTonesController {
 
     public void add(TL_aicompose.AiComposeTone aiComposeTone) {
         if (aiComposeTone instanceof TL_aicompose.TL_aiComposeTone) {
-            long j3 = ((TL_aicompose.TL_aiComposeTone) aiComposeTone).f20108id;
+            long j3 = ((TL_aicompose.TL_aiComposeTone) aiComposeTone).f17409id;
             for (int i10 = 0; i10 < this.tones.size(); i10++) {
-                if ((this.tones.get(i10) instanceof TL_aicompose.TL_aiComposeTone) && ((TL_aicompose.TL_aiComposeTone) this.tones.get(i10)).f20108id == j3) {
+                if ((this.tones.get(i10) instanceof TL_aicompose.TL_aiComposeTone) && ((TL_aicompose.TL_aiComposeTone) this.tones.get(i10)).f17409id == j3) {
                     return;
                 }
             }
@@ -65,7 +65,7 @@ public final class AiTonesController {
 
     public void edit(TL_aicompose.TL_aiComposeTone tL_aiComposeTone) {
         for (int i10 = 0; i10 < this.tones.size(); i10++) {
-            if ((this.tones.get(i10) instanceof TL_aicompose.TL_aiComposeTone) && ((TL_aicompose.TL_aiComposeTone) this.tones.get(i10)).f20108id == tL_aiComposeTone.f20108id) {
+            if ((this.tones.get(i10) instanceof TL_aicompose.TL_aiComposeTone) && ((TL_aicompose.TL_aiComposeTone) this.tones.get(i10)).f17409id == tL_aiComposeTone.f17409id) {
                 this.tones.set(i10, tL_aiComposeTone);
                 notifyUpdate();
                 return;
@@ -111,8 +111,8 @@ public final class AiTonesController {
                         this.tones.addAll(((TL_aicompose.TL_tones) TLdeserialize).tones);
                     }
                 }
-            } catch (Exception e7) {
-                FileLog.e(e7);
+            } catch (Exception e) {
+                FileLog.e(e);
             }
         }
         request();
@@ -134,7 +134,7 @@ public final class AiTonesController {
         }
         TL_aicompose.getTones gettones = new TL_aicompose.getTones();
         gettones.hash = this.hash;
-        this.requestId = ConnectionsManager.getInstance(this.currentAccount).sendRequestTyped(gettones, new Object(), new me(this, 1));
+        this.requestId = ConnectionsManager.getInstance(this.currentAccount).sendRequestTyped(gettones, new Object(), new ue(this, 1));
     }
 
     public void unsave(TL_aicompose.AiComposeTone aiComposeTone) {

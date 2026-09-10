@@ -1,112 +1,62 @@
 package org.telegram.ui;
 
-import java.io.File;
-import org.telegram.messenger.FileLoader;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.UserConfig;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_iv;
-public abstract class f4 {
-    public static TLRPC.Document a(TLRPC.WebPage webPage, long j3) {
-        if (webPage != null && webPage.cached_page != null) {
-            TLRPC.Document document = webPage.document;
-            if (document != null && document.f19902id == j3) {
-                return document;
-            }
-            for (int i10 = 0; i10 < webPage.cached_page.documents.size(); i10++) {
-                TLRPC.Document document2 = webPage.cached_page.documents.get(i10);
-                if (document2.f19902id == j3) {
-                    return document2;
-                }
-            }
-        }
-        return null;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.text.TextPaint;
+import android.view.View;
+import android.widget.FrameLayout;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.SharedConfig;
+public final class f4 extends FrameLayout {
+    public final org.telegram.ui.Components.oo0 f32677a;
+    public final int f32678b;
+    public final int f32679c;
+    public int d;
+    public final TextPaint e;
+    public final j4 f32680f;
+
+    public f4(j4 j4Var, Context context) {
+        super(context);
+        this.f32680f = j4Var;
+        this.f32678b = 12;
+        this.f32679c = 30;
+        setWillNotDraw(false);
+        TextPaint textPaint = new TextPaint(1);
+        this.e = textPaint;
+        textPaint.setTextSize(AndroidUtilities.dp(16.0f));
+        org.telegram.ui.Components.oo0 oo0Var = new org.telegram.ui.Components.oo0(context, null, false);
+        this.f32677a = oo0Var;
+        oo0Var.setReportChanges(true);
+        oo0Var.setSeparatorsCount(19);
+        oo0Var.setDelegate(new g(this, 3));
+        addView(oo0Var, w7.a6.d(-1, 38.0f, 51, 5.0f, 5.0f, 39.0f, 0.0f));
     }
 
-    public static TLRPC.Document b(TL_iv.RichMessage richMessage, long j3) {
-        if (richMessage == null) {
-            return null;
-        }
-        for (int i10 = 0; i10 < richMessage.documents.size(); i10++) {
-            TLRPC.Document document = richMessage.documents.get(i10);
-            if (document.f19902id == j3) {
-                return document;
-            }
-        }
-        return null;
+    @Override
+    public final void invalidate() {
+        super.invalidate();
+        this.f32677a.invalidate();
     }
 
-    public static File c(TLObject tLObject) {
-        FileLoader fileLoader = FileLoader.getInstance(UserConfig.selectedAccount);
-        File pathToAttach = fileLoader.getPathToAttach(tLObject, false);
-        if (pathToAttach != null && pathToAttach.exists()) {
-            return pathToAttach;
-        }
-        File pathToAttach2 = fileLoader.getPathToAttach(tLObject, true);
-        if (pathToAttach2 != null && pathToAttach2.exists()) {
-            return pathToAttach2;
-        }
-        if (pathToAttach != null) {
-            return pathToAttach;
-        }
-        return pathToAttach2;
+    @Override
+    public final void onDraw(Canvas canvas) {
+        int i10 = org.telegram.ui.ActionBar.j6.I6;
+        this.f32680f.getClass();
+        int w02 = org.telegram.ui.ActionBar.j6.w0(null, i10, false);
+        TextPaint textPaint = this.e;
+        textPaint.setColor(w02);
+        canvas.drawText("" + SharedConfig.ivFontSize, getMeasuredWidth() - AndroidUtilities.dp(39.0f), AndroidUtilities.dp(28.0f), textPaint);
     }
 
-    public static TLRPC.Photo d(long j3, TLObject tLObject) {
-        if (tLObject instanceof TL_iv.RichMessage) {
-            return f((TL_iv.RichMessage) tLObject, j3);
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(i10, i11);
+        int size = View.MeasureSpec.getSize(i10);
+        if (this.d != size) {
+            int i12 = SharedConfig.ivFontSize;
+            int i13 = this.f32678b;
+            this.f32677a.setProgress((i12 - i13) / (this.f32679c - i13));
+            this.d = size;
         }
-        if (tLObject instanceof TL_iv.Page) {
-            TL_iv.Page page = (TL_iv.Page) tLObject;
-            for (int i10 = 0; i10 < page.photos.size(); i10++) {
-                TLRPC.Photo photo = page.photos.get(i10);
-                if (photo.f19920id == j3) {
-                    return photo;
-                }
-            }
-            return null;
-        } else if (!(tLObject instanceof TLRPC.WebPage)) {
-            return null;
-        } else {
-            return e((TLRPC.WebPage) tLObject, j3);
-        }
-    }
-
-    public static TLRPC.Photo e(TLRPC.WebPage webPage, long j3) {
-        if (webPage != null && webPage.cached_page != null) {
-            TLRPC.Photo photo = webPage.photo;
-            if (photo != null && photo.f19920id == j3) {
-                return photo;
-            }
-            for (int i10 = 0; i10 < webPage.cached_page.photos.size(); i10++) {
-                TLRPC.Photo photo2 = webPage.cached_page.photos.get(i10);
-                if (photo2.f19920id == j3) {
-                    return photo2;
-                }
-            }
-        }
-        return null;
-    }
-
-    public static TLRPC.Photo f(TL_iv.RichMessage richMessage, long j3) {
-        if (richMessage == null) {
-            return null;
-        }
-        for (int i10 = 0; i10 < richMessage.photos.size(); i10++) {
-            TLRPC.Photo photo = richMessage.photos.get(i10);
-            if (photo.f19920id == j3) {
-                return photo;
-            }
-        }
-        return null;
-    }
-
-    public static boolean g(TLRPC.WebPage webPage, TL_iv.PageBlock pageBlock) {
-        TLRPC.Document a2;
-        if ((pageBlock instanceof TL_iv.pageBlockVideo) && (a2 = a(webPage, ((TL_iv.pageBlockVideo) pageBlock).video_id)) != null) {
-            return MessageObject.isVideoDocument(a2);
-        }
-        return false;
     }
 }

@@ -12,16 +12,16 @@ import java.lang.reflect.Method;
 import java.util.HashSet;
 public final class n0 {
     public static String d;
-    public static m0 f8688g;
-    public final Context f8689a;
-    public final NotificationManager f8690b;
-    public static final Object f8685c = new Object();
-    public static HashSet f8686e = new HashSet();
-    public static final Object f8687f = new Object();
+    public static m0 f7118g;
+    public final Context f7119a;
+    public final NotificationManager f7120b;
+    public static final Object f7116c = new Object();
+    public static HashSet e = new HashSet();
+    public static final Object f7117f = new Object();
 
     public n0(Context context) {
-        this.f8689a = context;
-        this.f8690b = (NotificationManager) context.getSystemService("notification");
+        this.f7119a = context;
+        this.f7120b = (NotificationManager) context.getSystemService("notification");
     }
 
     public static n0 c(Context context) {
@@ -32,9 +32,9 @@ public final class n0 {
         Method method;
         Integer num;
         if (Build.VERSION.SDK_INT >= 24) {
-            return androidx.emoji2.text.x.a(this.f8690b);
+            return androidx.emoji2.text.x.a(this.f7120b);
         }
-        Context context = this.f8689a;
+        Context context = this.f7119a;
         AppOpsManager appOpsManager = (AppOpsManager) context.getSystemService("appops");
         ApplicationInfo applicationInfo = context.getApplicationInfo();
         String packageName = context.getApplicationContext().getPackageName();
@@ -54,20 +54,20 @@ public final class n0 {
     }
 
     public final void b(int i10) {
-        this.f8690b.cancel(null, i10);
+        this.f7120b.cancel(null, i10);
     }
 
     public final void d(int i10, Notification notification) {
-        NotificationManager notificationManager = this.f8690b;
+        NotificationManager notificationManager = this.f7120b;
         Bundle bundle = notification.extras;
         if (bundle != null && bundle.getBoolean("android.support.useSideChannel")) {
-            j0 j0Var = new j0(this.f8689a.getPackageName(), i10, notification);
-            synchronized (f8687f) {
+            j0 j0Var = new j0(this.f7119a.getPackageName(), i10, notification);
+            synchronized (f7117f) {
                 try {
-                    if (f8688g == null) {
-                        f8688g = new m0(this.f8689a.getApplicationContext());
+                    if (f7118g == null) {
+                        f7118g = new m0(this.f7119a.getApplicationContext());
                     }
-                    f8688g.f8680b.obtainMessage(0, j0Var).sendToTarget();
+                    f7118g.f7112b.obtainMessage(0, j0Var).sendToTarget();
                 } catch (Throwable th2) {
                     throw th2;
                 }

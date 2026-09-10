@@ -24,7 +24,7 @@ public final class bj0 extends org.telegram.ui.Cells.t1 {
     public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
         int id2;
         super.onLayout(z10, i10, i11, i12, i13);
-        if (this.Zc.f22829w0 && i11 != 0 && this.Fe != Integer.MAX_VALUE && i13 != 0 && this.Ge != Integer.MAX_VALUE) {
+        if (this.Zc.f20012w0 && i11 != 0 && this.Fe != Integer.MAX_VALUE && i13 != 0 && this.Ge != Integer.MAX_VALUE) {
             int i14 = this.He;
             int i15 = 0;
             if (getMessageObject() == null) {
@@ -33,9 +33,9 @@ public final class bj0 extends org.telegram.ui.Cells.t1 {
                 id2 = getMessageObject().getId();
             }
             if (i14 == id2) {
-                if (!this.Ie.f35184w0) {
+                if (!this.Ie.f31711w0) {
                     setTranslationY(-(i11 - this.Fe));
-                    animate().translationY(0.0f).setDuration(320L).setInterpolator(org.telegram.ui.Components.pr.h).start();
+                    animate().translationY(0.0f).setDuration(320L).setInterpolator(org.telegram.ui.Components.wr.h).start();
                 }
                 this.Fe = getTop();
                 this.Ge = getBottom();
@@ -48,7 +48,7 @@ public final class bj0 extends org.telegram.ui.Cells.t1 {
     }
 
     @Override
-    public final wh.g w3() {
-        return wh.g.d(1, this, this.Ie.F);
+    public final uh.g w3() {
+        return uh.g.d(1, this, this.Ie.F);
     }
 }

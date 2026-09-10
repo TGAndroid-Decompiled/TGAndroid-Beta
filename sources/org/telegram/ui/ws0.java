@@ -1,11 +1,11 @@
 package org.telegram.ui;
 
 import android.view.View;
-public final class ws0 extends yu0 {
-    public final PhotoViewer f42501t;
+public final class ws0 extends av0 {
+    public final PhotoViewer f38385t;
 
     public ws0(PhotoViewer photoViewer, View view) {
         super(photoViewer, view);
-        this.f42501t = photoViewer;
+        this.f38385t = photoViewer;
     }
 }

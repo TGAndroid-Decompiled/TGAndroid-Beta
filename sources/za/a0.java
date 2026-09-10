@@ -1,33 +1,39 @@
 package za;
 public final class a0 {
-    public final j0 f51413a;
-    public final b f51414b;
+    public final String f47860a;
+    public final String f47861b;
+    public final int f47862c;
+    public final long d;
 
-    public a0(j0 j0Var, b bVar) {
-        this.f51413a = j0Var;
-        this.f51414b = bVar;
+    public a0(int i10, long j3, String sessionId, String firstSessionId) {
+        kotlin.jvm.internal.i.e(sessionId, "sessionId");
+        kotlin.jvm.internal.i.e(firstSessionId, "firstSessionId");
+        this.f47860a = sessionId;
+        this.f47861b = firstSessionId;
+        this.f47862c = i10;
+        this.d = j3;
     }
 
     public final boolean equals(Object obj) {
-        if (this != obj) {
-            if (obj instanceof a0) {
-                a0 a0Var = (a0) obj;
-                if (!this.f51413a.equals(a0Var.f51413a) || !this.f51414b.equals(a0Var.f51414b)) {
-                    return false;
-                }
-                return true;
-            }
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof a0)) {
             return false;
         }
-        return true;
+        a0 a0Var = (a0) obj;
+        if (kotlin.jvm.internal.i.a(this.f47860a, a0Var.f47860a) && kotlin.jvm.internal.i.a(this.f47861b, a0Var.f47861b) && this.f47862c == a0Var.f47862c && this.d == a0Var.d) {
+            return true;
+        }
+        return false;
     }
 
     public final int hashCode() {
-        int hashCode = this.f51413a.hashCode();
-        return this.f51414b.hashCode() + ((hashCode + (k.SESSION_START.hashCode() * 31)) * 31);
+        long j3 = this.d;
+        return ((a4.a.h(this.f47860a.hashCode() * 31, 31, this.f47861b) + this.f47862c) * 31) + ((int) (j3 ^ (j3 >>> 32)));
     }
 
     public final String toString() {
-        return "SessionEvent(eventType=" + k.SESSION_START + ", sessionData=" + this.f51413a + ", applicationInfo=" + this.f51414b + ')';
+        return "SessionDetails(sessionId=" + this.f47860a + ", firstSessionId=" + this.f47861b + ", sessionIndex=" + this.f47862c + ", sessionStartTimestampUs=" + this.d + ')';
     }
 }

@@ -2,18 +2,17 @@ package org.telegram.ui;
 
 import android.view.View;
 import org.telegram.tgnet.TLRPC;
-public final class b81 implements View.OnLongClickListener {
-    public final TLRPC.TL_authorization f34686a;
-    public final g81 f34687b;
+public final class b81 implements View.OnClickListener {
+    public final TLRPC.TL_authorization f31181a;
+    public final j81 f31182b;
 
-    public b81(g81 g81Var, TLRPC.TL_authorization tL_authorization) {
-        this.f34687b = g81Var;
-        this.f34686a = tL_authorization;
+    public b81(j81 j81Var, TLRPC.TL_authorization tL_authorization) {
+        this.f31182b = j81Var;
+        this.f31181a = tL_authorization;
     }
 
     @Override
-    public final boolean onLongClick(View view) {
-        g81.m(this.f34687b, this.f34686a.country);
-        return true;
+    public final void onClick(View view) {
+        j81.m(this.f31182b, this.f31181a.country);
     }
 }

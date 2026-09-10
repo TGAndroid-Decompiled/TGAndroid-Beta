@@ -1,15 +1,16 @@
 package w7;
 
-import java.lang.ref.Reference;
-import java.util.ArrayList;
+import android.util.Log;
 public abstract class j6 {
-    public static void a(ArrayList arrayList, Object obj) {
-        for (int size = arrayList.size() - 1; size >= 0; size--) {
-            Object obj2 = ((Reference) arrayList.get(size)).get();
-            if (obj2 == null || obj2 == obj) {
-                arrayList.remove(size);
-                return;
-            }
+    public static void a(String str) {
+        boolean isLoggable;
+        if (Log.isLoggable("FirebaseAppIndex", 3)) {
+            isLoggable = true;
+        } else {
+            isLoggable = Log.isLoggable("FirebaseAppIndex", 3);
+        }
+        if (isLoggable) {
+            Log.d("FirebaseAppIndex", str);
         }
     }
 }

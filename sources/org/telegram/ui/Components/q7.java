@@ -1,63 +1,87 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.view.MotionEvent;
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-public final class q7 extends FrameLayout {
-    public final int f29640a;
-    public final k8 f29641b;
+import org.telegram.messenger.MediaController;
+import org.telegram.messenger.MessageObject;
+public final class q7 implements Runnable {
+    public final int f26331a;
+    public final r7 f26332b;
 
-    public q7(k8 k8Var, Context context, int i10) {
-        super(context);
-        this.f29640a = i10;
-        this.f29641b = k8Var;
+    public q7(r7 r7Var, int i10) {
+        this.f26331a = i10;
+        this.f26332b = r7Var;
     }
 
     @Override
-    public void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        TextView textView;
-        switch (this.f29640a) {
+    public final void run() {
+        long j3;
+        switch (this.f26331a) {
             case 0:
-                int y3 = org.telegram.messenger.wl.y(248.0f, i12 - i10, 4);
-                for (int i14 = 0; i14 < 5; i14++) {
-                    int dp = (y3 * i14) + AndroidUtilities.dp((i14 * 48) + 4);
-                    int dp2 = AndroidUtilities.dp(9.0f);
-                    k8 k8Var = this.f29641b;
-                    View view = k8Var.f27757n0[i14];
-                    view.layout(dp, dp2, view.getMeasuredWidth() + dp, k8Var.f27757n0[i14].getMeasuredHeight() + dp2);
-                }
-                return;
-            case 1:
-            default:
-                super.onLayout(z10, i10, i11, i12, i13);
-                return;
-            case 2:
-                super.onLayout(z10, i10, i11, i12, i13);
-                k8 k8Var2 = this.f29641b;
-                if (k8Var2.V != null && (textView = k8Var2.f27740a0) != null) {
-                    int left = (textView.getLeft() - AndroidUtilities.dp(4.0f)) - k8Var2.V.getMeasuredWidth();
-                    org.telegram.ui.ActionBar.v0 v0Var = k8Var2.V;
-                    v0Var.layout(left, v0Var.getTop(), k8Var2.V.getMeasuredWidth() + left, k8Var2.V.getBottom());
+                r7 r7Var = this.f26332b;
+                int i10 = r7Var.v + 1;
+                r7Var.v = i10;
+                if (i10 == 1) {
+                    j8 j8Var = r7Var.H;
+                    j8Var.H0 = -1;
+                    j8Var.I0 = MediaController.getInstance().getPlayingMessageObject().audioProgress;
+                    r7Var.f26611w = System.currentTimeMillis();
+                    AndroidUtilities.runOnUIThread(this, 2000L);
+                    AndroidUtilities.runOnUIThread(r7Var.E);
+                    return;
+                } else if (i10 == 2) {
+                    AndroidUtilities.runOnUIThread(this, 2000L);
+                    return;
+                } else {
                     return;
                 }
-                return;
-        }
-    }
-
-    @Override
-    public boolean onTouchEvent(MotionEvent motionEvent) {
-        switch (this.f29640a) {
-            case 1:
-                k8 k8Var = this.f29641b;
-                if (k8Var.f27752i0.getTag() != null) {
-                    k8Var.A0(false, true);
-                }
-                return true;
             default:
-                return super.onTouchEvent(motionEvent);
+                r7 r7Var2 = this.f26332b;
+                j8 j8Var2 = r7Var2.H;
+                long duration = MediaController.getInstance().getDuration();
+                if (duration != 0 && duration != -9223372036854775807L) {
+                    float f7 = j8Var2.I0;
+                    long currentTimeMillis = System.currentTimeMillis();
+                    long j10 = currentTimeMillis - r7Var2.f26611w;
+                    r7Var2.f26611w = currentTimeMillis;
+                    long j11 = currentTimeMillis - r7Var2.f26612x;
+                    int i11 = r7Var2.v;
+                    if (i11 == 1) {
+                        j3 = 3;
+                    } else if (i11 == 2) {
+                        j3 = 6;
+                    } else {
+                        j3 = 12;
+                    }
+                    float f10 = (float) duration;
+                    float f11 = ((f7 * f10) - ((float) (j10 * j3))) / f10;
+                    if (f11 < 0.0f) {
+                        f11 = 0.0f;
+                    }
+                    j8Var2.I0 = f11;
+                    MessageObject playingMessageObject = MediaController.getInstance().getPlayingMessageObject();
+                    if (playingMessageObject != null && playingMessageObject.isMusic()) {
+                        j8Var2.G0(playingMessageObject, false);
+                    }
+                    if (j8Var2.H0 == -1 && r7Var2.v > 0) {
+                        if (j11 > 200 || j8Var2.I0 == 0.0f) {
+                            r7Var2.f26612x = currentTimeMillis;
+                            if (j8Var2.I0 == 0.0f) {
+                                MediaController.getInstance().seekToProgress(MediaController.getInstance().getPlayingMessageObject(), 0.0f);
+                                MediaController.getInstance().pauseByRewind();
+                            } else {
+                                MediaController.getInstance().seekToProgress(MediaController.getInstance().getPlayingMessageObject(), f11);
+                            }
+                        }
+                        if (r7Var2.v > 0 && j8Var2.I0 > 0.0f) {
+                            AndroidUtilities.runOnUIThread(r7Var2.E, 16L);
+                            return;
+                        }
+                        return;
+                    }
+                    return;
+                }
+                r7Var2.f26611w = System.currentTimeMillis();
+                return;
         }
     }
 }

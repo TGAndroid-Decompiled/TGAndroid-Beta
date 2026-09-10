@@ -1,18 +1,21 @@
 package org.telegram.ui;
 
 import android.view.ViewGroup;
-import androidx.recyclerview.widget.RecyclerView;
-public final class m30 extends s4.s0 {
-    public final j60 f38588a;
+public final class m30 extends s4.j {
+    public final j60 F;
 
     public m30(j60 j60Var) {
-        this.f38588a = j60Var;
+        this.F = j60Var;
     }
 
     @Override
-    public final void b(RecyclerView recyclerView, int i10, int i11) {
+    public final void P(s4.c1 c1Var) {
         ViewGroup viewGroup;
-        viewGroup = ((org.telegram.ui.ActionBar.f3) this.f38588a).containerView;
+        j60 j60Var = this.F;
+        j60Var.Q.invalidate();
+        j60Var.a2.invalidate();
+        viewGroup = ((org.telegram.ui.ActionBar.h3) j60Var).containerView;
         viewGroup.invalidate();
+        j60.J0(j60Var);
     }
 }

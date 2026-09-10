@@ -5,7 +5,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewParent;
-import androidx.fragment.app.i0;
+import androidx.fragment.app.j0;
 import c3.h0;
 import com.google.android.gms.internal.cast.a5;
 import com.google.android.gms.internal.vision.r0;
@@ -39,7 +39,7 @@ public abstract class a {
     public static final void b(int i10, View view, ViewGroup container) {
         kotlin.jvm.internal.i.e(view, "view");
         kotlin.jvm.internal.i.e(container, "container");
-        if (i0.K(2)) {
+        if (j0.K(2)) {
             Log.v("FragmentManager", "SpecialEffectsController: Calling apply state");
         }
         int c10 = m1.j.c(i10);
@@ -48,7 +48,7 @@ public abstract class a {
             if (c10 != 1) {
                 if (c10 != 2) {
                     if (c10 == 3) {
-                        if (i0.K(2)) {
+                        if (j0.K(2)) {
                             Log.v("FragmentManager", "SpecialEffectsController: Setting view " + view + " to INVISIBLE");
                         }
                         view.setVisibility(4);
@@ -56,13 +56,13 @@ public abstract class a {
                     }
                     return;
                 }
-                if (i0.K(2)) {
+                if (j0.K(2)) {
                     Log.v("FragmentManager", "SpecialEffectsController: Setting view " + view + " to GONE");
                 }
                 view.setVisibility(8);
                 return;
             }
-            if (i0.K(2)) {
+            if (j0.K(2)) {
                 Log.v("FragmentManager", "SpecialEffectsController: Setting view " + view + " to VISIBLE");
             }
             ViewParent parent = view.getParent();
@@ -70,7 +70,7 @@ public abstract class a {
                 viewGroup = (ViewGroup) parent;
             }
             if (viewGroup == null) {
-                if (i0.K(2)) {
+                if (j0.K(2)) {
                     Log.v("FragmentManager", "SpecialEffectsController: Adding view " + view + " to Container " + container);
                 }
                 container.addView(view);
@@ -83,7 +83,7 @@ public abstract class a {
             viewGroup = (ViewGroup) parent2;
         }
         if (viewGroup != null) {
-            if (i0.K(2)) {
+            if (j0.K(2)) {
                 Log.v("FragmentManager", "SpecialEffectsController: Removing view " + view + " from container " + viewGroup);
             }
             viewGroup.removeView(view);

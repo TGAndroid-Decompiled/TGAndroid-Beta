@@ -1,70 +1,42 @@
 package org.telegram.ui;
 
-import j$.util.Objects;
-public final class u6 extends pg.a {
-    public final int f40968c;
-    public CharSequence d;
-    public String f40969e;
-    public int f40970f;
-    public long f40971g;
-    public int h;
-    public boolean f40972i;
-    public boolean f40973j;
+import android.content.Context;
+public final class u6 extends org.telegram.ui.Components.cd {
+    public final w6 f37124e0;
 
-    public u6(int i10, String str) {
-        super(i10, true);
-        this.f40968c = -1;
-        this.d = str;
+    public u6(w6 w6Var, Context context) {
+        super(context, 11, org.telegram.ui.Components.cd.W, 0, org.telegram.ui.Components.cd.f22101a0);
+        this.f37124e0 = w6Var;
     }
 
-    public static u6 b(int i10, long j3, String str, int i11) {
-        u6 u6Var = new u6(11);
-        u6Var.f40970f = i10;
-        u6Var.d = str;
-        u6Var.f40971g = j3;
-        u6Var.h = i11;
-        u6Var.f40973j = false;
-        return u6Var;
-    }
-
-    public final boolean equals(Object obj) {
-        if (this != obj) {
-            if (obj != null && u6.class == obj.getClass()) {
-                u6 u6Var = (u6) obj;
-                int i10 = this.f44098a;
-                if (i10 == u6Var.f44098a) {
-                    if (i10 != 9 && i10 != 10 && i10 != 8 && i10 != 4 && i10 != 2 && i10 != 0 && i10 != 13) {
-                        if (i10 == 3) {
-                            return Objects.equals(this.d, u6Var.d);
-                        }
-                        if (i10 == 1) {
-                            return Objects.equals(this.f40969e, u6Var.f40969e);
-                        }
-                        if (i10 == 11) {
-                            if (this.f40970f != u6Var.f40970f || this.f40971g != u6Var.f40971g) {
-                                return false;
-                            }
-                        } else if (i10 != 7 || this.f40968c != u6Var.f40968c) {
-                            return false;
-                        }
-                    }
-                } else {
-                    return false;
+    @Override
+    public final void d(int i10, boolean z10) {
+        y6 y6Var = this.f37124e0.e;
+        if (!z10) {
+            y6Var.f38909b.i1();
+            return;
+        }
+        int i11 = -1;
+        if (i10 == 8) {
+            i10 = -1;
+        }
+        int i12 = 0;
+        while (true) {
+            if (i12 < y6Var.f38908a0.size()) {
+                t6 t6Var = (t6) y6Var.f38908a0.get(i12);
+                if (t6Var != null && t6Var.f14046a == 11 && t6Var.f36845f == i10) {
+                    i11 = i12;
+                    break;
                 }
+                i12++;
             } else {
-                return false;
+                break;
             }
         }
-        return true;
-    }
-
-    public u6(int i10, int i11) {
-        super(7, true);
-        this.f40968c = i10;
-    }
-
-    public u6(int i10) {
-        super(i10, true);
-        this.f40968c = -1;
+        if (i11 >= 0) {
+            y6Var.f38909b.d1(new i2.v(i11, 3), 0, true);
+        } else {
+            y6Var.f38909b.i1();
+        }
     }
 }

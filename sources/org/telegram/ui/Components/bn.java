@@ -1,20 +1,28 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-public final class bn extends vi {
-    public final Runnable P2;
+import android.animation.ValueAnimator;
+public final class bn implements ValueAnimator.AnimatorUpdateListener {
+    public final int f21861a;
+    public final zn f21862b;
 
-    public bn(Context context, org.telegram.ui.ActionBar.n2 n2Var, org.telegram.ui.ActionBar.f6 f6Var, Runnable runnable) {
-        super(context, n2Var, false, false, true, f6Var);
-        this.P2 = runnable;
+    public bn(zn znVar, int i10) {
+        this.f21861a = i10;
+        this.f21862b = znVar;
     }
 
     @Override
-    public final void dismissInternal() {
-        super.dismissInternal();
-        Runnable runnable = this.P2;
-        if (runnable != null) {
-            runnable.run();
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f21861a) {
+            case 0:
+                zn znVar = this.f21862b;
+                znVar.getClass();
+                znVar.E.setTranslationY(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                return;
+            default:
+                zn znVar2 = this.f21862b;
+                znVar2.getClass();
+                znVar2.E.setTranslationY(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                return;
         }
     }
 }

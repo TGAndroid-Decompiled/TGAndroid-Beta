@@ -1,51 +1,89 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.widget.PopupWindow;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.R;
-import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
-public abstract class wr {
-    public final org.telegram.ui.ActionBar.n1 f32349a;
-    public boolean f32350b;
+import android.graphics.PointF;
+import android.view.animation.Interpolator;
+import android.view.animation.PathInterpolator;
+public final class wr implements Interpolator {
+    public static final wr f28819f = new wr(0.25d, 0.1d, 0.25d, 1.0d);
+    public static final wr f28820g = new wr(0.0d, 0.0d, 0.58d, 1.0d);
+    public static final wr h = new wr(0.23d, 1.0d, 0.32d, 1.0d);
+    public static final wr f28821i = new wr(0.42d, 0.0d, 1.0d, 1.0d);
+    public static final wr f28822j = new wr(0.42d, 0.0d, 0.58d, 1.0d);
+    public static final wr f28823k = new wr(0.34d, 1.56d, 0.64d, 1.0d);
+    public static final PathInterpolator f28824l;
+    public final PointF f28825a;
+    public final PointF f28826b;
+    public final PointF f28827c;
+    public final PointF d;
+    public final PointF e;
 
-    public wr(Context context, org.telegram.ui.ActionBar.f6 f6Var, boolean z10) {
-        ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = new ActionBarPopupWindow$ActionBarPopupWindowLayout(R.drawable.popup_fixed_alert2, z10 ? 1 : 0, context, f6Var);
-        actionBarPopupWindow$ActionBarPopupWindowLayout.setAnimationEnabled(false);
-        actionBarPopupWindow$ActionBarPopupWindowLayout.setOnTouchListener(new ur(this, 0));
-        actionBarPopupWindow$ActionBarPopupWindowLayout.setDispatchKeyEventListener(new t(this, 27));
-        actionBarPopupWindow$ActionBarPopupWindowLayout.setShownFromBottom(false);
-        b(actionBarPopupWindow$ActionBarPopupWindowLayout);
-        org.telegram.ui.ActionBar.n1 n1Var = new org.telegram.ui.ActionBar.n1(actionBarPopupWindow$ActionBarPopupWindowLayout, -2, -2);
-        this.f32349a = n1Var;
-        n1Var.f21236b = false;
-        n1Var.setAnimationStyle(R.style.PopupContextAnimation2);
-        n1Var.setOutsideTouchable(true);
-        n1Var.setClippingEnabled(true);
-        n1Var.setInputMethodMode(2);
-        n1Var.setSoftInputMode(0);
-        n1Var.getContentView().setFocusableInTouchMode(true);
-        if (AndroidUtilities.isAccessibilityTouchExplorationEnabled()) {
-            n1Var.setFocusable(true);
-        }
-        n1Var.setOnDismissListener(new PopupWindow.OnDismissListener() {
-            @Override
-            public final void onDismiss() {
-                wr wrVar = wr.this;
-                wrVar.c();
-                wrVar.f32350b = false;
+    static {
+        new PathInterpolator(v7.j8.d("M 0,0 C 0.05, 0, 0.133333, 0.06, 0.166666, 0.4 C 0.208333, 0.82, 0.25, 1, 1, 1"));
+        new PathInterpolator(0.05f, 0.7f, 0.1f, 1.0f);
+        new PathInterpolator(0.3f, 0.0f, 0.8f, 0.15f);
+        f28824l = new PathInterpolator(0.0f, 0.0f, 0.0f, 1.0f);
+    }
+
+    public wr(float f7, float f10, float f11, float f12) {
+        PointF pointF = new PointF(f7, f10);
+        PointF pointF2 = new PointF(f11, f12);
+        this.f28827c = new PointF();
+        this.d = new PointF();
+        this.e = new PointF();
+        float f13 = pointF.x;
+        if (f13 >= 0.0f && f13 <= 1.0f) {
+            float f14 = pointF2.x;
+            if (f14 >= 0.0f && f14 <= 1.0f) {
+                this.f28825a = pointF;
+                this.f28826b = pointF2;
+                return;
             }
-        });
-    }
-
-    public final void a() {
-        org.telegram.ui.ActionBar.n1 n1Var = this.f32349a;
-        if (n1Var != null) {
-            n1Var.dismiss();
+            throw new IllegalArgumentException("endX value must be in the range [0, 1]");
         }
+        throw new IllegalArgumentException("startX value must be in the range [0, 1]");
     }
 
-    public abstract void b(ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout);
+    @Override
+    public final float getInterpolation(float f7) {
+        PointF pointF;
+        PointF pointF2;
+        PointF pointF3;
+        PointF pointF4;
+        PointF pointF5;
+        int i10 = 1;
+        float f10 = f7;
+        while (true) {
+            pointF = this.f28826b;
+            pointF2 = this.f28825a;
+            pointF3 = this.f28827c;
+            pointF4 = this.d;
+            pointF5 = this.e;
+            if (i10 >= 14) {
+                break;
+            }
+            float f11 = pointF2.x * 3.0f;
+            pointF5.x = f11;
+            float f12 = ((pointF.x - pointF2.x) * 3.0f) - f11;
+            pointF4.x = f12;
+            float f13 = (1.0f - pointF5.x) - f12;
+            pointF3.x = f13;
+            float f14 = (((((f13 * f10) + pointF4.x) * f10) + pointF5.x) * f10) - f7;
+            if (Math.abs(f14) < 0.001d) {
+                break;
+            }
+            f10 -= f14 / (((((pointF3.x * 3.0f) * f10) + (pointF4.x * 2.0f)) * f10) + pointF5.x);
+            i10++;
+        }
+        float f15 = pointF2.y * 3.0f;
+        pointF5.y = f15;
+        float f16 = ((pointF.y - pointF2.y) * 3.0f) - f15;
+        pointF4.y = f16;
+        float f17 = (1.0f - pointF5.y) - f16;
+        pointF3.y = f17;
+        return ((((f17 * f10) + pointF4.y) * f10) + pointF5.y) * f10;
+    }
 
-    public abstract void c();
+    public wr(double d, double d10, double d11, double d12) {
+        this((float) d, (float) d10, (float) d11, (float) d12);
+    }
 }

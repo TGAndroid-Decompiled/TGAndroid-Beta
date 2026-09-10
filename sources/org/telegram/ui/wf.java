@@ -1,72 +1,38 @@
 package org.telegram.ui;
 
+import android.text.style.URLSpan;
 import android.view.View;
-import java.io.Serializable;
-import java.util.ArrayList;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_iv;
-public final class wf implements View.OnClickListener {
-    public final int f42370a;
-    public final co f42371b;
-    public final int f42372c;
-    public final ArrayList d;
-    public final String f42373e;
-    public final String f42374f;
-    public final Serializable h;
-    public final TLRPC.InputPeer f42375n;
-    public final int[] f42376r;
-    public final boolean f42377s;
-    public final vf v;
-    public final Object f42378w;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.Utilities;
+public final class wf implements Utilities.CallbackReturn {
+    public final int f38171a;
+    public final Object f38172b;
+    public final Object f38173c;
 
-    public wf(co coVar, int i10, ArrayList arrayList, String str, String str2, String str3, TLRPC.InputPeer inputPeer, int[] iArr, Object obj, boolean z10, vf vfVar, int i11) {
-        this.f42370a = i11;
-        this.f42371b = coVar;
-        this.f42372c = i10;
-        this.d = arrayList;
-        this.f42373e = str;
-        this.f42374f = str2;
-        this.h = str3;
-        this.f42375n = inputPeer;
-        this.f42376r = iArr;
-        this.f42378w = obj;
-        this.f42377s = z10;
-        this.v = vfVar;
+    public wf(int i10, Object obj, Object obj2) {
+        this.f38171a = i10;
+        this.f38172b = obj;
+        this.f38173c = obj2;
     }
 
     @Override
-    public final void onClick(View view) {
-        switch (this.f42370a) {
+    public final Object run(Object obj) {
+        org.telegram.ui.Cells.t1 t1Var;
+        switch (this.f38171a) {
             case 0:
-                boolean z10 = this.f42377s;
-                vf vfVar = this.v;
-                co.U0(this.f42371b, this.f42372c, this.d, this.f42373e, this.f42374f, (String) this.h, this.f42375n, this.f42376r, (TL_iv.RichMessage) this.f42378w, z10, vfVar);
-                return;
-            case 1:
-                boolean z11 = this.f42377s;
-                vf vfVar2 = this.v;
-                co.c0(this.f42371b, this.f42372c, this.d, this.f42373e, this.f42374f, (String) this.h, this.f42375n, this.f42376r, (CharSequence) this.f42378w, z11, vfVar2);
-                return;
+                eo eoVar = (eo) this.f38172b;
+                View view = (View) this.f38173c;
+                URLSpan uRLSpan = (URLSpan) obj;
+                MessageObject messageObject = eoVar.f32299d5;
+                if (view instanceof org.telegram.ui.Cells.t1) {
+                    t1Var = (org.telegram.ui.Cells.t1) view;
+                } else {
+                    t1Var = null;
+                }
+                eoVar.U7(uRLSpan, false, messageObject, t1Var);
+                return Boolean.TRUE;
             default:
-                boolean z12 = this.f42377s;
-                vf vfVar3 = this.v;
-                co.w0(this.f42371b, this.f42372c, this.d, (String[]) this.h, this.f42373e, this.f42374f, this.f42375n, this.f42376r, (CharSequence) this.f42378w, z12, vfVar3);
-                return;
+                return qh.c.d((View) obj, (String) this.f38172b, (String) this.f38173c, null, null);
         }
-    }
-
-    public wf(co coVar, int i10, ArrayList arrayList, String[] strArr, String str, String str2, TLRPC.InputPeer inputPeer, int[] iArr, CharSequence charSequence, boolean z10, vf vfVar) {
-        this.f42370a = 2;
-        this.f42371b = coVar;
-        this.f42372c = i10;
-        this.d = arrayList;
-        this.h = strArr;
-        this.f42373e = str;
-        this.f42374f = str2;
-        this.f42375n = inputPeer;
-        this.f42376r = iArr;
-        this.f42378w = charSequence;
-        this.f42377s = z10;
-        this.v = vfVar;
     }
 }

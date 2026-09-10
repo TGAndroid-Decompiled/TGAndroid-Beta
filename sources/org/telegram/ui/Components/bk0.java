@@ -1,32 +1,58 @@
 package org.telegram.ui.Components;
 
-import android.graphics.drawable.Drawable;
 import android.view.View;
-import org.telegram.messenger.ImageReceiver;
-public final class bk0 extends ImageReceiver {
-    public final int f24770a;
+import androidx.recyclerview.widget.RecyclerView;
+import java.util.ArrayList;
+public final class bk0 implements e2.h {
+    public final int f21849a;
+    public final pk0 f21850b;
 
-    public bk0(int i10, View view) {
-        super(view);
-        this.f24770a = i10;
+    public bk0(pk0 pk0Var, int i10) {
+        this.f21849a = i10;
+        this.f21850b = pk0Var;
     }
 
     @Override
-    public final boolean setImageBitmapByKey(Drawable drawable, String str, int i10, boolean z10, int i11) {
-        switch (this.f24770a) {
+    public final void accept(Object obj) {
+        float f7;
+        View view = (View) obj;
+        switch (this.f21849a) {
             case 0:
-                if (drawable instanceof xi0) {
-                    ((xi0) drawable).L(0, false, true);
+                pk0 pk0Var = this.f21850b;
+                ArrayList arrayList = pk0Var.d;
+                pk0Var.f26161b.getClass();
+                int R = RecyclerView.R(view);
+                if (R >= 0 && R < arrayList.size() && (view instanceof nk0)) {
+                    ((nk0) view).f(((gk0) arrayList.get(R)).f23370c, true);
+                    return;
                 }
-                return super.setImageBitmapByKey(drawable, str, i10, z10, i11);
+                return;
             default:
-                boolean imageBitmapByKey = super.setImageBitmapByKey(drawable, str, i10, z10, i11);
-                if (imageBitmapByKey && (drawable instanceof xi0)) {
-                    xi0 xi0Var = (xi0) drawable;
-                    xi0Var.L(0, false, true);
-                    xi0Var.stop();
+                if (view instanceof nk0) {
+                    nk0 nk0Var = (nk0) view;
+                    mk0 mk0Var = nk0Var.f25541b;
+                    nk0Var.N = false;
+                    float f10 = 1.0f;
+                    mk0Var.setAlpha(1.0f);
+                    if (this.f21850b.N0) {
+                        float f11 = nk0Var.I;
+                        if (nk0Var.f25547w) {
+                            f7 = 0.76f;
+                        } else {
+                            f7 = 1.0f;
+                        }
+                        mk0Var.setScaleX(f11 * f7);
+                        float f12 = nk0Var.I;
+                        if (nk0Var.f25547w) {
+                            f10 = 0.76f;
+                        }
+                        mk0Var.setScaleY(f12 * f10);
+                        return;
+                    }
+                    nk0Var.d();
+                    return;
                 }
-                return imageBitmapByKey;
+                return;
         }
     }
 }

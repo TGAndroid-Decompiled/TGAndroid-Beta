@@ -5,10 +5,10 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.Set;
 public final class c implements Set {
-    public final f f6a;
+    public final f f5a;
 
     public c(f fVar) {
-        this.f6a = fVar;
+        this.f5a = fVar;
     }
 
     @Override
@@ -23,27 +23,27 @@ public final class c implements Set {
 
     @Override
     public final void clear() {
-        this.f6a.clear();
+        this.f5a.clear();
     }
 
     @Override
     public final boolean contains(Object obj) {
-        return this.f6a.containsKey(obj);
+        return this.f5a.containsKey(obj);
     }
 
     @Override
     public final boolean containsAll(Collection collection) {
-        return this.f6a.i(collection);
+        return this.f5a.i(collection);
     }
 
     @Override
     public final boolean equals(Object obj) {
-        f fVar = this.f6a;
+        f fVar = this.f5a;
         if (this != obj) {
             if (obj instanceof Set) {
                 Set set = (Set) obj;
                 try {
-                    if (fVar.f31c == set.size()) {
+                    if (fVar.f28c == set.size()) {
                         if (fVar.i(set)) {
                             return true;
                         }
@@ -62,14 +62,14 @@ public final class c implements Set {
     @Override
     public final int hashCode() {
         int hashCode;
-        f fVar = this.f6a;
+        f fVar = this.f5a;
         int i10 = 0;
-        for (int i11 = fVar.f31c - 1; i11 >= 0; i11--) {
-            Object e7 = fVar.e(i11);
-            if (e7 == null) {
+        for (int i11 = fVar.f28c - 1; i11 >= 0; i11--) {
+            Object e = fVar.e(i11);
+            if (e == null) {
                 hashCode = 0;
             } else {
-                hashCode = e7.hashCode();
+                hashCode = e.hashCode();
             }
             i10 += hashCode;
         }
@@ -78,17 +78,17 @@ public final class c implements Set {
 
     @Override
     public final boolean isEmpty() {
-        return this.f6a.isEmpty();
+        return this.f5a.isEmpty();
     }
 
     @Override
     public final Iterator iterator() {
-        return new b(this.f6a, 0);
+        return new b(this.f5a, 0);
     }
 
     @Override
     public final boolean remove(Object obj) {
-        f fVar = this.f6a;
+        f fVar = this.f5a;
         int c10 = fVar.c(obj);
         if (c10 >= 0) {
             fVar.f(c10);
@@ -99,19 +99,19 @@ public final class c implements Set {
 
     @Override
     public final boolean removeAll(Collection collection) {
-        return this.f6a.j(collection);
+        return this.f5a.j(collection);
     }
 
     @Override
     public final boolean retainAll(Collection collection) {
-        f fVar = this.f6a;
-        int i10 = fVar.f31c;
+        f fVar = this.f5a;
+        int i10 = fVar.f28c;
         for (int i11 = i10 - 1; i11 >= 0; i11--) {
             if (!collection.contains(fVar.e(i11))) {
                 fVar.f(i11);
             }
         }
-        if (i10 != fVar.f31c) {
+        if (i10 != fVar.f28c) {
             return true;
         }
         return false;
@@ -119,13 +119,13 @@ public final class c implements Set {
 
     @Override
     public final int size() {
-        return this.f6a.f31c;
+        return this.f5a.f28c;
     }
 
     @Override
     public final Object[] toArray() {
-        f fVar = this.f6a;
-        int i10 = fVar.f31c;
+        f fVar = this.f5a;
+        int i10 = fVar.f28c;
         Object[] objArr = new Object[i10];
         for (int i11 = 0; i11 < i10; i11++) {
             objArr[i11] = fVar.e(i11);
@@ -135,8 +135,8 @@ public final class c implements Set {
 
     @Override
     public final Object[] toArray(Object[] objArr) {
-        f fVar = this.f6a;
-        int i10 = fVar.f31c;
+        f fVar = this.f5a;
+        int i10 = fVar.f28c;
         if (objArr.length < i10) {
             objArr = (Object[]) Array.newInstance(objArr.getClass().getComponentType(), i10);
         }

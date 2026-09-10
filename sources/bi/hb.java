@@ -1,20 +1,26 @@
 package bi;
 
-import android.content.Context;
-public final class hb extends d0 {
-    public final pb f3104a;
+import android.animation.ValueAnimator;
+public final class hb implements ValueAnimator.AnimatorUpdateListener {
+    public final int f2804a;
+    public final ib f2805b;
 
-    public hb(Context context, pb pbVar) {
-        super(context);
-        this.f3104a = pbVar;
+    public hb(ib ibVar, int i10) {
+        this.f2804a = i10;
+        this.f2805b = ibVar;
     }
 
     @Override
-    public final void invalidate() {
-        super.invalidate();
-        n5 n5Var = this.f3104a.G0;
-        if (n5Var != null) {
-            n5Var.b();
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f2804a) {
+            case 0:
+                ib.a(this.f2805b, valueAnimator);
+                return;
+            default:
+                ib ibVar = this.f2805b;
+                ibVar.getClass();
+                ibVar.setTranslationY(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                return;
         }
     }
 }

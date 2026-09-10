@@ -1,21 +1,24 @@
 package org.telegram.ui.ActionBar;
 
-import android.view.View;
-import org.telegram.ui.Components.y6;
-public final class t1 implements View.OnAttachStateChangeListener {
-    public final y6 f21373a;
+import android.content.DialogInterface;
+public final class t1 implements DialogInterface.OnDismissListener {
+    public final int f18629a;
+    public final Object f18630b;
 
-    public t1(y6 y6Var) {
-        this.f21373a = y6Var;
+    public t1(Object obj, int i10) {
+        this.f18629a = i10;
+        this.f18630b = obj;
     }
 
     @Override
-    public final void onViewAttachedToWindow(View view) {
-        this.f21373a.c(null);
-    }
-
-    @Override
-    public final void onViewDetachedFromWindow(View view) {
-        this.f21373a.b(null);
+    public final void onDismiss(DialogInterface dialogInterface) {
+        switch (this.f18629a) {
+            case 0:
+                ((d2) this.f18630b).K = null;
+                return;
+            default:
+                ((Runnable) this.f18630b).run();
+                return;
+        }
     }
 }

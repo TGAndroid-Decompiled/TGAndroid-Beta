@@ -83,7 +83,7 @@ public class DispatchQueuePoolBackground {
                 this.totalTasksCount++;
                 this.busyQueues.add(remove);
                 this.busyQueuesMap.put(remove.index, this.busyQueuesMap.get(remove.index, 0) + 1);
-                if (ah.y0.f732b) {
+                if (yg.f0.f46996b) {
                     remove.setPriority(1);
                 } else if (remove.getPriority() != 10) {
                     remove.setPriority(10);
@@ -101,7 +101,7 @@ public class DispatchQueuePoolBackground {
             if (backgroundQueue == null) {
                 backgroundQueue = new DispatchQueuePoolBackground(Math.max(1, Runtime.getRuntime().availableProcessors()));
             }
-            Utilities.globalQueue.postRunnable(new e(arrayList2, 2));
+            Utilities.globalQueue.postRunnable(new g(arrayList2, 2));
             return;
         }
         updateTaskCollection = null;
@@ -121,7 +121,7 @@ public class DispatchQueuePoolBackground {
 
     public void lambda$execute$1(Runnable runnable, DispatchQueue dispatchQueue) {
         runnable.run();
-        Utilities.globalQueue.postRunnable(new d3(28, this, dispatchQueue));
+        Utilities.globalQueue.postRunnable(new i3(28, this, dispatchQueue));
     }
 
     public static void lambda$finishCollectUpdateRunnables$2(ArrayList arrayList) {
@@ -131,7 +131,7 @@ public class DispatchQueuePoolBackground {
     public static void lambda$finishCollectUpdateRunnables$3(ArrayList arrayList) {
         backgroundQueue.execute(arrayList);
         arrayList.clear();
-        AndroidUtilities.runOnUIThread(new e(arrayList, 3));
+        AndroidUtilities.runOnUIThread(new g(arrayList, 3));
     }
 
     public static void execute(Runnable runnable) {
@@ -149,7 +149,7 @@ public class DispatchQueuePoolBackground {
         if (updateTaskCollection == null) {
             ArrayList<ArrayList<Runnable>> arrayList = freeCollections;
             if (!arrayList.isEmpty()) {
-                updateTaskCollection = (ArrayList) i2.g.z(1, arrayList);
+                updateTaskCollection = (ArrayList) hc.b.z(1, arrayList);
             } else {
                 updateTaskCollection = new ArrayList<>(100);
             }

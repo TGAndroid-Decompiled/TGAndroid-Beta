@@ -1,59 +1,28 @@
 package v7;
+public final class e8 {
+    public final String f42984a;
+    public final String f42985b;
+    public final String f42986c;
+    public final String d;
+    public final j9 e;
+    public final String f42987f;
+    public final Boolean f42988g;
+    public final Boolean h;
+    public final Boolean f42989i;
+    public final Integer f42990j;
+    public final Integer f42991k;
 
-import android.graphics.Bitmap;
-import android.graphics.Rect;
-import android.graphics.drawable.NinePatchDrawable;
-import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
-import org.telegram.messenger.ApplicationLoader;
-public abstract class e8 {
-    public static NinePatchDrawable a(Bitmap bitmap, Rect rect, int i10, int i11) {
-        if (bitmap != null) {
-            if (!bitmap.isRecycled()) {
-                if (i10 >= 0 && i10 < bitmap.getWidth() && i11 >= 0 && i11 < bitmap.getHeight()) {
-                    return new NinePatchDrawable(ApplicationLoader.applicationContext.getResources(), bitmap, c(i10, i10 + 1, i11, i11 + 1, rect.left, rect.top, rect.right, rect.bottom, bitmap.getPixel(i10, i11)).array(), rect, null);
-                }
-                StringBuilder k10 = com.google.android.gms.internal.vision.e2.k("center pixel is outside bitmap: (", i10, ", ", i11, ") for ");
-                k10.append(bitmap.getWidth());
-                k10.append("x");
-                k10.append(bitmap.getHeight());
-                throw new IllegalArgumentException(k10.toString());
-            }
-            throw new IllegalArgumentException("bitmap is recycled");
-        }
-        throw new IllegalArgumentException("bitmap == null");
-    }
-
-    public static android.graphics.drawable.NinePatchDrawable b(android.graphics.Bitmap[] r37, float[] r38, float r39, float r40, int r41, hh.f r42) {
-        throw new UnsupportedOperationException("Method not decompiled: v7.e8.b(android.graphics.Bitmap[], float[], float, float, int, hh.f):android.graphics.drawable.NinePatchDrawable");
-    }
-
-    public static ByteBuffer c(int i10, int i11, int i12, int i13, int i14, int i15, int i16, int i17, int i18) {
-        ByteBuffer order = ByteBuffer.allocate(84).order(ByteOrder.nativeOrder());
-        order.put((byte) 1);
-        order.put((byte) 2);
-        order.put((byte) 2);
-        order.put((byte) 9);
-        order.putInt(0);
-        order.putInt(0);
-        order.putInt(i14);
-        order.putInt(i16);
-        order.putInt(i15);
-        order.putInt(i17);
-        order.putInt(0);
-        order.putInt(i10);
-        order.putInt(i11);
-        order.putInt(i12);
-        order.putInt(i13);
-        order.putInt(1);
-        order.putInt(1);
-        order.putInt(1);
-        order.putInt(1);
-        order.putInt(i18);
-        order.putInt(1);
-        order.putInt(1);
-        order.putInt(1);
-        order.putInt(1);
-        return order;
+    public e8(d8 d8Var) {
+        this.f42984a = d8Var.f42967a;
+        this.f42985b = d8Var.f42968b;
+        this.f42986c = d8Var.f42969c;
+        this.d = d8Var.d;
+        this.e = (j9) d8Var.f42974k;
+        this.f42987f = d8Var.e;
+        this.f42988g = (Boolean) d8Var.f42970f;
+        this.h = (Boolean) d8Var.f42971g;
+        this.f42989i = (Boolean) d8Var.h;
+        this.f42990j = d8Var.f42972i;
+        this.f42991k = (Integer) d8Var.f42973j;
     }
 }

@@ -1,24 +1,26 @@
 package org.telegram.messenger;
 
-import android.view.MotionEvent;
-import org.telegram.messenger.GoogleMapsProvider;
-import org.telegram.messenger.IMapsProvider;
-public final class j4 implements IMapsProvider.ICallableMethod {
-    public final int f18053a;
-    public final GoogleMapsProvider.GoogleMapView.AnonymousClass1 f18054b;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stars;
+public final class j4 implements Utilities.Callback2 {
+    public final int f15499a;
+    public final Utilities.Callback f15500b;
 
-    public j4(GoogleMapsProvider.GoogleMapView.AnonymousClass1 anonymousClass1, int i10) {
-        this.f18053a = i10;
-        this.f18054b = anonymousClass1;
+    public j4(int i10, Utilities.Callback callback) {
+        this.f15499a = i10;
+        this.f15500b = callback;
     }
 
     @Override
-    public final Object call(Object obj) {
-        switch (this.f18053a) {
+    public final void run(Object obj, Object obj2) {
+        switch (this.f15499a) {
             case 0:
-                return GoogleMapsProvider.GoogleMapView.AnonymousClass1.a(this.f18054b, (MotionEvent) obj);
+                GiftAuctionController.lambda$requestAuctionUpgrades$5(this.f15500b, (TL_stars.starGiftUpgradeAttributes) obj, (TLRPC.TL_error) obj2);
+                return;
             default:
-                return GoogleMapsProvider.GoogleMapView.AnonymousClass1.b(this.f18054b, (MotionEvent) obj);
+                MediaDataController.lambda$searchStickerSets$249(this.f15500b, (TLRPC.messages_FoundStickerSets) obj, (TLRPC.TL_error) obj2);
+                return;
         }
     }
 }

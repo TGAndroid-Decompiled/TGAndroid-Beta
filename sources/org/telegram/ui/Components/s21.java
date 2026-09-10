@@ -1,25 +1,35 @@
 package org.telegram.ui.Components;
-public final class s21 {
-    public static final s21 f30203a;
-    public static final s21 f30204b;
-    public static final s21 f30205c;
-    public static final s21[] d;
 
-    static {
-        ?? r02 = new Enum("TOP", 0);
-        f30203a = r02;
-        ?? r12 = new Enum("LEFT", 1);
-        f30204b = r12;
-        ?? r32 = new Enum("BOTTOM", 2);
-        f30205c = r32;
-        d = new s21[]{r02, r12, r32};
+import org.telegram.messenger.AndroidUtilities;
+public final class s21 implements Runnable {
+    public final int f26923a;
+    public final k31 f26924b;
+
+    public s21(k31 k31Var, int i10) {
+        this.f26923a = i10;
+        this.f26924b = k31Var;
     }
 
-    public static s21 valueOf(String str) {
-        return (s21) Enum.valueOf(s21.class, str);
-    }
-
-    public static s21[] values() {
-        return (s21[]) d.clone();
+    @Override
+    public final void run() {
+        switch (this.f26923a) {
+            case 0:
+                k31 k31Var = this.f26924b;
+                a31 a31Var = k31Var.G;
+                a31Var.v1(true);
+                y21 y21Var = k31Var.f24597s;
+                y21Var.v1(true);
+                k31Var.J.a(true, true);
+                AndroidUtilities.updateVisibleRows(y21Var);
+                AndroidUtilities.updateVisibleRows(a31Var);
+                return;
+            default:
+                k31 k31Var2 = this.f26924b;
+                if (k31Var2.k()) {
+                    k31Var2.l();
+                    return;
+                }
+                return;
+        }
     }
 }

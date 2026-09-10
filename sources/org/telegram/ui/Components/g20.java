@@ -1,112 +1,78 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
 import android.graphics.Paint;
-import android.text.SpannableStringBuilder;
-import android.view.View;
-import android.widget.LinearLayout;
-import android.widget.TextView;
+import android.graphics.Path;
 import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.UserConfig;
+import org.telegram.messenger.ChatObject;
+import org.telegram.messenger.voip.VoIPService;
 import org.telegram.tgnet.TLRPC;
-public final class g20 extends LinearLayout {
-    public final di.d f26260a;
-    public final di.d f26261b;
-    public final di.d f26262c;
-    public final long d;
+public final class g20 {
+    public f20[] f23214a;
+    public f20 f23215b;
+    public f20 f23216c;
+    public f20 d;
+    public float e;
+    public float f23217f;
+    public float f23218g;
+    public float h;
+    public float f23219i;
+    public long f23220j;
+    public float f23221k;
+    public ArrayList f23222l;
+    public Paint f23223m;
+    public Path f23224n;
 
-    public g20(Context context, int i10) {
-        super(context);
-        int i11;
-        TLRPC.TL_emojiList a2 = h9.a(i10);
-        setOrientation(1);
-        x9 x9Var = new x9(context);
-        x9Var.setImageDrawable(new xi0(R.raw.utyan_gallery, AndroidUtilities.dp(110.0f), AndroidUtilities.dp(110.0f)));
-        if (!AndroidUtilities.isTablet()) {
-            addView(x9Var, w7.x5.q(110, 110, 49));
-        }
-        TextView g10 = org.telegram.messenger.w1.g(context, 1, 20.0f);
-        com.google.android.gms.internal.vision.e2.p(org.telegram.ui.ActionBar.j6.G6, null, false, g10, 1);
-        g10.setText(LocaleController.getString(R.string.GalleryAccessAllowAccess));
-        g10.setTypeface(AndroidUtilities.bold());
-        addView(g10, w7.x5.t(-2, -2, 49, 0, 15, 0, 7));
-        TextView textView = new TextView(context);
-        textView.setTextSize(1, 14.0f);
-        com.google.android.gms.internal.vision.e2.p(org.telegram.ui.ActionBar.j6.f20673c7, null, false, textView, 1);
-        if (UserConfig.getInstance(i10).isPremium()) {
-            i11 = R.string.GalleryAccessAllowAccessTextPremium;
-        } else {
-            i11 = R.string.GalleryAccessAllowAccessTextNonPremium;
-        }
-        textView.setText(LocaleController.getString(i11));
-        textView.setMaxWidth(AndroidUtilities.dp(260.0f));
-        textView.setLineSpacing(AndroidUtilities.dp(2.0f), 1.0f);
-        addView(textView, w7.x5.t(-2, -2, 49, 0, 0, 0, 14));
-        di.d dVar = new di.d(context, null, true);
-        this.f26260a = dVar;
-        dVar.e();
-        dVar.g(LocaleController.getString(R.string.GalleryAccessAllowAccessButton), false, true);
-        addView(dVar, w7.x5.q(-2, 44, 49));
-        di.d dVar2 = new di.d(context, null, false);
-        this.f26261b = dVar2;
-        dVar2.e();
-        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("c");
-        spannableStringBuilder.setSpan(new nq(R.drawable.outline_attach_camera_24, 0), 0, 1, 33);
-        spannableStringBuilder.append((CharSequence) "  ").append((CharSequence) LocaleController.getString(R.string.GalleryAccessAllowAccessOpenCamera));
-        dVar2.g(spannableStringBuilder, false, true);
-        addView(dVar2, w7.x5.t(-2, 44, 49, 0, 8, 0, 0));
-        di.d dVar3 = new di.d(context, null, false);
-        this.f26262c = dVar3;
-        dVar3.e();
-        dVar3.setVisibility(8);
-        SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder("c");
-        ArrayList<Long> arrayList = a2.document_id;
-        if (arrayList != null && !arrayList.isEmpty()) {
-            long longValue = a2.document_id.get(0).longValue();
-            this.d = longValue;
-            spannableStringBuilder2.setSpan(new z5(longValue, (Paint.FontMetricsInt) null), 0, 1, 33);
-            spannableStringBuilder2.append((CharSequence) "  ");
-        } else {
-            this.d = 0L;
-        }
-        spannableStringBuilder2.append((CharSequence) LocaleController.getString(R.string.UseEmoji));
-        dVar3.g(spannableStringBuilder2, false, true);
-        addView(dVar3, w7.x5.t(-2, 44, 49, 0, 1, 0, 0));
+    public final void a(float f7) {
+        this.f23218g = f7;
+        float f10 = this.e;
+        this.h = (f7 - f10) / 250.0f;
+        this.f23219i = (f7 - f10) / 120.0f;
     }
 
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), Integer.MIN_VALUE);
-        int makeMeasureSpec2 = View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(44.0f), 1073741824);
-        di.d dVar = this.f26260a;
-        dVar.setUseWrapContent(true);
-        di.d dVar2 = this.f26261b;
-        dVar2.setUseWrapContent(true);
-        di.d dVar3 = this.f26262c;
-        dVar3.setUseWrapContent(true);
-        dVar.measure(makeMeasureSpec, makeMeasureSpec2);
-        dVar2.measure(makeMeasureSpec, makeMeasureSpec2);
-        dVar3.measure(makeMeasureSpec, makeMeasureSpec2);
-        dVar.setUseWrapContent(false);
-        dVar2.setUseWrapContent(false);
-        dVar3.setUseWrapContent(false);
-        int max = Math.max(Math.max(dVar.getMeasuredWidth(), dVar2.getMeasuredWidth()), dVar3.getMeasuredWidth());
-        dVar.getLayoutParams().width = AndroidUtilities.dp(80.0f) + max;
-        dVar2.getLayoutParams().width = AndroidUtilities.dp(80.0f) + max;
-        dVar3.getLayoutParams().width = AndroidUtilities.dp(80.0f) + max;
-        super.onMeasure(i10, i11);
-    }
-
-    public void setUseAnEmojiVisible(boolean z10) {
-        int i10;
+    public final void b(int i10, boolean z10) {
+        f20 f20Var;
+        f20 f20Var2 = this.f23215b;
+        if (f20Var2 != null && f20Var2.f22814i == i10) {
+            return;
+        }
+        if (VoIPService.getSharedInstance() == null && this.f23215b == null) {
+            this.f23215b = this.d;
+            return;
+        }
         if (z10) {
-            i10 = 0;
+            f20Var = this.f23215b;
         } else {
-            i10 = 8;
+            f20Var = null;
         }
-        this.f26262c.setVisibility(i10);
+        this.f23216c = f20Var;
+        this.f23215b = this.f23214a[i10];
+        if (f20Var != null) {
+            this.f23221k = 0.0f;
+        } else {
+            this.f23221k = 1.0f;
+        }
+    }
+
+    public final void c(boolean z10) {
+        VoIPService sharedInstance = VoIPService.getSharedInstance();
+        if (sharedInstance != null) {
+            int callState = sharedInstance.getCallState();
+            if (!sharedInstance.isSwitchingStream() && (callState == 1 || callState == 2 || callState == 6 || callState == 5)) {
+                b(2, z10);
+                return;
+            }
+            ChatObject.Call call = sharedInstance.groupCall;
+            if (call != null) {
+                TLRPC.GroupCallParticipant groupCallParticipant = (TLRPC.GroupCallParticipant) call.participants.f(sharedInstance.getSelfId());
+                if ((groupCallParticipant != null && !groupCallParticipant.can_self_unmute && groupCallParticipant.muted && !ChatObject.canManageCalls(sharedInstance.getChat())) || sharedInstance.groupCall.call.rtmp_stream) {
+                    sharedInstance.setMicMute(true, false, false);
+                    b(3, z10);
+                    return;
+                }
+                b(sharedInstance.isMicMute() ? 1 : 0, z10);
+                return;
+            }
+            b(sharedInstance.isMicMute() ? 1 : 0, z10);
+        }
     }
 }

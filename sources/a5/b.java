@@ -4,5 +4,5 @@ import android.net.Uri;
 import android.webkit.WebView;
 import b5.h;
 public interface b {
-    void c(WebView webView, a aVar, Uri uri, boolean z10, h hVar);
+    void b(WebView webView, a aVar, Uri uri, boolean z10, h hVar);
 }

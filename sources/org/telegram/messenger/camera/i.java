@@ -4,43 +4,43 @@ import java.io.File;
 import org.telegram.ui.Cells.b2;
 import org.telegram.ui.Cells.e2;
 public final class i implements Runnable {
-    public final int f17377a = 0;
-    public final boolean f17378b;
-    public final boolean f17379c;
+    public final int f14882a = 0;
+    public final boolean f14883b;
+    public final boolean f14884c;
     public final Object d;
-    public final Object f17380e;
+    public final Object e;
 
     public i(CameraController cameraController, Object obj, boolean z10, boolean z11) {
         this.d = cameraController;
-        this.f17380e = obj;
-        this.f17378b = z10;
-        this.f17379c = z11;
+        this.e = obj;
+        this.f14883b = z10;
+        this.f14884c = z11;
     }
 
     @Override
     public final void run() {
-        switch (this.f17377a) {
+        switch (this.f14882a) {
             case 0:
-                ((CameraController) this.d).lambda$stopVideoRecording$17(this.f17380e, this.f17378b, this.f17379c);
+                ((CameraController) this.d).lambda$stopVideoRecording$17(this.e, this.f14883b, this.f14884c);
                 return;
             default:
-                String str = (String) this.f17380e;
-                e2 e2Var = ((b2) this.d).f21663b;
-                e2Var.f21865d0 = false;
-                e2Var.f21867e0 = str;
+                String str = (String) this.e;
+                e2 e2Var = ((b2) this.d).f18909b;
+                e2Var.f19053d0 = false;
+                e2Var.f19054e0 = str;
                 if (str == null) {
-                    e2Var.f21867e0 = "";
+                    e2Var.f19054e0 = "";
                 }
-                e2Var.f21869f0 = this.f17378b;
-                e2Var.f(this.f17379c, true);
+                e2Var.f19056f0 = this.f14883b;
+                e2Var.f(this.f14884c, true);
                 return;
         }
     }
 
     public i(b2 b2Var, String str, File file, boolean z10, boolean z11) {
         this.d = b2Var;
-        this.f17380e = str;
-        this.f17378b = z10;
-        this.f17379c = z11;
+        this.e = str;
+        this.f14883b = z10;
+        this.f14884c = z11;
     }
 }

@@ -10,7 +10,7 @@ import java.nio.charset.Charset;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.TimeUnit;
-import org.telegram.ui.Cells.p6;
+import org.telegram.ui.Cells.r6;
 public class FileVideoCapturer implements VideoCapturer {
     private static final String TAG = "FileVideoCapturer";
     private CapturerObserver capturerObserver;
@@ -81,7 +81,7 @@ public class FileVideoCapturer implements VideoCapturer {
                     }
                     sb2.append((char) read);
                 } else {
-                    throw new RuntimeException(p6.i("Found end of file before end of header for file: ", str));
+                    throw new RuntimeException(r6.i("Found end of file before end of header for file: ", str));
                 }
             }
         }
@@ -90,8 +90,8 @@ public class FileVideoCapturer implements VideoCapturer {
         public void close() {
             try {
                 this.mediaFile.close();
-            } catch (IOException e7) {
-                Logging.e("VideoReaderY4M", "Problem closing file", e7);
+            } catch (IOException e) {
+                Logging.e("VideoReaderY4M", "Problem closing file", e);
             }
         }
 
@@ -122,8 +122,8 @@ public class FileVideoCapturer implements VideoCapturer {
                     return new VideoFrame(allocate, 0, nanos);
                 }
                 throw new RuntimeException("Frames should be delimited by FRAME plus newline, found delimter was: '" + str + "'");
-            } catch (IOException e7) {
-                throw new RuntimeException(e7);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
             }
         }
     }
@@ -131,9 +131,9 @@ public class FileVideoCapturer implements VideoCapturer {
     public FileVideoCapturer(String str) {
         try {
             this.videoReader = new VideoReaderY4M(str);
-        } catch (IOException e7) {
+        } catch (IOException e) {
             Logging.d("FileVideoCapturer", "Could not open video file: " + str);
-            throw e7;
+            throw e;
         }
     }
 

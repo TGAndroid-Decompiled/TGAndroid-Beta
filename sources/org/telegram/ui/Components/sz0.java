@@ -1,12 +1,8 @@
 package org.telegram.ui.Components;
+public final class sz0 {
+    public int f27237a;
 
-import android.graphics.Outline;
-import android.view.View;
-import android.view.ViewOutlineProvider;
-import org.telegram.messenger.AndroidUtilities;
-public final class sz0 extends ViewOutlineProvider {
-    @Override
-    public final void getOutline(View view, Outline outline) {
-        outline.setRoundRect(0, 0, view.getWidth(), view.getHeight(), AndroidUtilities.dp(16.0f));
+    public sz0(int i10) {
+        this.f27237a = i10;
     }
 }

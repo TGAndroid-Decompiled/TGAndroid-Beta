@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.Surface;
 import java.nio.ByteBuffer;
-import k2.g0;
 public interface l {
     void a(long j3, int i10, int i11, int i12);
 
@@ -34,9 +33,9 @@ public interface l {
 
     void i(int i10);
 
-    boolean j(g0 g0Var);
+    void j(Surface surface);
 
-    void k(Surface surface);
+    boolean k(o0.b bVar);
 
     void release();
 

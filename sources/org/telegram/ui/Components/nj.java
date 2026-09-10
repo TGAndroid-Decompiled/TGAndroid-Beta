@@ -1,23 +1,42 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
 import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-public final class nj extends s4.d0 {
-    public final ig.e0 f28799r;
+import java.util.ArrayList;
+import org.telegram.tgnet.TLRPC;
+public final class nj implements ll0, sj {
+    public final bk f25531a;
 
-    public nj(ig.e0 e0Var, Context context) {
-        super(context);
-        this.f28799r = e0Var;
+    public nj(bk bkVar) {
+        this.f25531a = bkVar;
     }
 
     @Override
-    public final int k(int i10, View view) {
-        return org.telegram.messenger.w1.z(8.0f, ((yj) this.f28799r.V).f32960s.getPaddingTop() - AndroidUtilities.statusBarHeight, super.k(i10, view));
+    public void a(TLRPC.User user, boolean z10, int i10, long j3) {
+        bk bkVar = this.f25531a;
+        bkVar.f26422b.dismiss(true);
+        bkVar.J.a(user, z10, i10, j3);
     }
 
     @Override
-    public final int m(int i10) {
-        return super.m(i10) * 2;
+    public boolean d(int i10, View view) {
+        Object O;
+        bk bkVar = this.f25531a;
+        s4.h0 adapter = bkVar.f21845s.getAdapter();
+        xj xjVar = bkVar.F;
+        if (adapter == xjVar) {
+            O = xjVar.E(i10);
+        } else {
+            vj vjVar = bkVar.E;
+            O = vjVar.O(vjVar.S(i10), vjVar.Q(i10));
+        }
+        if (O != null) {
+            bkVar.L((ak) view, O);
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public void b(ArrayList arrayList, String str, boolean z10, int i10, long j3, boolean z11) {
     }
 }

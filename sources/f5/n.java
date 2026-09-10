@@ -13,7 +13,7 @@ public final class n extends com.googlecode.mp4parser.b {
         ByteBuffer allocate = ByteBuffer.allocate(8);
         e5.b.r(0, allocate);
         e5.b.q(0, allocate);
-        allocate.putInt(this.f6474b.size());
+        allocate.putInt(this.f6166b.size());
         writableByteChannel.write((ByteBuffer) allocate.rewind());
         c(writableByteChannel);
     }

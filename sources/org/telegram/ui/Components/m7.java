@@ -1,22 +1,41 @@
 package org.telegram.ui.Components;
-public final class m7 implements Runnable {
-    public final int f28425a;
-    public final k8 f28426b;
 
-    public m7(k8 k8Var, int i10) {
-        this.f28425a = i10;
-        this.f28426b = k8Var;
+import android.view.View;
+public final class m7 implements jl0 {
+    public final int f25174a;
+
+    public m7(int i10) {
+        this.f25174a = i10;
     }
 
     @Override
-    public final void run() {
-        switch (this.f28425a) {
+    public final void d(int i10, View view) {
+        switch (this.f25174a) {
             case 0:
-                k8.n(this.f28426b);
+                if (view instanceof org.telegram.ui.Cells.x) {
+                    ((org.telegram.ui.Cells.x) view).a();
+                    return;
+                }
+                return;
+            case 1:
+                boolean z10 = ChatAttachAlertPhotoLayout.f20983q1;
+                if (view instanceof org.telegram.ui.Cells.t5) {
+                    org.telegram.ui.Cells.t5 t5Var = (org.telegram.ui.Cells.t5) view;
+                    t5Var.f20441w.a(t5Var);
+                    return;
+                }
+                return;
+            case 2:
+                return;
+            case 3:
+                int i11 = wh.c.f44036a0;
                 return;
             default:
-                k8.G(this.f28426b);
+                int i12 = wh.m.A0;
                 return;
         }
+    }
+
+    private final void a(int i10, View view) {
     }
 }

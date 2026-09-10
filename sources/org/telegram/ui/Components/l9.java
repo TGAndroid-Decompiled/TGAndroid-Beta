@@ -1,93 +1,200 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Paint;
+import android.graphics.ColorFilter;
+import android.graphics.Rect;
 import android.graphics.RectF;
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
+import android.graphics.drawable.Drawable;
+import android.view.ViewGroup;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import org.telegram.messenger.DialogObject;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.messenger.MessagesController;
 import org.telegram.tgnet.TLObject;
-public class l9 extends View {
-    public final k9 f28147a;
-    public sg.c1 f28148b;
-    public f01 f28149c;
-    public Paint d;
+import org.telegram.tgnet.TLRPC;
+public final class l9 extends Drawable {
+    public final ViewGroup f24905a;
+    public final int f24906b;
+    public boolean d;
+    public final int e;
+    public final int f24908f;
+    public final float f24909g;
+    public final le.j f24907c = new le.j(new m.g3(this, 6), wr.h, 380);
+    public final ArrayList h = new ArrayList();
+    public int f24910i = 255;
 
-    public l9(Context context, boolean z10) {
-        super(context);
-        this.f28147a = new k9(this, z10);
+    public l9(int i10, ViewGroup viewGroup, int i11, int i12, float f7) {
+        this.f24906b = i10;
+        this.f24905a = viewGroup;
+        this.e = i11;
+        this.f24908f = i12;
+        this.f24909g = f7;
     }
 
-    public final void a(boolean z10) {
-        this.f28147a.b(z10, true);
-    }
-
-    public final void b(int i10, TLObject tLObject, int i11) {
-        this.f28147a.l(i10, tLObject, i11);
-    }
-
-    @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        this.f28147a.g();
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        this.f28147a.h();
-    }
-
-    @Override
-    public final void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
-        this.f28147a.i(canvas);
-        if (this.f28149c != null) {
-            RectF rectF = AndroidUtilities.rectTmp;
-            rectF.set(getWidth() - AndroidUtilities.dp(22.0f), getHeight() - AndroidUtilities.dp(22.0f), getWidth() - AndroidUtilities.dp(0.0f), getHeight() - AndroidUtilities.dp(0.0f));
-            this.f28148b.e(rectF);
-            canvas.drawCircle(rectF.centerX(), rectF.centerY(), (rectF.width() / 2.0f) + AndroidUtilities.dp(1.33f), this.d);
-            canvas.drawCircle(rectF.centerX(), rectF.centerY(), rectF.width() / 2.0f, this.f28148b.f46063f);
-            this.f28149c.c(rectF.centerX() - (this.f28149c.f25874c / 2.0f), rectF.centerY(), 1.0f, -1, canvas);
+    public final void a() {
+        if (!this.d) {
+            this.d = true;
+            ArrayList arrayList = this.h;
+            int size = arrayList.size();
+            int i10 = 0;
+            while (i10 < size) {
+                Object obj = arrayList.get(i10);
+                i10++;
+                k9 k9Var = (k9) obj;
+                if (k9Var.f24675c != 0 && !k9Var.d) {
+                    k9Var.d = true;
+                    k9Var.f24673a.onAttachedToWindow();
+                }
+            }
         }
     }
 
+    public final void b() {
+        if (this.d) {
+            this.d = false;
+            ArrayList arrayList = this.h;
+            int size = arrayList.size();
+            int i10 = 0;
+            while (i10 < size) {
+                Object obj = arrayList.get(i10);
+                i10++;
+                k9 k9Var = (k9) obj;
+                if (k9Var.d) {
+                    k9Var.d = false;
+                    k9Var.f24673a.onDetachedFromWindow();
+                }
+            }
+        }
+    }
+
+    public final void c(Canvas canvas) {
+        Rect bounds = getBounds();
+        if (!bounds.isEmpty() && this.f24910i != 0) {
+            float f7 = bounds.left;
+            float f10 = bounds.top;
+            le.j jVar = this.f24907c;
+            canvas.saveLayer(f7, f10, f7 + jVar.d.f12886f.f12893a, f10 + this.e, null);
+            for (int size = jVar.f12889b.size() - 1; size >= 0; size--) {
+                le.g n10 = jVar.n(size);
+                RectF b10 = n10.b();
+                Object obj = n10.f12879a;
+                float f11 = n10.f12882f.f12893a;
+                float c10 = n10.c();
+                float width = b10.width() - f11;
+                float f12 = f7 + b10.left + f11;
+                float f13 = width / 2.0f;
+                float f14 = f12 + f13;
+                float f15 = f10 + f13;
+                canvas.save();
+                canvas.scale(c10, c10, f14, f15);
+                canvas.drawCircle(f14, f15, f13 + this.f24909g, org.telegram.ui.ActionBar.j6.Il);
+                k9 k9Var = (k9) obj;
+                k9Var.f24673a.setImageCoords(f12, f10, width, width);
+                k9Var.f24673a.setAlpha((this.f24910i / 255.0f) * n10.c());
+                k9Var.f24673a.draw(canvas);
+                canvas.restore();
+            }
+            canvas.restore();
+        }
+    }
+
+    public final void d(List list, boolean z10) {
+        k9 k9Var;
+        le.j jVar = this.f24907c;
+        if (list != null && !list.isEmpty()) {
+            if (!z10) {
+                jVar.r(null, false);
+            }
+            ArrayList arrayList = new ArrayList(list.size());
+            Iterator it = list.iterator();
+            while (it.hasNext()) {
+                long peerDialogId = DialogObject.getPeerDialogId((TLRPC.Peer) it.next());
+                ArrayList arrayList2 = this.h;
+                int size = arrayList2.size();
+                int i10 = 0;
+                while (true) {
+                    if (i10 < size) {
+                        Object obj = arrayList2.get(i10);
+                        i10++;
+                        k9Var = (k9) obj;
+                        if (k9Var.f24675c == peerDialogId) {
+                            break;
+                        }
+                    } else {
+                        k9Var = null;
+                        break;
+                    }
+                }
+                if (k9Var == null) {
+                    int size2 = arrayList2.size();
+                    int i11 = 0;
+                    while (true) {
+                        if (i11 < size2) {
+                            Object obj2 = arrayList2.get(i11);
+                            i11++;
+                            k9Var = (k9) obj2;
+                            if (k9Var.f24675c == 0) {
+                                break;
+                            }
+                        } else {
+                            k9Var = null;
+                            break;
+                        }
+                    }
+                }
+                if (k9Var == null) {
+                    k9Var = new k9(this, this.f24905a);
+                    arrayList2.add(k9Var);
+                }
+                ImageReceiver imageReceiver = k9Var.f24673a;
+                g9 g9Var = k9Var.f24674b;
+                if (k9Var.f24675c != peerDialogId) {
+                    k9Var.f24675c = peerDialogId;
+                    int i12 = this.f24906b;
+                    TLObject userOrChat = MessagesController.getInstance(i12).getUserOrChat(peerDialogId);
+                    if (userOrChat != null) {
+                        g9Var.j(i12, userOrChat);
+                        imageReceiver.setForUserOrChat(userOrChat, g9Var);
+                    } else {
+                        g9Var.n(peerDialogId, "", "");
+                        imageReceiver.clearImage();
+                    }
+                }
+                arrayList.add(k9Var);
+                if (this.d && !k9Var.d) {
+                    k9Var.d = true;
+                    imageReceiver.onAttachedToWindow();
+                }
+            }
+            jVar.r(arrayList, z10);
+            return;
+        }
+        jVar.r(null, z10);
+    }
+
     @Override
-    public void onMeasure(int i10, int i11) {
-        super.onMeasure(i10, i11);
-        int measuredWidth = getMeasuredWidth();
-        k9 k9Var = this.f28147a;
-        k9Var.f27796p = measuredWidth;
-        k9Var.f27795o = getMeasuredHeight();
+    public final void draw(Canvas canvas) {
+        c(canvas);
     }
 
-    public void setAvatarsTextSize(int i10) {
-        this.f28147a.j(i10);
+    @Override
+    public final int getAlpha() {
+        return this.f24910i;
     }
 
-    public void setCentered(boolean z10) {
-        this.f28147a.f27792l = z10;
+    @Override
+    public final int getOpacity() {
+        return 0;
     }
 
-    public void setCount(int i10) {
-        this.f28147a.k(i10);
+    @Override
+    public final void setAlpha(int i10) {
+        this.f24910i = i10;
     }
 
-    public void setDelegate(Runnable runnable) {
-        this.f28147a.f27790j = runnable;
-    }
-
-    public void setSize(int i10) {
-        this.f28147a.f27799s = i10;
-    }
-
-    public void setStepFactor(float f7) {
-        this.f28147a.f27800t = f7;
-    }
-
-    public void setStyle(int i10) {
-        k9 k9Var = this.f28147a;
-        k9Var.f27791k = i10;
-        k9Var.f();
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

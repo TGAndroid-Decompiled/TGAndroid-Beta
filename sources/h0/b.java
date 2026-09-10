@@ -16,9 +16,9 @@ import java.util.List;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 public abstract class b {
-    public static final float[][] f10825a = {new float[]{0.401288f, 0.650173f, -0.051461f}, new float[]{-0.250268f, 1.204414f, 0.045854f}, new float[]{-0.002079f, 0.048952f, 0.953127f}};
-    public static final float[][] f10826b = {new float[]{1.8620678f, -1.0112547f, 0.14918678f}, new float[]{0.38752654f, 0.62144744f, -0.00897398f}, new float[]{-0.0158415f, -0.03412294f, 1.0499644f}};
-    public static final float[] f10827c = {95.047f, 100.0f, 108.883f};
+    public static final float[][] f9164a = {new float[]{0.401288f, 0.650173f, -0.051461f}, new float[]{-0.250268f, 1.204414f, 0.045854f}, new float[]{-0.002079f, 0.048952f, 0.953127f}};
+    public static final float[][] f9165b = {new float[]{1.8620678f, -1.0112547f, 0.14918678f}, new float[]{0.38752654f, 0.62144744f, -0.00897398f}, new float[]{-0.0158415f, -0.03412294f, 1.0499644f}};
+    public static final float[] f9166c = {95.047f, 100.0f, 108.883f};
     public static final float[][] d = {new float[]{0.41233894f, 0.35762063f, 0.18051042f}, new float[]{0.2126f, 0.7152f, 0.0722f}, new float[]{0.01932141f, 0.11916382f, 0.9503448f}};
 
     public static a5.a a(TypedArray typedArray, XmlPullParser xmlPullParser, Resources.Theme theme, String str, int i10) {
@@ -32,8 +32,8 @@ public abstract class b {
             }
             try {
                 aVar = a5.a.e(typedArray.getResources(), typedArray.getResourceId(i10, 0), theme);
-            } catch (Exception e7) {
-                Log.e("ComplexColorCompat", "Failed to inflate ComplexColor.", e7);
+            } catch (Exception e) {
+                Log.e("ComplexColorCompat", "Failed to inflate ComplexColor.", e);
                 aVar = null;
             }
             if (aVar != null) {
@@ -87,7 +87,7 @@ public abstract class b {
         if (!z10) {
             f13 = ((f12 * 116.0f) - 16.0f) / 903.2963f;
         }
-        float[] fArr = f10827c;
+        float[] fArr = f9166c;
         return i0.a.c(f11 * fArr[0], f10 * fArr[1], f13 * fArr[2]);
     }
 
@@ -125,7 +125,7 @@ public abstract class b {
         if (next == 2) {
             xmlResourceParser.require(2, null, "font-family");
             if (xmlResourceParser.getName().equals("font-family")) {
-                TypedArray obtainAttributes = resources.obtainAttributes(Xml.asAttributeSet(xmlResourceParser), d0.a.f6478b);
+                TypedArray obtainAttributes = resources.obtainAttributes(Xml.asAttributeSet(xmlResourceParser), d0.a.f6170b);
                 String string = obtainAttributes.getString(0);
                 String string2 = obtainAttributes.getString(5);
                 String string3 = obtainAttributes.getString(6);
@@ -151,7 +151,7 @@ public abstract class b {
                 while (xmlResourceParser.next() != 3) {
                     if (xmlResourceParser.getEventType() == 2) {
                         if (xmlResourceParser.getName().equals("font")) {
-                            TypedArray obtainAttributes2 = resources.obtainAttributes(Xml.asAttributeSet(xmlResourceParser), d0.a.f6479c);
+                            TypedArray obtainAttributes2 = resources.obtainAttributes(Xml.asAttributeSet(xmlResourceParser), d0.a.f6171c);
                             int i13 = 8;
                             if (!obtainAttributes2.hasValue(8)) {
                                 i13 = 1;

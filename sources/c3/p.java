@@ -4,27 +4,27 @@ public interface p extends b2.k {
 
     boolean d(byte[] bArr, int i10, int i11, boolean z10);
 
+    int e(int i10, int i11, byte[] bArr);
+
+    boolean f(int i10, boolean z10);
+
+    boolean g(byte[] bArr, int i10, int i11, boolean z10);
+
     long getLength();
 
     long getPosition();
 
-    int h(int i10, int i11, byte[] bArr);
+    long h();
 
-    boolean i(int i10, boolean z10);
+    void j(int i10);
 
-    boolean j(byte[] bArr, int i10, int i11, boolean z10);
+    void p();
 
-    long k();
-
-    void l(int i10);
-
-    void q();
-
-    void r(int i10);
+    void q(int i10);
 
     void readFully(byte[] bArr, int i10, int i11);
 
-    int skip(int i10);
+    boolean s(int i10, boolean z10);
 
-    boolean v(int i10, boolean z10);
+    int skip(int i10);
 }

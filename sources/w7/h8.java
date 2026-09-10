@@ -53,7 +53,7 @@ public abstract class h8 {
             }
             return new int[i10];
         }
-        throw new IllegalArgumentException(i2.g.i(i10, "must be power of 2 between 2^1 and 2^30: "));
+        throw new IllegalArgumentException(hc.b.j(i10, "must be power of 2 between 2^1 and 2^30: "));
     }
 
     public static void d(int i10, int i11, Object obj) {

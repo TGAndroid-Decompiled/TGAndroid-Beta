@@ -1,24 +1,82 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Canvas;
+import android.animation.AnimatorSet;
+import android.animation.ValueAnimator;
+import android.graphics.Paint;
+import android.graphics.drawable.Drawable;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-public final class ry0 extends vc0 {
-    public final sy0 f30145w0;
+public final class ry0 extends FrameLayout {
+    public float E;
+    public float F;
+    public ValueAnimator G;
+    public ValueAnimator H;
+    public com.google.firebase.messaging.m I;
+    public float J;
+    public boolean K;
+    public org.telegram.ui.Components.voip.h L;
+    public Paint f26786a;
+    public Paint f26787b;
+    public Paint f26788c;
+    public Paint d;
+    public boolean e;
+    public bi.nc f26789f;
+    public TextView h;
+    public TextView f26790n;
+    public TextView f26791r;
+    public TextView f26792s;
+    public TextView v;
+    public View f26793w;
+    public int f26794x;
+    public org.telegram.ui.Cells.ga f26795y;
 
-    public ry0(sy0 sy0Var, Context context) {
-        super(context, 13, null);
-        this.f30145w0 = sy0Var;
+    @Override
+    public final void invalidate() {
+        TextView textView = this.f26792s;
+        TextView textView2 = this.f26791r;
+        TextView textView3 = this.f26790n;
+        TextView textView4 = this.h;
+        super.invalidate();
+        this.f26789f.invalidate();
+        int i10 = this.f26794x;
+        int i11 = org.telegram.ui.ActionBar.j6.Vi;
+        if (i10 != org.telegram.ui.ActionBar.j6.w0(null, i11, false)) {
+            this.f26794x = org.telegram.ui.ActionBar.j6.w0(null, i11, false);
+            textView4.setCompoundDrawablesWithIntrinsicBounds(org.telegram.ui.ActionBar.j6.K(AndroidUtilities.dp(10.0f), this.f26794x), (Drawable) null, (Drawable) null, (Drawable) null);
+            textView4.setCompoundDrawablePadding(AndroidUtilities.dp(6.0f));
+            textView3.setCompoundDrawablesWithIntrinsicBounds(org.telegram.ui.ActionBar.j6.K(AndroidUtilities.dp(10.0f), this.f26794x), (Drawable) null, (Drawable) null, (Drawable) null);
+            textView3.setCompoundDrawablePadding(AndroidUtilities.dp(6.0f));
+            textView2.setCompoundDrawablesWithIntrinsicBounds(org.telegram.ui.ActionBar.j6.K(AndroidUtilities.dp(10.0f), i0.a.k(this.f26794x, 64)), (Drawable) null, (Drawable) null, (Drawable) null);
+            textView2.setCompoundDrawablePadding(AndroidUtilities.dp(6.0f));
+            textView.setCompoundDrawablesWithIntrinsicBounds(org.telegram.ui.ActionBar.j6.K(AndroidUtilities.dp(10.0f), i0.a.k(this.f26794x, 127)), (Drawable) null, (Drawable) null, (Drawable) null);
+            textView.setCompoundDrawablePadding(AndroidUtilities.dp(6.0f));
+        }
+        this.f26795y.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.G6, false));
+        this.f26793w.setBackgroundColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f17929d7, false));
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
-        float dp = AndroidUtilities.dp(31.0f);
-        sy0 sy0Var = this.f30145w0;
-        sy0Var.d.setColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f20763h7, false));
-        canvas.drawLine(AndroidUtilities.dp(2.0f), dp, getMeasuredWidth() - AndroidUtilities.dp(2.0f), dp, sy0Var.d);
-        float measuredHeight = getMeasuredHeight() - AndroidUtilities.dp(31.0f);
-        canvas.drawLine(AndroidUtilities.dp(2.0f), measuredHeight, getMeasuredWidth() - AndroidUtilities.dp(2.0f), measuredHeight, sy0Var.d);
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        com.google.firebase.messaging.m mVar = this.I;
+        if (mVar != null) {
+            mVar.f6100a = true;
+            AnimatorSet animatorSet = (AnimatorSet) mVar.f6102c;
+            if (!animatorSet.isRunning()) {
+                animatorSet.start();
+            }
+        }
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        com.google.firebase.messaging.m mVar = this.I;
+        if (mVar != null) {
+            mVar.f6100a = false;
+            ((AnimatorSet) mVar.f6102c).cancel();
+        }
     }
 }

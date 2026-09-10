@@ -1,48 +1,54 @@
 package og;
 
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.Rect;
-import android.graphics.drawable.Drawable;
-public final class c extends Drawable {
-    public Drawable f17050a;
-    public float f17051b;
-    public int f17052c;
-
-    public final void a(int i10) {
-        if (this.f17052c != i10) {
-            this.f17052c = i10;
-            setColorFilter(new PorterDuffColorFilter(i10, PorterDuff.Mode.MULTIPLY));
-        }
+import org.telegram.messenger.R;
+public final class c extends m {
+    @Override
+    public final float a() {
+        return 0.3f;
     }
 
     @Override
-    public final void draw(Canvas canvas) {
-        Drawable drawable = this.f17050a;
-        Rect bounds = getBounds();
-        float f7 = this.f17051b;
-        if (f7 == 1.0f) {
-            drawable.setBounds(bounds);
-        } else {
-            drawable.setBounds((int) (bounds.centerX() - ((bounds.width() / 2.0f) * f7)), (int) (bounds.centerY() - ((bounds.height() / 2.0f) * f7)), (int) (((bounds.width() / 2.0f) * f7) + bounds.centerX()), (int) (((bounds.height() / 2.0f) * f7) + bounds.centerY()));
-        }
-        drawable.draw(canvas);
+    public final float b() {
+        return (float) Math.toRadians(0.0d);
     }
 
     @Override
-    public final int getOpacity() {
-        return -2;
+    public final int c() {
+        return -10742;
     }
 
     @Override
-    public final void setAlpha(int i10) {
-        this.f17050a.setAlpha(i10);
+    public final float d() {
+        return 0.5f;
     }
 
     @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
-        this.f17050a.setColorFilter(colorFilter);
+    public final int e() {
+        return R.raw.photo_marker;
+    }
+
+    @Override
+    public final float f() {
+        return 0.45f;
+    }
+
+    @Override
+    public final float g() {
+        return 0.4f;
+    }
+
+    @Override
+    public final float h() {
+        return 1.5f;
+    }
+
+    @Override
+    public final float k() {
+        return 0.04f;
+    }
+
+    @Override
+    public final int l() {
+        return R.drawable.paint_elliptical_brush;
     }
 }

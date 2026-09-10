@@ -1,45 +1,11 @@
 package f2;
 
-import java.util.ArrayList;
-import java.util.Arrays;
+import e2.v;
 public final class d extends dd.k {
-    public final long f9203c;
-    public final ArrayList d;
-    public final ArrayList f9204e;
+    public final v f7684c;
 
-    public d(int i10, long j3) {
+    public d(int i10, v vVar) {
         super(i10, 1);
-        this.f9203c = j3;
-        this.d = new ArrayList();
-        this.f9204e = new ArrayList();
-    }
-
-    public final d d(int i10) {
-        ArrayList arrayList = this.f9204e;
-        int size = arrayList.size();
-        for (int i11 = 0; i11 < size; i11++) {
-            d dVar = (d) arrayList.get(i11);
-            if (dVar.f6801b == i10) {
-                return dVar;
-            }
-        }
-        return null;
-    }
-
-    public final e e(int i10) {
-        ArrayList arrayList = this.d;
-        int size = arrayList.size();
-        for (int i11 = 0; i11 < size; i11++) {
-            e eVar = (e) arrayList.get(i11);
-            if (eVar.f6801b == i10) {
-                return eVar;
-            }
-        }
-        return null;
-    }
-
-    @Override
-    public final String toString() {
-        return dd.k.a(this.f6801b) + " leaves: " + Arrays.toString(this.d.toArray()) + " containers: " + Arrays.toString(this.f9204e.toArray());
+        this.f7684c = vVar;
     }
 }

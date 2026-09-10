@@ -1,38 +1,58 @@
 package org.telegram.ui.Components;
-public final class kd implements Runnable {
-    public final int f27831a;
-    public final ld f27832b;
-    public final boolean f27833c;
 
-    public kd(ld ldVar, boolean z10, int i10) {
-        this.f27831a = i10;
-        this.f27832b = ldVar;
-        this.f27833c = z10;
+import android.graphics.Canvas;
+import android.graphics.drawable.Drawable;
+import androidx.mediarouter.app.MediaRouteButton;
+import java.lang.reflect.Field;
+public abstract class kd extends MediaRouteButton {
+    public boolean f24698a;
+
+    public final void a() {
+        boolean b10 = b();
+        if (this.f24698a != b10) {
+            this.f24698a = b10;
+            c(b10);
+        }
+    }
+
+    public final boolean b() {
+        Field declaredField;
+        try {
+            declaredField = MediaRouteButton.class.getDeclaredField("mConnectionState");
+            declaredField.setAccessible(true);
+        } catch (Exception unused) {
+        }
+        if (((Integer) declaredField.get(this)).intValue() <= 0) {
+            return false;
+        }
+        return true;
+    }
+
+    public abstract void c(boolean z10);
+
+    @Override
+    public final void dispatchDraw(Canvas canvas) {
+        a();
     }
 
     @Override
-    public final void run() {
-        switch (this.f27831a) {
-            case 0:
-                boolean z10 = this.f27833c;
-                ld ldVar = this.f27832b;
-                if (!z10) {
-                    ldVar.Z0.setVisibility(8);
-                    return;
-                } else {
-                    ldVar.getClass();
-                    return;
-                }
-            default:
-                boolean z11 = this.f27833c;
-                ld ldVar2 = this.f27832b;
-                if (!z11) {
-                    ldVar2.V0.setVisibility(8);
-                    return;
-                } else {
-                    ldVar2.getClass();
-                    return;
-                }
-        }
+    public final void invalidate() {
+        super.invalidate();
+        a();
+    }
+
+    @Override
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        a();
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        a();
+    }
+
+    @Override
+    public void setBackground(Drawable drawable) {
     }
 }

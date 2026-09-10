@@ -1,39 +1,27 @@
 package org.telegram.ui.Components;
 
-import android.graphics.ColorFilter;
-import android.graphics.Paint;
-import android.graphics.drawable.Drawable;
-import android.view.View;
-public abstract class qq extends Drawable {
-    public final Paint f29824a = new Paint(1);
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import org.telegram.messenger.R;
+public final class qq extends AnimatorListenerAdapter {
+    public final sq f26473a;
 
-    public qq(View view) {
-        if (view != null) {
-            view.addOnAttachStateChangeListener(new bi.i2(this, 6));
-            if (view.isAttachedToWindow()) {
-                view.post(new wp(this, 1));
+    public qq(sq sqVar) {
+        this.f26473a = sqVar;
+    }
+
+    @Override
+    public final void onAnimationEnd(Animator animator) {
+        sq sqVar = this.f26473a;
+        ColorPicker$RadioButton[] colorPicker$RadioButtonArr = sqVar.v;
+        if (sqVar.K == 1) {
+            sqVar.F.setVisibility(4);
+        }
+        for (int i10 = 0; i10 < colorPicker$RadioButtonArr.length; i10++) {
+            if (colorPicker$RadioButtonArr[i10].getTag(R.id.index_tag) == null) {
+                colorPicker$RadioButtonArr[i10].setVisibility(4);
             }
         }
-    }
-
-    @Override
-    public final int getOpacity() {
-        return -2;
-    }
-
-    @Override
-    public void setAlpha(int i10) {
-        this.f29824a.setAlpha(i10);
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
-        this.f29824a.setColorFilter(colorFilter);
-    }
-
-    public void a() {
-    }
-
-    public void b() {
+        sqVar.f27164y = null;
     }
 }

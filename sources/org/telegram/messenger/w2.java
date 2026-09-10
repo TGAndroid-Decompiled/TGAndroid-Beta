@@ -1,26 +1,25 @@
 package org.telegram.messenger;
-public final class w2 implements Runnable {
-    public final int f19481a;
-    public final FileLoader f19482b;
-    public final String f19483c;
 
-    public w2(FileLoader fileLoader, String str, int i10) {
-        this.f19481a = i10;
-        this.f19482b = fileLoader;
-        this.f19483c = str;
+import org.telegram.messenger.FileLoadOperation;
+public final class w2 implements Runnable {
+    public final int f16822a;
+    public final FileLoadOperation f16823b;
+    public final FileLoadOperation.RequestInfo f16824c;
+
+    public w2(FileLoadOperation fileLoadOperation, FileLoadOperation.RequestInfo requestInfo, int i10) {
+        this.f16822a = i10;
+        this.f16823b = fileLoadOperation;
+        this.f16824c = requestInfo;
     }
 
     @Override
     public final void run() {
-        switch (this.f19481a) {
+        switch (this.f16822a) {
             case 0:
-                this.f19482b.lambda$cancelLoadFile$7(this.f19483c);
-                return;
-            case 1:
-                this.f19482b.lambda$cancel$9(this.f19483c);
+                this.f16823b.lambda$startDownloadRequest$27(this.f16824c);
                 return;
             default:
-                this.f19482b.lambda$cancelLoadAllFiles$12(this.f19483c);
+                this.f16823b.lambda$clearOperation$24(this.f16824c);
                 return;
         }
     }

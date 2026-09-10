@@ -1,68 +1,12 @@
 package u2;
-public final class f1 implements g1 {
-    public final int f46699a;
+public interface f1 {
+    boolean c();
 
-    public f1(int i10) {
-        this.f46699a = i10;
-    }
+    long d();
 
-    @Override
-    public final g1 a(int i10, int i11) {
-        return new f1((this.f46699a - i11) + i10);
-    }
+    boolean n(i2.q0 q0Var);
 
-    @Override
-    public final int b() {
-        if (this.f46699a > 0) {
-            return 0;
-        }
-        return -1;
-    }
+    long r();
 
-    @Override
-    public final int c(int i10) {
-        int i11 = i10 - 1;
-        if (i11 < 0) {
-            return -1;
-        }
-        return i11;
-    }
-
-    @Override
-    public final int d(int i10) {
-        int i11 = i10 + 1;
-        if (i11 < this.f46699a) {
-            return i11;
-        }
-        return -1;
-    }
-
-    @Override
-    public final g1 e(int i10, int i11) {
-        return new f1(this.f46699a + i11);
-    }
-
-    @Override
-    public final int g() {
-        int i10 = this.f46699a;
-        if (i10 > 0) {
-            return i10 - 1;
-        }
-        return -1;
-    }
-
-    @Override
-    public final int getLength() {
-        return this.f46699a;
-    }
-
-    @Override
-    public final g1 h() {
-        return new f1(0);
-    }
-
-    @Override
-    public final g1 f() {
-        return this;
-    }
+    void u(long j3);
 }

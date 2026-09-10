@@ -1,130 +1,226 @@
 package org.telegram.ui;
 
-import android.graphics.Typeface;
-import android.media.AudioRecordingConfiguration;
-import android.media.MediaRoute2Info;
-import com.google.firebase.components.ComponentRegistrar;
-import com.google.firebase.concurrent.ExecutorsRegistrar;
-import com.google.firebase.installations.FirebaseInstallationsRegistrar;
-import java.util.List;
-import java.util.concurrent.ScheduledExecutorService;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.SharedConfig;
-import org.telegram.messenger.Utilities;
-public final class sw0 implements Utilities.Callback2Return, org.telegram.ui.ActionBar.a2, org.telegram.ui.Components.rv0, g2.g, q3.g, q9.e, pa.a, q9.d, qg.h0, androidx.car.app.utils.d {
-    public final int f40587a;
+import android.view.View;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.MessagesController;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stories;
+public final class sw0 implements org.telegram.ui.Components.qg {
+    public final PopupNotificationActivity f36773a;
 
-    public sw0(int i10) {
-        this.f40587a = i10;
-    }
-
-    public static AudioRecordingConfiguration d(Object obj) {
-        return (AudioRecordingConfiguration) obj;
-    }
-
-    public static MediaRoute2Info e(Object obj) {
-        return (MediaRoute2Info) obj;
+    public sw0(PopupNotificationActivity popupNotificationActivity) {
+        this.f36773a = popupNotificationActivity;
     }
 
     @Override
-    public Object D(cf.c cVar) {
-        qa.d lambda$getComponents$0;
-        switch (this.f40587a) {
-            case 16:
-                lambda$getComponents$0 = FirebaseInstallationsRegistrar.lambda$getComponents$0(cVar);
-                return lambda$getComponents$0;
-            case 28:
-                return (ScheduledExecutorService) ExecutorsRegistrar.f6329a.get();
-            default:
-                return (ScheduledExecutorService) ExecutorsRegistrar.f6331c.get();
+    public final boolean D0() {
+        return true;
+    }
+
+    @Override
+    public final void D1() {
+        PopupNotificationActivity popupNotificationActivity = this.f36773a;
+        MessageObject messageObject = popupNotificationActivity.Q;
+        if (messageObject != null) {
+            MessagesController.getInstance(messageObject.currentAccount).sendTyping(popupNotificationActivity.Q.getDialogId(), 0L, 0, popupNotificationActivity.K);
         }
     }
 
     @Override
-    public Typeface a() {
-        switch (this.f40587a) {
-            case 17:
-                return AndroidUtilities.getTypeface("fonts/rmedium.ttf");
-            case 18:
-                return AndroidUtilities.getTypeface("fonts/rmediumitalic.ttf");
-            case 19:
-                return Typeface.create("serif", 1);
-            case 20:
-                return AndroidUtilities.getTypeface("fonts/rcondensedbold.ttf");
-            case 21:
-                return AndroidUtilities.getTypeface("fonts/rmono.ttf");
-            default:
-                return AndroidUtilities.getTypeface("fonts/mw_bold.ttf");
+    public final void I(CharSequence charSequence, boolean z10, int i10, int i11, long j3) {
+        PopupNotificationActivity popupNotificationActivity = this.f36773a;
+        if (popupNotificationActivity.Q == null) {
+            return;
         }
+        int i12 = popupNotificationActivity.S;
+        if (i12 >= 0 && i12 < popupNotificationActivity.f30257a0.size()) {
+            popupNotificationActivity.f30257a0.remove(popupNotificationActivity.S);
+        }
+        MessagesController.getInstance(popupNotificationActivity.Q.currentAccount).markDialogAsRead(popupNotificationActivity.Q.getDialogId(), popupNotificationActivity.Q.getId(), Math.max(0, popupNotificationActivity.Q.getId()), popupNotificationActivity.Q.messageOwner.date, true, 0L, 0, true, 0);
+        popupNotificationActivity.Q = null;
+        popupNotificationActivity.f();
     }
 
     @Override
-    public List b(ComponentRegistrar componentRegistrar) {
-        return componentRegistrar.getComponents();
+    public final TLRPC.TL_channels_sendAsPeers J() {
+        return null;
     }
 
     @Override
-    public boolean c(int i10, int i11, int i12, int i13, int i14) {
+    public final int b1() {
+        return 0;
+    }
+
+    @Override
+    public final TL_stories.StoryItem d1() {
+        return null;
+    }
+
+    @Override
+    public final boolean e1(long j3) {
         return false;
     }
 
     @Override
-    public void call() {
-        throw null;
+    public final boolean h1() {
+        return false;
     }
 
     @Override
-    public g2.h createDataSource() {
-        return new g2.b(ApplicationLoader.applicationContext);
+    public final boolean l() {
+        return false;
     }
 
     @Override
-    public void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        switch (this.f40587a) {
-            case 1:
-                b2Var.dismiss();
-                return;
-            case 2:
-                b2Var.dismiss();
-                return;
-            case 3:
-            default:
-                b2Var.dismiss();
-                return;
-            case 4:
-                b2Var.dismiss();
-                return;
-            case 5:
-                b2Var.dismiss();
-                return;
-            case 6:
-                b2Var.dismiss();
-                return;
-        }
+    public final boolean n1() {
+        return false;
     }
 
     @Override
-    public void i(int i10) {
-        SharedConfig.proxyRotationTimeout = i10;
-        SharedConfig.saveConfig();
+    public final tn p0() {
+        return null;
     }
 
     @Override
-    public Object run(Object obj, Object obj2) {
-        Integer num = (Integer) obj2;
-        if (((Integer) obj).intValue() == 0) {
-            return zh.v7.X0(false, LocaleController.formatPluralStringComma("Stars", num.intValue()), 0.66f, null);
-        }
-        return LocaleController.formatNumber(num.intValue(), ',');
+    public final int u() {
+        return 0;
     }
 
     @Override
-    public void h(pa.b bVar) {
+    public final boolean v1() {
+        return false;
     }
 
     @Override
-    public void l() {
+    public final TLRPC.Peer w() {
+        return null;
+    }
+
+    @Override
+    public final void B(boolean z10) {
+    }
+
+    @Override
+    public final void G() {
+    }
+
+    @Override
+    public final void H0() {
+    }
+
+    @Override
+    public final void J0() {
+    }
+
+    @Override
+    public final void T0() {
+    }
+
+    @Override
+    public final void W() {
+    }
+
+    @Override
+    public final void Z(boolean z10) {
+    }
+
+    @Override
+    public final void a1(int i10) {
+    }
+
+    @Override
+    public final void b2() {
+    }
+
+    @Override
+    public final void d2(int i10) {
+    }
+
+    @Override
+    public final void g2() {
+    }
+
+    @Override
+    public final void h() {
+    }
+
+    @Override
+    public final void h2(boolean z10) {
+    }
+
+    @Override
+    public final void k() {
+    }
+
+    @Override
+    public final void m0() {
+    }
+
+    @Override
+    public final void m1() {
+    }
+
+    @Override
+    public final void m2() {
+    }
+
+    @Override
+    public final void p1() {
+    }
+
+    @Override
+    public final void q1() {
+    }
+
+    @Override
+    public final void r1() {
+    }
+
+    @Override
+    public final void t0() {
+    }
+
+    @Override
+    public final void u1(CharSequence charSequence) {
+    }
+
+    @Override
+    public final void u2() {
+    }
+
+    @Override
+    public final void x() {
+    }
+
+    @Override
+    public final void y(float f7) {
+    }
+
+    @Override
+    public final void y1() {
+    }
+
+    @Override
+    public final void y2() {
+    }
+
+    @Override
+    public final void F0(int i10, int i11) {
+    }
+
+    @Override
+    public final void T(float f7, int i10) {
+    }
+
+    @Override
+    public final void k1(CharSequence charSequence, boolean z10, boolean z11) {
+    }
+
+    @Override
+    public final void s1(View view, CharSequence charSequence, boolean z10) {
+    }
+
+    @Override
+    public final void i2(int i10, int i11, int i12, long j3, long j10, boolean z10) {
     }
 }

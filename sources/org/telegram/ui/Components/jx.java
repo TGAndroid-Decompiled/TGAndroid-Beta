@@ -1,35 +1,36 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.view.View;
-import android.widget.FrameLayout;
-import org.telegram.messenger.AndroidUtilities;
-public final class jx extends FrameLayout {
-    public final kz f27609a;
+import java.util.ArrayList;
+import org.telegram.tgnet.TLRPC;
+public final class jx extends wv {
+    public final TLRPC.StickerSet W;
+    public final rz X;
 
-    public jx(kz kzVar, Context context) {
-        super(context);
-        this.f27609a = kzVar;
+    public jx(rz rzVar, org.telegram.ui.ActionBar.p2 p2Var, Context context, org.telegram.ui.ActionBar.f6 f6Var, ArrayList arrayList, TLRPC.StickerSet stickerSet) {
+        super(p2Var, context, f6Var, arrayList);
+        this.X = rzVar;
+        this.W = stickerSet;
     }
 
     @Override
-    public final boolean drawChild(Canvas canvas, View view, long j3) {
-        kz kzVar = this.f27609a;
-        jw jwVar = kzVar.I;
-        kw kwVar = kzVar.V;
-        kx kxVar = kzVar.P;
-        if (view != kxVar && view != kwVar) {
-            return super.drawChild(canvas, view, j3);
+    public final void X(boolean z10) {
+        rz rzVar = this.X;
+        ArrayList arrayList = rzVar.f26844p1;
+        TLRPC.StickerSet stickerSet = this.W;
+        if (z10) {
+            if (!arrayList.contains(Long.valueOf(stickerSet.f17222id))) {
+                arrayList.add(Long.valueOf(stickerSet.f17222id));
+            }
+        } else {
+            arrayList.remove(Long.valueOf(stickerSet.f17222id));
         }
-        canvas.save();
-        float y3 = jwVar.getY() + jwVar.getMeasuredHeight() + 1.0f;
-        if (view == kxVar && kwVar != null) {
-            y3 = Math.max(y3, kwVar.getY() + kwVar.getMeasuredHeight() + 1.0f);
-        }
-        canvas.clipRect(0.0f, y3 - (AndroidUtilities.dp(16.0f) * kzVar.f27953b.f15395e), getMeasuredWidth(), getMeasuredHeight());
-        boolean drawChild = super.drawChild(canvas, view, j3);
-        canvas.restore();
-        return drawChild;
+        rzVar.V();
+    }
+
+    @Override
+    public final void dismiss() {
+        this.X.f26869w2 = false;
+        super.dismiss();
     }
 }

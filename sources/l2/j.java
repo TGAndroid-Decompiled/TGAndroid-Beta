@@ -1,21 +1,22 @@
 package l2;
-public final class j extends v2.b {
-    public final i d;
+public interface j {
+    boolean E();
 
-    public j(i iVar, long j3, long j10) {
-        super(j3, j10);
-        this.d = iVar;
-    }
+    long J();
 
-    @Override
-    public final long a() {
-        b();
-        return this.d.f(this.f47312c);
-    }
+    long K(long j3);
 
-    @Override
-    public final long d() {
-        b();
-        return this.d.e(this.f47312c);
-    }
+    long M(long j3, long j10);
+
+    long a(long j3);
+
+    long c(long j3, long j10);
+
+    long i(long j3, long j10);
+
+    long k(long j3, long j10);
+
+    m2.j m(long j3);
+
+    long w(long j3, long j10);
 }

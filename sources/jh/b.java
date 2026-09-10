@@ -1,63 +1,139 @@
 package jh;
 
 import android.content.Context;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
+import android.view.View;
+import android.view.ViewGroup;
+import gg.v1;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import le.e;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.ActionBar.f6;
-import org.telegram.ui.Components.sp;
-import org.telegram.ui.Components.vq;
-import w7.x5;
-public final class b extends FrameLayout {
-    public final f6 f13753a;
-    public a f13754b;
-    public vq f13755c;
-    public boolean d;
+import org.telegram.messenger.em;
+import org.telegram.ui.Components.voip.u2;
+public abstract class b extends ViewGroup {
+    public int f11942a;
+    public int f11943b;
+    public final LinkedHashMap f11944c;
 
-    public b(Context context, f6 f6Var) {
+    public b(Context context) {
         super(context);
-        this.f13753a = f6Var;
+        this.f11944c = new LinkedHashMap(16);
     }
 
-    public final void a(int i10, boolean z10) {
-        if (this.f13755c == null) {
-            vq vqVar = new vq(getContext(), this.f13753a);
-            this.f13755c = vqVar;
-            vqVar.setReverse(this.d);
-            addView(this.f13755c, x5.e(-1, 28, 48));
-        }
-        this.f13755c.f31989a.c(i10, z10);
+    public final void a(u2 u2Var) {
+        addView(u2Var);
+        this.f11944c.put(u2Var, new a(u2Var, new v1(this, 15)));
     }
 
     public final void b(boolean z10, boolean z11) {
-        super.setEnabled(z10);
-        this.f13754b.e(z10, z11);
+        boolean z12;
+        int min;
+        int i10;
+        boolean z13;
+        e eVar;
+        int measuredWidth;
+        int i11;
+        int measuredWidth2 = getMeasuredWidth();
+        int measuredHeight = getMeasuredHeight();
+        if (measuredWidth2 > measuredHeight) {
+            z12 = false;
+        } else {
+            z12 = true;
+        }
+        if (measuredWidth2 > 0 && measuredHeight > 0) {
+            LinkedHashMap linkedHashMap = this.f11944c;
+            int i12 = 0;
+            for (a aVar : linkedHashMap.values()) {
+                if (aVar.h) {
+                    i12++;
+                }
+            }
+            if (i12 == 0) {
+                i12 = 1;
+            }
+            if (!z12) {
+                int min2 = Math.min(AndroidUtilities.dp(50.0f) + Math.max((int) (em.A(50.0f, i12, measuredWidth2) / (i12 + 0.333f)), 0), measuredWidth2 / i12);
+                min = AndroidUtilities.dp(76.0f);
+                i10 = (measuredWidth2 - (i12 * min2)) / 2;
+                measuredWidth2 = min2;
+            } else {
+                min = Math.min(AndroidUtilities.dp(50.0f) + Math.max((int) (em.A(50.0f, i12, measuredHeight) / (i12 + 0.333f)), 0), measuredHeight / i12);
+                i10 = (measuredHeight - (i12 * min)) / 2;
+            }
+            int i13 = 0;
+            for (Map.Entry entry : linkedHashMap.entrySet()) {
+                a aVar2 = (a) entry.getValue();
+                boolean z14 = aVar2.h;
+                u2 u2Var = aVar2.e;
+                e eVar2 = aVar2.f11939b;
+                le.b bVar = aVar2.f11940c;
+                e eVar3 = aVar2.f11938a;
+                if (z14) {
+                    if (!z12) {
+                        measuredWidth = ((measuredWidth2 - u2Var.getMeasuredWidth()) / 2) + (measuredWidth2 * i13) + i10;
+                        i11 = getMeasuredHeight() - AndroidUtilities.dp(76.0f);
+                    } else {
+                        measuredWidth = ((measuredWidth2 - u2Var.getMeasuredWidth()) / 2) + (getMeasuredWidth() - measuredWidth2);
+                        i11 = (min * i13) + i10;
+                    }
+                    if (!z11 && ((z10 || eVar3.f12878g) && bVar.f12870f)) {
+                        eVar3.a(measuredWidth);
+                    } else {
+                        eVar3.c(measuredWidth);
+                    }
+                    if (!z11 && ((z10 || eVar2.f12878g) && bVar.f12870f)) {
+                        eVar2.a(i11);
+                    } else {
+                        eVar2.c(i11);
+                    }
+                    i13++;
+                }
+                boolean z15 = aVar2.h;
+                if (!z11 && (z10 || ((eVar = bVar.h) != null && eVar.f12878g))) {
+                    z13 = true;
+                } else {
+                    z13 = false;
+                }
+                bVar.a(z15, z13);
+            }
+            invalidate();
+        }
     }
 
-    public final void c(boolean z10, boolean z11) {
-        a aVar = this.f13754b;
-        if (aVar.d == null) {
-            if (!z10) {
-                return;
-            }
-            sp spVar = new sp(AndroidUtilities.dp(18.0f), AndroidUtilities.dp(1.7f), -9079435);
-            aVar.f13750e = spVar;
-            spVar.f30413f = 90.0f;
-            ImageView imageView = new ImageView(aVar.getContext());
-            aVar.d = imageView;
-            imageView.setBackground(aVar.f13750e);
-            aVar.d.setVisibility(8);
-            aVar.addView(aVar.d, x5.e(46, 46, 17));
+    public final void c(u2 u2Var, boolean z10, boolean z11) {
+        a aVar = (a) this.f11944c.get(u2Var);
+        if (aVar != null && aVar.h != z10) {
+            aVar.h = z10;
+            b(z11, false);
         }
-        le.b bVar = aVar.f13747a;
-        if (!bVar.f15396f && bVar.f15395e == 0.0f) {
-            aVar.f13750e.f30411c = -1L;
-        }
-        bVar.a(z10, z11);
     }
 
     @Override
-    public void setEnabled(boolean z10) {
-        b(z10, false);
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        int childCount = getChildCount();
+        for (int i14 = 0; i14 < childCount; i14++) {
+            View childAt = getChildAt(i14);
+            childAt.layout(0, 0, childAt.getMeasuredWidth(), childAt.getMeasuredHeight());
+        }
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        int size = View.MeasureSpec.getSize(i10);
+        int size2 = View.MeasureSpec.getSize(i11);
+        setMeasuredDimension(size, size2);
+        int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(76.0f), 1073741824);
+        int makeMeasureSpec2 = View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(76.0f), 1073741824);
+        int childCount = getChildCount();
+        for (int i12 = 0; i12 < childCount; i12++) {
+            getChildAt(i12).measure(makeMeasureSpec, makeMeasureSpec2);
+        }
+        if (this.f11942a == size && this.f11943b == size2) {
+            b(true, false);
+            return;
+        }
+        b(false, true);
+        this.f11942a = size;
+        this.f11943b = size2;
     }
 }

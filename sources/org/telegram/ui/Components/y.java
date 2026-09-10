@@ -1,15 +1,15 @@
 package org.telegram.ui.Components;
-public final class y extends org.telegram.ui.a71 {
-    public final z f32821e;
+public final class y extends org.telegram.ui.c71 {
+    public final z e;
 
     public y(z zVar, x xVar) {
         super(xVar);
-        this.f32821e = zVar;
+        this.e = zVar;
     }
 
     @Override
     public final void dismiss() {
         super.dismiss();
-        this.f32821e.f33060i0 = null;
+        this.e.f29546i0 = null;
     }
 }

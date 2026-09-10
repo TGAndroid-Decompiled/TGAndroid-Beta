@@ -1,57 +1,42 @@
 package org.telegram.messenger;
-
-import java.util.ArrayList;
-import org.telegram.ui.Components.ChatActivityEnterView;
 public final class rf implements Runnable {
-    public final int f18927a = 0;
-    public final boolean f18928b;
-    public final int f18929c;
-    public final int d;
-    public final long f18930e;
-    public final Object f18931f;
-    public final Object h;
+    public final int f16233a;
+    public final MessagesStorage f16234b;
+    public final int f16235c;
 
-    public rf(MessagesStorage messagesStorage, long j3, ArrayList arrayList, boolean z10, int i10, int i11) {
-        this.f18931f = messagesStorage;
-        this.f18930e = j3;
-        this.h = arrayList;
-        this.f18928b = z10;
-        this.f18929c = i10;
-        this.d = i11;
+    public rf(MessagesStorage messagesStorage, int i10, int i11) {
+        this.f16233a = i11;
+        this.f16234b = messagesStorage;
+        this.f16235c = i10;
     }
 
     @Override
     public final void run() {
-        switch (this.f18927a) {
+        switch (this.f16233a) {
             case 0:
-                int i10 = this.f18929c;
-                int i11 = this.d;
-                ((MessagesStorage) this.f18931f).lambda$markMessagesAsDeleted$229(this.f18930e, (ArrayList) this.h, this.f18928b, i10, i11);
+                this.f16234b.lambda$readAllDialogs$65(this.f16235c);
+                return;
+            case 1:
+                this.f16234b.lambda$checkIfFolderEmptyInternal$245(this.f16235c);
+                return;
+            case 2:
+                this.f16234b.lambda$clearDownloadQueue$184(this.f16235c);
+                return;
+            case 3:
+                this.f16234b.lambda$putMessagesInternal$196(this.f16235c);
+                return;
+            case 4:
+                this.f16234b.lambda$getDownloadQueue$186(this.f16235c);
+                return;
+            case 5:
+                this.f16234b.lambda$getUnsentMessages$152(this.f16235c);
+                return;
+            case 6:
+                this.f16234b.lambda$checkIfFolderEmpty$246(this.f16235c);
                 return;
             default:
-                ChatActivityEnterView chatActivityEnterView = (ChatActivityEnterView) this.f18931f;
-                CharSequence charSequence = (CharSequence) this.h;
-                chatActivityEnterView.f23723f0 = null;
-                chatActivityEnterView.q0(true);
-                org.telegram.ui.Components.qf qfVar = chatActivityEnterView.E0;
-                if (qfVar != null) {
-                    qfVar.setText("");
-                }
-                org.telegram.ui.Components.og ogVar = chatActivityEnterView.Y2;
-                if (ogVar != null) {
-                    ogVar.G(charSequence, this.f18928b, this.f18929c, this.d, this.f18930e);
-                    return;
-                }
+                this.f16234b.lambda$clearWidgetDialogs$167(this.f16235c);
                 return;
         }
-    }
-
-    public rf(ChatActivityEnterView chatActivityEnterView, CharSequence charSequence, boolean z10, int i10, int i11, long j3) {
-        this.f18931f = chatActivityEnterView;
-        this.h = charSequence;
-        this.f18928b = z10;
-        this.f18929c = i10;
-        this.d = i11;
-        this.f18930e = j3;
     }
 }

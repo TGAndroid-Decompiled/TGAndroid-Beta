@@ -1,53 +1,15 @@
 package org.telegram.ui.Components;
+public final class s2 implements org.telegram.ui.ActionBar.c2 {
+    public final int f26900a;
+    public final org.telegram.ui.ActionBar.p2 f26901b;
 
-import android.view.KeyEvent;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-public final class s2 implements TextView.OnEditorActionListener {
-    public final int f30196a;
-
-    public s2(int i10) {
-        this.f30196a = i10;
+    public s2(int i10, org.telegram.ui.ActionBar.p2 p2Var) {
+        this.f26900a = i10;
+        this.f26901b = p2Var;
     }
 
     @Override
-    public final boolean onEditorAction(TextView textView, int i10, KeyEvent keyEvent) {
-        switch (this.f30196a) {
-            case 0:
-                AndroidUtilities.hideKeyboard(textView);
-                return false;
-            case 1:
-                if (i10 == 6) {
-                    AndroidUtilities.hideKeyboard(textView);
-                    return true;
-                }
-                return false;
-            case 2:
-                if (i10 == 6) {
-                    AndroidUtilities.hideKeyboard(textView);
-                    return true;
-                }
-                return false;
-            case 3:
-                if (i10 == 6) {
-                    AndroidUtilities.hideKeyboard(textView);
-                    return true;
-                }
-                return false;
-            case 4:
-                if (i10 == 6) {
-                    textView.clearFocus();
-                    AndroidUtilities.hideKeyboard(textView);
-                    return false;
-                }
-                return false;
-            default:
-                if (i10 == 6) {
-                    textView.clearFocus();
-                    AndroidUtilities.hideKeyboard(textView);
-                    return false;
-                }
-                return false;
-        }
+    public final void f(org.telegram.ui.ActionBar.d2 r11, int r12) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.s2.f(org.telegram.ui.ActionBar.d2, int):void");
     }
 }

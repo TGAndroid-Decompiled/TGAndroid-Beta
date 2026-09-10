@@ -9,18 +9,18 @@ import java.util.RandomAccess;
 import java.util.Set;
 import v7.t6;
 public class j1 extends AbstractCollection implements Set {
-    public final Set f8991a;
-    public final d9.g f8992b;
+    public final Set f7390a;
+    public final d9.f f7391b;
 
-    public j1(Set set, d9.g gVar) {
-        this.f8991a = set;
-        this.f8992b = gVar;
+    public j1(Set set, d9.f fVar) {
+        this.f7390a = set;
+        this.f7391b = fVar;
     }
 
     @Override
     public final boolean add(Object obj) {
-        if (this.f8992b.apply(obj)) {
-            return this.f8991a.add(obj);
+        if (this.f7391b.apply(obj)) {
+            return this.f7390a.add(obj);
         }
         throw new IllegalArgumentException();
     }
@@ -28,33 +28,33 @@ public class j1 extends AbstractCollection implements Set {
     @Override
     public final boolean addAll(Collection collection) {
         for (Object obj : collection) {
-            if (!this.f8992b.apply(obj)) {
+            if (!this.f7391b.apply(obj)) {
                 throw new IllegalArgumentException();
             }
         }
-        return this.f8991a.addAll(collection);
+        return this.f7390a.addAll(collection);
     }
 
     @Override
     public final void clear() {
-        Set set = this.f8991a;
+        Set set = this.f7390a;
         boolean z10 = set instanceof RandomAccess;
-        d9.g gVar = this.f8992b;
+        d9.f fVar = this.f7391b;
         if (z10 && (set instanceof List)) {
             List list = (List) set;
-            gVar.getClass();
+            fVar.getClass();
             int i10 = 0;
             for (int i11 = 0; i11 < list.size(); i11++) {
                 Object obj = list.get(i11);
-                if (!gVar.apply(obj)) {
+                if (!fVar.apply(obj)) {
                     if (i11 > i10) {
                         try {
                             list.set(i10, obj);
                         } catch (IllegalArgumentException unused) {
-                            q.r(list, gVar, i10, i11);
+                            q.r(list, fVar, i10, i11);
                             return;
                         } catch (UnsupportedOperationException unused2) {
-                            q.r(list, gVar, i10, i11);
+                            q.r(list, fVar, i10, i11);
                             return;
                         }
                     }
@@ -65,9 +65,9 @@ public class j1 extends AbstractCollection implements Set {
             return;
         }
         Iterator it = set.iterator();
-        gVar.getClass();
+        fVar.getClass();
         while (it.hasNext()) {
-            if (gVar.apply(it.next())) {
+            if (fVar.apply(it.next())) {
                 it.remove();
             }
         }
@@ -76,7 +76,7 @@ public class j1 extends AbstractCollection implements Set {
     @Override
     public final boolean contains(Object obj) {
         boolean z10;
-        Set set = this.f8991a;
+        Set set = this.f7390a;
         set.getClass();
         try {
             z10 = set.contains(obj);
@@ -86,7 +86,7 @@ public class j1 extends AbstractCollection implements Set {
         if (!z10) {
             return false;
         }
-        return this.f8992b.apply(obj);
+        return this.f7391b.apply(obj);
     }
 
     @Override
@@ -111,14 +111,14 @@ public class j1 extends AbstractCollection implements Set {
 
     @Override
     public final boolean isEmpty() {
-        Iterator it = this.f8991a.iterator();
-        d9.g gVar = this.f8992b;
-        t6.d(gVar, "predicate");
+        Iterator it = this.f7390a.iterator();
+        d9.f fVar = this.f7391b;
+        t6.d(fVar, "predicate");
         boolean z10 = false;
         int i10 = 0;
         while (true) {
             if (it.hasNext()) {
-                if (gVar.apply(it.next())) {
+                if (fVar.apply(it.next())) {
                     break;
                 }
                 i10++;
@@ -135,16 +135,16 @@ public class j1 extends AbstractCollection implements Set {
 
     @Override
     public final Iterator iterator() {
-        Iterator it = this.f8991a.iterator();
+        Iterator it = this.f7390a.iterator();
         it.getClass();
-        d9.g gVar = this.f8992b;
-        gVar.getClass();
-        return new n0(it, gVar);
+        d9.f fVar = this.f7391b;
+        fVar.getClass();
+        return new n0(it, fVar);
     }
 
     @Override
     public final boolean remove(Object obj) {
-        if (contains(obj) && this.f8991a.remove(obj)) {
+        if (contains(obj) && this.f7390a.remove(obj)) {
             return true;
         }
         return false;
@@ -152,11 +152,11 @@ public class j1 extends AbstractCollection implements Set {
 
     @Override
     public final boolean removeAll(Collection collection) {
-        Iterator it = this.f8991a.iterator();
+        Iterator it = this.f7390a.iterator();
         boolean z10 = false;
         while (it.hasNext()) {
             Object next = it.next();
-            if (this.f8992b.apply(next) && collection.contains(next)) {
+            if (this.f7391b.apply(next) && collection.contains(next)) {
                 it.remove();
                 z10 = true;
             }
@@ -166,11 +166,11 @@ public class j1 extends AbstractCollection implements Set {
 
     @Override
     public final boolean retainAll(Collection collection) {
-        Iterator it = this.f8991a.iterator();
+        Iterator it = this.f7390a.iterator();
         boolean z10 = false;
         while (it.hasNext()) {
             Object next = it.next();
-            if (this.f8992b.apply(next) && !collection.contains(next)) {
+            if (this.f7391b.apply(next) && !collection.contains(next)) {
                 it.remove();
                 z10 = true;
             }
@@ -181,8 +181,8 @@ public class j1 extends AbstractCollection implements Set {
     @Override
     public final int size() {
         int i10 = 0;
-        for (Object obj : this.f8991a) {
-            if (this.f8992b.apply(obj)) {
+        for (Object obj : this.f7390a) {
+            if (this.f7391b.apply(obj)) {
                 i10++;
             }
         }

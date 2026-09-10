@@ -1,70 +1,35 @@
 package org.telegram.ui;
+public final class kp0 implements Runnable {
+    public final int f34435a;
+    public final up0 f34436b;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class kp0 extends Drawable {
-    public final org.telegram.ui.Components.f01 f38128a;
-    public final Drawable f38129b;
-    public final sg.c1 f38130c;
+    public kp0(up0 up0Var, int i10) {
+        this.f34435a = i10;
+        this.f34436b = up0Var;
+    }
 
-    public kp0(int i10, Context context, org.telegram.ui.ActionBar.f6 f6Var, boolean z10) {
-        String str;
-        if (z10) {
-            str = "BoostLevelPlus";
-        } else {
-            str = "BoostLevel";
+    @Override
+    public final void run() {
+        int i10 = this.f34435a;
+        up0 up0Var = this.f34436b;
+        switch (i10) {
+            case 0:
+                if (up0Var.G) {
+                    up0Var.f37307b.invalidate();
+                    return;
+                }
+                return;
+            case 1:
+                up0Var.h();
+                return;
+            case 2:
+                int i11 = up0.f37304q0;
+                up0Var.h();
+                return;
+            default:
+                int i12 = up0.f37304q0;
+                up0Var.h();
+                return;
         }
-        this.f38128a = new org.telegram.ui.Components.f01(LocaleController.formatPluralString(str, i10, new Object[0]), 12.0f, AndroidUtilities.bold());
-        Drawable mutate = context.getResources().getDrawable(R.drawable.mini_switch_lock).mutate();
-        this.f38129b = mutate;
-        mutate.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
-        this.f38130c = new sg.c1(org.telegram.ui.ActionBar.j6.Lj, org.telegram.ui.ActionBar.j6.Mj, -1, -1, f6Var);
-    }
-
-    @Override
-    public final void draw(Canvas canvas) {
-        int i10 = getBounds().left;
-        int centerY = getBounds().centerY();
-        RectF rectF = AndroidUtilities.rectTmp;
-        float f7 = centerY;
-        rectF.set(i10, f7 - (AndroidUtilities.dp(18.33f) / 2.0f), getIntrinsicWidth() + i10, (AndroidUtilities.dp(18.33f) / 2.0f) + f7);
-        sg.c1 c1Var = this.f38130c;
-        c1Var.e(rectF);
-        canvas.drawRoundRect(rectF, AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f), c1Var.f46063f);
-        Drawable drawable = this.f38129b;
-        drawable.setBounds(AndroidUtilities.dp(3.33f) + i10, (int) (f7 - ((drawable.getIntrinsicHeight() * 0.875f) / 2.0f)), (int) ((drawable.getIntrinsicWidth() * 0.875f) + AndroidUtilities.dp(3.33f) + i10), (int) a4.a.A(drawable.getIntrinsicHeight(), 0.875f, 2.0f, f7));
-        drawable.draw(canvas);
-        this.f38128a.c((drawable.getIntrinsicWidth() * 0.875f) + AndroidUtilities.dp(3.66f) + i10, f7, 1.0f, -1, canvas);
-    }
-
-    @Override
-    public final int getIntrinsicHeight() {
-        return AndroidUtilities.dp(18.33f);
-    }
-
-    @Override
-    public final int getIntrinsicWidth() {
-        return (int) (this.f38128a.l() + (this.f38129b.getIntrinsicWidth() * 0.875f) + AndroidUtilities.dp(9.66f));
-    }
-
-    @Override
-    public final int getOpacity() {
-        return -2;
-    }
-
-    @Override
-    public final void setAlpha(int i10) {
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

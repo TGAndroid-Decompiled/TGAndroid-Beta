@@ -1,13 +1,35 @@
 package org.telegram.ui.Components;
 
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.LaunchActivity;
-public final class zw0 extends mc {
-    public zw0(LaunchActivity launchActivity, int i10, TLRPC.Document document) {
-        this(launchActivity, null, 1, i10, document, null);
+import android.animation.ValueAnimator;
+public final class zw0 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f29821a;
+    public final cx0 f29822b;
+
+    public zw0(cx0 cx0Var, int i10) {
+        this.f29821a = i10;
+        this.f29822b = cx0Var;
     }
 
-    public zw0(android.content.Context r14, org.telegram.tgnet.TLObject r15, int r16, int r17, org.telegram.tgnet.TLRPC.Document r18, org.telegram.ui.ActionBar.f6 r19) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.zw0.<init>(android.content.Context, org.telegram.tgnet.TLObject, int, int, org.telegram.tgnet.TLRPC$Document, org.telegram.ui.ActionBar.f6):void");
+    @Override
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f29821a) {
+            case 0:
+                cx0 cx0Var = this.f29822b;
+                cx0Var.getClass();
+                cx0Var.E = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                cx0Var.invalidate();
+                return;
+            case 1:
+                cx0 cx0Var2 = this.f29822b;
+                cx0Var2.getClass();
+                cx0Var2.m(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                return;
+            default:
+                cx0 cx0Var3 = this.f29822b;
+                cx0Var3.getClass();
+                cx0Var3.f22246y = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                cx0Var3.invalidate();
+                return;
+        }
     }
 }

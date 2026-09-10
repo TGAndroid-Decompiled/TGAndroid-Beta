@@ -1,49 +1,62 @@
 package org.telegram.ui;
 
-import android.graphics.Point;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.NotificationCenter;
-public final class ed1 extends w7.i0 {
-    public final int f36030a;
-    public final NotificationCenter.NotificationCenterDelegate f36031b;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.view.ViewGroup;
+public final class ed1 extends AnimatorListenerAdapter {
+    public final int f32163a;
+    public final ae1 f32164b;
 
-    public ed1(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, int i10) {
-        this.f36030a = i10;
-        this.f36031b = notificationCenterDelegate;
+    public ed1(ae1 ae1Var, int i10) {
+        this.f32163a = i10;
+        this.f32164b = ae1Var;
     }
 
     @Override
-    public void a() {
-        switch (this.f36030a) {
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f32163a) {
+            case 0:
+                super.onAnimationEnd(animator);
+                ae1 ae1Var = this.f32164b;
+                ae1Var.f30976x0.invalidate();
+                ae1Var.f30973w0[1].setVisibility(8);
+                ae1Var.f30924c2 = null;
+                return;
             case 1:
-                ((ui1) this.f36031b).v.invalidate();
+                this.f32164b.B0 = null;
+                return;
+            case 2:
+                ae1 ae1Var2 = this.f32164b;
+                if (ae1Var2.D0.getTag() == null) {
+                    ae1Var2.D0.setVisibility(4);
+                }
+                ae1Var2.H0 = null;
+                return;
+            case 3:
+                ae1 ae1Var3 = this.f32164b;
+                if (ae1Var3.E0.getTag() == null) {
+                    ae1Var3.E0.setVisibility(4);
+                }
+                ae1Var3.I0 = null;
+                return;
+            case 4:
+                ae1 ae1Var4 = this.f32164b;
+                nc ncVar = ae1Var4.f30940h2;
+                if (ncVar != null) {
+                    if (ncVar.getParent() != null) {
+                        ((ViewGroup) ae1Var4.f30940h2.getParent()).removeView(ae1Var4.f30940h2);
+                    }
+                    ae1Var4.f30940h2 = null;
+                }
+                ae1Var4.f30946j2 = null;
+                super.onAnimationEnd(animator);
                 return;
             default:
-                return;
-        }
-    }
-
-    @Override
-    public void b(int i10, int i11) {
-        boolean z10;
-        switch (this.f36030a) {
-            case 0:
-                Point point = AndroidUtilities.displaySize;
-                boolean z11 = false;
-                if (point.x <= point.y) {
-                    z10 = true;
-                } else {
-                    z10 = false;
-                }
-                if (i10 <= i11) {
-                    z11 = true;
-                }
-                if (z10 == z11) {
-                    ((wd1) this.f36031b).f42004x0.invalidate();
+                ae1 ae1Var5 = this.f32164b;
+                if (!ae1Var5.f30957p1.a()) {
+                    ae1Var5.R1.setVisibility(8);
                     return;
                 }
-                return;
-            default:
                 return;
         }
     }

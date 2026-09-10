@@ -1,25 +1,31 @@
 package org.telegram.messenger;
-public final class th implements Runnable {
-    public final int f19118a;
-    public final String f19119b;
-    public final String f19120c;
-    public final long d;
 
-    public th(int i10, long j3, String str, String str2) {
-        this.f19118a = i10;
-        this.f19119b = str;
-        this.f19120c = str2;
-        this.d = j3;
+import org.telegram.tgnet.ConnectionsManager;
+public final class th implements Runnable {
+    public final int f16420a;
+    public final int f16421b;
+    public final int f16422c;
+
+    public th(int i10, int i11, int i12) {
+        this.f16420a = i12;
+        this.f16421b = i10;
+        this.f16422c = i11;
     }
 
     @Override
     public final void run() {
-        switch (this.f19118a) {
+        switch (this.f16420a) {
             case 0:
-                PushListenerController.lambda$processRemoteMessage$6(this.f19119b, this.f19120c, this.d);
+                PasskeysController.f(this.f16421b, this.f16422c);
+                return;
+            case 1:
+                ConnectionsManager.B(this.f16421b, this.f16422c);
+                return;
+            case 2:
+                ConnectionsManager.s(this.f16421b, this.f16422c);
                 return;
             default:
-                PushListenerController.lambda$processRemoteMessage$7(this.f19119b, this.f19120c, this.d);
+                ConnectionsManager.getInstance(this.f16421b).cancelRequest(this.f16422c, true);
                 return;
         }
     }

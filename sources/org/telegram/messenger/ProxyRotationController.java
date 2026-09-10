@@ -13,7 +13,7 @@ public class ProxyRotationController implements NotificationCenter.NotificationC
     public static final int DEFAULT_TIMEOUT_INDEX = 1;
     private static final ProxyRotationController INSTANCE = new ProxyRotationController();
     public static final List<Integer> ROTATION_TIMEOUTS = Arrays.asList(5, 10, 15, 30, 60);
-    private Runnable checkProxyAndSwitchRunnable = new vg(this, 4);
+    private Runnable checkProxyAndSwitchRunnable = new dh(this, 4);
     private boolean isCurrentlyChecking;
 
     public static void init() {
@@ -42,7 +42,7 @@ public class ProxyRotationController implements NotificationCenter.NotificationC
     }
 
     public static void lambda$new$1(SharedConfig.ProxyInfo proxyInfo, long j3) {
-        AndroidUtilities.runOnUIThread(new rh(proxyInfo, j3, 0));
+        AndroidUtilities.runOnUIThread(new zh(proxyInfo, j3, 0));
     }
 
     public void lambda$new$2() {
@@ -71,7 +71,7 @@ public class ProxyRotationController implements NotificationCenter.NotificationC
         this.isCurrentlyChecking = false;
         if (SharedConfig.proxyRotationEnabled) {
             ArrayList arrayList = new ArrayList(SharedConfig.proxyList);
-            Collections.sort(arrayList, new d(26));
+            Collections.sort(arrayList, new p(26));
             int size = arrayList.size();
             int i10 = 0;
             while (i10 < size) {
@@ -82,7 +82,7 @@ public class ProxyRotationController implements NotificationCenter.NotificationC
                     SharedPreferences.Editor edit = MessagesController.getGlobalMainSettings().edit();
                     edit.putBoolean("proxy_enabled", true);
                     proxyInfo.settings.f(edit);
-                    if (!proxyInfo.settings.f9510f.isEmpty()) {
+                    if (!proxyInfo.settings.f12529f.isEmpty()) {
                         edit.putBoolean("proxy_enabled_calls", false);
                     }
                     edit.apply();

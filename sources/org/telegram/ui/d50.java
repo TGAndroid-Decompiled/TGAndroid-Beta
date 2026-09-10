@@ -1,26 +1,42 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import org.telegram.tgnet.TLRPC;
-public final class d50 extends org.telegram.ui.Components.hq0 {
-    public final j60 f35688b1;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.graphics.Paint;
+public final class d50 extends AnimatorListenerAdapter {
+    public final int f31832a;
+    public final j60 f31833b;
 
-    public d50(j60 j60Var, Context context, String str, String str2, String str3, String str4) {
-        super(context, null, str, str2, false, str3, str4, true);
-        this.f35688b1 = j60Var;
+    public d50(j60 j60Var, int i10) {
+        this.f31832a = i10;
+        this.f31833b = j60Var;
     }
 
     @Override
-    public final void R0(a0.i iVar, int i10, TLRPC.TL_forumTopic tL_forumTopic, boolean z10) {
-        if (!z10) {
-            return;
-        }
-        int m10 = iVar.m();
-        j60 j60Var = this.f35688b1;
-        if (m10 == 1) {
-            j60Var.k1().m(((TLRPC.Dialog) iVar.n(0)).f19900id, Integer.valueOf(i10), 41);
-        } else {
-            j60Var.k1().k(0L, 41, Integer.valueOf(i10), Integer.valueOf(iVar.m()), null, null);
+    public final void onAnimationEnd(Animator animator) {
+        int i10;
+        switch (this.f31832a) {
+            case 0:
+                j60 j60Var = this.f31833b;
+                j60Var.V.setVisibility(4);
+                j60Var.W.setVisibility(4);
+                j60Var.U.setVisibility(4);
+                return;
+            case 1:
+                this.f31833b.f33965h0 = null;
+                return;
+            default:
+                j60 j60Var2 = this.f31833b;
+                j60Var2.f33966h1 = null;
+                Paint paint = j60Var2.f33962g1;
+                if (j60Var2.T1 == 3) {
+                    i10 = -1163700;
+                } else {
+                    i10 = -12761513;
+                }
+                paint.setColor(i10);
+                j60Var2.f33958f1.invalidate();
+                return;
         }
     }
 }

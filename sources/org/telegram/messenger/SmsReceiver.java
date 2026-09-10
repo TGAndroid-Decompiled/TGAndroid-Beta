@@ -35,7 +35,7 @@ public class SmsReceiver extends BroadcastReceiver {
                                 SharedPreferences.Editor edit = sharedPreferences.edit();
                                 edit.putString("sms_hash_code", string + "|" + replace).commit();
                             }
-                            AndroidUtilities.runOnUIThread(new s1(replace, 5));
+                            AndroidUtilities.runOnUIThread(new w1(replace, 5));
                         }
                     }
                 }

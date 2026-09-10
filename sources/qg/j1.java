@@ -1,8 +1,19 @@
 package qg;
 
+import android.content.Context;
 import java.util.ArrayList;
-public final class j1 {
-    public int f44485a;
-    public ArrayList f44486b = new ArrayList();
-    public int f44487c;
+import org.telegram.ui.ActionBar.f6;
+import org.telegram.ui.Components.wv;
+public final class j1 extends wv {
+    public final m1 W;
+
+    public j1(m1 m1Var, bi.o1 o1Var, Context context, f6 f6Var, ArrayList arrayList) {
+        super(o1Var, context, f6Var, arrayList);
+        this.W = m1Var;
+    }
+
+    @Override
+    public final void Y() {
+        this.W.dismiss();
+    }
 }

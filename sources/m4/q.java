@@ -6,13 +6,13 @@ public interface q {
 
     void c(int i10, b2.x0 x0Var);
 
-    void d(int i10, l1 l1Var);
+    void d(int i10, n1 n1Var);
 
-    void e(int i10, o1 o1Var, boolean z10, boolean z11, int i11);
+    void e(int i10, q1 q1Var, boolean z10, boolean z11, int i11);
 
     void f();
 
-    void g(int i10, h1 h1Var, b2.x0 x0Var, boolean z10, boolean z11);
+    void g(int i10, j1 j1Var, b2.x0 x0Var, boolean z10, boolean z11);
 
-    void i(int i10, p1 p1Var);
+    void i(int i10, r1 r1Var);
 }

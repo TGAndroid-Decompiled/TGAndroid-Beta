@@ -1,36 +1,43 @@
 package n7;
 
-import java.util.Comparator;
-public final class o0 implements Comparator {
-    public static final o0 f16697a;
-    public static final o0[] f16698b;
+import java.math.RoundingMode;
+public abstract class o0 {
+    public static final int[] f13984a;
 
     static {
-        ?? r02 = new Enum("INSTANCE", 0);
-        f16697a = r02;
-        f16698b = new o0[]{r02};
-    }
-
-    public static o0[] values() {
-        return (o0[]) f16698b.clone();
-    }
-
-    @Override
-    public final int compare(Object obj, Object obj2) {
-        byte[] bArr = (byte[]) obj;
-        byte[] bArr2 = (byte[]) obj2;
-        int min = Math.min(bArr.length, bArr2.length);
-        for (int i10 = 0; i10 < min; i10++) {
-            int i11 = (bArr[i10] & 255) - (bArr2[i10] & 255);
-            if (i11 != 0) {
-                return i11;
-            }
+        int[] iArr = new int[RoundingMode.values().length];
+        f13984a = iArr;
+        try {
+            iArr[RoundingMode.UNNECESSARY.ordinal()] = 1;
+        } catch (NoSuchFieldError unused) {
         }
-        return bArr.length - bArr2.length;
-    }
-
-    @Override
-    public final String toString() {
-        return "UnsignedBytes.lexicographicalComparator() (pure Java version)";
+        try {
+            f13984a[RoundingMode.DOWN.ordinal()] = 2;
+        } catch (NoSuchFieldError unused2) {
+        }
+        try {
+            f13984a[RoundingMode.FLOOR.ordinal()] = 3;
+        } catch (NoSuchFieldError unused3) {
+        }
+        try {
+            f13984a[RoundingMode.UP.ordinal()] = 4;
+        } catch (NoSuchFieldError unused4) {
+        }
+        try {
+            f13984a[RoundingMode.CEILING.ordinal()] = 5;
+        } catch (NoSuchFieldError unused5) {
+        }
+        try {
+            f13984a[RoundingMode.HALF_DOWN.ordinal()] = 6;
+        } catch (NoSuchFieldError unused6) {
+        }
+        try {
+            f13984a[RoundingMode.HALF_UP.ordinal()] = 7;
+        } catch (NoSuchFieldError unused7) {
+        }
+        try {
+            f13984a[RoundingMode.HALF_EVEN.ordinal()] = 8;
+        } catch (NoSuchFieldError unused8) {
+        }
     }
 }

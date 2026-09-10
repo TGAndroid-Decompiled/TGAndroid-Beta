@@ -2,19 +2,18 @@ package r0;
 
 import android.content.Context;
 import android.view.VelocityTracker;
-import ji.u4;
 public final class h {
-    public final Context f44714a;
-    public final u4 f44715b;
-    public VelocityTracker f44716c;
+    public final Context f41052a;
+    public final l2.h f41053b;
+    public VelocityTracker f41054c;
     public float d;
-    public int f44717e = -1;
-    public int f44718f = -1;
-    public int f44719g = -1;
+    public int e = -1;
+    public int f41055f = -1;
+    public int f41056g = -1;
     public final int[] h = {Integer.MAX_VALUE, 0};
 
-    public h(Context context, u4 u4Var) {
-        this.f44714a = context;
-        this.f44715b = u4Var;
+    public h(Context context, l2.h hVar) {
+        this.f41052a = context;
+        this.f41053b = hVar;
     }
 }

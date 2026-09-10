@@ -4,12 +4,12 @@ import ru.noties.jlatexmath.awt.Color;
 public class FBoxAtom extends Atom {
     public float INTERSPACE;
     protected final Atom base;
-    protected Color f17071bg;
+    protected Color f14609bg;
     protected Color line;
 
     public FBoxAtom(Atom atom) {
         this.INTERSPACE = 0.65f;
-        this.f17071bg = null;
+        this.f14609bg = null;
         this.line = null;
         if (atom == null) {
             this.base = new RowAtom();
@@ -24,7 +24,7 @@ public class FBoxAtom extends Atom {
         Box createBox = this.base.createBox(teXEnvironment);
         float defaultRuleThickness = teXEnvironment.getTeXFont().getDefaultRuleThickness(teXEnvironment.getStyle());
         float factor = SpaceAtom.getFactor(0, teXEnvironment) * this.INTERSPACE;
-        Color color = this.f17071bg;
+        Color color = this.f14609bg;
         if (color == null) {
             return new FramedBox(createBox, defaultRuleThickness, factor);
         }
@@ -34,7 +34,7 @@ public class FBoxAtom extends Atom {
 
     public FBoxAtom(Atom atom, Color color, Color color2) {
         this(atom);
-        this.f17071bg = color;
+        this.f14609bg = color;
         this.line = color2;
     }
 }

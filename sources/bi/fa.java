@@ -1,151 +1,385 @@
 package bi;
 
-import android.content.Context;
-import android.view.KeyEvent;
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.concurrent.atomic.AtomicInteger;
-import java.util.regex.Pattern;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ChatObject;
-import org.telegram.messenger.MessagesController;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.pg0;
-import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.dj;
-import org.telegram.ui.r80;
-import org.telegram.ui.ss;
-import org.telegram.ui.v60;
-import org.telegram.ui.yq;
-public final class fa implements RequestDelegate {
-    public final int f3017a;
-    public final int f3018b;
-    public final Object f3019c;
-    public final Object d;
-    public final Object f3020e;
-    public final Object f3021f;
+public final class fa implements org.telegram.ui.Components.nb {
+    public final int f2718a;
 
-    public fa(int i10, Object obj, Object obj2, Object obj3, Object obj4, int i11) {
-        this.f3017a = i11;
-        this.f3018b = i10;
-        this.d = obj;
-        this.f3020e = obj2;
-        this.f3019c = obj3;
-        this.f3021f = obj4;
+    public fa(int i10) {
+        this.f2718a = i10;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        int i10 = this.f3017a;
-        Object obj = this.f3020e;
-        Object obj2 = this.f3021f;
-        Object obj3 = this.f3019c;
-        Object obj4 = this.d;
-        switch (i10) {
+    public final boolean a() {
+        switch (this.f2718a) {
             case 0:
-                AndroidUtilities.runOnUIThread(new ia((ja) obj4, tLObject, this.f3020e, (ArrayList) obj3, (boolean[]) obj2, this.f3018b));
-                return;
+                return true;
             case 1:
-                AndroidUtilities.runOnUIThread(new hg.e1((hg.f1) obj4, this.f3018b, (ArrayList) obj3, (a0.i) obj, tL_error, tLObject, (MessagesController) obj2, 0));
-                return;
+                return true;
             case 2:
-                ((ChatObject.Call) obj4).lambda$loadUnknownParticipants$6(this.f3018b, (ChatObject.Call.OnParticipantsLoad) obj, (ArrayList) obj3, (HashSet) obj2, tLObject, tL_error);
-                return;
+                return true;
             case 3:
-                AndroidUtilities.runOnUIThread(new ia(this.f3018b, 5, (org.telegram.ui.ActionBar.b2) obj4, (Context) obj, (org.telegram.ui.ActionBar.f6) obj3, (v60) obj2, tLObject));
-                return;
+                return true;
             case 4:
-                AndroidUtilities.runOnUIThread(new hg.e1(tL_error, tLObject, (ArrayList) obj3, this.f3018b, (AtomicInteger) obj4, (ArrayList) obj, (yq) obj2));
-                return;
+                return true;
             case 5:
-                AndroidUtilities.runOnUIThread(new ia((pg0) obj4, (Integer[]) obj, this.f3018b, tLObject, (ArrayList) obj3, (TLRPC.PollAnswerVoters) obj2));
-                return;
+                return true;
             case 6:
-                AndroidUtilities.runOnUIThread(new hg.e1((org.telegram.ui.ActionBar.b2) obj4, tLObject, this.f3018b, (TLRPC.Document) obj3, tL_error, this.f3020e, (TLRPC.TL_stickers_addStickerToSet) obj2));
-                return;
+                return true;
             case 7:
-                AndroidUtilities.runOnUIThread(new ia((ss) obj4, (TLRPC.FileLocation) obj, (TLRPC.InputFile) obj3, tLObject, (TLRPC.FileLocation) obj2, this.f3018b));
-                return;
+                return true;
             case 8:
-                AndroidUtilities.runOnUIThread(new hg.e1((org.telegram.ui.ActionBar.b2) obj4, (of.e) obj, tLObject, this.f3018b, (Context) obj3, (TLRPC.TL_inputGroupCallSlug) obj2, tL_error));
-                return;
+                return true;
             case 9:
-                Pattern pattern = LaunchActivity.B1;
-                AndroidUtilities.runOnUIThread(new hg.e1((LaunchActivity) obj4, tL_error, tLObject, (TLRPC.TL_inputInvoiceSlug) obj, (r80) obj3, this.f3018b, (String) obj2));
-                return;
+                return true;
             case 10:
-                Pattern pattern2 = LaunchActivity.B1;
-                AndroidUtilities.runOnUIThread(new hg.e1((LaunchActivity) obj4, tL_error, tLObject, this.f3018b, (org.telegram.ui.ActionBar.b2) obj, (r80) obj3, (String) obj2));
-                return;
+                return true;
             case 11:
-                AndroidUtilities.runOnUIThread(new hg.e1((org.telegram.ui.web.d1) obj4, (String) obj, tLObject, tL_error, this.f3018b, (org.telegram.ui.web.z0) obj3, (k9) obj2));
-                return;
+                return true;
             case 12:
-                AndroidUtilities.runOnUIThread(new ia(this.f3018b, 13, (TLRPC.PhotoSize) obj4, (TLRPC.PhotoSize) obj, (dj) obj3, (org.telegram.ui.ActionBar.d5) obj2, tLObject));
-                return;
+                return true;
             case 13:
-                AndroidUtilities.runOnUIThread(new zh.o6((di.d) obj4, (org.telegram.ui.ActionBar.f3[]) obj, this.f3018b, (TLObject) obj3, (String) obj2, 0));
-                return;
+                return true;
+            case 14:
+                return true;
+            case 15:
+                return true;
             default:
-                AndroidUtilities.runOnUIThread(new ia((di.d) obj4, tLObject, (org.telegram.ui.ActionBar.f3[]) obj, (org.telegram.ui.ActionBar.f6) obj3, this.f3018b, (TLRPC.TL_messages_checkChatInvite) obj2, 14));
-                return;
+                return true;
         }
     }
 
-    public fa(KeyEvent.Callback callback, Object obj, int i10, Object obj2, Object obj3, int i11) {
-        this.f3017a = i11;
-        this.d = callback;
-        this.f3020e = obj;
-        this.f3018b = i10;
-        this.f3019c = obj2;
-        this.f3021f = obj3;
+    @Override
+    public final void b(org.telegram.ui.Components.pc pcVar) {
+        int i10 = this.f2718a;
     }
 
-    public fa(KeyEvent.Callback callback, Object obj, Object obj2, int i10, Object obj3, int i11) {
-        this.f3017a = i11;
-        this.d = callback;
-        this.f3020e = obj;
-        this.f3019c = obj2;
-        this.f3018b = i10;
-        this.f3021f = obj3;
+    @Override
+    public final void c(float f7) {
+        int i10 = this.f2718a;
     }
 
-    public fa(Object obj, int i10, Object obj2, Object obj3, Serializable serializable, int i11) {
-        this.f3017a = i11;
-        this.d = obj;
-        this.f3018b = i10;
-        this.f3020e = obj2;
-        this.f3019c = obj3;
-        this.f3021f = serializable;
+    @Override
+    public final void d(org.telegram.ui.Components.pc pcVar) {
+        int i10 = this.f2718a;
     }
 
-    public fa(Object obj, int i10, Object obj2, Object obj3, Object obj4, int i11) {
-        this.f3017a = i11;
-        this.d = obj;
-        this.f3018b = i10;
-        this.f3019c = obj2;
-        this.f3020e = obj3;
-        this.f3021f = obj4;
+    @Override
+    public final boolean e() {
+        switch (this.f2718a) {
+            case 0:
+                return true;
+            case 1:
+                return true;
+            case 2:
+                return true;
+            case 3:
+                return true;
+            case 4:
+                return true;
+            case 5:
+                return true;
+            case 6:
+                return true;
+            case 7:
+                return true;
+            case 8:
+                return true;
+            case 9:
+                return true;
+            case 10:
+                return true;
+            case 11:
+                return true;
+            case 12:
+                return true;
+            case 13:
+                return true;
+            case 14:
+                return true;
+            case 15:
+                return true;
+            default:
+                return true;
+        }
     }
 
-    public fa(Object obj, Object obj2, Object obj3, Object obj4, int i10, int i11) {
-        this.f3017a = i11;
-        this.d = obj;
-        this.f3020e = obj2;
-        this.f3019c = obj3;
-        this.f3021f = obj4;
-        this.f3018b = i10;
+    @Override
+    public final int f(int i10) {
+        int i11;
+        int dp;
+        switch (this.f2718a) {
+            case 0:
+                return 0;
+            case 1:
+                return 0;
+            case 2:
+                return 0;
+            case 3:
+                return 0;
+            case 4:
+                i11 = AndroidUtilities.navigationBarHeight;
+                dp = AndroidUtilities.dp(64.0f);
+                break;
+            case 5:
+                return 0;
+            case 6:
+                return AndroidUtilities.dp(51.0f);
+            case 7:
+                return AndroidUtilities.dp(64.0f);
+            case 8:
+                return AndroidUtilities.dp(74.0f);
+            case 9:
+                return AndroidUtilities.dp(80.0f);
+            case 10:
+                i11 = AndroidUtilities.navigationBarHeight;
+                dp = AndroidUtilities.dp(16.0f);
+                break;
+            case 11:
+                return AndroidUtilities.dp(62.0f);
+            case 12:
+                return AndroidUtilities.dp(64.0f);
+            case 13:
+                return 0;
+            case 14:
+                return 0;
+            case 15:
+                return AndroidUtilities.dp(68.0f);
+            default:
+                return AndroidUtilities.dp(64.0f);
+        }
+        return dp + i11;
     }
 
-    public fa(ArrayList arrayList, int i10, AtomicInteger atomicInteger, ArrayList arrayList2, yq yqVar) {
-        this.f3017a = 4;
-        this.f3019c = arrayList;
-        this.f3018b = i10;
-        this.d = atomicInteger;
-        this.f3020e = arrayList2;
-        this.f3021f = yqVar;
+    @Override
+    public final boolean g(int i10) {
+        switch (this.f2718a) {
+            case 0:
+                return false;
+            case 1:
+                return true;
+            case 2:
+                return true;
+            case 3:
+                return false;
+            case 4:
+                return false;
+            case 5:
+                return false;
+            case 6:
+                return false;
+            case 7:
+                return false;
+            case 8:
+                return false;
+            case 9:
+                return false;
+            case 10:
+                return false;
+            case 11:
+                return true;
+            case 12:
+                return false;
+            case 13:
+                return false;
+            case 14:
+                return false;
+            case 15:
+                return false;
+            default:
+                return false;
+        }
+    }
+
+    @Override
+    public final int h(int i10) {
+        switch (this.f2718a) {
+            case 0:
+                return AndroidUtilities.statusBarHeight;
+            case 1:
+                return 0;
+            case 2:
+                return AndroidUtilities.dp(56.0f);
+            case 3:
+                return AndroidUtilities.statusBarHeight;
+            case 4:
+                return 0;
+            case 5:
+                return AndroidUtilities.statusBarHeight;
+            case 6:
+                return 0;
+            case 7:
+                return 0;
+            case 8:
+                return 0;
+            case 9:
+                return 0;
+            case 10:
+                return 0;
+            case 11:
+                return 0;
+            case 12:
+                return 0;
+            case 13:
+                return AndroidUtilities.statusBarHeight;
+            case 14:
+                return AndroidUtilities.statusBarHeight;
+            case 15:
+                return 0;
+            default:
+                return 0;
+        }
+    }
+
+    private final void A(org.telegram.ui.Components.pc pcVar) {
+    }
+
+    private final void B(org.telegram.ui.Components.pc pcVar) {
+    }
+
+    private final void C(org.telegram.ui.Components.pc pcVar) {
+    }
+
+    private final void D(org.telegram.ui.Components.pc pcVar) {
+    }
+
+    private final void E(org.telegram.ui.Components.pc pcVar) {
+    }
+
+    private final void F(org.telegram.ui.Components.pc pcVar) {
+    }
+
+    private final void G(org.telegram.ui.Components.pc pcVar) {
+    }
+
+    private final void H(org.telegram.ui.Components.pc pcVar) {
+    }
+
+    private final void I(org.telegram.ui.Components.pc pcVar) {
+    }
+
+    private final void J(org.telegram.ui.Components.pc pcVar) {
+    }
+
+    private final void K(org.telegram.ui.Components.pc pcVar) {
+    }
+
+    private final void L(org.telegram.ui.Components.pc pcVar) {
+    }
+
+    private final void M(org.telegram.ui.Components.pc pcVar) {
+    }
+
+    private final void N(org.telegram.ui.Components.pc pcVar) {
+    }
+
+    private final void O(org.telegram.ui.Components.pc pcVar) {
+    }
+
+    private final void P(org.telegram.ui.Components.pc pcVar) {
+    }
+
+    private final void Q(org.telegram.ui.Components.pc pcVar) {
+    }
+
+    private final void R(org.telegram.ui.Components.pc pcVar) {
+    }
+
+    private final void S(org.telegram.ui.Components.pc pcVar) {
+    }
+
+    private final void T(org.telegram.ui.Components.pc pcVar) {
+    }
+
+    private final void U(org.telegram.ui.Components.pc pcVar) {
+    }
+
+    private final void V(org.telegram.ui.Components.pc pcVar) {
+    }
+
+    private final void W(org.telegram.ui.Components.pc pcVar) {
+    }
+
+    private final void X(org.telegram.ui.Components.pc pcVar) {
+    }
+
+    private final void Y(org.telegram.ui.Components.pc pcVar) {
+    }
+
+    private final void Z(org.telegram.ui.Components.pc pcVar) {
+    }
+
+    private final void a0(org.telegram.ui.Components.pc pcVar) {
+    }
+
+    private final void b0(org.telegram.ui.Components.pc pcVar) {
+    }
+
+    private final void c0(org.telegram.ui.Components.pc pcVar) {
+    }
+
+    private final void d0(org.telegram.ui.Components.pc pcVar) {
+    }
+
+    private final void e0(org.telegram.ui.Components.pc pcVar) {
+    }
+
+    private final void f0(org.telegram.ui.Components.pc pcVar) {
+    }
+
+    private final void g0(org.telegram.ui.Components.pc pcVar) {
+    }
+
+    private final void i(float f7) {
+    }
+
+    private final void j(float f7) {
+    }
+
+    private final void k(float f7) {
+    }
+
+    private final void l(float f7) {
+    }
+
+    private final void m(float f7) {
+    }
+
+    private final void n(float f7) {
+    }
+
+    private final void o(float f7) {
+    }
+
+    private final void p(float f7) {
+    }
+
+    private final void q(float f7) {
+    }
+
+    private final void r(float f7) {
+    }
+
+    private final void s(float f7) {
+    }
+
+    private final void t(float f7) {
+    }
+
+    private final void u(float f7) {
+    }
+
+    private final void v(float f7) {
+    }
+
+    private final void w(float f7) {
+    }
+
+    private final void x(float f7) {
+    }
+
+    private final void y(float f7) {
+    }
+
+    private final void z(org.telegram.ui.Components.pc pcVar) {
     }
 }

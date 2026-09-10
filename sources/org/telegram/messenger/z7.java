@@ -1,25 +1,30 @@
 package org.telegram.messenger;
-
-import org.telegram.tgnet.TLRPC;
 public final class z7 implements Runnable {
-    public final int f19824a;
-    public final MediaDataController f19825b;
-    public final TLRPC.Document f19826c;
+    public final int f17127a;
+    public final long f17128b;
+    public final long f17129c;
+    public final int d;
+    public final BaseController e;
 
-    public z7(int i10, MediaDataController mediaDataController, TLRPC.Document document) {
-        this.f19824a = i10;
-        this.f19825b = mediaDataController;
-        this.f19826c = document;
+    public z7(BaseController baseController, long j3, long j10, int i10, int i11) {
+        this.f17127a = i11;
+        this.e = baseController;
+        this.f17128b = j3;
+        this.f17129c = j10;
+        this.d = i10;
     }
 
     @Override
     public final void run() {
-        switch (this.f19824a) {
+        switch (this.f17127a) {
             case 0:
-                this.f19825b.lambda$removeRecentGif$25(this.f19826c);
+                ((MediaDataController) this.e).lambda$getMediaCounts$131(this.f17128b, this.f17129c, this.d);
+                return;
+            case 1:
+                ((NotificationsController) this.e).lambda$deleteNotificationChannel$42(this.f17128b, this.f17129c, this.d);
                 return;
             default:
-                this.f19825b.lambda$addRecentGif$26(this.f19826c);
+                ((TopicsController) this.e).lambda$updateMentionsUnread$21(this.f17128b, this.f17129c, this.d);
                 return;
         }
     }

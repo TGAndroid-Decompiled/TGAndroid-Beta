@@ -6,34 +6,34 @@ import com.google.android.gms.tasks.TaskCompletionSource;
 import java.util.concurrent.TimeUnit;
 import v7.e5;
 public final class t implements com.google.android.gms.common.api.o {
-    public final e5 f16625a;
-    public final TaskCompletionSource f16626b;
-    public final k f16627c;
+    public final e5 f13918a;
+    public final TaskCompletionSource f13919b;
+    public final k f13920c;
 
     public t(e5 e5Var, TaskCompletionSource taskCompletionSource, k kVar) {
-        this.f16625a = e5Var;
-        this.f16626b = taskCompletionSource;
-        this.f16627c = kVar;
+        this.f13918a = e5Var;
+        this.f13919b = taskCompletionSource;
+        this.f13920c = kVar;
     }
 
     @Override
     public final void a(Status status) {
         if (status.b()) {
-            e5 e5Var = this.f16625a;
+            e5 e5Var = this.f13918a;
             TimeUnit timeUnit = TimeUnit.MILLISECONDS;
             BasePendingResult basePendingResult = (BasePendingResult) e5Var;
-            l.j("Result has already been consumed.", !basePendingResult.f4996j);
+            l.j("Result has already been consumed.", !basePendingResult.f4818j);
             try {
                 if (!basePendingResult.d.await(0L, timeUnit)) {
-                    basePendingResult.e(Status.f4971n);
+                    basePendingResult.e(Status.f4794n);
                 }
             } catch (InterruptedException unused) {
-                basePendingResult.e(Status.f4970f);
+                basePendingResult.e(Status.f4793f);
             }
             l.j("Result is not ready.", basePendingResult.g());
-            this.f16626b.setResult(this.f16627c.k(basePendingResult.j()));
+            this.f13919b.setResult(this.f13920c.b(basePendingResult.j()));
             return;
         }
-        this.f16626b.setException(l.m(status));
+        this.f13919b.setException(l.m(status));
     }
 }

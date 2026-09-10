@@ -1,46 +1,32 @@
 package org.telegram.messenger;
 
-import java.util.ArrayList;
-import org.telegram.messenger.support.LongSparseIntArray;
-public final class o8 implements Runnable {
-    public final int f18570a = 0;
-    public final ArrayList f18571b;
-    public final long f18572c;
-    public final int d;
-    public final int f18573e;
-    public final boolean f18574f;
-    public final BaseController h;
-    public final Object f18575n;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class o8 implements RequestDelegate {
+    public final int f15942a;
+    public final int f15943b;
+    public final String f15944c;
+    public final String d;
+    public final BaseController e;
 
-    public o8(MediaDataController mediaDataController, boolean z10, ArrayList arrayList, int i10, long j3, int i11, Runnable runnable) {
-        this.h = mediaDataController;
-        this.f18574f = z10;
-        this.f18571b = arrayList;
-        this.d = i10;
-        this.f18572c = j3;
-        this.f18573e = i11;
-        this.f18575n = runnable;
+    public o8(BaseController baseController, int i10, String str, String str2, int i11) {
+        this.f15942a = i11;
+        this.e = baseController;
+        this.f15943b = i10;
+        this.f15944c = str;
+        this.d = str2;
     }
 
     @Override
-    public final void run() {
-        switch (this.f18570a) {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f15942a) {
             case 0:
-                ((MediaDataController) this.h).lambda$processLoadedStickers$107(this.f18574f, this.f18571b, this.d, this.f18572c, this.f18573e, (Runnable) this.f18575n);
+                ((MediaDataController) this.e).lambda$fetchNewEmojiKeywords$212(this.f15943b, this.f15944c, this.d, tLObject, tL_error);
                 return;
             default:
-                ((NotificationsController) this.h).lambda$processReadMessages$21((LongSparseIntArray) this.f18575n, this.f18571b, this.f18572c, this.d, this.f18573e, this.f18574f);
+                ((MessagesController) this.e).lambda$checkPromoInfoInternal$169(this.f15943b, this.f15944c, this.d, tLObject, tL_error);
                 return;
         }
-    }
-
-    public o8(NotificationsController notificationsController, LongSparseIntArray longSparseIntArray, ArrayList arrayList, long j3, int i10, int i11, boolean z10) {
-        this.h = notificationsController;
-        this.f18575n = longSparseIntArray;
-        this.f18571b = arrayList;
-        this.f18572c = j3;
-        this.d = i10;
-        this.f18573e = i11;
-        this.f18574f = z10;
     }
 }

@@ -1,57 +1,31 @@
 package org.telegram.messenger;
 
-import org.telegram.messenger.MediaDataController;
-import org.telegram.tgnet.tl.TL_stories;
-public final class i6 implements Runnable {
-    public final int f17968a = 1;
-    public final MediaController f17969b;
-    public final int f17970c;
-    public final int d;
-    public final long f17971e;
-    public final long f17972f;
-    public final MessageSuggestionParams h;
-    public final MessageObject f17973n;
-    public final MessageObject f17974r;
-    public final TL_stories.StoryItem f17975s;
-    public final Object v;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class i6 implements RequestDelegate {
+    public final int f15428a;
+    public final int f15429b;
+    public final int f15430c;
+    public final NotificationCenter.NotificationCenterDelegate d;
 
-    public i6(MediaController mediaController, int i10, int i11, long j3, long j10, MessageSuggestionParams messageSuggestionParams, MessageObject messageObject, MessageObject messageObject2, TL_stories.StoryItem storyItem, SendMessageChatArguments sendMessageChatArguments) {
-        this.f17969b = mediaController;
-        this.f17970c = i10;
-        this.d = i11;
-        this.f17971e = j3;
-        this.f17972f = j10;
-        this.h = messageSuggestionParams;
-        this.f17973n = messageObject;
-        this.f17974r = messageObject2;
-        this.f17975s = storyItem;
-        this.v = sendMessageChatArguments;
+    public i6(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, int i10, int i11, int i12) {
+        this.f15428a = i12;
+        this.d = notificationCenterDelegate;
+        this.f15429b = i10;
+        this.f15430c = i11;
     }
 
     @Override
-    public final void run() {
-        switch (this.f17968a) {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f15428a) {
             case 0:
-                MessageObject messageObject = this.f17974r;
-                TL_stories.StoryItem storyItem = this.f17975s;
-                this.f17969b.lambda$prepareResumedRecording$25(this.f17970c, (MediaDataController.DraftVoice) this.v, this.d, this.f17971e, this.f17972f, this.h, this.f17973n, messageObject, storyItem);
+                ((MediaController) this.d).lambda$loadMoreMusic$12(this.f15429b, this.f15430c, tLObject, tL_error);
                 return;
             default:
-                this.f17969b.lambda$startRecording$37(this.f17970c, this.d, this.f17971e, this.f17972f, this.h, this.f17973n, this.f17974r, this.f17975s, (SendMessageChatArguments) this.v);
+                ((MessagesController) this.d).lambda$getDifference$359(this.f15429b, this.f15430c, tLObject, tL_error);
                 return;
         }
-    }
-
-    public i6(MediaController mediaController, int i10, MediaDataController.DraftVoice draftVoice, int i11, long j3, long j10, MessageSuggestionParams messageSuggestionParams, MessageObject messageObject, MessageObject messageObject2, TL_stories.StoryItem storyItem) {
-        this.f17969b = mediaController;
-        this.f17970c = i10;
-        this.v = draftVoice;
-        this.d = i11;
-        this.f17971e = j3;
-        this.f17972f = j10;
-        this.h = messageSuggestionParams;
-        this.f17973n = messageObject;
-        this.f17974r = messageObject2;
-        this.f17975s = storyItem;
     }
 }

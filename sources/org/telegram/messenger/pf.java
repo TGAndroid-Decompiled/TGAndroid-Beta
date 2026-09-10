@@ -1,40 +1,33 @@
 package org.telegram.messenger;
-public final class pf implements Runnable {
-    public final int f18735a;
-    public final MessagesStorage f18736b;
-    public final int f18737c;
-    public final long d;
 
-    public pf(MessagesStorage messagesStorage, int i10, long j3, int i11) {
-        this.f18735a = i11;
-        this.f18736b = messagesStorage;
-        this.f18737c = i10;
-        this.d = j3;
+import org.telegram.messenger.MessagesStorage;
+public final class pf implements Runnable {
+    public final int f16061a;
+    public final MessagesStorage f16062b;
+    public final long f16063c;
+    public final MessagesStorage.IntCallback d;
+
+    public pf(MessagesStorage messagesStorage, long j3, MessagesStorage.IntCallback intCallback, int i10) {
+        this.f16061a = i10;
+        this.f16062b = messagesStorage;
+        this.f16063c = j3;
+        this.d = intCallback;
     }
 
     @Override
     public final void run() {
-        switch (this.f18735a) {
+        switch (this.f16061a) {
             case 0:
-                this.f18736b.lambda$saveChannelPts$34(this.f18737c, this.d);
+                this.f16062b.lambda$getDialogMaxMessageId$255(this.f16063c, this.d);
                 return;
             case 1:
-                this.f18736b.lambda$markMessageAsMention$113(this.f18737c, this.d);
+                this.f16062b.lambda$getDialogFolderId$243(this.f16063c, this.d);
                 return;
             case 2:
-                this.f18736b.lambda$setDialogPinned$251(this.f18737c, this.d);
-                return;
-            case 3:
-                this.f18736b.lambda$setDialogTtl$60(this.f18737c, this.d);
-                return;
-            case 4:
-                this.f18736b.lambda$deleteDialog$90(this.f18737c, this.d);
-                return;
-            case 5:
-                this.f18736b.lambda$updateChatOnlineCount$135(this.f18737c, this.d);
+                this.f16062b.lambda$getMessagesCount$158(this.f16063c, this.d);
                 return;
             default:
-                this.f18736b.lambda$saveChatLinksCount$133(this.f18737c, this.d);
+                this.f16062b.lambda$getSavedDialogMaxMessageId$53(this.f16063c, this.d);
                 return;
         }
     }

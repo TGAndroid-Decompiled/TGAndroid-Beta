@@ -1,170 +1,74 @@
 package qg;
 
-import android.content.Context;
-import android.graphics.Color;
-import android.graphics.Path;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.drawable.Drawable;
-import android.view.View;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import com.google.android.gms.internal.vision.e2;
-import ji.m4;
+import android.view.ViewGroup;
+import java.util.HashSet;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ChatObject;
+import org.telegram.messenger.ContactsController;
+import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.ui.ActionBar.f3;
-import org.telegram.ui.ActionBar.f6;
-import org.telegram.ui.ActionBar.j6;
-import org.telegram.ui.Components.EditTextBoldCursor;
-import org.telegram.ui.Components.i81;
-import org.telegram.ui.q6;
-import org.telegram.ui.wy0;
-import w7.x5;
-public final class x extends f3 {
-    public static final int f44643s = 0;
-    public final bi.v0 f44644b;
-    public final ImageView f44645c;
-    public final q6 d;
-    public final Path f44646e;
-    public int f44647f;
-    public q0.a h;
-    public u f44648n;
-    public boolean f44649r;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.Components.wc;
+import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.PremiumPreviewFragment;
+import org.telegram.ui.t50;
+public final class x implements Runnable {
+    public final int f40977a;
+    public final k0 f40978b;
 
-    public x(Context context, f6 f6Var) {
-        super(1, context, f6Var, true);
-        this.f44646e = new Path();
-        fixNavigationBar(-14342875);
-        Drawable mutate = context.getResources().getDrawable(R.drawable.sheet_shadow_round).mutate();
-        this.shadowDrawable = mutate;
-        mutate.setColorFilter(new PorterDuffColorFilter(-14342875, PorterDuff.Mode.MULTIPLY));
-        LinearLayout linearLayout = new LinearLayout(context);
-        linearLayout.setOrientation(1);
-        linearLayout.setPadding(0, AndroidUtilities.dp(16.0f), 0, 0);
-        ImageView imageView = new ImageView(context);
-        this.f44645c = imageView;
-        imageView.setImageResource(R.drawable.picker);
-        PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
-        imageView.setColorFilter(new PorterDuffColorFilter(-1, mode));
-        imageView.setBackground(j6.f0(1090519039, 1, -1));
-        imageView.setOnClickListener(new wy0(13, this, context));
-        ImageView imageView2 = new ImageView(context);
-        imageView2.setImageResource(R.drawable.ic_ab_done);
-        imageView2.setColorFilter(new PorterDuffColorFilter(-1, mode));
-        imageView2.setBackground(j6.f0(1090519039, 1, -1));
-        imageView2.setOnClickListener(new m4(this, 6));
-        q6 q6Var = new q6(this, context);
-        this.d = q6Var;
-        q6Var.d = Color.alpha(-65536) / 255.0f;
-        q6Var.a();
-        q6Var.invalidate();
-        bi.v0 v0Var = new bi.v0(context, 4);
-        v0Var.setOrientation(1);
-        t tVar = new t(this, context);
-        v0Var.f3910b = tVar;
-        tVar.a(this.f44647f);
-        v0Var.f3911c = new s(this, context);
-        v0Var.d = new w(this, context);
-        i81 i81Var = new i81(context, this.resourcesProvider);
-        i81Var.setAdapter(new q(v0Var));
-        v0Var.addView(i81Var, x5.l(1.0f, -1, 0));
-        v0Var.addView(q6Var, x5.k(12.0f, 0.0f, 12.0f, 0.0f, -1, 48));
-        LinearLayout linearLayout2 = new LinearLayout(context);
-        linearLayout2.setOrientation(0);
-        linearLayout2.setGravity(16);
-        linearLayout2.addView(imageView, x5.n(28, 28));
-        linearLayout2.addView(i81Var.n(8, false), x5.p(-1, 40, 1.0f, 16, 12, 0, 12, 0));
-        linearLayout2.addView(imageView2, x5.n(28, 28));
-        v0Var.addView(linearLayout2, x5.k(14.0f, 0.0f, 14.0f, 0.0f, -1, 48));
-        this.f44644b = v0Var;
-        linearLayout.addView(v0Var, x5.n(-1, 0));
-        o oVar = new o(this, context, linearLayout);
-        oVar.addView(linearLayout);
-        setCustomView(oVar);
+    public x(k0 k0Var, int i10) {
+        this.f40977a = i10;
+        this.f40978b = k0Var;
     }
 
     @Override
-    public final void dismiss() {
-        super.dismiss();
-        q0.a aVar = this.h;
-        if (aVar != null) {
-            aVar.accept(Integer.valueOf(this.f44647f));
-        }
-    }
-
-    public final void m(int i10, int i11) {
-        boolean z10;
-        float b10;
-        View findFocus;
-        if (!this.f44649r) {
-            if (i11 != 2) {
-                return;
-            }
-            this.f44649r = true;
-        }
-        bi.v0 v0Var = this.f44644b;
-        if (i11 != 5 && (findFocus = v0Var.findFocus()) != null) {
-            findFocus.clearFocus();
-            AndroidUtilities.hideKeyboard(findFocus);
-        }
-        if (i11 != 3) {
-            ((t) v0Var.f3910b).a(i10);
-        }
-        if (i11 != 0) {
-            s sVar = (s) v0Var.f3911c;
-            if (i11 != 1) {
-                z10 = true;
-            } else {
-                z10 = false;
-            }
-            sVar.f44587n.f44647f = i10;
-            float[] fArr = sVar.h;
-            Color.colorToHSV(i10, fArr);
-            if (z10) {
-                float f7 = (fArr[1] * 0.5f) + 1.0f;
-                float f10 = fArr[2];
-                if (f10 <= 0.5f) {
-                    b10 = 1.0f - (((1.0f - f10) * 0.22000003f) + 0.78f);
-                } else {
-                    b10 = e2.b(1.0f, f10, 0.22f, 1.0f);
+    public final void run() {
+        int i10 = this.f40977a;
+        k0 k0Var = this.f40978b;
+        switch (i10) {
+            case 0:
+                if (LaunchActivity.R() != null) {
+                    ?? obj = new Object();
+                    obj.f18485a = true;
+                    k0Var.K0.showAsSheet(new PremiumPreviewFragment(0, "noncontacts"), obj);
+                    return;
                 }
-                sVar.d = f7 - b10;
-                sVar.f44585e = fArr[0] / 360.0f;
-            }
-            sVar.invalidate();
+                return;
+            case 1:
+                k0Var.f40786x0.e(k0Var.f40765b0, false);
+                k0Var.z1();
+                return;
+            case 2:
+                HashSet hashSet = k0Var.f40787y0;
+                wc X = wc.X();
+                if (X != null) {
+                    if (hashSet.size() == 1) {
+                        X.Q(R.raw.voip_invite, 36, AndroidUtilities.replaceTags(LocaleController.formatString(R.string.InviteLinkSentSingle, ContactsController.formatName((TLRPC.User) hashSet.iterator().next())))).j();
+                        return;
+                    } else {
+                        X.Q(R.raw.voip_invite, 36, AndroidUtilities.replaceTags(LocaleController.formatPluralString("InviteLinkSent", hashSet.size(), Integer.valueOf(hashSet.size())))).j();
+                        return;
+                    }
+                }
+                return;
+            case 3:
+                bi.d dVar = k0Var.S0;
+                TLRPC.ChatFull t12 = k0Var.t1();
+                dVar.b(Math.max(t12.boosts_unrestrict - t12.boosts_applied, 0), false);
+                return;
+            default:
+                if (ChatObject.hasAdminRights(k0Var.s1())) {
+                    if (k0Var.E0.getParent() != null) {
+                        ((ViewGroup) k0Var.E0.getParent()).removeView(k0Var.E0);
+                    }
+                    t50 t50Var = k0Var.L0;
+                    if (t50Var != null && t50Var.getParent() != null) {
+                        ((ViewGroup) k0Var.L0.getParent()).removeView(k0Var.L0);
+                    }
+                    k0Var.d.setPadding(0, 0, 0, 0);
+                    return;
+                }
+                return;
         }
-        if (i11 != 1) {
-            q6 q6Var = this.d;
-            q6Var.getClass();
-            q6Var.d = Color.alpha(i10) / 255.0f;
-            q6Var.a();
-            q6Var.invalidate();
-        }
-        w wVar = (w) v0Var.d;
-        wVar.f44639e = true;
-        wVar.f44636a.b();
-        wVar.f44637b.b();
-        wVar.f44638c.b();
-        EditTextBoldCursor editTextBoldCursor = wVar.d;
-        if (!editTextBoldCursor.isFocused()) {
-            int selectionStart = editTextBoldCursor.getSelectionStart();
-            int selectionEnd = editTextBoldCursor.getSelectionEnd();
-            StringBuilder sb2 = new StringBuilder(Integer.toHexString(wVar.f44640f.f44647f));
-            while (sb2.length() < 8) {
-                sb2.insert(0, "0");
-            }
-            editTextBoldCursor.setText(sb2.toString().toUpperCase().substring(2));
-            editTextBoldCursor.setSelection(selectionStart, selectionEnd);
-        }
-        wVar.f44639e = false;
-    }
-
-    @Override
-    public final void show() {
-        if (!this.f44648n.g()) {
-            this.f44645c.setVisibility(8);
-        }
-        super.show();
     }
 }

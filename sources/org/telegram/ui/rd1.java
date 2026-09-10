@@ -1,9 +1,8 @@
 package org.telegram.ui;
+public interface rd1 {
+    boolean Y0();
 
-import org.telegram.messenger.MessageObject;
-public final class rd1 extends MessageObject {
-    @Override
-    public final boolean needDrawAvatar() {
-        return false;
-    }
+    boolean a();
+
+    void n1(boolean z10);
 }

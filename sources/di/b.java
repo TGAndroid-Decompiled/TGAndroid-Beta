@@ -1,47 +1,56 @@
 package di;
 
-import android.animation.ValueAnimator;
-public final class b implements ValueAnimator.AnimatorUpdateListener {
-    public final int f6956a;
-    public final d f6957b;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class b implements RequestDelegate {
+    public final int f6527a;
+    public final m f6528b;
+    public final org.telegram.ui.ActionBar.d2 f6529c;
 
-    public b(d dVar, int i10) {
-        this.f6956a = i10;
-        this.f6957b = dVar;
+    public b(m mVar, org.telegram.ui.ActionBar.d2 d2Var, int i10) {
+        this.f6527a = i10;
+        this.f6528b = mVar;
+        this.f6529c = d2Var;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f6956a) {
+    public final void run(final TLObject tLObject, final TLRPC.TL_error tL_error) {
+        switch (this.f6527a) {
             case 0:
-                d dVar = this.f6957b;
-                dVar.getClass();
-                dVar.P = Math.max(1.0f, ((Float) valueAnimator.getAnimatedValue()).floatValue());
-                dVar.invalidate();
-                return;
-            case 1:
-                d dVar2 = this.f6957b;
-                dVar2.getClass();
-                dVar2.V = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                dVar2.invalidate();
-                return;
-            case 2:
-                d dVar3 = this.f6957b;
-                dVar3.getClass();
-                dVar3.M = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                dVar3.invalidate();
-                return;
-            case 3:
-                d dVar4 = this.f6957b;
-                dVar4.getClass();
-                dVar4.H = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                dVar4.invalidate();
+                final m mVar = this.f6528b;
+                final org.telegram.ui.ActionBar.d2 d2Var = this.f6529c;
+                AndroidUtilities.runOnUIThread(new Runnable() {
+                    @Override
+                    public final void run() {
+                        switch (r5) {
+                            case 0:
+                                m.y0(mVar, d2Var, tLObject, tL_error);
+                                return;
+                            default:
+                                m.z0(mVar, d2Var, tLObject, tL_error);
+                                return;
+                        }
+                    }
+                });
                 return;
             default:
-                d dVar5 = this.f6957b;
-                dVar5.getClass();
-                dVar5.H = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                dVar5.invalidate();
+                final m mVar2 = this.f6528b;
+                final org.telegram.ui.ActionBar.d2 d2Var2 = this.f6529c;
+                AndroidUtilities.runOnUIThread(new Runnable() {
+                    @Override
+                    public final void run() {
+                        switch (r5) {
+                            case 0:
+                                m.y0(mVar2, d2Var2, tLObject, tL_error);
+                                return;
+                            default:
+                                m.z0(mVar2, d2Var2, tLObject, tL_error);
+                                return;
+                        }
+                    }
+                });
                 return;
         }
     }

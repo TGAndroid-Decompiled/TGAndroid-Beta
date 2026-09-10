@@ -1,24 +1,31 @@
 package org.telegram.ui;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class bd1 extends AnimatorListenerAdapter {
-    public final wd1 f34796a;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Rect;
+import android.widget.FrameLayout;
+public final class bd1 extends FrameLayout {
+    public final int f31237a;
+    public final Rect f31238b;
+    public final ae1 f31239c;
 
-    public bd1(wd1 wd1Var) {
-        this.f34796a = wd1Var;
+    public bd1(ae1 ae1Var, Context context, int i10, Rect rect) {
+        super(context);
+        this.f31239c = ae1Var;
+        this.f31237a = i10;
+        this.f31238b = rect;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        char c10;
-        wd1 wd1Var = this.f34796a;
-        org.telegram.ui.Components.j81[] j81VarArr = wd1Var.J0;
-        if (wd1Var.W0 != null) {
-            c10 = 0;
+    public final void onDraw(Canvas canvas) {
+        int i10 = this.f31237a;
+        Rect rect = this.f31238b;
+        ae1 ae1Var = this.f31239c;
+        if (i10 == 0) {
+            ae1Var.f30960r.setBounds(ae1Var.V.getLeft() - rect.left, 0, ae1Var.V.getRight() + rect.right, getMeasuredHeight());
         } else {
-            c10 = 2;
+            ae1Var.f30960r.setBounds(-rect.left, 0, getMeasuredWidth() + rect.right, getMeasuredHeight());
         }
-        j81VarArr[c10].setVisibility(4);
+        ae1Var.f30960r.draw(canvas);
     }
 }

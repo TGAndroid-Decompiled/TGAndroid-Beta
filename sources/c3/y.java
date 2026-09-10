@@ -1,8 +1,8 @@
 package c3;
 public final class y implements b0 {
-    public final c5.b0 f4352a;
-    public final c5.b0 f4353b;
-    public long f4354c;
+    public final c5.b0 f4241a;
+    public final c5.b0 f4242b;
+    public long f4243c;
 
     public y(long j3, long[] jArr, long[] jArr2) {
         boolean z10;
@@ -16,23 +16,23 @@ public final class y implements b0 {
         if (length > 0 && jArr2[0] > 0) {
             int i10 = length + 1;
             c5.b0 b0Var = new c5.b0(i10, 2);
-            this.f4352a = b0Var;
+            this.f4241a = b0Var;
             c5.b0 b0Var2 = new c5.b0(i10, 2);
-            this.f4353b = b0Var2;
-            b0Var.c(0L);
-            b0Var2.c(0L);
+            this.f4242b = b0Var2;
+            b0Var.b(0L);
+            b0Var2.b(0L);
         } else {
-            this.f4352a = new c5.b0(length, 2);
-            this.f4353b = new c5.b0(length, 2);
+            this.f4241a = new c5.b0(length, 2);
+            this.f4242b = new c5.b0(length, 2);
         }
-        this.f4352a.d(jArr);
-        this.f4353b.d(jArr2);
-        this.f4354c = j3;
+        this.f4241a.c(jArr);
+        this.f4242b.c(jArr2);
+        this.f4243c = j3;
     }
 
     @Override
     public final boolean f() {
-        if (this.f4353b.f4373b > 0) {
+        if (this.f4242b.f4260b > 0) {
             return true;
         }
         return false;
@@ -40,16 +40,16 @@ public final class y implements b0 {
 
     @Override
     public final a0 j(long j3) {
-        c5.b0 b0Var = this.f4353b;
-        if (b0Var.f4373b == 0) {
-            c0 c0Var = c0.f4255c;
+        c5.b0 b0Var = this.f4242b;
+        if (b0Var.f4260b == 0) {
+            c0 c0Var = c0.f4153c;
             return new a0(c0Var, c0Var);
         }
         int b10 = e2.d0.b(b0Var, j3);
         long f7 = b0Var.f(b10);
-        c5.b0 b0Var2 = this.f4352a;
+        c5.b0 b0Var2 = this.f4241a;
         c0 c0Var2 = new c0(f7, b0Var2.f(b10));
-        if (f7 != j3 && b10 != b0Var.f4373b - 1) {
+        if (f7 != j3 && b10 != b0Var.f4260b - 1) {
             int i10 = b10 + 1;
             return new a0(c0Var2, new c0(b0Var.f(i10), b0Var2.f(i10)));
         }
@@ -58,6 +58,6 @@ public final class y implements b0 {
 
     @Override
     public final long l() {
-        return this.f4354c;
+        return this.f4243c;
     }
 }

@@ -1,4 +1,4 @@
 package ge;
 public final class g {
-    public static final g f10638a = new Object();
+    public static final g f8767a = new Object();
 }

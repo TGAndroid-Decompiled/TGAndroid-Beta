@@ -3,22 +3,22 @@ package x9;
 import java.io.File;
 import java.nio.charset.Charset;
 public final class k implements c {
-    public static final Charset f49350c = Charset.forName("UTF-8");
-    public final File f49351a;
-    public j f49352b;
+    public static final Charset f45067c = Charset.forName("UTF-8");
+    public final File f45068a;
+    public j f45069b;
 
     public k(File file) {
-        this.f49351a = file;
+        this.f45068a = file;
     }
 
     @Override
-    public final void b() {
-        w9.h.c(this.f49352b, "There was a problem closing the Crashlytics log file.");
-        this.f49352b = null;
+    public final java.lang.String F() {
+        throw new UnsupportedOperationException("Method not decompiled: x9.k.F():java.lang.String");
     }
 
     @Override
-    public final java.lang.String e() {
-        throw new UnsupportedOperationException("Method not decompiled: x9.k.e():java.lang.String");
+    public final void c() {
+        w9.h.c(this.f45069b, "There was a problem closing the Crashlytics log file.");
+        this.f45069b = null;
     }
 }

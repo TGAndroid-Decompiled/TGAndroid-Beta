@@ -1,68 +1,53 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-import androidx.recyclerview.widget.RecyclerView;
+import android.content.Context;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
-public final class u41 extends oz {
-    public final d51 Y;
+import org.telegram.messenger.R;
+public final class u41 implements Runnable {
+    public final int f27560a;
+    public final org.telegram.ui.ActionBar.h3[] f27561b;
+    public final Context f27562c;
 
-    public u41(d51 d51Var, int i10, t41 t41Var) {
-        super(5, i10, t41Var);
-        this.Y = d51Var;
+    public u41(Context context, org.telegram.ui.ActionBar.h3[] h3VarArr) {
+        this.f27560a = 3;
+        this.f27562c = context;
+        this.f27561b = h3VarArr;
     }
 
     @Override
-    public final boolean D1() {
-        d51 d51Var = this.Y;
-        if (d51Var.f25261n.getAdapter() == d51Var.v) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final boolean Y0() {
-        return LocaleController.isRTL;
-    }
-
-    @Override
-    public final int o0(int i10, pf.e eVar, s4.z0 z0Var) {
-        int i11;
-        View m10;
-        d51 d51Var = this.Y;
-        if (d51Var.N) {
-            return super.o0(i10, eVar, z0Var);
-        }
-        int i12 = 0;
-        if (d51Var.L != null) {
-            return 0;
-        }
-        if (d51Var.M) {
-            while (true) {
-                i11 = 1;
-                if (i12 >= r()) {
-                    break;
+    public final void run() {
+        org.telegram.ui.ActionBar.h3 h3Var;
+        org.telegram.ui.ActionBar.p2 p2Var;
+        switch (this.f27560a) {
+            case 0:
+                this.f27561b[0].dismiss();
+                nf.f.s(this.f27562c, LocaleController.getString(R.string.CocoonFeature1TextLink));
+                return;
+            case 1:
+                this.f27561b[0].dismiss();
+                nf.f.u(this.f27562c, LocaleController.getString(R.string.CocoonFeature3TextLink));
+                return;
+            case 2:
+                this.f27561b[0].dismiss();
+                nf.f.s(this.f27562c, LocaleController.getString(R.string.CocoonFooterLink));
+                return;
+            default:
+                pw0 pw0Var = new pw0(this.f27562c);
+                if (!AndroidUtilities.isTablet()) {
+                    org.telegram.ui.ActionBar.h3[] h3VarArr = this.f27561b;
+                    if (!AndroidUtilities.hasDialogOnTop(h3VarArr[0].attachedFragment) && (h3Var = h3VarArr[0]) != null && (p2Var = h3Var.attachedFragment) != null) {
+                        pw0Var.makeAttached(p2Var);
+                    }
                 }
-                t41 t41Var = d51Var.f25261n;
-                View q6 = q(i12);
-                t41Var.getClass();
-                int R = RecyclerView.R(q6);
-                if (R < 1) {
-                    i11 = R;
-                    break;
-                }
-                i12++;
-            }
-            if (i11 == 0 && (m10 = d51Var.f25262r.m(i11)) != null && m10.getTop() - i10 > AndroidUtilities.dp(58.0f)) {
-                i10 = m10.getTop() - AndroidUtilities.dp(58.0f);
-            }
+                pw0Var.show();
+                return;
         }
-        return super.o0(i10, eVar, z0Var);
     }
 
-    @Override
-    public final boolean y0() {
-        return false;
+    public u41(org.telegram.ui.ActionBar.h3[] h3VarArr, Context context, int i10) {
+        this.f27560a = i10;
+        this.f27561b = h3VarArr;
+        this.f27562c = context;
     }
 }

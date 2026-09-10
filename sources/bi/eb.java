@@ -1,98 +1,162 @@
 package bi;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Rect;
 import android.view.View;
-import android.widget.FrameLayout;
+import android.view.ViewGroup;
+import android.view.ViewPropertyAnimator;
+import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.messenger.AndroidUtilities;
-public final class eb extends b0 {
-    public final pb d;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.ui.Components.ChatAttachAlertPhotoLayout;
+import org.telegram.ui.Components.fl0;
+import org.telegram.ui.Components.vl0;
+import org.telegram.ui.Components.yi;
+import org.telegram.ui.Components.yl;
+public final class eb extends s4.s0 {
+    public final int f2670a;
+    public boolean f2671b;
+    public final NotificationCenter.NotificationCenterDelegate f2672c;
 
-    public eb(Context context, pb pbVar) {
-        super(context);
-        this.d = pbVar;
+    public eb(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, int i10) {
+        this.f2670a = i10;
+        this.f2672c = notificationCenterDelegate;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        float f7;
-        pb pbVar = this.d;
-        o5 currentPeerView = pbVar.f3588n0.getCurrentPeerView();
-        a7 a7Var = pbVar.f3608w;
-        if (a7Var != null && currentPeerView != null) {
-            l4 l4Var = currentPeerView.f3436c1;
-            a7Var.setOffset(pbVar.f3570e0);
-            if (pbVar.f3608w.f2792f == 1.0f) {
-                pbVar.f3588n0.setVisibility(4);
-            } else {
-                pbVar.f3588n0.setVisibility(0);
-            }
-            pbVar.f3588n0.B();
-            float top = l4Var.getTop() + currentPeerView.getTop();
-            float f10 = pbVar.f3608w.f2792f;
-            getMeasuredHeight();
-            getMeasuredHeight();
-            if (l4Var.getMeasuredHeight() > 0) {
-                pbVar.f3595q1 = l4Var.getMeasuredHeight();
-            }
-            float lerp = AndroidUtilities.lerp(1.0f, pbVar.f3608w.f2793n / pbVar.f3595q1, f10);
-            pbVar.f3588n0.setPivotY(top);
-            pbVar.f3588n0.setPivotX(getMeasuredWidth() / 2.0f);
-            pbVar.f3588n0.setScaleX(lerp);
-            pbVar.f3588n0.setScaleY(lerp);
-            currentPeerView.V2 = true;
-            if (pbVar.f3570e0 == 0.0f) {
-                currentPeerView.X0(0.0f, 0.0f, null);
-            } else {
-                currentPeerView.X0(f10, lerp, pbVar.f3608w.getCrossfadeToImage());
-            }
-            currentPeerView.invalidate();
-            currentPeerView.f3505y1.f3716b = (int) AndroidUtilities.lerp(10.0f, 6.0f / f7, pbVar.f3608w.f2792f);
-            l4Var.invalidateOutline();
-            pbVar.f3588n0.setTranslationY((pbVar.f3608w.f2789b - top) * f10);
-        }
-        if (currentPeerView != null) {
-            pbVar.f3568d1.setTranslationY(((currentPeerView.f3436c1.getY() + currentPeerView.getY()) - pbVar.f3568d1.getTop()) - AndroidUtilities.dp(4.0f));
-        }
-        super.dispatchDraw(canvas);
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        int i12;
-        int size = View.MeasureSpec.getSize(i11);
-        pb pbVar = this.d;
-        if (!pbVar.f3561b || pbVar.f3564c) {
-            View rootView = getRootView();
-            Rect rect = AndroidUtilities.rectTmp2;
-            getWindowVisibleDisplayFrame(rect);
-            int i13 = 0;
-            if (rect.bottom != 0 || rect.top != 0) {
-                int height = rootView.getHeight();
-                if (rect.top != 0) {
-                    i12 = AndroidUtilities.statusBarHeight;
-                } else {
-                    i12 = 0;
+    public void a(RecyclerView recyclerView, int i10) {
+        boolean z10;
+        int i11;
+        fl0 fl0Var;
+        int topScrollOffset;
+        int topScrollOffset2;
+        switch (this.f2670a) {
+            case 0:
+                kb kbVar = (kb) this.f2672c;
+                vl0 vl0Var = kbVar.f3009f;
+                rb rbVar = kbVar.W;
+                boolean z11 = true;
+                if (i10 == 1) {
+                    z10 = ((org.telegram.ui.ActionBar.h3) rbVar).keyboardVisible;
+                    if (z10 && kbVar.f3014x != null) {
+                        rbVar.f1();
+                    }
                 }
-                i13 = Math.max(0, ((height - i12) - AndroidUtilities.getViewInset(rootView)) - (rect.bottom - rect.top));
-            }
-            pbVar.setKeyboardHeightFromParent(i13);
-            size += pbVar.f3592p0;
+                if (i10 == 0) {
+                    kbVar.S = !vl0Var.canScrollVertically(-1);
+                    vl0Var.canScrollVertically(1);
+                }
+                if (i10 == 0) {
+                    z11 = false;
+                }
+                kbVar.M = z11;
+                return;
+            case 1:
+            default:
+                return;
+            case 2:
+                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = (ChatAttachAlertPhotoLayout) this.f2672c;
+                yl ylVar = chatAttachAlertPhotoLayout.E;
+                yi yiVar = chatAttachAlertPhotoLayout.f26422b;
+                if (i10 == 0) {
+                    int dp = AndroidUtilities.dp(13.0f);
+                    org.telegram.ui.ActionBar.w0 w0Var = yiVar.f29350a1;
+                    if (w0Var != null) {
+                        i11 = AndroidUtilities.dp(w0Var.getAlpha() * 26.0f);
+                    } else {
+                        i11 = 0;
+                    }
+                    int i12 = dp + i11;
+                    int backgroundPaddingTop = yiVar.getBackgroundPaddingTop();
+                    if (((yiVar.f29354b2[0] - backgroundPaddingTop) - i12) + backgroundPaddingTop < (yiVar.O0.getAlpha() * yiVar.O0.getMeasuredHeight()) + org.telegram.ui.ActionBar.l.getCurrentActionBarHeight() && (fl0Var = (fl0) ylVar.K(0)) != null) {
+                        View view = fl0Var.f41610a;
+                        int top = view.getTop();
+                        topScrollOffset = chatAttachAlertPhotoLayout.getTopScrollOffset();
+                        if (top > topScrollOffset) {
+                            int top2 = view.getTop();
+                            topScrollOffset2 = chatAttachAlertPhotoLayout.getTopScrollOffset();
+                            ylVar.v0(0, top2 - topScrollOffset2, null);
+                            return;
+                        }
+                        return;
+                    }
+                    return;
+                }
+                return;
         }
-        int size2 = View.MeasureSpec.getSize(i10);
-        int i14 = (int) ((size2 * 16.0f) / 9.0f);
-        if (size > i14) {
-            pbVar.f3588n0.getLayoutParams().width = -1;
-            size = i14;
-        } else {
-            int i15 = (int) ((size / 16.0f) * 9.0f);
-            pbVar.f3588n0.getLayoutParams().width = i15;
-            size2 = i15;
+    }
+
+    @Override
+    public final void b(RecyclerView recyclerView, int i10, int i11) {
+        ViewGroup viewGroup;
+        int i12;
+        int i13;
+        boolean z10;
+        switch (this.f2670a) {
+            case 0:
+                kb kbVar = (kb) this.f2672c;
+                rb rbVar = kbVar.W;
+                vl0 vl0Var = kbVar.f3009f;
+                boolean canScrollVertically = vl0Var.canScrollVertically(1);
+                if (canScrollVertically != this.f2671b) {
+                    kbVar.f3011r.invalidate();
+                    this.f2671b = canScrollVertically;
+                }
+                kbVar.e.invalidate();
+                viewGroup = ((org.telegram.ui.ActionBar.h3) rbVar).containerView;
+                viewGroup.invalidate();
+                if (kbVar.f3006a == 6 && vl0Var.getChildCount() > 0) {
+                    int R = RecyclerView.R(vl0Var.getChildAt(0));
+                    i12 = ((org.telegram.ui.ActionBar.h3) rbVar).currentAccount;
+                    if (R >= MessagesController.getInstance(i12).getStoriesController().L.size()) {
+                        i13 = ((org.telegram.ui.ActionBar.h3) rbVar).currentAccount;
+                        MessagesController.getInstance(i13).getStoriesController().P();
+                        return;
+                    }
+                    return;
+                }
+                return;
+            case 1:
+                org.telegram.ui.y6 y6Var = (org.telegram.ui.y6) this.f2672c;
+                if (y6Var.f38911c.L0() <= 0 && !org.telegram.ui.y6.a0(y6Var).s()) {
+                    z10 = false;
+                } else {
+                    z10 = true;
+                }
+                org.telegram.ui.y6.b0(y6Var, z10);
+                if (this.f2671b != y6Var.V.Z()) {
+                    this.f2671b = y6Var.V.Z();
+                    y6Var.V.invalidate();
+                    return;
+                }
+                return;
+            default:
+                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = (ChatAttachAlertPhotoLayout) this.f2672c;
+                yi yiVar = chatAttachAlertPhotoLayout.f26422b;
+                yl ylVar = chatAttachAlertPhotoLayout.E;
+                if (ylVar.getChildCount() > 0) {
+                    yiVar.X1(chatAttachAlertPhotoLayout, i11);
+                    float f7 = 0.0f;
+                    if (chatAttachAlertPhotoLayout.G.h() > 30) {
+                        boolean z11 = this.f2671b;
+                        boolean z12 = yiVar.R;
+                        if (z11 != z12) {
+                            this.f2671b = z12;
+                            ViewPropertyAnimator animate = ylVar.getFastScroll().animate();
+                            if (this.f2671b) {
+                                f7 = 1.0f;
+                            }
+                            animate.alpha(f7).setDuration(100L).start();
+                        }
+                    } else {
+                        ylVar.getFastScroll().setAlpha(0.0f);
+                    }
+                    if (i11 != 0) {
+                        chatAttachAlertPhotoLayout.V();
+                        return;
+                    }
+                    return;
+                }
+                return;
         }
-        pbVar.f3614y0.getLayoutParams().height = size + 1;
-        pbVar.f3614y0.getLayoutParams().width = size2;
-        ((FrameLayout.LayoutParams) pbVar.f3614y0.getLayoutParams()).topMargin = AndroidUtilities.statusBarHeight;
-        super.onMeasure(i10, i11);
     }
 }

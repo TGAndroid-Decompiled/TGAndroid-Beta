@@ -1,19 +1,20 @@
 package fg;
 
-import a3.h0;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.tgnet.RequestTimeDelegate;
-public final class d implements RequestTimeDelegate {
-    public final f f9514a;
-    public final e f9515b;
+import java.util.Comparator;
+import org.telegram.messenger.MessagesController;
+public final class d implements Comparator {
+    public final int f7973a;
+    public final MessagesController f7974b;
+    public final int f7975c;
 
-    public d(f fVar, e eVar) {
-        this.f9514a = fVar;
-        this.f9515b = eVar;
+    public d(MessagesController messagesController, int i10, int i11) {
+        this.f7973a = i11;
+        this.f7974b = messagesController;
+        this.f7975c = i10;
     }
 
     @Override
-    public void run(long j3) {
-        AndroidUtilities.runOnUIThread(new h0(this.f9514a, this.f9515b, j3, 8));
+    public final int compare(java.lang.Object r6, java.lang.Object r7) {
+        throw new UnsupportedOperationException("Method not decompiled: fg.d.compare(java.lang.Object, java.lang.Object):int");
     }
 }

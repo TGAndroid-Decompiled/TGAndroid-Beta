@@ -1,145 +1,156 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
+import android.app.Activity;
 import android.view.MotionEvent;
-import android.view.View;
+import android.view.ViewConfiguration;
+import android.view.ViewGroup;
 import org.telegram.messenger.AndroidUtilities;
-public final class na0 extends ll0 {
-    public boolean X2;
-    public boolean Y2;
-    public int Z2;
-    public int f28748a3;
-    public final oa0 f28749b3;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.ui.LaunchActivity;
+public abstract class na0 extends b71 {
+    public final int T;
+    public final ma0 U;
+    public final a10 V;
+    public final jx0 W;
+    public final jx0 X;
+    public float Y;
+    public boolean Z;
 
-    public na0(oa0 oa0Var, Context context, org.telegram.ui.ActionBar.f6 f6Var) {
-        super(context, f6Var);
-        this.f28749b3 = oa0Var;
-        setOnScrollListener(new ah.e0(this, 29));
-        i(new ma0(this));
+    public na0(org.telegram.ui.ActionBar.p2 p2Var, long j3) {
+        super(p2Var.getParentActivity(), p2Var.getCurrentAccount(), p2Var.getResourceProvider());
+        this.T = ViewConfiguration.get(getContext()).getScaledTouchSlop();
+        int i10 = org.telegram.ui.ActionBar.j6.f17872a7;
+        setBackgroundColor(getThemedColor(i10));
+        this.L = i10;
+        this.K = i10;
+        H(0.0f);
+        fixNavigationBar(getThemedColor(i10));
+        this.G = false;
+        this.H = false;
+        ma0 ma0Var = new ma0((vh.c) this, p2Var, this.container, j3);
+        this.U = ma0Var;
+        ma0Var.B = false;
+        setDimBehindAlpha(75);
+        this.f21750w.J.setHint(LocaleController.getString(R.string.SearchMemberRequests));
+        vh.i iVar = ma0Var.f43401f;
+        this.f21746f = iVar;
+        this.e = iVar;
+        this.d.setAdapter(iVar);
+        this.d.o1();
+        bi.y1 y1Var = this.d;
+        ma0Var.f43410p = y1Var;
+        y1Var.setOnItemClickListener(new ai.g(ma0Var, 17));
+        s4.s0 onScrollListener = y1Var.getOnScrollListener();
+        if (onScrollListener == null) {
+            y1Var.setOnScrollListener(ma0Var.D);
+        } else {
+            y1Var.setOnScrollListener(new hi.p3(8, ma0Var, onScrollListener));
+        }
+        int indexOfChild = ((ViewGroup) this.d.getParent()).indexOfChild(this.d);
+        a10 b10 = ma0Var.b();
+        this.V = b10;
+        this.containerView.addView(b10, indexOfChild, w7.a6.c(-1.0f, -1));
+        jx0 a2 = ma0Var.a();
+        this.W = a2;
+        this.containerView.addView(a2, indexOfChild, w7.a6.c(-1.0f, -1));
+        jx0 c10 = ma0Var.c();
+        this.X = c10;
+        this.containerView.addView(c10, indexOfChild, w7.a6.c(-1.0f, -1));
+        ma0Var.e();
     }
 
     @Override
-    public final void k0(int i10, int i11) {
-        oa0 oa0Var = this.f28749b3;
-        oa0Var.invalidate();
-        oa0Var.b();
-    }
-
-    @Override
-    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        boolean z10;
-        oa0 oa0Var = this.f28749b3;
-        hg.k1 k1Var = oa0Var.f29048f;
-        hg.q1 q1Var = oa0Var.f29047e;
-        if (!oa0Var.f29046c.f45759t ? this.Y2 || q1Var == null || q1Var.f11248e == null || !q1Var.f11249f || motionEvent.getY() >= q1Var.f11248e.getBottom() : this.Y2 || q1Var == null || q1Var.f11248e == null || !q1Var.f11249f || motionEvent.getY() <= q1Var.f11248e.getTop()) {
-            if (!this.X2 && org.telegram.ui.st.q().r(motionEvent, oa0Var.f29045b, null, this.f28251p2)) {
-                z10 = true;
+    public final void D(MotionEvent motionEvent, bi.t2 t2Var) {
+        org.telegram.ui.ActionBar.p2 p2Var;
+        long j3;
+        int action = motionEvent.getAction();
+        ma0 ma0Var = this.U;
+        if (action == 0) {
+            this.Y = this.f21752y;
+            ma0Var.i(false);
+        } else if (motionEvent.getAction() == 1 && Math.abs(this.f21752y - this.Y) < this.T && !this.Z) {
+            Activity findActivity = AndroidUtilities.findActivity(getContext());
+            if (findActivity instanceof LaunchActivity) {
+                LaunchActivity launchActivity = (LaunchActivity) findActivity;
+                p2Var = (org.telegram.ui.ActionBar.p2) launchActivity.O().getFragmentStack().get(launchActivity.O().getFragmentStack().size() - 1);
             } else {
-                z10 = false;
+                p2Var = null;
             }
-            if (((k1Var.N() && motionEvent.getAction() == 0) || motionEvent.getAction() == 2) && k1Var.N()) {
-                if (k1Var.f11170n0 == null) {
-                    hg.g1 g1Var = new hg.g1(k1Var, k1Var.f11161f, k1Var.f11169n, k1Var.f11174r, 0);
-                    k1Var.f11170n0 = g1Var;
-                    g1Var.a();
+            if (p2Var instanceof org.telegram.ui.eo) {
+                boolean P9 = ((org.telegram.ui.eo) p2Var).P9();
+                this.Z = true;
+                hy hyVar = new hy(19, this, t2Var);
+                if (P9) {
+                    j3 = 200;
+                } else {
+                    j3 = 0;
                 }
-                k1Var.f11170n0.b();
-            }
-            if (super.onInterceptTouchEvent(motionEvent) || z10) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        int N0;
-        int i14;
-        int i15;
-        int i16 = i12 - i10;
-        int i17 = i13 - i11;
-        oa0 oa0Var = this.f28749b3;
-        boolean g10 = oa0Var.g();
-        s4.c0 currentLayoutManager = oa0Var.getCurrentLayoutManager();
-        if (g10) {
-            N0 = currentLayoutManager.L0();
-        } else {
-            N0 = currentLayoutManager.N0();
-        }
-        View m10 = currentLayoutManager.m(N0);
-        if (m10 != null) {
-            int top = m10.getTop();
-            if (g10) {
-                i15 = 0;
+                AndroidUtilities.runOnUIThread(hyVar, j3);
             } else {
-                i15 = this.f28748a3 - i17;
-            }
-            i14 = top - i15;
-        } else {
-            i14 = 0;
-        }
-        super.onLayout(z10, i10, i11, i12, i13);
-        if (oa0Var.H) {
-            oa0Var.G = true;
-            currentLayoutManager.h1(0, 100000);
-            super.onLayout(false, i10, i11, i12, i13);
-            oa0Var.G = false;
-            oa0Var.H = false;
-        } else if (N0 != -1 && i16 == this.Z2 && i17 - this.f28748a3 != 0) {
-            oa0Var.G = true;
-            currentLayoutManager.i1(N0, i14, false);
-            super.onLayout(false, i10, i11, i12, i13);
-            oa0Var.G = false;
-        }
-        this.f28748a3 = i17;
-        this.Z2 = i16;
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        int size = View.MeasureSpec.getSize(i11);
-        oa0 oa0Var = this.f28749b3;
-        hg.q1 q1Var = oa0Var.f29047e;
-        if (q1Var != null) {
-            q1Var.d = Integer.valueOf(size);
-            di.eb ebVar = q1Var.f11248e;
-            if (ebVar != null) {
-                ebVar.requestLayout();
+                this.Z = true;
+                setFocusable(true);
+                t2Var.requestFocus();
+                AndroidUtilities.runOnUIThread(new s1(4, t2Var));
             }
         }
-        float min = (int) Math.min(AndroidUtilities.dp(126.0f), AndroidUtilities.displaySize.y * 0.22f);
-        oa0Var.v = min;
-        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(size + ((int) min), 1073741824));
-    }
-
-    @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        oa0 oa0Var = this.f28749b3;
-        hg.q1 q1Var = oa0Var.f29047e;
-        if (oa0Var.f29046c.f45759t) {
-            if (!this.Y2 && q1Var != null && q1Var.f11248e != null && q1Var.f11249f && motionEvent.getY() > q1Var.f11248e.getTop()) {
-                return false;
-            }
-        } else if (!this.Y2 && q1Var != null && q1Var.f11248e != null && q1Var.f11249f && motionEvent.getY() < q1Var.f11248e.getBottom()) {
-            return false;
-        }
-        return super.onTouchEvent(motionEvent);
-    }
-
-    @Override
-    public final void requestLayout() {
-        if (this.f28749b3.G) {
+        if (motionEvent.getAction() != 1 && motionEvent.getAction() != 3) {
             return;
         }
-        super.requestLayout();
+        ma0Var.i(true);
     }
 
     @Override
-    public void setTranslationY(float f7) {
-        super.setTranslationY(f7);
-        oa0 oa0Var = this.f28749b3;
-        oa0Var.invalidate();
-        oa0Var.b();
+    public final void F(String str) {
+        this.U.j(str);
+    }
+
+    @Override
+    public final void I(int i10) {
+        super.I(i10);
+        this.V.setTranslationY(this.f21745c.getMeasuredHeight() + i10);
+        float f7 = i10;
+        this.W.setTranslationY(f7);
+        this.X.setTranslationY(f7);
+    }
+
+    @Override
+    public final void L() {
+        int i10;
+        bi.y1 y1Var = this.d;
+        if (y1Var.getChildCount() <= 0) {
+            if (y1Var.getVisibility() == 0) {
+                i10 = y1Var.getPaddingTop() - AndroidUtilities.dp(8.0f);
+            } else {
+                i10 = 0;
+            }
+            if (this.f21752y != i10) {
+                this.f21752y = i10;
+                I(i10);
+                return;
+            }
+            return;
+        }
+        super.L();
+    }
+
+    @Override
+    public final void onBackPressed() {
+        vh.o oVar = this.U.f43413s;
+        if (oVar != null) {
+            oVar.e(false);
+        } else {
+            super.onBackPressed();
+        }
+    }
+
+    @Override
+    public final void show() {
+        ma0 ma0Var = this.U;
+        if (ma0Var.f43399b && this.f21752y == 0) {
+            this.f21752y = AndroidUtilities.dp(8.0f);
+        }
+        super.show();
+        ma0Var.f43399b = false;
     }
 }

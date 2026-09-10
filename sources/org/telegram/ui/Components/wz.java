@@ -1,144 +1,160 @@
 package org.telegram.ui.Components;
 
-import android.graphics.PointF;
-import java.nio.ByteBuffer;
-import org.telegram.messenger.MediaController;
-public final class wz implements yz {
-    public final MediaController.SavedFilterState f32394a;
+import android.util.SparseArray;
+import android.view.View;
+import android.view.ViewGroup;
+import androidx.recyclerview.widget.RecyclerView;
+public class wz extends s4.c0 {
+    public final SparseArray I;
+    public int J;
+    public int K;
+    public int L;
+    public int M;
+    public final RecyclerView N;
+    public boolean O;
+    public boolean P;
+    public final boolean Q;
+    public boolean R;
+    public int S;
+    public final boolean T;
 
-    public wz(MediaController.SavedFilterState savedFilterState) {
-        this.f32394a = savedFilterState;
+    public wz(vl0 vl0Var, int i10) {
+        this.I = new SparseArray();
+        this.J = -1;
+        this.P = true;
+        this.Q = true;
+        this.T = true;
+        this.N = vl0Var;
+        this.M = i10;
     }
 
     @Override
-    public final ByteBuffer a() {
-        MediaController.SavedFilterState savedFilterState = this.f32394a;
-        savedFilterState.curvesToolValue.a();
-        return savedFilterState.curvesToolValue.f26058e;
-    }
-
-    @Override
-    public final boolean b() {
-        return false;
-    }
-
-    @Override
-    public final boolean c() {
-        return !this.f32394a.curvesToolValue.b();
-    }
-
-    @Override
-    public final float getBlurAngle() {
-        return this.f32394a.blurAngle;
-    }
-
-    @Override
-    public final float getBlurExcludeBlurSize() {
-        return this.f32394a.blurExcludeBlurSize;
-    }
-
-    @Override
-    public final PointF getBlurExcludePoint() {
-        return this.f32394a.blurExcludePoint;
-    }
-
-    @Override
-    public final float getBlurExcludeSize() {
-        return this.f32394a.blurExcludeSize;
-    }
-
-    @Override
-    public final int getBlurType() {
-        return this.f32394a.blurType;
-    }
-
-    @Override
-    public final float getContrastValue() {
-        return a4.a.e(this.f32394a.contrastValue, 100.0f, 0.3f, 1.0f);
-    }
-
-    @Override
-    public final float getEnhanceValue() {
-        return this.f32394a.enhanceValue / 100.0f;
-    }
-
-    @Override
-    public final float getExposureValue() {
-        return this.f32394a.exposureValue / 100.0f;
-    }
-
-    @Override
-    public final float getFadeValue() {
-        return this.f32394a.fadeValue / 100.0f;
-    }
-
-    @Override
-    public final float getGrainValue() {
-        return (this.f32394a.grainValue / 100.0f) * 0.04f;
-    }
-
-    @Override
-    public final float getHighlightsValue() {
-        return com.google.android.gms.internal.vision.e2.y(this.f32394a.highlightsValue, 0.75f, 100.0f, 100.0f);
-    }
-
-    @Override
-    public final float getSaturationValue() {
-        float f7 = this.f32394a.saturationValue / 100.0f;
-        if (f7 > 0.0f) {
-            f7 *= 1.05f;
+    public final void P(View view) {
+        s4.c1 T;
+        if (this.T) {
+            RecyclerView recyclerView = this.N;
+            View F = recyclerView.F(view);
+            if (F == null) {
+                T = null;
+            } else {
+                T = recyclerView.T(F);
+            }
+            if (T.b() == B() - 1) {
+                ((ViewGroup.MarginLayoutParams) ((s4.p0) view.getLayoutParams())).height = Math.max(this.J, 0);
+            }
         }
-        return f7 + 1.0f;
+        super.P(view);
     }
 
     @Override
-    public final float getShadowsValue() {
-        return com.google.android.gms.internal.vision.e2.y(this.f32394a.shadowsValue, 0.55f, 100.0f, 100.0f);
+    public final void Q() {
+        this.I.clear();
+        p1();
     }
 
     @Override
-    public final float getSharpenValue() {
-        return a4.a.e(this.f32394a.sharpenValue, 100.0f, 0.6f, 0.11f);
+    public final void V(RecyclerView recyclerView, int i10, int i11) {
+        p1();
     }
 
     @Override
-    public final float getSoftenSkinValue() {
-        return this.f32394a.softenSkinValue / 100.0f;
+    public final void W(RecyclerView recyclerView) {
+        this.I.clear();
+        p1();
     }
 
     @Override
-    public final int getTintHighlightsColor() {
-        return this.f32394a.tintHighlightsColor;
+    public final void X(RecyclerView recyclerView, int i10, int i11) {
+        p1();
     }
 
     @Override
-    public final float getTintHighlightsIntensityValue() {
-        if (this.f32394a.tintHighlightsColor == 0) {
-            return 0.0f;
+    public final void Y(RecyclerView recyclerView, int i10, int i11) {
+        p1();
+    }
+
+    @Override
+    public final void Z() {
+        p1();
+    }
+
+    @Override
+    public final void a0(RecyclerView recyclerView, int i10, int i11, Object obj) {
+        p1();
+        p1();
+    }
+
+    @Override
+    public final void d0(of.e eVar, s4.z0 z0Var, int i10, int i11) {
+        int i12 = this.K;
+        this.L = View.MeasureSpec.getSize(i10);
+        int size = View.MeasureSpec.getSize(i11);
+        this.K = size;
+        if (i12 != size) {
+            p1();
         }
-        return 0.5f;
+        super.d0(eVar, z0Var, i10, i11);
     }
 
     @Override
-    public final int getTintShadowsColor() {
-        return this.f32394a.tintShadowsColor;
+    public final boolean e() {
+        return this.Q;
     }
 
-    @Override
-    public final float getTintShadowsIntensityValue() {
-        if (this.f32394a.tintShadowsColor == 0) {
-            return 0.0f;
+    public final void p1() {
+        RecyclerView recyclerView;
+        s4.h0 adapter;
+        if (this.K <= 0 || (adapter = (recyclerView = this.N).getAdapter()) == null) {
+            return;
         }
-        return 0.5f;
+        int h = adapter.h() - 1;
+        int i10 = 0;
+        int i11 = 0;
+        for (int i12 = this.O; i12 < h; i12++) {
+            int j3 = adapter.j(i12);
+            SparseArray sparseArray = this.I;
+            s4.c1 c1Var = (s4.c1) sparseArray.get(j3, null);
+            if (c1Var == null) {
+                c1Var = adapter.g(recyclerView, j3);
+                View view = c1Var.f41610a;
+                sparseArray.put(j3, c1Var);
+                if (view.getLayoutParams() == null) {
+                    view.setLayoutParams(n());
+                }
+            }
+            View view2 = c1Var.f41610a;
+            if (this.P) {
+                adapter.v(c1Var, i12);
+            }
+            s4.p0 p0Var = (s4.p0) view2.getLayoutParams();
+            view2.measure(s4.o0.s(d(), this.L, this.f41709k, E() + D() + ((ViewGroup.MarginLayoutParams) p0Var).leftMargin + ((ViewGroup.MarginLayoutParams) p0Var).rightMargin, ((ViewGroup.MarginLayoutParams) p0Var).width), s4.o0.s(this.Q, this.K, this.f41710l, C() + F() + ((ViewGroup.MarginLayoutParams) p0Var).topMargin + ((ViewGroup.MarginLayoutParams) p0Var).bottomMargin, ((ViewGroup.MarginLayoutParams) p0Var).height));
+            i10 += view2.getMeasuredHeight();
+            if (i12 == 0) {
+                i11 = view2.getMeasuredHeight();
+            }
+            if (this.R) {
+                if (i10 >= this.K + i11) {
+                    break;
+                }
+            } else if (i10 >= this.K) {
+                break;
+            }
+        }
+        if (this.R) {
+            this.J = Math.max(this.S, (((this.K - i10) - this.M) - recyclerView.getPaddingBottom()) + i11);
+        } else {
+            this.J = Math.max(this.S, ((this.K - i10) - this.M) - recyclerView.getPaddingBottom());
+        }
     }
 
-    @Override
-    public final float getVignetteValue() {
-        return this.f32394a.vignetteValue / 100.0f;
-    }
-
-    @Override
-    public final float getWarmthValue() {
-        return this.f32394a.warmthValue / 100.0f;
+    public wz(int i10, int i11, vl0 vl0Var) {
+        super(1, false);
+        this.I = new SparseArray();
+        this.J = -1;
+        this.P = true;
+        this.Q = true;
+        this.T = true;
+        this.N = vl0Var;
+        this.M = i10;
     }
 }

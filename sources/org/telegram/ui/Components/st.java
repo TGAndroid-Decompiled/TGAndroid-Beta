@@ -1,25 +1,16 @@
 package org.telegram.ui.Components;
 
-import android.text.Editable;
-import org.telegram.messenger.Utilities;
-public final class st implements Utilities.Callback {
-    public final zt f30439a;
-    public final int f30440b;
-    public final int f30441c;
-
-    public st(zt ztVar, int i10, int i11) {
-        this.f30439a = ztVar;
-        this.f30440b = i10;
-        this.f30441c = i11;
-    }
+import android.widget.EdgeEffect;
+import androidx.recyclerview.widget.RecyclerView;
+import java.util.ArrayList;
+public final class st extends s4.l0 {
+    public final rt[] f27211a = new rt[4];
+    public final ArrayList f27212b = new ArrayList();
 
     @Override
-    public final void run(Object obj) {
-        CharSequence charSequence = (CharSequence) obj;
-        zt ztVar = this.f30439a;
-        Editable text = ztVar.getText();
-        int i10 = this.f30440b;
-        text.replace(i10, this.f30441c, charSequence);
-        ztVar.setSelection(i10, charSequence.length() + i10);
+    public final EdgeEffect a(RecyclerView recyclerView, int i10) {
+        rt rtVar = new rt(recyclerView, i10, new qt(this, 0));
+        this.f27211a[i10] = rtVar;
+        return rtVar;
     }
 }

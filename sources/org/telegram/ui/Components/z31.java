@@ -1,111 +1,44 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.text.TextUtils;
+import android.text.TextPaint;
+import android.text.style.ClickableSpan;
+import android.text.style.URLSpan;
 import android.view.View;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-public final class z31 extends g51 {
-    static {
-        g51.setup(new g51());
-    }
+import org.telegram.messenger.Utilities;
+public final class z31 extends ClickableSpan {
+    public final URLSpan f29581a;
+    public final i41 f29582b;
 
-    public static h51 a(int i10, CharSequence charSequence, CharSequence charSequence2, CharSequence charSequence3, View.OnClickListener onClickListener, boolean z10, View.OnClickListener onClickListener2, o oVar) {
-        h51 J = h51.J(z31.class);
-        J.d = i10;
-        J.f26621l = charSequence;
-        J.f26622m = charSequence2;
-        J.f26623n = charSequence3;
-        J.D = onClickListener;
-        J.f26615e = z10;
-        J.E = onClickListener2;
-        J.G = oVar;
-        return J;
-    }
-
-    public static h51 b(int i10, String str, String str2, String str3, w31 w31Var) {
-        return a(i10, str, str2, str3, w31Var, false, null, null);
+    public z31(i41 i41Var, URLSpan uRLSpan) {
+        this.f29582b = i41Var;
+        this.f29581a = uRLSpan;
     }
 
     @Override
-    public final void bindView(View view, h51 h51Var, boolean z10, v51 v51Var, d61 d61Var) {
-        View.OnClickListener onClickListener;
-        int i10;
-        boolean z11;
-        int i11;
-        a41 a41Var = (a41) view;
-        CharSequence charSequence = h51Var.f26621l;
-        CharSequence charSequence2 = h51Var.f26622m;
-        CharSequence charSequence3 = h51Var.f26623n;
-        View.OnClickListener onClickListener2 = h51Var.D;
-        boolean z12 = h51Var.f26615e;
-        View.OnClickListener onClickListener3 = h51Var.E;
-        Object obj = h51Var.G;
-        if (obj instanceof View.OnClickListener) {
-            onClickListener = (View.OnClickListener) obj;
-        } else {
-            onClickListener = null;
+    public final void onClick(View view) {
+        i41 i41Var = this.f29582b;
+        Utilities.CallbackReturn callbackReturn = i41Var.N;
+        URLSpan uRLSpan = this.f29581a;
+        if (callbackReturn != null) {
+            if (((Boolean) callbackReturn.run(uRLSpan)).booleanValue()) {
+                i41Var.dismiss();
+                return;
+            }
+            return;
         }
-        LinearLayout linearLayout = a41Var.f24302r;
-        LinearLayout linearLayout2 = a41Var.h;
-        LinearLayout linearLayout3 = a41Var.f24297b;
-        a41Var.f24298c.setText(charSequence);
-        a41Var.d.setText(charSequence2);
-        a41Var.f24299e.setText(charSequence3);
-        ImageView imageView = a41Var.f24300f;
-        int i12 = 8;
-        if (onClickListener2 != null) {
-            i10 = 0;
-        } else {
-            i10 = 8;
+        org.telegram.ui.ActionBar.p2 p2Var = i41Var.M;
+        if (p2Var != null) {
+            d5.q0(p2Var, uRLSpan.getURL(), false, false);
         }
-        imageView.setVisibility(i10);
-        linearLayout3.setOnClickListener(onClickListener2);
-        if (onClickListener2 != null) {
-            z11 = true;
-        } else {
-            z11 = false;
-        }
-        linearLayout3.setClickable(z11);
-        a41Var.f24301n.a(z12, false);
-        if (onClickListener3 != null) {
-            i11 = 0;
-        } else {
-            i11 = 8;
-        }
-        linearLayout2.setVisibility(i11);
-        linearLayout2.setOnClickListener(onClickListener3);
-        if (onClickListener != null) {
-            i12 = 0;
-        }
-        linearLayout.setVisibility(i12);
-        linearLayout.setOnClickListener(new ct(19, a41Var, onClickListener));
-        a41Var.d();
     }
 
     @Override
-    public final boolean contentsEquals(h51 h51Var, h51 h51Var2) {
-        if (TextUtils.equals(h51Var.f26621l, h51Var2.f26621l) && TextUtils.equals(h51Var.f26622m, h51Var2.f26622m) && TextUtils.equals(h51Var.f26623n, h51Var2.f26623n) && h51Var.E == h51Var2.E) {
-            return true;
+    public final void updateDrawState(TextPaint textPaint) {
+        int min = Math.min(textPaint.getAlpha(), (textPaint.getColor() >> 24) & 255);
+        if (!(this.f29581a instanceof z51)) {
+            textPaint.setUnderlineText(true);
         }
-        return false;
-    }
-
-    @Override
-    public final View createView(Context context, ll0 ll0Var, int i10, int i11, org.telegram.ui.ActionBar.f6 f6Var) {
-        return new a41(context, f6Var);
-    }
-
-    @Override
-    public final boolean equals(h51 h51Var, h51 h51Var2) {
-        if (h51Var.d == h51Var2.d) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final boolean isClickable() {
-        return false;
+        textPaint.setColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f18054k5, false));
+        textPaint.setAlpha(min);
     }
 }

@@ -1,9 +1,9 @@
 package org.telegram.ui.Components;
 public final class sn0 extends s4.j {
-    public final org.telegram.ui.ey F;
+    public final org.telegram.ui.gy F;
 
-    public sn0(org.telegram.ui.ey eyVar) {
-        this.F = eyVar;
+    public sn0(org.telegram.ui.gy gyVar) {
+        this.F = gyVar;
     }
 
     @Override

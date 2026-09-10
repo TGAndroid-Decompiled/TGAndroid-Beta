@@ -4,9 +4,9 @@ import android.content.Context;
 public interface y {
     boolean b(n nVar);
 
-    boolean c();
+    void c(l lVar, boolean z10);
 
-    void d(l lVar, boolean z10);
+    boolean d();
 
     void e();
 

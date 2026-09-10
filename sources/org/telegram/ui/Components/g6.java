@@ -1,196 +1,104 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.RectF;
-import android.view.View;
-import android.widget.LinearLayout;
-import j$.util.Comparator$CC;
-import j$.util.Comparator$EL;
+import android.animation.ObjectAnimator;
+import android.text.Layout;
+import android.text.StaticLayout;
+import android.text.TextPaint;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.HashMap;
-import org.telegram.messenger.AndroidUtilities;
-public abstract class g6 extends LinearLayout {
-    public static final Comparator f26284r = Comparator$EL.thenComparingInt(Comparator$CC.comparingInt(new bi.o6(8)), new bi.o6(9));
-    public final HashMap f26285a;
-    public final ArrayList f26286b;
-    public final le.j f26287c;
-    public boolean d;
-    public int f26288e;
-    public int f26289f;
-    public Runnable h;
-    public float f26290n;
+import java.util.Locale;
+public final class g6 {
+    public static final org.telegram.ui.Cells.u8 h = new org.telegram.ui.Cells.u8("progress", 3);
+    public final TextPaint f23251c;
+    public ObjectAnimator d;
+    public final org.telegram.ui.Cells.t1 f23253g;
+    public final ArrayList f23249a = new ArrayList();
+    public final ArrayList f23250b = new ArrayList();
+    public float e = 0.0f;
+    public int f23252f = 1;
 
-    public g6(Context context) {
-        super(context);
-        this.f26285a = new HashMap();
-        this.f26286b = new ArrayList();
-        this.f26287c = new le.j(new t(this, 11), pr.h, 420L);
+    public g6(org.telegram.ui.Cells.t1 t1Var, TextPaint textPaint) {
+        this.f23251c = textPaint;
+        this.f23253g = t1Var;
     }
 
-    public final void a() {
-        this.f26289f = 0;
-        this.f26288e = 0;
-        int childCount = getChildCount();
-        for (int i10 = 0; i10 < childCount; i10++) {
-            View childAt = getChildAt(i10);
-            f6 f6Var = (f6) this.f26285a.get(childAt);
-            if (childAt.getVisibility() == 0 && f6Var != null && f6Var.f25953b) {
-                this.f26288e = childAt.getMeasuredWidth() + this.f26288e;
-                this.f26289f = childAt.getMeasuredHeight() + this.f26289f;
-            }
-        }
-    }
-
-    public final void b() {
-        ArrayList arrayList = this.f26287c.f15418b;
+    public final int a() {
+        ArrayList arrayList = this.f23249a;
         int size = arrayList.size();
-        int i10 = 0;
-        while (i10 < size) {
-            Object obj = arrayList.get(i10);
-            i10++;
-            le.g gVar = (le.g) obj;
-            View view = ((f6) gVar.f15406a).f25952a;
-            RectF b10 = gVar.b();
-            if (getOrientation() == 1) {
-                view.setTranslationY((getPaddingTop() + b10.top) - view.getTop());
+        float f7 = 0.0f;
+        for (int i10 = 0; i10 < size; i10++) {
+            f7 += ((StaticLayout) arrayList.get(i10)).getLineWidth(0);
+        }
+        return (int) Math.ceil(f7);
+    }
+
+    public final void b(int i10, boolean z10) {
+        boolean z11;
+        float f7;
+        String str;
+        TextPaint textPaint;
+        ArrayList arrayList;
+        int i11 = this.f23252f;
+        ArrayList arrayList2 = this.f23249a;
+        if (i11 == i10 && !arrayList2.isEmpty()) {
+            return;
+        }
+        ObjectAnimator objectAnimator = this.d;
+        if (objectAnimator != null) {
+            objectAnimator.cancel();
+            this.d = null;
+        }
+        ArrayList arrayList3 = this.f23250b;
+        arrayList3.clear();
+        arrayList3.addAll(arrayList2);
+        arrayList2.clear();
+        Locale locale = Locale.US;
+        int i12 = this.f23252f;
+        StringBuilder sb2 = new StringBuilder();
+        sb2.append(i12);
+        String sb3 = sb2.toString();
+        StringBuilder sb4 = new StringBuilder();
+        sb4.append(i10);
+        String sb5 = sb4.toString();
+        if (i10 > this.f23252f) {
+            z11 = true;
+        } else {
+            z11 = false;
+        }
+        this.f23252f = i10;
+        this.e = 0.0f;
+        int i13 = 0;
+        while (i13 < sb5.length()) {
+            int i14 = i13 + 1;
+            String substring = sb5.substring(i13, i14);
+            if (!arrayList3.isEmpty() && i13 < sb3.length()) {
+                str = sb3.substring(i13, i14);
             } else {
-                view.setTranslationX((getPaddingLeft() + b10.left) - view.getLeft());
+                str = null;
             }
-            f(view, gVar.c());
-        }
-        float f7 = getMetadata().f15416g.f15423a;
-        if (this.f26290n != f7) {
-            this.f26290n = f7;
-            Runnable runnable = this.h;
-            if (runnable != null) {
-                runnable.run();
+            if (str != null && str.equals(substring)) {
+                arrayList2.add((StaticLayout) arrayList3.get(i13));
+                arrayList3.set(i13, null);
+                arrayList = arrayList3;
+            } else {
+                arrayList = arrayList3;
+                arrayList2.add(new StaticLayout(substring, this.f23251c, (int) Math.ceil(textPaint.measureText(substring)), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false));
             }
+            i13 = i14;
+            arrayList3 = arrayList;
         }
-    }
-
-    public final float c(float f7) {
-        return (f7 * getMetadata().f15413c.f15423a) + getMetadata().f15416g.f15423a;
-    }
-
-    public final boolean d(View view) {
-        f6 f6Var = (f6) this.f26285a.get(view);
-        if (f6Var != null && f6Var.f25953b) {
-            return true;
-        }
-        return false;
-    }
-
-    public abstract void e();
-
-    public void f(View view, float f7) {
-        float lerp = AndroidUtilities.lerp(0.95f, 1.0f, f7);
-        view.setAlpha(f7);
-        view.setScaleX(lerp);
-        view.setScaleY(lerp);
-    }
-
-    public final void g(View view) {
-        f6 f6Var = (f6) this.f26285a.get(view);
-    }
-
-    public float getAnimatedHeightWithPadding() {
-        return c(getPaddingBottom() + getPaddingTop());
-    }
-
-    public int getEntriesCount() {
-        return this.f26287c.f15418b.size();
-    }
-
-    public le.i getMetadata() {
-        return this.f26287c.d;
-    }
-
-    public int getSumHeightOfAllVisibleChild() {
-        return this.f26289f;
-    }
-
-    public int getSumWidthOfAllVisibleChild() {
-        return this.f26288e;
-    }
-
-    public final void h(int i10, View view) {
-        f6 f6Var = (f6) this.f26285a.get(view);
-        if (f6Var != null) {
-            f6Var.d = i10;
-        }
-    }
-
-    public final void i(View view, boolean z10, boolean z11) {
-        f6 f6Var;
-        if (view != null && (f6Var = (f6) this.f26285a.get(view)) != null) {
-            View view2 = f6Var.f25952a;
-            if (f6Var.f25953b != z10) {
-                f6Var.f25953b = z10;
-                if (z10) {
-                    view2.setVisibility(0);
-                }
-                if (!z10 && !f6Var.f25954c) {
-                    view2.setVisibility(8);
-                }
-                if (!z11) {
-                    this.d = true;
-                }
-                requestLayout();
+        ArrayList arrayList4 = arrayList3;
+        if (z10 && !arrayList4.isEmpty()) {
+            if (z11) {
+                f7 = -1.0f;
+            } else {
+                f7 = 1.0f;
             }
+            ObjectAnimator ofFloat = ObjectAnimator.ofFloat(this, h, f7, 0.0f);
+            this.d = ofFloat;
+            ofFloat.setDuration(150L);
+            this.d.addListener(new org.telegram.ui.Cells.v5(this, 16));
+            this.d.start();
         }
-    }
-
-    @Override
-    public void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        super.onLayout(z10, i10, i11, i12, i13);
-        ArrayList arrayList = this.f26286b;
-        arrayList.clear();
-        int childCount = getChildCount();
-        for (int i14 = 0; i14 < childCount; i14++) {
-            View childAt = getChildAt(i14);
-            f6 f6Var = (f6) this.f26285a.get(childAt);
-            if (f6Var != null) {
-                f6Var.f25955e = i14;
-                if (childAt.getVisibility() == 0 && f6Var.f25953b) {
-                    arrayList.add(f6Var);
-                }
-            }
-        }
-        Collections.sort(arrayList, f26284r);
-        this.f26287c.r(arrayList, !this.d);
-        int size = arrayList.size();
-        int i15 = 0;
-        while (i15 < size) {
-            Object obj = arrayList.get(i15);
-            i15++;
-            ((f6) obj).f25954c = true;
-        }
-        this.d = false;
-        b();
-    }
-
-    @Override
-    public void onMeasure(int i10, int i11) {
-        super.onMeasure(i10, i11);
-        a();
-    }
-
-    @Override
-    public final void onViewAdded(View view) {
-        super.onViewAdded(view);
-        view.setVisibility(8);
-        this.f26285a.put(view, new f6(view));
-    }
-
-    @Override
-    public final void onViewRemoved(View view) {
-        super.onViewRemoved(view);
-        this.f26285a.remove(view);
-    }
-
-    public void setOnAnimatedHeightChangedListener(Runnable runnable) {
-        this.h = runnable;
+        this.f23253g.invalidate();
     }
 }

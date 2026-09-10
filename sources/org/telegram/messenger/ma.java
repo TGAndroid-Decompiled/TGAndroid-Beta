@@ -1,33 +1,33 @@
 package org.telegram.messenger;
 
-import j$.util.concurrent.ConcurrentHashMap;
-import yf.r;
-public final class ma implements Runnable {
-    public final int f18386a;
-    public final MessagesController f18387b;
-    public final r f18388c;
-    public final ConcurrentHashMap d;
-    public final ConcurrentHashMap f18389e;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class ma implements RequestDelegate {
+    public final int f15769a;
+    public final BaseController f15770b;
+    public final int f15771c;
 
-    public ma(MessagesController messagesController, r rVar, ConcurrentHashMap concurrentHashMap, ConcurrentHashMap concurrentHashMap2, int i10) {
-        this.f18386a = i10;
-        this.f18387b = messagesController;
-        this.f18388c = rVar;
-        this.d = concurrentHashMap;
-        this.f18389e = concurrentHashMap2;
+    public ma(BaseController baseController, int i10, int i11) {
+        this.f15769a = i11;
+        this.f15770b = baseController;
+        this.f15771c = i10;
     }
 
     @Override
-    public final void run() {
-        switch (this.f18386a) {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f15769a) {
             case 0:
-                this.f18387b.lambda$processUpdateArray$400(this.f18388c, this.d, this.f18389e);
+                ((MessagesController) this.f15770b).lambda$migrateDialogs$216(this.f15771c, tLObject, tL_error);
                 return;
             case 1:
-                this.f18387b.lambda$processUpdateArray$401(this.f18388c, this.d, this.f18389e);
+                ((MessagesController) this.f15770b).lambda$loadPinnedDialogs$367(this.f15771c, tLObject, tL_error);
+                return;
+            case 2:
+                ((MessagesController) this.f15770b).lambda$loadGlobalNotificationsSettings$201(this.f15771c, tLObject, tL_error);
                 return;
             default:
-                this.f18387b.lambda$processUpdateArray$405(this.f18388c, this.d, this.f18389e);
+                ((ContactsController) this.f15770b).lambda$loadPrivacySettings$65(this.f15771c, tLObject, tL_error);
                 return;
         }
     }

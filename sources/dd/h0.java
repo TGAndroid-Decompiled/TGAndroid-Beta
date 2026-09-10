@@ -12,6 +12,6 @@ public enum h0 extends b2 {
         } else {
             lVar.h(new String(c10, 0, c10.length));
         }
-        lVar.f6806c = b2.f6753a;
+        lVar.f6470c = b2.f6420a;
     }
 }

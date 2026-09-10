@@ -1,54 +1,85 @@
 package org.telegram.ui.Components;
 
-import android.view.KeyEvent;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Utilities;
-public final class nh implements Utilities.Callback4 {
-    public final int f28773a;
-    public final KeyEvent.Callback f28774b;
+import android.graphics.Canvas;
+import android.graphics.RectF;
+public final class nh implements ah.a {
+    public final int f25512a;
+    public final Object f25513b;
 
-    public nh(KeyEvent.Callback callback, int i10) {
-        this.f28773a = i10;
-        this.f28774b = callback;
+    public nh(Object obj, int i10) {
+        this.f25512a = i10;
+        this.f25513b = obj;
     }
 
     @Override
-    public final void run(Object obj, Object obj2, Object obj3, Object obj4) {
-        switch (this.f28773a) {
+    public final void e(Canvas canvas, RectF rectF) {
+        qi qiVar;
+        Canvas canvas2;
+        RectF rectF2;
+        float alpha;
+        qi qiVar2;
+        bi.a9 a9Var;
+        switch (this.f25512a) {
             case 0:
-                vi viVar = (vi) this.f28774b;
-                CharSequence charSequence = (CharSequence) obj;
-                Integer num = (Integer) obj2;
-                Integer num2 = (Integer) obj3;
-                Boolean bool = (Boolean) obj4;
-                ai aiVar = viVar.E0;
-                aiVar.setText(charSequence);
-                aiVar.w(charSequence.length(), charSequence.length());
-                viVar.z1();
+                yi yiVar = (yi) this.f25513b;
+                int i10 = 0;
+                while (i10 < 2) {
+                    if (i10 == 0) {
+                        qiVar = yiVar.f29427y0;
+                    } else {
+                        qiVar = yiVar.f29430z0;
+                    }
+                    if (qiVar != null && qiVar.f26423c != null && qiVar.getVisibility() == 0) {
+                        if (i10 == 0 && (qiVar2 = yiVar.f29430z0) != null && qiVar2.getVisibility() == 0) {
+                            alpha = (1.0f - yiVar.f29430z0.getAlpha()) * qiVar.getAlpha();
+                        } else {
+                            alpha = qiVar.getAlpha();
+                        }
+                        canvas2 = canvas;
+                        rectF2 = rectF;
+                        fh.d.a(qiVar.f26423c, canvas2, rectF2, qiVar.d, yiVar.getContainerView(), (int) (alpha * 255.0f));
+                    } else {
+                        canvas2 = canvas;
+                        rectF2 = rectF;
+                    }
+                    i10++;
+                    canvas = canvas2;
+                    rectF = rectF2;
+                }
                 return;
             case 1:
-                vi viVar2 = (vi) this.f28774b;
-                CharSequence charSequence2 = (CharSequence) obj;
-                Integer num3 = (Integer) obj2;
-                Integer num4 = (Integer) obj3;
-                Boolean bool2 = (Boolean) obj4;
-                di diVar = viVar2.P0;
-                diVar.setText(charSequence2);
-                diVar.w(charSequence2.length(), charSequence2.length());
-                viVar2.z1();
+                ah.a[] aVarArr = (ah.a[]) this.f25513b;
+                for (int i11 = 0; i11 < 3; i11++) {
+                    ah.a aVar = aVarArr[i11];
+                    if (aVar != null) {
+                        aVar.e(canvas, rectF);
+                    }
+                }
                 return;
             default:
-                ld ldVar = (ld) this.f28774b;
-                Integer num5 = (Integer) obj2;
-                Integer num6 = (Integer) obj3;
-                Boolean bool3 = (Boolean) obj4;
-                di.g gVar = ldVar.f7621f;
-                gVar.setText((CharSequence) obj);
-                gVar.d();
-                gVar.k(true);
-                di.e eVar = ldVar.f7617c0;
-                AndroidUtilities.cancelRunOnUIThread(eVar);
-                eVar.run();
+                iv0 iv0Var = (iv0) this.f25513b;
+                for (au0 au0Var : iv0Var.f24107k0) {
+                    zg.k kVar = au0Var.f21594n;
+                    if (kVar != null) {
+                        kVar.e(canvas, rectF);
+                    }
+                }
+                wr0 wr0Var = iv0Var.V;
+                if (wr0Var != null && (a9Var = wr0Var.R) != null) {
+                    a9Var.e(canvas, rectF);
+                    return;
+                }
+                return;
+        }
+    }
+
+    @Override
+    public final void g(g.z zVar, RectF rectF) {
+        switch (this.f25512a) {
+            case 0:
+            case 1:
+            default:
+                zVar.f8456b = true;
                 return;
         }
     }

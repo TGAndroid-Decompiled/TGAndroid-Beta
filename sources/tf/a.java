@@ -1,37 +1,24 @@
 package tf;
 
-import android.content.SharedPreferences;
-import android.os.SystemClock;
-import org.telegram.messenger.ApplicationLoader;
-import w7.p;
-public final class a {
-    public final SharedPreferences f46510a;
-    public long f46511b;
-    public long f46512c;
-    public int d;
+import org.telegram.messenger.NotificationCenter;
+public final class a implements Runnable {
+    public final int f42123a;
+    public final c f42124b;
 
-    public a(String str) {
-        SharedPreferences sharedPreferences = ApplicationLoader.applicationContext.getSharedPreferences("pip_duration_".concat(str), 0);
-        this.f46510a = sharedPreferences;
-        this.f46511b = sharedPreferences.getLong("estimated", 400L);
-        this.d = sharedPreferences.getInt("count", 0);
+    public a(c cVar, int i10) {
+        this.f42123a = i10;
+        this.f42124b = cVar;
     }
 
-    public final void a() {
-        int b10;
-        if (this.f46512c == 0) {
-            return;
+    @Override
+    public final void run() {
+        switch (this.f42123a) {
+            case 0:
+                this.f42124b.g(false);
+                return;
+            default:
+                NotificationCenter.getInstance(this.f42124b.f42132c).lambda$postNotificationNameOnUIThread$1(NotificationCenter.onUserRingtonesUpdated, new Object[0]);
+                return;
         }
-        this.f46511b = (((SystemClock.uptimeMillis() - this.f46512c) * (10 - b10)) / 10) + ((this.f46511b * p.b(this.d, 0, 9)) / 10);
-        this.f46512c = 0L;
-        this.d++;
-        this.f46510a.edit().putLong("estimated", this.f46511b).putInt("count", this.d).apply();
-    }
-
-    public final float b() {
-        if (this.f46511b > 0) {
-            return p.a(((float) (SystemClock.uptimeMillis() - this.f46512c)) / ((float) this.f46511b), 0.0f, 1.0f);
-        }
-        return 0.5f;
     }
 }

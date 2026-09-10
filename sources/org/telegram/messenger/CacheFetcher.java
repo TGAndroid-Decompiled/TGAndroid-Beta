@@ -29,7 +29,7 @@ public abstract class CacheFetcher<Args, R> {
     }
 
     private void callCallbacks(Pair<Integer, Args> pair, R r10, boolean z10) {
-        AndroidUtilities.runOnUIThread(new vj(this, pair, r10, z10, 1));
+        AndroidUtilities.runOnUIThread(new dk(this, pair, r10, z10, 1));
     }
 
     private R getCachedResult(Pair<Integer, Args> pair) {
