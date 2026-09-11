@@ -1,123 +1,63 @@
 package rg;
 
-import android.content.Context;
-import android.graphics.Bitmap;
-import android.opengl.GLES20;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.nio.FloatBuffer;
-import java.nio.charset.StandardCharsets;
-import java.util.Locale;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-public final class g {
-    public static final String[] f41494a0 = {"models/star.binobj"};
-    public static final String[] f41495b0 = {"models/diamond_outer_2.binobj", "models/diamond_outer.binobj", "models/diamond.binobj"};
-    public static final String[] f41496c0 = {"models/coin_outer.binobj", "models/coin_inner.binobj", "models/coin_logo.binobj", "models/coin_stars.binobj"};
-    public static final String[] f41497d0 = {"models/coin_outer.binobj", "models/coin_inner.binobj", "models/deal_logo.binobj", "models/coin_stars.binobj"};
-    public boolean D;
-    public final int E;
-    public final int F;
-    public final int G;
-    public final int H;
-    public final int I;
-    public final int J;
-    public final int K;
-    public final int L;
-    public final int M;
-    public final int N;
-    public final int O;
-    public final int P;
-    public final int Q;
-    public final int R;
-    public final int S;
-    public final int T;
-    public final Bitmap U;
-    public Bitmap V;
-    public final int W;
-    public final int X;
-    public final int[] Y;
-    public final int f41498a;
-    public final int f41499b;
-    public final int f41500c;
-    public final FloatBuffer[] d;
-    public final FloatBuffer[] e;
-    public final FloatBuffer[] f41501f;
-    public final int f41502g;
-    public final int h;
-    public final int f41503i;
-    public final int f41504j;
-    public final int f41505k;
-    public final int f41506l;
-    public final int f41507m;
-    public final int f41508n;
-    public final int f41509o;
-    public final int f41510p;
-    public final int f41511q;
-    public final int f41512r;
-    public float f41513s;
-    public final int[] f41514t;
-    public int f41518y;
-    public int f41519z;
-    public float f41515u = 0.0f;
-    public float v = 2.0f;
-    public float f41516w = 0.13f;
-    public float f41517x = 1.0f;
-    public float A = 0.2f;
-    public int B = -1;
-    public int C = -1;
-    public float Z = 0.0f;
+import android.animation.ValueAnimator;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.Utilities;
+public final class g implements ValueAnimator.AnimatorUpdateListener {
+    public final int f45186a;
+    public final k f45187b;
 
-    public g(android.content.Context r33, int r34) {
-        throw new UnsupportedOperationException("Method not decompiled: rg.g.<init>(android.content.Context, int):void");
+    public g(k kVar, int i10) {
+        this.f45186a = i10;
+        this.f45187b = kVar;
     }
 
-    public static String b(Context context, String str) {
-        StringBuilder sb2 = new StringBuilder();
-        try {
-            InputStream open = context.getAssets().open(str);
-            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(open, StandardCharsets.UTF_8));
-            while (true) {
-                String readLine = bufferedReader.readLine();
-                if (readLine == null) {
-                    break;
+    @Override
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f45186a) {
+            case 0:
+                k kVar = this.f45187b;
+                kVar.g(AndroidUtilities.lerpAngle(kVar.L, kVar.f45251i0, kVar.Q.getAnimatedFraction()));
+                return;
+            case 1:
+                k kVar2 = this.f45187b;
+                kVar2.getClass();
+                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                kVar2.f45256n0 = floatValue;
+                kVar2.setAlpha(floatValue);
+                j jVar = kVar2.H;
+                if (jVar != null) {
+                    jVar.setScaleX(Utilities.clamp(kVar2.f45256n0 * 1.25f, 1.0f, 0.0f) * AndroidUtilities.lerp(0.9f, 1.0f, kVar2.f45252j0));
+                    kVar2.H.setScaleY(Utilities.clamp(kVar2.f45256n0 * 1.25f, 1.0f, 0.0f) * AndroidUtilities.lerp(0.9f, 1.0f, kVar2.f45252j0));
+                    kVar2.H.setAlpha(Math.max(0.0f, kVar2.f45256n0 - 0.8f) * kVar2.f45252j0 * 5.0f);
                 }
-                sb2.append(readLine);
-                sb2.append("\n");
-            }
-            bufferedReader.close();
-            open.close();
-        } catch (IOException e) {
-            e.printStackTrace();
+                kVar2.invalidate();
+                return;
+            case 2:
+                k kVar3 = this.f45187b;
+                kVar3.getClass();
+                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                kVar3.f45252j0 = floatValue2;
+                j jVar2 = kVar3.H;
+                if (jVar2 != null) {
+                    jVar2.setScaleX(Utilities.clamp(kVar3.f45256n0 * 1.25f, 1.0f, 0.0f) * AndroidUtilities.lerp(0.9f, 1.0f, floatValue2));
+                    kVar3.H.setScaleY(Utilities.clamp(kVar3.f45256n0 * 1.25f, 1.0f, 0.0f) * AndroidUtilities.lerp(0.9f, 1.0f, kVar3.f45252j0));
+                    kVar3.H.setAlpha(Math.max(0.0f, kVar3.f45256n0 - 0.8f) * kVar3.f45252j0 * 5.0f);
+                    return;
+                }
+                return;
+            case 3:
+                this.f45187b.k();
+                return;
+            case 4:
+                this.f45187b.k();
+                return;
+            default:
+                k kVar4 = this.f45187b;
+                float lerpAngle = AndroidUtilities.lerpAngle(kVar4.f45251i0, kVar4.L, valueAnimator.getAnimatedFraction());
+                kVar4.O = lerpAngle;
+                kVar4.g(lerpAngle);
+                return;
         }
-        return sb2.toString();
-    }
-
-    public static String c(String str) {
-        Matcher matcher = Pattern.compile("RGB#([0-9a-fA-F]{6})").matcher(str);
-        StringBuffer stringBuffer = new StringBuffer();
-        while (matcher.find()) {
-            String group = matcher.group(1);
-            matcher.appendReplacement(stringBuffer, String.format(Locale.US, "vec3(%.3f, %.3f, %.3f)", Double.valueOf(Integer.parseInt(group.substring(0, 2), 16) / 255.0d), Double.valueOf(Integer.parseInt(group.substring(2, 4), 16) / 255.0d), Double.valueOf(Integer.parseInt(group.substring(4, 6), 16) / 255.0d)));
-        }
-        matcher.appendTail(stringBuffer);
-        return stringBuffer.toString();
-    }
-
-    public final void a(int i10, boolean z10) {
-        int i11 = i10 * 3;
-        GLES20.glBindBuffer(34962, this.Y[i11]);
-        GLES20.glVertexAttribPointer(this.f41506l, 2, 5126, false, 0, 0);
-        GLES20.glBindBuffer(34962, this.Y[i11 + 1]);
-        GLES20.glVertexAttribPointer(this.f41507m, 3, 5126, false, 0, 0);
-        GLES20.glBindBuffer(34962, this.Y[i11 + 2]);
-        GLES20.glVertexAttribPointer(this.f41505k, 3, 5126, false, 0, 0);
-        GLES20.glUniform1i(this.O, i10);
-        GLES20.glUniform1i(this.P, i10);
-        GLES20.glUniform1i(this.Q, z10 ? 1 : 0);
-        GLES20.glUniform1i(this.R, this.X);
-        GLES20.glDrawArrays(4, 0, this.f41514t[i10] / 3);
     }
 }

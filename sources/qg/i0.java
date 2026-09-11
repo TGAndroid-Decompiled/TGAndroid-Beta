@@ -1,21 +1,18 @@
 package qg;
 
-import android.content.Context;
-import org.telegram.ui.ActionBar.f6;
-import org.telegram.ui.Components.Premium.LimitPreviewView;
-public final class i0 extends LimitPreviewView {
-    public final j0 m0;
+import java.io.RandomAccessFile;
+public final class i0 {
+    public final int f44444a;
+    public final int f44445b;
+    public final int f44446c;
+    public final int d;
 
-    public i0(j0 j0Var, Context context, int i10, int i11, int i12, float f7, f6 f6Var) {
-        super(context, i10, i11, i12, f7, f6Var);
-        this.m0 = j0Var;
-    }
-
-    @Override
-    public final void invalidate() {
-        if (this.m0.e.f40769f0) {
-            return;
-        }
-        super.invalidate();
+    public i0(RandomAccessFile randomAccessFile) {
+        randomAccessFile.readUnsignedShort();
+        this.f44444a = randomAccessFile.readUnsignedShort();
+        randomAccessFile.readUnsignedShort();
+        this.f44445b = randomAccessFile.readUnsignedShort();
+        this.f44446c = randomAccessFile.readUnsignedShort();
+        this.d = randomAccessFile.readUnsignedShort();
     }
 }

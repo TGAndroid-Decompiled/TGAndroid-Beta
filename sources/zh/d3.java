@@ -1,98 +1,229 @@
 package zh;
 
-import android.graphics.RectF;
-import android.view.View;
-import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.ui.Stories.ProfileStoriesView;
-import org.telegram.ui.s01;
-import org.telegram.ui.vz0;
-public final class d3 implements q7 {
-    public final Object f48346a;
+public final class d3 implements Runnable {
+    public final int f51783a;
+    public final j3 f51784b;
 
-    public d3(Object obj) {
-        this.f48346a = obj;
+    public d3(j3 j3Var, int i10) {
+        this.f51783a = i10;
+        this.f51784b = j3Var;
     }
 
     @Override
-    public void H0(long j3, int i10, j2 j2Var) {
-        int i11 = ProfileStoriesView.f30630s0;
-        ((vz0) this.f48346a).f(true, false);
-        j2Var.run();
-    }
-
-    @Override
-    public boolean y0(long j3, int i10, int i11, int i12, r7 r7Var) {
-        ImageReceiver imageReceiver;
-        e3 e3Var;
-        e3 e3Var2;
-        e3 e3Var3;
-        e3 e3Var4;
-        r7Var.f48842b = null;
-        r7Var.f48843c = null;
-        vz0 vz0Var = (vz0) this.f48346a;
-        s01 s01Var = vz0Var.h;
-        ArrayList arrayList = vz0Var.f30655w;
-        if (vz0Var.N < 0.2f) {
-            r7Var.f48842b = s01Var.getImageReceiver();
-            r7Var.f48843c = null;
-            r7Var.f48841a = s01Var;
-            r7Var.h = 0.0f;
-            r7Var.f48846i = AndroidUtilities.displaySize.y;
-            r7Var.f48845g = (View) vz0Var.getParent();
-            r7Var.d = vz0Var.f30657y;
-            r7Var.f48851n = true;
-            return true;
-        }
-        int i13 = 0;
-        while (true) {
-            if (i13 < arrayList.size()) {
-                e3 e3Var5 = (e3) arrayList.get(i13);
-                if (e3Var5.e >= 1.0f && e3Var5.f48369a == i11) {
-                    int i14 = i13 - 1;
-                    if (i14 >= 0) {
-                        e3Var3 = (e3) arrayList.get(i14);
-                    } else {
-                        e3Var3 = null;
+    public final void run() {
+        boolean z10;
+        boolean z11;
+        boolean z12;
+        boolean z13;
+        boolean z14;
+        boolean z15;
+        boolean z16;
+        boolean z17;
+        boolean z18;
+        boolean z19;
+        boolean z20;
+        boolean z21;
+        boolean z22;
+        boolean z23;
+        boolean z24;
+        switch (this.f51783a) {
+            case 0:
+                this.f51784b.b();
+                return;
+            case 1:
+                j3 j3Var = this.f51784b;
+                t3 t3Var = j3Var.f52069a;
+                if (!j3Var.f52087u) {
+                    j3Var.v = false;
+                    if (j3Var.f52081o) {
+                        j3Var.f52087u = true;
+                        long currentTimeMillis = System.currentTimeMillis();
+                        float min = Math.min(((float) (currentTimeMillis - j3Var.f52079m)) / 1000.0f, 0.25f);
+                        float f7 = j3Var.f52080n + min;
+                        j3Var.f52080n = f7;
+                        f3 f3Var = j3Var.f52076j;
+                        if (f7 > AndroidUtilities.lerp(0.1f, 1.0f, j3Var.f52086t)) {
+                            z10 = true;
+                        } else {
+                            z10 = false;
+                        }
+                        float f10 = f3Var.f(min, z10);
+                        f3 f3Var2 = j3Var.f52077k;
+                        if (j3Var.f52080n > AndroidUtilities.lerp(0.1f, 1.0f, j3Var.f52086t)) {
+                            z11 = true;
+                        } else {
+                            z11 = false;
+                        }
+                        float f11 = f3Var2.f(min, z11);
+                        float f12 = j3Var.f52075i.f(min, j3Var.f52076j.b(0.5f));
+                        f3 f3Var3 = j3Var.h;
+                        if (j3Var.f52076j.b(0.5f) && j3Var.f52075i.b(0.5f)) {
+                            z12 = true;
+                        } else {
+                            z12 = false;
+                        }
+                        float f13 = f3Var3.f(min, z12);
+                        j3Var.f52079m = currentTimeMillis;
+                        if (j3Var.f52076j.c() && j3Var.f52075i.c() && j3Var.h.c() && !j3Var.f52082p) {
+                            j3Var.f52082p = true;
+                            AndroidUtilities.runOnUIThread(new d3(j3Var, 2));
+                        }
+                        if (j3Var.f52076j.c() && j3Var.f52075i.c() && j3Var.h.b(0.25f) && !j3Var.f52083q) {
+                            j3Var.f52083q = true;
+                            AndroidUtilities.runOnUIThread(new d3(j3Var, 3));
+                        }
+                        o3 o3Var = j3Var.f52070b;
+                        if (o3Var != null) {
+                            f3 f3Var4 = j3Var.h;
+                            e3 e3Var = f3Var4.f51861b;
+                            float f14 = f3Var4.f51863e - f13;
+                            float f15 = f14 - 1.0f;
+                            e3 e3Var2 = f3Var4.f51866i;
+                            if (e3Var == e3Var2) {
+                                z22 = true;
+                            } else {
+                                z22 = false;
+                            }
+                            e3 e3Var3 = f3Var4.f51862c;
+                            if (e3Var3 == e3Var2) {
+                                z23 = true;
+                            } else {
+                                z23 = false;
+                            }
+                            e3 e3Var4 = f3Var4.d;
+                            float f16 = f14 + 1.0f;
+                            if (e3Var4 == e3Var2) {
+                                z24 = true;
+                            } else {
+                                z24 = false;
+                            }
+                            o3Var.a(e3Var, f15, z22, e3Var3, f14, z23, e3Var4, f16, z24);
+                        }
+                        o3 o3Var2 = j3Var.f52071c;
+                        if (o3Var2 != null) {
+                            f3 f3Var5 = j3Var.f52075i;
+                            e3 e3Var5 = f3Var5.f51861b;
+                            float f17 = f3Var5.f51863e - f12;
+                            float f18 = f17 - 1.0f;
+                            e3 e3Var6 = f3Var5.f51866i;
+                            if (e3Var5 == e3Var6) {
+                                z19 = true;
+                            } else {
+                                z19 = false;
+                            }
+                            e3 e3Var7 = f3Var5.f51862c;
+                            if (e3Var7 == e3Var6) {
+                                z20 = true;
+                            } else {
+                                z20 = false;
+                            }
+                            e3 e3Var8 = f3Var5.d;
+                            float f19 = f17 + 1.0f;
+                            if (e3Var8 == e3Var6) {
+                                z21 = true;
+                            } else {
+                                z21 = false;
+                            }
+                            o3Var2.a(e3Var5, f18, z19, e3Var7, f17, z20, e3Var8, f19, z21);
+                        }
+                        o3 o3Var3 = j3Var.d;
+                        if (o3Var3 != null) {
+                            f3 f3Var6 = j3Var.f52077k;
+                            e3 e3Var9 = f3Var6.f51861b;
+                            float f20 = f3Var6.f51863e - f11;
+                            float f21 = f20 - 1.0f;
+                            e3 e3Var10 = f3Var6.f51866i;
+                            if (e3Var9 == e3Var10) {
+                                z16 = true;
+                            } else {
+                                z16 = false;
+                            }
+                            e3 e3Var11 = f3Var6.f51862c;
+                            if (e3Var11 == e3Var10) {
+                                z17 = true;
+                            } else {
+                                z17 = false;
+                            }
+                            e3 e3Var12 = f3Var6.d;
+                            float f22 = f20 + 1.0f;
+                            if (e3Var12 == e3Var10) {
+                                z18 = true;
+                            } else {
+                                z18 = false;
+                            }
+                            o3Var3.a(e3Var9, f21, z16, e3Var11, f20, z17, e3Var12, f22, z18);
+                        }
+                        t3Var.g(0, ((i3) j3Var.f52075i.f51862c).f52030c, true);
+                        m3 m3Var = t3Var.f52619c;
+                        f3 f3Var7 = j3Var.h;
+                        e3 e3Var13 = f3Var7.f51861b;
+                        h3 h3Var = (h3) e3Var13;
+                        float f23 = f3Var7.f51863e - f13;
+                        float f24 = f23 - 1.0f;
+                        e3 e3Var14 = f3Var7.f51866i;
+                        if (e3Var13 == e3Var14) {
+                            z13 = true;
+                        } else {
+                            z13 = false;
+                        }
+                        e3 e3Var15 = f3Var7.f51862c;
+                        h3 h3Var2 = (h3) e3Var15;
+                        if (e3Var15 == e3Var14) {
+                            z14 = true;
+                        } else {
+                            z14 = false;
+                        }
+                        e3 e3Var16 = f3Var7.d;
+                        h3 h3Var3 = (h3) e3Var16;
+                        float f25 = f23 + 1.0f;
+                        if (e3Var16 == e3Var14) {
+                            z15 = true;
+                        } else {
+                            z15 = false;
+                        }
+                        f3 f3Var8 = j3Var.f52076j;
+                        float f26 = f3Var8.f51863e - f10;
+                        m3Var.f52253a = h3Var;
+                        m3Var.f52254b = h3Var2;
+                        m3Var.f52255c = h3Var3;
+                        m3Var.d = f24;
+                        m3Var.f52256e = f23;
+                        m3Var.f52257f = f25;
+                        m3Var.h = z13;
+                        m3Var.f52258n = z14;
+                        m3Var.f52259r = z15;
+                        m3Var.f52260s = (g3) f3Var8.f51861b;
+                        m3Var.v = (g3) f3Var8.f51862c;
+                        m3Var.f52261w = (g3) f3Var8.d;
+                        m3Var.f52262x = f26 - 1.0f;
+                        m3Var.f52263y = f26;
+                        m3Var.E = f26 + 1.0f;
+                        m3Var.invalidate();
+                        j3Var.f52087u = false;
+                        j3Var.b();
+                        return;
                     }
-                    int i15 = i13 - 2;
-                    if (i15 >= 0) {
-                        e3Var4 = (e3) arrayList.get(i15);
-                    } else {
-                        e3Var4 = null;
-                    }
-                    e3 d = ProfileStoriesView.d(e3Var3, e3Var4, e3Var5);
-                    imageReceiver = e3Var5.f48370b;
-                    e3Var2 = d;
-                    e3Var = e3Var5;
+                    return;
                 }
-                i13++;
-            } else {
-                imageReceiver = null;
-                e3Var = null;
-                e3Var2 = null;
-                break;
-            }
+                return;
+            case 2:
+                j3 j3Var2 = this.f51784b;
+                j3Var2.f52081o = false;
+                j3Var2.f52069a.f52619c.c();
+                b1 b1Var = j3Var2.f52084r;
+                if (b1Var != null) {
+                    b1Var.run();
+                    return;
+                }
+                return;
+            default:
+                b1 b1Var2 = this.f51784b.f52085s;
+                if (b1Var2 != null) {
+                    b1Var2.run();
+                    return;
+                }
+                return;
         }
-        if (imageReceiver == null) {
-            return false;
-        }
-        r7Var.f48843c = imageReceiver;
-        r7Var.f48842b = null;
-        r7Var.f48841a = vz0Var;
-        r7Var.h = 0.0f;
-        r7Var.f48846i = AndroidUtilities.displaySize.y;
-        r7Var.f48845g = (View) vz0Var.getParent();
-        if (e3Var != null && e3Var2 != null) {
-            r7Var.f48844f = new f1.a(this, new RectF(e3Var.f48378m), e3Var, new RectF(e3Var2.f48378m), e3Var2);
-            return true;
-        }
-        r7Var.f48844f = null;
-        return true;
-    }
-
-    @Override
-    public void b(boolean z10) {
     }
 }

@@ -1,38 +1,28 @@
 package org.telegram.messenger;
 
-import org.telegram.messenger.LocaleController;
-import org.telegram.tgnet.TLObject;
+import org.telegram.messenger.LocationController;
 public final class n5 implements Runnable {
-    public final int f15830a;
-    public final LocaleController f15831b;
-    public final LocaleController.LocaleInfo f15832c;
-    public final TLObject d;
-    public final int e;
-    public final Runnable f15833f;
+    public final int f18457a;
+    public final LocationController f18458b;
+    public final LocationController.SharingLocationInfo f18459c;
 
-    public n5(LocaleController localeController, LocaleController.LocaleInfo localeInfo, TLObject tLObject, int i10, Runnable runnable, int i11) {
-        this.f15830a = i11;
-        this.f15831b = localeController;
-        this.f15832c = localeInfo;
-        this.d = tLObject;
-        this.e = i10;
-        this.f15833f = runnable;
+    public n5(int i10, LocationController.SharingLocationInfo sharingLocationInfo, LocationController locationController) {
+        this.f18457a = i10;
+        this.f18458b = locationController;
+        this.f18459c = sharingLocationInfo;
     }
 
     @Override
     public final void run() {
-        switch (this.f15830a) {
+        switch (this.f18457a) {
             case 0:
-                this.f15831b.lambda$applyRemoteLanguage$16(this.f15832c, this.d, this.e, this.f15833f);
+                LocationController.j(this.f18458b, this.f18459c);
                 return;
             case 1:
-                this.f15831b.lambda$applyRemoteLanguage$20(this.f15832c, this.d, this.e, this.f15833f);
-                return;
-            case 2:
-                this.f15831b.lambda$applyRemoteLanguage$18(this.f15832c, this.d, this.e, this.f15833f);
+                LocationController.g(this.f18458b, this.f18459c);
                 return;
             default:
-                this.f15831b.lambda$applyRemoteLanguage$14(this.f15832c, this.d, this.e, this.f15833f);
+                LocationController.x(this.f18458b, this.f18459c);
                 return;
         }
     }

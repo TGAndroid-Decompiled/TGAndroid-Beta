@@ -2,24 +2,24 @@ package org.telegram.ui.Components.voip;
 
 import android.widget.TextView;
 public final class m implements Runnable {
-    public final int f28237a;
-    public final t f28238b;
+    public final int f31640a;
+    public final t f31641b;
 
     public m(t tVar, int i10) {
-        this.f28237a = i10;
-        this.f28238b = tVar;
+        this.f31640a = i10;
+        this.f31641b = tVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f28237a) {
+        switch (this.f31640a) {
             case 0:
-                this.f28238b.requestLayout();
+                this.f31641b.requestLayout();
                 return;
             default:
-                t tVar = this.f28238b;
+                t tVar = this.f31641b;
                 TextView textView = tVar.O;
-                o oVar = tVar.f28409a;
+                o oVar = tVar.f31804a;
                 if (!oVar.d.isFirstFrameRendered()) {
                     oVar.animate().cancel();
                     oVar.animate().alpha(0.0f).setDuration(150L).start();

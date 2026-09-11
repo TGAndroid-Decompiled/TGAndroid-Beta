@@ -43,8 +43,6 @@ import android.util.Log;
 import android.util.SparseIntArray;
 import android.util.StateSet;
 import android.view.View;
-import bi.u6;
-import bi.wa;
 import j$.util.Objects;
 import java.io.File;
 import java.io.FileInputStream;
@@ -79,28 +77,28 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.SerializedData;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
-import org.telegram.ui.Cells.r6;
-import org.telegram.ui.Components.f20;
-import org.telegram.ui.Components.fm0;
-import org.telegram.ui.Components.g20;
-import org.telegram.ui.Components.g90;
-import org.telegram.ui.Components.hj0;
-import org.telegram.ui.Components.hm0;
-import org.telegram.ui.Components.ie0;
-import org.telegram.ui.Components.ip0;
-import org.telegram.ui.Components.k8;
-import org.telegram.ui.Components.lc0;
-import org.telegram.ui.Components.q9;
-import org.telegram.ui.Components.qg0;
-import org.telegram.ui.Components.sc0;
-import org.telegram.ui.Components.t51;
-import org.telegram.ui.Components.vq;
-import org.telegram.ui.Components.wc;
-import org.telegram.ui.Components.ww0;
-import org.telegram.ui.Components.xp;
+import org.telegram.ui.Cells.p6;
+import org.telegram.ui.Components.dc0;
+import org.telegram.ui.Components.f51;
+import org.telegram.ui.Components.gg0;
+import org.telegram.ui.Components.kc0;
+import org.telegram.ui.Components.kw0;
+import org.telegram.ui.Components.l8;
+import org.telegram.ui.Components.oq;
+import org.telegram.ui.Components.qp;
+import org.telegram.ui.Components.r9;
+import org.telegram.ui.Components.vl0;
+import org.telegram.ui.Components.w10;
+import org.telegram.ui.Components.x10;
+import org.telegram.ui.Components.x80;
+import org.telegram.ui.Components.xi0;
+import org.telegram.ui.Components.xl0;
+import org.telegram.ui.Components.yc;
+import org.telegram.ui.Components.yo0;
+import org.telegram.ui.Components.zd0;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.eo;
-import org.telegram.ui.pd1;
+import org.telegram.ui.co;
+import org.telegram.ui.ld1;
 public abstract class j6 {
     public static int A;
     public static Paint A0;
@@ -124,7 +122,7 @@ public abstract class j6 {
     public static final int Ai;
     public static final int Aj;
     public static final int Ak;
-    public static m.e3 Al;
+    public static m2.t Al;
     public static int B;
     public static TextPaint[] B0;
     public static boolean B1;
@@ -191,11 +189,11 @@ public abstract class j6 {
     public static final int Di;
     public static final int Dj;
     public static final int Dk;
-    public static final q5 Dl;
+    public static final p5 Dl;
     public static TextPaint E0;
     public static int E1;
     public static TextPaint E2;
-    public static sc0 E3;
+    public static kc0 E3;
     public static Drawable E4;
     public static final int E5;
     public static final int E6;
@@ -261,7 +259,7 @@ public abstract class j6 {
     public static Bitmap Gl;
     public static final HashMap H;
     public static TextPaint[] H0;
-    public static hj0 H1;
+    public static xi0 H1;
     public static TextPaint H2;
     public static Drawable H3;
     public static final int H5;
@@ -283,7 +281,7 @@ public abstract class j6 {
     public static final Paint Hl;
     public static i6 I;
     public static TextPaint I0;
-    public static hj0 I1;
+    public static xi0 I1;
     public static TextPaint I2;
     public static Drawable I3;
     public static final int I5;
@@ -305,7 +303,7 @@ public abstract class j6 {
     public static final Paint Il;
     public static i6 J;
     public static TextPaint J0;
-    public static hj0 J1;
+    public static xi0 J1;
     public static TextPaint J2;
     public static Drawable J3;
     public static final int J5;
@@ -327,7 +325,7 @@ public abstract class j6 {
     public static final Paint Jl;
     public static i6 K;
     public static TextPaint K0;
-    public static hj0 K1;
+    public static xi0 K1;
     public static TextPaint K2;
     public static Drawable K3;
     public static final int K5;
@@ -349,7 +347,7 @@ public abstract class j6 {
     public static final Paint Kl;
     public static final i6 L;
     public static TextPaint L0;
-    public static hj0 L1;
+    public static xi0 L1;
     public static TextPaint L2;
     public static Drawable L3;
     public static final int L5;
@@ -371,7 +369,7 @@ public abstract class j6 {
     public static final Paint Ll;
     public static i6 M;
     public static TextPaint M0;
-    public static hj0 M1;
+    public static xi0 M1;
     public static TextPaint M2;
     public static Drawable M3;
     public static final int M5;
@@ -393,7 +391,7 @@ public abstract class j6 {
     public static final Paint Ml;
     public static boolean N;
     public static TextPaint N0;
-    public static hj0 N1;
+    public static xi0 N1;
     public static TextPaint N2;
     public static Drawable N3;
     public static final int N5;
@@ -414,7 +412,7 @@ public abstract class j6 {
     public static final int Nk;
     public static boolean O;
     public static TextPaint O0;
-    public static hj0 O1;
+    public static xi0 O1;
     public static TextPaint O2;
     public static Drawable O3;
     public static Drawable O4;
@@ -563,7 +561,7 @@ public abstract class j6 {
     public static final int Ui;
     public static final int Uj;
     public static final int Uk;
-    public static q9 V;
+    public static r9 V;
     public static Drawable V0;
     public static Paint V1;
     public static TextPaint V2;
@@ -608,7 +606,7 @@ public abstract class j6 {
     public static final int Wj;
     public static final int Wk;
     public static int X;
-    public static sc0 X0;
+    public static kc0 X0;
     public static Paint X1;
     public static TextPaint X2;
     public static Drawable X3;
@@ -672,605 +670,605 @@ public abstract class j6 {
     public static final int Zi;
     public static final int Zj;
     public static final int Zk;
-    public static Matrix f17866a0;
-    public static Drawable f17867a1;
+    public static Matrix f20601a0;
+    public static Drawable f20602a1;
     public static Paint a2;
-    public static TextPaint f17868a3;
-    public static Drawable f17869a4;
-    public static final int f17871a6;
-    public static final int f17872a7;
-    public static final int f17873a8;
-    public static final int f17874a9;
-    public static final int f17875aa;
-    public static final int f17876ab;
-    public static final int f17877ac;
-    public static final int f17878ad;
-    public static final int f17879ae;
-    public static final int f17880af;
-    public static final int f17881ag;
-    public static final int f17882ah;
-    public static final int f17883ai;
+    public static TextPaint f20603a3;
+    public static Drawable f20604a4;
+    public static final int f20606a6;
+    public static final int f20607a7;
+    public static final int f20608a8;
+    public static final int f20609a9;
+    public static final int f20610aa;
+    public static final int f20611ab;
+    public static final int f20612ac;
+    public static final int f20613ad;
+    public static final int f20614ae;
+    public static final int f20615af;
+    public static final int f20616ag;
+    public static final int f20617ah;
+    public static final int f20618ai;
     public static final int aj;
     public static final int ak;
     public static final int al;
-    public static boolean f17884b;
-    public static int f17885b0;
-    public static Drawable f17886b1;
-    public static Paint f17887b2;
-    public static TextPaint f17888b3;
-    public static Drawable f17889b4;
-    public static Drawable f17890b5;
-    public static final int f17891b6;
-    public static final int f17892b7;
-    public static final int f17893b8;
-    public static final int f17894b9;
-    public static final int f17895ba;
-    public static final int f17896bb;
-    public static final int f17897bc;
+    public static boolean f20619b;
+    public static int f20620b0;
+    public static Drawable f20621b1;
+    public static Paint f20622b2;
+    public static TextPaint f20623b3;
+    public static Drawable f20624b4;
+    public static Drawable f20625b5;
+    public static final int f20626b6;
+    public static final int f20627b7;
+    public static final int f20628b8;
+    public static final int f20629b9;
+    public static final int f20630ba;
+    public static final int f20631bb;
+    public static final int f20632bc;
     public static final int bd;
-    public static final int f17898be;
-    public static final int f17899bf;
-    public static final int f17900bg;
-    public static final int f17901bh;
-    public static final int f17902bi;
+    public static final int f20633be;
+    public static final int f20634bf;
+    public static final int f20635bg;
+    public static final int f20636bh;
+    public static final int f20637bi;
     public static final int bj;
     public static final int bk;
     public static final int bl;
-    public static int f17904c0;
-    public static Drawable f17905c1;
-    public static Paint f17906c2;
-    public static TextPaint f17907c3;
-    public static Drawable f17908c4;
-    public static Drawable f17909c5;
-    public static final int f17910c6;
-    public static final int f17911c7;
-    public static final int f17912c8;
-    public static final int f17913c9;
-    public static final int f17914ca;
+    public static int f20639c0;
+    public static Drawable f20640c1;
+    public static Paint f20641c2;
+    public static TextPaint f20642c3;
+    public static Drawable f20643c4;
+    public static Drawable f20644c5;
+    public static final int f20645c6;
+    public static final int f20646c7;
+    public static final int f20647c8;
+    public static final int f20648c9;
+    public static final int f20649ca;
     public static final int cb;
-    public static final int f17915cc;
-    public static final int f17916cd;
-    public static final int f17917ce;
-    public static final int f17918cf;
-    public static final int f17919cg;
-    public static final int f17920ch;
-    public static final int f17921ci;
+    public static final int f20650cc;
+    public static final int f20651cd;
+    public static final int f20652ce;
+    public static final int f20653cf;
+    public static final int f20654cg;
+    public static final int f20655ch;
+    public static final int f20656ci;
     public static final int cj;
     public static final int ck;
     public static final int cl;
-    public static fg.v0 d;
-    public static int f17922d0;
-    public static Drawable f17923d1;
-    public static Paint f17924d2;
-    public static TextPaint f17925d3;
-    public static Drawable f17926d4;
-    public static k8 f17927d5;
-    public static final int f17928d6;
-    public static final int f17929d7;
-    public static final int f17930d8;
-    public static final int f17931d9;
-    public static final int f17932da;
-    public static final int f17933db;
-    public static final int f17934dc;
-    public static final int f17935dd;
-    public static final int f17936de;
-    public static final int f17937df;
-    public static final int dg;
-    public static final int f17938dh;
-    public static final int f17939di;
+    public static hg.v0 d;
+    public static int f20657d0;
+    public static Drawable f20658d1;
+    public static Paint f20659d2;
+    public static TextPaint f20660d3;
+    public static Drawable f20661d4;
+    public static l8 f20662d5;
+    public static final int f20663d6;
+    public static final int f20664d7;
+    public static final int f20665d8;
+    public static final int f20666d9;
+    public static final int f20667da;
+    public static final int f20668db;
+    public static final int f20669dc;
+    public static final int f20670dd;
+    public static final int f20671de;
+    public static final int f20672df;
+    public static final int f20673dg;
+    public static final int f20674dh;
+    public static final int f20675di;
     public static final int dj;
     public static final int dk;
     public static final int dl;
-    public static SensorManager e;
-    public static Drawable f17940e0;
-    public static Drawable f17941e1;
-    public static Paint f17942e2;
-    public static TextPaint f17943e3;
-    public static Drawable f17944e4;
-    public static HashMap f17945e5;
-    public static final int f17946e6;
+    public static SensorManager f20676e;
+    public static Drawable f20677e0;
+    public static Drawable f20678e1;
+    public static Paint f20679e2;
+    public static TextPaint f20680e3;
+    public static Drawable f20681e4;
+    public static HashMap f20682e5;
+    public static final int f20683e6;
     public static final int e7;
-    public static final int f17947e8;
-    public static final int f17948e9;
-    public static final int f17949ea;
-    public static final int f17950eb;
+    public static final int f20684e8;
+    public static final int f20685e9;
+    public static final int f20686ea;
+    public static final int f20687eb;
     public static final int ec;
-    public static final int f17951ed;
-    public static final int f17952ee;
-    public static final int f17953ef;
-    public static final int f17954eg;
-    public static final int f17955eh;
-    public static final int f17956ei;
+    public static final int f20688ed;
+    public static final int f20689ee;
+    public static final int f20690ef;
+    public static final int eg;
+    public static final int f20691eh;
+    public static final int f20692ei;
     public static final int ej;
     public static final int ek;
     public static final int el;
-    public static Sensor f17957f;
-    public static Drawable f17958f0;
-    public static Drawable f17959f1;
-    public static Paint f17960f2;
-    public static TextPaint f17961f3;
-    public static Drawable f17962f4;
-    public static final int f17963f5;
-    public static final int f17964f6;
+    public static Sensor f20693f;
+    public static Drawable f20694f0;
+    public static Drawable f20695f1;
+    public static Paint f20696f2;
+    public static TextPaint f20697f3;
+    public static Drawable f20698f4;
+    public static final int f20699f5;
+    public static final int f20700f6;
     public static final int f7;
-    public static final int f17965f8;
-    public static final int f17966f9;
-    public static final int f17967fa;
-    public static final int f17968fb;
-    public static final int f17969fc;
-    public static final int f17970fd;
+    public static final int f20701f8;
+    public static final int f20702f9;
+    public static final int f20703fa;
+    public static final int f20704fb;
+    public static final int f20705fc;
+    public static final int f20706fd;
     public static final int fe;
-    public static final int f17971ff;
-    public static final int f17972fg;
-    public static final int f17973fh;
-    public static final int f17974fi;
+    public static final int f20707ff;
+    public static final int f20708fg;
+    public static final int f20709fh;
+    public static final int f20710fi;
     public static final int fj;
     public static final int fk;
     public static final int fl;
-    public static boolean f17975g;
-    public static int f17976g0;
-    public static hm0 f17977g1;
-    public static Paint f17978g2;
-    public static TextPaint f17979g3;
-    public static Drawable f17980g4;
-    public static final int f17981g5;
-    public static final int f17982g6;
-    public static final int f17983g7;
-    public static final int f17984g8;
-    public static final int f17985g9;
+    public static boolean f20711g;
+    public static int f20712g0;
+    public static xl0 f20713g1;
+    public static Paint f20714g2;
+    public static TextPaint f20715g3;
+    public static Drawable f20716g4;
+    public static final int f20717g5;
+    public static final int f20718g6;
+    public static final int f20719g7;
+    public static final int f20720g8;
+    public static final int f20721g9;
     public static final int ga;
-    public static final int f17986gb;
+    public static final int f20722gb;
     public static final int gc;
-    public static final int f17987gd;
-    public static final int f17988ge;
-    public static final int f17989gf;
-    public static final int f17990gg;
-    public static final int f17991gh;
-    public static final int f17992gi;
+    public static final int f20723gd;
+    public static final int f20724ge;
+    public static final int f20725gf;
+    public static final int f20726gg;
+    public static final int f20727gh;
+    public static final int f20728gi;
     public static final int gj;
     public static final int gk;
     public static final int gl;
-    public static String f17993h0;
-    public static hm0 f17994h1;
-    public static Paint f17995h2;
-    public static Drawable f17996h3;
-    public static Drawable f17997h4;
-    public static final int f17998h5;
-    public static final int f17999h6;
-    public static final int f18000h7;
-    public static final int f18001h8;
-    public static final int f18002h9;
+    public static String f20729h0;
+    public static xl0 f20730h1;
+    public static Paint f20731h2;
+    public static Drawable f20732h3;
+    public static Drawable f20733h4;
+    public static final int f20734h5;
+    public static final int f20735h6;
+    public static final int f20736h7;
+    public static final int f20737h8;
+    public static final int f20738h9;
     public static final int ha;
-    public static final int f18003hb;
-    public static final int f18004hc;
-    public static final int f18005hd;
-    public static final int f18006he;
+    public static final int f20739hb;
+    public static final int f20740hc;
+    public static final int f20741hd;
+    public static final int f20742he;
     public static final int hf;
-    public static final int f18007hg;
-    public static final int f18008hh;
-    public static final int f18009hi;
+    public static final int f20743hg;
+    public static final int f20744hh;
+    public static final int f20745hi;
     public static final int hj;
     public static final int hk;
     public static final int hl;
-    public static long f18010i;
-    public static boolean f18011i0;
-    public static Drawable f18012i1;
-    public static Paint f18013i2;
-    public static Drawable f18014i3;
-    public static Drawable f18015i4;
-    public static final int f18016i5;
-    public static final int f18017i6;
-    public static final int f18018i7;
-    public static final int f18019i8;
-    public static final int f18020i9;
-    public static final int f18021ia;
-    public static final int f18022ib;
-    public static final int f18023ic;
-    public static final int f18024id;
-    public static final int f18025ie;
-    public static final int f18026ig;
-    public static final int f18027ih;
-    public static final int f18028ii;
+    public static long f20746i;
+    public static boolean f20747i0;
+    public static Drawable f20748i1;
+    public static Paint f20749i2;
+    public static Drawable f20750i3;
+    public static Drawable f20751i4;
+    public static final int f20752i5;
+    public static final int f20753i6;
+    public static final int f20754i7;
+    public static final int f20755i8;
+    public static final int f20756i9;
+    public static final int f20757ia;
+    public static final int f20758ib;
+    public static final int f20759ic;
+    public static final int f20760id;
+    public static final int f20761ie;
+    public static final int f20762ig;
+    public static final int f20763ih;
+    public static final int f20764ii;
     public static final int ij;
     public static final int ik;
     public static final int il;
-    public static boolean f18029j;
-    public static boolean f18030j0;
-    public static Drawable f18031j1;
-    public static Paint f18032j2;
+    public static boolean f20765j;
+    public static boolean f20766j0;
+    public static Drawable f20767j1;
+    public static Paint f20768j2;
     public static Drawable j3;
-    public static Drawable f18033j4;
-    public static final int f18034j5;
-    public static final int f18035j6;
-    public static final int f18036j7;
-    public static final int f18037j8;
-    public static final int f18038j9;
-    public static final int f18039ja;
-    public static final int f18040jb;
-    public static final int f18041jc;
-    public static final int f18042jd;
-    public static final int f18043je;
-    public static final int f18044jf;
-    public static final int f18045jg;
-    public static final int f18046jh;
-    public static final int f18047ji;
+    public static Drawable f20769j4;
+    public static final int f20770j5;
+    public static final int f20771j6;
+    public static final int f20772j7;
+    public static final int f20773j8;
+    public static final int f20774j9;
+    public static final int f20775ja;
+    public static final int f20776jb;
+    public static final int f20777jc;
+    public static final int f20778jd;
+    public static final int f20779je;
+    public static final int f20780jf;
+    public static final int f20781jg;
+    public static final int f20782jh;
+    public static final int f20783ji;
     public static final int jj;
     public static final int jk;
     public static final HashMap jl;
-    public static boolean f18048k;
-    public static Paint f18049k0;
-    public static Drawable f18050k1;
-    public static Paint f18051k2;
-    public static j5 f18052k3;
-    public static Drawable f18053k4;
-    public static final int f18054k5;
-    public static final int f18055k6;
-    public static final int f18056k7;
-    public static final int f18057k8;
-    public static final int f18058k9;
-    public static final int f18059ka;
-    public static final int f18060kb;
-    public static final int f18061kc;
-    public static final int f18062kd;
-    public static final int f18063ke;
-    public static final int f18064kf;
-    public static final int f18065kg;
-    public static final int f18066kh;
-    public static final int f18067ki;
+    public static boolean f20784k;
+    public static Paint f20785k0;
+    public static Drawable f20786k1;
+    public static Paint f20787k2;
+    public static h5 f20788k3;
+    public static Drawable f20789k4;
+    public static final int f20790k5;
+    public static final int f20791k6;
+    public static final int f20792k7;
+    public static final int f20793k8;
+    public static final int f20794k9;
+    public static final int f20795ka;
+    public static final int f20796kb;
+    public static final int f20797kc;
+    public static final int f20798kd;
+    public static final int f20799ke;
+    public static final int f20800kf;
+    public static final int f20801kg;
+    public static final int f20802kh;
+    public static final int f20803ki;
     public static final int kj;
     public static final int kk;
     public static final HashMap kl;
-    public static Paint f18069l0;
+    public static Paint f20805l0;
     public static Drawable l1;
-    public static Paint f18070l2;
-    public static Drawable f18071l3;
+    public static Paint f20806l2;
+    public static Drawable f20807l3;
     public static Drawable l4;
-    public static final int f18072l5;
-    public static final int f18073l6;
-    public static final int f18074l7;
-    public static final int f18075l8;
-    public static final int f18076l9;
-    public static final int f18077la;
-    public static final int f18078lb;
-    public static final int f18079lc;
-    public static final int f18080ld;
-    public static final int f18081le;
-    public static final int f18082lf;
-    public static final int f18083lg;
-    public static final int f18084lh;
+    public static final int f20808l5;
+    public static final int f20809l6;
+    public static final int f20810l7;
+    public static final int f20811l8;
+    public static final int f20812l9;
+    public static final int f20813la;
+    public static final int f20814lb;
+    public static final int f20815lc;
+    public static final int f20816ld;
+    public static final int f20817le;
+    public static final int f20818lf;
+    public static final int f20819lg;
+    public static final int f20820lh;
     public static final int li;
     public static final int lj;
     public static final int lk;
     public static final HashMap ll;
     public static Paint m0;
-    public static Drawable f18086m1;
-    public static Paint f18087m2;
-    public static h5 f18088m3;
-    public static Drawable f18089m4;
-    public static final int f18090m5;
-    public static final int f18091m6;
-    public static final int f18092m7;
-    public static final int f18093m8;
-    public static final int f18094m9;
-    public static final int f18095ma;
-    public static final int f18096mb;
-    public static final int f18097mc;
-    public static final int f18098md;
-    public static final int f18099me;
-    public static final int f18100mf;
-    public static final int f18101mg;
-    public static final int f18102mh;
+    public static Drawable f20822m1;
+    public static Paint f20823m2;
+    public static f5 f20824m3;
+    public static Drawable f20825m4;
+    public static final int f20826m5;
+    public static final int f20827m6;
+    public static final int f20828m7;
+    public static final int f20829m8;
+    public static final int f20830m9;
+    public static final int f20831ma;
+    public static final int f20832mb;
+    public static final int f20833mc;
+    public static final int f20834md;
+    public static final int f20835me;
+    public static final int f20836mf;
+    public static final int f20837mg;
+    public static final int f20838mh;
     public static final int mi;
     public static final int mj;
     public static final int mk;
     public static final HashMap ml;
-    public static Paint f18104n0;
-    public static Drawable f18105n1;
-    public static Paint f18106n2;
-    public static h5 f18107n3;
-    public static Drawable f18108n4;
-    public static final int f18109n5;
-    public static final int f18110n6;
-    public static final int f18111n7;
-    public static final int f18112n8;
-    public static final int f18113n9;
-    public static final int f18114na;
+    public static Paint f20840n0;
+    public static Drawable f20841n1;
+    public static Paint f20842n2;
+    public static f5 f20843n3;
+    public static Drawable f20844n4;
+    public static final int f20845n5;
+    public static final int f20846n6;
+    public static final int f20847n7;
+    public static final int f20848n8;
+    public static final int f20849n9;
+    public static final int f20850na;
     public static final int nb;
     public static final int nc;
-    public static final int f18115nd;
+    public static final int f20851nd;
     public static final int ne;
-    public static final int f18116nf;
-    public static final int f18117ng;
-    public static final int f18118nh;
+    public static final int f20852nf;
+    public static final int f20853ng;
+    public static final int f20854nh;
     public static final int ni;
     public static final int nj;
     public static final int nk;
     public static final int[] nl;
-    public static int f18119o;
-    public static Paint f18120o0;
-    public static Drawable f18121o1;
-    public static TextPaint f18122o2;
-    public static h5 f18123o3;
-    public static Drawable f18124o4;
-    public static final int f18125o5;
-    public static final int f18126o6;
-    public static final int f18127o7;
-    public static final int f18128o8;
+    public static int f20855o;
+    public static Paint f20856o0;
+    public static Drawable f20857o1;
+    public static TextPaint f20858o2;
+    public static f5 f20859o3;
+    public static Drawable f20860o4;
+    public static final int f20861o5;
+    public static final int f20862o6;
+    public static final int f20863o7;
+    public static final int f20864o8;
     public static final int o9;
-    public static final int f18129oa;
-    public static final int f18130ob;
-    public static final int f18131oc;
-    public static final int f18132od;
-    public static final int f18133oe;
-    public static final int f18134of;
-    public static final int f18135og;
-    public static final int f18136oh;
+    public static final int f20865oa;
+    public static final int f20866ob;
+    public static final int f20867oc;
+    public static final int f20868od;
+    public static final int f20869oe;
+    public static final int f20870of;
+    public static final int f20871og;
+    public static final int f20872oh;
     public static final int oi;
     public static final int oj;
     public static final int ok;
     public static final SparseIntArray ol;
-    public static boolean f18137p;
-    public static Paint f18138p0;
-    public static Drawable f18139p1;
-    public static TextPaint f18140p2;
-    public static h5 f18141p3;
-    public static Drawable f18142p4;
+    public static boolean f20873p;
+    public static Paint f20874p0;
+    public static Drawable f20875p1;
+    public static TextPaint f20876p2;
+    public static f5 f20877p3;
+    public static Drawable f20878p4;
     public static final int p5;
-    public static final int f18143p6;
-    public static final int f18144p7;
-    public static final int[] f18145p8;
-    public static final int f18146p9;
-    public static final int f18147pa;
-    public static final int f18148pb;
-    public static final int f18149pc;
-    public static final int f18150pd;
-    public static final int f18151pe;
-    public static final int f18152pf;
-    public static final int f18153pg;
-    public static final int f18154ph;
+    public static final int f20879p6;
+    public static final int f20880p7;
+    public static final int[] f20881p8;
+    public static final int f20882p9;
+    public static final int f20883pa;
+    public static final int f20884pb;
+    public static final int f20885pc;
+    public static final int f20886pd;
+    public static final int f20887pe;
+    public static final int f20888pf;
+    public static final int f20889pg;
+    public static final int f20890ph;
     public static final int pi;
     public static final int pj;
     public static final int pk;
     public static final HashSet pl;
-    public static float f18155q;
-    public static Paint f18156q0;
-    public static Drawable f18157q1;
-    public static TextPaint f18158q2;
-    public static h5 f18159q3;
-    public static Drawable f18160q4;
-    public static final int f18161q5;
+    public static float f20891q;
+    public static Paint f20892q0;
+    public static Drawable f20893q1;
+    public static TextPaint f20894q2;
+    public static f5 f20895q3;
+    public static Drawable f20896q4;
+    public static final int f20897q5;
     public static final int q6;
-    public static final int f18162q7;
-    public static final int[] f18163q8;
-    public static final int f18164q9;
-    public static final int f18165qa;
-    public static final int f18166qb;
-    public static final int f18167qc;
-    public static final int f18168qd;
-    public static final int f18169qe;
-    public static final int f18170qf;
-    public static final int f18171qg;
-    public static final int f18172qh;
+    public static final int f20898q7;
+    public static final int[] f20899q8;
+    public static final int f20900q9;
+    public static final int f20901qa;
+    public static final int f20902qb;
+    public static final int f20903qc;
+    public static final int f20904qd;
+    public static final int f20905qe;
+    public static final int f20906qf;
+    public static final int f20907qg;
+    public static final int f20908qh;
     public static final int qi;
     public static final int qj;
     public static final int qk;
     public static SparseIntArray ql;
-    public static int f18173r;
-    public static Drawable f18175r1;
-    public static TextPaint f18176r2;
-    public static h5 f18177r3;
-    public static Drawable f18178r4;
-    public static final int f18179r5;
-    public static final int f18180r6;
-    public static final int f18181r7;
-    public static final int[] f18182r8;
-    public static final int f18183r9;
-    public static final int f18184ra;
-    public static final int f18185rb;
-    public static final int f18186rc;
-    public static final int f18187rd;
-    public static final int f18188re;
-    public static final int f18189rf;
-    public static final int f18190rg;
-    public static final int f18191rh;
+    public static int f20909r;
+    public static Drawable f20911r1;
+    public static TextPaint f20912r2;
+    public static f5 f20913r3;
+    public static Drawable f20914r4;
+    public static final int f20915r5;
+    public static final int f20916r6;
+    public static final int f20917r7;
+    public static final int[] f20918r8;
+    public static final int f20919r9;
+    public static final int f20920ra;
+    public static final int f20921rb;
+    public static final int f20922rc;
+    public static final int f20923rd;
+    public static final int f20924re;
+    public static final int f20925rf;
+    public static final int f20926rg;
+    public static final int f20927rh;
     public static final int ri;
     public static final int rj;
     public static final int rk;
     public static SparseIntArray rl;
-    public static int f18192s;
-    public static Drawable f18193s0;
-    public static Drawable f18194s1;
-    public static TextPaint f18195s2;
-    public static h5 f18196s3;
-    public static Drawable f18197s4;
-    public static final int f18198s5;
-    public static final int f18199s6;
-    public static final int f18200s7;
-    public static final int f18201s8;
-    public static final int f18202s9;
-    public static final int f18203sa;
-    public static final int f18204sb;
-    public static final int f18205sc;
-    public static final int f18206sd;
-    public static final int f18207se;
-    public static final int f18208sf;
-    public static final int f18209sg;
-    public static final int f18210sh;
+    public static int f20928s;
+    public static Drawable f20929s0;
+    public static Drawable f20930s1;
+    public static TextPaint f20931s2;
+    public static f5 f20932s3;
+    public static Drawable f20933s4;
+    public static final int f20934s5;
+    public static final int f20935s6;
+    public static final int f20936s7;
+    public static final int f20937s8;
+    public static final int f20938s9;
+    public static final int f20939sa;
+    public static final int f20940sb;
+    public static final int f20941sc;
+    public static final int f20942sd;
+    public static final int f20943se;
+    public static final int f20944sf;
+    public static final int f20945sg;
+    public static final int f20946sh;
     public static final int si;
     public static final int sj;
     public static final int sk;
     public static SparseIntArray sl;
-    public static int f18211t;
-    public static Paint f18212t0;
-    public static Drawable f18213t1;
-    public static TextPaint f18214t2;
-    public static h5 f18215t3;
-    public static Drawable f18216t4;
-    public static final int f18217t5;
-    public static final int f18218t6;
-    public static final int f18219t7;
-    public static final int f18220t8;
-    public static final int f18221t9;
+    public static int f20947t;
+    public static Paint f20948t0;
+    public static Drawable f20949t1;
+    public static TextPaint f20950t2;
+    public static f5 f20951t3;
+    public static Drawable f20952t4;
+    public static final int f20953t5;
+    public static final int f20954t6;
+    public static final int f20955t7;
+    public static final int f20956t8;
+    public static final int f20957t9;
     public static final int ta;
-    public static final int f18222tb;
-    public static final int f18223tc;
-    public static final int f18224td;
-    public static final int f18225te;
-    public static final int f18226tf;
-    public static final int f18227tg;
-    public static final int f18228th;
+    public static final int f20958tb;
+    public static final int f20959tc;
+    public static final int f20960td;
+    public static final int f20961te;
+    public static final int f20962tf;
+    public static final int f20963tg;
+    public static final int f20964th;
     public static final int ti;
     public static final int tj;
     public static final int tk;
     public static boolean tl;
-    public static int f18229u;
-    public static Paint f18230u0;
-    public static hj0 f18231u1;
-    public static TextPaint f18232u2;
-    public static Drawable f18234u4;
-    public static final int f18235u5;
-    public static final int f18236u6;
-    public static final int f18237u7;
-    public static final int f18238u8;
-    public static final int f18239u9;
-    public static final int f18240ua;
-    public static final int f18241ub;
-    public static final int f18242uc;
-    public static final int f18243ud;
-    public static final int f18244ue;
-    public static final int f18245uf;
-    public static final int f18246ug;
-    public static final int f18247uh;
+    public static int f20965u;
+    public static Paint f20966u0;
+    public static xi0 f20967u1;
+    public static TextPaint f20968u2;
+    public static Drawable f20970u4;
+    public static final int f20971u5;
+    public static final int f20972u6;
+    public static final int f20973u7;
+    public static final int f20974u8;
+    public static final int f20975u9;
+    public static final int f20976ua;
+    public static final int f20977ub;
+    public static final int f20978uc;
+    public static final int f20979ud;
+    public static final int f20980ue;
+    public static final int f20981uf;
+    public static final int f20982ug;
+    public static final int f20983uh;
     public static final int ui;
     public static final int uj;
     public static final int uk;
     public static final ThreadLocal ul;
     public static int v;
-    public static Paint f18248v0;
-    public static hj0 f18249v1;
-    public static TextPaint f18250v2;
-    public static PorterDuffColorFilter f18251v3;
-    public static Drawable f18252v4;
-    public static final int f18253v5;
-    public static final int f18254v6;
-    public static final int f18255v7;
-    public static final int f18256v8;
+    public static Paint f20984v0;
+    public static xi0 f20985v1;
+    public static TextPaint f20986v2;
+    public static PorterDuffColorFilter f20987v3;
+    public static Drawable f20988v4;
+    public static final int f20989v5;
+    public static final int f20990v6;
+    public static final int f20991v7;
+    public static final int f20992v8;
     public static final int v9;
-    public static final int f18257va;
-    public static final int f18258vb;
-    public static final int f18259vc;
-    public static final int f18260vd;
-    public static final int f18261ve;
-    public static final int vf;
-    public static final int f18262vg;
-    public static final int f18263vh;
+    public static final int f20993va;
+    public static final int f20994vb;
+    public static final int f20995vc;
+    public static final int f20996vd;
+    public static final int f20997ve;
+    public static final int f20998vf;
+    public static final int f20999vg;
+    public static final int f21000vh;
     public static final int vi;
     public static final int vj;
     public static final int vk;
     public static final ThreadLocal vl;
-    public static String f18264w;
-    public static Paint f18265w0;
-    public static hj0 f18266w1;
-    public static TextPaint f18267w2;
-    public static PorterDuffColorFilter f18268w3;
-    public static Drawable f18269w4;
-    public static final int f18270w5;
-    public static final int f18271w6;
-    public static final int f18272w7;
-    public static final int f18273w8;
-    public static final int f18274w9;
-    public static final int f18275wa;
-    public static final int f18276wb;
+    public static String f21001w;
+    public static Paint f21002w0;
+    public static xi0 f21003w1;
+    public static TextPaint f21004w2;
+    public static PorterDuffColorFilter f21005w3;
+    public static Drawable f21006w4;
+    public static final int f21007w5;
+    public static final int f21008w6;
+    public static final int f21009w7;
+    public static final int f21010w8;
+    public static final int f21011w9;
+    public static final int f21012wa;
+    public static final int f21013wb;
     public static final int wc;
-    public static final int f18277wd;
-    public static final int f18278we;
-    public static final int f18279wf;
-    public static final int f18280wg;
-    public static final int f18281wh;
+    public static final int f21014wd;
+    public static final int f21015we;
+    public static final int wf;
+    public static final int f21016wg;
+    public static final int f21017wh;
     public static final int wi;
     public static final int wj;
     public static final int wk;
     public static final ThreadLocal wl;
-    public static double f18282x;
-    public static Paint f18283x0;
-    public static hj0 f18284x1;
-    public static TextPaint f18285x2;
-    public static ie0 f18286x3;
-    public static Drawable f18287x4;
-    public static final int f18288x5;
-    public static final int f18289x6;
-    public static final int f18290x7;
-    public static final int f18291x8;
-    public static final int f18292x9;
-    public static final int f18293xa;
-    public static final int f18294xb;
+    public static double f21018x;
+    public static Paint f21019x0;
+    public static xi0 f21020x1;
+    public static TextPaint f21021x2;
+    public static zd0 f21022x3;
+    public static Drawable f21023x4;
+    public static final int f21024x5;
+    public static final int f21025x6;
+    public static final int f21026x7;
+    public static final int f21027x8;
+    public static final int f21028x9;
+    public static final int f21029xa;
+    public static final int f21030xb;
     public static final int xc;
-    public static final int f18295xd;
-    public static final int f18296xe;
-    public static final int f18297xf;
-    public static final int f18298xg;
-    public static final int f18299xh;
+    public static final int f21031xd;
+    public static final int f21032xe;
+    public static final int f21033xf;
+    public static final int f21034xg;
+    public static final int f21035xh;
     public static final int xi;
     public static final int xj;
     public static final int xk;
     public static final ThreadLocal xl;
-    public static double f18300y;
-    public static Paint f18301y0;
-    public static hj0 f18302y1;
-    public static TextPaint[] f18303y2;
+    public static double f21036y;
+    public static Paint f21037y0;
+    public static xi0 f21038y1;
+    public static TextPaint[] f21039y2;
     public static Drawable y3;
-    public static Drawable f18304y4;
-    public static final int f18305y5;
-    public static final int f18306y6;
-    public static final int f18307y7;
-    public static final int f18308y8;
-    public static final int f18309y9;
-    public static final int f18310ya;
-    public static final int f18311yb;
-    public static final int f18312yc;
-    public static final int f18313yd;
-    public static final int f18314ye;
-    public static final int f18315yf;
-    public static final int f18316yg;
-    public static final int f18317yh;
+    public static Drawable f21040y4;
+    public static final int f21041y5;
+    public static final int f21042y6;
+    public static final int f21043y7;
+    public static final int f21044y8;
+    public static final int f21045y9;
+    public static final int f21046ya;
+    public static final int f21047yb;
+    public static final int f21048yc;
+    public static final int f21049yd;
+    public static final int f21050ye;
+    public static final int f21051yf;
+    public static final int f21052yg;
+    public static final int f21053yh;
     public static final int yi;
     public static final int yj;
     public static final int yk;
     public static final ThreadLocal yl;
-    public static Paint f18319z0;
-    public static hj0 f18320z1;
-    public static TextPaint f18321z2;
-    public static Drawable f18322z3;
-    public static Drawable f18323z4;
-    public static final int f18324z5;
-    public static final int f18325z6;
-    public static final int f18326z7;
-    public static final int f18327z8;
-    public static final int f18328z9;
-    public static final int f18329za;
-    public static final int f18330zb;
-    public static final int f18331zc;
-    public static final int f18332zd;
-    public static final int f18333ze;
-    public static final int f18334zf;
-    public static final int f18335zg;
-    public static final int f18336zh;
+    public static Paint f21055z0;
+    public static xi0 f21056z1;
+    public static TextPaint f21057z2;
+    public static Drawable f21058z3;
+    public static Drawable f21059z4;
+    public static final int f21060z5;
+    public static final int f21061z6;
+    public static final int f21062z7;
+    public static final int f21063z8;
+    public static final int f21064z9;
+    public static final int f21065za;
+    public static final int f21066zb;
+    public static final int f21067zc;
+    public static final int f21068zd;
+    public static final int f21069ze;
+    public static final int f21070zf;
+    public static final int f21071zg;
+    public static final int f21072zh;
     public static final int zi;
     public static final int zj;
     public static final int zk;
-    public static g20 zl;
-    public static final int f17865a = i0.a.k(-16777216, 27);
-    public static final Object f17903c = new Object();
+    public static x10 zl;
+    public static final int f20600a = i0.a.k(-16777216, 27);
+    public static final Object f20638c = new Object();
     public static float h = 1.0f;
-    public static final androidx.emoji2.text.n f18068l = new androidx.emoji2.text.n(2);
-    public static final androidx.emoji2.text.n f18085m = new androidx.emoji2.text.n(3);
-    public static final int f18103n = 99;
-    public static final Paint f18318z = new Paint(1);
+    public static final androidx.emoji2.text.n f20804l = new androidx.emoji2.text.n(3);
+    public static final androidx.emoji2.text.n f20821m = new androidx.emoji2.text.n(4);
+    public static final int f20839n = 99;
+    public static final Paint f21054z = new Paint(1);
     public static final boolean[] C = new boolean[4];
     public static final int[] D = new int[4];
     public static final long[] E = new long[4];
-    public static final Drawable[] f18174r0 = new Drawable[25];
-    public static final ww0[] f18233u3 = new ww0[6];
+    public static final Drawable[] f20910r0 = new Drawable[25];
+    public static final kw0[] f20969u3 = new kw0[6];
     public static final Drawable[] G4 = new Drawable[2];
     public static final Drawable[] H4 = new Drawable[2];
     public static final Drawable[] I4 = new Drawable[2];
@@ -1283,26 +1281,26 @@ public abstract class j6 {
     public static final Drawable[] T4 = new Drawable[2];
     public static final Drawable[][] U4 = (Drawable[][]) Array.newInstance(Drawable.class, 5, 2);
     public static final Path[] Z4 = new Path[2];
-    public static final Path[] f17870a5 = new Path[3];
+    public static final Path[] f20605a5 = new Path[3];
 
     static {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ActionBar.j6.<clinit>():void");
     }
 
     public static void A() {
-        if (f18119o != 2) {
-            if (f18048k) {
-                f18048k = false;
-                AndroidUtilities.cancelRunOnUIThread(f18085m);
+        if (f20855o != 2) {
+            if (f20784k) {
+                f20784k = false;
+                AndroidUtilities.cancelRunOnUIThread(f20821m);
             }
-            if (f18029j) {
-                f18029j = false;
-                AndroidUtilities.cancelRunOnUIThread(f18068l);
+            if (f20765j) {
+                f20765j = false;
+                AndroidUtilities.cancelRunOnUIThread(f20804l);
             }
-            if (f17975g) {
+            if (f20711g) {
                 h = 1.0f;
-                e.unregisterListener(Dl, f17957f);
-                f17975g = false;
+                f20676e.unregisterListener(Dl, f20693f);
+                f20711g = false;
                 if (BuildVars.LOGS_ENABLED) {
                     FileLog.d("light sensor unregistered");
                 }
@@ -1327,7 +1325,7 @@ public abstract class j6 {
                     g6 g6Var = (g6) drawable;
                     float f10 = i10;
                     float f11 = i11;
-                    float[] fArr = g6Var.f17750b;
+                    float[] fArr = g6Var.f20472b;
                     float dp = AndroidUtilities.dp(f10);
                     fArr[3] = dp;
                     fArr[2] = dp;
@@ -1338,7 +1336,7 @@ public abstract class j6 {
                     fArr[6] = dp2;
                     fArr[5] = dp2;
                     fArr[4] = dp2;
-                    g6Var.f17751c = true;
+                    g6Var.f20473c = true;
                     g6Var.invalidateSelf();
                     return;
                 }
@@ -1348,7 +1346,7 @@ public abstract class j6 {
 
     public static int B(i6 i6Var, int i10, int i11) {
         int i12;
-        if (i10 != 0 && (i12 = i6Var.X) != 0 && i10 != i12 && (!i6Var.S || i6Var.Y != f18103n)) {
+        if (i10 != 0 && (i12 = i6Var.X) != 0 && i10 != i12 && (!i6Var.S || i6Var.Y != f20839n)) {
             float[] M02 = M0(3);
             float[] M03 = M0(4);
             Color.colorToHSV(i6Var.X, M02);
@@ -1371,7 +1369,7 @@ public abstract class j6 {
         float[] M02 = M0(1);
         float[] M03 = M0(2);
         Color.colorToHSV(I.X, M02);
-        Color.colorToHSV(k10.f17794c, M03);
+        Color.colorToHSV(k10.f20492c, M03);
         return D(M02, M03, valueAt, I.q(), valueAt);
     }
 
@@ -1456,7 +1454,7 @@ public abstract class j6 {
             if (i12 != -1) {
                 return C0(i12);
             }
-            if ((i10 < f18329za || i10 >= Ga) && i10 != D9 && i10 != N9 && i10 != E9 && i10 != Pd && i10 != Qd) {
+            if ((i10 < f21065za || i10 >= Ga) && i10 != D9 && i10 != N9 && i10 != E9 && i10 != Pd && i10 != Qd) {
                 return -65536;
             }
             return 0;
@@ -1481,19 +1479,19 @@ public abstract class j6 {
                 if (i6Var == null) {
                     String q02 = q0(themeSettings);
                     if (q02 != null && (i6Var = (i6) hashMap.get(q02)) != null) {
-                        h6Var = (h6) i6Var.f17839c0.get(tL_theme.f17332id);
+                        h6Var = (h6) i6Var.f20545c0.get(tL_theme.f20006id);
                     } else {
                         return;
                     }
                 }
                 if (h6Var != null) {
-                    TLRPC.TL_theme tL_theme2 = h6Var.f17806r;
+                    TLRPC.TL_theme tL_theme2 = h6Var.f20505r;
                     if (tL_theme2 != null) {
-                        i6Var.f17839c0.remove(tL_theme2.f17332id);
+                        i6Var.f20545c0.remove(tL_theme2.f20006id);
                     }
-                    h6Var.f17806r = tL_theme;
-                    h6Var.f17808t = i10;
-                    i6Var.f17839c0.put(tL_theme.f17332id, h6Var);
+                    h6Var.f20505r = tL_theme;
+                    h6Var.f20507t = i10;
+                    i6Var.f20545c0.put(tL_theme.f20006id, h6Var);
                     if (!i6.a(h6Var, themeSettings)) {
                         File d10 = h6Var.d();
                         if (d10 != null) {
@@ -1501,7 +1499,7 @@ public abstract class j6 {
                         }
                         i6.i(h6Var, themeSettings);
                         i6 i6Var2 = I;
-                        if (i6Var2 == i6Var && i6Var2.Y == h6Var.f17792a) {
+                        if (i6Var2 == i6Var && i6Var2.Y == h6Var.f20490a) {
                             n1(false, false);
                             NotificationCenter globalInstance = NotificationCenter.getGlobalInstance();
                             int i11 = NotificationCenter.needSetDayNightTheme;
@@ -1521,7 +1519,7 @@ public abstract class j6 {
                     } else {
                         z11 = false;
                     }
-                    h6Var.f17805q = z11;
+                    h6Var.f20504q = z11;
                     i6Var.T = false;
                 } else {
                     return;
@@ -1531,28 +1529,28 @@ public abstract class j6 {
                     str = i6Var.m();
                     hashMap.remove(str);
                 } else {
-                    str = "remote" + tL_theme.f17332id;
+                    str = "remote" + tL_theme.f20006id;
                     i6Var = (i6) hashMap.get(str);
                 }
                 if (i6Var == null) {
                     return;
                 }
                 i6Var.F = tL_theme;
-                i6Var.f17834a = tL_theme.title;
-                File file = new File(i6Var.f17836b);
-                File file2 = new File(ApplicationLoader.getFilesDirFixed(), r6.t(str, ".attheme"));
+                i6Var.f20540a = tL_theme.title;
+                File file = new File(i6Var.f20542b);
+                File file2 = new File(ApplicationLoader.getFilesDirFixed(), p6.t(str, ".attheme"));
                 if (!file.equals(file2)) {
                     try {
                         AndroidUtilities.copyFile(file, file2);
-                        i6Var.f17836b = file2.getAbsolutePath();
+                        i6Var.f20542b = file2.getAbsolutePath();
                     } catch (Exception e10) {
                         FileLog.e(e10);
                     }
                 }
                 if (z10) {
                     i6Var.G = false;
-                    i6Var.f17844g0 = null;
-                    i6Var.f17845h0 = null;
+                    i6Var.f20551g0 = null;
+                    i6Var.f20552h0 = null;
                     NotificationCenter.getInstance(i6Var.E).addObserver(i6Var, NotificationCenter.fileLoaded);
                     NotificationCenter.getInstance(i6Var.E).addObserver(i6Var, NotificationCenter.fileLoadFailed);
                     FileLoader fileLoader = FileLoader.getInstance(i6Var.E);
@@ -1623,16 +1621,16 @@ public abstract class j6 {
         return Color.argb(Color.alpha(HSVToColor), min, min2, i12);
     }
 
-    public static g20 D0() {
+    public static x10 D0() {
         if (zl == null) {
             ?? obj = new Object();
-            obj.f23214a = new f20[4];
-            obj.f23221k = 1.0f;
-            obj.f23222l = new ArrayList();
-            obj.f23223m = new Paint(1);
-            obj.f23224n = new Path();
+            obj.f32392a = new w10[4];
+            obj.f32400k = 1.0f;
+            obj.f32401l = new ArrayList();
+            obj.f32402m = new Paint(1);
+            obj.f32403n = new Path();
             for (int i10 = 0; i10 < 4; i10++) {
-                obj.f23214a[i10] = new f20(i10);
+                obj.f32392a[i10] = new w10(i10);
             }
             zl = obj;
         }
@@ -1640,7 +1638,7 @@ public abstract class j6 {
     }
 
     public static void D1(i6 i6Var) {
-        Collections.sort(i6Var.f17837b0, new a4.e(19));
+        Collections.sort(i6Var.f20543b0, new a4.e(28));
     }
 
     public static void E(boolean z10) {
@@ -1657,13 +1655,13 @@ public abstract class j6 {
             }
             boolean z11 = false;
             if (z10) {
-                if (f18048k) {
-                    f18048k = false;
-                    AndroidUtilities.cancelRunOnUIThread(f18085m);
+                if (f20784k) {
+                    f20784k = false;
+                    AndroidUtilities.cancelRunOnUIThread(f20821m);
                 }
-                if (f18029j) {
-                    f18029j = false;
-                    AndroidUtilities.cancelRunOnUIThread(f18068l);
+                if (f20765j) {
+                    f20765j = false;
+                    AndroidUtilities.cancelRunOnUIThread(f20804l);
                 }
             }
             A();
@@ -1675,7 +1673,7 @@ public abstract class j6 {
                 l(z11);
             }
             if (z10) {
-                f18010i = 0L;
+                f20746i = 0L;
             }
         }
     }
@@ -1724,19 +1722,19 @@ public abstract class j6 {
                         TLRPC.TL_theme tL_theme = i6Var.F;
                         if (tL_theme != null) {
                             i10 = i6Var.E;
-                        } else if (k10 != null && (tL_theme = k10.f17806r) != null) {
+                        } else if (k10 != null && (tL_theme = k10.f20505r) != null) {
                             i10 = UserConfig.selectedAccount;
                         }
                         if (tL_theme.document != null) {
                             A++;
                             TL_account.getTheme gettheme = new TL_account.getTheme();
-                            gettheme.document_id = tL_theme.document.f17201id;
+                            gettheme.document_id = tL_theme.document.f19875id;
                             gettheme.format = "android";
                             TLRPC.TL_inputTheme tL_inputTheme = new TLRPC.TL_inputTheme();
                             tL_inputTheme.access_hash = tL_theme.access_hash;
-                            tL_inputTheme.f17266id = tL_theme.f17332id;
+                            tL_inputTheme.f19940id = tL_theme.f20006id;
                             gettheme.theme = tL_inputTheme;
-                            ConnectionsManager.getInstance(i10).sendRequest(gettheme, new wa(k10, i6Var, tL_theme, 6));
+                            ConnectionsManager.getInstance(i10).sendRequest(gettheme, new bi.c5(k10, i6Var, tL_theme, 7));
                         }
                     }
                 }
@@ -1752,36 +1750,36 @@ public abstract class j6 {
         return nl[i10];
     }
 
-    public static void F1(p2 p2Var) {
+    public static void F1(n2 n2Var) {
         String string;
-        if (f18119o != 0) {
-            if (p2Var != null) {
+        if (f20855o != 0) {
+            if (n2Var != null) {
                 try {
-                    wc a02 = wc.a0(p2Var);
+                    yc a02 = yc.a0(n2Var);
                     int i10 = R.raw.auto_night_off;
-                    if (f18119o == 3) {
+                    if (f20855o == 3) {
                         string = LocaleController.getString("AutoNightSystemModeOff", R.string.AutoNightSystemModeOff);
                     } else {
                         string = LocaleController.getString("AutoNightModeOff", R.string.AutoNightModeOff);
                     }
-                    a02.I(i10, string, LocaleController.getString("Settings", R.string.Settings), 5000, false, new q(p2Var, 17)).j();
+                    a02.I(i10, string, LocaleController.getString("Settings", R.string.Settings), 5000, false, new q(n2Var, 17)).j();
                 } catch (Exception e10) {
                     FileLog.e(e10);
                 }
             }
-            f18119o = 0;
+            f20855o = 0;
             q1();
             A();
         }
     }
 
     public static void G(SparseIntArray sparseIntArray, i6 i6Var) {
-        if (i6Var != null && i6Var.f17847j0 == -1) {
-            int i10 = f17928d6;
+        if (i6Var != null && i6Var.f20554j0 == -1) {
+            int i10 = f20663d6;
             if (i0.a.f(i0.a.d(0.5f, F0(sparseIntArray, i10), F0(sparseIntArray, i10))) < 0.5d) {
-                i6Var.f17847j0 = 1;
+                i6Var.f20554j0 = 1;
             } else {
-                i6Var.f17847j0 = 0;
+                i6Var.f20554j0 = 0;
             }
         }
     }
@@ -1791,30 +1789,30 @@ public abstract class j6 {
     }
 
     public static void G1(MessageObject messageObject) {
-        k8 k8Var = f17927d5;
-        if (k8Var == null) {
+        l8 l8Var = f20662d5;
+        if (l8Var == null) {
             return;
         }
-        if (k8Var.f24658i != null && messageObject != null) {
-            if (f17945e5 == null) {
-                f17945e5 = new HashMap();
+        if (l8Var.f28093i != null && messageObject != null) {
+            if (f20682e5 == null) {
+                f20682e5 = new HashMap();
             }
-            f17945e5.put(messageObject, f17927d5);
-            f17927d5.e(false, true, null);
+            f20682e5.put(messageObject, f20662d5);
+            f20662d5.e(false, true, null);
             AndroidUtilities.runOnUIThread(new q(messageObject, 18), 200L);
-            f17927d5 = null;
+            f20662d5 = null;
             return;
         }
-        k8Var.f24658i = null;
+        l8Var.f28093i = null;
     }
 
-    public static u6 H(i6 i6Var, SparseIntArray sparseIntArray, String str, int i10, boolean z10) {
+    public static cf.c H(i6 i6Var, SparseIntArray sparseIntArray, String str, int i10, boolean z10) {
         boolean z11;
         File file;
         boolean z12;
         float f10;
         float f11;
-        if (i6Var.S && i6Var.Y == f18103n) {
+        if (i6Var.S && i6Var.Y == f20839n) {
             z11 = true;
         } else {
             z11 = false;
@@ -1825,28 +1823,28 @@ public abstract class j6 {
         } else {
             file = null;
         }
-        if (k10 != null && k10.f17805q) {
+        if (k10 != null && k10.f20504q) {
             z12 = true;
         } else {
             z12 = false;
         }
-        c6 c6Var = i6Var.f17846i0;
-        if (c6Var != null) {
-            f11 = c6Var.f17582k;
+        b6 b6Var = i6Var.f20553i0;
+        if (b6Var != null) {
+            f11 = b6Var.f20282k;
         } else if (k10 != null) {
-            f11 = k10.f17804p;
+            f11 = k10.f20503p;
         } else {
-            f10 = i6Var.f17853y;
-            return I(i6Var, c6Var, sparseIntArray, file, str, ql.get(f17981g5, -1), (int) f10, i10, z11, false, false, z12, null, z10);
+            f10 = i6Var.f20560y;
+            return I(i6Var, b6Var, sparseIntArray, file, str, ql.get(f20717g5, -1), (int) f10, i10, z11, false, false, z12, null, z10);
         }
         f10 = f11 * 100.0f;
-        return I(i6Var, c6Var, sparseIntArray, file, str, ql.get(f17981g5, -1), (int) f10, i10, z11, false, false, z12, null, z10);
+        return I(i6Var, b6Var, sparseIntArray, file, str, ql.get(f20717g5, -1), (int) f10, i10, z11, false, false, z12, null, z10);
     }
 
     public static String H0() {
-        c6 c6Var = I.f17846i0;
-        if (c6Var != null) {
-            return c6Var.f17577c;
+        b6 b6Var = I.f20553i0;
+        if (b6Var != null) {
+            return b6Var.f20276c;
         }
         if (d1()) {
             return "t";
@@ -1854,8 +1852,8 @@ public abstract class j6 {
         return "d";
     }
 
-    public static bi.u6 I(org.telegram.ui.ActionBar.i6 r24, org.telegram.ui.ActionBar.c6 r25, android.util.SparseIntArray r26, java.io.File r27, java.lang.String r28, int r29, int r30, int r31, boolean r32, boolean r33, boolean r34, boolean r35, org.telegram.tgnet.TLRPC.Document r36, boolean r37) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ActionBar.j6.I(org.telegram.ui.ActionBar.i6, org.telegram.ui.ActionBar.c6, android.util.SparseIntArray, java.io.File, java.lang.String, int, int, int, boolean, boolean, boolean, boolean, org.telegram.tgnet.TLRPC$Document, boolean):bi.u6");
+    public static cf.c I(org.telegram.ui.ActionBar.i6 r24, org.telegram.ui.ActionBar.b6 r25, android.util.SparseIntArray r26, java.io.File r27, java.lang.String r28, int r29, int r30, int r31, boolean r32, boolean r33, boolean r34, boolean r35, org.telegram.tgnet.TLRPC.Document r36, boolean r37) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ActionBar.j6.I(org.telegram.ui.ActionBar.i6, org.telegram.ui.ActionBar.b6, android.util.SparseIntArray, java.io.File, java.lang.String, int, int, int, boolean, boolean, boolean, boolean, org.telegram.tgnet.TLRPC$Document, boolean):cf.c");
     }
 
     public static org.telegram.ui.Cells.z I0(int i10, int i11, f6 f6Var) {
@@ -1872,36 +1870,36 @@ public abstract class j6 {
         TextPaint textPaint;
         Drawable[] drawableArr;
         N();
-        if (!z10 && f18088m3 == null) {
+        if (!z10 && f20824m3 == null) {
             Resources resources = context.getResources();
-            f17996h3 = resources.getDrawable(R.drawable.video_muted);
-            f18071l3 = resources.getDrawable(R.drawable.media_live_on).mutate();
-            f18088m3 = new h5(0, false, false, null);
-            f18107n3 = new h5(0, false, true, null);
-            f18123o3 = new h5(0, true, false, null);
-            f18141p3 = new h5(0, true, true, null);
-            f18159q3 = new h5(1, false, false, null);
-            f18177r3 = new h5(1, false, true, null);
-            f18196s3 = new h5(1, true, false, null);
-            f18215t3 = new h5(1, true, true, null);
+            f20732h3 = resources.getDrawable(R.drawable.video_muted);
+            f20807l3 = resources.getDrawable(R.drawable.media_live_on).mutate();
+            f20824m3 = new f5(0, false, false, null);
+            f20843n3 = new f5(0, false, true, null);
+            f20859o3 = new f5(0, true, false, null);
+            f20877p3 = new f5(0, true, true, null);
+            f20895q3 = new f5(1, false, false, null);
+            f20913r3 = new f5(1, false, true, null);
+            f20932s3 = new f5(1, true, false, null);
+            f20951t3 = new f5(1, true, true, null);
             ?? obj = new Object();
-            obj.f24010a = new Path();
-            obj.f24011b = -1.0f;
-            obj.f24014g = new ArrayList();
-            obj.f24012c = 0.293f;
+            obj.f33139a = new Path();
+            obj.f33140b = -1.0f;
+            obj.f33144g = new ArrayList();
+            obj.f33141c = 0.293f;
             obj.d = -26.0f;
-            obj.e = -28.0f;
-            obj.f24013f = 1.0f;
-            f18286x3 = obj;
+            obj.f33142e = -28.0f;
+            obj.f33143f = 1.0f;
+            f21022x3 = obj;
             obj.a("M 34.141 16.042 C 37.384 17.921 40.886 20.001 44.211 21.965 C 46.139 23.104 49.285 24.729 49.586 25.917 C 50.289 28.687 48.484 30 46.274 30 L 6 30.021 C 3.79 30.021 2.075 30.023 2 26.021 L 2.009 3.417 C 2.009 0.417 5.326 -0.58 7.068 0.417 C 10.545 2.406 25.024 10.761 34.141 16.042 Z", 166.0f);
-            f18286x3.a("M 37.843 17.769 C 41.143 19.508 44.131 21.164 47.429 23.117 C 48.542 23.775 49.623 24.561 49.761 25.993 C 50.074 28.708 48.557 30 46.347 30 L 6 30.012 C 3.79 30.012 2 28.222 2 26.012 L 2.009 4.609 C 2.009 1.626 5.276 0.664 7.074 1.541 C 10.608 3.309 28.488 12.842 37.843 17.769 Z", 200.0f);
-            f18286x3.a("M 40.644 18.756 C 43.986 20.389 49.867 23.108 49.884 25.534 C 49.897 27.154 49.88 24.441 49.894 26.059 C 49.911 28.733 48.6 30 46.39 30 L 6 30.013 C 3.79 30.013 2 28.223 2 26.013 L 2.008 5.52 C 2.008 2.55 5.237 1.614 7.079 2.401 C 10.656 4 31.106 14.097 40.644 18.756 Z", 217.0f);
-            f18286x3.a("M 43.782 19.218 C 47.117 20.675 50.075 21.538 50.041 24.796 C 50.022 26.606 50.038 24.309 50.039 26.104 C 50.038 28.736 48.663 30 46.453 30 L 6 29.986 C 3.79 29.986 2 28.196 2 25.986 L 2.008 6.491 C 2.008 3.535 5.196 2.627 7.085 3.316 C 10.708 4.731 33.992 14.944 43.782 19.218 Z", 234.0f);
-            f18286x3.a("M 47.421 16.941 C 50.544 18.191 50.783 19.91 50.769 22.706 C 50.761 24.484 50.76 23.953 50.79 26.073 C 50.814 27.835 49.334 30 47.124 30 L 5 30.01 C 2.79 30.01 1 28.22 1 26.01 L 1.001 10.823 C 1.001 8.218 3.532 6.895 5.572 7.26 C 7.493 8.01 47.421 16.941 47.421 16.941 Z", 267.0f);
-            f18286x3.a("M 47.641 17.125 C 50.641 18.207 51.09 19.935 51.078 22.653 C 51.07 24.191 51.062 21.23 51.088 23.063 C 51.109 24.886 49.587 27 47.377 27 L 5 27.009 C 2.79 27.009 1 25.219 1 23.009 L 0.983 11.459 C 0.983 8.908 3.414 7.522 5.476 7.838 C 7.138 8.486 47.641 17.125 47.641 17.125 Z", 300.0f);
-            f18286x3.a("M 48 7 C 50.21 7 52 8.79 52 11 C 52 19 52 19 52 19 C 52 21.21 50.21 23 48 23 L 4 23 C 1.79 23 0 21.21 0 19 L 0 11 C 0 8.79 1.79 7 4 7 C 48 7 48 7 48 7 Z", 383.0f);
+            f21022x3.a("M 37.843 17.769 C 41.143 19.508 44.131 21.164 47.429 23.117 C 48.542 23.775 49.623 24.561 49.761 25.993 C 50.074 28.708 48.557 30 46.347 30 L 6 30.012 C 3.79 30.012 2 28.222 2 26.012 L 2.009 4.609 C 2.009 1.626 5.276 0.664 7.074 1.541 C 10.608 3.309 28.488 12.842 37.843 17.769 Z", 200.0f);
+            f21022x3.a("M 40.644 18.756 C 43.986 20.389 49.867 23.108 49.884 25.534 C 49.897 27.154 49.88 24.441 49.894 26.059 C 49.911 28.733 48.6 30 46.39 30 L 6 30.013 C 3.79 30.013 2 28.223 2 26.013 L 2.008 5.52 C 2.008 2.55 5.237 1.614 7.079 2.401 C 10.656 4 31.106 14.097 40.644 18.756 Z", 217.0f);
+            f21022x3.a("M 43.782 19.218 C 47.117 20.675 50.075 21.538 50.041 24.796 C 50.022 26.606 50.038 24.309 50.039 26.104 C 50.038 28.736 48.663 30 46.453 30 L 6 29.986 C 3.79 29.986 2 28.196 2 25.986 L 2.008 6.491 C 2.008 3.535 5.196 2.627 7.085 3.316 C 10.708 4.731 33.992 14.944 43.782 19.218 Z", 234.0f);
+            f21022x3.a("M 47.421 16.941 C 50.544 18.191 50.783 19.91 50.769 22.706 C 50.761 24.484 50.76 23.953 50.79 26.073 C 50.814 27.835 49.334 30 47.124 30 L 5 30.01 C 2.79 30.01 1 28.22 1 26.01 L 1.001 10.823 C 1.001 8.218 3.532 6.895 5.572 7.26 C 7.493 8.01 47.421 16.941 47.421 16.941 Z", 267.0f);
+            f21022x3.a("M 47.641 17.125 C 50.641 18.207 51.09 19.935 51.078 22.653 C 51.07 24.191 51.062 21.23 51.088 23.063 C 51.109 24.886 49.587 27 47.377 27 L 5 27.009 C 2.79 27.009 1 25.219 1 23.009 L 0.983 11.459 C 0.983 8.908 3.414 7.522 5.476 7.838 C 7.138 8.486 47.641 17.125 47.641 17.125 Z", 300.0f);
+            f21022x3.a("M 48 7 C 50.21 7 52 8.79 52 11 C 52 19 52 19 52 19 C 52 21.21 50.21 23 48 23 L 4 23 C 1.79 23 0 21.21 0 19 L 0 11 C 0 8.79 1.79 7 4 7 C 48 7 48 7 48 7 Z", 383.0f);
             y3 = resources.getDrawable(R.drawable.msg_check_s).mutate();
-            f18322z3 = resources.getDrawable(R.drawable.msg_check_s).mutate();
+            f21058z3 = resources.getDrawable(R.drawable.msg_check_s).mutate();
             A3 = resources.getDrawable(R.drawable.msg_check_s).mutate();
             B3 = resources.getDrawable(R.drawable.msg_check_s).mutate();
             F3 = resources.getDrawable(R.drawable.msg_check_s).mutate();
@@ -1910,7 +1908,7 @@ public abstract class j6 {
             D3 = resources.getDrawable(R.drawable.msg_halfcheck).mutate();
             G3 = resources.getDrawable(R.drawable.msg_halfcheck_s).mutate();
             I3 = resources.getDrawable(R.drawable.msg_halfcheck_s).mutate();
-            E3 = new sc0();
+            E3 = new kc0();
             L3 = resources.getDrawable(R.drawable.ic_lock_header).mutate();
             M3 = resources.getDrawable(R.drawable.msg_views).mutate();
             N3 = resources.getDrawable(R.drawable.msg_views).mutate();
@@ -1926,19 +1924,19 @@ public abstract class j6 {
             X3 = resources.getDrawable(R.drawable.msg_pin_mini).mutate();
             Z3 = resources.getDrawable(R.drawable.msg_pin_mini).mutate();
             Y3 = resources.getDrawable(R.drawable.msg_pin_mini).mutate();
-            f17869a4 = resources.getDrawable(R.drawable.msg_views).mutate();
-            f17889b4 = resources.getDrawable(R.drawable.msg_reply_small).mutate();
+            f20604a4 = resources.getDrawable(R.drawable.msg_views).mutate();
+            f20624b4 = resources.getDrawable(R.drawable.msg_reply_small).mutate();
             J3 = resources.getDrawable(R.drawable.msg_views).mutate();
             K3 = resources.getDrawable(R.drawable.msg_reply_small).mutate();
-            f17908c4 = resources.getDrawable(R.drawable.msg_actions).mutate();
-            f17926d4 = resources.getDrawable(R.drawable.msg_actions).mutate();
-            f17944e4 = resources.getDrawable(R.drawable.msg_actions).mutate();
-            f17962f4 = resources.getDrawable(R.drawable.msg_actions).mutate();
-            f17980g4 = resources.getDrawable(R.drawable.video_actions);
-            f17997h4 = resources.getDrawable(R.drawable.msg_instant).mutate();
-            f18015i4 = resources.getDrawable(R.drawable.msg_instant).mutate();
-            f18033j4 = resources.getDrawable(R.drawable.msg_warning);
-            f18053k4 = resources.getDrawable(R.drawable.list_mute).mutate();
+            f20643c4 = resources.getDrawable(R.drawable.msg_actions).mutate();
+            f20661d4 = resources.getDrawable(R.drawable.msg_actions).mutate();
+            f20681e4 = resources.getDrawable(R.drawable.msg_actions).mutate();
+            f20698f4 = resources.getDrawable(R.drawable.msg_actions).mutate();
+            f20716g4 = resources.getDrawable(R.drawable.video_actions);
+            f20733h4 = resources.getDrawable(R.drawable.msg_instant).mutate();
+            f20751i4 = resources.getDrawable(R.drawable.msg_instant).mutate();
+            f20769j4 = resources.getDrawable(R.drawable.msg_warning);
+            f20789k4 = resources.getDrawable(R.drawable.list_mute).mutate();
             l4 = resources.getDrawable(R.drawable.ic_lock_header);
             Drawable mutate = resources.getDrawable(R.drawable.chat_calls_voice).mutate();
             Drawable[] drawableArr2 = G4;
@@ -1975,27 +1973,27 @@ public abstract class j6 {
             W4 = resources.getDrawable(R.drawable.mini_call_out_16).mutate();
             X4 = resources.getDrawable(R.drawable.mini_call_in_16).mutate();
             Y4 = resources.getDrawable(R.drawable.mini_call_in_16).mutate();
-            f18089m4 = resources.getDrawable(R.drawable.bot_file);
-            f18108n4 = resources.getDrawable(R.drawable.bot_music);
-            f18124o4 = resources.getDrawable(R.drawable.bot_location);
-            f18252v4 = resources.getDrawable(R.drawable.bot_link);
-            f18287x4 = resources.getDrawable(R.drawable.bot_lines);
-            f18269w4 = resources.getDrawable(R.drawable.bot_card);
-            f18304y4 = resources.getDrawable(R.drawable.bot_webview);
-            f18323z4 = resources.getDrawable(R.drawable.bot_invite);
+            f20825m4 = resources.getDrawable(R.drawable.bot_file);
+            f20844n4 = resources.getDrawable(R.drawable.bot_music);
+            f20860o4 = resources.getDrawable(R.drawable.bot_location);
+            f20988v4 = resources.getDrawable(R.drawable.bot_link);
+            f21023x4 = resources.getDrawable(R.drawable.bot_lines);
+            f21006w4 = resources.getDrawable(R.drawable.bot_card);
+            f21040y4 = resources.getDrawable(R.drawable.bot_webview);
+            f21059z4 = resources.getDrawable(R.drawable.bot_invite);
             A4 = resources.getDrawable(R.drawable.permission_locked);
             B4 = resources.getDrawable(R.drawable.msg_msgbubble);
             C4 = resources.getDrawable(R.drawable.msg_msgbubble2);
             D4 = resources.getDrawable(R.drawable.msg_arrowright);
             E4 = resources.getDrawable(R.drawable.gradient_left);
             F4 = resources.getDrawable(R.drawable.gradient_right);
-            f18142p4 = resources.getDrawable(R.drawable.header_shadow).mutate();
+            f20878p4 = resources.getDrawable(R.drawable.header_shadow).mutate();
             R4 = resources.getDrawable(R.drawable.nophotos3);
-            f18160q4 = resources.getDrawable(R.drawable.filled_button_share).mutate();
-            f18178r4 = resources.getDrawable(R.drawable.filled_button_reply);
-            f18197s4 = resources.getDrawable(R.drawable.msg_voiceclose).mutate();
-            f18216t4 = resources.getDrawable(R.drawable.media_more).mutate();
-            f18234u4 = resources.getDrawable(R.drawable.filled_open_message);
+            f20896q4 = resources.getDrawable(R.drawable.filled_button_share).mutate();
+            f20914r4 = resources.getDrawable(R.drawable.filled_button_reply);
+            f20933s4 = resources.getDrawable(R.drawable.msg_voiceclose).mutate();
+            f20952t4 = resources.getDrawable(R.drawable.media_more).mutate();
+            f20970u4 = resources.getDrawable(R.drawable.filled_open_message);
             int dp = AndroidUtilities.dp(2.0f);
             RectF rectF = new RectF();
             Path path = new Path();
@@ -2024,8 +2022,8 @@ public abstract class j6 {
             pathArr[1].lineTo(AndroidUtilities.dp(19.0f), AndroidUtilities.dp(10.0f));
             pathArr[1].lineTo(AndroidUtilities.dp(14.0f), AndroidUtilities.dp(10.0f));
             pathArr[1].close();
-            f17890b5 = resources.getDrawable(R.drawable.filled_fire).mutate();
-            f17909c5 = resources.getDrawable(R.drawable.msg_round_gif_m).mutate();
+            f20625b5 = resources.getDrawable(R.drawable.filled_fire).mutate();
+            f20644c5 = resources.getDrawable(R.drawable.msg_round_gif_m).mutate();
             Drawable[][] drawableArr6 = U4;
             drawableArr6[0][0] = L(AndroidUtilities.dp(44.0f), R.drawable.msg_round_play_m);
             drawableArr6[0][1] = L(AndroidUtilities.dp(44.0f), R.drawable.msg_round_play_m);
@@ -2037,7 +2035,7 @@ public abstract class j6 {
             drawableArr6[3][1] = L(AndroidUtilities.dp(44.0f), R.drawable.msg_round_file_s);
             drawableArr6[4][0] = L(AndroidUtilities.dp(44.0f), R.drawable.msg_round_cancel_m);
             drawableArr6[4][1] = L(AndroidUtilities.dp(44.0f), R.drawable.msg_round_cancel_m);
-            vq L10 = L(AndroidUtilities.dp(44.0f), R.drawable.msg_contact);
+            oq L10 = L(AndroidUtilities.dp(44.0f), R.drawable.msg_contact);
             Drawable[] drawableArr7 = T4;
             drawableArr7[0] = L10;
             drawableArr7[1] = L(AndroidUtilities.dp(44.0f), R.drawable.msg_contact);
@@ -2045,34 +2043,34 @@ public abstract class j6 {
             Drawable[] drawableArr8 = S4;
             drawableArr8[0] = mutate5;
             drawableArr8[1] = resources.getDrawable(R.drawable.msg_location).mutate();
-            f18014i3 = context.getResources().getDrawable(R.drawable.compose_panel_shadow).mutate();
+            f20750i3 = context.getResources().getDrawable(R.drawable.compose_panel_shadow).mutate();
             j3 = context.getResources().getDrawable(R.drawable.sheet_shadow_round).mutate();
-            j5 j5Var = new j5(0);
+            h5 h5Var = new h5(0);
             Paint paint = new Paint(1);
-            j5Var.f17864b = paint;
+            h5Var.f20489b = paint;
             paint.setShadowLayer(AndroidUtilities.dp(4.0f), 0.0f, 0.0f, 1593835520);
-            f18052k3 = j5Var;
+            f20788k3 = h5Var;
             jl.clear();
             kl.clear();
-            Drawable drawable = f18287x4;
-            int i12 = f18061kc;
+            Drawable drawable = f21023x4;
+            int i12 = f20797kc;
             d(i12, "drawableBotInline", drawable);
-            d(i12, "drawableBotWebView", f18304y4);
+            d(i12, "drawableBotWebView", f21040y4);
             d(i12, "drawableBotLock", A4);
-            d(i12, "drawableBotLink", f18252v4);
-            d(i12, "drawable_botInvite", f18323z4);
-            d(i12, "drawableGoIcon", f18234u4);
+            d(i12, "drawableBotLink", f20988v4);
+            d(i12, "drawable_botInvite", f21059z4);
+            d(i12, "drawableGoIcon", f20970u4);
             d(i12, "drawableCommentSticker", C4);
-            d(Gc, "drawableMsgError", f18033j4);
-            d(-1, "drawableMsgIn", f18088m3);
-            d(-1, "drawableMsgInSelected", f18107n3);
-            d(-1, "drawableMsgInMedia", f18159q3);
-            d(-1, "drawableMsgInMediaSelected", f18177r3);
-            d(Dc, "drawableMsgInInstant", f17997h4);
-            d(-1, "drawableMsgOut", f18123o3);
-            d(-1, "drawableMsgOutSelected", f18141p3);
-            d(-1, "drawableMsgOutMedia", f18196s3);
-            d(-1, "drawableMsgOutMediaSelected", f18215t3);
+            d(Gc, "drawableMsgError", f20769j4);
+            d(-1, "drawableMsgIn", f20824m3);
+            d(-1, "drawableMsgInSelected", f20843n3);
+            d(-1, "drawableMsgInMedia", f20895q3);
+            d(-1, "drawableMsgInMediaSelected", f20913r3);
+            d(Dc, "drawableMsgInInstant", f20733h4);
+            d(-1, "drawableMsgOut", f20859o3);
+            d(-1, "drawableMsgOutSelected", f20877p3);
+            d(-1, "drawableMsgOutMedia", f20932s3);
+            d(-1, "drawableMsgOutMediaSelected", f20951t3);
             Drawable drawable2 = drawableArr4[0];
             int i13 = Va;
             d(i13, "drawableMsgOutCallAudio", drawable2);
@@ -2082,7 +2080,7 @@ public abstract class j6 {
             d(i13, "drawableMsgOutCallVideo", drawableArr4[1]);
             d(i14, "drawableMsgOutCallVideo", drawableArr5[1]);
             d(Ja, "drawableMsgOutCheck", y3);
-            d(Ka, "drawableMsgOutCheckSelected", f18322z3);
+            d(Ka, "drawableMsgOutCheckSelected", f21058z3);
             Drawable drawable4 = A3;
             int i15 = La;
             d(i15, "drawableMsgOutCheckRead", drawable4);
@@ -2091,9 +2089,9 @@ public abstract class j6 {
             d(i16, "drawableMsgOutCheckReadSelected", drawable5);
             d(i15, "drawableMsgOutHalfCheck", C3);
             d(i16, "drawableMsgOutHalfCheckSelected", D3);
-            d(i13, "drawableMsgOutInstant", f18015i4);
-            d(Ta, "drawableMsgOutMenu", f17944e4);
-            d(Ua, "drawableMsgOutMenuSelected", f17962f4);
+            d(i13, "drawableMsgOutInstant", f20751i4);
+            d(Ta, "drawableMsgOutMenu", f20681e4);
+            d(Ua, "drawableMsgOutMenuSelected", f20698f4);
             Drawable drawable6 = W3;
             int i17 = Ra;
             d(i17, "drawableMsgOutPinned", drawable6);
@@ -2105,18 +2103,18 @@ public abstract class j6 {
             d(i17, "drawableMsgOutViews", O3);
             d(i18, "drawableMsgOutViewsSelected", P3);
             Drawable drawable8 = H3;
-            int i19 = f18023ic;
+            int i19 = f20759ic;
             d(i19, "drawableMsgStickerCheck", drawable8);
             d(i19, "drawableMsgStickerHalfCheck", I3);
             d(i19, "drawableMsgStickerPinned", Y3);
             d(i19, "drawableMsgStickerReplies", K3);
             d(i19, "drawableMsgStickerViews", J3);
-            d(i12, "drawableReplyIcon", f18178r4);
-            d(i12, "drawableCloseIcon", f18197s4);
-            d(i12, "drawableMoreIcon", f18216t4);
-            d(i12, "drawableShareIcon", f18160q4);
-            d(f18131oc, "drawableMuteIcon", f18053k4);
-            d(f18149pc, "drawableLockIcon", l4);
+            d(i12, "drawableReplyIcon", f20914r4);
+            d(i12, "drawableCloseIcon", f20933s4);
+            d(i12, "drawableMoreIcon", f20952t4);
+            d(i12, "drawableShareIcon", f20896q4);
+            d(f20867oc, "drawableMuteIcon", f20789k4);
+            d(f20885pc, "drawableLockIcon", l4);
             d(Xa, "drawable_chat_pollHintDrawableOut", drawableArr[1]);
             d(Kc, "drawable_chat_pollHintDrawableIn", drawableArr[0]);
             j(z10, false);
@@ -2145,7 +2143,7 @@ public abstract class j6 {
             Y2.setTextSize(AndroidUtilities.dp(f13));
             Z2.setTextSize(AndroidUtilities.dp(f13));
             float f14 = f13 - f10;
-            f17925d3.setTextSize(AndroidUtilities.dp(f14));
+            f20660d3.setTextSize(AndroidUtilities.dp(f14));
             X2.setTextSize(AndroidUtilities.dp(f13));
             U2.setTextSize(AndroidUtilities.dp(f14));
             V2.setTextSize(AndroidUtilities.dp(12.0f));
@@ -2155,23 +2153,23 @@ public abstract class j6 {
             M2.setTextSize(AndroidUtilities.dp(13.0f));
             X1.setStrokeWidth(AndroidUtilities.dp(f10));
             Z1.setStrokeWidth(AndroidUtilities.dp(1.1f));
-            f18195s2.setTextSize(AndroidUtilities.dp(Math.max(16, SharedConfig.fontSize) - 2));
-            f18214t2.setTextSize(AndroidUtilities.dp(Math.max(16, SharedConfig.fontSize) - 2));
-            f18232u2.setTextSize(AndroidUtilities.dp(Math.max(16, SharedConfig.fontSize) - 3));
-            f18250v2.setTextSize(AndroidUtilities.dp(Math.max(16, SharedConfig.fontSize)));
-            f17961f3.setTextSize(AndroidUtilities.dp(15.0f));
-            f17979g3.setTextSize(AndroidUtilities.dp(13.0f));
-            f18051k2.setStrokeWidth(AndroidUtilities.dp(f11));
-            f18070l2.setStrokeWidth(AndroidUtilities.dp(2.33f));
-            f17943e3.setTextSize(AndroidUtilities.dp(f12));
-            f17943e3.setTypeface(AndroidUtilities.bold());
+            f20931s2.setTextSize(AndroidUtilities.dp(Math.max(16, SharedConfig.fontSize) - 2));
+            f20950t2.setTextSize(AndroidUtilities.dp(Math.max(16, SharedConfig.fontSize) - 2));
+            f20968u2.setTextSize(AndroidUtilities.dp(Math.max(16, SharedConfig.fontSize) - 3));
+            f20986v2.setTextSize(AndroidUtilities.dp(Math.max(16, SharedConfig.fontSize)));
+            f20697f3.setTextSize(AndroidUtilities.dp(15.0f));
+            f20715g3.setTextSize(AndroidUtilities.dp(13.0f));
+            f20787k2.setStrokeWidth(AndroidUtilities.dp(f11));
+            f20806l2.setStrokeWidth(AndroidUtilities.dp(2.33f));
+            f20680e3.setTextSize(AndroidUtilities.dp(f12));
+            f20680e3.setTypeface(AndroidUtilities.bold());
         }
     }
 
     public static org.telegram.ui.Cells.z J0(f6 f6Var, boolean z10) {
-        int v02 = v0(f18017i6, f6Var);
+        int v02 = v0(f20753i6, f6Var);
         if (z10) {
-            return I0(v02, f17928d6, f6Var);
+            return I0(v02, f20663d6, f6Var);
         }
         return f0(v02, 2, -1);
     }
@@ -2188,14 +2186,14 @@ public abstract class j6 {
     }
 
     public static org.telegram.ui.Cells.z K0(boolean z10) {
-        int w02 = w0(null, f18017i6, false);
+        int w02 = w0(null, f20753i6, false);
         if (z10) {
-            return I0(w02, f17928d6, null);
+            return I0(w02, f20663d6, null);
         }
         return f0(w02, 2, -1);
     }
 
-    public static vq L(int i10, int i11) {
+    public static oq L(int i10, int i11) {
         Drawable drawable;
         if (i11 != 0) {
             drawable = ApplicationLoader.applicationContext.getResources().getDrawable(i11).mutate();
@@ -2207,10 +2205,10 @@ public abstract class j6 {
         ovalShape.resize(f10, f10);
         ShapeDrawable shapeDrawable = new ShapeDrawable(ovalShape);
         shapeDrawable.getPaint().setColor(-1);
-        vq vqVar = new vq(shapeDrawable, drawable);
-        vqVar.h = i10;
-        vqVar.f28577n = i10;
-        return vqVar;
+        oq oqVar = new oq(shapeDrawable, drawable);
+        oqVar.h = i10;
+        oqVar.f29164n = i10;
+        return oqVar;
     }
 
     public static Drawable L0(int i10, Drawable drawable) {
@@ -2235,8 +2233,8 @@ public abstract class j6 {
     }
 
     public static org.telegram.ui.Cells.z M(int i10, int i11, int i12) {
-        f18318z.setColor(-1);
-        return new RippleDrawable(new ColorStateList(new int[][]{StateSet.WILD_CARD}, new int[]{i10}), null, new p5(i11, i12));
+        f21054z.setColor(-1);
+        return new RippleDrawable(new ColorStateList(new int[][]{StateSet.WILD_CARD}, new int[]{i10}), null, new o5(i11, i12));
     }
 
     public static float[] M0(int i10) {
@@ -2294,22 +2292,22 @@ public abstract class j6 {
             I2 = new TextPaint(1);
             Paint paint3 = new Paint();
             U1 = paint3;
-            paint3.setPathEffect(g90.c());
+            paint3.setPathEffect(x80.c());
             Paint paint4 = new Paint();
             V1 = paint4;
-            paint4.setPathEffect(g90.c());
+            paint4.setPathEffect(x80.c());
             Paint paint5 = new Paint();
             W1 = paint5;
-            paint5.setPathEffect(g90.c());
+            paint5.setPathEffect(x80.c());
             Paint paint6 = new Paint(1);
-            f18051k2 = paint6;
+            f20787k2 = paint6;
             paint6.setStrokeCap(cap);
-            f18051k2.setStyle(style);
-            f18051k2.setColor(-1610612737);
+            f20787k2.setStyle(style);
+            f20787k2.setColor(-1610612737);
             Paint paint7 = new Paint(1);
-            f18070l2 = paint7;
+            f20806l2 = paint7;
             paint7.setStrokeCap(cap);
-            f18070l2.setStyle(style);
+            f20806l2.setStyle(style);
             N2 = new TextPaint(1);
             TextPaint textPaint5 = new TextPaint(1);
             F2 = textPaint5;
@@ -2342,10 +2340,10 @@ public abstract class j6 {
             textPaint11.setTypeface(AndroidUtilities.bold());
             Z2 = new TextPaint(1);
             TextPaint textPaint12 = new TextPaint(1);
-            f17925d3 = textPaint12;
+            f20660d3 = textPaint12;
             textPaint12.setTypeface(AndroidUtilities.bold());
-            f17907c3 = new TextPaint(1);
-            f17943e3 = new TextPaint(1);
+            f20642c3 = new TextPaint(1);
+            f20680e3 = new TextPaint(1);
             TextPaint textPaint13 = new TextPaint(1);
             M2 = textPaint13;
             textPaint13.setTypeface(AndroidUtilities.bold());
@@ -2359,48 +2357,48 @@ public abstract class j6 {
             paint9.setStyle(style);
             Z1.setStrokeCap(cap);
             a2 = new Paint(1);
-            f17887b2 = new Paint(1);
-            f17906c2 = new Paint(1);
+            f20622b2 = new Paint(1);
+            f20641c2 = new Paint(1);
             Paint paint10 = new Paint(1);
-            f17924d2 = paint10;
+            f20659d2 = paint10;
             paint10.setStyle(style);
-            f17924d2.setStrokeCap(cap);
-            f18195s2 = new TextPaint(1);
-            f18214t2 = new TextPaint(1);
-            f18232u2 = new TextPaint(1);
-            f18195s2.setTypeface(AndroidUtilities.bold());
+            f20659d2.setStrokeCap(cap);
+            f20931s2 = new TextPaint(1);
+            f20950t2 = new TextPaint(1);
+            f20968u2 = new TextPaint(1);
+            f20931s2.setTypeface(AndroidUtilities.bold());
             TextPaint textPaint14 = new TextPaint(1);
-            f18250v2 = textPaint14;
+            f20986v2 = textPaint14;
             textPaint14.setTypeface(AndroidUtilities.bold());
             Paint paint11 = new Paint(1);
-            f17995h2 = paint11;
+            f20731h2 = paint11;
             paint11.setColor(352321536);
-            f18013i2 = new Paint(1);
+            f20749i2 = new Paint(1);
             TextPaint textPaint15 = new TextPaint(1);
-            f17961f3 = textPaint15;
+            f20697f3 = textPaint15;
             textPaint15.setTypeface(AndroidUtilities.bold());
-            f17979g3 = new TextPaint(1);
-            f18032j2 = new Paint();
+            f20715g3 = new TextPaint(1);
+            f20768j2 = new Paint();
             new Paint(1);
-            f18087m2 = new Paint(1);
-            f18106n2 = new Paint(1);
-            f17942e2 = new Paint(1);
-            f17960f2 = new Paint(7);
-            f17978g2 = new Paint(7);
-            e(Hc, f17942e2, "paintChatMessageBackgroundSelected");
-            Paint paint12 = f17960f2;
-            int i10 = f18079lc;
+            f20823m2 = new Paint(1);
+            f20842n2 = new Paint(1);
+            f20679e2 = new Paint(1);
+            f20696f2 = new Paint(7);
+            f20714g2 = new Paint(7);
+            e(Hc, f20679e2, "paintChatMessageBackgroundSelected");
+            Paint paint12 = f20696f2;
+            int i10 = f20815lc;
             e(i10, paint12, "paintChatActionBackground");
-            e(i10, f17995h2, "paintChatActionBackgroundDarken");
-            e(f18097mc, f17978g2, "paintChatActionBackgroundSelected");
-            TextPaint textPaint16 = f18195s2;
-            int i11 = f18023ic;
+            e(i10, f20731h2, "paintChatActionBackgroundDarken");
+            e(f20833mc, f20714g2, "paintChatActionBackgroundSelected");
+            TextPaint textPaint16 = f20931s2;
+            int i11 = f20759ic;
             e(i11, textPaint16, "paintChatActionText");
-            e(i11, f18214t2, "paintChatActionText2");
-            e(i11, f18232u2, "paintChatActionText3");
+            e(i11, f20950t2, "paintChatActionText2");
+            e(i11, f20968u2, "paintChatActionText3");
             e(Nc, Q2, "paintChatBotButton");
-            e(Sd, f18032j2, "paintChatComposeBackground");
-            e(wc, f18013i2, "paintChatTimeBackground");
+            e(Sd, f20768j2, "paintChatComposeBackground");
+            e(wc, f20749i2, "paintChatTimeBackground");
         }
     }
 
@@ -2409,17 +2407,17 @@ public abstract class j6 {
     }
 
     public static void O() {
-        synchronized (f17903c) {
+        synchronized (f20638c) {
             try {
-                if (f18122o2 == null) {
-                    f18122o2 = new TextPaint(1);
-                    f18285x2 = new TextPaint(1);
-                    f18303y2 = new TextPaint[6];
-                    f18321z2 = new TextPaint(1);
+                if (f20858o2 == null) {
+                    f20858o2 = new TextPaint(1);
+                    f21021x2 = new TextPaint(1);
+                    f21039y2 = new TextPaint[6];
+                    f21057z2 = new TextPaint(1);
                     A2 = new TextPaint(1);
                     B2 = new TextPaint(1);
                     TextPaint textPaint = new TextPaint(1);
-                    f18267w2 = textPaint;
+                    f21004w2 = textPaint;
                     textPaint.setTypeface(AndroidUtilities.bold());
                     TextPaint textPaint2 = new TextPaint(1);
                     W2 = textPaint2;
@@ -2428,24 +2426,24 @@ public abstract class j6 {
                     Y2 = textPaint3;
                     textPaint3.setTypeface(AndroidUtilities.bold());
                     Z2 = new TextPaint(1);
-                    f17868a3 = new TextPaint(1);
-                    f17888b3 = new TextPaint(1);
-                    f17907c3 = new TextPaint(1);
+                    f20603a3 = new TextPaint(1);
+                    f20623b3 = new TextPaint(1);
+                    f20642c3 = new TextPaint(1);
                     TextPaint textPaint4 = new TextPaint(1);
-                    f17925d3 = textPaint4;
+                    f20660d3 = textPaint4;
                     textPaint4.setTypeface(AndroidUtilities.bold());
                     X2 = new TextPaint(1);
                     U2 = new TextPaint(1);
                     T2 = new TextPaint(1);
                     TextPaint textPaint5 = new TextPaint(1);
-                    f18140p2 = textPaint5;
+                    f20876p2 = textPaint5;
                     Typeface typeface = Typeface.MONOSPACE;
                     textPaint5.setTypeface(typeface);
                     TextPaint textPaint6 = new TextPaint(1);
-                    f18158q2 = textPaint6;
+                    f20894q2 = textPaint6;
                     textPaint6.setTypeface(typeface);
                     TextPaint textPaint7 = new TextPaint(1);
-                    f18176r2 = textPaint7;
+                    f20912r2 = textPaint7;
                     textPaint7.setTypeface(typeface);
                     new TextPaint(1);
                     V2 = new TextPaint(1);
@@ -2453,33 +2451,33 @@ public abstract class j6 {
                 float[] fArr = {0.68f, 0.46f, 0.34f, 0.28f, 0.22f, 0.19f};
                 int i10 = 0;
                 while (true) {
-                    TextPaint[] textPaintArr = f18303y2;
+                    TextPaint[] textPaintArr = f21039y2;
                     if (i10 < textPaintArr.length) {
                         textPaintArr[i10] = new TextPaint(1);
-                        f18303y2[i10].setTextSize(AndroidUtilities.dp(fArr[i10] * 120.0f));
+                        f21039y2[i10].setTextSize(AndroidUtilities.dp(fArr[i10] * 120.0f));
                         i10++;
                     } else {
-                        f18321z2.setTextSize(AndroidUtilities.dp(46.0f));
+                        f21057z2.setTextSize(AndroidUtilities.dp(46.0f));
                         A2.setTextSize(AndroidUtilities.dp(38.0f));
                         B2.setTextSize(AndroidUtilities.dp(30.0f));
-                        f18122o2.setTextSize(AndroidUtilities.dp(SharedConfig.fontSize));
-                        f18285x2.setTextSize(AndroidUtilities.dp(14.0f));
-                        f18267w2.setTextSize(AndroidUtilities.dp(15.0f));
+                        f20858o2.setTextSize(AndroidUtilities.dp(SharedConfig.fontSize));
+                        f21021x2.setTextSize(AndroidUtilities.dp(14.0f));
+                        f21004w2.setTextSize(AndroidUtilities.dp(15.0f));
                         float f10 = ((SharedConfig.fontSize * 2) + 10) / 3.0f;
                         W2.setTextSize(AndroidUtilities.dp(f10));
                         Y2.setTextSize(AndroidUtilities.dp(f10));
                         Z2.setTextSize(AndroidUtilities.dp(f10));
                         float f11 = f10 - 1.0f;
-                        f17868a3.setTextSize(AndroidUtilities.dp(f11));
-                        f17888b3.setTextSize(AndroidUtilities.dp(f10));
+                        f20603a3.setTextSize(AndroidUtilities.dp(f11));
+                        f20623b3.setTextSize(AndroidUtilities.dp(f10));
                         V2.setTextSize(AndroidUtilities.dp(12.0f));
-                        f17925d3.setTextSize(AndroidUtilities.dp(f11));
-                        f17907c3.setTextSize(AndroidUtilities.dp(f10 - 2.0f));
+                        f20660d3.setTextSize(AndroidUtilities.dp(f11));
+                        f20642c3.setTextSize(AndroidUtilities.dp(f10 - 2.0f));
                         X2.setTextSize(AndroidUtilities.dp(f10));
                         U2.setTextSize(AndroidUtilities.dp(f11));
-                        f18140p2.setTextSize(AndroidUtilities.dp(Math.max(Math.min(10, SharedConfig.fontSize - 1), SharedConfig.fontSize - 2)));
-                        f18158q2.setTextSize(AndroidUtilities.dp(Math.max(Math.min(10, SharedConfig.fontSize - 2), SharedConfig.fontSize - 3)));
-                        f18176r2.setTextSize(AndroidUtilities.dp(Math.max(Math.min(10, SharedConfig.fontSize - 2), SharedConfig.fontSize - 5)));
+                        f20876p2.setTextSize(AndroidUtilities.dp(Math.max(Math.min(10, SharedConfig.fontSize - 1), SharedConfig.fontSize - 2)));
+                        f20894q2.setTextSize(AndroidUtilities.dp(Math.max(Math.min(10, SharedConfig.fontSize - 2), SharedConfig.fontSize - 3)));
+                        f20912r2.setTextSize(AndroidUtilities.dp(Math.max(Math.min(10, SharedConfig.fontSize - 2), SharedConfig.fontSize - 5)));
                     }
                 }
             } catch (Throwable th2) {
@@ -2493,30 +2491,30 @@ public abstract class j6 {
     }
 
     public static void P(Context context) {
-        if (f18049k0 == null) {
+        if (f20785k0 == null) {
             Paint paint = new Paint();
-            f18049k0 = paint;
+            f20785k0 = paint;
             paint.setStrokeWidth(1.0f);
             Paint paint2 = new Paint();
-            f18069l0 = paint2;
+            f20805l0 = paint2;
             paint2.setStrokeWidth(1.0f);
-            f18156q0 = new Paint(1);
+            f20892q0 = new Paint(1);
             Paint paint3 = new Paint(1);
-            f18120o0 = paint3;
+            f20856o0 = paint3;
             paint3.setStyle(Paint.Style.STROKE);
-            f18120o0.setStrokeWidth(AndroidUtilities.dp(2.0f));
-            f18120o0.setStrokeCap(Paint.Cap.ROUND);
+            f20856o0.setStrokeWidth(AndroidUtilities.dp(2.0f));
+            f20856o0.setStrokeCap(Paint.Cap.ROUND);
             Paint paint4 = new Paint(1);
-            f18104n0 = paint4;
+            f20840n0 = paint4;
             paint4.setColor(0);
-            f18104n0.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
-            f18138p0 = new Paint(1);
+            f20840n0.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
+            f20874p0 = new Paint(1);
             Paint paint5 = new Paint();
             m0 = paint5;
-            paint5.setPathEffect(g90.c());
+            paint5.setPathEffect(x80.c());
             Resources resources = context.getResources();
             Drawable drawable = resources.getDrawable(R.drawable.chats_saved);
-            Drawable[] drawableArr = f18174r0;
+            Drawable[] drawableArr = f20910r0;
             drawableArr[0] = drawable;
             drawableArr[1] = resources.getDrawable(R.drawable.ghost);
             drawableArr[2] = resources.getDrawable(R.drawable.msg_folders_private);
@@ -2542,45 +2540,45 @@ public abstract class j6 {
             drawableArr[22] = resources.getDrawable(R.drawable.filled_giveaway_premium);
             drawableArr[23] = resources.getDrawable(R.drawable.filled_giveaway_stars);
             drawableArr[24] = resources.getDrawable(R.drawable.filled_suggest_chat_avatar);
-            hj0 hj0Var = f18231u1;
-            if (hj0Var != null) {
-                hj0Var.setCallback(null);
-                f18231u1.C(false);
+            xi0 xi0Var = f20967u1;
+            if (xi0Var != null) {
+                xi0Var.setCallback(null);
+                f20967u1.A(false);
             }
-            hj0 hj0Var2 = f18249v1;
-            if (hj0Var2 != null) {
-                hj0Var2.C(false);
+            xi0 xi0Var2 = f20985v1;
+            if (xi0Var2 != null) {
+                xi0Var2.A(false);
             }
-            hj0 hj0Var3 = f18266w1;
-            if (hj0Var3 != null) {
-                hj0Var3.C(false);
+            xi0 xi0Var3 = f21003w1;
+            if (xi0Var3 != null) {
+                xi0Var3.A(false);
             }
-            hj0 hj0Var4 = f18284x1;
-            if (hj0Var4 != null) {
-                hj0Var4.C(false);
+            xi0 xi0Var4 = f21020x1;
+            if (xi0Var4 != null) {
+                xi0Var4.A(false);
             }
-            hj0 hj0Var5 = f18302y1;
-            if (hj0Var5 != null) {
-                hj0Var5.C(false);
+            xi0 xi0Var5 = f21038y1;
+            if (xi0Var5 != null) {
+                xi0Var5.A(false);
             }
-            hj0 hj0Var6 = f18320z1;
-            if (hj0Var6 != null) {
-                hj0Var6.C(false);
+            xi0 xi0Var6 = f21056z1;
+            if (xi0Var6 != null) {
+                xi0Var6.A(false);
             }
-            f18231u1 = new hj0(R.raw.chats_archiveavatar, AndroidUtilities.dp(36.0f), AndroidUtilities.dp(36.0f), false, null);
-            f18249v1 = new hj0(R.raw.chats_archive, AndroidUtilities.dp(36.0f), AndroidUtilities.dp(36.0f), false, null);
-            f18266w1 = new hj0(R.raw.chats_unarchive, AndroidUtilities.dp(36.0f), AndroidUtilities.dp(36.0f), false, null);
-            f18284x1 = new hj0(R.raw.chats_hide, AndroidUtilities.dp(36.0f), AndroidUtilities.dp(36.0f), false, null);
-            f18302y1 = new hj0(R.raw.chats_unhide, AndroidUtilities.dp(36.0f), AndroidUtilities.dp(36.0f), false, null);
-            f18320z1 = new hj0(R.raw.chat_audio_record_delete, AndroidUtilities.dp(30.0f), AndroidUtilities.dp(30.0f), false, null);
-            H1 = new hj0(R.raw.swipe_mute, AndroidUtilities.dp(36.0f), AndroidUtilities.dp(36.0f), false, null);
-            I1 = new hj0(R.raw.swipe_unmute, AndroidUtilities.dp(36.0f), AndroidUtilities.dp(36.0f), false, null);
-            L1 = new hj0(R.raw.swipe_read, AndroidUtilities.dp(36.0f), AndroidUtilities.dp(36.0f), false, null);
-            M1 = new hj0(R.raw.swipe_unread, AndroidUtilities.dp(36.0f), AndroidUtilities.dp(36.0f), false, null);
-            J1 = new hj0(R.raw.swipe_delete, AndroidUtilities.dp(36.0f), AndroidUtilities.dp(36.0f), false, null);
-            O1 = new hj0(R.raw.swipe_unpin, AndroidUtilities.dp(36.0f), AndroidUtilities.dp(36.0f), false, null);
-            N1 = new hj0(R.raw.swipe_pin, AndroidUtilities.dp(36.0f), AndroidUtilities.dp(36.0f), false, null);
-            K1 = new hj0(R.raw.swipe_community_ungroup, AndroidUtilities.dp(28.0f), AndroidUtilities.dp(28.0f), false, null);
+            f20967u1 = new xi0(R.raw.chats_archiveavatar, AndroidUtilities.dp(36.0f), AndroidUtilities.dp(36.0f), false, null);
+            f20985v1 = new xi0(R.raw.chats_archive, AndroidUtilities.dp(36.0f), AndroidUtilities.dp(36.0f), false, null);
+            f21003w1 = new xi0(R.raw.chats_unarchive, AndroidUtilities.dp(36.0f), AndroidUtilities.dp(36.0f), false, null);
+            f21020x1 = new xi0(R.raw.chats_hide, AndroidUtilities.dp(36.0f), AndroidUtilities.dp(36.0f), false, null);
+            f21038y1 = new xi0(R.raw.chats_unhide, AndroidUtilities.dp(36.0f), AndroidUtilities.dp(36.0f), false, null);
+            f21056z1 = new xi0(R.raw.chat_audio_record_delete, AndroidUtilities.dp(30.0f), AndroidUtilities.dp(30.0f), false, null);
+            H1 = new xi0(R.raw.swipe_mute, AndroidUtilities.dp(36.0f), AndroidUtilities.dp(36.0f), false, null);
+            I1 = new xi0(R.raw.swipe_unmute, AndroidUtilities.dp(36.0f), AndroidUtilities.dp(36.0f), false, null);
+            L1 = new xi0(R.raw.swipe_read, AndroidUtilities.dp(36.0f), AndroidUtilities.dp(36.0f), false, null);
+            M1 = new xi0(R.raw.swipe_unread, AndroidUtilities.dp(36.0f), AndroidUtilities.dp(36.0f), false, null);
+            J1 = new xi0(R.raw.swipe_delete, AndroidUtilities.dp(36.0f), AndroidUtilities.dp(36.0f), false, null);
+            O1 = new xi0(R.raw.swipe_unpin, AndroidUtilities.dp(36.0f), AndroidUtilities.dp(36.0f), false, null);
+            N1 = new xi0(R.raw.swipe_pin, AndroidUtilities.dp(36.0f), AndroidUtilities.dp(36.0f), false, null);
+            K1 = new xi0(R.raw.swipe_community_ungroup, AndroidUtilities.dp(28.0f), AndroidUtilities.dp(28.0f), false, null);
             k();
         }
     }
@@ -2598,23 +2596,23 @@ public abstract class j6 {
         return (Drawable) jl.get(str);
     }
 
-    public static lc0 Q(int i10, int i11) {
+    public static dc0 Q(int i10, int i11) {
         boolean z10;
         if (i10 != 0) {
             z10 = true;
         } else {
             z10 = false;
         }
-        lc0 lc0Var = new lc0(z10, -2368069, -9722489, -2762611, -7817084);
+        dc0 dc0Var = new dc0(z10, -2368069, -9722489, -2762611, -7817084);
         if (i10 <= 0 || i11 <= 0) {
             Point point = AndroidUtilities.displaySize;
             i10 = Math.min(point.x, point.y);
             Point point2 = AndroidUtilities.displaySize;
             i11 = Math.max(point2.x, point2.y);
         }
-        lc0Var.t(SvgHelper.getBitmap(R.raw.default_pattern, i10, i11, -16777216, 1.0f, SvgHelper.ScaleMode.ByWidth), 34);
-        lc0Var.u(lc0Var.f());
-        return lc0Var;
+        dc0Var.t(SvgHelper.getBitmap(R.raw.default_pattern, i10, i11, -16777216, 1.0f, SvgHelper.ScaleMode.ByWidth), 34);
+        dc0Var.u(dc0Var.f());
+        return dc0Var;
     }
 
     public static SparseIntArray Q0(File file, String str, String[] strArr) {
@@ -2674,7 +2672,7 @@ public abstract class j6 {
                                         } else {
                                             intValue = Utilities.parseInt((CharSequence) substring2).intValue();
                                         }
-                                        int s10 = i5.s(substring);
+                                        int s10 = g5.s(substring);
                                         if (s10 >= 0) {
                                             sparseIntArray.put(s10, intValue);
                                         }
@@ -2716,7 +2714,7 @@ public abstract class j6 {
                         }
                     }
                 }
-                sparseIntArray.put(f17981g5, i12);
+                sparseIntArray.put(f20717g5, i12);
                 fileInputStream2.close();
             } catch (Throwable th4) {
                 th = th4;
@@ -2736,8 +2734,8 @@ public abstract class j6 {
             TextPaint textPaint2 = new TextPaint(1);
             M0 = textPaint2;
             textPaint2.setTypeface(AndroidUtilities.bold());
-            f18265w0 = new Paint(1);
-            f18212t0 = new Paint(1);
+            f21002w0 = new Paint(1);
+            f20948t0 = new Paint(1);
             A0 = new Paint(1);
         }
         L0.setTextSize(AndroidUtilities.dp(12.0f));
@@ -2779,42 +2777,42 @@ public abstract class j6 {
             TextPaint textPaint8 = new TextPaint(1);
             R0 = textPaint8;
             textPaint8.setTypeface(AndroidUtilities.bold());
-            f18230u0 = new Paint();
-            f18248v0 = new Paint(1);
-            f18301y0 = new Paint(1);
-            f18283x0 = new Paint(1);
-            f18319z0 = new Paint(1);
-            f17867a1 = resources.getDrawable(R.drawable.list_secret);
-            f17886b1 = resources.getDrawable(R.drawable.msg_mini_lock2);
+            f20966u0 = new Paint();
+            f20984v0 = new Paint(1);
+            f21037y0 = new Paint(1);
+            f21019x0 = new Paint(1);
+            f21055z0 = new Paint(1);
+            f20602a1 = resources.getDrawable(R.drawable.list_secret);
+            f20621b1 = resources.getDrawable(R.drawable.msg_mini_lock2);
             T0 = resources.getDrawable(R.drawable.list_check).mutate();
             S0 = resources.getDrawable(R.drawable.community_cards).mutate();
             U0 = resources.getDrawable(R.drawable.minithumb_play).mutate();
             V0 = resources.getDrawable(R.drawable.list_check).mutate();
             W0 = resources.getDrawable(R.drawable.list_halfcheck);
-            X0 = new sc0();
+            X0 = new kc0();
             Y0 = resources.getDrawable(R.drawable.list_warning_sign);
             Z0 = resources.getDrawable(R.drawable.list_reorder).mutate();
-            f17905c1 = resources.getDrawable(R.drawable.list_mute).mutate();
-            f17923d1 = resources.getDrawable(R.drawable.list_unmute).mutate();
-            f17941e1 = resources.getDrawable(R.drawable.mini_ephemeral_hidden_16).mutate();
-            f17959f1 = resources.getDrawable(R.drawable.verified_area).mutate();
-            f17977g1 = new hm0(0);
-            f17994h1 = new hm0(1);
-            f18012i1 = resources.getDrawable(R.drawable.verified_check).mutate();
-            f18086m1 = resources.getDrawable(R.drawable.filled_chatlist_mention).mutate();
-            f18105n1 = resources.getDrawable(R.drawable.filled_chatlist_reaction).mutate();
-            f18121o1 = resources.getDrawable(R.drawable.filled_chatlist_poll).mutate();
-            f18139p1 = resources.getDrawable(R.drawable.filled_chatlist_mention).mutate();
-            f18157q1 = resources.getDrawable(R.drawable.filled_chatlist_reaction).mutate();
-            f18175r1 = resources.getDrawable(R.drawable.filled_chatlist_poll).mutate();
-            f18031j1 = resources.getDrawable(R.drawable.list_pin);
-            f18050k1 = resources.getDrawable(R.drawable.msg_pin_mini).mutate();
+            f20640c1 = resources.getDrawable(R.drawable.list_mute).mutate();
+            f20658d1 = resources.getDrawable(R.drawable.list_unmute).mutate();
+            f20678e1 = resources.getDrawable(R.drawable.mini_ephemeral_hidden_16).mutate();
+            f20695f1 = resources.getDrawable(R.drawable.verified_area).mutate();
+            f20713g1 = new xl0(0);
+            f20730h1 = new xl0(1);
+            f20748i1 = resources.getDrawable(R.drawable.verified_check).mutate();
+            f20822m1 = resources.getDrawable(R.drawable.filled_chatlist_mention).mutate();
+            f20841n1 = resources.getDrawable(R.drawable.filled_chatlist_reaction).mutate();
+            f20857o1 = resources.getDrawable(R.drawable.filled_chatlist_poll).mutate();
+            f20875p1 = resources.getDrawable(R.drawable.filled_chatlist_mention).mutate();
+            f20893q1 = resources.getDrawable(R.drawable.filled_chatlist_reaction).mutate();
+            f20911r1 = resources.getDrawable(R.drawable.filled_chatlist_poll).mutate();
+            f20767j1 = resources.getDrawable(R.drawable.list_pin);
+            f20786k1 = resources.getDrawable(R.drawable.msg_pin_mini).mutate();
             l1 = resources.getDrawable(R.drawable.msg_pin_mini).mutate();
-            f18213t1 = resources.getDrawable(R.drawable.msg_mini_forumarrow);
-            f18193s0 = resources.getDrawable(R.drawable.preview_arrow);
+            f20949t1 = resources.getDrawable(R.drawable.msg_mini_forumarrow);
+            f20929s0 = resources.getDrawable(R.drawable.preview_arrow);
             RectF rectF = new RectF();
             Path path = new Path();
-            Path[] pathArr = f17870a5;
+            Path[] pathArr = f20605a5;
             pathArr[0] = path;
             pathArr[2] = new Path();
             float dp = AndroidUtilities.dp(12.0f);
@@ -2854,18 +2852,18 @@ public abstract class j6 {
         return f10;
     }
 
-    public static v5 S(Context context) {
-        return T(context, w0(null, f18235u5, false), w0(null, f18253v5, false));
+    public static u5 S(Context context) {
+        return T(context, w0(null, f20971u5, false), w0(null, f20989v5, false));
     }
 
     public static Paint S0(String str) {
         if (Objects.equals(str, "paintDivider")) {
-            return f18049k0;
+            return f20785k0;
         }
         return (Paint) ll.get(str);
     }
 
-    public static v5 T(Context context, int i10, int i11) {
+    public static u5 T(Context context, int i10, int i11) {
         Resources resources = context.getResources();
         Drawable mutate = resources.getDrawable(R.drawable.search_dark).mutate();
         PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
@@ -2880,14 +2878,14 @@ public abstract class j6 {
     }
 
     public static Paint T0(String str, f6 f6Var) {
-        Paint F10;
-        if (f6Var != null && (F10 = f6Var.F(str)) != null) {
-            return F10;
+        Paint G10;
+        if (f6Var != null && (G10 = f6Var.G(str)) != null) {
+            return G10;
         }
         return S0(str);
     }
 
-    public static v5 U(Context context, int i10, int i11, int i12) {
+    public static u5 U(Context context, int i10, int i11, int i12) {
         Resources resources = context.getResources();
         Drawable mutate = resources.getDrawable(i10).mutate();
         if (i11 != 0) {
@@ -2923,8 +2921,8 @@ public abstract class j6 {
     }
 
     public static org.telegram.ui.Cells.z W(float f10, int i10, int i11, int i12, int i13, int i14) {
-        f18318z.setColor(-1);
-        return new RippleDrawable(new ColorStateList(new int[][]{StateSet.WILD_CARD}, new int[]{i10}), null, new x5(i11, i12, i13, i14, f10));
+        f21054z.setColor(-1);
+        return new RippleDrawable(new ColorStateList(new int[][]{StateSet.WILD_CARD}, new int[]{i10}), null, new w5(i11, i12, i13, i14, f10));
     }
 
     public static android.graphics.drawable.Drawable W0(android.view.View r10, boolean r11) {
@@ -2950,48 +2948,48 @@ public abstract class j6 {
     }
 
     public static org.telegram.ui.Cells.z Y(int i10, int i11, int i12) {
-        f18318z.setColor(-1);
+        f21054z.setColor(-1);
         return new RippleDrawable(new ColorStateList(new int[][]{StateSet.WILD_CARD}, new int[]{i10}), null, new g6(i11, i12));
     }
 
-    public static String Y0(c6 c6Var) {
+    public static String Y0(b6 b6Var) {
         String str;
         String str2;
         String str3;
         String str4 = null;
-        if (c6Var == null || TextUtils.isEmpty(c6Var.f17577c) || c6Var.f17577c.equals("d")) {
+        if (b6Var == null || TextUtils.isEmpty(b6Var.f20276c) || b6Var.f20276c.equals("d")) {
             return null;
         }
         StringBuilder sb2 = new StringBuilder();
-        if (c6Var.f17580i) {
+        if (b6Var.f20280i) {
             sb2.append("blur");
         }
-        if (c6Var.f17581j) {
+        if (b6Var.f20281j) {
             if (sb2.length() > 0) {
                 sb2.append("+");
             }
             sb2.append("motion");
         }
-        int i10 = c6Var.d;
+        int i10 = b6Var.d;
         if (i10 == 0) {
-            str3 = "https://attheme.org?slug=" + c6Var.f17577c;
+            str3 = "https://attheme.org?slug=" + b6Var.f20276c;
         } else {
-            String lowerCase = String.format("%02x%02x%02x", Integer.valueOf(((byte) (i10 >> 16)) & 255), Integer.valueOf(((byte) (c6Var.d >> 8)) & 255), Byte.valueOf((byte) (c6Var.d & 255))).toLowerCase();
-            int i11 = c6Var.e;
+            String lowerCase = String.format("%02x%02x%02x", Integer.valueOf(((byte) (i10 >> 16)) & 255), Integer.valueOf(((byte) (b6Var.d >> 8)) & 255), Byte.valueOf((byte) (b6Var.d & 255))).toLowerCase();
+            int i11 = b6Var.f20277e;
             if (i11 != 0) {
-                str = String.format("%02x%02x%02x", Integer.valueOf(((byte) (i11 >> 16)) & 255), Integer.valueOf(((byte) (c6Var.e >> 8)) & 255), Byte.valueOf((byte) (c6Var.e & 255))).toLowerCase();
+                str = String.format("%02x%02x%02x", Integer.valueOf(((byte) (i11 >> 16)) & 255), Integer.valueOf(((byte) (b6Var.f20277e >> 8)) & 255), Byte.valueOf((byte) (b6Var.f20277e & 255))).toLowerCase();
             } else {
                 str = null;
             }
-            int i12 = c6Var.f17578f;
+            int i12 = b6Var.f20278f;
             if (i12 != 0) {
-                str2 = String.format("%02x%02x%02x", Integer.valueOf(((byte) (i12 >> 16)) & 255), Integer.valueOf(((byte) (c6Var.f17578f >> 8)) & 255), Byte.valueOf((byte) (c6Var.f17578f & 255))).toLowerCase();
+                str2 = String.format("%02x%02x%02x", Integer.valueOf(((byte) (i12 >> 16)) & 255), Integer.valueOf(((byte) (b6Var.f20278f >> 8)) & 255), Byte.valueOf((byte) (b6Var.f20278f & 255))).toLowerCase();
             } else {
                 str2 = null;
             }
-            int i13 = c6Var.f17579g;
+            int i13 = b6Var.f20279g;
             if (i13 != 0) {
-                str4 = String.format("%02x%02x%02x", Integer.valueOf(((byte) (i13 >> 16)) & 255), Integer.valueOf(((byte) (c6Var.f17579g >> 8)) & 255), Byte.valueOf((byte) (c6Var.f17579g & 255))).toLowerCase();
+                str4 = String.format("%02x%02x%02x", Integer.valueOf(((byte) (i13 >> 16)) & 255), Integer.valueOf(((byte) (b6Var.f20279g >> 8)) & 255), Byte.valueOf((byte) (b6Var.f20279g & 255))).toLowerCase();
             }
             if (str != null && str2 != null) {
                 if (str4 != null) {
@@ -3007,10 +3005,10 @@ public abstract class j6 {
                 }
             } else if (str != null) {
                 StringBuilder g10 = w.f.g(a4.a.C(lowerCase, "-", str), "&rotation=");
-                g10.append(c6Var.h);
+                g10.append(b6Var.h);
                 lowerCase = g10.toString();
             }
-            str3 = "https://attheme.org?slug=" + c6Var.f17577c + "&intensity=" + ((int) (c6Var.f17582k * 100.0f)) + "&bg_color=" + lowerCase;
+            str3 = "https://attheme.org?slug=" + b6Var.f20276c + "&intensity=" + ((int) (b6Var.f20282k * 100.0f)) + "&bg_color=" + lowerCase;
         }
         if (sb2.length() > 0) {
             StringBuilder g11 = w.f.g(str3, "&mode=");
@@ -3021,14 +3019,14 @@ public abstract class j6 {
     }
 
     public static org.telegram.ui.Cells.z Z(int i10, int i11, int i12, int i13) {
-        f18318z.setColor(-1);
+        f21054z.setColor(-1);
         float f10 = i12;
         float f11 = i13;
         return new RippleDrawable(new ColorStateList(new int[][]{StateSet.WILD_CARD}, new int[]{i11}), c0(AndroidUtilities.dp(f10), AndroidUtilities.dp(f11), i10), new g6(f10, f11));
     }
 
     public static boolean Z0() {
-        if (P && I.f17846i0 != null) {
+        if (P && I.f20553i0 != null) {
             return true;
         }
         return false;
@@ -3050,11 +3048,11 @@ public abstract class j6 {
     }
 
     public static org.telegram.ui.Cells.z a0(int i10, int i11, int i12, int i13, int i14) {
-        f18318z.setColor(-1);
+        f21054z.setColor(-1);
         ?? drawable = new Drawable();
-        drawable.f17749a = new Path();
-        drawable.f17750b = r1;
-        drawable.f17751c = true;
+        drawable.f20471a = new Path();
+        drawable.f20472b = r1;
+        drawable.f20473c = true;
         float dp = AndroidUtilities.dp(i11);
         float dp2 = AndroidUtilities.dp(i12);
         float dp3 = AndroidUtilities.dp(i13);
@@ -3075,9 +3073,9 @@ public abstract class j6 {
         Color.colorToHSV(i10, M02);
         float f12 = M02[1];
         if (f12 > 0.1f && f12 < 0.9f) {
-            M02[1] = w7.q.a(f12 + f10, 0.0f, 1.0f);
+            M02[1] = w7.p.a(f12 + f10, 0.0f, 1.0f);
         }
-        M02[2] = w7.q.a(M02[2] + f11, 0.0f, 1.0f);
+        M02[2] = w7.p.a(M02[2] + f11, 0.0f, 1.0f);
         return Color.HSVToColor(Color.alpha(i10), M02);
     }
 
@@ -3139,8 +3137,8 @@ public abstract class j6 {
 
     public static boolean d1() {
         i6 i6Var = I;
-        if (!i6Var.S || i6Var.Y != f18103n) {
-            if (rl.indexOfKey(Nd) < 0 && f17976g0 <= 0 && TextUtils.isEmpty(f17993h0)) {
+        if (!i6Var.S || i6Var.Y != f20839n) {
+            if (rl.indexOfKey(Nd) < 0 && f20712g0 <= 0 && TextUtils.isEmpty(f20729h0)) {
                 return false;
             }
             return true;
@@ -3169,7 +3167,7 @@ public abstract class j6 {
             }
         }
         int[] iArr = nl;
-        int i11 = f18184ra;
+        int i11 = f20920ra;
         int i12 = sparseIntArray2.get(i11, iArr[i11]);
         int E12 = E1(sparseIntArray2);
         int i13 = zk;
@@ -3216,7 +3214,7 @@ public abstract class j6 {
 
     public static void g(SparseIntArray sparseIntArray, SparseIntArray sparseIntArray2, boolean z10) {
         int[] iArr = nl;
-        int i10 = f18184ra;
+        int i10 = f20920ra;
         int i11 = sparseIntArray2.get(i10, iArr[i10]);
         int E12 = E1(sparseIntArray2);
         int i12 = rk;
@@ -3237,7 +3235,7 @@ public abstract class j6 {
         }
         int i16 = wk;
         if (sparseIntArray.indexOfKey(i16) < 0) {
-            int i17 = f17876ab;
+            int i17 = f20611ab;
             sparseIntArray2.put(i16, l1(0.2f, sparseIntArray2.get(i17, iArr[i17])));
         }
         if (z10) {
@@ -3254,15 +3252,15 @@ public abstract class j6 {
     }
 
     public static boolean g1(h6 h6Var) {
-        i6 i6Var = h6Var.f17793b;
+        i6 i6Var = h6Var.f20491b;
         if (i6Var != null) {
-            if (i6Var.m().equals("Blue") && h6Var.f17792a == 99) {
+            if (i6Var.m().equals("Blue") && h6Var.f20490a == 99) {
                 return true;
             }
-            if (h6Var.f17793b.m().equals("Day") && h6Var.f17792a == 9) {
+            if (h6Var.f20491b.m().equals("Day") && h6Var.f20490a == 9) {
                 return true;
             }
-            if ((h6Var.f17793b.m().equals("Night") || h6Var.f17793b.m().equals("Dark Blue")) && h6Var.f17792a == 0) {
+            if ((h6Var.f20491b.m().equals("Night") || h6Var.f20491b.m().equals("Dark Blue")) && h6Var.f20490a == 0) {
                 return true;
             }
             return false;
@@ -3273,40 +3271,40 @@ public abstract class j6 {
     public static void h(Drawable drawable) {
         boolean z10;
         Bitmap bitmap;
-        if (f17942e2 == null) {
+        if (f20679e2 == null) {
             return;
         }
         int i10 = rl.get(Hc);
-        if ((drawable instanceof lc0) && SharedConfig.getDevicePerformanceClass() != 0 && i10 == 0) {
+        if ((drawable instanceof dc0) && SharedConfig.getDevicePerformanceClass() != 0 && i10 == 0) {
             z10 = true;
         } else {
             z10 = false;
         }
-        if (z10 && Y != (bitmap = ((lc0) drawable).f24949k)) {
+        if (z10 && Y != (bitmap = ((dc0) drawable).f25353k)) {
             Y = bitmap;
             Bitmap bitmap2 = Y;
             Shader.TileMode tileMode = Shader.TileMode.CLAMP;
             Z = new BitmapShader(bitmap2, tileMode, tileMode);
-            if (f17866a0 == null) {
-                f17866a0 = new Matrix();
+            if (f20601a0 == null) {
+                f20601a0 = new Matrix();
             }
         }
         if (Z != null && i10 == 0 && z10) {
             ColorMatrix colorMatrix = new ColorMatrix();
             AndroidUtilities.adjustSaturationColorMatrix(colorMatrix, 2.5f);
             AndroidUtilities.multiplyBrightnessColorMatrix(colorMatrix, 0.75f);
-            f17942e2.setShader(Z);
-            f17942e2.setColorFilter(new ColorMatrixColorFilter(colorMatrix));
-            f17942e2.setAlpha(64);
+            f20679e2.setShader(Z);
+            f20679e2.setColorFilter(new ColorMatrixColorFilter(colorMatrix));
+            f20679e2.setAlpha(64);
             return;
         }
-        Paint paint = f17942e2;
+        Paint paint = f20679e2;
         if (i10 == 0) {
             i10 = 1073741824;
         }
         paint.setColor(i10);
-        f17942e2.setColorFilter(null);
-        f17942e2.setShader(null);
+        f20679e2.setColorFilter(null);
+        f20679e2.setShader(null);
     }
 
     public static org.telegram.ui.Cells.z h0(int i10, int i11, int i12) {
@@ -3333,7 +3331,7 @@ public abstract class j6 {
                 if (BuildVars.LOGS_ENABLED) {
                     Log.i("theme", "loading remote themes, hash " + getthemes.hash);
                 }
-                ConnectionsManager.getInstance(i10).sendRequest(getthemes, new di.t2(i10, 3));
+                ConnectionsManager.getInstance(i10).sendRequest(getthemes, new fi.q2(i10, 3));
             }
         }
     }
@@ -3346,29 +3344,29 @@ public abstract class j6 {
         float f11;
         float f12;
         float f13;
-        if (f17960f2 == null) {
+        if (f20696f2 == null) {
             return;
         }
-        X = f17904c0;
-        f17885b0 = f17922d0;
+        X = f20639c0;
+        f20620b0 = f20657d0;
         SparseIntArray sparseIntArray = rl;
-        int i12 = f18079lc;
+        int i12 = f20815lc;
         int indexOfKey = sparseIntArray.indexOfKey(i12);
         if (indexOfKey >= 0) {
             i10 = rl.valueAt(indexOfKey);
         } else {
             i10 = X;
         }
-        int indexOfKey2 = rl.indexOfKey(f18097mc);
+        int indexOfKey2 = rl.indexOfKey(f20833mc);
         if (indexOfKey2 >= 0) {
             i11 = rl.valueAt(indexOfKey2);
         } else {
-            i11 = f17885b0;
+            i11 = f20620b0;
         }
-        boolean z10 = drawable instanceof lc0;
+        boolean z10 = drawable instanceof dc0;
         if ((z10 || (drawable instanceof BitmapDrawable)) && SharedConfig.getDevicePerformanceClass() != 0 && LiteMode.isEnabled(32)) {
             if (z10) {
-                bitmap = ((lc0) drawable).f24949k;
+                bitmap = ((dc0) drawable).f25353k;
             } else {
                 if (drawable instanceof BitmapDrawable) {
                     WeakReference weakReference = Fl;
@@ -3410,8 +3408,8 @@ public abstract class j6 {
                 if (Build.VERSION.SDK_INT >= 33) {
                     Z.setFilterMode(2);
                 }
-                if (f17866a0 == null) {
-                    f17866a0 = new Matrix();
+                if (f20601a0 == null) {
+                    f20601a0 = new Matrix();
                 }
             }
             w1(-1, Y3);
@@ -3419,55 +3417,55 @@ public abstract class j6 {
             w1(-1, I3);
             w1(-1, J3);
             w1(-1, K3);
-            f18195s2.setColor(-1);
-            f18214t2.setColor(-1);
-            f18232u2.setColor(-1);
-            f18195s2.linkColor = -1;
-            f18250v2.setColor(-1);
+            f20931s2.setColor(-1);
+            f20950t2.setColor(-1);
+            f20968u2.setColor(-1);
+            f20931s2.linkColor = -1;
+            f20986v2.setColor(-1);
             Q2.setColor(-1);
             w1(-1, C4);
-            w1(-1, f18160q4);
-            w1(-1, f18178r4);
-            w1(-1, f18234u4);
-            w1(-1, f18287x4);
-            w1(-1, f18304y4);
+            w1(-1, f20896q4);
+            w1(-1, f20914r4);
+            w1(-1, f20970u4);
+            w1(-1, f21023x4);
+            w1(-1, f21040y4);
             w1(-1, A4);
-            w1(-1, f18323z4);
-            w1(-1, f18252v4);
+            w1(-1, f21059z4);
+            w1(-1, f20988v4);
         } else {
             Y = null;
             Z = null;
             Drawable drawable2 = Y3;
-            int i13 = f18023ic;
+            int i13 = f20759ic;
             x1(i13, drawable2);
             x1(i13, H3);
             x1(i13, I3);
             x1(i13, J3);
             x1(i13, K3);
-            f18195s2.setColor(w0(null, i13, false));
-            f18214t2.setColor(w0(null, i13, false));
-            f18195s2.linkColor = w0(null, f18041jc, false);
-            f18250v2.setColor(w0(null, i13, false));
+            f20931s2.setColor(w0(null, i13, false));
+            f20950t2.setColor(w0(null, i13, false));
+            f20931s2.linkColor = w0(null, f20777jc, false);
+            f20986v2.setColor(w0(null, i13, false));
             Drawable drawable3 = C4;
-            int i14 = f18061kc;
+            int i14 = f20797kc;
             x1(i14, drawable3);
-            x1(i14, f18160q4);
-            x1(i14, f18178r4);
-            x1(i14, f18234u4);
-            x1(i14, f18287x4);
-            x1(i14, f18304y4);
+            x1(i14, f20896q4);
+            x1(i14, f20914r4);
+            x1(i14, f20970u4);
+            x1(i14, f21023x4);
+            x1(i14, f21040y4);
             x1(i14, A4);
-            x1(i14, f18323z4);
-            x1(i14, f18252v4);
+            x1(i14, f21059z4);
+            x1(i14, f20988v4);
             Q2.setColor(w0(null, Nc, false));
         }
-        f17960f2.setColor(i10);
-        f17978g2.setColor(i11);
+        f20696f2.setColor(i10);
+        f20714g2.setColor(i11);
         if (Z != null && (rl.indexOfKey(i12) < 0 || z10 || (drawable instanceof BitmapDrawable))) {
             ColorMatrix colorMatrix2 = new ColorMatrix();
             if (z10) {
                 float f14 = -0.06f;
-                if (((lc0) drawable).f24955q >= 0.0f) {
+                if (((dc0) drawable).f25359q >= 0.0f) {
                     colorMatrix2.setSaturation(1.6f);
                     if (I.q()) {
                         f13 = 0.97f;
@@ -3507,26 +3505,26 @@ public abstract class j6 {
                 }
                 AndroidUtilities.adjustBrightnessColorMatrix(colorMatrix2, f11);
             }
-            f17960f2.setFilterBitmap(true);
-            f17960f2.setShader(Z);
-            f17960f2.setColorFilter(new ColorMatrixColorFilter(colorMatrix2));
-            f17960f2.setAlpha(255);
-            f17978g2.setFilterBitmap(true);
-            f17978g2.setShader(Z);
+            f20696f2.setFilterBitmap(true);
+            f20696f2.setShader(Z);
+            f20696f2.setColorFilter(new ColorMatrixColorFilter(colorMatrix2));
+            f20696f2.setAlpha(255);
+            f20714g2.setFilterBitmap(true);
+            f20714g2.setShader(Z);
             ColorMatrix colorMatrix3 = new ColorMatrix(colorMatrix2);
             AndroidUtilities.adjustSaturationColorMatrix(colorMatrix3, 0.26f);
             e1();
             AndroidUtilities.multiplyBrightnessColorMatrix(colorMatrix3, 0.92f);
-            f17978g2.setColorFilter(new ColorMatrixColorFilter(colorMatrix3));
-            f17978g2.setAlpha(255);
-            f17995h2.setAlpha(0);
+            f20714g2.setColorFilter(new ColorMatrixColorFilter(colorMatrix3));
+            f20714g2.setAlpha(255);
+            f20731h2.setAlpha(0);
             return;
         }
-        f17960f2.setColorFilter(null);
-        f17960f2.setShader(null);
-        f17978g2.setColorFilter(null);
-        f17978g2.setShader(null);
-        f17995h2.setAlpha(21);
+        f20696f2.setColorFilter(null);
+        f20696f2.setShader(null);
+        f20714g2.setColorFilter(null);
+        f20714g2.setShader(null);
+        f20731h2.setAlpha(21);
     }
 
     public static org.telegram.ui.Cells.z i0(int i10, int i11, int i12, int i13, int i14, int i15, int i16) {
@@ -3620,41 +3618,41 @@ public abstract class j6 {
     }
 
     public static void j(boolean z10, boolean z11) {
-        if (f18122o2 != null && f18088m3 != null && !z10) {
+        if (f20858o2 != null && f20824m3 != null && !z10) {
             K2.setColor(w0(null, Jc, false));
             J2.setColor(w0(null, Ic, false));
             Q2.setColor(w0(null, Nc, false));
             U1.setColor(w0(null, Ld, false));
             V1.setColor(w0(null, Mb, false));
             W1.setColor(w0(null, Md, false));
-            f17887b2.setColor(w0(null, Fc, false));
-            Paint paint = f17906c2;
-            int i10 = f18147pa;
+            f20622b2.setColor(w0(null, Fc, false));
+            Paint paint = f20641c2;
+            int i10 = f20883pa;
             paint.setColor(w0(null, i10, false));
-            f17924d2.setColor(w0(null, i10, false));
-            TextPaint textPaint = f18195s2;
-            int i11 = f18023ic;
+            f20659d2.setColor(w0(null, i10, false));
+            TextPaint textPaint = f20931s2;
+            int i11 = f20759ic;
             textPaint.setColor(w0(null, i11, false));
-            f18214t2.setColor(w0(null, i11, false));
-            f18232u2.setColor(w0(null, i11, false));
-            f18195s2.linkColor = w0(null, f18041jc, false);
-            f18250v2.setColor(w0(null, i11, false));
-            f17961f3.setColor(w0(null, G6, false));
-            Paint paint2 = f18032j2;
+            f20950t2.setColor(w0(null, i11, false));
+            f20968u2.setColor(w0(null, i11, false));
+            f20931s2.linkColor = w0(null, f20777jc, false);
+            f20986v2.setColor(w0(null, i11, false));
+            f20697f3.setColor(w0(null, G6, false));
+            Paint paint2 = f20768j2;
             int i12 = Sd;
             paint2.setColor(w0(null, i12, false));
-            f18013i2.setColor(w0(null, wc, false));
-            x1(f18062kd, f17996h3);
-            h5 h5Var = f18088m3;
-            int i13 = f18184ra;
-            x1(i13, h5Var);
-            h5 h5Var2 = f18107n3;
-            int i14 = f17934dc;
-            x1(i14, h5Var2);
-            x1(i13, f18159q3);
-            x1(i14, f18177r3);
+            f20749i2.setColor(w0(null, wc, false));
+            x1(f20798kd, f20732h3);
+            f5 f5Var = f20824m3;
+            int i13 = f20920ra;
+            x1(i13, f5Var);
+            f5 f5Var2 = f20843n3;
+            int i14 = f20669dc;
+            x1(i14, f5Var2);
+            x1(i13, f20895q3);
+            x1(i14, f20913r3);
             x1(Ja, y3);
-            x1(Ka, f18322z3);
+            x1(Ka, f21058z3);
             Drawable drawable = A3;
             int i15 = La;
             x1(i15, drawable);
@@ -3664,7 +3662,7 @@ public abstract class j6 {
             x1(i15, C3);
             x1(i16, D3);
             Drawable drawable3 = F3;
-            int i17 = f18205sc;
+            int i17 = f20941sc;
             x1(i17, drawable3);
             x1(i17, G3);
             x1(i11, H3);
@@ -3672,23 +3670,23 @@ public abstract class j6 {
             x1(i11, J3);
             x1(i11, K3);
             x1(i11, L3);
-            Drawable drawable4 = f18160q4;
-            int i18 = f18061kc;
+            Drawable drawable4 = f20896q4;
+            int i18 = f20797kc;
             x1(i18, drawable4);
-            x1(i18, f18178r4);
-            x1(i18, f18234u4);
-            x1(i18, f18287x4);
-            x1(i18, f18304y4);
+            x1(i18, f20914r4);
+            x1(i18, f20970u4);
+            x1(i18, f21023x4);
+            x1(i18, f21040y4);
             Drawable drawable5 = A4;
-            int i19 = f18149pc;
+            int i19 = f20885pc;
             x1(i19, drawable5);
-            x1(i18, f18323z4);
-            x1(i18, f18252v4);
+            x1(i18, f21059z4);
+            x1(i18, f20988v4);
             Drawable drawable6 = M3;
             int i20 = xc;
             x1(i20, drawable6);
             Drawable drawable7 = N3;
-            int i21 = f18312yc;
+            int i21 = f21048yc;
             x1(i21, drawable7);
             Drawable drawable8 = O3;
             int i22 = Ra;
@@ -3705,30 +3703,30 @@ public abstract class j6 {
             x1(i22, W3);
             x1(i23, X3);
             Drawable drawable10 = Z3;
-            int i24 = f18331zc;
+            int i24 = f21067zc;
             x1(i24, drawable10);
             x1(i11, Y3);
-            x1(i24, f17869a4);
-            x1(i24, f17889b4);
-            x1(Ac, f17908c4);
-            x1(Bc, f17926d4);
-            x1(Ta, f17944e4);
-            x1(Ua, f17962f4);
-            x1(Cc, f17980g4);
-            Drawable drawable11 = f18015i4;
+            x1(i24, f20604a4);
+            x1(i24, f20624b4);
+            x1(Ac, f20643c4);
+            x1(Bc, f20661d4);
+            x1(Ta, f20681e4);
+            x1(Ua, f20698f4);
+            x1(Cc, f20716g4);
+            Drawable drawable11 = f20751i4;
             int i25 = Va;
             x1(i25, drawable11);
-            Drawable drawable12 = f17997h4;
+            Drawable drawable12 = f20733h4;
             int i26 = Dc;
             x1(i26, drawable12);
-            x1(Gc, f18033j4);
-            x1(f18131oc, f18053k4);
+            x1(Gc, f20769j4);
+            x1(f20867oc, f20789k4);
             x1(i19, l4);
-            Drawable drawable13 = f18089m4;
+            Drawable drawable13 = f20825m4;
             int i27 = Ge;
             x1(i27, drawable13);
-            x1(i27, f18108n4);
-            x1(i27, f18124o4);
+            x1(i27, f20844n4);
+            x1(i27, f20860o4);
             x1(i26, B4);
             x1(i18, C4);
             x1(i26, D4);
@@ -3744,9 +3742,9 @@ public abstract class j6 {
             }
             x1(Ia, O4);
             Drawable drawable15 = P4;
-            int i30 = f18181r7;
+            int i30 = f20917r7;
             x1(i30, drawable15);
-            x1(f18165qa, Q4);
+            x1(f20901qa, Q4);
             x1(i30, V4);
             Drawable drawable16 = W4;
             int i31 = Di;
@@ -3755,27 +3753,27 @@ public abstract class j6 {
             x1(i31, Y4);
             int i32 = 0;
             while (true) {
-                ww0[] ww0VarArr = f18233u3;
-                if (i32 >= ww0VarArr.length) {
+                kw0[] kw0VarArr = f20969u3;
+                if (i32 >= kw0VarArr.length) {
                     break;
                 }
-                x1(f18146p9, ww0VarArr[i32]);
+                x1(f20882p9, kw0VarArr[i32]);
                 i32++;
             }
             for (int i33 = 0; i33 < 5; i33++) {
                 Drawable[][] drawableArr = U4;
-                v1(drawableArr[i33][0], w0(null, f18025ie, false), false);
-                v1(drawableArr[i33][0], w0(null, f18242uc, false), true);
-                v1(drawableArr[i33][1], w0(null, f18043je, false), false);
-                v1(drawableArr[i33][1], w0(null, f18259vc, false), true);
+                v1(drawableArr[i33][0], w0(null, f20761ie, false), false);
+                v1(drawableArr[i33][0], w0(null, f20978uc, false), true);
+                v1(drawableArr[i33][1], w0(null, f20779je, false), false);
+                v1(drawableArr[i33][1], w0(null, f20995vc, false), true);
             }
             Drawable[] drawableArr2 = T4;
-            v1(drawableArr2[0], w0(null, f18188re, false), false);
-            v1(drawableArr2[0], w0(null, f18207se, false), true);
+            v1(drawableArr2[0], w0(null, f20924re, false), false);
+            v1(drawableArr2[0], w0(null, f20943se, false), true);
             v1(drawableArr2[1], w0(null, Qb, false), false);
             v1(drawableArr2[1], w0(null, Rb, false), true);
             Drawable[] drawableArr3 = S4;
-            w1(w0(null, f18169qe, false), drawableArr3[0]);
+            w1(w0(null, f20905qe, false), drawableArr3[0]);
             w1(w0(null, Pb, false), drawableArr3[1]);
             Drawable[] drawableArr4 = M4;
             w1(w0(null, Kc, false), drawableArr4[0]);
@@ -3783,21 +3781,21 @@ public abstract class j6 {
             Drawable[] drawableArr5 = N4;
             w1(w0(null, i20, false), drawableArr5[0]);
             w1(w0(null, i22, false), drawableArr5[1]);
-            x1(Td, f18014i3);
+            x1(Td, f20750i3);
             x1(i12, j3);
             int i34 = -1;
-            if (w0(null, f18330zb, false) == -1) {
+            if (w0(null, f21066zb, false) == -1) {
                 i34 = w0(null, Aa, false);
             }
             w1(i34, K4[1]);
             w1(i34, L4[1]);
-            w1(w0(null, f17932da, false), R4);
-            if (!z11 && !f17884b) {
-                Drawable drawable17 = f17940e0;
+            w1(w0(null, f20667da, false), R4);
+            if (!z11 && !f20619b) {
+                Drawable drawable17 = f20677e0;
                 if (drawable17 != null) {
                     i(drawable17);
                 }
-                h(f17940e0);
+                h(f20677e0);
             }
         }
     }
@@ -3805,10 +3803,10 @@ public abstract class j6 {
     public static boolean j0(i6 i6Var, h6 h6Var, boolean z10) {
         boolean z11;
         boolean z12 = false;
-        if (h6Var == null || i6Var == null || i6Var.f17837b0 == null) {
+        if (h6Var == null || i6Var == null || i6Var.f20543b0 == null) {
             return false;
         }
-        if (h6Var.f17792a == i6Var.Y) {
+        if (h6Var.f20490a == i6Var.Y) {
             z11 = true;
         } else {
             z11 = false;
@@ -3817,23 +3815,23 @@ public abstract class j6 {
         if (d10 != null) {
             d10.delete();
         }
-        i6Var.f17835a0.remove(h6Var.f17792a);
-        i6Var.f17837b0.remove(h6Var);
-        TLRPC.TL_theme tL_theme = h6Var.f17806r;
+        i6Var.f20541a0.remove(h6Var.f20490a);
+        i6Var.f20543b0.remove(h6Var);
+        TLRPC.TL_theme tL_theme = h6Var.f20505r;
         if (tL_theme != null) {
-            i6Var.f17839c0.remove(tL_theme.f17332id);
+            i6Var.f20545c0.remove(tL_theme.f20006id);
         }
-        c6 c6Var = h6Var.f17812y;
-        if (c6Var != null) {
-            c6.a(c6Var);
+        b6 b6Var = h6Var.f20511y;
+        if (b6Var != null) {
+            b6.a(b6Var);
         }
         if (z11) {
-            i6Var.u(((h6) i6Var.f17837b0.get(0)).f17792a);
+            i6Var.u(((h6) i6Var.f20543b0.get(0)).f20490a);
         }
         if (z10) {
             t1(i6Var, true, false, false, false, false);
-            if (h6Var.f17806r != null) {
-                MessagesController messagesController = MessagesController.getInstance(h6Var.f17808t);
+            if (h6Var.f20505r != null) {
+                MessagesController messagesController = MessagesController.getInstance(h6Var.f20507t);
                 if (z11 && i6Var == J) {
                     z12 = true;
                 }
@@ -3848,71 +3846,71 @@ public abstract class j6 {
     }
 
     public static void k() {
-        Paint paint = f18049k0;
+        Paint paint = f20785k0;
         if (paint == null) {
             return;
         }
-        paint.setColor(w0(null, f17929d7, false));
+        paint.setColor(w0(null, f20664d7, false));
         m0.setColor(w0(null, K6, false));
         int i10 = 0;
         while (true) {
-            Drawable[] drawableArr = f18174r0;
+            Drawable[] drawableArr = f20910r0;
             int length = drawableArr.length;
             int i11 = J7;
             if (i10 < length) {
                 x1(i11, drawableArr[i10]);
                 i10++;
             } else {
-                hj0 hj0Var = f18231u1;
-                hj0Var.f23646a0 = true;
+                xi0 xi0Var = f20967u1;
+                xi0Var.f32551a0 = true;
                 int i12 = M7;
-                hj0Var.Q(w0(null, i12, true), "Arrow1");
-                f18231u1.Q(w0(null, i12, true), "Arrow2");
-                f18231u1.Q(w0(null, i11, true), "Box2");
-                f18231u1.Q(w0(null, i11, true), "Box1");
-                f18231u1.o();
+                xi0Var.O(w0(null, i12, true), "Arrow1");
+                f20967u1.O(w0(null, i12, true), "Arrow2");
+                f20967u1.O(w0(null, i11, true), "Box2");
+                f20967u1.O(w0(null, i11, true), "Box1");
+                f20967u1.m();
                 C1 = false;
-                f18231u1.J(true);
-                hj0 hj0Var2 = f18284x1;
-                hj0Var2.f23646a0 = true;
-                int i13 = f17948e9;
-                hj0Var2.Q(w0(null, i13, true), "Arrow");
-                f18284x1.Q(w0(null, i13, true), "Line");
-                f18284x1.o();
-                hj0 hj0Var3 = f18302y1;
-                hj0Var3.f23646a0 = true;
-                hj0Var3.Q(w0(null, i13, true), "Arrow");
-                f18302y1.Q(w0(null, i13, true), "Line");
-                f18302y1.o();
-                hj0 hj0Var4 = f18320z1;
-                hj0Var4.f23646a0 = true;
-                int i14 = f17913c9;
-                hj0Var4.Q(w0(null, i14, true), "Line 1");
-                f18320z1.Q(w0(null, i14, true), "Line 2");
-                f18320z1.Q(w0(null, i14, true), "Line 3");
-                f18320z1.Q(w0(null, i13, true), "Cup Red");
-                f18320z1.Q(w0(null, i13, true), "Box");
-                f18320z1.o();
+                f20967u1.H(true);
+                xi0 xi0Var2 = f21020x1;
+                xi0Var2.f32551a0 = true;
+                int i13 = f20685e9;
+                xi0Var2.O(w0(null, i13, true), "Arrow");
+                f21020x1.O(w0(null, i13, true), "Line");
+                f21020x1.m();
+                xi0 xi0Var3 = f21038y1;
+                xi0Var3.f32551a0 = true;
+                xi0Var3.O(w0(null, i13, true), "Arrow");
+                f21038y1.O(w0(null, i13, true), "Line");
+                f21038y1.m();
+                xi0 xi0Var4 = f21056z1;
+                xi0Var4.f32551a0 = true;
+                int i14 = f20648c9;
+                xi0Var4.O(w0(null, i14, true), "Line 1");
+                f21056z1.O(w0(null, i14, true), "Line 2");
+                f21056z1.O(w0(null, i14, true), "Line 3");
+                f21056z1.O(w0(null, i13, true), "Cup Red");
+                f21056z1.O(w0(null, i13, true), "Box");
+                f21056z1.m();
                 B1 = false;
-                hj0 hj0Var5 = f18249v1;
-                hj0Var5.f23646a0 = true;
-                hj0Var5.Q(w0(null, i14, true), "Arrow");
-                f18249v1.Q(w0(null, i13, true), "Box2");
-                f18249v1.Q(w0(null, i13, true), "Box1");
-                f18249v1.o();
+                xi0 xi0Var5 = f20985v1;
+                xi0Var5.f32551a0 = true;
+                xi0Var5.O(w0(null, i14, true), "Arrow");
+                f20985v1.O(w0(null, i13, true), "Box2");
+                f20985v1.O(w0(null, i13, true), "Box1");
+                f20985v1.m();
                 A1 = false;
-                hj0 hj0Var6 = f18266w1;
-                hj0Var6.f23646a0 = true;
-                hj0Var6.Q(w0(null, i13, true), "Arrow1");
-                f18266w1.Q(w0(null, f17931d9, true), "Arrow2");
-                f18266w1.Q(w0(null, i13, true), "Box2");
-                f18266w1.Q(w0(null, i13, true), "Box1");
-                f18266w1.o();
+                xi0 xi0Var6 = f21003w1;
+                xi0Var6.f32551a0 = true;
+                xi0Var6.O(w0(null, i13, true), "Arrow1");
+                f21003w1.O(w0(null, f20666d9, true), "Arrow2");
+                f21003w1.O(w0(null, i13, true), "Box2");
+                f21003w1.O(w0(null, i13, true), "Box1");
+                f21003w1.m();
                 int w02 = w0(null, G6, false);
                 PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
-                f18251v3 = new PorterDuffColorFilter(w02, mode);
-                f18268w3 = new PorterDuffColorFilter(w0(null, f17969fc, false), mode);
-                qg.d1.d().b();
+                f20987v3 = new PorterDuffColorFilter(w02, mode);
+                f21005w3 = new PorterDuffColorFilter(w0(null, f20705fc, false), mode);
+                sg.d1.d().b();
                 return;
             }
         }
@@ -3922,25 +3920,25 @@ public abstract class j6 {
         String[] split;
         try {
             i6 i6Var = new i6();
-            i6Var.f17834a = str;
+            i6Var.f20540a = str;
             i6Var.F = tL_theme;
-            i6Var.f17836b = file.getAbsolutePath();
+            i6Var.f20542b = file.getAbsolutePath();
             i6Var.E = UserConfig.selectedAccount;
             String[] strArr = new String[1];
-            G(Q0(new File(i6Var.f17836b), null, strArr), i6Var);
+            G(Q0(new File(i6Var.f20542b), null, strArr), i6Var);
             if (!TextUtils.isEmpty(strArr[0])) {
                 String str2 = strArr[0];
                 File filesDirFixed = ApplicationLoader.getFilesDirFixed();
-                i6Var.f17838c = new File(filesDirFixed, Utilities.MD5(str2) + ".wp").getAbsolutePath();
+                i6Var.f20544c = new File(filesDirFixed, Utilities.MD5(str2) + ".wp").getAbsolutePath();
                 Uri parse = Uri.parse(str2);
-                i6Var.e = parse.getQueryParameter("slug");
+                i6Var.f20547e = parse.getQueryParameter("slug");
                 String queryParameter = parse.getQueryParameter("mode");
                 if (queryParameter != null && (split = queryParameter.toLowerCase().split(" ")) != null && split.length > 0) {
                     for (int i10 = 0; i10 < split.length; i10++) {
                         if ("blur".equals(split[i10])) {
                             i6Var.h = true;
                         } else if ("motion".equals(split[i10])) {
-                            i6Var.f17848n = true;
+                            i6Var.f20555n = true;
                         }
                     }
                 }
@@ -3949,15 +3947,15 @@ public abstract class j6 {
                     try {
                         String queryParameter3 = parse.getQueryParameter("bg_color");
                         if (!TextUtils.isEmpty(queryParameter3)) {
-                            i6Var.f17849r = Integer.parseInt(queryParameter3.substring(0, 6), 16) | (-16777216);
+                            i6Var.f20556r = Integer.parseInt(queryParameter3.substring(0, 6), 16) | (-16777216);
                             if (queryParameter3.length() >= 13 && AndroidUtilities.isValidWallChar(queryParameter3.charAt(6))) {
-                                i6Var.f17850s = Integer.parseInt(queryParameter3.substring(7, 13), 16) | (-16777216);
+                                i6Var.f20557s = Integer.parseInt(queryParameter3.substring(7, 13), 16) | (-16777216);
                             }
                             if (queryParameter3.length() >= 20 && AndroidUtilities.isValidWallChar(queryParameter3.charAt(13))) {
                                 i6Var.v = Integer.parseInt(queryParameter3.substring(14, 20), 16) | (-16777216);
                             }
                             if (queryParameter3.length() == 27 && AndroidUtilities.isValidWallChar(queryParameter3.charAt(20))) {
-                                i6Var.f17851w = Integer.parseInt(queryParameter3.substring(21), 16) | (-16777216);
+                                i6Var.f20558w = Integer.parseInt(queryParameter3.substring(21), 16) | (-16777216);
                             }
                         }
                     } catch (Exception unused) {
@@ -3965,20 +3963,20 @@ public abstract class j6 {
                     try {
                         String queryParameter4 = parse.getQueryParameter("rotation");
                         if (!TextUtils.isEmpty(queryParameter4)) {
-                            i6Var.f17852x = Utilities.parseInt((CharSequence) queryParameter4).intValue();
+                            i6Var.f20559x = Utilities.parseInt((CharSequence) queryParameter4).intValue();
                         }
                     } catch (Exception unused2) {
                     }
                     if (!TextUtils.isEmpty(queryParameter2)) {
-                        i6Var.f17853y = Utilities.parseInt((CharSequence) queryParameter2).intValue();
+                        i6Var.f20560y = Utilities.parseInt((CharSequence) queryParameter2).intValue();
                     }
-                    if (i6Var.f17853y == 0) {
-                        i6Var.f17853y = 50;
+                    if (i6Var.f20560y == 0) {
+                        i6Var.f20560y = 50;
                     }
                 }
                 return i6Var;
             }
-            f17993h0 = null;
+            f20729h0 = null;
             return i6Var;
         } catch (Exception e10) {
             FileLog.e(e10);
@@ -3986,48 +3984,48 @@ public abstract class j6 {
         }
     }
 
-    public static Drawable k1(c6 c6Var, File file, int i10, boolean z10, TLRPC.Document document, boolean z11) {
+    public static Drawable k1(b6 b6Var, File file, int i10, boolean z10, TLRPC.Document document, boolean z11) {
         boolean z12;
         boolean z13;
         boolean z14;
         Drawable drawable;
-        u6 I10 = I(I, c6Var, rl, file, f17993h0, f17976g0, i10, S, z11, O, P, z10, document, false);
-        Boolean bool = (Boolean) I10.f3721c;
+        cf.c I10 = I(I, b6Var, rl, file, f20729h0, f20712g0, i10, S, z11, O, P, z10, document, false);
+        Boolean bool = (Boolean) I10.f4798c;
         if (bool != null) {
             z12 = bool.booleanValue();
         } else {
-            z12 = f18011i0;
+            z12 = f20747i0;
         }
-        f18011i0 = z12;
+        f20747i0 = z12;
         Boolean bool2 = (Boolean) I10.d;
         if (bool2 != null) {
             z13 = bool2.booleanValue();
         } else {
-            z13 = f18030j0;
+            z13 = f20766j0;
         }
-        f18030j0 = z13;
-        Boolean bool3 = (Boolean) I10.e;
+        f20766j0 = z13;
+        Boolean bool3 = (Boolean) I10.f4799e;
         if (bool3 != null) {
             z14 = bool3.booleanValue();
         } else {
             z14 = W;
         }
         W = z14;
-        Drawable drawable2 = (Drawable) I10.f3719a;
+        Drawable drawable2 = (Drawable) I10.f4796a;
         if (drawable2 != null) {
             drawable = drawable2;
         } else {
-            drawable = f17940e0;
+            drawable = f20677e0;
         }
-        f17940e0 = drawable;
+        f20677e0 = drawable;
         int[] calcDrawableColor = AndroidUtilities.calcDrawableColor(drawable2);
         int i11 = calcDrawableColor[0];
-        f17904c0 = i11;
+        f20639c0 = i11;
         X = i11;
         int i12 = calcDrawableColor[1];
-        f17922d0 = i12;
-        f17885b0 = i12;
-        Drawable drawable3 = f17940e0;
+        f20657d0 = i12;
+        f20620b0 = i12;
+        Drawable drawable3 = f20677e0;
         if (drawable3 != null) {
             i(drawable3);
         }
@@ -4043,7 +4041,7 @@ public abstract class j6 {
                 if (i6Var2 != i6Var3) {
                     if (i6Var2 == null || (i6Var3 != null && i6Var2.q() != J.q())) {
                         R = true;
-                        f18010i = SystemClock.elapsedRealtime();
+                        f20746i = SystemClock.elapsedRealtime();
                         Q = true;
                         NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needSetDayNightTheme, J, Boolean.TRUE, null, -1);
                         Q = false;
@@ -4054,14 +4052,14 @@ public abstract class j6 {
                 return;
             }
             i6 i6Var4 = K;
-            if (i6Var4 != null && i6Var4.q() && f18119o != 0 && (i6Var = L) != null) {
+            if (i6Var4 != null && i6Var4.q() && f20855o != 0 && (i6Var = L) != null) {
                 i6Var4 = i6Var;
             }
             i6 i6Var5 = I;
             if (i6Var5 != i6Var4) {
                 if (i6Var5 == null || (i6Var4 != null && i6Var5.q() != i6Var4.q())) {
                     R = false;
-                    f18010i = SystemClock.elapsedRealtime();
+                    f20746i = SystemClock.elapsedRealtime();
                     Q = true;
                     NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needSetDayNightTheme, i6Var4, Boolean.TRUE, null, -1);
                     Q = false;
@@ -4082,11 +4080,11 @@ public abstract class j6 {
         if (f10 == 1.0f) {
             return i10;
         }
-        return i0.a.k(i10, w7.q.b((int) (Color.alpha(i10) * f10), 0, 255));
+        return i0.a.k(i10, w7.p.b((int) (Color.alpha(i10) * f10), 0, 255));
     }
 
     public static void m(Paint paint) {
-        paint.setShadowLayer(AndroidUtilities.dpf2(1.0f), 0.0f, AndroidUtilities.dpf2(0.33f), f17865a);
+        paint.setShadowLayer(AndroidUtilities.dpf2(1.0f), 0.0f, AndroidUtilities.dpf2(0.33f), f20600a);
     }
 
     public static i6 m0() {
@@ -4103,8 +4101,8 @@ public abstract class j6 {
         }
         int i10 = 0;
         while (true) {
-            int i11 = f18146p9;
-            int i12 = f17985g9;
+            int i11 = f20882p9;
+            int i12 = f20721g9;
             int i13 = Z8;
             int i14 = X8;
             if (i10 < 2) {
@@ -4120,13 +4118,13 @@ public abstract class j6 {
                 D0.setColor(w0(null, i14, false));
                 E0.setColor(w0(null, i13, false));
                 TextPaint textPaint2 = G0;
-                int w03 = w0(null, f18094m9, false);
+                int w03 = w0(null, f20830m9, false);
                 textPaint2.linkColor = w03;
                 textPaint2.setColor(w03);
-                f18230u0.setColor(w0(null, f18221t9, false));
-                f18248v0.setColor(w0(null, f18202s9, false));
-                I0.setColor(w0(null, f18164q9, false));
-                J0.setColor(w0(null, f18183r9, false));
+                f20966u0.setColor(w0(null, f20957t9, false));
+                f20984v0.setColor(w0(null, f20938s9, false));
+                I0.setColor(w0(null, f20900q9, false));
+                J0.setColor(w0(null, f20919r9, false));
                 TextPaint textPaint3 = K0;
                 int i15 = il;
                 textPaint3.setColor(w0(null, i15, false));
@@ -4135,54 +4133,54 @@ public abstract class j6 {
                 textPaint4.setColor(w0(null, i16, false));
                 M0.setColor(w0(null, i16, false));
                 TextPaint textPaint5 = N0;
-                int i17 = f17966f9;
+                int i17 = f20702f9;
                 textPaint5.setColor(w0(null, i17, false));
                 O0.setColor(w0(null, i17, false));
-                Paint paint = f18265w0;
+                Paint paint = f21002w0;
                 int i18 = U8;
                 paint.setColor(w0(null, i18, false));
-                Paint paint2 = f18301y0;
+                Paint paint2 = f21037y0;
                 int i19 = V8;
                 paint2.setColor(w0(null, i19, false));
-                f18319z0.setColor(w0(null, i11, false));
-                f18283x0.setColor(w0(null, f18292x9, false));
-                P0.setColor(w0(null, f18143p6, false));
+                f21055z0.setColor(w0(null, i11, false));
+                f21019x0.setColor(w0(null, f21028x9, false));
+                P0.setColor(w0(null, f20879p6, false));
                 Q0.setColor(w0(null, A6, false));
-                x1(f17874a9, f17867a1);
-                Drawable drawable = f17886b1;
-                int i20 = f17894b9;
+                x1(f20609a9, f20602a1);
+                Drawable drawable = f20621b1;
+                int i20 = f20629b9;
                 x1(i20, drawable);
-                x1(f18239u9, T0);
+                x1(f20975u9, T0);
                 x1(G6, S0);
                 Drawable drawable2 = V0;
                 int i21 = v9;
                 x1(i21, drawable2);
                 x1(i21, W0);
-                x1(f18274w9, X0);
-                x1(f18309y9, Y0);
-                x1(i20, f18031j1);
-                x1(i20, f18050k1);
+                x1(f21011w9, X0);
+                x1(f21045y9, Y0);
+                x1(i20, f20767j1);
+                x1(i20, f20786k1);
                 x1(i15, l1);
                 x1(i20, Z0);
-                Drawable drawable3 = f17905c1;
+                Drawable drawable3 = f20640c1;
                 int i22 = B9;
                 x1(i22, drawable3);
-                x1(i22, f17923d1);
-                x1(i22, f17941e1);
-                x1(i18, f18086m1);
-                x1(Z5, f18105n1);
-                x1(zj, f18121o1);
-                x1(i19, f18139p1);
-                x1(i19, f18157q1);
-                x1(i19, f18175r1);
-                x1(i12, f18213t1);
-                x1(f18328z9, f17959f1);
-                x1(A9, f18012i1);
-                x1(A8, f18194s1);
-                hm0 hm0Var = f17977g1;
-                int i23 = f18038j9;
-                x1(i23, hm0Var);
-                x1(i23, f17994h1);
+                x1(i22, f20658d1);
+                x1(i22, f20678e1);
+                x1(i18, f20822m1);
+                x1(Z5, f20841n1);
+                x1(zj, f20857o1);
+                x1(i19, f20875p1);
+                x1(i19, f20893q1);
+                x1(i19, f20911r1);
+                x1(i12, f20949t1);
+                x1(f21064z9, f20695f1);
+                x1(A9, f20748i1);
+                x1(A8, f20930s1);
+                xl0 xl0Var = f20713g1;
+                int i23 = f20774j9;
+                x1(i23, xl0Var);
+                x1(i23, f20730h1);
                 return;
             }
         }
@@ -4190,9 +4188,9 @@ public abstract class j6 {
 
     public static ColorFilter n0(f6 f6Var) {
         if (f6Var != null) {
-            return f6Var.w();
+            return f6Var.x();
         }
-        return f18251v3;
+        return f20987v3;
     }
 
     public static void n1(boolean z10, boolean z11) {
@@ -4205,13 +4203,13 @@ public abstract class j6 {
         g(ql, rl, I.q());
         f(ql, rl, I.q());
         if (!z11) {
-            o1(!(LaunchActivity.R() instanceof eo));
+            o1(!(LaunchActivity.R() instanceof co));
         }
         k();
         n();
         p();
         j(false, z10);
-        AndroidUtilities.runOnUIThread(new org.telegram.messenger.c4(3, !O));
+        AndroidUtilities.runOnUIThread(new org.telegram.messenger.w3(3, !O));
     }
 
     public static void o() {
@@ -4231,28 +4229,28 @@ public abstract class j6 {
         E(false);
     }
 
-    public static k8 o0(MessageObject messageObject) {
-        HashMap hashMap = f17945e5;
+    public static l8 o0(MessageObject messageObject) {
+        HashMap hashMap = f20682e5;
         if (hashMap != null && messageObject != null) {
-            return (k8) hashMap.get(messageObject);
+            return (l8) hashMap.get(messageObject);
         }
         return null;
     }
 
     public static void o1(boolean z10) {
-        q9 q9Var = V;
-        if (q9Var != null) {
-            q9Var.dispose();
+        r9 r9Var = V;
+        if (r9Var != null) {
+            r9Var.dispose();
             V = null;
         }
-        Drawable drawable = f17940e0;
-        if (drawable instanceof lc0) {
-            S = ((lc0) drawable).f24947i;
+        Drawable drawable = f20677e0;
+        if (drawable instanceof dc0) {
+            S = ((dc0) drawable).f25351i;
         } else {
             S = 0;
         }
-        f17940e0 = null;
-        f17958f0 = null;
+        f20677e0 = null;
+        f20694f0 = null;
         j1(z10);
     }
 
@@ -4262,7 +4260,7 @@ public abstract class j6 {
         }
         P1.setColor(w0(null, G6, false));
         P1.linkColor = w0(null, J6, false);
-        x1(f18336zh, Q1);
+        x1(f21072zh, Q1);
         x1(Ah, R1);
     }
 
@@ -4301,7 +4299,7 @@ public abstract class j6 {
     }
 
     public static void q(float f10, float f11, int i10, int i11) {
-        r(Y, Z, f17866a0, i10, i11, f10, f11);
+        r(Y, Z, f20601a0, i10, i11, f10, f11);
     }
 
     public static String q0(TLRPC.ThemeSettings themeSettings) {
@@ -4329,17 +4327,17 @@ public abstract class j6 {
 
     public static void q1() {
         SharedPreferences.Editor edit = MessagesController.getGlobalMainSettings().edit();
-        edit.putInt("selectedAutoNightType", f18119o);
-        edit.putBoolean("autoNightScheduleByLocation", f18137p);
-        edit.putFloat("autoNightBrighnessThreshold", f18155q);
-        edit.putInt("autoNightDayStartTime", f18173r);
-        edit.putInt("autoNightDayEndTime", f18192s);
+        edit.putInt("selectedAutoNightType", f20855o);
+        edit.putBoolean("autoNightScheduleByLocation", f20873p);
+        edit.putFloat("autoNightBrighnessThreshold", f20891q);
+        edit.putInt("autoNightDayStartTime", f20909r);
+        edit.putInt("autoNightDayEndTime", f20928s);
         edit.putInt("autoNightSunriseTime", v);
-        edit.putString("autoNightCityName", f18264w);
-        edit.putInt("autoNightSunsetTime", f18211t);
-        edit.putLong("autoNightLocationLatitude3", Double.doubleToRawLongBits(f18282x));
-        edit.putLong("autoNightLocationLongitude3", Double.doubleToRawLongBits(f18300y));
-        edit.putInt("autoNightLastSunCheckDay", f18229u);
+        edit.putString("autoNightCityName", f21001w);
+        edit.putInt("autoNightSunsetTime", f20947t);
+        edit.putLong("autoNightLocationLatitude3", Double.doubleToRawLongBits(f21018x));
+        edit.putLong("autoNightLocationLongitude3", Double.doubleToRawLongBits(f21036y));
+        edit.putInt("autoNightLastSunCheckDay", f20965u);
         i6 i6Var = J;
         if (i6Var != null) {
             edit.putString("nighttheme", i6Var.m());
@@ -4389,15 +4387,15 @@ public abstract class j6 {
             int i10 = iArr[0];
             int i11 = iArr[1];
             view2.getLocationOnScreen(iArr);
-            if (view2 instanceof pd1) {
+            if (view2 instanceof ld1) {
                 Bitmap bitmap = Y;
                 if (bitmap != null) {
                     float width = bitmap.getWidth();
-                    i10 = (int) ((((view2.getMeasuredWidth() - (Math.max(view2.getMeasuredWidth() / width, view2.getMeasuredHeight() / Y.getHeight()) * width)) / 2.0f) - ((pd1) view2).I) + i10);
+                    i10 = (int) ((((view2.getMeasuredWidth() - (Math.max(view2.getMeasuredWidth() / width, view2.getMeasuredHeight() / Y.getHeight()) * width)) / 2.0f) - ((ld1) view2).I) + i10);
                 } else {
-                    i10 = (int) (i10 + (-((pd1) view2).I));
+                    i10 = (int) (i10 + (-((ld1) view2).I));
                 }
-                i11 = (int) (i11 + (-((pd1) view2).J));
+                i11 = (int) (i11 + (-((ld1) view2).J));
             }
             if (f6Var != null) {
                 f6Var.l(i10, i11 - iArr[1], view2.getMeasuredWidth(), view2.getMeasuredHeight());
@@ -4408,11 +4406,11 @@ public abstract class j6 {
     }
 
     public static Drawable s0() {
-        Drawable drawable = f17958f0;
+        Drawable drawable = f20694f0;
         if (drawable != null) {
             return drawable;
         }
-        return f17940e0;
+        return f20677e0;
     }
 
     public static void s1(boolean z10, boolean z11) {
@@ -4435,8 +4433,8 @@ public abstract class j6 {
                 i6Var.getClass();
                 try {
                     jSONObject = new JSONObject();
-                    jSONObject.put("name", i6Var.f17834a);
-                    jSONObject.put("path", i6Var.f17836b);
+                    jSONObject.put("name", i6Var.f20540a);
+                    jSONObject.put("path", i6Var.f20542b);
                     jSONObject.put("account", i6Var.E);
                     TLRPC.TL_theme tL_theme = i6Var.F;
                     if (tL_theme != null) {
@@ -4495,7 +4493,7 @@ public abstract class j6 {
                     str = "Blue";
                 }
                 i6 i6Var2 = (i6) H.get(str);
-                if (i6Var2 == null || (arrayList = i6Var2.f17837b0) == null || arrayList.isEmpty()) {
+                if (i6Var2 == null || (arrayList = i6Var2.f20543b0) == null || arrayList.isEmpty()) {
                     z12 = z11;
                 } else {
                     z12 = z11;
@@ -4511,14 +4509,14 @@ public abstract class j6 {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ActionBar.j6.t(org.telegram.ui.ActionBar.i6, boolean, boolean):void");
     }
 
-    public static ww0 t0(int i10) {
+    public static kw0 t0(int i10) {
         if (i10 < 0 || i10 > 5) {
             return null;
         }
-        ww0[] ww0VarArr = f18233u3;
-        ww0 ww0Var = ww0VarArr[i10];
-        if (ww0Var != null) {
-            return ww0Var;
+        kw0[] kw0VarArr = f20969u3;
+        kw0 kw0Var = kw0VarArr[i10];
+        if (kw0Var != null) {
+            return kw0Var;
         }
         if (i10 != 0) {
             if (i10 != 1) {
@@ -4526,27 +4524,27 @@ public abstract class j6 {
                     if (i10 != 3) {
                         if (i10 != 4) {
                             if (i10 == 5) {
-                                ww0VarArr[5] = new xp();
+                                kw0VarArr[5] = new qp();
                             }
                         } else {
-                            ww0VarArr[4] = new fm0(true);
+                            kw0VarArr[4] = new vl0(true);
                         }
                     } else {
-                        ww0VarArr[3] = new qg0(null, true);
+                        kw0VarArr[3] = new gg0(null, true);
                     }
                 } else {
-                    ww0VarArr[2] = new ip0(true);
+                    kw0VarArr[2] = new yo0(true);
                 }
             } else {
-                ww0VarArr[1] = new xp(true);
+                kw0VarArr[1] = new qp(true);
             }
         } else {
-            ww0VarArr[0] = new t51(true);
+            kw0VarArr[0] = new f51(true);
         }
-        ww0 ww0Var2 = ww0VarArr[i10];
-        ww0Var2.d();
-        ww0Var2.b(w0(null, f18146p9, false));
-        return ww0Var2;
+        kw0 kw0Var2 = kw0VarArr[i10];
+        kw0Var2.d();
+        kw0Var2.b(w0(null, f20882p9, false));
+        return kw0Var2;
     }
 
     public static void t1(i6 i6Var, boolean z10, boolean z11, boolean z12, boolean z13, boolean z14) {
@@ -4554,41 +4552,41 @@ public abstract class j6 {
         if (z10) {
             SharedPreferences.Editor edit = ApplicationLoader.applicationContext.getSharedPreferences("themeconfig", 0).edit();
             if (!z12) {
-                int size = i6Var.f17837b0.size();
+                int size = i6Var.f20543b0.size();
                 int max = Math.max(0, size - i6Var.W);
                 SerializedData serializedData = new SerializedData(((max * 16) + 2) * 4);
                 serializedData.writeInt32(9);
                 serializedData.writeInt32(max);
                 for (int i10 = 0; i10 < size; i10++) {
-                    h6 h6Var = (h6) i6Var.f17837b0.get(i10);
-                    int i11 = h6Var.f17792a;
+                    h6 h6Var = (h6) i6Var.f20543b0.get(i10);
+                    int i11 = h6Var.f20490a;
                     if (i11 >= 100) {
                         serializedData.writeInt32(i11);
-                        serializedData.writeInt32(h6Var.f17794c);
+                        serializedData.writeInt32(h6Var.f20492c);
                         serializedData.writeInt32(h6Var.d);
-                        serializedData.writeInt32(h6Var.e);
-                        serializedData.writeInt32(h6Var.f17795f);
-                        serializedData.writeInt32(h6Var.f17796g);
+                        serializedData.writeInt32(h6Var.f20493e);
+                        serializedData.writeInt32(h6Var.f20494f);
+                        serializedData.writeInt32(h6Var.f20495g);
                         serializedData.writeInt32(h6Var.h);
-                        serializedData.writeBool(h6Var.f17797i);
-                        serializedData.writeInt64(h6Var.f17798j);
-                        serializedData.writeInt64(h6Var.f17799k);
-                        serializedData.writeInt64(h6Var.f17800l);
-                        serializedData.writeInt64(h6Var.f17801m);
-                        serializedData.writeInt32(h6Var.f17802n);
+                        serializedData.writeBool(h6Var.f20496i);
+                        serializedData.writeInt64(h6Var.f20497j);
+                        serializedData.writeInt64(h6Var.f20498k);
+                        serializedData.writeInt64(h6Var.f20499l);
+                        serializedData.writeInt64(h6Var.f20500m);
+                        serializedData.writeInt32(h6Var.f20501n);
                         serializedData.writeInt64(0L);
-                        serializedData.writeDouble(h6Var.f17804p);
-                        serializedData.writeBool(h6Var.f17805q);
-                        serializedData.writeString(h6Var.f17803o);
-                        if (h6Var.f17806r != null) {
+                        serializedData.writeDouble(h6Var.f20503p);
+                        serializedData.writeBool(h6Var.f20504q);
+                        serializedData.writeString(h6Var.f20502o);
+                        if (h6Var.f20505r != null) {
                             z15 = true;
                         } else {
                             z15 = false;
                         }
                         serializedData.writeBool(z15);
-                        if (h6Var.f17806r != null) {
-                            serializedData.writeInt32(h6Var.f17808t);
-                            h6Var.f17806r.serializeToStream(serializedData);
+                        if (h6Var.f20505r != null) {
+                            serializedData.writeInt32(h6Var.f20507t);
+                            h6Var.f20505r.serializeToStream(serializedData);
                         }
                     }
                 }
@@ -4605,20 +4603,20 @@ public abstract class j6 {
         } else {
             if (i6Var.Z != -1) {
                 if (z11) {
-                    h6 h6Var2 = (h6) i6Var.f17835a0.get(i6Var.Y);
-                    i6Var.f17835a0.remove(h6Var2.f17792a);
-                    i6Var.f17837b0.remove(h6Var2);
-                    TLRPC.TL_theme tL_theme = h6Var2.f17806r;
+                    h6 h6Var2 = (h6) i6Var.f20541a0.get(i6Var.Y);
+                    i6Var.f20541a0.remove(h6Var2.f20490a);
+                    i6Var.f20543b0.remove(h6Var2);
+                    TLRPC.TL_theme tL_theme = h6Var2.f20505r;
                     if (tL_theme != null) {
-                        i6Var.f17839c0.remove(tL_theme.f17332id);
+                        i6Var.f20545c0.remove(tL_theme.f20006id);
                     }
                 }
                 i6Var.Y = i6Var.Z;
                 h6 k10 = i6Var.k(false);
                 if (k10 != null) {
-                    i6Var.f17846i0 = k10.f17812y;
+                    i6Var.f20553i0 = k10.f20511y;
                 } else {
-                    i6Var.f17846i0 = null;
+                    i6Var.f20553i0 = null;
                 }
             }
             if (I == i6Var) {
@@ -4638,9 +4636,9 @@ public abstract class j6 {
             if (z10) {
                 NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.goingToPreviewTheme, new Object[0]);
                 i6 i6Var = new i6();
-                i6Var.f17834a = str;
+                i6Var.f20540a = str;
                 i6Var.F = tL_theme;
-                i6Var.f17836b = file.getAbsolutePath();
+                i6Var.f20542b = file.getAbsolutePath();
                 i6Var.E = UserConfig.selectedAccount;
                 M = A0();
                 O = true;
@@ -4649,7 +4647,7 @@ public abstract class j6 {
                 return i6Var;
             }
             if (tL_theme != null) {
-                str2 = "remote" + tL_theme.f17332id;
+                str2 = "remote" + tL_theme.f20006id;
                 file2 = new File(ApplicationLoader.getFilesDirFixed(), str2 + ".attheme");
             } else {
                 file2 = new File(ApplicationLoader.getFilesDirFixed(), str);
@@ -4666,17 +4664,17 @@ public abstract class j6 {
             i6 i6Var2 = (i6) hashMap.get(str2);
             if (i6Var2 == null) {
                 i6Var2 = new i6();
-                i6Var2.f17834a = str;
+                i6Var2.f20540a = str;
                 i6Var2.E = UserConfig.selectedAccount;
                 ArrayList arrayList = F;
                 arrayList.add(i6Var2);
                 G.add(i6Var2);
-                Collections.sort(arrayList, new a4.e(18));
+                Collections.sort(arrayList, new a4.e(27));
             } else {
                 hashMap.remove(str2);
             }
             i6Var2.F = tL_theme;
-            i6Var2.f17836b = file2.getAbsolutePath();
+            i6Var2.f20542b = file2.getAbsolutePath();
             hashMap.put(i6Var2.m(), i6Var2);
             s1(true, false);
             t(i6Var2, true, false);
@@ -4692,13 +4690,13 @@ public abstract class j6 {
     }
 
     public static void u1(int i10, int i11, boolean z10) {
-        int i12 = f18201s8;
-        int i13 = f17872a7;
+        int i12 = f20937s8;
+        int i13 = f20607a7;
         int i14 = Qd;
         int i15 = Pd;
         int i16 = Od;
         int i17 = Nd;
-        if (i10 == i17 || i10 == i16 || i10 == i15 || i10 == i14 || i10 == f17928d6 || i10 == i13 || i10 == i12 || i10 == M8) {
+        if (i10 == i17 || i10 == i16 || i10 == i15 || i10 == i14 || i10 == f20663d6 || i10 == i13 || i10 == i12 || i10 == M8) {
             i11 |= -16777216;
         }
         if (z10) {
@@ -4707,8 +4705,8 @@ public abstract class j6 {
             rl.put(i10, i11);
         }
         if (i10 == Hc) {
-            h(f17940e0);
-        } else if (i10 != f18079lc && i10 != f18097mc) {
+            h(f20677e0);
+        } else if (i10 != f20815lc && i10 != f20833mc) {
             if (i10 != i17 && i10 != i16 && i10 != i15 && i10 != i14 && i10 != Rd) {
                 if (i10 == i12) {
                     if (Build.VERSION.SDK_INT >= 23) {
@@ -4725,7 +4723,7 @@ public abstract class j6 {
             }
             o1(true);
         } else {
-            Drawable drawable = f17940e0;
+            Drawable drawable = f20677e0;
             if (drawable != null) {
                 i(drawable);
             }
@@ -4745,20 +4743,20 @@ public abstract class j6 {
 
     public static int v0(int i10, f6 f6Var) {
         if (f6Var != null) {
-            return f6Var.F0(i10);
+            return f6Var.G0(i10);
         }
         return w0(null, i10, false);
     }
 
     public static void v1(Drawable drawable, int i10, boolean z10) {
         Drawable drawable2;
-        if (!(drawable instanceof vq)) {
+        if (!(drawable instanceof oq)) {
             return;
         }
         if (z10) {
-            drawable2 = ((vq) drawable).f28574b;
+            drawable2 = ((oq) drawable).f29160b;
         } else {
-            drawable2 = ((vq) drawable).f28573a;
+            drawable2 = ((oq) drawable).f29159a;
         }
         if (drawable2 instanceof ColorDrawable) {
             ((ColorDrawable) drawable2).setColor(i10);
@@ -4799,14 +4797,14 @@ public abstract class j6 {
         if (drawable == null) {
             return;
         }
-        if (drawable instanceof ww0) {
-            ((ww0) drawable).b(i10);
-        } else if (drawable instanceof sc0) {
-            ((sc0) drawable).a(i10);
+        if (drawable instanceof kw0) {
+            ((kw0) drawable).b(i10);
+        } else if (drawable instanceof kc0) {
+            ((kc0) drawable).a(i10);
         } else if (drawable instanceof ShapeDrawable) {
             ((ShapeDrawable) drawable).getPaint().setColor(i10);
-        } else if (drawable instanceof hm0) {
-            ((hm0) drawable).b(i10);
+        } else if (drawable instanceof xl0) {
+            ((xl0) drawable).b(i10);
         } else {
             drawable.setColorFilter(new PorterDuffColorFilter(i10, PorterDuff.Mode.MULTIPLY));
         }
@@ -4836,11 +4834,11 @@ public abstract class j6 {
         return i11;
     }
 
-    public static k8 x0() {
-        if (f17927d5 == null) {
-            f17927d5 = new k8();
+    public static l8 x0() {
+        if (f20662d5 == null) {
+            f20662d5 = new l8();
         }
-        return f17927d5;
+        return f20662d5;
     }
 
     public static void x1(int i10, Drawable drawable) {
@@ -4947,7 +4945,7 @@ public abstract class j6 {
                 Drawable drawable = zVar.getDrawable(i10);
                 if (drawable instanceof g6) {
                     g6 g6Var = (g6) drawable;
-                    float[] fArr = g6Var.f17750b;
+                    float[] fArr = g6Var.f20472b;
                     float dp = AndroidUtilities.dp(f10);
                     fArr[1] = dp;
                     fArr[0] = dp;
@@ -4960,7 +4958,7 @@ public abstract class j6 {
                     float dp4 = AndroidUtilities.dp(f13);
                     fArr[7] = dp4;
                     fArr[6] = dp4;
-                    g6Var.f17751c = true;
+                    g6Var.f20473c = true;
                     g6Var.invalidateSelf();
                     return;
                 }

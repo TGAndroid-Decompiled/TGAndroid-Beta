@@ -1,51 +1,59 @@
 package org.telegram.ui.Components;
 
-import java.util.ArrayList;
+import android.animation.ValueAnimator;
+import android.view.View;
+import android.view.animation.OvershootInterpolator;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
-public final class iv extends g.p {
-    public final wv f24078c;
+public final class iv extends View {
+    public ImageReceiver.BackgroundThreadDrawHolder[] f27267a;
+    public bi.y3 f27268b;
+    public z5 f27269c;
+    public ValueAnimator d;
+    public float f27270e;
 
-    public iv(wv wvVar) {
-        this.f24078c = wvVar;
+    public TLRPC.Document getDocument() {
+        z5 z5Var = this.f27269c;
+        if (z5Var != null) {
+            TLRPC.Document document = z5Var.document;
+            if (document == null) {
+                return q5.f(UserConfig.selectedAccount, z5Var.getDocumentId());
+            }
+            return document;
+        }
+        return null;
     }
 
     @Override
-    public final int i(int i10) {
-        TLRPC.TL_messages_stickerSet tL_messages_stickerSet;
-        TLRPC.StickerSet stickerSet;
-        wv wvVar = this.f24078c;
-        s4.s sVar = wvVar.f28849y;
-        gv gvVar = wvVar.e;
-        bi.z zVar = wvVar.h;
-        if (zVar.getAdapter() != null && zVar.getAdapter().j(i10) == 1) {
-            int i11 = 0;
-            int i12 = 0;
-            while (true) {
-                ArrayList[] arrayListArr = gvVar.f27497c;
-                if (i11 >= arrayListArr.length) {
-                    break;
-                }
-                int size = arrayListArr[i11].size();
-                if (gvVar.f27497c.length > 1) {
-                    size = Math.min(sVar.J * 2, size);
-                }
-                i12 += size + 2;
-                if (i10 < i12) {
-                    break;
-                }
-                i11++;
+    public final void onMeasure(int i10, int i11) {
+        setPadding(AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f));
+        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824));
+    }
+
+    @Override
+    public void setPressed(boolean z10) {
+        ValueAnimator valueAnimator;
+        if (isPressed() != z10) {
+            super.setPressed(z10);
+            invalidate();
+            if (z10 && (valueAnimator = this.d) != null) {
+                valueAnimator.removeAllListeners();
+                this.d.cancel();
             }
-            ArrayList arrayList = gvVar.f27496b;
-            if (arrayList != null && i11 < arrayList.size()) {
-                tL_messages_stickerSet = (TLRPC.TL_messages_stickerSet) gvVar.f27496b.get(i11);
-            } else {
-                tL_messages_stickerSet = null;
+            if (!z10) {
+                float f7 = this.f27270e;
+                if (f7 != 0.0f) {
+                    ValueAnimator ofFloat = ValueAnimator.ofFloat(f7, 0.0f);
+                    this.d = ofFloat;
+                    ofFloat.addUpdateListener(new l6(this, 17));
+                    this.d.addListener(new j6(this, 21));
+                    this.d.setInterpolator(new OvershootInterpolator(5.0f));
+                    this.d.setDuration(350L);
+                    this.d.start();
+                }
             }
-            if (tL_messages_stickerSet != null && (stickerSet = tL_messages_stickerSet.set) != null && !stickerSet.emojis) {
-                return 8;
-            }
-            return 5;
         }
-        return sVar.J;
     }
 }

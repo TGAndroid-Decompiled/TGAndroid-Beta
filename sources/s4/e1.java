@@ -5,7 +5,7 @@ import android.view.accessibility.AccessibilityEvent;
 import androidx.recyclerview.widget.RecyclerView;
 public final class e1 extends r0.b {
     public final RecyclerView d;
-    public final d1 e = new d1(this);
+    public final d1 f45772e = new d1(this);
 
     public e1(RecyclerView recyclerView) {
         this.d = recyclerView;
@@ -18,15 +18,15 @@ public final class e1 extends r0.b {
             RecyclerView recyclerView = (RecyclerView) view;
             if (recyclerView.getLayoutManager() != null) {
                 c0 c0Var = (c0) recyclerView.getLayoutManager();
-                RecyclerView recyclerView2 = c0Var.f41703b;
-                of.e eVar = recyclerView2.f1532b;
+                RecyclerView recyclerView2 = c0Var.f45842b;
+                pf.e eVar = recyclerView2.f1867b;
                 if (accessibilityEvent != null) {
                     boolean z10 = true;
-                    if (!recyclerView2.canScrollVertically(1) && !c0Var.f41703b.canScrollVertically(-1) && !c0Var.f41703b.canScrollHorizontally(-1) && !c0Var.f41703b.canScrollHorizontally(1)) {
+                    if (!recyclerView2.canScrollVertically(1) && !c0Var.f45842b.canScrollVertically(-1) && !c0Var.f45842b.canScrollHorizontally(-1) && !c0Var.f45842b.canScrollHorizontally(1)) {
                         z10 = false;
                     }
                     accessibilityEvent.setScrollable(z10);
-                    h0 h0Var = c0Var.f41703b.f1558w;
+                    h0 h0Var = c0Var.f45842b.f1894w;
                     if (h0Var != null) {
                         accessibilityEvent.setItemCount(h0Var.h());
                     }
@@ -40,13 +40,13 @@ public final class e1 extends r0.b {
     }
 
     @Override
-    public final void c(View view, s0.d dVar) {
-        this.f41030a.onInitializeAccessibilityNodeInfo(view, dVar.f41559a);
+    public final void c(View view, s0.c cVar) {
+        this.f44662a.onInitializeAccessibilityNodeInfo(view, cVar.f45685a);
         RecyclerView recyclerView = this.d;
         if (!recyclerView.Z() && recyclerView.getLayoutManager() != null) {
             o0 layoutManager = recyclerView.getLayoutManager();
-            RecyclerView recyclerView2 = layoutManager.f41703b;
-            layoutManager.S(recyclerView2.f1532b, recyclerView2.f1555t0, dVar);
+            RecyclerView recyclerView2 = layoutManager.f45842b;
+            layoutManager.S(recyclerView2.f1867b, recyclerView2.f1891t0, cVar);
         }
     }
 

@@ -1,45 +1,44 @@
 package c3;
 
+import ah.m0;
 import android.animation.ObjectAnimator;
-import bi.u3;
-import gg.t1;
-import org.telegram.ui.Components.cb;
-import org.telegram.ui.Components.eb;
+import org.telegram.ui.Components.db;
 import org.telegram.ui.Components.fb;
-import org.telegram.ui.Components.pt;
-import org.telegram.ui.Components.rg;
-import org.telegram.ui.Components.rl;
-import org.telegram.ui.Components.sb;
+import org.telegram.ui.Components.gb;
+import org.telegram.ui.Components.jt;
+import org.telegram.ui.Components.ml;
+import org.telegram.ui.Components.pg;
 import org.telegram.ui.Components.tb;
-public final class s implements sb {
-    public long f4212a;
+import org.telegram.ui.Components.ub;
+public final class s implements tb {
+    public long f4294a;
 
-    @Override
-    public void I(tb tbVar, eb ebVar, rg rgVar, rl rlVar) {
-        tbVar.setInOutOffset(tbVar.getMeasuredHeight());
-        rlVar.accept(Float.valueOf(tbVar.getTranslationY()));
-        ObjectAnimator ofFloat = ObjectAnimator.ofFloat(tbVar, tb.IN_OUT_OFFSET_Y2, 0.0f);
-        ofFloat.setDuration(this.f4212a);
-        ofFloat.setInterpolator(pt.d);
-        ofFloat.addListener(new u3(ebVar, rgVar, 14));
-        ofFloat.addUpdateListener(new t1(11, rlVar, tbVar));
-        ofFloat.start();
-    }
-
-    public boolean a(lf.n nVar) {
-        if (nVar.f6077b == this.f4212a && lf.a.c(nVar)) {
+    public boolean a(mf.m mVar) {
+        if (mVar.f6347b == this.f4294a && mf.a.c(mVar)) {
             return true;
         }
         return false;
     }
 
     @Override
-    public void k(tb tbVar, eb ebVar, cb cbVar, fb fbVar) {
-        ObjectAnimator ofFloat = ObjectAnimator.ofFloat(tbVar, tb.IN_OUT_OFFSET_Y2, tbVar.getHeight());
+    public void e(ub ubVar, fb fbVar, db dbVar, gb gbVar) {
+        ObjectAnimator ofFloat = ObjectAnimator.ofFloat(ubVar, ub.IN_OUT_OFFSET_Y2, ubVar.getHeight());
         ofFloat.setDuration(175L);
-        ofFloat.setInterpolator(pt.f26248c);
-        ofFloat.addListener(new u3(ebVar, cbVar, 15));
-        ofFloat.addUpdateListener(new t1(10, fbVar, tbVar));
+        ofFloat.setInterpolator(jt.f27567c);
+        ofFloat.addListener(new bi.t(fbVar, dbVar, 17));
+        ofFloat.addUpdateListener(new m0(13, gbVar, ubVar));
+        ofFloat.start();
+    }
+
+    @Override
+    public void h0(ub ubVar, fb fbVar, pg pgVar, ml mlVar) {
+        ubVar.setInOutOffset(ubVar.getMeasuredHeight());
+        mlVar.accept(Float.valueOf(ubVar.getTranslationY()));
+        ObjectAnimator ofFloat = ObjectAnimator.ofFloat(ubVar, ub.IN_OUT_OFFSET_Y2, 0.0f);
+        ofFloat.setDuration(this.f4294a);
+        ofFloat.setInterpolator(jt.d);
+        ofFloat.addListener(new bi.t(fbVar, pgVar, 16));
+        ofFloat.addUpdateListener(new m0(14, mlVar, ubVar));
         ofFloat.start();
     }
 }

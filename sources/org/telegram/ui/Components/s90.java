@@ -1,96 +1,158 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapShader;
+import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.ComposeShader;
 import android.graphics.LinearGradient;
 import android.graphics.Matrix;
-import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.Rect;
 import android.graphics.Shader;
-import android.graphics.drawable.Drawable;
 import android.os.SystemClock;
+import android.view.View;
+import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.SvgHelper;
-public final class s90 extends Drawable {
-    public final Bitmap f26985a;
-    public long f26987c;
-    public LinearGradient d;
-    public float f26988f;
-    public float f26989g;
-    public final w9 h;
-    public int f26990i;
-    public int f26991j;
-    public final Paint f26986b = new Paint(2);
-    public final Matrix e = new Matrix();
+public final class s90 extends TextView {
+    public final Matrix f30229a;
+    public LinearGradient f30230b;
+    public int f30231c;
+    public boolean d;
+    public boolean f30232e;
+    public float f30233f;
+    public long h;
+    public final wp f30234n;
+    public boolean f30235r;
+    public int f30236s;
 
-    public s90(w9 w9Var, String str, int i10, int i11) {
-        this.f26985a = SvgHelper.getBitmapByPathOnly(str, 512, 512, i10, i11);
-        this.h = w9Var;
+    public s90(Context context) {
+        super(context);
+        this.f30229a = new Matrix();
+        this.f30234n = new wp(this, 25);
+    }
+
+    public final void a() {
+        float min = Math.min(AndroidUtilities.dp(10.0f) / this.f30231c, 0.49f);
+        int currentTextColor = getCurrentTextColor();
+        int i10 = 1048575 & currentTextColor;
+        this.f30230b = new LinearGradient(0.0f, 0.0f, this.f30231c, 0.0f, new int[]{i10, currentTextColor, currentTextColor, i10}, new float[]{0.0f, min, 1.0f - min, 1.0f}, Shader.TileMode.CLAMP);
+        if (this.d) {
+            getPaint().setShader(this.f30230b);
+        } else {
+            getPaint().setShader(null);
+        }
+        this.f30230b.setLocalMatrix(this.f30229a);
+        invalidate();
     }
 
     @Override
-    public final void draw(Canvas canvas) {
-        Bitmap bitmap = this.f26985a;
-        if (bitmap == null) {
-            return;
+    public final void onDraw(Canvas canvas) {
+        float f7;
+        boolean z10;
+        long j3;
+        boolean z11;
+        int measuredWidth = getMeasuredWidth();
+        int dp = AndroidUtilities.dp(40.0f);
+        float f10 = this.f30233f;
+        float f11 = measuredWidth;
+        if (f10 < f11) {
+            f7 = w7.p.a(f10 / AndroidUtilities.dp(10.0f), 0.0f, 1.0f);
+        } else {
+            f7 = 0.0f;
         }
-        int i10 = org.telegram.ui.ActionBar.j6.f17998h5;
-        int i11 = org.telegram.ui.ActionBar.j6.f18016i5;
-        int w02 = org.telegram.ui.ActionBar.j6.w0(null, i10, false);
-        int w03 = org.telegram.ui.ActionBar.j6.w0(null, i11, false);
-        int i12 = this.f26990i;
-        Paint paint = this.f26986b;
-        Matrix matrix = this.e;
-        if (i12 != w02 || this.f26991j != w03) {
-            this.f26990i = w02;
-            this.f26991j = w03;
-            int averageColor = AndroidUtilities.getAverageColor(w03, w02);
-            paint.setColor(w03);
-            float dp = AndroidUtilities.dp(500.0f);
-            this.f26989g = dp;
-            LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, dp, 0.0f, new int[]{w03, averageColor, w03}, new float[]{0.0f, 0.18f, 0.36f}, Shader.TileMode.REPEAT);
-            this.d = linearGradient;
-            linearGradient.setLocalMatrix(matrix);
-            Shader.TileMode tileMode = Shader.TileMode.CLAMP;
-            paint.setShader(new ComposeShader(this.d, new BitmapShader(bitmap, tileMode, tileMode), PorterDuff.Mode.MULTIPLY));
-        }
-        Rect bounds = getBounds();
-        canvas.drawRect(bounds.left, bounds.top, bounds.right, bounds.bottom, paint);
-        long elapsedRealtime = SystemClock.elapsedRealtime();
-        long abs = Math.abs(this.f26987c - elapsedRealtime);
-        if (abs > 17) {
-            abs = 16;
-        }
-        this.f26987c = elapsedRealtime;
-        this.f26988f = a4.a.A((float) abs, this.f26989g, 1800.0f, this.f26988f);
-        while (true) {
-            float f7 = this.f26988f;
-            float f10 = this.f26989g * 2.0f;
-            if (f7 >= f10) {
-                this.f26988f = f7 - f10;
-            } else {
-                matrix.setTranslate(f7, 0.0f);
-                this.d.setLocalMatrix(matrix);
-                this.h.invalidate();
-                return;
+        Matrix matrix = this.f30229a;
+        matrix.reset();
+        float f12 = this.f30231c;
+        matrix.postScale(com.google.android.gms.internal.vision.e2.z(1.0f, f7, AndroidUtilities.dp(10.0f) / f12, 1.0f), 1.0f, f12, 0.0f);
+        matrix.postScale(1.0f - (this.f30236s / this.f30231c), 1.0f, 0.0f, 0.0f);
+        matrix.postTranslate(this.f30233f, 0.0f);
+        this.f30230b.setLocalMatrix(matrix);
+        canvas.save();
+        canvas.translate(-this.f30233f, 0.0f);
+        super.onDraw(canvas);
+        canvas.restore();
+        if (measuredWidth > 0) {
+            float f13 = this.f30233f;
+            if (f13 > 0.0f && f13 + getWidth() > f11 && this.d && this.f30232e) {
+                float f14 = -this.f30233f;
+                float f15 = dp;
+                matrix.postTranslate(f14 - ((f14 + f11) + f15), 0.0f);
+                this.f30230b.setLocalMatrix(matrix);
+                canvas.save();
+                canvas.translate((-this.f30233f) + f11 + f15, 0.0f);
+                super.onDraw(canvas);
+                canvas.restore();
             }
         }
+        if (this.f30233f < 1.0E-4d) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        long uptimeMillis = SystemClock.uptimeMillis();
+        long j10 = this.h;
+        if (j10 != 0 && !z10) {
+            j3 = Math.min(uptimeMillis - j10, 120L);
+        } else {
+            j3 = 16;
+        }
+        this.h = uptimeMillis;
+        boolean z12 = this.d;
+        wp wpVar = this.f30234n;
+        if ((z12 && this.f30232e) || !z10) {
+            float e7 = a4.a.e((float) j3, 1000.0f, AndroidUtilities.dp(60.0f), this.f30233f);
+            this.f30233f = e7;
+            if (e7 > measuredWidth + dp) {
+                AndroidUtilities.cancelRunOnUIThread(wpVar);
+                this.f30235r = false;
+                this.f30232e = false;
+                this.f30233f = 0.0f;
+            }
+            invalidate();
+        }
+        if (this.d && !this.f30232e && !(z11 = this.f30235r) && !z11) {
+            this.f30235r = true;
+            AndroidUtilities.runOnUIThread(wpVar, 1500L);
+        }
     }
 
     @Override
-    public final int getOpacity() {
-        return -2;
+    public final void onMeasure(int i10, int i11) {
+        boolean z10 = false;
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(0, 0), i11);
+        this.f30231c = View.MeasureSpec.getSize(i10);
+        if (getMeasuredWidth() > this.f30231c - this.f30236s) {
+            z10 = true;
+        }
+        this.d = z10;
+        a();
+    }
+
+    public void setCustomPaddingRight(int i10) {
+        boolean z10;
+        this.f30236s = i10;
+        if (getMeasuredWidth() > this.f30231c - this.f30236s) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        this.d = z10;
+        if (z10) {
+            getPaint().setShader(this.f30230b);
+        } else {
+            getPaint().setShader(null);
+        }
+        invalidate();
     }
 
     @Override
-    public final void setAlpha(int i10) {
+    public final void setText(CharSequence charSequence, TextView.BufferType bufferType) {
+        super.setText(charSequence, bufferType);
+        AndroidUtilities.cancelRunOnUIThread(this.f30234n);
+        this.f30235r = false;
+        this.f30232e = false;
+        this.f30233f = 0.0f;
     }
 
     @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
+    public void setTextColor(int i10) {
+        super.setTextColor(i10);
+        a();
     }
 }

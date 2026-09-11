@@ -1,33 +1,32 @@
 package tg;
 
-import org.telegram.messenger.a2;
-import org.telegram.ui.wy;
-import sg.b0;
-import sg.f0;
+import android.animation.AnimatorSet;
+import android.animation.ValueAnimator;
 public final class c implements Runnable {
-    public final int f42150a;
-    public final e f42151b;
+    public final int f46513a;
+    public final e f46514b;
 
     public c(e eVar, int i10) {
-        this.f42150a = i10;
-        this.f42151b = eVar;
+        this.f46513a = i10;
+        this.f46514b = eVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f42150a) {
+        ValueAnimator valueAnimator;
+        switch (this.f46513a) {
             case 0:
-                this.f42151b.E();
-                return;
+                e eVar = this.f46514b;
+                AnimatorSet animatorSet = eVar.T;
+                if ((animatorSet != null && animatorSet.isRunning()) || ((valueAnimator = eVar.S) != null && valueAnimator.isRunning())) {
+                    eVar.h(eVar.I);
+                    return;
+                } else {
+                    eVar.k();
+                    return;
+                }
             default:
-                StringBuilder sb2 = new StringBuilder("https://t.me/giftcode/");
-                e eVar = this.f42151b;
-                sb2.append(eVar.h);
-                String sb3 = sb2.toString();
-                wy wyVar = new wy(a2.e(3, "onlySelect", "dialogsType", true));
-                wyVar.C2 = new f0(1, eVar, sb3);
-                eVar.e.presentFragment(wyVar);
-                ((b0) eVar).f41875r.dismiss();
+                this.f46514b.i();
                 return;
         }
     }

@@ -1,117 +1,32 @@
 package bi;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.RectF;
-import android.view.MotionEvent;
-import android.view.View;
-import android.widget.FrameLayout;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.wr;
-public final class la extends FrameLayout {
-    public final int f3050a = 2;
-    public Object f3051b;
-    public float f3052c;
-    public Path d;
-    public Object e;
-
-    public la(Context context) {
-        super(context);
-    }
-
-    public void a(float f7, float f10) {
-        float[] fArr = (float[]) this.e;
-        fArr[7] = f7;
-        fArr[6] = f7;
-        fArr[1] = f7;
-        fArr[0] = f7;
-        fArr[5] = f10;
-        fArr[4] = f10;
-        fArr[3] = f10;
-        fArr[2] = f10;
-    }
-
-    @Override
-    public void dispatchDraw(android.graphics.Canvas r18) {
-        throw new UnsupportedOperationException("Method not decompiled: bi.la.dispatchDraw(android.graphics.Canvas):void");
-    }
-
-    @Override
-    public boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        switch (this.f3050a) {
-            case 0:
-                if (motionEvent.getAction() == 0 && motionEvent.getY() < this.f3052c) {
-                    ((rb) this.e).dismiss();
-                    return true;
-                }
-                return super.dispatchTouchEvent(motionEvent);
-            case 1:
-                if (motionEvent.getAction() == 0 && motionEvent.getY() < this.f3052c) {
-                    ((ei.k0) this.e).dismiss();
-                    return true;
-                }
-                return super.dispatchTouchEvent(motionEvent);
-            default:
-                return super.dispatchTouchEvent(motionEvent);
+import org.telegram.tgnet.NativeByteBuffer;
+import org.telegram.tgnet.tl.TL_stories;
+public abstract class la {
+    public static void a(TL_stories.StoryItem storyItem, NativeByteBuffer nativeByteBuffer) {
+        if (nativeByteBuffer == null) {
+            return;
         }
-    }
-
-    @Override
-    public void onDraw(Canvas canvas) {
-        switch (this.f3050a) {
-            case 2:
-                super.onDraw(canvas);
-                float measuredWidth = getMeasuredWidth() / 2.0f;
-                Path path = this.d;
-                path.rewind();
-                RectF rectF = AndroidUtilities.rectTmp;
-                rectF.set(0.0f, 0.0f, measuredWidth - AndroidUtilities.lerp(0, AndroidUtilities.dp(4.0f), this.f3052c), getMeasuredHeight());
-                a(AndroidUtilities.dp(8.0f), AndroidUtilities.lerp(0, AndroidUtilities.dp(8.0f), this.f3052c));
-                float[] fArr = (float[]) this.e;
-                Path.Direction direction = Path.Direction.CW;
-                path.addRoundRect(rectF, fArr, direction);
-                Paint paint = (Paint) this.f3051b;
-                canvas.drawPath(path, paint);
-                path.rewind();
-                rectF.set(measuredWidth + AndroidUtilities.lerp(0, AndroidUtilities.dp(4.0f), this.f3052c), 0.0f, getMeasuredWidth(), getMeasuredHeight());
-                a(AndroidUtilities.lerp(0, AndroidUtilities.dp(8.0f), this.f3052c), AndroidUtilities.dp(8.0f));
-                path.addRoundRect(rectF, fArr, direction);
-                canvas.drawPath(path, paint);
-                return;
-            default:
-                super.onDraw(canvas);
-                return;
+        int readInt32 = nativeByteBuffer.readInt32(true);
+        if (readInt32 == 1) {
+            new ka(storyItem).readParams(nativeByteBuffer, true);
+            return;
         }
+        throw new RuntimeException(i2.g.i(readInt32, "(story) can't read params version = "));
     }
 
-    @Override
-    public void onMeasure(int i10, int i11) {
-        switch (this.f3050a) {
-            case 0:
-                super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i11), 1073741824));
-                return;
-            case 1:
-                super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i11), 1073741824));
-                return;
-            default:
-                super.onMeasure(i10, i11);
-                return;
+    public static NativeByteBuffer b(TL_stories.StoryItem storyItem) {
+        if (storyItem.detectedLng == null && storyItem.translatedLng == null && !storyItem.translated && storyItem.translatedText == null) {
+            return null;
         }
-    }
-
-    public la(ei.k0 k0Var, Context context) {
-        super(context);
-        this.e = k0Var;
-        this.f3051b = new org.telegram.ui.Components.d6(this, 250L, wr.h);
-        this.d = new Path();
-    }
-
-    public la(rb rbVar, Context context) {
-        super(context);
-        this.e = rbVar;
-        this.f3051b = new org.telegram.ui.Components.d6(this, 250L, wr.h);
-        this.d = new Path();
+        ka kaVar = new ka(storyItem);
+        try {
+            NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(kaVar.getObjectSize());
+            kaVar.serializeToStream(nativeByteBuffer);
+            return nativeByteBuffer;
+        } catch (Exception e7) {
+            e7.printStackTrace();
+            return null;
+        }
     }
 }

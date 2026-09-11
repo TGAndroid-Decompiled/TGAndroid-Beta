@@ -83,14 +83,14 @@ public class DispatchQueueMainThreadSync extends Thread {
 
     public void recycle() {
         checkThread();
-        postRunnable(new g1(this, 18));
+        postRunnable(new d1(this, 18));
         this.isRecycled = true;
     }
 
     @Override
     public void run() {
         Looper.prepare();
-        this.handler = new Handler(Looper.myLooper(), new b2(this, 1));
+        this.handler = new Handler(Looper.myLooper(), new x1(this, 1));
         AndroidUtilities.runOnUIThread(new Runnable() {
             {
                 DispatchQueueMainThreadSync.this = this;

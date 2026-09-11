@@ -142,7 +142,7 @@ public class TextureViewRenderer extends TextureView implements TextureView.Surf
             sb2.append(", frame size: ");
             sb2.append(this.rotatedFrameWidth);
             sb2.append("x");
-            hc.b.w(sb2, this.rotatedFrameHeight, ", requested surface size: ", min, "x");
+            i2.g.v(sb2, this.rotatedFrameHeight, ", requested surface size: ", min, "x");
             sb2.append(min2);
             sb2.append(", old surface size: ");
             sb2.append(this.surfaceWidth);
@@ -211,7 +211,7 @@ public class TextureViewRenderer extends TextureView implements TextureView.Surf
                         if (runnable != null) {
                             AndroidUtilities.cancelRunOnUIThread(runnable);
                         }
-                        fg.n nVar = new fg.n(this, i12, i14, 14);
+                        hg.n nVar = new hg.n(this, i12, i14, 14);
                         this.updateScreenRunnable = nVar;
                         postOrRun(nVar);
                     } catch (Throwable th2) {

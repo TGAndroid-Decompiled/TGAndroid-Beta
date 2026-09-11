@@ -2,13 +2,13 @@ package s4;
 
 import android.view.View;
 public interface h1 {
-    int f(View view);
+    int b(View view);
+
+    int e();
 
     int m();
 
-    int q();
-
     View r(int i10);
 
-    int s(View view);
+    int t(View view);
 }

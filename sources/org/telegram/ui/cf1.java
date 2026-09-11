@@ -1,54 +1,39 @@
 package org.telegram.ui;
+public final class cf1 implements Runnable {
+    public final int f35093a;
+    public final eg1 f35094b;
 
-import android.animation.ValueAnimator;
-import android.graphics.Canvas;
-import android.view.animation.OvershootInterpolator;
-import android.widget.FrameLayout;
-import org.telegram.messenger.Utilities;
-public final class cf1 extends FrameLayout {
-    public ValueAnimator f31657a;
-    public boolean f31658b;
-    public float f31659c;
-
-    @Override
-    public final void dispatchDraw(Canvas canvas) {
-        float f7 = ((1.0f - this.f31659c) * 0.2f) + 0.8f;
-        canvas.save();
-        canvas.scale(f7, f7, getMeasuredHeight() / 2.0f, getMeasuredWidth() / 2.0f);
-        super.dispatchDraw(canvas);
-        canvas.restore();
-        if (isPressed()) {
-            float f10 = this.f31659c;
-            if (f10 != 1.0f) {
-                this.f31659c = Utilities.clamp(f10 + 0.16f, 1.0f, 0.0f);
-                invalidate();
-            }
-        }
+    public cf1(eg1 eg1Var, int i10) {
+        this.f35093a = i10;
+        this.f35094b = eg1Var;
     }
 
     @Override
-    public final void setPressed(boolean z10) {
-        ValueAnimator valueAnimator;
-        super.setPressed(z10);
-        if (this.f31658b != z10) {
-            this.f31658b = z10;
-            invalidate();
-            if (z10 && (valueAnimator = this.f31657a) != null) {
-                valueAnimator.removeAllListeners();
-                this.f31657a.cancel();
-            }
-            if (!z10) {
-                float f7 = this.f31659c;
-                if (f7 != 0.0f) {
-                    ValueAnimator ofFloat = ValueAnimator.ofFloat(f7, 0.0f);
-                    this.f31657a = ofFloat;
-                    ofFloat.addUpdateListener(new f21(this, 16));
-                    this.f31657a.addListener(new mv0(this, 13));
-                    this.f31657a.setInterpolator(new OvershootInterpolator(5.0f));
-                    this.f31657a.setDuration(350L);
-                    this.f31657a.start();
-                }
-            }
+    public final void run() {
+        switch (this.f35093a) {
+            case 0:
+                eg1 eg1Var = this.f35094b;
+                eg1Var.x0();
+                eg1Var.B0();
+                return;
+            case 1:
+                this.f35094b.x0();
+                return;
+            case 2:
+                this.f35094b.O0(true);
+                return;
+            case 3:
+                this.f35094b.finishPreviewFragment();
+                return;
+            case 4:
+                eg1 eg1Var2 = this.f35094b;
+                eg1Var2.A0 = null;
+                eg1Var2.U0(true, false);
+                return;
+            default:
+                eg1 eg1Var3 = this.f35094b;
+                eg1Var3.N.postOnAnimation(new cf1(eg1Var3, 1));
+                return;
         }
     }
 }

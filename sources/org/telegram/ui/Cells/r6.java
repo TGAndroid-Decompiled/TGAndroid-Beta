@@ -1,136 +1,188 @@
 package org.telegram.ui.Cells;
 
 import android.content.Context;
-import android.os.Bundle;
-import android.widget.FrameLayout;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
+import android.text.SpannableStringBuilder;
+import android.text.TextUtils;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
-import j$.util.DesugarCollections;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Random;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.a10;
-import org.telegram.ui.Components.m90;
-import org.telegram.ui.Components.wc;
-public abstract class r6 {
-    public static float a(float f7, float f10, float f11, float f12) {
-        return (f7 * f10) + f11 + f12;
-    }
+public final class r6 extends LinearLayout {
+    public static final int f22677c = 0;
+    public TLRPC.RequestPeerType f22678a;
+    public ArrayList f22679b;
 
-    public static int b(float f7, int i10, TextView textView) {
-        textView.setText(LocaleController.getString(i10));
-        return AndroidUtilities.dp(f7);
-    }
-
-    public static int c(Random random, int i10) {
-        return Math.abs(random.nextInt() % i10);
-    }
-
-    public static int d(a10 a10Var, int i10) {
-        return a10Var.c(a10Var.getMeasuredWidth()) + i10;
-    }
-
-    public static Bundle e(int i10, String str) {
-        Bundle bundle = new Bundle();
-        bundle.putInt(str, i10);
-        return bundle;
-    }
-
-    public static TextView f(FrameLayout frameLayout, TextView textView, FrameLayout.LayoutParams layoutParams, Context context) {
-        frameLayout.addView(textView, layoutParams);
-        return new TextView(context);
-    }
-
-    public static Object g(int i10, List list) {
-        return list.get(list.size() - i10);
-    }
-
-    public static String h(long j3, String str, String str2) {
-        return str + j3 + str2;
-    }
-
-    public static String i(String str, String str2) {
-        return str + str2;
-    }
-
-    public static String j(String str, String str2, String str3, String str4, String str5) {
-        return str + str2 + str3 + str4 + str5;
-    }
-
-    public static HashMap k(Class cls, v7.e eVar) {
-        HashMap hashMap = new HashMap();
-        hashMap.put(cls, eVar);
-        return hashMap;
-    }
-
-    public static o1.l l(float f7, float f10, float f11) {
-        o1.l lVar = new o1.l(f7);
-        lVar.b(f10);
-        lVar.a(f11);
-        return lVar;
-    }
-
-    public static v7.e m(int i10, HashMap hashMap) {
-        DesugarCollections.unmodifiableMap(new HashMap(hashMap));
-        return new v7.e(i10);
-    }
-
-    public static void n(int i10, int i11, ArrayList arrayList, ArrayList arrayList2) {
-        arrayList.add(Integer.valueOf(i10));
-        arrayList2.add(Integer.valueOf(i11));
-    }
-
-    public static void o(int i10, ArrayList arrayList, ArrayList arrayList2, Integer num) {
-        arrayList.add(Integer.valueOf(i10));
-        arrayList2.add(num);
-    }
-
-    public static void p(int i10, m90 m90Var) {
-        m90Var.setText(AndroidUtilities.replaceTags(LocaleController.getString(i10)));
-    }
-
-    public static void q(FrameLayout frameLayout, org.telegram.ui.ActionBar.f6 f6Var, TLRPC.TL_error tL_error, boolean z10) {
-        new wc(frameLayout, f6Var).d0(tL_error, z10);
-    }
-
-    public static void r(String str, int i10, ArrayList arrayList) {
-        arrayList.add(new u6(str, i10));
-    }
-
-    public static void s(HashMap hashMap) {
-        DesugarCollections.unmodifiableMap(new HashMap(hashMap));
-    }
-
-    public static String t(String str, String str2) {
-        return str + str2;
-    }
-
-    public static void u(int i10, int i11, ArrayList arrayList, ArrayList arrayList2) {
-        arrayList.add(LocaleController.getString(i10));
-        arrayList2.add(Integer.valueOf(i11));
-    }
-
-    public static void v(int i10, ArrayList arrayList, ArrayList arrayList2, Integer num) {
-        arrayList.add(LocaleController.getString(i10));
-        arrayList2.add(num);
-    }
-
-    public static String w(int i10) {
-        if (i10 != 1) {
-            if (i10 != 2) {
-                if (i10 != 3) {
-                    if (i10 == 4) {
-                        return "FAILED";
-                    }
-                    throw null;
-                }
-                return "PENDING";
+    public final void a(Boolean bool, int i10, int i11) {
+        ArrayList arrayList = this.f22679b;
+        if (bool != null) {
+            if (bool.booleanValue()) {
+                arrayList.add(s6.a(AndroidUtilities.replaceTags(LocaleController.getString(i10))));
+            } else {
+                arrayList.add(s6.a(AndroidUtilities.replaceTags(LocaleController.getString(i11))));
             }
-            return "CANCELLED";
         }
-        return "PAID";
+    }
+
+    public void set(TLRPC.RequestPeerType requestPeerType) {
+        int i10;
+        String string;
+        int i11;
+        ArrayList arrayList = this.f22679b;
+        if (this.f22678a != requestPeerType) {
+            this.f22678a = requestPeerType;
+            removeAllViews();
+            arrayList.clear();
+            if (requestPeerType instanceof TLRPC.TL_requestPeerTypeUser) {
+                a(((TLRPC.TL_requestPeerTypeUser) requestPeerType).premium, R.string.PeerRequirementPremiumTrue, R.string.PeerRequirementPremiumFalse);
+            } else {
+                boolean z10 = requestPeerType instanceof TLRPC.TL_requestPeerTypeBroadcast;
+                if (z10) {
+                    a(requestPeerType.has_username, R.string.PeerRequirementChannelPublicTrue, R.string.PeerRequirementChannelPublicFalse);
+                    Boolean bool = requestPeerType.bot_participant;
+                    if (bool != null && bool.booleanValue()) {
+                        arrayList.add(s6.a(AndroidUtilities.replaceTags(LocaleController.getString(R.string.PeerRequirementChannelBotParticipant))));
+                    }
+                    Boolean bool2 = requestPeerType.creator;
+                    if (bool2 != null && bool2.booleanValue()) {
+                        arrayList.add(s6.a(AndroidUtilities.replaceTags(LocaleController.getString(R.string.PeerRequirementChannelCreatorTrue))));
+                    }
+                } else {
+                    a(requestPeerType.has_username, R.string.PeerRequirementGroupPublicTrue, R.string.PeerRequirementGroupPublicFalse);
+                    a(requestPeerType.forum, R.string.PeerRequirementForumTrue, R.string.PeerRequirementForumFalse);
+                    Boolean bool3 = requestPeerType.bot_participant;
+                    if (bool3 != null && bool3.booleanValue()) {
+                        arrayList.add(s6.a(AndroidUtilities.replaceTags(LocaleController.getString(R.string.PeerRequirementGroupBotParticipant))));
+                    }
+                    Boolean bool4 = requestPeerType.creator;
+                    if (bool4 != null && bool4.booleanValue()) {
+                        arrayList.add(s6.a(AndroidUtilities.replaceTags(LocaleController.getString(R.string.PeerRequirementGroupCreatorTrue))));
+                    }
+                }
+                Boolean bool5 = requestPeerType.creator;
+                if (bool5 == null || !bool5.booleanValue()) {
+                    TLRPC.TL_chatAdminRights tL_chatAdminRights = requestPeerType.user_admin_rights;
+                    int i12 = R.string.PeerRequirementUserRights;
+                    int i13 = R.string.PeerRequirementUserRight;
+                    SpannableStringBuilder replaceTags = AndroidUtilities.replaceTags(LocaleController.getString(i12));
+                    SpannableStringBuilder replaceTags2 = AndroidUtilities.replaceTags(LocaleController.getString(i13));
+                    if (tL_chatAdminRights != null) {
+                        ArrayList arrayList2 = new ArrayList();
+                        if (tL_chatAdminRights.change_info) {
+                            if (z10) {
+                                string = LocaleController.getString(R.string.EditAdminChangeChannelInfo);
+                            } else {
+                                string = LocaleController.getString(R.string.EditAdminChangeGroupInfo);
+                            }
+                            p6.r(string, 1, arrayList2);
+                        }
+                        if (tL_chatAdminRights.post_messages && z10) {
+                            p6.r(LocaleController.getString(R.string.EditAdminPostMessages), 1, arrayList2);
+                        }
+                        if (tL_chatAdminRights.edit_messages && z10) {
+                            p6.r(LocaleController.getString(R.string.EditAdminEditMessages), 1, arrayList2);
+                        }
+                        if (tL_chatAdminRights.delete_messages) {
+                            if (z10) {
+                                i10 = R.string.EditAdminDeleteMessages;
+                            } else {
+                                i10 = R.string.EditAdminGroupDeleteMessages;
+                            }
+                            p6.r(LocaleController.getString(i10), 1, arrayList2);
+                        }
+                        if (tL_chatAdminRights.ban_users && !z10) {
+                            p6.r(LocaleController.getString(R.string.EditAdminBanUsers), 1, arrayList2);
+                        }
+                        if (tL_chatAdminRights.invite_users) {
+                            p6.r(LocaleController.getString(R.string.EditAdminAddUsers), 1, arrayList2);
+                        }
+                        if (tL_chatAdminRights.pin_messages && !z10) {
+                            p6.r(LocaleController.getString(R.string.EditAdminPinMessages), 1, arrayList2);
+                        }
+                        if (tL_chatAdminRights.add_admins) {
+                            p6.r(LocaleController.getString(R.string.EditAdminAddAdmins), 1, arrayList2);
+                        }
+                        if (tL_chatAdminRights.anonymous && !z10) {
+                            p6.r(LocaleController.getString(R.string.EditAdminSendAnonymously), 1, arrayList2);
+                        }
+                        if (tL_chatAdminRights.manage_call) {
+                            p6.r(LocaleController.getString(R.string.StartVoipChatPermission), 1, arrayList2);
+                        }
+                        if (tL_chatAdminRights.manage_topics && !z10) {
+                            p6.r(LocaleController.getString(R.string.ManageTopicsPermission), 1, arrayList2);
+                        }
+                        if (arrayList2.size() == 1) {
+                            arrayList.add(s6.a(TextUtils.concat(replaceTags2, " ", ((s6) arrayList2.get(0)).f22843b)));
+                        } else if (!arrayList2.isEmpty()) {
+                            SpannableStringBuilder valueOf = SpannableStringBuilder.valueOf(replaceTags);
+                            valueOf.append((CharSequence) " ");
+                            for (int i14 = 0; i14 < arrayList2.size(); i14++) {
+                                if (i14 > 0) {
+                                    valueOf.append((CharSequence) ", ");
+                                }
+                                valueOf.append((CharSequence) ((s6) arrayList2.get(i14)).f22843b.toString().toLowerCase());
+                            }
+                            valueOf.append((CharSequence) ".");
+                            arrayList.add(s6.a(valueOf));
+                        }
+                    }
+                }
+            }
+            if (!arrayList.isEmpty()) {
+                l4 l4Var = new l4(getContext(), 20);
+                l4Var.setText(LocaleController.getString(R.string.PeerRequirements));
+                int i15 = org.telegram.ui.ActionBar.j6.f20663d6;
+                l4Var.setBackgroundColor(org.telegram.ui.ActionBar.j6.w0(null, i15, false));
+                addView(l4Var, w7.x5.n(-1, -2));
+                Drawable colorDrawable = new ColorDrawable(org.telegram.ui.ActionBar.j6.w0(null, i15, false));
+                View s3Var = new s3(getContext(), 9, 1);
+                s3Var.setBackground(colorDrawable);
+                addView(s3Var, w7.x5.n(-1, -2));
+                int size = arrayList.size();
+                int i16 = 0;
+                while (i16 < size) {
+                    Object obj = arrayList.get(i16);
+                    i16++;
+                    s6 s6Var = (s6) obj;
+                    Context context = getContext();
+                    LinearLayout linearLayout = new LinearLayout(context);
+                    linearLayout.setBackgroundColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f20663d6, false));
+                    linearLayout.setOrientation(0);
+                    ImageView imageView = new ImageView(context);
+                    imageView.setScaleType(ImageView.ScaleType.CENTER);
+                    if (s6Var.f22842a <= 0) {
+                        i11 = R.drawable.list_check;
+                    } else {
+                        i11 = R.drawable.list_circle;
+                    }
+                    imageView.setImageResource(i11);
+                    imageView.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.L6, false), PorterDuff.Mode.MULTIPLY));
+                    linearLayout.addView(imageView, w7.x5.p(20, 20, 0.0f, 51, (s6Var.f22842a * 16) + 17, -1, 0, 0));
+                    TextView textView = new TextView(context);
+                    textView.setTextSize(1, 14.0f);
+                    textView.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f21061z6, false));
+                    textView.setSingleLine(false);
+                    textView.setText(s6Var.f22843b);
+                    linearLayout.addView(textView, w7.x5.t(-1, -2, 1, 6, 4, 24, 4));
+                    addView(linearLayout, w7.x5.n(-1, -2));
+                }
+                Drawable colorDrawable2 = new ColorDrawable(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f20663d6, false));
+                View s3Var2 = new s3(getContext(), 12, 1);
+                s3Var2.setBackground(colorDrawable2);
+                addView(s3Var2, w7.x5.n(-1, -2));
+                Drawable V0 = org.telegram.ui.ActionBar.j6.V0(getContext(), R.drawable.greydivider_bottom, org.telegram.ui.ActionBar.j6.f20627b7);
+                View s3Var3 = new s3(getContext(), 12, 1);
+                s3Var3.setBackground(V0);
+                addView(s3Var3, w7.x5.n(-1, -2));
+            }
+        }
     }
 }

@@ -1,50 +1,81 @@
 package zh;
 
-import java.util.Locale;
-import org.telegram.SQLite.SQLiteDatabase;
-import org.telegram.messenger.MessagesStorage;
+import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.ProfileActivity;
+import org.telegram.ui.co;
 public final class u5 implements Runnable {
-    public final int f48909a;
-    public final v5 f48910b;
-    public final long f48911c;
-    public final int d;
+    public final int f52692a;
+    public final org.telegram.ui.ActionBar.f3[] f52693b;
+    public final long f52694c;
 
-    public u5(v5 v5Var, long j3, int i10, int i11) {
-        this.f48909a = i11;
-        this.f48910b = v5Var;
-        this.f48911c = j3;
-        this.d = i10;
+    public u5(org.telegram.ui.ActionBar.f3[] f3VarArr, long j3, int i10) {
+        this.f52692a = i10;
+        this.f52693b = f3VarArr;
+        this.f52694c = j3;
     }
 
     @Override
     public final void run() {
-        switch (this.f48909a) {
+        switch (this.f52692a) {
             case 0:
-                long j3 = this.f48911c;
-                int i10 = this.d;
-                MessagesStorage messagesStorage = this.f48910b.f48990b;
-                SQLiteDatabase database = messagesStorage.getDatabase();
-                try {
-                    Locale locale = Locale.US;
-                    database.executeFast("DELETE FROM stories WHERE dialog_id = " + j3 + " AND story_id = " + i10).stepThis().dispose();
-                    return;
-                } catch (Throwable th2) {
-                    messagesStorage.checkSQLException(th2);
+                this.f52693b[0].dismiss();
+                org.telegram.ui.ActionBar.n2 U = LaunchActivity.U();
+                if (U != null) {
+                    U.presentFragment(ProfileActivity.m4(this.f52694c));
                     return;
                 }
+                return;
+            case 1:
+                this.f52693b[0].dismiss();
+                org.telegram.ui.ActionBar.n2 U2 = LaunchActivity.U();
+                if (U2 != null) {
+                    U2.presentFragment(co.R9(this.f52694c));
+                    return;
+                }
+                return;
+            case 2:
+                org.telegram.ui.ActionBar.f3 f3Var = this.f52693b[0];
+                if (f3Var != null) {
+                    f3Var.dismiss();
+                }
+                org.telegram.ui.ActionBar.n2 U3 = LaunchActivity.U();
+                if (U3 != null) {
+                    U3.presentFragment(co.R9(this.f52694c));
+                    return;
+                }
+                return;
+            case 3:
+                this.f52693b[0].dismiss();
+                org.telegram.ui.ActionBar.n2 U4 = LaunchActivity.U();
+                if (U4 != null) {
+                    U4.presentFragment(co.R9(this.f52694c));
+                    return;
+                }
+                return;
+            case 4:
+                this.f52693b[0].dismiss();
+                org.telegram.ui.ActionBar.n2 U5 = LaunchActivity.U();
+                if (U5 != null) {
+                    U5.presentFragment(new fi.m(this.f52694c));
+                    return;
+                }
+                return;
+            case 5:
+                this.f52693b[0].dismiss();
+                org.telegram.ui.ActionBar.n2 U6 = LaunchActivity.U();
+                if (U6 != null) {
+                    U6.presentFragment(ProfileActivity.m4(this.f52694c));
+                    return;
+                }
+                return;
             default:
-                long j10 = this.f48911c;
-                int i11 = this.d;
-                MessagesStorage messagesStorage2 = this.f48910b.f48990b;
-                SQLiteDatabase database2 = messagesStorage2.getDatabase();
-                try {
-                    Locale locale2 = Locale.US;
-                    database2.executeFast("REPLACE INTO stories_counter VALUES(" + j10 + ", 0, " + i11 + ")").stepThis().dispose();
-                    return;
-                } catch (Throwable th3) {
-                    messagesStorage2.checkSQLException(th3);
+                this.f52693b[0].dismiss();
+                org.telegram.ui.ActionBar.n2 U7 = LaunchActivity.U();
+                if (U7 != null) {
+                    U7.presentFragment(ProfileActivity.m4(this.f52694c));
                     return;
                 }
+                return;
         }
     }
 }

@@ -3,37 +3,56 @@ package org.telegram.ui.Components;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import java.util.ArrayList;
+import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
+import org.telegram.ui.Components.ChatActivityEnterView;
 public final class tg extends j1.b {
-    public final ug f27408o;
+    public final int[] f30598o;
+    public final ChatActivityEnterView.RecordCircle f30599p;
 
-    public tg(ug ugVar, ug ugVar2) {
-        super(ugVar2);
-        this.f27408o = ugVar;
+    public tg(ChatActivityEnterView.RecordCircle recordCircle, ChatActivityEnterView.RecordCircle recordCircle2) {
+        super(recordCircle2);
+        this.f30599p = recordCircle;
+        this.f30598o = new int[2];
     }
 
     @Override
     public final int g(float f7, float f10) {
-        ug ugVar = this.f27408o;
-        ChatActivityEnterView chatActivityEnterView = ugVar.V;
-        if (chatActivityEnterView.f20919r4 && chatActivityEnterView.M1 != null && chatActivityEnterView.R3.contains(f7, f10)) {
-            return 2;
-        }
-        if (chatActivityEnterView.P && chatActivityEnterView.M1 != null && chatActivityEnterView.f20892m4 > 0.1f && ugVar.J.contains(f7, f10)) {
-            return 4;
+        Rect rect;
+        ChatActivityEnterView chatActivityEnterView = ChatActivityEnterView.this;
+        if (chatActivityEnterView.f23765r4 && chatActivityEnterView.M1 != null) {
+            if (chatActivityEnterView.S3.contains((int) f7, (int) f10)) {
+                return 1;
+            }
+            if (chatActivityEnterView.R3.contains(f7, f10)) {
+                return 2;
+            }
+            ChatActivityEnterView.SlideTextView slideTextView = chatActivityEnterView.f23721j1;
+            if (slideTextView != null && (rect = slideTextView.J) != null) {
+                RectF rectF = AndroidUtilities.rectTmp;
+                rectF.set(rect);
+                ChatActivityEnterView.SlideTextView slideTextView2 = chatActivityEnterView.f23721j1;
+                int[] iArr = this.f30598o;
+                slideTextView2.getLocationOnScreen(iArr);
+                rectF.offset(iArr[0], iArr[1]);
+                chatActivityEnterView.M1.getLocationOnScreen(iArr);
+                rectF.offset(-iArr[0], -iArr[1]);
+                if (rectF.contains(f7, f10)) {
+                    return 3;
+                }
+                return -1;
+            }
+            return -1;
         }
         return -1;
     }
 
     @Override
     public final void h(ArrayList arrayList) {
-        ChatActivityEnterView chatActivityEnterView = this.f27408o.V;
-        if (chatActivityEnterView.f20919r4) {
-            arrayList.add(2);
-        }
-        if (chatActivityEnterView.P && chatActivityEnterView.M1 != null && chatActivityEnterView.f20892m4 > 0.1f) {
-            arrayList.add(4);
+        if (ChatActivityEnterView.this.f23765r4) {
+            arrayList.add(1);
+            arrayList.add(3);
         }
     }
 
@@ -43,33 +62,32 @@ public final class tg extends j1.b {
     }
 
     @Override
-    public final void l(int i10, s0.d dVar) {
-        int i11;
-        int i12;
-        ug ugVar = this.f27408o;
-        ChatActivityEnterView chatActivityEnterView = ugVar.V;
-        if (i10 == 2) {
-            Rect rect = chatActivityEnterView.T3;
-            RectF rectF = chatActivityEnterView.R3;
-            rect.set((int) rectF.left, (int) rectF.top, (int) rectF.right, (int) rectF.bottom);
-            dVar.h(chatActivityEnterView.T3);
-            if (chatActivityEnterView.f20903o4 > 0.5f) {
-                i12 = R.string.AccActionResume;
-            } else {
-                i12 = R.string.AccActionPause;
-            }
-            dVar.o(LocaleController.getString(i12));
-        } else if (i10 == 4) {
+    public final void l(int i10, s0.c cVar) {
+        Rect rect;
+        ChatActivityEnterView chatActivityEnterView = ChatActivityEnterView.this;
+        if (i10 == 1) {
+            cVar.h(chatActivityEnterView.S3);
+            cVar.o(LocaleController.getString("Send", R.string.Send));
+        } else if (i10 == 2) {
             Rect rect2 = chatActivityEnterView.T3;
-            RectF rectF2 = ugVar.J;
-            rect2.set((int) rectF2.left, (int) rectF2.top, (int) rectF2.right, (int) rectF2.bottom);
-            dVar.h(chatActivityEnterView.T3);
-            if (chatActivityEnterView.O) {
-                i11 = R.string.AccActionOnceDeactivate;
-            } else {
-                i11 = R.string.AccActionOnceActivate;
+            RectF rectF = chatActivityEnterView.R3;
+            rect2.set((int) rectF.left, (int) rectF.top, (int) rectF.right, (int) rectF.bottom);
+            cVar.h(chatActivityEnterView.T3);
+            cVar.o(LocaleController.getString(R.string.Stop));
+        } else if (i10 == 3 && chatActivityEnterView.M1 != null) {
+            ChatActivityEnterView.SlideTextView slideTextView = chatActivityEnterView.f23721j1;
+            if (slideTextView != null && (rect = slideTextView.J) != null) {
+                Rect rect3 = AndroidUtilities.rectTmp2;
+                rect3.set(rect);
+                ChatActivityEnterView.SlideTextView slideTextView2 = chatActivityEnterView.f23721j1;
+                int[] iArr = this.f30598o;
+                slideTextView2.getLocationOnScreen(iArr);
+                rect3.offset(iArr[0], iArr[1]);
+                chatActivityEnterView.M1.getLocationOnScreen(iArr);
+                rect3.offset(-iArr[0], -iArr[1]);
+                cVar.h(rect3);
             }
-            dVar.o(LocaleController.getString(i11));
+            cVar.o(LocaleController.getString("Cancel", R.string.Cancel));
         }
     }
 }

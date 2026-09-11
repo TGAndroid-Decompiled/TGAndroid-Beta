@@ -1,31 +1,36 @@
 package org.telegram.ui.Components;
 
-import android.animation.ValueAnimator;
-public final class h31 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f23513a;
-    public final j31 f23514b;
+import android.content.Context;
+import android.graphics.Rect;
+import android.view.MotionEvent;
+import android.view.View;
+public final class h31 extends ll0 {
+    public final u31 X2;
 
-    public h31(j31 j31Var, int i10) {
-        this.f23513a = i10;
-        this.f23514b = j31Var;
+    public h31(u31 u31Var, Context context) {
+        super(context, null);
+        this.X2 = u31Var;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f23513a) {
-            case 0:
-                j31 j31Var = this.f23514b;
-                j31Var.getClass();
-                j31Var.Q = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                j31Var.h();
-                j31Var.g();
-                return;
-            default:
-                float max = Math.max(1.0f, ((Float) valueAnimator.getAnimatedValue()).floatValue());
-                j31 j31Var2 = this.f23514b;
-                j31Var2.K = max;
-                j31Var2.h.invalidate();
-                return;
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        if (motionEvent.getAction() == 0) {
+            float y3 = motionEvent.getY();
+            u31 u31Var = this.X2;
+            if (y3 < u31Var.A(true) - getTop()) {
+                u31Var.dismiss();
+                return true;
+            }
         }
+        return super.dispatchTouchEvent(motionEvent);
+    }
+
+    @Override
+    public final boolean onRequestFocusInDescendants(int i10, Rect rect) {
+        return true;
+    }
+
+    @Override
+    public final void requestChildFocus(View view, View view2) {
     }
 }

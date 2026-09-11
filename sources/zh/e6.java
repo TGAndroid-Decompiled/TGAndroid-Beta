@@ -1,35 +1,37 @@
 package zh;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.widget.FrameLayout;
-import java.util.ArrayList;
-public final class e6 extends FrameLayout {
-    public a3 f48384a;
-    public long f48385b;
-    public ArrayList f48386c;
-    public boolean d;
-    public final k7 e;
+import android.view.View;
+import org.telegram.ui.LaunchActivity;
+public final class e6 implements View.OnClickListener {
+    public final int f51835a;
+    public final j7 f51836b;
 
-    public e6(k7 k7Var, Context context) {
-        super(context);
-        this.e = k7Var;
-    }
-
-    public final void a(boolean z10) {
-        if (this.d != z10) {
-            this.d = z10;
-            invalidate();
-            this.f48384a.setIsVisible(z10);
-            this.e.A();
-        }
+    public e6(j7 j7Var, int i10) {
+        this.f51835a = i10;
+        this.f51836b = j7Var;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        if (!this.d) {
-            return;
+    public final void onClick(View view) {
+        org.telegram.ui.ActionBar.n2 R;
+        org.telegram.ui.ActionBar.n2 R2;
+        switch (this.f51835a) {
+            case 0:
+                if (this.f51836b.f52114f > 0 && (R = LaunchActivity.R()) != 0) {
+                    ?? obj = new Object();
+                    obj.f21142a = true;
+                    R.showAsSheet(new v7(), obj);
+                    return;
+                }
+                return;
+            default:
+                if (this.f51836b.f52114f > 0 && (R2 = LaunchActivity.R()) != 0) {
+                    ?? obj2 = new Object();
+                    obj2.f21142a = true;
+                    R2.showAsSheet(new v7(), obj2);
+                    return;
+                }
+                return;
         }
-        super.dispatchDraw(canvas);
     }
 }

@@ -9,7 +9,7 @@ public final class ContactsLoadingObserver {
     private final int currentAccount;
     private final Handler handler;
     private final NotificationCenter notificationCenter;
-    private final NotificationCenter.NotificationCenterDelegate observer = new z1(this, 0);
+    private final NotificationCenter.NotificationCenterDelegate observer = new v1(this, 0);
     private final Runnable releaseRunnable;
     private boolean released;
 
@@ -21,7 +21,7 @@ public final class ContactsLoadingObserver {
         this.callback = callback;
         int i10 = UserConfig.selectedAccount;
         this.currentAccount = i10;
-        this.releaseRunnable = new g1(this, 17);
+        this.releaseRunnable = new d1(this, 17);
         this.contactsController = ContactsController.getInstance(i10);
         this.notificationCenter = NotificationCenter.getInstance(i10);
         this.handler = new Handler(Looper.myLooper());

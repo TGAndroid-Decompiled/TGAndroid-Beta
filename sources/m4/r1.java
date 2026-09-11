@@ -1,63 +1,72 @@
 package m4;
 
+import android.media.session.MediaSession;
 import android.os.Bundle;
-import android.os.SystemClock;
+import android.os.IBinder;
+import android.text.TextUtils;
+import j$.util.Objects;
 public final class r1 {
-    public static final String e;
-    public static final String f13503f;
-    public static final String f13504g;
-    public static final String h;
-    public final int f13505a;
-    public final Bundle f13506b;
-    public final long f13507c;
-    public final p1 d;
+    public static final String f16065i;
+    public static final String f16066j;
+    public static final String f16067k;
+    public static final String f16068l;
+    public static final String f16069m;
+    public static final String f16070n;
+    public static final String f16071o;
+    public static final String f16072p;
+    public static final String f16073q;
+    public static final String f16074r;
+    public final int f16075a;
+    public final int f16076b;
+    public final int f16077c;
+    public final String d;
+    public final String f16078e;
+    public final IBinder f16079f;
+    public final Bundle f16080g;
+    public final MediaSession.Token h;
 
     static {
-        String str = e2.d0.f7188a;
-        e = Integer.toString(0, 36);
-        f13503f = Integer.toString(1, 36);
-        f13504g = Integer.toString(2, 36);
-        h = Integer.toString(3, 36);
+        String str = e2.d0.f8737a;
+        f16065i = Integer.toString(0, 36);
+        f16066j = Integer.toString(1, 36);
+        f16067k = Integer.toString(2, 36);
+        f16068l = Integer.toString(3, 36);
+        f16069m = Integer.toString(4, 36);
+        f16070n = Integer.toString(5, 36);
+        f16071o = Integer.toString(6, 36);
+        f16072p = Integer.toString(7, 36);
+        f16073q = Integer.toString(8, 36);
+        f16074r = Integer.toString(9, 36);
     }
 
-    public r1(int i10) {
-        this(i10, Bundle.EMPTY, SystemClock.elapsedRealtime(), null);
+    public r1(int i10, String str, f1 f1Var, Bundle bundle, MediaSession.Token token) {
+        str.getClass();
+        this.f16075a = i10;
+        this.f16076b = 1008001300;
+        this.f16077c = 5;
+        this.d = str;
+        this.f16078e = "";
+        this.f16079f = f1Var;
+        this.f16080g = bundle;
+        this.h = token;
     }
 
-    public static r1 a(Bundle bundle) {
-        p1 p1Var;
-        int i10 = bundle.getInt(e, -1);
-        Bundle bundle2 = bundle.getBundle(f13503f);
-        long j3 = bundle.getLong(f13504g, SystemClock.elapsedRealtime());
-        Bundle bundle3 = bundle.getBundle(h);
-        if (bundle3 != null) {
-            int i11 = bundle3.getInt(p1.d, 1000);
-            String string = bundle3.getString(p1.e, "");
-            Bundle bundle4 = bundle3.getBundle(p1.f13473f);
-            if (bundle4 == null) {
-                bundle4 = Bundle.EMPTY;
+    public final boolean equals(Object obj) {
+        if (obj instanceof r1) {
+            r1 r1Var = (r1) obj;
+            if (this.f16075a == r1Var.f16075a && this.f16076b == r1Var.f16076b && this.f16077c == r1Var.f16077c && TextUtils.equals(this.d, r1Var.d) && TextUtils.equals(this.f16078e, r1Var.f16078e) && Objects.equals(this.f16079f, r1Var.f16079f) && Objects.equals(this.h, r1Var.h)) {
+                return true;
             }
-            p1Var = new p1(string, i11, bundle4);
-        } else if (i10 != 0) {
-            p1Var = new p1(i10);
-        } else {
-            p1Var = null;
+            return false;
         }
-        p1 p1Var2 = p1Var;
-        if (bundle2 == null) {
-            bundle2 = Bundle.EMPTY;
-        }
-        return new r1(i10, bundle2, j3, p1Var2);
+        return false;
     }
 
-    public r1(int i10, Bundle bundle, long j3, p1 p1Var) {
-        e2.d.b(p1Var == null || i10 < 0);
-        this.f13505a = i10;
-        this.f13506b = new Bundle(bundle);
-        this.f13507c = j3;
-        if (p1Var == null && i10 < 0) {
-            p1Var = new p1(i10);
-        }
-        this.d = p1Var;
+    public final int hashCode() {
+        return Objects.hash(Integer.valueOf(this.f16075a), 0, Integer.valueOf(this.f16076b), Integer.valueOf(this.f16077c), this.d, this.f16078e, null, this.f16079f, this.h);
+    }
+
+    public final String toString() {
+        return "SessionToken {pkg=" + this.d + " type=0 libraryVersion=" + this.f16076b + " interfaceVersion=" + this.f16077c + " service=" + this.f16078e + " IMediaSession=" + this.f16079f + " extras=" + this.f16080g + "}";
     }
 }

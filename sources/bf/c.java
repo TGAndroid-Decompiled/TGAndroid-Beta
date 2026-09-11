@@ -2,7 +2,7 @@ package bf;
 
 import v7.i0;
 public final class c extends n {
-    public char f2230g;
+    public char f2623g;
 
     @Override
     public final void a(i0 i0Var) {

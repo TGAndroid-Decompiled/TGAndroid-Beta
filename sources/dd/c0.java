@@ -16,7 +16,7 @@ public enum c0 extends b2 {
             lVar.a(b2.O);
         } else {
             lVar.f('<');
-            lVar.f6470c = b2.K;
+            lVar.f6778c = b2.K;
         }
     }
 }

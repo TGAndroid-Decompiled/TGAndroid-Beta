@@ -1,21 +1,12 @@
 package org.telegram.messenger;
 
-import java.util.function.ToIntFunction;
-import org.telegram.messenger.GiftAuctionController;
-public final class h4 implements ToIntFunction {
-    public final int f15334a;
+import org.telegram.messenger.GoogleMapsProvider;
+public final class h4 implements h8.f {
+    public final GoogleMapsProvider.GoogleMapView f17854a;
+    public final q0.a f17855b;
 
-    public h4(int i10) {
-        this.f15334a = i10;
-    }
-
-    @Override
-    public final int applyAsInt(Object obj) {
-        switch (this.f15334a) {
-            case 0:
-                return GiftAuctionController.d((GiftAuctionController.Auction) obj);
-            default:
-                return Integer.parseInt((String) obj);
-        }
+    public h4(GoogleMapsProvider.GoogleMapView googleMapView, q0.a aVar) {
+        this.f17854a = googleMapView;
+        this.f17855b = aVar;
     }
 }

@@ -3,9 +3,9 @@ package a4;
 import android.text.Layout;
 import android.text.SpannableStringBuilder;
 public final class f {
-    public static final e f228c = new e(0);
-    public final d2.b f229a;
-    public final int f230b;
+    public static final e f235c = new e(0);
+    public final d2.b f236a;
+    public final int f237b;
 
     public f(SpannableStringBuilder spannableStringBuilder, Layout.Alignment alignment, float f7, int i10, float f10, int i11, boolean z10, int i12, int i13) {
         int i14;
@@ -14,7 +14,7 @@ public final class f {
         } else {
             i14 = -16777216;
         }
-        this.f229a = new d2.b(spannableStringBuilder, alignment, null, null, f7, 0, i10, f10, i11, Integer.MIN_VALUE, -3.4028235E38f, -3.4028235E38f, -3.4028235E38f, z10, i14, Integer.MIN_VALUE, 0.0f, 0);
-        this.f230b = i13;
+        this.f236a = new d2.b(spannableStringBuilder, alignment, null, null, f7, 0, i10, f10, i11, Integer.MIN_VALUE, -3.4028235E38f, -3.4028235E38f, -3.4028235E38f, z10, i14, Integer.MIN_VALUE, 0.0f, 0);
+        this.f237b = i13;
     }
 }

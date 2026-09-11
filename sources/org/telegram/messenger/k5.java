@@ -1,25 +1,25 @@
 package org.telegram.messenger;
-
-import org.telegram.messenger.ImageLoader;
 public final class k5 implements Runnable {
-    public final int f15587a;
-    public final ImageLoader.HttpImageTask f15588b;
-    public final Boolean f15589c;
+    public final int f18157a;
+    public final LocaleController f18158b;
+    public final String f18159c;
+    public final Runnable d;
 
-    public k5(ImageLoader.HttpImageTask httpImageTask, Boolean bool, int i10) {
-        this.f15587a = i10;
-        this.f15588b = httpImageTask;
-        this.f15589c = bool;
+    public k5(LocaleController localeController, String str, Runnable runnable, int i10) {
+        this.f18157a = i10;
+        this.f18158b = localeController;
+        this.f18159c = str;
+        this.d = runnable;
     }
 
     @Override
     public final void run() {
-        switch (this.f15587a) {
+        switch (this.f18157a) {
             case 0:
-                this.f15588b.lambda$onPostExecute$3(this.f15589c);
+                LocaleController.m(this.f18158b, this.f18159c, this.d);
                 return;
             default:
-                this.f15588b.lambda$onPostExecute$4(this.f15589c);
+                LocaleController.o(this.f18158b, this.f18159c, this.d);
                 return;
         }
     }

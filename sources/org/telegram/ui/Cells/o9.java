@@ -1,70 +1,140 @@
 package org.telegram.ui.Cells;
 
-import android.animation.AnimatorSet;
-import android.animation.ObjectAnimator;
-import android.util.Property;
+import android.graphics.Rect;
+import android.view.ActionMode;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
-import android.view.animation.DecelerateInterpolator;
-import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.LanguageDetector;
-import org.telegram.ui.Components.ef0;
-public final class o9 implements LanguageDetector.StringCallback, LanguageDetector.ExceptionCallback, ef0 {
-    public final Object f19663a;
-    public final Object f19664b;
+import org.telegram.ui.Components.EditTextBoldCursor;
+import org.telegram.ui.Components.wt;
+public final class o9 extends ActionMode.Callback2 {
+    public final int f22447a = 0;
+    public final ActionMode.Callback f22448b;
+    public final Object f22449c;
 
-    public o9(Object obj, Object obj2) {
-        this.f19663a = obj;
-        this.f19664b = obj2;
+    public o9(EditTextBoldCursor editTextBoldCursor, ActionMode.Callback callback) {
+        this.f22449c = editTextBoldCursor;
+        this.f22448b = callback;
     }
 
     @Override
-    public void k(int i10, int i11) {
-        w5 w5Var = (w5) this.f19663a;
-        androidx.activity.i iVar = w5Var.e;
-        TextView textView = w5Var.f20662b;
-        ((ef0) this.f19664b).k(i10, i11);
-        if (i11 > 0) {
-            textView.setText("+" + i11);
-        } else {
-            textView.setText("" + i11);
+    public final boolean onActionItemClicked(ActionMode actionMode, MenuItem menuItem) {
+        switch (this.f22447a) {
+            case 0:
+                ((n9) this.f22448b).onActionItemClicked(actionMode, menuItem);
+                return true;
+            case 1:
+                return this.f22448b.onActionItemClicked(actionMode, menuItem);
+            default:
+                return ((wt) this.f22448b).onActionItemClicked(actionMode, menuItem);
         }
-        if (textView.getTag() == null) {
-            AnimatorSet animatorSet = w5Var.d;
-            if (animatorSet != null) {
-                animatorSet.cancel();
-            }
-            textView.setTag(1);
-            AnimatorSet animatorSet2 = new AnimatorSet();
-            w5Var.d = animatorSet2;
-            Property property = View.ALPHA;
-            animatorSet2.playTogether(ObjectAnimator.ofFloat(textView, property, 1.0f), ObjectAnimator.ofFloat(w5Var.f20661a, property, 0.0f));
-            w5Var.d.setDuration(250L);
-            w5Var.d.setInterpolator(new DecelerateInterpolator());
-            w5Var.d.addListener(new v5(w5Var, 0));
-            w5Var.d.start();
-            return;
+    }
+
+    @Override
+    public final boolean onCreateActionMode(ActionMode actionMode, Menu menu) {
+        switch (this.f22447a) {
+            case 0:
+                ((n9) this.f22448b).onCreateActionMode(actionMode, menu);
+                return true;
+            case 1:
+                return this.f22448b.onCreateActionMode(actionMode, menu);
+            default:
+                return ((wt) this.f22448b).onCreateActionMode(actionMode, menu);
         }
-        AndroidUtilities.cancelRunOnUIThread(iVar);
-        AndroidUtilities.runOnUIThread(iVar, 1000L);
     }
 
     @Override
-    public void run(String str) {
-        p9 p9Var = (p9) this.f19663a;
-        p9Var.f19693a = str;
-        p9Var.a((Menu) this.f19664b);
+    public final void onDestroyActionMode(ActionMode actionMode) {
+        switch (this.f22447a) {
+            case 0:
+                ((n9) this.f22448b).onDestroyActionMode(actionMode);
+                return;
+            case 1:
+                this.f22448b.onDestroyActionMode(actionMode);
+                ((EditTextBoldCursor) this.f22449c).f();
+                ((EditTextBoldCursor) this.f22449c).floatingActionMode = null;
+                return;
+            default:
+                ((wt) this.f22448b).onDestroyActionMode(actionMode);
+                return;
+        }
     }
 
     @Override
-    public void run(Exception exc) {
-        p9 p9Var = (p9) this.f19663a;
-        p9Var.getClass();
-        FileLog.e("mlkit: failed to detect language in selection");
-        FileLog.e(exc);
-        p9Var.f19693a = null;
-        p9Var.a((Menu) this.f19664b);
+    public final void onGetContentRect(ActionMode actionMode, View view, Rect rect) {
+        int i10;
+        switch (this.f22447a) {
+            case 0:
+                if (((da) this.f22449c).y()) {
+                    ((da) this.f22449c).P();
+                    int[] m10 = ((da) this.f22449c).m();
+                    da daVar = (da) this.f22449c;
+                    int i11 = 1;
+                    if (daVar.W != null) {
+                        da daVar2 = (da) this.f22449c;
+                        int[] C = daVar2.C(daVar2.f21799u);
+                        int i12 = C[0];
+                        da daVar3 = (da) this.f22449c;
+                        i10 = i12 + daVar3.f21762a;
+                        int dp = (((-daVar.n()) / 2) + ((C[1] + daVar3.f21764b) + m10[1])) - AndroidUtilities.dp(4.0f);
+                        if (dp >= 1) {
+                            i11 = dp;
+                        }
+                    } else {
+                        i10 = 0;
+                    }
+                    int width = ((da) this.f22449c).F.getWidth();
+                    ((da) this.f22449c).O();
+                    da daVar4 = (da) this.f22449c;
+                    if (daVar4.W != null) {
+                        width = daVar4.C(daVar4.v)[0] + ((da) this.f22449c).f21762a;
+                    }
+                    rect.set(Math.min(i10, width), i11, Math.max(i10, width), i11 + 1);
+                    return;
+                }
+                return;
+            case 1:
+                ActionMode.Callback callback = this.f22448b;
+                if (org.telegram.ui.Components.p2.d(callback)) {
+                    m4.t0.d(callback).onGetContentRect(actionMode, view, rect);
+                    return;
+                } else {
+                    super.onGetContentRect(actionMode, view, rect);
+                    return;
+                }
+            default:
+                ActionMode.Callback callback2 = (ActionMode.Callback) this.f22449c;
+                if (org.telegram.ui.Components.p2.d(callback2)) {
+                    m4.t0.d(callback2).onGetContentRect(actionMode, view, rect);
+                    return;
+                } else {
+                    super.onGetContentRect(actionMode, view, rect);
+                    return;
+                }
+        }
+    }
+
+    @Override
+    public final boolean onPrepareActionMode(ActionMode actionMode, Menu menu) {
+        switch (this.f22447a) {
+            case 0:
+                ((n9) this.f22448b).onPrepareActionMode(actionMode, menu);
+                return true;
+            case 1:
+                return this.f22448b.onPrepareActionMode(actionMode, menu);
+            default:
+                return ((wt) this.f22448b).f32337a.onPrepareActionMode(actionMode, menu);
+        }
+    }
+
+    public o9(wt wtVar, ActionMode.Callback callback) {
+        this.f22448b = wtVar;
+        this.f22449c = callback;
+    }
+
+    public o9(da daVar, n9 n9Var) {
+        this.f22449c = daVar;
+        this.f22448b = n9Var;
     }
 }

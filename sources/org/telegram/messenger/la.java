@@ -1,43 +1,33 @@
 package org.telegram.messenger;
 
-import java.util.ArrayList;
+import j$.util.concurrent.ConcurrentHashMap;
+import yf.r;
 public final class la implements Runnable {
-    public final int f15699a;
-    public final MessagesController f15700b;
-    public final ArrayList f15701c;
+    public final int f18282a;
+    public final MessagesController f18283b;
+    public final r f18284c;
+    public final ConcurrentHashMap d;
+    public final ConcurrentHashMap f18285e;
 
-    public la(MessagesController messagesController, ArrayList arrayList, int i10) {
-        this.f15699a = i10;
-        this.f15700b = messagesController;
-        this.f15701c = arrayList;
+    public la(MessagesController messagesController, r rVar, ConcurrentHashMap concurrentHashMap, ConcurrentHashMap concurrentHashMap2, int i10) {
+        this.f18282a = i10;
+        this.f18283b = messagesController;
+        this.f18284c = rVar;
+        this.d = concurrentHashMap;
+        this.f18285e = concurrentHashMap2;
     }
 
     @Override
     public final void run() {
-        switch (this.f15699a) {
+        switch (this.f18282a) {
             case 0:
-                this.f15700b.lambda$processUpdateArray$397(this.f15701c);
+                this.f18283b.lambda$processUpdateArray$400(this.f18284c, this.d, this.f18285e);
                 return;
             case 1:
-                this.f15700b.lambda$processUpdates$379(this.f15701c);
-                return;
-            case 2:
-                this.f15700b.lambda$processUpdates$378(this.f15701c);
-                return;
-            case 3:
-                this.f15700b.lambda$getChannelDifference$341(this.f15701c);
-                return;
-            case 4:
-                this.f15700b.lambda$processUpdateArray$398(this.f15701c);
-                return;
-            case 5:
-                this.f15700b.lambda$checkChatInviter$372(this.f15701c);
-                return;
-            case 6:
-                this.f15700b.lambda$reloadMentionsCountForChannels$222(this.f15701c);
+                this.f18283b.lambda$processUpdateArray$401(this.f18284c, this.d, this.f18285e);
                 return;
             default:
-                this.f15700b.lambda$checkChatInviter$373(this.f15701c);
+                this.f18283b.lambda$processUpdateArray$405(this.f18284c, this.d, this.f18285e);
                 return;
         }
     }

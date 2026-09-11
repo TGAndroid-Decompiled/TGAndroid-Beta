@@ -4,7 +4,7 @@ public class ResizeAtom extends Atom {
     private float h;
     private int hunit;
     private boolean keepaspectratio;
-    private float f14621w;
+    private float f17056w;
     private int wunit;
 
     public ResizeAtom(Atom atom, String str, String str2, boolean z10) {
@@ -17,7 +17,7 @@ public class ResizeAtom extends Atom {
             this.wunit = -1;
         } else {
             this.wunit = (int) length[0];
-            this.f14621w = length[1];
+            this.f17056w = length[1];
         }
         if (length2.length != 2) {
             this.hunit = -1;
@@ -40,7 +40,7 @@ public class ResizeAtom extends Atom {
             return createBox;
         }
         if (i10 != -1 && this.hunit != -1) {
-            double factor2 = (SpaceAtom.getFactor(i10, teXEnvironment) * this.f14621w) / createBox.width;
+            double factor2 = (SpaceAtom.getFactor(i10, teXEnvironment) * this.f17056w) / createBox.width;
             double factor3 = (SpaceAtom.getFactor(this.hunit, teXEnvironment) * this.h) / createBox.height;
             if (this.keepaspectratio) {
                 d = Math.min(factor2, factor3);
@@ -51,7 +51,7 @@ public class ResizeAtom extends Atom {
             }
         } else {
             if (i10 != -1 && this.hunit == -1) {
-                factor = SpaceAtom.getFactor(i10, teXEnvironment) * this.f14621w;
+                factor = SpaceAtom.getFactor(i10, teXEnvironment) * this.f17056w;
                 f7 = createBox.width;
             } else {
                 factor = SpaceAtom.getFactor(this.hunit, teXEnvironment) * this.h;

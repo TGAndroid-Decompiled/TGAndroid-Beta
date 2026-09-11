@@ -9,14 +9,14 @@ public enum c0 implements a {
     PS512(-39),
     RS1(-65535);
     
-    public final int f4495a;
+    public final int f4600a;
 
     c0(int i10) {
-        this.f4495a = i10;
+        this.f4600a = i10;
     }
 
     @Override
     public final int a() {
-        return this.f4495a;
+        return this.f4600a;
     }
 }

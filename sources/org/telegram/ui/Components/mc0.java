@@ -1,11 +1,12 @@
 package org.telegram.ui.Components;
 
-import android.graphics.RuntimeShader;
-public abstract class mc0 {
-    public static RuntimeShader a(String str) {
-        return new RuntimeShader(str);
-    }
+import android.view.View;
+public interface mc0 {
+    void addOnLayoutChangeListener(View.OnLayoutChangeListener onLayoutChangeListener);
 
-    public static void b() {
-    }
+    int getMeasuredHeight();
+
+    int getTop();
+
+    void removeOnLayoutChangeListener(View.OnLayoutChangeListener onLayoutChangeListener);
 }

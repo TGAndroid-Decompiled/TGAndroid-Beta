@@ -1,20 +1,20 @@
 package d6;
 public interface h {
-    void A(f fVar, String str);
+    void d(f fVar, String str);
 
-    void B(f fVar, int i10);
+    void f(f fVar, int i10);
 
-    void b(f fVar, String str);
+    void g(f fVar, boolean z10);
 
-    void c(f fVar, int i10);
+    void j(f fVar, int i10);
 
-    void d(f fVar, boolean z10);
+    void n(f fVar);
 
-    void p(f fVar, int i10);
+    void q(f fVar, int i10);
 
-    void r(f fVar);
+    void t(f fVar);
+
+    void u(f fVar, String str);
 
     void v(f fVar, int i10);
-
-    void z(f fVar);
 }

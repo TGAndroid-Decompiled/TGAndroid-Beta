@@ -6,7 +6,7 @@ import android.media.AudioRecord;
 import android.media.projection.MediaProjection;
 import android.os.Build;
 import android.os.Process;
-import hc.b;
+import i2.g;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.util.Arrays;
@@ -89,8 +89,8 @@ public class WebRtcAudioRecord {
                         try {
                             WebRtcAudioRecord webRtcAudioRecord = WebRtcAudioRecord.this;
                             webRtcAudioRecord.nativeDataIsRecorded(read, webRtcAudioRecord.nativeAudioRecord);
-                        } catch (UnsatisfiedLinkError e) {
-                            FileLog.e(e);
+                        } catch (UnsatisfiedLinkError e7) {
+                            FileLog.e(e7);
                             this.keepAlive = false;
                         }
                     }
@@ -110,8 +110,8 @@ public class WebRtcAudioRecord {
                 if (WebRtcAudioRecord.this.audioRecord != null) {
                     WebRtcAudioRecord.this.audioRecord.stop();
                 }
-            } catch (IllegalStateException e7) {
-                Logging.e("WebRtcAudioRecord", "AudioRecord.stop failed: " + e7.getMessage());
+            } catch (IllegalStateException e10) {
+                Logging.e("WebRtcAudioRecord", "AudioRecord.stop failed: " + e10.getMessage());
             }
         }
 
@@ -264,8 +264,8 @@ public class WebRtcAudioRecord {
                 } else {
                     try {
                         this.audioRecord = new AudioRecord(audioSource, i10, channelCountToConfiguration, 2, max);
-                    } catch (IllegalArgumentException e) {
-                        reportWebRtcAudioRecordInitError("AudioRecord ctor error: " + e.getMessage());
+                    } catch (IllegalArgumentException e7) {
+                        reportWebRtcAudioRecordInitError("AudioRecord ctor error: " + e7.getMessage());
                         releaseAudioResources(false);
                         return -1;
                     }
@@ -283,7 +283,7 @@ public class WebRtcAudioRecord {
                 releaseAudioResources(false);
                 return -1;
             }
-            reportWebRtcAudioRecordInitError(b.j(minBufferSize, "AudioRecord.getMinBufferSize failed: "));
+            reportWebRtcAudioRecordInitError(g.i(minBufferSize, "AudioRecord.getMinBufferSize failed: "));
             return -1;
         }
         return -1;
@@ -403,9 +403,9 @@ public class WebRtcAudioRecord {
             this.audioThread = audioRecordThread;
             audioRecordThread.start();
             return true;
-        } catch (IllegalStateException e) {
+        } catch (IllegalStateException e7) {
             AudioRecordStartErrorCode audioRecordStartErrorCode2 = AudioRecordStartErrorCode.AUDIO_RECORD_START_EXCEPTION;
-            reportWebRtcAudioRecordStartError(audioRecordStartErrorCode2, "AudioRecord.startRecording failed: " + e.getMessage());
+            reportWebRtcAudioRecordStartError(audioRecordStartErrorCode2, "AudioRecord.startRecording failed: " + e7.getMessage());
             return false;
         }
     }
@@ -466,9 +466,9 @@ public class WebRtcAudioRecord {
                                 return;
                             }
                             return;
-                        } catch (IllegalStateException e) {
+                        } catch (IllegalStateException e7) {
                             AudioRecordStartErrorCode audioRecordStartErrorCode2 = AudioRecordStartErrorCode.AUDIO_RECORD_START_EXCEPTION;
-                            reportWebRtcAudioRecordStartError(audioRecordStartErrorCode2, "AudioRecord.startRecording failed: " + e.getMessage());
+                            reportWebRtcAudioRecordStartError(audioRecordStartErrorCode2, "AudioRecord.startRecording failed: " + e7.getMessage());
                             return;
                         }
                     }
@@ -481,7 +481,7 @@ public class WebRtcAudioRecord {
                     return;
                 }
             }
-            reportWebRtcAudioRecordInitError(b.j(minBufferSize, "AudioRecord.getMinBufferSize failed: "));
+            reportWebRtcAudioRecordInitError(g.i(minBufferSize, "AudioRecord.getMinBufferSize failed: "));
         }
     }
 

@@ -1,24 +1,74 @@
 package eh;
 
-import android.graphics.Canvas;
-import bh.f;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.ActionBar.f6;
+import org.telegram.ui.ActionBar.j6;
 public final class e implements a {
-    public a f7525a;
+    public final f6 f9110a;
+    public d f9111b;
+    public d f9112c;
+    public d d;
+    public d f9113e;
+    public float f9114f;
+    public float h;
+    public float f9115n;
+    public float f9116r;
 
-    @Override
-    public final bh.d k() {
-        return new f(this);
+    public e(f6 f6Var) {
+        this.f9110a = f6Var;
+        float dpf2 = AndroidUtilities.dpf2(1.0f);
+        float dpf22 = AndroidUtilities.dpf2(0.33333334f);
+        this.f9115n = dpf2;
+        this.f9116r = dpf22;
+        float dpf23 = AndroidUtilities.dpf2(1.0f);
+        float dpf24 = AndroidUtilities.dpf2(0.6666667f);
+        this.f9114f = dpf23;
+        this.h = dpf24;
     }
 
     @Override
-    public final void u(Canvas canvas, float f7, float f10, float f11, float f12) {
-        a aVar = this.f7525a;
-        if (aVar != null) {
-            aVar.u(canvas, f7, f10, f11, f12);
+    public final int G() {
+        return a(this.d);
+    }
+
+    @Override
+    public final int J() {
+        return a(this.f9111b);
+    }
+
+    public final int a(d dVar) {
+        boolean a2;
+        if (dVar != null) {
+            f6 f6Var = this.f9110a;
+            if (!(f6Var instanceof bi.b) && f6Var == null) {
+                a2 = j6.I.q();
+            } else {
+                a2 = f6Var.a();
+            }
+            return dVar.f(f6Var, a2);
         }
+        return 0;
+    }
+
+    public final void b(int i10, int i11) {
+        this.f9111b = new c(i11, i10, 0);
+    }
+
+    public final void c(int i10, int i11) {
+        this.d = new c(i11, i10, 0);
+    }
+
+    public final void d(int i10, int i11) {
+        this.f9112c = new c(i11, i10, 0);
     }
 
     @Override
-    public final void b() {
+    public final int k0() {
+        return a(this.f9113e);
+    }
+
+    @Override
+    public final int p() {
+        return a(this.f9112c);
     }
 }

@@ -1,47 +1,49 @@
 package org.telegram.ui;
 
-import j$.util.Objects;
-import org.telegram.messenger.SaveToGallerySettingsHelper;
-public final class v41 extends ng.a {
-    public final SaveToGallerySettingsHelper.DialogException f37409c;
-    public final String d;
+import android.app.Activity;
+import android.graphics.Canvas;
+import android.graphics.Path;
+import android.widget.FrameLayout;
+import org.telegram.messenger.AndroidUtilities;
+public final class v41 extends FrameLayout implements org.telegram.ui.ActionBar.z5 {
+    public final Path f41410a;
+    public dh.d f41411b;
 
-    public v41(int i10) {
-        super(i10, false);
-        this.f37409c = null;
+    public v41(Activity activity) {
+        super(activity);
+        this.f41410a = new Path();
     }
 
-    public final boolean equals(Object obj) {
-        SaveToGallerySettingsHelper.DialogException dialogException;
-        if (this == obj) {
-            return true;
+    @Override
+    public final void d() {
+        dh.d dVar = this.f41411b;
+        if (dVar != null) {
+            dVar.u();
         }
-        if (obj == null || v41.class != obj.getClass()) {
-            return false;
-        }
-        v41 v41Var = (v41) obj;
-        if (this.f14046a != v41Var.f14046a) {
-            return false;
-        }
-        String str = this.d;
-        if (str != null) {
-            return Objects.equals(str, v41Var.d);
-        }
-        SaveToGallerySettingsHelper.DialogException dialogException2 = this.f37409c;
-        if (dialogException2 == null || (dialogException = v41Var.f37409c) == null || dialogException2.dialogId == dialogException.dialogId) {
-            return true;
-        }
-        return false;
     }
 
-    public v41(SaveToGallerySettingsHelper.DialogException dialogException) {
-        super(2, false);
-        this.f37409c = dialogException;
+    @Override
+    public final void dispatchDraw(Canvas canvas) {
+        canvas.save();
+        canvas.clipPath(this.f41410a);
+        super.dispatchDraw(canvas);
+        canvas.restore();
     }
 
-    public v41(int i10, String str) {
-        super(i10, false);
-        this.d = str;
-        this.f37409c = null;
+    public int[] getColorKeys() {
+        return null;
+    }
+
+    @Override
+    public final void onSizeChanged(int i10, int i11, int i12, int i13) {
+        super.onSizeChanged(i10, i11, i12, i13);
+        Path path = this.f41410a;
+        path.rewind();
+        path.addRoundRect(AndroidUtilities.dp(9.0f), AndroidUtilities.dp(9.0f), i10 - AndroidUtilities.dp(9.0f), i11 - AndroidUtilities.dp(9.0f), AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), Path.Direction.CW);
+    }
+
+    public void setBlurredBackground(dh.d dVar) {
+        this.f41411b = dVar;
+        setBackground(dVar);
     }
 }

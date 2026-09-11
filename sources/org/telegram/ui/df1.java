@@ -1,52 +1,54 @@
 package org.telegram.ui;
 
-import android.app.Activity;
-import android.text.TextUtils;
 import android.view.View;
-import org.telegram.messenger.MediaDataController;
-import org.telegram.messenger.UserConfig;
+import org.telegram.messenger.MessagesController;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stars;
-public final class df1 extends l71 {
-    public boolean f31896d2;
-    public final ef1 f31897e2;
+public final class df1 implements xh.c, MessagesController.ErrorDelegate, r0.n, org.telegram.ui.Components.cl0 {
+    public final eg1 f35782a;
 
-    public df1(ef1 ef1Var, ef1 ef1Var2, Activity activity) {
-        super(ef1Var2, activity, false, null, 3, null);
-        this.f31897e2 = ef1Var;
-        this.f31896d2 = true;
+    public df1(eg1 eg1Var) {
+        this.f35782a = eg1Var;
     }
 
     @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        super.onLayout(z10, i10, i11, i12, i13);
-        if (this.f31896d2) {
-            this.f31896d2 = false;
-            this.f31897e2.f32179f.s(null);
+    public r0.l1 T0(View view, r0.l1 l1Var) {
+        int i10 = l1Var.f44711a.f(519).d;
+        eg1 eg1Var = this.f35782a;
+        eg1Var.f36038e1 = i10;
+        ag1 ag1Var = eg1Var.f36060r0;
+        if (ag1Var != null) {
+            ag1Var.setPadding(0, 0, 0, i10);
         }
+        uf1 uf1Var = eg1Var.f36054n;
+        if (uf1Var != null) {
+            uf1Var.f41085a.setTranslationY((-eg1Var.f36038e1) - eg1Var.f36035d1);
+        }
+        eg1Var.h.setTranslationY(((-eg1Var.X0) - eg1Var.f36038e1) - eg1Var.f36035d1);
+        eg1Var.B0();
+        return r0.l1.f44710b;
     }
 
     @Override
-    public final void p(View view, Long l4, TLRPC.Document document, TL_stars.TL_starGiftUnique tL_starGiftUnique, Integer num) {
-        int i10;
-        int i11;
-        long j3;
-        ef1 ef1Var = this.f31897e2;
-        i10 = ((org.telegram.ui.ActionBar.p2) ef1Var).currentAccount;
-        boolean z10 = false;
-        if (!TextUtils.isEmpty(UserConfig.getInstance(i10).defaultTopicIcons)) {
-            MediaDataController mediaDataController = ef1Var.getMediaDataController();
-            i11 = ((org.telegram.ui.ActionBar.p2) ef1Var).currentAccount;
-            TLRPC.TL_messages_stickerSet stickerSetByEmojiOrName = mediaDataController.getStickerSetByEmojiOrName(UserConfig.getInstance(i11).defaultTopicIcons);
-            if (stickerSetByEmojiOrName == null) {
-                j3 = 0;
-            } else {
-                j3 = stickerSetByEmojiOrName.set.f17222id;
-            }
-            if (j3 == MediaDataController.getStickerSetId(document)) {
-                z10 = true;
-            }
-        }
-        ef1Var.b0(l4, z10);
+    public boolean mo18d(float f7, float f10, int i10, View view) {
+        return eg1.W(this.f35782a, view, f7);
+    }
+
+    @Override
+    public void f(boolean z10, boolean z11) {
+        eg1 eg1Var = this.f35782a;
+        eg1Var.U0.i(eg1Var.R0.c(), z10, z11);
+    }
+
+    @Override
+    public boolean run(TLRPC.TL_error tL_error) {
+        return eg1.U(this.f35782a, tL_error);
+    }
+
+    @Override
+    public void h() {
+    }
+
+    @Override
+    public void q(float f7) {
     }
 }

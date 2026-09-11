@@ -1,75 +1,152 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Matrix;
-import android.graphics.Paint;
-import android.graphics.RadialGradient;
-import android.graphics.Shader;
-import org.telegram.messenger.LiteMode;
-public final class f20 {
-    public float f22811c;
-    public float d;
-    public float e;
-    public float f22812f;
-    public RadialGradient f22813g;
-    public final int f22814i;
-    public int f22815j;
-    public int f22816k;
-    public int f22817l;
-    public float f22809a = -1.0f;
-    public float f22810b = -1.0f;
-    public final Matrix h = new Matrix();
-    public final int f22818m = org.telegram.ui.ActionBar.j6.Xg;
-    public final int f22819n = org.telegram.ui.ActionBar.j6.Yg;
-    public final int f22820o = org.telegram.ui.ActionBar.j6.Zg;
-    public final int f22821p = org.telegram.ui.ActionBar.j6.f17882ah;
-    public final int f22822q = org.telegram.ui.ActionBar.j6.f18027ih;
-    public final int f22823r = org.telegram.ui.ActionBar.j6.f18046jh;
-    public final int f22824s = org.telegram.ui.ActionBar.j6.f18066kh;
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
+import android.content.Context;
+import android.graphics.Rect;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ScrollView;
+import java.util.ArrayList;
+public class f20 extends ScrollView {
+    public final int f25873a;
+    public final a0.i f25874b;
+    public final ArrayList f25875c;
+    public final e20 d;
+    public int f25876e;
+    public c20 f25877f;
+    public boolean h;
+    public int f25878n;
 
-    public f20(int i10) {
-        this.f22814i = i10;
-        a();
+    public f20(Context context, int i10) {
+        super(context);
+        this.f25874b = new a0.i();
+        this.f25875c = new ArrayList();
+        this.f25873a = i10;
+        e20 e20Var = new e20(this, context);
+        this.d = e20Var;
+        setVerticalScrollBarEnabled(false);
+        addView(e20Var, w7.x5.c(-2.0f, -1));
     }
 
-    public final void a() {
-        int i10 = this.f22814i;
-        if (i10 == 0) {
-            int w02 = org.telegram.ui.ActionBar.j6.w0(null, this.f22818m, false);
-            this.f22815j = w02;
-            int w03 = org.telegram.ui.ActionBar.j6.w0(null, this.f22819n, false);
-            this.f22816k = w03;
-            this.f22813g = new RadialGradient(200.0f, 200.0f, 200.0f, new int[]{w02, w03}, (float[]) null, Shader.TileMode.CLAMP);
-        } else if (i10 == 1) {
-            int w04 = org.telegram.ui.ActionBar.j6.w0(null, this.f22820o, false);
-            this.f22815j = w04;
-            int w05 = org.telegram.ui.ActionBar.j6.w0(null, this.f22821p, false);
-            this.f22816k = w05;
-            this.f22813g = new RadialGradient(200.0f, 200.0f, 200.0f, new int[]{w04, w05}, (float[]) null, Shader.TileMode.CLAMP);
-        } else if (i10 == 3) {
-            int w06 = org.telegram.ui.ActionBar.j6.w0(null, this.f22822q, false);
-            this.f22815j = w06;
-            int w07 = org.telegram.ui.ActionBar.j6.w0(null, this.f22824s, false);
-            this.f22817l = w07;
-            int w08 = org.telegram.ui.ActionBar.j6.w0(null, this.f22823r, false);
-            this.f22816k = w08;
-            this.f22813g = new RadialGradient(200.0f, 200.0f, 200.0f, new int[]{w06, w07, w08}, new float[]{0.0f, 0.6f, 1.0f}, Shader.TileMode.CLAMP);
+    public void a(m30 m30Var) {
+        e20 e20Var = this.d;
+        ArrayList arrayList = e20Var.f25522c;
+        f20 f20Var = e20Var.f25526r;
+        f20Var.f25875c.add(m30Var);
+        if (!m30Var.d) {
+            f20Var.f25874b.k(m30Var, m30Var.getUid());
         }
+        AnimatorSet animatorSet = e20Var.f25520a;
+        if (animatorSet != null && animatorSet.isRunning()) {
+            e20Var.f25520a.setupEndValues();
+            e20Var.f25520a.cancel();
+        }
+        e20Var.f25521b = false;
+        AnimatorSet animatorSet2 = new AnimatorSet();
+        e20Var.f25520a = animatorSet2;
+        animatorSet2.addListener(new d20(e20Var, 1));
+        e20Var.f25520a.setDuration(150L);
+        e20Var.d = m30Var;
+        arrayList.clear();
+        arrayList.add(ObjectAnimator.ofFloat(e20Var.d, View.SCALE_X, 0.01f, 1.0f));
+        arrayList.add(ObjectAnimator.ofFloat(e20Var.d, View.SCALE_Y, 0.01f, 1.0f));
+        arrayList.add(ObjectAnimator.ofFloat(e20Var.d, View.ALPHA, 0.0f, 1.0f));
+        e20Var.addView(m30Var);
     }
 
-    public final void b(Paint paint) {
-        int i10 = this.f22814i;
-        if (i10 != 0 && i10 != 1 && i10 != 3) {
-            paint.setShader(null);
-            paint.setColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f17901bh, false));
-        } else if (!LiteMode.isEnabled(512)) {
-            paint.setShader(null);
-            if (i10 == 3) {
-                paint.setColor(i0.a.d(0.5f, i0.a.d(0.5f, this.f22815j, this.f22816k), this.f22817l));
-            } else {
-                paint.setColor(i0.a.d(0.5f, this.f22815j, this.f22816k));
-            }
-        } else {
-            paint.setShader(this.f22813g);
+    public void b() {
+        e20 e20Var = this.d;
+        ArrayList arrayList = e20Var.f25522c;
+        f20 f20Var = e20Var.f25526r;
+        f20Var.h = true;
+        ArrayList arrayList2 = f20Var.f25875c;
+        ArrayList arrayList3 = new ArrayList(arrayList2);
+        arrayList2.clear();
+        ArrayList arrayList4 = e20Var.f25523e;
+        arrayList4.clear();
+        arrayList4.addAll(arrayList3);
+        for (int i10 = 0; i10 < arrayList3.size(); i10++) {
+            ((m30) arrayList3.get(i10)).setOnClickListener(null);
         }
+        AnimatorSet animatorSet = e20Var.f25520a;
+        if (animatorSet != null && animatorSet.isRunning()) {
+            e20Var.f25520a.setupEndValues();
+            e20Var.f25520a.cancel();
+        }
+        e20Var.f25521b = false;
+        AnimatorSet animatorSet2 = new AnimatorSet();
+        e20Var.f25520a = animatorSet2;
+        animatorSet2.addListener(new bi.t(26, e20Var, arrayList3));
+        arrayList.clear();
+        for (int i11 = 0; i11 < arrayList3.size(); i11++) {
+            m30 m30Var = (m30) arrayList3.get(i11);
+            arrayList.add(ObjectAnimator.ofFloat(m30Var, View.SCALE_X, 1.0f, 0.01f));
+            arrayList.add(ObjectAnimator.ofFloat(m30Var, View.SCALE_Y, 1.0f, 0.01f));
+            arrayList.add(ObjectAnimator.ofFloat(m30Var, View.ALPHA, 1.0f, 0.0f));
+        }
+        e20Var.requestLayout();
+    }
+
+    public void c(m30 m30Var) {
+        e20 e20Var = this.d;
+        ArrayList arrayList = e20Var.f25523e;
+        ArrayList arrayList2 = e20Var.f25522c;
+        f20 f20Var = e20Var.f25526r;
+        f20Var.h = true;
+        if (!m30Var.d) {
+            f20Var.f25874b.l(m30Var.getUid());
+        }
+        f20Var.f25875c.remove(m30Var);
+        m30Var.setOnClickListener(null);
+        AnimatorSet animatorSet = e20Var.f25520a;
+        if (animatorSet != null) {
+            animatorSet.setupEndValues();
+            e20Var.f25520a.cancel();
+        }
+        e20Var.f25521b = false;
+        AnimatorSet animatorSet2 = new AnimatorSet();
+        e20Var.f25520a = animatorSet2;
+        animatorSet2.addListener(new bi.t(25, e20Var, m30Var));
+        e20Var.f25520a.setDuration(150L);
+        arrayList.clear();
+        arrayList.add(m30Var);
+        arrayList2.clear();
+        arrayList2.add(ObjectAnimator.ofFloat(m30Var, View.SCALE_X, 1.0f, 0.01f));
+        arrayList2.add(ObjectAnimator.ofFloat(m30Var, View.SCALE_Y, 1.0f, 0.01f));
+        arrayList2.add(ObjectAnimator.ofFloat(m30Var, View.ALPHA, 1.0f, 0.0f));
+        e20Var.requestLayout();
+    }
+
+    @Override
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        int action = motionEvent.getAction();
+        float f7 = this.f25876e;
+        float y3 = motionEvent.getY();
+        if (action == 0 && y3 > f7) {
+            return false;
+        }
+        return super.dispatchTouchEvent(motionEvent);
+    }
+
+    public ViewGroup getSpansContainer() {
+        return this.d;
+    }
+
+    @Override
+    public final boolean requestChildRectangleOnScreen(View view, Rect rect, boolean z10) {
+        if (this.h) {
+            this.h = false;
+            return false;
+        }
+        rect.offset(view.getLeft() - view.getScrollX(), view.getTop() - view.getScrollY());
+        rect.top = org.telegram.messenger.w1.C(20.0f, this.f25878n, rect.top);
+        rect.bottom = org.telegram.messenger.w1.C(50.0f, this.f25878n, rect.bottom);
+        return super.requestChildRectangleOnScreen(view, rect, z10);
+    }
+
+    public void setDelegate(c20 c20Var) {
+        this.f25877f = c20Var;
     }
 }

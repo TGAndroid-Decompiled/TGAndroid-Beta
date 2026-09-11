@@ -1,54 +1,29 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.AndroidUtilities;
-public final class xd implements Runnable {
-    public final int f29009a;
-    public final ChatActivityEnterView f29010b;
-    public final boolean f29011c;
+import android.view.View;
+public final class xd implements View.OnLongClickListener {
+    public final int f32518a;
+    public final ChatActivityEnterView f32519b;
 
-    public xd(ChatActivityEnterView chatActivityEnterView, boolean z10, int i10) {
-        this.f29009a = i10;
-        this.f29010b = chatActivityEnterView;
-        this.f29011c = z10;
+    public xd(ChatActivityEnterView chatActivityEnterView, int i10) {
+        this.f32518a = i10;
+        this.f32519b = chatActivityEnterView;
     }
 
     @Override
-    public final void run() {
-        of ofVar;
-        int i10 = this.f29009a;
-        ChatActivityEnterView chatActivityEnterView = this.f29010b;
-        boolean z10 = this.f29011c;
+    public final boolean onLongClick(View view) {
+        int i10 = this.f32518a;
+        ChatActivityEnterView chatActivityEnterView = this.f32519b;
         switch (i10) {
             case 0:
-                if (!z10) {
-                    chatActivityEnterView.f20922s1.setVisibility(8);
-                    return;
-                }
-                int i11 = ChatActivityEnterView.f20816m5;
-                chatActivityEnterView.getClass();
-                return;
-            case 1:
-                if (!z10) {
-                    chatActivityEnterView.f20927t1.setVisibility(8);
-                    return;
-                }
-                int i12 = ChatActivityEnterView.f20816m5;
-                chatActivityEnterView.getClass();
-                return;
+                int i11 = ChatActivityEnterView.f23661m5;
+                return chatActivityEnterView.F0(view);
             default:
-                ChatActivityEnterView chatActivityEnterView2 = this.f29010b;
-                qd qdVar = chatActivityEnterView2.E4;
-                chatActivityEnterView2.M0 = System.currentTimeMillis();
-                boolean T0 = chatActivityEnterView2.T0(0, false, 0, true, 0L);
-                if (!z10 && (ofVar = chatActivityEnterView2.L0) != null) {
-                    ofVar.h(!T0);
-                    chatActivityEnterView2.L0 = null;
-                    return;
+                qf qfVar = chatActivityEnterView.E0;
+                if (qfVar != null && qfVar.length() > 0) {
+                    return chatActivityEnterView.F0(view);
                 }
-                chatActivityEnterView2.D4 = !T0;
-                AndroidUtilities.cancelRunOnUIThread(qdVar);
-                AndroidUtilities.runOnUIThread(qdVar, 500L);
-                return;
+                return false;
         }
     }
 }

@@ -1,42 +1,21 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class o50 extends AnimatorListenerAdapter {
-    public final int f25675a;
-    public final f60 f25676b;
+import android.app.Activity;
+import android.view.View;
+import org.telegram.messenger.MediaController;
+import org.telegram.messenger.VideoEditedInfo;
+public interface o50 {
+    long a();
 
-    public o50(f60 f60Var, int i10) {
-        this.f25675a = i10;
-        this.f25676b = f60Var;
-    }
+    boolean c();
 
-    @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f25675a) {
-            case 0:
-                f60 f60Var = this.f25676b;
-                if (animator.equals(f60Var.G)) {
-                    f60Var.G = null;
-                    return;
-                }
-                return;
-            case 1:
-                f60 f60Var2 = this.f25676b;
-                if (f60Var2.f22878b1 != null) {
-                    f60Var2.f22878b1 = null;
-                    return;
-                }
-                return;
-            default:
-                f60 f60Var3 = this.f25676b;
-                if (animator.equals(f60Var3.W)) {
-                    f60Var3.h(true);
-                    f60Var3.W0 = false;
-                    f60Var3.setVisibility(4);
-                    return;
-                }
-                return;
-        }
-    }
+    int getClassGuid();
+
+    View getFragmentView();
+
+    Activity getParentActivity();
+
+    void q(MediaController.PhotoEntry photoEntry, VideoEditedInfo videoEditedInfo, boolean z10, int i10, int i11, boolean z11, long j3);
+
+    boolean v();
 }

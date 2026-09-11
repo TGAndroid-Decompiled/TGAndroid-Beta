@@ -4,15 +4,15 @@ import java.util.concurrent.Callable;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.concurrent.locks.LockSupport;
 public final class d0 extends AtomicReference implements Runnable {
-    public static final androidx.emoji2.text.n f10516c = new androidx.emoji2.text.n(1);
-    public static final androidx.emoji2.text.n d = new androidx.emoji2.text.n(1);
-    public final Callable f10517a;
-    public final e0 f10518b;
+    public static final androidx.emoji2.text.n f11901c = new androidx.emoji2.text.n(2);
+    public static final androidx.emoji2.text.n d = new androidx.emoji2.text.n(2);
+    public final Callable f11902a;
+    public final e0 f11903b;
 
     public d0(e0 e0Var, Callable callable) {
-        this.f10518b = e0Var;
+        this.f11903b = e0Var;
         callable.getClass();
-        this.f10517a = callable;
+        this.f11902a = callable;
     }
 
     public final void a(Thread thread) {
@@ -54,12 +54,12 @@ public final class d0 extends AtomicReference implements Runnable {
         Thread currentThread = Thread.currentThread();
         Object obj = null;
         if (compareAndSet(null, currentThread)) {
-            e0 e0Var = this.f10518b;
+            e0 e0Var = this.f11903b;
             boolean isDone = e0Var.isDone();
-            androidx.emoji2.text.n nVar = f10516c;
+            androidx.emoji2.text.n nVar = f11901c;
             if (!isDone) {
                 try {
-                    obj = this.f10517a.call();
+                    obj = this.f11902a.call();
                 } catch (Throwable th2) {
                     try {
                         if (th2 instanceof InterruptedException) {
@@ -90,7 +90,7 @@ public final class d0 extends AtomicReference implements Runnable {
     public final String toString() {
         String str;
         Runnable runnable = (Runnable) get();
-        if (runnable == f10516c) {
+        if (runnable == f11901c) {
             str = "running=[DONE]";
         } else if (runnable instanceof v) {
             str = "running=[INTERRUPTED]";
@@ -100,7 +100,7 @@ public final class d0 extends AtomicReference implements Runnable {
             str = "running=[NOT STARTED YET]";
         }
         StringBuilder g10 = w.f.g(str, ", ");
-        g10.append(this.f10517a.toString());
+        g10.append(this.f11902a.toString());
         return g10.toString();
     }
 }

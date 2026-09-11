@@ -1,4 +1,4 @@
 package u5;
 public interface a {
-    long u();
+    long l();
 }

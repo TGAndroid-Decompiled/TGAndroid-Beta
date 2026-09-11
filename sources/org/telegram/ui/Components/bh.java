@@ -1,34 +1,27 @@
 package org.telegram.ui.Components;
-public final class bh {
-    public static final bh f21829a;
-    public static final bh f21830b;
-    public static final bh f21831c;
-    public static final bh d;
-    public static final bh e;
-    public static final bh f21832f;
-    public static final bh[] h;
 
-    static {
-        ?? r02 = new Enum("VOICE", 0);
-        f21829a = r02;
-        ?? r12 = new Enum("VIDEO", 1);
-        f21830b = r12;
-        ?? r32 = new Enum("STICKER", 2);
-        f21831c = r32;
-        ?? r52 = new Enum("KEYBOARD", 3);
-        d = r52;
-        ?? r72 = new Enum("SMILE", 4);
-        e = r72;
-        ?? r92 = new Enum("GIF", 5);
-        f21832f = r92;
-        h = new bh[]{r02, r12, r32, r52, r72, r92};
+import android.content.Context;
+public class bh extends aj0 {
+    public zg f24697r;
+    public ah f24698s;
+    public final int v;
+    public final yg f24699w;
+
+    public bh(Context context) {
+        this(context, 32);
     }
 
-    public static bh valueOf(String str) {
-        return (bh) Enum.valueOf(bh.class, str);
+    public zg getCurrentState() {
+        return this.f24697r;
     }
 
-    public static bh[] values() {
-        return (bh[]) h.clone();
+    public final void j(org.telegram.ui.Components.zg r12, boolean r13) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.bh.j(org.telegram.ui.Components.zg, boolean):void");
+    }
+
+    public bh(Context context, int i10) {
+        super(context);
+        this.f24699w = new yg(this, 0);
+        this.v = i10;
     }
 }

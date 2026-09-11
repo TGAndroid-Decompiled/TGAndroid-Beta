@@ -3,9 +3,8 @@ package v2;
 import b2.s;
 import c3.h0;
 import g2.b0;
-import n7.a1;
-import u2.c1;
-import v7.n7;
+import u2.a1;
+import v7.m7;
 public final class m extends a {
     public final int E;
     public final s F;
@@ -20,32 +19,32 @@ public final class m extends a {
 
     @Override
     public final void a() {
-        c1[] c1VarArr;
-        b0 b0Var = this.f42867r;
-        a1 a1Var = this.f42846x;
-        e2.d.h(a1Var);
-        for (c1 c1Var : (c1[]) a1Var.f13939c) {
-            if (c1Var.F != 0) {
-                c1Var.F = 0L;
-                c1Var.f42308z = true;
+        a1[] a1VarArr;
+        b0 b0Var = this.f47304r;
+        o0.a aVar = this.f47280x;
+        e2.d.h(aVar);
+        for (a1 a1Var : (a1[]) aVar.f16770c) {
+            if (a1Var.F != 0) {
+                a1Var.F = 0L;
+                a1Var.f46640z = true;
             }
         }
-        h0 t02 = a1Var.t0(this.E);
-        t02.b(this.F);
+        h0 U = aVar.U(this.E);
+        U.b(this.F);
         try {
-            long open = b0Var.open(this.f42863b.b(this.G));
+            long open = b0Var.open(this.f47299b.b(this.G));
             if (open != -1) {
                 open += this.G;
             }
-            c3.l lVar = new c3.l(this.f42867r, this.G, open);
-            for (int i10 = 0; i10 != -1; i10 = t02.a(lVar, Integer.MAX_VALUE, true)) {
+            c3.l lVar = new c3.l(this.f47304r, this.G, open);
+            for (int i10 = 0; i10 != -1; i10 = U.a(lVar, Integer.MAX_VALUE, true)) {
                 this.G += i10;
             }
-            t02.c(this.h, 1, (int) this.G, 0, null);
-            n7.a(b0Var);
+            U.c(this.h, 1, (int) this.G, 0, null);
+            m7.a(b0Var);
             this.H = true;
         } catch (Throwable th2) {
-            n7.a(b0Var);
+            m7.a(b0Var);
             throw th2;
         }
     }
@@ -56,6 +55,6 @@ public final class m extends a {
     }
 
     @Override
-    public final void k() {
+    public final void W() {
     }
 }

@@ -1,18 +1,48 @@
 package n2;
 
-import android.os.Looper;
-public interface n {
-    public static final ob.a f13739z = new ob.a(13);
+import java.util.UUID;
+public final class n implements g {
+    public final f f16405a;
 
-    void C(Looper looper, j2.k kVar);
+    public n(f fVar) {
+        this.f16405a = fVar;
+    }
 
-    int L0(b2.s sVar);
+    @Override
+    public final UUID c() {
+        return b2.i.f2060a;
+    }
 
-    g Y0(j jVar, b2.s sVar);
+    @Override
+    public final boolean d() {
+        return false;
+    }
 
-    void b();
+    @Override
+    public final int e() {
+        return 1;
+    }
 
-    m j0(j jVar, b2.s sVar);
+    @Override
+    public final boolean f(String str) {
+        return false;
+    }
 
-    void release();
+    @Override
+    public final f g() {
+        return this.f16405a;
+    }
+
+    @Override
+    public final h2.a h() {
+        return null;
+    }
+
+    @Override
+    public final void a(j jVar) {
+    }
+
+    @Override
+    public final void b(j jVar) {
+    }
 }

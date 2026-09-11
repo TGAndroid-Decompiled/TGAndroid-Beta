@@ -1,90 +1,73 @@
 package org.telegram.ui;
 
-import android.text.SpannableStringBuilder;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLRPC;
 public final class od implements Runnable {
-    public final int f35464a;
-    public final le f35465b;
-    public final int f35466c;
+    public final int f39218a;
+    public final ke f39219b;
 
-    public od(le leVar, int i10, int i11) {
-        this.f35464a = i11;
-        this.f35465b = leVar;
-        this.f35466c = i10;
+    public od(ke keVar, int i10) {
+        this.f39218a = i10;
+        this.f39219b = keVar;
     }
 
     @Override
     public final void run() {
-        boolean z10;
-        String formatPluralStringSpaced;
-        int i10 = this.f35464a;
-        int i11 = this.f35466c;
-        le leVar = this.f35465b;
-        switch (i10) {
+        switch (this.f39218a) {
             case 0:
-                nf.f.s(leVar.getContext(), LocaleController.getString(i11));
+                of.f.s(this.f39219b.getContext(), LocaleController.getString(R.string.MonetizationStarsInfoLink));
                 return;
             case 1:
-                od odVar = leVar.f34670i1;
-                ei.o oVar = leVar.Y0;
-                org.telegram.ui.Components.pc.e();
-                if (leVar.N0.amount < MessagesController.getInstance(i11).starsRevenueWithdrawalMin) {
-                    leVar.W0 = true;
-                    leVar.X0 = leVar.N0.amount;
-                } else {
-                    leVar.W0 = false;
-                    leVar.X0 = MessagesController.getInstance(i11).starsRevenueWithdrawalMin;
-                }
-                leVar.V0 = true;
-                oVar.setText(Long.toString(leVar.X0));
-                oVar.setSelection(oVar.getText().length());
-                leVar.V0 = false;
-                AndroidUtilities.cancelRunOnUIThread(odVar);
-                odVar.run();
-                return;
-            default:
-                od odVar2 = leVar.f34670i1;
-                int currentTime = ConnectionsManager.getInstance(i11).getCurrentTime();
-                ce ceVar = leVar.Q0;
-                if (leVar.X0 <= 0 && leVar.L0 <= currentTime) {
-                    z10 = false;
-                } else {
-                    z10 = true;
-                }
-                ceVar.setEnabled(z10);
-                if (currentTime < leVar.L0) {
-                    ceVar.g(LocaleController.getString(R.string.MonetizationStarsWithdrawUntil), true, true);
-                    if (leVar.f34669h1 == null) {
-                        leVar.f34669h1 = new SpannableStringBuilder("l");
-                        org.telegram.ui.Components.uq uqVar = new org.telegram.ui.Components.uq(R.drawable.mini_switch_lock, 0);
-                        uqVar.setTopOffset(1);
-                        leVar.f34669h1.setSpan(uqVar, 0, 1, 33);
-                    }
-                    SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
-                    spannableStringBuilder.append((CharSequence) leVar.f34669h1).append((CharSequence) xh.h.j0(leVar.L0 - currentTime));
-                    ceVar.f(spannableStringBuilder, true);
-                    org.telegram.ui.Components.pc pcVar = leVar.Z0;
-                    if (pcVar != null) {
-                        org.telegram.ui.Components.tb tbVar = pcVar.e;
-                        if ((tbVar instanceof org.telegram.ui.Components.xb) && tbVar.isAttachedToWindow()) {
-                            org.telegram.messenger.em.p(R.string.BotStarsWithdrawalToast, new Object[]{xh.h.j0(leVar.L0 - currentTime)}, ((org.telegram.ui.Components.xb) leVar.Z0.e).f29000b);
-                        }
-                    }
-                    AndroidUtilities.cancelRunOnUIThread(odVar2);
-                    AndroidUtilities.runOnUIThread(odVar2, 1000L);
+                org.telegram.ui.Components.d61 d61Var = this.f39219b.f38013a1;
+                if (d61Var != null) {
+                    d61Var.Y2.N(true);
                     return;
                 }
-                ceVar.f(null, true);
-                if (leVar.W0) {
-                    formatPluralStringSpaced = LocaleController.getString(R.string.MonetizationStarsWithdrawAll);
-                } else {
-                    formatPluralStringSpaced = LocaleController.formatPluralStringSpaced("MonetizationStarsWithdraw", (int) leVar.X0);
+                return;
+            case 2:
+                ke keVar = this.f39219b;
+                keVar.getClass();
+                try {
+                    org.telegram.ui.Components.ll0 currentListView = keVar.f38017e1.getCurrentListView();
+                    if (currentListView != null && currentListView.getAdapter() != null) {
+                        currentListView.getAdapter().l();
+                        return;
+                    }
+                    return;
+                } catch (Throwable unused) {
+                    return;
                 }
-                ceVar.g(xh.z7.V0(false, formatPluralStringSpaced, leVar.R0), true, true);
+            case 3:
+                ke keVar2 = this.f39219b;
+                int i10 = keVar2.f38037y0;
+                AndroidUtilities.cancelRunOnUIThread(keVar2.f38033v1);
+                if (keVar2.f38024m1 != keVar2.f38025n1) {
+                    TLRPC.TL_channels_restrictSponsoredMessages tL_channels_restrictSponsoredMessages = new TLRPC.TL_channels_restrictSponsoredMessages();
+                    tL_channels_restrictSponsoredMessages.channel = MessagesController.getInstance(i10).getInputChannel(-keVar2.f38038z0);
+                    tL_channels_restrictSponsoredMessages.restricted = keVar2.f38024m1;
+                    ConnectionsManager.getInstance(i10).sendRequest(tL_channels_restrictSponsoredMessages, new ud(keVar2, 0));
+                    return;
+                }
+                return;
+            case 4:
+                ke keVar3 = this.f39219b;
+                keVar3.f38025n1 = keVar3.f38024m1;
+                return;
+            case 5:
+                this.f39219b.T0.setLoading(false);
+                return;
+            case 6:
+                this.f39219b.f38015c1.setVisibility(8);
+                return;
+            case 7:
+                this.f39219b.f38015c1.setVisibility(8);
+                return;
+            default:
+                of.f.s(this.f39219b.getContext(), LocaleController.getString(R.string.MonetizationBalanceInfoLink));
                 return;
         }
     }

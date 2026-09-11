@@ -1,23 +1,32 @@
 package org.telegram.messenger;
 
-import android.location.Location;
-public final class z5 implements q0.a {
-    public final int f17120a;
-    public final LocationController f17121b;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.ui.Components.n70;
+public final class z5 implements Runnable {
+    public final int f19806a;
+    public final float f19807b;
+    public final NotificationCenter.NotificationCenterDelegate f19808c;
+    public final Object d;
 
-    public z5(LocationController locationController, int i10) {
-        this.f17120a = i10;
-        this.f17121b = locationController;
+    public z5(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, Object obj, float f7, int i10) {
+        this.f19806a = i10;
+        this.f19808c = notificationCenterDelegate;
+        this.d = obj;
+        this.f19807b = f7;
     }
 
     @Override
-    public final void accept(Object obj) {
-        switch (this.f17120a) {
+    public final void run() {
+        switch (this.f19806a) {
             case 0:
-                this.f17121b.lambda$onConnected$4((Integer) obj);
+                ((MediaController) this.f19808c).lambda$setPlaybackSpeed$16((MessageObject) this.d, this.f19807b);
                 return;
             default:
-                this.f17121b.setLastKnownLocation((Location) obj);
+                org.telegram.ui.i4 i4Var = (org.telegram.ui.i4) this.f19808c;
+                n70 n70Var = (n70) this.d;
+                i4Var.f37220h0.M.c(0.0f, true);
+                n70Var.f28655p = new org.telegram.ui.b0(i4Var, this.f19807b, 0);
+                n70Var.Z();
                 return;
         }
     }

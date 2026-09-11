@@ -1,29 +1,33 @@
 package org.telegram.ui.Components;
+public final class dn0 extends s4.o {
+    public final hn0 f25431b;
 
-import android.view.View;
-import org.telegram.messenger.AccountInstance;
-import org.telegram.messenger.DownloadController;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.UserConfig;
-public final class dn0 implements View.OnClickListener {
-    public final en0 f22449a;
-
-    public dn0(en0 en0Var) {
-        this.f22449a = en0Var;
+    public dn0(hn0 hn0Var) {
+        this.f25431b = hn0Var;
     }
 
     @Override
-    public final void onClick(View view) {
-        fn0 fn0Var = this.f22449a.f22732c;
-        for (int i10 = 0; i10 < fn0Var.e.size(); i10++) {
-            MessageObject messageObject = (MessageObject) fn0Var.e.get(i10);
-            if (fn0Var.H) {
-                AccountInstance.getInstance(UserConfig.selectedAccount).getFileLoader().cancelLoadFile(messageObject.getDocument());
-            } else {
-                AccountInstance.getInstance(UserConfig.selectedAccount).getFileLoader().loadFile(messageObject.getDocument(), messageObject, 0, 0);
-                DownloadController.getInstance(fn0Var.d).updateFilesLoadingPriority();
-            }
+    public final boolean a(int i10, int i11) {
+        hn0 hn0Var = this.f25431b;
+        return ((en0) hn0Var.f26767n.get(i10)).equals(hn0Var.f26768r.get(i11));
+    }
+
+    @Override
+    public final boolean b(int i10, int i11) {
+        hn0 hn0Var = this.f25431b;
+        if (((en0) hn0Var.f26767n.get(i10)).f25737a.h == ((en0) hn0Var.f26768r.get(i11)).f25737a.h) {
+            return true;
         }
-        fn0Var.d(true);
+        return false;
+    }
+
+    @Override
+    public final int d() {
+        return this.f25431b.f26768r.size();
+    }
+
+    @Override
+    public final int e() {
+        return this.f25431b.f26767n.size();
     }
 }

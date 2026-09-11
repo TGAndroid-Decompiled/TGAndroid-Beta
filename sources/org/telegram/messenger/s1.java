@@ -1,28 +1,33 @@
 package org.telegram.messenger;
-
-import java.util.ArrayList;
 public final class s1 implements Runnable {
-    public final int f16274a;
-    public final ContactsController f16275b;
-    public final ArrayList f16276c;
+    public final int f18942a;
+    public final String f18943b;
 
-    public s1(ContactsController contactsController, ArrayList arrayList, int i10) {
-        this.f16274a = i10;
-        this.f16275b = contactsController;
-        this.f16276c = arrayList;
+    public s1(String str, int i10) {
+        this.f18942a = i10;
+        this.f18943b = str;
     }
 
     @Override
     public final void run() {
-        switch (this.f16274a) {
+        switch (this.f18942a) {
             case 0:
-                this.f16275b.lambda$deleteContact$55(this.f16276c);
+                ContactsController.lambda$markAsContacted$49(this.f18943b);
                 return;
             case 1:
-                this.f16275b.lambda$performWriteContactsToPhoneBook$45(this.f16276c);
+                FileLog.lambda$w$7(this.f18943b);
+                return;
+            case 2:
+                FileLog.lambda$e$3(this.f18943b);
+                return;
+            case 3:
+                FileLog.lambda$d$6(this.f18943b);
+                return;
+            case 4:
+                GcmPushListenerService.c(this.f18943b);
                 return;
             default:
-                this.f16275b.lambda$deleteContactsUndoable$54(this.f16276c);
+                SmsReceiver.a(this.f18943b);
                 return;
         }
     }

@@ -1,76 +1,57 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
+import android.graphics.Rect;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.FrameLayout;
+import androidx.recyclerview.widget.RecyclerView;
+import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessagesController;
-import org.telegram.tgnet.TLRPC;
-public final class sj0 extends s4.h0 {
-    public final int f27084c;
-    public final Context d;
-    public final org.telegram.ui.ActionBar.f6 e;
-    public final boolean f27085f;
-    public final zj0 h;
+public final class sj0 extends s4.n0 {
+    public final int f30321a;
+    public final fk0 f30322b;
 
-    public sj0(zj0 zj0Var, int i10, Context context, org.telegram.ui.ActionBar.f6 f6Var, boolean z10) {
-        this.h = zj0Var;
-        this.f27084c = i10;
-        this.d = context;
-        this.e = f6Var;
-        this.f27085f = z10;
+    public sj0(fk0 fk0Var, int i10) {
+        this.f30321a = i10;
+        this.f30322b = fk0Var;
     }
 
     @Override
-    public final int h() {
-        int i10;
-        zj0 zj0Var = this.h;
-        int size = zj0Var.f29705n.size();
-        if (!zj0Var.H.isEmpty() && !MessagesController.getInstance(this.f27084c).premiumFeaturesBlocked()) {
-            i10 = 1;
-        } else {
-            i10 = 0;
-        }
-        return size + i10;
-    }
-
-    @Override
-    public final int j(int i10) {
-        if (i10 < this.h.f29705n.size()) {
-            return 0;
-        }
-        return 1;
-    }
-
-    @Override
-    public final void v(s4.c1 c1Var, int i10) {
-        if (c1Var.f41613f == 0) {
-            ((org.telegram.ui.Cells.p6) c1Var.f41610a).setUserReaction((TLRPC.MessagePeerReaction) this.h.f29705n.get(i10));
-        }
-    }
-
-    @Override
-    public final s4.c1 x(ViewGroup viewGroup, int i10) {
-        FrameLayout p6Var;
-        if (i10 != 0) {
-            zj0 zj0Var = this.h;
-            db0 db0Var = zj0Var.J;
-            if (db0Var != null) {
-                if (db0Var.getParent() != null) {
-                    ((ViewGroup) zj0Var.J.getParent()).removeView(zj0Var.J);
+    public final void a(Rect rect, View view, RecyclerView recyclerView, s4.z0 z0Var) {
+        switch (this.f30321a) {
+            case 0:
+                super.a(rect, view, recyclerView, z0Var);
+                fk0 fk0Var = this.f30322b;
+                if (!fk0Var.q()) {
+                    recyclerView.getClass();
+                    int R = RecyclerView.R(view);
+                    if (R == 0) {
+                        rect.left = AndroidUtilities.dp(6.0f);
+                    }
+                    rect.right = AndroidUtilities.dp(4.0f);
+                    if (R == fk0Var.f26078a0.h() - 1) {
+                        if ((!fk0Var.U.isEmpty() && !MessagesController.getInstance(fk0Var.J).premiumFeaturesBlocked()) || fk0Var.q()) {
+                            rect.right = AndroidUtilities.dp(2.0f);
+                            return;
+                        } else {
+                            rect.right = AndroidUtilities.dp(6.0f);
+                            return;
+                        }
+                    }
+                    return;
                 }
-            } else {
-                zj0Var.i();
-            }
-            Context context = this.d;
-            p6Var = new FrameLayout(context);
-            View view = new View(context);
-            view.setBackgroundColor(org.telegram.ui.ActionBar.j6.l1(0.06f, org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.E8, this.e)));
-            p6Var.addView(view, w7.a6.c(8.0f, -1));
-            p6Var.addView(zj0Var.J, w7.a6.d(-1, -1.0f, 0, 0.0f, 8.0f, 0.0f, 0.0f));
-        } else {
-            p6Var = new org.telegram.ui.Cells.p6(0, this.f27084c, this.d, this.e, true, this.f27085f);
+                rect.left = 0;
+                rect.right = 0;
+                return;
+            default:
+                recyclerView.getClass();
+                int R2 = RecyclerView.R(view);
+                if (R2 == 0) {
+                    rect.left = AndroidUtilities.dp(8.0f);
+                }
+                if (R2 == this.f30322b.f26078a0.h() - 1) {
+                    rect.right = AndroidUtilities.dp(8.0f);
+                    return;
+                }
+                return;
         }
-        return new s4.c1(p6Var);
     }
 }

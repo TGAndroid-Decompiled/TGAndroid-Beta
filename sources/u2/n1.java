@@ -1,95 +1,139 @@
 package u2;
+public final class n1 implements d0, c0 {
+    public final d0 f46757a;
+    public final long f46758b;
+    public c0 f46759c;
 
-import android.net.Uri;
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
-public final class n1 extends a {
-    public final g2.m h;
-    public final g2.g f42394i;
-    public final b2.s f42395j;
-    public final rb.a f42397l;
-    public final j1 f42399n;
-    public final b2.k0 f42400o;
-    public g2.c0 f42401p;
-    public final long f42396k = -9223372036854775807L;
-    public final boolean f42398m = true;
+    public n1(d0 d0Var, long j3) {
+        this.f46757a = d0Var;
+        this.f46758b = j3;
+    }
 
-    public n1(b2.j0 j0Var, n4.y yVar, rb.a aVar) {
-        b2.f0 f0Var;
-        b2.c0 c0Var;
-        this.f42394i = yVar;
-        this.f42397l = aVar;
-        boolean z10 = true;
-        b2.y yVar2 = new b2.y();
-        b2.b0 b0Var = new b2.b0();
-        List list = Collections.EMPTY_LIST;
-        e9.a1 a1Var = e9.a1.e;
-        b2.d0 d0Var = new b2.d0();
-        b2.g0 g0Var = b2.g0.d;
-        Uri uri = Uri.EMPTY;
-        String uri2 = j0Var.f1737a.toString();
-        uri2.getClass();
-        e9.i0 v = e9.i0.v(e9.i0.z(j0Var));
-        if (b0Var.f1632b != null && b0Var.f1631a == null) {
-            z10 = false;
+    @Override
+    public final void a(d0 d0Var) {
+        c0 c0Var = this.f46759c;
+        c0Var.getClass();
+        c0Var.a(this);
+    }
+
+    @Override
+    public final void b(d1 d1Var) {
+        d0 d0Var = (d0) d1Var;
+        c0 c0Var = this.f46759c;
+        c0Var.getClass();
+        c0Var.b(this);
+    }
+
+    @Override
+    public final boolean c() {
+        return this.f46757a.c();
+    }
+
+    @Override
+    public final long d() {
+        long d = this.f46757a.d();
+        if (d == Long.MIN_VALUE) {
+            return Long.MIN_VALUE;
         }
-        e2.d.g(z10);
-        if (uri != null) {
-            if (b0Var.f1631a != null) {
-                c0Var = new b2.c0(b0Var);
-            } else {
-                c0Var = null;
+        return d + this.f46758b;
+    }
+
+    @Override
+    public final void j() {
+        this.f46757a.j();
+    }
+
+    @Override
+    public final long k(long j3) {
+        long j10 = this.f46758b;
+        return this.f46757a.k(j3 - j10) + j10;
+    }
+
+    @Override
+    public final void l(long j3) {
+        this.f46757a.l(j3 - this.f46758b);
+    }
+
+    @Override
+    public final void n(c0 c0Var, long j3) {
+        this.f46759c = c0Var;
+        this.f46757a.n(this, j3 - this.f46758b);
+    }
+
+    @Override
+    public final long o() {
+        long o9 = this.f46757a.o();
+        if (o9 == -9223372036854775807L) {
+            return -9223372036854775807L;
+        }
+        return o9 + this.f46758b;
+    }
+
+    @Override
+    public final boolean p(i2.r0 r0Var) {
+        ?? obj = new Object();
+        long j3 = r0Var.f11727a;
+        obj.f11720b = r0Var.f11728b;
+        obj.f11721c = r0Var.f11729c;
+        obj.f11719a = j3 - this.f46758b;
+        return this.f46757a.p(new i2.r0(obj));
+    }
+
+    @Override
+    public final long q(x2.r[] rVarArr, boolean[] zArr, b1[] b1VarArr, boolean[] zArr2, long j3) {
+        b1[] b1VarArr2 = new b1[b1VarArr.length];
+        int i10 = 0;
+        while (true) {
+            b1 b1Var = null;
+            if (i10 >= b1VarArr.length) {
+                break;
             }
-            f0Var = new b2.f0(uri, null, c0Var, null, list, null, v, -9223372036854775807L);
-        } else {
-            f0Var = null;
+            m1 m1Var = (m1) b1VarArr[i10];
+            if (m1Var != null) {
+                b1Var = m1Var.f46751a;
+            }
+            b1VarArr2[i10] = b1Var;
+            i10++;
         }
-        b2.k0 k0Var = new b2.k0(uri2, new b2.z(yVar2), f0Var, new b2.e0(d0Var), b2.n0.K, g0Var);
-        this.f42400o = k0Var;
-        b2.r rVar = new b2.r();
-        String str = j0Var.f1738b;
-        rVar.f1946q = b2.r0.n(str == null ? "text/x-unknown" : str);
-        rVar.d = j0Var.f1739c;
-        rVar.e = j0Var.d;
-        rVar.f1936f = j0Var.e;
-        rVar.f1934b = j0Var.f1740f;
-        String str2 = j0Var.f1741g;
-        rVar.f1933a = str2 != null ? str2 : null;
-        this.f42395j = new b2.s(rVar);
-        Map map = Collections.EMPTY_MAP;
-        Uri uri3 = j0Var.f1737a;
-        e2.d.i(uri3, "The uri must be set.");
-        this.h = new g2.m(uri3, 1, null, map, 0L, -1L, null, 1);
-        this.f42399n = new j1(-9223372036854775807L, -9223372036854775807L, -9223372036854775807L, -9223372036854775807L, 0L, 0L, true, false, false, null, k0Var, null);
+        d0 d0Var = this.f46757a;
+        long j10 = this.f46758b;
+        long q6 = d0Var.q(rVarArr, zArr, b1VarArr2, zArr2, j3 - j10);
+        for (int i11 = 0; i11 < b1VarArr.length; i11++) {
+            b1 b1Var2 = b1VarArr2[i11];
+            if (b1Var2 == null) {
+                b1VarArr[i11] = null;
+            } else {
+                b1 b1Var3 = b1VarArr[i11];
+                if (b1Var3 == null || ((m1) b1Var3).f46751a != b1Var2) {
+                    b1VarArr[i11] = new m1(b1Var2, j10);
+                }
+            }
+        }
+        return q6 + j10;
     }
 
     @Override
-    public final e0 c(g0 g0Var, y2.d dVar, long j3) {
-        return new m1(this.h, this.f42394i, this.f42401p, this.f42395j, this.f42396k, this.f42397l, b(g0Var), this.f42398m, null);
+    public final o1 r() {
+        return this.f46757a.r();
     }
 
     @Override
-    public final b2.k0 i() {
-        return this.f42400o;
+    public final long s() {
+        long s10 = this.f46757a.s();
+        if (s10 == Long.MIN_VALUE) {
+            return Long.MIN_VALUE;
+        }
+        return s10 + this.f46758b;
     }
 
     @Override
-    public final void m(g2.c0 c0Var) {
-        this.f42401p = c0Var;
-        n(this.f42399n);
+    public final long t(long j3, i2.p1 p1Var) {
+        long j10 = this.f46758b;
+        return this.f46757a.t(j3 - j10, p1Var) + j10;
     }
 
     @Override
-    public final void o(e0 e0Var) {
-        ((m1) e0Var).f42385r.e(null);
-    }
-
-    @Override
-    public final void k() {
-    }
-
-    @Override
-    public final void q() {
+    public final void u(long j3) {
+        this.f46757a.u(j3 - this.f46758b);
     }
 }

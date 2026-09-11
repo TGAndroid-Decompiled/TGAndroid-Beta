@@ -1,26 +1,36 @@
 package eh;
 
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import bh.f;
-public final class c implements a {
-    public final Paint f7517a = new Paint(1);
+import b2.z0;
+import e2.m;
+import org.telegram.ui.ActionBar.f6;
+public final class c implements d, m {
+    public final int f9107a;
+    public final int f9108b;
+    public final int f9109c;
 
-    public final void a(int i10) {
-        this.f7517a.setColor(i10);
+    public c(int i10, int i11, int i12) {
+        this.f9107a = i12;
+        this.f9108b = i10;
+        this.f9109c = i11;
     }
 
     @Override
-    public final bh.d k() {
-        return new f(this);
+    public int f(f6 f6Var, boolean z10) {
+        if (z10) {
+            return this.f9108b;
+        }
+        return this.f9109c;
     }
 
     @Override
-    public final void u(Canvas canvas, float f7, float f10, float f11, float f12) {
-        canvas.drawRect(f7, f10, f11, f12, this.f7517a);
-    }
-
-    @Override
-    public final void b() {
+    public void invoke(Object obj) {
+        switch (this.f9107a) {
+            case 1:
+                ((z0) obj).onSurfaceSizeChanged(this.f9108b, this.f9109c);
+                return;
+            default:
+                ((z0) obj).onSurfaceSizeChanged(this.f9108b, this.f9109c);
+                return;
+        }
     }
 }

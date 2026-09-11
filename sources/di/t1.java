@@ -1,72 +1,78 @@
 package di;
 
-import j$.util.function.Predicate$CC;
+import android.app.Activity;
 import java.util.HashSet;
-import java.util.function.Predicate;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stars;
-public final class t1 implements Predicate {
-    public final int f6906a;
-    public final Object f6907b;
+import org.telegram.ui.Components.sy;
+import org.telegram.ui.TwoStepVerificationActivity;
+import org.telegram.ui.co;
+import org.telegram.ui.du;
+import org.telegram.ui.ip;
+import org.telegram.ui.ke;
+import org.telegram.ui.mg;
+public final class t1 implements RequestDelegate {
+    public final int f8163a;
+    public final boolean f8164b;
+    public final Object f8165c;
+    public final Object d;
+    public final Object f8166e;
 
-    public t1(Object obj, int i10) {
-        this.f6906a = i10;
-        this.f6907b = obj;
-    }
-
-    public Predicate and(Predicate predicate) {
-        int i10 = this.f6906a;
-        return Predicate$CC.$default$and(this, predicate);
-    }
-
-    public Predicate negate() {
-        switch (this.f6906a) {
-            case 0:
-                return Predicate$CC.$default$negate(this);
-            case 1:
-                return Predicate$CC.$default$negate(this);
-            default:
-                return Predicate$CC.$default$negate(this);
-        }
-    }
-
-    public Predicate or(Predicate predicate) {
-        int i10 = this.f6906a;
-        return Predicate$CC.$default$or(this, predicate);
+    public t1(w1 w1Var, boolean z10, TLRPC.TL_messages_getInlineBotResults tL_messages_getInlineBotResults, String str) {
+        this.f8163a = 0;
+        this.f8165c = w1Var;
+        this.f8164b = z10;
+        this.d = tL_messages_getInlineBotResults;
+        this.f8166e = str;
     }
 
     @Override
-    public final boolean test(Object obj) {
-        boolean contains;
-        boolean z10;
-        switch (this.f6906a) {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f8163a) {
             case 0:
-                contains = ((HashSet) this.f6907b).contains(Long.valueOf(((v1) obj).f6958b));
-                break;
+                AndroidUtilities.runOnUIThread(new u1((w1) this.f8165c, tLObject, this.f8164b, (TLRPC.TL_messages_getInlineBotResults) this.d, (String) this.f8166e, 0));
+                return;
             case 1:
-                contains = ((HashSet) this.f6907b).contains(Long.valueOf(((v1) obj).f6958b));
-                break;
+                AndroidUtilities.runOnUIThread(new i2.b1((ke) this.f8165c, tL_error, (TwoStepVerificationActivity) this.d, (Activity) this.f8166e, this.f8164b, tLObject, 6));
+                return;
+            case 2:
+                AndroidUtilities.runOnUIThread(new u1((Object) ((co) this.f8165c), (Object) ((of.e) this.d), tLObject, (Object) ((mg) this.f8166e), this.f8164b, 14));
+                return;
+            case 3:
+                AndroidUtilities.runOnUIThread(new i2.b1((ip) this.f8165c, (TLRPC.TL_channels_toggleUsername) this.d, tLObject, (TLRPC.TL_username) this.f8166e, this.f8164b, tL_error, 8));
+                return;
+            case 4:
+                AndroidUtilities.runOnUIThread(new u1((sy) this.f8165c, (String) this.f8166e, this.f8164b, (String) this.d, tLObject));
+                return;
             default:
-                wh.p1 p1Var = (wh.p1) this.f6907b;
-                TL_stars.StarGift starGift = (TL_stars.StarGift) obj;
-                if (starGift instanceof TL_stars.TL_starGiftUnique) {
-                    z10 = p1Var.f44288b0.disallow_unique_stargifts;
-                } else {
-                    p1Var.getClass();
-                    if (starGift.limited) {
-                        TLRPC.DisallowedGiftsSettings disallowedGiftsSettings = p1Var.f44288b0;
-                        if (!disallowedGiftsSettings.disallow_limited_stargifts) {
-                            return true;
-                        }
-                        if (starGift.can_upgrade && !disallowedGiftsSettings.disallow_unique_stargifts) {
-                            return true;
-                        }
-                        return false;
-                    }
-                    z10 = p1Var.f44288b0.disallow_unlimited_stargifts;
-                }
-                return true ^ z10;
+                AndroidUtilities.runOnUIThread(new i2.b1((du) this.f8165c, tLObject, (d) this.d, this.f8164b, (HashSet) this.f8166e, tL_error, 10));
+                return;
         }
-        return !contains;
+    }
+
+    public t1(Object obj, Object obj2, Object obj3, boolean z10, int i10) {
+        this.f8163a = i10;
+        this.f8165c = obj;
+        this.d = obj2;
+        this.f8166e = obj3;
+        this.f8164b = z10;
+    }
+
+    public t1(sy syVar, String str, boolean z10, String str2) {
+        this.f8163a = 4;
+        this.f8165c = syVar;
+        this.f8166e = str;
+        this.f8164b = z10;
+        this.d = str2;
+    }
+
+    public t1(du duVar, d dVar, boolean z10, HashSet hashSet) {
+        this.f8163a = 5;
+        this.f8165c = duVar;
+        this.d = dVar;
+        this.f8164b = z10;
+        this.f8166e = hashSet;
     }
 }

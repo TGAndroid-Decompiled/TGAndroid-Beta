@@ -1,9 +1,9 @@
 package v7;
 public final class h3 implements ia.d {
-    public static final h3 f43013a = new Object();
+    public static final h3 f47462a = new Object();
 
     static {
-        org.telegram.ui.Cells.r6.s(org.telegram.ui.Cells.r6.k(h.class, new e(1)));
+        org.telegram.ui.Cells.p6.s(org.telegram.ui.Cells.p6.k(h.class, new e(1)));
     }
 
     @Override

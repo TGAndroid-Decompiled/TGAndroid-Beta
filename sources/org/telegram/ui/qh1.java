@@ -1,51 +1,80 @@
 package org.telegram.ui;
 
-import android.app.Activity;
-import java.util.ArrayList;
-import java.util.List;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_account;
-public final class qh1 implements RequestDelegate {
-    public final int f36065a;
-    public final Object f36066b;
-    public final Object f36067c;
-    public final Object d;
-    public final Object e;
-    public final Object f36068f;
-    public final Object f36069g;
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.view.View;
+import org.telegram.messenger.BuildVars;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.R;
+public final class qh1 extends org.telegram.ui.Components.y51 {
+    public oh1 d;
+    public long f39878e;
+    public mh1 f39879f;
+    public String h;
+    public org.telegram.ui.ActionBar.v0 f39880n;
+    public boolean f39881r;
 
-    public qh1(Object obj, Object obj2, Object obj3, Object obj4, Object obj5, Object obj6, int i10) {
-        this.f36065a = i10;
-        this.f36066b = obj;
-        this.f36067c = obj2;
-        this.d = obj3;
-        this.e = obj4;
-        this.f36068f = obj5;
-        this.f36069g = obj6;
+    @Override
+    public final void U(java.util.ArrayList r18, org.telegram.ui.Components.v51 r19) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.qh1.U(java.util.ArrayList, org.telegram.ui.Components.v51):void");
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f36065a) {
-            case 0:
-                AndroidUtilities.runOnUIThread(new hi.l((UserInfoActivity) this.f36066b, tL_error, (TLObject) this.f36067c, (TL_account.TL_birthday) this.d, (TLRPC.UserFull) this.e, tLObject, (int[]) this.f36068f, (ArrayList) this.f36069g));
+    public final CharSequence V() {
+        return LocaleController.getString(R.string.EditProfileChannelTitle);
+    }
+
+    @Override
+    public final void W(org.telegram.ui.Components.h51 h51Var, View view) {
+        mh1 mh1Var = this.f39879f;
+        int i10 = h51Var.d;
+        if (i10 == 1) {
+            mh1Var.run(null);
+            finishFragment();
+        } else if (i10 == 2) {
+            this.f39881r = true;
+            SharedPreferences globalMainSettings = MessagesController.getGlobalMainSettings();
+            if (!BuildVars.DEBUG_VERSION && globalMainSettings.getBoolean("channel_intro", false)) {
+                presentFragment(new md(org.telegram.ui.Cells.p6.e(0, "step")));
                 return;
-            case 1:
-                AndroidUtilities.runOnUIThread(new hi.l(tL_error, (sg.v) this.f36066b, tLObject, (List) this.f36067c, (c5.h) this.d, (sg.v) this.e, (org.telegram.ui.ActionBar.p2) this.f36068f, (TLRPC.TL_inputStorePaymentPremiumGiveaway) this.f36069g, 3));
-                return;
-            case 2:
-                AndroidUtilities.runOnUIThread(new hi.l(tL_error, (Utilities.Callback) this.f36066b, tLObject, (List) this.f36067c, (c5.h) this.d, (Utilities.Callback) this.e, (org.telegram.ui.ActionBar.p2) this.f36068f, (TLRPC.TL_inputStorePaymentPremiumGiftCode) this.f36069g, 4));
-                return;
-            case 3:
-                AndroidUtilities.runOnUIThread(new hi.l(tLObject, (c5.o) this.f36066b, (c5.h) this.f36067c, (bi.k6) this.d, (Activity) this.e, (TLRPC.TL_inputStorePaymentStarsGiveaway) this.f36068f, (List) this.f36069g, tL_error, 5));
-                return;
-            default:
-                AndroidUtilities.runOnUIThread(new hi.l(tLObject, (c5.o) this.f36066b, (c5.h) this.f36067c, (org.telegram.ui.Components.n80) this.d, (Activity) this.e, (TLRPC.TL_inputStorePaymentStarsGift) this.f36068f, (List) this.f36069g, tL_error, 6));
-                return;
+            }
+            presentFragment(new h(0));
+            globalMainSettings.edit().putBoolean("channel_intro", true).apply();
+        } else if (h51Var.f44071a == 12) {
+            finishFragment();
+            mh1Var.run(getMessagesController().getChat(Long.valueOf(-h51Var.f26605x)));
+        }
+    }
+
+    @Override
+    public final boolean X(org.telegram.ui.Components.h51 h51Var, View view) {
+        return false;
+    }
+
+    @Override
+    public final View createView(Context context) {
+        org.telegram.ui.ActionBar.v0 c10 = this.actionBar.n().c(0, R.drawable.outline_header_search, getResourceProvider());
+        c10.F();
+        c10.H = new ig.d2(this, 19);
+        this.f39880n = c10;
+        c10.setSearchFieldHint(LocaleController.getString(R.string.Search));
+        this.f39880n.setContentDescription(LocaleController.getString(R.string.Search));
+        this.f39880n.setVisibility(8);
+        super.createView(context);
+        this.f32849a.o1();
+        this.actionBar.setAdaptiveBackground(this.f32849a);
+        return this.fragmentView;
+    }
+
+    @Override
+    public final void onResume() {
+        super.onResume();
+        if (this.f39881r) {
+            oh1 oh1Var = this.d;
+            oh1Var.f39253c = false;
+            oh1Var.f39255f.add(new ph1(this, 0));
+            this.f39881r = false;
         }
     }
 }

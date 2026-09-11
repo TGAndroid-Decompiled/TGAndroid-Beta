@@ -3,11 +3,11 @@ package de;
 import kotlin.jvm.internal.s;
 import rd.q;
 public abstract class i {
-    public static final q f6495a;
+    public static final q f6805a;
 
     static {
-        h hVar = h.f6494a;
+        h hVar = h.f6804a;
         s.a(3, hVar);
-        f6495a = hVar;
+        f6805a = hVar;
     }
 }

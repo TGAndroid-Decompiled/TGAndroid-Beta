@@ -1,84 +1,92 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
+import android.text.SpannableStringBuilder;
+import android.text.Spanned;
+import android.text.TextPaint;
+import android.text.style.URLSpan;
 import android.view.View;
-import android.view.accessibility.AccessibilityNodeInfo;
-import android.widget.FrameLayout;
-import java.util.WeakHashMap;
-import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
-public final class h10 extends FrameLayout {
-    public final o6 f23468a;
-    public final o6 f23469b;
+import org.telegram.tgnet.TLRPC;
+public final class h10 extends URLSpan {
+    public static final int f26557e = 0;
+    public final String f26558a;
+    public final TLRPC.TL_messageEntityFormattedDate f26559b;
+    public final n01 f26560c;
+    public final boolean d;
 
-    public h10(Context context) {
-        super(context);
-        int i10;
-        int i11;
-        int i12;
-        o6 o6Var = new o6(context, true, true, false);
-        this.f23468a = o6Var;
-        o6Var.setTextSize(AndroidUtilities.dp(15.0f));
-        o6Var.setTypeface(AndroidUtilities.bold());
-        int i13 = org.telegram.ui.ActionBar.j6.L6;
-        o6Var.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, i13, false));
-        if (LocaleController.isRTL) {
-            i10 = 5;
-        } else {
-            i10 = 3;
-        }
-        o6Var.setGravity(i10);
-        if (LocaleController.isRTL) {
-            i11 = 5;
-        } else {
-            i11 = 3;
-        }
-        addView(o6Var, w7.a6.d(-1, 20.0f, i11 | 80, 21.0f, 15.0f, 21.0f, 2.0f));
-        o6 o6Var2 = new o6(context, true, true, true);
-        this.f23469b = o6Var2;
-        o6Var2.b(0.45f, 250L, wr.h);
-        o6Var2.setTextSize(AndroidUtilities.dp(15.0f));
-        o6Var2.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, i13, false));
-        if (LocaleController.isRTL) {
-            i12 = 3;
-        } else {
-            i12 = 5;
-        }
-        o6Var2.setGravity(i12);
-        addView(o6Var2, w7.a6.d(-2, 20.0f, (LocaleController.isRTL ? 3 : 5) | 80, 21.0f, 15.0f, 21.0f, 2.0f));
-        WeakHashMap weakHashMap = r0.i0.f41062a;
-        new r0.w(2131296684, Boolean.class, 0, 28, 2).d(this, Boolean.TRUE);
+    public h10(String str, n01 n01Var, TLRPC.TL_messageEntityFormattedDate tL_messageEntityFormattedDate) {
+        super(str);
+        this.f26558a = str;
+        this.f26559b = tL_messageEntityFormattedDate;
+        this.f26560c = n01Var;
+        this.d = false;
     }
 
-    public final void a(String str, Runnable runnable) {
-        o6 o6Var = this.f23469b;
-        o6Var.c(str, !LocaleController.isRTL, true);
-        o6Var.setOnClickListener(new t6(1, runnable));
+    public static CharSequence a(CharSequence charSequence, boolean z10) {
+        String str;
+        if (charSequence instanceof Spanned) {
+            Spanned spanned = (Spanned) charSequence;
+            int i10 = 0;
+            h10[] h10VarArr = (h10[]) spanned.getSpans(0, spanned.length(), h10.class);
+            int length = h10VarArr.length;
+            ?? r42 = 0;
+            while (i10 < length) {
+                h10 h10Var = h10VarArr[i10];
+                TLRPC.TL_messageEntityFormattedDate tL_messageEntityFormattedDate = h10Var.f26559b;
+                if (tL_messageEntityFormattedDate.flags != 0 && (h10Var.d != z10 || (z10 && tL_messageEntityFormattedDate.relative))) {
+                    if (r42 == 0) {
+                        charSequence = new SpannableStringBuilder(spanned);
+                        r42 = charSequence;
+                    }
+                    int spanStart = r42.getSpanStart(h10Var);
+                    int spanEnd = r42.getSpanEnd(h10Var);
+                    if (z10) {
+                        str = LocaleController.formatEntityFormattedDate(h10Var.f26559b);
+                    } else {
+                        str = h10Var.f26558a;
+                    }
+                    r42.removeSpan(h10Var);
+                    r42.replace(spanStart, spanEnd, str);
+                    r42.setSpan(new h10(h10Var, z10), spanStart, str.length() + spanStart, 33);
+                }
+                i10++;
+                r42 = r42;
+            }
+        }
+        return charSequence;
     }
 
-    public final void b(String str, boolean z10) {
-        boolean z11;
-        o6 o6Var = this.f23468a;
-        if (z10) {
-            o6Var.a();
-        }
-        if (z10 && !LocaleController.isRTL) {
-            z11 = true;
-        } else {
-            z11 = false;
-        }
-        o6Var.c(str, z11, true);
+    public static CharSequence b(SpannableStringBuilder spannableStringBuilder) {
+        return a(spannableStringBuilder, false);
     }
 
     @Override
-    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        accessibilityNodeInfo.setClassName("android.widget.TextView");
-        accessibilityNodeInfo.setText(this.f23468a.getText());
+    public final void updateDrawState(TextPaint textPaint) {
+        boolean z10;
+        int i10 = textPaint.linkColor;
+        int color = textPaint.getColor();
+        super.updateDrawState(textPaint);
+        n01 n01Var = this.f26560c;
+        if (n01Var != null) {
+            n01Var.a(textPaint);
+        }
+        if (i10 == color) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        textPaint.setUnderlineText(z10);
+    }
+
+    public h10(h10 h10Var, boolean z10) {
+        super(h10Var.f26558a);
+        this.f26558a = h10Var.f26558a;
+        this.f26559b = h10Var.f26559b;
+        this.f26560c = h10Var.f26560c;
+        this.d = z10;
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), i11);
+    public final void onClick(View view) {
     }
 }

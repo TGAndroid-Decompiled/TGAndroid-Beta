@@ -1,35 +1,26 @@
 package org.telegram.messenger;
 
-import android.view.View;
-import org.telegram.messenger.RichMessageLayout;
+import java.util.ArrayList;
 public final class gi implements Runnable {
-    public final int f15296a = 0;
-    public final RichMessageLayout.Text f15297b;
-    public final RichMessageLayout f15298c;
-    public final View d;
+    public final int f17810a;
+    public final SecretChatHelper f17811b;
+    public final ArrayList f17812c;
 
-    public gi(RichMessageLayout.Text text, View view, RichMessageLayout richMessageLayout) {
-        this.f15297b = text;
-        this.d = view;
-        this.f15298c = richMessageLayout;
+    public gi(SecretChatHelper secretChatHelper, ArrayList arrayList, int i10) {
+        this.f17810a = i10;
+        this.f17811b = secretChatHelper;
+        this.f17812c = arrayList;
     }
 
     @Override
     public final void run() {
-        switch (this.f15296a) {
+        switch (this.f17810a) {
             case 0:
-                RichMessageLayout.Text.c(this.f15297b, this.d, this.f15298c);
+                this.f17811b.lambda$resendMessages$14(this.f17812c);
                 return;
             default:
-                RichMessageLayout richMessageLayout = this.f15298c;
-                RichMessageLayout.Text.a(this.f15297b, this.d, richMessageLayout);
+                this.f17811b.lambda$processPendingEncMessages$0(this.f17812c);
                 return;
         }
-    }
-
-    public gi(RichMessageLayout.Text text, RichMessageLayout richMessageLayout, View view) {
-        this.f15297b = text;
-        this.f15298c = richMessageLayout;
-        this.d = view;
     }
 }

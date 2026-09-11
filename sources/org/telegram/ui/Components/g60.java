@@ -1,37 +1,31 @@
 package org.telegram.ui.Components;
-public abstract class g60 extends lo0 {
-    @Override
-    public final boolean a() {
-        if (j() > 0) {
-            return true;
-        }
-        return false;
+
+import android.text.TextPaint;
+import android.text.style.ClickableSpan;
+import android.view.View;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.ProfileActivity;
+public final class g60 extends ClickableSpan {
+    public final org.telegram.ui.ActionBar.f3[] f26264a;
+    public final TLRPC.TL_chatInviteImporter f26265b;
+
+    public g60(org.telegram.ui.ActionBar.f3[] f3VarArr, TLRPC.TL_chatInviteImporter tL_chatInviteImporter) {
+        this.f26264a = f3VarArr;
+        this.f26265b = tL_chatInviteImporter;
     }
 
     @Override
-    public final boolean b() {
-        if (j() < i()) {
-            return true;
+    public final void onClick(View view) {
+        this.f26264a[0].dismiss();
+        org.telegram.ui.ActionBar.n2 U = LaunchActivity.U();
+        if (U != null) {
+            U.presentFragment(ProfileActivity.m4(this.f26265b.user_id));
         }
-        return false;
     }
 
     @Override
-    public final void c(boolean z10) {
-        int h = h();
-        if (z10) {
-            h *= -1;
-        }
-        k(Math.min(i(), Math.max(0, j() + h)));
+    public final void updateDrawState(TextPaint textPaint) {
+        textPaint.setUnderlineText(false);
     }
-
-    public int h() {
-        return 1;
-    }
-
-    public abstract int i();
-
-    public abstract int j();
-
-    public abstract void k(int i10);
 }

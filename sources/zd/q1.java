@@ -1,26 +1,26 @@
 package zd;
 public final class q1 extends kd.i implements rd.p {
-    public v1 f48040b;
-    public q f48041c;
+    public v1 f51588b;
+    public q f51589c;
     public int d;
-    public Object e;
-    public final u1 f48042f;
+    public Object f51590e;
+    public final u1 f51591f;
 
     public q1(id.c cVar, u1 u1Var) {
         super(cVar);
-        this.f48042f = u1Var;
+        this.f51591f = u1Var;
     }
 
     @Override
     public final id.c create(Object obj, id.c cVar) {
-        q1 q1Var = new q1(cVar, this.f48042f);
-        q1Var.e = obj;
+        q1 q1Var = new q1(cVar, this.f51591f);
+        q1Var.f51590e = obj;
         return q1Var;
     }
 
     @Override
     public final Object invoke(Object obj, Object obj2) {
-        return ((q1) create((wd.c) obj, (id.c) obj2)).invokeSuspend(gd.i.f8748a);
+        return ((q1) create((wd.c) obj, (id.c) obj2)).invokeSuspend(gd.i.f10588a);
     }
 
     @Override

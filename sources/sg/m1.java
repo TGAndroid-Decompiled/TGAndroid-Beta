@@ -1,30 +1,25 @@
 package sg;
 
 import android.content.Context;
-import org.telegram.ui.ActionBar.f6;
-import org.telegram.ui.Components.bb0;
-public final class m1 extends bi.d {
-    public final p1 f41955h0;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+public final class m1 extends View {
+    public final int f46174a;
 
-    public m1(p1 p1Var, Context context, f6 f6Var) {
-        super(context, f6Var, true);
-        this.f41955h0 = p1Var;
+    public m1(Context context, int i10) {
+        super(context);
+        this.f46174a = i10;
     }
 
     @Override
-    public final float a(float f7, float f10) {
-        boolean z10;
-        p1 p1Var = this.f41955h0;
-        if (p1Var.f41985t0 == 0.0f) {
-            z10 = true;
-        } else {
-            z10 = false;
+    public final void onMeasure(int i10, int i11) {
+        switch (this.f46174a) {
+            case 0:
+                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(68.0f), 1073741824));
+                return;
+            default:
+                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(52.0f), 1073741824));
+                return;
         }
-        p1Var.f41985t0 = f7;
-        if (z10) {
-            p1Var.f41986u0 = new bb0(p1Var, 2);
-            p1Var.g0(false);
-        }
-        return f7;
     }
 }

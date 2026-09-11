@@ -1,22 +1,24 @@
 package org.telegram.ui.Components;
 
-import android.animation.ValueAnimator;
-public final class ep implements ValueAnimator.AnimatorUpdateListener {
-    public boolean f22737a = false;
-    public final sp f22738b;
+import android.content.Context;
+import android.view.accessibility.AccessibilityNodeInfo;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class ep extends aj0 {
+    public final lp f25743r;
 
-    public ep(sp spVar) {
-        this.f22738b = spVar;
+    public ep(lp lpVar, Context context) {
+        super(context);
+        this.f25743r = lpVar;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        sp spVar = this.f22738b;
-        spVar.S = floatValue;
-        spVar.R.invalidate();
-        if (!this.f22737a && spVar.S > 0.5f) {
-            this.f22737a = true;
+    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+        if (this.f25743r.N) {
+            accessibilityNodeInfo.setText(LocaleController.getString(R.string.AccDescrSwitchToDayTheme));
+        } else {
+            accessibilityNodeInfo.setText(LocaleController.getString(R.string.AccDescrSwitchToNightTheme));
         }
     }
 }

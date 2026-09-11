@@ -1,29 +1,29 @@
 package n2;
 public final class h implements Runnable {
-    public final int f13729a;
-    public final j f13730b;
-    public final Object f13731c;
+    public final int f16395a;
+    public final j f16396b;
+    public final Object f16397c;
 
     public h(j jVar, k kVar, int i10) {
-        this.f13729a = i10;
-        this.f13730b = jVar;
-        this.f13731c = kVar;
+        this.f16395a = i10;
+        this.f16396b = jVar;
+        this.f16397c = kVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f13729a) {
+        switch (this.f16395a) {
             case 0:
-                j jVar = this.f13730b;
-                this.f13731c.g(jVar.f13734a, jVar.f13735b);
+                j jVar = this.f16396b;
+                this.f16397c.g(jVar.f16400a, jVar.f16401b);
                 return;
             case 1:
-                j jVar2 = this.f13730b;
-                this.f13731c.i(jVar2.f13734a, jVar2.f13735b);
+                j jVar2 = this.f16396b;
+                this.f16397c.i(jVar2.f16400a, jVar2.f16401b);
                 return;
             default:
-                j jVar3 = this.f13730b;
-                this.f13731c.k(jVar3.f13734a, jVar3.f13735b);
+                j jVar3 = this.f16396b;
+                this.f16397c.k(jVar3.f16400a, jVar3.f16401b);
                 return;
         }
     }

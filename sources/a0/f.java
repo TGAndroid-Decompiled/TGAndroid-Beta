@@ -11,8 +11,8 @@ import java.util.function.BiFunction;
 import java.util.function.Function;
 public final class f extends l implements Map, j$.util.Map {
     public a d;
-    public c e;
-    public e f10f;
+    public c f11e;
+    public e f12f;
 
     @Override
     public Object compute(Object obj, BiFunction biFunction) {
@@ -55,11 +55,11 @@ public final class f extends l implements Map, j$.util.Map {
     }
 
     public final boolean j(Collection collection) {
-        int i10 = this.f28c;
+        int i10 = this.f31c;
         for (Object obj : collection) {
             super.remove(obj);
         }
-        if (i10 != this.f28c) {
+        if (i10 != this.f31c) {
             return true;
         }
         return false;
@@ -67,10 +67,10 @@ public final class f extends l implements Map, j$.util.Map {
 
     @Override
     public final Set keySet() {
-        c cVar = this.e;
+        c cVar = this.f11e;
         if (cVar == null) {
             c cVar2 = new c(this);
-            this.e = cVar2;
+            this.f11e = cVar2;
             return cVar2;
         }
         return cVar;
@@ -83,18 +83,18 @@ public final class f extends l implements Map, j$.util.Map {
 
     @Override
     public final void putAll(java.util.Map map) {
-        int size = map.size() + this.f28c;
-        int i10 = this.f28c;
-        int[] iArr = this.f26a;
+        int size = map.size() + this.f31c;
+        int i10 = this.f31c;
+        int[] iArr = this.f29a;
         if (iArr.length < size) {
             int[] copyOf = Arrays.copyOf(iArr, size);
             kotlin.jvm.internal.i.d(copyOf, "copyOf(this, newSize)");
-            this.f26a = copyOf;
-            Object[] copyOf2 = Arrays.copyOf(this.f27b, size * 2);
+            this.f29a = copyOf;
+            Object[] copyOf2 = Arrays.copyOf(this.f30b, size * 2);
             kotlin.jvm.internal.i.d(copyOf2, "copyOf(this, newSize)");
-            this.f27b = copyOf2;
+            this.f30b = copyOf2;
         }
-        if (this.f28c == i10) {
+        if (this.f31c == i10) {
             for (Map.Entry entry : map.entrySet()) {
                 put(entry.getKey(), entry.getValue());
             }
@@ -110,10 +110,10 @@ public final class f extends l implements Map, j$.util.Map {
 
     @Override
     public final Collection values() {
-        e eVar = this.f10f;
+        e eVar = this.f12f;
         if (eVar == null) {
             e eVar2 = new e(this);
-            this.f10f = eVar2;
+            this.f12f = eVar2;
             return eVar2;
         }
         return eVar;

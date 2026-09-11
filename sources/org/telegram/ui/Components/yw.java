@@ -1,84 +1,54 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.os.Build;
-import android.view.MotionEvent;
-import j$.util.Objects;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
-public final class yw extends ng.d {
-    public boolean Y2;
-    public final rz Z2;
+public final class yw extends FrameLayout {
+    public final Paint f33018a;
+    public final kz f33019b;
 
-    public yw(rz rzVar, Context context) {
-        super(context, null);
-        this.Z2 = rzVar;
+    public yw(kz kzVar, Context context) {
+        super(context);
+        this.f33019b = kzVar;
+        this.f33018a = new Paint();
     }
 
     @Override
-    public final void k0(int i10, int i11) {
-        int i12;
-        zg.e eVar;
-        rz rzVar = this.Z2;
-        mz mzVar = rzVar.f26878z0;
-        if (Build.VERSION.SDK_INT >= 31 && (eVar = rzVar.f26828j2) != null) {
-            eVar.f(i10, i11);
-            rzVar.C();
+    public final void dispatchDraw(Canvas canvas) {
+        kz kzVar = this.f33019b;
+        xw xwVar = kzVar.B0;
+        float dp = AndroidUtilities.dp(50.0f) * kzVar.f27986t1.p();
+        if (dp > getMeasuredHeight()) {
+            return;
         }
-        if (rzVar.C0 != null) {
-            cx cxVar = rzVar.B0;
-            if (rzVar.D0.canScrollVertically(-1)) {
-                i12 = AndroidUtilities.getShadowHeight();
-            } else {
-                i12 = 0;
+        canvas.save();
+        if (dp != 0.0f) {
+            canvas.clipRect(0.0f, dp, getMeasuredWidth(), getMeasuredHeight());
+        }
+        int A = kzVar.A(org.telegram.ui.ActionBar.j6.He);
+        Paint paint = this.f33018a;
+        paint.setColor(A);
+        canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), xwVar.getExpandedOffset() + AndroidUtilities.dp(36.0f), paint);
+        super.dispatchDraw(canvas);
+        if (xwVar.f27188s != null) {
+            canvas.save();
+            float f7 = xwVar.f27169c0 - xwVar.f27170d0;
+            float f10 = xwVar.v;
+            if (f10 > 0.0f) {
+                f7 = ((xwVar.f27188s.getX() - xwVar.getScrollX()) * xwVar.v) + ((1.0f - f10) * f7);
             }
-            cxVar.setUnderlineHeight(i12);
+            canvas.translate(f7, 0.0f);
+            xwVar.f27188s.draw(canvas);
+            canvas.restore();
         }
-        if (mzVar != null && getAdapter() == mzVar && mzVar.d == 0) {
-            mz mzVar2 = mzVar.O.f24835w;
-            if (!mzVar2.Q.G0.F && !mzVar2.f25325y) {
-                if (rzVar.E0.N0() + 50 > mzVar.h()) {
-                    kz kzVar = mzVar.O;
-                    Objects.requireNonNull(kzVar);
-                    AndroidUtilities.runOnUIThread(new xw(kzVar, 0));
-                }
-            }
-        }
-    }
-
-    @Override
-    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        rz rzVar = this.Z2;
-        if (!rzVar.f26813f) {
-            org.telegram.ui.tt q6 = org.telegram.ui.tt.q();
-            yw ywVar = rzVar.D0;
-            rzVar.getMeasuredHeight();
-            boolean r10 = q6.r(motionEvent, ywVar, rzVar.f26819g2, this.f27987p2);
-            if (!super.onInterceptTouchEvent(motionEvent) && !r10) {
-                return false;
-            }
-            return true;
-        }
-        return false;
+        canvas.restore();
     }
 
     @Override
     public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        rz rzVar = this.Z2;
-        if (rzVar.I0 && rzVar.f26875y0.h() > 0) {
-            this.Y2 = true;
-            rzVar.E0.h1(0, 0);
-            rzVar.I0 = false;
-            this.Y2 = false;
-        }
         super.onLayout(z10, i10, i11, i12, i13);
-        rzVar.q(true);
-    }
-
-    @Override
-    public final void requestLayout() {
-        if (this.Y2) {
-            return;
-        }
-        super.requestLayout();
+        this.f33019b.a0();
     }
 }

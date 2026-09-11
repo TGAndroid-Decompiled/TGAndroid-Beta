@@ -1,34 +1,120 @@
 package org.telegram.ui.Components;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import org.telegram.messenger.SendMessagesHelper;
-import org.telegram.tgnet.TLRPC;
-public final class ki implements sj {
-    public final yi f24736a;
+import org.telegram.messenger.AndroidUtilities;
+public final class ki extends org.telegram.ui.ActionBar.p1 {
+    public final li f27829x;
 
-    public ki(yi yiVar) {
-        this.f24736a = yiVar;
+    public ki(li liVar, li liVar2) {
+        super(liVar2);
+        this.f27829x = liVar;
     }
 
     @Override
-    public final void a(TLRPC.User user, boolean z10, int i10, long j3) {
-        org.telegram.ui.eo eoVar = (org.telegram.ui.eo) this.f24736a.f29366f0;
-        if (eoVar.f7()) {
-            SendMessagesHelper.SendMessageParams of2 = SendMessagesHelper.SendMessageParams.of(user, eoVar.T5, eoVar.f32421n5, eoVar.X3, (TLRPC.ReplyMarkup) null, (HashMap<String, String>) null, z10, i10, 0);
-            of2.sendMessageChatArguments = eoVar.C8();
-            of2.effect_id = 0L;
-            of2.invert_media = false;
-            of2.payStars = j3;
-            of2.monoForumPeer = eoVar.N8();
-            of2.suggestionParams = eoVar.f32336g5;
-            eoVar.getSendMessagesHelper().sendMessage(of2);
-            eoVar.y6();
+    public final boolean b() {
+        kz kzVar;
+        vi viVar = this.f27829x.B0;
+        if (!viVar.isDismissed() && viVar.f31320s1) {
+            ni niVar = viVar.f31340y0;
+            if (niVar == viVar.m0 || niVar == viVar.f31302n0 || viVar.m1().m()) {
+                ni niVar2 = viVar.f31340y0;
+                tn tnVar = viVar.m0;
+                if (niVar2 != tnVar || ((kzVar = tnVar.E) != null && kzVar.getVisibility() == 0)) {
+                    ni niVar3 = viVar.f31340y0;
+                    tn tnVar2 = viVar.f31302n0;
+                    if (niVar3 == tnVar2) {
+                        kz kzVar2 = tnVar2.E;
+                        if (kzVar2 != null && kzVar2.getVisibility() == 0) {
+                            return false;
+                        }
+                        return true;
+                    }
+                } else {
+                    return true;
+                }
+            } else {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public final void e(float f7, float f10, boolean z10) {
+        li liVar = this.f27829x;
+        vi viVar = liVar.B0;
+        viVar.f31298l2 = f7;
+        float f11 = viVar.f31273d2;
+        if (f11 > 0.0f) {
+            viVar.f31298l2 = com.google.android.gms.internal.vision.e2.z(1.0f, f10, f11 - viVar.f31277e2, f7);
+        }
+        viVar.X0.setTranslationY(viVar.f31298l2);
+        viVar.f31262a1.setTranslationY(viVar.f31298l2);
+        org.telegram.ui.ActionBar.v0 v0Var = viVar.f31276e1;
+        if (v0Var != null) {
+            v0Var.setTranslationY(viVar.f31298l2);
+        }
+        org.telegram.ui.ActionBar.v0 v0Var2 = viVar.f31269c1;
+        if (v0Var2 != null) {
+            v0Var2.setTranslationY(viVar.f31262a1.getTranslationY());
+        }
+        di.f4 f4Var = viVar.f31272d1;
+        if (f4Var != null) {
+            f4Var.setTranslationY(viVar.f31262a1.getTranslationY());
+        }
+        viVar.f31280f1.setTranslationY(viVar.f31298l2);
+        viVar.a2(0);
+        viVar.setCurrentPanTranslationY(viVar.f31298l2);
+        liVar.invalidate();
+        viVar.D0.invalidate();
+        viVar.U1();
+        ni niVar = viVar.f31340y0;
+        if (niVar != null) {
+            niVar.k(viVar.f31298l2);
         }
     }
 
     @Override
-    public final void b(ArrayList arrayList, String str, boolean z10, int i10, long j3, boolean z11) {
-        ((org.telegram.ui.eo) this.f24736a.f29366f0).db(arrayList, str, z10, i10, j3, z11);
+    public final void f() {
+        boolean z10;
+        int i10;
+        vi viVar = this.f27829x.B0;
+        viVar.X1(viVar.f31340y0, 0);
+        viVar.f31270c2 = viVar.f31266b2[0];
+        viVar.f31340y0.v();
+        if ((viVar.f31340y0 instanceof fi.r4) && !viVar.D1) {
+            z10 = ((org.telegram.ui.ActionBar.f3) viVar).keyboardVisible;
+            if (z10) {
+                i10 = AndroidUtilities.dp(84.0f);
+            } else {
+                i10 = 0;
+            }
+            for (int i11 = 0; i11 < viVar.f31336x0.size(); i11++) {
+                ((fi.r4) viVar.f31336x0.valueAt(i11)).setMeasureOffsetY(i10);
+            }
+        }
+    }
+
+    @Override
+    public final void g(int i10, boolean z10) {
+        int i11;
+        li liVar = this.f27829x;
+        vi viVar = liVar.B0;
+        int i12 = viVar.f31270c2;
+        if (i12 > 0 && i12 != (i11 = viVar.f31266b2[0]) && z10) {
+            viVar.f31273d2 = i12;
+            viVar.f31277e2 = i11;
+        } else {
+            viVar.f31273d2 = -1.0f;
+        }
+        liVar.invalidate();
+        xh xhVar = viVar.f31337x1;
+        if ((viVar.f31340y0 instanceof fi.r4) && !viVar.D1) {
+            if (z10) {
+                xhVar.setVisibility(8);
+            } else {
+                xhVar.setVisibility(0);
+            }
+        }
+        viVar.f31340y0.w(i10, z10);
     }
 }

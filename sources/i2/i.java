@@ -1,50 +1,49 @@
 package i2;
+
+import android.text.TextUtils;
 public final class i {
-    public final long f10219a;
-    public final long f10220b;
-    public long f10221c = -9223372036854775807L;
-    public long d = -9223372036854775807L;
-    public long f10222f = -9223372036854775807L;
-    public long f10223g = -9223372036854775807L;
-    public float f10225j = 0.97f;
-    public float f10224i = 1.03f;
-    public float f10226k = 1.0f;
-    public long f10227l = -9223372036854775807L;
-    public long e = -9223372036854775807L;
-    public long h = -9223372036854775807L;
-    public long f10228m = -9223372036854775807L;
-    public long f10229n = -9223372036854775807L;
+    public final String f11584a;
+    public final b2.s f11585b;
+    public final b2.s f11586c;
+    public final int d;
+    public final int f11587e;
 
-    public i(long j3, long j10) {
-        this.f10219a = j3;
-        this.f10220b = j10;
-    }
-
-    public final void a() {
-        long j3;
-        long j10 = this.f10221c;
-        if (j10 != -9223372036854775807L) {
-            j3 = this.d;
-            if (j3 == -9223372036854775807L) {
-                long j11 = this.f10222f;
-                if (j11 != -9223372036854775807L && j10 < j11) {
-                    j10 = j11;
-                }
-                j3 = this.f10223g;
-                if (j3 == -9223372036854775807L || j10 <= j3) {
-                    j3 = j10;
-                }
-            }
+    public i(String str, b2.s sVar, b2.s sVar2, int i10, int i11) {
+        boolean z10;
+        if (i10 != 0 && i11 != 0) {
+            z10 = false;
         } else {
-            j3 = -9223372036854775807L;
+            z10 = true;
         }
-        if (this.e == j3) {
+        e2.d.b(z10);
+        if (!TextUtils.isEmpty(str)) {
+            this.f11584a = str;
+            sVar.getClass();
+            this.f11585b = sVar;
+            sVar2.getClass();
+            this.f11586c = sVar2;
+            this.d = i10;
+            this.f11587e = i11;
             return;
         }
-        this.e = j3;
-        this.h = j3;
-        this.f10228m = -9223372036854775807L;
-        this.f10229n = -9223372036854775807L;
-        this.f10227l = -9223372036854775807L;
+        throw new IllegalArgumentException();
+    }
+
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj != null && i.class == obj.getClass()) {
+            i iVar = (i) obj;
+            if (this.d == iVar.d && this.f11587e == iVar.f11587e && this.f11584a.equals(iVar.f11584a) && this.f11585b.equals(iVar.f11585b) && this.f11586c.equals(iVar.f11586c)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public final int hashCode() {
+        int h = a4.a.h((((527 + this.d) * 31) + this.f11587e) * 31, 31, this.f11584a);
+        return this.f11586c.hashCode() + ((this.f11585b.hashCode() + h) * 31);
     }
 }

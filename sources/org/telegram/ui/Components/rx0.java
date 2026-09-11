@@ -1,33 +1,11 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.MessagesController;
-public final class rx0 implements Runnable {
-    public final int f26776a;
-    public final hy0 f26777b;
+import org.telegram.messenger.MessageObject;
+import org.telegram.tgnet.TLRPC;
+public interface rx0 {
+    void a(TLRPC.Document document, String str, Object obj, MessageObject.SendAnimationData sendAnimationData, boolean z10, boolean z11, int i10, int i11);
 
-    public rx0(hy0 hy0Var, int i10) {
-        this.f26776a = i10;
-        this.f26777b = hy0Var;
-    }
+    boolean b();
 
-    @Override
-    public final void run() {
-        switch (this.f26776a) {
-            case 0:
-                this.f26777b.d.l();
-                return;
-            case 1:
-                this.f26777b.d.l();
-                return;
-            case 2:
-                hy0.t(this.f26777b);
-                return;
-            case 3:
-                MessagesController.getInstance(r0.currentAccount).openByUserName("stickers", this.f26777b.L, 1);
-                return;
-            default:
-                hy0.s(this.f26777b);
-                return;
-        }
-    }
+    boolean c();
 }

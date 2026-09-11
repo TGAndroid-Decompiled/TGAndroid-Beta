@@ -1,257 +1,40 @@
 package org.telegram.ui.Components;
 
+import android.content.Context;
 import android.view.View;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.R;
-import org.telegram.messenger.SendMessagesHelper;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class hn implements org.telegram.ui.rt {
-    public final int f23694a;
-    public final zn f23695b;
+import org.telegram.messenger.AndroidUtilities;
+public final class hn extends s4.d0 {
+    public final ig.e0 f26761r;
 
-    public hn(zn znVar, int i10) {
-        this.f23695b = znVar;
-        this.f23694a = i10;
+    public hn(ig.e0 e0Var, Context context) {
+        super(context);
+        this.f26761r = e0Var;
     }
 
     @Override
-    public final boolean B() {
-        return false;
+    public final int k(int i10, View view) {
+        int i11;
+        tn tnVar = (tn) this.f26761r.V;
+        if (tnVar.V0) {
+            i10 = -1;
+        }
+        int k10 = super.k(i10, view);
+        if (tnVar.V0) {
+            k10 += AndroidUtilities.dp(160.0f);
+        }
+        if (!tnVar.V0) {
+            k10 = org.telegram.messenger.w1.z(7.0f, tnVar.R0 - AndroidUtilities.statusBarHeight, k10);
+        }
+        if (tnVar.V0 && k10 == 0 && (i11 = tnVar.W0) >= 0) {
+            tn.K(tnVar, i11);
+            tnVar.W0 = -1;
+        }
+        tnVar.V0 = false;
+        return k10;
     }
 
     @Override
-    public final boolean C(TLRPC.Document document) {
-        return false;
-    }
-
-    @Override
-    public final String E(boolean z10) {
-        return null;
-    }
-
-    @Override
-    public final boolean H() {
-        return false;
-    }
-
-    @Override
-    public final boolean I() {
-        return false;
-    }
-
-    @Override
-    public final w70 K(bi.n7 n7Var) {
-        w70 F = w70.F(n7Var, null, new View(this.f23695b.getContext()));
-        F.f28701s = 0;
-        F.f28702t = false;
-        int i10 = R.drawable.msg_replace;
-        String string = LocaleController.getString(R.string.ReplaceAttachedPollMedia);
-        final int i11 = this.f23694a;
-        F.c(i10, string, new Runnable(this) {
-            public final hn f23386b;
-
-            {
-                this.f23386b = this;
-            }
-
-            @Override
-            public final void run() {
-                switch (r3) {
-                    case 0:
-                        this.f23386b.f23695b.b0(i11);
-                        return;
-                    default:
-                        this.f23386b.f23695b.e0(i11, null);
-                        return;
-                }
-            }
-        }, false);
-        F.c(R.drawable.msg_delete, LocaleController.getString(R.string.Delete), new Runnable(this) {
-            public final hn f23386b;
-
-            {
-                this.f23386b = this;
-            }
-
-            @Override
-            public final void run() {
-                switch (r3) {
-                    case 0:
-                        this.f23386b.f23695b.b0(i11);
-                        return;
-                    default:
-                        this.f23386b.f23695b.e0(i11, null);
-                        return;
-                }
-            }
-        }, true);
-        return F;
-    }
-
-    @Override
-    public final boolean N(TLRPC.Document document) {
-        return false;
-    }
-
-    @Override
-    public final Boolean P(TLRPC.Document document) {
-        return null;
-    }
-
-    @Override
-    public final boolean Q() {
-        return true;
-    }
-
-    @Override
-    public final long a() {
-        return 0L;
-    }
-
-    @Override
-    public final boolean b() {
-        return false;
-    }
-
-    @Override
-    public final boolean c() {
-        return false;
-    }
-
-    @Override
-    public final TLRPC.TL_messageMediaPoll d() {
-        return null;
-    }
-
-    @Override
-    public final boolean e(TLRPC.Document document) {
-        return false;
-    }
-
-    @Override
-    public final boolean f() {
-        return false;
-    }
-
-    @Override
-    public final TLRPC.PollAnswer g() {
-        return null;
-    }
-
-    @Override
-    public final boolean h() {
-        return true;
-    }
-
-    @Override
-    public final boolean j() {
-        return false;
-    }
-
-    @Override
-    public final boolean k(int i10) {
-        return false;
-    }
-
-    @Override
-    public final boolean o() {
-        return false;
-    }
-
-    @Override
-    public final boolean w() {
-        return true;
-    }
-
-    @Override
-    public final MessageObject y() {
-        return null;
-    }
-
-    @Override
-    public final boolean z() {
-        return false;
-    }
-
-    @Override
-    public final void A(TLRPC.Document document) {
-    }
-
-    @Override
-    public final void D(TLRPC.Document document) {
-    }
-
-    @Override
-    public final void G(TLRPC.Document document) {
-    }
-
-    @Override
-    public final void J() {
-    }
-
-    @Override
-    public final void L() {
-    }
-
-    @Override
-    public final void O(String str) {
-    }
-
-    @Override
-    public final void i(SendMessagesHelper.ImportingSticker importingSticker) {
-    }
-
-    @Override
-    public final void m(String str) {
-    }
-
-    @Override
-    public final void n(TLRPC.Document document) {
-    }
-
-    @Override
-    public final void p(TLRPC.Document document) {
-    }
-
-    @Override
-    public final void q() {
-    }
-
-    @Override
-    public final void s() {
-    }
-
-    @Override
-    public final void t(TLRPC.Document document) {
-    }
-
-    @Override
-    public final void x(String str) {
-    }
-
-    @Override
-    public final void M(TLRPC.InputStickerSet inputStickerSet, boolean z10) {
-    }
-
-    @Override
-    public final void u(TLRPC.StickerSet stickerSet, String str) {
-    }
-
-    @Override
-    public final void v(TLObject tLObject, Object obj) {
-    }
-
-    @Override
-    public final void F(CharSequence charSequence, String str, org.telegram.ui.pf pfVar) {
-    }
-
-    @Override
-    public final void r(int i10, int i11, Object obj, TLObject tLObject, boolean z10) {
-    }
-
-    @Override
-    public final void l(TLRPC.Document document, String str, Object obj, boolean z10, int i10, int i11) {
+    public final int m(int i10) {
+        return super.m(i10) * 2;
     }
 }

@@ -1,23 +1,31 @@
 package bi;
 
-import org.telegram.messenger.MediaController;
-public final class b4 extends org.telegram.ui.ActionBar.k {
-    public final p4 f2356a;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.RectF;
+import android.text.style.ReplacementSpan;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.ui.Components.f01;
+public final class b4 extends ReplacementSpan {
+    public final RectF f2793a = new RectF();
+    public final Paint f2794b = new Paint(1);
+    public final f01 f2795c = new f01(LocaleController.getString(R.string.LiveStoryBadge), 9.0f, AndroidUtilities.bold());
 
-    public b4(p4 p4Var) {
-        this.f2356a = p4Var;
+    @Override
+    public final void draw(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
+        float dp = ((i12 + i14) / 2.0f) + AndroidUtilities.dp(1.33f);
+        RectF rectF = this.f2793a;
+        rectF.set(f7, dp - AndroidUtilities.dp(7.0f), this.f2795c.l() + f7 + AndroidUtilities.dp(12.0f), AndroidUtilities.dp(7.0f) + dp);
+        Paint paint2 = this.f2794b;
+        paint2.setColor(-572850);
+        canvas.drawRoundRect(rectF, rectF.height() / 2.0f, rectF.height() / 2.0f, paint2);
+        this.f2795c.c(AndroidUtilities.dp(6.0f) + f7, dp, 1.0f, -1, canvas);
     }
 
     @Override
-    public final void b(int i10) {
-        p4 p4Var = this.f2356a;
-        if (i10 == -1) {
-            Runnable runnable = p4Var.V;
-            if (runnable != null) {
-                runnable.run();
-            }
-        } else if (i10 >= 10) {
-            p4Var.e((MediaController.AlbumEntry) p4Var.f3378g0.get(i10 - 10), false);
-        }
+    public final int getSize(Paint paint, CharSequence charSequence, int i10, int i11, Paint.FontMetricsInt fontMetricsInt) {
+        return (int) (this.f2795c.l() + AndroidUtilities.dp(12.0f));
     }
 }

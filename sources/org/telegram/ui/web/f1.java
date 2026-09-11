@@ -4,21 +4,21 @@ import android.util.LongSparseArray;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.c30;
+import org.telegram.ui.q31;
 public abstract class f1 {
-    public static boolean f37932a;
-    public static boolean f37933b;
-    public static ArrayList f37934c;
+    public static boolean f42088a;
+    public static boolean f42089b;
+    public static ArrayList f42090c;
     public static LongSparseArray d;
-    public static ArrayList e;
+    public static ArrayList f42091e;
 
     public static ArrayList a(Utilities.Callback callback) {
         boolean z10;
-        if (callback != null && !f37933b) {
-            if (e == null) {
-                e = new ArrayList();
+        if (callback != null && !f42089b) {
+            if (f42091e == null) {
+                f42091e = new ArrayList();
             }
-            e.add(callback);
+            f42091e.add(callback);
             z10 = true;
         } else {
             z10 = false;
@@ -27,30 +27,30 @@ public abstract class f1 {
         if (z10) {
             return null;
         }
-        return f37934c;
+        return f42090c;
     }
 
     public static void b() {
-        if (!f37932a && !f37933b) {
-            f37932a = true;
-            f37934c = new ArrayList();
+        if (!f42088a && !f42089b) {
+            f42088a = true;
+            f42090c = new ArrayList();
             d = new LongSparseArray();
-            Utilities.globalQueue.postRunnable(new d1(0));
+            Utilities.globalQueue.postRunnable(new q31(6));
         }
     }
 
     public static void c(e1 e1Var) {
         if (e1Var != null && e1Var.d != null) {
             b();
-            e1 e1Var2 = (e1) d.get(e1Var.f37926a);
+            e1 e1Var2 = (e1) d.get(e1Var.f42076a);
             if (e1Var2 != null) {
                 e1Var2.d = e1Var.d;
             } else {
-                f37934c.add(e1Var);
-                d.put(e1Var.f37926a, e1Var);
+                f42090c.add(e1Var);
+                d.put(e1Var.f42076a, e1Var);
             }
-            AndroidUtilities.cancelRunOnUIThread(new c30(29));
-            AndroidUtilities.runOnUIThread(new c30(29), 1000L);
+            AndroidUtilities.cancelRunOnUIThread(new q31(5));
+            AndroidUtilities.runOnUIThread(new q31(5), 1000L);
         }
     }
 }

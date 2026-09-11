@@ -2,18 +2,24 @@ package org.telegram.ui;
 
 import android.view.View;
 import org.telegram.tgnet.TLRPC;
-public final class c81 implements View.OnLongClickListener {
-    public final TLRPC.TL_authorization f31571a;
-    public final j81 f31572b;
+import org.telegram.ui.Components.Switch;
+public final class c81 implements View.OnClickListener {
+    public final f81 f35023a;
+    public final TLRPC.TL_authorization f35024b;
+    public final g81 f35025c;
 
-    public c81(j81 j81Var, TLRPC.TL_authorization tL_authorization) {
-        this.f31572b = j81Var;
-        this.f31571a = tL_authorization;
+    public c81(g81 g81Var, f81 f81Var, TLRPC.TL_authorization tL_authorization) {
+        this.f35025c = g81Var;
+        this.f35023a = f81Var;
+        this.f35024b = tL_authorization;
     }
 
     @Override
-    public final boolean onLongClick(View view) {
-        j81.m(this.f31572b, this.f31571a.country);
-        return true;
+    public final void onClick(View view) {
+        f81 f81Var = this.f35023a;
+        Switch r02 = f81Var.d;
+        r02.c(!r02.h, true);
+        this.f35024b.encrypted_requests_disabled = !f81Var.d.h;
+        g81.n(this.f35025c);
     }
 }

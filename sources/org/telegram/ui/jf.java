@@ -1,25 +1,39 @@
 package org.telegram.ui;
 
+import android.animation.ValueAnimator;
 import android.view.View;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.function.ToIntFunction;
-public final class jf implements ToIntFunction {
-    public final int f34089a;
-    public final Object f34090b;
+import org.telegram.messenger.AndroidUtilities;
+public final class jf implements ValueAnimator.AnimatorUpdateListener {
+    public final int f37760a;
+    public final co f37761b;
+    public final View f37762c;
 
-    public jf(Object obj, int i10) {
-        this.f34089a = i10;
-        this.f34090b = obj;
+    public jf(co coVar, org.telegram.ui.Cells.w0 w0Var, int i10) {
+        this.f37760a = i10;
+        this.f37761b = coVar;
+        this.f37762c = w0Var;
     }
 
     @Override
-    public final int applyAsInt(Object obj) {
-        switch (this.f34089a) {
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f37760a) {
             case 0:
-                return ((Integer) ((HashMap) this.f34090b).get((View) obj)).intValue();
+                co coVar = this.f37761b;
+                coVar.getClass();
+                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                coVar.A9 = AndroidUtilities.dp(30.0f) * floatValue;
+                coVar.o9();
+                this.f37762c.setAlpha(floatValue);
+                return;
             default:
-                return ((Integer) ((ArrayList) this.f34090b).get(((Integer) obj).intValue())).intValue();
+                co coVar2 = this.f37761b;
+                coVar2.getClass();
+                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                coVar2.A9 = AndroidUtilities.dp(30.0f) * floatValue2;
+                coVar2.o9();
+                coVar2.r9();
+                this.f37762c.setAlpha(floatValue2);
+                return;
         }
     }
 }

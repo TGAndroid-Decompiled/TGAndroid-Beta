@@ -1,42 +1,54 @@
 package org.telegram.ui;
+public final class qg implements q0.a {
+    public final int f39866a;
+    public final co f39867b;
 
-import android.content.DialogInterface;
-import org.telegram.tgnet.ConnectionsManager;
-public final class qg implements DialogInterface.OnCancelListener {
-    public final int f36046a;
-    public final Object f36047b;
-
-    public qg(Object obj, int i10) {
-        this.f36046a = i10;
-        this.f36047b = obj;
+    public qg(co coVar, int i10) {
+        this.f39866a = i10;
+        this.f39867b = coVar;
     }
 
     @Override
-    public final void onCancel(DialogInterface dialogInterface) {
-        switch (this.f36046a) {
+    public final void accept(Object obj) {
+        switch (this.f39866a) {
             case 0:
-                eo eoVar = (eo) this.f36047b;
-                eoVar.f32277b9 = true;
-                eoVar.Z8 = 0;
-                eoVar.f32461qb = 0;
-                eoVar.N4 = 0;
-                eoVar.r9();
-                eoVar.Nb(false);
+                Integer num = (Integer) obj;
+                co coVar = this.f39867b;
+                coVar.getClass();
+                if (num.intValue() == 0) {
+                    coVar.l1 = 0;
+                    coVar.Bc(true);
+                    coVar.getMessagesController().markReactionsAsRead(coVar.T5, coVar.d());
+                    return;
+                }
+                coVar.Bc(true);
+                coVar.F(num.intValue(), 0, 0, 0, false, true);
                 return;
             case 1:
-                yo yoVar = (yo) this.f36047b;
-                yoVar.M0 = false;
-                yoVar.f39041b = null;
-                yoVar.N0 = false;
-                return;
-            case 2:
-                ((yp) this.f36047b).f39080n = null;
+                Integer num2 = (Integer) obj;
+                co coVar2 = this.f39867b;
+                coVar2.getClass();
+                if (num2.intValue() == 0) {
+                    coVar2.f35334m1 = 0;
+                    coVar2.Ac(true);
+                    coVar2.getMessagesController().markPollVotesAsRead(coVar2.T5, coVar2.d());
+                    return;
+                }
+                int i10 = coVar2.f35334m1 - 1;
+                coVar2.f35334m1 = i10;
+                if (i10 <= 0) {
+                    coVar2.getMessagesController().markPollVotesAsRead(coVar2.T5, coVar2.d());
+                }
+                coVar2.Ac(true);
+                coVar2.F(num2.intValue(), 0, 0, 0, false, true);
                 return;
             default:
-                fc0 fc0Var = (fc0) this.f36047b;
-                if (fc0Var.h >= 0) {
-                    ConnectionsManager.getInstance(fc0Var.f32779b).cancelRequest(fc0Var.h, true);
-                    fc0Var.h = -1;
+                co coVar3 = this.f39867b;
+                coVar3.getClass();
+                boolean booleanValue = ((Boolean) obj).booleanValue();
+                coVar3.f7 = booleanValue;
+                if (!booleanValue) {
+                    coVar3.r8();
                     return;
                 }
                 return;

@@ -1,68 +1,64 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Rect;
-import android.os.AsyncTask;
-import org.telegram.messenger.FileLog;
-public final class f81 extends AsyncTask {
-    public int f22935a = 0;
-    public final i81 f22936b;
+import android.content.Context;
+import android.graphics.RectF;
+import android.view.View;
+import android.view.accessibility.AccessibilityNodeInfo;
+import org.telegram.messenger.AndroidUtilities;
+public final class f81 extends View {
+    public e81 f25955a;
+    public int f25956b;
+    public final RectF f25957c;
+    public CharSequence d;
+    public f01 f25958e;
+    public boolean f25959f;
+    public zo0 h;
+    public final e6 f25960n;
+    public final h81 f25961r;
 
-    public f81(i81 i81Var) {
-        this.f22936b = i81Var;
+    public f81(h81 h81Var, Context context) {
+        super(context);
+        this.f25961r = h81Var;
+        this.f25957c = new RectF();
+        this.f25960n = new e6(this, 360L, pr.h);
     }
 
     @Override
-    public final Object doInBackground(Object[] objArr) {
-        Bitmap frameAtTime;
-        i81 i81Var = this.f22936b;
-        this.f22935a = ((Integer[]) objArr)[0].intValue();
-        Bitmap bitmap = null;
-        if (!isCancelled()) {
-            try {
-                frameAtTime = i81Var.f23930r.getFrameAtTime(i81Var.f23933x * this.f22935a * 1000, 2);
-            } catch (Exception e) {
-                e = e;
-            }
-            try {
-                if (!isCancelled()) {
-                    if (frameAtTime != null) {
-                        Bitmap createBitmap = Bitmap.createBitmap(i81Var.f23934y, i81Var.E, frameAtTime.getConfig());
-                        Canvas canvas = new Canvas(createBitmap);
-                        float max = Math.max(i81Var.f23934y / frameAtTime.getWidth(), i81Var.E / frameAtTime.getHeight());
-                        int width = (int) (frameAtTime.getWidth() * max);
-                        int height = (int) (frameAtTime.getHeight() * max);
-                        canvas.drawBitmap(frameAtTime, new Rect(0, 0, frameAtTime.getWidth(), frameAtTime.getHeight()), new Rect((i81Var.f23934y - width) / 2, (i81Var.E - height) / 2, width, height), (Paint) null);
-                        frameAtTime.recycle();
-                        return createBitmap;
-                    }
-                    return frameAtTime;
-                }
-            } catch (Exception e7) {
-                e = e7;
-                bitmap = frameAtTime;
-                FileLog.e(e);
-                return bitmap;
-            }
-        }
-        return null;
+    public int getId() {
+        return this.f25955a.f25602a;
     }
 
     @Override
-    public final void onPostExecute(Object obj) {
-        Bitmap bitmap = (Bitmap) obj;
-        if (!isCancelled()) {
-            i81 i81Var = this.f22936b;
-            i81Var.v.add(bitmap);
-            i81Var.invalidate();
-            int i10 = this.f22935a;
-            if (i10 < i81Var.F) {
-                i81Var.b(i10 + 1);
-            } else {
-                i81Var.O = true;
-            }
+    public final void onDraw(android.graphics.Canvas r23) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.f81.onDraw(android.graphics.Canvas):void");
+    }
+
+    @Override
+    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        boolean z10;
+        int i10;
+        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+        e81 e81Var = this.f25955a;
+        if (e81Var != null && (i10 = this.f25961r.G) != -1 && e81Var.f25602a == i10) {
+            z10 = true;
+        } else {
+            z10 = false;
         }
+        accessibilityNodeInfo.setSelected(z10);
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        e81 e81Var = this.f25955a;
+        h81 h81Var = this.f25961r;
+        setMeasuredDimension(AndroidUtilities.dp(h81Var.f26654r * 2) + e81Var.a(h81Var.f26636c) + h81Var.I, View.MeasureSpec.getSize(i11));
+    }
+
+    public void setReordering(boolean z10) {
+        if (this.f25959f == z10) {
+            return;
+        }
+        this.f25959f = z10;
+        invalidate();
     }
 }

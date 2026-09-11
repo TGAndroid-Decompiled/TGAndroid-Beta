@@ -1,31 +1,40 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import java.util.ArrayList;
-public final class at extends fg.w1 {
-    public final ContactsActivity K;
+public final class at extends hg.e {
+    public final ContactsActivity L;
 
-    public at(ContactsActivity contactsActivity, Context context, a0.i iVar, boolean z10, boolean z11, boolean z12) {
-        this.K = contactsActivity;
-        this.d = new ArrayList();
-        this.e = new ArrayList();
-        this.H = new ArrayList();
-        this.f8245c = context;
-        this.h = iVar;
-        this.f8248r = z10;
-        this.f8249s = z11;
-        this.f8251x = 0;
-        this.v = z12;
-        this.f8250w = true;
-        fg.d2 d2Var = new fg.d2(true);
-        this.f8246f = d2Var;
-        d2Var.f7979a = new fg.t1(this);
+    public at(ContactsActivity contactsActivity, Context context, int i10, boolean z10, a0.i iVar, int i11) {
+        super(context, i10, z10, iVar, i11);
+        this.L = contactsActivity;
     }
 
     @Override
-    public final void F() {
-        if (!this.f8252y && !this.f8246f.e() && h() == 0) {
-            this.K.e.e(false, true);
+    public final int R() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.at.R():int");
+    }
+
+    @Override
+    public final void l() {
+        boolean z10 = false;
+        X(false);
+        ContactsActivity contactsActivity = this.L;
+        org.telegram.ui.Components.ll0 ll0Var = contactsActivity.f33346f;
+        if (ll0Var != null && ll0Var.getAdapter() == this) {
+            int h = h();
+            if (contactsActivity.H) {
+                org.telegram.ui.Components.ll0 ll0Var2 = contactsActivity.f33346f;
+                if (h != 2) {
+                    z10 = true;
+                }
+                ll0Var2.setFastScrollVisible(z10);
+                return;
+            }
+            org.telegram.ui.Components.ll0 ll0Var3 = contactsActivity.f33346f;
+            if (h != 0) {
+                z10 = true;
+            }
+            ll0Var3.setFastScrollVisible(z10);
         }
     }
 }

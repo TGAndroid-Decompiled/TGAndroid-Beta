@@ -1,69 +1,87 @@
 package org.telegram.ui.Cells;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.text.TextUtils;
-import android.view.MotionEvent;
+import android.graphics.Paint;
 import android.view.View;
 import android.widget.FrameLayout;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import org.telegram.messenger.R;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.MediaController;
+import org.telegram.messenger.vl;
 public final class x5 extends FrameLayout {
-    public final org.telegram.ui.Components.w9 f20708a;
-    public final TextView f20709b;
-    public final TextView f20710c;
-    public final View d;
-    public final z5 e;
+    public v5[] f23531a;
+    public MediaController.AlbumEntry[] f23532b;
+    public int f23533c;
+    public w5 d;
+    public Paint f23534e;
 
-    public x5(z5 z5Var, Context context) {
-        super(context);
-        this.e = z5Var;
-        org.telegram.ui.Components.w9 w9Var = new org.telegram.ui.Components.w9(context);
-        this.f20708a = w9Var;
-        addView(w9Var, w7.a6.c(-1.0f, -1));
-        LinearLayout linearLayout = new LinearLayout(context);
-        linearLayout.setOrientation(0);
-        linearLayout.setBackgroundResource(R.drawable.album_shadow);
-        addView(linearLayout, w7.a6.e(-1, 60, 83));
-        TextView textView = new TextView(context);
-        this.f20709b = textView;
-        textView.setTextSize(1, 13.0f);
-        textView.setTextColor(-1);
-        textView.setSingleLine(true);
-        TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
-        textView.setEllipsize(truncateAt);
-        textView.setMaxLines(1);
-        textView.setGravity(80);
-        TextView g10 = com.google.android.gms.internal.vision.e2.g(linearLayout, textView, w7.a6.m(1.0f, 0, -1, 8, 0, 5), context);
-        this.f20710c = g10;
-        g10.setTextSize(1, 13.0f);
-        g10.setTextColor(-1);
-        g10.setSingleLine(true);
-        g10.setEllipsize(truncateAt);
-        g10.setMaxLines(1);
-        g10.setGravity(80);
-        linearLayout.addView(g10, w7.a6.k(4.0f, 0.0f, 7.0f, 5.0f, -2, -1));
-        View view = new View(context);
-        this.d = view;
-        view.setBackgroundDrawable(org.telegram.ui.ActionBar.j6.K0(false));
-        addView(view, w7.a6.c(-1.0f, -1));
-    }
-
-    @Override
-    public final void onDraw(Canvas canvas) {
-        org.telegram.ui.Components.w9 w9Var = this.f20708a;
-        if (w9Var.getImageReceiver().hasNotThumb() && w9Var.getImageReceiver().getCurrentAlpha() == 1.0f) {
+    public final void a(int i10, MediaController.AlbumEntry albumEntry) {
+        v5[] v5VarArr = this.f23531a;
+        this.f23532b[i10] = albumEntry;
+        if (albumEntry != null) {
+            v5 v5Var = v5VarArr[i10];
+            org.telegram.ui.Components.x9 x9Var = v5Var.f23370a;
+            org.telegram.ui.Components.x9 x9Var2 = v5Var.f23370a;
+            x9Var.q(0, true);
+            MediaController.PhotoEntry photoEntry = albumEntry.coverPhoto;
+            if (photoEntry != null && photoEntry.path != null) {
+                x9Var2.p(photoEntry.orientation, photoEntry.invert, true);
+                if (albumEntry.coverPhoto.isVideo) {
+                    x9Var2.f("vthumb://" + albumEntry.coverPhoto.imageId + ":" + albumEntry.coverPhoto.path, null, org.telegram.ui.ActionBar.j6.R4);
+                } else {
+                    x9Var2.f("thumb://" + albumEntry.coverPhoto.imageId + ":" + albumEntry.coverPhoto.path, null, org.telegram.ui.ActionBar.j6.R4);
+                }
+            } else {
+                x9Var2.setImageDrawable(org.telegram.ui.ActionBar.j6.R4);
+            }
+            v5Var.f23371b.setText(albumEntry.bucketName);
+            v5Var.f23372c.setText(String.format("%d", Integer.valueOf(albumEntry.photos.size())));
             return;
         }
-        z5 z5Var = this.e;
-        z5Var.e.setColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.X9, false));
-        canvas.drawRect(0.0f, 0.0f, w9Var.getMeasuredWidth(), w9Var.getMeasuredHeight(), z5Var.e);
+        v5VarArr[i10].setVisibility(4);
     }
 
     @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        this.d.drawableHotspotChanged(motionEvent.getX(), motionEvent.getY());
-        return super.onTouchEvent(motionEvent);
+    public final void onMeasure(int i10, int i11) {
+        int A;
+        View[] viewArr = this.f23531a;
+        if (AndroidUtilities.isTablet()) {
+            A = vl.A(4.0f, this.f23533c - 1, AndroidUtilities.dp(490.0f) - AndroidUtilities.dp(12.0f)) / this.f23533c;
+        } else {
+            A = vl.A(4.0f, this.f23533c - 1, AndroidUtilities.displaySize.x - AndroidUtilities.dp(12.0f)) / this.f23533c;
+        }
+        for (int i12 = 0; i12 < this.f23533c; i12++) {
+            FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) viewArr[i12].getLayoutParams();
+            layoutParams.topMargin = AndroidUtilities.dp(4.0f);
+            layoutParams.leftMargin = (AndroidUtilities.dp(4.0f) + A) * i12;
+            layoutParams.width = A;
+            layoutParams.height = A;
+            layoutParams.gravity = 51;
+            viewArr[i12].setLayoutParams(layoutParams);
+        }
+        super.onMeasure(i10, vl.C(4.0f, A, 1073741824));
+    }
+
+    public void setAlbumsCount(int i10) {
+        int i11;
+        int i12 = 0;
+        while (true) {
+            v5[] v5VarArr = this.f23531a;
+            if (i12 < v5VarArr.length) {
+                v5 v5Var = v5VarArr[i12];
+                if (i12 < i10) {
+                    i11 = 0;
+                } else {
+                    i11 = 4;
+                }
+                v5Var.setVisibility(i11);
+                i12++;
+            } else {
+                this.f23533c = i10;
+                return;
+            }
+        }
+    }
+
+    public void setDelegate(w5 w5Var) {
+        this.d = w5Var;
     }
 }

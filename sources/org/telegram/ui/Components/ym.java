@@ -1,28 +1,33 @@
 package org.telegram.ui.Components;
+public final class ym extends org.telegram.ui.su0 {
+    public boolean f32944a;
+    public final int f32945b;
+    public final tn f32946c;
 
-import org.telegram.messenger.Utilities;
-public final class ym implements Utilities.Callback {
-    public final int f29452a;
-    public final zn f29453b;
-    public final int f29454c;
-
-    public ym(zn znVar, int i10, int i11) {
-        this.f29452a = i11;
-        this.f29453b = znVar;
-        this.f29454c = i10;
+    public ym(tn tnVar, int i10) {
+        this.f32946c = tnVar;
+        this.f32945b = i10;
     }
 
     @Override
-    public final void run(Object obj) {
-        switch (this.f29452a) {
-            case 0:
-                this.f29453b.e0(this.f29454c, (ph.e) obj);
-                return;
-            default:
-                zn znVar = this.f29453b;
-                znVar.getClass();
-                znVar.e0(this.f29454c, new qh.e((String) obj));
-                return;
+    public final void D() {
+        if (this.f32944a) {
+            this.f32946c.b0(this.f32945b);
         }
+    }
+
+    @Override
+    public final void I() {
+        this.f32946c.e0(this.f32945b, null);
+    }
+
+    @Override
+    public final void V() {
+        this.f32944a = true;
+    }
+
+    @Override
+    public final boolean z() {
+        return false;
     }
 }

@@ -1,25 +1,36 @@
 package org.telegram.ui;
 
-import android.view.View;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.Switch;
-public final class g81 implements View.OnClickListener {
-    public final i81 f33041a;
-    public final TLRPC.TL_authorization f33042b;
-    public final j81 f33043c;
+import org.telegram.tgnet.tl.TL_account;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+public final class g81 extends org.telegram.ui.ActionBar.f3 {
+    public static final int f36597e = 0;
+    public TLRPC.TL_authorization f36598b;
+    public SessionsActivity f36599c;
+    public org.telegram.ui.Components.aj0 d;
 
-    public g81(j81 j81Var, i81 i81Var, TLRPC.TL_authorization tL_authorization) {
-        this.f33043c = j81Var;
-        this.f33041a = i81Var;
-        this.f33042b = tL_authorization;
+    public static void m(g81 g81Var, String str) {
+        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(g81Var.getContext());
+        alertDialog$Builder.f(new CharSequence[]{LocaleController.getString(R.string.Copy)}, new mg.j(11, g81Var, str));
+        alertDialog$Builder.o();
+    }
+
+    public static void n(g81 g81Var) {
+        TL_account.changeAuthorizationSettings changeauthorizationsettings = new TL_account.changeAuthorizationSettings();
+        TLRPC.TL_authorization tL_authorization = g81Var.f36598b;
+        changeauthorizationsettings.encrypted_requests_disabled = tL_authorization.encrypted_requests_disabled;
+        changeauthorizationsettings.call_requests_disabled = tL_authorization.call_requests_disabled;
+        changeauthorizationsettings.flags = 3;
+        changeauthorizationsettings.hash = tL_authorization.hash;
+        ConnectionsManager.getInstance(g81Var.currentAccount).sendRequest(changeauthorizationsettings, new bi.c7(21));
     }
 
     @Override
-    public final void onClick(View view) {
-        i81 i81Var = this.f33041a;
-        Switch r02 = i81Var.d;
-        r02.c(!r02.h, true);
-        this.f33042b.call_requests_disabled = !i81Var.d.h;
-        j81.n(this.f33043c);
+    public final void show() {
+        super.show();
+        this.d.d();
     }
 }

@@ -1,12 +1,68 @@
 package u2;
-public interface f1 {
-    boolean c();
+public final class f1 implements g1 {
+    public final int f46671a;
 
-    long d();
+    public f1(int i10) {
+        this.f46671a = i10;
+    }
 
-    boolean n(i2.q0 q0Var);
+    @Override
+    public final g1 a(int i10, int i11) {
+        return new f1((this.f46671a - i11) + i10);
+    }
 
-    long r();
+    @Override
+    public final int b() {
+        if (this.f46671a > 0) {
+            return 0;
+        }
+        return -1;
+    }
 
-    void u(long j3);
+    @Override
+    public final int c(int i10) {
+        int i11 = i10 - 1;
+        if (i11 < 0) {
+            return -1;
+        }
+        return i11;
+    }
+
+    @Override
+    public final int d(int i10) {
+        int i11 = i10 + 1;
+        if (i11 < this.f46671a) {
+            return i11;
+        }
+        return -1;
+    }
+
+    @Override
+    public final g1 e(int i10, int i11) {
+        return new f1(this.f46671a + i11);
+    }
+
+    @Override
+    public final int g() {
+        int i10 = this.f46671a;
+        if (i10 > 0) {
+            return i10 - 1;
+        }
+        return -1;
+    }
+
+    @Override
+    public final int getLength() {
+        return this.f46671a;
+    }
+
+    @Override
+    public final g1 h() {
+        return new f1(0);
+    }
+
+    @Override
+    public final g1 f() {
+        return this;
+    }
 }

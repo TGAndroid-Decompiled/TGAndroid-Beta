@@ -17,27 +17,27 @@ import java.lang.ref.WeakReference;
 import java.util.WeakHashMap;
 import org.xmlpull.v1.XmlPullParserException;
 public final class m2 {
-    public static m2 f13062i;
-    public WeakHashMap f13064a;
-    public a0.l f13065b;
-    public a0.m f13066c;
+    public static m2 f15585i;
+    public WeakHashMap f15587a;
+    public a0.l f15588b;
+    public a0.m f15589c;
     public final WeakHashMap d = new WeakHashMap(0);
-    public TypedValue e;
-    public boolean f13067f;
-    public com.google.firebase.messaging.n f13068g;
+    public TypedValue f15590e;
+    public boolean f15591f;
+    public com.google.firebase.messaging.n f15592g;
     public static final PorterDuff.Mode h = PorterDuff.Mode.SRC_IN;
-    public static final k2 f13063j = new a0.k(6);
+    public static final k2 f15586j = new a0.k(6);
 
     public static synchronized m2 d() {
         m2 m2Var;
         synchronized (m2.class) {
             try {
-                if (f13062i == null) {
+                if (f15585i == null) {
                     m2 m2Var2 = new m2();
-                    f13062i = m2Var2;
+                    f15585i = m2Var2;
                     j(m2Var2);
                 }
-                m2Var = f13062i;
+                m2Var = f15585i;
             } catch (Throwable th2) {
                 throw th2;
             }
@@ -48,7 +48,7 @@ public final class m2 {
     public static synchronized PorterDuffColorFilter h(int i10, PorterDuff.Mode mode) {
         PorterDuffColorFilter porterDuffColorFilter;
         synchronized (m2.class) {
-            k2 k2Var = f13063j;
+            k2 k2Var = f15586j;
             k2Var.getClass();
             int i11 = (31 + i10) * 31;
             porterDuffColorFilter = (PorterDuffColorFilter) k2Var.a(Integer.valueOf(mode.hashCode() + i11));
@@ -70,10 +70,10 @@ public final class m2 {
     }
 
     public final void a(String str, l2 l2Var) {
-        if (this.f13065b == null) {
-            this.f13065b = new a0.l(0);
+        if (this.f15588b == null) {
+            this.f15588b = new a0.l(0);
         }
-        this.f13065b.put(str, l2Var);
+        this.f15588b.put(str, l2Var);
     }
 
     public final synchronized void b(Context context, long j3, Drawable drawable) {
@@ -93,18 +93,18 @@ public final class m2 {
     }
 
     public final Drawable c(Context context, int i10) {
-        if (this.e == null) {
-            this.e = new TypedValue();
+        if (this.f15590e == null) {
+            this.f15590e = new TypedValue();
         }
-        TypedValue typedValue = this.e;
+        TypedValue typedValue = this.f15590e;
         context.getResources().getValue(i10, typedValue, true);
         long j3 = (typedValue.assetCookie << 32) | typedValue.data;
-        Drawable e = e(context, j3);
-        if (e != null) {
-            return e;
+        Drawable e7 = e(context, j3);
+        if (e7 != null) {
+            return e7;
         }
         LayerDrawable layerDrawable = null;
-        if (this.f13068g != null) {
+        if (this.f15592g != null) {
             if (i10 == 2131230760) {
                 layerDrawable = new LayerDrawable(new Drawable[]{g(context, 2131230759), g(context, 2131230761)});
             } else if (i10 == 2131230795) {
@@ -141,11 +141,11 @@ public final class m2 {
     public final synchronized Drawable f(int i10, Context context, boolean z10) {
         Drawable k10;
         try {
-            if (!this.f13067f) {
-                this.f13067f = true;
+            if (!this.f15591f) {
+                this.f15591f = true;
                 Drawable g10 = g(context, 2131230822);
                 if (g10 == null || (!(g10 instanceof x4.p) && !"android.graphics.drawable.VectorDrawable".equals(g10.getClass().getName()))) {
-                    this.f13067f = false;
+                    this.f15591f = false;
                     throw new IllegalStateException("This app has been built with an incorrect configuration. Please configure your build for VectorDrawableCompat.");
                 }
             }
@@ -175,7 +175,7 @@ public final class m2 {
     public final synchronized ColorStateList i(Context context, int i10) {
         ColorStateList colorStateList;
         a0.m mVar;
-        WeakHashMap weakHashMap = this.f13064a;
+        WeakHashMap weakHashMap = this.f15587a;
         ColorStateList colorStateList2 = null;
         if (weakHashMap != null && (mVar = (a0.m) weakHashMap.get(context)) != null) {
             colorStateList = (ColorStateList) mVar.c(i10);
@@ -183,18 +183,18 @@ public final class m2 {
             colorStateList = null;
         }
         if (colorStateList == null) {
-            com.google.firebase.messaging.n nVar = this.f13068g;
+            com.google.firebase.messaging.n nVar = this.f15592g;
             if (nVar != null) {
                 colorStateList2 = nVar.t(context, i10);
             }
             if (colorStateList2 != null) {
-                if (this.f13064a == null) {
-                    this.f13064a = new WeakHashMap();
+                if (this.f15587a == null) {
+                    this.f15587a = new WeakHashMap();
                 }
-                a0.m mVar2 = (a0.m) this.f13064a.get(context);
+                a0.m mVar2 = (a0.m) this.f15587a.get(context);
                 if (mVar2 == null) {
                     mVar2 = new a0.m();
-                    this.f13064a.put(context, mVar2);
+                    this.f15587a.put(context, mVar2);
                 }
                 mVar2.a(i10, colorStateList2);
             }
@@ -205,31 +205,31 @@ public final class m2 {
 
     public final Drawable k(Context context, int i10) {
         int next;
-        a0.l lVar = this.f13065b;
+        a0.l lVar = this.f15588b;
         if (lVar != null && !lVar.isEmpty()) {
-            a0.m mVar = this.f13066c;
+            a0.m mVar = this.f15589c;
             if (mVar != null) {
                 String str = (String) mVar.c(i10);
                 if (!"appcompat_skip_skip".equals(str)) {
-                    if (str != null && this.f13065b.get(str) == null) {
+                    if (str != null && this.f15588b.get(str) == null) {
                         return null;
                     }
                 } else {
                     return null;
                 }
             } else {
-                this.f13066c = new a0.m();
+                this.f15589c = new a0.m();
             }
-            if (this.e == null) {
-                this.e = new TypedValue();
+            if (this.f15590e == null) {
+                this.f15590e = new TypedValue();
             }
-            TypedValue typedValue = this.e;
+            TypedValue typedValue = this.f15590e;
             Resources resources = context.getResources();
             resources.getValue(i10, typedValue, true);
             long j3 = (typedValue.assetCookie << 32) | typedValue.data;
-            Drawable e = e(context, j3);
-            if (e != null) {
-                return e;
+            Drawable e7 = e(context, j3);
+            if (e7 != null) {
+                return e7;
             }
             CharSequence charSequence = typedValue.string;
             if (charSequence != null && charSequence.toString().endsWith(".xml")) {
@@ -244,32 +244,32 @@ public final class m2 {
                     }
                     if (next == 2) {
                         String name = xml.getName();
-                        this.f13066c.a(i10, name);
-                        l2 l2Var = (l2) this.f13065b.get(name);
+                        this.f15589c.a(i10, name);
+                        l2 l2Var = (l2) this.f15588b.get(name);
                         if (l2Var != null) {
-                            e = l2Var.a(context, xml, asAttributeSet, context.getTheme());
+                            e7 = l2Var.a(context, xml, asAttributeSet, context.getTheme());
                         }
-                        if (e != null) {
-                            e.setChangingConfigurations(typedValue.changingConfigurations);
-                            b(context, j3, e);
+                        if (e7 != null) {
+                            e7.setChangingConfigurations(typedValue.changingConfigurations);
+                            b(context, j3, e7);
                         }
                     } else {
                         throw new XmlPullParserException("No start tag found");
                     }
-                } catch (Exception e7) {
-                    Log.e("ResourceManagerInternal", "Exception while inflating drawable", e7);
+                } catch (Exception e10) {
+                    Log.e("ResourceManagerInternal", "Exception while inflating drawable", e10);
                 }
             }
-            if (e == null) {
-                this.f13066c.a(i10, "appcompat_skip_skip");
+            if (e7 == null) {
+                this.f15589c.a(i10, "appcompat_skip_skip");
             }
-            return e;
+            return e7;
         }
         return null;
     }
 
     public final synchronized void l(com.google.firebase.messaging.n nVar) {
-        this.f13068g = nVar;
+        this.f15592g = nVar;
     }
 
     public final android.graphics.drawable.Drawable m(android.content.Context r10, int r11, boolean r12, android.graphics.drawable.Drawable r13) {

@@ -1,44 +1,32 @@
 package uh;
 
-import android.view.View;
-import android.view.ViewGroup;
-import java.util.ArrayList;
-public final class d implements Runnable {
-    public final int f42748a;
-    public final g f42749b;
+import android.graphics.Canvas;
+import androidx.recyclerview.widget.RecyclerView;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.ActionBar.f6;
+import org.telegram.ui.ActionBar.j6;
+import s4.n0;
+import yf.z;
+public final class d extends n0 {
+    public final z f47242a = new z(2);
+    public final f6 f47243b;
+    public final f f47244c;
 
-    public d(g gVar, int i10) {
-        this.f42748a = i10;
-        this.f42749b = gVar;
+    public d(f fVar, f6 f6Var) {
+        this.f47244c = fVar;
+        this.f47243b = f6Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f42748a) {
-            case 0:
-                g gVar = this.f42749b;
-                if (gVar.f42768j.isEmpty()) {
-                    gVar.f42767i = true;
-                    g.f42761n = null;
-                    f fVar = gVar.f42765f;
-                    if (fVar != null) {
-                        fVar.f42751a = false;
-                        gVar.f42765f = null;
-                    }
-                    gVar.d.removeView(gVar.e);
-                    if (gVar.d.getParent() instanceof ViewGroup) {
-                        ((ViewGroup) gVar.d.getParent()).removeView(gVar.d);
-                        return;
-                    }
-                    return;
-                }
-                return;
-            default:
-                ArrayList arrayList = this.f42749b.f42768j;
-                for (int i10 = 0; i10 < arrayList.size(); i10++) {
-                    ((View) arrayList.get(i10)).invalidate();
-                }
-                return;
-        }
+    public final void c(Canvas canvas, RecyclerView recyclerView) {
+        f fVar = this.f47244c;
+        int max = Math.max(0, AndroidUtilities.dp(80.0f) + ((int) fVar.f47253g0.getTranslationY()) + ((int) fVar.X.f15376e));
+        int v02 = j6.v0(j6.f20734h5, this.f47243b);
+        z zVar = this.f47242a;
+        zVar.b(v02);
+        zVar.setBounds(0, max, recyclerView.getWidth(), AndroidUtilities.dp(8.0f) + max);
+        zVar.draw(canvas);
+        fVar.Q();
+        fVar.R();
     }
 }

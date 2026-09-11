@@ -1,8 +1,8 @@
 package zd;
 
-import v7.q8;
+import v7.n8;
 public final class h2 implements id.f, id.g {
-    public static final h2 f48018a = new Object();
+    public static final h2 f51559a = new Object();
 
     @Override
     public final Object fold(Object obj, rd.p pVar) {
@@ -11,17 +11,17 @@ public final class h2 implements id.f, id.g {
 
     @Override
     public final id.f get(id.g gVar) {
-        return q8.a(this, gVar);
+        return n8.a(this, gVar);
     }
 
     @Override
     public final id.h minusKey(id.g gVar) {
-        return q8.b(this, gVar);
+        return n8.b(this, gVar);
     }
 
     @Override
     public final id.h plus(id.h hVar) {
-        return q8.c(this, hVar);
+        return n8.c(this, hVar);
     }
 
     @Override

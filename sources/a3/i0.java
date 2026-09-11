@@ -1,41 +1,38 @@
 package a3;
 public final class i0 implements Runnable {
-    public final int f123a = 0;
-    public final of.b f124b;
-    public final long f125c;
-    public final int d;
+    public final int f117a;
+    public final pf.b f118b;
+    public final i2.h f119c;
 
-    public i0(of.b bVar, int i10, long j3) {
-        this.f124b = bVar;
-        this.d = i10;
-        this.f125c = j3;
+    public i0(pf.b bVar, i2.h hVar, int i10) {
+        this.f117a = i10;
+        this.f118b = bVar;
+        this.f119c = hVar;
     }
 
     @Override
     public final void run() {
-        int i10 = this.f123a;
-        int i11 = this.d;
-        long j3 = this.f125c;
-        of.b bVar = this.f124b;
-        switch (i10) {
+        switch (this.f117a) {
             case 0:
-                String str = e2.d0.f7188a;
-                j2.e eVar = ((i2.b0) ((l0) bVar.f14295c)).f10108a.f10157s;
-                j2.a n10 = eVar.n((u2.g0) eVar.d.e);
-                eVar.q(n10, 1018, new j2.d(n10, i11, j3));
+                pf.b bVar = this.f118b;
+                i2.h hVar = this.f119c;
+                String str = e2.d0.f8737a;
+                j2.f fVar = ((i2.c0) bVar.f44047c).f11471a.f11533s;
+                j2.a p5 = fVar.p();
+                fVar.q(p5, 1015, new j2.c(p5, hVar, 20));
                 return;
             default:
-                String str2 = e2.d0.f7188a;
-                j2.e eVar2 = ((i2.b0) ((l0) bVar.f14295c)).f10108a.f10157s;
-                j2.a n11 = eVar2.n((u2.g0) eVar2.d.e);
-                eVar2.q(n11, 1021, new j2.d(n11, j3, i11));
+                pf.b bVar2 = this.f118b;
+                i2.h hVar2 = this.f119c;
+                synchronized (hVar2) {
+                }
+                String str2 = e2.d0.f8737a;
+                i2.f0 f0Var = ((i2.c0) bVar2.f44047c).f11471a;
+                j2.f fVar2 = f0Var.f11533s;
+                j2.a n10 = fVar2.n((u2.f0) fVar2.d.f6377e);
+                fVar2.q(n10, 1020, new fi.f(n10, hVar2, 17));
+                f0Var.Q = null;
                 return;
         }
-    }
-
-    public i0(of.b bVar, long j3, int i10) {
-        this.f124b = bVar;
-        this.f125c = j3;
-        this.d = i10;
     }
 }

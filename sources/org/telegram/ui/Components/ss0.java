@@ -1,36 +1,162 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import java.util.ArrayList;
-import org.telegram.messenger.MediaController;
-import org.telegram.messenger.MessageObject;
-public final class ss0 extends org.telegram.ui.Cells.k7 {
-    public final iv0 f27210l0;
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
+import android.animation.ValueAnimator;
+import android.util.SparseBooleanArray;
+import android.view.View;
+import android.view.ViewTreeObserver;
+import androidx.recyclerview.widget.RecyclerView;
+public final class ss0 implements ViewTreeObserver.OnPreDrawListener {
+    public final ll0 f30408a;
+    public final SparseBooleanArray f30409b;
+    public final View f30410c;
+    public final int d;
+    public final xu0 f30411e;
 
-    public ss0(iv0 iv0Var, Context context) {
-        super(context);
-        this.f27210l0 = iv0Var;
+    public ss0(xu0 xu0Var, ll0 ll0Var, SparseBooleanArray sparseBooleanArray, t00 t00Var, int i10) {
+        this.f30411e = xu0Var;
+        this.f30408a = ll0Var;
+        this.f30409b = sparseBooleanArray;
+        this.f30410c = t00Var;
+        this.d = i10;
     }
 
     @Override
-    public final boolean d(MessageObject messageObject) {
-        ArrayList<MessageObject> arrayList;
-        boolean isVoice = messageObject.isVoice();
-        iv0 iv0Var = this.f27210l0;
-        if (!isVoice && !messageObject.isRoundVideo()) {
-            if (!messageObject.isMusic()) {
-                return false;
+    public final boolean onPreDraw() {
+        xu0 xu0Var = this.f30411e;
+        xu0Var.getViewTreeObserver().removeOnPreDrawListener(this);
+        final ll0 ll0Var = this.f30408a;
+        s4.h0 adapter = ll0Var.getAdapter();
+        if (adapter != xu0Var.H && adapter != xu0Var.K && adapter != xu0Var.M && adapter != xu0Var.L) {
+            int childCount = ll0Var.getChildCount();
+            AnimatorSet animatorSet = new AnimatorSet();
+            for (int i10 = 0; i10 < childCount; i10++) {
+                View childAt = ll0Var.getChildAt(i10);
+                View view = this.f30410c;
+                if (childAt != view && RecyclerView.R(childAt) >= this.d - 1) {
+                    childAt.setAlpha(0.0f);
+                    ObjectAnimator ofFloat = ObjectAnimator.ofFloat(childAt, View.ALPHA, 0.0f, 1.0f);
+                    ofFloat.setStartDelay((int) ((Math.min(ll0Var.getMeasuredHeight(), Math.max(0, childAt.getTop())) / ll0Var.getMeasuredHeight()) * 100.0f));
+                    ofFloat.setDuration(200L);
+                    ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                        @Override
+                        public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+                            switch (r2) {
+                                case 0:
+                                    ll0 ll0Var2 = ll0Var;
+                                    if (ll0Var2.a1()) {
+                                        ll0Var2.invalidate();
+                                        return;
+                                    }
+                                    return;
+                                case 1:
+                                    ll0 ll0Var3 = ll0Var;
+                                    if (ll0Var3.a1()) {
+                                        ll0Var3.invalidate();
+                                        return;
+                                    }
+                                    return;
+                                default:
+                                    ll0 ll0Var4 = ll0Var;
+                                    if (ll0Var4.a1()) {
+                                        ll0Var4.invalidate();
+                                        return;
+                                    }
+                                    return;
+                            }
+                        }
+                    });
+                    animatorSet.playTogether(ofFloat);
+                }
+                if (view != null && view.getParent() == null) {
+                    ll0Var.addView(view);
+                    s4.o0 layoutManager = ll0Var.getLayoutManager();
+                    if (layoutManager != null) {
+                        layoutManager.M(view);
+                        ObjectAnimator ofFloat2 = ObjectAnimator.ofFloat(view, View.ALPHA, view.getAlpha(), 0.0f);
+                        ofFloat2.addListener(new r80(this, layoutManager));
+                        ofFloat2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                            @Override
+                            public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+                                switch (r2) {
+                                    case 0:
+                                        ll0 ll0Var2 = ll0Var;
+                                        if (ll0Var2.a1()) {
+                                            ll0Var2.invalidate();
+                                            return;
+                                        }
+                                        return;
+                                    case 1:
+                                        ll0 ll0Var3 = ll0Var;
+                                        if (ll0Var3.a1()) {
+                                            ll0Var3.invalidate();
+                                            return;
+                                        }
+                                        return;
+                                    default:
+                                        ll0 ll0Var4 = ll0Var;
+                                        if (ll0Var4.a1()) {
+                                            ll0Var4.invalidate();
+                                            return;
+                                        }
+                                        return;
+                                }
+                            }
+                        });
+                        ofFloat2.start();
+                    }
+                }
             }
-            return MediaController.getInstance().setPlaylist(iv0Var.f24127t1[4].f29156a, messageObject, iv0Var.f24090c1);
+            animatorSet.start();
+            return true;
         }
-        boolean playMessage = MediaController.getInstance().playMessage(messageObject);
-        MediaController mediaController = MediaController.getInstance();
-        if (playMessage) {
-            arrayList = iv0Var.f24127t1[4].f29156a;
-        } else {
-            arrayList = null;
+        SparseBooleanArray sparseBooleanArray = this.f30409b;
+        if (sparseBooleanArray != null) {
+            int childCount2 = ll0Var.getChildCount();
+            for (int i11 = 0; i11 < childCount2; i11++) {
+                View childAt2 = ll0Var.getChildAt(i11);
+                int p5 = xu0.p(childAt2);
+                if (p5 != 0 && sparseBooleanArray.get(p5, false)) {
+                    xu0Var.O1.put(p5, Float.valueOf(0.0f));
+                    ValueAnimator ofFloat3 = ValueAnimator.ofFloat(0.0f, 1.0f);
+                    ofFloat3.addUpdateListener(new di.x4(this, p5, ll0Var));
+                    ofFloat3.addListener(new fi.v2(this, p5, 10));
+                    ofFloat3.setStartDelay((int) ((Math.min(ll0Var.getMeasuredHeight(), Math.max(0, childAt2.getTop())) / ll0Var.getMeasuredHeight()) * 100.0f));
+                    ofFloat3.setDuration(250L);
+                    ofFloat3.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                        @Override
+                        public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+                            switch (r2) {
+                                case 0:
+                                    ll0 ll0Var2 = ll0Var;
+                                    if (ll0Var2.a1()) {
+                                        ll0Var2.invalidate();
+                                        return;
+                                    }
+                                    return;
+                                case 1:
+                                    ll0 ll0Var3 = ll0Var;
+                                    if (ll0Var3.a1()) {
+                                        ll0Var3.invalidate();
+                                        return;
+                                    }
+                                    return;
+                                default:
+                                    ll0 ll0Var4 = ll0Var;
+                                    if (ll0Var4.a1()) {
+                                        ll0Var4.invalidate();
+                                        return;
+                                    }
+                                    return;
+                            }
+                        }
+                    });
+                    ofFloat3.start();
+                }
+                ll0Var.invalidate();
+            }
         }
-        mediaController.setVoiceMessagesPlaylist(arrayList, false);
-        return playMessage;
+        return true;
     }
 }

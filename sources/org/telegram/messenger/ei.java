@@ -1,33 +1,28 @@
 package org.telegram.messenger;
 
-import android.animation.ValueAnimator;
-import android.view.View;
-import android.view.Window;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.RichMessageLayout;
-import org.telegram.ui.Components.t71;
-public final class ei implements ValueAnimator.AnimatorUpdateListener {
-    public final int f15098a;
-    public final Object f15099b;
-    public final Object f15100c;
+import org.telegram.tgnet.TLRPC;
+public final class ei implements Runnable {
+    public final int f17585a;
+    public final SecretChatHelper f17586b;
+    public final TLRPC.EncryptedChat f17587c;
 
-    public ei(int i10, Object obj, Object obj2) {
-        this.f15098a = i10;
-        this.f15099b = obj;
-        this.f15100c = obj2;
+    public ei(SecretChatHelper secretChatHelper, TLRPC.EncryptedChat encryptedChat, int i10) {
+        this.f17585a = i10;
+        this.f17586b = secretChatHelper;
+        this.f17587c = encryptedChat;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f15098a) {
+    public final void run() {
+        switch (this.f17585a) {
             case 0:
-                ((RichMessageLayout.SpoilerReveal) this.f15099b).lambda$start$0((View) this.f15100c, valueAnimator);
+                this.f17586b.lambda$processAcceptedSecretChat$18(this.f17587c);
                 return;
             case 1:
-                AndroidUtilities.lambda$setNavigationBarColor$23((AndroidUtilities.IntColorCallback) this.f15099b, (Window) this.f15100c, valueAnimator);
+                this.f17586b.lambda$acceptSecretChat$21(this.f17587c);
                 return;
             default:
-                ((MediaController) this.f15099b).lambda$cleanupPlayer$10((t71) this.f15100c, valueAnimator);
+                this.f17586b.lambda$applyPeerLayer$9(this.f17587c);
                 return;
         }
     }

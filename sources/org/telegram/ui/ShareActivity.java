@@ -18,8 +18,8 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.SerializedData;
 import org.telegram.tgnet.TLRPC;
 public class ShareActivity extends Activity {
-    public static final int f30618b = 0;
-    public org.telegram.ui.Components.sq0 f30619a;
+    public static final int f34129b = 0;
+    public org.telegram.ui.Components.hq0 f34130a;
 
     @Override
     public final void onCreate(Bundle bundle) {
@@ -55,14 +55,14 @@ public class ShareActivity extends Activity {
                 MessageObject messageObject = new MessageObject(UserConfig.selectedAccount, TLdeserialize, false, true);
                 messageObject.messageOwner.with_my_score = true;
                 try {
-                    org.telegram.ui.Components.sq0 N0 = org.telegram.ui.Components.sq0.N0(this, messageObject, null, false, string2);
-                    this.f30619a = N0;
+                    org.telegram.ui.Components.hq0 N0 = org.telegram.ui.Components.hq0.N0(this, messageObject, null, false, string2);
+                    this.f34130a = N0;
                     N0.setCanceledOnTouchOutside(true);
-                    this.f30619a.setOnDismissListener(new s5(this, 16));
-                    this.f30619a.show();
+                    this.f34130a.setOnDismissListener(new r5(this, 16));
+                    this.f34130a.show();
                     return;
-                } catch (Exception e) {
-                    FileLog.e(e);
+                } catch (Exception e7) {
+                    FileLog.e(e7);
                     finish();
                     return;
                 }
@@ -77,13 +77,13 @@ public class ShareActivity extends Activity {
     public final void onPause() {
         super.onPause();
         try {
-            org.telegram.ui.Components.sq0 sq0Var = this.f30619a;
-            if (sq0Var != null && sq0Var.isShowing()) {
-                this.f30619a.dismiss();
-                this.f30619a = null;
+            org.telegram.ui.Components.hq0 hq0Var = this.f34130a;
+            if (hq0Var != null && hq0Var.isShowing()) {
+                this.f34130a.dismiss();
+                this.f34130a = null;
             }
-        } catch (Exception e) {
-            FileLog.e(e);
+        } catch (Exception e7) {
+            FileLog.e(e7);
         }
     }
 }

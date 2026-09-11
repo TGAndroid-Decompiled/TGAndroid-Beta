@@ -10,21 +10,21 @@ import com.google.android.gms.tasks.TaskCompletionSource;
 import kotlin.jvm.internal.i;
 import v7.f5;
 public final class e extends Binder implements b, IInterface {
-    public final int f307a;
-    public final TaskCompletionSource f308b;
+    public final int f320a;
+    public final TaskCompletionSource f321b;
 
     public e(int i10, TaskCompletionSource taskCompletionSource) {
-        this.f307a = i10;
-        this.f308b = taskCompletionSource;
+        this.f320a = i10;
+        this.f321b = taskCompletionSource;
         attachInterface(this, "com.google.android.gms.recaptchabase.internal.IRecaptchaBaseCallbacks");
     }
 
     @Override
     public final void S(Status status, l8.b bVar) {
-        switch (this.f307a) {
+        switch (this.f320a) {
             case 0:
                 i.e(status, "status");
-                f5.a(status, bVar, this.f308b);
+                f5.a(status, bVar, this.f321b);
                 return;
             default:
                 return;
@@ -51,7 +51,7 @@ public final class e extends Binder implements b, IInterface {
                 S(status, bVar);
                 return true;
             }
-            throw new BadParcelableException(hc.b.j(dataAvail, "Parcel data not fully consumed, unread size: "));
+            throw new BadParcelableException(i2.g.i(dataAvail, "Parcel data not fully consumed, unread size: "));
         }
         Status status2 = (Status) a.a(parcel, Status.CREATOR);
         l8.d dVar = (l8.d) a.a(parcel, l8.d.CREATOR);
@@ -60,17 +60,17 @@ public final class e extends Binder implements b, IInterface {
             s(status2, dVar);
             return true;
         }
-        throw new BadParcelableException(hc.b.j(dataAvail2, "Parcel data not fully consumed, unread size: "));
+        throw new BadParcelableException(i2.g.i(dataAvail2, "Parcel data not fully consumed, unread size: "));
     }
 
     @Override
     public final void s(Status status, l8.d dVar) {
-        switch (this.f307a) {
+        switch (this.f320a) {
             case 0:
                 return;
             default:
                 i.e(status, "status");
-                f5.a(status, dVar, this.f308b);
+                f5.a(status, dVar, this.f321b);
                 return;
         }
     }

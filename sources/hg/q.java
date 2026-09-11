@@ -1,98 +1,52 @@
 package hg;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Matrix;
-import android.graphics.Path;
-import android.graphics.RectF;
-import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
-public class q extends g {
-    public final Matrix D1;
-    public final float[] E1;
-    public final Path F1;
-    public boolean[] G1;
-    public float[] H1;
+import org.telegram.SQLite.SQLiteDatabase;
+import org.telegram.SQLite.SQLitePreparedStatement;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.MessagesStorage;
+import org.telegram.ui.Components.rn0;
+public final class q implements Runnable {
+    public final int f11212a;
+    public final i0 f11213b;
+    public final long f11214c;
 
-    public q(Context context) {
-        super(context, null);
-        this.D1 = new Matrix();
-        this.E1 = new float[2];
-        this.F1 = new Path();
-        this.f9386w0 = true;
-        this.f9388x0 = true;
-        this.e = false;
+    public q(rn0 rn0Var, long j3, int i10) {
+        this.f11212a = i10;
+        this.f11213b = rn0Var;
+        this.f11214c = j3;
     }
 
     @Override
-    public jg.i h(ig.a aVar) {
-        return new jg.i(aVar);
-    }
-
-    public final int M(float f7, float f10) {
-        RectF rectF = this.H0;
-        float centerX = rectF.centerX();
-        float centerY = rectF.centerY() + AndroidUtilities.dp(16.0f);
-        int i10 = (f7 > centerX ? 1 : (f7 == centerX ? 0 : -1));
-        if (i10 >= 0 && f10 <= centerY) {
-            return 0;
+    public final void run() {
+        switch (this.f11212a) {
+            case 0:
+                long j3 = this.f11214c;
+                i0 i0Var = this.f11213b;
+                i0Var.getClass();
+                try {
+                    SQLiteDatabase database = MessagesStorage.getInstance(i0Var.f11093s0).getDatabase();
+                    database.executeFast("DELETE FROM search_recent WHERE did = " + j3).stepThis().dispose();
+                    return;
+                } catch (Exception e7) {
+                    FileLog.e(e7);
+                    return;
+                }
+            default:
+                long j10 = this.f11214c;
+                i0 i0Var2 = this.f11213b;
+                i0Var2.getClass();
+                try {
+                    SQLitePreparedStatement executeFast = MessagesStorage.getInstance(i0Var2.f11093s0).getDatabase().executeFast("REPLACE INTO search_recent VALUES(?, ?)");
+                    executeFast.requery();
+                    executeFast.bindLong(1, j10);
+                    executeFast.bindInteger(2, (int) (System.currentTimeMillis() / 1000));
+                    executeFast.step();
+                    executeFast.dispose();
+                    return;
+                } catch (Exception e10) {
+                    FileLog.e(e10);
+                    return;
+                }
         }
-        if (i10 >= 0 && f10 >= centerY) {
-            return 1;
-        }
-        if (f7 < centerX && f10 >= centerY) {
-            return 2;
-        }
-        return 3;
-    }
-
-    @Override
-    public float getMinDistance() {
-        return 0.1f;
-    }
-
-    @Override
-    public void k(android.graphics.Canvas r46) {
-        throw new UnsupportedOperationException("Method not decompiled: hg.q.k(android.graphics.Canvas):void");
-    }
-
-    @Override
-    public void n(android.graphics.Canvas r27) {
-        throw new UnsupportedOperationException("Method not decompiled: hg.q.n(android.graphics.Canvas):void");
-    }
-
-    @Override
-    public void onDraw(Canvas canvas) {
-        F();
-        k(canvas);
-        i(canvas);
-        ArrayList arrayList = this.f9350b;
-        this.m0 = arrayList.size();
-        int i10 = 0;
-        while (true) {
-            this.f9374n0 = i10;
-            int i11 = this.f9374n0;
-            if (i11 < this.m0) {
-                l(canvas, (jg.d) arrayList.get(i11));
-                p(canvas, (jg.d) arrayList.get(this.f9374n0));
-                i10 = this.f9374n0 + 1;
-            } else {
-                j(canvas);
-                m(canvas);
-                o(canvas);
-                super.onDraw(canvas);
-                return;
-            }
-        }
-    }
-
-    @Override
-    public void q(jg.j r21) {
-        throw new UnsupportedOperationException("Method not decompiled: hg.q.q(jg.j):void");
-    }
-
-    @Override
-    public final long r(int i10, int i11) {
-        return 100L;
     }
 }

@@ -1,98 +1,42 @@
 package org.telegram.ui.Components;
+public final class qg implements Runnable {
+    public final int f29718a;
+    public final sg f29719b;
+    public final di.f4 f29720c;
 
-import android.view.View;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stories;
-public interface qg {
-    void B(boolean z10);
+    public qg(sg sgVar, di.f4 f4Var, int i10) {
+        this.f29718a = i10;
+        this.f29719b = sgVar;
+        this.f29720c = f4Var;
+    }
 
-    boolean D0();
-
-    void D1();
-
-    void F0(int i10, int i11);
-
-    void G();
-
-    void H0();
-
-    void I(CharSequence charSequence, boolean z10, int i10, int i11, long j3);
-
-    TLRPC.TL_channels_sendAsPeers J();
-
-    void J0();
-
-    void T(float f7, int i10);
-
-    void T0();
-
-    void W();
-
-    void Z(boolean z10);
-
-    void a1(int i10);
-
-    int b1();
-
-    void b2();
-
-    TL_stories.StoryItem d1();
-
-    void d2(int i10);
-
-    boolean e1(long j3);
-
-    void g2();
-
-    void h();
-
-    boolean h1();
-
-    void h2(boolean z10);
-
-    void i2(int i10, int i11, int i12, long j3, long j10, boolean z10);
-
-    void k();
-
-    void k1(CharSequence charSequence, boolean z10, boolean z11);
-
-    boolean l();
-
-    void m0();
-
-    void m1();
-
-    void m2();
-
-    boolean n1();
-
-    org.telegram.ui.tn p0();
-
-    void p1();
-
-    void q1();
-
-    void r1();
-
-    void s1(View view, CharSequence charSequence, boolean z10);
-
-    void t0();
-
-    int u();
-
-    void u1(CharSequence charSequence);
-
-    void u2();
-
-    boolean v1();
-
-    TLRPC.Peer w();
-
-    void x();
-
-    void y(float f7);
-
-    void y1();
-
-    void y2();
+    @Override
+    public final void run() {
+        switch (this.f29718a) {
+            case 0:
+                sg sgVar = this.f29719b;
+                di.f4 f4Var = this.f29720c;
+                sgVar.removeView(f4Var);
+                if (sgVar.f30279b == f4Var) {
+                    sgVar.f30279b = null;
+                    return;
+                }
+                return;
+            case 1:
+                this.f29719b.removeView(this.f29720c);
+                return;
+            case 2:
+                this.f29719b.removeView(this.f29720c);
+                return;
+            default:
+                sg sgVar2 = this.f29719b;
+                di.f4 f4Var2 = this.f29720c;
+                sgVar2.removeView(f4Var2);
+                if (sgVar2.f30278a == f4Var2) {
+                    sgVar2.f30278a = null;
+                    return;
+                }
+                return;
+        }
+    }
 }

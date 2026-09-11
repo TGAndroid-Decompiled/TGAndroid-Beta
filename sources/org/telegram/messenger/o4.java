@@ -1,24 +1,33 @@
 package org.telegram.messenger;
+public final class o4 implements Runnable {
+    public final int f18568a;
+    public final ImageLoader f18569b;
+    public final String f18570c;
 
-import android.view.MotionEvent;
-import org.telegram.messenger.GoogleMapsProvider;
-import org.telegram.messenger.IMapsProvider;
-public final class o4 implements IMapsProvider.ICallableMethod {
-    public final int f15928a;
-    public final GoogleMapsProvider.GoogleMapView.AnonymousClass1 f15929b;
-
-    public o4(GoogleMapsProvider.GoogleMapView.AnonymousClass1 anonymousClass1, int i10) {
-        this.f15928a = i10;
-        this.f15929b = anonymousClass1;
+    public o4(ImageLoader imageLoader, String str, int i10) {
+        this.f18568a = i10;
+        this.f18569b = imageLoader;
+        this.f18570c = str;
     }
 
     @Override
-    public final Object call(Object obj) {
-        switch (this.f15928a) {
+    public final void run() {
+        switch (this.f18568a) {
             case 0:
-                return GoogleMapsProvider.GoogleMapView.AnonymousClass1.a(this.f15929b, (MotionEvent) obj);
+                this.f18569b.lambda$artworkLoadError$10(this.f18570c);
+                return;
+            case 1:
+                this.f18569b.lambda$cancelForceLoadingForImageReceiver$6(this.f18570c);
+                return;
+            case 2:
+                this.f18569b.lambda$preloadArtwork$8(this.f18570c);
+                return;
+            case 3:
+                this.f18569b.lambda$httpFileLoadError$9(this.f18570c);
+                return;
             default:
-                return GoogleMapsProvider.GoogleMapView.AnonymousClass1.b(this.f15929b, (MotionEvent) obj);
+                this.f18569b.lambda$fileDidFailedLoad$12(this.f18570c);
+                return;
         }
     }
 }

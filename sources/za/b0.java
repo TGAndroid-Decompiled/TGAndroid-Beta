@@ -1,33 +1,58 @@
 package za;
+
+import android.content.Context;
+import android.content.pm.PackageInfo;
+import android.os.Build;
+import ji.u4;
 public final class b0 {
-    public final k0 f47865a;
-    public final b f47866b;
+    public static final b0 f51386a = new Object();
+    public static final u4 f51387b;
 
-    public b0(k0 k0Var, b bVar) {
-        this.f47865a = k0Var;
-        this.f47866b = bVar;
+    static {
+        ka.d dVar = new ka.d();
+        dVar.j(a0.class, g.f51421a);
+        dVar.j(j0.class, h.f51430a);
+        dVar.j(j.class, e.f51403a);
+        dVar.j(b.class, d.f51394a);
+        dVar.j(a.class, c.f51388a);
+        dVar.j(p.class, f.f51414a);
+        dVar.d = true;
+        f51387b = new u4(dVar, 2);
     }
 
-    public final boolean equals(Object obj) {
-        if (this != obj) {
-            if (obj instanceof b0) {
-                b0 b0Var = (b0) obj;
-                if (!this.f47865a.equals(b0Var.f47865a) || !this.f47866b.equals(b0Var.f47866b)) {
-                    return false;
-                }
-                return true;
-            }
-            return false;
+    public static b a(k9.h hVar) {
+        String valueOf;
+        String str;
+        hVar.a();
+        Context context = hVar.f14856a;
+        kotlin.jvm.internal.i.d(context, "firebaseApp.applicationContext");
+        String packageName = context.getPackageName();
+        PackageInfo packageInfo = context.getPackageManager().getPackageInfo(packageName, 0);
+        if (Build.VERSION.SDK_INT >= 28) {
+            valueOf = String.valueOf(packageInfo.getLongVersionCode());
+        } else {
+            valueOf = String.valueOf(packageInfo.versionCode);
         }
-        return true;
-    }
-
-    public final int hashCode() {
-        int hashCode = this.f47865a.hashCode();
-        return this.f47866b.hashCode() + ((hashCode + (k.SESSION_START.hashCode() * 31)) * 31);
-    }
-
-    public final String toString() {
-        return "SessionEvent(eventType=" + k.SESSION_START + ", sessionData=" + this.f47865a + ", applicationInfo=" + this.f47866b + ')';
+        String str2 = valueOf;
+        hVar.a();
+        String str3 = hVar.f14858c.f14869b;
+        kotlin.jvm.internal.i.d(str3, "firebaseApp.options.applicationId");
+        String MODEL = Build.MODEL;
+        kotlin.jvm.internal.i.d(MODEL, "MODEL");
+        String RELEASE = Build.VERSION.RELEASE;
+        kotlin.jvm.internal.i.d(RELEASE, "RELEASE");
+        kotlin.jvm.internal.i.d(packageName, "packageName");
+        String str4 = packageInfo.versionName;
+        if (str4 == null) {
+            str = str2;
+        } else {
+            str = str4;
+        }
+        String MANUFACTURER = Build.MANUFACTURER;
+        kotlin.jvm.internal.i.d(MANUFACTURER, "MANUFACTURER");
+        hVar.a();
+        p b10 = q.b(context);
+        hVar.a();
+        return new b(str3, new a(packageName, str, str2, b10, q.a(context)));
     }
 }

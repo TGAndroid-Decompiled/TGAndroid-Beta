@@ -1,42 +1,49 @@
 package u2;
+public final class x0 implements x3.g {
+    public long f46854a;
+    public long f46855b;
+    public Object f46856c;
+    public Object d;
 
-import m.e3;
-public final class x0 implements f0 {
-    public final g2.g f42486a;
-    public final th.e f42487b;
-    public final e3 f42488c;
-    public final rb.a d;
-    public final int e;
-
-    public x0(g2.g gVar, c3.m mVar) {
-        th.e eVar = new th.e(mVar, 1);
-        e3 e3Var = new e3(4);
-        rb.a aVar = new rb.a(26);
-        this.f42486a = gVar;
-        this.f42487b = eVar;
-        this.f42488c = e3Var;
-        this.d = aVar;
-        this.e = 1048576;
+    public x0(long j3, int i10) {
+        e2.d.g(((y2.a) this.f46856c) == null);
+        this.f46854a = j3;
+        this.f46855b = j3 + i10;
     }
 
     @Override
-    public final y0 a(b2.k0 k0Var) {
-        k0Var.f1771b.getClass();
-        return new y0(k0Var, this.f42486a, this.f42487b, this.f42488c.z(k0Var), this.d, this.e, null);
+    public long a(c3.p pVar) {
+        long j3 = this.f46855b;
+        if (j3 < 0) {
+            return -1L;
+        }
+        long j10 = -(j3 + 2);
+        this.f46855b = -1L;
+        return j10;
     }
 
     @Override
-    public final f0 c() {
-        return this;
+    public c3.b0 d() {
+        boolean z10;
+        if (this.f46854a != -1) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        e2.d.g(z10);
+        return new c3.t((c3.u) this.f46856c, this.f46854a, 0);
     }
 
     @Override
-    public final f0 b(boolean z10) {
-        return this;
+    public void h(long j3) {
+        long[] jArr = (long[]) ((pf.b) this.d).f44046b;
+        this.f46855b = jArr[e2.d0.e(jArr, j3, true)];
     }
 
-    @Override
-    public final f0 d(rb.a aVar) {
-        return this;
+    public x0(String str, byte[] bArr, long j3, long j10) {
+        this.f46856c = str;
+        this.d = bArr;
+        this.f46854a = j3;
+        this.f46855b = j10;
     }
 }

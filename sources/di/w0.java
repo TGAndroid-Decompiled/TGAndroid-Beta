@@ -1,99 +1,88 @@
 package di;
 
-import android.app.Activity;
-import android.content.DialogInterface;
-import java.util.Iterator;
-import java.util.concurrent.atomic.AtomicBoolean;
-import org.json.JSONObject;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Utilities;
-import org.telegram.ui.Cells.d6;
-import org.telegram.ui.Components.EditTextBoldCursor;
-public final class w0 implements DialogInterface.OnDismissListener {
-    public final int f6971a;
-    public final Object f6972b;
-    public final Object f6973c;
-    public final Object d;
+import android.text.TextUtils;
+import java.util.ArrayList;
+import org.telegram.SQLite.SQLiteDatabase;
+import org.telegram.SQLite.SQLitePreparedStatement;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.MessagesStorage;
+import org.telegram.tgnet.NativeByteBuffer;
+import org.telegram.tgnet.tl.TL_account;
+public final class w0 implements Runnable {
+    public final int f8310a;
+    public final MessagesStorage f8311b;
+    public final ArrayList f8312c;
 
-    public w0(Object obj, Object obj2, Object obj3, int i10) {
-        this.f6971a = i10;
-        this.f6973c = obj;
-        this.f6972b = obj2;
-        this.d = obj3;
+    public w0(int i10, ArrayList arrayList, MessagesStorage messagesStorage) {
+        this.f8310a = i10;
+        this.f8311b = messagesStorage;
+        this.f8312c = arrayList;
     }
 
     @Override
-    public final void onDismiss(DialogInterface dialogInterface) {
-        switch (this.f6971a) {
+    public final void run() {
+        switch (this.f8310a) {
             case 0:
-                z0 z0Var = (z0) this.f6973c;
-                boolean[] zArr = (boolean[]) this.f6972b;
-                org.telegram.ui.web.r rVar = (org.telegram.ui.web.r) this.d;
-                z0Var.getClass();
-                if (!zArr[0]) {
-                    z0Var.d = true;
-                    z0Var.e = false;
-                    z0Var.l();
-                    Iterator it = z0Var.f7053f.iterator();
-                    while (it.hasNext()) {
-                        ((Runnable) it.next()).run();
+                MessagesStorage messagesStorage = this.f8311b;
+                ArrayList arrayList = this.f8312c;
+                try {
+                    SQLiteDatabase database = messagesStorage.getDatabase();
+                    if (database != null) {
+                        database.executeFast("DELETE FROM story_drafts WHERE id IN (" + TextUtils.join(", ", arrayList) + ")").stepThis().dispose();
+                        return;
                     }
-                    zArr[0] = true;
-                    rVar.run(Boolean.TRUE, Boolean.FALSE);
+                    return;
+                } catch (Exception e7) {
+                    FileLog.e(e7);
                     return;
                 }
-                return;
             case 1:
-                boolean[] zArr2 = (boolean[]) this.f6973c;
-                Utilities.Callback callback = (Utilities.Callback) this.d;
-                if (!((boolean[]) this.f6972b)[0] && !zArr2[0]) {
-                    zArr2[0] = true;
-                    callback.run("USER_DECLINED");
+                MessagesStorage messagesStorage2 = this.f8311b;
+                ArrayList arrayList2 = this.f8312c;
+                SQLitePreparedStatement sQLitePreparedStatement = null;
+                try {
+                    try {
+                        SQLiteDatabase database2 = messagesStorage2.getDatabase();
+                        database2.executeFast("DELETE FROM business_links").stepThis().dispose();
+                        sQLitePreparedStatement = database2.executeFast("REPLACE INTO business_links VALUES(?, ?)");
+                        for (int i10 = 0; i10 < arrayList2.size(); i10++) {
+                            TL_account.TL_businessChatLink tL_businessChatLink = (TL_account.TL_businessChatLink) arrayList2.get(i10);
+                            NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(tL_businessChatLink.getObjectSize());
+                            tL_businessChatLink.serializeToStream(nativeByteBuffer);
+                            sQLitePreparedStatement.requery();
+                            sQLitePreparedStatement.bindByteBuffer(1, nativeByteBuffer);
+                            sQLitePreparedStatement.bindInteger(2, i10);
+                            sQLitePreparedStatement.step();
+                        }
+                        if (sQLitePreparedStatement == null) {
+                            return;
+                        }
+                    } catch (Exception e10) {
+                        FileLog.e(e10);
+                        if (sQLitePreparedStatement == null) {
+                            return;
+                        }
+                    }
+                    sQLitePreparedStatement.dispose();
                     return;
+                } catch (Throwable th2) {
+                    if (sQLitePreparedStatement != null) {
+                        sQLitePreparedStatement.dispose();
+                    }
+                    throw th2;
                 }
-                return;
-            case 2:
-                org.telegram.ui.ActionBar.p2 p2Var = (org.telegram.ui.ActionBar.p2) this.f6972b;
-                Activity activity = (Activity) this.d;
-                AndroidUtilities.hideKeyboard((EditTextBoldCursor) this.f6973c);
-                if (p2Var != null) {
-                    AndroidUtilities.requestAdjustResize(activity, p2Var.getClassGuid());
-                    return;
-                }
-                return;
-            case 3:
-                ((Utilities.Callback) this.f6973c).run(Integer.valueOf(((org.telegram.ui.Components.r3) this.d).getValue() + (((org.telegram.ui.Components.p3) this.f6972b).getValue() * 60)));
-                return;
-            case 4:
-                org.telegram.ui.web.c1 c1Var = (org.telegram.ui.web.c1) this.f6973c;
-                org.telegram.ui.web.a1 a1Var = (org.telegram.ui.web.a1) this.d;
-                c1Var.getClass();
-                if (!((AtomicBoolean) this.f6972b).get()) {
-                    c1Var.z(a1Var, "popup_closed", new JSONObject());
-                }
-                c1Var.f37881c0 = null;
-                c1Var.f37883e0 = System.currentTimeMillis();
-                return;
-            case 5:
-                org.telegram.ui.ActionBar.p2 p2Var2 = (org.telegram.ui.ActionBar.p2) this.f6972b;
-                Activity activity2 = (Activity) this.d;
-                AndroidUtilities.hideKeyboard((d6) this.f6973c);
-                if (p2Var2 != null) {
-                    AndroidUtilities.requestAdjustResize(activity2, p2Var2.getClassGuid());
-                    return;
-                }
-                return;
             default:
-                AndroidUtilities.hideKeyboard((wh.y1) this.f6972b);
-                AndroidUtilities.requestAdjustResize((Activity) this.d, ((wh.q2) this.f6973c).f44317a.getClassGuid());
-                return;
+                MessagesStorage messagesStorage3 = this.f8311b;
+                ArrayList arrayList3 = this.f8312c;
+                try {
+                    SQLiteDatabase database3 = messagesStorage3.getDatabase();
+                    String join = TextUtils.join(", ", arrayList3);
+                    database3.executeFast("DELETE FROM quick_replies_messages WHERE topic_id IN (" + join + ")").stepThis().dispose();
+                    return;
+                } catch (Exception e11) {
+                    FileLog.e(e11);
+                    return;
+                }
         }
-    }
-
-    public w0(boolean[] zArr, boolean[] zArr2, Utilities.Callback callback) {
-        this.f6971a = 1;
-        this.f6972b = zArr;
-        this.f6973c = zArr2;
-        this.d = callback;
     }
 }

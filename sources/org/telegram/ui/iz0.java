@@ -1,78 +1,49 @@
 package org.telegram.ui;
 
-import android.view.TextureView;
-import org.telegram.messenger.MessageObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.UndoView;
-public final class iz0 implements org.telegram.ui.ActionBar.t0, nv0, org.telegram.ui.Components.n8 {
-    public final ProfileActivity f33825a;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+public final class iz0 extends s4.c0 {
+    public final ProfileActivity I;
 
     public iz0(ProfileActivity profileActivity) {
-        this.f33825a = profileActivity;
+        this.I = profileActivity;
     }
 
     @Override
-    public void D0(MessageObject messageObject) {
-        ProfileActivity profileActivity = this.f33825a;
-        profileActivity.f30350a.I0(true);
-        r01 r01Var = profileActivity.O;
-        if (r01Var != null && r01Var.getCurrentListView() != null) {
-            profileActivity.O.getCurrentListView().I0(true);
+    public final int o0(int i10, pf.e eVar, s4.z0 z0Var) {
+        ProfileActivity profileActivity = this.I;
+        View m10 = profileActivity.f33871c.m(0);
+        if (m10 != null && !profileActivity.F0) {
+            int top = m10.getTop() - profileActivity.T3();
+            boolean z10 = profileActivity.f33957o2;
+            boolean z11 = true;
+            if (!z10 && top > i10) {
+                if (!profileActivity.f33948n0.X0.isEmpty() && profileActivity.f33887e0.getImageReceiver().hasNotThumb() && !AndroidUtilities.isAccessibilityScreenReaderEnabled() && ((!profileActivity.f33950n2 && !AndroidUtilities.isTablet()) || profileActivity.I0)) {
+                    if (profileActivity.J2 != null) {
+                        z11 = false;
+                    }
+                    profileActivity.f33957o2 = z11;
+                }
+            } else if (z10) {
+                if (i10 >= top) {
+                    profileActivity.f33957o2 = false;
+                } else if (profileActivity.f33856a.getScrollState() == 1 && !profileActivity.f33964p2) {
+                    i10 /= 2;
+                }
+            }
+            i10 = top;
         }
-        profileActivity.f30374d1.setBackgroundColor(i0.a.d(0.1f, profileActivity.P3(profileActivity.V4.f36461f), org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f17872a7, profileActivity.f30524z0)));
-    }
-
-    @Override
-    public void G(MessageObject messageObject) {
-        org.telegram.ui.Components.ph0 ph0Var = this.f33825a.m0;
-        if (ph0Var != null && ph0Var.f26125a) {
-            ph0Var.O.d(0.0f, true);
-            ph0Var.invalidate();
+        if (profileActivity.O1 && !profileActivity.f33856a.O0) {
+            return 0;
         }
+        return super.o0(i10, eVar, z0Var);
     }
 
     @Override
-    public void U0(int i10, int i11) {
-        int i12;
-        ProfileActivity profileActivity = this.f33825a;
-        long a2 = profileActivity.a();
-        profileActivity.getMessagesController().setDialogHistoryTTL(a2, i10);
-        if (profileActivity.f30499v2 == null && profileActivity.f30492u2 == null) {
-            return;
+    public final boolean y0() {
+        if (this.I.f33968q0 != null) {
+            return true;
         }
-        UndoView undoView = profileActivity.M;
-        TLRPC.User user = profileActivity.getMessagesController().getUser(Long.valueOf(a2));
-        TLRPC.UserFull userFull = profileActivity.f30499v2;
-        if (userFull != null) {
-            i12 = userFull.ttl_period;
-        } else {
-            i12 = profileActivity.f30492u2.ttl_period;
-        }
-        undoView.k(a2, i11, user, Integer.valueOf(i12), null, null);
-    }
-
-    @Override
-    public void dismiss() {
-        this.f33825a.T0.M(null, null);
-    }
-
-    @Override
-    public void e() {
-        org.telegram.ui.Components.km0.d(new b5(this.f33825a, 18));
-    }
-
-    @Override
-    public TextureView g0() {
-        return null;
-    }
-
-    @Override
-    public void i1() {
-        this.f33825a.presentFragment(new q4());
-        dismiss();
-    }
-
-    @Override
-    public void c() {
+        return false;
     }
 }

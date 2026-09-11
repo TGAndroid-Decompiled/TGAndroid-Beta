@@ -1,8 +1,8 @@
 package l3;
 
-import h2.h;
-public final class a extends h {
-    public long f12770r;
+import h2.g;
+public final class a extends g {
+    public long v;
 
     public a() {
         super(1, 0);

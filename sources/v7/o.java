@@ -34,8 +34,8 @@ public abstract class o {
             Cipher cipher = Cipher.getInstance("AES/CBC/PKCS7Padding");
             cipher.init(1, (SecretKey) keyStore.getKey("androidxBiometric", null));
             return new androidx.biometric.u(cipher);
-        } catch (IOException | InvalidAlgorithmParameterException | InvalidKeyException | KeyStoreException | NoSuchAlgorithmException | NoSuchProviderException | UnrecoverableKeyException | CertificateException | NoSuchPaddingException e) {
-            Log.w("CryptoObjectUtils", "Failed to create fake crypto object.", e);
+        } catch (IOException | InvalidAlgorithmParameterException | InvalidKeyException | KeyStoreException | NoSuchAlgorithmException | NoSuchProviderException | UnrecoverableKeyException | CertificateException | NoSuchPaddingException e7) {
+            Log.w("CryptoObjectUtils", "Failed to create fake crypto object.", e7);
             return null;
         }
     }
@@ -45,15 +45,15 @@ public abstract class o {
         if (uVar == null) {
             return null;
         }
-        Cipher cipher = uVar.f758b;
+        Cipher cipher = uVar.f1059b;
         if (cipher != null) {
             return androidx.biometric.b0.b(cipher);
         }
-        Signature signature = uVar.f757a;
+        Signature signature = uVar.f1058a;
         if (signature != null) {
             return androidx.biometric.b0.a(signature);
         }
-        Mac mac = uVar.f759c;
+        Mac mac = uVar.f1060c;
         if (mac != null) {
             return androidx.biometric.b0.c(mac);
         }

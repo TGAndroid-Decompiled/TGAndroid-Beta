@@ -5,19 +5,19 @@ import java.util.Locale;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.TimeUnit;
 public final class t extends d {
-    public final String f43937a;
-    public final ExecutorService f43938b;
+    public final String f48449a;
+    public final ExecutorService f48450b;
 
     public t(String str, ExecutorService executorService) {
         TimeUnit timeUnit = TimeUnit.SECONDS;
-        this.f43937a = str;
-        this.f43938b = executorService;
+        this.f48449a = str;
+        this.f48450b = executorService;
     }
 
     @Override
     public final void a() {
-        String str = this.f43937a;
-        ExecutorService executorService = this.f43938b;
+        String str = this.f48449a;
+        ExecutorService executorService = this.f48450b;
         try {
             String concat = "Executing shutdown hook for ".concat(str);
             if (Log.isLoggable("FirebaseCrashlytics", 3)) {

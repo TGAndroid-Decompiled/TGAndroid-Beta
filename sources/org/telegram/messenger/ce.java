@@ -1,28 +1,40 @@
 package org.telegram.messenger;
-public final class ce implements Runnable {
-    public final int f14915a;
-    public final org.telegram.ui.ActionBar.p2 f14916b;
 
-    public ce(int i10, org.telegram.ui.ActionBar.p2 p2Var) {
-        this.f14915a = i10;
-        this.f14916b = p2Var;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class ce implements RequestDelegate {
+    public final int f17403a;
+    public final long f17404b;
+    public final int f17405c;
+    public final Object d;
+
+    public ce(BaseController baseController, long j3, int i10, int i11) {
+        this.f17403a = i11;
+        this.d = baseController;
+        this.f17404b = j3;
+        this.f17405c = i10;
     }
 
     @Override
-    public final void run() {
-        switch (this.f14915a) {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f17403a) {
             case 0:
-                MessagesController.lambda$checkSensitive$447(this.f14916b);
+                ((MessagesController) this.d).lambda$approveOrRejectSuggestedMessageImpl$506(this.f17404b, this.f17405c, tLObject, tL_error);
                 return;
             case 1:
-                org.telegram.ui.Components.d5.t0(7, this.f14916b, null);
-                return;
-            case 2:
-                org.telegram.ui.Components.d5.t0(8, this.f14916b, null);
+                ((TopicsController) this.d).lambda$loadTopics$7(this.f17404b, this.f17405c, tLObject, tL_error);
                 return;
             default:
-                TranslateController.lambda$pushToSummarize$18(this.f14916b);
+                AndroidUtilities.runOnUIThread(new i7((org.telegram.ui.i4) this.d, tLObject, this.f17405c, this.f17404b, 11));
                 return;
         }
+    }
+
+    public ce(org.telegram.ui.i4 i4Var, int i10, long j3) {
+        this.f17403a = 2;
+        this.d = i4Var;
+        this.f17405c = i10;
+        this.f17404b = j3;
     }
 }

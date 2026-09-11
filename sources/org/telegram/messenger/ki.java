@@ -1,27 +1,58 @@
 package org.telegram.messenger;
 
-import org.telegram.tgnet.RequestDelegate;
+import java.util.HashMap;
+import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class ki implements RequestDelegate {
-    public final int f15643a;
-    public final SecretChatHelper f15644b;
-    public final TLRPC.EncryptedChat f15645c;
+public final class ki implements Runnable {
+    public final int f18212a;
+    public final SendMessagesHelper f18213b;
+    public final TLObject f18214c;
+    public final MessageObject d;
+    public final String f18215e;
+    public final SendMessagesHelper.DelayedMessage f18216f;
+    public final boolean h;
+    public final SendMessagesHelper.DelayedMessage f18217n;
+    public final Object f18218r;
+    public final HashMap f18219s;
+    public final boolean v;
 
-    public ki(SecretChatHelper secretChatHelper, TLRPC.EncryptedChat encryptedChat, int i10) {
-        this.f15643a = i10;
-        this.f15644b = secretChatHelper;
-        this.f15645c = encryptedChat;
+    public ki(SendMessagesHelper sendMessagesHelper, TLObject tLObject, MessageObject messageObject, String str, SendMessagesHelper.DelayedMessage delayedMessage, boolean z10, SendMessagesHelper.DelayedMessage delayedMessage2, Object obj, HashMap hashMap, boolean z11, int i10) {
+        this.f18212a = i10;
+        this.f18213b = sendMessagesHelper;
+        this.f18214c = tLObject;
+        this.d = messageObject;
+        this.f18215e = str;
+        this.f18216f = delayedMessage;
+        this.h = z10;
+        this.f18217n = delayedMessage2;
+        this.f18218r = obj;
+        this.f18219s = hashMap;
+        this.v = z11;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f15643a) {
+    public final void run() {
+        switch (this.f18212a) {
             case 0:
-                this.f15644b.lambda$acceptSecretChat$22(this.f15645c, tLObject, tL_error);
+                HashMap hashMap = this.f18219s;
+                boolean z10 = this.v;
+                Object obj = this.f18218r;
+                String str = this.f18215e;
+                this.f18213b.lambda$performSendMessageRequest$77(this.f18214c, this.d, str, this.f18216f, this.h, this.f18217n, obj, hashMap, z10);
+                return;
+            case 1:
+                HashMap hashMap2 = this.f18219s;
+                boolean z11 = this.v;
+                Object obj2 = this.f18218r;
+                String str2 = this.f18215e;
+                this.f18213b.lambda$performSendMessageRequest$78(this.f18214c, this.d, str2, this.f18216f, this.h, this.f18217n, obj2, hashMap2, z11);
                 return;
             default:
-                this.f15644b.lambda$acceptSecretChat$23(this.f15645c, tLObject, tL_error);
+                HashMap hashMap3 = this.f18219s;
+                boolean z12 = this.v;
+                Object obj3 = this.f18218r;
+                String str3 = this.f18215e;
+                this.f18213b.lambda$performSendMessageRequest$82(this.f18214c, this.d, str3, this.f18216f, this.h, this.f18217n, obj3, hashMap3, z12);
                 return;
         }
     }

@@ -1,69 +1,42 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
 import android.view.View;
-import android.view.ViewGroup;
-import java.util.ArrayList;
+import android.view.ViewPropertyAnimator;
+import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-public final class x11 extends ul0 {
-    public Context f28908c;
-    public ArrayList d;
+public final class x11 extends TextView {
+    public View f32404a;
+    public ViewPropertyAnimator f32405b;
+    public boolean f32406c;
+    public jq0 d;
 
-    @Override
-    public final boolean D(s4.c1 c1Var) {
-        return true;
-    }
-
-    @Override
-    public final int h() {
-        ArrayList arrayList = this.d;
-        if (arrayList.isEmpty()) {
-            return 0;
+    public final void a() {
+        if (this.f32404a == null) {
+            return;
         }
-        return arrayList.size() + 1;
-    }
-
-    @Override
-    public final int j(int i10) {
-        if (i10 == 0) {
-            return 1;
+        View view = (View) getParent();
+        int i10 = 0;
+        int i11 = 0;
+        int i12 = 0;
+        for (View view2 = this.f32404a; view2 != view; view2 = (View) view2.getParent()) {
+            i12 += view2.getTop();
+            i11 += view2.getLeft();
         }
-        return 0;
-    }
-
-    @Override
-    public final void v(s4.c1 c1Var, int i10) {
-        int b10;
-        if (c1Var.f41613f == 0) {
-            boolean z10 = true;
-            org.telegram.ui.ActionBar.l6 l6Var = (org.telegram.ui.ActionBar.l6) ((ArrayList) this.d.get(i10 - 1)).get(0);
-            if (l6Var.f18457f == org.telegram.ui.ActionBar.j6.Nd) {
-                b10 = 0;
+        int width = ((this.f32404a.getWidth() / 2) + i11) - (getMeasuredWidth() / 2);
+        if (width >= 0) {
+            if (getMeasuredWidth() + width > view.getMeasuredWidth()) {
+                i10 = (view.getMeasuredWidth() - getMeasuredWidth()) - AndroidUtilities.dp(16.0f);
             } else {
-                b10 = l6Var.b();
+                i10 = width;
             }
-            org.telegram.ui.Cells.a9 a9Var = (org.telegram.ui.Cells.a9) c1Var.f41610a;
-            a9Var.f18888a.setText(org.telegram.ui.ActionBar.i5.i(l6Var.f18457f));
-            a9Var.f18889b = b10;
-            if (b10 != 0) {
-                z10 = false;
-            }
-            a9Var.setWillNotDraw(z10);
-            a9Var.invalidate();
         }
+        setTranslationX(i10);
+        setTranslationY(i12 - getMeasuredHeight());
     }
 
     @Override
-    public final s4.c1 x(ViewGroup viewGroup, int i10) {
-        View a9Var;
-        Context context = this.f28908c;
-        if (i10 != 0) {
-            a9Var = new View(context);
-            a9Var.setLayoutParams(new s4.p0(-1, AndroidUtilities.dp(56.0f)));
-        } else {
-            a9Var = new org.telegram.ui.Cells.a9(context);
-            a9Var.setLayoutParams(new s4.p0(-1, -2));
-        }
-        return new s4.c1(a9Var);
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        super.onLayout(z10, i10, i11, i12, i13);
+        a();
     }
 }

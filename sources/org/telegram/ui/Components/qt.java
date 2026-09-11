@@ -1,29 +1,22 @@
 package org.telegram.ui.Components;
+public final class qt extends p6 {
+    public final int W;
+    public final EditTextBoldCursor X;
 
-import java.util.ArrayList;
-public final class qt {
-    public final int f26483a;
-    public final Object f26484b;
-
-    public qt(Object obj, int i10) {
-        this.f26483a = i10;
-        this.f26484b = obj;
+    public qt(int i10, EditTextBoldCursor editTextBoldCursor) {
+        super(false, false, false, false);
+        this.W = i10;
+        this.X = editTextBoldCursor;
     }
 
-    public final void a(int i10, boolean z10) {
-        switch (this.f26483a) {
+    @Override
+    public final void invalidateSelf() {
+        switch (this.W) {
             case 0:
-                ArrayList arrayList = ((st) this.f26484b).f27212b;
-                int size = arrayList.size();
-                int i11 = 0;
-                while (i11 < size) {
-                    Object obj = arrayList.get(i11);
-                    i11++;
-                    ((qt) obj).a(i10, z10);
-                }
+                this.X.invalidate();
                 return;
             default:
-                ((Runnable) this.f26484b).run();
+                this.X.invalidate();
                 return;
         }
     }

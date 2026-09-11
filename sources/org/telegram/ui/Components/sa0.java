@@ -1,51 +1,41 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.AndroidUtilities;
-public final class sa0 {
-    public final org.telegram.ui.ActionBar.p2 f26993a;
-    public final xa0 f26994b;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.text.style.ReplacementSpan;
+import android.view.KeyEvent;
+public final class sa0 extends ReplacementSpan {
+    public final int f30244a;
+    public final KeyEvent.Callback f30245b;
 
-    public sa0(xa0 xa0Var, org.telegram.ui.ActionBar.p2 p2Var) {
-        this.f26994b = xa0Var;
-        this.f26993a = p2Var;
+    public sa0(KeyEvent.Callback callback, int i10) {
+        this.f30244a = i10;
+        this.f30245b = callback;
     }
 
-    public final void a(boolean z10) {
-        xa0 xa0Var = this.f26994b;
-        boolean z11 = false;
-        if (xa0Var.getNeededLayoutManager() != xa0Var.getCurrentLayoutManager() && xa0Var.a()) {
-            if (xa0Var.f28992f.L0 > 0) {
-                xa0Var.N = true;
-                xa0Var.o(false);
-                return;
-            }
-            xa0Var.f28990b.setLayoutManager(xa0Var.getNeededLayoutManager());
-        }
-        if (z10 && !xa0Var.a()) {
-            z10 = false;
-        }
-        if (!z10 || xa0Var.f28992f.K() > 0) {
-            z11 = z10;
-        }
-        xa0Var.o(z11);
+    @Override
+    public final void draw(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
+        int i15 = this.f30244a;
     }
 
-    public final void b(boolean z10) {
-        this.f26994b.l(z10);
+    @Override
+    public final int getSize(Paint paint, CharSequence charSequence, int i10, int i11, Paint.FontMetricsInt fontMetricsInt) {
+        switch (this.f30244a) {
+            case 0:
+                return ((ua0) this.f30245b).f30847x;
+            case 1:
+                return (int) ((org.telegram.ui.tj0) this.f30245b).f40780n0;
+            default:
+                return (int) ((ug.n1) this.f30245b).f47175t0;
+        }
     }
 
-    public final void c() {
-        long j3;
-        xa0 xa0Var = this.f26994b;
-        dq dqVar = xa0Var.J;
-        if (xa0Var.f28990b.getLayoutManager() != xa0Var.d && xa0Var.I) {
-            AndroidUtilities.cancelRunOnUIThread(dqVar);
-            if (this.f26993a.getFragmentBeginToShow()) {
-                j3 = 0;
-            } else {
-                j3 = 100;
-            }
-            AndroidUtilities.runOnUIThread(dqVar, j3);
-        }
+    private final void a(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
+    }
+
+    private final void b(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
+    }
+
+    private final void c(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
     }
 }

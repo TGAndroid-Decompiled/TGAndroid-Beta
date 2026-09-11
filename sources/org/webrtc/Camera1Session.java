@@ -4,13 +4,13 @@ import android.content.Context;
 import android.hardware.Camera;
 import android.os.Handler;
 import android.os.SystemClock;
+import bi.t1;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 import org.webrtc.CameraEnumerationAndroid;
 import org.webrtc.CameraSession;
-import zh.t0;
 public class Camera1Session implements CameraSession {
     private static final int NUMBER_OF_CAPTURE_BUFFERS = 3;
     private static final String TAG = "Camera1Session";
@@ -125,23 +125,23 @@ public class Camera1Session implements CameraSession {
                         try {
                             open.setDisplayOrientation(0);
                             createSessionCallback.onDone(new Camera1Session(events, z10, context, surfaceTextureHelper, cameraIndex, open, cameraInfo, findClosestCaptureFormat, nanoTime));
-                        } catch (RuntimeException e) {
+                        } catch (RuntimeException e7) {
                             open.release();
-                            createSessionCallback.onFailure(CameraSession.FailureType.ERROR, e.getMessage());
+                            createSessionCallback.onFailure(CameraSession.FailureType.ERROR, e7.getMessage());
                         }
-                    } catch (RuntimeException e7) {
+                    } catch (RuntimeException e10) {
                         open.release();
-                        createSessionCallback.onFailure(CameraSession.FailureType.ERROR, e7.getMessage());
+                        createSessionCallback.onFailure(CameraSession.FailureType.ERROR, e10.getMessage());
                     }
-                } catch (IOException | RuntimeException e10) {
+                } catch (IOException | RuntimeException e11) {
                     open.release();
-                    createSessionCallback.onFailure(CameraSession.FailureType.ERROR, e10.getMessage());
+                    createSessionCallback.onFailure(CameraSession.FailureType.ERROR, e11.getMessage());
                 }
-            } catch (RuntimeException e11) {
-                createSessionCallback.onFailure(CameraSession.FailureType.ERROR, e11.getMessage());
+            } catch (RuntimeException e12) {
+                createSessionCallback.onFailure(CameraSession.FailureType.ERROR, e12.getMessage());
             }
-        } catch (IllegalArgumentException e12) {
-            createSessionCallback.onFailure(CameraSession.FailureType.ERROR, e12.getMessage());
+        } catch (IllegalArgumentException e13) {
+            createSessionCallback.onFailure(CameraSession.FailureType.ERROR, e13.getMessage());
         }
     }
 
@@ -160,7 +160,7 @@ public class Camera1Session implements CameraSession {
 
     public int getFrameOrientation() {
         int orientation;
-        if (t0.W != null) {
+        if (t1.W != null) {
             orientation = 0;
         } else {
             orientation = this.orientationHelper.getOrientation();
@@ -212,18 +212,18 @@ public class Camera1Session implements CameraSession {
 
             @Override
             public void onError(int i10, Camera camera) {
-                String j3;
+                String i11;
                 if (i10 == 100) {
-                    j3 = "Camera server died!";
+                    i11 = "Camera server died!";
                 } else {
-                    j3 = hc.b.j(i10, "Camera error: ");
+                    i11 = i2.g.i(i10, "Camera error: ");
                 }
-                Logging.e("Camera1Session", j3);
+                Logging.e("Camera1Session", i11);
                 Camera1Session.this.stopInternal();
                 if (i10 == 2) {
                     Camera1Session.this.events.onCameraDisconnected(Camera1Session.this);
                 } else {
-                    Camera1Session.this.events.onCameraError(Camera1Session.this, j3);
+                    Camera1Session.this.events.onCameraError(Camera1Session.this, i11);
                 }
             }
         });
@@ -234,9 +234,9 @@ public class Camera1Session implements CameraSession {
         }
         try {
             this.camera.startPreview();
-        } catch (RuntimeException e) {
+        } catch (RuntimeException e7) {
             stopInternal();
-            this.events.onCameraError(this, e.getMessage());
+            this.events.onCameraError(this, e7.getMessage());
         }
     }
 

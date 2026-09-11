@@ -1,44 +1,53 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.R;
-public final class af implements Runnable {
-    public final int f30983a;
-    public final eo f30984b;
-    public final org.telegram.ui.Components.km0 f30985c;
-    public final String d;
+import android.graphics.Bitmap;
+import android.graphics.BitmapShader;
+import android.graphics.Matrix;
+import android.graphics.Paint;
+import android.graphics.Shader;
+import org.telegram.messenger.Utilities;
+public final class af implements Utilities.Callback2 {
+    public final int f34397a;
+    public final co f34398b;
 
-    public af(eo eoVar, org.telegram.ui.Components.km0 km0Var, String str, int i10) {
-        this.f30983a = i10;
-        this.f30984b = eoVar;
-        this.f30985c = km0Var;
-        this.d = str;
+    public af(co coVar, int i10) {
+        this.f34397a = i10;
+        this.f34398b = coVar;
     }
 
     @Override
-    public final void run() {
-        org.telegram.ui.Components.wc a02;
-        int i10;
-        switch (this.f30983a) {
+    public final void run(Object obj, Object obj2) {
+        switch (this.f34397a) {
             case 0:
-                this.f30985c.dismiss();
-                AndroidUtilities.addToClipboard(this.d);
-                a02 = org.telegram.ui.Components.wc.a0(this.f30984b);
-                i10 = R.string.RelativeDateCopied;
-                break;
+                co.g1(this.f34398b, (Integer) obj, (Boolean) obj2);
+                return;
             case 1:
-                this.f30985c.dismiss();
-                AndroidUtilities.addToClipboard("@" + this.d);
-                a02 = org.telegram.ui.Components.wc.a0(this.f30984b);
-                i10 = R.string.UsernameCopied;
-                break;
+                co.O0(this.f34398b, (Long) obj, (Boolean) obj2);
+                return;
+            case 2:
+                Bitmap bitmap = (Bitmap) obj;
+                co coVar = this.f34398b;
+                gh.b bVar = coVar.f35506z8;
+                bVar.a((Bitmap) obj2);
+                hh.d.c(bVar, coVar.fragmentView);
+                coVar.A8.d();
+                return;
             default:
-                this.f30985c.dismiss();
-                AndroidUtilities.addToClipboard(this.d);
-                a02 = org.telegram.ui.Components.wc.a0(this.f30984b);
-                i10 = R.string.CardNumberCopied;
-                break;
+                co coVar2 = this.f34398b;
+                coVar2.B8 = (Bitmap) obj;
+                Paint paint = new Paint(1);
+                coVar2.D8 = paint;
+                Bitmap bitmap2 = coVar2.B8;
+                Shader.TileMode tileMode = Shader.TileMode.CLAMP;
+                BitmapShader bitmapShader = new BitmapShader(bitmap2, tileMode, tileMode);
+                coVar2.C8 = bitmapShader;
+                paint.setShader(bitmapShader);
+                coVar2.E8 = new Matrix();
+                gh.b bVar2 = coVar2.f35506z8;
+                bVar2.a((Bitmap) obj2);
+                hh.d.c(bVar2, coVar2.fragmentView);
+                coVar2.A8.d();
+                return;
         }
-        org.telegram.messenger.em.o(i10, a02);
     }
 }

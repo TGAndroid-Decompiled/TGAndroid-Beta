@@ -1,25 +1,25 @@
 package ge;
 public final class b {
-    public static final b f8755a;
-    public static final b f8756b;
-    public static final b f8757c;
+    public static final b f10596a;
+    public static final b f10597b;
+    public static final b f10598c;
     public static final b d;
-    public static final b e;
-    public static final b[] f8758f;
+    public static final b f10599e;
+    public static final b[] f10600f;
 
     static {
         ?? r02 = new Enum("CPU_ACQUIRED", 0);
-        f8755a = r02;
+        f10596a = r02;
         ?? r12 = new Enum("BLOCKING", 1);
-        f8756b = r12;
+        f10597b = r12;
         ?? r32 = new Enum("PARKING", 2);
-        f8757c = r32;
+        f10598c = r32;
         ?? r52 = new Enum("DORMANT", 3);
         d = r52;
         ?? r72 = new Enum("TERMINATED", 4);
-        e = r72;
+        f10599e = r72;
         b[] bVarArr = {r02, r12, r32, r52, r72};
-        f8758f = bVarArr;
+        f10600f = bVarArr;
         w7.m.a(bVarArr);
     }
 
@@ -28,6 +28,6 @@ public final class b {
     }
 
     public static b[] values() {
-        return (b[]) f8758f.clone();
+        return (b[]) f10600f.clone();
     }
 }

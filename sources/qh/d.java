@@ -1,21 +1,13 @@
 package qh;
 
-import android.graphics.Canvas;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.MediaController;
-import org.telegram.messenger.SendMessagesHelper;
-public final class d extends ph.e {
-    public final MediaController.PhotoEntry f41015b;
-    public final SendMessagesHelper.SendingMediaInfo f41016c;
+import android.view.View;
+import r0.l1;
+public interface d {
+    void J();
 
-    public d(org.telegram.messenger.SendMessagesHelper.SendingMediaInfo r10) {
-        throw new UnsupportedOperationException("Method not decompiled: qh.d.<init>(org.telegram.messenger.SendMessagesHelper$SendingMediaInfo):void");
-    }
+    View N();
 
-    @Override
-    public final void c(Canvas canvas, int i10, int i11) {
-        ImageReceiver imageReceiver = this.f40408a;
-        imageReceiver.setImageCoords(0.0f, 0.0f, i10, i11);
-        imageReceiver.draw(canvas);
-    }
+    void j(l1 l1Var);
+
+    void s();
 }

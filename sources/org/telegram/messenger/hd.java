@@ -1,45 +1,42 @@
 package org.telegram.messenger;
 
-import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_bots;
-public final class hd implements Utilities.Callback {
-    public final int f15368a = 1;
-    public final MessagesController f15369b;
-    public final int f15370c;
-    public final Object d;
-    public final Object e;
-    public final TLObject f15371f;
-    public final Runnable f15372g;
+public final class hd implements RequestDelegate {
+    public final int f17888a;
 
-    public hd(MessagesController messagesController, TLRPC.TL_messages_invitedUsers tL_messages_invitedUsers, int[] iArr, int i10, TLRPC.Chat chat, Runnable runnable) {
-        this.f15369b = messagesController;
-        this.d = tL_messages_invitedUsers;
-        this.e = iArr;
-        this.f15370c = i10;
-        this.f15371f = chat;
-        this.f15372g = runnable;
+    public hd(int i10) {
+        this.f17888a = i10;
     }
 
     @Override
-    public final void run(Object obj) {
-        switch (this.f15368a) {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f17888a) {
             case 0:
-                this.f15369b.lambda$openApp$500((boolean[]) this.d, (TL_bots.BotInfo[]) this.e, (TLRPC.User) this.f15371f, this.f15370c, (h3) this.f15372g, (TL_bots.BotInfo) obj);
+                MessagesController.lambda$removeSuggestion$40(tLObject, tL_error);
+                return;
+            case 1:
+                MessagesController.lambda$hidePromoDialog$135(tLObject, tL_error);
+                return;
+            case 2:
+                MessagesController.lambda$blockPeer$89(tLObject, tL_error);
+                return;
+            case 3:
+                MessagesController.lambda$logDeviceStats$31(tLObject, tL_error);
+                return;
+            case 4:
+                MessagesController.lambda$deleteParticipantFromChat$314(tLObject, tL_error);
+                return;
+            case 5:
+                NotificationsController.lambda$updateServerNotificationsSettings$51(tLObject, tL_error);
+                return;
+            case 6:
+                NotificationsController.lambda$updateServerNotificationsSettings$52(tLObject, tL_error);
                 return;
             default:
-                this.f15369b.lambda$addUsersToChat$297((TLRPC.TL_messages_invitedUsers) this.d, (int[]) this.e, this.f15370c, (TLRPC.Chat) this.f15371f, this.f15372g, (TLRPC.TL_messages_invitedUsers) obj);
+                NotificationsController.lambda$updateServerNotificationsSettings$50(tLObject, tL_error);
                 return;
         }
-    }
-
-    public hd(MessagesController messagesController, boolean[] zArr, TL_bots.BotInfo[] botInfoArr, TLRPC.User user, int i10, h3 h3Var) {
-        this.f15369b = messagesController;
-        this.d = zArr;
-        this.e = botInfoArr;
-        this.f15371f = user;
-        this.f15370c = i10;
-        this.f15372g = h3Var;
     }
 }

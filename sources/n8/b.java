@@ -4,15 +4,15 @@ import a8.d;
 import com.google.android.gms.common.api.Scope;
 import com.google.android.gms.common.api.e;
 public abstract class b {
-    public static final d f14016a;
-    public static final e f14017b;
+    public static final d f16706a;
+    public static final e f16707b;
 
     static {
         ?? obj = new Object();
         d dVar = new d(9);
-        f14016a = dVar;
+        f16706a = dVar;
         new Scope(1, "profile");
         new Scope(1, "email");
-        f14017b = new e("SignIn.API", dVar, obj);
+        f16707b = new e("SignIn.API", dVar, obj);
     }
 }

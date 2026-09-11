@@ -1,10 +1,25 @@
 package qg;
 
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.TextView;
-public final class i extends FrameLayout {
-    public TextView f40750a;
-    public TextView f40751b;
-    public ImageView f40752c;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class i extends l {
+    @Override
+    public final int e() {
+        return R.drawable.photo_circle;
+    }
+
+    @Override
+    public final int m() {
+        return R.drawable.photo_circle_fill;
+    }
+
+    @Override
+    public final String n() {
+        return LocaleController.getString(R.string.PaintCircle);
+    }
+
+    @Override
+    public final int o() {
+        return 0;
+    }
 }

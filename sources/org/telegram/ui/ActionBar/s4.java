@@ -1,19 +1,27 @@
 package org.telegram.ui.ActionBar;
 
-import android.view.MenuItem;
-import android.view.View;
-public final class s4 implements View.OnClickListener {
-    public final x4 f18625a;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.messenger.UserConfig;
+public final class s4 extends AnimatorListenerAdapter {
+    public final int f21329a;
+    public final v4 f21330b;
 
-    public s4(x4 x4Var) {
-        this.f18625a = x4Var;
+    public s4(v4 v4Var, int i10) {
+        this.f21329a = i10;
+        this.f21330b = v4Var;
     }
 
     @Override
-    public final void onClick(View view) {
-        MenuItem.OnMenuItemClickListener onMenuItemClickListener;
-        if ((view.getTag() instanceof MenuItem) && (onMenuItemClickListener = this.f18625a.K) != null) {
-            onMenuItemClickListener.onMenuItemClick((MenuItem) view.getTag());
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f21329a) {
+            case 0:
+                NotificationCenter.getInstance(UserConfig.selectedAccount).doOnIdle(new q(this, 13));
+                return;
+            default:
+                NotificationCenter.getInstance(UserConfig.selectedAccount).doOnIdle(new q(this, 14));
+                return;
         }
     }
 }

@@ -1,6 +1,6 @@
 package x9;
 public interface c {
-    String F();
+    void b();
 
-    void c();
+    String e();
 }

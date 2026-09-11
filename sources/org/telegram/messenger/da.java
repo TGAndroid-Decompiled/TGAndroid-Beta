@@ -1,33 +1,43 @@
 package org.telegram.messenger;
 
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_communities;
-public final class da implements Utilities.Callback2 {
-    public final int f14995a;
-    public final MessagesController f14996b;
-    public final Utilities.Callback2 f14997c;
+import java.util.ArrayList;
+public final class da implements Runnable {
+    public final int f17468a;
+    public final MessagesController f17469b;
+    public final ArrayList f17470c;
 
-    public da(MessagesController messagesController, Utilities.Callback2 callback2, int i10) {
-        this.f14995a = i10;
-        this.f14996b = messagesController;
-        this.f14997c = callback2;
+    public da(MessagesController messagesController, ArrayList arrayList, int i10) {
+        this.f17468a = i10;
+        this.f17469b = messagesController;
+        this.f17470c = arrayList;
     }
 
     @Override
-    public final void run(Object obj, Object obj2) {
-        switch (this.f14995a) {
+    public final void run() {
+        switch (this.f17468a) {
             case 0:
-                this.f14996b.lambda$toggleChatNoForwards$278(this.f14997c, (TLRPC.Updates) obj, (TLRPC.TL_error) obj2);
+                this.f17469b.lambda$processUpdateArray$397(this.f17470c);
                 return;
             case 1:
-                this.f14996b.lambda$fetchCommunityPendingJoinRequests$246(this.f14997c, (TL_communities.PeerLinkRequests) obj, (TLRPC.TL_error) obj2);
+                this.f17469b.lambda$processUpdates$379(this.f17470c);
                 return;
             case 2:
-                this.f14996b.lambda$fetchCommunityJoinedChats$247(this.f14997c, (TL_communities.ParticipantJoinedChats) obj, (TLRPC.TL_error) obj2);
+                this.f17469b.lambda$processUpdates$378(this.f17470c);
+                return;
+            case 3:
+                this.f17469b.lambda$getChannelDifference$341(this.f17470c);
+                return;
+            case 4:
+                this.f17469b.lambda$processUpdateArray$398(this.f17470c);
+                return;
+            case 5:
+                this.f17469b.lambda$checkChatInviter$372(this.f17470c);
+                return;
+            case 6:
+                this.f17469b.lambda$reloadMentionsCountForChannels$222(this.f17470c);
                 return;
             default:
-                this.f14996b.lambda$fetchChatsToAddToCommunity$252(this.f14997c, (TLRPC.messages_Chats) obj, (TLRPC.TL_error) obj2);
+                this.f17469b.lambda$checkChatInviter$373(this.f17470c);
                 return;
         }
     }

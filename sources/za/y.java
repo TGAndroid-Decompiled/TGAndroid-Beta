@@ -1,38 +1,22 @@
 package za;
 
 import android.content.Context;
-import android.content.res.Resources;
-public final class y implements ce.b {
-    public final Object f47958a;
-    public final Object f47959b;
+import java.util.concurrent.atomic.AtomicReference;
+public final class y implements s {
+    public static final u f51486e = new Object();
+    public static final m1.c f51487f = w7.q.a(r.f51473a);
+    public final Context f51488a;
+    public final id.h f51489b;
+    public final AtomicReference f51490c;
+    public final o0.a d;
 
-    public y(Context context) {
-        n6.l.h(context);
-        Resources resources = context.getResources();
-        this.f47958a = resources;
-        this.f47959b = resources.getResourcePackageName(2131689566);
-    }
-
-    public String a(String str) {
-        Resources resources = (Resources) this.f47958a;
-        int identifier = resources.getIdentifier(str, "string", (String) this.f47959b);
-        if (identifier == 0) {
-            return null;
-        }
-        return resources.getString(identifier);
-    }
-
-    @Override
-    public Object u(ce.c cVar, kd.c cVar2) {
-        Object u10 = ((of.b) this.f47958a).u(new k1.p(cVar, (z) this.f47959b), cVar2);
-        if (u10 == jd.a.f11861a) {
-            return u10;
-        }
-        return gd.i.f8748a;
-    }
-
-    public y(of.b bVar, z zVar) {
-        this.f47958a = bVar;
-        this.f47959b = zVar;
+    public y(Context context, id.h hVar) {
+        kotlin.jvm.internal.i.e(context, "context");
+        this.f51488a = context;
+        this.f51489b = hVar;
+        this.f51490c = new AtomicReference();
+        f51486e.getClass();
+        this.d = new o0.a(29, new n4.y(9, ((k1.a0) f51487f.a(context, u.f51478a[0]).f14578b).f14432c, new kd.j(3, null)), this);
+        zd.e0.q(zd.e0.b(hVar), new t(this, null, 0));
     }
 }

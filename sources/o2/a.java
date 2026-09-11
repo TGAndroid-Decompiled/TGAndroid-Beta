@@ -12,39 +12,39 @@ import javax.crypto.NoSuchPaddingException;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 public final class a implements g2.h {
-    public final g2.h f14142a;
-    public final byte[] f14143b;
-    public final byte[] f14144c;
+    public final g2.h f16834a;
+    public final byte[] f16835b;
+    public final byte[] f16836c;
     public CipherInputStream d;
 
     public a(g2.h hVar, byte[] bArr, byte[] bArr2) {
-        this.f14142a = hVar;
-        this.f14143b = bArr;
-        this.f14144c = bArr2;
+        this.f16834a = hVar;
+        this.f16835b = bArr;
+        this.f16836c = bArr2;
     }
 
     @Override
     public final void addTransferListener(c0 c0Var) {
         c0Var.getClass();
-        this.f14142a.addTransferListener(c0Var);
+        this.f16834a.addTransferListener(c0Var);
     }
 
     @Override
     public final void close() {
         if (this.d != null) {
             this.d = null;
-            this.f14142a.close();
+            this.f16834a.close();
         }
     }
 
     @Override
     public final Map getResponseHeaders() {
-        return this.f14142a.getResponseHeaders();
+        return this.f16834a.getResponseHeaders();
     }
 
     @Override
     public final Uri getUri() {
-        return this.f14142a.getUri();
+        return this.f16834a.getUri();
     }
 
     @Override
@@ -52,20 +52,20 @@ public final class a implements g2.h {
         try {
             Cipher cipher = Cipher.getInstance("AES/CBC/PKCS7Padding");
             try {
-                cipher.init(2, new SecretKeySpec(this.f14143b, "AES"), new IvParameterSpec(this.f14144c));
-                g2.k kVar = new g2.k(this.f14142a, mVar);
+                cipher.init(2, new SecretKeySpec(this.f16835b, "AES"), new IvParameterSpec(this.f16836c));
+                g2.k kVar = new g2.k(this.f16834a, mVar);
                 this.d = new CipherInputStream(kVar, cipher);
                 if (!kVar.d) {
-                    kVar.f8499a.open(kVar.f8500b);
+                    kVar.f10319a.open(kVar.f10320b);
                     kVar.d = true;
                     return -1L;
                 }
                 return -1L;
-            } catch (InvalidAlgorithmParameterException | InvalidKeyException e) {
-                throw new RuntimeException(e);
+            } catch (InvalidAlgorithmParameterException | InvalidKeyException e7) {
+                throw new RuntimeException(e7);
             }
-        } catch (NoSuchAlgorithmException | NoSuchPaddingException e7) {
-            throw new RuntimeException(e7);
+        } catch (NoSuchAlgorithmException | NoSuchPaddingException e10) {
+            throw new RuntimeException(e10);
         }
     }
 

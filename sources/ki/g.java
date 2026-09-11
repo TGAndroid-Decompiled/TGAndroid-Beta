@@ -1,84 +1,89 @@
 package ki;
 
-import b5.m;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.FileLog;
-public final class g implements Runnable {
-    public final int f12541a;
-    public final k f12542b;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.view.View;
+import java.util.ArrayList;
+import s4.c1;
+public final class g extends AnimatorListenerAdapter {
+    public final int f14999a = 1;
+    public final View f15000b;
+    public final c1 f15001c;
+    public final o d;
 
-    public g(k kVar, int i10) {
-        this.f12541a = i10;
-        this.f12542b = kVar;
+    public g(o oVar, c1 c1Var, View view) {
+        this.d = oVar;
+        this.f15001c = c1Var;
+        this.f15000b = view;
     }
 
-    private final void a() {
-        k kVar = this.f12542b;
-        kVar.e();
-        synchronized (kVar.f12550a) {
-            try {
-                if (kVar.f12562p) {
-                    return;
-                }
-                AndroidUtilities.runOnUIThread(new g(kVar, 2), 1000L);
-            } catch (Throwable th2) {
-                throw th2;
-            }
+    @Override
+    public void onAnimationCancel(Animator animator) {
+        switch (this.f14999a) {
+            case 0:
+                this.f15000b.setAlpha(1.0f);
+                return;
+            default:
+                super.onAnimationCancel(animator);
+                return;
         }
     }
 
     @Override
-    public final void run() {
-        b5.h hVar;
-        byte[] bArr;
-        switch (this.f12541a) {
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f14999a) {
             case 0:
-                k kVar = this.f12542b;
-                b5.h hVar2 = kVar.f12560n;
-                if (hVar2 != null) {
-                    try {
-                        if (m.f2119c.b()) {
-                            hVar2.f2114a.postMessage("{\"t\":\"close\"}");
-                        } else {
-                            throw new UnsupportedOperationException("This method is not supported by the current version of the framework and the current WebView APK");
-                        }
-                    } catch (Exception unused) {
-                    }
+                animator.removeAllListeners();
+                View view = this.f15000b;
+                view.setAlpha(1.0f);
+                view.setScaleX(1.0f);
+                view.setScaleY(1.0f);
+                view.setTranslationY(0.0f);
+                view.setTranslationY(0.0f);
+                o oVar = this.d;
+                ArrayList arrayList = oVar.f45812y;
+                c1 c1Var = this.f15001c;
+                if (arrayList.remove(c1Var)) {
+                    oVar.u(c1Var);
+                    oVar.G();
+                    return;
                 }
-                kVar.e();
-                return;
-            case 1:
-                k.b(this.f12542b);
-                return;
-            case 2:
-                k.a(this.f12542b);
-                return;
-            case 3:
-                a();
                 return;
             default:
-                k kVar2 = this.f12542b;
-                while (true) {
-                    synchronized (kVar2.f12550a) {
-                        hVar = kVar2.f12560n;
-                        if (!kVar2.f12562p && hVar != null && !kVar2.f12558l.isEmpty()) {
-                            bArr = (byte[]) kVar2.f12558l.removeFirst();
-                            kVar2.f12564r -= bArr.length;
-                        }
-                    }
-                    try {
-                        if (m.f2117a.b()) {
-                            hVar.f2114a.postMessageWithPayload(new se.a(new b5.j(bArr)));
-                        } else {
-                            throw new UnsupportedOperationException("This method is not supported by the current version of the framework and the current WebView APK");
-                        }
-                    } catch (Exception e) {
-                        FileLog.e(e);
-                        kVar2.f();
-                        return;
-                    }
+                animator.removeAllListeners();
+                View view2 = this.f15000b;
+                view2.setAlpha(1.0f);
+                view2.setScaleX(1.0f);
+                view2.setScaleY(1.0f);
+                view2.setTranslationX(0.0f);
+                view2.setTranslationY(0.0f);
+                o oVar2 = this.d;
+                ArrayList arrayList2 = oVar2.A;
+                c1 c1Var2 = this.f15001c;
+                if (arrayList2.remove(c1Var2)) {
+                    oVar2.d(c1Var2);
+                    oVar2.G();
+                    return;
                 }
                 return;
         }
+    }
+
+    @Override
+    public void onAnimationStart(Animator animator) {
+        switch (this.f14999a) {
+            case 0:
+                this.d.getClass();
+                return;
+            default:
+                super.onAnimationStart(animator);
+                return;
+        }
+    }
+
+    public g(o oVar, View view, c1 c1Var) {
+        this.d = oVar;
+        this.f15000b = view;
+        this.f15001c = c1Var;
     }
 }

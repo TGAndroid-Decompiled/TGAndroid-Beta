@@ -1,102 +1,76 @@
 package org.telegram.ui.Cells;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.LinearGradient;
-import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.Rect;
-import android.graphics.RectF;
-import android.graphics.Shader;
-import android.graphics.drawable.Drawable;
+import android.text.TextUtils;
 import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.ui.Components.hj0;
-public final class g7 extends Drawable {
-    public final Paint f19204a;
-    public final hj0 f19205b;
-    public final Drawable f19206c;
-    public int d;
+import org.telegram.messenger.UserConfig;
+import org.telegram.messenger.vl;
+import org.telegram.ui.Components.l80;
+import org.telegram.ui.Components.oq;
+public final class g7 extends FrameLayout {
+    public final org.telegram.ui.Components.x9 f21984a;
+    public final d7 f21985b;
+    public final TextView f21986c;
+    public long d;
+    public long f21987e;
+    public final int f21988f;
+    public final org.telegram.ui.ActionBar.f6 h;
 
-    public g7(Context context, org.telegram.ui.Components.w9 w9Var, boolean z10, org.telegram.ui.ActionBar.f6 f6Var) {
-        this(context, w9Var, z10, R.drawable.large_repost_story, f6Var);
+    public g7(Context context, org.telegram.ui.ActionBar.f6 f6Var) {
+        super(context);
+        this.f21988f = UserConfig.selectedAccount;
+        this.h = f6Var;
+        setWillNotDraw(false);
+        org.telegram.ui.Components.x9 x9Var = new org.telegram.ui.Components.x9(context);
+        this.f21984a = x9Var;
+        x9Var.setRoundRadius(AndroidUtilities.dp(28.0f));
+        addView(x9Var, w7.x5.d(56, 56.0f, 49, 0.0f, 7.0f, 0.0f, 0.0f));
+        TextView textView = new TextView(context);
+        this.f21986c = textView;
+        vl.n(org.telegram.ui.ActionBar.j6.f20770j5, f6Var, textView, 1, 12.0f);
+        textView.setMaxLines(2);
+        textView.setGravity(49);
+        textView.setLines(2);
+        textView.setEllipsize(TextUtils.TruncateAt.END);
+        addView(textView, w7.x5.d(-1, -2.0f, 51, 6.0f, 66.0f, 6.0f, 0.0f));
+        this.f21985b = new d7(this, f6Var, 1);
+        setBackground(org.telegram.ui.ActionBar.j6.Y(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f20753i6, false), AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f)));
+    }
+
+    public long getCurrentDialog() {
+        return this.d;
+    }
+
+    public long getCurrentTopic() {
+        return this.f21987e;
     }
 
     @Override
-    public final void draw(Canvas canvas) {
-        float f7;
-        canvas.save();
-        canvas.translate(getBounds().left, getBounds().top);
-        RectF rectF = AndroidUtilities.rectTmp;
-        rectF.set(0.0f, 0.0f, getBounds().width(), getBounds().height());
-        int i10 = this.d;
-        Paint paint = this.f19204a;
-        paint.setAlpha(i10);
-        float min = (this.d / 255.0f) * (Math.min(getBounds().width(), getBounds().height()) / 2.0f);
-        canvas.drawRoundRect(rectF, min, min, paint);
-        canvas.restore();
-        Drawable drawable = this.f19205b;
-        if (drawable != null) {
-            f7 = 20.0f;
-        } else {
-            f7 = 15.0f;
-        }
-        int dp = AndroidUtilities.dp(f7);
-        Rect rect = AndroidUtilities.rectTmp2;
-        rect.set(getBounds().centerX() - dp, getBounds().centerY() - dp, getBounds().centerX() + dp, getBounds().centerY() + dp);
-        if (drawable == null) {
-            drawable = this.f19206c;
-        }
-        if (drawable != null) {
-            drawable.setBounds(rect);
-            drawable.setAlpha(this.d);
-            drawable.draw(canvas);
-        }
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(103.0f), 1073741824));
     }
 
-    @Override
-    public final int getIntrinsicHeight() {
-        return AndroidUtilities.dp(56.0f);
-    }
-
-    @Override
-    public final int getIntrinsicWidth() {
-        return AndroidUtilities.dp(56.0f);
-    }
-
-    @Override
-    public final int getOpacity() {
-        return -2;
-    }
-
-    @Override
-    public final void setAlpha(int i10) {
-        this.d = i10;
-    }
-
-    public g7(Context context, View view, boolean z10, int i10, org.telegram.ui.ActionBar.f6 f6Var) {
-        Paint paint = new Paint(1);
-        this.f19204a = paint;
-        this.d = 255;
-        paint.setShader(new LinearGradient(0.0f, 0.0f, AndroidUtilities.dp(56.0f), AndroidUtilities.dp(56.0f), new int[]{org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.hk, f6Var), org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.ik, f6Var)}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP));
+    public void setAsNewBotForumTopic(boolean z10) {
+        int i10;
         if (z10) {
-            hj0 hj0Var = new hj0(R.raw.story_repost, AndroidUtilities.dp(42.0f), AndroidUtilities.dp(42.0f), true, null);
-            this.f19205b = hj0Var;
-            hj0Var.f23672v0 = view;
-            AndroidUtilities.runOnUIThread(new q0(hj0Var, 1), 450L);
-            this.f19206c = null;
-            return;
+            i10 = R.string.ShareSendToNewTopic;
+        } else {
+            i10 = R.string.ShareSendToOffTopic;
         }
-        this.f19205b = null;
-        Drawable mutate = context.getResources().getDrawable(i10).mutate();
-        this.f19206c = mutate;
-        mutate.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
+        this.f21986c.setText(LocaleController.getString(i10));
+        org.telegram.ui.Components.x9 x9Var = this.f21984a;
+        x9Var.setAnimatedEmojiDrawable(null);
+        og.a aVar = new og.a(og.a.f17012k[0]);
+        l80 l80Var = new l80(1, null);
+        l80Var.a("");
+        l80Var.f28113i = 1.8f;
+        oq oqVar = new oq(aVar, l80Var, 0, 0);
+        oqVar.f29167w = true;
+        x9Var.setImageDrawable(oqVar);
     }
 }

@@ -1,32 +1,13 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-public final class pt0 extends fv0 {
-    public final iv0 G;
-
-    public pt0(iv0 iv0Var, Context context) {
-        super(iv0Var, context, 0, false);
-        this.G = iv0Var;
-    }
+import org.telegram.messenger.AndroidUtilities;
+public class pt0 extends ia implements bi.b9 {
+    public int f29488d3;
+    public int f29489e3;
 
     @Override
-    public final void l() {
-        boolean z10;
-        super.l();
-        iv0 iv0Var = this.G;
-        au0 W = iv0Var.W(8);
-        if (W != null && W.f21595r.getVisibility() == 0) {
-            iv0Var.f24092d0.l();
-        }
-        if (W != null) {
-            rs0 rs0Var = W.f21597w;
-            zh.a5 a5Var = this.f23089s;
-            if (a5Var != null && (a5Var.k() || (iv0Var.i0() && this.f23089s.g() > 0))) {
-                z10 = true;
-            } else {
-                z10 = false;
-            }
-            rs0Var.e(z10, true);
-        }
+    public final void a(int[] iArr) {
+        iArr[0] = (getPaddingTop() - AndroidUtilities.dp(2.0f)) - this.f29488d3;
+        iArr[1] = (getMeasuredHeight() - getPaddingBottom()) - this.f29489e3;
     }
 }

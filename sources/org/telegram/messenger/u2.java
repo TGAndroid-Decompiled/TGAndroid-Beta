@@ -1,23 +1,24 @@
 package org.telegram.messenger;
 public final class u2 implements Runnable {
-    public final int f16451a;
-    public final FileLoadOperation f16452b;
-    public final FileLoadOperationStream f16453c;
+    public final int f19123a;
+    public final FileLoader f19124b;
 
-    public u2(FileLoadOperation fileLoadOperation, FileLoadOperationStream fileLoadOperationStream, int i10) {
-        this.f16451a = i10;
-        this.f16452b = fileLoadOperation;
-        this.f16453c = fileLoadOperationStream;
+    public u2(FileLoader fileLoader, int i10) {
+        this.f19123a = i10;
+        this.f19124b = fileLoader;
     }
 
     @Override
     public final void run() {
-        switch (this.f16451a) {
+        switch (this.f19123a) {
             case 0:
-                this.f16452b.lambda$removeStreamListener$5(this.f16453c);
+                FileLoader.t(this.f19124b);
+                return;
+            case 1:
+                FileLoader.m(this.f19124b);
                 return;
             default:
-                this.f16452b.lambda$setStream$0(this.f16453c);
+                FileLoader.q(this.f19124b);
                 return;
         }
     }

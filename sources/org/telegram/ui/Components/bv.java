@@ -1,106 +1,11 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-import android.view.ViewTreeObserver;
-import android.widget.PopupWindow;
-import java.lang.reflect.Field;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.FileLog;
-public final class bv extends PopupWindow {
-    public static Field f21908f;
-    public static final org.telegram.ui.ActionBar.h1 f21909g = new org.telegram.ui.ActionBar.h1(1);
-    public ViewTreeObserver.OnScrollChangedListener f21910a;
-    public ViewTreeObserver f21911b;
-    public final av f21912c;
-    public boolean d;
-    public final int e;
+import java.util.ArrayList;
+public final class bv extends ov {
+    public final rv h;
 
-    public bv(av avVar) {
-        super(avVar);
-        float f7;
-        if (AndroidUtilities.isTablet()) {
-            f7 = 40.0f;
-        } else {
-            f7 = 32.0f;
-        }
-        this.e = AndroidUtilities.dp(f7);
-        this.f21912c = avVar;
-        setOutsideTouchable(true);
-        setClippingEnabled(true);
-        setInputMethodMode(2);
-        setSoftInputMode(0);
-        avVar.setFocusableInTouchMode(true);
-        avVar.setOnKeyListener(new sn(this, 1));
-    }
-
-    public final void a(View view) {
-        ViewTreeObserver viewTreeObserver;
-        if (this.f21910a != null) {
-            if (view.getWindowToken() != null) {
-                viewTreeObserver = view.getViewTreeObserver();
-            } else {
-                viewTreeObserver = null;
-            }
-            ViewTreeObserver viewTreeObserver2 = this.f21911b;
-            if (viewTreeObserver != viewTreeObserver2) {
-                if (viewTreeObserver2 != null && viewTreeObserver2.isAlive()) {
-                    this.f21911b.removeOnScrollChangedListener(this.f21910a);
-                }
-                this.f21911b = viewTreeObserver;
-                if (viewTreeObserver != null) {
-                    viewTreeObserver.addOnScrollChangedListener(this.f21910a);
-                }
-            }
-        }
-    }
-
-    @Override
-    public final void dismiss() {
-        ViewTreeObserver viewTreeObserver;
-        setFocusable(false);
-        try {
-            super.dismiss();
-        } catch (Exception unused) {
-        }
-        if (this.f21910a != null && (viewTreeObserver = this.f21911b) != null) {
-            if (viewTreeObserver.isAlive()) {
-                this.f21911b.removeOnScrollChangedListener(this.f21910a);
-            }
-            this.f21911b = null;
-        }
-    }
-
-    @Override
-    public final void showAsDropDown(View view, int i10, int i11) {
-        try {
-            super.showAsDropDown(view, i10, i11);
-            a(view);
-        } catch (Exception e) {
-            FileLog.e(e);
-        }
-    }
-
-    @Override
-    public final void showAtLocation(View view, int i10, int i11, int i12) {
-        ViewTreeObserver viewTreeObserver;
-        super.showAtLocation(view, i10, i11, i12);
-        if (this.f21910a != null && (viewTreeObserver = this.f21911b) != null) {
-            if (viewTreeObserver.isAlive()) {
-                this.f21911b.removeOnScrollChangedListener(this.f21910a);
-            }
-            this.f21911b = null;
-        }
-    }
-
-    @Override
-    public final void update(View view, int i10, int i11, int i12, int i13) {
-        super.update(view, i10, i11, i12, i13);
-        a(view);
-    }
-
-    @Override
-    public final void update(View view, int i10, int i11) {
-        super.update(view, i10, i11);
-        a(view);
+    public bv(int i10, ArrayList arrayList, rv rvVar) {
+        super(i10, arrayList, rvVar);
+        this.h = rvVar;
     }
 }

@@ -1,241 +1,149 @@
 package ih;
 
-import android.content.Context;
-import android.view.animation.Interpolator;
-import android.widget.FrameLayout;
-import b2.n1;
-import bi.j5;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.ui.ActionBar.f6;
-import org.telegram.ui.Components.cr;
-import org.telegram.ui.Components.wr;
-import w7.a6;
-import w7.c6;
-public final class h extends FrameLayout implements le.d {
-    public static final int[] f10624s;
-    public final String[] f10625a;
-    public final f6 f10626b;
-    public final ch.a f10627c;
-    public final zg.a d;
-    public final aa.a[] e;
-    public final n1[] f10628f;
-    public a h;
-    public b f10629n;
-    public int f10630r;
+import android.view.View;
+import androidx.recyclerview.widget.RecyclerView;
+import j$.util.DesugarCollections;
+import java.util.ArrayList;
+import s4.c1;
+import s4.p0;
+public final class h {
+    public final RecyclerView f12340a;
 
-    static {
-        int i10 = R.drawable.msg_input_attach2;
-        int i11 = R.drawable.pagedown;
-        f10624s = new int[]{i10, i11, R.drawable.mentionbutton, R.drawable.reactionbutton, R.drawable.menu_poll_notify, i11, i11};
+    public h(RecyclerView recyclerView) {
+        this.f12340a = recyclerView;
     }
 
-    public h(Context context, f6 f6Var, ch.b bVar, zg.a aVar) {
-        super(context);
-        this.f10625a = new String[]{LocaleController.getString(R.string.AttachMenu), LocaleController.getString(R.string.AccDescrPageDown), LocaleController.getString(R.string.AccDescrMentionDown), LocaleController.getString(R.string.AccDescrReactionMentionDown), LocaleController.getString(R.string.AccDescrPollVotesMentionDown), LocaleController.getString(R.string.AccDescrSearchPrev), LocaleController.getString(R.string.AccDescrSearchNext)};
-        this.e = new aa.a[7];
-        this.f10628f = new n1[7];
-        this.f10630r = 83;
-        this.d = aVar;
-        this.f10627c = bVar;
-        this.f10626b = f6Var;
-    }
-
-    @Override
-    public final void G(int i10, float f7, float f10, le.e eVar) {
-        int i11 = i10 >> 16;
-        int i12 = i10 & 65535;
-        if (i11 >= 0) {
-            aa.a[] aVarArr = this.e;
-            if (i11 < aVarArr.length && aVarArr[i11] != null) {
-                if (i12 == 1 || i12 == 2) {
-                    a();
-                }
-            }
-        }
-    }
-
-    public final void a() {
-        int i10;
-        int i11 = 0;
-        float f7 = 0.0f;
-        while (true) {
-            aa.a[] aVarArr = this.e;
-            if (i11 < aVarArr.length) {
-                aa.a aVar = aVarArr[i11];
-                if (aVar != null) {
-                    hh.b bVar = (hh.b) aVar.f355b;
-                    float f10 = ((le.b) aVar.f356c).e;
-                    float f11 = ((le.b) aVar.d).e;
-                    if (f10 > 0.0f) {
-                        i10 = 0;
-                    } else {
-                        i10 = 8;
+    public void a(s4.a aVar) {
+        int i10 = aVar.f45700a;
+        RecyclerView recyclerView = this.f12340a;
+        if (i10 != 1) {
+            if (i10 != 2) {
+                if (i10 != 4) {
+                    if (i10 != 8) {
+                        return;
                     }
-                    bVar.setVisibility(i10);
-                    bVar.setAlpha(f10);
-                    bVar.setScaleX(AndroidUtilities.lerp(0.7f, 1.0f, f10));
-                    bVar.setScaleY(AndroidUtilities.lerp(0.7f, 1.0f, f10));
-                    if (i11 != 0) {
-                        bVar.setTranslationY(((1.0f - f10) * AndroidUtilities.dp(80.0f)) - f7);
-                    }
-                    f7 += (AndroidUtilities.dp((f11 * 10.0f) + 10.0f) + AndroidUtilities.dp(44.0f)) * f10;
+                    recyclerView.f1896x.X(recyclerView, aVar.f45701b, aVar.d);
+                    return;
                 }
-                i11++;
-            } else {
+                recyclerView.f1896x.a0(recyclerView, aVar.f45701b, aVar.d, aVar.f45702c);
                 return;
             }
-        }
-    }
-
-    public final n1 b(int i10) {
-        n1[] n1VarArr = this.f10628f;
-        if (n1VarArr[i10] == 0) {
-            ?? obj = new Object();
-            obj.f1857a = 0;
-            obj.f1858b = false;
-            obj.f1859c = true;
-            n1VarArr[i10] = obj;
-        }
-        return n1VarArr[i10];
-    }
-
-    public final void c(int i10, int i11, boolean z10) {
-        boolean z11;
-        b(i10).f1857a = i11;
-        aa.a aVar = this.e[i10];
-        if (aVar != null) {
-            ((hh.b) aVar.f355b).a(i11, z10);
-            le.b bVar = (le.b) aVar.d;
-            if (i11 > 0) {
-                z11 = true;
-            } else {
-                z11 = false;
-            }
-            bVar.a(z11, z10);
-        }
-    }
-
-    public final void d(boolean z10) {
-        b(1).f1858b = z10;
-        aa.a aVar = this.e[1];
-        if (aVar != null) {
-            ((hh.b) aVar.f355b).c(z10, true);
-        }
-    }
-
-    public final void e(int i10, boolean z10, boolean z11) {
-        Interpolator interpolator;
-        long j3;
-        Interpolator interpolator2;
-        long j10;
-        int i11;
-        int i12;
-        aa.a[] aVarArr = this.e;
-        aa.a aVar = aVarArr[i10];
-        if (aVar == null && !z10) {
+            recyclerView.f1896x.Y(recyclerView, aVar.f45701b, aVar.d);
             return;
         }
-        if (aVar == null) {
-            int i13 = i10 << 16;
-            int i14 = i13 | 1;
-            if (i10 == 0) {
-                interpolator = wr.h;
-            } else {
-                interpolator = ke.a.f12431a;
-            }
-            if (i10 == 0) {
-                j3 = 300;
-            } else {
-                j3 = 280;
-            }
-            le.b bVar = new le.b(i14, this, interpolator, j3, false);
-            int i15 = i13 | 2;
-            if (i10 == 0) {
-                interpolator2 = wr.h;
-            } else {
-                interpolator2 = ke.a.f12431a;
-            }
-            Interpolator interpolator3 = interpolator2;
-            if (i10 == 0) {
-                j10 = 300;
-            } else {
-                j10 = 280;
-            }
-            le.b bVar2 = new le.b(i15, this, interpolator3, j10, false);
-            if (i10 == 0) {
-                i11 = 50;
-                i12 = 32;
-            } else {
-                i11 = 56;
-                i12 = 48;
-            }
-            Context context = getContext();
-            int i16 = f10624s[i10];
-            f6 f6Var = this.f10626b;
-            hh.b bVar3 = new hh.b(context, f6Var);
-            hh.a d = hh.a.d(context, this.d, this.f10627c, f6Var, i16, i12);
-            bVar3.f9417b = d;
-            bVar3.addView(d, a6.e(i11, i11, 80));
-            d.setIconPadding(AndroidUtilities.dp(2.0f));
-            c6.b(bVar3, 0.13f, 2.0f);
-            float f7 = i11 / 2.0f;
-            bVar3.setPivotX(AndroidUtilities.dp(f7));
-            bVar3.setPivotY(AndroidUtilities.dp(f7 + 8.0f));
-            bVar3.setVisibility(8);
-            bVar3.setContentDescription(this.f10625a[i10]);
-            bVar3.setOnClickListener(new j5(this, i10, 4));
-            bVar3.setOnLongClickListener(new g(this, i10, 0));
-            if (i10 == 6) {
-                hh.a aVar2 = bVar3.f9417b;
-                aVar2.h = -1.0f;
-                aVar2.a();
-            }
-            boolean z12 = true;
-            if (i10 == 1) {
-                bVar3.d = true;
-                cr crVar = bVar3.f9418c;
-                if (crVar != null) {
-                    crVar.setReverse(true);
+        recyclerView.f1896x.V(recyclerView, aVar.f45701b, aVar.d);
+    }
+
+    public void b(int i10, int i11, Object obj) {
+        int i12;
+        int i13;
+        RecyclerView recyclerView = this.f12340a;
+        int E = recyclerView.f1872e.E();
+        int i14 = i11 + i10;
+        for (int i15 = 0; i15 < E; i15++) {
+            View D = recyclerView.f1872e.D(i15);
+            c1 U = RecyclerView.U(D);
+            if (U != null && !U.r() && (i13 = U.f45740c) >= i10 && i13 < i14) {
+                U.a(2);
+                if (obj == null) {
+                    U.a(1024);
+                } else if ((1024 & U.f45747l) == 0) {
+                    if (U.f45748m == null) {
+                        ArrayList arrayList = new ArrayList();
+                        U.f45748m = arrayList;
+                        U.f45749n = DesugarCollections.unmodifiableList(arrayList);
+                    }
+                    U.f45748m.add(obj);
                 }
+                ((p0) D.getLayoutParams()).f45859c = true;
             }
-            addView(bVar3, a6.e(i11, i11 + 8, this.f10630r));
-            aVarArr[i10] = new aa.a(bVar3, bVar, bVar2, false, 19);
-            n1 n1Var = this.f10628f[i10];
-            if (n1Var != null) {
-                bVar3.a(n1Var.f1857a, false);
-                bVar.a(false, false);
-                if (n1Var.f1857a <= 0) {
-                    z12 = false;
-                }
-                bVar2.a(z12, false);
-                bVar3.c(n1Var.f1858b, false);
-                bVar3.b(n1Var.f1859c, false);
-            }
-            a();
         }
-        ((le.b) aVarArr[i10].f356c).a(z10, z11);
+        pf.e eVar = recyclerView.f1867b;
+        ArrayList arrayList2 = (ArrayList) eVar.f44062e;
+        for (int size = arrayList2.size() - 1; size >= 0; size--) {
+            c1 c1Var = (c1) arrayList2.get(size);
+            if (c1Var != null && (i12 = c1Var.f45740c) >= i10 && i12 < i14) {
+                c1Var.a(2);
+                eVar.f(size);
+            }
+        }
+        recyclerView.f1897x0 = true;
     }
 
-    @Override
-    public final boolean hasOverlappingRendering() {
-        return false;
+    public void c(int i10, int i11) {
+        RecyclerView recyclerView = this.f12340a;
+        int E = recyclerView.f1872e.E();
+        for (int i12 = 0; i12 < E; i12++) {
+            c1 U = RecyclerView.U(recyclerView.f1872e.D(i12));
+            if (U != null && !U.r() && U.f45740c >= i10) {
+                U.n(i11, false);
+                recyclerView.f1891t0.f45919f = true;
+            }
+        }
+        ArrayList arrayList = (ArrayList) recyclerView.f1867b.f44062e;
+        int size = arrayList.size();
+        for (int i13 = 0; i13 < size; i13++) {
+            c1 c1Var = (c1) arrayList.get(i13);
+            if (c1Var != null && c1Var.f45740c >= i10) {
+                c1Var.n(i11, true);
+            }
+        }
+        recyclerView.requestLayout();
+        recyclerView.f1895w0 = true;
     }
 
-    public void setGravity(int i10) {
-        this.f10630r = i10;
-    }
-
-    public void setOnClickListener(a aVar) {
-        this.h = aVar;
-    }
-
-    public void setOnLongClickListener(b bVar) {
-        this.f10629n = bVar;
-    }
-
-    @Override
-    public final void B(float f7, int i10) {
+    public void d(int i10, int i11) {
+        int i12;
+        int i13;
+        int i14;
+        int i15;
+        int i16;
+        int i17;
+        int i18;
+        RecyclerView recyclerView = this.f12340a;
+        int E = recyclerView.f1872e.E();
+        int i19 = -1;
+        if (i10 < i11) {
+            i13 = i10;
+            i12 = i11;
+            i14 = -1;
+        } else {
+            i12 = i10;
+            i13 = i11;
+            i14 = 1;
+        }
+        for (int i20 = 0; i20 < E; i20++) {
+            c1 U = RecyclerView.U(recyclerView.f1872e.D(i20));
+            if (U != null && (i18 = U.f45740c) >= i13 && i18 <= i12) {
+                if (i18 == i10) {
+                    U.n(i11 - i10, false);
+                } else {
+                    U.n(i14, false);
+                }
+                recyclerView.f1891t0.f45919f = true;
+            }
+        }
+        ArrayList arrayList = (ArrayList) recyclerView.f1867b.f44062e;
+        if (i10 < i11) {
+            i16 = i10;
+            i15 = i11;
+        } else {
+            i15 = i10;
+            i16 = i11;
+            i19 = 1;
+        }
+        int size = arrayList.size();
+        for (int i21 = 0; i21 < size; i21++) {
+            c1 c1Var = (c1) arrayList.get(i21);
+            if (c1Var != null && (i17 = c1Var.f45740c) >= i16 && i17 <= i15) {
+                if (i17 == i10) {
+                    c1Var.n(i11 - i10, false);
+                } else {
+                    c1Var.n(i19, false);
+                }
+            }
+        }
+        recyclerView.requestLayout();
+        recyclerView.f1895w0 = true;
     }
 }

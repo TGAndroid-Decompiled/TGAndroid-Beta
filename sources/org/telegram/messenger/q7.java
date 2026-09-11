@@ -1,29 +1,51 @@
 package org.telegram.messenger;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import org.telegram.messenger.MediaDataController;
-import org.telegram.tgnet.TLRPC;
-public final class q7 implements Comparator {
-    public final int f16118a;
-    public final ArrayList f16119b;
+import org.telegram.messenger.Utilities;
+public final class q7 implements Runnable {
+    public final int f18791a;
+    public final Utilities.Callback f18792b;
 
-    public q7(ArrayList arrayList, int i10) {
-        this.f16118a = i10;
-        this.f16119b = arrayList;
+    public q7(int i10, Utilities.Callback callback) {
+        this.f18791a = i10;
+        this.f18792b = callback;
     }
 
     @Override
-    public final int compare(Object obj, Object obj2) {
-        int lambda$getEmojiSuggestions$220;
-        int lambda$reorderStickers$54;
-        switch (this.f16118a) {
+    public final void run() {
+        switch (this.f18791a) {
             case 0:
-                lambda$getEmojiSuggestions$220 = MediaDataController.lambda$getEmojiSuggestions$220(this.f16119b, (MediaDataController.KeywordResult) obj, (MediaDataController.KeywordResult) obj2);
-                return lambda$getEmojiSuggestions$220;
+                MediaDataController.lambda$loadStickers$98(this.f18792b);
+                return;
+            case 1:
+                MediaDataController.lambda$loadStickers$99(this.f18792b);
+                return;
+            case 2:
+                MediaDataController.lambda$loadBotInfo$198(this.f18792b);
+                return;
+            case 3:
+                MediaDataController.lambda$loadStickers$94(this.f18792b);
+                return;
+            case 4:
+                MediaDataController.lambda$loadStickers$95(this.f18792b);
+                return;
+            case 5:
+                MediaDataController.lambda$loadStickers$96(this.f18792b);
+                return;
+            case 6:
+                this.f18792b.run(null);
+                return;
+            case 7:
+                MessagesController.lambda$addUserToChat$301(this.f18792b);
+                return;
+            case 8:
+                MessagesController.lambda$addUserToChat$305(this.f18792b);
+                return;
+            case 9:
+                this.f18792b.run(null);
+                return;
             default:
-                lambda$reorderStickers$54 = MediaDataController.lambda$reorderStickers$54(this.f16119b, (TLRPC.TL_messages_stickerSet) obj, (TLRPC.TL_messages_stickerSet) obj2);
-                return lambda$reorderStickers$54;
+                ShortcutResultReceiver.a(this.f18792b);
+                return;
         }
     }
 }

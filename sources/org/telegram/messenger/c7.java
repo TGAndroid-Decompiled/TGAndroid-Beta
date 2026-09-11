@@ -1,37 +1,34 @@
 package org.telegram.messenger;
 
-import android.content.SharedPreferences;
-import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class c7 implements Runnable {
-    public final int f14843a;
-    public final MediaDataController f14844b;
-    public final TLRPC.TL_error f14845c;
-    public final TLObject d;
-    public final SharedPreferences e;
-    public final boolean[] f14846f;
+    public final int f17336a;
+    public final MediaDataController f17337b;
+    public final TLRPC.TL_messages_stickerSet f17338c;
 
-    public c7(MediaDataController mediaDataController, TLRPC.TL_error tL_error, TLObject tLObject, SharedPreferences sharedPreferences, boolean[] zArr, int i10) {
-        this.f14843a = i10;
-        this.f14844b = mediaDataController;
-        this.f14845c = tL_error;
-        this.d = tLObject;
-        this.e = sharedPreferences;
-        this.f14846f = zArr;
+    public c7(MediaDataController mediaDataController, TLRPC.TL_messages_stickerSet tL_messages_stickerSet, int i10) {
+        this.f17336a = i10;
+        this.f17337b = mediaDataController;
+        this.f17338c = tL_messages_stickerSet;
     }
 
     @Override
     public final void run() {
-        switch (this.f14843a) {
+        switch (this.f17336a) {
             case 0:
-                SharedPreferences sharedPreferences = this.e;
-                boolean[] zArr = this.f14846f;
-                this.f14844b.lambda$loadRecentAndTopReactions$237(this.f14845c, this.d, sharedPreferences, zArr);
+                this.f17337b.lambda$saveStickerSetIntoCache$40(this.f17338c);
+                return;
+            case 1:
+                this.f17337b.lambda$loadGroupStickerSet$45(this.f17338c);
+                return;
+            case 2:
+                this.f17337b.lambda$loadGroupStickerSet$43(this.f17338c);
+                return;
+            case 3:
+                this.f17337b.lambda$putSetToCache$47(this.f17338c);
                 return;
             default:
-                SharedPreferences sharedPreferences2 = this.e;
-                boolean[] zArr2 = this.f14846f;
-                this.f14844b.lambda$loadRecentAndTopReactions$235(this.f14845c, this.d, sharedPreferences2, zArr2);
+                this.f17337b.lambda$replaceStickerSet$28(this.f17338c);
                 return;
         }
     }

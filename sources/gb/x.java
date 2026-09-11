@@ -4,17 +4,17 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 import java.util.List;
-import v7.p8;
+import v7.m8;
 public final class x implements db.v {
-    public final n4.y f8726a;
-    public final fb.f f8727b;
-    public final j f8728c;
+    public final pf.b f10566a;
+    public final fb.f f10567b;
+    public final j f10568c;
     public final ArrayList d;
 
-    public x(n4.y yVar, fb.f fVar, j jVar, ArrayList arrayList) {
-        this.f8726a = yVar;
-        this.f8727b = fVar;
-        this.f8728c = jVar;
+    public x(pf.b bVar, fb.f fVar, j jVar, ArrayList arrayList) {
+        this.f10566a = bVar;
+        this.f10567b = fVar;
+        this.f10568c = jVar;
         this.d = arrayList;
     }
 
@@ -29,16 +29,16 @@ public final class x implements db.v {
     public final boolean c(Field field, boolean z10) {
         List<db.a> list;
         boolean z11;
-        fb.f fVar = this.f8727b;
+        fb.f fVar = this.f10567b;
         fVar.getClass();
         if ((136 & field.getModifiers()) != 0 || field.isSynthetic() || fVar.b(field.getType(), z10)) {
             z11 = true;
             break;
         }
         if (z10) {
-            list = fVar.f7908a;
+            list = fVar.f9428a;
         } else {
-            list = fVar.f7909b;
+            list = fVar.f9429b;
         }
         if (!list.isEmpty()) {
             db.b bVar = new db.b(field);
@@ -55,18 +55,18 @@ public final class x implements db.v {
 
     @Override
     public final db.u create(db.g gVar, kb.a aVar) {
-        Class cls = aVar.f12419a;
+        Class cls = aVar.f14888a;
         if (!Object.class.isAssignableFrom(cls)) {
             return null;
         }
-        p8 p8Var = ib.c.f10550a;
+        m8 m8Var = ib.c.f11937a;
         if (!Modifier.isStatic(cls.getModifiers()) && (cls.isAnonymousClass() || cls.isLocalClass())) {
             return new db.d(2);
         }
         fb.d.f(this.d);
-        if (ib.c.f10550a.d(cls)) {
+        if (ib.c.f11937a.d(cls)) {
             return new w(cls, b(gVar, aVar, cls, true));
         }
-        return new u(this.f8726a.l(aVar), b(gVar, aVar, cls, false));
+        return new u(this.f10566a.T(aVar), b(gVar, aVar, cls, false));
     }
 }

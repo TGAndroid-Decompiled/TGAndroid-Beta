@@ -1,35 +1,72 @@
 package org.telegram.ui;
 
-import android.graphics.Bitmap;
-public final class ft implements Runnable {
-    public final int f32910a;
-    public final tt f32911b;
+import android.graphics.Canvas;
+import android.graphics.RectF;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+public final class ft implements r0.n, org.telegram.ui.Components.ek0 {
+    public final st f36464a;
 
-    public ft(tt ttVar, int i10) {
-        this.f32910a = i10;
-        this.f32911b = ttVar;
+    public ft(st stVar) {
+        this.f36464a = stVar;
     }
 
     @Override
-    public final void run() {
-        switch (this.f32910a) {
-            case 0:
-                this.f32911b.f37018c0 = null;
-                return;
-            case 1:
-                tt ttVar = this.f32911b;
-                ttVar.A.setImageBitmap((Bitmap) null);
-                org.telegram.ui.Components.pd0 pd0Var = ttVar.C;
-                if (pd0Var != null) {
-                    pd0Var.a();
-                    ttVar.f37039z.removeView(ttVar.C);
-                    ttVar.C = null;
+    public void B(View view, ah.j1 j1Var, boolean z10, boolean z11) {
+        if (j1Var != null) {
+            st stVar = this.f36464a;
+            ah.u0 reactionsWindow = stVar.P.getReactionsWindow();
+            if (stVar.f40541o.contains(j1Var.f597f)) {
+                if (stVar.f40541o.size() > 1) {
+                    stVar.f40541o.remove(j1Var.f597f);
+                } else {
                     return;
                 }
-                return;
-            default:
-                this.f32911b.Q.animate().alpha(1.0f).scaleX(1.0f).scaleY(1.0f).setDuration(420L).setInterpolator(org.telegram.ui.Components.wr.h).start();
-                return;
+            } else {
+                stVar.f40541o.add(j1Var.f597f);
+                if (stVar.f40541o.size() > 7) {
+                    stVar.f40541o.remove(0);
+                }
+            }
+            stVar.P.setSelectedEmojis(stVar.f40541o);
+            if (reactionsWindow != null) {
+                ah.o0 o0Var = reactionsWindow.f695m;
+                stVar.P.p(null, null, false);
+                if (o0Var != null) {
+                    o0Var.setSelectedReactions(stVar.f40541o);
+                    o0Var.setRecentReactions(stVar.P.V);
+                }
+                reactionsWindow.d();
+            }
         }
+    }
+
+    @Override
+    public boolean S() {
+        return false;
+    }
+
+    @Override
+    public r0.l1 T0(View view, r0.l1 l1Var) {
+        this.f36464a.f40543q = AndroidUtilities.getDefaultWindowInsets(l1Var, false);
+        return l1Var;
+    }
+
+    @Override
+    public boolean n() {
+        return true;
+    }
+
+    @Override
+    public boolean t() {
+        return false;
+    }
+
+    @Override
+    public void J() {
+    }
+
+    @Override
+    public void I(Canvas canvas, RectF rectF, float f7, float f10, float f11, int i10, boolean z10) {
     }
 }

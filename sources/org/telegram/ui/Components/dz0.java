@@ -1,23 +1,28 @@
 package org.telegram.ui.Components;
+public final class dz0 {
+    public final int f25491a;
+    public final int f25492b;
 
-import org.telegram.messenger.SharedConfig;
-public final class dz0 implements zc0, bd0 {
-    public final fz0 f22510a;
-
-    @Override
-    public String k(int i10) {
-        return this.f22510a.h[i10];
+    public dz0(int i10, int i11) {
+        this.f25491a = i10;
+        this.f25492b = i11;
     }
 
-    @Override
-    public void q(dd0 dd0Var, int i10) {
-        fz0 fz0Var = this.f22510a;
-        fz0Var.b();
-        SharedConfig.updateChatListSwipeSetting(i10);
-        fz0Var.invalidate();
-        try {
-            dd0Var.performHapticFeedback(3, 2);
-        } catch (Exception unused) {
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
         }
+        if (obj == null || dz0.class != obj.getClass()) {
+            return false;
+        }
+        dz0 dz0Var = (dz0) obj;
+        if (this.f25492b == dz0Var.f25492b && this.f25491a == dz0Var.f25491a) {
+            return true;
+        }
+        return false;
+    }
+
+    public final int hashCode() {
+        return (this.f25491a * 31) + this.f25492b;
     }
 }

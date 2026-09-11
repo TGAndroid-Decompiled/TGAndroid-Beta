@@ -1,27 +1,48 @@
 package org.telegram.ui;
 
-import android.text.SpannableStringBuilder;
-public final class cx extends org.telegram.ui.Components.si0 {
-    public final int f31784f0 = 0;
-    public final Object f31785g0;
+import android.view.View;
+public final class cx extends org.telegram.ui.Components.s6 {
+    public final int f35565b;
+    public final uy f35566c;
 
-    public cx(ig1 ig1Var, SpannableStringBuilder spannableStringBuilder, SpannableStringBuilder spannableStringBuilder2) {
-        super(spannableStringBuilder, spannableStringBuilder2);
-        this.f31785g0 = ig1Var;
-    }
-
-    @Override
-    public final float d() {
-        switch (this.f31784f0) {
-            case 0:
-                return ((vy) this.f31785g0).f37645a.getViewOffset();
+    public cx(uy uyVar, int i10) {
+        super("animationValue", 0);
+        this.f35565b = i10;
+        switch (i10) {
+            case 1:
+                this.f35566c = uyVar;
+                super("viewPagerTranslation", 0);
+                return;
             default:
-                return ((ig1) this.f31785g0).N.f33098f3;
+                this.f35566c = uyVar;
+                return;
         }
     }
 
-    public cx(String str, String str2, vy vyVar) {
-        super(str, str2);
-        this.f31785g0 = vyVar;
+    @Override
+    public final void b(Object obj, float f7) {
+        switch (this.f35565b) {
+            case 0:
+                ((uy) obj).C4(f7);
+                return;
+            default:
+                uy uyVar = this.f35566c;
+                uyVar.I0 = f7;
+                ((View) obj).setTranslationY(uyVar.J0 + f7);
+                uyVar.F3();
+                return;
+        }
+    }
+
+    @Override
+    public final Object get(Object obj) {
+        switch (this.f35565b) {
+            case 0:
+                uy uyVar = (uy) obj;
+                return Float.valueOf(this.f35566c.N);
+            default:
+                View view = (View) obj;
+                return Float.valueOf(this.f35566c.I0);
+        }
     }
 }

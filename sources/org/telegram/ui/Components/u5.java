@@ -1,38 +1,36 @@
 package org.telegram.ui.Components;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-public final class u5 {
-    public ArrayList f27563a;
-    public HashMap f27564b;
-    public ArrayList f27565c;
+import android.graphics.Rect;
+import android.text.Layout;
+import android.view.View;
+import org.telegram.messenger.Emoji;
+public final class u5 implements w5 {
+    public final View f30810a;
+    public final boolean f30811b;
+    public Layout f30812c;
+    public z5 d;
+    public Rect f30813e;
+    public q5 f30814f;
+    public Emoji.EmojiDrawable h;
+    public boolean f30815n;
+    public float f30816r;
+    public float f30817s;
+    public boolean v;
 
-    public final void a() {
-        ArrayList arrayList = this.f27563a;
-        for (int i10 = 0; i10 < arrayList.size(); i10++) {
-            ((t5) arrayList.get(i10)).d.spanDrawn = false;
-        }
+    public u5(View view, boolean z10) {
+        this.f30810a = view;
+        this.f30811b = z10;
     }
 
-    public final void b(int i10) {
-        t5 t5Var = (t5) this.f27563a.remove(i10);
-        HashMap hashMap = this.f27564b;
-        w5 w5Var = (w5) hashMap.get(t5Var.f27329c);
-        if (w5Var != null) {
-            ArrayList arrayList = w5Var.f28662b;
-            arrayList.remove(t5Var);
-            w5Var.a();
-            if (arrayList.isEmpty()) {
-                hashMap.remove(t5Var.f27329c);
-                this.f27565c.remove(w5Var);
+    @Override
+    public final void invalidate() {
+        View view = this.f30810a;
+        if (view != null) {
+            if (this.f30811b && view.getParent() != null) {
+                ((View) view.getParent()).invalidate();
+            } else {
+                view.invalidate();
             }
-            p5 p5Var = t5Var.f27330f;
-            if (p5Var != null) {
-                p5Var.p(t5Var);
-                return;
-            }
-            return;
         }
-        throw new RuntimeException("!!!");
     }
 }

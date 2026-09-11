@@ -1,33 +1,45 @@
 package org.telegram.ui.Components;
 
-import android.text.TextPaint;
-import android.text.style.MetricAffectingSpan;
-public final class v01 extends MetricAffectingSpan {
-    public TextPaint f27780a;
+import android.graphics.Bitmap;
+import android.graphics.Matrix;
+import android.view.View;
+import java.util.ArrayList;
+public final class v01 {
+    public final View f31032a;
+    public final ArrayList f31033b;
+    public final Runnable f31034c;
+    public Runnable d;
+    public final Bitmap f31035e;
+    public final Matrix f31036f;
+    public float f31037g;
 
-    @Override
-    public final void updateDrawState(TextPaint textPaint) {
-        TextPaint textPaint2 = this.f27780a;
-        if (textPaint2 != null) {
-            textPaint.setColor(textPaint2.getColor());
-            textPaint.setTypeface(textPaint2.getTypeface());
-            textPaint.setFlags(textPaint2.getFlags());
-            textPaint.setTextSize(textPaint2.getTextSize());
-            textPaint.baselineShift = textPaint2.baselineShift;
-            textPaint.bgColor = textPaint2.bgColor;
-        }
+    public v01(View view, Runnable runnable) {
+        this.f31037g = 1.0f;
+        this.f31032a = view;
+        this.f31033b = null;
+        this.f31034c = null;
+        this.d = runnable;
+        this.f31035e = null;
+        this.f31036f = null;
     }
 
-    @Override
-    public final void updateMeasureState(TextPaint textPaint) {
-        TextPaint textPaint2 = this.f27780a;
-        if (textPaint2 != null) {
-            textPaint.setColor(textPaint2.getColor());
-            textPaint.setTypeface(textPaint2.getTypeface());
-            textPaint.setFlags(textPaint2.getFlags());
-            textPaint.setTextSize(textPaint2.getTextSize());
-            textPaint.baselineShift = textPaint2.baselineShift;
-            textPaint.bgColor = textPaint2.bgColor;
-        }
+    public v01(ArrayList arrayList, hg.t tVar) {
+        this.f31037g = 1.0f;
+        this.f31032a = null;
+        this.f31033b = arrayList;
+        this.f31034c = null;
+        this.d = tVar;
+        this.f31035e = null;
+        this.f31036f = null;
+    }
+
+    public v01(Matrix matrix, Bitmap bitmap, Runnable runnable, Runnable runnable2) {
+        this.f31037g = 1.0f;
+        this.f31032a = null;
+        this.f31033b = null;
+        this.f31034c = runnable;
+        this.d = runnable2;
+        this.f31036f = matrix;
+        this.f31035e = bitmap;
     }
 }

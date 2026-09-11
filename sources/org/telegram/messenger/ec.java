@@ -1,36 +1,26 @@
 package org.telegram.messenger;
-
-import java.util.ArrayList;
-import org.telegram.tgnet.TLRPC;
 public final class ec implements Runnable {
-    public final int f15079a;
-    public final MessagesController f15080b;
-    public final int f15081c;
-    public final ArrayList d;
-    public final boolean e;
-    public final TLRPC.TL_messages_peerDialogs f15082f;
-    public final a0.i h;
-    public final TLRPC.TL_messages_dialogs f15083n;
+    public final int f17558a;
+    public final MessagesController f17559b;
+    public final a0.i f17560c;
 
-    public ec(MessagesController messagesController, int i10, ArrayList arrayList, boolean z10, TLRPC.TL_messages_peerDialogs tL_messages_peerDialogs, a0.i iVar, TLRPC.TL_messages_dialogs tL_messages_dialogs, int i11) {
-        this.f15079a = i11;
-        this.f15080b = messagesController;
-        this.f15081c = i10;
-        this.d = arrayList;
-        this.e = z10;
-        this.f15082f = tL_messages_peerDialogs;
-        this.h = iVar;
-        this.f15083n = tL_messages_dialogs;
+    public ec(MessagesController messagesController, a0.i iVar, int i10) {
+        this.f17558a = i10;
+        this.f17559b = messagesController;
+        this.f17560c = iVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f15079a) {
+        switch (this.f17558a) {
             case 0:
-                this.f15080b.lambda$loadPinnedDialogs$366(this.f15081c, this.d, this.e, this.f15082f, this.h, this.f15083n);
+                this.f17559b.lambda$processUpdateArray$407(this.f17560c);
+                return;
+            case 1:
+                this.f17559b.lambda$processUpdateArray$406(this.f17560c);
                 return;
             default:
-                this.f15080b.lambda$loadPinnedDialogs$365(this.f15081c, this.d, this.e, this.f15082f, this.h, this.f15083n);
+                this.f17559b.lambda$getChannelDifference$340(this.f17560c);
                 return;
         }
     }

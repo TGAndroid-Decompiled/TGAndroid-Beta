@@ -1,42 +1,35 @@
 package org.telegram.messenger;
-public final class rf implements Runnable {
-    public final int f16233a;
-    public final MessagesStorage f16234b;
-    public final int f16235c;
 
-    public rf(MessagesStorage messagesStorage, int i10, int i11) {
-        this.f16233a = i11;
-        this.f16234b = messagesStorage;
-        this.f16235c = i10;
+import org.telegram.tgnet.TLRPC;
+public final class rf implements Runnable {
+    public final int f18907a = 0;
+    public final int f18908b;
+    public final MessagesStorage f18909c;
+    public final long d;
+    public final long f18910e;
+    public final int f18911f;
+    public final Object h;
+
+    public rf(int i10, int i11, long j3, long j10, MessagesStorage messagesStorage, TLRPC.InputChannel inputChannel) {
+        this.f18909c = messagesStorage;
+        this.d = j3;
+        this.f18908b = i10;
+        this.h = inputChannel;
+        this.f18911f = i11;
+        this.f18910e = j10;
     }
 
     @Override
     public final void run() {
-        switch (this.f16233a) {
-            case 0:
-                this.f16234b.lambda$readAllDialogs$65(this.f16235c);
-                return;
-            case 1:
-                this.f16234b.lambda$checkIfFolderEmptyInternal$245(this.f16235c);
-                return;
-            case 2:
-                this.f16234b.lambda$clearDownloadQueue$184(this.f16235c);
-                return;
-            case 3:
-                this.f16234b.lambda$putMessagesInternal$196(this.f16235c);
-                return;
-            case 4:
-                this.f16234b.lambda$getDownloadQueue$186(this.f16235c);
-                return;
-            case 5:
-                this.f16234b.lambda$getUnsentMessages$152(this.f16235c);
-                return;
-            case 6:
-                this.f16234b.lambda$checkIfFolderEmpty$246(this.f16235c);
-                return;
-            default:
-                this.f16234b.lambda$clearWidgetDialogs$167(this.f16235c);
-                return;
-        }
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.rf.run():void");
+    }
+
+    public rf(org.telegram.ui.Cells.f6 f6Var, int i10, MessagesStorage messagesStorage, long j3, long j10, int i11) {
+        this.h = f6Var;
+        this.f18908b = i10;
+        this.f18909c = messagesStorage;
+        this.d = j3;
+        this.f18910e = j10;
+        this.f18911f = i11;
     }
 }

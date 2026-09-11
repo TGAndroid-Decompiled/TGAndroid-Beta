@@ -1,49 +1,67 @@
 package org.telegram.ui.Components;
 
-import android.content.Intent;
+import android.content.Context;
+import android.view.ActionMode;
+import android.view.Menu;
 import java.util.ArrayList;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.SendMessagesHelper;
-import org.telegram.messenger.Utilities;
-public final class mn implements kk {
-    public final Utilities.Callback f25255a;
-    public final in f25256b;
-    public final org.telegram.ui.ActionBar.p2 f25257c;
+public final class mn extends org.telegram.ui.Cells.c6 {
+    public final int F;
+    public final rn G;
 
-    public mn(Utilities.Callback callback, org.telegram.ui.ActionBar.p2 p2Var, in inVar) {
-        this.f25255a = callback;
-        this.f25256b = inVar;
-        this.f25257c = p2Var;
+    public mn(rn rnVar, Context context, int i10, org.telegram.ui.ActionBar.f6 f6Var, int i11) {
+        super(context, i10, null, f6Var);
+        this.G = rnVar;
+        this.F = i11;
     }
 
     @Override
-    public final void k(ArrayList arrayList, String str, ArrayList arrayList2, ArrayList arrayList3, boolean z10, int i10, long j3, boolean z11, long j10) {
-        if (!arrayList.isEmpty()) {
-            this.f25255a.run(new qh.c((String) arrayList.get(0)));
-        }
-        this.f25256b.dismiss(true);
-    }
-
-    @Override
-    public final void l(long j3, ArrayList arrayList, boolean z10, int i10) {
-        if (!arrayList.isEmpty()) {
-            this.f25255a.run(new qh.d((SendMessagesHelper.SendingMediaInfo) arrayList.get(0)));
-        }
-        this.f25256b.dismiss(true);
-    }
-
-    @Override
-    public final void w() {
-        try {
-            Intent intent = new Intent("android.intent.action.GET_CONTENT");
-            intent.setType("*/*");
-            this.f25257c.getParentActivity().startActivityForResult(intent, 28);
-        } catch (Exception e) {
-            FileLog.e(e);
+    public final void g(org.telegram.ui.Cells.b6 b6Var, ActionMode actionMode) {
+        tn tnVar = this.G.d;
+        if (!tnVar.f30647n && this.F == 11 && b6Var.isFocused() && b6Var.hasSelection()) {
+            Menu menu = actionMode.getMenu();
+            if (menu.findItem(16908321) != null) {
+                org.telegram.ui.co.k8(menu, ((org.telegram.ui.co) tnVar.f28753b.f31279f0).h, false, true, true, true);
+            }
         }
     }
 
     @Override
-    public final void O() {
+    public final void i(boolean z10) {
+        tn.M(this.G.d, this, z10);
+    }
+
+    @Override
+    public final void j(org.telegram.ui.Cells.c6 c6Var) {
+        tn.N(this.G.d, c6Var);
+    }
+
+    @Override
+    public final void k(org.telegram.ui.Cells.b6 b6Var) {
+        this.G.d.f28753b.t1(b6Var, true);
+    }
+
+    @Override
+    public final boolean l(ArrayList arrayList) {
+        tn tnVar = this.G.d;
+        if (arrayList.isEmpty()) {
+            return false;
+        }
+        org.telegram.ui.Cells.b6 b6Var = this.d;
+        b6Var.getText().replace(b6Var.getSelectionStart(), b6Var.getSelectionEnd(), (CharSequence) arrayList.remove(0));
+        int i10 = 0;
+        while (!arrayList.isEmpty() && i10 < tnVar.J) {
+            for (int length = tnVar.K.length - 1; length > i10; length--) {
+                CharSequence[] charSequenceArr = tnVar.K;
+                charSequenceArr[length] = charSequenceArr[length - 1];
+            }
+            tnVar.K[i10] = (CharSequence) arrayList.remove(0);
+            tnVar.M++;
+            i10++;
+        }
+        tnVar.h0();
+        tnVar.f30644k0 = (tnVar.f30656t0 + i10) - 1;
+        tnVar.f30654s.setItemAnimator(tnVar.v);
+        tnVar.f30652r.l();
+        return true;
     }
 }

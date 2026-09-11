@@ -1,17 +1,26 @@
 package org.telegram.ui;
 
-import android.view.View;
-import org.telegram.messenger.NotificationCenter;
-public final class vt implements View.OnAttachStateChangeListener {
-    public ut f37621a;
+import j$.util.Objects;
+public final class vt {
+    public String f41693a;
+    public String f41694b;
+    public String f41695c;
+    public String d;
 
-    @Override
-    public final void onViewAttachedToWindow(View view) {
-        NotificationCenter.getGlobalInstance().addObserver(this.f37621a, NotificationCenter.emojiLoaded);
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj != null && vt.class == obj.getClass()) {
+            vt vtVar = (vt) obj;
+            if (Objects.equals(this.f41693a, vtVar.f41693a) && Objects.equals(this.f41695c, vtVar.f41695c)) {
+                return true;
+            }
+        }
+        return false;
     }
 
-    @Override
-    public final void onViewDetachedFromWindow(View view) {
-        NotificationCenter.getGlobalInstance().removeObserver(this.f37621a, NotificationCenter.emojiLoaded);
+    public final int hashCode() {
+        return Objects.hash(this.f41693a, this.f41695c);
     }
 }

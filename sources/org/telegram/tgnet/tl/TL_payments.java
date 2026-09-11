@@ -7,7 +7,7 @@ import org.telegram.tgnet.TLMethod;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.Vector;
-import org.telegram.tgnet.p;
+import org.telegram.tgnet.m;
 import org.telegram.tgnet.tl.TL_stars;
 public class TL_payments {
 
@@ -46,8 +46,8 @@ public class TL_payments {
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z10) {
             this.gifts = Vector.deserialize(inputSerializedData, new a(3), z10);
-            this.users = Vector.deserialize(inputSerializedData, new p(4), z10);
-            this.chats = Vector.deserialize(inputSerializedData, new p(10), z10);
+            this.users = Vector.deserialize(inputSerializedData, new m(4), z10);
+            this.chats = Vector.deserialize(inputSerializedData, new m(10), z10);
         }
 
         @Override
@@ -84,8 +84,8 @@ public class TL_payments {
             this.state = TL_stars.StarGiftAuctionState.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
             this.user_state = TL_stars.TL_StarGiftAuctionUserState.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
             this.timeout = inputSerializedData.readInt32(z10);
-            this.users = Vector.deserialize(inputSerializedData, new p(4), z10);
-            this.chats = Vector.deserialize(inputSerializedData, new p(10), z10);
+            this.users = Vector.deserialize(inputSerializedData, new m(4), z10);
+            this.chats = Vector.deserialize(inputSerializedData, new m(10), z10);
         }
 
         @Override
@@ -207,8 +207,8 @@ public class TL_payments {
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z10) {
             this.auctions = Vector.deserialize(inputSerializedData, new a(4), z10);
-            this.users = Vector.deserialize(inputSerializedData, new p(4), z10);
-            this.chats = Vector.deserialize(inputSerializedData, new p(10), z10);
+            this.users = Vector.deserialize(inputSerializedData, new m(4), z10);
+            this.chats = Vector.deserialize(inputSerializedData, new m(10), z10);
         }
 
         @Override
@@ -314,7 +314,7 @@ public class TL_payments {
         public void readParams(InputSerializedData inputSerializedData, boolean z10) {
             this.count = inputSerializedData.readInt32(z10);
             this.connected_bots = Vector.deserialize(inputSerializedData, new a(5), z10);
-            this.users = Vector.deserialize(inputSerializedData, new p(4), z10);
+            this.users = Vector.deserialize(inputSerializedData, new m(4), z10);
         }
 
         @Override
@@ -497,7 +497,7 @@ public class TL_payments {
             this.flags = inputSerializedData.readInt32(z10);
             this.count = inputSerializedData.readInt32(z10);
             this.suggested_bots = Vector.deserialize(inputSerializedData, new a(6), z10);
-            this.users = Vector.deserialize(inputSerializedData, new p(4), z10);
+            this.users = Vector.deserialize(inputSerializedData, new m(4), z10);
             if (TLObject.hasFlag(this.flags, 1)) {
                 this.next_offset = inputSerializedData.readString(z10);
             }

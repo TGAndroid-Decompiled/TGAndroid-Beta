@@ -2,15 +2,15 @@ package t7;
 
 import com.google.android.gms.internal.cast.l0;
 public final class l extends l0 {
-    public static final l f42095n = new l(null, new Object[0], 0);
-    public final transient Object e;
-    public final transient Object[] f42096f;
+    public static final l f46451n = new l(null, new Object[0], 0);
+    public final transient Object f46452e;
+    public final transient Object[] f46453f;
     public final transient int h;
 
     public l(Object obj, Object[] objArr, int i10) {
         super(2);
-        this.e = obj;
-        this.f42096f = objArr;
+        this.f46452e = obj;
+        this.f46453f = objArr;
         this.h = i10;
     }
 

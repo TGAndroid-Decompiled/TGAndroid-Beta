@@ -10,6 +10,7 @@ import android.opengl.EGLSurface;
 import android.opengl.GLException;
 import android.os.Build;
 import android.view.Surface;
+import com.google.android.gms.internal.vision.e2;
 import org.webrtc.EglBase14;
 public class EglBase14Impl implements EglBase14 {
     private static final int CURRENT_SDK_VERSION = Build.VERSION.SDK_INT;
@@ -176,9 +177,9 @@ public class EglBase14Impl implements EglBase14 {
             if (eglCreatePbufferSurface != EGL14.EGL_NO_SURFACE) {
                 return;
             }
-            StringBuilder n10 = hc.b.n("Failed to create pixel buffer surface with size ", i10, "x", i11, ": 0x");
-            n10.append(Integer.toHexString(EGL14.eglGetError()));
-            throw new RuntimeException(n10.toString());
+            StringBuilder k10 = e2.k("Failed to create pixel buffer surface with size ", i10, "x", i11, ": 0x");
+            k10.append(Integer.toHexString(EGL14.eglGetError()));
+            throw new RuntimeException(k10.toString());
         }
         throw new RuntimeException("Already has an EGLSurface");
     }

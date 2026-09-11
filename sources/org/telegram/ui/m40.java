@@ -1,17 +1,29 @@
 package org.telegram.ui;
 
-import android.view.MotionEvent;
-import android.widget.FrameLayout;
-public final class m40 extends FrameLayout {
-    public m40(LaunchActivity launchActivity) {
-        super(launchActivity);
+import java.util.concurrent.CountDownLatch;
+import org.telegram.messenger.voip.VoIPService;
+public final class m40 implements org.telegram.ui.ActionBar.z2 {
+    public final j60 f38567a;
+
+    public m40(j60 j60Var) {
+        this.f38567a = j60Var;
     }
 
     @Override
-    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        if (getAlpha() <= 0.95f) {
-            return false;
+    public final boolean g() {
+        return true;
+    }
+
+    @Override
+    public final void onOpenAnimationEnd() {
+        CountDownLatch groupCallBottomSheetLatch;
+        VoIPService sharedInstance = VoIPService.getSharedInstance();
+        if (sharedInstance != null && (groupCallBottomSheetLatch = sharedInstance.getGroupCallBottomSheetLatch()) != null) {
+            groupCallBottomSheetLatch.countDown();
         }
-        return super.dispatchTouchEvent(motionEvent);
+        j60 j60Var = this.f38567a;
+        if (j60Var.F1 == 6) {
+            j60.B0(j60Var);
+        }
     }
 }

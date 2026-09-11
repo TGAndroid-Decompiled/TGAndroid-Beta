@@ -2,27 +2,27 @@ package s4;
 
 import java.util.ArrayList;
 public abstract class f1 extends m0 {
-    public boolean f41645m;
-    public boolean f41646n;
+    public boolean f45777m;
+    public boolean f45778n;
 
     public f1() {
-        this.f41689a = null;
-        this.f41690b = new ArrayList();
-        this.f41691c = 120L;
+        this.f45826a = null;
+        this.f45827b = new ArrayList();
+        this.f45828c = 120L;
         this.d = 120L;
-        this.e = 250L;
-        this.f41692f = 250L;
-        this.f41693g = 250L;
-        this.f41697l = 0L;
-        this.f41645m = true;
+        this.f45829e = 250L;
+        this.f45830f = 250L;
+        this.f45831g = 250L;
+        this.f45835l = 0L;
+        this.f45777m = true;
     }
 
     @Override
     public boolean a(c1 c1Var, b2.q0 q0Var, b2.q0 q0Var2) {
         int i10;
         int i11;
-        if (q0Var != null && ((i10 = q0Var.f1896a) != (i11 = q0Var2.f1896a) || q0Var.f1897b != q0Var2.f1897b || this.f41646n)) {
-            return r(c1Var, q0Var, i10, q0Var.f1897b, i11, q0Var2.f1897b);
+        if (q0Var != null && ((i10 = q0Var.f2260a) != (i11 = q0Var2.f2260a) || q0Var.f2261b != q0Var2.f2261b || this.f45778n)) {
+            return r(c1Var, q0Var, i10, q0Var.f2261b, i11, q0Var2.f2261b);
         }
         p(c1Var);
         return true;
@@ -37,7 +37,7 @@ public abstract class f1 extends m0 {
     public abstract void s(c1 c1Var, b2.q0 q0Var);
 
     public boolean t(c1 c1Var) {
-        if (this.f41645m && !c1Var.h()) {
+        if (this.f45777m && !c1Var.h()) {
             return false;
         }
         return true;

@@ -1,3 +1,4 @@
 package a9;
-public interface t extends u {
+public interface t {
+    Object a();
 }

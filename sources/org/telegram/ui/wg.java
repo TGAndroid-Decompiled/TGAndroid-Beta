@@ -1,55 +1,100 @@
 package org.telegram.ui;
 
-import android.view.KeyEvent;
-import android.view.View;
-import android.widget.ImageView;
-import org.telegram.ui.Components.EditTextBoldCursor;
-public final class wg implements View.OnKeyListener {
-    public final int f38177a;
-    public final Object f38178b;
+import android.content.DialogInterface;
+public final class wg implements Runnable {
+    public final int f42355a;
+    public final co f42356b;
+    public final org.telegram.ui.ActionBar.b2[] f42357c;
+    public final int d;
 
-    public wg(Object obj, int i10) {
-        this.f38177a = i10;
-        this.f38178b = obj;
+    public wg(co coVar, org.telegram.ui.ActionBar.b2[] b2VarArr, int i10, int i11) {
+        this.f42355a = i11;
+        this.f42356b = coVar;
+        this.f42357c = b2VarArr;
+        this.d = i10;
     }
 
     @Override
-    public final boolean onKey(View view, int i10, KeyEvent keyEvent) {
-        switch (this.f38177a) {
+    public final void run() {
+        switch (this.f42355a) {
             case 0:
-                eo eoVar = (eo) this.f38178b;
-                eoVar.getClass();
-                EditTextBoldCursor editTextBoldCursor = (EditTextBoldCursor) view;
-                if (i10 == 67 && keyEvent.getAction() == 0 && editTextBoldCursor.length() == 0) {
-                    eoVar.ta();
-                    return true;
+                org.telegram.ui.ActionBar.b2[] b2VarArr = this.f42357c;
+                org.telegram.ui.ActionBar.b2 b2Var = b2VarArr[0];
+                if (b2Var != null) {
+                    final co coVar = this.f42356b;
+                    final int i10 = this.d;
+                    b2Var.setOnCancelListener(new DialogInterface.OnCancelListener() {
+                        @Override
+                        public final void onCancel(DialogInterface dialogInterface) {
+                            switch (r3) {
+                                case 0:
+                                    coVar.getConnectionsManager().cancelRequest(i10, true);
+                                    return;
+                                case 1:
+                                    coVar.getConnectionsManager().cancelRequest(i10, true);
+                                    return;
+                                default:
+                                    coVar.getConnectionsManager().cancelRequest(i10, true);
+                                    return;
+                            }
+                        }
+                    });
+                    coVar.showDialog(b2VarArr[0]);
+                    return;
                 }
-                return false;
+                return;
             case 1:
-                on0 on0Var = (on0) this.f38178b;
-                if (i10 == 67) {
-                    if (on0Var.Y[2].length() == 0) {
-                        on0Var.Y[1].requestFocus();
-                        EditTextBoldCursor editTextBoldCursor2 = on0Var.Y[1];
-                        editTextBoldCursor2.setSelection(editTextBoldCursor2.length());
-                        on0Var.Y[1].dispatchKeyEvent(keyEvent);
-                        return true;
-                    }
-                } else {
-                    on0Var.getClass();
+                org.telegram.ui.ActionBar.b2[] b2VarArr2 = this.f42357c;
+                org.telegram.ui.ActionBar.b2 b2Var2 = b2VarArr2[0];
+                if (b2Var2 != null) {
+                    final co coVar2 = this.f42356b;
+                    final int i11 = this.d;
+                    b2Var2.setOnCancelListener(new DialogInterface.OnCancelListener() {
+                        @Override
+                        public final void onCancel(DialogInterface dialogInterface) {
+                            switch (r3) {
+                                case 0:
+                                    coVar2.getConnectionsManager().cancelRequest(i11, true);
+                                    return;
+                                case 1:
+                                    coVar2.getConnectionsManager().cancelRequest(i11, true);
+                                    return;
+                                default:
+                                    coVar2.getConnectionsManager().cancelRequest(i11, true);
+                                    return;
+                            }
+                        }
+                    });
+                    coVar2.showDialog(b2VarArr2[0]);
+                    return;
                 }
-                return false;
+                return;
             default:
-                yv0 yv0Var = (yv0) this.f38178b;
-                EditTextBoldCursor editTextBoldCursor3 = (EditTextBoldCursor) view;
-                if (i10 == 67 && keyEvent.getAction() == 0 && editTextBoldCursor3.length() == 0) {
-                    ImageView imageView = yv0Var.f19076f;
-                    if (imageView != null) {
-                        imageView.callOnClick();
-                    }
-                    return true;
+                org.telegram.ui.ActionBar.b2[] b2VarArr3 = this.f42357c;
+                org.telegram.ui.ActionBar.b2 b2Var3 = b2VarArr3[0];
+                if (b2Var3 != null) {
+                    final co coVar3 = this.f42356b;
+                    final int i12 = this.d;
+                    b2Var3.setOnCancelListener(new DialogInterface.OnCancelListener() {
+                        @Override
+                        public final void onCancel(DialogInterface dialogInterface) {
+                            switch (r3) {
+                                case 0:
+                                    coVar3.getConnectionsManager().cancelRequest(i12, true);
+                                    return;
+                                case 1:
+                                    coVar3.getConnectionsManager().cancelRequest(i12, true);
+                                    return;
+                                default:
+                                    coVar3.getConnectionsManager().cancelRequest(i12, true);
+                                    return;
+                            }
+                        }
+                    });
+                    coVar3.showDialog(b2VarArr3[0]);
+                    return;
                 }
-                return false;
+                return;
         }
     }
 }

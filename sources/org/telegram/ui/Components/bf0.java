@@ -1,25 +1,11 @@
 package org.telegram.ui.Components;
-
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class bf0 extends AnimatorListenerAdapter {
-    public final int f21820a;
-    public final df0 f21821b;
-
-    public bf0(df0 df0Var, int i10) {
-        this.f21820a = i10;
-        this.f21821b = df0Var;
-    }
+public final class bf0 implements t61, xe0, ze0 {
+    public final jf0 f24693a;
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f21820a) {
-            case 0:
-                this.f21821b.f22410s = null;
-                return;
-            default:
-                this.f21821b.v = null;
-                return;
-        }
+    public void c(vz vzVar) {
+        jf0 jf0Var = this.f24693a;
+        jf0Var.f27483l0 = vzVar;
+        vzVar.f(jf0Var);
     }
 }

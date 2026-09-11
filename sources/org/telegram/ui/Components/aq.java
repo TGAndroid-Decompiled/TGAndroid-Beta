@@ -1,39 +1,41 @@
 package org.telegram.ui.Components;
-public final class aq implements z4.e {
-    public int f21559a;
-    public final yh0 f21560b;
 
-    public aq(yh0 yh0Var) {
-        this.f21560b = yh0Var;
+import android.content.Context;
+import android.text.TextUtils;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.TextView;
+import org.telegram.messenger.AndroidUtilities;
+public final class aq extends FrameLayout {
+    public final View f24439a;
+    public final TextView f24440b;
+
+    public aq(Context context) {
+        super(context);
+        View view = new View(context);
+        this.f24439a = view;
+        int dp = AndroidUtilities.dp(4.0f);
+        int w02 = org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.Oh, false);
+        int w03 = org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.Qh, false);
+        view.setBackground(org.telegram.ui.ActionBar.j6.i0(dp, dp, dp, dp, w02, w03, w03));
+        addView(view, w7.x5.d(-1, -1.0f, 0, 16.0f, 16.0f, 16.0f, 16.0f));
+        TextView textView = new TextView(context);
+        this.f24440b = textView;
+        textView.setLines(1);
+        textView.setSingleLine(true);
+        textView.setGravity(1);
+        textView.setEllipsize(TextUtils.TruncateAt.END);
+        textView.setGravity(17);
+        org.telegram.messenger.w1.q(textView, org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.Sh, false), 1, 14.0f);
+        addView(textView, w7.x5.e(-2, -2, 17));
     }
 
     @Override
-    public final void b(float f7, int i10, int i11) {
-        if (i10 == this.f21560b.getCurrentItem() && f7 == 0.0f && this.f21559a == 1) {
-            d();
-        }
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(80.0f), 1073741824));
     }
 
-    @Override
-    public final void c(int i10) {
-        if (i10 == 0) {
-            d();
-        }
-        this.f21559a = i10;
-    }
-
-    public final void d() {
-        yh0 yh0Var = this.f21560b;
-        if (yh0Var.f22213w0 != null) {
-            int currentItem = yh0Var.getCurrentItem();
-            int k10 = yh0Var.f22213w0.k(currentItem) + yh0Var.f22213w0.j();
-            if (currentItem != k10) {
-                yh0Var.x(k10, false);
-            }
-        }
-    }
-
-    @Override
-    public final void a(int i10) {
+    public void setText(CharSequence charSequence) {
+        this.f24440b.setText(charSequence);
     }
 }

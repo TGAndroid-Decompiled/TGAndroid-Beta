@@ -3,23 +3,23 @@ package k1;
 import java.io.File;
 import java.io.FileOutputStream;
 public final class z extends kd.c {
-    public a0 f12063a;
-    public File f12064b;
-    public FileOutputStream f12065c;
+    public a0 f14506a;
+    public File f14507b;
+    public FileOutputStream f14508c;
     public FileOutputStream d;
-    public Object e;
-    public final a0 f12066f;
+    public Object f14509e;
+    public final a0 f14510f;
     public int h;
 
     public z(a0 a0Var, kd.c cVar) {
         super(cVar);
-        this.f12066f = a0Var;
+        this.f14510f = a0Var;
     }
 
     @Override
     public final Object invokeSuspend(Object obj) {
-        this.e = obj;
+        this.f14509e = obj;
         this.h |= Integer.MIN_VALUE;
-        return this.f12066f.j(null, this);
+        return this.f14510f.j(null, this);
     }
 }

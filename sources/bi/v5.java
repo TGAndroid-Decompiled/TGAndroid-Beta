@@ -1,145 +1,83 @@
 package bi;
 
-import android.animation.ValueAnimator;
-import android.view.View;
-import java.util.concurrent.atomic.AtomicBoolean;
+import android.text.Layout;
+import android.text.SpannableStringBuilder;
+import android.text.StaticLayout;
+import android.text.TextPaint;
+import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.wr;
-public final class v5 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f3786a;
-    public final Object f3787b;
-    public final Object f3788c;
-    public final Object d;
+import org.telegram.messenger.ImageLocation;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.tgnet.tl.TL_stories;
+import org.telegram.ui.Components.iw0;
+import org.telegram.ui.Components.o20;
+public final class v5 {
+    public final ImageReceiver f3895a;
+    public int f3896b;
+    public StaticLayout f3897c;
+    public final TextPaint d;
+    public z6 f3898e;
+    public final w5 f3899f;
 
-    public v5(Object obj, Object obj2, Object obj3, int i10) {
-        this.f3786a = i10;
-        this.f3787b = obj;
-        this.f3788c = obj2;
-        this.d = obj3;
+    public v5(w5 w5Var) {
+        this.f3899f = w5Var;
+        ImageReceiver imageReceiver = new ImageReceiver(w5Var);
+        this.f3895a = imageReceiver;
+        TextPaint textPaint = new TextPaint(1);
+        this.d = textPaint;
+        imageReceiver.setAllowLoadingOnAttachedOnly(true);
+        imageReceiver.setRoundRadius(AndroidUtilities.dp(6.0f));
+        textPaint.setColor(-1);
+        textPaint.setTextSize(AndroidUtilities.dp(13.0f));
     }
 
-    @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        float f7;
-        float f10;
-        switch (this.f3786a) {
-            case 0:
-                r7 r7Var = (r7) this.f3787b;
-                View view = (View) this.f3788c;
-                View view2 = (View) this.d;
-                r7Var.f3500a1 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                r7Var.W0.invalidate();
-                r7Var.T0.invalidate();
-                r7Var.U0.invalidate();
-                for (int i10 = 0; i10 < r7Var.W0.getChildCount(); i10++) {
-                    View childAt = r7Var.W0.getChildAt(i10);
-                    if (i10 == r7Var.Z0) {
-                        f7 = r7Var.f3500a1;
-                    } else if (i10 == r7Var.Y0) {
-                        f7 = 1.0f - r7Var.f3500a1;
-                    } else {
-                        f7 = 0.0f;
-                    }
-                    childAt.setAlpha((f7 * 0.4f) + 0.6f);
-                }
-                float interpolation = wr.f28819f.getInterpolation(r7Var.f3500a1);
-                if (view != null && view2 != null) {
-                    float f11 = 1.0f - interpolation;
-                    float f12 = (f11 * 0.4f) + 0.6f;
-                    view.setScaleX(f12);
-                    view.setScaleY(f12);
-                    view.setTranslationY((Math.min(interpolation, 0.25f) * AndroidUtilities.dp(16.0f)) / 0.25f);
-                    view.setAlpha(1.0f - (Math.min(interpolation, 0.25f) / 0.25f));
-                    float f13 = (interpolation * 0.4f) + 0.6f;
-                    view2.setScaleX(f13);
-                    view2.setScaleY(f13);
-                    view2.setTranslationY((Math.min(f11, 0.25f) * (-AndroidUtilities.dp(16.0f))) / 0.25f);
-                    view2.setAlpha(1.0f - (Math.min(f11, 0.25f) / 0.25f));
-                    return;
-                }
-                return;
-            case 1:
-                ne neVar = (ne) this.f3787b;
-                AtomicBoolean atomicBoolean = (AtomicBoolean) this.f3788c;
-                y yVar = (y) this.d;
-                neVar.getClass();
-                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                Math.abs(floatValue - 0.5f);
-                if (floatValue >= 0.5f && !atomicBoolean.get()) {
-                    atomicBoolean.set(true);
-                    neVar.setDrawable(yVar);
-                    return;
-                }
-                return;
-            case 2:
-                ii.m mVar = (ii.m) this.f3787b;
-                org.telegram.ui.Cells.s1 s1Var = (org.telegram.ui.Cells.s1) this.f3788c;
-                org.telegram.ui.Cells.t1 t1Var = (org.telegram.ui.Cells.t1) this.d;
-                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                if (mVar.f10676l) {
-                    s1Var.f19946g0 = (-mVar.f10683s) * floatValue2;
-                    s1Var.f19950h0 = (-mVar.f10684t) * floatValue2;
-                    s1Var.f19960j0 = (-mVar.f10685u) * floatValue2;
-                    s1Var.f19955i0 = (-mVar.v) * floatValue2;
+    public final void a(int i10) {
+        w5 w5Var = this.f3899f;
+        ArrayList arrayList = w5Var.E;
+        if (i10 >= 0 && i10 < arrayList.size()) {
+            this.f3898e = (z6) arrayList.get(i10);
+            boolean z10 = w5Var.v;
+            ImageReceiver imageReceiver = this.f3895a;
+            if (z10) {
+                imageReceiver.onAttachedToWindow();
+            }
+            z6 z6Var = this.f3898e;
+            TL_stories.StoryItem storyItem = z6Var.f4060a;
+            if (storyItem != null) {
+                p9.x(imageReceiver, storyItem);
+            } else {
+                t8 t8Var = z6Var.f4061b;
+                o20[] o20VarArr = p9.f3510a;
+                if (t8Var.f3740c.K) {
+                    imageReceiver.setImage(ImageLocation.getForPath(t8Var.f3742f), "320_180", null, null, null, 0L, null, null, 0);
                 } else {
-                    s1Var.f19946g0 = ((-mVar.f10683s) * floatValue2) - t1Var.getAnimationOffsetX();
-                    s1Var.f19950h0 = ((-mVar.f10684t) * floatValue2) - t1Var.getAnimationOffsetX();
-                    s1Var.f19960j0 = ((-mVar.f10685u) * floatValue2) - t1Var.getTranslationY();
-                    s1Var.f19955i0 = ((-mVar.v) * floatValue2) - t1Var.getTranslationY();
+                    imageReceiver.setImage(ImageLocation.getForPath(t8Var.f3741e), "320_180", null, null, null, 0L, null, null, 0);
                 }
-                t1Var.invalidate();
-                return;
-            case 3:
-                pg.m0 m0Var = (pg.m0) this.f3787b;
-                View view3 = (View) this.f3788c;
-                View view4 = (View) this.d;
-                m0Var.f40138i1 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                m0Var.f40132f1.invalidate();
-                m0Var.f40126c1.invalidate();
-                m0Var.f40128d1.invalidate();
-                for (int i11 = 0; i11 < m0Var.f40132f1.getChildCount(); i11++) {
-                    View childAt2 = m0Var.f40132f1.getChildAt(i11);
-                    if (i11 == m0Var.f40136h1) {
-                        f10 = m0Var.f40138i1;
-                    } else if (i11 == m0Var.f40134g1) {
-                        f10 = 1.0f - m0Var.f40138i1;
-                    } else {
-                        f10 = 0.0f;
-                    }
-                    childAt2.setAlpha((f10 * 0.4f) + 0.6f);
-                }
-                float interpolation2 = wr.f28819f.getInterpolation(m0Var.f40138i1);
-                if (view3 != null && view4 != null) {
-                    float f14 = 1.0f - interpolation2;
-                    float f15 = (f14 * 0.4f) + 0.6f;
-                    view3.setScaleX(f15);
-                    view3.setScaleY(f15);
-                    view3.setTranslationY((Math.min(interpolation2, 0.25f) * AndroidUtilities.dp(16.0f)) / 0.25f);
-                    view3.setAlpha(1.0f - (Math.min(interpolation2, 0.25f) / 0.25f));
-                    float f16 = (interpolation2 * 0.4f) + 0.6f;
-                    view4.setScaleX(f16);
-                    view4.setScaleY(f16);
-                    view4.setTranslationY((Math.min(f14, 0.25f) * (-AndroidUtilities.dp(16.0f))) / 0.25f);
-                    view4.setAlpha(1.0f - (Math.min(f14, 0.25f) / 0.25f));
-                    return;
-                }
-                return;
-            default:
-                boolean[] zArr = (boolean[]) this.d;
-                zh.a3 a3Var = ((zh.g2) this.f3787b).f48429a;
-                a3Var.f48219v3 = ((Float) ((ValueAnimator) this.f3788c).getAnimatedValue()).floatValue();
-                a3Var.invalidate();
-                if (a3Var.f48219v3 > 0.8f && !zArr[0]) {
-                    zArr[0] = true;
-                    a3Var.f48204q3 = true;
-                    try {
-                        a3Var.performHapticFeedback(3);
-                        return;
-                    } catch (Exception unused) {
-                        return;
-                    }
-                }
-                return;
+            }
+            b();
+        }
+    }
+
+    public final void b() {
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
+        TL_stories.StoryItem storyItem = this.f3898e.f4060a;
+        w5 w5Var = this.f3899f;
+        if (storyItem != null) {
+            w5.a(w5Var, spannableStringBuilder, storyItem.views, false);
+        }
+        if (spannableStringBuilder.length() == 0) {
+            this.f3897c = null;
+            return;
+        }
+        int i10 = (int) (w5Var.J + 1.0f);
+        Layout.Alignment alignment = Layout.Alignment.ALIGN_CENTER;
+        TextPaint textPaint = this.d;
+        StaticLayout c10 = iw0.c(spannableStringBuilder, textPaint, i10, alignment, 0.0f, false, null, Integer.MAX_VALUE, 1, true);
+        this.f3897c = c10;
+        if (c10.getLineCount() > 1) {
+            SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder("");
+            w5.a(w5Var, spannableStringBuilder2, this.f3898e.f4060a.views, true);
+            this.f3897c = iw0.c(spannableStringBuilder2, textPaint, (int) (w5Var.J + 1.0f), alignment, 0.0f, false, null, Integer.MAX_VALUE, 2, true);
         }
     }
 }

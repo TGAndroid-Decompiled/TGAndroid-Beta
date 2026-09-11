@@ -19,17 +19,17 @@ import java.util.zip.GZIPOutputStream;
 import n6.l;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.telegram.ui.Cells.r6;
+import org.telegram.ui.Cells.p6;
 public final class c {
     public static final Pattern d = Pattern.compile("[0-9]+s");
-    public static final Charset e = Charset.forName("UTF-8");
-    public final Context f41821a;
-    public final pa.b f41822b;
-    public final d f41823c = new d();
+    public static final Charset f45973e = Charset.forName("UTF-8");
+    public final Context f45974a;
+    public final pa.b f45975b;
+    public final d f45976c = new d();
 
     public c(Context context, pa.b bVar) {
-        this.f41821a = context;
-        this.f41822b = bVar;
+        this.f45974a = context;
+        this.f45975b = bVar;
     }
 
     public static URL a(String str) {
@@ -45,7 +45,7 @@ public final class c {
         InputStream errorStream = httpURLConnection.getErrorStream();
         String str4 = null;
         if (errorStream != null) {
-            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(errorStream, e));
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(errorStream, f45973e));
             try {
                 StringBuilder sb2 = new StringBuilder();
                 while (true) {
@@ -75,9 +75,9 @@ public final class c {
             if (TextUtils.isEmpty(str)) {
                 i10 = "";
             } else {
-                i10 = r6.i(", ", str);
+                i10 = p6.i(", ", str);
             }
-            Log.w("Firebase-Installations", r6.j("Firebase options used while communicating with Firebase server APIs: ", str2, ", ", str3, i10));
+            Log.w("Firebase-Installations", p6.j("Firebase options used while communicating with Firebase server APIs: ", str2, ", ", str3, i10));
         }
     }
 
@@ -91,7 +91,7 @@ public final class c {
 
     public static a e(HttpURLConnection httpURLConnection) {
         InputStream inputStream = httpURLConnection.getInputStream();
-        JsonReader jsonReader = new JsonReader(new InputStreamReader(inputStream, e));
+        JsonReader jsonReader = new JsonReader(new InputStreamReader(inputStream, f45973e));
         a5.a a2 = b.a();
         jsonReader.beginObject();
         String str = null;
@@ -111,7 +111,7 @@ public final class c {
                 while (jsonReader.hasNext()) {
                     String nextName2 = jsonReader.nextName();
                     if (nextName2.equals("token")) {
-                        a2.f276c = jsonReader.nextString();
+                        a2.f286c = jsonReader.nextString();
                     } else if (nextName2.equals("expiresIn")) {
                         a2.d = Long.valueOf(d(jsonReader.nextString()));
                     } else {
@@ -133,13 +133,13 @@ public final class c {
 
     public static b f(HttpURLConnection httpURLConnection) {
         InputStream inputStream = httpURLConnection.getInputStream();
-        JsonReader jsonReader = new JsonReader(new InputStreamReader(inputStream, e));
+        JsonReader jsonReader = new JsonReader(new InputStreamReader(inputStream, f45973e));
         a5.a a2 = b.a();
         jsonReader.beginObject();
         while (jsonReader.hasNext()) {
             String nextName = jsonReader.nextName();
             if (nextName.equals("token")) {
-                a2.f276c = jsonReader.nextString();
+                a2.f286c = jsonReader.nextString();
             } else if (nextName.equals("expiresIn")) {
                 a2.d = Long.valueOf(d(jsonReader.nextString()));
             } else {
@@ -149,7 +149,7 @@ public final class c {
         jsonReader.endObject();
         jsonReader.close();
         inputStream.close();
-        a2.f275b = 1;
+        a2.f285b = 1;
         return a2.b();
     }
 

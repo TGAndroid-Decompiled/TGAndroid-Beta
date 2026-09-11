@@ -22,7 +22,7 @@ public class NotificationRepeat extends IntentService {
             if (!UserConfig.isValidAccount(intExtra)) {
                 return;
             }
-            AndroidUtilities.runOnUIThread(new di.u2(intExtra, 3));
+            AndroidUtilities.runOnUIThread(new fi.r2(intExtra, 3));
         }
     }
 }

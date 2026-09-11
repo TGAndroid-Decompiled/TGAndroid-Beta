@@ -1,39 +1,20 @@
 package hg;
 
-import android.animation.ValueAnimator;
-public final class d implements ValueAnimator.AnimatorUpdateListener {
-    public final int f9325a;
-    public final g f9326b;
+import java.util.Comparator;
+import org.telegram.messenger.MessagesController;
+public final class d implements Comparator {
+    public final int f11012a;
+    public final MessagesController f11013b;
+    public final int f11014c;
 
-    public d(g gVar, int i10) {
-        this.f9325a = i10;
-        this.f9326b = gVar;
+    public d(MessagesController messagesController, int i10, int i11) {
+        this.f11012a = i11;
+        this.f11013b = messagesController;
+        this.f11014c = i10;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f9325a) {
-            case 0:
-                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                g gVar = this.f9326b;
-                gVar.f9369j0 = floatValue;
-                gVar.H = true;
-                gVar.invalidate();
-                return;
-            case 1:
-                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                g gVar2 = this.f9326b;
-                gVar2.f9371k0 = floatValue2;
-                gVar2.H = true;
-                gVar2.invalidate();
-                return;
-            default:
-                float floatValue3 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                g gVar3 = this.f9326b;
-                gVar3.f9384v0 = floatValue3;
-                gVar3.f9382t0.setAlpha(gVar3.f9384v0);
-                gVar3.invalidate();
-                return;
-        }
+    public final int compare(java.lang.Object r6, java.lang.Object r7) {
+        throw new UnsupportedOperationException("Method not decompiled: hg.d.compare(java.lang.Object, java.lang.Object):int");
     }
 }

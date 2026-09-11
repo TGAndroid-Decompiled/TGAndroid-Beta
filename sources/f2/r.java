@@ -1,12 +1,12 @@
 package f2;
 
-import java.util.ArrayList;
-public final class r implements Comparable {
-    public long f7738b = -9223372036854775807L;
-    public final ArrayList f7737a = new ArrayList();
+import java.nio.ByteBuffer;
+public final class r {
+    public final int f9232a;
+    public final ByteBuffer f9233b;
 
-    @Override
-    public final int compareTo(Object obj) {
-        return Long.compare(this.f7738b, ((r) obj).f7738b);
+    public r(int i10, ByteBuffer byteBuffer) {
+        this.f9232a = i10;
+        this.f9233b = byteBuffer;
     }
 }

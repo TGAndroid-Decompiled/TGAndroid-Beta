@@ -11,16 +11,16 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.SvgHelper;
 import org.telegram.tgnet.TLRPC;
 public abstract class b3 extends LinearLayout implements NotificationCenter.NotificationCenterDelegate {
-    public int f18910a;
-    public org.telegram.ui.Components.w9 f18911b;
-    public TextView f18912c;
+    public int f21637a;
+    public org.telegram.ui.Components.x9 f21638b;
+    public TextView f21639c;
     public TextView d;
-    public TextView e;
+    public TextView f21640e;
 
     public final void a() {
         TLRPC.Document document;
-        org.telegram.ui.Components.w9 w9Var = this.f18911b;
-        int i10 = this.f18910a;
+        org.telegram.ui.Components.x9 x9Var = this.f21638b;
+        int i10 = this.f21637a;
         TLRPC.TL_messages_stickerSet stickerSetByName = MediaDataController.getInstance(i10).getStickerSetByName("tg_placeholders_android");
         if (stickerSetByName == null) {
             stickerSetByName = MediaDataController.getInstance(i10).getStickerSetByEmojiOrName("tg_placeholders_android");
@@ -33,12 +33,12 @@ public abstract class b3 extends LinearLayout implements NotificationCenter.Noti
             document = null;
         }
         if (document != null) {
-            SvgHelper.SvgDrawable svgThumb = DocumentObject.getSvgThumb(document.thumbs, org.telegram.ui.ActionBar.j6.f17872a7, 0.2f);
+            SvgHelper.SvgDrawable svgThumb = DocumentObject.getSvgThumb(document.thumbs, org.telegram.ui.ActionBar.j6.f20607a7, 0.2f);
             if (svgThumb != null) {
                 svgThumb.overrideWidthAndHeight(512, 512);
             }
-            this.f18911b.i(ImageLocation.getForDocument(document), "130_130", "tgs", svgThumb, tL_messages_stickerSet);
-            w9Var.getImageReceiver().setAutoRepeat(2);
+            this.f21638b.i(ImageLocation.getForDocument(document), "130_130", "tgs", svgThumb, tL_messages_stickerSet);
+            x9Var.getImageReceiver().setAutoRepeat(2);
             return;
         }
         MediaDataController mediaDataController = MediaDataController.getInstance(i10);
@@ -46,7 +46,7 @@ public abstract class b3 extends LinearLayout implements NotificationCenter.Noti
             z10 = false;
         }
         mediaDataController.loadStickersByEmojiOrName("tg_placeholders_android", false, z10);
-        w9Var.getImageReceiver().clearImage();
+        x9Var.getImageReceiver().clearImage();
     }
 
     @Override
@@ -59,19 +59,19 @@ public abstract class b3 extends LinearLayout implements NotificationCenter.Noti
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        NotificationCenter.getInstance(this.f18910a).addObserver(this, NotificationCenter.diceStickersDidLoad);
+        NotificationCenter.getInstance(this.f21637a).addObserver(this, NotificationCenter.diceStickersDidLoad);
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        NotificationCenter.getInstance(this.f18910a).addObserver(this, NotificationCenter.diceStickersDidLoad);
+        NotificationCenter.getInstance(this.f21637a).addObserver(this, NotificationCenter.diceStickersDidLoad);
     }
 
     public void set(TLRPC.RequestPeerType requestPeerType) {
         TextView textView = this.d;
-        TextView textView2 = this.f18912c;
-        TextView textView3 = this.e;
+        TextView textView2 = this.f21639c;
+        TextView textView3 = this.f21640e;
         if (requestPeerType instanceof TLRPC.TL_requestPeerTypeBroadcast) {
             textView2.setText(LocaleController.getString(R.string.NoSuchChannels));
             textView.setText(LocaleController.getString(R.string.NoSuchChannelsInfo));

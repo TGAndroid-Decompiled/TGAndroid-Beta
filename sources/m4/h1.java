@@ -1,1142 +1,708 @@
 package m4;
 
-import android.os.Binder;
+import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.os.IBinder;
-import android.os.Parcel;
 import android.os.Parcelable;
-import android.os.RemoteException;
-import android.text.TextUtils;
-import android.view.Surface;
-import bi.cb;
-import bi.i5;
-import bi.za;
-import hi.y1;
-import j$.util.DesugarCollections;
-import java.lang.ref.WeakReference;
-import java.util.HashSet;
-import java.util.Set;
-public final class h1 extends Binder implements j {
-    public final WeakReference f13375a;
-    public final ki.f f13376b;
-    public final Set f13377c;
-    public e9.z0 d;
-    public int e;
+import b2.s1;
+import b2.x1;
+import java.util.ArrayList;
+import java.util.Arrays;
+public final class h1 {
+    public static final h1 F;
+    public static final String G;
+    public static final String H;
+    public static final String I;
+    public static final String J;
+    public static final String K;
+    public static final String L;
+    public static final String M;
+    public static final String N;
+    public static final String O;
+    public static final String P;
+    public static final String Q;
+    public static final String R;
+    public static final String S;
+    public static final String T;
+    public static final String U;
+    public static final String V;
+    public static final String W;
+    public static final String X;
+    public static final String Y;
+    public static final String Z;
+    public static final String f15922a0;
+    public static final String f15923b0;
+    public static final String f15924c0;
+    public static final String f15925d0;
+    public static final String f15926e0;
+    public static final String f15927f0;
+    public static final String f15928g0;
+    public static final String f15929h0;
+    public static final String f15930i0;
+    public static final String f15931j0;
+    public static final String f15932k0;
+    public final long A;
+    public final long B;
+    public final long C;
+    public final s1 D;
+    public final b2.q1 E;
+    public final b2.u0 f15933a;
+    public final int f15934b;
+    public final o1 f15935c;
+    public final b2.a1 d;
+    public final b2.a1 f15936e;
+    public final int f15937f;
+    public final b2.v0 f15938g;
+    public final int h;
+    public final boolean f15939i;
+    public final b2.k1 f15940j;
+    public final int f15941k;
+    public final x1 f15942l;
+    public final b2.n0 f15943m;
+    public final float f15944n;
+    public final b2.e f15945o;
+    public final d2.c f15946p;
+    public final b2.l f15947q;
+    public final int f15948r;
+    public final boolean f15949s;
+    public final boolean f15950t;
+    public final int f15951u;
+    public final boolean v;
+    public final boolean f15952w;
+    public final int f15953x;
+    public final int f15954y;
+    public final b2.n0 f15955z;
 
-    public h1(b0 b0Var) {
-        attachInterface(this, "androidx.media3.session.IMediaSession");
-        this.f13375a = new WeakReference(b0Var);
-        this.f13376b = new ki.f(b0Var);
-        this.f13377c = DesugarCollections.synchronizedSet(new HashSet());
-        this.d = e9.z0.f7449r;
+    static {
+        o1 o1Var = o1.f16021l;
+        b2.a1 a1Var = o1.f16020k;
+        b2.v0 v0Var = b2.v0.d;
+        x1 x1Var = x1.d;
+        b2.g1 g1Var = b2.k1.f2131a;
+        b2.n0 n0Var = b2.n0.K;
+        F = new h1(null, 0, o1Var, a1Var, a1Var, 0, v0Var, 0, false, x1Var, g1Var, 0, n0Var, 1.0f, b2.e.h, d2.c.d, b2.l.f2134c, 0, false, false, 1, 0, 1, false, false, n0Var, 5000L, 15000L, 3000L, s1.f2380b, b2.q1.F);
+        String str = e2.d0.f8737a;
+        G = Integer.toString(1, 36);
+        H = Integer.toString(2, 36);
+        I = Integer.toString(3, 36);
+        J = Integer.toString(4, 36);
+        K = Integer.toString(5, 36);
+        L = Integer.toString(6, 36);
+        M = Integer.toString(7, 36);
+        N = Integer.toString(8, 36);
+        O = Integer.toString(9, 36);
+        P = Integer.toString(10, 36);
+        Q = Integer.toString(11, 36);
+        R = Integer.toString(12, 36);
+        S = Integer.toString(13, 36);
+        T = Integer.toString(14, 36);
+        U = Integer.toString(15, 36);
+        V = Integer.toString(16, 36);
+        W = Integer.toString(17, 36);
+        X = Integer.toString(18, 36);
+        Y = Integer.toString(19, 36);
+        Z = Integer.toString(20, 36);
+        f15922a0 = Integer.toString(21, 36);
+        f15923b0 = Integer.toString(22, 36);
+        f15924c0 = Integer.toString(23, 36);
+        f15925d0 = Integer.toString(24, 36);
+        f15926e0 = Integer.toString(25, 36);
+        f15927f0 = Integer.toString(26, 36);
+        f15928g0 = Integer.toString(27, 36);
+        f15929h0 = Integer.toString(28, 36);
+        f15930i0 = Integer.toString(29, 36);
+        f15931j0 = Integer.toString(30, 36);
+        f15932k0 = Integer.toString(31, 36);
+        Integer.toString(32, 36);
     }
 
-    public static i9.w I0(b0 b0Var, r rVar, int i10, g1 g1Var, e2.h hVar) {
-        if (b0Var.j()) {
-            return i9.u.f10538b;
-        }
-        i9.w wVar = (i9.w) g1Var.i(b0Var, rVar, i10);
-        ?? obj = new Object();
-        wVar.a(new androidx.car.app.utils.b(b0Var, obj, hVar, wVar, 20), i9.q.f10533a);
-        return obj;
+    public h1(b2.u0 u0Var, int i10, o1 o1Var, b2.a1 a1Var, b2.a1 a1Var2, int i11, b2.v0 v0Var, int i12, boolean z10, x1 x1Var, b2.k1 k1Var, int i13, b2.n0 n0Var, float f7, b2.e eVar, d2.c cVar, b2.l lVar, int i14, boolean z11, boolean z12, int i15, int i16, int i17, boolean z13, boolean z14, b2.n0 n0Var2, long j3, long j10, long j11, s1 s1Var, b2.q1 q1Var) {
+        this.f15933a = u0Var;
+        this.f15934b = i10;
+        this.f15935c = o1Var;
+        this.d = a1Var;
+        this.f15936e = a1Var2;
+        this.f15937f = i11;
+        this.f15938g = v0Var;
+        this.h = i12;
+        this.f15939i = z10;
+        this.f15942l = x1Var;
+        this.f15940j = k1Var;
+        this.f15941k = i13;
+        this.f15943m = n0Var;
+        this.f15944n = f7;
+        this.f15945o = eVar;
+        this.f15946p = cVar;
+        this.f15947q = lVar;
+        this.f15948r = i14;
+        this.f15949s = z11;
+        this.f15950t = z12;
+        this.f15951u = i15;
+        this.f15953x = i16;
+        this.f15954y = i17;
+        this.v = z13;
+        this.f15952w = z14;
+        this.f15955z = n0Var2;
+        this.A = j3;
+        this.B = j10;
+        this.C = j11;
+        this.D = s1Var;
+        this.E = q1Var;
     }
 
-    public static void O0(b0 b0Var, r rVar, int i10, r1 r1Var) {
-        try {
-            q qVar = rVar.d;
-            e2.d.h(qVar);
-            qVar.i(i10, r1Var);
-            b0Var.f13293c.a(true, true);
-        } catch (RemoteException e) {
-            e2.a.o("MediaSessionStub", "Failed to send result to controller " + rVar, e);
-        }
-    }
-
-    public static y1 P0(e2.h hVar) {
-        return new y1(new y1(hVar, 27), 26);
-    }
-
-    public final void G0(i iVar, int i10, n1 n1Var, int i11, g1 g1Var) {
-        long clearCallingIdentity = Binder.clearCallingIdentity();
-        try {
-            b0 b0Var = (b0) this.f13375a.get();
-            if (b0Var != null && !b0Var.j()) {
-                r s10 = this.f13376b.s(iVar.asBinder());
-                if (s10 == null) {
-                    Binder.restoreCallingIdentity(clearCallingIdentity);
-                    return;
-                }
-                e2.d0.U(b0Var.f13299l, new y0(this, s10, n1Var, b0Var, i10, i11, g1Var));
-                Binder.restoreCallingIdentity(clearCallingIdentity);
-            }
-        } finally {
-            Binder.restoreCallingIdentity(clearCallingIdentity);
-        }
-    }
-
-    public final j1 H0(j1 j1Var) {
-        e9.i0 i0Var = j1Var.D.f2014a;
-        e9.f0 u10 = e9.i0.u();
-        ?? aVar = new a5.a(4, 6);
-        for (int i10 = 0; i10 < i0Var.size(); i10++) {
-            b2.r1 r1Var = (b2.r1) i0Var.get(i10);
-            b2.l1 l1Var = r1Var.f1961b;
-            String str = (String) this.d.get(l1Var);
-            if (str == null) {
-                StringBuilder sb2 = new StringBuilder();
-                int i11 = this.e;
-                this.e = i11 + 1;
-                String str2 = e2.d0.f7188a;
-                sb2.append(Integer.toString(i11, 36));
-                sb2.append("-");
-                sb2.append(l1Var.f1785b);
-                str = sb2.toString();
-            }
-            aVar.F(l1Var, str);
-            u10.b(new b2.r1(new b2.l1(str, r1Var.f1961b.d), r1Var.f1962c, r1Var.d, r1Var.e));
-        }
-        this.d = aVar.c();
-        j1 a2 = j1Var.a(new b2.s1(u10.i()));
-        b2.q1 q1Var = a2.E;
-        if (q1Var.D.isEmpty()) {
-            return a2;
-        }
-        b2.p1 c10 = q1Var.a().c();
-        e9.o1 it = q1Var.D.values().iterator();
-        while (it.hasNext()) {
-            b2.m1 m1Var = (b2.m1) it.next();
-            b2.l1 l1Var2 = m1Var.f1811a;
-            String str3 = (String) this.d.get(l1Var2);
-            if (str3 != null) {
-                c10.a(new b2.m1(new b2.l1(str3, l1Var2.d), m1Var.f1812b));
-            } else {
-                c10.a(m1Var);
-            }
-        }
-        return a2.d(c10.b());
-    }
-
-    public final void J0(i iVar, int i10) {
-        if (iVar == null) {
-            return;
-        }
-        M0(iVar, i10, 26, P0(new gg.g0(5)));
-    }
-
-    public final int K0(r rVar, l1 l1Var, int i10) {
-        if (l1Var.m0(17)) {
-            ki.f fVar = this.f13376b;
-            if (!fVar.A(rVar, 17) && fVar.A(rVar, 16)) {
-                return l1Var.l0() + i10;
-            }
-        }
-        return i10;
-    }
-
-    public final void L0(i iVar, int i10, Bundle bundle) {
-        com.google.android.gms.common.api.internal.v vVar;
-        e eVar;
-        if (iVar != null && bundle != null) {
-            try {
-                r1 a2 = r1.a(bundle);
-                long clearCallingIdentity = Binder.clearCallingIdentity();
-                try {
-                    ki.f fVar = this.f13376b;
-                    IBinder asBinder = iVar.asBinder();
-                    synchronized (fVar.f12538a) {
-                        r s10 = fVar.s(asBinder);
-                        vVar = null;
-                        if (s10 != null) {
-                            eVar = (e) ((a0.f) fVar.f12540c).get(s10);
-                        } else {
-                            eVar = null;
-                        }
-                    }
-                    if (eVar != null) {
-                        vVar = eVar.f13329b;
-                    }
-                    if (vVar == null) {
-                        return;
-                    }
-                    vVar.i(i10, a2);
-                } finally {
-                    Binder.restoreCallingIdentity(clearCallingIdentity);
-                }
-            } catch (RuntimeException e) {
-                e2.a.o("MediaSessionStub", "Ignoring malformed Bundle for SessionResult", e);
-            }
-        }
-    }
-
-    public final void M0(i iVar, int i10, int i11, g1 g1Var) {
-        r s10 = this.f13376b.s(iVar.asBinder());
-        if (s10 != null) {
-            N0(s10, i10, i11, g1Var);
-        }
-    }
-
-    public final void N0(r rVar, int i10, int i11, g1 g1Var) {
-        long clearCallingIdentity = Binder.clearCallingIdentity();
-        try {
-            b0 b0Var = (b0) this.f13375a.get();
-            if (b0Var != null && !b0Var.j()) {
-                e2.d0.U(b0Var.f13299l, new hi.j0(this, rVar, i11, b0Var, i10, g1Var));
-                Binder.restoreCallingIdentity(clearCallingIdentity);
-            }
-        } finally {
-            Binder.restoreCallingIdentity(clearCallingIdentity);
-        }
-    }
-
-    public final void Q0(i iVar, int i10, int i11) {
-        if (iVar != null && i11 >= 0) {
-            M0(iVar, i10, 25, P0(new s0(i11, 3)));
-        }
-    }
-
-    public final void R0(i iVar, int i10, Bundle bundle, boolean z10) {
-        if (iVar != null && bundle != null) {
-            try {
-                M0(iVar, i10, 31, new z0(new cb(21, new gg.d0(1, b2.k0.a(bundle), z10), new j2.h(27)), 1));
-            } catch (RuntimeException e) {
-                e2.a.o("MediaSessionStub", "Ignoring malformed Bundle for MediaItem", e);
-            }
-        }
-    }
-
-    public final void S0(i iVar, int i10, Bundle bundle, long j3) {
-        if (iVar != null && bundle != null) {
-            try {
-                M0(iVar, i10, 31, new z0(new cb(21, new za(b2.k0.a(bundle), j3, 1), new j2.h(27)), 1));
-            } catch (RuntimeException e) {
-                e2.a.o("MediaSessionStub", "Ignoring malformed Bundle for MediaItem", e);
-            }
-        }
-    }
-
-    public final void T0(i iVar, int i10, IBinder iBinder, boolean z10) {
-        if (iVar != null && iBinder != null) {
-            try {
-                e9.i0 a2 = b2.h.a(iBinder);
-                e9.f0 u10 = e9.i0.u();
-                for (int i11 = 0; i11 < a2.size(); i11++) {
-                    Bundle bundle = (Bundle) a2.get(i11);
-                    bundle.getClass();
-                    u10.b(b2.k0.a(bundle));
-                }
-                M0(iVar, i10, 20, new z0(new cb(21, new gg.d0(2, u10.i(), z10), new j2.h(27)), 1));
-            } catch (RuntimeException e) {
-                e2.a.o("MediaSessionStub", "Ignoring malformed Bundle for MediaItem", e);
-            }
-        }
-    }
-
-    public final void U0(i iVar, int i10, IBinder iBinder, int i11, long j3) {
-        if (iVar != null && iBinder != null) {
-            if (i11 == -1 || i11 >= 0) {
-                try {
-                    e9.i0 a2 = b2.h.a(iBinder);
-                    e9.f0 u10 = e9.i0.u();
-                    for (int i12 = 0; i12 < a2.size(); i12++) {
-                        Bundle bundle = (Bundle) a2.get(i12);
-                        bundle.getClass();
-                        u10.b(b2.k0.a(bundle));
-                    }
-                    M0(iVar, i10, 20, new z0(new cb(21, new j2.c(u10.i(), i11, j3, 2), new j2.h(27)), 1));
-                } catch (RuntimeException e) {
-                    e2.a.o("MediaSessionStub", "Ignoring malformed Bundle for MediaItem", e);
-                }
-            }
-        }
-    }
-
-    public final void V0(i iVar, int i10, float f7) {
-        if (iVar != null && f7 >= 0.0f && f7 <= 1.0f) {
-            M0(iVar, i10, 24, P0(new p0(f7, 1)));
-        }
-    }
-
-    @Override
-    public final boolean onTransact(int i10, Parcel parcel, Parcel parcel2, int i11) {
+    public final h1 a(s1 s1Var) {
         boolean z10;
-        n1 n1Var;
-        h1 h1Var;
-        r s10;
-        r s11;
-        r s12;
-        r s13;
-        r s14;
-        r s15;
-        r s16;
-        if (i10 >= 1 && i10 <= 16777215) {
-            parcel.enforceInterface("androidx.media3.session.IMediaSession");
+        b2.k1 k1Var = this.f15940j;
+        boolean p5 = k1Var.p();
+        o1 o1Var = this.f15935c;
+        if (!p5 && o1Var.f16031a.f1960b >= k1Var.o()) {
+            z10 = false;
+        } else {
+            z10 = true;
         }
-        if (i10 == 1598968902) {
-            parcel2.writeString("androidx.media3.session.IMediaSession");
-            return true;
-        }
-        boolean z11 = false;
-        boolean z12 = false;
-        final boolean z13 = false;
-        boolean z14 = false;
-        boolean z15 = false;
-        boolean z16 = false;
-        boolean z17 = false;
-        switch (i10) {
-            case 3002:
-                V0(m.G0(parcel.readStrongBinder()), parcel.readInt(), parcel.readFloat());
-                return true;
-            case 3003:
-                Q0(m.G0(parcel.readStrongBinder()), parcel.readInt(), parcel.readInt());
-                return true;
-            case 3004:
-                J0(m.G0(parcel.readStrongBinder()), parcel.readInt());
-                return true;
-            case 3005:
-                i G0 = m.G0(parcel.readStrongBinder());
-                int readInt = parcel.readInt();
-                if (G0 != null) {
-                    M0(G0, readInt, 26, P0(new gg.g0(11)));
-                    return true;
-                }
-                break;
-            case 3006:
-                i G02 = m.G0(parcel.readStrongBinder());
-                int readInt2 = parcel.readInt();
-                if (parcel.readInt() != 0) {
-                    z11 = true;
-                }
-                if (G02 != null) {
-                    M0(G02, readInt2, 26, P0(new o0(1, z11)));
-                    return true;
-                }
-                break;
-            case 3007:
-                R0(m.G0(parcel.readStrongBinder()), parcel.readInt(), (Bundle) w7.t.a(parcel, Bundle.CREATOR), true);
-                return true;
-            case 3008:
-                S0(m.G0(parcel.readStrongBinder()), parcel.readInt(), (Bundle) w7.t.a(parcel, Bundle.CREATOR), parcel.readLong());
-                return true;
-            case 3009:
-                i G03 = m.G0(parcel.readStrongBinder());
-                int readInt3 = parcel.readInt();
-                Bundle bundle = (Bundle) w7.t.a(parcel, Bundle.CREATOR);
-                if (parcel.readInt() != 0) {
-                    z17 = true;
-                }
-                R0(G03, readInt3, bundle, z17);
-                return true;
-            case 3010:
-                T0(m.G0(parcel.readStrongBinder()), parcel.readInt(), parcel.readStrongBinder(), true);
-                return true;
-            case 3011:
-                i G04 = m.G0(parcel.readStrongBinder());
-                int readInt4 = parcel.readInt();
-                IBinder readStrongBinder = parcel.readStrongBinder();
-                if (parcel.readInt() != 0) {
-                    z16 = true;
-                }
-                T0(G04, readInt4, readStrongBinder, z16);
-                return true;
-            case 3012:
-                U0(m.G0(parcel.readStrongBinder()), parcel.readInt(), parcel.readStrongBinder(), parcel.readInt(), parcel.readLong());
-                return true;
-            case 3013:
-                i G05 = m.G0(parcel.readStrongBinder());
-                int readInt5 = parcel.readInt();
-                if (parcel.readInt() != 0) {
-                    z15 = true;
-                }
-                if (G05 != null) {
-                    M0(G05, readInt5, 1, P0(new o0(0, z15)));
-                    return true;
-                }
-                break;
-            case 3014:
-                L0(m.G0(parcel.readStrongBinder()), parcel.readInt(), (Bundle) w7.t.a(parcel, Bundle.CREATOR));
-                return true;
-            case 3015:
-                i G06 = m.G0(parcel.readStrongBinder());
-                parcel.readInt();
-                Bundle bundle2 = (Bundle) w7.t.a(parcel, Bundle.CREATOR);
-                WeakReference weakReference = this.f13375a;
-                if (G06 != null && bundle2 != null) {
-                    try {
-                        f a2 = f.a(bundle2);
-                        int callingUid = Binder.getCallingUid();
-                        int callingPid = Binder.getCallingPid();
-                        long clearCallingIdentity = Binder.clearCallingIdentity();
-                        if (callingPid == 0) {
-                            callingPid = a2.d;
-                        }
-                        try {
-                            n4.a0 a0Var = new n4.a0(a2.f13343c, callingPid, callingUid);
-                            b0 b0Var = (b0) weakReference.get();
-                            if (b0Var != null && n4.d0.a(b0Var.f13294f).b(a0Var)) {
-                                z10 = true;
-                            } else {
-                                z10 = false;
-                            }
-                            int i12 = a2.f13341a;
-                            int i13 = a2.f13342b;
-                            r rVar = new r(a0Var, i12, i13, z10, new d1(G06, i13), a2.e);
-                            b0 b0Var2 = (b0) weakReference.get();
-                            if (b0Var2 != null && !b0Var2.j()) {
-                                this.f13377c.add(rVar);
-                                try {
-                                    try {
-                                        e2.d0.U(b0Var2.f13299l, new androidx.car.app.utils.b(this, rVar, b0Var2, G06, 19));
-                                        break;
-                                    } catch (Throwable th2) {
-                                        th = th2;
-                                        throw th;
-                                    }
-                                } catch (Throwable th3) {
-                                    th = th3;
-                                }
-                            }
-                            w7.v.a(G06);
-                        } catch (Throwable th4) {
-                            th = th4;
-                        }
-                    } catch (RuntimeException e) {
-                        e2.a.o("MediaSessionStub", "Ignoring malformed Bundle for ConnectionRequest", e);
-                        break;
-                    }
-                }
-                break;
-            case 3016:
-                i G07 = m.G0(parcel.readStrongBinder());
-                int readInt6 = parcel.readInt();
-                Parcelable.Creator creator = Bundle.CREATOR;
-                Bundle bundle3 = (Bundle) w7.t.a(parcel, creator);
-                Bundle bundle4 = (Bundle) w7.t.a(parcel, creator);
-                if (G07 != null && bundle3 != null && bundle4 != null) {
-                    try {
-                        int i14 = bundle3.getInt(n1.f13456f, 0);
-                        if (i14 != 0) {
-                            n1Var = new n1(i14);
-                        } else {
-                            String string = bundle3.getString(n1.f13457g);
-                            string.getClass();
-                            Bundle bundle5 = bundle3.getBundle(n1.h);
-                            if (bundle5 == null) {
-                                bundle5 = Bundle.EMPTY;
-                            }
-                            n1Var = new n1(string, bundle5);
-                        }
-                        h1Var = this;
-                        h1Var.G0(G07, readInt6, n1Var, 0, new z0(new j2.h(18, n1Var, bundle4), 1));
-                        break;
-                    } catch (RuntimeException e7) {
-                        e2.a.o("MediaSessionStub", "Ignoring malformed Bundle for SessionCommand", e7);
-                        break;
-                    }
-                }
-                break;
-            case 3017:
-                i G08 = m.G0(parcel.readStrongBinder());
-                int readInt7 = parcel.readInt();
-                int readInt8 = parcel.readInt();
-                if (G08 != null && (readInt8 == 2 || readInt8 == 0 || readInt8 == 1)) {
-                    M0(G08, readInt7, 15, P0(new s0(readInt8, 2)));
-                    return true;
-                }
-                break;
-            case 3018:
-                i G09 = m.G0(parcel.readStrongBinder());
-                int readInt9 = parcel.readInt();
-                if (parcel.readInt() != 0) {
-                    z14 = true;
-                }
-                if (G09 != null) {
-                    M0(G09, readInt9, 14, P0(new o0(2, z14)));
-                    return true;
-                }
-                break;
-            case 3019:
-                i G010 = m.G0(parcel.readStrongBinder());
-                int readInt10 = parcel.readInt();
-                int readInt11 = parcel.readInt();
-                if (G010 != null && readInt11 >= 0) {
-                    M0(G010, readInt10, 20, new y1(new n0(this, readInt11, 4), 26));
-                    return true;
-                }
-                break;
-            case 3020:
-                i G011 = m.G0(parcel.readStrongBinder());
-                int readInt12 = parcel.readInt();
-                int readInt13 = parcel.readInt();
-                int readInt14 = parcel.readInt();
-                if (G011 != null && readInt13 >= 0 && readInt14 >= readInt13) {
-                    M0(G011, readInt12, 20, new y1(new m0(this, readInt13, readInt14), 26));
-                    return true;
-                }
-                break;
-            case 3021:
-                i G012 = m.G0(parcel.readStrongBinder());
-                int readInt15 = parcel.readInt();
-                if (G012 != null) {
-                    M0(G012, readInt15, 20, P0(new gg.g0(15)));
-                    return true;
-                }
-                break;
-            case 3022:
-                i G013 = m.G0(parcel.readStrongBinder());
-                int readInt16 = parcel.readInt();
-                final int readInt17 = parcel.readInt();
-                final int readInt18 = parcel.readInt();
-                if (G013 != null && readInt17 >= 0 && readInt18 >= 0) {
-                    M0(G013, readInt16, 20, P0(new e2.h() {
-                        @Override
-                        public final void accept(Object obj) {
-                            switch (r3) {
-                                case 0:
-                                    ((l1) obj).M(readInt17, readInt18);
-                                    return;
-                                default:
-                                    ((l1) obj).q0(readInt17, readInt18);
-                                    return;
-                            }
-                        }
-                    }));
-                    return true;
-                }
-                break;
-            case 3023:
-                i G014 = m.G0(parcel.readStrongBinder());
-                int readInt19 = parcel.readInt();
-                final int readInt20 = parcel.readInt();
-                final int readInt21 = parcel.readInt();
-                final int readInt22 = parcel.readInt();
-                if (G014 != null && readInt20 >= 0 && readInt21 >= readInt20 && readInt22 >= 0) {
-                    M0(G014, readInt19, 20, P0(new e2.h() {
-                        @Override
-                        public final void accept(Object obj) {
-                            ((l1) obj).r0(readInt20, readInt21, readInt22);
-                        }
-                    }));
-                    return true;
-                }
-                break;
-            case 3024:
-                i G015 = m.G0(parcel.readStrongBinder());
-                int readInt23 = parcel.readInt();
-                if (G015 != null && (s10 = this.f13376b.s(G015.asBinder())) != null) {
-                    N0(s10, readInt23, 1, P0(new q0(1, this, s10)));
-                    return true;
-                }
-                break;
-            case 3025:
-                i G016 = m.G0(parcel.readStrongBinder());
-                int readInt24 = parcel.readInt();
-                if (G016 != null && (s11 = this.f13376b.s(G016.asBinder())) != null) {
-                    N0(s11, readInt24, 1, P0(new gg.g0(3)));
-                    return true;
-                }
-                break;
-            case 3026:
-                i G017 = m.G0(parcel.readStrongBinder());
-                int readInt25 = parcel.readInt();
-                if (G017 != null) {
-                    M0(G017, readInt25, 2, P0(new gg.g0(13)));
-                    return true;
-                }
-                break;
-            case 3027:
-                i G018 = m.G0(parcel.readStrongBinder());
-                int readInt26 = parcel.readInt();
-                Bundle bundle6 = (Bundle) w7.t.a(parcel, Bundle.CREATOR);
-                if (G018 != null && bundle6 != null) {
-                    try {
-                        M0(G018, readInt26, 13, P0(new i5(new b2.v0(bundle6.getFloat(b2.v0.e, 1.0f), bundle6.getFloat(b2.v0.f2028f, 1.0f)), 3)));
-                        break;
-                    } catch (RuntimeException e10) {
-                        e2.a.o("MediaSessionStub", "Ignoring malformed Bundle for PlaybackParameters", e10);
-                        break;
-                    }
-                }
-                break;
-            case 3028:
-                i G019 = m.G0(parcel.readStrongBinder());
-                int readInt27 = parcel.readInt();
-                float readFloat = parcel.readFloat();
-                if (G019 != null && readFloat > 0.0f) {
-                    M0(G019, readInt27, 13, P0(new p0(readFloat, 0)));
-                    return true;
-                }
-                break;
-            case 3029:
-                i G020 = m.G0(parcel.readStrongBinder());
-                int readInt28 = parcel.readInt();
-                Bundle bundle7 = (Bundle) w7.t.a(parcel, Bundle.CREATOR);
-                if (G020 != null && bundle7 != null) {
-                    try {
-                        final b2.k0 a10 = b2.k0.a(bundle7);
-                        M0(G020, readInt28, 20, new z0(new cb(22, new g1() {
-                            @Override
-                            public final Object i(b0 b0Var3, r rVar2, int i15) {
-                                switch (r2) {
-                                    case 0:
-                                        return b0Var3.l(rVar2, e9.i0.z(a10));
-                                    case 1:
-                                        return b0Var3.l(rVar2, e9.i0.z(a10));
-                                    default:
-                                        return b0Var3.l(rVar2, e9.i0.z(a10));
-                                }
-                            }
-                        }, new j2.h(22)), 1));
-                        break;
-                    } catch (RuntimeException e11) {
-                        e2.a.o("MediaSessionStub", "Ignoring malformed Bundle for MediaItem", e11);
-                        break;
-                    }
-                }
-                break;
-            case 3030:
-                i G021 = m.G0(parcel.readStrongBinder());
-                int readInt29 = parcel.readInt();
-                int readInt30 = parcel.readInt();
-                Bundle bundle8 = (Bundle) w7.t.a(parcel, Bundle.CREATOR);
-                if (G021 != null && bundle8 != null && readInt30 >= 0) {
-                    try {
-                        final b2.k0 a11 = b2.k0.a(bundle8);
-                        M0(G021, readInt29, 20, new z0(new cb(22, new g1() {
-                            @Override
-                            public final Object i(b0 b0Var3, r rVar2, int i15) {
-                                switch (r2) {
-                                    case 0:
-                                        return b0Var3.l(rVar2, e9.i0.z(a11));
-                                    case 1:
-                                        return b0Var3.l(rVar2, e9.i0.z(a11));
-                                    default:
-                                        return b0Var3.l(rVar2, e9.i0.z(a11));
-                                }
-                            }
-                        }, new n0(this, readInt30, 1)), 1));
-                        break;
-                    } catch (RuntimeException e12) {
-                        e2.a.o("MediaSessionStub", "Ignoring malformed Bundle for MediaItem", e12);
-                        break;
-                    }
-                }
-                break;
-            case 3031:
-                i G022 = m.G0(parcel.readStrongBinder());
-                int readInt31 = parcel.readInt();
-                IBinder readStrongBinder2 = parcel.readStrongBinder();
-                if (G022 != null && readStrongBinder2 != null) {
-                    try {
-                        e9.i0 a12 = b2.h.a(readStrongBinder2);
-                        e9.f0 u10 = e9.i0.u();
-                        for (int i15 = 0; i15 < a12.size(); i15++) {
-                            Bundle bundle9 = (Bundle) a12.get(i15);
-                            bundle9.getClass();
-                            u10.b(b2.k0.a(bundle9));
-                        }
-                        M0(G022, readInt31, 20, new z0(new cb(22, new i2.y(3, u10.i()), new j2.h(21)), 1));
-                        break;
-                    } catch (RuntimeException e13) {
-                        e2.a.o("MediaSessionStub", "Ignoring malformed Bundle for MediaItem", e13);
-                        break;
-                    }
-                }
-                break;
-            case 3032:
-                i G023 = m.G0(parcel.readStrongBinder());
-                int readInt32 = parcel.readInt();
-                int readInt33 = parcel.readInt();
-                IBinder readStrongBinder3 = parcel.readStrongBinder();
-                if (G023 != null && readStrongBinder3 != null && readInt33 >= 0) {
-                    try {
-                        e9.i0 a13 = b2.h.a(readStrongBinder3);
-                        e9.f0 u11 = e9.i0.u();
-                        for (int i16 = 0; i16 < a13.size(); i16++) {
-                            Bundle bundle10 = (Bundle) a13.get(i16);
-                            bundle10.getClass();
-                            u11.b(b2.k0.a(bundle10));
-                        }
-                        M0(G023, readInt32, 20, new z0(new cb(22, new i2.y(2, u11.i()), new n0(this, readInt33, 3)), 1));
-                        break;
-                    } catch (RuntimeException e14) {
-                        e2.a.o("MediaSessionStub", "Ignoring malformed Bundle for MediaItem", e14);
-                        break;
-                    }
-                }
-                break;
-            case 3033:
-                i G024 = m.G0(parcel.readStrongBinder());
-                int readInt34 = parcel.readInt();
-                Bundle bundle11 = (Bundle) w7.t.a(parcel, Bundle.CREATOR);
-                if (G024 != null && bundle11 != null) {
-                    try {
-                        M0(G024, readInt34, 19, P0(new i5(b2.n0.b(bundle11), 5)));
-                        break;
-                    } catch (RuntimeException e15) {
-                        e2.a.o("MediaSessionStub", "Ignoring malformed Bundle for MediaMetadata", e15);
-                        break;
-                    }
-                }
-                break;
-            case 3034:
-                i G025 = m.G0(parcel.readStrongBinder());
-                int readInt35 = parcel.readInt();
-                if (G025 != null && (s12 = this.f13376b.s(G025.asBinder())) != null) {
-                    N0(s12, readInt35, 3, P0(new gg.g0(12)));
-                    return true;
-                }
-                break;
-            case 3035:
-                i G026 = m.G0(parcel.readStrongBinder());
-                parcel.readInt();
-                if (G026 != null) {
-                    long clearCallingIdentity2 = Binder.clearCallingIdentity();
-                    try {
-                        b0 b0Var3 = (b0) this.f13375a.get();
-                        if (b0Var3 != null && !b0Var3.j()) {
-                            e2.d0.U(b0Var3.f13299l, new w(4, this, G026));
-                            return true;
-                        }
-                        return true;
-                    } finally {
-                    }
-                }
-                break;
-            case 3036:
-                i G027 = m.G0(parcel.readStrongBinder());
-                int readInt36 = parcel.readInt();
-                if (G027 != null) {
-                    M0(G027, readInt36, 4, P0(new gg.g0(14)));
-                    return true;
-                }
-                break;
-            case 3037:
-                i G028 = m.G0(parcel.readStrongBinder());
-                int readInt37 = parcel.readInt();
-                int readInt38 = parcel.readInt();
-                if (G028 != null && readInt38 >= 0) {
-                    M0(G028, readInt37, 10, new y1(new n0(this, readInt38, 0), 26));
-                    return true;
-                }
-                break;
-            case 3038:
-                i G029 = m.G0(parcel.readStrongBinder());
-                int readInt39 = parcel.readInt();
-                final long readLong = parcel.readLong();
-                if (G029 != null) {
-                    M0(G029, readInt39, 5, P0(new e2.h() {
-                        @Override
-                        public final void accept(Object obj) {
-                            ((l1) obj).g(readLong);
-                        }
-                    }));
-                    return true;
-                }
-                break;
-            case 3039:
-                i G030 = m.G0(parcel.readStrongBinder());
-                int readInt40 = parcel.readInt();
-                int readInt41 = parcel.readInt();
-                long readLong2 = parcel.readLong();
-                if (G030 != null && readInt41 >= 0) {
-                    M0(G030, readInt40, 10, new y1(new j2.c(this, readInt41, readLong2, 1), 26));
-                    return true;
-                }
-                break;
-            case 3040:
-                i G031 = m.G0(parcel.readStrongBinder());
-                int readInt42 = parcel.readInt();
-                if (G031 != null && (s13 = this.f13376b.s(G031.asBinder())) != null) {
-                    N0(s13, readInt42, 11, P0(new gg.g0(6)));
-                    return true;
-                }
-                break;
-            case 3041:
-                i G032 = m.G0(parcel.readStrongBinder());
-                int readInt43 = parcel.readInt();
-                if (G032 != null && (s14 = this.f13376b.s(G032.asBinder())) != null) {
-                    N0(s14, readInt43, 12, P0(new gg.g0(9)));
-                    return true;
-                }
-                break;
-            case 3042:
-                i G033 = m.G0(parcel.readStrongBinder());
-                int readInt44 = parcel.readInt();
-                if (G033 != null) {
-                    M0(G033, readInt44, 6, P0(new gg.g0(8)));
-                    return true;
-                }
-                break;
-            case 3043:
-                i G034 = m.G0(parcel.readStrongBinder());
-                int readInt45 = parcel.readInt();
-                if (G034 != null) {
-                    M0(G034, readInt45, 8, P0(new gg.g0(4)));
-                    return true;
-                }
-                break;
-            case 3044:
-                i G035 = m.G0(parcel.readStrongBinder());
-                int readInt46 = parcel.readInt();
-                Surface surface = (Surface) w7.t.a(parcel, Surface.CREATOR);
-                if (G035 != null) {
-                    M0(G035, readInt46, 27, P0(new i5(surface, 4)));
-                    return true;
-                }
-                break;
-            case 3045:
-                i G036 = m.G0(parcel.readStrongBinder());
-                if (G036 != null) {
-                    long clearCallingIdentity3 = Binder.clearCallingIdentity();
-                    try {
-                        b0 b0Var4 = (b0) this.f13375a.get();
-                        if (b0Var4 != null && !b0Var4.j()) {
-                            r s17 = this.f13376b.s(G036.asBinder());
-                            if (s17 != null) {
-                                e2.d0.U(b0Var4.f13299l, new w(5, this, s17));
-                            }
-                            return true;
-                        }
-                        return true;
-                    } finally {
-                    }
-                }
-                break;
-            case 3046:
-                i G037 = m.G0(parcel.readStrongBinder());
-                int readInt47 = parcel.readInt();
-                if (G037 != null && (s15 = this.f13376b.s(G037.asBinder())) != null) {
-                    N0(s15, readInt47, 7, P0(new gg.g0(7)));
-                    return true;
-                }
-                break;
-            case 3047:
-                i G038 = m.G0(parcel.readStrongBinder());
-                int readInt48 = parcel.readInt();
-                if (G038 != null && (s16 = this.f13376b.s(G038.asBinder())) != null) {
-                    N0(s16, readInt48, 9, P0(new gg.g0(10)));
-                    return true;
-                }
-                break;
-            case 3048:
-                i G039 = m.G0(parcel.readStrongBinder());
-                int readInt49 = parcel.readInt();
-                Bundle bundle12 = (Bundle) w7.t.a(parcel, Bundle.CREATOR);
-                if (G039 != null && bundle12 != null) {
-                    try {
-                        M0(G039, readInt49, 29, P0(new q0(0, this, b2.q1.b(bundle12))));
-                        break;
-                    } catch (RuntimeException e16) {
-                        e2.a.o("MediaSessionStub", "Ignoring malformed Bundle for TrackSelectionParameters", e16);
-                        break;
-                    }
-                }
-                break;
-            case 3049:
-                i G040 = m.G0(parcel.readStrongBinder());
-                int readInt50 = parcel.readInt();
-                String readString = parcel.readString();
-                Bundle bundle13 = (Bundle) w7.t.a(parcel, Bundle.CREATOR);
-                if (G040 != null && readString != null && bundle13 != null) {
-                    if (TextUtils.isEmpty(readString)) {
-                        e2.a.n("MediaSessionStub", "setRatingWithMediaId(): Ignoring empty mediaId");
-                    } else {
-                        try {
-                            h1Var = this;
-                            h1Var.G0(G040, readInt50, null, 40010, new z0(new j2.h(20, readString, b2.c1.a(bundle13)), 1));
-                            break;
-                        } catch (RuntimeException e17) {
-                            e2.a.o("MediaSessionStub", "Ignoring malformed Bundle for Rating", e17);
-                            break;
-                        }
-                    }
-                }
-                break;
-            case 3050:
-                i G041 = m.G0(parcel.readStrongBinder());
-                int readInt51 = parcel.readInt();
-                Bundle bundle14 = (Bundle) w7.t.a(parcel, Bundle.CREATOR);
-                if (G041 != null && bundle14 != null) {
-                    try {
-                        G0(G041, readInt51, null, 40010, new z0(new j2.h(b2.c1.a(bundle14), 28), 1));
-                    } catch (RuntimeException e18) {
-                        e2.a.o("MediaSessionStub", "Ignoring malformed Bundle for Rating", e18);
-                    }
-                }
-                break;
-            case 3051:
-                i G042 = m.G0(parcel.readStrongBinder());
-                int readInt52 = parcel.readInt();
-                final int readInt53 = parcel.readInt();
-                final int readInt54 = parcel.readInt();
-                if (G042 != null && readInt53 >= 0) {
-                    M0(G042, readInt52, 33, P0(new e2.h() {
-                        @Override
-                        public final void accept(Object obj) {
-                            switch (r3) {
-                                case 0:
-                                    ((l1) obj).M(readInt53, readInt54);
-                                    return;
-                                default:
-                                    ((l1) obj).q0(readInt53, readInt54);
-                                    return;
-                            }
-                        }
-                    }));
-                    return true;
-                }
-                break;
-            case 3052:
-                i G043 = m.G0(parcel.readStrongBinder());
-                int readInt55 = parcel.readInt();
-                int readInt56 = parcel.readInt();
-                if (G043 != null) {
-                    M0(G043, readInt55, 34, P0(new s0(readInt56, 1)));
-                    return true;
-                }
-                break;
-            case 3053:
-                i G044 = m.G0(parcel.readStrongBinder());
-                int readInt57 = parcel.readInt();
-                int readInt58 = parcel.readInt();
-                if (G044 != null) {
-                    M0(G044, readInt57, 34, P0(new s0(readInt58, 0)));
-                    return true;
-                }
-                break;
-            case 3054:
-                i G045 = m.G0(parcel.readStrongBinder());
-                int readInt59 = parcel.readInt();
-                if (parcel.readInt() != 0) {
-                    z13 = true;
-                }
-                final int readInt60 = parcel.readInt();
-                if (G045 != null) {
-                    M0(G045, readInt59, 34, P0(new e2.h() {
-                        @Override
-                        public final void accept(Object obj) {
-                            ((l1) obj).J(readInt60, z13);
-                        }
-                    }));
-                    return true;
-                }
-                break;
-            case 3055:
-                i G046 = m.G0(parcel.readStrongBinder());
-                int readInt61 = parcel.readInt();
-                int readInt62 = parcel.readInt();
-                Bundle bundle15 = (Bundle) w7.t.a(parcel, Bundle.CREATOR);
-                if (G046 != null && bundle15 != null && readInt62 >= 0) {
-                    try {
-                        final b2.k0 a14 = b2.k0.a(bundle15);
-                        M0(G046, readInt61, 20, new z0(new cb(22, new g1() {
-                            @Override
-                            public final Object i(b0 b0Var32, r rVar2, int i152) {
-                                switch (r2) {
-                                    case 0:
-                                        return b0Var32.l(rVar2, e9.i0.z(a14));
-                                    case 1:
-                                        return b0Var32.l(rVar2, e9.i0.z(a14));
-                                    default:
-                                        return b0Var32.l(rVar2, e9.i0.z(a14));
-                                }
-                            }
-                        }, new n0(this, readInt62, 2)), 1));
-                        break;
-                    } catch (RuntimeException e19) {
-                        e2.a.o("MediaSessionStub", "Ignoring malformed Bundle for MediaItem", e19);
-                        break;
-                    }
-                }
-                break;
-            case 3056:
-                i G047 = m.G0(parcel.readStrongBinder());
-                int readInt63 = parcel.readInt();
-                int readInt64 = parcel.readInt();
-                int readInt65 = parcel.readInt();
-                IBinder readStrongBinder4 = parcel.readStrongBinder();
-                if (G047 != null && readStrongBinder4 != null && readInt64 >= 0 && readInt65 >= readInt64) {
-                    try {
-                        e9.i0 a15 = b2.h.a(readStrongBinder4);
-                        e9.f0 u12 = e9.i0.u();
-                        for (int i17 = 0; i17 < a15.size(); i17++) {
-                            Bundle bundle16 = (Bundle) a15.get(i17);
-                            bundle16.getClass();
-                            u12.b(b2.k0.a(bundle16));
-                        }
-                        M0(G047, readInt63, 20, new z0(new cb(22, new y1(u12.i(), 25), new m0(this, readInt64, readInt65)), 1));
-                        break;
-                    } catch (RuntimeException e20) {
-                        e2.a.o("MediaSessionStub", "Ignoring malformed Bundle for MediaItem", e20);
-                        break;
-                    }
-                }
-                break;
-            case 3057:
-                i G048 = m.G0(parcel.readStrongBinder());
-                int readInt66 = parcel.readInt();
-                Bundle bundle17 = (Bundle) w7.t.a(parcel, Bundle.CREATOR);
-                if (parcel.readInt() != 0) {
-                    z12 = true;
-                }
-                if (G048 != null && bundle17 != null) {
-                    try {
-                        M0(G048, readInt66, 35, P0(new v0(0, b2.e.a(bundle17), z12)));
-                        break;
-                    } catch (RuntimeException e21) {
-                        e2.a.o("MediaSessionStub", "Ignoring malformed Bundle for AudioAttributes", e21);
-                        break;
-                    }
-                }
-                break;
-            default:
-                n nVar = null;
-                switch (i10) {
-                    case 4001:
-                        i G049 = m.G0(parcel.readStrongBinder());
-                        int readInt67 = parcel.readInt();
-                        Bundle bundle18 = (Bundle) w7.t.a(parcel, Bundle.CREATOR);
-                        if (G049 != null) {
-                            if (bundle18 != null) {
-                                try {
-                                    nVar = n.a(bundle18);
-                                } catch (RuntimeException e22) {
-                                    e2.a.o("MediaSessionStub", "Ignoring malformed Bundle for LibraryParams", e22);
-                                    break;
-                                }
-                            }
-                            h1Var = this;
-                            h1Var.G0(G049, readInt67, null, 50000, new z0(new j2.h(nVar, 24), 0));
-                            break;
-                        }
-                        break;
-                    case 4002:
-                        i G050 = m.G0(parcel.readStrongBinder());
-                        int readInt68 = parcel.readInt();
-                        String readString2 = parcel.readString();
-                        if (G050 != null) {
-                            if (TextUtils.isEmpty(readString2)) {
-                                e2.a.n("MediaSessionStub", "getItem(): Ignoring empty mediaId");
-                                return true;
-                            }
-                            G0(G050, readInt68, null, 50004, new z0(new j2.h(readString2, 19), 0));
-                            return true;
-                        }
-                        break;
-                    case 4003:
-                        i G051 = m.G0(parcel.readStrongBinder());
-                        int readInt69 = parcel.readInt();
-                        String readString3 = parcel.readString();
-                        int readInt70 = parcel.readInt();
-                        int readInt71 = parcel.readInt();
-                        Bundle bundle19 = (Bundle) w7.t.a(parcel, Bundle.CREATOR);
-                        if (G051 != null) {
-                            if (TextUtils.isEmpty(readString3)) {
-                                e2.a.n("MediaSessionStub", "getChildren(): Ignoring empty parentId");
-                            } else if (readInt70 < 0) {
-                                e2.a.n("MediaSessionStub", "getChildren(): Ignoring negative page");
-                            } else if (readInt71 < 1) {
-                                e2.a.n("MediaSessionStub", "getChildren(): Ignoring pageSize less than 1");
-                            } else {
-                                if (bundle19 != null) {
-                                    try {
-                                        nVar = n.a(bundle19);
-                                    } catch (RuntimeException e23) {
-                                        e2.a.o("MediaSessionStub", "Ignoring malformed Bundle for LibraryParams", e23);
-                                    }
-                                }
-                                G0(G051, readInt69, null, 50003, new z0(new j2.h(readString3, readInt70, readInt71, nVar, 17), 0));
-                            }
-                        }
-                        break;
-                    case 4004:
-                        i G052 = m.G0(parcel.readStrongBinder());
-                        int readInt72 = parcel.readInt();
-                        String readString4 = parcel.readString();
-                        Bundle bundle20 = (Bundle) w7.t.a(parcel, Bundle.CREATOR);
-                        if (G052 != null) {
-                            if (TextUtils.isEmpty(readString4)) {
-                                e2.a.n("MediaSessionStub", "search(): Ignoring empty query");
-                            } else {
-                                if (bundle20 != null) {
-                                    try {
-                                        nVar = n.a(bundle20);
-                                    } catch (RuntimeException e24) {
-                                        e2.a.o("MediaSessionStub", "Ignoring malformed Bundle for LibraryParams", e24);
-                                    }
-                                }
-                                G0(G052, readInt72, null, 50005, new z0(new j2.h(26, readString4, nVar), 0));
-                            }
-                        }
-                        break;
-                    case 4005:
-                        i G053 = m.G0(parcel.readStrongBinder());
-                        int readInt73 = parcel.readInt();
-                        String readString5 = parcel.readString();
-                        int readInt74 = parcel.readInt();
-                        int readInt75 = parcel.readInt();
-                        Bundle bundle21 = (Bundle) w7.t.a(parcel, Bundle.CREATOR);
-                        if (G053 != null) {
-                            if (TextUtils.isEmpty(readString5)) {
-                                e2.a.n("MediaSessionStub", "getSearchResult(): Ignoring empty query");
-                            } else if (readInt74 < 0) {
-                                e2.a.n("MediaSessionStub", "getSearchResult(): Ignoring negative page");
-                            } else if (readInt75 < 1) {
-                                e2.a.n("MediaSessionStub", "getSearchResult(): Ignoring pageSize less than 1");
-                            } else {
-                                if (bundle21 != null) {
-                                    try {
-                                        nVar = n.a(bundle21);
-                                    } catch (RuntimeException e25) {
-                                        e2.a.o("MediaSessionStub", "Ignoring malformed Bundle for LibraryParams", e25);
-                                    }
-                                }
-                                G0(G053, readInt73, null, 50006, new z0(new j2.h(readString5, readInt74, readInt75, nVar, 23), 0));
-                            }
-                        }
-                        break;
-                    case 4006:
-                        i G054 = m.G0(parcel.readStrongBinder());
-                        int readInt76 = parcel.readInt();
-                        String readString6 = parcel.readString();
-                        Bundle bundle22 = (Bundle) w7.t.a(parcel, Bundle.CREATOR);
-                        if (G054 != null) {
-                            if (TextUtils.isEmpty(readString6)) {
-                                e2.a.n("MediaSessionStub", "subscribe(): Ignoring empty parentId");
-                            } else {
-                                if (bundle22 != null) {
-                                    try {
-                                        nVar = n.a(bundle22);
-                                    } catch (RuntimeException e26) {
-                                        e2.a.o("MediaSessionStub", "Ignoring malformed Bundle for LibraryParams", e26);
-                                    }
-                                }
-                                G0(G054, readInt76, null, 50001, new z0(new j2.h(25, readString6, nVar), 0));
-                            }
-                        }
-                        break;
-                    case 4007:
-                        i G055 = m.G0(parcel.readStrongBinder());
-                        int readInt77 = parcel.readInt();
-                        String readString7 = parcel.readString();
-                        if (G055 != null) {
-                            if (TextUtils.isEmpty(readString7)) {
-                                e2.a.n("MediaSessionStub", "unsubscribe(): Ignoring empty parentId");
-                                return true;
-                            }
-                            G0(G055, readInt77, null, 50002, new z0(new j2.h(readString7, 16), 0));
-                            return true;
-                        }
-                        break;
-                    default:
-                        return super.onTransact(i10, parcel, parcel2, i11);
-                }
-        }
-        return true;
+        e2.d.g(z10);
+        return new h1(this.f15933a, this.f15934b, o1Var, this.d, this.f15936e, this.f15937f, this.f15938g, this.h, this.f15939i, this.f15942l, k1Var, this.f15941k, this.f15943m, this.f15944n, this.f15945o, this.f15946p, this.f15947q, this.f15948r, this.f15949s, this.f15950t, this.f15951u, this.f15953x, this.f15954y, this.v, this.f15952w, this.f15955z, this.A, this.B, this.C, s1Var, this.E);
     }
 
-    @Override
-    public final IBinder asBinder() {
-        return this;
+    public final h1 b(int i10, int i11, boolean z10) {
+        boolean z11;
+        boolean z12 = false;
+        int i12 = this.f15954y;
+        if (i12 == 3 && z10 && i11 == 0) {
+            z11 = true;
+        } else {
+            z11 = false;
+        }
+        b2.k1 k1Var = this.f15940j;
+        boolean p5 = k1Var.p();
+        o1 o1Var = this.f15935c;
+        e2.d.g((p5 || o1Var.f16031a.f1960b < k1Var.o()) ? true : true);
+        return new h1(this.f15933a, this.f15934b, o1Var, this.d, this.f15936e, this.f15937f, this.f15938g, this.h, this.f15939i, this.f15942l, k1Var, this.f15941k, this.f15943m, this.f15944n, this.f15945o, this.f15946p, this.f15947q, this.f15948r, this.f15949s, z10, i10, i11, i12, z11, this.f15952w, this.f15955z, this.A, this.B, this.C, this.D, this.E);
+    }
+
+    public final h1 c(b2.k1 k1Var, o1 o1Var, int i10) {
+        boolean z10;
+        if (!k1Var.p() && o1Var.f16031a.f1960b >= k1Var.o()) {
+            z10 = false;
+        } else {
+            z10 = true;
+        }
+        e2.d.g(z10);
+        return new h1(this.f15933a, this.f15934b, o1Var, this.d, this.f15936e, this.f15937f, this.f15938g, this.h, this.f15939i, this.f15942l, k1Var, i10, this.f15943m, this.f15944n, this.f15945o, this.f15946p, this.f15947q, this.f15948r, this.f15949s, this.f15950t, this.f15951u, this.f15953x, this.f15954y, this.v, this.f15952w, this.f15955z, this.A, this.B, this.C, this.D, this.E);
+    }
+
+    public final h1 d(b2.q1 q1Var) {
+        boolean z10;
+        b2.k1 k1Var = this.f15940j;
+        boolean p5 = k1Var.p();
+        o1 o1Var = this.f15935c;
+        if (!p5 && o1Var.f16031a.f1960b >= k1Var.o()) {
+            z10 = false;
+        } else {
+            z10 = true;
+        }
+        e2.d.g(z10);
+        return new h1(this.f15933a, this.f15934b, o1Var, this.d, this.f15936e, this.f15937f, this.f15938g, this.h, this.f15939i, this.f15942l, k1Var, this.f15941k, this.f15943m, this.f15944n, this.f15945o, this.f15946p, this.f15947q, this.f15948r, this.f15949s, this.f15950t, this.f15951u, this.f15953x, this.f15954y, this.v, this.f15952w, this.f15955z, this.A, this.B, this.C, this.D, q1Var);
+    }
+
+    public final h1 e(b2.x0 x0Var, boolean z10, boolean z11) {
+        b2.n0 n0Var;
+        float f7;
+        b2.e eVar;
+        d2.c cVar;
+        int i10;
+        boolean z12;
+        b2.n0 n0Var2;
+        s1 s1Var;
+        int i11;
+        boolean a2 = x0Var.a(16);
+        boolean a10 = x0Var.a(17);
+        o1 o1Var = this.f15935c;
+        o1 a11 = o1Var.a(a2, a10);
+        b2.a1 b10 = this.d.b(a2, a10);
+        b2.a1 b11 = this.f15936e.b(a2, a10);
+        boolean z13 = true;
+        b2.k1 k1Var = this.f15940j;
+        if (!a10 && a2 && !k1Var.p()) {
+            int i12 = o1Var.f16031a.f1960b;
+            if (k1Var.o() != 1) {
+                b2.j1 m10 = k1Var.m(i12, new b2.j1(), 0L);
+                e9.f0 u10 = e9.i0.u();
+                int i13 = m10.f2117n;
+                while (true) {
+                    i11 = m10.f2118o;
+                    if (i13 > i11) {
+                        break;
+                    }
+                    b2.h1 f10 = k1Var.f(i13, new b2.h1(), true);
+                    f10.f2056c = 0;
+                    u10.b(f10);
+                    i13++;
+                }
+                m10.f2118o = i11 - m10.f2117n;
+                m10.f2117n = 0;
+                k1Var = new b2.i1(e9.i0.z(m10), u10.i(), new int[]{0});
+            }
+        } else if (z10 || !a10) {
+            k1Var = b2.k1.f2131a;
+        }
+        b2.k1 k1Var2 = k1Var;
+        if (!x0Var.a(18)) {
+            n0Var = b2.n0.K;
+        } else {
+            n0Var = this.f15943m;
+        }
+        b2.n0 n0Var3 = n0Var;
+        if (!x0Var.a(22)) {
+            f7 = 1.0f;
+        } else {
+            f7 = this.f15944n;
+        }
+        if (!x0Var.a(21)) {
+            eVar = b2.e.h;
+        } else {
+            eVar = this.f15945o;
+        }
+        b2.e eVar2 = eVar;
+        if (!x0Var.a(28)) {
+            cVar = d2.c.d;
+        } else {
+            cVar = this.f15946p;
+        }
+        d2.c cVar2 = cVar;
+        if (!x0Var.a(23)) {
+            i10 = 0;
+            z12 = false;
+        } else {
+            i10 = this.f15948r;
+            z12 = this.f15949s;
+        }
+        if (!x0Var.a(18)) {
+            n0Var2 = b2.n0.K;
+        } else {
+            n0Var2 = this.f15955z;
+        }
+        b2.n0 n0Var4 = n0Var2;
+        if (!z11 && x0Var.a(30)) {
+            s1Var = this.D;
+        } else {
+            s1Var = s1.f2380b;
+        }
+        s1 s1Var2 = s1Var;
+        if (!k1Var2.p() && a11.f16031a.f1960b >= k1Var2.o()) {
+            z13 = false;
+        }
+        e2.d.g(z13);
+        return new h1(this.f15933a, this.f15934b, a11, b10, b11, this.f15937f, this.f15938g, this.h, this.f15939i, this.f15942l, k1Var2, this.f15941k, n0Var3, f7, eVar2, cVar2, this.f15947q, i10, z12, this.f15950t, this.f15951u, this.f15953x, this.f15954y, this.v, this.f15952w, n0Var4, this.A, this.B, this.C, s1Var2, this.E);
+    }
+
+    public final Bundle f(int i10) {
+        long j3;
+        long j10;
+        long j11;
+        int i11;
+        boolean z10;
+        int i12;
+        b2.h1 h1Var;
+        int i13;
+        int i14;
+        Bundle b10;
+        Bundle bundle = new Bundle();
+        b2.u0 u0Var = this.f15933a;
+        if (u0Var != null) {
+            Bundle bundle2 = new Bundle();
+            bundle2.putInt(b2.u0.d, u0Var.f2395a);
+            bundle2.putLong(b2.u0.f2391e, u0Var.f2396b);
+            bundle2.putString(b2.u0.f2392f, u0Var.getMessage());
+            bundle2.putBundle(b2.u0.f2394r, u0Var.f2397c);
+            Throwable cause = u0Var.getCause();
+            if (cause != null) {
+                bundle2.putString(b2.u0.h, cause.getClass().getName());
+                bundle2.putString(b2.u0.f2393n, cause.getMessage());
+            }
+            bundle.putBundle(X, bundle2);
+        }
+        int i15 = this.f15934b;
+        if (i15 != 0) {
+            bundle.putInt(Z, i15);
+        }
+        o1 o1Var = this.f15935c;
+        if (i10 < 3 || !o1Var.equals(o1.f16021l)) {
+            bundle.putBundle(Y, o1Var.b(i10));
+        }
+        b2.a1 a1Var = this.d;
+        if (i10 < 3 || !o1.f16020k.a(a1Var)) {
+            bundle.putBundle(f15922a0, a1Var.c(i10));
+        }
+        b2.a1 a1Var2 = this.f15936e;
+        if (i10 < 3 || !o1.f16020k.a(a1Var2)) {
+            bundle.putBundle(f15923b0, a1Var2.c(i10));
+        }
+        int i16 = this.f15937f;
+        if (i16 != 0) {
+            bundle.putInt(f15924c0, i16);
+        }
+        b2.v0 v0Var = b2.v0.d;
+        b2.v0 v0Var2 = this.f15938g;
+        if (!v0Var2.equals(v0Var)) {
+            Bundle bundle3 = new Bundle();
+            bundle3.putFloat(b2.v0.f2398e, v0Var2.f2400a);
+            bundle3.putFloat(b2.v0.f2399f, v0Var2.f2401b);
+            bundle.putBundle(G, bundle3);
+        }
+        int i17 = this.h;
+        if (i17 != 0) {
+            bundle.putInt(H, i17);
+        }
+        boolean z11 = this.f15939i;
+        if (z11) {
+            bundle.putBoolean(I, z11);
+        }
+        b2.g1 g1Var = b2.k1.f2131a;
+        b2.k1 k1Var = this.f15940j;
+        boolean z12 = false;
+        long j12 = 0;
+        if (!k1Var.equals(g1Var)) {
+            ArrayList arrayList = new ArrayList();
+            int o9 = k1Var.o();
+            b2.j1 j1Var = new b2.j1();
+            for (int i18 = 0; i18 < o9; i18++) {
+                b2.j1 m10 = k1Var.m(i18, j1Var, 0L);
+                m10.getClass();
+                Bundle bundle4 = new Bundle();
+                if (!b2.k0.f2120g.equals(m10.f2108c)) {
+                    bundle4.putBundle(b2.j1.f2099s, m10.f2108c.b(false));
+                }
+                long j13 = m10.f2109e;
+                if (j13 != -9223372036854775807L) {
+                    bundle4.putLong(b2.j1.f2100t, j13);
+                }
+                long j14 = m10.f2110f;
+                if (j14 != -9223372036854775807L) {
+                    bundle4.putLong(b2.j1.f2101u, j14);
+                }
+                long j15 = m10.f2111g;
+                if (j15 != -9223372036854775807L) {
+                    bundle4.putLong(b2.j1.v, j15);
+                }
+                boolean z13 = m10.h;
+                if (z13) {
+                    bundle4.putBoolean(b2.j1.f2102w, z13);
+                }
+                boolean z14 = m10.f2112i;
+                if (z14) {
+                    bundle4.putBoolean(b2.j1.f2103x, z14);
+                }
+                b2.e0 e0Var = m10.f2113j;
+                if (e0Var != null) {
+                    bundle4.putBundle(b2.j1.f2104y, e0Var.b());
+                }
+                boolean z15 = m10.f2114k;
+                if (z15) {
+                    bundle4.putBoolean(b2.j1.f2105z, z15);
+                }
+                long j16 = m10.f2115l;
+                if (j16 != 0) {
+                    bundle4.putLong(b2.j1.A, j16);
+                }
+                long j17 = m10.f2116m;
+                if (j17 != -9223372036854775807L) {
+                    bundle4.putLong(b2.j1.B, j17);
+                }
+                int i19 = m10.f2117n;
+                if (i19 != 0) {
+                    bundle4.putInt(b2.j1.C, i19);
+                }
+                int i20 = m10.f2118o;
+                if (i20 != 0) {
+                    bundle4.putInt(b2.j1.D, i20);
+                }
+                long j18 = m10.f2119p;
+                if (j18 != 0) {
+                    bundle4.putLong(b2.j1.E, j18);
+                }
+                arrayList.add(bundle4);
+            }
+            ArrayList arrayList2 = new ArrayList();
+            int h = k1Var.h();
+            b2.h1 h1Var2 = new b2.h1();
+            int i21 = 0;
+            while (i21 < h) {
+                b2.h1 f7 = k1Var.f(i21, h1Var2, z12);
+                f7.getClass();
+                Bundle bundle5 = new Bundle();
+                int i22 = f7.f2056c;
+                if (i22 != 0) {
+                    bundle5.putInt(b2.h1.h, i22);
+                }
+                long j19 = j12;
+                long j20 = f7.d;
+                if (j20 != -9223372036854775807L) {
+                    bundle5.putLong(b2.h1.f2050i, j20);
+                }
+                long j21 = f7.f2057e;
+                if (j21 != j19) {
+                    bundle5.putLong(b2.h1.f2051j, j21);
+                }
+                boolean z16 = f7.f2058f;
+                if (z16) {
+                    bundle5.putBoolean(b2.h1.f2052k, z16);
+                }
+                if (!f7.f2059g.equals(b2.b.f1966c)) {
+                    String str = b2.h1.f2053l;
+                    b2.b bVar = f7.f2059g;
+                    bVar.getClass();
+                    Bundle bundle6 = new Bundle();
+                    ArrayList<? extends Parcelable> arrayList3 = new ArrayList<>();
+                    b2.a[] aVarArr = bVar.f1969b;
+                    int length = aVarArr.length;
+                    int i23 = 0;
+                    while (i23 < length) {
+                        int i24 = i23;
+                        b2.a aVar = aVarArr[i24];
+                        aVar.getClass();
+                        int i25 = h;
+                        Bundle bundle7 = new Bundle();
+                        b2.h1 h1Var3 = h1Var2;
+                        bundle7.putLong(b2.a.h, j19);
+                        bundle7.putInt(b2.a.f1935i, aVar.f1945a);
+                        bundle7.putInt(b2.a.f1941o, aVar.f1946b);
+                        bundle7.putParcelableArrayList(b2.a.f1936j, new ArrayList<>(Arrays.asList(aVar.f1947c)));
+                        String str2 = b2.a.f1942p;
+                        ArrayList<? extends Parcelable> arrayList4 = new ArrayList<>();
+                        b2.k0[] k0VarArr = aVar.d;
+                        int i26 = i21;
+                        int length2 = k0VarArr.length;
+                        int i27 = 0;
+                        while (i27 < length2) {
+                            int i28 = i27;
+                            b2.k0 k0Var = k0VarArr[i28];
+                            if (k0Var == null) {
+                                b10 = null;
+                                i14 = length2;
+                            } else {
+                                i14 = length2;
+                                b10 = k0Var.b(true);
+                            }
+                            arrayList4.add(b10);
+                            i27 = i28 + 1;
+                            length2 = i14;
+                        }
+                        bundle7.putParcelableArrayList(str2, arrayList4);
+                        bundle7.putIntArray(b2.a.f1937k, aVar.f1948e);
+                        bundle7.putLongArray(b2.a.f1938l, aVar.f1949f);
+                        bundle7.putLong(b2.a.f1939m, 0L);
+                        bundle7.putBoolean(b2.a.f1940n, false);
+                        bundle7.putStringArrayList(b2.a.f1943q, new ArrayList<>(Arrays.asList(aVar.f1950g)));
+                        bundle7.putBoolean(b2.a.f1944r, false);
+                        arrayList3.add(bundle7);
+                        i23 = i24 + 1;
+                        j19 = 0;
+                        h = i25;
+                        h1Var2 = h1Var3;
+                        i21 = i26;
+                    }
+                    i12 = h;
+                    h1Var = h1Var2;
+                    i13 = i21;
+                    if (!arrayList3.isEmpty()) {
+                        bundle6.putParcelableArrayList(b2.b.f1967e, arrayList3);
+                    }
+                    bundle5.putBundle(str, bundle6);
+                } else {
+                    i12 = h;
+                    h1Var = h1Var2;
+                    i13 = i21;
+                }
+                arrayList2.add(bundle5);
+                i21 = i13 + 1;
+                z12 = false;
+                j12 = 0;
+                h = i12;
+                h1Var2 = h1Var;
+            }
+            int[] iArr = new int[o9];
+            if (o9 > 0) {
+                z10 = true;
+                i11 = 0;
+                iArr[0] = k1Var.a(true);
+            } else {
+                i11 = 0;
+                z10 = true;
+            }
+            int i29 = 1;
+            while (i29 < o9) {
+                iArr[i29] = k1Var.e(iArr[i29 - 1], i11, z10);
+                i29++;
+                i11 = 0;
+                z10 = true;
+            }
+            Bundle bundle8 = new Bundle();
+            bundle8.putBinder(b2.k1.f2132b, new b2.h(arrayList));
+            bundle8.putBinder(b2.k1.f2133c, new b2.h(arrayList2));
+            bundle8.putIntArray(b2.k1.d, iArr);
+            bundle.putBundle(J, bundle8);
+        }
+        int i30 = this.f15941k;
+        if (i30 != 0) {
+            bundle.putInt(f15932k0, i30);
+        }
+        x1 x1Var = x1.d;
+        x1 x1Var2 = this.f15942l;
+        if (!x1Var2.equals(x1Var)) {
+            Bundle bundle9 = new Bundle();
+            int i31 = x1Var2.f2417a;
+            if (i31 != 0) {
+                bundle9.putInt(x1.f2414e, i31);
+            }
+            int i32 = x1Var2.f2418b;
+            if (i32 != 0) {
+                bundle9.putInt(x1.f2415f, i32);
+            }
+            float f10 = x1Var2.f2419c;
+            if (f10 != 1.0f) {
+                bundle9.putFloat(x1.f2416g, f10);
+            }
+            bundle.putBundle(K, bundle9);
+        }
+        b2.n0 n0Var = b2.n0.K;
+        b2.n0 n0Var2 = this.f15943m;
+        if (!n0Var2.equals(n0Var)) {
+            bundle.putBundle(L, n0Var2.c());
+        }
+        float f11 = this.f15944n;
+        if (f11 != 1.0f) {
+            bundle.putFloat(M, f11);
+        }
+        b2.e eVar = b2.e.h;
+        b2.e eVar2 = this.f15945o;
+        if (!eVar2.equals(eVar)) {
+            Bundle bundle10 = new Bundle();
+            bundle10.putInt(b2.e.f1998i, eVar2.f2004a);
+            bundle10.putInt(b2.e.f1999j, eVar2.f2005b);
+            bundle10.putInt(b2.e.f2000k, eVar2.f2006c);
+            bundle10.putInt(b2.e.f2001l, eVar2.d);
+            bundle10.putInt(b2.e.f2002m, eVar2.f2007e);
+            bundle10.putBoolean(b2.e.f2003n, eVar2.f2008f);
+            bundle.putBundle(N, bundle10);
+        }
+        d2.c cVar = d2.c.d;
+        d2.c cVar2 = this.f15946p;
+        if (!cVar2.equals(cVar)) {
+            Bundle bundle11 = new Bundle();
+            String str3 = d2.c.f6509e;
+            e9.a1 a1Var3 = cVar2.f6511a;
+            e9.f0 u10 = e9.i0.u();
+            for (int i33 = 0; i33 < a1Var3.d; i33++) {
+                if (((d2.b) a1Var3.get(i33)).d == null) {
+                    u10.b((d2.b) a1Var3.get(i33));
+                }
+            }
+            e9.a1 i34 = u10.i();
+            ArrayList<? extends Parcelable> arrayList5 = new ArrayList<>(i34.d);
+            e9.g0 listIterator = i34.listIterator(0);
+            while (listIterator.hasNext()) {
+                d2.b bVar2 = (d2.b) listIterator.next();
+                Bundle a2 = bVar2.a();
+                Bitmap bitmap = bVar2.d;
+                if (bitmap != null) {
+                    a2.putParcelable(d2.b.f6488w, bitmap);
+                }
+                arrayList5.add(a2);
+            }
+            bundle11.putParcelableArrayList(str3, arrayList5);
+            bundle11.putLong(d2.c.f6510f, cVar2.f6512b);
+            bundle.putBundle(f15925d0, bundle11);
+        }
+        b2.l lVar = b2.l.f2134c;
+        b2.l lVar2 = this.f15947q;
+        if (!lVar2.equals(lVar)) {
+            Bundle bundle12 = new Bundle();
+            int i35 = lVar2.f2136a;
+            if (i35 != 0) {
+                bundle12.putInt(b2.l.d, i35);
+            }
+            int i36 = lVar2.f2137b;
+            if (i36 != 0) {
+                bundle12.putInt(b2.l.f2135e, i36);
+            }
+            bundle.putBundle(O, bundle12);
+        }
+        int i37 = this.f15948r;
+        if (i37 != 0) {
+            bundle.putInt(P, i37);
+        }
+        boolean z17 = this.f15949s;
+        if (z17) {
+            bundle.putBoolean(Q, z17);
+        }
+        boolean z18 = this.f15950t;
+        if (z18) {
+            bundle.putBoolean(R, z18);
+        }
+        int i38 = this.f15951u;
+        if (i38 != 1) {
+            bundle.putInt(S, i38);
+        }
+        int i39 = this.f15953x;
+        if (i39 != 0) {
+            bundle.putInt(T, i39);
+        }
+        int i40 = this.f15954y;
+        if (i40 != 1) {
+            bundle.putInt(U, i40);
+        }
+        boolean z19 = this.v;
+        if (z19) {
+            bundle.putBoolean(V, z19);
+        }
+        boolean z20 = this.f15952w;
+        if (z20) {
+            bundle.putBoolean(W, z20);
+        }
+        b2.n0 n0Var3 = b2.n0.K;
+        b2.n0 n0Var4 = this.f15955z;
+        if (!n0Var4.equals(n0Var3)) {
+            bundle.putBundle(f15926e0, n0Var4.c());
+        }
+        if (i10 < 6) {
+            j3 = 0;
+        } else {
+            j3 = 5000;
+        }
+        long j22 = this.A;
+        if (j22 != j3) {
+            bundle.putLong(f15927f0, j22);
+        }
+        if (i10 < 6) {
+            j10 = 0;
+        } else {
+            j10 = 15000;
+        }
+        long j23 = this.B;
+        if (j23 != j10) {
+            bundle.putLong(f15928g0, j23);
+        }
+        if (i10 < 6) {
+            j11 = 0;
+        } else {
+            j11 = 3000;
+        }
+        long j24 = this.C;
+        if (j24 != j11) {
+            bundle.putLong(f15929h0, j24);
+        }
+        s1 s1Var = s1.f2380b;
+        s1 s1Var2 = this.D;
+        if (!s1Var2.equals(s1Var)) {
+            Bundle bundle13 = new Bundle();
+            bundle13.putParcelableArrayList(s1.f2381c, e2.d.p(s1Var2.f2382a, new androidx.emoji2.text.w(9)));
+            bundle.putBundle(f15931j0, bundle13);
+        }
+        b2.q1 q1Var = b2.q1.F;
+        b2.q1 q1Var2 = this.E;
+        if (!q1Var2.equals(q1Var)) {
+            bundle.putBundle(f15930i0, q1Var2.c());
+        }
+        return bundle;
     }
 }

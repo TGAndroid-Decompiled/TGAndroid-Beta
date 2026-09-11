@@ -1,68 +1,45 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-import androidx.recyclerview.widget.RecyclerView;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-public final class i51 extends vz {
-    public final r51 Y;
+import android.text.TextPaint;
+public final class i51 extends l51 {
+    public static boolean h = true;
+    public final int f26972e;
+    public final n01 f26973f;
 
-    public i51(r51 r51Var, int i10, h51 h51Var) {
-        super(5, i10, h51Var);
-        this.Y = r51Var;
+    public i51(String str, int i10, n01 n01Var) {
+        super(str, (n01) null);
+        this.f26972e = i10;
+        this.f26973f = n01Var;
     }
 
     @Override
-    public final boolean D1() {
-        r51 r51Var = this.Y;
-        if (r51Var.f26593n.getAdapter() == r51Var.v) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final boolean Y0() {
-        return LocaleController.isRTL;
-    }
-
-    @Override
-    public final int o0(int i10, of.e eVar, s4.z0 z0Var) {
+    public final void updateDrawState(TextPaint textPaint) {
+        int i10;
         int i11;
-        View m10;
-        r51 r51Var = this.Y;
-        if (r51Var.N) {
-            return super.o0(i10, eVar, z0Var);
-        }
-        int i12 = 0;
-        if (r51Var.L != null) {
-            return 0;
-        }
-        if (r51Var.M) {
-            while (true) {
-                i11 = 1;
-                if (i12 >= r()) {
-                    break;
-                }
-                h51 h51Var = r51Var.f26593n;
-                View q6 = q(i12);
-                h51Var.getClass();
-                int R = RecyclerView.R(q6);
-                if (R < 1) {
-                    i11 = R;
-                    break;
-                }
-                i12++;
+        super.updateDrawState(textPaint);
+        int i12 = this.f26972e;
+        if (i12 == 2) {
+            textPaint.setColor(-1);
+        } else if (i12 == 1) {
+            if (h) {
+                i11 = org.telegram.ui.ActionBar.j6.f20740hc;
+            } else {
+                i11 = org.telegram.ui.ActionBar.j6.f20705fc;
             }
-            if (i11 == 0 && (m10 = r51Var.f26594r.m(i11)) != null && m10.getTop() - i10 > AndroidUtilities.dp(58.0f)) {
-                i10 = m10.getTop() - AndroidUtilities.dp(58.0f);
+            textPaint.setColor(org.telegram.ui.ActionBar.j6.w0(null, i11, false));
+        } else {
+            if (h) {
+                i10 = org.telegram.ui.ActionBar.j6.gc;
+            } else {
+                i10 = org.telegram.ui.ActionBar.j6.ec;
             }
+            textPaint.setColor(org.telegram.ui.ActionBar.j6.w0(null, i10, false));
         }
-        return super.o0(i10, eVar, z0Var);
-    }
-
-    @Override
-    public final boolean y0() {
-        return false;
+        n01 n01Var = this.f26973f;
+        if (n01Var != null) {
+            n01Var.a(textPaint);
+        } else {
+            textPaint.setUnderlineText(false);
+        }
     }
 }

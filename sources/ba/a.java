@@ -3,11 +3,11 @@ package ba;
 import java.io.File;
 import java.io.FilenameFilter;
 public final class a implements FilenameFilter {
-    public final int f2137a;
+    public final int f2518a;
 
     @Override
     public final boolean accept(File file, String str) {
-        switch (this.f2137a) {
+        switch (this.f2518a) {
             case 0:
                 return str.startsWith("event");
             case 1:

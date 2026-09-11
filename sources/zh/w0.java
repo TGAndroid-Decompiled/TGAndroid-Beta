@@ -1,31 +1,30 @@
 package zh;
 
-import android.graphics.Canvas;
-import android.view.View;
-import android.view.ViewGroup;
-public final class w0 extends ViewGroup {
-    @Override
-    public final void draw(Canvas canvas) {
-        if (x0.Z.W) {
-            return;
-        }
-        super.draw(canvas);
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.tl.TL_stars;
+public final class w0 implements Utilities.Callback {
+    public final int f52743a;
+    public final Utilities.Callback f52744b;
+
+    public w0(int i10, Utilities.Callback callback) {
+        this.f52743a = i10;
+        this.f52744b = callback;
     }
 
     @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        x0 x0Var = x0.Z;
-        if (x0Var.e.getParent() == this) {
-            x0Var.e.layout(0, 0, x0Var.J, x0Var.K);
-        }
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        setMeasuredDimension(View.MeasureSpec.getSize(i10), View.MeasureSpec.getSize(i11));
-        x0 x0Var = x0.Z;
-        if (x0Var.e.getParent() == this) {
-            x0Var.e.measure(View.MeasureSpec.makeMeasureSpec(x0Var.J, 1073741824), View.MeasureSpec.makeMeasureSpec(x0Var.K, 1073741824));
+    public final void run(Object obj) {
+        switch (this.f52743a) {
+            case 0:
+                this.f52744b.run((TL_stars.StarGift) obj);
+                return;
+            default:
+                Boolean bool = (Boolean) obj;
+                Utilities.Callback callback = this.f52744b;
+                if (callback != null) {
+                    callback.run(bool);
+                    return;
+                }
+                return;
         }
     }
 }

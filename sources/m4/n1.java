@@ -1,54 +1,63 @@
 package m4;
 
 import android.os.Bundle;
-import android.text.TextUtils;
 import j$.util.Objects;
 public final class n1 {
-    public static final e9.a1 d = e9.i0.z(40010);
-    public static final e9.a1 e;
-    public static final String f13456f;
-    public static final String f13457g;
-    public static final String h;
-    public final int f13458a;
-    public final String f13459b;
-    public final Bundle f13460c;
+    public static final String d;
+    public static final String f16011e;
+    public static final String f16012f;
+    public final int f16013a;
+    public final String f16014b;
+    public final Bundle f16015c;
 
     static {
-        Object[] objArr = {50000, 50001, 50002, 50003, 50004, 50005, 50006};
-        e9.q.d(7, objArr);
-        e = e9.i0.t(7, objArr);
-        String str = e2.d0.f7188a;
-        f13456f = Integer.toString(0, 36);
-        f13457g = Integer.toString(1, 36);
-        h = Integer.toString(2, 36);
+        String str = e2.d0.f8737a;
+        d = Integer.toString(0, 36);
+        f16011e = Integer.toString(1, 36);
+        f16012f = Integer.toString(2, 36);
     }
 
     public n1(int i10) {
-        e2.d.a("commandCode shouldn't be COMMAND_CODE_CUSTOM", i10 != 0);
-        this.f13458a = i10;
-        this.f13459b = "";
-        this.f13460c = Bundle.EMPTY;
+        this("no error message provided", i10, Bundle.EMPTY);
+    }
+
+    public final Bundle a() {
+        Bundle bundle = new Bundle();
+        bundle.putInt(d, this.f16013a);
+        bundle.putString(f16011e, this.f16014b);
+        Bundle bundle2 = this.f16015c;
+        if (!bundle2.isEmpty()) {
+            bundle.putBundle(f16012f, bundle2);
+        }
+        return bundle;
     }
 
     public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
         if (!(obj instanceof n1)) {
             return false;
         }
         n1 n1Var = (n1) obj;
-        if (this.f13458a != n1Var.f13458a || !TextUtils.equals(this.f13459b, n1Var.f13459b)) {
-            return false;
+        if (this.f16013a == n1Var.f16013a && Objects.equals(this.f16014b, n1Var.f16014b)) {
+            return true;
         }
-        return true;
+        return false;
     }
 
     public final int hashCode() {
-        return Objects.hash(this.f13459b, Integer.valueOf(this.f13458a));
+        return Objects.hash(Integer.valueOf(this.f16013a), this.f16014b);
     }
 
-    public n1(String str, Bundle bundle) {
-        this.f13458a = 0;
-        this.f13459b = str;
-        bundle.getClass();
-        this.f13460c = new Bundle(bundle);
+    public n1(String str, int i10, Bundle bundle) {
+        boolean z10 = true;
+        if (i10 >= 0 && i10 != 1) {
+            z10 = false;
+        }
+        e2.d.b(z10);
+        this.f16013a = i10;
+        this.f16014b = str;
+        this.f16015c = bundle;
     }
 }

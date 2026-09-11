@@ -1,358 +1,168 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapShader;
+import android.graphics.Color;
+import android.graphics.ComposeShader;
+import android.graphics.Matrix;
+import android.graphics.Paint;
 import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.drawable.Drawable;
-import android.text.Layout;
-import android.text.SpannableStringBuilder;
-import android.text.TextPaint;
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import java.util.Date;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.AppGlobalConfig;
-import org.telegram.messenger.ContactsController;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.UserObject;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_account;
-public final class ic0 extends FrameLayout {
-    public boolean E;
-    public float F;
-    public final int f23992a;
-    public final int f23993b;
-    public final org.telegram.ui.ActionBar.f6 f23994c;
-    public final LinearLayout d;
-    public final TextView e;
-    public final TextView f23995f;
-    public final TextView h;
-    public final long f23996n;
-    public final int f23997r;
-    public final int f23998s;
-    public final int v;
-    public final int f23999w;
-    public final Runnable f24000x;
-    public final int f24001y;
+import android.graphics.RectF;
+import android.os.Build;
+import org.telegram.messenger.Utilities;
+public final class ic0 {
+    public static final float[] f27071k = new float[4];
+    public static final Matrix f27072l = new Matrix();
+    public final gc0 d;
+    public int f27076e;
+    public int f27077f;
+    public int f27078g;
+    public int h;
+    public final aa.a f27073a = new aa.a(new p2(13));
+    public final a5.a f27074b = new a5.a(13, (byte) 0);
+    public final i10 f27075c = new i10();
+    public final Matrix f27079i = new Matrix();
+    public final RectF f27080j = new RectF();
 
-    public ic0(Context context, int i10, MessageObject messageObject, Runnable runnable, org.telegram.ui.ActionBar.f6 f6Var) {
-        super(context);
-        int i11;
-        int i12;
-        int i13;
-        int i14;
-        TLRPC.MessageFwdHeader messageFwdHeader;
-        this.E = false;
-        this.F = -1.0f;
-        this.f23993b = i10;
-        int i15 = messageObject.currentAccount;
-        this.f23992a = i15;
-        this.f23994c = f6Var;
-        this.f24000x = runnable;
-        this.f24001y = ConnectionsManager.getInstance(i15).getCurrentTime() - messageObject.messageOwner.date;
-        this.f23996n = messageObject.getDialogId();
-        this.f23997r = messageObject.getId();
-        TLRPC.Message message = messageObject.messageOwner;
-        if (message == null) {
-            i11 = 0;
+    public ic0() {
+        if (Build.VERSION.SDK_INT >= 33) {
+            this.d = new gc0();
         } else {
-            i11 = message.date;
-        }
-        this.f23998s = i11;
-        if (message == null) {
-            i12 = 0;
-        } else {
-            i12 = message.edit_date;
-        }
-        this.v = i12;
-        if (message != null && (messageFwdHeader = message.fwd_from) != null) {
-            i13 = messageFwdHeader.date;
-        } else {
-            i13 = 0;
-        }
-        this.f23999w = i13;
-        ImageView imageView = new ImageView(context);
-        addView(imageView, w7.a6.d(24, 24.0f, 19, 11.0f, 0.0f, 0.0f, 0.0f));
-        if (i10 == 1) {
-            if (AppGlobalConfig.getInstance(i15).messagePrimaryEditedDate.get()) {
-                i14 = R.drawable.outline_message_time_24;
-            } else {
-                i14 = R.drawable.menu_edited_stamp;
-            }
-        } else if (i10 == 2) {
-            i14 = R.drawable.menu_forward_stamp;
-        } else if (messageObject.isVoice()) {
-            i14 = R.drawable.msg_played;
-        } else {
-            i14 = R.drawable.msg_seen;
-        }
-        Drawable mutate = context.getDrawable(i14).mutate();
-        mutate.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.F8, f6Var), PorterDuff.Mode.MULTIPLY));
-        imageView.setImageDrawable(mutate);
-        TextView textView = new TextView(context);
-        this.h = textView;
-        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("loading text ");
-        spannableStringBuilder.setSpan(new r90(textView, AndroidUtilities.dp(96.0f), AndroidUtilities.dp(2.0f), f6Var), 0, spannableStringBuilder.length() - 1, 17);
-        int i16 = org.telegram.ui.ActionBar.j6.f18034j5;
-        textView.setTextColor(org.telegram.ui.ActionBar.j6.l1(0.7f, org.telegram.ui.ActionBar.j6.v0(i16, f6Var)));
-        textView.setText(spannableStringBuilder);
-        textView.setTextSize(1, 13.0f);
-        addView(textView, w7.a6.d(96, -2.0f, 19, 40.0f, -1.0f, 8.0f, 0.0f));
-        LinearLayout linearLayout = new LinearLayout(context);
-        this.d = linearLayout;
-        linearLayout.setOrientation(0);
-        linearLayout.setAlpha(0.0f);
-        addView(linearLayout, w7.a6.d(-1, -2.0f, 19, 38.0f, 0.0f, 8.0f, 0.0f));
-        TextView textView2 = new TextView(context);
-        this.e = textView2;
-        org.telegram.messenger.em.n(i16, f6Var, textView2, 1, 14.0f);
-        TextView g10 = com.google.android.gms.internal.vision.e2.g(linearLayout, textView2, w7.a6.t(-2, -2, 19, 0, -1, 0, 0), context);
-        this.f23995f = g10;
-        g10.setBackground(org.telegram.ui.ActionBar.j6.b0(AndroidUtilities.dp(20.0f), org.telegram.ui.ActionBar.j6.l1(0.75f, org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f17929d7, f6Var))));
-        org.telegram.messenger.em.n(i16, f6Var, g10, 1, 11.0f);
-        g10.setPadding(AndroidUtilities.dp(5.33f), AndroidUtilities.dp(2.0f), AndroidUtilities.dp(5.33f), AndroidUtilities.dp(2.33f));
-        linearLayout.addView(g10, w7.a6.t(-2, -2, 19, 4, 0, 0, 0));
-        a();
-    }
-
-    public static void b(final Context context, final int i10, long j3, final boolean z10, Runnable runnable, final Runnable runnable2, final org.telegram.ui.ActionBar.f6 f6Var) {
-        int i11;
-        int i12;
-        String str;
-        int i13;
-        int i14;
-        int i15;
-        int i16;
-        int i17;
-        final org.telegram.ui.ActionBar.h3 h3Var = new org.telegram.ui.ActionBar.h3(1, context, f6Var, false);
-        h3Var.fixNavigationBar(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f17998h5, f6Var));
-        boolean premiumFeaturesBlocked = MessagesController.getInstance(i10).premiumFeaturesBlocked();
-        LinearLayout f7 = org.telegram.messenger.em.f(context, 1);
-        f7.setPadding(AndroidUtilities.dp(16.0f), 0, AndroidUtilities.dp(16.0f), 0);
-        ?? imageView = new ImageView(context);
-        imageView.setScaleType(ImageView.ScaleType.CENTER);
-        if (z10) {
-            i11 = R.raw.large_lastseen;
-        } else {
-            i11 = R.raw.large_readtime;
-        }
-        imageView.f(i11, 70, 70, null);
-        imageView.d();
-        imageView.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
-        imageView.setBackground(org.telegram.ui.ActionBar.j6.K(AndroidUtilities.dp(80.0f), org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.Oh, f6Var)));
-        f7.addView((View) imageView, w7.a6.t(80, 80, 1, 0, 16, 0, 16));
-        TextView textView = new TextView(context);
-        textView.setTypeface(AndroidUtilities.bold());
-        textView.setGravity(17);
-        int i18 = org.telegram.ui.ActionBar.j6.f18034j5;
-        org.telegram.messenger.em.n(i18, f6Var, textView, 1, 20.0f);
-        if (z10) {
-            i12 = R.string.PremiumLastSeenHeader1;
-        } else {
-            i12 = R.string.PremiumReadHeader1;
-        }
-        textView.setText(LocaleController.getString(i12));
-        f7.addView(textView, w7.a6.t(-1, -2, 1, 12, 0, 12, 0));
-        TextView textView2 = new TextView(context);
-        textView2.setGravity(17);
-        org.telegram.messenger.em.n(i18, f6Var, textView2, 1, 14.0f);
-        if (j3 > 0) {
-            str = UserObject.getFirstName(MessagesController.getInstance(i10).getUser(Long.valueOf(j3)));
-        } else {
-            str = "";
-        }
-        String str2 = str;
-        if (z10) {
-            if (premiumFeaturesBlocked) {
-                i13 = R.string.PremiumLastSeenText1Locked;
-            } else {
-                i13 = R.string.PremiumLastSeenText1;
-            }
-        } else if (premiumFeaturesBlocked) {
-            i13 = R.string.PremiumReadText1Locked;
-        } else {
-            i13 = R.string.PremiumReadText1;
-        }
-        org.telegram.messenger.em.p(i13, new Object[]{str2}, textView2);
-        f7.addView(textView2, w7.a6.t(-1, -2, 1, 32, 9, 32, 19));
-        final bi.d g10 = org.telegram.messenger.em.g(24, context, f6Var, true);
-        if (z10) {
-            i14 = R.string.PremiumLastSeenButton1;
-        } else {
-            i14 = R.string.PremiumReadButton1;
-        }
-        g10.g(LocaleController.getString(i14), false, true);
-        f7.addView(g10, w7.a6.q(-1, 48, 1));
-        g10.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public final void onClick(View view) {
-                bi.d dVar = bi.d.this;
-                dVar.setLoading(true);
-                boolean z11 = z10;
-                int i19 = i10;
-                org.telegram.ui.ActionBar.h3 h3Var2 = h3Var;
-                Runnable runnable3 = runnable2;
-                if (z11) {
-                    TL_account.setPrivacy setprivacy = new TL_account.setPrivacy();
-                    setprivacy.key = new TLRPC.TL_inputPrivacyKeyStatusTimestamp();
-                    setprivacy.rules.add(new TLRPC.TL_inputPrivacyValueAllowAll());
-                    ConnectionsManager.getInstance(i19).sendRequest(setprivacy, new bi.wa(dVar, h3Var2, runnable3, 10));
-                    return;
-                }
-                TL_account.setGlobalPrivacySettings setglobalprivacysettings = new TL_account.setGlobalPrivacySettings();
-                TLRPC.GlobalPrivacySettings globalPrivacySettings = ContactsController.getInstance(i19).getGlobalPrivacySettings();
-                setglobalprivacysettings.settings = globalPrivacySettings;
-                if (globalPrivacySettings == null) {
-                    setglobalprivacysettings.settings = new TLRPC.TL_globalPrivacySettings();
-                }
-                setglobalprivacysettings.settings.hide_read_marks = false;
-                ConnectionsManager.getInstance(i19).sendRequest(setglobalprivacysettings, new bi.ze(context, f6Var, dVar, h3Var2, runnable3, 5));
-            }
-        });
-        if (!premiumFeaturesBlocked) {
-            hc0 hc0Var = new hc0(context, f6Var);
-            hc0Var.setGravity(17);
-            hc0Var.setAlignment(Layout.Alignment.ALIGN_CENTER);
-            hc0Var.setTextColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f18325z6, f6Var));
-            hc0Var.l(" " + LocaleController.getString(R.string.PremiumOr) + " ", false);
-            hc0Var.setTextSize(14);
-            f7.addView(hc0Var, w7.a6.t(270, -2, 1, 12, 17, 12, 17));
-            TextView textView3 = new TextView(context);
-            textView3.setTypeface(AndroidUtilities.bold());
-            textView3.setGravity(17);
-            textView3.setTextColor(org.telegram.ui.ActionBar.j6.v0(i18, f6Var));
-            textView3.setTextSize(1, 20.0f);
-            if (z10) {
-                i15 = R.string.PremiumLastSeenHeader2;
-            } else {
-                i15 = R.string.PremiumReadHeader2;
-            }
-            textView3.setText(LocaleController.getString(i15));
-            f7.addView(textView3, w7.a6.t(-1, -2, 1, 12, 0, 12, 0));
-            TextView textView4 = new TextView(context);
-            textView4.setGravity(17);
-            org.telegram.messenger.em.n(i18, f6Var, textView4, 1, 14.0f);
-            if (z10) {
-                i16 = R.string.PremiumLastSeenText2;
-            } else {
-                i16 = R.string.PremiumReadText2;
-            }
-            org.telegram.messenger.em.p(i16, new Object[]{str2}, textView4);
-            f7.addView(textView4, w7.a6.t(-1, -2, 1, 32, 9, 32, 19));
-            qg.s0 s0Var = new qg.s0(context, f6Var, true);
-            s0Var.setOnClickListener(new gc0(z10, h3Var, runnable));
-            if (z10) {
-                i17 = R.string.PremiumLastSeenButton2;
-            } else {
-                i17 = R.string.PremiumReadButton2;
-            }
-            s0Var.b(LocaleController.getString(i17), false, false);
-            f7.addView(s0Var, w7.a6.t(-1, 48, 1, 0, 0, 0, 4));
-        }
-        h3Var.setCustomView(f7);
-        h3Var.show();
-    }
-
-    public final void a() {
-        String formatPmEditedDate;
-        TextView textView = this.e;
-        int i10 = this.f23992a;
-        TextView textView2 = this.f23995f;
-        TextView textView3 = this.h;
-        LinearLayout linearLayout = this.d;
-        int i11 = this.f23993b;
-        if (i11 == 1) {
-            linearLayout.setAlpha(1.0f);
-            textView3.setAlpha(0.0f);
-            textView2.setVisibility(8);
-            if (AppGlobalConfig.getInstance(i10).messagePrimaryEditedDate.get()) {
-                formatPmEditedDate = LocaleController.formatPmSentDate(this.f23998s);
-            } else {
-                formatPmEditedDate = LocaleController.formatPmEditedDate(this.v);
-            }
-            textView.setText(formatPmEditedDate);
-        } else if (i11 == 2) {
-            linearLayout.setAlpha(1.0f);
-            textView3.setAlpha(0.0f);
-            textView2.setVisibility(8);
-            textView.setText(LocaleController.formatPmFwdDate(this.f23999w));
-        } else {
-            setOnClickListener(null);
-            linearLayout.setAlpha(0.0f);
-            textView3.setAlpha(1.0f);
-            textView2.setVisibility(0);
-            TLRPC.TL_messages_getOutboxReadDate tL_messages_getOutboxReadDate = new TLRPC.TL_messages_getOutboxReadDate();
-            tL_messages_getOutboxReadDate.peer = MessagesController.getInstance(i10).getInputPeer(this.f23996n);
-            tL_messages_getOutboxReadDate.msg_id = this.f23997r;
-            ConnectionsManager.getInstance(i10).sendRequest(tL_messages_getOutboxReadDate, new z1(this, 8));
+            this.d = null;
         }
     }
 
-    @Override
-    public final void onDetachedFromWindow() {
-        tb tbVar;
-        super.onDetachedFromWindow();
-        pc pcVar = pc.f26074w;
-        if (pcVar != null && (tbVar = pcVar.e) != null && tbVar.getParent() != null && (pcVar.e.getParent().getParent() instanceof jb)) {
-            pcVar.b();
+    public static void a(Matrix matrix, float[] fArr) {
+        Matrix matrix2 = f27072l;
+        matrix.invert(matrix2);
+        float[] fArr2 = f27071k;
+        fArr2[0] = 0.0f;
+        fArr2[1] = 0.0f;
+        fArr2[2] = 1.0f;
+        fArr2[3] = 1.0f;
+        matrix2.mapPoints(fArr2);
+        fArr[0] = fArr2[2] - fArr2[0];
+        fArr[1] = fArr2[3] - fArr2[1];
+        fArr[2] = fArr2[0];
+        fArr[3] = fArr2[1];
+    }
+
+    public static boolean b(float f7) {
+        if (Math.abs(f7 - 1.0f) <= 1.0E-4f) {
+            return true;
+        }
+        return false;
+    }
+
+    public final void c(RectF rectF) {
+        RectF rectF2 = this.f27080j;
+        rectF2.set(0.0f, 0.0f, this.f27076e, this.f27077f);
+        Matrix.ScaleToFit scaleToFit = Matrix.ScaleToFit.FILL;
+        Matrix matrix = this.f27079i;
+        matrix.setRectToRect(rectF2, rectF, scaleToFit);
+        i10 i10Var = this.f27075c;
+        hc0 hc0Var = (hc0) i10Var.f26926c;
+        hc0Var.f26706b.set(matrix);
+        BitmapShader bitmapShader = hc0Var.d;
+        if (bitmapShader != null) {
+            bitmapShader.setLocalMatrix(matrix);
+        }
+        hc0 hc0Var2 = (hc0) i10Var.d;
+        hc0Var2.f26706b.set(matrix);
+        BitmapShader bitmapShader2 = hc0Var2.d;
+        if (bitmapShader2 != null) {
+            bitmapShader2.setLocalMatrix(matrix);
+        }
+        gc0 gc0Var = this.d;
+        if (gc0Var != null && Build.VERSION.SDK_INT >= 33) {
+            float[] fArr = gc0Var.f26344g;
+            a(matrix, fArr);
+            gc0Var.f26342e.a(fArr);
+            gc0Var.f26343f.a(fArr);
         }
     }
 
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        float f7;
-        View view = (View) getParent();
-        int size = View.MeasureSpec.getSize(i10);
-        int mode = View.MeasureSpec.getMode(i10);
-        if (this.F < 0.0f) {
-            this.F = 0.0f;
-            int i12 = this.f23993b;
-            TextView textView = this.e;
-            if (i12 == 0) {
-                long currentTimeMillis = System.currentTimeMillis();
-                float max = Math.max(this.F, AndroidUtilities.dp(144.0f));
-                this.F = max;
-                float max2 = Math.max(max, textView.getPaint().measureText(LocaleController.getString(R.string.PmReadUnknown)) + AndroidUtilities.dp(48.0f));
-                this.F = max2;
-                TextPaint paint = textView.getPaint();
-                float max3 = Math.max(max2, paint.measureText(LocaleController.getString(R.string.PmRead) + this.f23995f.getPaint().measureText(LocaleController.getString(R.string.PmReadShowWhen))) + AndroidUtilities.dp(64.0f));
-                this.F = max3;
-                float max4 = Math.max(max3, textView.getPaint().measureText(LocaleController.formatString(R.string.PmReadTodayAt, LocaleController.getInstance().getFormatterDay().format(new Date(currentTimeMillis)))) + ((float) AndroidUtilities.dp(48.0f)));
-                this.F = max4;
-                int i13 = this.f24001y;
-                if (i13 > 86400) {
-                    f7 = 48.0f;
-                    this.F = Math.max(max4, textView.getPaint().measureText(LocaleController.formatString(R.string.PmReadYesterdayAt, LocaleController.getInstance().getFormatterDay().format(new Date(currentTimeMillis)))) + AndroidUtilities.dp(48.0f));
-                } else {
-                    f7 = 48.0f;
-                }
-                if (i13 > 172800) {
-                    float max5 = Math.max(this.F, textView.getPaint().measureText(LocaleController.formatString(R.string.PmReadDateTimeAt, LocaleController.getInstance().getFormatterDayMonth().format(new Date(currentTimeMillis)), LocaleController.getInstance().getFormatterDay().format(new Date(currentTimeMillis)))) + AndroidUtilities.dp(f7));
-                    this.F = max5;
-                    this.F = Math.max(max5, textView.getPaint().measureText(LocaleController.formatString(R.string.PmReadDateTimeAt, LocaleController.getInstance().getFormatterYear().format(new Date(currentTimeMillis)), LocaleController.getInstance().getFormatterDay().format(new Date(currentTimeMillis)))) + AndroidUtilities.dp(f7));
-                }
-            } else {
-                this.F = textView.getPaint().measureText(textView.getText().toString()) + AndroidUtilities.dp(48.0f);
-            }
+    public final void d(Matrix matrix) {
+        boolean z10;
+        i10 i10Var = this.f27075c;
+        float[] fArr = (float[]) i10Var.h;
+        a(matrix, fArr);
+        hc0 hc0Var = (hc0) i10Var.f26927e;
+        hc0Var.f26706b.set(matrix);
+        BitmapShader bitmapShader = hc0Var.d;
+        if (bitmapShader != null) {
+            bitmapShader.setLocalMatrix(matrix);
         }
-        int i14 = 1073741824;
-        if (view != null && view.getWidth() > 0) {
-            size = view.getWidth();
-            mode = 1073741824;
-        }
-        float f10 = this.F;
-        if (size >= f10 && mode != Integer.MIN_VALUE) {
-            i14 = mode;
+        boolean z11 = false;
+        if (b(fArr[0]) && b(fArr[1])) {
+            z10 = true;
         } else {
-            size = (int) f10;
+            z10 = false;
         }
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(size, i14), i11);
+        hc0Var.a(z10);
+        gc0 gc0Var = this.d;
+        if (gc0Var != null && Build.VERSION.SDK_INT >= 33) {
+            float[] fArr2 = gc0Var.f26344g;
+            a(matrix, fArr2);
+            hc0 hc0Var2 = gc0Var.d;
+            if (b(fArr2[0]) && b(fArr2[1])) {
+                z11 = true;
+            }
+            hc0Var2.a(z11);
+            gc0Var.f26342e.b(fArr2);
+            gc0Var.f26343f.b(fArr2);
+        }
+    }
+
+    public final Paint e(Bitmap bitmap, Bitmap bitmap2, int i10, int i11, int i12, boolean z10) {
+        Bitmap bitmap3;
+        Bitmap bitmap4 = (Bitmap) this.f27073a.p(bitmap2);
+        if (i12 >= 0) {
+            int k10 = i0.a.k(i10, ((Color.alpha(i10) * i11) * i12) / 25500);
+            a5.a aVar = this.f27074b;
+            hh.a aVar2 = (hh.a) aVar.f286c;
+            if (aVar2.a(bitmap) || k10 != aVar.f285b || ((Bitmap) aVar.d) == null) {
+                Bitmap bitmap5 = (Bitmap) aVar.d;
+                if (bitmap5 == null || bitmap5.getWidth() != bitmap.getWidth() || ((Bitmap) aVar.d).getHeight() != bitmap.getHeight()) {
+                    aVar.d = Bitmap.createBitmap(bitmap);
+                }
+                Utilities.applySoftLight(bitmap, (Bitmap) aVar.d, k10);
+                aVar2.b(bitmap);
+                aVar.f285b = k10;
+            }
+            bitmap3 = (Bitmap) aVar.d;
+        } else {
+            bitmap3 = null;
+        }
+        Bitmap bitmap6 = bitmap3;
+        this.f27076e = bitmap.getWidth();
+        this.f27077f = bitmap.getHeight();
+        this.f27078g = bitmap4.getWidth();
+        this.h = bitmap4.getHeight();
+        gc0 gc0Var = this.d;
+        if (gc0Var != null && z10 && Build.VERSION.SDK_INT >= 33) {
+            return gc0Var.a(bitmap, bitmap4, bitmap6, i11, i12);
+        }
+        i10 i10Var = this.f27075c;
+        ft ftVar = (ft) i10Var.f26928f;
+        ft ftVar2 = (ft) i10Var.f26929g;
+        hc0 hc0Var = (hc0) i10Var.d;
+        Paint paint = (Paint) i10Var.f26925b;
+        hc0 hc0Var2 = (hc0) i10Var.f26926c;
+        boolean b10 = hc0Var2.b(bitmap);
+        hc0 hc0Var3 = (hc0) i10Var.f26927e;
+        boolean b11 = b10 | hc0Var3.b(bitmap4);
+        if (i12 >= 0) {
+            if ((hc0Var.b(bitmap6) | b11) || i10Var.f26924a != 1) {
+                i10Var.f26924a = 1;
+                paint.setShader(new ComposeShader(hc0Var2.d, new ComposeShader(hc0Var.d, hc0Var3.d, PorterDuff.Mode.DST_IN), PorterDuff.Mode.SRC_OVER));
+                return paint;
+            }
+        } else if ((ftVar2.a(i0.a.k(-1, ((-i12) * i11) / 100)) | b11 | ftVar.a(-16777216)) || i10Var.f26924a != 2) {
+            i10Var.f26924a = 2;
+            paint.setShader(new ComposeShader((yf.i) ftVar.f26182b, new ComposeShader(new ComposeShader(hc0Var2.d, hc0Var3.d, PorterDuff.Mode.DST_IN), (yf.i) ftVar2.f26182b, PorterDuff.Mode.MULTIPLY), PorterDuff.Mode.SRC_OVER));
+            return paint;
+        }
+        return paint;
     }
 }

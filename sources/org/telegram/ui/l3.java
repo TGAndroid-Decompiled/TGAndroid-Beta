@@ -1,136 +1,141 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.net.Uri;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Emoji;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class l3 extends org.telegram.ui.web.c1 {
-    public final n3 S0;
+import java.util.ArrayList;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class l3 implements org.telegram.ui.web.i0 {
+    public final m3 f38179a;
 
-    public l3(n3 n3Var, Context context, int i10) {
-        super(i10, context, null, false);
-        this.S0 = n3Var;
+    public l3(m3 m3Var) {
+        this.f38179a = m3Var;
     }
 
     @Override
-    public final void E(String str, boolean z10) {
-        String str2;
-        String string;
-        n3 n3Var = this.S0;
-        if (z10) {
-            if (n3Var.f35106r == null) {
-                k3 k3Var = n3Var.e;
-                e3 e3Var = new e3(n3Var.getContext());
-                n3Var.f35106r = e3Var;
-                k3Var.addView(e3Var, w7.a6.c(-1.0f, -1));
-                n3Var.f35106r.h.setOnClickListener(new a(n3Var, 2));
-                AndroidUtilities.updateViewVisibilityAnimated(n3Var.f35106r, n3Var.f35105n, 1.0f, false);
-            }
-            e3 e3Var2 = n3Var.f35106r;
-            if (getWebView() != null) {
-                str2 = getWebView().getUrl();
-            } else {
-                str2 = null;
-            }
-            TextView textView = e3Var2.e;
-            e3Var2.d.setText(LocaleController.getString(R.string.WebErrorTitle));
-            String v = org.telegram.ui.web.c1.v(str2);
-            boolean z11 = true;
-            if (v != null && Uri.parse(v) != null && Uri.parse(v).getAuthority() != null) {
-                string = LocaleController.formatString(R.string.WebErrorInfoDomain, Uri.parse(v).getAuthority());
-            } else {
-                string = LocaleController.getString(R.string.WebErrorInfo);
-            }
-            textView.setText(Emoji.replaceEmoji(AndroidUtilities.replaceTags(string), textView.getPaint().getFontMetricsInt(), false));
-            e3Var2.f32042f.setText(str);
-            e3 e3Var3 = n3Var.f35106r;
-            int i10 = org.telegram.ui.ActionBar.j6.Pk;
-            if (AndroidUtilities.computePerceivedBrightness(org.telegram.ui.ActionBar.j6.w0(null, i10, false)) > 0.721f) {
-                z11 = false;
-            }
-            e3Var3.b(z11, false);
-            n3Var.f35106r.setBackgroundColor(org.telegram.ui.ActionBar.j6.w0(null, i10, false));
-        }
-        e3 e3Var4 = n3Var.f35106r;
-        n3Var.f35105n = z10;
-        AndroidUtilities.updateViewVisibilityAnimated(e3Var4, z10, 1.0f, false);
-        invalidate();
-    }
-
-    @Override
-    public final void I() {
-        this.S0.K.i0(true);
-    }
-
-    @Override
-    public final void J(boolean z10, boolean z11) {
-        float f7;
-        boolean z12;
-        boolean z13;
-        boolean z14 = true;
-        n3 n3Var = this.S0;
-        n3Var.f35107s = !z10;
-        n3Var.v = !z11;
-        j4 j4Var = n3Var.K;
-        j4Var.i0(true);
-        if (n3Var == j4Var.f33920u0[0]) {
-            l0 l0Var = j4Var.f33908h0;
-            if (!l0Var.W && !l0Var.T) {
-                ArticleViewer$WindowView articleViewer$WindowView = j4Var.f33906f0;
-                if (!articleViewer$WindowView.e && !articleViewer$WindowView.f18842f) {
-                    if (!j4Var.J() && j4Var.f33904d0.size() <= 1) {
-                        j4Var.f33908h0.setBackButtonCached(false);
-                        j4Var.f33908h0.P.f();
-                    } else {
-                        org.telegram.ui.ActionBar.i2 i2Var = j4Var.f33908h0.M;
-                        if (!n3Var.f35107s && j4Var.f33904d0.size() <= 1) {
-                            f7 = 1.0f;
-                        } else {
-                            f7 = 0.0f;
-                        }
-                        i2Var.c(f7, true);
-                        l0 l0Var2 = j4Var.f33908h0;
-                        if (!n3Var.f35107s && j4Var.f33904d0.size() <= 1) {
-                            z12 = false;
-                        } else {
-                            z12 = true;
-                        }
-                        l0Var2.setBackButtonCached(z12);
-                        j4Var.f33908h0.P.f();
-                    }
-                    j4Var.f33908h0.setHasForward(n3Var.v);
-                    l0 l0Var3 = j4Var.f33908h0;
-                    n3 n3Var2 = j4Var.f33920u0[0];
-                    if (n3Var2 != null && n3Var2.e()) {
-                        z13 = true;
-                    } else {
-                        z13 = false;
-                    }
-                    l0Var3.setIsTonsite(z13);
-                    l0 l0Var4 = j4Var.f33908h0;
-                    n3 n3Var3 = j4Var.f33920u0[0];
-                    l0Var4.setIsLocal((n3Var3 == null || !n3Var3.d()) ? false : false);
-                }
-            }
+    public final void b() {
+        v3 v3Var = this.f38179a.K.K;
+        if (v3Var != null) {
+            v3Var.dismiss(true);
         }
     }
 
     @Override
-    public final void K(org.telegram.ui.web.y0 y0Var) {
-        this.S0.e.setWebView(y0Var);
+    public final String g(boolean z10, boolean z11) {
+        return "UNSUPPORTED";
     }
 
     @Override
-    public final void U(String str, boolean z10) {
-        org.telegram.ui.web.i2 i2Var;
-        n3 n3Var = this.S0;
-        j4 j4Var = n3Var.K;
-        if (j4Var.f33908h0 != null && n3Var == j4Var.f33920u0[0] && (i2Var = n3Var.f35110y) != null && i2Var.b() == null) {
-            n3Var.f35110y.d(getWebView());
+    public final boolean h() {
+        return false;
+    }
+
+    @Override
+    public final void j() {
+        m3 m3Var = this.f38179a;
+        i4 i4Var = m3Var.K;
+        v3 v3Var = i4Var.K;
+        if (v3Var != null) {
+            if (!v3Var.h) {
+                v3Var.h = true;
+                v3Var.release();
+                v3Var.K.s();
+            }
+        } else if (i4Var.f37232u0[0] == m3Var) {
+            i4Var.G();
         }
-        super.U(str, z10);
+    }
+
+    @Override
+    public final void o(int i10, boolean z10) {
+        m3.a(this.f38179a, z10, i10);
+    }
+
+    @Override
+    public final void y() {
+        m3 m3Var = this.f38179a;
+        i4 i4Var = m3Var.K;
+        if (i4Var.f37232u0[0] == m3Var) {
+            i4Var.G();
+        }
+    }
+
+    @Override
+    public final fi.a1 z() {
+        return null;
+    }
+
+    @Override
+    public final void a() {
+    }
+
+    @Override
+    public final void c() {
+    }
+
+    @Override
+    public final void d(TLRPC.Document document) {
+    }
+
+    @Override
+    public final void e(String str) {
+    }
+
+    @Override
+    public final void f(ArrayList arrayList) {
+    }
+
+    @Override
+    public final void i(boolean z10) {
+    }
+
+    @Override
+    public final void k(boolean z10) {
+    }
+
+    @Override
+    public final void m(int i10) {
+    }
+
+    @Override
+    public final void p(boolean z10) {
+    }
+
+    @Override
+    public final void r(int i10) {
+    }
+
+    @Override
+    public final void s() {
+    }
+
+    @Override
+    public final void t(boolean z10) {
+    }
+
+    @Override
+    public final void w(boolean z10) {
+    }
+
+    @Override
+    public final void x(boolean z10) {
+    }
+
+    @Override
+    public final void n(TLRPC.InputInvoice inputInvoice, String str, TLObject tLObject) {
+    }
+
+    @Override
+    public final void u(int i10, int i11, boolean z10) {
+    }
+
+    @Override
+    public final void v(TLRPC.User user, String str, ArrayList arrayList) {
+    }
+
+    @Override
+    public final void q(boolean z10, boolean z11, String str, long j3, int i10, int i11, boolean z12, boolean z13) {
+    }
+
+    @Override
+    public final void l(boolean z10, boolean z11, String str, long j3, int i10, int i11, boolean z12, boolean z13, String str2) {
     }
 }

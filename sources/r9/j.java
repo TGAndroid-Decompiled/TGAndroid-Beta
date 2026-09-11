@@ -1,30 +1,71 @@
 package r9;
 
-import android.os.Handler;
-import android.os.Looper;
+import i9.s;
+import java.util.ArrayDeque;
 import java.util.concurrent.Executor;
+import java.util.concurrent.RejectedExecutionException;
+import java.util.logging.Logger;
+import l5.o;
+import n6.l;
 public final class j implements Executor {
-    public static final j f41389a;
-    public static final Handler f41390b;
-    public static final j[] f41391c;
+    public static final Logger f45053f = Logger.getLogger(j.class.getName());
+    public final Executor f45054a;
+    public final ArrayDeque f45055b = new ArrayDeque();
+    public int f45056c = 1;
+    public long d = 0;
+    public final s f45057e = new s(this);
 
-    static {
-        ?? r02 = new Enum("INSTANCE", 0);
-        f41389a = r02;
-        f41391c = new j[]{r02};
-        f41390b = new Handler(Looper.getMainLooper());
-    }
-
-    public static j valueOf(String str) {
-        return (j) Enum.valueOf(j.class, str);
-    }
-
-    public static j[] values() {
-        return (j[]) f41391c.clone();
+    public j(Executor executor) {
+        l.h(executor);
+        this.f45054a = executor;
     }
 
     @Override
     public final void execute(Runnable runnable) {
-        f41390b.post(runnable);
+        l.h(runnable);
+        synchronized (this.f45055b) {
+            int i10 = this.f45056c;
+            if (i10 != 4 && i10 != 3) {
+                long j3 = this.d;
+                o oVar = new o(1, runnable);
+                this.f45055b.add(oVar);
+                this.f45056c = 2;
+                try {
+                    this.f45054a.execute(this.f45057e);
+                    if (this.f45056c == 2) {
+                        synchronized (this.f45055b) {
+                            try {
+                                if (this.d == j3 && this.f45056c == 2) {
+                                    this.f45056c = 3;
+                                }
+                            } finally {
+                            }
+                        }
+                        return;
+                    }
+                    return;
+                } catch (Error | RuntimeException e7) {
+                    synchronized (this.f45055b) {
+                        try {
+                            int i11 = this.f45056c;
+                            boolean z10 = true;
+                            if ((i11 != 1 && i11 != 2) || !this.f45055b.removeLastOccurrence(oVar)) {
+                                z10 = false;
+                            }
+                            if (!(e7 instanceof RejectedExecutionException) || z10) {
+                                throw e7;
+                            }
+                        } finally {
+                        }
+                    }
+                    return;
+                }
+            }
+            this.f45055b.add(runnable);
+        }
+    }
+
+    public final String toString() {
+        return "SequentialExecutor@" + System.identityHashCode(this) + "{" + this.f45054a + "}";
     }
 }

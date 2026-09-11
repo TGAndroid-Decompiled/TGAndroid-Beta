@@ -1,85 +1,70 @@
 package org.telegram.ui;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MediaController;
-import org.telegram.messenger.SendMessagesHelper;
-import org.telegram.tgnet.TLRPC;
-public final class tm0 implements org.telegram.ui.Components.wi {
-    public final on0 f36966a;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.AnimatorSet;
+public final class tm0 extends AnimatorListenerAdapter {
+    public final int f40794a;
+    public final boolean f40795b;
+    public final pn0 f40796c;
 
-    public tm0(on0 on0Var) {
-        this.f36966a = on0Var;
+    public tm0(pn0 pn0Var, boolean z10, int i10) {
+        this.f40794a = i10;
+        this.f40796c = pn0Var;
+        this.f40795b = z10;
     }
 
     @Override
-    public final void A1(int i10, boolean z10, boolean z11, int i11, int i12, long j3, boolean z12, boolean z13, long j10) {
-        org.telegram.ui.Components.yi yiVar;
-        on0 on0Var = this.f36966a;
-        if (on0Var.getParentActivity() != null && (yiVar = on0Var.R0) != null) {
-            if (i10 != 8 && i10 != 7) {
-                yiVar.dismissWithButtonClick(i10);
-                on0Var.F1(i10);
-                return;
-            }
-            if (i10 != 8) {
-                yiVar.dismiss(true);
-            }
-            HashMap<Object, Object> selectedPhotos = on0Var.R0.f29378j0.getSelectedPhotos();
-            ArrayList<Object> selectedPhotosOrder = on0Var.R0.f29378j0.getSelectedPhotosOrder();
-            if (!selectedPhotos.isEmpty()) {
-                ArrayList arrayList = new ArrayList();
-                for (int i13 = 0; i13 < selectedPhotosOrder.size(); i13++) {
-                    MediaController.PhotoEntry photoEntry = (MediaController.PhotoEntry) selectedPhotos.get(selectedPhotosOrder.get(i13));
-                    SendMessagesHelper.SendingMediaInfo sendingMediaInfo = new SendMessagesHelper.SendingMediaInfo();
-                    String str = photoEntry.imagePath;
-                    if (str != null) {
-                        sendingMediaInfo.path = str;
-                    } else {
-                        sendingMediaInfo.path = photoEntry.path;
-                    }
-                    arrayList.add(sendingMediaInfo);
-                    photoEntry.reset();
+    public final void onAnimationCancel(Animator animator) {
+        switch (this.f40794a) {
+            case 0:
+                pn0 pn0Var = this.f40796c;
+                AnimatorSet animatorSet = pn0Var.M;
+                if (animatorSet != null && animatorSet.equals(animator)) {
+                    pn0Var.M = null;
+                    return;
                 }
-                on0Var.G1(arrayList);
-            }
+                return;
+            default:
+                pn0 pn0Var2 = this.f40796c;
+                AnimatorSet animatorSet2 = pn0Var2.M;
+                if (animatorSet2 != null && animatorSet2.equals(animator)) {
+                    pn0Var2.M = null;
+                    return;
+                }
+                return;
         }
     }
 
     @Override
-    public final void K0() {
-        AndroidUtilities.hideKeyboard(this.f36966a.fragmentView.findFocus());
-    }
-
-    @Override
-    public final boolean R1() {
-        return false;
-    }
-
-    @Override
-    public final boolean e0() {
-        return false;
-    }
-
-    @Override
-    public final void y0(org.telegram.ui.Components.jh jhVar) {
-        jhVar.run();
-    }
-
-    @Override
-    public final void U0(Object obj) {
-    }
-
-    @Override
-    public final void i1(TLRPC.User user) {
-    }
-
-    @Override
-    public final void v0() {
-    }
-
-    @Override
-    public final void W1(ArrayList arrayList, CharSequence charSequence, boolean z10, int i10, int i11, long j3, boolean z11, long j10) {
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f40794a) {
+            case 0:
+                pn0 pn0Var = this.f40796c;
+                AnimatorSet animatorSet = pn0Var.M;
+                if (animatorSet != null && animatorSet.equals(animator)) {
+                    if (!this.f40795b) {
+                        pn0Var.N.setVisibility(4);
+                        return;
+                    } else {
+                        pn0Var.L.getContentView().setVisibility(4);
+                        return;
+                    }
+                }
+                return;
+            default:
+                pn0 pn0Var2 = this.f40796c;
+                AnimatorSet animatorSet2 = pn0Var2.M;
+                if (animatorSet2 != null && animatorSet2.equals(animator)) {
+                    if (!this.f40795b) {
+                        pn0Var2.P.setVisibility(4);
+                        return;
+                    } else {
+                        pn0Var2.O.setVisibility(4);
+                        return;
+                    }
+                }
+                return;
+        }
     }
 }

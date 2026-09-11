@@ -1,58 +1,83 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-import org.telegram.messenger.HashtagSearchController;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.Utilities;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class m40 implements Utilities.Callback5, Utilities.Callback5Return {
-    public final n40 f25160a;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.Paint;
+import android.graphics.drawable.Drawable;
+import org.telegram.messenger.AndroidUtilities;
+public final class m40 extends Drawable {
+    public byte[] f28375a;
+    public final Paint f28376b = new Paint();
+    public final int[] f28377c = {-1, -2758925, -13805707, -13657655};
 
-    public m40(n40 n40Var) {
-        this.f25160a = n40Var;
+    @Override
+    public final void draw(Canvas canvas) {
+        byte[] bArr = this.f28375a;
+        if (bArr != null) {
+            int length = bArr.length;
+            int[] iArr = this.f28377c;
+            Paint paint = this.f28376b;
+            if (length == 16) {
+                float floor = (float) Math.floor(Math.min(getBounds().width(), getBounds().height()) / 8.0f);
+                float f7 = 8.0f * floor;
+                float max = Math.max(0.0f, (getBounds().width() - f7) / 2.0f);
+                float max2 = Math.max(0.0f, (getBounds().height() - f7) / 2.0f);
+                int i10 = 0;
+                for (int i11 = 0; i11 < 8; i11++) {
+                    int i12 = 0;
+                    while (i12 < 8) {
+                        int i13 = i10 + 2;
+                        paint.setColor(iArr[Math.abs((this.f28375a[i10 / 8] >> (i10 % 8)) & 3) % 4]);
+                        float f10 = (i12 * floor) + max;
+                        float f11 = i11 * floor;
+                        canvas.drawRect(f10, f11 + max2, f10 + floor, f11 + floor + max2, paint);
+                        i12++;
+                        i10 = i13;
+                    }
+                }
+                return;
+            }
+            float floor2 = (float) Math.floor(Math.min(getBounds().width(), getBounds().height()) / 12.0f);
+            float f12 = 12.0f * floor2;
+            float max3 = Math.max(0.0f, (getBounds().width() - f12) / 2.0f);
+            float max4 = Math.max(0.0f, (getBounds().height() - f12) / 2.0f);
+            int i14 = 0;
+            int i15 = 0;
+            while (i15 < 12) {
+                int i16 = i14;
+                for (int i17 = 0; i17 < 12; i17++) {
+                    paint.setColor(iArr[Math.abs((this.f28375a[i16 / 8] >> (i16 % 8)) & 3) % 4]);
+                    float f13 = (i17 * floor2) + max3;
+                    float f14 = i15 * floor2;
+                    canvas.drawRect(f13, f14 + max4, f13 + floor2, f14 + floor2 + max4, paint);
+                    i16 += 2;
+                }
+                i15++;
+                i14 = i16;
+            }
+        }
     }
 
     @Override
-    public void mo17run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-        View view = (View) obj2;
-        ((Integer) obj3).getClass();
-        ((Float) obj4).getClass();
-        ((Float) obj5).getClass();
-        int i10 = ((v51) obj).d;
-        n40 n40Var = this.f25160a;
-        if (i10 == 0) {
-            HashtagSearchController.getInstance(n40Var.f25405a).clearHistory();
-            n40Var.f25408f.N(true);
-            return;
-        }
-        Utilities.Callback callback = n40Var.h;
-        if (callback != null) {
-            callback.run((String) n40Var.f25407c.get(i10 - 1));
-        }
+    public final int getIntrinsicHeight() {
+        return AndroidUtilities.dp(32.0f);
     }
 
     @Override
-    public Object run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-        View view = (View) obj2;
-        ((Integer) obj3).getClass();
-        ((Float) obj4).getClass();
-        ((Float) obj5).getClass();
-        int i10 = ((v51) obj).d;
-        boolean z10 = false;
-        if (i10 != 0) {
-            n40 n40Var = this.f25160a;
-            String str = (String) n40Var.f25407c.get(i10 - 1);
-            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(n40Var.getContext(), 0, n40Var.f25406b);
-            String string = LocaleController.getString(R.string.ClearSearchSingleAlertTitle);
-            org.telegram.ui.ActionBar.d2 d2Var = alertDialog$Builder.f17528a;
-            d2Var.R = string;
-            d2Var.T = LocaleController.formatString(R.string.ClearSearchSingleHashtagAlertText, str);
-            alertDialog$Builder.k(LocaleController.getString(R.string.ClearSearchRemove), new km(7, n40Var, str));
-            alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
-            d2Var.show();
-            z10 = true;
-        }
-        return Boolean.valueOf(z10);
+    public final int getIntrinsicWidth() {
+        return AndroidUtilities.dp(32.0f);
+    }
+
+    @Override
+    public final int getOpacity() {
+        return 0;
+    }
+
+    @Override
+    public final void setAlpha(int i10) {
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

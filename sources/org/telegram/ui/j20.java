@@ -1,6 +1,89 @@
 package org.telegram.ui;
-public abstract class j20 {
-    public static void a(android.app.Activity r30, int r31, java.lang.String r32, org.telegram.tgnet.TLObject r33, org.telegram.tgnet.tl.TL_fragment.TL_collectibleInfo r34, org.telegram.ui.ActionBar.f6 r35) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.j20.a(android.app.Activity, int, java.lang.String, org.telegram.tgnet.TLObject, org.telegram.tgnet.tl.TL_fragment$TL_collectibleInfo, org.telegram.ui.ActionBar.f6):void");
+public final class j20 implements org.telegram.ui.Components.eo0 {
+    public final int f37495a;
+    public final tg.a f37496b;
+
+    public j20(tg.a aVar, int i10) {
+        this.f37495a = i10;
+        this.f37496b = aVar;
+    }
+
+    @Override
+    public final void B() {
+        int i10 = this.f37495a;
+    }
+
+    @Override
+    public final void X(float f7, boolean z10) {
+        switch (this.f37495a) {
+            case 0:
+                tg.f fVar = this.f37496b.f46490c;
+                if (fVar != null) {
+                    fVar.v = f7 * 2.0f;
+                    return;
+                }
+                return;
+            case 1:
+                tg.f fVar2 = this.f37496b.f46490c;
+                if (fVar2 != null) {
+                    fVar2.f46552w = f7 * 2.0f;
+                    return;
+                }
+                return;
+            case 2:
+                tg.f fVar3 = this.f37496b.f46490c;
+                if (fVar3 != null) {
+                    fVar3.f46553x = f7;
+                    return;
+                }
+                return;
+            default:
+                tg.f fVar4 = this.f37496b.f46490c;
+                if (fVar4 != null) {
+                    fVar4.A = f7 * 2.0f;
+                    return;
+                }
+                return;
+        }
+    }
+
+    @Override
+    public final CharSequence getContentDescription() {
+        switch (this.f37495a) {
+            case 0:
+                return null;
+            case 1:
+                return null;
+            case 2:
+                return null;
+            default:
+                return null;
+        }
+    }
+
+    @Override
+    public final int l0() {
+        switch (this.f37495a) {
+            case 0:
+                return 0;
+            case 1:
+                return 0;
+            case 2:
+                return 0;
+            default:
+                return 0;
+        }
+    }
+
+    private final void a() {
+    }
+
+    private final void b() {
+    }
+
+    private final void c() {
+    }
+
+    private final void d() {
     }
 }

@@ -3,12 +3,12 @@ package le;
 import android.view.View;
 import android.view.animation.Interpolator;
 public final class b implements d {
-    public final int f12867a;
-    public final d f12868b;
-    public final Interpolator f12869c;
+    public final int f15365a;
+    public final d f15366b;
+    public final Interpolator f15367c;
     public final long d;
-    public float e;
-    public boolean f12870f;
+    public float f15368e;
+    public boolean f15369f;
     public e h;
 
     public b(View view, Interpolator interpolator, long j3) {
@@ -16,23 +16,18 @@ public final class b implements d {
     }
 
     @Override
-    public final void B(float f7, int i10) {
-        this.f12868b.B(f7, this.f12867a);
-    }
-
-    @Override
-    public final void G(int i10, float f7, float f10, e eVar) {
-        if (this.e != f7) {
-            this.e = f7;
-            this.f12868b.G(this.f12867a, f7, -1.0f, null);
+    public final void E(int i10, float f7, float f10, e eVar) {
+        if (this.f15368e != f7) {
+            this.f15368e = f7;
+            this.f15366b.E(this.f15365a, f7, -1.0f, null);
         }
     }
 
     public final void a(boolean z10, boolean z11) {
         float f7;
         b bVar;
-        if (this.f12870f != z10 || !z11) {
-            this.f12870f = z10;
+        if (this.f15369f != z10 || !z11) {
+            this.f15369f = z10;
             if (z10) {
                 f7 = 1.0f;
             } else {
@@ -41,7 +36,7 @@ public final class b implements d {
             if (z11) {
                 if (this.h == null) {
                     bVar = this;
-                    bVar.h = new e(0, bVar, this.f12869c, this.d, this.e);
+                    bVar.h = new e(0, bVar, this.f15367c, this.d, this.f15368e);
                 } else {
                     bVar = this;
                 }
@@ -52,17 +47,22 @@ public final class b implements d {
             if (eVar != null) {
                 eVar.c(f7);
             }
-            float f10 = this.e;
+            float f10 = this.f15368e;
             if (f10 != f7) {
-                int i10 = this.f12867a;
-                d dVar = this.f12868b;
+                int i10 = this.f15365a;
+                d dVar = this.f15366b;
                 if (f10 != f7) {
-                    this.e = f7;
-                    dVar.G(i10, f7, -1.0f, null);
+                    this.f15368e = f7;
+                    dVar.E(i10, f7, -1.0f, null);
                 }
-                dVar.B(f7, i10);
+                dVar.z(f7, i10);
             }
         }
+    }
+
+    @Override
+    public final void z(float f7, int i10) {
+        this.f15366b.z(f7, this.f15365a);
     }
 
     public b(int i10, d dVar, Interpolator interpolator, long j3) {
@@ -70,11 +70,11 @@ public final class b implements d {
     }
 
     public b(int i10, d dVar, Interpolator interpolator, long j3, boolean z10) {
-        this.f12867a = i10;
-        this.f12868b = dVar;
-        this.f12869c = interpolator;
+        this.f15365a = i10;
+        this.f15366b = dVar;
+        this.f15367c = interpolator;
         this.d = j3;
-        this.f12870f = z10;
-        this.e = z10 ? 1.0f : 0.0f;
+        this.f15369f = z10;
+        this.f15368e = z10 ? 1.0f : 0.0f;
     }
 }

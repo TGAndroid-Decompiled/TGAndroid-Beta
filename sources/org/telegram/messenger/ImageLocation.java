@@ -16,7 +16,7 @@ public class ImageLocation {
     public long documentId;
     public byte[] file_reference;
     public int imageType;
-    public org.telegram.ui.web.j2 instantFile;
+    public org.telegram.ui.web.i2 instantFile;
     public byte[] iv;
     public byte[] key;
     public TLRPC.TL_fileLocationToBeDeprecated location;
@@ -49,12 +49,12 @@ public class ImageLocation {
         return imageLocation;
     }
 
-    public static ImageLocation getForInstantFile(org.telegram.ui.web.j2 j2Var) {
-        if (j2Var == null) {
+    public static ImageLocation getForInstantFile(org.telegram.ui.web.i2 i2Var) {
+        if (i2Var == null) {
             return null;
         }
         ImageLocation imageLocation = new ImageLocation();
-        imageLocation.instantFile = j2Var;
+        imageLocation.instantFile = i2Var;
         return imageLocation;
     }
 
@@ -156,7 +156,7 @@ public class ImageLocation {
         }
         if (stickerSet.access_hash != 0) {
             tL_inputStickerSetShortName = new TLRPC.TL_inputStickerSetID();
-            tL_inputStickerSetShortName.f17215id = stickerSet.f17222id;
+            tL_inputStickerSetShortName.f19889id = stickerSet.f19896id;
             tL_inputStickerSetShortName.access_hash = stickerSet.access_hash;
         } else {
             tL_inputStickerSetShortName = new TLRPC.TL_inputStickerSetShortName();
@@ -216,7 +216,7 @@ public class ImageLocation {
             if (obj3 != null) {
                 str = obj3.getClass().getSimpleName();
             }
-            hc.b.v(str, v);
+            com.google.android.gms.internal.vision.e2.t(str, v);
         }
         return strippedKeyInternal;
     }
@@ -228,7 +228,7 @@ public class ImageLocation {
     public String getKey(Object obj, Object obj2, boolean z10) {
         int i10;
         if (this.secureDocument != null) {
-            return this.secureDocument.secureFile.dc_id + "_" + this.secureDocument.secureFile.f17330id;
+            return this.secureDocument.secureFile.dc_id + "_" + this.secureDocument.secureFile.f20004id;
         }
         TLRPC.PhotoSize photoSize = this.photoSize;
         if (!(photoSize instanceof TLRPC.TL_photoStrippedSize) && !(photoSize instanceof TLRPC.TL_photoPathSize)) {
@@ -239,9 +239,9 @@ public class ImageLocation {
             if (webFile != null) {
                 return Utilities.MD5(webFile.url);
             }
-            org.telegram.ui.web.j2 j2Var = this.instantFile;
-            if (j2Var != null) {
-                return Utilities.MD5(j2Var.f37984b);
+            org.telegram.ui.web.i2 i2Var = this.instantFile;
+            if (i2Var != null) {
+                return Utilities.MD5(i2Var.f42129b);
             }
             TLRPC.Document document = this.document;
             if (document != null) {
@@ -250,7 +250,7 @@ public class ImageLocation {
                     StringBuilder sb2 = new StringBuilder();
                     sb2.append(this.document.dc_id);
                     sb2.append("_");
-                    sb2.append(this.document.f17201id);
+                    sb2.append(this.document.f19875id);
                     sb2.append("_");
                     sb2.append(org.telegram.ui.ActionBar.j6.q0(themeDocument.themeSettings));
                     sb2.append("_");
@@ -269,8 +269,8 @@ public class ImageLocation {
                     }
                     sb2.append(i11);
                     return sb2.toString();
-                } else if (document.f17201id != 0 && document.dc_id != 0) {
-                    return this.document.dc_id + "_" + this.document.f17201id;
+                } else if (document.f19875id != 0 && document.dc_id != 0) {
+                    return this.document.dc_id + "_" + this.document.f19875id;
                 } else {
                     return null;
                 }
@@ -350,11 +350,11 @@ public class ImageLocation {
                 return null;
             }
             tL_inputPeerChat = new TLRPC.TL_inputPeerChannel();
-            tL_inputPeerChat.channel_id = chat.f17195id;
+            tL_inputPeerChat.channel_id = chat.f19869id;
             tL_inputPeerChat.access_hash = chat.access_hash;
         } else {
             tL_inputPeerChat = new TLRPC.TL_inputPeerChat();
-            tL_inputPeerChat.chat_id = chat.f17195id;
+            tL_inputPeerChat.chat_id = chat.f19869id;
         }
         TLRPC.InputPeer inputPeer = tL_inputPeerChat;
         int i12 = chat.photo.dc_id;
@@ -434,14 +434,14 @@ public class ImageLocation {
                 if (photo != null) {
                     imageLocation.file_reference = photo.file_reference;
                     imageLocation.access_hash = photo.access_hash;
-                    imageLocation.photoId = photo.f17219id;
+                    imageLocation.photoId = photo.f19893id;
                     imageLocation.thumbSize = str;
                     return imageLocation;
                 }
                 if (document != null) {
                     imageLocation.file_reference = document.file_reference;
                     imageLocation.access_hash = document.access_hash;
-                    imageLocation.documentId = document.f17201id;
+                    imageLocation.documentId = document.f19875id;
                     imageLocation.thumbSize = str;
                 }
                 return imageLocation;

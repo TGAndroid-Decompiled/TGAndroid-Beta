@@ -4,33 +4,37 @@ import android.app.Activity;
 import android.content.Context;
 import org.telegram.messenger.AccountInstance;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.i80;
-public final class c2 extends i80 {
-    public final TLRPC.User f28076c;
+import org.telegram.ui.Components.z70;
+public final class c2 extends z70 {
+    public final TLRPC.User f31439c;
     public final TLRPC.Chat d;
-    public final String e;
-    public final TLRPC.InputPeer f28077f;
+    public final String f31440e;
+    public final TLRPC.InputPeer f31441f;
     public final boolean h;
-    public final boolean f28078n;
-    public final Activity f28079r;
-    public final org.telegram.ui.ActionBar.p2 f28080s;
-    public final AccountInstance v;
+    public final boolean f31442n;
+    public final boolean f31443r;
+    public final Activity f31444s;
+    public final org.telegram.ui.ActionBar.n2 v;
+    public final AccountInstance f31445w;
+    public final boolean f31446x;
 
-    public c2(Context context, TLRPC.Chat chat, TLRPC.User user, TLRPC.Chat chat2, String str, TLRPC.InputPeer inputPeer, boolean z10, boolean z11, Activity activity, org.telegram.ui.ActionBar.p2 p2Var, AccountInstance accountInstance) {
+    public c2(Context context, TLRPC.Chat chat, TLRPC.User user, TLRPC.Chat chat2, String str, TLRPC.InputPeer inputPeer, boolean z10, boolean z11, boolean z12, Activity activity, org.telegram.ui.ActionBar.n2 n2Var, AccountInstance accountInstance, boolean z13) {
         super(context, chat);
-        this.f28076c = user;
+        this.f31439c = user;
         this.d = chat2;
-        this.e = str;
-        this.f28077f = inputPeer;
+        this.f31440e = str;
+        this.f31441f = inputPeer;
         this.h = z10;
-        this.f28078n = z11;
-        this.f28079r = activity;
-        this.f28080s = p2Var;
-        this.v = accountInstance;
+        this.f31442n = z11;
+        this.f31443r = z12;
+        this.f31444s = activity;
+        this.v = n2Var;
+        this.f31445w = accountInstance;
+        this.f31446x = z13;
     }
 
     @Override
     public final void m() {
-        e2.b(this.f28076c, this.d, this.e, this.f28077f, true, this.h, this.f28078n, false, this.f28079r, this.f28080s, this.v, false, false, false);
+        d2.b(this.f31439c, this.d, this.f31440e, this.f31441f, false, this.h, this.f31442n, this.f31443r, this.f31444s, this.v, this.f31445w, false, true, this.f31446x);
     }
 }

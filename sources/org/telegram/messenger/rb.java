@@ -1,31 +1,44 @@
 package org.telegram.messenger;
-public final class rb implements Runnable {
-    public final int f16224a;
-    public final MessagesController f16225b;
-    public final a0.i f16226c;
-    public final a0.i d;
 
-    public rb(MessagesController messagesController, a0.i iVar, a0.i iVar2, int i10) {
-        this.f16224a = i10;
-        this.f16225b = messagesController;
-        this.f16226c = iVar;
-        this.d = iVar2;
+import java.util.ArrayList;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class rb implements RequestDelegate {
+    public final int f18895a;
+    public final MessagesController f18896b;
+    public final long f18897c;
+    public final long d;
+    public final ArrayList f18898e;
+
+    public rb(int i10, long j3, long j10, ArrayList arrayList, MessagesController messagesController) {
+        this.f18895a = i10;
+        this.f18896b = messagesController;
+        this.f18897c = j3;
+        this.d = j10;
+        this.f18898e = arrayList;
     }
 
     @Override
-    public final void run() {
-        switch (this.f16224a) {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f18895a) {
             case 0:
-                this.f16225b.lambda$checkDeletingTask$86(this.f16226c, this.d);
+                this.f18896b.lambda$checkUnreadPollVotesInternal2$430(this.f18897c, this.d, this.f18898e, tLObject, tL_error);
                 return;
             case 1:
-                this.f16225b.lambda$updatePrintingStrings$170(this.f16226c, this.d);
+                this.f18896b.lambda$checkUnreadPollVotesInternal2$432(this.f18897c, this.d, this.f18898e, tLObject, tL_error);
                 return;
             case 2:
-                this.f16225b.lambda$getNewDeleteTask$83(this.f16226c, this.d);
+                this.f18896b.lambda$checkUnreadPollVotesInternal2$434(this.f18897c, this.d, this.f18898e, tLObject, tL_error);
+                return;
+            case 3:
+                this.f18896b.lambda$checkUnreadReactionsInternal2$423(this.f18897c, this.d, this.f18898e, tLObject, tL_error);
+                return;
+            case 4:
+                this.f18896b.lambda$checkUnreadReactionsInternal2$425(this.f18897c, this.d, this.f18898e, tLObject, tL_error);
                 return;
             default:
-                this.f16225b.lambda$checkDeletingTask$85(this.f16226c, this.d);
+                this.f18896b.lambda$checkUnreadReactionsInternal2$427(this.f18897c, this.d, this.f18898e, tLObject, tL_error);
                 return;
         }
     }

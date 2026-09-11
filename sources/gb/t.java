@@ -1,12 +1,12 @@
 package gb;
 
 import java.util.Map;
-import v7.p8;
+import v7.m8;
 public abstract class t extends db.u {
-    public final v f8719a;
+    public final v f10558a;
 
     public t(v vVar) {
-        this.f8719a = vVar;
+        this.f10558a = vVar;
     }
 
     public abstract Object a();
@@ -22,7 +22,7 @@ public abstract class t extends db.u {
             return null;
         }
         Object a2 = a();
-        Map map = this.f8719a.f8722a;
+        Map map = this.f10558a.f10561a;
         try {
             aVar.b();
             while (aVar.k()) {
@@ -35,11 +35,11 @@ public abstract class t extends db.u {
             }
             aVar.f();
             return b(a2);
-        } catch (IllegalAccessException e) {
-            p8 p8Var = ib.c.f10550a;
-            throw new RuntimeException("Unexpected IllegalAccessException occurred (Gson 2.11.0). Certain ReflectionAccessFilter features require Java >= 9 to work correctly. If you are not using ReflectionAccessFilter, report this to the Gson maintainers.", e);
-        } catch (IllegalStateException e7) {
-            throw new RuntimeException(e7);
+        } catch (IllegalAccessException e7) {
+            m8 m8Var = ib.c.f11937a;
+            throw new RuntimeException("Unexpected IllegalAccessException occurred (Gson 2.11.0). Certain ReflectionAccessFilter features require Java >= 9 to work correctly. If you are not using ReflectionAccessFilter, report this to the Gson maintainers.", e7);
+        } catch (IllegalStateException e10) {
+            throw new RuntimeException(e10);
         }
     }
 
@@ -51,13 +51,13 @@ public abstract class t extends db.u {
         }
         bVar.c();
         try {
-            for (s sVar : this.f8719a.f8723b) {
+            for (s sVar : this.f10558a.f10562b) {
                 sVar.a(bVar, obj);
             }
             bVar.f();
-        } catch (IllegalAccessException e) {
-            p8 p8Var = ib.c.f10550a;
-            throw new RuntimeException("Unexpected IllegalAccessException occurred (Gson 2.11.0). Certain ReflectionAccessFilter features require Java >= 9 to work correctly. If you are not using ReflectionAccessFilter, report this to the Gson maintainers.", e);
+        } catch (IllegalAccessException e7) {
+            m8 m8Var = ib.c.f11937a;
+            throw new RuntimeException("Unexpected IllegalAccessException occurred (Gson 2.11.0). Certain ReflectionAccessFilter features require Java >= 9 to work correctly. If you are not using ReflectionAccessFilter, report this to the Gson maintainers.", e7);
         }
     }
 }

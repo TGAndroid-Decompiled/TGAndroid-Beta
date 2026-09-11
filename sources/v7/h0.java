@@ -15,8 +15,8 @@ public abstract class h0 {
                 Method declaredMethod = WebView.class.getDeclaredMethod("getFactory", null);
                 declaredMethod.setAccessible(true);
                 classLoader = declaredMethod.invoke(null, null).getClass().getClassLoader();
-            } catch (IllegalAccessException | NoSuchMethodException | InvocationTargetException e) {
-                throw new RuntimeException(e);
+            } catch (IllegalAccessException | NoSuchMethodException | InvocationTargetException e7) {
+                throw new RuntimeException(e7);
             }
         }
         return (InvocationHandler) Class.forName("org.chromium.support_lib_glue.SupportLibReflectionUtil", false, classLoader).getDeclaredMethod("createWebViewProviderFactory", null).invoke(null, null);

@@ -1,30 +1,18 @@
 package w7;
 
-import android.os.Build;
-import android.util.Log;
+import java.io.Closeable;
 public abstract class i6 {
-    public static void a(Object obj, String str, String str2) {
-        String c10 = c(str);
-        if (Log.isLoggable(c10, 3)) {
-            Log.d(c10, String.format(str2, obj));
-        }
-    }
-
-    public static void b(String str, String str2, Exception exc) {
-        String c10 = c(str);
-        if (Log.isLoggable(c10, 6)) {
-            Log.e(c10, str2, exc);
-        }
-    }
-
-    public static String c(String str) {
-        if (Build.VERSION.SDK_INT < 26) {
-            String concat = "TRuntime.".concat(str);
-            if (concat.length() > 23) {
-                return concat.substring(0, 23);
+    public static final void a(Closeable closeable, Throwable th2) {
+        if (closeable != null) {
+            if (th2 == null) {
+                closeable.close();
+                return;
             }
-            return concat;
+            try {
+                closeable.close();
+            } catch (Throwable th3) {
+                v7.r7.a(th2, th3);
+            }
         }
-        return "TRuntime.".concat(str);
     }
 }

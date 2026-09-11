@@ -2,16 +2,42 @@ package org.telegram.ui.Cells;
 
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.Components.RadialProgressView;
 public final class v4 extends FrameLayout {
-    public FrameLayout f20546a;
+    public RadialProgressView f23367a;
+    public TextView f23368b;
+    public ImageView f23369c;
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(73.0f), 1073741824));
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec((int) (AndroidUtilities.dp(56.0f) * 2.5f), 1073741824));
     }
 
-    public void setOnButtonClick(View.OnClickListener onClickListener) {
-        this.f20546a.setOnClickListener(onClickListener);
+    public void setLoading(boolean z10) {
+        int i10;
+        int i11;
+        RadialProgressView radialProgressView = this.f23367a;
+        int i12 = 4;
+        if (z10) {
+            i10 = 0;
+        } else {
+            i10 = 4;
+        }
+        radialProgressView.setVisibility(i10);
+        TextView textView = this.f23368b;
+        if (z10) {
+            i11 = 4;
+        } else {
+            i11 = 0;
+        }
+        textView.setVisibility(i11);
+        ImageView imageView = this.f23369c;
+        if (!z10) {
+            i12 = 0;
+        }
+        imageView.setVisibility(i12);
     }
 }

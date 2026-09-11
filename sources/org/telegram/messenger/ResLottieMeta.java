@@ -71,13 +71,13 @@ public final class ResLottieMeta {
                 return jArr;
             }
             throw new IllegalStateException("lottie_meta.bin has invalid size: " + available);
-        } catch (IOException e) {
-            throw new RuntimeException("Unable to load lottie_meta.bin", e);
-        } catch (RuntimeException e7) {
+        } catch (IOException e7) {
+            throw new RuntimeException("Unable to load lottie_meta.bin", e7);
+        } catch (RuntimeException e10) {
             if (BuildVars.LOGS_ENABLED) {
-                FileLog.e("Unable to load lottie_meta.bin", e7);
+                FileLog.e("Unable to load lottie_meta.bin", e10);
             }
-            throw e7;
+            throw e10;
         }
     }
 

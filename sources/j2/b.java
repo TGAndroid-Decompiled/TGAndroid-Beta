@@ -3,18 +3,17 @@ package j2;
 import b2.b1;
 import b2.u0;
 import b2.x1;
-import n4.y;
-import u2.c0;
+import u2.b0;
 public interface b {
-    void a(i2.g gVar);
+    void a(i2.h hVar);
 
-    void b(c0 c0Var);
+    void b(b1 b1Var, pf.b bVar);
 
-    void c(x1 x1Var);
+    void c(b0 b0Var);
 
-    void d(a aVar, c0 c0Var);
+    void d(x1 x1Var);
 
-    void e(b1 b1Var, y yVar);
+    void e(a aVar, b0 b0Var);
 
     void f(a aVar, int i10, long j3);
 

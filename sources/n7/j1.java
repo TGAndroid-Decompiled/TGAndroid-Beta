@@ -1,11 +1,5 @@
 package n7;
-public final class j1 implements i1 {
-    public static final b f13966a;
-
-    static {
-        int i10 = p.f13987c;
-        Object[] objArr = z.f14010r;
-        new c0("FIDO");
-        f13966a = new b(Boolean.FALSE);
-    }
+public final class j1 {
+    public static final j1 f16652b = new j1();
+    public final f f16653a = new f(new Object());
 }

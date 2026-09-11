@@ -1,20 +1,21 @@
 package org.telegram.ui.Components;
+public final class hv0 extends o1.i {
+    public final fv0 f26877a;
+    public final gv0 f26878b;
+    public float f26879c = 1.0f;
 
-import android.content.Context;
-public final class hv0 {
-    public final int f23765a;
-    public final int f23766b;
-    public final gv0 f23767c;
-    public final fv0 d;
-    public final iv0 e;
+    public hv0(fv0 fv0Var, gv0 gv0Var) {
+        this.f26877a = fv0Var;
+        this.f26878b = gv0Var;
+    }
 
-    public hv0(iv0 iv0Var, Context context, int i10) {
-        this.e = iv0Var;
-        this.f23766b = i10;
-        int i11 = iv0Var.a2;
-        iv0Var.a2 = i11 + 1;
-        this.f23765a = (i11 & 65535) | 65536;
-        this.f23767c = new gv0(this, context, i10);
-        this.d = new fv0(iv0Var, context, i10, false);
+    @Override
+    public final float a(Object obj) {
+        return this.f26877a.get(obj) * this.f26879c;
+    }
+
+    @Override
+    public final void b(Object obj, float f7) {
+        this.f26878b.b(obj, f7 / this.f26879c);
     }
 }

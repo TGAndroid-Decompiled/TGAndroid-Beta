@@ -1,22 +1,26 @@
 package org.telegram.messenger;
 
-import java.util.function.IntFunction;
-public final class vd implements IntFunction {
-    public final int f16590a;
+import android.util.SparseArray;
+public final class vd implements Runnable {
+    public final int f19235a;
+    public final MessagesController f19236b;
+    public final SparseArray f19237c;
 
-    public vd(int i10) {
-        this.f16590a = i10;
+    public vd(MessagesController messagesController, SparseArray sparseArray, int i10) {
+        this.f19235a = i10;
+        this.f19236b = messagesController;
+        this.f19237c = sparseArray;
     }
 
     @Override
-    public final Object apply(int i10) {
-        int[][] lambda$new$16;
-        switch (this.f16590a) {
+    public final void run() {
+        switch (this.f19235a) {
             case 0:
-                return String.valueOf(i10);
+                this.f19236b.lambda$getDifference$352(this.f19237c);
+                return;
             default:
-                lambda$new$16 = MessagesController.lambda$new$16(i10);
-                return lambda$new$16;
+                this.f19236b.lambda$getChannelDifference$339(this.f19237c);
+                return;
         }
     }
 }

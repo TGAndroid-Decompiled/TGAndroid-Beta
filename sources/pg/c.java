@@ -1,6 +1,6 @@
 package pg;
 public interface c {
-    void a();
+    float getX();
 
-    j b();
+    float getY();
 }

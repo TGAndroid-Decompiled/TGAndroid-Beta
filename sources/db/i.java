@@ -18,11 +18,11 @@ public abstract class i {
         try {
             StringWriter stringWriter = new StringWriter();
             lb.b bVar = new lb.b(stringWriter);
-            bVar.f12859n = 1;
+            bVar.f15356n = 1;
             fb.d.l(this, bVar);
             return stringWriter.toString();
-        } catch (IOException e) {
-            throw new AssertionError(e);
+        } catch (IOException e7) {
+            throw new AssertionError(e7);
         }
     }
 }

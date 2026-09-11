@@ -1,60 +1,109 @@
 package di;
 
-import android.content.Context;
+import android.graphics.drawable.ColorDrawable;
+import android.text.TextUtils;
+import android.view.ViewGroup;
 import java.util.ArrayList;
-import org.telegram.messenger.AccountInstance;
+import org.telegram.messenger.FileLoader;
+import org.telegram.messenger.ImageLocation;
+import org.telegram.messenger.MessagesController;
+import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_payments;
-import org.telegram.ui.ActionBar.f6;
-import org.telegram.ui.Components.sk;
-public final class w3 implements Runnable {
-    public final int f6978a = 0;
-    public final int f6979b;
-    public final TLRPC.TL_error f6980c;
-    public final TLObject d;
-    public final boolean e;
-    public final long f6981f;
-    public final long h;
-    public final Object f6982n;
-    public final Object f6983r;
-    public final Object f6984s;
-    public final Object v;
-    public final Object f6985w;
-    public final Object f6986x;
+import org.telegram.ui.Components.kl0;
+public abstract class w3 extends kl0 {
+    public boolean d;
+    public String f8321f;
+    public String h;
+    public TLRPC.User f8322n;
+    public boolean f8323r;
+    public final x3 f8325w;
+    public final ArrayList f8319c = new ArrayList();
+    public int f8320e = -1;
+    public final ColorDrawable f8324s = new ColorDrawable(285212671);
+    public final bi.oa v = new bi.oa(this, 23);
 
-    public w3(bi.d dVar, TLObject tLObject, int i10, long j3, org.telegram.ui.ActionBar.h3 h3Var, TL_payments.starRefProgram starrefprogram, long j10, boolean z10, Context context, f6 f6Var, TLRPC.User user, TLRPC.TL_error tL_error) {
-        this.f6982n = dVar;
-        this.d = tLObject;
-        this.f6979b = i10;
-        this.f6981f = j3;
-        this.f6983r = h3Var;
-        this.f6984s = starrefprogram;
-        this.h = j10;
-        this.e = z10;
-        this.v = context;
-        this.f6985w = f6Var;
-        this.f6986x = user;
-        this.f6980c = tL_error;
+    public w3(x3 x3Var) {
+        this.f8325w = x3Var;
     }
 
     @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: di.w3.run():void");
+    public final boolean D(s4.c1 c1Var) {
+        return true;
     }
 
-    public w3(sk skVar, int i10, TLRPC.TL_error tL_error, TLObject tLObject, AccountInstance accountInstance, boolean z10, String str, ArrayList arrayList, long j3, long j10, ArrayList arrayList2, ArrayList arrayList3) {
-        this.f6982n = skVar;
-        this.f6979b = i10;
-        this.f6980c = tL_error;
-        this.d = tLObject;
-        this.f6983r = accountInstance;
-        this.e = z10;
-        this.f6984s = str;
-        this.v = arrayList;
-        this.f6981f = j3;
-        this.h = j10;
-        this.f6985w = arrayList2;
-        this.f6986x = arrayList3;
+    public final void E() {
+        int i10 = this.f8325w.f8362a;
+        if (!this.d) {
+            this.d = true;
+            F(true);
+            MessagesController messagesController = MessagesController.getInstance(i10);
+            String str = messagesController.imageSearchBot;
+            if (this.f8322n == null) {
+                TLObject userOrChat = messagesController.getUserOrChat(str);
+                if (userOrChat instanceof TLRPC.User) {
+                    this.f8322n = (TLRPC.User) userOrChat;
+                }
+            }
+            TLRPC.User user = this.f8322n;
+            if (user == null && !this.f8323r) {
+                TLRPC.TL_contacts_resolveUsername tL_contacts_resolveUsername = new TLRPC.TL_contacts_resolveUsername();
+                tL_contacts_resolveUsername.username = str;
+                this.f8320e = ConnectionsManager.getInstance(i10).sendRequest(tL_contacts_resolveUsername, new bi.m1(6, this, messagesController));
+            } else if (user == null) {
+            } else {
+                TLRPC.TL_messages_getInlineBotResults tL_messages_getInlineBotResults = new TLRPC.TL_messages_getInlineBotResults();
+                tL_messages_getInlineBotResults.bot = messagesController.getInputUser(this.f8322n);
+                String str2 = this.f8321f;
+                String str3 = "";
+                if (str2 == null) {
+                    str2 = "";
+                }
+                tL_messages_getInlineBotResults.query = str2;
+                tL_messages_getInlineBotResults.peer = new TLRPC.TL_inputPeerEmpty();
+                String str4 = this.h;
+                if (str4 != null) {
+                    str3 = str4;
+                }
+                tL_messages_getInlineBotResults.offset = str3;
+                this.f8320e = ConnectionsManager.getInstance(i10).sendRequest(tL_messages_getInlineBotResults, new u3(0, this, TextUtils.isEmpty(str3)));
+            }
+        }
+    }
+
+    public abstract void F(boolean z10);
+
+    @Override
+    public final int h() {
+        return this.f8319c.size();
+    }
+
+    @Override
+    public final void v(s4.c1 c1Var, int i10) {
+        org.telegram.ui.Components.x9 x9Var = (org.telegram.ui.Components.x9) c1Var.f45738a;
+        TLObject tLObject = (TLObject) this.f8319c.get(i10);
+        boolean z10 = tLObject instanceof TLRPC.Document;
+        ColorDrawable colorDrawable = this.f8324s;
+        if (z10) {
+            x9Var.h(ImageLocation.getForDocument((TLRPC.Document) tLObject), "200_200", colorDrawable, null);
+        } else if (tLObject instanceof TLRPC.Photo) {
+            TLRPC.Photo photo = (TLRPC.Photo) tLObject;
+            x9Var.h(ImageLocation.getForPhoto(FileLoader.getClosestPhotoSizeWithSize(photo.sizes, 320), photo), "200_200", colorDrawable, null);
+        } else if (tLObject instanceof TLRPC.BotInlineResult) {
+            TLRPC.BotInlineResult botInlineResult = (TLRPC.BotInlineResult) tLObject;
+            TLRPC.WebDocument webDocument = botInlineResult.thumb;
+            if (webDocument != null) {
+                x9Var.h(ImageLocation.getForPath(webDocument.url), "200_200", colorDrawable, botInlineResult);
+            } else {
+                x9Var.b();
+            }
+        } else {
+            x9Var.b();
+        }
+    }
+
+    @Override
+    public final s4.c1 x(ViewGroup viewGroup, int i10) {
+        return new s4.c1(new v3(this.f8325w.getContext(), 0));
     }
 }

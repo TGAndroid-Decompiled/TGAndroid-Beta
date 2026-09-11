@@ -1,67 +1,178 @@
 package di;
 
-import android.os.Bundle;
-import org.telegram.messenger.ChatObject;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.SendMessagesHelper;
-import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.PrivacyControlActivity;
-import org.telegram.ui.eo;
-import org.telegram.ui.vw0;
-import org.telegram.ui.wr;
-public final class e2 implements Runnable {
-    public final int f6600a;
-    public final long f6601b;
-    public final int f6602c;
+import android.content.Context;
+import android.text.TextUtils;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.MediaDataController;
+import org.telegram.ui.Components.pr;
+public final class e2 extends a2 {
+    public final p1 f7154b;
+    public final d2 f7155c;
+    public final s4.s d;
+    public final c2 f7156e;
+    public final l2 f7157f;
+    public int h;
+    public float f7158n;
+    public boolean f7159r;
+    public final t2 f7160s;
 
-    public e2(int i10, long j3) {
-        this.f6600a = 0;
-        this.f6602c = i10;
-        this.f6601b = j3;
+    public e2(t2 t2Var, Context context) {
+        super(context);
+        org.telegram.ui.ActionBar.f6 f6Var;
+        org.telegram.ui.ActionBar.f6 f6Var2;
+        this.f7160s = t2Var;
+        this.h = 8;
+        this.f7158n = -1.0f;
+        this.f7159r = false;
+        p1 p1Var = new p1(context);
+        this.f7154b = p1Var;
+        d2 d2Var = new d2(this);
+        this.f7155c = d2Var;
+        p1Var.setAdapter(d2Var);
+        s4.s sVar = new s4.s(this.h);
+        this.d = sVar;
+        p1Var.setLayoutManager(sVar);
+        p1Var.setClipToPadding(true);
+        p1Var.setVerticalScrollBarEnabled(false);
+        sVar.O = new x1(this, 1);
+        p1Var.setOnItemClickListener(new bi.d(this, 4));
+        p1Var.setOnScrollListener(new ah.e0(this, 4));
+        s4.j jVar = new s4.j();
+        jVar.f45828c = 220L;
+        jVar.f45829e = 220L;
+        jVar.f45830f = 160L;
+        jVar.f45831g = 160L;
+        jVar.f45832i = pr.f29467g;
+        p1Var.setItemAnimator(jVar);
+        addView(p1Var, w7.x5.c(-1.0f, -1));
+        f6Var = ((org.telegram.ui.ActionBar.f3) t2Var).resourcesProvider;
+        l2 l2Var = new l2(context, f6Var);
+        this.f7157f = l2Var;
+        l2Var.v = new ci.u(this, 3);
+        addView(l2Var, w7.x5.e(-1, -2, 48));
+        f6Var2 = ((org.telegram.ui.ActionBar.f3) t2Var).resourcesProvider;
+        c2 c2Var = new c2(this, context, f6Var2);
+        this.f7156e = c2Var;
+        addView(c2Var, w7.x5.c(36.0f, -1));
     }
 
     @Override
-    public final void run() {
-        switch (this.f6600a) {
-            case 0:
-                SendMessagesHelper.getInstance(this.f6602c).sendMessage(SendMessagesHelper.SendMessageParams.of("/privacy", this.f6601b, null, null, null, false, null, null, null, true, 0, 0, null, false));
-                return;
-            case 1:
-                org.telegram.ui.ActionBar.p2 U = LaunchActivity.U();
-                if (U != null) {
-                    U.presentFragment(eo.Q9(this.f6602c, this.f6601b));
-                    return;
+    public final void a(int i10) {
+        boolean z10;
+        int i11;
+        int i12;
+        this.f6898a = i10;
+        int i13 = 0;
+        if (i10 == 0) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        this.f7154b.Y2 = z10;
+        if (i10 == 0) {
+            i11 = 8;
+        } else {
+            i11 = 5;
+        }
+        this.h = i11;
+        this.d.y1(i11);
+        boolean z11 = this.f7159r;
+        d2 d2Var = this.f7155c;
+        if (!z11) {
+            d2Var.D(null);
+        }
+        t2 t2Var = this.f7160s;
+        int i14 = t2Var.f8168c;
+        l2 l2Var = this.f7157f;
+        if (i14 >= 0) {
+            l2Var.f7516r = true;
+            l2Var.d.setText("");
+            l2Var.f7516r = false;
+            k2 k2Var = l2Var.f7514f;
+            if (k2Var != null) {
+                k2Var.D1(t2Var.f8168c);
+                l2Var.f7514f.B1();
+                if (l2Var.f7514f.getSelectedCategory() != null) {
+                    d2Var.H = l2Var.f7514f.getSelectedCategory().f30105a;
+                    bi.oa oaVar = d2Var.M;
+                    AndroidUtilities.cancelRunOnUIThread(oaVar);
+                    AndroidUtilities.runOnUIThread(oaVar);
                 }
-                return;
-            default:
-                org.telegram.ui.ActionBar.p2 U2 = LaunchActivity.U();
-                if (U2 != null) {
-                    long j3 = this.f6601b;
-                    if (j3 >= 0) {
-                        U2.presentFragment(new PrivacyControlActivity(10, false));
-                        return;
-                    }
-                    int i10 = this.f6602c;
-                    long j10 = -j3;
-                    if (ChatObject.isChannelAndNotMegaGroup(MessagesController.getInstance(i10).getChat(Long.valueOf(j10)))) {
-                        U2.presentFragment(new vw0(j10));
-                        return;
-                    }
-                    Bundle bundle = new Bundle();
-                    bundle.putLong("chat_id", j10);
-                    bundle.putInt("type", 3);
-                    wr wrVar = new wr(bundle);
-                    wrVar.x0(MessagesController.getInstance(i10).getChatFull(j10));
-                    U2.presentFragment(wrVar);
-                    return;
-                }
-                return;
+            }
+        } else if (!TextUtils.isEmpty(t2Var.f8167b)) {
+            l2Var.d.setText(t2Var.f8167b);
+            k2 k2Var2 = l2Var.f7514f;
+            if (k2Var2 != null) {
+                k2Var2.E1(null);
+                l2Var.f7514f.C1();
+            }
+            AndroidUtilities.cancelRunOnUIThread(d2Var.M);
+            AndroidUtilities.runOnUIThread(d2Var.M);
+        } else {
+            l2Var.b();
+        }
+        l2Var.a(i10, t2Var.f8173s);
+        i12 = ((org.telegram.ui.ActionBar.f3) t2Var).currentAccount;
+        MediaDataController mediaDataController = MediaDataController.getInstance(i12);
+        if (i10 == 0) {
+            i13 = 5;
+        }
+        mediaDataController.checkStickers(i13);
+    }
+
+    @Override
+    public final float b() {
+        float f7 = this.f7158n;
+        if (f7 >= 0.0f) {
+            return f7;
+        }
+        int i10 = 0;
+        while (true) {
+            p1 p1Var = this.f7154b;
+            if (i10 >= p1Var.getChildCount()) {
+                return 0.0f;
+            }
+            View childAt = p1Var.getChildAt(i10);
+            Object tag = childAt.getTag();
+            if ((tag instanceof Integer) && ((Integer) tag).intValue() == 34) {
+                return i2.g.f(102.0f, childAt.getBottom(), 0);
+            }
+            i10++;
         }
     }
 
-    public e2(long j3, int i10, int i11) {
-        this.f6600a = i11;
-        this.f6601b = j3;
-        this.f6602c = i10;
+    @Override
+    public final void c() {
+        float max = Math.max(0.0f, b());
+        this.f7156e.setTranslationY(AndroidUtilities.dp(16.0f) + max);
+        this.f7157f.setTranslationY(AndroidUtilities.dp(52.0f) + max);
+        p1 p1Var = this.f7154b;
+        p1Var.Z2 = max + p1Var.getPaddingTop();
+        p1Var.f7813a3 = p1Var.getHeight() - p1Var.getPaddingBottom();
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        int i12;
+        int i13;
+        float f7;
+        t2 t2Var = this.f7160s;
+        i12 = ((org.telegram.ui.ActionBar.f3) t2Var).backgroundPaddingLeft;
+        i13 = ((org.telegram.ui.ActionBar.f3) t2Var).backgroundPaddingLeft;
+        setPadding(i12, 0, i13, 0);
+        this.f7156e.setTranslationY(AndroidUtilities.dp(16.0f));
+        this.f7157f.setTranslationY(AndroidUtilities.dp(52.0f));
+        int dp = AndroidUtilities.dp(5.0f);
+        int dp2 = AndroidUtilities.dp(102.0f);
+        int dp3 = AndroidUtilities.dp(5.0f);
+        int i14 = AndroidUtilities.navigationBarHeight;
+        if (t2Var.f8172r) {
+            f7 = 0.0f;
+        } else {
+            f7 = 40.0f;
+        }
+        this.f7154b.setPadding(dp, dp2, dp3, AndroidUtilities.dp(f7) + i14);
+        super.onMeasure(i10, i11);
     }
 }

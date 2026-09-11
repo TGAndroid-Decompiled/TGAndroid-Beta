@@ -1,76 +1,92 @@
 package lg;
 
-import android.util.DisplayMetrics;
-import android.view.GestureDetector;
-import android.view.MotionEvent;
-import o1.l;
+import android.animation.ValueAnimator;
+import android.graphics.Paint;
+import android.graphics.Path;
 import org.telegram.messenger.AndroidUtilities;
-public final class f extends GestureDetector.SimpleOnGestureListener {
-    public float f12944a;
-    public float f12945b;
-    public final i f12946c;
+import org.telegram.ui.ActionBar.f6;
+import org.telegram.ui.ActionBar.j6;
+public class f {
+    public final kg.a f15437a;
+    public final Paint f15438b;
+    public final Paint f15439c;
+    public final Paint d;
+    public final Path f15440e;
+    public final Path f15441f;
+    public final Path f15442g;
+    public ValueAnimator h;
+    public ValueAnimator f15443i;
+    public int f15444j;
+    public final float[] f15445k;
+    public final float[] f15446l;
+    public int f15447m;
+    public boolean f15448n;
+    public float f15449o;
+    public final f6 f15450p;
 
-    public f(i iVar) {
-        this.f12946c = iVar;
+    public f(kg.a aVar, boolean z10, f6 f6Var) {
+        int length;
+        int length2;
+        Paint paint = new Paint(1);
+        this.f15438b = paint;
+        Paint paint2 = new Paint(1);
+        this.f15439c = paint2;
+        Paint paint3 = new Paint(1);
+        this.d = paint3;
+        this.f15440e = new Path();
+        this.f15441f = new Path();
+        this.f15442g = new Path();
+        this.f15448n = true;
+        this.f15449o = 1.0f;
+        this.f15450p = f6Var;
+        this.f15437a = aVar;
+        paint2.setStrokeWidth(AndroidUtilities.dpf2(2.0f));
+        Paint.Style style = Paint.Style.STROKE;
+        paint2.setStyle(style);
+        if (!jg.g.A1) {
+            paint2.setStrokeJoin(Paint.Join.ROUND);
+        }
+        paint2.setColor(aVar.h);
+        paint.setStrokeWidth(AndroidUtilities.dpf2(1.0f));
+        paint.setStyle(style);
+        paint.setColor(aVar.h);
+        paint3.setStrokeWidth(AndroidUtilities.dpf2(10.0f));
+        paint3.setStyle(style);
+        paint3.setStrokeCap(Paint.Cap.ROUND);
+        paint3.setColor(aVar.h);
+        long[] jArr = aVar.f14918a;
+        if (z10) {
+            length = jArr.length * 8;
+        } else {
+            length = jArr.length << 2;
+        }
+        this.f15445k = new float[length];
+        long[] jArr2 = aVar.f14918a;
+        if (z10) {
+            length2 = jArr2.length * 8;
+        } else {
+            length2 = jArr2.length << 2;
+        }
+        this.f15446l = new float[length2];
     }
 
-    @Override
-    public final boolean onDown(MotionEvent motionEvent) {
-        return true;
-    }
-
-    @Override
-    public final boolean onFling(MotionEvent motionEvent, MotionEvent motionEvent2, float f7, float f10) {
-        DisplayMetrics displayMetrics;
-        float f11;
-        i iVar = this.f12946c;
-        if (iVar.f12956f && !iVar.f12957n) {
-            l lVar = iVar.f12955c.f14134u;
-            if ((f7 / 7.0f) + ((float) lVar.f14140i) >= iVar.getWidth() / 2.0f) {
-                displayMetrics = iVar.getResources().getDisplayMetrics();
-                f11 = 2.1474836E9f;
+    public void a() {
+        int i10;
+        kg.a aVar = this.f15437a;
+        int i11 = aVar.f14923g;
+        f6 f6Var = this.f15450p;
+        if (i11 >= 0 && j6.c1(i11)) {
+            this.f15447m = j6.v0(aVar.f14923g, f6Var);
+        } else {
+            if (i0.a.f(j6.v0(j6.f20663d6, f6Var)) < 0.5d) {
+                i10 = aVar.f14924i;
             } else {
-                displayMetrics = iVar.getResources().getDisplayMetrics();
-                f11 = -2.1474836E9f;
+                i10 = aVar.h;
             }
-            lVar.f14140i = i.a(displayMetrics, f11);
-            iVar.d.f14134u.f14140i = i.b(iVar.getResources().getDisplayMetrics(), (f10 / 10.0f) + ((float) iVar.d.f14134u.f14140i));
-            iVar.f12955c.f();
-            iVar.d.f();
-            iVar.h = true;
-            return true;
+            this.f15447m = i10;
         }
-        return false;
-    }
-
-    @Override
-    public final boolean onScroll(MotionEvent motionEvent, MotionEvent motionEvent2, float f7, float f10) {
-        i iVar = this.f12946c;
-        int i10 = iVar.F;
-        if (!iVar.f12957n) {
-            AndroidUtilities.cancelRunOnUIThread(iVar.f12958r);
-        }
-        if (!iVar.f12956f && (Math.abs(f7) >= i10 || Math.abs(f10) >= i10)) {
-            this.f12944a = (float) iVar.f12955c.f14134u.f14140i;
-            this.f12945b = (float) iVar.d.f14134u.f14140i;
-            iVar.f12956f = true;
-        }
-        if (iVar.f12956f && !iVar.f12957n) {
-            iVar.f12955c.f14134u.f14140i = (motionEvent2.getRawX() + this.f12944a) - motionEvent.getRawX();
-            iVar.d.f14134u.f14140i = (motionEvent2.getRawY() + this.f12945b) - motionEvent.getRawY();
-            iVar.f12955c.f();
-            iVar.d.f();
-        }
-        return iVar.f12956f;
-    }
-
-    @Override
-    public final boolean onSingleTapUp(MotionEvent motionEvent) {
-        i iVar = this.f12946c;
-        if (!iVar.f12957n && !iVar.f12959s) {
-            iVar.c(true);
-            return true;
-        }
-        return false;
+        this.f15439c.setColor(this.f15447m);
+        this.f15438b.setColor(this.f15447m);
+        this.d.setColor(this.f15447m);
     }
 }

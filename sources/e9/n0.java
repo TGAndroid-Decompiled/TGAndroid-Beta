@@ -3,39 +3,39 @@ package e9;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 public final class n0 extends o1 {
-    public int f7404a;
-    public Object f7405b;
-    public final int f7406c;
+    public int f8979a;
+    public Object f8980b;
+    public final int f8981c;
     public final Iterator d;
-    public final Object e;
+    public final Object f8982e;
 
     public n0() {
-        this.f7404a = 2;
+        this.f8979a = 2;
     }
 
     @Override
     public final boolean hasNext() {
         Object next;
-        int i10 = this.f7404a;
+        int i10 = this.f8979a;
         if (i10 != 4) {
             int c10 = m1.j.c(i10);
             if (c10 == 0) {
                 return true;
             }
             if (c10 != 2) {
-                this.f7404a = 4;
-                switch (this.f7406c) {
+                this.f8979a = 4;
+                switch (this.f8981c) {
                     case 0:
                         do {
                             Iterator it = this.d;
                             if (it.hasNext()) {
                                 next = it.next();
                             } else {
-                                this.f7404a = 3;
+                                this.f8979a = 3;
                                 next = null;
                                 break;
                             }
-                        } while (!((d9.f) this.e).apply(next));
+                        } while (!((d9.g) this.f8982e).apply(next));
                         break;
                     default:
                         do {
@@ -43,16 +43,16 @@ public final class n0 extends o1 {
                             if (it2.hasNext()) {
                                 next = it2.next();
                             } else {
-                                this.f7404a = 3;
+                                this.f8979a = 3;
                                 next = null;
                                 break;
                             }
-                        } while (!((i1) this.e).f7386b.contains(next));
+                        } while (!((i1) this.f8982e).f8959b.contains(next));
                         break;
                 }
-                this.f7405b = next;
-                if (this.f7404a != 3) {
-                    this.f7404a = 1;
+                this.f8980b = next;
+                if (this.f8979a != 3) {
+                    this.f8979a = 1;
                     return true;
                 }
                 return false;
@@ -65,25 +65,25 @@ public final class n0 extends o1 {
     @Override
     public final Object next() {
         if (hasNext()) {
-            this.f7404a = 2;
-            Object obj = this.f7405b;
-            this.f7405b = null;
+            this.f8979a = 2;
+            Object obj = this.f8980b;
+            this.f8980b = null;
             return obj;
         }
         throw new NoSuchElementException();
     }
 
-    public n0(Iterator it, d9.f fVar) {
+    public n0(Iterator it, d9.g gVar) {
         this();
-        this.f7406c = 0;
+        this.f8981c = 0;
         this.d = it;
-        this.e = fVar;
+        this.f8982e = gVar;
     }
 
     public n0(i1 i1Var) {
         this();
-        this.f7406c = 1;
-        this.e = i1Var;
-        this.d = i1Var.f7385a.iterator();
+        this.f8981c = 1;
+        this.f8982e = i1Var;
+        this.d = i1Var.f8958a.iterator();
     }
 }

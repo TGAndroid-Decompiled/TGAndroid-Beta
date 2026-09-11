@@ -1,35 +1,32 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.LaunchActivity;
-public final class ce0 extends be0 {
-    public final de0 f22121b0;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.messenger.Utilities;
+public final class ce0 implements NotificationCenter.NotificationCenterDelegate {
+    public final int f24994a;
+    public final Utilities.Callback f24995b;
+    public final NotificationCenter.NotificationCenterDelegate[] f24996c;
 
-    public ce0(de0 de0Var, LaunchActivity launchActivity) {
-        super(launchActivity);
-        this.f22121b0 = de0Var;
+    public ce0(int i10, Utilities.Callback callback, NotificationCenter.NotificationCenterDelegate[] notificationCenterDelegateArr) {
+        this.f24994a = i10;
+        this.f24995b = callback;
+        this.f24996c = notificationCenterDelegateArr;
     }
 
     @Override
-    public final void f(float f7) {
-        LaunchActivity launchActivity = LaunchActivity.G1;
-        if (launchActivity == null) {
-            return;
+    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
+        int i12 = NotificationCenter.activityPermissionsGranted;
+        if (i10 == i12) {
+            int intValue = ((Integer) objArr[0]).intValue();
+            String[] strArr = (String[]) objArr[1];
+            int[] iArr = (int[]) objArr[2];
+            if (intValue == this.f24994a) {
+                Utilities.Callback callback = this.f24995b;
+                if (callback != null) {
+                    callback.run(iArr);
+                }
+                NotificationCenter.getGlobalInstance().removeObserver(this.f24996c[0], i12);
+            }
         }
-        org.telegram.ui.ActionBar.b4 b4Var = launchActivity.f29975z0;
-        b4Var.setScaleX(AndroidUtilities.lerp(1.0f, 1.25f, f7));
-        b4Var.setScaleY(AndroidUtilities.lerp(1.0f, 1.25f, f7));
-    }
-
-    @Override
-    public final void h() {
-        de0.a(this.f22121b0);
-        LaunchActivity launchActivity = LaunchActivity.G1;
-        if (launchActivity == null) {
-            return;
-        }
-        org.telegram.ui.ActionBar.b4 b4Var = launchActivity.f29975z0;
-        b4Var.setScaleX(1.0f);
-        b4Var.setScaleY(1.0f);
     }
 }

@@ -1,79 +1,110 @@
 package ci;
 
 import android.content.Context;
-import android.os.Build;
-import android.os.Handler;
-import android.os.Looper;
-import androidx.profileinstaller.ProfileInstallerInitializer;
-import java.util.Random;
-import java.util.concurrent.LinkedBlockingQueue;
-import java.util.concurrent.ThreadPoolExecutor;
-import java.util.concurrent.TimeUnit;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import xh.t;
-public final class a implements Runnable {
-    public final int f4694a;
-    public final Context f4695b;
+import android.text.TextUtils;
+import android.view.MotionEvent;
+import android.widget.FrameLayout;
+import org.telegram.ui.Components.i81;
+import org.telegram.ui.Components.lr0;
+import org.telegram.ui.Components.rr0;
+import org.telegram.ui.Components.sr0;
+import org.telegram.ui.Components.xu0;
+public final class a extends i81 {
+    public final int T = 0;
+    public Object U;
+    public final FrameLayout V;
 
-    public a(Context context, int i10) {
-        this.f4694a = i10;
-        this.f4695b = context;
+    public a(sr0 sr0Var, Context context, rr0 rr0Var) {
+        super(context, null);
+        this.V = sr0Var;
+        this.U = rr0Var;
     }
 
     @Override
-    public final void run() {
-        Handler handler;
-        switch (this.f4694a) {
+    public boolean i(MotionEvent motionEvent) {
+        switch (this.T) {
             case 0:
-                new t(this.f4695b).show();
-                return;
-            case 1:
-                nf.f.s(this.f4695b, LocaleController.getString(R.string.ChannelAffiliateProgramJoinButtonInfoLink));
-                return;
-            case 2:
-                if (Build.VERSION.SDK_INT >= 28) {
-                    handler = r4.f.a(Looper.getMainLooper());
-                } else {
-                    handler = new Handler(Looper.getMainLooper());
+                return !((lr0) this.V).G.C1;
+            default:
+                return super.i(motionEvent);
+        }
+    }
+
+    @Override
+    public final void w(boolean z10) {
+        switch (this.T) {
+            case 0:
+                lr0 lr0Var = (lr0) this.V;
+                String currentLang = lr0Var.getCurrentLang();
+                if (!TextUtils.equals((String) this.U, currentLang)) {
+                    this.U = currentLang;
+                    lr0Var.G.L0();
+                    return;
                 }
-                handler.postDelayed(new a(this.f4695b, 3), new Random().nextInt(Math.max(1000, 1)) + 5000);
-                return;
-            case 3:
-                new ThreadPoolExecutor(0, 1, 0L, TimeUnit.MILLISECONDS, new LinkedBlockingQueue()).execute(new a(this.f4695b, 4));
-                return;
-            case 4:
-                r4.d.s(this.f4695b, new a3.b(2), r4.d.f41243a, false);
-                return;
-            case 5:
-                new t(this.f4695b).show();
-                return;
-            case 6:
-                nf.f.s(this.f4695b, LocaleController.getString(R.string.StarsTOSLink));
-                return;
-            case 7:
-                new t(this.f4695b).show();
-                return;
-            case 8:
-                nf.f.s(this.f4695b, LocaleController.getString(R.string.StarsTOSLink));
-                return;
-            case 9:
-                nf.f.s(this.f4695b, LocaleController.getString(R.string.StarsTOSLink));
-                return;
-            case 10:
-                nf.f.s(this.f4695b, LocaleController.getString(R.string.PaidContentInfoLink));
-                return;
-            case 11:
-                nf.f.s(this.f4695b, LocaleController.getString(R.string.StarsSubscribeInfoLink));
                 return;
             default:
-                nf.f.s(this.f4695b, LocaleController.getString(R.string.StarsReactionTermsLink));
+                ((rr0) this.U).d.J0(((sr0) this.V).f35626n.getAnimatingIndicatorProgress());
                 return;
         }
     }
 
-    public a(ProfileInstallerInitializer profileInstallerInitializer, Context context) {
-        this.f4694a = 2;
-        this.f4695b = context;
+    @Override
+    public void x(int i10) {
+        switch (this.T) {
+            case 0:
+                lr0 lr0Var = (lr0) this.V;
+                String currentLang = lr0Var.getCurrentLang();
+                if (!TextUtils.equals((String) this.U, currentLang)) {
+                    this.U = currentLang;
+                    lr0Var.G.L0();
+                    return;
+                }
+                return;
+            default:
+                return;
+        }
+    }
+
+    @Override
+    public void y(int i10, boolean z10) {
+        switch (this.T) {
+            case 1:
+                int i11 = ((sr0) this.V).f35626n.f26635b0.get(i10, -1);
+                xu0 xu0Var = ((rr0) this.U).d;
+                if (i11 <= 0) {
+                    xu0.t(xu0Var, 8, z10);
+                    return;
+                } else {
+                    xu0.t(xu0Var, xu0Var.i1(i11).f32342a, z10);
+                    return;
+                }
+            default:
+                super.y(i10, z10);
+                return;
+        }
+    }
+
+    @Override
+    public final void z(int i10) {
+        switch (this.T) {
+            case 0:
+                lr0 lr0Var = (lr0) this.V;
+                String currentLang = lr0Var.getCurrentLang();
+                if (!TextUtils.equals((String) this.U, currentLang)) {
+                    this.U = currentLang;
+                    lr0Var.G.L0();
+                    return;
+                }
+                return;
+            default:
+                ((sr0) this.V).f35626n.f26635b0.get(i10, -1);
+                ((rr0) this.U).d.J0(1.0f);
+                return;
+        }
+    }
+
+    public a(lr0 lr0Var, Context context) {
+        super(context, null);
+        this.V = lr0Var;
     }
 }

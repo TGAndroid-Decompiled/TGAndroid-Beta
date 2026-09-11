@@ -1,159 +1,202 @@
 package yg;
 
-import android.graphics.Rect;
+import android.content.Context;
 import android.view.View;
-import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ImageLocation;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.LiteMode;
-import org.telegram.messenger.MediaDataController;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.R;
-import org.telegram.messenger.UserConfig;
+import org.telegram.messenger.GiftAuctionController;
 import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.hj0;
-import org.telegram.ui.Components.p5;
-import org.telegram.ui.iz;
-public final class e {
-    public static int f46981m;
-    public p5 f46982a;
-    public Rect f46983b;
-    public ArrayList f46984c;
-    public View d;
-    public long e;
-    public boolean f46985f;
-    public boolean f46986g;
-    public int h;
-    public boolean f46987i;
-    public ImageReceiver f46988j;
-    public int f46989k;
-    public long f46990l;
+import org.telegram.tgnet.tl.TL_stars;
+import org.telegram.ui.ActionBar.f3;
+import org.telegram.ui.ActionBar.f6;
+import org.telegram.ui.Components.n70;
+import org.telegram.ui.Components.nr0;
+import yh.e2;
+import yh.m;
+import yh.m2;
+import yh.q2;
+import yh.v;
+import zh.a0;
+import zh.e5;
+import zh.l7;
+import zh.v4;
+public final class e implements View.OnClickListener {
+    public final int f50169a;
+    public final Object f50170b;
+    public final Object f50171c;
+    public final Object d;
 
-    public static e a(p5 p5Var, boolean z10, boolean z11) {
-        int i10 = UserConfig.selectedAccount;
-        ?? obj = new Object();
-        obj.f46983b = new Rect();
-        obj.f46984c = new ArrayList();
-        obj.f46986g = true;
-        obj.f46989k = -1;
-        obj.f46982a = p5Var;
-        obj.f46985f = z10;
-        obj.h = i10;
-        obj.f46987i = z11;
-        obj.e = System.currentTimeMillis();
-        if (z11 && LiteMode.isEnabled(4112)) {
-            ImageReceiver imageReceiver = new ImageReceiver();
-            obj.f46988j = imageReceiver;
-            if (z10) {
-                imageReceiver.setAllowDrawWhileCacheGenerating(true);
-            }
-        }
-        return obj;
+    public e(Object obj, Object obj2, Object obj3, int i10) {
+        this.f50169a = i10;
+        this.f50170b = obj;
+        this.f50171c = obj2;
+        this.d = obj3;
     }
 
-    public final void b(android.graphics.Canvas r18) {
-        throw new UnsupportedOperationException("Method not decompiled: yg.e.b(android.graphics.Canvas):void");
-    }
-
-    public final boolean c() {
-        if (System.currentTimeMillis() - this.e > 2500) {
-            return true;
-        }
-        return false;
-    }
-
-    public final void d(View view) {
-        this.f46982a.o(view);
-        ImageReceiver imageReceiver = this.f46988j;
-        if (imageReceiver != null) {
-            imageReceiver.onDetachedFromWindow();
-            imageReceiver.clearImage();
-        }
-    }
-
-    public final void e(int i10, int i11, int i12, int i13) {
-        Rect rect = this.f46983b;
-        rect.set(i10, i11, i12, i13);
-        ImageReceiver imageReceiver = this.f46988j;
-        if (imageReceiver != null) {
-            imageReceiver.setImageCoords(rect);
-        }
-    }
-
-    public final void f(View view) {
-        boolean z10;
-        boolean z11;
-        TLRPC.TL_availableReaction tL_availableReaction;
-        TLRPC.Document document;
-        boolean z12 = this.f46985f;
-        int i10 = this.h;
-        p5 p5Var = this.f46982a;
-        p5Var.a(view);
-        this.d = view;
-        ImageReceiver imageReceiver = this.f46988j;
-        if (imageReceiver != null && this.f46987i) {
-            imageReceiver.onAttachedToWindow();
-            TLRPC.Document document2 = p5Var.e;
-            TLRPC.TL_messages_stickerSet tL_messages_stickerSet = null;
-            String findAnimatedEmojiEmoticon = MessageObject.findAnimatedEmojiEmoticon(document2, null);
-            if (findAnimatedEmojiEmoticon != null && (tL_availableReaction = MediaDataController.getInstance(i10).getReactionsMap().get(findAnimatedEmojiEmoticon)) != null && (document = tL_availableReaction.around_animation) != null) {
-                if (z12) {
-                    StringBuilder sb2 = new StringBuilder();
-                    int i11 = f46981m;
-                    f46981m = i11 + 1;
-                    sb2.append(i11);
-                    sb2.append(" ");
-                    imageReceiver.setUniqKeyPrefix(sb2.toString());
-                    int f7 = iz.f();
-                    TLRPC.Document document3 = tL_availableReaction.around_animation;
-                    z10 = true;
-                    imageReceiver.setImage(ImageLocation.getForDocument(tL_availableReaction.around_animation), f7 + "_" + f7 + "_pcache_compress", null, null, document3, 0);
-                } else {
-                    ImageLocation forDocument = ImageLocation.getForDocument(document);
-                    String a2 = l0.a();
-                    TLRPC.Document document4 = tL_availableReaction.around_animation;
-                    z10 = true;
-                    imageReceiver.setImage(forDocument, a2, null, null, document4, 0);
-                }
-                z11 = true;
-            } else {
-                z10 = true;
-                z11 = false;
-            }
-            if (!z11) {
-                String str = UserConfig.getInstance(i10).genericAnimationsStickerPack;
-                if (str != null && (tL_messages_stickerSet = MediaDataController.getInstance(i10).getStickerSetByName(str)) == null) {
-                    tL_messages_stickerSet = MediaDataController.getInstance(i10).getStickerSetByEmojiOrName(str);
-                }
-                if (tL_messages_stickerSet != null) {
-                    if (this.f46989k < 0) {
-                        this.f46989k = Math.abs(Utilities.fastRandom.nextInt() % tL_messages_stickerSet.documents.size());
-                    }
-                    if (z12) {
-                        StringBuilder sb3 = new StringBuilder();
-                        int i12 = f46981m;
-                        f46981m = i12 + 1;
-                        sb3.append(i12);
-                        sb3.append(" ");
-                        imageReceiver.setUniqKeyPrefix(sb3.toString());
-                        int f10 = iz.f();
-                        imageReceiver.setImage(ImageLocation.getForDocument(tL_messages_stickerSet.documents.get(this.f46989k)), f10 + "_" + f10 + "_pcache_compress", null, null, tL_messages_stickerSet.documents.get(this.f46989k), 0);
-                    } else {
-                        imageReceiver.setImage(ImageLocation.getForDocument(tL_messages_stickerSet.documents.get(this.f46989k)), "60_60", null, null, tL_messages_stickerSet.documents.get(this.f46989k), 0);
-                    }
-                    z11 = true;
-                }
-            }
-            if (z11) {
-                if (imageReceiver.getLottieAnimation() != null) {
-                    imageReceiver.getLottieAnimation().N(0, false, z10);
-                }
-                imageReceiver.setAutoRepeat(0);
+    @Override
+    public final void onClick(View view) {
+        int i10 = this.f50169a;
+        Object obj = this.d;
+        Object obj2 = this.f50171c;
+        Object obj3 = this.f50170b;
+        switch (i10) {
+            case 0:
+                ((i) obj3).a(view, (HashSet) obj2, (Runnable) obj);
                 return;
-            }
-            imageReceiver.setImageBitmap(new hj0(R.raw.custom_emoji_reaction, AndroidUtilities.dp(60.0f), AndroidUtilities.dp(60.0f), false, null));
+            case 1:
+                new m((Context) obj2, null, null, (GiftAuctionController.Auction) obj).show();
+                ((yh.e) obj3).dismiss();
+                return;
+            case 2:
+                m.R((m) obj3, (boolean[]) obj2, (f6) obj);
+                return;
+            case 3:
+                v.R((v) obj3, (Context) obj2, (f6) obj);
+                return;
+            case 4:
+                v.P((v) obj3, (boolean[]) obj2, (f6) obj);
+                return;
+            case 5:
+                m2 m2Var = (m2) obj3;
+                ((n70) obj2).u();
+                nr0 nr0Var = m2Var.f50439a;
+                e2 e2Var = new e2(m2Var, (TL_stars.SavedStarGift) obj, 0);
+                HashMap hashMap = q2.T;
+                nr0Var.h(null, e2Var);
+                return;
+            case 6:
+                Context context = (Context) obj2;
+                f6 f6Var = (f6) obj;
+                if (((a0) obj3).m0.f51622a == zf.b.f51624a) {
+                    new l7(context, f6Var).show();
+                    return;
+                }
+                return;
+            case 7:
+                final f3 f3Var = (f3) obj2;
+                final di.d dVar = (di.d) obj;
+                f3Var.setCanDismissWithSwipe(false);
+                dVar.setLoading(true);
+                ((v4) obj3).run(new Utilities.Callback() {
+                    @Override
+                    public final void run(Object obj4) {
+                        Boolean bool = (Boolean) obj4;
+                        switch (r3) {
+                            case 0:
+                                boolean booleanValue = bool.booleanValue();
+                                final org.telegram.ui.ActionBar.f3 f3Var2 = f3Var;
+                                if (booleanValue) {
+                                    f3Var2.dismiss();
+                                    return;
+                                }
+                                final di.d dVar2 = dVar;
+                                AndroidUtilities.runOnUIThread(new Runnable() {
+                                    @Override
+                                    public final void run() {
+                                        switch (r3) {
+                                            case 0:
+                                                f3Var2.setCanDismissWithSwipe(false);
+                                                dVar2.setLoading(false);
+                                                return;
+                                            default:
+                                                f3Var2.setCanDismissWithSwipe(false);
+                                                dVar2.setLoading(false);
+                                                return;
+                                        }
+                                    }
+                                }, 400L);
+                                return;
+                            default:
+                                boolean booleanValue2 = bool.booleanValue();
+                                final org.telegram.ui.ActionBar.f3 f3Var3 = f3Var;
+                                if (booleanValue2) {
+                                    f3Var3.dismiss();
+                                    return;
+                                }
+                                final di.d dVar3 = dVar;
+                                AndroidUtilities.runOnUIThread(new Runnable() {
+                                    @Override
+                                    public final void run() {
+                                        switch (r3) {
+                                            case 0:
+                                                f3Var3.setCanDismissWithSwipe(false);
+                                                dVar3.setLoading(false);
+                                                return;
+                                            default:
+                                                f3Var3.setCanDismissWithSwipe(false);
+                                                dVar3.setLoading(false);
+                                                return;
+                                        }
+                                    }
+                                }, 400L);
+                                return;
+                        }
+                    }
+                });
+                return;
+            default:
+                final f3 f3Var2 = (f3) obj2;
+                final di.d dVar2 = (di.d) obj;
+                f3Var2.setCanDismissWithSwipe(false);
+                dVar2.setLoading(true);
+                ((e5) obj3).run(new Utilities.Callback() {
+                    @Override
+                    public final void run(Object obj4) {
+                        Boolean bool = (Boolean) obj4;
+                        switch (r3) {
+                            case 0:
+                                boolean booleanValue = bool.booleanValue();
+                                final org.telegram.ui.ActionBar.f3 f3Var22 = f3Var2;
+                                if (booleanValue) {
+                                    f3Var22.dismiss();
+                                    return;
+                                }
+                                final di.d dVar22 = dVar2;
+                                AndroidUtilities.runOnUIThread(new Runnable() {
+                                    @Override
+                                    public final void run() {
+                                        switch (r3) {
+                                            case 0:
+                                                f3Var22.setCanDismissWithSwipe(false);
+                                                dVar22.setLoading(false);
+                                                return;
+                                            default:
+                                                f3Var22.setCanDismissWithSwipe(false);
+                                                dVar22.setLoading(false);
+                                                return;
+                                        }
+                                    }
+                                }, 400L);
+                                return;
+                            default:
+                                boolean booleanValue2 = bool.booleanValue();
+                                final org.telegram.ui.ActionBar.f3 f3Var3 = f3Var2;
+                                if (booleanValue2) {
+                                    f3Var3.dismiss();
+                                    return;
+                                }
+                                final di.d dVar3 = dVar2;
+                                AndroidUtilities.runOnUIThread(new Runnable() {
+                                    @Override
+                                    public final void run() {
+                                        switch (r3) {
+                                            case 0:
+                                                f3Var3.setCanDismissWithSwipe(false);
+                                                dVar3.setLoading(false);
+                                                return;
+                                            default:
+                                                f3Var3.setCanDismissWithSwipe(false);
+                                                dVar3.setLoading(false);
+                                                return;
+                                        }
+                                    }
+                                }, 400L);
+                                return;
+                        }
+                    }
+                });
+                return;
         }
     }
 }

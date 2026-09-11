@@ -2,11 +2,11 @@ package de;
 
 import java.util.concurrent.CancellationException;
 public final class a extends CancellationException {
-    public final transient ce.j f6482a;
+    public final transient ce.j f6791a;
 
     public a(ce.j jVar) {
         super("Flow was aborted, no more elements needed");
-        this.f6482a = jVar;
+        this.f6791a = jVar;
     }
 
     @Override

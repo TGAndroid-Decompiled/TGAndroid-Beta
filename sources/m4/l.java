@@ -1,26 +1,26 @@
 package m4;
 public final class l {
     public static final String d;
-    public static final String e;
-    public static final String f13423f;
-    public static final String f13424g;
-    public final int f13425a;
-    public final long f13426b;
-    public final p1 f13427c;
+    public static final String f15986e;
+    public static final String f15987f;
+    public static final String f15988g;
+    public final int f15989a;
+    public final long f15990b;
+    public final n1 f15991c;
 
     static {
-        String str = e2.d0.f7188a;
+        String str = e2.d0.f8737a;
         d = Integer.toString(0, 36);
-        e = Integer.toString(1, 36);
+        f15986e = Integer.toString(1, 36);
         Integer.toString(2, 36);
         Integer.toString(3, 36);
-        f13423f = Integer.toString(4, 36);
-        f13424g = Integer.toString(5, 36);
+        f15987f = Integer.toString(4, 36);
+        f15988g = Integer.toString(5, 36);
     }
 
-    public l(int i10, long j3, p1 p1Var) {
-        this.f13425a = i10;
-        this.f13426b = j3;
-        this.f13427c = p1Var;
+    public l(int i10, long j3, n1 n1Var) {
+        this.f15989a = i10;
+        this.f15990b = j3;
+        this.f15991c = n1Var;
     }
 }

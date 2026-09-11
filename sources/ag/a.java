@@ -1,15 +1,14 @@
 package ag;
+public abstract class a {
+    public float f425a = 1.0f;
 
-import java.nio.ShortBuffer;
-import qb.b;
-import t7.u;
-public interface a {
-    public static final ob.a f404i = new ob.a(2);
-    public static final u f405j = new Object();
-    public static final b f406k = new b(2);
-    public static final rb.a f407l = new rb.a(2);
+    public abstract short a();
 
-    int J1(int i10, int i11, int i12);
+    public abstract int b();
 
-    void S0(ShortBuffer shortBuffer, int i10, ShortBuffer shortBuffer2, int i11);
+    public abstract boolean c();
+
+    public abstract void d();
+
+    public abstract void e(int i10, int i11);
 }

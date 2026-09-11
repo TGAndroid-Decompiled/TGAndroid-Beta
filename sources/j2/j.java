@@ -6,76 +6,76 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.ContentInfo;
 public final class j implements r0.d, r0.f {
-    public final int f11490a;
-    public Object f11491b;
+    public final int f13207a;
+    public Object f13208b;
 
     public j() {
-        this.f11490a = 0;
-        this.f11491b = h.e();
+        this.f13207a = 0;
+        this.f13208b = e.f();
     }
 
     @Override
     public ClipData a() {
-        return ((ContentInfo) this.f11491b).getClip();
+        return ((ContentInfo) this.f13208b).getClip();
     }
 
     @Override
     public void b(Uri uri) {
-        ((ContentInfo.Builder) this.f11491b).setLinkUri(uri);
+        ((ContentInfo.Builder) this.f13208b).setLinkUri(uri);
     }
 
     @Override
     public r0.g build() {
-        return new r0.g(new j(((ContentInfo.Builder) this.f11491b).build()));
+        return new r0.g(new j(((ContentInfo.Builder) this.f13208b).build()));
     }
 
     @Override
     public void c(int i10) {
-        ((ContentInfo.Builder) this.f11491b).setFlags(i10);
+        ((ContentInfo.Builder) this.f13208b).setFlags(i10);
     }
 
     @Override
     public ContentInfo d() {
-        return (ContentInfo) this.f11491b;
+        return (ContentInfo) this.f13208b;
     }
 
     @Override
     public int e() {
-        return ((ContentInfo) this.f11491b).getSource();
+        return ((ContentInfo) this.f13208b).getSource();
     }
 
     public void f(LogSessionId logSessionId) {
-        e2.d.g(((LogSessionId) this.f11491b).equals(h.e()));
-        this.f11491b = logSessionId;
+        e2.d.g(((LogSessionId) this.f13208b).equals(e.f()));
+        this.f13208b = logSessionId;
     }
 
     @Override
     public int k() {
-        return ((ContentInfo) this.f11491b).getFlags();
+        return ((ContentInfo) this.f13208b).getFlags();
     }
 
     @Override
     public void setExtras(Bundle bundle) {
-        ((ContentInfo.Builder) this.f11491b).setExtras(bundle);
+        ((ContentInfo.Builder) this.f13208b).setExtras(bundle);
     }
 
     public String toString() {
-        switch (this.f11490a) {
+        switch (this.f13207a) {
             case 2:
-                return "ContentInfoCompat{" + ((ContentInfo) this.f11491b) + "}";
+                return "ContentInfoCompat{" + ((ContentInfo) this.f13208b) + "}";
             default:
                 return super.toString();
         }
     }
 
     public j(ContentInfo contentInfo) {
-        this.f11490a = 2;
+        this.f13207a = 2;
         contentInfo.getClass();
-        this.f11491b = contentInfo;
+        this.f13208b = contentInfo;
     }
 
     public j(ClipData clipData, int i10) {
-        this.f11490a = 1;
-        this.f11491b = r0.c.a(clipData, i10);
+        this.f13207a = 1;
+        this.f13208b = r0.c.a(clipData, i10);
     }
 }

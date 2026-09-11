@@ -1,33 +1,30 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class bx0 extends AnimatorListenerAdapter {
-    public final int f21917a;
-    public final cx0 f21918b;
+import android.animation.ValueAnimator;
+import android.view.View;
+import android.widget.FrameLayout;
+public final class bx0 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f24817a;
+    public final View f24818b;
+    public final FrameLayout f24819c;
 
-    public bx0(cx0 cx0Var, int i10) {
-        this.f21917a = i10;
-        this.f21918b = cx0Var;
+    public bx0(FrameLayout frameLayout, View view, int i10) {
+        this.f24817a = i10;
+        this.f24819c = frameLayout;
+        this.f24818b = view;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f21917a) {
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f24817a) {
             case 0:
-                cx0 cx0Var = this.f21918b;
-                cx0Var.f22246y = 1.0f;
+                cx0 cx0Var = (cx0) this.f24819c;
+                cx0Var.f25107b = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 cx0Var.invalidate();
-                cx0Var.G = null;
-                return;
-            case 1:
-                cx0 cx0Var2 = this.f21918b;
-                cx0Var2.m(((Float) cx0Var2.v.getAnimatedValue()).floatValue());
-                cx0Var2.v = null;
+                ((im0) this.f24818b).invalidate();
                 return;
             default:
-                super.onAnimationEnd(animator);
-                this.f21918b.F = null;
+                ((i81) this.f24819c).E(this.f24818b, ((Float) valueAnimator.getAnimatedValue()).floatValue());
                 return;
         }
     }

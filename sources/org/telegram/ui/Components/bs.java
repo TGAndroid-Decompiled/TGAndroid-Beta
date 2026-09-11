@@ -1,80 +1,50 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Rect;
-import android.view.MotionEvent;
-import android.view.View;
-import java.lang.ref.WeakReference;
-import org.telegram.messenger.AndroidUtilities;
-public final class bs implements View.OnTouchListener {
-    public final int f21893a;
-    public final Object f21894b;
+import j$.util.function.Predicate$CC;
+import java.util.function.Predicate;
+import org.telegram.messenger.MessageObject;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class bs implements Predicate {
+    public final int f24791a;
+    public final TLObject f24792b;
 
-    public bs(Object obj, int i10) {
-        this.f21893a = i10;
-        this.f21894b = obj;
+    public bs(int i10, TLObject tLObject) {
+        this.f24791a = i10;
+        this.f24792b = tLObject;
+    }
+
+    public Predicate and(Predicate predicate) {
+        int i10 = this.f24791a;
+        return Predicate$CC.$default$and(this, predicate);
+    }
+
+    public Predicate negate() {
+        switch (this.f24791a) {
+            case 0:
+                return Predicate$CC.$default$negate(this);
+            default:
+                return Predicate$CC.$default$negate(this);
+        }
+    }
+
+    public Predicate or(Predicate predicate) {
+        int i10 = this.f24791a;
+        return Predicate$CC.$default$or(this, predicate);
     }
 
     @Override
-    public final boolean onTouch(View view, MotionEvent motionEvent) {
-        r70 r70Var;
-        switch (this.f21893a) {
+    public final boolean test(Object obj) {
+        switch (this.f24791a) {
             case 0:
-                org.telegram.ui.ActionBar.p1 p1Var = ((ds) this.f21894b).f22472a;
-                if (motionEvent.getActionMasked() == 1 && p1Var != null && p1Var.isShowing()) {
-                    Rect rect = AndroidUtilities.rectTmp2;
-                    view.getHitRect(rect);
-                    if (!rect.contains((int) motionEvent.getX(), (int) motionEvent.getY())) {
-                        p1Var.d(true);
-                        return false;
-                    }
-                    return false;
-                }
-                return false;
-            case 1:
-                w70 w70Var = (w70) ((WeakReference) this.f21894b).get();
-                if (w70Var != null && (r70Var = w70Var.f28691m) != null && r70Var.isShowing()) {
-                    if (view.getParent() != null) {
-                        view.getParent().requestDisallowInterceptTouchEvent(true);
-                    }
-                    int actionMasked = motionEvent.getActionMasked();
-                    if (actionMasked == 2) {
-                        w70Var.b0((int) motionEvent.getRawX(), (int) motionEvent.getRawY());
-                    } else if (actionMasked == 1) {
-                        w70Var.b0((int) motionEvent.getRawX(), (int) motionEvent.getRawY());
-                        View view2 = w70Var.f28697p0;
-                        if (view2 != null) {
-                            w70Var.f28697p0 = null;
-                            view2.setPressed(false);
-                            view2.performClick();
-                        }
-                        view.setOnTouchListener(null);
-                        w70Var.f28695o0 = null;
-                    } else if (actionMasked == 3) {
-                        View view3 = w70Var.f28697p0;
-                        if (view3 != null) {
-                            view3.setPressed(false);
-                            w70Var.f28697p0 = null;
-                        }
-                        view.setOnTouchListener(null);
-                        w70Var.f28695o0 = null;
-                    }
+                return MessageObject.peersEqual((TLRPC.InputPeer) this.f24792b, ((MessageObject) obj).messageOwner.from_id);
+            default:
+                MessageObject messageObject = (MessageObject) obj;
+                TLObject tLObject = this.f24792b;
+                if (!(tLObject instanceof TLRPC.User) ? !(!(tLObject instanceof TLRPC.Chat) || messageObject.messageOwner.from_id.user_id != ((TLRPC.Chat) tLObject).f19869id) : messageObject.messageOwner.from_id.user_id == ((TLRPC.User) tLObject).f20016id) {
                     return true;
                 }
-                view.setOnTouchListener(null);
                 return false;
-            case 2:
-                xa0 xa0Var = (xa0) this.f21894b;
-                xa0Var.getClass();
-                return org.telegram.ui.tt.q().s(motionEvent, xa0Var.getListView(), xa0Var.f28996w, null, xa0Var.f28989a);
-            case 3:
-                yb0 yb0Var = (yb0) this.f21894b;
-                yb0Var.getClass();
-                if (motionEvent.getAction() == 1) {
-                    yb0Var.f29295c0.a(true);
-                }
-                return true;
-            default:
-                return hy0.v((hy0) this.f21894b, motionEvent);
         }
     }
 }

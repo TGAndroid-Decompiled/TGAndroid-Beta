@@ -1,91 +1,78 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.view.View;
-import android.widget.TextView;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class y80 implements View.OnClickListener {
-    public final int f29271a;
-    public final f90 f29272b;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.RectF;
+import android.view.MotionEvent;
+import android.view.ViewConfiguration;
+import org.telegram.messenger.AndroidUtilities;
+public class y80 extends org.telegram.ui.ActionBar.j5 {
+    public final a90 M0;
+    public final Paint N0;
+    public e90 O0;
 
-    public y80(f90 f90Var, int i10) {
-        this.f29271a = i10;
-        this.f29272b = f90Var;
+    public y80(Context context) {
+        super(context);
+        this.M0 = new a90(this);
+        this.N0 = new Paint(1);
+    }
+
+    private int getLinkColor() {
+        return i0.a.k(getTextColor(), (int) (Color.alpha(getTextColor()) * 0.1175f));
     }
 
     @Override
-    public final void onClick(View view) {
-        boolean z10;
-        int i10;
-        switch (this.f29271a) {
-            case 0:
-                this.f29272b.f22952r.i();
-                return;
-            case 1:
-                f90 f90Var = this.f29272b;
-                org.telegram.ui.ActionBar.p1 p1Var = f90Var.f22953s;
-                if (p1Var != null) {
-                    p1Var.d(true);
-                }
-                f90Var.f22952r.c();
-                return;
-            case 2:
-                f90 f90Var2 = this.f29272b;
-                String str = f90Var2.f22948b;
-                if (str != null && str.endsWith("?direct")) {
-                    z10 = true;
-                } else {
-                    z10 = false;
-                }
-                Context context = f90Var2.getContext();
-                String string = LocaleController.getString(R.string.InviteByQRCode);
-                String str2 = f90Var2.f22948b;
-                String str3 = f90Var2.J;
-                if (str3 == null) {
-                    if (f90Var2.H) {
-                        if (z10) {
-                            i10 = R.string.QRCodeLinkHelpChannelDirect;
-                        } else {
-                            i10 = R.string.QRCodeLinkHelpChannel;
-                        }
-                    } else {
-                        i10 = R.string.QRCodeLinkHelpGroup;
-                    }
-                    str3 = LocaleController.getString(i10);
-                }
-                c90 c90Var = new c90(f90Var2, context, string, str2, str3);
-                f90Var2.E = c90Var;
-                c90Var.m(R.raw.qr_code_logo);
-                f90Var2.E.show();
-                org.telegram.ui.ActionBar.p1 p1Var2 = f90Var2.f22953s;
-                if (p1Var2 != null) {
-                    p1Var2.d(true);
-                    return;
-                }
-                return;
-            default:
-                f90 f90Var3 = this.f29272b;
-                org.telegram.ui.ActionBar.p1 p1Var3 = f90Var3.f22953s;
-                if (p1Var3 != null) {
-                    p1Var3.d(true);
-                }
-                org.telegram.ui.ActionBar.p2 p2Var = f90Var3.f22949c;
-                if (p2Var.getParentActivity() != null) {
-                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(p2Var.getParentActivity());
-                    alertDialog$Builder.f17528a.R = LocaleController.getString(R.string.RevokeLink);
-                    alertDialog$Builder.f17528a.T = LocaleController.getString(R.string.RevokeAlert);
-                    alertDialog$Builder.k(LocaleController.getString(R.string.RevokeButton), new x80(f90Var3, 1));
-                    alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
-                    TextView textView = (TextView) alertDialog$Builder.f17528a.d(-1);
-                    if (textView != null) {
-                        textView.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f18162q7, false));
-                    }
-                    alertDialog$Builder.o();
-                    return;
-                }
-                return;
+    public final void onDraw(Canvas canvas) {
+        if (isClickable()) {
+            RectF rectF = AndroidUtilities.rectTmp;
+            rectF.set(0.0f, 0.0f, getPaddingRight() + getTextWidth() + getPaddingLeft(), getHeight());
+            int linkColor = getLinkColor();
+            Paint paint = this.N0;
+            paint.setColor(linkColor);
+            canvas.drawRoundRect(rectF, AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), paint);
         }
+        super.onDraw(canvas);
+        if (isClickable() && this.M0.f(canvas)) {
+            invalidate();
+        }
+    }
+
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        if (!isClickable()) {
+            return super.onTouchEvent(motionEvent);
+        }
+        a90 a90Var = this.M0;
+        if (a90Var != null) {
+            if (motionEvent.getAction() == 0) {
+                e90 e90Var = new e90(null, null, motionEvent.getX(), motionEvent.getY(), 0);
+                e90Var.d(getLinkColor());
+                this.O0 = e90Var;
+                a90Var.a(e90Var, null);
+                x80 b10 = this.O0.b();
+                b10.e(null, 0, 0.0f, 0.0f);
+                b10.addRect(0.0f, 0.0f, getPaddingRight() + getTextWidth() + getPaddingLeft(), getHeight(), Path.Direction.CW);
+                AndroidUtilities.runOnUIThread(new zu(19, this, e90Var), ViewConfiguration.getLongPressTimeout());
+                return true;
+            } else if (motionEvent.getAction() == 1) {
+                a90Var.d(true);
+                if (this.O0 != null) {
+                    performClick();
+                }
+                this.O0 = null;
+                return true;
+            } else if (motionEvent.getAction() == 3) {
+                a90Var.d(true);
+                this.O0 = null;
+                return true;
+            }
+        }
+        if (this.O0 == null && !super.onTouchEvent(motionEvent)) {
+            return false;
+        }
+        return true;
     }
 }

@@ -1,84 +1,241 @@
 package org.telegram.ui;
 
-import android.view.View;
-import java.util.regex.Pattern;
+import android.text.TextUtils;
+import java.util.ArrayList;
+import java.util.concurrent.CountDownLatch;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.MessagesController;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
-public final class zb implements e2.h {
-    public final int f39251a;
-    public final Object f39252b;
+public final class zb implements RequestDelegate {
+    public final int f43360a;
+    public final cc f43361b;
+    public final CountDownLatch f43362c;
+    public final Runnable d;
 
-    public zb(Object obj, int i10) {
-        this.f39251a = i10;
-        this.f39252b = obj;
+    public zb(cc ccVar, CountDownLatch countDownLatch, Runnable runnable, int i10) {
+        this.f43360a = i10;
+        this.f43361b = ccVar;
+        this.f43362c = countDownLatch;
+        this.d = runnable;
     }
 
     @Override
-    public final void accept(Object obj) {
-        int i10 = this.f39251a;
-        Object obj2 = this.f39252b;
-        switch (i10) {
+    public final void run(final TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f43360a) {
             case 0:
-                AndroidUtilities.runOnUIThread(new n(15, (ec) obj2, (TL_stories.TL_premium_boostsStatus) obj));
-                return;
-            case 1:
-                AndroidUtilities.runOnUIThread(new n(21, (le) obj2, (TL_stories.TL_premium_boostsStatus) obj));
-                return;
-            case 2:
-                Boolean bool = (Boolean) obj;
-                Pattern pattern = LaunchActivity.B1;
-                ((aa0) obj2).run();
-                return;
-            case 3:
-                up0 up0Var = (up0) obj2;
-                View view = (View) obj;
-                bq0 bq0Var = up0Var.f37324p0;
-                if (view instanceof xp0) {
-                    view.setBackgroundColor(bq0Var.getThemedColor(org.telegram.ui.ActionBar.j6.f17928d6));
-                    ((xp0) view).b();
-                    return;
-                } else if (view instanceof org.telegram.ui.Cells.s8) {
-                    view.setBackgroundColor(bq0Var.getThemedColor(org.telegram.ui.ActionBar.j6.f17928d6));
-                    ((org.telegram.ui.Cells.s8) view).v();
-                    return;
-                } else if (view instanceof tp0) {
-                    int i11 = org.telegram.ui.ActionBar.j6.f17928d6;
-                    view.setBackgroundColor(bq0Var.getThemedColor(i11));
-                    tp0 tp0Var = (tp0) view;
-                    bq0 bq0Var2 = tp0Var.d.f37324p0;
-                    tp0Var.setBackgroundColor(bq0Var2.getThemedColor(i11));
-                    tp0Var.f36984a.setTextColor(bq0Var2.getThemedColor(org.telegram.ui.ActionBar.j6.G6));
-                    return;
-                } else if (view instanceof org.telegram.ui.Cells.m4) {
-                    view.setBackgroundColor(bq0Var.getThemedColor(org.telegram.ui.ActionBar.j6.f17928d6));
-                    return;
-                } else if (view instanceof ip0) {
-                    ((ip0) view).d.invalidate();
-                    return;
-                } else if (view instanceof aq0) {
-                    up0Var.l((aq0) view);
-                    return;
-                } else if (view instanceof sp0) {
-                    ((sp0) view).a();
-                    return;
-                } else {
-                    return;
-                }
-            case 4:
-                org.telegram.ui.ActionBar.p2 p2Var = (org.telegram.ui.ActionBar.p2) obj2;
-                Long l4 = (Long) obj;
-                if (!p2Var.isFinished) {
-                    if (l4 != null && l4.longValue() != Long.MAX_VALUE) {
-                        p2Var.presentFragment(ProfileActivity.m4(l4.longValue()), true);
-                        return;
-                    } else {
-                        AndroidUtilities.runOnUIThread(new org.telegram.ui.Components.c30(23));
-                        return;
+                final cc ccVar = this.f43361b;
+                final CountDownLatch countDownLatch = this.f43362c;
+                final Runnable runnable = this.d;
+                AndroidUtilities.runOnUIThread(new Runnable() {
+                    @Override
+                    public final void run() {
+                        switch (r5) {
+                            case 0:
+                                cc ccVar2 = ccVar;
+                                ArrayList arrayList = ccVar2.h;
+                                CountDownLatch countDownLatch2 = countDownLatch;
+                                if (countDownLatch2 != null) {
+                                    countDownLatch2.countDown();
+                                }
+                                TLObject tLObject2 = tLObject;
+                                if (tLObject2 != null) {
+                                    ccVar2.N = 20;
+                                    TL_stories.TL_premium_boostsList tL_premium_boostsList = (TL_stories.TL_premium_boostsList) tLObject2;
+                                    boolean z10 = false;
+                                    MessagesController.getInstance(ccVar2.f35059b).putUsers(tL_premium_boostsList.users, false);
+                                    ccVar2.K = tL_premium_boostsList.next_offset;
+                                    arrayList.addAll(tL_premium_boostsList.boosts);
+                                    int size = arrayList.size();
+                                    int i10 = 0;
+                                    int i11 = 0;
+                                    while (true) {
+                                        int i12 = 1;
+                                        if (i11 < size) {
+                                            Object obj = arrayList.get(i11);
+                                            i11++;
+                                            int i13 = ((TL_stories.Boost) obj).multiplier;
+                                            if (i13 > 0) {
+                                                i12 = i13;
+                                            }
+                                            i10 += i12;
+                                        } else {
+                                            ccVar2.f35065s = Math.max(0, tL_premium_boostsList.count - i10);
+                                            if (!TextUtils.isEmpty(tL_premium_boostsList.next_offset) && ccVar2.f35065s > 0) {
+                                                z10 = true;
+                                            }
+                                            ccVar2.f35064r = z10;
+                                            ccVar2.P = tL_premium_boostsList.count;
+                                            Runnable runnable2 = runnable;
+                                            if (runnable2 != null) {
+                                                runnable2.run();
+                                                return;
+                                            }
+                                            return;
+                                        }
+                                    }
+                                } else {
+                                    return;
+                                }
+                                break;
+                            default:
+                                cc ccVar3 = ccVar;
+                                ArrayList arrayList2 = ccVar3.f35063n;
+                                CountDownLatch countDownLatch3 = countDownLatch;
+                                if (countDownLatch3 != null) {
+                                    countDownLatch3.countDown();
+                                }
+                                TLObject tLObject3 = tLObject;
+                                if (tLObject3 != null) {
+                                    ccVar3.M = 20;
+                                    TL_stories.TL_premium_boostsList tL_premium_boostsList2 = (TL_stories.TL_premium_boostsList) tLObject3;
+                                    boolean z11 = false;
+                                    MessagesController.getInstance(ccVar3.f35059b).putUsers(tL_premium_boostsList2.users, false);
+                                    ccVar3.L = tL_premium_boostsList2.next_offset;
+                                    arrayList2.addAll(tL_premium_boostsList2.boosts);
+                                    int size2 = arrayList2.size();
+                                    int i14 = 0;
+                                    int i15 = 0;
+                                    while (true) {
+                                        int i16 = 1;
+                                        if (i15 < size2) {
+                                            Object obj2 = arrayList2.get(i15);
+                                            i15++;
+                                            int i17 = ((TL_stories.Boost) obj2).multiplier;
+                                            if (i17 > 0) {
+                                                i16 = i17;
+                                            }
+                                            i14 += i16;
+                                        } else {
+                                            ccVar3.f35066w = Math.max(0, tL_premium_boostsList2.count - i14);
+                                            if (!TextUtils.isEmpty(tL_premium_boostsList2.next_offset) && ccVar3.f35066w > 0) {
+                                                z11 = true;
+                                            }
+                                            ccVar3.v = z11;
+                                            ccVar3.O = tL_premium_boostsList2.count;
+                                            Runnable runnable3 = runnable;
+                                            if (runnable3 != null) {
+                                                runnable3.run();
+                                                return;
+                                            }
+                                            return;
+                                        }
+                                    }
+                                } else {
+                                    return;
+                                }
+                                break;
+                        }
                     }
-                }
+                });
                 return;
             default:
-                ((ig1) obj2).X = (TL_stories.TL_premium_boostsStatus) obj;
+                final cc ccVar2 = this.f43361b;
+                final CountDownLatch countDownLatch2 = this.f43362c;
+                final Runnable runnable2 = this.d;
+                AndroidUtilities.runOnUIThread(new Runnable() {
+                    @Override
+                    public final void run() {
+                        switch (r5) {
+                            case 0:
+                                cc ccVar22 = ccVar2;
+                                ArrayList arrayList = ccVar22.h;
+                                CountDownLatch countDownLatch22 = countDownLatch2;
+                                if (countDownLatch22 != null) {
+                                    countDownLatch22.countDown();
+                                }
+                                TLObject tLObject2 = tLObject;
+                                if (tLObject2 != null) {
+                                    ccVar22.N = 20;
+                                    TL_stories.TL_premium_boostsList tL_premium_boostsList = (TL_stories.TL_premium_boostsList) tLObject2;
+                                    boolean z10 = false;
+                                    MessagesController.getInstance(ccVar22.f35059b).putUsers(tL_premium_boostsList.users, false);
+                                    ccVar22.K = tL_premium_boostsList.next_offset;
+                                    arrayList.addAll(tL_premium_boostsList.boosts);
+                                    int size = arrayList.size();
+                                    int i10 = 0;
+                                    int i11 = 0;
+                                    while (true) {
+                                        int i12 = 1;
+                                        if (i11 < size) {
+                                            Object obj = arrayList.get(i11);
+                                            i11++;
+                                            int i13 = ((TL_stories.Boost) obj).multiplier;
+                                            if (i13 > 0) {
+                                                i12 = i13;
+                                            }
+                                            i10 += i12;
+                                        } else {
+                                            ccVar22.f35065s = Math.max(0, tL_premium_boostsList.count - i10);
+                                            if (!TextUtils.isEmpty(tL_premium_boostsList.next_offset) && ccVar22.f35065s > 0) {
+                                                z10 = true;
+                                            }
+                                            ccVar22.f35064r = z10;
+                                            ccVar22.P = tL_premium_boostsList.count;
+                                            Runnable runnable22 = runnable2;
+                                            if (runnable22 != null) {
+                                                runnable22.run();
+                                                return;
+                                            }
+                                            return;
+                                        }
+                                    }
+                                } else {
+                                    return;
+                                }
+                                break;
+                            default:
+                                cc ccVar3 = ccVar2;
+                                ArrayList arrayList2 = ccVar3.f35063n;
+                                CountDownLatch countDownLatch3 = countDownLatch2;
+                                if (countDownLatch3 != null) {
+                                    countDownLatch3.countDown();
+                                }
+                                TLObject tLObject3 = tLObject;
+                                if (tLObject3 != null) {
+                                    ccVar3.M = 20;
+                                    TL_stories.TL_premium_boostsList tL_premium_boostsList2 = (TL_stories.TL_premium_boostsList) tLObject3;
+                                    boolean z11 = false;
+                                    MessagesController.getInstance(ccVar3.f35059b).putUsers(tL_premium_boostsList2.users, false);
+                                    ccVar3.L = tL_premium_boostsList2.next_offset;
+                                    arrayList2.addAll(tL_premium_boostsList2.boosts);
+                                    int size2 = arrayList2.size();
+                                    int i14 = 0;
+                                    int i15 = 0;
+                                    while (true) {
+                                        int i16 = 1;
+                                        if (i15 < size2) {
+                                            Object obj2 = arrayList2.get(i15);
+                                            i15++;
+                                            int i17 = ((TL_stories.Boost) obj2).multiplier;
+                                            if (i17 > 0) {
+                                                i16 = i17;
+                                            }
+                                            i14 += i16;
+                                        } else {
+                                            ccVar3.f35066w = Math.max(0, tL_premium_boostsList2.count - i14);
+                                            if (!TextUtils.isEmpty(tL_premium_boostsList2.next_offset) && ccVar3.f35066w > 0) {
+                                                z11 = true;
+                                            }
+                                            ccVar3.v = z11;
+                                            ccVar3.O = tL_premium_boostsList2.count;
+                                            Runnable runnable3 = runnable2;
+                                            if (runnable3 != null) {
+                                                runnable3.run();
+                                                return;
+                                            }
+                                            return;
+                                        }
+                                    }
+                                } else {
+                                    return;
+                                }
+                                break;
+                        }
+                    }
+                });
                 return;
         }
     }

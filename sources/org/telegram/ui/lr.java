@@ -1,61 +1,68 @@
 package org.telegram.ui;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.tgnet.TLObject;
+import android.view.View;
 import org.telegram.tgnet.TLRPC;
-public final class lr implements pr {
-    public final wr f34760a;
+import org.telegram.ui.Components.ChatAttachAlertPhotoLayout;
+public final class lr implements q0.a {
+    public final int f38468a;
 
-    public lr(wr wrVar) {
-        this.f34760a = wrVar;
+    public lr(int i10) {
+        this.f38468a = i10;
     }
 
     @Override
-    public final void a(TLRPC.User user) {
-        wr.c0(this.f34760a, user);
-    }
-
-    @Override
-    public final void b(long j3) {
-        wr wrVar = this.f34760a;
-        ArrayList arrayList = wrVar.F;
-        a0.i iVar = wrVar.K;
-        TLRPC.User user = wrVar.getMessagesController().getUser(Long.valueOf(j3));
-        if (user != null) {
-            AndroidUtilities.runOnUIThread(new qh(21, this, user), 200L);
+    public final void accept(Object obj) {
+        boolean z10;
+        boolean z11;
+        long j3;
+        boolean z12 = true;
+        switch (this.f38468a) {
+            case 0:
+                TLRPC.User user = (TLRPC.User) obj;
+                return;
+            case 1:
+                View view = (View) obj;
+                boolean z13 = ChatAttachAlertPhotoLayout.f23831q1;
+                if (view instanceof org.telegram.ui.Cells.s5) {
+                    org.telegram.ui.Cells.s5 s5Var = (org.telegram.ui.Cells.s5) view;
+                    if (s5Var.getPhotoEntry() != null && s5Var.getPhotoEntry().hasSpoiler) {
+                        z10 = true;
+                    } else {
+                        z10 = false;
+                    }
+                    s5Var.c(z10, Float.valueOf(250.0f));
+                    if (s5Var.getPhotoEntry() != null && s5Var.getPhotoEntry().isHighQuality()) {
+                        z11 = true;
+                    } else {
+                        z11 = false;
+                    }
+                    s5Var.setHighQuality(z11);
+                    if (s5Var.getPhotoEntry() != null) {
+                        j3 = s5Var.getPhotoEntry().starsAmount;
+                    } else {
+                        j3 = 0;
+                    }
+                    if (ChatAttachAlertPhotoLayout.f23833s1.size() <= 1) {
+                        z12 = false;
+                    }
+                    s5Var.f(j3, z12);
+                    return;
+                }
+                return;
+            case 2:
+                View view2 = (View) obj;
+                if (view2 instanceof org.telegram.ui.Components.gn0) {
+                    ((org.telegram.ui.Components.gn0) view2).a(false, true);
+                    return;
+                }
+                return;
+            default:
+                View view3 = (View) obj;
+                if (view3 instanceof org.telegram.ui.Components.gn0) {
+                    ((org.telegram.ui.Components.gn0) view3).a(false, true);
+                    return;
+                }
+                return;
         }
-        if (iVar.f(j3) == null) {
-            qr w02 = wrVar.w0();
-            TLRPC.TL_channelParticipantAdmin tL_channelParticipantAdmin = new TLRPC.TL_channelParticipantAdmin();
-            TLRPC.TL_peerUser tL_peerUser = new TLRPC.TL_peerUser();
-            tL_channelParticipantAdmin.peer = tL_peerUser;
-            tL_peerUser.user_id = user.f17342id;
-            tL_channelParticipantAdmin.date = wrVar.getConnectionsManager().getCurrentTime();
-            tL_channelParticipantAdmin.promoted_by = wrVar.getAccountInstance().getUserConfig().clientUserId;
-            arrayList.add(tL_channelParticipantAdmin);
-            iVar.k(tL_channelParticipantAdmin, user.f17342id);
-            Collections.sort(arrayList, new a4.e(27));
-            wrVar.A0(w02);
-        }
-    }
-
-    @Override
-    public final void c(long j3, TLObject tLObject) {
-        wr wrVar = this.f34760a;
-        ArrayList arrayList = wrVar.F;
-        a0.i iVar = wrVar.K;
-        if (tLObject != null && iVar.f(j3) == null) {
-            qr w02 = wrVar.w0();
-            arrayList.add(tLObject);
-            iVar.k(tLObject, j3);
-            Collections.sort(arrayList, new a4.e(27));
-            wrVar.A0(w02);
-        }
-    }
-
-    @Override
-    public final void d(long j3) {
     }
 }

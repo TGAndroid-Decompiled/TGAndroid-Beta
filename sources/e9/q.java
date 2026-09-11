@@ -12,11 +12,11 @@ import java.util.Map;
 import java.util.NoSuchElementException;
 import java.util.Set;
 import java.util.SortedSet;
-import org.telegram.ui.Cells.r6;
+import org.telegram.ui.Cells.p6;
 import v7.t6;
-import v7.y7;
+import v7.x7;
 public abstract class q {
-    public final int f7417a = 2;
+    public final int f8993a = 2;
 
     public static int c(int i10) {
         if (i10 < 3) {
@@ -32,7 +32,7 @@ public abstract class q {
     public static void d(int i10, Object[] objArr) {
         for (int i11 = 0; i11 < i10; i11++) {
             if (objArr[i11] == null) {
-                throw new NullPointerException(hc.b.j(i11, "at index "));
+                throw new NullPointerException(i2.g.i(i11, "at index "));
             }
         }
     }
@@ -54,7 +54,7 @@ public abstract class q {
             }
             return new int[i10];
         }
-        throw new IllegalArgumentException(hc.b.j(i10, "must be power of 2 between 2^1 and 2^30: "));
+        throw new IllegalArgumentException(i2.g.i(i10, "must be power of 2 between 2^1 and 2^30: "));
     }
 
     public static boolean h(Map map, Object obj) {
@@ -88,24 +88,24 @@ public abstract class q {
         return true;
     }
 
-    public static j1 j(Set set, d9.f fVar) {
+    public static j1 j(Set set, d9.g gVar) {
         if (set instanceof SortedSet) {
             SortedSet sortedSet = (SortedSet) set;
             if (sortedSet instanceof j1) {
                 j1 j1Var = (j1) sortedSet;
-                d9.f fVar2 = j1Var.f7391b;
-                fVar2.getClass();
-                return new j1((SortedSet) j1Var.f7390a, new d9.g(Arrays.asList(fVar2, fVar)));
+                d9.g gVar2 = j1Var.f8964b;
+                gVar2.getClass();
+                return new j1((SortedSet) j1Var.f8963a, new d9.h(Arrays.asList(gVar2, gVar)));
             }
-            return new j1(sortedSet, fVar);
+            return new j1(sortedSet, gVar);
         } else if (set instanceof j1) {
             j1 j1Var2 = (j1) set;
-            d9.f fVar3 = j1Var2.f7391b;
-            fVar3.getClass();
-            return new j1(j1Var2.f7390a, new d9.g(Arrays.asList(fVar3, fVar)));
+            d9.g gVar3 = j1Var2.f8964b;
+            gVar3.getClass();
+            return new j1(j1Var2.f8963a, new d9.h(Arrays.asList(gVar3, gVar)));
         } else {
             set.getClass();
-            return new j1(set, fVar);
+            return new j1(set, gVar);
         }
     }
 
@@ -122,7 +122,7 @@ public abstract class q {
         if (iterable instanceof List) {
             List list = (List) iterable;
             if (!list.isEmpty()) {
-                return r6.g(1, list);
+                return p6.g(1, list);
             }
             throw new NoSuchElementException();
         }
@@ -160,7 +160,7 @@ public abstract class q {
     public static ArrayList p(Object... objArr) {
         int length = objArr.length;
         e(length, "arraySize");
-        ArrayList arrayList = new ArrayList(y7.e(length + 5 + (length / 10)));
+        ArrayList arrayList = new ArrayList(x7.e(length + 5 + (length / 10)));
         Collections.addAll(arrayList, objArr);
         return arrayList;
     }
@@ -169,9 +169,9 @@ public abstract class q {
         throw new UnsupportedOperationException("Method not decompiled: e9.q.q(java.lang.Object, java.lang.Object, int, java.lang.Object, int[], java.lang.Object[], java.lang.Object[]):int");
     }
 
-    public static void r(List list, d9.f fVar, int i10, int i11) {
+    public static void r(List list, d9.g gVar, int i10, int i11) {
         for (int size = list.size() - 1; size > i11; size--) {
-            if (fVar.apply(list.get(size))) {
+            if (gVar.apply(list.get(size))) {
                 list.remove(size);
             }
         }
@@ -224,7 +224,7 @@ public abstract class q {
     public abstract Object g();
 
     public String toString() {
-        switch (this.f7417a) {
+        switch (this.f8993a) {
             case 2:
                 return g().toString();
             default:

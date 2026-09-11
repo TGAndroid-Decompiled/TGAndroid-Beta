@@ -1,36 +1,25 @@
 package bi;
 
-import org.telegram.messenger.Utilities;
-public final class r implements Utilities.Callback {
-    public final int f3482a;
-    public final qd f3483b;
+import j$.util.Objects;
+public final class r extends pg.a {
+    public final long f3618c;
 
-    public r(qd qdVar, int i10) {
-        this.f3482a = i10;
-        this.f3483b = qdVar;
+    public r(long j3) {
+        super(0, false);
+        this.f3618c = j3;
     }
 
-    @Override
-    public final void run(Object obj) {
-        Integer num = (Integer) obj;
-        switch (this.f3482a) {
-            case 0:
-                int intValue = num.intValue();
-                qd qdVar = this.f3483b;
-                qdVar.setPeriod(intValue);
-                Utilities.Callback callback = qdVar.B1;
-                if (callback != null) {
-                    callback.run(num);
-                    return;
-                }
-                return;
-            default:
-                Utilities.Callback callback2 = this.f3483b.C1;
-                if (callback2 != null) {
-                    callback2.run(num);
-                    return;
-                }
-                return;
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
         }
+        if ((obj instanceof r) && this.f3618c == ((r) obj).f3618c) {
+            return true;
+        }
+        return false;
+    }
+
+    public final int hashCode() {
+        return Objects.hash(Long.valueOf(this.f3618c));
     }
 }

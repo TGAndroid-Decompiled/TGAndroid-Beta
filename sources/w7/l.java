@@ -4,7 +4,7 @@ import java.nio.ByteBuffer;
 public abstract class l {
     public b2.p0 a(l3.a aVar) {
         boolean z10;
-        ByteBuffer byteBuffer = aVar.f9210c;
+        ByteBuffer byteBuffer = aVar.f10847e;
         byteBuffer.getClass();
         if (byteBuffer.position() == 0 && byteBuffer.hasArray() && byteBuffer.arrayOffset() == 0) {
             z10 = true;

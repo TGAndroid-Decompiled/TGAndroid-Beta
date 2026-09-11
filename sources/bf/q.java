@@ -2,7 +2,7 @@ package bf;
 
 import v7.i0;
 public final class q extends n {
-    public int f2248g;
+    public int f2642g;
     public char h;
 
     @Override

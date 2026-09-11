@@ -2,22 +2,18 @@ package l2;
 
 import android.net.Uri;
 import java.io.IOException;
-import u2.u;
-public final class d implements y2.i {
-    public final i f12708a;
-
-    @Override
-    public void C(y2.k kVar, long j3, long j10, boolean z10) {
-        this.f12708a.w((y2.q) kVar, j10);
-    }
+import u2.t;
+import y2.p;
+public final class d implements y2.h {
+    public final g f15195a;
 
     public void a() {
         long j3;
-        i iVar = this.f12708a;
-        synchronized (z2.b.f47194b) {
+        g gVar = this.f15195a;
+        synchronized (z2.c.f50680b) {
             try {
-                if (z2.b.f47195c) {
-                    j3 = z2.b.d;
+                if (z2.c.f50681c) {
+                    j3 = z2.c.d;
                 } else {
                     j3 = -9223372036854775807L;
                 }
@@ -25,37 +21,42 @@ public final class d implements y2.i {
                 throw th2;
             }
         }
-        iVar.L = j3;
-        iVar.y(true);
+        gVar.L = j3;
+        gVar.y(true);
     }
 
     @Override
-    public k4.d k(y2.k kVar, long j3, long j10, IOException iOException, int i10) {
-        y2.q qVar = (y2.q) kVar;
-        i iVar = this.f12708a;
-        a5.a aVar = iVar.f12730q;
-        long j11 = qVar.f46448a;
-        Uri uri = qVar.d.f8480c;
-        aVar.q(new u(j10), qVar.f46450c, iOException, true);
-        iVar.f12726m.getClass();
-        iVar.x(iOException);
-        return y2.n.e;
+    public k4.d g(y2.j jVar, long j3, long j10, IOException iOException, int i10) {
+        p pVar = (p) jVar;
+        g gVar = this.f15195a;
+        a5.a aVar = gVar.f15214q;
+        long j11 = pVar.f49521a;
+        Uri uri = pVar.d.f10298c;
+        aVar.q(new t(j10), pVar.f49523c, iOException, true);
+        gVar.f15210m.getClass();
+        gVar.x(iOException);
+        return y2.m.f49516e;
     }
 
     @Override
-    public void p(y2.k kVar, long j3, long j10) {
-        y2.q qVar = (y2.q) kVar;
-        i iVar = this.f12708a;
-        long j11 = qVar.f46448a;
-        Uri uri = qVar.d.f8480c;
-        u uVar = new u(j10);
-        iVar.f12726m.getClass();
-        iVar.f12730q.o(uVar, qVar.f46450c, -1, null, 0, null, -9223372036854775807L, -9223372036854775807L);
-        iVar.L = ((Long) qVar.f46451f).longValue() - j3;
-        iVar.y(true);
+    public void i(y2.j jVar, long j3, long j10) {
+        p pVar = (p) jVar;
+        g gVar = this.f15195a;
+        long j11 = pVar.f49521a;
+        Uri uri = pVar.d.f10298c;
+        t tVar = new t(j10);
+        gVar.f15210m.getClass();
+        gVar.f15214q.o(tVar, pVar.f49523c, -1, null, 0, null, -9223372036854775807L, -9223372036854775807L);
+        gVar.L = ((Long) pVar.f49525f).longValue() - j3;
+        gVar.y(true);
     }
 
     @Override
-    public void l(y2.k kVar, long j3, long j10, int i10) {
+    public void w(y2.j jVar, long j3, long j10, boolean z10) {
+        this.f15195a.w((p) jVar, j10);
+    }
+
+    @Override
+    public void h(y2.j jVar, long j3, long j10, int i10) {
     }
 }

@@ -1,11 +1,51 @@
 package org.telegram.ui.Components;
-public final class tv0 {
-    public float f27499a;
-    public float f27500b;
-    public boolean f27501c;
 
-    public tv0(float f7, float f10) {
-        this.f27499a = f7;
-        this.f27500b = f10;
+import android.os.Bundle;
+import android.widget.LinearLayout;
+public abstract class tv0 extends LinearLayout {
+    public boolean a() {
+        return this instanceof org.telegram.ui.ge0;
+    }
+
+    public boolean b() {
+        return this instanceof org.telegram.ui.ge0;
+    }
+
+    public boolean c(boolean z10) {
+        return true;
+    }
+
+    public String getHeaderName() {
+        return "";
+    }
+
+    public void d() {
+    }
+
+    public void f() {
+    }
+
+    public void g() {
+    }
+
+    public void h(String str) {
+    }
+
+    public void i() {
+    }
+
+    public void j() {
+    }
+
+    public void k(Bundle bundle) {
+    }
+
+    public void l(Bundle bundle) {
+    }
+
+    public void n() {
+    }
+
+    public void m(Bundle bundle, boolean z10) {
     }
 }

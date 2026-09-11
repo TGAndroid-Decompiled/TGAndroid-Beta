@@ -1,68 +1,102 @@
 package org.telegram.ui.Components;
 
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
+import android.app.Activity;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
-import java.util.ArrayList;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-public final class pp implements org.telegram.ui.ActionBar.k6 {
-    public boolean f26226a = false;
-    public final sp f26227b;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class pp extends FrameLayout {
+    public final TextView[] f29452a;
+    public final aj0[] f29453b;
+    public final ImageView f29454c;
+    public AnimatorSet d;
+    public pg f29455e;
+    public float f29456f;
+    public final org.telegram.ui.ActionBar.f6 h;
 
-    public pp(sp spVar) {
-        this.f26227b = spVar;
+    public pp(Activity activity, org.telegram.ui.ActionBar.f6 f6Var) {
+        super(activity);
+        float f7;
+        float f10;
+        this.f29452a = new TextView[2];
+        this.f29453b = new aj0[2];
+        this.h = f6Var;
+        FrameLayout frameLayout = new FrameLayout(activity);
+        frameLayout.setBackground(org.telegram.ui.ActionBar.j6.b0(AndroidUtilities.dp(6.0f), org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f20906qf, f6Var)));
+        frameLayout.setPadding(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(8.0f));
+        addView(frameLayout, w7.x5.d(-2, -2.0f, 51, 0.0f, 0.0f, 0.0f, 6.0f));
+        for (int i10 = 0; i10 < 2; i10++) {
+            this.f29453b[i10] = new ImageView(activity);
+            this.f29453b[i10].setScaleType(ImageView.ScaleType.CENTER);
+            aj0 aj0Var = this.f29453b[i10];
+            if (i10 == 0) {
+                f7 = 0.0f;
+            } else {
+                f7 = 24.0f;
+            }
+            frameLayout.addView(aj0Var, w7.x5.d(24, 24.0f, 51, 0.0f, f7, 0.0f, 0.0f));
+            this.f29452a[i10] = new TextView(activity);
+            this.f29452a[i10].setTextColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f20888pf, this.h));
+            this.f29452a[i10].setTextSize(1, 14.0f);
+            this.f29452a[i10].setMaxLines(1);
+            this.f29452a[i10].setSingleLine(true);
+            this.f29452a[i10].setMaxWidth(AndroidUtilities.dp(250.0f));
+            this.f29452a[i10].setGravity(51);
+            this.f29452a[i10].setPivotX(0.0f);
+            TextView textView = this.f29452a[i10];
+            if (i10 == 0) {
+                f10 = 2.0f;
+            } else {
+                f10 = 26.0f;
+            }
+            frameLayout.addView(textView, w7.x5.d(-2, -2.0f, 51, 32.0f, f10, 10.0f, 0.0f));
+            if (i10 == 0) {
+                this.f29453b[i10].f(R.raw.ticks_single, 24, 24, null);
+                this.f29452a[i10].setText(LocaleController.getString(R.string.HintSent));
+            } else {
+                this.f29453b[i10].f(R.raw.ticks_double, 24, 24, null);
+                this.f29452a[i10].setText(LocaleController.getString(R.string.HintRead));
+            }
+            this.f29453b[i10].d();
+        }
+        ImageView imageView = new ImageView(activity);
+        this.f29454c = imageView;
+        imageView.setImageResource(R.drawable.tooltip_arrow);
+        imageView.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f20906qf, this.h), PorterDuff.Mode.MULTIPLY));
+        addView(imageView, w7.x5.d(14, 6.0f, 83, 0.0f, 0.0f, 0.0f, 0.0f));
     }
 
-    @Override
-    public final void a(float f7) {
-        ArrayList arrayList;
-        sp spVar = this.f26227b;
-        qp qpVar = spVar.h;
-        if (f7 == 0.0f && !this.f26226a) {
-            if (qpVar != null && (arrayList = qpVar.d) != null) {
-                int size = arrayList.size();
-                int i10 = 0;
-                while (i10 < size) {
-                    Object obj = arrayList.get(i10);
-                    i10++;
-                    ((rp) obj).f26735c = spVar.N ? 1 : 0;
-                }
-            }
-            if (!spVar.P) {
-                for (int i11 = 0; i11 < qpVar.h(); i11++) {
-                    ((rp) qpVar.d.get(i11)).getClass();
-                }
-            }
-            this.f26226a = true;
+    public final void a() {
+        if (getTag() == null) {
+            return;
         }
-        hj0 hj0Var = spVar.F;
-        int i12 = org.telegram.ui.ActionBar.j6.Oh;
-        hj0Var.setColorFilter(new PorterDuffColorFilter(spVar.getThemedColor(i12), PorterDuff.Mode.MULTIPLY));
-        spVar.setOverlayNavBarColor(spVar.getThemedColor(org.telegram.ui.ActionBar.j6.f17872a7));
-        if (spVar.P) {
-            for (int i13 = 0; i13 < qpVar.h(); i13++) {
-                ((rp) qpVar.d.get(i13)).getClass();
-            }
+        setTag(null);
+        pg pgVar = this.f29455e;
+        if (pgVar != null) {
+            AndroidUtilities.cancelRunOnUIThread(pgVar);
+            this.f29455e = null;
         }
-        if (f7 == 1.0f && this.f26226a) {
-            spVar.P = false;
-            this.f26226a = false;
+        AnimatorSet animatorSet = this.d;
+        if (animatorSet != null) {
+            animatorSet.cancel();
+            this.d = null;
         }
-        spVar.D();
-        bi.n7 n7Var = spVar.Z;
-        if (n7Var != null) {
-            int dp = AndroidUtilities.dp(0.0f);
-            int themedColor = spVar.getThemedColor(org.telegram.ui.ActionBar.j6.f17928d6);
-            int k10 = i0.a.k(spVar.getThemedColor(i12), 76);
-            n7Var.setBackground(org.telegram.ui.ActionBar.j6.i0(dp, dp, dp, dp, themedColor, k10, k10));
-        }
-        o6 o6Var = spVar.f27131a0;
-        if (o6Var != null) {
-            o6Var.setTextColor(spVar.getThemedColor(i12));
-        }
-        spVar.setBackgroundColor(spVar.getThemedColor(org.telegram.ui.ActionBar.j6.f17998h5));
+        AnimatorSet animatorSet2 = new AnimatorSet();
+        this.d = animatorSet2;
+        animatorSet2.playTogether(ObjectAnimator.ofFloat(this, View.ALPHA, 0.0f), ObjectAnimator.ofFloat(this, View.SCALE_X, 0.0f), ObjectAnimator.ofFloat(this, View.SCALE_Y, 0.0f));
+        this.d.addListener(new op(this, 1));
+        this.d.setDuration(180L);
+        this.d.start();
     }
 
-    @Override
-    public final void b() {
+    public float getBaseTranslationY() {
+        return this.f29456f;
     }
 }

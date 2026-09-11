@@ -1,54 +1,38 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Typeface;
-import android.text.TextPaint;
-import android.text.style.MetricAffectingSpan;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.SharedConfig;
-public final class y51 extends MetricAffectingSpan {
-    public final CharSequence f29250a;
-    public final int f29251b;
-    public final int f29252c;
-    public final byte d;
-    public final b11 e;
+import android.content.Context;
+import android.view.View;
+import java.util.ArrayList;
+public abstract class y51 extends org.telegram.ui.ActionBar.n2 {
+    public x51 f32849a;
+    public int f32850b;
+    public int f32851c;
 
-    public y51(CharSequence charSequence, int i10, int i11, byte b10, b11 b11Var) {
-        this.f29250a = charSequence;
-        this.f29251b = i10;
-        this.f29252c = i11;
-        this.d = b10;
-        this.e = b11Var;
+    public y51() {
+        super(null);
+        this.f32850b = -1;
     }
 
-    @Override
-    public final void updateDrawState(TextPaint textPaint) {
-        textPaint.setTextSize(AndroidUtilities.dp(SharedConfig.fontSize - 1));
-        byte b10 = this.d;
-        if (b10 == 2) {
-            textPaint.setColor(-1);
-        } else if (b10 == 1) {
-            textPaint.setColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f17969fc, false));
-        } else {
-            textPaint.setColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.ec, false));
-        }
-        b11 b11Var = this.e;
-        if (b11Var != null) {
-            b11Var.a(textPaint);
-            return;
-        }
-        textPaint.setTypeface(Typeface.MONOSPACE);
-        textPaint.setUnderlineText(false);
-    }
+    public abstract void U(ArrayList arrayList, v51 v51Var);
+
+    public abstract CharSequence V();
+
+    public abstract void W(h51 h51Var, View view);
+
+    public abstract boolean X(h51 h51Var, View view);
 
     @Override
-    public final void updateMeasureState(TextPaint textPaint) {
-        textPaint.setTextSize(AndroidUtilities.dp(SharedConfig.fontSize - 1));
-        textPaint.setFlags(textPaint.getFlags() | 128);
-        b11 b11Var = this.e;
-        if (b11Var != null) {
-            b11Var.a(textPaint);
-        } else {
-            textPaint.setTypeface(Typeface.MONOSPACE);
-        }
+    public View createView(Context context) {
+        i2.g.x(false, this.actionBar);
+        this.actionBar.setAllowOverlayTitle(true);
+        this.actionBar.setTitle(V());
+        this.actionBar.setActionBarMenuOnItemClick(new org.telegram.ui.ic(this, 14));
+        ig.q1 q1Var = new ig.q1(context, null, 1);
+        q1Var.setBackgroundColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f20607a7, false));
+        x51 x51Var = new x51(this, this, new d(this, 22), new w51(this), new w51(this));
+        this.f32849a = x51Var;
+        q1Var.addView(x51Var, w7.x5.c(-1.0f, -1));
+        this.fragmentView = q1Var;
+        return q1Var;
     }
 }

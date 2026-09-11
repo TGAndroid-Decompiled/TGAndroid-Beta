@@ -1,64 +1,55 @@
 package zh;
 
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.LinearGradient;
+import android.graphics.Matrix;
+import android.graphics.Paint;
+import android.graphics.RectF;
+import android.graphics.Shader;
 import android.view.View;
-import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ChatObject;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.support.LongSparseLongArray;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Cells.bb;
-import org.telegram.ui.Components.ha;
-public final class c8 {
-    public static final c8[] f48331f = new c8[4];
-    public final int f48332a;
-    public final LongSparseLongArray f48333b = new LongSparseLongArray();
-    public final ArrayList f48334c = new ArrayList();
-    public final ArrayList d = new ArrayList();
-    public final b8 e;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.ui.Components.f01;
+public final class c8 extends View {
+    public final LinearGradient f51772a;
+    public final Matrix f51773b;
+    public final Paint f51774c;
+    public final Paint d;
+    public final f01 f51775e;
+    public final org.telegram.ui.ActionBar.f6 f51776f;
 
-    public c8(int i10) {
-        new ArrayList();
-        this.e = new b8(this);
-        this.f48332a = i10;
+    public c8(Context context, org.telegram.ui.ActionBar.f6 f6Var) {
+        super(context);
+        this.f51776f = f6Var;
+        this.f51772a = new LinearGradient(0.0f, 0.0f, 255.0f, 0.0f, new int[]{-1135603, -404714}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
+        this.f51773b = new Matrix();
+        this.f51774c = new Paint(1);
+        this.d = new Paint(1);
+        this.f51775e = new f01(LocaleController.getString(R.string.StarsReactionTopSenders), 14.16f, AndroidUtilities.bold());
     }
 
-    public final void a(ha haVar) {
-        long j3;
-        TLRPC.UserStatus userStatus;
-        long currentTimeMillis = System.currentTimeMillis();
-        ArrayList arrayList = this.f48334c;
-        arrayList.clear();
-        for (int i10 = 0; i10 < haVar.getChildCount(); i10++) {
-            View childAt = haVar.getChildAt(i10);
-            if (childAt instanceof org.telegram.ui.Cells.r2) {
-                j3 = ((org.telegram.ui.Cells.r2) childAt).getDialogId();
-            } else if (childAt instanceof bb) {
-                j3 = ((bb) childAt).getDialogId();
-            } else {
-                j3 = 0;
-            }
-            int i11 = this.f48332a;
-            LongSparseLongArray longSparseLongArray = this.f48333b;
-            if (j3 > 0) {
-                TLRPC.User user = MessagesController.getInstance(i11).getUser(Long.valueOf(j3));
-                if (user != null && !user.bot && !user.self && !user.contact && (userStatus = user.status) != null && !(userStatus instanceof TLRPC.TL_userStatusEmpty) && currentTimeMillis - longSparseLongArray.get(j3, 0L) > 3600000) {
-                    longSparseLongArray.put(j3, currentTimeMillis);
-                    arrayList.add(Long.valueOf(j3));
-                }
-            } else {
-                TLRPC.Chat chat = MessagesController.getInstance(i11).getChat(Long.valueOf(-j3));
-                if (ChatObject.isChannel(chat) && !ChatObject.isMonoForum(chat) && currentTimeMillis - longSparseLongArray.get(j3, 0L) > 3600000) {
-                    longSparseLongArray.put(j3, currentTimeMillis);
-                    arrayList.add(Long.valueOf(j3));
-                }
-            }
-        }
-        if (!arrayList.isEmpty()) {
-            this.d.addAll(arrayList);
-            b8 b8Var = this.e;
-            AndroidUtilities.cancelRunOnUIThread(b8Var);
-            AndroidUtilities.runOnUIThread(b8Var, 300L);
-        }
+    @Override
+    public final void dispatchDraw(Canvas canvas) {
+        Matrix matrix = this.f51773b;
+        matrix.reset();
+        matrix.postTranslate(AndroidUtilities.dp(14.0f), 0.0f);
+        matrix.postScale((getWidth() - AndroidUtilities.dp(28.0f)) / 255.0f, 1.0f);
+        LinearGradient linearGradient = this.f51772a;
+        linearGradient.setLocalMatrix(matrix);
+        Paint paint = this.f51774c;
+        paint.setShader(linearGradient);
+        f01 f01Var = this.f51775e;
+        float dp = f01Var.f25847c + AndroidUtilities.dp(30.0f);
+        int v02 = org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f20664d7, this.f51776f);
+        Paint paint2 = this.d;
+        paint2.setColor(v02);
+        canvas.drawRect(AndroidUtilities.dp(24.0f), (getHeight() / 2.0f) - 1.0f, ((getWidth() - dp) / 2.0f) - AndroidUtilities.dp(8.0f), getHeight() / 2.0f, paint2);
+        canvas.drawRect(AndroidUtilities.dp(8.0f) + ((getWidth() + dp) / 2.0f), (getHeight() / 2.0f) - 1.0f, getWidth() - AndroidUtilities.dp(24.0f), getHeight() / 2.0f, paint2);
+        RectF rectF = AndroidUtilities.rectTmp;
+        rectF.set((getWidth() - dp) / 2.0f, 0.0f, (getWidth() + dp) / 2.0f, getHeight());
+        canvas.drawRoundRect(rectF, getHeight() / 2.0f, getHeight() / 2.0f, paint);
+        this.f51775e.c((getWidth() - f01Var.f25847c) / 2.0f, getHeight() / 2.0f, 1.0f, -1, canvas);
     }
 }

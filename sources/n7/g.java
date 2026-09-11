@@ -1,26 +1,36 @@
 package n7;
 
 import java.io.Serializable;
-import java.util.Arrays;
-public final class g implements Serializable {
-    public final Object f13950a;
+import java.util.Comparator;
+public final class g extends w implements Serializable {
+    public final Comparator f16632a;
 
-    public g(Object obj) {
-        this.f13950a = obj;
+    public g(Comparator comparator) {
+        comparator.getClass();
+        this.f16632a = comparator;
     }
 
+    @Override
+    public final int compare(Object obj, Object obj2) {
+        return this.f16632a.compare(obj, obj2);
+    }
+
+    @Override
     public final boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
         if (obj instanceof g) {
-            return a.h(this.f13950a, ((g) obj).f13950a);
+            return this.f16632a.equals(((g) obj).f16632a);
         }
         return false;
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{this.f13950a});
+        return this.f16632a.hashCode();
     }
 
     public final String toString() {
-        return a4.a.p("Suppliers.ofInstance(", this.f13950a.toString(), ")");
+        return this.f16632a.toString();
     }
 }

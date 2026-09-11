@@ -1,20 +1,65 @@
 package org.telegram.ui;
 
-import android.app.Activity;
-import java.util.ArrayList;
-public final class ij extends org.telegram.ui.Components.wv {
-    public final eo W;
+import android.content.Context;
+import android.view.ViewGroup;
+import org.telegram.messenger.AndroidUtilities;
+public final class ij extends org.telegram.ui.Components.i40 {
+    public final int I;
 
-    public ij(eo eoVar, org.telegram.ui.ActionBar.p2 p2Var, Activity activity, org.telegram.ui.ActionBar.f6 f6Var, ArrayList arrayList) {
-        super(p2Var, activity, f6Var, arrayList);
-        this.W = eoVar;
+    public ij(int i10, int i11, Context context, org.telegram.ui.ActionBar.f6 f6Var, boolean z10) {
+        super(i10, context, f6Var, z10);
+        this.I = i11;
     }
 
     @Override
-    public final void dismiss() {
-        super.dismiss();
-        eo eoVar = this.W;
-        eoVar.getClass();
-        eoVar.g8(false, true, 0.0f);
+    public int c() {
+        switch (this.I) {
+            case 0:
+                return AndroidUtilities.dp(56.0f) / 2;
+            default:
+                return super.c();
+        }
+    }
+
+    @Override
+    public void setVisibility(int i10) {
+        switch (this.I) {
+            case 1:
+                super.setVisibility(i10);
+                if (i10 != 0) {
+                    try {
+                        ((ViewGroup) getParent()).removeView(this);
+                        return;
+                    } catch (Exception unused) {
+                        return;
+                    }
+                }
+                return;
+            case 2:
+                super.setVisibility(i10);
+                if (i10 != 0) {
+                    try {
+                        ((ViewGroup) getParent()).removeView(this);
+                        return;
+                    } catch (Exception unused2) {
+                        return;
+                    }
+                }
+                return;
+            case 3:
+                super.setVisibility(i10);
+                if (i10 != 0) {
+                    try {
+                        ((ViewGroup) getParent()).removeView(this);
+                        return;
+                    } catch (Exception unused3) {
+                        return;
+                    }
+                }
+                return;
+            default:
+                super.setVisibility(i10);
+                return;
+        }
     }
 }

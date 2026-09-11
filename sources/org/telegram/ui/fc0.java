@@ -16,28 +16,28 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_aicompose;
 public final class fc0 {
-    public final LaunchActivity f32778a;
-    public final int f32779b;
-    public final nf.e f32780c;
+    public final LaunchActivity f36367a;
+    public final int f36368b;
+    public final of.e f36369c;
     public final boolean d;
-    public org.telegram.ui.ActionBar.d2 e;
-    public boolean f32781f;
-    public boolean f32782g;
+    public org.telegram.ui.ActionBar.b2 f36370e;
+    public boolean f36371f;
+    public boolean f36372g;
     public int h = -1;
 
-    public fc0(LaunchActivity launchActivity, int i10, nf.e eVar, boolean z10) {
-        this.f32778a = launchActivity;
-        this.f32779b = i10;
-        this.f32780c = eVar;
+    public fc0(LaunchActivity launchActivity, int i10, of.e eVar, boolean z10) {
+        this.f36367a = launchActivity;
+        this.f36368b = i10;
+        this.f36369c = eVar;
         this.d = z10;
     }
 
-    public static org.telegram.ui.Components.wc b() {
-        org.telegram.ui.ActionBar.p2 U = LaunchActivity.U();
+    public static org.telegram.ui.Components.yc b() {
+        org.telegram.ui.ActionBar.n2 U = LaunchActivity.U();
         if (U == null) {
-            return org.telegram.ui.Components.wc.X();
+            return org.telegram.ui.Components.yc.X();
         }
-        return org.telegram.ui.Components.wc.a0(U);
+        return org.telegram.ui.Components.yc.a0(U);
     }
 
     public static boolean l(java.lang.String r7) {
@@ -45,26 +45,26 @@ public final class fc0 {
     }
 
     public final void a() {
-        if (this.f32782g) {
+        if (this.f36372g) {
             return;
         }
-        org.telegram.ui.ActionBar.d2 d2Var = this.e;
-        if (d2Var != null) {
-            d2Var.dismiss();
+        org.telegram.ui.ActionBar.b2 b2Var = this.f36370e;
+        if (b2Var != null) {
+            b2Var.dismiss();
         }
-        nf.e eVar = this.f32780c;
+        of.e eVar = this.f36369c;
         if (eVar != null) {
             eVar.b();
         }
-        this.f32782g = true;
+        this.f36372g = true;
     }
 
-    public final org.telegram.ui.ActionBar.f5 c() {
-        return this.f32778a.O();
+    public final org.telegram.ui.ActionBar.d5 c() {
+        return this.f36367a.O();
     }
 
     public final UserConfig d() {
-        return UserConfig.getInstance(this.f32779b);
+        return UserConfig.getInstance(this.f36368b);
     }
 
     public final boolean e(Uri uri) {
@@ -77,9 +77,9 @@ public final class fc0 {
         if (uri != null) {
             String scheme2 = uri.getScheme();
             boolean equalsIgnoreCase = "tonsite".equalsIgnoreCase(scheme2);
-            LaunchActivity launchActivity = this.f32778a;
+            LaunchActivity launchActivity = this.f36367a;
             if (equalsIgnoreCase) {
-                nf.f.p(launchActivity, uri, true, true);
+                of.f.p(launchActivity, uri, true, true);
                 return true;
             }
             String str3 = null;
@@ -138,7 +138,7 @@ public final class fc0 {
                                 }
                                 if ("new".equalsIgnoreCase(str4)) {
                                     if ("group".equalsIgnoreCase(str2)) {
-                                        n(new e70(new Bundle()), false);
+                                        n(new f70(new Bundle()), false);
                                         return true;
                                     } else if ("contact".equalsIgnoreCase(str2)) {
                                         new ek0(launchActivity, LaunchActivity.U()).show();
@@ -146,7 +146,7 @@ public final class fc0 {
                                     } else if ("channel".equalsIgnoreCase(str2)) {
                                         SharedPreferences globalMainSettings = MessagesController.getGlobalMainSettings();
                                         if (!BuildVars.DEBUG_VERSION && globalMainSettings.getBoolean("channel_intro", false)) {
-                                            n(new nd(org.telegram.ui.Cells.r6.e(0, "step")), false);
+                                            n(new md(org.telegram.ui.Cells.p6.e(0, "step")), false);
                                             return true;
                                         }
                                         n(new h(0), false);
@@ -161,7 +161,7 @@ public final class fc0 {
                                     if ("live".equalsIgnoreCase(str2)) {
                                         r15 = -1;
                                     }
-                                    bi.ce E = bi.ce.E(launchActivity, this.f32779b);
+                                    di.pc E = di.pc.E(launchActivity, this.f36368b);
                                     if (E.O1 != r15) {
                                         E.O1 = r15;
                                         ?? r22 = E.Q0;
@@ -174,9 +174,9 @@ public final class fc0 {
                                             z10 = false;
                                         }
                                         E.i0(z10, true);
-                                        bi.c0 c0Var = E.I0;
-                                        if (c0Var != null) {
-                                            c0Var.a(false, true);
+                                        di.y yVar = E.I0;
+                                        if (yVar != null) {
+                                            yVar.a(false, true);
                                         }
                                         E.m0(false);
                                     }
@@ -278,7 +278,7 @@ public final class fc0 {
         inputaicomposetoneslug.slug = str;
         gettone.tone = inputaicomposetoneslug;
         k();
-        ConnectionsManager.getInstance(this.f32779b).sendRequestTyped(gettone, new Object(), new b5(this, 14));
+        ConnectionsManager.getInstance(this.f36368b).sendRequestTyped(gettone, new Object(), new b5(this, 14));
         return true;
     }
 
@@ -291,7 +291,7 @@ public final class fc0 {
         TLRPC.TL_inputInvoiceSlug tL_inputInvoiceSlug = new TLRPC.TL_inputInvoiceSlug();
         tL_inputInvoiceSlug.slug = str;
         tL_payments_getPaymentForm.invoice = tL_inputInvoiceSlug;
-        this.h = ConnectionsManager.getInstance(this.f32779b).sendRequest(tL_payments_getPaymentForm, new aa((Object) this, (TLObject) tL_inputInvoiceSlug, str, 18));
+        this.h = ConnectionsManager.getInstance(this.f36368b).sendRequest(tL_payments_getPaymentForm, new aa((Object) this, (TLObject) tL_inputInvoiceSlug, str, 18));
         return true;
     }
 
@@ -306,11 +306,11 @@ public final class fc0 {
             tL_requestPeerTypeCreateBot.flags |= 4;
             tL_requestPeerTypeCreateBot.suggested_username = str2;
         }
-        org.telegram.ui.ActionBar.p2 U = LaunchActivity.U();
+        org.telegram.ui.ActionBar.n2 U = LaunchActivity.U();
         if (U != null && U.getContext() != null) {
             k();
             TLRPC.User[] userArr = {null};
-            MessagesController.getInstance(this.f32779b).getUserNameResolver().resolve(str, new rh(this, userArr, new org.telegram.ui.Components.q01(this, U, userArr, tL_requestPeerTypeCreateBot, 11), 3));
+            MessagesController.getInstance(this.f36368b).getUserNameResolver().resolve(str, new qh(this, userArr, new org.telegram.ui.Components.in0(this, U, userArr, tL_requestPeerTypeCreateBot, 15), 3));
         }
     }
 
@@ -325,7 +325,7 @@ public final class fc0 {
         TLRPC.TL_messages_requestUrlAuth tL_messages_requestUrlAuth = new TLRPC.TL_messages_requestUrlAuth();
         tL_messages_requestUrlAuth.flags |= 4;
         tL_messages_requestUrlAuth.url = uri.toString();
-        ConnectionsManager.getInstance(this.f32779b).sendRequestTyped(tL_messages_requestUrlAuth, new Object(), new bi.k6(14, this, tL_messages_requestUrlAuth));
+        ConnectionsManager.getInstance(this.f36368b).sendRequestTyped(tL_messages_requestUrlAuth, new Object(), new bi.f0(16, this, tL_messages_requestUrlAuth));
         return true;
     }
 
@@ -334,36 +334,36 @@ public final class fc0 {
     }
 
     public final void k() {
-        if (!this.f32781f && !this.f32782g) {
-            nf.e eVar = this.f32780c;
+        if (!this.f36371f && !this.f36372g) {
+            of.e eVar = this.f36369c;
             if (eVar == null) {
-                if (this.e == null) {
-                    this.e = new org.telegram.ui.ActionBar.d2(this.f32778a, 3, null);
+                if (this.f36370e == null) {
+                    this.f36370e = new org.telegram.ui.ActionBar.b2(this.f36367a, 3, null);
                 }
-                this.e.setOnCancelListener(new qg(this, 3));
-                this.e.q(300L);
+                this.f36370e.setOnCancelListener(new pg(this, 3));
+                this.f36370e.q(300L);
             } else {
-                eVar.f14040b = new zb0(this, 0);
+                eVar.f17004b = new zb0(this, 0);
                 eVar.d();
             }
-            this.f32781f = true;
+            this.f36371f = true;
         }
     }
 
-    public final void m(org.telegram.ui.ActionBar.p2 p2Var) {
-        n(p2Var, false);
+    public final void m(org.telegram.ui.ActionBar.n2 n2Var) {
+        n(n2Var, false);
     }
 
-    public final void n(org.telegram.ui.ActionBar.p2 p2Var, boolean z10) {
-        LaunchActivity launchActivity = this.f32778a;
-        launchActivity.q0(p2Var, z10, false);
+    public final void n(org.telegram.ui.ActionBar.n2 n2Var, boolean z10) {
+        LaunchActivity launchActivity = this.f36367a;
+        launchActivity.q0(n2Var, z10, false);
         if (AndroidUtilities.isTablet()) {
-            launchActivity.f29957q0.U(true, true);
-            launchActivity.f29961s0.U(true, true);
+            launchActivity.f33453q0.U(true, true);
+            launchActivity.f33457s0.U(true, true);
         }
     }
 
     public final void o(String str) {
-        AndroidUtilities.scrollToFragmentRow(this.f32778a.O(), str);
+        AndroidUtilities.scrollToFragmentRow(this.f36367a.O(), str);
     }
 }

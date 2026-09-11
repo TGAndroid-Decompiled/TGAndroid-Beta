@@ -2,43 +2,43 @@ package org.telegram.ui;
 
 import org.telegram.messenger.AndroidUtilities;
 public final class ff0 implements Runnable {
-    public final int f32806a;
-    public final gf0 f32807b;
+    public final int f36389a;
+    public final gf0 f36390b;
 
     public ff0(gf0 gf0Var, int i10) {
-        this.f32806a = i10;
-        this.f32807b = gf0Var;
+        this.f36389a = i10;
+        this.f36390b = gf0Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f32806a) {
+        switch (this.f36389a) {
             case 0:
-                gf0 gf0Var = this.f32807b;
+                gf0 gf0Var = this.f36390b;
                 hf0 hf0Var = gf0Var.d;
-                if (gf0Var.f33086b) {
+                if (gf0Var.f36661b) {
                     boolean z10 = hf0Var.K;
-                    org.telegram.ui.Components.hj0 hj0Var = hf0Var.J;
-                    kd kdVar = hf0Var.f33376n;
-                    if (z10 && System.currentTimeMillis() - gf0Var.f33085a >= 10000) {
-                        kdVar.setAnimation(hj0Var);
-                        hj0Var.N(0, false, false);
-                        hj0Var.f23671u0 = new ff0(gf0Var, 1);
-                        kdVar.d();
-                        gf0Var.f33085a = System.currentTimeMillis();
+                    org.telegram.ui.Components.xi0 xi0Var = hf0Var.J;
+                    jd jdVar = hf0Var.f36985n;
+                    if (z10 && System.currentTimeMillis() - gf0Var.f36660a >= 10000) {
+                        jdVar.setAnimation(xi0Var);
+                        xi0Var.L(0, false, false);
+                        xi0Var.f32577u0 = new ff0(gf0Var, 1);
+                        jdVar.d();
+                        gf0Var.f36660a = System.currentTimeMillis();
                     }
-                    kdVar.postDelayed(gf0Var.f33087c, 1000L);
+                    jdVar.postDelayed(gf0Var.f36662c, 1000L);
                     return;
                 }
                 return;
             case 1:
-                AndroidUtilities.runOnUIThread(new ff0(this.f32807b, 2));
+                AndroidUtilities.runOnUIThread(new ff0(this.f36390b, 2));
                 return;
             default:
-                hf0 hf0Var2 = this.f32807b.d;
-                org.telegram.ui.Components.hj0 hj0Var2 = hf0Var2.I;
-                hj0Var2.N(0, false, false);
-                hf0Var2.f33376n.setAnimation(hj0Var2);
+                hf0 hf0Var2 = this.f36390b.d;
+                org.telegram.ui.Components.xi0 xi0Var2 = hf0Var2.I;
+                xi0Var2.L(0, false, false);
+                hf0Var2.f36985n.setAnimation(xi0Var2);
                 return;
         }
     }

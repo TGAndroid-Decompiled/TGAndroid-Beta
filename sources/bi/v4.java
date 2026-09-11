@@ -1,37 +1,28 @@
 package bi;
 
-import android.text.style.ClickableSpan;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.n90;
-public final class v4 implements Runnable {
-    public final int f3784a;
-    public final x4 f3785b;
+import android.view.View;
+public final class v4 implements View.OnClickListener {
+    public final int f3892a;
+    public final f5 f3893b;
+    public final org.telegram.ui.ActionBar.f6 f3894c;
+    public final pb d;
 
-    public v4(x4 x4Var, int i10) {
-        this.f3784a = i10;
-        this.f3785b = x4Var;
+    public v4(f5 f5Var, pb pbVar, org.telegram.ui.ActionBar.f6 f6Var) {
+        this.f3892a = 0;
+        this.f3893b = f5Var;
+        this.d = pbVar;
+        this.f3894c = f6Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f3784a) {
-            case 0:
-                this.f3785b.getClass();
-                return;
-            case 1:
-                AndroidUtilities.removeFromParent(this.f3785b);
-                return;
-            case 2:
-                AndroidUtilities.removeFromParent(this.f3785b);
-                return;
-            default:
-                AndroidUtilities.removeFromParent(this.f3785b);
-                return;
-        }
+    public final void onClick(android.view.View r19) {
+        throw new UnsupportedOperationException("Method not decompiled: bi.v4.onClick(android.view.View):void");
     }
 
-    public v4(x4 x4Var, n90 n90Var, ClickableSpan clickableSpan) {
-        this.f3784a = 0;
-        this.f3785b = x4Var;
+    public v4(f5 f5Var, org.telegram.ui.ActionBar.f6 f6Var, pb pbVar, int i10) {
+        this.f3892a = i10;
+        this.f3893b = f5Var;
+        this.f3894c = f6Var;
+        this.d = pbVar;
     }
 }

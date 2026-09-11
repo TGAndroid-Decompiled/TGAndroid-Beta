@@ -1,4 +1,4 @@
 package m4;
 public interface e1 {
-    void e(l1 l1Var, r rVar);
+    Object h(a0 a0Var, r rVar, int i10);
 }

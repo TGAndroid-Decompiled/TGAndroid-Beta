@@ -1,57 +1,23 @@
 package org.telegram.ui.Components;
 
-import java.io.File;
-import java.util.Comparator;
-public final class ek implements Comparator {
-    public final int f22719a;
-    public final tk f22720b;
+import android.content.Context;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+public final class ek extends s4.d0 {
+    public final ig.e0 f25721r;
 
-    public ek(tk tkVar, int i10) {
-        this.f22719a = i10;
-        this.f22720b = tkVar;
+    public ek(ig.e0 e0Var, Context context) {
+        super(context);
+        this.f25721r = e0Var;
     }
 
     @Override
-    public final int compare(Object obj, Object obj2) {
-        nk nkVar = (nk) obj;
-        nk nkVar2 = (nk) obj2;
-        switch (this.f22719a) {
-            case 0:
-                tk tkVar = this.f22720b;
-                tkVar.getClass();
-                File file = nkVar.f25539f;
-                if (file != null) {
-                    if (nkVar2.f25539f != null) {
-                        boolean isDirectory = file.isDirectory();
-                        if (isDirectory != nkVar2.f25539f.isDirectory()) {
-                            if (isDirectory) {
-                            }
-                        } else if (!isDirectory && !tkVar.f27423c0) {
-                            int i10 = (nkVar.f25539f.lastModified() > nkVar2.f25539f.lastModified() ? 1 : (nkVar.f25539f.lastModified() == nkVar2.f25539f.lastModified() ? 0 : -1));
-                            if (i10 == 0) {
-                                return 0;
-                            }
-                            if (i10 > 0) {
-                            }
-                        } else {
-                            return nkVar.f25539f.getName().compareToIgnoreCase(nkVar2.f25539f.getName());
-                        }
-                    }
-                    return 1;
-                }
-                return -1;
-            default:
-                if (this.f22720b.f27423c0) {
-                    return nkVar.f25539f.getName().compareToIgnoreCase(nkVar2.f25539f.getName());
-                }
-                int i11 = (nkVar.f25539f.lastModified() > nkVar2.f25539f.lastModified() ? 1 : (nkVar.f25539f.lastModified() == nkVar2.f25539f.lastModified() ? 0 : -1));
-                if (i11 == 0) {
-                    return 0;
-                }
-                if (i11 > 0) {
-                    return -1;
-                }
-                return 1;
-        }
+    public final int k(int i10, View view) {
+        return org.telegram.messenger.w1.z(56.0f, ((ok) this.f25721r.V).f29092r.getPaddingTop() - AndroidUtilities.statusBarHeight, super.k(i10, view));
+    }
+
+    @Override
+    public final int m(int i10) {
+        return super.m(i10) * 2;
     }
 }

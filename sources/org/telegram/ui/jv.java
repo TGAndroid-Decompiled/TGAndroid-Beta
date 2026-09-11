@@ -1,62 +1,58 @@
 package org.telegram.ui;
 
-import android.graphics.drawable.ColorDrawable;
-import android.view.View;
-import android.view.ViewGroup;
+import android.content.Context;
+import android.graphics.RectF;
+import android.os.Bundle;
+import org.telegram.messenger.DialogObject;
+import org.telegram.messenger.Emoji;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
-public final class jv extends org.telegram.ui.Components.ul0 {
-    public final lv f34164c;
+import org.telegram.messenger.UserConfig;
+public final class jv extends org.telegram.ui.Components.cy0 {
+    public final o0.a I;
 
-    public jv(lv lvVar) {
-        this.f34164c = lvVar;
-    }
-
-    @Override
-    public final boolean D(s4.c1 c1Var) {
-        return false;
-    }
-
-    @Override
-    public final int h() {
-        if (this.f34164c.f34785g0.h()) {
-            return 1;
+    public jv(Context context, long j3, o0.a aVar) {
+        super(context);
+        this.I = aVar;
+        this.f25128a = new RectF();
+        this.f25132f = 0.0f;
+        org.telegram.ui.Components.p6 p6Var = new org.telegram.ui.Components.p6(false, true, true, false);
+        this.f25134r = p6Var;
+        org.telegram.ui.Components.p6 p6Var2 = new org.telegram.ui.Components.p6(false, true, false, false);
+        this.f25135s = p6Var2;
+        p6Var.setCallback(this);
+        p6Var2.setCallback(this);
+        this.f25133n = Long.valueOf(j3);
+        org.telegram.ui.Components.i9 i9Var = new org.telegram.ui.Components.i9((org.telegram.ui.ActionBar.f6) null);
+        i9Var.f27038p = 1.5f;
+        ImageReceiver imageReceiver = new ImageReceiver();
+        this.h = imageReceiver;
+        imageReceiver.setParentView(this);
+        if (j3 == Long.MAX_VALUE) {
+            this.v = LocaleController.getString(R.string.CacheOtherChats);
+            i9Var.g(14);
+            imageReceiver.setForUserOrChat(null, i9Var);
+            return;
         }
-        return 3;
+        String dialogPhotoTitle = DialogObject.setDialogPhotoTitle(imageReceiver, i9Var, MessagesController.getInstance(UserConfig.selectedAccount).getUserOrChat(j3));
+        this.v = dialogPhotoTitle;
+        this.v = Emoji.replaceEmoji(dialogPhotoTitle, null, false);
     }
 
     @Override
-    public final s4.c1 x(ViewGroup viewGroup, int i10) {
-        View view;
-        int i11;
-        int i12;
-        lv lvVar = this.f34164c;
-        if (i10 == 0) {
-            view = lvVar.f34782d0;
-        } else if (i10 == 2) {
-            view = lvVar.f34783e0;
-            s4.p0 p0Var = new s4.p0(-1, -2);
-            i11 = ((org.telegram.ui.ActionBar.h3) lvVar).backgroundPaddingLeft;
-            ((ViewGroup.MarginLayoutParams) p0Var).leftMargin = i11;
-            i12 = ((org.telegram.ui.ActionBar.h3) lvVar).backgroundPaddingLeft;
-            ((ViewGroup.MarginLayoutParams) p0Var).rightMargin = i12;
-            view.setLayoutParams(p0Var);
+    public final void b() {
+        o0.a aVar = this.I;
+        z6 z6Var = (z6) aVar.f16770c;
+        z6Var.T.dismiss();
+        Bundle bundle = new Bundle();
+        long j3 = ((s6) aVar.f16769b).f40312a;
+        if (j3 > 0) {
+            bundle.putLong("user_id", j3);
         } else {
-            org.telegram.ui.Cells.f9 f9Var = new org.telegram.ui.Cells.f9(viewGroup.getContext());
-            f9Var.setFixedSize(12);
-            org.telegram.ui.Components.vq vqVar = new org.telegram.ui.Components.vq(new ColorDrawable(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f17872a7, false)), org.telegram.ui.ActionBar.j6.V0(viewGroup.getContext(), R.drawable.greydivider_bottom, org.telegram.ui.ActionBar.j6.f17892b7));
-            vqVar.f28580w = true;
-            f9Var.setBackgroundDrawable(vqVar);
-            view = f9Var;
+            bundle.putLong("chat_id", -j3);
         }
-        return new s4.c1(view);
-    }
-
-    @Override
-    public final int j(int i10) {
-        return i10;
-    }
-
-    @Override
-    public final void v(s4.c1 c1Var, int i10) {
+        z6Var.presentFragment(new ProfileActivity(bundle, null));
     }
 }

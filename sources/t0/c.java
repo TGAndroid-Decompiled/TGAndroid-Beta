@@ -2,26 +2,59 @@ package t0;
 
 import android.os.Build;
 import android.os.Bundle;
-import android.view.inputmethod.InputConnection;
-import android.view.inputmethod.InputConnectionWrapper;
-import android.view.inputmethod.InputContentInfo;
-public final class c extends InputConnectionWrapper {
-    public final e f42067a;
+import android.text.SpannableStringBuilder;
+import android.view.inputmethod.EditorInfo;
+public abstract class c {
+    public static final String[] f46418a = new String[0];
 
-    public c(InputConnection inputConnection, e eVar) {
-        super(inputConnection, false);
-        this.f42067a = eVar;
+    public static String[] a(EditorInfo editorInfo) {
+        int i10 = Build.VERSION.SDK_INT;
+        String[] strArr = f46418a;
+        if (i10 >= 25) {
+            String[] strArr2 = editorInfo.contentMimeTypes;
+            if (strArr2 != null) {
+                return strArr2;
+            }
+            return strArr;
+        }
+        Bundle bundle = editorInfo.extras;
+        if (bundle == null) {
+            return strArr;
+        }
+        String[] stringArray = bundle.getStringArray("androidx.core.view.inputmethod.EditorInfoCompat.CONTENT_MIME_TYPES");
+        if (stringArray == null) {
+            stringArray = editorInfo.extras.getStringArray("android.support.v13.view.inputmethod.EditorInfoCompat.CONTENT_MIME_TYPES");
+        }
+        if (stringArray != null) {
+            return stringArray;
+        }
+        return strArr;
     }
 
-    @Override
-    public final boolean commitContent(InputContentInfo inputContentInfo, int i10, Bundle bundle) {
-        i iVar = null;
-        if (inputContentInfo != null && Build.VERSION.SDK_INT >= 25) {
-            iVar = new i(new g(inputContentInfo));
+    public static void b(EditorInfo editorInfo, String[] strArr) {
+        if (Build.VERSION.SDK_INT >= 25) {
+            editorInfo.contentMimeTypes = strArr;
+            return;
         }
-        if (this.f42067a.h(iVar, i10, bundle)) {
-            return true;
+        if (editorInfo.extras == null) {
+            editorInfo.extras = new Bundle();
         }
-        return super.commitContent(inputContentInfo, i10, bundle);
+        editorInfo.extras.putStringArray("androidx.core.view.inputmethod.EditorInfoCompat.CONTENT_MIME_TYPES", strArr);
+        editorInfo.extras.putStringArray("android.support.v13.view.inputmethod.EditorInfoCompat.CONTENT_MIME_TYPES", strArr);
+    }
+
+    public static void c(EditorInfo editorInfo, CharSequence charSequence, int i10, int i11) {
+        SpannableStringBuilder spannableStringBuilder;
+        if (editorInfo.extras == null) {
+            editorInfo.extras = new Bundle();
+        }
+        if (charSequence != null) {
+            spannableStringBuilder = new SpannableStringBuilder(charSequence);
+        } else {
+            spannableStringBuilder = null;
+        }
+        editorInfo.extras.putCharSequence("androidx.core.view.inputmethod.EditorInfoCompat.CONTENT_SURROUNDING_TEXT", spannableStringBuilder);
+        editorInfo.extras.putInt("androidx.core.view.inputmethod.EditorInfoCompat.CONTENT_SELECTION_HEAD", i10);
+        editorInfo.extras.putInt("androidx.core.view.inputmethod.EditorInfoCompat.CONTENT_SELECTION_END", i11);
     }
 }

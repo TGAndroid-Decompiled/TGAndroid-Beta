@@ -1,29 +1,27 @@
 package org.telegram.messenger;
 
-import java.util.concurrent.CountDownLatch;
+import org.telegram.tgnet.tl.TL_ephemeral;
 public final class l3 implements Runnable {
-    public final int f15669a;
-    public final FilePathDatabase f15670b;
-    public final String f15671c;
-    public final boolean[] d;
-    public final CountDownLatch e;
+    public final int f18248a;
+    public final FileRefController f18249b;
+    public final TL_ephemeral.TL_sendMessage f18250c;
+    public final Object[] d;
 
-    public l3(FilePathDatabase filePathDatabase, String str, boolean[] zArr, CountDownLatch countDownLatch, int i10) {
-        this.f15669a = i10;
-        this.f15670b = filePathDatabase;
-        this.f15671c = str;
-        this.d = zArr;
-        this.e = countDownLatch;
+    public l3(FileRefController fileRefController, TL_ephemeral.TL_sendMessage tL_sendMessage, Object[] objArr, int i10) {
+        this.f18248a = i10;
+        this.f18249b = fileRefController;
+        this.f18250c = tL_sendMessage;
+        this.d = objArr;
     }
 
     @Override
     public final void run() {
-        switch (this.f15669a) {
+        switch (this.f18248a) {
             case 0:
-                FilePathDatabase.g(this.f15670b, this.f15671c, this.d, this.e);
+                FileRefController.n(this.f18249b, this.f18250c, this.d);
                 return;
             default:
-                FilePathDatabase.e(this.f15670b, this.f15671c, this.d, this.e);
+                FileRefController.t(this.f18249b, this.f18250c, this.d);
                 return;
         }
     }

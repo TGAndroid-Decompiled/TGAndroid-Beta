@@ -1,9 +1,16 @@
 package w7;
 
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
+import android.util.Log;
 public abstract class g6 {
-    public static void a(View view, float f7, float f10, float f11, float f12) {
-        view.setPadding(AndroidUtilities.dp(f7), AndroidUtilities.dp(f10), AndroidUtilities.dp(f11), AndroidUtilities.dp(f12));
+    public static void a(String str) {
+        boolean isLoggable;
+        if (Log.isLoggable("FirebaseAppIndex", 3)) {
+            isLoggable = true;
+        } else {
+            isLoggable = Log.isLoggable("FirebaseAppIndex", 3);
+        }
+        if (isLoggable) {
+            Log.d("FirebaseAppIndex", str);
+        }
     }
 }

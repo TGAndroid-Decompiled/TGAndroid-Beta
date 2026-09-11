@@ -2,64 +2,64 @@ package org.telegram.ui;
 
 import android.view.View;
 public final class f5 implements View.OnAttachStateChangeListener {
-    public final int f32683a;
-    public final Object f32684b;
+    public final int f36264a;
+    public final Object f36265b;
 
     public f5(Object obj, int i10) {
-        this.f32683a = i10;
-        this.f32684b = obj;
+        this.f36264a = i10;
+        this.f36265b = obj;
     }
 
     @Override
     public final void onViewAttachedToWindow(View view) {
-        switch (this.f32683a) {
+        switch (this.f36264a) {
             case 0:
-                ((g5) this.f32684b).f32996b.onAttachedToWindow();
+                ((g5) this.f36265b).f36562b.onAttachedToWindow();
                 return;
             case 1:
-                ((org.telegram.ui.Components.n5) this.f32684b).a();
+                ((org.telegram.ui.Components.o5) this.f36265b).a();
                 return;
             case 2:
-                ((w70) this.f32684b).f37737b.onAttachedToWindow();
+                ((x70) this.f36265b).f42607b.onAttachedToWindow();
                 return;
             case 3:
-                org.telegram.ui.Components.n5 n5Var = ((vp0) this.f32684b).f37604i;
-                if (n5Var != null) {
-                    n5Var.a();
+                org.telegram.ui.Components.o5 o5Var = ((wp0) this.f36265b).f42455i;
+                if (o5Var != null) {
+                    o5Var.a();
                     return;
                 }
                 return;
             default:
-                f91 f91Var = (f91) this.f32684b;
-                f91Var.h.a();
-                f91Var.f32728n.a();
+                d91 d91Var = (d91) this.f36265b;
+                d91Var.h.a();
+                d91Var.f35739n.a();
                 return;
         }
     }
 
     @Override
     public final void onViewDetachedFromWindow(View view) {
-        switch (this.f32683a) {
+        switch (this.f36264a) {
             case 0:
-                ((g5) this.f32684b).f32996b.onDetachedFromWindow();
+                ((g5) this.f36265b).f36562b.onDetachedFromWindow();
                 return;
             case 1:
-                ((org.telegram.ui.Components.n5) this.f32684b).b();
+                ((org.telegram.ui.Components.o5) this.f36265b).b();
                 return;
             case 2:
-                ((w70) this.f32684b).f37737b.onDetachedFromWindow();
+                ((x70) this.f36265b).f42607b.onDetachedFromWindow();
                 return;
             case 3:
-                org.telegram.ui.Components.n5 n5Var = ((vp0) this.f32684b).f37604i;
-                if (n5Var != null) {
-                    n5Var.b();
+                org.telegram.ui.Components.o5 o5Var = ((wp0) this.f36265b).f42455i;
+                if (o5Var != null) {
+                    o5Var.b();
                     return;
                 }
                 return;
             default:
-                f91 f91Var = (f91) this.f32684b;
-                f91Var.h.b();
-                f91Var.f32728n.b();
+                d91 d91Var = (d91) this.f36265b;
+                d91Var.h.b();
+                d91Var.f35739n.b();
                 return;
         }
     }

@@ -1,56 +1,56 @@
 package le;
 
 import android.graphics.RectF;
-import w7.q;
+import w7.p;
 public final class g implements Comparable {
-    public final Object f12879a;
-    public int f12880b;
-    public final m f12881c;
+    public final Object f15379a;
+    public int f15380b;
+    public final m f15381c;
     public final m d;
-    public final n e;
-    public final m f12882f;
+    public final n f15382e;
+    public final m f15383f;
     public boolean h = false;
 
     public g(int i10, Object obj, boolean z10) {
         float f7;
-        this.f12879a = obj;
-        this.f12880b = i10;
+        this.f15379a = obj;
+        this.f15380b = i10;
         if (z10) {
             f7 = 1.0f;
         } else {
             f7 = 0.0f;
         }
         this.d = new m(f7);
-        this.f12881c = new m(i10);
-        this.e = new n();
-        this.f12882f = new m(0.0f);
+        this.f15381c = new m(i10);
+        this.f15382e = new n();
+        this.f15383f = new m(0.0f);
         a(false);
     }
 
     public final void a(boolean z10) {
-        this.f12881c.c(z10);
+        this.f15381c.c(z10);
         this.d.c(z10);
-        this.e.c(z10);
-        this.f12882f.c(z10);
-        Object obj = this.f12879a;
+        this.f15382e.c(z10);
+        this.f15383f.c(z10);
+        Object obj = this.f15379a;
         if (obj instanceof n) {
             ((n) obj).c(z10);
         }
     }
 
     public final RectF b() {
-        n nVar = this.e;
-        RectF rectF = nVar.e;
-        rectF.set(nVar.f12896a.f12893a, nVar.f12897b.f12893a, nVar.f12898c.f12893a, nVar.d.f12893a);
+        n nVar = this.f15382e;
+        RectF rectF = nVar.f15402e;
+        rectF.set(nVar.f15399a.f15396a, nVar.f15400b.f15396a, nVar.f15401c.f15396a, nVar.d.f15396a);
         return rectF;
     }
 
     public final float c() {
-        return q.a(this.d.f12893a, 0.0f, 1.0f);
+        return p.a(this.d.f15396a, 0.0f, 1.0f);
     }
 
     @Override
     public final int compareTo(Object obj) {
-        return Integer.compare(this.f12880b, ((g) obj).f12880b);
+        return Integer.compare(this.f15380b, ((g) obj).f15380b);
     }
 }

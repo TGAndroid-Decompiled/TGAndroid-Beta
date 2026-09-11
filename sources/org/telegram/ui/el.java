@@ -1,44 +1,39 @@
 package org.telegram.ui;
 
-import android.animation.LayoutTransition;
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.ViewTreeObserver;
-public final class el implements LayoutTransition.TransitionListener {
-    public dl f32240a;
-    public int f32241b;
-    public final org.telegram.ui.ActionBar.z f32242c;
-    public final eo d;
+import android.graphics.Canvas;
+import android.graphics.RectF;
+public final class el implements org.telegram.ui.Components.ek0 {
+    public final co f36117a;
 
-    public el(eo eoVar, org.telegram.ui.ActionBar.z zVar) {
-        this.d = eoVar;
-        this.f32242c = zVar;
+    public el(co coVar) {
+        this.f36117a = coVar;
     }
 
     @Override
-    public final void endTransition(LayoutTransition layoutTransition, ViewGroup viewGroup, View view, int i10) {
-        int i11 = this.f32241b - 1;
-        this.f32241b = i11;
-        if (i11 == 0 && this.f32240a != null) {
-            this.f32242c.getViewTreeObserver().removeOnPreDrawListener(this.f32240a);
-            this.f32240a = null;
-        }
+    public final void B(android.view.View r24, ah.j1 r25, boolean r26, boolean r27) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.el.B(android.view.View, ah.j1, boolean, boolean):void");
     }
 
     @Override
-    public final void startTransition(LayoutTransition layoutTransition, ViewGroup viewGroup, View view, int i10) {
-        if (this.f32241b == 0 && this.f32240a == null) {
-            this.f32240a = new ViewTreeObserver.OnPreDrawListener() {
-                @Override
-                public final boolean onPreDraw() {
-                    org.telegram.ui.ActionBar.l lVar;
-                    lVar = ((org.telegram.ui.ActionBar.p2) el.this.d).actionBar;
-                    lVar.invalidate();
-                    return true;
-                }
-            };
-            this.f32242c.getViewTreeObserver().addOnPreDrawListener(this.f32240a);
-        }
-        this.f32241b++;
+    public final boolean S() {
+        return false;
+    }
+
+    @Override
+    public final boolean n() {
+        return true;
+    }
+
+    @Override
+    public final boolean t() {
+        return false;
+    }
+
+    @Override
+    public final void J() {
+    }
+
+    @Override
+    public final void I(Canvas canvas, RectF rectF, float f7, float f10, float f11, int i10, boolean z10) {
     }
 }

@@ -1,7 +1,6 @@
 package f4;
 
 import b2.q0;
-import bi.u6;
 import e2.d0;
 import e2.h;
 import java.io.ByteArrayInputStream;
@@ -18,20 +17,20 @@ import w7.c9;
 import z3.l;
 import z3.m;
 public final class e implements m {
-    public static final Pattern f7760b = Pattern.compile("^([0-9][0-9]+):([0-9][0-9]):([0-9][0-9])(?:(\\.[0-9]+)|:([0-9][0-9])(?:\\.([0-9]+))?)?$");
-    public static final Pattern f7761c = Pattern.compile("^([0-9]+(?:\\.[0-9]+)?)(h|m|s|ms|f|t)$");
+    public static final Pattern f9259b = Pattern.compile("^([0-9][0-9]+):([0-9][0-9]):([0-9][0-9])(?:(\\.[0-9]+)|:([0-9][0-9])(?:\\.([0-9]+))?)?$");
+    public static final Pattern f9260c = Pattern.compile("^([0-9]+(?:\\.[0-9]+)?)(h|m|s|ms|f|t)$");
     public static final Pattern d = Pattern.compile("^(([0-9]*.)?[0-9]+)(px|em|%)$");
-    public static final Pattern e = Pattern.compile("^([-+]?\\d+\\.?\\d*?)%$");
-    public static final Pattern f7762f = Pattern.compile("^([-+]?\\d+\\.?\\d*?)% ([-+]?\\d+\\.?\\d*?)%$");
+    public static final Pattern f9261e = Pattern.compile("^([-+]?\\d+\\.?\\d*?)%$");
+    public static final Pattern f9262f = Pattern.compile("^([-+]?\\d+\\.?\\d*?)% ([-+]?\\d+\\.?\\d*?)%$");
     public static final Pattern h = Pattern.compile("^([-+]?\\d+\\.?\\d*?)px ([-+]?\\d+\\.?\\d*?)px$");
-    public static final Pattern f7763n = Pattern.compile("^(\\d+) (\\d+)$");
-    public static final d f7764r = new d(30.0f, 1, 1);
-    public final XmlPullParserFactory f7765a;
+    public static final Pattern f9263n = Pattern.compile("^(\\d+) (\\d+)$");
+    public static final d f9264r = new d(30.0f, 1, 1);
+    public final XmlPullParserFactory f9265a;
 
     public e() {
         try {
             XmlPullParserFactory newInstance = XmlPullParserFactory.newInstance();
-            this.f7765a = newInstance;
+            this.f9265a = newInstance;
             newInstance.setNamespaceAware(true);
         } catch (XmlPullParserException e7) {
             throw new RuntimeException("Couldn't create XmlPullParserFactory instance", e7);
@@ -57,7 +56,7 @@ public final class e implements m {
         if (attributeValue == null) {
             return 15;
         }
-        Matcher matcher = f7763n.matcher(attributeValue);
+        Matcher matcher = f9263n.matcher(attributeValue);
         if (!matcher.matches()) {
             e2.a.n("TtmlParser", "Ignoring malformed cell resolution: ".concat(attributeValue));
             return 15;
@@ -83,7 +82,7 @@ public final class e implements m {
 
     public static void d(String str, g gVar) {
         Matcher matcher;
-        String str2 = d0.f7188a;
+        String str2 = d0.f8737a;
         char c10 = 65535;
         String[] split = str.split("\\s+", -1);
         int length = split.length;
@@ -121,20 +120,20 @@ public final class e implements m {
             }
             switch (c10) {
                 case 0:
-                    gVar.f7779j = 3;
+                    gVar.f9281j = 3;
                     break;
                 case 1:
-                    gVar.f7779j = 2;
+                    gVar.f9281j = 2;
                     break;
                 case 2:
-                    gVar.f7779j = 1;
+                    gVar.f9281j = 1;
                     break;
                 default:
                     throw new Exception(a4.a.p("Invalid unit for fontSize: '", group, "'."));
             }
             String group2 = matcher.group(1);
             group2.getClass();
-            gVar.f7780k = Float.parseFloat(group2);
+            gVar.f9282k = Float.parseFloat(group2);
             return;
         }
         throw new Exception(a4.a.p("Invalid expression for fontSize: '", str, "'."));
@@ -152,7 +151,7 @@ public final class e implements m {
         }
         String attributeValue2 = xmlPullParser.getAttributeValue("http://www.w3.org/ns/ttml#parameter", "frameRateMultiplier");
         if (attributeValue2 != null) {
-            String str = d0.f7188a;
+            String str = d0.f8737a;
             String[] split = attributeValue2.split(" ", -1);
             if (split.length == 2) {
                 z10 = true;
@@ -164,13 +163,13 @@ public final class e implements m {
         } else {
             f7 = 1.0f;
         }
-        d dVar = f7764r;
-        int i11 = dVar.f7757a;
+        d dVar = f9264r;
+        int i11 = dVar.f9256a;
         String attributeValue3 = xmlPullParser.getAttributeValue("http://www.w3.org/ns/ttml#parameter", "subFrameRate");
         if (attributeValue3 != null) {
             i11 = Integer.parseInt(attributeValue3);
         }
-        int i12 = dVar.f7758b;
+        int i12 = dVar.f9257b;
         String attributeValue4 = xmlPullParser.getAttributeValue("http://www.w3.org/ns/ttml#parameter", "tickRate");
         if (attributeValue4 != null) {
             i12 = Integer.parseInt(attributeValue4);
@@ -265,7 +264,7 @@ public final class e implements m {
                     if (trim.isEmpty()) {
                         split = new String[0];
                     } else {
-                        String str3 = d0.f7188a;
+                        String str3 = d0.f8737a;
                         split = trim.split("\\s+", -1);
                     }
                     if (split.length > 0) {
@@ -296,7 +295,7 @@ public final class e implements m {
             if (j12 != -9223372036854775807L) {
                 j11 = j10 + j12;
             } else if (cVar != null) {
-                long j14 = cVar.e;
+                long j14 = cVar.f9248e;
                 if (j14 != -9223372036854775807L) {
                     j3 = j14;
                     return new c(xmlPullParser.getName(), null, j10, j3, h10, strArr, str2, str, cVar);
@@ -339,14 +338,19 @@ public final class e implements m {
     }
 
     @Override
-    public final void A(byte[] bArr, int i10, int i11, l lVar, h hVar) {
-        c9.b(k(i10, i11, bArr), lVar, hVar);
+    public final int U() {
+        return 1;
     }
 
     @Override
-    public final z3.d k(int i10, int i11, byte[] bArr) {
+    public final void e0(byte[] bArr, int i10, int i11, l lVar, h hVar) {
+        c9.b(p(i10, i11, bArr), lVar, hVar);
+    }
+
+    @Override
+    public final z3.d p(int i10, int i11, byte[] bArr) {
         try {
-            XmlPullParser newPullParser = this.f7765a.newPullParser();
+            XmlPullParser newPullParser = this.f9265a.newPullParser();
             HashMap hashMap = new HashMap();
             HashMap hashMap2 = new HashMap();
             HashMap hashMap3 = new HashMap();
@@ -354,12 +358,12 @@ public final class e implements m {
             q0 q0Var = null;
             newPullParser.setInput(new ByteArrayInputStream(bArr, i10, i11), null);
             ArrayDeque arrayDeque = new ArrayDeque();
-            d dVar = f7764r;
-            u6 u6Var = null;
+            d dVar = f9264r;
+            cf.c cVar = null;
             int i12 = 15;
             int i13 = 0;
             for (int eventType = newPullParser.getEventType(); eventType != 1; eventType = newPullParser.getEventType()) {
-                c cVar = (c) arrayDeque.peek();
+                c cVar2 = (c) arrayDeque.peek();
                 if (i13 == 0) {
                     String name = newPullParser.getName();
                     if (eventType == 2) {
@@ -378,13 +382,13 @@ public final class e implements m {
                                 f(newPullParser, hashMap, i14, q0Var2, hashMap2, hashMap3);
                             } else {
                                 try {
-                                    c g10 = g(newPullParser, cVar, hashMap2, dVar2);
+                                    c g10 = g(newPullParser, cVar2, hashMap2, dVar2);
                                     arrayDeque.push(g10);
-                                    if (cVar != null) {
-                                        if (cVar.f7756m == null) {
-                                            cVar.f7756m = new ArrayList();
+                                    if (cVar2 != null) {
+                                        if (cVar2.f9255m == null) {
+                                            cVar2.f9255m = new ArrayList();
                                         }
-                                        cVar.f7756m.add(g10);
+                                        cVar2.f9255m.add(g10);
                                     }
                                 } catch (z3.f e7) {
                                     e2.a.o("TtmlParser", "Suppressing parser error", e7);
@@ -399,17 +403,17 @@ public final class e implements m {
                         q0Var = q0Var2;
                         dVar = dVar2;
                     } else if (eventType == 4) {
-                        cVar.getClass();
+                        cVar2.getClass();
                         c a2 = c.a(newPullParser.getText());
-                        if (cVar.f7756m == null) {
-                            cVar.f7756m = new ArrayList();
+                        if (cVar2.f9255m == null) {
+                            cVar2.f9255m = new ArrayList();
                         }
-                        cVar.f7756m.add(a2);
+                        cVar2.f9255m.add(a2);
                     } else if (eventType == 3) {
                         if (newPullParser.getName().equals("tt")) {
-                            c cVar2 = (c) arrayDeque.peek();
-                            cVar2.getClass();
-                            u6Var = new u6(cVar2, hashMap, hashMap2, hashMap3);
+                            c cVar3 = (c) arrayDeque.peek();
+                            cVar3.getClass();
+                            cVar = new cf.c(cVar3, hashMap, hashMap2, hashMap3);
                         }
                         arrayDeque.pop();
                     }
@@ -420,18 +424,13 @@ public final class e implements m {
                 }
                 newPullParser.next();
             }
-            u6Var.getClass();
-            return u6Var;
+            cVar.getClass();
+            return cVar;
         } catch (IOException e10) {
             throw new IllegalStateException("Unexpected error when reading input.", e10);
         } catch (XmlPullParserException e11) {
             throw new IllegalStateException("Unable to decode source", e11);
         }
-    }
-
-    @Override
-    public final int n() {
-        return 1;
     }
 
     @Override

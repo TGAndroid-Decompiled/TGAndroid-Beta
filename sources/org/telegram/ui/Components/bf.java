@@ -3,24 +3,24 @@ package org.telegram.ui.Components;
 import android.animation.AnimatorSet;
 import org.telegram.messenger.AndroidUtilities;
 public final class bf implements Runnable {
-    public final int f21818a;
-    public final ChatActivityEnterView f21819b;
+    public final int f24691a;
+    public final ChatActivityEnterView f24692b;
 
     public bf(ChatActivityEnterView chatActivityEnterView, int i10) {
-        this.f21818a = i10;
-        this.f21819b = chatActivityEnterView;
+        this.f24691a = i10;
+        this.f24692b = chatActivityEnterView;
     }
 
     @Override
     public final void run() {
-        switch (this.f21818a) {
+        switch (this.f24691a) {
             case 0:
-                ChatActivityEnterView chatActivityEnterView = this.f21819b;
-                bf bfVar = chatActivityEnterView.f20912q3;
-                if ((!chatActivityEnterView.j0() || !chatActivityEnterView.v()) && !org.telegram.ui.ActionBar.p2.hasSheets(chatActivityEnterView.O2) && !chatActivityEnterView.X1 && chatActivityEnterView.E0 != null && chatActivityEnterView.j3 && !chatActivityEnterView.f20956y2 && !AndroidUtilities.usingHardwareInput && !AndroidUtilities.isInMultiwindow) {
-                    qg qgVar = chatActivityEnterView.Y2;
-                    if (qgVar != null) {
-                        qgVar.q1();
+                ChatActivityEnterView chatActivityEnterView = this.f24692b;
+                bf bfVar = chatActivityEnterView.f23758q3;
+                if ((!chatActivityEnterView.j0() || !chatActivityEnterView.v()) && !org.telegram.ui.ActionBar.n2.hasSheets(chatActivityEnterView.O2) && !chatActivityEnterView.X1 && chatActivityEnterView.E0 != null && chatActivityEnterView.j3 && !chatActivityEnterView.f23802y2 && !AndroidUtilities.usingHardwareInput && !AndroidUtilities.isInMultiwindow) {
+                    og ogVar = chatActivityEnterView.Y2;
+                    if (ogVar != null) {
+                        ogVar.l1();
                     }
                     chatActivityEnterView.E0.requestFocus();
                     AndroidUtilities.showKeyboard(chatActivityEnterView.E0);
@@ -30,14 +30,14 @@ public final class bf implements Runnable {
                 }
                 return;
             case 1:
-                qg qgVar2 = this.f21819b.Y2;
-                if (qgVar2 != null) {
-                    qgVar2.i2(0, 0, 0, 0L, 0L, true);
+                og ogVar2 = this.f24692b.Y2;
+                if (ogVar2 != null) {
+                    ogVar2.c2(0, 0, 0, 0L, 0L, true);
                     return;
                 }
                 return;
             default:
-                ChatActivityEnterView chatActivityEnterView2 = this.f21819b;
+                ChatActivityEnterView chatActivityEnterView2 = this.f24692b;
                 AnimatorSet animatorSet = chatActivityEnterView2.V0;
                 if (animatorSet != null && !animatorSet.isRunning()) {
                     chatActivityEnterView2.V0.start();

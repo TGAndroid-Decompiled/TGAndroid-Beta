@@ -1,25 +1,28 @@
 package org.telegram.messenger;
-public final class q5 implements Runnable {
-    public final int f16109a;
-    public final LocaleController f16110b;
-    public final String f16111c;
-    public final Runnable d;
 
-    public q5(LocaleController localeController, String str, Runnable runnable, int i10) {
-        this.f16109a = i10;
-        this.f16110b = localeController;
-        this.f16111c = str;
-        this.d = runnable;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class q5 implements RequestDelegate {
+    public final int f18786a;
+    public final LocationController f18787b;
+
+    public q5(LocationController locationController, int i10) {
+        this.f18786a = i10;
+        this.f18787b = locationController;
     }
 
     @Override
-    public final void run() {
-        switch (this.f16109a) {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f18786a) {
             case 0:
-                this.f16110b.lambda$checkForcePatchLangpack$6(this.f16111c, this.d);
+                this.f18787b.lambda$removeSharingLocation$19(tLObject, tL_error);
+                return;
+            case 1:
+                this.f18787b.lambda$removeAllLocationSharings$22(tLObject, tL_error);
                 return;
             default:
-                this.f16110b.lambda$checkForcePatchLangpack$5(this.f16111c, this.d);
+                this.f18787b.lambda$markLiveLoactionsAsRead$27(tLObject, tL_error);
                 return;
         }
     }

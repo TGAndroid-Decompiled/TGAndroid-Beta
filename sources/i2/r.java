@@ -1,3 +1,4 @@
 package i2;
-public interface r extends b2.b1 {
+public final class r {
+    public static final r f11726a = new Object();
 }

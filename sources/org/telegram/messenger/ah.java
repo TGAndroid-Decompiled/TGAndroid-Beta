@@ -1,27 +1,57 @@
 package org.telegram.messenger;
-
-import java.util.function.Consumer;
 public final class ah implements Runnable {
-    public final int f14721a;
-    public final MessagesStorage f14722b;
-    public final long f14723c;
-    public final Consumer d;
+    public final int f17196a;
+    public final NotificationsController f17197b;
 
-    public ah(MessagesStorage messagesStorage, long j3, Consumer consumer, int i10) {
-        this.f14721a = i10;
-        this.f14722b = messagesStorage;
-        this.f14723c = j3;
-        this.d = consumer;
+    public ah(NotificationsController notificationsController, int i10) {
+        this.f17196a = i10;
+        this.f17197b = notificationsController;
     }
 
     @Override
     public final void run() {
-        switch (this.f14721a) {
+        switch (this.f17196a) {
             case 0:
-                this.f14722b.lambda$loadStoryAlbumsCache$270(this.f14723c, this.d);
+                NotificationsController.Q(this.f17197b);
+                return;
+            case 1:
+                NotificationsController.f(this.f17197b);
+                return;
+            case 2:
+                NotificationsController.D(this.f17197b);
+                return;
+            case 3:
+                NotificationsController.U(this.f17197b);
+                return;
+            case 4:
+                NotificationsController.m(this.f17197b);
+                return;
+            case 5:
+                NotificationsController.p(this.f17197b);
+                return;
+            case 6:
+                NotificationsController.o(this.f17197b);
+                return;
+            case 7:
+                NotificationsController.Z(this.f17197b);
+                return;
+            case 8:
+                NotificationsController.z(this.f17197b);
+                return;
+            case 9:
+                NotificationsController.c(this.f17197b);
+                return;
+            case 10:
+                NotificationsController.A(this.f17197b);
+                return;
+            case 11:
+                NotificationsController.d(this.f17197b);
+                return;
+            case 12:
+                NotificationsController.s(this.f17197b);
                 return;
             default:
-                this.f14722b.lambda$loadTopics$51(this.f14723c, this.d);
+                NotificationsController.O(this.f17197b);
                 return;
         }
     }

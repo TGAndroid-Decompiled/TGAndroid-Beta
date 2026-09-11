@@ -1,56 +1,57 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.RectF;
+import android.content.Context;
 import android.text.SpannableStringBuilder;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Emoji;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.MessagesController;
-public final class ms {
-    public int f25278a;
-    public int f25279b;
-    public t01 f25280c;
-    public int d;
-    public int e;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+public final class ms implements Runnable {
+    public final int f28506a = 1;
+    public final Context f28507b;
+    public final org.telegram.ui.ActionBar.f6 f28508c;
 
-    public static ms b(org.telegram.ui.Cells.r2 r2Var, MessagesController.DialogFilter dialogFilter) {
-        ?? obj = new Object();
-        obj.f25278a = dialogFilter.f14645id;
-        obj.f25279b = dialogFilter.color;
-        String str = dialogFilter.name;
-        if (str == null) {
-            str = "";
-        }
-        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(str.toUpperCase());
-        t01 t01Var = new t01(spannableStringBuilder, 10.0f, AndroidUtilities.bold());
-        t01Var.s(r2Var);
-        obj.f25280c = t01Var;
-        obj.f25280c.r(MessageObject.replaceAnimatedEmoji(Emoji.replaceEmoji(spannableStringBuilder, t01Var.f27245a.getFontMetricsInt(), false), dialogFilter.entities, obj.f25280c.f27245a.getFontMetricsInt()));
-        obj.f25280c.p(26);
-        int dp = AndroidUtilities.dp(9.32f);
-        t01 t01Var2 = obj.f25280c;
-        obj.e = dp + ((int) t01Var2.f27247c);
-        t01Var2.j();
-        int[] iArr = org.telegram.ui.ActionBar.j6.f18182r8;
-        obj.d = org.telegram.ui.ActionBar.j6.w0(null, iArr[dialogFilter.color % iArr.length], false);
-        return obj;
+    public ms(Context context, org.telegram.ui.ActionBar.f6 f6Var) {
+        this.f28507b = context;
+        this.f28508c = f6Var;
     }
 
-    public final void a(Canvas canvas) {
-        float f7;
-        Paint paint = org.telegram.ui.ActionBar.j6.A0;
-        int i10 = this.d;
-        if (org.telegram.ui.ActionBar.j6.I.q()) {
-            f7 = 0.2f;
-        } else {
-            f7 = 0.1f;
+    @Override
+    public final void run() {
+        switch (this.f28506a) {
+            case 0:
+                org.telegram.ui.ActionBar.b2[] b2VarArr = new org.telegram.ui.ActionBar.b2[1];
+                String string = LocaleController.getString(R.string.AppsTabInfoText);
+                ks ksVar = new ks(b2VarArr, 0);
+                org.telegram.ui.ActionBar.f6 f6Var = this.f28508c;
+                SpannableStringBuilder replaceTags = AndroidUtilities.replaceTags(AndroidUtilities.replaceLinks(string, f6Var, ksVar));
+                Matcher matcher = Pattern.compile("@([a-zA-Z0-9_-]+)").matcher(replaceTags);
+                while (true) {
+                    boolean find = matcher.find();
+                    Context context = this.f28507b;
+                    if (find) {
+                        replaceTags.setSpan(new org.telegram.ui.n0(b2VarArr, context, matcher.group(1), 1), matcher.start(), matcher.end(), 33);
+                    } else {
+                        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(context, 0, f6Var);
+                        String string2 = LocaleController.getString(R.string.AppsTabInfoTitle);
+                        org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20198a;
+                        b2Var.R = string2;
+                        b2Var.T = replaceTags;
+                        alertDialog$Builder.k(LocaleController.getString(R.string.AppsTabInfoButton), null);
+                        b2VarArr[0] = alertDialog$Builder.o();
+                        return;
+                    }
+                }
+            default:
+                new zh.l7(this.f28507b, this.f28508c).show();
+                return;
         }
-        paint.setColor(org.telegram.ui.ActionBar.j6.l1(f7, i10));
-        RectF rectF = AndroidUtilities.rectTmp;
-        rectF.set(0.0f, 0.0f, this.e, AndroidUtilities.dp(14.66f));
-        canvas.drawRoundRect(rectF, AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), org.telegram.ui.ActionBar.j6.A0);
-        this.f25280c.c(AndroidUtilities.dp(4.66f), AndroidUtilities.dp(14.66f) / 2.0f, 1.0f, this.d, canvas);
+    }
+
+    public ms(qs qsVar, org.telegram.ui.ActionBar.f6 f6Var, Context context) {
+        this.f28508c = f6Var;
+        this.f28507b = context;
     }
 }

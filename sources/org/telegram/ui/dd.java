@@ -1,35 +1,45 @@
 package org.telegram.ui;
+public final class dd implements Runnable {
+    public final int f35762a;
+    public final md f35763b;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class dd implements RequestDelegate {
-    public final int f31885a;
-    public final nd f31886b;
-
-    public dd(nd ndVar, int i10) {
-        this.f31885a = i10;
-        this.f31886b = ndVar;
+    public dd(md mdVar, int i10) {
+        this.f35762a = i10;
+        this.f35763b = mdVar;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f31885a) {
+    public final void run() {
+        switch (this.f35762a) {
             case 0:
-                AndroidUtilities.runOnUIThread(new n(20, this.f31886b, tLObject));
+                md mdVar = this.f35763b;
+                mdVar.f38647j0 = true;
+                mdVar.h0();
                 return;
             case 1:
-                if (tLObject instanceof TLRPC.TL_boolTrue) {
-                    AndroidUtilities.runOnUIThread(new ed(this.f31886b, 3));
-                    return;
-                }
+                md mdVar2 = this.f35763b;
+                mdVar2.f38664x = null;
+                mdVar2.f38665y = null;
+                mdVar2.f38649l0 = null;
+                mdVar2.m0 = null;
+                mdVar2.f38652o0 = null;
+                mdVar2.f38651n0 = null;
+                mdVar2.f38653p0 = 0.0d;
+                mdVar2.e0(false, true);
+                mdVar2.f38640e.h(null, null, mdVar2.f38657s, null);
+                mdVar2.h.setAnimation(mdVar2.J);
+                mdVar2.J.K(0);
                 return;
             case 2:
-                AndroidUtilities.runOnUIThread(new n(18, this.f31886b, tL_error));
+                this.f35763b.g0(true);
                 return;
             default:
-                AndroidUtilities.runOnUIThread(new s1(this.f31886b, tL_error, tLObject, 11));
+                md mdVar3 = this.f35763b;
+                mdVar3.f38647j0 = true;
+                if (mdVar3.f38662w.length() > 0) {
+                    mdVar3.d0(mdVar3.f38662w.getText().toString());
+                }
+                mdVar3.h0();
                 return;
         }
     }

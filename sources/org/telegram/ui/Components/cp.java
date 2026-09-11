@@ -1,29 +1,97 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.ChannelBoostsController;
-import org.telegram.tgnet.tl.TL_stories;
-public final class cp implements e2.h {
-    public final int f22210a;
-    public final sp f22211b;
+import android.graphics.Bitmap;
+import android.graphics.Point;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.util.ArrayList;
+import java.util.HashMap;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.FileLoader;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.ImageLoader;
+import org.telegram.messenger.MediaController;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.hj1;
+public final class cp implements ti {
+    public final lp f25072a;
 
-    public cp(sp spVar, int i10) {
-        this.f22210a = i10;
-        this.f22211b = spVar;
+    public cp(lp lpVar) {
+        this.f25072a = lpVar;
     }
 
     @Override
-    public final void accept(Object obj) {
-        switch (this.f22210a) {
-            case 0:
-                sp spVar = this.f22211b;
-                spVar.f27139f0 = (TL_stories.TL_premium_boostsStatus) obj;
-                spVar.f27137e0 = true;
-                spVar.E(true);
-                spVar.f27136d0 = false;
-                return;
-            default:
-                sp.m(this.f22211b, (ChannelBoostsController.CanApplyBoost) obj);
-                return;
+    public final void B(hh hhVar) {
+        hhVar.run();
+    }
+
+    @Override
+    public final boolean D0() {
+        System.currentTimeMillis();
+        return true;
+    }
+
+    @Override
+    public final void K(Object obj) {
+        zo zoVar = new zo(obj, null, true, 3);
+        lp lpVar = this.f25072a;
+        zoVar.V1 = lpVar.f28264f0;
+        zoVar.c1(lpVar.v.a());
+        zoVar.I1 = new bp(this, 1);
+        lp.q(lpVar, zoVar);
+    }
+
+    @Override
+    public final void l0(int i10, boolean z10, boolean z11, int i11, int i12, long j3, boolean z12, boolean z13, long j10) {
+        lp lpVar = this.f25072a;
+        try {
+            HashMap<Object, Object> selectedPhotos = lpVar.Y.f31291j0.getSelectedPhotos();
+            if (!selectedPhotos.isEmpty()) {
+                MediaController.PhotoEntry photoEntry = (MediaController.PhotoEntry) selectedPhotos.values().iterator().next();
+                String str = photoEntry.imagePath;
+                if (str == null) {
+                    str = photoEntry.path;
+                }
+                if (str != null) {
+                    File directory = FileLoader.getDirectory(4);
+                    File file = new File(directory, Utilities.random.nextInt() + ".jpg");
+                    Point realScreenSize = AndroidUtilities.getRealScreenSize();
+                    Bitmap loadBitmap = ImageLoader.loadBitmap(str, null, (float) realScreenSize.x, (float) realScreenSize.y, true);
+                    loadBitmap.compress(Bitmap.CompressFormat.JPEG, 87, new FileOutputStream(file));
+                    zo zoVar = new zo(new hj1(file, file, ""), loadBitmap, false, 2);
+                    zoVar.V1 = lpVar.f28264f0;
+                    zoVar.F1 = false;
+                    zoVar.E1 = false;
+                    zoVar.f41954n1 = 0.2f;
+                    zoVar.c1(lpVar.v.a());
+                    zoVar.I1 = new bp(this, 0);
+                    lp.q(lpVar, zoVar);
+                }
+            }
+        } catch (Throwable th2) {
+            FileLog.e(th2);
         }
+    }
+
+    @Override
+    public final boolean q() {
+        return false;
+    }
+
+    @Override
+    public final void H() {
+    }
+
+    @Override
+    public final void X(TLRPC.User user) {
+    }
+
+    @Override
+    public final void x() {
+    }
+
+    @Override
+    public final void E0(ArrayList arrayList, CharSequence charSequence, boolean z10, int i10, int i11, long j3, boolean z11, long j10) {
     }
 }

@@ -1,25 +1,44 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.LanguageDetector;
-import org.telegram.messenger.Utilities;
-public final class t31 implements LanguageDetector.StringCallback, LanguageDetector.ExceptionCallback {
-    public final String f27304a;
-    public final String f27305b;
-    public final Utilities.Callback2 f27306c;
+import android.content.Context;
+import android.view.View;
+import android.view.ViewGroup;
+public final class t31 extends s4.h0 {
+    public Context f30526c;
+    public View d;
+    public int f30527e;
 
-    public t31(String str, String str2, Utilities.Callback2 callback2) {
-        this.f27304a = str;
-        this.f27305b = str2;
-        this.f27306c = callback2;
+    public final void D(View view) {
+        if (this.d == view) {
+            return;
+        }
+        this.f30527e++;
+        this.d = view;
+        m(1);
     }
 
     @Override
-    public void run(String str) {
-        i41.x(this.f27304a, str, this.f27305b, this.f27306c);
+    public final int h() {
+        return 2;
     }
 
     @Override
-    public void run(Exception exc) {
-        i41.x(this.f27304a, "en", this.f27305b, this.f27306c);
+    public final int j(int i10) {
+        if (i10 == 0) {
+            return 0;
+        }
+        return this.f30527e;
+    }
+
+    @Override
+    public final s4.c1 x(ViewGroup viewGroup, int i10) {
+        if (i10 == 0) {
+            return new s4.c1(new jn(this.f30526c, 13));
+        }
+        return new s4.c1(this.d);
+    }
+
+    @Override
+    public final void v(s4.c1 c1Var, int i10) {
     }
 }

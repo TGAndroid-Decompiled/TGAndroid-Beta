@@ -1,62 +1,97 @@
 package org.telegram.ui.Components;
 
+import android.animation.ValueAnimator;
 import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.drawable.Drawable;
 import android.view.View;
+import android.view.accessibility.AccessibilityNodeInfo;
+import android.view.animation.OvershootInterpolator;
+import android.widget.ImageView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.tgnet.TLRPC;
-public final class ty extends u51 {
-    public static final int f27510a = 0;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.messenger.Utilities;
+public final class ty extends ImageView {
+    public int f30736a;
+    public q5 f30737b;
+    public boolean f30738c;
+    public z5 d;
+    public xx f30739e;
+    public final ImageReceiver.BackgroundThreadDrawHolder[] f30740f;
+    public float h;
+    public ValueAnimator f30741n;
 
-    static {
-        u51.setup(new u51());
+    public ty(Context context) {
+        super(context);
+        this.f30740f = new ImageReceiver.BackgroundThreadDrawHolder[2];
+        setScaleType(ImageView.ScaleType.CENTER);
+        setBackground(org.telegram.ui.ActionBar.j6.Y(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f20753i6, false), AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f)));
     }
 
-    public static v51 a(TLRPC.StickerSetCovered stickerSetCovered, jy jyVar, boolean z10) {
-        v51 J = v51.J(ty.class);
-        long j3 = stickerSetCovered.set.f17222id;
-        long j10 = 1 + j3;
-        J.d = (int) (j10 ^ (j10 >>> 32));
-        J.B = j3;
-        J.G = stickerSetCovered;
-        J.H = jyVar;
-        J.e = z10;
-        return J;
+    public final void a(Drawable drawable, boolean z10) {
+        setImageDrawable(drawable);
+        this.f30738c = z10;
+    }
+
+    public z5 getSpan() {
+        return this.d;
     }
 
     @Override
-    public final void bindView(View view, v51 v51Var, boolean z10, j61 j61Var, r61 r61Var) {
-        mh.c cVar = (mh.c) view;
-        Object obj = v51Var.G;
-        if (obj instanceof TLRPC.TL_messages_stickerSet) {
-            cVar.setPack((TLRPC.TL_messages_stickerSet) obj);
-        } else if (obj instanceof TLRPC.StickerSetCovered) {
-            TLRPC.Document document = ((jy) v51Var.H).e;
-            cVar.d.setText(((TLRPC.StickerSetCovered) obj).set.short_name);
-            cVar.f13664c.d(document, null, null, null, false, false);
+    public final void onDraw(Canvas canvas) {
+        if (isPressed()) {
+            float f7 = this.h;
+            if (f7 != 1.0f) {
+                float min = (Math.min(40.0f, 1000.0f / AndroidUtilities.screenRefreshRate) / 100.0f) + f7;
+                this.h = min;
+                this.h = Utilities.clamp(min, 1.0f, 0.0f);
+                invalidate();
+            }
         }
-        cVar.a(v51Var.e, false);
+        float f10 = ((1.0f - this.h) * 0.2f) + 0.8f;
+        canvas.save();
+        canvas.scale(f10, f10, getMeasuredWidth() / 2.0f, getMeasuredHeight() / 2.0f);
+        super.onDraw(canvas);
+        canvas.restore();
     }
 
     @Override
-    public final boolean contentsEquals(v51 v51Var, v51 v51Var2) {
-        if (v51Var.B == v51Var2.B && v51Var.e == v51Var2.e) {
-            return true;
+    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+        accessibilityNodeInfo.setClassName("android.view.View");
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        setMeasuredDimension(View.MeasureSpec.getSize(i10), View.MeasureSpec.getSize(i10));
+    }
+
+    @Override
+    public void setPressed(boolean z10) {
+        ValueAnimator valueAnimator;
+        if (isPressed() != z10) {
+            super.setPressed(z10);
+            invalidate();
+            if (z10 && (valueAnimator = this.f30741n) != null) {
+                valueAnimator.removeAllListeners();
+                this.f30741n.cancel();
+            }
+            if (!z10) {
+                float f7 = this.h;
+                if (f7 != 0.0f) {
+                    ValueAnimator ofFloat = ValueAnimator.ofFloat(f7, 0.0f);
+                    this.f30741n = ofFloat;
+                    ofFloat.addUpdateListener(new l6(this, 21));
+                    this.f30741n.addListener(new j6(this, 23));
+                    this.f30741n.setInterpolator(new OvershootInterpolator(5.0f));
+                    this.f30741n.setDuration(350L);
+                    this.f30741n.start();
+                }
+            }
         }
-        return false;
     }
 
-    @Override
-    public final View createView(Context context, vl0 vl0Var, int i10, int i11, org.telegram.ui.ActionBar.f6 f6Var) {
-        mh.c cVar = new mh.c(context, f6Var);
-        cVar.setLayoutParams(new s4.p0(AndroidUtilities.dp(64.0f), -1));
-        return cVar;
-    }
-
-    @Override
-    public final boolean equals(v51 v51Var, v51 v51Var2) {
-        if (v51Var.B == v51Var2.B) {
-            return true;
-        }
-        return false;
+    public void setSpan(z5 z5Var) {
+        this.d = z5Var;
     }
 }

@@ -1,126 +1,80 @@
 package j2;
 
-import a3.s;
-import b2.h1;
-import b2.j1;
 import b2.k1;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Random;
-import u2.g0;
+import u2.f0;
 public final class g {
-    public static final s h = new s(4);
-    public static final Random f11473i = new Random();
-    public i d;
-    public String f11477f;
-    public final j1 f11474a = new j1();
-    public final h1 f11475b = new h1();
-    public final HashMap f11476c = new HashMap();
-    public k1 e = k1.f1774a;
-    public long f11478g = -1;
+    public final String f13183a;
+    public int f13184b;
+    public long f13185c;
+    public final f0 d;
+    public boolean f13186e;
+    public boolean f13187f;
+    public final h f13188g;
 
-    public final void a(f fVar) {
-        long j3 = fVar.f11470c;
+    public g(h hVar, String str, int i10, f0 f0Var) {
+        long j3;
+        this.f13188g = hVar;
+        this.f13183a = str;
+        this.f13184b = i10;
+        if (f0Var == null) {
+            j3 = -1;
+        } else {
+            j3 = f0Var.d;
+        }
+        this.f13185c = j3;
+        if (f0Var != null && f0Var.b()) {
+            this.d = f0Var;
+        }
+    }
+
+    public final boolean a(a aVar) {
+        f0 f0Var = aVar.d;
+        k1 k1Var = aVar.f13164b;
+        if (f0Var == null) {
+            if (this.f13184b != aVar.f13165c) {
+                return true;
+            }
+            return false;
+        }
+        long j3 = this.f13185c;
         if (j3 != -1) {
-            this.f11478g = j3;
-        }
-        this.f11477f = null;
-    }
-
-    public final synchronized void b(a aVar) {
-        i iVar;
-        try {
-            String str = this.f11477f;
-            if (str != null) {
-                f fVar = (f) this.f11476c.get(str);
-                fVar.getClass();
-                a(fVar);
-            }
-            Iterator it = this.f11476c.values().iterator();
-            while (it.hasNext()) {
-                f fVar2 = (f) it.next();
-                it.remove();
-                if (fVar2.e && (iVar = this.d) != null) {
-                    iVar.t(aVar, fVar2.f11468a);
-                }
-            }
-        } catch (Throwable th2) {
-            throw th2;
-        }
-    }
-
-    public final j2.f c(int r19, u2.g0 r20) {
-        throw new UnsupportedOperationException("Method not decompiled: j2.g.c(int, u2.g0):j2.f");
-    }
-
-    public final synchronized String d(k1 k1Var, g0 g0Var) {
-        return c(k1Var.g(g0Var.f42324a, this.f11475b).f1707c, g0Var).f11468a;
-    }
-
-    public final void e(a aVar) {
-        g0 g0Var;
-        k1 k1Var = aVar.f11452b;
-        int i10 = aVar.f11453c;
-        g0 g0Var2 = aVar.d;
-        boolean p5 = k1Var.p();
-        HashMap hashMap = this.f11476c;
-        if (p5) {
-            String str = this.f11477f;
-            if (str != null) {
-                f fVar = (f) hashMap.get(str);
-                fVar.getClass();
-                a(fVar);
-                return;
-            }
-            return;
-        }
-        f fVar2 = (f) hashMap.get(this.f11477f);
-        this.f11477f = c(i10, g0Var2).f11468a;
-        f(aVar);
-        if (g0Var2 != null) {
-            long j3 = g0Var2.d;
-            if (g0Var2.b()) {
-                if (fVar2 == null || fVar2.f11470c != j3 || (g0Var = fVar2.d) == null || g0Var.f42325b != g0Var2.f42325b || g0Var.f42326c != g0Var2.f42326c) {
-                    c(i10, new g0(g0Var2.f42324a, j3));
-                    this.d.getClass();
-                }
-            }
-        }
-    }
-
-    public final synchronized void f(j2.a r10) {
-        throw new UnsupportedOperationException("Method not decompiled: j2.g.f(j2.a):void");
-    }
-
-    public final synchronized void g(a aVar, int i10) {
-        boolean z10;
-        try {
-            this.d.getClass();
-            if (i10 == 0) {
-                z10 = true;
-            } else {
-                z10 = false;
-            }
-            Iterator it = this.f11476c.values().iterator();
-            while (it.hasNext()) {
-                f fVar = (f) it.next();
-                if (fVar.a(aVar)) {
-                    it.remove();
-                    if (fVar.e) {
-                        boolean equals = fVar.f11468a.equals(this.f11477f);
-                        if (z10 && equals) {
-                            boolean z11 = fVar.f11471f;
+            if (f0Var.d <= j3) {
+                f0 f0Var2 = this.d;
+                if (f0Var2 != null) {
+                    int i10 = f0Var2.f46668b;
+                    int b10 = k1Var.b(f0Var.f46667a);
+                    int b11 = k1Var.b(f0Var2.f46667a);
+                    if (f0Var.d >= f0Var2.d && b10 >= b11) {
+                        if (b10 <= b11) {
+                            if (f0Var.b()) {
+                                int i11 = f0Var.f46668b;
+                                int i12 = f0Var.f46669c;
+                                if (i11 <= i10) {
+                                    if (i11 == i10 && i12 > f0Var2.f46669c) {
+                                        return true;
+                                    }
+                                    return false;
+                                }
+                                return true;
+                            }
+                            int i13 = f0Var.f46670e;
+                            if (i13 == -1 || i13 > i10) {
+                                return true;
+                            }
+                            return false;
                         }
-                        if (equals) {
-                            a(fVar);
-                        }
-                        this.d.t(aVar, fVar.f11468a);
+                        return true;
                     }
+                    return false;
                 }
+                return false;
             }
-            e(aVar);
-        } catch (Throwable th2) {
-            throw th2;
+            return true;
         }
+        return false;
+    }
+
+    public final boolean b(b2.k1 r7, b2.k1 r8) {
+        throw new UnsupportedOperationException("Method not decompiled: j2.g.b(b2.k1, b2.k1):boolean");
     }
 }

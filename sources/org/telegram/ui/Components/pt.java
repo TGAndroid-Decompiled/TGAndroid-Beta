@@ -1,8 +1,29 @@
 package org.telegram.ui.Components;
-public abstract class pt {
-    public static final wr f26246a = new wr(0.39d, 0.575d, 0.565d, 1.0d);
-    public static final wr f26247b = new wr(0.445d, 0.05d, 0.55d, 0.95d);
-    public static final wr f26248c = new wr(0.55d, 0.085d, 0.68d, 0.53d);
-    public static final wr d = new wr(0.25d, 0.46d, 0.45d, 0.94d);
-    public static final wr e = new wr(0.455d, 0.03d, 0.515d, 0.955d);
+
+import android.view.View;
+import android.view.ViewTreeObserver;
+public final class pt implements ViewTreeObserver.OnPreDrawListener {
+    public final int f29486a;
+    public final View f29487b;
+
+    public pt(int i10, View view) {
+        this.f29486a = i10;
+        this.f29487b = view;
+    }
+
+    @Override
+    public final boolean onPreDraw() {
+        switch (this.f29486a) {
+            case 0:
+                org.telegram.ui.ActionBar.i4 i4Var = ((EditTextBoldCursor) this.f29487b).floatingActionMode;
+                if (i4Var != null) {
+                    i4Var.e();
+                    return true;
+                }
+                return true;
+            default:
+                ((l70) this.f29487b).invalidate();
+                return true;
+        }
+    }
 }

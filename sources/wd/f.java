@@ -1,5 +1,5 @@
 package wd;
 
-import w7.e8;
-public abstract class f extends e8 {
+import w7.d8;
+public abstract class f extends d8 {
 }

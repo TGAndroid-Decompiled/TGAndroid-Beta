@@ -1,26 +1,26 @@
 package org.telegram.tgnet;
 
-import org.telegram.messenger.MessagesController;
-import org.telegram.tgnet.TLRPC;
+import android.os.AsyncTask;
+import org.telegram.tgnet.ConnectionsManager;
 public final class k implements Runnable {
-    public final int f17387a;
-    public final int f17388b;
-    public final TLRPC.Updates f17389c;
+    public final int f20061a;
+    public final NativeByteBuffer f20062b;
+    public final AsyncTask f20063c;
 
-    public k(int i10, TLRPC.Updates updates, int i11) {
-        this.f17387a = i11;
-        this.f17388b = i10;
-        this.f17389c = updates;
+    public k(AsyncTask asyncTask, NativeByteBuffer nativeByteBuffer, int i10) {
+        this.f20061a = i10;
+        this.f20063c = asyncTask;
+        this.f20062b = nativeByteBuffer;
     }
 
     @Override
     public final void run() {
-        switch (this.f17387a) {
+        switch (this.f20061a) {
             case 0:
-                ConnectionsManager.lambda$onUnparsedMessageReceived$12(this.f17388b, this.f17389c);
+                ((ConnectionsManager.GoogleDnsLoadTask) this.f20063c).lambda$onPostExecute$1(this.f20062b);
                 return;
             default:
-                MessagesController.getInstance(this.f17388b).processUpdates(this.f17389c, false);
+                ((ConnectionsManager.MozillaDnsLoadTask) this.f20063c).lambda$onPostExecute$1(this.f20062b);
                 return;
         }
     }

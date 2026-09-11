@@ -1,27 +1,29 @@
 package org.telegram.messenger;
 public final class w3 implements Runnable {
-    public final int f16825a;
-    public final FileUploadOperation f16826b;
+    public final int f19471a;
+    public final boolean f19472b;
 
-    public w3(FileUploadOperation fileUploadOperation, int i10) {
-        this.f16825a = i10;
-        this.f16826b = fileUploadOperation;
+    public w3(int i10, boolean z10) {
+        this.f19471a = i10;
+        this.f19472b = z10;
     }
 
     @Override
     public final void run() {
-        switch (this.f16825a) {
+        int i10 = this.f19471a;
+        boolean z10 = this.f19472b;
+        switch (i10) {
             case 0:
-                FileUploadOperation.f(this.f16826b);
+                FingerprintController.b(z10);
                 return;
             case 1:
-                FileUploadOperation.e(this.f16826b);
+                FingerprintController.a(z10);
                 return;
             case 2:
-                FileUploadOperation.d(this.f16826b);
+                LiteMode.lambda$onPowerSaverApplied$0(z10);
                 return;
             default:
-                FileUploadOperation.b(this.f16826b);
+                NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.didSetNewTheme, Boolean.FALSE, Boolean.valueOf(z10));
                 return;
         }
     }

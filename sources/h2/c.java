@@ -1,17 +1,28 @@
 package h2;
 
 import android.media.MediaCodec;
-import com.google.android.gms.internal.cast.k4;
+import android.os.Build;
 public final class c {
-    public final MediaCodec.CryptoInfo f9199a;
-    public final MediaCodec.CryptoInfo.Pattern f9200b = k4.a();
+    public byte[] f10838a;
+    public byte[] f10839b;
+    public int f10840c;
+    public int[] d;
+    public int[] f10841e;
+    public int f10842f;
+    public int f10843g;
+    public int h;
+    public final MediaCodec.CryptoInfo f10844i;
+    public final b f10845j;
 
-    public c(MediaCodec.CryptoInfo cryptoInfo) {
-        this.f9199a = cryptoInfo;
-    }
-
-    public static void a(c cVar, int i10, int i11) {
-        cVar.f9200b.set(i10, i11);
-        cVar.f9199a.setPattern(cVar.f9200b);
+    public c() {
+        b bVar;
+        MediaCodec.CryptoInfo cryptoInfo = new MediaCodec.CryptoInfo();
+        this.f10844i = cryptoInfo;
+        if (Build.VERSION.SDK_INT >= 24) {
+            bVar = new b(cryptoInfo);
+        } else {
+            bVar = null;
+        }
+        this.f10845j = bVar;
     }
 }

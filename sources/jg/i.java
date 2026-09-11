@@ -1,12 +1,6 @@
 package jg;
+public interface i {
+    void a(float f7, float f10, boolean z10);
 
-import android.graphics.Paint;
-public class i extends f {
-    public i(ig.a aVar) {
-        super(aVar, false, null);
-        this.f11916c.setStyle(Paint.Style.FILL);
-        if (hg.g.A1) {
-            this.f11916c.setAntiAlias(false);
-        }
-    }
+    void invalidate();
 }

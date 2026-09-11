@@ -126,8 +126,8 @@ public class FileUploadOperation {
                 randomAccessFile.close();
                 this.stream = null;
             }
-        } catch (Exception e) {
-            FileLog.e(e);
+        } catch (Exception e7) {
+            FileLog.e(e7);
         }
         AutoDeleteMediaTask.unlockFile(this.uploadingFilePath);
     }
@@ -220,7 +220,7 @@ public class FileUploadOperation {
                 StringBuilder sb2 = new StringBuilder("debug_uploading:  response reqId ");
                 sb2.append(iArr[0]);
                 sb2.append(" time");
-                hc.b.v(this.uploadingFilePath, sb2);
+                com.google.android.gms.internal.vision.e2.t(this.uploadingFilePath, sb2);
             }
             if (tLObject != null) {
                 currentNetworkType = tLObject.networkType;
@@ -246,7 +246,7 @@ public class FileUploadOperation {
                 this.freeRequestIvs.add(bArr2);
             }
             this.requestTokens.delete(i12);
-            AndroidUtilities.runOnUIThread(new x3(this, iArr, 0));
+            AndroidUtilities.runOnUIThread(new s3(this, iArr, 0));
             if (tLObject instanceof TLRPC.TL_boolTrue) {
                 if (this.state == 1) {
                     this.uploadedBytesCount += i13;
@@ -269,7 +269,7 @@ public class FileUploadOperation {
                                 tL_inputFile.md5_checksum = "";
                             }
                             tL_inputFile.parts = this.currentPartNum;
-                            tL_inputFile.f17209id = this.currentFileId;
+                            tL_inputFile.f19883id = this.currentFileId;
                             String str2 = this.uploadingFilePath;
                             tL_inputFile.name = str2.substring(str2.lastIndexOf("/") + 1);
                             this.delegate.didFinishUploadingFile(this, tL_inputFile, null, null, null);
@@ -282,7 +282,7 @@ public class FileUploadOperation {
                                 tL_inputEncryptedFileUploaded.md5_checksum = "";
                             }
                             tL_inputEncryptedFileUploaded.parts = this.currentPartNum;
-                            tL_inputEncryptedFileUploaded.f17208id = this.currentFileId;
+                            tL_inputEncryptedFileUploaded.f19882id = this.currentFileId;
                             tL_inputEncryptedFileUploaded.key_fingerprint = this.fingerprint;
                             this.delegate.didFinishUploadingFile(this, null, tL_inputEncryptedFileUploaded, this.key, this.iv);
                             cleanup();
@@ -369,7 +369,7 @@ public class FileUploadOperation {
     }
 
     public void lambda$startUploadRequest$8() {
-        Utilities.stageQueue.postRunnable(new w3(this, 2));
+        Utilities.stageQueue.postRunnable(new r3(this, 2));
     }
 
     public void lambda$startUploadRequest$9(int[] iArr) {
@@ -399,14 +399,14 @@ public class FileUploadOperation {
             return;
         }
         this.state = 2;
-        Utilities.stageQueue.postRunnable(new w3(this, 1));
+        Utilities.stageQueue.postRunnable(new r3(this, 1));
         AutoDeleteMediaTask.unlockFile(this.uploadingFilePath);
         this.delegate.didFailedUploadingFile(this);
         cleanup();
     }
 
     public void checkNewDataAvailable(long j3, long j10, Float f7) {
-        Utilities.stageQueue.postRunnable(new a3.g0(this, f7, j10, j3, 2));
+        Utilities.stageQueue.postRunnable(new a3.f0(this, f7, j10, j3, 3));
     }
 
     public long getTotalFileSize() {
@@ -417,8 +417,8 @@ public class FileUploadOperation {
         if (this.state != 1) {
             return;
         }
-        Utilities.stageQueue.postRunnable(new ai.j(9, this, z10));
-        AndroidUtilities.runOnUIThread(new w3(this, 3));
+        Utilities.stageQueue.postRunnable(new ah.u(10, this, z10));
+        AndroidUtilities.runOnUIThread(new r3(this, 3));
     }
 
     public void setDelegate(FileUploadOperationDelegate fileUploadOperationDelegate) {
@@ -435,6 +435,6 @@ public class FileUploadOperation {
         }
         this.state = 1;
         AutoDeleteMediaTask.lockFile(this.uploadingFilePath);
-        Utilities.stageQueue.postRunnable(new w3(this, 0));
+        Utilities.stageQueue.postRunnable(new r3(this, 0));
     }
 }

@@ -2,12 +2,12 @@ package y9;
 
 import java.util.List;
 public final class e0 extends j1 {
-    public final List f46655a;
-    public final String f46656b;
+    public final List f49742a;
+    public final String f49743b;
 
     public e0(String str, List list) {
-        this.f46655a = list;
-        this.f46656b = str;
+        this.f49742a = list;
+        this.f49743b = str;
     }
 
     public final boolean equals(Object obj) {
@@ -17,8 +17,8 @@ public final class e0 extends j1 {
         }
         if (obj instanceof j1) {
             e0 e0Var = (e0) ((j1) obj);
-            String str2 = e0Var.f46656b;
-            if (this.f46655a.equals(e0Var.f46655a) && ((str = this.f46656b) != null ? str.equals(str2) : str2 == null)) {
+            String str2 = e0Var.f49743b;
+            if (this.f49742a.equals(e0Var.f49742a) && ((str = this.f49743b) != null ? str.equals(str2) : str2 == null)) {
                 return true;
             }
         }
@@ -27,8 +27,8 @@ public final class e0 extends j1 {
 
     public final int hashCode() {
         int hashCode;
-        int hashCode2 = (this.f46655a.hashCode() ^ 1000003) * 1000003;
-        String str = this.f46656b;
+        int hashCode2 = (this.f49742a.hashCode() ^ 1000003) * 1000003;
+        String str = this.f49743b;
         if (str == null) {
             hashCode = 0;
         } else {
@@ -39,8 +39,8 @@ public final class e0 extends j1 {
 
     public final String toString() {
         StringBuilder sb2 = new StringBuilder("FilesPayload{files=");
-        sb2.append(this.f46655a);
+        sb2.append(this.f49742a);
         sb2.append(", orgId=");
-        return a4.a.s(sb2, this.f46656b, "}");
+        return a4.a.s(sb2, this.f49743b, "}");
     }
 }

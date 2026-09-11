@@ -20,7 +20,7 @@ import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicLong;
 public abstract class h {
-    public static final char[] f43883a = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};
+    public static final char[] f48388a = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};
 
     public static ExecutorService a(String str) {
         ExecutorService unconfigurableExecutorService = Executors.unconfigurableExecutorService(new ThreadPoolExecutor(1, 1, 0L, TimeUnit.MILLISECONDS, new LinkedBlockingQueue(), new c5.w(str, new AtomicLong(1L)), new ThreadPoolExecutor.DiscardPolicy()));
@@ -43,8 +43,8 @@ public abstract class h {
         if (closeable != null) {
             try {
                 closeable.close();
-            } catch (IOException e) {
-                Log.e("FirebaseCrashlytics", str, e);
+            } catch (IOException e7) {
+                Log.e("FirebaseCrashlytics", str, e7);
             }
         }
     }
@@ -85,7 +85,7 @@ public abstract class h {
         for (int i10 = 0; i10 < bArr.length; i10++) {
             byte b10 = bArr[i10];
             int i11 = i10 * 2;
-            char[] cArr2 = f43883a;
+            char[] cArr2 = f48388a;
             cArr[i11] = cArr2[(b10 & 255) >>> 4];
             cArr[i11 + 1] = cArr2[b10 & 15];
         }
@@ -122,8 +122,8 @@ public abstract class h {
             MessageDigest messageDigest = MessageDigest.getInstance("SHA-1");
             messageDigest.update(bytes);
             return f(messageDigest.digest());
-        } catch (NoSuchAlgorithmException e) {
-            Log.e("FirebaseCrashlytics", "Could not create hashing algorithm: SHA-1, returning empty string.", e);
+        } catch (NoSuchAlgorithmException e7) {
+            Log.e("FirebaseCrashlytics", "Could not create hashing algorithm: SHA-1, returning empty string.", e7);
             return "";
         }
     }

@@ -10,7 +10,7 @@ import java.util.RandomAccess;
 import java.util.function.UnaryOperator;
 import w7.r7;
 public abstract class d extends a implements List, RandomAccess, j$.util.List {
-    public static final b f42610b = new b(e.e, 0);
+    public static final b f46969b = new b(e.f46970e, 0);
 
     @Override
     public final void add(int i10, Object obj) {
@@ -130,7 +130,7 @@ public abstract class d extends a implements List, RandomAccess, j$.util.List {
             return this;
         }
         if (i12 == 0) {
-            return e.e;
+            return e.f46970e;
         }
         return new c(this, i10, i12);
     }
@@ -140,7 +140,7 @@ public abstract class d extends a implements List, RandomAccess, j$.util.List {
         int size = size();
         if (i10 >= 0 && i10 <= size) {
             if (isEmpty()) {
-                return f42610b;
+                return f46969b;
             }
             return new b(this, i10);
         }

@@ -1,31 +1,30 @@
 package org.telegram.messenger;
-public final class z7 implements Runnable {
-    public final int f17127a;
-    public final long f17128b;
-    public final long f17129c;
-    public final int d;
-    public final BaseController e;
 
-    public z7(BaseController baseController, long j3, long j10, int i10, int i11) {
-        this.f17127a = i11;
-        this.e = baseController;
-        this.f17128b = j3;
-        this.f17129c = j10;
-        this.d = i10;
+import android.net.Uri;
+import java.util.ArrayList;
+import org.telegram.messenger.MediaDataController;
+import org.telegram.messenger.MessagesStorage;
+import org.telegram.messenger.Utilities;
+public final class z7 implements MediaDataController.KeywordResultCallback, MessagesStorage.LongCallback {
+    public final BaseController f19812a;
+    public final Object f19813b;
+    public final Object f19814c;
+    public final Object d;
+
+    public z7(BaseController baseController, Object obj, Object obj2, Object obj3) {
+        this.f19812a = baseController;
+        this.f19813b = obj;
+        this.f19814c = obj2;
+        this.d = obj3;
     }
 
     @Override
-    public final void run() {
-        switch (this.f17127a) {
-            case 0:
-                ((MediaDataController) this.e).lambda$getMediaCounts$131(this.f17128b, this.f17129c, this.d);
-                return;
-            case 1:
-                ((NotificationsController) this.e).lambda$deleteNotificationChannel$42(this.f17128b, this.f17129c, this.d);
-                return;
-            default:
-                ((TopicsController) this.e).lambda$updateMentionsUnread$21(this.f17128b, this.f17129c, this.d);
-                return;
-        }
+    public void run(long j3) {
+        ((SendMessagesHelper) this.f19812a).lambda$prepareImportHistory$105((Uri) this.f19813b, (ArrayList) this.f19814c, (MessagesStorage.LongCallback) this.d, j3);
+    }
+
+    @Override
+    public void run(ArrayList arrayList, String str) {
+        ((MediaDataController) this.f19812a).lambda$searchStickers$248((MediaDataController.SearchStickersKey) this.f19813b, (MediaDataController.SearchStickersResult) this.f19814c, (Utilities.Callback) this.d, arrayList, str);
     }
 }

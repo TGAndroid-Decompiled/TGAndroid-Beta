@@ -1,19 +1,8 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-public final class bx extends ez {
-    public final rz H;
-
-    public bx(rz rzVar, Context context) {
-        super(rzVar, context, 0);
-        this.H = rzVar;
-    }
-
+import android.view.View;
+public final class bx implements View.OnClickListener {
     @Override
-    public final void setTranslationY(float f7) {
-        if (f7 != getTranslationY()) {
-            super.setTranslationY(f7);
-            this.H.f26871x0.invalidate();
-        }
+    public final void onClick(View view) {
     }
 }

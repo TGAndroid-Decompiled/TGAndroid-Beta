@@ -1,31 +1,33 @@
 package j4;
-public final class r {
-    public final c3.h0 f11677a;
-    public long f11678b;
-    public boolean f11679c;
-    public int d;
-    public long e;
-    public boolean f11680f;
-    public boolean f11681g;
-    public boolean h;
-    public boolean f11682i;
-    public boolean f11683j;
-    public long f11684k;
-    public long f11685l;
-    public boolean f11686m;
 
-    public r(c3.h0 h0Var) {
-        this.f11677a = h0Var;
+import c3.h0;
+public final class r {
+    public final h0 f13402a;
+    public long f13403b;
+    public boolean f13404c;
+    public int d;
+    public long f13405e;
+    public boolean f13406f;
+    public boolean f13407g;
+    public boolean h;
+    public boolean f13408i;
+    public boolean f13409j;
+    public long f13410k;
+    public long f13411l;
+    public boolean f13412m;
+
+    public r(h0 h0Var) {
+        this.f13402a = h0Var;
     }
 
     public final void a(int i10) {
-        long j3 = this.f11685l;
+        long j3 = this.f13411l;
         if (j3 != -9223372036854775807L) {
-            long j10 = this.f11678b;
-            long j11 = this.f11684k;
+            long j10 = this.f13403b;
+            long j11 = this.f13410k;
             if (j10 != j11) {
-                boolean z10 = this.f11686m;
-                this.f11677a.c(j3, z10 ? 1 : 0, (int) (j10 - j11), i10, null);
+                boolean z10 = this.f13412m;
+                this.f13402a.c(j3, z10 ? 1 : 0, (int) (j10 - j11), i10, null);
             }
         }
     }

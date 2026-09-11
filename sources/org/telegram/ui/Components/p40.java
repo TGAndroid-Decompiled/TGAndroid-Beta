@@ -1,86 +1,135 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Rect;
-import android.text.TextPaint;
-import android.util.TypedValue;
-public class p40 extends EditTextBoldCursor {
-    public final TextPaint f26018b;
-    public String f26019c;
-    public final Rect d;
+import java.util.ArrayList;
+import java.util.HashMap;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.MediaController;
+import org.telegram.messenger.SendMessagesHelper;
+import org.telegram.tgnet.TLRPC;
+public final class p40 implements ti {
+    public final u40 f29271a;
 
-    public p40(Context context) {
-        super(context);
-        TextPaint textPaint = new TextPaint(1);
-        this.f26018b = textPaint;
-        this.d = new Rect();
-        textPaint.setColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.H6, false));
-    }
-
-    public String getHintText() {
-        return this.f26019c;
+    public p40(u40 u40Var) {
+        this.f29271a = u40Var;
     }
 
     @Override
-    public void onDraw(Canvas canvas) {
-        float measureText;
-        Canvas canvas2;
-        if (this.f26019c != null && length() < this.f26019c.length()) {
-            int i10 = 0;
-            float f7 = 0.0f;
-            while (i10 < this.f26019c.length()) {
-                int length = length();
-                TextPaint textPaint = this.f26018b;
-                if (i10 < length) {
-                    measureText = getPaint().measureText(getText(), i10, i10 + 1);
-                } else {
-                    measureText = textPaint.measureText(this.f26019c, i10, i10 + 1);
+    public final void B(hh hhVar) {
+        hhVar.run();
+    }
+
+    @Override
+    public final boolean D0() {
+        return false;
+    }
+
+    @Override
+    public final void H() {
+        AndroidUtilities.hideKeyboard(this.f29271a.f30799a.getFragmentView().findFocus());
+    }
+
+    @Override
+    public final void l0(int i10, boolean z10, boolean z11, int i11, int i12, long j3, boolean z12, boolean z13, long j10) {
+        vi viVar;
+        u40 u40Var = this.f29271a;
+        org.telegram.ui.ActionBar.n2 n2Var = u40Var.f30799a;
+        if (n2Var != null && n2Var.getParentActivity() != null && (viVar = u40Var.f30801c) != null) {
+            if (i10 != 8 && i10 != 7) {
+                viVar.dismissWithButtonClick(i10);
+                if (i10 == 0) {
+                    u40Var.m();
+                    return;
                 }
-                if (i10 < length()) {
-                    f7 += measureText;
-                    canvas2 = canvas;
-                } else {
-                    int color = textPaint.getColor();
-                    canvas.save();
-                    String str = this.f26019c;
-                    int length2 = str.length();
-                    Rect rect = this.d;
-                    textPaint.getTextBounds(str, 0, length2, rect);
-                    float height = (rect.height() + getHeight()) / 2.0f;
-                    i(i10);
-                    canvas2 = canvas;
-                    canvas2.drawText(this.f26019c, i10, i10 + 1, f7, height, (Paint) textPaint);
-                    f7 += measureText;
-                    canvas2.restore();
-                    textPaint.setColor(color);
+                return;
+            }
+            HashMap<Object, Object> selectedPhotos = viVar.f31291j0.getSelectedPhotos();
+            ArrayList<Object> selectedPhotosOrder = u40Var.f30801c.f31291j0.getSelectedPhotosOrder();
+            ArrayList arrayList = new ArrayList();
+            boolean z14 = false;
+            for (int i13 = 0; i13 < selectedPhotosOrder.size(); i13++) {
+                Object obj = selectedPhotos.get(selectedPhotosOrder.get(i13));
+                SendMessagesHelper.SendingMediaInfo sendingMediaInfo = new SendMessagesHelper.SendingMediaInfo();
+                arrayList.add(sendingMediaInfo);
+                String str = null;
+                if (obj instanceof MediaController.PhotoEntry) {
+                    MediaController.PhotoEntry photoEntry = (MediaController.PhotoEntry) obj;
+                    String str2 = photoEntry.imagePath;
+                    if (str2 != null) {
+                        sendingMediaInfo.path = str2;
+                    } else {
+                        sendingMediaInfo.path = photoEntry.path;
+                    }
+                    sendingMediaInfo.thumbPath = photoEntry.thumbPath;
+                    sendingMediaInfo.coverPath = photoEntry.coverPath;
+                    sendingMediaInfo.videoEditedInfo = photoEntry.editedInfo;
+                    sendingMediaInfo.isLivePhoto = photoEntry.isLivePhoto();
+                    sendingMediaInfo.isVideo = photoEntry.isVideo;
+                    sendingMediaInfo.livePhotoVideoOffset = photoEntry.livePhotoVideoOffset;
+                    sendingMediaInfo.discardLivePhoto = true;
+                    CharSequence charSequence = photoEntry.caption;
+                    if (charSequence != null) {
+                        str = charSequence.toString();
+                    }
+                    sendingMediaInfo.caption = str;
+                    sendingMediaInfo.entities = photoEntry.entities;
+                    sendingMediaInfo.masks = photoEntry.stickers;
+                    sendingMediaInfo.ttl = photoEntry.ttl;
+                    TLRPC.VideoSize videoSize = photoEntry.emojiMarkup;
+                    sendingMediaInfo.emojiMarkup = videoSize;
+                    z14 = videoSize instanceof TLRPC.TL_videoSizeEmojiMarkup;
+                } else if (obj instanceof MediaController.SearchImage) {
+                    MediaController.SearchImage searchImage = (MediaController.SearchImage) obj;
+                    String str3 = searchImage.imagePath;
+                    if (str3 != null) {
+                        sendingMediaInfo.path = str3;
+                    } else {
+                        sendingMediaInfo.searchImage = searchImage;
+                    }
+                    sendingMediaInfo.thumbPath = searchImage.thumbPath;
+                    sendingMediaInfo.coverPath = searchImage.coverPath;
+                    sendingMediaInfo.videoEditedInfo = searchImage.editedInfo;
+                    CharSequence charSequence2 = searchImage.caption;
+                    if (charSequence2 != null) {
+                        str = charSequence2.toString();
+                    }
+                    sendingMediaInfo.caption = str;
+                    sendingMediaInfo.entities = searchImage.entities;
+                    sendingMediaInfo.masks = searchImage.stickers;
+                    sendingMediaInfo.ttl = searchImage.ttl;
+                    TLRPC.BotInlineResult botInlineResult = searchImage.inlineResult;
+                    if (botInlineResult != null && searchImage.type == 1) {
+                        sendingMediaInfo.inlineResult = botInlineResult;
+                        sendingMediaInfo.params = searchImage.params;
+                    }
+                    searchImage.date = (int) (System.currentTimeMillis() / 1000);
                 }
-                i10++;
-                canvas = canvas2;
+            }
+            u40.b(u40Var, z14, arrayList);
+            if (i10 != 8) {
+                u40Var.f30801c.dismiss(true);
             }
         }
-        super.onDraw(canvas);
     }
 
     @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        super.onLayout(z10, i10, i11, i12, i13);
-        invalidate();
-    }
-
-    public void setHintText(String str) {
-        this.f26019c = str;
-        invalidate();
-        setText(getText());
+    public final boolean q() {
+        return false;
     }
 
     @Override
-    public void setTextSize(int i10, float f7) {
-        super.setTextSize(i10, f7);
-        this.f26018b.setTextSize(TypedValue.applyDimension(i10, f7, getResources().getDisplayMetrics()));
+    public final void x() {
+        this.f29271a.r();
     }
 
-    public void i(int i10) {
+    @Override
+    public final void K(Object obj) {
+    }
+
+    @Override
+    public final void X(TLRPC.User user) {
+    }
+
+    @Override
+    public final void E0(ArrayList arrayList, CharSequence charSequence, boolean z10, int i10, int i11, long j3, boolean z11, long j10) {
     }
 }

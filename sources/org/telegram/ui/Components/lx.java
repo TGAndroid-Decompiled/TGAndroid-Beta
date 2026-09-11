@@ -1,33 +1,23 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class lx extends AnimatorListenerAdapter {
-    public final int f25127a;
-    public final boolean f25128b;
-    public final rz f25129c;
+import androidx.recyclerview.widget.RecyclerView;
+import org.telegram.messenger.FileLog;
+public final class lx extends s4.s {
+    public final kz Q;
 
-    public lx(rz rzVar, boolean z10, int i10) {
-        this.f25127a = i10;
-        this.f25129c = rzVar;
-        this.f25128b = z10;
+    public lx(kz kzVar) {
+        super(8);
+        this.Q = kzVar;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f25127a) {
-            case 0:
-                if (!this.f25128b) {
-                    this.f25129c.f26870x.setVisibility(4);
-                    return;
-                }
-                return;
-            default:
-                if (!this.f25128b) {
-                    this.f25129c.f26874y.setVisibility(4);
-                    return;
-                }
-                return;
+    public final void v0(RecyclerView recyclerView, s4.z0 z0Var, int i10) {
+        try {
+            di.m1 m1Var = new di.m1(this, recyclerView.getContext(), 2);
+            m1Var.f45906a = i10;
+            w0(m1Var);
+        } catch (Exception e7) {
+            FileLog.e(e7);
         }
     }
 }

@@ -1,27 +1,28 @@
 package org.telegram.ui;
 
+import android.content.DialogInterface;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.EditTextBoldCursor;
-public final class yz implements org.telegram.ui.ActionBar.c2 {
-    public final int f39137a;
-    public final EditTextBoldCursor f39138b;
+public final class yz implements DialogInterface.OnDismissListener {
+    public final int f43241a;
+    public final EditTextBoldCursor f43242b;
 
     public yz(int i10, EditTextBoldCursor editTextBoldCursor) {
-        this.f39137a = i10;
-        this.f39138b = editTextBoldCursor;
+        this.f43241a = i10;
+        this.f43242b = editTextBoldCursor;
     }
 
     @Override
-    public final void f(org.telegram.ui.ActionBar.d2 d2Var, int i10) {
-        switch (this.f39137a) {
+    public final void onDismiss(DialogInterface dialogInterface) {
+        switch (this.f43241a) {
             case 0:
-                AndroidUtilities.hideKeyboard(this.f39138b);
+                AndroidUtilities.hideKeyboard(this.f43242b);
                 return;
             case 1:
-                AndroidUtilities.hideKeyboard(this.f39138b);
+                AndroidUtilities.hideKeyboard(this.f43242b);
                 return;
             default:
-                AndroidUtilities.hideKeyboard(this.f39138b);
+                AndroidUtilities.hideKeyboard(this.f43242b);
                 return;
         }
     }

@@ -1,226 +1,241 @@
 package kh;
 
-import android.graphics.Canvas;
-import android.graphics.LinearGradient;
-import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffXfermode;
-import android.graphics.RectF;
-import android.graphics.RenderNode;
-import android.graphics.Shader;
-import android.view.MotionEvent;
-import android.view.View;
-import androidx.recyclerview.widget.RecyclerView;
-import b2.i0;
-import fg.a0;
-import fg.j0;
+import android.content.Context;
+import android.view.animation.Interpolator;
+import android.widget.FrameLayout;
+import b2.n1;
+import di.o4;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.voip.GroupCallMessagesController;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.wr;
-import org.telegram.ui.LaunchActivity;
-public final class h extends RecyclerView {
-    public final e U0;
-    public final Paint V0;
-    public RenderNode W0;
-    public float X0;
-    public View Y0;
-    public g Z0;
-    public a f12517a1;
-    public int f12518b1;
-    public int f12519c1;
-    public int f12520d1;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.ui.ActionBar.f6;
+import org.telegram.ui.Components.pr;
+import org.telegram.ui.Components.vq;
+import w7.x5;
+import w7.z5;
+public final class h extends FrameLayout implements le.d {
+    public static final int[] f14963s;
+    public final String[] f14964a;
+    public final f6 f14965b;
+    public final eh.a f14966c;
+    public final bh.b d;
+    public final aa.a[] f14967e;
+    public final n1[] f14968f;
+    public a h;
+    public b f14969n;
+    public int f14970r;
 
-    public h(LaunchActivity launchActivity) {
-        super(launchActivity);
-        Paint paint = new Paint(1);
-        this.V0 = paint;
-        this.f12519c1 = Integer.MIN_VALUE;
-        this.f12520d1 = Integer.MIN_VALUE;
-        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_IN));
-        paint.setShader(new LinearGradient(0.0f, 0.0f, 0.0f, AndroidUtilities.dp(16.0f), 0, -16777216, Shader.TileMode.CLAMP));
-        setLayoutManager(new a0(1, true, 1));
-        i(new j0(1));
-        e eVar = new e(this);
-        this.U0 = eVar;
-        setAdapter(eVar);
-        f fVar = new f(this);
-        fVar.f41645m = false;
-        fVar.C = false;
-        fVar.o(wr.h);
-        fVar.n(320L);
-        setItemAnimator(fVar);
+    static {
+        int i10 = R.drawable.msg_input_attach2;
+        int i11 = R.drawable.pagedown;
+        f14963s = new int[]{i10, i11, R.drawable.mentionbutton, R.drawable.reactionbutton, R.drawable.menu_poll_notify, i11, i11};
     }
 
-    private float getMinChildY() {
-        int childCount = getChildCount();
-        float f7 = 2.1474836E9f;
-        for (int i10 = 0; i10 < childCount; i10++) {
-            View childAt = getChildAt(i10);
-            if (childAt.getVisibility() == 0) {
-                f7 = Math.min(f7, childAt.getY());
-            }
-        }
-        return f7;
-    }
-
-    public final void C0(int i10, TLRPC.InputGroupCall inputGroupCall) {
-        int i11;
-        e eVar = this.U0;
-        if (eVar.d && (i11 = eVar.e) != -1 && eVar.f12516f != null) {
-            GroupCallMessagesController.getInstance(i11).unsubscribeFromCallMessages(eVar.f12516f.f17212id, eVar);
-        }
-        eVar.e = i10;
-        eVar.f12516f = inputGroupCall;
-        if (eVar.d) {
-            eVar.f12515c = GroupCallMessagesController.getInstance(i10).getCallMessages(eVar.f12516f.f17212id);
-            eVar.l();
-            GroupCallMessagesController.getInstance(i10).subscribeToCallMessages(eVar.f12516f.f17212id, eVar);
-        }
+    public h(Context context, f6 f6Var, eh.b bVar, bh.b bVar2) {
+        super(context);
+        this.f14964a = new String[]{LocaleController.getString(R.string.AttachMenu), LocaleController.getString(R.string.AccDescrPageDown), LocaleController.getString(R.string.AccDescrMentionDown), LocaleController.getString(R.string.AccDescrReactionMentionDown), LocaleController.getString(R.string.AccDescrPollVotesMentionDown), LocaleController.getString(R.string.AccDescrSearchPrev), LocaleController.getString(R.string.AccDescrSearchNext)};
+        this.f14967e = new aa.a[7];
+        this.f14968f = new n1[7];
+        this.f14970r = 83;
+        this.d = bVar2;
+        this.f14966c = bVar;
+        this.f14965b = f6Var;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        int measuredHeight = getMeasuredHeight() - this.f12518b1;
-        int dp = AndroidUtilities.dp(16.0f);
-        int i10 = measuredHeight + dp;
-        int measuredHeight2 = getMeasuredHeight();
-        int measuredWidth = getMeasuredWidth();
-        float f7 = i10;
-        if (f7 < getMinChildY()) {
-            super.dispatchDraw(canvas);
-            return;
-        }
-        float f10 = measuredHeight;
-        float f11 = measuredWidth;
-        int saveLayer = canvas.saveLayer(0.0f, f10, f11, f7, null);
-        canvas.clipRect(0, measuredHeight, measuredWidth, i10);
-        this.f12519c1 = measuredHeight;
-        this.f12520d1 = i10;
-        super.dispatchDraw(canvas);
-        canvas.translate(0.0f, f10);
-        canvas.drawRect(0.0f, 0.0f, f11, dp, this.V0);
-        canvas.restoreToCount(saveLayer);
-        canvas.save();
-        canvas.clipRect(0, i10, measuredWidth, measuredHeight2);
-        this.f12519c1 = i10;
-        this.f12520d1 = getMeasuredHeight();
-        super.dispatchDraw(canvas);
-        canvas.restore();
-        this.f12519c1 = Integer.MIN_VALUE;
-        this.f12520d1 = Integer.MIN_VALUE;
-    }
-
-    @Override
-    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        boolean z10;
-        boolean contains;
-        if (motionEvent.getAction() == 0) {
-            int x10 = (int) motionEvent.getX();
-            int y3 = (int) motionEvent.getY();
-            if (y3 < getMeasuredHeight() - this.f12518b1) {
-                return false;
-            }
-            int childCount = getChildCount();
-            int i10 = 0;
-            while (true) {
-                if (i10 < childCount) {
-                    View childAt = getChildAt(i10);
-                    if (childAt instanceof c) {
-                        c cVar = (c) childAt;
-                        if (cVar.getVisibility() == 0) {
-                            float x11 = x10 - childAt.getX();
-                            float y10 = y3 - childAt.getY();
-                            i0 i0Var = cVar.f12512w;
-                            if (i0Var == null) {
-                                contains = false;
-                            } else {
-                                contains = ((RectF) i0Var.f1715c).contains(x11, y10);
-                            }
-                            if (contains) {
-                                z10 = true;
-                                break;
-                            }
-                        } else {
-                            continue;
-                        }
-                    }
-                    i10++;
-                } else {
-                    z10 = false;
-                    break;
+    public final void E(int i10, float f7, float f10, le.e eVar) {
+        int i11 = i10 >> 16;
+        int i12 = i10 & 65535;
+        if (i11 >= 0) {
+            aa.a[] aVarArr = this.f14967e;
+            if (i11 < aVarArr.length && aVarArr[i11] != null) {
+                if (i12 == 1 || i12 == 2) {
+                    a();
                 }
             }
-            if (!z10) {
-                return false;
-            }
-        }
-        return super.dispatchTouchEvent(motionEvent);
-    }
-
-    @Override
-    public final boolean drawChild(Canvas canvas, View view, long j3) {
-        if (this.f12519c1 != Integer.MIN_VALUE && view.getY() + view.getHeight() < this.f12519c1) {
-            return true;
-        }
-        if (this.f12520d1 != Integer.MIN_VALUE && view.getY() > this.f12520d1) {
-            return true;
-        }
-        return super.drawChild(canvas, view, j3);
-    }
-
-    @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        e eVar = this.U0;
-        eVar.d = true;
-        int i10 = eVar.e;
-        if (i10 != -1 && eVar.f12516f != null) {
-            eVar.f12515c = GroupCallMessagesController.getInstance(i10).getCallMessages(eVar.f12516f.f17212id);
-            eVar.l();
-            GroupCallMessagesController.getInstance(eVar.e).subscribeToCallMessages(eVar.f12516f.f17212id, eVar);
         }
     }
 
-    @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        e eVar = this.U0;
-        eVar.d = false;
-        int i10 = eVar.e;
-        if (i10 != -1 && eVar.f12516f != null) {
-            GroupCallMessagesController.getInstance(i10).unsubscribeFromCallMessages(eVar.f12516f.f17212id, eVar);
-        }
-    }
-
-    public void setBlurRoot(View view) {
-        this.Y0 = view;
-    }
-
-    public void setClickCellDelegate(a aVar) {
-        this.f12517a1 = aVar;
-    }
-
-    public void setDelegate(g gVar) {
-        this.Z0 = gVar;
-    }
-
-    @Override
-    public void setTranslationY(float f7) {
-        if (getTranslationY() != f7) {
-            super.setTranslationY(f7);
-            invalidate();
-            int childCount = getChildCount();
-            for (int i10 = 0; i10 < childCount; i10++) {
-                getChildAt(i10).invalidate();
+    public final void a() {
+        int i10;
+        int i11 = 0;
+        float f7 = 0.0f;
+        while (true) {
+            aa.a[] aVarArr = this.f14967e;
+            if (i11 < aVarArr.length) {
+                aa.a aVar = aVarArr[i11];
+                if (aVar != null) {
+                    jh.b bVar = (jh.b) aVar.f371b;
+                    float f10 = ((le.b) aVar.f372c).f15368e;
+                    float f11 = ((le.b) aVar.d).f15368e;
+                    if (f10 > 0.0f) {
+                        i10 = 0;
+                    } else {
+                        i10 = 8;
+                    }
+                    bVar.setVisibility(i10);
+                    bVar.setAlpha(f10);
+                    bVar.setScaleX(AndroidUtilities.lerp(0.7f, 1.0f, f10));
+                    bVar.setScaleY(AndroidUtilities.lerp(0.7f, 1.0f, f10));
+                    if (i11 != 0) {
+                        bVar.setTranslationY(((1.0f - f10) * AndroidUtilities.dp(80.0f)) - f7);
+                    }
+                    f7 += (AndroidUtilities.dp((f11 * 10.0f) + 10.0f) + AndroidUtilities.dp(44.0f)) * f10;
+                }
+                i11++;
+            } else {
+                return;
             }
         }
     }
 
-    public void setVisibleHeight(int i10) {
-        if (this.f12518b1 != i10) {
-            this.f12518b1 = i10;
-            invalidate();
+    public final n1 b(int i10) {
+        n1[] n1VarArr = this.f14968f;
+        if (n1VarArr[i10] == 0) {
+            ?? obj = new Object();
+            obj.f2219a = 0;
+            obj.f2220b = false;
+            obj.f2221c = true;
+            n1VarArr[i10] = obj;
         }
+        return n1VarArr[i10];
+    }
+
+    public final void c(int i10, int i11, boolean z10) {
+        boolean z11;
+        b(i10).f2219a = i11;
+        aa.a aVar = this.f14967e[i10];
+        if (aVar != null) {
+            ((jh.b) aVar.f371b).a(i11, z10);
+            le.b bVar = (le.b) aVar.d;
+            if (i11 > 0) {
+                z11 = true;
+            } else {
+                z11 = false;
+            }
+            bVar.a(z11, z10);
+        }
+    }
+
+    public final void d(boolean z10) {
+        b(1).f2220b = z10;
+        aa.a aVar = this.f14967e[1];
+        if (aVar != null) {
+            ((jh.b) aVar.f371b).c(z10, true);
+        }
+    }
+
+    public final void e(int i10, boolean z10, boolean z11) {
+        Interpolator interpolator;
+        long j3;
+        Interpolator interpolator2;
+        long j10;
+        int i11;
+        int i12;
+        aa.a[] aVarArr = this.f14967e;
+        aa.a aVar = aVarArr[i10];
+        if (aVar == null && !z10) {
+            return;
+        }
+        if (aVar == null) {
+            int i13 = i10 << 16;
+            int i14 = i13 | 1;
+            if (i10 == 0) {
+                interpolator = pr.h;
+            } else {
+                interpolator = ke.a.f14900a;
+            }
+            if (i10 == 0) {
+                j3 = 300;
+            } else {
+                j3 = 280;
+            }
+            le.b bVar = new le.b(i14, this, interpolator, j3, false);
+            int i15 = i13 | 2;
+            if (i10 == 0) {
+                interpolator2 = pr.h;
+            } else {
+                interpolator2 = ke.a.f14900a;
+            }
+            Interpolator interpolator3 = interpolator2;
+            if (i10 == 0) {
+                j10 = 300;
+            } else {
+                j10 = 280;
+            }
+            le.b bVar2 = new le.b(i15, this, interpolator3, j10, false);
+            if (i10 == 0) {
+                i11 = 50;
+                i12 = 32;
+            } else {
+                i11 = 56;
+                i12 = 48;
+            }
+            Context context = getContext();
+            int i16 = f14963s[i10];
+            f6 f6Var = this.f14965b;
+            jh.b bVar3 = new jh.b(context, f6Var);
+            jh.a d = jh.a.d(context, this.d, this.f14966c, f6Var, i16, i12);
+            bVar3.f13728b = d;
+            bVar3.addView(d, x5.e(i11, i11, 80));
+            d.setIconPadding(AndroidUtilities.dp(2.0f));
+            z5.b(bVar3, 0.13f, 2.0f);
+            float f7 = i11 / 2.0f;
+            bVar3.setPivotX(AndroidUtilities.dp(f7));
+            bVar3.setPivotY(AndroidUtilities.dp(f7 + 8.0f));
+            bVar3.setVisibility(8);
+            bVar3.setContentDescription(this.f14964a[i10]);
+            bVar3.setOnClickListener(new o4(this, i10, 4));
+            bVar3.setOnLongClickListener(new g(this, i10, 0));
+            if (i10 == 6) {
+                jh.a aVar2 = bVar3.f13728b;
+                aVar2.h = -1.0f;
+                aVar2.a();
+            }
+            boolean z12 = true;
+            if (i10 == 1) {
+                bVar3.d = true;
+                vq vqVar = bVar3.f13729c;
+                if (vqVar != null) {
+                    vqVar.setReverse(true);
+                }
+            }
+            addView(bVar3, x5.e(i11, i11 + 8, this.f14970r));
+            aVarArr[i10] = new aa.a(bVar3, bVar, bVar2, false, 25);
+            n1 n1Var = this.f14968f[i10];
+            if (n1Var != null) {
+                bVar3.a(n1Var.f2219a, false);
+                bVar.a(false, false);
+                if (n1Var.f2219a <= 0) {
+                    z12 = false;
+                }
+                bVar2.a(z12, false);
+                bVar3.c(n1Var.f2220b, false);
+                bVar3.b(n1Var.f2221c, false);
+            }
+            a();
+        }
+        ((le.b) aVarArr[i10].f372c).a(z10, z11);
+    }
+
+    @Override
+    public final boolean hasOverlappingRendering() {
+        return false;
+    }
+
+    public void setGravity(int i10) {
+        this.f14970r = i10;
+    }
+
+    public void setOnClickListener(a aVar) {
+        this.h = aVar;
+    }
+
+    public void setOnLongClickListener(b bVar) {
+        this.f14969n = bVar;
+    }
+
+    @Override
+    public final void z(float f7, int i10) {
     }
 }

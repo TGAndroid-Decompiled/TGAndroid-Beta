@@ -1,96 +1,109 @@
 package org.telegram.ui.ActionBar;
 
-import android.content.Context;
-import android.text.SpannableString;
-import android.text.TextUtils;
+import android.content.DialogInterface;
+import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
+import android.os.Build;
+import android.view.KeyEvent;
+import android.view.View;
 import android.widget.FrameLayout;
-import java.util.Iterator;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.wr;
-public abstract class n extends FrameLayout implements le.k {
-    public final f6 f18479a;
-    public final com.google.firebase.messaging.m f18480b;
-    public final le.l f18481c;
+public final class n implements r0.n, l1, a2 {
+    public final int f21201a;
+    public final Object f21202b;
 
-    public n(Context context, f6 f6Var, com.google.firebase.messaging.m mVar) {
-        super(context);
-        this.f18481c = new le.l(this, wr.h, 350L);
-        this.f18479a = f6Var;
-        this.f18480b = mVar;
-    }
-
-    public final void b(CharSequence charSequence) {
-        boolean z10;
-        SpannableString spannableString;
-        boolean isEmpty = TextUtils.isEmpty(charSequence);
-        le.l lVar = this.f18481c;
-        if (isEmpty) {
-            lVar.f12892a.r(null, true);
-            return;
-        }
-        int indexOf = TextUtils.indexOf(charSequence, "...");
-        com.google.firebase.messaging.m mVar = this.f18480b;
-        if (indexOf >= 0) {
-            SpannableString valueOf = SpannableString.valueOf(charSequence);
-            mVar.x(valueOf, indexOf);
-            z10 = true;
-            spannableString = valueOf;
-        } else {
-            z10 = false;
-            spannableString = charSequence;
-        }
-        m mVar2 = new m(this, getContext());
-        int i10 = j6.gl;
-        f6 f6Var = this.f18479a;
-        mVar2.setTextColor(j6.v0(i10, f6Var));
-        mVar2.setLinkTextColor(j6.v0(i10, f6Var));
-        mVar2.setTextSize(1, 14.0f);
-        mVar2.setAlpha(0.0f);
-        mVar2.setText(spannableString);
-        if (z10) {
-            mVar.c(mVar2);
-        }
-        addView(mVar2, w7.a6.c(-2.0f, -2));
-        lVar.i(mVar2, true);
-    }
-
-    public final void c() {
-        Iterator it = this.f18481c.iterator();
-        while (it.hasNext()) {
-            le.g gVar = (le.g) it.next();
-            int i10 = j6.gl;
-            f6 f6Var = this.f18479a;
-            ((m) gVar.f12879a).setTextColor(j6.v0(i10, f6Var));
-            ((m) gVar.f12879a).setLinkTextColor(j6.v0(i10, f6Var));
-        }
-    }
-
-    public void e(le.l lVar) {
-        float f7;
-        Iterator it = this.f18481c.iterator();
-        while (it.hasNext()) {
-            le.g gVar = (le.g) it.next();
-            float c10 = gVar.c();
-            Object obj = gVar.f12879a;
-            float lerp = AndroidUtilities.lerp(0.85f, 1.0f, c10);
-            m mVar = (m) obj;
-            mVar.setAlpha(c10);
-            mVar.setScaleX(lerp);
-            mVar.setScaleY(lerp);
-            if (!gVar.h) {
-                f7 = 9.0f;
-            } else {
-                f7 = -9.0f;
-            }
-            mVar.setTranslationY(AndroidUtilities.lerp(AndroidUtilities.dp(f7), 0, c10));
-        }
-    }
-
-    public float getTotalVisibility() {
-        return this.f18481c.f12892a.d.f12885c.f12893a;
+    public n(Object obj, int i10) {
+        this.f21201a = i10;
+        this.f21202b = obj;
     }
 
     @Override
-    public final void a() {
+    public r0.l1 T0(View view, r0.l1 l1Var) {
+        int i10 = this.f21201a;
+        int i11 = 0;
+        Object obj = this.f21202b;
+        switch (i10) {
+            case 0:
+                return ((n2) obj).onInsetsInternal(view, l1Var);
+            case 1:
+                ActionBarLayout actionBarLayout = (ActionBarLayout) obj;
+                Drawable drawable = ActionBarLayout.f20134p1;
+                i0.c defaultWindowInsets = AndroidUtilities.getDefaultWindowInsets(l1Var, false);
+                i0.c defaultWindowInsets2 = AndroidUtilities.getDefaultWindowInsets(l1Var, true);
+                actionBarLayout.f20168n1 = defaultWindowInsets;
+                actionBarLayout.f20170o1 = defaultWindowInsets2;
+                actionBarLayout.f20165m1 = l1Var;
+                int childCount = actionBarLayout.getChildCount();
+                while (i11 < childCount) {
+                    actionBarLayout.o(actionBarLayout.getChildAt(i11), l1Var);
+                    i11++;
+                }
+                return r0.l1.f44710b;
+            case 2:
+            case 3:
+            case 5:
+            default:
+                z3 z3Var = (z3) obj;
+                z3Var.f21559e = l1Var;
+                i0.c defaultWindowInsets3 = AndroidUtilities.getDefaultWindowInsets(l1Var, false);
+                i0.c defaultWindowInsets4 = AndroidUtilities.getDefaultWindowInsets(l1Var, true);
+                if (!z3Var.f21560f.equals(defaultWindowInsets3) || !z3Var.h.equals(defaultWindowInsets4)) {
+                    AndroidUtilities.statusBarHeight = defaultWindowInsets3.f11426b;
+                    AndroidUtilities.navigationBarHeight = defaultWindowInsets3.d;
+                    z3Var.f21560f = defaultWindowInsets3;
+                    z3Var.h = defaultWindowInsets4;
+                    z3Var.requestLayout();
+                }
+                int childCount2 = z3Var.getChildCount();
+                while (i11 < childCount2) {
+                    View childAt = z3Var.getChildAt(i11);
+                    if ((childAt instanceof ActionBarLayout) || childAt.getTag() == null) {
+                        r0.i0.b(childAt, l1Var);
+                    }
+                    i11++;
+                }
+                z3Var.invalidate();
+                return r0.l1.f44710b;
+            case 4:
+                r0.i1 i1Var = l1Var.f44711a;
+                FrameLayout frameLayout = (FrameLayout) obj;
+                Rect rect = new Rect();
+                if (Build.VERSION.SDK_INT >= 30) {
+                    i0.c f7 = i1Var.f(527);
+                    rect.set(f7.f11425a, f7.f11426b, f7.f11427c, f7.d);
+                } else {
+                    rect.set(i1Var.i().f11425a, i1Var.i().f11426b, i1Var.i().f11427c, i1Var.i().d);
+                }
+                frameLayout.setPadding(rect.left, rect.top, rect.right, rect.bottom + AndroidUtilities.navigationBarHeight);
+                frameLayout.requestLayout();
+                return l1Var;
+            case 6:
+                return ((f3) obj).onApplyWindowInsetsToRoot(view, l1Var);
+            case 7:
+                x3 x3Var = (x3) obj;
+                x3Var.f21500s = l1Var.f44711a.f(2).d;
+                x3Var.invalidate();
+                return r0.l1.f44710b;
+        }
+    }
+
+    @Override
+    public void g(b2 b2Var, int i10) {
+        b2 b2Var2 = (b2) this.f21202b;
+        DialogInterface.OnCancelListener onCancelListener = b2Var2.J;
+        if (onCancelListener != null) {
+            onCancelListener.onCancel(b2Var2);
+        }
+        b2Var2.dismiss();
+    }
+
+    @Override
+    public void n(KeyEvent keyEvent) {
+        n1 n1Var;
+        v0 v0Var = (v0) this.f21202b;
+        v0Var.getClass();
+        if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && (n1Var = v0Var.d) != null && n1Var.isShowing()) {
+            v0Var.d.d(true);
+        }
     }
 }

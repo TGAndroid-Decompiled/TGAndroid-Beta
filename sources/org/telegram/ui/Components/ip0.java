@@ -1,141 +1,54 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.Paint;
-import org.telegram.messenger.AndroidUtilities;
-public final class ip0 extends ww0 {
-    public boolean f24059a = false;
-    public long f24060b = 0;
-    public boolean f24061c = false;
-    public float d;
-    public final Paint e;
+import android.os.Build;
+import android.view.View;
+import androidx.recyclerview.widget.RecyclerView;
+public final class ip0 extends s4.s0 {
+    public final int f27233a;
+    public final hq0 f27234b;
 
-    public ip0(boolean z10) {
-        if (z10) {
-            Paint paint = new Paint(1);
-            this.e = paint;
-            paint.setStyle(Paint.Style.STROKE);
-            paint.setStrokeCap(Paint.Cap.ROUND);
-            paint.setStrokeWidth(AndroidUtilities.dp(2.0f));
-        }
+    public ip0(hq0 hq0Var, int i10) {
+        this.f27233a = i10;
+        this.f27234b = hq0Var;
     }
 
     @Override
-    public final void b(int i10) {
-        Paint paint = this.e;
-        if (paint != null) {
-            paint.setColor(i10);
-        }
-    }
-
-    @Override
-    public final void c(boolean z10) {
-        this.f24059a = z10;
-    }
-
-    @Override
-    public final void d() {
-        this.f24060b = System.currentTimeMillis();
-        this.f24061c = true;
-        invalidateSelf();
-    }
-
-    @Override
-    public final void draw(Canvas canvas) {
-        float f7;
-        float f10;
-        float f11;
-        Paint paint = this.e;
-        if (paint == null) {
-            paint = org.telegram.ui.ActionBar.j6.f17924d2;
-        }
-        Paint paint2 = paint;
-        int i10 = 0;
-        while (i10 < 3) {
-            if (i10 == 0) {
-                paint2.setAlpha((int) (this.d * 255.0f));
-            } else if (i10 == 2) {
-                paint2.setAlpha((int) ((1.0f - this.d) * 255.0f));
-            } else {
-                paint2.setAlpha(255);
-            }
-            float dp = (AndroidUtilities.dp(5.0f) * i10) + (AndroidUtilities.dp(5.0f) * this.d);
-            if (this.f24059a) {
-                f7 = 3.0f;
-            } else {
-                f7 = 4.0f;
-            }
-            float dp2 = AndroidUtilities.dp(f7);
-            float dp3 = dp + AndroidUtilities.dp(4.0f);
-            float f12 = 8.0f;
-            if (this.f24059a) {
-                f10 = 7.0f;
-            } else {
-                f10 = 8.0f;
-            }
-            float dp4 = AndroidUtilities.dp(f10);
-            Canvas canvas2 = canvas;
-            canvas2.drawLine(dp, dp2, dp3, dp4, paint2);
-            if (this.f24059a) {
-                f11 = 11.0f;
-            } else {
-                f11 = 12.0f;
-            }
-            float dp5 = AndroidUtilities.dp(f11);
-            float dp6 = dp + AndroidUtilities.dp(4.0f);
-            if (this.f24059a) {
-                f12 = 7.0f;
-            }
-            canvas2.drawLine(dp, dp5, dp6, AndroidUtilities.dp(f12), paint2);
-            i10++;
-            canvas = canvas2;
-        }
-        if (this.f24061c) {
-            long currentTimeMillis = System.currentTimeMillis();
-            long j3 = currentTimeMillis - this.f24060b;
-            this.f24060b = currentTimeMillis;
-            if (j3 > 50) {
-                j3 = 50;
-            }
-            this.d = (((float) j3) / 500.0f) + this.d;
-            while (true) {
-                float f13 = this.d;
-                if (f13 > 1.0f) {
-                    this.d = f13 - 1.0f;
-                } else {
-                    a();
+    public final void b(RecyclerView recyclerView, int i10, int i11) {
+        bh.f fVar;
+        ub ubVar;
+        switch (this.f27233a) {
+            case 0:
+                if (i11 != 0) {
+                    hq0 hq0Var = this.f27234b;
+                    hq0.s0(hq0Var);
+                    hq0Var.f26807q0 = hq0Var.f26806p0;
                     return;
                 }
-            }
+                return;
+            case 1:
+                hq0 hq0Var2 = this.f27234b;
+                if (i11 != 0) {
+                    hq0.s0(hq0Var2);
+                    hq0Var2.f26807q0 = hq0Var2.f26806p0;
+                }
+                qc qcVar = qc.f29671w;
+                if (qcVar != null && (ubVar = qcVar.f29675e) != null && (ubVar.getParent() instanceof View) && ((View) qc.f29671w.f29675e.getParent()).getParent() == hq0Var2.f26815w) {
+                    qc.e();
+                }
+                if (Build.VERSION.SDK_INT >= 31 && (fVar = hq0Var2.O0) != null) {
+                    fVar.f(i10, i11);
+                    hq0.A0(hq0Var2);
+                    return;
+                }
+                return;
+            default:
+                if (i11 != 0) {
+                    hq0 hq0Var3 = this.f27234b;
+                    hq0.s0(hq0Var3);
+                    hq0Var3.f26807q0 = hq0Var3.f26806p0;
+                    return;
+                }
+                return;
         }
-    }
-
-    @Override
-    public final void e() {
-        this.f24061c = false;
-    }
-
-    @Override
-    public final int getIntrinsicHeight() {
-        return AndroidUtilities.dp(14.0f);
-    }
-
-    @Override
-    public final int getIntrinsicWidth() {
-        return AndroidUtilities.dp(18.0f);
-    }
-
-    @Override
-    public final int getOpacity() {
-        return 0;
-    }
-
-    @Override
-    public final void setAlpha(int i10) {
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

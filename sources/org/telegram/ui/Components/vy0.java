@@ -1,43 +1,47 @@
 package org.telegram.ui.Components;
+public final class vy0 {
+    public final int f32022a;
 
-import android.content.Context;
-import android.view.MotionEvent;
-public final class vy0 extends vl0 {
-    public boolean X2;
-    public boolean Y2;
-    public final zy0 Z2;
-
-    public vy0(zy0 zy0Var, Context context) {
-        super(context, null);
-        this.Z2 = zy0Var;
+    public vy0(int i10) {
+        this.f32022a = i10;
     }
 
-    @Override
-    public final void k0(int i10, int i11) {
-        boolean canScrollHorizontally = canScrollHorizontally(-1);
-        boolean canScrollHorizontally2 = canScrollHorizontally(1);
-        if (this.X2 == canScrollHorizontally && this.Y2 == canScrollHorizontally2) {
-            return;
+    public final int a(cz0 cz0Var, int i10) {
+        switch (this.f32022a) {
+            case 0:
+                return Integer.MIN_VALUE;
+            case 1:
+                return 0;
+            case 2:
+                return i10;
+            case 3:
+                return Integer.MIN_VALUE;
+            default:
+                return Integer.MIN_VALUE;
         }
-        bi.ld ldVar = this.Z2.d;
-        if (ldVar != null) {
-            ldVar.invalidate();
-        }
-        this.X2 = canScrollHorizontally;
-        this.Y2 = canScrollHorizontally2;
     }
 
-    @Override
-    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        org.telegram.ui.rt previewDelegate;
-        org.telegram.ui.tt q6 = org.telegram.ui.tt.q();
-        zy0 zy0Var = this.Z2;
-        vy0 vy0Var = zy0Var.e;
-        previewDelegate = zy0Var.getPreviewDelegate();
-        boolean r10 = q6.r(motionEvent, vy0Var, previewDelegate, this.f27987p2);
-        if (!super.onInterceptTouchEvent(motionEvent) && !r10) {
-            return false;
+    public final int b(cz0 cz0Var, int i10) {
+        switch (this.f32022a) {
+            case 0:
+                return Integer.MIN_VALUE;
+            case 1:
+                return 0;
+            case 2:
+                return i10;
+            case 3:
+                return 0;
+            default:
+                return 0;
         }
-        return true;
+    }
+
+    public int c(int i10, int i11) {
+        switch (this.f32022a) {
+            case 4:
+                return i11;
+            default:
+                return i10;
+        }
     }
 }

@@ -6,45 +6,45 @@ import android.view.ViewConfiguration;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.AnimationUtils;
 import m.r1;
-import sg.a1;
+import rg.b0;
 public final class d implements View.OnTouchListener {
     public static final int H = ViewConfiguration.getTapTimeout();
     public boolean E;
     public boolean F;
     public final r1 G;
-    public final a f42248a;
-    public final AccelerateInterpolator f42249b;
-    public final r1 f42250c;
-    public a1 d;
-    public final float[] e;
-    public final float[] f42251f;
+    public final a f46584a;
+    public final AccelerateInterpolator f46585b;
+    public final r1 f46586c;
+    public b0 d;
+    public final float[] f46587e;
+    public final float[] f46588f;
     public final int h;
-    public final int f42252n;
-    public final float[] f42253r;
-    public final float[] f42254s;
+    public final int f46589n;
+    public final float[] f46590r;
+    public final float[] f46591s;
     public final float[] v;
-    public boolean f42255w;
-    public boolean f42256x;
-    public boolean f42257y;
+    public boolean f46592w;
+    public boolean f46593x;
+    public boolean f46594y;
 
     public d(r1 r1Var) {
         ?? obj = new Object();
-        obj.e = Long.MIN_VALUE;
-        obj.f42246g = -1L;
-        obj.f42245f = 0L;
-        this.f42248a = obj;
-        this.f42249b = new AccelerateInterpolator();
+        obj.f46580e = Long.MIN_VALUE;
+        obj.f46582g = -1L;
+        obj.f46581f = 0L;
+        this.f46584a = obj;
+        this.f46585b = new AccelerateInterpolator();
         float[] fArr = {0.0f, 0.0f};
-        this.e = fArr;
+        this.f46587e = fArr;
         float[] fArr2 = {Float.MAX_VALUE, Float.MAX_VALUE};
-        this.f42251f = fArr2;
+        this.f46588f = fArr2;
         float[] fArr3 = {0.0f, 0.0f};
-        this.f42253r = fArr3;
+        this.f46590r = fArr3;
         float[] fArr4 = {0.0f, 0.0f};
-        this.f42254s = fArr4;
+        this.f46591s = fArr4;
         float[] fArr5 = {Float.MAX_VALUE, Float.MAX_VALUE};
         this.v = fArr5;
-        this.f42250c = r1Var;
+        this.f46586c = r1Var;
         float f7 = Resources.getSystem().getDisplayMetrics().density;
         float f10 = ((int) ((1575.0f * f7) + 0.5f)) / 1000.0f;
         fArr5[0] = f10;
@@ -59,9 +59,9 @@ public final class d implements View.OnTouchListener {
         fArr[1] = 0.2f;
         fArr3[0] = 0.001f;
         fArr3[1] = 0.001f;
-        this.f42252n = H;
-        obj.f42242a = 500;
-        obj.f42243b = 500;
+        this.f46589n = H;
+        obj.f46577a = 500;
+        obj.f46578b = 500;
         this.G = r1Var;
     }
 
@@ -100,31 +100,31 @@ public final class d implements View.OnTouchListener {
 
     public final void d() {
         int i10 = 0;
-        if (this.f42256x) {
+        if (this.f46593x) {
             this.E = false;
             return;
         }
         long currentAnimationTimeMillis = AnimationUtils.currentAnimationTimeMillis();
-        a aVar = this.f42248a;
-        int i11 = (int) (currentAnimationTimeMillis - aVar.e);
-        int i12 = aVar.f42243b;
+        a aVar = this.f46584a;
+        int i11 = (int) (currentAnimationTimeMillis - aVar.f46580e);
+        int i12 = aVar.f46578b;
         if (i11 > i12) {
             i10 = i12;
         } else if (i11 >= 0) {
             i10 = i11;
         }
-        aVar.f42247i = i10;
+        aVar.f46583i = i10;
         aVar.h = aVar.a(currentAnimationTimeMillis);
-        aVar.f42246g = currentAnimationTimeMillis;
+        aVar.f46582g = currentAnimationTimeMillis;
     }
 
     public final boolean e() {
         r1 r1Var;
         int count;
-        a aVar = this.f42248a;
+        a aVar = this.f46584a;
         float f7 = aVar.d;
         int abs = (int) (f7 / Math.abs(f7));
-        Math.abs(aVar.f42244c);
+        Math.abs(aVar.f46579c);
         if (abs != 0 && (count = (r1Var = this.G).getCount()) != 0) {
             int childCount = r1Var.getChildCount();
             int firstVisiblePosition = r1Var.getFirstVisiblePosition();

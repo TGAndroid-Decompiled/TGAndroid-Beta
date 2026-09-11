@@ -1,168 +1,124 @@
 package n7;
 
-import j$.util.Map;
-import java.io.Serializable;
-import java.util.Map;
-import java.util.function.BiConsumer;
-import java.util.function.BiFunction;
-import java.util.function.Function;
-public abstract class o implements Map, Serializable, j$.util.Map {
-    public static final Map.Entry[] f13982b = new Map.Entry[0];
-    public transient p f13983a;
+import j$.util.Objects;
+import java.util.Arrays;
+import java.util.Set;
+public abstract class o extends h implements Set, j$.util.Set {
+    public static final int f16668c = 0;
+    public transient m f16669b;
 
-    @Override
-    public final p entrySet() {
-        p pVar = this.f13983a;
-        if (pVar == null) {
-            s sVar = (s) this;
-            if (sVar.isEmpty()) {
-                pVar = z.f14011s;
-            } else {
-                pVar = new r(sVar);
+    public static o r(int i10, Object... objArr) {
+        if (i10 != 0) {
+            if (i10 != 1) {
+                int s10 = s(i10);
+                Object[] objArr2 = new Object[s10];
+                int i11 = s10 - 1;
+                int i12 = 0;
+                int i13 = 0;
+                for (int i14 = 0; i14 < i10; i14++) {
+                    Object obj = objArr[i14];
+                    if (obj != null) {
+                        int hashCode = obj.hashCode();
+                        int rotateLeft = (int) (Integer.rotateLeft((int) (hashCode * (-862048943)), 15) * 461845907);
+                        while (true) {
+                            int i15 = rotateLeft & i11;
+                            Object obj2 = objArr2[i15];
+                            if (obj2 == null) {
+                                objArr[i13] = obj;
+                                objArr2[i15] = obj;
+                                i12 += hashCode;
+                                i13++;
+                                break;
+                            } else if (!obj2.equals(obj)) {
+                                rotateLeft++;
+                            }
+                        }
+                    } else {
+                        throw new NullPointerException(i2.g.i(i14, "at index "));
+                    }
+                }
+                Arrays.fill(objArr, i13, i10, (Object) null);
+                if (i13 == 1) {
+                    Object obj3 = objArr[0];
+                    Objects.requireNonNull(obj3);
+                    return new b0(obj3);
+                }
+                if (s(i13) < s10 / 2) {
+                    return r(i13, objArr);
+                }
+                if (i13 <= 0) {
+                    objArr = Arrays.copyOf(objArr, i13);
+                }
+                return new y(i12, i11, i13, objArr, objArr2);
             }
-            this.f13983a = pVar;
+            Object obj4 = objArr[0];
+            Objects.requireNonNull(obj4);
+            return new b0(obj4);
         }
-        return pVar;
+        return y.f16696s;
     }
 
-    @Override
-    public final void clear() {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public Object compute(Object obj, BiFunction biFunction) {
-        return Map.CC.$default$compute(this, obj, biFunction);
-    }
-
-    @Override
-    public Object computeIfAbsent(Object obj, Function function) {
-        return Map.CC.$default$computeIfAbsent(this, obj, function);
-    }
-
-    @Override
-    public Object computeIfPresent(Object obj, BiFunction biFunction) {
-        return Map.CC.$default$computeIfPresent(this, obj, biFunction);
-    }
-
-    @Override
-    public final boolean containsKey(Object obj) {
-        if (get(obj) != null) {
-            return true;
+    public static int s(int i10) {
+        int max = Math.max(i10, 2);
+        if (max < 751619276) {
+            int highestOneBit = Integer.highestOneBit(max - 1);
+            do {
+                highestOneBit += highestOneBit;
+            } while (highestOneBit * 0.7d < max);
+            return highestOneBit;
+        } else if (max < 1073741824) {
+            return 1073741824;
+        } else {
+            throw new IllegalArgumentException("collection too large");
         }
-        return false;
     }
 
     @Override
-    public final boolean containsValue(Object obj) {
-        return ((s) this).d.contains(obj);
-    }
-
-    @Override
-    public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (!(obj instanceof java.util.Map)) {
+    public boolean equals(Object obj) {
+        if (obj != this) {
+            if (!(obj instanceof o) || !(this instanceof y) || !(((o) obj) instanceof y) || ((y) this).f16697e == obj.hashCode()) {
+                if (obj != this) {
+                    if (obj instanceof Set) {
+                        Set set = (Set) obj;
+                        try {
+                            if (size() == set.size()) {
+                                if (containsAll(set)) {
+                                    return true;
+                                }
+                                return false;
+                            }
+                            return false;
+                        } catch (ClassCastException | NullPointerException unused) {
+                            return false;
+                        }
+                    }
+                    return false;
+                }
+                return true;
+            }
             return false;
         }
-        return ((s) this).entrySet().equals(((java.util.Map) obj).entrySet());
+        return true;
     }
 
     @Override
-    public void forEach(BiConsumer biConsumer) {
-        Map.CC.$default$forEach(this, biConsumer);
+    public int hashCode() {
+        return a.b(this);
     }
 
-    @Override
-    public abstract Object get(Object obj);
-
-    @Override
-    public final Object getOrDefault(Object obj, Object obj2) {
-        Object obj3 = get(obj);
-        if (obj3 != null) {
-            return obj3;
+    public m t() {
+        m mVar = this.f16669b;
+        if (mVar == null) {
+            m u10 = u();
+            this.f16669b = u10;
+            return u10;
         }
-        return obj2;
+        return mVar;
     }
 
-    @Override
-    public final int hashCode() {
-        return a.b(entrySet());
-    }
-
-    @Override
-    public final boolean isEmpty() {
-        if (((s) this).size() == 0) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public Object merge(Object obj, Object obj2, BiFunction biFunction) {
-        return Map.CC.$default$merge(this, obj, obj2, biFunction);
-    }
-
-    @Override
-    public final Object put(Object obj, Object obj2) {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public final void putAll(java.util.Map map) {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public Object putIfAbsent(Object obj, Object obj2) {
-        return Map.CC.$default$putIfAbsent(this, obj, obj2);
-    }
-
-    @Override
-    public boolean remove(Object obj, Object obj2) {
-        return Map.CC.$default$remove(this, obj, obj2);
-    }
-
-    @Override
-    public Object replace(Object obj, Object obj2) {
-        return Map.CC.$default$replace(this, obj, obj2);
-    }
-
-    @Override
-    public void replaceAll(BiFunction biFunction) {
-        Map.CC.$default$replaceAll(this, biFunction);
-    }
-
-    public final String toString() {
-        s sVar = (s) this;
-        int size = sVar.size();
-        if (size >= 0) {
-            StringBuilder sb2 = new StringBuilder((int) Math.min(size * 8, 1073741824L));
-            sb2.append('{');
-            boolean z10 = true;
-            for (Map.Entry entry : sVar.entrySet()) {
-                if (!z10) {
-                    sb2.append(", ");
-                }
-                sb2.append(entry.getKey());
-                sb2.append('=');
-                sb2.append(entry.getValue());
-                z10 = false;
-            }
-            sb2.append('}');
-            return sb2.toString();
-        }
-        throw new IllegalArgumentException(hc.b.j(size, "size cannot be negative but was: "));
-    }
-
-    @Override
-    public final Object remove(Object obj) {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public boolean replace(Object obj, Object obj2, Object obj3) {
-        return Map.CC.$default$replace(this, obj, obj2, obj3);
+    public m u() {
+        Object[] array = toArray(h.f16636a);
+        i iVar = m.f16659b;
+        return m.t(array.length, array);
     }
 }

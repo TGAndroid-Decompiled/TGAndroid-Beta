@@ -4,9 +4,9 @@ import java.util.List;
 public interface d {
     int d(long j3);
 
-    long g(int i10);
+    long e(int i10);
 
-    List q(long j3);
+    List h(long j3);
 
-    int u();
+    int k();
 }

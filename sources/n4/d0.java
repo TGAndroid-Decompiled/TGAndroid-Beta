@@ -6,22 +6,22 @@ import android.content.pm.PackageManager;
 import android.provider.Settings;
 import android.util.Log;
 public final class d0 {
-    public static final boolean f13763b = Log.isLoggable("MediaSessionManager", 3);
-    public static final Object f13764c = new Object();
+    public static final boolean f16429b = Log.isLoggable("MediaSessionManager", 3);
+    public static final Object f16430c = new Object();
     public static volatile d0 d;
-    public z f13765a;
+    public z f16431a;
 
     public static d0 a(Context context) {
         d0 d0Var;
-        synchronized (f13764c) {
+        synchronized (f16430c) {
             try {
                 if (d == null) {
                     Context applicationContext = context.getApplicationContext();
                     ?? obj = new Object();
                     ?? obj2 = new Object();
-                    obj2.f13827a = applicationContext;
-                    obj2.f13828b = applicationContext.getContentResolver();
-                    obj.f13765a = obj2;
+                    obj2.f16499a = applicationContext;
+                    obj2.f16500b = applicationContext.getContentResolver();
+                    obj.f16431a = obj2;
                     d = obj;
                 }
                 d0Var = d;
@@ -33,17 +33,17 @@ public final class d0 {
     }
 
     public final boolean b(a0 a0Var) {
-        z zVar = this.f13765a;
-        c0 c0Var = a0Var.f13759a;
-        Context context = zVar.f13827a;
-        int i10 = c0Var.f13761b;
-        String str = c0Var.f13760a;
-        int i11 = c0Var.f13762c;
+        z zVar = this.f16431a;
+        c0 c0Var = a0Var.f16425a;
+        Context context = zVar.f16499a;
+        int i10 = c0Var.f16427b;
+        String str = c0Var.f16426a;
+        int i11 = c0Var.f16428c;
         if (context.checkPermission("android.permission.MEDIA_CONTENT_CONTROL", i10, i11) != 0) {
             try {
                 if (context.getPackageManager().getApplicationInfo(str, 0) != null) {
                     if (!zVar.a(c0Var, "android.permission.STATUS_BAR_SERVICE") && !zVar.a(c0Var, "android.permission.MEDIA_CONTENT_CONTROL") && i11 != 1000) {
-                        String string = Settings.Secure.getString(zVar.f13828b, "enabled_notification_listeners");
+                        String string = Settings.Secure.getString(zVar.f16500b, "enabled_notification_listeners");
                         if (string != null) {
                             for (String str2 : string.split(":")) {
                                 ComponentName unflattenFromString = ComponentName.unflattenFromString(str2);
@@ -57,7 +57,7 @@ public final class d0 {
                     }
                 }
             } catch (PackageManager.NameNotFoundException unused) {
-                if (z.f13826c) {
+                if (z.f16498c) {
                     Log.d("MediaSessionManager", "Package " + str + " doesn't exist");
                 }
             }

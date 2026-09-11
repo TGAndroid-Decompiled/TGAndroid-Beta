@@ -1,19 +1,28 @@
 package org.telegram.ui;
+public final class gd1 implements nd1 {
+    public boolean f36632a;
+    public final co f36633b;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class gd1 extends AnimatorListenerAdapter {
-    public final ae1 f33065a;
-
-    public gd1(ae1 ae1Var) {
-        this.f33065a = ae1Var;
+    public gd1(co coVar, boolean z10) {
+        this.f36633b = coVar;
+        this.f36632a = z10;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        ae1 ae1Var = this.f33065a;
-        if (ae1Var.W0 == null) {
-            ae1Var.J0[0].setVisibility(4);
-        }
+    public final boolean Z0() {
+        return true;
+    }
+
+    @Override
+    public final boolean a() {
+        return this.f36632a;
+    }
+
+    @Override
+    public final void p1(boolean z10) {
+        boolean z11 = !this.f36632a;
+        this.f36632a = z11;
+        ao aoVar = this.f36633b.f35247ea;
+        aoVar.i(aoVar.f34490f, aoVar.h, z10, Boolean.valueOf(z11), false);
     }
 }

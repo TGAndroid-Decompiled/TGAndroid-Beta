@@ -1,32 +1,26 @@
 package org.telegram.ui.Components;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import org.telegram.messenger.AndroidUtilities;
-public final class g11 implements Runnable {
-    public final int f23205a;
-    public final Runnable f23206b;
-    public final Runnable f23207c;
+import org.telegram.ui.Components.ThemeEditorView;
+public final class g11 extends AnimatorListenerAdapter {
+    public final ThemeEditorView.EditorAlert f26230a;
 
-    public g11(Runnable runnable, Runnable runnable2, int i10) {
-        this.f23205a = i10;
-        this.f23206b = runnable;
-        this.f23207c = runnable2;
+    public g11(ThemeEditorView.EditorAlert editorAlert) {
+        this.f26230a = editorAlert;
     }
 
     @Override
-    public final void run() {
-        switch (this.f23205a) {
-            case 0:
-                k11.b(this.f23206b);
-                Runnable runnable = this.f23207c;
-                if (runnable != null) {
-                    AndroidUtilities.runOnUIThread(runnable);
-                    return;
-                }
-                return;
-            default:
-                this.f23206b.run();
-                this.f23207c.run();
-                return;
+    public final void onAnimationEnd(Animator animator) {
+        ThemeEditorView.EditorAlert editorAlert = this.f26230a;
+        if (editorAlert.f24172c.getAdapter() == editorAlert.f24176r) {
+            m11 m11Var = editorAlert.f24174f.f28923b;
+            m11Var.requestFocus();
+            AndroidUtilities.showKeyboard(m11Var);
         }
+        editorAlert.f24171b.setVisibility(8);
+        editorAlert.v.setVisibility(8);
+        editorAlert.H = false;
     }
 }

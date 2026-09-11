@@ -13,23 +13,23 @@ public enum i0 extends b2 {
                 if (d != '<') {
                     if (d != 65535) {
                         lVar.f(d);
-                        lVar.f6470c = g0Var;
+                        lVar.f6778c = g0Var;
                         return;
                     }
                     lVar.l(this);
-                    lVar.f6470c = b2.f6420a;
+                    lVar.f6778c = b2.f6726a;
                     return;
                 }
                 lVar.f(d);
-                lVar.f6470c = b2.U;
+                lVar.f6778c = b2.U;
                 return;
             }
             lVar.f(d);
-            lVar.f6470c = b2.T;
+            lVar.f6778c = b2.T;
             return;
         }
         lVar.m(this);
         lVar.f((char) 65533);
-        lVar.f6470c = g0Var;
+        lVar.f6778c = g0Var;
     }
 }

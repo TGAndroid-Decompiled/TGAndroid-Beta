@@ -2,26 +2,26 @@ package y9;
 
 import java.util.List;
 public final class b0 extends g1 {
-    public final int f46618a;
-    public final String f46619b;
-    public final int f46620c;
+    public final int f49701a;
+    public final String f49702b;
+    public final int f49703c;
     public final int d;
-    public final long e;
-    public final long f46621f;
-    public final long f46622g;
+    public final long f49704e;
+    public final long f49705f;
+    public final long f49706g;
     public final String h;
-    public final List f46623i;
+    public final List f49707i;
 
     public b0(int i10, String str, int i11, int i12, long j3, long j10, long j11, String str2, List list) {
-        this.f46618a = i10;
-        this.f46619b = str;
-        this.f46620c = i11;
+        this.f49701a = i10;
+        this.f49702b = str;
+        this.f49703c = i11;
         this.d = i12;
-        this.e = j3;
-        this.f46621f = j10;
-        this.f46622g = j11;
+        this.f49704e = j3;
+        this.f49705f = j10;
+        this.f49706g = j11;
         this.h = str2;
-        this.f46623i = list;
+        this.f49707i = list;
     }
 
     public final boolean equals(Object obj) {
@@ -32,9 +32,9 @@ public final class b0 extends g1 {
         }
         if (obj instanceof g1) {
             b0 b0Var = (b0) ((g1) obj);
-            List list2 = b0Var.f46623i;
+            List list2 = b0Var.f49707i;
             String str2 = b0Var.h;
-            if (this.f46618a == b0Var.f46618a && this.f46619b.equals(b0Var.f46619b) && this.f46620c == b0Var.f46620c && this.d == b0Var.d && this.e == b0Var.e && this.f46621f == b0Var.f46621f && this.f46622g == b0Var.f46622g && ((str = this.h) != null ? str.equals(str2) : str2 == null) && ((list = this.f46623i) != null ? list.equals(list2) : list2 == null)) {
+            if (this.f49701a == b0Var.f49701a && this.f49702b.equals(b0Var.f49702b) && this.f49703c == b0Var.f49703c && this.d == b0Var.d && this.f49704e == b0Var.f49704e && this.f49705f == b0Var.f49705f && this.f49706g == b0Var.f49706g && ((str = this.h) != null ? str.equals(str2) : str2 == null) && ((list = this.f49707i) != null ? list.equals(list2) : list2 == null)) {
                 return true;
             }
         }
@@ -43,10 +43,10 @@ public final class b0 extends g1 {
 
     public final int hashCode() {
         int hashCode;
-        long j3 = this.e;
-        long j10 = this.f46621f;
-        long j11 = this.f46622g;
-        int hashCode2 = (((((((((((((this.f46618a ^ 1000003) * 1000003) ^ this.f46619b.hashCode()) * 1000003) ^ this.f46620c) * 1000003) ^ this.d) * 1000003) ^ ((int) (j3 ^ (j3 >>> 32)))) * 1000003) ^ ((int) (j10 ^ (j10 >>> 32)))) * 1000003) ^ ((int) (j11 ^ (j11 >>> 32)))) * 1000003;
+        long j3 = this.f49704e;
+        long j10 = this.f49705f;
+        long j11 = this.f49706g;
+        int hashCode2 = (((((((((((((this.f49701a ^ 1000003) * 1000003) ^ this.f49702b.hashCode()) * 1000003) ^ this.f49703c) * 1000003) ^ this.d) * 1000003) ^ ((int) (j3 ^ (j3 >>> 32)))) * 1000003) ^ ((int) (j10 ^ (j10 >>> 32)))) * 1000003) ^ ((int) (j11 ^ (j11 >>> 32)))) * 1000003;
         int i10 = 0;
         String str = this.h;
         if (str == null) {
@@ -55,7 +55,7 @@ public final class b0 extends g1 {
             hashCode = str.hashCode();
         }
         int i11 = (hashCode2 ^ hashCode) * 1000003;
-        List list = this.f46623i;
+        List list = this.f49707i;
         if (list != null) {
             i10 = list.hashCode();
         }
@@ -63,6 +63,6 @@ public final class b0 extends g1 {
     }
 
     public final String toString() {
-        return "ApplicationExitInfo{pid=" + this.f46618a + ", processName=" + this.f46619b + ", reasonCode=" + this.f46620c + ", importance=" + this.d + ", pss=" + this.e + ", rss=" + this.f46621f + ", timestamp=" + this.f46622g + ", traceFile=" + this.h + ", buildIdMappingForArch=" + this.f46623i + "}";
+        return "ApplicationExitInfo{pid=" + this.f49701a + ", processName=" + this.f49702b + ", reasonCode=" + this.f49703c + ", importance=" + this.d + ", pss=" + this.f49704e + ", rss=" + this.f49705f + ", timestamp=" + this.f49706g + ", traceFile=" + this.h + ", buildIdMappingForArch=" + this.f49707i + "}";
     }
 }

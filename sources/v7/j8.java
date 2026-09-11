@@ -1,55 +1,101 @@
 package v7;
 
-import android.graphics.Path;
+import android.content.Context;
+import android.content.pm.PackageManager;
+import android.os.IBinder;
+import android.os.IInterface;
+import android.os.Parcel;
+import android.os.RemoteException;
+import android.util.Log;
+import java.util.concurrent.atomic.AtomicBoolean;
 public abstract class j8 {
-    public static boolean a(i0.e[] eVarArr, i0.e[] eVarArr2) {
-        if (eVarArr == null || eVarArr2 == null || eVarArr.length != eVarArr2.length) {
-            return false;
-        }
-        for (int i10 = 0; i10 < eVarArr.length; i10++) {
-            i0.e eVar = eVarArr[i10];
-            char c10 = eVar.f10078a;
-            i0.e eVar2 = eVarArr2[i10];
-            if (c10 != eVar2.f10078a || eVar.f10079b.length != eVar2.f10079b.length) {
-                return false;
+    public static Context f47495a;
+    public static i8.e f47496b;
+
+    public static i8.e a(Context context) {
+        Class cls;
+        Class cls2;
+        i8.e aVar;
+        n6.l.h(context);
+        Log.d("j8", "preferredRenderer: ".concat("null"));
+        i8.e eVar = f47496b;
+        if (eVar == null) {
+            AtomicBoolean atomicBoolean = k6.g.f14818a;
+            int b10 = k6.g.b(context, 13400000);
+            if (b10 == 0) {
+                Log.i("j8", "Making Creator dynamically");
+                ClassLoader classLoader = b(context).getClassLoader();
+                try {
+                    n6.l.h(classLoader);
+                    try {
+                        IBinder iBinder = (IBinder) classLoader.loadClass("com.google.android.gms.maps.internal.CreatorImpl").newInstance();
+                        if (iBinder == null) {
+                            aVar = 0;
+                        } else {
+                            IInterface queryLocalInterface = iBinder.queryLocalInterface("com.google.android.gms.maps.internal.ICreator");
+                            if (queryLocalInterface instanceof i8.e) {
+                                aVar = (i8.e) queryLocalInterface;
+                            } else {
+                                aVar = new a9.a(iBinder, "com.google.android.gms.maps.internal.ICreator", 9);
+                            }
+                        }
+                        f47496b = aVar;
+                        try {
+                            Context b11 = b(context);
+                            b11.getClass();
+                            x6.b bVar = new x6.b(b11.getResources());
+                            Parcel O0 = aVar.O0();
+                            s7.b.c(O0, bVar);
+                            O0.writeInt(12451000);
+                            aVar.S0(O0, 6);
+                            return f47496b;
+                        } catch (RemoteException e7) {
+                            throw new RuntimeException(e7);
+                        }
+                    } catch (IllegalAccessException unused) {
+                        throw new IllegalStateException("Unable to call the default constructor of ".concat(cls2.getName()));
+                    } catch (InstantiationException unused2) {
+                        throw new IllegalStateException("Unable to instantiate the dynamic class ".concat(cls.getName()));
+                    }
+                } catch (ClassNotFoundException unused3) {
+                    throw new IllegalStateException("Unable to find dynamic class com.google.android.gms.maps.internal.CreatorImpl");
+                }
             }
+            throw new k6.f(b10);
         }
-        return true;
+        return eVar;
     }
 
-    public static float[] b(float[] fArr, int i10) {
-        if (i10 >= 0) {
-            int length = fArr.length;
-            if (length >= 0) {
-                int min = Math.min(i10, length);
-                float[] fArr2 = new float[i10];
-                System.arraycopy(fArr, 0, fArr2, 0, min);
-                return fArr2;
+    public static Context b(Context context) {
+        Context context2;
+        Context context3 = f47495a;
+        if (context3 == null) {
+            context.getApplicationContext();
+            try {
+                context2 = y6.e.c(context, y6.e.f49545b, "com.google.android.gms.maps_dynamite").f49555a;
+            } catch (Exception e7) {
+                try {
+                    if (!"com.google.android.gms.maps_dynamite".equals("com.google.android.gms.maps_dynamite")) {
+                        try {
+                            Log.d("j8", "Attempting to load maps_dynamite again.");
+                            context2 = y6.e.c(context, y6.e.f49545b, "com.google.android.gms.maps_dynamite").f49555a;
+                        } catch (Exception e10) {
+                            Log.e("j8", "Failed to load maps module, use pre-Chimera", e10);
+                            AtomicBoolean atomicBoolean = k6.g.f14818a;
+                            context2 = context.createPackageContext("com.google.android.gms", 3);
+                        }
+                    } else {
+                        Log.e("j8", "Failed to load maps module, use pre-Chimera", e7);
+                        AtomicBoolean atomicBoolean2 = k6.g.f14818a;
+                        context2 = context.createPackageContext("com.google.android.gms", 3);
+                    }
+                } catch (PackageManager.NameNotFoundException unused) {
+                    context2 = null;
+                }
             }
-            throw new ArrayIndexOutOfBoundsException();
+            f47495a = context2;
+            return context2;
         }
-        throw new IllegalArgumentException();
-    }
-
-    public static i0.e[] c(java.lang.String r17) {
-        throw new UnsupportedOperationException("Method not decompiled: v7.j8.c(java.lang.String):i0.e[]");
-    }
-
-    public static Path d(String str) {
-        Path path = new Path();
-        try {
-            i0.e.b(c(str), path);
-            return path;
-        } catch (RuntimeException e) {
-            throw new RuntimeException("Error in parsing ".concat(str), e);
-        }
-    }
-
-    public static i0.e[] e(i0.e[] eVarArr) {
-        i0.e[] eVarArr2 = new i0.e[eVarArr.length];
-        for (int i10 = 0; i10 < eVarArr.length; i10++) {
-            eVarArr2[i10] = new i0.e(eVarArr[i10]);
-        }
-        return eVarArr2;
+        return context3;
     }
 }

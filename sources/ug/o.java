@@ -1,31 +1,42 @@
 package ug;
 
-import android.content.Context;
-import org.telegram.messenger.AndroidUtilities;
-import qg.x1;
-public final class o extends x1 {
-    public final r f42709n;
+import java.util.ArrayList;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLRPC;
+public final class o implements Runnable {
+    public final int f47182a;
+    public final TLRPC.Chat f47183b;
+    public final int f47184c;
+    public final ArrayList d;
+    public final Utilities.Callback f47185e;
 
-    public o(r rVar, Context context) {
-        super(context);
-        this.f42709n = rVar;
+    public o(TLRPC.Chat chat, int i10, ArrayList arrayList, Utilities.Callback callback, int i11) {
+        this.f47182a = i11;
+        this.f47183b = chat;
+        this.f47184c = i10;
+        this.d = arrayList;
+        this.f47185e = callback;
     }
 
     @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        this.f42709n.f42714b.setPaused(false);
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        this.f42709n.f42714b.setPaused(true);
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(i10, i11);
-        this.f40983a.f40956b.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight() - AndroidUtilities.dp(52.0f));
+    public final void run() {
+        switch (this.f47182a) {
+            case 0:
+                TLRPC.Chat chat = this.f47183b;
+                ArrayList arrayList = this.d;
+                if (chat == null) {
+                    t.m(this.f47184c, arrayList);
+                }
+                this.f47185e.run(arrayList);
+                return;
+            default:
+                TLRPC.Chat chat2 = this.f47183b;
+                ArrayList arrayList2 = this.d;
+                if (chat2 == null) {
+                    t.m(this.f47184c, arrayList2);
+                }
+                this.f47185e.run(arrayList2);
+                return;
+        }
     }
 }

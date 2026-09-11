@@ -1,68 +1,103 @@
 package di;
 
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.SendMessagesHelper;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLRPC;
-public final class j4 implements Runnable {
-    public final int f6703a;
-    public final u4 f6704b;
+import android.graphics.Rect;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.Utilities;
+public class j4 {
+    public final View f7426a;
+    public View f7427b;
+    public final Utilities.Callback f7428c;
+    public boolean d;
+    public boolean f7429e;
+    public boolean f7430f;
+    public boolean f7431g;
+    public final Rect h = new Rect();
+    public final g4 f7432i;
+    public final h4 f7433j;
+    public int f7434k;
+    public int f7435l;
 
-    public j4(u4 u4Var, int i10) {
-        this.f6703a = i10;
-        this.f6704b = u4Var;
+    public j4(View view, boolean z10, Utilities.Callback callback) {
+        g4 g4Var = new g4(this, 0);
+        this.f7432i = g4Var;
+        h4 h4Var = new h4(this, 0);
+        this.f7433j = h4Var;
+        this.f7426a = view;
+        this.f7428c = callback;
+        this.f7427b = view;
+        if (view.isAttachedToWindow()) {
+            view.getViewTreeObserver().addOnGlobalLayoutListener(h4Var);
+            view.addOnLayoutChangeListener(g4Var);
+        }
+        view.addOnAttachStateChangeListener(new i4(this, z10, view));
     }
 
-    @Override
-    public final void run() {
-        TLRPC.ChatFull chatFull;
-        TLRPC.Peer peer;
-        switch (this.f6703a) {
-            case 0:
-                this.f6704b.f6947n.R();
+    public final void a() {
+        if (this.f7429e) {
+            if (this.f7435l >= AndroidUtilities.dp(20.0f) + AndroidUtilities.navigationBarHeight) {
+                this.f7429e = false;
+            } else {
                 return;
-            case 1:
-                this.f6704b.L();
-                return;
-            case 2:
-                u4 u4Var = this.f6704b;
-                if (!u4Var.T) {
-                    TLRPC.TL_messages_prolongWebView tL_messages_prolongWebView = new TLRPC.TL_messages_prolongWebView();
-                    tL_messages_prolongWebView.bot = MessagesController.getInstance(u4Var.F).getInputUser(u4Var.v);
-                    tL_messages_prolongWebView.peer = MessagesController.getInstance(u4Var.F).getInputPeer(u4Var.f6950w);
-                    tL_messages_prolongWebView.query_id = u4Var.f6951x;
-                    tL_messages_prolongWebView.silent = false;
-                    if (u4Var.f6952y != 0) {
-                        TLRPC.InputReplyTo createReplyInput = SendMessagesHelper.getInstance(u4Var.F).createReplyInput(u4Var.f6952y);
-                        tL_messages_prolongWebView.reply_to = createReplyInput;
-                        if (u4Var.E != 0) {
-                            createReplyInput.monoforum_peer_id = MessagesController.getInstance(u4Var.F).getInputPeer(u4Var.E);
-                            tL_messages_prolongWebView.reply_to.flags |= 32;
-                        }
-                        tL_messages_prolongWebView.flags |= 1;
-                    } else if (u4Var.E != 0) {
-                        TLRPC.TL_inputReplyToMonoForum tL_inputReplyToMonoForum = new TLRPC.TL_inputReplyToMonoForum();
-                        tL_messages_prolongWebView.reply_to = tL_inputReplyToMonoForum;
-                        tL_inputReplyToMonoForum.monoforum_peer_id = MessagesController.getInstance(u4Var.F).getInputPeer(u4Var.E);
-                        tL_messages_prolongWebView.flags |= 1;
-                    }
-                    if (u4Var.f6950w < 0 && (chatFull = MessagesController.getInstance(u4Var.F).getChatFull(-u4Var.f6950w)) != null && (peer = chatFull.default_send_as) != null) {
-                        tL_messages_prolongWebView.send_as = MessagesController.getInstance(u4Var.F).getInputPeer(peer);
-                        tL_messages_prolongWebView.flags |= 8192;
-                    }
-                    ConnectionsManager.getInstance(u4Var.F).sendRequest(tL_messages_prolongWebView, new bi.c2(u4Var, 4));
-                    return;
+            }
+        }
+        Utilities.Callback callback = this.f7428c;
+        if (callback != null) {
+            callback.run(Integer.valueOf(this.f7435l));
+        }
+    }
+
+    public void b(boolean z10) {
+        this.d = z10;
+        d();
+    }
+
+    public final boolean c() {
+        if (this.f7435l <= AndroidUtilities.dp(20.0f) + AndroidUtilities.navigationBarHeight && !this.f7429e) {
+            return false;
+        }
+        return true;
+    }
+
+    public final void d() {
+        int i10;
+        if (!this.d) {
+            boolean z10 = this.f7430f;
+            boolean z11 = false;
+            View view = this.f7426a;
+            if (z10) {
+                View view2 = this.f7427b;
+                if (view2 != null) {
+                    view = view2;
                 }
-                return;
-            case 3:
-                u4 u4Var2 = this.f6704b;
-                u4Var2.f26422b.X1(u4Var2, 0);
-                u4Var2.f6947n.o(false, false);
-                System.currentTimeMillis();
-                return;
-            default:
-                this.f6704b.f6947n.o(true, false);
-                return;
+                r0.l1 f7 = r0.i0.f(view);
+                if (f7 != null) {
+                    i10 = f7.f44711a.f(8).d;
+                } else {
+                    i10 = 0;
+                }
+                this.f7435l = i10;
+            } else {
+                Rect rect = this.h;
+                view.getWindowVisibleDisplayFrame(rect);
+                View view3 = this.f7427b;
+                if (view3 != null) {
+                    view = view3;
+                }
+                this.f7435l = view.getHeight() - rect.bottom;
+            }
+            if (this.f7431g) {
+                this.f7435l = Math.max(0, this.f7435l - AndroidUtilities.navigationBarHeight);
+            }
+            int i11 = this.f7434k;
+            int i12 = this.f7435l;
+            if (i11 != i12) {
+                z11 = true;
+            }
+            this.f7434k = i12;
+            if (z11) {
+                a();
+            }
         }
     }
 }

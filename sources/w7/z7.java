@@ -1,86 +1,41 @@
 package w7;
 
-import android.content.Intent;
-import android.content.IntentFilter;
-import android.content.pm.ApplicationInfo;
-import android.content.pm.PackageManager;
-import android.content.pm.ResolveInfo;
-import android.net.Uri;
-import android.text.TextUtils;
+import android.os.Build;
+import android.os.Trace;
 import android.util.Log;
-import java.util.ArrayList;
-import java.util.List;
-import org.telegram.messenger.ApplicationLoader;
-import org.telegram.ui.LaunchActivity;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 public abstract class z7 {
-    public static String f43843a;
+    public static long f48343a;
+    public static Method f48344b;
 
-    public static String a(LaunchActivity launchActivity) {
-        String str;
-        PackageManager packageManager;
-        ApplicationInfo applicationInfo;
-        String str2 = f43843a;
-        if (str2 != null) {
-            return str2;
+    public static void a(String str) {
+        if (str.length() > 127) {
+            str = str.substring(0, 127);
         }
-        PackageManager packageManager2 = launchActivity.getPackageManager();
-        Intent intent = new Intent("android.intent.action.VIEW", Uri.parse("http://www.example.com"));
-        ResolveInfo resolveActivity = packageManager2.resolveActivity(intent, 0);
-        if (resolveActivity != null) {
-            str = resolveActivity.activityInfo.packageName;
-        } else {
-            str = null;
-        }
-        List<ResolveInfo> queryIntentActivities = packageManager2.queryIntentActivities(intent, 0);
-        ArrayList arrayList = new ArrayList();
-        for (ResolveInfo resolveInfo : queryIntentActivities) {
-            Intent intent2 = new Intent();
-            intent2.setAction("android.support.customtabs.action.CustomTabsService");
-            intent2.setPackage(resolveInfo.activityInfo.packageName);
-            if (packageManager2.resolveService(intent2, 0) != null) {
-                arrayList.add(resolveInfo.activityInfo.packageName);
-            }
-        }
-        if (arrayList.isEmpty()) {
-            f43843a = null;
-        } else if (arrayList.size() == 1) {
-            f43843a = (String) arrayList.get(0);
-        } else {
-            if (!TextUtils.isEmpty(str)) {
-                try {
-                    List<ResolveInfo> queryIntentActivities2 = launchActivity.getPackageManager().queryIntentActivities(intent, 64);
-                    if (queryIntentActivities2 != null && queryIntentActivities2.size() != 0) {
-                        for (ResolveInfo resolveInfo2 : queryIntentActivities2) {
-                            IntentFilter intentFilter = resolveInfo2.filter;
-                            if (intentFilter != null && intentFilter.countDataAuthorities() != 0 && intentFilter.countDataPaths() != 0 && resolveInfo2.activityInfo != null) {
-                                break;
-                            }
-                        }
-                    }
-                } catch (RuntimeException unused) {
-                    Log.e("CustomTabsHelper", "Runtime exception while getting specialized handlers");
-                }
-                if (arrayList.contains(str)) {
-                    f43843a = str;
-                }
-            }
-            if (arrayList.contains("com.android.chrome")) {
-                f43843a = "com.android.chrome";
-            } else if (arrayList.contains("com.chrome.beta")) {
-                f43843a = "com.chrome.beta";
-            } else if (arrayList.contains("com.chrome.dev")) {
-                f43843a = "com.chrome.dev";
-            } else if (arrayList.contains("com.google.android.apps.chrome")) {
-                f43843a = "com.google.android.apps.chrome";
-            }
+        Trace.beginSection(str);
+    }
+
+    public static boolean b() {
+        if (Build.VERSION.SDK_INT >= 29) {
+            return w4.a.a();
         }
         try {
-            if ("com.sec.android.app.sbrowser".equalsIgnoreCase(f43843a) && (applicationInfo = (packageManager = ApplicationLoader.applicationContext.getPackageManager()).getApplicationInfo("com.android.chrome", 0)) != null && applicationInfo.enabled) {
-                packageManager.getPackageInfo("com.android.chrome", 1);
-                f43843a = "com.android.chrome";
+            if (f48344b == null) {
+                f48343a = Trace.class.getField("TRACE_TAG_APP").getLong(null);
+                f48344b = Trace.class.getMethod("isTagEnabled", Long.TYPE);
             }
-        } catch (Throwable unused2) {
+            return ((Boolean) f48344b.invoke(null, Long.valueOf(f48343a))).booleanValue();
+        } catch (Exception e7) {
+            if (e7 instanceof InvocationTargetException) {
+                Throwable cause = e7.getCause();
+                if (cause instanceof RuntimeException) {
+                    throw ((RuntimeException) cause);
+                }
+                throw new RuntimeException(cause);
+            }
+            Log.v("Trace", "Unable to call isTagEnabled via reflection", e7);
+            return false;
         }
-        return f43843a;
     }
 }

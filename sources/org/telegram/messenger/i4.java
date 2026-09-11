@@ -1,36 +1,24 @@
 package org.telegram.messenger;
 
-import java.util.ArrayList;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_payments;
-public final class i4 implements Utilities.Callback {
-    public final int f15424a = 0;
-    public final long f15425b;
-    public final BaseController f15426c;
-    public final Object d;
+import android.view.MotionEvent;
+import org.telegram.messenger.GoogleMapsProvider;
+import org.telegram.messenger.IMapsProvider;
+public final class i4 implements IMapsProvider.ICallableMethod {
+    public final int f17949a;
+    public final GoogleMapsProvider.GoogleMapView.AnonymousClass1 f17950b;
 
-    public i4(GiftAuctionController giftAuctionController, long j3, TL_payments.TL_StarGiftAuctionState tL_StarGiftAuctionState) {
-        this.f15426c = giftAuctionController;
-        this.f15425b = j3;
-        this.d = tL_StarGiftAuctionState;
+    public i4(GoogleMapsProvider.GoogleMapView.AnonymousClass1 anonymousClass1, int i10) {
+        this.f17949a = i10;
+        this.f17950b = anonymousClass1;
     }
 
     @Override
-    public final void run(Object obj) {
-        switch (this.f15424a) {
+    public final Object call(Object obj) {
+        switch (this.f17949a) {
             case 0:
-                ((GiftAuctionController) this.f15426c).lambda$subscribeToGiftAuctionStateInternal$0(this.f15425b, (TL_payments.TL_StarGiftAuctionState) this.d, (ArrayList) obj);
-                return;
+                return GoogleMapsProvider.GoogleMapView.AnonymousClass1.a(this.f17950b, (MotionEvent) obj);
             default:
-                ((TranslateController) this.f15426c).lambda$checkTranslation$4((MessageObject) this.d, this.f15425b, (TLRPC.TL_textWithEntities) obj);
-                return;
+                return GoogleMapsProvider.GoogleMapView.AnonymousClass1.b(this.f17950b, (MotionEvent) obj);
         }
-    }
-
-    public i4(TranslateController translateController, MessageObject messageObject, long j3) {
-        this.f15426c = translateController;
-        this.d = messageObject;
-        this.f15425b = j3;
     }
 }

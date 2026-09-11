@@ -1,12 +1,9 @@
 package w7;
 
-import java.util.ArrayList;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
 public abstract class d6 {
-    public static ArrayList a(org.telegram.ui.ActionBar.k6 k6Var, int... iArr) {
-        ArrayList arrayList = new ArrayList(iArr.length);
-        for (int i10 : iArr) {
-            arrayList.add(new org.telegram.ui.ActionBar.l6(null, 0, null, null, null, k6Var, i10));
-        }
-        return arrayList;
+    public static void a(View view, float f7, float f10, float f11, float f12) {
+        view.setPadding(AndroidUtilities.dp(f7), AndroidUtilities.dp(f10), AndroidUtilities.dp(f11), AndroidUtilities.dp(f12));
     }
 }

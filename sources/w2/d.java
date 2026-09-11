@@ -1,6 +1,12 @@
 package w2;
 
-import m.g3;
+import v8.s;
 public interface d {
-    public static final g3 C = new g3(24);
+    public static final s C;
+
+    static {
+        ?? obj = new Object();
+        obj.f47750a = new rb.a(28);
+        C = obj;
+    }
 }

@@ -3,7 +3,7 @@ package org.telegram.ui;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.FileLog;
-public final class xi0 extends ii.n {
+public final class xi0 extends ki.o {
     public Runnable W;
 
     @Override

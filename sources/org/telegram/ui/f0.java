@@ -1,64 +1,37 @@
 package org.telegram.ui;
 
-import android.view.View;
-import android.widget.PopupWindow;
-public final class f0 implements PopupWindow.OnDismissListener {
-    public final int f32657a;
-    public final Object f32658b;
+import android.net.Uri;
+import org.telegram.messenger.Utilities;
+public final class f0 implements Utilities.Callback0Return {
+    public final i4 f36215a;
+    public final String f36216b;
+    public final boolean[] f36217c;
+    public final of.e d;
 
-    public f0(Object obj, int i10) {
-        this.f32657a = i10;
-        this.f32658b = obj;
+    public f0(i4 i4Var, String str, boolean[] zArr, of.e eVar) {
+        this.f36215a = i4Var;
+        this.f36216b = str;
+        this.f36217c = zArr;
+        this.d = eVar;
     }
 
     @Override
-    public final void onDismiss() {
-        switch (this.f32657a) {
-            case 0:
-                j4 j4Var = (j4) this.f32658b;
-                View view = j4Var.f36857f;
-                if (view != null) {
-                    j4Var.d = null;
-                    view.invalidate();
-                    j4Var.f36857f = null;
-                    return;
-                }
-                return;
-            case 1:
-                eo eoVar = (eo) this.f32658b;
-                eoVar.Q8 = null;
-                eoVar.T8 = null;
-                eoVar.S8 = null;
-                eoVar.f32567z0.R = true;
-                eoVar.g8(false, true, 0.0f);
-                ok okVar = eoVar.Y;
-                if (okVar != null && okVar.getEditField() != null) {
-                    eoVar.Y.getEditField().setAllowDrawCursor(true);
-                    return;
-                }
-                return;
-            case 2:
-                qj qjVar = (qj) this.f32658b;
-                qjVar.f36074b = null;
-                eo eoVar2 = qjVar.f36080w;
-                eoVar2.Q8 = null;
-                eoVar2.T8 = null;
-                eoVar2.S8 = null;
-                eoVar2.f32567z0.R = true;
-                if (eoVar2.R8) {
-                    eoVar2.g8(false, true, 0.0f);
-                } else {
-                    eoVar2.R8 = true;
-                }
-                ok okVar2 = eoVar2.Y;
-                if (okVar2 != null && okVar2.getEditField() != null) {
-                    eoVar2.Y.getEditField().setAllowDrawCursor(true);
-                    return;
-                }
-                return;
-            default:
-                ((ProfileActivity) this.f32658b).H3(0.0f);
-                return;
+    public final Object run() {
+        String str = this.f36216b;
+        if (!of.f.f(Uri.parse(str), false, this.f36217c)) {
+            return Boolean.FALSE;
         }
+        i4 i4Var = this.f36215a;
+        of.e eVar = this.d;
+        if (eVar != null) {
+            eVar.f17005c = new org.telegram.ui.ActionBar.c6(4, i4Var, eVar);
+        } else {
+            v3 v3Var = i4Var.K;
+            if (v3Var != null) {
+                v3Var.dismiss(true);
+            }
+        }
+        of.f.r(i4Var.L, Uri.parse(str), true, true, false, eVar, null, true, true, false);
+        return Boolean.TRUE;
     }
 }

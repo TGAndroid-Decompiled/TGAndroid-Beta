@@ -1,102 +1,128 @@
 package fi;
 
 import android.content.Context;
-import android.text.SpannableStringBuilder;
-import android.view.View;
-import android.widget.TextView;
-import bi.f0;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ChatObject;
-import org.telegram.messenger.DialogObject;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.R;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.f6;
 import org.telegram.ui.ActionBar.j6;
-import org.telegram.ui.Components.g9;
-import org.telegram.ui.Components.j61;
-import org.telegram.ui.Components.r61;
-import org.telegram.ui.Components.u51;
-import org.telegram.ui.Components.v51;
-import org.telegram.ui.Components.vl0;
-import org.telegram.ui.Components.w9;
-import s4.p0;
-public final class g extends u51 {
-    public static final int f8310a = 0;
+public final class g extends sg.z1 {
+    public final int f9679n;
 
-    static {
-        u51.setup(new u51());
+    public g(Context context, int i10) {
+        super(context);
+        this.f9679n = i10;
     }
 
     @Override
-    public final void bindView(View view, v51 v51Var, boolean z10, j61 j61Var, r61 r61Var) {
-        int i10;
-        h hVar = (h) view;
-        f fVar = (f) v51Var.G;
-        TLRPC.User user = fVar.f8308b;
-        long j3 = fVar.f8307a;
-        boolean z11 = fVar.f8309c;
-        boolean z12 = !v51Var.f27827j;
-        w9 w9Var = hVar.f8313c;
-        TextView textView = hVar.f8315n;
-        TextView textView2 = hVar.d;
-        hVar.f8319x = (e) v51Var.H;
-        hVar.f8320y = j3;
-        hVar.E = user.f17342id;
-        int i11 = hVar.f8312b;
-        TLRPC.Chat chat = MessagesController.getInstance(i11).getChat(Long.valueOf(-j3));
-        TLRPC.User user2 = MessagesController.getInstance(i11).getUser(Long.valueOf(j3));
-        hVar.f8314f.setText(DialogObject.getName(j3));
-        TextView textView3 = hVar.h;
-        if (user2 != null) {
-            i10 = R.string.CommunityPendingRequestSuggestedBot;
-        } else if (ChatObject.isChannelAndNotMegaGroup(chat)) {
-            i10 = R.string.CommunityPendingRequestSuggestedChannel;
-        } else {
-            i10 = R.string.CommunityPendingRequestSuggestedGroup;
+    public final void a() {
+        switch (this.f9679n) {
+            case 0:
+                super.a();
+                sg.y1 y1Var = this.f46376a;
+                y1Var.f46358q = true;
+                y1Var.K = false;
+                y1Var.L = true;
+                y1Var.H = true;
+                y1Var.c();
+                return;
+            case 1:
+                super.a();
+                sg.y1 y1Var2 = this.f46376a;
+                y1Var2.f46358q = true;
+                y1Var2.K = false;
+                y1Var2.L = true;
+                y1Var2.H = true;
+                y1Var2.c();
+                return;
+            case 2:
+                sg.y1 y1Var3 = new sg.y1(50);
+                this.f46376a = y1Var3;
+                y1Var3.N = 100;
+                y1Var3.M = false;
+                y1Var3.G = false;
+                y1Var3.K = true;
+                y1Var3.H = true;
+                y1Var3.J = false;
+                y1Var3.f46359r = 4;
+                y1Var3.f46363w = 0.98f;
+                y1Var3.v = 0.98f;
+                y1Var3.f46362u = 0.98f;
+                y1Var3.c();
+                return;
+            case 3:
+                sg.y1 y1Var4 = this.f46376a;
+                y1Var4.f46358q = true;
+                y1Var4.K = false;
+                y1Var4.H = true;
+                y1Var4.J = true;
+                y1Var4.f46352k = AndroidUtilities.dp(-14.0f);
+                sg.y1 y1Var5 = this.f46376a;
+                y1Var5.f46364x = 2000L;
+                y1Var5.f46365y = 3000;
+                y1Var5.f46359r = 16;
+                y1Var5.G = false;
+                y1Var5.N = 28;
+                y1Var5.P = j6.Mj;
+                y1Var5.c();
+                return;
+            case 4:
+                sg.y1 y1Var6 = this.f46376a;
+                y1Var6.f46358q = true;
+                y1Var6.K = false;
+                y1Var6.H = true;
+                y1Var6.J = true;
+                y1Var6.f46352k = AndroidUtilities.dp(-14.0f);
+                sg.y1 y1Var7 = this.f46376a;
+                y1Var7.f46364x = 2000L;
+                y1Var7.f46365y = 3000;
+                y1Var7.f46359r = 16;
+                y1Var7.G = false;
+                y1Var7.N = 28;
+                y1Var7.P = j6.Mj;
+                y1Var7.c();
+                return;
+            default:
+                super.a();
+                sg.y1 y1Var8 = this.f46376a;
+                y1Var8.f46358q = true;
+                y1Var8.K = false;
+                y1Var8.L = true;
+                y1Var8.H = true;
+                y1Var8.c();
+                return;
         }
-        textView3.setText(AndroidUtilities.replaceSingleLink(LocaleController.formatString(i10, DialogObject.getShortName(user)), j6.w0(null, j6.il, false), new f0(6)));
-        if (user2 != null) {
-            textView2.setVisibility(8);
-        } else if (chat != null && chat.participants_count > 0) {
-            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("* ");
-            spannableStringBuilder.setSpan(hVar.f8316r, 0, 1, 33);
-            spannableStringBuilder.append((CharSequence) LocaleController.formatNumberWithMillion(chat.participants_count, ','));
-            textView2.setText(spannableStringBuilder);
-            textView2.setVisibility(0);
-        } else {
-            textView2.setVisibility(8);
-        }
-        if (z11) {
-            textView.setVisibility(0);
-        } else {
-            textView.setVisibility(8);
-        }
-        hVar.f8318w = z12;
-        if (user2 != null) {
-            w9Var.e(user2, new g9(0, user2));
-        } else {
-            w9Var.e(chat, new g9(chat));
-        }
-        hVar.e.e(user, new g9(0, user));
     }
 
     @Override
-    public final View createView(Context context, vl0 vl0Var, int i10, int i11, f6 f6Var) {
-        h hVar = new h(context, i10, f6Var);
-        hVar.setLayoutParams(new p0(-1, -2));
-        hVar.setClickable(false);
-        return hVar;
+    public int getStarsRectWidth() {
+        switch (this.f9679n) {
+            case 0:
+                return getMeasuredWidth();
+            case 1:
+                return getMeasuredWidth();
+            case 2:
+                return getMeasuredWidth();
+            default:
+                return super.getStarsRectWidth();
+        }
     }
 
     @Override
-    public final boolean equals(v51 v51Var, v51 v51Var2) {
-        f fVar = (f) v51Var.G;
-        f fVar2 = (f) v51Var2.G;
-        if (fVar.f8307a == fVar2.f8307a && DialogObject.getDialogId(fVar.f8308b) == DialogObject.getDialogId(fVar2.f8308b)) {
-            return true;
+    public void onMeasure(int i10, int i11) {
+        switch (this.f9679n) {
+            case 3:
+                super.onMeasure(i10, i11);
+                this.f46376a.f46345b.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight() - AndroidUtilities.dp(52.0f));
+                return;
+            case 4:
+                super.onMeasure(i10, i11);
+                this.f46376a.f46345b.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight() - AndroidUtilities.dp(52.0f));
+                return;
+            case 5:
+                super.onMeasure(i10, i11);
+                this.f46376a.f46345b.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight() - AndroidUtilities.dp(52.0f));
+                return;
+            default:
+                super.onMeasure(i10, i11);
+                return;
         }
-        return false;
     }
 }

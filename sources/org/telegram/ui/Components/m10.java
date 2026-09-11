@@ -1,31 +1,71 @@
 package org.telegram.ui.Components;
 
-import android.text.TextPaint;
-import android.text.style.CharacterStyle;
-import android.text.style.UpdateAppearance;
-public final class m10 extends CharacterStyle implements UpdateAppearance {
-    public int f25143a;
-    public int f25144b;
-    public float f25145c;
-    public final org.telegram.ui.ActionBar.f6 d;
+import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
+import android.view.View;
+import org.telegram.messenger.MediaController;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.Utilities;
+public final class m10 implements View.OnLongClickListener {
+    public final int f28345a;
+    public final Object f28346b;
 
-    public m10(int i10) {
-        this(i10, null);
+    public m10(Object obj, int i10) {
+        this.f28345a = i10;
+        this.f28346b = obj;
     }
 
     @Override
-    public final void updateDrawState(TextPaint textPaint) {
-        this.f25143a = org.telegram.ui.ActionBar.j6.l1(this.f25145c, org.telegram.ui.ActionBar.j6.v0(this.f25144b, this.d));
-        int color = textPaint.getColor();
-        int i10 = this.f25143a;
-        if (color != i10) {
-            textPaint.setColor(i10);
+    public final boolean onLongClick(View view) {
+        int i10 = this.f28345a;
+        Object obj = this.f28346b;
+        switch (i10) {
+            case 0:
+                final FragmentContextView fragmentContextView = (FragmentContextView) obj;
+                float[] fArr = FragmentContextView.M0;
+                final float playbackSpeed = MediaController.getInstance().getPlaybackSpeed(fragmentContextView.V);
+                fragmentContextView.H.d(playbackSpeed, false);
+                org.telegram.ui.ActionBar.b1 b1Var = fragmentContextView.H;
+                int i11 = org.telegram.ui.ActionBar.j6.G8;
+                b1Var.setBackgroundColor(org.telegram.ui.ActionBar.j6.v0(i11, fragmentContextView.f23992p0));
+                org.telegram.ui.ActionBar.b1 b1Var2 = fragmentContextView.H;
+                b1Var2.N = fragmentContextView.h instanceof org.telegram.ui.co;
+                b1Var2.F.setShader(null);
+                b1Var2.h = null;
+                Bitmap bitmap = b1Var2.f20305f;
+                if (bitmap != null) {
+                    bitmap.recycle();
+                    b1Var2.f20305f = null;
+                }
+                fragmentContextView.F.B(org.telegram.ui.ActionBar.j6.w0(null, i11, false));
+                fragmentContextView.F.N();
+                fragmentContextView.q(false);
+                fragmentContextView.F.setDimMenu(0.3f);
+                fragmentContextView.F.M(fragmentContextView.H, null);
+                fragmentContextView.F.setOnMenuDismiss(new Utilities.Callback() {
+                    @Override
+                    public final void run(Object obj2) {
+                        float[] fArr2 = FragmentContextView.M0;
+                        if (!((Boolean) obj2).booleanValue()) {
+                            MediaController mediaController = MediaController.getInstance();
+                            FragmentContextView fragmentContextView2 = FragmentContextView.this;
+                            fragmentContextView2.l(playbackSpeed, mediaController.getPlaybackSpeed(fragmentContextView2.V), false);
+                        }
+                    }
+                });
+                MessagesController.getGlobalNotificationsSettings().edit().putInt("speedhint", -15).apply();
+                return true;
+            case 1:
+                sd0 sd0Var = (sd0) obj;
+                sd0Var.f30261r.setText("");
+                di.l9.a(sd0Var.f30262s, true);
+                Drawable drawable = sd0Var.f30255a;
+                if (drawable instanceof dc0) {
+                    ((dc0) drawable).y();
+                }
+                return true;
+            default:
+                return hq0.n((hq0) obj);
         }
-    }
-
-    public m10(int i10, org.telegram.ui.ActionBar.f6 f6Var) {
-        this.f25145c = 1.0f;
-        this.f25144b = i10;
-        this.d = f6Var;
     }
 }

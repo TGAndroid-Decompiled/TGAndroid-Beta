@@ -1,34 +1,45 @@
 package qg;
+public final class u0 {
+    public final double f44592a;
+    public final double f44593b;
+    public final double f44594c;
+    public boolean d;
 
-import android.view.ViewGroup;
-import androidx.recyclerview.widget.RecyclerView;
-import org.telegram.ui.ActionBar.h3;
-public final class u0 extends s4.s0 {
-    public final int f40926a;
-    public final a1 f40927b;
-
-    public u0(a1 a1Var, int i10) {
-        this.f40926a = i10;
-        this.f40927b = a1Var;
+    public u0(double d, double d10, double d11) {
+        this.f44592a = d;
+        this.f44593b = d10;
+        this.f44594c = d11;
     }
 
-    @Override
-    public final void b(RecyclerView recyclerView, int i10, int i11) {
-        ViewGroup viewGroup;
-        ViewGroup viewGroup2;
-        switch (this.f40926a) {
-            case 0:
-                a1 a1Var = this.f40927b;
-                viewGroup = ((h3) a1Var).containerView;
-                viewGroup.invalidate();
-                a1Var.y();
-                return;
-            default:
-                a1 a1Var2 = this.f40927b;
-                viewGroup2 = ((h3) a1Var2).containerView;
-                viewGroup2.invalidate();
-                a1Var2.y();
-                return;
+    public final float a(u0 u0Var) {
+        return (float) Math.sqrt(Math.pow(this.f44594c - u0Var.f44594c, 2.0d) + Math.pow(this.f44593b - u0Var.f44593b, 2.0d) + Math.pow(this.f44592a - u0Var.f44592a, 2.0d));
+    }
+
+    public final u0 b(u0 u0Var) {
+        return new u0((this.f44592a + u0Var.f44592a) * 0.5d, (this.f44593b + u0Var.f44593b) * 0.5d, (this.f44594c + u0Var.f44594c) * 0.5d);
+    }
+
+    public final boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
         }
+        if (obj == this) {
+            return true;
+        }
+        if (!(obj instanceof u0)) {
+            return false;
+        }
+        u0 u0Var = (u0) obj;
+        if (this.f44592a != u0Var.f44592a || this.f44593b != u0Var.f44593b || this.f44594c != u0Var.f44594c) {
+            return false;
+        }
+        return true;
+    }
+
+    public u0(double d, double d10, double d11, int i10) {
+        this.f44592a = d;
+        this.f44593b = d10;
+        this.f44594c = d11;
+        this.d = true;
     }
 }

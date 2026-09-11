@@ -1,27 +1,29 @@
 package org.telegram.ui.Components;
 
-import org.telegram.tgnet.TLRPC;
+import org.telegram.messenger.AndroidUtilities;
 public final class j80 implements Runnable {
-    public final int f24310a;
-    public final q80 f24311b;
-    public final TLRPC.TL_chatInviteJoinResultWebView f24312c;
-    public final long d;
+    public final int f27377a;
+    public final k80 f27378b;
+    public final boolean f27379c;
+    public final boolean d;
 
-    public j80(q80 q80Var, TLRPC.TL_chatInviteJoinResultWebView tL_chatInviteJoinResultWebView, long j3, int i10) {
-        this.f24310a = i10;
-        this.f24311b = q80Var;
-        this.f24312c = tL_chatInviteJoinResultWebView;
-        this.d = j3;
+    public j80(k80 k80Var, boolean z10, boolean z11, int i10) {
+        this.f27377a = i10;
+        this.f27378b = k80Var;
+        this.f27379c = z10;
+        this.d = z11;
     }
 
     @Override
     public final void run() {
-        switch (this.f24310a) {
+        switch (this.f27377a) {
             case 0:
-                q80.p(this.f24311b, this.f24312c, this.d);
+                AndroidUtilities.runOnUIThread(new j80(this.f27378b, this.f27379c, this.d, 1));
                 return;
             default:
-                q80.o(this.f24311b, this.f24312c, this.d);
+                k80 k80Var = this.f27378b;
+                k80Var.setJoinRequest(this.f27379c);
+                k80Var.setJoinToSend(this.d);
                 return;
         }
     }

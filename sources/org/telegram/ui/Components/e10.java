@@ -1,36 +1,31 @@
 package org.telegram.ui.Components;
 
-import android.animation.ValueAnimator;
-public final class e10 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f22533a;
-    public final g10 f22534b;
+import android.text.TextPaint;
+import android.text.style.CharacterStyle;
+import android.text.style.UpdateAppearance;
+public final class e10 extends CharacterStyle implements UpdateAppearance {
+    public int f25510a;
+    public int f25511b;
+    public float f25512c;
+    public final org.telegram.ui.ActionBar.f6 d;
 
-    public e10(g10 g10Var, int i10) {
-        this.f22533a = i10;
-        this.f22534b = g10Var;
+    public e10(int i10) {
+        this(i10, null);
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f22533a) {
-            case 0:
-                g10 g10Var = this.f22534b;
-                g10Var.getClass();
-                g10Var.f23203x = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                g10Var.invalidate();
-                return;
-            case 1:
-                g10 g10Var2 = this.f22534b;
-                g10Var2.getClass();
-                g10Var2.f23201s = Math.max(1.0f, ((Float) valueAnimator.getAnimatedValue()).floatValue());
-                g10Var2.invalidate();
-                return;
-            default:
-                g10 g10Var3 = this.f22534b;
-                g10Var3.getClass();
-                g10Var3.h = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                g10Var3.invalidate();
-                return;
+    public final void updateDrawState(TextPaint textPaint) {
+        this.f25510a = org.telegram.ui.ActionBar.j6.l1(this.f25512c, org.telegram.ui.ActionBar.j6.v0(this.f25511b, this.d));
+        int color = textPaint.getColor();
+        int i10 = this.f25510a;
+        if (color != i10) {
+            textPaint.setColor(i10);
         }
+    }
+
+    public e10(int i10, org.telegram.ui.ActionBar.f6 f6Var) {
+        this.f25512c = 1.0f;
+        this.f25511b = i10;
+        this.d = f6Var;
     }
 }

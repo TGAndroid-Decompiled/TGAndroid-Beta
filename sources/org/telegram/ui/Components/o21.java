@@ -2,75 +2,50 @@ package org.telegram.ui.Components;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.view.MotionEvent;
-import android.view.View;
+import android.graphics.ColorFilter;
+import android.graphics.Paint;
+import android.graphics.Rect;
+import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.Utilities;
-public abstract class o21 extends View {
-    public final p21 f25647a;
-    public Utilities.Callback f25648b;
-    public final org.telegram.ui.ActionBar.f6 f25649c;
-    public int d;
+import org.telegram.messenger.R;
+public final class o21 extends Drawable {
+    public final Drawable f28939a;
+    public final Paint f28940b = new Paint(1);
+    public final RectF f28941c = new RectF();
 
-    public o21(Context context, int i10, org.telegram.ui.ActionBar.f6 f6Var) {
-        super(context);
-        this.f25649c = f6Var;
-        p21 p21Var = new p21(i10, this, f6Var, false);
-        this.f25647a = p21Var;
-        p21Var.f26004r = new uq0(this, 18);
+    public o21(Context context) {
+        this.f28939a = context.getResources().getDrawable(R.drawable.menu_topic_add).mutate();
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        super.dispatchDraw(canvas);
-        org.telegram.ui.ActionBar.f6 f6Var = this.f25649c;
-        if (f6Var != null) {
-            f6Var.l(0.0f, 0.0f, getMeasuredWidth(), this.d);
-        } else {
-            org.telegram.ui.ActionBar.j6.q(0.0f, 0.0f, getMeasuredWidth(), this.d);
-        }
-        this.f25647a.c(canvas, getWidth(), 0.0f, 0.0f, 0.75f, 1.0f, true);
+    public final void draw(Canvas canvas) {
+        Paint paint = this.f28940b;
+        canvas.drawRoundRect(this.f28941c, AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f), paint);
+        this.f28939a.draw(canvas);
     }
 
     @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        this.f25647a.a();
+    public final int getOpacity() {
+        return 0;
     }
 
     @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        this.f25647a.b();
+    public final void onBoundsChange(Rect rect) {
+        super.onBoundsChange(rect);
+        this.f28941c.set(rect);
+        int centerX = rect.centerX() - AndroidUtilities.dp(12.0f);
+        int centerY = rect.centerY() - AndroidUtilities.dp(12.0f);
+        this.f28939a.setBounds(centerX, centerY, AndroidUtilities.dp(24.0f) + centerX, AndroidUtilities.dp(24.0f) + centerY);
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(33.0f), 1073741824));
+    public final void setAlpha(int i10) {
+        this.f28940b.setAlpha(i10);
+        this.f28939a.setAlpha(i10);
     }
 
     @Override
-    public boolean onTouchEvent(MotionEvent motionEvent) {
-        if (!this.f25647a.d(motionEvent, false) && !super.onTouchEvent(motionEvent)) {
-            return false;
-        }
-        return true;
-    }
-
-    public void set(MessageObject messageObject) {
-        p21 p21Var = this.f25647a;
-        p21Var.f(messageObject);
-        if (isAttachedToWindow()) {
-            p21Var.a();
-        }
-    }
-
-    public void setBackgroundHeight(int i10) {
-        this.d = i10;
-    }
-
-    public void setOnTopicClickListener(Utilities.Callback<Long> callback) {
-        this.f25648b = callback;
+    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

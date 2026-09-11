@@ -9,43 +9,43 @@ import android.os.Parcel;
 import android.os.Parcelable;
 public final class l implements Parcelable {
     public static final Parcelable.Creator<l> CREATOR = new m8.h(3);
-    public final String f13790a;
-    public final CharSequence f13791b;
-    public final CharSequence f13792c;
+    public final String f16459a;
+    public final CharSequence f16460b;
+    public final CharSequence f16461c;
     public final CharSequence d;
-    public final Bitmap e;
-    public final Uri f13793f;
+    public final Bitmap f16462e;
+    public final Uri f16463f;
     public final Bundle h;
-    public final Uri f13794n;
-    public MediaDescription f13795r;
+    public final Uri f16464n;
+    public MediaDescription f16465r;
 
     public l(String str, CharSequence charSequence, CharSequence charSequence2, CharSequence charSequence3, Bitmap bitmap, Uri uri, Bundle bundle, Uri uri2) {
-        this.f13790a = str;
-        this.f13791b = charSequence;
-        this.f13792c = charSequence2;
+        this.f16459a = str;
+        this.f16460b = charSequence;
+        this.f16461c = charSequence2;
         this.d = charSequence3;
-        this.e = bitmap;
-        this.f13793f = uri;
+        this.f16462e = bitmap;
+        this.f16463f = uri;
         this.h = bundle;
-        this.f13794n = uri2;
+        this.f16464n = uri2;
     }
 
     public final MediaDescription a() {
         Bundle bundle;
-        MediaDescription mediaDescription = this.f13795r;
+        MediaDescription mediaDescription = this.f16465r;
         if (mediaDescription != null) {
             return mediaDescription;
         }
         MediaDescription.Builder builder = new MediaDescription.Builder();
-        builder.setMediaId(this.f13790a);
-        builder.setTitle(this.f13791b);
-        builder.setSubtitle(this.f13792c);
+        builder.setMediaId(this.f16459a);
+        builder.setTitle(this.f16460b);
+        builder.setSubtitle(this.f16461c);
         builder.setDescription(this.d);
-        builder.setIconBitmap(this.e);
-        builder.setIconUri(this.f13793f);
+        builder.setIconBitmap(this.f16462e);
+        builder.setIconUri(this.f16463f);
         int i10 = Build.VERSION.SDK_INT;
         Bundle bundle2 = this.h;
-        Uri uri = this.f13794n;
+        Uri uri = this.f16464n;
         if (i10 < 23 && uri != null) {
             if (bundle2 == null) {
                 bundle = a4.a.i("android.support.v4.media.description.NULL_BUNDLE_FLAG", true);
@@ -61,7 +61,7 @@ public final class l implements Parcelable {
             e0.b.E(builder, uri);
         }
         MediaDescription build = builder.build();
-        this.f13795r = build;
+        this.f16465r = build;
         return build;
     }
 
@@ -71,7 +71,7 @@ public final class l implements Parcelable {
     }
 
     public final String toString() {
-        return ((Object) this.f13791b) + ", " + ((Object) this.f13792c) + ", " + ((Object) this.d);
+        return ((Object) this.f16460b) + ", " + ((Object) this.f16461c) + ", " + ((Object) this.d);
     }
 
     @Override

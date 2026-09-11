@@ -1,73 +1,92 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.FileLog;
-public final class lt implements Runnable {
-    public final int f25107a;
-    public final nt f25108b;
+import android.os.Build;
+import android.widget.EdgeEffect;
+import androidx.recyclerview.widget.RecyclerView;
+public final class lt extends EdgeEffect {
+    public final int f28302a;
+    public final kt f28303b;
+    public final RecyclerView f28304c;
+    public final wp d;
+    public boolean f28305e;
 
-    public lt(nt ntVar, int i10) {
-        this.f25107a = i10;
-        this.f25108b = ntVar;
+    public lt(RecyclerView recyclerView, int i10, kt ktVar) {
+        super(recyclerView.getContext());
+        this.d = new wp(this, 7);
+        this.f28304c = recyclerView;
+        this.f28302a = i10;
+        this.f28303b = ktVar;
+    }
+
+    public final void a() {
+        boolean b10 = b();
+        if (this.f28305e != b10) {
+            this.f28305e = b10;
+            kt ktVar = this.f28303b;
+            if (ktVar != null) {
+                ktVar.a(this.f28302a, b10);
+            }
+        }
+    }
+
+    public final boolean b() {
+        if (!isFinished()) {
+            if (Build.VERSION.SDK_INT < 31 || getDistance() != 0.0f) {
+                return true;
+            }
+            return false;
+        }
+        return false;
     }
 
     @Override
-    public final void run() {
-        int i10;
-        Bitmap bitmap;
-        switch (this.f25107a) {
-            case 0:
-                nt ntVar = this.f25108b;
-                try {
-                    i10 = ntVar.f25591w + 0;
-                    bitmap = ntVar.f25585b;
-                } catch (Exception e) {
-                    FileLog.e(e);
-                    ntVar.E = true;
-                }
-                if (bitmap != null) {
-                    if (bitmap.getWidth() == ntVar.f25592x) {
-                        if (ntVar.f25585b.getHeight() != i10) {
-                        }
-                        ntVar.f25585b.eraseColor(0);
-                        ntVar.f25586c.save();
-                        ntVar.f25586c.translate(0.0f, 0);
-                        ntVar.c(ntVar.f25586c);
-                        ntVar.f25586c.restore();
-                        ntVar.f25585b.prepareToDraw();
-                        AndroidUtilities.runOnUIThread(ntVar.H);
-                        return;
-                    }
-                }
-                Bitmap bitmap2 = ntVar.f25585b;
-                if (bitmap2 != null) {
-                    bitmap2.recycle();
-                }
-                ntVar.f25585b = Bitmap.createBitmap(ntVar.f25592x, i10, Bitmap.Config.ARGB_8888);
-                ntVar.f25586c = new Canvas(ntVar.f25585b);
-                ntVar.f25585b.eraseColor(0);
-                ntVar.f25586c.save();
-                ntVar.f25586c.translate(0.0f, 0);
-                ntVar.c(ntVar.f25586c);
-                ntVar.f25586c.restore();
-                ntVar.f25585b.prepareToDraw();
-                AndroidUtilities.runOnUIThread(ntVar.H);
-                return;
-            default:
-                nt ntVar2 = this.f25108b;
-                ntVar2.f25587f = false;
-                ntVar2.g();
-                if (!ntVar2.f25584a) {
-                    ntVar2.j();
-                    return;
-                } else if (ntVar2.v == ntVar2.J) {
-                    ntVar2.G = true;
-                    return;
-                } else {
-                    return;
-                }
-        }
+    public final boolean draw(Canvas canvas) {
+        boolean draw = super.draw(canvas);
+        this.f28304c.postOnAnimation(this.d);
+        return draw;
+    }
+
+    @Override
+    public final void finish() {
+        super.finish();
+        a();
+    }
+
+    @Override
+    public final void onAbsorb(int i10) {
+        super.onAbsorb(i10);
+        a();
+    }
+
+    @Override
+    public final void onPull(float f7) {
+        super.onPull(f7);
+        a();
+    }
+
+    @Override
+    public final float onPullDistance(float f7, float f10) {
+        float onPullDistance = super.onPullDistance(f7, f10);
+        a();
+        return onPullDistance;
+    }
+
+    @Override
+    public final void onRelease() {
+        super.onRelease();
+        a();
+    }
+
+    @Override
+    public final void setSize(int i10, int i11) {
+        super.setSize(i10, i11);
+        a();
+    }
+
+    @Override
+    public final void onPull(float f7, float f10) {
+        super.onPull(f7, f10);
+        a();
     }
 }

@@ -7,29 +7,29 @@ import android.os.Build;
 import android.util.Log;
 import com.google.android.gms.common.api.GoogleApiActivity;
 public final class r implements DialogInterface.OnClickListener {
-    public final int f13909a;
-    public final Intent f13910b;
-    public final Object f13911c;
+    public final int f16588a;
+    public final Intent f16589b;
+    public final Object f16590c;
 
     public r(Intent intent, Object obj, int i10) {
-        this.f13909a = i10;
-        this.f13910b = intent;
-        this.f13911c = obj;
+        this.f16588a = i10;
+        this.f16589b = intent;
+        this.f16590c = obj;
     }
 
     public final void a() {
-        switch (this.f13909a) {
+        switch (this.f16588a) {
             case 0:
-                Intent intent = this.f13910b;
+                Intent intent = this.f16589b;
                 if (intent != null) {
-                    ((GoogleApiActivity) this.f13911c).startActivityForResult(intent, 2);
+                    ((GoogleApiActivity) this.f16590c).startActivityForResult(intent, 2);
                     return;
                 }
                 return;
             default:
-                Intent intent2 = this.f13910b;
+                Intent intent2 = this.f16589b;
                 if (intent2 != null) {
-                    ((com.google.android.gms.common.api.internal.m) this.f13911c).startActivityForResult(intent2, 2);
+                    ((com.google.android.gms.common.api.internal.m) this.f16590c).startActivityForResult(intent2, 2);
                     return;
                 }
                 return;
@@ -41,12 +41,12 @@ public final class r implements DialogInterface.OnClickListener {
         try {
             try {
                 a();
-            } catch (ActivityNotFoundException e) {
+            } catch (ActivityNotFoundException e7) {
                 String str = "Failed to start resolution intent.";
                 if (true == Build.FINGERPRINT.contains("generic")) {
                     str = "Failed to start resolution intent. This may occur when resolving Google Play services connection issues on emulators with Google APIs but not Google Play Store.";
                 }
-                Log.e("DialogRedirect", str, e);
+                Log.e("DialogRedirect", str, e7);
             }
         } finally {
             dialogInterface.dismiss();

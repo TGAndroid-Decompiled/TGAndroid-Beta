@@ -2,5 +2,5 @@ package b;
 
 import android.os.IInterface;
 public interface c extends IInterface {
-    public static final String f1575g = "android$support$v4$app$INotificationSideChannel".replace('$', '.');
+    public static final String f1912g = "android$support$v4$app$INotificationSideChannel".replace('$', '.');
 }

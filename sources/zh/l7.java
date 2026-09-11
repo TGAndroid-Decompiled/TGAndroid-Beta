@@ -1,322 +1,189 @@
 package zh;
 
-import android.app.Dialog;
+import android.app.Activity;
 import android.content.Context;
-import android.net.Uri;
-import android.text.TextUtils;
-import android.view.SurfaceView;
-import android.view.WindowManager;
+import android.widget.FrameLayout;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.FileLoader;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.FileStreamLoadOperation;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.uu0;
-public final class l7 implements w2 {
-    public final a5 f48650a;
-    public final ArrayList f48651b;
-    public final Context f48652c;
-    public final u7 d;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.messenger.R;
+import org.telegram.tgnet.tl.TL_stars;
+import org.telegram.ui.Components.bb;
+import org.telegram.ui.Components.d90;
+import org.telegram.ui.Components.h51;
+import org.telegram.ui.Components.kl0;
+import org.telegram.ui.Components.ll0;
+import org.telegram.ui.Components.pr;
+import org.telegram.ui.Components.r00;
+import org.telegram.ui.Components.v51;
+import org.telegram.ui.Components.yc;
+import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.co;
+import org.telegram.ui.mk;
+public final class l7 extends bb implements NotificationCenter.NotificationCenterDelegate {
+    public final FrameLayout X;
+    public v51 Y;
+    public boolean Z;
 
-    public l7(u7 u7Var, a5 a5Var, ArrayList arrayList, Context context) {
-        this.d = u7Var;
-        this.f48650a = a5Var;
-        this.f48651b = arrayList;
-        this.f48652c = context;
-    }
-
-    public final void a(int i10, long j3) {
-        u7 u7Var = this.d;
-        if (u7Var.J == i10 && u7Var.I == j3) {
-            return;
+    public l7(Context context, org.telegram.ui.ActionBar.f6 f6Var) {
+        super(context, null, false, false, f6Var);
+        ll0 ll0Var = this.d;
+        int i10 = this.backgroundPaddingLeft;
+        ll0Var.setPadding(i10, 0, i10, 0);
+        this.d.setOnItemClickListener(new bi.d(this, 24));
+        s4.j jVar = new s4.j();
+        jVar.f45777m = false;
+        jVar.C = false;
+        jVar.o(pr.h);
+        jVar.n(350L);
+        this.d.setItemAnimator(jVar);
+        int i11 = org.telegram.ui.ActionBar.j6.f20663d6;
+        setBackgroundColor(org.telegram.ui.ActionBar.j6.v0(i11, f6Var));
+        fixNavigationBar(org.telegram.ui.ActionBar.j6.v0(i11, f6Var));
+        this.f24647e.setTitle(LocaleController.getString(R.string.StarsBuy));
+        FrameLayout frameLayout = new FrameLayout(context);
+        this.X = frameLayout;
+        d90 d90Var = new d90(context, f6Var);
+        frameLayout.setPadding(0, AndroidUtilities.dp(11.0f), 0, AndroidUtilities.dp(11.0f));
+        d90Var.setTextSize(1, 12.0f);
+        d90Var.setTextColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.B6, f6Var));
+        d90Var.setLinkTextColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.gc, f6Var));
+        d90Var.setText(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.StarsTOS), new m2(this, 10)));
+        d90Var.setGravity(17);
+        d90Var.setMaxWidth(di.f4.a(d90Var.getText(), d90Var.getPaint()));
+        frameLayout.addView(d90Var, w7.x5.e(-2, -1, 17));
+        frameLayout.setBackgroundColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f20734h5, f6Var));
+        this.containerView.addView(new r00(getContext()), w7.x5.c(-1.0f, -1));
+        v51 v51Var = this.Y;
+        if (v51Var != null) {
+            v51Var.N(false);
         }
-        u7Var.I = j3;
-        u7Var.J = i10;
     }
 
-    public final void b(boolean z10) {
-        int i10;
-        u7 u7Var = this.d;
-        org.telegram.ui.ActionBar.p2 p2Var = u7Var.f48931f;
-        if (u7Var.f48921b) {
-            if (!u7Var.f48924c) {
-                if (z10) {
-                    AndroidUtilities.requestAdjustNothing(p2Var.getParentActivity(), p2Var.getClassGuid());
-                    return;
-                } else {
-                    AndroidUtilities.requestAdjustResize(p2Var.getParentActivity(), p2Var.getClassGuid());
-                    return;
+    public static void P(l7 l7Var, int i10) {
+        h51 G;
+        v51 v51Var = l7Var.Y;
+        if (v51Var != null && (G = v51Var.G(i10 - 1)) != null) {
+            v51 v51Var2 = l7Var.Y;
+            if (G.d == -1) {
+                l7Var.Z = !l7Var.Z;
+                v51Var2.N(true);
+                l7Var.d.v0(0, AndroidUtilities.dp(300.0f), null);
+            } else if (G.G(h7.class) && (G.G instanceof TL_stars.TL_starsTopupOption)) {
+                Activity findActivity = AndroidUtilities.findActivity(l7Var.getContext());
+                if (findActivity == null) {
+                    findActivity = LaunchActivity.G1;
+                }
+                if (findActivity != null) {
+                    s5.y(l7Var.currentAccount, false).f(findActivity, (TL_stars.TL_starsTopupOption) G.G, new bi.f0(26, l7Var, G), null);
                 }
             }
-            return;
         }
-        WindowManager.LayoutParams layoutParams = u7Var.f48955r;
-        if (z10) {
-            i10 = 48;
+    }
+
+    public static void Q(l7 l7Var, h51 h51Var, Boolean bool, String str) {
+        if (l7Var.getContext() != null) {
+            l7Var.dismiss();
+            s5.y(l7Var.currentAccount, false).T(true);
+            org.telegram.ui.ActionBar.n2 U = LaunchActivity.U();
+            if (U != null) {
+                if (bool.booleanValue()) {
+                    yc.a0(U).M(LocaleController.getString(R.string.StarsAcquired), AndroidUtilities.replaceTags(LocaleController.formatPluralString("StarsAcquiredInfo", (int) h51Var.B, new Object[0])), R.raw.stars_topup).j();
+                    LaunchActivity launchActivity = LaunchActivity.G1;
+                    if (launchActivity != null) {
+                        launchActivity.f33467x0.c(true);
+                    }
+                } else if (str != null) {
+                    i2.g.s(R.string.UnknownErrorCode, new Object[]{str}, yc.a0(U), R.raw.error, 36);
+                }
+            }
+        }
+    }
+
+    public final void R(ArrayList arrayList, v51 v51Var) {
+        int i10;
+        i2.g.p(R.string.TelegramStarsChoose, arrayList);
+        ArrayList z10 = s5.y(this.currentAccount, false).z();
+        if (z10 != null && !z10.isEmpty()) {
+            int i11 = 0;
+            int i12 = 1;
+            for (int i13 = 0; i13 < z10.size(); i13++) {
+                TL_stars.TL_starsTopupOption tL_starsTopupOption = (TL_stars.TL_starsTopupOption) z10.get(i13);
+                if (tL_starsTopupOption.extended && !this.Z) {
+                    i11++;
+                } else {
+                    arrayList.add(h7.a(i13, i12, tL_starsTopupOption));
+                    i12++;
+                }
+            }
+            boolean z11 = this.Z;
+            if (!z11 && i11 > 0) {
+                if (z11) {
+                    i10 = R.string.NotifyLessOptions;
+                } else {
+                    i10 = R.string.NotifyMoreOptions;
+                }
+                String string = LocaleController.getString(i10);
+                int i14 = d7.f51801a;
+                h51 J = h51.J(d7.class);
+                J.d = -1;
+                J.f26594l = string;
+                J.f26589f = !this.Z;
+                J.f26599q = true;
+                arrayList.add(J);
+            }
         } else {
-            i10 = 16;
+            arrayList.add(h51.n(31));
+            arrayList.add(h51.n(31));
+            arrayList.add(h51.n(31));
+            arrayList.add(h51.n(31));
+            arrayList.add(h51.n(31));
         }
-        layoutParams.softInputMode = i10;
-        try {
-            u7Var.f48946n.updateViewLayout(u7Var.f48958s, layoutParams);
-        } catch (Exception e) {
-            FileLog.e(e);
+        arrayList.add(h51.k(this.X));
+    }
+
+    @Override
+    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
+        v51 v51Var;
+        if ((i10 == NotificationCenter.starOptionsLoaded || i10 == NotificationCenter.starBalanceUpdated) && (v51Var = this.Y) != null) {
+            v51Var.N(true);
         }
     }
 
-    public final void c(TLRPC.Document document, Uri uri, long j3, k2.v vVar) {
-        String uri2;
-        String uri3;
-        long j10;
-        t7 t7Var;
-        u7 u7Var = this.d;
-        ArrayList arrayList = u7Var.M0;
-        if (!u7Var.H0 && u7Var.U >= 0.9f) {
-            Uri uri4 = u7Var.F0;
-            if (uri4 == null) {
-                uri2 = null;
-            } else {
-                uri2 = uri4.toString();
-            }
-            if (uri == null) {
-                uri3 = null;
-            } else {
-                uri3 = uri.toString();
-            }
-            boolean equals = TextUtils.equals(uri2, uri3);
-            boolean z10 = true;
-            if (equals && (t7Var = u7Var.f48974z0) != null) {
-                if (equals) {
-                    u7Var.G0 = vVar;
-                    vVar.f12226c = t7Var;
-                    vVar.f12225b = null;
-                    t7Var.setSpeed(u7.B1);
-                    k2.v vVar2 = u7Var.G0;
-                    vVar2.f12224a = u7Var.f48974z0.firstFrameRendered;
-                    vVar2.e = u7Var.f48973y0;
-                    vVar2.f12227f = u7Var.B0;
-                    vVar2.d = u7Var.C0;
-                    FileLog.d("StoryViewer requestPlayer: same url");
-                }
-            } else {
-                u7Var.F0 = uri;
-                bi.f5 f5Var = u7Var.D0;
-                if (f5Var != null) {
-                    f5Var.d(0L, null);
-                }
-                t0 t0Var = u7Var.A0;
-                if (t0Var != null) {
-                    if (t0Var.f48882n) {
-                        t0Var.s(null);
-                    } else {
-                        t0Var.e();
-                    }
-                    u7Var.A0 = null;
-                }
-                t7 t7Var2 = u7Var.f48974z0;
-                if (t7Var2 != null) {
-                    t7Var2.release(null);
-                    u7Var.f48974z0 = null;
-                }
-                k2.v vVar3 = u7Var.G0;
-                if (vVar3 != null) {
-                    vVar3.f12226c = null;
-                    vVar3.f12225b = null;
-                    vVar3.f12224a = false;
-                    vVar3.e = null;
-                    vVar3.f12227f = null;
-                    vVar3.d = null;
-                    vVar3.b();
-                    u7Var.G0 = null;
-                }
-                if (uri != null) {
-                    u7Var.G0 = vVar;
-                    int i10 = 0;
-                    while (true) {
-                        if (i10 >= arrayList.size()) {
-                            break;
-                        } else if (((t7) arrayList.get(i10)).uri.equals(uri)) {
-                            u7Var.f48974z0 = (t7) arrayList.remove(i10);
-                            break;
-                        } else {
-                            i10++;
-                        }
-                    }
-                    if (u7Var.f48974z0 == null) {
-                        t7 t7Var3 = new t7(u7Var, u7Var.C0, u7Var.B0);
-                        u7Var.f48974z0 = t7Var3;
-                        t7Var3.document = document;
-                    }
-                    t7 t7Var4 = u7Var.f48974z0;
-                    t7Var4.uri = uri;
-                    t7Var4.setSpeed(u7.B1);
-                    k2.v vVar4 = u7Var.G0;
-                    t7 t7Var5 = u7Var.f48974z0;
-                    vVar4.f12226c = t7Var5;
-                    vVar4.f12224a = false;
-                    vVar4.e = u7Var.f48973y0;
-                    vVar4.f12227f = u7Var.B0;
-                    vVar4.d = u7Var.C0;
-                    vVar4.f12225b = null;
-                    FileStreamLoadOperation.setPriorityForDocument(t7Var5.document, 3);
-                    FileLoader.getInstance(u7Var.h).changePriority(3, u7Var.f48974z0.document, null, null, null, null, null);
-                    if (j3 == 0) {
-                        long j11 = u7Var.f48962t1;
-                        if (j11 != 0) {
-                            u7Var.G0.f12224a = true;
-                            j10 = j11;
-                            FileLog.d("StoryViewer requestPlayer: currentPlayerScope.player start " + uri);
-                            ((t7) u7Var.G0.f12226c).start(false, u7Var.w(), uri, j10, u7.D1, u7.B1);
-                            u7Var.G0.b();
-                        }
-                    }
-                    j10 = j3;
-                    FileLog.d("StoryViewer requestPlayer: currentPlayerScope.player start " + uri);
-                    ((t7) u7Var.G0.f12226c).start(false, u7Var.w(), uri, j10, u7.D1, u7.B1);
-                    u7Var.G0.b();
-                } else {
-                    FileLog.d("StoryViewer requestPlayer: url is null (1)");
-                }
-            }
-            if (uri == null) {
-                z10 = false;
-            }
-            i(false, z10);
-            u7Var.f48962t1 = 0L;
-            u7Var.P();
-            return;
-        }
-        bi.f5 f5Var2 = u7Var.D0;
-        if (f5Var2 != null) {
-            f5Var2.d(0L, null);
-        }
-        t0 t0Var2 = u7Var.A0;
-        if (t0Var2 != null) {
-            if (t0Var2.f48882n) {
-                t0Var2.s(null);
-            } else {
-                t0Var2.e();
-            }
-            u7Var.A0 = null;
-        }
-        FileLog.d("StoryViewer requestPlayer ignored, because closed: " + u7Var.H0 + ", " + u7Var.U);
-        vVar.f12224a = false;
-        vVar.f12226c = null;
-        vVar.f12225b = null;
+    @Override
+    public final void dismissInternal() {
+        super.dismissInternal();
+        NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.starOptionsLoaded);
+        NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.starBalanceUpdated);
     }
 
-    public final void d(float f7) {
-        u7 u7Var = this.d;
-        if (u7Var.f48956r0 != f7) {
-            u7Var.f48956r0 = f7;
-            u7Var.v.invalidate();
+    @Override
+    public final void show() {
+        mk mkVar;
+        long j3 = s5.y(this.currentAccount, false).p().amount;
+        org.telegram.ui.ActionBar.n2 R = LaunchActivity.R();
+        if (R instanceof co) {
+            co coVar = (co) R;
+            if (coVar.x9() && (mkVar = coVar.Y) != null) {
+                mkVar.P();
+            }
         }
+        super.show();
+        NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.starOptionsLoaded);
+        NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.starBalanceUpdated);
     }
 
-    public final void e() {
-        this.d.f48945m1 = false;
+    @Override
+    public final kl0 v(ll0 ll0Var) {
+        v51 v51Var = new v51(this.d, getContext(), this.currentAccount, 0, true, new ii.a(this, 29), this.resourcesProvider);
+        this.Y = v51Var;
+        v51Var.f31135r = false;
+        return v51Var;
     }
 
-    public final void f(boolean z10) {
-        t7 t7Var;
-        u7 u7Var = this.d;
-        if (!u7Var.f48933f1 && z10 && u7Var.f48942k0) {
-            u7Var.f48942k0 = false;
-            k2.v vVar = u7Var.G0;
-            if (vVar != null && (t7Var = (t7) vVar.f12226c) != null) {
-                t7Var.setSeeking(false);
-            }
-            a3 t10 = u7Var.t();
-            if (t10 != null) {
-                t10.invalidate();
-            }
-        }
-        u7Var.f48933f1 = z10;
-        u7Var.P();
-    }
-
-    public final void g(boolean z10) {
-        u7 u7Var = this.d;
-        u7Var.X0 = z10;
-        u7Var.P();
-    }
-
-    public final void h(Dialog dialog) {
-        this.d.showDialog(dialog);
-    }
-
-    public final void i(boolean z10, boolean z11) {
-        int i10;
-        int i11;
-        u7 u7Var = this.d;
-        bi.f5 f5Var = u7Var.D0;
-        int i12 = 8;
-        if (f5Var != null) {
-            if (z10) {
-                i11 = 0;
-            } else {
-                i11 = 8;
-            }
-            f5Var.setVisibility(i11);
-        }
-        SurfaceView surfaceView = u7Var.C0;
-        if (surfaceView != null) {
-            if (z10) {
-                i10 = 8;
-            } else if (z11) {
-                i10 = 0;
-            } else {
-                i10 = 4;
-            }
-            surfaceView.setVisibility(i10);
-        }
-        m7 m7Var = u7Var.B0;
-        if (m7Var != null) {
-            if (!z10) {
-                i12 = 0;
-            }
-            m7Var.setVisibility(i12);
-        }
-    }
-
-    public final void j() {
-        int indexOf;
-        u7 u7Var = this.d;
-        a5 a5Var = this.f48650a;
-        if (a5Var != null) {
-            if (u7Var.f48947n0.f48418x0 == null) {
-                return;
-            }
-            ArrayList arrayList = new ArrayList(u7Var.f48947n0.f48418x0);
-            if (u7Var.f48947n0.getCurrentPeerView() == null) {
-                indexOf = -1;
-            } else {
-                indexOf = arrayList.indexOf(u7Var.f48947n0.getCurrentPeerView().getCurrentDay());
-            }
-            if (indexOf >= 0) {
-                arrayList.remove(indexOf);
-                if (!u7Var.f48947n0.E(true)) {
-                    u7Var.q(false);
-                    return;
-                }
-                u7Var.f48947n0.G0 = new xh.n1(this, a5Var, arrayList, 16);
-                return;
-            }
-            u7Var.q(false);
-            return;
-        }
-        ArrayList arrayList2 = new ArrayList(this.f48651b);
-        int indexOf2 = arrayList2.indexOf(Long.valueOf(u7Var.f48947n0.getCurrentPeerView().getCurrentPeer()));
-        if (indexOf2 >= 0) {
-            arrayList2.remove(indexOf2);
-            if (!u7Var.f48947n0.E(true)) {
-                u7Var.q(false);
-                return;
-            }
-            u7Var.f48947n0.G0 = new uu0(this, arrayList2, indexOf2, 19);
-            return;
-        }
-        u7Var.q(false);
+    @Override
+    public final CharSequence y() {
+        return LocaleController.getString(R.string.StarsBuy);
     }
 }

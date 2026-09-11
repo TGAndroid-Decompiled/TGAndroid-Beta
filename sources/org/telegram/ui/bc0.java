@@ -1,51 +1,19 @@
 package org.telegram.ui;
-public final class bc0 implements Runnable {
-    public final int f31232a;
-    public final fc0 f31233b;
-    public final String f31234c;
 
-    public bc0(fc0 fc0Var, String str, int i10) {
-        this.f31232a = i10;
-        this.f31233b = fc0Var;
-        this.f31234c = str;
+import org.telegram.tgnet.RequestDelegate;
+public final class bc0 implements RequestDelegate {
+    public final int f34730a;
+    public final Object f34731b;
+    public final Object f34732c;
+
+    public bc0(int i10, Object obj, Object obj2) {
+        this.f34730a = i10;
+        this.f34731b = obj;
+        this.f34732c = obj2;
     }
 
     @Override
-    public final void run() {
-        switch (this.f31232a) {
-            case 0:
-                fc0 fc0Var = this.f31233b;
-                fc0Var.getClass();
-                String str = this.f31234c;
-                if ("disable".equalsIgnoreCase(str)) {
-                    fc0Var.o("turnPasswordOffRow");
-                }
-                if ("change".equalsIgnoreCase(str)) {
-                    fc0Var.o("changePasswordRow");
-                }
-                if ("change-email".equalsIgnoreCase(str)) {
-                    fc0Var.o("emailRow");
-                    return;
-                }
-                return;
-            default:
-                fc0 fc0Var2 = this.f31233b;
-                fc0Var2.getClass();
-                String str2 = this.f31234c;
-                if ("disable".equalsIgnoreCase(str2)) {
-                    fc0Var2.o("disablePasscodeRow");
-                }
-                if ("change".equalsIgnoreCase(str2)) {
-                    fc0Var2.o("changePasscodeRow");
-                }
-                if ("auto-lock".equalsIgnoreCase(str2)) {
-                    fc0Var2.o("autoLockRow");
-                }
-                if ("fingerprint".equalsIgnoreCase(str2)) {
-                    fc0Var2.o("fingerprintRow");
-                    return;
-                }
-                return;
-        }
+    public final void run(org.telegram.tgnet.TLObject r10, org.telegram.tgnet.TLRPC.TL_error r11) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.bc0.run(org.telegram.tgnet.TLObject, org.telegram.tgnet.TLRPC$TL_error):void");
     }
 }

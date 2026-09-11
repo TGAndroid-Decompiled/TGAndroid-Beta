@@ -1,76 +1,79 @@
 package j4;
+
+import bi.n8;
+import c3.h0;
 public final class v implements i {
-    public String e;
-    public c3.h0 f11730f;
-    public boolean f11732i;
-    public int f11734k;
-    public int f11735l;
-    public int f11737n;
-    public int f11738o;
-    public int f11742s;
-    public boolean f11744u;
+    public String f13459e;
+    public h0 f13460f;
+    public boolean f13462i;
+    public int f13464k;
+    public int f13465l;
+    public int f13467n;
+    public int f13468o;
+    public int f13472s;
+    public boolean f13474u;
     public int d = 0;
-    public final e2.v f11727a = new e2.v(new byte[15], 2);
-    public final a4.h f11728b = new a4.h();
-    public final e2.v f11729c = new e2.v();
-    public final w f11739p = new Object();
-    public int f11740q = -2147483647;
-    public int f11741r = -1;
-    public long f11743t = -1;
-    public boolean f11733j = true;
-    public boolean f11736m = true;
-    public double f11731g = -9.223372036854776E18d;
+    public final e2.v f13456a = new e2.v(new byte[15], 2);
+    public final a4.h f13457b = new a4.h();
+    public final e2.v f13458c = new e2.v();
+    public final n8 f13469p = new Object();
+    public int f13470q = -2147483647;
+    public int f13471r = -1;
+    public long f13473t = -1;
+    public boolean f13463j = true;
+    public boolean f13466m = true;
+    public double f13461g = -9.223372036854776E18d;
     public double h = -9.223372036854776E18d;
 
     @Override
-    public final void a(e2.v r25) {
-        throw new UnsupportedOperationException("Method not decompiled: j4.v.a(e2.v):void");
+    public final void b(e2.v r25) {
+        throw new UnsupportedOperationException("Method not decompiled: j4.v.b(e2.v):void");
     }
 
     @Override
-    public final void b() {
+    public final void d() {
         this.d = 0;
-        this.f11735l = 0;
-        this.f11727a.G(2);
-        this.f11737n = 0;
-        this.f11738o = 0;
-        this.f11740q = -2147483647;
-        this.f11741r = -1;
-        this.f11742s = 0;
-        this.f11743t = -1L;
-        this.f11744u = false;
-        this.f11732i = false;
-        this.f11736m = true;
-        this.f11733j = true;
-        this.f11731g = -9.223372036854776E18d;
+        this.f13465l = 0;
+        this.f13456a.G(2);
+        this.f13467n = 0;
+        this.f13468o = 0;
+        this.f13470q = -2147483647;
+        this.f13471r = -1;
+        this.f13472s = 0;
+        this.f13473t = -1L;
+        this.f13474u = false;
+        this.f13462i = false;
+        this.f13466m = true;
+        this.f13463j = true;
+        this.f13461g = -9.223372036854776E18d;
         this.h = -9.223372036854776E18d;
     }
 
     @Override
-    public final void c(c3.q qVar, g0 g0Var) {
-        g0Var.a();
-        g0Var.b();
-        this.e = g0Var.e;
-        g0Var.b();
-        this.f11730f = qVar.I(g0Var.d, 1);
+    public final void e(c3.q qVar, f0 f0Var) {
+        f0Var.a();
+        f0Var.b();
+        this.f13459e = f0Var.f13295e;
+        f0Var.b();
+        this.f13460f = qVar.R1(f0Var.d, 1);
     }
 
     @Override
-    public final void e(int i10, long j3) {
-        this.f11734k = i10;
-        if (!this.f11733j && (this.f11738o != 0 || !this.f11736m)) {
-            this.f11732i = true;
+    public final void g(int i10, long j3) {
+        this.f13464k = i10;
+        if (!this.f13463j && (this.f13468o != 0 || !this.f13466m)) {
+            this.f13462i = true;
         }
         if (j3 != -9223372036854775807L) {
-            if (this.f11732i) {
+            if (this.f13462i) {
                 this.h = j3;
             } else {
-                this.f11731g = j3;
+                this.f13461g = j3;
             }
         }
     }
 
     @Override
-    public final void d(boolean z10) {
+    public final void f(boolean z10) {
     }
 }

@@ -3,40 +3,40 @@ package org.telegram.ui;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class bg0 implements Runnable {
-    public final int f31257a;
-    public final fg0 f31258b;
+    public final int f34793a;
+    public final fg0 f34794b;
 
     public bg0(fg0 fg0Var, int i10) {
-        this.f31257a = i10;
-        this.f31258b = fg0Var;
+        this.f34793a = i10;
+        this.f34794b = fg0Var;
     }
 
     @Override
     public final void run() {
         int i10;
-        switch (this.f31257a) {
+        switch (this.f34793a) {
             case 0:
-                xg0 xg0Var = this.f31258b.v;
-                xg0Var.u1(0, true, null, true);
-                xg0Var.l1(LocaleController.getString(R.string.RestorePasswordNoEmailTitle), LocaleController.getString(R.string.CodeExpired));
+                wg0 wg0Var = this.f34794b.v;
+                wg0Var.u1(0, true, null, true);
+                wg0Var.l1(LocaleController.getString(R.string.RestorePasswordNoEmailTitle), LocaleController.getString(R.string.CodeExpired));
                 return;
             case 1:
-                xg0 xg0Var2 = this.f31258b.v;
-                xg0Var2.u1(0, true, null, true);
-                xg0Var2.l1(LocaleController.getString(R.string.RestorePasswordNoEmailTitle), LocaleController.getString(R.string.CodeExpired));
+                wg0 wg0Var2 = this.f34794b.v;
+                wg0Var2.u1(0, true, null, true);
+                wg0Var2.l1(LocaleController.getString(R.string.RestorePasswordNoEmailTitle), LocaleController.getString(R.string.CodeExpired));
                 return;
             case 2:
-                this.f31258b.p();
+                this.f34794b.p();
                 return;
             case 3:
-                this.f31258b.f32813b.setLoading(false);
+                this.f34794b.f36396b.setLoading(false);
                 return;
             default:
                 PremiumPreviewFragment premiumPreviewFragment = new PremiumPreviewFragment(0, "sms");
-                xg0 xg0Var3 = this.f31258b.v;
-                i10 = ((org.telegram.ui.ActionBar.p2) xg0Var3).currentAccount;
+                wg0 wg0Var3 = this.f34794b.v;
+                i10 = ((org.telegram.ui.ActionBar.n2) wg0Var3).currentAccount;
                 premiumPreviewFragment.setCurrentAccount(i10);
-                xg0Var3.presentFragment(premiumPreviewFragment);
+                wg0Var3.presentFragment(premiumPreviewFragment);
                 return;
         }
     }

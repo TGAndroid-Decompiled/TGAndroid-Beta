@@ -1,12 +1,10 @@
 package org.telegram.ui.Components;
-public final class yx0 extends org.telegram.ui.tu0 {
-    @Override
-    public final boolean P() {
-        return true;
-    }
 
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+public final class yx0 extends EditTextBoldCursor {
     @Override
-    public final boolean z() {
-        return false;
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(50.0f), 1073741824));
     }
 }

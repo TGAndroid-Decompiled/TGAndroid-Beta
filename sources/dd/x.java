@@ -11,6 +11,6 @@ public enum x extends b2 {
             lVar.a(b2.J);
             return;
         }
-        lVar.f6470c = b2.f6428f;
+        lVar.f6778c = b2.f6735f;
     }
 }

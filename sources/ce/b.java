@@ -1,4 +1,4 @@
 package ce;
 public interface b {
-    Object u(c cVar, kd.c cVar2);
+    Object z(c cVar, kd.c cVar2);
 }

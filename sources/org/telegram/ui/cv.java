@@ -1,10 +1,5 @@
 package org.telegram.ui;
 
-import android.view.MotionEvent;
-import android.view.View;
-public final class cv implements View.OnTouchListener {
-    @Override
-    public final boolean onTouch(View view, MotionEvent motionEvent) {
-        return true;
-    }
+import android.widget.FrameLayout;
+public final class cv extends FrameLayout {
 }

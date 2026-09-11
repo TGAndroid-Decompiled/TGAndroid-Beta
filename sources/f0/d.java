@@ -54,11 +54,11 @@ import android.view.inputmethod.InputMethodManager;
 import android.view.textservice.TextServicesManager;
 import java.util.HashMap;
 public abstract class d {
-    public static final HashMap f7667a;
+    public static final HashMap f9160a;
 
     static {
         HashMap hashMap = new HashMap();
-        f7667a = hashMap;
+        f9160a = hashMap;
         if (Build.VERSION.SDK_INT >= 22) {
             hashMap.put(SubscriptionManager.class, "telephony_subscription_service");
             hashMap.put(UsageStatsManager.class, "usagestats");

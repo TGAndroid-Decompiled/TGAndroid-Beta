@@ -1,29 +1,15 @@
 package org.telegram.ui.Components;
+public final class x51 extends d61 {
+    public final y51 f32430f3;
 
-import android.net.Uri;
-import android.text.TextPaint;
-import android.text.style.URLSpan;
-import android.view.View;
-public final class x51 extends URLSpan {
-    public final b11 f28953a;
-
-    public x51(String str, b11 b11Var) {
-        super(str != null ? str.replace((char) 8238, ' ') : str);
-        this.f28953a = b11Var;
+    public x51(y51 y51Var, y51 y51Var2, d dVar, w51 w51Var, w51 w51Var2) {
+        super(y51Var2, dVar, w51Var, w51Var2);
+        this.f32430f3 = y51Var;
     }
 
     @Override
-    public final void onClick(View view) {
-        nf.f.p(view.getContext(), Uri.parse(getURL()), true, true);
-    }
-
-    @Override
-    public final void updateDrawState(TextPaint textPaint) {
-        super.updateDrawState(textPaint);
-        b11 b11Var = this.f28953a;
-        if (b11Var != null) {
-            b11Var.a(textPaint);
-        }
-        textPaint.setUnderlineText(true);
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        super.onLayout(z10, i10, i11, i12, i13);
+        this.f32430f3.f32850b = -1;
     }
 }

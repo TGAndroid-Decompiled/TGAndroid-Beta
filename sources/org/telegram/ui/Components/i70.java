@@ -1,29 +1,27 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class i70 extends AnimatorListenerAdapter {
-    public final int f23919a;
-    public final j70 f23920b;
+import android.view.View;
+import android.view.ViewGroup;
+public final class i70 extends org.telegram.ui.ActionBar.n1 {
+    public final ViewGroup f26983o;
+    public final n70 f26984p;
 
-    public i70(j70 j70Var, int i10) {
-        this.f23919a = i10;
-        this.f23920b = j70Var;
+    public i70(n70 n70Var, View view, ViewGroup viewGroup) {
+        super(view, -2, -2);
+        this.f26984p = n70Var;
+        this.f26983o = viewGroup;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f23919a) {
-            case 0:
-                j70 j70Var = this.f23920b;
-                j70Var.e.f24629d0 = null;
-                j70Var.requestLayout();
-                return;
-            default:
-                j70 j70Var2 = this.f23920b;
-                j70Var2.e.f24629d0 = null;
-                j70Var2.f24258a = false;
-                return;
+    public final void dismiss() {
+        d(true);
+        ViewGroup viewGroup = this.f26983o;
+        n70 n70Var = this.f26984p;
+        n70.a(n70Var, viewGroup);
+        Runnable runnable = n70Var.f28655p;
+        if (runnable != null) {
+            runnable.run();
+            n70Var.f28655p = null;
         }
     }
 }

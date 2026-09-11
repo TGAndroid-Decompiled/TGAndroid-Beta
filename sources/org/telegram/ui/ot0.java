@@ -1,11 +1,11 @@
 package org.telegram.ui;
 public final class ot0 implements Runnable {
-    public final int f35597a;
-    public final pt0 f35598b;
+    public final int f39310a;
+    public final pt0 f39311b;
 
     public ot0(pt0 pt0Var, int i10) {
-        this.f35597a = i10;
-        this.f35598b = pt0Var;
+        this.f39310a = i10;
+        this.f39311b = pt0Var;
     }
 
     @Override

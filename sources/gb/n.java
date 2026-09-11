@@ -13,7 +13,7 @@ public final class n extends lb.b {
     public n() {
         super(H);
         this.E = new ArrayList();
-        this.G = db.k.f6380a;
+        this.G = db.k.f6682a;
     }
 
     @Override
@@ -81,13 +81,13 @@ public final class n extends lb.b {
 
     @Override
     public final lb.b i() {
-        w(db.k.f6380a);
+        w(db.k.f6682a);
         return this;
     }
 
     @Override
     public final void n(double d) {
-        if (this.f12859n == 1 || (!Double.isNaN(d) && !Double.isInfinite(d))) {
+        if (this.f15356n == 1 || (!Double.isNaN(d) && !Double.isInfinite(d))) {
             w(new db.m(Double.valueOf(d)));
             return;
         }
@@ -102,7 +102,7 @@ public final class n extends lb.b {
     @Override
     public final void p(Boolean bool) {
         if (bool == null) {
-            w(db.k.f6380a);
+            w(db.k.f6682a);
         } else {
             w(new db.m(bool));
         }
@@ -111,10 +111,10 @@ public final class n extends lb.b {
     @Override
     public final void q(Number number) {
         if (number == null) {
-            w(db.k.f6380a);
+            w(db.k.f6682a);
             return;
         }
-        if (this.f12859n != 1) {
+        if (this.f15356n != 1) {
             double doubleValue = number.doubleValue();
             if (Double.isNaN(doubleValue) || Double.isInfinite(doubleValue)) {
                 throw new IllegalArgumentException("JSON forbids NaN and infinities: " + number);
@@ -126,7 +126,7 @@ public final class n extends lb.b {
     @Override
     public final void r(String str) {
         if (str == null) {
-            w(db.k.f6380a);
+            w(db.k.f6682a);
         } else {
             w(new db.m(str));
         }
@@ -146,7 +146,7 @@ public final class n extends lb.b {
     }
 
     public final db.i v() {
-        return (db.i) hc.b.i(1, this.E);
+        return (db.i) i2.g.h(1, this.E);
     }
 
     public final void w(db.i iVar) {
@@ -160,7 +160,7 @@ public final class n extends lb.b {
         } else {
             db.i v = v();
             if (v instanceof db.h) {
-                ((db.h) v).f6379a.add(iVar);
+                ((db.h) v).f6681a.add(iVar);
                 return;
             }
             throw new IllegalStateException();

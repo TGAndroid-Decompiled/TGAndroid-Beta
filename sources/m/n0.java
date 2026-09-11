@@ -5,11 +5,11 @@ import android.os.Parcelable;
 import android.view.View;
 public final class n0 extends View.BaseSavedState {
     public static final Parcelable.Creator<n0> CREATOR = new g8.j(25);
-    public boolean f13074a;
+    public boolean f15596a;
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
         super.writeToParcel(parcel, i10);
-        parcel.writeByte(this.f13074a ? (byte) 1 : (byte) 0);
+        parcel.writeByte(this.f15596a ? (byte) 1 : (byte) 0);
     }
 }

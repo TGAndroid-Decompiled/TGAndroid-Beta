@@ -1,47 +1,43 @@
 package org.telegram.ui.Components;
 
-import android.widget.FrameLayout;
-public final class ma0 extends vh.p {
-    public final int E = 1;
-    public final Object F;
+import android.graphics.Rect;
+import android.view.View;
+import androidx.recyclerview.widget.RecyclerView;
+import org.telegram.messenger.AndroidUtilities;
+public final class ma0 extends s4.n0 {
+    public final na0 f28430a;
 
-    public ma0(org.telegram.ui.ai0 ai0Var, org.telegram.ui.ai0 ai0Var2, FrameLayout frameLayout, long j3) {
-        super(ai0Var2, frameLayout, j3, true);
-        this.F = ai0Var;
+    public ma0(na0 na0Var) {
+        this.f28430a = na0Var;
     }
 
     @Override
-    public final void f(String str, boolean z10, boolean z11) {
-        switch (this.E) {
-            case 0:
-                vh.c cVar = (vh.c) this.F;
-                jx0 jx0Var = cVar.W;
-                if (this.e.isEmpty()) {
-                    if (jx0Var.getVisibility() != 4) {
-                        jx0Var.setVisibility(4);
-                        return;
-                    }
-                    return;
-                } else if (z11) {
-                    cVar.f21750w.J.setText("");
-                    return;
-                } else {
-                    super.f(str, z10, z11);
-                    return;
+    public final void a(Rect rect, View view, RecyclerView recyclerView, s4.z0 z0Var) {
+        int R;
+        int i10 = 0;
+        rect.left = 0;
+        rect.right = 0;
+        rect.top = 0;
+        rect.bottom = 0;
+        s4.o0 layoutManager = recyclerView.getLayoutManager();
+        oa0 oa0Var = this.f28430a.f28722b3;
+        if (layoutManager == oa0Var.d && (R = RecyclerView.R(view)) != 0 && !oa0Var.f29021f.N()) {
+            if (oa0Var.f29021f.I() == null && oa0Var.f29021f.U == null) {
+                rect.top = AndroidUtilities.dp(2.0f);
+            } else if (R != 0) {
+                R--;
+                ha0 ha0Var = oa0Var.d;
+                ha0Var.B1();
+                if (R > ha0Var.U) {
+                    rect.top = AndroidUtilities.dp(2.0f);
                 }
-            default:
-                if (z11) {
-                    org.telegram.ui.ai0.U((org.telegram.ui.ai0) this.F).setSearchFieldText("");
-                    return;
-                } else {
-                    super.f(str, z10, z11);
-                    return;
-                }
+            } else {
+                return;
+            }
+            if (!oa0Var.d.E1(R)) {
+                i10 = AndroidUtilities.dp(2.0f);
+            }
+            rect.right = i10;
         }
-    }
-
-    public ma0(vh.c cVar, org.telegram.ui.ActionBar.p2 p2Var, FrameLayout frameLayout, long j3) {
-        super(p2Var, frameLayout, j3, false);
-        this.F = cVar;
     }
 }

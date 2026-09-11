@@ -1,10 +1,20 @@
 package sg;
+public final class h {
+    public final int f46106a;
+    public final int f46107b;
+    public final String f46108c;
+    public final String d;
+    public final int f46109e;
 
-import org.telegram.messenger.LocaleController;
-import org.telegram.ui.Components.dd0;
-public final class h extends dd0 {
-    @Override
-    public final CharSequence d(int i10) {
-        return LocaleController.formatPluralString("Minutes", i10, new Object[0]);
+    public h(int i10) {
+        this.f46106a = i10;
+    }
+
+    public h(int i10, int i11, String str, String str2) {
+        this.f46106a = 1;
+        this.f46107b = i10;
+        this.f46108c = str;
+        this.d = str2;
+        this.f46109e = i11;
     }
 }

@@ -1,43 +1,22 @@
 package zf;
+public final class b {
+    public static final b f51624a;
+    public static final b f51625b;
+    public static final b[] f51626c;
 
-import org.telegram.messenger.video.AudioConversions;
-public final class b extends a {
-    public final long f48072b;
-    public int f48073c;
-
-    public b(long j3) {
-        this.f48072b = j3;
+    static {
+        ?? r02 = new Enum("STARS", 0);
+        f51624a = r02;
+        ?? r12 = new Enum("TON", 1);
+        f51625b = r12;
+        f51626c = new b[]{r02, r12};
     }
 
-    @Override
-    public final short a() {
-        if (c()) {
-            this.f48073c--;
-            return (short) 0;
-        }
-        throw new RuntimeException("Audio input has no remaining value.");
+    public static b valueOf(String str) {
+        return (b) Enum.valueOf(b.class, str);
     }
 
-    @Override
-    public final int b() {
-        return -1;
-    }
-
-    @Override
-    public final boolean c() {
-        if (this.f48073c > 0) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final void d() {
-        this.f48073c = 0;
-    }
-
-    @Override
-    public final void e(int i10, int i11) {
-        this.f48073c = AudioConversions.usToShorts(this.f48072b, i10, i11);
+    public static b[] values() {
+        return (b[]) f51626c.clone();
     }
 }

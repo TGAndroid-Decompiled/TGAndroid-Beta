@@ -1,69 +1,43 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class uf0 extends LinearLayout {
-    public final LinearLayout f27660a;
-    public final LinearLayout f27661b;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class uf0 extends AnimatorListenerAdapter {
+    public final int f30879a;
+    public final vf0 f30880b;
 
-    public uf0(Context context) {
-        super(context);
-        setOrientation(0);
-        setGravity(17);
-        setPadding(AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f));
-        LinearLayout a2 = a(R.drawable.msg_replace, LocaleController.getString(R.string.ReplaceAttachedPollMedia));
-        this.f27661b = a2;
-        addView(a2, w7.a6.n(-2, -1));
-        LinearLayout a10 = a(R.drawable.media_button_restore, LocaleController.getString(R.string.Edit));
-        this.f27660a = a10;
-        addView(a10, w7.a6.n(-2, -1));
-    }
-
-    public final LinearLayout a(int i10, String str) {
-        Context context = getContext();
-        LinearLayout linearLayout = new LinearLayout(context);
-        linearLayout.setOrientation(0);
-        linearLayout.setGravity(17);
-        linearLayout.setPadding(AndroidUtilities.dp(25.0f), AndroidUtilities.dp(7.0f), AndroidUtilities.dp(25.0f), AndroidUtilities.dp(7.0f));
-        ImageView imageView = new ImageView(context);
-        imageView.setImageResource(i10);
-        linearLayout.addView(imageView, w7.a6.k(0.0f, 0.0f, 8.0f, 0.0f, 24, 24));
-        TextView textView = new TextView(context);
-        textView.setGravity(16);
-        textView.setText(str);
-        textView.setTextSize(2, 14.0f);
-        textView.setSingleLine(true);
-        textView.setTextColor(-1);
-        linearLayout.addView(textView, w7.a6.n(-2, -2));
-        w7.c6.a(linearLayout);
-        return linearLayout;
+    public uf0(vf0 vf0Var, int i10) {
+        this.f30879a = i10;
+        this.f30880b = vf0Var;
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        LinearLayout linearLayout = this.f27660a;
-        ViewGroup.LayoutParams layoutParams = linearLayout.getLayoutParams();
-        ViewGroup.LayoutParams layoutParams2 = linearLayout.getLayoutParams();
-        int size = View.MeasureSpec.getSize(i10);
-        int size2 = View.MeasureSpec.getSize(i11);
-        int paddingRight = getPaddingRight() + getPaddingLeft();
-        int paddingTop = getPaddingTop();
-        int max = Math.max(0, size - paddingRight);
-        int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(Math.max(0, size2 - (getPaddingBottom() + paddingTop)), 1073741824);
-        int makeMeasureSpec2 = View.MeasureSpec.makeMeasureSpec(max, Integer.MIN_VALUE);
-        linearLayout.measure(makeMeasureSpec2, makeMeasureSpec);
-        LinearLayout linearLayout2 = this.f27661b;
-        linearLayout2.measure(makeMeasureSpec2, makeMeasureSpec);
-        int min = Math.min(Math.max(linearLayout.getMeasuredWidth(), linearLayout2.getMeasuredWidth()), max / 2);
-        layoutParams2.width = min;
-        layoutParams.width = min;
-        super.onMeasure(i10, i11);
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f30879a) {
+            case 0:
+                vf0 vf0Var = this.f30880b;
+                vf0Var.h = false;
+                vf0Var.f31211a = vf0Var.f31213c;
+                vf0Var.invalidate();
+                int i10 = vf0Var.J;
+                if (i10 >= 0) {
+                    vf0Var.b(i10);
+                    vf0Var.J = -1;
+                    return;
+                }
+                return;
+            default:
+                vf0 vf0Var2 = this.f30880b;
+                vf0Var2.f31216n = false;
+                vf0Var2.h = false;
+                vf0Var2.invalidate();
+                int i11 = vf0Var2.J;
+                if (i11 >= 0) {
+                    vf0Var2.b(i11);
+                    vf0Var2.J = -1;
+                }
+                vf0Var2.a();
+                return;
+        }
     }
 }

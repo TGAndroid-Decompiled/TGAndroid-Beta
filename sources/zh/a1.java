@@ -1,35 +1,32 @@
 package zh;
 
-import android.animation.ValueAnimator;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.view.View;
-public final class a1 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f48151a;
-    public final b1 f48152b;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stars;
+public final class a1 implements RequestDelegate {
+    public final int f51667a;
+    public final w3 f51668b;
+    public final TL_stars.TL_starGiftUnique f51669c;
+    public final zf.a d;
+    public final Runnable f51670e;
 
-    public a1(b1 b1Var, int i10) {
-        this.f48151a = i10;
-        this.f48152b = b1Var;
+    public a1(w3 w3Var, TL_stars.TL_starGiftUnique tL_starGiftUnique, zf.a aVar, Runnable runnable, int i10) {
+        this.f51667a = i10;
+        this.f51668b = w3Var;
+        this.f51669c = tL_starGiftUnique;
+        this.d = aVar;
+        this.f51670e = runnable;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f48151a) {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f51667a) {
             case 0:
-                this.f48152b.d.setAlpha(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                w3.M0(this.f51668b, this.f51669c, this.d, this.f51670e, tLObject, tL_error);
                 return;
             default:
-                b1 b1Var = this.f48152b;
-                b1Var.getClass();
-                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                b1Var.f48298n = floatValue;
-                View view = b1Var.f48295b;
-                view.setAlpha(1.0f - floatValue);
-                view.setScaleX(1.0f - b1Var.f48298n);
-                view.setScaleY(1.0f - b1Var.f48298n);
-                b1Var.f48296c.setColorFilter(new PorterDuffColorFilter(i0.a.d(b1Var.f48298n, -1, -2960428), PorterDuff.Mode.SRC_IN));
-                b1Var.f48294a.invalidate();
+                w3.t0(this.f51668b, this.f51669c, this.d, this.f51670e, tLObject, tL_error);
                 return;
         }
     }

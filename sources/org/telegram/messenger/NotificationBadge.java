@@ -42,7 +42,7 @@ public class NotificationBadge {
             intent.putExtra("CNAME", NotificationBadge.componentName.getClassName());
             intent.putExtra("COUNT", i10);
             if (NotificationBadge.canResolveBroadcast(intent)) {
-                AndroidUtilities.runOnUIThread(new i(intent, 1));
+                AndroidUtilities.runOnUIThread(new j(intent, 1));
             }
         }
 
@@ -69,7 +69,7 @@ public class NotificationBadge {
             intent.putExtra("count", i10);
             intent.putExtra("class", NotificationBadge.componentName.getClassName());
             if (NotificationBadge.canResolveBroadcast(intent)) {
-                AndroidUtilities.runOnUIThread(new i(intent, 2));
+                AndroidUtilities.runOnUIThread(new j(intent, 2));
             }
         }
 
@@ -97,7 +97,7 @@ public class NotificationBadge {
             intent.putExtra("badge_count_class_name", NotificationBadge.componentName.getClassName());
             intent.putExtra("badge_vip_count", 0);
             if (NotificationBadge.canResolveBroadcast(intent)) {
-                AndroidUtilities.runOnUIThread(new i(intent, 3));
+                AndroidUtilities.runOnUIThread(new j(intent, 3));
             }
         }
 
@@ -132,7 +132,7 @@ public class NotificationBadge {
             intent.putExtra("badge_count", i10);
             intent.putExtra("badge_count_package_name", NotificationBadge.componentName.getPackageName());
             intent.putExtra("badge_count_class_name", NotificationBadge.componentName.getClassName());
-            AndroidUtilities.runOnUIThread(new i(intent, 4));
+            AndroidUtilities.runOnUIThread(new j(intent, 4));
         }
 
         @Override
@@ -145,8 +145,8 @@ public class NotificationBadge {
         public static void lambda$executeBadge$0(Bundle bundle) {
             try {
                 ApplicationLoader.applicationContext.getContentResolver().call(Uri.parse("content://com.huawei.android.launcher.settings/badge/"), "change_badge", (String) null, bundle);
-            } catch (Exception e) {
-                FileLog.e(e);
+            } catch (Exception e7) {
+                FileLog.e(e7);
             }
         }
 
@@ -156,7 +156,7 @@ public class NotificationBadge {
             bundle.putString("package", ApplicationLoader.applicationContext.getPackageName());
             bundle.putString("class", NotificationBadge.componentName.getClassName());
             bundle.putInt("badgenumber", i10);
-            AndroidUtilities.runOnUIThread(new dh(bundle, 1));
+            AndroidUtilities.runOnUIThread(new ug(bundle, 1));
         }
 
         @Override
@@ -189,7 +189,7 @@ public class NotificationBadge {
             if (!NotificationBadge.canResolveBroadcast(intent) && !NotificationBadge.canResolveBroadcast(intent2)) {
                 return;
             }
-            AndroidUtilities.runOnUIThread(new kc(29, intent, intent2));
+            AndroidUtilities.runOnUIThread(new cc(29, intent, intent2));
         }
 
         @Override
@@ -331,7 +331,7 @@ public class NotificationBadge {
                 z10 = false;
             }
             intent.putExtra("com.sonyericsson.home.intent.extra.badge.SHOW_MESSAGE", z10);
-            AndroidUtilities.runOnUIThread(new i(intent, 5));
+            AndroidUtilities.runOnUIThread(new j(intent, 5));
         }
 
         private void executeBadgeByContentProvider(int i10) {
@@ -460,14 +460,14 @@ public class NotificationBadge {
         public void lambda$executeBadge$0(Bundle bundle) {
             try {
                 ApplicationLoader.applicationContext.getContentResolver().call(this.CONTENT_URI, "setAppBadgeCount", (String) null, bundle);
-            } catch (Exception e) {
-                FileLog.e(e);
+            } catch (Exception e7) {
+                FileLog.e(e7);
             }
         }
 
         @Override
         public void executeBadge(int i10) {
-            AndroidUtilities.runOnUIThread(new eh(0, this, org.telegram.ui.Cells.r6.e(i10, "app_badge_count")));
+            AndroidUtilities.runOnUIThread(new vg(0, this, org.telegram.ui.Cells.p6.e(i10, "app_badge_count")));
         }
 
         @Override

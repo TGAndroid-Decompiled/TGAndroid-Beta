@@ -1,50 +1,60 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-public final class u7 extends vl0 {
-    public boolean X2;
-    public final j8 Y2;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.ui.PhotoViewer;
+public final class u7 extends md {
+    public final int f30828b;
+    public final NotificationCenter.NotificationCenterDelegate f30829c;
 
-    public u7(j8 j8Var, Context context) {
-        super(context, null);
-        this.Y2 = j8Var;
+    public u7(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, Context context, int i10) {
+        super(context);
+        this.f30828b = i10;
+        this.f30829c = notificationCenterDelegate;
     }
 
     @Override
-    public final boolean E0(float f7) {
-        j8 j8Var = this.Y2;
-        if (f7 < j8Var.E.getY() - j8Var.f24291n.getTop()) {
-            return true;
+    public final void c(boolean z10) {
+        boolean z11;
+        int i10;
+        switch (this.f30828b) {
+            case 0:
+                k8 k8Var = (k8) this.f30829c;
+                k8Var.D0();
+                org.telegram.ui.zr zrVar = k8Var.O;
+                if (zrVar != null) {
+                    zrVar.a(b5.d.u());
+                    return;
+                }
+                return;
+            default:
+                PhotoViewer photoViewer = (PhotoViewer) this.f30829c;
+                org.telegram.ui.ActionBar.f1 f1Var = photoViewer.F0;
+                if (f1Var != null) {
+                    f1Var.d(z10);
+                    org.telegram.ui.ActionBar.f1 f1Var2 = photoViewer.F0;
+                    if (z10) {
+                        i10 = 259241196;
+                    } else {
+                        i10 = 268435455;
+                    }
+                    f1Var2.setSelectorColor(i10);
+                }
+                g71 g71Var = photoViewer.F2;
+                if (g71Var != null) {
+                    if (!b5.d.u() && !photoViewer.f33660r) {
+                        z11 = false;
+                    } else {
+                        z11 = true;
+                    }
+                    g71Var.O(z11);
+                }
+                org.telegram.ui.zr zrVar2 = photoViewer.f33708w0;
+                if (zrVar2 != null) {
+                    zrVar2.a(b5.d.u());
+                    return;
+                }
+                return;
         }
-        return false;
-    }
-
-    @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        super.onLayout(z10, i10, i11, i12, i13);
-        j8 j8Var = this.Y2;
-        int i14 = j8Var.f24299s0;
-        if (i14 != -1 && !j8Var.f24279c.f18389n0) {
-            this.X2 = true;
-            j8Var.f24296r.h1(i14, j8Var.f24300t0 - j8Var.f24291n.getPaddingTop());
-            super.onLayout(false, i10, i11, i12, i13);
-            this.X2 = false;
-            j8Var.f24299s0 = -1;
-        } else if (j8Var.f24297r0) {
-            j8Var.f24297r0 = false;
-            this.X2 = true;
-            if (j8Var.w0(true)) {
-                super.onLayout(false, i10, i11, i12, i13);
-            }
-            this.X2 = false;
-        }
-    }
-
-    @Override
-    public final void requestLayout() {
-        if (this.X2) {
-            return;
-        }
-        super.requestLayout();
     }
 }

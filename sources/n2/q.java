@@ -1,10 +1,35 @@
 package n2;
-public final class q {
-    public final byte[] f13743a;
-    public final String f13744b;
 
-    public q(String str, byte[] bArr) {
-        this.f13743a = bArr;
-        this.f13744b = str;
-    }
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import ji.u4;
+public interface q {
+    o B0(byte[] bArr, List list, int i10, HashMap hashMap);
+
+    h2.a C(byte[] bArr);
+
+    byte[] G();
+
+    int G0();
+
+    void H0(u4 u4Var);
+
+    boolean M0(String str, byte[] bArr);
+
+    void W(byte[] bArr, byte[] bArr2);
+
+    void b0(byte[] bArr);
+
+    Map d(byte[] bArr);
+
+    void h(byte[] bArr, j2.k kVar);
+
+    p k();
+
+    byte[] o0(byte[] bArr, byte[] bArr2);
+
+    void release();
+
+    void z0(byte[] bArr);
 }

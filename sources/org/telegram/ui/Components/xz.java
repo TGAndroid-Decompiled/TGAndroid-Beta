@@ -1,173 +1,161 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.RectF;
-import android.view.MotionEvent;
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Utilities;
-public final class xz extends View {
-    public final Paint f29185a;
-    public final Paint f29186b;
-    public final Path f29187c;
+import android.opengl.GLES20;
+import java.util.Locale;
+public final class xz {
+    public final String f32786a;
+    public final String f32787b;
+    public int f32788c;
     public int d;
-    public int e;
-    public t01[] f29188f;
-    public RectF[] h;
-    public float f29189n;
-    public org.telegram.ui.yo0 f29190r;
-    public int f29191s;
+    public int f32789e;
+    public int f32790f;
+    public int f32791g;
+    public int h;
 
-    public xz(Context context) {
-        super(context);
-        this.f29185a = new Paint(1);
-        this.f29186b = new Paint(1);
-        this.f29187c = new Path();
-        this.d = -1;
-        this.e = -1;
-        this.f29191s = -1;
-    }
-
-    public final void a(float f7, int i10, int i11, Canvas canvas) {
-        t01[] t01VarArr = this.f29188f;
-        int length = t01VarArr.length;
-        int i12 = 0;
-        float f10 = f7;
-        while (i12 < length) {
-            t01 t01Var = t01VarArr[i12];
-            int i13 = i11;
-            t01Var.c(f10, i10 / 2.0f, 1.0f, i13, canvas);
-            f10 += t01Var.l() + AndroidUtilities.dp(24.0f);
-            i12++;
-            i11 = i13;
+    public xz(float f7, float f10, boolean z10) {
+        int i10;
+        float f11;
+        int i11;
+        double d = 6.283185307179586d;
+        if (z10) {
+            f11 = Math.round(f7);
+            if (f11 >= 1.0f) {
+                double d10 = f11;
+                int floor = (int) Math.floor(Math.sqrt(Math.log(Math.sqrt(Math.pow(d10, 2.0d) * 6.283185307179586d) * 0.00390625f) * Math.pow(d10, 2.0d) * (-2.0d)));
+                i10 = (floor % 2) + floor;
+            } else {
+                i10 = 0;
+            }
+        } else {
+            i10 = (int) f7;
+            f11 = f10;
         }
-    }
-
-    @Override
-    public final void dispatchDraw(Canvas canvas) {
-        if (this.f29188f == null) {
-            return;
-        }
-        int width = getWidth();
-        int height = getHeight();
-        int dp = AndroidUtilities.dp(4.0f) + org.telegram.messenger.a2.D(24.0f, this.f29188f.length, AndroidUtilities.dp(4.0f));
-        int i10 = 0;
+        int i12 = (i10 * 2) + 1;
+        float[] fArr = new float[i12];
+        int i13 = 0;
+        float f12 = 0.0f;
         while (true) {
-            t01[] t01VarArr = this.f29188f;
-            if (i10 >= t01VarArr.length) {
+            i11 = i10 + 1;
+            if (i13 >= i11) {
                 break;
             }
-            dp = (int) (t01VarArr[i10].l() + dp);
-            i10++;
+            double d11 = d;
+            double d12 = f11;
+            float[] fArr2 = fArr;
+            float exp = (float) (Math.exp((-Math.pow(i13, 2.0d)) / (Math.pow(d12, 2.0d) * 2.0d)) * (1.0d / Math.sqrt(Math.pow(d12, 2.0d) * d11)));
+            fArr2[i13] = exp;
+            if (i13 == 0) {
+                f12 += exp;
+            } else {
+                f12 = (float) ((exp * 2.0d) + f12);
+            }
+            i13++;
+            d = d11;
+            fArr = fArr2;
         }
-        float dp2 = (height - AndroidUtilities.dp(36.0f)) / 2.0f;
-        float dp3 = (AndroidUtilities.dp(36.0f) + height) / 2.0f;
-        float f7 = (width - dp) / 2.0f;
-        float dp4 = AndroidUtilities.dp(16.0f) + f7;
-        RectF rectF = AndroidUtilities.rectTmp;
-        rectF.set(f7, dp2, dp + f7, dp3);
-        canvas.drawRoundRect(rectF, AndroidUtilities.dp(18.0f), AndroidUtilities.dp(18.0f), this.f29185a);
-        float dp5 = f7 + AndroidUtilities.dp(16.0f);
-        for (int i11 = 0; i11 < this.f29188f.length; i11++) {
-            this.h[i11].set(dp5 - AndroidUtilities.dp(16.0f), dp2, this.f29188f[i11].l() + dp5 + AndroidUtilities.dp(16.0f), dp3);
-            dp5 += this.f29188f[i11].l() + AndroidUtilities.dp(24.0f);
+        double d13 = d;
+        float[] fArr3 = fArr;
+        for (int i14 = 0; i14 < i11; i14++) {
+            fArr3[i14] = fArr3[i14] / f12;
         }
-        AndroidUtilities.dp(4.0f);
-        int clamp = Utilities.clamp((int) Math.floor(this.f29189n), this.f29188f.length - 1, 0);
-        int clamp2 = Utilities.clamp((int) Math.ceil(this.f29189n), this.f29188f.length - 1, 0);
-        float dp6 = this.h[clamp].left + AndroidUtilities.dp(4.0f);
-        float dp7 = this.h[clamp2].left + AndroidUtilities.dp(4.0f);
-        float f10 = this.f29189n;
-        float lerp = AndroidUtilities.lerp(dp6, dp7, (float) (f10 - Math.floor(f10)));
-        float dp8 = this.h[clamp].right - AndroidUtilities.dp(4.0f);
-        float dp9 = this.h[clamp2].right - AndroidUtilities.dp(4.0f);
-        float f11 = this.f29189n;
-        float lerp2 = AndroidUtilities.lerp(dp8, dp9, (float) (f11 - Math.floor(f11)));
-        RectF rectF2 = AndroidUtilities.rectTmp;
-        rectF2.set(lerp, (height - AndroidUtilities.dp(28.0f)) / 2.0f, lerp2, (AndroidUtilities.dp(28.0f) + height) / 2.0f);
-        Path path = this.f29187c;
-        path.rewind();
-        path.addRoundRect(rectF2, AndroidUtilities.dp(15.0f), AndroidUtilities.dp(15.0f), Path.Direction.CW);
-        canvas.drawRoundRect(rectF2, AndroidUtilities.dp(15.0f), AndroidUtilities.dp(15.0f), this.f29186b);
-        a(dp4, height, this.d, canvas);
-        canvas.save();
-        canvas.clipPath(path);
-        a(dp4, height, this.e, canvas);
-        canvas.restore();
+        int i15 = (i10 % 2) + (i10 / 2);
+        int min = Math.min(i15, 7);
+        StringBuilder sb2 = new StringBuilder("uniform sampler2D sTexture;\nuniform highp float texelWidthOffset;\nuniform highp float texelHeightOffset;\n");
+        Locale locale = Locale.US;
+        sb2.append("varying highp vec2 blurCoordinates[" + ((min * 2) + 1) + "];\n");
+        sb2.append("void main()\n{\nlowp vec4 sum = vec4(0.0);\n");
+        sb2.append(String.format(locale, "sum += texture2D(sTexture, blurCoordinates[0]) * %f;\n", Float.valueOf(fArr3[0])));
+        for (int i16 = 0; i16 < min; i16++) {
+            int i17 = i16 * 2;
+            int i18 = i17 + 1;
+            int i19 = i17 + 2;
+            float f13 = fArr3[i18] + fArr3[i19];
+            Locale locale2 = Locale.US;
+            sb2.append(String.format(locale2, "sum += texture2D(sTexture, blurCoordinates[%d]) * %f;\n", Integer.valueOf(i18), Float.valueOf(f13)));
+            sb2.append(String.format(locale2, "sum += texture2D(sTexture, blurCoordinates[%d]) * %f;\n", Integer.valueOf(i19), Float.valueOf(f13)));
+        }
+        if (i15 > min) {
+            sb2.append("highp vec2 singleStepOffset = vec2(texelWidthOffset, texelHeightOffset);\n");
+            while (min < i15) {
+                int i20 = min * 2;
+                int i21 = i20 + 1;
+                float f14 = fArr3[i21];
+                int i22 = i20 + 2;
+                float f15 = fArr3[i22];
+                float f16 = f14 + f15;
+                float y3 = com.google.android.gms.internal.vision.e2.y(f15, i22, f14 * i21, f16);
+                Locale locale3 = Locale.US;
+                sb2.append(String.format(locale3, "sum += texture2D(sTexture, blurCoordinates[0] + singleStepOffset * %f) * %f;\n", Float.valueOf(y3), Float.valueOf(f16)));
+                sb2.append(String.format(locale3, "sum += texture2D(sTexture, blurCoordinates[0] - singleStepOffset * %f) * %f;\n", Float.valueOf(y3), Float.valueOf(f16)));
+                min++;
+            }
+        }
+        sb2.append("gl_FragColor = sum;\n}\n");
+        this.f32787b = sb2.toString();
+        float[] fArr4 = new float[i12];
+        float f17 = 0.0f;
+        for (int i23 = 0; i23 < i11; i23++) {
+            double d14 = f11;
+            float f18 = f17;
+            float exp2 = (float) (Math.exp((-Math.pow(i23, 2.0d)) / (Math.pow(d14, 2.0d) * 2.0d)) * (1.0d / Math.sqrt(Math.pow(d14, 2.0d) * d13)));
+            fArr4[i23] = exp2;
+            if (i23 == 0) {
+                f17 = f18 + exp2;
+            } else {
+                f17 = (float) ((exp2 * 2.0d) + f18);
+            }
+        }
+        float f19 = f17;
+        for (int i24 = 0; i24 < i11; i24++) {
+            fArr4[i24] = fArr4[i24] / f19;
+        }
+        int min2 = Math.min(i15, 7);
+        float[] fArr5 = new float[min2];
+        for (int i25 = 0; i25 < min2; i25++) {
+            int i26 = i25 * 2;
+            int i27 = i26 + 1;
+            float f20 = fArr4[i27];
+            int i28 = i26 + 2;
+            float f21 = fArr4[i28];
+            fArr5[i25] = com.google.android.gms.internal.vision.e2.y(f21, i28, f20 * i27, f20 + f21);
+        }
+        StringBuilder sb3 = new StringBuilder("attribute vec4 position;\nattribute vec4 inputTexCoord;\nuniform float texelWidthOffset;\nuniform float texelHeightOffset;\n");
+        Locale locale4 = Locale.US;
+        sb3.append("varying vec2 blurCoordinates[" + ((min2 * 2) + 1) + "];\n");
+        sb3.append("void main()\n{\ngl_Position = position;\nvec2 singleStepOffset = vec2(texelWidthOffset, texelHeightOffset);\nblurCoordinates[0] = inputTexCoord.xy;\n");
+        for (int i29 = 0; i29 < min2; i29++) {
+            int i30 = i29 * 2;
+            sb3.append(String.format(Locale.US, "blurCoordinates[%d] = inputTexCoord.xy + singleStepOffset * %f;\nblurCoordinates[%d] = inputTexCoord.xy - singleStepOffset * %f;\n", Integer.valueOf(i30 + 1), Float.valueOf(fArr5[i29]), Integer.valueOf(i30 + 2), Float.valueOf(fArr5[i29])));
+        }
+        sb3.append("}");
+        this.f32786a = sb3.toString();
     }
 
-    @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        int i10 = 0;
-        if (this.f29188f == null || this.h == null) {
+    public final boolean a() {
+        int h = zz.h(35633, this.f32786a);
+        int h10 = zz.h(35632, this.f32787b);
+        if (h == 0 || h10 == 0) {
             return false;
         }
-        while (true) {
-            RectF[] rectFArr = this.h;
-            if (i10 < rectFArr.length) {
-                if (rectFArr[i10].contains(motionEvent.getX(), motionEvent.getY())) {
-                    break;
-                }
-                i10++;
-            } else {
-                i10 = -1;
-                break;
-            }
+        int glCreateProgram = GLES20.glCreateProgram();
+        this.f32788c = glCreateProgram;
+        GLES20.glAttachShader(glCreateProgram, h);
+        GLES20.glAttachShader(this.f32788c, h10);
+        GLES20.glBindAttribLocation(this.f32788c, 0, "position");
+        GLES20.glBindAttribLocation(this.f32788c, 1, "inputTexCoord");
+        GLES20.glLinkProgram(this.f32788c);
+        int[] iArr = new int[1];
+        GLES20.glGetProgramiv(this.f32788c, 35714, iArr, 0);
+        if (iArr[0] == 0) {
+            GLES20.glDeleteProgram(this.f32788c);
+            this.f32788c = 0;
+        } else {
+            this.d = GLES20.glGetAttribLocation(this.f32788c, "position");
+            this.f32789e = GLES20.glGetAttribLocation(this.f32788c, "inputTexCoord");
+            this.f32790f = GLES20.glGetUniformLocation(this.f32788c, "sTexture");
+            this.f32791g = GLES20.glGetUniformLocation(this.f32788c, "texelWidthOffset");
+            this.h = GLES20.glGetUniformLocation(this.f32788c, "texelHeightOffset");
         }
-        if (i10 >= 0 && i10 != this.f29191s) {
-            this.f29191s = i10;
-            org.telegram.ui.yo0 yo0Var = this.f29190r;
-            if (yo0Var != null) {
-                yo0Var.run(Integer.valueOf(i10));
-            }
-        }
-        if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
-            this.f29191s = -1;
-        }
-        if (motionEvent.getAction() == 0 && i10 >= 0) {
-            return true;
-        }
-        return super.onTouchEvent(motionEvent);
-    }
-
-    @Override
-    public void setBackgroundColor(int i10) {
-        this.f29185a.setColor(i10);
-        invalidate();
-    }
-
-    public void setSelected(float f7) {
-        if (Math.abs(f7 - this.f29189n) > 0.001f) {
-            invalidate();
-        }
-        this.f29189n = f7;
-    }
-
-    public void setSelectedColor(int i10) {
-        this.f29186b.setColor(i10);
-        invalidate();
-    }
-
-    public void setSelectedTextColor(int i10) {
-        this.e = i10;
-        invalidate();
-    }
-
-    public void setTabs(CharSequence... charSequenceArr) {
-        this.f29188f = new t01[charSequenceArr.length];
-        this.h = new RectF[charSequenceArr.length];
-        for (int i10 = 0; i10 < charSequenceArr.length; i10++) {
-            this.f29188f[i10] = new t01(charSequenceArr[i10], 14.0f, AndroidUtilities.bold());
-            this.h[i10] = new RectF();
-        }
-        invalidate();
-    }
-
-    public void setTextColor(int i10) {
-        this.d = i10;
-        invalidate();
+        return true;
     }
 }

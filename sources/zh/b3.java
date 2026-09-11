@@ -1,53 +1,37 @@
 package zh;
 
-import android.animation.ValueAnimator;
+import android.content.Context;
 import android.view.View;
+import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.SharedConfig;
-import org.telegram.ui.Stories.ProfileStoriesView;
-public final class b3 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f48302a;
-    public final View f48303b;
-    public final Object f48304c;
+import org.telegram.ui.Components.l40;
+public final class b3 extends FrameLayout {
+    public final int[] f51709a;
+    public final c3 f51710b;
 
-    public b3(int i10, View view, Object obj) {
-        this.f48302a = i10;
-        this.f48303b = view;
-        this.f48304c = obj;
+    public b3(c3 c3Var, Context context) {
+        super(context);
+        this.f51710b = c3Var;
+        this.f51709a = new int[2];
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        int i10 = this.f48302a;
-        Object obj = this.f48304c;
-        View view = this.f48303b;
-        switch (i10) {
-            case 0:
-                ProfileStoriesView profileStoriesView = (ProfileStoriesView) view;
-                boolean[] zArr = (boolean[]) obj;
-                int i11 = ProfileStoriesView.f30630s0;
-                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                if (!zArr[0] && floatValue > 0.2f) {
-                    zArr[0] = true;
-                    if (SharedConfig.getDevicePerformanceClass() > 0) {
-                        AndroidUtilities.vibrateCursor(profileStoriesView);
-                        AndroidUtilities.runOnUIThread(new xh.x(profileStoriesView, 25), 180L);
-                    }
-                }
-                profileStoriesView.W = Math.max(1.0f, floatValue);
-                profileStoriesView.invalidate();
-                return;
-            default:
-                k kVar = (k) view;
-                View view2 = (View) obj;
-                kVar.getClass();
-                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                float f7 = 1.0f - floatValue2;
-                view2.setAlpha(f7);
-                view2.setTranslationY((-AndroidUtilities.dp(5.0f)) * floatValue2);
-                kVar.f48574y.setAlpha(floatValue2);
-                kVar.f48574y.setTranslationY(AndroidUtilities.dp(5.0f) * f7);
-                return;
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        FrameLayout frameLayout;
+        super.onLayout(z10, i10, i11, i12, i13);
+        c3 c3Var = this.f51710b;
+        l40 l40Var = c3Var.f51741i;
+        if (l40Var != null && l40Var.d.getChildCount() >= 2 && c3Var.f51750r != null && (frameLayout = c3Var.f51745m) != null) {
+            int[] iArr = this.f51709a;
+            frameLayout.getLocationInWindow(iArr);
+            float translationX = iArr[0] - c3Var.f51745m.getTranslationX();
+            float translationY = iArr[1] - c3Var.f51745m.getTranslationY();
+            View childAt = l40Var.d.getChildAt(1);
+            childAt.getLocationInWindow(iArr);
+            float translationY2 = iArr[1] - childAt.getTranslationY();
+            di.f4 f4Var = c3Var.f51750r;
+            f4Var.setTranslationY(((translationY2 - translationY) - f4Var.getMeasuredHeight()) - l40Var.getMeasuredHeight());
+            c3Var.f51750r.m(0.0f, ((childAt.getMeasuredWidth() / 2.0f) + ((iArr[0] - childAt.getTranslationX()) - translationX)) - AndroidUtilities.dp(12.0f));
         }
     }
 }

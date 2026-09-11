@@ -1,35 +1,53 @@
 package org.telegram.messenger;
 
-import org.telegram.messenger.Utilities;
+import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 public final class w8 implements Runnable {
-    public final int f16849a;
-    public final MediaDataController f16850b;
-    public final TLRPC.TL_messages_stickerSet f16851c;
-    public final String d;
-    public final Utilities.Callback e;
-    public final boolean f16852f;
-    public final TLRPC.InputStickerSet h;
+    public final int f19491a = 0;
+    public final int f19492b;
+    public final long f19493c;
+    public final long d;
+    public final int f19494e;
+    public final int f19495f;
+    public final boolean h;
+    public final BaseController f19496n;
+    public final Object f19497r;
 
-    public w8(MediaDataController mediaDataController, TLRPC.TL_messages_stickerSet tL_messages_stickerSet, String str, Utilities.Callback callback, boolean z10, TLRPC.InputStickerSet inputStickerSet, int i10) {
-        this.f16849a = i10;
-        this.f16850b = mediaDataController;
-        this.f16851c = tL_messages_stickerSet;
-        this.d = str;
-        this.e = callback;
-        this.f16852f = z10;
-        this.h = inputStickerSet;
+    public w8(MediaDataController mediaDataController, int i10, ArrayList arrayList, boolean z10, long j3, int i11, int i12, long j10) {
+        this.f19496n = mediaDataController;
+        this.f19492b = i10;
+        this.f19497r = arrayList;
+        this.h = z10;
+        this.f19493c = j3;
+        this.f19494e = i11;
+        this.f19495f = i12;
+        this.d = j10;
     }
 
     @Override
     public final void run() {
-        switch (this.f16849a) {
+        switch (this.f19491a) {
             case 0:
-                this.f16850b.lambda$getStickerSet$33(this.f16851c, this.d, this.e, this.f16852f, this.h);
+                int i10 = this.f19495f;
+                long j3 = this.d;
+                ((MediaDataController) this.f19496n).lambda$putMediaDatabase$140(this.f19492b, (ArrayList) this.f19497r, this.h, this.f19493c, this.f19494e, i10, j3);
                 return;
             default:
-                this.f16850b.lambda$getStickerSet$36(this.f16851c, this.d, this.e, this.f16852f, this.h);
+                int i11 = this.f19495f;
+                boolean z10 = this.h;
+                ((MessagesStorage) this.f19496n).lambda$putMessages$238(this.f19492b, (TLRPC.messages_Messages) this.f19497r, this.f19493c, this.d, this.f19494e, i11, z10);
                 return;
         }
+    }
+
+    public w8(MessagesStorage messagesStorage, int i10, TLRPC.messages_Messages messages_messages, long j3, long j10, int i11, int i12, boolean z10) {
+        this.f19496n = messagesStorage;
+        this.f19492b = i10;
+        this.f19497r = messages_messages;
+        this.f19493c = j3;
+        this.d = j10;
+        this.f19494e = i11;
+        this.f19495f = i12;
+        this.h = z10;
     }
 }

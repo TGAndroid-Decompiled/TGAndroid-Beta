@@ -1,6 +1,6 @@
 package zd;
 public final class g2 extends ee.s {
-    public final ThreadLocal e;
+    public final ThreadLocal f51557e;
     private volatile boolean threadLocalIsSet;
 
     public g2(id.c r3, id.h r4) {
@@ -9,35 +9,35 @@ public final class g2 extends ee.s {
 
     public final boolean M() {
         boolean z10;
-        if (this.threadLocalIsSet && this.e.get() == null) {
+        if (this.threadLocalIsSet && this.f51557e.get() == null) {
             z10 = true;
         } else {
             z10 = false;
         }
-        this.e.remove();
+        this.f51557e.remove();
         return !z10;
     }
 
     public final void N(id.h hVar, Object obj) {
         this.threadLocalIsSet = true;
-        this.e.set(new gd.d(hVar, obj));
+        this.f51557e.set(new gd.d(hVar, obj));
     }
 
     @Override
     public final void g(Object obj) {
         if (this.threadLocalIsSet) {
-            gd.d dVar = (gd.d) this.e.get();
+            gd.d dVar = (gd.d) this.f51557e.get();
             if (dVar != null) {
-                ee.a.f((id.h) dVar.f8740a, dVar.f8741b);
+                ee.a.f((id.h) dVar.f10580a, dVar.f10581b);
             }
-            this.e.remove();
+            this.f51557e.remove();
         }
         Object r10 = e0.r(obj);
         id.c cVar = this.d;
         id.h context = cVar.getContext();
         g2 g2Var = null;
         Object k10 = ee.a.k(context, null);
-        if (k10 != ee.a.f7474f) {
+        if (k10 != ee.a.f9064f) {
             g2Var = e0.v(cVar, context, k10);
         }
         try {

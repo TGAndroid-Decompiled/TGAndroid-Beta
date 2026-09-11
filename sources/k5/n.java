@@ -1,11 +1,11 @@
 package k5;
 public final class n extends v {
-    public final u f12334a;
-    public final t f12335b;
+    public final u f14794a;
+    public final t f14795b;
 
     public n(u uVar, t tVar) {
-        this.f12334a = uVar;
-        this.f12335b = tVar;
+        this.f14794a = uVar;
+        this.f14795b = tVar;
     }
 
     public final boolean equals(Object obj) {
@@ -14,10 +14,10 @@ public final class n extends v {
         }
         if (obj instanceof v) {
             v vVar = (v) obj;
-            u uVar = this.f12334a;
-            if (uVar != null ? uVar.equals(((n) vVar).f12334a) : ((n) vVar).f12334a == null) {
-                t tVar = this.f12335b;
-                if (tVar != null ? tVar.equals(((n) vVar).f12335b) : ((n) vVar).f12335b == null) {
+            u uVar = this.f14794a;
+            if (uVar != null ? uVar.equals(((n) vVar).f14794a) : ((n) vVar).f14794a == null) {
+                t tVar = this.f14795b;
+                if (tVar != null ? tVar.equals(((n) vVar).f14795b) : ((n) vVar).f14795b == null) {
                     return true;
                 }
             }
@@ -28,14 +28,14 @@ public final class n extends v {
     public final int hashCode() {
         int hashCode;
         int i10 = 0;
-        u uVar = this.f12334a;
+        u uVar = this.f14794a;
         if (uVar == null) {
             hashCode = 0;
         } else {
             hashCode = uVar.hashCode();
         }
         int i11 = (hashCode ^ 1000003) * 1000003;
-        t tVar = this.f12335b;
+        t tVar = this.f14795b;
         if (tVar != null) {
             i10 = tVar.hashCode();
         }
@@ -43,6 +43,6 @@ public final class n extends v {
     }
 
     public final String toString() {
-        return "NetworkConnectionInfo{networkType=" + this.f12334a + ", mobileSubtype=" + this.f12335b + "}";
+        return "NetworkConnectionInfo{networkType=" + this.f14794a + ", mobileSubtype=" + this.f14795b + "}";
     }
 }

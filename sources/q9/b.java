@@ -8,9 +8,9 @@ public interface b {
 
     pa.b c(Class cls);
 
-    pa.b e(r rVar);
+    pa.b f(r rVar);
 
-    Set f(r rVar);
+    Set g(r rVar);
 
-    Object h(r rVar);
+    Object i(r rVar);
 }

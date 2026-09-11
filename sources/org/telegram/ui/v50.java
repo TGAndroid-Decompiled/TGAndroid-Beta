@@ -2,29 +2,29 @@ package org.telegram.ui;
 
 import android.view.View;
 import java.util.Iterator;
-public final class v50 implements org.telegram.ui.Components.v5 {
-    public final int f37413a;
-    public final Object f37414b;
+public final class v50 implements org.telegram.ui.Components.w5 {
+    public final int f41424a;
+    public final Object f41425b;
 
     public v50(Object obj, int i10) {
-        this.f37413a = i10;
-        this.f37414b = obj;
+        this.f41424a = i10;
+        this.f41425b = obj;
     }
 
     @Override
     public final void invalidate() {
-        switch (this.f37413a) {
+        switch (this.f41424a) {
             case 0:
-                Iterator it = ((w50) this.f37414b).f37720i.iterator();
+                Iterator it = ((w50) this.f41425b).f41769i.iterator();
                 while (it.hasNext()) {
                     ((View) it.next()).invalidate();
                 }
                 return;
             default:
-                u61 u61Var = (u61) this.f37414b;
-                u61Var.getClass();
-                if (!yg.f0.f46996b && u61Var.getParent() != null) {
-                    ((View) u61Var.getParent()).invalidate();
+                s61 s61Var = (s61) this.f41425b;
+                s61Var.getClass();
+                if (!ah.y0.f720b && s61Var.getParent() != null) {
+                    ((View) s61Var.getParent()).invalidate();
                     return;
                 }
                 return;

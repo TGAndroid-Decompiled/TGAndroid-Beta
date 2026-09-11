@@ -3,21 +3,21 @@ package q9;
 import android.util.Log;
 import com.google.firebase.components.ComponentRegistrar;
 import java.lang.reflect.InvocationTargetException;
-import org.telegram.ui.Cells.r6;
+import org.telegram.ui.Cells.p6;
 public final class c implements pa.b {
-    public final int f40556a;
-    public final Object f40557b;
+    public final int f44215a;
+    public final Object f44216b;
 
     public c(Object obj, int i10) {
-        this.f40556a = i10;
-        this.f40557b = obj;
+        this.f44215a = i10;
+        this.f44216b = obj;
     }
 
     @Override
     public final Object get() {
-        switch (this.f40556a) {
+        switch (this.f44215a) {
             case 0:
-                String str = (String) this.f40557b;
+                String str = (String) this.f44216b;
                 try {
                     Class<?> cls = Class.forName(str);
                     if (ComponentRegistrar.class.isAssignableFrom(cls)) {
@@ -27,19 +27,19 @@ public final class c implements pa.b {
                 } catch (ClassNotFoundException unused) {
                     Log.w("ComponentDiscovery", "Class " + str + " is not an found.");
                     return null;
-                } catch (IllegalAccessException e) {
-                    throw new RuntimeException(a4.a.p("Could not instantiate ", str, "."), e);
-                } catch (InstantiationException e7) {
+                } catch (IllegalAccessException e7) {
                     throw new RuntimeException(a4.a.p("Could not instantiate ", str, "."), e7);
-                } catch (NoSuchMethodException e10) {
-                    throw new RuntimeException(r6.i("Could not instantiate ", str), e10);
-                } catch (InvocationTargetException e11) {
-                    throw new RuntimeException(r6.i("Could not instantiate ", str), e11);
+                } catch (InstantiationException e10) {
+                    throw new RuntimeException(a4.a.p("Could not instantiate ", str, "."), e10);
+                } catch (NoSuchMethodException e11) {
+                    throw new RuntimeException(p6.i("Could not instantiate ", str), e11);
+                } catch (InvocationTargetException e12) {
+                    throw new RuntimeException(p6.i("Could not instantiate ", str), e12);
                 }
             case 1:
-                return (ComponentRegistrar) this.f40557b;
+                return (ComponentRegistrar) this.f44216b;
             default:
-                return new ra.b((k9.h) this.f40557b);
+                return new ra.c((k9.h) this.f44216b);
         }
     }
 }

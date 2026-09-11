@@ -1,89 +1,90 @@
 package j4;
 
-import i2.k0;
+import c3.h0;
+import i2.l0;
 public final class k implements i {
-    public static final double[] f11603r = {23.976023976023978d, 24.0d, 25.0d, 29.97002997002997d, 30.0d, 50.0d, 59.94005994005994d, 60.0d};
-    public String f11604a;
-    public c3.h0 f11605b;
-    public final d0 f11606c;
+    public static final double[] f13321r = {23.976023976023978d, 24.0d, 25.0d, 29.97002997002997d, 30.0d, 50.0d, 59.94005994005994d, 60.0d};
+    public String f13322a;
+    public h0 f13323b;
+    public final c0 f13324c;
     public final String d;
-    public final e2.v e;
-    public final k0 f11607f;
-    public final boolean[] f11608g = new boolean[4];
+    public final e2.v f13325e;
+    public final l0 f13326f;
+    public final boolean[] f13327g = new boolean[4];
     public final j h;
-    public long f11609i;
-    public boolean f11610j;
-    public boolean f11611k;
-    public long f11612l;
-    public long f11613m;
-    public long f11614n;
-    public long f11615o;
-    public boolean f11616p;
-    public boolean f11617q;
+    public long f13328i;
+    public boolean f13329j;
+    public boolean f13330k;
+    public long f13331l;
+    public long f13332m;
+    public long f13333n;
+    public long f13334o;
+    public boolean f13335p;
+    public boolean f13336q;
 
-    public k(d0 d0Var, String str) {
-        this.f11606c = d0Var;
+    public k(c0 c0Var, String str) {
+        this.f13324c = c0Var;
         this.d = str;
         ?? obj = new Object();
         obj.d = new byte[128];
         this.h = obj;
-        if (d0Var != null) {
-            this.f11607f = new k0(178);
-            this.e = new e2.v();
+        if (c0Var != null) {
+            this.f13326f = new l0(178);
+            this.f13325e = new e2.v();
         } else {
-            this.f11607f = null;
-            this.e = null;
+            this.f13326f = null;
+            this.f13325e = null;
         }
-        this.f11613m = -9223372036854775807L;
-        this.f11615o = -9223372036854775807L;
+        this.f13332m = -9223372036854775807L;
+        this.f13334o = -9223372036854775807L;
     }
 
     @Override
-    public final void a(e2.v r23) {
-        throw new UnsupportedOperationException("Method not decompiled: j4.k.a(e2.v):void");
+    public final void b(e2.v r23) {
+        throw new UnsupportedOperationException("Method not decompiled: j4.k.b(e2.v):void");
     }
 
     @Override
-    public final void b() {
-        f2.o.a(this.f11608g);
+    public final void d() {
+        f2.p.a(this.f13327g);
         j jVar = this.h;
-        jVar.f11600a = false;
-        jVar.f11601b = 0;
-        jVar.f11602c = 0;
-        k0 k0Var = this.f11607f;
-        if (k0Var != null) {
-            k0Var.g();
+        jVar.f13318a = false;
+        jVar.f13319b = 0;
+        jVar.f13320c = 0;
+        l0 l0Var = this.f13326f;
+        if (l0Var != null) {
+            l0Var.g();
         }
-        this.f11609i = 0L;
-        this.f11610j = false;
-        this.f11613m = -9223372036854775807L;
-        this.f11615o = -9223372036854775807L;
+        this.f13328i = 0L;
+        this.f13329j = false;
+        this.f13332m = -9223372036854775807L;
+        this.f13334o = -9223372036854775807L;
     }
 
     @Override
-    public final void c(c3.q qVar, g0 g0Var) {
-        g0Var.a();
-        g0Var.b();
-        this.f11604a = g0Var.e;
-        g0Var.b();
-        this.f11605b = qVar.I(g0Var.d, 2);
-        d0 d0Var = this.f11606c;
-        if (d0Var != null) {
-            d0Var.b(qVar, g0Var);
+    public final void e(c3.q qVar, f0 f0Var) {
+        f0Var.a();
+        f0Var.b();
+        this.f13322a = f0Var.f13295e;
+        f0Var.b();
+        this.f13323b = qVar.R1(f0Var.d, 2);
+        c0 c0Var = this.f13324c;
+        if (c0Var != null) {
+            c0Var.b(qVar, f0Var);
         }
     }
 
     @Override
-    public final void d(boolean z10) {
-        e2.d.h(this.f11605b);
+    public final void f(boolean z10) {
+        e2.d.h(this.f13323b);
         if (z10) {
-            boolean z11 = this.f11616p;
-            this.f11605b.c(this.f11615o, z11 ? 1 : 0, (int) (this.f11609i - this.f11614n), 0, null);
+            boolean z11 = this.f13335p;
+            this.f13323b.c(this.f13334o, z11 ? 1 : 0, (int) (this.f13328i - this.f13333n), 0, null);
         }
     }
 
     @Override
-    public final void e(int i10, long j3) {
-        this.f11613m = j3;
+    public final void g(int i10, long j3) {
+        this.f13332m = j3;
     }
 }

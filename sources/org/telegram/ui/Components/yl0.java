@@ -1,34 +1,32 @@
 package org.telegram.ui.Components;
 
-import android.app.Activity;
-import android.widget.ImageView;
-public final class yl0 extends hc {
-    public final zl0 f29451c;
+import org.telegram.messenger.AndroidUtilities;
+public final class yl0 implements Runnable {
+    public final int f32942a;
+    public final am0 f32943b;
 
-    public yl0(Activity activity, String str) {
-        super(activity, null);
-        this.f23574b.setText(str);
-        this.f23574b.setTranslationY(-1.0f);
-        ImageView imageView = this.f23573a;
-        zl0 zl0Var = new zl0();
-        this.f29451c = zl0Var;
-        imageView.setImageDrawable(zl0Var);
+    public yl0(am0 am0Var, int i10) {
+        this.f32942a = i10;
+        this.f32943b = am0Var;
     }
 
     @Override
-    public final void onEnterTransitionEnd() {
-        super.onEnterTransitionEnd();
-        zl0 zl0Var = this.f29451c;
-        zl0Var.getClass();
-        zl0Var.f29723g = System.currentTimeMillis();
-        zl0Var.invalidateSelf();
-    }
-
-    @Override
-    public final void onExitTransitionEnd() {
-        super.onExitTransitionEnd();
-        zl0 zl0Var = this.f29451c;
-        zl0Var.f29723g = -1L;
-        zl0Var.invalidateSelf();
+    public final void run() {
+        switch (this.f32942a) {
+            case 0:
+                am0 am0Var = this.f32943b;
+                am0Var.getClass();
+                AndroidUtilities.runOnUIThread(new yl0(am0Var, 2));
+                return;
+            case 1:
+                AndroidUtilities.runOnUIThread(new yl0(this.f32943b, 3));
+                return;
+            case 2:
+                super/*android.app.Dialog*/.dismiss();
+                return;
+            default:
+                super/*android.app.Dialog*/.dismiss();
+                return;
+        }
     }
 }

@@ -1,143 +1,108 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.view.accessibility.AccessibilityNodeInfo;
-import java.util.concurrent.atomic.AtomicReference;
-public final class nl extends org.telegram.ui.ActionBar.l5 {
-    public final int M0;
-    public final Object N0;
+import android.content.SharedPreferences;
+import java.util.ArrayList;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.messenger.R;
+public final class nl implements pm {
+    public final co f38978a;
+    public final co f38979b;
 
-    public nl(Object obj, Context context, int i10) {
-        super(context);
-        this.M0 = i10;
-        this.N0 = obj;
+    public nl(co coVar, co coVar2) {
+        this.f38979b = coVar;
+        this.f38978a = coVar2;
     }
 
     @Override
-    public boolean k(CharSequence charSequence) {
-        org.telegram.ui.ActionBar.l5 l5Var;
-        switch (this.M0) {
-            case 1:
-                AtomicReference atomicReference = (AtomicReference) this.N0;
-                if (atomicReference != null && (l5Var = (org.telegram.ui.ActionBar.l5) atomicReference.get()) != null) {
-                    l5Var.k(charSequence);
+    public final void V0(int i10) {
+        this.f38979b.F(i10, 0, 0, 0, true, true);
+    }
+
+    @Override
+    public final void W(boolean z10, boolean z11) {
+        int G8;
+        ArrayList arrayList;
+        org.telegram.ui.Components.yb ybVar;
+        int i10;
+        co coVar = this.f38979b;
+        if (z10) {
+            ArrayList arrayList2 = new ArrayList(coVar.H4);
+            ArrayList arrayList3 = new ArrayList(coVar.J4.values());
+            org.telegram.ui.Components.qc qcVar = null;
+            if (z11) {
+                i10 = ((org.telegram.ui.ActionBar.n2) coVar).currentAccount;
+                SharedPreferences notificationsSettings = MessagesController.getNotificationsSettings(i10);
+                if (coVar.H4.isEmpty()) {
+                    SharedPreferences.Editor edit = notificationsSettings.edit();
+                    edit.remove("pin_" + coVar.T5).commit();
+                } else {
+                    SharedPreferences.Editor edit2 = notificationsSettings.edit();
+                    edit2.putInt("pin_" + coVar.T5, ((Integer) coVar.H4.get(0)).intValue()).commit();
                 }
-                return l(charSequence, false);
-            default:
-                return super.k(charSequence);
-        }
-    }
-
-    @Override
-    public void onAttachedToWindow() {
-        switch (this.M0) {
-            case 2:
-                super.onAttachedToWindow();
-                ((yp0) this.N0).f39092s.a();
-                return;
-            default:
-                super.onAttachedToWindow();
-                return;
-        }
-    }
-
-    @Override
-    public void onDetachedFromWindow() {
-        switch (this.M0) {
-            case 2:
-                super.onDetachedFromWindow();
-                ((yp0) this.N0).f39092s.b();
-                return;
-            default:
-                super.onDetachedFromWindow();
-                return;
-        }
-    }
-
-    @Override
-    public void onDraw(Canvas canvas) {
-        switch (this.M0) {
-            case 3:
-                int rightDrawableX = getRightDrawableX();
-                super.onDraw(canvas);
-                if (rightDrawableX != getRightDrawableX()) {
-                    ((ProfileActivity) this.N0).V4();
-                    return;
+                coVar.yc(0, true);
+            } else {
+                coVar.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.didLoadPinnedMessages, Long.valueOf(coVar.T5), arrayList2, Boolean.FALSE, 0, 0, 0, 0, Boolean.TRUE);
+            }
+            org.telegram.ui.Components.qc qcVar2 = coVar.A3;
+            if (qcVar2 != null) {
+                qcVar2.b();
+            }
+            coVar.B3 = true;
+            int i11 = coVar.C3 + 1;
+            coVar.C3 = i11;
+            boolean z12 = coVar.f35277h4;
+            co coVar2 = this.f38978a;
+            if (z12) {
+                G8 = coVar2.G8();
+            } else {
+                G8 = coVar.G8();
+            }
+            int i12 = G8;
+            if (coVar.f35277h4) {
+                arrayList = coVar2.H4;
+            } else {
+                arrayList = coVar.H4;
+            }
+            ArrayList arrayList4 = new ArrayList(arrayList);
+            org.telegram.messenger.x7 x7Var = new org.telegram.messenger.x7(this, z11, arrayList2, arrayList3, i12, i11);
+            org.telegram.messenger.voip.l0 l0Var = new org.telegram.messenger.voip.l0(this, z11, arrayList4, i11);
+            ao aoVar = coVar.f35247ea;
+            if (coVar.getParentActivity() == null) {
+                l0Var.run();
+            } else {
+                if (z11) {
+                    ?? ncVar = new org.telegram.ui.Components.nc(coVar.getParentActivity(), aoVar);
+                    ncVar.c(R.raw.ic_unpin, 28, 28, "Pin", "Line");
+                    ncVar.f28724b.setText(LocaleController.getString(R.string.PinnedMessagesHidden));
+                    ncVar.f28725c.setText(LocaleController.getString(R.string.PinnedMessagesHiddenInfo));
+                    ybVar = ncVar;
+                } else {
+                    org.telegram.ui.Components.yb ybVar2 = new org.telegram.ui.Components.yb(coVar.getParentActivity(), aoVar);
+                    ybVar2.c(R.raw.ic_unpin, 28, 28, "Pin", "Line");
+                    ybVar2.f32876b.setText(LocaleController.formatPluralString("MessagesUnpinned", i12, new Object[0]));
+                    ybVar = ybVar2;
                 }
-                return;
-            default:
-                super.onDraw(canvas);
-                return;
+                org.telegram.ui.Components.oc ocVar = new org.telegram.ui.Components.oc(coVar.getParentActivity(), aoVar, true);
+                ocVar.f29029a = x7Var;
+                ocVar.f29030b = l0Var;
+                ybVar.setButton(ocVar);
+                qcVar = org.telegram.ui.Components.qc.g(coVar, ybVar, 5000);
+            }
+            coVar.A3 = qcVar;
+            return;
         }
+        MessageObject messageObject = (MessageObject) coVar.J4.get(Integer.valueOf(coVar.L4));
+        if (messageObject == null) {
+            messageObject = (MessageObject) coVar.f35364o6[0].get(coVar.L4);
+        }
+        coVar.cc(messageObject);
     }
 
     @Override
-    public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        switch (this.M0) {
-            case 3:
-                ProfileActivity profileActivity = (ProfileActivity) this.N0;
-                super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-                if (isFocusable()) {
-                    if (profileActivity.h != null || profileActivity.f30440n != null) {
-                        StringBuilder sb2 = new StringBuilder(getText());
-                        if (profileActivity.f30440n != null) {
-                            if (sb2.length() > 0) {
-                                sb2.append(", ");
-                            }
-                            sb2.append(profileActivity.f30440n);
-                        }
-                        if (profileActivity.h != null) {
-                            if (sb2.length() > 0) {
-                                sb2.append(", ");
-                            }
-                            sb2.append(profileActivity.h);
-                        }
-                        accessibilityNodeInfo.setText(sb2);
-                        return;
-                    }
-                    return;
-                }
-                return;
-            default:
-                super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-                return;
-        }
-    }
-
-    @Override
-    public void setTranslationY(float f7) {
-        org.telegram.ui.ActionBar.l5 l5Var;
-        switch (this.M0) {
-            case 0:
-                super.setTranslationY(f7);
-                eo eoVar = (eo) this.N0;
-                if (this == eoVar.D2[0] && eoVar.H2[1] != null) {
-                    if (eoVar.O4 && f7 < 0.0f) {
-                        eoVar.f32569z2.setTranslationY(f7 / 2.0f);
-                        return;
-                    } else {
-                        eoVar.f32569z2.setTranslationY(0.0f);
-                        return;
-                    }
-                }
-                return;
-            case 1:
-                AtomicReference atomicReference = (AtomicReference) this.N0;
-                if (atomicReference != null && (l5Var = (org.telegram.ui.ActionBar.l5) atomicReference.get()) != null) {
-                    l5Var.setTranslationY(f7);
-                }
-                super.setTranslationY(f7);
-                return;
-            default:
-                super.setTranslationY(f7);
-                return;
-        }
-    }
-
-    public nl(Context context, AtomicReference atomicReference) {
-        super(context);
-        this.M0 = 1;
-        this.N0 = atomicReference;
+    public final void r0(String str) {
+        this.f38979b.da(str, false);
     }
 }

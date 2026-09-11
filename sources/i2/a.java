@@ -2,23 +2,23 @@ package i2;
 
 import android.util.Pair;
 public abstract class a extends b2.k1 {
-    public static final int f10097g = 0;
-    public final int e;
-    public final u2.i1 f10098f;
+    public static final int f11449g = 0;
+    public final int f11450e;
+    public final u2.g1 f11451f;
 
-    public a(u2.i1 i1Var) {
-        this.f10098f = i1Var;
-        this.e = i1Var.getLength();
+    public a(u2.g1 g1Var) {
+        this.f11451f = g1Var;
+        this.f11450e = g1Var.getLength();
     }
 
     @Override
     public final int a(boolean z10) {
         int i10;
-        if (this.e == 0) {
+        if (this.f11450e == 0) {
             return -1;
         }
         if (z10) {
-            i10 = this.f10098f.b();
+            i10 = this.f11451f.b();
         } else {
             i10 = 0;
         }
@@ -50,19 +50,19 @@ public abstract class a extends b2.k1 {
     @Override
     public final int c(boolean z10) {
         int i10;
-        int i11 = this.e;
+        int i11 = this.f11450e;
         if (i11 == 0) {
             return -1;
         }
-        u2.i1 i1Var = this.f10098f;
+        u2.g1 g1Var = this.f11451f;
         if (z10) {
-            i10 = i1Var.g();
+            i10 = g1Var.g();
         } else {
             i10 = i11 - 1;
         }
         while (x(i10).p()) {
             if (z10) {
-                i10 = i1Var.c(i10);
+                i10 = g1Var.c(i10);
                 continue;
             } else if (i10 > 0) {
                 i10--;
@@ -90,9 +90,9 @@ public abstract class a extends b2.k1 {
         } else {
             i12 = i11;
         }
-        int e = x10.e(i13, i12, z10);
-        if (e != -1) {
-            return v + e;
+        int e7 = x10.e(i13, i12, z10);
+        if (e7 != -1) {
+            return v + e7;
         }
         int w10 = w(s10, z10);
         while (w10 != -1 && x(w10).p()) {
@@ -112,12 +112,12 @@ public abstract class a extends b2.k1 {
         int r10 = r(i10);
         int v = v(r10);
         x(r10).f(i10 - u(r10), h1Var, z10);
-        h1Var.f1707c += v;
+        h1Var.f2056c += v;
         if (z10) {
             Object t10 = t(r10);
-            Object obj = h1Var.f1706b;
+            Object obj = h1Var.f2055b;
             obj.getClass();
-            h1Var.f1706b = Pair.create(t10, obj);
+            h1Var.f2055b = Pair.create(t10, obj);
         }
         return h1Var;
     }
@@ -130,8 +130,8 @@ public abstract class a extends b2.k1 {
         int q6 = q(obj2);
         int v = v(q6);
         x(q6).g(obj3, h1Var);
-        h1Var.f1707c += v;
-        h1Var.f1706b = obj;
+        h1Var.f2056c += v;
+        h1Var.f2055b = obj;
         return h1Var;
     }
 
@@ -153,12 +153,12 @@ public abstract class a extends b2.k1 {
         int u10 = u(s10);
         x(s10).m(i10 - v, j1Var, j3);
         Object t10 = t(s10);
-        if (!b2.j1.f1742q.equals(j1Var.f1751a)) {
-            t10 = Pair.create(t10, j1Var.f1751a);
+        if (!b2.j1.f2097q.equals(j1Var.f2106a)) {
+            t10 = Pair.create(t10, j1Var.f2106a);
         }
-        j1Var.f1751a = t10;
-        j1Var.f1761n += u10;
-        j1Var.f1762o += u10;
+        j1Var.f2106a = t10;
+        j1Var.f2117n += u10;
+        j1Var.f2118o += u10;
         return j1Var;
     }
 
@@ -176,9 +176,9 @@ public abstract class a extends b2.k1 {
 
     public final int w(int i10, boolean z10) {
         if (z10) {
-            return this.f10098f.d(i10);
+            return this.f11451f.d(i10);
         }
-        if (i10 < this.e - 1) {
+        if (i10 < this.f11450e - 1) {
             return i10 + 1;
         }
         return -1;

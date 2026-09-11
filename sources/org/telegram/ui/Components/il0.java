@@ -1,3 +1,6 @@
 package org.telegram.ui.Components;
-public interface il0 {
+public final class il0 {
+    public float f27158a;
+    public float f27159b;
+    public float f27160c;
 }

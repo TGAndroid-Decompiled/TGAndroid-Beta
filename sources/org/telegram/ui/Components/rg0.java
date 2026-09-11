@@ -1,35 +1,30 @@
 package org.telegram.ui.Components;
 
-import java.util.Arrays;
-import java.util.Comparator;
-public final class rg0 implements Comparator {
-    public final zg0 f26666a;
+import android.animation.ValueAnimator;
+public final class rg0 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f30023a;
+    public final ug0 f30024b;
 
-    public rg0(zg0 zg0Var) {
-        this.f26666a = zg0Var;
-    }
-
-    public final int a(yg0 yg0Var) {
-        zg0 zg0Var = this.f26666a;
-        int size = zg0Var.f29682r.answers.size();
-        for (int i10 = 0; i10 < size; i10++) {
-            if (Arrays.equals(zg0Var.f29682r.answers.get(i10).option, yg0Var.d)) {
-                return i10;
-            }
-        }
-        return 0;
+    public rg0(ug0 ug0Var, int i10) {
+        this.f30023a = i10;
+        this.f30024b = ug0Var;
     }
 
     @Override
-    public final int compare(Object obj, Object obj2) {
-        int a2 = a((yg0) obj);
-        int a10 = a((yg0) obj2);
-        if (a2 > a10) {
-            return 1;
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f30023a) {
+            case 0:
+                ug0 ug0Var = this.f30024b;
+                ug0Var.getClass();
+                ug0Var.f30888b = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                ug0Var.c(true);
+                return;
+            default:
+                ug0 ug0Var2 = this.f30024b;
+                ug0Var2.getClass();
+                ug0Var2.E = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                ug0Var2.c(true);
+                return;
         }
-        if (a2 < a10) {
-            return -1;
-        }
-        return 0;
     }
 }

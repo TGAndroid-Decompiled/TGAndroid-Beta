@@ -1,176 +1,65 @@
 package fg;
 
-import android.location.Location;
-import android.text.TextUtils;
-import bi.o2;
-import bi.te;
-import java.util.ArrayList;
-import java.util.Locale;
+import ji.k5;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.DialogObject;
-import org.telegram.messenger.DispatchQueue;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.UserConfig;
-import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public abstract class c extends ng.b {
-    public a E;
-    public int F;
-    public long H;
-    public boolean I;
-    public boolean J;
-    public final boolean d;
-    public final boolean e;
-    public boolean h;
-    public boolean f7962n;
-    public Location v;
-    public String f7965w;
-    public String f7966x;
-    public b f7967y;
-    public boolean f7961f = false;
-    public final ArrayList f7963r = new ArrayList();
-    public final ArrayList f7964s = new ArrayList();
-    public final int G = UserConfig.selectedAccount;
+public final class c implements Runnable {
+    public final int f9483a;
+    public final f f9484b;
+    public final e f9485c;
 
-    public c(boolean z10, boolean z11) {
-        this.d = z10;
-        this.e = z11;
+    public c(f fVar, e eVar, int i10) {
+        this.f9483a = i10;
+        this.f9484b = fVar;
+        this.f9485c = eVar;
     }
 
-    public final void F() {
-        if (this.F != 0) {
-            ConnectionsManager.getInstance(this.G).cancelRequest(this.F, true);
-            this.F = 0;
-        }
-    }
-
-    public final void G(String str, Location location) {
-        if (str != null && str.length() != 0) {
-            if (this.E != null) {
-                Utilities.searchQueue.cancelRunnable(this.E);
-                this.E = null;
-            }
-            this.J = true;
-            DispatchQueue dispatchQueue = Utilities.searchQueue;
-            a aVar = new a((u0) this, str, location, 0);
-            this.E = aVar;
-            dispatchQueue.postRunnable(aVar, 400L);
-            return;
-        }
-        this.f7964s.clear();
-        this.f7963r.clear();
-        this.J = false;
-        l();
-    }
-
-    public final void H(String str, Location location, boolean z10) {
-        Location location2;
-        Location location3;
-        String str2;
-        String str3;
-        c cVar;
-        String str4;
-        Location location4;
-        Locale locale;
-        String str5;
-        if ((location != null || this.d) && ((location2 = this.v) == null || location == null || location.distanceTo(location2) >= 200.0f)) {
-            Locale locale2 = null;
-            if (location == null) {
-                location3 = null;
-            } else {
-                location3 = new Location(location);
-            }
-            this.v = location3;
-            this.f7965w = str;
-            if (this.h) {
-                this.h = false;
-                if (this.F != 0) {
-                    ConnectionsManager.getInstance(this.G).cancelRequest(this.F, true);
-                    this.F = 0;
-                }
-            }
-            h();
-            this.h = true;
-            this.f7961f = true;
-            MessagesController messagesController = MessagesController.getInstance(this.G);
-            if (this.d) {
-                str2 = MessagesController.getInstance(this.G).storyVenueSearchBot;
-            } else {
-                str2 = MessagesController.getInstance(this.G).venueSearchBot;
-            }
-            TLObject userOrChat = messagesController.getUserOrChat(str2);
-            if (!(userOrChat instanceof TLRPC.User)) {
-                if (z10) {
-                    int i10 = this.G;
-                    if (!this.I) {
-                        this.I = true;
-                        TLRPC.TL_contacts_resolveUsername tL_contacts_resolveUsername = new TLRPC.TL_contacts_resolveUsername();
-                        if (this.d) {
-                            str5 = MessagesController.getInstance(i10).storyVenueSearchBot;
-                        } else {
-                            str5 = MessagesController.getInstance(i10).venueSearchBot;
-                        }
-                        tL_contacts_resolveUsername.username = str5;
-                        ConnectionsManager.getInstance(i10).sendRequest(tL_contacts_resolveUsername, new bi.c2(this, 5));
-                    }
-                }
-            } else {
-                TLRPC.User user = (TLRPC.User) userOrChat;
-                TLRPC.TL_messages_getInlineBotResults tL_messages_getInlineBotResults = new TLRPC.TL_messages_getInlineBotResults();
-                if (str == null) {
-                    str3 = "";
-                } else {
-                    str3 = str;
-                }
-                tL_messages_getInlineBotResults.query = str3;
-                tL_messages_getInlineBotResults.bot = MessagesController.getInstance(this.G).getInputUser(user);
-                tL_messages_getInlineBotResults.offset = "";
-                if (location != null) {
-                    TLRPC.TL_inputGeoPoint tL_inputGeoPoint = new TLRPC.TL_inputGeoPoint();
-                    tL_messages_getInlineBotResults.geo_point = tL_inputGeoPoint;
-                    tL_inputGeoPoint.lat = AndroidUtilities.fixLocationCoord(location.getLatitude());
-                    tL_messages_getInlineBotResults.geo_point._long = AndroidUtilities.fixLocationCoord(location.getLongitude());
-                    tL_messages_getInlineBotResults.flags |= 1;
-                }
-                if (DialogObject.isEncryptedDialog(this.H)) {
-                    tL_messages_getInlineBotResults.peer = new TLRPC.TL_inputPeerEmpty();
-                } else {
-                    tL_messages_getInlineBotResults.peer = MessagesController.getInstance(this.G).getInputPeer(this.H);
-                }
-                if (TextUtils.isEmpty(str) || (!this.d && !this.e)) {
-                    cVar = this;
-                    str4 = str;
-                    location4 = location;
-                    cVar.f7962n = false;
-                } else {
-                    this.f7962n = true;
-                    Locale currentLocale = LocaleController.getInstance().getCurrentLocale();
-                    if (this.d) {
-                        if (currentLocale.getLanguage().contains("en")) {
-                            locale = currentLocale;
-                            cVar = this;
-                            str4 = str;
-                            location4 = location;
-                            Utilities.globalQueue.postRunnable(new te(cVar, currentLocale, str4, locale, location4, str, 1));
-                        } else {
-                            locale2 = Locale.US;
-                        }
-                    }
-                    locale = locale2;
-                    cVar = this;
-                    str4 = str;
-                    location4 = location;
-                    Utilities.globalQueue.postRunnable(new te(cVar, currentLocale, str4, locale, location4, str, 1));
-                }
-                if (location4 == null) {
+    @Override
+    public final void run() {
+        switch (this.f9483a) {
+            case 0:
+                f fVar = this.f9484b;
+                e eVar = (e) fVar.f9493b;
+                e eVar2 = this.f9485c;
+                if (eVar == eVar2) {
+                    fVar.f9494c = null;
+                    fVar.k(eVar2);
                     return;
                 }
-                cVar.F = ConnectionsManager.getInstance(cVar.G).sendRequest(tL_messages_getInlineBotResults, new o2(5, this, str4));
-                l();
-            }
+                return;
+            case 1:
+                f fVar2 = this.f9484b;
+                e eVar3 = (e) fVar2.f9493b;
+                e eVar4 = this.f9485c;
+                if (eVar3 == eVar4) {
+                    c cVar = (c) fVar2.f9494c;
+                    if (cVar != null) {
+                        AndroidUtilities.cancelRunOnUIThread(cVar);
+                        fVar2.f9494c = null;
+                    }
+                    int i10 = eVar4.d;
+                    if (i10 == 0) {
+                        fVar2.k(eVar4);
+                        return;
+                    }
+                    c cVar2 = new c(fVar2, eVar4, 2);
+                    fVar2.d = cVar2;
+                    AndroidUtilities.runOnUIThread(cVar2, 20000L);
+                    k5 k5Var = eVar4.f9488a;
+                    ((ConnectionsManager) k5Var.f14022b).checkWebProxyInternal(eVar4.f9489b, i10, new d(fVar2, eVar4));
+                    return;
+                }
+                return;
+            default:
+                f fVar3 = this.f9484b;
+                e eVar5 = (e) fVar3.f9493b;
+                e eVar6 = this.f9485c;
+                if (eVar5 == eVar6) {
+                    fVar3.d = null;
+                    fVar3.k(eVar6);
+                    return;
+                }
+                return;
         }
     }
 }

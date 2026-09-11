@@ -7,39 +7,39 @@ import java.io.Writer;
 import java.util.Collection;
 import java.util.Map;
 public final class e implements ia.e, g {
-    public final boolean f12415a = true;
-    public final JsonWriter f12416b;
-    public final Map f12417c;
+    public final boolean f14883a = true;
+    public final JsonWriter f14884b;
+    public final Map f14885c;
     public final Map d;
-    public final ia.d e;
-    public final boolean f12418f;
+    public final ia.d f14886e;
+    public final boolean f14887f;
 
     public e(Writer writer, Map map, Map map2, ia.d dVar, boolean z10) {
-        this.f12416b = new JsonWriter(writer);
-        this.f12417c = map;
+        this.f14884b = new JsonWriter(writer);
+        this.f14885c = map;
         this.d = map2;
-        this.e = dVar;
-        this.f12418f = z10;
+        this.f14886e = dVar;
+        this.f14887f = z10;
     }
 
     @Override
     public final ia.e a(ia.c cVar, Object obj) {
-        i(obj, cVar.f10545a);
+        i(obj, cVar.f11932a);
         return this;
     }
 
     @Override
     public final g b(String str) {
         j();
-        this.f12416b.value(str);
+        this.f14884b.value(str);
         return this;
     }
 
     @Override
     public final ia.e c(ia.c cVar, boolean z10) {
-        String str = cVar.f10545a;
+        String str = cVar.f11932a;
         j();
-        JsonWriter jsonWriter = this.f12416b;
+        JsonWriter jsonWriter = this.f14884b;
         jsonWriter.name(str);
         j();
         jsonWriter.value(z10);
@@ -49,15 +49,15 @@ public final class e implements ia.e, g {
     @Override
     public final g d(boolean z10) {
         j();
-        this.f12416b.value(z10);
+        this.f14884b.value(z10);
         return this;
     }
 
     @Override
     public final ia.e e(ia.c cVar, int i10) {
-        String str = cVar.f10545a;
+        String str = cVar.f11932a;
         j();
-        JsonWriter jsonWriter = this.f12416b;
+        JsonWriter jsonWriter = this.f14884b;
         jsonWriter.name(str);
         j();
         jsonWriter.value(i10);
@@ -66,9 +66,9 @@ public final class e implements ia.e, g {
 
     @Override
     public final ia.e f(ia.c cVar, long j3) {
-        String str = cVar.f10545a;
+        String str = cVar.f11932a;
         j();
-        JsonWriter jsonWriter = this.f12416b;
+        JsonWriter jsonWriter = this.f14884b;
         jsonWriter.name(str);
         j();
         jsonWriter.value(j3);
@@ -77,9 +77,9 @@ public final class e implements ia.e, g {
 
     @Override
     public final ia.e g(ia.c cVar, double d) {
-        String str = cVar.f10545a;
+        String str = cVar.f11932a;
         j();
-        JsonWriter jsonWriter = this.f12416b;
+        JsonWriter jsonWriter = this.f14884b;
         jsonWriter.name(str);
         j();
         jsonWriter.value(d);
@@ -87,7 +87,7 @@ public final class e implements ia.e, g {
     }
 
     public final e h(Object obj) {
-        JsonWriter jsonWriter = this.f12416b;
+        JsonWriter jsonWriter = this.f14884b;
         if (obj == null) {
             jsonWriter.nullValue();
             return this;
@@ -163,14 +163,14 @@ public final class e implements ia.e, g {
                     Object key = entry.getKey();
                     try {
                         i(entry.getValue(), (String) key);
-                    } catch (ClassCastException e) {
-                        throw new RuntimeException(String.format("Only String keys are currently supported in maps, got %s of type %s instead.", key, key.getClass()), e);
+                    } catch (ClassCastException e7) {
+                        throw new RuntimeException(String.format("Only String keys are currently supported in maps, got %s of type %s instead.", key, key.getClass()), e7);
                     }
                 }
                 jsonWriter.endObject();
                 return this;
             } else {
-                ia.d dVar = (ia.d) this.f12417c.get(obj.getClass());
+                ia.d dVar = (ia.d) this.f14885c.get(obj.getClass());
                 if (dVar != null) {
                     jsonWriter.beginObject();
                     dVar.a(obj, this);
@@ -194,7 +194,7 @@ public final class e implements ia.e, g {
                     return this;
                 } else {
                     jsonWriter.beginObject();
-                    this.e.a(obj, this);
+                    this.f14886e.a(obj, this);
                     jsonWriter.endObject();
                     return this;
                 }
@@ -203,8 +203,8 @@ public final class e implements ia.e, g {
     }
 
     public final e i(Object obj, String str) {
-        boolean z10 = this.f12418f;
-        JsonWriter jsonWriter = this.f12416b;
+        boolean z10 = this.f14887f;
+        JsonWriter jsonWriter = this.f14884b;
         if (z10) {
             if (obj == null) {
                 return this;
@@ -225,7 +225,7 @@ public final class e implements ia.e, g {
     }
 
     public final void j() {
-        if (this.f12415a) {
+        if (this.f14883a) {
             return;
         }
         throw new IllegalStateException("Parent context used since this context was created. Cannot use this context anymore.");

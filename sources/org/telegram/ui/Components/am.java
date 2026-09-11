@@ -1,81 +1,43 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class am extends AnimatorListenerAdapter {
-    public final int f21535a;
-    public final ChatAttachAlertPhotoLayout f21536b;
+import android.view.View;
+import org.telegram.messenger.MediaController;
+public final class am implements ml0 {
+    public final ChatAttachAlertPhotoLayout f24416a;
 
-    public am(ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout, int i10) {
-        this.f21535a = i10;
-        this.f21536b = chatAttachAlertPhotoLayout;
+    public am(ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout) {
+        this.f24416a = chatAttachAlertPhotoLayout;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f21535a) {
-            case 0:
-                this.f21536b.m0 = null;
-                return;
-            case 1:
-                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.f21536b;
-                chatAttachAlertPhotoLayout.f20999f1.unlock();
-                chatAttachAlertPhotoLayout.f20994d0 = false;
-                im imVar = chatAttachAlertPhotoLayout.P;
-                if (imVar != null) {
-                    imVar.invalidateOutline();
-                    chatAttachAlertPhotoLayout.P.invalidate();
-                }
-                if (chatAttachAlertPhotoLayout.f20990b0) {
-                    chatAttachAlertPhotoLayout.f26422b.Z1.K0();
-                }
-                im imVar2 = chatAttachAlertPhotoLayout.P;
-                if (imVar2 != null) {
-                    imVar2.setSystemUiVisibility(1028);
-                }
-                yl ylVar = chatAttachAlertPhotoLayout.E;
-                if (ylVar != null) {
-                    ylVar.invalidate();
-                    return;
-                }
-                return;
-            default:
-                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout2 = this.f21536b;
-                q91 q91Var = chatAttachAlertPhotoLayout2.f21010l0;
-                chatAttachAlertPhotoLayout2.f20999f1.unlock();
-                chatAttachAlertPhotoLayout2.f21005i1 = false;
-                chatAttachAlertPhotoLayout2.f26422b.getWindow().clearFlags(128);
-                chatAttachAlertPhotoLayout2.setCameraOpenProgress(0.0f);
-                chatAttachAlertPhotoLayout2.f20994d0 = false;
-                yl ylVar2 = chatAttachAlertPhotoLayout2.E;
-                if (ylVar2 != null) {
-                    ylVar2.invalidate();
-                }
-                im imVar3 = chatAttachAlertPhotoLayout2.P;
-                if (imVar3 != null) {
-                    imVar3.invalidateOutline();
-                    chatAttachAlertPhotoLayout2.P.invalidate();
-                }
-                chatAttachAlertPhotoLayout2.f20990b0 = false;
-                bi.ld ldVar = chatAttachAlertPhotoLayout2.f21006j0;
-                if (ldVar != null) {
-                    ldVar.setVisibility(8);
-                }
-                if (q91Var != null) {
-                    q91Var.setVisibility(8);
-                    q91Var.setTag(null);
-                }
-                yl ylVar3 = chatAttachAlertPhotoLayout2.f21020r;
-                if (ylVar3 != null) {
-                    ylVar3.setVisibility(8);
-                }
-                im imVar4 = chatAttachAlertPhotoLayout2.P;
-                if (imVar4 != null) {
-                    imVar4.setFpsLimit(30);
-                    chatAttachAlertPhotoLayout2.P.setSystemUiVisibility(1024);
-                    return;
-                }
-                return;
+    public final void a(boolean z10) {
+        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.f24416a;
+        chatAttachAlertPhotoLayout.L = z10 ? 1 : 0;
+        chatAttachAlertPhotoLayout.E.c1(true);
+    }
+
+    @Override
+    public final boolean b(int i10) {
+        if (this.f24416a.G.j(i10) == 0) {
+            return true;
         }
+        return false;
+    }
+
+    @Override
+    public final void c(View view, boolean z10) {
+        if (z10 == this.f24416a.K && (view instanceof org.telegram.ui.Cells.s5)) {
+            org.telegram.ui.Cells.s5 s5Var = (org.telegram.ui.Cells.s5) view;
+            s5Var.f22839w.c(s5Var);
+        }
+    }
+
+    @Override
+    public final boolean d(int i10) {
+        MediaController.PhotoEntry M = this.f24416a.G.M(i10);
+        if (M != null && ChatAttachAlertPhotoLayout.f23833s1.containsKey(Integer.valueOf(M.imageId))) {
+            return true;
+        }
+        return false;
     }
 }

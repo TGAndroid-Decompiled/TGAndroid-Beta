@@ -1,14 +1,14 @@
 package org.telegram.ui;
-public final class vs0 extends org.telegram.ui.Cells.ca {
-    public final int f37620v0 = 0;
+public final class vs0 extends org.telegram.ui.Cells.aa {
+    public final int f41692v0 = 0;
 
-    public vs0(zh.o6 o6Var, org.telegram.ui.ActionBar.f6 f6Var) {
-        super(o6Var, f6Var);
+    public vs0(bi.da daVar, org.telegram.ui.ActionBar.f6 f6Var) {
+        super(daVar, f6Var);
     }
 
     @Override
     public final int p() {
-        switch (this.f37620v0) {
+        switch (this.f41692v0) {
             case 0:
                 return 0;
             default:
@@ -16,7 +16,7 @@ public final class vs0 extends org.telegram.ui.Cells.ca {
         }
     }
 
-    public vs0(zh.b bVar) {
+    public vs0(bi.b bVar) {
         super(null, bVar);
     }
 }

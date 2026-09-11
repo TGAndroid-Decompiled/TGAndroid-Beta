@@ -1,31 +1,40 @@
 package bi;
 
-import android.content.Context;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import org.telegram.messenger.em;
-public final class na extends LinearLayout {
-    public final TextView f3245a;
-    public final TextView f3246b;
+import android.text.Layout;
+import android.text.StaticLayout;
+import android.text.TextPaint;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.ui.Components.pr;
+public final class na {
+    public final l5 f3383a;
+    public final org.telegram.ui.Components.e6 f3384b;
+    public final TextPaint f3385c;
+    public final StaticLayout d;
+    public final float f3386e;
+    public final float f3387f;
+    public float f3388g;
+    public boolean h;
+    public int f3389i;
 
-    public na(Context context, org.telegram.ui.ActionBar.f6 f6Var, boolean z10) {
-        super(context);
-        int i10;
-        setOrientation(1);
-        TextView textView = new TextView(context);
-        this.f3245a = textView;
-        em.x(org.telegram.ui.ActionBar.j6.f18034j5, f6Var, textView, 1, 20.0f);
-        if (z10) {
-            i10 = 4;
+    public na(o5 o5Var, l5 l5Var) {
+        float f7;
+        this.f3383a = l5Var;
+        this.f3384b = new org.telegram.ui.Components.e6(o5Var, 0L, 360L, pr.h);
+        TextPaint textPaint = new TextPaint(1);
+        this.f3385c = textPaint;
+        textPaint.setTextSize(AndroidUtilities.dp(14.0f));
+        textPaint.setColor(-1);
+        textPaint.setShadowLayer(AndroidUtilities.dp(3.0f), 0.0f, AndroidUtilities.dp(1.0f), 805306368);
+        StaticLayout staticLayout = new StaticLayout(LocaleController.getString(R.string.StorySeekHelp), textPaint, AndroidUtilities.displaySize.x, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+        this.d = staticLayout;
+        if (staticLayout.getLineCount() > 0) {
+            f7 = staticLayout.getLineLeft(0);
         } else {
-            i10 = 13;
+            f7 = 0.0f;
         }
-        addView(textView, w7.a6.t(-1, -2, 55, 27, 16, 27, i10));
-        TextView textView2 = new TextView(context);
-        this.f3246b = textView2;
-        em.n(org.telegram.ui.ActionBar.j6.f18161q5, f6Var, textView2, 1, 14.0f);
-        if (z10) {
-            addView(textView2, w7.a6.t(-1, -2, 55, 27, 0, 27, 13));
-        }
+        this.f3386e = f7;
+        this.f3387f = staticLayout.getLineCount() > 0 ? staticLayout.getLineWidth(0) : 0.0f;
     }
 }

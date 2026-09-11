@@ -1,44 +1,24 @@
 package org.telegram.messenger;
 public final class jf implements Runnable {
-    public final int f15543a = 2;
-    public final MessagesStorage f15544b;
-    public final boolean f15545c;
-    public final int d;
-    public final long e;
+    public final int f18095a;
+    public final MessagesStorage f18096b;
+    public final boolean f18097c;
 
-    public jf(MessagesStorage messagesStorage, int i10, boolean z10, long j3) {
-        this.f15544b = messagesStorage;
-        this.d = i10;
-        this.f15545c = z10;
-        this.e = j3;
+    public jf(MessagesStorage messagesStorage, boolean z10, int i10) {
+        this.f18095a = i10;
+        this.f18096b = messagesStorage;
+        this.f18097c = z10;
     }
 
     @Override
     public final void run() {
-        switch (this.f15543a) {
+        switch (this.f18095a) {
             case 0:
-                this.f15544b.lambda$markMessagesAsDeleted$231(this.e, this.d, this.f15545c);
-                return;
-            case 1:
-                this.f15544b.lambda$removeFromDownloadQueue$182(this.f15545c, this.d, this.e);
+                this.f18096b.lambda$getCachedPhoneBook$150(this.f18097c);
                 return;
             default:
-                this.f15544b.lambda$loadPendingTasks$31(this.d, this.f15545c, this.e);
+                this.f18096b.lambda$cleanup$6(this.f18097c);
                 return;
         }
-    }
-
-    public jf(MessagesStorage messagesStorage, long j3, int i10, boolean z10) {
-        this.f15544b = messagesStorage;
-        this.e = j3;
-        this.d = i10;
-        this.f15545c = z10;
-    }
-
-    public jf(MessagesStorage messagesStorage, boolean z10, int i10, long j3) {
-        this.f15544b = messagesStorage;
-        this.f15545c = z10;
-        this.d = i10;
-        this.e = j3;
     }
 }

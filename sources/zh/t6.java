@@ -1,32 +1,30 @@
 package zh;
 
-import org.telegram.tgnet.NativeByteBuffer;
-import org.telegram.tgnet.tl.TL_stories;
-public abstract class t6 {
-    public static void a(TL_stories.StoryItem storyItem, NativeByteBuffer nativeByteBuffer) {
-        if (nativeByteBuffer == null) {
-            return;
-        }
-        int readInt32 = nativeByteBuffer.readInt32(true);
-        if (readInt32 == 1) {
-            new s6(storyItem).readParams(nativeByteBuffer, true);
-            return;
-        }
-        throw new RuntimeException(hc.b.j(readInt32, "(story) can't read params version = "));
+import android.text.TextPaint;
+import android.text.style.ClickableSpan;
+import android.view.View;
+import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.co;
+public final class t6 extends ClickableSpan {
+    public final org.telegram.ui.ActionBar.f3[] f52665a;
+    public final long f52666b;
+
+    public t6(org.telegram.ui.ActionBar.f3[] f3VarArr, long j3) {
+        this.f52665a = f3VarArr;
+        this.f52666b = j3;
     }
 
-    public static NativeByteBuffer b(TL_stories.StoryItem storyItem) {
-        if (storyItem.detectedLng == null && storyItem.translatedLng == null && !storyItem.translated && storyItem.translatedText == null) {
-            return null;
+    @Override
+    public final void onClick(View view) {
+        this.f52665a[0].dismiss();
+        org.telegram.ui.ActionBar.n2 U = LaunchActivity.U();
+        if (U != null) {
+            U.presentFragment(co.R9(this.f52666b));
         }
-        s6 s6Var = new s6(storyItem);
-        try {
-            NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(s6Var.getObjectSize());
-            s6Var.serializeToStream(nativeByteBuffer);
-            return nativeByteBuffer;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
-        }
+    }
+
+    @Override
+    public final void updateDrawState(TextPaint textPaint) {
+        textPaint.setUnderlineText(false);
     }
 }

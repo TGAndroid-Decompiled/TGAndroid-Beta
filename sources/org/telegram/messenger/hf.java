@@ -1,29 +1,41 @@
 package org.telegram.messenger;
-
-import org.telegram.messenger.Utilities;
 public final class hf implements Runnable {
-    public final int f15383a;
-    public final MessagesStorage f15384b;
-    public final Utilities.Callback f15385c;
-    public final long d;
-    public final long e;
+    public final int f17889a;
+    public final MessagesStorage f17890b;
+    public final int f17891c;
 
-    public hf(MessagesStorage messagesStorage, Utilities.Callback callback, long j3, long j10, int i10) {
-        this.f15383a = i10;
-        this.f15384b = messagesStorage;
-        this.f15385c = callback;
-        this.d = j3;
-        this.e = j10;
+    public hf(MessagesStorage messagesStorage, int i10, int i11) {
+        this.f17889a = i11;
+        this.f17890b = messagesStorage;
+        this.f17891c = i10;
     }
 
     @Override
     public final void run() {
-        switch (this.f15383a) {
+        switch (this.f17889a) {
             case 0:
-                this.f15384b.lambda$getEphemeralMessages$208(this.f15385c, this.d, this.e);
+                this.f17890b.lambda$readAllDialogs$65(this.f17891c);
+                return;
+            case 1:
+                this.f17890b.lambda$checkIfFolderEmptyInternal$245(this.f17891c);
+                return;
+            case 2:
+                this.f17890b.lambda$clearDownloadQueue$184(this.f17891c);
+                return;
+            case 3:
+                this.f17890b.lambda$putMessagesInternal$196(this.f17891c);
+                return;
+            case 4:
+                this.f17890b.lambda$getDownloadQueue$186(this.f17891c);
+                return;
+            case 5:
+                this.f17890b.lambda$getUnsentMessages$152(this.f17891c);
+                return;
+            case 6:
+                this.f17890b.lambda$checkIfFolderEmpty$246(this.f17891c);
                 return;
             default:
-                this.f15384b.lambda$getEphemeralMessages$207(this.f15385c, this.d, this.e);
+                this.f17890b.lambda$clearWidgetDialogs$167(this.f17891c);
                 return;
         }
     }

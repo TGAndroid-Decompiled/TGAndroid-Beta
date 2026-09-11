@@ -1,60 +1,38 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Bitmap;
-import android.graphics.Rect;
-import android.graphics.drawable.GradientDrawable;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Utilities;
-public final class p9 implements Runnable {
-    public final int f26058a = 0;
-    public final v9 f26059b;
-    public final Runnable[] f26060c;
-    public final h60 d;
-    public final int e;
-    public final w7.x5[] f26061f;
-
-    public p9(v9 v9Var, h60 h60Var, Runnable[] runnableArr, int i10, w7.x5[] x5VarArr) {
-        this.f26059b = v9Var;
-        this.d = h60Var;
-        this.f26060c = runnableArr;
-        this.e = i10;
-        this.f26061f = x5VarArr;
-    }
-
-    @Override
-    public final void run() {
-        switch (this.f26058a) {
-            case 0:
-                v9 v9Var = this.f26059b;
-                h60 h60Var = this.d;
-                Runnable[] runnableArr = this.f26060c;
-                int i10 = this.e;
-                w7.x5[] x5VarArr = this.f26061f;
-                try {
-                    GradientDrawable.Orientation orientation = v9Var.getOrientation();
-                    int[] iArr = v9Var.f27895a;
-                    int i11 = h60Var.f23527a;
-                    int i12 = h60Var.f23528b;
-                    Rect e = v9.e(orientation, i11, i12);
-                    Bitmap createBitmap = Bitmap.createBitmap(i11, i12, Bitmap.Config.ARGB_8888);
-                    Utilities.drawDitheredGradient(createBitmap, iArr, e.left, e.top, e.right, e.bottom);
-                    AndroidUtilities.runOnUIThread(new org.telegram.messenger.w0(v9Var, runnableArr, createBitmap, h60Var, i10, x5VarArr, 6));
+import java.util.ArrayList;
+import org.telegram.tgnet.TLRPC;
+public abstract class p9 {
+    public static void a(org.telegram.ui.co coVar, int i10, TLRPC.Chat chat, TLRPC.User user, TLRPC.TL_forumTopic tL_forumTopic, long j3, int i11, int i12) {
+        org.telegram.ui.ActionBar.d5 parentLayout;
+        TLRPC.TL_forumTopic tL_forumTopic2;
+        if ((chat != null || user != null) && (parentLayout = coVar.getParentLayout()) != null) {
+            if (parentLayout.getPulledDialogs() == null) {
+                parentLayout.setPulledDialogs(new ArrayList());
+            }
+            for (o9 o9Var : parentLayout.getPulledDialogs()) {
+                if (tL_forumTopic != null || o9Var.f29007f != j3) {
+                    if (tL_forumTopic != null && (tL_forumTopic2 = o9Var.f29006e) != null && tL_forumTopic2.f19921id == tL_forumTopic.f19921id) {
+                        return;
+                    }
+                } else {
                     return;
-                } catch (Throwable th2) {
-                    AndroidUtilities.runOnUIThread(new p9(v9Var, runnableArr, h60Var, i10, x5VarArr));
-                    throw th2;
                 }
-            default:
-                v9.a(this.f26059b, this.f26060c, null, this.d, this.e, this.f26061f);
-                return;
+            }
+            ?? obj = new Object();
+            obj.f29003a = org.telegram.ui.co.class;
+            obj.f29004b = i10;
+            obj.f29007f = j3;
+            obj.h = i12;
+            obj.f29008g = i11;
+            obj.f29005c = chat;
+            obj.d = user;
+            obj.f29006e = tL_forumTopic;
+            parentLayout.getPulledDialogs().add(obj);
         }
     }
 
-    public p9(v9 v9Var, Runnable[] runnableArr, h60 h60Var, int i10, w7.x5[] x5VarArr) {
-        this.f26059b = v9Var;
-        this.f26060c = runnableArr;
-        this.d = h60Var;
-        this.e = i10;
-        this.f26061f = x5VarArr;
+    public static org.telegram.ui.ActionBar.n1 b(org.telegram.ui.ActionBar.n2 r37, android.view.View r38, long r39, long r41, org.telegram.ui.ActionBar.f6 r43) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.p9.b(org.telegram.ui.ActionBar.n2, android.view.View, long, long, org.telegram.ui.ActionBar.f6):org.telegram.ui.ActionBar.n1");
     }
 }

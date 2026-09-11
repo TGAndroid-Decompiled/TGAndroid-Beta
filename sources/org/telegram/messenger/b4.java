@@ -1,25 +1,21 @@
 package org.telegram.messenger;
 
-import android.view.View;
-import org.telegram.messenger.FilesMigrationService;
-public final class b4 implements View.OnClickListener {
-    public final int f14753a;
-    public final Object f14754b;
+import java.util.function.ToIntFunction;
+import org.telegram.messenger.GiftAuctionController;
+public final class b4 implements ToIntFunction {
+    public final int f17223a;
 
-    public b4(Object obj, int i10) {
-        this.f14753a = i10;
-        this.f14754b = obj;
+    public b4(int i10) {
+        this.f17223a = i10;
     }
 
     @Override
-    public final void onClick(View view) {
-        switch (this.f14753a) {
+    public final int applyAsInt(Object obj) {
+        switch (this.f17223a) {
             case 0:
-                FilesMigrationService.FilesMigrationBottomSheet.m((FilesMigrationService.FilesMigrationBottomSheet) this.f14754b, view);
-                return;
+                return GiftAuctionController.d((GiftAuctionController.Auction) obj);
             default:
-                MessagesController.r0((boolean[]) this.f14754b, view);
-                return;
+                return Integer.parseInt((String) obj);
         }
     }
 }

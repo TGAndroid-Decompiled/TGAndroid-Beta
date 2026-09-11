@@ -1,17 +1,32 @@
 package org.telegram.ui.Components;
+public final class w8 extends org.telegram.ui.ActionBar.j {
+    public final int f32197a;
+    public final f9 f32198b;
 
-import android.app.Activity;
-public final class w8 extends c9 {
-    public final v8 G;
-
-    public w8(d9 d9Var, Activity activity, v8 v8Var) {
-        super(d9Var, activity);
-        this.G = v8Var;
+    public w8(f9 f9Var, int i10) {
+        this.f32197a = i10;
+        this.f32198b = f9Var;
     }
 
     @Override
-    public final void invalidate() {
-        super.invalidate();
-        this.G.invalidate();
+    public final void b(int i10) {
+        switch (this.f32197a) {
+            case 0:
+                if (i10 == -1) {
+                    f9.U(this.f32198b);
+                    return;
+                }
+                return;
+            default:
+                f9 f9Var = this.f32198b;
+                if (i10 == -1) {
+                    f9.U(f9Var);
+                }
+                if (i10 == 1) {
+                    f9Var.f0();
+                    return;
+                }
+                return;
+        }
     }
 }

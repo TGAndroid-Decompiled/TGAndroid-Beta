@@ -2,7 +2,7 @@ package y6;
 
 import android.content.Context;
 public interface c {
-    int F(Context context, String str);
+    int b(Context context, String str, boolean z10);
 
-    int h(Context context, String str, boolean z10);
+    int e(Context context, String str);
 }

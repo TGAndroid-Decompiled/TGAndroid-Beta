@@ -1,46 +1,46 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import java.util.ArrayList;
-import org.telegram.messenger.MediaController;
+import android.text.SpannableStringBuilder;
+import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
-public final class t10 extends org.telegram.ui.Cells.k7 {
-    public final u10 f36812l0;
+import org.telegram.messenger.R;
+import org.telegram.tgnet.TLRPC;
+public final class t10 implements org.telegram.ui.Cells.m7 {
+    public final u10 f40597a;
 
-    public t10(u10 u10Var, Context context) {
-        super(context, 1, null);
-        this.f36812l0 = u10Var;
+    public t10(u10 u10Var) {
+        this.f40597a = u10Var;
     }
 
     @Override
-    public final boolean d(MessageObject messageObject) {
-        ArrayList<MessageObject> arrayList;
-        boolean isVoice = messageObject.isVoice();
-        u10 u10Var = this.f36812l0;
-        if (!isVoice && !messageObject.isRoundVideo()) {
-            if (!messageObject.isMusic()) {
-                return false;
-            }
-            z10 z10Var = u10Var.v;
-            String str = z10Var.Q;
-            long j3 = z10Var.E;
-            long j10 = z10Var.H;
-            MediaController.PlaylistGlobalSearchParams playlistGlobalSearchParams = new MediaController.PlaylistGlobalSearchParams(str, j3, j10, j10, z10Var.f39186y);
-            z10 z10Var2 = u10Var.v;
-            playlistGlobalSearchParams.endReached = z10Var2.N;
-            playlistGlobalSearchParams.nextSearchRate = z10Var2.v;
-            playlistGlobalSearchParams.totalCount = z10Var2.O;
-            playlistGlobalSearchParams.folderId = z10Var2.J ? 1 : 0;
-            return MediaController.getInstance().setPlaylist(u10Var.v.f39168f, messageObject, 0L, playlistGlobalSearchParams);
+    public final void a(String str, boolean z10) {
+        x10 x10Var = this.f40597a.v;
+        if (z10) {
+            org.telegram.ui.ActionBar.f3 f3Var = new org.telegram.ui.ActionBar.f3(1, (Context) x10Var.K, (org.telegram.ui.ActionBar.f6) null, false);
+            f3Var.fixNavigationBar();
+            f3Var.title = str;
+            f3Var.bigTitle = false;
+            CharSequence[] charSequenceArr = {LocaleController.getString(R.string.Open), LocaleController.getString(R.string.Copy)};
+            mg.j jVar = new mg.j(7, this, str);
+            f3Var.items = charSequenceArr;
+            f3Var.onClickListener = jVar;
+            x10Var.L.showDialog(f3Var);
+            return;
         }
-        boolean playMessage = MediaController.getInstance().playMessage(messageObject);
-        MediaController mediaController = MediaController.getInstance();
-        if (playMessage) {
-            arrayList = u10Var.v.f39168f;
-        } else {
-            arrayList = null;
-        }
-        mediaController.setVoiceMessagesPlaylist(arrayList, false);
-        return playMessage;
+        SpannableStringBuilder[] spannableStringBuilderArr = x10.f42534s0;
+        x10Var.g(str);
+    }
+
+    @Override
+    public final void b(TLRPC.WebPage webPage, MessageObject messageObject) {
+        x10 x10Var = this.f40597a.v;
+        SpannableStringBuilder[] spannableStringBuilderArr = x10.f42534s0;
+        org.telegram.ui.Components.tu.J(x10Var.L, messageObject, x10Var.f42546g0, webPage.site_name, webPage.description, webPage.url, webPage.embed_url, webPage.embed_width, webPage.embed_height, -1, false);
+    }
+
+    @Override
+    public final boolean c() {
+        return !this.f40597a.v.f42554o0.g();
     }
 }

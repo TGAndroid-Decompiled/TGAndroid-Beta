@@ -1,28 +1,28 @@
 package wd;
 
 import java.util.Iterator;
-import w7.g;
+import v7.t8;
 import zd.q1;
 public final class e implements b {
-    public final int f43974a;
-    public final Object f43975b;
+    public final int f48488a;
+    public final Object f48489b;
 
     public e(Object obj, int i10) {
-        this.f43974a = i10;
-        this.f43975b = obj;
+        this.f48488a = i10;
+        this.f48489b = obj;
     }
 
     @Override
     public final Iterator iterator() {
-        switch (this.f43974a) {
+        switch (this.f48488a) {
             case 0:
                 ?? obj = new Object();
-                obj.f43973c = g.a(obj, obj, (q1) this.f43975b);
+                obj.f48487c = t8.a(obj, obj, (q1) this.f48489b);
                 return obj;
             case 1:
-                return (Iterator) this.f43975b;
+                return (Iterator) this.f48489b;
             default:
-                return new xd.b((String) this.f43975b);
+                return new xd.b((String) this.f48489b);
         }
     }
 }

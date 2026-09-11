@@ -1,81 +1,76 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
+import android.content.Context;
+import org.telegram.messenger.AccountInstance;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BotWebViewVibrationEffect;
-public final class o70 implements View.OnClickListener {
-    public final int f25687a;
-    public final w70 f25688b;
-    public final Runnable f25689c;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class o70 implements RequestDelegate {
+    public final int f28988a = 1;
+    public final Context f28989b;
+    public final long f28990c;
+    public final int d;
+    public final Object f28991e;
+    public final Object f28992f;
+    public final Object f28993g;
+    public final Object h;
+    public final Object f28994i;
 
-    public o70(w70 w70Var, Runnable runnable, int i10) {
-        this.f25687a = i10;
-        this.f25688b = w70Var;
-        this.f25689c = runnable;
+    public o70(Context context, bi.s0 s0Var, long j3, byte[] bArr, org.telegram.messenger.video.a aVar, yc ycVar, org.telegram.messenger.video.d dVar, int i10) {
+        this.f28989b = context;
+        this.f28991e = s0Var;
+        this.f28990c = j3;
+        this.f28992f = bArr;
+        this.f28993g = aVar;
+        this.h = ycVar;
+        this.f28994i = dVar;
+        this.d = i10;
     }
 
     @Override
-    public final void onClick(View view) {
-        switch (this.f25687a) {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f28988a) {
             case 0:
-                this.f25688b.u();
-                Runnable runnable = this.f25689c;
-                if (runnable != null) {
-                    runnable.run();
-                    return;
-                }
-                return;
-            case 1:
-                this.f25689c.run();
-                w70 w70Var = this.f25688b;
-                if (w70Var.J) {
-                    w70Var.u();
-                    return;
-                }
-                return;
-            case 2:
-                w70 w70Var2 = this.f25688b;
-                Runnable runnable2 = this.f25689c;
-                if (runnable2 != null) {
-                    int i10 = -w70Var2.K;
-                    w70Var2.K = i10;
-                    AndroidUtilities.shakeViewSpring(view, i10);
-                    BotWebViewVibrationEffect.APP_ERROR.vibrate();
-                    runnable2.run();
-                    return;
-                }
-                w70Var2.getClass();
-                return;
-            case 3:
-                Runnable runnable3 = this.f25689c;
-                if (runnable3 != null) {
-                    runnable3.run();
-                }
-                w70 w70Var3 = this.f25688b;
-                if (w70Var3.J) {
-                    w70Var3.u();
-                    return;
-                }
-                return;
-            case 4:
-                this.f25689c.run();
-                w70 w70Var4 = this.f25688b;
-                if (w70Var4.J) {
-                    w70Var4.u();
-                    return;
-                }
+                AndroidUtilities.runOnUIThread(new fi.g1((org.telegram.ui.ActionBar.b2) this.f28991e, tLObject, (AccountInstance) this.f28992f, (u70) this.f28993g, this.f28990c, this.f28989b, (org.telegram.ui.ActionBar.n2) this.h, this.d, (TLRPC.Peer) this.f28994i));
                 return;
             default:
-                Runnable runnable4 = this.f25689c;
-                if (runnable4 != null) {
-                    runnable4.run();
-                }
-                w70 w70Var5 = this.f25688b;
-                if (w70Var5.J) {
-                    w70Var5.u();
+                bi.s0 s0Var = (bi.s0) this.f28991e;
+                byte[] bArr = (byte[]) this.f28992f;
+                org.telegram.messenger.video.a aVar = (org.telegram.messenger.video.a) this.f28993g;
+                yc ycVar = (yc) this.h;
+                org.telegram.messenger.video.d dVar = (org.telegram.messenger.video.d) this.f28994i;
+                Context context = this.f28989b;
+                if (tLObject != null) {
+                    if (tLObject instanceof TLRPC.TL_channels_sponsoredMessageReportResultChooseOption) {
+                        AndroidUtilities.runOnUIThread(new org.telegram.ui.fw(tLObject, context, s0Var, this.f28990c, bArr, aVar, ycVar, dVar));
+                        return;
+                    } else if (tLObject instanceof TLRPC.TL_channels_sponsoredMessageReportResultReported) {
+                        AndroidUtilities.runOnUIThread(new org.telegram.ui.t31(aVar, ycVar, context, s0Var, 0), 200L);
+                        return;
+                    } else if (tLObject instanceof TLRPC.TL_channels_sponsoredMessageReportResultAdsHidden) {
+                        AndroidUtilities.runOnUIThread(new org.telegram.ui.ai0(aVar, ycVar, this.d, 9), 200L);
+                        return;
+                    } else {
+                        return;
+                    }
+                } else if (tL_error != null && "AD_EXPIRED".equalsIgnoreCase(tL_error.text)) {
+                    AndroidUtilities.runOnUIThread(new org.telegram.ui.t31(aVar, ycVar, context, s0Var, 1), 200L);
+                    return;
+                } else {
                     return;
                 }
-                return;
         }
+    }
+
+    public o70(org.telegram.ui.ActionBar.b2 b2Var, AccountInstance accountInstance, u70 u70Var, long j3, Context context, org.telegram.ui.ActionBar.n2 n2Var, int i10, TLRPC.Peer peer) {
+        this.f28991e = b2Var;
+        this.f28992f = accountInstance;
+        this.f28993g = u70Var;
+        this.f28990c = j3;
+        this.f28989b = context;
+        this.h = n2Var;
+        this.d = i10;
+        this.f28994i = peer;
     }
 }

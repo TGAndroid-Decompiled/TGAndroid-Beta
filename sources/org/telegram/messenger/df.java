@@ -1,34 +1,25 @@
 package org.telegram.messenger;
-public final class df implements Runnable {
-    public final int f15010a;
-    public final MessagesStorage f15011b;
-    public final long f15012c;
-    public final long d;
 
-    public df(int i10, long j3, long j10, MessagesStorage messagesStorage) {
-        this.f15010a = i10;
-        this.f15011b = messagesStorage;
-        this.f15012c = j3;
-        this.d = j10;
+import org.telegram.messenger.MessagesStorage;
+public final class df implements Runnable {
+    public final int f17485a;
+    public final MessagesStorage.IntCallback f17486b;
+    public final int[] f17487c;
+
+    public df(MessagesStorage.IntCallback intCallback, int[] iArr, int i10) {
+        this.f17485a = i10;
+        this.f17486b = intCallback;
+        this.f17487c = iArr;
     }
 
     @Override
     public final void run() {
-        switch (this.f15010a) {
+        switch (this.f17485a) {
             case 0:
-                this.f15011b.lambda$clearUserPhoto$93(this.f15012c, this.d);
-                return;
-            case 1:
-                this.f15011b.lambda$saveChatInviter$132(this.f15012c, this.d);
-                return;
-            case 2:
-                this.f15011b.lambda$setDialogFlags$37(this.f15012c, this.d);
-                return;
-            case 3:
-                this.f15011b.lambda$removeTopic$57(this.f15012c, this.d);
+                MessagesStorage.a4(this.f17486b, this.f17487c);
                 return;
             default:
-                this.f15011b.lambda$deleteUserChatHistory$87(this.f15012c, this.d);
+                MessagesStorage.w0(this.f17486b, this.f17487c);
                 return;
         }
     }

@@ -2,35 +2,27 @@ package org.telegram.messenger;
 
 import org.telegram.messenger.ImageLoader;
 public final class b5 implements Runnable {
-    public final int f14755a = 0;
-    public final long f14756b;
-    public final long f14757c;
-    public final int d;
-    public final String e;
+    public final int f17224a;
+    public final ImageLoader.HttpFileTask f17225b;
+    public final long f17226c;
+    public final long d;
 
-    public b5(int i10, String str, long j3, long j10) {
-        this.d = i10;
-        this.e = str;
-        this.f14756b = j3;
-        this.f14757c = j10;
+    public b5(ImageLoader.HttpFileTask httpFileTask, long j3, long j10, int i10) {
+        this.f17224a = i10;
+        this.f17225b = httpFileTask;
+        this.f17226c = j3;
+        this.d = j10;
     }
 
     @Override
     public final void run() {
-        switch (this.f14755a) {
+        switch (this.f17224a) {
             case 0:
-                ImageLoader.AnonymousClass5.i(this.d, this.e, this.f14756b, this.f14757c);
+                ImageLoader.HttpFileTask.b(this.f17225b, this.f17226c, this.d);
                 return;
             default:
-                FileLog.i(this.d, this.e, this.f14756b, this.f14757c);
+                ImageLoader.HttpFileTask.a(this.f17225b, this.f17226c, this.d);
                 return;
         }
-    }
-
-    public b5(long j3, long j10, int i10, String str) {
-        this.f14756b = j3;
-        this.f14757c = j10;
-        this.d = i10;
-        this.e = str;
     }
 }

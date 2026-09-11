@@ -3,17 +3,16 @@ package re;
 import com.google.firebase.messaging.s;
 import java.util.Hashtable;
 import java.util.StringTokenizer;
-import m.g3;
-import qg.m0;
+import mg.n;
 public final class a {
-    public static final Hashtable f41427b;
-    public static final Object[] f41428c;
+    public static final Hashtable f45104b;
+    public static final Object[] f45105c;
     public static Class d;
-    public final ClassLoader f41429a;
+    public final ClassLoader f45106a;
 
     static {
         Hashtable hashtable = new Hashtable();
-        f41427b = hashtable;
+        f45104b = hashtable;
         hashtable.put("void", Void.TYPE);
         hashtable.put("boolean", Boolean.TYPE);
         hashtable.put("byte", Byte.TYPE);
@@ -23,18 +22,18 @@ public final class a {
         hashtable.put("long", Long.TYPE);
         hashtable.put("float", Float.TYPE);
         hashtable.put("double", Double.TYPE);
-        f41428c = new Object[0];
+        f45105c = new Object[0];
     }
 
     public a(Class cls, String str) {
-        this.f41429a = cls.getClassLoader();
+        this.f45106a = cls.getClassLoader();
     }
 
     public static Class a(ClassLoader classLoader, String str) {
         if (str.equals("*")) {
             return null;
         }
-        Class cls = (Class) f41427b.get(str);
+        Class cls = (Class) f45104b.get(str);
         if (cls != null) {
             return cls;
         }
@@ -49,25 +48,25 @@ public final class a {
                 try {
                     cls2 = Class.forName("java.lang.ClassNotFoundException");
                     d = cls2;
-                } catch (ClassNotFoundException e) {
-                    throw new NoClassDefFoundError(e.getMessage());
+                } catch (ClassNotFoundException e7) {
+                    throw new NoClassDefFoundError(e7.getMessage());
                 }
             }
             return cls2;
         }
     }
 
-    public static s b(g3 g3Var, Object obj, Object obj2) {
-        return new s(g3Var, obj, obj2, f41428c);
+    public static s b(n nVar, Object obj, Object obj2) {
+        return new s(nVar, obj, obj2, f45105c);
     }
 
-    public static s c(g3 g3Var, Object obj, Object obj2, Object obj3) {
-        return new s(g3Var, obj, obj2, new Object[]{obj3});
+    public static s c(n nVar, Object obj, Object obj2, Object obj3) {
+        return new s(nVar, obj, obj2, new Object[]{obj3});
     }
 
-    public final m0 d(String str, String str2, String str3, String str4, String str5) {
+    public final ra.a d(String str, String str2, String str3, String str4, String str5) {
         int parseInt = Integer.parseInt("1", 16);
-        ClassLoader classLoader = this.f41429a;
+        ClassLoader classLoader = this.f45106a;
         Class a2 = a(classLoader, str2);
         StringTokenizer stringTokenizer = new StringTokenizer(str3, ":");
         int countTokens = stringTokenizer.countTokens();
@@ -88,18 +87,18 @@ public final class a {
             clsArr2[i12] = a(classLoader, stringTokenizer3.nextToken());
         }
         Class a10 = a(classLoader, str5);
-        m0 m0Var = new m0(2);
-        m0Var.f40808b = parseInt;
-        m0Var.f40809c = str;
-        m0Var.e = a2;
-        m0Var.f40811g = clsArr;
-        m0Var.h = a10;
-        return m0Var;
+        ra.a aVar = new ra.a(1);
+        aVar.f45063b = parseInt;
+        aVar.f45064c = str;
+        aVar.f45065e = a2;
+        aVar.f45067g = clsArr;
+        aVar.h = a10;
+        return aVar;
     }
 
-    public final g3 e(m0 m0Var) {
-        g3 g3Var = new g3(17, false);
-        g3Var.f13018b = m0Var;
-        return g3Var;
+    public final n e(ra.a aVar) {
+        n nVar = new n(13, false);
+        nVar.f16292b = aVar;
+        return nVar;
     }
 }

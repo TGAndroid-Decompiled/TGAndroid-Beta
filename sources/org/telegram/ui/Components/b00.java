@@ -1,24 +1,29 @@
 package org.telegram.ui.Components;
 
-import android.graphics.SurfaceTexture;
-import org.telegram.messenger.DispatchQueue;
-public final class b00 implements SurfaceTexture.OnFrameAvailableListener {
-    public final int f21669a;
-    public final DispatchQueue f21670b;
+import android.animation.ValueAnimator;
+public final class b00 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f24484a;
+    public final i00 f24485b;
 
-    public b00(DispatchQueue dispatchQueue, int i10) {
-        this.f21669a = i10;
-        this.f21670b = dispatchQueue;
+    public b00(i00 i00Var, int i10) {
+        this.f24484a = i10;
+        this.f24485b = i00Var;
     }
 
     @Override
-    public final void onFrameAvailable(SurfaceTexture surfaceTexture) {
-        switch (this.f21669a) {
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f24484a) {
             case 0:
-                ((c00) this.f21670b).e(false, true, true);
+                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                i00 i00Var = this.f24485b;
+                i00Var.f26919x = floatValue;
+                i00Var.invalidate();
                 return;
             default:
-                ((x50) this.f21670b).requestRender(true, false);
+                i00 i00Var2 = this.f24485b;
+                i00Var2.getClass();
+                i00Var2.f26920y = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                i00Var2.invalidate();
                 return;
         }
     }

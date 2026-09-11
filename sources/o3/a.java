@@ -8,23 +8,23 @@ import e2.v;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 public final class a implements o0 {
-    public final int f14249a;
-    public final String f14250b;
-    public final String f14251c;
+    public final int f16949a;
+    public final String f16950b;
+    public final String f16951c;
     public final int d;
-    public final int e;
-    public final int f14252f;
-    public final int f14253g;
+    public final int f16952e;
+    public final int f16953f;
+    public final int f16954g;
     public final byte[] h;
 
     public a(int i10, String str, String str2, int i11, int i12, int i13, int i14, byte[] bArr) {
-        this.f14249a = i10;
-        this.f14250b = str;
-        this.f14251c = str2;
+        this.f16949a = i10;
+        this.f16950b = str;
+        this.f16951c = str2;
         this.d = i11;
-        this.e = i12;
-        this.f14252f = i13;
-        this.f14253g = i14;
+        this.f16952e = i12;
+        this.f16953f = i13;
+        this.f16954g = i14;
         this.h = bArr;
     }
 
@@ -49,7 +49,7 @@ public final class a implements o0 {
 
     @Override
     public final void b(m0 m0Var) {
-        m0Var.a(this.f14249a, this.h);
+        m0Var.a(this.f16949a, this.h);
     }
 
     @Override
@@ -63,7 +63,7 @@ public final class a implements o0 {
         }
         if (obj != null && a.class == obj.getClass()) {
             a aVar = (a) obj;
-            if (this.f14249a == aVar.f14249a && this.f14250b.equals(aVar.f14250b) && this.f14251c.equals(aVar.f14251c) && this.d == aVar.d && this.e == aVar.e && this.f14252f == aVar.f14252f && this.f14253g == aVar.f14253g && Arrays.equals(this.h, aVar.h)) {
+            if (this.f16949a == aVar.f16949a && this.f16950b.equals(aVar.f16950b) && this.f16951c.equals(aVar.f16951c) && this.d == aVar.d && this.f16952e == aVar.f16952e && this.f16953f == aVar.f16953f && this.f16954g == aVar.f16954g && Arrays.equals(this.h, aVar.h)) {
                 return true;
             }
         }
@@ -71,10 +71,10 @@ public final class a implements o0 {
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(this.h) + ((((((((a4.a.h(a4.a.h((527 + this.f14249a) * 31, 31, this.f14250b), 31, this.f14251c) + this.d) * 31) + this.e) * 31) + this.f14252f) * 31) + this.f14253g) * 31);
+        return Arrays.hashCode(this.h) + ((((((((a4.a.h(a4.a.h((527 + this.f16949a) * 31, 31, this.f16950b), 31, this.f16951c) + this.d) * 31) + this.f16952e) * 31) + this.f16953f) * 31) + this.f16954g) * 31);
     }
 
     public final String toString() {
-        return "Picture: mimeType=" + this.f14250b + ", description=" + this.f14251c;
+        return "Picture: mimeType=" + this.f16950b + ", description=" + this.f16951c;
     }
 }

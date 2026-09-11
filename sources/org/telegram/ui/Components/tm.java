@@ -1,18 +1,24 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class tm extends AnimatorListenerAdapter {
-    public final um f27439a;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLRPC;
+public final class tm implements bl, org.telegram.ui.ActionBar.a2 {
+    public final Utilities.Callback f30621a;
 
-    public tm(um umVar) {
-        this.f27439a = umVar;
+    public tm(Utilities.Callback callback) {
+        this.f30621a = callback;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        um umVar = this.f27439a;
-        umVar.f27698b.isChatPreviewSpoilerRevealed = true;
-        umVar.O.f28029z.invalidate();
+    public void b(TLRPC.MessageMedia messageMedia, int i10, boolean z10, int i11, long j3) {
+        this.f30621a.run(new sh.f(messageMedia));
+    }
+
+    @Override
+    public void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
+        Utilities.Callback callback = this.f30621a;
+        if (callback != null) {
+            callback.run(Boolean.FALSE);
+        }
     }
 }

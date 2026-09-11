@@ -1,74 +1,60 @@
 package bb;
 
-import java.util.ArrayList;
-import java.util.List;
-import k1.t;
-import rd.p;
-import za.z;
-import zd.c0;
-public final class i extends kd.j implements p {
-    public final int f2169a;
-    public int f2170b;
-    public Object f2171c;
-    public final Object d;
+import android.content.Context;
+import android.os.Bundle;
+import w7.q;
+import za.b0;
+import za.r;
+public final class i {
+    public static final g f2553c = new Object();
+    public static final m1.c d = q.a(r.f51474b);
+    public final a f2554a;
+    public final e f2555b;
 
-    public i(Object obj, id.c cVar, int i10) {
-        super(2, cVar);
-        this.f2169a = i10;
-        this.d = obj;
+    public i(k9.h hVar, id.h hVar2, id.h hVar3, qa.d dVar) {
+        hVar.a();
+        Context context = hVar.f14856a;
+        kotlin.jvm.internal.i.d(context, "firebaseApp.applicationContext");
+        b0 b0Var = b0.f51386a;
+        za.b a2 = b0.a(hVar);
+        a aVar = new a(context);
+        aa.a aVar2 = new aa.a(a2, hVar2);
+        f2553c.getClass();
+        e eVar = new e(hVar3, dVar, a2, aVar2, d.a(context, g.f2549a[0]));
+        this.f2554a = aVar;
+        this.f2555b = eVar;
     }
 
-    @Override
-    public final id.c create(Object obj, id.c cVar) {
-        switch (this.f2169a) {
-            case 0:
-                return new i((l) this.d, cVar, 0);
-            case 1:
-                i iVar = new i((List) this.d, cVar, 1);
-                iVar.f2171c = obj;
-                return iVar;
-            case 2:
-                return new i((ki.f) this.d, cVar, 2);
-            case 3:
-                return new i((p) this.f2171c, this.d, cVar, 3);
-            case 4:
-                return new i((za.l) this.f2171c, (id.h) this.d, cVar, 4);
-            case 5:
-                return new i((z) this.f2171c, (String) this.d, cVar, 5);
-            default:
-                return new i((ki.f) this.f2171c, (ArrayList) this.d, cVar, 6);
+    public final double a() {
+        Double d10;
+        Bundle bundle = this.f2554a.f2531a;
+        if (bundle.containsKey("firebase_sessions_sampling_rate")) {
+            d10 = Double.valueOf(bundle.getDouble("firebase_sessions_sampling_rate"));
+        } else {
+            d10 = null;
         }
-    }
-
-    @Override
-    public final Object invoke(Object obj, Object obj2) {
-        switch (this.f2169a) {
-            case 0:
-                return ((i) create((c0) obj, (id.c) obj2)).invokeSuspend(gd.i.f8748a);
-            case 1:
-                return ((i) create((t) obj, (id.c) obj2)).invokeSuspend(gd.i.f8748a);
-            case 2:
-                return ((i) create((c0) obj, (id.c) obj2)).invokeSuspend(gd.i.f8748a);
-            case 3:
-                return ((i) create((c0) obj, (id.c) obj2)).invokeSuspend(gd.i.f8748a);
-            case 4:
-                return ((i) create((c0) obj, (id.c) obj2)).invokeSuspend(gd.i.f8748a);
-            case 5:
-                return ((i) create((c0) obj, (id.c) obj2)).invokeSuspend(gd.i.f8748a);
-            default:
-                return ((i) create((c0) obj, (id.c) obj2)).invokeSuspend(gd.i.f8748a);
+        if (d10 != null) {
+            double doubleValue = d10.doubleValue();
+            if (0.0d <= doubleValue && doubleValue <= 1.0d) {
+                return doubleValue;
+            }
         }
+        f fVar = this.f2555b.f2544c.f2570b;
+        if (fVar != null) {
+            Double d11 = fVar.f2546b;
+            if (d11 != null) {
+                double doubleValue2 = d11.doubleValue();
+                if (0.0d <= doubleValue2 && doubleValue2 <= 1.0d) {
+                    return doubleValue2;
+                }
+            }
+            return 1.0d;
+        }
+        kotlin.jvm.internal.i.h("sessionConfigs");
+        throw null;
     }
 
-    @Override
-    public final java.lang.Object invokeSuspend(java.lang.Object r22) {
-        throw new UnsupportedOperationException("Method not decompiled: bb.i.invokeSuspend(java.lang.Object):java.lang.Object");
-    }
-
-    public i(Object obj, Object obj2, id.c cVar, int i10) {
-        super(2, cVar);
-        this.f2169a = i10;
-        this.f2171c = obj;
-        this.d = obj2;
+    public final java.lang.Object b(kd.c r7) {
+        throw new UnsupportedOperationException("Method not decompiled: bb.i.b(kd.c):java.lang.Object");
     }
 }

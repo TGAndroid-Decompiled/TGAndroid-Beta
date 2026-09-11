@@ -1,44 +1,30 @@
 package org.telegram.messenger;
 
-import java.util.ArrayList;
-import org.telegram.messenger.FileLoader;
-import org.telegram.messenger.MessagesController;
+import java.util.concurrent.CountDownLatch;
 public final class g3 implements Runnable {
-    public final int f15237a;
-    public final boolean f15238b;
-    public final boolean f15239c;
-    public final Object d;
-    public final Object e;
+    public final int f17748a;
+    public final FilePathDatabase f17749b;
+    public final String f17750c;
+    public final boolean[] d;
+    public final CountDownLatch f17751e;
 
-    public g3(FileLoader.AnonymousClass1 anonymousClass1, boolean z10, String str, boolean z11) {
-        this.f15237a = 0;
-        this.d = anonymousClass1;
-        this.f15238b = z10;
-        this.e = str;
-        this.f15239c = z11;
+    public g3(FilePathDatabase filePathDatabase, String str, boolean[] zArr, CountDownLatch countDownLatch, int i10) {
+        this.f17748a = i10;
+        this.f17749b = filePathDatabase;
+        this.f17750c = str;
+        this.d = zArr;
+        this.f17751e = countDownLatch;
     }
 
     @Override
     public final void run() {
-        switch (this.f15237a) {
+        switch (this.f17748a) {
             case 0:
-                boolean z10 = this.f15239c;
-                ((FileLoader.AnonymousClass1) this.d).lambda$didFailedUploadingFile$1(this.f15238b, (String) this.e, z10);
-                return;
-            case 1:
-                ((MessagesStorage) this.d).lambda$saveDialogFilter$74((MessagesController.DialogFilter) this.e, this.f15238b, this.f15239c);
+                FilePathDatabase.g(this.f17749b, this.f17750c, this.d, this.f17751e);
                 return;
             default:
-                ((MessagesStorage) this.d).lambda$updateUsers$215((ArrayList) this.e, this.f15238b, this.f15239c);
+                FilePathDatabase.e(this.f17749b, this.f17750c, this.d, this.f17751e);
                 return;
         }
-    }
-
-    public g3(MessagesStorage messagesStorage, Object obj, boolean z10, boolean z11, int i10) {
-        this.f15237a = i10;
-        this.d = messagesStorage;
-        this.e = obj;
-        this.f15238b = z10;
-        this.f15239c = z11;
     }
 }

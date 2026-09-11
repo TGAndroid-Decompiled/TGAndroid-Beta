@@ -1,6 +1,6 @@
 package p2;
 public interface s {
-    y2.p J();
+    y2.o U();
 
-    y2.p T(o oVar, l lVar);
+    y2.o i0(o oVar, l lVar);
 }

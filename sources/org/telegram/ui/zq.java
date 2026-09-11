@@ -1,19 +1,19 @@
 package org.telegram.ui;
-public final class zq implements Runnable {
-    public final int f39426a;
-    public final Object f39427b;
-    public final Object f39428c;
-    public final Object d;
 
-    public zq(Object obj, Object obj2, Object obj3, int i10) {
-        this.f39426a = i10;
-        this.f39427b = obj;
-        this.f39428c = obj2;
-        this.d = obj3;
+import java.util.Comparator;
+public final class zq implements Comparator {
+    public final int f43490a;
+    public final int f43491b;
+    public final Object f43492c;
+
+    public zq(Object obj, int i10, int i11) {
+        this.f43490a = i11;
+        this.f43492c = obj;
+        this.f43491b = i10;
     }
 
     @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.zq.run():void");
+    public final int compare(java.lang.Object r14, java.lang.Object r15) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.zq.compare(java.lang.Object, java.lang.Object):int");
     }
 }

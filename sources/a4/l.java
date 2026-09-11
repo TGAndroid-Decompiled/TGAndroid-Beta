@@ -3,38 +3,38 @@ package a4;
 import e2.d0;
 import java.util.ArrayDeque;
 public abstract class l implements z3.e {
-    public final ArrayDeque f267a = new ArrayDeque();
-    public final ArrayDeque f268b;
-    public final ArrayDeque f269c;
+    public final ArrayDeque f276a = new ArrayDeque();
+    public final ArrayDeque f277b;
+    public final ArrayDeque f278c;
     public j d;
-    public long e;
-    public long f270f;
-    public long f271g;
+    public long f279e;
+    public long f280f;
+    public long f281g;
 
     public l() {
         for (int i10 = 0; i10 < 10; i10++) {
-            this.f267a.add(new z3.i());
+            this.f276a.add(new z3.i());
         }
-        this.f268b = new ArrayDeque();
+        this.f277b = new ArrayDeque();
         for (int i11 = 0; i11 < 2; i11++) {
-            ArrayDeque arrayDeque = this.f268b;
+            ArrayDeque arrayDeque = this.f277b;
             a1.c cVar = new a1.c(this, 1);
-            ?? obj = new Object();
-            obj.f266c = cVar;
-            arrayDeque.add(obj);
+            ?? kVar = new dd.k();
+            kVar.f275n = cVar;
+            arrayDeque.add(kVar);
         }
-        this.f269c = new ArrayDeque();
-        this.f271g = -9223372036854775807L;
+        this.f278c = new ArrayDeque();
+        this.f281g = -9223372036854775807L;
     }
 
     @Override
     public final void a(long j3) {
-        this.f271g = j3;
+        this.f281g = j3;
     }
 
     @Override
     public final void b(long j3) {
-        this.e = j3;
+        this.f279e = j3;
     }
 
     @Override
@@ -46,7 +46,7 @@ public abstract class l implements z3.e {
             z10 = false;
         }
         e2.d.g(z10);
-        ArrayDeque arrayDeque = this.f267a;
+        ArrayDeque arrayDeque = this.f276a;
         if (arrayDeque.isEmpty()) {
             return null;
         }
@@ -56,9 +56,8 @@ public abstract class l implements z3.e {
     }
 
     @Override
-    public final void e(Object obj) {
+    public final void e(z3.i iVar) {
         boolean z10;
-        z3.i iVar = (z3.i) obj;
         if (iVar == this.d) {
             z10 = true;
         } else {
@@ -66,21 +65,21 @@ public abstract class l implements z3.e {
         }
         e2.d.b(z10);
         j jVar = (j) iVar;
-        if (!jVar.isEndOfStream()) {
-            long j3 = jVar.e;
+        if (!jVar.c(4)) {
+            long j3 = jVar.h;
             if (j3 != Long.MIN_VALUE) {
-                long j10 = this.f271g;
+                long j10 = this.f281g;
                 if (j10 != -9223372036854775807L && j3 < j10) {
-                    jVar.clear();
-                    this.f267a.add(jVar);
+                    jVar.i();
+                    this.f276a.add(jVar);
                     this.d = null;
                 }
             }
         }
-        long j11 = this.f270f;
-        this.f270f = 1 + j11;
-        jVar.f265s = j11;
-        this.f269c.add(jVar);
+        long j11 = this.f280f;
+        this.f280f = 1 + j11;
+        jVar.f274w = j11;
+        this.f278c.add(jVar);
         this.d = null;
     }
 
@@ -89,23 +88,23 @@ public abstract class l implements z3.e {
     @Override
     public void flush() {
         ArrayDeque arrayDeque;
-        this.f270f = 0L;
-        this.e = 0L;
+        this.f280f = 0L;
+        this.f279e = 0L;
         while (true) {
-            ArrayDeque arrayDeque2 = this.f269c;
+            ArrayDeque arrayDeque2 = this.f278c;
             boolean isEmpty = arrayDeque2.isEmpty();
-            arrayDeque = this.f267a;
+            arrayDeque = this.f276a;
             if (isEmpty) {
                 break;
             }
             j jVar = (j) arrayDeque2.poll();
-            String str = d0.f7188a;
-            jVar.clear();
+            String str = d0.f8737a;
+            jVar.i();
             arrayDeque.add(jVar);
         }
         j jVar2 = this.d;
         if (jVar2 != null) {
-            jVar2.clear();
+            jVar2.i();
             arrayDeque.add(jVar2);
             this.d = null;
         }
@@ -115,22 +114,22 @@ public abstract class l implements z3.e {
 
     @Override
     public z3.j c() {
-        ArrayDeque arrayDeque = this.f268b;
+        ArrayDeque arrayDeque = this.f277b;
         if (arrayDeque.isEmpty()) {
             return null;
         }
         while (true) {
-            ArrayDeque arrayDeque2 = this.f269c;
+            ArrayDeque arrayDeque2 = this.f278c;
             if (!arrayDeque2.isEmpty()) {
-                String str = d0.f7188a;
-                if (((j) arrayDeque2.peek()).e <= this.e) {
+                String str = d0.f8737a;
+                if (((j) arrayDeque2.peek()).h <= this.f279e) {
                     j jVar = (j) arrayDeque2.poll();
-                    boolean isEndOfStream = jVar.isEndOfStream();
-                    ArrayDeque arrayDeque3 = this.f267a;
-                    if (isEndOfStream) {
+                    boolean c10 = jVar.c(4);
+                    ArrayDeque arrayDeque3 = this.f276a;
+                    if (c10) {
                         z3.j jVar2 = (z3.j) arrayDeque.pollFirst();
-                        jVar2.addFlag(4);
-                        jVar.clear();
+                        jVar2.a(4);
+                        jVar.i();
                         arrayDeque3.add(jVar);
                         return jVar2;
                     }
@@ -138,15 +137,15 @@ public abstract class l implements z3.e {
                     if (i()) {
                         m f7 = f();
                         z3.j jVar3 = (z3.j) arrayDeque.pollFirst();
-                        long j3 = jVar.e;
-                        jVar3.timeUs = j3;
-                        jVar3.f47213a = f7;
-                        jVar3.f47214b = j3;
-                        jVar.clear();
+                        long j3 = jVar.h;
+                        jVar3.f10852c = j3;
+                        jVar3.f50699f = f7;
+                        jVar3.h = j3;
+                        jVar.i();
                         arrayDeque3.add(jVar);
                         return jVar3;
                     }
-                    jVar.clear();
+                    jVar.i();
                     arrayDeque3.add(jVar);
                 } else {
                     return null;

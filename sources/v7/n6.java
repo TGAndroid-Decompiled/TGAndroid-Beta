@@ -41,8 +41,8 @@ public abstract class n6 {
             if (string6 != null) {
                 try {
                     bundle2.putInt("_nmt", Integer.parseInt(string6));
-                } catch (NumberFormatException e) {
-                    Log.w("FirebaseMessaging", "Error while parsing timestamp in GCM event", e);
+                } catch (NumberFormatException e7) {
+                    Log.w("FirebaseMessaging", "Error while parsing timestamp in GCM event", e7);
                 }
             }
             if (bundle.containsKey("google.c.a.udt")) {
@@ -51,11 +51,11 @@ public abstract class n6 {
             if (str3 != null) {
                 try {
                     bundle2.putInt("_ndt", Integer.parseInt(str3));
-                } catch (NumberFormatException e7) {
-                    Log.w("FirebaseMessaging", "Error while parsing use_device_time in GCM event", e7);
+                } catch (NumberFormatException e10) {
+                    Log.w("FirebaseMessaging", "Error while parsing use_device_time in GCM event", e10);
                 }
             }
-            if (android.support.v4.media.c.f(bundle)) {
+            if (xa.c.L(bundle)) {
                 str2 = "display";
             } else {
                 str2 = "data";

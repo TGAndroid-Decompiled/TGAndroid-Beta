@@ -1,47 +1,86 @@
 package org.telegram.ui;
 
-import android.content.Context;
 import android.view.View;
-import org.telegram.messenger.MessageObject;
-import org.telegram.tgnet.tl.TL_keyboard;
-public final class hg implements View.OnLongClickListener {
-    public final int f33383a;
-    public final Object f33384b;
-    public final Object f33385c;
-    public final Object d;
-    public final Object e;
+import androidx.recyclerview.widget.RecyclerView;
+import org.telegram.messenger.ChannelBoostsController;
+import org.telegram.tgnet.tl.TL_stories;
+public final class hg implements e2.h {
+    public final int f36993a;
+    public final co f36994b;
 
-    public hg(Object obj, Object obj2, Object obj3, Object obj4, int i10) {
-        this.f33383a = i10;
-        this.f33384b = obj;
-        this.f33385c = obj2;
-        this.d = obj3;
-        this.e = obj4;
+    public hg(co coVar, int i10) {
+        this.f36993a = i10;
+        this.f36994b = coVar;
     }
 
     @Override
-    public final boolean onLongClick(View view) {
-        switch (this.f33383a) {
+    public final void accept(Object obj) {
+        switch (this.f36993a) {
             case 0:
-                eo eoVar = (eo) this.f33384b;
-                TL_keyboard.KeyboardInlineButton keyboardInlineButton = (TL_keyboard.KeyboardInlineButton) this.f33385c;
-                MessageObject messageObject = (MessageObject) this.d;
-                di.h hVar = (di.h) this.e;
-                TL_keyboard.TL_inlineButtonTypeUrl tL_inlineButtonTypeUrl = (TL_keyboard.TL_inlineButtonTypeUrl) yf.c.a(keyboardInlineButton, TL_keyboard.TL_inlineButtonTypeUrl.class);
-                if (eoVar.getParentActivity() == null) {
-                    return false;
+                this.f36994b.E1 = (ChannelBoostsController.CanApplyBoost) obj;
+                return;
+            case 1:
+                View view = (View) obj;
+                boolean z10 = view instanceof org.telegram.ui.Cells.t1;
+                co coVar = this.f36994b;
+                if (z10) {
+                    org.telegram.ui.Cells.t1 t1Var = (org.telegram.ui.Cells.t1) view;
+                    t1Var.E8 = coVar.t9();
+                    t1Var.F8 = coVar.C9();
+                    boolean B9 = coVar.B9();
+                    if (t1Var.G8 != B9) {
+                        t1Var.G8 = B9;
+                        coVar.f35473x0.getClass();
+                        int R = RecyclerView.R(view);
+                        t1Var.f23047n8 = true;
+                        t1Var.forceLayout();
+                        if (R >= 0) {
+                            coVar.A0.m(R);
+                        }
+                    }
+                    t1Var.H8 = coVar.Q8();
+                    int R8 = coVar.R8();
+                    if (t1Var.I8 != R8) {
+                        t1Var.I8 = R8;
+                        t1Var.y4();
+                        t1Var.invalidate();
+                        return;
+                    }
+                    return;
+                } else if (view instanceof org.telegram.ui.Cells.w0) {
+                    org.telegram.ui.Cells.w0 w0Var = (org.telegram.ui.Cells.w0) view;
+                    w0Var.f23410e0 = coVar.t9();
+                    w0Var.f23423i0 = coVar.C9();
+                    coVar.B9();
+                    coVar.Q8();
+                    int R82 = coVar.R8();
+                    if (w0Var.f23426j0 != R82) {
+                        w0Var.f23426j0 = R82;
+                        w0Var.invalidate();
+                        return;
+                    }
+                    return;
+                } else if (view instanceof org.telegram.ui.Cells.v1) {
+                    ((org.telegram.ui.Cells.v1) view).getTextView().setTranslationX(coVar.R8() / 2.0f);
+                    return;
+                } else if (view instanceof org.telegram.ui.Cells.b0) {
+                    view.invalidate();
+                    return;
+                } else if (view instanceof org.telegram.ui.Cells.h0) {
+                    view.invalidate();
+                    return;
+                } else {
+                    return;
                 }
-                if ((eoVar.O0.getVisibility() == 0 && tL_inlineButtonTypeUrl == null && !yf.c.c(keyboardInlineButton, TL_keyboard.TL_inlineButtonTypeSwitchInline.class) && !yf.c.c(keyboardInlineButton, TL_keyboard.TL_inlineButtonTypeCallback.class) && !yf.c.c(keyboardInlineButton, TL_keyboard.TL_inlineButtonTypeGame.class) && !yf.c.c(keyboardInlineButton, TL_keyboard.TL_inlineButtonTypeBuy.class) && !yf.c.c(keyboardInlineButton, TL_keyboard.TL_inlineButtonTypeUrlAuth.class) && !yf.c.c(keyboardInlineButton, TL_keyboard.TL_inlineButtonTypeUserProfile.class)) || tL_inlineButtonTypeUrl == null) {
-                    return false;
-                }
-                eoVar.Z9(null, tL_inlineButtonTypeUrl.url, true, null, messageObject);
-                try {
-                    hVar.performHapticFeedback(0, 1);
-                } catch (Exception unused) {
-                }
-                return true;
             default:
-                return org.telegram.ui.Components.yi.q((org.telegram.ui.Components.yi) this.f33384b, (Context) this.f33385c, (org.telegram.ui.ActionBar.f6) this.d, (org.telegram.ui.ActionBar.p2) this.e, view);
+                TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus = (TL_stories.TL_premium_boostsStatus) obj;
+                if (tL_premium_boostsStatus != null) {
+                    co coVar2 = this.f36994b;
+                    coVar2.D1 = tL_premium_boostsStatus;
+                    coVar2.getMessagesController().getBoostsController().userCanBoostChannel(coVar2.T5, tL_premium_boostsStatus, new hg(coVar2, 0));
+                    return;
+                }
+                return;
         }
     }
 }

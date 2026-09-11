@@ -1,16 +1,21 @@
 package f2;
-public final class j {
-    public final int f7698a;
-    public final int f7699b;
-    public final int f7700c;
-    public final int d;
-    public final int e;
 
-    public j(int i10, int i11, int i12, int i13, int i14) {
-        this.f7698a = i10;
-        this.f7699b = i11;
-        this.f7700c = i12;
-        this.d = i13;
-        this.e = i14;
+import e9.a1;
+import e9.i0;
+public final class j {
+    public final i0 f9190a;
+    public final int[] f9191b;
+
+    public j(a1 a1Var, int[] iArr, int i10) {
+        switch (i10) {
+            case 1:
+                this.f9190a = i0.v(a1Var);
+                this.f9191b = iArr;
+                return;
+            default:
+                this.f9190a = i0.v(a1Var);
+                this.f9191b = iArr;
+                return;
+        }
     }
 }

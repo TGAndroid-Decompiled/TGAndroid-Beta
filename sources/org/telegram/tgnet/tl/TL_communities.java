@@ -7,7 +7,7 @@ import org.telegram.tgnet.TLMethod;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.Vector;
-import org.telegram.tgnet.p;
+import org.telegram.tgnet.m;
 public class TL_communities {
 
     public static class CommunityPeer extends TLObject {
@@ -112,8 +112,8 @@ public class TL_communities {
         public void readParams(InputSerializedData inputSerializedData, boolean z10) {
             this.creator_chat_ids = Vector.deserializeLong(inputSerializedData, z10);
             this.joined_chat_ids = Vector.deserializeLong(inputSerializedData, z10);
-            this.chats = Vector.deserialize(inputSerializedData, new p(10), z10);
-            this.users = Vector.deserialize(inputSerializedData, new p(4), z10);
+            this.chats = Vector.deserialize(inputSerializedData, new m(10), z10);
+            this.users = Vector.deserialize(inputSerializedData, new m(4), z10);
         }
 
         @Override
@@ -153,8 +153,8 @@ public class TL_communities {
             if (TLObject.hasFlag(this.flags, 1)) {
                 this.next_offset = inputSerializedData.readString(z10);
             }
-            this.chats = Vector.deserialize(inputSerializedData, new p(10), z10);
-            this.users = Vector.deserialize(inputSerializedData, new p(4), z10);
+            this.chats = Vector.deserialize(inputSerializedData, new m(10), z10);
+            this.users = Vector.deserialize(inputSerializedData, new m(4), z10);
         }
 
         @Override

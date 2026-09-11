@@ -1,26 +1,34 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
+import android.graphics.Canvas;
 import android.view.View;
-import android.widget.LinearLayout;
 import org.telegram.messenger.AndroidUtilities;
-public final class zo0 extends LinearLayout {
-    public final int f29779a;
-    public final int f29780b;
+import org.telegram.messenger.Utilities;
+public final class zo0 {
+    public final lu f33195a;
+    public final long f33196b;
+    public final float f33197c;
+    public final float d;
+    public final float f33198e;
 
-    public zo0(Context context, int i10, int i11) {
-        super(context);
-        this.f29779a = i10;
-        this.f29780b = i11;
+    public zo0(View view) {
+        lu luVar = new lu(1, view);
+        this.f33196b = System.currentTimeMillis();
+        this.f33195a = luVar;
+        this.f33197c = AndroidUtilities.lerp(5.0f, 9.0f, Utilities.clamp01(Utilities.fastRandom.nextFloat()));
+        this.d = AndroidUtilities.lerp(2.5f, 5.0f, Utilities.clamp01(Utilities.fastRandom.nextFloat()));
+        this.f33198e = AndroidUtilities.lerp(2.5f, 5.2f, Utilities.clamp01(Utilities.fastRandom.nextFloat()));
     }
 
-    @Override
-    public final int getSuggestedMinimumWidth() {
-        return AndroidUtilities.dp(260.0f);
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(Math.min(View.MeasureSpec.getSize(i10), this.f29779a), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(Math.min(View.MeasureSpec.getSize(i11), this.f29780b), View.MeasureSpec.getMode(i11)));
+    public final void a(Canvas canvas, float f7) {
+        lu luVar;
+        float currentTimeMillis = ((float) (System.currentTimeMillis() - this.f33196b)) / 1000.0f;
+        canvas.translate(0.0f, 0.0f);
+        canvas.rotate(((float) Math.sin(this.f33197c * currentTimeMillis * 3.141592653589793d)) * 1.0f * f7);
+        canvas.translate(((float) Math.cos(this.d * currentTimeMillis * 3.141592653589793d)) * AndroidUtilities.dp(0.5f) * f7, ((float) Math.sin(currentTimeMillis * this.f33198e * 3.141592653589793d)) * AndroidUtilities.dp(0.5f) * f7);
+        canvas.translate(-0.0f, -0.0f);
+        if (f7 > 0.0f && (luVar = this.f33195a) != null) {
+            luVar.run();
+        }
     }
 }

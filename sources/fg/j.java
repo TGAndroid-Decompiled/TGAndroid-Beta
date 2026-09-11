@@ -1,11 +1,15 @@
 package fg;
 
-import java.util.ArrayList;
-import java.util.HashSet;
+import java.net.Socket;
 public final class j {
-    public HashSet f8079a;
-    public HashSet f8080b;
-    public HashSet f8081c;
-    public ArrayList d;
-    public bi.f0 e;
+    public final int f9499a;
+    public final Socket f9500b;
+    public long f9501c = 4194304;
+    public long d = 4194304;
+    public boolean f9502e;
+
+    public j(int i10, Socket socket) {
+        this.f9499a = i10;
+        this.f9500b = socket;
+    }
 }

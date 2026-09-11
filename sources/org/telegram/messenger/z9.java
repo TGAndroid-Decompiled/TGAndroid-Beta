@@ -1,48 +1,47 @@
 package org.telegram.messenger;
 
-import java.util.Comparator;
-import org.telegram.messenger.MessagesController;
-import org.telegram.tgnet.TLRPC;
-public final class z9 implements Comparator {
-    public final int f17139a;
-    public final MessagesController f17140b;
+import java.util.ArrayList;
+public final class z9 implements Runnable {
+    public final int f19822a;
+    public final MessagesController f19823b;
+    public final long f19824c;
+    public final ArrayList d;
 
-    public z9(MessagesController messagesController, int i10) {
-        this.f17139a = i10;
-        this.f17140b = messagesController;
+    public z9(MessagesController messagesController, long j3, ArrayList arrayList, int i10) {
+        this.f19822a = i10;
+        this.f19823b = messagesController;
+        this.f19824c = j3;
+        this.d = arrayList;
     }
 
     @Override
-    public final int compare(Object obj, Object obj2) {
-        int lambda$new$9;
-        int lambda$new$10;
-        int lambda$new$11;
-        int lambda$new$12;
-        int lambda$processUpdatesQueue$327;
-        int lambda$renameSavedReactionTag$484;
-        int lambda$updateSavedReactionTags$483;
-        switch (this.f17139a) {
+    public final void run() {
+        switch (this.f19822a) {
             case 0:
-                lambda$new$9 = this.f17140b.lambda$new$9((TLRPC.Dialog) obj, (TLRPC.Dialog) obj2);
-                return lambda$new$9;
+                this.f19823b.lambda$markAllTopicsAsRead$7(this.d, this.f19824c);
+                return;
             case 1:
-                lambda$new$10 = this.f17140b.lambda$new$10((TLRPC.Dialog) obj, (TLRPC.Dialog) obj2);
-                return lambda$new$10;
+                this.f19823b.lambda$generateJoinMessage$368(this.f19824c, this.d);
+                return;
             case 2:
-                lambda$new$11 = this.f17140b.lambda$new$11((MessagesController.CommunityPeerDialog) obj, (MessagesController.CommunityPeerDialog) obj2);
-                return lambda$new$11;
+                this.f19823b.lambda$getDifference$354(this.f19824c, this.d);
+                return;
             case 3:
-                lambda$new$12 = this.f17140b.lambda$new$12((TLRPC.Update) obj, (TLRPC.Update) obj2);
-                return lambda$new$12;
+                this.f19823b.lambda$processUpdateArray$418(this.f19824c, this.d);
+                return;
             case 4:
-                lambda$processUpdatesQueue$327 = this.f17140b.lambda$processUpdatesQueue$327((TLRPC.Updates) obj, (TLRPC.Updates) obj2);
-                return lambda$processUpdatesQueue$327;
-            case 5:
-                lambda$renameSavedReactionTag$484 = this.f17140b.lambda$renameSavedReactionTag$484((TLRPC.TL_savedReactionTag) obj, (TLRPC.TL_savedReactionTag) obj2);
-                return lambda$renameSavedReactionTag$484;
+                this.f19823b.lambda$deleteMessagesByPush$369(this.d, this.f19824c);
+                return;
             default:
-                lambda$updateSavedReactionTags$483 = this.f17140b.lambda$updateSavedReactionTags$483((TLRPC.TL_savedReactionTag) obj, (TLRPC.TL_savedReactionTag) obj2);
-                return lambda$updateSavedReactionTags$483;
+                this.f19823b.lambda$getDifference$355(this.f19824c, this.d);
+                return;
         }
+    }
+
+    public z9(MessagesController messagesController, ArrayList arrayList, long j3, int i10) {
+        this.f19822a = i10;
+        this.f19823b = messagesController;
+        this.d = arrayList;
+        this.f19824c = j3;
     }
 }

@@ -1,50 +1,27 @@
 package org.telegram.messenger.voip;
 
-import android.content.SharedPreferences;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class x implements RequestDelegate {
-    public final int f16802a;
-    public final Object f16803b;
+import java.util.HashSet;
+public final class x implements Runnable {
+    public final int f19447a;
+    public final VoIPService f19448b;
+    public final HashSet f19449c;
+    public final String d;
 
-    public x(Object obj, int i10) {
-        this.f16802a = i10;
-        this.f16803b = obj;
+    public x(VoIPService voIPService, HashSet hashSet, String str, int i10) {
+        this.f19447a = i10;
+        this.f19448b = voIPService;
+        this.f19449c = hashSet;
+        this.d = str;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f16802a) {
+    public final void run() {
+        switch (this.f19447a) {
             case 0:
-                ((VoIPService) this.f16803b).lambda$hangUp$4(tLObject, tL_error);
-                return;
-            case 1:
-                ((VoIPService) this.f16803b).lambda$hangUp$5(tLObject, tL_error);
-                return;
-            case 2:
-                ((VoIPService) this.f16803b).lambda$startOutgoingCall$7(tLObject, tL_error);
-                return;
-            case 3:
-                ((VoIPService) this.f16803b).lambda$startGroupCheckShortpoll$62(tLObject, tL_error);
-                return;
-            case 4:
-                ((VoIPService) this.f16803b).lambda$declineIncomingCall$105(tLObject, tL_error);
-                return;
-            case 5:
-                ((VoIPService) this.f16803b).lambda$processAcceptedCall$20(tLObject, tL_error);
-                return;
-            case 6:
-                ((VoIPService) this.f16803b).lambda$startGroupCall$23(tLObject, tL_error);
-                return;
-            case 7:
-                ((VoIPService) this.f16803b).lambda$stopScreenCapture$15(tLObject, tL_error);
-                return;
-            case 8:
-                ((VoIPService) this.f16803b).lambda$acceptIncomingCall$102(tLObject, tL_error);
+                this.f19448b.lambda$startConferenceGroupCall$42(this.f19449c, this.d);
                 return;
             default:
-                VoIPService.lambda$updateServerConfig$107((SharedPreferences) this.f16803b, tLObject, tL_error);
+                this.f19448b.lambda$startConferenceGroupCall$50(this.f19449c, this.d);
                 return;
         }
     }

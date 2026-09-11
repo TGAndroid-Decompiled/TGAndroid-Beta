@@ -1,35 +1,22 @@
 package org.telegram.ui;
-
-import org.telegram.messenger.MessagesStorage;
-public final class us implements MessagesStorage.IntCallback {
-    public final int f37335a;
-    public final ContactsActivity f37336b;
+public final class us implements Runnable {
+    public final int f41213a;
+    public final ContactsActivity f41214b;
 
     public us(ContactsActivity contactsActivity, int i10) {
-        this.f37335a = i10;
-        this.f37336b = contactsActivity;
+        this.f41213a = i10;
+        this.f41214b = contactsActivity;
     }
 
     @Override
-    public final void run(int i10) {
-        boolean z10;
-        switch (this.f37335a) {
+    public final void run() {
+        switch (this.f41213a) {
             case 0:
-                ContactsActivity contactsActivity = this.f37336b;
-                contactsActivity.getClass();
-                if (i10 != 0) {
-                    z10 = true;
-                } else {
-                    z10 = false;
-                }
-                contactsActivity.f29850b0 = z10;
-                if (i10 != 0) {
-                    contactsActivity.f0(false);
-                    return;
-                }
+                this.f41214b.g0();
                 return;
             default:
-                ContactsActivity.W(this.f37336b, i10);
+                ContactsActivity contactsActivity = this.f41214b;
+                contactsActivity.f33346f.postOnAnimation(new us(contactsActivity, 0));
                 return;
         }
     }

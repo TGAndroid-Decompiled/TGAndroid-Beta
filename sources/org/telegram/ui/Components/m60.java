@@ -1,75 +1,144 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.graphics.RectF;
-import android.view.MotionEvent;
-import android.view.View;
+import android.view.ViewGroup;
 import android.widget.FrameLayout;
+import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-public final class m60 extends FrameLayout {
-    public final RectF f25168a;
-    public boolean f25169b;
-    public Boolean f25170c;
-    public final a70 d;
+import org.telegram.messenger.UserConfig;
+public final class m60 extends kl0 {
+    public final r60 f28393c;
 
-    public m60(a70 a70Var, Context context) {
-        super(context);
-        this.d = a70Var;
-        this.f25168a = new RectF();
+    public m60(r60 r60Var) {
+        this.f28393c = r60Var;
     }
 
     @Override
-    public final void onDraw(android.graphics.Canvas r14) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.m60.onDraw(android.graphics.Canvas):void");
-    }
-
-    @Override
-    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        if (motionEvent.getAction() == 0) {
-            a70 a70Var = this.d;
-            if (a70Var.Z != 0 && motionEvent.getY() < a70Var.Z) {
-                a70Var.dismiss();
+    public final boolean D(s4.c1 c1Var) {
+        int b10 = c1Var.b();
+        r60 r60Var = this.f28393c;
+        if (b10 == r60Var.f29956n) {
+            if (r60Var.f29941b.admin_id != UserConfig.getInstance(r60.M(r60Var)).clientUserId) {
                 return true;
             }
-        }
-        return super.onInterceptTouchEvent(motionEvent);
-    }
-
-    @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        super.onLayout(z10, i10, i11, i12, i13);
-        a70.O(this.d);
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        int i12;
-        int i13;
-        int size = View.MeasureSpec.getSize(i11);
-        a70 a70Var = this.d;
-        a70Var.f21397a0 = true;
-        i12 = ((org.telegram.ui.ActionBar.h3) a70Var).backgroundPaddingLeft;
-        int i14 = AndroidUtilities.statusBarHeight;
-        i13 = ((org.telegram.ui.ActionBar.h3) a70Var).backgroundPaddingLeft;
-        setPadding(i12, i14, i13, 0);
-        a70Var.f21397a0 = false;
-        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(size, 1073741824));
-        this.f25169b = true;
-    }
-
-    @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        if (!this.d.isDismissed() && super.onTouchEvent(motionEvent)) {
+            return false;
+        } else if (b10 < r60Var.f29960x || b10 >= r60Var.f29961y) {
+            if (b10 >= r60Var.O && b10 < r60Var.P) {
+                return true;
+            }
+            return false;
+        } else {
             return true;
         }
-        return false;
     }
 
     @Override
-    public final void requestLayout() {
-        if (this.d.f21397a0) {
-            return;
+    public final int h() {
+        return this.f28393c.S;
+    }
+
+    @Override
+    public final int j(int i10) {
+        r60 r60Var = this.f28393c;
+        if (i10 == r60Var.h || i10 == r60Var.N || i10 == r60Var.f29959w || i10 == r60Var.f29946e) {
+            return 0;
         }
-        super.requestLayout();
+        if (i10 != r60Var.f29956n) {
+            if (i10 < r60Var.O || i10 >= r60Var.P) {
+                if (i10 < r60Var.f29960x || i10 >= r60Var.f29961y) {
+                    if (i10 != r60Var.f29957r && i10 != r60Var.f29958s) {
+                        if (i10 == r60Var.H) {
+                            return 3;
+                        }
+                        if (i10 == r60Var.I) {
+                            return 4;
+                        }
+                        if (i10 == r60Var.J) {
+                            return 5;
+                        }
+                        r60Var.getClass();
+                        if (i10 != 0 && i10 != r60Var.K && i10 != r60Var.L) {
+                            if (i10 == r60Var.v) {
+                                return 7;
+                            }
+                            if (i10 == r60Var.M) {
+                                return 8;
+                            }
+                            if (i10 != r60Var.f29948f) {
+                                return 0;
+                            }
+                            return 9;
+                        }
+                        return 6;
+                    }
+                    return 2;
+                }
+                return 1;
+            }
+            return 1;
+        }
+        return 1;
+    }
+
+    @Override
+    public final void v(s4.c1 r25, int r26) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.m60.v(s4.c1, int):void");
+    }
+
+    @Override
+    public final s4.c1 x(ViewGroup viewGroup, int i10) {
+        t00 t00Var;
+        t00 t00Var2;
+        Context context = viewGroup.getContext();
+        r60 r60Var = this.f28393c;
+        switch (i10) {
+            case 1:
+                t00Var2 = new p60(context);
+                break;
+            case 2:
+                t00Var2 = new org.telegram.ui.Cells.a7(context, org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f20607a7, false), 0);
+                break;
+            case 3:
+                i60 i60Var = new i60(this, context, r60Var.U, r60Var, r60Var.f29951h0);
+                i60Var.setDelegate(new l60(this));
+                i60Var.setLayoutParams(new s4.p0(-1, -2));
+                t00Var2 = i60Var;
+                break;
+            case 4:
+                t00Var2 = new q60(r60Var, context);
+                break;
+            case 5:
+                t00 t00Var3 = new t00(context, null);
+                t00Var3.setIsSingleCell(true);
+                t00Var3.setViewType(10);
+                t00Var3.f30465w = false;
+                t00Var3.setPaddingLeft(AndroidUtilities.dp(10.0f));
+                t00Var = t00Var3;
+                t00Var2 = t00Var;
+                break;
+            case 6:
+                t00Var2 = new jn(context, 12);
+                break;
+            case 7:
+                t00Var2 = new org.telegram.ui.Cells.a7(context, (org.telegram.ui.Cells.p6) null);
+                break;
+            case 8:
+                ?? frameLayout = new FrameLayout(context);
+                TextView textView = new TextView(context);
+                frameLayout.f28626a = textView;
+                textView.setTextSize(1, 14.0f);
+                com.google.android.gms.internal.vision.e2.p(org.telegram.ui.ActionBar.j6.f21042y6, null, false, textView, 1);
+                frameLayout.addView(textView, w7.x5.d(-1, -2.0f, 16, 60.0f, 0.0f, 60.0f, 0.0f));
+                t00Var = frameLayout;
+                t00Var2 = t00Var;
+                break;
+            case 9:
+                t00Var2 = new o60(r60Var, context);
+                break;
+            default:
+                t00Var2 = new org.telegram.ui.Cells.u3(context, r60.y(r60Var));
+                break;
+        }
+        return com.google.android.gms.internal.vision.e2.l(t00Var2, t00Var2, -1, -2);
     }
 }

@@ -1,18 +1,29 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class o3 extends z51 {
-    public final AlertDialog$Builder e;
+import android.content.Context;
+import android.os.Vibrator;
+import android.text.Spanned;
+import org.telegram.messenger.AndroidUtilities;
+public final class o3 extends fq {
+    public final Context f28942b;
+    public final NumberTextView f28943c;
 
-    public o3(String str, AlertDialog$Builder alertDialog$Builder) {
-        super(str, (b11) null);
-        this.e = alertDialog$Builder;
+    public o3(int i10, Context context, NumberTextView numberTextView) {
+        super(i10);
+        this.f28942b = context;
+        this.f28943c = numberTextView;
     }
 
     @Override
-    public final void onClick(View view) {
-        this.e.f17528a.L0.run();
-        super.onClick(view);
+    public final CharSequence filter(CharSequence charSequence, int i10, int i11, Spanned spanned, int i12, int i13) {
+        CharSequence filter = super.filter(charSequence, i10, i11, spanned, i12, i13);
+        if (filter != null && charSequence != null && filter.length() != charSequence.length()) {
+            Vibrator vibrator = (Vibrator) this.f28942b.getSystemService("vibrator");
+            if (vibrator != null) {
+                vibrator.vibrate(200L);
+            }
+            AndroidUtilities.shakeView(this.f28943c);
+        }
+        return filter;
     }
 }

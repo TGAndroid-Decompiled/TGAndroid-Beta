@@ -1,257 +1,173 @@
 package bi;
 
-import android.app.Activity;
-import android.content.Context;
-import android.os.Bundle;
-import java.util.ArrayList;
-import java.util.HashSet;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
+import android.graphics.drawable.Drawable;
+import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LiteMode;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.LocationController;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.MessagesStorage;
-import org.telegram.messenger.NotificationsController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.SharedConfig;
-import org.telegram.messenger.voip.GroupCallMessagesController;
-import org.telegram.messenger.voip.VideoCapturerDevice;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.ui.Components.eg;
-import org.telegram.ui.Components.fh0;
-import org.telegram.ui.Components.ih0;
-import org.telegram.ui.Components.vf0;
-import org.telegram.ui.Components.zf0;
-import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.PhotoViewer;
-import org.telegram.ui.ProfileActivity;
-import org.telegram.ui.ec0;
-import org.telegram.ui.eo;
-import org.telegram.ui.fb1;
-import org.telegram.ui.j60;
-import org.telegram.ui.oi;
-import org.telegram.ui.pf;
-import org.telegram.ui.wy;
-public final class va implements Runnable {
-    public final int f3799a;
-    public final long f3800b;
-    public final Object f3801c;
+import org.telegram.ui.Components.pr;
+public final class va extends Drawable {
+    public int f3911a;
+    public final View f3912b;
+    public final Paint f3913c;
+    public final Paint d;
+    public final org.telegram.ui.Components.e6 f3916g;
+    public boolean h;
+    public Paint f3917i;
+    public int f3914e = 255;
+    public final float[] f3915f = new float[15];
+    public final Path f3918j = new Path();
 
-    public va(Object obj, long j3, int i10) {
-        this.f3799a = i10;
-        this.f3801c = obj;
-        this.f3800b = j3;
+    public va(View view) {
+        this.f3912b = view;
+        this.f3916g = new org.telegram.ui.Components.e6(view, 350L, pr.h);
+        Paint paint = new Paint(1);
+        this.f3913c = paint;
+        paint.setShadowLayer(AndroidUtilities.dp(4.0f), 0.0f, 0.0f, 1593835520);
+        Paint paint2 = new Paint(1);
+        this.d = paint2;
+        paint2.setColor(-1);
+    }
+
+    public final void a() {
+        int i10 = this.f3911a + 1;
+        this.f3911a = i10;
+        if (i10 >= 2) {
+            this.f3911a = 0;
+        }
+    }
+
+    public final void b(boolean z10, boolean z11) {
+        float f7;
+        this.h = z10;
+        if (!z11) {
+            if (z10) {
+                f7 = 1.0f;
+            } else {
+                f7 = 0.0f;
+            }
+            this.f3916g.d(f7, true);
+            return;
+        }
+        this.f3912b.invalidate();
+    }
+
+    public final void c(float f7) {
+        this.f3913c.setShadowLayer(AndroidUtilities.dp(2.0f) / f7, 0.0f, AndroidUtilities.dpf2(0.7f) / f7, i0.a.k(-16777216, 45));
     }
 
     @Override
-    public final void run() {
-        org.telegram.ui.ActionBar.f6 f6Var;
-        xd xdVar;
-        int i10 = this.f3799a;
-        org.telegram.ui.ActionBar.f6 f6Var2 = null;
+    public final void draw(Canvas canvas) {
+        float f7;
+        Paint paint;
+        int i10;
+        float[] fArr = this.f3915f;
         int i11 = 0;
-        boolean z10 = false;
-        i11 = 0;
-        long j3 = this.f3800b;
-        Object obj = this.f3801c;
-        switch (i10) {
-            case 0:
-                kb kbVar = (kb) obj;
-                Context context = kbVar.getContext();
-                rb rbVar = kbVar.W;
-                org.telegram.ui.ActionBar.p2 p2Var = rbVar.attachedFragment;
-                f6Var = ((org.telegram.ui.ActionBar.h3) rbVar).resourcesProvider;
-                org.telegram.ui.Components.d5.S(context, p2Var, f6Var, new za(kbVar, j3, 0));
-                return;
-            case 1:
-                ce ceVar = (ce) obj;
-                xd xdVar2 = ceVar.F;
-                if (xdVar2 != null) {
-                    xdVar2.f(true);
-                    ceVar.F = null;
-                }
-                sd sdVar = ceVar.f2504x;
-                if (sdVar != null) {
-                    xdVar = sdVar.a(j3);
-                } else {
-                    xdVar = null;
-                }
-                ceVar.F = xdVar;
-                if (xdVar != null) {
-                    ceVar.J = xdVar.f3942a;
-                    ceVar.f2483r.c();
-                    kd kdVar = ceVar.f2454h0;
-                    int i12 = ceVar.J;
-                    if (i12 != 1 && i12 != 0) {
-                        i11 = -14737633;
-                    }
-                    kdVar.setBackgroundColor(i11);
-                    ceVar.H.set(ceVar.F.f3944c);
-                    xd xdVar3 = ceVar.F;
-                    ceVar.G = xdVar3.f3943b;
-                    xdVar3.e();
-                    if (SharedConfig.getDevicePerformanceClass() > 1) {
-                        LiteMode.isEnabled(360928);
-                    }
-                }
-                ceVar.f2504x = null;
-                Activity activity = ceVar.f2433b;
-                if (activity instanceof LaunchActivity) {
-                    ((LaunchActivity) activity).f29975z0.post(new tb(ceVar, 5));
-                    return;
-                } else {
-                    ceVar.q(true);
-                    return;
-                }
-            case 2:
-                ge geVar = ((me) obj).f3148a;
-                if (geVar != null) {
-                    geVar.n(j3, false);
-                    return;
-                }
-                return;
-            case 3:
-                MessagesController.getInstance(r11.currentAccount).unlinkCommunity(j3, r11.e, new ei.t((ei.k0) obj, 1));
-                return;
-            case 4:
-                ei.t0 t0Var = (ei.t0) obj;
-                t0Var.f7628i = null;
-                t0Var.f7627g.l(j3);
-                t0Var.f7631l++;
-                t0Var.a();
-                ei.s0 s0Var = t0Var.h;
-                if (s0Var != null) {
-                    s0Var.F();
-                    return;
-                }
-                return;
-            case 5:
-                hi.s sVar = (hi.s) obj;
-                org.telegram.ui.Components.d5.M(sVar.f26422b.f29366f0.getParentActivity(), j3, new pb.c(sVar, 23), sVar.f26421a);
-                return;
-            case 6:
-                hi.g2 g2Var = (hi.g2) obj;
-                org.telegram.ui.Components.d5.M(g2Var.getParentActivity(), j3, new pb.c(g2Var, 24), g2Var.getResourceProvider());
-                return;
-            case 7:
-                String str = e2.d0.f7188a;
-                j2.e eVar = ((i2.b0) ((k2.j) ((of.b) obj).f14295c)).f10108a.f10157s;
-                j2.a p5 = eVar.p();
-                eVar.q(p5, 1010, new j2.d(p5, j3));
-                return;
-            case 8:
-                ((LocationController) obj).lambda$removeSharingLocation$21(j3);
-                return;
-            case 9:
-                ((NotificationsController) obj).lambda$processIgnoreStories$19(j3);
-                return;
-            case 10:
-                ((GroupCallMessagesController) obj).lambda$pushMessageToList$6(j3);
-                return;
-            case 11:
-                ((VideoCapturerDevice) obj).lambda$init$3(j3);
-                return;
-            case 12:
-                ConnectionsManager.lambda$getHostByName$20((String) obj, j3);
-                return;
-            case 13:
-                org.telegram.ui.w3 w3Var = (org.telegram.ui.w3) obj;
-                if (w3Var != null) {
-                    w3Var.dismiss(true);
-                }
-                org.telegram.ui.ActionBar.p2 U = LaunchActivity.U();
-                if (U != null) {
-                    U.presentFragment(new eo(w.f.e(j3, "user_id")));
-                    return;
-                }
-                return;
-            case 14:
-                org.telegram.ui.Components.pc Q = org.telegram.ui.Components.wc.a0((org.telegram.ui.y6) obj).Q(R.raw.ic_delete, 36, LocaleController.formatString(R.string.CacheWasCleared, AndroidUtilities.formatFileSize(j3)));
-                Q.f26089r = false;
-                Q.j();
-                return;
-            case 15:
-                eg egVar = (eg) obj;
-                egVar.getClass();
-                egVar.presentFragment(eo.R9(j3));
-                return;
-            case 16:
-                zf0 zf0Var = (zf0) obj;
-                zf0Var.h("seekTo(" + Math.round(((float) j3) / 1000.0f) + ", true);");
-                AndroidUtilities.runOnUIThread(new vf0(zf0Var, 1), 100L);
-                return;
-            case 17:
-                ih0 ih0Var = (ih0) obj;
-                Activity activity2 = AndroidUtilities.getActivity();
-                org.telegram.ui.ActionBar.p2 U2 = LaunchActivity.U();
-                if (!PhotoViewer.t1().Q1() && (U2 == null || !U2.hasShownSheet())) {
-                    if (U2 != null) {
-                        f6Var2 = U2.getResourceProvider();
-                    }
-                } else {
-                    f6Var2 = new zh.b();
-                }
-                new xh.o7(activity2, f6Var2, this.f3800b, 15, "", new fh0(ih0Var, 0), 0L).show();
-                return;
-            case 18:
-                wy wyVar = (wy) obj;
-                wyVar.A4(true, true);
-                ArrayList arrayList = new ArrayList();
-                arrayList.add(MessagesStorage.TopicKey.of(j3, 0L));
-                wyVar.C2.v(wyVar, arrayList, null, false, wyVar.J2, wyVar.K2, wyVar.L2, null);
-                return;
-            case 19:
-                ((j60) obj).m1(j3, false);
-                return;
-            case 20:
-                ec0 ec0Var = (ec0) obj;
-                ec0Var.getClass();
-                ec0Var.presentFragment(eo.R9(j3));
-                return;
-            case 21:
-                eo eoVar = ((oi) obj).e;
-                eoVar.A7(true);
-                Bundle bundle = new Bundle();
-                bundle.putLong("user_id", j3);
-                if (j3 == eoVar.getUserConfig().getClientUserId()) {
-                    bundle.putBoolean("my_profile", true);
-                }
-                eoVar.presentFragment(new ProfileActivity(bundle, null));
-                return;
-            case 22:
-                ((pf) obj).run(Long.valueOf(j3));
-                return;
-            case 23:
-                org.telegram.ui.web.f0 f0Var = (org.telegram.ui.web.f0) obj;
-                f0Var.getClass();
-                f0Var.presentFragment(eo.R9(j3));
-                return;
-            case 24:
-                sg.c1 c1Var = (sg.c1) obj;
-                HashSet hashSet = c1Var.f41883e0;
-                hashSet.remove(Long.valueOf(j3));
-                c1Var.Y.b(true, hashSet, new sg.v0(c1Var, 5), null);
-                c1Var.b0(true, false);
-                return;
-            case 25:
-                org.telegram.ui.Components.wc.a0((xh.z7) obj).M(LocaleController.getString(R.string.Gift2ConvertedTitle), LocaleController.formatPluralStringComma("Gift2Converted", (int) j3), R.raw.stars_topup).k(true);
-                return;
-            case 26:
-                org.telegram.ui.Components.wc.a0((fb1) obj).M(LocaleController.getString(R.string.Gift2ConvertedTitle), LocaleController.formatPluralStringComma("Gift2ConvertedChannel", (int) j3), R.raw.stars_topup).k(true);
-                return;
-            case 27:
-                ((zh.l) obj).f48619s.e0(j3, false);
-                return;
-            case 28:
-                zh.a3 a3Var = ((zh.u1) obj).f48908a;
-                if (j3 <= 0) {
-                    z10 = true;
-                }
-                a3Var.k0(z10);
-                return;
-            default:
-                AndroidUtilities.runOnUIThread((zh.p2) obj, Math.max(0L, 500 - (System.currentTimeMillis() - j3)));
-                return;
+        fArr[0] = getBounds().centerX();
+        int i12 = 1;
+        fArr[1] = getBounds().centerY();
+        int i13 = 2;
+        fArr[2] = getBounds().height() / 2.0f;
+        int i14 = 3;
+        fArr[3] = (getBounds().width() * 1.027f) + getBounds().left;
+        int i15 = 4;
+        fArr[4] = (getBounds().height() * 0.956f) + getBounds().top;
+        fArr[5] = getBounds().height() * 0.055f;
+        fArr[6] = (getBounds().width() * 0.843f) + getBounds().left;
+        fArr[7] = (getBounds().height() * 0.812f) + getBounds().top;
+        fArr[8] = getBounds().height() * 0.132f;
+        fArr[9] = (getBounds().width() * (-0.02699995f)) + getBounds().left;
+        fArr[10] = (getBounds().height() * 0.956f) + getBounds().top;
+        fArr[11] = getBounds().height() * 0.055f;
+        fArr[12] = (getBounds().width() * 0.157f) + getBounds().left;
+        fArr[13] = (getBounds().height() * 0.812f) + getBounds().top;
+        fArr[14] = getBounds().height() * 0.132f;
+        if (this.h) {
+            f7 = 1.0f;
+        } else {
+            f7 = 0.0f;
         }
+        float d = this.f3916g.d(f7, false);
+        int i16 = this.f3911a;
+        Paint paint2 = this.d;
+        if (i16 == 0) {
+            paint2.setColor(-1);
+        } else if (i16 == 1) {
+            if (this.f3917i == null) {
+                Paint paint3 = new Paint(1);
+                this.f3917i = paint3;
+                paint3.setColor(-16777216);
+                this.f3917i.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
+                this.f3917i.setStrokeWidth(AndroidUtilities.dp(3.0f));
+            }
+            paint2.setColor(i0.a.k(-16777216, 127));
+        }
+        if (this.f3914e == 255 && this.f3911a != 1) {
+            canvas.save();
+        } else {
+            canvas.saveLayerAlpha(getBounds().left - (getBounds().width() * 0.2f), getBounds().top, (getBounds().width() * 0.2f) + getBounds().right, (getBounds().height() * 0.2f) + getBounds().bottom, this.f3914e, 31);
+        }
+        Path path = this.f3918j;
+        path.rewind();
+        int i17 = 0;
+        while (i17 < i13) {
+            if (this.f3911a != i12 || i17 != 0) {
+                if (i17 == 0) {
+                    paint = this.f3913c;
+                } else {
+                    paint = paint2;
+                }
+                if (i17 == 0) {
+                    i10 = 1;
+                } else {
+                    i10 = 0;
+                }
+                while (i11 < 5) {
+                    if (i11 != i12 && i11 != i13) {
+                        if (i11 != i14 && i11 != i15) {
+                            int i18 = i11 * 3;
+                            path.addCircle(fArr[i18], fArr[i18 + 1], fArr[i18 + 2] - i10, Path.Direction.CW);
+                        } else if (d != 0.0f) {
+                            int i19 = i11 * 3;
+                            path.addCircle(fArr[i19], fArr[i19 + 1], (fArr[i19 + 2] * d) - i10, Path.Direction.CW);
+                        }
+                    } else if (d != 1.0f) {
+                        int i20 = i11 * 3;
+                        path.addCircle(fArr[i20], fArr[i20 + 1], ((1.0f - d) * fArr[i20 + 2]) - i10, Path.Direction.CW);
+                    }
+                    i11++;
+                    i14 = 3;
+                    i12 = 1;
+                    i13 = 2;
+                    i15 = 4;
+                }
+                canvas.drawPath(path, paint);
+            }
+            i17++;
+            i14 = 3;
+            i11 = 0;
+            i12 = 1;
+            i13 = 2;
+            i15 = 4;
+        }
+        canvas.restore();
+    }
+
+    @Override
+    public final int getOpacity() {
+        return 0;
+    }
+
+    @Override
+    public final void setAlpha(int i10) {
+        this.f3914e = i10;
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

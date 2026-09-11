@@ -1,137 +1,88 @@
 package org.telegram.ui;
 
-import android.text.Editable;
-import android.text.TextUtils;
-import android.text.TextWatcher;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.view.View;
+import android.view.ViewGroup;
+import java.util.WeakHashMap;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.FileLog;
-public final class jh1 implements TextWatcher {
-    public final int f34105a;
-    public final mh1 f34106b;
+public final class jh1 extends ViewGroup {
+    public final Paint f37777a;
+    public View f37778b;
+    public boolean f37779c;
 
-    public jh1(mh1 mh1Var, int i10) {
-        this.f34105a = i10;
-        this.f34106b = mh1Var;
+    public jh1(Context context) {
+        super(context);
+        this.f37777a = new Paint(1);
+        setClipToPadding(false);
     }
 
     @Override
-    public final void afterTextChanged(Editable editable) {
-        org.telegram.ui.Components.hj0 hj0Var;
-        switch (this.f34105a) {
-            case 0:
-                this.f34106b.getClass();
-                return;
-            case 1:
-                mh1 mh1Var = this.f34106b;
-                if (!mh1Var.M) {
-                    int i10 = mh1Var.O;
-                    if (i10 == 0) {
-                        org.telegram.ui.Components.hj0 animatedDrawable = mh1Var.f34952a.getAnimatedDrawable();
-                        if (mh1Var.f34966n.length() > 0) {
-                            if (mh1Var.f34966n.getTransformationMethod() == null) {
-                                org.telegram.ui.Components.hj0[] hj0VarArr = mh1Var.f34961f0;
-                                if (animatedDrawable != hj0VarArr[3] && animatedDrawable != (hj0Var = hj0VarArr[5])) {
-                                    mh1Var.f34952a.setAnimation(hj0Var);
-                                    mh1Var.f34961f0[5].S(0.0f, false);
-                                    mh1Var.f34952a.d();
-                                    return;
-                                }
-                                return;
-                            }
-                            org.telegram.ui.Components.hj0[] hj0VarArr2 = mh1Var.f34961f0;
-                            if (animatedDrawable != hj0VarArr2[3]) {
-                                org.telegram.ui.Components.hj0 hj0Var2 = hj0VarArr2[2];
-                                if (animatedDrawable != hj0Var2) {
-                                    mh1Var.f34952a.setAnimation(hj0Var2);
-                                    mh1Var.f34961f0[2].P(49);
-                                    mh1Var.f34961f0[2].S(0.0f, false);
-                                    mh1Var.f34952a.d();
-                                    return;
-                                } else if (hj0Var2.f23648b0 < 49) {
-                                    hj0Var2.P(49);
-                                    return;
-                                } else {
-                                    return;
-                                }
-                            }
-                            return;
-                        }
-                        if (animatedDrawable != mh1Var.f34961f0[3] || mh1Var.f34966n.getTransformationMethod() != null) {
-                            org.telegram.ui.Components.hj0[] hj0VarArr3 = mh1Var.f34961f0;
-                            if (animatedDrawable != hj0VarArr3[5]) {
-                                hj0VarArr3[2].P(-1);
-                                org.telegram.ui.Components.hj0 hj0Var3 = mh1Var.f34961f0[2];
-                                if (animatedDrawable != hj0Var3) {
-                                    mh1Var.f34952a.setAnimation(hj0Var3);
-                                    mh1Var.f34961f0[2].N(49, false, false);
-                                }
-                                mh1Var.f34952a.d();
-                                return;
-                            }
-                        }
-                        mh1Var.f34952a.setAnimation(mh1Var.f34961f0[4]);
-                        mh1Var.f34961f0[4].S(0.0f, false);
-                        mh1Var.f34952a.d();
-                        return;
-                    } else if (i10 == 1) {
-                        try {
-                            mh1Var.f34961f0[6].P((int) ((Math.min(1.0f, mh1Var.f34966n.getLayout().getLineWidth(0) / mh1Var.f34966n.getWidth()) * 142.0f) + 18.0f));
-                            mh1Var.f34952a.d();
-                            return;
-                        } catch (Exception e) {
-                            FileLog.e(e);
-                            return;
-                        }
-                    } else if (i10 == 8 && editable.length() > 0) {
-                        mh1Var.H0(true);
-                        return;
-                    } else {
-                        return;
-                    }
-                }
-                return;
-            default:
-                mh1 mh1Var2 = this.f34106b;
-                if (mh1Var2.F) {
-                    if (mh1Var2.E.getVisibility() != 0 && !TextUtils.isEmpty(editable)) {
-                        AndroidUtilities.updateViewVisibilityAnimated(mh1Var2.E, true, 0.1f, true);
-                        return;
-                    } else if (mh1Var2.E.getVisibility() != 8 && TextUtils.isEmpty(editable)) {
-                        AndroidUtilities.updateViewVisibilityAnimated(mh1Var2.E, false, 0.1f, true);
-                        return;
-                    } else {
-                        return;
-                    }
-                }
-                return;
+    public final void dispatchDraw(Canvas canvas) {
+        int paddingBottom = getPaddingBottom();
+        float navigationBarThirdButtonsFactor = AndroidUtilities.getNavigationBarThirdButtonsFactor(0.1f, 0.75f, paddingBottom);
+        int w02 = org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.Oh, false);
+        int h = i0.a.h(org.telegram.ui.ActionBar.j6.l1(navigationBarThirdButtonsFactor, org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f20663d6, false)), w02);
+        Paint paint = this.f37777a;
+        paint.setColor(w02);
+        canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight() - paddingBottom, paint);
+        paint.setColor(h);
+        canvas.drawRect(0.0f, getMeasuredHeight() - paddingBottom, getMeasuredWidth(), getMeasuredHeight(), paint);
+        super.dispatchDraw(canvas);
+    }
+
+    @Override
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        int childCount = getChildCount();
+        for (int i14 = 0; i14 < childCount; i14++) {
+            View childAt = getChildAt(i14);
+            childAt.layout(0, 0, childAt.getMeasuredWidth(), childAt.getMeasuredHeight());
         }
     }
 
     @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-        int i13 = this.f34105a;
+    public final void onMeasure(int i10, int i11) {
+        boolean z10;
+        int i12;
+        View view = this.f37778b;
+        if (view != null && view.getVisibility() == 0) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        int size = View.MeasureSpec.getSize(i10);
+        if (z10) {
+            i12 = getPaddingBottom() + AndroidUtilities.dp(44.0f);
+        } else {
+            i12 = 0;
+        }
+        setMeasuredDimension(size, i12);
+        int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(size, 1073741824);
+        int makeMeasureSpec2 = View.MeasureSpec.makeMeasureSpec(i12, 1073741824);
+        int childCount = getChildCount();
+        for (int i13 = 0; i13 < childCount; i13++) {
+            getChildAt(i13).measure(makeMeasureSpec, makeMeasureSpec2);
+        }
+        if (this.f37779c != z10) {
+            this.f37779c = z10;
+            WeakHashMap weakHashMap = r0.i0.f44697a;
+            r0.y.c(this);
+        }
     }
 
     @Override
-    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-        int i13 = this.f34105a;
+    public final void onViewAdded(View view) {
+        super.onViewAdded(view);
+        this.f37778b = view;
     }
 
-    private final void a(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void b(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void c(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void d(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void e(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void f(int i10, int i11, int i12, CharSequence charSequence) {
+    @Override
+    public final void setPadding(int i10, int i11, int i12, int i13) {
+        super.setPadding(i10, i11, i12, i13);
+        int childCount = getChildCount();
+        for (int i14 = 0; i14 < childCount; i14++) {
+            getChildAt(i14).setPadding(i10, i11, i12, i13);
+        }
     }
 }

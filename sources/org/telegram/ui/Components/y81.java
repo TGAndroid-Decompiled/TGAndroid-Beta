@@ -1,62 +1,24 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.hardware.Sensor;
-import android.hardware.SensorEventListener;
-import android.hardware.SensorManager;
-import android.view.WindowManager;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.pc1;
-public final class y81 implements SensorEventListener {
-    public final float[] f29273a = new float[3];
-    public final float[] f29274b = new float[3];
-    public int f29275c;
-    public final WindowManager d;
-    public final SensorManager e;
-    public final Sensor f29276f;
-    public boolean h;
-    public x81 f29277n;
+import android.view.TextureView;
+import android.view.View;
+import android.view.ViewGroup;
+public interface y81 {
+    TextureView a(View view, boolean z10, float f7, int i10, boolean z11);
 
-    public y81(Context context) {
-        this.d = (WindowManager) context.getSystemService("window");
-        SensorManager sensorManager = (SensorManager) context.getSystemService("sensor");
-        this.e = sensorManager;
-        this.f29276f = sensorManager.getDefaultSensor(1);
-    }
+    void b();
 
-    public static float a(int i10, int i11) {
-        float f7 = i10;
-        float dp = AndroidUtilities.dp(16.0f) * 2;
-        float f10 = (f7 + dp) / f7;
-        float f11 = i11;
-        return Math.max(f10, (dp + f11) / f11);
-    }
+    void c(float f7);
 
-    public final void b(pc1 pc1Var) {
-        this.f29277n = pc1Var;
-    }
+    void d();
 
-    public final void c(boolean z10) {
-        if (this.h != z10) {
-            this.h = z10;
-            Sensor sensor = this.f29276f;
-            if (sensor != null) {
-                SensorManager sensorManager = this.e;
-                if (z10) {
-                    sensorManager.registerListener(this, sensor, 1);
-                } else {
-                    sensorManager.unregisterListener(this);
-                }
-            }
-        }
-    }
+    void e(b91 b91Var, boolean z10);
 
-    @Override
-    public final void onSensorChanged(android.hardware.SensorEvent r17) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.y81.onSensorChanged(android.hardware.SensorEvent):void");
-    }
+    TextureView f(View view, boolean z10, int i10, int i11, boolean z11);
 
-    @Override
-    public final void onAccuracyChanged(Sensor sensor, int i10) {
-    }
+    ViewGroup g();
+
+    boolean h();
+
+    void i(boolean z10, t81 t81Var, float f7, boolean z11);
 }

@@ -1,18 +1,18 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.view.View;
-public final class mm extends f9 {
-    public final nm E;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class mm extends AnimatorListenerAdapter {
+    public final nm f28468a;
 
-    public mm(nm nmVar, Context context) {
-        super(context);
-        this.E = nmVar;
+    public mm(nm nmVar) {
+        this.f28468a = nmVar;
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        nm nmVar = this.E;
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(nmVar.v.K0, 1073741824), View.MeasureSpec.makeMeasureSpec(nmVar.v.K0, 1073741824));
+    public final void onAnimationEnd(Animator animator) {
+        nm nmVar = this.f28468a;
+        nmVar.f28792b.isChatPreviewSpoilerRevealed = true;
+        nmVar.O.f29131z.invalidate();
     }
 }

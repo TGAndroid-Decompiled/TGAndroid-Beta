@@ -8,10 +8,10 @@ import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.Drawable;
 import org.telegram.messenger.R;
 public final class c4 extends Drawable {
-    public final Drawable[] f18964a;
+    public final Drawable[] f21678a;
 
     public c4(Context context) {
-        this.f18964a = r0;
+        this.f21678a = r0;
         Drawable mutate = context.getResources().getDrawable(R.drawable.verified_area).mutate();
         mutate.setColorFilter(new PorterDuffColorFilter(-9063442, PorterDuff.Mode.MULTIPLY));
         Drawable[] drawableArr = {mutate, context.getResources().getDrawable(R.drawable.verified_check).mutate()};
@@ -21,7 +21,7 @@ public final class c4 extends Drawable {
     public final void draw(Canvas canvas) {
         int i10 = 0;
         while (true) {
-            Drawable[] drawableArr = this.f18964a;
+            Drawable[] drawableArr = this.f21678a;
             if (i10 < drawableArr.length) {
                 drawableArr[i10].setBounds(getBounds());
                 drawableArr[i10].draw(canvas);
@@ -34,12 +34,12 @@ public final class c4 extends Drawable {
 
     @Override
     public final int getIntrinsicHeight() {
-        return this.f18964a[0].getIntrinsicHeight();
+        return this.f21678a[0].getIntrinsicHeight();
     }
 
     @Override
     public final int getIntrinsicWidth() {
-        return this.f18964a[0].getIntrinsicWidth();
+        return this.f21678a[0].getIntrinsicWidth();
     }
 
     @Override
@@ -51,7 +51,7 @@ public final class c4 extends Drawable {
     public final void setAlpha(int i10) {
         int i11 = 0;
         while (true) {
-            Drawable[] drawableArr = this.f18964a;
+            Drawable[] drawableArr = this.f21678a;
             if (i11 < drawableArr.length) {
                 drawableArr[i11].setAlpha(i10);
                 i11++;

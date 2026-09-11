@@ -1,25 +1,23 @@
 package org.telegram.messenger;
-
-import java.util.ArrayList;
 public final class y5 implements Runnable {
-    public final int f17034a;
-    public final LocationController f17035b;
-    public final ArrayList f17036c;
+    public final int f19707a;
+    public final MediaController f19708b;
+    public final int f19709c;
 
-    public y5(LocationController locationController, ArrayList arrayList, int i10) {
-        this.f17034a = i10;
-        this.f17035b = locationController;
-        this.f17036c = arrayList;
+    public y5(MediaController mediaController, int i10, int i11) {
+        this.f19707a = i11;
+        this.f19708b = mediaController;
+        this.f19709c = i10;
     }
 
     @Override
     public final void run() {
-        switch (this.f17034a) {
+        switch (this.f19707a) {
             case 0:
-                this.f17035b.lambda$loadSharingLocations$14(this.f17036c);
+                this.f19708b.lambda$onAudioFocusChange$5(this.f19709c);
                 return;
             default:
-                this.f17035b.lambda$loadSharingLocations$15(this.f17036c);
+                this.f19708b.lambda$stopRecording$42(this.f19709c);
                 return;
         }
     }

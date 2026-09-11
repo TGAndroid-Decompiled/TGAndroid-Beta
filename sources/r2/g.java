@@ -1,26 +1,26 @@
 package r2;
 
 import java.nio.ByteBuffer;
-public final class g extends h2.h {
-    public long f41173r;
-    public int f41174s;
-    public int v;
+public final class g extends h2.g {
+    public long v;
+    public int f44822w;
+    public int f44823x;
 
     @Override
-    public final void clear() {
-        super.clear();
-        this.f41174s = 0;
+    public final void i() {
+        super.i();
+        this.f44822w = 0;
     }
 
-    public final boolean e(h2.h hVar) {
+    public final boolean n(h2.g gVar) {
         ByteBuffer byteBuffer;
-        e2.d.b(!hVar.getFlag(1073741824));
-        e2.d.b(!hVar.hasSupplementalData());
-        e2.d.b(!hVar.isEndOfStream());
-        if (f()) {
-            if (this.f41174s < this.v) {
-                ByteBuffer byteBuffer2 = hVar.f9210c;
-                if (byteBuffer2 != null && (byteBuffer = this.f9210c) != null) {
+        e2.d.b(!gVar.c(1073741824));
+        e2.d.b(!gVar.c(268435456));
+        e2.d.b(!gVar.c(4));
+        if (o()) {
+            if (this.f44822w < this.f44823x) {
+                ByteBuffer byteBuffer2 = gVar.f10847e;
+                if (byteBuffer2 != null && (byteBuffer = this.f10847e) != null) {
                     if (byteBuffer2.remaining() + byteBuffer.position() > 3072000) {
                         return false;
                     }
@@ -29,25 +29,25 @@ public final class g extends h2.h {
                 return false;
             }
         }
-        int i10 = this.f41174s;
-        this.f41174s = i10 + 1;
+        int i10 = this.f44822w;
+        this.f44822w = i10 + 1;
         if (i10 == 0) {
-            this.e = hVar.e;
-            if (hVar.isKeyFrame()) {
-                setFlags(1);
+            this.h = gVar.h;
+            if (gVar.c(1)) {
+                this.f6773b = 1;
             }
         }
-        ByteBuffer byteBuffer3 = hVar.f9210c;
+        ByteBuffer byteBuffer3 = gVar.f10847e;
         if (byteBuffer3 != null) {
-            b(byteBuffer3.remaining());
-            this.f9210c.put(byteBuffer3);
+            l(byteBuffer3.remaining());
+            this.f10847e.put(byteBuffer3);
         }
-        this.f41173r = hVar.e;
+        this.v = gVar.h;
         return true;
     }
 
-    public final boolean f() {
-        if (this.f41174s > 0) {
+    public final boolean o() {
+        if (this.f44822w > 0) {
             return true;
         }
         return false;

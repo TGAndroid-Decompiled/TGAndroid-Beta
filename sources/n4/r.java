@@ -6,28 +6,28 @@ import android.os.Bundle;
 import android.os.RemoteCallbackList;
 import java.util.List;
 public class r {
-    public final MediaSession f13805a;
-    public final q f13806b;
-    public final x f13807c;
-    public final Bundle e;
-    public h0 f13809g;
+    public final MediaSession f16476a;
+    public final q f16477b;
+    public final x f16478c;
+    public final Bundle f16479e;
+    public h0 f16481g;
     public List h;
-    public m f13810i;
-    public int f13811j;
-    public int f13812k;
-    public int f13813l;
-    public p f13814m;
-    public a0 f13815n;
+    public m f16482i;
+    public int f16483j;
+    public int f16484k;
+    public int f16485l;
+    public p f16486m;
+    public a0 f16487n;
     public final Object d = new Object();
-    public final RemoteCallbackList f13808f = new RemoteCallbackList();
+    public final RemoteCallbackList f16480f = new RemoteCallbackList();
 
     public r(Context context, String str, Bundle bundle) {
         MediaSession a2 = a(context, str, bundle);
-        this.f13805a = a2;
+        this.f16476a = a2;
         q qVar = new q(this);
-        this.f13806b = qVar;
-        this.f13807c = new x(a2.getSessionToken(), qVar);
-        this.e = bundle;
+        this.f16477b = qVar;
+        this.f16478c = new x(a2.getSessionToken(), qVar);
+        this.f16479e = bundle;
         a2.setFlags(3);
     }
 
@@ -38,7 +38,7 @@ public class r {
     public final p b() {
         p pVar;
         synchronized (this.d) {
-            pVar = this.f13814m;
+            pVar = this.f16486m;
         }
         return pVar;
     }
@@ -46,18 +46,18 @@ public class r {
     public a0 c() {
         a0 a0Var;
         synchronized (this.d) {
-            a0Var = this.f13815n;
+            a0Var = this.f16487n;
         }
         return a0Var;
     }
 
     public void d(a0 a0Var) {
         synchronized (this.d) {
-            this.f13815n = a0Var;
+            this.f16487n = a0Var;
         }
     }
 
     public void e(int i10) {
-        this.f13811j = i10;
+        this.f16483j = i10;
     }
 }

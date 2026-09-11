@@ -1,94 +1,201 @@
 package org.telegram.ui;
 
-import android.content.DialogInterface;
-import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.BuildVars;
-import org.telegram.messenger.FileLog;
+import android.os.Bundle;
+import android.view.View;
+import java.util.ArrayList;
+import java.util.Arrays;
+import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.NotificationCenter;
+import org.telegram.messenger.MediaController;
+import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.R;
-public final class wv implements DialogInterface.OnClickListener {
-    public final int f38393a;
-    public final NotificationCenter.NotificationCenterDelegate f38394b;
+import org.telegram.ui.Components.CheckBox;
+import org.telegram.ui.PhotoViewer;
+public final class wv implements View.OnClickListener {
+    public final int f42494a;
+    public final uy f42495b;
 
-    public wv(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, int i10) {
-        this.f38393a = i10;
-        this.f38394b = notificationCenterDelegate;
+    public wv(uy uyVar, int i10) {
+        this.f42494a = i10;
+        this.f42495b = uyVar;
     }
 
     @Override
-    public final void onClick(DialogInterface dialogInterface, int i10) {
-        String str;
-        int i11 = 0;
-        switch (this.f38393a) {
+    public final void onClick(View view) {
+        ArrayList arrayList;
+        CharSequence charSequence;
+        lx lxVar;
+        lx lxVar2;
+        switch (this.f42494a) {
             case 0:
-                wy wyVar = (wy) this.f38394b;
-                if (i10 == 0) {
-                    wyVar.getMessagesStorage().readAllDialogs(1);
-                    return;
-                } else if (i10 != 1 || wyVar.f38431e0 == null) {
-                    return;
-                } else {
-                    while (true) {
-                        vy[] vyVarArr = wyVar.f38431e0;
-                        if (i11 < vyVarArr.length) {
-                            vy vyVar = vyVarArr[i11];
-                            if (vyVar.f37651s == 0 && vyVar.getVisibility() == 0) {
-                                org.telegram.ui.Cells.r2 Q3 = wy.Q3(wyVar.f38431e0[i11]);
-                                sy syVar = wyVar.f38431e0[i11].f37645a;
-                                int i12 = sy.f36776v3;
-                                syVar.y1(true, Q3);
-                            }
-                            i11++;
-                        } else {
-                            return;
-                        }
-                    }
-                }
-                break;
-            case 1:
-                wg0 wg0Var = (wg0) this.f38394b;
-                if (i10 == 0) {
-                    BuildVars.LOGS_ENABLED = !BuildVars.LOGS_ENABLED;
-                    ApplicationLoader.applicationContext.getSharedPreferences("systemConfig", 0).edit().putBoolean("logsEnabled", BuildVars.LOGS_ENABLED).commit();
-                    org.telegram.ui.Components.wc a02 = org.telegram.ui.Components.wc.a0(wg0Var.V);
-                    int i13 = R.raw.chats_infotip;
-                    if (BuildVars.LOGS_ENABLED) {
-                        str = "Logs enabled.";
+                uy uyVar = this.f42495b;
+                if (uyVar.a4() && (arrayList = uyVar.D2) != null && !arrayList.isEmpty() && uyVar.getParentActivity() != null) {
+                    int i10 = 0;
+                    MediaController.PhotoEntry photoEntry = (MediaController.PhotoEntry) uyVar.D2.get(0);
+                    ex exVar = uyVar.B1;
+                    if (exVar != null) {
+                        charSequence = exVar.getFieldText();
                     } else {
-                        str = "Logs disabled.";
+                        charSequence = photoEntry.caption;
                     }
-                    a02.Q(i13, 36, str).j();
-                    if (BuildVars.LOGS_ENABLED) {
-                        hc.b.x(new StringBuilder("app start time = "), ApplicationLoader.startTime);
-                        try {
-                            FileLog.d("buildVersion = " + ApplicationLoader.applicationContext.getPackageManager().getPackageInfo(ApplicationLoader.applicationContext.getPackageName(), 0).versionCode);
-                            return;
-                        } catch (Exception e) {
-                            FileLog.e(e);
-                            return;
-                        }
+                    ArrayList arrayList2 = uyVar.D2;
+                    int size = arrayList2.size();
+                    while (i10 < size) {
+                        Object obj = arrayList2.get(i10);
+                        i10++;
+                        ((MediaController.PhotoEntry) obj).caption = charSequence;
+                    }
+                    PhotoViewer.t1().K2(null, uyVar, uyVar.getResourceProvider());
+                    PhotoViewer.t1().f33650p7 = true;
+                    PhotoViewer.t1().f33658q7 = charSequence;
+                    ArrayList arrayList3 = new ArrayList(uyVar.D2);
+                    boolean[] zArr = new boolean[uyVar.D2.size()];
+                    Arrays.fill(zArr, true);
+                    PhotoViewer.t1().f2(arrayList3, 0, 0, false, new ay(uyVar, zArr), null);
+                    PhotoViewer t12 = PhotoViewer.t1();
+                    t12.f33562f4 = true;
+                    CheckBox checkBox = t12.N0;
+                    if (checkBox != null) {
+                        checkBox.setVisibility(8);
+                    }
+                    PhotoViewer.CounterView counterView = t12.O0;
+                    if (counterView != null) {
+                        counterView.setVisibility(8);
+                        return;
                     }
                     return;
                 }
-                ProfileActivity.H4(wg0Var.V.getParentActivity(), false);
+                return;
+            case 1:
+                uy uyVar2 = this.f42495b;
+                uyVar2.O4(true, false, true, false);
+                uyVar2.Y.b(true);
+                AndroidUtilities.runOnUIThread(new qv(uyVar2, 3), 100L);
                 return;
             case 2:
-                on0 on0Var = (on0) this.f38394b;
-                if (i10 == 0) {
-                    on0Var.f35566w = "male";
-                    on0Var.Y[4].setText(LocaleController.getString(R.string.PassportMale));
-                    return;
-                } else if (i10 == 1) {
-                    on0Var.f35566w = "female";
-                    on0Var.Y[4].setText(LocaleController.getString(R.string.PassportFemale));
+                uy uyVar3 = this.f42495b;
+                if (uyVar3.G0 && (lxVar = uyVar3.E0) != null && !lxVar.g()) {
+                    uyVar3.x4(true, true);
                     return;
                 } else {
-                    on0Var.getClass();
+                    uyVar3.P4();
                     return;
                 }
+            case 3:
+                uy uyVar4 = this.f42495b;
+                if (uyVar4.G0 && (lxVar2 = uyVar4.E0) != null && !lxVar2.g()) {
+                    uyVar4.x4(true, true);
+                    return;
+                } else {
+                    uyVar4.P4();
+                    return;
+                }
+            case 4:
+                uy uyVar5 = this.f42495b;
+                uyVar5.getClass();
+                Bundle bundle = new Bundle();
+                bundle.putLong("community_id", uyVar5.X2);
+                uyVar5.presentFragment(new gi.s(bundle));
+                return;
+            case 5:
+                uy uyVar6 = this.f42495b;
+                ArrayList arrayList4 = uyVar6.I2;
+                if (uyVar6.C2 != null && !arrayList4.isEmpty()) {
+                    ArrayList arrayList5 = new ArrayList();
+                    for (int i11 = 0; i11 < arrayList4.size(); i11++) {
+                        arrayList5.add(MessagesStorage.TopicKey.of(((Long) arrayList4.get(i11)).longValue(), 0L));
+                    }
+                    uyVar6.C2.u(uyVar6, arrayList5, uyVar6.B1.getFieldText(), false, uyVar6.J2, uyVar6.K2, uyVar6.L2, null);
+                    return;
+                }
+                return;
+            case 6:
+                this.f42495b.b4(true);
+                return;
+            case 7:
+                this.f42495b.finishPreviewFragment();
+                return;
+            case 8:
+                uy uyVar7 = this.f42495b;
+                uyVar7.f41364z0.setIsEditing(false);
+                uyVar7.I4(false);
+                return;
+            case 9:
+                uy uyVar8 = this.f42495b;
+                uyVar8.getClass();
+                uyVar8.showDialog(new sg.a1((org.telegram.ui.ActionBar.n2) uyVar8, 2, true));
+                return;
+            case 10:
+                uy uyVar9 = this.f42495b;
+                uyVar9.getContactsController().loadGlobalPrivacySetting();
+                uyVar9.K4();
+                return;
+            case 11:
+                this.f42495b.p4(view);
+                return;
+            case 12:
+                uy.t0(this.f42495b);
+                return;
+            case 13:
+                uy.J0(this.f42495b);
+                return;
+            case 14:
+                uy.v0(this.f42495b);
+                return;
+            case 15:
+                uy uyVar10 = this.f42495b;
+                uyVar10.showDialog(org.telegram.ui.Components.e5.m(uyVar10.getParentActivity(), LocaleController.getString(R.string.EditProfileBirthdayTitle), LocaleController.getString(R.string.EditProfileBirthdayButton), null, new zv(uyVar10, 1), new qv(uyVar10, 17), false, false, uyVar10.getResourceProvider()).f20204a);
+                return;
+            case 16:
+                uy.C0(this.f42495b);
+                return;
+            case 17:
+                uy.A0(this.f42495b);
+                return;
+            case 18:
+                PremiumPreviewFragment premiumPreviewFragment = new PremiumPreviewFragment(0, "dialogs_hint");
+                premiumPreviewFragment.f33784j0 = true;
+                uy uyVar11 = this.f42495b;
+                uyVar11.presentFragment(premiumPreviewFragment);
+                AndroidUtilities.runOnUIThread(new qv(uyVar11, 21), 250L);
+                return;
+            case 19:
+                uy.a0(this.f42495b);
+                return;
+            case 20:
+                PremiumPreviewFragment premiumPreviewFragment2 = new PremiumPreviewFragment(0, "dialogs_hint");
+                premiumPreviewFragment2.f33784j0 = true;
+                uy uyVar12 = this.f42495b;
+                uyVar12.presentFragment(premiumPreviewFragment2);
+                AndroidUtilities.runOnUIThread(new qv(uyVar12, 15), 250L);
+                return;
+            case 21:
+                z6 z6Var = new z6();
+                uy uyVar13 = this.f42495b;
+                uyVar13.presentFragment(z6Var);
+                AndroidUtilities.runOnUIThread(new jw(uyVar13, 10), 250L);
+                return;
+            case 22:
+                uy.D0(this.f42495b);
+                return;
+            case 23:
+                uy.Z(this.f42495b);
+                return;
+            case 24:
+                uy.m0(this.f42495b);
+                return;
+            case 25:
+                uy uyVar14 = this.f42495b;
+                of.f.s(uyVar14.getParentActivity(), uyVar14.getMessagesController().premiumManageSubscriptionUrl);
+                return;
+            case 26:
+                uy.l0(this.f42495b);
+                return;
+            case 27:
+                uy.z0(this.f42495b);
+                return;
             default:
-                k91.d0((k91) this.f38394b, i10);
+                uy.Y(this.f42495b);
                 return;
         }
     }

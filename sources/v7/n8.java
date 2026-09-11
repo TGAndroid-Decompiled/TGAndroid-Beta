@@ -1,16 +1,26 @@
 package v7;
 public abstract class n8 {
-    public abstract boolean a(i9.o oVar, i9.c cVar, i9.c cVar2);
+    public static id.f a(id.f fVar, id.g key) {
+        kotlin.jvm.internal.i.e(key, "key");
+        if (kotlin.jvm.internal.i.a(fVar.getKey(), key)) {
+            return fVar;
+        }
+        return null;
+    }
 
-    public abstract boolean b(i9.o oVar, Object obj, Object obj2);
+    public static id.h b(id.f fVar, id.g key) {
+        kotlin.jvm.internal.i.e(key, "key");
+        if (kotlin.jvm.internal.i.a(fVar.getKey(), key)) {
+            return id.i.f11954a;
+        }
+        return fVar;
+    }
 
-    public abstract boolean c(i9.o oVar, i9.n nVar, i9.n nVar2);
-
-    public abstract i9.c d(i9.o oVar);
-
-    public abstract i9.n e(i9.o oVar);
-
-    public abstract void f(i9.n nVar, i9.n nVar2);
-
-    public abstract void g(i9.n nVar, Thread thread);
+    public static id.h c(id.f fVar, id.h context) {
+        kotlin.jvm.internal.i.e(context, "context");
+        if (context == id.i.f11954a) {
+            return fVar;
+        }
+        return (id.h) context.fold(fVar, new b1.e(5));
+    }
 }

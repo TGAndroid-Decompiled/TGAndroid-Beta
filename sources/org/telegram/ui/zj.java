@@ -1,146 +1,49 @@
 package org.telegram.ui;
 
+import android.graphics.Point;
+import android.graphics.Rect;
 import android.view.View;
 import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildVars;
-import org.telegram.messenger.FileLog;
 import org.telegram.messenger.MessageObject;
-public final class zj extends s4.t {
-    public boolean S;
-    public final eo T;
-
-    public zj(eo eoVar, boolean z10) {
-        super(z10);
-        this.T = eoVar;
-    }
-
+public final class zj extends s4.n0 {
     @Override
-    public final boolean B1(int i10) {
-        int i11;
-        MessageObject messageObject;
-        MessageObject.GroupedMessages X8;
-        byte b10;
-        eo eoVar = this.T;
-        pm pmVar = eoVar.A0;
-        int i12 = pmVar.J;
-        if (i10 >= i12 && i10 < pmVar.K && (i11 = i10 - i12) >= 0 && i11 < pmVar.L().size() && (X8 = eoVar.X8((messageObject = (MessageObject) eoVar.A0.L().get(i11)))) != null) {
-            MessageObject.GroupedMessagePosition position = X8.getPosition(messageObject);
-            if (position.minX != position.maxX && (b10 = position.minY) == position.maxY && b10 != 0) {
-                int size = X8.posArray.size();
-                for (int i13 = 0; i13 < size; i13++) {
-                    MessageObject.GroupedMessagePosition groupedMessagePosition = X8.posArray.get(i13);
-                    if (groupedMessagePosition != position) {
-                        byte b11 = groupedMessagePosition.minY;
-                        byte b12 = position.minY;
-                        if (b11 <= b12 && groupedMessagePosition.maxY >= b12) {
-                            return true;
-                        }
+    public final void a(Rect rect, View view, RecyclerView recyclerView, s4.z0 z0Var) {
+        org.telegram.ui.Cells.t1 t1Var;
+        MessageObject.GroupedMessages currentMessagesGroup;
+        MessageObject.GroupedMessagePosition currentPosition;
+        int i10 = 0;
+        rect.bottom = 0;
+        if ((view instanceof org.telegram.ui.Cells.t1) && (currentMessagesGroup = (t1Var = (org.telegram.ui.Cells.t1) view).getCurrentMessagesGroup()) != null && (currentPosition = t1Var.getCurrentPosition()) != null && currentPosition.siblingHeights != null) {
+            Point point = AndroidUtilities.displaySize;
+            float max = Math.max(point.x, point.y) * 0.5f;
+            int extraInsetHeight = t1Var.getExtraInsetHeight();
+            int i11 = 0;
+            while (true) {
+                float[] fArr = currentPosition.siblingHeights;
+                if (i11 >= fArr.length) {
+                    break;
+                }
+                extraInsetHeight += (int) Math.ceil(fArr[i11] * max);
+                i11++;
+            }
+            int round = (Math.round(AndroidUtilities.density * 7.0f) * (currentPosition.maxY - currentPosition.minY)) + extraInsetHeight;
+            int size = currentMessagesGroup.posArray.size();
+            while (true) {
+                if (i10 < size) {
+                    MessageObject.GroupedMessagePosition groupedMessagePosition = currentMessagesGroup.posArray.get(i10);
+                    byte b10 = groupedMessagePosition.minY;
+                    byte b11 = currentPosition.minY;
+                    if (b10 == b11 && ((groupedMessagePosition.minX != currentPosition.minX || groupedMessagePosition.maxX != currentPosition.maxX || b10 != b11 || groupedMessagePosition.maxY != currentPosition.maxY) && b10 == b11)) {
+                        round = org.telegram.messenger.w1.z(4.0f, (int) Math.ceil(max * groupedMessagePosition.f17077ph), round);
+                        break;
                     }
+                    i10++;
+                } else {
+                    break;
                 }
             }
+            rect.bottom = -round;
         }
-        return false;
-    }
-
-    @Override
-    public final boolean C1(View view) {
-        if (view instanceof org.telegram.ui.Cells.t1) {
-            return !((org.telegram.ui.Cells.t1) view).getMessageObject().isOutOwner();
-        }
-        return false;
-    }
-
-    @Override
-    public final int G() {
-        if (this.S) {
-            return (int) this.T.f32487s9;
-        }
-        return 0;
-    }
-
-    @Override
-    public final int J() {
-        if (this.S) {
-            return (int) this.T.f32487s9;
-        }
-        return F();
-    }
-
-    @Override
-    public final int K() {
-        if (this.S) {
-            return (int) ((this.f41712n - this.T.f32487s9) - C());
-        }
-        return super.K();
-    }
-
-    @Override
-    public final int X0() {
-        return (int) this.T.f32487s9;
-    }
-
-    @Override
-    public final void b0(of.e eVar, s4.z0 z0Var) {
-        if (BuildVars.DEBUG_PRIVATE_VERSION) {
-            super.b0(eVar, z0Var);
-            return;
-        }
-        try {
-            super.b0(eVar, z0Var);
-        } catch (Exception e) {
-            FileLog.e(e);
-            AndroidUtilities.runOnUIThread(new fj(this, 2));
-        }
-    }
-
-    @Override
-    public final void i1(int i10, int i11, boolean z10) {
-        if (!z10) {
-            i11 = (int) ((i11 - F()) + this.T.f32487s9);
-        }
-        super.i1(i10, i11, z10);
-    }
-
-    @Override
-    public final int j(s4.z0 z0Var) {
-        this.S = true;
-        int B0 = B0(z0Var);
-        this.S = false;
-        return B0;
-    }
-
-    @Override
-    public final int k(s4.z0 z0Var) {
-        this.S = true;
-        int C0 = C0(z0Var);
-        this.S = false;
-        return C0;
-    }
-
-    @Override
-    public final int l(s4.z0 z0Var) {
-        this.S = true;
-        int D0 = D0(z0Var);
-        this.S = false;
-        return D0;
-    }
-
-    @Override
-    public final int o0(int r11, of.e r12, s4.z0 r13) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.zj.o0(int, of.e, s4.z0):int");
-    }
-
-    @Override
-    public final void v0(RecyclerView recyclerView, s4.z0 z0Var, int i10) {
-        this.T.f32488sa = false;
-        ii.o oVar = new ii.o(recyclerView.getContext(), 0);
-        oVar.f41760a = i10;
-        w0(oVar);
-    }
-
-    @Override
-    public final boolean y0() {
-        return true;
     }
 }

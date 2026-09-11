@@ -2,16 +2,16 @@ package db;
 
 import java.io.IOException;
 public abstract class t {
-    public static final p f6383a;
-    public static final q f6384b;
-    public static final t[] f6385c;
+    public static final p f6685a;
+    public static final q f6686b;
+    public static final t[] f6687c;
 
     static {
         p pVar = new p();
-        f6383a = pVar;
+        f6685a = pVar;
         q qVar = new q();
-        f6384b = qVar;
-        f6385c = new t[]{pVar, qVar, new t() {
+        f6686b = qVar;
+        f6687c = new t[]{pVar, qVar, new t() {
             public static Double b(String str, lb.a aVar) {
                 try {
                     Double valueOf = Double.valueOf(str);
@@ -19,10 +19,10 @@ public abstract class t {
                         return valueOf;
                     }
                     throw new IOException("JSON forbids NaN and infinities: " + valueOf + "; at path " + aVar.j());
-                } catch (NumberFormatException e) {
+                } catch (NumberFormatException e7) {
                     StringBuilder v = a4.a.v("Cannot parse ", str, "; at path ");
                     v.append(aVar.j());
-                    throw new RuntimeException(v.toString(), e);
+                    throw new RuntimeException(v.toString(), e7);
                 }
             }
 
@@ -44,10 +44,10 @@ public abstract class t {
                 String v = aVar.v();
                 try {
                     return fb.d.i(v);
-                } catch (NumberFormatException e) {
+                } catch (NumberFormatException e7) {
                     StringBuilder v9 = a4.a.v("Cannot parse ", v, "; at path ");
                     v9.append(aVar.j());
-                    throw new RuntimeException(v9.toString(), e);
+                    throw new RuntimeException(v9.toString(), e7);
                 }
             }
         }};
@@ -58,7 +58,7 @@ public abstract class t {
     }
 
     public static t[] values() {
-        return (t[]) f6385c.clone();
+        return (t[]) f6687c.clone();
     }
 
     public abstract Number a(lb.a aVar);

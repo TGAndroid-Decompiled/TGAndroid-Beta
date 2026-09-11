@@ -18,7 +18,7 @@ public class BaseController {
         return getMessagesController().config;
     }
 
-    public final og.x0 getColorPalette() {
+    public final qg.s0 getColorPalette() {
         return this.parentAccountInstance.getColorPalette();
     }
 

@@ -1,24 +1,19 @@
 package org.telegram.ui;
-public final class x71 extends g.p {
-    public final z71 f38602c;
 
-    public x71(z71 z71Var) {
-        this.f38602c = z71Var;
+import android.view.View;
+public final class x71 implements View.OnClickListener {
+    public final g81 f42612a;
+
+    public x71(g81 g81Var) {
+        this.f42612a = g81Var;
     }
 
     @Override
-    public final int i(int i10) {
-        int i11;
-        z71 z71Var = this.f38602c;
-        org.telegram.ui.Components.uz uzVar = z71Var.X;
-        org.telegram.ui.Components.j61 j61Var = z71Var.f39226d0;
-        if (j61Var == null) {
-            return uzVar.J;
+    public final void onClick(View view) {
+        org.telegram.ui.Components.aj0 aj0Var = this.f42612a.d;
+        if (!aj0Var.b() && aj0Var.getAnimatedDrawable() != null) {
+            aj0Var.getAnimatedDrawable().K(40);
+            aj0Var.d();
         }
-        org.telegram.ui.Components.v51 G = j61Var.G(i10 - 1);
-        if (G != null && (i11 = G.f27838u) != -1) {
-            return i11;
-        }
-        return uzVar.J;
     }
 }

@@ -4,11 +4,11 @@ import android.os.Build;
 import androidx.emoji2.text.x;
 import java.util.Locale;
 public final class c {
-    public static final c f13676b = a(new Locale[0]);
-    public final e f13677a;
+    public static final c f16340b = a(new Locale[0]);
+    public final e f16341a;
 
     public c(e eVar) {
-        this.f13677a = eVar;
+        this.f16341a = eVar;
     }
 
     public static c a(Locale... localeArr) {
@@ -25,17 +25,17 @@ public final class c {
             Locale[] localeArr = new Locale[length];
             for (int i10 = 0; i10 < length; i10++) {
                 String str2 = split[i10];
-                int i11 = b.f13675a;
+                int i11 = b.f16339a;
                 localeArr[i10] = Locale.forLanguageTag(str2);
             }
             return a(localeArr);
         }
-        return f13676b;
+        return f16340b;
     }
 
     public final boolean equals(Object obj) {
         if (obj instanceof c) {
-            if (this.f13677a.equals(((c) obj).f13677a)) {
+            if (this.f16341a.equals(((c) obj).f16341a)) {
                 return true;
             }
             return false;
@@ -44,10 +44,10 @@ public final class c {
     }
 
     public final int hashCode() {
-        return this.f13677a.hashCode();
+        return this.f16341a.hashCode();
     }
 
     public final String toString() {
-        return this.f13677a.toString();
+        return this.f16341a.toString();
     }
 }

@@ -1,74 +1,183 @@
 package u2;
-public final class d implements d1 {
-    public final d1 f42309a;
-    public boolean f42310b;
-    public final e f42311c;
+public final class d implements d0, c0 {
+    public final d0 f46650a;
+    public c0 f46651b;
+    public c[] f46652c = new c[0];
+    public long d;
+    public long f46653e;
+    public long f46654f;
+    public g h;
 
-    public d(e eVar, d1 d1Var) {
-        this.f42311c = eVar;
-        this.f42309a = d1Var;
+    public d(d0 d0Var, boolean z10, long j3, long j10) {
+        long j11;
+        this.f46650a = d0Var;
+        if (z10) {
+            j11 = j3;
+        } else {
+            j11 = -9223372036854775807L;
+        }
+        this.d = j11;
+        this.f46653e = j3;
+        this.f46654f = j10;
     }
 
     @Override
-    public final void a() {
-        this.f42309a.a();
+    public final void a(d0 d0Var) {
+        if (this.h != null) {
+            return;
+        }
+        c0 c0Var = this.f46651b;
+        c0Var.getClass();
+        c0Var.a(this);
     }
 
     @Override
+    public final void b(d1 d1Var) {
+        d0 d0Var = (d0) d1Var;
+        c0 c0Var = this.f46651b;
+        c0Var.getClass();
+        c0Var.b(this);
+    }
+
+    @Override
+    public final boolean c() {
+        return this.f46650a.c();
+    }
+
+    @Override
+    public final long d() {
+        long d = this.f46650a.d();
+        if (d != Long.MIN_VALUE) {
+            long j3 = this.f46654f;
+            if (j3 == Long.MIN_VALUE || d < j3) {
+                return d;
+            }
+        }
+        return Long.MIN_VALUE;
+    }
+
     public final boolean e() {
-        if (!this.f42311c.a() && this.f42309a.e()) {
+        if (this.d != -9223372036854775807L) {
             return true;
         }
         return false;
     }
 
     @Override
-    public final int g(long j3) {
-        if (this.f42311c.a()) {
-            return -3;
+    public final void j() {
+        g gVar = this.h;
+        if (gVar == null) {
+            this.f46650a.j();
+            return;
         }
-        return this.f42309a.g(j3);
+        throw gVar;
     }
 
     @Override
-    public final int t(of.b bVar, h2.h hVar, int i10) {
-        e eVar = this.f42311c;
-        if (eVar.a()) {
-            return -3;
-        }
-        if (this.f42310b) {
-            hVar.setFlags(4);
-            return -4;
-        }
-        long r10 = eVar.r();
-        int t10 = this.f42309a.t(bVar, hVar, i10);
-        if (t10 == -5) {
-            b2.s sVar = (b2.s) bVar.f14295c;
-            sVar.getClass();
-            int i11 = sVar.N;
-            int i12 = sVar.M;
-            if (i12 == 0 && i11 == 0) {
-                return -5;
+    public final long k(long j3) {
+        c[] cVarArr;
+        this.d = -9223372036854775807L;
+        for (c cVar : this.f46652c) {
+            if (cVar != null) {
+                cVar.f46648b = false;
             }
-            if (eVar.e != 0) {
-                i12 = 0;
-            }
-            if (eVar.f42315f != Long.MIN_VALUE) {
-                i11 = 0;
-            }
-            b2.r a2 = sVar.a();
-            a2.L = i12;
-            a2.M = i11;
-            bVar.f14295c = new b2.s(a2);
-            return -5;
         }
-        long j3 = eVar.f42315f;
-        if (j3 != Long.MIN_VALUE && ((t10 == -4 && hVar.e >= j3) || (t10 == -3 && r10 == Long.MIN_VALUE && !hVar.d))) {
-            hVar.clear();
-            hVar.setFlags(4);
-            this.f42310b = true;
-            return -4;
+        long k10 = this.f46650a.k(j3);
+        long j10 = this.f46653e;
+        long j11 = this.f46654f;
+        long max = Math.max(k10, j10);
+        if (j11 != Long.MIN_VALUE) {
+            return Math.min(max, j11);
         }
-        return t10;
+        return max;
+    }
+
+    @Override
+    public final void l(long j3) {
+        this.f46650a.l(j3);
+    }
+
+    @Override
+    public final void n(c0 c0Var, long j3) {
+        this.f46651b = c0Var;
+        this.f46650a.n(this, j3);
+    }
+
+    @Override
+    public final long o() {
+        if (e()) {
+            long j3 = this.d;
+            this.d = -9223372036854775807L;
+            long o9 = o();
+            if (o9 != -9223372036854775807L) {
+                return o9;
+            }
+            return j3;
+        }
+        long o10 = this.f46650a.o();
+        if (o10 == -9223372036854775807L) {
+            return -9223372036854775807L;
+        }
+        long j10 = this.f46653e;
+        long j11 = this.f46654f;
+        long max = Math.max(o10, j10);
+        if (j11 != Long.MIN_VALUE) {
+            return Math.min(max, j11);
+        }
+        return max;
+    }
+
+    @Override
+    public final boolean p(i2.r0 r0Var) {
+        return this.f46650a.p(r0Var);
+    }
+
+    @Override
+    public final long q(x2.r[] r18, boolean[] r19, u2.b1[] r20, boolean[] r21, long r22) {
+        throw new UnsupportedOperationException("Method not decompiled: u2.d.q(x2.r[], boolean[], u2.b1[], boolean[], long):long");
+    }
+
+    @Override
+    public final o1 r() {
+        return this.f46650a.r();
+    }
+
+    @Override
+    public final long s() {
+        long s10 = this.f46650a.s();
+        if (s10 != Long.MIN_VALUE) {
+            long j3 = this.f46654f;
+            if (j3 == Long.MIN_VALUE || s10 < j3) {
+                return s10;
+            }
+        }
+        return Long.MIN_VALUE;
+    }
+
+    @Override
+    public final long t(long j3, i2.p1 p1Var) {
+        long j10;
+        long j11 = this.f46653e;
+        if (j3 == j11) {
+            return j11;
+        }
+        long i10 = e2.d0.i(p1Var.f11697a, 0L, j3 - j11);
+        long j12 = p1Var.f11698b;
+        long j13 = this.f46654f;
+        if (j13 == Long.MIN_VALUE) {
+            j10 = Long.MAX_VALUE;
+        } else {
+            j10 = j13 - j3;
+        }
+        long i11 = e2.d0.i(j12, 0L, j10);
+        if (i10 != p1Var.f11697a || i11 != p1Var.f11698b) {
+            p1Var = new i2.p1(i10, i11);
+        }
+        return this.f46650a.t(j3, p1Var);
+    }
+
+    @Override
+    public final void u(long j3) {
+        this.f46650a.u(j3);
     }
 }

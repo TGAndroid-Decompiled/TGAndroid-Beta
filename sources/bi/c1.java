@@ -1,35 +1,34 @@
 package bi;
 
-import org.telegram.messenger.MessagesStorage;
-public final class c1 implements Runnable {
-    public final int f2396a;
-    public final boolean f2397b;
-    public final Object f2398c;
-    public final Object d;
+import android.content.Context;
+import android.view.View;
+import org.telegram.ui.Components.d61;
+import org.telegram.ui.Components.g51;
+import org.telegram.ui.Components.h51;
+import org.telegram.ui.Components.ll0;
+import org.telegram.ui.Components.v51;
+public final class c1 extends g51 {
+    public static final int f2810a = 0;
 
-    public c1(gg.b0 b0Var, MessagesStorage messagesStorage, boolean z10) {
-        this.f2396a = 2;
-        this.d = b0Var;
-        this.f2398c = messagesStorage;
-        this.f2397b = z10;
+    static {
+        g51.setup(new g51());
     }
 
     @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: bi.c1.run():void");
+    public final void bindView(View view, h51 h51Var, boolean z10, v51 v51Var, d61 d61Var) {
+        ((d1) view).set((f1) h51Var.G);
     }
 
-    public c1(Object obj, Object obj2, boolean z10, int i10) {
-        this.f2396a = i10;
-        this.f2398c = obj;
-        this.d = obj2;
-        this.f2397b = z10;
+    @Override
+    public final View createView(Context context, ll0 ll0Var, int i10, int i11, org.telegram.ui.ActionBar.f6 f6Var) {
+        return new d1(context);
     }
 
-    public c1(Object obj, boolean z10, Object obj2, int i10) {
-        this.f2396a = i10;
-        this.f2398c = obj;
-        this.f2397b = z10;
-        this.d = obj2;
+    @Override
+    public final boolean equals(h51 h51Var, h51 h51Var2) {
+        if (h51Var.G == h51Var2.G) {
+            return true;
+        }
+        return false;
     }
 }

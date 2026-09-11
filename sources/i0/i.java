@@ -12,13 +12,13 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.nio.ByteBuffer;
 public class i extends g {
-    public final Class f10088f;
-    public final Constructor f10089g;
+    public final Class f11440f;
+    public final Constructor f11441g;
     public final Method h;
-    public final Method f10090i;
-    public final Method f10091j;
-    public final Method f10092k;
-    public final Method f10093l;
+    public final Method f11442i;
+    public final Method f11443j;
+    public final Method f11444k;
+    public final Method f11445l;
 
     public i() {
         Method method;
@@ -38,8 +38,8 @@ public class i extends g {
             method5 = cls2.getMethod("abortCreation", null);
             method = m(cls2);
             cls = cls2;
-        } catch (ClassNotFoundException | NoSuchMethodException e) {
-            Log.e("TypefaceCompatApi26Impl", "Unable to collect necessary methods for class ".concat(e.getClass().getName()), e);
+        } catch (ClassNotFoundException | NoSuchMethodException e7) {
+            Log.e("TypefaceCompatApi26Impl", "Unable to collect necessary methods for class ".concat(e7.getClass().getName()), e7);
             method = null;
             constructor = null;
             method2 = null;
@@ -47,13 +47,13 @@ public class i extends g {
             method4 = null;
             method5 = null;
         }
-        this.f10088f = cls;
-        this.f10089g = constructor;
+        this.f11440f = cls;
+        this.f11441g = constructor;
         this.h = method2;
-        this.f10090i = method3;
-        this.f10091j = method4;
-        this.f10092k = method5;
-        this.f10093l = method;
+        this.f11442i = method3;
+        this.f11443j = method4;
+        this.f11444k = method5;
+        this.f11445l = method;
     }
 
     public static Method l(Class cls) {
@@ -70,21 +70,21 @@ public class i extends g {
         }
         if (method != null) {
             try {
-                obj = this.f10089g.newInstance(null);
+                obj = this.f11441g.newInstance(null);
             } catch (IllegalAccessException | InstantiationException | InvocationTargetException unused) {
                 obj = null;
             }
             if (obj != null) {
-                h0.f[] fVarArr = eVar.f9168a;
+                h0.f[] fVarArr = eVar.f10801a;
                 int length = fVarArr.length;
                 int i11 = 0;
                 while (true) {
                     if (i11 < length) {
                         h0.f fVar = fVarArr[i11];
                         Context context2 = context;
-                        if (!i(context2, obj, fVar.f9169a, fVar.e, fVar.f9170b, fVar.f9171c ? 1 : 0, FontVariationAxis.fromFontVariationSettings(fVar.d))) {
+                        if (!i(context2, obj, fVar.f10802a, fVar.f10805e, fVar.f10803b, fVar.f10804c ? 1 : 0, FontVariationAxis.fromFontVariationSettings(fVar.d))) {
                             try {
-                                this.f10092k.invoke(obj, null);
+                                this.f11444k.invoke(obj, null);
                                 break;
                             } catch (IllegalAccessException | InvocationTargetException unused2) {
                             }
@@ -116,14 +116,14 @@ public class i extends g {
         }
         if (method != null) {
             try {
-                obj = this.f10089g.newInstance(null);
+                obj = this.f11441g.newInstance(null);
             } catch (IllegalAccessException | InstantiationException | InvocationTargetException unused) {
                 obj = null;
             }
             if (obj != null) {
                 if (!i(context, obj, str, 0, -1, -1, null)) {
                     try {
-                        this.f10092k.invoke(obj, null);
+                        this.f11444k.invoke(obj, null);
                     } catch (IllegalAccessException | InvocationTargetException unused2) {
                     }
                 } else if (k(obj)) {
@@ -145,9 +145,9 @@ public class i extends g {
 
     public Typeface j(Object obj) {
         try {
-            Object newInstance = Array.newInstance(this.f10088f, 1);
+            Object newInstance = Array.newInstance(this.f11440f, 1);
             Array.set(newInstance, 0, obj);
-            return (Typeface) this.f10093l.invoke(null, newInstance, -1, -1);
+            return (Typeface) this.f11445l.invoke(null, newInstance, -1, -1);
         } catch (IllegalAccessException | InvocationTargetException unused) {
             return null;
         }
@@ -155,7 +155,7 @@ public class i extends g {
 
     public final boolean k(Object obj) {
         try {
-            return ((Boolean) this.f10091j.invoke(obj, null)).booleanValue();
+            return ((Boolean) this.f11443j.invoke(obj, null)).booleanValue();
         } catch (IllegalAccessException | InvocationTargetException unused) {
             return false;
         }

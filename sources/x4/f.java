@@ -3,7 +3,7 @@ package x4;
 import android.animation.TypeEvaluator;
 import com.google.android.gms.internal.vision.e2;
 public final class f implements TypeEvaluator {
-    public static final f f44616a = new Object();
+    public static final f f48833a = new Object();
 
     @Override
     public final Object evaluate(float f7, Object obj, Object obj2) {

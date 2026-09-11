@@ -6,58 +6,58 @@ import java.util.Set;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Semaphore;
 public final class d {
-    public w1.a f288a;
-    public boolean f289b = false;
-    public boolean f290c = false;
+    public w1.a f298a;
+    public boolean f299b = false;
+    public boolean f300c = false;
     public boolean d = true;
-    public boolean e = false;
-    public Executor f291f;
-    public volatile x1.a f292g;
+    public boolean f301e = false;
+    public Executor f302f;
+    public volatile x1.a f303g;
     public volatile x1.a h;
-    public final Semaphore f293i;
-    public final Set f294j;
+    public final Semaphore f304i;
+    public final Set f305j;
 
     public d(SignInHubActivity signInHubActivity, Set set) {
         signInHubActivity.getApplicationContext();
-        this.f293i = new Semaphore(0);
-        this.f294j = set;
+        this.f304i = new Semaphore(0);
+        this.f305j = set;
     }
 
     public final void a() {
-        if (this.f292g != null) {
-            boolean z10 = this.f289b;
+        if (this.f303g != null) {
+            boolean z10 = this.f299b;
             if (!z10) {
                 if (z10) {
                     c();
                 } else {
-                    this.e = true;
+                    this.f301e = true;
                 }
             }
             if (this.h != null) {
-                this.f292g.getClass();
-                this.f292g = null;
+                this.f303g.getClass();
+                this.f303g = null;
                 return;
             }
-            this.f292g.getClass();
-            x1.a aVar = this.f292g;
-            aVar.f44477c.set(true);
-            if (aVar.f44475a.cancel(false)) {
-                this.h = this.f292g;
+            this.f303g.getClass();
+            x1.a aVar = this.f303g;
+            aVar.f48680c.set(true);
+            if (aVar.f48678a.cancel(false)) {
+                this.h = this.f303g;
             }
-            this.f292g = null;
+            this.f303g = null;
         }
     }
 
     public final void b() {
-        if (this.h == null && this.f292g != null) {
-            this.f292g.getClass();
-            if (this.f291f == null) {
-                this.f291f = AsyncTask.THREAD_POOL_EXECUTOR;
+        if (this.h == null && this.f303g != null) {
+            this.f303g.getClass();
+            if (this.f302f == null) {
+                this.f302f = AsyncTask.THREAD_POOL_EXECUTOR;
             }
-            x1.a aVar = this.f292g;
-            Executor executor = this.f291f;
-            if (aVar.f44476b != 1) {
-                int c10 = m1.j.c(aVar.f44476b);
+            x1.a aVar = this.f303g;
+            Executor executor = this.f302f;
+            if (aVar.f48679b != 1) {
+                int c10 = m1.j.c(aVar.f48679b);
                 if (c10 != 1) {
                     if (c10 != 2) {
                         throw new IllegalStateException("We should never reach this state");
@@ -66,14 +66,14 @@ public final class d {
                 }
                 throw new IllegalStateException("Cannot execute task: the task is already running.");
             }
-            aVar.f44476b = 2;
-            executor.execute(aVar.f44475a);
+            aVar.f48679b = 2;
+            executor.execute(aVar.f48678a);
         }
     }
 
     public final void c() {
         a();
-        this.f292g = new x1.a(this);
+        this.f303g = new x1.a(this);
         b();
     }
 

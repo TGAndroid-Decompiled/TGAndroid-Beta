@@ -2,7 +2,7 @@ package org.telegram.ui;
 
 import android.view.accessibility.AccessibilityEvent;
 import android.view.accessibility.AccessibilityNodeInfo;
-public final class gc0 extends org.telegram.ui.Cells.f9 {
+public final class gc0 extends org.telegram.ui.Cells.e9 {
     @Override
     public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);

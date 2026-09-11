@@ -3,9 +3,9 @@ package e9;
 import java.util.Map;
 import java.util.Set;
 public abstract class o {
-    public transient Set f7408a;
-    public transient n f7409b;
-    public transient Map f7410c;
+    public transient Set f8984a;
+    public transient n f8985b;
+    public transient Map f8986c;
 
     public abstract Map a();
 

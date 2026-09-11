@@ -1,51 +1,42 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-public final class tn0 extends jx0 {
-    public final int K;
-    public final org.telegram.ui.gy L;
+import android.text.TextUtils;
+import java.util.ArrayList;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class tn0 extends ss {
+    public final org.telegram.ui.uy f30666d0;
+    public final org.telegram.ui.ey f30667e0;
 
-    public tn0(org.telegram.ui.gy gyVar, Context context, a10 a10Var, int i10) {
-        super(context, a10Var, 1, null);
-        this.K = i10;
-        this.L = gyVar;
+    public tn0(org.telegram.ui.ey eyVar, ll0 ll0Var, Context context, int i10, int i11, org.telegram.ui.uy uyVar) {
+        super(ll0Var, context, i10, i11);
+        this.f30667e0 = eyVar;
+        this.f30666d0 = uyVar;
     }
 
     @Override
-    public final void setVisibility(int i10) {
-        switch (this.K) {
-            case 0:
-                if (this.L.M0.getTag() != null) {
-                    super.setVisibility(8);
-                    return;
-                } else {
-                    super.setVisibility(i10);
-                    return;
-                }
-            case 1:
-                if (this.L.M0.getTag() != null) {
-                    super.setVisibility(8);
-                    return;
-                } else {
-                    super.setVisibility(i10);
-                    return;
-                }
-            case 2:
-                if (this.L.M0.getTag() != null) {
-                    super.setVisibility(8);
-                    return;
-                } else {
-                    super.setVisibility(i10);
-                    return;
-                }
-            default:
-                if (this.L.M0.getTag() != null) {
-                    super.setVisibility(8);
-                    return;
-                } else {
-                    super.setVisibility(i10);
-                    return;
-                }
+    public final void N(boolean z10) {
+        boolean z11;
+        ArrayList arrayList;
+        ArrayList arrayList2;
+        ArrayList arrayList3;
+        ArrayList arrayList4;
+        super.N(z10);
+        ln0 ln0Var = this.f30667e0.f32955g0;
+        if (!this.W && !this.X && (arrayList = this.P) != null && arrayList.isEmpty() && (arrayList2 = this.Q) != null && arrayList2.isEmpty() && (arrayList3 = this.S) != null && arrayList3.isEmpty() && (arrayList4 = this.R) != null && arrayList4.isEmpty()) {
+            z11 = false;
+        } else {
+            z11 = true;
         }
+        ln0Var.e(z11, z10);
+        if (TextUtils.isEmpty(this.f30406b0)) {
+            ln0Var.d.setText(LocaleController.getString(R.string.NoChannelsTitle));
+            ln0Var.f32755e.setVisibility(0);
+            ln0Var.f32755e.setText(LocaleController.getString(R.string.NoChannelsMessage));
+            return;
+        }
+        ln0Var.d.setText(LocaleController.getString(R.string.NoResult));
+        ln0Var.f32755e.setVisibility(8);
     }
 }

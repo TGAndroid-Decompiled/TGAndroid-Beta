@@ -1,37 +1,42 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-public final class v6 extends r7 {
-    public final int f37418w;
-    public final Object f37419x;
+public final class v6 extends org.telegram.ui.Components.ed {
+    public final x6 f41427e0;
 
-    public v6(Object obj, Context context, org.telegram.ui.ActionBar.p2 p2Var, int i10) {
-        super(context, p2Var);
-        this.f37418w = i10;
-        this.f37419x = obj;
-    }
-
-    public void e(boolean z10) {
-        y6 y6Var = ((w6) this.f37419x).e;
-        if (z10) {
-            y6.b0(y6Var, true);
-            y6.d0(y6Var).O(null, null);
-            return;
-        }
-        y6.e0(y6Var).r();
+    public v6(x6 x6Var, Context context) {
+        super(context, 11, org.telegram.ui.Components.ed.W, 0, org.telegram.ui.Components.ed.f25639a0);
+        this.f41427e0 = x6Var;
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        switch (this.f37418w) {
-            case 0:
-                super.onMeasure(i10, org.telegram.messenger.em.d(12.0f, View.MeasureSpec.getSize(i11) - (org.telegram.ui.ActionBar.l.getCurrentActionBarHeight() / 2), 1073741824));
-                return;
-            default:
-                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec((((lv) this.f37419x).h - org.telegram.ui.ActionBar.l.getCurrentActionBarHeight()) - AndroidUtilities.statusBarHeight, 1073741824));
-                return;
+    public final void d(int i10, boolean z10) {
+        z6 z6Var = this.f41427e0.f42597e;
+        if (!z10) {
+            z6Var.f43305b.i1();
+            return;
+        }
+        int i11 = -1;
+        if (i10 == 8) {
+            i10 = -1;
+        }
+        int i12 = 0;
+        while (true) {
+            if (i12 < z6Var.f43304a0.size()) {
+                u6 u6Var = (u6) z6Var.f43304a0.get(i12);
+                if (u6Var != null && u6Var.f44071a == 11 && u6Var.f40943f == i10) {
+                    i11 = i12;
+                    break;
+                }
+                i12++;
+            } else {
+                break;
+            }
+        }
+        if (i11 >= 0) {
+            z6Var.f43305b.d1(new i2.w(i11, 3), 0, true);
+        } else {
+            z6Var.f43305b.i1();
         }
     }
 }

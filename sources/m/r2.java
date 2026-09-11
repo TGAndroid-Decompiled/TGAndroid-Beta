@@ -4,37 +4,37 @@ import android.view.View;
 import android.view.ViewGroup;
 import androidx.appcompat.widget.SearchView;
 public final class r2 implements View.OnFocusChangeListener {
-    public final int f13135a;
-    public final ViewGroup f13136b;
+    public final int f15656a;
+    public final ViewGroup f15657b;
 
     public r2(ViewGroup viewGroup, int i10) {
-        this.f13135a = i10;
-        this.f13136b = viewGroup;
+        this.f15656a = i10;
+        this.f15657b = viewGroup;
     }
 
     @Override
     public final void onFocusChange(View view, boolean z10) {
-        switch (this.f13135a) {
+        switch (this.f15656a) {
             case 0:
-                SearchView searchView = (SearchView) this.f13136b;
-                View.OnFocusChangeListener onFocusChangeListener = searchView.f690d0;
+                SearchView searchView = (SearchView) this.f15657b;
+                View.OnFocusChangeListener onFocusChangeListener = searchView.f989d0;
                 if (onFocusChangeListener != null) {
                     onFocusChangeListener.onFocusChange(searchView, z10);
                     return;
                 }
                 return;
             case 1:
-                org.telegram.ui.Cells.f3 f3Var = (org.telegram.ui.Cells.f3) this.f13136b;
+                org.telegram.ui.Cells.f3 f3Var = (org.telegram.ui.Cells.f3) this.f15657b;
                 f3Var.h = z10;
-                if (f3Var.f19111f) {
+                if (f3Var.f21903f) {
                     f3Var.c();
                     return;
                 }
                 return;
             default:
-                org.telegram.ui.Cells.i3 i3Var = (org.telegram.ui.Cells.i3) this.f13136b;
-                i3Var.f19296n = z10;
-                if (i3Var.f19295f) {
+                org.telegram.ui.Cells.i3 i3Var = (org.telegram.ui.Cells.i3) this.f15657b;
+                i3Var.f22078n = z10;
+                if (i3Var.f22077f) {
                     i3Var.c();
                 }
                 i3Var.a(z10);

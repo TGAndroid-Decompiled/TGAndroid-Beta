@@ -1,31 +1,39 @@
 package org.telegram.messenger;
 
-import android.view.View;
-import java.util.List;
+import org.telegram.messenger.UnconfirmedAuthController;
 import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.ResultCallback;
 import org.telegram.tgnet.TLRPC;
-public final class c1 implements Utilities.Callback {
-    public final int f14825a;
-    public final Object f14826b;
+import org.telegram.tgnet.tl.TL_account;
+import org.telegram.tgnet.tl.TL_payments;
+public final class c1 implements Utilities.Callback2 {
+    public final int f17312a;
+    public final Object f17313b;
+    public final Object f17314c;
 
-    public c1(Object obj, int i10) {
-        this.f14825a = i10;
-        this.f14826b = obj;
+    public c1(int i10, Object obj, Object obj2) {
+        this.f17312a = i10;
+        this.f17313b = obj;
+        this.f17314c = obj2;
     }
 
     @Override
-    public final void run(Object obj) {
-        switch (this.f14825a) {
+    public final void run(Object obj, Object obj2) {
+        switch (this.f17312a) {
             case 0:
-                ChatThemeController.q((ChatThemeController) this.f14826b, (List) obj);
+                ((ChatThemeController) this.f17313b).lambda$requestNextChatThemes$21((ResultCallback) this.f17314c, (TL_account.ChatThemes) obj, (TLRPC.TL_error) obj2);
                 return;
             case 1:
-                TLRPC.TL_messages_stickerSet tL_messages_stickerSet = (TLRPC.TL_messages_stickerSet) obj;
-                ((Runnable) this.f14826b).run();
+                ((GiftAuctionController) this.f17313b).lambda$requestGiftAuctionInternal$4((Utilities.Callback2) this.f17314c, (TL_payments.TL_StarGiftAuctionState) obj, (TLRPC.TL_error) obj2);
+                return;
+            case 2:
+                ((MessagesController) this.f17313b).lambda$fetchJoinedCommunities$251((Utilities.Callback) this.f17314c, (TLRPC.messages_Chats) obj, (TLRPC.TL_error) obj2);
+                return;
+            case 3:
+                PasskeysController.lambda$create$4((org.telegram.ui.ActionBar.b2) this.f17313b, (Utilities.Callback2) this.f17314c, (TL_account.Passkey) obj, (TLRPC.TL_error) obj2);
                 return;
             default:
-                Object[] objArr = (Object[]) obj;
-                ((View) this.f14826b).invalidate();
+                ((UnconfirmedAuthController.UnconfirmedAuth) this.f17313b).lambda$confirm$0((Utilities.Callback) this.f17314c, (TLRPC.Bool) obj, (TLRPC.TL_error) obj2);
                 return;
         }
     }

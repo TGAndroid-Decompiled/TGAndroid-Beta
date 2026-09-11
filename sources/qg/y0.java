@@ -1,138 +1,64 @@
 package qg;
 
-import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.ui.Components.ra;
-import org.telegram.ui.mx0;
-public final class y0 implements z4.e {
-    public final ra f40989a;
-    public final a1 f40990b;
+import android.graphics.SurfaceTexture;
+import android.view.TextureView;
+import org.telegram.ui.Components.ja;
+public final class y0 implements TextureView.SurfaceTextureListener {
+    public final ja f44630a;
+    public final c1 f44631b;
 
-    public y0(a1 a1Var, ra raVar) {
-        this.f40990b = a1Var;
-        this.f40989a = raVar;
+    public y0(c1 c1Var, ja jaVar) {
+        this.f44631b = c1Var;
+        this.f44630a = jaVar;
     }
 
     @Override
-    public final void a(int i10) {
-        a1 a1Var = this.f40990b;
-        ArrayList arrayList = a1Var.d;
-        if (((mx0) arrayList.get(i10)).f35073a == 0) {
-            a1Var.N.setTitle(LocaleController.getString(R.string.DoubledLimits));
-            a1Var.N.requestLayout();
-        } else if (((mx0) arrayList.get(i10)).f35073a == 14) {
-            a1Var.N.setTitle(LocaleController.getString(R.string.UpgradedStories));
-            a1Var.N.requestLayout();
-        } else if (((mx0) arrayList.get(i10)).f35073a == 40) {
-            a1Var.N.setTitle(LocaleController.getString(R.string.FeaturePreviewGifts));
-            a1Var.N.requestLayout();
-        } else if (((mx0) arrayList.get(i10)).f35073a == 28) {
-            a1Var.N.setTitle(LocaleController.getString(R.string.TelegramBusiness));
-            a1Var.N.requestLayout();
-        }
-        d();
-    }
-
-    @Override
-    public final void b(float f7, int i10, int i11) {
-        int i12;
-        ra raVar = this.f40989a;
-        raVar.f26641b = f7;
-        raVar.f26642c = i10;
-        raVar.invalidate();
-        a1 a1Var = this.f40990b;
-        a1Var.G = i10;
-        if (i11 > 0) {
-            i12 = i10 + 1;
-        } else {
-            i12 = i10 - 1;
-        }
-        a1Var.H = i12;
-        a1Var.I = f7;
-        d();
-    }
-
-    public final void d() {
-        boolean z10;
-        boolean z11;
-        int i10;
-        int i11;
-        a1 a1Var = this.f40990b;
-        x0 x0Var = a1Var.f40663n;
-        ArrayList arrayList = a1Var.d;
-        int i12 = 0;
-        while (true) {
-            float f7 = 0.0f;
-            if (i12 >= x0Var.getChildCount()) {
-                break;
-            }
-            z0 z0Var = (z0) x0Var.getChildAt(i12);
-            if (!a1Var.f40666w || !(z0Var.f40998f instanceof p0)) {
-                int i13 = z0Var.f40995a;
-                n0 n0Var = z0Var.e;
-                if (i13 == a1Var.G) {
-                    f7 = (-z0Var.getMeasuredWidth()) * a1Var.I;
-                    n0Var.setOffset(f7);
-                } else if (i13 == a1Var.H) {
-                    f7 = ((-z0Var.getMeasuredWidth()) * a1Var.I) + z0Var.getMeasuredWidth();
-                    n0Var.setOffset(f7);
-                } else {
-                    n0Var.setOffset(z0Var.getMeasuredWidth());
+    public final void onSurfaceTextureAvailable(SurfaceTexture surfaceTexture, int i10, int i11) {
+        if (surfaceTexture != null) {
+            c1 c1Var = this.f44631b;
+            if (c1Var.d == null) {
+                a1 a1Var = new a1(c1Var, surfaceTexture, this.f44630a);
+                c1Var.d = a1Var;
+                a1Var.f44373n = i10;
+                a1Var.f44374r = i11;
+                c1Var.i();
+                c1Var.post(new x0(this, 1));
+                q0 q0Var = c1Var.f44389c;
+                if (q0Var.v) {
+                    q0Var.f44522f.f(new o0(q0Var, q0Var.f44537w, 0));
+                    q0Var.f44537w = null;
+                    q0Var.v = false;
                 }
             }
-            if (z0Var.f40998f instanceof p0) {
-                z0Var.setTranslationX(-f7);
-                z0Var.f40996b.setTranslationX(f7);
-                z0Var.f40997c.setTranslationX(f7);
-            }
-            i12++;
-        }
-        int i14 = a1Var.G;
-        if (i14 >= 0 && i14 < arrayList.size() && ((i11 = ((mx0) arrayList.get(a1Var.G)).f35073a) == 0 || i11 == 14 || i11 == 28)) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        int i15 = a1Var.H;
-        if (i15 >= 0 && i15 < arrayList.size() && ((i10 = ((mx0) arrayList.get(a1Var.H)).f35073a) == 0 || i10 == 14 || i10 == 28)) {
-            z11 = true;
-        } else {
-            z11 = false;
-        }
-        if (z10 && z11) {
-            a1Var.f40662f = 1.0f;
-            float f10 = a1Var.I;
-            if (f10 == 0.0f) {
-                f10 = 1.0f;
-            }
-            a1Var.e = f10;
-            a1Var.h = true;
-        } else if (z10) {
-            float f11 = 1.0f - a1Var.I;
-            a1Var.e = f11;
-            a1Var.f40662f = f11;
-            a1Var.h = true;
-        } else if (z11) {
-            float f12 = a1Var.I;
-            a1Var.e = f12;
-            a1Var.f40662f = f12;
-            a1Var.h = false;
-        } else {
-            a1Var.e = 0.0f;
-            a1Var.f40662f = 0.0f;
-            a1Var.h = true;
-        }
-        int i16 = (int) ((1.0f - a1Var.e) * 255.0f);
-        if (i16 != a1Var.K) {
-            a1Var.K = i16;
-            a1Var.f40664r.invalidate();
-            AndroidUtilities.runOnUIThread(new q0(this, 1));
         }
     }
 
     @Override
-    public final void c(int i10) {
+    public final boolean onSurfaceTextureDestroyed(SurfaceTexture surfaceTexture) {
+        c1 c1Var = this.f44631b;
+        if (c1Var.d != null && !c1Var.f44397y) {
+            q0 q0Var = c1Var.f44389c;
+            q0Var.f44522f.f(new org.telegram.ui.web.g1(9, q0Var, new x0(this, 2)));
+        }
+        return true;
+    }
+
+    @Override
+    public final void onSurfaceTextureSizeChanged(SurfaceTexture surfaceTexture, int i10, int i11) {
+        c1 c1Var = this.f44631b;
+        a1 a1Var = c1Var.d;
+        if (a1Var == null) {
+            return;
+        }
+        a1Var.f44373n = i10;
+        a1Var.f44374r = i11;
+        c1Var.i();
+        a1 a1Var2 = c1Var.d;
+        a1Var2.postRunnable(a1Var2.f44376w);
+        c1Var.d.postRunnable(new x0(this, 0));
+    }
+
+    @Override
+    public final void onSurfaceTextureUpdated(SurfaceTexture surfaceTexture) {
     }
 }

@@ -1,20 +1,40 @@
 package org.telegram.ui;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
+import android.app.Activity;
+import android.text.TextUtils;
+import android.view.accessibility.AccessibilityNodeInfo;
+import android.widget.LinearLayout;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-public final class qi1 extends AnimatorListenerAdapter {
-    public final zi1 f36072a;
+import org.telegram.messenger.voip.VoIPService;
+import org.telegram.messenger.voip.VoIPServiceState;
+public final class qi1 extends LinearLayout {
+    public final ui1 f39885a;
 
-    public qi1(zi1 zi1Var) {
-        this.f36072a = zi1Var;
+    public qi1(ui1 ui1Var, Activity activity) {
+        super(activity);
+        this.f39885a = ui1Var;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        zi1 zi1Var = this.f36072a;
-        zi1Var.E.setText(LocaleController.getString(R.string.VoipCallEnded));
-        zi1Var.E.animate().alpha(1.0f).setDuration(70L).setListener(null).start();
+    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+        VoIPServiceState sharedState = VoIPService.getSharedState();
+        CharSequence text = this.f39885a.E.getText();
+        if (sharedState != null && !TextUtils.isEmpty(text)) {
+            StringBuilder sb2 = new StringBuilder(text);
+            sb2.append(", ");
+            if (sharedState.getPrivateCall() != null && sharedState.getPrivateCall().video) {
+                sb2.append(LocaleController.getString(R.string.VoipInVideoCallBranding));
+            } else {
+                sb2.append(LocaleController.getString(R.string.VoipInCallBranding));
+            }
+            long callDuration = sharedState.getCallDuration();
+            if (callDuration > 0) {
+                sb2.append(", ");
+                sb2.append(LocaleController.formatDuration((int) (callDuration / 1000)));
+            }
+            accessibilityNodeInfo.setText(sb2);
+        }
     }
 }

@@ -1,21 +1,21 @@
 package org.telegram.messenger;
 public final class e0 implements Runnable {
-    public final int f15033a;
-    public final org.telegram.ui.ActionBar.d2[] f15034b;
+    public final int f17522a;
+    public final org.telegram.ui.ActionBar.b2[] f17523b;
 
-    public e0(org.telegram.ui.ActionBar.d2[] d2VarArr, int i10) {
-        this.f15033a = i10;
-        this.f15034b = d2VarArr;
+    public e0(org.telegram.ui.ActionBar.b2[] b2VarArr, int i10) {
+        this.f17522a = i10;
+        this.f17523b = b2VarArr;
     }
 
     @Override
     public final void run() {
-        switch (this.f15033a) {
+        switch (this.f17522a) {
             case 0:
-                BillingController.lambda$onPurchasesUpdatedInternal$6(this.f15034b);
+                BillingController.lambda$onPurchasesUpdatedInternal$6(this.f17523b);
                 return;
             default:
-                BillingController.lambda$onPurchasesUpdatedInternal$5(this.f15034b);
+                BillingController.lambda$onPurchasesUpdatedInternal$5(this.f17523b);
                 return;
         }
     }

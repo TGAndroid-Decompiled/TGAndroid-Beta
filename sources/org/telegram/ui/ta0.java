@@ -1,72 +1,105 @@
 package org.telegram.ui;
 
-import android.os.Bundle;
 import java.util.regex.Pattern;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.R;
-import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.tl.TL_stories;
 public final class ta0 implements e2.h {
-    public final int f36889a;
-    public final int f36890b;
-    public final Object f36891c;
-    public final Object d;
-    public final Object e;
+    public final int f40698a;
+    public final LaunchActivity f40699b;
+    public final r80 f40700c;
+    public final Long d;
 
-    public ta0(Object obj, Object obj2, Object obj3, int i10, int i11) {
-        this.f36889a = i11;
-        this.f36891c = obj;
-        this.d = obj2;
-        this.e = obj3;
-        this.f36890b = i10;
+    public ta0(LaunchActivity launchActivity, r80 r80Var, Long l4, int i10) {
+        this.f40698a = i10;
+        this.f40699b = launchActivity;
+        this.f40700c = r80Var;
+        this.d = l4;
     }
 
     @Override
     public final void accept(Object obj) {
-        boolean z10;
-        int i10 = this.f36889a;
-        Object obj2 = this.e;
-        Object obj3 = this.d;
-        Object obj4 = this.f36891c;
-        switch (i10) {
+        org.telegram.ui.Components.yc X;
+        int i10;
+        int i11;
+        org.telegram.ui.Components.yc X2;
+        int i12;
+        int i13;
+        int i14 = this.f40698a;
+        Long l4 = this.d;
+        r80 r80Var = this.f40700c;
+        LaunchActivity launchActivity = this.f40699b;
+        TL_stories.StoryItem storyItem = (TL_stories.StoryItem) obj;
+        switch (i14) {
             case 0:
-                LaunchActivity launchActivity = (LaunchActivity) obj4;
-                h90 h90Var = (h90) obj3;
-                Long l4 = (Long) obj2;
-                TL_stories.TL_storyAlbum tL_storyAlbum = (TL_stories.TL_storyAlbum) obj;
                 Pattern pattern = LaunchActivity.B1;
                 try {
-                    h90Var.run();
-                } catch (Exception e) {
-                    FileLog.e(e);
+                    r80Var.run();
+                } catch (Exception e7) {
+                    FileLog.e(e7);
                 }
-                LaunchActivity.R();
-                if (tL_storyAlbum == null) {
-                    org.telegram.ui.Components.wc X = org.telegram.ui.Components.wc.X();
+                org.telegram.ui.ActionBar.n2 R = LaunchActivity.R();
+                if (storyItem == null) {
+                    X = org.telegram.ui.Components.yc.X();
                     if (X != null) {
-                        org.telegram.messenger.a2.o(R.string.StoryAlbumNotFound, X, R.raw.story_bomb2, 36);
+                        i10 = R.raw.story_bomb2;
+                        i11 = R.string.StoryNotFound;
+                    } else {
                         return;
                     }
+                } else if (storyItem instanceof TL_stories.TL_storyItemDeleted) {
+                    X = org.telegram.ui.Components.yc.X();
+                    if (X != null) {
+                        i10 = R.raw.story_bomb1;
+                        i11 = R.string.StoryNotFound;
+                    } else {
+                        return;
+                    }
+                } else if (R != null) {
+                    storyItem.dialogId = l4.longValue();
+                    bi.pb createOverlayStoryViewer = R.createOverlayStoryViewer();
+                    createOverlayStoryViewer.v();
+                    createOverlayStoryViewer.F(launchActivity, storyItem, null);
+                    return;
+                } else {
                     return;
                 }
-                Bundle bundle = new Bundle();
-                if (l4.longValue() > 0) {
-                    bundle.putLong("user_id", l4.longValue());
-                    if (l4.longValue() == UserConfig.getInstance(launchActivity.O).getClientUserId()) {
-                        z10 = true;
-                    } else {
-                        z10 = false;
-                    }
-                    bundle.putBoolean("my_profile", z10);
-                } else {
-                    bundle.putLong("chat_id", -l4.longValue());
-                }
-                bundle.putInt("open_story_album_id", this.f36890b);
-                launchActivity.p0(new ProfileActivity(bundle, null));
+                org.telegram.messenger.w1.o(i11, X, i10, 36);
                 return;
             default:
-                a5.a aVar = (a5.a) obj4;
-                ((u2.m0) obj).h(aVar.f275b, (u2.g0) aVar.f276c, (u2.u) obj3, (u2.c0) obj2, this.f36890b);
+                Pattern pattern2 = LaunchActivity.B1;
+                try {
+                    r80Var.run();
+                } catch (Exception e10) {
+                    FileLog.e(e10);
+                }
+                org.telegram.ui.ActionBar.n2 R2 = LaunchActivity.R();
+                if (storyItem == null) {
+                    X2 = org.telegram.ui.Components.yc.X();
+                    if (X2 != null) {
+                        i12 = R.raw.story_bomb2;
+                        i13 = R.string.StoryNotFound;
+                    } else {
+                        return;
+                    }
+                } else if (storyItem instanceof TL_stories.TL_storyItemDeleted) {
+                    X2 = org.telegram.ui.Components.yc.X();
+                    if (X2 != null) {
+                        i12 = R.raw.story_bomb1;
+                        i13 = R.string.StoryNotFound;
+                    } else {
+                        return;
+                    }
+                } else if (R2 != null) {
+                    storyItem.dialogId = l4.longValue();
+                    bi.pb createOverlayStoryViewer2 = R2.createOverlayStoryViewer();
+                    createOverlayStoryViewer2.v();
+                    createOverlayStoryViewer2.F(launchActivity, storyItem, null);
+                    return;
+                } else {
+                    return;
+                }
+                org.telegram.messenger.w1.o(i13, X2, i12, 36);
                 return;
         }
     }

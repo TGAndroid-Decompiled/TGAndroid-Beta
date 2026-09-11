@@ -1,37 +1,36 @@
 package org.telegram.messenger;
 public final class w5 implements Runnable {
-    public final int f16837a;
-    public final LocationController f16838b;
+    public final int f19477a;
+    public final org.telegram.ui.ActionBar.b2 f19478b;
+    public final boolean[] f19479c;
 
-    public w5(LocationController locationController, int i10) {
-        this.f16837a = i10;
-        this.f16838b = locationController;
+    public w5(org.telegram.ui.ActionBar.b2 b2Var, boolean[] zArr, int i10) {
+        this.f19477a = i10;
+        this.f19478b = b2Var;
+        this.f19479c = zArr;
     }
 
     @Override
     public final void run() {
-        switch (this.f16837a) {
+        switch (this.f19477a) {
             case 0:
-                this.f16838b.lambda$onConnected$3();
+                MediaController.lambda$saveFile$45(this.f19479c, this.f19478b);
                 return;
             case 1:
-                this.f16838b.lambda$setProximityLocation$13();
+                MediaController.lambda$saveFile$49(this.f19478b, this.f19479c);
                 return;
             case 2:
-                this.f16838b.lambda$new$0();
-                return;
-            case 3:
-                this.f16838b.lambda$removeAllLocationSharings$23();
-                return;
-            case 4:
-                this.f16838b.lambda$removeAllLocationSharings$24();
-                return;
-            case 5:
-                this.f16838b.lambda$cleanup$9();
+                MediaController.lambda$saveFile$52(this.f19479c, this.f19478b);
                 return;
             default:
-                this.f16838b.lambda$loadSharingLocations$17();
+                MediaController.lambda$saveFile$54(this.f19478b, this.f19479c);
                 return;
         }
+    }
+
+    public w5(boolean[] zArr, org.telegram.ui.ActionBar.b2 b2Var, int i10) {
+        this.f19477a = i10;
+        this.f19479c = zArr;
+        this.f19478b = b2Var;
     }
 }

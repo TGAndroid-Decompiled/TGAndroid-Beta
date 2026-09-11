@@ -3,22 +3,22 @@ package i2;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import gg.v1;
+import di.nb;
 public final class b extends BroadcastReceiver {
-    public final b0 f10105a;
-    public final e2.z f10106b;
-    public final com.google.firebase.messaging.m f10107c;
+    public final c0 f11460a;
+    public final e2.z f11461b;
+    public final com.google.firebase.messaging.m f11462c;
 
-    public b(com.google.firebase.messaging.m mVar, e2.z zVar, b0 b0Var) {
-        this.f10107c = mVar;
-        this.f10106b = zVar;
-        this.f10105a = b0Var;
+    public b(com.google.firebase.messaging.m mVar, e2.z zVar, c0 c0Var) {
+        this.f11462c = mVar;
+        this.f11461b = zVar;
+        this.f11460a = c0Var;
     }
 
     @Override
     public final void onReceive(Context context, Intent intent) {
         if ("android.media.AUDIO_BECOMING_NOISY".equals(intent.getAction())) {
-            this.f10106b.c(new v1(this, 10));
+            this.f11461b.c(new nb(this, 23));
         }
     }
 }

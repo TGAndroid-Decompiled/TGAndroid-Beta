@@ -1,73 +1,92 @@
 package org.telegram.messenger;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Set;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.TranslateController;
+import android.graphics.drawable.Drawable;
+import java.util.ArrayList;
+import java.util.concurrent.CountDownLatch;
+import org.telegram.messenger.NotificationCenter;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.ActionBarLayout;
+import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
+import org.telegram.ui.TwoStepVerificationActivity;
 public final class sd implements Runnable {
-    public final int f16309a = 2;
-    public final long f16310b;
-    public final boolean f16311c;
-    public final BaseController d;
-    public final Object e;
-    public final Object f16312f;
+    public final int f18991a;
+    public final boolean f18992b;
+    public final boolean f18993c;
+    public final Object d;
+    public final Object f18994e;
+    public final Object f18995f;
     public final Object h;
 
-    public sd(ChatThemeController chatThemeController, TLObject tLObject, long j3, boolean z10, String str, Runnable runnable) {
-        this.d = chatThemeController;
-        this.e = tLObject;
-        this.f16310b = j3;
-        this.f16311c = z10;
-        this.f16312f = str;
-        this.h = runnable;
+    public sd(MessagesController messagesController, TLRPC.TL_error tL_error, org.telegram.ui.ActionBar.n2 n2Var, TLRPC.TL_channels_editAdmin tL_channels_editAdmin, boolean z10, boolean z11) {
+        this.f18991a = 0;
+        this.d = messagesController;
+        this.f18994e = tL_error;
+        this.f18995f = n2Var;
+        this.h = tL_channels_editAdmin;
+        this.f18992b = z10;
+        this.f18993c = z11;
     }
 
     @Override
     public final void run() {
-        switch (this.f16309a) {
+        int i10 = this.f18991a;
+        Object obj = this.h;
+        Object obj2 = this.f18995f;
+        Object obj3 = this.f18994e;
+        Object obj4 = this.d;
+        switch (i10) {
             case 0:
-                boolean z10 = this.f16311c;
-                ((MessagesController) this.d).lambda$getSendAsPeers$442((TLRPC.TL_channels_sendAsPeers) this.e, (a0.i) this.f16312f, this.f16310b, (MessagesController.SendAsPeersInfo) this.h, z10);
+                ((MessagesController) obj4).lambda$setUserAdminRole$101((TLRPC.TL_error) obj3, (org.telegram.ui.ActionBar.n2) obj2, (TLRPC.TL_channels_editAdmin) obj, this.f18992b, this.f18993c);
                 return;
             case 1:
-                ((TranslateController) this.d).lambda$pushToTranslate$24((HashMap) this.e, this.f16310b, (TranslateController.PendingTranslation) this.f16312f, this.f16311c, (Set) this.h);
+                ((NotificationsController) obj4).lambda$processNewMessages$27((ArrayList) obj3, (ArrayList) obj2, this.f18992b, this.f18993c, (CountDownLatch) obj);
                 return;
             case 2:
-                ((ChatThemeController) this.d).lambda$setWallpaperToPeer$16((TLObject) this.e, this.f16310b, this.f16311c, (String) this.f16312f, (Runnable) this.h);
+                ActionBarLayout actionBarLayout = (ActionBarLayout) obj4;
+                ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = (ActionBarPopupWindow$ActionBarPopupWindowLayout) obj3;
+                org.telegram.ui.ActionBar.n2 n2Var = (org.telegram.ui.ActionBar.n2) obj2;
+                org.telegram.ui.ActionBar.n2 n2Var2 = (org.telegram.ui.ActionBar.n2) obj;
+                if (this.f18992b) {
+                    actionBarLayout.h = true;
+                    actionBarLayout.J = actionBarPopupWindow$ActionBarPopupWindowLayout;
+                    actionBarLayout.f20138a0 = false;
+                    actionBarLayout.f20175s.setScaleX(1.0f);
+                    actionBarLayout.f20175s.setScaleY(1.0f);
+                } else {
+                    Drawable drawable = ActionBarLayout.f20134p1;
+                    actionBarLayout.T(n2Var, this.f18993c);
+                    actionBarLayout.f20175s.setTranslationX(0.0f);
+                }
+                if (n2Var != null) {
+                    n2Var.onTransitionAnimationEnd(false, false);
+                }
+                n2Var2.onTransitionAnimationEnd(true, false);
+                n2Var2.onBecomeFullyVisible();
                 return;
             default:
-                ((TopicsController) this.d).lambda$reloadTopics$15((TLObject) this.e, this.f16311c, this.f16310b, (HashSet) this.f16312f, (Runnable) this.h);
+                TwoStepVerificationActivity.a0((TwoStepVerificationActivity) obj4, (TLRPC.TL_error) obj3, (TLObject) obj2, this.f18992b, this.f18993c, (Runnable) obj);
                 return;
         }
     }
 
-    public sd(MessagesController messagesController, TLRPC.TL_channels_sendAsPeers tL_channels_sendAsPeers, a0.i iVar, long j3, MessagesController.SendAsPeersInfo sendAsPeersInfo, boolean z10) {
-        this.d = messagesController;
-        this.e = tL_channels_sendAsPeers;
-        this.f16312f = iVar;
-        this.f16310b = j3;
-        this.h = sendAsPeersInfo;
-        this.f16311c = z10;
+    public sd(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, Object obj, Object obj2, boolean z10, boolean z11, Object obj3, int i10) {
+        this.f18991a = i10;
+        this.d = notificationCenterDelegate;
+        this.f18994e = obj;
+        this.f18995f = obj2;
+        this.f18992b = z10;
+        this.f18993c = z11;
+        this.h = obj3;
     }
 
-    public sd(TopicsController topicsController, TLObject tLObject, boolean z10, long j3, HashSet hashSet, Runnable runnable) {
-        this.d = topicsController;
-        this.e = tLObject;
-        this.f16311c = z10;
-        this.f16310b = j3;
-        this.f16312f = hashSet;
-        this.h = runnable;
-    }
-
-    public sd(TranslateController translateController, HashMap hashMap, long j3, TranslateController.PendingTranslation pendingTranslation, boolean z10, Set set) {
-        this.d = translateController;
-        this.e = hashMap;
-        this.f16310b = j3;
-        this.f16312f = pendingTranslation;
-        this.f16311c = z10;
-        this.h = set;
+    public sd(ActionBarLayout actionBarLayout, boolean z10, ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout, boolean z11, org.telegram.ui.ActionBar.n2 n2Var, org.telegram.ui.ActionBar.n2 n2Var2) {
+        this.f18991a = 2;
+        this.d = actionBarLayout;
+        this.f18992b = z10;
+        this.f18994e = actionBarPopupWindow$ActionBarPopupWindowLayout;
+        this.f18993c = z11;
+        this.f18995f = n2Var;
+        this.h = n2Var2;
     }
 }

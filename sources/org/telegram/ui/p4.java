@@ -1,5 +1,5 @@
 package org.telegram.ui;
-public final class p4 extends org.telegram.ui.Cells.l6 {
+public final class p4 extends org.telegram.ui.Cells.j6 {
     public boolean d;
-    public int e;
+    public int f39403e;
 }

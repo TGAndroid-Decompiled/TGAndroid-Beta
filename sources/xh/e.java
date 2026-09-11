@@ -1,40 +1,25 @@
 package xh;
+public final class e implements Runnable {
+    public final int f49411a;
+    public final n f49412b;
 
-import android.view.View;
-import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.v51;
-import org.telegram.ui.mh1;
-public final class e implements org.telegram.ui.ActionBar.c2, Utilities.Callback5, Utilities.Callback5Return {
-    public final h f45353a;
-
-    public e(h hVar) {
-        this.f45353a = hVar;
+    public e(n nVar, int i10) {
+        this.f49411a = i10;
+        this.f49412b = nVar;
     }
 
     @Override
-    public void f(org.telegram.ui.ActionBar.d2 d2Var, int i10) {
-        h hVar = this.f45353a;
-        hVar.getClass();
-        hVar.presentFragment(new mh1(6, null));
-    }
-
-    @Override
-    public Object run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-        v51 v51Var = (v51) obj;
-        View view = (View) obj2;
-        ((Integer) obj3).intValue();
-        ((Float) obj4).floatValue();
-        ((Float) obj5).floatValue();
-        this.f45353a.getClass();
-        return Boolean.FALSE;
-    }
-
-    @Override
-    public void mo17run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-        View view = (View) obj2;
-        ((Integer) obj3).getClass();
-        ((Float) obj4).getClass();
-        ((Float) obj5).getClass();
-        h.W(this.f45353a, (v51) obj);
+    public final void run() {
+        switch (this.f49411a) {
+            case 0:
+                this.f49412b.e();
+                return;
+            case 1:
+                n.k(this.f49412b.f49456q, true, true);
+                return;
+            default:
+                this.f49412b.e();
+                return;
+        }
     }
 }

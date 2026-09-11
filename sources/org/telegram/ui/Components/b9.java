@@ -1,40 +1,39 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Paint;
-import android.graphics.drawable.Drawable;
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-public final class b9 extends View {
-    public z8 f21757a;
-    public final d6 f21758b;
-    public boolean f21759c;
-    public boolean d;
-    public final x20 e;
-    public Drawable f21760f;
-    public Drawable h;
-    public boolean f21761n;
-    public Paint f21762r;
-    public Paint f21763s;
-    public boolean v;
-    public final d9 f21764w;
+import j$.util.Objects;
+public final class b9 {
+    public int f24599a;
+    public boolean f24600b;
+    public int f24601c;
+    public int d;
+    public int f24602e;
+    public int f24603f;
 
-    public b9(d9 d9Var, Context context) {
-        super(context);
-        this.f21764w = d9Var;
-        d6 d6Var = new d6(400L, AndroidUtilities.overshootInterpolator);
-        this.f21758b = d6Var;
-        this.e = new x20();
-        d6Var.f22293a = this;
+    public final b9 a() {
+        ?? obj = new Object();
+        obj.f24601c = this.f24601c;
+        obj.d = this.d;
+        obj.f24602e = this.f24602e;
+        obj.f24603f = this.f24603f;
+        obj.f24600b = this.f24600b;
+        return obj;
     }
 
-    @Override
-    public final void onDraw(android.graphics.Canvas r15) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.b9.onDraw(android.graphics.Canvas):void");
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof b9)) {
+            return false;
+        }
+        b9 b9Var = (b9) obj;
+        if (this.f24601c == b9Var.f24601c && this.d == b9Var.d && this.f24602e == b9Var.f24602e && this.f24603f == b9Var.f24603f) {
+            return true;
+        }
+        return false;
     }
 
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(this.f21764w.P, 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(48.0f), 1073741824));
+    public final int hashCode() {
+        return Objects.hash(Integer.valueOf(this.f24599a), Integer.valueOf(this.f24601c), Integer.valueOf(this.d), Integer.valueOf(this.f24602e), Integer.valueOf(this.f24603f));
     }
 }

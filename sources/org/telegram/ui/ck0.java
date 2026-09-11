@@ -23,37 +23,37 @@ public final class ck0 extends AnimatedPhoneNumberEditText {
             case 0:
                 super.onFocusChanged(z10, i10, rect);
                 ek0 ek0Var = (ek0) this.H;
-                org.telegram.ui.Components.hd0 hd0Var = ek0Var.f32236s;
+                org.telegram.ui.Components.zc0 zc0Var = ek0Var.f36113s;
                 if (!z10 && !ek0Var.Q.isFocused()) {
                     f7 = 0.0f;
                 } else {
                     f7 = 1.0f;
                 }
-                hd0Var.b(f7, f7, true);
+                zc0Var.b(f7, f7, true);
                 return;
             case 1:
                 super.onFocusChanged(z10, i10, rect);
                 ek0 ek0Var2 = (ek0) this.H;
-                org.telegram.ui.Components.hd0 hd0Var2 = ek0Var2.f32236s;
+                org.telegram.ui.Components.zc0 zc0Var2 = ek0Var2.f36113s;
                 if (!z10 && !ek0Var2.O.isFocused()) {
                     f10 = 0.0f;
                 } else {
                     f10 = 1.0f;
                 }
-                hd0Var2.b(f10, f10, true);
+                zc0Var2.b(f10, f10, true);
                 return;
             default:
                 super.onFocusChanged(z10, i10, rect);
-                wg0 wg0Var = (wg0) this.H;
-                org.telegram.ui.Components.hd0 hd0Var3 = wg0Var.f38182f;
-                if (!z10 && !wg0Var.f38180b.isFocused()) {
+                vg0 vg0Var = (vg0) this.H;
+                org.telegram.ui.Components.zc0 zc0Var3 = vg0Var.f41540f;
+                if (!z10 && !vg0Var.f41537b.isFocused()) {
                     f11 = 0.0f;
                 } else {
                     f11 = 1.0f;
                 }
-                hd0Var3.b(f11, f11, true);
+                zc0Var3.b(f11, f11, true);
                 if (z10) {
-                    wg0Var.V.f38721c.setEditText(this);
+                    vg0Var.V.f42363c.setEditText(this);
                     return;
                 }
                 return;

@@ -1,83 +1,40 @@
 package org.telegram.ui.Components;
 
-import java.util.ArrayList;
-import org.telegram.messenger.MessageObject;
-public final class an0 extends s4.o {
-    public final int f21544b;
-    public final int f21545c;
-    public final int d;
-    public final int e;
-    public final int f21546f;
-    public final ArrayList f21547g;
-    public final int h;
-    public final int f21548i;
-    public final ArrayList f21549j;
-    public final fn0 f21550k;
-
-    public an0(fn0 fn0Var, int i10, int i11, int i12, int i13, int i14, ArrayList arrayList, int i15, int i16, ArrayList arrayList2) {
-        this.f21550k = fn0Var;
-        this.f21544b = i10;
-        this.f21545c = i11;
-        this.d = i12;
-        this.e = i13;
-        this.f21546f = i14;
-        this.f21547g = arrayList;
-        this.h = i15;
-        this.f21548i = i16;
-        this.f21549j = arrayList2;
+import android.view.View;
+public final class an0 extends s4.j {
+    @Override
+    public final boolean r(s4.c1 c1Var, b2.q0 q0Var, int i10, int i11, int i12, int i13) {
+        gn0 gn0Var;
+        fn0 fn0Var;
+        View view = c1Var.f45738a;
+        if ((view instanceof gn0) && (fn0Var = (gn0Var = (gn0) view).f26461a) != null) {
+            fn0Var.f565i = fn0Var.N;
+            fn0Var.f563g = fn0Var.O;
+            fn0Var.h = fn0Var.P;
+            gn0Var.f26462b.d(0.0f, true);
+            gn0Var.invalidate();
+        }
+        int translationX = i10 + ((int) view.getTranslationX());
+        int translationY = i11 + ((int) view.getTranslationY());
+        R(c1Var);
+        int i14 = i12 - translationX;
+        int i15 = i13 - translationY;
+        if (i14 == 0 && i15 == 0) {
+            v(c1Var);
+            return false;
+        }
+        if (i14 != 0) {
+            view.setTranslationX(-i14);
+        }
+        if (i15 != 0) {
+            view.setTranslationY(-i15);
+        }
+        this.f45806r.add(new s4.i(c1Var, translationX, translationY, i12, i13));
+        return true;
     }
 
     @Override
-    public final boolean a(int i10, int i11) {
-        return b(i10, i11);
-    }
-
-    @Override
-    public final boolean b(int i10, int i11) {
-        MessageObject messageObject;
-        fn0 fn0Var = this.f21550k;
-        if (i10 >= 0 && i11 >= 0) {
-            if (i10 == this.f21545c && i11 == fn0Var.f23045s) {
-                return true;
-            }
-            if (i10 == this.d && i11 == fn0Var.f23047x) {
-                return true;
-            }
-        }
-        MessageObject messageObject2 = null;
-        int i12 = this.e;
-        if (i10 >= i12 && i10 < this.f21546f) {
-            messageObject = (MessageObject) this.f21547g.get(i10 - i12);
-        } else {
-            int i13 = this.h;
-            if (i10 >= i13 && i10 < this.f21548i) {
-                messageObject = (MessageObject) this.f21549j.get(i10 - i13);
-            } else {
-                messageObject = null;
-            }
-        }
-        int i14 = fn0Var.v;
-        if (i11 >= i14 && i11 < fn0Var.f23046w) {
-            messageObject2 = (MessageObject) fn0Var.e.get(i11 - i14);
-        } else {
-            int i15 = fn0Var.f23048y;
-            if (i11 >= i15 && i11 < fn0Var.E) {
-                messageObject2 = (MessageObject) fn0Var.f23042f.get(i11 - i15);
-            }
-        }
-        if (messageObject2 != null && messageObject != null && messageObject2.getDocument() != null && messageObject.getDocument() != null && messageObject2.getDocument().f17201id == messageObject.getDocument().f17201id) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final int d() {
-        return this.f21550k.f23044r;
-    }
-
-    @Override
-    public final int e() {
-        return this.f21544b;
+    public final boolean t(s4.c1 c1Var) {
+        return true;
     }
 }

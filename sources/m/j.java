@@ -1,9 +1,9 @@
 package m;
 public final class j extends v1 {
-    public boolean f13040a;
-    public int f13041b;
-    public int f13042c;
+    public boolean f15549a;
+    public int f15550b;
+    public int f15551c;
     public boolean d;
-    public boolean e;
-    public boolean f13043f;
+    public boolean f15552e;
+    public boolean f15553f;
 }

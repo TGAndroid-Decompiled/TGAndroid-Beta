@@ -1,49 +1,65 @@
 package zh;
 
-import android.content.Context;
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-public final class d4 extends z4.a {
-    public final u7 f48347c;
-    public final Context d;
-    public final g4 e;
+import org.telegram.messenger.Utilities;
+public final class d4 implements Utilities.Callback2 {
+    public final int f51785a = 0;
+    public final boolean[] f51786b;
+    public final Utilities.Callback2 f51787c;
+    public final Utilities.Callback d;
 
-    public d4(Context context, g4 g4Var, u7 u7Var) {
-        this.e = g4Var;
-        this.f48347c = u7Var;
-        this.d = context;
+    public d4(Utilities.Callback callback, boolean[] zArr, Utilities.Callback2 callback2) {
+        this.d = callback;
+        this.f51786b = zArr;
+        this.f51787c = callback2;
     }
 
     @Override
-    public final void a(z4.g gVar, Object obj) {
-        gVar.removeView((View) obj);
-        this.e.G.remove(obj);
-    }
-
-    @Override
-    public final int b() {
-        return this.e.F.size();
-    }
-
-    @Override
-    public final Object e(z4.g gVar, int i10) {
-        g4 g4Var = this.e;
-        c4 c4Var = new c4(this, this.f48347c, this.d, g4Var.H, new bi.i5(this, 10));
-        c4Var.setTag(Integer.valueOf(i10));
-        c4Var.setShadowDrawable(g4Var.f48446s);
-        c4Var.setPadding(0, AndroidUtilities.dp(16.0f), 0, 0);
-        c4Var.g(g4Var.f48449y, (f4) g4Var.F.get(i10));
-        c4Var.setListBottomPadding(g4Var.d);
-        gVar.addView(c4Var);
-        g4Var.G.add(c4Var);
-        return c4Var;
-    }
-
-    @Override
-    public final boolean f(View view, Object obj) {
-        if (view == obj) {
-            return true;
+    public final void run(Object obj, Object obj2) {
+        String str;
+        String str2;
+        Long l4 = (Long) obj;
+        Boolean bool = (Boolean) obj2;
+        switch (this.f51785a) {
+            case 0:
+                Utilities.Callback callback = this.d;
+                if (callback != null) {
+                    callback.run(Boolean.TRUE);
+                }
+                this.f51786b[0] = true;
+                Utilities.Callback2 callback2 = this.f51787c;
+                if (callback2 != null) {
+                    if (bool.booleanValue()) {
+                        str = "paid";
+                    } else {
+                        str = "failed";
+                    }
+                    callback2.run(str, l4);
+                    return;
+                }
+                return;
+            default:
+                this.f51786b[0] = true;
+                Utilities.Callback2 callback22 = this.f51787c;
+                if (callback22 != null) {
+                    if (bool.booleanValue()) {
+                        str2 = "paid";
+                    } else {
+                        str2 = "failed";
+                    }
+                    callback22.run(str2, l4);
+                }
+                Utilities.Callback callback3 = this.d;
+                if (callback3 != null) {
+                    callback3.run(Boolean.TRUE);
+                    return;
+                }
+                return;
         }
-        return false;
+    }
+
+    public d4(boolean[] zArr, Utilities.Callback2 callback2, Utilities.Callback callback) {
+        this.f51786b = zArr;
+        this.f51787c = callback2;
+        this.d = callback;
     }
 }

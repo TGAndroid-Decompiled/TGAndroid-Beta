@@ -1,47 +1,32 @@
 package org.telegram.ui.Components.voip;
 
-import android.app.Activity;
-import android.graphics.Canvas;
-import android.graphics.CornerPathEffect;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.Shader;
-import bi.x4;
-public final class d3 extends x4 {
-    public final Paint L0;
-    public final p1 M0;
+import org.telegram.messenger.AndroidUtilities;
+public final class d3 implements Runnable {
+    public final int f31451a;
+    public final i3 f31452b;
+    public final int f31453c;
 
-    public d3(Activity activity, int i10, p1 p1Var, boolean z10) {
-        super(activity, i10);
-        Paint paint = new Paint(1);
-        this.L0 = paint;
-        this.M0 = p1Var;
-        p1Var.a(this);
-        paint.setPathEffect(new CornerPathEffect(this.v));
-        if (z10) {
-            i();
-        }
+    public d3(i3 i3Var, int i10, int i11) {
+        this.f31451a = i11;
+        this.f31452b = i3Var;
+        this.f31453c = i10;
     }
 
     @Override
-    public final void c(Canvas canvas, float f7) {
-        p1 p1Var = this.M0;
-        Shader shader = p1Var.b().getShader();
-        Paint paint = this.L0;
-        paint.setShader(shader);
-        canvas.saveLayerAlpha(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), (int) (Math.min(this.F.getAlpha(), p1Var.b().getAlpha()) * f7), 31);
-        Path path = this.f3900t0;
-        canvas.drawPath(path, paint);
-        if (p1Var.e) {
-            paint.setShader(((Paint) p1Var.d.f6103a).getShader());
-            canvas.drawPath(path, paint);
+    public final void run() {
+        switch (this.f31451a) {
+            case 0:
+                AndroidUtilities.runOnUIThread(new d3(this.f31452b, this.f31453c, 2));
+                return;
+            case 1:
+                AndroidUtilities.runOnUIThread(new d3(this.f31452b, this.f31453c, 3));
+                return;
+            case 2:
+                this.f31452b.c(this.f31453c);
+                return;
+            default:
+                this.f31452b.a(this.f31453c);
+                return;
         }
-        canvas.restore();
-    }
-
-    @Override
-    public final void dispatchDraw(Canvas canvas) {
-        this.M0.d(getX(), getY());
-        super.dispatchDraw(canvas);
     }
 }

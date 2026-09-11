@@ -4,22 +4,22 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import java.util.concurrent.atomic.AtomicBoolean;
 public final class b9 extends AnimatorListenerAdapter {
-    public final AtomicBoolean f31183a;
-    public final org.telegram.ui.Components.m90 f31184b;
-    public final String f31185c;
+    public final AtomicBoolean f34661a;
+    public final org.telegram.ui.Components.d90 f34662b;
+    public final String f34663c;
 
-    public b9(AtomicBoolean atomicBoolean, org.telegram.ui.Components.m90 m90Var, String str) {
-        this.f31183a = atomicBoolean;
-        this.f31184b = m90Var;
-        this.f31185c = str;
+    public b9(AtomicBoolean atomicBoolean, org.telegram.ui.Components.d90 d90Var, String str) {
+        this.f34661a = atomicBoolean;
+        this.f34662b = d90Var;
+        this.f34663c = str;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        AtomicBoolean atomicBoolean = this.f31183a;
+        AtomicBoolean atomicBoolean = this.f34661a;
         if (!atomicBoolean.get()) {
             atomicBoolean.set(true);
-            this.f31184b.setText(this.f31185c);
+            this.f34662b.setText(this.f34663c);
         }
     }
 }

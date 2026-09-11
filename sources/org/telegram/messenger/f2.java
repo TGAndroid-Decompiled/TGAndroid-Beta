@@ -1,119 +1,128 @@
 package org.telegram.messenger;
 
-import android.util.SparseArray;
+import android.app.Dialog;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.drawable.Drawable;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.atomic.AtomicInteger;
-import org.telegram.messenger.NotificationCenter;
+import java.util.HashMap;
+import org.telegram.messenger.MediaController;
+import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_update;
-public final class f2 implements Runnable {
-    public final int f15131a;
-    public final Object f15132b;
-    public final Object f15133c;
+import org.telegram.ui.PhotoViewer;
+import org.telegram.ui.ir0;
+import org.telegram.ui.oy;
+import org.telegram.ui.tx;
+import org.telegram.ui.uy;
+public final class f2 implements Utilities.Callback {
+    public final int f17619a;
+    public final long f17620b;
+    public final Object f17621c;
+    public final Object d;
+    public final Object f17622e;
 
-    public f2(int i10, Object obj, Object obj2) {
-        this.f15131a = i10;
-        this.f15132b = obj;
-        this.f15133c = obj2;
+    public f2(Object obj, long j3, Object obj2, Object obj3, int i10) {
+        this.f17619a = i10;
+        this.f17621c = obj;
+        this.f17620b = j3;
+        this.d = obj2;
+        this.f17622e = obj3;
     }
 
     @Override
-    public final void run() {
-        switch (this.f15131a) {
+    public final void run(Object obj) {
+        int i10 = this.f17619a;
+        long j3 = this.f17620b;
+        Object obj2 = this.f17622e;
+        Object obj3 = this.d;
+        Object obj4 = this.f17621c;
+        switch (i10) {
             case 0:
-                ((DownloadController) this.f15132b).lambda$loadAutoDownloadConfig$1((TLObject) this.f15133c);
+                ((FactCheckController) obj4).lambda$loadMissing$3(this.f17620b, (ArrayList) obj3, (HashMap) obj2, (ArrayList) obj);
                 return;
             case 1:
-                ((FactCheckController) this.f15132b).lambda$applyFactCheck$14((TLRPC.Updates) this.f15133c);
+                ((MessagesController) obj4).lambda$checkSensitive$448(this.f17620b, (boolean[]) obj3, (Runnable) obj2, (Boolean) obj);
                 return;
             case 2:
-                FactCheckController.lambda$saveToDatabase$6((MessagesStorage) this.f15132b, (TLRPC.TL_factCheck) this.f15133c);
+                ((TranslateController) obj4).lambda$checkTranslation$6((MessageObject) obj3, (String) obj2, this.f17620b, (TLRPC.TL_textWithEntities) obj);
                 return;
             case 3:
-                ((FileLoadOperation) this.f15132b).lambda$start$11((boolean[]) this.f15133c);
+                tx txVar = (tx) obj4;
+                org.telegram.ui.ActionBar.n2[] n2VarArr = (org.telegram.ui.ActionBar.n2[]) obj2;
+                Runnable runnable = (Runnable) obj;
+                txVar.getClass();
+                ((org.telegram.ui.ActionBar.b2) obj3).dismiss();
+                uy uyVar = txVar.f40852b;
+                uyVar.getMessagesController().loadChannelParticipants(Long.valueOf(j3));
+                oy oyVar = uyVar.C2;
+                uyVar.removeSelfFromStack();
+                if (n2VarArr[1] != null) {
+                    n2VarArr[0].removeSelfFromStack();
+                    n2VarArr[1].finishFragment();
+                } else {
+                    n2VarArr[0].finishFragment();
+                }
+                if (oyVar != null) {
+                    ArrayList arrayList = new ArrayList();
+                    arrayList.add(MessagesStorage.TopicKey.of(-j3, 0L));
+                    oyVar.u(uyVar, arrayList, null, false, uyVar.J2, uyVar.K2, uyVar.L2, null);
+                    return;
+                }
                 return;
             case 4:
-                ((FileLoadOperation) this.f15132b).lambda$addPart$2((ArrayList) this.f15133c);
-                return;
-            case 5:
-                ((FileLoader) this.f15132b).lambda$uploadFile$19((NotificationCenter.NotificationCenterDelegate[]) this.f15133c);
-                return;
-            case 6:
-                ((FileLoader) this.f15132b).lambda$checkCurrentDownloadsFiles$17((ArrayList) this.f15133c);
-                return;
-            case 7:
-                FileLog.lambda$e$2((String) this.f15132b, (Throwable) this.f15133c);
-                return;
-            case 8:
-                ((FilePathDatabase) this.f15132b).lambda$removeFiles$6((List) this.f15133c);
-                return;
-            case 9:
-                ((FileRefController) this.f15132b).lambda$onRequestComplete$47((TLRPC.User) this.f15133c);
-                return;
-            case 10:
-                ((FileRefController) this.f15132b).lambda$onRequestComplete$50((TLRPC.TL_messages_stickerSet) this.f15133c);
-                return;
-            case 11:
-                ((GiftAuctionController) this.f15132b).lambda$sendBid$7((TLRPC.TL_payments_paymentResult) this.f15133c);
-                return;
-            case 12:
-                ((ImageLoader) this.f15132b).lambda$checkMediaPaths$1((Runnable) this.f15133c);
-                return;
-            case 13:
-                ImageLoader.lambda$checkMediaPaths$0((SparseArray) this.f15132b, (Runnable) this.f15133c);
-                return;
-            case 14:
-                ((MediaController) this.f15132b).lambda$playEmojiSound$17((File) this.f15133c);
-                return;
-            case 15:
-                MediaController.lambda$playEmojiSound$18((AccountInstance) this.f15132b, (TLRPC.TL_document) this.f15133c);
-                return;
-            case 16:
-                ((MediaController) this.f15132b).lambda$processMediaObserver$6((ArrayList) this.f15133c);
-                return;
-            case 17:
-                ((MediaController) this.f15132b).lambda$startAudioAgain$7((MessageObject) this.f15133c);
-                return;
-            case 18:
-                ((MediaDataController) this.f15132b).lambda$loadHints$147((TLRPC.TL_contacts_topPeers) this.f15133c);
-                return;
-            case 19:
-                MediaDataController.lambda$loadReplyMessagesForMessages$172((AtomicInteger) this.f15132b, (Runnable) this.f15133c);
-                return;
-            case 20:
-                MediaDataController.lambda$fillWithAnimatedEmoji$228((boolean[]) this.f15132b, (z6) this.f15133c);
-                return;
-            case 21:
-                ((MediaDataController) this.f15132b).lambda$loadGroupStickerSet$44((TLRPC.StickerSet) this.f15133c);
-                return;
-            case 22:
-                ((MessageObject) this.f15132b).lambda$loadAnimatedEmojiDocument$0((TLRPC.Document) this.f15133c);
-                return;
-            case 23:
-                ((MessagesController) this.f15132b).lambda$getDifference$351((TLRPC.updates_Difference) this.f15133c);
-                return;
-            case 24:
-                ((MessagesController) this.f15132b).lambda$requestContactToken$475((Utilities.Callback) this.f15133c);
-                return;
-            case 25:
-                ((MessagesController) this.f15132b).lambda$checkTosUpdate$162((TLRPC.TL_help_termsOfServiceUpdate) this.f15133c);
-                return;
-            case 26:
-                ((MessagesController) this.f15132b).lambda$changeChatAvatar$318((Runnable) this.f15133c);
-                return;
-            case 27:
-                ((MessagesController) this.f15132b).lambda$createChat$260((TLRPC.Updates) this.f15133c);
-                return;
-            case 28:
-                ((MessagesController) this.f15132b).lambda$processUpdateArray$392((TL_update.TL_updateServiceNotification) this.f15133c);
-                return;
+                PhotoViewer photoViewer = (PhotoViewer) obj4;
+                String str = (String) obj3;
+                MediaController.PhotoEntry photoEntry = (MediaController.PhotoEntry) obj2;
+                Bitmap bitmap = (Bitmap) obj;
+                Drawable[] drawableArr = PhotoViewer.T8;
+                if (bitmap == null) {
+                    AndroidUtilities.runOnUIThread(new ir0(photoViewer, 16));
+                    return;
+                }
+                try {
+                    FileOutputStream fileOutputStream = new FileOutputStream(new File(str));
+                    bitmap.compress(Bitmap.CompressFormat.JPEG, 90, fileOutputStream);
+                    fileOutputStream.close();
+                    Bitmap createBitmap = Bitmap.createBitmap(AndroidUtilities.dp(26.0f), AndroidUtilities.dp(26.0f), Bitmap.Config.ARGB_8888);
+                    Canvas canvas = new Canvas(createBitmap);
+                    Paint paint = new Paint(3);
+                    canvas.translate(createBitmap.getWidth() / 2.0f, createBitmap.getHeight() / 2.0f);
+                    float max = Math.max(createBitmap.getWidth() / bitmap.getWidth(), createBitmap.getHeight() / bitmap.getHeight());
+                    canvas.scale(max, max);
+                    canvas.drawBitmap(bitmap, (-bitmap.getWidth()) / 2.0f, (-bitmap.getHeight()) / 2.0f, paint);
+                    AndroidUtilities.runOnUIThread(new org.telegram.messenger.voip.f(photoViewer, photoEntry, this.f17620b, str, createBitmap, 6));
+                    return;
+                } catch (Exception e7) {
+                    FileLog.e(e7);
+                    AndroidUtilities.runOnUIThread(new ir0(photoViewer, 17));
+                    return;
+                }
             default:
-                ((MessagesController) this.f15132b).lambda$processUpdateArray$393((TLRPC.Message) this.f15133c);
+                yh.b1 b1Var = (yh.b1) obj3;
+                of.e eVar = (of.e) obj;
+                eVar.d();
+                b1Var.v1(j3, new bi.r3((yh.p1) obj4, eVar, (Utilities.Callback) obj2, b1Var, 17));
                 return;
         }
+    }
+
+    public f2(Object obj, Dialog dialog, long j3, Object obj2, int i10) {
+        this.f17619a = i10;
+        this.f17621c = obj;
+        this.d = dialog;
+        this.f17620b = j3;
+        this.f17622e = obj2;
+    }
+
+    public f2(Object obj, Object obj2, Object obj3, long j3, int i10) {
+        this.f17619a = i10;
+        this.f17621c = obj;
+        this.d = obj2;
+        this.f17622e = obj3;
+        this.f17620b = j3;
     }
 }

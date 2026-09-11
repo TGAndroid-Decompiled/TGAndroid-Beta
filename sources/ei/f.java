@@ -1,178 +1,281 @@
 package ei;
 
-import android.content.Context;
+import android.app.Activity;
 import android.view.View;
-import android.widget.FrameLayout;
-import bi.y2;
-import com.google.android.gms.internal.vision.e2;
-import java.util.ArrayList;
-import org.telegram.messenger.ChatObject;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.R;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_communities;
-import org.telegram.ui.ActionBar.d2;
-import org.telegram.ui.ActionBar.j6;
-import org.telegram.ui.ActionBar.p2;
-import org.telegram.ui.Components.d5;
-import org.telegram.ui.Components.g9;
-import org.telegram.ui.Components.r61;
-import org.telegram.ui.Components.v51;
-import w7.a6;
-public final class f extends p2 implements NotificationCenter.NotificationCenterDelegate {
-    public long f7542a;
-    public TLRPC.Chat f7543b;
-    public TLRPC.User f7544c;
-    public FrameLayout d;
-    public r61 e;
-    public e f7545f;
-    public ArrayList h;
-    public NotificationCenter.ObserversGroup f7546n;
+import android.view.ViewGroup;
+import b2.q0;
+import di.nb;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.FileLog;
+import org.telegram.ui.ActionBar.k;
+import org.telegram.ui.ActionBar.n2;
+import org.telegram.ui.Components.ll0;
+import org.telegram.ui.q20;
+import org.telegram.ui.r20;
+import s4.c0;
+import s4.c1;
+import zh.m2;
+import zh.v7;
+public final class f extends q20 {
+    public final int K0 = 0;
+    public final q0 L0;
+    public final r20 M0;
 
-    public static void U(f fVar, v51 v51Var) {
-        f fVar2;
-        if (v51Var.d == 1) {
-            fVar2 = fVar;
-            d5.R(fVar.getParentActivity(), fVar2, LocaleController.getString(R.string.CommunityNewCommunityTitle), null, LocaleController.getString(R.string.CommunityNewCommunityNameHint), null, Integer.MAX_VALUE, LocaleController.getString(R.string.Create), fVar.resourceProvider, new c(fVar));
-        } else {
-            fVar2 = fVar;
-        }
-        Object obj = v51Var.G;
-        if (obj instanceof TLRPC.Chat) {
-            TLRPC.Chat chat = (TLRPC.Chat) obj;
-            fVar2.getMessagesController().getChat(Long.valueOf(-fVar2.f7542a));
-            fVar2.showDialog(new gi.b(fVar2.getParentActivity(), chat, fVar2.f7542a, new y2(12, fVar2, chat)));
-        }
-    }
-
-    public final void V(String str, boolean z10) {
-        if (!ChatObject.isChannel(this.f7543b) && this.f7544c == null) {
-            d2 d2Var = new d2(getParentActivity(), 3, null);
-            d2Var.q(250L);
-            getMessagesController().convertToMegaGroup(getParentActivity(), -this.f7542a, this, new ca.b(this, d2Var, str, z10, 1));
-            return;
-        }
-        getMessagesController().createCommunity(str, this.f7542a, z10, new b(this, 1));
-    }
-
-    public final void W(long j3, boolean z10) {
-        if (!ChatObject.isChannel(this.f7543b) && this.f7544c == null) {
-            d2 d2Var = new d2(getParentActivity(), 3, null);
-            d2Var.q(250L);
-            getMessagesController().convertToMegaGroup(getParentActivity(), -this.f7542a, this, new d(this, d2Var, j3, z10, 0));
-            return;
-        }
-        int i10 = this.currentAccount;
-        long j10 = -this.f7542a;
-        MessagesController.getInstance(i10).linkCommunity(-j10, j3, z10, new o0(this, j10, 0));
+    public f(i iVar, Activity activity) {
+        super(iVar, activity);
+        this.M0 = iVar;
+        this.L0 = new Object();
     }
 
     @Override
-    public final View createView(Context context) {
-        int i10;
-        setHasOwnBackground(true);
-        this.actionBar.setAddToContainer(false);
-        this.actionBar.setAllowOverlayTitle(false);
-        e2.t(false, this.actionBar);
-        this.actionBar.setAllowOverlayTitle(true);
-        this.actionBar.setActionBarMenuOnItemClick(new di.w(this, 3));
-        eh.c cVar = new eh.c();
-        cVar.a(getThemedColor(j6.f17928d6));
-        zg.a aVar = new zg.a(cVar);
-        this.actionBar.setBackground(null);
-        this.actionBar.M(aVar, dh.c.o(this.resourceProvider), false);
-        this.actionBar.P0 = true;
-        FrameLayout frameLayout = new FrameLayout(context);
-        this.d = frameLayout;
-        frameLayout.setBackgroundColor(j6.w0(null, j6.f17872a7, false));
-        e eVar = new e(context, this.resourceProvider);
-        this.f7545f = eVar;
-        eVar.setTitle(LocaleController.getString(R.string.CommunityTitle));
-        e eVar2 = this.f7545f;
-        if (this.f7544c != null) {
-            i10 = R.string.CommunityDescriptionBot;
-        } else if (ChatObject.isChannelAndNotMegaGroup(this.f7543b)) {
-            i10 = R.string.CommunityDescriptionChannel;
-        } else {
-            i10 = R.string.CommunityDescriptionGroup;
-        }
-        eVar2.setSubtitle(LocaleController.getString(i10));
-        this.f7545f.setTag(-33024);
-        TLRPC.User user = this.f7544c;
-        if (user != null) {
-            this.f7545f.f7539a.e(user, new g9(0, this.f7544c));
-        } else {
-            TLRPC.Chat chat = this.f7543b;
-            if (chat != null) {
-                this.f7545f.f7539a.e(chat, new g9(this.f7543b));
-            }
-        }
-        r61 r61Var = new r61(this, new b(this, 0), new c(this), new c(this));
-        this.e = r61Var;
-        r61Var.setClipToPadding(false);
-        r61 r61Var2 = this.e;
-        r61Var2.Y2.f24250r = false;
-        r61Var2.o1();
-        this.d.addView(this.e, a6.c(-1.0f, -1));
-        this.d.addView(this.actionBar, a6.e(-1, -2, 48));
-        FrameLayout frameLayout2 = this.d;
-        this.fragmentView = frameLayout2;
-        return frameLayout2;
-    }
-
-    @Override
-    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
-        int i12;
-        if (i10 == NotificationCenter.chatInfoDidLoad) {
-            TLRPC.ChatFull chatFull = (TLRPC.ChatFull) objArr[0];
-            long j3 = chatFull.f17196id;
-            View x12 = this.e.x1((int) (j3 ^ (j3 >>> 32)));
-            if (x12 instanceof org.telegram.ui.Cells.j6) {
-                org.telegram.ui.Cells.j6 j6Var = (org.telegram.ui.Cells.j6) x12;
-                ArrayList<TL_communities.CommunityPeer> arrayList = chatFull.linked_peers;
-                if (arrayList != null) {
-                    i12 = arrayList.size();
-                } else {
-                    i12 = 0;
+    public final void E(ViewGroup viewGroup, int i10, int i11, int[] iArr, int i12) {
+        k kVar;
+        int i13;
+        int max;
+        k kVar2;
+        int i14;
+        int max2;
+        switch (this.K0) {
+            case 0:
+                i iVar = (i) this.M0;
+                if (viewGroup == iVar.f40041c && iVar.R.isAttachedToWindow()) {
+                    kVar = ((n2) iVar).actionBar;
+                    boolean z10 = kVar.f21103n0;
+                    int top = (((View) iVar.R.getParent()).getTop() - AndroidUtilities.statusBarHeight) - k.getCurrentActionBarHeight();
+                    int bottom = ((View) iVar.R.getParent()).getBottom();
+                    boolean z11 = false;
+                    if (i11 < 0) {
+                        if (iVar.f40041c.getHeight() - bottom >= 0) {
+                            ll0 currentListView = iVar.R.getCurrentListView();
+                            int L0 = ((c0) currentListView.getLayoutManager()).L0();
+                            int i15 = -1;
+                            if (L0 != -1) {
+                                c1 K = currentListView.K(L0);
+                                if (K != null) {
+                                    i15 = K.f45738a.getTop();
+                                }
+                                int paddingTop = currentListView.getPaddingTop();
+                                if (i15 != paddingTop || L0 != 0) {
+                                    if (L0 != 0) {
+                                        max = i11;
+                                    } else {
+                                        max = Math.max(i11, i15 - paddingTop);
+                                    }
+                                    iArr[1] = max;
+                                    currentListView.scrollBy(0, i11);
+                                    z11 = true;
+                                }
+                            }
+                        }
+                        if (z10) {
+                            if (!z11 && top < 0) {
+                                iArr[1] = i11 - Math.max(top, i11);
+                                return;
+                            } else {
+                                iArr[1] = i11;
+                                return;
+                            }
+                        }
+                        return;
+                    } else if (z10) {
+                        ll0 currentListView2 = iVar.R.getCurrentListView();
+                        iArr[1] = i11;
+                        if (top > 0) {
+                            iArr[1] = 0;
+                        }
+                        if (currentListView2 != null && (i13 = iArr[1]) > 0) {
+                            currentListView2.scrollBy(0, i13);
+                            return;
+                        }
+                        return;
+                    } else if (i11 > 0) {
+                        ll0 currentListView3 = iVar.R.getCurrentListView();
+                        if (iVar.f40041c.getHeight() - bottom >= 0 && currentListView3 != null && !currentListView3.canScrollVertically(1)) {
+                            iArr[1] = i11;
+                            iVar.f40041c.B0();
+                            return;
+                        }
+                        return;
+                    } else {
+                        return;
+                    }
                 }
-                j6Var.setSubLabel(LocaleController.formatPluralString("Chats", i12, new Object[0]));
                 return;
-            }
-            this.e.Y2.N(false);
+            default:
+                v7 v7Var = (v7) this.M0;
+                if (viewGroup == v7Var.f40041c && v7Var.R.isAttachedToWindow()) {
+                    kVar2 = ((n2) v7Var).actionBar;
+                    boolean z12 = kVar2.f21103n0;
+                    int top2 = (((View) v7Var.R.getParent()).getTop() - AndroidUtilities.statusBarHeight) - k.getCurrentActionBarHeight();
+                    int bottom2 = ((View) v7Var.R.getParent()).getBottom();
+                    boolean z13 = false;
+                    if (i11 < 0) {
+                        if ((v7Var.f40041c.getHeight() - v7Var.f40041c.getPaddingBottom()) - bottom2 >= 0) {
+                            ll0 currentListView4 = v7Var.R.getCurrentListView();
+                            int L02 = ((c0) currentListView4.getLayoutManager()).L0();
+                            int i16 = -1;
+                            if (L02 != -1) {
+                                c1 K2 = currentListView4.K(L02);
+                                if (K2 != null) {
+                                    i16 = K2.f45738a.getTop();
+                                }
+                                int paddingTop2 = currentListView4.getPaddingTop();
+                                if (i16 != paddingTop2 || L02 != 0) {
+                                    if (L02 != 0) {
+                                        max2 = i11;
+                                    } else {
+                                        max2 = Math.max(i11, i16 - paddingTop2);
+                                    }
+                                    iArr[1] = max2;
+                                    currentListView4.scrollBy(0, i11);
+                                    z13 = true;
+                                }
+                            }
+                        }
+                        if (z12) {
+                            if (!z13 && top2 < 0) {
+                                iArr[1] = i11 - Math.max(top2, i11);
+                                return;
+                            } else {
+                                iArr[1] = i11;
+                                return;
+                            }
+                        }
+                        return;
+                    } else if (z12) {
+                        ll0 currentListView5 = v7Var.R.getCurrentListView();
+                        iArr[1] = i11;
+                        if (top2 > 0) {
+                            iArr[1] = 0;
+                        }
+                        if (currentListView5 != null && (i14 = iArr[1]) > 0) {
+                            currentListView5.scrollBy(0, i14);
+                            return;
+                        }
+                        return;
+                    } else if (i11 > 0) {
+                        ll0 currentListView6 = v7Var.R.getCurrentListView();
+                        if ((v7Var.f40041c.getHeight() - v7Var.f40041c.getPaddingBottom()) - bottom2 >= 0 && currentListView6 != null && !currentListView6.canScrollVertically(1)) {
+                            iArr[1] = i11;
+                            v7Var.f40041c.B0();
+                            return;
+                        }
+                        return;
+                    } else {
+                        return;
+                    }
+                }
+                return;
         }
     }
 
     @Override
-    public final boolean isSupportEdgeToEdge() {
-        return true;
+    public final void b(ViewGroup viewGroup, int i10, int i11, int i12, int i13, int i14) {
+        int i15 = this.K0;
     }
 
     @Override
-    public final boolean onFragmentCreate() {
-        this.f7542a = this.arguments.getLong("dialog_id", 0L);
-        this.f7543b = getMessagesController().getChat(Long.valueOf(-this.f7542a));
-        this.f7544c = getMessagesController().getUser(Long.valueOf(this.f7542a));
-        this.h = getMessagesController().getJoinedCommunities();
-        getMessagesController().fetchJoinedCommunities(new ai.b(this, 12), this.classGuid);
-        this.f7546n = getNotificationCenter().createObserversGroup(this).add(NotificationCenter.chatInfoDidLoad);
-        return super.onFragmentCreate();
-    }
-
-    @Override
-    public final void onFragmentDestroy() {
-        NotificationCenter.ObserversGroup observersGroup = this.f7546n;
-        if (observersGroup != null) {
-            observersGroup.removeAllObservers();
-            this.f7546n = null;
+    public final void i(ViewGroup viewGroup, int i10, int i11, int i12, int i13, int i14, int[] iArr) {
+        switch (this.K0) {
+            case 0:
+                i iVar = (i) this.M0;
+                try {
+                    if (viewGroup == iVar.f40041c && iVar.R.isAttachedToWindow()) {
+                        ll0 currentListView = iVar.R.getCurrentListView();
+                        if (iVar.f40041c.getHeight() - ((View) iVar.R.getParent()).getBottom() >= 0) {
+                            iArr[1] = i13;
+                            currentListView.scrollBy(0, i13);
+                            return;
+                        }
+                        return;
+                    }
+                    return;
+                } catch (Throwable th2) {
+                    FileLog.e(th2);
+                    AndroidUtilities.runOnUIThread(new nb(this, 8));
+                    return;
+                }
+            default:
+                v7 v7Var = (v7) this.M0;
+                try {
+                    if (viewGroup == v7Var.f40041c && v7Var.R.isAttachedToWindow()) {
+                        ll0 currentListView2 = v7Var.R.getCurrentListView();
+                        if ((v7Var.f40041c.getHeight() - v7Var.f40041c.getPaddingBottom()) - ((View) v7Var.R.getParent()).getBottom() >= 0) {
+                            iArr[1] = i13;
+                            currentListView2.scrollBy(0, i13);
+                            return;
+                        }
+                        return;
+                    }
+                    return;
+                } catch (Throwable th3) {
+                    FileLog.e(th3);
+                    AndroidUtilities.runOnUIThread(new m2(this, 8));
+                    return;
+                }
         }
-        super.onFragmentDestroy();
     }
 
     @Override
-    public final void onInsets(int i10, int i11, int i12, int i13) {
-        super.onInsets(i10, i11, i12, i13);
-        this.e.setPadding(0, i11, 0, i13);
+    public final void n(int i10, View view) {
+        switch (this.K0) {
+            case 0:
+                this.L0.f2260a = 0;
+                return;
+            default:
+                this.L0.f2260a = 0;
+                return;
+        }
+    }
+
+    @Override
+    public final void onStopNestedScroll(View view) {
+        int i10 = this.K0;
+    }
+
+    @Override
+    public final boolean p(View view, View view2, int i10, int i11) {
+        switch (this.K0) {
+            case 0:
+                if (i10 == 2) {
+                    return true;
+                }
+                return false;
+            default:
+                if (i10 == 2) {
+                    return true;
+                }
+                return false;
+        }
+    }
+
+    @Override
+    public final void s(View view, View view2, int i10, int i11) {
+        switch (this.K0) {
+            case 0:
+                this.L0.f2260a = i10;
+                return;
+            default:
+                this.L0.f2260a = i10;
+                return;
+        }
+    }
+
+    public f(v7 v7Var, Activity activity) {
+        super(v7Var, activity);
+        this.M0 = v7Var;
+        this.L0 = new Object();
+    }
+
+    private final void e0(View view) {
+    }
+
+    private final void f0(View view) {
+    }
+
+    private final void c0(ViewGroup viewGroup, int i10, int i11, int i12, int i13, int i14) {
+    }
+
+    private final void d0(ViewGroup viewGroup, int i10, int i11, int i12, int i13, int i14) {
     }
 }

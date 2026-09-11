@@ -6,21 +6,21 @@ import android.view.View;
 import android.view.ViewGroup;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-public final class vi0 extends org.telegram.ui.Components.vl0 {
+public final class vi0 extends org.telegram.ui.Components.ll0 {
     public final ArrayList X2;
-    public final org.telegram.ui.Components.d6 Y2;
-    public final org.telegram.ui.Components.d6 Z2;
-    public final m20 f37564a3;
-    public final cj0 f37565b3;
+    public final org.telegram.ui.Components.e6 Y2;
+    public final org.telegram.ui.Components.e6 Z2;
+    public final l20 f41572a3;
+    public final cj0 f41573b3;
 
     public vi0(cj0 cj0Var, Context context, org.telegram.ui.ActionBar.f6 f6Var) {
         super(context, f6Var);
-        this.f37565b3 = cj0Var;
+        this.f41573b3 = cj0Var;
         this.X2 = new ArrayList(10);
-        org.telegram.ui.Components.wr wrVar = org.telegram.ui.Components.wr.h;
-        this.Y2 = new org.telegram.ui.Components.d6(this, 0L, 360L, wrVar);
-        this.Z2 = new org.telegram.ui.Components.d6(this, 0L, 360L, wrVar);
-        this.f37564a3 = new m20();
+        org.telegram.ui.Components.pr prVar = org.telegram.ui.Components.pr.h;
+        this.Y2 = new org.telegram.ui.Components.e6(this, 0L, 360L, prVar);
+        this.Z2 = new org.telegram.ui.Components.e6(this, 0L, 360L, prVar);
+        this.f41572a3 = new l20();
     }
 
     @Override
@@ -31,8 +31,8 @@ public final class vi0 extends org.telegram.ui.Components.vl0 {
     @Override
     public final boolean drawChild(Canvas canvas, View view, long j3) {
         org.telegram.ui.Cells.t1 t1Var;
-        cj0 cj0Var = this.f37565b3;
-        if (cj0Var.f31710w && ((view == (t1Var = cj0Var.Q) && t1Var != null && t1Var.getCurrentPosition() == null) || view == cj0Var.X)) {
+        cj0 cj0Var = this.f41573b3;
+        if (cj0Var.f35156w && ((view == (t1Var = cj0Var.Q) && t1Var != null && t1Var.getCurrentPosition() == null) || view == cj0Var.X)) {
             return false;
         }
         if (!(view instanceof org.telegram.ui.Cells.t1)) {
@@ -95,7 +95,7 @@ public final class vi0 extends org.telegram.ui.Components.vl0 {
         int measuredHeight;
         int l4;
         int i12;
-        cj0 cj0Var = this.f37565b3;
+        cj0 cj0Var = this.f41573b3;
         if (cj0Var.N.isEmpty()) {
             f7 = -6.0f;
         } else {
@@ -108,13 +108,13 @@ public final class vi0 extends org.telegram.ui.Components.vl0 {
         } else {
             measuredHeight = viewGroup.getMeasuredHeight();
         }
-        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(Math.max(0, ((AndroidUtilities.displaySize.y - (dp + measuredHeight)) - AndroidUtilities.dp(8.0f)) - cj0Var.e.f10075b), Integer.MIN_VALUE));
+        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(Math.max(0, ((AndroidUtilities.displaySize.y - (dp + measuredHeight)) - AndroidUtilities.dp(8.0f)) - cj0Var.f35134e.f11426b), Integer.MIN_VALUE));
         if (cj0Var.m0) {
             l4 = cj0Var.Y;
         } else {
             l4 = cj0Var.W.l();
         }
-        int max = Math.max(AndroidUtilities.dp(12.0f) + l4, -((AndroidUtilities.dp(7.0f) + cj0Var.f31700o0[0]) - getMeasuredWidth()));
+        int max = Math.max(AndroidUtilities.dp(12.0f) + l4, -((AndroidUtilities.dp(7.0f) + cj0Var.f35146o0[0]) - getMeasuredWidth()));
         int i13 = cj0Var.O;
         int measuredWidth = getMeasuredWidth() - max;
         if (cj0Var.P.i()) {

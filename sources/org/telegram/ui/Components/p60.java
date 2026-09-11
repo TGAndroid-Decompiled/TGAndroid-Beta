@@ -1,31 +1,25 @@
 package org.telegram.ui.Components;
 
-import android.text.TextPaint;
-import android.text.style.ClickableSpan;
-import android.view.View;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.ProfileActivity;
-public final class p60 extends ClickableSpan {
-    public final org.telegram.ui.ActionBar.h3[] f26044a;
-    public final TLRPC.TL_chatInviteImporter f26045b;
+import android.content.Context;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import org.telegram.messenger.LocaleController;
+public final class p60 extends org.telegram.ui.Cells.za {
+    public final TextView f29307a0;
+    public final TextView f29308b0;
 
-    public p60(org.telegram.ui.ActionBar.h3[] h3VarArr, TLRPC.TL_chatInviteImporter tL_chatInviteImporter) {
-        this.f26044a = h3VarArr;
-        this.f26045b = tL_chatInviteImporter;
-    }
-
-    @Override
-    public final void onClick(View view) {
-        this.f26044a[0].dismiss();
-        org.telegram.ui.ActionBar.p2 U = LaunchActivity.U();
-        if (U != null) {
-            U.presentFragment(ProfileActivity.m4(this.f26045b.user_id));
-        }
-    }
-
-    @Override
-    public final void updateDrawState(TextPaint textPaint) {
-        textPaint.setUnderlineText(false);
+    public p60(Context context) {
+        super(context, 6, 0, true);
+        LinearLayout f7 = org.telegram.messenger.vl.f(context, 1);
+        TextView textView = new TextView(context);
+        this.f29307a0 = textView;
+        org.telegram.messenger.w1.q(textView, org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.G6, false), 1, 16.0f);
+        f7.addView(textView, w7.x5.q(-2, -2, 5));
+        TextView textView2 = new TextView(context);
+        this.f29308b0 = textView2;
+        textView2.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f21061z6, false));
+        textView2.setTextSize(1, 13.0f);
+        f7.addView(textView2, w7.x5.t(-2, -2, 5, 0, 1, 0, 0));
+        addView(f7, w7.x5.d(-2, -2.0f, (LocaleController.isRTL ? 3 : 5) | 16, 18.0f, 0.0f, 18.0f, 0.0f));
     }
 }

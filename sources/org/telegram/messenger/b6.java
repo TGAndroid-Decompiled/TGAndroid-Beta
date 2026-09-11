@@ -1,48 +1,30 @@
 package org.telegram.messenger;
-public final class b6 implements Runnable {
-    public final int f14758a;
-    public final MediaController f14759b;
 
-    public b6(MediaController mediaController, int i10) {
-        this.f14758a = i10;
-        this.f14759b = mediaController;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class b6 implements RequestDelegate {
+    public final int f17227a;
+    public final int f17228b;
+    public final int f17229c;
+    public final NotificationCenter.NotificationCenterDelegate d;
+
+    public b6(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, int i10, int i11, int i12) {
+        this.f17227a = i12;
+        this.d = notificationCenterDelegate;
+        this.f17228b = i10;
+        this.f17229c = i11;
     }
 
     @Override
-    public final void run() {
-        switch (this.f14758a) {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f17227a) {
             case 0:
-                MediaController.H(this.f14759b);
-                return;
-            case 1:
-                MediaController.z(this.f14759b);
-                return;
-            case 2:
-                MediaController.p(this.f14759b);
-                return;
-            case 3:
-                MediaController.h(this.f14759b);
-                return;
-            case 4:
-                MediaController.b(this.f14759b);
-                return;
-            case 5:
-                MediaController.V(this.f14759b);
-                return;
-            case 6:
-                MediaController.a(this.f14759b);
-                return;
-            case 7:
-                MediaController.U(this.f14759b);
-                return;
-            case 8:
-                MediaController.v(this.f14759b);
-                return;
-            case 9:
-                MediaController.C(this.f14759b);
+                ((MediaController) this.d).lambda$loadMoreMusic$12(this.f17228b, this.f17229c, tLObject, tL_error);
                 return;
             default:
-                MediaController.Q(this.f14759b);
+                ((MessagesController) this.d).lambda$getDifference$359(this.f17228b, this.f17229c, tLObject, tL_error);
                 return;
         }
     }

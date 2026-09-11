@@ -2,30 +2,30 @@ package d4;
 
 import android.graphics.Color;
 import com.google.android.gms.internal.vision.e2;
-import v7.y7;
+import v7.x7;
 public final class d {
-    public final String f6272a;
-    public final int f6273b;
-    public final Integer f6274c;
+    public final String f6563a;
+    public final int f6564b;
+    public final Integer f6565c;
     public final Integer d;
-    public final float e;
-    public final boolean f6275f;
-    public final boolean f6276g;
+    public final float f6566e;
+    public final boolean f6567f;
+    public final boolean f6568g;
     public final boolean h;
-    public final boolean f6277i;
-    public final int f6278j;
+    public final boolean f6569i;
+    public final int f6570j;
 
     public d(String str, int i10, Integer num, Integer num2, float f7, boolean z10, boolean z11, boolean z12, boolean z13, int i11) {
-        this.f6272a = str;
-        this.f6273b = i10;
-        this.f6274c = num;
+        this.f6563a = str;
+        this.f6564b = i10;
+        this.f6565c = num;
         this.d = num2;
-        this.e = f7;
-        this.f6275f = z10;
-        this.f6276g = z11;
+        this.f6566e = f7;
+        this.f6567f = z10;
+        this.f6568g = z11;
         this.h = z12;
-        this.f6277i = z13;
-        this.f6278j = i11;
+        this.f6569i = z13;
+        this.f6570j = i11;
     }
 
     public static int a(String str) {
@@ -64,8 +64,8 @@ public final class d {
                 return false;
             }
             return true;
-        } catch (NumberFormatException e) {
-            e2.a.o("SsaStyle", "Failed to parse boolean value: '" + str + "'", e);
+        } catch (NumberFormatException e7) {
+            e2.a.o("SsaStyle", "Failed to parse boolean value: '" + str + "'", e7);
             return false;
         }
     }
@@ -85,11 +85,11 @@ public final class d {
                 z10 = false;
             }
             e2.d.b(z10);
-            int b10 = y7.b(((parseLong >> 24) & 255) ^ 255);
-            int b11 = y7.b((parseLong >> 16) & 255);
-            return Integer.valueOf(Color.argb(b10, y7.b(parseLong & 255), y7.b((parseLong >> 8) & 255), b11));
-        } catch (IllegalArgumentException e) {
-            e2.a.o("SsaStyle", "Failed to parse color expression: '" + str + "'", e);
+            int b10 = x7.b(((parseLong >> 24) & 255) ^ 255);
+            int b11 = x7.b((parseLong >> 16) & 255);
+            return Integer.valueOf(Color.argb(b10, x7.b(parseLong & 255), x7.b((parseLong >> 8) & 255), b11));
+        } catch (IllegalArgumentException e7) {
+            e2.a.o("SsaStyle", "Failed to parse color expression: '" + str + "'", e7);
             return null;
         }
     }

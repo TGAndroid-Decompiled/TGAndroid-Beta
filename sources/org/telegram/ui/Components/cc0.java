@@ -1,186 +1,238 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Rect;
-import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
-import android.view.MotionEvent;
-import android.view.View;
+import android.graphics.drawable.TransitionDrawable;
+import android.util.StateSet;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Utilities;
-public final class cc0 extends View {
-    public final ArrayList f22094a;
-    public float f22095b;
-    public final Paint f22096c;
-    public final int d;
-    public final int e;
-    public Drawable f22097f;
-    public float h;
-    public float f22098n;
-    public final RectF f22099r;
-    public Utilities.Callback f22100s;
+import org.telegram.messenger.FileLoader;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.MessageObject;
+public final class cc0 implements Runnable {
+    public final int f24967a;
+    public final Object f24968b;
 
-    public cc0(Context context, org.telegram.ui.ActionBar.f6 f6Var) {
-        super(context);
-        int[] iArr;
-        this.f22094a = new ArrayList();
-        Paint paint = new Paint(1);
-        this.f22096c = paint;
-        this.h = AndroidUtilities.dp(14.0f);
-        this.f22098n = AndroidUtilities.dp(0.0f);
-        this.f22099r = new RectF();
-        if (org.telegram.ui.ActionBar.j6.I.q()) {
-            this.d = -1862270977;
-            this.e = -1325400065;
-            paint.setColor(285212671);
-            return;
-        }
-        int v02 = org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.Nd, f6Var);
-        if (f6Var instanceof org.telegram.ui.bo) {
-            org.telegram.ui.bo boVar = (org.telegram.ui.bo) f6Var;
-            if ((boVar.d() instanceof lc0) && (iArr = ((lc0) boVar.d()).f24938a) != null) {
-                v02 = AndroidUtilities.getAverageColor(AndroidUtilities.getAverageColor(iArr[0], iArr[1]), AndroidUtilities.getAverageColor(iArr[2], iArr[3]));
-            }
-        }
-        this.d = org.telegram.ui.ActionBar.j6.c(-1606201797, v02);
-        this.e = org.telegram.ui.ActionBar.j6.c(-448573893, v02);
-        paint.setColor(org.telegram.ui.ActionBar.j6.c(814980216, v02));
-    }
-
-    public final void a(int i10, String str) {
-        this.f22094a.add(new bc0(i10, str));
+    public cc0(Object obj, int i10) {
+        this.f24967a = i10;
+        this.f24968b = obj;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        boolean z10;
-        ArrayList arrayList = this.f22094a;
-        boolean z11 = true;
-        if (arrayList.size() > 1) {
-            float f7 = this.f22095b;
-            double d = f7;
-            int floor = (int) Math.floor(d);
-            if (floor >= 0 && floor < arrayList.size()) {
-                z10 = true;
-            } else {
-                z10 = false;
-            }
-            int ceil = (int) Math.ceil(d);
-            z11 = (ceil < 0 || ceil >= arrayList.size()) ? false : false;
-            RectF rectF = this.f22099r;
-            if (z10 && z11) {
-                AndroidUtilities.lerp(((bc0) arrayList.get(floor)).f21801c, ((bc0) arrayList.get(ceil)).f21801c, f7 - floor, rectF);
-            } else if (z10) {
-                rectF.set(((bc0) arrayList.get(floor)).f21801c);
-            } else if (z11) {
-                rectF.set(((bc0) arrayList.get(ceil)).f21801c);
-            }
-            Drawable drawable = this.f22097f;
-            if (drawable != null) {
-                drawable.draw(canvas);
-            }
-            if (z10 || z11) {
-                canvas.drawRoundRect(rectF, AndroidUtilities.dp(13.0f), AndroidUtilities.dp(13.0f), this.f22096c);
-            }
-            for (int i10 = 0; i10 < arrayList.size(); i10++) {
-                bc0 bc0Var = (bc0) arrayList.get(i10);
-                bc0Var.f21800b.c(bc0Var.f21801c.left + this.h, getMeasuredHeight() / 2.0f, 1.0f, i0.a.d(1.0f - Math.abs(f7 - i10), this.d, this.e), canvas);
-            }
-        }
-    }
-
-    @Override
-    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        int i10;
-        Utilities.Callback callback;
-        ArrayList arrayList = this.f22094a;
-        if (arrayList.size() > 1) {
-            float x10 = motionEvent.getX();
-            float y3 = motionEvent.getY();
-            int i11 = 0;
-            while (true) {
-                if (i11 < arrayList.size()) {
-                    if (((bc0) arrayList.get(i11)).d.contains(x10, y3)) {
-                        i10 = ((bc0) arrayList.get(i11)).f21799a;
-                        break;
+    public final void run() {
+        float f7;
+        g71 g71Var;
+        switch (this.f24967a) {
+            case 0:
+                ((dc0) this.f24968b).z();
+                return;
+            case 1:
+                ((di.u) this.f24968b).invalidateSelf();
+                return;
+            case 2:
+                ((lc0) this.f24968b).invalidateSelf();
+                return;
+            case 3:
+                ((ed0) this.f24968b).d();
+                return;
+            case 4:
+                nd0 nd0Var = (nd0) this.f24968b;
+                nd0Var.getClass();
+                try {
+                    nd0Var.d.I.performHapticFeedback(3, 2);
+                    return;
+                } catch (Exception unused) {
+                    return;
+                }
+            case 5:
+                ((ae0) this.f24968b).f24347f.start();
+                return;
+            case 6:
+                vz vzVar = ((ef0) this.f24968b).f25672c.f27483l0;
+                if (vzVar != null) {
+                    vzVar.e(false, true, false);
+                    return;
+                }
+                return;
+            case 7:
+                hf0 hf0Var = (hf0) this.f24968b;
+                hf0Var.f26725r = false;
+                hf0Var.invalidate();
+                return;
+            case 8:
+                ((kf0) this.f24968b).h = null;
+                return;
+            case 9:
+                kf0 kf0Var = (kf0) ((n7.z0) this.f24968b).f16704c;
+                kf0Var.d.L(kf0Var.f27817e, false);
+                return;
+            case 10:
+                org.telegram.ui.hu0 hu0Var = (org.telegram.ui.hu0) this.f24968b;
+                if (hu0Var.f29716x) {
+                    hu0Var.h("pollPosition();");
+                }
+                if (hu0Var.G) {
+                    AndroidUtilities.runOnUIThread(hu0Var.L, 500L);
+                    return;
+                }
+                return;
+            case 11:
+                ((FrameLayout) this.f24968b).invalidate();
+                return;
+            case 12:
+                eg0 eg0Var = (eg0) ((mg.b) this.f24968b).f16235b;
+                eg0Var.d.invalidate();
+                eg0Var.f25683e.requestLayout();
+                return;
+            case 13:
+                ((gg0) this.f24968b).f();
+                return;
+            case 14:
+                try {
+                    ei0 ei0Var = ((di0) this.f24968b).f25401b;
+                    if (ei0Var.getParent() instanceof ViewGroup) {
+                        ((ViewGroup) ei0Var.getParent()).removeView(ei0Var);
                     }
-                    i11++;
-                } else {
-                    i10 = -1;
-                    break;
+                    ei0Var.Q.run();
+                    return;
+                } catch (Exception e7) {
+                    FileLog.e(e7);
+                    return;
                 }
-            }
-            if (motionEvent.getAction() == 0) {
-                if (i10 != -1) {
-                    return true;
+            case 15:
+                ((RLottieNative) this.f24968b).d();
+                return;
+            case 16:
+                fk0 fk0Var = (fk0) this.f24968b;
+                fk0Var.f26119x0 = null;
+                fk0Var.j();
+                ek0 ek0Var = fk0Var.f26094g0;
+                if (ek0Var != null) {
+                    ek0Var.J();
+                    return;
                 }
-            } else if (motionEvent.getAction() == 1 && i10 != -1 && (callback = this.f22100s) != null) {
-                callback.run(Integer.valueOf(i10));
-            }
+                return;
+            case 17:
+                ((ck0) this.f24968b).H.f25407a.setVisibility(4);
+                return;
+            case 18:
+                gk0 gk0Var = (gk0) this.f24968b;
+                g71 g71Var2 = gk0Var.f26422n;
+                if (g71Var2 != null) {
+                    boolean y3 = g71Var2.y();
+                    float n10 = ((float) gk0Var.f26422n.n()) / ((float) gk0Var.f26422n.p());
+                    if (n10 < gk0Var.f26424s) {
+                        gk0Var.f26422n.L(f7 * ((float) g71Var.p()), false);
+                    } else if (n10 > gk0Var.v) {
+                        gk0Var.setPlaying(false);
+                        y3 = false;
+                    }
+                    if (y3) {
+                        AndroidUtilities.runOnUIThread(gk0Var.f26426x, 16L);
+                    }
+                }
+                gk0Var.invalidate();
+                return;
+            case 19:
+                ll0 ll0Var = (ll0) this.f24968b;
+                ll0Var.V1 = null;
+                ll0Var.U1 = null;
+                org.telegram.ui.Cells.z zVar = ll0Var.D1;
+                if (zVar != null) {
+                    Drawable current = zVar.getCurrent();
+                    if (current instanceof TransitionDrawable) {
+                        ((TransitionDrawable) current).resetTransition();
+                    }
+                }
+                org.telegram.ui.Cells.z zVar2 = ll0Var.D1;
+                if (zVar2 != null && zVar2.isStateful()) {
+                    ll0Var.D1.setState(StateSet.NOTHING);
+                    return;
+                }
+                return;
+            case 20:
+                vm0 vm0Var = (vm0) this.f24968b;
+                ArrayList<MessageObject> arrayList = new ArrayList<>();
+                ArrayList<MessageObject> arrayList2 = new ArrayList<>();
+                ArrayList arrayList3 = new ArrayList();
+                ArrayList arrayList4 = new ArrayList();
+                int i10 = vm0Var.d;
+                FileLoader.getInstance(i10).getCurrentLoadingFiles(arrayList);
+                FileLoader.getInstance(i10).getRecentLoadingFiles(arrayList2);
+                for (int i11 = 0; i11 < arrayList.size(); i11++) {
+                    if (FileLoader.getInstance(i10).getPathToMessage(arrayList.get(i11).messageOwner).exists()) {
+                        arrayList3.add(arrayList.get(i11));
+                    }
+                }
+                for (int i12 = 0; i12 < arrayList2.size(); i12++) {
+                    if (!FileLoader.getInstance(i10).getPathToMessage(arrayList2.get(i12).messageOwner).exists()) {
+                        arrayList4.add(arrayList2.get(i12));
+                    }
+                }
+                AndroidUtilities.runOnUIThread(new org.telegram.ui.ActionBar.p(vm0Var, arrayList3, arrayList4, 27));
+                return;
+            case 21:
+                ((xm0) this.f24968b).invalidateSelf();
+                return;
+            case 22:
+                ((hn0) this.f24968b).f26766f.setVisibility(8);
+                return;
+            case 23:
+                ((org.telegram.ui.ey) this.f24968b).s();
+                return;
+            case 24:
+                ((n70) this.f24968b).s();
+                return;
+            case 25:
+                ((fo0) this.f24968b).getClass();
+                return;
+            case 26:
+                org.telegram.ui.Cells.t1 t1Var = ((io0) this.f24968b).f27219n;
+                if (t1Var != null) {
+                    t1Var.invalidate();
+                    return;
+                }
+                return;
+            case 27:
+                ko0 ko0Var = (ko0) this.f24968b;
+                ko0Var.f27875q = false;
+                ko0Var.f27862b.run();
+                return;
+            case 28:
+                ((hq0) ((di.i2) this.f24968b).f7365b).a1(1);
+                return;
+            default:
+                mq0 mq0Var = (mq0) this.f24968b;
+                kq0[] kq0VarArr = mq0Var.f28483a;
+                if (mq0Var.f28484b != 1) {
+                    for (kq0 kq0Var : kq0VarArr) {
+                        org.telegram.ui.ActionBar.j5 j5Var = kq0Var.d;
+                        j5Var.setAlpha(1.0f);
+                        j5Var.setScaleX(1.0f);
+                        j5Var.setScaleY(1.0f);
+                        kq0Var.f27890e.setAlpha(0.0f);
+                    }
+                    mq0Var.E = false;
+                    AndroidUtilities.runOnUIThread(mq0Var.G, 4000L);
+                    return;
+                }
+                mq0Var.E = !mq0Var.E;
+                for (kq0 kq0Var2 : kq0VarArr) {
+                    org.telegram.ui.ActionBar.j5 j5Var2 = kq0Var2.d;
+                    org.telegram.ui.ActionBar.j5 j5Var3 = kq0Var2.f27890e;
+                    j5Var2.setPivotX(0.0f);
+                    j5Var3.setPivotX(0.0f);
+                    if (mq0Var.E) {
+                        j5Var2.animate().alpha(0.0f).scaleX(0.98f).scaleY(0.98f).setDuration(150L).start();
+                        j5Var3.animate().alpha(1.0f).scaleX(1.0f).scaleY(1.0f).setDuration(150L).start();
+                    } else {
+                        j5Var2.animate().alpha(1.0f).scaleX(1.0f).scaleY(1.0f).setDuration(150L).start();
+                        j5Var3.animate().alpha(0.0f).scaleX(0.98f).scaleY(0.98f).setDuration(150L).start();
+                    }
+                }
+                AndroidUtilities.runOnUIThread(mq0Var.G, 4000L);
+                return;
         }
-        return false;
-    }
-
-    public int getColor() {
-        return this.d;
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        ArrayList arrayList;
-        super.onMeasure(i10, i11);
-        this.h = AndroidUtilities.dp(14.0f);
-        float f7 = 0.0f;
-        this.f22098n = AndroidUtilities.dp(0.0f);
-        int i12 = 0;
-        while (true) {
-            arrayList = this.f22094a;
-            if (i12 >= arrayList.size()) {
-                break;
-            }
-            if (i12 > 0) {
-                f7 += this.f22098n;
-            }
-            f7 += ((bc0) arrayList.get(i12)).f21800b.l() + this.h + this.h;
-            i12++;
-        }
-        int measuredWidth = getMeasuredWidth();
-        int measuredHeight = getMeasuredHeight();
-        float dp = (measuredHeight - AndroidUtilities.dp(26.0f)) / 2.0f;
-        float dp2 = (AndroidUtilities.dp(26.0f) + measuredHeight) / 2.0f;
-        float f10 = measuredWidth;
-        float f11 = (f10 - f7) / 2.0f;
-        float f12 = f11;
-        for (int i13 = 0; i13 < arrayList.size(); i13++) {
-            float l4 = ((bc0) arrayList.get(i13)).f21800b.l() + this.h + this.h;
-            ((bc0) arrayList.get(i13)).f21801c.set(f12, dp, f12 + l4, dp2);
-            ((bc0) arrayList.get(i13)).d.set(((bc0) arrayList.get(i13)).f21801c);
-            ((bc0) arrayList.get(i13)).d.inset((-this.f22098n) / 2.0f, -dp);
-            f12 += l4 + this.f22098n;
-        }
-        Drawable drawable = this.f22097f;
-        if (drawable != null) {
-            Rect rect = AndroidUtilities.rectTmp2;
-            drawable.getPadding(rect);
-            int i14 = measuredHeight / 2;
-            this.f22097f.setBounds((((int) f11) - AndroidUtilities.dp(3.0f)) - rect.left, (i14 - AndroidUtilities.dp(16.0f)) - rect.top, AndroidUtilities.dp(3.0f) + ((int) ((f10 + f7) / 2.0f)) + rect.right, AndroidUtilities.dp(16.0f) + i14 + rect.bottom);
-        }
-    }
-
-    @Override
-    public void setBackground(Drawable drawable) {
-        this.f22097f = drawable;
-    }
-
-    public void setOnTabClick(Utilities.Callback<Integer> callback) {
-        this.f22100s = callback;
-    }
-
-    public void setSelectedTab(float f7) {
-        this.f22095b = f7;
-        invalidate();
     }
 }

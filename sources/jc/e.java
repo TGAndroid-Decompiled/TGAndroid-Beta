@@ -1,41 +1,40 @@
 package jc;
 
 import com.google.firebase.messaging.m;
-import hc.g;
 public final class e {
-    public final hc.f f11854a;
-    public final int f11855b;
-    public final int f11856c;
+    public final hc.e f13605a;
+    public final int f13606b;
+    public final int f13607c;
     public final int d;
-    public final e e;
-    public final int f11857f;
+    public final e f13608e;
+    public final int f13609f;
 
-    public e(m mVar, hc.f fVar, int i10, int i11, int i12, e eVar, g gVar) {
+    public e(m mVar, hc.e eVar, int i10, int i11, int i12, e eVar2, hc.f fVar) {
         int i13;
         int i14;
-        this.f11854a = fVar;
-        this.f11855b = i10;
-        hc.f fVar2 = hc.f.BYTE;
-        if (fVar != fVar2 && eVar != null) {
-            i13 = eVar.f11856c;
+        this.f13605a = eVar;
+        this.f13606b = i10;
+        hc.e eVar3 = hc.e.BYTE;
+        if (eVar != eVar3 && eVar2 != null) {
+            i13 = eVar2.f13607c;
         } else {
             i13 = i11;
         }
-        this.f11856c = i13;
+        this.f13607c = i13;
         this.d = i12;
-        this.e = eVar;
+        this.f13608e = eVar2;
         boolean z10 = false;
-        if (eVar != null) {
-            i14 = eVar.f11857f;
+        if (eVar2 != null) {
+            i14 = eVar2.f13609f;
         } else {
             i14 = 0;
         }
-        if ((fVar == fVar2 && eVar == null && i13 != 0) || (eVar != null && i13 != eVar.f11856c)) {
+        if ((eVar == eVar3 && eVar2 == null && i13 != 0) || (eVar2 != null && i13 != eVar2.f13607c)) {
             z10 = true;
         }
         int i15 = 4;
-        i14 = (eVar == null || fVar != eVar.f11854a || z10) ? i14 + fVar.a(gVar) + 4 : i14;
-        int ordinal = fVar.ordinal();
+        i14 = (eVar2 == null || eVar != eVar2.f13605a || z10) ? i14 + eVar.a(fVar) + 4 : i14;
+        int ordinal = eVar.ordinal();
         if (ordinal != 1) {
             if (ordinal != 2) {
                 if (ordinal != 4) {
@@ -43,12 +42,12 @@ public final class e {
                         i14 += 13;
                     }
                 } else {
-                    i14 += ((String) mVar.f6101b).substring(i10, i12 + i10).getBytes(((dc.e) mVar.f6102c).f6401a[i11].charset()).length * 8;
+                    i14 += ((String) mVar.f6372b).substring(i10, i12 + i10).getBytes(((dc.e) mVar.f6373c).f6705a[i11].charset()).length * 8;
                     if (z10) {
                         i14 += 12;
                     }
                 }
-                this.f11857f = i14;
+                this.f13609f = i14;
             } else if (i12 == 1) {
                 i15 = 6;
             } else {
@@ -62,6 +61,6 @@ public final class e {
             }
         }
         i14 += i15;
-        this.f11857f = i14;
+        this.f13609f = i14;
     }
 }

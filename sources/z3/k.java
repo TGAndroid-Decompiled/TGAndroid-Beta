@@ -3,11 +3,11 @@ package z3;
 import b2.s;
 import t7.u;
 public interface k {
-    public static final u D = new Object();
+    public static final u D = new u(28);
 
-    boolean C(s sVar);
+    int J(s sVar);
 
-    m d(s sVar);
+    boolean i0(s sVar);
 
-    int k(s sVar);
+    m v(s sVar);
 }

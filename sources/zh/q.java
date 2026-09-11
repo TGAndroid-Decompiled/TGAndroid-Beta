@@ -1,20 +1,33 @@
 package zh;
-public abstract class q extends f6 {
-    @Override
-    public final void invalidate() {
-        if (p.f48762c) {
-            p.f48761b.add(this);
-        } else {
-            super.invalidate();
-        }
+
+import android.content.Context;
+import android.view.View;
+import org.telegram.ui.Components.d61;
+import org.telegram.ui.Components.g51;
+import org.telegram.ui.Components.h51;
+import org.telegram.ui.Components.ll0;
+import org.telegram.ui.Components.v51;
+public final class q extends g51 {
+    static {
+        g51.setup(new g51());
+    }
+
+    public static h51 a(String str, CharSequence charSequence, int i10) {
+        h51 J = h51.J(q.class);
+        J.f44072b = false;
+        J.f26607z = i10;
+        J.f26594l = str;
+        J.f26595m = charSequence;
+        return J;
     }
 
     @Override
-    public final void invalidate(int i10, int i11, int i12, int i13) {
-        if (p.f48762c) {
-            p.f48761b.add(this);
-        } else {
-            super.invalidate(i10, i11, i12, i13);
-        }
+    public final void bindView(View view, h51 h51Var, boolean z10, v51 v51Var, d61 d61Var) {
+        ((r) view).a(h51Var.f26594l, h51Var.f26595m, h51Var.f26607z);
+    }
+
+    @Override
+    public final View createView(Context context, ll0 ll0Var, int i10, int i11, org.telegram.ui.ActionBar.f6 f6Var) {
+        return new r(context, 0, f6Var);
     }
 }

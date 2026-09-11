@@ -7,7 +7,7 @@ import org.telegram.tgnet.TLMethod;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.Vector;
-import org.telegram.tgnet.p;
+import org.telegram.tgnet.m;
 import org.telegram.tgnet.tl.TL_stories;
 public class TL_stats {
 
@@ -465,7 +465,7 @@ public class TL_stats {
 
     public static class TL_getStoryPublicForwards extends TLObject {
         public static final int constructor = -1505526026;
-        public int f17428id;
+        public int f20100id;
         public int limit;
         public String offset;
         public TLRPC.InputPeer peer;
@@ -479,7 +479,7 @@ public class TL_stats {
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(-1505526026);
             this.peer.serializeToStream(outputSerializedData);
-            outputSerializedData.writeInt32(this.f17428id);
+            outputSerializedData.writeInt32(this.f20100id);
             outputSerializedData.writeString(this.offset);
             outputSerializedData.writeInt32(this.limit);
         }
@@ -489,7 +489,7 @@ public class TL_stats {
         public static final int constructor = 1646092192;
         public int flags;
         public String token;
-        public long f17429x;
+        public long f20101x;
 
         @Override
         public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i10, boolean z10) {
@@ -502,7 +502,7 @@ public class TL_stats {
             outputSerializedData.writeInt32(this.flags);
             outputSerializedData.writeString(this.token);
             if (TLObject.hasFlag(this.flags, 1)) {
-                outputSerializedData.writeInt64(this.f17429x);
+                outputSerializedData.writeInt64(this.f20101x);
             }
         }
     }
@@ -555,7 +555,7 @@ public class TL_stats {
             this.top_posters = Vector.deserialize(inputSerializedData, new a(29), z10);
             this.top_admins = Vector.deserialize(inputSerializedData, new d(0), z10);
             this.top_inviters = Vector.deserialize(inputSerializedData, new d(1), z10);
-            this.users = Vector.deserialize(inputSerializedData, new p(4), z10);
+            this.users = Vector.deserialize(inputSerializedData, new m(4), z10);
         }
 
         @Override
@@ -703,8 +703,8 @@ public class TL_stats {
             if (TLObject.hasFlag(this.flags, 1)) {
                 this.next_offset = inputSerializedData.readString(z10);
             }
-            this.chats = Vector.deserialize(inputSerializedData, new p(10), z10);
-            this.users = Vector.deserialize(inputSerializedData, new p(4), z10);
+            this.chats = Vector.deserialize(inputSerializedData, new m(10), z10);
+            this.users = Vector.deserialize(inputSerializedData, new m(4), z10);
         }
 
         @Override

@@ -1,6 +1,9 @@
 package org.telegram.ui;
 
-import android.graphics.Canvas;
+import android.text.Layout;
+import android.view.View;
 public interface uj0 {
-    void b(Canvas canvas);
+    Layout getLayout();
+
+    View getParentView();
 }

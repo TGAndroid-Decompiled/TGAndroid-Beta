@@ -5,37 +5,37 @@ import android.os.Build;
 import android.os.Bundle;
 public final class e {
     public static final e h = new e(0, 0, 1, 1, 0, false);
-    public static final String f1655i;
-    public static final String f1656j;
-    public static final String f1657k;
-    public static final String f1658l;
-    public static final String f1659m;
-    public static final String f1660n;
-    public final int f1661a;
-    public final int f1662b;
-    public final int f1663c;
+    public static final String f1998i;
+    public static final String f1999j;
+    public static final String f2000k;
+    public static final String f2001l;
+    public static final String f2002m;
+    public static final String f2003n;
+    public final int f2004a;
+    public final int f2005b;
+    public final int f2006c;
     public final int d;
-    public final int e;
-    public final boolean f1664f;
-    public w0 f1665g;
+    public final int f2007e;
+    public final boolean f2008f;
+    public w0 f2009g;
 
     static {
-        String str = e2.d0.f7188a;
-        f1655i = Integer.toString(0, 36);
-        f1656j = Integer.toString(1, 36);
-        f1657k = Integer.toString(2, 36);
-        f1658l = Integer.toString(3, 36);
-        f1659m = Integer.toString(4, 36);
-        f1660n = Integer.toString(5, 36);
+        String str = e2.d0.f8737a;
+        f1998i = Integer.toString(0, 36);
+        f1999j = Integer.toString(1, 36);
+        f2000k = Integer.toString(2, 36);
+        f2001l = Integer.toString(3, 36);
+        f2002m = Integer.toString(4, 36);
+        f2003n = Integer.toString(5, 36);
     }
 
     public e(int i10, int i11, int i12, int i13, int i14, boolean z10) {
-        this.f1661a = i10;
-        this.f1662b = i11;
-        this.f1663c = i12;
+        this.f2004a = i10;
+        this.f2005b = i11;
+        this.f2006c = i12;
         this.d = i13;
-        this.e = i14;
-        this.f1664f = z10;
+        this.f2007e = i14;
+        this.f2008f = z10;
     }
 
     public static e a(Bundle bundle) {
@@ -45,37 +45,37 @@ public final class e {
         int i13;
         int i14;
         boolean z10;
-        String str = f1655i;
+        String str = f1998i;
         if (bundle.containsKey(str)) {
             i10 = bundle.getInt(str);
         } else {
             i10 = 0;
         }
-        String str2 = f1656j;
+        String str2 = f1999j;
         if (bundle.containsKey(str2)) {
             i11 = bundle.getInt(str2);
         } else {
             i11 = 0;
         }
-        String str3 = f1657k;
+        String str3 = f2000k;
         if (bundle.containsKey(str3)) {
             i12 = bundle.getInt(str3);
         } else {
             i12 = 1;
         }
-        String str4 = f1658l;
+        String str4 = f2001l;
         if (bundle.containsKey(str4)) {
             i13 = bundle.getInt(str4);
         } else {
             i13 = 1;
         }
-        String str5 = f1659m;
+        String str5 = f2002m;
         if (bundle.containsKey(str5)) {
             i14 = bundle.getInt(str5);
         } else {
             i14 = 0;
         }
-        String str6 = f1660n;
+        String str6 = f2003n;
         if (bundle.containsKey(str6)) {
             z10 = bundle.getBoolean(str6);
         } else {
@@ -85,21 +85,21 @@ public final class e {
     }
 
     public final w0 b() {
-        if (this.f1665g == null) {
+        if (this.f2009g == null) {
             ?? obj = new Object();
-            AudioAttributes.Builder usage = new AudioAttributes.Builder().setContentType(this.f1661a).setFlags(this.f1662b).setUsage(this.f1663c);
+            AudioAttributes.Builder usage = new AudioAttributes.Builder().setContentType(this.f2004a).setFlags(this.f2005b).setUsage(this.f2006c);
             int i10 = Build.VERSION.SDK_INT;
             if (i10 >= 29) {
                 c.k(usage, this.d);
             }
             if (i10 >= 32) {
-                d.b(usage, this.e);
-                d.a(usage, this.f1664f);
+                d.b(usage, this.f2007e);
+                d.a(usage, this.f2008f);
             }
-            obj.f2037a = usage.build();
-            this.f1665g = obj;
+            obj.f2408a = usage.build();
+            this.f2009g = obj;
         }
-        return this.f1665g;
+        return this.f2009g;
     }
 
     public final boolean equals(Object obj) {
@@ -108,7 +108,7 @@ public final class e {
         }
         if (obj != null && e.class == obj.getClass()) {
             e eVar = (e) obj;
-            if (this.f1661a == eVar.f1661a && this.f1662b == eVar.f1662b && this.f1663c == eVar.f1663c && this.d == eVar.d && this.e == eVar.e && this.f1664f == eVar.f1664f) {
+            if (this.f2004a == eVar.f2004a && this.f2005b == eVar.f2005b && this.f2006c == eVar.f2006c && this.d == eVar.d && this.f2007e == eVar.f2007e && this.f2008f == eVar.f2008f) {
                 return true;
             }
         }
@@ -116,6 +116,6 @@ public final class e {
     }
 
     public final int hashCode() {
-        return ((((((((((527 + this.f1661a) * 31) + this.f1662b) * 31) + this.f1663c) * 31) + this.d) * 31) + this.e) * 31) + (this.f1664f ? 1 : 0);
+        return ((((((((((527 + this.f2004a) * 31) + this.f2005b) * 31) + this.f2006c) * 31) + this.d) * 31) + this.f2007e) * 31) + (this.f2008f ? 1 : 0);
     }
 }

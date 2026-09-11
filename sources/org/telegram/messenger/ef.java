@@ -1,62 +1,36 @@
 package org.telegram.messenger;
-public final class ef implements Runnable {
-    public final int f15089a;
-    public final MessagesStorage f15090b;
-    public final int f15091c;
-    public final long d;
-    public final long e;
 
-    public ef(int i10, long j3, long j10, MessagesStorage messagesStorage) {
-        this.f15089a = 4;
-        this.f15090b = messagesStorage;
-        this.d = j3;
-        this.f15091c = i10;
-        this.e = j10;
+import org.telegram.ui.co;
+import org.webrtc.TextureViewRenderer;
+public final class ef implements Runnable {
+    public final int f17572a;
+    public final int f17573b;
+    public final int f17574c;
+    public final int d;
+    public final int f17575e;
+    public final Object f17576f;
+
+    public ef(Object obj, int i10, int i11, int i12, int i13, int i14) {
+        this.f17572a = i14;
+        this.f17576f = obj;
+        this.f17573b = i10;
+        this.f17574c = i11;
+        this.d = i12;
+        this.f17575e = i13;
     }
 
     @Override
     public final void run() {
-        switch (this.f15089a) {
+        switch (this.f17572a) {
             case 0:
-                MessagesStorage.c3(this.f15091c, this.d, this.e, this.f15090b);
+                ((MessagesStorage) this.f17576f).lambda$saveDiffParams$35(this.f17573b, this.f17574c, this.d, this.f17575e);
                 return;
             case 1:
-                MessagesStorage.c0(this.f15091c, this.d, this.e, this.f15090b);
-                return;
-            case 2:
-                MessagesStorage.p(this.f15091c, this.d, this.e, this.f15090b);
-                return;
-            case 3:
-                MessagesStorage.z1(this.f15091c, this.d, this.e, this.f15090b);
-                return;
-            case 4:
-                MessagesStorage.e1(this.f15091c, this.d, this.e, this.f15090b);
-                return;
-            case 5:
-                MessagesStorage.x3(this.f15091c, this.d, this.e, this.f15090b);
-                return;
-            case 6:
-                MessagesStorage.M1(this.f15091c, this.d, this.e, this.f15090b);
+                co.r1((co) this.f17576f, this.f17573b, this.f17574c, this.d, this.f17575e);
                 return;
             default:
-                MessagesStorage.D0(this.f15091c, this.d, this.e, this.f15090b);
+                TextureViewRenderer.a((TextureViewRenderer) this.f17576f, this.f17573b, this.f17574c, this.d, this.f17575e);
                 return;
         }
-    }
-
-    public ef(MessagesStorage messagesStorage, int i10, long j3, long j10, int i11) {
-        this.f15089a = i11;
-        this.f15090b = messagesStorage;
-        this.f15091c = i10;
-        this.d = j3;
-        this.e = j10;
-    }
-
-    public ef(MessagesStorage messagesStorage, long j3, long j10, int i10, int i11) {
-        this.f15089a = i11;
-        this.f15090b = messagesStorage;
-        this.d = j3;
-        this.e = j10;
-        this.f15091c = i10;
     }
 }

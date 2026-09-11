@@ -1,43 +1,24 @@
 package org.telegram.ui.Components.voip;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.view.View;
-public final class d1 extends AnimatorListenerAdapter {
-    public final int f28093a;
-    public final i1 f28094b;
+import org.webrtc.RendererCommon;
+public final class d1 implements RendererCommon.RendererEvents {
+    public final h1 f31449a;
 
-    public d1(i1 i1Var, int i10) {
-        this.f28093a = i10;
-        this.f28094b = i1Var;
+    public d1(h1 h1Var) {
+        this.f31449a = h1Var;
     }
 
     @Override
-    public void onAnimationEnd(Animator animator) {
-        switch (this.f28093a) {
-            case 1:
-                this.f28094b.L = null;
-                return;
-            default:
-                super.onAnimationEnd(animator);
-                return;
+    public final void onFirstFrameRendered() {
+        h1 h1Var = this.f31449a;
+        com.google.android.gms.internal.cast.p pVar = h1Var.Y;
+        if (pVar != null) {
+            pVar.run();
+            h1Var.Y = null;
         }
     }
 
     @Override
-    public void onAnimationEnd(Animator animator, boolean z10) {
-        View view;
-        switch (this.f28093a) {
-            case 0:
-                pf.e eVar = this.f28094b.O;
-                if (eVar == null || (view = eVar.f39925j) == null) {
-                    return;
-                }
-                eVar.e(view);
-                return;
-            default:
-                super.onAnimationEnd(animator, z10);
-                return;
-        }
+    public final void onFrameResolutionChanged(int i10, int i11, int i12) {
     }
 }

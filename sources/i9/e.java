@@ -1,18 +1,18 @@
 package i9;
 public final class e implements Runnable {
-    public final c0 f10519a;
-    public final w f10520b;
+    public final c0 f11904a;
+    public final w f11905b;
 
     public e(c0 c0Var, w wVar) {
-        this.f10519a = c0Var;
-        this.f10520b = wVar;
+        this.f11904a = c0Var;
+        this.f11905b = wVar;
     }
 
     @Override
     public final void run() {
-        if (this.f10519a.f10530a == this) {
-            if (o.f10529f.b(this.f10519a, this, o.j(this.f10520b))) {
-                o.g(this.f10519a, false);
+        if (this.f11904a.f11917a == this) {
+            if (o.f11916f.b(this.f11904a, this, o.j(this.f11905b))) {
+                o.g(this.f11904a, false);
             }
         }
     }

@@ -1,41 +1,34 @@
 package org.telegram.ui;
 
-import android.view.View;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-public final class lh0 implements org.telegram.ui.Components.ll0, org.telegram.ui.ActionBar.c2 {
-    public final zh0 f34718a;
+public final class lh0 implements Runnable {
+    public final int f38358a;
+    public final yh0 f38359b;
+    public final TLRPC.TL_chatInviteExported f38360c;
+    public final TLRPC.TL_error d;
+    public final TLObject f38361e;
+    public final boolean f38362f;
 
-    public lh0(zh0 zh0Var) {
-        this.f34718a = zh0Var;
+    public lh0(yh0 yh0Var, TLRPC.TL_chatInviteExported tL_chatInviteExported, TLRPC.TL_error tL_error, TLObject tLObject, boolean z10, int i10) {
+        this.f38358a = i10;
+        this.f38359b = yh0Var;
+        this.f38360c = tL_chatInviteExported;
+        this.d = tL_error;
+        this.f38361e = tLObject;
+        this.f38362f = z10;
     }
 
     @Override
-    public boolean d(int i10, View view) {
-        zh0 zh0Var = this.f34718a;
-        if ((i10 < zh0Var.f39350y || i10 >= zh0Var.E) && (i10 < zh0Var.H || i10 >= zh0Var.I)) {
-            return false;
+    public final void run() {
+        switch (this.f38358a) {
+            case 0:
+                yh0 yh0Var = this.f38359b;
+                yh0Var.getNotificationCenter().doOnIdle(new lh0(yh0Var, this.f38360c, this.d, this.f38361e, this.f38362f, 1));
+                return;
+            default:
+                yh0.U(this.f38359b, this.f38360c, this.d, this.f38361e, this.f38362f);
+                return;
         }
-        ((wh0) view).f38204x.callOnClick();
-        try {
-            view.performHapticFeedback(0, 2);
-            return true;
-        } catch (Exception unused) {
-            return true;
-        }
-    }
-
-    @Override
-    public void f(org.telegram.ui.ActionBar.d2 d2Var, int i10) {
-        TLRPC.TL_messages_deleteRevokedExportedChatInvites tL_messages_deleteRevokedExportedChatInvites = new TLRPC.TL_messages_deleteRevokedExportedChatInvites();
-        zh0 zh0Var = this.f34718a;
-        tL_messages_deleteRevokedExportedChatInvites.peer = zh0Var.getMessagesController().getInputPeer(-zh0Var.f39338n);
-        long j3 = zh0Var.f39330f;
-        if (j3 == zh0Var.getUserConfig().getClientUserId()) {
-            tL_messages_deleteRevokedExportedChatInvites.admin_id = zh0Var.getMessagesController().getInputUser(zh0Var.getUserConfig().getCurrentUser());
-        } else {
-            tL_messages_deleteRevokedExportedChatInvites.admin_id = zh0Var.getMessagesController().getInputUser(j3);
-        }
-        zh0Var.f39327c0 = true;
-        zh0Var.getConnectionsManager().sendRequest(tL_messages_deleteRevokedExportedChatInvites, new ih0(zh0Var, 1));
     }
 }

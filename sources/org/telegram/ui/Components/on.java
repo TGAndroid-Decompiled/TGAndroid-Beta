@@ -1,40 +1,38 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-public final class on extends s4.d0 {
-    public final gg.j0 f25844r;
+import android.view.ActionMode;
+import android.view.Menu;
+public final class on extends org.telegram.ui.Cells.c6 {
+    public final rn F;
 
-    public on(gg.j0 j0Var, Context context) {
-        super(context);
-        this.f25844r = j0Var;
+    public on(rn rnVar, Context context, int i10) {
+        super(context, i10, null, null);
+        this.F = rnVar;
     }
 
     @Override
-    public final int k(int i10, View view) {
-        int i11;
-        zn znVar = (zn) this.f25844r.V;
-        if (znVar.V0) {
-            i10 = -1;
+    public final void g(org.telegram.ui.Cells.b6 b6Var, ActionMode actionMode) {
+        if (b6Var.isFocused() && b6Var.hasSelection()) {
+            Menu menu = actionMode.getMenu();
+            if (menu.findItem(16908321) != null) {
+                org.telegram.ui.co.k8(menu, ((org.telegram.ui.co) this.F.d.f28753b.f31279f0).h, false, true, true, true);
+            }
         }
-        int k10 = super.k(i10, view);
-        if (znVar.V0) {
-            k10 += AndroidUtilities.dp(160.0f);
-        }
-        if (!znVar.V0) {
-            k10 = org.telegram.messenger.a2.z(7.0f, znVar.R0 - AndroidUtilities.statusBarHeight, k10);
-        }
-        if (znVar.V0 && k10 == 0 && (i11 = znVar.W0) >= 0) {
-            zn.K(znVar, i11);
-            znVar.W0 = -1;
-        }
-        znVar.V0 = false;
-        return k10;
     }
 
     @Override
-    public final int m(int i10) {
-        return super.m(i10) * 2;
+    public final void i(boolean z10) {
+        tn.M(this.F.d, this, z10);
+    }
+
+    @Override
+    public final void j(org.telegram.ui.Cells.c6 c6Var) {
+        tn.N(this.F.d, c6Var);
+    }
+
+    @Override
+    public final void k(org.telegram.ui.Cells.b6 b6Var) {
+        this.F.d.f28753b.t1(b6Var, true);
     }
 }

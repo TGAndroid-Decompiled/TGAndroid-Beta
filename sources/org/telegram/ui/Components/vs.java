@@ -1,34 +1,79 @@
 package org.telegram.ui.Components;
 
-import java.util.ArrayList;
-public final class vs implements Runnable {
-    public final int f28592a;
-    public final ws f28593b;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.view.View;
+import android.view.ViewPropertyAnimator;
+public final class vs extends AnimatorListenerAdapter {
+    public final int f31971a = 1;
+    public final s4.c1 f31972b;
+    public final View f31973c;
+    public final ViewPropertyAnimator d;
+    public final zs f31974e;
 
-    public vs(ws wsVar, int i10) {
-        this.f28592a = i10;
-        this.f28593b = wsVar;
+    public vs(zs zsVar, s4.c1 c1Var, ViewPropertyAnimator viewPropertyAnimator, View view) {
+        this.f31974e = zsVar;
+        this.f31972b = c1Var;
+        this.d = viewPropertyAnimator;
+        this.f31973c = view;
     }
 
     @Override
-    public final void run() {
-        switch (this.f28592a) {
+    public void onAnimationCancel(Animator animator) {
+        switch (this.f31971a) {
+            case 1:
+                this.f31973c.setAlpha(1.0f);
+                return;
+            default:
+                super.onAnimationCancel(animator);
+                return;
+        }
+    }
+
+    @Override
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f31971a) {
             case 0:
-                ws wsVar = this.f28593b;
-                wsVar.f28830c = false;
-                wsVar.f28829b.run();
-                ArrayList arrayList = wsVar.h;
-                if (arrayList.isEmpty() || System.currentTimeMillis() - wsVar.f28831f > 3600000) {
-                    arrayList.clear();
-                    wsVar.e = false;
-                    wsVar.f28832g = null;
-                    wsVar.a();
+                this.d.setListener(null);
+                this.f31973c.setAlpha(1.0f);
+                zs zsVar = this.f31974e;
+                s4.c1 c1Var = this.f31972b;
+                zsVar.d(c1Var);
+                zsVar.f33224x.remove(c1Var);
+                zsVar.A();
+                return;
+            default:
+                this.d.setListener(null);
+                zs zsVar2 = this.f31974e;
+                s4.c1 c1Var2 = this.f31972b;
+                zsVar2.u(c1Var2);
+                zsVar2.v.remove(c1Var2);
+                zsVar2.A();
+                View view = c1Var2.f45738a;
+                if (view instanceof org.telegram.ui.Cells.r2) {
+                    ((org.telegram.ui.Cells.r2) view).setMoving(false);
                     return;
                 }
                 return;
+        }
+    }
+
+    @Override
+    public final void onAnimationStart(Animator animator) {
+        switch (this.f31971a) {
+            case 0:
+                this.f31974e.y();
+                return;
             default:
-                this.f28593b.f28833i = false;
+                this.f31974e.getClass();
                 return;
         }
+    }
+
+    public vs(zs zsVar, s4.c1 c1Var, View view, ViewPropertyAnimator viewPropertyAnimator) {
+        this.f31974e = zsVar;
+        this.f31972b = c1Var;
+        this.f31973c = view;
+        this.d = viewPropertyAnimator;
     }
 }

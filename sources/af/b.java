@@ -10,8 +10,8 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 public abstract class b {
-    public static final Map f402a;
-    public static final Pattern f403b;
+    public static final Map f423a;
+    public static final Pattern f424b;
 
     static {
         HashMap hashMap = new HashMap();
@@ -27,19 +27,19 @@ public abstract class b {
                 } else {
                     bufferedReader.close();
                     hashMap.put("NewLine", "\n");
-                    f402a = hashMap;
-                    f403b = Pattern.compile("^&#[Xx]?");
+                    f423a = hashMap;
+                    f424b = Pattern.compile("^&#[Xx]?");
                     return;
                 }
             }
-        } catch (IOException e) {
-            throw new IllegalStateException("Failed reading data for HTML named character references", e);
+        } catch (IOException e7) {
+            throw new IllegalStateException("Failed reading data for HTML named character references", e7);
         }
     }
 
     public static String a(String str) {
         int i10;
-        Matcher matcher = f403b.matcher(str);
+        Matcher matcher = f424b.matcher(str);
         if (matcher.find()) {
             if (matcher.end() == 2) {
                 i10 = 10;
@@ -56,7 +56,7 @@ public abstract class b {
                 return "�";
             }
         }
-        String str2 = (String) f402a.get(e2.h(1, 1, str));
+        String str2 = (String) f423a.get(e2.i(1, 1, str));
         if (str2 != null) {
             return str2;
         }

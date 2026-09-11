@@ -1,160 +1,90 @@
 package org.telegram.ui.Components.voip;
 
-import android.animation.ValueAnimator;
-import android.graphics.Bitmap;
-import android.graphics.Paint;
+import android.content.Context;
+import android.view.MotionEvent;
 import android.view.View;
-import android.view.animation.LinearInterpolator;
-import java.util.ArrayList;
-import org.telegram.ui.Components.zn0;
-public final class p1 {
-    public final com.google.firebase.messaging.n f28338a;
-    public final com.google.firebase.messaging.n f28339b;
-    public com.google.firebase.messaging.n f28340c;
-    public com.google.firebase.messaging.n d;
-    public boolean e;
-    public int f28341f;
-    public int f28342g;
-    public int h;
-    public boolean f28343i;
-    public final Paint f28344j;
-    public final Paint f28345k;
-    public final Paint f28346l;
-    public final ArrayList f28347m;
+import android.widget.FrameLayout;
+import org.telegram.messenger.AndroidUtilities;
+public final class p1 extends FrameLayout {
+    public int f31717a;
+    public int f31718b;
+    public int f31719c;
+    public int d;
+    public boolean f31720e;
 
-    public p1() {
-        com.google.firebase.messaging.n nVar = new com.google.firebase.messaging.n(80, 80);
-        this.f28338a = nVar;
-        com.google.firebase.messaging.n nVar2 = new com.google.firebase.messaging.n(80, 80);
-        this.f28339b = nVar2;
-        this.f28341f = 0;
-        this.f28342g = 0;
-        Paint paint = new Paint(1);
-        this.f28344j = paint;
-        Paint paint2 = new Paint(1);
-        this.f28345k = paint2;
-        Paint paint3 = new Paint(1);
-        this.f28346l = paint3;
-        this.f28347m = new ArrayList();
-        nVar2.z(0.0f, 0.0f, 80.0f, 80.0f);
-        nVar.z(0.0f, 0.0f, 80.0f, 80.0f);
-        paint.setColor(-1);
-        paint.setAlpha(35);
-        paint2.setColor(-16777216);
-        paint2.setAlpha(102);
-        paint3.setColor(-16777216);
-        paint3.setAlpha(35);
-        ((Paint) nVar2.f6103a).setAlpha(180);
+    public p1(Context context) {
+        super(context);
+        this.d = 68;
+        this.f31720e = true;
     }
 
-    public final void a(View view) {
-        this.f28347m.add(view);
-    }
-
-    public final Paint b() {
-        if (this.f28343i) {
-            return this.f28345k;
+    @Override
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        if (!isEnabled()) {
+            return false;
         }
-        return (Paint) this.f28339b.f6103a;
+        return super.dispatchTouchEvent(motionEvent);
     }
 
-    public final void c() {
-        ArrayList arrayList = this.f28347m;
-        int size = arrayList.size();
-        int i10 = 0;
-        while (i10 < size) {
-            Object obj = arrayList.get(i10);
-            i10++;
-            ((View) obj).invalidate();
+    @Override
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        int i14;
+        if (this.f31720e) {
+            int childCount = (int) (((getChildCount() - this.f31717a) / 2.0f) * ((this.f31719c * 2) + this.f31718b));
+            for (int i15 = 0; i15 < getChildCount(); i15++) {
+                View childAt = getChildAt(i15);
+                if (childAt.getVisibility() != 8) {
+                    int i16 = this.f31719c;
+                    childAt.layout(childCount + i16, 0, childAt.getMeasuredWidth() + i16 + childCount, childAt.getMeasuredHeight());
+                    childCount = childAt.getMeasuredWidth() + (this.f31719c * 2) + childCount;
+                }
+            }
+            return;
         }
-    }
-
-    public final void d(float f7, float f10) {
-        float f11 = this.f28342g * 1.12f;
-        com.google.firebase.messaging.n nVar = this.f28339b;
-        float f12 = -f7;
-        float f13 = -f10;
-        nVar.B(f12 - ((f11 - this.f28341f) / 2.0f), f13 - ((f11 - this.f28342g) / 2.0f), f11 / ((Bitmap) nVar.f6105c).getHeight(), this.h);
-        this.d.z(f12, f13, this.f28341f - f7, this.f28342g - f10);
-    }
-
-    public final void e(boolean z10) {
-        if (this.f28343i && !z10) {
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(1.0f, 0.0f);
-            ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener(this) {
-                public final p1 f28306b;
-
-                {
-                    this.f28306b = this;
-                }
-
-                @Override
-                public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                    switch (r2) {
-                        case 0:
-                            p1 p1Var = this.f28306b;
-                            p1Var.getClass();
-                            float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                            int i10 = (int) (35.0f * floatValue);
-                            p1Var.f28346l.setAlpha(i10);
-                            p1Var.f28345k.setAlpha((int) (floatValue * 102.0f));
-                            p1Var.f28344j.setAlpha(i10);
-                            p1Var.c();
-                            return;
-                        default:
-                            p1 p1Var2 = this.f28306b;
-                            p1Var2.getClass();
-                            float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                            ((Paint) p1Var2.f28339b.f6103a).setAlpha((int) (180.0f * floatValue2));
-                            ((Paint) p1Var2.f28338a.f6103a).setAlpha((int) (floatValue2 * 255.0f));
-                            p1Var2.c();
-                            return;
-                    }
-                }
-            });
-            ofFloat.setInterpolator(new LinearInterpolator());
-            ofFloat.setDuration(80L);
-            ofFloat.addListener(new zn0(this, 26));
-            ofFloat.start();
-            ValueAnimator ofFloat2 = ValueAnimator.ofFloat(0.0f, 1.0f);
-            ofFloat2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener(this) {
-                public final p1 f28306b;
-
-                {
-                    this.f28306b = this;
-                }
-
-                @Override
-                public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                    switch (r2) {
-                        case 0:
-                            p1 p1Var = this.f28306b;
-                            p1Var.getClass();
-                            float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                            int i10 = (int) (35.0f * floatValue);
-                            p1Var.f28346l.setAlpha(i10);
-                            p1Var.f28345k.setAlpha((int) (floatValue * 102.0f));
-                            p1Var.f28344j.setAlpha(i10);
-                            p1Var.c();
-                            return;
-                        default:
-                            p1 p1Var2 = this.f28306b;
-                            p1Var2.getClass();
-                            float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                            ((Paint) p1Var2.f28339b.f6103a).setAlpha((int) (180.0f * floatValue2));
-                            ((Paint) p1Var2.f28338a.f6103a).setAlpha((int) (floatValue2 * 255.0f));
-                            p1Var2.c();
-                            return;
-                    }
-                }
-            });
-            ofFloat2.setInterpolator(new LinearInterpolator());
-            ofFloat2.setStartDelay(80L);
-            ofFloat2.setDuration(80L);
-            ofFloat2.start();
+        if (this.f31717a > 0) {
+            i14 = (getMeasuredWidth() - this.f31718b) / (this.f31717a - 1);
         } else {
-            this.f28343i = z10;
+            i14 = 0;
         }
-        c();
+        int i17 = 0;
+        for (int i18 = 0; i18 < getChildCount(); i18++) {
+            View childAt2 = getChildAt(i18);
+            if (childAt2.getVisibility() != 8) {
+                int i19 = i17 * i14;
+                childAt2.layout(i19, 0, childAt2.getMeasuredWidth() + i19, childAt2.getMeasuredHeight());
+                i17++;
+            }
+        }
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        int size = View.MeasureSpec.getSize(i10);
+        this.f31717a = 0;
+        for (int i12 = 0; i12 < getChildCount(); i12++) {
+            if (getChildAt(i12).getVisibility() != 8) {
+                this.f31717a++;
+            }
+        }
+        this.f31718b = AndroidUtilities.dp(this.d);
+        this.f31719c = ((size / getChildCount()) - this.f31718b) / 2;
+        int i13 = 0;
+        for (int i14 = 0; i14 < getChildCount(); i14++) {
+            if (getChildAt(i14).getVisibility() != 8) {
+                getChildAt(i14).measure(View.MeasureSpec.makeMeasureSpec(this.f31718b, 1073741824), i11);
+                if (getChildAt(i14).getMeasuredHeight() > i13) {
+                    i13 = getChildAt(i14).getMeasuredHeight();
+                }
+            }
+        }
+        setMeasuredDimension(size, Math.max(i13, AndroidUtilities.dp(80.0f)));
+    }
+
+    public void setChildSize(int i10) {
+        this.d = i10;
+    }
+
+    public void setUseStartPadding(boolean z10) {
+        this.f31720e = z10;
     }
 }

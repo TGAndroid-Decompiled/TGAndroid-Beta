@@ -1,31 +1,49 @@
 package di;
 
-import android.app.Activity;
-import android.view.ViewGroup;
-import org.telegram.ui.ActionBar.f6;
-import org.telegram.ui.ActionBar.j6;
-import org.telegram.ui.Components.j61;
-import org.telegram.ui.Components.vl0;
-public final class z3 extends j61 {
-    public final h4 N;
+import android.view.KeyEvent;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+public final class z3 implements o1.f {
+    public final int f8514a = 1;
+    public final Runnable f8515b;
+    public final float f8516c;
+    public final KeyEvent.Callback d;
 
-    public z3(h4 h4Var, vl0 vl0Var, Activity activity, int i10, int i11, ai.c0 c0Var, f6 f6Var) {
-        super(vl0Var, activity, i10, i11, true, c0Var, f6Var);
-        this.N = h4Var;
+    public z3(View view, float f7, Runnable runnable) {
+        this.f8515b = runnable;
+        this.d = view;
+        this.f8516c = f7;
     }
 
     @Override
-    public final s4.c1 x(ViewGroup viewGroup, int i10) {
-        f6 f6Var;
-        if (i10 == 42) {
-            h4 h4Var = this.N;
-            Activity parentActivity = h4Var.getParentActivity();
-            int i11 = j6.L6;
-            f6Var = ((org.telegram.ui.ActionBar.p2) h4Var).resourceProvider;
-            org.telegram.ui.Cells.m4 m4Var = new org.telegram.ui.Cells.m4(parentActivity, i11, 21, 0, false, f6Var);
-            m4Var.setHeight(25);
-            return new s4.c1(m4Var);
+    public final void a(o1.h hVar, boolean z10, float f7, float f10) {
+        switch (this.f8514a) {
+            case 0:
+                b4 b4Var = (b4) this.d;
+                a4 a4Var = b4Var.f6942b;
+                if (!z10) {
+                    a4Var.setTranslationY(this.f8516c);
+                    a4Var.K = false;
+                    b4Var.d = null;
+                    b4Var.f6944e = null;
+                    Runnable runnable = this.f8515b;
+                    if (runnable != null) {
+                        runnable.run();
+                        return;
+                    }
+                    return;
+                }
+                return;
+            default:
+                float f11 = this.f8516c;
+                AndroidUtilities.lambda$shakeViewSpring$14(this.f8515b, (View) this.d, f11, hVar, z10, f7, f10);
+                return;
         }
-        return super.x(viewGroup, i10);
+    }
+
+    public z3(b4 b4Var, float f7, Runnable runnable) {
+        this.d = b4Var;
+        this.f8516c = f7;
+        this.f8515b = runnable;
     }
 }

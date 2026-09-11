@@ -1,157 +1,160 @@
 package org.telegram.ui.Components;
 
-import android.graphics.ColorFilter;
+import android.util.SparseArray;
+import android.view.View;
 import android.view.ViewGroup;
-import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.DocumentObject;
-import org.telegram.messenger.FileLoader;
-import org.telegram.messenger.ImageLocation;
-import org.telegram.messenger.LiteMode;
-import org.telegram.messenger.MediaDataController;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.SvgHelper;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class pz extends ul0 {
-    public final boolean f26273c;
-    public final rz d;
+import androidx.recyclerview.widget.RecyclerView;
+public class pz extends s4.c0 {
+    public final SparseArray I;
+    public int J;
+    public int K;
+    public int L;
+    public int M;
+    public final RecyclerView N;
+    public boolean O;
+    public boolean P;
+    public final boolean Q;
+    public boolean R;
+    public int S;
+    public final boolean T;
 
-    public pz(rz rzVar, boolean z10) {
-        this.d = rzVar;
-        this.f26273c = z10;
+    public pz(ll0 ll0Var, int i10) {
+        this.I = new SparseArray();
+        this.J = -1;
+        this.P = true;
+        this.Q = true;
+        this.T = true;
+        this.N = ll0Var;
+        this.M = i10;
     }
 
     @Override
-    public final boolean D(s4.c1 c1Var) {
-        return true;
-    }
-
-    @Override
-    public final int h() {
-        ArrayList arrayList;
-        boolean z10 = this.f26273c;
-        rz rzVar = this.d;
-        if (z10) {
-            arrayList = rzVar.f26838n1;
-        } else {
-            arrayList = rzVar.f26834m1;
-        }
-        return arrayList.size();
-    }
-
-    @Override
-    public final int j(int i10) {
-        return 0;
-    }
-
-    @Override
-    public final void v(s4.c1 c1Var, int i10) {
-        ArrayList arrayList;
-        ArrayList<TLRPC.Document> arrayList2;
-        ImageLocation forSticker;
-        int i11;
-        String str;
-        w9 w9Var = (w9) c1Var.f41610a;
-        rz rzVar = this.d;
-        boolean z10 = this.f26273c;
-        if (z10) {
-            arrayList = rzVar.f26838n1;
-        } else {
-            arrayList = rzVar.f26834m1;
-        }
-        TLRPC.StickerSetCovered stickerSetCovered = (TLRPC.StickerSetCovered) arrayList.get(i10);
-        w9Var.setTag(stickerSetCovered);
-        ColorFilter colorFilter = null;
-        if (stickerSetCovered instanceof TLRPC.TL_stickerSetFullCovered) {
-            arrayList2 = ((TLRPC.TL_stickerSetFullCovered) stickerSetCovered).documents;
-        } else if (stickerSetCovered instanceof TLRPC.TL_stickerSetNoCovered) {
-            TLRPC.TL_messages_stickerSet stickerSet = MediaDataController.getInstance(rzVar.f26805c1).getStickerSet(MediaDataController.getInputStickerSet(stickerSetCovered.set), false);
-            if (stickerSet == null) {
-                arrayList2 = null;
+    public final void P(View view) {
+        s4.c1 T;
+        if (this.T) {
+            RecyclerView recyclerView = this.N;
+            View F = recyclerView.F(view);
+            if (F == null) {
+                T = null;
             } else {
-                arrayList2 = stickerSet.documents;
+                T = recyclerView.T(F);
             }
-        } else {
-            arrayList2 = stickerSetCovered.covers;
-        }
-        TLRPC.Document document = stickerSetCovered.cover;
-        if (document == null) {
-            if (arrayList2 != null && !arrayList2.isEmpty()) {
-                if (stickerSetCovered.set != null) {
-                    for (int i12 = 0; i12 < arrayList2.size(); i12++) {
-                        if (arrayList2.get(i12).f17201id == stickerSetCovered.set.thumb_document_id) {
-                            document = arrayList2.get(i12);
-                            break;
-                        }
-                    }
-                }
-                document = null;
-                if (document == null) {
-                    document = arrayList2.get(0);
-                }
-            } else {
-                document = null;
+            if (T.b() == B() - 1) {
+                ((ViewGroup.MarginLayoutParams) ((s4.p0) view.getLayoutParams())).height = Math.max(this.J, 0);
             }
         }
-        if (document != null) {
-            if (z10) {
-                if (MessageObject.isTextColorEmoji(document)) {
-                    colorFilter = org.telegram.ui.ActionBar.j6.n0(rzVar.Z1);
-                }
-                w9Var.setColorFilter(colorFilter);
-            }
-            TLObject closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(stickerSetCovered.set.thumbs, 90);
-            SvgHelper.SvgDrawable svgThumb = DocumentObject.getSvgThumb(stickerSetCovered.set.thumbs, org.telegram.ui.ActionBar.j6.f17911c7, 0.2f);
-            if (svgThumb != null) {
-                svgThumb.overrideWidthAndHeight(512, 512);
-            }
-            if (closestPhotoSizeWithSize == null || MessageObject.isVideoSticker(document)) {
-                closestPhotoSizeWithSize = document;
-            }
-            boolean z11 = closestPhotoSizeWithSize instanceof TLRPC.Document;
-            if (z11) {
-                forSticker = ImageLocation.getForDocument(FileLoader.getClosestPhotoSizeWithSize(document.thumbs, 90), document);
-            } else if (closestPhotoSizeWithSize instanceof TLRPC.PhotoSize) {
-                forSticker = ImageLocation.getForSticker((TLRPC.PhotoSize) closestPhotoSizeWithSize, document, stickerSetCovered.set.thumb_version);
-            } else {
-                return;
-            }
-            if (forSticker != null) {
-                if (z10) {
-                    i11 = 16388;
-                } else {
-                    i11 = 1;
-                }
-                if (!LiteMode.isEnabled(i11)) {
-                    str = "30_30_firstframe";
-                } else {
-                    str = "30_30";
-                }
-                if (!z11 || (!MessageObject.isAnimatedStickerDocument(document, true) && !MessageObject.isVideoSticker(document))) {
-                    String str2 = str;
-                    ImageLocation imageLocation = forSticker;
-                    if (imageLocation.imageType == 1) {
-                        w9Var.i(imageLocation, str2, "tgs", svgThumb, stickerSetCovered);
-                    } else {
-                        w9Var.i(imageLocation, null, "webp", svgThumb, stickerSetCovered);
-                    }
-                } else if (svgThumb != null) {
-                    w9Var.n(ImageLocation.getForDocument(document), str, svgThumb, stickerSetCovered);
-                } else {
-                    w9Var.j(ImageLocation.getForDocument(document), str, forSticker, null, 0, stickerSetCovered);
-                }
-            }
-        }
+        super.P(view);
     }
 
     @Override
-    public final s4.c1 x(ViewGroup viewGroup, int i10) {
-        oz ozVar = new oz(this, this.d.getContext());
-        ozVar.s(AndroidUtilities.dp(24.0f), AndroidUtilities.dp(24.0f));
-        ozVar.setLayerNum(1);
-        ozVar.setAspectFit(true);
-        ozVar.setLayoutParams(new s4.p0(AndroidUtilities.dp(34.0f), AndroidUtilities.dp(34.0f)));
-        return new s4.c1(ozVar);
+    public final void Q() {
+        this.I.clear();
+        p1();
+    }
+
+    @Override
+    public final void V(RecyclerView recyclerView, int i10, int i11) {
+        p1();
+    }
+
+    @Override
+    public final void W(RecyclerView recyclerView) {
+        this.I.clear();
+        p1();
+    }
+
+    @Override
+    public final void X(RecyclerView recyclerView, int i10, int i11) {
+        p1();
+    }
+
+    @Override
+    public final void Y(RecyclerView recyclerView, int i10, int i11) {
+        p1();
+    }
+
+    @Override
+    public final void Z() {
+        p1();
+    }
+
+    @Override
+    public final void a0(RecyclerView recyclerView, int i10, int i11, Object obj) {
+        p1();
+        p1();
+    }
+
+    @Override
+    public final void d0(pf.e eVar, s4.z0 z0Var, int i10, int i11) {
+        int i12 = this.K;
+        this.L = View.MeasureSpec.getSize(i10);
+        int size = View.MeasureSpec.getSize(i11);
+        this.K = size;
+        if (i12 != size) {
+            p1();
+        }
+        super.d0(eVar, z0Var, i10, i11);
+    }
+
+    @Override
+    public final boolean e() {
+        return this.Q;
+    }
+
+    public final void p1() {
+        RecyclerView recyclerView;
+        s4.h0 adapter;
+        if (this.K <= 0 || (adapter = (recyclerView = this.N).getAdapter()) == null) {
+            return;
+        }
+        int h = adapter.h() - 1;
+        int i10 = 0;
+        int i11 = 0;
+        for (int i12 = this.O; i12 < h; i12++) {
+            int j3 = adapter.j(i12);
+            SparseArray sparseArray = this.I;
+            s4.c1 c1Var = (s4.c1) sparseArray.get(j3, null);
+            if (c1Var == null) {
+                c1Var = adapter.g(recyclerView, j3);
+                View view = c1Var.f45738a;
+                sparseArray.put(j3, c1Var);
+                if (view.getLayoutParams() == null) {
+                    view.setLayoutParams(n());
+                }
+            }
+            View view2 = c1Var.f45738a;
+            if (this.P) {
+                adapter.v(c1Var, i12);
+            }
+            s4.p0 p0Var = (s4.p0) view2.getLayoutParams();
+            view2.measure(s4.o0.s(d(), this.L, this.f45849k, E() + D() + ((ViewGroup.MarginLayoutParams) p0Var).leftMargin + ((ViewGroup.MarginLayoutParams) p0Var).rightMargin, ((ViewGroup.MarginLayoutParams) p0Var).width), s4.o0.s(this.Q, this.K, this.f45850l, C() + F() + ((ViewGroup.MarginLayoutParams) p0Var).topMargin + ((ViewGroup.MarginLayoutParams) p0Var).bottomMargin, ((ViewGroup.MarginLayoutParams) p0Var).height));
+            i10 += view2.getMeasuredHeight();
+            if (i12 == 0) {
+                i11 = view2.getMeasuredHeight();
+            }
+            if (this.R) {
+                if (i10 >= this.K + i11) {
+                    break;
+                }
+            } else if (i10 >= this.K) {
+                break;
+            }
+        }
+        if (this.R) {
+            this.J = Math.max(this.S, (((this.K - i10) - this.M) - recyclerView.getPaddingBottom()) + i11);
+        } else {
+            this.J = Math.max(this.S, ((this.K - i10) - this.M) - recyclerView.getPaddingBottom());
+        }
+    }
+
+    public pz(int i10, int i11, ll0 ll0Var) {
+        super(1, false);
+        this.I = new SparseArray();
+        this.J = -1;
+        this.P = true;
+        this.Q = true;
+        this.T = true;
+        this.N = ll0Var;
+        this.M = i10;
     }
 }

@@ -1,63 +1,129 @@
 package di;
 
-import android.content.Context;
-import android.graphics.Paint;
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
+import android.animation.ValueAnimator;
+import android.text.TextUtils;
+import android.util.Property;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.FrameLayout;
+import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.UserObject;
-import org.telegram.ui.ActionBar.f6;
-public final class e3 extends org.telegram.ui.web.c1 {
-    public final n3 S0;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.ui.Components.EditTextBoldCursor;
+import org.telegram.ui.Components.pr;
+public final class e3 extends org.telegram.ui.ActionBar.g5 {
+    public AnimatorSet f7161f;
+    public final x3 h;
 
-    public e3(n3 n3Var, Context context, f6 f6Var, int i10) {
-        super(i10, context, f6Var, true);
-        this.S0 = n3Var;
+    public e3(x3 x3Var) {
+        this.h = x3Var;
     }
 
     @Override
-    public final void E(String str, boolean z10) {
-        boolean z11;
-        n3 n3Var = this.S0;
-        Paint paint = n3Var.P;
-        if (z10) {
-            n3Var.i();
-            n3Var.U0.a(UserObject.getUserName(MessagesController.getInstance(n3Var.G).getUser(Long.valueOf(n3Var.H))), str);
-            org.telegram.ui.e3 e3Var = n3Var.U0;
-            if (AndroidUtilities.computePerceivedBrightness(paint.getColor()) <= 0.721f) {
-                z11 = true;
-            } else {
-                z11 = false;
+    public final void m() {
+        x3 x3Var = this.h;
+        f3 f3Var = x3Var.d;
+        l3 l3Var = x3Var.F;
+        AnimatorSet animatorSet = this.f7161f;
+        if (animatorSet != null) {
+            animatorSet.cancel();
+        }
+        ArrayList arrayList = new ArrayList();
+        l3Var.setVisibility(0);
+        Property property = View.SCALE_X;
+        arrayList.add(ObjectAnimator.ofFloat(l3Var, property, 1.0f));
+        Property property2 = View.SCALE_Y;
+        arrayList.add(ObjectAnimator.ofFloat(l3Var, property2, 1.0f));
+        Property property3 = View.ALPHA;
+        arrayList.add(ObjectAnimator.ofFloat(l3Var, property3, 1.0f));
+        EditTextBoldCursor searchField = x3Var.G.getSearchField();
+        if (searchField != null) {
+            arrayList.add(ObjectAnimator.ofFloat(searchField, property, 0.8f));
+            arrayList.add(ObjectAnimator.ofFloat(searchField, property2, 0.8f));
+            arrayList.add(ObjectAnimator.ofFloat(searchField, property3, 0.0f));
+        }
+        f3Var.setVisibility(0);
+        arrayList.add(ObjectAnimator.ofFloat(f3Var, property3, 1.0f));
+        f3Var.setFastScrollVisible(true);
+        arrayList.add(ObjectAnimator.ofFloat(x3Var.h, property3, 0.0f));
+        ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+        ofFloat.addUpdateListener(new d3(this, 1));
+        arrayList.add(ofFloat);
+        AnimatorSet animatorSet2 = new AnimatorSet();
+        this.f7161f = animatorSet2;
+        animatorSet2.setDuration(320L);
+        this.f7161f.setInterpolator(pr.h);
+        this.f7161f.playTogether(arrayList);
+        this.f7161f.addListener(new bi.t(2, this, searchField));
+        this.f7161f.start();
+    }
+
+    @Override
+    public final void n() {
+        x3 x3Var = this.h;
+        f3 f3Var = x3Var.d;
+        FrameLayout frameLayout = x3Var.h;
+        l3 l3Var = x3Var.F;
+        AnimatorSet animatorSet = this.f7161f;
+        if (animatorSet != null) {
+            animatorSet.cancel();
+        }
+        ArrayList arrayList = new ArrayList();
+        Property property = View.SCALE_X;
+        arrayList.add(ObjectAnimator.ofFloat(l3Var, property, 0.8f));
+        Property property2 = View.SCALE_Y;
+        arrayList.add(ObjectAnimator.ofFloat(l3Var, property2, 0.8f));
+        Property property3 = View.ALPHA;
+        arrayList.add(ObjectAnimator.ofFloat(l3Var, property3, 0.0f));
+        EditTextBoldCursor searchField = x3Var.G.getSearchField();
+        if (searchField != null) {
+            searchField.setVisibility(0);
+            searchField.setHandlesColor(-1);
+            arrayList.add(ObjectAnimator.ofFloat(searchField, property, 1.0f));
+            arrayList.add(ObjectAnimator.ofFloat(searchField, property2, 1.0f));
+            arrayList.add(ObjectAnimator.ofFloat(searchField, property3, 1.0f));
+        }
+        frameLayout.setVisibility(0);
+        arrayList.add(ObjectAnimator.ofFloat(f3Var, property3, 0.0f));
+        f3Var.setFastScrollVisible(false);
+        arrayList.add(ObjectAnimator.ofFloat(frameLayout, property3, 1.0f));
+        x3Var.f8378s.setVisibility(0);
+        ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+        ofFloat.addUpdateListener(new d3(this, 0));
+        arrayList.add(ofFloat);
+        AnimatorSet animatorSet2 = new AnimatorSet();
+        this.f7161f = animatorSet2;
+        animatorSet2.setDuration(320L);
+        this.f7161f.setInterpolator(pr.h);
+        this.f7161f.playTogether(arrayList);
+        this.f7161f.addListener(new ah.b(this, 16));
+        this.f7161f.start();
+    }
+
+    @Override
+    public final void q(EditText editText) {
+        String obj = editText.getText().toString();
+        m3 m3Var = this.h.f8377r;
+        bi.oa oaVar = m3Var.v;
+        if (!TextUtils.equals(m3Var.f8321f, obj)) {
+            if (m3Var.f8320e != -1) {
+                ConnectionsManager.getInstance(m3Var.f8325w.f8362a).cancelRequest(m3Var.f8320e, true);
+                m3Var.f8320e = -1;
             }
-            e3Var.b(z11, false);
-            n3Var.U0.setBackgroundColor(paint.getColor());
-            n3Var.T0 = str;
+            m3Var.d = false;
+            m3Var.h = null;
         }
-        org.telegram.ui.e3 e3Var2 = n3Var.U0;
-        n3Var.S0 = z10;
-        AndroidUtilities.updateViewVisibilityAnimated(e3Var2, z10, 1.0f, false);
-        invalidate();
-    }
-
-    @Override
-    public final void K(org.telegram.ui.web.y0 y0Var) {
-        n3 n3Var = this.S0;
-        n3Var.v.setWebView(y0Var);
-        d1 d1Var = n3Var.B0;
-        if (d1Var != null) {
-            d1Var.f6579k = y0Var;
+        m3Var.f8321f = obj;
+        AndroidUtilities.cancelRunOnUIThread(oaVar);
+        if (TextUtils.isEmpty(obj)) {
+            m3Var.f8319c.clear();
+            m3Var.F(false);
+            m3Var.l();
+            return;
         }
-        n3Var.m0.setWebView(y0Var);
-        n3Var.F();
-    }
-
-    @Override
-    public final void L(org.telegram.ui.web.y0 y0Var) {
-        n3 n3Var = this.S0;
-        d1 d1Var = n3Var.B0;
-        if (d1Var != null && d1Var.f6579k == y0Var) {
-            d1Var.f6579k = null;
-            d1Var.b();
-        }
-        n3Var.m0.setWebView(null);
+        m3Var.F(true);
+        AndroidUtilities.runOnUIThread(oaVar, 1500L);
     }
 }

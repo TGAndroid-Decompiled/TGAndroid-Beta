@@ -1,29 +1,24 @@
 package zh;
 
-import android.content.Context;
-import android.graphics.Bitmap;
-public final class f2 extends y6 {
-    public final u7 H;
-    public final a3 I;
+import android.text.TextPaint;
+import android.text.style.ClickableSpan;
+import android.view.View;
+public final class f2 extends ClickableSpan {
+    public final long f51858a;
+    public final w3 f51859b;
 
-    public f2(a3 a3Var, Context context, h2 h2Var, org.telegram.ui.ActionBar.f6 f6Var, u7 u7Var) {
-        super(context, h2Var, f6Var);
-        this.I = a3Var;
-        this.H = u7Var;
+    public f2(w3 w3Var, long j3) {
+        this.f51859b = w3Var;
+        this.f51858a = j3;
     }
 
     @Override
-    public final void b(boolean z10) {
-        w2 w2Var = this.I.Q1;
-        if (w2Var != null) {
-            u7 u7Var = ((l7) w2Var).d;
-            u7Var.f48939i1 = z10;
-            u7Var.P();
-        }
+    public final void onClick(View view) {
+        this.f51859b.X1(this.f51858a);
     }
 
     @Override
-    public final Bitmap getPlayingBitmap() {
-        return this.I.getPlayingBitmap();
+    public final void updateDrawState(TextPaint textPaint) {
+        textPaint.setColor(textPaint.linkColor);
     }
 }

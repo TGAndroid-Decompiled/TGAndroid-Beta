@@ -2,34 +2,36 @@ package bi;
 
 import android.content.Context;
 import android.view.View;
-import org.telegram.ui.Components.j61;
-import org.telegram.ui.Components.r61;
-import org.telegram.ui.Components.u51;
-import org.telegram.ui.Components.v51;
-import org.telegram.ui.Components.vl0;
-public final class n5 extends u51 {
-    public static final int f3234a = 0;
+import java.util.ArrayList;
+public final class n5 {
+    public boolean f3364a;
+    public Object f3365b;
+    public Object d;
+    public Object f3369g;
+    public Object f3366c = k2.b.f14516c;
+    public Object f3367e = k2.e0.f14570a;
+    public Object f3368f = k2.u.f14674a;
 
-    static {
-        u51.setup(new u51());
+    public n5(Context context) {
+        this.f3365b = context;
     }
 
-    @Override
-    public final void bindView(View view, v51 v51Var, boolean z10, j61 j61Var, r61 r61Var) {
-        o5 o5Var = (o5) view;
-        o5Var.a(v51Var.d, v51Var.f27842z, (r9) v51Var.G);
-        o5Var.b(v51Var.e, false);
-        boolean z11 = v51Var.f27824f;
-        if (o5Var.f3313f != z11) {
-            o5Var.f3313f = z11;
-            o5Var.E.a(z11);
-            o5Var.invalidate();
+    public k2.d0 a() {
+        e2.d.g(!this.f3364a);
+        this.f3364a = true;
+        if (((aa.a) this.d) == null) {
+            this.d = new aa.a(new c2.h[0]);
         }
-        o5Var.setOnCheckboxClick(v51Var.D);
+        if (((pf.b) this.f3369g) == null) {
+            this.f3369g = new pf.b((Context) this.f3365b, 26);
+        }
+        return new k2.d0(this);
     }
 
-    @Override
-    public final View createView(Context context, vl0 vl0Var, int i10, int i11, org.telegram.ui.ActionBar.f6 f6Var) {
-        return new o5(context, f6Var);
+    public void b() {
+        ArrayList arrayList = (ArrayList) this.f3369g;
+        for (int i10 = 0; i10 < arrayList.size(); i10++) {
+            ((View) arrayList.get(i10)).invalidate();
+        }
     }
 }

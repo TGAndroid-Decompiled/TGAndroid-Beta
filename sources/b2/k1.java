@@ -2,15 +2,15 @@ package b2;
 
 import android.util.Pair;
 public abstract class k1 {
-    public static final g1 f1774a = new Object();
-    public static final String f1775b;
-    public static final String f1776c;
+    public static final g1 f2131a = new Object();
+    public static final String f2132b;
+    public static final String f2133c;
     public static final String d;
 
     static {
-        String str = e2.d0.f7188a;
-        f1775b = Integer.toString(0, 36);
-        f1776c = Integer.toString(1, 36);
+        String str = e2.d0.f8737a;
+        f2132b = Integer.toString(0, 36);
+        f2133c = Integer.toString(1, 36);
         d = Integer.toString(2, 36);
     }
 
@@ -31,13 +31,13 @@ public abstract class k1 {
     }
 
     public final int d(int i10, h1 h1Var, j1 j1Var, int i11, boolean z10) {
-        int i12 = f(i10, h1Var, false).f1707c;
-        if (m(i12, j1Var, 0L).f1762o == i10) {
-            int e = e(i12, i11, z10);
-            if (e == -1) {
+        int i12 = f(i10, h1Var, false).f2056c;
+        if (m(i12, j1Var, 0L).f2118o == i10) {
+            int e7 = e(i12, i11, z10);
+            if (e7 == -1) {
                 return -1;
             }
-            return m(e, j1Var, 0L).f1761n;
+            return m(e7, j1Var, 0L).f2117n;
         }
         return i10 + 1;
     }
@@ -90,9 +90,9 @@ public abstract class k1 {
                                     int a2 = a(true);
                                     if (a2 == k1Var.a(true) && (c10 = c(true)) == k1Var.c(true)) {
                                         while (a2 != c10) {
-                                            int e = e(a2, 0, true);
-                                            if (e == k1Var.e(a2, 0, true)) {
-                                                a2 = e;
+                                            int e7 = e(a2, 0, true);
+                                            if (e7 == k1Var.e(a2, 0, true)) {
+                                                a2 = e7;
                                             }
                                         }
                                     }
@@ -144,28 +144,28 @@ public abstract class k1 {
         e2.d.c(i10, o());
         m(i10, j1Var, j10);
         if (j3 == -9223372036854775807L) {
-            j3 = j1Var.f1759l;
+            j3 = j1Var.f2115l;
             if (j3 == -9223372036854775807L) {
                 return null;
             }
         }
-        int i11 = j1Var.f1761n;
+        int i11 = j1Var.f2117n;
         f(i11, h1Var, false);
-        while (i11 < j1Var.f1762o && h1Var.e != j3) {
+        while (i11 < j1Var.f2118o && h1Var.f2057e != j3) {
             int i12 = i11 + 1;
-            if (f(i12, h1Var, false).e > j3) {
+            if (f(i12, h1Var, false).f2057e > j3) {
                 break;
             }
             i11 = i12;
         }
         f(i11, h1Var, true);
-        long j11 = j3 - h1Var.e;
+        long j11 = j3 - h1Var.f2057e;
         long j12 = h1Var.d;
         if (j12 != -9223372036854775807L) {
             j11 = Math.min(j11, j12 - 1);
         }
         long max = Math.max(0L, j11);
-        Object obj = h1Var.f1706b;
+        Object obj = h1Var.f2055b;
         obj.getClass();
         return Pair.create(obj, Long.valueOf(max));
     }

@@ -1,27 +1,53 @@
 package org.telegram.ui.Components.voip;
 
 import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.drawable.Drawable;
 import android.view.View;
-import android.widget.ImageView;
-import org.telegram.ui.b40;
-public final class f0 extends ImageView {
-    public final b40 f28119a;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.Components.mr;
+import org.telegram.ui.a40;
+public final class f0 extends View {
+    public final org.telegram.ui.Cells.z f31477a;
+    public final a40 f31478b;
 
-    public f0(b40 b40Var, Context context) {
+    public f0(a40 a40Var, Context context, org.telegram.ui.Cells.z zVar) {
         super(context);
-        this.f28119a = b40Var;
+        this.f31478b = a40Var;
+        this.f31477a = zVar;
     }
 
     @Override
-    public final void invalidate() {
-        super.invalidate();
-        b40 b40Var = this.f28119a;
-        b40Var.f28248f0.invalidate();
-        b40Var.invalidate();
+    public final void dispatchDraw(Canvas canvas) {
+        a40 a40Var = this.f31478b;
+        mr mrVar = a40Var.f31600c0;
+        float measuredWidth = (1.0f - mrVar.f28499g) * a40Var.f31601d0.getMeasuredWidth();
+        canvas.save();
+        int dp = AndroidUtilities.dp(50.0f) + ((int) ((a40Var.f31603e0.getMeasuredWidth() * mrVar.f28499g) + measuredWidth));
+        int measuredHeight = getMeasuredHeight();
+        org.telegram.ui.Cells.z zVar = this.f31477a;
+        zVar.setBounds(0, 0, dp, measuredHeight);
+        zVar.draw(canvas);
+        super.dispatchDraw(canvas);
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(org.telegram.ui.ActionBar.l.getCurrentActionBarHeight(), 1073741824));
+    public final void drawableStateChanged() {
+        super.drawableStateChanged();
+        this.f31477a.setState(getDrawableState());
+    }
+
+    @Override
+    public final void jumpDrawablesToCurrentState() {
+        super.jumpDrawablesToCurrentState();
+        this.f31477a.jumpToCurrentState();
+    }
+
+    @Override
+    public final boolean verifyDrawable(Drawable drawable) {
+        if (this.f31477a != drawable && !super.verifyDrawable(drawable)) {
+            return false;
+        }
+        return true;
     }
 }

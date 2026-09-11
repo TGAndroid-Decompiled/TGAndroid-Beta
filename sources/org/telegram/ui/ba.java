@@ -4,51 +4,51 @@ import android.content.DialogInterface;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.ui.Components.ChatActivityEnterView;
 public final class ba implements DialogInterface.OnCancelListener {
-    public final int f31199a;
-    public final int f31200b;
-    public final Object f31201c;
+    public final int f34669a;
+    public final int f34670b;
+    public final Object f34671c;
 
     public ba(Object obj, int i10, int i11) {
-        this.f31199a = i11;
-        this.f31201c = obj;
-        this.f31200b = i10;
+        this.f34669a = i11;
+        this.f34671c = obj;
+        this.f34670b = i10;
     }
 
     @Override
     public final void onCancel(DialogInterface dialogInterface) {
-        switch (this.f31199a) {
+        switch (this.f34669a) {
             case 0:
-                ra.V((ra) this.f31201c, this.f31200b);
+                qa.V((qa) this.f34671c, this.f34670b);
                 return;
             case 1:
-                ((pn) this.f31201c).f35881a.getConnectionsManager().cancelRequest(this.f31200b, true);
+                ((on) this.f34671c).f39283a.getConnectionsManager().cancelRequest(this.f34670b, true);
                 return;
             case 2:
-                yo yoVar = (yo) this.f31201c;
-                yoVar.N0 = false;
-                yoVar.f39041b = null;
-                yoVar.getConnectionsManager().cancelRequest(this.f31200b, true);
+                xo xoVar = (xo) this.f34671c;
+                xoVar.N0 = false;
+                xoVar.f42769b = null;
+                xoVar.getConnectionsManager().cancelRequest(this.f34670b, true);
                 return;
             case 3:
-                ((ChatActivityEnterView) this.f31201c).O2.getConnectionsManager().cancelRequest(this.f31200b, true);
+                ((ChatActivityEnterView) this.f34671c).O2.getConnectionsManager().cancelRequest(this.f34670b, true);
                 return;
             case 4:
-                ConnectionsManager.getInstance(((org.telegram.ui.Components.ny) this.f31201c).f25618c.f25939a.F.f26805c1).cancelRequest(this.f31200b, true);
+                ConnectionsManager.getInstance(((org.telegram.ui.Components.gy) this.f34671c).f26523c.f26889a.F.f27932c1).cancelRequest(this.f34670b, true);
                 return;
             case 5:
-                ((j60) this.f31201c).d.getConnectionsManager().cancelRequest(this.f31200b, true);
+                ((j60) this.f34671c).d.getConnectionsManager().cancelRequest(this.f34670b, true);
                 return;
             case 6:
-                ConnectionsManager.getInstance(((LanguageSelectActivity) this.f31201c).currentAccount).cancelRequest(this.f31200b, true);
+                ConnectionsManager.getInstance(((LanguageSelectActivity) this.f34671c).currentAccount).cancelRequest(this.f34670b, true);
                 return;
             case 7:
-                ((id0) this.f31201c).getConnectionsManager().cancelRequest(this.f31200b, true);
+                ((id0) this.f34671c).getConnectionsManager().cancelRequest(this.f34670b, true);
                 return;
             case 8:
-                fe1.U((fe1) this.f31201c, this.f31200b);
+                be1.U((be1) this.f34671c, this.f34670b);
                 return;
             default:
-                ConnectionsManager.getInstance(((xh.p) this.f31201c).f45843a).cancelRequest(this.f31200b, true);
+                ConnectionsManager.getInstance(((zh.o) this.f34671c).f52348a).cancelRequest(this.f34670b, true);
                 return;
         }
     }

@@ -1,20 +1,25 @@
 package qg;
-public final class h {
-    public final int f40744a;
-    public final int f40745b;
-    public final String f40746c;
-    public final String d;
-    public final int e;
 
-    public h(int i10) {
-        this.f40744a = i10;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class h extends l {
+    @Override
+    public final int e() {
+        return R.drawable.msg_msgbubble;
     }
 
-    public h(int i10, int i11, String str, String str2) {
-        this.f40744a = 1;
-        this.f40745b = i10;
-        this.f40746c = str;
-        this.d = str2;
-        this.e = i11;
+    @Override
+    public final int m() {
+        return R.drawable.msg_msgbubble2;
+    }
+
+    @Override
+    public final String n() {
+        return LocaleController.getString(R.string.PaintBubble);
+    }
+
+    @Override
+    public final int o() {
+        return 3;
     }
 }

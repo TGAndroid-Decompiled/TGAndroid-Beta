@@ -1,15 +1,16 @@
 package x9;
 
+import ji.u4;
 import org.json.JSONObject;
 public abstract class l {
-    public static final a6.i f45070a;
+    public static final u4 f49324a;
 
     static {
         ka.d dVar = new ka.d();
-        a aVar = a.f45042a;
-        dVar.m(l.class, aVar);
-        dVar.m(b.class, aVar);
-        f45070a = new a6.i(dVar, 28);
+        a aVar = a.f49293a;
+        dVar.j(l.class, aVar);
+        dVar.j(b.class, aVar);
+        f49324a = new u4(dVar, 2);
     }
 
     public static b a(String str) {

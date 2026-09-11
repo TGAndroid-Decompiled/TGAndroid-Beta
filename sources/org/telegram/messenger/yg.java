@@ -1,29 +1,22 @@
 package org.telegram.messenger;
 
-import java.util.Comparator;
-import org.telegram.messenger.support.LongSparseIntArray;
-public final class yg implements Comparator {
-    public final int f17081a;
-    public final LongSparseIntArray f17082b;
-
-    public yg(LongSparseIntArray longSparseIntArray, int i10) {
-        this.f17081a = i10;
-        this.f17082b = longSparseIntArray;
+import android.app.NotificationChannel;
+import org.telegram.tgnet.InputSerializedData;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.Vector;
+public final class yg implements org.telegram.ui.ActionBar.a2, Vector.TLDeserializer {
+    public static NotificationChannel a(Object obj) {
+        return (NotificationChannel) obj;
     }
 
     @Override
-    public final int compare(Object obj, Object obj2) {
-        int lambda$checkLoadedRemoteFilters$68;
-        int lambda$resetDialogs$94;
-        Long l4 = (Long) obj;
-        Long l10 = (Long) obj2;
-        switch (this.f17081a) {
-            case 0:
-                lambda$checkLoadedRemoteFilters$68 = MessagesStorage.lambda$checkLoadedRemoteFilters$68(this.f17082b, l4, l10);
-                return lambda$checkLoadedRemoteFilters$68;
-            default:
-                lambda$resetDialogs$94 = MessagesStorage.lambda$resetDialogs$94(this.f17082b, l4, l10);
-                return lambda$resetDialogs$94;
-        }
+    public TLObject deserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
+        return TLRPC.PollAnswer.TLdeserialize(inputSerializedData, i10, z10);
+    }
+
+    @Override
+    public void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
+        SharedConfig.lambda$checkSdCard$1(b2Var, i10);
     }
 }

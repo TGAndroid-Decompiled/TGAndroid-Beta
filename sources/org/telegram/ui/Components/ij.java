@@ -1,55 +1,52 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.R;
-public final class ij extends FrameLayout implements org.telegram.ui.ActionBar.a6 {
-    public final org.telegram.ui.ActionBar.f6 f24035a;
-    public final TextView f24036b;
-    public final TextView f24037c;
+import org.telegram.ui.WallpapersListActivity;
+import org.telegram.ui.ij1;
+import org.telegram.ui.jj1;
+import org.telegram.ui.wd1;
+public final class ij extends org.telegram.ui.Cells.eb {
+    public final int f27146w;
+    public final kl0 f27147x;
 
-    public ij(Context context, org.telegram.ui.ActionBar.f6 f6Var) {
-        super(context);
-        this.f24035a = f6Var;
-        setPadding(0, AndroidUtilities.dp(42.0f), 0, AndroidUtilities.dp(42.0f));
-        setTag(-33024);
-        LinearLayout linearLayout = new LinearLayout(context);
-        linearLayout.setOrientation(1);
-        addView(linearLayout, w7.a6.q(-1, -2, 17));
-        w9 w9Var = new w9(context);
-        w9Var.setImageDrawable(new hj0(R.raw.utyan_empty, AndroidUtilities.dp(120.0f), AndroidUtilities.dp(120.0f)));
-        linearLayout.addView(w9Var, w7.a6.t(120, 120, 17, 0, 0, 0, 0));
-        TextView textView = new TextView(context);
-        this.f24036b = textView;
-        textView.setTextSize(1, 20.0f);
-        textView.setTypeface(AndroidUtilities.bold());
-        textView.setGravity(17);
-        TextView g10 = com.google.android.gms.internal.vision.e2.g(linearLayout, textView, w7.a6.t(-1, -2, 17, 32, 12, 32, 8), context);
-        this.f24037c = g10;
-        g10.setTextSize(1, 14.0f);
-        g10.setGravity(17);
-        linearLayout.addView(g10, w7.a6.t(-1, -2, 17, 32, 0, 32, 0));
-        e();
+    public ij(kl0 kl0Var, Context context, int i10) {
+        super(context, 5);
+        this.f27146w = i10;
+        this.f27147x = kl0Var;
     }
 
     @Override
-    public final void e() {
-        int i10 = org.telegram.ui.ActionBar.j6.G6;
-        org.telegram.ui.ActionBar.f6 f6Var = this.f24035a;
-        this.f24036b.setTextColor(org.telegram.ui.ActionBar.j6.v0(i10, f6Var));
-        this.f24037c.setTextColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f18306y6, f6Var));
-    }
-
-    public int[] getColorKeys() {
-        return null;
+    public final void a(int i10, Object obj) {
+        switch (this.f27146w) {
+            case 0:
+                q0.a aVar = ((jj) ((za) this.f27147x).f33114f).f27517x;
+                if (aVar != null) {
+                    aVar.accept(obj);
+                    return;
+                }
+                return;
+            case 1:
+                WallpapersListActivity.r0(((ij1) this.f27147x).d, this, obj, i10);
+                return;
+            default:
+                ((jj1) this.f27147x).E.presentFragment(new wd1(obj, null, true));
+                return;
+        }
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), i11);
+    public boolean b(Object obj, int i10) {
+        switch (this.f27146w) {
+            case 1:
+                return WallpapersListActivity.s0(((ij1) this.f27147x).d, this, obj, i10);
+            default:
+                return super.b(obj, i10);
+        }
+    }
+
+    public ij(za zaVar, Context context) {
+        super(context, 1);
+        this.f27146w = 0;
+        this.f27147x = zaVar;
     }
 }

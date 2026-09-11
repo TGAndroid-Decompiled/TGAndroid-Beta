@@ -1,264 +1,296 @@
 package di;
 
 import android.content.Context;
-import android.util.Pair;
+import android.graphics.Canvas;
 import android.view.View;
-import android.widget.ImageView;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import java.io.File;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MediaController;
 import org.telegram.messenger.R;
-import org.telegram.messenger.Utilities;
-import org.telegram.ui.ActionBar.f6;
-import org.telegram.ui.ActionBar.j6;
-import org.telegram.ui.Components.d6;
-import org.telegram.ui.Components.hj0;
-import org.telegram.ui.Components.lb;
-import org.telegram.ui.Components.mb;
-import org.telegram.ui.Components.nc;
-import org.telegram.ui.Components.pc;
-import org.telegram.ui.LaunchActivity;
-import w7.a6;
-public final class m0 extends mb {
-    public final f6 f6756a;
-    public final k0 f6757b;
-    public final l0 f6758c;
-    public final TextView d;
-    public final TextView e;
-    public n0 f6759f;
-    public int h;
+import org.telegram.ui.Components.Crop.CropAreaView;
+import org.telegram.ui.Components.pr;
+public abstract class m0 extends FrameLayout {
+    public boolean E;
+    public final d7 f7620a;
+    public rg.z1 f7621b;
+    public final org.telegram.ui.Components.e6 f7622c;
+    public final org.telegram.ui.Components.e6 d;
+    public final l0 f7623e;
+    public final FrameLayout f7624f;
+    public final g0 h;
+    public final mg.f f7625n;
+    public final FrameLayout f7626r;
+    public float f7627s;
+    public final int[] v;
+    public final int[] f7628w;
+    public final int[] f7629x;
+    public final mg.g f7630y;
 
-    public m0(Context context, f6 f6Var) {
-        super(context, f6Var);
-        this.h = 0;
-        this.f6756a = f6Var;
-        k0 k0Var = new k0(AndroidUtilities.dp(10.0f));
-        k0Var.f6720a.setColor(j6.v0(j6.Fi, f6Var));
-        this.f6757b = k0Var;
-        setBackground(k0Var);
-        ImageView imageView = new ImageView(context);
-        imageView.setScaleType(ImageView.ScaleType.CENTER);
-        l0 l0Var = new l0(context, imageView);
-        this.f6758c = l0Var;
-        imageView.setImageDrawable(l0Var);
-        addView(imageView, a6.d(40, 40.0f, 23, 7.0f, 0.0f, 0.0f, 0.0f));
-        LinearLayout linearLayout = new LinearLayout(context);
-        linearLayout.setOrientation(1);
-        addView(linearLayout, a6.d(-1, -2.0f, 23, 54.0f, 0.0f, 0.0f, 0.0f));
+    public m0(Context context, d7 d7Var) {
+        super(context);
+        this.f7627s = 0.0f;
+        this.v = new int[2];
+        this.f7628w = new int[2];
+        this.f7629x = new int[2];
+        this.f7630y = new Object();
+        this.f7620a = d7Var;
+        l0 l0Var = new l0(this, context);
+        this.f7623e = l0Var;
+        pr prVar = pr.h;
+        this.f7622c = new org.telegram.ui.Components.e6(l0Var, 0L, 320L, prVar);
+        this.d = new org.telegram.ui.Components.e6(l0Var, 0L, 320L, prVar);
+        g0 g0Var = new g0(this, context, 1);
+        this.h = g0Var;
+        g0Var.setListener(new a6.m(this, 15));
+        addView(g0Var);
+        FrameLayout frameLayout = new FrameLayout(context);
+        this.f7624f = frameLayout;
+        addView(frameLayout, w7.x5.e(-1, -1, 119));
+        mg.f fVar = new mg.f(context);
+        this.f7625n = fVar;
+        fVar.setListener(new h0(1, this));
+        frameLayout.addView(fVar, w7.x5.d(-1, -2.0f, 81, 0.0f, 0.0f, 0.0f, 52.0f));
+        FrameLayout frameLayout2 = new FrameLayout(context);
+        this.f7626r = frameLayout2;
+        frameLayout.addView(frameLayout2, w7.x5.d(-1, 52.0f, 80, 0.0f, 0.0f, 0.0f, 0.0f));
         TextView textView = new TextView(context);
-        this.d = textView;
-        textView.setTextSize(1, 14.0f);
-        int i10 = j6.Hi;
-        textView.setTextColor(j6.v0(i10, f6Var));
-        textView.setTypeface(AndroidUtilities.bold());
-        TextView g10 = com.google.android.gms.internal.vision.e2.g(linearLayout, textView, a6.t(-1, -2, 55, 0, 0, 0, 2), context);
-        this.e = g10;
-        g10.setTextSize(1, 13.0f);
-        g10.setTextColor(j6.v0(i10, f6Var));
-        linearLayout.addView(g10, a6.t(-1, -2, 55, 0, 0, 0, 0));
+        com.google.android.gms.internal.vision.e2.m(14.0f, 1, textView);
+        textView.setBackground(org.telegram.ui.ActionBar.j6.f0(-12763843, 0, -1));
+        textView.setTextColor(-1);
+        textView.setPadding(org.telegram.ui.Cells.p6.b(12.0f, R.string.Cancel, textView), 0, AndroidUtilities.dp(12.0f), 0);
+        frameLayout2.addView(textView, w7.x5.e(-2, -1, 115));
+        textView.setOnClickListener(new View.OnClickListener(this) {
+            public final m0 f7452b;
+
+            {
+                this.f7452b = this;
+            }
+
+            @Override
+            public final void onClick(View view) {
+                switch (r2) {
+                    case 0:
+                        ((ac) this.f7452b).F.l0(-1, false, true);
+                        return;
+                    case 1:
+                        m0 m0Var = this.f7452b;
+                        m0Var.h.l(true);
+                        mg.f fVar2 = m0Var.f7625n;
+                        fVar2.setRotated(false);
+                        fVar2.setMirrored(false);
+                        fVar2.b(0.0f);
+                        return;
+                    default:
+                        m0 m0Var2 = this.f7452b;
+                        rg.z1 z1Var = m0Var2.f7621b;
+                        if (z1Var != null) {
+                            z1Var.G0 = new MediaController.CropState();
+                            m0Var2.h.b(m0Var2.f7621b.G0);
+                            rg.z1 z1Var2 = m0Var2.f7621b;
+                            z1Var2.G0.orientation = z1Var2.getOrientation();
+                            m0Var2.f7621b.k();
+                            m0Var2.f7621b.requestLayout();
+                            m0Var2.f7621b.f45593z0.requestLayout();
+                            m0Var2.f7621b.f45593z0.invalidate();
+                            m0Var2.f7621b.f45593z0.post(new bi.oa(m0Var2, 14));
+                        }
+                        ((ac) m0Var2).F.l0(-1, false, true);
+                        return;
+                }
+            }
+        });
+        TextView textView2 = new TextView(context);
+        textView2.setTextSize(1, 14.0f);
+        textView2.setTypeface(AndroidUtilities.bold());
+        textView2.setBackground(org.telegram.ui.ActionBar.j6.f0(-12763843, 0, -1));
+        textView2.setTextColor(-1);
+        textView2.setPadding(org.telegram.ui.Cells.p6.b(12.0f, R.string.CropReset, textView2), 0, AndroidUtilities.dp(12.0f), 0);
+        frameLayout2.addView(textView2, w7.x5.e(-2, -1, 113));
+        textView2.setOnClickListener(new View.OnClickListener(this) {
+            public final m0 f7452b;
+
+            {
+                this.f7452b = this;
+            }
+
+            @Override
+            public final void onClick(View view) {
+                switch (r2) {
+                    case 0:
+                        ((ac) this.f7452b).F.l0(-1, false, true);
+                        return;
+                    case 1:
+                        m0 m0Var = this.f7452b;
+                        m0Var.h.l(true);
+                        mg.f fVar2 = m0Var.f7625n;
+                        fVar2.setRotated(false);
+                        fVar2.setMirrored(false);
+                        fVar2.b(0.0f);
+                        return;
+                    default:
+                        m0 m0Var2 = this.f7452b;
+                        rg.z1 z1Var = m0Var2.f7621b;
+                        if (z1Var != null) {
+                            z1Var.G0 = new MediaController.CropState();
+                            m0Var2.h.b(m0Var2.f7621b.G0);
+                            rg.z1 z1Var2 = m0Var2.f7621b;
+                            z1Var2.G0.orientation = z1Var2.getOrientation();
+                            m0Var2.f7621b.k();
+                            m0Var2.f7621b.requestLayout();
+                            m0Var2.f7621b.f45593z0.requestLayout();
+                            m0Var2.f7621b.f45593z0.invalidate();
+                            m0Var2.f7621b.f45593z0.post(new bi.oa(m0Var2, 14));
+                        }
+                        ((ac) m0Var2).F.l0(-1, false, true);
+                        return;
+                }
+            }
+        });
+        TextView textView3 = new TextView(context);
+        textView3.setTextSize(1, 14.0f);
+        textView3.setTypeface(AndroidUtilities.bold());
+        textView3.setBackground(org.telegram.ui.ActionBar.j6.f0(-12763843, 0, -1));
+        textView3.setTextColor(-15098625);
+        textView3.setPadding(org.telegram.ui.Cells.p6.b(12.0f, R.string.StoryCrop, textView3), 0, AndroidUtilities.dp(12.0f), 0);
+        frameLayout2.addView(textView3, w7.x5.e(-2, -1, 117));
+        textView3.setOnClickListener(new View.OnClickListener(this) {
+            public final m0 f7452b;
+
+            {
+                this.f7452b = this;
+            }
+
+            @Override
+            public final void onClick(View view) {
+                switch (r2) {
+                    case 0:
+                        ((ac) this.f7452b).F.l0(-1, false, true);
+                        return;
+                    case 1:
+                        m0 m0Var = this.f7452b;
+                        m0Var.h.l(true);
+                        mg.f fVar2 = m0Var.f7625n;
+                        fVar2.setRotated(false);
+                        fVar2.setMirrored(false);
+                        fVar2.b(0.0f);
+                        return;
+                    default:
+                        m0 m0Var2 = this.f7452b;
+                        rg.z1 z1Var = m0Var2.f7621b;
+                        if (z1Var != null) {
+                            z1Var.G0 = new MediaController.CropState();
+                            m0Var2.h.b(m0Var2.f7621b.G0);
+                            rg.z1 z1Var2 = m0Var2.f7621b;
+                            z1Var2.G0.orientation = z1Var2.getOrientation();
+                            m0Var2.f7621b.k();
+                            m0Var2.f7621b.requestLayout();
+                            m0Var2.f7621b.f45593z0.requestLayout();
+                            m0Var2.f7621b.f45593z0.invalidate();
+                            m0Var2.f7621b.f45593z0.post(new bi.oa(m0Var2, 14));
+                        }
+                        ((ac) m0Var2).F.l0(-1, false, true);
+                        return;
+                }
+            }
+        });
+        new LinearLayout(context);
     }
 
-    private void setButton(int i10) {
-        if (this.h != i10) {
-            this.h = i10;
-            if (i10 == 0) {
-                setButton((lb) null);
-                return;
-            }
-            f6 f6Var = this.f6756a;
-            if (i10 == 1) {
-                nc ncVar = new nc(getContext(), f6Var, true);
-                ncVar.e(LocaleController.getString(R.string.BotFileDownloadCancel));
-                ncVar.f25483a = new Runnable(this) {
-                    public final m0 f6692b;
-
-                    {
-                        this.f6692b = this;
-                    }
-
-                    @Override
-                    public final void run() {
-                        File file;
-                        switch (r2) {
-                            case 0:
-                                m0 m0Var = this.f6692b;
-                                pc bulletin = m0Var.getBulletin();
-                                if (bulletin != null) {
-                                    bulletin.f26081j = 2750;
-                                    bulletin.i(true);
-                                }
-                                n0 n0Var = m0Var.f6759f;
-                                if (n0Var != null) {
-                                    n0Var.a();
-                                    return;
-                                }
-                                return;
-                            default:
-                                m0 m0Var2 = this.f6692b;
-                                pc bulletin2 = m0Var2.getBulletin();
-                                if (bulletin2 != null) {
-                                    bulletin2.b();
-                                }
-                                n0 n0Var2 = m0Var2.f6759f;
-                                if (n0Var2 != null && (file = n0Var2.d) != null && file.exists()) {
-                                    File file2 = n0Var2.d;
-                                    AndroidUtilities.openForView(file2, file2.getName(), null, LaunchActivity.G1, null, true);
-                                    return;
-                                }
-                                return;
-                        }
-                    }
-                };
-                if (getBulletin() != null) {
-                    ncVar.f25485c = getBulletin();
-                }
-                setButton(ncVar);
-            } else if (i10 == 2) {
-                nc ncVar2 = new nc(getContext(), f6Var, true);
-                ncVar2.e(LocaleController.getString(R.string.BotFileDownloadOpen));
-                ncVar2.f25483a = new Runnable(this) {
-                    public final m0 f6692b;
-
-                    {
-                        this.f6692b = this;
-                    }
-
-                    @Override
-                    public final void run() {
-                        File file;
-                        switch (r2) {
-                            case 0:
-                                m0 m0Var = this.f6692b;
-                                pc bulletin = m0Var.getBulletin();
-                                if (bulletin != null) {
-                                    bulletin.f26081j = 2750;
-                                    bulletin.i(true);
-                                }
-                                n0 n0Var = m0Var.f6759f;
-                                if (n0Var != null) {
-                                    n0Var.a();
-                                    return;
-                                }
-                                return;
-                            default:
-                                m0 m0Var2 = this.f6692b;
-                                pc bulletin2 = m0Var2.getBulletin();
-                                if (bulletin2 != null) {
-                                    bulletin2.b();
-                                }
-                                n0 n0Var2 = m0Var2.f6759f;
-                                if (n0Var2 != null && (file = n0Var2.d) != null && file.exists()) {
-                                    File file2 = n0Var2.d;
-                                    AndroidUtilities.openForView(file2, file2.getName(), null, LaunchActivity.G1, null, true);
-                                    return;
-                                }
-                                return;
-                        }
-                    }
-                };
-                if (getBulletin() != null) {
-                    ncVar2.f25485c = getBulletin();
-                }
-                setButton(ncVar2);
-            }
+    public int getCurrentHeight() {
+        rg.z1 z1Var = this.f7621b;
+        if (z1Var == null) {
+            return 1;
         }
+        if (z1Var.getOrientation() != 90 && this.f7621b.getOrientation() != 270) {
+            return this.f7621b.getContentHeight();
+        }
+        return this.f7621b.getContentWidth();
     }
 
-    public final boolean c(n0 n0Var) {
-        boolean z10;
-        n0 n0Var2 = this.f6759f;
-        l0 l0Var = this.f6758c;
-        if (n0Var2 != n0Var) {
-            d6 d6Var = l0Var.f6743k;
-            l0Var.h = false;
-            d6Var.getClass();
-            d6Var.d(0.0f, true);
-            hj0 hj0Var = l0Var.f6744l;
-            if (hj0Var != null) {
-                hj0Var.C(true);
-                l0Var.f6744l = null;
-            }
-            d6 d6Var2 = l0Var.f6741i;
-            l0Var.f6739f = false;
-            d6Var2.getClass();
-            d6Var2.d(0.0f, true);
+    public int getCurrentWidth() {
+        rg.z1 z1Var = this.f7621b;
+        if (z1Var == null) {
+            return 1;
         }
-        this.f6759f = n0Var;
-        this.d.setText(n0Var.f6772c);
-        boolean c10 = n0Var.c();
-        TextView textView = this.e;
-        if (c10) {
-            Pair b10 = n0Var.b();
-            l0Var.getClass();
-            if (((Long) b10.second).longValue() > 0) {
-                z10 = true;
-            } else {
-                z10 = false;
-            }
-            l0Var.f6739f = z10;
-            if (z10) {
-                l0Var.f6740g = Utilities.clamp(((float) ((Long) b10.first).longValue()) / ((float) ((Long) b10.second).longValue()), 1.0f, 0.0f);
-            }
-            l0Var.invalidateSelf();
-            if (((Long) b10.first).longValue() <= 0) {
-                textView.setText(LocaleController.getString(R.string.BotFileDownloading));
-            } else if (((Long) b10.second).longValue() <= 0) {
-                textView.setText(AndroidUtilities.formatFileSize(((Long) b10.first).longValue()));
-            } else {
-                textView.setText(AndroidUtilities.formatFileSize(((Long) b10.first).longValue()) + " / " + AndroidUtilities.formatFileSize(((Long) b10.second).longValue()));
-            }
-            setButton(1);
-            return false;
-        } else if (n0Var.f6775i) {
-            pc bulletin = getBulletin();
-            if (bulletin != null) {
-                bulletin.b();
-            }
-            return true;
-        } else {
-            if (n0Var.h) {
-                textView.setText(LocaleController.getString(R.string.BotFileDownloaded));
-                setButton(2);
-                if (!l0Var.h) {
-                    l0Var.h = true;
-                    hj0 hj0Var2 = new hj0(R.raw.contact_check, AndroidUtilities.dp(40.0f), AndroidUtilities.dp(40.0f));
-                    l0Var.f6744l = hj0Var2;
-                    hj0Var2.f23672v0 = l0Var.f6736a;
-                    hj0Var2.J(true);
-                    l0Var.f6744l.start();
-                    l0Var.f6740g = 1.0f;
-                }
-                pc bulletin2 = getBulletin();
-                if (bulletin2 != null) {
-                    bulletin2.i(false);
-                    bulletin2.f26081j = 5000;
-                    bulletin2.i(true);
-                }
-            }
-            return false;
+        if (z1Var.getOrientation() != 90 && this.f7621b.getOrientation() != 270) {
+            return this.f7621b.getContentWidth();
         }
+        return this.f7621b.getContentHeight();
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(68.0f), 1073741824));
+    public final void dispatchDraw(Canvas canvas) {
+        super.dispatchDraw(canvas);
     }
 
-    public void setArrow(int i10) {
-        boolean z10;
-        k0 k0Var = this.f6757b;
-        k0Var.getClass();
-        if (i10 >= 0) {
-            z10 = true;
+    public float getAppearProgress() {
+        return this.f7627s;
+    }
+
+    @Override
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        g0 g0Var = this.h;
+        g0Var.setTopPadding(AndroidUtilities.dp(52.0f));
+        g0Var.setBottomPadding(AndroidUtilities.dp(116.0f) + this.f7624f.getPaddingBottom());
+        super.onLayout(z10, i10, i11, i12, i13);
+    }
+
+    public void set(rg.z1 z1Var) {
+        if (z1Var == null) {
+            return;
+        }
+        this.f7621b = z1Var;
+        setVisibility(0);
+        this.E = false;
+        g0 g0Var = this.h;
+        boolean z10 = true;
+        g0Var.J = true;
+        getLocationOnScreen(this.v);
+        this.f7620a.getLocationOnScreen(this.f7628w);
+        z1Var.getLocationOnScreen(this.f7629x);
+        MediaController.CropState cropState = z1Var.G0;
+        if (cropState == null) {
+            cropState = null;
+        }
+        g0Var.p(z1Var.getOrientation(), this.f7630y, cropState);
+        float rotation = g0Var.getRotation();
+        mg.f fVar = this.f7625n;
+        fVar.setRotation(rotation);
+        org.telegram.ui.Components.e6 e6Var = this.f7622c;
+        if (cropState != null) {
+            fVar.b(cropState.cropRotate);
+            if (cropState.transformRotation == 0) {
+                z10 = false;
+            }
+            fVar.setRotated(z10);
+            fVar.setMirrored(cropState.mirrored);
+            e6Var.f(cropState.mirrored, false);
         } else {
-            z10 = false;
+            fVar.b(0.0f);
+            fVar.setRotated(false);
+            fVar.setMirrored(false);
+            e6Var.getClass();
+            e6Var.d(0.0f, false);
         }
-        k0Var.e = z10;
-        if (z10) {
-            k0Var.f6723f = i10;
+        g0Var.r(false);
+        l0 l0Var = this.f7623e;
+        l0Var.setVisibility(0);
+        l0Var.invalidate();
+    }
+
+    public void setAppearProgress(float f7) {
+        if (Math.abs(this.f7627s - f7) < 0.001f) {
+            return;
         }
-        k0Var.invalidateSelf();
+        this.f7627s = f7;
+        this.f7623e.invalidate();
+        g0 g0Var = this.h;
+        CropAreaView cropAreaView = g0Var.f16303a;
+        CropAreaView cropAreaView2 = g0Var.f16303a;
+        cropAreaView.setDimAlpha(0.5f * f7);
+        cropAreaView2.setFrameAlpha(f7);
+        cropAreaView2.invalidate();
     }
 }

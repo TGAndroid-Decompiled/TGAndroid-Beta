@@ -1,1139 +1,210 @@
 package org.telegram.ui.web;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.text.TextUtils;
-import android.util.Pair;
 import java.io.File;
-import java.io.InputStream;
+import java.io.FileOutputStream;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import org.json.JSONArray;
-import org.json.JSONObject;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.FileLog;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.R;
-import org.telegram.messenger.SvgHelper;
-import org.telegram.messenger.Timer;
 import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_iv;
-import org.telegram.ui.nj0;
-public final class k2 {
-    public static final HashMap e = new HashMap();
-    public static HashMap f37993f;
-    public String f37994a;
-    public ki.f f37995b;
-    public TLRPC.TL_webPage f37996c;
-    public final HashMap d = new HashMap();
+import org.telegram.tgnet.SerializedData;
+public final class k2 implements Runnable {
+    public final int f42156a;
+    public final o2 f42157b;
 
-    public static void a(TL_iv.RichText richText) {
-        TL_iv.textPlain textplain;
-        String str;
-        if (richText != null) {
-            TL_iv.RichText richText2 = richText.text;
-            if (richText2 != null) {
-                a(richText2);
-            } else if (!richText.texts.isEmpty()) {
-                a((TL_iv.RichText) hc.b.i(1, richText.texts));
-            } else if ((richText instanceof TL_iv.textPlain) && (str = (textplain = (TL_iv.textPlain) richText).text) != null && !str.endsWith(" ")) {
-                textplain.text += ' ';
-            }
-        }
+    public k2(o2 o2Var, int i10) {
+        this.f42156a = i10;
+        this.f42157b = o2Var;
     }
 
-    public static void b(TL_iv.RichText richText) {
-        if (richText != null) {
-            TL_iv.RichText richText2 = richText.text;
-            if (richText2 != null) {
-                b(richText2);
-            } else if (!richText.texts.isEmpty()) {
-                b((TL_iv.RichText) hc.b.i(1, richText.texts));
-            } else if (richText instanceof TL_iv.textPlain) {
-                StringBuilder sb2 = new StringBuilder();
-                TL_iv.textPlain textplain = (TL_iv.textPlain) richText;
-                sb2.append(textplain.text);
-                sb2.append('\n');
-                textplain.text = sb2.toString();
-            }
-        }
-    }
-
-    public static TL_iv.RichText c(TL_iv.RichText richText, JSONObject jSONObject) {
-        String optString = jSONObject.optString("id");
-        if (TextUtils.isEmpty(optString)) {
-            return richText;
-        }
-        TL_iv.textAnchor textanchor = new TL_iv.textAnchor();
-        textanchor.text = richText;
-        textanchor.name = optString;
-        return textanchor;
-    }
-
-    public static TL_iv.RichText d(TL_iv.RichText richText, String str, String str2) {
-        TL_iv.textUrl texturl;
-        String str3;
-        if (richText == null) {
-            return richText;
-        }
-        if (richText instanceof TL_iv.textConcat) {
-            TL_iv.textConcat textconcat = (TL_iv.textConcat) richText;
-            TL_iv.textConcat textconcat2 = new TL_iv.textConcat();
-            for (int i10 = 0; i10 < textconcat.texts.size(); i10++) {
-                TL_iv.RichText d = d(textconcat.texts.get(i10), str, str2);
-                if (d != null) {
-                    textconcat2.texts.add(d);
-                }
-            }
-            return textconcat2;
-        } else if ((richText instanceof TL_iv.textUrl) && (str3 = (texturl = (TL_iv.textUrl) richText).url) != null) {
-            String lowerCase = str3.toLowerCase();
-            if (!lowerCase.equals("#" + str2)) {
-                String lowerCase2 = texturl.url.toLowerCase();
-                if (!TextUtils.equals(lowerCase2, str + "#" + str2)) {
-                    return richText;
-                }
-            }
-            return null;
-        } else {
-            return richText;
-        }
-    }
-
-    public static org.telegram.ui.Components.voip.x e(y0 y0Var, Utilities.Callback callback) {
-        if (y0Var == null) {
-            callback.run(null);
-            return null;
-        }
-        boolean[] zArr = {false};
-        k2 k2Var = new k2();
-        k2Var.f37994a = y0Var.getUrl();
-        Timer create = Timer.create("WebInstantView");
-        c2 c2Var = new c2(Timer.start(create, "getHTML"), zArr, create, k2Var, callback, 0);
-        System.currentTimeMillis();
-        y0Var.evaluateJavascript(AndroidUtilities.readRes(R.raw.open_collapsed).replace("$OPEN$", "true"), new d2(k2Var, y0Var, new File(AndroidUtilities.getCacheDir(), "archive.mht"), c2Var, 0));
-        return new org.telegram.ui.Components.voip.x(zArr, 17);
-    }
-
-    public static boolean f(JSONArray jSONArray) {
-        List asList = Arrays.asList("b", "strong", "span", "img", "i", "s", "a", "code", "mark", "sub", "sup");
-        for (int i10 = 0; i10 < jSONArray.length(); i10++) {
-            Object obj = jSONArray.get(i10);
-            if (!(obj instanceof String)) {
-                if (obj instanceof JSONObject) {
-                    JSONObject jSONObject = (JSONObject) obj;
-                    String optString = jSONObject.optString("tag");
-                    if (!asList.contains(optString)) {
-                        if ("div".equalsIgnoreCase(optString) || "span".equalsIgnoreCase(optString)) {
-                            f(jSONObject.optJSONArray("content"));
-                        }
-                    }
-                }
-                return false;
-            }
-        }
-        return true;
-    }
-
-    public static void g(j2 j2Var, ImageReceiver imageReceiver, Runnable runnable) {
-        k2 k2Var;
-        l1 l1Var;
-        String str;
-        Bitmap decodeStream;
-        if (j2Var != null && (k2Var = j2Var.f37983a) != null) {
-            HashMap hashMap = k2Var.d;
-            try {
-                if (k2Var.f37995b != null) {
-                    Iterator it = j2Var.f37985c.iterator();
-                    l1Var = null;
-                    while (it.hasNext()) {
-                        l1Var = (l1) ((HashMap) k2Var.f37995b.f12540c).get((String) it.next());
-                        if (l1Var != null) {
-                            break;
-                        }
-                    }
-                } else {
-                    l1Var = null;
-                }
-                if (l1Var != null) {
-                    m1 m1Var = (m1) l1Var.f38008a.get("content-type");
-                    if (m1Var == null) {
-                        str = null;
-                    } else {
-                        str = m1Var.f38017a;
-                    }
-                    if (str.contains("svg")) {
-                        if (j2Var.d > 0 && j2Var.e > 0) {
-                            decodeStream = SvgHelper.getBitmap((InputStream) l1Var.a(), AndroidUtilities.dp(j2Var.d), AndroidUtilities.dp(j2Var.e), false);
-                        }
-                        return;
-                    }
-                    if (j2Var.d <= 0 || j2Var.e <= 0) {
-                        BitmapFactory.Options options = new BitmapFactory.Options();
-                        options.inJustDecodeBounds = true;
-                        BitmapFactory.decodeStream(l1Var.a(), null, options);
-                        int i10 = j2Var.d;
-                        if (i10 == 0 && j2Var.e == 0) {
-                            j2Var.d = options.outWidth;
-                            j2Var.e = options.outHeight;
-                        } else if (i10 == 0) {
-                            j2Var.d = (int) ((options.outWidth / options.outHeight) * j2Var.e);
-                        } else if (j2Var.e == 0) {
-                            j2Var.e = (int) ((options.outHeight / options.outWidth) * i10);
-                        }
-                        runnable.run();
-                    }
-                    decodeStream = BitmapFactory.decodeStream(l1Var.a());
-                    imageReceiver.setImageBitmap(decodeStream);
-                } else if (hashMap.containsKey(j2Var.f37984b)) {
-                    imageReceiver.setImageBitmap((Bitmap) hashMap.get(j2Var.f37984b));
-                } else {
-                    if (f37993f == null) {
-                        f37993f = new HashMap();
-                    }
-                    ArrayList arrayList = (ArrayList) f37993f.get(j2Var.f37984b);
-                    if (arrayList != null) {
-                        for (int i11 = 0; i11 < arrayList.size(); i11++) {
-                            if (((Pair) arrayList.get(i11)).first == imageReceiver) {
+    @Override
+    public final void run() {
+        switch (this.f42156a) {
+            case 0:
+                final o2 o2Var = this.f42157b;
+                if (!o2Var.d) {
+                    o2Var.d = true;
+                    long currentTimeMillis = System.currentTimeMillis();
+                    final ArrayList arrayList = new ArrayList();
+                    for (n2 n2Var : o2Var.f42201a.values()) {
+                        if (!TextUtils.isEmpty(n2Var.f42189b) && currentTimeMillis - n2Var.f42188a <= 604800000) {
+                            arrayList.add(0, n2Var);
+                            if (arrayList.size() >= 100) {
+                                Utilities.globalQueue.postRunnable(new Runnable() {
+                                    @Override
+                                    public final void run() {
+                                        switch (r3) {
+                                            case 0:
+                                                o2 o2Var2 = o2Var;
+                                                o2Var2.getClass();
+                                                int i10 = 0;
+                                                while (true) {
+                                                    ArrayList arrayList2 = arrayList;
+                                                    if (i10 < arrayList2.size()) {
+                                                        n2 n2Var2 = (n2) arrayList2.get(i10);
+                                                        o2Var2.f42201a.put(n2Var2.f42189b, n2Var2);
+                                                        i10++;
+                                                    } else {
+                                                        o2Var2.f42202b = true;
+                                                        o2Var2.f42203c = false;
+                                                        return;
+                                                    }
+                                                }
+                                            default:
+                                                File file = new File(FileLoader.getDirectory(4), "webmetacache.dat");
+                                                boolean exists = file.exists();
+                                                o2 o2Var3 = o2Var;
+                                                if (!exists) {
+                                                    try {
+                                                        file.createNewFile();
+                                                    } catch (Exception e7) {
+                                                        FileLog.e(e7);
+                                                        o2Var3.d = false;
+                                                        return;
+                                                    }
+                                                }
+                                                m2 m2Var = new m2();
+                                                m2Var.f42182a.addAll(arrayList);
+                                                SerializedData serializedData = new SerializedData(m2Var.getObjectSize());
+                                                m2Var.serializeToStream(serializedData);
+                                                try {
+                                                    FileOutputStream fileOutputStream = new FileOutputStream(file);
+                                                    fileOutputStream.write(serializedData.toByteArray());
+                                                    fileOutputStream.close();
+                                                } catch (Exception e10) {
+                                                    FileLog.e(e10);
+                                                }
+                                                AndroidUtilities.runOnUIThread(new k2(o2Var3, 2));
+                                                return;
+                                        }
+                                    }
+                                });
                                 return;
                             }
                         }
-                        arrayList.add(new Pair(imageReceiver, runnable));
-                        return;
                     }
-                    f37993f.put(j2Var.f37984b, new ArrayList());
-                    new i1(new nj0(12, k2Var, j2Var)).execute(j2Var.f37984b);
-                }
-            } catch (Exception e7) {
-                FileLog.e(e7);
-            }
-        }
-    }
-
-    public static TL_iv.textPlain m(String str) {
-        TL_iv.textPlain textplain = new TL_iv.textPlain();
-        textplain.text = str;
-        return textplain;
-    }
-
-    public static void o(TLRPC.WebPage webPage) {
-        TL_iv.Page page;
-        ArrayList<TLRPC.Photo> arrayList;
-        HashMap hashMap = e;
-        k2 k2Var = (k2) hashMap.remove(webPage);
-        if (k2Var != null) {
-            hashMap.remove(k2Var.f37996c);
-            HashMap hashMap2 = k2Var.d;
-            for (Map.Entry entry : hashMap2.entrySet()) {
-                AndroidUtilities.recycleBitmap((Bitmap) entry.getValue());
-            }
-            hashMap2.clear();
-            TLRPC.TL_webPage tL_webPage = k2Var.f37996c;
-            if (tL_webPage != null && (page = tL_webPage.cached_page) != null && (arrayList = page.photos) != null) {
-                int size = arrayList.size();
-                int i10 = 0;
-                while (i10 < size) {
-                    TLRPC.Photo photo = arrayList.get(i10);
-                    i10++;
-                    TLRPC.Photo photo2 = photo;
-                    if (photo2 instanceof j2) {
-                        j2 j2Var = (j2) photo2;
-                        HashMap hashMap3 = f37993f;
-                        if (hashMap3 != null) {
-                            hashMap3.remove(j2Var.f37984b);
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-    public static TL_iv.RichText p(TL_iv.RichText richText) {
-        TL_iv.textPlain textplain;
-        String str;
-        if (richText == null) {
-            return richText;
-        }
-        TL_iv.RichText richText2 = richText.text;
-        if (richText2 != null) {
-            p(richText2);
-            return richText;
-        } else if (richText.texts.size() == 1) {
-            p(richText.texts.get(0));
-            return richText;
-        } else if (!richText.texts.isEmpty()) {
-            r(richText.texts.get(0));
-            q((TL_iv.RichText) hc.b.i(1, richText.texts));
-            return richText;
-        } else {
-            if ((richText instanceof TL_iv.textPlain) && (str = (textplain = (TL_iv.textPlain) richText).text) != null) {
-                textplain.text = str.trim();
-            }
-            return richText;
-        }
-    }
-
-    public static void q(TL_iv.RichText richText) {
-        TL_iv.textPlain textplain;
-        String str;
-        if (richText != null) {
-            TL_iv.RichText richText2 = richText.text;
-            if (richText2 != null) {
-                q(richText2);
-            } else if (!richText.texts.isEmpty()) {
-                q((TL_iv.RichText) hc.b.i(1, richText.texts));
-            } else if ((richText instanceof TL_iv.textPlain) && (str = (textplain = (TL_iv.textPlain) richText).text) != null) {
-                textplain.text = str.replaceAll("\\s+$", "");
-            }
-        }
-    }
-
-    public static void r(TL_iv.RichText richText) {
-        TL_iv.textPlain textplain;
-        String str;
-        if (richText != null) {
-            TL_iv.RichText richText2 = richText.text;
-            if (richText2 != null) {
-                r(richText2);
-            } else if (!richText.texts.isEmpty()) {
-                r(richText.texts.get(0));
-            } else if ((richText instanceof TL_iv.textPlain) && (str = (textplain = (TL_iv.textPlain) richText).text) != null) {
-                textplain.text = str.replaceAll("^\\s+", "");
-            }
-        }
-    }
-
-    public final TL_iv.pageBlockPhoto h(JSONObject jSONObject, TL_iv.TL_page tL_page) {
-        TL_iv.pageBlockPhoto pageblockphoto = new TL_iv.pageBlockPhoto();
-        pageblockphoto.caption = new TL_iv.PageCaption();
-        String optString = jSONObject.optString("alt");
-        if (optString != null) {
-            pageblockphoto.caption.text = p(m(optString));
-            pageblockphoto.caption.credit = p(m(""));
-        }
-        String optString2 = jSONObject.optString("src");
-        if (optString2 == null) {
-            return null;
-        }
-        j2 j2Var = new j2();
-        j2Var.f37983a = this;
-        j2Var.f17219id = (-1) - tL_page.photos.size();
-        j2Var.f37984b = optString2;
-        j2Var.f37985c.add(optString2);
-        try {
-            j2Var.d = Integer.parseInt(jSONObject.optString("width"));
-        } catch (Exception unused) {
-        }
-        try {
-            j2Var.e = Integer.parseInt(jSONObject.optString("height"));
-        } catch (Exception unused2) {
-        }
-        if (j2Var.d == 0) {
-            j2Var.d = j2Var.e;
-        }
-        if (j2Var.e == 0) {
-            j2Var.e = j2Var.d;
-        }
-        pageblockphoto.photo_id = j2Var.f17219id;
-        pageblockphoto.url = optString2;
-        tL_page.photos.add(j2Var);
-        return pageblockphoto;
-    }
-
-    public final TLRPC.TL_webPage i(String str, JSONObject jSONObject) {
-        TLRPC.TL_webPage tL_webPage = new TLRPC.TL_webPage();
-        tL_webPage.f17348id = 0L;
-        tL_webPage.url = str;
-        tL_webPage.display_url = str;
-        String string = jSONObject.getString("siteName");
-        if (string != null && !"null".equals(string)) {
-            tL_webPage.flags |= 2;
-            tL_webPage.site_name = string;
-        }
-        String optString = jSONObject.optString("title");
-        if (optString != null && !"null".equals(optString)) {
-            tL_webPage.flags |= 4;
-            tL_webPage.title = optString;
-        }
-        String optString2 = jSONObject.optString("byline");
-        if (optString2 != null && !"null".equals(optString2) && !"by".equalsIgnoreCase(optString2)) {
-            tL_webPage.flags |= 256;
-            tL_webPage.author = optString2;
-        }
-        String optString3 = jSONObject.optString("excerpt");
-        if (optString3 != null && !"null".equals(optString3)) {
-            tL_webPage.flags |= 8;
-            tL_webPage.description = optString3;
-        }
-        JSONArray optJSONArray = jSONObject.optJSONArray("content");
-        if (optJSONArray != null && !"null".equals(optJSONArray)) {
-            tL_webPage.flags |= 1024;
-            String optString4 = jSONObject.optString("title");
-            if ("null".equals(optString4)) {
-                optString4 = null;
-            }
-            "null".equals(jSONObject.optString("publishedTime"));
-            JSONArray optJSONArray2 = jSONObject.optJSONArray("content");
-            TL_iv.TL_page tL_page = new TL_iv.TL_page();
-            tL_page.web = true;
-            tL_page.url = str;
-            tL_page.blocks.addAll(j(optJSONArray2, tL_page));
-            if (tL_page.blocks.isEmpty() || !(tL_page.blocks.get(0) instanceof TL_iv.pageBlockHeader)) {
-                TL_iv.pageBlockTitle pageblocktitle = new TL_iv.pageBlockTitle();
-                pageblocktitle.text = p(m(optString4));
-                tL_page.blocks.add(0, pageblocktitle);
-            }
-            tL_webPage.cached_page = tL_page;
-        }
-        return tL_webPage;
-    }
-
-    public final ArrayList j(JSONArray jSONArray, TL_iv.TL_page tL_page) {
-        j2 j2Var;
-        TL_iv.pageBlockPhoto pageblockphoto;
-        ?? pageblocklist;
-        TL_iv.pageBlockDetails pageblockdetails;
-        ArrayList arrayList = new ArrayList();
-        for (int i10 = 0; i10 < jSONArray.length(); i10++) {
-            Object obj = jSONArray.get(i10);
-            if (obj instanceof String) {
-                TL_iv.pageBlockParagraph pageblockparagraph = new TL_iv.pageBlockParagraph();
-                pageblockparagraph.text = m((String) obj);
-                arrayList.add(pageblockparagraph);
-            } else if (obj instanceof JSONObject) {
-                JSONObject jSONObject = (JSONObject) obj;
-                String optString = jSONObject.optString("tag");
-                JSONArray optJSONArray = jSONObject.optJSONArray("content");
-                optString.getClass();
-                char c10 = 65535;
-                switch (optString.hashCode()) {
-                    case -1274639644:
-                        if (optString.equals("figure")) {
-                            c10 = 0;
-                            break;
-                        }
-                        break;
-                    case -891980137:
-                        if (optString.equals("strong")) {
-                            c10 = 1;
-                            break;
-                        }
-                        break;
-                    case -577741570:
-                        if (optString.equals("picture")) {
-                            c10 = 2;
-                            break;
-                        }
-                        break;
-                    case 97:
-                        if (optString.equals("a")) {
-                            c10 = 3;
-                            break;
-                        }
-                        break;
-                    case 98:
-                        if (optString.equals("b")) {
-                            c10 = 4;
-                            break;
-                        }
-                        break;
-                    case 105:
-                        if (optString.equals("i")) {
-                            c10 = 5;
-                            break;
-                        }
-                        break;
-                    case 112:
-                        if (optString.equals("p")) {
-                            c10 = 6;
-                            break;
-                        }
-                        break;
-                    case 115:
-                        if (optString.equals("s")) {
-                            c10 = 7;
-                            break;
-                        }
-                        break;
-                    case 3273:
-                        if (optString.equals("h1")) {
-                            c10 = '\b';
-                            break;
-                        }
-                        break;
-                    case 3274:
-                        if (optString.equals("h2")) {
-                            c10 = '\t';
-                            break;
-                        }
-                        break;
-                    case 3275:
-                        if (optString.equals("h3")) {
-                            c10 = '\n';
-                            break;
-                        }
-                        break;
-                    case 3276:
-                        if (optString.equals("h4")) {
-                            c10 = 11;
-                            break;
-                        }
-                        break;
-                    case 3277:
-                        if (optString.equals("h5")) {
-                            c10 = '\f';
-                            break;
-                        }
-                        break;
-                    case 3278:
-                        if (optString.equals("h6")) {
-                            c10 = '\r';
-                            break;
-                        }
-                        break;
-                    case 3338:
-                        if (optString.equals("hr")) {
-                            c10 = 14;
-                            break;
-                        }
-                        break;
-                    case 3549:
-                        if (optString.equals("ol")) {
-                            c10 = 15;
-                            break;
-                        }
-                        break;
-                    case 3735:
-                        if (optString.equals("ul")) {
-                            c10 = 16;
-                            break;
-                        }
-                        break;
-                    case 104387:
-                        if (optString.equals("img")) {
-                            c10 = 17;
-                            break;
-                        }
-                        break;
-                    case 111267:
-                        if (optString.equals("pre")) {
-                            c10 = 18;
-                            break;
-                        }
-                        break;
-                    case 114240:
-                        if (optString.equals("sub")) {
-                            c10 = 19;
-                            break;
-                        }
-                        break;
-                    case 114254:
-                        if (optString.equals("sup")) {
-                            c10 = 20;
-                            break;
-                        }
-                        break;
-                    case 3059181:
-                        if (optString.equals("code")) {
-                            c10 = 21;
-                            break;
-                        }
-                        break;
-                    case 3344077:
-                        if (optString.equals("mark")) {
-                            c10 = 22;
-                            break;
-                        }
-                        break;
-                    case 3536714:
-                        if (optString.equals("span")) {
-                            c10 = 23;
-                            break;
-                        }
-                        break;
-                    case 110115790:
-                        if (optString.equals("table")) {
-                            c10 = 24;
-                            break;
-                        }
-                        break;
-                    case 1303202319:
-                        if (optString.equals("blockquote")) {
-                            c10 = 25;
-                            break;
-                        }
-                        break;
-                    case 1557721666:
-                        if (optString.equals("details")) {
-                            c10 = 26;
-                            break;
-                        }
-                        break;
-                }
-                String str = "";
-                switch (c10) {
-                    case 0:
-                    case 2:
-                        JSONArray optJSONArray2 = jSONObject.optJSONArray("content");
-                        ArrayList arrayList2 = new ArrayList();
-                        TL_iv.pageBlockPhoto pageblockphoto2 = null;
-                        TL_iv.RichText richText = null;
-                        for (int i11 = 0; i11 < optJSONArray2.length(); i11++) {
-                            Object obj2 = optJSONArray2.get(i11);
-                            if (obj2 instanceof JSONObject) {
-                                JSONObject jSONObject2 = (JSONObject) obj2;
-                                String optString2 = jSONObject2.optString("tag");
-                                if (!"figurecaption".equalsIgnoreCase(optString2) && !"caption".equalsIgnoreCase(optString2)) {
-                                    if ("img".equalsIgnoreCase(optString2)) {
-                                        pageblockphoto2 = h(jSONObject2, tL_page);
-                                    } else if ("source".equalsIgnoreCase(optString2)) {
-                                        String optString3 = jSONObject2.optString("src");
-                                        if (!TextUtils.isEmpty(optString3)) {
-                                            arrayList2.add(optString3);
+                    Utilities.globalQueue.postRunnable(new Runnable() {
+                        @Override
+                        public final void run() {
+                            switch (r3) {
+                                case 0:
+                                    o2 o2Var2 = o2Var;
+                                    o2Var2.getClass();
+                                    int i10 = 0;
+                                    while (true) {
+                                        ArrayList arrayList2 = arrayList;
+                                        if (i10 < arrayList2.size()) {
+                                            n2 n2Var2 = (n2) arrayList2.get(i10);
+                                            o2Var2.f42201a.put(n2Var2.f42189b, n2Var2);
+                                            i10++;
                                         } else {
-                                            String optString4 = jSONObject2.optString("srcset");
-                                            if (!TextUtils.isEmpty(optString4)) {
-                                                for (String str2 : optString4.split(",")) {
-                                                    arrayList2.add(str2.trim().split(" ")[0].trim());
-                                                }
-                                            }
+                                            o2Var2.f42202b = true;
+                                            o2Var2.f42203c = false;
+                                            return;
                                         }
                                     }
-                                } else {
-                                    richText = p(l(jSONObject2, tL_page));
-                                }
+                                default:
+                                    File file = new File(FileLoader.getDirectory(4), "webmetacache.dat");
+                                    boolean exists = file.exists();
+                                    o2 o2Var3 = o2Var;
+                                    if (!exists) {
+                                        try {
+                                            file.createNewFile();
+                                        } catch (Exception e7) {
+                                            FileLog.e(e7);
+                                            o2Var3.d = false;
+                                            return;
+                                        }
+                                    }
+                                    m2 m2Var = new m2();
+                                    m2Var.f42182a.addAll(arrayList);
+                                    SerializedData serializedData = new SerializedData(m2Var.getObjectSize());
+                                    m2Var.serializeToStream(serializedData);
+                                    try {
+                                        FileOutputStream fileOutputStream = new FileOutputStream(file);
+                                        fileOutputStream.write(serializedData.toByteArray());
+                                        fileOutputStream.close();
+                                    } catch (Exception e10) {
+                                        FileLog.e(e10);
+                                    }
+                                    AndroidUtilities.runOnUIThread(new k2(o2Var3, 2));
+                                    return;
                             }
                         }
-                        if (pageblockphoto2 == null) {
-                            pageblockphoto = null;
-                        } else {
-                            if (richText != null) {
-                                TL_iv.PageCaption pageCaption = new TL_iv.PageCaption();
-                                pageblockphoto2.caption = pageCaption;
-                                pageCaption.text = richText;
-                                pageCaption.credit = new TL_iv.textEmpty();
-                            }
-                            int i12 = 0;
-                            while (true) {
-                                if (i12 < tL_page.photos.size()) {
-                                    if ((tL_page.photos.get(i12) instanceof j2) && tL_page.photos.get(i12).f17219id == pageblockphoto2.photo_id) {
-                                        j2Var = (j2) tL_page.photos.get(i12);
+                    });
+                    return;
+                }
+                return;
+            case 1:
+                final o2 o2Var2 = this.f42157b;
+                File file = new File(FileLoader.getDirectory(4), "webmetacache.dat");
+                if (!file.exists()) {
+                    o2Var2.f42202b = true;
+                    return;
+                }
+                final ArrayList arrayList2 = new ArrayList();
+                try {
+                    SerializedData serializedData = new SerializedData(file);
+                    m2 m2Var = new m2();
+                    m2Var.readParams(serializedData, true);
+                    arrayList2.addAll(m2Var.f42182a);
+                } catch (Exception e7) {
+                    FileLog.e(e7);
+                }
+                AndroidUtilities.runOnUIThread(new Runnable() {
+                    @Override
+                    public final void run() {
+                        switch (r3) {
+                            case 0:
+                                o2 o2Var22 = o2Var2;
+                                o2Var22.getClass();
+                                int i10 = 0;
+                                while (true) {
+                                    ArrayList arrayList22 = arrayList2;
+                                    if (i10 < arrayList22.size()) {
+                                        n2 n2Var2 = (n2) arrayList22.get(i10);
+                                        o2Var22.f42201a.put(n2Var2.f42189b, n2Var2);
+                                        i10++;
                                     } else {
-                                        i12++;
-                                    }
-                                } else {
-                                    j2Var = null;
-                                }
-                            }
-                            if (j2Var != null) {
-                                j2Var.f37985c.addAll(arrayList2);
-                            }
-                            pageblockphoto = pageblockphoto2;
-                        }
-                        if (pageblockphoto != null) {
-                            arrayList.add(pageblockphoto);
-                            continue;
-                        }
-                        break;
-                    case 1:
-                    case 3:
-                    case 4:
-                    case 5:
-                    case 7:
-                    case 19:
-                    case 20:
-                    case 21:
-                    case 22:
-                    case 23:
-                        JSONArray jSONArray2 = new JSONArray();
-                        jSONArray2.put(jSONObject);
-                        TL_iv.pageBlockParagraph pageblockparagraph2 = new TL_iv.pageBlockParagraph();
-                        pageblockparagraph2.text = k(jSONArray2, tL_page);
-                        arrayList.add(pageblockparagraph2);
-                        break;
-                    case 6:
-                        TL_iv.pageBlockParagraph pageblockparagraph3 = new TL_iv.pageBlockParagraph();
-                        pageblockparagraph3.text = p(l(jSONObject, tL_page));
-                        arrayList.add(pageblockparagraph3);
-                        break;
-                    case '\b':
-                        TL_iv.pageBlockHeading1 pageblockheading1 = new TL_iv.pageBlockHeading1();
-                        pageblockheading1.text = p(l(jSONObject, tL_page));
-                        arrayList.add(pageblockheading1);
-                        break;
-                    case '\t':
-                        TL_iv.pageBlockHeading2 pageblockheading2 = new TL_iv.pageBlockHeading2();
-                        pageblockheading2.text = p(l(jSONObject, tL_page));
-                        arrayList.add(pageblockheading2);
-                        break;
-                    case '\n':
-                        TL_iv.pageBlockHeading3 pageblockheading3 = new TL_iv.pageBlockHeading3();
-                        pageblockheading3.text = p(l(jSONObject, tL_page));
-                        arrayList.add(pageblockheading3);
-                        break;
-                    case 11:
-                        TL_iv.pageBlockHeading4 pageblockheading4 = new TL_iv.pageBlockHeading4();
-                        pageblockheading4.text = p(l(jSONObject, tL_page));
-                        arrayList.add(pageblockheading4);
-                        break;
-                    case '\f':
-                        TL_iv.pageBlockHeading5 pageblockheading5 = new TL_iv.pageBlockHeading5();
-                        pageblockheading5.text = p(l(jSONObject, tL_page));
-                        arrayList.add(pageblockheading5);
-                        break;
-                    case '\r':
-                        TL_iv.pageBlockHeading6 pageblockheading6 = new TL_iv.pageBlockHeading6();
-                        pageblockheading6.text = p(l(jSONObject, tL_page));
-                        arrayList.add(pageblockheading6);
-                        break;
-                    case 14:
-                        arrayList.add(new TL_iv.pageBlockDivider());
-                        break;
-                    case 15:
-                    case 16:
-                        if ("ol".equals(jSONObject.optString("tag"))) {
-                            pageblocklist = new TL_iv.pageBlockOrderedList();
-                            JSONArray jSONArray3 = jSONObject.getJSONArray("content");
-                            for (int i13 = 0; i13 < jSONArray3.length(); i13++) {
-                                Object obj3 = jSONArray3.get(i13);
-                                if (obj3 instanceof JSONObject) {
-                                    JSONObject jSONObject3 = (JSONObject) obj3;
-                                    if ("li".equals(jSONObject3.optString("tag"))) {
-                                        JSONArray optJSONArray3 = jSONObject3.optJSONArray("content");
-                                        if (f(optJSONArray3)) {
-                                            TL_iv.TL_pageListOrderedItemText tL_pageListOrderedItemText = new TL_iv.TL_pageListOrderedItemText();
-                                            tL_pageListOrderedItemText.text = k(optJSONArray3, tL_page);
-                                            pageblocklist.items.add(tL_pageListOrderedItemText);
-                                        } else {
-                                            TL_iv.TL_pageListOrderedItemBlocks tL_pageListOrderedItemBlocks = new TL_iv.TL_pageListOrderedItemBlocks();
-                                            tL_pageListOrderedItemBlocks.blocks.addAll(j(optJSONArray3, tL_page));
-                                            pageblocklist.items.add(tL_pageListOrderedItemBlocks);
-                                        }
+                                        o2Var22.f42202b = true;
+                                        o2Var22.f42203c = false;
+                                        return;
                                     }
                                 }
-                            }
-                        } else {
-                            pageblocklist = new TL_iv.pageBlockList();
-                            JSONArray jSONArray4 = jSONObject.getJSONArray("content");
-                            for (int i14 = 0; i14 < jSONArray4.length(); i14++) {
-                                Object obj4 = jSONArray4.get(i14);
-                                if (obj4 instanceof JSONObject) {
-                                    JSONObject jSONObject4 = (JSONObject) obj4;
-                                    if ("li".equals(jSONObject4.optString("tag"))) {
-                                        JSONArray optJSONArray4 = jSONObject4.optJSONArray("content");
-                                        if (f(optJSONArray4)) {
-                                            TL_iv.TL_pageListItemText tL_pageListItemText = new TL_iv.TL_pageListItemText();
-                                            tL_pageListItemText.text = k(optJSONArray4, tL_page);
-                                            pageblocklist.items.add(tL_pageListItemText);
-                                        } else {
-                                            TL_iv.TL_pageListItemBlocks tL_pageListItemBlocks = new TL_iv.TL_pageListItemBlocks();
-                                            tL_pageListItemBlocks.blocks.addAll(j(optJSONArray4, tL_page));
-                                            pageblocklist.items.add(tL_pageListItemBlocks);
-                                        }
+                            default:
+                                File file2 = new File(FileLoader.getDirectory(4), "webmetacache.dat");
+                                boolean exists = file2.exists();
+                                o2 o2Var3 = o2Var2;
+                                if (!exists) {
+                                    try {
+                                        file2.createNewFile();
+                                    } catch (Exception e72) {
+                                        FileLog.e(e72);
+                                        o2Var3.d = false;
+                                        return;
                                     }
                                 }
-                            }
-                        }
-                        arrayList.add(pageblocklist);
-                        break;
-                    case 17:
-                        TL_iv.pageBlockPhoto h = h(jSONObject, tL_page);
-                        if (h != null) {
-                            arrayList.add(h);
-                            break;
-                        }
-                        break;
-                    case 18:
-                        TL_iv.pageBlockPreformatted pageblockpreformatted = new TL_iv.pageBlockPreformatted();
-                        TL_iv.textFixed textfixed = new TL_iv.textFixed();
-                        textfixed.text = p(l(jSONObject, tL_page));
-                        pageblockpreformatted.text = textfixed;
-                        pageblockpreformatted.language = "";
-                        arrayList.add(pageblockpreformatted);
-                        break;
-                    case 24:
-                        TL_iv.pageBlockTable pageblocktable = new TL_iv.pageBlockTable();
-                        pageblocktable.bordered = true;
-                        pageblocktable.striped = true;
-                        String optString5 = jSONObject.optString("title");
-                        if (optString5 != null) {
-                            str = optString5;
-                        }
-                        pageblocktable.title = p(c(m(str), jSONObject));
-                        pageblocktable.rows.addAll(n(jSONObject.getJSONArray("content"), tL_page));
-                        arrayList.add(pageblocktable);
-                        break;
-                    case 25:
-                        TL_iv.pageBlockBlockquote pageblockblockquote = new TL_iv.pageBlockBlockquote();
-                        pageblockblockquote.text = p(l(jSONObject, tL_page));
-                        TL_iv.textItalic textitalic = new TL_iv.textItalic();
-                        textitalic.text = pageblockblockquote.text;
-                        pageblockblockquote.text = textitalic;
-                        arrayList.add(pageblockblockquote);
-                        break;
-                    case 26:
-                        TL_iv.pageBlockDetails pageblockdetails2 = new TL_iv.pageBlockDetails();
-                        JSONArray optJSONArray5 = jSONObject.optJSONArray("content");
-                        if (optJSONArray5 == null) {
-                            pageblockdetails = null;
-                        } else {
-                            int i15 = 0;
-                            while (true) {
-                                if (i15 < optJSONArray5.length()) {
-                                    Object obj5 = optJSONArray5.get(i15);
-                                    if (obj5 instanceof JSONObject) {
-                                        JSONObject jSONObject5 = (JSONObject) obj5;
-                                        if ("summary".equals(jSONObject5.optString("tag"))) {
-                                            pageblockdetails2.title = p(l(jSONObject5, tL_page));
-                                            optJSONArray5.remove(i15);
-                                        }
-                                    }
-                                    i15++;
+                                m2 m2Var2 = new m2();
+                                m2Var2.f42182a.addAll(arrayList2);
+                                SerializedData serializedData2 = new SerializedData(m2Var2.getObjectSize());
+                                m2Var2.serializeToStream(serializedData2);
+                                try {
+                                    FileOutputStream fileOutputStream = new FileOutputStream(file2);
+                                    fileOutputStream.write(serializedData2.toByteArray());
+                                    fileOutputStream.close();
+                                } catch (Exception e10) {
+                                    FileLog.e(e10);
                                 }
-                            }
-                            pageblockdetails2.blocks.addAll(j(optJSONArray5, tL_page));
-                            pageblockdetails2.open = jSONObject.has("open");
-                            pageblockdetails = pageblockdetails2;
-                        }
-                        if (pageblockdetails != null) {
-                            arrayList.add(pageblockdetails);
-                            break;
-                        }
-                        break;
-                    default:
-                        if (optJSONArray != null) {
-                            arrayList.addAll(j(optJSONArray, tL_page));
-                            break;
-                        }
-                        break;
-                }
-            }
-        }
-        return arrayList;
-    }
-
-    public final TL_iv.RichText k(JSONArray jSONArray, TL_iv.TL_page tL_page) {
-        char c10;
-        ArrayList<TL_iv.RichText> arrayList = new ArrayList<>();
-        for (int i10 = 0; i10 < jSONArray.length(); i10++) {
-            Object obj = jSONArray.get(i10);
-            if (obj instanceof String) {
-                arrayList.add(m((String) obj));
-            } else {
-                JSONObject jSONObject = (JSONObject) obj;
-                String optString = jSONObject.optString("tag");
-                optString.getClass();
-                switch (optString.hashCode()) {
-                    case -891980137:
-                        if (optString.equals("strong")) {
-                            c10 = 0;
-                            break;
-                        }
-                        c10 = 65535;
-                        break;
-                    case 97:
-                        if (optString.equals("a")) {
-                            c10 = 1;
-                            break;
-                        }
-                        c10 = 65535;
-                        break;
-                    case 98:
-                        if (optString.equals("b")) {
-                            c10 = 2;
-                            break;
-                        }
-                        c10 = 65535;
-                        break;
-                    case 105:
-                        if (optString.equals("i")) {
-                            c10 = 3;
-                            break;
-                        }
-                        c10 = 65535;
-                        break;
-                    case 112:
-                        if (optString.equals("p")) {
-                            c10 = 4;
-                            break;
-                        }
-                        c10 = 65535;
-                        break;
-                    case 115:
-                        if (optString.equals("s")) {
-                            c10 = 5;
-                            break;
-                        }
-                        c10 = 65535;
-                        break;
-                    case 3152:
-                        if (optString.equals("br")) {
-                            c10 = 6;
-                            break;
-                        }
-                        c10 = 65535;
-                        break;
-                    case 104387:
-                        if (optString.equals("img")) {
-                            c10 = 7;
-                            break;
-                        }
-                        c10 = 65535;
-                        break;
-                    case 111267:
-                        if (optString.equals("pre")) {
-                            c10 = '\b';
-                            break;
-                        }
-                        c10 = 65535;
-                        break;
-                    case 114240:
-                        if (optString.equals("sub")) {
-                            c10 = '\t';
-                            break;
-                        }
-                        c10 = 65535;
-                        break;
-                    case 114254:
-                        if (optString.equals("sup")) {
-                            c10 = '\n';
-                            break;
-                        }
-                        c10 = 65535;
-                        break;
-                    case 3059181:
-                        if (optString.equals("code")) {
-                            c10 = 11;
-                            break;
-                        }
-                        c10 = 65535;
-                        break;
-                    case 3344077:
-                        if (optString.equals("mark")) {
-                            c10 = '\f';
-                            break;
-                        }
-                        c10 = 65535;
-                        break;
-                    default:
-                        c10 = 65535;
-                        break;
-                }
-                TL_iv.textMarked textmarked = null;
-                textmarked = null;
-                textmarked = null;
-                switch (c10) {
-                    case 0:
-                    case 2:
-                        TL_iv.textBold textbold = new TL_iv.textBold();
-                        textbold.text = l(jSONObject, tL_page);
-                        textmarked = textbold;
-                        break;
-                    case 1:
-                        String optString2 = jSONObject.optString("href");
-                        if (optString2 == null) {
-                            textmarked = l(jSONObject, tL_page);
-                            break;
-                        } else if (optString2.startsWith("tel:")) {
-                            TL_iv.textPhone textphone = new TL_iv.textPhone();
-                            textphone.phone = optString2.substring(4);
-                            textphone.text = l(jSONObject, tL_page);
-                            textmarked = textphone;
-                            break;
-                        } else if (optString2.startsWith("mailto:")) {
-                            TL_iv.textEmail textemail = new TL_iv.textEmail();
-                            textemail.email = optString2.substring(7);
-                            textemail.text = l(jSONObject, tL_page);
-                            textmarked = textemail;
-                            break;
-                        } else {
-                            TL_iv.textUrl texturl = new TL_iv.textUrl();
-                            texturl.url = optString2;
-                            texturl.text = l(jSONObject, tL_page);
-                            textmarked = texturl;
-                            break;
-                        }
-                    case 3:
-                        TL_iv.textItalic textitalic = new TL_iv.textItalic();
-                        textitalic.text = l(jSONObject, tL_page);
-                        textmarked = textitalic;
-                        break;
-                    case 4:
-                        if (!arrayList.isEmpty()) {
-                            b((TL_iv.RichText) hc.b.i(1, arrayList));
-                        }
-                        textmarked = l(jSONObject, tL_page);
-                        break;
-                    case 5:
-                        TL_iv.textStrike textstrike = new TL_iv.textStrike();
-                        textstrike.text = l(jSONObject, tL_page);
-                        textmarked = textstrike;
-                        break;
-                    case 6:
-                        if (!arrayList.isEmpty()) {
-                            b((TL_iv.RichText) hc.b.i(1, arrayList));
-                            break;
-                        }
-                        break;
-                    case 7:
-                        if (!arrayList.isEmpty()) {
-                            a((TL_iv.RichText) hc.b.i(1, arrayList));
-                        }
-                        TL_iv.textImage textimage = new TL_iv.textImage();
-                        String optString3 = jSONObject.optString("src");
-                        if (optString3 != null) {
-                            j2 j2Var = new j2();
-                            j2Var.f37983a = this;
-                            j2Var.f17219id = (-1) - tL_page.photos.size();
-                            j2Var.f37984b = optString3;
-                            j2Var.f37985c.add(optString3);
-                            try {
-                                j2Var.d = Integer.parseInt(jSONObject.optString("width"));
-                            } catch (Exception unused) {
-                            }
-                            try {
-                                j2Var.e = Integer.parseInt(jSONObject.optString("height"));
-                            } catch (Exception unused2) {
-                            }
-                            textimage.url = optString3;
-                            tL_page.photos.add(j2Var);
-                            if (j2Var.d == 0) {
-                                j2Var.d = j2Var.e;
-                            }
-                            if (j2Var.e == 0) {
-                                j2Var.e = j2Var.d;
-                            }
-                            try {
-                                textimage.f17422w = Integer.parseInt(jSONObject.optString("width"));
-                            } catch (Exception unused3) {
-                            }
-                            try {
-                                textimage.h = Integer.parseInt(jSONObject.optString("height"));
-                            } catch (Exception unused4) {
-                            }
-                            if (textimage.f17422w == 0) {
-                                textimage.f17422w = textimage.h;
-                            }
-                            if (textimage.h == 0) {
-                                textimage.h = textimage.f17422w;
-                            }
-                            textimage.photo_id = j2Var.f17219id;
-                            textmarked = textimage;
-                            break;
-                        }
-                        break;
-                    case '\b':
-                    case 11:
-                        TL_iv.textFixed textfixed = new TL_iv.textFixed();
-                        textfixed.text = l(jSONObject, tL_page);
-                        textmarked = textfixed;
-                        break;
-                    case '\t':
-                        TL_iv.textSubscript textsubscript = new TL_iv.textSubscript();
-                        textsubscript.text = l(jSONObject, tL_page);
-                        textmarked = textsubscript;
-                        break;
-                    case '\n':
-                        TL_iv.textSuperscript textsuperscript = new TL_iv.textSuperscript();
-                        textsuperscript.text = l(jSONObject, tL_page);
-                        textmarked = textsuperscript;
-                        break;
-                    case '\f':
-                        TL_iv.textMarked textmarked2 = new TL_iv.textMarked();
-                        textmarked2.text = l(jSONObject, tL_page);
-                        textmarked = textmarked2;
-                        break;
-                    default:
-                        textmarked = l(jSONObject, tL_page);
-                        break;
-                }
-                if (textmarked != null) {
-                    arrayList.add(c(textmarked, jSONObject));
-                }
-            }
-        }
-        if (arrayList.isEmpty()) {
-            return new TL_iv.textEmpty();
-        }
-        if (arrayList.size() == 1) {
-            return arrayList.get(0);
-        }
-        TL_iv.textConcat textconcat = new TL_iv.textConcat();
-        textconcat.texts = arrayList;
-        return textconcat;
-    }
-
-    public final TL_iv.RichText l(JSONObject jSONObject, TL_iv.TL_page tL_page) {
-        TL_iv.RichText c10 = c(k(jSONObject.getJSONArray("content"), tL_page), jSONObject);
-        if (jSONObject.has("bold")) {
-            TL_iv.textBold textbold = new TL_iv.textBold();
-            textbold.text = c10;
-            c10 = textbold;
-        }
-        if (jSONObject.has("italic")) {
-            TL_iv.textItalic textitalic = new TL_iv.textItalic();
-            textitalic.text = c10;
-            return textitalic;
-        }
-        return c10;
-    }
-
-    public final ArrayList n(JSONArray jSONArray, TL_iv.TL_page tL_page) {
-        JSONObject jSONObject;
-        String optString;
-        ArrayList arrayList = new ArrayList();
-        new ArrayList();
-        for (int i10 = 0; i10 < jSONArray.length(); i10++) {
-            Object obj = jSONArray.get(i10);
-            if (obj instanceof JSONObject) {
-                JSONObject jSONObject2 = (JSONObject) obj;
-                if ("tr".equals(jSONObject2.optString("tag"))) {
-                    TL_iv.pageTableRow pagetablerow = new TL_iv.pageTableRow();
-                    JSONArray jSONArray2 = jSONObject2.getJSONArray("content");
-                    for (int i11 = 0; i11 < jSONArray2.length(); i11++) {
-                        Object obj2 = jSONArray2.get(i11);
-                        if ((obj2 instanceof JSONObject) && (optString = (jSONObject = (JSONObject) obj2).optString("tag")) != null && ("td".equals(optString) || "th".equals(optString))) {
-                            TL_iv.pageTableCell pagetablecell = new TL_iv.pageTableCell();
-                            pagetablecell.header = "th".equals(optString);
-                            try {
-                                pagetablecell.colspan = Integer.parseInt(jSONObject.optString("colspan"));
-                                pagetablecell.flags |= 2;
-                            } catch (Exception unused) {
-                            }
-                            try {
-                                pagetablecell.rowspan = Integer.parseInt(jSONObject.optString("rowspan"));
-                                pagetablecell.flags |= 4;
-                            } catch (Exception unused2) {
-                            }
-                            pagetablecell.text = p(k(jSONObject.getJSONArray("content"), tL_page));
-                            if (jSONObject.has("bold") || pagetablecell.header) {
-                                TL_iv.textBold textbold = new TL_iv.textBold();
-                                textbold.text = pagetablecell.text;
-                                pagetablecell.text = textbold;
-                            }
-                            if (jSONObject.has("italic")) {
-                                TL_iv.textItalic textitalic = new TL_iv.textItalic();
-                                textitalic.text = pagetablecell.text;
-                                pagetablecell.text = textitalic;
-                            }
-                            pagetablecell.align_center = jSONObject.has("xcenter");
-                            pagetablerow.cells.add(pagetablecell);
+                                AndroidUtilities.runOnUIThread(new k2(o2Var3, 2));
+                                return;
                         }
                     }
-                    arrayList.add(pagetablerow);
-                } else {
-                    JSONArray optJSONArray = jSONObject2.optJSONArray("content");
-                    if (optJSONArray != null) {
-                        arrayList.addAll(n(optJSONArray, tL_page));
-                    }
-                }
-            }
+                });
+                return;
+            default:
+                this.f42157b.d = false;
+                return;
         }
-        return arrayList;
     }
 }

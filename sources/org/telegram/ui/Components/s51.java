@@ -1,53 +1,39 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Typeface;
-import android.text.TextPaint;
-import android.text.style.MetricAffectingSpan;
-public final class s51 extends MetricAffectingSpan {
-    public Typeface f26954a;
-    public int f26955b;
-    public int f26956c;
-
-    public s51(Typeface typeface) {
-        this.f26956c = -1;
-        this.f26954a = typeface;
-    }
+import android.view.View;
+import android.widget.FrameLayout;
+public final class s51 extends FrameLayout {
+    public int f30198a;
+    public boolean f30199b;
 
     @Override
-    public final void updateDrawState(TextPaint textPaint) {
-        int i10 = this.f26956c;
-        if (i10 >= 0) {
-            this.f26955b = org.telegram.ui.ActionBar.j6.w0(null, i10, false);
+    public final void onMeasure(int i10, int i11) {
+        View view;
+        int i12 = this.f30198a;
+        if (getParent() instanceof View) {
+            view = (View) getParent();
+        } else {
+            view = null;
         }
-        Typeface typeface = this.f26954a;
-        if (typeface != null) {
-            textPaint.setTypeface(typeface);
+        if (this.f30199b && view != null) {
+            i12 = view.getPaddingBottom() + view.getPaddingTop() + i12;
         }
-        int i11 = this.f26955b;
-        if (i11 != 0) {
-            textPaint.setColor(i11);
+        if (view != null && view.getMeasuredHeight() > 0) {
+            super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(view.getMeasuredHeight() - i12, 1073741824));
+        } else if (View.MeasureSpec.getMode(i11) != 0) {
+            super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i11) - i12, 1073741824));
+        } else {
+            int size = View.MeasureSpec.getSize(i11);
+            int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824);
+            measureChildren(makeMeasureSpec, i11);
+            int i13 = 0;
+            for (int i14 = 0; i14 < getChildCount(); i14++) {
+                i13 = Math.max(i13, getChildAt(i14).getMeasuredHeight());
+            }
+            if (size > 0) {
+                i13 = Math.min(i13, size - i12);
+            }
+            super.onMeasure(makeMeasureSpec, View.MeasureSpec.makeMeasureSpec(i13, 1073741824));
         }
-        textPaint.setFlags(textPaint.getFlags() | 128);
-    }
-
-    @Override
-    public final void updateMeasureState(TextPaint textPaint) {
-        Typeface typeface = this.f26954a;
-        if (typeface != null) {
-            textPaint.setTypeface(typeface);
-        }
-        textPaint.setFlags(textPaint.getFlags() | 128);
-    }
-
-    public s51() {
-        Typeface typeface = Typeface.DEFAULT;
-        this.f26956c = -1;
-        this.f26954a = typeface;
-    }
-
-    public s51(Typeface typeface, int i10) {
-        this.f26956c = -1;
-        this.f26954a = typeface;
-        this.f26955b = i10;
     }
 }

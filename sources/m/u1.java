@@ -3,33 +3,33 @@ package m;
 import android.view.View;
 import android.view.ViewConfiguration;
 public abstract class u1 implements View.OnTouchListener, View.OnAttachStateChangeListener {
-    public final float f13155a;
-    public final int f13156b;
-    public final int f13157c;
+    public final float f15674a;
+    public final int f15675b;
+    public final int f15676c;
     public final View d;
-    public t1 e;
-    public t1 f13158f;
+    public t1 f15677e;
+    public t1 f15678f;
     public boolean h;
-    public int f13159n;
-    public final int[] f13160r = new int[2];
+    public int f15679n;
+    public final int[] f15680r = new int[2];
 
     public u1(View view) {
         this.d = view;
         view.setLongClickable(true);
         view.addOnAttachStateChangeListener(this);
-        this.f13155a = ViewConfiguration.get(view.getContext()).getScaledTouchSlop();
+        this.f15674a = ViewConfiguration.get(view.getContext()).getScaledTouchSlop();
         int tapTimeout = ViewConfiguration.getTapTimeout();
-        this.f13156b = tapTimeout;
-        this.f13157c = (ViewConfiguration.getLongPressTimeout() + tapTimeout) / 2;
+        this.f15675b = tapTimeout;
+        this.f15676c = (ViewConfiguration.getLongPressTimeout() + tapTimeout) / 2;
     }
 
     public final void a() {
-        t1 t1Var = this.f13158f;
+        t1 t1Var = this.f15678f;
         View view = this.d;
         if (t1Var != null) {
             view.removeCallbacks(t1Var);
         }
-        t1 t1Var2 = this.e;
+        t1 t1Var2 = this.f15677e;
         if (t1Var2 != null) {
             view.removeCallbacks(t1Var2);
         }
@@ -56,8 +56,8 @@ public abstract class u1 implements View.OnTouchListener, View.OnAttachStateChan
     @Override
     public final void onViewDetachedFromWindow(View view) {
         this.h = false;
-        this.f13159n = -1;
-        t1 t1Var = this.e;
+        this.f15679n = -1;
+        t1 t1Var = this.f15677e;
         if (t1Var != null) {
             this.d.removeCallbacks(t1Var);
         }

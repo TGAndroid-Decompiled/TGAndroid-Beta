@@ -1,35 +1,36 @@
 package ci;
 
-import ai.c0;
-import android.app.Activity;
-import android.view.ViewGroup;
-import org.telegram.ui.ActionBar.f6;
-import org.telegram.ui.ActionBar.j6;
-import org.telegram.ui.ActionBar.p2;
-import org.telegram.ui.Cells.m4;
-import org.telegram.ui.Components.j61;
-import org.telegram.ui.Components.vl0;
-import s4.c1;
-public final class e extends j61 {
-    public final j N;
+import android.view.View;
+import bi.b8;
+import org.telegram.ui.Components.lr0;
+public final class e implements View.OnClickListener {
+    public final int f4808a;
+    public final t f4809b;
 
-    public e(j jVar, vl0 vl0Var, Activity activity, int i10, int i11, c0 c0Var, f6 f6Var) {
-        super(vl0Var, activity, i10, i11, true, c0Var, f6Var);
-        this.N = jVar;
+    public e(t tVar, int i10) {
+        this.f4808a = i10;
+        this.f4809b = tVar;
     }
 
     @Override
-    public final c1 x(ViewGroup viewGroup, int i10) {
-        f6 f6Var;
-        if (i10 == 42) {
-            j jVar = this.N;
-            Activity parentActivity = jVar.getParentActivity();
-            int i11 = j6.L6;
-            f6Var = ((p2) jVar).resourceProvider;
-            m4 m4Var = new m4(parentActivity, i11, 21, 0, false, f6Var);
-            m4Var.setHeight(25);
-            return new c1(m4Var);
+    public final void onClick(View view) {
+        String str;
+        switch (this.f4808a) {
+            case 0:
+                t tVar = this.f4809b;
+                lr0 lr0Var = tVar.W;
+                b8 b8Var = tVar.f4831a;
+                if (b8Var == null) {
+                    str = "";
+                } else {
+                    str = b8Var.E;
+                }
+                lr0Var.a(str);
+                return;
+            default:
+                t tVar2 = this.f4809b;
+                tVar2.W.b(tVar2.f4831a.E);
+                return;
         }
-        return super.x(viewGroup, i10);
     }
 }

@@ -1,145 +1,112 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.view.View;
 import android.view.ViewGroup;
-import java.io.File;
-import java.util.ArrayList;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class mk extends ul0 {
-    public final ArrayList f25248c = new ArrayList();
-    public final ArrayList d = new ArrayList();
-    public final ArrayList e = new ArrayList();
-    public final Context f25249f;
-    public final tk h;
+import android.view.ViewTreeObserver;
+import org.telegram.messenger.MessageObject;
+public final class mk implements ViewTreeObserver.OnPreDrawListener {
+    public final int f28458a;
+    public final MessageObject f28459b;
+    public final boolean f28460c;
+    public final ViewGroup d;
+    public final kl0 f28461e;
 
-    public mk(tk tkVar, Context context) {
-        this.h = tkVar;
-        this.f25249f = context;
+    public mk(kl0 kl0Var, ViewGroup viewGroup, MessageObject messageObject, boolean z10, int i10) {
+        this.f28458a = i10;
+        this.f28461e = kl0Var;
+        this.d = viewGroup;
+        this.f28459b = messageObject;
+        this.f28460c = z10;
     }
 
     @Override
-    public final boolean D(s4.c1 c1Var) {
-        if (c1Var.f41613f == 1) {
-            return true;
-        }
-        return false;
-    }
-
-    public final nk E(int i10) {
-        int e;
-        ArrayList arrayList = this.f25248c;
-        int size = arrayList.size();
-        if (i10 < size) {
-            return (nk) arrayList.get(i10);
-        }
-        if (this.d.isEmpty()) {
-            ArrayList arrayList2 = this.e;
-            if (!arrayList2.isEmpty() && i10 != size && i10 != size + 1 && (e = com.google.android.gms.internal.vision.e2.e(2, i10, arrayList)) < arrayList2.size()) {
-                return (nk) arrayList2.get(e);
-            }
-            return null;
-        }
-        return null;
-    }
-
-    @Override
-    public final int h() {
-        int size = this.f25248c.size();
-        if (this.d.isEmpty()) {
-            ArrayList arrayList = this.e;
-            if (!arrayList.isEmpty()) {
-                size += arrayList.size() + 2;
-            }
-        }
-        return size + 1;
-    }
-
-    @Override
-    public final int j(int i10) {
-        if (i10 == h() - 1) {
-            return 3;
-        }
-        int size = this.f25248c.size();
-        if (i10 == size) {
-            return 2;
-        }
-        if (i10 != size + 1) {
-            return 1;
-        }
-        return 0;
-    }
-
-    @Override
-    public final void l() {
-        super.l();
-        this.h.T();
-    }
-
-    @Override
-    public final void v(s4.c1 c1Var, int i10) {
-        boolean z10;
-        int i11 = c1Var.f41613f;
-        View view = c1Var.f41610a;
-        tk tkVar = this.h;
-        if (i11 != 0) {
-            if (i11 != 1) {
-                return;
-            }
-            nk E = E(i10);
-            org.telegram.ui.Cells.l7 l7Var = (org.telegram.ui.Cells.l7) view;
-            int i12 = E.f25536a;
-            if (i12 != 0) {
-                String str = E.f25537b;
-                String str2 = E.f25538c;
-                if (i10 != this.f25248c.size() - 1) {
-                    z10 = true;
-                } else {
-                    z10 = false;
+    public final boolean onPreDraw() {
+        switch (this.f28458a) {
+            case 0:
+                org.telegram.ui.Cells.j7 j7Var = (org.telegram.ui.Cells.j7) this.d;
+                j7Var.getViewTreeObserver().removeOnPreDrawListener(this);
+                nk nkVar = (nk) this.f28461e;
+                org.telegram.ui.p10 p10Var = nkVar.H;
+                ok okVar = nkVar.X;
+                boolean s10 = okVar.f28753b.X0.s();
+                boolean z10 = this.f28460c;
+                if (s10) {
+                    MessageObject messageObject = this.f28459b;
+                    int id2 = messageObject.getId();
+                    p10Var.f39381a = messageObject.getDialogId();
+                    p10Var.f39382b = id2;
+                    j7Var.b(okVar.T.containsKey(p10Var), z10);
+                    return true;
                 }
-                l7Var.d(str, str2, null, null, i12, z10);
-            } else {
-                l7Var.d(E.f25537b, E.f25538c, E.d.toUpperCase().substring(0, Math.min(E.d.length(), 4)), E.e, 0, false);
-            }
-            File file = E.f25539f;
-            if (file != null) {
-                l7Var.b(tkVar.R.containsKey(file.toString()), !tkVar.U);
-                return;
-            } else {
-                l7Var.b(false, !tkVar.U);
-                return;
-            }
-        }
-        org.telegram.ui.Cells.m4 m4Var = (org.telegram.ui.Cells.m4) view;
-        if (tkVar.f27423c0) {
-            m4Var.setText(LocaleController.getString(R.string.RecentFilesAZ));
-        } else {
-            m4Var.setText(LocaleController.getString(R.string.RecentFiles));
-        }
-    }
-
-    @Override
-    public final s4.c1 x(ViewGroup viewGroup, int i10) {
-        View m4Var;
-        View view;
-        org.telegram.ui.ActionBar.f6 f6Var = this.h.f26421a;
-        Context context = this.f25249f;
-        if (i10 != 0) {
-            if (i10 != 1) {
-                if (i10 != 2) {
-                    view = new View(context);
-                    view.setTag(-33024);
-                } else {
-                    view = new org.telegram.ui.Cells.c7(context, (org.telegram.ui.Cells.r6) null);
+                j7Var.b(false, z10);
+                return true;
+            case 1:
+                org.telegram.ui.Cells.r2 r2Var = (org.telegram.ui.Cells.r2) this.d;
+                r2Var.getViewTreeObserver().removeOnPreDrawListener(this);
+                org.telegram.ui.x10 x10Var = ((org.telegram.ui.q10) this.f28461e).f39669c;
+                boolean g10 = x10Var.f42554o0.g();
+                boolean z11 = this.f28460c;
+                if (g10) {
+                    org.telegram.ui.p10 p10Var2 = x10Var.S;
+                    MessageObject messageObject2 = this.f28459b;
+                    int id3 = messageObject2.getId();
+                    p10Var2.f39381a = messageObject2.getDialogId();
+                    p10Var2.f39382b = id3;
+                    r2Var.V(x10Var.f42554o0.b(x10Var.S), z11);
+                    return true;
                 }
-                return new s4.c1(view);
-            }
-            m4Var = new org.telegram.ui.Cells.l7(context, 1, f6Var);
-        } else {
-            m4Var = new org.telegram.ui.Cells.m4(context, f6Var);
+                r2Var.V(false, z11);
+                return true;
+            case 2:
+                org.telegram.ui.Cells.j7 j7Var2 = (org.telegram.ui.Cells.j7) this.d;
+                j7Var2.getViewTreeObserver().removeOnPreDrawListener(this);
+                org.telegram.ui.x10 x10Var2 = ((org.telegram.ui.s10) this.f28461e).v;
+                boolean g11 = x10Var2.f42554o0.g();
+                boolean z12 = this.f28460c;
+                if (g11) {
+                    org.telegram.ui.p10 p10Var3 = x10Var2.S;
+                    MessageObject messageObject3 = this.f28459b;
+                    int id4 = messageObject3.getId();
+                    p10Var3.f39381a = messageObject3.getDialogId();
+                    p10Var3.f39382b = id4;
+                    j7Var2.b(x10Var2.f42554o0.b(x10Var2.S), z12);
+                    return true;
+                }
+                j7Var2.b(false, z12);
+                return true;
+            case 3:
+                org.telegram.ui.Cells.i7 i7Var = (org.telegram.ui.Cells.i7) this.d;
+                i7Var.getViewTreeObserver().removeOnPreDrawListener(this);
+                org.telegram.ui.x10 x10Var3 = ((org.telegram.ui.s10) this.f28461e).v;
+                boolean g12 = x10Var3.f42554o0.g();
+                boolean z13 = this.f28460c;
+                if (g12) {
+                    org.telegram.ui.p10 p10Var4 = x10Var3.S;
+                    MessageObject messageObject4 = this.f28459b;
+                    int id5 = messageObject4.getId();
+                    p10Var4.f39381a = messageObject4.getDialogId();
+                    p10Var4.f39382b = id5;
+                    i7Var.e(x10Var3.f42554o0.b(x10Var3.S), z13);
+                    return true;
+                }
+                i7Var.e(false, z13);
+                return true;
+            default:
+                org.telegram.ui.Cells.n7 n7Var = (org.telegram.ui.Cells.n7) this.d;
+                n7Var.getViewTreeObserver().removeOnPreDrawListener(this);
+                org.telegram.ui.x10 x10Var4 = ((org.telegram.ui.u10) this.f28461e).v;
+                boolean g13 = x10Var4.f42554o0.g();
+                boolean z14 = this.f28460c;
+                if (g13) {
+                    org.telegram.ui.p10 p10Var5 = x10Var4.S;
+                    MessageObject messageObject5 = this.f28459b;
+                    int id6 = messageObject5.getId();
+                    p10Var5.f39381a = messageObject5.getDialogId();
+                    p10Var5.f39382b = id6;
+                    n7Var.f(x10Var4.f42554o0.b(x10Var4.S), z14);
+                    return true;
+                }
+                n7Var.f(false, z14);
+                return true;
         }
-        view = m4Var;
-        return new s4.c1(view);
     }
 }

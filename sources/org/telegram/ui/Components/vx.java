@@ -1,3 +1,9 @@
 package org.telegram.ui.Components;
-public interface vx {
+
+import android.view.View;
+public final class vx {
+    public float f32016a;
+    public float f32017b;
+    public long f32018c;
+    public View d;
 }

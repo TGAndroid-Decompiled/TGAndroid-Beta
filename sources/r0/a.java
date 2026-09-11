@@ -15,30 +15,31 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.WeakHashMap;
+import ji.u4;
 public final class a extends View.AccessibilityDelegate {
-    public final b f41028a;
+    public final b f44660a;
 
     public a(b bVar) {
-        this.f41028a = bVar;
+        this.f44660a = bVar;
     }
 
     @Override
     public final boolean dispatchPopulateAccessibilityEvent(View view, AccessibilityEvent accessibilityEvent) {
-        return this.f41028a.f41030a.dispatchPopulateAccessibilityEvent(view, accessibilityEvent);
+        return this.f44660a.f44662a.dispatchPopulateAccessibilityEvent(view, accessibilityEvent);
     }
 
     @Override
     public final AccessibilityNodeProvider getAccessibilityNodeProvider(View view) {
-        l2.h a2 = this.f41028a.a(view);
+        u4 a2 = this.f44660a.a(view);
         if (a2 != null) {
-            return (AccessibilityNodeProvider) a2.f12721b;
+            return (AccessibilityNodeProvider) a2.f14221b;
         }
         return null;
     }
 
     @Override
     public final void onInitializeAccessibilityEvent(View view, AccessibilityEvent accessibilityEvent) {
-        this.f41028a.b(view, accessibilityEvent);
+        this.f44660a.b(view, accessibilityEvent);
     }
 
     @Override
@@ -49,8 +50,8 @@ public final class a extends View.AccessibilityDelegate {
         Object tag3;
         Object obj;
         int i10;
-        s0.d dVar = new s0.d(accessibilityNodeInfo);
-        WeakHashMap weakHashMap = i0.f41062a;
+        s0.c cVar = new s0.c(accessibilityNodeInfo);
+        WeakHashMap weakHashMap = i0.f44697a;
         ClickableSpan[] clickableSpanArr = null;
         if (Build.VERSION.SDK_INT >= 28) {
             tag = Boolean.valueOf(d0.c(view));
@@ -67,7 +68,7 @@ public final class a extends View.AccessibilityDelegate {
         } else {
             z10 = false;
         }
-        dVar.n(z10);
+        cVar.n(z10);
         if (Build.VERSION.SDK_INT >= 28) {
             tag2 = Boolean.valueOf(d0.b(view));
         } else {
@@ -77,7 +78,7 @@ public final class a extends View.AccessibilityDelegate {
             }
         }
         Boolean bool2 = (Boolean) tag2;
-        dVar.k((bool2 == null || !bool2.booleanValue()) ? false : false);
+        cVar.k((bool2 == null || !bool2.booleanValue()) ? false : false);
         int i11 = Build.VERSION.SDK_INT;
         if (i11 >= 28) {
             tag3 = d0.a(view);
@@ -87,7 +88,7 @@ public final class a extends View.AccessibilityDelegate {
                 tag3 = null;
             }
         }
-        dVar.m((CharSequence) tag3);
+        cVar.m((CharSequence) tag3);
         if (i11 >= 30) {
             obj = f0.b(view);
         } else {
@@ -104,7 +105,7 @@ public final class a extends View.AccessibilityDelegate {
         } else {
             accessibilityNodeInfo.getExtras().putCharSequence("androidx.view.accessibility.AccessibilityNodeInfoCompat.STATE_DESCRIPTION_KEY", charSequence);
         }
-        this.f41028a.c(view, dVar);
+        this.f44660a.c(view, cVar);
         CharSequence text = accessibilityNodeInfo.getText();
         if (i11 < 26) {
             accessibilityNodeInfo.getExtras().remove("androidx.view.accessibility.AccessibilityNodeInfoCompat.SPANS_START_KEY");
@@ -144,18 +145,18 @@ public final class a extends View.AccessibilityDelegate {
                             }
                             i15++;
                         } else {
-                            i10 = s0.d.f41558c;
-                            s0.d.f41558c = i10 + 1;
+                            i10 = s0.c.f45684c;
+                            s0.c.f45684c = i10 + 1;
                             break;
                         }
                     }
                     sparseArray2.put(i10, new WeakReference(clickableSpanArr[i14]));
                     ClickableSpan clickableSpan2 = clickableSpanArr[i14];
                     Spanned spanned = (Spanned) text;
-                    dVar.c("androidx.view.accessibility.AccessibilityNodeInfoCompat.SPANS_START_KEY").add(Integer.valueOf(spanned.getSpanStart(clickableSpan2)));
-                    dVar.c("androidx.view.accessibility.AccessibilityNodeInfoCompat.SPANS_END_KEY").add(Integer.valueOf(spanned.getSpanEnd(clickableSpan2)));
-                    dVar.c("androidx.view.accessibility.AccessibilityNodeInfoCompat.SPANS_FLAGS_KEY").add(Integer.valueOf(spanned.getSpanFlags(clickableSpan2)));
-                    dVar.c("androidx.view.accessibility.AccessibilityNodeInfoCompat.SPANS_ID_KEY").add(Integer.valueOf(i10));
+                    cVar.c("androidx.view.accessibility.AccessibilityNodeInfoCompat.SPANS_START_KEY").add(Integer.valueOf(spanned.getSpanStart(clickableSpan2)));
+                    cVar.c("androidx.view.accessibility.AccessibilityNodeInfoCompat.SPANS_END_KEY").add(Integer.valueOf(spanned.getSpanEnd(clickableSpan2)));
+                    cVar.c("androidx.view.accessibility.AccessibilityNodeInfoCompat.SPANS_FLAGS_KEY").add(Integer.valueOf(spanned.getSpanFlags(clickableSpan2)));
+                    cVar.c("androidx.view.accessibility.AccessibilityNodeInfoCompat.SPANS_ID_KEY").add(Integer.valueOf(i10));
                 }
             }
         }
@@ -164,32 +165,32 @@ public final class a extends View.AccessibilityDelegate {
             list = Collections.EMPTY_LIST;
         }
         for (int i16 = 0; i16 < list.size(); i16++) {
-            dVar.b((s0.c) list.get(i16));
+            cVar.b((s0.b) list.get(i16));
         }
     }
 
     @Override
     public final void onPopulateAccessibilityEvent(View view, AccessibilityEvent accessibilityEvent) {
-        this.f41028a.f41030a.onPopulateAccessibilityEvent(view, accessibilityEvent);
+        this.f44660a.f44662a.onPopulateAccessibilityEvent(view, accessibilityEvent);
     }
 
     @Override
     public final boolean onRequestSendAccessibilityEvent(ViewGroup viewGroup, View view, AccessibilityEvent accessibilityEvent) {
-        return this.f41028a.f41030a.onRequestSendAccessibilityEvent(viewGroup, view, accessibilityEvent);
+        return this.f44660a.f44662a.onRequestSendAccessibilityEvent(viewGroup, view, accessibilityEvent);
     }
 
     @Override
     public final boolean performAccessibilityAction(View view, int i10, Bundle bundle) {
-        return this.f41028a.d(view, i10, bundle);
+        return this.f44660a.d(view, i10, bundle);
     }
 
     @Override
     public final void sendAccessibilityEvent(View view, int i10) {
-        this.f41028a.f41030a.sendAccessibilityEvent(view, i10);
+        this.f44660a.f44662a.sendAccessibilityEvent(view, i10);
     }
 
     @Override
     public final void sendAccessibilityEventUnchecked(View view, AccessibilityEvent accessibilityEvent) {
-        this.f41028a.f41030a.sendAccessibilityEventUnchecked(view, accessibilityEvent);
+        this.f44660a.f44662a.sendAccessibilityEventUnchecked(view, accessibilityEvent);
     }
 }

@@ -1,30 +1,36 @@
 package org.telegram.messenger;
-public final class c4 implements Runnable {
-    public final int f14836a;
-    public final boolean f14837b;
 
-    public c4(int i10, boolean z10) {
-        this.f14836a = i10;
-        this.f14837b = z10;
+import java.util.ArrayList;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_payments;
+public final class c4 implements Utilities.Callback {
+    public final int f17325a = 0;
+    public final long f17326b;
+    public final BaseController f17327c;
+    public final Object d;
+
+    public c4(GiftAuctionController giftAuctionController, long j3, TL_payments.TL_StarGiftAuctionState tL_StarGiftAuctionState) {
+        this.f17327c = giftAuctionController;
+        this.f17326b = j3;
+        this.d = tL_StarGiftAuctionState;
     }
 
     @Override
-    public final void run() {
-        int i10 = this.f14836a;
-        boolean z10 = this.f14837b;
-        switch (i10) {
+    public final void run(Object obj) {
+        switch (this.f17325a) {
             case 0:
-                FingerprintController.b(z10);
-                return;
-            case 1:
-                FingerprintController.a(z10);
-                return;
-            case 2:
-                LiteMode.lambda$onPowerSaverApplied$0(z10);
+                ((GiftAuctionController) this.f17327c).lambda$subscribeToGiftAuctionStateInternal$0(this.f17326b, (TL_payments.TL_StarGiftAuctionState) this.d, (ArrayList) obj);
                 return;
             default:
-                NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.didSetNewTheme, Boolean.FALSE, Boolean.valueOf(z10));
+                ((TranslateController) this.f17327c).lambda$checkTranslation$4((MessageObject) this.d, this.f17326b, (TLRPC.TL_textWithEntities) obj);
                 return;
         }
+    }
+
+    public c4(TranslateController translateController, MessageObject messageObject, long j3) {
+        this.f17327c = translateController;
+        this.d = messageObject;
+        this.f17326b = j3;
     }
 }

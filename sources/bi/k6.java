@@ -1,19 +1,32 @@
 package bi;
 
-import org.telegram.messenger.Utilities;
-public final class k6 implements Utilities.Callback2 {
-    public final int f2988a;
-    public final Object f2989b;
-    public final Object f2990c;
+import android.content.Context;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+public final class k6 extends View {
+    public final int f3203a;
+    public final n6 f3204b;
 
-    public k6(int i10, Object obj, Object obj2) {
-        this.f2988a = i10;
-        this.f2989b = obj;
-        this.f2990c = obj2;
+    public k6(n6 n6Var, Context context, int i10) {
+        super(context);
+        this.f3203a = i10;
+        this.f3204b = n6Var;
     }
 
     @Override
-    public final void run(java.lang.Object r36, java.lang.Object r37) {
-        throw new UnsupportedOperationException("Method not decompiled: bi.k6.run(java.lang.Object, java.lang.Object):void");
+    public final void onMeasure(int i10, int i11) {
+        switch (this.f3203a) {
+            case 0:
+                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(this.f3204b.d.f3693e), 1073741824));
+                return;
+            default:
+                s6 s6Var = this.f3204b.d;
+                int i12 = s6Var.f3699x.J;
+                if (i12 >= s6Var.f3696r.getPaddingTop() && !s6Var.R) {
+                    i12 = 0;
+                }
+                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(i12, 1073741824));
+                return;
+        }
     }
 }

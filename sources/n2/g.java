@@ -16,5 +16,5 @@ public interface g {
 
     f g();
 
-    h2.b h();
+    h2.a h();
 }

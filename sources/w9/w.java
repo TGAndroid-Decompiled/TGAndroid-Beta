@@ -7,12 +7,13 @@ import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
+import rg.p2;
 public abstract class w {
-    public static final ExecutorService f43946a = h.a("awaitEvenIfOnMainThread task continuation executor");
+    public static final ExecutorService f48459a = h.a("awaitEvenIfOnMainThread task continuation executor");
 
     public static Object a(Task task) {
         CountDownLatch countDownLatch = new CountDownLatch(1);
-        task.continueWith(f43946a, new th.e(countDownLatch, 2));
+        task.continueWith(f48459a, new p2(countDownLatch, 11));
         if (Looper.getMainLooper() == Looper.myLooper()) {
             countDownLatch.await(3L, TimeUnit.SECONDS);
         } else {

@@ -1,39 +1,78 @@
 package org.telegram.ui;
 
-import android.animation.ValueAnimator;
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-public final class lf implements ValueAnimator.AnimatorUpdateListener {
-    public final int f34694a;
-    public final eo f34695b;
-    public final View f34696c;
+import java.util.regex.Pattern;
+import org.telegram.messenger.MessagesController;
+import org.telegram.tgnet.TLRPC;
+public final class lf implements org.telegram.ui.ActionBar.a2, MessagesController.ErrorDelegate, wo0 {
+    public final int f38331a;
+    public final Runnable f38332b;
 
-    public lf(eo eoVar, org.telegram.ui.Cells.w0 w0Var, int i10) {
-        this.f34694a = i10;
-        this.f34695b = eoVar;
-        this.f34696c = w0Var;
+    public lf(int i10, Runnable runnable) {
+        this.f38331a = i10;
+        this.f38332b = runnable;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f34694a) {
-            case 0:
-                eo eoVar = this.f34695b;
-                eoVar.getClass();
-                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                eoVar.A9 = AndroidUtilities.dp(30.0f) * floatValue;
-                eoVar.o9();
-                this.f34696c.setAlpha(floatValue);
+    public void a(int i10) {
+        int i11 = this.f38331a;
+        Runnable runnable = this.f38332b;
+        switch (i11) {
+            case 9:
+                Pattern pattern = LaunchActivity.B1;
+                if (i10 == 1) {
+                    runnable.run();
+                    return;
+                }
                 return;
             default:
-                eo eoVar2 = this.f34695b;
-                eoVar2.getClass();
-                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                eoVar2.A9 = AndroidUtilities.dp(30.0f) * floatValue2;
-                eoVar2.o9();
-                eoVar2.r9();
-                this.f34696c.setAlpha(floatValue2);
+                if (i10 == 1) {
+                    runnable.run();
+                    return;
+                }
                 return;
+        }
+    }
+
+    @Override
+    public void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
+        switch (this.f38331a) {
+            case 0:
+                this.f38332b.run();
+                return;
+            case 1:
+                this.f38332b.run();
+                return;
+            default:
+                Runnable runnable = this.f38332b;
+                if (runnable != null) {
+                    runnable.run();
+                    return;
+                }
+                return;
+        }
+    }
+
+    @Override
+    public boolean run(TLRPC.TL_error tL_error) {
+        switch (this.f38331a) {
+            case 3:
+                this.f38332b.run();
+                return true;
+            case 4:
+                this.f38332b.run();
+                return true;
+            case 5:
+                this.f38332b.run();
+                return true;
+            case 6:
+                this.f38332b.run();
+                return true;
+            case 7:
+                this.f38332b.run();
+                return true;
+            default:
+                this.f38332b.run();
+                return true;
         }
     }
 }

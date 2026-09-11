@@ -1,89 +1,189 @@
 package org.telegram.ui.Components;
 
-import android.app.Dialog;
-import android.os.Bundle;
-import android.view.KeyEvent;
-import android.view.ViewGroup;
-import android.view.Window;
-import android.view.WindowManager;
-import android.widget.FrameLayout;
-import java.util.WeakHashMap;
+import android.app.Activity;
+import android.content.Intent;
+import android.net.Uri;
+import android.os.Build;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildVars;
+import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
+import org.telegram.messenger.Utilities;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.LaunchActivity;
-public final class de0 extends Dialog {
-    public final FrameLayout f22399a;
-    public final ce0 f22400b;
+public abstract class de0 {
+    public static int f25375a = 1500;
 
-    public de0(LaunchActivity launchActivity) {
-        super(launchActivity, R.style.TransparentDialog);
-        AndroidUtilities.enableEdgeToEdge(getWindow());
-        FrameLayout frameLayout = new FrameLayout(launchActivity);
-        this.f22399a = frameLayout;
-        q2 q2Var = new q2(22);
-        WeakHashMap weakHashMap = r0.i0.f41062a;
-        r0.a0.j(frameLayout, q2Var);
-        ce0 ce0Var = new ce0(this, launchActivity);
-        this.f22400b = ce0Var;
-        frameLayout.addView(ce0Var, w7.a6.e(-1, -1, 119));
-    }
-
-    public static void a(de0 de0Var) {
-        super.dismiss();
-    }
-
-    @Override
-    public final void dismiss() {
-        LaunchActivity launchActivity;
-        if (this.f22400b.g() && (launchActivity = LaunchActivity.G1) != null) {
-            launchActivity.moveTaskToBack(true);
-        }
-    }
-
-    @Override
-    public final boolean dispatchKeyEvent(KeyEvent keyEvent) {
-        LaunchActivity launchActivity;
-        if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0) {
-            if (this.f22400b.g() && (launchActivity = LaunchActivity.G1) != null) {
-                launchActivity.moveTaskToBack(true);
+    public static void a(String[] strArr, Activity activity, Utilities.Callback callback) {
+        int length = strArr.length;
+        boolean z10 = false;
+        int i10 = 0;
+        while (true) {
+            if (i10 >= length) {
+                break;
+            } else if (activity.checkSelfPermission(strArr[i10]) == 0) {
+                z10 = true;
+                break;
+            } else {
+                i10++;
             }
-            return true;
         }
-        return super.dispatchKeyEvent(keyEvent);
+        callback.run(Boolean.valueOf(z10));
     }
 
-    @Override
-    public final void onBackPressed() {
-        LaunchActivity launchActivity;
-        if (this.f22400b.g() && (launchActivity = LaunchActivity.G1) != null) {
-            launchActivity.moveTaskToBack(true);
+    public static void b(String[] strArr, Activity activity, Utilities.Callback callback) {
+        int length = strArr.length;
+        boolean z10 = false;
+        int i10 = 0;
+        while (true) {
+            if (i10 < length) {
+                if (activity.checkSelfPermission(strArr[i10]) != 0) {
+                    break;
+                }
+                i10++;
+            } else {
+                z10 = true;
+                break;
+            }
+        }
+        callback.run(Boolean.valueOf(z10));
+    }
+
+    public static boolean c() {
+        Activity activity = LaunchActivity.G1;
+        if (activity == null) {
+            activity = AndroidUtilities.findActivity(ApplicationLoader.applicationContext);
+        }
+        if (activity != null && Build.VERSION.SDK_INT >= 23) {
+            return activity.shouldShowRequestPermissionRationale("android.permission.POST_NOTIFICATIONS");
+        }
+        return false;
+    }
+
+    public static void d(int i10, int i11, String[] strArr, Utilities.Callback callback) {
+        Activity activity = LaunchActivity.G1;
+        if (activity == null) {
+            activity = AndroidUtilities.findActivity(ApplicationLoader.applicationContext);
+        }
+        if (activity == null) {
+            return;
+        }
+        if (Build.VERSION.SDK_INT >= 23) {
+            for (String str : strArr) {
+                if (activity.checkSelfPermission(str) != 0) {
+                    for (String str2 : strArr) {
+                        if (activity.shouldShowRequestPermissionRationale(str2)) {
+                            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(activity, 0, null);
+                            alertDialog$Builder.m(i10, 72, org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.L5, false), null);
+                            alertDialog$Builder.f20198a.T = AndroidUtilities.replaceTags(LocaleController.getString(i11));
+                            alertDialog$Builder.k(LocaleController.getString(R.string.PermissionOpenSettings), new k1(activity, 2));
+                            alertDialog$Builder.h(LocaleController.getString(R.string.ContactsPermissionAlertNotNow), null);
+                            alertDialog$Builder.f20198a.show();
+                            callback.run(Boolean.FALSE);
+                            return;
+                        }
+                    }
+                    g(strArr, new be0(strArr, activity, callback, 1));
+                    return;
+                }
+            }
+            callback.run(Boolean.TRUE);
+            return;
+        }
+        callback.run(Boolean.TRUE);
+    }
+
+    public static void e(int i10, int i11, String[] strArr, String[] strArr2, Utilities.Callback callback) {
+        Activity activity = LaunchActivity.G1;
+        if (activity == null) {
+            activity = AndroidUtilities.findActivity(ApplicationLoader.applicationContext);
+        }
+        if (activity == null) {
+            return;
+        }
+        if (Build.VERSION.SDK_INT >= 23) {
+            for (String str : strArr) {
+                if (activity.checkSelfPermission(str) == 0) {
+                    callback.run(Boolean.TRUE);
+                    return;
+                }
+            }
+            for (String str2 : strArr) {
+                if (!activity.shouldShowRequestPermissionRationale(str2)) {
+                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(activity, 0, null);
+                    alertDialog$Builder.m(i10, 72, org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.L5, false), null);
+                    alertDialog$Builder.f20198a.T = AndroidUtilities.replaceTags(LocaleController.getString(i11));
+                    alertDialog$Builder.k(LocaleController.getString(R.string.PermissionOpenSettings), new k1(activity, 1));
+                    alertDialog$Builder.h(LocaleController.getString(R.string.ContactsPermissionAlertNotNow), null);
+                    alertDialog$Builder.f20198a.show();
+                    callback.run(Boolean.FALSE);
+                    return;
+                }
+            }
+            g(strArr2, new be0(strArr2, activity, callback, 0));
+            return;
+        }
+        callback.run(Boolean.TRUE);
+    }
+
+    public static boolean f(String str) {
+        Activity activity = LaunchActivity.G1;
+        if (activity == null) {
+            activity = AndroidUtilities.findActivity(ApplicationLoader.applicationContext);
+        }
+        if (activity == null) {
+            return false;
+        }
+        if (Build.VERSION.SDK_INT >= 23 && activity.checkSelfPermission(str) != 0) {
+            return false;
+        }
+        return true;
+    }
+
+    public static void g(String[] strArr, Utilities.Callback callback) {
+        int i10;
+        Activity activity = LaunchActivity.G1;
+        if (activity == null) {
+            activity = AndroidUtilities.findActivity(ApplicationLoader.applicationContext);
+        }
+        if (activity != null) {
+            if (Build.VERSION.SDK_INT >= 23) {
+                int i11 = f25375a;
+                f25375a = i11 + 1;
+                NotificationCenter.NotificationCenterDelegate[] notificationCenterDelegateArr = {new ce0(i11, callback, notificationCenterDelegateArr)};
+                NotificationCenter.getGlobalInstance().addObserver(notificationCenterDelegateArr[0], NotificationCenter.activityPermissionsGranted);
+                activity.requestPermissions(strArr, i11);
+            } else if (callback != null) {
+                int[] iArr = new int[strArr.length];
+                for (int i12 = 0; i12 < strArr.length; i12++) {
+                    if (f(strArr[i12])) {
+                        i10 = 0;
+                    } else {
+                        i10 = -1;
+                    }
+                    iArr[i12] = i10;
+                }
+                callback.run(iArr);
+            }
         }
     }
 
-    @Override
-    public final void onCreate(Bundle bundle) {
-        super.onCreate(bundle);
-        Window window = getWindow();
-        window.setWindowAnimations(R.style.DialogNoAnimation);
-        ViewGroup.LayoutParams layoutParams = new ViewGroup.LayoutParams(-1, -1);
-        FrameLayout frameLayout = this.f22399a;
-        setContentView(frameLayout, layoutParams);
-        WindowManager.LayoutParams attributes = window.getAttributes();
-        attributes.width = -1;
-        attributes.height = -1;
-        attributes.gravity = 119;
-        attributes.dimAmount = 0.0f;
-        int i10 = attributes.flags & (-3);
-        attributes.flags = i10;
-        attributes.softInputMode = 16;
-        if (!BuildVars.DEBUG_PRIVATE_VERSION) {
-            attributes.flags = i10 | 8192;
-            AndroidUtilities.logFlagSecure();
+    public static void h() {
+        Activity activity = LaunchActivity.G1;
+        if (activity == null) {
+            activity = AndroidUtilities.findActivity(ApplicationLoader.applicationContext);
         }
-        attributes.flags |= -2013198976;
-        window.setAttributes(attributes);
-        frameLayout.setSystemUiVisibility(256);
-        AndroidUtilities.setLightNavigationBar((Dialog) this, false);
+        if (activity == null) {
+            return;
+        }
+        Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
+        intent.setData(Uri.parse("package:" + ApplicationLoader.applicationContext.getPackageName()));
+        try {
+            activity.startActivity(intent);
+        } catch (Exception e7) {
+            FileLog.e(e7);
+        }
     }
 }

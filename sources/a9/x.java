@@ -1,3 +1,4 @@
 package a9;
-public final class x extends a implements z {
+public abstract class x extends r implements y {
+    public static final int f368i = 0;
 }

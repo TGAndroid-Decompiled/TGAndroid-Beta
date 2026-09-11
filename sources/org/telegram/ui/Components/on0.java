@@ -1,18 +1,13 @@
 package org.telegram.ui.Components;
-public final class on0 {
-    public yg.p0 f25845a;
-    public int f25846b;
-    public String f25847c;
-    public int d;
+public final class on0 extends s4.j {
+    public final org.telegram.ui.ey F;
 
-    public final boolean equals(Object obj) {
-        if (!(obj instanceof on0)) {
-            return false;
-        }
-        on0 on0Var = (on0) obj;
-        if (this.f25846b != on0Var.f25846b || this.f25845a.h != on0Var.f25845a.h || this.d != on0Var.d) {
-            return false;
-        }
-        return true;
+    public on0(org.telegram.ui.ey eyVar) {
+        this.F = eyVar;
+    }
+
+    @Override
+    public final void P(s4.c1 c1Var) {
+        this.F.invalidate();
     }
 }

@@ -1,8 +1,26 @@
 package zh;
-public interface q7 {
-    void H0(long j3, int i10, j2 j2Var);
+public final class q7 implements Runnable {
+    public final long f52483a;
+    public final int f52484b;
+    public final int f52485c;
+    public final boolean d;
 
-    void b(boolean z10);
+    public q7(long j3, int i10, int i11, boolean z10) {
+        this.f52483a = j3;
+        this.f52484b = i10;
+        this.f52485c = i11;
+        this.d = z10;
+    }
 
-    boolean y0(long j3, int i10, int i11, int i12, r7 r7Var);
+    @Override
+    public final void run() {
+        long j3 = this.f52483a;
+        int i10 = this.f52484b;
+        int i11 = this.f52485c;
+        if (j3 != 0) {
+            o.g(i10).p(i11, j3);
+        } else {
+            s5.y(i10, this.d).X(i11);
+        }
+    }
 }

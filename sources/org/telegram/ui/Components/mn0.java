@@ -1,50 +1,30 @@
 package org.telegram.ui.Components;
 
-import android.view.KeyEvent;
-import android.view.View;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MessagesController;
-import org.telegram.tgnet.TLRPC;
-public final class mn0 implements TextView.OnEditorActionListener {
-    public final ln0 f25258a;
-    public final int f25259b;
-    public final TLRPC.Reaction f25260c;
-    public final org.telegram.ui.ActionBar.d2[] d;
-    public final View e;
+import android.content.Context;
+import java.util.ArrayList;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class mn0 extends qs {
+    public final org.telegram.ui.ey f28474i0;
 
-    public mn0(ln0 ln0Var, int i10, TLRPC.Reaction reaction, org.telegram.ui.ActionBar.d2[] d2VarArr, View view) {
-        this.f25258a = ln0Var;
-        this.f25259b = i10;
-        this.f25260c = reaction;
-        this.d = d2VarArr;
-        this.e = view;
+    public mn0(org.telegram.ui.ey eyVar, ll0 ll0Var, Context context, int i10, int i11) {
+        super(ll0Var, context, i10, i11, false, null);
+        this.f28474i0 = eyVar;
     }
 
     @Override
-    public final boolean onEditorAction(TextView textView, int i10, KeyEvent keyEvent) {
-        if (i10 != 6) {
-            return false;
+    public final void N(boolean z10) {
+        boolean z11;
+        ArrayList arrayList;
+        super.N(z10);
+        ln0 ln0Var = this.f28474i0.f32960l0;
+        if (!this.Z && !this.f29805a0 && (arrayList = this.T) != null && arrayList.isEmpty()) {
+            z11 = false;
+        } else {
+            z11 = true;
         }
-        ln0 ln0Var = this.f25258a;
-        String obj = ln0Var.getText().toString();
-        if (obj.length() > 12) {
-            AndroidUtilities.shakeView(ln0Var);
-            return true;
-        }
-        MessagesController.getInstance(this.f25259b).renameSavedReactionTag(yg.p0.d(this.f25260c), obj);
-        org.telegram.ui.ActionBar.d2[] d2VarArr = this.d;
-        org.telegram.ui.ActionBar.d2 d2Var = d2VarArr[0];
-        if (d2Var != null) {
-            d2Var.dismiss();
-        }
-        if (d2VarArr[0] == rn0.H) {
-            rn0.H = null;
-        }
-        View view = this.e;
-        if (view != null) {
-            view.requestFocus();
-        }
-        return true;
+        ln0Var.e(z11, z10);
+        ln0Var.d.setText(LocaleController.getString(R.string.NoResult));
+        ln0Var.f32755e.setVisibility(8);
     }
 }

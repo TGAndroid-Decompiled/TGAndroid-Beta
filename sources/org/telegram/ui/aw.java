@@ -1,26 +1,44 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.tl.TL_account;
-public final class aw implements Utilities.Callback {
-    public final int f31097a;
-    public final wy f31098b;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.MessagesStorage;
+public final class aw implements MessagesStorage.IntCallback {
+    public final int f34557a;
+    public final uy f34558b;
 
-    public aw(wy wyVar, int i10) {
-        this.f31097a = i10;
-        this.f31098b = wyVar;
+    public aw(uy uyVar, int i10) {
+        this.f34557a = i10;
+        this.f34558b = uyVar;
     }
 
     @Override
-    public final void run(Object obj) {
-        switch (this.f31097a) {
+    public final void run(int i10) {
+        boolean z10;
+        boolean z11;
+        switch (this.f34557a) {
             case 0:
-                wy wyVar = this.f31098b;
-                wyVar.O1 = (Long) obj;
-                wyVar.U4();
+                uy uyVar = this.f34558b;
+                uyVar.getClass();
+                if (i10 != 0) {
+                    z10 = true;
+                } else {
+                    z10 = false;
+                }
+                uyVar.U1 = z10;
+                MessagesController.getGlobalNotificationsSettings().edit().putBoolean("askAboutContacts", uyVar.U1).apply();
+                uyVar.k3(false);
                 return;
             default:
-                wy.d0(this.f31098b, (TL_account.TL_birthday) obj);
+                uy uyVar2 = this.f34558b;
+                uyVar2.getClass();
+                if (i10 != 0) {
+                    z11 = true;
+                } else {
+                    z11 = false;
+                }
+                uyVar2.U1 = z11;
+                MessagesController.getGlobalNotificationsSettings().edit().putBoolean("askAboutContacts", uyVar2.U1).commit();
+                uyVar2.k3(false);
                 return;
         }
     }

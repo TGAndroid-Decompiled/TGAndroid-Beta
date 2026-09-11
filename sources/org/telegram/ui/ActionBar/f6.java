@@ -4,23 +4,23 @@ import android.graphics.ColorFilter;
 import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
 public interface f6 {
-    Paint F(String str);
+    Paint G(String str);
 
-    int F0(int i10);
+    int G0(int i10);
 
-    void L0(int i10, int i11);
+    void O0(int i10, int i11);
 
     boolean a();
 
-    int e0(int i10);
-
-    int f1(int i10);
-
     Drawable getDrawable(String str);
+
+    int h0(int i10);
+
+    int h1(int i10);
 
     void l(float f7, float f10, int i10, int i11);
 
-    boolean m0();
+    boolean o0();
 
-    ColorFilter w();
+    ColorFilter x();
 }

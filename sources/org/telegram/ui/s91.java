@@ -1,30 +1,34 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.view.View;
-public final class s91 implements View.OnClickListener {
-    public final int f36608a;
-    public final Context f36609b;
-    public final org.telegram.ui.ActionBar.f6 f36610c;
+import android.text.TextWatcher;
+import android.widget.TextView;
+import org.telegram.ui.Components.EditTextBoldCursor;
+public final class s91 implements TextWatcher {
+    public boolean f40359a;
+    public final int f40360b;
+    public final EditTextBoldCursor f40361c;
+    public final org.telegram.ui.Components.zc0 d;
+    public final int[] f40362e;
+    public final TextView f40363f;
 
-    public s91(Context context, int i10, org.telegram.ui.ActionBar.f6 f6Var) {
-        this.f36608a = i10;
-        this.f36609b = context;
-        this.f36610c = f6Var;
+    public s91(int i10, EditTextBoldCursor editTextBoldCursor, org.telegram.ui.Components.zc0 zc0Var, int[] iArr, TextView textView) {
+        this.f40360b = i10;
+        this.f40361c = editTextBoldCursor;
+        this.d = zc0Var;
+        this.f40362e = iArr;
+        this.f40363f = textView;
     }
 
     @Override
-    public final void onClick(View view) {
-        switch (this.f36608a) {
-            case 0:
-                new xh.p7(this.f36609b, this.f36610c).show();
-                return;
-            case 1:
-                new xh.p7(this.f36609b, this.f36610c).show();
-                return;
-            default:
-                new xh.p7(this.f36609b, this.f36610c).show();
-                return;
-        }
+    public final void afterTextChanged(android.text.Editable r18) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.s91.afterTextChanged(android.text.Editable):void");
+    }
+
+    @Override
+    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+    }
+
+    @Override
+    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
     }
 }

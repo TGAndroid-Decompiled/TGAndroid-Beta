@@ -1,15 +1,35 @@
 package org.telegram.ui;
+public final class hl implements Runnable {
+    public final int f37060a;
+    public final il f37061b;
 
-import org.telegram.messenger.MessagesStorage;
-public final class hl implements MessagesStorage.IntCallback {
-    public final eo f33406a;
-
-    public hl(eo eoVar) {
-        this.f33406a = eoVar;
+    public hl(il ilVar, int i10) {
+        this.f37060a = i10;
+        this.f37061b = ilVar;
     }
 
     @Override
-    public final void run(int i10) {
-        this.f33406a.G9(i10);
+    public final void run() {
+        switch (this.f37060a) {
+            case 0:
+                mk mkVar = this.f37061b.H.Y;
+                if (mkVar != null) {
+                    mkVar.T0 = false;
+                    org.telegram.ui.Components.eg egVar = mkVar.U0;
+                    if (egVar != null) {
+                        egVar.u(false);
+                        return;
+                    }
+                    return;
+                }
+                return;
+            default:
+                mk mkVar2 = this.f37061b.H.Y;
+                if (mkVar2 != null) {
+                    mkVar2.H0();
+                    return;
+                }
+                return;
+        }
     }
 }

@@ -1,85 +1,88 @@
 package bi;
 
 import android.content.Context;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.UserConfig;
-public final class y6 extends f3 {
-    public final int H;
-    public final r7 I;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
+public final class y6 extends FrameLayout implements r0.m {
+    public final b2.q0 f4015a;
+    public final a7 f4016b;
 
-    public y6(r7 r7Var, Context context, d7 d7Var, int i10) {
-        super(context, d7Var, false, false);
-        this.I = r7Var;
-        this.H = i10;
+    public y6(a7 a7Var, Context context) {
+        super(context);
+        this.f4016b = a7Var;
+        this.f4015a = new Object();
     }
 
     @Override
-    public final boolean l0(Integer num) {
-        j7 j7Var = this.I.R0;
-        if (num.intValue() == 3) {
-            int i10 = 0;
-            for (int i11 = 0; i11 < j7Var.getChildCount(); i11++) {
-                if (j7Var.getChildAt(i11) instanceof pg.a2) {
-                    i10++;
+    public final void E(ViewGroup viewGroup, int i10, int i11, int[] iArr, int i12) {
+        a7 a7Var = this.f4016b;
+        pb pbVar = a7Var.f2767r;
+        if (a7Var.f2770x <= 0) {
+            float f7 = pbVar.f3543e0;
+            float f10 = a7Var.f2763c;
+            if (f7 < f10 && i11 > 0) {
+                float f11 = f7 + i11;
+                iArr[1] = i11;
+                if (f11 <= f10) {
+                    f10 = f11;
                 }
-            }
-            if (i10 >= MessagesController.getInstance(this.currentAccount).storiesSuggestedReactionsLimitDefault && !UserConfig.getInstance(this.currentAccount).isPremium()) {
-                String formatPluralString = LocaleController.formatPluralString("StoryPremiumWidgets2", MessagesController.getInstance(this.currentAccount).storiesSuggestedReactionsLimitPremium, new Object[0]);
-                try {
-                    this.container.performHapticFeedback(3);
-                } catch (Exception unused) {
+                a7Var.setOffset(f10);
+                pbVar.f3543e0 = f10;
+                o5 currentPeerView = pbVar.f3561n0.getCurrentPeerView();
+                if (currentPeerView != null) {
+                    currentPeerView.invalidate();
                 }
-                new org.telegram.ui.Components.wc(this.container, this.resourcesProvider).M(LocaleController.getString(R.string.IncreaseLimit), AndroidUtilities.replaceSingleTag(formatPluralString, org.telegram.ui.ActionBar.j6.gc, 0, new a3.d(this, 16), this.resourcesProvider), R.raw.star_premium_2).k(true);
-                return false;
-            } else if (i10 >= MessagesController.getInstance(this.currentAccount).storiesSuggestedReactionsLimitPremium) {
-                try {
-                    this.container.performHapticFeedback(3);
-                } catch (Exception unused2) {
+                eb ebVar = pbVar.v;
+                if (ebVar != null) {
+                    ebVar.invalidate();
                 }
-                new org.telegram.ui.Components.wc(this.container, this.resourcesProvider).M(LocaleController.getString("LimitReached", R.string.LimitReached), LocaleController.formatPluralString("StoryReactionsWidgetLimit2", MessagesController.getInstance(this.currentAccount).storiesSuggestedReactionsLimitPremium, new Object[0]), R.raw.chats_infotip).k(true);
-                return false;
             }
         }
-        return true;
     }
 
     @Override
-    public final boolean m0(Integer num) {
-        r7 r7Var = this.I;
-        j7 j7Var = r7Var.R0;
-        boolean z10 = false;
-        if (r7Var.X1) {
-            if (num.intValue() != 2) {
-                return false;
+    public final void i(ViewGroup viewGroup, int i10, int i11, int i12, int i13, int i14, int[] iArr) {
+        a7 a7Var = this.f4016b;
+        pb pbVar = a7Var.f2767r;
+        if (a7Var.f2770x <= 0 && i13 != 0 && i11 == 0) {
+            float f7 = pbVar.f3543e0;
+            float f10 = i13 + f7;
+            if (f10 <= f7) {
+                f7 = f10;
             }
-        } else if (num.intValue() == 5) {
-            int i10 = 0;
-            while (true) {
-                if (i10 >= j7Var.getChildCount()) {
-                    break;
-                } else if (j7Var.getChildAt(i10) instanceof pg.w2) {
-                    z10 = true;
-                    break;
-                } else {
-                    i10++;
-                }
+            a7Var.setOffset(f7);
+            pbVar.f3543e0 = f7;
+            o5 currentPeerView = pbVar.f3561n0.getCurrentPeerView();
+            if (currentPeerView != null) {
+                currentPeerView.invalidate();
             }
-            return !z10;
+            eb ebVar = pbVar.v;
+            if (ebVar != null) {
+                ebVar.invalidate();
+            }
         }
-        return true;
     }
 
     @Override
-    public final boolean n0(s sVar) {
-        return this.I.f0(sVar);
+    public final void n(int i10, View view) {
+        this.f4015a.f2260a = 0;
     }
 
     @Override
-    public final void onDismissAnimationStart() {
-        super.onDismissAnimationStart();
-        this.I.R0(this.H);
+    public final boolean p(View view, View view2, int i10, int i11) {
+        if (this.f4016b.f2770x <= 0 && i10 == 2) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public final void s(View view, View view2, int i10, int i11) {
+        this.f4015a.f2260a = i10;
+    }
+
+    @Override
+    public final void b(ViewGroup viewGroup, int i10, int i11, int i12, int i13, int i14) {
     }
 }

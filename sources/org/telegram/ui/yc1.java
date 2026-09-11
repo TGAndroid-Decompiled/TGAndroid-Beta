@@ -1,61 +1,82 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.RectF;
-import android.widget.FrameLayout;
-public final class yc1 extends FrameLayout {
-    public final int f38972a;
-    public final RectF f38973b;
-    public final ae1 f38974c;
+import android.view.MotionEvent;
+import android.widget.Scroller;
+import org.telegram.messenger.Utilities;
+public final class yc1 implements org.telegram.ui.Components.eo0, org.telegram.ui.Components.i20 {
+    public final wd1 f43078a;
 
-    public yc1(ae1 ae1Var, Context context, int i10) {
-        super(context);
-        this.f38972a = i10;
-        switch (i10) {
-            case 1:
-                this.f38974c = ae1Var;
-                super(context);
-                this.f38973b = new RectF();
-                return;
-            default:
-                this.f38974c = ae1Var;
-                this.f38973b = new RectF();
-                return;
-        }
+    public yc1(wd1 wd1Var) {
+        this.f43078a = wd1Var;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        switch (this.f38972a) {
-            case 0:
-                RectF rectF = this.f38973b;
-                rectF.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
-                ae1 ae1Var = this.f38974c;
-                yc1 yc1Var = ae1Var.D0;
-                pd1 pd1Var = ae1Var.f30976x0;
-                ad1 ad1Var = ae1Var.f30914a;
-                org.telegram.ui.ActionBar.j6.s(yc1Var, pd1Var, ad1Var);
-                canvas.drawRoundRect(rectF, getMeasuredHeight() / 2, getMeasuredHeight() / 2, ad1Var.F("paintChatActionBackground"));
-                if (org.telegram.ui.ActionBar.j6.a1()) {
-                    canvas.drawRoundRect(rectF, getMeasuredHeight() / 2, getMeasuredHeight() / 2, ad1Var.F("paintChatActionBackgroundDarken"));
-                    return;
-                }
-                return;
-            default:
-                RectF rectF2 = this.f38973b;
-                rectF2.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
-                ae1 ae1Var2 = this.f38974c;
-                yc1 yc1Var2 = ae1Var2.E0;
-                pd1 pd1Var2 = ae1Var2.f30976x0;
-                ad1 ad1Var2 = ae1Var2.f30914a;
-                org.telegram.ui.ActionBar.j6.s(yc1Var2, pd1Var2, ad1Var2);
-                canvas.drawRoundRect(rectF2, getMeasuredHeight() / 2, getMeasuredHeight() / 2, ad1Var2.F("paintChatActionBackground"));
-                if (org.telegram.ui.ActionBar.j6.a1()) {
-                    canvas.drawRoundRect(rectF2, getMeasuredHeight() / 2, getMeasuredHeight() / 2, ad1Var2.F("paintChatActionBackgroundDarken"));
-                    return;
-                }
-                return;
+    public void X(float f7, boolean z10) {
+        wd1 wd1Var = this.f43078a;
+        wd1Var.l1 = f7;
+        wd1Var.k1();
+    }
+
+    @Override
+    public CharSequence getContentDescription() {
+        return null;
+    }
+
+    @Override
+    public int l0() {
+        return 0;
+    }
+
+    @Override
+    public boolean onDown(MotionEvent motionEvent) {
+        Scroller scroller = this.f43078a.f41921c;
+        if (scroller != null) {
+            scroller.abortAnimation();
+            return true;
         }
+        return true;
+    }
+
+    @Override
+    public boolean onFling(MotionEvent motionEvent, MotionEvent motionEvent2, float f7, float f10) {
+        wd1 wd1Var = this.f43078a;
+        Scroller scroller = wd1Var.f41921c;
+        if (scroller != null) {
+            scroller.abortAnimation();
+            wd1Var.f41921c.fling((int) wd1Var.X1, 0, Math.round(-f7), Math.round(f10), 0, (int) wd1Var.W1, 0, Integer.MAX_VALUE);
+            wd1Var.f41977x0.postInvalidate();
+            return true;
+        }
+        return true;
+    }
+
+    @Override
+    public boolean onScroll(MotionEvent motionEvent, MotionEvent motionEvent2, float f7, float f10) {
+        wd1 wd1Var = this.f43078a;
+        Scroller scroller = wd1Var.f41921c;
+        if (scroller != null) {
+            scroller.abortAnimation();
+        }
+        wd1Var.X1 = Utilities.clamp(wd1Var.X1 + f7, wd1Var.W1, 0.0f);
+        wd1Var.V0();
+        wd1Var.f41977x0.invalidate();
+        return true;
+    }
+
+    @Override
+    public boolean onSingleTapUp(MotionEvent motionEvent) {
+        return false;
+    }
+
+    @Override
+    public void B() {
+    }
+
+    @Override
+    public void b1() {
+    }
+
+    @Override
+    public void onLongPress(MotionEvent motionEvent) {
     }
 }

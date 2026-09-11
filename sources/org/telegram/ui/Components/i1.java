@@ -1,55 +1,40 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class i1 implements zc0 {
-    public final int f23849a;
-    public final int[] f23850b;
+import android.content.Intent;
+import android.net.Uri;
+import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.FileLog;
+import org.telegram.ui.LanguageSelectActivity;
+import org.telegram.ui.LaunchActivity;
+public final class i1 implements org.telegram.ui.ActionBar.a2 {
+    public final int f26922a;
+    public final LaunchActivity f26923b;
 
-    public i1(int i10, int[] iArr) {
-        this.f23849a = i10;
-        this.f23850b = iArr;
+    public i1(LaunchActivity launchActivity, int i10) {
+        this.f26922a = i10;
+        this.f26923b = launchActivity;
     }
 
     @Override
-    public final String k(int i10) {
-        switch (this.f23849a) {
+    public final void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
+        switch (this.f26922a) {
             case 0:
-                int i11 = this.f23850b[i10];
-                if (i11 == 0) {
-                    return LocaleController.getString(R.string.MuteNever);
-                }
-                if (i11 < 60) {
-                    return LocaleController.formatPluralString("Minutes", i11, new Object[0]);
-                }
-                if (i11 < 1440) {
-                    return LocaleController.formatPluralString("Hours", i11 / 60, new Object[0]);
-                }
-                if (i11 < 10080) {
-                    return LocaleController.formatPluralString("Days", i11 / 1440, new Object[0]);
-                }
-                if (i11 < 44640) {
-                    return LocaleController.formatPluralString("Weeks", i11 / 10080, new Object[0]);
-                }
-                if (i11 < 525600) {
-                    return LocaleController.formatPluralString("Months", i11 / 44640, new Object[0]);
-                }
-                return LocaleController.formatPluralString("Years", i11 / 525600, new Object[0]);
+                this.f26923b.p0(new LanguageSelectActivity());
+                return;
+            case 1:
+                this.f26923b.p0(new org.telegram.ui.z6());
+                return;
             default:
-                int i12 = this.f23850b[i10];
-                if (i12 == 0) {
-                    return LocaleController.getString(R.string.AutoDeleteNever);
+                LaunchActivity launchActivity = this.f26923b;
+                try {
+                    Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
+                    intent.setData(Uri.parse("package:" + ApplicationLoader.applicationContext.getPackageName()));
+                    launchActivity.startActivity(intent);
+                    return;
+                } catch (Exception e7) {
+                    FileLog.e(e7);
+                    return;
                 }
-                if (i12 < 10080) {
-                    return LocaleController.formatPluralString("Days", i12 / 1440, new Object[0]);
-                }
-                if (i12 < 44640) {
-                    return LocaleController.formatPluralString("Weeks", i12 / 10080, new Object[0]);
-                }
-                if (i12 < 525600) {
-                    return LocaleController.formatPluralString("Months", i12 / 44640, new Object[0]);
-                }
-                return LocaleController.formatPluralString("Years", i12 / 525600, new Object[0]);
         }
     }
 }

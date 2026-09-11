@@ -5,7 +5,7 @@ import com.google.android.gms.wallet.FullWallet;
 import com.google.android.gms.wallet.MaskedWallet;
 import com.google.android.gms.wallet.wobs.CommonWalletObject;
 public final class r implements Parcelable.Creator {
-    public final int f43284a;
+    public final int f47749a;
 
     @Override
     public final java.lang.Object createFromParcel(android.os.Parcel r27) {
@@ -14,19 +14,19 @@ public final class r implements Parcelable.Creator {
 
     @Override
     public final Object[] newArray(int i10) {
-        switch (this.f43284a) {
+        switch (this.f47749a) {
             case 0:
                 return new k[i10];
             case 1:
                 return new l[i10];
             case 2:
-                return new s[i10];
+                return new t[i10];
             case 3:
                 return new m[i10];
             case 4:
                 return new n[i10];
             case 5:
-                return new t[i10];
+                return new u[i10];
             case 6:
                 return new q[i10];
             case 7:

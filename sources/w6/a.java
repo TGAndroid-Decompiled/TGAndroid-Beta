@@ -8,8 +8,8 @@ import android.graphics.PorterDuff;
 import android.view.MenuItem;
 import android.webkit.WebView;
 public abstract class a {
-    public static Context f43554a;
-    public static Boolean f43555b;
+    public static Context f48041a;
+    public static Boolean f48042b;
 
     public static PackageInfo a() {
         return WebView.getCurrentWebViewPackage();
@@ -19,23 +19,23 @@ public abstract class a {
         Boolean bool;
         synchronized (a.class) {
             Context applicationContext = context.getApplicationContext();
-            Context context2 = f43554a;
-            if (context2 != null && (bool = f43555b) != null && context2 == applicationContext) {
+            Context context2 = f48041a;
+            if (context2 != null && (bool = f48042b) != null && context2 == applicationContext) {
                 return bool.booleanValue();
             }
-            f43555b = null;
+            f48042b = null;
             if (u6.b.d()) {
-                f43555b = Boolean.valueOf(applicationContext.getPackageManager().isInstantApp());
+                f48042b = Boolean.valueOf(applicationContext.getPackageManager().isInstantApp());
             } else {
                 try {
                     context.getClassLoader().loadClass("com.google.android.instantapps.supervisor.InstantAppsRuntime");
-                    f43555b = Boolean.TRUE;
+                    f48042b = Boolean.TRUE;
                 } catch (ClassNotFoundException unused) {
-                    f43555b = Boolean.FALSE;
+                    f48042b = Boolean.FALSE;
                 }
             }
-            f43554a = applicationContext;
-            return f43555b.booleanValue();
+            f48041a = applicationContext;
+            return f48042b.booleanValue();
         }
     }
 

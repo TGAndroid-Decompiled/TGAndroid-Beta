@@ -86,7 +86,7 @@ public class a extends AbstractSet {
     public final int size() {
         switch (this.f0a) {
             case 0:
-                return ((f) this.f1b).f28c;
+                return ((f) this.f1b).f31c;
             default:
                 return ((d1) this.f1b).size();
         }

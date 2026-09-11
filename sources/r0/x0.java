@@ -6,27 +6,27 @@ import android.view.WindowInsets;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 public final class x0 extends b1 {
-    public static Field e = null;
-    public static boolean f41102f = false;
-    public static Constructor f41103g = null;
+    public static Field f44744e = null;
+    public static boolean f44745f = false;
+    public static Constructor f44746g = null;
     public static boolean h = false;
-    public WindowInsets f41104c;
+    public WindowInsets f44747c;
     public i0.c d;
 
     public x0() {
-        this.f41104c = i();
+        this.f44747c = i();
     }
 
     private static WindowInsets i() {
-        if (!f41102f) {
+        if (!f44745f) {
             try {
-                e = WindowInsets.class.getDeclaredField("CONSUMED");
+                f44744e = WindowInsets.class.getDeclaredField("CONSUMED");
             } catch (ReflectiveOperationException e7) {
                 Log.i("WindowInsetsCompat", "Could not retrieve WindowInsets.CONSUMED field", e7);
             }
-            f41102f = true;
+            f44745f = true;
         }
-        Field field = e;
+        Field field = f44744e;
         if (field != null) {
             try {
                 WindowInsets windowInsets = (WindowInsets) field.get(null);
@@ -39,13 +39,13 @@ public final class x0 extends b1 {
         }
         if (!h) {
             try {
-                f41103g = WindowInsets.class.getConstructor(Rect.class);
+                f44746g = WindowInsets.class.getConstructor(Rect.class);
             } catch (ReflectiveOperationException e11) {
                 Log.i("WindowInsetsCompat", "Could not retrieve WindowInsets(Rect) constructor", e11);
             }
             h = true;
         }
-        Constructor constructor = f41103g;
+        Constructor constructor = f44746g;
         if (constructor != null) {
             try {
                 return (WindowInsets) constructor.newInstance(new Rect());
@@ -59,9 +59,9 @@ public final class x0 extends b1 {
     @Override
     public l1 b() {
         a();
-        l1 h10 = l1.h(null, this.f41104c);
-        i0.c[] cVarArr = this.f41033b;
-        i1 i1Var = h10.f41074a;
+        l1 h10 = l1.h(null, this.f44747c);
+        i0.c[] cVarArr = this.f44665b;
+        i1 i1Var = h10.f44711a;
         i1Var.q(cVarArr);
         i1Var.s(this.d);
         return h10;
@@ -74,14 +74,14 @@ public final class x0 extends b1 {
 
     @Override
     public void g(i0.c cVar) {
-        WindowInsets windowInsets = this.f41104c;
+        WindowInsets windowInsets = this.f44747c;
         if (windowInsets != null) {
-            this.f41104c = windowInsets.replaceSystemWindowInsets(cVar.f10074a, cVar.f10075b, cVar.f10076c, cVar.d);
+            this.f44747c = windowInsets.replaceSystemWindowInsets(cVar.f11425a, cVar.f11426b, cVar.f11427c, cVar.d);
         }
     }
 
     public x0(l1 l1Var) {
         super(l1Var);
-        this.f41104c = l1Var.g();
+        this.f44747c = l1Var.g();
     }
 }

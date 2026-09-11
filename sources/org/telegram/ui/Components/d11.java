@@ -1,42 +1,16 @@
 package org.telegram.ui.Components;
 
-import android.text.TextUtils;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
-import android.widget.ViewSwitcher;
-public class d11 extends ViewSwitcher {
-    public final void a(CharSequence charSequence, boolean z10, boolean z11) {
-        if (z11 || !TextUtils.equals(charSequence, getCurrentView().getText())) {
-            if (z10) {
-                getNextView().setText(charSequence);
-                showNext();
-                return;
-            }
-            getCurrentView().setText(charSequence);
-        }
+import androidx.recyclerview.widget.RecyclerView;
+import org.telegram.ui.Components.ThemeEditorView;
+public final class d11 extends s4.s0 {
+    public final ThemeEditorView.EditorAlert f25174a;
+
+    public d11(ThemeEditorView.EditorAlert editorAlert) {
+        this.f25174a = editorAlert;
     }
 
     @Override
-    public final void addView(View view, int i10, ViewGroup.LayoutParams layoutParams) {
-        if (view instanceof TextView) {
-            super.addView(view, i10, layoutParams);
-            return;
-        }
-        throw new IllegalArgumentException();
-    }
-
-    public void setText(CharSequence charSequence) {
-        a(charSequence, true, false);
-    }
-
-    @Override
-    public TextView getCurrentView() {
-        return (TextView) super.getCurrentView();
-    }
-
-    @Override
-    public TextView getNextView() {
-        return (TextView) super.getNextView();
+    public final void b(RecyclerView recyclerView, int i10, int i11) {
+        ThemeEditorView.EditorAlert.s(this.f25174a);
     }
 }

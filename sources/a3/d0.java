@@ -1,69 +1,95 @@
 package a3;
 
-import android.os.Handler;
-import android.os.HandlerThread;
-import android.os.Looper;
-import android.os.Message;
-import android.view.Choreographer;
-public final class d0 implements Choreographer.FrameCallback, Handler.Callback {
-    public static final d0 e = new d0();
-    public volatile long f76a = -9223372036854775807L;
-    public final Handler f77b;
-    public Choreographer f78c;
-    public int d;
+import android.content.Context;
+import android.hardware.display.DisplayManager;
+import android.os.Build;
+import android.view.Display;
+import android.view.Surface;
+public final class d0 {
+    public final g f63a;
+    public final b0 f64b;
+    public final c0 f65c;
+    public boolean d;
+    public Surface f66e;
+    public float f67f;
+    public float f68g;
+    public float h;
+    public float f69i;
+    public int f70j;
+    public long f71k;
+    public long f72l;
+    public long f73m;
+    public long f74n;
+    public long f75o;
+    public long f76p;
+    public long f77q;
 
-    public d0() {
-        HandlerThread handlerThread = new HandlerThread("ExoPlayer:FrameReleaseChoreographer");
-        handlerThread.start();
-        Looper looper = handlerThread.getLooper();
-        String str = e2.d0.f7188a;
-        Handler handler = new Handler(looper, this);
-        this.f77b = handler;
-        handler.sendEmptyMessage(1);
+    public d0(Context context) {
+        DisplayManager displayManager;
+        b0 b0Var;
+        ?? obj = new Object();
+        obj.f104a = new f();
+        obj.f105b = new f();
+        obj.d = -9223372036854775807L;
+        this.f63a = obj;
+        if (context == null || (displayManager = (DisplayManager) context.getSystemService("display")) == null) {
+            b0Var = null;
+        } else {
+            b0Var = new b0(this, displayManager);
+        }
+        this.f64b = b0Var;
+        this.f65c = b0Var != null ? c0.f57e : null;
+        this.f71k = -9223372036854775807L;
+        this.f72l = -9223372036854775807L;
+        this.f67f = -1.0f;
+        this.f69i = 1.0f;
+        this.f70j = 0;
     }
 
-    @Override
-    public final void doFrame(long j3) {
-        this.f76a = j3;
-        Choreographer choreographer = this.f78c;
-        choreographer.getClass();
-        choreographer.postFrameCallbackDelayed(this, 500L);
+    public static void a(d0 d0Var, Display display) {
+        if (display != null) {
+            long refreshRate = (long) (1.0E9d / display.getRefreshRate());
+            d0Var.f71k = refreshRate;
+            d0Var.f72l = (refreshRate * 80) / 100;
+            return;
+        }
+        e2.a.n("VideoFrameReleaseHelper", "Unable to query display refresh rate");
+        d0Var.f71k = -9223372036854775807L;
+        d0Var.f72l = -9223372036854775807L;
     }
 
-    @Override
-    public final boolean handleMessage(Message message) {
-        int i10 = message.what;
-        if (i10 != 1) {
-            if (i10 != 2) {
-                if (i10 != 3) {
-                    return false;
-                }
-                Choreographer choreographer = this.f78c;
-                if (choreographer != null) {
-                    int i11 = this.d - 1;
-                    this.d = i11;
-                    if (i11 == 0) {
-                        choreographer.removeFrameCallback(this);
-                        this.f76a = -9223372036854775807L;
+    public final void b() {
+        Surface surface;
+        if (Build.VERSION.SDK_INT >= 30 && (surface = this.f66e) != null && this.f70j != Integer.MIN_VALUE && this.h != 0.0f) {
+            this.h = 0.0f;
+            g0.f.v(surface, 0.0f);
+        }
+    }
+
+    public final void c() {
+        throw new UnsupportedOperationException("Method not decompiled: a3.d0.c():void");
+    }
+
+    public final void d(boolean z10) {
+        Surface surface;
+        float f7;
+        if (Build.VERSION.SDK_INT >= 30 && (surface = this.f66e) != null && this.f70j != Integer.MIN_VALUE) {
+            if (this.d) {
+                float f10 = this.f68g;
+                if (f10 != -1.0f) {
+                    f7 = f10 * this.f69i;
+                    if (!z10 || this.h != f7) {
+                        this.h = f7;
+                        g0.f.v(surface, f7);
                     }
-                }
-                return true;
-            }
-            Choreographer choreographer2 = this.f78c;
-            if (choreographer2 != null) {
-                int i12 = this.d + 1;
-                this.d = i12;
-                if (i12 == 1) {
-                    choreographer2.postFrameCallback(this);
+                    return;
                 }
             }
-            return true;
+            f7 = 0.0f;
+            if (!z10) {
+            }
+            this.h = f7;
+            g0.f.v(surface, f7);
         }
-        try {
-            this.f78c = Choreographer.getInstance();
-        } catch (RuntimeException e7) {
-            e2.a.o("VideoFrameReleaseHelper", "Vsync sampling disabled due to platform error", e7);
-        }
-        return true;
     }
 }

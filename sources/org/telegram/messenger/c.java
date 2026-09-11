@@ -1,29 +1,56 @@
 package org.telegram.messenger;
 
-import com.android.billingclient.api.Purchase;
+import android.content.SharedPreferences;
+import android.graphics.Canvas;
+import android.view.View;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.RichMessageLayout;
+import org.telegram.tgnet.QuickAckDelegate;
+import org.telegram.tgnet.RequestTimeDelegate;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.gl0;
-import org.telegram.ui.Components.vl0;
-public final class c implements gl0, c5.j {
-    public final Object f14820a;
-    public final Object f14821b;
-    public final Object f14822c;
+import org.telegram.ui.vj0;
+public final class c implements RequestTimeDelegate, org.telegram.ui.ActionBar.a2, MessagesController.ErrorDelegate, vj0, QuickAckDelegate {
+    public final int f17307a;
+    public final Object f17308b;
+    public final Object f17309c;
 
-    public c(Object obj, Object obj2, Object obj3) {
-        this.f14820a = obj;
-        this.f14821b = obj2;
-        this.f14822c = obj3;
+    public c(int i10, Object obj, Object obj2) {
+        this.f17307a = i10;
+        this.f17308b = obj;
+        this.f17309c = obj2;
     }
 
     @Override
-    public void a(c5.h hVar, String str) {
-        BillingController.lambda$consumeGiftPurchase$12((TLRPC.InputStorePaymentPurpose) this.f14820a, (Purchase) this.f14821b, (Runnable) this.f14822c, hVar, str);
+    public void b(Canvas canvas) {
+        ((RichMessageLayout.RichThinkingBlock) this.f17308b).lambda$onDrawFaded$0((View) this.f17309c, canvas);
     }
 
     @Override
-    public int run() {
-        int lambda$scrollToFragmentRow$24;
-        lambda$scrollToFragmentRow$24 = AndroidUtilities.lambda$scrollToFragmentRow$24((org.telegram.ui.ActionBar.p2) this.f14820a, (String) this.f14821b, (vl0) this.f14822c);
-        return lambda$scrollToFragmentRow$24;
+    public void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
+        switch (this.f17307a) {
+            case 1:
+                AndroidUtilities.lambda$showProxyAlert$20((SharedPreferences) this.f17308b, (f0) this.f17309c, b2Var, i10);
+                return;
+            default:
+                AndroidUtilities.lambda$isMapsInstalled$11((String) this.f17308b, (org.telegram.ui.ActionBar.n2) this.f17309c, b2Var, i10);
+                return;
+        }
+    }
+
+    @Override
+    public void run() {
+        ((SendMessagesHelper) this.f17308b).lambda$performSendMessageRequest$103((TLRPC.Message) this.f17309c);
+    }
+
+    @Override
+    public void run(long j3) {
+        AndroidUtilities.lambda$showProxyAlert$18((boolean[]) this.f17308b, (org.telegram.ui.Components.ad[]) this.f17309c, j3);
+    }
+
+    @Override
+    public boolean run(TLRPC.TL_error tL_error) {
+        boolean lambda$addUsersToChat$295;
+        lambda$addUsersToChat$295 = MessagesController.lambda$addUsersToChat$295((q0.a) this.f17308b, (TLRPC.User) this.f17309c, tL_error);
+        return lambda$addUsersToChat$295;
     }
 }
