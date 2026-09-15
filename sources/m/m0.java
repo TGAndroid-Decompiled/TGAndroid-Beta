@@ -24,35 +24,35 @@ public final class m0 extends d2 implements o0 {
     }
 
     @Override
-    public final CharSequence e() {
+    public final CharSequence d() {
         return this.S;
     }
 
     @Override
-    public final void i(CharSequence charSequence) {
+    public final void g(CharSequence charSequence) {
         this.S = charSequence;
     }
 
     @Override
-    public final void l(int i10) {
+    public final void k(int i10) {
         this.V = i10;
     }
 
     @Override
-    public final void m(int i10, int i11) {
+    public final void l(int i10, int i11) {
         ViewTreeObserver viewTreeObserver;
         x xVar = this.O;
         boolean isShowing = xVar.isShowing();
-        s();
+        q();
         xVar.setInputMethodMode(2);
-        g();
-        r1 r1Var = this.f15499c;
+        h();
+        r1 r1Var = this.f14154c;
         r1Var.setChoiceMode(1);
         g0.d(r1Var, i10);
         g0.c(r1Var, i11);
         p0 p0Var = this.W;
         int selectedItemPosition = p0Var.getSelectedItemPosition();
-        r1 r1Var2 = this.f15499c;
+        r1 r1Var2 = this.f14154c;
         if (xVar.isShowing() && r1Var2 != null) {
             r1Var2.setListSelectionHidden(false);
             r1Var2.setSelection(selectedItemPosition);
@@ -68,21 +68,21 @@ public final class m0 extends d2 implements o0 {
     }
 
     @Override
-    public final void p(ListAdapter listAdapter) {
-        super.p(listAdapter);
+    public final void n(ListAdapter listAdapter) {
+        super.n(listAdapter);
         this.T = (j0) listAdapter;
     }
 
-    public final void s() {
+    public final void q() {
         int i10;
         int i11;
         p0 p0Var = this.W;
-        Rect rect = p0Var.f15631n;
+        Rect rect = p0Var.f14271n;
         x xVar = this.O;
         Drawable background = xVar.getBackground();
         if (background != null) {
             background.getPadding(rect);
-            if (s3.a(p0Var)) {
+            if (t3.a(p0Var)) {
                 i10 = rect.right;
             } else {
                 i10 = -rect.left;
@@ -102,17 +102,17 @@ public final class m0 extends d2 implements o0 {
             if (a2 > i13) {
                 a2 = i13;
             }
-            r(Math.max(a2, (width - paddingLeft) - paddingRight));
+            p(Math.max(a2, (width - paddingLeft) - paddingRight));
         } else if (i12 == -1) {
-            r((width - paddingLeft) - paddingRight);
+            p((width - paddingLeft) - paddingRight);
         } else {
-            r(i12);
+            p(i12);
         }
-        if (s3.a(p0Var)) {
-            i11 = (((width - paddingRight) - this.f15500e) - this.V) + i10;
+        if (t3.a(p0Var)) {
+            i11 = (((width - paddingRight) - this.e) - this.V) + i10;
         } else {
             i11 = paddingLeft + this.V + i10;
         }
-        this.f15501f = i11;
+        this.f14155f = i11;
     }
 }

@@ -1,33 +1,35 @@
 package org.telegram.messenger;
 
-import org.telegram.messenger.MessagesStorage;
+import org.telegram.ui.bo;
+import org.webrtc.TextureViewRenderer;
 public final class ff implements Runnable {
-    public final int f17693a;
-    public final MessagesStorage f17694b;
-    public final long f17695c;
-    public final MessagesStorage.IntCallback d;
+    public final int f16133a;
+    public final int f16134b;
+    public final int f16135c;
+    public final int d;
+    public final int e;
+    public final Object f16136f;
 
-    public ff(MessagesStorage messagesStorage, long j3, MessagesStorage.IntCallback intCallback, int i10) {
-        this.f17693a = i10;
-        this.f17694b = messagesStorage;
-        this.f17695c = j3;
-        this.d = intCallback;
+    public ff(Object obj, int i10, int i11, int i12, int i13, int i14) {
+        this.f16133a = i14;
+        this.f16136f = obj;
+        this.f16134b = i10;
+        this.f16135c = i11;
+        this.d = i12;
+        this.e = i13;
     }
 
     @Override
     public final void run() {
-        switch (this.f17693a) {
+        switch (this.f16133a) {
             case 0:
-                this.f17694b.lambda$getDialogMaxMessageId$255(this.f17695c, this.d);
+                ((MessagesStorage) this.f16136f).lambda$saveDiffParams$35(this.f16134b, this.f16135c, this.d, this.e);
                 return;
             case 1:
-                this.f17694b.lambda$getDialogFolderId$243(this.f17695c, this.d);
-                return;
-            case 2:
-                this.f17694b.lambda$getMessagesCount$158(this.f17695c, this.d);
+                bo.r1((bo) this.f16136f, this.f16134b, this.f16135c, this.d, this.e);
                 return;
             default:
-                this.f17694b.lambda$getSavedDialogMaxMessageId$53(this.f17695c, this.d);
+                TextureViewRenderer.a((TextureViewRenderer) this.f16136f, this.f16134b, this.f16135c, this.d, this.e);
                 return;
         }
     }

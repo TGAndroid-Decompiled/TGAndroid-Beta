@@ -1,45 +1,35 @@
 package ji;
 
-import java.util.ArrayList;
-import org.telegram.messenger.MessageObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_iv;
-import org.telegram.ui.Components.bl;
-import org.telegram.ui.Components.dj;
-import org.telegram.ui.Components.vi;
-public final class e implements bl, dj {
-    public final r f13873a;
-    public final vi f13874b;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import org.telegram.ui.Cells.t1;
+import org.telegram.ui.Components.jo;
+public final class e extends AnimatorListenerAdapter {
+    public final t1 f13057a;
+    public final float f13058b;
+    public final float f13059c;
+    public final float d;
+    public final float e;
+    public final n f13060f;
 
-    public e(r rVar, vi viVar) {
-        this.f13873a = rVar;
-        this.f13874b = viVar;
+    public e(n nVar, t1 t1Var, float f7, float f10, float f11, float f12) {
+        this.f13060f = nVar;
+        this.f13057a = t1Var;
+        this.f13058b = f7;
+        this.f13059c = f10;
+        this.d = f11;
+        this.e = f12;
     }
 
     @Override
-    public void b(TLRPC.MessageMedia messageMedia, int i10, boolean z10, int i11, long j3) {
-        r rVar = this.f13873a;
-        rVar.getClass();
-        vi viVar = this.f13874b;
-        if (messageMedia != null && messageMedia.geo != null) {
-            TL_iv.pageBlockMap pageblockmap = new TL_iv.pageBlockMap();
-            pageblockmap.geo = messageMedia.geo;
-            pageblockmap.zoom = 15;
-            pageblockmap.f20093w = 600;
-            pageblockmap.h = 400;
-            rVar.f14133r.Q1(pageblockmap);
-            rVar.V(true);
-            viVar.dismiss(true);
-            return;
+    public final void onAnimationEnd(Animator animator) {
+        t1 t1Var = this.f13057a;
+        t1Var.getTransitionParams().j();
+        t1Var.getPhotoImage().setImageCoords(this.f13058b, this.f13059c, this.d, this.e);
+        jo joVar = this.f13060f.P;
+        if (joVar != null) {
+            joVar.h.setAlpha(1.0f);
         }
-        viVar.dismiss(true);
-    }
-
-    @Override
-    public void i(ArrayList arrayList, CharSequence charSequence, boolean z10, int i10, int i11, long j3, boolean z11, long j10) {
-        if (!arrayList.isEmpty()) {
-            this.f13873a.f14133r.a2((MessageObject) arrayList.get(0));
-        }
-        this.f13874b.dismiss(true);
+        t1Var.invalidate();
     }
 }

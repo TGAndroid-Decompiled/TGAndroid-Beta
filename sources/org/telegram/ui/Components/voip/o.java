@@ -1,167 +1,241 @@
 package org.telegram.ui.Components.voip;
 
+import android.app.Activity;
 import android.content.Context;
-import android.graphics.Canvas;
-import android.text.StaticLayout;
-import android.text.TextPaint;
-import android.view.TextureView;
+import android.content.Intent;
+import android.media.projection.MediaProjectionManager;
 import android.view.View;
-import android.widget.ImageView;
-import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ChatObject;
-import org.telegram.ui.Components.k61;
-import org.telegram.ui.j60;
-public final class o extends q2 {
-    public float f31675g0;
-    public final ChatObject.Call f31676h0;
-    public final l0 f31677i0;
-    public final TextPaint f31678j0;
-    public final StaticLayout f31679k0;
-    public final TextPaint f31680l0;
-    public final String m0;
-    public final float f31681n0;
-    public final StaticLayout f31682o0;
-    public final j60 f31683p0;
-    public final String f31684q0;
-    public final float f31685r0;
-    public final t f31686s0;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.messenger.UserConfig;
+import org.telegram.messenger.Utilities;
+import org.telegram.messenger.voip.VoIPService;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+import org.telegram.ui.Components.c90;
+import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.PremiumPreviewFragment;
+import org.telegram.ui.em0;
+import org.telegram.ui.mi1;
+import org.telegram.ui.o20;
+import org.telegram.ui.ug;
+import yh.m7;
+import yh.o7;
+import yh.y5;
+import yh.y7;
+import yh.z3;
+public final class o implements View.OnClickListener {
+    public final int f29115a;
+    public final Object f29116b;
 
-    public o(t tVar, Context context, ChatObject.Call call, l0 l0Var, TextPaint textPaint, StaticLayout staticLayout, TextPaint textPaint2, String str, float f7, StaticLayout staticLayout2, j60 j60Var, String str2, float f10) {
-        super(context, false, false, true, true);
-        this.f31686s0 = tVar;
-        this.f31676h0 = call;
-        this.f31677i0 = l0Var;
-        this.f31678j0 = textPaint;
-        this.f31679k0 = staticLayout;
-        this.f31680l0 = textPaint2;
-        this.m0 = str;
-        this.f31681n0 = f7;
-        this.f31682o0 = staticLayout2;
-        this.f31683p0 = j60Var;
-        this.f31684q0 = str2;
-        this.f31685r0 = f10;
+    public o(Object obj, int i10) {
+        this.f29115a = i10;
+        this.f29116b = obj;
     }
 
     @Override
-    public final void a() {
-        super.a();
-        this.f31675g0 = this.f31686s0.f31834w0;
-    }
-
-    @Override
-    public final void b() {
-        int i10;
-        ChatObject.VideoParticipant videoParticipant;
-        t tVar = this.f31686s0;
-        TextView textView = tVar.O;
-        o oVar = tVar.f31804a;
-        invalidate();
-        ChatObject.Call call = this.f31676h0;
-        if (call != null && call.call.rtmp_stream && tVar.f31839z0) {
-            AndroidUtilities.cancelRunOnUIThread(tVar.A0);
-            tVar.f31839z0 = false;
-            textView.animate().cancel();
-            textView.animate().alpha(0.0f).setDuration(150L).start();
-            oVar.animate().cancel();
-            oVar.animate().alpha(1.0f).setDuration(150L).start();
+    public final void onClick(View view) {
+        org.telegram.ui.ActionBar.n2 R;
+        org.telegram.ui.ActionBar.n2 R2;
+        switch (this.f29115a) {
+            case 0:
+                u uVar = (u) this.f29116b;
+                if (VoIPService.getSharedInstance() != null) {
+                    VoIPService.getSharedInstance().stopScreenCapture();
+                }
+                uVar.N.animate().alpha(0.0f).scaleX(0.0f).scaleY(0.0f).setDuration(180L).start();
+                return;
+            case 1:
+                x0 x0Var = (x0) this.f29116b;
+                if (!x0Var.f29340a) {
+                    if (x0Var.f29348x == 0 && x0Var.f29349y) {
+                        ((Activity) x0Var.getContext()).startActivityForResult(((MediaProjectionManager) x0Var.getContext().getSystemService("media_projection")).createScreenCaptureIntent(), 520);
+                        return;
+                    } else {
+                        x0Var.b(false, true);
+                        return;
+                    }
+                }
+                return;
+            case 2:
+                mi1 mi1Var = (mi1) this.f29116b;
+                if (!mi1Var.f28905a) {
+                    if (mi1Var.f28912w == 0) {
+                        ((Activity) mi1Var.getContext()).startActivityForResult(((MediaProjectionManager) mi1Var.getContext().getSystemService("media_projection")).createScreenCaptureIntent(), 520);
+                        return;
+                    } else {
+                        mi1Var.a(false, true);
+                        return;
+                    }
+                }
+                return;
+            case 3:
+                Context context = (Context) this.f29116b;
+                if (VoIPService.getSharedInstance() != null) {
+                    Intent action = new Intent(context, LaunchActivity.class).setAction("voip_chat");
+                    action.putExtra("currentAccount", VoIPService.getSharedInstance().getAccount());
+                    if (!(context instanceof Activity)) {
+                        action.addFlags(268435456);
+                    }
+                    context.startActivity(action);
+                    j1.j();
+                    return;
+                }
+                return;
+            case 4:
+                org.telegram.ui.web.k kVar = (org.telegram.ui.web.k) this.f29116b;
+                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(kVar.getContext());
+                alertDialog$Builder.f18437a.R = LocaleController.getString(R.string.WebRecentClearTitle);
+                alertDialog$Builder.f18437a.T = LocaleController.getString(R.string.WebRecentClearText);
+                alertDialog$Builder.k(LocaleController.getString(R.string.OK), new org.telegram.ui.web.a(kVar));
+                hg.k0.r(R.string.Cancel, alertDialog$Builder, null);
+                return;
+            case 5:
+                ((pg.x) this.f29116b).dismiss();
+                return;
+            case 6:
+                ((em0) this.f29116b).run();
+                return;
+            case 7:
+                ((qg.v2) this.f29116b).onBackPressed();
+                return;
+            case 8:
+                ((ug) this.f29116b).run();
+                return;
+            case 9:
+                ((c90) this.f29116b).performClick();
+                return;
+            case 10:
+                PremiumPreviewFragment.p0();
+                PremiumPreviewFragment.k0(((rg.k1) this.f29116b).f42362t0, null, "profile", null);
+                return;
+            case 11:
+                final tg.h0 h0Var = (tg.h0) this.f29116b;
+                vg.a aVar = h0Var.Q0;
+                if (!aVar.f44297a.N) {
+                    aVar.b(true);
+                    String str = h0Var.R0;
+                    Utilities.Callback callback = new Utilities.Callback() {
+                        @Override
+                        public final void run(Object obj) {
+                            switch (r2) {
+                                case 0:
+                                    Void r42 = (Void) obj;
+                                    h0 h0Var2 = h0Var;
+                                    h0Var2.Q0.b(false);
+                                    h0Var2.dismiss();
+                                    AndroidUtilities.runOnUIThread(new f0(h0Var2, 1), 200L);
+                                    return;
+                                default:
+                                    h0.c0(h0Var, (TLRPC.TL_error) obj);
+                                    return;
+                            }
+                        }
+                    };
+                    Utilities.Callback callback2 = new Utilities.Callback() {
+                        @Override
+                        public final void run(Object obj) {
+                            switch (r2) {
+                                case 0:
+                                    Void r42 = (Void) obj;
+                                    h0 h0Var2 = h0Var;
+                                    h0Var2.Q0.b(false);
+                                    h0Var2.dismiss();
+                                    AndroidUtilities.runOnUIThread(new f0(h0Var2, 1), 200L);
+                                    return;
+                                default:
+                                    h0.c0(h0Var, (TLRPC.TL_error) obj);
+                                    return;
+                            }
+                        }
+                    };
+                    ConnectionsManager connectionsManager = ConnectionsManager.getInstance(UserConfig.selectedAccount);
+                    TLRPC.TL_payments_applyGiftCode tL_payments_applyGiftCode = new TLRPC.TL_payments_applyGiftCode();
+                    tL_payments_applyGiftCode.slug = str;
+                    connectionsManager.sendRequest(tL_payments_applyGiftCode, new tg.q(callback2, callback, 0), 2);
+                    return;
+                }
+                return;
+            case 12:
+                ((tg.k0) this.f29116b).dismiss();
+                return;
+            case 13:
+                ((tg.c0) ((ug.e) this.f29116b)).f43117r.dismiss();
+                return;
+            case 14:
+                Runnable runnable = ((xg.c) this.f29116b).d;
+                if (runnable != null) {
+                    runnable.run();
+                    return;
+                }
+                return;
+            case 15:
+                ((xh.c) this.f29116b).dismiss();
+                return;
+            case 16:
+                ((xh.c0) this.f29116b).dismiss();
+                return;
+            case 17:
+                if (((xh.q1) this.f29116b).f46081f0.f47471f > 0 && (R = LaunchActivity.R()) != 0) {
+                    ?? obj = new Object();
+                    obj.f19368a = true;
+                    R.showAsSheet(new y7(), obj);
+                    return;
+                }
+                return;
+            case 18:
+                ((yh.s) this.f29116b).dismiss();
+                return;
+            case 19:
+                ((yh.e0) this.f29116b).dismiss();
+                return;
+            case 20:
+                yh.i0 i0Var = (yh.i0) this.f29116b;
+                zf.b bVar = i0Var.E.f48952a;
+                zf.b bVar2 = zf.b.f48955b;
+                if (bVar == bVar2) {
+                    bVar2 = zf.b.f48954a;
+                }
+                i0Var.n(zf.a.i(0L, bVar2), true, false, true);
+                i0Var.f47268c.setText("");
+                return;
+            case 21:
+                ((yh.s0) this.f29116b).dismiss();
+                return;
+            case 22:
+                ((yh.r1) this.f29116b).run();
+                return;
+            case 23:
+                ((yh.r1) this.f29116b).run();
+                return;
+            case 24:
+                yh.f3 f3Var = (yh.f3) this.f29116b;
+                f3Var.getClass();
+                new o7(f3Var.f47147b, f3Var.f47150g).show();
+                return;
+            case 25:
+                ((z3) this.f29116b).dismiss();
+                return;
+            case 26:
+                ((y5) this.f29116b).run();
+                return;
+            case 27:
+                if (((m7) ((o20) this.f29116b).d).f47471f > 0 && (R2 = LaunchActivity.R()) != 0) {
+                    ?? obj2 = new Object();
+                    obj2.f19368a = true;
+                    R2.showAsSheet(new y7(), obj2);
+                    return;
+                }
+                return;
+            default:
+                zg.c0 c0Var = (zg.c0) this.f29116b;
+                if (c0Var.f48990k) {
+                    c0Var.d();
+                    return;
+                }
+                return;
         }
-        boolean z10 = tVar.f31829s0;
-        p2 p2Var = this.d;
-        if (!z10 && p2Var.getAlpha() != 1.0f) {
-            p2Var.animate().setDuration(300L).alpha(1.0f);
-        }
-        TextureView textureView = this.f31742e;
-        if (textureView != null && textureView.getAlpha() != 1.0f) {
-            textureView.animate().setDuration(300L).alpha(1.0f);
-        }
-        ImageView imageView = tVar.f31836x0;
-        if (imageView != null && imageView.getParent() != null) {
-            if (tVar.f31836x0.getAlpha() == 1.0f) {
-                tVar.f31836x0.animate().alpha(0.0f).setDuration(300L).setListener(new k61(this, 6)).start();
-            } else if (tVar.f31836x0.getParent() != null) {
-                oVar.removeView(tVar.f31836x0);
-            }
-        }
-        int i11 = p2Var.rotatedFrameHeight;
-        if (i11 != 0 && (i10 = p2Var.rotatedFrameWidth) != 0 && (videoParticipant = tVar.f31833w) != null) {
-            videoParticipant.setAspectRatio(i10, i11, call);
-        }
-    }
-
-    @Override
-    public final void dispatchDraw(android.graphics.Canvas r29) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.voip.o.dispatchDraw(android.graphics.Canvas):void");
-    }
-
-    @Override
-    public final boolean drawChild(Canvas canvas, View view, long j3) {
-        t tVar = this.f31686s0;
-        if (tVar.f31818j0 && view == tVar.f31804a.d) {
-            canvas.save();
-            float f7 = tVar.f31812e0;
-            canvas.scale(f7, f7, tVar.f31814f0, tVar.f31815g0);
-            canvas.translate(tVar.f31816h0, tVar.f31817i0);
-            boolean drawChild = super.drawChild(canvas, view, j3);
-            canvas.restore();
-            return drawChild;
-        }
-        return super.drawChild(canvas, view, j3);
-    }
-
-    @Override
-    public final void e() {
-        super.e();
-        t tVar = this.f31686s0;
-        o oVar = tVar.f31804a;
-        ImageView imageView = tVar.f31836x0;
-        if (imageView != null && imageView.getParent() != null) {
-            tVar.f31836x0.getLayoutParams().width = oVar.d.getMeasuredWidth();
-            tVar.f31836x0.getLayoutParams().height = oVar.d.getMeasuredHeight();
-        }
-    }
-
-    @Override
-    public final void invalidate() {
-        super.invalidate();
-        t tVar = this.f31686s0;
-        tVar.Q = true;
-        tVar.invalidate();
-        tVar.Q = false;
-    }
-
-    @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        int i14;
-        ChatObject.VideoParticipant videoParticipant;
-        t tVar = this.f31686s0;
-        o oVar = tVar.f31804a;
-        boolean z11 = tVar.v;
-        p2 p2Var = this.d;
-        if (z11 && tVar.R && p2Var.rotatedFrameHeight != 0 && p2Var.rotatedFrameWidth != 0) {
-            if (tVar.h) {
-                oVar.f31736a0 = 1;
-            } else if (tVar.f31806b) {
-                oVar.f31736a0 = 1;
-            } else if (this.f31677i0.f31597b) {
-                oVar.f31736a0 = 0;
-            } else if (tVar.f31833w.presentation) {
-                oVar.f31736a0 = 1;
-            } else {
-                oVar.f31736a0 = 2;
-            }
-            tVar.R = false;
-        }
-        super.onLayout(z10, i10, i11, i12, i13);
-        int i15 = p2Var.rotatedFrameHeight;
-        if (i15 != 0 && (i14 = p2Var.rotatedFrameWidth) != 0 && (videoParticipant = tVar.f31833w) != null) {
-            videoParticipant.setAspectRatio(i14, i15, this.f31676h0);
-        }
-    }
-
-    @Override
-    public final void requestLayout() {
-        this.f31686s0.requestLayout();
-        super.requestLayout();
     }
 }

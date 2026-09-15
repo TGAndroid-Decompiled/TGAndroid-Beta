@@ -4,9 +4,9 @@ import android.app.Activity;
 import android.app.Application;
 import android.os.Bundle;
 public final class o0 implements Application.ActivityLifecycleCallbacks {
-    public static final o0 f51466a = new Object();
-    public static boolean f51467b;
-    public static fg.f f51468c;
+    public static final o0 f48818a = new Object();
+    public static boolean f48819b;
+    public static ni.f f48820c;
 
     @Override
     public final void onActivityCreated(Activity activity, Bundle bundle) {
@@ -21,9 +21,9 @@ public final class o0 implements Application.ActivityLifecycleCallbacks {
     @Override
     public final void onActivityPaused(Activity activity) {
         kotlin.jvm.internal.i.e(activity, "activity");
-        fg.f fVar = f51468c;
+        ni.f fVar = f48820c;
         if (fVar != null) {
-            fVar.Q(2);
+            fVar.N(2);
         }
     }
 
@@ -31,15 +31,15 @@ public final class o0 implements Application.ActivityLifecycleCallbacks {
     public final void onActivityResumed(Activity activity) {
         gd.i iVar;
         kotlin.jvm.internal.i.e(activity, "activity");
-        fg.f fVar = f51468c;
+        ni.f fVar = f48820c;
         if (fVar != null) {
-            fVar.Q(1);
-            iVar = gd.i.f10588a;
+            fVar.N(1);
+            iVar = gd.i.f9616a;
         } else {
             iVar = null;
         }
         if (iVar == null) {
-            f51467b = true;
+            f48819b = true;
         }
     }
 

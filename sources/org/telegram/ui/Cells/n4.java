@@ -5,7 +5,7 @@ import org.telegram.tgnet.TLRPC;
 public interface n4 {
     boolean a();
 
-    void e(boolean z10, boolean z11);
+    void c(boolean z10, boolean z11);
 
     void f(TLRPC.ReactionCount reactionCount, boolean z10, float f7, float f10);
 

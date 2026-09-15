@@ -1,32 +1,36 @@
 package org.telegram.ui;
+public final class xn0 implements Runnable {
+    public final int f39645a;
+    public final long f39646b;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class xn0 implements RequestDelegate {
-    public final int f42765a;
-    public final xo0 f42766b;
-
-    public xn0(xo0 xo0Var, int i10) {
-        this.f42765a = i10;
-        this.f42766b = xo0Var;
+    public xn0(long j3, int i10) {
+        this.f39645a = i10;
+        this.f39646b = j3;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f42765a) {
+    public final void run() {
+        switch (this.f39645a) {
             case 0:
-                AndroidUtilities.runOnUIThread(new ej0(13, this.f42766b, tL_error));
+                org.telegram.ui.ActionBar.n2 U = LaunchActivity.U();
+                if (U != null) {
+                    U.presentFragment(bo.R9(this.f39646b));
+                    return;
+                }
                 return;
             case 1:
-                AndroidUtilities.runOnUIThread(new wn0(this.f42766b, tL_error, tLObject, 0));
-                return;
-            case 2:
-                AndroidUtilities.runOnUIThread(new qn0(this.f42766b, tLObject, 2));
+                org.telegram.ui.ActionBar.n2 U2 = LaunchActivity.U();
+                if (U2 != null) {
+                    U2.presentFragment(bo.R9(this.f39646b));
+                    return;
+                }
                 return;
             default:
-                AndroidUtilities.runOnUIThread(new qn0(this.f42766b, tLObject, 0));
+                org.telegram.ui.ActionBar.n2 U3 = LaunchActivity.U();
+                if (U3 != null) {
+                    U3.presentFragment(bo.R9(this.f39646b));
+                    return;
+                }
                 return;
         }
     }

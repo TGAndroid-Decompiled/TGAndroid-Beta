@@ -8,69 +8,69 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class pk extends ni {
-    public final kz f29408n;
-    public final ll0 f29409r;
-    public final s4.c0 f29410s;
+    public final kz f27069n;
+    public final ll0 f27070r;
+    public final s4.c0 f27071s;
     public final HorizontalScrollView v;
-    public final boolean f29411w;
+    public final boolean f27072w;
 
-    public pk(vi viVar, Context context, org.telegram.ui.ActionBar.f6 f6Var, boolean z10) {
-        super(context, f6Var, viVar);
-        this.f29411w = z10;
-        this.f28756f = true;
-        org.telegram.ui.ActionBar.n2 n2Var = viVar.f31279f0;
+    public pk(vi viVar, Context context, org.telegram.ui.ActionBar.e6 e6Var, boolean z10) {
+        super(context, e6Var, viVar);
+        this.f27072w = z10;
+        this.f26464f = true;
+        org.telegram.ui.ActionBar.n2 n2Var = viVar.f28750f0;
         boolean z11 = !z10 ? 1 : 0;
-        kz kzVar = new kz(n2Var, z11, z10, false, getContext(), true, null, null, false, f6Var, false, true);
-        this.f29408n = kzVar;
-        kzVar.f27995w0 = false;
-        kzVar.K(z11, z10, false, false);
-        kzVar.f27970o2 = true;
-        ax axVar = kzVar.f27998x;
-        if (axVar != null) {
-            axVar.setVisibility(8);
+        kz kzVar = new kz(n2Var, z11, z10, false, getContext(), true, null, null, false, e6Var, false, true);
+        this.f27069n = kzVar;
+        kzVar.f25765w0 = false;
+        kzVar.J(z11, z10, false, false);
+        kzVar.f25737n2 = true;
+        zw zwVar = kzVar.f25768x;
+        if (zwVar != null) {
+            zwVar.setVisibility(8);
         }
-        kzVar.f27973p2 = true;
-        ImageView imageView = kzVar.f28002y;
+        kzVar.f25740o2 = true;
+        ImageView imageView = kzVar.f25772y;
         if (imageView != null) {
             imageView.setVisibility(8);
         }
-        kzVar.M2 = true;
+        kzVar.L2 = true;
         addView(kzVar, w7.x5.c(-1.0f, -1));
         HorizontalScrollView y3 = kzVar.y(z11 ? 1 : 0);
         this.v = y3;
         ll0 x10 = kzVar.x(z11 ? 1 : 0);
-        this.f29409r = x10;
-        x10.j(new ah.e0(this, 21));
-        this.f29410s = (s4.c0) x10.getLayoutManager();
+        this.f27070r = x10;
+        x10.j(new ai.r(this, 21));
+        this.f27071s = (s4.c0) x10.getLayoutManager();
         y3.setTranslationY(Math.max(0, getCurrentItemTop()));
     }
 
     @Override
-    public final void D(ni niVar) {
+    public final void E(ni niVar) {
         int i10;
-        vi viVar = this.f28753b;
+        vi viVar = this.f26462b;
         try {
             viVar.X0.getTitleTextView().setBuildFullLayout(true);
         } catch (Exception unused) {
         }
-        z7 z7Var = viVar.X0;
-        if (this.f29411w) {
+        w7 w7Var = viVar.X0;
+        if (this.f27072w) {
             i10 = R.string.SelectSticker;
         } else {
             i10 = R.string.SelectEmoji;
         }
-        z7Var.setTitle(LocaleController.getString(i10));
-        this.f29410s.h1(0, 0);
+        w7Var.setTitle(LocaleController.getString(i10));
+        this.f27071s.h1(0, 0);
     }
 
     @Override
     public final void G() {
-        this.f29409r.x0(0);
+        this.f27070r.x0(0);
     }
 
     @Override
     public int getCurrentItemTop() {
-        ll0 ll0Var = this.f29409r;
+        ll0 ll0Var = this.f27070r;
         if (ll0Var.getChildCount() <= 0) {
             ll0Var.setTopGlowOffset(ll0Var.getPaddingTop());
             return Integer.MAX_VALUE;
@@ -93,7 +93,7 @@ public final class pk extends ni {
 
     @Override
     public int getListTopPadding() {
-        return this.f29409r.getPaddingTop();
+        return this.f27070r.getPaddingTop();
     }
 
     @Override
@@ -107,14 +107,14 @@ public final class pk extends ni {
         this.v.setTranslationY(Math.max(0, getCurrentItemTop()));
     }
 
-    public void setDelegate(ly lyVar) {
-        this.f29408n.setDelegate(lyVar);
+    public void setDelegate(ky kyVar) {
+        this.f27069n.setDelegate(kyVar);
     }
 
     @Override
     public void setTranslationY(float f7) {
         super.setTranslationY(f7);
-        this.f28753b.getSheetContainer().invalidate();
+        this.f26462b.getSheetContainer().invalidate();
         invalidate();
     }
 

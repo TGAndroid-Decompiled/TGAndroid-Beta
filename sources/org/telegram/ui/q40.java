@@ -3,14 +3,14 @@ package org.telegram.ui;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 public final class q40 extends AnimatorListenerAdapter {
-    public final j60 f39724a;
+    public final i60 f36761a;
 
-    public q40(j60 j60Var) {
-        this.f39724a = j60Var;
+    public q40(i60 i60Var) {
+        this.f36761a = i60Var;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        this.f39724a.X0 = null;
+        this.f36761a.X0 = null;
     }
 }

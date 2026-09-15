@@ -6,44 +6,44 @@ import android.graphics.Matrix;
 import android.graphics.SurfaceTexture;
 import android.view.TextureView;
 public final class u61 extends TextureView implements TextureView.SurfaceTextureListener {
-    public g71 f30820a;
-    public vz f30821b;
-    public final hk0 f30822c;
+    public g71 f28299a;
+    public vz f28300b;
+    public final hk0 f28301c;
     public int d;
-    public int f30823e;
-    public di.n8 f30824f;
+    public int e;
+    public ci.n8 f28302f;
     public t61 h;
-    public int f30825n;
-    public int f30826r;
-    public ja f30827s;
+    public int f28303n;
+    public int f28304r;
+    public ha f28305s;
 
     public u61(Context context, g71 g71Var) {
         super(context);
-        this.f30822c = new Object();
-        this.f30820a = g71Var;
+        this.f28301c = new Object();
+        this.f28299a = g71Var;
         setSurfaceTextureListener(this);
     }
 
     public final void a(float f7, float f10, float f11, float f12) {
-        hk0 hk0Var = this.f30822c;
-        hk0Var.f26743a = f7;
-        hk0Var.f26744b = f10;
-        hk0Var.f26745c = f11;
+        hk0 hk0Var = this.f28301c;
+        hk0Var.f24709a = f7;
+        hk0Var.f24710b = f10;
+        hk0Var.f24711c = f11;
         hk0Var.d = f12;
     }
 
     public Bitmap getUiBlurBitmap() {
-        pa paVar;
-        vz vzVar = this.f30821b;
-        if (vzVar == null || (paVar = vzVar.I) == null) {
+        na naVar;
+        vz vzVar = this.f28300b;
+        if (vzVar == null || (naVar = vzVar.I) == null) {
             return null;
         }
-        synchronized (paVar.f29335n) {
+        synchronized (naVar.f26414n) {
             try {
-                if (!paVar.f29338q) {
+                if (!naVar.f26417q) {
                     return null;
                 }
-                return paVar.f29337p;
+                return naVar.f26416p;
             } catch (Throwable th2) {
                 throw th2;
             }
@@ -51,7 +51,7 @@ public final class u61 extends TextureView implements TextureView.SurfaceTexture
     }
 
     public int getVideoHeight() {
-        return this.f30823e;
+        return this.e;
     }
 
     public int getVideoWidth() {
@@ -61,44 +61,44 @@ public final class u61 extends TextureView implements TextureView.SurfaceTexture
     @Override
     public final void onSurfaceTextureAvailable(SurfaceTexture surfaceTexture, int i10, int i11) {
         int i12;
-        if (this.f30821b == null && surfaceTexture != null && this.f30820a != null) {
-            vz vzVar = new vz(surfaceTexture, new kv(this, 28), this.f30824f, this.f30827s, i10, i11);
-            this.f30821b = vzVar;
-            vzVar.i(this.f30825n, this.f30826r);
-            vz vzVar2 = this.f30821b;
-            ja jaVar = this.f30827s;
-            pa paVar = vzVar2.I;
-            if (paVar != null) {
-                ja jaVar2 = paVar.f29341t;
-                if (jaVar2 != null && jaVar2.f27417m != null) {
-                    jaVar2.f27417m = null;
+        if (this.f28300b == null && surfaceTexture != null && this.f28299a != null) {
+            vz vzVar = new vz(surfaceTexture, new lv(this, 28), this.f28302f, this.f28305s, i10, i11);
+            this.f28300b = vzVar;
+            vzVar.i(this.f28303n, this.f28304r);
+            vz vzVar2 = this.f28300b;
+            ha haVar = this.f28305s;
+            na naVar = vzVar2.I;
+            if (naVar != null) {
+                ha haVar2 = naVar.f26420t;
+                if (haVar2 != null && haVar2.f24651m != null) {
+                    haVar2.f24651m = null;
                 }
-                paVar.f29341t = jaVar;
-                if (jaVar != null && jaVar.f27417m != paVar) {
-                    jaVar.f27417m = paVar;
-                    jaVar.d();
+                naVar.f26420t = haVar;
+                if (haVar != null && haVar.f24651m != naVar) {
+                    haVar.f24651m = naVar;
+                    haVar.d();
                 }
             }
             int i13 = this.d;
-            if (i13 != 0 && (i12 = this.f30823e) != 0) {
-                vz vzVar3 = this.f30821b;
+            if (i13 != 0 && (i12 = this.e) != 0) {
+                vz vzVar3 = this.f28300b;
                 vzVar3.getClass();
                 vzVar3.postRunnable(new rz(vzVar3, i13, i12, 0));
             }
-            this.f30821b.e(true, true, false);
+            this.f28300b.e(true, true, false);
             t61 t61Var = this.h;
             if (t61Var != null) {
-                t61Var.c(this.f30821b);
+                t61Var.b(this.f28300b);
             }
         }
     }
 
     @Override
     public final boolean onSurfaceTextureDestroyed(SurfaceTexture surfaceTexture) {
-        vz vzVar = this.f30821b;
+        vz vzVar = this.f28300b;
         if (vzVar != null) {
             vzVar.postRunnable(new sz(vzVar, 0));
-            this.f30821b = null;
+            this.f28300b = null;
             return true;
         }
         return true;
@@ -106,50 +106,50 @@ public final class u61 extends TextureView implements TextureView.SurfaceTexture
 
     @Override
     public final void onSurfaceTextureSizeChanged(SurfaceTexture surfaceTexture, int i10, int i11) {
-        vz vzVar = this.f30821b;
+        vz vzVar = this.f28300b;
         if (vzVar != null) {
             vzVar.postRunnable(new rz(vzVar, i10, i11, 1));
-            this.f30821b.e(false, true, false);
-            this.f30821b.postRunnable(new jq0(this, 29));
+            this.f28300b.e(false, true, false);
+            this.f28300b.postRunnable(new jq0(this, 29));
         }
     }
 
     public void setDelegate(t61 t61Var) {
         this.h = t61Var;
-        vz vzVar = this.f30821b;
+        vz vzVar = this.f28300b;
         if (vzVar != null) {
             if (t61Var == null) {
                 vzVar.f(null);
             } else {
-                t61Var.c(vzVar);
+                t61Var.b(vzVar);
             }
         }
     }
 
-    public void setHDRInfo(di.n8 n8Var) {
-        this.f30824f = n8Var;
-        vz vzVar = this.f30821b;
+    public void setHDRInfo(ci.n8 n8Var) {
+        this.f28302f = n8Var;
+        vz vzVar = this.f28300b;
         if (vzVar != null) {
-            vzVar.postRunnable(new zu(8, vzVar, n8Var));
+            vzVar.postRunnable(new ny(2, vzVar, n8Var));
         }
     }
 
     @Override
     public void setTransform(Matrix matrix) {
         super.setTransform(matrix);
-        vz vzVar = this.f30821b;
+        vz vzVar = this.f28300b;
         if (vzVar != null) {
             int width = getWidth();
             int height = getHeight();
-            pa paVar = vzVar.I;
-            if (paVar != null) {
-                Matrix matrix2 = paVar.v;
+            na naVar = vzVar.I;
+            if (naVar != null) {
+                Matrix matrix2 = naVar.v;
                 matrix.invert(matrix2);
                 float f7 = width;
                 float f10 = height;
                 matrix2.preScale(f7, f10);
                 matrix2.postScale(1.0f / f7, 1.0f / f10);
-                paVar.c(matrix2);
+                naVar.c(matrix2);
                 vzVar.e(false, false, false);
             }
         }

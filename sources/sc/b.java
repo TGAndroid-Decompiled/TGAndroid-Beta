@@ -1,13 +1,13 @@
 package sc;
 
-import m2.t;
+import m.e3;
 import tc.g;
 public final class b {
-    public final t f45985a;
-    public final Exception f45986b;
+    public final e3 f42896a;
+    public final Exception f42897b;
 
-    public b(t tVar, g gVar) {
-        this.f45986b = gVar;
-        this.f45985a = tVar;
+    public b(e3 e3Var, g gVar) {
+        this.f42897b = gVar;
+        this.f42896a = e3Var;
     }
 }

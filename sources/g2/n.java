@@ -8,23 +8,23 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Map;
 public final class n implements h {
-    public final Context f10336a;
-    public final ArrayList f10337b;
-    public final h f10338c;
+    public final Context f9380a;
+    public final ArrayList f9381b;
+    public final h f9382c;
     public t d;
-    public b f10339e;
-    public e f10340f;
+    public b e;
+    public e f9383f;
     public h h;
-    public e0 f10341n;
-    public f f10342r;
-    public a0 f10343s;
+    public e0 f9384n;
+    public f f9385r;
+    public a0 f9386s;
     public h v;
 
     public n(Context context, h hVar) {
-        this.f10336a = context.getApplicationContext();
+        this.f9380a = context.getApplicationContext();
         hVar.getClass();
-        this.f10338c = hVar;
-        this.f10337b = new ArrayList();
+        this.f9382c = hVar;
+        this.f9381b = new ArrayList();
     }
 
     public static void c(h hVar, c0 c0Var) {
@@ -33,10 +33,24 @@ public final class n implements h {
         }
     }
 
-    public final void a(h hVar) {
+    @Override
+    public final void addTransferListener(c0 c0Var) {
+        c0Var.getClass();
+        this.f9382c.addTransferListener(c0Var);
+        this.f9381b.add(c0Var);
+        c(this.d, c0Var);
+        c(this.e, c0Var);
+        c(this.f9383f, c0Var);
+        c(this.h, c0Var);
+        c(this.f9384n, c0Var);
+        c(this.f9385r, c0Var);
+        c(this.f9386s, c0Var);
+    }
+
+    public final void b(h hVar) {
         int i10 = 0;
         while (true) {
-            ArrayList arrayList = this.f10337b;
+            ArrayList arrayList = this.f9381b;
             if (i10 < arrayList.size()) {
                 hVar.addTransferListener((c0) arrayList.get(i10));
                 i10++;
@@ -44,20 +58,6 @@ public final class n implements h {
                 return;
             }
         }
-    }
-
-    @Override
-    public final void addTransferListener(c0 c0Var) {
-        c0Var.getClass();
-        this.f10338c.addTransferListener(c0Var);
-        this.f10337b.add(c0Var);
-        c(this.d, c0Var);
-        c(this.f10339e, c0Var);
-        c(this.f10340f, c0Var);
-        c(this.h, c0Var);
-        c(this.f10341n, c0Var);
-        c(this.f10342r, c0Var);
-        c(this.f10343s, c0Var);
     }
 
     @Override
@@ -99,40 +99,40 @@ public final class n implements h {
             z10 = false;
         }
         e2.d.g(z10);
-        Uri uri = mVar.f10330a;
+        Uri uri = mVar.f9375a;
         String scheme = uri.getScheme();
-        String str = e2.d0.f8737a;
+        String str = e2.d0.f7883a;
         String scheme2 = uri.getScheme();
         boolean isEmpty = TextUtils.isEmpty(scheme2);
-        Context context = this.f10336a;
+        Context context = this.f9380a;
         if (!isEmpty && !Objects.equals(scheme2, "file")) {
             if ("asset".equals(scheme)) {
-                if (this.f10339e == null) {
+                if (this.e == null) {
                     b bVar = new b(context);
-                    this.f10339e = bVar;
-                    a(bVar);
+                    this.e = bVar;
+                    b(bVar);
                 }
-                this.v = this.f10339e;
+                this.v = this.e;
             } else if ("content".equals(scheme)) {
-                if (this.f10340f == null) {
+                if (this.f9383f == null) {
                     e eVar = new e(context);
-                    this.f10340f = eVar;
-                    a(eVar);
+                    this.f9383f = eVar;
+                    b(eVar);
                 }
-                this.v = this.f10340f;
+                this.v = this.f9383f;
             } else {
                 boolean equals = "rtmp".equals(scheme);
-                h hVar = this.f10338c;
+                h hVar = this.f9382c;
                 if (equals) {
                     if (this.h == null) {
                         try {
                             h hVar2 = (h) Class.forName("androidx.media3.datasource.rtmp.RtmpDataSource").getConstructor(null).newInstance(null);
                             this.h = hVar2;
-                            a(hVar2);
+                            b(hVar2);
                         } catch (ClassNotFoundException unused) {
                             e2.a.n("DefaultDataSource", "Attempting to play RTMP stream without depending on the RTMP extension");
-                        } catch (Exception e7) {
-                            throw new RuntimeException("Error instantiating RTMP extension", e7);
+                        } catch (Exception e) {
+                            throw new RuntimeException("Error instantiating RTMP extension", e);
                         }
                         if (this.h == null) {
                             this.h = hVar;
@@ -140,44 +140,44 @@ public final class n implements h {
                     }
                     this.v = this.h;
                 } else if ("udp".equals(scheme)) {
-                    if (this.f10341n == null) {
+                    if (this.f9384n == null) {
                         e0 e0Var = new e0();
-                        this.f10341n = e0Var;
-                        a(e0Var);
+                        this.f9384n = e0Var;
+                        b(e0Var);
                     }
-                    this.v = this.f10341n;
+                    this.v = this.f9384n;
                 } else if ("data".equals(scheme)) {
-                    if (this.f10342r == null) {
+                    if (this.f9385r == null) {
                         ?? cVar = new c(false);
-                        this.f10342r = cVar;
-                        a(cVar);
+                        this.f9385r = cVar;
+                        b(cVar);
                     }
-                    this.v = this.f10342r;
+                    this.v = this.f9385r;
                 } else if (!"rawresource".equals(scheme) && !"android.resource".equals(scheme)) {
                     this.v = hVar;
                 } else {
-                    if (this.f10343s == null) {
+                    if (this.f9386s == null) {
                         a0 a0Var = new a0(context);
-                        this.f10343s = a0Var;
-                        a(a0Var);
+                        this.f9386s = a0Var;
+                        b(a0Var);
                     }
-                    this.v = this.f10343s;
+                    this.v = this.f9386s;
                 }
             }
         } else {
             String path = uri.getPath();
             if (path != null && path.startsWith("/android_asset/")) {
-                if (this.f10339e == null) {
+                if (this.e == null) {
                     b bVar2 = new b(context);
-                    this.f10339e = bVar2;
-                    a(bVar2);
+                    this.e = bVar2;
+                    b(bVar2);
                 }
-                this.v = this.f10339e;
+                this.v = this.e;
             } else {
                 if (this.d == null) {
                     ?? cVar2 = new c(false);
                     this.d = cVar2;
-                    a(cVar2);
+                    b(cVar2);
                 }
                 this.v = this.d;
             }

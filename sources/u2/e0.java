@@ -6,5 +6,5 @@ public interface e0 {
 
     e0 c();
 
-    e0 d(rb.a aVar);
+    e0 d(qb.b bVar);
 }

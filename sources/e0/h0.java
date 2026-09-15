@@ -24,9 +24,9 @@ public abstract class h0 {
         } else {
             z11 = false;
         }
-        obj.f396a = true;
-        obj.f397b = z11;
-        obj.f398c = z10;
+        obj.f380a = true;
+        obj.f381b = z11;
+        obj.f382c = z10;
         return obj.a();
     }
 
@@ -63,21 +63,21 @@ public abstract class h0 {
         LogSessionId a2 = kVar.a();
         logSessionId = LogSessionId.LOG_SESSION_ID_NONE;
         if (!a2.equals(logSessionId)) {
-            ((MediaFormat) nVar.f6375b).setString("log-session-id", a2.getStringId());
+            ((MediaFormat) nVar.f7332b).setString("log-session-id", a2.getStringId());
         }
     }
 
     public static void g(n4.y yVar, ComponentName componentName) {
         try {
-            MediaSession mediaSession = ((n4.r) yVar.f16496b).f16476a;
+            MediaSession mediaSession = ((n4.r) yVar.f14994b).f14975a;
             mediaSession.getClass();
             mediaSession.setMediaButtonBroadcastReceiver(componentName);
-        } catch (IllegalArgumentException e7) {
+        } catch (IllegalArgumentException e) {
             if (Build.MANUFACTURER.equals("motorola")) {
-                e2.a.f("MediaSessionLegacyStub", "caught IllegalArgumentException on a motorola device when attempting to set the media button broadcast receiver. See https://github.com/androidx/media/issues/1730 for details.", e7);
+                e2.a.f("MediaSessionLegacyStub", "caught IllegalArgumentException on a motorola device when attempting to set the media button broadcast receiver. See https://github.com/androidx/media/issues/1730 for details.", e);
                 return;
             }
-            throw e7;
+            throw e;
         }
     }
 }

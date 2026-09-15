@@ -1,29 +1,29 @@
 package org.telegram.messenger;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import org.telegram.messenger.MediaDataController;
-public final class k7 implements Runnable {
-    public final int f18163a;
-    public final MediaDataController.KeywordResultCallback f18164b;
-    public final ArrayList f18165c;
-    public final String d;
+import org.telegram.tgnet.TLRPC;
+public final class k7 implements Comparator {
+    public final int f16551a;
+    public final ArrayList f16552b;
 
-    public k7(MediaDataController.KeywordResultCallback keywordResultCallback, ArrayList arrayList, String str, int i10) {
-        this.f18163a = i10;
-        this.f18164b = keywordResultCallback;
-        this.f18165c = arrayList;
-        this.d = str;
+    public k7(ArrayList arrayList, int i10) {
+        this.f16551a = i10;
+        this.f16552b = arrayList;
     }
 
     @Override
-    public final void run() {
-        switch (this.f18163a) {
+    public final int compare(Object obj, Object obj2) {
+        int lambda$getEmojiSuggestions$220;
+        int lambda$reorderStickers$54;
+        switch (this.f16551a) {
             case 0:
-                this.f18164b.run(this.f18165c, this.d);
-                return;
+                lambda$getEmojiSuggestions$220 = MediaDataController.lambda$getEmojiSuggestions$220(this.f16552b, (MediaDataController.KeywordResult) obj, (MediaDataController.KeywordResult) obj2);
+                return lambda$getEmojiSuggestions$220;
             default:
-                this.f18164b.run(this.f18165c, this.d);
-                return;
+                lambda$reorderStickers$54 = MediaDataController.lambda$reorderStickers$54(this.f16552b, (TLRPC.TL_messages_stickerSet) obj, (TLRPC.TL_messages_stickerSet) obj2);
+                return lambda$reorderStickers$54;
         }
     }
 }

@@ -8,12 +8,12 @@ import android.view.View;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 public abstract class gq0 extends FrameLayout {
-    public org.telegram.ui.ActionBar.j5 f26486a;
-    public org.telegram.ui.ActionBar.j5 f26487b;
-    public di.eb f26488c;
+    public org.telegram.ui.ActionBar.j5 f24437a;
+    public org.telegram.ui.ActionBar.j5 f24438b;
+    public ci.eb f24439c;
     public int d;
-    public AnimatorSet f26489e;
-    public Paint f26490f;
+    public AnimatorSet e;
+    public Paint f24440f;
     public RectF h;
 
     public final void a(int i10) {
@@ -22,38 +22,38 @@ public abstract class gq0 extends FrameLayout {
             return;
         }
         this.d = i10;
-        AnimatorSet animatorSet = this.f26489e;
+        AnimatorSet animatorSet = this.e;
         if (animatorSet != null) {
             animatorSet.cancel();
         }
         AnimatorSet animatorSet2 = new AnimatorSet();
-        this.f26489e = animatorSet2;
-        di.eb ebVar = this.f26488c;
+        this.e = animatorSet2;
+        ci.eb ebVar = this.f24439c;
         if (this.d == 0) {
             measuredWidth = 0.0f;
         } else {
             measuredWidth = ebVar.getMeasuredWidth();
         }
         animatorSet2.playTogether(ObjectAnimator.ofFloat(ebVar, View.TRANSLATION_X, measuredWidth));
-        this.f26489e.setDuration(180L);
-        this.f26489e.setInterpolator(pr.f29467g);
-        this.f26489e.addListener(new r80(this, 15));
-        this.f26489e.start();
-        ((tp0) this).f30674n.Z0();
+        this.e.setDuration(180L);
+        this.e.setInterpolator(qr.f27424g);
+        this.e.addListener(new jd0(this, 12));
+        this.e.start();
+        ((tp0) this).f28165n.Z0();
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
         float f7;
         int size = (View.MeasureSpec.getSize(i10) - AndroidUtilities.dp(28.0f)) / 2;
-        ((FrameLayout.LayoutParams) this.f26487b.getLayoutParams()).width = size;
-        FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) this.f26486a.getLayoutParams();
+        ((FrameLayout.LayoutParams) this.f24438b.getLayoutParams()).width = size;
+        FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) this.f24437a.getLayoutParams();
         layoutParams.width = size;
         layoutParams.leftMargin = AndroidUtilities.dp(14.0f) + size;
-        di.eb ebVar = this.f26488c;
+        ci.eb ebVar = this.f24439c;
         FrameLayout.LayoutParams layoutParams2 = (FrameLayout.LayoutParams) ebVar.getLayoutParams();
         layoutParams2.width = size;
-        AnimatorSet animatorSet = this.f26489e;
+        AnimatorSet animatorSet = this.e;
         if (animatorSet != null) {
             animatorSet.cancel();
         }

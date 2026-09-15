@@ -1,9 +1,9 @@
 package org.telegram.ui;
 
 import java.util.ArrayList;
-public abstract class f7 extends pg.b {
+public abstract class f7 extends og.b {
     public final int d;
-    public final ArrayList f36277e = new ArrayList();
+    public final ArrayList e = new ArrayList();
 
     public f7(int i10) {
         this.d = i10;
@@ -13,11 +13,11 @@ public abstract class f7 extends pg.b {
 
     @Override
     public final int h() {
-        return this.f36277e.size();
+        return this.e.size();
     }
 
     @Override
     public final int j(int i10) {
-        return ((m7) this.f36277e.get(i10)).f44071a;
+        return ((m7) this.e.get(i10)).f15533a;
     }
 }

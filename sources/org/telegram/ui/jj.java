@@ -1,36 +1,36 @@
 package org.telegram.ui;
-public final class jj extends eh.b {
-    public final int f37783n;
-    public final co f37784r;
+public final class jj extends dh.b {
+    public final int f34913n;
+    public final bo f34914r;
 
-    public jj(co coVar, org.telegram.ui.ActionBar.f6 f6Var, int i10, int i11) {
-        super(i10, f6Var);
-        this.f37783n = i11;
-        this.f37784r = coVar;
+    public jj(bo boVar, org.telegram.ui.ActionBar.e6 e6Var, int i10, int i11) {
+        super(i10, e6Var);
+        this.f34913n = i11;
+        this.f34914r = boVar;
     }
 
     @Override
-    public final int k0() {
+    public final int H() {
         int i10;
         int i11;
-        switch (this.f37783n) {
+        switch (this.f34913n) {
             case 0:
-                co coVar = this.f37784r;
-                i10 = ((org.telegram.ui.ActionBar.n2) coVar).currentAccount;
-                if (!fh.b.c(i10, coVar.f35247ea)) {
-                    return i0.a.k(coVar.getThemedColor(org.telegram.ui.ActionBar.j6.Sd), 255);
+                bo boVar = this.f34914r;
+                i10 = ((org.telegram.ui.ActionBar.n2) boVar).currentAccount;
+                if (!eh.b.c(i10, boVar.f32297ea)) {
+                    return i0.a.k(boVar.getThemedColor(org.telegram.ui.ActionBar.i6.Sd), 255);
                 }
-                if (coVar.f35247ea != null && !org.telegram.ui.ActionBar.j6.I.q()) {
+                if (boVar.f32297ea != null && !org.telegram.ui.ActionBar.i6.I.q()) {
                     return i0.a.k(this.d, 216);
                 }
                 return this.d;
             default:
-                co coVar2 = this.f37784r;
-                i11 = ((org.telegram.ui.ActionBar.n2) coVar2).currentAccount;
-                if (!fh.b.c(i11, coVar2.f35247ea)) {
-                    return i0.a.k(coVar2.getThemedColor(org.telegram.ui.ActionBar.j6.f20663d6), 255);
+                bo boVar2 = this.f34914r;
+                i11 = ((org.telegram.ui.ActionBar.n2) boVar2).currentAccount;
+                if (!eh.b.c(i11, boVar2.f32297ea)) {
+                    return i0.a.k(boVar2.getThemedColor(org.telegram.ui.ActionBar.i6.f18836d6), 255);
                 }
-                if (coVar2.f35247ea != null && !org.telegram.ui.ActionBar.j6.I.q()) {
+                if (boVar2.f32297ea != null && !org.telegram.ui.ActionBar.i6.I.q()) {
                     return i0.a.k(this.d, 216);
                 }
                 return this.d;

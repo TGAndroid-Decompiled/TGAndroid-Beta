@@ -12,21 +12,21 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
 public abstract class i {
-    public final com.google.firebase.messaging.m f44283a;
-    public final AtomicInteger f44284b = new AtomicInteger(0);
-    public final AtomicBoolean f44285c = new AtomicBoolean(false);
+    public final com.google.firebase.messaging.m f41244a;
+    public final AtomicInteger f41245b = new AtomicInteger(0);
+    public final AtomicBoolean f41246c = new AtomicBoolean(false);
 
     public i() {
         ?? obj = new Object();
-        obj.f6372b = new Object();
-        obj.f6373c = new ArrayDeque();
+        obj.f7329b = new Object();
+        obj.f7330c = new ArrayDeque();
         obj.d = new AtomicReference();
-        this.f44283a = obj;
+        this.f41244a = obj;
     }
 
     public final Task a(final Executor executor, final Callable callable, final CancellationToken cancellationToken) {
         boolean z10;
-        if (this.f44284b.get() > 0) {
+        if (this.f41245b.get() > 0) {
             z10 = true;
         } else {
             z10 = false;
@@ -42,23 +42,23 @@ public abstract class i {
             public final void execute(Runnable runnable) {
                 try {
                     executor.execute(runnable);
-                } catch (RuntimeException e7) {
+                } catch (RuntimeException e) {
                     if (cancellationToken.isCancellationRequested()) {
                         cancellationTokenSource.cancel();
                     } else {
-                        taskCompletionSource.setException(e7);
+                        taskCompletionSource.setException(e);
                     }
-                    throw e7;
+                    throw e;
                 }
             }
         };
-        this.f44283a.w(new Runnable() {
+        this.f41244a.w(new Runnable() {
             @Override
             public final void run() {
                 Callable callable2 = callable;
                 TaskCompletionSource taskCompletionSource2 = taskCompletionSource;
                 i iVar = i.this;
-                AtomicBoolean atomicBoolean = iVar.f44285c;
+                AtomicBoolean atomicBoolean = iVar.f41246c;
                 CancellationToken cancellationToken2 = cancellationToken;
                 boolean isCancellationRequested = cancellationToken2.isCancellationRequested();
                 CancellationTokenSource cancellationTokenSource2 = cancellationTokenSource;
@@ -82,14 +82,14 @@ public abstract class i {
                         } else {
                             taskCompletionSource2.setResult(call);
                         }
-                    } catch (RuntimeException e7) {
-                        throw new mb.a("Internal error has occurred when executing ML Kit tasks", e7);
+                    } catch (RuntimeException e) {
+                        throw new mb.a("Internal error has occurred when executing ML Kit tasks", e);
                     }
-                } catch (Exception e10) {
+                } catch (Exception e7) {
                     if (cancellationToken2.isCancellationRequested()) {
                         cancellationTokenSource2.cancel();
                     } else {
-                        taskCompletionSource2.setException(e10);
+                        taskCompletionSource2.setException(e7);
                     }
                 }
             }
@@ -103,14 +103,14 @@ public abstract class i {
 
     public final void d(Executor executor) {
         boolean z10;
-        if (this.f44284b.get() > 0) {
+        if (this.f41245b.get() > 0) {
             z10 = true;
         } else {
             z10 = false;
         }
         n6.l.k(z10);
         TaskCompletionSource taskCompletionSource = new TaskCompletionSource();
-        this.f44283a.w(new i9.s(26, this, taskCompletionSource), executor);
+        this.f41244a.w(new i9.s(26, this, taskCompletionSource), executor);
         taskCompletionSource.getTask();
     }
 }

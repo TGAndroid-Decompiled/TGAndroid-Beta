@@ -4,37 +4,37 @@ import android.graphics.Matrix;
 import android.graphics.Paint;
 import java.util.ArrayList;
 public final class j extends k {
-    public final Matrix f48844a;
-    public final ArrayList f48845b;
-    public float f48846c;
+    public final Matrix f45286a;
+    public final ArrayList f45287b;
+    public float f45288c;
     public float d;
-    public float f48847e;
-    public float f48848f;
-    public float f48849g;
+    public float e;
+    public float f45289f;
+    public float f45290g;
     public float h;
-    public float f48850i;
-    public final Matrix f48851j;
-    public String f48852k;
+    public float f45291i;
+    public final Matrix f45292j;
+    public String f45293k;
 
     public j() {
-        this.f48844a = new Matrix();
-        this.f48845b = new ArrayList();
-        this.f48846c = 0.0f;
+        this.f45286a = new Matrix();
+        this.f45287b = new ArrayList();
+        this.f45288c = 0.0f;
         this.d = 0.0f;
-        this.f48847e = 0.0f;
-        this.f48848f = 1.0f;
-        this.f48849g = 1.0f;
+        this.e = 0.0f;
+        this.f45289f = 1.0f;
+        this.f45290g = 1.0f;
         this.h = 0.0f;
-        this.f48850i = 0.0f;
-        this.f48851j = new Matrix();
-        this.f48852k = null;
+        this.f45291i = 0.0f;
+        this.f45292j = new Matrix();
+        this.f45293k = null;
     }
 
     @Override
     public final boolean a() {
         int i10 = 0;
         while (true) {
-            ArrayList arrayList = this.f48845b;
+            ArrayList arrayList = this.f45287b;
             if (i10 >= arrayList.size()) {
                 return false;
             }
@@ -50,7 +50,7 @@ public final class j extends k {
         int i10 = 0;
         boolean z10 = false;
         while (true) {
-            ArrayList arrayList = this.f48845b;
+            ArrayList arrayList = this.f45287b;
             if (i10 < arrayList.size()) {
                 z10 |= ((k) arrayList.get(i10)).b(iArr);
                 i10++;
@@ -61,20 +61,20 @@ public final class j extends k {
     }
 
     public final void c() {
-        Matrix matrix = this.f48851j;
+        Matrix matrix = this.f45292j;
         matrix.reset();
-        matrix.postTranslate(-this.d, -this.f48847e);
-        matrix.postScale(this.f48848f, this.f48849g);
-        matrix.postRotate(this.f48846c, 0.0f, 0.0f);
-        matrix.postTranslate(this.h + this.d, this.f48850i + this.f48847e);
+        matrix.postTranslate(-this.d, -this.e);
+        matrix.postScale(this.f45289f, this.f45290g);
+        matrix.postRotate(this.f45288c, 0.0f, 0.0f);
+        matrix.postTranslate(this.h + this.d, this.f45291i + this.e);
     }
 
     public String getGroupName() {
-        return this.f48852k;
+        return this.f45293k;
     }
 
     public Matrix getLocalMatrix() {
-        return this.f48851j;
+        return this.f45292j;
     }
 
     public float getPivotX() {
@@ -82,19 +82,19 @@ public final class j extends k {
     }
 
     public float getPivotY() {
-        return this.f48847e;
+        return this.e;
     }
 
     public float getRotation() {
-        return this.f48846c;
+        return this.f45288c;
     }
 
     public float getScaleX() {
-        return this.f48848f;
+        return this.f45289f;
     }
 
     public float getScaleY() {
-        return this.f48849g;
+        return this.f45290g;
     }
 
     public float getTranslateX() {
@@ -102,7 +102,7 @@ public final class j extends k {
     }
 
     public float getTranslateY() {
-        return this.f48850i;
+        return this.f45291i;
     }
 
     public void setPivotX(float f7) {
@@ -113,29 +113,29 @@ public final class j extends k {
     }
 
     public void setPivotY(float f7) {
-        if (f7 != this.f48847e) {
-            this.f48847e = f7;
+        if (f7 != this.e) {
+            this.e = f7;
             c();
         }
     }
 
     public void setRotation(float f7) {
-        if (f7 != this.f48846c) {
-            this.f48846c = f7;
+        if (f7 != this.f45288c) {
+            this.f45288c = f7;
             c();
         }
     }
 
     public void setScaleX(float f7) {
-        if (f7 != this.f48848f) {
-            this.f48848f = f7;
+        if (f7 != this.f45289f) {
+            this.f45289f = f7;
             c();
         }
     }
 
     public void setScaleY(float f7) {
-        if (f7 != this.f48849g) {
-            this.f48849g = f7;
+        if (f7 != this.f45290g) {
+            this.f45290g = f7;
             c();
         }
     }
@@ -148,77 +148,77 @@ public final class j extends k {
     }
 
     public void setTranslateY(float f7) {
-        if (f7 != this.f48850i) {
-            this.f48850i = f7;
+        if (f7 != this.f45291i) {
+            this.f45291i = f7;
             c();
         }
     }
 
     public j(j jVar, a0.f fVar) {
         l lVar;
-        this.f48844a = new Matrix();
-        this.f48845b = new ArrayList();
-        this.f48846c = 0.0f;
+        this.f45286a = new Matrix();
+        this.f45287b = new ArrayList();
+        this.f45288c = 0.0f;
         this.d = 0.0f;
-        this.f48847e = 0.0f;
-        this.f48848f = 1.0f;
-        this.f48849g = 1.0f;
+        this.e = 0.0f;
+        this.f45289f = 1.0f;
+        this.f45290g = 1.0f;
         this.h = 0.0f;
-        this.f48850i = 0.0f;
+        this.f45291i = 0.0f;
         Matrix matrix = new Matrix();
-        this.f48851j = matrix;
-        this.f48852k = null;
-        this.f48846c = jVar.f48846c;
+        this.f45292j = matrix;
+        this.f45293k = null;
+        this.f45288c = jVar.f45288c;
         this.d = jVar.d;
-        this.f48847e = jVar.f48847e;
-        this.f48848f = jVar.f48848f;
-        this.f48849g = jVar.f48849g;
+        this.e = jVar.e;
+        this.f45289f = jVar.f45289f;
+        this.f45290g = jVar.f45290g;
         this.h = jVar.h;
-        this.f48850i = jVar.f48850i;
-        String str = jVar.f48852k;
-        this.f48852k = str;
+        this.f45291i = jVar.f45291i;
+        String str = jVar.f45293k;
+        this.f45293k = str;
         if (str != null) {
             fVar.put(str, this);
         }
-        matrix.set(jVar.f48851j);
-        ArrayList arrayList = jVar.f48845b;
+        matrix.set(jVar.f45292j);
+        ArrayList arrayList = jVar.f45287b;
         for (int i10 = 0; i10 < arrayList.size(); i10++) {
             Object obj = arrayList.get(i10);
             if (obj instanceof j) {
-                this.f48845b.add(new j((j) obj, fVar));
+                this.f45287b.add(new j((j) obj, fVar));
             } else {
                 if (obj instanceof i) {
                     i iVar = (i) obj;
                     ?? lVar2 = new l(iVar);
-                    lVar2.f48835e = 0.0f;
-                    lVar2.f48837g = 1.0f;
+                    lVar2.e = 0.0f;
+                    lVar2.f45279g = 1.0f;
                     lVar2.h = 1.0f;
-                    lVar2.f48838i = 0.0f;
-                    lVar2.f48839j = 1.0f;
-                    lVar2.f48840k = 0.0f;
-                    lVar2.f48841l = Paint.Cap.BUTT;
-                    lVar2.f48842m = Paint.Join.MITER;
-                    lVar2.f48843n = 4.0f;
+                    lVar2.f45280i = 0.0f;
+                    lVar2.f45281j = 1.0f;
+                    lVar2.f45282k = 0.0f;
+                    lVar2.f45283l = Paint.Cap.BUTT;
+                    lVar2.f45284m = Paint.Join.MITER;
+                    lVar2.f45285n = 4.0f;
                     lVar2.d = iVar.d;
-                    lVar2.f48835e = iVar.f48835e;
-                    lVar2.f48837g = iVar.f48837g;
-                    lVar2.f48836f = iVar.f48836f;
-                    lVar2.f48855c = iVar.f48855c;
+                    lVar2.e = iVar.e;
+                    lVar2.f45279g = iVar.f45279g;
+                    lVar2.f45278f = iVar.f45278f;
+                    lVar2.f45296c = iVar.f45296c;
                     lVar2.h = iVar.h;
-                    lVar2.f48838i = iVar.f48838i;
-                    lVar2.f48839j = iVar.f48839j;
-                    lVar2.f48840k = iVar.f48840k;
-                    lVar2.f48841l = iVar.f48841l;
-                    lVar2.f48842m = iVar.f48842m;
-                    lVar2.f48843n = iVar.f48843n;
+                    lVar2.f45280i = iVar.f45280i;
+                    lVar2.f45281j = iVar.f45281j;
+                    lVar2.f45282k = iVar.f45282k;
+                    lVar2.f45283l = iVar.f45283l;
+                    lVar2.f45284m = iVar.f45284m;
+                    lVar2.f45285n = iVar.f45285n;
                     lVar = lVar2;
                 } else if (obj instanceof h) {
                     lVar = new l((h) obj);
                 } else {
                     throw new IllegalStateException("Unknown object in the tree!");
                 }
-                this.f48845b.add(lVar);
-                Object obj2 = lVar.f48854b;
+                this.f45287b.add(lVar);
+                Object obj2 = lVar.f45295b;
                 if (obj2 != null) {
                     fVar.put(obj2, lVar);
                 }

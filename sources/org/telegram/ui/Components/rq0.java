@@ -10,12 +10,12 @@ import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.ui.ProfileActivity;
-import org.telegram.ui.eg1;
+import org.telegram.ui.dg1;
 public final class rq0 implements v10, org.telegram.ui.oy {
-    public final xu0 f30073a;
+    public final yu0 f27665a;
 
     @Override
-    public boolean B() {
+    public boolean A() {
         return false;
     }
 
@@ -25,19 +25,19 @@ public final class rq0 implements v10, org.telegram.ui.oy {
     }
 
     public void a(boolean z10) {
-        xu0 xu0Var = this.f30073a;
+        yu0 yu0Var = this.f27665a;
         if (!z10) {
-            xu0Var.requestLayout();
+            yu0Var.requestLayout();
         }
-        xu0Var.setVisibleHeight(xu0Var.M1);
+        yu0Var.setVisibleHeight(yu0Var.M1);
     }
 
     @Override
-    public boolean u(org.telegram.ui.uy uyVar, ArrayList arrayList, CharSequence charSequence, boolean z10, boolean z11, int i10, int i11, eg1 eg1Var) {
+    public boolean u(org.telegram.ui.uy uyVar, ArrayList arrayList, CharSequence charSequence, boolean z10, boolean z11, int i10, int i11, dg1 dg1Var) {
         UndoView undoView;
-        xu0 xu0Var = this.f30073a;
-        SparseArray[] sparseArrayArr = xu0Var.Z0;
-        org.telegram.ui.ActionBar.n2 n2Var = xu0Var.f32726v1;
+        yu0 yu0Var = this.f27665a;
+        SparseArray[] sparseArrayArr = yu0Var.Z0;
+        org.telegram.ui.ActionBar.n2 n2Var = yu0Var.f30392v1;
         ArrayList<MessageObject> arrayList2 = new ArrayList<>();
         int i12 = 1;
         while (true) {
@@ -62,11 +62,11 @@ public final class rq0 implements v10, org.telegram.ui.oy {
             sparseArrayArr[i12].clear();
             i12--;
         }
-        xu0Var.f32677a1 = 0;
-        xu0Var.b1(false);
-        hu0 hu0Var = xu0Var.R;
-        if (hu0Var != null) {
-            hu0Var.f26864w.clear();
+        yu0Var.f30344a1 = 0;
+        yu0Var.b1(false);
+        iu0 iu0Var = yu0Var.R;
+        if (iu0Var != null) {
+            iu0Var.f25142w.clear();
         }
         if (arrayList.size() <= 1 && ((MessagesStorage.TopicKey) arrayList.get(0)).dialogId != n2Var.getUserConfig().getClientUserId() && charSequence == null) {
             long j3 = ((MessagesStorage.TopicKey) arrayList.get(0)).dialogId;
@@ -84,13 +84,13 @@ public final class rq0 implements v10, org.telegram.ui.oy {
                 }
             }
             n2Var.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.closeChats, new Object[0]);
-            org.telegram.ui.co coVar = new org.telegram.ui.co(i15);
-            og.d.a(coVar, (MessagesStorage.TopicKey) arrayList.get(0));
-            uyVar.presentFragment(coVar, true);
-            coVar.Ab(arrayList2);
+            org.telegram.ui.bo boVar = new org.telegram.ui.bo(i15);
+            ng.d.a(boVar, (MessagesStorage.TopicKey) arrayList.get(0));
+            uyVar.presentFragment(boVar, true);
+            boVar.Ab(arrayList2);
             return true;
         }
-        xu0Var.r1(true);
+        yu0Var.r1(true);
         for (int i16 = 0; i16 < arrayList.size(); i16++) {
             long j10 = ((MessagesStorage.TopicKey) arrayList.get(i16)).dialogId;
             if (charSequence != null) {

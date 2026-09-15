@@ -1,15 +1,35 @@
 package org.telegram.ui;
 
-import android.animation.ValueAnimator;
 import android.graphics.drawable.Drawable;
-public final class bs0 implements ValueAnimator.AnimatorUpdateListener {
+public final class bs0 implements Runnable {
+    public final int f32577a;
+    public final PhotoViewer f32578b;
+
+    public bs0(PhotoViewer photoViewer, int i10) {
+        this.f32577a = i10;
+        this.f32578b = photoViewer;
+    }
+
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        org.telegram.ui.Components.ub ubVar;
-        Drawable[] drawableArr = PhotoViewer.T8;
-        org.telegram.ui.Components.qc qcVar = org.telegram.ui.Components.qc.f29671w;
-        if (qcVar != null && (ubVar = qcVar.f29675e) != null) {
-            ubVar.updatePosition();
+    public final void run() {
+        int i10 = this.f32577a;
+        PhotoViewer photoViewer = this.f32578b;
+        switch (i10) {
+            case 0:
+                Drawable[] drawableArr = PhotoViewer.T8;
+                photoViewer.G0(true, false);
+                return;
+            case 1:
+                Drawable[] drawableArr2 = PhotoViewer.T8;
+                photoViewer.f3(1, false);
+                return;
+            case 2:
+                Drawable[] drawableArr3 = PhotoViewer.T8;
+                photoViewer.f3(-1, false);
+                return;
+            default:
+                PhotoViewer.S(photoViewer);
+                return;
         }
     }
 }

@@ -3,22 +3,22 @@ package org.telegram.ui;
 import org.telegram.messenger.ChannelBoostsController;
 import org.telegram.tgnet.tl.TL_stories;
 public final class gc implements e2.h {
-    public final int f36623a;
-    public final bd f36624b;
+    public final int f33859a;
+    public final ad f33860b;
 
-    public gc(bd bdVar, int i10) {
-        this.f36623a = i10;
-        this.f36624b = bdVar;
+    public gc(ad adVar, int i10) {
+        this.f33859a = i10;
+        this.f33860b = adVar;
     }
 
     @Override
     public final void accept(Object obj) {
-        switch (this.f36623a) {
+        switch (this.f33859a) {
             case 0:
-                bd.V(this.f36624b, (ChannelBoostsController.CanApplyBoost) obj);
+                ad.V(this.f33860b, (ChannelBoostsController.CanApplyBoost) obj);
                 return;
             default:
-                this.f36624b.W0((TL_stories.TL_premium_boostsStatus) obj);
+                this.f33860b.W0((TL_stories.TL_premium_boostsStatus) obj);
                 return;
         }
     }

@@ -9,19 +9,19 @@ import com.google.android.gms.tasks.Task;
 import java.util.concurrent.atomic.AtomicInteger;
 public final class v implements OnCompleteListener, Runnable {
     public static final c0 d = new Handler(Looper.getMainLooper());
-    public static final SparseArray f47756e = new SparseArray(2);
-    public static final AtomicInteger f47757f = new AtomicInteger();
-    public int f47758a;
-    public w f47759b;
-    public Task f47760c;
+    public static final SparseArray e = new SparseArray(2);
+    public static final AtomicInteger f44271f = new AtomicInteger();
+    public int f44272a;
+    public w f44273b;
+    public Task f44274c;
 
     public final void a() {
-        if (this.f47760c != null && this.f47759b != null) {
-            f47756e.delete(this.f47758a);
+        if (this.f44274c != null && this.f44273b != null) {
+            e.delete(this.f44272a);
             d.removeCallbacks(this);
-            w wVar = this.f47759b;
+            w wVar = this.f44273b;
             if (wVar != null) {
-                Task task = this.f47760c;
+                Task task = this.f44274c;
                 int i10 = w.d;
                 wVar.a(task);
             }
@@ -30,12 +30,12 @@ public final class v implements OnCompleteListener, Runnable {
 
     @Override
     public final void onComplete(Task task) {
-        this.f47760c = task;
+        this.f44274c = task;
         a();
     }
 
     @Override
     public final void run() {
-        f47756e.delete(this.f47758a);
+        e.delete(this.f44272a);
     }
 }

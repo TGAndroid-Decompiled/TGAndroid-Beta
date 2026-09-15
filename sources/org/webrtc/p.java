@@ -1,21 +1,21 @@
 package org.webrtc;
 public final class p implements Runnable {
-    public final int f43612a;
-    public final ScreenCapturerAndroid f43613b;
+    public final int f40369a;
+    public final ScreenCapturerAndroid f40370b;
 
     public p(ScreenCapturerAndroid screenCapturerAndroid, int i10) {
-        this.f43612a = i10;
-        this.f43613b = screenCapturerAndroid;
+        this.f40369a = i10;
+        this.f40370b = screenCapturerAndroid;
     }
 
     @Override
     public final void run() {
-        switch (this.f43612a) {
+        switch (this.f40369a) {
             case 0:
-                ScreenCapturerAndroid.a(this.f43613b);
+                ScreenCapturerAndroid.a(this.f40370b);
                 return;
             default:
-                ScreenCapturerAndroid.b(this.f43613b);
+                ScreenCapturerAndroid.b(this.f40370b);
                 return;
         }
     }

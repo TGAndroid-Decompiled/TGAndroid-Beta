@@ -6,55 +6,60 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessagesStorage;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
-public final class fx implements org.telegram.ui.Components.og {
-    public final uy f36489a;
+public final class fx implements org.telegram.ui.Components.mg {
+    public final uy f33696a;
 
     public fx(uy uyVar) {
-        this.f36489a = uyVar;
+        this.f33696a = uyVar;
     }
 
     @Override
-    public final void G(CharSequence charSequence, boolean z10, int i10, int i11, long j3) {
-        uy uyVar = this.f36489a;
+    public final boolean C0() {
+        return true;
+    }
+
+    @Override
+    public final void H(CharSequence charSequence, boolean z10, int i10, int i11, long j3) {
+        uy uyVar = this.f33696a;
         if (uyVar.C2 != null && !uyVar.I2.isEmpty()) {
             ArrayList arrayList = new ArrayList();
             for (int i12 = 0; i12 < uyVar.I2.size(); i12++) {
                 arrayList.add(MessagesStorage.TopicKey.of(((Long) uyVar.I2.get(i12)).longValue(), 0L));
             }
-            uy uyVar2 = this.f36489a;
+            uy uyVar2 = this.f33696a;
             uyVar2.C2.u(uyVar2, arrayList, charSequence, false, z10, i10, i11, null);
         }
     }
 
     @Override
-    public final TLRPC.TL_channels_sendAsPeers H() {
+    public final TLRPC.TL_channels_sendAsPeers J() {
         return null;
     }
 
     @Override
-    public final int W0() {
+    public final int b1() {
         return 0;
     }
 
     @Override
-    public final TL_stories.StoryItem Y0() {
+    public final TL_stories.StoryItem d1() {
         return null;
     }
 
     @Override
-    public final boolean a1(long j3) {
+    public final boolean f1(long j3) {
         return false;
     }
 
     @Override
-    public final boolean d1() {
+    public final boolean i1() {
         return false;
     }
 
     @Override
-    public final void f1(CharSequence charSequence, boolean z10, boolean z11) {
-        uy uyVar = this.f36489a;
-        AndroidUtilities.runOnUIThread(new jw(uyVar, 12), 100L);
+    public final void l1(CharSequence charSequence, boolean z10, boolean z11) {
+        uy uyVar = this.f33696a;
+        AndroidUtilities.runOnUIThread(new iw(uyVar, 12), 100L);
         org.telegram.ui.Components.mq0 mq0Var = uyVar.G2;
         if (mq0Var != null) {
             if (z10) {
@@ -64,57 +69,60 @@ public final class fx implements org.telegram.ui.Components.og {
                 }
                 return;
             }
-            yt ytVar = uyVar.H2;
-            if (ytVar != null) {
-                AndroidUtilities.cancelRunOnUIThread(ytVar);
+            kw kwVar = uyVar.H2;
+            if (kwVar != null) {
+                AndroidUtilities.cancelRunOnUIThread(kwVar);
             }
-            yt ytVar2 = new yt(10, this, charSequence);
-            uyVar.H2 = ytVar2;
-            AndroidUtilities.runOnUIThread(ytVar2, 1000L);
+            kw kwVar2 = new kw(4, this, charSequence);
+            uyVar.H2 = kwVar2;
+            AndroidUtilities.runOnUIThread(kwVar2, 1000L);
         }
     }
 
     @Override
-    public final boolean i1() {
+    public final boolean m() {
         return false;
     }
 
     @Override
-    public final boolean l() {
+    public final boolean o1() {
         return false;
     }
 
     @Override
-    public final sn o0() {
+    public final rn p0() {
         return null;
     }
 
     @Override
-    public final int p() {
+    public final int q() {
         return 0;
     }
 
     @Override
-    public final TLRPC.Peer q() {
+    public final TLRPC.Peer v() {
         return null;
     }
 
     @Override
-    public final boolean q1() {
+    public final boolean w1() {
         return false;
     }
 
     @Override
-    public final boolean z0() {
-        return true;
+    public final void A2() {
     }
 
     @Override
-    public final void C() {
+    public final void B(boolean z10) {
     }
 
     @Override
-    public final void D0() {
+    public final void D() {
+    }
+
+    @Override
+    public final void E1() {
     }
 
     @Override
@@ -122,118 +130,110 @@ public final class fx implements org.telegram.ui.Components.og {
     }
 
     @Override
-    public final void P0() {
+    public final void J0() {
     }
 
     @Override
-    public final void U() {
+    public final void T0() {
     }
 
     @Override
-    public final void V0(int i10) {
+    public final void W() {
     }
 
     @Override
-    public final void V1() {
+    public final void X(boolean z10) {
     }
 
     @Override
-    public final void W(boolean z10) {
+    public final void a1(int i10) {
     }
 
     @Override
-    public final void X1(int i10) {
+    public final void d2() {
     }
 
     @Override
-    public final void a2() {
+    public final void f2(int i10) {
     }
 
     @Override
-    public final void b2(boolean z10) {
+    public final void g() {
     }
 
     @Override
-    public final void g2() {
+    public final void i2() {
     }
 
     @Override
-    public final void h() {
+    public final void j2(boolean z10) {
     }
 
     @Override
-    public final void h1() {
+    public final void l() {
     }
 
     @Override
-    public final void k() {
+    public final void m0() {
     }
 
     @Override
-    public final void k1() {
+    public final void n1() {
     }
 
     @Override
-    public final void l0() {
+    public final void o2() {
     }
 
     @Override
-    public final void l1() {
+    public final void q1() {
     }
 
     @Override
-    public final void m1() {
+    public final void r1() {
     }
 
     @Override
-    public final void n2() {
+    public final void s0() {
     }
 
     @Override
-    public final void p1(CharSequence charSequence) {
+    public final void s1() {
     }
 
     @Override
-    public final void r0() {
+    public final void v1(CharSequence charSequence) {
     }
 
     @Override
-    public final void r2() {
+    public final void w2() {
     }
 
     @Override
-    public final void t1() {
+    public final void x() {
     }
 
     @Override
-    public final void v() {
+    public final void y(float f7) {
     }
 
     @Override
-    public final void x(float f7) {
+    public final void z1() {
     }
 
     @Override
-    public final void x1() {
+    public final void E0(int i10, int i11) {
     }
 
     @Override
-    public final void z(boolean z10) {
+    public final void K(float f7, int i10) {
     }
 
     @Override
-    public final void B0(int i10, int i11) {
+    public final void t1(View view, CharSequence charSequence, boolean z10) {
     }
 
     @Override
-    public final void J(float f7, int i10) {
-    }
-
-    @Override
-    public final void n1(View view, CharSequence charSequence, boolean z10) {
-    }
-
-    @Override
-    public final void c2(int i10, int i11, int i12, long j3, long j10, boolean z10) {
+    public final void k2(int i10, int i11, int i12, long j3, long j10, boolean z10) {
     }
 }

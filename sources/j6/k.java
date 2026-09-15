@@ -4,21 +4,21 @@ import android.os.Bundle;
 import android.util.Log;
 import com.google.android.gms.tasks.TaskCompletionSource;
 public final class k {
-    public final int f13545a;
-    public final TaskCompletionSource f13546b = new TaskCompletionSource();
-    public final int f13547c;
+    public final int f12904a;
+    public final TaskCompletionSource f12905b = new TaskCompletionSource();
+    public final int f12906c;
     public final Bundle d;
-    public final int f13548e;
+    public final int e;
 
     public k(int i10, int i11, Bundle bundle, int i12) {
-        this.f13548e = i12;
-        this.f13545a = i10;
-        this.f13547c = i11;
+        this.e = i12;
+        this.f12904a = i10;
+        this.f12906c = i11;
         this.d = bundle;
     }
 
     public final boolean a() {
-        switch (this.f13548e) {
+        switch (this.e) {
             case 0:
                 return true;
             default:
@@ -32,7 +32,7 @@ public final class k {
             String obj = kVar.toString();
             Log.d("MessengerIpcClient", "Failing " + kVar2 + " with " + obj);
         }
-        this.f13546b.setException(kVar);
+        this.f12905b.setException(kVar);
     }
 
     public final void c(Bundle bundle) {
@@ -41,10 +41,10 @@ public final class k {
             String valueOf = String.valueOf(bundle);
             Log.d("MessengerIpcClient", "Finishing " + kVar + " with " + valueOf);
         }
-        this.f13546b.setResult(bundle);
+        this.f12905b.setResult(bundle);
     }
 
     public final String toString() {
-        return "Request { what=" + this.f13547c + " id=" + this.f13545a + " oneWay=" + a() + "}";
+        return "Request { what=" + this.f12906c + " id=" + this.f12904a + " oneWay=" + a() + "}";
     }
 }

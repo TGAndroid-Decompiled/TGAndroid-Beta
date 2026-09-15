@@ -8,25 +8,25 @@ import android.text.style.URLSpan;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.ui.Components.e90;
-import org.telegram.ui.Components.l51;
-import org.telegram.ui.Components.yc;
+import org.telegram.ui.Components.d90;
+import org.telegram.ui.Components.m51;
+import org.telegram.ui.Components.vc;
 public final class f implements Runnable {
-    public final j f21893a;
+    public final j f20058a;
 
     public f(j jVar) {
-        this.f21893a = jVar;
+        this.f20058a = jVar;
     }
 
     @Override
     public final void run() {
         String obj;
-        j jVar = this.f21893a;
-        e90 e90Var = jVar.f22149w;
-        if (e90Var != null) {
-            CharacterStyle characterStyle = e90Var.f25623i;
-            if (characterStyle instanceof l51) {
-                obj = ((l51) characterStyle).getURL();
+        j jVar = this.f20058a;
+        d90 d90Var = jVar.f20290w;
+        if (d90Var != null) {
+            CharacterStyle characterStyle = d90Var.f23248i;
+            if (characterStyle instanceof m51) {
+                obj = ((m51) characterStyle).getURL();
             } else if (characterStyle instanceof URLSpan) {
                 obj = ((URLSpan) characterStyle).getURL();
             } else {
@@ -37,18 +37,18 @@ public final class f implements Runnable {
                 jVar.performHapticFeedback(0, 2);
             } catch (Exception unused) {
             }
-            final StaticLayout staticLayout = jVar.f22151y;
-            final float f7 = jVar.f22150x;
+            final StaticLayout staticLayout = jVar.f20292y;
+            final float f7 = jVar.f20291x;
             if (jVar.getContext() != null) {
-                final ClickableSpan clickableSpan = (ClickableSpan) jVar.f22149w.f25623i;
-                org.telegram.ui.ActionBar.f3 f3Var = new org.telegram.ui.ActionBar.f3(1, jVar.getContext(), (org.telegram.ui.ActionBar.f6) null, false);
+                final ClickableSpan clickableSpan = (ClickableSpan) jVar.f20290w.f23248i;
+                org.telegram.ui.ActionBar.f3 f3Var = new org.telegram.ui.ActionBar.f3(1, jVar.getContext(), (org.telegram.ui.ActionBar.e6) null, false);
                 f3Var.fixNavigationBar();
                 f3Var.title = str;
                 f3Var.bigTitle = false;
                 DialogInterface.OnClickListener onClickListener = new DialogInterface.OnClickListener() {
                     @Override
                     public final void onClick(DialogInterface dialogInterface, int i10) {
-                        j jVar2 = f.this.f21893a;
+                        j jVar2 = f.this.f20058a;
                         org.telegram.ui.ActionBar.n2 n2Var = jVar2.H;
                         if (i10 == 0) {
                             jVar2.d(clickableSpan, staticLayout, f7);
@@ -57,11 +57,11 @@ public final class f implements Runnable {
                             AndroidUtilities.addToClipboard(str2);
                             if (AndroidUtilities.shouldShowClipboardToast()) {
                                 if (str2.startsWith("@")) {
-                                    org.telegram.messenger.w1.o(R.string.UsernameCopied, yc.a0(n2Var), R.raw.copy, 36);
+                                    org.telegram.messenger.w1.o(R.string.UsernameCopied, vc.a0(n2Var), R.raw.copy, 36);
                                 } else if (!str2.startsWith("#") && !str2.startsWith("$")) {
-                                    org.telegram.messenger.w1.o(R.string.LinkCopied, yc.a0(n2Var), R.raw.copy, 36);
+                                    org.telegram.messenger.w1.o(R.string.LinkCopied, vc.a0(n2Var), R.raw.copy, 36);
                                 } else {
-                                    org.telegram.messenger.w1.o(R.string.HashtagCopied, yc.a0(n2Var), R.raw.copy, 36);
+                                    org.telegram.messenger.w1.o(R.string.HashtagCopied, vc.a0(n2Var), R.raw.copy, 36);
                                 }
                             }
                         }
@@ -72,12 +72,12 @@ public final class f implements Runnable {
                 f3Var.setOnHideListener(new DialogInterface.OnDismissListener() {
                     @Override
                     public final void onDismiss(DialogInterface dialogInterface) {
-                        f.this.f21893a.e();
+                        f.this.f20058a.e();
                     }
                 });
                 f3Var.show();
             }
-            jVar.f22149w = null;
+            jVar.f20290w = null;
         }
     }
 }

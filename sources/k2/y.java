@@ -1,38 +1,15 @@
 package k2;
 
-import android.media.AudioDeviceInfo;
-import android.media.AudioRouting;
-import android.media.AudioTrack;
-import android.os.Handler;
-import android.os.Looper;
-import di.g7;
+import b2.v0;
 public final class y {
-    public final AudioTrack f14689a;
-    public final g7 f14690b;
-    public x f14691c = new AudioRouting.OnRoutingChangedListener() {
-        @Override
-        public final void onRoutingChanged(AudioRouting audioRouting) {
-            y.a(y.this, audioRouting);
-        }
-    };
+    public final v0 f13395a;
+    public final long f13396b;
+    public final long f13397c;
+    public long d;
 
-    public y(AudioTrack audioTrack, g7 g7Var) {
-        this.f14689a = audioTrack;
-        this.f14690b = g7Var;
-        audioTrack.addOnRoutingChangedListener(this.f14691c, new Handler(Looper.myLooper()));
-    }
-
-    public static void a(y yVar, AudioRouting audioRouting) {
-        AudioDeviceInfo routedDevice;
-        if (yVar.f14691c != null && (routedDevice = audioRouting.getRoutedDevice()) != null) {
-            yVar.f14690b.c(routedDevice);
-        }
-    }
-
-    public final void b() {
-        x xVar = this.f14691c;
-        xVar.getClass();
-        this.f14689a.removeOnRoutingChangedListener(xVar);
-        this.f14691c = null;
+    public y(v0 v0Var, long j3, long j10) {
+        this.f13395a = v0Var;
+        this.f13396b = j3;
+        this.f13397c = j10;
     }
 }

@@ -5,102 +5,75 @@ import android.animation.AnimatorListenerAdapter;
 import android.view.View;
 import android.view.ViewPropertyAnimator;
 public final class ws extends AnimatorListenerAdapter {
-    public final int f32329a;
-    public final s4.c1 f32330b;
-    public final int f32331c;
-    public final View d;
-    public final int f32332e;
-    public final ViewPropertyAnimator f32333f;
-    public final s4.f1 h;
+    public final int f29775a = 1;
+    public final s4.c1 f29776b;
+    public final View f29777c;
+    public final ViewPropertyAnimator d;
+    public final at e;
 
-    public ws(s4.f1 f1Var, s4.c1 c1Var, int i10, View view, int i11, ViewPropertyAnimator viewPropertyAnimator, int i12) {
-        this.f32329a = i12;
-        this.h = f1Var;
-        this.f32330b = c1Var;
-        this.f32331c = i10;
-        this.d = view;
-        this.f32332e = i11;
-        this.f32333f = viewPropertyAnimator;
+    public ws(at atVar, s4.c1 c1Var, ViewPropertyAnimator viewPropertyAnimator, View view) {
+        this.e = atVar;
+        this.f29776b = c1Var;
+        this.d = viewPropertyAnimator;
+        this.f29777c = view;
     }
 
     @Override
-    public final void onAnimationCancel(Animator animator) {
-        switch (this.f32329a) {
-            case 0:
-                int i10 = this.f32331c;
-                View view = this.d;
-                if (i10 != 0) {
-                    view.setTranslationX(0.0f);
-                }
-                if (this.f32332e != 0) {
-                    view.setTranslationY(0.0f);
-                }
-                View view2 = this.f32330b.f45738a;
-                if (view2 instanceof org.telegram.ui.Cells.r2) {
-                    ((org.telegram.ui.Cells.r2) view2).setMoving(false);
-                    return;
-                } else if (view2 instanceof hg.l) {
-                    ((hg.l) view2).f11162a = false;
-                    return;
-                } else {
-                    return;
-                }
+    public void onAnimationCancel(Animator animator) {
+        switch (this.f29775a) {
+            case 1:
+                this.f29777c.setAlpha(1.0f);
+                return;
             default:
-                int i11 = this.f32331c;
-                View view3 = this.d;
-                if (i11 != 0) {
-                    view3.setTranslationX(0.0f);
-                }
-                if (this.f32332e != 0) {
-                    view3.setTranslationY(0.0f);
-                    return;
-                }
+                super.onAnimationCancel(animator);
                 return;
         }
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        switch (this.f32329a) {
+        switch (this.f29775a) {
             case 0:
-                this.f32333f.setListener(null);
-                zs zsVar = (zs) this.h;
-                s4.c1 c1Var = this.f32330b;
-                zsVar.v(c1Var);
-                zsVar.f33223w.remove(c1Var);
-                zsVar.A();
-                View view = c1Var.f45738a;
-                if (view instanceof org.telegram.ui.Cells.r2) {
-                    ((org.telegram.ui.Cells.r2) view).setMoving(false);
-                } else if (view instanceof hg.l) {
-                    ((hg.l) view).f11162a = false;
-                }
-                View view2 = this.d;
-                view2.setTranslationX(0.0f);
-                view2.setTranslationY(0.0f);
+                this.d.setListener(null);
+                this.f29777c.setAlpha(1.0f);
+                at atVar = this.e;
+                s4.c1 c1Var = this.f29776b;
+                atVar.d(c1Var);
+                atVar.f22480x.remove(c1Var);
+                atVar.A();
                 return;
             default:
-                this.f32333f.setListener(null);
-                s4.j jVar = (s4.j) this.h;
-                s4.c1 c1Var2 = this.f32330b;
-                jVar.P(c1Var2);
-                jVar.v(c1Var2);
-                jVar.f45813z.remove(c1Var2);
-                jVar.G();
-                jVar.z(c1Var2);
+                this.d.setListener(null);
+                at atVar2 = this.e;
+                s4.c1 c1Var2 = this.f29776b;
+                atVar2.u(c1Var2);
+                atVar2.v.remove(c1Var2);
+                atVar2.A();
+                View view = c1Var2.f42675a;
+                if (view instanceof org.telegram.ui.Cells.r2) {
+                    ((org.telegram.ui.Cells.r2) view).setMoving(false);
+                    return;
+                }
                 return;
         }
     }
 
     @Override
     public final void onAnimationStart(Animator animator) {
-        switch (this.f32329a) {
+        switch (this.f29775a) {
             case 0:
-                ((zs) this.h).getClass();
+                this.e.y();
                 return;
             default:
-                ((s4.j) this.h).getClass();
+                this.e.getClass();
                 return;
         }
+    }
+
+    public ws(at atVar, s4.c1 c1Var, View view, ViewPropertyAnimator viewPropertyAnimator) {
+        this.e = atVar;
+        this.f29776b = c1Var;
+        this.f29777c = view;
+        this.d = viewPropertyAnimator;
     }
 }

@@ -1,93 +1,47 @@
 package org.telegram.ui.Components.voip;
+public final class u0 implements z4.e {
+    public int f29275a = 0;
+    public int f29276b;
+    public final x0 f29277c;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.TextView;
-import java.io.File;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.ui.Components.dc0;
-import w7.x5;
-public final class u0 extends z4.a {
-    public final v0 f31864c;
-
-    public u0(v0 v0Var) {
-        this.f31864c = v0Var;
+    public u0(x0 x0Var) {
+        this.f29277c = x0Var;
     }
 
     @Override
-    public final void a(z4.g gVar, Object obj) {
-        gVar.removeView((View) obj);
-    }
-
-    @Override
-    public final int b() {
-        return this.f31864c.f31885f.length;
-    }
-
-    @Override
-    public final Object e(z4.g gVar, int i10) {
-        Bitmap bitmap;
-        ImageView imageView;
-        v0 v0Var = this.f31864c;
-        boolean z10 = v0Var.f31891y;
-        int i11 = 1;
-        if (z10 && i10 == 0) {
-            ?? frameLayout = new FrameLayout(v0Var.getContext());
-            frameLayout.setBackground(new dc0(true, -14602694, -13935795, -14395293, -14203560));
-            ImageView imageView2 = new ImageView(v0Var.getContext());
-            imageView2.setScaleType(ImageView.ScaleType.CENTER);
-            imageView2.setImageResource(R.drawable.screencast_big);
-            frameLayout.addView(imageView2, x5.d(82, 82.0f, 17, 0.0f, 0.0f, 0.0f, 60.0f));
-            TextView textView = new TextView(v0Var.getContext());
-            textView.setText(LocaleController.getString(R.string.VoipVideoPrivateScreenSharing));
-            textView.setGravity(17);
-            textView.setLineSpacing(AndroidUtilities.dp(2.0f), 1.0f);
-            org.telegram.messenger.w1.q(textView, -1, 1, 15.0f);
-            frameLayout.addView(textView, x5.d(-1, -2.0f, 17, 21.0f, 28.0f, 21.0f, 0.0f));
-            imageView = frameLayout;
-        } else {
-            ImageView imageView3 = new ImageView(v0Var.getContext());
-            imageView3.setTag(Integer.valueOf(i10));
-            try {
-                File filesDirFixed = ApplicationLoader.getFilesDirFixed();
-                StringBuilder sb2 = new StringBuilder("cthumb");
-                if (i10 != 0 && (i10 != 1 || !z10)) {
-                    i11 = 2;
-                }
-                sb2.append(i11);
-                sb2.append(".jpg");
-                bitmap = BitmapFactory.decodeFile(new File(filesDirFixed, sb2.toString()).getAbsolutePath());
-            } catch (Throwable unused) {
-                bitmap = null;
-            }
-            if (bitmap != null) {
-                imageView3.setImageBitmap(bitmap);
+    public final void a(int i10) {
+        int i11 = this.f29275a;
+        x0 x0Var = this.f29277c;
+        if (i11 == 0) {
+            if (i10 <= x0Var.f29349y) {
+                x0Var.f29344n = 1;
             } else {
-                imageView3.setImageResource(R.drawable.icplaceholder);
+                x0Var.f29344n = 2;
             }
-            imageView3.setScaleType(ImageView.ScaleType.FIT_XY);
-            imageView = imageView3;
+            x0.a(x0Var);
+        } else if (i10 <= x0Var.f29349y) {
+            this.f29276b = 1;
+        } else {
+            this.f29276b = 2;
         }
-        if (imageView.getParent() != null) {
-            ((ViewGroup) imageView.getParent()).removeView(imageView);
-        }
-        gVar.addView(imageView, 0);
-        return imageView;
     }
 
     @Override
-    public final boolean f(View view, Object obj) {
-        return view.equals(obj);
+    public final void b(float f7, int i10, int i11) {
+        x0 x0Var = this.f29277c;
+        x0Var.f29348x = i10;
+        x0Var.f29347w = f7;
+        x0Var.d();
     }
 
     @Override
-    public final void h(int i10) {
+    public final void c(int i10) {
+        this.f29275a = i10;
+        if (i10 == 0) {
+            int i11 = this.f29276b;
+            x0 x0Var = this.f29277c;
+            x0Var.f29344n = i11;
+            x0.a(x0Var);
+        }
     }
 }

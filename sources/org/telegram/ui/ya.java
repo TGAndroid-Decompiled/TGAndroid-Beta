@@ -1,14 +1,14 @@
 package org.telegram.ui;
-public final class ya implements yf.b0, org.telegram.ui.Components.nk0 {
-    public final ub f43063a;
+public final class ya implements org.telegram.ui.Components.nk0, ki.d {
+    public final ub f39792a;
 
     @Override
-    public void a(int i10) {
-        ub.X(this.f43063a, i10);
+    public void a() {
+        this.f39792a.c1();
     }
 
     @Override
-    public void b() {
-        this.f43063a.d1();
+    public void j(int i10) {
+        ub.X(this.f39792a, i10);
     }
 }

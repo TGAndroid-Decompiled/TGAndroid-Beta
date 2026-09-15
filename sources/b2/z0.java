@@ -8,7 +8,7 @@ public interface z0 {
 
     void onAvailableCommandsChanged(x0 x0Var);
 
-    void onCues(d2.c cVar);
+    void onCues(d2.d dVar);
 
     void onCues(List list);
 

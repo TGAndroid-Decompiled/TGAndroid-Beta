@@ -1,35 +1,98 @@
 package ig;
 
-import android.content.DialogInterface;
-import android.view.View;
-public final class q implements DialogInterface.OnDismissListener {
-    public final int f12181a;
-    public final View f12182b;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Matrix;
+import android.graphics.Path;
+import android.graphics.RectF;
+import java.util.ArrayList;
+import org.telegram.messenger.AndroidUtilities;
+public class q extends g {
+    public final Matrix D1;
+    public final float[] E1;
+    public final Path F1;
+    public boolean[] G1;
+    public float[] H1;
 
-    public q(int i10, View view) {
-        this.f12181a = i10;
-        this.f12182b = view;
+    public q(Context context) {
+        super(context, null);
+        this.D1 = new Matrix();
+        this.E1 = new float[2];
+        this.F1 = new Path();
+        this.f11166w0 = true;
+        this.f11168x0 = true;
+        this.e = false;
     }
 
     @Override
-    public final void onDismiss(DialogInterface dialogInterface) {
-        switch (this.f12181a) {
-            case 0:
-                v.d = null;
-                View view = this.f12182b;
-                if (view != null) {
-                    view.requestFocus();
-                    return;
-                }
-                return;
-            default:
-                y1.h = null;
-                View view2 = this.f12182b;
-                if (view2 != null) {
-                    view2.requestFocus();
-                    return;
-                }
-                return;
+    public kg.i h(jg.a aVar) {
+        return new kg.i(aVar);
+    }
+
+    public final int M(float f7, float f10) {
+        RectF rectF = this.H0;
+        float centerX = rectF.centerX();
+        float centerY = rectF.centerY() + AndroidUtilities.dp(16.0f);
+        int i10 = (f7 > centerX ? 1 : (f7 == centerX ? 0 : -1));
+        if (i10 >= 0 && f10 <= centerY) {
+            return 0;
         }
+        if (i10 >= 0 && f10 >= centerY) {
+            return 1;
+        }
+        if (f7 < centerX && f10 >= centerY) {
+            return 2;
+        }
+        return 3;
+    }
+
+    @Override
+    public float getMinDistance() {
+        return 0.1f;
+    }
+
+    @Override
+    public void k(android.graphics.Canvas r46) {
+        throw new UnsupportedOperationException("Method not decompiled: ig.q.k(android.graphics.Canvas):void");
+    }
+
+    @Override
+    public void n(android.graphics.Canvas r27) {
+        throw new UnsupportedOperationException("Method not decompiled: ig.q.n(android.graphics.Canvas):void");
+    }
+
+    @Override
+    public void onDraw(Canvas canvas) {
+        F();
+        k(canvas);
+        i(canvas);
+        ArrayList arrayList = this.f11130b;
+        this.m0 = arrayList.size();
+        int i10 = 0;
+        while (true) {
+            this.f11154n0 = i10;
+            int i11 = this.f11154n0;
+            if (i11 < this.m0) {
+                l(canvas, (kg.d) arrayList.get(i11));
+                p(canvas, (kg.d) arrayList.get(this.f11154n0));
+                i10 = this.f11154n0 + 1;
+            } else {
+                j(canvas);
+                m(canvas);
+                o(canvas);
+                super.onDraw(canvas);
+                return;
+            }
+        }
+    }
+
+    @Override
+    public void q(kg.j r21) {
+        throw new UnsupportedOperationException("Method not decompiled: ig.q.q(kg.j):void");
+    }
+
+    @Override
+    public final long r(int i10, int i11) {
+        return 100L;
     }
 }

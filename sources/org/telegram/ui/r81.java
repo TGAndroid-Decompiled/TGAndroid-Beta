@@ -1,35 +1,35 @@
 package org.telegram.ui;
 
 import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 public final class r81 implements Runnable {
-    public final int f40100a;
-    public final s81 f40101b;
+    public final int f37046a;
+    public final e91 f37047b;
 
-    public r81(s81 s81Var, int i10) {
-        this.f40100a = i10;
-        this.f40101b = s81Var;
+    public r81(e91 e91Var, int i10) {
+        this.f37046a = i10;
+        this.f37047b = e91Var;
     }
 
     @Override
     public final void run() {
-        String sb2;
-        switch (this.f40100a) {
+        switch (this.f37046a) {
             case 0:
-                s81 s81Var = this.f40101b;
-                String str = s81Var.f40349b.text;
-                if (str != null && str.equals("AUTH_TOKEN_EXCEPTION")) {
-                    sb2 = LocaleController.getString(R.string.AccountAlreadyLoggedIn);
-                } else {
-                    StringBuilder sb3 = new StringBuilder();
-                    org.telegram.messenger.vl.l(R.string.ErrorOccurred, "\n", sb3);
-                    sb3.append(s81Var.f40349b.text);
-                    sb2 = sb3.toString();
-                }
-                org.telegram.ui.Components.e5.u0(s81Var.f40350c, LocaleController.getString(R.string.AuthAnotherClient), sb2, null);
+                this.f37047b.f33285c.Y2.N(true);
+                return;
+            case 1:
+                nf.f.s(this.f37047b.getParentActivity(), LocaleController.getString(R.string.CheckPhoneNumberLearnMoreUrl));
+                return;
+            case 2:
+                e91 e91Var = this.f37047b;
+                e91Var.f33285c.postOnAnimation(new r81(e91Var, 3));
+                return;
+            case 3:
+                this.f37047b.i0();
                 return;
             default:
-                org.telegram.ui.Components.e5.u0(this.f40101b.f40350c, LocaleController.getString(R.string.AuthAnotherClient), LocaleController.getString(R.string.ErrorOccurred), null);
+                MessagesController.getInstance(this.f37047b.currentAccount).deleteUserPhoto(null);
                 return;
         }
     }

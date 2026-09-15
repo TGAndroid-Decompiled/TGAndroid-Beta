@@ -1,41 +1,51 @@
 package org.telegram.ui.Components.voip;
 
 import android.animation.ValueAnimator;
-import android.view.GestureDetector;
-import android.view.MotionEvent;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.ni1;
-public final class y0 extends GestureDetector.SimpleOnGestureListener {
-    public boolean f31941a;
-    public boolean f31942b;
-    public final ni1 f31943c;
+public final class y0 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f29360a;
+    public final d1 f29361b;
 
-    public y0(ni1 ni1Var) {
-        this.f31943c = ni1Var;
+    public y0(d1 d1Var, int i10) {
+        this.f29360a = i10;
+        this.f29361b = d1Var;
     }
 
     @Override
-    public final boolean onDown(MotionEvent motionEvent) {
-        this.f31941a = true;
-        return super.onDown(motionEvent);
-    }
-
-    @Override
-    public final boolean onScroll(MotionEvent motionEvent, MotionEvent motionEvent2, float f7, float f10) {
-        float x10 = motionEvent.getX() - motionEvent2.getX();
-        float y3 = motionEvent.getY() - motionEvent2.getY();
-        if (Math.abs(x10) > AndroidUtilities.getPixelsInCM(0.4f, true) && Math.abs(x10) / 3.0f > y3 && this.f31941a && !this.f31942b) {
-            this.f31941a = false;
-            org.telegram.ui.b0 b0Var = new org.telegram.ui.b0(this, x10, 2);
-            ni1 ni1Var = this.f31943c;
-            ValueAnimator valueAnimator = ni1Var.U;
-            if (valueAnimator != null) {
-                this.f31942b = true;
-                AndroidUtilities.runOnUIThread(b0Var, (valueAnimator.getDuration() - ni1Var.U.getCurrentPlayTime()) + 50);
-            } else {
-                b0Var.run();
-            }
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f29360a) {
+            case 0:
+                d1 d1Var = this.f29361b;
+                d1Var.getClass();
+                d1Var.F = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                d1Var.invalidate();
+                return;
+            case 1:
+                d1 d1Var2 = this.f29361b;
+                d1Var2.getClass();
+                d1Var2.f28914y = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                float dp = d1Var2.I + AndroidUtilities.dp(28.0f);
+                float dp2 = d1Var2.J + AndroidUtilities.dp(52.0f);
+                float f7 = d1Var2.f28914y;
+                d1Var2.G = dp - (dp * f7);
+                d1Var2.H = dp2 - (f7 * dp2);
+                d1Var2.invalidate();
+                return;
+            case 2:
+                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                d1 d1Var3 = this.f29361b;
+                d1Var3.E = floatValue;
+                int dp3 = (AndroidUtilities.displaySize.x - AndroidUtilities.dp(36.0f)) - AndroidUtilities.dp(52.0f);
+                b1 b1Var = d1Var3.f28907c;
+                b1Var.getLayoutParams().width = AndroidUtilities.dp(52.0f) + ((int) (dp3 * d1Var3.E));
+                b1Var.requestLayout();
+                return;
+            default:
+                d1 d1Var4 = this.f29361b;
+                d1Var4.getClass();
+                d1Var4.f28911s = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                d1Var4.e();
+                return;
         }
-        return super.onScroll(motionEvent, motionEvent2, f7, f10);
     }
 }

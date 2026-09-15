@@ -1,10 +1,10 @@
 package u2;
 public interface b1 {
-    void b();
+    void a();
 
     boolean e();
 
-    int f(n4.y yVar, h2.g gVar, int i10);
+    int f(n4.y yVar, h2.h hVar, int i10);
 
-    int m(long j3);
+    int j(long j3);
 }

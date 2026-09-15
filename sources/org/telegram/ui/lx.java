@@ -2,7 +2,7 @@ package org.telegram.ui;
 
 import android.content.Context;
 import android.view.MotionEvent;
-public final class lx extends bi.v {
+public final class lx extends ai.b0 {
     public final uy O0;
 
     public lx(uy uyVar, Context context, uy uyVar2, int i10, int i11) {

@@ -1,23 +1,21 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.ImageReceiver;
-public final class us0 implements org.telegram.ui.Components.u30 {
-    public final PhotoViewer f41215a;
+import org.telegram.messenger.FileLoader;
+import org.telegram.messenger.MessageObject;
+public final class us0 implements Runnable {
+    public final PhotoViewer f38157a;
 
     public us0(PhotoViewer photoViewer) {
-        this.f41215a = photoViewer;
+        this.f38157a = photoViewer;
     }
 
-    public final void a(int i10) {
-        PhotoViewer photoViewer = this.f41215a;
-        photoViewer.P4 = -1;
-        ImageReceiver.BitmapHolder bitmapHolder = photoViewer.f33597j5;
-        if (bitmapHolder != null) {
-            bitmapHolder.release();
-            photoViewer.f33597j5 = null;
+    @Override
+    public final void run() {
+        PhotoViewer photoViewer = this.f38157a;
+        MessageObject messageObject = photoViewer.T4;
+        if (messageObject == null) {
+            return;
         }
-        photoViewer.f33613l5 = true;
-        photoViewer.B2(i10);
-        photoViewer.f33613l5 = false;
+        FileLoader.getInstance(messageObject.currentAccount).setLoadingVideo(photoViewer.T4.getDocument(), true, false);
     }
 }

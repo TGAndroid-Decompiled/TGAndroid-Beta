@@ -6,9 +6,9 @@ import android.widget.PopupWindow;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 public abstract class p7 {
-    public static Method f48258a;
-    public static boolean f48259b;
-    public static Field f48260c;
+    public static Method f44803a;
+    public static boolean f44804b;
+    public static Field f44805c;
     public static boolean d;
 
     public static void a(m.x xVar, boolean z10) {
@@ -19,19 +19,19 @@ public abstract class p7 {
         if (!d) {
             try {
                 Field declaredField = PopupWindow.class.getDeclaredField("mOverlapAnchor");
-                f48260c = declaredField;
+                f44805c = declaredField;
                 declaredField.setAccessible(true);
-            } catch (NoSuchFieldException e7) {
-                Log.i("PopupWindowCompatApi21", "Could not fetch mOverlapAnchor field from PopupWindow", e7);
+            } catch (NoSuchFieldException e) {
+                Log.i("PopupWindowCompatApi21", "Could not fetch mOverlapAnchor field from PopupWindow", e);
             }
             d = true;
         }
-        Field field = f48260c;
+        Field field = f44805c;
         if (field != null) {
             try {
                 field.set(xVar, Boolean.valueOf(z10));
-            } catch (IllegalAccessException e10) {
-                Log.i("PopupWindowCompatApi21", "Could not set overlap anchor field in PopupWindow", e10);
+            } catch (IllegalAccessException e7) {
+                Log.i("PopupWindowCompatApi21", "Could not set overlap anchor field in PopupWindow", e7);
             }
         }
     }
@@ -41,16 +41,16 @@ public abstract class p7 {
             e0.b.H(popupWindow, i10);
             return;
         }
-        if (!f48259b) {
+        if (!f44804b) {
             try {
                 Method declaredMethod = PopupWindow.class.getDeclaredMethod("setWindowLayoutType", Integer.TYPE);
-                f48258a = declaredMethod;
+                f44803a = declaredMethod;
                 declaredMethod.setAccessible(true);
             } catch (Exception unused) {
             }
-            f48259b = true;
+            f44804b = true;
         }
-        Method method = f48258a;
+        Method method = f44803a;
         if (method != null) {
             try {
                 method.invoke(popupWindow, Integer.valueOf(i10));

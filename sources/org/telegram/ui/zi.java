@@ -2,19 +2,19 @@ package org.telegram.ui;
 
 import android.text.style.CharacterStyle;
 import org.telegram.messenger.AndroidUtilities;
-public final class zi extends of.e {
+public final class zi extends nf.e {
     public final int d;
-    public final int f43443e;
-    public final org.telegram.ui.Cells.t1 f43444f;
-    public final co f43445g;
+    public final int e;
+    public final org.telegram.ui.Cells.t1 f40218f;
+    public final bo f40219g;
     public final Object h;
 
-    public zi(co coVar, int i10, Object obj, org.telegram.ui.Cells.t1 t1Var, int i11) {
+    public zi(bo boVar, int i10, Object obj, org.telegram.ui.Cells.t1 t1Var, int i11) {
         this.d = i11;
-        this.f43445g = coVar;
-        this.f43443e = i10;
+        this.f40219g = boVar;
+        this.e = i10;
         this.h = obj;
-        this.f43444f = t1Var;
+        this.f40218f = t1Var;
     }
 
     @Override
@@ -22,13 +22,13 @@ public final class zi extends of.e {
         switch (this.d) {
             case 0:
                 if (!z10) {
-                    AndroidUtilities.runOnUIThread(new ah.g(this, this.f43443e, 21), 240L);
+                    AndroidUtilities.runOnUIThread(new ai.n8(this, this.e, 20), 240L);
                     return;
                 }
                 return;
             default:
                 if (!z10) {
-                    AndroidUtilities.runOnUIThread(new ah.g(this, this.f43443e, 23), 240L);
+                    AndroidUtilities.runOnUIThread(new ai.n8(this, this.e, 22), 240L);
                     return;
                 }
                 return;
@@ -39,20 +39,20 @@ public final class zi extends of.e {
     public final void d() {
         switch (this.d) {
             case 0:
-                int i10 = this.f43443e;
-                co coVar = this.f43445g;
-                coVar.f35471wb = i10;
-                coVar.f35484xb = 1;
-                coVar.f35496yb = (CharacterStyle) this.h;
-                this.f43444f.invalidate();
+                int i10 = this.e;
+                bo boVar = this.f40219g;
+                boVar.f32522wb = i10;
+                boVar.f32535xb = 1;
+                boVar.f32547yb = (CharacterStyle) this.h;
+                this.f40218f.invalidate();
                 return;
             default:
-                int i11 = this.f43443e;
-                co coVar2 = this.f43445g;
-                coVar2.f35471wb = i11;
-                coVar2.f35484xb = 3;
-                coVar2.f35509zb = (String) this.h;
-                this.f43444f.invalidate();
+                int i11 = this.e;
+                bo boVar2 = this.f40219g;
+                boVar2.f32522wb = i11;
+                boVar2.f32535xb = 3;
+                boVar2.f32560zb = (String) this.h;
+                this.f40218f.invalidate();
                 return;
         }
     }

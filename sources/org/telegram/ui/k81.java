@@ -1,23 +1,35 @@
 package org.telegram.ui;
-public final class k81 implements Runnable {
-    public final int f37958a;
-    public final SessionsActivity f37959b;
-    public final boolean f37960c;
 
-    public k81(SessionsActivity sessionsActivity, boolean z10, int i10) {
-        this.f37958a = i10;
-        this.f37959b = sessionsActivity;
-        this.f37960c = z10;
+import android.content.Intent;
+import android.net.Uri;
+import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.FileLog;
+public final class k81 implements org.telegram.ui.ActionBar.a2 {
+    public final int f35057a;
+    public final SessionsActivity f35058b;
+
+    public k81(SessionsActivity sessionsActivity, int i10) {
+        this.f35057a = i10;
+        this.f35058b = sessionsActivity;
     }
 
     @Override
-    public final void run() {
-        switch (this.f37958a) {
+    public final void f(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
+        switch (this.f35057a) {
             case 0:
-                this.f37959b.k0(this.f37960c);
-                return;
+                SessionsActivity sessionsActivity = this.f35058b;
+                sessionsActivity.getClass();
+                try {
+                    Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
+                    intent.setData(Uri.parse("package:" + ApplicationLoader.applicationContext.getPackageName()));
+                    sessionsActivity.getParentActivity().startActivity(intent);
+                    return;
+                } catch (Exception e) {
+                    FileLog.e(e);
+                    return;
+                }
             default:
-                this.f37959b.k0(this.f37960c);
+                SessionsActivity.W(this.f35058b);
                 return;
         }
     }

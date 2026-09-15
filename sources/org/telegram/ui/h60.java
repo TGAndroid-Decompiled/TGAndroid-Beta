@@ -1,48 +1,80 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.LinearGradient;
+import android.graphics.Matrix;
 import android.graphics.Shader;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class h60 extends LinearLayout {
-    public final org.telegram.ui.Components.q6 f36890a;
-    public float f36891b;
-    public final j60 f36892c;
+import org.telegram.messenger.Utilities;
+public final class h60 {
+    public float f34176c;
+    public float d;
+    public float e;
+    public float f34177f;
+    public Shader f34178g;
+    public final int f34179i;
+    public float f34174a = -1.0f;
+    public float f34175b = -1.0f;
+    public final Matrix h = new Matrix();
 
-    public h60(j60 j60Var, Context context) {
-        super(context);
-        this.f36892c = j60Var;
-        this.f36891b = 0.0f;
-        setOrientation(1);
-        setGravity(17);
-        org.telegram.ui.Components.q6 q6Var = new org.telegram.ui.Components.q6(context, true, false, false);
-        this.f36890a = q6Var;
-        q6Var.setTextColor(-1);
-        q6Var.setTextSize(AndroidUtilities.dp(46.0f));
-        q6Var.setTypeface(AndroidUtilities.bold());
-        q6Var.setGravity(1);
-        TextView textView = new TextView(context);
-        textView.setTextColor(-1);
-        com.google.android.gms.internal.vision.e2.m(14.0f, 1, textView);
-        textView.setText(LocaleController.getString(R.string.VoipChannelWatching));
-        addView(q6Var, w7.x5.n(-1, 46));
-        addView(textView, w7.x5.n(-2, -2));
+    public h60(int i10) {
+        this.f34179i = i10;
     }
 
-    public void setWatchersCount(int i10) {
-        String formatNumber = LocaleController.formatNumber(i10, ',');
-        org.telegram.ui.Components.q6 q6Var = this.f36890a;
-        float measureText = q6Var.getPaint().measureText((CharSequence) formatNumber, 0, formatNumber.length());
-        if (this.f36891b != measureText) {
-            int i11 = org.telegram.ui.ActionBar.j6.Lj;
-            j60 j60Var = this.f36892c;
-            q6Var.getPaint().setShader(new LinearGradient(0.0f, 0.0f, measureText, 0.0f, new int[]{j60Var.getThemedColor(i11), j60Var.getThemedColor(org.telegram.ui.ActionBar.j6.Nj)}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP));
-            this.f36891b = measureText;
+    public final void a() {
+        int i10 = this.f34179i;
+        if (i60.p1(i10)) {
+            this.f34174a = a4.a.A(Utilities.random.nextInt(100), 0.2f, 100.0f, 0.85f);
+            this.f34175b = 1.0f;
+        } else if (i10 == 1) {
+            this.f34174a = a4.a.A(Utilities.random.nextInt(100), 0.3f, 100.0f, 0.2f);
+            this.f34175b = a4.a.A(Utilities.random.nextInt(100), 0.3f, 100.0f, 0.7f);
+        } else {
+            this.f34174a = a4.a.e(Utilities.random.nextInt(100), 100.0f, 0.2f, 0.8f);
+            this.f34175b = Utilities.random.nextInt(100) / 100.0f;
         }
-        q6Var.setText(formatNumber);
+    }
+
+    public final void b(int i10, int i11, int i12, long j3, float f7) {
+        if (this.f34178g == null) {
+            return;
+        }
+        float f10 = this.e;
+        if (f10 == 0.0f || this.f34177f >= f10) {
+            this.e = Utilities.random.nextInt(200) + 1500;
+            this.f34177f = 0.0f;
+            if (this.f34174a == -1.0f) {
+                a();
+            }
+            this.f34176c = this.f34174a;
+            this.d = this.f34175b;
+            a();
+        }
+        float f11 = (float) j3;
+        float f12 = 1.0f;
+        float f13 = (f11 * 0.02f * f7) + (f11 * 1.0f) + this.f34177f;
+        this.f34177f = f13;
+        float f14 = this.e;
+        if (f13 > f14) {
+            this.f34177f = f14;
+        }
+        float interpolation = org.telegram.ui.Components.qr.f27424g.getInterpolation(this.f34177f / f14);
+        float f15 = i12;
+        float f16 = this.f34176c;
+        float f17 = (((((this.f34174a - f16) * interpolation) + f16) * f15) + i11) - 200.0f;
+        float f18 = this.d;
+        float f19 = (((((this.f34175b - f18) * interpolation) + f18) * f15) + i10) - 200.0f;
+        int i13 = this.f34179i;
+        if (!i60.p1(i13)) {
+            if (i13 == 1) {
+                f12 = 4.0f;
+            } else {
+                f12 = 2.5f;
+            }
+        }
+        float dp = (AndroidUtilities.dp(122.0f) / 400.0f) * f12;
+        Matrix matrix = this.h;
+        matrix.reset();
+        matrix.postTranslate(f17, f19);
+        matrix.postScale(dp, dp, f17 + 200.0f, f19 + 200.0f);
+        this.f34178g.setLocalMatrix(matrix);
     }
 }

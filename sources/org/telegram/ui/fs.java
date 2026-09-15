@@ -6,28 +6,28 @@ import android.view.ActionMode;
 import android.view.Menu;
 import android.view.MenuItem;
 public final class fs implements ActionMode.Callback {
-    public final gs f36455a;
+    public final gs f33650a;
 
     public fs(gs gsVar) {
-        this.f36455a = gsVar;
+        this.f33650a = gsVar;
     }
 
     @Override
     public final boolean onActionItemClicked(ActionMode actionMode, MenuItem menuItem) {
-        es esVar;
+        ds dsVar;
         ClipboardManager clipboardManager;
         ClipData primaryClip;
         int i10;
         if (menuItem.getItemId() != 16908322) {
             return true;
         }
-        gs gsVar = this.f36455a;
-        if (gsVar.getParent() instanceof es) {
-            esVar = (es) gsVar.getParent();
+        gs gsVar = this.f33650a;
+        if (gsVar.getParent() instanceof ds) {
+            dsVar = (ds) gsVar.getParent();
         } else {
-            esVar = null;
+            dsVar = null;
         }
-        if (esVar != null && (clipboardManager = (ClipboardManager) f0.e.f(gsVar.getContext(), ClipboardManager.class)) != null && (primaryClip = clipboardManager.getPrimaryClip()) != null) {
+        if (dsVar != null && (clipboardManager = (ClipboardManager) f0.e.f(gsVar.getContext(), ClipboardManager.class)) != null && (primaryClip = clipboardManager.getPrimaryClip()) != null) {
             String charSequence = primaryClip.getItemAt(0).getText().toString();
             try {
                 i10 = Integer.parseInt(charSequence);
@@ -35,7 +35,7 @@ public final class fs implements ActionMode.Callback {
                 i10 = -1;
             }
             if (i10 > 0) {
-                esVar.c(charSequence, true);
+                dsVar.c(charSequence, true);
             }
         }
         gsVar.hideActionMode();

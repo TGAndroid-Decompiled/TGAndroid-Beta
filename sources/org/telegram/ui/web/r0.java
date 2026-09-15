@@ -1,45 +1,41 @@
 package org.telegram.ui.web;
 
-import android.webkit.GeolocationPermissions;
-public final class r0 implements q0.a {
-    public final int f42228a;
-    public final w0 f42229b;
-    public final GeolocationPermissions.Callback f42230c;
-    public final String d;
+import android.webkit.JsResult;
+public final class r0 implements org.telegram.ui.ActionBar.a2 {
+    public final int f39073a;
+    public final boolean[] f39074b;
+    public final JsResult f39075c;
 
-    public r0(w0 w0Var, GeolocationPermissions.Callback callback, String str, int i10) {
-        this.f42228a = i10;
-        this.f42229b = w0Var;
-        this.f42230c = callback;
-        this.d = str;
+    public r0(boolean[] zArr, JsResult jsResult, int i10) {
+        this.f39073a = i10;
+        this.f39074b = zArr;
+        this.f39075c = jsResult;
     }
 
     @Override
-    public final void accept(Object obj) {
-        Boolean bool = (Boolean) obj;
-        switch (this.f42228a) {
+    public final void f(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
+        switch (this.f39073a) {
             case 0:
-                w0 w0Var = this.f42229b;
-                if (w0Var.f42270a != null) {
-                    w0Var.f42270a = null;
-                    boolean booleanValue = bool.booleanValue();
-                    GeolocationPermissions.Callback callback = this.f42230c;
-                    String str = this.d;
-                    if (booleanValue) {
-                        d1.a(w0Var.f42273e.Q, new String[]{"android.permission.ACCESS_COARSE_LOCATION", "android.permission.ACCESS_FINE_LOCATION"}, new r0(w0Var, callback, str, 1));
-                        return;
-                    } else {
-                        callback.invoke(str, false, false);
-                        return;
-                    }
+                boolean[] zArr = this.f39074b;
+                if (!zArr[0]) {
+                    zArr[0] = true;
+                    this.f39075c.cancel();
+                    return;
+                }
+                return;
+            case 1:
+                boolean[] zArr2 = this.f39074b;
+                if (!zArr2[0]) {
+                    zArr2[0] = true;
+                    this.f39075c.confirm();
+                    return;
                 }
                 return;
             default:
-                w0 w0Var2 = this.f42229b;
-                w0Var2.getClass();
-                this.f42230c.invoke(this.d, bool.booleanValue(), false);
-                if (bool.booleanValue()) {
-                    w0Var2.f42273e.Q.T = true;
+                boolean[] zArr3 = this.f39074b;
+                if (!zArr3[0]) {
+                    zArr3[0] = true;
+                    this.f39075c.confirm();
                     return;
                 }
                 return;

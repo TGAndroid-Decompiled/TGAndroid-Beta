@@ -1,35 +1,144 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.R;
-public final class v81 implements Runnable {
-    public final int f41450a;
-    public final i91 f41451b;
+import androidx.recyclerview.widget.RecyclerView;
+import org.telegram.messenger.AndroidUtilities;
+public final class v81 extends org.telegram.ui.ActionBar.j {
+    public final int f38419a;
+    public final Object f38420b;
 
-    public v81(i91 i91Var, int i10) {
-        this.f41450a = i10;
-        this.f41451b = i91Var;
+    public v81(Object obj, int i10) {
+        this.f38419a = i10;
+        this.f38420b = obj;
     }
 
     @Override
-    public final void run() {
-        switch (this.f41450a) {
+    public final void b(int i10) {
+        switch (this.f38419a) {
             case 0:
-                this.f41451b.f37268c.Y2.N(true);
-                return;
+                e91 e91Var = (e91) this.f38420b;
+                if (i10 == -1) {
+                    e91Var.finishFragment();
+                    return;
+                } else if (i10 == 2) {
+                    e91Var.l0(new org.telegram.ui.ActionBar.n2(null));
+                    return;
+                } else {
+                    return;
+                }
             case 1:
-                of.f.s(this.f41451b.getParentActivity(), LocaleController.getString(R.string.CheckPhoneNumberLearnMoreUrl));
+                if (i10 == -1) {
+                    ((ya1) this.f38420b).finishFragment();
+                    return;
+                }
                 return;
             case 2:
-                i91 i91Var = this.f41451b;
-                i91Var.f37268c.postOnAnimation(new v81(i91Var, 3));
+                StickersActivity stickersActivity = (StickersActivity) this.f38420b;
+                if (i10 == -1) {
+                    if (stickersActivity.onBackPressed(true)) {
+                        stickersActivity.finishFragment();
+                        return;
+                    }
+                    return;
+                }
+                StickersActivity.d0(stickersActivity, i10);
                 return;
             case 3:
-                this.f41451b.i0();
+                ae1 ae1Var = (ae1) this.f38420b;
+                if (i10 == -1) {
+                    ae1Var.finishFragment();
+                    return;
+                } else if (i10 == 1) {
+                    ae1.Y(ae1Var);
+                    return;
+                } else {
+                    return;
+                }
+            case 4:
+                if (i10 == -1) {
+                    ((se1) this.f38420b).finishFragment();
+                    return;
+                }
+                return;
+            case 5:
+                if (i10 == -1) {
+                    ((jg1) this.f38420b).finishFragment();
+                    return;
+                }
+                return;
+            case 6:
+                if (i10 == -1) {
+                    TwoStepVerificationActivity twoStepVerificationActivity = (TwoStepVerificationActivity) this.f38420b;
+                    if (twoStepVerificationActivity.X >= 0) {
+                        twoStepVerificationActivity.x0();
+                        return;
+                    } else {
+                        twoStepVerificationActivity.finishFragment();
+                        return;
+                    }
+                }
+                return;
+            case 7:
+                UserInfoActivity userInfoActivity = (UserInfoActivity) this.f38420b;
+                if (i10 == -1) {
+                    if (userInfoActivity.onBackPressed(true)) {
+                        userInfoActivity.finishFragment();
+                        return;
+                    }
+                    return;
+                } else if (i10 == 1) {
+                    userInfoActivity.c0(true);
+                    return;
+                } else {
+                    return;
+                }
+            case 8:
+                UsersSelectActivity usersSelectActivity = (UsersSelectActivity) this.f38420b;
+                if (i10 == -1) {
+                    usersSelectActivity.finishFragment();
+                    return;
+                } else if (i10 == 1) {
+                    usersSelectActivity.X();
+                    return;
+                } else {
+                    return;
+                }
+            case 9:
+                org.telegram.ui.web.h1 h1Var = (org.telegram.ui.web.h1) this.f38420b;
+                if (i10 == -1) {
+                    if (org.telegram.ui.web.h1.Y(h1Var).s()) {
+                        org.telegram.ui.web.h1.Z(h1Var).r();
+                        h1Var.v.clear();
+                        AndroidUtilities.forEachViews((RecyclerView) h1Var.f30485a, (e2.h) new org.telegram.ui.web.m(1));
+                        return;
+                    }
+                    h1Var.finishFragment();
+                    return;
+                }
+                return;
+            case 10:
+                if (i10 == -1) {
+                    ((rg.x0) this.f38420b).dismiss();
+                    return;
+                }
+                return;
+            case 11:
+                if (i10 == -1) {
+                    ((xh.h4) this.f38420b).finishFragment();
+                    return;
+                }
+                return;
+            case 12:
+                if (i10 == -1) {
+                    ((yh.g) this.f38420b).finishFragment();
+                    return;
+                }
                 return;
             default:
-                MessagesController.getInstance(this.f41451b.currentAccount).deleteUserPhoto(null);
+                zg.q qVar = (zg.q) this.f38420b;
+                if (i10 == -1 && !qVar.X(true)) {
+                    qVar.finishFragment();
+                    return;
+                }
                 return;
         }
     }

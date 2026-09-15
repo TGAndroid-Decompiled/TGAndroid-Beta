@@ -5,13 +5,13 @@ import android.util.Log;
 import com.google.android.gms.tasks.TaskCompletionSource;
 import org.telegram.ui.Cells.p6;
 public final class r {
-    public final SharedPreferences f48442a;
-    public final k9.h f48443b;
-    public final Object f48444c;
+    public final SharedPreferences f44972a;
+    public final k9.h f44973b;
+    public final Object f44974c;
     public TaskCompletionSource d;
-    public boolean f48445e;
-    public boolean f48446f;
-    public Boolean f48447g;
+    public boolean e;
+    public boolean f44975f;
+    public Boolean f44976g;
     public final TaskCompletionSource h;
 
     public r(k9.h r8) {
@@ -22,12 +22,12 @@ public final class r {
         boolean z10;
         String str;
         String str2;
-        Boolean bool = this.f48447g;
+        Boolean bool = this.f44976g;
         if (bool != null) {
             z10 = bool.booleanValue();
         } else {
             try {
-                z10 = this.f48443b.h();
+                z10 = this.f44973b.h();
             } catch (IllegalStateException unused) {
                 z10 = false;
             }
@@ -37,9 +37,9 @@ public final class r {
         } else {
             str = "DISABLED";
         }
-        if (this.f48447g == null) {
+        if (this.f44976g == null) {
             str2 = "global Firebase setting";
-        } else if (this.f48446f) {
+        } else if (this.f44975f) {
             str2 = "firebase_crashlytics_collection_enabled manifest flag";
         } else {
             str2 = "API";

@@ -1,7 +1,7 @@
 package org.telegram.ui;
 
 import android.content.Context;
-public final class h6 extends org.telegram.ui.Components.nc0 {
+public final class h6 extends org.telegram.ui.Components.mc0 {
     public final z6 D0;
 
     public h6(z6 z6Var, Context context) {

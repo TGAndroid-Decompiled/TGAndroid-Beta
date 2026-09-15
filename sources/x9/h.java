@@ -3,31 +3,31 @@ package x9;
 import java.io.InputStream;
 import java.io.RandomAccessFile;
 public final class h extends InputStream {
-    public int f49313a;
-    public int f49314b;
-    public final j f49315c;
+    public int f45720a;
+    public int f45721b;
+    public final j f45722c;
 
     public h(j jVar, g gVar) {
-        this.f49315c = jVar;
-        this.f49313a = jVar.d(gVar.f49311a + 4);
-        this.f49314b = gVar.f49312b;
+        this.f45722c = jVar;
+        this.f45720a = jVar.d(gVar.f45718a + 4);
+        this.f45721b = gVar.f45719b;
     }
 
     @Override
     public final int read(byte[] bArr, int i10, int i11) {
         if (bArr != null) {
             if ((i10 | i11) >= 0 && i11 <= bArr.length - i10) {
-                int i12 = this.f49314b;
+                int i12 = this.f45721b;
                 if (i12 > 0) {
                     if (i11 > i12) {
                         i11 = i12;
                     }
-                    int i13 = this.f49313a;
-                    j jVar = this.f49315c;
-                    RandomAccessFile randomAccessFile = jVar.f49316a;
+                    int i13 = this.f45720a;
+                    j jVar = this.f45722c;
+                    RandomAccessFile randomAccessFile = jVar.f45723a;
                     int d = jVar.d(i13);
                     int i14 = d + i11;
-                    int i15 = jVar.f49317b;
+                    int i15 = jVar.f45724b;
                     if (i14 <= i15) {
                         randomAccessFile.seek(d);
                         randomAccessFile.readFully(bArr, i10, i11);
@@ -38,8 +38,8 @@ public final class h extends InputStream {
                         randomAccessFile.seek(16L);
                         randomAccessFile.readFully(bArr, i10 + i16, i11 - i16);
                     }
-                    this.f49313a = jVar.d(this.f49313a + i11);
-                    this.f49314b -= i11;
+                    this.f45720a = jVar.d(this.f45720a + i11);
+                    this.f45721b -= i11;
                     return i11;
                 }
                 return -1;
@@ -51,14 +51,14 @@ public final class h extends InputStream {
 
     @Override
     public final int read() {
-        if (this.f49314b == 0) {
+        if (this.f45721b == 0) {
             return -1;
         }
-        j jVar = this.f49315c;
-        jVar.f49316a.seek(this.f49313a);
-        int read = jVar.f49316a.read();
-        this.f49313a = jVar.d(this.f49313a + 1);
-        this.f49314b--;
+        j jVar = this.f45722c;
+        jVar.f45723a.seek(this.f45720a);
+        int read = jVar.f45723a.read();
+        this.f45720a = jVar.d(this.f45720a + 1);
+        this.f45721b--;
         return read;
     }
 }

@@ -1,23 +1,24 @@
 package g6;
 
+import ai.q4;
 import android.os.Looper;
 import com.google.android.gms.internal.cast.c0;
 import java.util.Locale;
 public final class o {
-    public static final Object f10412i = new Object();
-    public final b f10413a;
-    public final long f10414b;
-    public final String f10415c;
-    public n f10418g;
-    public androidx.activity.i h;
-    public long f10416e = -1;
-    public long f10417f = 0;
+    public static final Object f9449i = new Object();
+    public final b f9450a;
+    public final long f9451b;
+    public final String f9452c;
+    public n f9454g;
+    public q4 h;
+    public long e = -1;
+    public long f9453f = 0;
     public final c0 d = new c0(Looper.getMainLooper(), 0);
 
     public o(long j3, String str) {
-        this.f10414b = j3;
-        this.f10415c = str;
-        this.f10413a = new b("RequestTracker", str);
+        this.f9451b = j3;
+        this.f9452c = str;
+        this.f9450a = new b("RequestTracker", str);
     }
 
     public final void a(long j3, n nVar) {
@@ -25,27 +26,27 @@ public final class o {
         long j10;
         long j11;
         long currentTimeMillis = System.currentTimeMillis();
-        Object obj = f10412i;
+        Object obj = f9449i;
         synchronized (obj) {
-            nVar2 = this.f10418g;
-            j10 = this.f10416e;
-            j11 = this.f10417f;
-            this.f10416e = j3;
-            this.f10418g = nVar;
-            this.f10417f = currentTimeMillis;
+            nVar2 = this.f9454g;
+            j10 = this.e;
+            j11 = this.f9453f;
+            this.e = j3;
+            this.f9454g = nVar;
+            this.f9453f = currentTimeMillis;
         }
         if (nVar2 != null) {
-            nVar2.m(this.f10415c, j10, j11, currentTimeMillis);
+            nVar2.p(this.f9452c, j10, j11, currentTimeMillis);
         }
         synchronized (obj) {
             try {
-                androidx.activity.i iVar = this.h;
-                if (iVar != null) {
-                    this.d.removeCallbacks(iVar);
+                q4 q4Var = this.h;
+                if (q4Var != null) {
+                    this.d.removeCallbacks(q4Var);
                 }
-                androidx.activity.i iVar2 = new androidx.activity.i(this, 20);
-                this.h = iVar2;
-                this.d.postDelayed(iVar2, this.f10414b);
+                q4 q4Var2 = new q4(this, 20);
+                this.h = q4Var2;
+                this.d.postDelayed(q4Var2, this.f9451b);
             } catch (Throwable th2) {
                 throw th2;
             }
@@ -53,7 +54,7 @@ public final class o {
     }
 
     public final void b(long j3, int i10, l lVar) {
-        synchronized (f10412i) {
+        synchronized (f9449i) {
             try {
                 if (c(j3)) {
                     Locale locale = Locale.ROOT;
@@ -67,8 +68,8 @@ public final class o {
 
     public final boolean c(long j3) {
         boolean z10;
-        synchronized (f10412i) {
-            long j10 = this.f10416e;
+        synchronized (f9449i) {
+            long j10 = this.e;
             z10 = false;
             if (j10 != -1 && j10 == j3) {
                 z10 = true;
@@ -79,8 +80,8 @@ public final class o {
 
     public final boolean d() {
         boolean z10;
-        synchronized (f10412i) {
-            if (this.f10416e != -1) {
+        synchronized (f9449i) {
+            if (this.e != -1) {
                 z10 = true;
             } else {
                 z10 = false;
@@ -90,22 +91,22 @@ public final class o {
     }
 
     public final void e(String str, int i10, Object obj) {
-        this.f10413a.b(str, new Object[0]);
-        Object obj2 = f10412i;
+        this.f9450a.b(str, new Object[0]);
+        Object obj2 = f9449i;
         synchronized (obj2) {
             try {
-                if (this.f10418g != null) {
+                if (this.f9454g != null) {
                     long currentTimeMillis = System.currentTimeMillis();
-                    n nVar = this.f10418g;
+                    n nVar = this.f9454g;
                     n6.l.h(nVar);
-                    nVar.s(this.f10415c, this.f10416e, i10, obj, this.f10417f, currentTimeMillis);
+                    nVar.y(this.f9452c, this.e, i10, obj, this.f9453f, currentTimeMillis);
                 }
-                this.f10416e = -1L;
-                this.f10418g = null;
+                this.e = -1L;
+                this.f9454g = null;
                 synchronized (obj2) {
-                    androidx.activity.i iVar = this.h;
-                    if (iVar != null) {
-                        this.d.removeCallbacks(iVar);
+                    q4 q4Var = this.h;
+                    if (q4Var != null) {
+                        this.d.removeCallbacks(q4Var);
                         this.h = null;
                     }
                 }
@@ -115,11 +116,11 @@ public final class o {
     }
 
     public final boolean f(int i10) {
-        synchronized (f10412i) {
+        synchronized (f9449i) {
             try {
                 if (d()) {
                     Locale locale = Locale.ROOT;
-                    long j3 = this.f10416e;
+                    long j3 = this.e;
                     e("clearing request " + j3, i10, null);
                     return true;
                 }

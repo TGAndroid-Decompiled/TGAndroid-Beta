@@ -1,21 +1,21 @@
 package k2;
 public final class e {
     public static final e d = new Object().a();
-    public final boolean f14567a;
-    public final boolean f14568b;
-    public final boolean f14569c;
+    public final boolean f13240a;
+    public final boolean f13241b;
+    public final boolean f13242c;
 
     public e(ac.d dVar) {
-        this.f14567a = dVar.f396a;
-        this.f14568b = dVar.f397b;
-        this.f14569c = dVar.f398c;
+        this.f13240a = dVar.f380a;
+        this.f13241b = dVar.f381b;
+        this.f13242c = dVar.f382c;
     }
 
     public final boolean equals(Object obj) {
         if (this != obj) {
             if (obj != null && e.class == obj.getClass()) {
                 e eVar = (e) obj;
-                if (this.f14567a == eVar.f14567a && this.f14568b == eVar.f14568b && this.f14569c == eVar.f14569c) {
+                if (this.f13240a == eVar.f13240a && this.f13241b == eVar.f13241b && this.f13242c == eVar.f13242c) {
                     return true;
                 }
                 return false;
@@ -26,6 +26,6 @@ public final class e {
     }
 
     public final int hashCode() {
-        return ((this.f14567a ? 1 : 0) << 2) + ((this.f14568b ? 1 : 0) << 1) + (this.f14569c ? 1 : 0);
+        return ((this.f13240a ? 1 : 0) << 2) + ((this.f13241b ? 1 : 0) << 1) + (this.f13242c ? 1 : 0);
     }
 }

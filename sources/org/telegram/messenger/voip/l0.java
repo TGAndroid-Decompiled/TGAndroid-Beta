@@ -3,22 +3,22 @@ package org.telegram.messenger.voip;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Cells.t1;
-import org.telegram.ui.Components.v51;
-import org.telegram.ui.Components.wv0;
+import org.telegram.ui.Components.w51;
+import org.telegram.ui.Components.xv0;
 import org.telegram.ui.nl;
 public final class l0 implements Runnable {
-    public final int f19394a;
-    public final int f19395b;
-    public final boolean f19396c;
+    public final int f17673a;
+    public final int f17674b;
+    public final boolean f17675c;
     public final Object d;
-    public final Object f19397e;
+    public final Object e;
 
     public l0(int i10, int i11, Object obj, Object obj2, boolean z10) {
-        this.f19394a = i11;
+        this.f17673a = i11;
         this.d = obj;
-        this.f19397e = obj2;
-        this.f19395b = i10;
-        this.f19396c = z10;
+        this.e = obj2;
+        this.f17674b = i10;
+        this.f17675c = z10;
     }
 
     @Override
@@ -27,26 +27,26 @@ public final class l0 implements Runnable {
     }
 
     public l0(nl nlVar, boolean z10, ArrayList arrayList, int i10) {
-        this.f19394a = 2;
+        this.f17673a = 2;
         this.d = nlVar;
-        this.f19396c = z10;
-        this.f19397e = arrayList;
-        this.f19395b = i10;
+        this.f17675c = z10;
+        this.e = arrayList;
+        this.f17674b = i10;
     }
 
-    public l0(wv0 wv0Var, boolean z10, int i10, t1 t1Var) {
-        this.f19394a = 5;
-        this.d = wv0Var;
-        this.f19396c = z10;
-        this.f19395b = i10;
-        this.f19397e = t1Var;
+    public l0(xv0 xv0Var, boolean z10, int i10, t1 t1Var) {
+        this.f17673a = 5;
+        this.d = xv0Var;
+        this.f17675c = z10;
+        this.f17674b = i10;
+        this.e = t1Var;
     }
 
-    public l0(v51 v51Var, int i10, TLRPC.TL_messages_searchGlobal tL_messages_searchGlobal, boolean z10, int i11) {
-        this.f19394a = i11;
-        this.d = v51Var;
-        this.f19395b = i10;
-        this.f19397e = tL_messages_searchGlobal;
-        this.f19396c = z10;
+    public l0(w51 w51Var, int i10, TLRPC.TL_messages_searchGlobal tL_messages_searchGlobal, boolean z10, int i11) {
+        this.f17673a = i11;
+        this.d = w51Var;
+        this.f17674b = i10;
+        this.e = tL_messages_searchGlobal;
+        this.f17675c = z10;
     }
 }

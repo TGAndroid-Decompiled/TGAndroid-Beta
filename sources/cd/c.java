@@ -4,33 +4,33 @@ import java.util.Arrays;
 import java.util.Iterator;
 public final class c implements Iterable, Cloneable {
     public static final String[] d = new String[0];
-    public int f4755a = 0;
-    public String[] f4756b;
-    public String[] f4757c;
+    public int f4218a = 0;
+    public String[] f4219b;
+    public String[] f4220c;
 
     public c() {
         String[] strArr = d;
-        this.f4756b = strArr;
-        this.f4757c = strArr;
+        this.f4219b = strArr;
+        this.f4220c = strArr;
     }
 
     public final Object clone() {
         try {
             c cVar = (c) super.clone();
-            cVar.f4755a = this.f4755a;
-            String[] strArr = this.f4756b;
-            int i10 = this.f4755a;
+            cVar.f4218a = this.f4218a;
+            String[] strArr = this.f4219b;
+            int i10 = this.f4218a;
             String[] strArr2 = new String[i10];
             System.arraycopy(strArr, 0, strArr2, 0, Math.min(strArr.length, i10));
-            this.f4756b = strArr2;
-            String[] strArr3 = this.f4757c;
-            int i11 = this.f4755a;
+            this.f4219b = strArr2;
+            String[] strArr3 = this.f4220c;
+            int i11 = this.f4218a;
             String[] strArr4 = new String[i11];
             System.arraycopy(strArr3, 0, strArr4, 0, Math.min(strArr3.length, i11));
-            this.f4757c = strArr4;
+            this.f4220c = strArr4;
             return cVar;
-        } catch (CloneNotSupportedException e7) {
-            throw new RuntimeException(e7);
+        } catch (CloneNotSupportedException e) {
+            throw new RuntimeException(e);
         }
     }
 
@@ -42,20 +42,20 @@ public final class c implements Iterable, Cloneable {
             return false;
         }
         c cVar = (c) obj;
-        if (this.f4755a != cVar.f4755a || !Arrays.equals(this.f4756b, cVar.f4756b)) {
+        if (this.f4218a != cVar.f4218a || !Arrays.equals(this.f4219b, cVar.f4219b)) {
             return false;
         }
-        return Arrays.equals(this.f4757c, cVar.f4757c);
+        return Arrays.equals(this.f4220c, cVar.f4220c);
     }
 
     public final int hashCode() {
-        return (((this.f4755a * 31) + Arrays.hashCode(this.f4756b)) * 31) + Arrays.hashCode(this.f4757c);
+        return (((this.f4218a * 31) + Arrays.hashCode(this.f4219b)) * 31) + Arrays.hashCode(this.f4220c);
     }
 
     public final int i(String str) {
         if (str != null) {
-            for (int i10 = 0; i10 < this.f4755a; i10++) {
-                if (str.equals(this.f4756b[i10])) {
+            for (int i10 = 0; i10 < this.f4218a; i10++) {
+                if (str.equals(this.f4219b[i10])) {
                     return i10;
                 }
             }

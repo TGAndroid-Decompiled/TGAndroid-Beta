@@ -1,28 +1,31 @@
 package org.telegram.ui;
+public final class sd implements Runnable {
+    public final int f37356a;
+    public final je f37357b;
+    public final ya1 f37358c;
+    public final TwoStepVerificationActivity d;
 
-import org.telegram.tgnet.TLRPC;
-public final class sd implements ug1 {
-    public final int f40413a;
-    public final ke f40414b;
-    public final TwoStepVerificationActivity f40415c;
-
-    public sd(ke keVar, TwoStepVerificationActivity twoStepVerificationActivity, int i10) {
-        this.f40413a = i10;
-        this.f40414b = keVar;
-        this.f40415c = twoStepVerificationActivity;
+    public sd(je jeVar, ya1 ya1Var, TwoStepVerificationActivity twoStepVerificationActivity, int i10) {
+        this.f37356a = i10;
+        this.f37357b = jeVar;
+        this.f37358c = ya1Var;
+        this.d = twoStepVerificationActivity;
     }
 
     @Override
-    public final void e(TLRPC.TL_inputCheckPasswordSRP tL_inputCheckPasswordSRP) {
-        switch (this.f40413a) {
+    public final void run() {
+        switch (this.f37356a) {
             case 0:
-                this.f40414b.b0(false, tL_inputCheckPasswordSRP, this.f40415c);
+                this.f37357b.K0.setLoading(false);
+                this.f37358c.presentFragment(this.d);
                 return;
             case 1:
-                this.f40414b.b0(true, tL_inputCheckPasswordSRP, this.f40415c);
+                this.f37357b.Q0.setLoading(false);
+                this.f37358c.presentFragment(this.d);
                 return;
             default:
-                this.f40414b.b0(true, tL_inputCheckPasswordSRP, this.f40415c);
+                this.f37357b.Q0.setLoading(false);
+                this.f37358c.presentFragment(this.d);
                 return;
         }
     }

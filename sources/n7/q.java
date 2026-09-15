@@ -1,48 +1,21 @@
 package n7;
 
-import java.util.Iterator;
-import java.util.Map;
-public final class q extends o {
-    public final r d;
+import java.util.AbstractMap;
+public final class q extends n {
+    public final r f15161c;
 
     public q(r rVar) {
-        this.d = rVar;
+        this.f15161c = rVar;
     }
 
     @Override
-    public final boolean contains(Object obj) {
-        if (obj instanceof Map.Entry) {
-            Map.Entry entry = (Map.Entry) obj;
-            Object obj2 = this.d.get(entry.getKey());
-            if (obj2 != null && obj2.equals(entry.getValue())) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    @Override
-    public final int hashCode() {
-        return a.b(this.d.entrySet());
-    }
-
-    @Override
-    public final Iterator iterator() {
-        return t().listIterator(0);
-    }
-
-    @Override
-    public final d0 p() {
-        return t().listIterator(0);
+    public final Object get(int i10) {
+        r rVar = this.f15161c;
+        return new AbstractMap.SimpleImmutableEntry(rVar.d.f15165c.f15106f.get(i10), rVar.d.d.get(i10));
     }
 
     @Override
     public final int size() {
-        return this.d.d.size();
-    }
-
-    @Override
-    public final m u() {
-        return new p(this);
+        return this.f15161c.d.d.size();
     }
 }

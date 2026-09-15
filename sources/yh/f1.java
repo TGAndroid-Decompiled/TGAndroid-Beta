@@ -1,38 +1,43 @@
 package yh;
-public final class f1 implements Runnable {
-    public final int f50269a;
-    public final h1 f50270b;
-    public final boolean f50271c;
 
-    public f1(h1 h1Var, boolean z10, int i10) {
-        this.f50269a = i10;
-        this.f50270b = h1Var;
-        this.f50271c = z10;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class f1 implements RequestDelegate {
+    public final int f47141a = 1;
+    public final a4 f47142b;
+    public final long f47143c;
+    public final long d;
+    public final long e;
+    public final Object f47144f;
+
+    public f1(a4 a4Var, long j3, long j10, Utilities.Callback callback, long j11) {
+        this.f47142b = a4Var;
+        this.f47143c = j3;
+        this.d = j10;
+        this.f47144f = callback;
+        this.e = j11;
     }
 
     @Override
-    public final void run() {
-        switch (this.f50269a) {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f47141a) {
             case 0:
-                boolean z10 = this.f50271c;
-                h1 h1Var = this.f50270b;
-                if (!z10) {
-                    h1Var.G.setVisibility(8);
-                    return;
-                } else {
-                    h1Var.getClass();
-                    return;
-                }
+                AndroidUtilities.runOnUIThread(new p1(this.f47142b, (org.telegram.ui.ActionBar.b2) this.f47144f, tLObject, this.f47143c, this.d, this.e, tL_error));
+                return;
             default:
-                boolean z11 = this.f50271c;
-                h1 h1Var2 = this.f50270b;
-                if (!z11) {
-                    h1Var2.v.setVisibility(8);
-                    return;
-                } else {
-                    h1Var2.getClass();
-                    return;
-                }
+                AndroidUtilities.runOnUIThread(new p1(this.f47142b, tLObject, this.f47143c, this.d, (Utilities.Callback) this.f47144f, tL_error, this.e));
+                return;
         }
+    }
+
+    public f1(a4 a4Var, org.telegram.ui.ActionBar.b2 b2Var, long j3, long j10, long j11) {
+        this.f47142b = a4Var;
+        this.f47144f = b2Var;
+        this.f47143c = j3;
+        this.d = j10;
+        this.e = j11;
     }
 }

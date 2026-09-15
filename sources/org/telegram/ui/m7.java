@@ -1,13 +1,13 @@
 package org.telegram.ui;
 
 import j$.util.Objects;
-public final class m7 extends pg.a {
-    public s6 f38586c;
-    public ai.b d;
+public final class m7 extends og.a {
+    public s6 f35644c;
+    public zh.a d;
 
     public final boolean equals(Object obj) {
-        ai.b bVar;
-        ai.b bVar2;
+        zh.a aVar;
+        zh.a aVar2;
         s6 s6Var;
         s6 s6Var2;
         if (this == obj) {
@@ -15,15 +15,15 @@ public final class m7 extends pg.a {
         }
         if (obj != null && m7.class == obj.getClass()) {
             m7 m7Var = (m7) obj;
-            int i10 = this.f44071a;
-            if (i10 == m7Var.f44071a) {
-                if (i10 == 1 && (s6Var = this.f38586c) != null && (s6Var2 = m7Var.f38586c) != null) {
-                    if (s6Var.f40312a == s6Var2.f40312a) {
+            int i10 = this.f15533a;
+            if (i10 == m7Var.f15533a) {
+                if (i10 == 1 && (s6Var = this.f35644c) != null && (s6Var2 = m7Var.f35644c) != null) {
+                    if (s6Var.f37257a == s6Var2.f37257a) {
                         return true;
                     }
                     return false;
-                } else if (i10 == 2 && (bVar = this.d) != null && (bVar2 = m7Var.d) != null) {
-                    return Objects.equals(bVar.f738a, bVar2.f738a);
+                } else if (i10 == 2 && (aVar = this.d) != null && (aVar2 = m7Var.d) != null) {
+                    return Objects.equals(aVar.f49194a, aVar2.f49194a);
                 }
             }
         }

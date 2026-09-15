@@ -4,24 +4,24 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.view.View;
 public final class x71 extends AnimatorListenerAdapter {
-    public final int f32444a;
-    public final i81 f32445b;
+    public final int f29903a;
+    public final i81 f29904b;
 
     public x71(i81 i81Var, int i10) {
-        this.f32444a = i10;
-        this.f32445b = i81Var;
+        this.f29903a = i10;
+        this.f29904b = i81Var;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        switch (this.f32444a) {
+        switch (this.f29903a) {
             case 0:
-                i81 i81Var = this.f32445b;
-                View[] viewArr = i81Var.f27017e;
-                View[] viewArr2 = i81Var.f27017e;
+                i81 i81Var = this.f29904b;
+                View[] viewArr = i81Var.e;
+                View[] viewArr2 = i81Var.e;
                 if (viewArr[1] != null) {
                     i81Var.F();
-                    i81Var.h.put(i81Var.f27018f[1], viewArr2[1]);
+                    i81Var.h.put(i81Var.f24959f[1], viewArr2[1]);
                     i81Var.removeView(viewArr2[1]);
                     i81Var.E(viewArr2[0], 0.0f);
                     viewArr2[1] = null;
@@ -31,26 +31,26 @@ public final class x71 extends AnimatorListenerAdapter {
                 y71 y71Var = i81Var.M;
                 if (y71Var != null) {
                     y71Var.v.invalidate();
-                    i81Var.M.v.e1();
+                    i81Var.M.v.f1();
                     i81Var.M.invalidate();
                 }
                 i81Var.u();
                 i81Var.J.unlock();
                 return;
             case 1:
-                i81 i81Var2 = this.f32445b;
-                i81Var2.f27022w = null;
-                View[] viewArr3 = i81Var2.f27017e;
+                i81 i81Var2 = this.f29904b;
+                i81Var2.f24963w = null;
+                View[] viewArr3 = i81Var2.e;
                 if (viewArr3[1] != null) {
                     if (!i81Var2.F) {
                         i81Var2.F();
                     }
-                    i81Var2.h.put(i81Var2.f27018f[1], viewArr3[1]);
+                    i81Var2.h.put(i81Var2.f24959f[1], viewArr3[1]);
                     i81Var2.removeView(viewArr3[1]);
                     viewArr3[1].setVisibility(8);
                     viewArr3[1] = null;
                 }
-                i81Var2.f27023x = false;
+                i81Var2.f24964x = false;
                 i81Var2.I = false;
                 y71 y71Var2 = i81Var2.M;
                 if (y71Var2 != null) {
@@ -61,40 +61,40 @@ public final class x71 extends AnimatorListenerAdapter {
                 i81Var2.J.unlock();
                 return;
             case 2:
-                i81 i81Var3 = this.f32445b;
-                i81Var3.f27022w = null;
-                View[] viewArr4 = i81Var3.f27017e;
+                i81 i81Var3 = this.f29904b;
+                i81Var3.f24963w = null;
+                View[] viewArr4 = i81Var3.e;
                 View view = viewArr4[1];
                 if (view != null) {
                     i81Var3.removeView(view);
                     viewArr4[1] = null;
                 }
-                i81Var3.f27023x = false;
+                i81Var3.f24964x = false;
                 y71 y71Var3 = i81Var3.M;
                 if (y71Var3 != null) {
                     y71Var3.setEnabled(true);
                     y71 y71Var4 = i81Var3.M;
                     y71Var4.J = false;
-                    y71Var4.f26632a = 1.0f;
-                    y71Var4.v.e1();
+                    y71Var4.f24588a = 1.0f;
+                    y71Var4.v.f1();
                     i81Var3.M.invalidate();
                     return;
                 }
                 return;
             default:
-                i81 i81Var4 = this.f32445b;
-                i81Var4.f27022w = null;
-                View[] viewArr5 = i81Var4.f27017e;
+                i81 i81Var4 = this.f29904b;
+                i81Var4.f24963w = null;
+                View[] viewArr5 = i81Var4.e;
                 if (viewArr5[1] != null) {
                     if (!i81Var4.F) {
                         i81Var4.F();
                     }
-                    i81Var4.h.put(i81Var4.f27018f[1], viewArr5[1]);
+                    i81Var4.h.put(i81Var4.f24959f[1], viewArr5[1]);
                     i81Var4.removeView(viewArr5[1]);
                     viewArr5[1].setVisibility(8);
                     viewArr5[1] = null;
                 }
-                i81Var4.f27023x = false;
+                i81Var4.f24964x = false;
                 i81Var4.I = false;
                 y71 y71Var5 = i81Var4.M;
                 if (y71Var5 != null) {

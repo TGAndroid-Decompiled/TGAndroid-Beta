@@ -25,7 +25,7 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 import org.telegram.messenger.BillingController;
-import v7.z5;
+import v7.a6;
 public final class d0 extends c {
     public final Context C;
     public volatile int D;
@@ -33,8 +33,8 @@ public final class d0 extends c {
     public volatile a9.d F;
     public volatile ScheduledExecutorService G;
 
-    public d0(rb.a aVar, Context context, androidx.emoji2.text.f fVar) {
-        super(aVar, context, fVar);
+    public d0(qb.b bVar, Context context, androidx.emoji2.text.f fVar) {
+        super(bVar, context, fVar);
         this.D = 0;
         this.C = context;
     }
@@ -47,19 +47,19 @@ public final class d0 extends c {
         }
         b0 b0Var = new b0(this, i10, 0);
         ?? obj = new Object();
-        obj.f5794c = new Object();
+        obj.f6797c = new Object();
         j4 j4Var = new j4(obj);
-        obj.f5793b = j4Var;
-        obj.f5792a = b0.class;
+        obj.f6796b = j4Var;
+        obj.f6795a = b0.class;
         try {
             b0Var.j(obj);
-            obj.f5792a = "billingOverrideService.getBillingOverride";
+            obj.f6795a = "billingOverrideService.getBillingOverride";
             return j4Var;
-        } catch (Exception e7) {
-            g2 g2Var = new g2(e7);
-            z5 z5Var = g4.f5780f;
-            i4 i4Var = j4Var.f5813b;
-            if (z5Var.d(i4Var, null, g2Var)) {
+        } catch (Exception e) {
+            g2 g2Var = new g2(e);
+            a6 a6Var = g4.f6784f;
+            i4 i4Var = j4Var.f6815b;
+            if (a6Var.d(i4Var, null, g2Var)) {
                 g4.d(i4Var);
             }
             return j4Var;
@@ -67,10 +67,10 @@ public final class d0 extends c {
     }
 
     public final void F(int i10, int i11, h hVar) {
-        int i12 = e0.f4374a;
+        int i12 = e0.f3868a;
         g3 b10 = e0.b(i10, i11, hVar, null, m3.BROADCAST_ACTION_UNSPECIFIED);
         Objects.requireNonNull(b10, "ApiFailure should not be null");
-        this.h.l0(b10);
+        this.h.X(b10);
     }
 
     public final void G(int i10, q0.a aVar, Runnable runnable) {
@@ -89,17 +89,17 @@ public final class d0 extends c {
         }
         if (!E.isDone()) {
             ?? obj = new Object();
-            obj.f5906n = E;
+            obj.f6899n = E;
             ?? obj2 = new Object();
-            obj2.f5896a = obj;
-            obj.f5907r = scheduledExecutorService.schedule((Runnable) obj2, 28500L, timeUnit);
-            E.b(obj2, p0.f5858a);
+            obj2.f6890a = obj;
+            obj.f6900r = scheduledExecutorService.schedule((Runnable) obj2, 28500L, timeUnit);
+            E.b(obj2, p0.f6856a);
             E = obj;
         }
         ?? obj3 = new Object();
-        obj3.f13550a = i10;
-        obj3.f13551b = aVar;
-        obj3.f13552c = runnable;
+        obj3.f12907a = i10;
+        obj3.f12908b = aVar;
+        obj3.f12909c = runnable;
         obj3.d = this;
         E.b(new q0(E, obj3), e());
     }
@@ -118,7 +118,7 @@ public final class d0 extends c {
         G(4, new q0.a() {
             @Override
             public final void accept(Object obj) {
-                String str = iVar.f4403a;
+                String str = iVar.f3895a;
                 jVar.a((h) obj, str);
             }
         }, new v(this, iVar, jVar));
@@ -129,15 +129,15 @@ public final class d0 extends c {
         int i10 = 0;
         try {
             i10 = ((Integer) E(2).get(28500L, TimeUnit.MILLISECONDS)).intValue();
-        } catch (TimeoutException e7) {
-            F(102, 28, g0.f4396p);
-            com.google.android.gms.internal.play_billing.u.i("BillingClientTesting", "Asynchronous call to Billing Override Service timed out.", e7);
-        } catch (Exception e10) {
-            if (e10 instanceof InterruptedException) {
+        } catch (TimeoutException e) {
+            F(102, 28, g0.f3888p);
+            com.google.android.gms.internal.play_billing.u.i("BillingClientTesting", "Asynchronous call to Billing Override Service timed out.", e);
+        } catch (Exception e7) {
+            if (e7 instanceof InterruptedException) {
                 Thread.currentThread().interrupt();
             }
-            F(95, 28, g0.f4396p);
-            com.google.android.gms.internal.play_billing.u.i("BillingClientTesting", "An error occurred while retrieving billing override.", e10);
+            F(95, 28, g0.f3888p);
+            com.google.android.gms.internal.play_billing.u.i("BillingClientTesting", "An error occurred while retrieving billing override.", e7);
         }
         if (i10 > 0) {
             h a2 = g0.a(i10, "Billing override value was set by a license tester.");
@@ -147,17 +147,17 @@ public final class d0 extends c {
         }
         try {
             return super.b(activity, gVar);
-        } catch (Exception e11) {
-            h hVar = g0.f4387f;
+        } catch (Exception e10) {
+            h hVar = g0.f3879f;
             F(103, 2, hVar);
-            com.google.android.gms.internal.play_billing.u.i("BillingClientTesting", "An internal error occurred.", e11);
+            com.google.android.gms.internal.play_billing.u.i("BillingClientTesting", "An internal error occurred.", e10);
             return hVar;
         }
     }
 
     @Override
-    public final void c(xa.c cVar, org.telegram.messenger.c0 c0Var) {
-        G(7, new z(c0Var, 0), new v(this, cVar, c0Var, 1));
+    public final void c(a4.m mVar, org.telegram.messenger.c0 c0Var) {
+        G(7, new z(c0Var, 0), new v(this, mVar, c0Var, 1));
     }
 
     @Override
@@ -165,12 +165,12 @@ public final class d0 extends c {
         synchronized (this) {
             if (J()) {
                 com.google.android.gms.internal.play_billing.u.g("BillingClientTesting", "Billing Override Service connection is valid. No need to re-initialize.");
-                int i10 = e0.f4374a;
+                int i10 = e0.f3868a;
                 i3 c10 = e0.c(26, m3.BROADCAST_ACTION_UNSPECIFIED);
                 Objects.requireNonNull(c10, "ApiSuccess should not be null");
-                pf.b bVar = this.h;
+                of.b bVar = this.h;
                 bVar.getClass();
-                bVar.t0(c10, (p3) bVar.f44046b);
+                bVar.f0(c10, (p3) bVar.f15511b);
             } else {
                 int i11 = 1;
                 if (this.D == 1) {
@@ -217,8 +217,8 @@ public final class d0 extends c {
         l(billingController);
     }
 
-    public d0(rb.a aVar, Context context, q qVar, androidx.emoji2.text.f fVar) {
-        super(aVar, context, qVar, fVar);
+    public d0(qb.b bVar, Context context, q qVar, androidx.emoji2.text.f fVar) {
+        super(bVar, context, qVar, fVar);
         this.D = 0;
         this.C = context;
     }

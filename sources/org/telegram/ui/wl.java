@@ -4,27 +4,27 @@ import org.telegram.messenger.MediaController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.VideoEditedInfo;
 import org.telegram.tgnet.TLRPC;
-public final class wl extends su0 {
-    public final MessageObject f42430a;
-    public final MediaController.PhotoEntry f42431b;
-    public final co f42432c;
+public final class wl extends tu0 {
+    public final MessageObject f39257a;
+    public final MediaController.PhotoEntry f39258b;
+    public final bo f39259c;
 
-    public wl(co coVar, MessageObject messageObject, MediaController.PhotoEntry photoEntry) {
-        this.f42432c = coVar;
-        this.f42430a = messageObject;
-        this.f42431b = photoEntry;
+    public wl(bo boVar, MessageObject messageObject, MediaController.PhotoEntry photoEntry) {
+        this.f39259c = boVar;
+        this.f39257a = messageObject;
+        this.f39258b = photoEntry;
     }
 
     @Override
-    public final cv0 E(MessageObject messageObject, TLRPC.FileLocation fileLocation, int i10, boolean z10, boolean z11) {
-        return co.A1(this.f42432c, this.f42430a, null, i10, z10, true);
+    public final dv0 E(MessageObject messageObject, TLRPC.FileLocation fileLocation, int i10, boolean z10, boolean z11) {
+        return bo.A1(this.f39259c, this.f39257a, null, i10, z10, true);
     }
 
     @Override
     public final boolean O() {
-        co coVar = this.f42432c;
-        if (coVar.Y != null && coVar.x9()) {
-            coVar.Y.P();
+        bo boVar = this.f39259c;
+        if (boVar.Y != null && boVar.x9()) {
+            boVar.Y.P();
             return true;
         }
         return false;
@@ -32,8 +32,8 @@ public final class wl extends su0 {
 
     @Override
     public final MessageObject U() {
-        MessageObject messageObject = this.f42432c.p5;
-        MessageObject messageObject2 = this.f42430a;
+        MessageObject messageObject = this.f39259c.p5;
+        MessageObject messageObject2 = this.f39257a;
         if (messageObject == messageObject2) {
             return messageObject2;
         }
@@ -42,7 +42,7 @@ public final class wl extends su0 {
 
     @Override
     public final void e(CharSequence charSequence) {
-        this.f42432c.Y.f1(charSequence, false);
+        this.f39259c.Y.e1(charSequence, false);
     }
 
     @Override
@@ -52,15 +52,15 @@ public final class wl extends su0 {
 
     @Override
     public final void o(int i10, VideoEditedInfo videoEditedInfo, boolean z10, int i11, int i12, boolean z11) {
-        co coVar = this.f42432c;
-        if (coVar.p5 != this.f42430a) {
+        bo boVar = this.f39259c;
+        if (boVar.p5 != this.f39257a) {
             return;
         }
-        MediaController.PhotoEntry photoEntry = this.f42431b;
+        MediaController.PhotoEntry photoEntry = this.f39258b;
         if (!photoEntry.isCropped && !photoEntry.isPainted && !photoEntry.isFiltered && videoEditedInfo == null) {
-            coVar.Y.d0();
+            boVar.Y.d0();
         } else {
-            coVar.q(photoEntry, videoEditedInfo, z10, i11, 0, z11, 0L);
+            boVar.q(photoEntry, videoEditedInfo, z10, i11, 0, z11, 0L);
         }
     }
 }

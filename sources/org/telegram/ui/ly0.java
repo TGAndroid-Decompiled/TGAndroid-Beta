@@ -6,23 +6,23 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.ActionBarLayout;
 public final class ly0 implements MessagesStorage.BooleanCallback, rs {
-    public final ProfileActivity f38515a;
-    public final TLRPC.User f38516b;
+    public final ProfileActivity f35577a;
+    public final TLRPC.User f35578b;
 
     public ly0(ProfileActivity profileActivity, TLRPC.User user) {
-        this.f38515a = profileActivity;
-        this.f38516b = user;
+        this.f35577a = profileActivity;
+        this.f35578b = user;
     }
 
     @Override
-    public void c() {
-        ProfileActivity.j0(this.f38515a, this.f38516b);
+    public void b() {
+        ProfileActivity.j0(this.f35577a, this.f35578b);
     }
 
     @Override
     public void run(boolean z10) {
         org.telegram.ui.ActionBar.n2 n2Var;
-        ProfileActivity profileActivity = this.f38515a;
+        ProfileActivity profileActivity = this.f35577a;
         if (profileActivity.getParentLayout() != null) {
             List fragmentStack = profileActivity.getParentLayout().getFragmentStack();
             if (fragmentStack != null && fragmentStack.size() >= 2) {
@@ -30,12 +30,12 @@ public final class ly0 implements MessagesStorage.BooleanCallback, rs {
             } else {
                 n2Var = null;
             }
-            if (n2Var instanceof co) {
+            if (n2Var instanceof bo) {
                 ((ActionBarLayout) profileActivity.getParentLayout()).Y(fragmentStack.size() - 2);
             }
         }
         profileActivity.N1 = true;
         profileActivity.finishFragment();
-        profileActivity.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needDeleteDialog, Long.valueOf(profileActivity.f33917i1), this.f38516b, profileActivity.E2, Boolean.valueOf(z10));
+        profileActivity.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needDeleteDialog, Long.valueOf(profileActivity.f31298i1), this.f35578b, profileActivity.E2, Boolean.valueOf(z10));
     }
 }

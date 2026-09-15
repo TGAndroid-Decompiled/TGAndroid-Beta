@@ -1,5 +1,5 @@
 package d9;
-public abstract class a implements g {
+public abstract class a implements f {
     public abstract boolean a(char c10);
 
     @Override

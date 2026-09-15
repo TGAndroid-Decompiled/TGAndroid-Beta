@@ -1,25 +1,25 @@
 package org.telegram.ui.Components;
-public final class to0 implements rb {
-    public final qc f30670a;
-    public final ff f30671b;
+public final class to0 implements pb {
+    public final oc f28158a;
+    public final cf f28159b;
 
-    public to0(ff ffVar, qc qcVar) {
-        this.f30671b = ffVar;
-        this.f30670a = qcVar;
+    public to0(cf cfVar, oc ocVar) {
+        this.f28159b = cfVar;
+        this.f28158a = ocVar;
     }
 
     @Override
     public final void c() {
-        this.f30671b.G.remove(this.f30670a);
+        this.f28159b.G.remove(this.f28158a);
     }
 
     @Override
     public final void d() {
-        this.f30671b.G.add(this.f30670a);
+        this.f28159b.G.add(this.f28158a);
     }
 
     @Override
-    public final void a(qc qcVar) {
+    public final void a(oc ocVar) {
     }
 
     @Override

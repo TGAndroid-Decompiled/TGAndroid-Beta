@@ -1,62 +1,229 @@
 package yh;
 
-import android.content.Context;
-import android.graphics.PorterDuff;
-import android.graphics.drawable.ShapeDrawable;
-import android.text.SpannableStringBuilder;
-import android.text.TextUtils;
-import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.ActionBar.f6;
-import org.telegram.ui.ActionBar.j6;
-import org.telegram.ui.Components.d61;
-import org.telegram.ui.Components.e51;
-import org.telegram.ui.Components.g51;
-import org.telegram.ui.Components.h51;
-import org.telegram.ui.Components.ll0;
-import org.telegram.ui.Components.v51;
-public final class g3 extends g51 {
-    public static final int f50291a = 0;
+public final class g3 implements Runnable {
+    public final int f47215a;
+    public final m3 f47216b;
 
-    static {
-        g51.setup(new g51());
+    public g3(m3 m3Var, int i10) {
+        this.f47215a = i10;
+        this.f47216b = m3Var;
     }
 
     @Override
-    public final void bindView(View view, h51 h51Var, boolean z10, v51 v51Var, d61 d61Var) {
-        h3 h3Var = (h3) view;
-        TL_stars.starGiftAttributeBackdrop stargiftattributebackdrop = (TL_stars.starGiftAttributeBackdrop) h51Var.G;
-        int i10 = h51Var.f26607z;
-        String str = (String) h51Var.f26594l;
-        boolean z11 = h51Var.f26588e;
-        h3Var.getClass();
-        ShapeDrawable K = j6.K(AndroidUtilities.dp(20.0f), stargiftattributebackdrop.center_color | (-16777216));
-        SpannableStringBuilder spannableStringBuilder = stargiftattributebackdrop.name;
-        if (!TextUtils.isEmpty(str)) {
-            spannableStringBuilder = AndroidUtilities.highlightText(spannableStringBuilder, str, h3Var.F);
+    public final void run() {
+        boolean z10;
+        boolean z11;
+        boolean z12;
+        boolean z13;
+        boolean z14;
+        boolean z15;
+        boolean z16;
+        boolean z17;
+        boolean z18;
+        boolean z19;
+        boolean z20;
+        boolean z21;
+        boolean z22;
+        boolean z23;
+        boolean z24;
+        switch (this.f47215a) {
+            case 0:
+                this.f47216b.b();
+                return;
+            case 1:
+                m3 m3Var = this.f47216b;
+                x3 x3Var = m3Var.f47437a;
+                if (!m3Var.f47454u) {
+                    m3Var.v = false;
+                    if (m3Var.f47448o) {
+                        m3Var.f47454u = true;
+                        long currentTimeMillis = System.currentTimeMillis();
+                        float min = Math.min(((float) (currentTimeMillis - m3Var.f47446m)) / 1000.0f, 0.25f);
+                        float f7 = m3Var.f47447n + min;
+                        m3Var.f47447n = f7;
+                        i3 i3Var = m3Var.f47443j;
+                        if (f7 > AndroidUtilities.lerp(0.1f, 1.0f, m3Var.f47453t)) {
+                            z10 = true;
+                        } else {
+                            z10 = false;
+                        }
+                        float f10 = i3Var.f(min, z10);
+                        i3 i3Var2 = m3Var.f47444k;
+                        if (m3Var.f47447n > AndroidUtilities.lerp(0.1f, 1.0f, m3Var.f47453t)) {
+                            z11 = true;
+                        } else {
+                            z11 = false;
+                        }
+                        float f11 = i3Var2.f(min, z11);
+                        float f12 = m3Var.f47442i.f(min, m3Var.f47443j.b(0.5f));
+                        i3 i3Var3 = m3Var.h;
+                        if (m3Var.f47443j.b(0.5f) && m3Var.f47442i.b(0.5f)) {
+                            z12 = true;
+                        } else {
+                            z12 = false;
+                        }
+                        float f13 = i3Var3.f(min, z12);
+                        m3Var.f47446m = currentTimeMillis;
+                        if (m3Var.f47443j.c() && m3Var.f47442i.c() && m3Var.h.c() && !m3Var.f47449p) {
+                            m3Var.f47449p = true;
+                            AndroidUtilities.runOnUIThread(new g3(m3Var, 2));
+                        }
+                        if (m3Var.f47443j.c() && m3Var.f47442i.c() && m3Var.h.b(0.25f) && !m3Var.f47450q) {
+                            m3Var.f47450q = true;
+                            AndroidUtilities.runOnUIThread(new g3(m3Var, 3));
+                        }
+                        r3 r3Var = m3Var.f47438b;
+                        if (r3Var != null) {
+                            i3 i3Var4 = m3Var.h;
+                            h3 h3Var = i3Var4.f47283b;
+                            float f14 = i3Var4.e - f13;
+                            float f15 = f14 - 1.0f;
+                            h3 h3Var2 = i3Var4.f47287i;
+                            if (h3Var == h3Var2) {
+                                z22 = true;
+                            } else {
+                                z22 = false;
+                            }
+                            h3 h3Var3 = i3Var4.f47284c;
+                            if (h3Var3 == h3Var2) {
+                                z23 = true;
+                            } else {
+                                z23 = false;
+                            }
+                            h3 h3Var4 = i3Var4.d;
+                            float f16 = f14 + 1.0f;
+                            if (h3Var4 == h3Var2) {
+                                z24 = true;
+                            } else {
+                                z24 = false;
+                            }
+                            r3Var.a(h3Var, f15, z22, h3Var3, f14, z23, h3Var4, f16, z24);
+                        }
+                        r3 r3Var2 = m3Var.f47439c;
+                        if (r3Var2 != null) {
+                            i3 i3Var5 = m3Var.f47442i;
+                            h3 h3Var5 = i3Var5.f47283b;
+                            float f17 = i3Var5.e - f12;
+                            float f18 = f17 - 1.0f;
+                            h3 h3Var6 = i3Var5.f47287i;
+                            if (h3Var5 == h3Var6) {
+                                z19 = true;
+                            } else {
+                                z19 = false;
+                            }
+                            h3 h3Var7 = i3Var5.f47284c;
+                            if (h3Var7 == h3Var6) {
+                                z20 = true;
+                            } else {
+                                z20 = false;
+                            }
+                            h3 h3Var8 = i3Var5.d;
+                            float f19 = f17 + 1.0f;
+                            if (h3Var8 == h3Var6) {
+                                z21 = true;
+                            } else {
+                                z21 = false;
+                            }
+                            r3Var2.a(h3Var5, f18, z19, h3Var7, f17, z20, h3Var8, f19, z21);
+                        }
+                        r3 r3Var3 = m3Var.d;
+                        if (r3Var3 != null) {
+                            i3 i3Var6 = m3Var.f47444k;
+                            h3 h3Var9 = i3Var6.f47283b;
+                            float f20 = i3Var6.e - f11;
+                            float f21 = f20 - 1.0f;
+                            h3 h3Var10 = i3Var6.f47287i;
+                            if (h3Var9 == h3Var10) {
+                                z16 = true;
+                            } else {
+                                z16 = false;
+                            }
+                            h3 h3Var11 = i3Var6.f47284c;
+                            if (h3Var11 == h3Var10) {
+                                z17 = true;
+                            } else {
+                                z17 = false;
+                            }
+                            h3 h3Var12 = i3Var6.d;
+                            float f22 = f20 + 1.0f;
+                            if (h3Var12 == h3Var10) {
+                                z18 = true;
+                            } else {
+                                z18 = false;
+                            }
+                            r3Var3.a(h3Var9, f21, z16, h3Var11, f20, z17, h3Var12, f22, z18);
+                        }
+                        x3Var.g(0, ((l3) m3Var.f47442i.f47284c).f47407c, true);
+                        p3 p3Var = x3Var.f47967c;
+                        i3 i3Var7 = m3Var.h;
+                        h3 h3Var13 = i3Var7.f47283b;
+                        k3 k3Var = (k3) h3Var13;
+                        float f23 = i3Var7.e - f13;
+                        float f24 = f23 - 1.0f;
+                        h3 h3Var14 = i3Var7.f47287i;
+                        if (h3Var13 == h3Var14) {
+                            z13 = true;
+                        } else {
+                            z13 = false;
+                        }
+                        h3 h3Var15 = i3Var7.f47284c;
+                        k3 k3Var2 = (k3) h3Var15;
+                        if (h3Var15 == h3Var14) {
+                            z14 = true;
+                        } else {
+                            z14 = false;
+                        }
+                        h3 h3Var16 = i3Var7.d;
+                        k3 k3Var3 = (k3) h3Var16;
+                        float f25 = f23 + 1.0f;
+                        if (h3Var16 == h3Var14) {
+                            z15 = true;
+                        } else {
+                            z15 = false;
+                        }
+                        i3 i3Var8 = m3Var.f47443j;
+                        float f26 = i3Var8.e - f10;
+                        p3Var.f47612a = k3Var;
+                        p3Var.f47613b = k3Var2;
+                        p3Var.f47614c = k3Var3;
+                        p3Var.d = f24;
+                        p3Var.e = f23;
+                        p3Var.f47615f = f25;
+                        p3Var.h = z13;
+                        p3Var.f47616n = z14;
+                        p3Var.f47617r = z15;
+                        p3Var.f47618s = (j3) i3Var8.f47283b;
+                        p3Var.v = (j3) i3Var8.f47284c;
+                        p3Var.f47619w = (j3) i3Var8.d;
+                        p3Var.f47620x = f26 - 1.0f;
+                        p3Var.f47621y = f26;
+                        p3Var.E = f26 + 1.0f;
+                        p3Var.invalidate();
+                        m3Var.f47454u = false;
+                        m3Var.b();
+                        return;
+                    }
+                    return;
+                }
+                return;
+            case 2:
+                m3 m3Var2 = this.f47216b;
+                m3Var2.f47448o = false;
+                m3Var2.f47437a.f47967c.c();
+                b1 b1Var = m3Var2.f47451r;
+                if (b1Var != null) {
+                    b1Var.run();
+                    return;
+                }
+                return;
+            default:
+                b1 b1Var2 = this.f47216b.f47452s;
+                if (b1Var2 != null) {
+                    b1Var2.run();
+                    return;
+                }
+                return;
         }
-        if (i10 > 0) {
-            SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(spannableStringBuilder);
-            spannableStringBuilder2.append((CharSequence) "  ");
-            int length = spannableStringBuilder2.length();
-            spannableStringBuilder2.append((CharSequence) Integer.toString(i10));
-            spannableStringBuilder2.setSpan(new e51(AndroidUtilities.bold()), length, spannableStringBuilder2.length(), 33);
-            spannableStringBuilder = spannableStringBuilder2;
-        }
-        h3Var.g(spannableStringBuilder, 0, K);
-        h3Var.setChecked(z11);
-    }
-
-    @Override
-    public final View createView(Context context, ll0 ll0Var, int i10, int i11, f6 f6Var) {
-        org.telegram.ui.ActionBar.f1 f1Var = new org.telegram.ui.ActionBar.f1(0, context, f6Var, false, false);
-        f1Var.setPadding(AndroidUtilities.dp(18.0f), 0, AndroidUtilities.dp(18.0f), 0);
-        f1Var.c(j6.v0(j6.E8, f6Var), j6.v0(j6.F8, f6Var));
-        f1Var.e(-1, PorterDuff.Mode.MULTIPLY);
-        f1Var.f20403c.setTranslationX(AndroidUtilities.dp(2.0f));
-        f1Var.a(2);
-        f1Var.setBackground(null);
-        return f1Var;
     }
 }

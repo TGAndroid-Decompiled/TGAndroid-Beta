@@ -5,59 +5,59 @@ import java.util.ArrayList;
 import org.telegram.messenger.MediaDataController;
 import org.telegram.tgnet.TLRPC;
 public final class kt implements View.OnClickListener {
-    public final ArrayList f38123a;
-    public final boolean f38124b;
-    public final ot f38125c;
+    public final ArrayList f35261a;
+    public final boolean f35262b;
+    public final ot f35263c;
 
     public kt(ot otVar, ArrayList arrayList, boolean z10) {
-        this.f38125c = otVar;
-        this.f38123a = arrayList;
-        this.f38124b = z10;
+        this.f35263c = otVar;
+        this.f35261a = arrayList;
+        this.f35262b = z10;
     }
 
     @Override
     public final void onClick(View view) {
-        st stVar = this.f38125c.f39309a;
-        if (stVar.f40548w != null) {
+        st stVar = this.f35263c.f36336a;
+        if (stVar.f37474w != null) {
             int intValue = ((Integer) view.getTag()).intValue();
-            ArrayList arrayList = this.f38123a;
+            ArrayList arrayList = this.f35261a;
             if (((Integer) arrayList.get(intValue)).intValue() != 0 && ((Integer) arrayList.get(intValue)).intValue() != 6) {
                 if (((Integer) arrayList.get(intValue)).intValue() == 1) {
-                    qt qtVar = stVar.f40538l;
+                    qt qtVar = stVar.f37464l;
                     if (qtVar != null) {
-                        qtVar.M(stVar.f40525a0, stVar.f40535i);
+                        qtVar.M(stVar.f37452a0, stVar.f37461i);
                     }
                 } else if (((Integer) arrayList.get(intValue)).intValue() == 2) {
-                    MediaDataController.getInstance(stVar.f40544r).addRecentSticker(2, stVar.f40527b0, stVar.W, (int) (System.currentTimeMillis() / 1000), this.f38124b);
+                    MediaDataController.getInstance(stVar.f37470r).addRecentSticker(2, stVar.f37454b0, stVar.W, (int) (System.currentTimeMillis() / 1000), this.f35262b);
                 } else if (((Integer) arrayList.get(intValue)).intValue() == 3) {
                     TLRPC.Document document = stVar.W;
-                    Object obj = stVar.f40527b0;
+                    Object obj = stVar.f37454b0;
                     String str = stVar.Y;
-                    qt qtVar2 = stVar.f40538l;
+                    qt qtVar2 = stVar.f37464l;
                     if (qtVar2 == null) {
                         return;
                     }
-                    org.telegram.ui.Components.e5.L(stVar.f40548w, qtVar2.a(), new a1.d(qtVar2, document, str, obj, 10));
+                    org.telegram.ui.Components.c5.L(stVar.f37474w, qtVar2.a(), new a1.d(qtVar2, document, str, obj, 10));
                 } else if (((Integer) arrayList.get(intValue)).intValue() == 4) {
-                    MediaDataController.getInstance(stVar.f40544r).addRecentSticker(0, stVar.f40527b0, stVar.W, (int) (System.currentTimeMillis() / 1000), true);
+                    MediaDataController.getInstance(stVar.f37470r).addRecentSticker(0, stVar.f37454b0, stVar.W, (int) (System.currentTimeMillis() / 1000), true);
                 } else if (((Integer) arrayList.get(intValue)).intValue() == 5) {
-                    stVar.f40538l.i(stVar.X);
+                    stVar.f37464l.j(stVar.X);
                 } else if (((Integer) arrayList.get(intValue)).intValue() == 7) {
-                    stVar.f40538l.n(stVar.W);
+                    stVar.f37464l.o(stVar.W);
                 } else if (((Integer) arrayList.get(intValue)).intValue() == 8) {
-                    stVar.f40538l.E(stVar.W);
+                    stVar.f37464l.E(stVar.W);
                 }
             } else {
-                qt qtVar3 = stVar.f40538l;
+                qt qtVar3 = stVar.f37464l;
                 if (qtVar3 != null) {
                     TLRPC.Document document2 = stVar.W;
                     String str2 = stVar.Y;
                     boolean z10 = true;
-                    Object obj2 = stVar.f40527b0;
+                    Object obj2 = stVar.f37454b0;
                     if (((Integer) arrayList.get(intValue)).intValue() != 0) {
                         z10 = false;
                     }
-                    qtVar3.l(document2, str2, obj2, z10, 0, 0);
+                    qtVar3.m(document2, str2, obj2, z10, 0, 0);
                 }
             }
             stVar.p();

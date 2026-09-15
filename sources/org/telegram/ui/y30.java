@@ -3,18 +3,18 @@ package org.telegram.ui;
 import android.view.ViewGroup;
 import androidx.recyclerview.widget.RecyclerView;
 public final class y30 extends s4.s0 {
-    public final j60 f42977a;
+    public final i60 f39747a;
 
-    public y30(j60 j60Var) {
-        this.f42977a = j60Var;
+    public y30(i60 i60Var) {
+        this.f39747a = i60Var;
     }
 
     @Override
     public final void b(RecyclerView recyclerView, int i10, int i11) {
         ViewGroup viewGroup;
-        j60 j60Var = this.f42977a;
-        viewGroup = ((org.telegram.ui.ActionBar.f3) j60Var).containerView;
+        i60 i60Var = this.f39747a;
+        viewGroup = ((org.telegram.ui.ActionBar.f3) i60Var).containerView;
         viewGroup.invalidate();
-        j60Var.a2.invalidate();
+        i60Var.a2.invalidate();
     }
 }

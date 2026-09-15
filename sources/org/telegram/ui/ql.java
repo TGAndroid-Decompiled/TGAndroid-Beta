@@ -2,15 +2,15 @@ package org.telegram.ui;
 
 import org.telegram.messenger.MessageObject;
 import org.telegram.tgnet.TLRPC;
-public final class ql extends su0 {
-    public final co f39902a;
+public final class ql extends tu0 {
+    public final bo f36897a;
 
-    public ql(co coVar) {
-        this.f39902a = coVar;
+    public ql(bo boVar) {
+        this.f36897a = boVar;
     }
 
     @Override
-    public final cv0 E(MessageObject messageObject, TLRPC.FileLocation fileLocation, int i10, boolean z10, boolean z11) {
-        return co.A1(this.f39902a, messageObject, fileLocation, i10, z10, false);
+    public final dv0 E(MessageObject messageObject, TLRPC.FileLocation fileLocation, int i10, boolean z10, boolean z11) {
+        return bo.A1(this.f36897a, messageObject, fileLocation, i10, z10, false);
     }
 }

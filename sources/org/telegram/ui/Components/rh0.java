@@ -6,7 +6,7 @@ public interface rh0 {
 
     void b(float f7);
 
-    void c(kv kvVar, Canvas canvas);
+    void c(lv lvVar, Canvas canvas);
 
     void d(int i10, int i11);
 }

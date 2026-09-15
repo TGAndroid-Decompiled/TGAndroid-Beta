@@ -1,22 +1,24 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.view.ViewGroup;
-import org.telegram.tgnet.TLRPC;
-public final class eg extends kz {
-    public final ChatActivityEnterView P2;
+public final class eg extends q41 {
+    public final fg h;
 
-    public eg(ChatActivityEnterView chatActivityEnterView, org.telegram.ui.ActionBar.n2 n2Var, boolean z10, Context context, TLRPC.ChatFull chatFull, ViewGroup viewGroup, boolean z11, org.telegram.ui.ActionBar.f6 f6Var, boolean z12, boolean z13) {
-        super(n2Var, z10, true, true, context, true, chatFull, viewGroup, z11, f6Var, z12, z13);
-        this.P2 = chatActivityEnterView;
+    public eg(fg fgVar, Context context, org.telegram.ui.ActionBar.n2 n2Var, e51 e51Var, org.telegram.ui.ActionBar.e6 e6Var) {
+        super(context, n2Var, e51Var, e6Var);
+        this.h = fgVar;
     }
 
     @Override
-    public final void setTranslationY(float f7) {
-        super.setTranslationY(f7);
-        ChatActivityEnterView chatActivityEnterView = this.P2;
-        if (chatActivityEnterView.V0 != null && chatActivityEnterView.f23743n3 == 0) {
-            chatActivityEnterView.Y2.x(f7);
+    public final void dismiss() {
+        super.dismiss();
+        ChatActivityEnterView chatActivityEnterView = this.h.f23929a;
+        if (chatActivityEnterView.Z2 == this) {
+            chatActivityEnterView.Z2 = null;
+        }
+        mg mgVar = chatActivityEnterView.Y2;
+        if (mgVar != null) {
+            mgVar.B(false);
         }
     }
 }

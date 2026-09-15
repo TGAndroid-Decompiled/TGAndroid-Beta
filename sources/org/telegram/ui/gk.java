@@ -5,10 +5,10 @@ import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class gk implements qt {
-    public final co f36708a;
+    public final bo f33944a;
 
-    public gk(co coVar) {
-        this.f36708a = coVar;
+    public gk(bo boVar) {
+        this.f33944a = boVar;
     }
 
     @Override
@@ -44,15 +44,15 @@ public final class gk implements qt {
     @Override
     public final void M(TLRPC.InputStickerSet inputStickerSet, boolean z10) {
         if (inputStickerSet != null) {
-            co coVar = this.f36708a;
-            if (coVar.getParentActivity() != null) {
+            bo boVar = this.f33944a;
+            if (boVar.getParentActivity() != null) {
                 TLRPC.TL_inputStickerSetID tL_inputStickerSetID = new TLRPC.TL_inputStickerSetID();
                 tL_inputStickerSetID.access_hash = inputStickerSet.access_hash;
-                tL_inputStickerSetID.f19889id = inputStickerSet.f19889id;
-                org.telegram.ui.Components.ux0 ux0Var = new org.telegram.ui.Components.ux0(coVar.getParentActivity(), coVar, tL_inputStickerSetID, null, coVar.Y, coVar.f35247ea);
-                ux0Var.setCalcMandatoryInsets(coVar.x9());
-                ux0Var.f31003i0 = z10;
-                coVar.showDialog(ux0Var);
+                tL_inputStickerSetID.f18132id = inputStickerSet.f18132id;
+                org.telegram.ui.Components.vx0 vx0Var = new org.telegram.ui.Components.vx0(boVar.getParentActivity(), boVar, tL_inputStickerSetID, null, boVar.Y, boVar.f32297ea);
+                vx0Var.setCalcMandatoryInsets(boVar.x9());
+                vx0Var.f29465i0 = z10;
+                boVar.showDialog(vx0Var);
             }
         }
     }
@@ -74,17 +74,17 @@ public final class gk implements qt {
 
     @Override
     public final long a() {
-        return this.f36708a.T5;
+        return this.f33944a.T5;
     }
 
     @Override
     public final boolean b() {
-        return this.f36708a.D6();
+        return this.f33944a.D6();
     }
 
     @Override
     public final boolean c() {
-        if (this.f36708a.R3 == 1) {
+        if (this.f33944a.R3 == 1) {
             return true;
         }
         return false;
@@ -116,28 +116,28 @@ public final class gk implements qt {
     }
 
     @Override
-    public final boolean j() {
+    public final org.telegram.ui.Components.n70 i(ci.n6 n6Var) {
+        return null;
+    }
+
+    @Override
+    public final boolean k() {
         return false;
     }
 
     @Override
-    public final boolean k(int i10) {
+    public final boolean l(int i10) {
         return true;
     }
 
     @Override
-    public final void l(TLRPC.Document document, String str, Object obj, boolean z10, int i10, int i11) {
-        this.f36708a.Y.a(document, str, obj, null, true, z10, i10, i11);
+    public final void m(TLRPC.Document document, String str, Object obj, boolean z10, int i10, int i11) {
+        this.f33944a.Y.d(document, str, obj, null, true, z10, i10, i11);
     }
 
     @Override
-    public final boolean o() {
+    public final boolean p() {
         return false;
-    }
-
-    @Override
-    public final org.telegram.ui.Components.n70 t(ah.w wVar) {
-        return null;
     }
 
     @Override
@@ -175,27 +175,27 @@ public final class gk implements qt {
     }
 
     @Override
-    public final void i(SendMessagesHelper.ImportingSticker importingSticker) {
+    public final void j(SendMessagesHelper.ImportingSticker importingSticker) {
     }
 
     @Override
-    public final void m(String str) {
+    public final void n(String str) {
     }
 
     @Override
-    public final void n(TLRPC.Document document) {
+    public final void o(TLRPC.Document document) {
     }
 
     @Override
-    public final void p(TLRPC.Document document) {
+    public final void q(TLRPC.Document document) {
     }
 
     @Override
-    public final void q() {
+    public final void r() {
     }
 
     @Override
-    public final void s() {
+    public final void t() {
     }
 
     @Override
@@ -219,6 +219,6 @@ public final class gk implements qt {
     }
 
     @Override
-    public final void r(int i10, int i11, Object obj, TLObject tLObject, boolean z10) {
+    public final void s(int i10, int i11, Object obj, TLObject tLObject, boolean z10) {
     }
 }

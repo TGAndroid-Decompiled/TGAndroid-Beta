@@ -1,58 +1,53 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-import java.util.ArrayList;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.ui.WallpapersListActivity;
-public final class uo implements View.OnClickListener {
-    public final int f30929a;
-    public final lp f30930b;
+import org.telegram.ui.ya1;
+public final class uo implements Runnable {
+    public final int f28475a;
+    public final mp f28476b;
 
-    public uo(lp lpVar, int i10) {
-        this.f30929a = i10;
-        this.f30930b = lpVar;
+    public uo(mp mpVar, int i10) {
+        this.f28475a = i10;
+        this.f28476b = mpVar;
     }
 
     @Override
-    public final void onClick(View view) {
-        switch (this.f30929a) {
+    public final void run() {
+        switch (this.f28475a) {
             case 0:
-                lp lpVar = this.f30930b;
-                vi viVar = lpVar.Y;
-                if (viVar.f31340y0 == viVar.f31291j0) {
-                    lpVar.f28255a0.setText(LocaleController.getString(R.string.ChooseBackgroundFromGallery));
-                    lpVar.Y.C1();
-                    jj jjVar = lpVar.Y.f31315r0;
-                    boolean z10 = lpVar.N;
-                    za zaVar = jjVar.v;
-                    ((ArrayList) zaVar.f33113e).clear();
-                    WallpapersListActivity.z0((ArrayList) zaVar.f33113e, z10);
-                    zaVar.l();
-                    return;
-                }
-                lpVar.f28255a0.setText(LocaleController.getString(R.string.SetColorAsBackground));
-                vi viVar2 = lpVar.Y;
-                viVar2.Q1(viVar2.f31291j0);
+                this.f28476b.h.l();
                 return;
             case 1:
-                lp lpVar2 = this.f30930b;
-                if (lpVar2.v()) {
-                    lpVar2.A(true);
-                    lpVar2.F(true);
-                    return;
-                }
-                lpVar2.dismiss();
+                this.f28476b.s(true);
                 return;
             case 2:
-                lp lpVar3 = this.f30930b;
-                if (lpVar3.T == null) {
-                    lpVar3.C(!lpVar3.N);
-                    return;
-                }
+                mp mpVar = this.f28476b;
+                org.telegram.ui.bo boVar = mpVar.v;
+                org.telegram.ui.ActionBar.n2 d02 = ya1.d0(boVar.getMessagesController().getChat(Long.valueOf(-boVar.a())), true);
+                ?? obj = new Object();
+                obj.f19368a = true;
+                d02.setResourceProvider(boVar.getResourceProvider());
+                obj.f19370c = new sh(2);
+                obj.d = new uo(mpVar, 3);
+                obj.f19369b = new uo(mpVar, 4);
+                obj.e = true;
+                mpVar.X = d02;
+                boVar.showAsSheet(d02, obj);
+                return;
+            case 3:
+                this.f28476b.u();
+                return;
+            case 4:
+                this.f28476b.X = null;
+                return;
+            case 5:
+                this.f28476b.u();
+                return;
+            case 6:
+                this.f28476b.X = null;
                 return;
             default:
-                this.f30930b.s(false);
+                mp mpVar2 = this.f28476b;
+                mpVar2.U.f(mpVar2.G, true);
                 return;
         }
     }

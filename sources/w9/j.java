@@ -6,42 +6,42 @@ import java.io.File;
 import java.util.Collections;
 import java.util.List;
 public final class j {
-    public final r f48393a;
-    public final i f48394b;
+    public final r f44928a;
+    public final i f44929b;
 
     public j(r rVar, ba.c cVar) {
-        this.f48393a = rVar;
-        this.f48394b = new i(cVar);
+        this.f44928a = rVar;
+        this.f44929b = new i(cVar);
     }
 
     public final String a(String str) {
         String substring;
-        i iVar = this.f48394b;
+        i iVar = this.f44929b;
         synchronized (iVar) {
-            if (Objects.equals(iVar.f48391b, str)) {
-                return iVar.f48392c;
+            if (Objects.equals(iVar.f44926b, str)) {
+                return iVar.f44927c;
             }
-            ba.c cVar = iVar.f48390a;
+            ba.c cVar = iVar.f44925a;
             ba.a aVar = i.d;
-            File file = new File(cVar.f2528c, str);
+            File file = new File(cVar.f3448c, str);
             file.mkdirs();
-            List e7 = ba.c.e(file.listFiles(aVar));
-            if (e7.isEmpty()) {
+            List e = ba.c.e(file.listFiles(aVar));
+            if (e.isEmpty()) {
                 substring = null;
                 Log.w("FirebaseCrashlytics", "Unable to read App Quality Sessions session id.", null);
             } else {
-                substring = ((File) Collections.min(e7, i.f48389e)).getName().substring(4);
+                substring = ((File) Collections.min(e, i.e)).getName().substring(4);
             }
             return substring;
         }
     }
 
     public final void b(String str) {
-        i iVar = this.f48394b;
+        i iVar = this.f44929b;
         synchronized (iVar) {
-            if (!Objects.equals(iVar.f48391b, str)) {
-                i.a(iVar.f48390a, str, iVar.f48392c);
-                iVar.f48391b = str;
+            if (!Objects.equals(iVar.f44926b, str)) {
+                i.a(iVar.f44925a, str, iVar.f44927c);
+                iVar.f44926b = str;
             }
         }
     }

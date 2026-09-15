@@ -1,5 +1,5 @@
 package org.telegram.ui.Cells;
 public final class g4 {
-    public int[] f21970a;
-    public float[] f21971b;
+    public int[] f20133a;
+    public float[] f20134b;
 }

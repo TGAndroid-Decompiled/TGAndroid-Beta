@@ -1,18 +1,18 @@
 package org.telegram.ui;
 public final class ki implements org.telegram.ui.Components.cl0 {
-    public final co f38072a;
+    public final bo f35171a;
 
-    public ki(co coVar) {
-        this.f38072a = coVar;
+    public ki(bo boVar) {
+        this.f35171a = boVar;
     }
 
     @Override
-    public final boolean mo18d(float r11, float r12, int r13, android.view.View r14) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ki.mo18d(float, float, int, android.view.View):boolean");
+    public final boolean mo18c(float r11, float r12, int r13, android.view.View r14) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ki.mo18c(float, float, int, android.view.View):boolean");
     }
 
     @Override
-    public final void h() {
+    public final void g() {
     }
 
     @Override

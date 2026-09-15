@@ -1,33 +1,30 @@
 package org.telegram.ui;
 public final class xa implements Runnable {
-    public final int f42652a;
-    public final ub f42653b;
+    public final int f39560a;
+    public final ub f39561b;
 
     public xa(ub ubVar, int i10) {
-        this.f42652a = i10;
-        this.f42653b = ubVar;
+        this.f39560a = i10;
+        this.f39561b = ubVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f42652a) {
+        switch (this.f39560a) {
             case 0:
-                ub ubVar = this.f42653b;
-                ubVar.K0 = Integer.MAX_VALUE;
-                ubVar.L0 = -1;
-                ubVar.e1();
-                ubVar.M0 = null;
+                ub ubVar = this.f39561b;
+                ubVar.G0 = Integer.MAX_VALUE;
+                ubVar.H0 = -1;
+                ubVar.d1();
+                ubVar.I0 = null;
                 return;
             case 1:
-                ub ubVar2 = this.f42653b;
-                ubVar2.X0(false);
-                ubVar2.I.l();
-                return;
-            case 2:
-                this.f42653b.W0();
+                ub ubVar2 = this.f39561b;
+                ubVar2.W0(false);
+                ubVar2.E.l();
                 return;
             default:
-                this.f42653b.U0(2);
+                this.f39561b.V0();
                 return;
         }
     }

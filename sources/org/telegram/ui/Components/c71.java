@@ -6,17 +6,17 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
 public final class c71 {
-    public final boolean f24915a;
-    public final int f24916b;
-    public final int f24917c;
+    public final boolean f22969a;
+    public final int f22970b;
+    public final int f22971c;
     public final ArrayList d;
 
     public c71(e71 e71Var) {
         ArrayList arrayList = new ArrayList();
         this.d = arrayList;
-        this.f24915a = e71Var.f25580b;
-        this.f24916b = e71Var.f25585i;
-        this.f24917c = e71Var.f25586j;
+        this.f22969a = e71Var.f23569b;
+        this.f22970b = e71Var.f23573i;
+        this.f22971c = e71Var.f23574j;
         arrayList.add(e71Var);
     }
 
@@ -39,8 +39,8 @@ public final class c71 {
         long j3 = Long.MAX_VALUE;
         for (int i11 = 0; i11 < arrayList.size(); i11++) {
             e71 e71Var3 = (e71) arrayList.get(i11);
-            if (e71Var3.f25587k < j3 && g71.Y(e71Var3.f25589m)) {
-                j3 = e71Var3.f25587k;
+            if (e71Var3.f23575k < j3 && g71.Y(e71Var3.f23577m)) {
+                j3 = e71Var3.f23575k;
                 e71Var = e71Var3;
             }
         }
@@ -51,7 +51,7 @@ public final class c71 {
     }
 
     public final int b() {
-        int min = Math.min(this.f24916b, this.f24917c);
+        int min = Math.min(this.f22970b, this.f22971c);
         if (Math.abs(min - 2160) < 55) {
             return 2160;
         }
@@ -82,13 +82,13 @@ public final class c71 {
     public final String toString() {
         String str;
         boolean z10 = SharedConfig.debugVideoQualities;
-        boolean z11 = this.f24915a;
+        boolean z11 = this.f22969a;
         String str2 = "";
         if (z10) {
             StringBuilder sb2 = new StringBuilder();
-            sb2.append(this.f24916b);
+            sb2.append(this.f22970b);
             sb2.append("x");
-            sb2.append(this.f24917c);
+            sb2.append(this.f22971c);
             if (!z11) {
                 str = "";
             } else {
@@ -97,10 +97,10 @@ public final class c71 {
             sb2.append(str);
             sb2.append("\n");
             ArrayList arrayList = this.d;
-            sb2.append(AndroidUtilities.formatFileSize((long) ((e71) arrayList.get(0)).f25588l).replace(" ", ""));
+            sb2.append(AndroidUtilities.formatFileSize((long) ((e71) arrayList.get(0)).f23576l).replace(" ", ""));
             sb2.append("/s");
-            if (((e71) arrayList.get(0)).f25589m != null) {
-                str2 = ", " + ((e71) arrayList.get(0)).f25589m;
+            if (((e71) arrayList.get(0)).f23577m != null) {
+                str2 = ", " + ((e71) arrayList.get(0)).f23577m;
             }
             sb2.append(str2);
             return sb2.toString();

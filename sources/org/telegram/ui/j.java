@@ -1,21 +1,21 @@
 package org.telegram.ui;
 
 import j$.util.Objects;
-public final class j extends pg.a {
-    public final CharSequence f37459c;
+public final class j extends og.a {
+    public final CharSequence f34753c;
     public final int d;
 
     public j(int i10, int i11, String str) {
         super(i10, false);
         this.d = i11;
-        this.f37459c = str;
+        this.f34753c = str;
     }
 
     public final boolean equals(Object obj) {
         if (this != obj) {
             if (obj != null && j.class == obj.getClass()) {
                 j jVar = (j) obj;
-                if (this.d == jVar.d && Objects.equals(this.f37459c, jVar.f37459c)) {
+                if (this.d == jVar.d && Objects.equals(this.f34753c, jVar.f34753c)) {
                     return true;
                 }
                 return false;

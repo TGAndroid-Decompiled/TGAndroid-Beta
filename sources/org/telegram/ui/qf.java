@@ -8,12 +8,12 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
 public final class qf implements Runnable {
-    public final int f39858a;
-    public final co f39859b;
+    public final int f36868a;
+    public final bo f36869b;
 
-    public qf(co coVar, int i10) {
-        this.f39858a = i10;
-        this.f39859b = coVar;
+    public qf(bo boVar, int i10) {
+        this.f36868a = i10;
+        this.f36869b = boVar;
     }
 
     @Override
@@ -22,219 +22,219 @@ public final class qf implements Runnable {
         mk mkVar;
         View sendButton;
         View sendButton2;
-        switch (this.f39858a) {
+        switch (this.f36868a) {
             case 0:
-                this.f39859b.A7(true);
+                this.f36869b.A7(true);
                 return;
             case 1:
-                this.f39859b.A7(true);
+                this.f36869b.A7(true);
                 return;
             case 2:
-                co coVar = this.f39859b;
-                coVar.A7(false);
-                sg.a1 a1Var = new sg.a1((org.telegram.ui.ActionBar.n2) coVar, 24, true);
-                a1Var.setDimBehind(false);
-                a1Var.setOnHideListener(new jg(coVar, 1));
-                a1Var.show();
+                bo boVar = this.f36869b;
+                boVar.A7(false);
+                rg.x0 x0Var = new rg.x0((org.telegram.ui.ActionBar.n2) boVar, 24, true);
+                x0Var.setDimBehind(false);
+                x0Var.setOnHideListener(new jg(boVar, 1));
+                x0Var.show();
                 return;
             case 3:
-                co.P0(this.f39859b);
+                bo.P0(this.f36869b);
                 return;
             case 4:
-                co.m0(this.f39859b);
+                bo.m0(this.f36869b);
                 return;
             case 5:
-                co coVar2 = this.f39859b;
-                if (coVar2.getUserConfig().isPremium()) {
-                    coVar2.Mb = null;
-                    coVar2.Qc(true);
-                    org.telegram.ui.Components.yc.a0(coVar2).c(LocaleController.getString(R.string.AdHidden)).j();
-                    coVar2.getMessagesController().disableAds(true);
+                bo boVar2 = this.f36869b;
+                if (boVar2.getUserConfig().isPremium()) {
+                    boVar2.Mb = null;
+                    boVar2.Qc(true);
+                    org.telegram.ui.Components.vc.a0(boVar2).c(LocaleController.getString(R.string.AdHidden)).j();
+                    boVar2.getMessagesController().disableAds(true);
                     return;
                 }
-                coVar2.showDialog(new sg.a1((org.telegram.ui.ActionBar.n2) coVar2, 3, true));
+                boVar2.showDialog(new rg.x0((org.telegram.ui.ActionBar.n2) boVar2, 3, true));
                 return;
             case 6:
-                mk mkVar2 = this.f39859b.Y;
+                mk mkVar2 = this.f36869b.Y;
                 if (mkVar2 != null) {
                     mkVar2.q0(true);
                     return;
                 }
                 return;
             case 7:
-                AndroidUtilities.removeFromParent(this.f39859b.K0);
+                AndroidUtilities.removeFromParent(this.f36869b.K0);
                 return;
             case 8:
-                this.f39859b.Y.H0();
+                this.f36869b.Y.H0();
                 return;
             case 9:
-                co coVar3 = this.f39859b;
-                coVar3.f35391qa = null;
-                coVar3.f35379pa = -1;
-                View view = coVar3.fragmentView;
+                bo boVar3 = this.f36869b;
+                boVar3.f32442qa = null;
+                boVar3.f32430pa = -1;
+                View view = boVar3.fragmentView;
                 if (view != null) {
                     view.requestLayout();
                     return;
                 }
                 return;
             case 10:
-                co coVar4 = this.f39859b;
-                ArrayList arrayList = coVar4.f35440u6;
+                bo boVar4 = this.f36869b;
+                ArrayList arrayList = boVar4.f32491u6;
                 for (int i10 = 0; i10 < arrayList.size(); i10++) {
                     MessageObject messageObject = (MessageObject) arrayList.get(i10);
                     if (messageObject.messageOwner.mentioned && !messageObject.isContentUnread()) {
                         messageObject.setContentIsRead();
                     }
                 }
-                coVar4.f35327l6 = 0;
-                coVar4.getMessagesController().markMentionsAsRead(coVar4.T5, coVar4.d());
-                coVar4.f35339m6 = true;
-                coVar4.Kb(false);
-                org.telegram.ui.ActionBar.n1 n1Var = coVar4.Q8;
+                boVar4.f32378l6 = 0;
+                boVar4.getMessagesController().markMentionsAsRead(boVar4.T5, boVar4.d());
+                boVar4.f32390m6 = true;
+                boVar4.Kb(false);
+                org.telegram.ui.ActionBar.n1 n1Var = boVar4.Q8;
                 if (n1Var != null) {
                     n1Var.dismiss();
                     return;
                 }
                 return;
             case 11:
-                co coVar5 = this.f39859b;
-                ArrayList arrayList2 = coVar5.f35440u6;
+                bo boVar5 = this.f36869b;
+                ArrayList arrayList2 = boVar5.f32491u6;
                 for (int i11 = 0; i11 < arrayList2.size(); i11++) {
                     ((MessageObject) arrayList2.get(i11)).markReactionsAsRead();
                 }
-                coVar5.l1 = 0;
-                coVar5.Bc(true);
-                coVar5.getMessagesController().markReactionsAsRead(coVar5.T5, coVar5.d());
-                org.telegram.ui.ActionBar.n1 n1Var2 = coVar5.Q8;
+                boVar5.l1 = 0;
+                boVar5.Bc(true);
+                boVar5.getMessagesController().markReactionsAsRead(boVar5.T5, boVar5.d());
+                org.telegram.ui.ActionBar.n1 n1Var2 = boVar5.Q8;
                 if (n1Var2 != null) {
                     n1Var2.dismiss();
                     return;
                 }
                 return;
             case 12:
-                co coVar6 = this.f39859b;
-                ArrayList arrayList3 = coVar6.f35440u6;
+                bo boVar6 = this.f36869b;
+                ArrayList arrayList3 = boVar6.f32491u6;
                 for (int i12 = 0; i12 < arrayList3.size(); i12++) {
                     ((MessageObject) arrayList3.get(i12)).markPollVotesAsRead();
                 }
-                coVar6.f35334m1 = 0;
-                coVar6.Ac(true);
-                coVar6.getMessagesController().markPollVotesAsRead(coVar6.T5, coVar6.d());
-                org.telegram.ui.ActionBar.n1 n1Var3 = coVar6.Q8;
+                boVar6.f32385m1 = 0;
+                boVar6.Ac(true);
+                boVar6.getMessagesController().markPollVotesAsRead(boVar6.T5, boVar6.d());
+                org.telegram.ui.ActionBar.n1 n1Var3 = boVar6.Q8;
                 if (n1Var3 != null) {
                     n1Var3.dismiss();
                     return;
                 }
                 return;
             case 13:
-                co.n1(this.f39859b);
+                bo.n1(this.f36869b);
                 return;
             case 14:
-                org.telegram.ui.Components.yc.a0(this.f39859b).M(LocaleController.getString(R.string.BoostingRemoveRestrictionsSuccessTitle), LocaleController.getString(R.string.BoostingRemoveRestrictionsSuccessSubTitle), R.raw.chats_infotip).j();
+                org.telegram.ui.Components.vc.a0(this.f36869b).M(LocaleController.getString(R.string.BoostingRemoveRestrictionsSuccessTitle), LocaleController.getString(R.string.BoostingRemoveRestrictionsSuccessSubTitle), R.raw.chats_infotip).j();
                 return;
             case 15:
-                this.f39859b.hc(false);
+                this.f36869b.hc(false);
                 return;
             case 16:
-                co coVar7 = this.f39859b;
-                coVar7.G5 = null;
-                coVar7.j8();
+                bo boVar7 = this.f36869b;
+                boVar7.G5 = null;
+                boVar7.j8();
                 return;
             case 17:
-                co coVar8 = this.f39859b;
-                coVar8.G5 = null;
-                coVar8.j8();
+                bo boVar8 = this.f36869b;
+                boVar8.G5 = null;
+                boVar8.j8();
                 return;
             case 18:
-                this.f39859b.S6();
+                this.f36869b.S6();
                 return;
             case 19:
-                this.f39859b.finishFragment();
+                this.f36869b.finishFragment();
                 return;
             case 20:
-                this.f39859b.g8(false, true, 0.0f);
+                this.f36869b.g8(false, true, 0.0f);
                 return;
             case 21:
-                AndroidUtilities.removeFromParent(this.f39859b.L0);
+                AndroidUtilities.removeFromParent(this.f36869b.L0);
                 return;
             case 22:
-                co coVar9 = this.f39859b;
-                coVar9.C4 = null;
-                coVar9.o9();
-                coVar9.r9();
+                bo boVar9 = this.f36869b;
+                boVar9.C4 = null;
+                boVar9.o9();
+                boVar9.r9();
                 return;
             case 23:
-                co coVar10 = this.f39859b;
-                qk qkVar = coVar10.f35430t8;
+                bo boVar10 = this.f36869b;
+                qk qkVar = boVar10.f32481t8;
                 if (qkVar != null && qkVar.getParent() != null) {
-                    coVar10.f35473x0.e1();
-                    coVar10.f35455v8.setDrawingReady(false);
-                    coVar10.f35430t8.setTag(null);
-                    coVar10.X0.removeView(coVar10.f35430t8);
+                    boVar10.f32524x0.f1();
+                    boVar10.f32506v8.setDrawingReady(false);
+                    boVar10.f32481t8.setTag(null);
+                    boVar10.X0.removeView(boVar10.f32481t8);
                     return;
                 }
                 return;
             case 24:
-                co coVar11 = this.f39859b;
-                coVar11.o9 = false;
-                coVar11.e9(true);
+                bo boVar11 = this.f36869b;
+                boVar11.o9 = false;
+                boVar11.e9(true);
                 return;
             case 25:
-                co coVar12 = this.f39859b;
-                org.telegram.ui.ActionBar.f1[] f1VarArr = coVar12.S8;
+                bo boVar12 = this.f36869b;
+                org.telegram.ui.ActionBar.f1[] f1VarArr = boVar12.S8;
                 if (f1VarArr != null && f1VarArr.length > 0 && (f1Var = f1VarArr[0]) != null) {
                     f1Var.requestFocus();
-                    coVar12.S8[0].performAccessibilityAction(64, null);
-                    coVar12.S8[0].sendAccessibilityEvent(8);
+                    boVar12.S8[0].performAccessibilityAction(64, null);
+                    boVar12.S8[0].sendAccessibilityEvent(8);
                     return;
                 }
                 return;
             case 26:
-                co coVar13 = this.f39859b;
-                if (coVar13.getParentActivity() != null && coVar13.fragmentView != null && (mkVar = coVar13.Y) != null && (sendButton = mkVar.getSendButton()) != null && coVar13.Y.getEditField() != null && coVar13.Y.getEditField().getText().length() >= 5) {
+                bo boVar13 = this.f36869b;
+                if (boVar13.getParentActivity() != null && boVar13.fragmentView != null && (mkVar = boVar13.Y) != null && (sendButton = mkVar.getSendButton()) != null && boVar13.Y.getEditField() != null && boVar13.Y.getEditField().getText().length() >= 5) {
                     SharedConfig.increaseScheduledOrNoSoundHintShowed();
-                    if (coVar13.f35264g2 == null) {
-                        ij ijVar = new ij(4, 0, coVar13.getParentActivity(), coVar13.f35247ea, false);
-                        coVar13.f35264g2 = ijVar;
+                    if (boVar13.f32314g2 == null) {
+                        ij ijVar = new ij(4, 0, boVar13.getParentActivity(), boVar13.f32297ea, false);
+                        boVar13.f32314g2 = ijVar;
                         ijVar.a();
-                        coVar13.f35264g2.setAlpha(0.0f);
-                        coVar13.f35264g2.setVisibility(4);
-                        coVar13.f35264g2.setText(LocaleController.getString(R.string.ScheduledOrNoSoundHint));
-                        coVar13.X0.addView(coVar13.f35264g2, w7.x5.d(-2, -2.0f, 51, 10.0f, 0.0f, 10.0f, 0.0f));
+                        boVar13.f32314g2.setAlpha(0.0f);
+                        boVar13.f32314g2.setVisibility(4);
+                        boVar13.f32314g2.setText(LocaleController.getString(R.string.ScheduledOrNoSoundHint));
+                        boVar13.X0.addView(boVar13.f32314g2, w7.x5.d(-2, -2.0f, 51, 10.0f, 0.0f, 10.0f, 0.0f));
                     }
-                    coVar13.f35264g2.f(sendButton, true);
-                    coVar13.f35275h2 = true;
+                    boVar13.f32314g2.f(sendButton, true);
+                    boVar13.f32326h2 = true;
                     return;
                 }
                 return;
             case 27:
-                co coVar14 = this.f39859b;
-                if (coVar14.getParentActivity() != null && coVar14.fragmentView != null && coVar14.Y != null && coVar14.Ea == null && coVar14.getMessagesController().getSendPaidMessagesStars(coVar14.a()) <= 0 && (sendButton2 = coVar14.Y.getSendButton()) != null && coVar14.Y.getEditField() != null && coVar14.Y.getEditField().getText().length() != 0) {
+                bo boVar14 = this.f36869b;
+                if (boVar14.getParentActivity() != null && boVar14.fragmentView != null && boVar14.Y != null && boVar14.Ea == null && boVar14.getMessagesController().getSendPaidMessagesStars(boVar14.a()) <= 0 && (sendButton2 = boVar14.Y.getSendButton()) != null && boVar14.Y.getEditField() != null && boVar14.Y.getEditField().getText().length() != 0) {
                     SharedConfig.increaseScheduledHintShowed();
-                    if (coVar14.f35287i2 == null) {
-                        org.telegram.ui.Components.i40 i40Var = new org.telegram.ui.Components.i40(4, coVar14.getParentActivity(), coVar14.f35247ea, false);
-                        coVar14.f35287i2 = i40Var;
+                    if (boVar14.f32338i2 == null) {
+                        org.telegram.ui.Components.i40 i40Var = new org.telegram.ui.Components.i40(4, boVar14.getParentActivity(), boVar14.f32297ea, false);
+                        boVar14.f32338i2 = i40Var;
                         i40Var.a();
-                        coVar14.f35287i2.setAlpha(0.0f);
-                        coVar14.f35287i2.setVisibility(4);
-                        coVar14.f35287i2.setText(LocaleController.getString(R.string.ScheduledHint));
-                        coVar14.X0.addView(coVar14.f35287i2, w7.x5.d(-2, -2.0f, 51, 10.0f, 0.0f, 10.0f, 0.0f));
+                        boVar14.f32338i2.setAlpha(0.0f);
+                        boVar14.f32338i2.setVisibility(4);
+                        boVar14.f32338i2.setText(LocaleController.getString(R.string.ScheduledHint));
+                        boVar14.X0.addView(boVar14.f32338i2, w7.x5.d(-2, -2.0f, 51, 10.0f, 0.0f, 10.0f, 0.0f));
                     }
-                    coVar14.f35287i2.f(sendButton2, true);
-                    coVar14.f35300j2 = true;
+                    boVar14.f32338i2.f(sendButton2, true);
+                    boVar14.f32351j2 = true;
                     return;
                 }
                 return;
             case 28:
-                this.f39859b.g8(false, true, 0.0f);
+                this.f36869b.g8(false, true, 0.0f);
                 return;
             default:
-                co coVar15 = this.f39859b;
-                coVar15.A0.M.clear();
-                om omVar = coVar15.A0;
-                omVar.L = false;
-                omVar.O(true);
-                coVar15.Pb(false);
+                bo boVar15 = this.f36869b;
+                boVar15.A0.M.clear();
+                nm nmVar = boVar15.A0;
+                nmVar.L = false;
+                nmVar.O(true);
+                boVar15.Pb(false);
                 return;
         }
     }

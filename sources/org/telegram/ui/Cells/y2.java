@@ -5,29 +5,29 @@ import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BotWebViewVibrationEffect;
 public final class y2 implements View.OnClickListener {
-    public final int f23560a;
-    public final FrameLayout f23561b;
-    public final Object f23562c;
+    public final int f21652a;
+    public final FrameLayout f21653b;
+    public final Object f21654c;
 
     public y2(FrameLayout frameLayout, Object obj, int i10) {
-        this.f23560a = i10;
-        this.f23561b = frameLayout;
-        this.f23562c = obj;
+        this.f21652a = i10;
+        this.f21653b = frameLayout;
+        this.f21654c = obj;
     }
 
     @Override
     public final void onClick(View view) {
-        switch (this.f23560a) {
+        switch (this.f21652a) {
             case 0:
-                View.OnClickListener onClickListener = (View.OnClickListener) this.f23562c;
-                if (((z2) this.f23561b).getAlpha() > 0.5f && onClickListener != null) {
+                View.OnClickListener onClickListener = (View.OnClickListener) this.f21654c;
+                if (((z2) this.f21653b).getAlpha() > 0.5f && onClickListener != null) {
                     onClickListener.onClick(view);
                     return;
                 }
                 return;
             default:
-                di.d dVar = (di.d) this.f23561b;
-                org.telegram.ui.ActionBar.f3 f3Var = (org.telegram.ui.ActionBar.f3) this.f23562c;
+                ci.d dVar = (ci.d) this.f21653b;
+                org.telegram.ui.ActionBar.f3 f3Var = (org.telegram.ui.ActionBar.f3) this.f21654c;
                 if (dVar.F > 0) {
                     AndroidUtilities.shakeViewSpring(dVar, 3.0f);
                     BotWebViewVibrationEffect.APP_ERROR.vibrate();

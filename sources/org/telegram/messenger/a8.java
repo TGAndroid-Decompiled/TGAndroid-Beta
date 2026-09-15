@@ -1,39 +1,30 @@
 package org.telegram.messenger;
-public final class a8 implements Runnable {
-    public final int f17142a;
-    public final MediaDataController f17143b;
-    public final String f17144c;
 
-    public a8(MediaDataController mediaDataController, String str, int i10) {
-        this.f17142a = i10;
-        this.f17143b = mediaDataController;
-        this.f17144c = str;
+import android.net.Uri;
+import java.util.ArrayList;
+import org.telegram.messenger.MediaDataController;
+import org.telegram.messenger.MessagesStorage;
+import org.telegram.messenger.Utilities;
+public final class a8 implements MediaDataController.KeywordResultCallback, MessagesStorage.LongCallback {
+    public final BaseController f15655a;
+    public final Object f15656b;
+    public final Object f15657c;
+    public final Object d;
+
+    public a8(BaseController baseController, Object obj, Object obj2, Object obj3) {
+        this.f15655a = baseController;
+        this.f15656b = obj;
+        this.f15657c = obj2;
+        this.d = obj3;
     }
 
     @Override
-    public final void run() {
-        switch (this.f17142a) {
-            case 0:
-                MediaDataController.F2(this.f17143b, this.f17144c);
-                return;
-            case 1:
-                MediaDataController.u3(this.f17143b, this.f17144c);
-                return;
-            case 2:
-                MediaDataController.k3(this.f17143b, this.f17144c);
-                return;
-            case 3:
-                MediaDataController.S1(this.f17143b, this.f17144c);
-                return;
-            case 4:
-                MediaDataController.o(this.f17143b, this.f17144c);
-                return;
-            case 5:
-                MediaDataController.m1(this.f17143b, this.f17144c);
-                return;
-            default:
-                MediaDataController.q1(this.f17143b, this.f17144c);
-                return;
-        }
+    public void run(long j3) {
+        ((SendMessagesHelper) this.f15655a).lambda$prepareImportHistory$105((Uri) this.f15656b, (ArrayList) this.f15657c, (MessagesStorage.LongCallback) this.d, j3);
+    }
+
+    @Override
+    public void run(ArrayList arrayList, String str) {
+        ((MediaDataController) this.f15655a).lambda$searchStickers$248((MediaDataController.SearchStickersKey) this.f15656b, (MediaDataController.SearchStickersResult) this.f15657c, (Utilities.Callback) this.d, arrayList, str);
     }
 }

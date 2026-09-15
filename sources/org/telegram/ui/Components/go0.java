@@ -1,10 +1,10 @@
 package org.telegram.ui.Components;
 public final class go0 {
-    public float f26472a;
-    public float f26473b;
-    public float f26474c;
+    public float f24428a;
+    public float f24429b;
+    public float f24430c;
     public float d;
-    public float f26475e;
-    public float f26476f;
-    public float f26477g;
+    public float e;
+    public float f24431f;
+    public float f24432g;
 }

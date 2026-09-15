@@ -1,6 +1,7 @@
 package v8;
 
 import android.os.Bundle;
+import android.os.IBinder;
 import android.os.Parcel;
 import android.os.RemoteException;
 import android.util.Log;
@@ -8,24 +9,49 @@ import com.google.android.gms.common.api.Status;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.Task;
 import com.google.android.gms.tasks.TaskCompletionSource;
+import java.io.IOException;
+import java.util.ConcurrentModificationException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.Callable;
-import rg.p2;
-import v7.f5;
-import za.a0;
-public final class s implements com.google.android.gms.common.api.internal.s, w2.d, Continuation {
-    public Object f47750a;
+import org.telegram.ui.e71;
+import v7.g5;
+public final class s implements com.google.android.gms.common.api.internal.s, w2.d, Continuation, y2.h, e71 {
+    public Object f44265a;
 
     public s(Object obj) {
-        this.f47750a = obj;
+        this.f44265a = obj;
     }
 
-    public void a(a0 a0Var) {
-        ((l5.q) ((i5.f) ((pa.b) this.f47750a).get())).a("FIREBASE_APPQUALITY_SESSION", new i5.c("json"), new p2(this, 18)).a(new i5.a(null, a0Var, i5.d.f11859a, null), new j2.e(17));
+    public void a(IBinder iBinder) {
+        synchronized (((HashMap) this.f44265a)) {
+            if (iBinder != null) {
+                try {
+                    iBinder.queryLocalInterface("com.google.android.gms.wearable.internal.IWearableService");
+                } catch (Throwable th2) {
+                    throw th2;
+                }
+            }
+            new y8.a();
+            for (Map.Entry entry : ((HashMap) this.f44265a).entrySet()) {
+                if (entry.getValue() == null) {
+                    try {
+                        throw null;
+                        break;
+                    } catch (RemoteException unused) {
+                        String valueOf = String.valueOf(entry.getKey());
+                        Log.w("WearableClient", "onPostInitHandler: Didn't add: " + valueOf + "/null");
+                    }
+                } else {
+                    throw new ClassCastException();
+                }
+            }
+        }
     }
 
     @Override
     public void accept(Object obj, Object obj2) {
-        e eVar = (e) this.f47750a;
+        e eVar = (e) this.f44265a;
         e8.b bVar = (e8.b) obj;
         bVar.getClass();
         e8.a aVar = new e8.a(1, (TaskCompletionSource) obj2);
@@ -34,23 +60,62 @@ public final class s implements com.google.android.gms.common.api.internal.s, w2
             Bundle G = bVar.G();
             Parcel obtain = Parcel.obtain();
             obtain.writeInterfaceToken("com.google.android.gms.wallet.internal.IOwService");
-            int i10 = e8.c.f8906a;
+            int i10 = e8.c.f8038a;
             obtain.writeInt(1);
             eVar.writeToParcel(obtain, 0);
             obtain.writeInt(1);
             G.writeToParcel(obtain, 0);
             obtain.writeStrongBinder(aVar);
-            iVar.f8914a.transact(14, obtain, null, 1);
+            iVar.f8046a.transact(14, obtain, null, 1);
             obtain.recycle();
-        } catch (RemoteException e7) {
-            Log.e("WalletClientImpl", "RemoteException during isReadyToPay", e7);
+        } catch (RemoteException e) {
+            Log.e("WalletClientImpl", "RemoteException during isReadyToPay", e);
             Bundle bundle = Bundle.EMPTY;
-            f5.a(Status.h, Boolean.FALSE, aVar.f8905b);
+            g5.a(Status.h, Boolean.FALSE, aVar.f8037b);
         }
     }
 
     @Override
+    public k4.d n(y2.j jVar, long j3, long j10, IOException iOException, int i10) {
+        ((l2.d) this.f44265a).f13816a.x(iOException);
+        return y2.m.e;
+    }
+
+    @Override
+    public void q(y2.j jVar, long j3, long j10) {
+        boolean z10;
+        l2.d dVar = (l2.d) this.f44265a;
+        synchronized (z2.b.f48078b) {
+            z10 = z2.b.f48079c;
+        }
+        if (!z10) {
+            dVar.f13816a.x(new IOException(new ConcurrentModificationException()));
+            return;
+        }
+        dVar.a();
+    }
+
+    @Override
     public Object then(Task task) {
-        return ((Callable) this.f47750a).call();
+        return ((Callable) this.f44265a).call();
+    }
+
+    public s(int i10) {
+        switch (i10) {
+            case 4:
+                this.f44265a = new HashMap();
+                return;
+            default:
+                this.f44265a = new qb.b(28);
+                return;
+        }
+    }
+
+    @Override
+    public void V(y2.j jVar, long j3, long j10, boolean z10) {
+    }
+
+    @Override
+    public void o(y2.j jVar, long j3, long j10, int i10) {
     }
 }

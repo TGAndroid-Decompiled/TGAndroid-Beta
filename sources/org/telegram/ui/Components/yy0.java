@@ -1,25 +1,11 @@
 package org.telegram.ui.Components;
+public final class yy0 {
+    public final ez0 f30430a;
+    public final gz0 f30431b;
+    public boolean f30432c = true;
 
-import android.util.Pair;
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-public final class yy0 extends ArrayList {
-    public final Class f33020a;
-    public final Class f33021b;
-
-    public yy0(Class cls, Class cls2) {
-        this.f33020a = cls;
-        this.f33021b = cls2;
-    }
-
-    public final m2.t i() {
-        int size = size();
-        Object[] objArr = (Object[]) Array.newInstance(this.f33020a, size);
-        Object[] objArr2 = (Object[]) Array.newInstance(this.f33021b, size);
-        for (int i10 = 0; i10 < size; i10++) {
-            objArr[i10] = ((Pair) get(i10)).first;
-            objArr2[i10] = ((Pair) get(i10)).second;
-        }
-        return new m2.t(objArr, objArr2);
+    public yy0(ez0 ez0Var, gz0 gz0Var) {
+        this.f30430a = ez0Var;
+        this.f30431b = gz0Var;
     }
 }

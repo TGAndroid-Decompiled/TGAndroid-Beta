@@ -4,28 +4,28 @@ import android.view.View;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.MessageObject;
 import org.telegram.tgnet.TLRPC;
-public final class gb extends su0 {
-    public final ub f36621a;
+public final class gb extends tu0 {
+    public final ub f33857a;
 
     public gb(ub ubVar) {
-        this.f36621a = ubVar;
+        this.f33857a = ubVar;
     }
 
     @Override
-    public final cv0 E(MessageObject messageObject, TLRPC.FileLocation fileLocation, int i10, boolean z10, boolean z11) {
+    public final dv0 E(MessageObject messageObject, TLRPC.FileLocation fileLocation, int i10, boolean z10, boolean z11) {
         org.telegram.ui.Cells.w0 w0Var;
         MessageObject messageObject2;
         org.telegram.ui.Cells.t1 t1Var;
         MessageObject messageObject3;
-        ub ubVar = this.f36621a;
-        int childCount = ubVar.E.getChildCount();
+        ub ubVar = this.f33857a;
+        int childCount = ubVar.v.getChildCount();
         int i11 = 0;
         while (true) {
             ImageReceiver imageReceiver = null;
             if (i11 >= childCount) {
                 return null;
             }
-            View childAt = ubVar.E.getChildAt(i11);
+            View childAt = ubVar.v.getChildAt(i11);
             if (childAt instanceof org.telegram.ui.Cells.t1) {
                 if (messageObject != null && (messageObject3 = (t1Var = (org.telegram.ui.Cells.t1) childAt).getMessageObject()) != null && messageObject3.getId() == messageObject.getId()) {
                     imageReceiver = t1Var.getPhotoImage();
@@ -53,15 +53,15 @@ public final class gb extends su0 {
             if (imageReceiver != null) {
                 int[] iArr = new int[2];
                 childAt.getLocationInWindow(iArr);
-                cv0 cv0Var = new cv0();
-                cv0Var.f35541b = iArr[0];
-                cv0Var.f35542c = iArr[1];
-                cv0Var.d = ubVar.E;
-                cv0Var.f35540a = imageReceiver;
-                cv0Var.f35543e = imageReceiver.getBitmapSafe();
-                cv0Var.h = imageReceiver.getRoundRadius(true);
-                cv0Var.f35549l = true;
-                return cv0Var;
+                dv0 dv0Var = new dv0();
+                dv0Var.f33135b = iArr[0];
+                dv0Var.f33136c = iArr[1];
+                dv0Var.d = ubVar.v;
+                dv0Var.f33134a = imageReceiver;
+                dv0Var.e = imageReceiver.getBitmapSafe();
+                dv0Var.h = imageReceiver.getRoundRadius(true);
+                dv0Var.f33142l = true;
+                return dv0Var;
             }
             i11++;
         }

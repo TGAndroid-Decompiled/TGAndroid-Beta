@@ -10,87 +10,87 @@ import e9.g0;
 import e9.i0;
 import java.util.List;
 public final class a implements o {
-    public final int f10368a;
-    public final d0 f10369b;
+    public final int f9408a;
+    public final d0 f9409b;
 
     public a(int i10) {
-        this.f10368a = i10;
+        this.f9408a = i10;
         switch (i10) {
             case 1:
-                this.f10369b = new d0(35152, 2, "image/png");
+                this.f9409b = new d0(35152, 2, "image/png");
                 return;
             default:
-                this.f10369b = new d0(16973, 2, "image/bmp");
+                this.f9409b = new d0(16973, 2, "image/bmp");
                 return;
         }
     }
 
     @Override
-    public final boolean b(p pVar) {
-        switch (this.f10368a) {
+    public final boolean a(p pVar) {
+        switch (this.f9408a) {
             case 0:
-                return this.f10369b.b(pVar);
+                return this.f9409b.a(pVar);
             default:
-                return this.f10369b.b(pVar);
+                return this.f9409b.a(pVar);
         }
     }
 
     @Override
     public final o c() {
-        int i10 = this.f10368a;
+        int i10 = this.f9408a;
         return this;
     }
 
     @Override
     public final void g(q qVar) {
-        switch (this.f10368a) {
+        switch (this.f9408a) {
             case 0:
-                this.f10369b.g(qVar);
+                this.f9409b.g(qVar);
                 return;
             default:
-                this.f10369b.g(qVar);
+                this.f9409b.g(qVar);
                 return;
         }
     }
 
     @Override
     public final void h(long j3, long j10) {
-        switch (this.f10368a) {
+        switch (this.f9408a) {
             case 0:
-                this.f10369b.h(j3, j10);
+                this.f9409b.h(j3, j10);
                 return;
             default:
-                this.f10369b.h(j3, j10);
+                this.f9409b.h(j3, j10);
                 return;
         }
     }
 
     @Override
     public final List i() {
-        switch (this.f10368a) {
+        switch (this.f9408a) {
             case 0:
             default:
-                g0 g0Var = i0.f8957b;
-                return a1.f8920e;
+                g0 g0Var = i0.f8079b;
+                return a1.e;
         }
     }
 
     @Override
     public final int m(p pVar, s sVar) {
-        switch (this.f10368a) {
+        switch (this.f9408a) {
             case 0:
-                return this.f10369b.m(pVar, sVar);
+                return this.f9409b.m(pVar, sVar);
             default:
-                return this.f10369b.m(pVar, sVar);
+                return this.f9409b.m(pVar, sVar);
         }
     }
 
     @Override
     public final void release() {
-        int i10 = this.f10368a;
+        int i10 = this.f9408a;
     }
 
-    private final void a() {
+    private final void b() {
     }
 
     private final void d() {

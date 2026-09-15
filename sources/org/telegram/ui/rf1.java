@@ -1,68 +1,91 @@
 package org.telegram.ui;
 
+import android.app.Activity;
 import android.view.View;
+import java.util.HashMap;
 import org.telegram.messenger.AndroidUtilities;
-public final class rf1 extends s4.j {
-    public Runnable F;
-    public int G;
-    public final eg1 H;
+import org.telegram.messenger.LocaleController;
+public final class rf1 extends View {
+    public final HashMap f37099a;
+    public final sf1 f37100b;
 
-    public rf1(eg1 eg1Var) {
-        this.H = eg1Var;
+    public rf1(sf1 sf1Var, Activity activity) {
+        super(activity);
+        this.f37100b = sf1Var;
+        this.f37099a = new HashMap();
     }
 
     @Override
-    public final void F() {
-        if (this.G == -1) {
-            this.G = this.H.getNotificationCenter().setAnimationInProgress(this.G, null, false);
-            Runnable runnable = this.F;
-            if (runnable != null) {
-                AndroidUtilities.cancelRunOnUIThread(runnable);
-                this.F = null;
+    public final void onMeasure(int i10, int i11) {
+        int i12;
+        int i13;
+        float f7;
+        int i14;
+        int dp;
+        boolean z10;
+        int i15;
+        sf1 sf1Var = this.f37100b;
+        dg1 dg1Var = sf1Var.d;
+        int size = View.MeasureSpec.getSize(i10);
+        int dp2 = AndroidUtilities.dp(64.0f);
+        int i16 = 0;
+        int i17 = 0;
+        for (int i18 = 0; i18 < sf1Var.F().size(); i18++) {
+            if (sf1Var.F().get(i18) != null && ((uf1) sf1Var.F().get(i18)).f37995c != null) {
+                String str = ((uf1) sf1Var.F().get(i18)).f37995c.title;
+                HashMap hashMap = this.f37099a;
+                Boolean bool = (Boolean) hashMap.get(str);
+                if (bool == null) {
+                    int i19 = 50;
+                    if (!LocaleController.isRTL) {
+                        if (dg1Var.isInPreviewMode()) {
+                            i15 = 11;
+                        } else {
+                            i15 = 50;
+                        }
+                        f7 = i15 + 4;
+                    } else {
+                        f7 = 18.0f;
+                    }
+                    int dp3 = AndroidUtilities.dp(f7);
+                    if (!LocaleController.isRTL) {
+                        i14 = size - dp3;
+                        dp = AndroidUtilities.dp(22.0f);
+                    } else {
+                        i14 = size - dp3;
+                        if (dg1Var.isInPreviewMode()) {
+                            i19 = 11;
+                        }
+                        dp = AndroidUtilities.dp(i19 + 13);
+                    }
+                    if (org.telegram.ui.ActionBar.i6.B0[0].measureText(str) <= (i14 - dp) - ((int) Math.ceil(org.telegram.ui.ActionBar.i6.I0.measureText("00:00")))) {
+                        z10 = true;
+                    } else {
+                        z10 = false;
+                    }
+                    bool = Boolean.valueOf(z10);
+                    hashMap.put(str, bool);
+                }
+                if (!bool.booleanValue()) {
+                    i13 = 20;
+                } else {
+                    i13 = 0;
+                }
+                int dp4 = AndroidUtilities.dp(i13 + 64);
+                if (((uf1) sf1Var.F().get(i18)).f37995c.f18164id == 1) {
+                    dp2 = dp4;
+                }
+                if (((uf1) sf1Var.F().get(i18)).f37995c.hidden) {
+                    i16++;
+                }
+                i17 += dp4;
             }
         }
-    }
-
-    @Override
-    public final void N() {
-        Runnable runnable = this.F;
-        if (runnable != null) {
-            AndroidUtilities.cancelRunOnUIThread(runnable);
-            this.F = null;
+        if (i16 > 0) {
+            i12 = (((dg1Var.N.getMeasuredHeight() - dg1Var.N.getPaddingTop()) - dg1Var.N.getPaddingBottom()) - i17) + dp2;
+        } else {
+            i12 = 0;
         }
-        qf1 qf1Var = new qf1(this, 0);
-        this.F = qf1Var;
-        AndroidUtilities.runOnUIThread(qf1Var);
-    }
-
-    @Override
-    public final void g() {
-        super.g();
-        Runnable runnable = this.F;
-        if (runnable != null) {
-            AndroidUtilities.cancelRunOnUIThread(runnable);
-        }
-        qf1 qf1Var = new qf1(this, 1);
-        this.F = qf1Var;
-        AndroidUtilities.runOnUIThread(qf1Var);
-    }
-
-    @Override
-    public final void z(s4.c1 c1Var) {
-        eg1 eg1Var = this.H;
-        View view = eg1Var.f36030b1;
-        if (view == c1Var.f45738a) {
-            view.setTranslationX(0.0f);
-            if1 if1Var = eg1Var.O;
-            if (if1Var != null) {
-                if1Var.F.clear();
-            }
-            View view2 = eg1Var.f36030b1;
-            if (view2 instanceof bg1) {
-                bg1 bg1Var = (bg1) view2;
-                bg1Var.setTopicIcon(bg1Var.Y4);
-            }
-            eg1Var.f36030b1 = null;
-        }
+        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(Math.max(0, i12), 1073741824));
     }
 }

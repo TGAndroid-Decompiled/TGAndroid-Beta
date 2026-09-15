@@ -1,29 +1,29 @@
 package org.telegram.ui;
 public final class hj extends org.telegram.ui.ActionBar.n1 {
-    public final co f37049o;
+    public final bo f34299o;
 
-    public hj(co coVar, fj fjVar) {
+    public hj(bo boVar, fj fjVar) {
         super(fjVar, -2, -2);
-        this.f37049o = coVar;
+        this.f34299o = boVar;
     }
 
     @Override
     public final void dismiss() {
         d(true);
-        co coVar = this.f37049o;
-        if (coVar.Q8 == this) {
-            coVar.Q8 = null;
-            coVar.T8 = null;
-            coVar.S8 = null;
-            coVar.f35498z0.R = true;
-            if (coVar.R8) {
-                coVar.g8(false, true, 0.0f);
+        bo boVar = this.f34299o;
+        if (boVar.Q8 == this) {
+            boVar.Q8 = null;
+            boVar.T8 = null;
+            boVar.S8 = null;
+            boVar.f32549z0.R = true;
+            if (boVar.R8) {
+                boVar.g8(false, true, 0.0f);
             } else {
-                coVar.R8 = true;
+                boVar.R8 = true;
             }
-            mk mkVar = coVar.Y;
+            mk mkVar = boVar.Y;
             if (mkVar != null && mkVar.getEditField() != null) {
-                coVar.Y.getEditField().setAllowDrawCursor(true);
+                boVar.Y.getEditField().setAllowDrawCursor(true);
             }
         }
     }

@@ -1,19 +1,36 @@
 package n7;
 
-import j$.util.Objects;
 import java.util.Comparator;
-public abstract class p0 {
-    public static final Comparator f16673a;
+public final class p0 implements Comparator {
+    public static final p0 f15159a;
+    public static final p0[] f15160b;
 
     static {
-        Comparator comparator;
-        try {
-            Object[] enumConstants = Class.forName(p0.class.getName().concat("$UnsafeComparator")).getEnumConstants();
-            Objects.requireNonNull(enumConstants);
-            comparator = (Comparator) enumConstants[0];
-        } catch (Throwable unused) {
-            comparator = o0.f16670a;
+        ?? r02 = new Enum("INSTANCE", 0);
+        f15159a = r02;
+        f15160b = new p0[]{r02};
+    }
+
+    public static p0[] values() {
+        return (p0[]) f15160b.clone();
+    }
+
+    @Override
+    public final int compare(Object obj, Object obj2) {
+        byte[] bArr = (byte[]) obj;
+        byte[] bArr2 = (byte[]) obj2;
+        int min = Math.min(bArr.length, bArr2.length);
+        for (int i10 = 0; i10 < min; i10++) {
+            int i11 = (bArr[i10] & 255) - (bArr2[i10] & 255);
+            if (i11 != 0) {
+                return i11;
+            }
         }
-        f16673a = comparator;
+        return bArr.length - bArr2.length;
+    }
+
+    @Override
+    public final String toString() {
+        return "UnsignedBytes.lexicographicalComparator() (pure Java version)";
     }
 }

@@ -1,26 +1,73 @@
 package ah;
 
-import android.animation.ValueAnimator;
-public final class n implements ValueAnimator.AnimatorUpdateListener {
-    public final int f642a;
-    public final b0 f643b;
+import android.graphics.Canvas;
+import android.graphics.PointF;
+import android.graphics.RectF;
+import android.os.SystemClock;
+import android.view.View;
+import android.view.ViewGroup;
+public final class n implements bh.a {
+    public final ViewGroup f486c;
+    public final m d;
+    public final ViewGroup e;
+    public boolean h;
+    public final RectF f484a = new RectF();
+    public final PointF f485b = new PointF();
+    public final RectF f487f = new RectF();
 
-    public n(b0 b0Var, int i10) {
-        this.f642a = i10;
-        this.f643b = b0Var;
+    public n(ViewGroup viewGroup, ViewGroup viewGroup2, m mVar) {
+        this.f486c = viewGroup;
+        this.d = mVar;
+        this.e = viewGroup2;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f642a) {
-            case 0:
-                b0 b0Var = this.f643b;
-                b0Var.f451w.setTranslationY((-((Float) valueAnimator.getAnimatedValue()).floatValue()) * b0Var.f445c.getMeasuredHeight());
-                return;
-            default:
-                b0 b0Var2 = this.f643b;
-                b0Var2.f451w.setTranslationY((-(1.0f - ((Float) valueAnimator.getAnimatedValue()).floatValue())) * b0Var2.f445c.getMeasuredHeight());
-                return;
+    public final void b(a aVar, RectF rectF) {
+        ViewGroup viewGroup = this.f486c;
+        ViewGroup viewGroup2 = this.e;
+        PointF pointF = this.f485b;
+        if (!hh.k.b(viewGroup, viewGroup2, pointF)) {
+            aVar.f415a = true;
+        } else if ((viewGroup instanceof bh.a) && !this.h) {
+            aVar.c(pointF.x);
+            aVar.c(pointF.y);
+            RectF rectF2 = this.f487f;
+            rectF2.set(rectF);
+            rectF.offset(-pointF.x, -pointF.y);
+            ((bh.a) viewGroup).b(aVar, rectF);
+            rectF.set(rectF2);
+        } else {
+            aVar.f415a = true;
         }
+    }
+
+    @Override
+    public final void f(Canvas canvas, RectF rectF) {
+        long uptimeMillis = SystemClock.uptimeMillis();
+        ViewGroup viewGroup = this.f486c;
+        ViewGroup viewGroup2 = this.e;
+        PointF pointF = this.f485b;
+        if (!hh.k.b(viewGroup, viewGroup2, pointF)) {
+            return;
+        }
+        canvas.save();
+        canvas.clipRect(rectF);
+        canvas.translate(pointF.x, pointF.y);
+        if ((viewGroup instanceof bh.a) && !this.h) {
+            RectF rectF2 = this.f487f;
+            rectF2.set(rectF);
+            rectF.offset(-pointF.x, -pointF.y);
+            ((bh.a) viewGroup).f(canvas, rectF);
+            rectF.set(rectF2);
+        } else {
+            for (int i10 = 0; i10 < viewGroup.getChildCount(); i10++) {
+                View childAt = viewGroup.getChildAt(i10);
+                RectF rectF3 = this.f484a;
+                if (hh.k.c(childAt, viewGroup2, rectF3) && rectF3.intersect(rectF)) {
+                    this.d.a(canvas, childAt, uptimeMillis);
+                }
+            }
+        }
+        canvas.restore();
     }
 }

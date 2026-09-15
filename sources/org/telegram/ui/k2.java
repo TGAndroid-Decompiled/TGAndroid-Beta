@@ -1,29 +1,40 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import android.graphics.drawable.ColorDrawable;
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.R;
-public final class k2 extends View {
-    public final v70 f37894a;
-    public final org.telegram.ui.Components.oq f37895b;
+import android.view.MotionEvent;
+public final class k2 extends z4.g {
+    public final p2 f35011w0;
 
-    public k2(Context context, v70 v70Var) {
+    public k2(p2 p2Var, Context context) {
         super(context);
-        this.f37894a = v70Var;
-        org.telegram.ui.Components.oq oqVar = new org.telegram.ui.Components.oq(new ColorDrawable(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.Qk, false)), org.telegram.ui.ActionBar.j6.U0(context, R.drawable.greydivider_bottom, -16777216));
-        this.f37895b = oqVar;
-        oqVar.f29167w = true;
-        setBackgroundDrawable(oqVar);
-        setImportantForAccessibility(2);
+        this.f35011w0 = p2Var;
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        setMeasuredDimension(View.MeasureSpec.getSize(i10), AndroidUtilities.dp(12.0f));
-        int i12 = org.telegram.ui.ActionBar.j6.Qk;
-        ((i4) this.f37894a).getClass();
-        org.telegram.ui.ActionBar.j6.v1(this.f37895b, org.telegram.ui.ActionBar.j6.w0(null, i12, false), false);
+    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        int actionMasked = motionEvent.getActionMasked();
+        p2 p2Var = this.f35011w0;
+        if (actionMasked == 0) {
+            p2Var.f36398x.f34137f0.requestDisallowInterceptTouchEvent(true);
+        } else if (motionEvent.getActionMasked() == 1 || motionEvent.getActionMasked() == 3) {
+            p2Var.f36398x.f34137f0.requestDisallowInterceptTouchEvent(false);
+        }
+        p2Var.f36398x.k();
+        return super.onInterceptTouchEvent(motionEvent);
+    }
+
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        int actionMasked = motionEvent.getActionMasked();
+        p2 p2Var = this.f35011w0;
+        if (actionMasked == 0) {
+            p2Var.f36398x.f34137f0.requestDisallowInterceptTouchEvent(true);
+        }
+        boolean onTouchEvent = super.onTouchEvent(motionEvent);
+        if (motionEvent.getActionMasked() != 1 && motionEvent.getActionMasked() != 3) {
+            return onTouchEvent;
+        }
+        p2Var.f36398x.f34137f0.requestDisallowInterceptTouchEvent(false);
+        return onTouchEvent;
     }
 }

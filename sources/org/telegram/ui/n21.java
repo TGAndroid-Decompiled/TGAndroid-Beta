@@ -1,10 +1,31 @@
 package org.telegram.ui;
 
-import android.graphics.Canvas;
-public final class n21 extends org.telegram.ui.Components.zn0 {
+import android.transition.Transition;
+public final class n21 implements Transition.TransitionListener {
+    public final Runnable f35872a;
+
+    public n21(Runnable runnable) {
+        this.f35872a = runnable;
+    }
+
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        super.dispatchDraw(canvas);
-        invalidate();
+    public final void onTransitionEnd(Transition transition) {
+        this.f35872a.run();
+    }
+
+    @Override
+    public final void onTransitionCancel(Transition transition) {
+    }
+
+    @Override
+    public final void onTransitionPause(Transition transition) {
+    }
+
+    @Override
+    public final void onTransitionResume(Transition transition) {
+    }
+
+    @Override
+    public final void onTransitionStart(Transition transition) {
     }
 }

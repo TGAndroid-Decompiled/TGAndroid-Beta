@@ -3,15 +3,21 @@ package org.telegram.ui;
 import org.telegram.messenger.AndroidUtilities;
 import org.webrtc.RendererCommon;
 public final class ji1 implements RendererCommon.RendererEvents {
-    public final ui1 f37782a;
+    public final ti1 f34912a;
 
-    public ji1(ui1 ui1Var) {
-        this.f37782a = ui1Var;
+    public ji1(ti1 ti1Var) {
+        this.f34912a = ti1Var;
     }
 
     @Override
     public final void onFirstFrameRendered() {
-        AndroidUtilities.runOnUIThread(new f01(this, 21));
+        ti1 ti1Var = this.f34912a;
+        com.google.android.gms.internal.cast.p pVar = ti1Var.l1;
+        if (pVar != null) {
+            pVar.run();
+            ti1Var.l1 = null;
+        }
+        AndroidUtilities.runOnUIThread(new e01(this, 22));
     }
 
     @Override

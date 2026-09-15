@@ -10,73 +10,73 @@ import android.graphics.drawable.Drawable;
 import android.text.StaticLayout;
 import org.telegram.messenger.AndroidUtilities;
 public final class zl0 extends Drawable {
-    public int f33172a = 255;
-    public final x80 f33173b;
-    public final int[] f33174c;
+    public int f30609a = 255;
+    public final w80 f30610b;
+    public final int[] f30611c;
     public final org.telegram.ui.Cells.t1 d;
-    public final int[] f33175e;
-    public final Bitmap f33176f;
-    public final RectF f33177g;
+    public final int[] e;
+    public final Bitmap f30612f;
+    public final RectF f30613g;
     public final Paint h;
-    public final Paint f33178i;
-    public final StaticLayout f33179j;
+    public final Paint f30614i;
+    public final StaticLayout f30615j;
 
-    public zl0(x80 x80Var, int[] iArr, org.telegram.ui.Cells.t1 t1Var, int[] iArr2, Bitmap bitmap, RectF rectF, Paint paint, Paint paint2, StaticLayout staticLayout) {
-        this.f33173b = x80Var;
-        this.f33174c = iArr;
+    public zl0(w80 w80Var, int[] iArr, org.telegram.ui.Cells.t1 t1Var, int[] iArr2, Bitmap bitmap, RectF rectF, Paint paint, Paint paint2, StaticLayout staticLayout) {
+        this.f30610b = w80Var;
+        this.f30611c = iArr;
         this.d = t1Var;
-        this.f33175e = iArr2;
-        this.f33176f = bitmap;
-        this.f33177g = rectF;
+        this.e = iArr2;
+        this.f30612f = bitmap;
+        this.f30613g = rectF;
         this.h = paint;
-        this.f33178i = paint2;
-        this.f33179j = staticLayout;
+        this.f30614i = paint2;
+        this.f30615j = staticLayout;
     }
 
     @Override
     public final void draw(Canvas canvas) {
-        if (this.f33172a <= 0) {
+        if (this.f30609a <= 0) {
             return;
         }
         RectF rectF = AndroidUtilities.rectTmp;
         rectF.set(getBounds());
         float f7 = rectF.left;
-        CornerPathEffect cornerPathEffect = x80.f32450w;
+        CornerPathEffect cornerPathEffect = w80.f29653w;
         rectF.left = f7 - (AndroidUtilities.dp(5.0f) / 2.0f);
         canvas.save();
-        canvas.saveLayerAlpha(rectF, this.f33172a, 31);
-        int[] iArr = this.f33174c;
+        canvas.saveLayerAlpha(rectF, this.f30609a, 31);
+        int[] iArr = this.f30611c;
         canvas.translate(iArr[0], iArr[1]);
-        x80 x80Var = this.f33173b;
+        w80 w80Var = this.f30610b;
         org.telegram.ui.Cells.t1 t1Var = this.d;
         if (t1Var != null && t1Var.C1()) {
-            org.telegram.ui.ActionBar.f5 f5Var = t1Var.f23133t8;
-            if (f5Var != null && f5Var.f20426c != null) {
+            org.telegram.ui.ActionBar.f5 f5Var = t1Var.f21250t8;
+            if (f5Var != null && f5Var.f18647c != null) {
                 canvas.save();
                 t1Var.setBackgroundTopY(true);
-                canvas.translate(0.0f, -t1Var.f23133t8.f20439r);
-                canvas.drawPaint(t1Var.f23133t8.f20426c);
+                canvas.translate(0.0f, -t1Var.f21250t8.f18659r);
+                canvas.drawPaint(t1Var.f21250t8.f18647c);
                 canvas.restore();
             } else {
                 canvas.translate(-iArr[0], -iArr[1]);
-                int[] iArr2 = this.f33175e;
+                int[] iArr2 = this.e;
                 canvas.translate(iArr2[0], t1Var.getPaddingTop() + iArr2[1]);
                 t1Var.D1(canvas, true, false);
                 canvas.translate(-iArr2[0], (-iArr2[1]) - t1Var.getPaddingTop());
                 canvas.translate(iArr[0], iArr[1]);
             }
-            Bitmap bitmap = this.f33176f;
+            Bitmap bitmap = this.f30612f;
             if (bitmap != null) {
                 canvas.save();
-                RectF rectF2 = this.f33177g;
+                RectF rectF2 = this.f30613g;
                 canvas.drawBitmap(bitmap, rectF2.left, rectF2.top, this.h);
                 canvas.restore();
             }
         } else {
-            canvas.drawPath(x80Var, this.f33178i);
+            canvas.drawPath(w80Var, this.f30614i);
         }
-        canvas.clipPath(x80Var);
-        this.f33179j.draw(canvas);
+        canvas.clipPath(w80Var);
+        this.f30615j.draw(canvas);
         canvas.restore();
     }
 
@@ -87,7 +87,7 @@ public final class zl0 extends Drawable {
 
     @Override
     public final void setAlpha(int i10) {
-        this.f33172a = i10;
+        this.f30609a = i10;
     }
 
     @Override

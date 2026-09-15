@@ -2,14 +2,14 @@ package org.telegram.ui;
 
 import org.telegram.messenger.MessagesStorage;
 public final class fl implements MessagesStorage.IntCallback {
-    public final co f36425a;
+    public final bo f33606a;
 
-    public fl(co coVar) {
-        this.f36425a = coVar;
+    public fl(bo boVar) {
+        this.f33606a = boVar;
     }
 
     @Override
     public final void run(int i10) {
-        this.f36425a.G9(i10);
+        this.f33606a.G9(i10);
     }
 }

@@ -1,27 +1,36 @@
 package org.telegram.messenger;
-
-import org.telegram.messenger.MessagesController;
-import org.telegram.tgnet.TLRPC;
 public final class eb implements Runnable {
-    public final int f17555a;
-    public final MessagesController.ErrorDelegate f17556b;
-    public final TLRPC.TL_error f17557c;
+    public final int f16031a;
+    public final MessagesController f16032b;
+    public final Runnable f16033c;
+    public final long d;
 
-    public eb(MessagesController.ErrorDelegate errorDelegate, TLRPC.TL_error tL_error, int i10) {
-        this.f17555a = i10;
-        this.f17556b = errorDelegate;
-        this.f17557c = tL_error;
+    public eb(long j3, Runnable runnable, MessagesController messagesController) {
+        this.f16031a = 1;
+        this.f16032b = messagesController;
+        this.f16033c = runnable;
+        this.d = j3;
     }
 
     @Override
     public final void run() {
-        switch (this.f17555a) {
+        switch (this.f16031a) {
             case 0:
-                this.f17556b.run(this.f17557c);
+                this.f16032b.lambda$setUserAdminRole$105(this.d, this.f16033c);
+                return;
+            case 1:
+                this.f16032b.lambda$setCustomChatReactions$467(this.f16033c, this.d);
                 return;
             default:
-                this.f17556b.run(this.f17557c);
+                this.f16032b.lambda$setUserAdminRole$99(this.d, this.f16033c);
                 return;
         }
+    }
+
+    public eb(MessagesController messagesController, long j3, Runnable runnable, int i10) {
+        this.f16031a = i10;
+        this.f16032b = messagesController;
+        this.d = j3;
+        this.f16033c = runnable;
     }
 }

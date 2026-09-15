@@ -1,205 +1,177 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Bitmap;
+import android.animation.ValueAnimator;
 import android.graphics.Canvas;
-import android.graphics.ColorMatrixColorFilter;
 import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffXfermode;
 import android.graphics.drawable.Drawable;
-import android.view.WindowManager;
-import java.util.regex.Pattern;
+import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.FlagSecureReason;
-import org.telegram.messenger.GenericProvider;
 import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.LanguageDetector;
 import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
-import org.telegram.messenger.SharedConfig;
-import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.PhotoViewer;
-public final class wo0 implements gv0, GenericProvider, org.telegram.ui.ActionBar.a2, ImageReceiver.ImageReceiverDelegate, LanguageDetector.ExceptionCallback, fv0, rc0, FlagSecureReason.FlagSecureCondition {
-    public final int f32304a;
+import org.telegram.messenger.UserObject;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class wo0 extends View {
+    public static final iv0 v;
+    public ImageReceiver f29761a;
+    public f9 f29762b;
+    public org.telegram.ui.Cells.z f29763c;
+    public Paint d;
+    public Paint e;
+    public o1.k f29764f;
+    public ValueAnimator h;
+    public float f29765n;
+    public boolean f29766r;
+    public boolean f29767s;
 
-    public wo0(int i10) {
-        this.f32304a = i10;
+    static {
+        iv0 iv0Var = new iv0(new an0(2), new an0(3));
+        iv0Var.f25156c = 100.0f;
+        v = iv0Var;
     }
 
-    @Override
-    public void b(Object obj, float f7) {
-        switch (this.f32304a) {
-            case 0:
-                xo0 xo0Var = (xo0) obj;
-                xo0Var.f32640n = f7;
-                xo0Var.invalidate();
+    public final void a(boolean z10, boolean z11, float f7) {
+        if (z10) {
+            o1.k kVar = this.f29764f;
+            if (kVar != null) {
+                kVar.c();
+            }
+            ValueAnimator valueAnimator = this.h;
+            if (valueAnimator != null) {
+                valueAnimator.cancel();
+            }
+            boolean z12 = false;
+            this.f29767s = false;
+            this.f29766r = false;
+            if (z11) {
+                float f10 = this.f29765n * 100.0f;
+                o1.k kVar2 = new o1.k(this, v);
+                kVar2.f15342b = f10;
+                kVar2.f15343c = true;
+                this.f29764f = kVar2;
+                if (f7 < this.f29765n) {
+                    z12 = true;
+                }
+                float f11 = f7 * 100.0f;
+                this.f29767s = z12;
+                this.f29766r = !z12;
+                o1.l lVar = new o1.l(f11);
+                lVar.f15357i = f11;
+                lVar.b(450.0f);
+                lVar.a(1.0f);
+                kVar2.f15351u = lVar;
+                this.f29764f.b(new mh(this, z12, f10, f11));
+                this.f29764f.a(new fb(this, 3));
+                this.f29764f.f();
                 return;
-            case 11:
-                org.telegram.ui.Components.voip.h1 h1Var = (org.telegram.ui.Components.voip.h1) obj;
-                WindowManager.LayoutParams layoutParams = h1Var.f31520c;
-                h1Var.Q = f7;
-                layoutParams.x = (int) f7;
-                AndroidUtilities.updateViewLayout(h1Var.f31519b, h1Var.d, layoutParams);
-                return;
-            default:
-                org.telegram.ui.Components.voip.h1 h1Var2 = (org.telegram.ui.Components.voip.h1) obj;
-                WindowManager.LayoutParams layoutParams2 = h1Var2.f31520c;
-                h1Var2.R = f7;
-                layoutParams2.y = (int) f7;
-                AndroidUtilities.updateViewLayout(h1Var2.f31519b, h1Var2.d, layoutParams2);
-                return;
-        }
-    }
-
-    @Override
-    public void didSetImage(ImageReceiver imageReceiver, boolean z10, boolean z11, boolean z12) {
-        if (!imageReceiver.canInvertBitmap()) {
+            }
+            ValueAnimator duration = ValueAnimator.ofFloat(this.f29765n, f7).setDuration(200L);
+            this.h = duration;
+            duration.setInterpolator(qr.f27423f);
+            this.h.addUpdateListener(new h70(this, 16));
+            this.h.addListener(new jd0(this, 11));
+            this.h.start();
             return;
         }
-        imageReceiver.setColorFilter(new ColorMatrixColorFilter(new float[]{-1.0f, 0.0f, 0.0f, 0.0f, 255.0f, 0.0f, -1.0f, 0.0f, 0.0f, 255.0f, 0.0f, 0.0f, -1.0f, 0.0f, 255.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f}));
+        this.f29765n = f7;
+        invalidate();
     }
 
     @Override
-    public void didSetImageBitmap(int i10, String str, Drawable drawable) {
-        org.telegram.messenger.g5.a(this, i10, str, drawable);
+    public final void drawableStateChanged() {
+        super.drawableStateChanged();
+        this.f29763c.setState(getDrawableState());
+    }
+
+    public float getProgress() {
+        return this.f29765n;
     }
 
     @Override
-    public String f(int i10) {
-        switch (this.f32304a) {
-            case 18:
-                return String.format("%02d", Integer.valueOf(i10));
-            case 19:
-                return String.format("%02d", Integer.valueOf(i10));
-            default:
-                if (i10 == 0) {
-                    return LocaleController.getString(R.string.AutoLockDisabled);
-                }
-                if (i10 == 1) {
-                    return LocaleController.formatString("AutoLockInTime", R.string.AutoLockInTime, LocaleController.formatPluralString("Minutes", 1, new Object[0]));
-                }
-                if (i10 == 2) {
-                    return LocaleController.formatString("AutoLockInTime", R.string.AutoLockInTime, LocaleController.formatPluralString("Minutes", 5, new Object[0]));
-                }
-                if (i10 == 3) {
-                    return LocaleController.formatString("AutoLockInTime", R.string.AutoLockInTime, LocaleController.formatPluralString("Hours", 1, new Object[0]));
-                }
-                if (i10 == 4) {
-                    return LocaleController.formatString("AutoLockInTime", R.string.AutoLockInTime, LocaleController.formatPluralString("Hours", 5, new Object[0]));
-                }
-                return "";
+    public final void jumpDrawablesToCurrentState() {
+        super.jumpDrawablesToCurrentState();
+        this.f29763c.jumpToCurrentState();
+    }
+
+    @Override
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        this.f29761a.onAttachedToWindow();
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        this.f29761a.onDetachedFromWindow();
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        Paint paint = this.d;
+        Paint paint2 = this.e;
+        canvas.save();
+        float f7 = 1.0f;
+        if (this.f29766r) {
+            f7 = 1.0f - this.f29765n;
+        } else if (this.f29767s) {
+            f7 = this.f29765n;
         }
+        canvas.scale(f7, f7, getWidth() / 2.0f, getHeight() / 2.0f);
+        super.onDraw(canvas);
+        this.f29761a.draw(canvas);
+        int i10 = (int) (this.f29765n * 255.0f);
+        paint.setAlpha(i10);
+        canvas.drawCircle(getWidth() / 2.0f, getHeight() / 2.0f, Math.min(getWidth(), getHeight()) / 2.0f, paint);
+        canvas.save();
+        paint2.setAlpha(i10);
+        float strokeWidth = paint2.getStrokeWidth() + AndroidUtilities.dp(10.0f);
+        canvas.drawLine(strokeWidth, strokeWidth, getWidth() - strokeWidth, getHeight() - strokeWidth, paint2);
+        canvas.drawLine(strokeWidth, getHeight() - strokeWidth, getWidth() - strokeWidth, strokeWidth, paint2);
+        canvas.restore();
+        this.f29763c.setBounds(0, 0, getWidth(), getHeight());
+        this.f29763c.draw(canvas);
+        canvas.restore();
     }
 
     @Override
-    public void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        switch (this.f32304a) {
-            case 2:
-                b2Var.dismiss();
-                return;
-            case 3:
-                b2Var.dismiss();
-                return;
-            case 4:
-                b2Var.dismiss();
-                return;
-            case 5:
-                int i11 = ux0.f30990u0;
-                return;
-            case 6:
-                b2Var.dismiss();
-                return;
-            case 8:
-                b2Var.dismiss();
-                return;
-            case 14:
-                b2Var.dismiss();
-                return;
-            case 15:
-                return;
-            case 16:
-                MessagesController.getGlobalNotificationsSettings().edit().putBoolean("askedAboutMiuiLockscreen", true).commit();
-                return;
-            case 17:
-                MessagesController.getGlobalNotificationsSettings().edit().putBoolean("askedAboutFSILockscreen", true).commit();
-                return;
-            case 25:
-                b2Var.dismiss();
-                return;
-            case 27:
-                Drawable[] drawableArr = PhotoViewer.T8;
-                return;
-            case 28:
-                b2Var.dismiss();
-                return;
-            default:
-                b2Var.dismiss();
-                return;
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(getLayoutParams().width, 1073741824), View.MeasureSpec.makeMeasureSpec(getLayoutParams().height, 1073741824));
+        this.f29761a.setImageCoords(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
+    }
+
+    public void setAvatar(TLObject tLObject) {
+        String str;
+        f9 f9Var = this.f29762b;
+        if (tLObject instanceof TLRPC.User) {
+            str = UserObject.getFirstName((TLRPC.User) tLObject);
+        } else if (tLObject instanceof TLRPC.Chat) {
+            str = ((TLRPC.Chat) tLObject).title;
+        } else if (tLObject instanceof TLRPC.ChatInvite) {
+            str = ((TLRPC.ChatInvite) tLObject).title;
+        } else {
+            str = "";
         }
+        setContentDescription(LocaleController.formatString("AccDescrSendAsPeer", R.string.AccDescrSendAsPeer, str));
+        f9Var.p(tLObject);
+        this.f29761a.setForUserOrChat(tLObject, f9Var);
     }
 
-    @Override
-    public float get(Object obj) {
-        org.telegram.ui.Components.voip.h1 h1Var = (org.telegram.ui.Components.voip.h1) obj;
-        switch (this.f32304a) {
-            case 10:
-                return h1Var.Q;
-            default:
-                return h1Var.R;
+    public void setProgress(float f7) {
+        boolean z10;
+        if (f7 != 0.0f) {
+            z10 = true;
+        } else {
+            z10 = false;
         }
+        a(true, z10, f7);
     }
 
     @Override
-    public void onAnimationReady(ImageReceiver imageReceiver) {
-        org.telegram.messenger.g5.b(this, imageReceiver);
-    }
-
-    @Override
-    public Object provide(Object obj) {
-        switch (this.f32304a) {
-            case 1:
-                Integer num = (Integer) obj;
-                int i10 = hq0.f26786a1;
-                return 0;
-            case 20:
-                Void r82 = (Void) obj;
-                int dp = AndroidUtilities.dp(150.0f);
-                Bitmap createBitmap = Bitmap.createBitmap(AndroidUtilities.dp(200.0f), dp, Bitmap.Config.ARGB_8888);
-                Canvas canvas = new Canvas(createBitmap);
-                canvas.drawColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f20663d6, false));
-                Paint paint = new Paint(1);
-                paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
-                canvas.drawCircle(createBitmap.getWidth() / 2.0f, createBitmap.getHeight() / 2.0f, dp / 2.0f, paint);
-                return createBitmap;
-            case 21:
-                Void r83 = (Void) obj;
-                Paint paint2 = new Paint(1);
-                paint2.setColor(-14509328);
-                int dp2 = AndroidUtilities.dp(150.0f);
-                Bitmap createBitmap2 = Bitmap.createBitmap(dp2, dp2, Bitmap.Config.ARGB_8888);
-                float f7 = dp2 / 2.0f;
-                new Canvas(createBitmap2).drawCircle(f7, f7, f7, paint2);
-                return createBitmap2;
-            default:
-                Void r84 = (Void) obj;
-                Pattern pattern = LaunchActivity.B1;
-                return new org.telegram.ui.eh0();
+    public final boolean verifyDrawable(Drawable drawable) {
+        if (!super.verifyDrawable(drawable) && this.f29763c != drawable) {
+            return false;
         }
-    }
-
-    @Override
-    public void run(Exception exc) {
-        FileLog.e(exc);
-    }
-
-    @Override
-    public boolean run() {
-        Pattern pattern = LaunchActivity.B1;
-        return SharedConfig.passcodeHash.length() > 0 && !SharedConfig.allowScreenCapture;
-    }
-
-    private final void a(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
+        return true;
     }
 }

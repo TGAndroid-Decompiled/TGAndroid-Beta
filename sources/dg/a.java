@@ -3,13 +3,13 @@ package dg;
 import android.graphics.Bitmap;
 import java.util.List;
 public final class a {
-    public final int f6807a;
-    public final Bitmap f6808b;
-    public final List f6809c;
+    public final int f7721a;
+    public final Bitmap f7722b;
+    public final List f7723c;
 
     public a(Bitmap bitmap, int i10, List list) {
-        this.f6809c = list;
-        this.f6808b = bitmap;
-        this.f6807a = i10;
+        this.f7723c = list;
+        this.f7722b = bitmap;
+        this.f7721a = i10;
     }
 }

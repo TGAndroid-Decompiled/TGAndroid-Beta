@@ -24,27 +24,27 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.UserObject;
 import org.telegram.ui.ActionBar.ActionBarLayout;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
-import org.telegram.ui.ActionBar.f6;
-import org.telegram.ui.ActionBar.j6;
-import org.telegram.ui.Components.e5;
+import org.telegram.ui.ActionBar.e6;
+import org.telegram.ui.ActionBar.i6;
+import org.telegram.ui.Components.bu;
+import org.telegram.ui.Components.c5;
 import org.telegram.ui.Components.s50;
-import org.telegram.ui.Components.zt;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.i4;
-import org.telegram.ui.m3;
-import org.telegram.ui.qv0;
+import org.telegram.ui.h4;
+import org.telegram.ui.l3;
+import org.telegram.ui.rv0;
 import w7.x5;
 public final class w0 extends WebChromeClient {
-    public org.telegram.ui.ActionBar.b2 f42270a;
-    public final Context f42271b;
-    public final boolean f42272c;
+    public org.telegram.ui.ActionBar.b2 f39145a;
+    public final Context f39146b;
+    public final boolean f39147c;
     public final long d;
-    public final z0 f42273e;
+    public final z0 e;
 
     public w0(z0 z0Var, Context context, boolean z10, long j3) {
-        this.f42273e = z0Var;
-        this.f42271b = context;
-        this.f42272c = z10;
+        this.e = z0Var;
+        this.f39146b = context;
+        this.f39147c = z10;
         this.d = j3;
     }
 
@@ -55,12 +55,12 @@ public final class w0 extends WebChromeClient {
 
     @Override
     public final void onCloseWindow(WebView webView) {
-        i0 i0Var;
-        z0 z0Var = this.f42273e;
+        h0 h0Var;
+        z0 z0Var = this.e;
         z0Var.c("onCloseWindow " + webView);
         d1 d1Var = z0Var.Q;
-        if (d1Var != null && (i0Var = d1Var.f42039c) != null) {
-            i0Var.y();
+        if (d1Var != null && (h0Var = d1Var.f38897c) != null) {
+            h0Var.y();
         } else {
             Runnable runnable = z0Var.U;
             if (runnable != null) {
@@ -75,7 +75,7 @@ public final class w0 extends WebChromeClient {
     public final boolean onCreateWindow(WebView webView, boolean z10, boolean z11, Message message) {
         org.telegram.ui.ActionBar.n2 U;
         String str = "onCreateWindow isDialog=" + z10 + " isUserGesture=" + z11 + " resultMsg=" + message;
-        z0 z0Var = this.f42273e;
+        z0 z0Var = this.e;
         z0Var.c(str);
         String url = z0Var.getUrl();
         if (MessagesController.getInstance(UserConfig.selectedAccount).isWebBrowserInAppEnabled()) {
@@ -85,32 +85,32 @@ public final class w0 extends WebChromeClient {
             if (U.getParentLayout() instanceof ActionBarLayout) {
                 U = ((ActionBarLayout) U.getParentLayout()).getSheetFragment();
             }
-            i4 createArticleViewer = U.createArticleViewer(true);
-            if (createArticleViewer.f37232u0 != null) {
+            h4 createArticleViewer = U.createArticleViewer(true);
+            if (createArticleViewer.f34151u0 != null) {
                 int i10 = 0;
                 while (true) {
-                    m3[] m3VarArr = createArticleViewer.f37232u0;
-                    if (i10 >= m3VarArr.length) {
+                    l3[] l3VarArr = createArticleViewer.f34151u0;
+                    if (i10 >= l3VarArr.length) {
                         break;
                     }
-                    m3 m3Var = m3VarArr[i10];
-                    if (m3Var != null) {
-                        m3Var.f38554f.setOpener(z0Var);
+                    l3 l3Var = l3VarArr[i10];
+                    if (l3Var != null) {
+                        l3Var.f35313f.setOpener(z0Var);
                     }
                     i10++;
                 }
             }
             z0 z0Var2 = null;
             createArticleViewer.N(null, null, null, null);
-            m3 m3Var2 = createArticleViewer.f37232u0[0];
-            if (m3Var2 != null && m3Var2.f()) {
-                if (createArticleViewer.f37232u0[0].getWebView() == null) {
-                    createArticleViewer.f37232u0[0].f38554f.c();
+            l3 l3Var2 = createArticleViewer.f34151u0[0];
+            if (l3Var2 != null && l3Var2.f()) {
+                if (createArticleViewer.f34151u0[0].getWebView() == null) {
+                    createArticleViewer.f34151u0[0].f35313f.c();
                 }
-                z0Var2 = createArticleViewer.f37232u0[0].getWebView();
+                z0Var2 = createArticleViewer.f34151u0[0].getWebView();
             }
             if (!TextUtils.isEmpty(url)) {
-                z0Var2.f42337y = url;
+                z0Var2.f39175y = url;
             }
             z0Var.c("onCreateWindow: newWebView=" + z0Var2);
             if (z0Var2 != null) {
@@ -130,12 +130,12 @@ public final class w0 extends WebChromeClient {
 
     @Override
     public final void onGeolocationPermissionsHidePrompt() {
-        org.telegram.ui.ActionBar.b2 b2Var = this.f42270a;
-        z0 z0Var = this.f42273e;
+        org.telegram.ui.ActionBar.b2 b2Var = this.f39145a;
+        z0 z0Var = this.e;
         if (b2Var != null) {
             z0Var.c("onGeolocationPermissionsHidePrompt: dialog.dismiss");
-            this.f42270a.dismiss();
-            this.f42270a = null;
+            this.f39145a.dismiss();
+            this.f39145a = null;
             return;
         }
         z0Var.c("onGeolocationPermissionsHidePrompt: no dialog");
@@ -146,11 +146,11 @@ public final class w0 extends WebChromeClient {
         String hostAuthority;
         int i10;
         int i11;
-        z0 z0Var = this.f42273e;
+        z0 z0Var = this.e;
         d1 d1Var = z0Var.Q;
         if (d1Var != null && d1Var.W != null) {
             z0Var.c("onGeolocationPermissionsShowPrompt " + str);
-            boolean z10 = this.f42272c;
+            boolean z10 = this.f39147c;
             if (z10) {
                 hostAuthority = UserObject.getUserName(z0Var.Q.U);
             } else {
@@ -158,7 +158,7 @@ public final class w0 extends WebChromeClient {
             }
             d1 d1Var2 = z0Var.Q;
             Activity activity = d1Var2.W;
-            f6 f6Var = d1Var2.f42042e;
+            e6 e6Var = d1Var2.e;
             String[] strArr = {"android.permission.ACCESS_COARSE_LOCATION", "android.permission.ACCESS_FINE_LOCATION"};
             int i12 = R.raw.permission_request_location;
             if (z10) {
@@ -172,8 +172,8 @@ public final class w0 extends WebChromeClient {
             } else {
                 i11 = R.string.WebViewRequestGeolocationPermissionWithHint;
             }
-            org.telegram.ui.ActionBar.b2 Z = e5.Z(activity, f6Var, strArr, i12, formatString, LocaleController.formatString(i11, hostAuthority), new r0(this, callback, str, 0));
-            this.f42270a = Z;
+            org.telegram.ui.ActionBar.b2 Z = c5.Z(activity, e6Var, strArr, i12, formatString, LocaleController.formatString(i11, hostAuthority), new q0(this, callback, str, 0));
+            this.f39145a = Z;
             Z.show();
             return;
         }
@@ -183,102 +183,102 @@ public final class w0 extends WebChromeClient {
 
     @Override
     public final boolean onJsAlert(WebView webView, String str, String str2, JsResult jsResult) {
-        f6 f6Var;
+        e6 e6Var;
         String formatString;
         boolean[] zArr = {false};
-        d1 d1Var = this.f42273e.Q;
+        d1 d1Var = this.e.Q;
         if (d1Var == null) {
-            f6Var = null;
+            e6Var = null;
         } else {
-            f6Var = d1Var.f42042e;
+            e6Var = d1Var.e;
         }
-        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(this.f42271b, 0, f6Var);
-        if (this.f42272c) {
+        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(this.f39146b, 0, e6Var);
+        if (this.f39147c) {
             formatString = DialogObject.getName(this.d);
         } else {
             formatString = LocaleController.formatString(R.string.WebsiteSays, str);
         }
-        org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20198a;
+        org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f18437a;
         b2Var.R = formatString;
         b2Var.T = str2;
-        alertDialog$Builder.k(LocaleController.getString(R.string.OK), new s0(zArr, jsResult, 2));
-        b2Var.setOnDismissListener(new t0(zArr, jsResult, 1));
+        alertDialog$Builder.k(LocaleController.getString(R.string.OK), new r0(zArr, jsResult, 2));
+        b2Var.setOnDismissListener(new s0(zArr, jsResult, 1));
         alertDialog$Builder.o();
         return true;
     }
 
     @Override
     public final boolean onJsConfirm(WebView webView, String str, String str2, JsResult jsResult) {
-        f6 f6Var;
+        e6 e6Var;
         String formatString;
         boolean[] zArr = {false};
-        d1 d1Var = this.f42273e.Q;
+        d1 d1Var = this.e.Q;
         if (d1Var == null) {
-            f6Var = null;
+            e6Var = null;
         } else {
-            f6Var = d1Var.f42042e;
+            e6Var = d1Var.e;
         }
-        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(this.f42271b, 0, f6Var);
-        if (this.f42272c) {
+        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(this.f39146b, 0, e6Var);
+        if (this.f39147c) {
             formatString = DialogObject.getName(this.d);
         } else {
             formatString = LocaleController.formatString(R.string.WebsiteSays, str);
         }
-        org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20198a;
+        org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f18437a;
         b2Var.R = formatString;
         b2Var.T = str2;
-        alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), new s0(zArr, jsResult, 0));
-        alertDialog$Builder.k(LocaleController.getString(R.string.OK), new s0(zArr, jsResult, 1));
-        b2Var.setOnDismissListener(new t0(zArr, jsResult, 0));
+        alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), new r0(zArr, jsResult, 0));
+        alertDialog$Builder.k(LocaleController.getString(R.string.OK), new r0(zArr, jsResult, 1));
+        b2Var.setOnDismissListener(new s0(zArr, jsResult, 0));
         alertDialog$Builder.o();
         return true;
     }
 
     @Override
     public final boolean onJsPrompt(WebView webView, String str, String str2, String str3, JsPromptResult jsPromptResult) {
-        f6 f6Var;
+        e6 e6Var;
         String formatString;
-        d1 d1Var = this.f42273e.Q;
+        d1 d1Var = this.e.Q;
         if (d1Var == null) {
-            f6Var = null;
+            e6Var = null;
         } else {
-            f6Var = d1Var.f42042e;
+            e6Var = d1Var.e;
         }
         boolean[] zArr = {false};
-        Context context = this.f42271b;
-        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(context, 0, f6Var);
-        if (this.f42272c) {
+        Context context = this.f39146b;
+        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(context, 0, e6Var);
+        if (this.f39147c) {
             formatString = DialogObject.getName(this.d);
         } else {
             formatString = LocaleController.formatString(R.string.WebsiteSays, str);
         }
-        org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20198a;
+        org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f18437a;
         b2Var.R = formatString;
         b2Var.T = str2;
-        zt ztVar = new zt(context, f6Var);
-        ztVar.lineYFix = true;
-        ztVar.setTextSize(1, 18.0f);
-        ztVar.setTextColor(j6.v0(j6.f20770j5, f6Var));
-        ztVar.setHintColor(j6.v0(j6.Xh, f6Var));
-        ztVar.setFocusable(true);
-        ztVar.setInputType(147457);
-        ztVar.setLineColors(j6.v0(j6.f20791k6, f6Var), j6.v0(j6.f20809l6, f6Var), j6.v0(j6.f20880p7, f6Var));
-        ztVar.setImeOptions(6);
-        ztVar.setBackgroundDrawable(null);
-        ztVar.setPadding(0, AndroidUtilities.dp(6.0f), 0, AndroidUtilities.dp(6.0f));
-        ztVar.setText(str3);
+        bu buVar = new bu(context, e6Var);
+        buVar.lineYFix = true;
+        buVar.setTextSize(1, 18.0f);
+        buVar.setTextColor(i6.v0(i6.f18943j5, e6Var));
+        buVar.setHintColor(i6.v0(i6.Xh, e6Var));
+        buVar.setFocusable(true);
+        buVar.setInputType(147457);
+        buVar.setLineColors(i6.v0(i6.f18964k6, e6Var), i6.v0(i6.f18982l6, e6Var), i6.v0(i6.f19056p7, e6Var));
+        buVar.setImeOptions(6);
+        buVar.setBackgroundDrawable(null);
+        buVar.setPadding(0, AndroidUtilities.dp(6.0f), 0, AndroidUtilities.dp(6.0f));
+        buVar.setText(str3);
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setOrientation(1);
-        linearLayout.addView(ztVar, x5.k(24.0f, 0.0f, 24.0f, 10.0f, -1, -2));
+        linearLayout.addView(buVar, x5.k(24.0f, 0.0f, 24.0f, 10.0f, -1, -2));
         alertDialog$Builder.c();
         alertDialog$Builder.n(linearLayout);
-        b2Var.f20224a = AndroidUtilities.dp(292.0f);
-        alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), new qv0(24, zArr, jsPromptResult));
-        alertDialog$Builder.k(LocaleController.getString(R.string.OK), new s50(zArr, jsPromptResult, ztVar, 4));
-        alertDialog$Builder.j(new fi.e0(14, zArr, jsPromptResult));
-        b2Var.O = new bi.o1(ztVar, 29);
-        ztVar.setOnEditorActionListener(new u0(zArr, jsPromptResult, ztVar, alertDialog$Builder.o()));
-        AndroidUtilities.runOnUIThread(new b(ztVar, 2));
+        b2Var.f18461a = AndroidUtilities.dp(292.0f);
+        alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), new rv0(23, zArr, jsPromptResult));
+        alertDialog$Builder.k(LocaleController.getString(R.string.OK), new s50(zArr, jsPromptResult, buVar, 4));
+        alertDialog$Builder.j(new ei.e0(14, zArr, jsPromptResult));
+        b2Var.O = new ai.y1(buVar, 29);
+        buVar.setOnEditorActionListener(new t0(zArr, jsPromptResult, buVar, alertDialog$Builder.o()));
+        AndroidUtilities.runOnUIThread(new i2.g0(buVar, 29));
         return true;
     }
 
@@ -291,19 +291,19 @@ public final class w0 extends WebChromeClient {
         int i13;
         int i14;
         int i15;
-        org.telegram.ui.ActionBar.b2 b2Var = this.f42270a;
+        org.telegram.ui.ActionBar.b2 b2Var = this.f39145a;
         if (b2Var != null) {
             b2Var.dismiss();
-            this.f42270a = null;
+            this.f39145a = null;
         }
-        z0 z0Var = this.f42273e;
+        z0 z0Var = this.e;
         if (z0Var.Q == null) {
             z0Var.c("onPermissionRequest: no container");
             permissionRequest.deny();
             return;
         }
         z0Var.c("onPermissionRequest " + permissionRequest);
-        boolean z10 = this.f42272c;
+        boolean z10 = this.f39147c;
         if (z10) {
             hostAuthority = UserObject.getUserName(z0Var.Q.U);
         } else {
@@ -323,7 +323,7 @@ public final class w0 extends WebChromeClient {
                     if (str.equals("android.webkit.resource.AUDIO_CAPTURE")) {
                         d1 d1Var2 = z0Var.Q;
                         Activity activity = d1Var2.W;
-                        f6 f6Var = d1Var2.f42042e;
+                        e6 e6Var = d1Var2.e;
                         String[] strArr = {"android.permission.RECORD_AUDIO"};
                         int i16 = R.raw.permission_request_microphone;
                         if (z10) {
@@ -337,8 +337,8 @@ public final class w0 extends WebChromeClient {
                         } else {
                             i15 = R.string.WebViewRequestMicrophonePermissionWithHint;
                         }
-                        org.telegram.ui.ActionBar.b2 Z = e5.Z(activity, f6Var, strArr, i16, formatString, LocaleController.formatString(i15, hostAuthority), new p0(this, permissionRequest, str, 0));
-                        this.f42270a = Z;
+                        org.telegram.ui.ActionBar.b2 Z = c5.Z(activity, e6Var, strArr, i16, formatString, LocaleController.formatString(i15, hostAuthority), new o0(this, permissionRequest, str, 0));
+                        this.f39145a = Z;
                         Z.show();
                         return;
                     }
@@ -346,7 +346,7 @@ public final class w0 extends WebChromeClient {
                 }
                 d1 d1Var3 = z0Var.Q;
                 Activity activity2 = d1Var3.W;
-                f6 f6Var2 = d1Var3.f42042e;
+                e6 e6Var2 = d1Var3.e;
                 String[] strArr2 = {"android.permission.CAMERA"};
                 int i17 = R.raw.permission_request_camera;
                 if (z10) {
@@ -360,8 +360,8 @@ public final class w0 extends WebChromeClient {
                 } else {
                     i13 = R.string.WebViewRequestCameraPermissionWithHint;
                 }
-                org.telegram.ui.ActionBar.b2 Z2 = e5.Z(activity2, f6Var2, strArr2, i17, formatString2, LocaleController.formatString(i13, hostAuthority), new p0(this, permissionRequest, str, 1));
-                this.f42270a = Z2;
+                org.telegram.ui.ActionBar.b2 Z2 = c5.Z(activity2, e6Var2, strArr2, i17, formatString2, LocaleController.formatString(i13, hostAuthority), new o0(this, permissionRequest, str, 1));
+                this.f39145a = Z2;
                 Z2.show();
             }
         } else if (resources.length == 2) {
@@ -369,7 +369,7 @@ public final class w0 extends WebChromeClient {
                 if ("android.webkit.resource.AUDIO_CAPTURE".equals(resources[1]) || "android.webkit.resource.VIDEO_CAPTURE".equals(resources[1])) {
                     d1 d1Var4 = z0Var.Q;
                     Activity activity3 = d1Var4.W;
-                    f6 f6Var3 = d1Var4.f42042e;
+                    e6 e6Var3 = d1Var4.e;
                     String[] strArr3 = {"android.permission.CAMERA", "android.permission.RECORD_AUDIO"};
                     int i18 = R.raw.permission_request_camera;
                     if (z10) {
@@ -383,8 +383,8 @@ public final class w0 extends WebChromeClient {
                     } else {
                         i11 = R.string.WebViewRequestCameraMicPermissionWithHint;
                     }
-                    org.telegram.ui.ActionBar.b2 Z3 = e5.Z(activity3, f6Var3, strArr3, i18, formatString3, LocaleController.formatString(i11, hostAuthority), new q0(this, permissionRequest, resources, 0));
-                    this.f42270a = Z3;
+                    org.telegram.ui.ActionBar.b2 Z3 = c5.Z(activity3, e6Var3, strArr3, i18, formatString3, LocaleController.formatString(i11, hostAuthority), new p0(this, permissionRequest, resources, 0));
+                    this.f39145a = Z3;
                     Z3.show();
                 }
             }
@@ -393,12 +393,12 @@ public final class w0 extends WebChromeClient {
 
     @Override
     public final void onPermissionRequestCanceled(PermissionRequest permissionRequest) {
-        org.telegram.ui.ActionBar.b2 b2Var = this.f42270a;
-        z0 z0Var = this.f42273e;
+        org.telegram.ui.ActionBar.b2 b2Var = this.f39145a;
+        z0 z0Var = this.e;
         if (b2Var != null) {
             z0Var.c("onPermissionRequestCanceled: dialog.dismiss");
-            this.f42270a.dismiss();
-            this.f42270a = null;
+            this.f39145a.dismiss();
+            this.f39145a = null;
             return;
         }
         z0Var.c("onPermissionRequestCanceled: no dialog");
@@ -406,11 +406,11 @@ public final class w0 extends WebChromeClient {
 
     @Override
     public final void onProgressChanged(WebView webView, int i10) {
-        z0 z0Var = this.f42273e;
+        z0 z0Var = this.e;
         d1 d1Var = z0Var.Q;
-        if (d1Var != null && d1Var.f42064w != null) {
+        if (d1Var != null && d1Var.f38921w != null) {
             z0Var.c("onProgressChanged " + i10 + "%");
-            z0Var.Q.f42064w.accept(Float.valueOf(((float) i10) / 100.0f));
+            z0Var.Q.f38921w.accept(Float.valueOf(((float) i10) / 100.0f));
             return;
         }
         z0Var.c("onProgressChanged " + i10 + "%: no container");
@@ -419,7 +419,7 @@ public final class w0 extends WebChromeClient {
     @Override
     public final void onReceivedIcon(WebView webView, Bitmap bitmap) {
         String str;
-        z0 z0Var = this.f42273e;
+        z0 z0Var = this.e;
         HashMap hashMap = z0Var.P;
         StringBuilder sb2 = new StringBuilder("onReceivedIcon favicon=");
         if (bitmap == null) {
@@ -444,7 +444,7 @@ public final class w0 extends WebChromeClient {
 
     @Override
     public final void onReceivedTitle(WebView webView, String str) {
-        z0 z0Var = this.f42273e;
+        z0 z0Var = this.e;
         z0Var.c("onReceivedTitle title=" + str);
         if (!z0Var.h) {
             z0Var.J = true;
@@ -459,13 +459,13 @@ public final class w0 extends WebChromeClient {
 
     @Override
     public final void onReceivedTouchIconUrl(WebView webView, String str, boolean z10) {
-        this.f42273e.c("onReceivedTouchIconUrl url=" + str + " precomposed=" + z10);
+        this.e.c("onReceivedTouchIconUrl url=" + str + " precomposed=" + z10);
         super.onReceivedTouchIconUrl(webView, str, z10);
     }
 
     @Override
     public final boolean onShowFileChooser(WebView webView, ValueCallback valueCallback, WebChromeClient.FileChooserParams fileChooserParams) {
-        z0 z0Var = this.f42273e;
+        z0 z0Var = this.e;
         Activity findActivity = AndroidUtilities.findActivity(z0Var.getContext());
         boolean z10 = false;
         if (findActivity == null) {
@@ -477,11 +477,11 @@ public final class w0 extends WebChromeClient {
             z0Var.c("onShowFileChooser: no container, false");
             return false;
         }
-        ValueCallback valueCallback2 = d1Var.f42066x;
+        ValueCallback valueCallback2 = d1Var.f38923x;
         if (valueCallback2 != null) {
             valueCallback2.onReceiveValue(null);
         }
-        z0Var.Q.f42066x = valueCallback;
+        z0Var.Q.f38923x = valueCallback;
         if (fileChooserParams.getMode() == 1) {
             z10 = true;
         }

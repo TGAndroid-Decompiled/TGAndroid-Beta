@@ -1,7 +1,7 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-public final class rn0 extends hg.i0 {
+public final class rn0 extends gg.i0 {
     public final org.telegram.ui.uy I0;
     public final Context J0;
     public final org.telegram.ui.ey K0;
@@ -15,12 +15,12 @@ public final class rn0 extends hg.i0 {
 
     @Override
     public final void l() {
-        bi.o0 o0Var;
+        ai.w0 w0Var;
         int i10 = this.B0;
         super.l();
         org.telegram.ui.ey eyVar = this.K0;
-        if (!eyVar.I0 && (o0Var = eyVar.V) != null) {
-            o0Var.u0(0);
+        if (!eyVar.I0 && (w0Var = eyVar.V) != null) {
+            w0Var.u0(0);
             eyVar.I0 = true;
         }
         if (h() != 0 || i10 == 0 || this.D0 > 0) {

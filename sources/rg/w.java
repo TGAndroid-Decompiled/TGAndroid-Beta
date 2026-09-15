@@ -1,78 +1,74 @@
 package rg;
 
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.Matrix;
-import android.graphics.Paint;
-import android.view.View;
-import android.widget.FrameLayout;
-import org.telegram.ui.zt0;
-public final class w implements qg.u {
-    public boolean f45535a;
-    public final Bitmap f45536b;
-    public final zt0 f45537c;
+import android.view.ViewGroup;
+import java.util.HashSet;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ChatObject;
+import org.telegram.messenger.ContactsController;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.Components.vc;
+import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.PremiumPreviewFragment;
+import org.telegram.ui.s50;
+public final class w implements Runnable {
+    public final int f42526a;
+    public final j0 f42527b;
 
-    public w(zt0 zt0Var, Bitmap bitmap) {
-        this.f45537c = zt0Var;
-        this.f45536b = bitmap;
+    public w(j0 j0Var, int i10) {
+        this.f42526a = i10;
+        this.f42527b = j0Var;
     }
 
     @Override
-    public final void a() {
-        this.f45535a = true;
-    }
-
-    @Override
-    public final void b(Canvas canvas) {
-        e0 e0Var = this.f45537c.W0;
-        Matrix matrix = e0Var.getMatrix();
-        canvas.save();
-        canvas.translate(e0Var.getX(), e0Var.getY());
-        canvas.concat(matrix);
-        Bitmap bitmap = this.f45536b;
-        canvas.scale(e0Var.getWidth() / bitmap.getWidth(), e0Var.getHeight() / bitmap.getHeight(), 0.0f, 0.0f);
-        canvas.drawBitmap(bitmap, 0.0f, 0.0f, (Paint) null);
-        canvas.restore();
-    }
-
-    @Override
-    public final boolean c() {
-        return this.f45535a;
-    }
-
-    @Override
-    public final void d() {
-        this.f45535a = false;
-    }
-
-    @Override
-    public final View e() {
-        return this.f45537c;
-    }
-
-    @Override
-    public final FrameLayout f() {
-        return this.f45537c.f45345e1;
-    }
-
-    @Override
-    public final boolean g() {
-        if (this.f45536b != null) {
-            return true;
+    public final void run() {
+        int i10 = this.f42526a;
+        j0 j0Var = this.f42527b;
+        switch (i10) {
+            case 0:
+                if (LaunchActivity.R() != null) {
+                    ?? obj = new Object();
+                    obj.f19368a = true;
+                    j0Var.K0.showAsSheet(new PremiumPreviewFragment(0, "noncontacts"), obj);
+                    return;
+                }
+                return;
+            case 1:
+                j0Var.f42332x0.e(j0Var.f42311b0, false);
+                j0Var.z1();
+                return;
+            case 2:
+                HashSet hashSet = j0Var.f42333y0;
+                vc X = vc.X();
+                if (X != null) {
+                    if (hashSet.size() == 1) {
+                        X.Q(R.raw.voip_invite, 36, AndroidUtilities.replaceTags(LocaleController.formatString(R.string.InviteLinkSentSingle, ContactsController.formatName((TLRPC.User) hashSet.iterator().next())))).j();
+                        return;
+                    } else {
+                        X.Q(R.raw.voip_invite, 36, AndroidUtilities.replaceTags(LocaleController.formatPluralString("InviteLinkSent", hashSet.size(), Integer.valueOf(hashSet.size())))).j();
+                        return;
+                    }
+                }
+                return;
+            case 3:
+                ci.d dVar = j0Var.S0;
+                TLRPC.ChatFull t12 = j0Var.t1();
+                dVar.b(Math.max(t12.boosts_unrestrict - t12.boosts_applied, 0), false);
+                return;
+            default:
+                if (ChatObject.hasAdminRights(j0Var.s1())) {
+                    if (j0Var.E0.getParent() != null) {
+                        ((ViewGroup) j0Var.E0.getParent()).removeView(j0Var.E0);
+                    }
+                    s50 s50Var = j0Var.L0;
+                    if (s50Var != null && s50Var.getParent() != null) {
+                        ((ViewGroup) j0Var.L0.getParent()).removeView(j0Var.L0);
+                    }
+                    j0Var.d.setPadding(0, 0, 0, 0);
+                    return;
+                }
+                return;
         }
-        return false;
-    }
-
-    @Override
-    public final void h(int i10) {
-        zt0 zt0Var = this.f45537c;
-        zt0Var.w0(false);
-        qg.s0 s0Var = zt0Var.V1;
-        s0Var.h(i10, true);
-        s0Var.g();
-        zt0Var.setNewColor(i10);
-        l0 l0Var = zt0Var.G1;
-        l0Var.setSelectedColorIndex(s0Var.d());
-        l0Var.getAdapter().l();
     }
 }

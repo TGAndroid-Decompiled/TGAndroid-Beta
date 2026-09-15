@@ -3,29 +3,29 @@ package org.telegram.ui;
 import android.content.Context;
 import android.view.ViewGroup;
 public final class ix0 extends org.telegram.ui.Components.kl0 {
-    public final Context f37452c;
+    public final Context f34744c;
     public final jx0 d;
 
     public ix0(jx0 jx0Var, Context context) {
         this.d = jx0Var;
-        this.f37452c = context;
+        this.f34744c = context;
     }
 
     @Override
     public final boolean D(s4.c1 c1Var) {
-        return !((lx0) this.d.f37864n.d.get(c1Var.b())).f38508a.current;
+        return !((lx0) this.d.f34997n.d.get(c1Var.b())).f35571a.current;
     }
 
     @Override
     public final int h() {
-        return this.d.f37864n.d.size();
+        return this.d.f34997n.d.size();
     }
 
     @Override
     public final void v(s4.c1 c1Var, int i10) {
         boolean z10;
-        sg.t1 t1Var = (sg.t1) c1Var.f45738a;
-        PremiumPreviewFragment premiumPreviewFragment = this.d.f37864n;
+        rg.p1 p1Var = (rg.p1) c1Var.f42675a;
+        PremiumPreviewFragment premiumPreviewFragment = this.d.f34997n;
         lx0 lx0Var = (lx0) premiumPreviewFragment.d.get(i10);
         boolean z11 = true;
         if (i10 != h() - 1) {
@@ -33,17 +33,17 @@ public final class ix0 extends org.telegram.ui.Components.kl0 {
         } else {
             z10 = false;
         }
-        t1Var.a(lx0Var, z10);
-        if (premiumPreviewFragment.f33777e != i10) {
+        p1Var.a(lx0Var, z10);
+        if (premiumPreviewFragment.e != i10) {
             z11 = false;
         }
-        t1Var.c(z11, false);
+        p1Var.c(z11, false);
     }
 
     @Override
     public final s4.c1 x(ViewGroup viewGroup, int i10) {
-        hx0 hx0Var = new hx0(this, this.f37452c);
-        hx0Var.setCirclePaintProvider(new qv0(2, this, hx0Var));
+        hx0 hx0Var = new hx0(this, this.f34744c);
+        hx0Var.setCirclePaintProvider(new rv0(1, this, hx0Var));
         return new s4.c1(hx0Var);
     }
 }

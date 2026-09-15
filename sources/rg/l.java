@@ -1,77 +1,125 @@
 package rg;
 
-import android.view.View;
-import di.a8;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.RectF;
+import android.text.Layout;
+import android.text.StaticLayout;
+import java.util.ArrayList;
+import java.util.HashMap;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.PhotoViewer;
-import org.telegram.ui.zt0;
-public final class l implements View.OnClickListener {
-    public final int f45270a;
-    public final o0 f45271b;
+import org.telegram.messenger.Utilities;
+import org.telegram.ui.Cells.p6;
+public final class l {
+    public boolean f42369a;
+    public float f42370b;
+    public float f42371c;
+    public int d;
+    public StaticLayout e;
+    public Bitmap f42372f;
+    public int f42373g;
+    public int h;
+    public int f42374i;
+    public long f42375j;
+    public float f42376k;
+    public float f42377l;
+    public final org.telegram.ui.Cells.u0 f42378m;
 
-    public l(o0 o0Var, int i10) {
-        this.f45270a = i10;
-        this.f45271b = o0Var;
+    public l(org.telegram.ui.Cells.u0 u0Var) {
+        this.f42378m = u0Var;
     }
 
-    @Override
-    public final void onClick(View view) {
-        switch (this.f45270a) {
-            case 0:
-                o0 o0Var = this.f45271b;
-                if (o0Var.T0) {
-                    o0Var.r0(null, true);
-                    return;
-                } else {
-                    o0Var.B0(0);
-                    return;
-                }
-            case 1:
-                o0 o0Var2 = this.f45271b;
-                int i10 = o0Var2.f45349g1;
-                o0Var2.B0(1);
-                o0Var2.postDelayed(new o(o0Var2, 1), 350L);
-                di.t2 t2Var = new di.t2(o0Var2.getContext(), o0Var2.Q1, false, false);
-                t2Var.f8176y = new r(o0Var2);
-                t2Var.q0(new a8(o0Var2, 3));
-                t2Var.setOnDismissListener(new t(o0Var2, i10));
-                t2Var.show();
-                PhotoViewer photoViewer = ((zt0) o0Var2).f43515o2;
-                if (photoViewer.F2 != null) {
-                    photoViewer.H2 = false;
-                    photoViewer.u0();
-                    photoViewer.F2.B();
-                    return;
-                }
-                return;
-            case 2:
-                o0 o0Var3 = this.f45271b;
-                k kVar = o0Var3.S0;
-                if ((kVar instanceof x2) && !o0Var3.T0) {
-                    x2 x2Var = (x2) kVar;
-                    o0Var3.T0 = true;
-                    x2Var.q();
-                    View focusedView = x2Var.getFocusedView();
-                    focusedView.requestFocus();
-                    AndroidUtilities.showKeyboard(focusedView);
-                }
-                org.telegram.ui.ActionBar.n1 n1Var = o0Var3.R1;
-                if (n1Var != null && n1Var.isShowing()) {
-                    o0Var3.R1.d(true);
-                    return;
-                }
-                return;
-            case 3:
-                o0.b0(this.f45271b);
-                return;
-            default:
-                o0 o0Var4 = this.f45271b;
-                o0Var4.B0(2);
-                if (!(o0Var4.S0 instanceof x2)) {
-                    o0Var4.j0(true);
-                    return;
-                }
-                return;
+    public final void a(int i10, boolean z10) {
+        float f7;
+        ArrayList arrayList;
+        org.telegram.ui.Cells.u0 u0Var = this.f42378m;
+        ArrayList arrayList2 = u0Var.f21415c;
+        HashMap hashMap = (HashMap) u0Var.f21416f;
+        RectF rectF = (RectF) u0Var.f21417g;
+        this.f42375j = Math.abs(Utilities.fastRandom.nextLong() % 2250) + 2250;
+        this.f42376k = (Math.abs(Utilities.fastRandom.nextFloat()) * 0.45f) + 0.6f;
+        String str = m.f42380a[p6.c(Utilities.fastRandom, 49)];
+        if (str.length() > 7) {
+            this.f42376k *= 0.6f;
+        } else if (str.length() > 5) {
+            this.f42376k *= 0.75f;
         }
+        StaticLayout staticLayout = new StaticLayout(str, u0Var.f21413a, AndroidUtilities.displaySize.x, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+        this.e = staticLayout;
+        int i11 = 0;
+        if (staticLayout.getLineCount() <= 0) {
+            this.f42374i = 0;
+            this.h = 0;
+            this.f42373g = 0;
+        } else {
+            this.f42373g = (int) this.e.getLineLeft(0);
+            this.h = (int) this.e.getLineWidth(0);
+            this.f42374i = this.e.getHeight();
+        }
+        Bitmap bitmap = (Bitmap) hashMap.get(str);
+        this.f42372f = bitmap;
+        if (bitmap == null) {
+            this.f42372f = Bitmap.createBitmap(Math.max(1, this.h - Math.max(0, this.f42373g)), Math.max(1, this.f42374i), Bitmap.Config.ARGB_8888);
+            Canvas canvas = new Canvas(this.f42372f);
+            canvas.translate(-this.f42373g, 0.0f);
+            this.e.draw(canvas);
+            hashMap.put(str, this.f42372f);
+        }
+        float f10 = this.h / 4.0f;
+        float f11 = rectF.left + f10;
+        float f12 = rectF.right - f10;
+        if (i10 % 2 == 0) {
+            f12 = rectF.centerX() - (this.h / 2.0f);
+        } else {
+            f11 = rectF.centerX() + (this.h / 2.0f);
+        }
+        float f13 = f12 - f11;
+        float abs = Math.abs(Utilities.fastRandom.nextInt() % f13) + f11;
+        float abs2 = Math.abs(Utilities.fastRandom.nextInt() % rectF.height()) + rectF.top;
+        int i12 = 0;
+        float f14 = 0.0f;
+        while (i12 < 10) {
+            float abs3 = Math.abs(Utilities.fastRandom.nextInt() % f13) + f11;
+            float abs4 = Math.abs(Utilities.fastRandom.nextInt() % rectF.height()) + rectF.top;
+            float f15 = 2.1474836E9f;
+            while (i11 < arrayList2.size()) {
+                l lVar = (l) arrayList2.get(i11);
+                if (!lVar.f42369a) {
+                    arrayList = arrayList2;
+                } else {
+                    arrayList = arrayList2;
+                    float min = Math.min(Math.abs(((((this.f42376k / u0Var.f21414b) * lVar.h) * 1.1f) + lVar.f42370b) - abs3), Math.abs(lVar.f42370b - abs3));
+                    float f16 = lVar.f42371c - abs4;
+                    float f17 = (f16 * f16) + (min * min);
+                    if (f17 < f15) {
+                        f15 = f17;
+                    }
+                }
+                i11++;
+                arrayList2 = arrayList;
+            }
+            ArrayList arrayList3 = arrayList2;
+            if (f15 > f14) {
+                abs = abs3;
+                f14 = f15;
+                abs2 = abs4;
+            }
+            i12++;
+            arrayList2 = arrayList3;
+            i11 = 0;
+        }
+        this.f42370b = abs;
+        this.f42371c = abs2;
+        double atan2 = Math.atan2(abs - rectF.centerX(), this.f42371c - rectF.centerY());
+        Math.sin(atan2);
+        Math.cos(atan2);
+        this.d = (int) (((Utilities.fastRandom.nextInt(50) + 50) / 100.0f) * 255.0f);
+        if (z10) {
+            f7 = Math.abs((Utilities.fastRandom.nextFloat() % 1.0f) * 0.9f);
+        } else {
+            f7 = 0.0f;
+        }
+        this.f42377l = f7;
+        this.f42369a = true;
     }
 }

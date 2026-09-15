@@ -1,46 +1,78 @@
 package org.telegram.ui;
 
-import android.text.Editable;
+import android.content.Context;
+import android.graphics.Paint;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import java.util.ArrayList;
-import java.util.HashMap;
-public final class hq0 implements ar0 {
-    public final HashMap f37092a;
-    public final ArrayList f37093b;
-    public final kq0 f37094c;
+import org.telegram.messenger.MediaController;
+public final class hq0 extends org.telegram.ui.Components.kl0 {
+    public final Context f34327c;
+    public final jq0 d;
 
-    public hq0(kq0 kq0Var, HashMap hashMap, ArrayList arrayList) {
-        this.f37094c = kq0Var;
-        this.f37092a = hashMap;
-        this.f37093b = arrayList;
+    public hq0(jq0 jq0Var, Context context) {
+        this.d = jq0Var;
+        this.f34327c = context;
     }
 
     @Override
-    public final void b(Editable editable) {
-        kq0 kq0Var = this.f37094c;
-        org.telegram.ui.Components.hu huVar = kq0Var.M;
-        kq0Var.f38104a = editable;
-        huVar.setText(editable);
-    }
-
-    @Override
-    public final boolean e() {
+    public final boolean D(s4.c1 c1Var) {
         return true;
     }
 
     @Override
-    public final void h(int i10, boolean z10, boolean z11) {
-        kq0 kq0Var = this.f37094c;
-        kq0Var.removeSelfFromStack();
-        if (!z10) {
-            kq0Var.V(this.f37092a, this.f37093b, z11, i10);
+    public final int h() {
+        jq0 jq0Var = this.d;
+        ArrayList arrayList = jq0Var.d;
+        if (arrayList != null) {
+            return (int) Math.ceil(arrayList.size() / jq0Var.f34954f);
+        }
+        return 0;
+    }
+
+    @Override
+    public final int j(int i10) {
+        return 0;
+    }
+
+    @Override
+    public final void v(s4.c1 c1Var, int i10) {
+        org.telegram.ui.Cells.x5 x5Var = (org.telegram.ui.Cells.x5) c1Var.f42675a;
+        jq0 jq0Var = this.d;
+        x5Var.setAlbumsCount(jq0Var.f34954f);
+        int i11 = 0;
+        while (true) {
+            int i12 = jq0Var.f34954f;
+            if (i11 < i12) {
+                int i13 = (i12 * i10) + i11;
+                if (i13 < jq0Var.d.size()) {
+                    x5Var.a(i11, (MediaController.AlbumEntry) jq0Var.d.get(i13));
+                } else {
+                    x5Var.a(i11, null);
+                }
+                i11++;
+            } else {
+                x5Var.requestLayout();
+                return;
+            }
         }
     }
 
     @Override
-    public final void a() {
-    }
-
-    @Override
-    public final void g() {
+    public final s4.c1 x(ViewGroup viewGroup, int i10) {
+        Context context = this.f34327c;
+        ?? frameLayout = new FrameLayout(context);
+        frameLayout.e = new Paint();
+        frameLayout.f21624b = new MediaController.AlbumEntry[4];
+        frameLayout.f21623a = new org.telegram.ui.Cells.v5[4];
+        for (int i11 = 0; i11 < 4; i11++) {
+            frameLayout.f21623a[i11] = new org.telegram.ui.Cells.v5(frameLayout, context);
+            frameLayout.addView(frameLayout.f21623a[i11]);
+            frameLayout.f21623a[i11].setVisibility(4);
+            frameLayout.f21623a[i11].setTag(Integer.valueOf(i11));
+            frameLayout.f21623a[i11].setOnClickListener(new org.telegram.ui.Cells.a(frameLayout, 9));
+        }
+        frameLayout.setDelegate(new tl0(this, 1));
+        return new s4.c1(frameLayout);
     }
 }

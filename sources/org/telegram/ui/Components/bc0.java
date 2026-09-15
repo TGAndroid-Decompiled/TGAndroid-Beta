@@ -1,69 +1,238 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.Drawable;
-import android.text.SpannableStringBuilder;
-import android.text.style.ImageSpan;
+import android.graphics.drawable.TransitionDrawable;
+import android.util.StateSet;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-public final class bc0 {
-    public SpannableStringBuilder f24660a;
-    public int f24661b;
-    public Drawable f24662c;
-    public float d;
-    public final int f24663e;
-    public final int f24664f;
-    public int f24665g = -1;
-    public int h = -1;
-    public float f24666i = 4.66f;
+import org.telegram.messenger.FileLoader;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.MessageObject;
+public final class bc0 implements Runnable {
+    public final int f22753a;
+    public final Object f22754b;
 
-    public bc0(int i10, int i11) {
-        this.f24663e = i10;
-        this.f24664f = i11;
+    public bc0(Object obj, int i10) {
+        this.f22753a = i10;
+        this.f22754b = obj;
     }
 
-    public final CharSequence a(Context context, org.telegram.ui.ActionBar.f6 f6Var) {
-        int dp;
-        int dp2;
-        SpannableStringBuilder spannableStringBuilder = this.f24660a;
-        int i10 = this.f24664f;
-        if (spannableStringBuilder != null && this.f24662c != null && AndroidUtilities.density == this.d) {
-            if (this.f24661b != org.telegram.ui.ActionBar.j6.v0(i10, f6Var)) {
-                Drawable drawable = this.f24662c;
-                int v02 = org.telegram.ui.ActionBar.j6.v0(i10, f6Var);
-                this.f24661b = v02;
-                drawable.setColorFilter(new PorterDuffColorFilter(v02, PorterDuff.Mode.SRC_IN));
-            }
-            return this.f24660a;
-        } else if (context == null) {
-            return null;
-        } else {
-            SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder("v ");
-            this.d = AndroidUtilities.density;
-            Drawable mutate = context.getResources().getDrawable(this.f24663e).mutate();
-            this.f24662c = mutate;
-            int v03 = org.telegram.ui.ActionBar.j6.v0(i10, f6Var);
-            this.f24661b = v03;
-            mutate.setColorFilter(new PorterDuffColorFilter(v03, PorterDuff.Mode.SRC_IN));
-            int i11 = this.f24665g;
-            if (i11 <= 0) {
-                dp = this.f24662c.getIntrinsicWidth();
-            } else {
-                dp = AndroidUtilities.dp(i11);
-            }
-            int i12 = this.h;
-            if (i12 <= 0) {
-                dp2 = this.f24662c.getIntrinsicHeight();
-            } else {
-                dp2 = AndroidUtilities.dp(i12);
-            }
-            int dp3 = AndroidUtilities.dp(this.f24666i);
-            this.f24662c.setBounds(0, dp3, dp, dp2 + dp3);
-            spannableStringBuilder2.setSpan(new ImageSpan(this.f24662c, 2), 0, 1, 33);
-            spannableStringBuilder2.setSpan(new org.telegram.ui.Cells.p2(AndroidUtilities.dp(2.0f)), 1, 2, 33);
-            this.f24660a = spannableStringBuilder2;
-            return spannableStringBuilder2;
+    @Override
+    public final void run() {
+        float f7;
+        g71 g71Var;
+        switch (this.f22753a) {
+            case 0:
+                ((cc0) this.f22754b).z();
+                return;
+            case 1:
+                ((ci.u) this.f22754b).invalidateSelf();
+                return;
+            case 2:
+                ((kc0) this.f22754b).invalidateSelf();
+                return;
+            case 3:
+                ((dd0) this.f22754b).d();
+                return;
+            case 4:
+                nd0 nd0Var = (nd0) this.f22754b;
+                nd0Var.getClass();
+                try {
+                    nd0Var.d.I.performHapticFeedback(3, 2);
+                    return;
+                } catch (Exception unused) {
+                    return;
+                }
+            case 5:
+                ((ae0) this.f22754b).f22375f.start();
+                return;
+            case 6:
+                vz vzVar = ((ef0) this.f22754b).f23635c.f25325l0;
+                if (vzVar != null) {
+                    vzVar.e(false, true, false);
+                    return;
+                }
+                return;
+            case 7:
+                hf0 hf0Var = (hf0) this.f22754b;
+                hf0Var.f24691r = false;
+                hf0Var.invalidate();
+                return;
+            case 8:
+                ((kf0) this.f22754b).h = null;
+                return;
+            case 9:
+                kf0 kf0Var = (kf0) ((n7.a1) this.f22754b).f15109c;
+                kf0Var.d.L(kf0Var.e, false);
+                return;
+            case 10:
+                org.telegram.ui.iu0 iu0Var = (org.telegram.ui.iu0) this.f22754b;
+                if (iu0Var.f27330x) {
+                    iu0Var.h("pollPosition();");
+                }
+                if (iu0Var.G) {
+                    AndroidUtilities.runOnUIThread(iu0Var.L, 500L);
+                    return;
+                }
+                return;
+            case 11:
+                ((FrameLayout) this.f22754b).invalidate();
+                return;
+            case 12:
+                eg0 eg0Var = (eg0) ((lg.b) this.f22754b).f14038b;
+                eg0Var.d.invalidate();
+                eg0Var.e.requestLayout();
+                return;
+            case 13:
+                ((gg0) this.f22754b).f();
+                return;
+            case 14:
+                try {
+                    ei0 ei0Var = ((di0) this.f22754b).f23340b;
+                    if (ei0Var.getParent() instanceof ViewGroup) {
+                        ((ViewGroup) ei0Var.getParent()).removeView(ei0Var);
+                    }
+                    ei0Var.Q.run();
+                    return;
+                } catch (Exception e) {
+                    FileLog.e(e);
+                    return;
+                }
+            case 15:
+                ((RLottieNative) this.f22754b).d();
+                return;
+            case 16:
+                fk0 fk0Var = (fk0) this.f22754b;
+                fk0Var.f24007x0 = null;
+                fk0Var.j();
+                ek0 ek0Var = fk0Var.f23982g0;
+                if (ek0Var != null) {
+                    ek0Var.o();
+                    return;
+                }
+                return;
+            case 17:
+                ((ck0) this.f22754b).H.f23345a.setVisibility(4);
+                return;
+            case 18:
+                gk0 gk0Var = (gk0) this.f22754b;
+                g71 g71Var2 = gk0Var.f24382n;
+                if (g71Var2 != null) {
+                    boolean y3 = g71Var2.y();
+                    float n10 = ((float) gk0Var.f24382n.n()) / ((float) gk0Var.f24382n.p());
+                    if (n10 < gk0Var.f24384s) {
+                        gk0Var.f24382n.L(f7 * ((float) g71Var.p()), false);
+                    } else if (n10 > gk0Var.v) {
+                        gk0Var.setPlaying(false);
+                        y3 = false;
+                    }
+                    if (y3) {
+                        AndroidUtilities.runOnUIThread(gk0Var.f24386x, 16L);
+                    }
+                }
+                gk0Var.invalidate();
+                return;
+            case 19:
+                ll0 ll0Var = (ll0) this.f22754b;
+                ll0Var.V1 = null;
+                ll0Var.U1 = null;
+                org.telegram.ui.Cells.z zVar = ll0Var.D1;
+                if (zVar != null) {
+                    Drawable current = zVar.getCurrent();
+                    if (current instanceof TransitionDrawable) {
+                        ((TransitionDrawable) current).resetTransition();
+                    }
+                }
+                org.telegram.ui.Cells.z zVar2 = ll0Var.D1;
+                if (zVar2 != null && zVar2.isStateful()) {
+                    ll0Var.D1.setState(StateSet.NOTHING);
+                    return;
+                }
+                return;
+            case 20:
+                vm0 vm0Var = (vm0) this.f22754b;
+                ArrayList<MessageObject> arrayList = new ArrayList<>();
+                ArrayList<MessageObject> arrayList2 = new ArrayList<>();
+                ArrayList arrayList3 = new ArrayList();
+                ArrayList arrayList4 = new ArrayList();
+                int i10 = vm0Var.d;
+                FileLoader.getInstance(i10).getCurrentLoadingFiles(arrayList);
+                FileLoader.getInstance(i10).getRecentLoadingFiles(arrayList2);
+                for (int i11 = 0; i11 < arrayList.size(); i11++) {
+                    if (FileLoader.getInstance(i10).getPathToMessage(arrayList.get(i11).messageOwner).exists()) {
+                        arrayList3.add(arrayList.get(i11));
+                    }
+                }
+                for (int i12 = 0; i12 < arrayList2.size(); i12++) {
+                    if (!FileLoader.getInstance(i10).getPathToMessage(arrayList2.get(i12).messageOwner).exists()) {
+                        arrayList4.add(arrayList2.get(i12));
+                    }
+                }
+                AndroidUtilities.runOnUIThread(new org.telegram.ui.ActionBar.p(vm0Var, arrayList3, arrayList4, 27));
+                return;
+            case 21:
+                ((xm0) this.f22754b).invalidateSelf();
+                return;
+            case 22:
+                ((in0) this.f22754b).f25086f.setVisibility(8);
+                return;
+            case 23:
+                ((org.telegram.ui.ey) this.f22754b).s();
+                return;
+            case 24:
+                ((n70) this.f22754b).s();
+                return;
+            case 25:
+                ((fo0) this.f22754b).getClass();
+                return;
+            case 26:
+                org.telegram.ui.Cells.t1 t1Var = ((io0) this.f22754b).f25103n;
+                if (t1Var != null) {
+                    t1Var.invalidate();
+                    return;
+                }
+                return;
+            case 27:
+                ko0 ko0Var = (ko0) this.f22754b;
+                ko0Var.f25651q = false;
+                ko0Var.f25639b.run();
+                return;
+            case 28:
+                ((hq0) ((ci.i2) this.f22754b).f4777b).a1(1);
+                return;
+            default:
+                mq0 mq0Var = (mq0) this.f22754b;
+                kq0[] kq0VarArr = mq0Var.f26228a;
+                if (mq0Var.f26229b != 1) {
+                    for (kq0 kq0Var : kq0VarArr) {
+                        org.telegram.ui.ActionBar.j5 j5Var = kq0Var.d;
+                        j5Var.setAlpha(1.0f);
+                        j5Var.setScaleX(1.0f);
+                        j5Var.setScaleY(1.0f);
+                        kq0Var.e.setAlpha(0.0f);
+                    }
+                    mq0Var.E = false;
+                    AndroidUtilities.runOnUIThread(mq0Var.G, 4000L);
+                    return;
+                }
+                mq0Var.E = !mq0Var.E;
+                for (kq0 kq0Var2 : kq0VarArr) {
+                    org.telegram.ui.ActionBar.j5 j5Var2 = kq0Var2.d;
+                    org.telegram.ui.ActionBar.j5 j5Var3 = kq0Var2.e;
+                    j5Var2.setPivotX(0.0f);
+                    j5Var3.setPivotX(0.0f);
+                    if (mq0Var.E) {
+                        j5Var2.animate().alpha(0.0f).scaleX(0.98f).scaleY(0.98f).setDuration(150L).start();
+                        j5Var3.animate().alpha(1.0f).scaleX(1.0f).scaleY(1.0f).setDuration(150L).start();
+                    } else {
+                        j5Var2.animate().alpha(1.0f).scaleX(1.0f).scaleY(1.0f).setDuration(150L).start();
+                        j5Var3.animate().alpha(0.0f).scaleX(0.98f).scaleY(0.98f).setDuration(150L).start();
+                    }
+                }
+                AndroidUtilities.runOnUIThread(mq0Var.G, 4000L);
+                return;
         }
     }
 }

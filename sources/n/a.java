@@ -1,39 +1,39 @@
 package n;
 
 import android.os.Looper;
-import w7.x;
-public final class a extends x {
-    public static volatile a f16332b;
-    public final c f16333a = new c();
+import w7.y;
+public final class a extends y {
+    public static volatile a f14839b;
+    public final c f14840a = new c();
 
     public static a a() {
-        if (f16332b != null) {
-            return f16332b;
+        if (f14839b != null) {
+            return f14839b;
         }
         synchronized (a.class) {
             try {
-                if (f16332b == null) {
-                    f16332b = new a();
+                if (f14839b == null) {
+                    f14839b = new a();
                 }
             } catch (Throwable th2) {
                 throw th2;
             }
         }
-        return f16332b;
+        return f14839b;
     }
 
     public final void b(Runnable runnable) {
-        c cVar = this.f16333a;
-        if (cVar.f16337c == null) {
-            synchronized (cVar.f16335a) {
+        c cVar = this.f14840a;
+        if (cVar.f14844c == null) {
+            synchronized (cVar.f14842a) {
                 try {
-                    if (cVar.f16337c == null) {
-                        cVar.f16337c = c.a(Looper.getMainLooper());
+                    if (cVar.f14844c == null) {
+                        cVar.f14844c = c.a(Looper.getMainLooper());
                     }
                 } finally {
                 }
             }
         }
-        cVar.f16337c.post(runnable);
+        cVar.f14844c.post(runnable);
     }
 }

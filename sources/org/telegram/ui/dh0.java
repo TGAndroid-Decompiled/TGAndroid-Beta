@@ -6,5 +6,5 @@ public interface dh0 {
 
     void r();
 
-    gh.d x();
+    fh.d x();
 }

@@ -1,51 +1,34 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.UndoView;
-public final class oz0 implements nq {
-    public final TLRPC.Chat f39363a;
-    public final qq f39364b;
-    public final ProfileActivity f39365c;
-
-    public oz0(ProfileActivity profileActivity, TLRPC.Chat chat, qq qqVar) {
-        this.f39365c = profileActivity;
-        this.f39363a = chat;
-        this.f39364b = qqVar;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.view.accessibility.AccessibilityNodeInfo;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class oz0 extends m01 {
+    public oz0(Context context) {
+        super(context);
     }
 
     @Override
-    public final void a(TLRPC.User user) {
-        int i10;
-        ProfileActivity profileActivity = this.f39365c;
-        UndoView undoView = profileActivity.M;
-        long j3 = -profileActivity.f33896f1;
-        if (profileActivity.E2.megagroup) {
-            i10 = 10;
-        } else {
-            i10 = 9;
+    public final void dispatchDraw(Canvas canvas) {
+        ai.l4 l4Var;
+        super.dispatchDraw(canvas);
+        org.telegram.ui.Components.o5 o5Var = this.e;
+        if (o5Var != null && (l4Var = o5Var.f26692k) != null) {
+            l4Var.startAnimation();
         }
-        undoView.m(j3, user, i10);
     }
 
     @Override
-    public final void b(int i10, TLRPC.TL_chatAdminRights tL_chatAdminRights, TLRPC.TL_chatBannedRights tL_chatBannedRights, String str) {
-        TLRPC.Chat chat;
-        ProfileActivity profileActivity = this.f39365c;
-        profileActivity.removeSelfFromStack();
-        TLRPC.User user = profileActivity.getMessagesController().getUser(Long.valueOf(profileActivity.f33888e1));
-        if (user != null && (chat = this.f39363a) != null && profileActivity.f33888e1 != 0) {
-            qq qqVar = this.f39364b;
-            if (qqVar.Q && qqVar.getParentLayout() != null) {
-                for (org.telegram.ui.ActionBar.n2 n2Var : qqVar.getParentLayout().getFragmentStack()) {
-                    if (n2Var instanceof ub) {
-                        ub ubVar = (ub) n2Var;
-                        ubVar.W0();
-                        AndroidUtilities.runOnUIThread(new pf0(ubVar, user, chat, 25));
-                        return;
-                    }
-                }
-            }
+    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+        if (getImageReceiver().hasNotThumb()) {
+            accessibilityNodeInfo.setText(LocaleController.getString(R.string.AccDescrProfilePicture));
+            accessibilityNodeInfo.addAction(new AccessibilityNodeInfo.AccessibilityAction(16, LocaleController.getString(R.string.Open)));
+            accessibilityNodeInfo.addAction(new AccessibilityNodeInfo.AccessibilityAction(32, LocaleController.getString(R.string.AccDescrOpenInPhotoViewer)));
+            return;
         }
+        accessibilityNodeInfo.setVisibleToUser(false);
     }
 }

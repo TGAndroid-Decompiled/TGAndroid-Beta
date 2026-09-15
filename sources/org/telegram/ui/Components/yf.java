@@ -2,36 +2,91 @@ package org.telegram.ui.Components;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.ChatActivityEnterView;
 public final class yf extends AnimatorListenerAdapter {
-    public final int f32901a;
-    public final ChatActivityEnterView f32902b;
+    public final boolean f30235a;
+    public final float f30236b;
+    public final float f30237c;
+    public final float d;
+    public final float e;
+    public final ChatActivityEnterView f30238f;
 
-    public yf(ChatActivityEnterView chatActivityEnterView, int i10) {
-        this.f32902b = chatActivityEnterView;
-        this.f32901a = i10;
+    public yf(ChatActivityEnterView chatActivityEnterView, boolean z10, float f7, float f10, float f11, float f12) {
+        this.f30238f = chatActivityEnterView;
+        this.f30235a = z10;
+        this.f30236b = f7;
+        this.f30237c = f10;
+        this.d = f11;
+        this.e = f12;
+    }
+
+    @Override
+    public final void onAnimationCancel(Animator animator) {
+        float f7;
+        int i10;
+        ChatActivityEnterView chatActivityEnterView = this.f30238f;
+        boolean z10 = this.f30235a;
+        if (z10) {
+            int i11 = ChatActivityEnterView.f21731m5;
+            chatActivityEnterView.b0();
+        }
+        wo0 wo0Var = chatActivityEnterView.f21819p0;
+        if (wo0Var != null) {
+            if (z10) {
+                i10 = 0;
+            } else {
+                i10 = 8;
+            }
+            wo0Var.setVisibility(i10);
+            chatActivityEnterView.f21819p0.setAlpha(this.d);
+            chatActivityEnterView.f21819p0.setTranslationX(this.e);
+            f7 = chatActivityEnterView.f21819p0.getTranslationX();
+        } else {
+            f7 = 0.0f;
+        }
+        chatActivityEnterView.Q0.setTranslationX(f7);
+        chatActivityEnterView.G = f7;
+        chatActivityEnterView.I1();
+        chatActivityEnterView.requestLayout();
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        ChatActivityEnterView chatActivityEnterView = this.f32902b;
-        if (animator.equals(chatActivityEnterView.f23769s2)) {
-            int i10 = this.f32901a;
-            if (i10 != 3 && chatActivityEnterView.E0 != null && !AndroidUtilities.isAccessibilityScreenReaderEnabled()) {
-                chatActivityEnterView.E0.requestFocus();
+        if (!this.f30235a) {
+            ChatActivityEnterView chatActivityEnterView = this.f30238f;
+            wo0 wo0Var = chatActivityEnterView.f21819p0;
+            if (wo0Var != null) {
+                wo0Var.setVisibility(8);
             }
-            chatActivityEnterView.A();
-            if (i10 != 3) {
-                sg sgVar = chatActivityEnterView.N1;
-                if (sgVar != null) {
-                    sgVar.setVisibility(8);
-                }
-                ChatActivityEnterView.RecordCircle recordCircle = chatActivityEnterView.M1;
-                if (recordCircle != null) {
-                    recordCircle.d();
-                }
-            }
+            chatActivityEnterView.Q0.setTranslationX(0.0f);
+            chatActivityEnterView.G = 0.0f;
+            chatActivityEnterView.I1();
+        }
+    }
+
+    @Override
+    public final void onAnimationStart(Animator animator) {
+        float f7;
+        boolean z10 = this.f30235a;
+        ChatActivityEnterView chatActivityEnterView = this.f30238f;
+        if (z10) {
+            int i10 = ChatActivityEnterView.f21731m5;
+            chatActivityEnterView.b0();
+            chatActivityEnterView.f21819p0.setVisibility(0);
+        }
+        wo0 wo0Var = chatActivityEnterView.f21819p0;
+        if (wo0Var != null) {
+            wo0Var.setAlpha(this.f30236b);
+            chatActivityEnterView.f21819p0.setTranslationX(this.f30237c);
+            f7 = chatActivityEnterView.f21819p0.getTranslationX();
+        } else {
+            f7 = 0.0f;
+        }
+        chatActivityEnterView.Q0.setTranslationX(f7);
+        chatActivityEnterView.G = f7;
+        chatActivityEnterView.I1();
+        ei.c0 c0Var = chatActivityEnterView.f21800l0;
+        if (c0Var != null && c0Var.getTag() == null) {
+            chatActivityEnterView.B0.clear();
         }
     }
 }

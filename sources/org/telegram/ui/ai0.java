@@ -1,26 +1,49 @@
 package org.telegram.ui;
-public final class ai0 implements Runnable {
-    public final int f34456a;
-    public final int f34457b;
-    public final Object f34458c;
-    public final Object d;
 
-    public ai0(Object obj, int i10, Object obj2, int i11) {
-        this.f34456a = i11;
-        this.f34458c = obj;
-        this.f34457b = i10;
-        this.d = obj2;
+import android.view.View;
+import android.widget.FrameLayout;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.tgnet.TLRPC;
+public abstract class ai0 extends FrameLayout {
+    public TLRPC.User f31842a;
+    public org.telegram.ui.Components.c90 f31843b;
+    public org.telegram.ui.Components.t00 f31844c;
+    public boolean d;
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        org.telegram.ui.Components.c90 c90Var = this.f31843b;
+        org.telegram.ui.Components.t00 t00Var = this.f31844c;
+        View view = (View) getParent();
+        if (view != null && view.getWidth() > 0) {
+            i10 = View.MeasureSpec.makeMeasureSpec(view.getWidth(), 1073741824);
+        }
+        int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(36.0f), 1073741824);
+        boolean z10 = true;
+        this.d = true;
+        if (t00Var.getVisibility() != 0) {
+            z10 = false;
+        }
+        c90Var.setVisibility(8);
+        if (z10) {
+            t00Var.setVisibility(8);
+        }
+        super.onMeasure(i10, makeMeasureSpec);
+        if (z10) {
+            t00Var.getLayoutParams().width = getMeasuredWidth();
+            t00Var.setVisibility(0);
+        }
+        c90Var.setVisibility(0);
+        c90Var.getLayoutParams().width = getMeasuredWidth() - AndroidUtilities.dp(24.0f);
+        this.d = false;
+        super.onMeasure(i10, makeMeasureSpec);
     }
 
     @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ai0.run():void");
-    }
-
-    public ai0(Object obj, Object obj2, int i10, int i11) {
-        this.f34456a = i11;
-        this.f34458c = obj;
-        this.d = obj2;
-        this.f34457b = i10;
+    public final void requestLayout() {
+        if (this.d) {
+            return;
+        }
+        super.requestLayout();
     }
 }

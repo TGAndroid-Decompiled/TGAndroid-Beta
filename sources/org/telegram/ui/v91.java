@@ -1,81 +1,59 @@
 package org.telegram.ui;
 
-import java.util.ArrayList;
-import org.telegram.messenger.MessageObject;
-public final class v91 implements Runnable {
-    public final int f41463a;
-    public final bb1 f41464b;
-    public final ArrayList f41465c;
+import android.graphics.Canvas;
+import android.graphics.RectF;
+public final class v91 implements bh.a {
+    public final RectF f38451a = new RectF();
+    public final w8 f38452b;
+    public final ya1 f38453c;
 
-    public v91(bb1 bb1Var, ArrayList arrayList, int i10) {
-        this.f41463a = i10;
-        this.f41464b = bb1Var;
-        this.f41465c = arrayList;
+    public v91(ya1 ya1Var, w8 w8Var) {
+        this.f38453c = ya1Var;
+        this.f38452b = w8Var;
     }
 
     @Override
-    public final void run() {
-        boolean z10;
-        switch (this.f41463a) {
-            case 0:
-                bb1 bb1Var = this.f41464b;
-                ArrayList arrayList = bb1Var.f34715s0;
-                ArrayList arrayList2 = bb1Var.f34713r0;
-                int i10 = 0;
-                bb1Var.f34720w0 = false;
-                ArrayList arrayList3 = this.f41465c;
-                if (!arrayList3.isEmpty()) {
-                    int size = arrayList3.size();
-                    for (int i11 = 0; i11 < size; i11++) {
-                        MessageObject messageObject = (MessageObject) arrayList3.get(i11);
-                        int i12 = bb1Var.f34710p0.get(messageObject.getId(), -1);
-                        if (i12 >= 0 && ((ya1) arrayList2.get(i12)).b() == messageObject.getId()) {
-                            ((ya1) arrayList2.get(i12)).f43067b = messageObject;
-                        }
-                    }
-                    arrayList.clear();
-                    int size2 = arrayList2.size();
-                    while (true) {
-                        if (i10 < size2) {
-                            ya1 ya1Var = (ya1) arrayList2.get(i10);
-                            if (ya1Var.f43067b == null) {
-                                bb1Var.f34709o0 = ya1Var.b();
-                            } else {
-                                arrayList.add(ya1Var);
-                                i10++;
-                            }
-                        }
-                    }
-                    bb1Var.o0();
-                    bb1Var.S.setItemAnimator(null);
-                    bb1Var.f34724y0.f();
-                    return;
+    public final void b(ah.a aVar, RectF rectF) {
+        aVar.f415a = true;
+    }
+
+    @Override
+    public final void f(Canvas canvas, RectF rectF) {
+        ah.n nVar;
+        cc ccVar;
+        cc ccVar2;
+        ya1 ya1Var = this.f38453c;
+        ya1Var.fragmentView.getMeasuredWidth();
+        ya1Var.fragmentView.getMeasuredHeight();
+        canvas.drawColor(ya1Var.getThemedColor(org.telegram.ui.ActionBar.i6.f18836d6));
+        for (int i10 = 0; i10 < 3; i10++) {
+            if (i10 == 0) {
+                nVar = ya1Var.T;
+                ccVar = ya1Var.S;
+            } else if (i10 == 1 && (ccVar2 = ya1Var.f39808j0) != null) {
+                nVar = ccVar2.G;
+                ccVar = ccVar2;
+            } else {
+                je jeVar = ya1Var.f39809k0;
+                if (jeVar != null) {
+                    nVar = jeVar.f34861b1;
+                    ccVar = jeVar;
+                } else {
+                    nVar = null;
+                    ccVar = null;
                 }
-                return;
-            default:
-                bb1 bb1Var2 = this.f41464b;
-                bi.l8 l8Var = bb1Var2.f34725z0;
-                l8Var.getClass();
-                ArrayList arrayList4 = this.f41465c;
-                int size3 = arrayList4.size();
-                int i13 = 0;
-                while (true) {
-                    if (i13 < size3) {
-                        Object obj = arrayList4.get(i13);
-                        i13++;
-                        if (!l8Var.f3276j.containsKey((Integer) obj)) {
-                            z10 = true;
-                        }
-                    } else {
-                        z10 = false;
-                    }
+            }
+            if (nVar != null && ccVar != null) {
+                w8 w8Var = this.f38452b;
+                RectF rectF2 = this.f38451a;
+                hh.k.c(ccVar, w8Var, rectF2);
+                if (rectF2.right > 0.0f) {
+                    ya1Var.fragmentView.getMeasuredWidth();
                 }
-                if (!l8Var.q(0, arrayList4, z10)) {
-                    bb1Var2.j0();
-                    bb1Var2.o0();
-                    return;
-                }
-                return;
+                canvas.save();
+                nVar.f(canvas, rectF);
+                canvas.restore();
+            }
         }
     }
 }

@@ -2,14 +2,14 @@ package hc;
 
 import dc.h;
 public abstract class b {
-    public static final char[] f10924a = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ $%*+-./:".toCharArray();
+    public static final char[] f10161a = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ $%*+-./:".toCharArray();
 
     public static void a(b4.d dVar, StringBuilder sb2, int i10, boolean z10) {
         while (i10 > 1) {
             if (dVar.d() >= 11) {
-                int e7 = dVar.e(11);
-                sb2.append(f(e7 / 45));
-                sb2.append(f(e7 % 45));
+                int e = dVar.e(11);
+                sb2.append(f(e / 45));
+                sb2.append(f(e % 45));
                 i10 -= 2;
             } else {
                 throw cc.c.a();
@@ -43,13 +43,13 @@ public abstract class b {
 
     public static void c(b4.d dVar, StringBuilder sb2, int i10) {
         int i11;
-        if (h.f6719c != null) {
+        if (h.f7638c != null) {
             if (i10 * 13 <= dVar.d()) {
                 byte[] bArr = new byte[i10 * 2];
                 int i12 = 0;
                 while (i10 > 0) {
-                    int e7 = dVar.e(13);
-                    int i13 = (e7 % 96) | ((e7 / 96) << 8);
+                    int e = dVar.e(13);
+                    int i13 = (e % 96) | ((e / 96) << 8);
                     if (i13 < 2560) {
                         i11 = 41377;
                     } else {
@@ -61,7 +61,7 @@ public abstract class b {
                     i12 += 2;
                     i10--;
                 }
-                sb2.append(new String(bArr, h.f6719c));
+                sb2.append(new String(bArr, h.f7638c));
                 return;
             }
             throw cc.c.a();
@@ -71,13 +71,13 @@ public abstract class b {
 
     public static void d(b4.d dVar, StringBuilder sb2, int i10) {
         int i11;
-        if (h.f6718b != null) {
+        if (h.f7637b != null) {
             if (i10 * 13 <= dVar.d()) {
                 byte[] bArr = new byte[i10 * 2];
                 int i12 = 0;
                 while (i10 > 0) {
-                    int e7 = dVar.e(13);
-                    int i13 = (e7 % 192) | ((e7 / 192) << 8);
+                    int e = dVar.e(13);
+                    int i13 = (e % 192) | ((e / 192) << 8);
                     if (i13 < 7936) {
                         i11 = 33088;
                     } else {
@@ -89,7 +89,7 @@ public abstract class b {
                     i12 += 2;
                     i10--;
                 }
-                sb2.append(new String(bArr, h.f6718b));
+                sb2.append(new String(bArr, h.f7637b));
                 return;
             }
             throw cc.c.a();
@@ -100,11 +100,11 @@ public abstract class b {
     public static void e(b4.d dVar, StringBuilder sb2, int i10) {
         while (i10 >= 3) {
             if (dVar.d() >= 10) {
-                int e7 = dVar.e(10);
-                if (e7 < 1000) {
-                    sb2.append(f(e7 / 100));
-                    sb2.append(f((e7 / 10) % 10));
-                    sb2.append(f(e7 % 10));
+                int e = dVar.e(10);
+                if (e < 1000) {
+                    sb2.append(f(e / 100));
+                    sb2.append(f((e / 10) % 10));
+                    sb2.append(f(e % 10));
                     i10 -= 3;
                 } else {
                     throw cc.c.a();
@@ -115,10 +115,10 @@ public abstract class b {
         }
         if (i10 == 2) {
             if (dVar.d() >= 7) {
-                int e10 = dVar.e(7);
-                if (e10 < 100) {
-                    sb2.append(f(e10 / 10));
-                    sb2.append(f(e10 % 10));
+                int e7 = dVar.e(7);
+                if (e7 < 100) {
+                    sb2.append(f(e7 / 10));
+                    sb2.append(f(e7 % 10));
                     return;
                 }
                 throw cc.c.a();
@@ -126,9 +126,9 @@ public abstract class b {
             throw cc.c.a();
         } else if (i10 == 1) {
             if (dVar.d() >= 4) {
-                int e11 = dVar.e(4);
-                if (e11 < 10) {
-                    sb2.append(f(e11));
+                int e10 = dVar.e(4);
+                if (e10 < 10) {
+                    sb2.append(f(e10));
                     return;
                 }
                 throw cc.c.a();
@@ -138,7 +138,7 @@ public abstract class b {
     }
 
     public static char f(int i10) {
-        char[] cArr = f10924a;
+        char[] cArr = f10161a;
         if (i10 < cArr.length) {
             return cArr[i10];
         }

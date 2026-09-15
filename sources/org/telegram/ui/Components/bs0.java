@@ -1,34 +1,72 @@
 package org.telegram.ui.Components;
 
-import android.os.Bundle;
-public final class bs0 extends org.telegram.ui.co {
-    public boolean Qc;
-    public final int Rc;
-    public final xu0 Sc;
+import android.graphics.Rect;
+import android.view.View;
+import androidx.recyclerview.widget.RecyclerView;
+import org.telegram.messenger.AndroidUtilities;
+public final class bs0 extends s4.n0 {
+    public final ur0 f22867a;
+    public final yu0 f22868b;
 
-    public bs0(xu0 xu0Var, Bundle bundle, int i10) {
-        super(bundle);
-        this.Sc = xu0Var;
-        this.Rc = i10;
-        this.Qc = true;
+    public bs0(yu0 yu0Var, ur0 ur0Var) {
+        this.f22868b = yu0Var;
+        this.f22867a = ur0Var;
     }
 
     @Override
-    public final void onTransitionAnimationStart(boolean z10, boolean z11) {
-        xu0 xu0Var = this.Sc;
-        iu0 iu0Var = xu0Var.S;
-        if (this.Qc) {
-            if (this.f35298j0 != null) {
-                la("");
-                this.f35298j0.H(iu0Var.f27264w, false);
+    public final void a(Rect rect, View view, RecyclerView recyclerView, s4.z0 z0Var) {
+        boolean z10;
+        boolean z11;
+        ur0 ur0Var = this.f22867a;
+        int i10 = 0;
+        if (ur0Var.h.getAdapter() == this.f22868b.O) {
+            recyclerView.getClass();
+            int R = RecyclerView.R(view);
+            rect.left = 0;
+            rect.bottom = 0;
+            vr0 vr0Var = ur0Var.f27691x;
+            vr0Var.B1();
+            if (R <= vr0Var.U) {
+                rect.top = 0;
+            } else {
+                rect.top = AndroidUtilities.dp(2.0f);
             }
-            org.telegram.ui.yk ykVar = this.f35359o1;
-            if (ykVar != null) {
-                ykVar.e(iu0Var.f27265x, false);
+            if (!ur0Var.f27691x.E1(R)) {
+                i10 = AndroidUtilities.dp(2.0f);
             }
-            xu0Var.f32726v1.getMediaDataController().portSavedSearchResults(getClassGuid(), iu0Var.f27265x, iu0Var.f27264w, iu0Var.f27261n, iu0Var.h, this.Rc, iu0Var.v, iu0Var.f27263s);
-            this.Qc = false;
+            rect.right = i10;
+        } else if (view instanceof org.telegram.ui.Cells.t7) {
+            org.telegram.ui.Cells.t7 t7Var = (org.telegram.ui.Cells.t7) view;
+            ur0Var.h.getClass();
+            int R2 = RecyclerView.R(t7Var);
+            int i11 = ur0Var.f27691x.J;
+            boolean z12 = true;
+            if (R2 < i11) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            t7Var.f21372a0 = z10;
+            int i12 = R2 % i11;
+            if (i12 == 0) {
+                z11 = true;
+            } else {
+                z11 = false;
+            }
+            t7Var.V = z11;
+            if (i12 != i11 - 1) {
+                z12 = false;
+            }
+            t7Var.W = z12;
+            rect.left = 0;
+            rect.top = 0;
+            rect.bottom = 0;
+            rect.right = 0;
+        } else {
+            rect.left = 0;
+            rect.top = 0;
+            rect.bottom = 0;
+            rect.right = 0;
         }
-        super.onTransitionAnimationStart(z10, z11);
     }
 }

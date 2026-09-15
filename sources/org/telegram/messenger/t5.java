@@ -1,21 +1,23 @@
 package org.telegram.messenger;
-public final class t5 implements Runnable {
-    public final int f19046a;
-    public final LocationSharingService f19047b;
 
-    public t5(LocationSharingService locationSharingService, int i10) {
-        this.f19046a = i10;
-        this.f19047b = locationSharingService;
+import android.location.Location;
+public final class t5 implements q0.a {
+    public final int f17363a;
+    public final LocationController f17364b;
+
+    public t5(LocationController locationController, int i10) {
+        this.f17363a = i10;
+        this.f17364b = locationController;
     }
 
     @Override
-    public final void run() {
-        switch (this.f19046a) {
+    public final void accept(Object obj) {
+        switch (this.f17363a) {
             case 0:
-                LocationSharingService.a(this.f19047b);
+                this.f17364b.lambda$onConnected$4((Integer) obj);
                 return;
             default:
-                LocationSharingService.b(this.f19047b);
+                this.f17364b.setLastKnownLocation((Location) obj);
                 return;
         }
     }

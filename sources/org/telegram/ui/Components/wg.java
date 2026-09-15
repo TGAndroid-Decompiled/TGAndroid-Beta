@@ -1,79 +1,51 @@
 package org.telegram.ui.Components;
 
-import android.app.Activity;
-import android.graphics.Canvas;
-import android.graphics.LinearGradient;
-import android.graphics.Paint;
-import android.graphics.RectF;
-import android.graphics.Shader;
-import android.graphics.drawable.Drawable;
-import android.view.View;
-import android.widget.FrameLayout;
+import java.util.HashMap;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.R;
-public final class wg extends FrameLayout {
-    public final org.telegram.ui.ActionBar.j5 f32262a;
-    public final RectF f32263b;
-    public final Paint f32264c;
-    public final Drawable d;
-    public boolean f32265e;
+public final class wg extends HashMap {
+    public final int f29722a;
+    public final Object f29723b;
 
-    public wg(Activity activity) {
-        super(activity);
-        this.f32263b = new RectF();
-        this.f32264c = new Paint(1);
-        this.f32265e = false;
-        org.telegram.ui.ActionBar.j5 j5Var = new org.telegram.ui.ActionBar.j5(activity);
-        this.f32262a = j5Var;
-        addView(j5Var, w7.x5.c(-1.0f, -1));
-        setWillNotDraw(false);
-        Drawable drawable = activity.getDrawable(R.drawable.msg_mini_close_tooltip);
-        this.d = drawable;
-        drawable.setBounds(0, 0, drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());
-        setClipToPadding(false);
-        setClipChildren(false);
-        w7.z5.a(this);
+    public wg(Object obj, int i10) {
+        this.f29722a = i10;
+        this.f29723b = obj;
     }
 
     @Override
-    public final boolean drawChild(Canvas canvas, View view, long j3) {
-        if ((view instanceof org.telegram.ui.ActionBar.j5) && this.f32265e) {
-            org.telegram.ui.ActionBar.j5 j5Var = (org.telegram.ui.ActionBar.j5) view;
-            canvas.save();
-            canvas.scale(0.8f, 0.8f);
-            canvas.translate(-AndroidUtilities.dp(12.0f), AndroidUtilities.dp(6.0f));
-            int color = j5Var.getTextPaint().getColor();
-            j5Var.getTextPaint().setColor(-1);
-            boolean drawChild = super.drawChild(canvas, view, j3);
-            j5Var.getTextPaint().setColor(color);
-            canvas.restore();
-            return drawChild;
-        }
-        return super.drawChild(canvas, view, j3);
-    }
-
-    @Override
-    public final void onDraw(Canvas canvas) {
-        if (this.f32265e) {
-            canvas.save();
-            int dp = AndroidUtilities.dp(26.0f);
-            canvas.translate(AndroidUtilities.dp(5.0f), (getMeasuredHeight() - dp) / 2.0f);
-            float f7 = dp;
-            RectF rectF = this.f32263b;
-            rectF.set(-AndroidUtilities.dp(5.0f), 0.0f, getMeasuredWidth() - getPaddingEnd(), f7);
-            float f10 = f7 / 2.0f;
-            canvas.drawRoundRect(rectF, f10, f10, this.f32264c);
-            int measuredWidth = (getMeasuredWidth() - getPaddingEnd()) - AndroidUtilities.dp(6.0f);
-            Drawable drawable = this.d;
-            canvas.translate(measuredWidth - drawable.getIntrinsicWidth(), AndroidUtilities.dp(5.0f));
-            drawable.draw(canvas);
-            canvas.restore();
+    public Object get(Object obj) {
+        switch (this.f29722a) {
+            case 0:
+                int i10 = ((zg) this.f29723b).v;
+                xi0 xi0Var = (xi0) super.get(obj);
+                if (xi0Var == null) {
+                    yg ygVar = (yg) obj;
+                    xi0 xi0Var2 = new xi0(ygVar.f30244c, AndroidUtilities.dp(i10), AndroidUtilities.dp(i10));
+                    put(ygVar, xi0Var2);
+                    return xi0Var2;
+                }
+                return xi0Var;
+            default:
+                return super.get(obj);
         }
     }
 
     @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        super.onLayout(z10, i10, i11, i12, i13);
-        this.f32264c.setShader(new LinearGradient(0.0f, 0.0f, getMeasuredWidth(), 0.0f, new int[]{-9071617, -5999873}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP));
+    public Object put(Object obj, Object obj2) {
+        String lowerCase;
+        switch (this.f29722a) {
+            case 1:
+                String str = (String) obj;
+                String str2 = (String) obj2;
+                HashMap hashMap = ((yc.g) this.f29723b).f46692f;
+                if (str == null) {
+                    lowerCase = str;
+                } else {
+                    lowerCase = str.toLowerCase();
+                }
+                hashMap.put(lowerCase, str2);
+                return (String) super.put(str, str2);
+            default:
+                return super.put(obj, obj2);
+        }
     }
 }

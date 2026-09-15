@@ -1,45 +1,70 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-public final class xq0 extends org.telegram.ui.Components.t00 {
-    public final int U;
+import org.telegram.messenger.ChatObject;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MediaController;
+import org.telegram.messenger.R;
+import org.telegram.tgnet.TLRPC;
+public final class xq0 implements org.telegram.ui.Cells.r5 {
+    public final yq0 f39665a;
 
-    public xq0(Context context, int i10, org.telegram.ui.ActionBar.f6 f6Var) {
-        super(context, f6Var);
-        this.U = i10;
+    public xq0(yq0 yq0Var) {
+        this.f39665a = yq0Var;
     }
 
-    @Override
-    public int getColumnsCount() {
-        switch (this.U) {
-            case 0:
-                return 3;
-            default:
-                return super.getColumnsCount();
+    public final void a() {
+        bo boVar;
+        TLRPC.Chat chat;
+        ar0 ar0Var = this.f39665a.d;
+        if (ar0Var.I && (boVar = ar0Var.U) != null && (chat = boVar.e) != null && !ChatObject.hasAdminRights(chat) && chat.slowmode_enabled && ar0Var.W != 2) {
+            org.telegram.ui.Components.c5.u0(ar0Var, LocaleController.getString(R.string.Slowmode), LocaleController.getString(R.string.SlowmodeSelectSendError), null);
+            if (ar0Var.W == 1) {
+                ar0Var.W = 2;
+            }
         }
     }
 
     @Override
-    public int getViewType() {
-        switch (this.U) {
-            case 0:
-                return 2;
-            default:
-                return super.getViewType();
-        }
-    }
-
-    @Override
-    public void onMeasure(int i10, int i11) {
-        switch (this.U) {
-            case 1:
-                setMeasuredDimension(View.MeasureSpec.getSize(i10), AndroidUtilities.dp(104.0f));
+    public final void b(org.telegram.ui.Cells.s5 s5Var) {
+        boolean z10;
+        int intValue = ((Integer) s5Var.getTag()).intValue();
+        ar0 ar0Var = this.f39665a.d;
+        MediaController.AlbumEntry albumEntry = ar0Var.J;
+        int i10 = -1;
+        int i11 = 1;
+        if (albumEntry != null) {
+            MediaController.PhotoEntry photoEntry = albumEntry.photos.get(intValue);
+            boolean containsKey = ar0Var.f31910b.containsKey(Integer.valueOf(photoEntry.imageId));
+            z10 = !containsKey;
+            if (!containsKey && ar0Var.H > 0 && ar0Var.f31910b.size() >= ar0Var.H) {
+                a();
                 return;
-            default:
-                super.onMeasure(i10, i11);
+            }
+            if (ar0Var.e && !containsKey) {
+                i10 = ar0Var.f31912c.size();
+            }
+            s5Var.b(i10, z10, true);
+            ar0Var.Y(intValue, photoEntry);
+        } else {
+            AndroidUtilities.hideKeyboard(ar0Var.getParentActivity().getCurrentFocus());
+            MediaController.SearchImage searchImage = (MediaController.SearchImage) ar0Var.f31916f.get(intValue);
+            boolean containsKey2 = ar0Var.f31910b.containsKey(searchImage.f15597id);
+            z10 = !containsKey2;
+            if (!containsKey2 && ar0Var.H > 0 && ar0Var.f31910b.size() >= ar0Var.H) {
+                a();
                 return;
+            }
+            if (ar0Var.e && !containsKey2) {
+                i10 = ar0Var.f31912c.size();
+            }
+            s5Var.b(i10, z10, true);
+            ar0Var.Y(intValue, searchImage);
         }
+        if (!z10) {
+            i11 = 2;
+        }
+        ar0Var.i0(i11);
+        ar0Var.f31932s0.a();
     }
 }

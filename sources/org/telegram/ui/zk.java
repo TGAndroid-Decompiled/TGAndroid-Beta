@@ -1,11 +1,11 @@
 package org.telegram.ui;
 
 import android.app.Activity;
-public final class zk extends org.telegram.ui.Components.l41 {
-    public final co f43450s;
+public final class zk extends org.telegram.ui.Components.m41 {
+    public final bo f40222s;
 
-    public zk(co coVar, Activity activity, co coVar2, org.telegram.ui.ActionBar.f6 f6Var) {
-        super(activity, f6Var, coVar2);
-        this.f43450s = coVar;
+    public zk(bo boVar, Activity activity, bo boVar2, org.telegram.ui.ActionBar.e6 e6Var) {
+        super(activity, e6Var, boVar2);
+        this.f40222s = boVar;
     }
 }

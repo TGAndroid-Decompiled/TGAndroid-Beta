@@ -1,45 +1,72 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.view.View;
+import android.animation.ValueAnimator;
+import android.graphics.LinearGradient;
+import android.graphics.Matrix;
+import android.graphics.Paint;
+import android.graphics.PointF;
+import android.graphics.RectF;
+import android.graphics.drawable.NinePatchDrawable;
+import android.text.StaticLayout;
+import org.telegram.messenger.AnimationNotificationsLocker;
 import org.telegram.messenger.MessageObject;
-public final class ib1 extends org.telegram.ui.Components.g51 {
-    public static final int f37291b = 0;
-    public org.telegram.ui.Cells.s7 f37292a;
+public final class ib1 implements bi0 {
+    public final bo A;
+    public final LinearGradient B;
+    public final float C;
+    public final AnimationNotificationsLocker D;
+    public final MessageObject.TextLayoutBlock E;
+    public final NinePatchDrawable F;
+    public final mk G;
+    public final org.telegram.ui.Components.t5 H;
+    public float I;
+    public float J;
+    public final float K;
+    public final int L;
+    public final int M;
+    public final org.telegram.ui.ActionBar.e6 N;
+    public final PointF O;
+    public final RectF P;
+    public final RectF Q;
+    public float[] R;
+    public final float S;
+    public float f34584a;
+    public final Paint f34585b;
+    public final boolean f34586c;
+    public final ValueAnimator d;
+    public final float e;
+    public final float f34587f;
+    public final float f34588g;
+    public final int h;
+    public final int f34589i;
+    public final float f34590j;
+    public final MessageObject f34591k;
+    public final float f34592l;
+    public final float f34593m;
+    public final boolean f34594n;
+    public final boolean f34595o;
+    public final StaticLayout f34596p;
+    public final StaticLayout f34597q;
+    public final org.telegram.ui.Cells.t1 f34598r;
+    public final org.telegram.ui.Components.ll0 f34599s;
+    public final org.telegram.ui.Components.ui f34600t;
+    public final Matrix f34601u;
+    public final Paint v;
+    public final int f34602w;
+    public final float f34603x;
+    public final float f34604y;
+    public final float f34605z;
 
-    static {
-        org.telegram.ui.Components.g51.setup(new org.telegram.ui.Components.g51());
+    public ib1(org.telegram.ui.Cells.t1 r35, org.telegram.ui.bo r36, org.telegram.ui.Components.ll0 r37, org.telegram.ui.Components.ui r38, org.telegram.ui.ActionBar.e6 r39) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ib1.<init>(org.telegram.ui.Cells.t1, org.telegram.ui.bo, org.telegram.ui.Components.ll0, org.telegram.ui.Components.ui, org.telegram.ui.ActionBar.e6):void");
     }
 
     @Override
-    public final void attachedView(org.telegram.ui.Components.ll0 ll0Var, View view, org.telegram.ui.Components.h51 h51Var) {
-        ((org.telegram.ui.Cells.t7) view).l(h51Var.h, false);
+    public final void a(android.graphics.Canvas r58) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ib1.a(android.graphics.Canvas):void");
     }
 
-    @Override
-    public final void bindView(View view, org.telegram.ui.Components.h51 h51Var, boolean z10, org.telegram.ui.Components.v51 v51Var, org.telegram.ui.Components.d61 d61Var) {
-        org.telegram.ui.Cells.t7 t7Var = (org.telegram.ui.Cells.t7) view;
-        t7Var.k((MessageObject) h51Var.G, h51Var.v, false);
-        t7Var.i(h51Var.f26588e, false);
-        t7Var.l(h51Var.h, false);
-    }
-
-    @Override
-    public final View createView(Context context, org.telegram.ui.Components.ll0 ll0Var, int i10, int i11, org.telegram.ui.ActionBar.f6 f6Var) {
-        if (this.f37292a == null) {
-            this.f37292a = new org.telegram.ui.Cells.s7(context, f6Var);
-        }
-        org.telegram.ui.Cells.t7 t7Var = new org.telegram.ui.Cells.t7(context, this.f37292a, i10);
-        t7Var.f23288w0 = true;
-        t7Var.f23264d0 = true;
-        return t7Var;
-    }
-
-    @Override
-    public final boolean equals(org.telegram.ui.Components.h51 h51Var, org.telegram.ui.Components.h51 h51Var2) {
-        if (h51Var.f26599q == h51Var2.f26599q && h51Var.f26588e == h51Var2.f26588e && h51Var.B == h51Var2.B) {
-            return true;
-        }
-        return false;
+    public final int b(int i10) {
+        return org.telegram.ui.ActionBar.i6.v0(i10, this.N);
     }
 }

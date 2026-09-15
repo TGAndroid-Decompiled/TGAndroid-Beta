@@ -5,14 +5,14 @@ import android.graphics.Canvas;
 import android.os.SystemClock;
 import org.telegram.messenger.AndroidUtilities;
 public final class jg0 extends ll0 {
-    public final yf.z X2;
+    public final yf.y X2;
     public long Y2;
     public final pg0 Z2;
 
     public jg0(pg0 pg0Var, Context context) {
         super(context, null);
         this.Z2 = pg0Var;
-        this.X2 = new yf.z(8);
+        this.X2 = new yf.y(8);
     }
 
     @Override
@@ -45,16 +45,16 @@ public final class jg0 extends ll0 {
             }
             pg0Var.I.setTranslate(f7, 0.0f);
             pg0Var.H.setLocalMatrix(pg0Var.I);
-            e1();
+            f1();
             invalidate();
         }
         super.dispatchDraw(canvas);
         int measuredHeight = getMeasuredHeight() - AndroidUtilities.navigationBarHeight;
         int measuredWidth = getMeasuredWidth();
         int measuredHeight2 = getMeasuredHeight();
-        yf.z zVar = this.X2;
-        zVar.setBounds(0, measuredHeight, measuredWidth, measuredHeight2);
-        zVar.b(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f20752i5, this.f28224p2));
-        zVar.draw(canvas);
+        yf.y yVar = this.X2;
+        yVar.setBounds(0, measuredHeight, measuredWidth, measuredHeight2);
+        yVar.b(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f18925i5, this.f25966p2));
+        yVar.draw(canvas);
     }
 }

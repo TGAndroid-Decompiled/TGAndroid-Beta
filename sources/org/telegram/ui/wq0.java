@@ -1,52 +1,45 @@
 package org.telegram.ui;
 
+import android.content.Context;
 import android.view.View;
-import org.telegram.messenger.MediaController;
-public final class wq0 implements org.telegram.ui.Components.ml0 {
-    public final br0 f42461a;
+import org.telegram.messenger.AndroidUtilities;
+public final class wq0 extends org.telegram.ui.Components.t00 {
+    public final int U;
 
-    public wq0(br0 br0Var) {
-        this.f42461a = br0Var;
+    public wq0(Context context, int i10, org.telegram.ui.ActionBar.e6 e6Var) {
+        super(context, e6Var);
+        this.U = i10;
     }
 
     @Override
-    public final void a(boolean z10) {
-        org.telegram.ui.ActionBar.d5 d5Var;
-        br0 br0Var = this.f42461a;
-        br0Var.W = z10 ? 1 : 0;
-        if (z10) {
-            d5Var = ((org.telegram.ui.ActionBar.n2) br0Var).parentLayout;
-            d5Var.getView().requestDisallowInterceptTouchEvent(true);
-        }
-        br0Var.K.c1(true);
-    }
-
-    @Override
-    public final boolean b(int i10) {
-        if (this.f42461a.L.j(i10) == 0) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final void c(View view, boolean z10) {
-        if (z10 == this.f42461a.X && (view instanceof org.telegram.ui.Cells.s5)) {
-            org.telegram.ui.Cells.s5 s5Var = (org.telegram.ui.Cells.s5) view;
-            s5Var.f22839w.c(s5Var);
+    public int getColumnsCount() {
+        switch (this.U) {
+            case 0:
+                return 3;
+            default:
+                return super.getColumnsCount();
         }
     }
 
     @Override
-    public final boolean d(int i10) {
-        Object obj;
-        br0 br0Var = this.f42461a;
-        MediaController.AlbumEntry albumEntry = br0Var.J;
-        if (albumEntry != null) {
-            obj = Integer.valueOf(albumEntry.photos.get(i10).imageId);
-        } else {
-            obj = ((MediaController.SearchImage) br0Var.f34890f.get(i10)).f17074id;
+    public int getViewType() {
+        switch (this.U) {
+            case 0:
+                return 2;
+            default:
+                return super.getViewType();
         }
-        return br0Var.f34883b.containsKey(obj);
+    }
+
+    @Override
+    public void onMeasure(int i10, int i11) {
+        switch (this.U) {
+            case 1:
+                setMeasuredDimension(View.MeasureSpec.getSize(i10), AndroidUtilities.dp(104.0f));
+                return;
+            default:
+                super.onMeasure(i10, i11);
+                return;
+        }
     }
 }

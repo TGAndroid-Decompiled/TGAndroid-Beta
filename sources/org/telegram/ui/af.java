@@ -1,52 +1,62 @@
 package org.telegram.ui;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapShader;
-import android.graphics.Matrix;
-import android.graphics.Paint;
-import android.graphics.Shader;
+import org.telegram.messenger.MessageSuggestionParams;
 import org.telegram.messenger.Utilities;
-public final class af implements Utilities.Callback2 {
-    public final int f34397a;
-    public final co f34398b;
+public final class af implements Utilities.Callback {
+    public final int f31803a;
+    public final bo f31804b;
 
-    public af(co coVar, int i10) {
-        this.f34397a = i10;
-        this.f34398b = coVar;
+    public af(bo boVar, int i10) {
+        this.f31803a = i10;
+        this.f31804b = boVar;
     }
 
     @Override
-    public final void run(Object obj, Object obj2) {
-        switch (this.f34397a) {
+    public final void run(Object obj) {
+        int i10 = this.f31803a;
+        bo boVar = this.f31804b;
+        switch (i10) {
             case 0:
-                co.g1(this.f34398b, (Integer) obj, (Boolean) obj2);
+                MessageSuggestionParams messageSuggestionParams = (MessageSuggestionParams) obj;
+                bo boVar2 = this.f31804b;
+                boVar2.f32317g5 = messageSuggestionParams;
+                boVar2.p5.messageOwner.suggested_post = messageSuggestionParams.toTl();
+                boVar2.yb(true, null, boVar2.p5, null, null, true, 0, null, false, 0L, null, true);
                 return;
             case 1:
-                co.O0(this.f34398b, (Long) obj, (Boolean) obj2);
+                boVar.vb(true, false);
+                if (((Boolean) obj).booleanValue()) {
+                    boVar.finishFragment();
+                    return;
+                }
                 return;
             case 2:
-                Bitmap bitmap = (Bitmap) obj;
-                co coVar = this.f34398b;
-                gh.b bVar = coVar.f35506z8;
-                bVar.a((Bitmap) obj2);
-                hh.d.c(bVar, coVar.fragmentView);
-                coVar.A8.d();
+                boVar.da((String) obj, false);
+                return;
+            case 3:
+                boVar.Db((MessageSuggestionParams) obj);
+                return;
+            case 4:
+                Long l4 = (Long) obj;
+                org.telegram.ui.Components.x21 x21Var = boVar.R1;
+                if (x21Var != null) {
+                    x21Var.m(l4.longValue(), true);
+                    return;
+                }
+                return;
+            case 5:
+                hs hsVar = boVar.f32275d0;
+                hsVar.f34332c.add(((org.telegram.ui.ActionBar.v0) obj).getIconView());
+                return;
+            case 6:
+                int intValue = ((Integer) obj).intValue();
+                int i11 = bo.Hc;
+                boVar.Ba(intValue);
                 return;
             default:
-                co coVar2 = this.f34398b;
-                coVar2.B8 = (Bitmap) obj;
-                Paint paint = new Paint(1);
-                coVar2.D8 = paint;
-                Bitmap bitmap2 = coVar2.B8;
-                Shader.TileMode tileMode = Shader.TileMode.CLAMP;
-                BitmapShader bitmapShader = new BitmapShader(bitmap2, tileMode, tileMode);
-                coVar2.C8 = bitmapShader;
-                paint.setShader(bitmapShader);
-                coVar2.E8 = new Matrix();
-                gh.b bVar2 = coVar2.f35506z8;
-                bVar2.a((Bitmap) obj2);
-                hh.d.c(bVar2, coVar2.fragmentView);
-                coVar2.A8.d();
+                int intValue2 = ((Integer) obj).intValue();
+                int i12 = bo.Hc;
+                boVar.Ba(intValue2);
                 return;
         }
     }

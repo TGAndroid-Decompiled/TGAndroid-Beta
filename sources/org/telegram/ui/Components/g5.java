@@ -1,51 +1,28 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-import android.widget.FrameLayout;
-import org.telegram.messenger.AndroidUtilities;
-public final class g5 extends FrameLayout {
-    public boolean f26254a;
-    public int f26255b;
-    public q6 f26256c;
-    public q6 d;
+import org.telegram.tgnet.TLRPC;
+public final class g5 implements l5 {
+    public final int f24195a;
+    public final o5 f24196b;
 
-    public q6 getSubtitleTextView() {
-        return this.d;
-    }
-
-    public q6 getTitle() {
-        return this.f26256c;
+    public g5(o5 o5Var, int i10) {
+        this.f24195a = i10;
+        this.f24196b = o5Var;
     }
 
     @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        int i14;
-        q6 q6Var = this.d;
-        q6 q6Var2 = this.f26256c;
-        int y3 = org.telegram.messenger.vl.y(42.0f, org.telegram.ui.ActionBar.k.getCurrentActionBarHeight(), 2);
-        if (this.f26254a) {
-            i14 = AndroidUtilities.statusBarHeight;
-        } else {
-            i14 = 0;
+    public final void a(TLRPC.Document document) {
+        switch (this.f24195a) {
+            case 0:
+                o5 o5Var = this.f24196b;
+                o5Var.e = document;
+                o5Var.j(false);
+                return;
+            default:
+                o5 o5Var2 = this.f24196b;
+                o5Var2.e = document;
+                o5Var2.j(false);
+                return;
         }
-        int i15 = y3 + i14;
-        int i16 = this.f26255b;
-        if (q6Var.getVisibility() != 8) {
-            q6Var2.layout(i16, (AndroidUtilities.dp(1.0f) + i15) - q6Var2.getPaddingTop(), q6Var2.getMeasuredWidth() + i16, q6Var2.getPaddingBottom() + ((AndroidUtilities.dp(1.3f) + (q6Var2.getTextHeight() + i15)) - q6Var2.getPaddingTop()));
-        } else {
-            q6Var2.layout(i16, (AndroidUtilities.dp(11.0f) + i15) - q6Var2.getPaddingTop(), q6Var2.getMeasuredWidth() + i16, q6Var2.getPaddingBottom() + ((AndroidUtilities.dp(11.0f) + (q6Var2.getTextHeight() + i15)) - q6Var2.getPaddingTop()));
-        }
-        q6Var.layout(i16, AndroidUtilities.dp(20.0f) + i15, q6Var.getMeasuredWidth() + i16, AndroidUtilities.dp(24.0f) + q6Var.getTextHeight() + i15);
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        int size = View.MeasureSpec.getSize(i10);
-        q6 q6Var = this.f26256c;
-        int paddingRight = q6Var.getPaddingRight() + size;
-        int dp = paddingRight - AndroidUtilities.dp(16.0f);
-        q6Var.measure(View.MeasureSpec.makeMeasureSpec(dp, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(q6Var.getPaddingRight() + AndroidUtilities.dp(32.0f), Integer.MIN_VALUE));
-        this.d.measure(View.MeasureSpec.makeMeasureSpec(dp, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(20.0f), Integer.MIN_VALUE));
-        setMeasuredDimension(paddingRight, View.MeasureSpec.getSize(i11));
     }
 }

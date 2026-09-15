@@ -9,12 +9,12 @@ public abstract class i7 {
         } catch (Throwable th2) {
             vVar = new zd.v(th2, false);
         }
-        jd.a aVar = jd.a.f13614a;
-        if (vVar != aVar && (B = sVar.B(vVar)) != zd.e0.f51538e) {
+        jd.a aVar = jd.a.f12967a;
+        if (vVar != aVar && (B = sVar.B(vVar)) != zd.e0.e) {
             if (!(B instanceof zd.v)) {
                 return zd.e0.u(B);
             }
-            throw ((zd.v) B).f51607a;
+            throw ((zd.v) B).f48938a;
         }
         return aVar;
     }

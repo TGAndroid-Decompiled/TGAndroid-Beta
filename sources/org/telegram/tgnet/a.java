@@ -1,23 +1,23 @@
 package org.telegram.tgnet;
 public final class a implements Runnable {
-    public final int f20025a;
-    public final ConnectionsManager f20026b;
-    public final int f20027c;
+    public final int f18268a;
+    public final ConnectionsManager f18269b;
+    public final int f18270c;
 
     public a(ConnectionsManager connectionsManager, int i10, int i11) {
-        this.f20025a = i11;
-        this.f20026b = connectionsManager;
-        this.f20027c = i10;
+        this.f18268a = i11;
+        this.f18269b = connectionsManager;
+        this.f18270c = i10;
     }
 
     @Override
     public final void run() {
-        switch (this.f20025a) {
+        switch (this.f18268a) {
             case 0:
-                this.f20026b.lambda$failNotRunningRequest$1(this.f20027c);
+                this.f18269b.lambda$failNotRunningRequest$1(this.f18270c);
                 return;
             default:
-                this.f20026b.lambda$cancelRequestsForGuid$11(this.f20027c);
+                this.f18269b.lambda$cancelRequestsForGuid$11(this.f18270c);
                 return;
         }
     }

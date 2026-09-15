@@ -4,38 +4,38 @@ import android.util.Log;
 import android.util.LongSparseArray;
 import java.lang.reflect.Field;
 public abstract class k7 {
-    public static Field f47507a;
-    public static boolean f47508b;
-    public static Class f47509c;
+    public static Field f44032a;
+    public static boolean f44033b;
+    public static Class f44034c;
     public static boolean d;
-    public static Field f47510e;
-    public static boolean f47511f;
-    public static Field f47512g;
+    public static Field e;
+    public static boolean f44035f;
+    public static Field f44036g;
     public static boolean h;
 
     public static void a(Object obj) {
         LongSparseArray longSparseArray;
         if (!d) {
             try {
-                f47509c = Class.forName("android.content.res.ThemedResourceCache");
+                f44034c = Class.forName("android.content.res.ThemedResourceCache");
             } catch (ClassNotFoundException e7) {
                 Log.e("ResourcesFlusher", "Could not find ThemedResourceCache class", e7);
             }
             d = true;
         }
-        Class cls = f47509c;
+        Class cls = f44034c;
         if (cls != null) {
-            if (!f47511f) {
+            if (!f44035f) {
                 try {
                     Field declaredField = cls.getDeclaredField("mUnthemedEntries");
-                    f47510e = declaredField;
+                    e = declaredField;
                     declaredField.setAccessible(true);
                 } catch (NoSuchFieldException e10) {
                     Log.e("ResourcesFlusher", "Could not retrieve ThemedResourceCache#mUnthemedEntries field", e10);
                 }
-                f47511f = true;
+                f44035f = true;
             }
-            Field field = f47510e;
+            Field field = e;
             if (field != null) {
                 try {
                     longSparseArray = (LongSparseArray) field.get(obj);

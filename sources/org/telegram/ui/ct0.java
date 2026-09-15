@@ -1,74 +1,153 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.PointF;
-import android.view.animation.DecelerateInterpolator;
-import android.view.animation.LinearInterpolator;
-public final class ct0 extends s4.y0 {
-    public final float f35533k;
-    public final LinearInterpolator f35531i = new LinearInterpolator();
-    public final DecelerateInterpolator f35532j = new DecelerateInterpolator(1.5f);
-    public int f35534l = 0;
-    public int f35535m = 0;
+import android.graphics.Canvas;
+import android.graphics.Path;
+import android.graphics.RectF;
+import android.view.ContextThemeWrapper;
+import android.widget.FrameLayout;
+import org.telegram.messenger.SharedConfig;
+public final class ct0 extends org.telegram.ui.Components.jd {
+    public final Path f32853t1;
+    public final PhotoViewer f32854u1;
 
-    public ct0(Context context) {
-        this.f35533k = 25.0f / context.getResources().getDisplayMetrics().densityDpi;
+    public ct0(PhotoViewer photoViewer, ContextThemeWrapper contextThemeWrapper, cv0 cv0Var, org.telegram.ui.Components.pv0 pv0Var, FrameLayout frameLayout, org.telegram.ui.ActionBar.e6 e6Var, org.telegram.ui.Components.ha haVar, ir0 ir0Var) {
+        super(contextThemeWrapper, cv0Var, pv0Var, frameLayout, e6Var, haVar, ir0Var);
+        this.f32854u1 = photoViewer;
+        this.f32853t1 = new Path();
     }
 
     @Override
-    public final PointF a(int i10) {
-        s4.o0 o0Var = this.f45908c;
-        if (o0Var instanceof s4.c0) {
-            return ((s4.c0) o0Var).E0(i10);
+    public final void A() {
+        PhotoViewer.W(this.f32854u1);
+    }
+
+    @Override
+    public final void B() {
+        z();
+        bt0 bt0Var = this.f32854u1.U1;
+        if (bt0Var != null) {
+            bt0Var.z();
         }
-        return null;
     }
 
     @Override
-    public final void d(int i10, int i11, s4.x0 x0Var) {
-        if (this.f45907b.f1896x.r() == 0) {
-            h();
+    public final boolean G() {
+        bv0 bv0Var = this.f32854u1.d;
+        if (bv0Var != null && bv0Var.l()) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public final boolean e() {
+        PhotoViewer photoViewer = this.f32854u1;
+        org.telegram.ui.Components.oc ocVar = photoViewer.f31020n7;
+        if (ocVar != null && org.telegram.ui.Components.oc.f26747w == ocVar) {
+            return false;
+        }
+        return photoViewer.T2(photoViewer.f30936e0);
+    }
+
+    @Override
+    public final boolean g() {
+        return true;
+    }
+
+    @Override
+    public final void h(org.telegram.ui.Components.la laVar, Canvas canvas, RectF rectF, float f7, boolean z10, float f10, float f11, boolean z11) {
+        int i10;
+        int i11;
+        boolean z12;
+        canvas.save();
+        Path path = this.f32853t1;
+        path.rewind();
+        path.addRoundRect(rectF, f7, f7, Path.Direction.CW);
+        canvas.clipPath(path);
+        PhotoViewer photoViewer = this.f32854u1;
+        if (z11) {
+            canvas.translate(((-getX()) - photoViewer.Y1.getX()) + f10, ((-getY()) - photoViewer.Y1.getY()) + f11);
+        } else {
+            canvas.translate(f10, f11);
+        }
+        if (z10) {
+            i10 = -8882056;
+        } else {
+            i10 = -14277082;
+        }
+        int l1 = org.telegram.ui.ActionBar.i6.l1(1.0f, i10);
+        if (z11) {
+            if (z10) {
+                i11 = 0;
+            } else {
+                i11 = 855638016;
+            }
+        } else {
+            i11 = 1140850688;
+        }
+        int l12 = org.telegram.ui.ActionBar.i6.l1(1.0f, i11);
+        boolean z13 = !z10;
+        if (!z10 && z11) {
+            z12 = true;
+        } else {
+            z12 = false;
+        }
+        photoViewer.T0(canvas, laVar, l1, l12, false, z13, z12);
+        canvas.restore();
+    }
+
+    @Override
+    public final void invalidate() {
+        int i10;
+        if (SharedConfig.photoViewerBlur && ((i10 = this.f32854u1.f31017n4) == 1 || i10 == 2 || i10 == 3)) {
             return;
         }
-        int i12 = this.f35534l;
-        int i13 = i12 - i10;
-        int i14 = 0;
-        if (i12 * i13 <= 0) {
-            i13 = 0;
+        super.invalidate();
+    }
+
+    @Override
+    public final boolean l(float f7, float f10) {
+        if (!this.f5001p0 && this.f32854u1.f31080u4 != 0) {
+            return true;
         }
-        this.f35534l = i13;
-        int i15 = this.f35535m;
-        int i16 = i15 - i11;
-        if (i15 * i16 > 0) {
-            i14 = i16;
-        }
-        this.f35535m = i14;
-        if (i13 == 0 && i14 == 0) {
-            PointF a2 = a(this.f45906a);
-            if (a2 != null && (a2.x != 0.0f || a2.y != 0.0f)) {
-                s4.y0.b(a2);
-                this.f35534l = (int) (a2.x * 10000.0f);
-                this.f35535m = (int) (a2.y * 10000.0f);
-                x0Var.b((int) (this.f35534l * 1.2f), (int) (this.f35535m * 1.2f), (int) (((int) Math.ceil(Math.abs(10000) * this.f35533k)) * 1.2f), this.f35531i);
-                return;
+        return false;
+    }
+
+    @Override
+    public final void w() {
+        boolean z10 = true;
+        this.M.setReversed(true);
+        this.M.getAdapter().f9812c = false;
+        this.M.getAdapter().d = false;
+        this.M.getAdapter().e = false;
+        PhotoViewer photoViewer = this.f32854u1;
+        if (photoViewer.l4 != null) {
+            this.M.getAdapter().m0 = false;
+            this.M.getAdapter().W(photoViewer.l4.Z7);
+            gg.k1 adapter = this.M.getAdapter();
+            if (photoViewer.l4.e == null) {
+                z10 = false;
             }
-            x0Var.d = this.f45906a;
-            h();
+            adapter.f9815e0 = z10;
+        } else {
+            this.M.getAdapter().m0 = true;
+            this.M.getAdapter().W(null);
+            this.M.getAdapter().f9815e0 = false;
         }
+        this.M.getAdapter().f9817f0 = false;
+        this.M.setLayoutParams(w7.x5.e(-1, -1, 51));
     }
 
     @Override
-    public final void f() {
-        this.f35535m = 0;
-        this.f35534l = 0;
+    public final void x(int r4) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ct0.x(int):void");
     }
 
     @Override
-    public final void g(android.view.View r8, s4.x0 r9) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ct0.g(android.view.View, s4.x0):void");
-    }
-
-    @Override
-    public final void e() {
+    public final void y() {
+        ci.i iVar = this.M;
+        if (iVar != null) {
+            iVar.setTranslationY(getEditTextHeight());
+        }
     }
 }

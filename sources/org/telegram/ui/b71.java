@@ -1,53 +1,63 @@
 package org.telegram.ui;
 
-import android.view.View;
-import java.util.List;
-import org.telegram.messenger.MediaDataController;
-import org.telegram.tgnet.TLRPC;
-public final class b71 implements Runnable {
-    public final int f34643a;
-    public final f71 f34644b;
-    public final Integer f34645c;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.NotificationCenter;
+public final class b71 extends AnimatorListenerAdapter {
+    public final boolean f32071a;
+    public final Runnable f32072b;
+    public final boolean[] f32073c;
+    public final boolean d;
+    public final Runnable e;
+    public final c71 f32074f;
 
-    public b71(f71 f71Var, Integer num, int i10) {
-        this.f34643a = i10;
-        this.f34644b = f71Var;
-        this.f34645c = num;
+    public b71(c71 c71Var, boolean z10, Runnable runnable, boolean[] zArr, boolean z11, Runnable runnable2) {
+        this.f32074f = c71Var;
+        this.f32071a = z10;
+        this.f32072b = runnable;
+        this.f32073c = zArr;
+        this.d = z11;
+        this.e = runnable2;
     }
 
     @Override
-    public final void run() {
-        int i10 = this.f34643a;
-        f71 f71Var = this.f34644b;
-        switch (i10) {
-            case 0:
-                f71.a(f71Var, this.f34645c);
-                return;
-            default:
-                f71Var.getClass();
-                Integer num = this.f34645c;
-                if (num != null) {
-                    try {
-                        f71Var.P.performHapticFeedback(0, 1);
-                    } catch (Exception unused) {
-                    }
-                    y51 y51Var = (y51) f71Var;
-                    z51 z51Var = y51Var.S;
-                    j71 j71Var = z51Var.f43298e;
-                    List list = j71.Z1;
-                    j71Var.l();
-                    TLRPC.TL_emojiStatus tL_emojiStatus = new TLRPC.TL_emojiStatus();
-                    View view = y51Var.Q;
-                    long j3 = ((s61) view).f40318e.documentId;
-                    tL_emojiStatus.document_id = j3;
-                    z51Var.f43298e.p(view, Long.valueOf(j3), ((s61) y51Var.Q).f40318e.document, y51Var.R, num);
-                    if (y51Var.R == null) {
-                        MediaDataController.getInstance(z51Var.f43298e.V).pushRecentEmojiStatus(tL_emojiStatus);
-                        return;
-                    }
-                    return;
-                }
-                return;
+    public final void onAnimationEnd(Animator animator) {
+        float f7;
+        Runnable runnable;
+        c71 c71Var = this.f32074f;
+        j0 j0Var = c71Var.f32704s;
+        boolean z10 = this.f32071a;
+        if (z10) {
+            f7 = 1.0f;
+        } else {
+            f7 = 0.0f;
+        }
+        c71Var.I = f7;
+        AndroidUtilities.lerp(c71Var.f32700c, c71Var.d, f7, c71Var.e);
+        j0Var.invalidate();
+        if (!z10) {
+            c71Var.v.setAlpha(c71Var.I);
+        }
+        if (c71Var.I < 0.5f && !z10 && (runnable = this.f32072b) != null) {
+            boolean[] zArr = this.f32073c;
+            if (!zArr[0]) {
+                zArr[0] = true;
+                runnable.run();
+            }
+        }
+        if (!z10) {
+            if (this.d) {
+                c71Var.f32698a.f36445b = false;
+                c71Var.P.f33796h0.invalidate();
+            }
+            NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.startAllHeavyOperations, 4);
+        }
+        c71Var.K = null;
+        j0Var.invalidate();
+        Runnable runnable2 = this.e;
+        if (runnable2 != null) {
+            runnable2.run();
         }
     }
 }

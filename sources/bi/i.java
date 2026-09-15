@@ -1,107 +1,101 @@
 package bi;
 
-import di.fc;
-import di.kc;
-import di.pc;
-import org.telegram.messenger.ChannelBoostsController;
-import org.telegram.messenger.MessagesController;
-import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.xo;
-public final class i implements e2.h {
-    public final int f3078a;
-    public final long f3079b;
-    public final Object f3080c;
-    public final Object d;
-    public final Object f3081e;
+import android.view.View;
+import android.view.accessibility.AccessibilityNodeInfo;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.Cells.u7;
+import org.telegram.ui.Components.e61;
+import org.telegram.ui.Components.jv0;
+import org.telegram.ui.Components.nz;
+import s4.z0;
+public final class i extends nz {
+    public final int X = 0;
+    public final Object Y;
 
-    public i(Object obj, Object obj2, long j3, Object obj3, int i10) {
-        this.f3078a = i10;
-        this.f3080c = obj;
-        this.d = obj2;
-        this.f3079b = j3;
-        this.f3081e = obj3;
+    public i() {
+        super(100, false);
+        this.Y = new Object();
     }
 
     @Override
-    public final void accept(Object obj) {
-        g gVar;
-        int i10 = this.f3078a;
-        long j3 = this.f3079b;
-        Object obj2 = this.f3081e;
-        Object obj3 = this.d;
-        Object obj4 = this.f3080c;
-        switch (i10) {
+    public int A() {
+        switch (this.X) {
             case 0:
-                v vVar = (v) obj4;
-                u uVar = (u) obj2;
-                ((org.telegram.ui.ActionBar.b2) obj3).dismiss();
-                if (((Boolean) obj).booleanValue()) {
-                    pc E = pc.E(vVar.f3854e0.getParentActivity(), vVar.f3855f);
-                    E.N = j3;
-                    fc fcVar = E.f7850c1;
-                    if (fcVar != null) {
-                        fcVar.setDialogId(j3);
-                    }
-                    E.M = false;
-                    E.R(kc.c(uVar));
-                    return;
-                }
-                return;
-            case 1:
-                u8 u8Var = (u8) obj4;
-                e2.h hVar = (e2.h) obj3;
-                MessagesController messagesController = (MessagesController) obj2;
-                TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus = (TL_stories.TL_premium_boostsStatus) obj;
-                if (tL_premium_boostsStatus == null) {
-                    hVar.accept(Boolean.FALSE);
-                    return;
-                }
-                ChannelBoostsController boostsController = messagesController.getBoostsController();
-                long j10 = this.f3079b;
-                boostsController.userCanBoostChannel(j10, tL_premium_boostsStatus, new i(u8Var, hVar, j10, tL_premium_boostsStatus, 2));
-                hVar.accept(Boolean.FALSE);
-                return;
-            case 2:
-                u8 u8Var2 = (u8) obj4;
-                e2.h hVar2 = (e2.h) obj3;
-                TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus2 = (TL_stories.TL_premium_boostsStatus) obj2;
-                ChannelBoostsController.CanApplyBoost canApplyBoost = (ChannelBoostsController.CanApplyBoost) obj;
-                if (canApplyBoost == null) {
-                    hVar2.accept(Boolean.FALSE);
-                    return;
-                }
-                org.telegram.ui.ActionBar.n2 R = LaunchActivity.R();
-                if (u8Var2.j(j3)) {
-                    gVar = new g(u8Var2, j3, 3);
+                return 0;
+            default:
+                return super.A();
+        }
+    }
+
+    @Override
+    public jv0 D1(int i10) {
+        switch (this.X) {
+            case 0:
+                jv0 jv0Var = (jv0) this.Y;
+                jv0Var.f25444b = 100.0f;
+                jv0Var.f25443a = 100.0f;
+                return jv0Var;
+            default:
+                return super.D1(i10);
+        }
+    }
+
+    @Override
+    public void U(of.e eVar, z0 z0Var, View view, s0.c cVar) {
+        n7.b bVar;
+        switch (this.X) {
+            case 0:
+                super.U(eVar, z0Var, view, cVar);
+                AccessibilityNodeInfo accessibilityNodeInfo = cVar.f42624a;
+                AccessibilityNodeInfo.CollectionItemInfo collectionItemInfo = accessibilityNodeInfo.getCollectionItemInfo();
+                if (collectionItemInfo != null) {
+                    bVar = new n7.b(collectionItemInfo);
                 } else {
-                    gVar = null;
+                    bVar = null;
                 }
-                int i11 = sg.k0.V0;
-                if (R != null && tL_premium_boostsStatus2 != null && R.getContext() != null) {
-                    sg.k0 k0Var = new sg.k0(18, R.getCurrentAccount(), R.getContext(), R, R.getResourceProvider());
-                    k0Var.G1(canApplyBoost);
-                    k0Var.F1(tL_premium_boostsStatus2, true);
-                    k0Var.H1(j3);
-                    k0Var.Q0 = gVar;
-                    k0Var.show();
+                if (bVar != null) {
+                    Object obj = bVar.f15110a;
+                    if (((AccessibilityNodeInfo.CollectionItemInfo) obj).isHeading()) {
+                        accessibilityNodeInfo.setCollectionItemInfo(AccessibilityNodeInfo.CollectionItemInfo.obtain(((AccessibilityNodeInfo.CollectionItemInfo) obj).getRowIndex(), ((AccessibilityNodeInfo.CollectionItemInfo) obj).getRowSpan(), ((AccessibilityNodeInfo.CollectionItemInfo) obj).getColumnIndex(), ((AccessibilityNodeInfo.CollectionItemInfo) obj).getColumnSpan(), false));
+                        return;
+                    }
+                    return;
                 }
-                hVar2.accept(Boolean.FALSE);
-                return;
-            case 3:
-                xo.X((xo) obj4, (org.telegram.ui.ActionBar.b2) obj3, (TL_stories.TL_premium_boostsStatus) obj2, this.f3079b, (ChannelBoostsController.CanApplyBoost) obj);
                 return;
             default:
-                zh.w3.d0((zh.w3) obj4, (TL_stories.TL_premium_boostsStatus) obj3, this.f3079b, (MessagesController) obj2, (ChannelBoostsController.CanApplyBoost) obj);
+                super.U(eVar, z0Var, view, cVar);
                 return;
         }
     }
 
-    public i(Object obj, Object obj2, Object obj3, long j3, int i10) {
-        this.f3078a = i10;
-        this.f3080c = obj;
-        this.d = obj2;
-        this.f3081e = obj3;
-        this.f3079b = j3;
+    @Override
+    public int W0(z0 z0Var) {
+        switch (this.X) {
+            case 1:
+                if (((e61) this.Y).f23558a3) {
+                    return AndroidUtilities.displaySize.y;
+                }
+                return super.W0(z0Var);
+            default:
+                return super.W0(z0Var);
+        }
+    }
+
+    @Override
+    public void z0(z0 z0Var, int[] iArr) {
+        switch (this.X) {
+            case 0:
+                super.z0(z0Var, iArr);
+                iArr[1] = Math.max(iArr[1], u7.a(1) * 2);
+                return;
+            default:
+                super.z0(z0Var, iArr);
+                return;
+        }
+    }
+
+    public i(e61 e61Var, int i10) {
+        super(i10, false);
+        this.Y = e61Var;
     }
 }

@@ -1,217 +1,205 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.RectF;
 import android.view.View;
-import android.widget.LinearLayout;
-import org.telegram.messenger.AndroidUtilities;
-public abstract class es extends LinearLayout {
-    public final Paint f36159a;
-    public final Paint f36160b;
-    public float f36161c;
-    public boolean d;
-    public boolean f36162e;
-    public gs[] f36163f;
+import java.util.Calendar;
+import java.util.Locale;
+import java.util.regex.Pattern;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.LanguageDetector;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class es implements org.telegram.ui.Components.gv0, org.telegram.ui.Components.hv0, LanguageDetector.ExceptionCallback, org.telegram.ui.Components.qc0, org.telegram.ui.ActionBar.a2, org.telegram.ui.Components.sc0 {
+    public final int f33394a;
 
-    public es(Context context) {
-        super(context);
-        Paint paint = new Paint(1);
-        this.f36159a = paint;
-        this.f36160b = new Paint(1);
-        paint.setStyle(Paint.Style.STROKE);
-        setOrientation(0);
+    public es(int i10) {
+        this.f33394a = i10;
     }
 
-    public abstract void a();
-
-    public final void b(int i10, int i11) {
-        int i12;
-        int i13;
-        int i14;
-        gs[] gsVarArr = this.f36163f;
-        int i15 = 0;
-        if (gsVarArr == null || gsVarArr.length != i10) {
-            if (gsVarArr != null) {
-                for (gs gsVar : gsVarArr) {
-                    removeView(gsVar);
-                }
-            }
-            this.f36163f = new gs[i10];
-            for (int i16 = 0; i16 < i10; i16++) {
-                this.f36163f[i16] = new cs(this, getContext(), i16, i10);
-                this.f36163f[i16].setImeOptions(268435461);
-                this.f36163f[i16].setTextSize(1, 20.0f);
-                this.f36163f[i16].setMaxLines(1);
-                this.f36163f[i16].setTypeface(AndroidUtilities.bold());
-                this.f36163f[i16].setPadding(0, 0, 0, 0);
-                this.f36163f[i16].setGravity(17);
-                if (i11 == 3) {
-                    this.f36163f[i16].setEnabled(false);
-                    this.f36163f[i16].setInputType(0);
-                    this.f36163f[i16].setVisibility(8);
-                } else {
-                    this.f36163f[i16].setInputType(3);
-                }
-                int i17 = 10;
-                if (i11 == 10) {
-                    i12 = 42;
-                    i13 = 47;
-                } else if (i11 == 11) {
-                    i17 = 5;
-                    i12 = 28;
-                    i13 = 34;
-                } else {
-                    i17 = 7;
-                    i12 = 34;
-                    i13 = 42;
-                }
-                gs gsVar2 = this.f36163f[i16];
-                if (i16 != i10 - 1) {
-                    i14 = i17;
-                } else {
-                    i14 = 0;
-                }
-                addView(gsVar2, w7.x5.t(i12, i13, 1, 0, 0, i14, 0));
-                this.f36163f[i16].addTextChangedListener(new ds(this, i16, i10));
-                this.f36163f[i16].setOnEditorActionListener(new ia(this, 3));
-            }
-            return;
+    @Override
+    public void b(Object obj, float f7) {
+        gs gsVar = (gs) obj;
+        gsVar.e = f7;
+        if (gsVar.getParent() != null) {
+            ((View) gsVar.getParent()).invalidate();
         }
-        while (true) {
-            gs[] gsVarArr2 = this.f36163f;
-            if (i15 < gsVarArr2.length) {
-                gsVarArr2[i15].setText("");
-                i15++;
-            } else {
+    }
+
+    @Override
+    public String e(int i10) {
+        int i11;
+        switch (this.f33394a) {
+            case 4:
+                return hg.k0.i(i10, "");
+            case 5:
+                switch (i10) {
+                    case 0:
+                        return LocaleController.getString(R.string.January);
+                    case 1:
+                        return LocaleController.getString(R.string.February);
+                    case 2:
+                        return LocaleController.getString(R.string.March);
+                    case 3:
+                        return LocaleController.getString(R.string.April);
+                    case 4:
+                        return LocaleController.getString(R.string.May);
+                    case 5:
+                        return LocaleController.getString(R.string.June);
+                    case 6:
+                        return LocaleController.getString(R.string.July);
+                    case 7:
+                        return LocaleController.getString(R.string.August);
+                    case 8:
+                        return LocaleController.getString(R.string.September);
+                    case 9:
+                        return LocaleController.getString(R.string.October);
+                    case 10:
+                        return LocaleController.getString(R.string.November);
+                    default:
+                        return LocaleController.getString(R.string.December);
+                }
+            case 6:
+                return String.format("%02d", Integer.valueOf(i10));
+            case 7:
+            case 8:
+            case 18:
+            case 25:
+            default:
+                return String.format("%02d", Integer.valueOf(i10));
+            case 9:
+                if (i10 == 0) {
+                    return LocaleController.getString(R.string.MessageScheduleToday);
+                }
+                Calendar calendar = Calendar.getInstance();
+                int i12 = calendar.get(1);
+                calendar.add(6, i10);
+                long timeInMillis = calendar.getTimeInMillis();
+                int i13 = calendar.get(1);
+                if (i13 == i12 && i10 < 7) {
+                    return LocaleController.getInstance().getFormatterWeek().format(timeInMillis) + ", " + LocaleController.getInstance().getFormatterScheduleDay().format(timeInMillis);
+                } else if (i13 == i12) {
+                    return LocaleController.getInstance().getFormatterScheduleDay().format(timeInMillis);
+                } else {
+                    return LocaleController.getInstance().getFormatterScheduleYear().format(timeInMillis);
+                }
+            case 10:
+                return String.format("%02d", Integer.valueOf(i10));
+            case 11:
+                return String.format("%02d", Integer.valueOf(i10));
+            case 12:
+                Calendar calendar2 = Calendar.getInstance();
+                calendar2.set(5, 1);
+                calendar2.set(2, i10);
+                return calendar2.getDisplayName(2, 1, Locale.getDefault());
+            case 13:
+                return String.format("%02d", Integer.valueOf(i10));
+            case 14:
+                return String.format("%02d", Integer.valueOf(i10));
+            case 15:
+                if (i10 == 0) {
+                    return LocaleController.getString(R.string.MessageScheduleToday);
+                }
+                Calendar calendar3 = Calendar.getInstance();
+                int i14 = calendar3.get(1);
+                calendar3.add(6, i10);
+                long timeInMillis2 = calendar3.getTimeInMillis();
+                if (calendar3.get(1) == i14) {
+                    return LocaleController.getInstance().getFormatterScheduleDay().format(timeInMillis2);
+                }
+                return LocaleController.getInstance().getFormatterScheduleYear().format(timeInMillis2);
+            case 16:
+                return String.format("%02d", Integer.valueOf(i10));
+            case 17:
+                return String.format("%02d", Integer.valueOf(i10));
+            case 19:
+                return LocaleController.formatPluralString("Times", i10 + 1, new Object[0]);
+            case 20:
+                return LocaleController.formatPluralString("Minutes", i10 + 1, new Object[0]);
+            case 21:
+                return LocaleController.getString(R.string.NotificationsFrequencyDivider);
+            case 22:
+                if (i10 == 0) {
+                    return LocaleController.getString(R.string.MessageScheduleToday);
+                }
+                Calendar calendar4 = Calendar.getInstance();
+                int i15 = calendar4.get(1);
+                calendar4.add(6, i10);
+                long timeInMillis3 = calendar4.getTimeInMillis();
+                if (calendar4.get(1) == i15) {
+                    return LocaleController.getInstance().getFormatterWeek().format(timeInMillis3) + ", " + LocaleController.getInstance().getFormatterScheduleDay().format(timeInMillis3);
+                }
+                return LocaleController.getInstance().getFormatterScheduleYear().format(timeInMillis3);
+            case 23:
+                return String.format("%02d", Integer.valueOf(i10));
+            case 24:
+                return String.format("%02d", Integer.valueOf(i10));
+            case 26:
+                boolean z10 = LocaleController.is24HourFormat;
+                int i16 = 12;
+                if (z10) {
+                    i11 = 24;
+                } else {
+                    i11 = 12;
+                }
+                int i17 = i10 % i11;
+                if (i10 % 12 != 0 || z10) {
+                    i16 = i17;
+                }
+                String format = String.format("%02d", Integer.valueOf(i16));
+                if (i10 >= 24) {
+                    return LocaleController.formatString(R.string.BusinessHoursNextDayPicker, format);
+                }
+                return format;
+            case 27:
+                return String.format("%02d", Integer.valueOf(i10));
+            case 28:
+                if (i10 == 0) {
+                    return LocaleController.getString(R.string.MessageScheduleToday);
+                }
+                Calendar calendar5 = Calendar.getInstance();
+                int i18 = calendar5.get(1);
+                calendar5.add(6, i10);
+                long timeInMillis4 = calendar5.getTimeInMillis();
+                if (calendar5.get(1) == i18) {
+                    return LocaleController.getInstance().getFormatterWeek().format(timeInMillis4) + ", " + LocaleController.getInstance().getFormatterScheduleDay().format(timeInMillis4);
+                }
+                return LocaleController.getInstance().getFormatterScheduleYear().format(timeInMillis4);
+        }
+    }
+
+    @Override
+    public void f(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
+        switch (this.f33394a) {
+            case 7:
+                b2Var.dismiss();
                 return;
-            }
-        }
-    }
-
-    public final void c(String str, boolean z10) {
-        if (this.f36163f != null) {
-            int i10 = 0;
-            if (z10) {
-                int i11 = 0;
-                while (true) {
-                    gs[] gsVarArr = this.f36163f;
-                    if (i11 >= gsVarArr.length) {
-                        break;
-                    } else if (gsVarArr[i11].isFocused()) {
-                        i10 = i11;
-                        break;
-                    } else {
-                        i11++;
-                    }
-                }
-            }
-            for (int i12 = i10; i12 < Math.min(this.f36163f.length, str.length() + i10); i12++) {
-                this.f36163f[i12].setText(Character.toString(str.charAt(i12 - i10)));
-            }
+            case 18:
+                b2Var.dismiss();
+                return;
+            default:
+                b2Var.dismiss();
+                return;
         }
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        for (int i10 = 0; i10 < getChildCount(); i10++) {
-            View childAt = getChildAt(i10);
-            if (childAt instanceof gs) {
-                gs gsVar = (gs) childAt;
-                if (!this.f36162e) {
-                    if (childAt.isFocused()) {
-                        gsVar.j(1.0f);
-                    } else if (!childAt.isFocused()) {
-                        gsVar.j(0.0f);
-                    }
-                }
-                float successProgress = gsVar.getSuccessProgress();
-                int d = i0.a.d(successProgress, i0.a.d(gsVar.getErrorProgress(), i0.a.d(gsVar.getFocusedProgress(), org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f20791k6, false), org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f20809l6, false)), org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f20898q7, false)), org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f20754i7, false));
-                Paint paint = this.f36159a;
-                paint.setColor(d);
-                RectF rectF = AndroidUtilities.rectTmp;
-                rectF.set(childAt.getLeft(), childAt.getTop(), childAt.getRight(), childAt.getBottom());
-                float f7 = this.f36161c;
-                rectF.inset(f7, f7);
-                if (successProgress != 0.0f) {
-                    float f10 = -Math.max(0.0f, (gsVar.getSuccessScaleProgress() - 1.0f) * this.f36161c);
-                    rectF.inset(f10, f10);
-                }
-                canvas.drawRoundRect(rectF, AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), paint);
-            }
-        }
-        super.dispatchDraw(canvas);
+    public float get(Object obj) {
+        return ((gs) obj).e;
     }
 
     @Override
-    public final boolean drawChild(Canvas canvas, View view, long j3) {
-        if (view instanceof gs) {
-            gs gsVar = (gs) view;
-            canvas.save();
-            float f7 = gsVar.v;
-            RectF rectF = AndroidUtilities.rectTmp;
-            rectF.set(view.getX(), view.getY(), view.getX() + view.getMeasuredWidth(), view.getY() + view.getMeasuredHeight());
-            float f10 = this.f36161c;
-            rectF.inset(f10, f10);
-            canvas.clipRect(rectF);
-            if (gsVar.f36770x) {
-                float f11 = (f7 * 0.5f) + 0.5f;
-                view.setAlpha(f7);
-                canvas.scale(f11, f11, (gsVar.getMeasuredWidth() / 2.0f) + gsVar.getX(), (gsVar.getMeasuredHeight() / 2.0f) + gsVar.getY());
-            } else {
-                view.setAlpha(1.0f);
-                canvas.translate(0.0f, (1.0f - f7) * view.getMeasuredHeight());
-            }
-            super.drawChild(canvas, view, j3);
-            canvas.restore();
-            float f12 = gsVar.f36769w;
-            if (f12 < 1.0f) {
-                canvas.save();
-                float f13 = 1.0f - f12;
-                float f14 = (f13 * 0.5f) + 0.5f;
-                canvas.scale(f14, f14, (gsVar.getMeasuredWidth() / 2.0f) + gsVar.getX(), (gsVar.getMeasuredHeight() / 2.0f) + gsVar.getY());
-                Paint paint = this.f36160b;
-                paint.setAlpha((int) (f13 * 255.0f));
-                canvas.drawBitmap(gsVar.f36771y, gsVar.getX(), gsVar.getY(), paint);
-                canvas.restore();
-                return true;
-            }
-            return true;
-        }
-        return super.drawChild(canvas, view, j3);
-    }
-
-    public String getCode() {
-        if (this.f36163f == null) {
-            return "";
-        }
-        StringBuilder sb2 = new StringBuilder();
-        int i10 = 0;
-        while (true) {
-            gs[] gsVarArr = this.f36163f;
-            if (i10 < gsVarArr.length) {
-                sb2.append(gf.b.d(gsVarArr[i10].getText().toString(), false));
-                i10++;
-            } else {
-                return sb2.toString();
-            }
-        }
+    public void q(org.telegram.ui.Components.uc0 uc0Var, int i10) {
+        Pattern pattern = org.telegram.ui.Components.c5.f22946a;
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(i10, i11);
-        float dp = AndroidUtilities.dp(1.5f);
-        this.f36161c = dp;
-        this.f36159a.setStrokeWidth(dp);
-    }
-
-    public void setCode(String str) {
-        this.f36163f[0].setText(str);
-    }
-
-    public void setText(String str) {
-        c(str, false);
+    public void run(Exception exc) {
+        switch (this.f33394a) {
+            case 2:
+                FileLog.e(exc);
+                return;
+            default:
+                FileLog.e(exc);
+                return;
+        }
     }
 }

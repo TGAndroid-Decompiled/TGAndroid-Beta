@@ -3,12 +3,12 @@ package org.telegram.ui;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.Utilities;
 public final class og0 implements Utilities.Callback3 {
-    public final int f39241a;
-    public final NotificationCenter.NotificationCenterDelegate f39242b;
+    public final int f36210a;
+    public final NotificationCenter.NotificationCenterDelegate f36211b;
 
     public og0(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, int i10) {
-        this.f39241a = i10;
-        this.f39242b = notificationCenterDelegate;
+        this.f36210a = i10;
+        this.f36211b = notificationCenterDelegate;
     }
 
     @Override

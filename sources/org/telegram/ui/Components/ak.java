@@ -3,28 +3,28 @@ package org.telegram.ui.Components;
 import android.animation.ValueAnimator;
 import android.widget.FrameLayout;
 public final class ak implements ValueAnimator.AnimatorUpdateListener {
-    public final int f24411a;
-    public final int f24412b;
-    public final float f24413c;
+    public final int f22430a;
+    public final int f22431b;
+    public final float f22432c;
     public final FrameLayout d;
 
     public ak(FrameLayout frameLayout, int i10, float f7, int i11) {
-        this.f24411a = i11;
+        this.f22430a = i11;
         this.d = frameLayout;
-        this.f24412b = i10;
-        this.f24413c = f7;
+        this.f22431b = i10;
+        this.f22432c = f7;
     }
 
     @Override
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f24411a) {
+        switch (this.f22430a) {
             case 0:
                 ok okVar = (ok) this.d;
-                dk dkVar = okVar.f29092r;
-                dk dkVar2 = okVar.f29093s;
+                dk dkVar = okVar.f26824r;
+                dk dkVar2 = okVar.f26825s;
                 float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                int i10 = this.f24412b;
-                float f7 = this.f24413c;
+                int i10 = this.f22431b;
+                float f7 = this.f22432c;
                 if (i10 == 1) {
                     dkVar.setTranslationX(f7 * floatValue);
                     dkVar.setAlpha(1.0f - floatValue);
@@ -45,12 +45,12 @@ public final class ak implements ValueAnimator.AnimatorUpdateListener {
                 dkVar2.invalidate();
                 return;
             default:
-                qb0 qb0Var = (qb0) this.d;
+                pb0 pb0Var = (pb0) this.d;
                 float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 float f12 = 1.0f - floatValue2;
-                int i11 = (int) ((qb0Var.R * floatValue2) + (this.f24412b * f12));
-                qb0Var.T = i11;
-                qb0Var.e((qb0Var.S * floatValue2) + (this.f24413c * f12), i11);
+                int i11 = (int) ((pb0Var.R * floatValue2) + (this.f22431b * f12));
+                pb0Var.T = i11;
+                pb0Var.e((pb0Var.S * floatValue2) + (this.f22432c * f12), i11);
                 return;
         }
     }

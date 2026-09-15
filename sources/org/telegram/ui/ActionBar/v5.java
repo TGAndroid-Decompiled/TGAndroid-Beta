@@ -8,33 +8,33 @@ import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.view.View;
 public final class v5 extends Drawable {
-    public final RectF f21434a = new RectF();
-    public final View f21435b;
-    public final View f21436c;
+    public final RectF f19632a = new RectF();
+    public final View f19633b;
+    public final View f19634c;
     public final int d;
-    public final Paint f21437e;
+    public final Paint e;
 
     public v5(View view, View view2, int i10, Paint paint) {
-        this.f21435b = view;
-        this.f21436c = view2;
+        this.f19633b = view;
+        this.f19634c = view2;
         this.d = i10;
-        this.f21437e = paint;
+        this.e = paint;
     }
 
     @Override
     public final void draw(Canvas canvas) {
         Rect bounds = getBounds();
-        RectF rectF = this.f21434a;
+        RectF rectF = this.f19632a;
         rectF.set(bounds.left, bounds.top, bounds.right, bounds.bottom);
-        j6.s(this.f21435b, this.f21436c, null);
+        i6.s(this.f19633b, this.f19634c, null);
         float f7 = this.d;
-        Paint paint = this.f21437e;
+        Paint paint = this.e;
         if (paint == null) {
-            paint = j6.S0("paintChatActionBackground");
+            paint = i6.S0("paintChatActionBackground");
         }
         canvas.drawRoundRect(rectF, f7, f7, paint);
-        if (j6.a1()) {
-            canvas.drawRoundRect(rectF, f7, f7, j6.S0("paintChatActionBackgroundDarken"));
+        if (i6.a1()) {
+            canvas.drawRoundRect(rectF, f7, f7, i6.S0("paintChatActionBackgroundDarken"));
         }
     }
 

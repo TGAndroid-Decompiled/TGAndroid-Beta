@@ -2,23 +2,23 @@ package q5;
 
 import java.util.concurrent.Executor;
 import java.util.logging.Logger;
-import l5.s;
-import m2.t;
+import l5.t;
+import m.e3;
 import m5.d;
 import t5.c;
 public final class a implements b {
-    public static final Logger f44197f = Logger.getLogger(s.class.getName());
-    public final t f44198a;
-    public final Executor f44199b;
-    public final d f44200c;
+    public static final Logger f41163f = Logger.getLogger(t.class.getName());
+    public final e3 f41164a;
+    public final Executor f41165b;
+    public final d f41166c;
     public final s5.d d;
-    public final c f44201e;
+    public final c e;
 
-    public a(Executor executor, d dVar, t tVar, s5.d dVar2, c cVar) {
-        this.f44199b = executor;
-        this.f44200c = dVar;
-        this.f44198a = tVar;
+    public a(Executor executor, d dVar, e3 e3Var, s5.d dVar2, c cVar) {
+        this.f41165b = executor;
+        this.f41166c = dVar;
+        this.f41164a = e3Var;
         this.d = dVar2;
-        this.f44201e = cVar;
+        this.e = cVar;
     }
 }

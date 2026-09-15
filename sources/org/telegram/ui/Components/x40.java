@@ -3,18 +3,18 @@ package org.telegram.ui.Components;
 import android.graphics.Paint;
 import android.graphics.RectF;
 public final class x40 {
-    public long f32420a;
-    public float f32421b;
-    public float f32422c;
+    public long f29886a;
+    public float f29887b;
+    public float f29888c;
     public boolean d;
-    public float f32423e;
-    public final RectF f32424f = new RectF();
-    public int f32425g;
+    public float e;
+    public final RectF f29889f = new RectF();
+    public int f29890g;
     public final Paint h;
-    public final int f32426i;
+    public final int f29891i;
 
     public x40(int i10) {
-        this.f32426i = i10;
+        this.f29891i = i10;
         Paint paint = new Paint(1);
         this.h = paint;
         paint.setStyle(Paint.Style.STROKE);

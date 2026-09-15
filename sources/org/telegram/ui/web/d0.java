@@ -1,91 +1,75 @@
 package org.telegram.ui.web;
 
-import bi.k9;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Iterator;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.MessagesStorage;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_keyboard;
-import org.telegram.ui.eg1;
-import org.telegram.ui.oy;
-import org.telegram.ui.sj0;
-import org.telegram.ui.uy;
-public final class d0 implements sj0, oy {
-    public final d1 f42031a;
-    public final boolean[] f42032b;
-    public final String f42033c;
-    public final TL_keyboard.TL_buttonTypeRequestPeer d;
-    public final k9 f42034e;
+import ai.da;
+import android.content.DialogInterface;
+import org.telegram.messenger.Utilities;
+import yh.v5;
+public final class d0 implements DialogInterface.OnDismissListener {
+    public final int f38890a;
+    public final boolean[] f38891b;
+    public final Object f38892c;
+    public final Object d;
+    public final Object e;
 
-    public d0(d1 d1Var, boolean[] zArr, String str, TL_keyboard.TL_buttonTypeRequestPeer tL_buttonTypeRequestPeer, k9 k9Var) {
-        this.f42031a = d1Var;
-        this.f42032b = zArr;
-        this.f42033c = str;
-        this.d = tL_buttonTypeRequestPeer;
-        this.f42034e = k9Var;
+    public d0(d1 d1Var, boolean[] zArr, da daVar, String str) {
+        this.f38890a = 0;
+        this.f38892c = d1Var;
+        this.f38891b = zArr;
+        this.d = daVar;
+        this.e = str;
     }
 
     @Override
-    public boolean B() {
-        return false;
-    }
-
-    @Override
-    public boolean K(uy uyVar) {
-        return false;
-    }
-
-    @Override
-    public void a(ArrayList arrayList) {
-        if (!arrayList.isEmpty()) {
-            int i10 = 0;
-            this.f42032b[0] = true;
-            TLRPC.TL_messages_sendBotRequestedPeer tL_messages_sendBotRequestedPeer = new TLRPC.TL_messages_sendBotRequestedPeer();
-            d1 d1Var = this.f42031a;
-            MessagesController.getInstance(d1Var.M);
-            tL_messages_sendBotRequestedPeer.peer = MessagesController.getInputPeer(d1Var.U);
-            String str = this.f42033c;
-            tL_messages_sendBotRequestedPeer.webapp_req_id = str;
-            tL_messages_sendBotRequestedPeer.button_id = this.d.button_id;
-            int size = arrayList.size();
-            while (i10 < size) {
-                Object obj = arrayList.get(i10);
-                i10++;
-                tL_messages_sendBotRequestedPeer.requested_peers.add(MessagesController.getInstance(d1Var.M).getInputPeer(((Long) obj).longValue()));
-            }
-            ConnectionsManager.getInstance(d1Var.M).sendRequestTyped(tL_messages_sendBotRequestedPeer, new Object(), new w(d1Var, this.f42034e, str, 2));
+    public final void onDismiss(DialogInterface dialogInterface) {
+        switch (this.f38890a) {
+            case 0:
+                d1 d1Var = (d1) this.f38892c;
+                da daVar = (da) this.d;
+                String str = (String) this.e;
+                d1Var.getClass();
+                boolean[] zArr = this.f38891b;
+                if (!zArr[0]) {
+                    zArr[0] = true;
+                    d1Var.y(daVar, "requested_chat_failed", d1.B(str, "req_id"));
+                    return;
+                }
+                return;
+            case 1:
+                Utilities.Callback callback = (Utilities.Callback) this.f38892c;
+                boolean[] zArr2 = (boolean[]) this.d;
+                Utilities.Callback2 callback2 = (Utilities.Callback2) this.e;
+                if (callback != null && !this.f38891b[0]) {
+                    callback.run(Boolean.FALSE);
+                    if (!zArr2[0]) {
+                        callback2.run("cancelled", 0L);
+                        zArr2[0] = true;
+                        return;
+                    }
+                    return;
+                }
+                return;
+            default:
+                Utilities.Callback callback3 = (Utilities.Callback) this.f38892c;
+                boolean[] zArr3 = (boolean[]) this.d;
+                Utilities.Callback callback4 = (Utilities.Callback) this.e;
+                if (callback3 != null && !this.f38891b[0]) {
+                    callback3.run(Boolean.FALSE);
+                    if (!zArr3[0] && callback4 != null) {
+                        callback4.run("cancelled");
+                        zArr3[0] = true;
+                        return;
+                    }
+                    return;
+                }
+                return;
         }
     }
 
-    @Override
-    public boolean u(uy uyVar, ArrayList arrayList, CharSequence charSequence, boolean z10, boolean z11, int i10, int i11, eg1 eg1Var) {
-        if (!arrayList.isEmpty()) {
-            int i12 = 0;
-            this.f42032b[0] = true;
-            TLRPC.TL_messages_sendBotRequestedPeer tL_messages_sendBotRequestedPeer = new TLRPC.TL_messages_sendBotRequestedPeer();
-            d1 d1Var = this.f42031a;
-            MessagesController.getInstance(d1Var.M);
-            tL_messages_sendBotRequestedPeer.peer = MessagesController.getInputPeer(d1Var.U);
-            String str = this.f42033c;
-            tL_messages_sendBotRequestedPeer.webapp_req_id = str;
-            tL_messages_sendBotRequestedPeer.button_id = this.d.button_id;
-            HashSet hashSet = new HashSet();
-            int size = arrayList.size();
-            while (i12 < size) {
-                Object obj = arrayList.get(i12);
-                i12++;
-                hashSet.add(Long.valueOf(((MessagesStorage.TopicKey) obj).dialogId));
-            }
-            Iterator it = hashSet.iterator();
-            while (it.hasNext()) {
-                tL_messages_sendBotRequestedPeer.requested_peers.add(MessagesController.getInstance(d1Var.M).getInputPeer(((Long) it.next()).longValue()));
-            }
-            ConnectionsManager.getInstance(d1Var.M).sendRequestTyped(tL_messages_sendBotRequestedPeer, new Object(), new w(d1Var, this.f42034e, str, 1));
-        }
-        uyVar.finishFragment();
-        return true;
+    public d0(v5 v5Var, Utilities.Callback callback, boolean[] zArr, boolean[] zArr2, Object obj, int i10) {
+        this.f38890a = i10;
+        this.f38892c = callback;
+        this.f38891b = zArr;
+        this.d = zArr2;
+        this.e = obj;
     }
 }

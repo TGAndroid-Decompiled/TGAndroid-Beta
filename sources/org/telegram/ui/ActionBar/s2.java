@@ -4,9 +4,9 @@ import android.content.Context;
 import android.content.res.Configuration;
 import android.graphics.Canvas;
 import android.view.View;
-import di.c9;
+import ci.d9;
 import org.telegram.messenger.FileLog;
-import org.telegram.ui.Components.qc;
+import org.telegram.ui.Components.oc;
 public final class s2 extends d3 {
     public final f3 H;
 
@@ -25,8 +25,8 @@ public final class s2 extends d3 {
     public final boolean drawChild(Canvas canvas, View view, long j3) {
         try {
             return super.drawChild(canvas, view, j3);
-        } catch (Exception e7) {
-            FileLog.e(e7);
+        } catch (Exception e) {
+            FileLog.e(e);
             return true;
         }
     }
@@ -34,7 +34,7 @@ public final class s2 extends d3 {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        qc.a(this, new c9(5));
+        oc.a(this, new d9(5));
     }
 
     @Override
@@ -47,6 +47,6 @@ public final class s2 extends d3 {
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        qc.h(this);
+        oc.h(this);
     }
 }

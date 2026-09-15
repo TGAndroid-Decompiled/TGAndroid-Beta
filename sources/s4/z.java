@@ -1,7 +1,7 @@
 package s4;
 public final class z {
-    public int f45912a;
-    public boolean f45913b;
-    public boolean f45914c;
+    public int f42830a;
+    public boolean f42831b;
+    public boolean f42832c;
     public boolean d;
 }

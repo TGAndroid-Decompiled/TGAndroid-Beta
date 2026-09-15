@@ -1,81 +1,72 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.view.MotionEvent;
-import android.view.WindowManager;
-import org.telegram.messenger.FileLog;
-public final class zb extends fk0 {
-    public final int l1 = 0;
-    public final Object f33117m1;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.messenger.R;
+import org.telegram.messenger.UserConfig;
+import org.telegram.messenger.support.SparseLongArray;
+public final class zb extends wb implements NotificationCenter.NotificationCenterDelegate {
+    public final xb d;
+    public SparseLongArray e;
+    public final org.telegram.ui.ActionBar.n2 f30537f;
+    public final int h;
+    public oc f30538n;
 
-    public zb(org.telegram.ui.st stVar, Context context, int i10, org.telegram.ui.ActionBar.f6 f6Var) {
-        super(4, i10, context, null, f6Var);
-        this.f33117m1 = stVar;
+    public zb(int i10, org.telegram.ui.ActionBar.n2 n2Var) {
+        super(n2Var.getContext(), n2Var.getResourceProvider());
+        this.f30537f = n2Var;
+        this.h = i10;
+        this.f29682b.setLayoutParams(w7.x5.i(-2.0f, -2.0f, 8388659, 56.0f, 6.0f, 8.0f, 0.0f));
+        this.f29681a.setLayoutParams(w7.x5.h(56.0f, 48.0f, 8388659));
+        xb xbVar = new xb(this, n2Var, getContext(), n2Var.getCurrentAccount(), n2Var.getResourceProvider());
+        this.d = xbVar;
+        xbVar.setPadding(AndroidUtilities.dp(4.0f), AndroidUtilities.dp(24.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(0.0f));
+        this.d.setDelegate(new yb(this));
+        this.d.setTop(true);
+        this.d.setClipChildren(false);
+        this.d.setClipToPadding(false);
+        this.d.setVisibility(0);
+        this.d.setBubbleOffset(-AndroidUtilities.dp(80.0f));
+        this.d.setHint(LocaleController.getString(R.string.SavedTagReactionsHint));
+        addView(this.d, w7.x5.d(-2, 92.5f, 1, 0.0f, 36.0f, 0.0f, 0.0f));
+        this.d.p(null, null, true);
     }
 
     @Override
-    public boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        qc qcVar;
-        switch (this.l1) {
-            case 0:
-                bc bcVar = (bc) this.f33117m1;
-                if (motionEvent.getAction() == 0) {
-                    qc qcVar2 = bcVar.f24659n;
-                    if (qcVar2 != null) {
-                        qcVar2.i(false);
-                    }
-                } else if (motionEvent.getAction() == 1 && (qcVar = bcVar.f24659n) != null) {
-                    qcVar.i(true);
-                }
-                return super.dispatchTouchEvent(motionEvent);
-            default:
-                return super.dispatchTouchEvent(motionEvent);
+    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
+        if (i10 == NotificationCenter.savedMessagesForwarded) {
+            this.e = (SparseLongArray) objArr[0];
+        }
+    }
+
+    public final void f() {
+        if (this.d.getReactionsWindow() != null) {
+            this.d.e();
+            if (this.d.getReactionsWindow().f48983a != null) {
+                this.d.getReactionsWindow().f48983a.animate().alpha(0.0f).setDuration(180L).start();
+            }
         }
     }
 
     @Override
-    public void j() {
-        switch (this.l1) {
-            case 1:
-                super.j();
-                org.telegram.ui.st stVar = (org.telegram.ui.st) this.f33117m1;
-                if (getReactionsWindow() != null) {
-                    WindowManager.LayoutParams layoutParams = stVar.f40549x;
-                    layoutParams.flags &= -131073;
-                    layoutParams.softInputMode = 16;
-                } else {
-                    stVar.f40549x.flags |= 131072;
-                }
-                try {
-                    ((WindowManager) stVar.f40548w.getSystemService("window")).updateViewLayout(stVar.f40550y, stVar.f40549x);
-                    return;
-                } catch (Exception e7) {
-                    FileLog.e(e7);
-                    return;
-                }
-            default:
-                super.j();
-                return;
-        }
+    public int getMeasuredBackgroundHeight() {
+        return AndroidUtilities.dp(30.0f) + this.f29682b.getMeasuredHeight();
     }
 
     @Override
-    public void m() {
-        switch (this.l1) {
-            case 0:
-                qc qcVar = qc.f29671w;
-                if (qcVar != null) {
-                    qcVar.i(false);
-                }
-                ((bc) this.f33117m1).d.getReactionsWindow().f687c.setOnClickListener(new g0(this, 5));
-                return;
-            default:
-                return;
-        }
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        NotificationCenter.getInstance(UserConfig.selectedAccount).addObserver(this, NotificationCenter.savedMessagesForwarded);
     }
 
-    public zb(bc bcVar, org.telegram.ui.ActionBar.n2 n2Var, Context context, int i10, org.telegram.ui.ActionBar.f6 f6Var) {
-        super(3, i10, context, n2Var, f6Var);
-        this.f33117m1 = bcVar;
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        NotificationCenter.getInstance(UserConfig.selectedAccount).removeObserver(this, NotificationCenter.savedMessagesForwarded);
+    }
+
+    public void setBulletin(oc ocVar) {
+        this.f30538n = ocVar;
     }
 }

@@ -1,24 +1,91 @@
 package org.telegram.ui.Components.voip;
 
-import org.webrtc.RendererCommon;
-public final class h2 implements RendererCommon.RendererEvents {
-    public final k2 f31529a;
+import android.text.Layout;
+import android.text.StaticLayout;
+import android.text.TextPaint;
+import android.text.TextUtils;
+import android.transition.TransitionSet;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import java.util.ArrayList;
+import java.util.HashMap;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.Components.jw0;
+import w7.x5;
+public final class h2 extends LinearLayout {
+    public HashMap f28980a;
+    public ArrayList f28981b;
+    public ArrayList f28982c;
+    public TransitionSet d;
+    public boolean e;
+    public boolean f28983f;
+    public Runnable h;
+    public q1 f28984n;
+    public TextPaint f28985r;
 
-    public h2(k2 k2Var) {
-        this.f31529a = k2Var;
+    public final void a(int i10, String str, String str2) {
+        HashMap hashMap = this.f28980a;
+        if (hashMap.get(str2) != null) {
+            return;
+        }
+        g2 g2Var = new g2(getContext(), this.f28984n, i10);
+        g2Var.f28956a = str2;
+        int dp = AndroidUtilities.displaySize.x - AndroidUtilities.dp(120.0f);
+        TextView textView = g2Var.f28958c;
+        StaticLayout c10 = jw0.c(str, textView.getPaint(), dp, Layout.Alignment.ALIGN_NORMAL, 0.0f, false, TextUtils.TruncateAt.END, dp, 10, true);
+        if (c10 != null) {
+            dp = 0;
+            for (int i11 = 0; i11 < c10.getLineCount(); i11++) {
+                dp = (int) Math.max(dp, Math.ceil(c10.getLineWidth(i11)));
+            }
+        }
+        textView.setMaxWidth(dp);
+        textView.setText(str);
+        g2Var.f28957b.setImageResource(i10);
+        hashMap.put(str2, g2Var);
+        if (this.e) {
+            this.f28981b.add(g2Var);
+            return;
+        }
+        this.f28983f = true;
+        addView(g2Var, x5.t(-2, -2, 1, 4, 0, 0, 4));
     }
 
-    @Override
-    public final void onFirstFrameRendered() {
-        k2 k2Var = this.f31529a;
-        com.google.android.gms.internal.cast.p pVar = k2Var.R;
-        if (pVar != null) {
-            pVar.run();
-            k2Var.R = null;
+    public final CharSequence b(String str) {
+        if (str == null) {
+            return "";
+        }
+        return TextUtils.ellipsize(str, this.f28985r, AndroidUtilities.dp(300.0f), TextUtils.TruncateAt.END);
+    }
+
+    public final void c(String str) {
+        g2 g2Var = (g2) this.f28980a.remove(str);
+        this.f28984n.f29178m.remove(g2Var);
+        if (g2Var != null) {
+            if (this.e) {
+                if (!this.f28981b.remove(g2Var)) {
+                    this.f28982c.add(g2Var);
+                    return;
+                }
+                return;
+            }
+            this.f28983f = true;
+            removeView(g2Var);
         }
     }
 
-    @Override
-    public final void onFrameResolutionChanged(int i10, int i11, int i12) {
+    public int getChildsHight() {
+        int i10;
+        int childCount = getChildCount();
+        if (childCount > 0) {
+            i10 = AndroidUtilities.dp(16.0f);
+        } else {
+            i10 = 0;
+        }
+        return org.telegram.messenger.w1.D(32.0f, childCount, i10);
+    }
+
+    public void setOnViewsUpdated(Runnable runnable) {
+        this.h = runnable;
     }
 }

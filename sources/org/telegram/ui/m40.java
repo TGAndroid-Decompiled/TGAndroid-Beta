@@ -3,10 +3,10 @@ package org.telegram.ui;
 import java.util.concurrent.CountDownLatch;
 import org.telegram.messenger.voip.VoIPService;
 public final class m40 implements org.telegram.ui.ActionBar.z2 {
-    public final j60 f38567a;
+    public final i60 f35628a;
 
-    public m40(j60 j60Var) {
-        this.f38567a = j60Var;
+    public m40(i60 i60Var) {
+        this.f35628a = i60Var;
     }
 
     @Override
@@ -21,9 +21,9 @@ public final class m40 implements org.telegram.ui.ActionBar.z2 {
         if (sharedInstance != null && (groupCallBottomSheetLatch = sharedInstance.getGroupCallBottomSheetLatch()) != null) {
             groupCallBottomSheetLatch.countDown();
         }
-        j60 j60Var = this.f38567a;
-        if (j60Var.F1 == 6) {
-            j60.B0(j60Var);
+        i60 i60Var = this.f35628a;
+        if (i60Var.F1 == 6) {
+            i60.B0(i60Var);
         }
     }
 }

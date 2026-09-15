@@ -3,27 +3,26 @@ package k2;
 import android.content.Context;
 import android.media.AudioDeviceCallback;
 import android.media.AudioDeviceInfo;
-import di.g7;
-import ji.u4;
+import ci.g7;
 public final class c extends AudioDeviceCallback {
-    public final g7 f14521a;
+    public final g7 f13232a;
 
     public c(g7 g7Var) {
-        this.f14521a = g7Var;
+        this.f13232a = g7Var;
     }
 
     @Override
     public final void onAudioDevicesAdded(AudioDeviceInfo[] audioDeviceInfoArr) {
-        g7 g7Var = this.f14521a;
-        g7Var.a(b.c((Context) g7Var.f7265b, (b2.e) g7Var.f7271j, (u4) g7Var.f7270i));
+        g7 g7Var = this.f13232a;
+        g7Var.a(b.c((Context) g7Var.f4688b, (b2.e) g7Var.f4693j, (a6.m) g7Var.f4692i));
     }
 
     @Override
     public final void onAudioDevicesRemoved(AudioDeviceInfo[] audioDeviceInfoArr) {
-        if (e2.d0.k(audioDeviceInfoArr, (u4) this.f14521a.f7270i)) {
-            this.f14521a.f7270i = null;
+        if (e2.d0.k(audioDeviceInfoArr, (a6.m) this.f13232a.f4692i)) {
+            this.f13232a.f4692i = null;
         }
-        g7 g7Var = this.f14521a;
-        g7Var.a(b.c((Context) g7Var.f7265b, (b2.e) g7Var.f7271j, (u4) g7Var.f7270i));
+        g7 g7Var = this.f13232a;
+        g7Var.a(b.c((Context) g7Var.f4688b, (b2.e) g7Var.f4693j, (a6.m) g7Var.f4692i));
     }
 }

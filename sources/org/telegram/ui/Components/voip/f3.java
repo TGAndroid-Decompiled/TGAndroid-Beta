@@ -1,28 +1,31 @@
 package org.telegram.ui.Components.voip;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class f3 extends AnimatorListenerAdapter {
-    public final int f31489a;
-    public final h3 f31490b;
+import org.telegram.messenger.AndroidUtilities;
+public final class f3 implements Runnable {
+    public final int f28947a;
+    public final k3 f28948b;
+    public final int f28949c;
 
-    public f3(h3 h3Var, int i10) {
-        this.f31489a = i10;
-        this.f31490b = h3Var;
+    public f3(k3 k3Var, int i10, int i11) {
+        this.f28947a = i11;
+        this.f28948b = k3Var;
+        this.f28949c = i10;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f31489a) {
+    public final void run() {
+        switch (this.f28947a) {
             case 0:
-                h3 h3Var = this.f31490b;
-                h3Var.f31536r = 0;
-                h3Var.invalidate();
+                AndroidUtilities.runOnUIThread(new f3(this.f28948b, this.f28949c, 2));
+                return;
+            case 1:
+                AndroidUtilities.runOnUIThread(new f3(this.f28948b, this.f28949c, 3));
+                return;
+            case 2:
+                this.f28948b.c(this.f28949c);
                 return;
             default:
-                h3 h3Var2 = this.f31490b;
-                h3Var2.f31537s = 0;
-                h3Var2.invalidate();
+                this.f28948b.a(this.f28949c);
                 return;
         }
     }

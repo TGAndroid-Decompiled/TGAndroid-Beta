@@ -4,15 +4,15 @@ import j$.util.DesugarCollections;
 import java.util.ArrayList;
 import java.util.List;
 public final class h {
-    public final String f15784a;
-    public final long f15785b;
-    public final List f15786c;
+    public final String f14418a;
+    public final long f14419b;
+    public final List f14420c;
     public final List d;
 
     public h(String str, long j3, ArrayList arrayList, List list) {
-        this.f15784a = str;
-        this.f15785b = j3;
-        this.f15786c = DesugarCollections.unmodifiableList(arrayList);
+        this.f14418a = str;
+        this.f14419b = j3;
+        this.f14420c = DesugarCollections.unmodifiableList(arrayList);
         this.d = DesugarCollections.unmodifiableList(list);
     }
 }

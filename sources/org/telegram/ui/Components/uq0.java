@@ -4,46 +4,46 @@ import android.view.View;
 import android.widget.FrameLayout;
 import org.telegram.messenger.BirthdayController;
 public final class uq0 implements View.OnClickListener {
-    public final int f30958a;
-    public final boolean f30959b;
-    public final int f30960c;
+    public final int f28488a;
+    public final boolean f28489b;
+    public final int f28490c;
     public final FrameLayout d;
 
     public uq0(FrameLayout frameLayout, boolean z10, int i10, int i11) {
-        this.f30958a = i11;
+        this.f28488a = i11;
         this.d = frameLayout;
-        this.f30959b = z10;
-        this.f30960c = i10;
+        this.f28489b = z10;
+        this.f28490c = i10;
     }
 
     @Override
     public final void onClick(View view) {
-        switch (this.f30958a) {
+        switch (this.f28488a) {
             case 0:
-                xu0 xu0Var = (xu0) this.d;
-                org.telegram.ui.ActionBar.n2 n2Var = xu0Var.f32726v1;
-                if (this.f30959b) {
-                    xu0Var.O0(n2Var, xu0Var.f32701j1, this.f30960c);
+                yu0 yu0Var = (yu0) this.d;
+                org.telegram.ui.ActionBar.n2 n2Var = yu0Var.f30392v1;
+                if (this.f28489b) {
+                    yu0Var.O0(n2Var, yu0Var.f30367j1, this.f28490c);
                     return;
                 }
                 n2Var.getMessagesController().getMainSettings().edit().putBoolean("story_keep", true).apply();
-                di.pc.E(n2Var.getParentActivity(), n2Var.getCurrentAccount()).R(null);
+                ci.oc.E(n2Var.getParentActivity(), n2Var.getCurrentAccount()).R(null);
                 return;
             default:
                 nr0 nr0Var = (nr0) this.d;
-                if (nr0Var.f50518e.h() && nr0Var.h.getCurrentPosition() != 0) {
+                if (nr0Var.e.h() && nr0Var.h.getCurrentPosition() != 0) {
                     nr0Var.a();
                     return;
                 }
-                boolean z10 = this.f30959b;
-                int i10 = this.f30960c;
+                boolean z10 = this.f28489b;
+                int i10 = this.f28490c;
                 if (z10) {
-                    yh.p1 p1Var = new yh.p1(nr0Var.getContext(), i10, nr0Var.f50517c, null, null);
-                    p1Var.V(BirthdayController.getInstance(i10).isToday(nr0Var.f50517c));
-                    p1Var.show();
+                    xh.q1 q1Var = new xh.q1(nr0Var.getContext(), i10, nr0Var.f46107c, null, null);
+                    q1Var.V(BirthdayController.getInstance(i10).isToday(nr0Var.f46107c));
+                    q1Var.show();
                     return;
                 }
-                ug.n1.e0(2, BirthdayController.getInstance(i10).getState());
+                tg.n1.e0(2, BirthdayController.getInstance(i10).getState());
                 return;
         }
     }

@@ -2,20 +2,20 @@ package o2;
 
 import android.text.TextUtils;
 public final class r {
-    public final int f16933a;
-    public final int f16934b;
-    public final String f16935c;
+    public final int f15452a;
+    public final int f15453b;
+    public final String f15454c;
     public final String d;
-    public final String f16936e;
-    public final String f16937f;
+    public final String e;
+    public final String f15455f;
 
     public r(int i10, String str, int i11, String str2, String str3, String str4) {
-        this.f16933a = i10;
-        this.f16934b = i11;
-        this.f16935c = str;
+        this.f15452a = i10;
+        this.f15453b = i11;
+        this.f15454c = str;
         this.d = str2;
-        this.f16936e = str3;
-        this.f16937f = str4;
+        this.e = str3;
+        this.f15455f = str4;
     }
 
     public final boolean equals(Object obj) {
@@ -24,7 +24,7 @@ public final class r {
         }
         if (obj != null && r.class == obj.getClass()) {
             r rVar = (r) obj;
-            if (this.f16933a == rVar.f16933a && this.f16934b == rVar.f16934b && TextUtils.equals(this.f16935c, rVar.f16935c) && TextUtils.equals(this.d, rVar.d) && TextUtils.equals(this.f16936e, rVar.f16936e) && TextUtils.equals(this.f16937f, rVar.f16937f)) {
+            if (this.f15452a == rVar.f15452a && this.f15453b == rVar.f15453b && TextUtils.equals(this.f15454c, rVar.f15454c) && TextUtils.equals(this.d, rVar.d) && TextUtils.equals(this.e, rVar.e) && TextUtils.equals(this.f15455f, rVar.f15455f)) {
                 return true;
             }
         }
@@ -35,9 +35,9 @@ public final class r {
         int i10;
         int i11;
         int i12;
-        int i13 = ((this.f16933a * 31) + this.f16934b) * 31;
+        int i13 = ((this.f15452a * 31) + this.f15453b) * 31;
         int i14 = 0;
-        String str = this.f16935c;
+        String str = this.f15454c;
         if (str != null) {
             i10 = str.hashCode();
         } else {
@@ -51,14 +51,14 @@ public final class r {
             i11 = 0;
         }
         int i16 = (i15 + i11) * 31;
-        String str3 = this.f16936e;
+        String str3 = this.e;
         if (str3 != null) {
             i12 = str3.hashCode();
         } else {
             i12 = 0;
         }
         int i17 = (i16 + i12) * 31;
-        String str4 = this.f16937f;
+        String str4 = this.f15455f;
         if (str4 != null) {
             i14 = str4.hashCode();
         }

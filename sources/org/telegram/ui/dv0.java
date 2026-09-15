@@ -1,55 +1,26 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class dv0 extends org.telegram.ui.Components.x50 {
-    public final ev0 d;
-
-    public dv0(ev0 ev0Var) {
-        this.d = ev0Var;
-    }
-
-    @Override
-    public final CharSequence d() {
-        StringBuilder sb2 = new StringBuilder();
-        sb2.append(LocaleController.getString("AccDescrVideoQuality", R.string.AccDescrVideoQuality));
-        if (this.d.f36193s.Y7 > 0) {
-            sb2.append(", ");
-            sb2.append(this.d.f36193s.X7 + 1);
-            sb2.append(" / ");
-            sb2.append(this.d.f36193s.Y7);
-        }
-        sb2.append(", ");
-        sb2.append(this.d.h);
-        sb2.append(" – ");
-        sb2.append(this.d.f36191n);
-        return sb2.toString();
-    }
-
-    @Override
-    public final int i() {
-        return Math.max(0, this.d.f36193s.Y7 - 1);
-    }
-
-    @Override
-    public final int j() {
-        return this.d.f36193s.X7;
-    }
-
-    @Override
-    public final void k(int i10) {
-        int max;
-        if (this.d.f36193s.Y7 > 0 && (max = Math.max(0, Math.min(this.d.f36193s.Y7 - 1, i10))) != this.d.f36193s.X7) {
-            ev0 ev0Var = this.d;
-            ev0Var.f36192r = ev0Var.f36193s.X7;
-            this.d.f36193s.X7 = max;
-            this.d.f36193s.R0();
-            this.d.invalidate();
-            int i11 = this.d.f36193s.X7;
-            ev0 ev0Var2 = this.d;
-            if (i11 != ev0Var2.f36192r) {
-                ev0Var2.f36193s.p2(1);
-            }
-        }
-    }
+import android.view.View;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.ui.Components.ClippingImageView;
+public final class dv0 {
+    public ImageReceiver f33134a;
+    public int f33135b;
+    public int f33136c;
+    public View d;
+    public ImageReceiver.BitmapHolder e;
+    public long f33137f;
+    public long f33138g;
+    public int[] h;
+    public int f33139i;
+    public int f33140j;
+    public boolean f33142l;
+    public ClippingImageView f33143m;
+    public int f33144n;
+    public boolean f33146p;
+    public int f33147q;
+    public boolean f33148r;
+    public boolean f33149s;
+    public float f33141k = 1.0f;
+    public boolean f33145o = true;
 }

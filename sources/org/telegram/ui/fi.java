@@ -2,31 +2,31 @@ package org.telegram.ui;
 
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.UndoView;
-public final class fi implements org.telegram.ui.Components.p8 {
-    public final co f36408a;
+public final class fi implements org.telegram.ui.Components.l8 {
+    public final bo f33581a;
 
-    public fi(co coVar) {
-        this.f36408a = coVar;
+    public fi(bo boVar) {
+        this.f33581a = boVar;
     }
 
     @Override
-    public final void Y0(int i10, int i11) {
+    public final void U0(int i10, int i11) {
         int i12;
-        co coVar = this.f36408a;
-        coVar.getMessagesController().setDialogHistoryTTL(coVar.T5, i10);
-        if (coVar.f35192a8 != null || coVar.Z7 != null) {
-            coVar.Q7();
-            UndoView undoView = coVar.y3;
+        bo boVar = this.f33581a;
+        boVar.getMessagesController().setDialogHistoryTTL(boVar.T5, i10);
+        if (boVar.f32243a8 != null || boVar.Z7 != null) {
+            boVar.Q7();
+            UndoView undoView = boVar.y3;
             if (undoView == null) {
                 return;
             }
-            long j3 = coVar.T5;
-            TLRPC.User user = coVar.f35249f;
-            TLRPC.UserFull userFull = coVar.f35192a8;
+            long j3 = boVar.T5;
+            TLRPC.User user = boVar.f32299f;
+            TLRPC.UserFull userFull = boVar.f32243a8;
             if (userFull != null) {
                 i12 = userFull.ttl_period;
             } else {
-                i12 = coVar.Z7.ttl_period;
+                i12 = boVar.Z7.ttl_period;
             }
             undoView.k(j3, i11, user, Integer.valueOf(i12), null, null);
         }
@@ -34,13 +34,13 @@ public final class fi implements org.telegram.ui.Components.p8 {
 
     @Override
     public final void dismiss() {
-        org.telegram.ui.ActionBar.n1 n1Var = this.f36408a.Q8;
+        org.telegram.ui.ActionBar.n1 n1Var = this.f33581a.Q8;
         if (n1Var != null) {
             n1Var.dismiss();
         }
     }
 
     @Override
-    public final void l1() {
+    public final void j1() {
     }
 }

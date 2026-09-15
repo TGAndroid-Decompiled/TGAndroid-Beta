@@ -1,58 +1,38 @@
 package org.telegram.ui;
 
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.text.style.ClickableSpan;
+import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_account;
-public final class xx0 implements Utilities.Callback {
-    public final int f42911a;
-    public final zx0 f42912b;
+import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class xx0 extends ClickableSpan {
+    public final String f39690a;
+    public final yx0 f39691b;
 
-    public xx0(zx0 zx0Var, int i10) {
-        this.f42911a = i10;
-        this.f42912b = zx0Var;
+    public xx0(yx0 yx0Var, String str) {
+        this.f39691b = yx0Var;
+        this.f39690a = str;
     }
 
     @Override
-    public final void run(Object obj) {
-        TL_account.TL_birthday tL_birthday;
-        int i10;
-        int i11;
-        switch (this.f42911a) {
-            case 0:
-                PrivacyControlActivity privacyControlActivity = this.f42912b.d;
-                privacyControlActivity.L = ((Integer) obj).intValue();
-                AndroidUtilities.updateVisibleRow(privacyControlActivity.d, privacyControlActivity.f33820j0);
-                privacyControlActivity.E0();
-                return;
-            default:
-                TL_account.TL_birthday tL_birthday2 = (TL_account.TL_birthday) obj;
-                TL_account.updateBirthday updatebirthday = new TL_account.updateBirthday();
-                updatebirthday.flags |= 1;
-                updatebirthday.birthday = tL_birthday2;
-                zx0 zx0Var = this.f42912b;
-                PrivacyControlActivity privacyControlActivity2 = zx0Var.d;
-                TLRPC.UserFull userFull = privacyControlActivity2.getMessagesController().getUserFull(privacyControlActivity2.getUserConfig().getClientUserId());
-                if (userFull != null) {
-                    tL_birthday = userFull.birthday;
-                } else {
-                    tL_birthday = null;
-                }
-                if (userFull != null) {
-                    userFull.flags2 |= 32;
-                    userFull.birthday = tL_birthday2;
-                    privacyControlActivity2.getMessagesStorage().updateUserInfo(userFull, false);
-                }
-                privacyControlActivity2.getMessagesController().invalidateContentSettings();
-                privacyControlActivity2.getConnectionsManager().sendRequest(updatebirthday, new ms0(zx0Var, userFull, tL_birthday, 1), 1024);
-                i10 = ((org.telegram.ui.ActionBar.n2) privacyControlActivity2).currentAccount;
-                MessagesController.getInstance(i10).removeSuggestion(0L, "BIRTHDAY_SETUP");
-                i11 = ((org.telegram.ui.ActionBar.n2) privacyControlActivity2).currentAccount;
-                NotificationCenter.getInstance(i11).lambda$postNotificationNameOnUIThread$1(NotificationCenter.premiumPromoUpdated, new Object[0]);
-                privacyControlActivity2.F0(true);
-                return;
+    public final void onClick(View view) {
+        org.telegram.ui.Components.oc b10;
+        ((ClipboardManager) ApplicationLoader.applicationContext.getSystemService("clipboard")).setPrimaryClip(ClipData.newPlainText("label", this.f39690a));
+        org.telegram.ui.Components.vc a02 = org.telegram.ui.Components.vc.a0(this.f39691b.d);
+        String string = LocaleController.getString(R.string.LinkCopied);
+        org.telegram.ui.ActionBar.e6 resourceProvider = this.f39691b.d.getResourceProvider();
+        a02.getClass();
+        if (!AndroidUtilities.shouldShowClipboardToast()) {
+            b10 = new org.telegram.ui.Components.oc();
+        } else {
+            org.telegram.ui.Components.wb wbVar = new org.telegram.ui.Components.wb(a02.W(), resourceProvider);
+            wbVar.c(R.raw.voip_invite, 36, 36, "Wibe", "Circle");
+            wbVar.f29682b.setText(string);
+            b10 = a02.b(wbVar, 1500);
         }
+        b10.j();
     }
 }

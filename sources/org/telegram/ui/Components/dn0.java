@@ -1,33 +1,50 @@
 package org.telegram.ui.Components;
-public final class dn0 extends s4.o {
-    public final hn0 f25431b;
 
-    public dn0(hn0 hn0Var) {
-        this.f25431b = hn0Var;
+import android.view.KeyEvent;
+import android.view.View;
+import android.widget.TextView;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.MessagesController;
+import org.telegram.tgnet.TLRPC;
+public final class dn0 implements TextView.OnEditorActionListener {
+    public final cn0 f23367a;
+    public final int f23368b;
+    public final TLRPC.Reaction f23369c;
+    public final org.telegram.ui.ActionBar.b2[] d;
+    public final View e;
+
+    public dn0(cn0 cn0Var, int i10, TLRPC.Reaction reaction, org.telegram.ui.ActionBar.b2[] b2VarArr, View view) {
+        this.f23367a = cn0Var;
+        this.f23368b = i10;
+        this.f23369c = reaction;
+        this.d = b2VarArr;
+        this.e = view;
     }
 
     @Override
-    public final boolean a(int i10, int i11) {
-        hn0 hn0Var = this.f25431b;
-        return ((en0) hn0Var.f26767n.get(i10)).equals(hn0Var.f26768r.get(i11));
-    }
-
-    @Override
-    public final boolean b(int i10, int i11) {
-        hn0 hn0Var = this.f25431b;
-        if (((en0) hn0Var.f26767n.get(i10)).f25737a.h == ((en0) hn0Var.f26768r.get(i11)).f25737a.h) {
+    public final boolean onEditorAction(TextView textView, int i10, KeyEvent keyEvent) {
+        if (i10 != 6) {
+            return false;
+        }
+        cn0 cn0Var = this.f23367a;
+        String obj = cn0Var.getText().toString();
+        if (obj.length() > 12) {
+            AndroidUtilities.shakeView(cn0Var);
             return true;
         }
-        return false;
-    }
-
-    @Override
-    public final int d() {
-        return this.f25431b.f26768r.size();
-    }
-
-    @Override
-    public final int e() {
-        return this.f25431b.f26767n.size();
+        MessagesController.getInstance(this.f23368b).renameSavedReactionTag(zg.p0.d(this.f23369c), obj);
+        org.telegram.ui.ActionBar.b2[] b2VarArr = this.d;
+        org.telegram.ui.ActionBar.b2 b2Var = b2VarArr[0];
+        if (b2Var != null) {
+            b2Var.dismiss();
+        }
+        if (b2VarArr[0] == in0.H) {
+            in0.H = null;
+        }
+        View view = this.e;
+        if (view != null) {
+            view.requestFocus();
+        }
+        return true;
     }
 }

@@ -1,18 +1,18 @@
 package u2;
 public final class v extends i2.a {
     public final b2.k1 h;
-    public final int f46828i;
-    public final int f46829j;
-    public final int f46830k;
+    public final int f43507i;
+    public final int f43508j;
+    public final int f43509k;
 
     public v(b2.k1 k1Var, int i10) {
         super(new f1(i10));
         boolean z10;
         this.h = k1Var;
         int h = k1Var.h();
-        this.f46828i = h;
-        this.f46829j = k1Var.o();
-        this.f46830k = i10;
+        this.f43507i = h;
+        this.f43508j = k1Var.o();
+        this.f43509k = i10;
         if (h > 0) {
             if (i10 <= Integer.MAX_VALUE / h) {
                 z10 = true;
@@ -25,12 +25,12 @@ public final class v extends i2.a {
 
     @Override
     public final int h() {
-        return this.f46828i * this.f46830k;
+        return this.f43507i * this.f43509k;
     }
 
     @Override
     public final int o() {
-        return this.f46829j * this.f46830k;
+        return this.f43508j * this.f43509k;
     }
 
     @Override
@@ -43,12 +43,12 @@ public final class v extends i2.a {
 
     @Override
     public final int r(int i10) {
-        return i10 / this.f46828i;
+        return i10 / this.f43507i;
     }
 
     @Override
     public final int s(int i10) {
-        return i10 / this.f46829j;
+        return i10 / this.f43508j;
     }
 
     @Override
@@ -58,12 +58,12 @@ public final class v extends i2.a {
 
     @Override
     public final int u(int i10) {
-        return i10 * this.f46828i;
+        return i10 * this.f43507i;
     }
 
     @Override
     public final int v(int i10) {
-        return i10 * this.f46829j;
+        return i10 * this.f43508j;
     }
 
     @Override

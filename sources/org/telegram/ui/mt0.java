@@ -1,40 +1,25 @@
 package org.telegram.ui;
 
-import android.app.Activity;
 import android.content.Context;
-import android.view.OrientationEventListener;
-public final class mt0 extends OrientationEventListener {
-    public final PhotoViewer f38759a;
+public final class mt0 extends org.telegram.ui.Components.n71 {
+    public final PhotoViewer f35804h0;
 
-    public mt0(Context context, PhotoViewer photoViewer) {
-        super(context);
-        this.f38759a = photoViewer;
+    public mt0(PhotoViewer photoViewer, Context context, qr0 qr0Var) {
+        super(context, qr0Var);
+        this.f35804h0 = photoViewer;
     }
 
     @Override
-    public final void onOrientationChanged(int i10) {
-        rt0 rt0Var;
-        Activity activity;
-        int i11;
-        PhotoViewer photoViewer = this.f38759a;
-        if (photoViewer.W3 != null && (rt0Var = photoViewer.f33730y2) != null && rt0Var.getVisibility() == 0 && (activity = photoViewer.f33727y) != null && (i11 = photoViewer.Y3) != 0) {
-            if (i11 == 1) {
-                if (i10 >= 240 && i10 <= 300) {
-                    photoViewer.Z3 = true;
-                } else if (photoViewer.Z3 && i10 > 0) {
-                    if (i10 >= 330 || i10 <= 30) {
-                        activity.setRequestedOrientation(photoViewer.X3);
-                        photoViewer.Y3 = 0;
-                        photoViewer.Z3 = false;
-                    }
-                }
-            } else if (i10 > 0 && (i10 >= 330 || i10 <= 30)) {
-                photoViewer.Z3 = true;
-            } else if (photoViewer.Z3 && i10 >= 240 && i10 <= 300) {
-                activity.setRequestedOrientation(photoViewer.X3);
-                photoViewer.Y3 = 0;
-                photoViewer.Z3 = false;
-            }
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        super.onLayout(z10, i10, i11, i12, i13);
+        PhotoViewer.X(this.f35804h0);
+    }
+
+    @Override
+    public final void setVisibility(int i10) {
+        super.setVisibility(i10);
+        if (i10 == 0) {
+            PhotoViewer.X(this.f35804h0);
         }
     }
 }

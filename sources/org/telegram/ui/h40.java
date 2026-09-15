@@ -2,11 +2,11 @@ package org.telegram.ui;
 
 import android.os.Bundle;
 import org.telegram.messenger.voip.GroupCallMessage;
-public final class h40 implements mh.a {
-    public final j60 f36876a;
+public final class h40 implements lh.a {
+    public final i60 f34157a;
 
-    public h40(j60 j60Var) {
-        this.f36876a = j60Var;
+    public h40(i60 i60Var) {
+        this.f34157a = i60Var;
     }
 
     public final void a(GroupCallMessage groupCallMessage) {
@@ -15,12 +15,12 @@ public final class h40 implements mh.a {
             return;
         }
         boolean z10 = R instanceof ProfileActivity;
-        j60 j60Var = this.f36876a;
+        i60 i60Var = this.f34157a;
         if (z10 && ((ProfileActivity) R).a() == groupCallMessage.fromId) {
-            j60Var.dismiss();
+            i60Var.dismiss();
             return;
         }
-        int P0 = j60Var.P0();
+        int P0 = i60Var.P0();
         Bundle bundle = new Bundle();
         long j3 = groupCallMessage.fromId;
         if (j3 > 0) {
@@ -30,7 +30,7 @@ public final class h40 implements mh.a {
         }
         long j10 = groupCallMessage.fromId;
         boolean z11 = true;
-        if (j10 == j60Var.d.getUserConfig().getClientUserId()) {
+        if (j10 == i60Var.d.getUserConfig().getClientUserId()) {
             bundle.putBoolean("my_profile", true);
         }
         ProfileActivity profileActivity = new ProfileActivity(bundle, null);
@@ -38,6 +38,6 @@ public final class h40 implements mh.a {
             z11 = false;
         }
         R.presentFragment(profileActivity, false, z11);
-        j60Var.dismiss();
+        i60Var.dismiss();
     }
 }

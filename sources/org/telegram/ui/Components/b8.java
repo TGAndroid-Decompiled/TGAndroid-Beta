@@ -1,44 +1,303 @@
 package org.telegram.ui.Components;
 
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
+import android.animation.ValueAnimator;
 import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.LinearGradient;
+import android.graphics.Matrix;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
+import android.graphics.RectF;
+import android.graphics.Shader;
 import android.text.TextUtils;
+import android.util.Property;
+import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-public final class b8 extends e8 {
-    public final Context E;
-    public final k8 F;
-    public final int f24594y;
+public abstract class b8 extends FrameLayout {
+    public final TextView[] f22698a;
+    public final float[] f22699b;
+    public final int f22700c;
+    public final Matrix d;
+    public final Paint e;
+    public final Paint f22701f;
+    public int h;
+    public AnimatorSet f22702n;
+    public LinearGradient f22703r;
+    public int f22704s;
+    public final RectF v;
+    public int f22705w;
+    public boolean f22706x;
 
-    public b8(k8 k8Var, Context context, Context context2, int i10) {
+    public b8(Context context) {
         super(context);
-        this.f24594y = i10;
-        this.F = k8Var;
-        this.E = context2;
+        this.f22698a = new TextView[2];
+        this.f22699b = new float[]{0.0f, 0.75f};
+        this.f22700c = AndroidUtilities.dp(24.0f);
+        this.f22704s = -1;
+        this.v = new RectF();
+        for (int i10 = 0; i10 < 2; i10++) {
+            this.f22698a[i10] = a();
+            if (i10 == 1) {
+                this.f22698a[i10].setAlpha(0.0f);
+                this.f22698a[i10].setVisibility(8);
+            }
+            addView(this.f22698a[i10], w7.x5.c(-1.0f, -2));
+        }
+        this.d = new Matrix();
+        Paint paint = new Paint(1);
+        this.e = paint;
+        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_IN));
+        Paint paint2 = new Paint(1);
+        this.f22701f = paint2;
+        paint2.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
+    }
+
+    public abstract TextView a();
+
+    public final void b(CharSequence charSequence, boolean z10) {
+        final int i10;
+        int i11 = this.h;
+        TextView[] textViewArr = this.f22698a;
+        CharSequence text = textViewArr[i11].getText();
+        if (!TextUtils.isEmpty(text) && z10) {
+            if (TextUtils.equals(charSequence, text)) {
+                return;
+            }
+            this.f22704s = 0;
+            int min = Math.min(charSequence.length(), text.length());
+            for (int i12 = 0; i12 < min && charSequence.charAt(i12) == text.charAt(i12); i12++) {
+                this.f22704s++;
+            }
+            if (this.f22704s <= 3) {
+                this.f22704s = -1;
+            }
+            final int i13 = this.h;
+            if (i13 == 0) {
+                i10 = 1;
+            } else {
+                i10 = 0;
+            }
+            this.h = i10;
+            AnimatorSet animatorSet = this.f22702n;
+            if (animatorSet != null) {
+                animatorSet.cancel();
+            }
+            AnimatorSet animatorSet2 = new AnimatorSet();
+            this.f22702n = animatorSet2;
+            animatorSet2.addListener(new ei.v2(this, i13, 5));
+            textViewArr[i10].setText(charSequence);
+            textViewArr[i10].bringToFront();
+            textViewArr[i10].setVisibility(0);
+            float[] fArr = this.f22699b;
+            ValueAnimator ofFloat = ValueAnimator.ofFloat(fArr[i13], 0.75f);
+            ofFloat.setDuration(200L);
+            ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener(this) {
+                public final b8 f22330b;
+
+                {
+                    this.f22330b = this;
+                }
+
+                @Override
+                public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+                    switch (r3) {
+                        case 0:
+                            b8 b8Var = this.f22330b;
+                            b8Var.f22699b[i13] = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                            b8Var.invalidate();
+                            return;
+                        default:
+                            b8 b8Var2 = this.f22330b;
+                            b8Var2.f22699b[i13] = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                            b8Var2.invalidate();
+                            return;
+                    }
+                }
+            });
+            ValueAnimator ofFloat2 = ValueAnimator.ofFloat(fArr[i10], 0.0f);
+            ofFloat2.setStartDelay(100L);
+            ofFloat2.setDuration(200L);
+            ofFloat2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener(this) {
+                public final b8 f22330b;
+
+                {
+                    this.f22330b = this;
+                }
+
+                @Override
+                public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+                    switch (r3) {
+                        case 0:
+                            b8 b8Var = this.f22330b;
+                            b8Var.f22699b[i10] = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                            b8Var.invalidate();
+                            return;
+                        default:
+                            b8 b8Var2 = this.f22330b;
+                            b8Var2.f22699b[i10] = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                            b8Var2.invalidate();
+                            return;
+                    }
+                }
+            });
+            Property property = View.ALPHA;
+            ObjectAnimator ofFloat3 = ObjectAnimator.ofFloat(textViewArr[i13], property, 0.0f);
+            ofFloat3.setStartDelay(75L);
+            ofFloat3.setDuration(150L);
+            ObjectAnimator ofFloat4 = ObjectAnimator.ofFloat(textViewArr[i10], property, 1.0f);
+            ofFloat4.setStartDelay(75L);
+            ofFloat4.setDuration(150L);
+            this.f22702n.playTogether(ofFloat, ofFloat2, ofFloat3, ofFloat4);
+            this.f22702n.start();
+            return;
+        }
+        textViewArr[this.h].setText(charSequence);
     }
 
     @Override
-    public final TextView a() {
-        switch (this.f24594y) {
-            case 0:
-                s90 s90Var = new s90(this.E);
-                s90Var.setTextColor(this.F.getThemedColor(org.telegram.ui.ActionBar.j6.Oi));
-                s90Var.setTextSize(1, 17.0f);
-                s90Var.setTypeface(AndroidUtilities.bold());
-                s90Var.setEllipsize(TextUtils.TruncateAt.END);
-                s90Var.setSingleLine(true);
-                return s90Var;
-            default:
-                s90 s90Var2 = new s90(this.E);
-                int i10 = org.telegram.ui.ActionBar.j6.Si;
-                k8 k8Var = this.F;
-                s90Var2.setTextColor(k8Var.getThemedColor(i10));
-                s90Var2.setTextSize(1, 13.0f);
-                s90Var2.setEllipsize(TextUtils.TruncateAt.END);
-                s90Var2.setSingleLine(true);
-                s90Var2.setPadding(AndroidUtilities.dp(6.0f), 0, AndroidUtilities.dp(6.0f), AndroidUtilities.dp(1.0f));
-                s90Var2.setBackground(org.telegram.ui.ActionBar.j6.Y(k8Var.getThemedColor(org.telegram.ui.ActionBar.j6.f20753i6), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f)));
-                s90Var2.setOnClickListener(new org.telegram.ui.rf(18, this, s90Var2));
-                return s90Var2;
+    public final boolean drawChild(Canvas canvas, View view, long j3) {
+        int i10;
+        boolean z10;
+        Canvas canvas2;
+        TextView[] textViewArr = this.f22698a;
+        boolean z11 = true;
+        if (view == textViewArr[0]) {
+            i10 = 0;
+        } else {
+            i10 = 1;
         }
+        if (this.f22706x) {
+            this.f22704s = -1;
+        }
+        if (this.f22704s > 0) {
+            int length = textViewArr.length;
+            int i11 = 0;
+            while (true) {
+                if (i11 >= length) {
+                    break;
+                }
+                TextView textView = textViewArr[i11];
+                if ((textView instanceof r90) && ((r90) textView).d) {
+                    this.f22704s = -1;
+                    break;
+                }
+                i11++;
+            }
+        }
+        int i12 = this.f22704s;
+        RectF rectF = this.v;
+        if (i12 > 0 && textViewArr[this.h].getAlpha() != 1.0f && textViewArr[this.h].getLayout() != null) {
+            float primaryHorizontal = textViewArr[this.h].getLayout().getPrimaryHorizontal(0);
+            float primaryHorizontal2 = textViewArr[this.h].getLayout().getPrimaryHorizontal(this.f22704s);
+            if (primaryHorizontal == primaryHorizontal2) {
+                z11 = false;
+            } else if (primaryHorizontal2 > primaryHorizontal) {
+                rectF.set(primaryHorizontal, 0.0f, primaryHorizontal2, getMeasuredHeight());
+            } else {
+                rectF.set(primaryHorizontal2, 0.0f, primaryHorizontal, getMeasuredHeight());
+            }
+            if (z11 && i10 == this.h) {
+                canvas.save();
+                canvas.clipRect(rectF);
+                textViewArr[0].draw(canvas);
+                canvas.restore();
+            }
+            z10 = z11;
+        } else {
+            z10 = false;
+        }
+        float[] fArr = this.f22699b;
+        if (fArr[i10] <= 0.0f && !z10) {
+            return super.drawChild(canvas, view, j3);
+        }
+        float min = Math.min(view.getWidth(), getWidth());
+        float min2 = Math.min(view.getHeight(), getHeight());
+        int saveLayer = canvas.saveLayer(0.0f, 0.0f, min, min2, null, 31);
+        boolean drawChild = super.drawChild(canvas, view, j3);
+        float f7 = (1.0f - fArr[i10]) * min;
+        float f10 = f7 + this.f22700c;
+        Matrix matrix = this.d;
+        matrix.setTranslate(f7, 0.0f);
+        this.f22703r.setLocalMatrix(matrix);
+        canvas.drawRect(f7, 0.0f, f10, min2, this.e);
+        Paint paint = this.f22701f;
+        if (min > f10) {
+            canvas2 = canvas;
+            canvas2.drawRect(f10, 0.0f, min, min2, paint);
+        } else {
+            canvas2 = canvas;
+        }
+        if (z10) {
+            canvas2.drawRect(rectF, paint);
+        }
+        canvas2.restoreToCount(saveLayer);
+        return drawChild;
+    }
+
+    public int getCustomPaddingRight() {
+        return this.f22705w;
+    }
+
+    public TextView getNextTextView() {
+        char c10;
+        if (this.h == 0) {
+            c10 = 1;
+        } else {
+            c10 = 0;
+        }
+        return this.f22698a[c10];
+    }
+
+    public TextView getTextView() {
+        return this.f22698a[this.h];
+    }
+
+    @Override
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        super.onLayout(z10, i10, i11, i12, i13);
+        if (this.f22706x) {
+            int i14 = 0;
+            while (true) {
+                TextView[] textViewArr = this.f22698a;
+                if (i14 < textViewArr.length) {
+                    TextView textView = textViewArr[i14];
+                    if (textView != null && textView.getMeasuredWidth() < getMeasuredWidth()) {
+                        int measuredWidth = (getMeasuredWidth() - textView.getMeasuredWidth()) / 2;
+                        textView.layout(measuredWidth, 0, textView.getMeasuredWidth() + measuredWidth, textView.getMeasuredHeight());
+                    }
+                    i14++;
+                } else {
+                    return;
+                }
+            }
+        }
+    }
+
+    @Override
+    public final void onSizeChanged(int i10, int i11, int i12, int i13) {
+        super.onSizeChanged(i10, i11, i12, i13);
+        LinearGradient linearGradient = new LinearGradient(this.f22700c, 0.0f, 0.0f, 0.0f, 0, -16777216, Shader.TileMode.CLAMP);
+        this.f22703r = linearGradient;
+        this.e.setShader(linearGradient);
+    }
+
+    public void setCustomPaddingRight(int i10) {
+        TextView[] textViewArr;
+        this.f22705w = i10;
+        for (TextView textView : this.f22698a) {
+            if (textView instanceof r90) {
+                ((r90) textView).setCustomPaddingRight(i10);
+            }
+        }
+        invalidate();
+    }
+
+    public void setText(CharSequence charSequence) {
+        b(charSequence, true);
     }
 }

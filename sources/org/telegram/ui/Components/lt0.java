@@ -1,112 +1,53 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.util.SparseArray;
-import android.view.View;
-import android.view.ViewGroup;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.MessageObject;
-import org.telegram.tgnet.TLRPC;
-public final class lt0 extends kl0 {
-    public final Context f28306c;
-    public final xu0 d;
+import android.view.WindowManager;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ApplicationLoader;
+public final class lt0 extends LinearLayout {
+    public final TextView f26003a;
+    public final ImageView f26004b;
+    public boolean f26005c;
 
-    public lt0(xu0 xu0Var, Context context) {
-        this.d = xu0Var;
-        this.f28306c = context;
+    public lt0(Context context, org.telegram.ui.ActionBar.e6 e6Var) {
+        super(context);
+        TextView textView = new TextView(context);
+        this.f26003a = textView;
+        ImageView imageView = new ImageView(context);
+        this.f26004b = imageView;
+        setOrientation(1);
+        setGravity(17);
+        addView(imageView, w7.x5.n(-2, -2));
+        textView.setTextColor(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.f19237z6, e6Var));
+        textView.setGravity(17);
+        textView.setTextSize(1, 17.0f);
+        textView.setPadding(AndroidUtilities.dp(40.0f), 0, AndroidUtilities.dp(40.0f), AndroidUtilities.dp(128.0f));
+        addView(textView, w7.x5.t(-2, -2, 17, 0, 24, 0, 0));
     }
 
     @Override
-    public final boolean D(s4.c1 c1Var) {
-        mu0[] mu0VarArr = this.d.f32722t1;
-        if (mu0VarArr[5].f28516a.size() == 0 && !mu0VarArr[5].f28521g) {
-            return false;
+    public final void onMeasure(int i10, int i11) {
+        int rotation = ((WindowManager) ApplicationLoader.applicationContext.getSystemService("window")).getDefaultDisplay().getRotation();
+        this.f26005c = true;
+        if (AndroidUtilities.isTablet()) {
+            this.f26003a.setPadding(AndroidUtilities.dp(40.0f), 0, AndroidUtilities.dp(40.0f), AndroidUtilities.dp(128.0f));
+        } else if (rotation != 3 && rotation != 1) {
+            this.f26003a.setPadding(AndroidUtilities.dp(40.0f), 0, AndroidUtilities.dp(40.0f), AndroidUtilities.dp(128.0f));
+        } else {
+            this.f26003a.setPadding(AndroidUtilities.dp(40.0f), 0, AndroidUtilities.dp(40.0f), 0);
         }
-        return true;
+        this.f26005c = false;
+        super.onMeasure(i10, i11);
     }
 
     @Override
-    public final int h() {
-        mu0[] mu0VarArr = this.d.f32722t1;
-        if (mu0VarArr[5].f28516a.size() == 0 && !mu0VarArr[5].f28521g) {
-            return 1;
+    public final void requestLayout() {
+        if (this.f26005c) {
+            return;
         }
-        return mu0VarArr[5].f28516a.size();
-    }
-
-    @Override
-    public final long i(int i10) {
-        return i10;
-    }
-
-    @Override
-    public final int j(int i10) {
-        mu0[] mu0VarArr = this.d.f32722t1;
-        if (mu0VarArr[5].f28516a.size() == 0 && !mu0VarArr[5].f28521g) {
-            return 11;
-        }
-        return 12;
-    }
-
-    @Override
-    public final void v(s4.c1 c1Var, int i10) {
-        char c10;
-        if (c1Var.f45742f == 12) {
-            xu0 xu0Var = this.d;
-            MessageObject messageObject = (MessageObject) xu0Var.f32722t1[5].f28516a.get(i10);
-            TLRPC.Document document = messageObject.getDocument();
-            if (document != null) {
-                View view = c1Var.f45738a;
-                if (view instanceof org.telegram.ui.Cells.e2) {
-                    org.telegram.ui.Cells.e2 e2Var = (org.telegram.ui.Cells.e2) view;
-                    e2Var.d(messageObject.messageOwner.date, document, messageObject);
-                    boolean z10 = false;
-                    if (xu0Var.C1) {
-                        SparseArray[] sparseArrayArr = xu0Var.Z0;
-                        if (messageObject.getDialogId() == xu0Var.f32701j1) {
-                            c10 = 0;
-                        } else {
-                            c10 = 1;
-                        }
-                        if (sparseArrayArr[c10].indexOfKey(messageObject.getId()) >= 0) {
-                            z10 = true;
-                        }
-                        e2Var.c(z10, !xu0Var.f32680b1);
-                        return;
-                    }
-                    e2Var.c(false, !xu0Var.f32680b1);
-                }
-            }
-        }
-    }
-
-    @Override
-    public final s4.c1 x(ViewGroup viewGroup, int i10) {
-        xu0 xu0Var = this.d;
-        org.telegram.ui.ActionBar.f6 f6Var = xu0Var.F1;
-        Context context = this.f28306c;
-        if (i10 == 11) {
-            kt0 M = xu0.M(5, xu0Var.f32701j1, context, f6Var);
-            M.setLayoutParams(new s4.p0(-1, -1));
-            return new s4.c1(M);
-        }
-        org.telegram.ui.Cells.e2 e2Var = new org.telegram.ui.Cells.e2(context, f6Var, true);
-        e2Var.setCanPreviewGif(true);
-        return new s4.c1(e2Var);
-    }
-
-    @Override
-    public final void y(s4.c1 c1Var) {
-        View view = c1Var.f45738a;
-        if (view instanceof org.telegram.ui.Cells.e2) {
-            ImageReceiver photoImage = ((org.telegram.ui.Cells.e2) view).getPhotoImage();
-            if (this.d.f32702k0[0].F == 5) {
-                photoImage.setAllowStartAnimation(true);
-                photoImage.startAnimation();
-                return;
-            }
-            photoImage.setAllowStartAnimation(false);
-            photoImage.stopAnimation();
-        }
+        super.requestLayout();
     }
 }

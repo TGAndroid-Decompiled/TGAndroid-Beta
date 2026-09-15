@@ -1,79 +1,35 @@
 package qg;
 
-import android.animation.ValueAnimator;
-import ji.u4;
-public final class l0 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f44476a;
-    public final q0 f44477b;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Path;
+import android.graphics.RectF;
+import android.view.ViewGroup;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.au0;
+public final class l0 extends l1 {
+    public final Path f41442g3;
+    public final au0 f41443h3;
 
-    public l0(q0 q0Var, int i10) {
-        this.f44476a = i10;
-        this.f44477b = q0Var;
+    public l0(au0 au0Var, Context context) {
+        super(context);
+        this.f41443h3 = au0Var;
+        this.f41442g3 = new Path();
     }
 
     @Override
-    public final void onAnimationUpdate(final ValueAnimator valueAnimator) {
-        switch (this.f44476a) {
-            case 0:
-                final q0 q0Var = this.f44477b;
-                q0Var.f44522f.f(new Runnable() {
-                    @Override
-                    public final void run() {
-                        switch (r3) {
-                            case 0:
-                                q0 q0Var2 = q0Var;
-                                q0Var2.getClass();
-                                q0Var2.J = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                                u4 u4Var = q0Var2.f44518a;
-                                if (u4Var != null) {
-                                    u4Var.n();
-                                    return;
-                                }
-                                return;
-                            default:
-                                q0 q0Var3 = q0Var;
-                                q0Var3.getClass();
-                                q0Var3.I = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                                u4 u4Var2 = q0Var3.f44518a;
-                                if (u4Var2 != null) {
-                                    u4Var2.n();
-                                    return;
-                                }
-                                return;
-                        }
-                    }
-                });
-                return;
-            default:
-                final q0 q0Var2 = this.f44477b;
-                q0Var2.f44522f.f(new Runnable() {
-                    @Override
-                    public final void run() {
-                        switch (r3) {
-                            case 0:
-                                q0 q0Var22 = q0Var2;
-                                q0Var22.getClass();
-                                q0Var22.J = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                                u4 u4Var = q0Var22.f44518a;
-                                if (u4Var != null) {
-                                    u4Var.n();
-                                    return;
-                                }
-                                return;
-                            default:
-                                q0 q0Var3 = q0Var2;
-                                q0Var3.getClass();
-                                q0Var3.I = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                                u4 u4Var2 = q0Var3.f44518a;
-                                if (u4Var2 != null) {
-                                    u4Var2.n();
-                                    return;
-                                }
-                                return;
-                        }
-                    }
-                });
-                return;
-        }
+    public final void draw(Canvas canvas) {
+        ViewGroup barView;
+        au0 au0Var = this.f41443h3;
+        barView = au0Var.getBarView();
+        RectF rectF = AndroidUtilities.rectTmp;
+        rectF.set(AndroidUtilities.lerp(barView.getLeft() - getLeft(), 0, au0Var.N1), AndroidUtilities.lerp(barView.getTop() - getTop(), 0, au0Var.N1), AndroidUtilities.lerp(barView.getRight() - getLeft(), getWidth(), au0Var.N1), AndroidUtilities.lerp(barView.getBottom() - getTop(), getHeight(), au0Var.N1));
+        Path path = this.f41442g3;
+        path.rewind();
+        path.addRoundRect(rectF, AndroidUtilities.dp(32.0f), AndroidUtilities.dp(32.0f), Path.Direction.CW);
+        canvas.save();
+        canvas.clipPath(path);
+        super.draw(canvas);
+        canvas.restore();
     }
 }

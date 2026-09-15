@@ -3,17 +3,18 @@ package w9;
 import android.util.Log;
 import java.lang.Thread;
 import java.util.concurrent.atomic.AtomicBoolean;
+import org.telegram.ui.Cells.ia;
 public final class q implements Thread.UncaughtExceptionHandler {
-    public final mg.n f48438a;
-    public final da.b f48439b;
-    public final Thread.UncaughtExceptionHandler f48440c;
+    public final ia f44969a;
+    public final da.b f44970b;
+    public final Thread.UncaughtExceptionHandler f44971c;
     public final t9.a d;
-    public final AtomicBoolean f48441e = new AtomicBoolean(false);
+    public final AtomicBoolean e = new AtomicBoolean(false);
 
-    public q(mg.n nVar, da.b bVar, Thread.UncaughtExceptionHandler uncaughtExceptionHandler, t9.a aVar) {
-        this.f48438a = nVar;
-        this.f48439b = bVar;
-        this.f48440c = uncaughtExceptionHandler;
+    public q(ia iaVar, da.b bVar, Thread.UncaughtExceptionHandler uncaughtExceptionHandler, t9.a aVar) {
+        this.f44969a = iaVar;
+        this.f44970b = bVar;
+        this.f44971c = uncaughtExceptionHandler;
         this.d = aVar;
     }
 

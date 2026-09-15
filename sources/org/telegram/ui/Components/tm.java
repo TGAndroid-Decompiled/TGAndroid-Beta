@@ -3,20 +3,20 @@ package org.telegram.ui.Components;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 public final class tm implements bl, org.telegram.ui.ActionBar.a2 {
-    public final Utilities.Callback f30621a;
+    public final Utilities.Callback f28151a;
 
     public tm(Utilities.Callback callback) {
-        this.f30621a = callback;
+        this.f28151a = callback;
     }
 
     @Override
     public void b(TLRPC.MessageMedia messageMedia, int i10, boolean z10, int i11, long j3) {
-        this.f30621a.run(new sh.f(messageMedia));
+        this.f28151a.run(new rh.f(messageMedia));
     }
 
     @Override
-    public void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        Utilities.Callback callback = this.f30621a;
+    public void f(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
+        Utilities.Callback callback = this.f28151a;
         if (callback != null) {
             callback.run(Boolean.FALSE);
         }

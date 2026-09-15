@@ -15,7 +15,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import m2.t;
+import m.e3;
 import org.xmlpull.v1.XmlSerializer;
 import w9.o;
 import x8.m;
@@ -24,32 +24,32 @@ import y8.k0;
 import y8.v0;
 import zd.y0;
 public final class e implements Runnable {
-    public final int f46939a;
-    public final Object f46940b;
-    public final Object f46941c;
+    public final int f43612a;
+    public final Object f43613b;
+    public final Object f43614c;
 
     public e(int i10, Object obj, Object obj2) {
-        this.f46939a = i10;
-        this.f46941c = obj;
-        this.f46940b = obj2;
+        this.f43612a = i10;
+        this.f43614c = obj;
+        this.f43613b = obj2;
     }
 
     @Override
     public final void run() {
         y8.d dVar;
-        switch (this.f46939a) {
+        switch (this.f43612a) {
             case 0:
-                ShortcutInfoCompatSaverImpl shortcutInfoCompatSaverImpl = (ShortcutInfoCompatSaverImpl) this.f46941c;
-                ArrayList arrayList = (ArrayList) this.f46940b;
+                ShortcutInfoCompatSaverImpl shortcutInfoCompatSaverImpl = (ShortcutInfoCompatSaverImpl) this.f43614c;
+                ArrayList arrayList = (ArrayList) this.f43613b;
                 shortcutInfoCompatSaverImpl.e(arrayList);
-                File file = shortcutInfoCompatSaverImpl.f1907f;
-                t tVar = new t(file);
-                File file2 = (File) tVar.f15818c;
+                File file = shortcutInfoCompatSaverImpl.f2873f;
+                e3 e3Var = new e3(file);
+                File file2 = (File) e3Var.f14166c;
                 FileOutputStream fileOutputStream = null;
                 try {
-                    FileOutputStream Q = tVar.Q();
+                    FileOutputStream W = e3Var.W();
                     try {
-                        BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(Q);
+                        BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(W);
                         XmlSerializer newSerializer = Xml.newSerializer();
                         newSerializer.setOutput(bufferedOutputStream, "UTF_8");
                         newSerializer.startDocument(null, Boolean.TRUE);
@@ -65,9 +65,9 @@ public final class e implements Runnable {
                         newSerializer.endTag(null, "share_targets");
                         newSerializer.endDocument();
                         bufferedOutputStream.flush();
-                        Q.flush();
+                        W.flush();
                         try {
-                            Q.getFD().sync();
+                            W.getFD().sync();
                             z10 = true;
                         } catch (IOException unused) {
                         }
@@ -75,15 +75,15 @@ public final class e implements Runnable {
                             Log.e("AtomicFile", "Failed to sync file output stream");
                         }
                         try {
-                            Q.close();
-                        } catch (IOException e7) {
-                            Log.e("AtomicFile", "Failed to close file output stream", e7);
+                            W.close();
+                        } catch (IOException e) {
+                            Log.e("AtomicFile", "Failed to close file output stream", e);
                         }
-                        t.N(file2, file);
+                        e3.T(file2, file);
                         return;
-                    } catch (Exception e10) {
-                        e = e10;
-                        fileOutputStream = Q;
+                    } catch (Exception e7) {
+                        e = e7;
+                        fileOutputStream = W;
                         Log.e("ShortcutInfoCompatSaver", "Failed to write to file " + file, e);
                         if (fileOutputStream != null) {
                             try {
@@ -93,8 +93,8 @@ public final class e implements Runnable {
                             }
                             try {
                                 fileOutputStream.close();
-                            } catch (IOException e11) {
-                                Log.e("AtomicFile", "Failed to close file output stream", e11);
+                            } catch (IOException e10) {
+                                Log.e("AtomicFile", "Failed to close file output stream", e10);
                             }
                             if (!file2.delete()) {
                                 Log.e("AtomicFile", "Failed to delete new file " + file2);
@@ -102,80 +102,80 @@ public final class e implements Runnable {
                         }
                         throw new RuntimeException("Failed to write to file " + file, e);
                     }
-                } catch (Exception e12) {
-                    e = e12;
+                } catch (Exception e11) {
+                    e = e11;
                 }
             case 1:
-                l lVar = (l) this.f46941c;
+                l lVar = (l) this.f43614c;
                 try {
-                    ((l) this.f46940b).get();
+                    ((l) this.f43613b).get();
                     lVar.k(null);
                     return;
-                } catch (Exception e13) {
-                    lVar.l(e13);
+                } catch (Exception e12) {
+                    lVar.l(e12);
                     return;
                 }
             case 2:
-                ShortcutInfoCompatSaverImpl shortcutInfoCompatSaverImpl2 = (ShortcutInfoCompatSaverImpl) this.f46941c;
-                a0.f fVar = shortcutInfoCompatSaverImpl2.f1904b;
+                ShortcutInfoCompatSaverImpl shortcutInfoCompatSaverImpl2 = (ShortcutInfoCompatSaverImpl) this.f43614c;
+                a0.f fVar = shortcutInfoCompatSaverImpl2.f2871b;
                 try {
-                    ShortcutInfoCompatSaverImpl.f((File) this.f46940b);
-                    ShortcutInfoCompatSaverImpl.f(shortcutInfoCompatSaverImpl2.f1908g);
-                    fVar.putAll(d.c(shortcutInfoCompatSaverImpl2.f1907f, shortcutInfoCompatSaverImpl2.f1903a));
+                    ShortcutInfoCompatSaverImpl.f((File) this.f43613b);
+                    ShortcutInfoCompatSaverImpl.f(shortcutInfoCompatSaverImpl2.f2874g);
+                    fVar.putAll(d.c(shortcutInfoCompatSaverImpl2.f2873f, shortcutInfoCompatSaverImpl2.f2870a));
                     shortcutInfoCompatSaverImpl2.e(new ArrayList(fVar.values()));
                     return;
-                } catch (Exception e14) {
-                    Log.w("ShortcutInfoCompatSaver", "ShortcutInfoCompatSaver started with an exceptions ", e14);
+                } catch (Exception e13) {
+                    Log.w("ShortcutInfoCompatSaver", "ShortcutInfoCompatSaver started with an exceptions ", e13);
                     return;
                 }
             case 3:
-                ShortcutInfoCompatSaverImpl shortcutInfoCompatSaverImpl3 = (ShortcutInfoCompatSaverImpl) this.f46941c;
-                shortcutInfoCompatSaverImpl3.f1904b.clear();
-                a0.f fVar2 = shortcutInfoCompatSaverImpl3.f1905c;
+                ShortcutInfoCompatSaverImpl shortcutInfoCompatSaverImpl3 = (ShortcutInfoCompatSaverImpl) this.f43614c;
+                shortcutInfoCompatSaverImpl3.f2871b.clear();
+                a0.f fVar2 = shortcutInfoCompatSaverImpl3.f2872c;
                 Iterator it = ((a0.e) fVar2.values()).iterator();
                 while (it.hasNext()) {
                     ((w) it.next()).cancel(false);
                 }
                 fVar2.clear();
-                shortcutInfoCompatSaverImpl3.h((l) this.f46940b);
+                shortcutInfoCompatSaverImpl3.h((l) this.f43613b);
                 return;
             case 4:
-                if (!(((l) this.f46940b).f4117a instanceof c0.a)) {
+                if (!(((l) this.f43613b).f3631a instanceof c0.a)) {
                     try {
-                        ((Runnable) this.f46941c).run();
-                        ((l) this.f46940b).k(null);
+                        ((Runnable) this.f43614c).run();
+                        ((l) this.f43613b).k(null);
                         return;
-                    } catch (Exception e15) {
-                        ((l) this.f46940b).l(e15);
+                    } catch (Exception e14) {
+                        ((l) this.f43613b).l(e14);
                         return;
                     }
                 }
                 return;
             case 5:
-                o.a((o) this.f46941c, (da.b) this.f46940b);
+                o.a((o) this.f43614c, (da.b) this.f43613b);
                 return;
             case 6:
-                x1.a aVar = (x1.a) this.f46941c;
-                Object obj2 = this.f46940b;
-                if (aVar.f48680c.get()) {
-                    a6.d dVar2 = aVar.f48681e;
+                x1.a aVar = (x1.a) this.f43614c;
+                Object obj2 = this.f43613b;
+                if (aVar.f45137c.get()) {
+                    a6.d dVar2 = aVar.e;
                     if (dVar2.h == aVar) {
                         SystemClock.uptimeMillis();
                         dVar2.h = null;
                         dVar2.b();
                     }
                 } else {
-                    a6.d dVar3 = aVar.f48681e;
-                    if (dVar3.f303g != aVar) {
+                    a6.d dVar3 = aVar.e;
+                    if (dVar3.f292g != aVar) {
                         if (dVar3.h == aVar) {
                             SystemClock.uptimeMillis();
                             dVar3.h = null;
                             dVar3.b();
                         }
-                    } else if (!dVar3.f300c) {
+                    } else if (!dVar3.f290c) {
                         SystemClock.uptimeMillis();
-                        dVar3.f303g = null;
-                        w1.a aVar2 = dVar3.f298a;
+                        dVar3.f292g = null;
+                        w1.a aVar2 = dVar3.f288a;
                         if (aVar2 != null) {
                             if (Looper.myLooper() == Looper.getMainLooper()) {
                                 aVar2.j(obj2);
@@ -185,56 +185,56 @@ public final class e implements Runnable {
                         }
                     }
                 }
-                aVar.f48679b = 3;
+                aVar.f45136b = 3;
                 return;
             case 7:
-                DataHolder dataHolder = (DataHolder) this.f46940b;
+                DataHolder dataHolder = (DataHolder) this.f43613b;
                 x8.e eVar = new x8.e(dataHolder);
                 try {
-                    ((m) this.f46941c).f49286c.onDataChanged(eVar);
+                    ((m) this.f43614c).f45695c.onDataChanged(eVar);
                     if (dataHolder != null) {
                         dataHolder.close();
                         return;
                     }
                     return;
                 } catch (Throwable th2) {
-                    DataHolder dataHolder2 = eVar.f49279a;
+                    DataHolder dataHolder2 = eVar.f45688a;
                     if (dataHolder2 != null) {
                         dataHolder2.close();
                     }
                     throw th2;
                 }
             case 8:
-                ((m) this.f46941c).f49286c.onMessageReceived((k0) this.f46940b);
+                ((m) this.f43614c).f45695c.onMessageReceived((k0) this.f43613b);
                 return;
             case 9:
-                ((m) this.f46941c).f49286c.onConnectedNodes((List) this.f46940b);
+                ((m) this.f43614c).f45695c.onConnectedNodes((List) this.f43613b);
                 return;
             case 10:
-                ((m) this.f46941c).f49286c.onCapabilityChanged((y8.b) this.f46940b);
+                ((m) this.f43614c).f45695c.onCapabilityChanged((y8.b) this.f43613b);
                 return;
             case 11:
-                ((m) this.f46941c).f49286c.onNotificationReceived((b1) this.f46940b);
+                ((m) this.f43614c).f45695c.onNotificationReceived((b1) this.f43613b);
                 return;
             case 12:
-                ((m) this.f46941c).f49286c.onEntityUpdate((v0) this.f46940b);
+                ((m) this.f43614c).f45695c.onEntityUpdate((v0) this.f43613b);
                 return;
             case 13:
-                y8.e eVar2 = (y8.e) this.f46940b;
-                m mVar = (m) this.f46941c;
-                eVar2.b(mVar.f49286c);
-                dVar = mVar.f49286c.zzh;
+                y8.e eVar2 = (y8.e) this.f43613b;
+                m mVar = (m) this.f43614c;
+                eVar2.b(mVar.f45695c);
+                dVar = mVar.f45695c.zzh;
                 eVar2.b(dVar);
                 return;
             default:
-                ((zd.m) this.f46941c).D((y0) this.f46940b);
+                ((zd.m) this.f43614c).D((y0) this.f43613b);
                 return;
         }
     }
 
     public e(Object obj, Object obj2, boolean z10, int i10) {
-        this.f46939a = i10;
-        this.f46940b = obj;
-        this.f46941c = obj2;
+        this.f43612a = i10;
+        this.f43613b = obj;
+        this.f43614c = obj2;
     }
 }

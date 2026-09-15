@@ -2,12 +2,12 @@ package x7;
 
 import java.util.Arrays;
 public final class e7 {
-    public final d7 f48975a;
-    public final Integer f48976b;
+    public final d7 f45406a;
+    public final Integer f45407b;
 
     public e7(o0.a aVar) {
-        this.f48975a = (d7) aVar.f16769b;
-        this.f48976b = (Integer) aVar.f16770c;
+        this.f45406a = (d7) aVar.f15300b;
+        this.f45407b = (Integer) aVar.f15301c;
     }
 
     public final boolean equals(Object obj) {
@@ -18,13 +18,13 @@ public final class e7 {
             return false;
         }
         e7 e7Var = (e7) obj;
-        if (n6.l.l(this.f48975a, e7Var.f48975a) && n6.l.l(this.f48976b, e7Var.f48976b) && n6.l.l(null, null) && n6.l.l(null, null)) {
+        if (n6.l.l(this.f45406a, e7Var.f45406a) && n6.l.l(this.f45407b, e7Var.f45407b) && n6.l.l(null, null) && n6.l.l(null, null)) {
             return true;
         }
         return false;
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{this.f48975a, this.f48976b, null, null});
+        return Arrays.hashCode(new Object[]{this.f45406a, this.f45407b, null, null});
     }
 }

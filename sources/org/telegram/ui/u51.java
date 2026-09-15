@@ -1,44 +1,40 @@
 package org.telegram.ui;
 
-import java.util.ArrayList;
-public final class u51 extends g.p {
-    public final int f40940c;
-    public final j71 d;
+import androidx.recyclerview.widget.RecyclerView;
+import org.telegram.messenger.FileLog;
+public final class u51 extends s4.s {
+    public final int Q;
+    public final g71 R;
 
-    public u51(j71 j71Var, int i10) {
-        this.f40940c = i10;
-        this.d = j71Var;
+    public u51(g71 g71Var, int i10) {
+        super(40);
+        this.Q = i10;
+        this.R = g71Var;
     }
 
     @Override
-    public final int i(int i10) {
-        int i11;
-        ArrayList arrayList;
-        int i12;
-        switch (this.f40940c) {
+    public final void v0(RecyclerView recyclerView, s4.z0 z0Var, int i10) {
+        switch (this.Q) {
             case 0:
-                j71 j71Var = this.d;
-                if (j71Var.f37678w0.indexOfKey(i10) < 0 && j71Var.f37686z0.indexOfKey(i10) < 0 && i10 != j71Var.f37641f && i10 != j71Var.f37683y && i10 != j71Var.f37656n && i10 != j71Var.h && i10 != j71Var.v && i10 != j71Var.f37627a && i10 != j71Var.f37680x) {
-                    if ((i10 >= j71Var.E && i10 < j71Var.F) || j71Var.Q) {
-                        return 8;
-                    }
-                    return 5;
+                try {
+                    ci.m1 m1Var = new ci.m1(this, recyclerView.getContext(), 3);
+                    m1Var.f42825a = i10;
+                    w0(m1Var);
+                    return;
+                } catch (Exception e) {
+                    FileLog.e(e);
+                    return;
                 }
-                return j71Var.f37666r0.J;
             default:
-                j71 j71Var2 = this.d;
-                t61 t61Var = j71Var2.f37663q0;
-                int j3 = t61Var.j(i10);
-                if (j3 == 6) {
-                    return j71Var2.f37666r0.J;
+                try {
+                    ci.m1 m1Var2 = new ci.m1(this, recyclerView.getContext(), 5);
+                    m1Var2.f42825a = i10;
+                    w0(m1Var2);
+                    return;
+                } catch (Exception e7) {
+                    FileLog.e(e7);
+                    return;
                 }
-                if (j3 != 5) {
-                    j71 j71Var3 = t61Var.f40640s;
-                    if (j71Var3.W != 14 ? i10 <= (i11 = t61Var.f40635c) || (i10 - i11) - 1 >= j71Var3.C1.size() : (arrayList = j71Var3.B1) == null || i10 < (i12 = t61Var.f40635c) || i10 - i12 >= arrayList.size()) {
-                        return 5;
-                    }
-                }
-                return 8;
         }
     }
 }

@@ -55,29 +55,29 @@ public interface qt {
 
     boolean h();
 
-    void i(SendMessagesHelper.ImportingSticker importingSticker);
+    org.telegram.ui.Components.n70 i(ci.n6 n6Var);
 
-    boolean j();
+    void j(SendMessagesHelper.ImportingSticker importingSticker);
 
-    boolean k(int i10);
+    boolean k();
 
-    void l(TLRPC.Document document, String str, Object obj, boolean z10, int i10, int i11);
+    boolean l(int i10);
 
-    void m(String str);
+    void m(TLRPC.Document document, String str, Object obj, boolean z10, int i10, int i11);
 
-    void n(TLRPC.Document document);
+    void n(String str);
 
-    boolean o();
+    void o(TLRPC.Document document);
 
-    void p(TLRPC.Document document);
+    boolean p();
 
-    void q();
+    void q(TLRPC.Document document);
 
-    void r(int i10, int i11, Object obj, TLObject tLObject, boolean z10);
+    void r();
 
-    void s();
+    void s(int i10, int i11, Object obj, TLObject tLObject, boolean z10);
 
-    org.telegram.ui.Components.n70 t(ah.w wVar);
+    void t();
 
     void u(TLRPC.Document document);
 

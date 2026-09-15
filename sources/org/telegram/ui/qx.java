@@ -1,15 +1,15 @@
 package org.telegram.ui;
-public final class qx extends a71 {
-    public final uy f39995e;
+public final class qx extends x61 {
+    public final uy e;
 
     public qx(uy uyVar, px pxVar) {
         super(pxVar);
-        this.f39995e = uyVar;
+        this.e = uyVar;
     }
 
     @Override
     public final void dismiss() {
         super.dismiss();
-        this.f39995e.M0 = null;
+        this.e.M0 = null;
     }
 }

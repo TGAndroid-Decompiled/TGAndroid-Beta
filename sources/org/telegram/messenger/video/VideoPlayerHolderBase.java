@@ -8,14 +8,14 @@ import android.os.Build;
 import android.view.Surface;
 import android.view.SurfaceView;
 import android.view.TextureView;
-import hg.t;
+import gg.t;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.DispatchQueue;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.FileStreamLoadOperation;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.s8;
+import org.telegram.messenger.t8;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.d71;
 import org.telegram.ui.Components.g71;
@@ -211,9 +211,9 @@ public class VideoPlayerHolderBase {
         }
         g71 g71Var2 = new g71(false, z10);
         this.videoPlayer = g71Var2;
-        g71Var2.f26317y = this.allowMultipleInstances;
+        g71Var2.f24245y = this.allowMultipleInstances;
         g71Var2.J = new AnonymousClass2();
-        this.videoPlayer.f26302c = true;
+        this.videoPlayer.f24231c = true;
     }
 
     public void lambda$loopBack$9() {
@@ -361,7 +361,7 @@ public class VideoPlayerHolderBase {
         boolean y3 = g71Var.y();
         if (z10) {
             g71 g71Var2 = this.videoPlayer;
-            if (g71Var2.f26301b0) {
+            if (g71Var2.f24230b0) {
                 g71Var2.B();
                 long n10 = this.videoPlayer.n();
                 this.videoPlayer.H();
@@ -714,7 +714,7 @@ public class VideoPlayerHolderBase {
     }
 
     public void seekTo(long j3, boolean z10, Runnable runnable) {
-        this.dispatchQueue.postRunnable(new s8(this, j3, z10, runnable));
+        this.dispatchQueue.postRunnable(new t8(this, j3, z10, runnable));
     }
 
     public VideoPlayerHolderBase with(TextureView textureView) {

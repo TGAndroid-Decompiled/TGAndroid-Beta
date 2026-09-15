@@ -6,59 +6,59 @@ import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.FileLog;
-public final class yh implements r0.n, yf.b0, org.telegram.ui.ActionBar.a2 {
-    public final co f43118a;
+public final class yh implements r0.n, yf.a0, org.telegram.ui.ActionBar.a2 {
+    public final bo f39881a;
 
-    public yh(co coVar) {
-        this.f43118a = coVar;
+    public yh(bo boVar) {
+        this.f39881a = boVar;
     }
 
     @Override
-    public r0.l1 T0(View view, r0.l1 l1Var) {
-        i0.c defaultWindowInsets = AndroidUtilities.getDefaultWindowInsets(l1Var, false);
-        int i10 = defaultWindowInsets.f11425a;
-        int i11 = defaultWindowInsets.f11427c;
-        co coVar = this.f43118a;
-        if (coVar.Ua != i10 || coVar.Va != i11) {
-            coVar.Ua = i10;
-            coVar.Va = i11;
-            coVar.X0.requestLayout();
+    public r0.l1 Q0(View view, r0.l1 l1Var) {
+        i0.b defaultWindowInsets = AndroidUtilities.getDefaultWindowInsets(l1Var, false);
+        int i10 = defaultWindowInsets.f10588a;
+        int i11 = defaultWindowInsets.f10590c;
+        bo boVar = this.f39881a;
+        if (boVar.Ua != i10 || boVar.Va != i11) {
+            boVar.Ua = i10;
+            boVar.Va = i11;
+            boVar.X0.requestLayout();
         }
-        coVar.v.i(l1Var);
-        ih.f fVar = coVar.K3;
+        boVar.v.i(l1Var);
+        hh.f fVar = boVar.K3;
         if (fVar != null) {
             fVar.setPadding(i10, 0, i11, 0);
         }
-        coVar.n7();
-        coVar.r7();
-        coVar.p9();
-        boolean p5 = l1Var.f44711a.p(8);
-        if (coVar.Ta != p5) {
-            coVar.Ta = p5;
-            coVar.X0.S();
+        boVar.n7();
+        boVar.r7();
+        boVar.p9();
+        boolean p5 = l1Var.f41855a.p(8);
+        if (boVar.Ta != p5) {
+            boVar.Ta = p5;
+            boVar.X0.S();
         }
-        di.i1 i1Var = coVar.f35383q1;
+        ci.i1 i1Var = boVar.f32434q1;
         if (i1Var != null) {
             r0.i0.b(i1Var, l1Var);
         }
-        return r0.l1.f44710b;
+        return r0.l1.f41854b;
     }
 
     @Override
     public void a(int i10) {
-        co.S0(this.f43118a, i10);
+        bo.S0(this.f39881a, i10);
     }
 
     @Override
-    public void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        co coVar = this.f43118a;
-        coVar.getClass();
+    public void f(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
+        bo boVar = this.f39881a;
+        boVar.getClass();
         try {
             Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
             intent.setData(Uri.parse("package:" + ApplicationLoader.applicationContext.getPackageName()));
-            coVar.getParentActivity().startActivity(intent);
-        } catch (Exception e7) {
-            FileLog.e(e7);
+            boVar.getParentActivity().startActivity(intent);
+        } catch (Exception e) {
+            FileLog.e(e);
         }
     }
 }

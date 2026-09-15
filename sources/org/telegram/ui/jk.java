@@ -7,41 +7,41 @@ import java.util.WeakHashMap;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class jk extends org.telegram.ui.Components.a81 {
-    public final Context f37795a;
-    public final co f37796b;
+    public final Context f34932a;
+    public final bo f34933b;
 
-    public jk(co coVar, Context context) {
-        this.f37796b = coVar;
-        this.f37795a = context;
+    public jk(bo boVar, Context context) {
+        this.f34933b = boVar;
+        this.f34932a = context;
     }
 
     @Override
     public final void b(View view, int i10, int i11) {
-        if (view instanceof fo) {
-            ((fo) view).f36437a.Jc(this.f37796b.f35437u3);
+        if (view instanceof eo) {
+            ((eo) view).f33375a.Jc(this.f34933b.f32488u3);
         }
-        WeakHashMap weakHashMap = r0.i0.f44697a;
+        WeakHashMap weakHashMap = r0.i0.f41843a;
         r0.y.c(view);
     }
 
     @Override
     public final View d(int i10) {
-        Context context = this.f37795a;
-        co coVar = this.f37796b;
+        Context context = this.f34932a;
+        bo boVar = this.f34933b;
         if (i10 == 0) {
-            return new qn(coVar, context);
+            return new pn(boVar, context);
         }
         Bundle bundle = new Bundle();
         bundle.putInt("chatMode", 7);
         bundle.putInt("searchType", i10);
-        bundle.putString("searchHashtag", coVar.f35437u3);
-        ik ikVar = new ik(context, coVar.getParentLayout(), bundle, 0);
+        bundle.putString("searchHashtag", boVar.f32488u3);
+        ik ikVar = new ik(context, boVar.getParentLayout(), bundle, 0);
         ikVar.h = false;
-        eo eoVar = ikVar.f36437a;
-        eoVar.L.f10661a = coVar.L;
-        eoVar.f35222ca = coVar.f35247ea;
-        eoVar.f35234da = coVar;
-        eoVar.V8 = new g(this, 13);
+        co coVar = ikVar.f33375a;
+        coVar.L.f9076a = boVar.L;
+        coVar.f32273ca = boVar.f32297ea;
+        coVar.f32285da = boVar;
+        coVar.V8 = new g(this, 13);
         return ikVar;
     }
 

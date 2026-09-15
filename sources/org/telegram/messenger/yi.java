@@ -2,24 +2,24 @@ package org.telegram.messenger;
 
 import org.telegram.tgnet.tl.TL_update;
 public final class yi implements Runnable {
-    public final int f19765a;
-    public final SendMessagesHelper f19766b;
-    public final TL_update.TL_updateNewChannelMessage f19767c;
+    public final int f17997a;
+    public final SendMessagesHelper f17998b;
+    public final TL_update.TL_updateNewMessage f17999c;
 
-    public yi(SendMessagesHelper sendMessagesHelper, TL_update.TL_updateNewChannelMessage tL_updateNewChannelMessage, int i10) {
-        this.f19765a = i10;
-        this.f19766b = sendMessagesHelper;
-        this.f19767c = tL_updateNewChannelMessage;
+    public yi(SendMessagesHelper sendMessagesHelper, TL_update.TL_updateNewMessage tL_updateNewMessage, int i10) {
+        this.f17997a = i10;
+        this.f17998b = sendMessagesHelper;
+        this.f17999c = tL_updateNewMessage;
     }
 
     @Override
     public final void run() {
-        switch (this.f19765a) {
+        switch (this.f17997a) {
             case 0:
-                this.f19766b.lambda$performSendMessageRequest$92(this.f19767c);
+                this.f17998b.lambda$performSendMessageRequest$91(this.f17999c);
                 return;
             default:
-                this.f19766b.lambda$performSendMessageRequestMulti$67(this.f19767c);
+                this.f17998b.lambda$performSendMessageRequestMulti$66(this.f17999c);
                 return;
         }
     }

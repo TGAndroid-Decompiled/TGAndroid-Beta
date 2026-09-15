@@ -1,41 +1,44 @@
 package yh;
 
-import org.telegram.ui.Components.q6;
-public final class d0 implements Runnable {
-    public final int f50229a;
-    public final j0 f50230b;
+import android.text.Editable;
+import android.text.TextUtils;
+import android.text.TextWatcher;
+public final class d0 implements TextWatcher {
+    public final e0 f47067a;
 
-    public d0(j0 j0Var, int i10) {
-        this.f50229a = i10;
-        this.f50230b = j0Var;
+    public d0(e0 e0Var) {
+        this.f47067a = e0Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f50229a) {
-            case 0:
-                j0 j0Var = this.f50230b;
-                qh.i iVar = j0Var.h;
-                ih.g gVar = j0Var.f50340f;
-                if (gVar != null) {
-                    gVar.d();
-                }
-                i0 i0Var = j0Var.H;
-                if (i0Var != null) {
-                    i0Var.setTranslationY(-iVar.c());
-                }
-                q6 q6Var = j0Var.f50344w;
-                if (q6Var != null) {
-                    q6Var.setTranslationY(-iVar.c());
-                }
-                j0Var.o();
-                return;
-            case 1:
-                this.f50230b.H.performClick();
-                return;
-            default:
-                this.f50230b.dismiss();
-                return;
+    public final void afterTextChanged(Editable editable) {
+        boolean z10;
+        zf.a i10;
+        String obj;
+        int indexOf;
+        if (editable != null && !editable.toString().isEmpty() && !".".equals(editable.toString())) {
+            z10 = false;
+        } else {
+            z10 = true;
         }
+        if (!z10 && (indexOf = (obj = editable.toString()).indexOf(46)) >= 0 && (obj.length() - indexOf) - 1 > 2) {
+            editable.delete(indexOf + 3, obj.length());
+        }
+        e0 e0Var = this.f47067a;
+        if (!z10) {
+            i10 = zf.a.h(editable.toString(), e0Var.H.f48952a);
+        } else {
+            i10 = zf.a.i(0L, e0Var.H.f48952a);
+        }
+        e0Var.q(i10, false, false, true);
+        e0Var.f47093f.c(e0Var.h.isFocused(), true ^ TextUtils.isEmpty(e0Var.h.getText()));
+    }
+
+    @Override
+    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+    }
+
+    @Override
+    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
     }
 }

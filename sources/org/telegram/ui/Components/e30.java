@@ -6,86 +6,86 @@ import android.graphics.Shader;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
 public final class e30 {
-    public float f25534c;
+    public float f23506c;
     public float d;
-    public float f25535e;
-    public float f25536f;
-    public RadialGradient f25537g;
-    public final int f25538i;
-    public int f25539j;
-    public int f25540k;
-    public int f25541l;
-    public float f25532a = -1.0f;
-    public float f25533b = -1.0f;
+    public float e;
+    public float f23507f;
+    public RadialGradient f23508g;
+    public final int f23509i;
+    public int f23510j;
+    public int f23511k;
+    public int f23512l;
+    public float f23504a = -1.0f;
+    public float f23505b = -1.0f;
     public final Matrix h = new Matrix();
 
     public e30(int i10) {
-        this.f25538i = i10;
+        this.f23509i = i10;
     }
 
     public final void a(float f7) {
         float f10;
-        int i10 = this.f25538i;
+        int i10 = this.f23509i;
         if (i10 == 0) {
-            int i11 = this.f25539j;
-            int i12 = org.telegram.ui.ActionBar.j6.Tg;
-            if (i11 != org.telegram.ui.ActionBar.j6.w0(null, i12, false) || this.f25540k != org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.Ug, false)) {
-                int w02 = org.telegram.ui.ActionBar.j6.w0(null, i12, false);
-                this.f25539j = w02;
-                int w03 = org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.Ug, false);
-                this.f25540k = w03;
-                this.f25537g = new RadialGradient(200.0f, 200.0f, 200.0f, new int[]{w02, w03}, (float[]) null, Shader.TileMode.CLAMP);
+            int i11 = this.f23510j;
+            int i12 = org.telegram.ui.ActionBar.i6.Tg;
+            if (i11 != org.telegram.ui.ActionBar.i6.w0(null, i12, false) || this.f23511k != org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.Ug, false)) {
+                int w02 = org.telegram.ui.ActionBar.i6.w0(null, i12, false);
+                this.f23510j = w02;
+                int w03 = org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.Ug, false);
+                this.f23511k = w03;
+                this.f23508g = new RadialGradient(200.0f, 200.0f, 200.0f, new int[]{w02, w03}, (float[]) null, Shader.TileMode.CLAMP);
             }
         } else if (i10 == 1) {
-            int i13 = this.f25539j;
-            int i14 = org.telegram.ui.ActionBar.j6.Vg;
-            if (i13 != org.telegram.ui.ActionBar.j6.w0(null, i14, false) || this.f25540k != org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.Wg, false)) {
-                int w04 = org.telegram.ui.ActionBar.j6.w0(null, i14, false);
-                this.f25539j = w04;
-                int w05 = org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.Wg, false);
-                this.f25540k = w05;
-                this.f25537g = new RadialGradient(200.0f, 200.0f, 200.0f, new int[]{w04, w05}, (float[]) null, Shader.TileMode.CLAMP);
+            int i13 = this.f23510j;
+            int i14 = org.telegram.ui.ActionBar.i6.Vg;
+            if (i13 != org.telegram.ui.ActionBar.i6.w0(null, i14, false) || this.f23511k != org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.Wg, false)) {
+                int w04 = org.telegram.ui.ActionBar.i6.w0(null, i14, false);
+                this.f23510j = w04;
+                int w05 = org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.Wg, false);
+                this.f23511k = w05;
+                this.f23508g = new RadialGradient(200.0f, 200.0f, 200.0f, new int[]{w04, w05}, (float[]) null, Shader.TileMode.CLAMP);
             }
         } else if (i10 == 3) {
-            int i15 = this.f25539j;
-            int i16 = org.telegram.ui.ActionBar.j6.f20763ih;
-            if (i15 != org.telegram.ui.ActionBar.j6.w0(null, i16, false) || this.f25540k != org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f20782jh, false) || this.f25541l != org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f20802kh, false)) {
-                int w06 = org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f20782jh, false);
-                this.f25540k = w06;
-                int w07 = org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f20802kh, false);
-                this.f25541l = w07;
-                int w08 = org.telegram.ui.ActionBar.j6.w0(null, i16, false);
-                this.f25539j = w08;
-                this.f25537g = new RadialGradient(200.0f, 200.0f, 200.0f, new int[]{w06, w07, w08}, (float[]) null, Shader.TileMode.CLAMP);
+            int i15 = this.f23510j;
+            int i16 = org.telegram.ui.ActionBar.i6.f18936ih;
+            if (i15 != org.telegram.ui.ActionBar.i6.w0(null, i16, false) || this.f23511k != org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f18955jh, false) || this.f23512l != org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f18975kh, false)) {
+                int w06 = org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f18955jh, false);
+                this.f23511k = w06;
+                int w07 = org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f18975kh, false);
+                this.f23512l = w07;
+                int w08 = org.telegram.ui.ActionBar.i6.w0(null, i16, false);
+                this.f23510j = w08;
+                this.f23508g = new RadialGradient(200.0f, 200.0f, 200.0f, new int[]{w06, w07, w08}, (float[]) null, Shader.TileMode.CLAMP);
             }
         } else {
             return;
         }
         int dp = AndroidUtilities.dp(130.0f);
-        float f11 = this.f25535e;
-        if (f11 == 0.0f || this.f25536f >= f11) {
-            this.f25535e = Utilities.random.nextInt(700) + 500;
-            this.f25536f = 0.0f;
-            if (this.f25532a == -1.0f) {
+        float f11 = this.e;
+        if (f11 == 0.0f || this.f23507f >= f11) {
+            this.e = Utilities.random.nextInt(700) + 500;
+            this.f23507f = 0.0f;
+            if (this.f23504a == -1.0f) {
                 b();
             }
-            this.f25534c = this.f25532a;
-            this.d = this.f25533b;
+            this.f23506c = this.f23504a;
+            this.d = this.f23505b;
             b();
         }
         float f12 = (float) 16;
-        float f13 = (f12 * 0.02f * f7) + (1.0f * f12) + this.f25536f;
-        this.f25536f = f13;
-        float f14 = this.f25535e;
+        float f13 = (f12 * 0.02f * f7) + (1.0f * f12) + this.f23507f;
+        this.f23507f = f13;
+        float f14 = this.e;
         if (f13 > f14) {
-            this.f25536f = f14;
+            this.f23507f = f14;
         }
-        float interpolation = pr.f29467g.getInterpolation(this.f25536f / f14);
+        float interpolation = qr.f27424g.getInterpolation(this.f23507f / f14);
         float f15 = dp;
-        float f16 = this.f25534c;
-        float f17 = ((((this.f25532a - f16) * interpolation) + f16) * f15) - 200.0f;
+        float f16 = this.f23506c;
+        float f17 = ((((this.f23504a - f16) * interpolation) + f16) * f15) - 200.0f;
         float f18 = this.d;
-        float f19 = ((((this.f25533b - f18) * interpolation) + f18) * f15) - 200.0f;
+        float f19 = ((((this.f23505b - f18) * interpolation) + f18) * f15) - 200.0f;
         if (i10 == 3) {
             f10 = 2.0f;
         } else {
@@ -96,20 +96,20 @@ public final class e30 {
         matrix.reset();
         matrix.postTranslate(f17, f19);
         matrix.postScale(f20, f20, f17 + 200.0f, f19 + 200.0f);
-        this.f25537g.setLocalMatrix(matrix);
+        this.f23508g.setLocalMatrix(matrix);
     }
 
     public final void b() {
-        int i10 = this.f25538i;
+        int i10 = this.f23509i;
         if (i10 == 0) {
-            this.f25532a = a4.a.A(Utilities.random.nextInt(100), 0.1f, 100.0f, 0.2f);
-            this.f25533b = a4.a.A(Utilities.random.nextInt(100), 0.1f, 100.0f, 0.7f);
+            this.f23504a = a4.a.A(Utilities.random.nextInt(100), 0.1f, 100.0f, 0.2f);
+            this.f23505b = a4.a.A(Utilities.random.nextInt(100), 0.1f, 100.0f, 0.7f);
         } else if (i10 == 3) {
-            this.f25532a = a4.a.A(Utilities.random.nextInt(100), 0.1f, 100.0f, 0.6f);
-            this.f25533b = (Utilities.random.nextInt(100) * 0.1f) / 100.0f;
+            this.f23504a = a4.a.A(Utilities.random.nextInt(100), 0.1f, 100.0f, 0.6f);
+            this.f23505b = (Utilities.random.nextInt(100) * 0.1f) / 100.0f;
         } else {
-            this.f25532a = a4.a.e(Utilities.random.nextInt(100), 100.0f, 0.2f, 0.8f);
-            this.f25533b = Utilities.random.nextInt(100) / 100.0f;
+            this.f23504a = a4.a.e(Utilities.random.nextInt(100), 100.0f, 0.2f, 0.8f);
+            this.f23505b = Utilities.random.nextInt(100) / 100.0f;
         }
     }
 }

@@ -1,36 +1,38 @@
 package yh;
 
-import org.telegram.messenger.Utilities;
+import org.telegram.messenger.BillingController;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
 import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.Components.h81;
-import org.telegram.ui.ProfileActivity;
-public final class r1 implements Utilities.Callback {
-    public final int f50531a;
-    public final q2 f50532b;
+import org.telegram.ui.Components.xc;
+public final class r1 implements Runnable {
+    public final int f47693a;
+    public final org.telegram.tgnet.e f47694b;
+    public final xc[] f47695c;
+    public final TL_stars.UniqueStarGiftValueInfo d;
+    public final String e;
 
-    public r1(q2 q2Var, int i10) {
-        this.f50531a = i10;
-        this.f50532b = q2Var;
+    public r1(org.telegram.tgnet.e eVar, xc[] xcVarArr, TL_stars.UniqueStarGiftValueInfo uniqueStarGiftValueInfo, String str, int i10) {
+        this.f47693a = i10;
+        this.f47694b = eVar;
+        this.f47695c = xcVarArr;
+        this.d = uniqueStarGiftValueInfo;
+        this.e = str;
     }
 
     @Override
-    public final void run(Object obj) {
-        switch (this.f50531a) {
+    public final void run() {
+        int i10 = this.f47693a;
+        String str = this.e;
+        TL_stars.UniqueStarGiftValueInfo uniqueStarGiftValueInfo = this.d;
+        xc[] xcVarArr = this.f47695c;
+        org.telegram.tgnet.e eVar = this.f47694b;
+        switch (i10) {
             case 0:
-                q2 q2Var = this.f50532b;
-                q2Var.f50518e.b((String) obj, new r1(q2Var, 1));
+                eVar.run(xcVarArr[0], LocaleController.formatString(R.string.GiftValueMinPriceInfo, BillingController.getInstance().formatCurrency(uniqueStarGiftValueInfo.floor_price, uniqueStarGiftValueInfo.currency), str));
                 return;
             default:
-                q2 q2Var2 = this.f50532b;
-                q2Var2.f(true);
-                h81 h81Var = q2Var2.f50520n;
-                int i10 = ((TL_stars.TL_starGiftCollection) obj).collection_id;
-                h81Var.d(i10, q2Var2.f50518e.f(i10) + 1);
-                org.telegram.ui.ActionBar.n2 n2Var = q2Var2.f50515a;
-                if (n2Var instanceof ProfileActivity) {
-                    ((ProfileActivity) n2Var).G4(true);
-                }
-                q2Var2.n();
+                eVar.run(xcVarArr[0], LocaleController.formatString(R.string.GiftValueAveragePriceInfo, BillingController.getInstance().formatCurrency(uniqueStarGiftValueInfo.average_price, uniqueStarGiftValueInfo.currency), str));
                 return;
         }
     }

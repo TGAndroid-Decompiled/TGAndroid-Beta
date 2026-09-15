@@ -2,26 +2,30 @@ package rg;
 
 import android.animation.ValueAnimator;
 public final class p implements ValueAnimator.AnimatorUpdateListener {
-    public final int f45404a;
-    public final o0 f45405b;
+    public final int f42418a;
+    public final s f42419b;
+    public final r f42420c;
 
-    public p(o0 o0Var, int i10) {
-        this.f45404a = i10;
-        this.f45405b = o0Var;
+    public p(s sVar, r rVar, int i10) {
+        this.f42418a = i10;
+        this.f42419b = sVar;
+        this.f42420c = rVar;
     }
 
     @Override
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f45404a) {
+        switch (this.f42418a) {
             case 0:
-                o0 o0Var = this.f45405b;
-                o0Var.getClass();
-                o0Var.f45348f2.setTranslationY(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                s sVar = this.f42419b;
+                sVar.getClass();
+                this.f42420c.f42448c = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                sVar.invalidate();
                 return;
             default:
-                o0 o0Var2 = this.f45405b;
-                o0Var2.getClass();
-                o0Var2.f45348f2.setTranslationY(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                s sVar2 = this.f42419b;
+                sVar2.getClass();
+                this.f42420c.f42448c = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                sVar2.invalidate();
                 return;
         }
     }

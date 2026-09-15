@@ -7,31 +7,31 @@ import android.graphics.RectF;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.UserConfig;
-public final class gg0 extends kw0 {
-    public boolean f26377a = false;
-    public final Paint f26378b = new Paint(1);
-    public final int f26379c = UserConfig.selectedAccount;
+public final class gg0 extends lw0 {
+    public boolean f24340a = false;
+    public final Paint f24341b = new Paint(1);
+    public final int f24342c = UserConfig.selectedAccount;
     public long d = 0;
-    public boolean f26380e = false;
-    public final RectF f26381f = new RectF();
-    public float f26382g;
+    public boolean e = false;
+    public final RectF f24343f = new RectF();
+    public float f24344g;
     public final boolean h;
-    public final org.telegram.ui.ActionBar.f6 f26383i;
+    public final org.telegram.ui.ActionBar.e6 f24345i;
 
-    public gg0(org.telegram.ui.ActionBar.f6 f6Var, boolean z10) {
+    public gg0(org.telegram.ui.ActionBar.e6 e6Var, boolean z10) {
         this.h = z10;
-        this.f26383i = f6Var;
+        this.f24345i = e6Var;
     }
 
     @Override
     public final void c(boolean z10) {
-        this.f26377a = z10;
+        this.f24340a = z10;
     }
 
     @Override
     public final void d() {
         this.d = System.currentTimeMillis();
-        this.f26380e = true;
+        this.e = true;
         invalidateSelf();
     }
 
@@ -42,31 +42,31 @@ public final class gg0 extends kw0 {
         int i11;
         int dp = AndroidUtilities.dp(10.0f);
         int dp2 = ((AndroidUtilities.dp(18.0f) - dp) / 2) + getBounds().top;
-        if (!this.f26377a) {
+        if (!this.f24340a) {
             dp2 += AndroidUtilities.dp(1.0f);
         }
         int i12 = dp2;
         boolean z10 = this.h;
         if (z10) {
-            i10 = org.telegram.ui.ActionBar.j6.f20882p9;
+            i10 = org.telegram.ui.ActionBar.i6.f19058p9;
         } else {
-            i10 = org.telegram.ui.ActionBar.j6.f20883pa;
+            i10 = org.telegram.ui.ActionBar.i6.f19059pa;
         }
-        int v02 = org.telegram.ui.ActionBar.j6.v0(i10, this.f26383i);
-        Paint paint = this.f26378b;
+        int v02 = org.telegram.ui.ActionBar.i6.v0(i10, this.f24345i);
+        Paint paint = this.f24341b;
         paint.setColor(v02);
-        RectF rectF = this.f26381f;
+        RectF rectF = this.f24343f;
         rectF.set(0.0f, i12, dp, i12 + dp);
-        float f10 = this.f26382g;
+        float f10 = this.f24344g;
         if (f10 < 0.5f) {
-            f7 = org.telegram.messenger.vl.u(f10, 0.5f, 1.0f, 35.0f);
+            f7 = org.telegram.messenger.wl.u(f10, 0.5f, 1.0f, 35.0f);
         } else {
             f7 = ((f10 - 0.5f) * 35.0f) / 0.5f;
         }
         int i13 = (int) f7;
         for (int i14 = 0; i14 < 3; i14++) {
             int dp3 = AndroidUtilities.dp(9.2f);
-            float f11 = this.f26382g;
+            float f11 = this.f24344g;
             float dp4 = (dp3 + (AndroidUtilities.dp(5.0f) * i14)) - (AndroidUtilities.dp(5.0f) * f11);
             if (i14 == 2) {
                 paint.setAlpha(Math.min(255, (int) ((f11 * 255.0f) / 0.5f)));
@@ -84,42 +84,42 @@ public final class gg0 extends kw0 {
         paint.setAlpha(255);
         canvas.drawArc(rectF, i13, 360 - (i13 * 2), true, paint);
         if (z10) {
-            i11 = org.telegram.ui.ActionBar.j6.f20663d6;
+            i11 = org.telegram.ui.ActionBar.i6.f18836d6;
         } else {
-            i11 = org.telegram.ui.ActionBar.j6.f20937s8;
+            i11 = org.telegram.ui.ActionBar.i6.f19113s8;
         }
-        paint.setColor(org.telegram.ui.ActionBar.j6.w0(null, i11, false));
+        paint.setColor(org.telegram.ui.ActionBar.i6.w0(null, i11, false));
         canvas.drawCircle(AndroidUtilities.dp(4.0f), ((dp / 2) + i12) - AndroidUtilities.dp(2.0f), AndroidUtilities.dp(1.0f), paint);
         f();
     }
 
     @Override
     public final void e() {
-        this.f26382g = 0.0f;
-        this.f26380e = false;
+        this.f24344g = 0.0f;
+        this.e = false;
     }
 
     public final void f() {
-        if (this.f26380e) {
-            if (!NotificationCenter.getInstance(this.f26379c).isAnimationInProgress()) {
+        if (this.e) {
+            if (!NotificationCenter.getInstance(this.f24342c).isAnimationInProgress()) {
                 long currentTimeMillis = System.currentTimeMillis();
                 long j3 = currentTimeMillis - this.d;
                 this.d = currentTimeMillis;
                 if (j3 > 50) {
                     j3 = 50;
                 }
-                if (this.f26382g >= 1.0f) {
-                    this.f26382g = 0.0f;
+                if (this.f24344g >= 1.0f) {
+                    this.f24344g = 0.0f;
                 }
-                float f7 = (((float) j3) / 300.0f) + this.f26382g;
-                this.f26382g = f7;
+                float f7 = (((float) j3) / 300.0f) + this.f24344g;
+                this.f24344g = f7;
                 if (f7 > 1.0f) {
-                    this.f26382g = 1.0f;
+                    this.f24344g = 1.0f;
                 }
                 a();
                 return;
             }
-            AndroidUtilities.runOnUIThread(new cc0(this, 13), 100L);
+            AndroidUtilities.runOnUIThread(new bc0(this, 13), 100L);
         }
     }
 

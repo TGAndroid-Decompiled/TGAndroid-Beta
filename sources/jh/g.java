@@ -1,0 +1,115 @@
+package jh;
+
+import android.app.Activity;
+import android.graphics.PointF;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import hh.k;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
+import org.telegram.ui.ActionBar.d5;
+import org.telegram.ui.ActionBar.e6;
+import org.telegram.ui.ActionBar.f1;
+import org.telegram.ui.ActionBar.n1;
+import org.telegram.ui.Components.ScrollSlidingTextTabStrip;
+import org.telegram.ui.Components.lm0;
+import org.telegram.ui.az0;
+import org.telegram.ui.bo;
+import org.telegram.ui.e0;
+import org.telegram.ui.qf;
+import org.telegram.ui.tm;
+import org.telegram.ui.ue;
+public final class g implements View.OnLongClickListener {
+    public final int f13029a;
+    public final int f13030b;
+    public final FrameLayout f13031c;
+
+    public g(FrameLayout frameLayout, int i10, int i11) {
+        this.f13029a = i11;
+        this.f13031c = frameLayout;
+        this.f13030b = i10;
+    }
+
+    @Override
+    public final boolean onLongClick(View view) {
+        qf qfVar;
+        char c10;
+        String string;
+        lm0 lm0Var;
+        switch (this.f13029a) {
+            case 0:
+                b bVar = ((h) this.f13031c).f13037n;
+                if (bVar != null) {
+                    bo boVar = ((ue) bVar).f37986b;
+                    int i10 = this.f13030b;
+                    if (i10 == 2) {
+                        qfVar = new qf(boVar, 10);
+                        c10 = 1;
+                    } else if (i10 == 3) {
+                        qfVar = new qf(boVar, 11);
+                        c10 = 0;
+                    } else if (i10 == 4) {
+                        qfVar = new qf(boVar, 12);
+                        c10 = 2;
+                    }
+                    Activity parentActivity = boVar.getParentActivity();
+                    d5 parentLayout = boVar.getParentLayout();
+                    tm tmVar = boVar.X0;
+                    e6 resourceProvider = boVar.getResourceProvider();
+                    ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = new ActionBarPopupWindow$ActionBarPopupWindowLayout(parentActivity, null);
+                    actionBarPopupWindow$ActionBarPopupWindowLayout.setMinimumWidth(AndroidUtilities.dp(200.0f));
+                    f1 f1Var = new f1(0, parentActivity, resourceProvider, true, true);
+                    f1Var.setMinimumWidth(AndroidUtilities.dp(200.0f));
+                    if (c10 == 0) {
+                        string = LocaleController.getString(R.string.ReadAllReactions);
+                    } else if (c10 == 1) {
+                        string = LocaleController.getString(R.string.ReadAllMentions);
+                    } else {
+                        string = LocaleController.getString(R.string.ReadAllPollVotes);
+                    }
+                    f1Var.g(string, R.drawable.msg_seen, null);
+                    f1Var.setOnClickListener(new az0(1, qfVar));
+                    actionBarPopupWindow$ActionBarPopupWindowLayout.addView(f1Var);
+                    n1 n1Var = new n1(actionBarPopupWindow$ActionBarPopupWindowLayout, -2, -2);
+                    n1Var.e = true;
+                    n1Var.f19421c = 220;
+                    n1Var.setOutsideTouchable(true);
+                    n1Var.setClippingEnabled(true);
+                    n1Var.setAnimationStyle(R.style.PopupContextAnimation);
+                    n1Var.setFocusable(true);
+                    actionBarPopupWindow$ActionBarPopupWindowLayout.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(1000.0f), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(1000.0f), Integer.MIN_VALUE));
+                    n1Var.setInputMethodMode(2);
+                    n1Var.setSoftInputMode(0);
+                    n1Var.getContentView().setFocusableInTouchMode(true);
+                    PointF pointF = new PointF();
+                    k.b(view, tmVar, pointF);
+                    float width = ((pointF.x + view.getWidth()) - actionBarPopupWindow$ActionBarPopupWindowLayout.getMeasuredWidth()) + AndroidUtilities.dp(8.0f);
+                    float measuredHeight = pointF.y - actionBarPopupWindow$ActionBarPopupWindowLayout.getMeasuredHeight();
+                    if (AndroidUtilities.isTablet()) {
+                        ViewGroup view2 = parentLayout.getView();
+                        width += view2.getX() + view2.getPaddingLeft();
+                        measuredHeight += view2.getY() + view2.getPaddingTop();
+                    }
+                    n1Var.showAtLocation(tmVar, 51, (int) width, (int) measuredHeight);
+                    boVar.Q8 = n1Var;
+                    boVar.f8(boVar.f32350j1, false);
+                    boVar.Q8.setOnDismissListener(new e0(boVar, 1));
+                    try {
+                        view.performHapticFeedback(0, 2);
+                    } catch (Exception unused) {
+                    }
+                    return true;
+                }
+                return false;
+            default:
+                ScrollSlidingTextTabStrip scrollSlidingTextTabStrip = (ScrollSlidingTextTabStrip) this.f13031c;
+                if (!scrollSlidingTextTabStrip.f22183n0 && (lm0Var = scrollSlidingTextTabStrip.f22168b) != null && lm0Var.n1(this.f13030b, view)) {
+                    return true;
+                }
+                return false;
+        }
+    }
+}

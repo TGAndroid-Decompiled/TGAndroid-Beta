@@ -1,47 +1,41 @@
 package org.telegram.messenger;
 
-import java.util.ArrayList;
-public final class z9 implements Runnable {
-    public final int f19822a;
-    public final MessagesController f19823b;
-    public final long f19824c;
-    public final ArrayList d;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_account;
+public final class z9 implements Utilities.Callback2 {
+    public final int f18052a;
+    public final MessagesController f18053b;
 
-    public z9(MessagesController messagesController, long j3, ArrayList arrayList, int i10) {
-        this.f19822a = i10;
-        this.f19823b = messagesController;
-        this.f19824c = j3;
-        this.d = arrayList;
+    public z9(MessagesController messagesController, int i10) {
+        this.f18052a = i10;
+        this.f18053b = messagesController;
     }
 
     @Override
-    public final void run() {
-        switch (this.f19822a) {
+    public final void run(Object obj, Object obj2) {
+        switch (this.f18052a) {
             case 0:
-                this.f19823b.lambda$markAllTopicsAsRead$7(this.d, this.f19824c);
+                this.f18053b.lambda$updateWebBrowserSettings$517((TL_account.WebBrowserSettings) obj, (TLRPC.TL_error) obj2);
                 return;
             case 1:
-                this.f19823b.lambda$generateJoinMessage$368(this.f19824c, this.d);
+                this.f18053b.lambda$removeWebBrowserException$515((TLRPC.Updates) obj, (TLRPC.TL_error) obj2);
                 return;
             case 2:
-                this.f19823b.lambda$getDifference$354(this.f19824c, this.d);
+                this.f18053b.lambda$addWebBrowserException$513((TLRPC.Updates) obj, (TLRPC.TL_error) obj2);
                 return;
             case 3:
-                this.f19823b.lambda$processUpdateArray$418(this.f19824c, this.d);
+                this.f18053b.lambda$loadStakeDiceInfo$507((TLRPC.EmojiGameInfo) obj, (TLRPC.TL_error) obj2);
                 return;
             case 4:
-                this.f19823b.lambda$deleteMessagesByPush$369(this.d, this.f19824c);
+                this.f18053b.lambda$deleteReactionsFromMessage$132((TLRPC.Updates) obj, (TLRPC.TL_error) obj2);
+                return;
+            case 5:
+                this.f18053b.lambda$loadWebBrowserConfig$509((Long) obj, (TL_account.TL_webBrowserSettings) obj2);
                 return;
             default:
-                this.f19823b.lambda$getDifference$355(this.f19824c, this.d);
+                this.f18053b.lambda$clearAllWebBrowserExceptions$516((TL_account.WebBrowserSettings) obj, (TLRPC.TL_error) obj2);
                 return;
         }
-    }
-
-    public z9(MessagesController messagesController, ArrayList arrayList, long j3, int i10) {
-        this.f19822a = i10;
-        this.f19823b = messagesController;
-        this.d = arrayList;
-        this.f19824c = j3;
     }
 }

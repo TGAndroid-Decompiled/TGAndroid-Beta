@@ -1,25 +1,44 @@
 package org.telegram.ui.Components;
-public final class ab {
-    public boolean f24319a;
-    public int f24320b;
-    public boolean f24321c;
-    public boolean d;
-    public boolean f24322e;
-    public int f24323f;
-    public org.telegram.ui.ActionBar.f6 f24324g;
 
-    public ab(ab abVar) {
-        this.f24319a = abVar.f24319a;
-        this.f24320b = abVar.f24320b;
-        this.f24321c = abVar.f24321c;
-        this.d = abVar.d;
-        this.f24322e = abVar.f24322e;
-        this.f24323f = abVar.f24323f;
-        this.f24324g = abVar.f24324g;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.text.Layout;
+import android.text.Spanned;
+import android.text.style.LeadingMarginSpan;
+public final class ab implements LeadingMarginSpan {
+    public final int f22347a;
+    public final int f22348b;
+
+    public ab(int i10, int i11) {
+        this.f22347a = i10;
+        this.f22348b = i11;
     }
 
-    public ab() {
-        this.f24320b = 1;
-        this.f24323f = 1;
+    @Override
+    public final void drawLeadingMargin(Canvas canvas, Paint paint, int i10, int i11, int i12, int i13, int i14, CharSequence charSequence, int i15, int i16, boolean z10, Layout layout) {
+        int i17;
+        if (((Spanned) charSequence).getSpanStart(this) == i15) {
+            Paint.Style style = paint.getStyle();
+            int color = paint.getColor();
+            paint.setColor(-11491093);
+            paint.setStyle(Paint.Style.FILL);
+            if (layout != null) {
+                if (layout.getLineForOffset(i15) != layout.getLineCount() - 1) {
+                    i17 = (int) layout.getSpacingAdd();
+                } else {
+                    i17 = 0;
+                }
+                i14 -= i17;
+            }
+            int i18 = this.f22348b;
+            canvas.drawCircle((i11 * i18) + i10, (i12 + i14) / 2.0f, i18, paint);
+            paint.setColor(color);
+            paint.setStyle(style);
+        }
+    }
+
+    @Override
+    public final int getLeadingMargin(boolean z10) {
+        return (this.f22348b * 2) + this.f22347a;
     }
 }

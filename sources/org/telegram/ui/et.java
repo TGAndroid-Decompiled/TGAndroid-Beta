@@ -2,33 +2,33 @@ package org.telegram.ui;
 
 import android.graphics.Bitmap;
 public final class et implements Runnable {
-    public final int f36168a;
-    public final st f36169b;
+    public final int f33399a;
+    public final st f33400b;
 
     public et(st stVar, int i10) {
-        this.f36168a = i10;
-        this.f36169b = stVar;
+        this.f33399a = i10;
+        this.f33400b = stVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f36168a) {
+        switch (this.f33399a) {
             case 0:
-                this.f36169b.f40529c0 = null;
+                this.f33400b.f37456c0 = null;
                 return;
             case 1:
-                st stVar = this.f36169b;
+                st stVar = this.f33400b;
                 stVar.A.setImageBitmap((Bitmap) null);
-                org.telegram.ui.Components.gd0 gd0Var = stVar.C;
-                if (gd0Var != null) {
-                    gd0Var.a();
-                    stVar.f40551z.removeView(stVar.C);
+                org.telegram.ui.Components.fd0 fd0Var = stVar.C;
+                if (fd0Var != null) {
+                    fd0Var.a();
+                    stVar.f37477z.removeView(stVar.C);
                     stVar.C = null;
                     return;
                 }
                 return;
             default:
-                this.f36169b.Q.animate().alpha(1.0f).scaleX(1.0f).scaleY(1.0f).setDuration(420L).setInterpolator(org.telegram.ui.Components.pr.h).start();
+                this.f33400b.Q.animate().alpha(1.0f).scaleX(1.0f).scaleY(1.0f).setDuration(420L).setInterpolator(org.telegram.ui.Components.qr.h).start();
                 return;
         }
     }

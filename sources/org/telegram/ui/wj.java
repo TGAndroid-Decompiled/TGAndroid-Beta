@@ -3,20 +3,20 @@ package org.telegram.ui;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.FileLog;
-public final class wj extends ki.o {
+public final class wj extends ji.n {
     public Runnable W;
-    public final co X;
+    public final bo X;
 
-    public wj(co coVar, co coVar2, uj ujVar, org.telegram.ui.ActionBar.f6 f6Var) {
-        super(coVar2, ujVar, f6Var);
-        this.X = coVar;
+    public wj(bo boVar, bo boVar2, uj ujVar, org.telegram.ui.ActionBar.e6 e6Var) {
+        super(boVar2, ujVar, e6Var);
+        this.X = boVar;
     }
 
     @Override
     public final void F() {
-        co coVar = this.X;
-        if (coVar.H9 == -1) {
-            coVar.H9 = coVar.getNotificationCenter().setAnimationInProgress(coVar.H9, co.Nc, false);
+        bo boVar = this.X;
+        if (boVar.H9 == -1) {
+            boVar.H9 = boVar.getNotificationCenter().setAnimationInProgress(boVar.H9, bo.Nc, false);
         }
     }
 
@@ -35,8 +35,8 @@ public final class wj extends ki.o {
 
     @Override
     public final void W() {
-        co coVar = this.X;
-        coVar.H9 = coVar.getNotificationCenter().setAnimationInProgress(coVar.H9, co.Nc, false);
+        bo boVar = this.X;
+        boVar.H9 = boVar.getNotificationCenter().setAnimationInProgress(boVar.H9, bo.Nc, false);
         Runnable runnable = this.W;
         if (runnable != null) {
             AndroidUtilities.cancelRunOnUIThread(runnable);
@@ -45,12 +45,12 @@ public final class wj extends ki.o {
         if (BuildVars.LOGS_ENABLED) {
             FileLog.d("chatItemAnimator disable notifications");
         }
-        org.telegram.ui.ActionBar.v2 v2Var = coVar.Y.getAdjustPanLayoutHelper().h;
+        org.telegram.ui.ActionBar.v2 v2Var = boVar.Y.getAdjustPanLayoutHelper().h;
         AndroidUtilities.cancelRunOnUIThread(v2Var);
         v2Var.run();
-        org.telegram.ui.Components.bf bfVar = coVar.Y.X3;
-        AndroidUtilities.cancelRunOnUIThread(bfVar);
-        bfVar.run();
+        org.telegram.ui.Components.ye yeVar = boVar.Y.X3;
+        AndroidUtilities.cancelRunOnUIThread(yeVar);
+        yeVar.run();
     }
 
     @Override

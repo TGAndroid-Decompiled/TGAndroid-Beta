@@ -1,12 +1,17 @@
 package v7;
-public abstract class c5 {
-    public abstract boolean a(c0.h hVar, c0.d dVar, c0.d dVar2);
+public final class c5 implements ia.d {
+    public static final c5 f43936a = new Object();
 
-    public abstract boolean b(c0.h hVar, Object obj, Object obj2);
+    static {
+        org.telegram.ui.Cells.p6.s(org.telegram.ui.Cells.p6.k(h.class, org.telegram.ui.Cells.p6.m(3, org.telegram.ui.Cells.p6.k(h.class, org.telegram.ui.Cells.p6.m(2, org.telegram.ui.Cells.p6.k(h.class, new e(1)))))));
+    }
 
-    public abstract boolean c(c0.h hVar, c0.g gVar, c0.g gVar2);
-
-    public abstract void d(c0.g gVar, c0.g gVar2);
-
-    public abstract void e(c0.g gVar, Thread thread);
+    @Override
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            ia.e eVar = (ia.e) obj2;
+            throw null;
+        }
+        throw new ClassCastException();
+    }
 }

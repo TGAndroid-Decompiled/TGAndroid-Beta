@@ -6,18 +6,18 @@ import android.util.Log;
 import b5.g;
 import c5.x;
 import com.google.android.gms.tasks.TaskCompletionSource;
-import com.google.firebase.messaging.s;
-import com.google.firebase.messaging.u;
+import com.google.firebase.messaging.t;
+import com.google.firebase.messaging.w;
 import java.util.concurrent.atomic.AtomicMarkableReference;
-import m.p3;
+import m.q3;
 import w9.m;
 import w9.o;
 import w9.r;
 public final class c {
-    public final o f45965a;
+    public final o f42879a;
 
     public c(o oVar) {
-        this.f45965a = oVar;
+        this.f42879a = oVar;
     }
 
     public final void a(Throwable th2) {
@@ -25,49 +25,49 @@ public final class c {
             Log.w("FirebaseCrashlytics", "A null value was passed to recordException. Ignoring.", null);
             return;
         }
-        m mVar = this.f45965a.f48423f;
+        m mVar = this.f42879a.f44955f;
         Thread currentThread = Thread.currentThread();
         mVar.getClass();
         long currentTimeMillis = System.currentTimeMillis();
-        s sVar = mVar.f48405e;
-        u uVar = new u(mVar, currentTimeMillis, th2, currentThread);
-        sVar.getClass();
-        sVar.h(new x(uVar, 7));
+        t tVar = mVar.e;
+        w wVar = new w(mVar, currentTimeMillis, th2, currentThread);
+        tVar.getClass();
+        tVar.k(new x(wVar, 7));
     }
 
     public final void b() {
-        o oVar = this.f45965a;
+        o oVar = this.f42879a;
         Boolean bool = Boolean.TRUE;
-        r rVar = oVar.f48420b;
+        r rVar = oVar.f44953b;
         synchronized (rVar) {
-            rVar.f48446f = false;
-            rVar.f48447g = bool;
-            SharedPreferences.Editor edit = rVar.f48442a.edit();
+            rVar.f44975f = false;
+            rVar.f44976g = bool;
+            SharedPreferences.Editor edit = rVar.f44972a.edit();
             edit.putBoolean("firebase_crashlytics_collection_enabled", true);
             edit.apply();
-            synchronized (rVar.f48444c) {
+            synchronized (rVar.f44974c) {
                 if (rVar.a()) {
-                    if (!rVar.f48445e) {
+                    if (!rVar.e) {
                         rVar.d.trySetResult(null);
-                        rVar.f48445e = true;
+                        rVar.e = true;
                     }
-                } else if (rVar.f48445e) {
+                } else if (rVar.e) {
                     rVar.d = new TaskCompletionSource();
-                    rVar.f48445e = false;
+                    rVar.e = false;
                 }
             }
         }
     }
 
     public final void c(String str, String str2) {
-        m mVar = this.f45965a.f48423f;
+        m mVar = this.f42879a.f44955f;
         mVar.getClass();
         try {
             ((com.google.firebase.messaging.m) mVar.d.d).u(str, str2);
-        } catch (IllegalArgumentException e7) {
-            Context context = mVar.f48402a;
+        } catch (IllegalArgumentException e) {
+            Context context = mVar.f44936a;
             if (context != null && (context.getApplicationInfo().flags & 2) != 0) {
-                throw e7;
+                throw e;
             }
             Log.e("FirebaseCrashlytics", "Attempting to set custom attribute with null key, ignoring.", null);
         }
@@ -75,12 +75,12 @@ public final class c {
 
     public final void d(String str) {
         boolean equals;
-        p3 p3Var = this.f45965a.f48423f.d;
-        p3Var.getClass();
+        q3 q3Var = this.f42879a.f44955f.d;
+        q3Var.getClass();
         String b10 = x9.d.b(1024, str);
-        synchronized (((AtomicMarkableReference) p3Var.h)) {
+        synchronized (((AtomicMarkableReference) q3Var.h)) {
             try {
-                String str2 = (String) ((AtomicMarkableReference) p3Var.h).getReference();
+                String str2 = (String) ((AtomicMarkableReference) q3Var.h).getReference();
                 if (b10 == null) {
                     if (str2 == null) {
                         equals = true;
@@ -93,8 +93,8 @@ public final class c {
                 if (equals) {
                     return;
                 }
-                ((AtomicMarkableReference) p3Var.h).set(b10, true);
-                ((s) p3Var.f15635b).h(new g(p3Var, 1));
+                ((AtomicMarkableReference) q3Var.h).set(b10, true);
+                ((t) q3Var.f14289b).k(new g(q3Var, 1));
             } finally {
             }
         }

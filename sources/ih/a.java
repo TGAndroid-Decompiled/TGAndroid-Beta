@@ -1,50 +1,208 @@
 package ih;
 
-import androidx.recyclerview.widget.RecyclerView;
-import org.telegram.messenger.MessageObject;
-import org.telegram.ui.uj;
-public final class a {
-    public RecyclerView f12299a;
-    public int f12300b;
-    public long f12301c;
-    public int d;
-    public boolean f12302e;
+import ah.c;
+import android.content.Context;
+import android.graphics.BlendMode;
+import android.graphics.BlendModeColorFilter;
+import android.graphics.Canvas;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.os.Build;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import le.d;
+import le.e;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.ActionBar.e6;
+import org.telegram.ui.ActionBar.i6;
+import org.telegram.ui.Components.qr;
+import org.telegram.ui.Components.tp;
+import w7.x5;
+public final class a extends FrameLayout implements d {
+    public final le.b f11191a;
+    public final le.b f11192b;
+    public ImageView f11193c;
+    public ImageView d;
+    public tp e;
+    public e6 f11194f;
+    public float h;
+    public ch.d f11195n;
 
-    public final boolean a(MessageObject messageObject) {
-        if (messageObject != null) {
-            if (messageObject.getId() != this.f12300b) {
-                if (this.f12301c != 0 && messageObject.getGroupId() == this.f12301c) {
-                    return true;
-                }
-                return false;
-            }
-            return true;
-        }
-        return false;
+    public a(Context context) {
+        super(context);
+        qr qrVar = qr.h;
+        this.f11191a = new le.b(0, this, qrVar, 320L, false);
+        this.f11192b = new le.b(1, this, qrVar, 320L, true);
+        this.h = 1.0f;
     }
 
-    public final boolean b() {
-        return this.f12302e;
+    public static a c(c cVar, Context context, dh.a aVar, e6 e6Var) {
+        int v02 = i6.v0(i6.Wk, e6Var);
+        a aVar2 = new a(context);
+        aVar2.f11194f = e6Var;
+        aVar2.setBlurredBackgroundDrawable(cVar.c(aVar2, aVar, false));
+        aVar2.setIconColor(v02);
+        int dp = AndroidUtilities.dp(22.0f);
+        int l1 = i6.l1(0.15f, v02);
+        int dp2 = AndroidUtilities.dp(6.0f);
+        aVar2.setBackground(i6.W(dp, l1, dp2, dp2, dp2, dp2));
+        return aVar2;
     }
 
-    public final boolean c(int i10, long j3) {
-        if (this.f12300b == i10 && this.f12301c == j3) {
-            return false;
-        }
-        this.f12300b = i10;
-        this.f12301c = j3;
+    public static a d(Context context, c cVar, dh.a aVar, e6 e6Var, int i10, int i11) {
+        int v02 = i6.v0(i6.Wk, e6Var);
+        a aVar2 = new a(context);
+        aVar2.f11194f = e6Var;
+        aVar2.setBlurredBackgroundDrawable(cVar.c(aVar2, aVar, false));
+        aVar2.f(i10, i11);
+        aVar2.setIconColor(v02);
+        int dp = AndroidUtilities.dp(22.0f);
+        int l1 = i6.l1(0.15f, v02);
+        int dp2 = AndroidUtilities.dp(6.0f);
+        aVar2.setBackground(i6.W(dp, l1, dp2, dp2, dp2, dp2));
+        return aVar2;
+    }
+
+    @Override
+    public final void D(int i10, float f7, float f10, e eVar) {
         if (i10 == 0) {
-            this.f12302e = false;
-            return true;
+            a();
+            b();
         }
-        return true;
+        if (i10 == 1) {
+            a();
+            b();
+        }
     }
 
-    public final void d(int i10) {
-        this.d = i10;
+    public final void a() {
+        int i10;
+        float f7 = 1.0f - this.f11191a.e;
+        float lerp = AndroidUtilities.lerp(f7 / 2.0f, f7, this.f11192b.e);
+        ImageView imageView = this.f11193c;
+        if (imageView != null) {
+            imageView.setAlpha(lerp);
+            this.f11193c.setScaleX(AndroidUtilities.lerp(0.4f, 1.0f, f7));
+            this.f11193c.setScaleY(AndroidUtilities.lerp(0.4f, 1.0f, f7) * this.h);
+            ImageView imageView2 = this.f11193c;
+            if (f7 > 0.0f) {
+                i10 = 0;
+            } else {
+                i10 = 8;
+            }
+            imageView2.setVisibility(i10);
+        }
     }
 
-    public final void e(uj ujVar) {
-        this.f12299a = ujVar;
+    public final void b() {
+        int i10;
+        float f7 = this.f11191a.e;
+        float lerp = AndroidUtilities.lerp(f7 / 2.0f, f7, this.f11192b.e);
+        ImageView imageView = this.d;
+        if (imageView != null) {
+            imageView.setAlpha(lerp);
+            this.d.setScaleX(AndroidUtilities.lerp(0.4f, 1.0f, f7));
+            this.d.setScaleY(AndroidUtilities.lerp(0.4f, 1.0f, f7));
+            if (f7 > 0.0f) {
+                i10 = 0;
+            } else {
+                i10 = 8;
+            }
+            if (this.d.getVisibility() != i10) {
+                this.d.setVisibility(i10);
+                this.e.f28162c = -1L;
+            }
+        }
+    }
+
+    @Override
+    public final void dispatchDraw(Canvas canvas) {
+        super.dispatchDraw(canvas);
+    }
+
+    @Override
+    public final void draw(Canvas canvas) {
+        this.f11195n.draw(canvas);
+        super.draw(canvas);
+    }
+
+    public final void e(boolean z10, boolean z11) {
+        super.setEnabled(z10);
+        this.f11192b.a(z10, z11);
+    }
+
+    public final void f(int i10, int i11) {
+        if (this.f11193c == null) {
+            if (i10 == 0) {
+                return;
+            }
+            ImageView imageView = new ImageView(getContext());
+            this.f11193c = imageView;
+            imageView.setScaleType(ImageView.ScaleType.CENTER);
+            addView(this.f11193c, x5.e(i11, i11, 17));
+            a();
+        }
+        this.f11193c.setImageResource(i10);
+    }
+
+    public final void g() {
+        ch.d dVar = this.f11195n;
+        if (dVar != null) {
+            dVar.v();
+            invalidate();
+        }
+        int i10 = i6.Wk;
+        int v02 = i6.v0(i10, this.f11194f);
+        setIconColor(i6.v0(i10, this.f11194f));
+        int dp = AndroidUtilities.dp(22.0f);
+        int l1 = i6.l1(0.15f, v02);
+        int dp2 = AndroidUtilities.dp(6.0f);
+        setBackground(i6.W(dp, l1, dp2, dp2, dp2, dp2));
+    }
+
+    @Override
+    public final void onSizeChanged(int i10, int i11, int i12, int i13) {
+        super.onSizeChanged(i10, i11, i12, i13);
+        this.f11195n.setBounds(0, 0, i10, i11);
+    }
+
+    public void setBlurredBackgroundDrawable(ch.d dVar) {
+        this.f11195n = dVar;
+        dVar.p(AndroidUtilities.dp(6.0f));
+        this.f11195n.q(AndroidUtilities.dp(22.0f));
+    }
+
+    @Override
+    public void setEnabled(boolean z10) {
+        e(z10, false);
+    }
+
+    public void setIcon(int i10) {
+        f(i10, 48);
+    }
+
+    public void setIconColor(int i10) {
+        BlendMode blendMode;
+        ImageView imageView = this.f11193c;
+        if (imageView == null) {
+            return;
+        }
+        if (Build.VERSION.SDK_INT >= 29) {
+            blendMode = BlendMode.SRC_IN;
+            imageView.setColorFilter(new BlendModeColorFilter(i10, blendMode));
+            return;
+        }
+        imageView.setColorFilter(new PorterDuffColorFilter(i10, PorterDuff.Mode.SRC_IN));
+    }
+
+    public void setIconPadding(int i10) {
+        ImageView imageView = this.f11193c;
+        if (imageView != null) {
+            imageView.setPadding(0, i10, 0, 0);
+        }
+    }
+
+    @Override
+    public final void C(float f7, int i10) {
     }
 }

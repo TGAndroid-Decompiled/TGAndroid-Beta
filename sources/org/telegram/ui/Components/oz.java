@@ -54,22 +54,22 @@ public class oz extends s4.s {
                         s4.c1 c1Var = (s4.c1) sparseArray.get(j3, null);
                         if (c1Var == null) {
                             c1Var = adapter.g(ll0Var, j3);
-                            View view = c1Var.f45738a;
+                            View view = c1Var.f42675a;
                             sparseArray.put(j3, c1Var);
                             if (view.getLayoutParams() == null) {
                                 view.setLayoutParams(n());
                             }
                         }
-                        View view2 = c1Var.f45738a;
+                        View view2 = c1Var.f42675a;
                         if (this.W) {
                             adapter.v(c1Var, i12);
                         }
                         s4.p0 p0Var = (s4.p0) view2.getLayoutParams();
                         int i16 = this.T;
-                        int i17 = this.f45849k;
+                        int i17 = this.f42774k;
                         int D = D();
                         ll0Var2 = ll0Var;
-                        view2.measure(s4.o0.s(d(), i16, i17, E() + D + ((ViewGroup.MarginLayoutParams) p0Var).leftMargin + ((ViewGroup.MarginLayoutParams) p0Var).rightMargin, ((ViewGroup.MarginLayoutParams) p0Var).width), s4.o0.s(this.X, this.S, this.f45850l, C() + F() + ((ViewGroup.MarginLayoutParams) p0Var).topMargin + ((ViewGroup.MarginLayoutParams) p0Var).bottomMargin, ((ViewGroup.MarginLayoutParams) p0Var).height));
+                        view2.measure(s4.o0.s(d(), i16, i17, E() + D + ((ViewGroup.MarginLayoutParams) p0Var).leftMargin + ((ViewGroup.MarginLayoutParams) p0Var).rightMargin, ((ViewGroup.MarginLayoutParams) p0Var).width), s4.o0.s(this.X, this.S, this.f42775l, C() + F() + ((ViewGroup.MarginLayoutParams) p0Var).topMargin + ((ViewGroup.MarginLayoutParams) p0Var).bottomMargin, ((ViewGroup.MarginLayoutParams) p0Var).height));
                         i14 += view2.getMeasuredHeight();
                         if (i14 >= (this.S - i10) - ll0Var2.getPaddingBottom()) {
                             break;
@@ -138,7 +138,7 @@ public class oz extends s4.s {
     }
 
     @Override
-    public final void d0(pf.e eVar, s4.z0 z0Var, int i10, int i11) {
+    public final void d0(of.e eVar, s4.z0 z0Var, int i10, int i11) {
         int i12 = this.S;
         this.T = View.MeasureSpec.getSize(i10);
         int size = View.MeasureSpec.getSize(i11);
@@ -162,13 +162,13 @@ public class oz extends s4.s {
         super.w1(view, i10, z10);
     }
 
-    public oz(int i10, org.telegram.ui.p50 p50Var) {
+    public oz(int i10, org.telegram.ui.o50 o50Var) {
         super(i10, false);
         this.Q = new SparseArray();
         this.R = -1;
         this.W = true;
         this.X = true;
-        this.V = p50Var;
+        this.V = o50Var;
         this.U = 0;
     }
 }

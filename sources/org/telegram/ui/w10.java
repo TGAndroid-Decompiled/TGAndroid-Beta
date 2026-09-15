@@ -5,11 +5,11 @@ import org.telegram.messenger.MessageObject;
 public interface w10 {
     void a();
 
-    boolean b(p10 p10Var);
+    boolean c(p10 p10Var);
 
-    void c(MessageObject messageObject);
+    void d(MessageObject messageObject);
 
-    void d(MessageObject messageObject, View view, int i10);
+    void e(MessageObject messageObject, View view, int i10);
 
     boolean g();
 }

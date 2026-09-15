@@ -7,35 +7,35 @@ import android.graphics.Path;
 import android.graphics.drawable.Drawable;
 import org.telegram.messenger.AndroidUtilities;
 public final class hi0 extends Drawable {
-    public Path f26736a;
-    public Paint f26737b;
-    public float f26738c;
+    public Path f24703a;
+    public Paint f24704b;
+    public float f24705c;
 
     public final void a() {
         int dp = AndroidUtilities.dp(18.0f);
-        Path path = this.f26736a;
+        Path path = this.f24703a;
         path.reset();
         float f7 = dp >> 1;
         path.moveTo(f7, AndroidUtilities.dpf2(4.98f));
         path.lineTo(AndroidUtilities.dpf2(4.95f), AndroidUtilities.dpf2(9.0f));
         path.lineTo(dp - AndroidUtilities.dpf2(4.95f), AndroidUtilities.dpf2(9.0f));
         path.lineTo(f7, AndroidUtilities.dpf2(4.98f));
-        Paint paint = this.f26737b;
+        Paint paint = this.f24704b;
         paint.setStyle(Paint.Style.FILL_AND_STROKE);
         paint.setStrokeJoin(Paint.Join.ROUND);
         paint.setStrokeWidth(AndroidUtilities.dpf2(1.0f));
-        this.f26738c = AndroidUtilities.density;
+        this.f24705c = AndroidUtilities.density;
     }
 
     @Override
     public final void draw(Canvas canvas) {
-        Paint paint = this.f26737b;
-        if (this.f26738c != AndroidUtilities.density) {
+        Paint paint = this.f24704b;
+        if (this.f24705c != AndroidUtilities.density) {
             a();
         }
         canvas.save();
         canvas.translate(getBounds().left, getBounds().top);
-        canvas.drawPath(this.f26736a, paint);
+        canvas.drawPath(this.f24703a, paint);
         canvas.drawRect(AndroidUtilities.dpf2(7.56f), AndroidUtilities.dpf2(8.0f), AndroidUtilities.dp(18.0f) - AndroidUtilities.dpf2(7.56f), AndroidUtilities.dpf2(11.1f), paint);
         canvas.restore();
     }

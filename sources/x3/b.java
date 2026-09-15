@@ -3,18 +3,18 @@ package x3;
 import c3.b0;
 import e2.d0;
 public final class b implements g {
-    public final f f48774a;
-    public final long f48775b;
-    public final long f48776c;
+    public final f f45222a;
+    public final long f45223b;
+    public final long f45224c;
     public final i d;
-    public int f48777e;
-    public long f48778f;
+    public int e;
+    public long f45225f;
     public long h;
-    public long f48779n;
-    public long f48780r;
-    public long f48781s;
+    public long f45226n;
+    public long f45227r;
+    public long f45228s;
     public long v;
-    public long f48782w;
+    public long f45229w;
 
     public b(i iVar, long j3, long j10, long j11, long j12, boolean z10) {
         boolean z11;
@@ -25,37 +25,37 @@ public final class b implements g {
         }
         e2.d.b(z11);
         this.d = iVar;
-        this.f48775b = j3;
-        this.f48776c = j10;
+        this.f45223b = j3;
+        this.f45224c = j10;
         if (j11 != j10 - j3 && !z10) {
-            this.f48777e = 0;
+            this.e = 0;
         } else {
-            this.f48778f = j12;
-            this.f48777e = 4;
+            this.f45225f = j12;
+            this.e = 4;
         }
-        this.f48774a = new f();
+        this.f45222a = new f();
     }
 
     @Override
-    public final long a(c3.p r28) {
-        throw new UnsupportedOperationException("Method not decompiled: x3.b.a(c3.p):long");
+    public final void B(long j3) {
+        this.f45226n = d0.i(j3, 0L, this.f45225f - 1);
+        this.e = 2;
+        this.f45227r = this.f45223b;
+        this.f45228s = this.f45224c;
+        this.v = 0L;
+        this.f45229w = this.f45225f;
     }
 
     @Override
-    public final b0 d() {
-        if (this.f48778f != 0) {
+    public final long b(c3.p r28) {
+        throw new UnsupportedOperationException("Method not decompiled: x3.b.b(c3.p):long");
+    }
+
+    @Override
+    public final b0 g() {
+        if (this.f45225f != 0) {
             return new a(this);
         }
         return null;
-    }
-
-    @Override
-    public final void h(long j3) {
-        this.f48779n = d0.i(j3, 0L, this.f48778f - 1);
-        this.f48777e = 2;
-        this.f48780r = this.f48775b;
-        this.f48781s = this.f48776c;
-        this.v = 0L;
-        this.f48782w = this.f48778f;
     }
 }

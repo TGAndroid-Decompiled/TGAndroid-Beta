@@ -6,16 +6,16 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class k60 implements org.telegram.ui.wb0 {
-    public final l60 f27705a;
+    public final l60 f25553a;
 
     public k60(l60 l60Var) {
-        this.f27705a = l60Var;
+        this.f25553a = l60Var;
     }
 
     @Override
     public final void b(TLRPC.TL_chatInviteExported tL_chatInviteExported, TLObject tLObject) {
         int i10;
-        org.telegram.ui.hb hbVar = this.f27705a.f28067a.f28393c.f29953j0;
+        org.telegram.ui.hb hbVar = this.f25553a.f25840a.f26107c.f27571j0;
         if (hbVar != null) {
             TLRPC.TL_channelAdminLogEvent tL_channelAdminLogEvent = new TLRPC.TL_channelAdminLogEvent();
             TLRPC.TL_channelAdminLogEventActionExportedInviteEdit tL_channelAdminLogEventActionExportedInviteEdit = new TLRPC.TL_channelAdminLogEventActionExportedInviteEdit();
@@ -23,12 +23,12 @@ public final class k60 implements org.telegram.ui.wb0 {
             tL_channelAdminLogEventActionExportedInviteEdit.prev_invite = tL_chatInviteExported;
             tL_channelAdminLogEvent.action = tL_channelAdminLogEventActionExportedInviteEdit;
             tL_channelAdminLogEvent.date = (int) (System.currentTimeMillis() / 1000);
-            org.telegram.ui.ub ubVar = hbVar.f36944a;
+            org.telegram.ui.ub ubVar = hbVar.f34228a;
             tL_channelAdminLogEvent.user_id = ubVar.getAccountInstance().getUserConfig().clientUserId;
             i10 = ((org.telegram.ui.ActionBar.n2) ubVar).currentAccount;
-            if (new MessageObject(i10, tL_channelAdminLogEvent, (ArrayList<MessageObject>) ubVar.f41038r0, (HashMap<String, ArrayList<MessageObject>>) ubVar.f41036q0, ubVar.f41039s, ubVar.X, true).contentType >= 0) {
+            if (new MessageObject(i10, tL_channelAdminLogEvent, (ArrayList<MessageObject>) ubVar.f37954n0, (HashMap<String, ArrayList<MessageObject>>) ubVar.m0, ubVar.f37945f, ubVar.T, true).contentType >= 0) {
                 ubVar.R0();
-                ubVar.I.l();
+                ubVar.E.l();
                 org.telegram.ui.ub.K0(ubVar);
             }
         }

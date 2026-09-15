@@ -1,37 +1,23 @@
 package org.telegram.messenger;
-
-import org.telegram.tgnet.TLRPC;
 public final class ya implements Runnable {
-    public final int f19722a;
-    public final MessagesController f19723b;
-    public final TLRPC.Chat f19724c;
+    public final int f17962a;
+    public final q0.a f17963b;
+    public final int f17964c;
 
-    public ya(MessagesController messagesController, TLRPC.Chat chat, int i10) {
-        this.f19722a = i10;
-        this.f19723b = messagesController;
-        this.f19724c = chat;
+    public ya(q0.a aVar, int i10, int i11) {
+        this.f17962a = i11;
+        this.f17963b = aVar;
+        this.f17964c = i10;
     }
 
     @Override
     public final void run() {
-        switch (this.f19722a) {
+        switch (this.f17962a) {
             case 0:
-                this.f19723b.lambda$addOrRemoveActiveVoiceChat$61(this.f19724c);
-                return;
-            case 1:
-                this.f19723b.lambda$processLoadedDialogs$218(this.f19724c);
-                return;
-            case 2:
-                this.f19723b.lambda$processUpdateArray$413(this.f19724c);
-                return;
-            case 3:
-                this.f19723b.lambda$putChat$58(this.f19724c);
-                return;
-            case 4:
-                this.f19723b.lambda$putChat$59(this.f19724c);
+                MessagesController.lambda$getNextReactionMentionInternal$1(this.f17963b, this.f17964c);
                 return;
             default:
-                this.f19723b.lambda$putChat$60(this.f19724c);
+                MessagesController.lambda$getNextReactionMentionInternal$2(this.f17963b, this.f17964c);
                 return;
         }
     }

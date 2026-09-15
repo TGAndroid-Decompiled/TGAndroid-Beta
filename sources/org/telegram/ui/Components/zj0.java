@@ -4,14 +4,14 @@ import android.animation.ValueAnimator;
 import android.graphics.Paint;
 import androidx.recyclerview.widget.RecyclerView;
 public final class zj0 extends s4.s0 {
-    public boolean f33166a;
-    public boolean f33167b;
-    public ValueAnimator f33168c;
+    public boolean f30604a;
+    public boolean f30605b;
+    public ValueAnimator f30606c;
     public ValueAnimator d;
-    public final fk0 f33169e;
+    public final fk0 e;
 
     public zj0(fk0 fk0Var) {
-        this.f33169e = fk0Var;
+        this.e = fk0Var;
     }
 
     public static ValueAnimator c(float f7, float f10, q0.a aVar, Runnable runnable) {
@@ -26,8 +26,8 @@ public final class zj0 extends s4.s0 {
     public final void b(RecyclerView recyclerView, int i10, int i11) {
         boolean z10;
         float f7;
-        fk0 fk0Var = this.f33169e;
-        hg.j0 j0Var = fk0Var.W;
+        fk0 fk0Var = this.e;
+        gg.j0 j0Var = fk0Var.W;
         boolean z11 = false;
         if (j0Var.L0() != 0) {
             z10 = true;
@@ -35,22 +35,22 @@ public final class zj0 extends s4.s0 {
             z10 = false;
         }
         float f10 = 0.0f;
-        if (z10 != this.f33166a) {
-            ValueAnimator valueAnimator = this.f33168c;
+        if (z10 != this.f30604a) {
+            ValueAnimator valueAnimator = this.f30606c;
             if (valueAnimator != null) {
                 valueAnimator.cancel();
             }
-            float f11 = fk0Var.f26109r;
+            float f11 = fk0Var.f23997r;
             if (z10) {
                 f7 = 1.0f;
             } else {
                 f7 = 0.0f;
             }
-            this.f33168c = c(f11, f7, new q0.a(this) {
-                public final zj0 f32598b;
+            this.f30606c = c(f11, f7, new q0.a(this) {
+                public final zj0 f29991b;
 
                 {
-                    this.f32598b = this;
+                    this.f29991b = this;
                 }
 
                 @Override
@@ -58,61 +58,61 @@ public final class zj0 extends s4.s0 {
                     Float f12 = (Float) obj;
                     switch (r2) {
                         case 0:
-                            fk0 fk0Var2 = this.f32598b.f33169e;
+                            fk0 fk0Var2 = this.f29991b.e;
                             Paint paint = fk0Var2.h;
                             float floatValue = f12.floatValue();
-                            fk0Var2.f26109r = floatValue;
+                            fk0Var2.f23997r = floatValue;
                             paint.setAlpha((int) (floatValue * 255.0f));
                             fk0Var2.invalidate();
                             return;
                         default:
-                            fk0 fk0Var3 = this.f32598b.f33169e;
-                            Paint paint2 = fk0Var3.f26104n;
+                            fk0 fk0Var3 = this.f29991b.e;
+                            Paint paint2 = fk0Var3.f23992n;
                             float floatValue2 = f12.floatValue();
-                            fk0Var3.f26111s = floatValue2;
+                            fk0Var3.f23999s = floatValue2;
                             paint2.setAlpha((int) (floatValue2 * 255.0f));
                             fk0Var3.invalidate();
                             return;
                     }
                 }
             }, new Runnable(this) {
-                public final zj0 f32938b;
+                public final zj0 f30274b;
 
                 {
-                    this.f32938b = this;
+                    this.f30274b = this;
                 }
 
                 @Override
                 public final void run() {
                     switch (r2) {
                         case 0:
-                            this.f32938b.f33168c = null;
+                            this.f30274b.f30606c = null;
                             return;
                         default:
-                            this.f32938b.d = null;
+                            this.f30274b.d = null;
                             return;
                     }
                 }
             });
-            this.f33166a = z10;
+            this.f30604a = z10;
         }
-        if (j0Var.N0() != fk0Var.f26078a0.h() - 1) {
+        if (j0Var.N0() != fk0Var.f23967a0.h() - 1) {
             z11 = true;
         }
-        if (z11 != this.f33167b) {
+        if (z11 != this.f30605b) {
             ValueAnimator valueAnimator2 = this.d;
             if (valueAnimator2 != null) {
                 valueAnimator2.cancel();
             }
-            float f12 = fk0Var.f26111s;
+            float f12 = fk0Var.f23999s;
             if (z11) {
                 f10 = 1.0f;
             }
             this.d = c(f12, f10, new q0.a(this) {
-                public final zj0 f32598b;
+                public final zj0 f29991b;
 
                 {
-                    this.f32598b = this;
+                    this.f29991b = this;
                 }
 
                 @Override
@@ -120,43 +120,43 @@ public final class zj0 extends s4.s0 {
                     Float f122 = (Float) obj;
                     switch (r2) {
                         case 0:
-                            fk0 fk0Var2 = this.f32598b.f33169e;
+                            fk0 fk0Var2 = this.f29991b.e;
                             Paint paint = fk0Var2.h;
                             float floatValue = f122.floatValue();
-                            fk0Var2.f26109r = floatValue;
+                            fk0Var2.f23997r = floatValue;
                             paint.setAlpha((int) (floatValue * 255.0f));
                             fk0Var2.invalidate();
                             return;
                         default:
-                            fk0 fk0Var3 = this.f32598b.f33169e;
-                            Paint paint2 = fk0Var3.f26104n;
+                            fk0 fk0Var3 = this.f29991b.e;
+                            Paint paint2 = fk0Var3.f23992n;
                             float floatValue2 = f122.floatValue();
-                            fk0Var3.f26111s = floatValue2;
+                            fk0Var3.f23999s = floatValue2;
                             paint2.setAlpha((int) (floatValue2 * 255.0f));
                             fk0Var3.invalidate();
                             return;
                     }
                 }
             }, new Runnable(this) {
-                public final zj0 f32938b;
+                public final zj0 f30274b;
 
                 {
-                    this.f32938b = this;
+                    this.f30274b = this;
                 }
 
                 @Override
                 public final void run() {
                     switch (r2) {
                         case 0:
-                            this.f32938b.f33168c = null;
+                            this.f30274b.f30606c = null;
                             return;
                         default:
-                            this.f32938b.d = null;
+                            this.f30274b.d = null;
                             return;
                     }
                 }
             });
-            this.f33167b = z11;
+            this.f30605b = z11;
         }
     }
 }

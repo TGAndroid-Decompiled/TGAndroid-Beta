@@ -1,69 +1,197 @@
 package org.telegram.ui.Components;
 
-import j$.time.YearMonth;
-import org.telegram.messenger.FileLog;
-public final class x2 implements Runnable {
-    public final vc0 f32407a;
-    public final int f32408b;
-    public final vc0 f32409c;
-    public final vc0 d;
-    public final int f32410e;
-    public final int f32411f;
-    public final int h;
+import android.graphics.Bitmap;
+import android.graphics.ColorMatrix;
+import android.view.ViewPropertyAnimator;
+import android.widget.FrameLayout;
+import java.util.ArrayList;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.MessagesStorage;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.messenger.SharedConfig;
+import org.telegram.messenger.UserConfig;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_account;
+public final class x2 implements Utilities.Callback {
+    public final int f29861a;
+    public final Object f29862b;
 
-    public x2(vc0 vc0Var, int i10, vc0 vc0Var2, vc0 vc0Var3, int i11, int i12, int i13) {
-        this.f32407a = vc0Var;
-        this.f32408b = i10;
-        this.f32409c = vc0Var2;
-        this.d = vc0Var3;
-        this.f32410e = i11;
-        this.f32411f = i12;
-        this.h = i13;
+    public x2(Object obj, int i10) {
+        this.f29861a = i10;
+        this.f29862b = obj;
     }
 
     @Override
-    public final void run() {
-        vc0 vc0Var = this.f32407a;
-        int value = vc0Var.getValue();
-        int i10 = this.f32408b;
-        vc0 vc0Var2 = this.f32409c;
-        vc0 vc0Var3 = this.d;
-        if (value == i10) {
-            vc0Var2.setMinValue(1);
-            try {
-                vc0Var2.setMaxValue(YearMonth.of(2024, vc0Var3.getValue() + 1).lengthOfMonth());
-            } catch (Exception e7) {
-                FileLog.e(e7);
-                vc0Var2.setMaxValue(31);
-            }
-            vc0Var3.setMinValue(0);
-            vc0Var3.setMaxValue(11);
-        } else if (vc0Var.getValue() == this.f32410e) {
-            vc0Var3.setMinValue(0);
-            int i11 = this.f32411f;
-            vc0Var3.setMaxValue(i11);
-            if (vc0Var3.getValue() == i11) {
-                vc0Var2.setMinValue(1);
-                vc0Var2.setMaxValue(this.h);
+    public final void run(Object obj) {
+        boolean z10;
+        float top;
+        float f7;
+        float f10;
+        float f11;
+        TL_account.TL_birthday tL_birthday;
+        switch (this.f29861a) {
+            case 0:
+                Object[] objArr = (Object[]) obj;
+                ((ai.n8) this.f29862b).run();
                 return;
-            }
-            vc0Var2.setMinValue(1);
-            try {
-                vc0Var2.setMaxValue(YearMonth.of(vc0Var.getValue(), vc0Var3.getValue() + 1).lengthOfMonth());
-            } catch (Exception e10) {
-                FileLog.e(e10);
-                vc0Var2.setMaxValue(31);
-            }
-        } else {
-            vc0Var2.setMinValue(1);
-            try {
-                vc0Var2.setMaxValue(YearMonth.of(vc0Var.getValue(), vc0Var3.getValue() + 1).lengthOfMonth());
-            } catch (Exception e11) {
-                FileLog.e(e11);
-                vc0Var2.setMaxValue(31);
-            }
-            vc0Var3.setMinValue(0);
-            vc0Var3.setMaxValue(11);
+            case 1:
+                CharSequence charSequence = (CharSequence) obj;
+                ci.g gVar = ((jd) this.f29862b).f4990f;
+                gVar.setText(charSequence);
+                gVar.w(charSequence.length(), charSequence.length());
+                return;
+            case 2:
+                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = ((hm) this.f29862b).v;
+                chatAttachAlertPhotoLayout.r0(null, null, ((Long) obj).longValue());
+                chatAttachAlertPhotoLayout.f26462b.dismiss();
+                return;
+            case 3:
+                MessagesController.getInstance(((rs) this.f29862b).N).openApp((TLRPC.User) obj, 0);
+                return;
+            case 4:
+                ((bu) this.f29862b).performMenuAction(((Integer) obj).intValue());
+                return;
+            case 5:
+                Runnable runnable = (Runnable) this.f29862b;
+                ArrayList arrayList = (ArrayList) obj;
+                if (runnable != null) {
+                    runnable.run();
+                    return;
+                }
+                return;
+            case 6:
+                ((ba0) this.f29862b).V.Y0(((Integer) obj).intValue() + 8);
+                return;
+            case 7:
+                vb0 vb0Var = (vb0) this.f29862b;
+                Integer num = (Integer) obj;
+                ArrayList arrayList2 = vb0Var.e.f28088a;
+                va0 va0Var = vb0Var.f28681f;
+                if (((sb0) arrayList2.get(va0Var.getCurrentPosition())).f27824a != num.intValue()) {
+                    int i10 = 0;
+                    int i11 = 0;
+                    while (true) {
+                        if (i11 < arrayList2.size()) {
+                            if (((sb0) arrayList2.get(i11)).f27824a == num.intValue()) {
+                                i10 = i11;
+                            } else {
+                                i11++;
+                            }
+                        }
+                    }
+                    if (va0Var.getCurrentPosition() != i10) {
+                        va0Var.D(i10);
+                        return;
+                    }
+                    return;
+                }
+                return;
+            case 8:
+                sd0 sd0Var = (sd0) this.f29862b;
+                Integer num2 = (Integer) obj;
+                FrameLayout frameLayout = sd0Var.h;
+                if (sd0Var.getContext() != null) {
+                    if (sd0Var.getContext().getResources().getConfiguration().orientation == 2) {
+                        z10 = true;
+                    } else {
+                        z10 = false;
+                    }
+                    int intValue = num2.intValue() - AndroidUtilities.navigationBarHeight;
+                    if (SharedConfig.passcodeType == 1) {
+                        ViewPropertyAnimator animate = frameLayout.animate();
+                        float f12 = 1.0f;
+                        if (intValue <= AndroidUtilities.dp(20.0f)) {
+                            top = 0.0f;
+                        } else {
+                            float f13 = 2.0f;
+                            float height = (sd0Var.getHeight() - intValue) / 2.0f;
+                            float height2 = frameLayout.getHeight();
+                            if (z10) {
+                                f13 = 1.0f;
+                            }
+                            top = (height - (height2 / f13)) - frameLayout.getTop();
+                        }
+                        ViewPropertyAnimator duration = animate.translationY(top).setDuration(320L);
+                        qr qrVar = qr.h;
+                        duration.setInterpolator(qrVar).start();
+                        ViewPropertyAnimator animate2 = sd0Var.I.animate();
+                        if (intValue > AndroidUtilities.dp(20.0f)) {
+                            f12 = 0.0f;
+                        }
+                        animate2.alpha(f12).setDuration(320L).setInterpolator(qrVar);
+                        return;
+                    }
+                    return;
+                }
+                return;
+            case 9:
+                pe0 pe0Var = (pe0) this.f29862b;
+                pe0Var.K.a(pe0Var.N, true, 0, ((Long) obj).longValue());
+                pe0Var.dismiss();
+                return;
+            case 10:
+                Utilities.Callback2 callback2 = (Utilities.Callback2) this.f29862b;
+                Bitmap bitmap = (Bitmap) obj;
+                ColorMatrix colorMatrix = new ColorMatrix();
+                if (org.telegram.ui.ActionBar.i6.I.q()) {
+                    f7 = 0.04f;
+                } else {
+                    f7 = 0.25f;
+                }
+                AndroidUtilities.adjustSaturationColorMatrix(colorMatrix, f7);
+                float f14 = -0.07f;
+                if (org.telegram.ui.ActionBar.i6.I.q()) {
+                    f10 = -0.04f;
+                } else {
+                    f10 = -0.07f;
+                }
+                AndroidUtilities.adjustBrightnessColorMatrix(colorMatrix, f10);
+                Bitmap applyColorMatrix = AndroidUtilities.applyColorMatrix(bitmap, colorMatrix);
+                applyColorMatrix.setHasAlpha(false);
+                ColorMatrix colorMatrix2 = new ColorMatrix();
+                if (org.telegram.ui.ActionBar.i6.I.q()) {
+                    f11 = 2.0f;
+                } else {
+                    f11 = 3.0f;
+                }
+                colorMatrix2.setSaturation(f11);
+                if (!org.telegram.ui.ActionBar.i6.I.q()) {
+                    if (org.telegram.ui.ActionBar.i6.I.q()) {
+                        f14 = -0.2f;
+                    }
+                    AndroidUtilities.adjustBrightnessColorMatrix(colorMatrix2, f14);
+                }
+                Bitmap applyColorMatrix2 = AndroidUtilities.applyColorMatrix(bitmap, colorMatrix2);
+                applyColorMatrix2.setHasAlpha(false);
+                bitmap.recycle();
+                callback2.run(applyColorMatrix, applyColorMatrix2);
+                return;
+            default:
+                hy0 hy0Var = (hy0) this.f29862b;
+                TL_account.TL_birthday tL_birthday2 = (TL_account.TL_birthday) obj;
+                TL_account.updateBirthday updatebirthday = new TL_account.updateBirthday();
+                updatebirthday.flags |= 1;
+                updatebirthday.birthday = tL_birthday2;
+                int i12 = hy0Var.f24811a;
+                TLRPC.UserFull userFull = MessagesController.getInstance(i12).getUserFull(UserConfig.getInstance(i12).getClientUserId());
+                if (userFull != null) {
+                    tL_birthday = userFull.birthday;
+                } else {
+                    tL_birthday = null;
+                }
+                if (userFull != null) {
+                    userFull.flags2 |= 32;
+                    userFull.birthday = tL_birthday2;
+                    MessagesStorage.getInstance(i12).updateUserInfo(userFull, false);
+                }
+                ConnectionsManager.getInstance(i12).sendRequest(updatebirthday, new ai.t5(hy0Var, userFull, tL_birthday, 13), 1024);
+                MessagesController.getInstance(i12).invalidateContentSettings();
+                MessagesController.getInstance(i12).removeSuggestion(0L, "BIRTHDAY_SETUP");
+                NotificationCenter.getInstance(i12).lambda$postNotificationNameOnUIThread$1(NotificationCenter.newSuggestionsAvailable, new Object[0]);
+                return;
         }
     }
 }

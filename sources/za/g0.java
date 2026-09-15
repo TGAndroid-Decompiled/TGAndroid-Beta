@@ -1,19 +1,21 @@
 package za;
-public final class g0 implements c0 {
-    public static final double f51424f = Math.random();
-    public static final int f51425g = 0;
-    public final k9.h f51426a;
-    public final qa.d f51427b;
-    public final bb.i f51428c;
-    public final v8.s d;
-    public final id.h f51429e;
 
-    public g0(k9.h hVar, qa.d dVar, bb.i iVar, v8.s sVar, id.h hVar2) {
-        this.f51426a = hVar;
-        this.f51427b = dVar;
-        this.f51428c = iVar;
-        this.d = sVar;
-        this.f51429e = hVar2;
+import org.telegram.ui.Cells.ia;
+public final class g0 implements c0 {
+    public static final double f48781f = Math.random();
+    public static final int f48782g = 0;
+    public final k9.h f48783a;
+    public final qa.d f48784b;
+    public final bb.h f48785c;
+    public final ia d;
+    public final id.h e;
+
+    public g0(k9.h hVar, qa.d dVar, bb.h hVar2, ia iaVar, id.h hVar3) {
+        this.f48783a = hVar;
+        this.f48784b = dVar;
+        this.f48785c = hVar2;
+        this.d = iaVar;
+        this.e = hVar3;
     }
 
     public static final java.lang.Object a(za.g0 r4, kd.c r5) {

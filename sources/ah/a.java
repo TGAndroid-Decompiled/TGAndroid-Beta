@@ -1,28 +1,25 @@
 package ah;
 
-import android.animation.ValueAnimator;
-public final class a implements ValueAnimator.AnimatorUpdateListener {
-    public final int f435a;
-    public final c f436b;
-    public final x0 f437c;
+import org.telegram.messenger.MediaDataController;
+public final class a {
+    public boolean f415a;
+    public long f416b;
 
-    public a(c cVar, x0 x0Var, int i10) {
-        this.f435a = i10;
-        this.f436b = cVar;
-        this.f437c = x0Var;
+    public void a(long j3) {
+        this.f416b = MediaDataController.calcHash(this.f416b, j3);
     }
 
-    @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f435a) {
-            case 0:
-                this.f436b.f468f = ((Integer) valueAnimator.getAnimatedValue()).intValue();
-                this.f437c.invalidate();
-                return;
-            default:
-                this.f436b.f468f = ((Integer) valueAnimator.getAnimatedValue()).intValue();
-                this.f437c.invalidate();
-                return;
+    public void b(boolean z10) {
+        long j3;
+        if (z10) {
+            j3 = 1;
+        } else {
+            j3 = 0;
         }
+        a(j3);
+    }
+
+    public void c(float f7) {
+        a(Float.floatToIntBits(f7));
     }
 }

@@ -2,18 +2,18 @@ package z7;
 
 import java.util.Arrays;
 public final class ve {
-    public final Boolean f51283a;
-    public final Boolean f51284b;
-    public final Boolean f51285c;
+    public final Boolean f48654a;
+    public final Boolean f48655b;
+    public final Boolean f48656c;
     public final Boolean d;
-    public final Boolean f51286e;
+    public final Boolean e;
 
     public ve(cf.c cVar) {
-        this.f51283a = (Boolean) cVar.f4796a;
-        this.f51284b = (Boolean) cVar.f4797b;
-        this.f51285c = (Boolean) cVar.f4798c;
+        this.f48654a = (Boolean) cVar.f4255a;
+        this.f48655b = (Boolean) cVar.f4256b;
+        this.f48656c = (Boolean) cVar.f4257c;
         this.d = (Boolean) cVar.d;
-        this.f51286e = (Boolean) cVar.f4799e;
+        this.e = (Boolean) cVar.e;
     }
 
     public final boolean equals(Object obj) {
@@ -24,13 +24,13 @@ public final class ve {
             return false;
         }
         ve veVar = (ve) obj;
-        if (n6.l.l(this.f51283a, veVar.f51283a) && n6.l.l(this.f51284b, veVar.f51284b) && n6.l.l(this.f51285c, veVar.f51285c) && n6.l.l(this.d, veVar.d) && n6.l.l(this.f51286e, veVar.f51286e)) {
+        if (n6.l.l(this.f48654a, veVar.f48654a) && n6.l.l(this.f48655b, veVar.f48655b) && n6.l.l(this.f48656c, veVar.f48656c) && n6.l.l(this.d, veVar.d) && n6.l.l(this.e, veVar.e)) {
             return true;
         }
         return false;
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{this.f51283a, this.f51284b, this.f51285c, this.d, this.f51286e});
+        return Arrays.hashCode(new Object[]{this.f48654a, this.f48655b, this.f48656c, this.d, this.e});
     }
 }

@@ -4,17 +4,17 @@ import android.os.RemoteException;
 import h8.j;
 import i8.g;
 public final class d implements e {
-    public final int f48917a;
-    public final j f48918b;
+    public final int f45352a;
+    public final j f45353b;
 
     public d(j jVar, int i10) {
-        this.f48917a = i10;
-        this.f48918b = jVar;
+        this.f45352a = i10;
+        this.f45353b = jVar;
     }
 
     @Override
     public final int a() {
-        switch (this.f48917a) {
+        switch (this.f45352a) {
             case 0:
                 return 4;
             default:
@@ -24,26 +24,26 @@ public final class d implements e {
 
     @Override
     public final void b() {
-        switch (this.f48917a) {
+        switch (this.f45352a) {
             case 0:
-                aa.a aVar = this.f48918b.f10908a;
+                aa.a aVar = this.f45353b.f10146a;
                 aVar.getClass();
                 try {
-                    g gVar = (g) aVar.f372c;
+                    g gVar = (g) aVar.f358c;
                     gVar.S0(gVar.O0(), 12);
+                    return;
+                } catch (RemoteException e) {
+                    throw new RuntimeException(e);
+                }
+            default:
+                aa.a aVar2 = this.f45353b.f10146a;
+                aVar2.getClass();
+                try {
+                    g gVar2 = (g) aVar2.f358c;
+                    gVar2.S0(gVar2.O0(), 3);
                     return;
                 } catch (RemoteException e7) {
                     throw new RuntimeException(e7);
-                }
-            default:
-                aa.a aVar2 = this.f48918b.f10908a;
-                aVar2.getClass();
-                try {
-                    g gVar2 = (g) aVar2.f372c;
-                    gVar2.S0(gVar2.O0(), 3);
-                    return;
-                } catch (RemoteException e10) {
-                    throw new RuntimeException(e10);
                 }
         }
     }

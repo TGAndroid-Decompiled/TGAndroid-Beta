@@ -4,32 +4,32 @@ import android.view.TextureView;
 import android.view.ViewGroup;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessageObject;
-public final class t40 implements kv0 {
-    public final j60 f40615a;
+public final class t40 implements lv0 {
+    public final i60 f37546a;
 
-    public t40(j60 j60Var) {
-        this.f40615a = j60Var;
+    public t40(i60 i60Var) {
+        this.f37546a = i60Var;
     }
 
     @Override
     public final void E0(MessageObject messageObject) {
         ViewGroup viewGroup;
-        j60 j60Var = this.f40615a;
-        j60Var.Q.I0(true);
-        j60Var.f37523c2.f39330f.setRoundRadius(AndroidUtilities.dp(13.0f), AndroidUtilities.dp(13.0f), 0, 0);
-        viewGroup = ((org.telegram.ui.ActionBar.f3) j60Var).containerView;
+        i60 i60Var = this.f37546a;
+        i60Var.Q.I0(true);
+        i60Var.f34420c2.f36689f.setRoundRadius(AndroidUtilities.dp(13.0f), AndroidUtilities.dp(13.0f), 0, 0);
+        viewGroup = ((org.telegram.ui.ActionBar.f3) i60Var).containerView;
         viewGroup.invalidate();
     }
 
     @Override
     public final void H(MessageObject messageObject) {
         ViewGroup viewGroup;
-        viewGroup = ((org.telegram.ui.ActionBar.f3) this.f40615a).containerView;
+        viewGroup = ((org.telegram.ui.ActionBar.f3) this.f37546a).containerView;
         viewGroup.invalidate();
     }
 
     @Override
-    public final TextureView i0() {
+    public final TextureView j0() {
         return null;
     }
 }

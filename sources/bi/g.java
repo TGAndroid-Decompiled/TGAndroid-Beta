@@ -1,284 +1,617 @@
 package bi;
 
-import android.app.Activity;
-import android.content.Context;
-import android.os.Bundle;
-import di.bc;
-import di.gc;
-import di.kc;
-import di.pc;
-import di.tc;
-import di.zc;
+import ai.d9;
+import ai.t7;
+import ai.t8;
+import android.graphics.Canvas;
+import android.util.SparseArray;
+import android.view.View;
+import androidx.recyclerview.widget.RecyclerView;
+import ii.a2;
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Locale;
-import org.telegram.SQLite.SQLiteDatabase;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LiteMode;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.LocationController;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.MessagesStorage;
-import org.telegram.messenger.NotificationsController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.SharedConfig;
-import org.telegram.messenger.voip.GroupCallMessagesController;
-import org.telegram.messenger.voip.VideoCapturerDevice;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.ui.Components.dg;
-import org.telegram.ui.Components.mf0;
-import org.telegram.ui.Components.qc;
-import org.telegram.ui.Components.qf0;
-import org.telegram.ui.Components.vg0;
-import org.telegram.ui.Components.yc;
-import org.telegram.ui.Components.yg0;
-import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.PhotoViewer;
-import org.telegram.ui.ProfileActivity;
-import org.telegram.ui.bb1;
-import org.telegram.ui.co;
-import org.telegram.ui.ec0;
-import org.telegram.ui.j60;
-import org.telegram.ui.mi;
-import org.telegram.ui.nf;
-import org.telegram.ui.uy;
-public final class g implements Runnable {
-    public final int f2995a;
-    public final long f2996b;
-    public final Object f2997c;
+import org.telegram.messenger.DownloadController;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.i6;
+import org.telegram.ui.Components.a81;
+import org.telegram.ui.Components.e61;
+import org.telegram.ui.Components.e81;
+import org.telegram.ui.Components.h81;
+import org.telegram.ui.Components.i51;
+import org.telegram.ui.Components.i81;
+import org.telegram.ui.Components.qr;
+import org.telegram.ui.Components.sn;
+import org.telegram.ui.Components.un;
+import org.telegram.ui.Components.vm0;
+import org.telegram.ui.Components.w51;
+import org.telegram.ui.aw0;
+import org.telegram.ui.dc1;
+import org.telegram.ui.ip;
+import org.telegram.ui.jp;
+import org.telegram.ui.kp;
+import org.telegram.ui.na;
+import org.telegram.ui.yv0;
+import s4.c1;
+public final class g extends s4.v {
+    public final int d;
+    public final Object e;
 
-    public g(Object obj, long j3, int i10) {
-        this.f2995a = i10;
-        this.f2997c = obj;
-        this.f2996b = j3;
+    public g(Object obj, int i10) {
+        this.d = i10;
+        this.e = obj;
     }
 
     @Override
-    public final void run() {
-        kc kcVar;
-        int i10 = this.f2995a;
-        org.telegram.ui.ActionBar.f6 f6Var = null;
-        boolean z10 = false;
-        r7 = 0;
-        int i11 = 0;
-        long j3 = this.f2996b;
-        Object obj = this.f2997c;
-        switch (i10) {
+    public void a(RecyclerView recyclerView, c1 c1Var) {
+        switch (this.d) {
             case 0:
-                ((v) obj).f3870s.e0(j3, false);
+                super.a(recyclerView, c1Var);
+                c1Var.f42675a.setPressed(false);
                 return;
             case 1:
-                o5 o5Var = ((o3) obj).f3398a;
-                if (j3 <= 0) {
-                    z10 = true;
-                }
-                o5Var.k0(z10);
+                super.a(recyclerView, c1Var);
+                c1Var.f42675a.setPressed(false);
                 return;
             case 2:
-                AndroidUtilities.runOnUIThread((x4) obj, Math.max(0L, 500 - (System.currentTimeMillis() - j3)));
+                super.a(recyclerView, c1Var);
+                View view = c1Var.f42675a;
+                view.setPressed(false);
+                view.setBackground(null);
                 return;
             case 3:
-                org.telegram.ui.ActionBar.n2 d02 = bb1.d0(MessagesController.getInstance(((u8) obj).f3805a).getChat(Long.valueOf(-j3)), true);
-                org.telegram.ui.ActionBar.n2 R = LaunchActivity.R();
-                if (R != 0) {
-                    pc pcVar = pc.F2;
-                    if (pcVar != null && pcVar.d) {
-                        ?? obj2 = new Object();
-                        obj2.f21142a = true;
-                        R.showAsSheet(d02, obj2);
+                super.a(recyclerView, c1Var);
+                c1Var.f42675a.setPressed(false);
+                return;
+            case 4:
+                e61 e61Var = (e61) this.e;
+                super.a(recyclerView, c1Var);
+                View view2 = c1Var.f42675a;
+                view2.setPressed(false);
+                if (view2.getBackground() instanceof a2) {
+                    a2 a2Var = (a2) view2.getBackground();
+                    if (a2Var.f11229c) {
+                        a2Var.f11229c = false;
+                        a2Var.invalidateSelf();
+                    }
+                }
+                if (e61Var.A1()) {
+                    e61Var.F1(c1Var);
+                    view2.animate().scaleX(0.5f).scaleY(0.5f).setDuration(200L).setInterpolator(qr.h).start();
+                    return;
+                }
+                return;
+            case 5:
+            default:
+                super.a(recyclerView, c1Var);
+                return;
+            case 6:
+                super.a(recyclerView, c1Var);
+                c1Var.f42675a.setPressed(false);
+                return;
+        }
+    }
+
+    @Override
+    public final int e(RecyclerView recyclerView, c1 c1Var) {
+        switch (this.d) {
+            case 0:
+                u uVar = (u) this.e;
+                if (uVar.W.G.C1 && uVar.v.L(c1Var.b())) {
+                    uVar.f3589f.setItemAnimator(uVar.f3590n);
+                    return s4.v.l(15, 0);
+                }
+                return s4.v.l(0, 0);
+            case 1:
+                if (c1Var.f42678f == 1 && ((na) c1Var.f42675a).G) {
+                    return s4.v.l(3, 0);
+                }
+                return s4.v.l(0, 0);
+            case 2:
+                if (c1Var.f42678f != 5) {
+                    return s4.v.l(0, 0);
+                }
+                return s4.v.l(3, 0);
+            case 3:
+                int b10 = c1Var.b();
+                vm0 vm0Var = (vm0) this.e;
+                if (b10 >= vm0Var.v && c1Var.b() < vm0Var.f28839w) {
+                    return s4.v.l(3, 0);
+                }
+                return s4.v.l(0, 0);
+            case 4:
+                e61 e61Var = (e61) this.e;
+                if (e61Var.f23560c3 && e61Var.Y2.H(c1Var.b()) >= 0) {
+                    int i10 = 15;
+                    if (e61Var.X2.f42663o == 0) {
+                        if (!e61Var.f23559b3) {
+                            i10 = 12;
+                        }
+                    } else if (!e61Var.f23559b3) {
+                        i10 = 3;
+                    }
+                    return s4.v.l(i10, 0);
+                }
+                return s4.v.l(0, 0);
+            case 5:
+                if (((ka.c) ((h81) this.e).f24614y).d(c1Var.b())) {
+                    return s4.v.l(12, 0);
+                }
+                return s4.v.l(0, 0);
+            default:
+                if (c1Var.f42678f == 5 && r(c1Var.b())) {
+                    return s4.v.l(3, 0);
+                }
+                return s4.v.l(0, 0);
+        }
+    }
+
+    @Override
+    public boolean k() {
+        switch (this.d) {
+            case 0:
+                return ((u) this.e).W.G.C1;
+            case 1:
+            case 2:
+            case 5:
+            default:
+                return super.k();
+            case 3:
+                return ((vm0) this.e).I.g();
+            case 4:
+                e61 e61Var = (e61) this.e;
+                if (e61Var.f23560c3 && e61Var.f23562e3) {
+                    return true;
+                }
+                return false;
+            case 6:
+                return true;
+        }
+    }
+
+    @Override
+    public void m(Canvas canvas, RecyclerView recyclerView, c1 c1Var, float f7, float f10, int i10, boolean z10) {
+        switch (this.d) {
+            case 4:
+                e61 e61Var = (e61) this.e;
+                if (i10 != 2 || z10 || !e61Var.A1()) {
+                    super.m(canvas, recyclerView, c1Var, f7, f10, i10, z10);
+                    if (i10 == 2 && z10) {
+                        e61Var.E1(c1Var);
                         return;
                     }
-                    R.presentFragment(d02);
+                    return;
+                }
+                return;
+            case 5:
+                super.m(canvas, recyclerView, c1Var, f7, f10, i10, z10);
+                ((h81) this.e).invalidate();
+                return;
+            default:
+                super.m(canvas, recyclerView, c1Var, f7, f10, i10, z10);
+                return;
+        }
+    }
+
+    @Override
+    public final boolean n(RecyclerView recyclerView, c1 c1Var, c1 c1Var2) {
+        ArrayList arrayList;
+        int i10;
+        int i11;
+        int i12;
+        switch (this.d) {
+            case 0:
+                m mVar = ((u) this.e).v;
+                if (!mVar.L(c1Var.b()) || !mVar.L(c1Var2.b())) {
+                    return false;
+                }
+                int b10 = c1Var.b();
+                int b11 = c1Var2.b();
+                ArrayList arrayList2 = mVar.f3582n;
+                d9 d9Var = mVar.e;
+                if (d9Var != null && b10 >= 0 && b10 < d9Var.f716i.size() && b11 >= 0 && b11 < mVar.e.f716i.size()) {
+                    if (mVar.e instanceof t8) {
+                        arrayList = new ArrayList();
+                        for (int i13 = 0; i13 < mVar.e.f716i.size(); i13++) {
+                            arrayList.add(Integer.valueOf(((MessageObject) mVar.e.f716i.get(i13)).getId()));
+                        }
+                    } else {
+                        arrayList = new ArrayList(mVar.e.f715g);
+                    }
+                    if (!mVar.f3583r) {
+                        arrayList2.clear();
+                        arrayList2.addAll(arrayList);
+                        mVar.f3583r = true;
+                    }
+                    MessageObject messageObject = (MessageObject) mVar.e.f716i.get(b10);
+                    MessageObject messageObject2 = (MessageObject) mVar.e.f716i.get(b11);
+                    arrayList.remove(Integer.valueOf(messageObject.getId()));
+                    arrayList.add(Utilities.clamp(b11, arrayList.size(), 0), Integer.valueOf(messageObject.getId()));
+                    mVar.e.C(arrayList, false);
+                    mVar.p(b10, b11);
+                }
+                return true;
+            case 1:
+                if (c1Var.f42678f == c1Var2.f42678f) {
+                    View view = c1Var2.f42675a;
+                    if (!(view instanceof na) || ((na) view).G) {
+                        ip ipVar = ((jp) this.e).X2;
+                        int b12 = c1Var.b();
+                        int b13 = c1Var2.b();
+                        int i14 = b12 - 1;
+                        int i15 = b13 - 1;
+                        jp jpVar = ipVar.f34718c;
+                        kp kpVar = jpVar.f34947a3;
+                        ArrayList arrayList3 = kpVar.N;
+                        if (i14 >= kpVar.N.size() || i15 >= arrayList3.size()) {
+                            return true;
+                        }
+                        if (b12 != b13) {
+                            jpVar.Y2 = true;
+                        }
+                        arrayList3.set(i14, (TLRPC.TL_username) arrayList3.get(i15));
+                        arrayList3.set(i15, (TLRPC.TL_username) arrayList3.get(i14));
+                        ipVar.p(b12, b13);
+                        int size = arrayList3.size();
+                        if (b12 != size && b13 != size) {
+                            return true;
+                        }
+                        ipVar.n(b12, 3);
+                        ipVar.n(b13, 3);
+                        return true;
+                    }
+                }
+                return false;
+            case 2:
+                if (c1Var.f42678f != c1Var2.f42678f) {
+                    return false;
+                }
+                sn snVar = ((un) this.e).f28461r;
+                int b14 = c1Var.b();
+                int b15 = c1Var2.b();
+                un unVar = snVar.d;
+                int i16 = unVar.f28465t0;
+                qh.f fVar = unVar.l1;
+                int i17 = b14 - i16;
+                int i18 = b15 - i16;
+                if (i17 >= 0 && i18 >= 0 && i17 < (i10 = unVar.M) && i18 < i10) {
+                    qh.e b16 = fVar.b(i17);
+                    SparseArray sparseArray = fVar.f41766a;
+                    sparseArray.put(i17, fVar.b(i18));
+                    sparseArray.put(i18, b16);
+                    CharSequence[] charSequenceArr = unVar.K;
+                    CharSequence charSequence = charSequenceArr[i17];
+                    charSequenceArr[i17] = charSequenceArr[i18];
+                    charSequenceArr[i18] = charSequence;
+                    boolean[] zArr = unVar.L;
+                    boolean z10 = zArr[i17];
+                    zArr[i17] = zArr[i18];
+                    zArr[i18] = z10;
+                    snVar.p(b14, b15);
+                }
+                return true;
+            case 3:
+                int b17 = c1Var2.b();
+                vm0 vm0Var = (vm0) this.e;
+                ArrayList arrayList4 = vm0Var.e;
+                if (b17 >= vm0Var.v && c1Var2.b() < vm0Var.f28839w) {
+                    int b18 = c1Var.b();
+                    int b19 = c1Var2.b();
+                    int i19 = vm0Var.v;
+                    int i20 = b18 - i19;
+                    int i21 = b19 - i19;
+                    arrayList4.indexOf(Integer.valueOf(i20));
+                    arrayList4.get(b18 - vm0Var.v);
+                    MessageObject messageObject3 = (MessageObject) arrayList4.get(i20);
+                    MessageObject messageObject4 = (MessageObject) arrayList4.get(i21);
+                    arrayList4.set(i20, messageObject4);
+                    arrayList4.set(i21, messageObject3);
+                    DownloadController.getInstance(vm0Var.d).swapLoadingPriority(messageObject3, messageObject4);
+                    vm0Var.f28834c.p(b18, b19);
+                    return false;
+                }
+                return false;
+            case 4:
+                e61 e61Var = (e61) this.e;
+                w51 w51Var = e61Var.Y2;
+                if (w51Var.H(c1Var.b()) >= 0 && w51Var.H(c1Var.b()) == w51Var.H(c1Var2.b())) {
+                    int b20 = c1Var.b();
+                    int b21 = c1Var2.b();
+                    ArrayList arrayList5 = w51Var.f29616x;
+                    if (w51Var.L != null) {
+                        int H = w51Var.H(b20);
+                        int H2 = w51Var.H(b21);
+                        if (H >= 0 && H == H2) {
+                            boolean J = w51Var.J(b20);
+                            boolean J2 = w51Var.J(b21);
+                            arrayList5.add(b21, (i51) arrayList5.remove(b20));
+                            w51Var.p(b20, b21);
+                            if (w51Var.J(b21) != J) {
+                                w51Var.n(b21, 3);
+                            }
+                            if (w51Var.J(b20) != J2) {
+                                w51Var.n(b20, 3);
+                            }
+                            if (w51Var.K && (i11 = w51Var.J) != H) {
+                                w51Var.F(i11);
+                            }
+                            w51Var.K = true;
+                            w51Var.J = H;
+                        }
+                    }
+                    e61Var.H1();
+                    return true;
+                }
+                return false;
+            case 5:
+                int b22 = c1Var.b();
+                int b23 = c1Var2.b();
+                h81 h81Var = (h81) this.e;
+                ArrayList arrayList6 = h81Var.h;
+                boolean z11 = false;
+                int i22 = 0;
+                z11 = false;
+                if (((ka.c) h81Var.f24614y).d(b22) && ((ka.c) h81Var.f24614y).d(b23)) {
+                    Utilities.swapItems(arrayList6, b22, b23);
+                    h81Var.f24613x.p(b22, b23);
+                    ArrayList arrayList7 = new ArrayList();
+                    int size2 = arrayList6.size();
+                    while (i22 < size2) {
+                        Object obj = arrayList6.get(i22);
+                        i22++;
+                        arrayList7.add(Integer.valueOf(((e81) obj).f23583a));
+                    }
+                    a81 a81Var = ((i81) ((ka.c) h81Var.f24614y).f13564b).L;
+                    z11 = true;
+                    z11 = true;
+                    if (a81Var != null) {
+                        a81Var.a(arrayList7);
+                    }
+                }
+                return z11;
+            default:
+                if (c1Var.f42678f == c1Var2.f42678f && r(c1Var.b()) && r(c1Var2.b())) {
+                    yv0 yv0Var = ((aw0) this.e).f31969b;
+                    int b24 = c1Var.b();
+                    int b25 = c1Var2.b();
+                    aw0 aw0Var = yv0Var.d;
+                    int i23 = aw0Var.f31984n0;
+                    int i24 = b24 - i23;
+                    int i25 = b25 - i23;
+                    if (i24 >= 0 && i25 >= 0 && i24 < (i12 = aw0Var.f31999y) && i25 < i12) {
+                        CharSequence[] charSequenceArr2 = aw0Var.v;
+                        CharSequence charSequence2 = charSequenceArr2[i24];
+                        charSequenceArr2[i24] = charSequenceArr2[i25];
+                        charSequenceArr2[i25] = charSequence2;
+                        int[] iArr = aw0Var.f31988r;
+                        if (iArr != null) {
+                            int i26 = iArr[i24];
+                            iArr[i24] = iArr[i25];
+                            iArr[i25] = i26;
+                        }
+                        boolean[] zArr2 = aw0Var.f31995w;
+                        boolean z12 = zArr2[i24];
+                        zArr2[i24] = zArr2[i25];
+                        zArr2[i25] = z12;
+                        yv0Var.p(b24, b25);
+                    }
+                    return true;
+                }
+                return false;
+        }
+    }
+
+    @Override
+    public void o(RecyclerView recyclerView, c1 c1Var, c1 c1Var2, int i10, int i11, int i12) {
+        switch (this.d) {
+            case 4:
+                return;
+            default:
+                super.o(recyclerView, c1Var, c1Var2, i10, i11, i12);
+                return;
+        }
+    }
+
+    @Override
+    public void p(c1 c1Var, int i10) {
+        ArrayList arrayList;
+        boolean z10;
+        switch (this.d) {
+            case 0:
+                u uVar = (u) this.e;
+                j jVar = uVar.f3589f;
+                if (c1Var != null) {
+                    jVar.d1(false);
+                }
+                if (i10 == 0) {
+                    m mVar = uVar.v;
+                    ArrayList arrayList2 = mVar.f3582n;
+                    d9 d9Var = mVar.e;
+                    if (d9Var != null && mVar.f3583r) {
+                        if (d9Var instanceof t8) {
+                            arrayList = new ArrayList();
+                            for (int i11 = 0; i11 < mVar.e.f716i.size(); i11++) {
+                                arrayList.add(Integer.valueOf(((MessageObject) mVar.e.f716i.get(i11)).getId()));
+                            }
+                        } else {
+                            arrayList = d9Var.f715g;
+                        }
+                        if (arrayList2.size() != arrayList.size()) {
+                            z10 = true;
+                        } else {
+                            z10 = false;
+                        }
+                        if (!z10) {
+                            int i12 = 0;
+                            while (true) {
+                                if (i12 < arrayList2.size()) {
+                                    if (arrayList2.get(i12) != arrayList.get(i12)) {
+                                        z10 = true;
+                                    } else {
+                                        i12++;
+                                    }
+                                }
+                            }
+                        }
+                        if (z10) {
+                            mVar.e.C(arrayList, true);
+                        }
+                        mVar.f3583r = false;
+                    }
+                    jVar.setItemAnimator(null);
+                    return;
+                }
+                jVar.I0(false);
+                if (c1Var != null) {
+                    c1Var.f42675a.setPressed(true);
+                    return;
+                }
+                return;
+            case 1:
+                jp jpVar = (jp) this.e;
+                kp kpVar = jpVar.f34947a3;
+                if (i10 == 0) {
+                    kpVar.L = false;
+                    if (jpVar.Y2) {
+                        TLRPC.Chat chat = kpVar.X;
+                        ArrayList arrayList3 = kpVar.N;
+                        ArrayList arrayList4 = kpVar.M;
+                        if (chat != null) {
+                            jpVar.Y2 = false;
+                            TLRPC.TL_channels_reorderUsernames tL_channels_reorderUsernames = new TLRPC.TL_channels_reorderUsernames();
+                            TLRPC.TL_inputChannel tL_inputChannel = new TLRPC.TL_inputChannel();
+                            TLRPC.Chat chat2 = kpVar.X;
+                            tL_inputChannel.channel_id = chat2.f18112id;
+                            tL_inputChannel.access_hash = chat2.access_hash;
+                            tL_channels_reorderUsernames.channel = tL_inputChannel;
+                            ArrayList<String> arrayList5 = new ArrayList<>();
+                            for (int i13 = 0; i13 < arrayList4.size(); i13++) {
+                                if (((TLRPC.TL_username) arrayList4.get(i13)).active) {
+                                    arrayList5.add(((TLRPC.TL_username) arrayList4.get(i13)).username);
+                                }
+                            }
+                            for (int i14 = 0; i14 < arrayList3.size(); i14++) {
+                                if (((TLRPC.TL_username) arrayList3.get(i14)).active) {
+                                    arrayList5.add(((TLRPC.TL_username) arrayList3.get(i14)).username);
+                                }
+                            }
+                            tL_channels_reorderUsernames.order = arrayList5;
+                            kpVar.getConnectionsManager().sendRequest(tL_channels_reorderUsernames, new t7(10));
+                            kpVar.X.usernames.clear();
+                            kpVar.X.usernames.addAll(arrayList4);
+                            kpVar.X.usernames.addAll(arrayList3);
+                            kpVar.getMessagesController().putChat(kpVar.X, true);
+                            return;
+                        }
+                        return;
+                    }
+                    return;
+                }
+                kpVar.L = true;
+                jpVar.I0(false);
+                c1Var.f42675a.setPressed(true);
+                return;
+            case 2:
+                un unVar = (un) this.e;
+                dc1 dc1Var = unVar.f28463s;
+                if (i10 != 0) {
+                    dc1Var.setItemAnimator(unVar.v);
+                    dc1Var.I0(false);
+                    c1Var.f42675a.setPressed(true);
+                    c1Var.f42675a.setBackgroundColor(i6.v0(i6.f18907h5, unVar.f26461a));
+                    return;
+                }
+                return;
+            case 3:
+                if (i10 != 0) {
+                    ((vm0) this.e).f28833b.I0(false);
+                    c1Var.f42675a.setPressed(true);
                     return;
                 }
                 return;
             case 4:
-                MessagesStorage messagesStorage = ((h9) obj).f3074b;
-                SQLiteDatabase database = messagesStorage.getDatabase();
-                try {
-                    Locale locale = Locale.US;
-                    database.executeFast("DELETE FROM stories WHERE dialog_id = " + j3).stepThis().dispose();
-                    return;
-                } catch (Throwable th2) {
-                    messagesStorage.checkSQLException(th2);
+                e61 e61Var = (e61) this.e;
+                if (c1Var != null) {
+                    e61Var.d1(false);
+                }
+                if (i10 == 0) {
+                    w51 w51Var = e61Var.Y2;
+                    if (w51Var.K) {
+                        w51Var.F(w51Var.J);
+                    }
+                    if (e61Var.f23561d3 != null) {
+                        e61Var.D1();
+                        e61Var.f23561d3 = null;
+                        return;
+                    }
                     return;
                 }
+                e61Var.I0(false);
+                if (c1Var != null) {
+                    View view = c1Var.f42675a;
+                    view.setPressed(true);
+                    if (view.getBackground() instanceof a2) {
+                        a2 a2Var = (a2) view.getBackground();
+                        if (!a2Var.f11229c) {
+                            a2Var.f11229c = true;
+                            a2Var.invalidateSelf();
+                        }
+                    }
+                    if (i10 == 2) {
+                        e61Var.f23561d3 = c1Var;
+                        e61Var.G1(c1Var);
+                        return;
+                    }
+                    return;
+                }
+                return;
             case 5:
-                di.ba baVar = (di.ba) obj;
-                Context context = baVar.getContext();
-                di.ia iaVar = baVar.W;
-                org.telegram.ui.Components.e5.S(context, iaVar.attachedFragment, di.ia.Y(iaVar), new p1(baVar, j3, 1));
+            default:
                 return;
             case 6:
-                pc pcVar2 = (pc) obj;
-                kc kcVar2 = pcVar2.F;
-                if (kcVar2 != null) {
-                    kcVar2.f(true);
-                    pcVar2.F = null;
-                }
-                gc gcVar = pcVar2.f7916x;
-                if (gcVar != null) {
-                    kcVar = gcVar.a(j3);
-                } else {
-                    kcVar = null;
-                }
-                pcVar2.F = kcVar;
-                if (kcVar != null) {
-                    pcVar2.J = kcVar.f7482a;
-                    pcVar2.f7895r.c();
-                    bc bcVar = pcVar2.f7866h0;
-                    int i12 = pcVar2.J;
-                    if (i12 != 1 && i12 != 0) {
-                        i11 = -14737633;
-                    }
-                    bcVar.setBackgroundColor(i11);
-                    pcVar2.H.set(pcVar2.F.f7484c);
-                    kc kcVar3 = pcVar2.F;
-                    pcVar2.G = kcVar3.f7483b;
-                    kcVar3.e();
-                    if (SharedConfig.getDevicePerformanceClass() > 1) {
-                        LiteMode.isEnabled(360928);
-                    }
-                }
-                pcVar2.f7916x = null;
-                Activity activity = pcVar2.f7844b;
-                if (activity instanceof LaunchActivity) {
-                    ((LaunchActivity) activity).f33471z0.post(new di.ka(pcVar2, 5));
-                    return;
-                } else {
-                    pcVar2.q(true);
+                if (i10 != 0) {
+                    ((aw0) this.e).f31971c.I0(false);
+                    c1Var.f42675a.setPressed(true);
                     return;
                 }
-            case 7:
-                tc tcVar = ((zc) obj).f8535a;
-                if (tcVar != null) {
-                    tcVar.m(j3, false);
-                    return;
-                }
-                return;
-            case 8:
-                MessagesController.getInstance(r11.currentAccount).unlinkCommunity(j3, r11.f10711e, new gi.t((gi.k0) obj, 1));
-                return;
-            case 9:
-                gi.t0 t0Var = (gi.t0) obj;
-                t0Var.f10775i = null;
-                t0Var.f10774g.l(j3);
-                t0Var.f10778l++;
-                t0Var.a();
-                gi.s0 s0Var = t0Var.h;
-                if (s0Var != null) {
-                    s0Var.l();
-                    return;
-                }
-                return;
-            case 10:
-                ji.r rVar = (ji.r) obj;
-                org.telegram.ui.Components.e5.M(rVar.f28753b.f31279f0.getParentActivity(), j3, new xa.c(rVar, 22), rVar.f28752a);
-                return;
-            case 11:
-                ji.c2 c2Var = (ji.c2) obj;
-                org.telegram.ui.Components.e5.M(c2Var.getParentActivity(), j3, new a6.i(c2Var, 28), c2Var.getResourceProvider());
-                return;
-            case 12:
-                String str = e2.d0.f8737a;
-                j2.f fVar = ((i2.c0) ((k2.j) ((n4.y) obj).f16497c)).f11471a.f11533s;
-                j2.a p5 = fVar.p();
-                fVar.q(p5, 1010, new j2.c(p5, j3));
-                return;
-            case 13:
-                ((LocationController) obj).lambda$removeSharingLocation$21(j3);
-                return;
-            case 14:
-                ((NotificationsController) obj).lambda$processIgnoreStories$19(j3);
-                return;
-            case 15:
-                ((GroupCallMessagesController) obj).lambda$pushMessageToList$6(j3);
-                return;
-            case 16:
-                ((VideoCapturerDevice) obj).lambda$init$3(j3);
-                return;
-            case 17:
-                ConnectionsManager.lambda$getHostByName$20((String) obj, j3);
-                return;
-            case 18:
-                org.telegram.ui.v3 v3Var = (org.telegram.ui.v3) obj;
-                if (v3Var != null) {
-                    v3Var.dismiss(true);
-                }
-                org.telegram.ui.ActionBar.n2 U = LaunchActivity.U();
-                if (U != null) {
-                    U.presentFragment(new co(w.f.e(j3, "user_id")));
-                    return;
-                }
-                return;
-            case 19:
-                qc Q = yc.a0((org.telegram.ui.z6) obj).Q(R.raw.ic_delete, 36, LocaleController.formatString(R.string.CacheWasCleared, AndroidUtilities.formatFileSize(j3)));
-                Q.f29687r = false;
-                Q.j();
-                return;
-            case 20:
-                dg dgVar = (dg) obj;
-                dgVar.getClass();
-                dgVar.presentFragment(co.R9(j3));
-                return;
-            case 21:
-                qf0 qf0Var = (qf0) obj;
-                qf0Var.h("seekTo(" + Math.round(((float) j3) / 1000.0f) + ", true);");
-                AndroidUtilities.runOnUIThread(new mf0(qf0Var, 1), 100L);
-                return;
-            case 22:
-                yg0 yg0Var = (yg0) obj;
-                Activity activity2 = AndroidUtilities.getActivity();
-                org.telegram.ui.ActionBar.n2 U2 = LaunchActivity.U();
-                if (!PhotoViewer.t1().Q1() && (U2 == null || !U2.hasShownSheet())) {
-                    if (U2 != null) {
-                        f6Var = U2.getResourceProvider();
-                    }
-                } else {
-                    f6Var = new b();
-                }
-                new zh.k7(activity2, f6Var, this.f2996b, 15, "", new vg0(yg0Var, 0), 0L).show();
-                return;
-            case 23:
-                uy uyVar = (uy) obj;
-                uyVar.A4(true, true);
-                ArrayList arrayList = new ArrayList();
-                arrayList.add(MessagesStorage.TopicKey.of(j3, 0L));
-                uyVar.C2.u(uyVar, arrayList, null, false, uyVar.J2, uyVar.K2, uyVar.L2, null);
-                return;
-            case 24:
-                ((j60) obj).m1(j3, false);
-                return;
-            case 25:
-                ec0 ec0Var = (ec0) obj;
-                ec0Var.getClass();
-                ec0Var.presentFragment(co.R9(j3));
-                return;
-            case 26:
-                co coVar = ((mi) obj).f38715e;
-                coVar.A7(true);
-                Bundle bundle = new Bundle();
-                bundle.putLong("user_id", j3);
-                if (j3 == coVar.getUserConfig().getClientUserId()) {
-                    bundle.putBoolean("my_profile", true);
-                }
-                coVar.presentFragment(new ProfileActivity(bundle, null));
-                return;
-            case 27:
-                ((nf) obj).run(Long.valueOf(j3));
-                return;
-            case 28:
-                org.telegram.ui.web.g0 g0Var = (org.telegram.ui.web.g0) obj;
-                g0Var.getClass();
-                g0Var.presentFragment(co.R9(j3));
-                return;
-            default:
-                ug.a1 a1Var = (ug.a1) obj;
-                HashSet hashSet = a1Var.f47047e0;
-                hashSet.remove(Long.valueOf(j3));
-                a1Var.Y.b(true, hashSet, new ug.u0(a1Var, 5), null);
-                a1Var.b0(true, false);
                 return;
         }
+    }
+
+    @Override
+    public final void q(c1 c1Var) {
+        int i10 = this.d;
+    }
+
+    public boolean r(int i10) {
+        aw0 aw0Var = (aw0) this.e;
+        if (!aw0Var.I || i10 - aw0Var.f31984n0 >= aw0Var.f31997x) {
+            return true;
+        }
+        return false;
+    }
+
+    private final void t(c1 c1Var) {
+    }
+
+    private final void u(c1 c1Var) {
+    }
+
+    private final void v(c1 c1Var) {
+    }
+
+    private final void w(c1 c1Var) {
+    }
+
+    private final void x(c1 c1Var) {
+    }
+
+    private final void y(c1 c1Var) {
+    }
+
+    private final void z(c1 c1Var) {
+    }
+
+    private final void s(RecyclerView recyclerView, c1 c1Var, c1 c1Var2, int i10, int i11, int i12) {
     }
 }

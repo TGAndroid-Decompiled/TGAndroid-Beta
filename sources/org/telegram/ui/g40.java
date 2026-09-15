@@ -1,8 +1,8 @@
 package org.telegram.ui;
-public final class g40 implements mh.g {
-    public final j60 f36558a;
+public final class g40 implements lh.g {
+    public final i60 f33754a;
 
-    public g40(j60 j60Var) {
-        this.f36558a = j60Var;
+    public g40(i60 i60Var) {
+        this.f33754a = i60Var;
     }
 }

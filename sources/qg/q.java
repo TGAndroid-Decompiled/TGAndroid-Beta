@@ -1,50 +1,31 @@
 package qg;
 
-import android.view.View;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.ui.Components.a81;
-public final class q extends a81 {
-    public final bi.v0 f44517a;
+import android.view.KeyEvent;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLRPC;
+public final class q implements org.telegram.ui.ActionBar.l1, Utilities.Callback3Return {
+    public final p0 f41580a;
 
-    public q(bi.v0 v0Var) {
-        this.f44517a = v0Var;
+    public q(p0 p0Var) {
+        this.f41580a = p0Var;
     }
 
     @Override
-    public final View d(int i10) {
-        bi.v0 v0Var = this.f44517a;
-        if (i10 != 1) {
-            if (i10 != 2) {
-                return (t) v0Var.f3883b;
-            }
-            return (w) v0Var.d;
+    public void o(KeyEvent keyEvent) {
+        org.telegram.ui.ActionBar.n1 n1Var;
+        p0 p0Var = this.f41580a;
+        p0Var.getClass();
+        if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && (n1Var = p0Var.R1) != null && n1Var.isShowing()) {
+            p0Var.R1.d(true);
         }
-        return (s) v0Var.f3884c;
     }
 
     @Override
-    public final int e() {
-        return 3;
-    }
-
-    @Override
-    public final CharSequence g(int i10) {
-        if (i10 != 1) {
-            if (i10 != 2) {
-                return LocaleController.getString(R.string.PaintPaletteGrid).toUpperCase();
-            }
-            return LocaleController.getString(R.string.PaintPaletteSliders).toUpperCase();
+    public Object run(Object obj, Object obj2, Object obj3) {
+        a0 i02 = this.f41580a.i0(obj, (TLRPC.Document) obj2, true);
+        if (((Boolean) obj3).booleanValue()) {
+            i02.setScale(1.5f);
         }
-        return LocaleController.getString(R.string.PaintPaletteSpectrum).toUpperCase();
-    }
-
-    @Override
-    public final int h(int i10) {
-        return i10;
-    }
-
-    @Override
-    public final void b(View view, int i10, int i11) {
+        return Boolean.TRUE;
     }
 }

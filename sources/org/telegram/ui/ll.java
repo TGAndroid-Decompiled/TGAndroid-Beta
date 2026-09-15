@@ -34,7 +34,7 @@ public final class ll extends org.telegram.ui.ActionBar.j5 {
         switch (this.M0) {
             case 2:
                 super.onAttachedToWindow();
-                ((zp0) this.N0).f43486s.a();
+                ((yp0) this.N0).f39958s.a();
                 return;
             default:
                 super.onAttachedToWindow();
@@ -47,7 +47,7 @@ public final class ll extends org.telegram.ui.ActionBar.j5 {
         switch (this.M0) {
             case 2:
                 super.onDetachedFromWindow();
-                ((zp0) this.N0).f43486s.b();
+                ((yp0) this.N0).f39958s.b();
                 return;
             default:
                 super.onDetachedFromWindow();
@@ -79,13 +79,13 @@ public final class ll extends org.telegram.ui.ActionBar.j5 {
                 ProfileActivity profileActivity = (ProfileActivity) this.N0;
                 super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
                 if (isFocusable()) {
-                    if (profileActivity.h != null || profileActivity.f33947n != null) {
+                    if (profileActivity.h != null || profileActivity.f31328n != null) {
                         StringBuilder sb2 = new StringBuilder(getText());
-                        if (profileActivity.f33947n != null) {
+                        if (profileActivity.f31328n != null) {
                             if (sb2.length() > 0) {
                                 sb2.append(", ");
                             }
-                            sb2.append(profileActivity.f33947n);
+                            sb2.append(profileActivity.f31328n);
                         }
                         if (profileActivity.h != null) {
                             if (sb2.length() > 0) {
@@ -111,13 +111,13 @@ public final class ll extends org.telegram.ui.ActionBar.j5 {
         switch (this.M0) {
             case 0:
                 super.setTranslationY(f7);
-                co coVar = (co) this.N0;
-                if (this == coVar.D2[0] && coVar.H2[1] != null) {
-                    if (coVar.O4 && f7 < 0.0f) {
-                        coVar.f35500z2.setTranslationY(f7 / 2.0f);
+                bo boVar = (bo) this.N0;
+                if (this == boVar.D2[0] && boVar.H2[1] != null) {
+                    if (boVar.O4 && f7 < 0.0f) {
+                        boVar.f32551z2.setTranslationY(f7 / 2.0f);
                         return;
                     } else {
-                        coVar.f35500z2.setTranslationY(0.0f);
+                        boVar.f32551z2.setTranslationY(0.0f);
                         return;
                     }
                 }

@@ -1,47 +1,49 @@
 package org.telegram.ui;
 
-import j$.util.Objects;
-import org.telegram.messenger.SaveToGallerySettingsHelper;
-public final class s41 extends pg.a {
-    public final SaveToGallerySettingsHelper.DialogException f40300c;
-    public final String d;
+import android.app.Activity;
+import android.graphics.Canvas;
+import android.graphics.Path;
+import android.widget.FrameLayout;
+import org.telegram.messenger.AndroidUtilities;
+public final class s41 extends FrameLayout implements org.telegram.ui.ActionBar.z5 {
+    public final Path f37251a;
+    public ch.d f37252b;
 
-    public s41(int i10) {
-        super(i10, false);
-        this.f40300c = null;
+    public s41(Activity activity) {
+        super(activity);
+        this.f37251a = new Path();
     }
 
-    public final boolean equals(Object obj) {
-        SaveToGallerySettingsHelper.DialogException dialogException;
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null || s41.class != obj.getClass()) {
-            return false;
-        }
-        s41 s41Var = (s41) obj;
-        if (this.f44071a != s41Var.f44071a) {
-            return false;
-        }
-        String str = this.d;
-        if (str != null) {
-            return Objects.equals(str, s41Var.d);
-        }
-        SaveToGallerySettingsHelper.DialogException dialogException2 = this.f40300c;
-        if (dialogException2 == null || (dialogException = s41Var.f40300c) == null || dialogException2.dialogId == dialogException.dialogId) {
-            return true;
-        }
-        return false;
+    @Override
+    public final void dispatchDraw(Canvas canvas) {
+        canvas.save();
+        canvas.clipPath(this.f37251a);
+        super.dispatchDraw(canvas);
+        canvas.restore();
     }
 
-    public s41(SaveToGallerySettingsHelper.DialogException dialogException) {
-        super(2, false);
-        this.f40300c = dialogException;
+    @Override
+    public final void e() {
+        ch.d dVar = this.f37252b;
+        if (dVar != null) {
+            dVar.v();
+        }
     }
 
-    public s41(int i10, String str) {
-        super(i10, false);
-        this.d = str;
-        this.f40300c = null;
+    public int[] getColorKeys() {
+        return null;
+    }
+
+    @Override
+    public final void onSizeChanged(int i10, int i11, int i12, int i13) {
+        super.onSizeChanged(i10, i11, i12, i13);
+        Path path = this.f37251a;
+        path.rewind();
+        path.addRoundRect(AndroidUtilities.dp(9.0f), AndroidUtilities.dp(9.0f), i10 - AndroidUtilities.dp(9.0f), i11 - AndroidUtilities.dp(9.0f), AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), Path.Direction.CW);
+    }
+
+    public void setBlurredBackground(ch.d dVar) {
+        this.f37252b = dVar;
+        setBackground(dVar);
     }
 }

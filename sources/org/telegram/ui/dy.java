@@ -4,26 +4,26 @@ import android.animation.ValueAnimator;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 public final class dy implements ValueAnimator.AnimatorUpdateListener {
-    public int f35883a;
-    public final float f35884b;
-    public final float f35885c;
+    public int f33159a;
+    public final float f33160b;
+    public final float f33161c;
     public final uy d;
 
     public dy(uy uyVar, float f7, boolean z10, float f10) {
         this.d = uyVar;
-        this.f35884b = f7;
-        this.f35885c = f10;
-        this.f35883a = (int) f7;
+        this.f33160b = f7;
+        this.f33161c = f10;
+        this.f33159a = (int) f7;
     }
 
     @Override
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
         ((Float) valueAnimator.getAnimatedValue()).getClass();
-        int lerp = (int) AndroidUtilities.lerp(this.f35884b, this.f35885c, ((Float) valueAnimator.getAnimatedValue()).floatValue());
-        int i10 = lerp - this.f35883a;
-        this.f35883a = lerp;
+        int lerp = (int) AndroidUtilities.lerp(this.f33160b, this.f33161c, ((Float) valueAnimator.getAnimatedValue()).floatValue());
+        int i10 = lerp - this.f33159a;
+        this.f33159a = lerp;
         uy uyVar = this.d;
-        uyVar.f41259e0[0].f40858a.scrollBy(0, i10);
+        uyVar.f38207e0[0].f37803a.scrollBy(0, i10);
         View view = uyVar.fragmentView;
         if (view != null) {
             view.invalidate();

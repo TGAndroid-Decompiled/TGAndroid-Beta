@@ -2,28 +2,28 @@ package org.telegram.ui.Components;
 
 import android.view.KeyEvent;
 public final class n80 implements org.telegram.ui.ActionBar.a2, org.telegram.ui.ActionBar.l1 {
-    public final int f28687a;
-    public final w80 f28688b;
+    public final int f26394a;
+    public final v80 f26395b;
 
-    public n80(w80 w80Var, int i10) {
-        this.f28687a = i10;
-        this.f28688b = w80Var;
+    public n80(v80 v80Var, int i10) {
+        this.f26394a = i10;
+        this.f26395b = v80Var;
     }
 
     @Override
-    public void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        switch (this.f28687a) {
+    public void f(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
+        switch (this.f26394a) {
             case 0:
-                v80 v80Var = this.f28688b.f32205r;
-                if (v80Var != null) {
-                    v80Var.j();
+                u80 u80Var = this.f26395b.f28659r;
+                if (u80Var != null) {
+                    u80Var.j();
                     return;
                 }
                 return;
             default:
-                v80 v80Var2 = this.f28688b.f32205r;
-                if (v80Var2 != null) {
-                    v80Var2.c();
+                u80 u80Var2 = this.f26395b.f28659r;
+                if (u80Var2 != null) {
+                    u80Var2.c();
                     return;
                 }
                 return;
@@ -31,11 +31,11 @@ public final class n80 implements org.telegram.ui.ActionBar.a2, org.telegram.ui.
     }
 
     @Override
-    public void n(KeyEvent keyEvent) {
-        w80 w80Var = this.f28688b;
-        w80Var.getClass();
-        if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && w80Var.f32206s.isShowing()) {
-            w80Var.f32206s.d(true);
+    public void o(KeyEvent keyEvent) {
+        v80 v80Var = this.f26395b;
+        v80Var.getClass();
+        if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && v80Var.f28660s.isShowing()) {
+            v80Var.f28660s.d(true);
         }
     }
 }

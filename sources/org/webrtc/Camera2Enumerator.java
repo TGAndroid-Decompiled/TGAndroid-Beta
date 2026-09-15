@@ -51,8 +51,8 @@ public class Camera2Enumerator implements CameraEnumerator {
     private CameraCharacteristics getCameraCharacteristics(String str) {
         try {
             return this.cameraManager.getCameraCharacteristics(str);
-        } catch (AndroidException e7) {
-            Logging.e("Camera2Enumerator", "Camera access exception: " + e7);
+        } catch (AndroidException e) {
+            Logging.e("Camera2Enumerator", "Camera access exception: " + e);
             return null;
         }
     }
@@ -104,8 +104,8 @@ public class Camera2Enumerator implements CameraEnumerator {
     public String[] getDeviceNames() {
         try {
             return this.cameraManager.getCameraIdList();
-        } catch (AndroidException e7) {
-            Logging.e("Camera2Enumerator", "Camera access exception: " + e7);
+        } catch (AndroidException e) {
+            Logging.e("Camera2Enumerator", "Camera access exception: " + e);
             return new String[0];
         }
     }
@@ -170,8 +170,8 @@ public class Camera2Enumerator implements CameraEnumerator {
                         long elapsedRealtime2 = SystemClock.elapsedRealtime();
                         Logging.d("Camera2Enumerator", "Get supported formats for camera index " + str + " done. Time spent: " + (elapsedRealtime2 - elapsedRealtime) + " ms.");
                         return arrayList;
-                    } catch (Exception e7) {
-                        Logging.e("Camera2Enumerator", "getCameraCharacteristics()", e7);
+                    } catch (Exception e) {
+                        Logging.e("Camera2Enumerator", "getCameraCharacteristics()", e);
                         return new ArrayList();
                     }
                 }

@@ -1,73 +1,39 @@
 package org.telegram.ui;
 
-import android.view.KeyEvent;
-import android.view.View;
-public final class oq0 implements org.telegram.ui.Components.d5, org.telegram.ui.Components.bl0, org.telegram.ui.ActionBar.l1, org.telegram.ui.ActionBar.a2 {
-    public final int f39300a;
-    public final br0 f39301b;
+import androidx.recyclerview.widget.RecyclerView;
+import org.telegram.messenger.AndroidUtilities;
+public final class oq0 extends s4.s0 {
+    public final ar0 f36320a;
 
-    public oq0(br0 br0Var, int i10) {
-        this.f39300a = i10;
-        this.f39301b = br0Var;
+    public oq0(ar0 ar0Var) {
+        this.f36320a = ar0Var;
     }
 
     @Override
-    public void J(int i10, int i11, boolean z10) {
-        switch (this.f39300a) {
-            case 0:
-                this.f39301b.e0(i10, z10);
-                return;
-            default:
-                this.f39301b.e0(i10, z10);
-                return;
+    public final void a(RecyclerView recyclerView, int i10) {
+        if (i10 == 1) {
+            AndroidUtilities.hideKeyboard(this.f36320a.getParentActivity().getCurrentFocus());
         }
     }
 
     @Override
-    public boolean a(int i10, View view) {
-        br0 br0Var = this.f39301b;
-        if (br0Var.Y) {
-            br0Var.a0(view, br0Var.J.photos.get(i10));
-            return true;
-        } else if (view instanceof org.telegram.ui.Cells.s5) {
-            org.telegram.ui.Components.nl0 nl0Var = br0Var.V;
-            boolean z10 = !((org.telegram.ui.Cells.s5) view).a();
-            br0Var.X = z10;
-            nl0Var.d(view, i10, z10);
-            return false;
-        } else {
-            return false;
-        }
-    }
-
-    @Override
-    public void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        br0 br0Var = this.f39301b;
-        fr0 fr0Var = br0Var.f34907t0;
-        if (fr0Var != null) {
-            switch (fr0Var.f36453a) {
-                case 0:
-                    gr0 gr0Var = fr0Var.f36454b;
-                    gr0Var.f36752a.Z();
-                    gr0Var.f36753b.Z();
-                    return;
-                default:
-                    gr0 gr0Var2 = fr0Var.f36454b;
-                    gr0Var2.f36752a.Z();
-                    gr0Var2.f36753b.Z();
-                    return;
+    public final void b(RecyclerView recyclerView, int i10, int i11) {
+        int abs;
+        ar0 ar0Var = this.f36320a;
+        if (ar0Var.J == null) {
+            int L0 = ar0Var.M.L0();
+            boolean z10 = false;
+            if (L0 == -1) {
+                abs = 0;
+            } else {
+                abs = Math.abs(ar0Var.M.N0() - L0) + 1;
             }
-        }
-        br0Var.Z();
-    }
-
-    @Override
-    public void n(KeyEvent keyEvent) {
-        org.telegram.ui.ActionBar.n1 n1Var;
-        br0 br0Var = this.f39301b;
-        br0Var.getClass();
-        if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && (n1Var = br0Var.m0) != null && n1Var.isShowing()) {
-            br0Var.m0.d(true);
+            if (abs > 0 && L0 + abs > ar0Var.M.B() - 2 && !ar0Var.f31929r && !ar0Var.f31931s) {
+                if (ar0Var.f31908a == 1) {
+                    z10 = true;
+                }
+                ar0Var.d0(ar0Var.v, ar0Var.f31936w, z10, true);
+            }
         }
     }
 }

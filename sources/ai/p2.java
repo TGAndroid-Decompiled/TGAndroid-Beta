@@ -1,0 +1,36 @@
+package ai;
+
+import android.animation.ValueAnimator;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.view.View;
+public final class p2 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f1380a;
+    public final r2 f1381b;
+
+    public p2(r2 r2Var, int i10) {
+        this.f1380a = i10;
+        this.f1381b = r2Var;
+    }
+
+    @Override
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f1380a) {
+            case 0:
+                this.f1381b.d.setAlpha(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                return;
+            default:
+                r2 r2Var = this.f1381b;
+                r2Var.getClass();
+                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                r2Var.f1454n = floatValue;
+                View view = r2Var.f1451b;
+                view.setAlpha(1.0f - floatValue);
+                view.setScaleX(1.0f - r2Var.f1454n);
+                view.setScaleY(1.0f - r2Var.f1454n);
+                r2Var.f1452c.setColorFilter(new PorterDuffColorFilter(i0.a.d(r2Var.f1454n, -1, -2960428), PorterDuff.Mode.SRC_IN));
+                r2Var.f1450a.invalidate();
+                return;
+        }
+    }
+}

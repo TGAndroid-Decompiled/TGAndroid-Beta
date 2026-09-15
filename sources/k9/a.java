@@ -1,13 +1,13 @@
 package k9;
 public final class a {
-    public final long f14844a;
-    public final long f14845b;
-    public final long f14846c;
+    public final long f13534a;
+    public final long f13535b;
+    public final long f13536c;
 
     public a(long j3, long j10, long j11) {
-        this.f14844a = j3;
-        this.f14845b = j10;
-        this.f14846c = j11;
+        this.f13534a = j3;
+        this.f13535b = j10;
+        this.f13536c = j11;
     }
 
     public final boolean equals(Object obj) {
@@ -16,7 +16,7 @@ public final class a {
         }
         if (obj instanceof a) {
             a aVar = (a) obj;
-            if (this.f14844a == aVar.f14844a && this.f14845b == aVar.f14845b && this.f14846c == aVar.f14846c) {
+            if (this.f13534a == aVar.f13534a && this.f13535b == aVar.f13535b && this.f13536c == aVar.f13536c) {
                 return true;
             }
         }
@@ -24,18 +24,18 @@ public final class a {
     }
 
     public final int hashCode() {
-        long j3 = this.f14844a;
-        long j10 = this.f14845b;
-        long j11 = this.f14846c;
+        long j3 = this.f13534a;
+        long j10 = this.f13535b;
+        long j11 = this.f13536c;
         return ((int) (j11 ^ (j11 >>> 32))) ^ ((((((int) (j3 ^ (j3 >>> 32))) ^ 1000003) * 1000003) ^ ((int) (j10 ^ (j10 >>> 32)))) * 1000003);
     }
 
     public final String toString() {
         StringBuilder sb2 = new StringBuilder("StartupTime{epochMillis=");
-        sb2.append(this.f14844a);
+        sb2.append(this.f13534a);
         sb2.append(", elapsedRealtime=");
-        sb2.append(this.f14845b);
+        sb2.append(this.f13535b);
         sb2.append(", uptimeMillis=");
-        return a4.a.r(sb2, this.f14846c, "}");
+        return a4.a.r(sb2, this.f13536c, "}");
     }
 }

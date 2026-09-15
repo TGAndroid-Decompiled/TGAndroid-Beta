@@ -24,7 +24,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.AnimationNotificationsLocker;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.R;
-import org.telegram.messenger.vl;
+import org.telegram.messenger.wl;
 import org.telegram.ui.Components.ug0;
 public class ActionBarPopupWindow$ActionBarPopupWindowLayout extends FrameLayout {
     public int E;
@@ -42,23 +42,23 @@ public class ActionBarPopupWindow$ActionBarPopupWindowLayout extends FrameLayout
     public n1 Q;
     public Rect R;
     public Path S;
-    public boolean f20187a;
-    public boolean f20188b;
-    public boolean f20189c;
+    public boolean f18427a;
+    public boolean f18428b;
+    public boolean f18429c;
     public boolean d;
-    public l1 f20190e;
-    public float f20191f;
+    public l1 e;
+    public float f18430f;
     public float h;
-    public boolean f20192n;
-    public int f20193r;
-    public int f20194s;
+    public boolean f18431n;
+    public int f18432r;
+    public int f18433s;
     public boolean v;
-    public boolean f20195w;
-    public ArrayList f20196x;
-    public final HashMap f20197y;
+    public boolean f18434w;
+    public ArrayList f18435x;
+    public final HashMap f18436y;
 
-    public ActionBarPopupWindow$ActionBarPopupWindowLayout(Context context, f6 f6Var) {
-        this(R.drawable.popup_fixed_alert2, 0, context, f6Var);
+    public ActionBarPopupWindow$ActionBarPopupWindowLayout(Context context, e6 e6Var) {
+        this(R.drawable.popup_fixed_alert2, 0, context, e6Var);
     }
 
     public final void a(View view, LinearLayout.LayoutParams layoutParams) {
@@ -77,9 +77,9 @@ public class ActionBarPopupWindow$ActionBarPopupWindowLayout extends FrameLayout
         } else {
             i10 = 48;
         }
-        FrameLayout.LayoutParams e7 = w7.x5.e(-2, -2, i10);
+        FrameLayout.LayoutParams e = w7.x5.e(-2, -2, i10);
         ug0 ug0Var = this.J;
-        ug0Var.addView(view, e7);
+        ug0Var.addView(view, e);
         return ug0Var.getChildCount() - 1;
     }
 
@@ -118,15 +118,15 @@ public class ActionBarPopupWindow$ActionBarPopupWindowLayout extends FrameLayout
         int i20;
         float scaleY;
         int scrollY3;
-        boolean z12 = this.f20189c;
+        boolean z12 = this.f18429c;
         ug0 ug0Var = this.J;
         if (z12) {
-            setTranslationX((1.0f - this.f20191f) * getMeasuredWidth());
+            setTranslationX((1.0f - this.f18430f) * getMeasuredWidth());
             View view = this.P;
             if (view != null) {
-                view.setTranslationX((1.0f - this.f20191f) * getMeasuredWidth());
-                this.P.setAlpha(1.0f - ug0Var.f30888b);
-                float f11 = (-(this.P.getMeasuredHeight() - AndroidUtilities.dp(16.0f))) * ug0Var.f30888b;
+                view.setTranslationX((1.0f - this.f18430f) * getMeasuredWidth());
+                this.P.setAlpha(1.0f - ug0Var.f28398b);
+                float f11 = (-(this.P.getMeasuredHeight() - AndroidUtilities.dp(16.0f))) * ug0Var.f28398b;
                 this.P.setTranslationY(f11);
                 setTranslationY(f11);
             }
@@ -169,7 +169,7 @@ public class ActionBarPopupWindow$ActionBarPopupWindowLayout extends FrameLayout
             for (float f12 = 16.0f; i26 < 2 && (i26 != i10 || i22 >= (-AndroidUtilities.dp(f12))); f12 = 16.0f) {
                 int saveCount = canvas.getSaveCount();
                 Rect rect2 = this.G;
-                if (z10 && this.f20193r != 255) {
+                if (z10 && this.f18432r != 255) {
                     i11 = i26;
                     i12 = saveCount;
                     rect = rect2;
@@ -177,7 +177,7 @@ public class ActionBarPopupWindow$ActionBarPopupWindowLayout extends FrameLayout
                     f7 = 16.0f;
                     f10 = 1.0f;
                     canvas2 = canvas;
-                    canvas2.saveLayerAlpha(0.0f, rect2.top, getMeasuredWidth(), getMeasuredHeight(), this.f20193r, 31);
+                    canvas2.saveLayerAlpha(0.0f, rect2.top, getMeasuredWidth(), getMeasuredHeight(), this.f18432r, 31);
                     z11 = false;
                 } else {
                     i11 = i26;
@@ -195,20 +195,20 @@ public class ActionBarPopupWindow$ActionBarPopupWindowLayout extends FrameLayout
                 }
                 Drawable drawable = this.N;
                 if (z11) {
-                    i14 = this.f20193r;
+                    i14 = this.f18432r;
                 } else {
                     i14 = 255;
                 }
                 drawable.setAlpha(i14);
                 if (this.v) {
                     int measuredHeight = getMeasuredHeight();
-                    AndroidUtilities.rectTmp2.set(0, (int) ((f10 - this.h) * measuredHeight), (int) (getMeasuredWidth() * this.f20191f), measuredHeight);
+                    AndroidUtilities.rectTmp2.set(0, (int) ((f10 - this.h) * measuredHeight), (int) (getMeasuredWidth() * this.f18430f), measuredHeight);
                 } else if (i22 > (-AndroidUtilities.dp(f7))) {
                     int measuredHeight2 = (int) (getMeasuredHeight() * this.h);
                     if (i11 == 0) {
                         if (ug0Var != null && ug0Var.P) {
                             Rect rect3 = AndroidUtilities.rectTmp2;
-                            int measuredWidth = getMeasuredWidth() - ((int) (getMeasuredWidth() * this.f20191f));
+                            int measuredWidth = getMeasuredWidth() - ((int) (getMeasuredWidth() * this.f18430f));
                             if (scrollView == null) {
                                 i19 = 0;
                             } else {
@@ -238,7 +238,7 @@ public class ActionBarPopupWindow$ActionBarPopupWindowLayout extends FrameLayout
                                 i18 = 0;
                             }
                             int i28 = i17 + i18;
-                            int measuredWidth3 = (int) (getMeasuredWidth() * this.f20191f);
+                            int measuredWidth3 = (int) (getMeasuredWidth() * this.f18430f);
                             if (this.E != i13) {
                                 measuredHeight2 = Math.min(measuredHeight2, AndroidUtilities.dp(f7) + i22);
                             }
@@ -251,13 +251,13 @@ public class ActionBarPopupWindow$ActionBarPopupWindowLayout extends FrameLayout
                         i26 = i11 + 1;
                         i10 = 1;
                     } else if (ug0Var != null && ug0Var.P) {
-                        AndroidUtilities.rectTmp2.set(getMeasuredWidth() - ((int) (getMeasuredWidth() * this.f20191f)), i24, getMeasuredWidth(), measuredHeight2);
+                        AndroidUtilities.rectTmp2.set(getMeasuredWidth() - ((int) (getMeasuredWidth() * this.f18430f)), i24, getMeasuredWidth(), measuredHeight2);
                     } else {
-                        AndroidUtilities.rectTmp2.set(0, i24, (int) (getMeasuredWidth() * this.f20191f), measuredHeight2);
+                        AndroidUtilities.rectTmp2.set(0, i24, (int) (getMeasuredWidth() * this.f18430f), measuredHeight2);
                     }
                 } else if (ug0Var != null && ug0Var.P) {
                     Rect rect5 = AndroidUtilities.rectTmp2;
-                    int measuredWidth4 = getMeasuredWidth() - ((int) (getMeasuredWidth() * this.f20191f));
+                    int measuredWidth4 = getMeasuredWidth() - ((int) (getMeasuredWidth() * this.f18430f));
                     if (this.E < 0) {
                         i16 = 0;
                     } else {
@@ -271,7 +271,7 @@ public class ActionBarPopupWindow$ActionBarPopupWindowLayout extends FrameLayout
                     } else {
                         i15 = -AndroidUtilities.dp(f7);
                     }
-                    rect6.set(0, i15, (int) (getMeasuredWidth() * this.f20191f), (int) (getMeasuredHeight() * this.h));
+                    rect6.set(0, i15, (int) (getMeasuredWidth() * this.f18430f), (int) (getMeasuredHeight() * this.h));
                 }
                 if (this.I != f10) {
                     if (this.R == null) {
@@ -288,7 +288,7 @@ public class ActionBarPopupWindow$ActionBarPopupWindowLayout extends FrameLayout
                 Rect rect9 = AndroidUtilities.rectTmp2;
                 drawable2.setBounds(rect9);
                 this.N.draw(canvas2);
-                if (this.f20188b) {
+                if (this.f18428b) {
                     rect9.left += rect.left;
                     rect9.top += rect.top;
                     rect9.right -= rect.right;
@@ -361,9 +361,9 @@ public class ActionBarPopupWindow$ActionBarPopupWindowLayout extends FrameLayout
 
     @Override
     public final boolean dispatchKeyEvent(KeyEvent keyEvent) {
-        l1 l1Var = this.f20190e;
+        l1 l1Var = this.e;
         if (l1Var != null) {
-            l1Var.n(keyEvent);
+            l1Var.o(keyEvent);
         }
         return super.dispatchKeyEvent(keyEvent);
     }
@@ -371,7 +371,7 @@ public class ActionBarPopupWindow$ActionBarPopupWindowLayout extends FrameLayout
     public final void e(View view) {
         float f7;
         float f10;
-        if (this.f20195w) {
+        if (this.f18434w) {
             AnimatorSet animatorSet = new AnimatorSet();
             if (view.isEnabled()) {
                 f7 = 1.0f;
@@ -386,22 +386,22 @@ public class ActionBarPopupWindow$ActionBarPopupWindowLayout extends FrameLayout
             }
             animatorSet.playTogether(ofFloat, ObjectAnimator.ofFloat(view, View.TRANSLATION_Y, AndroidUtilities.dp(f10), 0.0f));
             animatorSet.setDuration(180L);
-            animatorSet.addListener(new bi.j4(this, animatorSet, view, 1));
-            animatorSet.setInterpolator(n1.f21206m);
+            animatorSet.addListener(new ai.y4(this, animatorSet, view, 1));
+            animatorSet.setInterpolator(n1.f19417m);
             animatorSet.start();
-            if (this.f20196x == null) {
-                this.f20196x = new ArrayList();
+            if (this.f18435x == null) {
+                this.f18435x = new ArrayList();
             }
-            this.f20196x.add(animatorSet);
+            this.f18435x.add(animatorSet);
         }
     }
 
     public int getBackAlpha() {
-        return this.f20193r;
+        return this.f18432r;
     }
 
     public float getBackScaleX() {
-        return this.f20191f;
+        return this.f18430f;
     }
 
     public float getBackScaleY() {
@@ -441,28 +441,28 @@ public class ActionBarPopupWindow$ActionBarPopupWindowLayout extends FrameLayout
         super.onMeasure(i10, i11);
         ug0 ug0Var = this.J;
         if (ug0Var != null) {
-            ug0Var.c(!this.f20192n);
+            ug0Var.c(!this.f18431n);
         }
     }
 
     public void setAnimationEnabled(boolean z10) {
-        this.f20195w = z10;
+        this.f18434w = z10;
     }
 
     public void setBackAlpha(int i10) {
-        if (this.f20193r != i10) {
+        if (this.f18432r != i10) {
             invalidate();
         }
-        this.f20193r = i10;
+        this.f18432r = i10;
     }
 
     public void setBackScaleX(float f7) {
-        if (this.f20191f != f7) {
-            this.f20191f = f7;
+        if (this.f18430f != f7) {
+            this.f18430f = f7;
             invalidate();
             m1 m1Var = this.H;
             if (m1Var != null) {
-                m1Var.b();
+                m1Var.a();
             }
         }
     }
@@ -471,21 +471,21 @@ public class ActionBarPopupWindow$ActionBarPopupWindowLayout extends FrameLayout
         Integer num;
         if (this.h != f7) {
             this.h = f7;
-            if (this.f20195w && this.f20187a) {
+            if (this.f18434w && this.f18427a) {
                 int measuredHeight = getMeasuredHeight() - AndroidUtilities.dp(16.0f);
                 boolean z10 = this.v;
-                HashMap hashMap = this.f20197y;
+                HashMap hashMap = this.f18436y;
                 j1 j1Var = this.L;
                 if (z10) {
-                    for (int i10 = this.f20194s; i10 >= 0; i10--) {
+                    for (int i10 = this.f18433s; i10 >= 0; i10--) {
                         View childAt = j1Var.getChildAt(i10);
                         if (childAt != null && childAt.getVisibility() == 0 && !(childAt instanceof k1)) {
                             if (((Integer) hashMap.get(childAt)) != null) {
-                                if (vl.v(32.0f, AndroidUtilities.dp(48.0f) * num.intValue(), measuredHeight) > measuredHeight * f7) {
+                                if (wl.v(32.0f, AndroidUtilities.dp(48.0f) * num.intValue(), measuredHeight) > measuredHeight * f7) {
                                     break;
                                 }
                             }
-                            this.f20194s = i10 - 1;
+                            this.f18433s = i10 - 1;
                             e(childAt);
                         }
                     }
@@ -496,11 +496,11 @@ public class ActionBarPopupWindow$ActionBarPopupWindowLayout extends FrameLayout
                         View childAt2 = j1Var.getChildAt(i12);
                         if (childAt2.getVisibility() == 0) {
                             int measuredHeight2 = childAt2.getMeasuredHeight() + i11;
-                            if (i12 >= this.f20194s) {
+                            if (i12 >= this.f18433s) {
                                 if (((Integer) hashMap.get(childAt2)) != null && measuredHeight2 - AndroidUtilities.dp(24.0f) > measuredHeight * f7) {
                                     break;
                                 }
-                                this.f20194s = i12 + 1;
+                                this.f18433s = i12 + 1;
                                 e(childAt2);
                             }
                             i11 = measuredHeight2;
@@ -511,7 +511,7 @@ public class ActionBarPopupWindow$ActionBarPopupWindowLayout extends FrameLayout
             invalidate();
             m1 m1Var = this.H;
             if (m1Var != null) {
-                m1Var.b();
+                m1Var.a();
             }
         }
     }
@@ -535,7 +535,7 @@ public class ActionBarPopupWindow$ActionBarPopupWindowLayout extends FrameLayout
     }
 
     public void setDispatchKeyEventListener(l1 l1Var) {
-        this.f20190e = l1Var;
+        this.e = l1Var;
     }
 
     public void setFitItems(boolean z10) {
@@ -582,19 +582,19 @@ public class ActionBarPopupWindow$ActionBarPopupWindowLayout extends FrameLayout
             if (i12 != childCount - 1) {
                 i13 = 0;
             }
-            childAt.setBackground(j6.Y(i10, i11, i13));
+            childAt.setBackground(i6.Y(i10, i11, i13));
         }
     }
 
-    public ActionBarPopupWindow$ActionBarPopupWindowLayout(int i10, int i11, Context context, f6 f6Var) {
+    public ActionBarPopupWindow$ActionBarPopupWindowLayout(int i10, int i11, Context context, e6 e6Var) {
         super(context);
-        this.f20191f = 1.0f;
+        this.f18430f = 1.0f;
         this.h = 1.0f;
-        this.f20192n = false;
-        this.f20193r = 255;
-        this.f20194s = 0;
-        this.f20195w = true;
-        this.f20197y = new HashMap();
+        this.f18431n = false;
+        this.f18432r = 255;
+        this.f18433s = 0;
+        this.f18434w = true;
+        this.f18436y = new HashMap();
         this.E = -1000000;
         this.F = -1000000;
         Rect rect = new Rect();
@@ -608,7 +608,7 @@ public class ActionBarPopupWindow$ActionBarPopupWindowLayout extends FrameLayout
         Drawable drawable = this.N;
         if (drawable != null) {
             drawable.getPadding(rect);
-            setBackgroundColor(j6.v0(j6.G8, f6Var));
+            setBackgroundColor(i6.v0(i6.G8, e6Var));
         }
         setWillNotDraw(false);
         if ((i11 & 2) > 0) {
@@ -616,21 +616,21 @@ public class ActionBarPopupWindow$ActionBarPopupWindowLayout extends FrameLayout
         }
         if ((i11 & 1) > 0) {
             ?? frameLayout = new FrameLayout(context);
-            frameLayout.f30887a = new SparseIntArray();
-            frameLayout.f30889c = -1.0f;
+            frameLayout.f28397a = new SparseIntArray();
+            frameLayout.f28399c = -1.0f;
             Paint paint = new Paint(1);
-            frameLayout.f30892n = paint;
-            frameLayout.f30893r = new Paint();
-            frameLayout.f30894s = 0;
+            frameLayout.f28401n = paint;
+            frameLayout.f28402r = new Paint();
+            frameLayout.f28403s = 0;
             frameLayout.v = new Path();
-            frameLayout.f30895w = new RectF();
-            frameLayout.f30896x = new ArrayList();
+            frameLayout.f28404w = new RectF();
+            frameLayout.f28405x = new ArrayList();
             frameLayout.G = -1;
             frameLayout.H = new AnimationNotificationsLocker();
             frameLayout.J = -1;
             frameLayout.L = new Rect();
-            frameLayout.I = f6Var;
-            frameLayout.d = new l.d(context, new fi.o4(frameLayout, ViewConfiguration.get(context).getScaledTouchSlop(), 2));
+            frameLayout.I = e6Var;
+            frameLayout.d = new k2.u(context, new ei.n4(frameLayout, ViewConfiguration.get(context).getScaledTouchSlop(), 2));
             paint.setColor(-16777216);
             this.J = frameLayout;
             addView((View) frameLayout, w7.x5.c(-2.0f, -2));

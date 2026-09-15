@@ -7,16 +7,16 @@ import c3.n;
 import e2.d0;
 import e2.v;
 public final class c implements h0 {
-    public final int f47285a;
-    public final s f47286b;
-    public final n f47287c = new n();
+    public final int f43831a;
+    public final s f43832b;
+    public final n f43833c = new n();
     public s d;
-    public h0 f47288e;
-    public long f47289f;
+    public h0 e;
+    public long f43834f;
 
     public c(int i10, int i11, s sVar) {
-        this.f47285a = i11;
-        this.f47286b = sVar;
+        this.f43831a = i11;
+        this.f43832b = sVar;
     }
 
     @Override
@@ -26,24 +26,24 @@ public final class c implements h0 {
 
     @Override
     public final void b(s sVar) {
-        s sVar2 = this.f47286b;
+        s sVar2 = this.f43832b;
         if (sVar2 != null) {
             sVar = sVar.d(sVar2);
         }
         this.d = sVar;
-        h0 h0Var = this.f47288e;
-        String str = d0.f8737a;
+        h0 h0Var = this.e;
+        String str = d0.f7883a;
         h0Var.b(sVar);
     }
 
     @Override
     public final void c(long j3, int i10, int i11, int i12, g0 g0Var) {
-        long j10 = this.f47289f;
+        long j10 = this.f43834f;
         if (j10 != -9223372036854775807L && j3 >= j10) {
-            this.f47288e = this.f47287c;
+            this.e = this.f43833c;
         }
-        h0 h0Var = this.f47288e;
-        String str = d0.f8737a;
+        h0 h0Var = this.e;
+        String str = d0.f7883a;
         h0Var.c(j3, i10, i11, i12, g0Var);
     }
 
@@ -54,15 +54,15 @@ public final class c implements h0 {
 
     @Override
     public final int e(b2.k kVar, int i10, boolean z10) {
-        h0 h0Var = this.f47288e;
-        String str = d0.f8737a;
+        h0 h0Var = this.e;
+        String str = d0.f7883a;
         return h0Var.a(kVar, i10, z10);
     }
 
     @Override
     public final void f(v vVar, int i10, int i11) {
-        h0 h0Var = this.f47288e;
-        String str = d0.f8737a;
+        h0 h0Var = this.e;
+        String str = d0.f7883a;
         h0Var.d(i10, vVar);
     }
 }

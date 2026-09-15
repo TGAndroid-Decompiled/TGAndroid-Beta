@@ -1,18 +1,18 @@
 package x7;
 public final class p7 {
-    public final i9 f49137a;
-    public final o7 f49138b;
-    public final m7 f49139c;
+    public final i9 f45555a;
+    public final o7 f45556b;
+    public final m7 f45557c;
     public final g8 d;
-    public final f8 f49140e;
-    public final s0 f49141f;
+    public final f8 e;
+    public final s0 f45558f;
 
     public p7(com.google.firebase.messaging.n nVar) {
-        this.f49137a = (i9) nVar.f6374a;
-        this.f49138b = (o7) nVar.f6375b;
-        this.f49139c = (m7) nVar.f6376c;
+        this.f45555a = (i9) nVar.f7331a;
+        this.f45556b = (o7) nVar.f7332b;
+        this.f45557c = (m7) nVar.f7333c;
         this.d = (g8) nVar.d;
-        this.f49140e = (f8) nVar.f6377e;
-        this.f49141f = (s0) nVar.f6378f;
+        this.e = (f8) nVar.e;
+        this.f45558f = (s0) nVar.f7334f;
     }
 }

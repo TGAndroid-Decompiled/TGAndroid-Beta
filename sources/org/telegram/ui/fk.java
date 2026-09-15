@@ -10,20 +10,20 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class fk extends org.telegram.ui.Components.oa0 {
+public final class fk extends org.telegram.ui.Components.na0 {
     public boolean V;
-    public final co W;
+    public final bo W;
 
-    public fk(co coVar, Context context, long j3, long j10, co coVar2, org.telegram.ui.ActionBar.f6 f6Var) {
-        super(context, j3, j10, coVar2, f6Var);
-        this.W = coVar;
+    public fk(bo boVar, Context context, long j3, long j10, bo boVar2, org.telegram.ui.ActionBar.e6 e6Var) {
+        super(context, j3, j10, boVar2, e6Var);
+        this.W = boVar;
         this.V = true;
     }
 
     @Override
     public final boolean a() {
-        co coVar = this.W;
-        if (coVar.R.getVisibility() == 0 && !coVar.f35350n3) {
+        bo boVar = this.W;
+        if (boVar.R.getVisibility() == 0 && !boVar.f32401n3) {
             return false;
         }
         return true;
@@ -44,36 +44,36 @@ public final class fk extends org.telegram.ui.Components.oa0 {
 
     @Override
     public final void k(TLRPC.BotInlineResult botInlineResult) {
-        co coVar = this.W;
-        if (coVar.getParentActivity() != null && botInlineResult.content != null) {
+        bo boVar = this.W;
+        if (boVar.getParentActivity() != null && botInlineResult.content != null) {
             if (!botInlineResult.type.equals("video") && !botInlineResult.type.equals("web_player_video")) {
-                coVar.xa(0, botInlineResult.content.url, null, null, false);
+                boVar.xa(0, botInlineResult.content.url, null, null, false);
                 return;
             }
             int[] inlineResultWidthAndHeight = MessageObject.getInlineResultWidthAndHeight(botInlineResult);
-            bm bmVar = coVar.Ia;
+            bm bmVar = boVar.Ia;
             String str = botInlineResult.title;
             if (str == null) {
                 str = "";
             }
             String str2 = botInlineResult.description;
             String str3 = botInlineResult.content.url;
-            org.telegram.ui.Components.tu.J(coVar, null, bmVar, str, str2, str3, str3, inlineResultWidthAndHeight[0], inlineResultWidthAndHeight[1], -1, coVar.x9());
+            org.telegram.ui.Components.vu.J(boVar, null, bmVar, str, str2, str3, str3, inlineResultWidthAndHeight[0], inlineResultWidthAndHeight[1], -1, boVar.x9());
         }
     }
 
     @Override
     public final void l(boolean z10) {
         String str;
-        co coVar = this.W;
-        mk mkVar = coVar.Y;
+        bo boVar = this.W;
+        mk mkVar = boVar.Y;
         if (mkVar != null) {
-            hg.k1 adapter = getAdapter();
-            TLRPC.User user = adapter.f11156w0;
+            gg.k1 adapter = getAdapter();
+            TLRPC.User user = adapter.f9837w0;
             if (user != null) {
                 str = user.bot_inline_placeholder;
             } else {
-                String str2 = adapter.f11147q0;
+                String str2 = adapter.f9828q0;
                 if (str2 != null && str2.equals("gif")) {
                     str = LocaleController.getString(R.string.SearchGifsTitle);
                 } else {
@@ -81,48 +81,48 @@ public final class fk extends org.telegram.ui.Components.oa0 {
                 }
             }
             mkVar.setCaption(str);
-            org.telegram.ui.Components.xe xeVar = coVar.Y.O1;
-            if (xeVar != null) {
+            org.telegram.ui.Components.ue ueVar = boVar.Y.O1;
+            if (ueVar != null) {
                 if (z10) {
-                    xeVar.f25749e = true;
-                    xeVar.f25747b = System.currentTimeMillis();
-                    xeVar.invalidateSelf();
+                    ueVar.e = true;
+                    ueVar.f24054b = System.currentTimeMillis();
+                    ueVar.invalidateSelf();
                     return;
                 }
-                xeVar.f25749e = false;
+                ueVar.e = false;
             }
         }
     }
 
     @Override
     public final void m() {
-        co coVar = this.W;
-        if (coVar.Z4 && ((getAdapter().R == null || coVar.f35189a5 || coVar.f35203b5) && coVar.h != null && getAdapter().R != null)) {
+        bo boVar = this.W;
+        if (boVar.Z4 && ((getAdapter().R == null || boVar.f32240a5 || boVar.f32254b5) && boVar.h != null && getAdapter().R != null)) {
             SharedPreferences globalMainSettings = MessagesController.getGlobalMainSettings();
             if (!globalMainSettings.getBoolean("secretbot", false)) {
-                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(coVar.getParentActivity(), 0, coVar.f35247ea);
-                alertDialog$Builder.f20198a.R = LocaleController.getString(R.string.AppName);
-                alertDialog$Builder.f20198a.T = LocaleController.getString(R.string.SecretChatContextBotAlert);
+                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(boVar.getParentActivity(), 0, boVar.f32297ea);
+                alertDialog$Builder.f18437a.R = LocaleController.getString(R.string.AppName);
+                alertDialog$Builder.f18437a.T = LocaleController.getString(R.string.SecretChatContextBotAlert);
                 alertDialog$Builder.k(LocaleController.getString(R.string.OK), null);
-                coVar.showDialog(alertDialog$Builder.f20198a);
+                boVar.showDialog(alertDialog$Builder.f18437a);
                 globalMainSettings.edit().putBoolean("secretbot", true).commit();
             }
         }
-        coVar.sc();
+        boVar.sc();
     }
 
     @Override
     public final void n(boolean z10) {
         boolean z11;
         if (this.V != z10) {
-            co coVar = this.W;
-            org.telegram.ui.Components.my0 my0Var = coVar.f35225d1;
-            if (!coVar.isInPreviewMode() && z10) {
+            bo boVar = this.W;
+            org.telegram.ui.Components.ny0 ny0Var = boVar.f32276d1;
+            if (!boVar.isInPreviewMode() && z10) {
                 z11 = true;
             } else {
                 z11 = false;
             }
-            AndroidUtilities.updateViewShow(my0Var, z11, false, true);
+            AndroidUtilities.updateViewShow(ny0Var, z11, false, true);
             this.V = z10;
         }
     }

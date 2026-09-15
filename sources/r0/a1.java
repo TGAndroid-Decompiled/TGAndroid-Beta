@@ -4,8 +4,8 @@ public final class a1 extends z0 {
     }
 
     @Override
-    public void c(int i10, i0.c cVar) {
-        this.f44748c.setInsets(k1.a(i10), cVar.d());
+    public void c(int i10, i0.b bVar) {
+        this.f41886c.setInsets(k1.a(i10), bVar.d());
     }
 
     public a1(l1 l1Var) {

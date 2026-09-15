@@ -6,15 +6,15 @@ import android.net.Uri;
 import org.telegram.messenger.FileLog;
 import org.telegram.tgnet.TLRPC;
 public final class vc0 extends org.telegram.ui.ActionBar.j {
-    public final id0 f41513a;
+    public final id0 f38498a;
 
     public vc0(id0 id0Var) {
-        this.f41513a = id0Var;
+        this.f38498a = id0Var;
     }
 
     @Override
     public final void b(int i10) {
-        id0 id0Var = this.f41513a;
+        id0 id0Var = this.f38498a;
         if (i10 == -1) {
             id0Var.finishFragment();
         } else if (i10 == 1) {
@@ -24,8 +24,8 @@ public final class vc0 extends org.telegram.ui.ActionBar.j {
                 double d10 = geoPoint._long;
                 Activity parentActivity = id0Var.getParentActivity();
                 parentActivity.startActivity(new Intent("android.intent.action.VIEW", Uri.parse("geo:" + d + "," + d10 + "?q=" + d + "," + d10)));
-            } catch (Exception e7) {
-                FileLog.e(e7);
+            } catch (Exception e) {
+                FileLog.e(e);
             }
         } else if (i10 == 5) {
             id0Var.s0(false);

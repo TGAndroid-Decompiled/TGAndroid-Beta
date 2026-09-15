@@ -5,18 +5,18 @@ import android.view.MotionEvent;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class n61 extends b20 {
-    public final di.h2 J;
+    public final ci.h2 J;
     public final o61 K;
 
-    public n61(o61 o61Var, Context context, org.telegram.ui.ActionBar.f6 f6Var) {
-        super(context, f6Var);
+    public n61(o61 o61Var, Context context, org.telegram.ui.ActionBar.e6 e6Var) {
+        super(context, e6Var);
         this.K = o61Var;
-        di.h2 h2Var = this.f24522r;
+        ci.h2 h2Var = this.f22573r;
         this.J = h2Var;
         h2Var.setImeOptions(268435459);
         h2Var.setHint(LocaleController.getString(R.string.VoipGroupSearchMembers));
-        h2Var.addTextChangedListener(new di.i2(this, 14));
-        h2Var.setOnEditorActionListener(new f1(this, 10));
+        h2Var.addTextChangedListener(new ci.i2(this, 14));
+        h2Var.setOnEditorActionListener(new e1(this, 10));
     }
 
     @Override
@@ -26,7 +26,7 @@ public final class n61 extends b20 {
 
     @Override
     public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        this.K.D(motionEvent, this.J);
+        this.K.E(motionEvent, this.J);
         return super.onInterceptTouchEvent(motionEvent);
     }
 }

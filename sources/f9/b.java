@@ -4,7 +4,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.ArrayDeque;
 import java.util.Arrays;
-import v7.x7;
+import v7.y7;
 public abstract class b {
     static {
         new OutputStream();
@@ -53,7 +53,7 @@ public abstract class b {
             } else {
                 i10 = 2;
             }
-            min = x7.e(min * i10);
+            min = y7.e(min * i10);
         }
         if (inputStream.read() == -1) {
             return a(arrayDeque, 2147483639);

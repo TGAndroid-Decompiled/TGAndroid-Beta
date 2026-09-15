@@ -11,8 +11,8 @@ public class DatabaseMigrationHelper {
     private static void executeNoException(SQLiteDatabase sQLiteDatabase, String str) {
         try {
             sQLiteDatabase.executeFast(str).stepThis().dispose();
-        } catch (Exception e7) {
-            FileLog.e(e7);
+        } catch (Exception e) {
+            FileLog.e(e);
         }
     }
 
@@ -146,7 +146,7 @@ public class DatabaseMigrationHelper {
                     byteBufferValue2.reuse();
                     if (TLdeserialize != null) {
                         TLRPC.TL_chatFull tL_chatFull = new TLRPC.TL_chatFull();
-                        tL_chatFull.f19870id = intValue2;
+                        tL_chatFull.f18113id = intValue2;
                         tL_chatFull.chat_photo = new TLRPC.TL_photoEmpty();
                         tL_chatFull.notify_settings = new TLRPC.TL_peerNotifySettingsEmpty_layer77();
                         tL_chatFull.exported_invite = null;
@@ -428,8 +428,8 @@ public class DatabaseMigrationHelper {
             sQLiteDatabase.beginTransaction();
             try {
                 sQLiteCursor9 = sQLiteDatabase.queryFinalized("SELECT mid, uid, send_state, date, data, ttl, replydata FROM scheduled_messages_v2 WHERE 1", new Object[0]);
-            } catch (Exception e7) {
-                FileLog.e(e7);
+            } catch (Exception e) {
+                FileLog.e(e);
                 sQLiteCursor9 = null;
             }
             if (sQLiteCursor9 != null) {
@@ -480,8 +480,8 @@ public class DatabaseMigrationHelper {
             sQLiteDatabase.beginTransaction();
             try {
                 sQLiteCursor8 = sQLiteDatabase.queryFinalized("SELECT mid, uid, date, type, data FROM media_v2 WHERE 1", new Object[0]);
-            } catch (Exception e10) {
-                FileLog.e(e10);
+            } catch (Exception e7) {
+                FileLog.e(e7);
                 sQLiteCursor8 = null;
             }
             if (sQLiteCursor8 != null) {
@@ -523,8 +523,8 @@ public class DatabaseMigrationHelper {
             sQLiteDatabase.beginTransaction();
             try {
                 sQLiteCursor4 = sQLiteDatabase.queryFinalized("SELECT r.random_id, r.mid, m.uid FROM randoms as r INNER JOIN messages as m ON r.mid = m.mid WHERE 1", new Object[0]);
-            } catch (Exception e11) {
-                FileLog.e(e11);
+            } catch (Exception e10) {
+                FileLog.e(e10);
                 sQLiteCursor4 = null;
             }
             if (sQLiteCursor4 != null) {
@@ -547,8 +547,8 @@ public class DatabaseMigrationHelper {
             }
             try {
                 sQLiteCursor5 = sQLiteDatabase.queryFinalized("SELECT p.mid, m.uid, p.id FROM polls as p INNER JOIN messages as m ON p.mid = m.mid WHERE 1", new Object[0]);
-            } catch (Exception e12) {
-                FileLog.e(e12);
+            } catch (Exception e11) {
+                FileLog.e(e11);
                 sQLiteCursor5 = null;
             }
             if (sQLiteCursor5 != null) {
@@ -571,8 +571,8 @@ public class DatabaseMigrationHelper {
             }
             try {
                 sQLiteCursor6 = sQLiteDatabase.queryFinalized("SELECT wp.id, wp.mid, m.uid FROM webpage_pending as wp INNER JOIN messages as m ON wp.mid = m.mid WHERE 1", new Object[0]);
-            } catch (Exception e13) {
-                FileLog.e(e13);
+            } catch (Exception e12) {
+                FileLog.e(e12);
                 sQLiteCursor6 = null;
             }
             if (sQLiteCursor6 != null) {
@@ -595,8 +595,8 @@ public class DatabaseMigrationHelper {
             }
             try {
                 sQLiteCursor7 = sQLiteDatabase.queryFinalized("SELECT et.mid, m.uid, et.date, et.media FROM enc_tasks_v3 as et INNER JOIN messages as m ON et.mid = m.mid WHERE 1", new Object[0]);
-            } catch (Exception e14) {
-                FileLog.e(e14);
+            } catch (Exception e13) {
+                FileLog.e(e13);
                 sQLiteCursor7 = null;
             }
             if (sQLiteCursor7 != null) {
@@ -636,8 +636,8 @@ public class DatabaseMigrationHelper {
             sQLiteDatabase.beginTransaction();
             try {
                 sQLiteCursor2 = sQLiteDatabase.queryFinalized("SELECT mid, uid, read_state, send_state, date, data, out, ttl, media, replydata, imp, mention, forwards, replies_data, thread_reply_id FROM messages WHERE 1", new Object[0]);
-            } catch (Exception e15) {
-                FileLog.e(e15);
+            } catch (Exception e14) {
+                FileLog.e(e14);
                 sQLiteCursor2 = null;
             }
             if (sQLiteCursor2 != null) {
@@ -832,8 +832,8 @@ public class DatabaseMigrationHelper {
             sQLiteDatabase2.beginTransaction();
             try {
                 sQLiteCursor = sQLiteDatabase2.queryFinalized("SELECT mid, uid, date, type, data FROM media_v3 WHERE 1", new Object[0]);
-            } catch (Exception e16) {
-                FileLog.e(e16);
+            } catch (Exception e15) {
+                FileLog.e(e15);
                 sQLiteCursor = null;
             }
             if (sQLiteCursor != null) {

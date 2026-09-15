@@ -1,44 +1,23 @@
 package qg;
 
-import android.graphics.RectF;
-public final class f1 {
-    public final l f44427a;
-    public float f44428b;
-    public float f44429c;
-    public float d;
-    public float f44430e;
-    public float f44431f;
-    public float f44432g;
-    public float h;
-    public float f44433i;
-    public float f44434j;
-    public float f44435k;
-    public boolean f44436l;
+import ci.c6;
+import org.telegram.messenger.MessageObject;
+public final class f1 extends g.p {
+    public final c6 f41357c;
 
-    public f1(l lVar) {
-        this.f44427a = lVar;
+    public f1(c6 c6Var) {
+        this.f41357c = c6Var;
     }
 
-    public final void a(RectF rectF) {
-        l lVar = this.f44427a;
-        if (lVar.o() == 4) {
-            float f7 = this.f44428b;
-            float f10 = this.f44435k;
-            float f11 = this.f44429c;
-            rectF.set(f7 - f10, f11 - f10, f7 + f10, f11 + f10);
-            rectF.union(this.d, this.f44430e);
-            rectF.union(this.f44433i, this.f44434j);
-        } else {
-            float max = Math.max(Math.abs(this.d), Math.abs(this.f44430e));
-            float f12 = this.f44428b;
-            float f13 = max * 1.42f;
-            float f14 = this.f44429c;
-            rectF.set(f12 - f13, f14 - f13, f12 + f13, f14 + f13);
-            if (lVar.o() == 3) {
-                rectF.union(this.f44433i, this.f44434j);
-            }
+    @Override
+    public final int i(int i10) {
+        MessageObject.GroupedMessagePosition position;
+        c6 c6Var = this.f41357c;
+        int size = (c6Var.f41372s0.size() - 1) - i10;
+        MessageObject.GroupedMessages groupedMessages = c6Var.f41373t0;
+        if (groupedMessages != null && size >= 0 && size < groupedMessages.messages.size() && (position = groupedMessages.getPosition(groupedMessages.messages.get(size))) != null) {
+            return position.spanSize;
         }
-        float f15 = (-this.f44431f) - 3.0f;
-        rectF.inset(f15, f15);
+        return 1000;
     }
 }

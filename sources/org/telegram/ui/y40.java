@@ -4,37 +4,37 @@ import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import org.telegram.messenger.ChatObject;
 public final class y40 implements ViewTreeObserver.OnPreDrawListener {
-    public final ChatObject.VideoParticipant f42982a;
-    public final boolean f42983b;
-    public final j60 f42984c;
+    public final ChatObject.VideoParticipant f39751a;
+    public final boolean f39752b;
+    public final i60 f39753c;
 
-    public y40(j60 j60Var, ChatObject.VideoParticipant videoParticipant, boolean z10) {
-        this.f42984c = j60Var;
-        this.f42982a = videoParticipant;
-        this.f42983b = z10;
+    public y40(i60 i60Var, ChatObject.VideoParticipant videoParticipant, boolean z10) {
+        this.f39753c = i60Var;
+        this.f39751a = videoParticipant;
+        this.f39752b = z10;
     }
 
     @Override
     public final boolean onPreDraw() {
         ViewGroup viewGroup;
-        j60 j60Var = this.f42984c;
-        p50 p50Var = j60Var.Q;
-        p50Var.getViewTreeObserver().removeOnPreDrawListener(this);
-        j60Var.f37579q2 = null;
-        a40 a40Var = j60Var.a2;
-        ChatObject.VideoParticipant videoParticipant = this.f42982a;
+        i60 i60Var = this.f39753c;
+        o50 o50Var = i60Var.Q;
+        o50Var.getViewTreeObserver().removeOnPreDrawListener(this);
+        i60Var.f34475q2 = null;
+        a40 a40Var = i60Var.a2;
+        ChatObject.VideoParticipant videoParticipant = this.f39751a;
         a40Var.j(videoParticipant);
-        if (j60Var.f37587s0) {
-            j60Var.f37587s0 = false;
-            j60Var.O0(true);
-            if (this.f42983b && videoParticipant != null) {
-                p50Var.u0(0);
+        if (i60Var.f34483s0) {
+            i60Var.f34483s0 = false;
+            i60Var.O0(true);
+            if (this.f39752b && videoParticipant != null) {
+                o50Var.u0(0);
             }
-            j60Var.f37587s0 = true;
+            i60Var.f34483s0 = true;
         } else {
-            j60Var.O0(true);
+            i60Var.O0(true);
         }
-        viewGroup = ((org.telegram.ui.ActionBar.f3) j60Var).containerView;
+        viewGroup = ((org.telegram.ui.ActionBar.f3) i60Var).containerView;
         viewGroup.requestLayout();
         return false;
     }

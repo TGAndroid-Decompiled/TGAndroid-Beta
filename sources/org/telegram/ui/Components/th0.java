@@ -3,18 +3,18 @@ package org.telegram.ui.Components;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 public final class th0 {
-    public Canvas f30603a;
-    public Bitmap f30604b;
-    public boolean f30605c;
+    public Canvas f28134a;
+    public Bitmap f28135b;
+    public boolean f28136c;
     public boolean d;
-    public boolean f30606e;
-    public boolean f30607f;
+    public boolean e;
+    public boolean f28137f;
 
     public final void a() {
-        this.f30605c = true;
-        if (!this.f30606e) {
+        this.f28136c = true;
+        if (!this.e) {
             this.d = true;
-            this.f30604b.recycle();
+            this.f28135b.recycle();
         }
     }
 }

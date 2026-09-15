@@ -1,112 +1,52 @@
 package yh;
 
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.RectF;
 import android.view.View;
-import java.util.ArrayList;
-import java.util.HashSet;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.Components.h51;
-import org.telegram.ui.Components.n70;
-public final class u2 implements Utilities.Callback5 {
-    public final int f50579a;
-    public final g4 f50580b;
-    public final n70 f50581c;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.Components.qr;
+public final class u2 extends View {
+    public final Paint f47846a;
+    public final org.telegram.ui.Components.c6 f47847b;
+    public final org.telegram.ui.Components.c6 f47848c;
+    public float d;
+    public float e;
 
-    public u2(g4 g4Var, n70 n70Var, int i10) {
-        this.f50579a = i10;
-        this.f50580b = g4Var;
-        this.f50581c = n70Var;
+    public u2(Context context) {
+        super(context);
+        Paint paint = new Paint(1);
+        this.f47846a = paint;
+        rg.w1 w1Var = new rg.w1(this, 29);
+        qr qrVar = qr.h;
+        this.f47847b = new org.telegram.ui.Components.c6(w1Var, 420L, qrVar, 0);
+        this.f47848c = new org.telegram.ui.Components.c6(new rg.w1(this, 29), 420L, qrVar, 0);
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setStrokeCap(Paint.Cap.ROUND);
+        paint.setStrokeJoin(Paint.Join.ROUND);
     }
 
     @Override
-    public final void mo17run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-        int i10 = this.f50579a;
-        h51 h51Var = (h51) obj;
-        View view = (View) obj2;
-        Integer num = (Integer) obj3;
-        Float f7 = (Float) obj4;
-        Float f10 = (Float) obj5;
-        g4 g4Var = this.f50580b;
-        g4Var.getClass();
-        switch (i10) {
-            case 0:
-                long j3 = ((TL_stars.starGiftAttributePattern) h51Var.G).document.f19875id;
-                t3 t3Var = g4Var.d;
-                HashSet hashSet = t3Var.f50565l;
-                if (!hashSet.contains(Long.valueOf(j3))) {
-                    if (hashSet.isEmpty()) {
-                        ArrayList arrayList = t3Var.h;
-                        int size = arrayList.size();
-                        int i11 = 0;
-                        while (i11 < size) {
-                            Object obj6 = arrayList.get(i11);
-                            i11++;
-                            long j10 = ((TL_stars.starGiftAttributePattern) obj6).document.f19875id;
-                            if (j10 != j3) {
-                                hashSet.add(Long.valueOf(j10));
-                            }
-                        }
-                    } else {
-                        hashSet.add(Long.valueOf(j3));
-                    }
-                } else {
-                    hashSet.remove(Long.valueOf(j3));
-                }
-                t3Var.h();
-                this.f50581c.u();
-                return;
-            case 1:
-                int i12 = ((TL_stars.starGiftAttributeBackdrop) h51Var.G).backdrop_id;
-                t3 t3Var2 = g4Var.d;
-                HashSet hashSet2 = t3Var2.f50564k;
-                if (!hashSet2.contains(Integer.valueOf(i12))) {
-                    if (hashSet2.isEmpty()) {
-                        ArrayList arrayList2 = t3Var2.f50561g;
-                        int size2 = arrayList2.size();
-                        int i13 = 0;
-                        while (i13 < size2) {
-                            Object obj7 = arrayList2.get(i13);
-                            i13++;
-                            int i14 = ((TL_stars.starGiftAttributeBackdrop) obj7).backdrop_id;
-                            if (i14 != i12) {
-                                hashSet2.add(Integer.valueOf(i14));
-                            }
-                        }
-                    } else {
-                        hashSet2.add(Integer.valueOf(i12));
-                    }
-                } else {
-                    hashSet2.remove(Integer.valueOf(i12));
-                }
-                t3Var2.h();
-                this.f50581c.u();
-                return;
-            default:
-                long j11 = ((TL_stars.starGiftAttributeModel) h51Var.G).document.f19875id;
-                t3 t3Var3 = g4Var.d;
-                HashSet hashSet3 = t3Var3.f50563j;
-                if (!hashSet3.contains(Long.valueOf(j11))) {
-                    if (hashSet3.isEmpty()) {
-                        ArrayList arrayList3 = t3Var3.f50560f;
-                        int size3 = arrayList3.size();
-                        int i15 = 0;
-                        while (i15 < size3) {
-                            Object obj8 = arrayList3.get(i15);
-                            i15++;
-                            long j12 = ((TL_stars.starGiftAttributeModel) obj8).document.f19875id;
-                            if (j12 != j11) {
-                                hashSet3.add(Long.valueOf(j12));
-                            }
-                        }
-                    } else {
-                        hashSet3.add(Long.valueOf(j11));
-                    }
-                } else {
-                    hashSet3.remove(Long.valueOf(j11));
-                }
-                t3Var3.h();
-                this.f50581c.u();
-                return;
+    public final void dispatchDraw(Canvas canvas) {
+        boolean z10 = false;
+        float d = this.f47847b.d(this.d, false);
+        if (this.d > 0.0f) {
+            z10 = true;
+        }
+        float e = this.f47848c.e(z10);
+        float width = getWidth() / 2.0f;
+        float height = getHeight() / 2.0f;
+        float f7 = this.e;
+        RectF rectF = AndroidUtilities.rectTmp;
+        rectF.set(width - f7, height - f7, width + f7, height + f7);
+        int l1 = org.telegram.ui.ActionBar.i6.l1(0.25f, -1);
+        Paint paint = this.f47846a;
+        paint.setColor(l1);
+        canvas.drawArc(rectF, 135.0f, 270.0f, false, paint);
+        if (e > 0.0f) {
+            paint.setColor(org.telegram.ui.ActionBar.i6.l1(e, -1));
+            canvas.drawArc(rectF, 135.0f, d * 270.0f, false, paint);
         }
     }
 }

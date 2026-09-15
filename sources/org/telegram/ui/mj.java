@@ -3,25 +3,25 @@ package org.telegram.ui;
 import org.telegram.messenger.MessagesStorage;
 import org.telegram.tgnet.TLRPC;
 public final class mj implements MessagesStorage.BooleanCallback {
-    public final boolean f38720a;
-    public final nj f38721b;
+    public final boolean f35759a;
+    public final nj f35760b;
 
     public mj(nj njVar, boolean z10) {
-        this.f38721b = njVar;
-        this.f38720a = z10;
+        this.f35760b = njVar;
+        this.f35759a = z10;
     }
 
     @Override
     public final void run(boolean z10) {
-        co coVar = this.f38721b.f38967b;
+        bo boVar = this.f35760b.f35993b;
         if (z10) {
-            TLRPC.User user = coVar.f35249f;
-            boolean z11 = this.f38720a;
+            TLRPC.User user = boVar.f32299f;
+            boolean z11 = this.f35759a;
             if (user != null || z11) {
-                coVar.getMessagesStorage().getMessagesCount(coVar.T5, new lj(1, this, z11));
+                boVar.getMessagesStorage().getMessagesCount(boVar.T5, new lj(1, this, z11));
                 return;
             }
         }
-        coVar.qa(coVar.f35228d4, z10);
+        boVar.qa(boVar.f32279d4, z10);
     }
 }

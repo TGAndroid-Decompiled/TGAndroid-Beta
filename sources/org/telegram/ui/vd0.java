@@ -3,27 +3,27 @@ package org.telegram.ui;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 public final class vd0 extends AnimatorListenerAdapter {
-    public final int f41520a;
-    public final wg0 f41521b;
+    public final int f38511a;
+    public final wg0 f38512b;
 
     public vd0(wg0 wg0Var, int i10) {
-        this.f41520a = i10;
-        this.f41521b = wg0Var;
+        this.f38511a = i10;
+        this.f38512b = wg0Var;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        switch (this.f41520a) {
+        switch (this.f38511a) {
             case 0:
-                wg0 wg0Var = this.f41521b;
+                wg0 wg0Var = this.f38512b;
                 if (wg0Var.d == animator) {
                     wg0Var.d = null;
                     return;
                 }
                 return;
             default:
-                wg0 wg0Var2 = this.f41521b;
-                wg0Var2.f42363c.setVisibility(8);
+                wg0 wg0Var2 = this.f38512b;
+                wg0Var2.f39197c.setVisibility(8);
                 if (wg0Var2.d == animator) {
                     wg0Var2.d = null;
                     return;
@@ -34,9 +34,9 @@ public final class vd0 extends AnimatorListenerAdapter {
 
     @Override
     public void onAnimationStart(Animator animator) {
-        switch (this.f41520a) {
+        switch (this.f38511a) {
             case 0:
-                this.f41521b.f42363c.setVisibility(0);
+                this.f38512b.f39197c.setVisibility(0);
                 return;
             default:
                 super.onAnimationStart(animator);

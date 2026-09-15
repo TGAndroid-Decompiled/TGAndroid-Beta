@@ -1,42 +1,22 @@
 package org.telegram.messenger;
-public final class zg implements Runnable {
-    public final int f19850a;
-    public final NotificationsController f19851b;
-    public final int f19852c;
 
-    public zg(NotificationsController notificationsController, int i10, int i11) {
-        this.f19850a = i11;
-        this.f19851b = notificationsController;
-        this.f19852c = i10;
+import android.app.NotificationChannel;
+import org.telegram.tgnet.InputSerializedData;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.Vector;
+public final class zg implements org.telegram.ui.ActionBar.a2, Vector.TLDeserializer {
+    public static NotificationChannel a(Object obj) {
+        return (NotificationChannel) obj;
     }
 
     @Override
-    public final void run() {
-        switch (this.f19850a) {
-            case 0:
-                this.f19851b.lambda$processDialogsUpdateRead$29(this.f19852c);
-                return;
-            case 1:
-                this.f19851b.lambda$removeDeletedHisoryFromNotifications$12(this.f19852c);
-                return;
-            case 2:
-                this.f19851b.lambda$processSeenStoryReactions$14(this.f19852c);
-                return;
-            case 3:
-                this.f19851b.lambda$processNewMessages$24(this.f19852c);
-                return;
-            case 4:
-                this.f19851b.lambda$processNewMessages$26(this.f19852c);
-                return;
-            case 5:
-                this.f19851b.lambda$setLastOnlineFromOtherDevice$5(this.f19852c);
-                return;
-            case 6:
-                this.f19851b.lambda$processLoadedUnreadMessages$32(this.f19852c);
-                return;
-            default:
-                this.f19851b.lambda$removeDeletedMessagesFromNotifications$9(this.f19852c);
-                return;
-        }
+    public TLObject deserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
+        return TLRPC.PollAnswer.TLdeserialize(inputSerializedData, i10, z10);
+    }
+
+    @Override
+    public void f(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
+        SharedConfig.lambda$checkSdCard$1(b2Var, i10);
     }
 }

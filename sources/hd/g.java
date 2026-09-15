@@ -1,5 +1,6 @@
 package hd;
 
+import hg.k0;
 import java.util.AbstractCollection;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -65,7 +66,7 @@ public abstract class g extends m {
         Object next;
         kotlin.jvm.internal.i.e(iterable, "<this>");
         if (i10 >= 0) {
-            o oVar = o.f10956a;
+            o oVar = o.f10190a;
             if (i10 == 0) {
                 return oVar;
             }
@@ -110,7 +111,7 @@ public abstract class g extends m {
             }
             return oVar;
         }
-        throw new IllegalArgumentException(i2.g.j(i10, "Requested element count ", " is less than zero.").toString());
+        throw new IllegalArgumentException(k0.j(i10, "Requested element count ", " is less than zero.").toString());
     }
 
     public static byte[] j(ArrayList arrayList) {
@@ -153,7 +154,7 @@ public abstract class g extends m {
         Object next;
         kotlin.jvm.internal.i.e(iterable, "<this>");
         boolean z10 = iterable instanceof Collection;
-        o oVar = o.f10956a;
+        o oVar = o.f10190a;
         if (z10) {
             Collection collection = (Collection) iterable;
             int size = collection.size();
@@ -238,6 +239,6 @@ public abstract class g extends m {
                 return singleton2;
             }
         }
-        return q.f10958a;
+        return q.f10192a;
     }
 }

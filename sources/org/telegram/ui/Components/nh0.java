@@ -6,38 +6,38 @@ import android.graphics.drawable.Drawable;
 import android.view.View;
 import java.util.ArrayList;
 import org.telegram.messenger.MessagesController;
-public final class nh0 extends up {
-    public final ArrayList f28748c = new ArrayList();
+public final class nh0 extends vp {
+    public final ArrayList f26458c = new ArrayList();
     public final ArrayList d = new ArrayList();
-    public final Context f28749e;
-    public final Paint f28750f;
-    public x9 f28751g;
+    public final Context e;
+    public final Paint f26459f;
+    public u9 f26460g;
     public final oh0 h;
 
-    public nh0(oh0 oh0Var, Context context, org.telegram.ui.n01 n01Var) {
+    public nh0(oh0 oh0Var, Context context, org.telegram.ui.m01 m01Var) {
         this.h = oh0Var;
-        this.f28749e = context;
-        this.f28751g = n01Var;
+        this.e = context;
+        this.f26460g = m01Var;
         Paint paint = new Paint(1);
-        this.f28750f = paint;
+        this.f26459f = paint;
         paint.setColor(-16777216);
     }
 
     @Override
     public final void a(z4.g gVar, Object obj) {
         kh0 kh0Var = (kh0) obj;
-        View view = kh0Var.f27827b;
+        View view = kh0Var.f25608b;
         if (view != null) {
             gVar.removeView(view);
         }
-        if (kh0Var.f27826a) {
+        if (kh0Var.f25607a) {
             return;
         }
-        ih0 ih0Var = kh0Var.f27828c;
+        ih0 ih0Var = kh0Var.f25609c;
         if (ih0Var.getImageReceiver().hasStaticThumb()) {
             Drawable drawable = ih0Var.getImageReceiver().getDrawable();
-            if (drawable instanceof d6) {
-                ((d6) drawable).w(ih0Var);
+            if (drawable instanceof b6) {
+                ((b6) drawable).w(ih0Var);
             }
         }
         ih0Var.setRoundRadius(0);
@@ -47,12 +47,12 @@ public final class nh0 extends up {
 
     @Override
     public final int b() {
-        return this.f28748c.size();
+        return this.f26458c.size();
     }
 
     @Override
     public final int c(Object obj) {
-        int indexOf = this.f28748c.indexOf((kh0) obj);
+        int indexOf = this.f26458c.indexOf((kh0) obj);
         if (indexOf == -1) {
             return -2;
         }
@@ -83,12 +83,12 @@ public final class nh0 extends up {
     @Override
     public final boolean f(View view, Object obj) {
         kh0 kh0Var = (kh0) obj;
-        if (kh0Var.f27826a) {
-            if (view == kh0Var.f27827b) {
+        if (kh0Var.f25607a) {
+            if (view == kh0Var.f25608b) {
                 return true;
             }
             return false;
-        } else if (view == kh0Var.f27828c) {
+        } else if (view == kh0Var.f25609c) {
             return true;
         } else {
             return false;
@@ -106,16 +106,16 @@ public final class nh0 extends up {
                 break;
             }
             if (arrayList.get(i10) != null) {
-                ((x9) arrayList.get(i10)).getImageReceiver().cancelLoadImage();
+                ((u9) arrayList.get(i10)).getImageReceiver().cancelLoadImage();
             }
             i10++;
         }
-        ArrayList arrayList2 = this.f28748c;
+        ArrayList arrayList2 = this.f26458c;
         arrayList2.clear();
         arrayList.clear();
         oh0 oh0Var = this.h;
         int size = oh0Var.X0.size();
-        if (oh0Var.f29062i1) {
+        if (oh0Var.f26795i1) {
             size++;
         }
         MessagesController.DialogPhotos dialogPhotos = oh0Var.S0;
@@ -136,7 +136,7 @@ public final class nh0 extends up {
     public final int j() {
         oh0 oh0Var = this.h;
         int size = oh0Var.X0.size();
-        if (oh0Var.f29062i1) {
+        if (oh0Var.f26795i1) {
             size++;
         }
         if (size >= 2) {

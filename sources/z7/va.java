@@ -1,12 +1,12 @@
 package z7;
 public final class va {
-    public final Long f51280a;
-    public final gb f51281b;
-    public final Boolean f51282c;
+    public final Long f48651a;
+    public final gb f48652b;
+    public final Boolean f48653c;
 
-    public va(v7.a6 a6Var) {
-        this.f51280a = (Long) a6Var.f47378b;
-        this.f51281b = (gb) a6Var.f47379c;
-        this.f51282c = (Boolean) a6Var.d;
+    public va(v7.r2 r2Var) {
+        this.f48651a = (Long) r2Var.f44079b;
+        this.f48652b = (gb) r2Var.f44080c;
+        this.f48653c = (Boolean) r2Var.d;
     }
 }

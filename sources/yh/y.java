@@ -1,7 +1,8 @@
 package yh;
 
 import android.view.MotionEvent;
-public final class y extends h1 {
+import org.telegram.ui.Components.EditTextBoldCursor;
+public final class y extends EditTextBoldCursor {
     @Override
     public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
         return false;

@@ -1,10 +1,18 @@
 package rg;
-public interface s1 {
-    void A();
 
-    void a();
-
-    void o(qg.m mVar);
-
-    qg.s0 x();
+import android.graphics.Paint;
+import android.graphics.RectF;
+import java.util.ArrayList;
+import org.telegram.messenger.AndroidUtilities;
+public final class s1 {
+    public int f42472i;
+    public final RectF f42467a = new RectF();
+    public final RectF f42468b = new RectF();
+    public final Paint f42469c = new Paint();
+    public final ArrayList e = new ArrayList();
+    public float f42470f = 1.0f;
+    public final long h = 2000;
+    public final float f42473j = 1000.0f / AndroidUtilities.screenRefreshRate;
+    public final int f42471g = 200;
+    public final float[] d = new float[800];
 }

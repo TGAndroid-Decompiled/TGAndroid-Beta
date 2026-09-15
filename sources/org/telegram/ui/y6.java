@@ -12,16 +12,16 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.NotificationCenter;
 public final class y6 extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {
-    public s6 f42991a;
-    public final org.telegram.ui.ActionBar.f6 f42992b;
-    public final TextView f42993c;
-    public final org.telegram.ui.Components.q6 d;
-    public final org.telegram.ui.Components.x9 f42994e;
-    public boolean f42995f;
+    public s6 f39761a;
+    public final org.telegram.ui.ActionBar.e6 f39762b;
+    public final TextView f39763c;
+    public final org.telegram.ui.Components.n6 d;
+    public final org.telegram.ui.Components.u9 e;
+    public boolean f39764f;
     public boolean h;
-    public org.telegram.ui.Components.mp f42996n;
+    public org.telegram.ui.Components.np f39765n;
 
-    public y6(Context context, org.telegram.ui.ActionBar.f6 f6Var) {
+    public y6(Context context, org.telegram.ui.ActionBar.e6 e6Var) {
         super(context);
         int i10;
         int i11;
@@ -31,9 +31,9 @@ public final class y6 extends FrameLayout implements NotificationCenter.Notifica
         int i13;
         float f11;
         float f12;
-        this.f42992b = f6Var;
+        this.f39762b = e6Var;
         TextView textView = new TextView(context);
-        this.f42993c = textView;
+        this.f39763c = textView;
         textView.setSingleLine();
         textView.setLines(1);
         textView.setMaxLines(1);
@@ -45,7 +45,7 @@ public final class y6 extends FrameLayout implements NotificationCenter.Notifica
             i10 = 3;
         }
         textView.setGravity(i10 | 16);
-        textView.setTextColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.G6, f6Var));
+        textView.setTextColor(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.G6, e6Var));
         boolean z10 = LocaleController.isRTL;
         if (z10) {
             i11 = 5;
@@ -64,17 +64,17 @@ public final class y6 extends FrameLayout implements NotificationCenter.Notifica
             f10 = 21.0f;
         }
         addView(textView, w7.x5.d(-1, -1.0f, i14, f7, 0.0f, f10, 0.0f));
-        org.telegram.ui.Components.q6 q6Var = new org.telegram.ui.Components.q6(context, true, true, !LocaleController.isRTL);
-        this.d = q6Var;
-        q6Var.b(0.55f, 320L, org.telegram.ui.Components.pr.h);
-        q6Var.setTextSize(AndroidUtilities.dp(16.0f));
+        org.telegram.ui.Components.n6 n6Var = new org.telegram.ui.Components.n6(context, true, true, !LocaleController.isRTL);
+        this.d = n6Var;
+        n6Var.b(0.55f, 320L, org.telegram.ui.Components.qr.h);
+        n6Var.setTextSize(AndroidUtilities.dp(16.0f));
         if (LocaleController.isRTL) {
             i12 = 3;
         } else {
             i12 = 5;
         }
-        q6Var.setGravity(i12 | 16);
-        q6Var.setTextColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.I6, f6Var));
+        n6Var.setGravity(i12 | 16);
+        n6Var.setTextColor(org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.I6, e6Var));
         boolean z11 = LocaleController.isRTL;
         if (z11) {
             i13 = 3;
@@ -92,17 +92,17 @@ public final class y6 extends FrameLayout implements NotificationCenter.Notifica
         } else {
             f12 = 21.0f;
         }
-        addView(q6Var, w7.x5.d(-2, -1.0f, i15, f11, 0.0f, f12, 0.0f));
-        org.telegram.ui.Components.x9 x9Var = new org.telegram.ui.Components.x9(context);
-        this.f42994e = x9Var;
-        x9Var.getAvatarDrawable().f27038p = 0.8f;
-        addView(x9Var, w7.x5.d(38, 38.0f, (LocaleController.isRTL ? 5 : 3) | 16, 17.0f, 0.0f, 17.0f, 0.0f));
+        addView(n6Var, w7.x5.d(-2, -1.0f, i15, f11, 0.0f, f12, 0.0f));
+        org.telegram.ui.Components.u9 u9Var = new org.telegram.ui.Components.u9(context);
+        this.e = u9Var;
+        u9Var.getAvatarDrawable().f23867p = 0.8f;
+        addView(u9Var, w7.x5.d(38, 38.0f, (LocaleController.isRTL ? 5 : 3) | 16, 17.0f, 0.0f, 17.0f, 0.0f));
     }
 
     @Override
     public final void didReceivedNotification(int i10, int i11, Object... objArr) {
         TextView textView;
-        if (i10 == NotificationCenter.emojiLoaded && (textView = this.f42993c) != null) {
+        if (i10 == NotificationCenter.emojiLoaded && (textView = this.f39763c) != null) {
             textView.invalidate();
         }
     }
@@ -112,7 +112,7 @@ public final class y6 extends FrameLayout implements NotificationCenter.Notifica
         float dp;
         int i10;
         super.dispatchDraw(canvas);
-        if (this.f42995f) {
+        if (this.f39764f) {
             if (LocaleController.isRTL) {
                 dp = 0.0f;
             } else {
@@ -125,19 +125,19 @@ public final class y6 extends FrameLayout implements NotificationCenter.Notifica
             } else {
                 i10 = 0;
             }
-            canvas.drawLine(dp, measuredHeight, measuredWidth - i10, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.j6.f20785k0);
+            canvas.drawLine(dp, measuredHeight, measuredWidth - i10, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.i6.f18958k0);
         }
     }
 
-    public org.telegram.ui.Components.x9 getImageView() {
-        return this.f42994e;
+    public org.telegram.ui.Components.u9 getImageView() {
+        return this.e;
     }
 
     public TextView getTextView() {
-        return this.f42993c;
+        return this.f39763c;
     }
 
-    public org.telegram.ui.Components.q6 getValueTextView() {
+    public org.telegram.ui.Components.n6 getValueTextView() {
         return this.d;
     }
 
@@ -158,10 +158,10 @@ public final class y6 extends FrameLayout implements NotificationCenter.Notifica
         String str;
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
         StringBuilder sb2 = new StringBuilder();
-        sb2.append((Object) this.f42993c.getText());
-        org.telegram.ui.Components.q6 q6Var = this.d;
-        if (q6Var != null && q6Var.getVisibility() == 0) {
-            str = "\n" + ((Object) q6Var.getText());
+        sb2.append((Object) this.f39763c.getText());
+        org.telegram.ui.Components.n6 n6Var = this.d;
+        if (n6Var != null && n6Var.getVisibility() == 0) {
+            str = "\n" + ((Object) n6Var.getText());
         } else {
             str = "";
         }
@@ -172,30 +172,30 @@ public final class y6 extends FrameLayout implements NotificationCenter.Notifica
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        setMeasuredDimension(View.MeasureSpec.getSize(i10), AndroidUtilities.dp(50.0f) + (this.f42995f ? 1 : 0));
+        setMeasuredDimension(View.MeasureSpec.getSize(i10), AndroidUtilities.dp(50.0f) + (this.f39764f ? 1 : 0));
         int measuredWidth = ((getMeasuredWidth() - getPaddingLeft()) - getPaddingRight()) - AndroidUtilities.dp(34.0f);
         int i12 = measuredWidth / 2;
-        org.telegram.ui.Components.x9 x9Var = this.f42994e;
-        if (x9Var.getVisibility() == 0) {
-            x9Var.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(38.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(38.0f), 1073741824));
+        org.telegram.ui.Components.u9 u9Var = this.e;
+        if (u9Var.getVisibility() == 0) {
+            u9Var.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(38.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(38.0f), 1073741824));
         }
-        org.telegram.ui.Components.q6 q6Var = this.d;
-        if (q6Var.getVisibility() == 0) {
-            q6Var.measure(View.MeasureSpec.makeMeasureSpec(i12, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(getMeasuredHeight(), 1073741824));
-            measuredWidth = (measuredWidth - q6Var.getMeasuredWidth()) - AndroidUtilities.dp(8.0f);
+        org.telegram.ui.Components.n6 n6Var = this.d;
+        if (n6Var.getVisibility() == 0) {
+            n6Var.measure(View.MeasureSpec.makeMeasureSpec(i12, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(getMeasuredHeight(), 1073741824));
+            measuredWidth = (measuredWidth - n6Var.getMeasuredWidth()) - AndroidUtilities.dp(8.0f);
         }
-        int dp = AndroidUtilities.dp(12.0f) + q6Var.getMeasuredWidth();
+        int dp = AndroidUtilities.dp(12.0f) + n6Var.getMeasuredWidth();
         boolean z10 = LocaleController.isRTL;
-        TextView textView = this.f42993c;
+        TextView textView = this.f39763c;
         if (z10) {
             ((ViewGroup.MarginLayoutParams) textView.getLayoutParams()).leftMargin = dp;
         } else {
             ((ViewGroup.MarginLayoutParams) textView.getLayoutParams()).rightMargin = dp;
         }
         textView.measure(View.MeasureSpec.makeMeasureSpec(measuredWidth - dp, 1073741824), View.MeasureSpec.makeMeasureSpec(getMeasuredHeight(), 1073741824));
-        org.telegram.ui.Components.mp mpVar = this.f42996n;
-        if (mpVar != null) {
-            mpVar.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(24.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(24.0f), 1073741824));
+        org.telegram.ui.Components.np npVar = this.f39765n;
+        if (npVar != null) {
+            npVar.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(24.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(24.0f), 1073741824));
         }
     }
 
@@ -213,18 +213,18 @@ public final class y6 extends FrameLayout implements NotificationCenter.Notifica
         } else {
             f7 = 1.0f;
         }
-        this.f42993c.setAlpha(f7);
-        org.telegram.ui.Components.q6 q6Var = this.d;
-        if (q6Var.getVisibility() == 0) {
+        this.f39763c.setAlpha(f7);
+        org.telegram.ui.Components.n6 n6Var = this.d;
+        if (n6Var.getVisibility() == 0) {
             if (!z10 && this.h) {
                 f10 = 0.5f;
             }
-            q6Var.setAlpha(f10);
+            n6Var.setAlpha(f10);
         }
     }
 
     public void setTextColor(int i10) {
-        this.f42993c.setTextColor(i10);
+        this.f39763c.setTextColor(i10);
     }
 
     public void setTextValueColor(int i10) {

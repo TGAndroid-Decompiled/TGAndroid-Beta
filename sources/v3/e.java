@@ -3,7 +3,7 @@ package v3;
 import c3.t;
 public final class e extends t implements f {
     @Override
-    public final long a(long j3) {
+    public final long b(long j3) {
         return 0L;
     }
 

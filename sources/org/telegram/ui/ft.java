@@ -5,36 +5,42 @@ import android.graphics.RectF;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 public final class ft implements r0.n, org.telegram.ui.Components.ek0 {
-    public final st f36464a;
+    public final st f33654a;
 
     public ft(st stVar) {
-        this.f36464a = stVar;
+        this.f33654a = stVar;
     }
 
     @Override
-    public void B(View view, ah.j1 j1Var, boolean z10, boolean z11) {
-        if (j1Var != null) {
-            st stVar = this.f36464a;
-            ah.u0 reactionsWindow = stVar.P.getReactionsWindow();
-            if (stVar.f40541o.contains(j1Var.f597f)) {
-                if (stVar.f40541o.size() > 1) {
-                    stVar.f40541o.remove(j1Var.f597f);
+    public r0.l1 Q0(View view, r0.l1 l1Var) {
+        this.f33654a.f37469q = AndroidUtilities.getDefaultWindowInsets(l1Var, false);
+        return l1Var;
+    }
+
+    @Override
+    public void h(View view, zg.p0 p0Var, boolean z10, boolean z11) {
+        if (p0Var != null) {
+            st stVar = this.f33654a;
+            zg.c0 reactionsWindow = stVar.P.getReactionsWindow();
+            if (stVar.f37467o.contains(p0Var.f49127f)) {
+                if (stVar.f37467o.size() > 1) {
+                    stVar.f37467o.remove(p0Var.f49127f);
                 } else {
                     return;
                 }
             } else {
-                stVar.f40541o.add(j1Var.f597f);
-                if (stVar.f40541o.size() > 7) {
-                    stVar.f40541o.remove(0);
+                stVar.f37467o.add(p0Var.f49127f);
+                if (stVar.f37467o.size() > 7) {
+                    stVar.f37467o.remove(0);
                 }
             }
-            stVar.P.setSelectedEmojis(stVar.f40541o);
+            stVar.P.setSelectedEmojis(stVar.f37467o);
             if (reactionsWindow != null) {
-                ah.o0 o0Var = reactionsWindow.f695m;
+                zg.y yVar = reactionsWindow.f48992m;
                 stVar.P.p(null, null, false);
-                if (o0Var != null) {
-                    o0Var.setSelectedReactions(stVar.f40541o);
-                    o0Var.setRecentReactions(stVar.P.V);
+                if (yVar != null) {
+                    yVar.setSelectedReactions(stVar.f37467o);
+                    yVar.setRecentReactions(stVar.P.V);
                 }
                 reactionsWindow.d();
             }
@@ -42,31 +48,25 @@ public final class ft implements r0.n, org.telegram.ui.Components.ek0 {
     }
 
     @Override
-    public boolean S() {
-        return false;
-    }
-
-    @Override
-    public r0.l1 T0(View view, r0.l1 l1Var) {
-        this.f36464a.f40543q = AndroidUtilities.getDefaultWindowInsets(l1Var, false);
-        return l1Var;
-    }
-
-    @Override
-    public boolean n() {
+    public boolean j() {
         return true;
     }
 
     @Override
-    public boolean t() {
+    public boolean k() {
         return false;
     }
 
     @Override
-    public void J() {
+    public boolean q() {
+        return false;
     }
 
     @Override
-    public void I(Canvas canvas, RectF rectF, float f7, float f10, float f11, int i10, boolean z10) {
+    public void o() {
+    }
+
+    @Override
+    public void n(Canvas canvas, RectF rectF, float f7, float f10, float f11, int i10, boolean z10) {
     }
 }

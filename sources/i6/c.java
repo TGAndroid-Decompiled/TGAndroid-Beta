@@ -2,33 +2,33 @@ package i6;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import com.google.android.gms.internal.clearcut.c2;
-import com.google.android.gms.internal.clearcut.w1;
+import com.google.android.gms.internal.clearcut.d2;
+import com.google.android.gms.internal.clearcut.x1;
 import g8.j;
 import java.util.Arrays;
 import n6.l;
 import w7.e0;
 public final class c extends o6.a {
     public static final Parcelable.Creator<c> CREATOR = new j(9);
-    public final c2 f11873a;
-    public byte[] f11874b;
-    public final int[] f11875c;
+    public final d2 f11006a;
+    public byte[] f11007b;
+    public final int[] f11008c;
     public final String[] d;
-    public final int[] f11876e;
-    public final byte[][] f11877f;
+    public final int[] e;
+    public final byte[][] f11009f;
     public final k8.a[] h;
-    public final boolean f11878n;
-    public final w1 f11879r;
+    public final boolean f11010n;
+    public final x1 f11011r;
 
-    public c(c2 c2Var, w1 w1Var) {
-        this.f11873a = c2Var;
-        this.f11879r = w1Var;
-        this.f11875c = null;
+    public c(d2 d2Var, x1 x1Var) {
+        this.f11006a = d2Var;
+        this.f11011r = x1Var;
+        this.f11008c = null;
         this.d = null;
-        this.f11876e = null;
-        this.f11877f = null;
+        this.e = null;
+        this.f11009f = null;
         this.h = null;
-        this.f11878n = true;
+        this.f11010n = true;
     }
 
     public final boolean equals(Object obj) {
@@ -37,7 +37,7 @@ public final class c extends o6.a {
         }
         if (obj instanceof c) {
             c cVar = (c) obj;
-            if (l.l(this.f11873a, cVar.f11873a) && Arrays.equals(this.f11874b, cVar.f11874b) && Arrays.equals(this.f11875c, cVar.f11875c) && Arrays.equals(this.d, cVar.d) && l.l(this.f11879r, cVar.f11879r) && l.l(null, null) && l.l(null, null) && Arrays.equals(this.f11876e, cVar.f11876e) && Arrays.deepEquals(this.f11877f, cVar.f11877f) && Arrays.equals(this.h, cVar.h) && this.f11878n == cVar.f11878n) {
+            if (l.l(this.f11006a, cVar.f11006a) && Arrays.equals(this.f11007b, cVar.f11007b) && Arrays.equals(this.f11008c, cVar.f11008c) && Arrays.equals(this.d, cVar.d) && l.l(this.f11011r, cVar.f11011r) && l.l(null, null) && l.l(null, null) && Arrays.equals(this.e, cVar.e) && Arrays.deepEquals(this.f11009f, cVar.f11009f) && Arrays.equals(this.h, cVar.h) && this.f11010n == cVar.f11010n) {
                 return true;
             }
         }
@@ -45,15 +45,15 @@ public final class c extends o6.a {
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{this.f11873a, this.f11874b, this.f11875c, this.d, this.f11879r, null, null, this.f11876e, this.f11877f, this.h, Boolean.valueOf(this.f11878n)});
+        return Arrays.hashCode(new Object[]{this.f11006a, this.f11007b, this.f11008c, this.d, this.f11011r, null, null, this.e, this.f11009f, this.h, Boolean.valueOf(this.f11010n)});
     }
 
     public final String toString() {
         String str;
         StringBuilder sb2 = new StringBuilder("LogEventParcelable[");
-        sb2.append(this.f11873a);
+        sb2.append(this.f11006a);
         sb2.append(", LogEventBytes: ");
-        byte[] bArr = this.f11874b;
+        byte[] bArr = this.f11007b;
         if (bArr == null) {
             str = null;
         } else {
@@ -61,19 +61,19 @@ public final class c extends o6.a {
         }
         sb2.append(str);
         sb2.append(", TestCodes: ");
-        sb2.append(Arrays.toString(this.f11875c));
+        sb2.append(Arrays.toString(this.f11008c));
         sb2.append(", MendelPackages: ");
         sb2.append(Arrays.toString(this.d));
         sb2.append(", LogEvent: ");
-        sb2.append(this.f11879r);
+        sb2.append(this.f11011r);
         sb2.append(", ExtensionProducer: null, VeProducer: null, ExperimentIDs: ");
-        sb2.append(Arrays.toString(this.f11876e));
+        sb2.append(Arrays.toString(this.e));
         sb2.append(", ExperimentTokens: ");
-        sb2.append(Arrays.toString(this.f11877f));
+        sb2.append(Arrays.toString(this.f11009f));
         sb2.append(", ExperimentTokensParcelables: ");
         sb2.append(Arrays.toString(this.h));
         sb2.append(", AddPhenotypeExperimentTokens: ");
-        sb2.append(this.f11878n);
+        sb2.append(this.f11010n);
         sb2.append("]");
         return sb2.toString();
     }
@@ -81,27 +81,27 @@ public final class c extends o6.a {
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
         int q6 = e0.q(parcel, 20293);
-        e0.k(parcel, 2, this.f11873a, i10);
-        e0.c(parcel, 3, this.f11874b);
-        e0.g(parcel, 4, this.f11875c);
+        e0.k(parcel, 2, this.f11006a, i10);
+        e0.c(parcel, 3, this.f11007b);
+        e0.g(parcel, 4, this.f11008c);
         e0.m(parcel, 5, this.d);
-        e0.g(parcel, 6, this.f11876e);
-        e0.d(parcel, 7, this.f11877f);
+        e0.g(parcel, 6, this.e);
+        e0.d(parcel, 7, this.f11009f);
         e0.s(parcel, 8, 4);
-        parcel.writeInt(this.f11878n ? 1 : 0);
+        parcel.writeInt(this.f11010n ? 1 : 0);
         e0.o(parcel, 9, this.h, i10);
         e0.r(parcel, q6);
     }
 
-    public c(c2 c2Var, byte[] bArr, int[] iArr, String[] strArr, int[] iArr2, byte[][] bArr2, boolean z10, k8.a[] aVarArr) {
-        this.f11873a = c2Var;
-        this.f11874b = bArr;
-        this.f11875c = iArr;
+    public c(d2 d2Var, byte[] bArr, int[] iArr, String[] strArr, int[] iArr2, byte[][] bArr2, boolean z10, k8.a[] aVarArr) {
+        this.f11006a = d2Var;
+        this.f11007b = bArr;
+        this.f11008c = iArr;
         this.d = strArr;
-        this.f11879r = null;
-        this.f11876e = iArr2;
-        this.f11877f = bArr2;
+        this.f11011r = null;
+        this.e = iArr2;
+        this.f11009f = bArr2;
         this.h = aVarArr;
-        this.f11878n = z10;
+        this.f11010n = z10;
     }
 }

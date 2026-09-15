@@ -6,21 +6,21 @@ import android.widget.FrameLayout;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 public abstract class ni extends FrameLayout {
-    public final org.telegram.ui.ActionBar.f6 f28752a;
-    public final vi f28753b;
-    public ll0 f28754c;
+    public final org.telegram.ui.ActionBar.e6 f26461a;
+    public final vi f26462b;
+    public ll0 f26463c;
     public ll0 d;
-    public int f28755e;
-    public boolean f28756f;
+    public int e;
+    public boolean f26464f;
     public boolean h;
 
-    public ni(Context context, org.telegram.ui.ActionBar.f6 f6Var, vi viVar) {
+    public ni(Context context, org.telegram.ui.ActionBar.e6 e6Var, vi viVar) {
         super(context);
-        this.f28752a = f6Var;
-        this.f28753b = viVar;
+        this.f26461a = e6Var;
+        this.f26462b = viVar;
     }
 
-    public boolean C(int i10) {
+    public boolean B(int i10) {
         return false;
     }
 
@@ -29,7 +29,7 @@ public abstract class ni extends FrameLayout {
     }
 
     public boolean J() {
-        return !(this instanceof fi.r4);
+        return !(this instanceof ei.q4);
     }
 
     public boolean b() {
@@ -78,7 +78,7 @@ public abstract class ni extends FrameLayout {
         return 0;
     }
 
-    public ch.a getIBlur3Capture() {
+    public bh.a getIBlur3Capture() {
         return null;
     }
 
@@ -90,7 +90,7 @@ public abstract class ni extends FrameLayout {
         return 0;
     }
 
-    public ArrayList<org.telegram.ui.ActionBar.l6> getThemeDescriptions() {
+    public ArrayList<org.telegram.ui.ActionBar.k6> getThemeDescriptions() {
         return null;
     }
 
@@ -116,13 +116,10 @@ public abstract class ni extends FrameLayout {
 
     public abstract void y(int i10, int i11);
 
-    public void A() {
+    public void A(int i10) {
     }
 
-    public void B(int i10) {
-    }
-
-    public void D(ni niVar) {
+    public void E(ni niVar) {
     }
 
     public void F() {
@@ -168,6 +165,9 @@ public abstract class ni extends FrameLayout {
     }
 
     public void x() {
+    }
+
+    public void z() {
     }
 
     public void w(int i10, boolean z10) {

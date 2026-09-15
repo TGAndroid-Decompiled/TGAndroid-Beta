@@ -21,19 +21,19 @@ public final class jb extends sb {
         int i14;
         MessageObject messageObject;
         ub ubVar = this.X2;
-        if (ubVar.E != null && ubVar.G != null && (i14 = ubVar.R0) >= 0) {
-            if (ubVar.Q0 != 0) {
+        if (ubVar.v != null && ubVar.f37967x != null && (i14 = ubVar.N0) >= 0) {
+            if (ubVar.M0 != 0) {
                 int i15 = 0;
                 while (true) {
-                    qb qbVar = ubVar.I;
+                    qb qbVar = ubVar.E;
                     if (i15 < qbVar.d) {
-                        if (i15 >= qbVar.f39821f && i15 < qbVar.h) {
-                            ArrayList arrayList = qbVar.f39822n.f41040s0;
-                            messageObject = (MessageObject) arrayList.get((arrayList.size() - (i15 - qbVar.f39821f)) - 1);
+                        if (i15 >= qbVar.f36833f && i15 < qbVar.h) {
+                            ArrayList arrayList = qbVar.f36834n.f37955o0;
+                            messageObject = (MessageObject) arrayList.get((arrayList.size() - (i15 - qbVar.f36833f)) - 1);
                         } else {
                             messageObject = null;
                         }
-                        if (messageObject != null && messageObject.eventId == ubVar.Q0) {
+                        if (messageObject != null && messageObject.eventId == ubVar.M0) {
                             i14 = i15;
                             break;
                         }
@@ -43,9 +43,9 @@ public final class jb extends sb {
                     }
                 }
             }
-            ubVar.G.i1(i14, ubVar.S0, true);
-            ubVar.R0 = -1;
-            ubVar.Q0 = 0L;
+            ubVar.f37967x.i1(i14, ubVar.O0, true);
+            ubVar.N0 = -1;
+            ubVar.M0 = 0L;
         }
         super.onLayout(z10, i10, i11, i12, i13);
     }

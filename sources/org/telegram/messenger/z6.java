@@ -1,28 +1,51 @@
 package org.telegram.messenger;
 
+import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class z6 implements RequestDelegate {
-    public final int f19809a;
-    public final MediaDataController f19810b;
-    public final String f19811c;
+    public final int f18043a;
+    public final Object f18044b;
+    public final long f18045c;
+    public final long d;
+    public final Object e;
 
-    public z6(MediaDataController mediaDataController, String str, int i10) {
-        this.f19809a = i10;
-        this.f19810b = mediaDataController;
-        this.f19811c = str;
+    public z6(Object obj, Object obj2, long j3, long j10, int i10) {
+        this.f18043a = i10;
+        this.f18044b = obj;
+        this.e = obj2;
+        this.f18045c = j3;
+        this.d = j10;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f19809a) {
+        switch (this.f18043a) {
             case 0:
-                this.f19810b.lambda$verifyAnimatedStickerMessageInternal$70(this.f19811c, tLObject, tL_error);
+                ((MediaDataController) this.f18044b).lambda$loadPinnedMessageInternal$164(this.f18045c, this.d, (TLRPC.TL_channels_getMessages) this.e, tLObject, tL_error);
+                return;
+            case 1:
+                ((MediaDataController) this.f18044b).lambda$getMediaCounts$129((int[]) this.e, this.f18045c, this.d, tLObject, tL_error);
+                return;
+            case 2:
+                ((MessagesController) this.f18044b).lambda$requestContactToken$476((Utilities.Callback) this.e, this.f18045c, this.d, tLObject, tL_error);
+                return;
+            case 3:
+                ((TopicsController) this.f18044b).lambda$getTopicRepliesCount$30((TLRPC.TL_forumTopic) this.e, this.f18045c, this.d, tLObject, tL_error);
                 return;
             default:
-                this.f19810b.lambda$fetchStickerSetInternal$42(this.f19811c, tLObject, tL_error);
+                yh.a4 a4Var = (yh.a4) this.f18044b;
+                yh.a4.J0(this.f18045c, this.d, (Utilities.Callback) this.e, tLObject, tL_error, a4Var);
                 return;
         }
+    }
+
+    public z6(MediaDataController mediaDataController, long j3, long j10, TLRPC.TL_channels_getMessages tL_channels_getMessages) {
+        this.f18043a = 0;
+        this.f18044b = mediaDataController;
+        this.f18045c = j3;
+        this.d = j10;
+        this.e = tL_channels_getMessages;
     }
 }

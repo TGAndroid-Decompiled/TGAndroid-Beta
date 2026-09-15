@@ -1,78 +1,45 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class fj0 implements RequestDelegate {
-    public final int f36419a;
-    public final lj0 f36420b;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.drawable.Drawable;
+public final class fj0 extends org.telegram.ui.Components.eo {
+    public final jj0 f33593v0;
 
-    public fj0(lj0 lj0Var, int i10) {
-        this.f36419a = i10;
-        this.f36420b = lj0Var;
+    public fj0(jj0 jj0Var, Context context) {
+        super(context, null, false, null);
+        this.f33593v0 = jj0Var;
     }
 
     @Override
-    public final void run(final TLObject tLObject, final TLRPC.TL_error tL_error) {
-        switch (this.f36419a) {
-            case 0:
-                final lj0 lj0Var = this.f36420b;
-                AndroidUtilities.runOnUIThread(new Runnable() {
-                    @Override
-                    public final void run() {
-                        switch (r4) {
-                            case 0:
-                                lj0.U(lj0Var, tL_error, tLObject);
-                                return;
-                            case 1:
-                                lj0.W(lj0Var, tL_error, tLObject);
-                                return;
-                            default:
-                                lj0.V(lj0Var, tL_error, tLObject);
-                                return;
-                        }
-                    }
-                });
-                return;
-            case 1:
-                final lj0 lj0Var2 = this.f36420b;
-                AndroidUtilities.runOnUIThread(new Runnable() {
-                    @Override
-                    public final void run() {
-                        switch (r4) {
-                            case 0:
-                                lj0.U(lj0Var2, tL_error, tLObject);
-                                return;
-                            case 1:
-                                lj0.W(lj0Var2, tL_error, tLObject);
-                                return;
-                            default:
-                                lj0.V(lj0Var2, tL_error, tLObject);
-                                return;
-                        }
-                    }
-                });
-                return;
-            default:
-                final lj0 lj0Var3 = this.f36420b;
-                AndroidUtilities.runOnUIThread(new Runnable() {
-                    @Override
-                    public final void run() {
-                        switch (r4) {
-                            case 0:
-                                lj0.U(lj0Var3, tL_error, tLObject);
-                                return;
-                            case 1:
-                                lj0.W(lj0Var3, tL_error, tLObject);
-                                return;
-                            default:
-                                lj0.V(lj0Var3, tL_error, tLObject);
-                                return;
-                        }
-                    }
-                });
-                return;
+    public final void dispatchDraw(Canvas canvas) {
+        super.dispatchDraw(canvas);
+        jj0 jj0Var = this.f33593v0;
+        jj0Var.W.setImageCoords(jj0Var.f34918b0.getAvatarImageView().getX(), jj0Var.f34918b0.getAvatarImageView().getY(), jj0Var.f34918b0.getAvatarImageView().getWidth(), jj0Var.f34918b0.getAvatarImageView().getHeight());
+        if (jj0Var.Y) {
+            canvas.save();
+            canvas.scale(0.9f, 0.9f, jj0Var.W.getCenterX(), jj0Var.W.getCenterY());
+            jj0Var.W.draw(canvas);
+            canvas.restore();
         }
+        if (jj0Var.X) {
+            int centerX = (int) (jj0Var.W.getCenterX() - (org.telegram.ui.ActionBar.i6.U0.getIntrinsicWidth() / 2));
+            int centerY = (int) (jj0Var.W.getCenterY() - (org.telegram.ui.ActionBar.i6.U0.getIntrinsicHeight() / 2));
+            Drawable drawable = org.telegram.ui.ActionBar.i6.U0;
+            drawable.setBounds(centerX, centerY, drawable.getIntrinsicWidth() + centerX, org.telegram.ui.ActionBar.i6.U0.getIntrinsicHeight() + centerY);
+            org.telegram.ui.ActionBar.i6.U0.draw(canvas);
+        }
+    }
+
+    @Override
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        this.f33593v0.W.onAttachedToWindow();
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        this.f33593v0.W.onDetachedFromWindow();
     }
 }

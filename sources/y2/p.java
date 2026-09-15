@@ -6,36 +6,36 @@ import g2.b0;
 import java.io.IOException;
 import u2.t;
 public final class p implements j {
-    public final long f49521a = t.f46804b.getAndIncrement();
-    public final g2.m f49522b;
-    public final int f49523c;
+    public final long f46298a = t.f43484b.getAndIncrement();
+    public final g2.m f46299b;
+    public final int f46300c;
     public final b0 d;
-    public final o f49524e;
-    public volatile Object f49525f;
+    public final o e;
+    public volatile Object f46301f;
 
     public p(g2.h hVar, g2.m mVar, int i10, o oVar) {
         this.d = new b0(hVar);
-        this.f49522b = mVar;
-        this.f49523c = i10;
-        this.f49524e = oVar;
+        this.f46299b = mVar;
+        this.f46300c = i10;
+        this.e = oVar;
     }
 
     @Override
     public final void a() {
-        this.d.f10297b = 0L;
-        g2.k kVar = new g2.k(this.d, this.f49522b);
+        this.d.f9346b = 0L;
+        g2.k kVar = new g2.k(this.d, this.f46299b);
         try {
-            kVar.f10319a.open(kVar.f10320b);
+            kVar.f9366a.open(kVar.f9367b);
             kVar.d = true;
-            Uri uri = this.d.f10296a.getUri();
+            Uri uri = this.d.f9345a.getUri();
             uri.getClass();
-            this.f49525f = this.f49524e.f2(uri, kVar);
+            this.f46301f = this.e.n2(uri, kVar);
             try {
                 kVar.close();
             } catch (IOException unused) {
             }
         } finally {
-            String str = d0.f8737a;
+            String str = d0.f7883a;
             try {
                 kVar.close();
             } catch (IOException unused2) {
@@ -44,6 +44,6 @@ public final class p implements j {
     }
 
     @Override
-    public final void W() {
+    public final void H() {
     }
 }

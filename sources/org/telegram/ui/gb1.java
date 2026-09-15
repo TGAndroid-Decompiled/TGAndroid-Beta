@@ -1,38 +1,69 @@
 package org.telegram.ui;
 
-import android.view.View;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
-public final class gb1 implements Utilities.Callback5, Utilities.Callback5Return {
-    public final StickersActivity f36622a;
+import android.app.Activity;
+import android.widget.LinearLayout;
+import android.widget.ScrollView;
+import android.widget.TextView;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.R;
+public final class gb1 extends org.telegram.ui.ActionBar.f3 {
+    public static gb1 f33858b;
 
-    public gb1(StickersActivity stickersActivity) {
-        this.f36622a = stickersActivity;
-    }
-
-    @Override
-    public void mo17run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-        ((Integer) obj3).getClass();
-        ((Float) obj4).getClass();
-        ((Float) obj5).getClass();
-        StickersActivity.U(this.f36622a, (org.telegram.ui.Components.h51) obj, (View) obj2);
-    }
-
-    @Override
-    public Object run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-        boolean z10;
-        org.telegram.ui.Components.h51 h51Var = (org.telegram.ui.Components.h51) obj;
-        View view = (View) obj2;
-        ((Integer) obj3).intValue();
-        ((Float) obj4).floatValue();
-        ((Float) obj5).floatValue();
-        StickersActivity stickersActivity = this.f36622a;
-        if (stickersActivity.f34140x.isEmpty() && (h51Var.G instanceof TLRPC.TL_messages_stickerSet)) {
-            stickersActivity.n0((org.telegram.ui.Cells.m8) view);
-            z10 = true;
-        } else {
-            z10 = false;
+    public static void m(gb1 gb1Var, uy uyVar) {
+        if (uyVar.getParentActivity() == null) {
+            return;
         }
-        return Boolean.valueOf(z10);
+        MessagesController.getInstance(gb1Var.currentAccount).clearQueryTime();
+        uyVar.getMessagesStorage().clearLocalDatabase();
+    }
+
+    public static void n(uy uyVar) {
+        if (f33858b == null) {
+            ?? f3Var = new org.telegram.ui.ActionBar.f3(uyVar.getParentActivity(), false);
+            Activity parentActivity = uyVar.getParentActivity();
+            LinearLayout f7 = org.telegram.messenger.w1.f(parentActivity, 1);
+            org.telegram.ui.Components.zw0 zw0Var = new org.telegram.ui.Components.zw0(parentActivity, f3Var.currentAccount);
+            zw0Var.setStickerNum(7);
+            zw0Var.getImageReceiver().setAutoRepeat(1);
+            f7.addView(zw0Var, w7.x5.t(144, 144, 1, 0, 16, 0, 0));
+            TextView textView = new TextView(parentActivity);
+            textView.setGravity(8388611);
+            int i10 = org.telegram.ui.ActionBar.i6.f18943j5;
+            org.telegram.messenger.w1.q(textView, org.telegram.ui.ActionBar.i6.w0(null, i10, false), 1, 20.0f);
+            textView.setText(LocaleController.getString(R.string.SuggestClearDatabaseTitle));
+            f7.addView(textView, w7.x5.d(-1, -2.0f, 0, 21.0f, 30.0f, 21.0f, 0.0f));
+            TextView textView2 = new TextView(parentActivity);
+            textView2.setGravity(8388611);
+            textView2.setTextSize(1, 15.0f);
+            textView2.setTextColor(org.telegram.ui.ActionBar.i6.w0(null, i10, false));
+            textView2.setText(AndroidUtilities.replaceTags(LocaleController.formatString("SuggestClearDatabaseMessage", R.string.SuggestClearDatabaseMessage, AndroidUtilities.formatFileSize(uyVar.getMessagesStorage().getDatabaseSize()))));
+            f7.addView(textView2, w7.x5.d(-1, -2.0f, 0, 21.0f, 15.0f, 21.0f, 16.0f));
+            TextView textView3 = new TextView(parentActivity);
+            textView3.setPadding(AndroidUtilities.dp(34.0f), 0, AndroidUtilities.dp(34.0f), 0);
+            textView3.setGravity(17);
+            textView3.setTextSize(1, 14.0f);
+            textView3.setTypeface(AndroidUtilities.bold());
+            textView3.setText(LocaleController.getString(R.string.ClearLocalDatabase));
+            textView3.setTextColor(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.Sh, false));
+            int dp = AndroidUtilities.dp(6.0f);
+            int w02 = org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.Oh, false);
+            int k10 = i0.a.k(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f18836d6, false), 120);
+            textView3.setBackgroundDrawable(org.telegram.ui.ActionBar.i6.i0(dp, dp, dp, dp, w02, k10, k10));
+            f7.addView(textView3, w7.x5.d(-1, 48.0f, 0, 16.0f, 15.0f, 16.0f, 16.0f));
+            textView3.setOnClickListener(new vy0(8, f3Var, uyVar));
+            ScrollView scrollView = new ScrollView(parentActivity);
+            scrollView.addView(f7);
+            f3Var.setCustomView(scrollView);
+            f33858b = f3Var;
+            f3Var.show();
+        }
+    }
+
+    @Override
+    public final void dismiss() {
+        super.dismiss();
+        f33858b = null;
     }
 }

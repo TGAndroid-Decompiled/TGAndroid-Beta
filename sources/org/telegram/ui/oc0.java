@@ -1,30 +1,30 @@
 package org.telegram.ui;
 public final class oc0 implements Runnable {
-    public final int f39213a;
-    public final id0 f39214b;
-    public final boolean f39215c;
+    public final int f36185a;
+    public final id0 f36186b;
+    public final boolean f36187c;
 
     public oc0(id0 id0Var, boolean z10, int i10) {
-        this.f39213a = i10;
-        this.f39214b = id0Var;
-        this.f39215c = z10;
+        this.f36185a = i10;
+        this.f36186b = id0Var;
+        this.f36187c = z10;
     }
 
     @Override
     public final void run() {
-        switch (this.f39213a) {
+        switch (this.f36185a) {
             case 0:
-                boolean z10 = this.f39215c;
-                id0 id0Var = this.f39214b;
+                boolean z10 = this.f36187c;
+                id0 id0Var = this.f36186b;
                 if (!z10) {
-                    id0Var.f37305b.setVisibility(8);
+                    id0Var.f34614b.setVisibility(8);
                     return;
                 } else {
                     id0Var.getClass();
                     return;
                 }
             default:
-                this.f39214b.s0(this.f39215c);
+                this.f36186b.s0(this.f36187c);
                 return;
         }
     }

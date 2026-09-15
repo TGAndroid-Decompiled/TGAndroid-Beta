@@ -1,25 +1,43 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.widget.TextView;
-import org.telegram.messenger.NotificationCenter;
-public final class bk0 extends TextView {
-    public final tt f34827a;
+import android.text.TextUtils;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.MrzRecognizer;
+public final class bk0 implements t9 {
+    public final ck0 f32216a;
 
-    public bk0(Context context) {
-        super(context);
-        this.f34827a = new tt(1, this);
+    public bk0(ck0 ck0Var) {
+        this.f32216a = ck0Var;
     }
 
     @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        NotificationCenter.getGlobalInstance().addObserver(this.f34827a, NotificationCenter.emojiLoaded);
+    public final String J0() {
+        return null;
     }
 
     @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        NotificationCenter.getGlobalInstance().removeObserver(this.f34827a, NotificationCenter.emojiLoaded);
+    public final void K(String str) {
+        int i10;
+        String b10 = nf.f.b(str);
+        if (!TextUtils.isEmpty(b10)) {
+            i10 = ((org.telegram.ui.ActionBar.f3) this.f32216a).currentAccount;
+            MessagesController.getInstance(i10).getUserNameResolver().resolve(b10, new ai.i(27));
+            return;
+        }
+        AndroidUtilities.runOnUIThread(new org.telegram.ui.Components.sh(24));
+    }
+
+    @Override
+    public final boolean e1(String str, l9 l9Var) {
+        return false;
+    }
+
+    @Override
+    public final void T0(MrzRecognizer.Result result) {
+    }
+
+    @Override
+    public final void onDismiss() {
     }
 }

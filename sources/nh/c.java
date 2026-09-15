@@ -1,0 +1,111 @@
+package nh;
+
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.drawable.ShapeDrawable;
+import android.text.TextUtils;
+import android.widget.FrameLayout;
+import android.widget.TextView;
+import le.e;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.e6;
+import org.telegram.ui.ActionBar.i6;
+import org.telegram.ui.ActionBar.z5;
+import org.telegram.ui.Cells.f8;
+import org.telegram.ui.Components.qr;
+import w7.x5;
+import yf.p;
+public final class c extends FrameLayout implements le.d, z5 {
+    public ShapeDrawable f15233a;
+    public final e6 f15234b;
+    public final f8 f15235c;
+    public final TextView d;
+    public final le.b e;
+
+    public c(Context context, e6 e6Var) {
+        super(context);
+        this.e = new le.b(0, this, qr.h, 380L, false);
+        this.f15234b = e6Var;
+        f8 f8Var = new f8(context, e6Var, false);
+        this.f15235c = f8Var;
+        addView(f8Var, x5.d(45, 45.0f, 49, 0.0f, 8.0f, 0.0f, 0.0f));
+        TextView textView = new TextView(context);
+        this.d = textView;
+        textView.setTextSize(1, 10.0f);
+        textView.setGravity(17);
+        textView.setEllipsize(TextUtils.TruncateAt.END);
+        textView.setSingleLine();
+        addView(textView, x5.d(-1, -2.0f, 80, 6.0f, 0.0f, 6.0f, 5.0f));
+        e();
+    }
+
+    @Override
+    public final void D(int i10, float f7, float f10, e eVar) {
+        ShapeDrawable shapeDrawable = this.f15233a;
+        if (shapeDrawable != null) {
+            shapeDrawable.setAlpha((int) (f7 * 255.0f));
+        }
+        invalidate();
+    }
+
+    public final void a(boolean z10, boolean z11) {
+        if (z10 && this.f15233a == null) {
+            this.f15233a = i6.b0(AndroidUtilities.dp(10.0f), i0.a.k(i6.v0(i6.Wk, this.f15234b), 25));
+        }
+        le.b bVar = this.e;
+        if (bVar.f13975f == z10 && !z11) {
+            return;
+        }
+        bVar.a(z10, z11);
+    }
+
+    @Override
+    public final void dispatchDraw(Canvas canvas) {
+        ShapeDrawable shapeDrawable = this.f15233a;
+        if (shapeDrawable != null) {
+            le.b bVar = this.e;
+            if (bVar.e > 0.0f) {
+                shapeDrawable.setBounds(0, 0, getWidth(), getHeight());
+                p.b(canvas, this.f15233a, AndroidUtilities.lerp(0.9f, 1.0f, bVar.e));
+            }
+        }
+        super.dispatchDraw(canvas);
+    }
+
+    @Override
+    public final void e() {
+        ShapeDrawable shapeDrawable = this.f15233a;
+        e6 e6Var = this.f15234b;
+        if (shapeDrawable != null) {
+            ShapeDrawable b02 = i6.b0(AndroidUtilities.dp(10.0f), i0.a.k(i6.v0(i6.Wk, e6Var), 25));
+            this.f15233a = b02;
+            b02.setAlpha((int) (this.e.e * 255.0f));
+        }
+        this.d.setTextColor(i0.a.k(i6.v0(i6.Wk, e6Var), 229));
+    }
+
+    public int[] getColorKeys() {
+        return null;
+    }
+
+    @Override
+    public final boolean isSelected() {
+        return this.e.f13975f;
+    }
+
+    public void setPack(TLRPC.TL_messages_stickerSet tL_messages_stickerSet) {
+        TLRPC.Document document;
+        this.d.setText(tL_messages_stickerSet.set.short_name);
+        if (!tL_messages_stickerSet.documents.isEmpty()) {
+            document = tL_messages_stickerSet.documents.get(0);
+        } else {
+            document = null;
+        }
+        this.f15235c.d(document, null, null, null, false, false);
+    }
+
+    @Override
+    public final void C(float f7, int i10) {
+    }
+}

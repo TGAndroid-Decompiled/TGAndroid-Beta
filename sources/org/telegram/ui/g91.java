@@ -1,58 +1,215 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.text.TextUtils;
+import android.graphics.drawable.Drawable;
+import android.view.ContextThemeWrapper;
 import android.view.View;
-import org.telegram.messenger.Emoji;
-public final class g91 extends org.telegram.ui.Components.g51 {
-    static {
-        org.telegram.ui.Components.g51.setup(new org.telegram.ui.Components.g51());
-    }
+import android.widget.LinearLayout;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class g91 extends LinearLayout {
+    public final org.telegram.ui.ActionBar.f1[] f33852a;
 
-    public static org.telegram.ui.Components.h51 a(String str, CharSequence charSequence, String str2, View.OnClickListener onClickListener, CharSequence charSequence2, View.OnClickListener onClickListener2) {
-        org.telegram.ui.Components.h51 J = org.telegram.ui.Components.h51.J(g91.class);
-        J.f26594l = str;
-        J.f26595m = charSequence;
-        J.f26596n = str2;
-        J.D = onClickListener;
-        J.f26597o = charSequence2;
-        J.E = onClickListener2;
-        return J;
-    }
-
-    @Override
-    public final void bindView(View view, org.telegram.ui.Components.h51 h51Var, boolean z10, org.telegram.ui.Components.v51 v51Var, org.telegram.ui.Components.d61 d61Var) {
-        h91 h91Var = (h91) view;
-        CharSequence charSequence = h51Var.f26594l;
-        CharSequence charSequence2 = h51Var.f26595m;
-        CharSequence charSequence3 = h51Var.f26596n;
-        View.OnClickListener onClickListener = h51Var.D;
-        CharSequence charSequence4 = h51Var.f26597o;
-        View.OnClickListener onClickListener2 = h51Var.E;
-        di.d dVar = h91Var.f36938e;
-        org.telegram.ui.Components.d90 d90Var = h91Var.f36936b;
-        int i10 = 0;
-        d90Var.setText(Emoji.replaceEmoji(charSequence, d90Var.getPaint().getFontMetricsInt(), false));
-        org.telegram.ui.Components.d90 d90Var2 = h91Var.f36937c;
-        d90Var2.setText(Emoji.replaceEmoji(charSequence2, d90Var2.getPaint().getFontMetricsInt(), false));
-        di.d dVar2 = h91Var.d;
-        if (TextUtils.isEmpty(charSequence3)) {
-            i10 = 8;
+    public g91(ContextThemeWrapper contextThemeWrapper, final qr0 qr0Var) {
+        super(contextThemeWrapper);
+        this.f33852a = r1;
+        setOrientation(1);
+        org.telegram.ui.ActionBar.f1 c10 = org.telegram.ui.ActionBar.v0.c(false, false, this, R.drawable.msg_speed_0_2, LocaleController.getString(R.string.SpeedVerySlow), false, null);
+        c10.c(-328966, -328966);
+        c10.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public final void onClick(View view) {
+                int i10 = r2;
+                qr0 qr0Var2 = qr0Var;
+                switch (i10) {
+                    case 0:
+                        PhotoViewer photoViewer = qr0Var2.f36934a;
+                        Drawable[] drawableArr = PhotoViewer.T8;
+                        photoViewer.D0(true, true, 0.2f);
+                        return;
+                    case 1:
+                        PhotoViewer photoViewer2 = qr0Var2.f36934a;
+                        Drawable[] drawableArr2 = PhotoViewer.T8;
+                        photoViewer2.D0(true, true, 0.5f);
+                        return;
+                    case 2:
+                        PhotoViewer photoViewer3 = qr0Var2.f36934a;
+                        Drawable[] drawableArr3 = PhotoViewer.T8;
+                        photoViewer3.D0(true, true, 1.0f);
+                        return;
+                    case 3:
+                        PhotoViewer photoViewer4 = qr0Var2.f36934a;
+                        Drawable[] drawableArr4 = PhotoViewer.T8;
+                        photoViewer4.D0(true, true, 1.5f);
+                        return;
+                    default:
+                        PhotoViewer photoViewer5 = qr0Var2.f36934a;
+                        Drawable[] drawableArr5 = PhotoViewer.T8;
+                        photoViewer5.D0(true, true, 2.0f);
+                        return;
+                }
+            }
+        });
+        c10.setSelectorColor(268435455);
+        org.telegram.ui.ActionBar.f1 c11 = org.telegram.ui.ActionBar.v0.c(false, false, this, R.drawable.msg_speed_slow, LocaleController.getString(R.string.SpeedSlow), false, null);
+        c11.c(-328966, -328966);
+        c11.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public final void onClick(View view) {
+                int i10 = r2;
+                qr0 qr0Var2 = qr0Var;
+                switch (i10) {
+                    case 0:
+                        PhotoViewer photoViewer = qr0Var2.f36934a;
+                        Drawable[] drawableArr = PhotoViewer.T8;
+                        photoViewer.D0(true, true, 0.2f);
+                        return;
+                    case 1:
+                        PhotoViewer photoViewer2 = qr0Var2.f36934a;
+                        Drawable[] drawableArr2 = PhotoViewer.T8;
+                        photoViewer2.D0(true, true, 0.5f);
+                        return;
+                    case 2:
+                        PhotoViewer photoViewer3 = qr0Var2.f36934a;
+                        Drawable[] drawableArr3 = PhotoViewer.T8;
+                        photoViewer3.D0(true, true, 1.0f);
+                        return;
+                    case 3:
+                        PhotoViewer photoViewer4 = qr0Var2.f36934a;
+                        Drawable[] drawableArr4 = PhotoViewer.T8;
+                        photoViewer4.D0(true, true, 1.5f);
+                        return;
+                    default:
+                        PhotoViewer photoViewer5 = qr0Var2.f36934a;
+                        Drawable[] drawableArr5 = PhotoViewer.T8;
+                        photoViewer5.D0(true, true, 2.0f);
+                        return;
+                }
+            }
+        });
+        c11.setSelectorColor(268435455);
+        org.telegram.ui.ActionBar.f1 c12 = org.telegram.ui.ActionBar.v0.c(false, false, this, R.drawable.msg_speed_normal, LocaleController.getString(R.string.SpeedNormal), false, null);
+        c12.c(-328966, -328966);
+        c12.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public final void onClick(View view) {
+                int i10 = r2;
+                qr0 qr0Var2 = qr0Var;
+                switch (i10) {
+                    case 0:
+                        PhotoViewer photoViewer = qr0Var2.f36934a;
+                        Drawable[] drawableArr = PhotoViewer.T8;
+                        photoViewer.D0(true, true, 0.2f);
+                        return;
+                    case 1:
+                        PhotoViewer photoViewer2 = qr0Var2.f36934a;
+                        Drawable[] drawableArr2 = PhotoViewer.T8;
+                        photoViewer2.D0(true, true, 0.5f);
+                        return;
+                    case 2:
+                        PhotoViewer photoViewer3 = qr0Var2.f36934a;
+                        Drawable[] drawableArr3 = PhotoViewer.T8;
+                        photoViewer3.D0(true, true, 1.0f);
+                        return;
+                    case 3:
+                        PhotoViewer photoViewer4 = qr0Var2.f36934a;
+                        Drawable[] drawableArr4 = PhotoViewer.T8;
+                        photoViewer4.D0(true, true, 1.5f);
+                        return;
+                    default:
+                        PhotoViewer photoViewer5 = qr0Var2.f36934a;
+                        Drawable[] drawableArr5 = PhotoViewer.T8;
+                        photoViewer5.D0(true, true, 2.0f);
+                        return;
+                }
+            }
+        });
+        c12.setSelectorColor(268435455);
+        org.telegram.ui.ActionBar.f1 c13 = org.telegram.ui.ActionBar.v0.c(false, false, this, R.drawable.msg_speed_fast, LocaleController.getString(R.string.SpeedFast), false, null);
+        c13.c(-328966, -328966);
+        c13.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public final void onClick(View view) {
+                int i10 = r2;
+                qr0 qr0Var2 = qr0Var;
+                switch (i10) {
+                    case 0:
+                        PhotoViewer photoViewer = qr0Var2.f36934a;
+                        Drawable[] drawableArr = PhotoViewer.T8;
+                        photoViewer.D0(true, true, 0.2f);
+                        return;
+                    case 1:
+                        PhotoViewer photoViewer2 = qr0Var2.f36934a;
+                        Drawable[] drawableArr2 = PhotoViewer.T8;
+                        photoViewer2.D0(true, true, 0.5f);
+                        return;
+                    case 2:
+                        PhotoViewer photoViewer3 = qr0Var2.f36934a;
+                        Drawable[] drawableArr3 = PhotoViewer.T8;
+                        photoViewer3.D0(true, true, 1.0f);
+                        return;
+                    case 3:
+                        PhotoViewer photoViewer4 = qr0Var2.f36934a;
+                        Drawable[] drawableArr4 = PhotoViewer.T8;
+                        photoViewer4.D0(true, true, 1.5f);
+                        return;
+                    default:
+                        PhotoViewer photoViewer5 = qr0Var2.f36934a;
+                        Drawable[] drawableArr5 = PhotoViewer.T8;
+                        photoViewer5.D0(true, true, 2.0f);
+                        return;
+                }
+            }
+        });
+        c13.setSelectorColor(268435455);
+        org.telegram.ui.ActionBar.f1 c14 = org.telegram.ui.ActionBar.v0.c(false, false, this, R.drawable.msg_speed_superfast, LocaleController.getString(R.string.SpeedVeryFast), false, null);
+        c14.c(-328966, -328966);
+        c14.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public final void onClick(View view) {
+                int i10 = r2;
+                qr0 qr0Var2 = qr0Var;
+                switch (i10) {
+                    case 0:
+                        PhotoViewer photoViewer = qr0Var2.f36934a;
+                        Drawable[] drawableArr = PhotoViewer.T8;
+                        photoViewer.D0(true, true, 0.2f);
+                        return;
+                    case 1:
+                        PhotoViewer photoViewer2 = qr0Var2.f36934a;
+                        Drawable[] drawableArr2 = PhotoViewer.T8;
+                        photoViewer2.D0(true, true, 0.5f);
+                        return;
+                    case 2:
+                        PhotoViewer photoViewer3 = qr0Var2.f36934a;
+                        Drawable[] drawableArr3 = PhotoViewer.T8;
+                        photoViewer3.D0(true, true, 1.0f);
+                        return;
+                    case 3:
+                        PhotoViewer photoViewer4 = qr0Var2.f36934a;
+                        Drawable[] drawableArr4 = PhotoViewer.T8;
+                        photoViewer4.D0(true, true, 1.5f);
+                        return;
+                    default:
+                        PhotoViewer photoViewer5 = qr0Var2.f36934a;
+                        Drawable[] drawableArr5 = PhotoViewer.T8;
+                        photoViewer5.D0(true, true, 2.0f);
+                        return;
+                }
+            }
+        });
+        c14.setSelectorColor(268435455);
+        org.telegram.ui.ActionBar.f1[] f1VarArr = {c10, c11, c12, c13, c14};
+        View s51Var = new s51(contextThemeWrapper, 1);
+        s51Var.setMinimumWidth(AndroidUtilities.dp(196.0f));
+        s51Var.setBackgroundColor(-15198184);
+        addView(s51Var);
+        LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) s51Var.getLayoutParams();
+        if (LocaleController.isRTL) {
+            layoutParams.gravity = 5;
         }
-        dVar2.setVisibility(i10);
-        dVar2.setText(charSequence3);
-        dVar2.setOnClickListener(onClickListener);
-        dVar.setText(charSequence4);
-        dVar.setOnClickListener(onClickListener2);
-    }
-
-    @Override
-    public final View createView(Context context, org.telegram.ui.Components.ll0 ll0Var, int i10, int i11, org.telegram.ui.ActionBar.f6 f6Var) {
-        return new h91(context, f6Var);
-    }
-
-    @Override
-    public final boolean isClickable() {
-        return false;
+        layoutParams.width = -1;
+        layoutParams.height = AndroidUtilities.dp(8.0f);
+        s51Var.setLayoutParams(layoutParams);
     }
 }

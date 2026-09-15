@@ -9,23 +9,23 @@ public interface o0 {
 
     void c(int i10);
 
+    CharSequence d();
+
     void dismiss();
 
-    CharSequence e();
+    Drawable e();
 
-    Drawable h();
+    void g(CharSequence charSequence);
 
-    void i(CharSequence charSequence);
+    void i(Drawable drawable);
 
-    void j(Drawable drawable);
+    void j(int i10);
 
     void k(int i10);
 
-    void l(int i10);
+    void l(int i10, int i11);
 
-    void m(int i10, int i11);
+    int m();
 
-    int n();
-
-    void p(ListAdapter listAdapter);
+    void n(ListAdapter listAdapter);
 }

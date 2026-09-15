@@ -10,8 +10,8 @@ public class b0 extends db.u {
         while (aVar.k()) {
             try {
                 arrayList.add(Integer.valueOf(aVar.p()));
-            } catch (NumberFormatException e7) {
-                throw new RuntimeException(e7);
+            } catch (NumberFormatException e) {
+                throw new RuntimeException(e);
             }
         }
         aVar.e();

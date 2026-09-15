@@ -5,16 +5,16 @@ import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 public final class r6 extends FrameLayout {
-    public org.telegram.ui.Components.q6 f40079a;
-    public q6 f40080b;
+    public org.telegram.ui.Components.n6 f37030a;
+    public q6 f37031b;
 
     public final void a(float f7) {
-        org.telegram.ui.Components.q6 q6Var = this.f40079a;
-        q6Var.a();
-        q6Var.c(String.format("%d%%", Integer.valueOf((int) Math.ceil(w7.p.a(f7, 0.0f, 1.0f) * 100.0f))), !LocaleController.isRTL, true);
-        q6 q6Var2 = this.f40080b;
-        q6Var2.d = f7;
-        q6Var2.invalidate();
+        org.telegram.ui.Components.n6 n6Var = this.f37030a;
+        n6Var.a();
+        n6Var.c(String.format("%d%%", Integer.valueOf((int) Math.ceil(w7.p.a(f7, 0.0f, 1.0f) * 100.0f))), !LocaleController.isRTL, true);
+        q6 q6Var = this.f37031b;
+        q6Var.d = f7;
+        q6Var.invalidate();
     }
 
     @Override

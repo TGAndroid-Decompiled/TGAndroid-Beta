@@ -16,16 +16,16 @@ public abstract class b {
         }
         try {
             InputStream open = ApplicationLoader.applicationContext.getAssets().open("currencies.json");
-            String str = e2.d0.f8737a;
-            JSONObject jSONObject = new JSONObject(new String(f9.b.b(open), d9.d.f6631a));
+            String str = e2.d0.f7883a;
+            JSONObject jSONObject = new JSONObject(new String(f9.b.b(open), d9.d.f7560a));
             Iterator<String> keys = jSONObject.keys();
             while (keys.hasNext()) {
                 String next = keys.next();
                 map.put(next, Integer.valueOf(jSONObject.optJSONObject(next).optInt("exp")));
             }
             open.close();
-        } catch (Exception e7) {
-            FileLog.e(e7);
+        } catch (Exception e) {
+            FileLog.e(e);
         }
     }
 
@@ -34,12 +34,12 @@ public abstract class b {
         SerializedData serializedData = new SerializedData(Utilities.hexToBytes(str));
         a a2 = a.a(serializedData, serializedData.readInt32(true));
         serializedData.cleanup();
-        if (a2.f50048c != null) {
+        if (a2.f46778c != null) {
             FileLog.d("BillingUtilities.getPurpose: got purpose from received obfuscated profile id");
-            return a2.f50048c;
+            return a2.f46778c;
         }
         SerializedData serializedData2 = new SerializedData(8);
-        serializedData2.writeInt64(a2.f50047b);
+        serializedData2.writeInt64(a2.f46777b);
         String bytesToHex = Utilities.bytesToHex(serializedData2.toByteArray());
         serializedData2.cleanup();
         FileLog.d("BillingUtilities.getPurpose: searching purpose under " + bytesToHex);
@@ -49,7 +49,7 @@ public abstract class b {
             SerializedData serializedData3 = new SerializedData(Utilities.hexToBytes(string));
             a a10 = a.a(serializedData3, serializedData3.readInt32(true));
             serializedData3.cleanup();
-            return a10.f50048c;
+            return a10.f46778c;
         }
         FileLog.d("BillingUtilities.getPurpose: purpose under " + bytesToHex + " not found");
         throw new RuntimeException(a4.a.p("no purpose under ", bytesToHex, " found :("));

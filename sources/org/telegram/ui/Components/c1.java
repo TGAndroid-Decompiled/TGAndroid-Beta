@@ -1,64 +1,29 @@
 package org.telegram.ui.Components;
 
-import android.content.DialogInterface;
 import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-public final class c1 implements DialogInterface.OnDismissListener {
-    public final int f24839a;
-    public final Object f24840b;
+public final class c1 implements View.OnClickListener {
+    public final int f22905a;
+    public final org.telegram.ui.Cells.z1[] f22906b;
 
-    public c1(Object obj, int i10) {
-        this.f24839a = i10;
-        this.f24840b = obj;
+    public c1(org.telegram.ui.Cells.z1[] z1VarArr, int i10) {
+        this.f22905a = i10;
+        this.f22906b = z1VarArr;
     }
 
     @Override
-    public final void onDismiss(DialogInterface dialogInterface) {
-        int i10 = this.f24839a;
-        Object obj = this.f24840b;
-        switch (i10) {
+    public final void onClick(View view) {
+        switch (this.f22905a) {
             case 0:
-                ((org.telegram.ui.ug) obj).run();
-                return;
-            case 1:
-                AndroidUtilities.hideKeyboard((EditTextBoldCursor) obj);
-                return;
-            case 2:
-                AndroidUtilities.hideKeyboard((f4) obj);
-                return;
-            case 3:
-                ((ChatActivityEnterView) obj).L0 = null;
-                return;
-            case 4:
-                ((vi) obj).f31345z2 = false;
-                return;
-            case 5:
-                zt.i((zt) obj);
-                return;
-            case 6:
-                float[] fArr = FragmentContextView.M0;
-                ((FragmentContextView) obj).c(false);
-                return;
-            case 7:
-                hn0.H = null;
-                ((View) obj).requestFocus();
-                return;
-            case 8:
-                AndroidUtilities.hideKeyboard((bn0) obj);
+                Integer num = (Integer) view.getTag();
+                int intValue = num.intValue();
+                org.telegram.ui.Cells.z1[] z1VarArr = this.f22906b;
+                z1VarArr[intValue].c(!z1VarArr[num.intValue()].b(), true);
                 return;
             default:
-                ThemeEditorView themeEditorView = ((x01) obj).d;
-                themeEditorView.f24169l = null;
-                if (themeEditorView.f24161b != null) {
-                    AndroidUtilities.setPreferredMaxRefreshRate(themeEditorView.h, themeEditorView.f24160a, themeEditorView.f24165g);
-                    try {
-                        themeEditorView.h.addView(themeEditorView.f24160a, themeEditorView.f24165g);
-                        themeEditorView.d();
-                        return;
-                    } catch (Exception unused) {
-                        return;
-                    }
-                }
+                Integer num2 = (Integer) view.getTag();
+                int intValue2 = num2.intValue();
+                org.telegram.ui.Cells.z1[] z1VarArr2 = this.f22906b;
+                z1VarArr2[intValue2].c(!z1VarArr2[num2.intValue()].b(), true);
                 return;
         }
     }

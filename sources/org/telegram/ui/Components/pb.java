@@ -1,7 +1,10 @@
 package org.telegram.ui.Components;
-public final class pb extends qc {
-    @Override
-    public final qc j() {
-        return this;
-    }
+public interface pb {
+    void a(oc ocVar);
+
+    void b();
+
+    void c();
+
+    void d();
 }

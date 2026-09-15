@@ -1,44 +1,29 @@
 package uh;
 
-import android.content.Context;
-import android.view.View;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.f6;
-import org.telegram.ui.Components.d61;
-import org.telegram.ui.Components.g51;
-import org.telegram.ui.Components.h51;
-import org.telegram.ui.Components.ll0;
-import org.telegram.ui.Components.v51;
-public final class e extends g51 {
-    public static final int f47245a = 0;
+import android.view.animation.Interpolator;
+import w7.p;
+public final class e implements Interpolator {
+    public final boolean f43764a;
+    public final float f43765b;
+    public final float f43766c;
+    public final Interpolator d;
 
-    static {
-        g51.setup(new g51());
+    public e(boolean z10, float f7, float f10, Interpolator interpolator) {
+        this.f43764a = z10;
+        this.f43765b = f7;
+        this.f43766c = f10;
+        this.d = interpolator;
     }
 
     @Override
-    public final void bindView(View view, h51 h51Var, boolean z10, v51 v51Var, d61 d61Var) {
-        yg.b bVar = (yg.b) view;
-        bVar.f50160s = (TLRPC.TL_help_country) h51Var.G;
-        bVar.f();
-        bVar.setDivider(z10);
-        bVar.c(h51Var.f26588e, false);
-    }
-
-    @Override
-    public final boolean contentsEquals(h51 h51Var, h51 h51Var2) {
-        return h51Var.H(h51Var2);
-    }
-
-    @Override
-    public final View createView(Context context, ll0 ll0Var, int i10, int i11, f6 f6Var) {
-        yg.b bVar = new yg.b(context, f6Var);
-        bVar.setBackground(null);
-        return bVar;
-    }
-
-    @Override
-    public final boolean equals(h51 h51Var, h51 h51Var2) {
-        return h51Var.I(h51Var2);
+    public final float getInterpolation(float f7) {
+        boolean z10 = this.f43764a;
+        float f10 = this.f43765b;
+        float f11 = this.f43766c;
+        Interpolator interpolator = this.d;
+        if (z10) {
+            return 1.0f - interpolator.getInterpolation(1.0f - p.a((f7 - f10) / (f11 - f10), 0.0f, 1.0f));
+        }
+        return interpolator.getInterpolation(p.a((f7 - f10) / (f11 - f10), 0.0f, 1.0f));
     }
 }

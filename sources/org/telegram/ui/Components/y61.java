@@ -2,19 +2,19 @@ package org.telegram.ui.Components;
 
 import java.util.List;
 public final class y61 implements b2.z0 {
-    public final g71 f32855a;
+    public final g71 f30169a;
 
     public y61(g71 g71Var) {
-        this.f32855a = g71Var;
+        this.f30169a = g71Var;
     }
 
     @Override
-    public final void onCues(d2.c cVar) {
+    public final void onCues(d2.d dVar) {
     }
 
     @Override
     public final void onPlayerStateChanged(boolean z10, int i10) {
-        g71 g71Var = this.f32855a;
+        g71 g71Var = this.f30169a;
         if (!g71Var.H && i10 == 3) {
             g71Var.H = true;
             if (g71Var.G && g71Var.I) {

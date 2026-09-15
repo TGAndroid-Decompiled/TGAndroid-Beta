@@ -28,25 +28,25 @@ public final class dx extends FragmentContextView {
         switch (this.N0) {
             case 0:
                 uy uyVar = this.O0;
-                org.telegram.ui.Components.js jsVar = uyVar.J1;
+                org.telegram.ui.Components.ks ksVar = uyVar.J1;
                 FrameLayout frameLayout = uyVar.G1;
                 if (i10 == 0) {
                     z10 = true;
                 } else {
                     z10 = false;
                 }
-                jsVar.i(frameLayout, z10, true);
+                ksVar.i(frameLayout, z10, true);
                 return;
             default:
                 uy uyVar2 = this.O0;
-                org.telegram.ui.Components.js jsVar2 = uyVar2.J1;
+                org.telegram.ui.Components.ks ksVar2 = uyVar2.J1;
                 FrameLayout frameLayout2 = uyVar2.I1;
                 if (i10 == 0) {
                     z11 = true;
                 } else {
                     z11 = false;
                 }
-                jsVar2.i(frameLayout2, z11, true);
+                ksVar2.i(frameLayout2, z11, true);
                 return;
         }
     }

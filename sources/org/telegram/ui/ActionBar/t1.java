@@ -1,21 +1,21 @@
 package org.telegram.ui.ActionBar;
 
 import android.view.View;
-import org.telegram.ui.Components.y6;
+import org.telegram.ui.Components.v6;
 public final class t1 implements View.OnAttachStateChangeListener {
-    public final y6 f21346a;
+    public final v6 f19549a;
 
-    public t1(y6 y6Var) {
-        this.f21346a = y6Var;
+    public t1(v6 v6Var) {
+        this.f19549a = v6Var;
     }
 
     @Override
     public final void onViewAttachedToWindow(View view) {
-        this.f21346a.c(null);
+        this.f19549a.c(null);
     }
 
     @Override
     public final void onViewDetachedFromWindow(View view) {
-        this.f21346a.b(null);
+        this.f19549a.b(null);
     }
 }

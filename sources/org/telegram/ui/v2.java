@@ -1,173 +1,35 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.text.Layout;
-import android.view.MotionEvent;
-import android.view.View;
-import android.view.accessibility.AccessibilityNodeInfo;
-import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.R;
+import org.telegram.messenger.video.VideoPlayerHolderBase;
 import org.telegram.tgnet.tl.TL_iv;
-public final class v2 extends View implements org.telegram.ui.Cells.p9, e3 {
-    public b3 f41385a;
-    public TL_iv.pageBlockTitle f41386b;
-    public int f41387c;
-    public int d;
-    public final v70 f41388e;
-    public final g4 f41389f;
+public final class v2 extends VideoPlayerHolderBase {
+    public final w2 f38332a;
 
-    public v2(Context context, v70 v70Var, g4 g4Var) {
-        super(context);
-        this.f41388e = v70Var;
-        this.f41389f = g4Var;
+    public v2(w2 w2Var) {
+        this.f38332a = w2Var;
     }
 
     @Override
-    public final void fillTextLayoutBlocks(ArrayList arrayList) {
-        b3 b3Var = this.f41385a;
-        if (b3Var != null) {
-            arrayList.add(b3Var);
-        }
-    }
-
-    @Override
-    public int getBoundLeft() {
-        b3 b3Var = this.f41385a;
-        if (b3Var == null) {
-            return -1;
-        }
-        int a2 = b3Var.a() + b3Var.f34617s;
-        this.f41388e.getClass();
-        return a2 - AndroidUtilities.dp(18);
-    }
-
-    @Override
-    public int getBoundRight() {
-        b3 b3Var = this.f41385a;
-        if (b3Var == null) {
-            return -1;
-        }
-        int b10 = b3Var.b() + b3Var.f34617s;
-        this.f41388e.getClass();
-        return AndroidUtilities.dp(18) + b10;
-    }
-
-    @Override
-    public int getLastLineBoundRight() {
-        b3 b3Var = this.f41385a;
-        if (b3Var == null) {
-            return -1;
-        }
-        int c10 = b3Var.c() + b3Var.f34617s;
-        this.f41388e.getClass();
-        return AndroidUtilities.dp(18) + c10;
-    }
-
-    public int getMinWidth() {
-        return org.telegram.messenger.vl.b(this);
-    }
-
-    @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        b3 b3Var = this.f41385a;
-        if (b3Var != null) {
-            b3Var.attach(this);
-        }
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        b3 b3Var = this.f41385a;
-        if (b3Var != null) {
-            b3Var.detach(this);
-        }
-    }
-
-    @Override
-    public final void onDraw(Canvas canvas) {
-        if (this.f41386b != null && this.f41385a != null) {
-            canvas.save();
-            canvas.translate(this.f41387c, this.d);
-            i4.v(this.f41388e, canvas, this, 0);
-            this.f41385a.draw(canvas, this);
-            canvas.restore();
-        }
-    }
-
-    @Override
-    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        accessibilityNodeInfo.setClassName("android.widget.TextView");
-        accessibilityNodeInfo.setEnabled(true);
-        accessibilityNodeInfo.setClickable(false);
-        accessibilityNodeInfo.setLongClickable(false);
-        b3 b3Var = this.f41385a;
-        if (b3Var == null) {
-            return;
-        }
-        accessibilityNodeInfo.setText(i4.i(R.string.AccDescrIVTitle, i4.j(this.f41388e, this.f41389f, b3Var)));
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        int i12;
-        Layout.Alignment alignment;
-        int size = View.MeasureSpec.getSize(i10);
-        v70 v70Var = this.f41388e;
-        v70Var.getClass();
-        this.f41387c = AndroidUtilities.dp(18);
-        TL_iv.pageBlockTitle pageblocktitle = this.f41386b;
-        if (pageblocktitle != null) {
-            if (pageblocktitle.first) {
-                v70Var.getClass();
-                i12 = AndroidUtilities.dp(8);
-                v70Var.getClass();
-                this.d = AndroidUtilities.dp(16);
-            } else {
-                v70Var.getClass();
-                this.d = AndroidUtilities.dp(8);
-                i12 = 0;
-            }
-            TL_iv.RichText richText = this.f41386b.text;
-            v70 v70Var2 = this.f41388e;
-            v70Var2.getClass();
-            int dp = size - AndroidUtilities.dp(36);
-            TL_iv.pageBlockTitle pageblocktitle2 = this.f41386b;
-            g4 g4Var = this.f41389f;
-            if (g4Var != null && g4Var.G) {
-                alignment = org.telegram.ui.Components.iw0.a();
-            } else {
-                alignment = Layout.Alignment.ALIGN_NORMAL;
-            }
-            b3 p5 = i4.p(v70Var2, this, null, richText, dp, 0, pageblocktitle2, alignment, 0, this.f41389f);
-            this.f41385a = p5;
-            if (p5 != null) {
-                v70Var.getClass();
-                i12 += this.f41385a.d.getHeight() + AndroidUtilities.dp(16);
-                b3 b3Var = this.f41385a;
-                b3Var.f34617s = this.f41387c;
-                b3Var.v = this.d;
-            }
-        } else {
-            i12 = 1;
-        }
-        setMeasuredDimension(size, i12);
-    }
-
-    @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        if (!i4.l(this.f41388e, this.f41389f, motionEvent, this, this.f41385a, this.f41387c, this.d) && !super.onTouchEvent(motionEvent)) {
-            return false;
-        }
+    public final boolean needRepeat() {
         return true;
     }
 
-    public void setBlock(TL_iv.pageBlockTitle pageblocktitle) {
-        this.f41386b = pageblocktitle;
-        requestLayout();
+    @Override
+    public final void onRenderedFirstFrame() {
+        super.onRenderedFirstFrame();
+        if (!this.firstFrameRendered) {
+            this.firstFrameRendered = true;
+            w2 w2Var = this.f38332a;
+            w2Var.f38756n.setAlpha(1.0f);
+            TL_iv.pageBlockVideo pageblockvideo = w2Var.L;
+            if (pageblockvideo != null) {
+                u70 u70Var = w2Var.f38752a;
+                a0.i iVar = u70Var.f37882y;
+                long j3 = pageblockvideo.video_id;
+                x2 a2 = x2.a(u70Var.f37880w, w2Var);
+                w2Var.c(a2);
+                iVar.k(a2, j3);
+            }
+        }
     }
 }

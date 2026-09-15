@@ -2,31 +2,31 @@ package org.telegram.ui.ActionBar;
 
 import android.content.Context;
 import android.view.ViewGroup;
-import org.telegram.ui.Components.w6;
+import org.telegram.ui.Components.t6;
 public final class a3 {
-    public final f3 f20204a;
+    public final f3 f18442a;
 
-    public a3(Context context, f6 f6Var) {
-        f3 f3Var = new f3(1, context, f6Var, false);
-        this.f20204a = f3Var;
+    public a3(Context context, e6 e6Var) {
+        f3 f3Var = new f3(1, context, e6Var, false);
+        this.f18442a = f3Var;
         f3Var.fixNavigationBar();
     }
 
     public final void a() {
-        this.f20204a.applyBottomPadding = false;
+        this.f18442a.applyBottomPadding = false;
     }
 
     public final void b(ViewGroup viewGroup) {
-        this.f20204a.customView = viewGroup;
+        this.f18442a.customView = viewGroup;
     }
 
-    public final void c(w6 w6Var) {
-        f3 f3Var = this.f20204a;
-        f3Var.customView = w6Var;
+    public final void c(t6 t6Var) {
+        f3 f3Var = this.f18442a;
+        f3Var.customView = t6Var;
         f3Var.customViewGravity = 49;
     }
 
     public final void d() {
-        this.f20204a.dimBehind = false;
+        this.f18442a.dimBehind = false;
     }
 }

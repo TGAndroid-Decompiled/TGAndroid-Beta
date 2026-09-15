@@ -1,24 +1,18 @@
 package org.telegram.ui.Components;
-public final class zp implements rv0 {
-    public final xp f33199a;
-    public final bq f33200b;
 
-    public zp(bq bqVar, xp xpVar) {
-        this.f33200b = bqVar;
-        this.f33199a = xpVar;
+import android.content.Context;
+import android.widget.LinearLayout;
+public final class zp extends LinearLayout {
+    public final cq f30633a;
+
+    public zp(cq cqVar, Context context) {
+        super(context);
+        this.f30633a = cqVar;
     }
 
     @Override
-    public final void i(int i10) {
-        bq bqVar = this.f33200b;
-        bqVar.f24786r = i10;
-        bqVar.p(true);
-    }
-
-    @Override
-    public final void l() {
-        int measuredHeight = this.f33200b.f24782c.getMeasuredHeight();
-        xp xpVar = this.f33199a;
-        xpVar.y(0 - xpVar.getScrollX(), measuredHeight - xpVar.getScrollY(), false);
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        super.onLayout(z10, i10, i11, i12, i13);
+        cq.m(this.f30633a);
     }
 }

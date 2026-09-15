@@ -1,5 +1,5 @@
 package org.telegram.ui.Components;
-public final class jo0 extends p6 {
+public final class jo0 extends m6 {
     public final int W = 0;
     public final Object X;
 
@@ -15,13 +15,13 @@ public final class jo0 extends p6 {
                 ((Runnable) this.X).run();
                 return;
             default:
-                ((org.telegram.ui.a31) this.X).invalidate();
+                ((org.telegram.ui.y21) this.X).invalidate();
                 return;
         }
     }
 
-    public jo0(org.telegram.ui.a31 a31Var) {
+    public jo0(org.telegram.ui.y21 y21Var) {
         super(false, true, false, false);
-        this.X = a31Var;
+        this.X = y21Var;
     }
 }

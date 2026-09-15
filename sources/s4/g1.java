@@ -1,20 +1,20 @@
 package s4;
 public final class g1 {
-    public int f45785a;
-    public int f45786b;
-    public int f45787c;
+    public int f42717a;
+    public int f42718b;
+    public int f42719c;
     public int d;
-    public int f45788e;
+    public int e;
 
     public boolean a() {
         int i10;
         int i11;
         int i12;
-        int i13 = this.f45785a;
+        int i13 = this.f42717a;
         int i14 = 2;
         if ((i13 & 7) != 0) {
             int i15 = this.d;
-            int i16 = this.f45786b;
+            int i16 = this.f42718b;
             if (i15 > i16) {
                 i12 = 1;
             } else if (i15 == i16) {
@@ -28,7 +28,7 @@ public final class g1 {
         }
         if ((i13 & 112) != 0) {
             int i17 = this.d;
-            int i18 = this.f45787c;
+            int i18 = this.f42719c;
             if (i17 > i18) {
                 i11 = 1;
             } else if (i17 == i18) {
@@ -41,8 +41,8 @@ public final class g1 {
             }
         }
         if ((i13 & 1792) != 0) {
-            int i19 = this.f45788e;
-            int i20 = this.f45786b;
+            int i19 = this.e;
+            int i20 = this.f42718b;
             if (i19 > i20) {
                 i10 = 1;
             } else if (i19 == i20) {
@@ -55,8 +55,8 @@ public final class g1 {
             }
         }
         if ((i13 & 28672) != 0) {
-            int i21 = this.f45788e;
-            int i22 = this.f45787c;
+            int i21 = this.e;
+            int i22 = this.f42719c;
             if (i21 > i22) {
                 i14 = 1;
             } else if (i21 != i22) {

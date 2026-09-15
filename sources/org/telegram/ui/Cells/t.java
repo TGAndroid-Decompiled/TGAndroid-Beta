@@ -16,7 +16,7 @@ public final class t extends ll0 implements NotificationCenter.NotificationCente
     @Override
     public final void didReceivedNotification(int i10, int i11, Object... objArr) {
         if (i10 == NotificationCenter.premiumStatusChangedGlobal) {
-            v1();
+            w1();
         }
     }
 
@@ -43,14 +43,14 @@ public final class t extends ll0 implements NotificationCenter.NotificationCente
         a0();
     }
 
-    public final void v1() {
+    public final void w1() {
         ArrayList arrayList = this.X2;
         arrayList.clear();
         arrayList.addAll(Arrays.asList(lb0.values()));
         if (MessagesController.getInstance(this.Z2).premiumFeaturesBlocked()) {
             int i10 = 0;
             while (i10 < arrayList.size()) {
-                if (((lb0) arrayList.get(i10)).f38264e) {
+                if (((lb0) arrayList.get(i10)).e) {
                     arrayList.remove(i10);
                     i10--;
                 }

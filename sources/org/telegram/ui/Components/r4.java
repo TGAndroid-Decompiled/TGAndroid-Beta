@@ -1,12 +1,23 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Outline;
-import android.view.View;
-import android.view.ViewOutlineProvider;
-import org.telegram.messenger.AndroidUtilities;
-public final class r4 extends ViewOutlineProvider {
+import android.content.Context;
+import android.os.Vibrator;
+import android.text.Spanned;
+public final class r4 extends gq {
+    public final Context f27548b;
+
+    public r4(Context context) {
+        super(255);
+        this.f27548b = context;
+    }
+
     @Override
-    public final void getOutline(View view, Outline outline) {
-        outline.setRoundRect(0, 0, view.getMeasuredWidth(), AndroidUtilities.dp(6.0f) + view.getMeasuredHeight(), AndroidUtilities.dp(6.0f));
+    public final CharSequence filter(CharSequence charSequence, int i10, int i11, Spanned spanned, int i12, int i13) {
+        Vibrator vibrator;
+        CharSequence filter = super.filter(charSequence, i10, i11, spanned, i12, i13);
+        if (filter != null && charSequence != null && filter.length() != charSequence.length() && (vibrator = (Vibrator) this.f27548b.getSystemService("vibrator")) != null) {
+            vibrator.vibrate(200L);
+        }
+        return filter;
     }
 }

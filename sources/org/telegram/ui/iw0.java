@@ -1,219 +1,211 @@
 package org.telegram.ui;
 
-import android.graphics.ColorFilter;
-import android.graphics.Paint;
-import android.graphics.Point;
-import android.graphics.drawable.Drawable;
+import android.content.Context;
+import android.util.SparseArray;
 import android.view.View;
-import java.util.HashSet;
+import android.widget.FrameLayout;
+import java.util.WeakHashMap;
 import org.telegram.messenger.AndroidUtilities;
-public final class iw0 implements r0.n, org.telegram.ui.Components.h71, org.telegram.ui.Components.wp0, org.telegram.ui.Components.eo0, org.telegram.ui.ActionBar.f6, org.telegram.ui.Components.un0 {
-    public final int f37446a;
-    public final Object f37447b;
+public final class iw0 extends org.telegram.ui.Components.a81 {
+    public final int f34738a;
+    public final Object f34739b;
+    public final Object f34740c;
 
-    public iw0(Object obj, int i10) {
-        this.f37446a = i10;
-        this.f37447b = obj;
+    public iw0(Object obj, Context context, int i10) {
+        this.f34738a = i10;
+        this.f34740c = obj;
+        this.f34739b = context;
     }
 
     @Override
-    public void B() {
-        int i10 = this.f37446a;
-    }
-
-    @Override
-    public Paint G(String str) {
-        return ((sd1) this.f37447b).f40420f.f41914a.G(str);
-    }
-
-    @Override
-    public int G0(int i10) {
-        return ((sd1) this.f37447b).f40420f.f41914a.G0(i10);
-    }
-
-    @Override
-    public r0.l1 T0(View view, r0.l1 l1Var) {
-        switch (this.f37446a) {
+    public final void b(View view, int i10, int i11) {
+        org.telegram.ui.ActionBar.n2 n2Var;
+        t5 t5Var;
+        int i12 = this.f34738a;
+        Object obj = this.f34740c;
+        switch (i12) {
             case 0:
-                lw0 lw0Var = (lw0) this.f37447b;
-                i0.c g10 = l1Var.f44711a.g(519);
-                lw0Var.f38503r = g10;
-                lw0Var.d.setPadding(g10.f11425a, g10.f11426b, g10.f11427c, g10.d);
-                lw0Var.f38494c.requestLayout();
-                return r0.l1.f44710b;
-            default:
-                le1 le1Var = (le1) this.f37447b;
-                i0.c g11 = l1Var.f44711a.g(519);
-                le1Var.f38325n = g11;
-                le1Var.f38319c.setPadding(g11.f11425a, g11.f11426b, g11.f11427c, g11.d);
-                le1Var.f38317b.requestLayout();
-                return r0.l1.f44710b;
-        }
-    }
-
-    @Override
-    public void U() {
-        ((StickersActivity) this.f37447b).j0();
-    }
-
-    @Override
-    public void X(float f7, boolean z10) {
-        switch (this.f37446a) {
+                return;
+            case 1:
+                ((a41) view).a(i11);
+                return;
+            case 2:
+                return;
             case 3:
-                wb1 wb1Var = (wb1) this.f37447b;
-                ThemeActivity.Y(wb1Var.d, Math.round((wb1Var.f41895b * f7) + 0), false);
+                ai1 ai1Var = (ai1) obj;
+                SparseArray sparseArray = ai1Var.f31845a;
+                yh1 yh1Var = (yh1) sparseArray.get(i10);
+                if (yh1Var != null) {
+                    n2Var = yh1Var.f39911a;
+                } else {
+                    org.telegram.ui.ActionBar.n2 V = ai1Var.V(i10);
+                    yh1 yh1Var2 = new yh1(V);
+                    sparseArray.put(i10, yh1Var2);
+                    n2Var = V;
+                    yh1Var = yh1Var2;
+                }
+                if (!yh1Var.f39912b) {
+                    n2Var.onFragmentCreate();
+                    yh1Var.f39912b = true;
+                }
+                n2Var.setParentLayout(ai1Var.getParentLayout());
+                if (n2Var.getFragmentView() == null) {
+                    n2Var.performCreateView((Context) this.f34739b);
+                    n2Var.setTitleOverlayText(ai1Var.f31849n, ai1Var.f31850r, ai1Var.f31851s);
+                }
+                FrameLayout frameLayout = (FrameLayout) view;
+                frameLayout.removeAllViews();
+                View fragmentView = n2Var.getFragmentView();
+                AndroidUtilities.removeFromParent(fragmentView);
+                if (!n2Var.hasOwnBackground() && fragmentView.getBackground() == null) {
+                    fragmentView.setBackgroundColor(org.telegram.ui.ActionBar.i6.w0(null, org.telegram.ui.ActionBar.i6.f18836d6, false));
+                }
+                frameLayout.addView(fragmentView, w7.x5.c(-1.0f, -1));
+                if (n2Var.getActionBar() != null && n2Var.getActionBar().K) {
+                    AndroidUtilities.removeFromParent(n2Var.getActionBar());
+                    frameLayout.addView(n2Var.getActionBar());
+                }
+                WeakHashMap weakHashMap = r0.i0.f41843a;
+                r0.y.c(frameLayout);
+                ai1Var.checkSystemBarColors();
+                ai1Var.U();
+                return;
+            case 4:
                 return;
             default:
-                hc1 hc1Var = (hc1) this.f37447b;
-                ThemeActivity themeActivity = hc1Var.h;
-                int i10 = hc1Var.f36954c;
-                ThemeActivity.k0(themeActivity, Math.round(((hc1Var.d - i10) * f7) + i10));
+                yh.a4 a4Var = (yh.a4) obj;
+                if (i11 == 0) {
+                    yh.a4.j1(a4Var, false);
+                    xh.m2 m2Var = a4Var.f46947b0;
+                    if (m2Var != null) {
+                        t5Var = m2Var.Y;
+                    } else {
+                        return;
+                    }
+                } else if (i11 == 2) {
+                    yh.a4.j1(a4Var, true);
+                    xh.m2 m2Var2 = a4Var.f46949c0;
+                    if (m2Var2 != null) {
+                        t5Var = m2Var2.Y;
+                    } else {
+                        return;
+                    }
+                } else {
+                    return;
+                }
+                FrameLayout frameLayout2 = (FrameLayout) view;
+                frameLayout2.removeAllViews();
+                AndroidUtilities.removeFromParent(t5Var);
+                frameLayout2.addView(t5Var);
                 return;
         }
     }
 
     @Override
-    public boolean a() {
-        return ((sd1) this.f37447b).f40420f.f41914a.a();
-    }
-
-    @Override
-    public void b(float f7) {
-        SecretMediaViewer secretMediaViewer = (SecretMediaViewer) this.f37447b;
-        c51 c51Var = secretMediaViewer.f34112y;
-        if (c51Var != null) {
-            long p5 = c51Var.p();
-            if (p5 != -9223372036854775807L) {
-                secretMediaViewer.f34112y.L(f7 * ((float) p5), false);
-            }
-            secretMediaViewer.f34112y.C();
-        }
-    }
-
-    @Override
-    public void c(float f7) {
-        SecretMediaViewer secretMediaViewer = (SecretMediaViewer) this.f37447b;
-        c51 c51Var = secretMediaViewer.f34112y;
-        if (c51Var != null) {
-            c51Var.B();
-            long p5 = secretMediaViewer.f34112y.p();
-            if (p5 != -9223372036854775807L) {
-                secretMediaViewer.f34112y.L(f7 * ((float) p5), false);
-            }
-        }
-    }
-
-    @Override
-    public void e(float f7) {
-        Point point = AndroidUtilities.displaySize;
-        if (point.x > point.y) {
-            ((ag1) this.f37447b).f34445t0.movePreviewFragment(f7);
-        }
-    }
-
-    @Override
-    public void f(org.telegram.ui.Cells.r2 r2Var) {
-        eg1 eg1Var = ((ag1) this.f37447b).f34445t0;
-        HashSet hashSet = eg1.f36024n1;
-        eg1Var.M0(r2Var);
-    }
-
-    @Override
-    public void finish() {
-        Point point = AndroidUtilities.displaySize;
-        if (point.x > point.y) {
-            ((ag1) this.f37447b).f34445t0.finishPreviewFragment();
-        }
-    }
-
-    @Override
-    public CharSequence getContentDescription() {
-        switch (this.f37446a) {
+    public final View d(int i10) {
+        t5 t5Var;
+        switch (this.f34738a) {
+            case 0:
+                FrameLayout frameLayout = new FrameLayout((Context) this.f34739b);
+                frameLayout.setOnClickListener(new k60(this, 23));
+                return frameLayout;
+            case 1:
+                return new a41((b41) this.f34740c, (Context) this.f34739b);
+            case 2:
+                FrameLayout frameLayout2 = new FrameLayout((Context) this.f34739b);
+                frameLayout2.setOnClickListener(new g41(this, 7));
+                return frameLayout2;
             case 3:
-                wb1 wb1Var = (wb1) this.f37447b;
-                return String.valueOf(Math.round((wb1Var.f41894a.getProgress() * wb1Var.f41895b) + 0));
+                return new s51((Context) this.f34739b, 7);
+            case 4:
+                if (i10 == 0) {
+                    return ((tg.b0) this.f34739b).getContainerView();
+                }
+                return ((tg.a1) this.f34740c).getContainerView();
             default:
-                hc1 hc1Var = (hc1) this.f37447b;
-                int i10 = hc1Var.f36954c;
-                return String.valueOf(Math.round((hc1Var.f36953b.getProgress() * (hc1Var.d - i10)) + i10));
+                yh.a4 a4Var = (yh.a4) this.f34740c;
+                if (i10 == 0) {
+                    yh.a4.j1(a4Var, false);
+                    xh.m2 m2Var = a4Var.f46947b0;
+                    if (m2Var != null) {
+                        t5Var = m2Var.Y;
+                        AndroidUtilities.removeFromParent(t5Var);
+                        FrameLayout frameLayout3 = new FrameLayout((Context) this.f34739b);
+                        frameLayout3.addView(t5Var, w7.x5.e(-1, -1, 119));
+                        return frameLayout3;
+                    }
+                    return null;
+                }
+                if (i10 == 1) {
+                    t5Var = a4Var.Y;
+                } else {
+                    if (i10 == 2) {
+                        yh.a4.j1(a4Var, true);
+                        xh.m2 m2Var2 = a4Var.f46949c0;
+                        if (m2Var2 != null) {
+                            t5Var = m2Var2.Y;
+                        }
+                    }
+                    return null;
+                }
+                AndroidUtilities.removeFromParent(t5Var);
+                FrameLayout frameLayout32 = new FrameLayout((Context) this.f34739b);
+                frameLayout32.addView(t5Var, w7.x5.e(-1, -1, 119));
+                return frameLayout32;
         }
     }
 
     @Override
-    public Drawable getDrawable(String str) {
-        wd1 wd1Var = ((sd1) this.f37447b).f40420f;
-        if (str.equals("drawableMsgOut")) {
-            return wd1Var.R;
-        }
-        if (str.equals("drawableMsgOutSelected")) {
-            return wd1Var.S;
-        }
-        if (str.equals("drawableMsgOutMedia")) {
-            return wd1Var.T;
-        }
-        if (str.equals("drawableMsgOutMediaSelected")) {
-            return wd1Var.U;
-        }
-        wc1 wc1Var = wd1Var.f41914a;
-        if (wc1Var != null) {
-            return wc1Var.getDrawable(str);
-        }
-        return org.telegram.ui.ActionBar.j6.O0(str);
-    }
-
-    @Override
-    public int h0(int i10) {
-        return ((sd1) this.f37447b).f40420f.f41914a.G0(i10);
-    }
-
-    @Override
-    public int h1(int i10) {
-        return ((sd1) this.f37447b).f40420f.f41914a.h1(i10);
-    }
-
-    @Override
-    public void l(float f7, float f10, int i10, int i11) {
-        wc1 wc1Var = ((sd1) this.f37447b).f40420f.f41914a;
-        if (wc1Var != null) {
-            wc1Var.l(f7, f10, i10, i11);
-        } else {
-            org.telegram.ui.ActionBar.j6.q(f7, f10, i10, i11);
-        }
-    }
-
-    @Override
-    public int l0() {
-        switch (this.f37446a) {
+    public final int e() {
+        switch (this.f34738a) {
+            case 0:
+                return 2;
+            case 1:
+                return 5;
+            case 2:
+                return 2;
             case 3:
-                return ((wb1) this.f37447b).f41895b;
+                ((ai1) this.f34740c).getClass();
+                return 4;
+            case 4:
+                return 2;
             default:
-                hc1 hc1Var = (hc1) this.f37447b;
-                return hc1Var.d - hc1Var.f36954c;
+                yh.a4 a4Var = (yh.a4) this.f34740c;
+                return (a4Var.L1(true) ? 1 : 0) + (a4Var.L1(false) ? 1 : 0) + 1;
         }
     }
 
     @Override
-    public boolean o0() {
-        return ((sd1) this.f37447b).f40420f.f41914a.o0();
+    public int h(int i10) {
+        switch (this.f34738a) {
+            case 1:
+                if (i10 == 0) {
+                    return 0;
+                }
+                return 1;
+            case 2:
+            case 3:
+            default:
+                return super.h(i10);
+            case 4:
+                return i10;
+            case 5:
+                return (i10 - (((yh.a4) this.f34740c).L1(false) ? 1 : 0)) + 1;
+        }
     }
 
-    @Override
-    public ColorFilter x() {
-        return org.telegram.ui.ActionBar.j6.f20987v3;
+    public iw0(tg.b0 b0Var, tg.a1 a1Var) {
+        this.f34738a = 4;
+        this.f34739b = b0Var;
+        this.f34740c = a1Var;
     }
 
-    @Override
-    public void z0() {
-        ((StickersActivity) this.f37447b).j0();
+    private final void i(View view, int i10, int i11) {
     }
 
-    private final void d() {
+    private final void j(View view, int i10, int i11) {
     }
 
-    private final void g() {
-    }
-
-    @Override
-    public void O0(int i10, int i11) {
+    private final void k(View view, int i10, int i11) {
     }
 }

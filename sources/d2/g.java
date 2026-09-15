@@ -2,23 +2,19 @@ package d2;
 
 import e2.d0;
 public final class g {
+    public static final String f7453c;
     public static final String d;
-    public static final String f6520e;
-    public static final String f6521f;
-    public final int f6522a;
-    public final int f6523b;
-    public final int f6524c;
+    public final String f7454a;
+    public final int f7455b;
 
     static {
-        String str = d0.f8737a;
-        d = Integer.toString(0, 36);
-        f6520e = Integer.toString(1, 36);
-        f6521f = Integer.toString(2, 36);
+        String str = d0.f7883a;
+        f7453c = Integer.toString(0, 36);
+        d = Integer.toString(1, 36);
     }
 
-    public g(int i10, int i11, int i12) {
-        this.f6522a = i10;
-        this.f6523b = i11;
-        this.f6524c = i12;
+    public g(String str, int i10) {
+        this.f7454a = str;
+        this.f7455b = i10;
     }
 }

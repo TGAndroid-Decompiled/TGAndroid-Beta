@@ -4,38 +4,38 @@ import bf.p;
 import bf.s;
 import java.util.regex.Pattern;
 public abstract class h {
-    public i f9041a;
-    public p f9042b;
-    public String f9043c;
+    public i f8149a;
+    public p f8150b;
+    public String f8151c;
     public int d;
 
     public final String a(Pattern pattern) {
-        i iVar = this.f9041a;
-        iVar.f9054g = this.d;
+        i iVar = this.f8149a;
+        iVar.f8161g = this.d;
         String c10 = iVar.c(pattern);
-        this.d = this.f9041a.f9054g;
+        this.d = this.f8149a.f8161g;
         return c10;
     }
 
     public abstract p b();
 
     public final char c() {
-        i iVar = this.f9041a;
-        iVar.f9054g = this.d;
+        i iVar = this.f8149a;
+        iVar.f8161g = this.d;
         return iVar.d();
     }
 
     public abstract char d();
 
     public final void e() {
-        i iVar = this.f9041a;
-        iVar.f9054g = this.d;
-        iVar.c(i.f9045k);
-        this.d = this.f9041a.f9054g;
+        i iVar = this.f8149a;
+        iVar.f8161g = this.d;
+        iVar.c(i.f8153k);
+        this.d = this.f8149a.f8161g;
     }
 
     public final s f(String str) {
-        this.f9041a.getClass();
+        this.f8149a.getClass();
         return new s(str);
     }
 }

@@ -7,42 +7,42 @@ import java.util.ArrayList;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.MessageObject;
 public final class qb extends s4.h0 {
-    public final Context f39819c;
+    public final Context f36832c;
     public int d;
-    public int f39820e;
-    public int f39821f;
+    public int e;
+    public int f36833f;
     public int h;
-    public final ub f39822n;
+    public final ub f36834n;
 
     public qb(ub ubVar, Context context) {
-        this.f39822n = ubVar;
+        this.f36834n = ubVar;
         new ArrayList();
         new ArrayList();
-        this.f39819c = context;
+        this.f36832c = context;
         C(true);
     }
 
     public final void D(boolean z10) {
         this.d = 0;
-        ub ubVar = this.f39822n;
-        ArrayList arrayList = ubVar.f41040s0;
+        ub ubVar = this.f36834n;
+        ArrayList arrayList = ubVar.f37955o0;
         if (!arrayList.isEmpty()) {
-            if (!ubVar.f41042u0) {
+            if (!ubVar.f37957q0) {
                 int i10 = this.d;
                 this.d = i10 + 1;
-                this.f39820e = i10;
+                this.e = i10;
             } else {
-                this.f39820e = -1;
+                this.e = -1;
             }
             int i11 = this.d;
-            this.f39821f = i11;
+            this.f36833f = i11;
             int size = arrayList.size() + i11;
             this.d = size;
             this.h = size;
             return;
         }
-        this.f39820e = -1;
-        this.f39821f = -1;
+        this.e = -1;
+        this.f36833f = -1;
         this.h = -1;
     }
 
@@ -53,10 +53,10 @@ public final class qb extends s4.h0 {
 
     @Override
     public final long i(int i10) {
-        if (i10 >= this.f39821f && i10 < this.h) {
-            ArrayList arrayList = this.f39822n.f41040s0;
-            return ((MessageObject) arrayList.get((arrayList.size() - (i10 - this.f39821f)) - 1)).stableId;
-        } else if (i10 == this.f39820e) {
+        if (i10 >= this.f36833f && i10 < this.h) {
+            ArrayList arrayList = this.f36834n.f37955o0;
+            return ((MessageObject) arrayList.get((arrayList.size() - (i10 - this.f36833f)) - 1)).stableId;
+        } else if (i10 == this.e) {
             return 2L;
         } else {
             return 5L;
@@ -65,9 +65,9 @@ public final class qb extends s4.h0 {
 
     @Override
     public final int j(int i10) {
-        if (i10 >= this.f39821f && i10 < this.h) {
-            ArrayList arrayList = this.f39822n.f41040s0;
-            return ((MessageObject) arrayList.get((arrayList.size() - (i10 - this.f39821f)) - 1)).contentType;
+        if (i10 >= this.f36833f && i10 < this.h) {
+            ArrayList arrayList = this.f36834n.f37955o0;
+            return ((MessageObject) arrayList.get((arrayList.size() - (i10 - this.f36833f)) - 1)).contentType;
         }
         return 4;
     }
@@ -77,8 +77,8 @@ public final class qb extends s4.h0 {
         D(true);
         try {
             super.l();
-        } catch (Exception e7) {
-            FileLog.e(e7);
+        } catch (Exception e) {
+            FileLog.e(e);
         }
     }
 
@@ -87,8 +87,8 @@ public final class qb extends s4.h0 {
         D(false);
         try {
             super.m(i10);
-        } catch (Exception e7) {
-            FileLog.e(e7);
+        } catch (Exception e) {
+            FileLog.e(e);
         }
     }
 
@@ -97,8 +97,8 @@ public final class qb extends s4.h0 {
         D(false);
         try {
             super.p(i10, i11);
-        } catch (Exception e7) {
-            FileLog.e(e7);
+        } catch (Exception e) {
+            FileLog.e(e);
         }
     }
 
@@ -107,8 +107,8 @@ public final class qb extends s4.h0 {
         D(false);
         try {
             super.q(i10, i11);
-        } catch (Exception e7) {
-            FileLog.e(e7);
+        } catch (Exception e) {
+            FileLog.e(e);
         }
     }
 
@@ -117,8 +117,8 @@ public final class qb extends s4.h0 {
         D(false);
         try {
             super.s(i10, i11);
-        } catch (Exception e7) {
-            FileLog.e(e7);
+        } catch (Exception e) {
+            FileLog.e(e);
         }
     }
 
@@ -127,8 +127,8 @@ public final class qb extends s4.h0 {
         D(false);
         try {
             super.t(i10, i11);
-        } catch (Exception e7) {
-            FileLog.e(e7);
+        } catch (Exception e) {
+            FileLog.e(e);
         }
     }
 
@@ -139,13 +139,13 @@ public final class qb extends s4.h0 {
 
     @Override
     public final s4.c1 x(ViewGroup viewGroup, int i10) {
-        org.telegram.ui.ActionBar.f6 f6Var;
+        org.telegram.ui.ActionBar.e6 e6Var;
         org.telegram.ui.Cells.u1 u1Var;
         int i11;
         View view;
-        ub ubVar = this.f39822n;
-        ArrayList arrayList = ubVar.v;
-        Context context = this.f39819c;
+        ub ubVar = this.f36834n;
+        ArrayList arrayList = ubVar.h;
+        Context context = this.f36832c;
         if (i10 == 0) {
             if (arrayList.isEmpty()) {
                 i11 = ((org.telegram.ui.ActionBar.n2) ubVar).currentAccount;
@@ -165,19 +165,19 @@ public final class qb extends s4.h0 {
         } else if (i10 == 2) {
             u1Var = new org.telegram.ui.Cells.v1(context, null);
         } else if (i10 == 10) {
-            f6Var = ((org.telegram.ui.ActionBar.n2) ubVar).resourceProvider;
-            org.telegram.ui.Cells.u1 u1Var2 = new org.telegram.ui.Cells.u1(context, f6Var);
+            e6Var = ((org.telegram.ui.ActionBar.n2) ubVar).resourceProvider;
+            org.telegram.ui.Cells.u1 u1Var2 = new org.telegram.ui.Cells.u1(context, e6Var);
             u1Var2.setDelegate(new g(this, 10));
             u1Var = u1Var2;
         } else {
             u1Var = new org.telegram.ui.Cells.z0(context, null);
         }
-        return com.google.android.gms.internal.vision.e2.l(u1Var, u1Var, -1, -2);
+        return com.google.android.gms.internal.vision.e2.k(u1Var, u1Var, -1, -2);
     }
 
     @Override
     public final void y(s4.c1 c1Var) {
-        View view = c1Var.f45738a;
+        View view = c1Var.f42675a;
         if ((view instanceof org.telegram.ui.Cells.t1) || (view instanceof org.telegram.ui.Cells.w0)) {
             view.getViewTreeObserver().addOnPreDrawListener(new pb(this, view, c1Var));
         }

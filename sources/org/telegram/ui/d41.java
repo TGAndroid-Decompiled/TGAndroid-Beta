@@ -1,91 +1,75 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import android.widget.FrameLayout;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
+import android.view.ViewGroup;
+import java.util.ArrayList;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.tgnet.TLRPC;
-public final class d41 extends FrameLayout {
-    public int f35645a;
-    public TLRPC.TL_channels_sponsoredMessageReportResultChooseOption f35646b;
-    public TLRPC.TL_reportResultChooseOption f35647c;
-    public TLRPC.TL_reportResultAddComment d;
-    public final FrameLayout f35648e;
-    public final org.telegram.ui.Components.d61 f35649f;
-    public final t5 h;
-    public c41 f35650n;
-    public FrameLayout f35651r;
-    public di.d f35652s;
-    public final e41 v;
+public final class d41 extends org.telegram.ui.Components.kl0 {
+    public final Context f32922c;
+    public final boolean d;
+    public final e41 e;
 
-    public d41(e41 e41Var, Context context) {
-        super(context);
-        org.telegram.ui.ActionBar.f6 f6Var;
-        org.telegram.ui.ActionBar.f6 f6Var2;
-        org.telegram.ui.ActionBar.f6 f6Var3;
-        int i10;
-        org.telegram.ui.ActionBar.f6 f6Var4;
-        this.v = e41Var;
-        FrameLayout frameLayout = new FrameLayout(context);
-        this.f35648e = frameLayout;
-        frameLayout.setPadding(0, AndroidUtilities.statusBarHeight, 0, 0);
-        frameLayout.setClipToPadding(true);
-        addView(frameLayout, w7.x5.e(-1, -1, 119));
-        f6Var = ((org.telegram.ui.ActionBar.f3) e41Var).resourcesProvider;
-        t5 t5Var = new t5(context, f6Var);
-        TextView textView = (TextView) t5Var.d;
-        this.h = t5Var;
-        t5Var.f40621e = new b41(this, 0);
-        if (e41Var.d) {
-            textView.setText(LocaleController.getString(R.string.ReportAd));
-        } else if (e41Var.f35926e) {
-            textView.setText(LocaleController.getString(R.string.ReportStory));
-        } else {
-            textView.setText(LocaleController.getString(R.string.Report2));
-        }
-        int i11 = org.telegram.ui.ActionBar.j6.G6;
-        f6Var2 = ((org.telegram.ui.ActionBar.f3) e41Var).resourcesProvider;
-        ((org.telegram.ui.ActionBar.g2) t5Var.f40619b).a(org.telegram.ui.ActionBar.j6.v0(i11, f6Var2));
-        int i12 = org.telegram.ui.ActionBar.j6.f20734h5;
-        f6Var3 = ((org.telegram.ui.ActionBar.f3) e41Var).resourcesProvider;
-        t5Var.setBackgroundColor(org.telegram.ui.ActionBar.j6.v0(i12, f6Var3));
-        addView(t5Var, w7.x5.e(-1, -2, 55));
-        i10 = ((org.telegram.ui.ActionBar.f3) e41Var).currentAccount;
-        b5 b5Var = new b5(this, 19);
-        vl0 vl0Var = new vl0(this, 15);
-        f6Var4 = ((org.telegram.ui.ActionBar.f3) e41Var).resourcesProvider;
-        org.telegram.ui.Components.d61 d61Var = new org.telegram.ui.Components.d61(context, i10, 0, true, b5Var, vl0Var, null, f6Var4);
-        this.f35649f = d61Var;
-        d61Var.setClipToPadding(false);
-        d61Var.X2.k1(true);
-        d61Var.setOnScrollListener(new i3(this, 26));
-        frameLayout.addView(d61Var, w7.x5.c(-1.0f, -1));
+    public d41(e41 e41Var, Context context, boolean z10) {
+        this.e = e41Var;
+        this.f32922c = context;
+        this.d = z10;
     }
 
-    public final void a(int i10) {
-        boolean z10;
-        this.f35645a = i10;
+    @Override
+    public final boolean D(s4.c1 c1Var) {
+        if (c1Var.f42678f == 0) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public final int h() {
+        boolean z10 = this.d;
+        int i10 = 0;
+        e41 e41Var = this.e;
+        if (z10) {
+            ArrayList arrayList = e41Var.f33214f;
+            if (arrayList == null) {
+                return 0;
+            }
+            return arrayList.size();
+        }
+        if (e41Var.e >= 0) {
+            i10 = 1;
+        }
+        return e41Var.h.size() + i10;
+    }
+
+    @Override
+    public final int j(int i10) {
+        if (!this.d && i10 == this.e.e) {
+            return 1;
+        }
+        return 0;
+    }
+
+    @Override
+    public final void v(s4.c1 r7, int r8) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.d41.v(s4.c1, int):void");
+    }
+
+    @Override
+    public final s4.c1 x(ViewGroup viewGroup, int i10) {
+        org.telegram.ui.Cells.l4 l4Var;
+        Context context = this.f32922c;
         if (i10 != 0) {
-            z10 = true;
+            if (i10 != 2) {
+                l4Var = new org.telegram.ui.Cells.a7(context, (org.telegram.ui.Cells.p6) null);
+            } else {
+                org.telegram.ui.Cells.l4 l4Var2 = new org.telegram.ui.Cells.l4(context);
+                l4Var2.setText(LocaleController.getString(R.string.ChooseLanguages));
+                l4Var = l4Var2;
+            }
         } else {
-            z10 = false;
+            l4Var = new org.telegram.ui.Cells.x8(context);
         }
-        this.h.b(z10);
-        org.telegram.ui.Components.d61 d61Var = this.f35649f;
-        if (d61Var != null) {
-            d61Var.Y2.N(true);
-        }
-    }
-
-    public final void b(TLRPC.TL_reportResultAddComment tL_reportResultAddComment) {
-        this.f35646b = null;
-        this.f35647c = null;
-        this.d = tL_reportResultAddComment;
-        this.f35649f.Y2.N(false);
-        if (this.f35650n != null) {
-            AndroidUtilities.runOnUIThread(new b41(this, 1), 120L);
-        }
+        return new s4.c1(l4Var);
     }
 }

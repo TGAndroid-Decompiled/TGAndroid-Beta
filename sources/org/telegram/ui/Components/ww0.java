@@ -1,28 +1,386 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class ww0 extends AnimatorListenerAdapter {
-    public final int f32356a;
-    public final xw0 f32357b;
+import android.animation.ValueAnimator;
+import android.content.Context;
+import android.content.res.Configuration;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
+import android.text.TextUtils;
+import android.view.MotionEvent;
+import android.view.View;
+import androidx.recyclerview.widget.RecyclerView;
+import java.util.HashSet;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.CacheFetcher;
+import org.telegram.messenger.R;
+import org.telegram.messenger.UserConfig;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLRPC;
+public abstract class ww0 extends ll0 {
+    public static final uw0 f29799x3 = new CacheFetcher();
+    public static final vw0 y3 = new CacheFetcher();
+    public float X2;
+    public sw0[] Y2;
+    public final nw0 Z2;
+    public final c6 f29800a3;
+    public Drawable f29801b3;
+    public Drawable f29802c3;
+    public Paint f29803d3;
+    public final Paint f29804e3;
+    public int f29805f3;
+    public int f29806g3;
+    public Utilities.Callback f29807h3;
+    public Utilities.Callback f29808i3;
+    public boolean j3;
+    public boolean f29809k3;
+    public ci.eb f29810l3;
+    public int f29811m3;
+    public Utilities.Callback f29812n3;
+    public float f29813o3;
+    public ValueAnimator f29814p3;
+    public boolean f29815q3;
+    public final c6 f29816r3;
+    public final c6 f29817s3;
+    public final RectF f29818t3;
+    public final RectF f29819u3;
+    public final RectF f29820v3;
+    public boolean f29821w3;
 
-    public ww0(xw0 xw0Var, int i10) {
-        this.f32356a = i10;
-        this.f32357b = xw0Var;
+    static {
+        new HashSet();
+    }
+
+    public ww0(Context context, int i10, org.telegram.ui.ActionBar.e6 e6Var) {
+        super(context, e6Var);
+        this.X2 = 6.5f;
+        this.Y2 = null;
+        qr qrVar = qr.h;
+        this.f29800a3 = new c6(this, 360L, qrVar);
+        Paint paint = new Paint(1);
+        this.f29804e3 = paint;
+        this.f29811m3 = -1;
+        this.f29813o3 = 0.0f;
+        this.f29815q3 = true;
+        this.f29816r3 = new c6(this, 350L, qrVar);
+        this.f29817s3 = new c6(this, 350L, qrVar);
+        this.f29818t3 = new RectF();
+        this.f29819u3 = new RectF();
+        this.f29820v3 = new RectF();
+        setPadding(0, 0, AndroidUtilities.dp(2.0f), 0);
+        nw0 nw0Var = new nw0(this);
+        this.Z2 = nw0Var;
+        setAdapter(nw0Var);
+        s4.c0 c0Var = new s4.c0();
+        setLayoutManager(c0Var);
+        c0Var.j1(0);
+        setSelectorRadius(AndroidUtilities.dp(15.0f));
+        setSelectorType(1);
+        int i11 = org.telegram.ui.ActionBar.i6.f18926i6;
+        setSelectorDrawableColor(org.telegram.ui.ActionBar.i6.v0(i11, this.f25966p2));
+        paint.setColor(org.telegram.ui.ActionBar.i6.v0(i11, this.f25966p2));
+        setWillNotDraw(false);
+        setOnItemClickListener(new j(this, 15));
+        long currentTimeMillis = System.currentTimeMillis();
+        f29799x3.fetch(UserConfig.selectedAccount, Integer.valueOf(i10), new ci.s9(this, currentTimeMillis, 2));
+    }
+
+    private int getScrollToStartWidth() {
+        if (getChildCount() <= 0) {
+            return 0;
+        }
+        View childAt = getChildAt(0);
+        if (childAt instanceof rw0) {
+            return Math.max(0, getHeight() * (RecyclerView.R(childAt) - 1)) + this.f29805f3 + (-childAt.getLeft());
+        }
+        return -childAt.getLeft();
+    }
+
+    public void setCategoriesShownT(float f7) {
+        this.f29813o3 = f7;
+        for (int i10 = 0; i10 < getChildCount(); i10++) {
+            View childAt = getChildAt(i10);
+            if (childAt instanceof rw0) {
+                float cascade = AndroidUtilities.cascade(f7, (getChildCount() - 1) - RecyclerView.R(childAt), getChildCount() - 1, 3.0f);
+                if (cascade > 0.0f && childAt.getAlpha() <= 0.0f) {
+                    ((rw0) childAt).j();
+                }
+                childAt.setAlpha(cascade);
+                childAt.setScaleX(cascade);
+                childAt.setScaleY(cascade);
+            }
+        }
+        invalidate();
+    }
+
+    public static void x1(ww0 ww0Var, TLRPC.TL_messages_emojiGroups tL_messages_emojiGroups, long j3) {
+        ww0Var.Y2 = new sw0[tL_messages_emojiGroups.groups.size()];
+        boolean z10 = false;
+        for (int i10 = 0; i10 < tL_messages_emojiGroups.groups.size(); i10++) {
+            sw0[] sw0VarArr = ww0Var.Y2;
+            TLRPC.EmojiGroup emojiGroup = tL_messages_emojiGroups.groups.get(i10);
+            ?? obj = new Object();
+            obj.f27985c = emojiGroup.icon_emoji_id;
+            if (emojiGroup instanceof TLRPC.TL_emojiGroupPremium) {
+                obj.f27983a = "premium";
+            } else {
+                obj.f27983a = TextUtils.concat((CharSequence[]) emojiGroup.emoticons.toArray(new String[0])).toString();
+            }
+            obj.f27984b = emojiGroup instanceof TLRPC.TL_emojiGroupGreeting;
+            obj.d = emojiGroup.title;
+            sw0VarArr[i10] = obj;
+        }
+        ww0Var.Y2 = ww0Var.B1(ww0Var.Y2);
+        ww0Var.Z2.l();
+        ww0Var.setCategoriesShownT(0.0f);
+        boolean z11 = ww0Var.f29815q3;
+        if (System.currentTimeMillis() - j3 > 16) {
+            z10 = true;
+        }
+        ww0Var.G1(z11, z10);
+    }
+
+    public static void y1(ww0 ww0Var, float f7) {
+        ww0Var.setCategoriesShownT(f7);
+    }
+
+    public static void z1(RectF rectF, View view) {
+        float left = (view.getLeft() + view.getRight()) / 2.0f;
+        float top = (view.getTop() + view.getBottom()) / 2.0f;
+        float f7 = 1.0f;
+        float width = (view.getWidth() / 2.0f) - AndroidUtilities.dp(1.0f);
+        if (view instanceof rw0) {
+            rw0 rw0Var = (rw0) view;
+            f7 = com.google.android.gms.internal.vision.e2.z(1.0f, rw0Var.E, 0.15f, 0.85f) * rw0Var.f27700y;
+        }
+        float f10 = width * f7;
+        rectF.set(left - f10, top - f10, left + f10, top + f10);
+    }
+
+    public abstract boolean A1();
+
+    public final void C1() {
+        int dp = (AndroidUtilities.dp(34.0f) * this.f29811m3) + ((-getScrollToStartWidth()) - Math.max(0, this.f29806g3));
+        scrollBy(dp, 0);
+        post(new id((ci.k2) this, dp, 10));
+    }
+
+    public final void D1() {
+        v0(-getScrollToStartWidth(), 0, qr.h);
+    }
+
+    public void E1(int i10) {
+        boolean z10;
+        if (this.f29811m3 < 0 && i10 >= 0) {
+            this.f29817s3.d(i10, true);
+        }
+        this.f29811m3 = i10;
+        for (int i11 = 0; i11 < getChildCount(); i11++) {
+            View childAt = getChildAt(i11);
+            if (childAt instanceof rw0) {
+                int R = RecyclerView.R(childAt);
+                rw0 rw0Var = (rw0) childAt;
+                if (this.f29811m3 == R - 1) {
+                    z10 = true;
+                } else {
+                    z10 = false;
+                }
+                rw0Var.l(z10, true);
+            }
+        }
+        invalidate();
+    }
+
+    public final void F1(sw0 sw0Var) {
+        int i10;
+        if (this.Y2 != null) {
+            i10 = 0;
+            while (true) {
+                sw0[] sw0VarArr = this.Y2;
+                if (i10 >= sw0VarArr.length) {
+                    break;
+                } else if (sw0VarArr[i10] == sw0Var) {
+                    break;
+                } else {
+                    i10++;
+                }
+            }
+            E1(i10);
+        }
+        i10 = -1;
+        E1(i10);
+    }
+
+    public final void G1(boolean z10, boolean z11) {
+        int length;
+        this.f29815q3 = z10;
+        ?? r52 = z10;
+        if (this.Y2 == null) {
+            r52 = 0;
+        }
+        if (this.f29813o3 == ((float) r52)) {
+            return;
+        }
+        ValueAnimator valueAnimator = this.f29814p3;
+        if (valueAnimator != null) {
+            valueAnimator.cancel();
+            this.f29814p3 = null;
+        }
+        float f7 = 0.0f;
+        if (z11) {
+            float f10 = this.f29813o3;
+            if (r52 != 0) {
+                f7 = 1.0f;
+            }
+            ValueAnimator ofFloat = ValueAnimator.ofFloat(f10, f7);
+            this.f29814p3 = ofFloat;
+            ofFloat.addUpdateListener(new h70(this, 23));
+            this.f29814p3.addListener(new jd0(this, 16));
+            this.f29814p3.setInterpolator(qr.h);
+            ValueAnimator valueAnimator2 = this.f29814p3;
+            sw0[] sw0VarArr = this.Y2;
+            if (sw0VarArr == null) {
+                length = 5;
+            } else {
+                length = sw0VarArr.length;
+            }
+            valueAnimator2.setDuration(length * 120);
+            this.f29814p3.start();
+            return;
+        }
+        if (r52 != 0) {
+            f7 = 1.0f;
+        }
+        setCategoriesShownT(f7);
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f32356a) {
-            case 0:
-                this.f32357b.f32759s.setVisibility(8);
-                return;
-            case 1:
-                this.f32357b.f32759s.setVisibility(8);
-                return;
-            default:
-                this.f32357b.f32759s.setVisibility(8);
-                return;
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        if (motionEvent.getAction() == 0) {
+            View E = E(motionEvent.getX(), motionEvent.getY());
+            if (!(E instanceof rw0) || E.getAlpha() < 0.5f) {
+                return false;
+            }
         }
+        return super.dispatchTouchEvent(motionEvent);
+    }
+
+    @Override
+    public final void draw(android.graphics.Canvas r13) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ww0.draw(android.graphics.Canvas):void");
+    }
+
+    public int getCategoryIndex() {
+        return this.f29811m3;
+    }
+
+    public sw0 getSelectedCategory() {
+        int i10;
+        sw0[] sw0VarArr = this.Y2;
+        if (sw0VarArr != null && (i10 = this.f29811m3) >= 0 && i10 < sw0VarArr.length) {
+            return sw0VarArr[i10];
+        }
+        return null;
+    }
+
+    @Override
+    public final void k0(int i10, int i11) {
+        boolean z10;
+        boolean z11;
+        Utilities.Callback callback;
+        int i12 = 0;
+        if (getChildCount() > 0) {
+            View childAt = getChildAt(0);
+            z11 = true;
+            if (childAt instanceof rw0) {
+                z10 = true;
+            } else {
+                if (childAt.getRight() > this.f29806g3) {
+                    z11 = false;
+                }
+                z10 = false;
+            }
+        } else {
+            z10 = false;
+            z11 = false;
+        }
+        boolean z12 = this.j3;
+        if (z12 != z11) {
+            this.j3 = z11;
+            Utilities.Callback callback2 = this.f29807h3;
+            if (callback2 != null) {
+                if (z11) {
+                    i12 = Math.max(0, getScrollToStartWidth() - (this.f29805f3 - this.f29806g3));
+                }
+                callback2.run(Integer.valueOf(i12));
+            }
+            invalidate();
+        } else if (z12 && (callback = this.f29807h3) != null) {
+            callback.run(Integer.valueOf(Math.max(0, getScrollToStartWidth() - (this.f29805f3 - this.f29806g3))));
+        }
+        if (this.f29809k3 != z10) {
+            this.f29809k3 = z10;
+            Utilities.Callback callback3 = this.f29808i3;
+            if (callback3 != null) {
+                callback3.run(Boolean.valueOf(z10));
+            }
+            invalidate();
+        }
+    }
+
+    @Override
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        G1(this.f29815q3, false);
+    }
+
+    @Override
+    public final void onConfigurationChanged(Configuration configuration) {
+        super.onConfigurationChanged(configuration);
+        ci.eb ebVar = this.f29810l3;
+        if (ebVar != null) {
+            ebVar.requestLayout();
+        }
+    }
+
+    @Override
+    public void setBackgroundColor(int i10) {
+        if (this.f29803d3 == null) {
+            this.f29803d3 = new Paint(1);
+        }
+        this.f29803d3.setColor(i10);
+        Drawable mutate = getContext().getResources().getDrawable(R.drawable.gradient_right).mutate();
+        this.f29801b3 = mutate;
+        PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
+        mutate.setColorFilter(new PorterDuffColorFilter(i10, mode));
+        Drawable mutate2 = getContext().getResources().getDrawable(R.drawable.gradient_left).mutate();
+        this.f29802c3 = mutate2;
+        mutate2.setColorFilter(new PorterDuffColorFilter(i10, mode));
+    }
+
+    public void setDontOccupyWidth(int i10) {
+        this.f29806g3 = i10;
+    }
+
+    public void setOnCategoryClick(Utilities.Callback<sw0> callback) {
+        this.f29812n3 = callback;
+    }
+
+    public void setOnScrollFully(Utilities.Callback<Boolean> callback) {
+        this.f29808i3 = callback;
+    }
+
+    public void setOnScrollIntoOccupiedWidth(Utilities.Callback<Integer> callback) {
+        this.f29807h3 = callback;
+    }
+
+    public void setShownButtonsAtStart(float f7) {
+        this.X2 = f7;
+    }
+
+    public sw0[] B1(sw0[] sw0VarArr) {
+        return sw0VarArr;
     }
 }

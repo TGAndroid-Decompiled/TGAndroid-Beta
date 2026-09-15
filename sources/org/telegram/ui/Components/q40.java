@@ -3,16 +3,16 @@ package org.telegram.ui.Components;
 import android.content.Intent;
 import java.util.ArrayList;
 import org.telegram.messenger.FileLog;
-public final class q40 implements org.telegram.ui.jq0 {
-    public final u40 f29566a;
+public final class q40 implements org.telegram.ui.iq0 {
+    public final u40 f27246a;
 
     public q40(u40 u40Var) {
-        this.f29566a = u40Var;
+        this.f27246a = u40Var;
     }
 
     @Override
     public final void a(ArrayList arrayList) {
-        u40.b(this.f29566a, false, arrayList);
+        u40.b(this.f27246a, false, arrayList);
     }
 
     @Override
@@ -20,9 +20,9 @@ public final class q40 implements org.telegram.ui.jq0 {
         try {
             Intent intent = new Intent("android.intent.action.GET_CONTENT");
             intent.setType("image/*");
-            this.f29566a.f30799a.startActivityForResult(intent, 14);
-        } catch (Exception e7) {
-            FileLog.e(e7);
+            this.f27246a.f28283a.startActivityForResult(intent, 14);
+        } catch (Exception e) {
+            FileLog.e(e);
         }
     }
 }

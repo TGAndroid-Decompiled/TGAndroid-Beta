@@ -1,16 +1,16 @@
 package org.telegram.ui;
 public final class e40 implements z4.e {
-    public final j60 f35923a;
+    public final i60 f33209a;
 
-    public e40(j60 j60Var) {
-        this.f35923a = j60Var;
+    public e40(i60 i60Var) {
+        this.f33209a = i60Var;
     }
 
     @Override
-    public final void b(int i10) {
-        j60 j60Var = this.f35923a;
-        j60Var.f37515b.D0.k(i10);
-        b40 b40Var = j60Var.D2;
+    public final void a(int i10) {
+        i60 i60Var = this.f33209a;
+        i60Var.f34412b.D0.k(i10);
+        b40 b40Var = i60Var.D2;
         b40Var.J = b40Var.L;
         b40Var.K = b40Var.M;
         b40Var.N = 0.0f;
@@ -23,6 +23,6 @@ public final class e40 implements z4.e {
     }
 
     @Override
-    public final void a(float f7, int i10, int i11) {
+    public final void b(float f7, int i10, int i11) {
     }
 }

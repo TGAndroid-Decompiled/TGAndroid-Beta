@@ -1,54 +1,67 @@
 package org.telegram.ui.Components;
 
-import org.telegram.ui.bb1;
-public final class to implements Runnable {
-    public final int f30668a;
-    public final lp f30669b;
+import android.animation.ValueAnimator;
+import android.widget.FrameLayout;
+import org.telegram.messenger.AndroidUtilities;
+public abstract class to extends FrameLayout {
+    public h81 f28155a;
+    public float f28156b;
+    public boolean f28157c;
+    public float d;
+    public ValueAnimator e;
 
-    public to(lp lpVar, int i10) {
-        this.f30668a = i10;
-        this.f30669b = lpVar;
+    public abstract void a(boolean z10);
+
+    public final void b(boolean z10) {
+        float f7;
+        this.f28157c = z10;
+        ValueAnimator valueAnimator = this.e;
+        if (valueAnimator != null) {
+            this.e = null;
+            valueAnimator.cancel();
+        }
+        if (z10) {
+            setVisibility(0);
+        }
+        float f10 = this.d;
+        if (z10) {
+            f7 = 1.0f;
+        } else {
+            f7 = 0.0f;
+        }
+        ValueAnimator ofFloat = ValueAnimator.ofFloat(f10, f7);
+        this.e = ofFloat;
+        ofFloat.addUpdateListener(new i6(this, 12));
+        this.e.setInterpolator(qr.h);
+        this.e.setDuration(320L);
+        this.e.addListener(new aa(4, this, z10));
+        this.e.start();
+    }
+
+    public int getCurrentHeight() {
+        return (int) (getMeasuredHeight() * this.f28156b);
     }
 
     @Override
-    public final void run() {
-        switch (this.f30668a) {
-            case 0:
-                this.f30669b.h.l();
-                return;
-            case 1:
-                this.f30669b.s(true);
-                return;
-            case 2:
-                lp lpVar = this.f30669b;
-                org.telegram.ui.co coVar = lpVar.v;
-                org.telegram.ui.ActionBar.n2 d02 = bb1.d0(coVar.getMessagesController().getChat(Long.valueOf(-coVar.a())), true);
-                ?? obj = new Object();
-                obj.f21142a = true;
-                d02.setResourceProvider(coVar.getResourceProvider());
-                obj.f21144c = new ue(3);
-                obj.d = new to(lpVar, 3);
-                obj.f21143b = new to(lpVar, 4);
-                obj.f21145e = true;
-                lpVar.X = d02;
-                coVar.showAsSheet(d02, obj);
-                return;
-            case 3:
-                this.f30669b.u();
-                return;
-            case 4:
-                this.f30669b.X = null;
-                return;
-            case 5:
-                this.f30669b.u();
-                return;
-            case 6:
-                this.f30669b.X = null;
-                return;
-            default:
-                lp lpVar2 = this.f30669b;
-                lpVar2.U.f(lpVar2.G, true);
-                return;
+    public final boolean isShown() {
+        return this.f28157c;
+    }
+
+    public void setShown(float f7) {
+        this.f28156b = f7;
+        h81 h81Var = this.f28155a;
+        if (h81Var != null) {
+            h81Var.setPivotX(h81Var.getWidth() / 2.0f);
+            this.f28155a.setPivotY(0.0f);
+            this.f28155a.setScaleX(AndroidUtilities.lerp(0.8f, 1.0f, f7));
+            this.f28155a.setScaleY(AndroidUtilities.lerp(0.8f, 1.0f, f7));
         }
+        setAlpha(f7);
+        invalidate();
+    }
+
+    public void setTabs(h81 h81Var) {
+        this.f28155a = h81Var;
+        addView(h81Var, w7.x5.c(-1.0f, -1));
     }
 }

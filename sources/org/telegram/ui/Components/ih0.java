@@ -10,7 +10,7 @@ import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-public final class ih0 extends x9 implements lv0 {
+public final class ih0 extends u9 implements mv0 {
     public final int G;
     public RadialProgress2 H;
     public ValueAnimator I;
@@ -49,31 +49,31 @@ public final class ih0 extends x9 implements lv0 {
     @Override
     public final void onDraw(Canvas canvas) {
         Canvas canvas2;
-        t90 t90Var;
+        s90 s90Var;
         long j3;
         oh0 oh0Var = this.P;
         float[] fArr = oh0Var.O0;
         Path path = oh0Var.M0;
-        ArrayList arrayList = oh0Var.f29055b1;
+        ArrayList arrayList = oh0Var.f26788b1;
         RectF rectF = oh0Var.N0;
-        org.telegram.ui.ov0 ov0Var = oh0Var.f29061h1;
-        if (ov0Var == null || !ov0Var.f39337n) {
+        org.telegram.ui.pv0 pv0Var = oh0Var.f26794h1;
+        if (pv0Var == null || !pv0Var.f36696n) {
             if (this.H != null) {
                 int k10 = oh0Var.D0.k(this.M);
-                if (oh0Var.f29062i1) {
+                if (oh0Var.f26795i1) {
                     k10--;
                 }
                 Drawable drawable = getImageReceiver().getDrawable();
                 long j10 = 0;
-                if (k10 >= arrayList.size() || arrayList.get(k10) == null ? !(drawable == null || (this.L && (!(drawable instanceof d6) || ((d6) drawable).d[4] <= 0))) : ((Float) arrayList.get(k10)).floatValue() >= 1.0f) {
+                if (k10 >= arrayList.size() || arrayList.get(k10) == null ? !(drawable == null || (this.L && (!(drawable instanceof b6) || ((b6) drawable).d[4] <= 0))) : ((Float) arrayList.get(k10)).floatValue() >= 1.0f) {
                     if (this.I == null) {
                         RadialProgress2 radialProgress2 = this.H;
-                        if (radialProgress2.f24072c) {
-                            t90Var = radialProgress2.f24077j;
+                        if (radialProgress2.f22127c) {
+                            s90Var = radialProgress2.f22131j;
                         } else {
-                            t90Var = radialProgress2.f24076i;
+                            s90Var = radialProgress2.f22130i;
                         }
-                        if (t90Var.f30578w < 1.0f) {
+                        if (s90Var.f27819w < 1.0f) {
                             radialProgress2.o(1.0f, true);
                             j10 = 100;
                         }
@@ -82,9 +82,9 @@ public final class ih0 extends x9 implements lv0 {
                         this.I = ofFloat;
                         ofFloat.setStartDelay(j10);
                         this.I.setDuration(this.J * 250.0f);
-                        this.I.setInterpolator(pr.f29466f);
+                        this.I.setInterpolator(qr.f27423f);
                         this.I.addUpdateListener(new h70(this, 4));
-                        this.I.addListener(new fi.v2(this, k10, 8));
+                        this.I.addListener(new ei.v2(this, k10, 8));
                         this.I.start();
                     }
                 } else {
@@ -98,34 +98,34 @@ public final class ih0 extends x9 implements lv0 {
                             j3 = 750;
                         }
                         if (currentTimeMillis <= 250 + j3 && currentTimeMillis > j3) {
-                            this.H.E = pr.f29466f.getInterpolation(((float) (currentTimeMillis - j3)) / 250.0f);
+                            this.H.E = qr.f27423f.getInterpolation(((float) (currentTimeMillis - j3)) / 250.0f);
                         }
                     }
-                    if (oh0Var.f29060g1) {
+                    if (oh0Var.f26793g1) {
                         invalidate();
                     } else {
                         postInvalidateOnAnimation();
                     }
                     invalidate();
                 }
-                int i10 = oh0Var.f29065m1;
-                if (i10 == 0 && oh0Var.f29066n1 == 0) {
+                int i10 = oh0Var.f26798m1;
+                if (i10 == 0 && oh0Var.f26799n1 == 0) {
                     canvas.drawRect(0.0f, 0.0f, getWidth(), getHeight(), this.N);
                     canvas2 = canvas;
                 } else {
                     canvas2 = canvas;
-                    int i11 = oh0Var.f29066n1;
+                    int i11 = oh0Var.f26799n1;
                     Paint paint = this.N;
                     if (i10 == i11) {
                         rectF.set(0.0f, 0.0f, getWidth(), getHeight());
-                        float f7 = oh0Var.f29065m1;
+                        float f7 = oh0Var.f26798m1;
                         canvas2.drawRoundRect(rectF, f7, f7, paint);
                     } else {
                         path.reset();
                         rectF.set(0.0f, 0.0f, getWidth(), getHeight());
                         for (int i12 = 0; i12 < 4; i12++) {
-                            fArr[i12] = oh0Var.f29065m1;
-                            fArr[i12 + 4] = oh0Var.f29066n1;
+                            fArr[i12] = oh0Var.f26798m1;
+                            fArr[i12 + 4] = oh0Var.f26799n1;
                         }
                         path.addRoundRect(rectF, fArr, Path.Direction.CW);
                         canvas2.drawPath(path, paint);
@@ -147,7 +147,7 @@ public final class ih0 extends x9 implements lv0 {
         int i14;
         super.onSizeChanged(i10, i11, i12, i13);
         if (this.H != null) {
-            if (this.P.f29073z0.getOccupyStatusBar()) {
+            if (this.P.f26806z0.getOccupyStatusBar()) {
                 i14 = AndroidUtilities.statusBarHeight;
             } else {
                 i14 = 0;
@@ -157,7 +157,7 @@ public final class ih0 extends x9 implements lv0 {
             RadialProgress2 radialProgress2 = this.H;
             int i15 = this.G;
             int i16 = (i11 - currentActionBarHeight) - dp2;
-            radialProgress2.q((i10 - i15) / 2, i2.g.C(i16, i15, 2, currentActionBarHeight), (i10 + i15) / 2, ((i16 + i15) / 2) + currentActionBarHeight);
+            radialProgress2.q((i10 - i15) / 2, hg.k0.C(i16, i15, 2, currentActionBarHeight), (i10 + i15) / 2, ((i16 + i15) / 2) + currentActionBarHeight);
         }
     }
 
@@ -174,7 +174,7 @@ public final class ih0 extends x9 implements lv0 {
     public final void invalidate() {
         super.invalidate();
         oh0 oh0Var = this.P;
-        if (oh0Var.f29060g1) {
+        if (oh0Var.f26793g1) {
             oh0Var.invalidate();
         }
         Runnable runnable = this.O;

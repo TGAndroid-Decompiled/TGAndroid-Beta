@@ -1,106 +1,194 @@
 package ah;
 
-import org.telegram.messenger.Utilities;
-import org.telegram.ui.Cells.p6;
-public final class d {
-    public float f471a;
-    public float f472b;
-    public float f473c;
-    public float d;
-    public float f474e;
-    public float f475f;
-    public float f476g;
-    public float h;
-    public long f477i;
-    public boolean f478j;
-    public float f479k;
-    public final e f480l;
+import android.graphics.Bitmap;
+import android.graphics.BitmapShader;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.ColorFilter;
+import android.graphics.ComposeShader;
+import android.graphics.LinearGradient;
+import android.graphics.Matrix;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
+import android.graphics.Rect;
+import android.graphics.Shader;
+import android.graphics.drawable.Drawable;
+import android.os.Build;
+import org.telegram.messenger.AndroidUtilities;
+public final class d extends Drawable {
+    public final Paint f426a;
+    public final ch.d f427b;
+    public final Matrix f428c;
+    public LinearGradient d;
+    public final Matrix e;
+    public LinearGradient f429f;
+    public BitmapShader f430g;
+    public ComposeShader h;
+    public final Matrix f431i;
+    public final Paint f432j;
+    public Bitmap f433k;
+    public int f434l;
+    public boolean f435m;
+    public final Paint f436n;
+    public int f437o;
+    public boolean f438p;
+    public int f439q;
 
-    public d(e eVar) {
-        this.f480l = eVar;
+    public d(ch.d dVar) {
+        Paint paint = new Paint(1);
+        this.f426a = paint;
+        this.f428c = new Matrix();
+        this.e = new Matrix();
+        this.f431i = new Matrix();
+        Paint paint2 = new Paint(1);
+        this.f432j = paint2;
+        this.f436n = new Paint(1);
+        this.f439q = 255;
+        this.f427b = dVar;
+        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_IN));
+        paint2.setFilterBitmap(true);
+        b(AndroidUtilities.dp(40.0f), false);
     }
 
-    public final void a() {
-        e eVar;
-        float f7;
-        float f10 = 0.0f;
-        this.h = 0.0f;
-        float b10 = b();
-        float c10 = c();
-        int i10 = 0;
-        while (true) {
-            eVar = this.f480l;
-            if (i10 >= 20) {
-                break;
+    public static LinearGradient a(int i10, boolean z10) {
+        int alpha = Color.alpha(i10);
+        if (z10) {
+            return new LinearGradient(0.0f, 0.0f, 0.0f, 1.0f, new int[]{i0.a.k(i10, 0), i0.a.k(i10, (alpha * 96) / 285), i0.a.k(i10, (alpha * 176) / 285), i0.a.k(i10, (alpha * 232) / 285)}, (float[]) null, Shader.TileMode.CLAMP);
+        }
+        return new LinearGradient(0.0f, 0.0f, 0.0f, 1.0f, new int[]{i0.a.k(i10, 0), i0.a.k(i10, (alpha * 96) / 255), i0.a.k(i10, (alpha * 176) / 255), i0.a.k(i10, (alpha * 232) / 255), i0.a.k(i10, (alpha * 255) / 255)}, (float[]) null, Shader.TileMode.CLAMP);
+    }
+
+    public final void b(int i10, boolean z10) {
+        if (this.f434l == i10 && this.f435m == z10) {
+            return;
+        }
+        this.f434l = i10;
+        this.f435m = z10;
+        LinearGradient a2 = a(-16777216, z10);
+        this.d = a2;
+        this.f426a.setShader(a2);
+        this.f436n.setShader(null);
+        Matrix matrix = this.f428c;
+        matrix.reset();
+        matrix.setScale(1.0f, i10);
+        if (i10 < 0) {
+            matrix.postTranslate(0.0f, -i10);
+        }
+        this.d.setLocalMatrix(matrix);
+    }
+
+    @Override
+    public final void draw(Canvas canvas) {
+        int i10;
+        boolean z10;
+        Rect bounds = getBounds();
+        if (!bounds.isEmpty() && this.f439q != 0) {
+            ch.d dVar = this.f427b;
+            fh.a i11 = dVar.i();
+            while (i11 instanceof fh.e) {
+                i11 = ((fh.e) i11).f9076a;
             }
-            float b11 = b();
-            float c11 = c();
-            float f11 = 2.1474836E9f;
-            for (int i11 = 0; i11 < eVar.f496c.size(); i11++) {
-                float f12 = ((d) eVar.f496c.get(i11)).f473c - b11;
-                float f13 = ((d) eVar.f496c.get(i11)).d - c11;
-                float f14 = (f13 * f13) + (f12 * f12);
-                if (f14 < f11) {
-                    f11 = f14;
+            boolean z11 = this.f438p;
+            Matrix matrix = this.f428c;
+            int i12 = 0;
+            Matrix matrix2 = this.e;
+            if (!z11 && (i11 instanceof fh.c)) {
+                int color = ((fh.c) i11).f9068a.getColor();
+                int i13 = this.f437o;
+                Paint paint = this.f436n;
+                if (i13 != color || this.f429f == null) {
+                    LinearGradient a2 = a(color, this.f435m);
+                    this.f429f = a2;
+                    this.f437o = color;
+                    paint.setShader(a2);
                 }
+                if (this.f434l < 0) {
+                    i12 = bounds.height() + this.f434l;
+                }
+                matrix2.set(matrix);
+                matrix2.postTranslate(bounds.left, bounds.top + i12);
+                this.f429f.setLocalMatrix(matrix2);
+                paint.setAlpha(this.f439q);
+                canvas.drawRect(bounds, paint);
+            } else if (!z11 && (i11 instanceof fh.b) && (i10 = Build.VERSION.SDK_INT) >= 28) {
+                fh.b bVar = (fh.b) i11;
+                Bitmap bitmap = bVar.d;
+                if (bitmap != null) {
+                    boolean z12 = true;
+                    if (this.f437o == -16777216 && this.f429f != null) {
+                        z10 = false;
+                    } else {
+                        this.f429f = a(-16777216, this.f435m);
+                        this.f437o = -16777216;
+                        z10 = true;
+                    }
+                    if (this.f430g != null && this.f433k == bitmap) {
+                        z12 = z10;
+                    } else {
+                        this.f433k = bitmap;
+                        Shader.TileMode tileMode = Shader.TileMode.CLAMP;
+                        BitmapShader bitmapShader = new BitmapShader(bitmap, tileMode, tileMode);
+                        this.f430g = bitmapShader;
+                        if (i10 >= 33) {
+                            bitmapShader.setFilterMode(2);
+                        }
+                    }
+                    Paint paint2 = this.f432j;
+                    if (z12 || this.h == null) {
+                        ComposeShader composeShader = new ComposeShader(this.f430g, this.f429f, PorterDuff.Mode.DST_IN);
+                        this.h = composeShader;
+                        paint2.setShader(composeShader);
+                    }
+                    if (this.f434l < 0) {
+                        i12 = bounds.height() + this.f434l;
+                    }
+                    matrix2.set(matrix);
+                    matrix2.postTranslate(bounds.left, bounds.top + i12);
+                    this.f429f.setLocalMatrix(matrix2);
+                    Matrix matrix3 = bVar.f9064b;
+                    Matrix matrix4 = this.f431i;
+                    matrix4.set(matrix3);
+                    matrix4.postTranslate(-dVar.f4277a, -dVar.f4278b);
+                    this.f430g.setLocalMatrix(matrix4);
+                    paint2.setAlpha(this.f439q);
+                    canvas.drawRect(bounds, paint2);
+                }
+            } else {
+                int saveLayerAlpha = canvas.saveLayerAlpha(bounds.left, bounds.top, bounds.right, bounds.bottom, this.f439q);
+                if (this.f434l < 0) {
+                    i12 = bounds.height() + this.f434l;
+                }
+                dVar.draw(canvas);
+                canvas.translate(bounds.left, bounds.top + i12);
+                canvas.drawRect(0.0f, -i12, bounds.width(), bounds.height() - i12, this.f426a);
+                canvas.restoreToCount(saveLayerAlpha);
             }
-            if (f11 > f10) {
-                b10 = b11;
-                c10 = c11;
-                f10 = f11;
-            }
-            i10++;
         }
-        if (eVar.f498f) {
-            f7 = 0.8f;
-        } else {
-            f7 = 0.5f;
-        }
-        this.f473c = b10;
-        if (b10 > eVar.f495b.width() * f7) {
-            this.f471a = eVar.f495b.width() * f7;
-        } else {
-            float width = eVar.f495b.width() * f7;
-            this.f471a = width;
-            if (this.f473c > width) {
-                this.f473c = width - 0.1f;
-            }
-        }
-        float height = eVar.f495b.height() * 0.1f;
-        this.f472b = a4.a.e(p6.c(Utilities.fastRandom, 100), 100.0f, height, eVar.f495b.height() * 0.45f);
-        if (eVar.f498f) {
-            float width2 = eVar.f495b.width() * 0.1f;
-            float e7 = a4.a.e(p6.c(Utilities.fastRandom, 100), 100.0f, width2, eVar.f495b.width() * 0.05f);
-            this.f475f = e7;
-            this.f476g = (((p6.c(Utilities.fastRandom, 100) / 100.0f) * 1.5f) + 1.5f) * e7;
-            float height2 = eVar.f495b.height() * 0.1f;
-            this.d = a4.a.e(p6.c(Utilities.fastRandom, 100), 100.0f, height2, this.f475f / 2.0f);
-            this.f474e = eVar.f495b.height() + this.f475f;
-            this.f477i = Math.abs(Utilities.fastRandom.nextInt() % 600) + 1000;
-        } else {
-            float width3 = eVar.f495b.width() * 0.1f;
-            float e10 = a4.a.e(p6.c(Utilities.fastRandom, 100), 100.0f, width3, eVar.f495b.width() * 0.05f);
-            this.f475f = e10;
-            this.f476g = (((p6.c(Utilities.fastRandom, 100) / 100.0f) * 0.5f) + 1.5f) * e10;
-            this.d = c10;
-            this.f474e = c10 + eVar.f495b.height();
-            this.f477i = 1800L;
-        }
-        this.f477i = ((float) this.f477i) / 1.75f;
-        this.f478j = Utilities.fastRandom.nextBoolean();
-        this.f479k = ((Utilities.fastRandom.nextInt() % 100) / 100.0f) * 20.0f;
     }
 
-    public final float b() {
-        e eVar = this.f480l;
-        if (eVar.f498f) {
-            float width = eVar.f495b.width() * 1.5f;
-            return a4.a.e(p6.c(Utilities.fastRandom, 100), 100.0f, width, eVar.f495b.width() * (-0.25f));
-        }
-        return (p6.c(Utilities.fastRandom, 100) / 100.0f) * eVar.f495b.width();
+    @Override
+    public final int getAlpha() {
+        return this.f439q;
     }
 
-    public final float c() {
-        return (p6.c(Utilities.fastRandom, 100) / 100.0f) * this.f480l.f495b.height() * 0.5f;
+    @Override
+    public final int getOpacity() {
+        return 0;
+    }
+
+    @Override
+    public final void onBoundsChange(Rect rect) {
+        super.onBoundsChange(rect);
+        this.f427b.setBounds(rect);
+    }
+
+    @Override
+    public final void setAlpha(int i10) {
+        this.f439q = i10;
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

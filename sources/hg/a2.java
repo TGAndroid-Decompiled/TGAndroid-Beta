@@ -1,14 +1,21 @@
 package hg;
 
-import java.util.ArrayList;
-public interface a2 {
-    a0.i G();
+import java.util.HashSet;
+import org.telegram.messenger.MessageObject;
+public final class a2 {
+    public int f10217a;
+    public String f10218b;
+    public int f10219c;
+    public int d;
+    public MessageObject e;
+    public int f10220f;
+    public boolean f10221g;
+    public final HashSet h = new HashSet();
 
-    boolean Q(int i10);
-
-    void Y(ArrayList arrayList);
-
-    void f(int i10);
-
-    a0.i w();
+    public final int a() {
+        if (this.f10221g) {
+            return this.h.size();
+        }
+        return this.f10220f;
+    }
 }

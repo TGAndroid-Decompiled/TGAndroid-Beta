@@ -1,61 +1,68 @@
 package org.telegram.ui;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.tgnet.TLObject;
+import android.view.View;
 import org.telegram.tgnet.TLRPC;
-public final class kr implements or {
-    public final vr f38115a;
+import org.telegram.ui.Components.ChatAttachAlertPhotoLayout;
+public final class kr implements q0.a {
+    public final int f35253a;
 
-    public kr(vr vrVar) {
-        this.f38115a = vrVar;
+    public kr(int i10) {
+        this.f35253a = i10;
     }
 
     @Override
-    public final void a(TLRPC.User user) {
-        vr.c0(this.f38115a, user);
-    }
-
-    @Override
-    public final void b(long j3) {
-        vr vrVar = this.f38115a;
-        ArrayList arrayList = vrVar.F;
-        a0.i iVar = vrVar.K;
-        TLRPC.User user = vrVar.getMessagesController().getUser(Long.valueOf(j3));
-        if (user != null) {
-            AndroidUtilities.runOnUIThread(new fh(24, this, user), 200L);
+    public final void accept(Object obj) {
+        boolean z10;
+        boolean z11;
+        long j3;
+        boolean z12 = true;
+        switch (this.f35253a) {
+            case 0:
+                TLRPC.User user = (TLRPC.User) obj;
+                return;
+            case 1:
+                View view = (View) obj;
+                boolean z13 = ChatAttachAlertPhotoLayout.f21898q1;
+                if (view instanceof org.telegram.ui.Cells.s5) {
+                    org.telegram.ui.Cells.s5 s5Var = (org.telegram.ui.Cells.s5) view;
+                    if (s5Var.getPhotoEntry() != null && s5Var.getPhotoEntry().hasSpoiler) {
+                        z10 = true;
+                    } else {
+                        z10 = false;
+                    }
+                    s5Var.c(z10, Float.valueOf(250.0f));
+                    if (s5Var.getPhotoEntry() != null && s5Var.getPhotoEntry().isHighQuality()) {
+                        z11 = true;
+                    } else {
+                        z11 = false;
+                    }
+                    s5Var.setHighQuality(z11);
+                    if (s5Var.getPhotoEntry() != null) {
+                        j3 = s5Var.getPhotoEntry().starsAmount;
+                    } else {
+                        j3 = 0;
+                    }
+                    if (ChatAttachAlertPhotoLayout.f21900s1.size() <= 1) {
+                        z12 = false;
+                    }
+                    s5Var.f(j3, z12);
+                    return;
+                }
+                return;
+            case 2:
+                View view2 = (View) obj;
+                if (view2 instanceof org.telegram.ui.Components.hn0) {
+                    ((org.telegram.ui.Components.hn0) view2).a(false, true);
+                    return;
+                }
+                return;
+            default:
+                View view3 = (View) obj;
+                if (view3 instanceof org.telegram.ui.Components.hn0) {
+                    ((org.telegram.ui.Components.hn0) view3).a(false, true);
+                    return;
+                }
+                return;
         }
-        if (iVar.f(j3) == null) {
-            pr w02 = vrVar.w0();
-            TLRPC.TL_channelParticipantAdmin tL_channelParticipantAdmin = new TLRPC.TL_channelParticipantAdmin();
-            TLRPC.TL_peerUser tL_peerUser = new TLRPC.TL_peerUser();
-            tL_channelParticipantAdmin.peer = tL_peerUser;
-            tL_peerUser.user_id = user.f20016id;
-            tL_channelParticipantAdmin.date = vrVar.getConnectionsManager().getCurrentTime();
-            tL_channelParticipantAdmin.promoted_by = vrVar.getAccountInstance().getUserConfig().clientUserId;
-            arrayList.add(tL_channelParticipantAdmin);
-            iVar.k(tL_channelParticipantAdmin, user.f20016id);
-            Collections.sort(arrayList, new f6(6));
-            vrVar.A0(w02);
-        }
-    }
-
-    @Override
-    public final void c(long j3, TLObject tLObject) {
-        vr vrVar = this.f38115a;
-        ArrayList arrayList = vrVar.F;
-        a0.i iVar = vrVar.K;
-        if (tLObject != null && iVar.f(j3) == null) {
-            pr w02 = vrVar.w0();
-            arrayList.add(tLObject);
-            iVar.k(tLObject, j3);
-            Collections.sort(arrayList, new f6(6));
-            vrVar.A0(w02);
-        }
-    }
-
-    @Override
-    public final void d(long j3) {
     }
 }

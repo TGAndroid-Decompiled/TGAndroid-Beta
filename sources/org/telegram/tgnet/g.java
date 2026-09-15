@@ -6,18 +6,18 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.play.core.integrity.IntegrityTokenResponse;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.g5;
+import org.telegram.messenger.h5;
 public final class g implements OnSuccessListener, OnFailureListener, ImageReceiver.ImageReceiverDelegate {
-    public final int f20052a;
-    public final long f20053b;
-    public final int f20054c;
+    public final int f18293a;
+    public final long f18294b;
+    public final int f18295c;
     public final Object d;
 
     public g(int i10, int i11, long j3, Utilities.Callback callback) {
-        this.f20052a = i10;
+        this.f18293a = i10;
         this.d = callback;
-        this.f20054c = i11;
-        this.f20053b = j3;
+        this.f18295c = i11;
+        this.f18294b = j3;
     }
 
     @Override
@@ -27,28 +27,28 @@ public final class g implements OnSuccessListener, OnFailureListener, ImageRecei
 
     @Override
     public void didSetImageBitmap(int i10, String str, Drawable drawable) {
-        g5.a(this, i10, str, drawable);
+        h5.a(this, i10, str, drawable);
     }
 
     @Override
     public void onAnimationReady(ImageReceiver imageReceiver) {
-        g5.b(this, imageReceiver);
+        h5.b(this, imageReceiver);
     }
 
     @Override
     public void onFailure(Exception exc) {
-        ConnectionsManager.lambda$onIntegrityCheckClassic$26(this.f20052a, this.f20053b, this.f20054c, (String) this.d, exc);
+        ConnectionsManager.lambda$onIntegrityCheckClassic$26(this.f18293a, this.f18294b, this.f18295c, (String) this.d, exc);
     }
 
     @Override
     public void onSuccess(Object obj) {
-        ConnectionsManager.lambda$onIntegrityCheckClassic$25(this.f20052a, this.f20053b, this.f20054c, (String) this.d, (IntegrityTokenResponse) obj);
+        ConnectionsManager.lambda$onIntegrityCheckClassic$25(this.f18293a, this.f18294b, this.f18295c, (String) this.d, (IntegrityTokenResponse) obj);
     }
 
     public g(int i10, long j3, String str, int i11) {
-        this.f20052a = i10;
-        this.f20053b = j3;
-        this.f20054c = i11;
+        this.f18293a = i10;
+        this.f18294b = j3;
+        this.f18295c = i11;
         this.d = str;
     }
 }

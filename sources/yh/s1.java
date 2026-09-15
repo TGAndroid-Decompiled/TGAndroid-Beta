@@ -1,45 +1,41 @@
 package yh;
 
-import java.util.ArrayList;
-import org.telegram.messenger.MessagesController;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.Components.nr0;
-import zh.i5;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.DialogObject;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.ui.Components.oc;
+import org.telegram.ui.Components.vc;
+import org.telegram.ui.bo;
 public final class s1 implements Runnable {
-    public final int f50539a;
-    public final nr0 f50540b;
+    public final int f47762a;
+    public final a4 f47763b;
+    public final bo f47764c;
+    public final long d;
 
-    public s1(nr0 nr0Var, int i10) {
-        this.f50539a = i10;
-        this.f50540b = nr0Var;
+    public s1(a4 a4Var, bo boVar, long j3, int i10) {
+        this.f47762a = i10;
+        this.f47763b = a4Var;
+        this.f47764c = boVar;
+        this.d = j3;
     }
 
     @Override
     public final void run() {
-        switch (this.f50539a) {
+        int i10 = this.f47762a;
+        long j3 = this.d;
+        bo boVar = this.f47764c;
+        a4 a4Var = this.f47763b;
+        switch (i10) {
             case 0:
-                this.f50540b.a();
-                return;
-            case 1:
-                this.f50540b.setReorderingCollections(true);
+                oc M = vc.a0(boVar).M(LocaleController.getString(R.string.Gift2TransferredTitle), AndroidUtilities.replaceTags(LocaleController.formatString(R.string.Gift2TransferredText, a4Var.C1(), DialogObject.getShortName(j3))), R.raw.forward);
+                M.f26764t = true;
+                M.j();
                 return;
             default:
-                i5 i5Var = this.f50540b.f50518e;
-                i5Var.getClass();
-                TL_stars.reorderStarGiftCollections reorderstargiftcollections = new TL_stars.reorderStarGiftCollections();
-                int i10 = i5Var.f52033a;
-                reorderstargiftcollections.peer = MessagesController.getInstance(i10).getInputPeer(i5Var.f52034b);
-                ArrayList arrayList = i5Var.f52036e;
-                int size = arrayList.size();
-                int i11 = 0;
-                while (i11 < size) {
-                    Object obj = arrayList.get(i11);
-                    i11++;
-                    reorderstargiftcollections.order.add(Integer.valueOf(((TL_stars.TL_starGiftCollection) obj).collection_id));
-                }
-                ConnectionsManager.getInstance(i10).sendRequest(reorderstargiftcollections, null);
-                i5Var.j();
+                oc M2 = vc.a0(boVar).M(LocaleController.getString(R.string.Gift2TransferredTitle), AndroidUtilities.replaceTags(LocaleController.formatString(R.string.Gift2TransferredText, a4Var.C1(), DialogObject.getShortName(j3))), R.raw.forward);
+                M2.f26764t = true;
+                M2.j();
                 return;
         }
     }

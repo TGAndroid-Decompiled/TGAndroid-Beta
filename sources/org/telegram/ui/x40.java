@@ -3,10 +3,10 @@ package org.telegram.ui;
 import android.graphics.Paint;
 import android.view.ViewGroup;
 public final class x40 extends Paint {
-    public final j60 f42591a;
+    public final i60 f39489a;
 
-    public x40(j60 j60Var) {
-        this.f42591a = j60Var;
+    public x40(i60 i60Var) {
+        this.f39489a = i60Var;
     }
 
     @Override
@@ -14,10 +14,10 @@ public final class x40 extends Paint {
         ViewGroup viewGroup;
         ViewGroup viewGroup2;
         super.setAlpha(i10);
-        j60 j60Var = this.f42591a;
-        viewGroup = ((org.telegram.ui.ActionBar.f3) j60Var).containerView;
+        i60 i60Var = this.f39489a;
+        viewGroup = ((org.telegram.ui.ActionBar.f3) i60Var).containerView;
         if (viewGroup != null) {
-            viewGroup2 = ((org.telegram.ui.ActionBar.f3) j60Var).containerView;
+            viewGroup2 = ((org.telegram.ui.ActionBar.f3) i60Var).containerView;
             viewGroup2.invalidate();
         }
     }

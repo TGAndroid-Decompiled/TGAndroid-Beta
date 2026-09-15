@@ -1,92 +1,31 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
-import android.os.Build;
-import android.widget.EdgeEffect;
-import androidx.recyclerview.widget.RecyclerView;
-public final class lt extends EdgeEffect {
-    public final int f28302a;
-    public final kt f28303b;
-    public final RecyclerView f28304c;
-    public final wp d;
-    public boolean f28305e;
+import java.util.ArrayList;
+public final class lt implements mt {
+    public final int f26001a;
+    public final Object f26002b;
 
-    public lt(RecyclerView recyclerView, int i10, kt ktVar) {
-        super(recyclerView.getContext());
-        this.d = new wp(this, 7);
-        this.f28304c = recyclerView;
-        this.f28302a = i10;
-        this.f28303b = ktVar;
+    public lt(Object obj, int i10) {
+        this.f26001a = i10;
+        this.f26002b = obj;
     }
 
-    public final void a() {
-        boolean b10 = b();
-        if (this.f28305e != b10) {
-            this.f28305e = b10;
-            kt ktVar = this.f28303b;
-            if (ktVar != null) {
-                ktVar.a(this.f28302a, b10);
-            }
+    @Override
+    public final void a(int i10, boolean z10) {
+        switch (this.f26001a) {
+            case 0:
+                ArrayList arrayList = ((ot) this.f26002b).f26884b;
+                int size = arrayList.size();
+                int i11 = 0;
+                while (i11 < size) {
+                    Object obj = arrayList.get(i11);
+                    i11++;
+                    ((mt) obj).a(i10, z10);
+                }
+                return;
+            default:
+                ((Runnable) this.f26002b).run();
+                return;
         }
-    }
-
-    public final boolean b() {
-        if (!isFinished()) {
-            if (Build.VERSION.SDK_INT < 31 || getDistance() != 0.0f) {
-                return true;
-            }
-            return false;
-        }
-        return false;
-    }
-
-    @Override
-    public final boolean draw(Canvas canvas) {
-        boolean draw = super.draw(canvas);
-        this.f28304c.postOnAnimation(this.d);
-        return draw;
-    }
-
-    @Override
-    public final void finish() {
-        super.finish();
-        a();
-    }
-
-    @Override
-    public final void onAbsorb(int i10) {
-        super.onAbsorb(i10);
-        a();
-    }
-
-    @Override
-    public final void onPull(float f7) {
-        super.onPull(f7);
-        a();
-    }
-
-    @Override
-    public final float onPullDistance(float f7, float f10) {
-        float onPullDistance = super.onPullDistance(f7, f10);
-        a();
-        return onPullDistance;
-    }
-
-    @Override
-    public final void onRelease() {
-        super.onRelease();
-        a();
-    }
-
-    @Override
-    public final void setSize(int i10, int i11) {
-        super.setSize(i10, i11);
-        a();
-    }
-
-    @Override
-    public final void onPull(float f7, float f10) {
-        super.onPull(f7, f10);
-        a();
     }
 }

@@ -1,52 +1,13 @@
 package v7;
+
+import android.content.Context;
+import android.graphics.drawable.Drawable;
 public abstract class v7 {
-    public static Integer a(String str) {
-        if (str != null) {
-            switch (str.hashCode()) {
-                case -1118317585:
-                    if (str.equals("REPEAT_ALL_AND_SHUFFLE")) {
-                        return 3;
-                    }
-                    return null;
-                case -962896020:
-                    if (str.equals("REPEAT_SINGLE")) {
-                        return 2;
-                    }
-                    return null;
-                case 1645938909:
-                    if (str.equals("REPEAT_ALL")) {
-                        return 1;
-                    }
-                    return null;
-                case 1645952171:
-                    if (str.equals("REPEAT_OFF")) {
-                        return 0;
-                    }
-                    return null;
-                default:
-                    return null;
-            }
-        }
-        return null;
+    public static android.content.res.ColorStateList a(android.content.Context r8, int r9) {
+        throw new UnsupportedOperationException("Method not decompiled: v7.v7.a(android.content.Context, int):android.content.res.ColorStateList");
     }
 
-    public static String b(Integer num) {
-        if (num != null) {
-            int intValue = num.intValue();
-            if (intValue != 0) {
-                if (intValue != 1) {
-                    if (intValue != 2) {
-                        if (intValue != 3) {
-                            return null;
-                        }
-                        return "REPEAT_ALL_AND_SHUFFLE";
-                    }
-                    return "REPEAT_SINGLE";
-                }
-                return "REPEAT_ALL";
-            }
-            return "REPEAT_OFF";
-        }
-        return null;
+    public static Drawable b(Context context, int i10) {
+        return m.m2.d().g(context, i10);
     }
 }

@@ -1,12 +1,12 @@
 package z7;
 public final class fe {
-    public final gb f50861a;
-    public final Long f50862b;
-    public final ve f50863c;
+    public final gb f48249a;
+    public final Long f48250b;
+    public final ve f48251c;
 
-    public fe(v7.a6 a6Var) {
-        this.f50861a = (gb) a6Var.f47379c;
-        this.f50862b = (Long) a6Var.f47378b;
-        this.f50863c = (ve) a6Var.d;
+    public fe(v7.r2 r2Var) {
+        this.f48249a = (gb) r2Var.f44079b;
+        this.f48250b = (Long) r2Var.f44080c;
+        this.f48251c = (ve) r2Var.d;
     }
 }

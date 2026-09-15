@@ -2,22 +2,22 @@ package s4;
 
 import android.animation.ValueAnimator;
 public final class c implements ValueAnimator.AnimatorUpdateListener {
-    public final int f45724a;
-    public final j f45725b;
+    public final int f42661a;
+    public final j f42662b;
 
     public c(j jVar, c1 c1Var, int i10) {
-        this.f45724a = i10;
-        this.f45725b = jVar;
+        this.f42661a = i10;
+        this.f42662b = jVar;
     }
 
     @Override
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f45724a) {
+        switch (this.f42661a) {
             case 0:
-                this.f45725b.Q();
+                this.f42662b.Q();
                 return;
             default:
-                this.f45725b.M();
+                this.f42662b.M();
                 return;
         }
     }

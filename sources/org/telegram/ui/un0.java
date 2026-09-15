@@ -1,51 +1,66 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.AndroidUtilities;
-public final class un0 implements Runnable {
-    public final int f41191a;
-    public final xo0 f41192b;
+import android.widget.FrameLayout;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import org.telegram.messenger.FileLog;
+public final class un0 implements OnCompleteListener, org.telegram.ui.ActionBar.a2, zt {
+    public final int f38058a;
+    public final wo0 f38059b;
 
-    public un0(xo0 xo0Var, int i10) {
-        this.f41191a = i10;
-        this.f41192b = xo0Var;
+    public un0(wo0 wo0Var, int i10) {
+        this.f38058a = i10;
+        this.f38059b = wo0Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f41191a) {
-            case 0:
-                xo0 xo0Var = this.f41192b;
-                xo0Var.f42819f[0].requestFocus();
-                AndroidUtilities.showKeyboard(xo0Var.f42819f[0]);
-                return;
-            case 1:
-                this.f41192b.t0();
-                return;
+    public void a1(vt vtVar) {
+        switch (this.f38058a) {
             case 2:
-                xo0 xo0Var2 = this.f41192b;
-                xo0Var2.getMessagesController().newMessageCallback = null;
-                if (xo0Var2.f42821f1 == 3 && !xo0Var2.isFinishing()) {
-                    xo0Var2.f42821f1 = 4;
-                    wo0 wo0Var = xo0Var2.Z0;
-                    if (wo0Var != null) {
-                        wo0Var.a(4);
-                    }
-                    xo0Var2.finishFragment();
-                    return;
-                } else if (xo0Var2.f42821f1 == 1 && !xo0Var2.isFinishing()) {
-                    xo0Var2.finishFragment();
-                    return;
-                } else {
-                    return;
-                }
+                wo0 wo0Var = this.f38059b;
+                wo0Var.A0 = vtVar;
+                wo0Var.f39319f[4].setText(vtVar.f38680a);
+                return;
             default:
-                xo0 xo0Var3 = this.f41192b;
-                if (xo0Var3.f42814d0 != null) {
-                    xo0Var3.w0();
-                    xo0Var3.f42814d0 = null;
-                    return;
-                }
+                wo0 wo0Var2 = this.f38059b;
+                wo0Var2.A0 = vtVar;
+                wo0Var2.f39319f[4].setText(vtVar.f38680a);
+                wo0Var2.B0 = vtVar.d;
                 return;
         }
+    }
+
+    @Override
+    public void f(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
+        switch (this.f38058a) {
+            case 1:
+                wo0 wo0Var = this.f38059b;
+                wo0Var.I0(wo0Var.R0[0]);
+                return;
+            case 2:
+            default:
+                wo0 wo0Var2 = this.f38059b;
+                wo0Var2.D0(true);
+                wo0Var2.z0();
+                return;
+            case 3:
+                this.f38059b.A0(true);
+                return;
+        }
+    }
+
+    @Override
+    public void onComplete(Task task) {
+        wo0 wo0Var = this.f38059b;
+        wo0Var.getClass();
+        if (task.isSuccessful()) {
+            FrameLayout frameLayout = wo0Var.O;
+            if (frameLayout != null) {
+                frameLayout.setVisibility(0);
+                return;
+            }
+            return;
+        }
+        FileLog.e("isReadyToPay failed", task.getException());
     }
 }

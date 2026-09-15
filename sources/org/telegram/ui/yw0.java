@@ -13,15 +13,15 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.ActionBar.ActionBarLayout;
 public final class yw0 extends FrameLayout {
-    public boolean f43229a;
-    public boolean f43230b;
-    public final Paint f43231c;
+    public boolean f40003a;
+    public boolean f40004b;
+    public final Paint f40005c;
     public final PremiumPreviewFragment d;
 
     public yw0(PremiumPreviewFragment premiumPreviewFragment, Context context) {
         super(context);
         this.d = premiumPreviewFragment;
-        this.f43231c = new Paint(1);
+        this.f40005c = new Paint(1);
     }
 
     @Override
@@ -34,7 +34,7 @@ public final class yw0 extends FrameLayout {
         float f7;
         org.telegram.ui.ActionBar.k kVar4;
         float f10;
-        sg.z1 z1Var;
+        rg.v1 v1Var;
         float f11;
         ?? r11;
         Canvas canvas2;
@@ -44,28 +44,28 @@ public final class yw0 extends FrameLayout {
         org.telegram.ui.ActionBar.k kVar6;
         org.telegram.ui.ActionBar.k kVar7;
         PremiumPreviewFragment premiumPreviewFragment = this.d;
-        boolean z10 = premiumPreviewFragment.f33782h0;
-        sg.c1 c1Var = premiumPreviewFragment.m0;
-        if (Build.VERSION.SDK_INT >= 31 && premiumPreviewFragment.f33797u0 != null) {
+        boolean z10 = premiumPreviewFragment.f31165h0;
+        rg.z0 z0Var = premiumPreviewFragment.m0;
+        if (Build.VERSION.SDK_INT >= 31 && premiumPreviewFragment.f31180u0 != null) {
             premiumPreviewFragment.j0();
         }
         if (!premiumPreviewFragment.Z) {
-            if (premiumPreviewFragment.f33771a0) {
-                float f12 = premiumPreviewFragment.f33773b0 + 0.016f;
-                premiumPreviewFragment.f33773b0 = f12;
+            if (premiumPreviewFragment.f31155a0) {
+                float f12 = premiumPreviewFragment.f31157b0 + 0.016f;
+                premiumPreviewFragment.f31157b0 = f12;
                 if (f12 > 3.0f) {
-                    premiumPreviewFragment.f33771a0 = false;
+                    premiumPreviewFragment.f31155a0 = false;
                 }
             } else {
-                float f13 = premiumPreviewFragment.f33773b0 - 0.016f;
-                premiumPreviewFragment.f33773b0 = f13;
+                float f13 = premiumPreviewFragment.f31157b0 - 0.016f;
+                premiumPreviewFragment.f31157b0 = f13;
                 if (f13 < 1.0f) {
-                    premiumPreviewFragment.f33771a0 = true;
+                    premiumPreviewFragment.f31155a0 = true;
                 }
             }
         }
-        if (premiumPreviewFragment.f33770a.getLayoutManager() != null) {
-            view = premiumPreviewFragment.f33770a.getLayoutManager().m(0);
+        if (premiumPreviewFragment.f31154a.getLayoutManager() != null) {
+            view = premiumPreviewFragment.f31154a.getLayoutManager().m(0);
         } else {
             view = null;
         }
@@ -74,49 +74,49 @@ public final class yw0 extends FrameLayout {
         } else {
             bottom = view.getBottom();
         }
-        premiumPreviewFragment.f33775c0 = bottom;
+        premiumPreviewFragment.f31159c0 = bottom;
         kVar = ((org.telegram.ui.ActionBar.n2) premiumPreviewFragment).actionBar;
         float f14 = 16.0f;
         int dp = AndroidUtilities.dp(16.0f) + kVar.getBottom();
-        float f15 = 1.0f - ((premiumPreviewFragment.f33775c0 - dp) / (premiumPreviewFragment.Y - dp));
-        premiumPreviewFragment.f33780f0 = f15;
-        premiumPreviewFragment.f33780f0 = Utilities.clamp(f15, 1.0f, 0.0f);
+        float f15 = 1.0f - ((premiumPreviewFragment.f31159c0 - dp) / (premiumPreviewFragment.Y - dp));
+        premiumPreviewFragment.f31163f0 = f15;
+        premiumPreviewFragment.f31163f0 = Utilities.clamp(f15, 1.0f, 0.0f);
         kVar2 = ((org.telegram.ui.ActionBar.n2) premiumPreviewFragment).actionBar;
         int dp2 = AndroidUtilities.dp(16.0f) + kVar2.getBottom();
-        if (premiumPreviewFragment.f33775c0 < dp2) {
-            premiumPreviewFragment.f33775c0 = dp2;
+        if (premiumPreviewFragment.f31159c0 < dp2) {
+            premiumPreviewFragment.f31159c0 = dp2;
         }
-        float f16 = premiumPreviewFragment.f33791q0;
-        premiumPreviewFragment.f33791q0 = 0.0f;
-        if (premiumPreviewFragment.f33775c0 < AndroidUtilities.dp(30.0f) + dp2) {
-            premiumPreviewFragment.f33791q0 = ((AndroidUtilities.dp(30.0f) + dp2) - premiumPreviewFragment.f33775c0) / AndroidUtilities.dp(30.0f);
+        float f16 = premiumPreviewFragment.f31174q0;
+        premiumPreviewFragment.f31174q0 = 0.0f;
+        if (premiumPreviewFragment.f31159c0 < AndroidUtilities.dp(30.0f) + dp2) {
+            premiumPreviewFragment.f31174q0 = ((AndroidUtilities.dp(30.0f) + dp2) - premiumPreviewFragment.f31159c0) / AndroidUtilities.dp(30.0f);
         }
         if (premiumPreviewFragment.W) {
-            premiumPreviewFragment.f33791q0 = 1.0f;
-            premiumPreviewFragment.f33780f0 = 1.0f;
+            premiumPreviewFragment.f31174q0 = 1.0f;
+            premiumPreviewFragment.f31163f0 = 1.0f;
         }
-        if (f16 != premiumPreviewFragment.f33791q0) {
-            premiumPreviewFragment.f33770a.invalidate();
+        if (f16 != premiumPreviewFragment.f31174q0) {
+            premiumPreviewFragment.f31154a.invalidate();
         }
-        int i10 = premiumPreviewFragment.f33775c0;
+        int i10 = premiumPreviewFragment.f31159c0;
         kVar3 = ((org.telegram.ui.ActionBar.n2) premiumPreviewFragment).actionBar;
         int measuredHeight = i10 - ((premiumPreviewFragment.U.getMeasuredHeight() + kVar3.getMeasuredHeight()) - premiumPreviewFragment.X);
-        if (premiumPreviewFragment.U.f37862e.getVisibility() == 0) {
+        if (premiumPreviewFragment.U.e.getVisibility() == 0) {
             f7 = 24.0f;
         } else {
             f7 = 16.0f;
         }
         int dp3 = AndroidUtilities.dp(f7) + measuredHeight;
         kVar4 = ((org.telegram.ui.ActionBar.n2) premiumPreviewFragment).actionBar;
-        float max = Math.max((((((kVar4.getMeasuredHeight() - premiumPreviewFragment.X) - premiumPreviewFragment.U.f37859a.getMeasuredHeight()) / 2.0f) + premiumPreviewFragment.X) - premiumPreviewFragment.U.getTop()) - premiumPreviewFragment.U.f37859a.getTop(), AndroidUtilities.dp(24.0f) + dp3);
+        float max = Math.max((((((kVar4.getMeasuredHeight() - premiumPreviewFragment.X) - premiumPreviewFragment.U.f34993a.getMeasuredHeight()) / 2.0f) + premiumPreviewFragment.X) - premiumPreviewFragment.U.getTop()) - premiumPreviewFragment.U.f34993a.getTop(), AndroidUtilities.dp(24.0f) + dp3);
         float dp4 = ((-max) / 4.0f) + AndroidUtilities.dp(16.0f);
         premiumPreviewFragment.U.setTranslationY(max);
         fx0 fx0Var = premiumPreviewFragment.U.d;
-        if (premiumPreviewFragment.f33781g0 == 1) {
+        if (premiumPreviewFragment.f31164g0 == 1) {
             f14 = 9.0f;
         }
         fx0Var.setTranslationY(dp4 + AndroidUtilities.dp(f14));
-        float f17 = premiumPreviewFragment.f33780f0;
+        float f17 = premiumPreviewFragment.f31163f0;
         float z11 = com.google.android.gms.internal.vision.e2.z(1.0f, f17, 0.4f, 0.6f);
         if (f17 > 0.5f) {
             f10 = (f17 - 0.5f) / 0.5f;
@@ -127,40 +127,40 @@ public final class yw0 extends FrameLayout {
         premiumPreviewFragment.U.d.setScaleX(z11);
         premiumPreviewFragment.U.d.setScaleY(z11);
         premiumPreviewFragment.U.d.setAlpha(f18);
-        premiumPreviewFragment.U.f37860b.setAlpha(f18);
-        premiumPreviewFragment.U.f37862e.setAlpha(f18);
-        premiumPreviewFragment.V.setAlpha(1.0f - premiumPreviewFragment.f33780f0);
-        premiumPreviewFragment.V.setTranslationY(premiumPreviewFragment.U.f37861c.getY() + premiumPreviewFragment.U.getY() + ((-(z1Var.getMeasuredHeight() - premiumPreviewFragment.U.d.getMeasuredWidth())) / 2.0f));
-        float dp5 = AndroidUtilities.dp(72.0f) - premiumPreviewFragment.U.f37859a.getLeft();
-        float f19 = premiumPreviewFragment.f33780f0;
+        premiumPreviewFragment.U.f34994b.setAlpha(f18);
+        premiumPreviewFragment.U.e.setAlpha(f18);
+        premiumPreviewFragment.V.setAlpha(1.0f - premiumPreviewFragment.f31163f0);
+        premiumPreviewFragment.V.setTranslationY(premiumPreviewFragment.U.f34995c.getY() + premiumPreviewFragment.U.getY() + ((-(v1Var.getMeasuredHeight() - premiumPreviewFragment.U.d.getMeasuredWidth())) / 2.0f));
+        float dp5 = AndroidUtilities.dp(72.0f) - premiumPreviewFragment.U.f34993a.getLeft();
+        float f19 = premiumPreviewFragment.f31163f0;
         if (f19 > 0.3f) {
             f11 = (f19 - 0.3f) / 0.7f;
         } else {
             f11 = 0.0f;
         }
-        premiumPreviewFragment.U.f37859a.setTranslationX((1.0f - org.telegram.ui.Components.pr.h.getInterpolation(1.0f - f11)) * dp5);
+        premiumPreviewFragment.U.f34993a.setTranslationX((1.0f - org.telegram.ui.Components.qr.h.getInterpolation(1.0f - f11)) * dp5);
         jx0 jx0Var = premiumPreviewFragment.U;
-        jx0Var.d.f46519b.f46501p = (((getMeasuredWidth() * 0.1f) * premiumPreviewFragment.f33773b0) + (premiumPreviewFragment.U.f37861c.getX() + jx0Var.getX())) / getMeasuredWidth();
+        jx0Var.d.f42937b.f42919p = (((getMeasuredWidth() * 0.1f) * premiumPreviewFragment.f31157b0) + (premiumPreviewFragment.U.f34995c.getX() + jx0Var.getX())) / getMeasuredWidth();
         jx0 jx0Var2 = premiumPreviewFragment.U;
-        jx0Var2.d.f46519b.f46502q = (premiumPreviewFragment.U.f37861c.getY() + jx0Var2.getY()) / getMeasuredHeight();
+        jx0Var2.d.f42937b.f42920q = (premiumPreviewFragment.U.f34995c.getY() + jx0Var2.getY()) / getMeasuredHeight();
         if (!premiumPreviewFragment.Z) {
             invalidate();
             premiumPreviewFragment.K.invalidate();
             premiumPreviewFragment.J.invalidate();
         }
-        c1Var.d(0, (-getMeasuredWidth()) * 0.1f * premiumPreviewFragment.f33773b0, 0, getMeasuredWidth(), 0.0f, getMeasuredHeight());
+        z0Var.d(0, (-getMeasuredWidth()) * 0.1f * premiumPreviewFragment.f31157b0, 0, getMeasuredWidth(), 0.0f, getMeasuredHeight());
         if (z10) {
-            int i11 = org.telegram.ui.ActionBar.j6.f20607a7;
+            int i11 = org.telegram.ui.ActionBar.i6.f18780a7;
             int themedColor = premiumPreviewFragment.getThemedColor(i11);
-            Paint paint = this.f43231c;
+            Paint paint = this.f40005c;
             paint.setColor(themedColor);
             r11 = 0;
             r11 = 0;
             canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), paint);
-            if (premiumPreviewFragment.f33791q0 > 0.0f) {
+            if (premiumPreviewFragment.f31174q0 > 0.0f) {
                 kVar6 = ((org.telegram.ui.ActionBar.n2) premiumPreviewFragment).actionBar;
                 if (kVar6 != null) {
-                    paint.setColor(i0.a.d(premiumPreviewFragment.f33791q0, premiumPreviewFragment.getThemedColor(i11), premiumPreviewFragment.getThemedColor(org.telegram.ui.ActionBar.j6.f20663d6)));
+                    paint.setColor(i0.a.d(premiumPreviewFragment.f31174q0, premiumPreviewFragment.getThemedColor(i11), premiumPreviewFragment.getThemedColor(org.telegram.ui.ActionBar.i6.f18836d6)));
                     float measuredWidth = getMeasuredWidth();
                     kVar7 = ((org.telegram.ui.ActionBar.n2) premiumPreviewFragment).actionBar;
                     float height = kVar7.getHeight();
@@ -172,18 +172,18 @@ public final class yw0 extends FrameLayout {
         } else {
             r11 = 0;
             canvas2 = canvas;
-            canvas2.drawRect(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), c1Var.f46035f);
+            canvas2.drawRect(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), z0Var.f42556f);
         }
         super.dispatchDraw(canvas);
         if (premiumPreviewFragment.J.getVisibility() != 0) {
-            premiumPreviewFragment.f33796t0.b(premiumPreviewFragment.f33789o0.d, r11);
-            premiumPreviewFragment.f33796t0.setBounds(r11, getHeight() - premiumPreviewFragment.f33789o0.d, getWidth(), getHeight());
-            premiumPreviewFragment.f33796t0.draw(canvas2);
+            premiumPreviewFragment.f31179t0.b(premiumPreviewFragment.f31172o0.d, r11);
+            premiumPreviewFragment.f31179t0.setBounds(r11, getHeight() - premiumPreviewFragment.f31172o0.d, getWidth(), getHeight());
+            premiumPreviewFragment.f31179t0.draw(canvas2);
         }
         d5Var = ((org.telegram.ui.ActionBar.n2) premiumPreviewFragment).parentLayout;
         if (d5Var != null && z10) {
             d5Var2 = ((org.telegram.ui.ActionBar.n2) premiumPreviewFragment).parentLayout;
-            int i12 = (int) (premiumPreviewFragment.f33791q0 * 255.0f);
+            int i12 = (int) (premiumPreviewFragment.f31174q0 * 255.0f);
             kVar5 = ((org.telegram.ui.ActionBar.n2) premiumPreviewFragment).actionBar;
             ((ActionBarLayout) d5Var2).p(canvas2, i12, kVar5.getBottom());
         }
@@ -194,8 +194,8 @@ public final class yw0 extends FrameLayout {
         int measuredWidth;
         int measuredHeight;
         PremiumPreviewFragment premiumPreviewFragment = this.d;
-        float x10 = premiumPreviewFragment.U.f37861c.getX() + premiumPreviewFragment.U.getX();
-        float y3 = premiumPreviewFragment.U.f37861c.getY() + premiumPreviewFragment.U.getY();
+        float x10 = premiumPreviewFragment.U.f34995c.getX() + premiumPreviewFragment.U.getX();
+        float y3 = premiumPreviewFragment.U.f34995c.getY() + premiumPreviewFragment.U.getY();
         RectF rectF = AndroidUtilities.rectTmp;
         fx0 fx0Var = premiumPreviewFragment.U.d;
         if (fx0Var == null) {
@@ -211,30 +211,30 @@ public final class yw0 extends FrameLayout {
             measuredHeight = fx0Var2.getMeasuredHeight();
         }
         rectF.set(x10, y3, f7, measuredHeight + y3);
-        if ((rectF.contains(motionEvent.getX(), motionEvent.getY()) || this.f43229a) && !premiumPreviewFragment.f33770a.K1) {
+        if ((rectF.contains(motionEvent.getX(), motionEvent.getY()) || this.f40003a) && !premiumPreviewFragment.f31154a.K1) {
             motionEvent.offsetLocation(-x10, -y3);
             if (motionEvent.getAction() != 0 && motionEvent.getAction() != 2) {
                 if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
-                    this.f43229a = false;
+                    this.f40003a = false;
                 }
             } else {
-                this.f43229a = true;
+                this.f40003a = true;
             }
             premiumPreviewFragment.U.d.dispatchTouchEvent(motionEvent);
             return true;
         }
-        float x11 = premiumPreviewFragment.U.f37862e.getX() + premiumPreviewFragment.U.getX();
-        float y10 = premiumPreviewFragment.U.f37862e.getY() + premiumPreviewFragment.U.getY();
-        rectF.set(x11, y10, premiumPreviewFragment.U.f37862e.getWidth() + x11, premiumPreviewFragment.U.f37862e.getHeight() + y10);
-        if (premiumPreviewFragment.f33791q0 < 1.0f && ((rectF.contains(motionEvent.getX(), motionEvent.getY()) || this.f43230b) && !premiumPreviewFragment.f33770a.K1)) {
+        float x11 = premiumPreviewFragment.U.e.getX() + premiumPreviewFragment.U.getX();
+        float y10 = premiumPreviewFragment.U.e.getY() + premiumPreviewFragment.U.getY();
+        rectF.set(x11, y10, premiumPreviewFragment.U.e.getWidth() + x11, premiumPreviewFragment.U.e.getHeight() + y10);
+        if (premiumPreviewFragment.f31174q0 < 1.0f && ((rectF.contains(motionEvent.getX(), motionEvent.getY()) || this.f40004b) && !premiumPreviewFragment.f31154a.K1)) {
             motionEvent.offsetLocation(-x11, -y10);
             if (motionEvent.getAction() == 0) {
-                this.f43230b = true;
+                this.f40004b = true;
             } else if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
-                this.f43230b = false;
+                this.f40004b = false;
             }
-            premiumPreviewFragment.U.f37862e.dispatchTouchEvent(motionEvent);
-            if (this.f43230b) {
+            premiumPreviewFragment.U.e.dispatchTouchEvent(motionEvent);
+            if (this.f40004b) {
                 return true;
             }
         }
@@ -246,13 +246,13 @@ public final class yw0 extends FrameLayout {
         super.onLayout(z10, i10, i11, i12, i13);
         PremiumPreviewFragment premiumPreviewFragment = this.d;
         fx0 fx0Var = premiumPreviewFragment.U.d;
-        fx0Var.f46519b.f46503r = fx0Var.getMeasuredWidth() / getMeasuredWidth();
+        fx0Var.f42937b.f42921r = fx0Var.getMeasuredWidth() / getMeasuredWidth();
         fx0 fx0Var2 = premiumPreviewFragment.U.d;
-        fx0Var2.f46519b.f46504s = fx0Var2.getMeasuredHeight() / getMeasuredHeight();
+        fx0Var2.f42937b.f42922s = fx0Var2.getMeasuredHeight() / getMeasuredHeight();
         jx0 jx0Var = premiumPreviewFragment.U;
-        jx0Var.d.f46519b.f46501p = (premiumPreviewFragment.U.d.getX() + jx0Var.getX()) / getMeasuredWidth();
+        jx0Var.d.f42937b.f42919p = (premiumPreviewFragment.U.d.getX() + jx0Var.getX()) / getMeasuredWidth();
         jx0 jx0Var2 = premiumPreviewFragment.U;
-        jx0Var2.d.f46519b.f46502q = (premiumPreviewFragment.U.d.getY() + jx0Var2.getY()) / getMeasuredHeight();
+        jx0Var2.d.f42937b.f42920q = (premiumPreviewFragment.U.d.getY() + jx0Var2.getY()) / getMeasuredHeight();
     }
 
     @Override
@@ -287,19 +287,19 @@ public final class yw0 extends FrameLayout {
     public final void onSizeChanged(int i10, int i11, int i12, int i13) {
         super.onSizeChanged(i10, i11, i12, i13);
         PremiumPreviewFragment premiumPreviewFragment = this.d;
-        ArrayList arrayList = premiumPreviewFragment.f33774c;
-        ArrayList arrayList2 = premiumPreviewFragment.f33772b;
+        ArrayList arrayList = premiumPreviewFragment.f31158c;
+        ArrayList arrayList2 = premiumPreviewFragment.f31156b;
         int i14 = 0;
         for (int i15 = 0; i15 < arrayList2.size(); i15++) {
             premiumPreviewFragment.L.a((kx0) arrayList2.get(i15), false);
             premiumPreviewFragment.L.measure(View.MeasureSpec.makeMeasureSpec(i10, 1073741824), View.MeasureSpec.makeMeasureSpec(i11, Integer.MIN_VALUE));
-            ((kx0) arrayList2.get(i15)).f38150e = i14;
+            ((kx0) arrayList2.get(i15)).e = i14;
             i14 += premiumPreviewFragment.L.getMeasuredHeight();
         }
         for (int i16 = 0; i16 < arrayList.size(); i16++) {
             premiumPreviewFragment.L.a((kx0) arrayList.get(i16), false);
             premiumPreviewFragment.L.measure(View.MeasureSpec.makeMeasureSpec(i10, 1073741824), View.MeasureSpec.makeMeasureSpec(i11, Integer.MIN_VALUE));
-            ((kx0) arrayList.get(i16)).f38150e = i14;
+            ((kx0) arrayList.get(i16)).e = i14;
             i14 += premiumPreviewFragment.L.getMeasuredHeight();
         }
         premiumPreviewFragment.N = i14;

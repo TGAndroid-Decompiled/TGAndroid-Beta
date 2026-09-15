@@ -11,7 +11,7 @@ public final class s70 extends ll0 {
 
     @Override
     public final void requestLayout() {
-        if (this.X2.f32189n) {
+        if (this.X2.f29643n) {
             return;
         }
         super.requestLayout();

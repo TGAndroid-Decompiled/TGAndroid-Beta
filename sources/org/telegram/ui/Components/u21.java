@@ -1,51 +1,31 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.view.View;
-import org.telegram.tgnet.TLRPC;
-public final class u21 extends g51 {
-    public static final int f30788a = 0;
+import android.animation.ValueAnimator;
+public final class u21 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f28275a;
+    public final w21 f28276b;
 
-    static {
-        g51.setup(new g51());
+    public u21(w21 w21Var, int i10) {
+        this.f28275a = i10;
+        this.f28276b = w21Var;
     }
 
     @Override
-    public final void bindView(View view, h51 h51Var, boolean z10, v51 v51Var, d61 d61Var) {
-        boolean z11;
-        v21 v21Var = (v21) view;
-        boolean z12 = false;
-        if (h51Var.f26600r) {
-            v21Var.e();
-        } else {
-            Object obj = h51Var.G;
-            if (obj == null) {
-                if (h51Var.B == -2) {
-                    v21Var.b(h51Var.f26599q, h51Var.f26588e);
-                } else {
-                    if ((h51Var.f26606y & 1) != 0) {
-                        z11 = true;
-                    } else {
-                        z11 = false;
-                    }
-                    v21Var.c(z11, h51Var.f26599q, h51Var.f26588e);
-                }
-            } else if (obj instanceof TLRPC.TL_forumTopic) {
-                if (!h51Var.I) {
-                    v21Var.f((TLRPC.TL_forumTopic) obj, h51Var.f26588e);
-                } else {
-                    v21Var.a(h51Var.f26605x, (TLRPC.TL_forumTopic) obj, h51Var.f26588e);
-                }
-            }
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f28275a) {
+            case 0:
+                w21 w21Var = this.f28276b;
+                w21Var.getClass();
+                w21Var.Q = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                w21Var.h();
+                w21Var.g();
+                return;
+            default:
+                float max = Math.max(1.0f, ((Float) valueAnimator.getAnimatedValue()).floatValue());
+                w21 w21Var2 = this.f28276b;
+                w21Var2.K = max;
+                w21Var2.h.invalidate();
+                return;
         }
-        if (d61Var != null && d61Var.f25281c3 && v21Var.f31071y) {
-            z12 = true;
-        }
-        v21Var.setReorder(z12);
-    }
-
-    @Override
-    public final View createView(Context context, ll0 ll0Var, int i10, int i11, org.telegram.ui.ActionBar.f6 f6Var) {
-        return new v21(context, i10, f6Var);
     }
 }

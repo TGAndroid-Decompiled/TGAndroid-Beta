@@ -1,19 +1,46 @@
 package org.telegram.ui;
-public final class re1 implements Runnable {
-    public final int f40158a;
-    public final se1 f40159b;
-    public final String f40160c;
-    public final int d;
 
-    public re1(se1 se1Var, String str, int i10, int i11) {
-        this.f40158a = i11;
-        this.f40159b = se1Var;
-        this.f40160c = str;
-        this.d = i10;
+import android.view.ViewGroup;
+import java.util.ArrayList;
+import org.telegram.tgnet.TLRPC;
+public final class re1 extends org.telegram.ui.Components.kl0 {
+    public final ArrayList f37091c = new ArrayList();
+    public final ArrayList d = new ArrayList();
+    public qe1 e;
+    public int f37092f;
+    public final se1 h;
+
+    public re1(se1 se1Var) {
+        this.h = se1Var;
     }
 
     @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.re1.run():void");
+    public final boolean D(s4.c1 c1Var) {
+        return true;
+    }
+
+    @Override
+    public final int h() {
+        return this.f37091c.size();
+    }
+
+    @Override
+    public final void v(s4.c1 c1Var, int i10) {
+        ArrayList arrayList = this.f37091c;
+        TLRPC.Chat chat = (TLRPC.Chat) arrayList.get(i10);
+        String str = (String) this.d.get(i10);
+        org.telegram.ui.Cells.f4 f4Var = (org.telegram.ui.Cells.f4) c1Var.f42675a;
+        String str2 = chat.title;
+        boolean z10 = true;
+        if (i10 == arrayList.size() - 1) {
+            z10 = false;
+        }
+        f4Var.e(chat, str2, str, z10);
+        f4Var.c(this.h.f37375w.contains(Long.valueOf(chat.f18112id)), false);
+    }
+
+    @Override
+    public final s4.c1 x(ViewGroup viewGroup, int i10) {
+        return new s4.c1(new org.telegram.ui.Cells.f4(viewGroup.getContext(), 1, 0, false));
     }
 }

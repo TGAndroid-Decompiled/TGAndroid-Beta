@@ -7,20 +7,20 @@ import n4.y;
 import w7.e0;
 public final class c extends o6.a {
     public static final Parcelable.Creator<c> CREATOR = new g8.j(18);
-    public final String f14811a;
-    public final int f14812b;
-    public final long f14813c;
+    public final String f13504a;
+    public final int f13505b;
+    public final long f13506c;
 
     public c(int i10, String str, long j3) {
-        this.f14811a = str;
-        this.f14812b = i10;
-        this.f14813c = j3;
+        this.f13504a = str;
+        this.f13505b = i10;
+        this.f13506c = j3;
     }
 
     public final long b() {
-        long j3 = this.f14813c;
+        long j3 = this.f13506c;
         if (j3 == -1) {
-            return this.f14812b;
+            return this.f13505b;
         }
         return j3;
     }
@@ -28,8 +28,8 @@ public final class c extends o6.a {
     public final boolean equals(Object obj) {
         if (obj instanceof c) {
             c cVar = (c) obj;
-            String str = cVar.f14811a;
-            String str2 = this.f14811a;
+            String str = cVar.f13504a;
+            String str2 = this.f13504a;
             if (((str2 != null && str2.equals(str)) || (str2 == null && str == null)) && b() == cVar.b()) {
                 return true;
             }
@@ -38,22 +38,22 @@ public final class c extends o6.a {
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{this.f14811a, Long.valueOf(b())});
+        return Arrays.hashCode(new Object[]{this.f13504a, Long.valueOf(b())});
     }
 
     public final String toString() {
         y yVar = new y(this);
-        yVar.y(this.f14811a, "name");
-        yVar.y(Long.valueOf(b()), "version");
+        yVar.e(this.f13504a, "name");
+        yVar.e(Long.valueOf(b()), "version");
         return yVar.toString();
     }
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
         int q6 = e0.q(parcel, 20293);
-        e0.l(parcel, 1, this.f14811a);
+        e0.l(parcel, 1, this.f13504a);
         e0.s(parcel, 2, 4);
-        parcel.writeInt(this.f14812b);
+        parcel.writeInt(this.f13505b);
         long b10 = b();
         e0.s(parcel, 3, 8);
         parcel.writeLong(b10);
@@ -61,8 +61,8 @@ public final class c extends o6.a {
     }
 
     public c(String str, long j3) {
-        this.f14811a = str;
-        this.f14813c = j3;
-        this.f14812b = -1;
+        this.f13504a = str;
+        this.f13506c = j3;
+        this.f13505b = -1;
     }
 }

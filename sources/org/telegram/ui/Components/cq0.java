@@ -5,12 +5,12 @@ import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.UserObject;
 import org.telegram.tgnet.TLRPC;
-public final class cq0 extends hg.c0 {
-    public final dq0 f25077n;
+public final class cq0 extends gg.c0 {
+    public final dq0 f23126n;
 
-    public cq0(dq0 dq0Var, Context context, int i10, org.telegram.ui.ActionBar.f6 f6Var) {
-        super(i10, context, f6Var, true, true);
-        this.f25077n = dq0Var;
+    public cq0(dq0 dq0Var, Context context, int i10, org.telegram.ui.ActionBar.e6 e6Var) {
+        super(i10, context, e6Var, true, true);
+        this.f23126n = dq0Var;
     }
 
     @Override
@@ -22,16 +22,16 @@ public final class cq0 extends hg.c0 {
         boolean z10;
         String str;
         int i14;
-        org.telegram.ui.Cells.m4 m4Var = (org.telegram.ui.Cells.m4) c1Var.f45738a;
-        hq0 hq0Var = this.f25077n.K;
+        org.telegram.ui.Cells.m4 m4Var = (org.telegram.ui.Cells.m4) c1Var.f42675a;
+        hq0 hq0Var = this.f23126n.K;
         boolean z11 = false;
         TLRPC.User user = null;
-        if (hq0Var.f26798h0 || hq0Var.f26799i0) {
-            int i15 = org.telegram.ui.ActionBar.j6.f20853ng;
-            int i16 = org.telegram.ui.ActionBar.j6.f20708fg;
-            m4Var.f22281b.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, i15, false));
+        if (hq0Var.f24758h0 || hq0Var.f24759i0) {
+            int i15 = org.telegram.ui.ActionBar.i6.f19028ng;
+            int i16 = org.telegram.ui.ActionBar.i6.f18880fg;
+            m4Var.f20421b.setTextColor(org.telegram.ui.ActionBar.i6.w0(null, i15, false));
             m4Var.H = i16;
-            m4Var.v.b(org.telegram.ui.ActionBar.j6.B5, i16, org.telegram.ui.ActionBar.j6.C5);
+            m4Var.v.b(org.telegram.ui.ActionBar.i6.B5, i16, org.telegram.ui.ActionBar.i6.C5);
         }
         i11 = ((org.telegram.ui.ActionBar.f3) hq0Var).currentAccount;
         TLRPC.TL_topPeer tL_topPeer = MediaDataController.getInstance(i11).hints.get(i10);
@@ -76,7 +76,7 @@ public final class cq0 extends hg.c0 {
         if (hq0Var.U.h(j3) >= 0) {
             z11 = true;
         }
-        if (m4Var.f22288w) {
+        if (m4Var.f20427w) {
             m4Var.v.a(z11, z10);
         }
     }

@@ -2,22 +2,22 @@ package org.telegram.ui;
 
 import android.content.Context;
 import org.telegram.tgnet.TLRPC;
-public final class pj extends org.telegram.ui.Components.co {
-    public final co f39532v0;
+public final class pj extends org.telegram.ui.Components.eo {
+    public final bo f36596v0;
 
-    public pj(co coVar, Context context, co coVar2, boolean z10, org.telegram.ui.ActionBar.f6 f6Var) {
-        super(context, coVar2, z10, f6Var);
-        this.f39532v0 = coVar;
+    public pj(bo boVar, Context context, bo boVar2, boolean z10, org.telegram.ui.ActionBar.e6 e6Var) {
+        super(context, boVar2, z10, e6Var);
+        this.f36596v0 = boVar;
     }
 
     @Override
     public final boolean a() {
         boolean z10;
-        co coVar = this.f39532v0;
-        if (!coVar.Oa && !coVar.isInPreviewMode()) {
-            z10 = ((org.telegram.ui.ActionBar.n2) coVar).inBubbleMode;
-            if (!z10 && coVar.f35298j0 != null && !coVar.f35412s3) {
-                if (!coVar.F9() || coVar.f35277h4) {
+        bo boVar = this.f36596v0;
+        if (!boVar.Oa && !boVar.isInPreviewMode()) {
+            z10 = ((org.telegram.ui.ActionBar.n2) boVar).inBubbleMode;
+            if (!z10 && boVar.f32349j0 != null && !boVar.f32463s3) {
+                if (!boVar.F9() || boVar.f32328h4) {
                     return true;
                 }
                 return false;
@@ -29,15 +29,15 @@ public final class pj extends org.telegram.ui.Components.co {
 
     @Override
     public final boolean d() {
-        co coVar = this.f39532v0;
-        TLRPC.User user = coVar.f35249f;
+        bo boVar = this.f36596v0;
+        TLRPC.User user = boVar.f32299f;
         if (user != null && user.linked_community_id != 0) {
-            coVar.showDialog(new gi.k0(coVar, coVar.f35249f.linked_community_id, null, null));
+            boVar.showDialog(new fi.k0(boVar, boVar.f32299f.linked_community_id, null, null));
             return true;
         }
-        TLRPC.Chat chat = coVar.f35237e;
+        TLRPC.Chat chat = boVar.e;
         if (chat != null && chat.linked_community_id != 0) {
-            coVar.showDialog(new gi.k0(coVar, coVar.f35237e.linked_community_id, null, null));
+            boVar.showDialog(new fi.k0(boVar, boVar.e.linked_community_id, null, null));
             return true;
         }
         return false;
@@ -46,18 +46,18 @@ public final class pj extends org.telegram.ui.Components.co {
     @Override
     public final void f() {
         String str;
-        co coVar = this.f39532v0;
-        if (coVar.E9()) {
+        bo boVar = this.f36596v0;
+        if (boVar.E9()) {
             str = "";
         } else {
             str = null;
         }
-        coVar.la(str);
+        boVar.la(str);
     }
 
     @Override
     public final boolean o() {
-        if (this.f39532v0.R3 == 3) {
+        if (this.f36596v0.R3 == 3) {
             return true;
         }
         return false;

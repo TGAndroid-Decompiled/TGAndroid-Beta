@@ -6,11 +6,11 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 public final class uo0 extends LinearLayout {
-    public final ev0 f30931a;
-    public final TextView f30932b;
-    public final TextView f30933c;
+    public final fv0 f28477a;
+    public final TextView f28478b;
+    public final TextView f28479c;
 
-    public uo0(Context context, org.telegram.ui.ActionBar.f6 f6Var) {
+    public uo0(Context context, org.telegram.ui.ActionBar.e6 e6Var) {
         super(context);
         setLayoutParams(new s4.p0(-1, -2));
         setOrientation(0);
@@ -18,23 +18,23 @@ public final class uo0 extends LinearLayout {
         int dp = AndroidUtilities.dp(14.0f);
         int i10 = dp / 2;
         setPadding(dp, i10, dp, i10);
-        ev0 ev0Var = new ev0(context);
-        this.f30931a = ev0Var;
-        addView(ev0Var, w7.x5.c(40.0f, 40));
+        fv0 fv0Var = new fv0(context);
+        this.f28477a = fv0Var;
+        addView(fv0Var, w7.x5.c(40.0f, 40));
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setOrientation(1);
         addView(linearLayout, w7.x5.m(1.0f, 0, -1, 12, 0, 0));
         TextView textView = new TextView(context);
-        this.f30932b = textView;
-        int i11 = org.telegram.ui.ActionBar.j6.E8;
-        textView.setTextColor(org.telegram.ui.ActionBar.j6.v0(i11, f6Var));
+        this.f28478b = textView;
+        int i11 = org.telegram.ui.ActionBar.i6.E8;
+        textView.setTextColor(org.telegram.ui.ActionBar.i6.v0(i11, e6Var));
         textView.setTextSize(1, 16.0f);
         textView.setTag(textView);
         textView.setMaxLines(1);
         linearLayout.addView(textView);
         TextView textView2 = new TextView(context);
-        this.f30933c = textView2;
-        textView2.setTextColor(i0.a.k(org.telegram.ui.ActionBar.j6.v0(i11, f6Var), 102));
+        this.f28479c = textView2;
+        textView2.setTextColor(i0.a.k(org.telegram.ui.ActionBar.i6.v0(i11, e6Var), 102));
         textView2.setTextSize(1, 14.0f);
         textView2.setTag(textView2);
         textView2.setMaxLines(1);

@@ -8,11 +8,11 @@ import org.telegram.messenger.FileLog;
 import org.telegram.messenger.MessageObject;
 public final class xj extends s4.t {
     public boolean S;
-    public final co T;
+    public final bo T;
 
-    public xj(co coVar, boolean z10) {
+    public xj(bo boVar, boolean z10) {
         super(z10);
-        this.T = coVar;
+        this.T = boVar;
     }
 
     @Override
@@ -21,10 +21,10 @@ public final class xj extends s4.t {
         MessageObject messageObject;
         MessageObject.GroupedMessages X8;
         byte b10;
-        co coVar = this.T;
-        om omVar = coVar.A0;
-        int i12 = omVar.J;
-        if (i10 >= i12 && i10 < omVar.K && (i11 = i10 - i12) >= 0 && i11 < omVar.L().size() && (X8 = coVar.X8((messageObject = (MessageObject) coVar.A0.L().get(i11)))) != null) {
+        bo boVar = this.T;
+        nm nmVar = boVar.A0;
+        int i12 = nmVar.J;
+        if (i10 >= i12 && i10 < nmVar.K && (i11 = i10 - i12) >= 0 && i11 < nmVar.L().size() && (X8 = boVar.X8((messageObject = (MessageObject) boVar.A0.L().get(i11)))) != null) {
             MessageObject.GroupedMessagePosition position = X8.getPosition(messageObject);
             if (position.minX != position.maxX && (b10 = position.minY) == position.maxY && b10 != 0) {
                 int size = X8.posArray.size();
@@ -54,7 +54,7 @@ public final class xj extends s4.t {
     @Override
     public final int G() {
         if (this.S) {
-            return (int) this.T.f35418s9;
+            return (int) this.T.f32469s9;
         }
         return 0;
     }
@@ -62,7 +62,7 @@ public final class xj extends s4.t {
     @Override
     public final int J() {
         if (this.S) {
-            return (int) this.T.f35418s9;
+            return (int) this.T.f32469s9;
         }
         return F();
     }
@@ -70,26 +70,26 @@ public final class xj extends s4.t {
     @Override
     public final int K() {
         if (this.S) {
-            return (int) ((this.f45852n - this.T.f35418s9) - C());
+            return (int) ((this.f42777n - this.T.f32469s9) - C());
         }
         return super.K();
     }
 
     @Override
     public final int X0() {
-        return (int) this.T.f35418s9;
+        return (int) this.T.f32469s9;
     }
 
     @Override
-    public final void b0(pf.e eVar, s4.z0 z0Var) {
+    public final void b0(of.e eVar, s4.z0 z0Var) {
         if (BuildVars.DEBUG_PRIVATE_VERSION) {
             super.b0(eVar, z0Var);
             return;
         }
         try {
             super.b0(eVar, z0Var);
-        } catch (Exception e7) {
-            FileLog.e(e7);
+        } catch (Exception e) {
+            FileLog.e(e);
             AndroidUtilities.runOnUIThread(new dj(this, 2));
         }
     }
@@ -97,7 +97,7 @@ public final class xj extends s4.t {
     @Override
     public final void i1(int i10, int i11, boolean z10) {
         if (!z10) {
-            i11 = (int) ((i11 - F()) + this.T.f35418s9);
+            i11 = (int) ((i11 - F()) + this.T.f32469s9);
         }
         super.i1(i10, i11, z10);
     }
@@ -127,16 +127,16 @@ public final class xj extends s4.t {
     }
 
     @Override
-    public final int o0(int r11, pf.e r12, s4.z0 r13) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.xj.o0(int, pf.e, s4.z0):int");
+    public final int o0(int r11, of.e r12, s4.z0 r13) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.xj.o0(int, of.e, s4.z0):int");
     }
 
     @Override
     public final void v0(RecyclerView recyclerView, s4.z0 z0Var, int i10) {
-        this.T.f35419sa = false;
-        ki.p pVar = new ki.p(recyclerView.getContext(), 0);
-        pVar.f45906a = i10;
-        w0(pVar);
+        this.T.f32470sa = false;
+        ji.o oVar = new ji.o(recyclerView.getContext(), 0);
+        oVar.f42825a = i10;
+        w0(oVar);
     }
 
     @Override

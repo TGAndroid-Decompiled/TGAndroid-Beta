@@ -1,45 +1,27 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Paint;
-import android.graphics.drawable.Drawable;
-import android.graphics.drawable.ShapeDrawable;
-public final class r6 extends s6 {
-    public final int f29939b;
-
-    public r6(String str, int i10) {
-        super(str, 1);
-        this.f29939b = i10;
-    }
-
-    @Override
-    public final void a(int i10, Object obj) {
-        switch (this.f29939b) {
-            case 0:
-                ((Paint) obj).setAlpha(i10);
-                return;
-            case 1:
-                ((Paint) obj).setColor(i10);
-                return;
-            case 2:
-                ((Drawable) obj).setAlpha(i10);
-                return;
-            default:
-                ((ShapeDrawable) obj).getPaint().setAlpha(i10);
-                return;
-        }
-    }
-
-    @Override
-    public final Object get(Object obj) {
-        switch (this.f29939b) {
-            case 0:
-                return Integer.valueOf(((Paint) obj).getAlpha());
-            case 1:
-                return Integer.valueOf(((Paint) obj).getColor());
-            case 2:
-                return Integer.valueOf(((Drawable) obj).getAlpha());
-            default:
-                return Integer.valueOf(((ShapeDrawable) obj).getPaint().getAlpha());
-        }
+import android.graphics.Typeface;
+import android.widget.TextView;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.ui.LaunchActivity;
+public final class r6 extends lb {
+    public r6(LaunchActivity launchActivity, org.telegram.ui.lb0 lb0Var) {
+        super(launchActivity, null);
+        org.telegram.ui.Cells.q qVar = new org.telegram.ui.Cells.q(getContext());
+        TextView textView = new TextView(getContext());
+        addView(qVar, w7.x5.i(30.0f, 30.0f, 8388627, 12.0f, 8.0f, 12.0f, 8.0f));
+        textView.setGravity(8388611);
+        textView.setPadding(0, AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(8.0f));
+        textView.setTextColor(getThemedColor(org.telegram.ui.ActionBar.i6.Hi));
+        textView.setTextSize(1, 15.0f);
+        textView.setTypeface(Typeface.SANS_SERIF);
+        addView(textView, w7.x5.i(-1.0f, -2.0f, 8388627, 56.0f, 0.0f, 16.0f, 0.0f));
+        qVar.setImageDrawable(launchActivity.getDrawable(lb0Var.f35410b));
+        qVar.setOuterPadding(AndroidUtilities.dp(8.0f));
+        qVar.setBackgroundOuterPadding(AndroidUtilities.dp(24.0f));
+        qVar.setForeground(lb0Var.f35411c);
+        org.telegram.messenger.wl.p(R.string.AppIconChangedTo, new Object[]{LocaleController.getString(lb0Var.d)}, textView);
     }
 }

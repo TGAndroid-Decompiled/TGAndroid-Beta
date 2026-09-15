@@ -5,24 +5,24 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.b2;
-import org.telegram.ui.vr;
-import zh.r5;
-import zh.s5;
+import org.telegram.ui.ur;
+import yh.u5;
+import yh.v5;
 public final class f implements Runnable {
-    public final int f19362a;
-    public final long f19363b;
-    public final Object f19364c;
+    public final int f17644a;
+    public final long f17645b;
+    public final Object f17646c;
     public final Object d;
-    public final Object f19365e;
-    public final Object f19366f;
+    public final Object e;
+    public final Object f17647f;
 
     public f(Object obj, long j3, Object obj2, Object obj3, Object obj4, int i10) {
-        this.f19362a = i10;
+        this.f17644a = i10;
         this.d = obj;
-        this.f19363b = j3;
-        this.f19364c = obj2;
-        this.f19365e = obj3;
-        this.f19366f = obj4;
+        this.f17645b = j3;
+        this.f17646c = obj2;
+        this.e = obj3;
+        this.f17647f = obj4;
     }
 
     @Override
@@ -31,65 +31,65 @@ public final class f implements Runnable {
     }
 
     public f(Object obj, Object obj2, long j3, Object obj3, Object obj4, int i10) {
-        this.f19362a = i10;
+        this.f17644a = i10;
         this.d = obj;
-        this.f19364c = obj2;
-        this.f19363b = j3;
-        this.f19365e = obj3;
-        this.f19366f = obj4;
+        this.f17646c = obj2;
+        this.f17645b = j3;
+        this.e = obj3;
+        this.f17647f = obj4;
     }
 
     public f(Object obj, Object obj2, Object obj3, long j3, Object obj4, int i10) {
-        this.f19362a = i10;
+        this.f17644a = i10;
         this.d = obj;
-        this.f19364c = obj2;
-        this.f19365e = obj3;
-        this.f19363b = j3;
-        this.f19366f = obj4;
+        this.f17646c = obj2;
+        this.e = obj3;
+        this.f17645b = j3;
+        this.f17647f = obj4;
     }
 
     public f(Object obj, Object obj2, Object obj3, Object obj4, long j3, int i10) {
-        this.f19362a = i10;
+        this.f17644a = i10;
         this.d = obj;
-        this.f19364c = obj2;
-        this.f19365e = obj3;
-        this.f19366f = obj4;
-        this.f19363b = j3;
+        this.f17646c = obj2;
+        this.e = obj3;
+        this.f17647f = obj4;
+        this.f17645b = j3;
     }
 
-    public f(vr vrVar, long j3, TLObject tLObject, String str, TLObject tLObject2, int i10) {
-        this.f19362a = i10;
-        this.d = vrVar;
-        this.f19363b = j3;
-        this.f19365e = tLObject;
-        this.f19366f = str;
-        this.f19364c = tLObject2;
+    public f(ur urVar, long j3, TLObject tLObject, String str, TLObject tLObject2, int i10) {
+        this.f17644a = i10;
+        this.d = urVar;
+        this.f17645b = j3;
+        this.e = tLObject;
+        this.f17647f = str;
+        this.f17646c = tLObject2;
     }
 
-    public f(zh.o oVar, b2 b2Var, TLObject tLObject, long j3, Utilities.Callback callback) {
-        this.f19362a = 9;
+    public f(yh.o oVar, b2 b2Var, TLObject tLObject, long j3, Utilities.Callback callback) {
+        this.f17644a = 9;
         this.d = oVar;
-        this.f19365e = b2Var;
-        this.f19364c = tLObject;
-        this.f19363b = j3;
-        this.f19366f = callback;
+        this.e = b2Var;
+        this.f17646c = tLObject;
+        this.f17645b = j3;
+        this.f17647f = callback;
     }
 
-    public f(r5 r5Var, TLObject tLObject, MessagesController messagesController, TLRPC.TL_error tL_error, long j3) {
-        this.f19362a = 14;
-        this.d = r5Var;
-        this.f19364c = tLObject;
-        this.f19366f = messagesController;
-        this.f19365e = tL_error;
-        this.f19363b = j3;
+    public f(u5 u5Var, TLObject tLObject, MessagesController messagesController, TLRPC.TL_error tL_error, long j3) {
+        this.f17644a = 14;
+        this.d = u5Var;
+        this.f17646c = tLObject;
+        this.f17647f = messagesController;
+        this.e = tL_error;
+        this.f17645b = j3;
     }
 
-    public f(s5 s5Var, Utilities.Callback2 callback2, long j3, TLObject tLObject, TLRPC.TL_textWithEntities tL_textWithEntities) {
-        this.f19362a = 11;
-        this.d = s5Var;
-        this.f19365e = callback2;
-        this.f19363b = j3;
-        this.f19364c = tLObject;
-        this.f19366f = tL_textWithEntities;
+    public f(v5 v5Var, Utilities.Callback2 callback2, long j3, TLObject tLObject, TLRPC.TL_textWithEntities tL_textWithEntities) {
+        this.f17644a = 11;
+        this.d = v5Var;
+        this.e = callback2;
+        this.f17645b = j3;
+        this.f17646c = tLObject;
+        this.f17647f = tL_textWithEntities;
     }
 }

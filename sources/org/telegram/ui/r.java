@@ -5,54 +5,54 @@ import android.text.TextUtils;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
 public final class r implements Utilities.Callback {
-    public final int f40023a;
-    public final i4 f40024b;
+    public final int f36979a;
+    public final h4 f36980b;
 
-    public r(i4 i4Var, int i10) {
-        this.f40023a = i10;
-        this.f40024b = i4Var;
+    public r(h4 h4Var, int i10) {
+        this.f36979a = i10;
+        this.f36980b = h4Var;
     }
 
     @Override
     public final void run(Object obj) {
-        switch (this.f40023a) {
+        switch (this.f36979a) {
             case 0:
-                i4 i4Var = this.f40024b;
-                bi.g5 g5Var = i4Var.f37228q0;
+                h4 h4Var = this.f36980b;
+                ai.x5 x5Var = h4Var.f34147q0;
                 float f7 = -((Integer) obj).intValue();
-                i4Var.f37227p0 = f7;
-                g5Var.setTranslationY(((1.0f - i4Var.Y0) * AndroidUtilities.dp(51.0f)) + f7);
+                h4Var.f34146p0 = f7;
+                x5Var.setTranslationY(((1.0f - h4Var.Y0) * AndroidUtilities.dp(51.0f)) + f7);
                 return;
             case 1:
                 String str = (String) obj;
                 if (!TextUtils.isEmpty(str)) {
-                    i4 i4Var2 = this.f40024b;
-                    i4Var2.f37220h0.f42277b0.setText(str);
-                    gi.o oVar = i4Var2.f37220h0.f42277b0;
+                    h4 h4Var2 = this.f36980b;
+                    h4Var2.f34139h0.f39109b0.setText(str);
+                    fi.o oVar = h4Var2.f34139h0.f39109b0;
                     oVar.setSelection(oVar.getText().length());
-                    AndroidUtilities.showKeyboard(i4Var2.f37220h0.f42277b0);
+                    AndroidUtilities.showKeyboard(h4Var2.f34139h0.f39109b0);
                     return;
                 }
                 return;
             case 2:
                 String str2 = (String) obj;
-                i4 i4Var3 = this.f40024b;
-                if (i4Var3.L != null && str2 != null) {
-                    i4Var3.f37220h0.k(false);
-                    if (of.f.f(Uri.parse(str2), false, null)) {
-                        v3 v3Var = i4Var3.K;
-                        if (v3Var != null) {
-                            v3Var.dismiss(true);
+                h4 h4Var3 = this.f36980b;
+                if (h4Var3.L != null && str2 != null) {
+                    h4Var3.f34139h0.k(false);
+                    if (nf.f.f(Uri.parse(str2), false, null)) {
+                        u3 u3Var = h4Var3.K;
+                        if (u3Var != null) {
+                            u3Var.dismiss(true);
                         }
-                        of.f.k(i4Var3.L, str2, false, false, null);
+                        nf.f.k(h4Var3.L, str2, false, false, null);
                         return;
-                    } else if (!of.f.l(i4Var3.L, str2, false)) {
-                        m3 m3Var = i4Var3.f37232u0[0];
-                        if (m3Var != null && m3Var.getWebView() != null) {
-                            i4Var3.f37232u0[0].getWebView().loadUrl(str2);
+                    } else if (!nf.f.l(h4Var3.L, str2, false)) {
+                        l3 l3Var = h4Var3.f34151u0[0];
+                        if (l3Var != null && l3Var.getWebView() != null) {
+                            h4Var3.f34151u0[0].getWebView().loadUrl(str2);
                             return;
                         } else {
-                            of.f.n(str2);
+                            nf.f.n(str2);
                             return;
                         }
                     } else {
@@ -62,15 +62,15 @@ public final class r implements Utilities.Callback {
                 return;
             default:
                 org.telegram.ui.web.e1 e1Var = (org.telegram.ui.web.e1) obj;
-                i4 i4Var4 = this.f40024b;
-                if (i4Var4.L != null && e1Var != null) {
-                    i4Var4.f37220h0.k(false);
-                    m3 m3Var2 = i4Var4.f37232u0[0];
-                    if (m3Var2 != null && m3Var2.getWebView() != null) {
-                        i4Var4.f37232u0[0].getWebView().e(e1Var.f42078c, e1Var.d);
+                h4 h4Var4 = this.f36980b;
+                if (h4Var4.L != null && e1Var != null) {
+                    h4Var4.f34139h0.k(false);
+                    l3 l3Var2 = h4Var4.f34151u0[0];
+                    if (l3Var2 != null && l3Var2.getWebView() != null) {
+                        h4Var4.f34151u0[0].getWebView().e(e1Var.f38938c, e1Var.d);
                         return;
                     } else {
-                        of.f.n(e1Var.f42078c);
+                        nf.f.n(e1Var.f38938c);
                         return;
                     }
                 }

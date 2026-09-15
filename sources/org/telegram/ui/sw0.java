@@ -1,130 +1,43 @@
 package org.telegram.ui;
 
-import android.graphics.Typeface;
-import android.media.AudioRecordingConfiguration;
-import android.media.MediaRoute2Info;
-import com.google.firebase.components.ComponentRegistrar;
-import com.google.firebase.concurrent.ExecutorsRegistrar;
-import com.google.firebase.installations.FirebaseInstallationsRegistrar;
-import java.util.List;
-import java.util.concurrent.ScheduledExecutorService;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.SharedConfig;
+import android.view.View;
 import org.telegram.messenger.Utilities;
-public final class sw0 implements Utilities.Callback2Return, org.telegram.ui.ActionBar.a2, org.telegram.ui.Components.rv0, g2.g, q3.g, q9.e, pa.a, q9.d, qg.h0, androidx.car.app.utils.d {
-    public final int f40560a;
+public final class sw0 implements org.telegram.ui.ActionBar.a2, Utilities.Callback5 {
+    public final int f37488a;
+    public final tw0 f37489b;
 
-    public sw0(int i10) {
-        this.f40560a = i10;
-    }
-
-    public static AudioRecordingConfiguration d(Object obj) {
-        return (AudioRecordingConfiguration) obj;
-    }
-
-    public static MediaRoute2Info e(Object obj) {
-        return (MediaRoute2Info) obj;
+    public sw0(tw0 tw0Var, int i10) {
+        this.f37488a = i10;
+        this.f37489b = tw0Var;
     }
 
     @Override
-    public Object D(cf.c cVar) {
-        qa.d lambda$getComponents$0;
-        switch (this.f40560a) {
-            case 16:
-                lambda$getComponents$0 = FirebaseInstallationsRegistrar.lambda$getComponents$0(cVar);
-                return lambda$getComponents$0;
-            case 28:
-                return (ScheduledExecutorService) ExecutorsRegistrar.f6302a.get();
+    public void f(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
+        switch (this.f37488a) {
+            case 0:
+                this.f37489b.Y();
+                return;
             default:
-                return (ScheduledExecutorService) ExecutorsRegistrar.f6304c.get();
-        }
-    }
-
-    @Override
-    public Typeface a() {
-        switch (this.f40560a) {
-            case 17:
-                return AndroidUtilities.getTypeface("fonts/rmedium.ttf");
-            case 18:
-                return AndroidUtilities.getTypeface("fonts/rmediumitalic.ttf");
-            case 19:
-                return Typeface.create("serif", 1);
-            case 20:
-                return AndroidUtilities.getTypeface("fonts/rcondensedbold.ttf");
-            case 21:
-                return AndroidUtilities.getTypeface("fonts/rmono.ttf");
-            default:
-                return AndroidUtilities.getTypeface("fonts/mw_bold.ttf");
-        }
-    }
-
-    @Override
-    public List b(ComponentRegistrar componentRegistrar) {
-        return componentRegistrar.getComponents();
-    }
-
-    @Override
-    public boolean c(int i10, int i11, int i12, int i13, int i14) {
-        return false;
-    }
-
-    @Override
-    public void call() {
-        throw null;
-    }
-
-    @Override
-    public g2.h createDataSource() {
-        return new g2.b(ApplicationLoader.applicationContext);
-    }
-
-    @Override
-    public void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        switch (this.f40560a) {
-            case 1:
-                b2Var.dismiss();
-                return;
-            case 2:
-                b2Var.dismiss();
-                return;
-            case 3:
-            default:
-                b2Var.dismiss();
-                return;
-            case 4:
-                b2Var.dismiss();
-                return;
-            case 5:
-                b2Var.dismiss();
-                return;
-            case 6:
-                b2Var.dismiss();
+                this.f37489b.finishFragment();
                 return;
         }
     }
 
     @Override
-    public void i(int i10) {
-        SharedConfig.proxyRotationTimeout = i10;
-        SharedConfig.saveConfig();
-    }
-
-    @Override
-    public Object run(Object obj, Object obj2) {
-        Integer num = (Integer) obj2;
-        if (((Integer) obj).intValue() == 0) {
-            return zh.v7.X0(false, LocaleController.formatPluralStringComma("Stars", num.intValue()), 0.66f, null);
+    public void mo17run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
+        View view = (View) obj2;
+        ((Integer) obj3).intValue();
+        ((Float) obj4).floatValue();
+        ((Float) obj5).floatValue();
+        tw0 tw0Var = this.f37489b;
+        tw0Var.getClass();
+        if (((org.telegram.ui.Components.i51) obj).d == 1) {
+            org.telegram.ui.Cells.w8 w8Var = (org.telegram.ui.Cells.w8) view;
+            boolean z10 = !w8Var.e.h;
+            tw0Var.f37798r = z10;
+            w8Var.setChecked(z10);
+            tw0Var.d.Y2.N(true);
+            tw0Var.V(true);
         }
-        return LocaleController.formatNumber(num.intValue(), ',');
-    }
-
-    @Override
-    public void h(pa.b bVar) {
-    }
-
-    @Override
-    public void l() {
     }
 }

@@ -1,54 +1,34 @@
 package qg;
-public final class m1 extends o1 {
-    public final int f44484f;
-    public final l1 f44485g;
-    public final p1 h;
 
-    public m1(p1 p1Var, l1 l1Var, int i10) {
-        this.f44484f = i10;
-        this.h = p1Var;
-        this.f44485g = l1Var;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+public final class m1 extends View {
+    public final Paint f41455a;
+    public float f41456b;
+
+    public m1(Context context) {
+        super(context);
+        Paint paint = new Paint(1);
+        this.f41455a = paint;
+        paint.setColor(-1);
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setStrokeCap(Paint.Cap.ROUND);
+        paint.setStrokeWidth(AndroidUtilities.dp(2.0f));
     }
 
     @Override
-    public final void a() {
-        switch (this.f44484f) {
-            case 0:
-                f1 f1Var = this.h.h;
-                float f7 = f1Var.f44433i;
-                float f10 = f1Var.f44434j;
-                this.d = f7;
-                this.f44500e = f10;
-                return;
-            default:
-                f1 f1Var2 = this.h.h;
-                float f11 = f1Var2.d;
-                float f12 = f1Var2.f44430e;
-                this.d = f11;
-                this.f44500e = f12;
-                return;
-        }
+    public final void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+        Paint paint = this.f41455a;
+        canvas.drawLine((getWidth() / 2.0f) + AndroidUtilities.dp(AndroidUtilities.lerp(-6.7f, -7.0f, this.f41456b)), (getHeight() / 2.0f) + AndroidUtilities.dp(AndroidUtilities.lerp(0.71f, 0.0f, this.f41456b)), (getWidth() / 2.0f) + AndroidUtilities.dp(AndroidUtilities.lerp(-2.45f, 7.0f, this.f41456b)), (getHeight() / 2.0f) + AndroidUtilities.dp(AndroidUtilities.lerp(4.79f, 0.0f, this.f41456b)), paint);
+        canvas.drawLine((getWidth() / 2.0f) + AndroidUtilities.dp(AndroidUtilities.lerp(-2.45f, 0.0f, this.f41456b)), (getHeight() / 2.0f) + AndroidUtilities.dp(AndroidUtilities.lerp(4.79f, 7.0f, this.f41456b)), (getWidth() / 2.0f) + AndroidUtilities.dp(AndroidUtilities.lerp(6.59f, 0.0f, this.f41456b)), (getHeight() / 2.0f) + AndroidUtilities.dp(AndroidUtilities.lerp(-4.27f, -7.0f, this.f41456b)), paint);
     }
 
-    @Override
-    public final void b(float f7, float f10) {
-        switch (this.f44484f) {
-            case 0:
-                f1 f1Var = this.h.h;
-                f1Var.f44433i = f7;
-                f1Var.f44434j = f10;
-                this.d = f7;
-                this.f44500e = f10;
-                this.f44485g.a();
-                return;
-            default:
-                f1 f1Var2 = this.h.h;
-                f1Var2.d = f7;
-                f1Var2.f44430e = f10;
-                this.d = f7;
-                this.f44500e = f10;
-                this.f44485g.a();
-                return;
-        }
+    public void setProgress(float f7) {
+        this.f41456b = f7;
+        invalidate();
     }
 }

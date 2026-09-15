@@ -4,27 +4,27 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.view.View;
 public final class z71 extends AnimatorListenerAdapter {
-    public boolean f33092a;
-    public final View f33093b;
-    public final float f33094c;
+    public boolean f30494a;
+    public final View f30495b;
+    public final float f30496c;
     public final i81 d;
 
     public z71(i81 i81Var, View view, float f7) {
         this.d = i81Var;
-        this.f33093b = view;
-        this.f33094c = f7;
+        this.f30495b = view;
+        this.f30496c = f7;
     }
 
     @Override
     public final void onAnimationCancel(Animator animator) {
         super.onAnimationCancel(animator);
-        this.f33092a = true;
+        this.f30494a = true;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        if (!this.f33092a) {
-            this.d.E(this.f33093b, this.f33094c);
+        if (!this.f30494a) {
+            this.d.E(this.f30495b, this.f30496c);
         }
     }
 }

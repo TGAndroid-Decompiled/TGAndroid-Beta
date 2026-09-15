@@ -1,50 +1,42 @@
 package yh;
 
-import android.graphics.Canvas;
-import android.graphics.PointF;
-import androidx.recyclerview.widget.RecyclerView;
-import di.eb;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.ll0;
-public final class w4 extends s4.n0 {
-    public final PointF f50620a = new PointF();
-    public final x4 f50621b;
+import android.content.DialogInterface;
+import org.telegram.messenger.Utilities;
+public final class w4 implements DialogInterface.OnDismissListener {
+    public final int f47937a;
+    public final Utilities.Callback2 f47938b;
+    public final boolean[] f47939c;
 
-    public w4(x4 x4Var) {
-        this.f50621b = x4Var;
+    public w4(Utilities.Callback2 callback2, boolean[] zArr, int i10) {
+        this.f47937a = i10;
+        this.f47938b = callback2;
+        this.f47939c = zArr;
     }
 
     @Override
-    public final void b(Canvas canvas, RecyclerView recyclerView) {
-        float f7;
-        float f10;
-        eb ebVar;
-        float height = recyclerView.getHeight();
-        x4 x4Var = this.f50621b;
-        s4 s4Var = x4Var.f50645s0;
-        r4 r4Var = x4Var.f50635h0;
-        ll0 ll0Var = x4Var.d;
-        PointF pointF = this.f50620a;
-        if (ih.k.b(r4Var, ll0Var, pointF)) {
-            f7 = pointF.x;
-            height = Math.min(height, pointF.y);
-            f10 = Math.max(0.0f, pointF.y + r4Var.getMeasuredHeight());
-        } else {
-            f7 = 0.0f;
-            f10 = 0.0f;
-        }
-        if (ih.k.b(s4Var, ll0Var, pointF)) {
-            height = Math.min(height, pointF.y);
-            f10 = Math.max(f10, pointF.y + s4Var.getMeasuredHeight() + AndroidUtilities.dp(12.0f));
-        }
-        if (height < f10 && (ebVar = r4Var.L) != null) {
-            float height2 = (f10 - height) / ebVar.getHeight();
-            canvas.save();
-            canvas.clipRect(0.0f, height, recyclerView.getWidth(), f10);
-            canvas.translate(f7, height);
-            canvas.scale(height2, height2);
-            r4Var.L.draw(canvas);
-            canvas.restore();
+    public final void onDismiss(DialogInterface dialogInterface) {
+        switch (this.f47937a) {
+            case 0:
+                Utilities.Callback2 callback2 = this.f47938b;
+                if (callback2 != null && !this.f47939c[0]) {
+                    callback2.run(0L, Boolean.FALSE);
+                    return;
+                }
+                return;
+            case 1:
+                Utilities.Callback2 callback22 = this.f47938b;
+                if (callback22 != null && !this.f47939c[0]) {
+                    callback22.run(Boolean.FALSE, null);
+                    return;
+                }
+                return;
+            default:
+                Utilities.Callback2 callback23 = this.f47938b;
+                if (callback23 != null && !this.f47939c[0]) {
+                    callback23.run(Boolean.FALSE, null);
+                    return;
+                }
+                return;
         }
     }
 }

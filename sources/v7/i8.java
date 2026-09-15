@@ -51,8 +51,8 @@ public abstract class i8 {
         try {
             try {
                 fileOutputStream = new FileOutputStream(file, false);
-            } catch (IOException e7) {
-                e = e7;
+            } catch (IOException e) {
+                e = e;
             }
         } catch (Throwable th2) {
             th = th2;
@@ -69,8 +69,8 @@ public abstract class i8 {
                     return true;
                 }
             }
-        } catch (IOException e10) {
-            e = e10;
+        } catch (IOException e7) {
+            e = e7;
             fileOutputStream2 = fileOutputStream;
             Log.e("TypefaceCompatUtil", "Error copying resource contents to temp file: " + e.getMessage());
             a(fileOutputStream2);

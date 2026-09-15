@@ -1,16 +1,38 @@
 package org.telegram.ui.Components;
+public final class hd implements Runnable {
+    public final int f24675a;
+    public final jd f24676b;
+    public final boolean f24677c;
 
-import android.animation.TimeInterpolator;
-public final class hd implements TimeInterpolator {
-    public final int f26709a;
+    public hd(jd jdVar, boolean z10, int i10) {
+        this.f24675a = i10;
+        this.f24676b = jdVar;
+        this.f24677c = z10;
+    }
 
     @Override
-    public final float getInterpolation(float f7) {
-        switch (this.f26709a) {
+    public final void run() {
+        switch (this.f24675a) {
             case 0:
-                return ((((6.0f * f7) - 15.0f) * f7) + 10.0f) * f7 * f7 * f7;
+                boolean z10 = this.f24677c;
+                jd jdVar = this.f24676b;
+                if (!z10) {
+                    jdVar.Z0.setVisibility(8);
+                    return;
+                } else {
+                    jdVar.getClass();
+                    return;
+                }
             default:
-                return f7;
+                boolean z11 = this.f24677c;
+                jd jdVar2 = this.f24676b;
+                if (!z11) {
+                    jdVar2.V0.setVisibility(8);
+                    return;
+                } else {
+                    jdVar2.getClass();
+                    return;
+                }
         }
     }
 }

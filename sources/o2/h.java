@@ -1,16 +1,16 @@
 package o2;
 public final class h {
-    public final p2.j f16849a;
-    public final long f16850b;
-    public final int f16851c;
+    public final p2.k f15372a;
+    public final long f15373b;
+    public final int f15374c;
     public final boolean d;
 
-    public h(p2.j jVar, long j3, int i10) {
+    public h(p2.k kVar, long j3, int i10) {
         boolean z10;
-        this.f16849a = jVar;
-        this.f16850b = j3;
-        this.f16851c = i10;
-        if ((jVar instanceof p2.g) && ((p2.g) jVar).f43695x) {
+        this.f15372a = kVar;
+        this.f15373b = j3;
+        this.f15374c = i10;
+        if ((kVar instanceof p2.h) && ((p2.h) kVar).f40449x) {
             z10 = true;
         } else {
             z10 = false;

@@ -1,48 +1,68 @@
 package hg;
 
-import bi.c3;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.MessagesStorage;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class b1 implements Runnable {
-    public final String f10975a;
-    public final String f10976b;
-    public final MessagesController f10977c;
-    public final MessagesStorage d;
-    public final k1 f10978e;
+import android.app.Activity;
+import android.graphics.Canvas;
+import android.graphics.drawable.Drawable;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.ActionBar.i6;
+import org.telegram.ui.Components.EditTextBoldCursor;
+import org.telegram.ui.Components.f5;
+import org.telegram.ui.Components.m6;
+import org.telegram.ui.Components.qr;
+public final class b1 extends EditTextBoldCursor {
+    public final f5 f10226b;
+    public int f10227c;
+    public final m6 d;
+    public final e1 e;
 
-    public b1(k1 k1Var, String str, String str2, MessagesController messagesController, MessagesStorage messagesStorage) {
-        this.f10978e = k1Var;
-        this.f10975a = str;
-        this.f10976b = str2;
-        this.f10977c = messagesController;
-        this.d = messagesStorage;
+    public b1(e1 e1Var, Activity activity) {
+        super(activity);
+        this.e = e1Var;
+        this.f10226b = new f5(this);
+        m6 m6Var = new m6(false, true, true, false);
+        this.d = m6Var;
+        m6Var.k(0.2f, 160L, qr.h);
+        m6Var.t(AndroidUtilities.dp(15.33f));
+        m6Var.setCallback(this);
+        m6Var.f26086b = 5;
     }
 
     @Override
-    public final void run() {
-        k1 k1Var = this.f10978e;
-        if (k1Var.f11160y0 == this) {
-            k1Var.f11160y0 = null;
-            TLRPC.User user = k1Var.f11156w0;
-            if (user == null && !k1Var.f11154v0) {
-                String str = this.f10976b;
-                k1Var.f11147q0 = str;
-                MessagesController messagesController = this.f10977c;
-                TLObject userOrChat = messagesController.getUserOrChat(str);
-                if (userOrChat instanceof TLRPC.User) {
-                    k1Var.R((TLRPC.User) userOrChat);
-                    return;
-                }
-                TLRPC.TL_contacts_resolveUsername tL_contacts_resolveUsername = new TLRPC.TL_contacts_resolveUsername();
-                tL_contacts_resolveUsername.username = k1Var.f11147q0;
-                k1Var.f11152t0 = ConnectionsManager.getInstance(k1Var.f11135f).sendRequest(tL_contacts_resolveUsername, new c3(this, str, messagesController, this.d, 2));
-            } else if (k1Var.f11154v0) {
-            } else {
-                k1Var.T(true, user, this.f10975a, "");
-            }
+    public final void dispatchDraw(Canvas canvas) {
+        int i10;
+        super.dispatchDraw(canvas);
+        if (this.f10227c < 0) {
+            i10 = i6.f19056p7;
+        } else {
+            i10 = i6.P5;
         }
+        int a2 = this.f10226b.a(i6.v0(i10, this.e.getResourceProvider()), false);
+        m6 m6Var = this.d;
+        m6Var.r(a2);
+        m6Var.setBounds(getScrollX(), 0, getWidth() + getScrollX(), getHeight());
+        m6Var.draw(canvas);
+    }
+
+    @Override
+    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+        super.onTextChanged(charSequence, i10, i11, i12);
+        m6 m6Var = this.d;
+        if (m6Var != null) {
+            this.f10227c = 96 - charSequence.length();
+            m6Var.b();
+            String str = "";
+            if (this.f10227c <= 12) {
+                str = "" + this.f10227c;
+            }
+            m6Var.q(str, true, true);
+        }
+    }
+
+    @Override
+    public final boolean verifyDrawable(Drawable drawable) {
+        if (drawable != this.d && !super.verifyDrawable(drawable)) {
+            return false;
+        }
+        return true;
     }
 }

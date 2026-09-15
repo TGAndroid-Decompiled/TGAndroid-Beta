@@ -1,6 +1,13 @@
 package v7;
 public abstract class m5 {
-    public static int a(int i10) {
-        return (int) (Integer.rotateLeft((int) (i10 * (-862048943)), 15) * 461845907);
+    public final int f44048a = 1;
+
+    public String toString() {
+        switch (this.f44048a) {
+            case 1:
+                return ((com.google.android.gms.internal.cast.p4) this).f6459b.toString();
+            default:
+                return super.toString();
+        }
     }
 }

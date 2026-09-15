@@ -8,84 +8,84 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Bitmaps;
 import org.telegram.messenger.FileLog;
 public final class t81 implements Runnable {
-    public final int f30555a;
-    public final b91 f30556b;
+    public final int f28069a;
+    public final c91 f28070b;
 
-    public t81(b91 b91Var, int i10) {
-        this.f30555a = i10;
-        this.f30556b = b91Var;
+    public t81(c91 c91Var, int i10) {
+        this.f28069a = i10;
+        this.f28070b = c91Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f30555a) {
+        switch (this.f28069a) {
             case 0:
-                b91 b91Var = this.f30556b;
-                x81 x81Var = b91Var.f24628f0;
-                g71 g71Var = b91Var.f24618a;
+                c91 c91Var = this.f28070b;
+                y81 y81Var = c91Var.f23026f0;
+                g71 g71Var = c91Var.f23017a;
                 if (g71Var != null && g71Var.y()) {
-                    x81Var.c((int) (g71Var.n() / 1000));
-                    x81Var.f32473w = (int) (g71Var.j() / 1000);
-                    x81Var.invalidate();
-                    AndroidUtilities.runOnUIThread(b91Var.f24631i0, 1000L);
+                    y81Var.c((int) (g71Var.n() / 1000));
+                    y81Var.f30187w = (int) (g71Var.j() / 1000);
+                    y81Var.invalidate();
+                    AndroidUtilities.runOnUIThread(c91Var.f23029i0, 1000L);
                     return;
                 }
                 return;
             default:
-                b91 b91Var2 = this.f30556b;
-                x81 x81Var2 = b91Var2.f24628f0;
-                ImageView imageView = b91Var2.f24625e;
-                TextureView textureView = b91Var2.d;
-                b91Var2.W = false;
-                Bitmap bitmap = b91Var2.h;
+                c91 c91Var2 = this.f28070b;
+                y81 y81Var2 = c91Var2.f23026f0;
+                ImageView imageView = c91Var2.e;
+                TextureView textureView = c91Var2.d;
+                c91Var2.W = false;
+                Bitmap bitmap = c91Var2.h;
                 if (bitmap != null) {
                     bitmap.recycle();
-                    b91Var2.h = null;
+                    c91Var2.h = null;
                 }
-                b91Var2.S = true;
+                c91Var2.S = true;
                 if (imageView != null) {
                     try {
                         Bitmap createBitmap = Bitmaps.createBitmap(textureView.getWidth(), textureView.getHeight(), Bitmap.Config.ARGB_8888);
-                        b91Var2.h = createBitmap;
+                        c91Var2.h = createBitmap;
                         textureView.getBitmap(createBitmap);
                     } catch (Throwable th2) {
-                        Bitmap bitmap2 = b91Var2.h;
+                        Bitmap bitmap2 = c91Var2.h;
                         if (bitmap2 != null) {
                             bitmap2.recycle();
-                            b91Var2.h = null;
+                            c91Var2.h = null;
                         }
                         FileLog.e(th2);
                     }
-                    if (b91Var2.h != null) {
+                    if (c91Var2.h != null) {
                         imageView.setVisibility(0);
-                        imageView.setImageBitmap(b91Var2.h);
+                        imageView.setImageBitmap(c91Var2.h);
                     } else {
                         imageView.setImageDrawable(null);
                     }
                 }
-                b91Var2.U = true;
-                b91Var2.n();
-                b91Var2.o();
-                b91Var2.k();
-                b91Var2.m();
-                ViewGroup viewGroup = (ViewGroup) x81Var2.getParent();
+                c91Var2.U = true;
+                c91Var2.n();
+                c91Var2.o();
+                c91Var2.k();
+                c91Var2.m();
+                ViewGroup viewGroup = (ViewGroup) y81Var2.getParent();
                 if (viewGroup != null) {
-                    viewGroup.removeView(x81Var2);
+                    viewGroup.removeView(y81Var2);
                 }
-                y81 y81Var = b91Var2.v;
-                x81 x81Var3 = b91Var2.f24628f0;
-                boolean z10 = b91Var2.U;
-                int i10 = b91Var2.f24629g0;
-                int i11 = b91Var2.f24630h0;
-                b91Var2.f24622c.getVideoRotation();
-                TextureView f7 = y81Var.f(x81Var3, z10, i10, i11, b91Var2.I);
-                b91Var2.f24634n = f7;
+                z81 z81Var = c91Var2.v;
+                y81 y81Var3 = c91Var2.f23026f0;
+                boolean z10 = c91Var2.U;
+                int i10 = c91Var2.f23027g0;
+                int i11 = c91Var2.f23028h0;
+                c91Var2.f23021c.getVideoRotation();
+                TextureView f7 = z81Var.f(y81Var3, z10, i10, i11, c91Var2.I);
+                c91Var2.f23032n = f7;
                 f7.setVisibility(4);
                 ViewGroup viewGroup2 = (ViewGroup) textureView.getParent();
                 if (viewGroup2 != null) {
                     viewGroup2.removeView(textureView);
                 }
-                x81Var2.d(false, false);
+                y81Var2.d(false, false);
                 return;
         }
     }

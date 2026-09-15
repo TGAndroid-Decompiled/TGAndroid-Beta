@@ -1,30 +1,44 @@
 package org.telegram.ui;
 
-import android.animation.ValueAnimator;
-import android.graphics.Outline;
-import android.view.View;
-import android.view.ViewOutlineProvider;
+import android.content.Context;
+import android.view.WindowManager;
+import android.widget.FrameLayout;
+import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-public final class gt0 extends ViewOutlineProvider {
-    public final int f36777a;
-    public final float f36778b;
-    public final Object f36779c;
+import org.telegram.messenger.FileLog;
+import org.telegram.tgnet.TLRPC;
+public final class gt0 extends org.telegram.ui.Components.hq0 {
+    public final FrameLayout f34017b1;
+    public final boolean f34018c1;
+    public final PhotoViewer f34019d1;
 
-    public gt0(Object obj, float f7, int i10) {
-        this.f36777a = i10;
-        this.f36779c = obj;
-        this.f36778b = f7;
+    public gt0(PhotoViewer photoViewer, Context context, bo boVar, ArrayList arrayList, String str, Integer num, FrameLayout frameLayout, boolean z10) {
+        super(context, boVar, arrayList, null, null, false, str, null, false, true, false, num, null);
+        this.f34019d1 = photoViewer;
+        this.f34017b1 = frameLayout;
+        this.f34018c1 = z10;
     }
 
     @Override
-    public final void getOutline(View view, Outline outline) {
-        switch (this.f36777a) {
-            case 0:
-                outline.setRoundRect(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight(), (1.0f / this.f36778b) * ((Float) ((ValueAnimator) this.f36779c).getAnimatedValue()).floatValue() * AndroidUtilities.dp(10.0f));
-                return;
-            default:
-                outline.setRoundRect(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight(), (1.0f / this.f36778b) * (1.0f - ((PhotoViewer) this.f36779c).W) * AndroidUtilities.dp(10.0f));
-                return;
+    public final void R0(a0.i iVar, int i10, TLRPC.TL_forumTopic tL_forumTopic, boolean z10) {
+        if (!z10) {
+            return;
+        }
+        AndroidUtilities.runOnUIThread(new org.telegram.ui.Components.s11(this, this.f34017b1, iVar, i10, 9), 250L);
+    }
+
+    @Override
+    public final void dismissInternal() {
+        super.dismissInternal();
+        if (this.f34018c1) {
+            AndroidUtilities.runOnUIThread(new pl0(this, 16), 50L);
+        }
+        PhotoViewer photoViewer = this.f34019d1;
+        photoViewer.f30927d0.softInputMode = 272;
+        try {
+            ((WindowManager) photoViewer.f31114y.getSystemService("window")).updateViewLayout(photoViewer.f30953g0, photoViewer.f30927d0);
+        } catch (Exception e) {
+            FileLog.e(e);
         }
     }
 }

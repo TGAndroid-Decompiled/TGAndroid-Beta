@@ -1,114 +1,116 @@
 package org.telegram.ui.Components;
 
+import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.Path;
 import android.graphics.Rect;
-import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
-public final class dq extends Drawable {
-    public final Drawable f25436a;
-    public Path f25437b;
-    public final RectF f25438c;
-    public final RectF d;
-    public boolean f25439e;
-    public final float[] f25440f;
+import android.util.StateSet;
+import android.view.MotionEvent;
+public final class dq extends n6 {
+    public final Rect f23374s;
+    public Drawable v;
+    public boolean f23375w;
 
-    public dq(Drawable drawable) {
-        ah.g1 g1Var = new ah.g1(this, 3);
-        this.f25438c = new RectF();
-        this.d = new RectF();
-        this.f25439e = false;
-        this.f25440f = new float[8];
-        Drawable drawable2 = this.f25436a;
+    public dq(Context context) {
+        super(context, false, false, false);
+        this.f23374s = new Rect();
+    }
+
+    public Rect getClickBounds() {
+        return this.f23374s;
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        if (this.v != null) {
+            Rect bounds = getDrawable().getBounds();
+            Rect rect = this.f23374s;
+            rect.set(bounds);
+            int ceil = (int) Math.ceil(getDrawable().d());
+            if (getDrawable().f26086b == 3) {
+                rect.right = rect.left + ceil;
+            } else if (getDrawable().f26086b == 5) {
+                rect.left = rect.right - ceil;
+            } else if (getDrawable().f26086b == 17) {
+                int i10 = (rect.left + rect.right) / 2;
+                int i11 = ceil / 2;
+                rect.left = i10 - i11;
+                rect.right = i10 + i11;
+            }
+            rect.left -= getPaddingLeft();
+            rect.top -= getPaddingTop();
+            rect.right = getPaddingRight() + rect.right;
+            rect.bottom = getPaddingBottom() + rect.bottom;
+            this.v.setBounds(rect);
+            this.v.draw(canvas);
+        }
+        super.onDraw(canvas);
+    }
+
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        boolean contains = getClickBounds().contains((int) motionEvent.getX(), (int) motionEvent.getY());
+        if (motionEvent.getAction() == 0 && contains) {
+            this.f23375w = true;
+            Drawable drawable = this.v;
+            if (drawable != null) {
+                drawable.setHotspot(motionEvent.getX(), motionEvent.getY());
+                this.v.setState(new int[]{16842919, 16842910});
+            }
+            invalidate();
+            return contains;
+        }
+        if (motionEvent.getAction() == 1) {
+            if (this.f23375w && contains) {
+                callOnClick();
+            }
+            this.f23375w = false;
+            Drawable drawable2 = this.v;
+            if (drawable2 != null) {
+                drawable2.setState(StateSet.NOTHING);
+                return contains;
+            }
+        } else if (motionEvent.getAction() == 3) {
+            this.f23375w = false;
+            Drawable drawable3 = this.v;
+            if (drawable3 != null) {
+                drawable3.setState(StateSet.NOTHING);
+            }
+        }
+        return contains;
+    }
+
+    @Override
+    public void setBackground(Drawable drawable) {
+        Drawable drawable2 = this.v;
         if (drawable2 != null) {
             drawable2.setCallback(null);
         }
-        this.f25436a = drawable;
+        this.v = drawable;
         if (drawable != null) {
-            drawable.setBounds(getBounds());
-            this.f25436a.setCallback(g1Var);
+            drawable.setCallback(this);
         }
-    }
-
-    public final void a() {
-        if (!this.f25439e) {
-            return;
-        }
-        Path path = this.f25437b;
-        if (path == null) {
-            this.f25437b = new Path();
-        } else {
-            path.rewind();
-        }
-        Rect bounds = getBounds();
-        RectF rectF = this.f25438c;
-        rectF.set(bounds);
-        float f7 = rectF.left;
-        RectF rectF2 = this.d;
-        rectF.left = f7 + rectF2.left;
-        rectF.top += rectF2.top;
-        rectF.right -= rectF2.right;
-        rectF.bottom -= rectF2.bottom;
-        this.f25437b.addRoundRect(rectF, this.f25440f, Path.Direction.CW);
+        invalidate();
     }
 
     @Override
-    public final void draw(Canvas canvas) {
-        Drawable drawable = this.f25436a;
-        if (drawable != null) {
-            drawable.setBounds(getBounds());
-            if (!this.f25439e) {
-                canvas.save();
-                canvas.clipRect(getBounds());
-                this.f25436a.draw(canvas);
-                canvas.restore();
-                return;
-            }
-            canvas.save();
-            a();
-            canvas.clipPath(this.f25437b);
-            this.f25436a.draw(canvas);
-            canvas.restore();
+    public void setBackgroundDrawable(Drawable drawable) {
+        Drawable drawable2 = this.v;
+        if (drawable2 != null) {
+            drawable2.setCallback(null);
         }
+        this.v = drawable;
+        if (drawable != null) {
+            drawable.setCallback(this);
+        }
+        invalidate();
     }
 
     @Override
-    public final int getIntrinsicHeight() {
-        Drawable drawable = this.f25436a;
-        if (drawable != null) {
-            return drawable.getIntrinsicHeight();
+    public final boolean verifyDrawable(Drawable drawable) {
+        if (drawable != this.v && !super.verifyDrawable(drawable)) {
+            return false;
         }
-        return super.getIntrinsicHeight();
-    }
-
-    @Override
-    public final int getIntrinsicWidth() {
-        Drawable drawable = this.f25436a;
-        if (drawable != null) {
-            return drawable.getIntrinsicWidth();
-        }
-        return super.getIntrinsicWidth();
-    }
-
-    @Override
-    public final int getOpacity() {
-        return -2;
-    }
-
-    @Override
-    public final void setAlpha(int i10) {
-        Drawable drawable = this.f25436a;
-        if (drawable != null) {
-            drawable.setAlpha(i10);
-        }
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
-        Drawable drawable = this.f25436a;
-        if (drawable != null) {
-            drawable.setColorFilter(colorFilter);
-        }
+        return true;
     }
 }

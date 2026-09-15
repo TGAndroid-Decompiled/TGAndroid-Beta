@@ -9,34 +9,34 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.R;
 import org.telegram.messenger.TranslateController;
 public final class ug implements Runnable {
-    public final int f41088a;
-    public final co f41089b;
+    public final int f37996a;
+    public final bo f37997b;
 
-    public ug(co coVar, int i10) {
-        this.f41088a = i10;
-        this.f41089b = coVar;
+    public ug(bo boVar, int i10) {
+        this.f37996a = i10;
+        this.f37997b = boVar;
     }
 
     @Override
     public final void run() {
         boolean z10;
         boolean z11;
-        di.f4 f4Var;
-        int i10 = this.f41088a;
+        ci.f4 f4Var;
+        int i10 = this.f37996a;
         boolean z12 = true;
-        co coVar = this.f41089b;
+        bo boVar = this.f37997b;
         switch (i10) {
             case 0:
-                AndroidUtilities.removeFromParent(coVar.J0);
+                AndroidUtilities.removeFromParent(boVar.J0);
                 return;
             case 1:
-                ArrayList arrayList = coVar.f35440u6;
-                coVar.Hb = System.currentTimeMillis();
-                if (coVar.f35473x0 != null && coVar.A0 != null) {
+                ArrayList arrayList = boVar.f32491u6;
+                boVar.Hb = System.currentTimeMillis();
+                if (boVar.f32524x0 != null && boVar.A0 != null) {
                     int i11 = Integer.MAX_VALUE;
                     int i12 = Integer.MIN_VALUE;
-                    for (int i13 = 0; i13 < coVar.f35473x0.getChildCount(); i13++) {
-                        View childAt = coVar.f35473x0.getChildAt(i13);
+                    for (int i13 = 0; i13 < boVar.f32524x0.getChildCount(); i13++) {
+                        View childAt = boVar.f32524x0.getChildAt(i13);
                         if (childAt instanceof org.telegram.ui.Cells.t1) {
                             org.telegram.ui.Cells.t1 t1Var = (org.telegram.ui.Cells.t1) childAt;
                             if (t1Var.getCurrentMessagesGroup() != null) {
@@ -56,14 +56,14 @@ public final class ug implements Runnable {
                         ArrayList arrayList2 = new ArrayList();
                         for (int i15 = 0; i15 < arrayList.size(); i15++) {
                             MessageObject messageObject = (MessageObject) arrayList.get(i15);
-                            MessageObject.GroupedMessages groupedMessages = (MessageObject.GroupedMessages) coVar.f35479x6.f(messageObject.getGroupId());
+                            MessageObject.GroupedMessages groupedMessages = (MessageObject.GroupedMessages) boVar.f32530x6.f(messageObject.getGroupId());
                             if (groupedMessages != null) {
                                 if (!arrayList2.contains(Long.valueOf(groupedMessages.groupId))) {
                                     for (int i16 = 0; i16 < groupedMessages.messages.size(); i16++) {
                                         MessageObject messageObject2 = groupedMessages.messages.get(i16);
                                         if (messageObject2 != null) {
                                             int id4 = messageObject2.getId();
-                                            TranslateController translateController = coVar.getMessagesController().getTranslateController();
+                                            TranslateController translateController = boVar.getMessagesController().getTranslateController();
                                             if (id4 >= i11 - 7 && id4 <= i12 + 7) {
                                                 z11 = true;
                                             } else {
@@ -76,7 +76,7 @@ public final class ug implements Runnable {
                                 }
                             } else {
                                 int id5 = messageObject.getId();
-                                TranslateController translateController2 = coVar.getMessagesController().getTranslateController();
+                                TranslateController translateController2 = boVar.getMessagesController().getTranslateController();
                                 if (id5 >= i11 - 7 && id5 <= i12 + 7) {
                                     z10 = true;
                                 } else {
@@ -87,132 +87,132 @@ public final class ug implements Runnable {
                         }
                     }
                 }
-                if (coVar.L4 > 0 && coVar.J4 != null) {
-                    coVar.getMessagesController().getTranslateController().checkTranslation((MessageObject) coVar.J4.get(Integer.valueOf(coVar.L4)), true);
+                if (boVar.L4 > 0 && boVar.J4 != null) {
+                    boVar.getMessagesController().getTranslateController().checkTranslation((MessageObject) boVar.J4.get(Integer.valueOf(boVar.L4)), true);
                 }
-                coVar.Uc();
+                boVar.Uc();
                 return;
             case 2:
-                mk mkVar = coVar.Y;
-                if (mkVar != null && coVar.Cc != null) {
+                mk mkVar = boVar.Y;
+                if (mkVar != null && boVar.Cc != null) {
                     if (mkVar.t0()) {
-                        coVar.Y.m0(false);
-                        AndroidUtilities.showKeyboard(coVar.Cc.f45603a);
-                        coVar.Cc.f45604b.f45600a.a(false, true);
+                        boVar.Y.m0(false);
+                        AndroidUtilities.showKeyboard(boVar.Cc.f41752a);
+                        boVar.Cc.f41753b.f41749a.a(false, true);
                         return;
                     }
-                    coVar.Y.V0(false, false, false);
-                    coVar.Y.s1();
-                    coVar.Cc.f45604b.f45600a.a(true, true);
+                    boVar.Y.U0(false, false, false);
+                    boVar.Y.r1();
+                    boVar.Cc.f41753b.f41749a.a(true, true);
                     return;
                 }
                 return;
             case 3:
-                coVar.ta();
+                boVar.ta();
                 return;
             case 4:
-                coVar.g8(false, true, 0.0f);
+                boVar.g8(false, true, 0.0f);
                 return;
             case 5:
-                coVar.S9();
+                boVar.S9();
                 return;
             case 6:
-                coVar.c9();
-                coVar.yc(0, true);
+                boVar.c9();
+                boVar.yc(0, true);
                 return;
             case 7:
-                coVar.g8(false, true, 0.0f);
+                boVar.g8(false, true, 0.0f);
                 return;
             case 8:
-                coVar.q9(2);
+                boVar.q9(2);
                 return;
             case 9:
-                coVar.g8(false, true, 0.0f);
+                boVar.g8(false, true, 0.0f);
                 return;
             case 10:
-                co.X(coVar);
+                bo.X(boVar);
                 return;
             case 11:
-                coVar.g8(false, true, 0.0f);
+                boVar.g8(false, true, 0.0f);
                 return;
             case 12:
-                coVar.g8(false, true, 0.0f);
+                boVar.g8(false, true, 0.0f);
                 return;
             case 13:
-                org.telegram.ui.ActionBar.b2 b2Var = new org.telegram.ui.ActionBar.b2(coVar.getParentActivity(), 3, coVar.f35247ea);
-                coVar.f35380pb = b2Var;
-                b2Var.setOnShowListener(new of(coVar, 1));
-                coVar.f35380pb.setOnCancelListener(coVar.f35343ma);
-                coVar.f35380pb.q(500L);
+                org.telegram.ui.ActionBar.b2 b2Var = new org.telegram.ui.ActionBar.b2(boVar.getParentActivity(), 3, boVar.f32297ea);
+                boVar.f32431pb = b2Var;
+                b2Var.setOnShowListener(new of(boVar, 1));
+                boVar.f32431pb.setOnCancelListener(boVar.f32394ma);
+                boVar.f32431pb.q(500L);
                 return;
             case 14:
-                coVar.N6();
+                boVar.N6();
                 return;
             case 15:
-                coVar.f35184a = (coVar.f35184a + 1) % 3;
+                boVar.f32235a = (boVar.f32235a + 1) % 3;
                 return;
             case 16:
-                coVar.f35197b = !coVar.f35197b;
+                boVar.f32248b = !boVar.f32248b;
                 return;
             case 17:
-                coVar.A7(true);
-                org.telegram.messenger.w1.o(R.string.TranscriptionReportSent, org.telegram.ui.Components.yc.a0(coVar), R.raw.chats_infotip, 36);
+                boVar.A7(true);
+                org.telegram.messenger.w1.o(R.string.TranscriptionReportSent, org.telegram.ui.Components.vc.a0(boVar), R.raw.chats_infotip, 36);
                 return;
             case 18:
-                coVar.A0.M.clear();
-                om omVar = coVar.A0;
-                omVar.L = false;
-                omVar.O(true);
-                coVar.Pb(false);
+                boVar.A0.M.clear();
+                nm nmVar = boVar.A0;
+                nmVar.L = false;
+                nmVar.O(true);
+                boVar.Pb(false);
                 return;
             case 19:
-                coVar.o9();
-                coVar.r9();
-                coVar.r7();
-                coVar.t7();
+                boVar.o9();
+                boVar.r9();
+                boVar.r7();
+                boVar.t7();
                 return;
             case 20:
-                coVar.f35297ic = 0;
-                coVar.f35309jc = false;
-                coVar.f35473x0.e1();
+                boVar.f32348ic = 0;
+                boVar.f32360jc = false;
+                boVar.f32524x0.f1();
                 return;
             case 21:
-                coVar.q9(5);
+                boVar.q9(5);
                 return;
             case 22:
-                coVar.yc(0, (coVar.P5 == 0 || SystemClock.elapsedRealtime() < coVar.P5 + 150) ? false : false);
+                boVar.yc(0, (boVar.P5 == 0 || SystemClock.elapsedRealtime() < boVar.P5 + 150) ? false : false);
                 return;
             case 23:
-                qk qkVar = coVar.R2;
-                if ((qkVar == null || qkVar.getVisibility() != 0) && (f4Var = coVar.f35461w1) != null) {
+                qk qkVar = boVar.R2;
+                if ((qkVar == null || qkVar.getVisibility() != 0) && (f4Var = boVar.f32512w1) != null) {
                     f4Var.u();
                     return;
                 }
                 return;
             case 24:
-                coVar.k7();
+                boVar.k7();
                 return;
             case 25:
-                coVar.q9(5);
+                boVar.q9(5);
                 return;
             case 26:
-                coVar.a7(false);
+                boVar.a7(false);
                 return;
             case 27:
-                FrameLayout.LayoutParams e7 = w7.x5.e(-1, -2, 87);
-                e7.bottomMargin = coVar.Y.getMeasuredHeight();
-                coVar.X0.addView(coVar.f35487y1, e7);
-                coVar.f35487y1.setTranslationY(-AndroidUtilities.navigationBarHeight);
-                coVar.f35487y1.m(0.0f, coVar.Y.getEmojiButton().getX() + AndroidUtilities.dp(22.0f));
-                coVar.f35487y1.u();
+                FrameLayout.LayoutParams e = w7.x5.e(-1, -2, 87);
+                e.bottomMargin = boVar.Y.getMeasuredHeight();
+                boVar.X0.addView(boVar.f32538y1, e);
+                boVar.f32538y1.setTranslationY(-AndroidUtilities.navigationBarHeight);
+                boVar.f32538y1.m(0.0f, boVar.Y.getEmojiButton().getX() + AndroidUtilities.dp(22.0f));
+                boVar.f32538y1.u();
                 return;
             case 28:
-                int i17 = co.Hc;
-                coVar.Z6();
+                int i17 = bo.Hc;
+                boVar.Z6();
                 return;
             default:
-                int i18 = co.Hc;
-                coVar.Z6();
+                int i18 = bo.Hc;
+                boVar.Z6();
                 return;
         }
     }

@@ -1,54 +1,522 @@
 package bi;
 
-import j$.util.DesugarArrays;
-import j$.util.stream.Collectors;
-import org.telegram.messenger.FileLog;
+import ai.k9;
+import ai.l9;
+import ai.t8;
+import android.animation.ValueAnimator;
+import android.content.Context;
+import android.os.Build;
+import android.text.SpannableString;
+import android.text.TextUtils;
+import android.util.LongSparseArray;
+import android.view.View;
+import android.widget.FrameLayout;
+import ci.o8;
+import java.util.ArrayList;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.md;
-public abstract class z {
-    public static int[] a() {
-        return new int[]{10000, 3600, 400, 20, -10787210, -8681059, -14341066, 2000, 1800, 280, 10, -2013375, -1482439, -7666429, 500, 900, 200, 7, -1214690, -1214690, -6606592, 250, 600, 150, 4, -1926647, -1926647, -6668800, 100, 300, 110, 3, -12539616, -12539616, -15244800, 50, 120, 80, 2, -12147733, -12147733, -16756594, 10, 60, 60, 1, -6988581, -6988581, -11991141, 0, 30, 30, 0, -6988581, -6988581, -11991141};
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.messenger.R;
+import org.telegram.messenger.SharedConfig;
+import org.telegram.messenger.Utilities;
+import org.telegram.messenger.w1;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_bots;
+import org.telegram.tgnet.tl.TL_stories;
+import org.telegram.ui.ActionBar.e6;
+import org.telegram.ui.ActionBar.i6;
+import org.telegram.ui.ActionBar.n2;
+import org.telegram.ui.Cells.t7;
+import org.telegram.ui.Components.h81;
+import org.telegram.ui.Components.ll0;
+import org.telegram.ui.Components.mr0;
+import org.telegram.ui.Components.oq;
+import org.telegram.ui.Components.qr;
+import org.telegram.ui.Components.vi;
+import w7.x5;
+public abstract class z extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {
+    public static LongSparseArray E;
+    public static LongSparseArray F;
+    public final n2 f3602a;
+    public final int f3603b;
+    public final e6 f3604c;
+    public final long d;
+    public final t8 e;
+    public final ArrayList f3605f;
+    public final ArrayList h;
+    public final a f3606n;
+    public final h81 f3607r;
+    public Boolean f3608s;
+    public int v;
+    public float f3609w;
+    public ValueAnimator f3610x;
+    public int f3611y;
+
+    public z(Context context, n2 n2Var, long j3) {
+        super(context);
+        this.f3605f = new ArrayList();
+        this.h = new ArrayList();
+        this.f3608s = null;
+        this.v = AndroidUtilities.displaySize.y;
+        this.f3611y = Utilities.clamp(SharedConfig.storiesColumnsCount, 6, 2);
+        this.f3602a = n2Var;
+        int currentAccount = n2Var.getCurrentAccount();
+        this.f3603b = currentAccount;
+        e6 resourceProvider = n2Var.getResourceProvider();
+        this.f3604c = resourceProvider;
+        this.d = j3;
+        setBackgroundColor(i6.v(i6.v0(i6.f18836d6, resourceProvider), i6.l1(0.04f, i6.v0(i6.G6, resourceProvider))));
+        if (F == null) {
+            F = new LongSparseArray();
+        }
+        long j10 = currentAccount;
+        LongSparseArray longSparseArray = (LongSparseArray) F.get(j10);
+        if (longSparseArray == null) {
+            LongSparseArray longSparseArray2 = F;
+            LongSparseArray longSparseArray3 = new LongSparseArray();
+            longSparseArray2.put(j10, longSparseArray3);
+            longSparseArray = longSparseArray3;
+        }
+        t8 t8Var = (t8) longSparseArray.get(j3);
+        if (t8Var == null) {
+            t8 t8Var2 = new t8(currentAccount, j3, "", null);
+            longSparseArray.put(j3, t8Var2);
+            t8Var = t8Var2;
+        }
+        this.e = t8Var;
+        mr0 mr0Var = (mr0) this;
+        a aVar = new a(mr0Var, context);
+        this.f3606n = aVar;
+        aVar.setAllowDisallowInterceptTouch(true);
+        aVar.setAdapter(new b(mr0Var, context));
+        addView(aVar, x5.e(-1, -1, 119));
+        h81 n10 = aVar.n(9, true);
+        this.f3607r = n10;
+        n10.f24609r = 12;
+        n10.setPreTabClick(new a1.c(mr0Var, 11));
+        addView(n10, x5.e(-1, 42, 48));
+        i(false);
     }
 
-    public static int b(int i10, int i11, int i12) {
-        int[] iArr = MessagesController.getInstance(i10).starsGroupcallMessageLimits;
-        for (int i13 = 0; i13 < iArr.length / 7; i13++) {
-            int i14 = i13 * 7;
-            if (i11 >= iArr[i14]) {
-                return iArr[i14 + 1 + i12];
+    public final void a(String str) {
+        n2 n2Var = this.f3602a;
+        if (n2Var != null && n2Var.getParentActivity() != null) {
+            vi viVar = new vi(n2Var.getParentActivity(), this.f3602a, false, false, false, this.f3604c);
+            viVar.J1(1, false);
+            viVar.T0 = true;
+            viVar.S0 = false;
+            viVar.f28763j1.setText(LocaleController.getString(R.string.ChoosePhotoOrVideo));
+            viVar.f28762j0.f0();
+            int i10 = Build.VERSION.SDK_INT;
+            if (i10 == 21 || i10 == 22) {
+                AndroidUtilities.hideKeyboard(n2Var.getFragmentView().findFocus());
+            }
+            viVar.Z1 = new c(this, viVar, str);
+            viVar.r1();
+            viVar.show();
+        }
+    }
+
+    public final void b(String str) {
+        t8 t8Var;
+        TLRPC.MessageMedia messageMedia;
+        if (TextUtils.isEmpty(str)) {
+            return;
+        }
+        this.e.G.remove(str);
+        this.h.remove(str);
+        int i10 = 0;
+        while (true) {
+            ArrayList arrayList = this.f3605f;
+            if (i10 < arrayList.size()) {
+                t8Var = (t8) arrayList.get(i10);
+                if (t8Var != null && TextUtils.equals(t8Var.E, str)) {
+                    break;
+                }
+                i10++;
+            } else {
+                t8Var = null;
+                break;
             }
         }
-        return 0;
-    }
-
-    public static int[] c(org.telegram.tgnet.TLRPC.TL_jsonArray r13) {
-        throw new UnsupportedOperationException("Method not decompiled: bi.z.c(org.telegram.tgnet.TLRPC$TL_jsonArray):int[]");
-    }
-
-    public static int[] d(String str) {
-        if (str != null && str.length() != 0) {
-            try {
-                return DesugarArrays.stream(str.split(",")).mapToInt(new org.telegram.messenger.b4(1)).toArray();
-            } catch (Exception e7) {
-                FileLog.e(e7);
-                return a();
+        if (t8Var != null) {
+            ArrayList arrayList2 = t8Var.f716i;
+            TL_bots.deletePreviewMedia deletepreviewmedia = new TL_bots.deletePreviewMedia();
+            int i11 = this.f3603b;
+            deletepreviewmedia.bot = MessagesController.getInstance(i11).getInputUser(this.d);
+            deletepreviewmedia.lang_code = str;
+            for (int i12 = 0; i12 < arrayList2.size(); i12++) {
+                TL_stories.StoryItem storyItem = ((MessageObject) arrayList2.get(i12)).storyItem;
+                if (storyItem != null && (messageMedia = storyItem.media) != null) {
+                    deletepreviewmedia.media.add(MessagesController.toInputMedia(messageMedia));
+                }
             }
+            ConnectionsManager.getInstance(i11).sendRequest(deletepreviewmedia, null);
         }
-        return a();
+        i(true);
+        this.f3607r.d(-1, 0);
     }
 
-    public static boolean e(int[] iArr, int[] iArr2) {
-        if (iArr2 != null && iArr.length == iArr2.length) {
-            for (int i10 = 0; i10 < iArr.length; i10++) {
-                if (iArr[i10] == iArr2[i10]) {
+    public abstract boolean c(MessageObject messageObject);
+
+    public final boolean d() {
+        t8 t8Var;
+        View currentView = this.f3606n.getCurrentView();
+        if ((currentView instanceof u) && (t8Var = ((u) currentView).f3586a) != null) {
+            ArrayList arrayList = t8Var.f716i;
+            for (int i10 = 0; i10 < arrayList.size(); i10++) {
+                if (!c((MessageObject) arrayList.get(i10))) {
+                    return false;
                 }
             }
             return true;
         }
-        return false;
+        return true;
     }
 
-    public static String f(int[] iArr) {
-        return (String) DesugarArrays.stream(iArr).mapToObj(new md(0)).collect(Collectors.joining(","));
+    @Override
+    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
+        int i12 = NotificationCenter.storiesListUpdated;
+        a aVar = this.f3606n;
+        int i13 = 0;
+        if (i10 == i12) {
+            Object obj = objArr[0];
+            t8 t8Var = this.e;
+            if (obj == t8Var) {
+                i(true);
+                View[] viewPages = aVar.getViewPages();
+                int length = viewPages.length;
+                while (i13 < length) {
+                    View view = viewPages[i13];
+                    if (view instanceof u) {
+                        u uVar = (u) view;
+                        if (uVar.f3586a == t8Var) {
+                            uVar.v.l();
+                        }
+                    }
+                    i13++;
+                }
+            } else if (this.f3605f.indexOf(obj) >= 0) {
+                View[] viewPages2 = aVar.getViewPages();
+                for (View view2 : viewPages2) {
+                    if (view2 instanceof u) {
+                        u uVar2 = (u) view2;
+                        if (uVar2.f3586a == objArr[0]) {
+                            uVar2.v.l();
+                        }
+                    }
+                }
+            }
+        } else if (i10 == NotificationCenter.storiesUpdated) {
+            i(true);
+            View[] viewPages3 = aVar.getViewPages();
+            int length2 = viewPages3.length;
+            while (i13 < length2) {
+                View view3 = viewPages3[i13];
+                if (view3 instanceof u) {
+                    ((u) view3).v.l();
+                }
+                i13++;
+            }
+        }
+    }
+
+    public abstract boolean e(MessageObject messageObject);
+
+    public final void f() {
+        t8 t8Var;
+        View currentView = this.f3606n.getCurrentView();
+        if ((currentView instanceof u) && (t8Var = ((u) currentView).f3586a) != null) {
+            ArrayList arrayList = t8Var.f716i;
+            for (int i10 = 0; i10 < arrayList.size(); i10++) {
+                if (!c((MessageObject) arrayList.get(i10))) {
+                    e((MessageObject) arrayList.get(i10));
+                }
+            }
+        }
+    }
+
+    public abstract boolean g(MessageObject messageObject);
+
+    public String getBotPreviewsSubtitle() {
+        int i10;
+        int i11;
+        TLRPC.MessageMedia messageMedia;
+        StringBuilder sb2 = new StringBuilder();
+        View currentView = this.f3606n.getCurrentView();
+        if (currentView instanceof u) {
+            t8 t8Var = ((u) currentView).f3586a;
+            if (t8Var != null) {
+                ArrayList arrayList = t8Var.f716i;
+                i10 = 0;
+                i11 = 0;
+                for (int i12 = 0; i12 < arrayList.size(); i12++) {
+                    MessageObject messageObject = (MessageObject) arrayList.get(i12);
+                    TL_stories.StoryItem storyItem = messageObject.storyItem;
+                    if (storyItem != null && (messageMedia = storyItem.media) != null) {
+                        if (MessageObject.isVideoDocument(messageMedia.document)) {
+                            i11++;
+                        } else if (messageObject.storyItem.media.photo != null) {
+                            i10++;
+                        }
+                    }
+                }
+            } else {
+                i10 = 0;
+                i11 = 0;
+            }
+            if (i10 == 0 && i11 == 0) {
+                return LocaleController.getString(R.string.BotPreviewEmpty);
+            }
+            if (i10 > 0) {
+                sb2.append(LocaleController.formatPluralString("Images", i10, new Object[0]));
+            }
+            if (i11 > 0) {
+                if (sb2.length() > 0) {
+                    sb2.append(", ");
+                }
+                sb2.append(LocaleController.formatPluralString("Videos", i11, new Object[0]));
+            }
+        }
+        return sb2.toString();
+    }
+
+    public String getCurrentLang() {
+        View view;
+        t8 t8Var;
+        a aVar = this.f3606n;
+        View[] viewPages = aVar.getViewPages();
+        if (Math.abs(aVar.getCurrentPosition() - aVar.getPositionAnimated()) >= 0.5f || (view = viewPages[1]) == null) {
+            view = viewPages[0];
+        }
+        if ((view instanceof u) && (t8Var = ((u) view).f3586a) != null) {
+            return t8Var.E;
+        }
+        return null;
+    }
+
+    public t8 getCurrentList() {
+        t8 t8Var;
+        View currentView = this.f3606n.getCurrentView();
+        if ((currentView instanceof u) && (t8Var = ((u) currentView).f3586a) != null) {
+            return t8Var;
+        }
+        return null;
+    }
+
+    public ll0 getCurrentListView() {
+        View currentView = this.f3606n.getCurrentView();
+        if (currentView instanceof u) {
+            return ((u) currentView).f3589f;
+        }
+        return null;
+    }
+
+    public int getItemsCount() {
+        t8 t8Var;
+        View currentView = this.f3606n.getCurrentView();
+        if ((currentView instanceof u) && (t8Var = ((u) currentView).f3586a) != null) {
+            return t8Var.f716i.size();
+        }
+        return 0;
+    }
+
+    public int getStartedTrackingX() {
+        return 0;
+    }
+
+    public final void h() {
+        t8 t8Var;
+        View currentView = this.f3606n.getCurrentView();
+        if ((currentView instanceof u) && (t8Var = ((u) currentView).f3586a) != null) {
+            ArrayList arrayList = t8Var.f716i;
+            for (int i10 = 0; i10 < arrayList.size(); i10++) {
+                if (c((MessageObject) arrayList.get(i10))) {
+                    g((MessageObject) arrayList.get(i10));
+                }
+            }
+        }
+    }
+
+    public final void i(boolean z10) {
+        boolean z11;
+        float f7;
+        t8 t8Var;
+        o8 o8Var;
+        ArrayList arrayList = new ArrayList(this.e.G);
+        ArrayList arrayList2 = this.h;
+        int size = arrayList2.size();
+        int i10 = 0;
+        while (i10 < size) {
+            Object obj = arrayList2.get(i10);
+            i10++;
+            String str = (String) obj;
+            if (!arrayList.contains(str)) {
+                arrayList.add(str);
+            }
+        }
+        l9 storiesController = MessagesController.getInstance(this.f3603b).getStoriesController();
+        long j3 = this.d;
+        ArrayList E2 = storiesController.E(j3);
+        if (E2 != null) {
+            int size2 = E2.size();
+            int i11 = 0;
+            while (i11 < size2) {
+                Object obj2 = E2.get(i11);
+                i11++;
+                k9 k9Var = (k9) obj2;
+                if (k9Var != null && (o8Var = k9Var.f1138c) != null && o8Var.J0 == j3 && !TextUtils.isEmpty(o8Var.K0) && !arrayList.contains(o8Var.K0)) {
+                    arrayList.add(o8Var.K0);
+                }
+            }
+        }
+        ArrayList arrayList3 = this.f3605f;
+        ArrayList arrayList4 = new ArrayList(arrayList3);
+        arrayList3.clear();
+        int size3 = arrayList.size();
+        int i12 = 0;
+        while (i12 < size3) {
+            Object obj3 = arrayList.get(i12);
+            i12++;
+            String str2 = (String) obj3;
+            int i13 = 0;
+            while (true) {
+                if (i13 < arrayList4.size()) {
+                    if (TextUtils.equals(((t8) arrayList4.get(i13)).E, str2)) {
+                        t8Var = (t8) arrayList4.get(i13);
+                        break;
+                    }
+                    i13++;
+                } else {
+                    t8Var = null;
+                    break;
+                }
+            }
+            if (t8Var == null) {
+                t8 t8Var2 = new t8(this.f3603b, this.d, str2, null);
+                t8Var2.H(null);
+                t8Var = t8Var2;
+            }
+            arrayList3.add(t8Var);
+        }
+        a aVar = this.f3606n;
+        aVar.o(true);
+        SpannableString spannableString = new SpannableString(w1.h(R.string.ProfileBotLanguageAdd, new StringBuilder("+ ")));
+        oq oqVar = new oq(R.drawable.msg_filled_plus, 0);
+        oqVar.setScale(0.9f, 0.9f);
+        oqVar.spaceScaleX = 0.85f;
+        spannableString.setSpan(oqVar, 0, 1, 33);
+        h81 h81Var = this.f3607r;
+        h81Var.a(-1, spannableString);
+        h81Var.f24613x.l();
+        if (arrayList3.size() + 1 > 1) {
+            z11 = true;
+        } else {
+            z11 = false;
+        }
+        Boolean bool = this.f3608s;
+        if (bool != null && bool.booleanValue() == z11) {
+            return;
+        }
+        ValueAnimator valueAnimator = this.f3610x;
+        if (valueAnimator != null) {
+            valueAnimator.cancel();
+        }
+        this.f3608s = Boolean.valueOf(z11);
+        float f10 = 1.0f;
+        float f11 = 0.0f;
+        if (!z10) {
+            if (!z11) {
+                f10 = 0.0f;
+            }
+            this.f3609w = f10;
+            if (z11) {
+                f7 = 0.0f;
+            } else {
+                f7 = -42.0f;
+            }
+            h81Var.setTranslationY(AndroidUtilities.dp(f7));
+            if (z11) {
+                f11 = 42.0f;
+            }
+            aVar.setTranslationY(AndroidUtilities.dp(f11));
+            return;
+        }
+        float f12 = this.f3609w;
+        if (!z11) {
+            f10 = 0.0f;
+        }
+        ValueAnimator ofFloat = ValueAnimator.ofFloat(f12, f10);
+        this.f3610x = ofFloat;
+        ofFloat.addUpdateListener(new ai.a(this, 14));
+        this.f3610x.addListener(new ai.n(4, this, z11));
+        this.f3610x.setDuration(320L);
+        this.f3610x.setInterpolator(qr.h);
+        this.f3610x.start();
+    }
+
+    public final void j() {
+        View currentView = this.f3606n.getCurrentView();
+        if (currentView instanceof u) {
+            u uVar = (u) currentView;
+            j jVar = uVar.f3589f;
+            for (int i10 = 0; i10 < jVar.getChildCount(); i10++) {
+                View childAt = jVar.getChildAt(i10);
+                if (childAt instanceof t7) {
+                    t7 t7Var = (t7) childAt;
+                    t7Var.i(uVar.W.c(t7Var.getMessageObject()), true);
+                }
+            }
+        }
+    }
+
+    @Override
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        if (E == null) {
+            E = new LongSparseArray();
+        }
+        LongSparseArray longSparseArray = E;
+        int i10 = this.f3603b;
+        LongSparseArray longSparseArray2 = (LongSparseArray) longSparseArray.get(i10);
+        if (longSparseArray2 == null) {
+            LongSparseArray longSparseArray3 = new LongSparseArray();
+            E.put(i10, longSparseArray3);
+            longSparseArray2 = longSparseArray3;
+        }
+        longSparseArray2.put(this.d, this);
+        NotificationCenter.getInstance(i10).addObserver(this, NotificationCenter.storiesListUpdated);
+        NotificationCenter.getInstance(i10).addObserver(this, NotificationCenter.storiesUpdated);
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        if (E == null) {
+            E = new LongSparseArray();
+        }
+        LongSparseArray longSparseArray = E;
+        int i10 = this.f3603b;
+        LongSparseArray longSparseArray2 = (LongSparseArray) longSparseArray.get(i10);
+        if (longSparseArray2 != null) {
+            longSparseArray2.remove(this.d);
+        }
+        NotificationCenter.getInstance(i10).removeObserver(this, NotificationCenter.storiesListUpdated);
+        NotificationCenter.getInstance(i10).removeObserver(this, NotificationCenter.storiesUpdated);
+    }
+
+    public void setVisibleHeight(int i10) {
+        this.v = i10;
+        View[] viewPages = this.f3606n.getViewPages();
+        if (viewPages != null) {
+            for (View view : viewPages) {
+                if (view instanceof u) {
+                    ((u) view).setVisibleHeight(i10);
+                }
+            }
+        }
     }
 }

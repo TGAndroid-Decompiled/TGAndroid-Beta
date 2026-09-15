@@ -1,31 +1,35 @@
 package bi;
 
-import org.telegram.ui.PremiumPreviewFragment;
-public final class e implements Runnable {
-    public final int f2891a;
-    public final v f2892b;
+import ai.t8;
+import android.view.View;
+import org.telegram.ui.Components.mr0;
+public final class e implements View.OnClickListener {
+    public final int f3562a;
+    public final u f3563b;
 
-    public e(v vVar, int i10) {
-        this.f2891a = i10;
-        this.f2892b = vVar;
+    public e(u uVar, int i10) {
+        this.f3562a = i10;
+        this.f3563b = uVar;
     }
 
     @Override
-    public final void run() {
-        switch (this.f2891a) {
+    public final void onClick(View view) {
+        String str;
+        switch (this.f3562a) {
             case 0:
-                this.f2892b.p(true, false);
-                return;
-            case 1:
-                v vVar = this.f2892b;
-                di.f4 f4Var = vVar.J;
-                if (f4Var != null) {
-                    f4Var.e(true);
+                u uVar = this.f3563b;
+                mr0 mr0Var = uVar.W;
+                t8 t8Var = uVar.f3586a;
+                if (t8Var == null) {
+                    str = "";
+                } else {
+                    str = t8Var.E;
                 }
-                vVar.f3854e0.presentFragment(new PremiumPreviewFragment(0, "stories"));
+                mr0Var.a(str);
                 return;
             default:
-                this.f2892b.c();
+                u uVar2 = this.f3563b;
+                uVar2.W.b(uVar2.f3586a.E);
                 return;
         }
     }

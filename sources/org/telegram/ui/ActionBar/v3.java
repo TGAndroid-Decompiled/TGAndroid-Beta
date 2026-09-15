@@ -10,5 +10,5 @@ public interface v3 {
 
     void setDrawingFromOverlay(boolean z10);
 
-    float z(Canvas canvas, RectF rectF, float f7, RectF rectF2, float f10);
+    float x(Canvas canvas, RectF rectF, float f7, RectF rectF2, float f10);
 }

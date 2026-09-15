@@ -1,91 +1,44 @@
 package wg;
 
-import android.content.Context;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.drawable.Drawable;
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
+import android.os.Bundle;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.vl;
-import org.telegram.ui.ActionBar.f6;
-import org.telegram.ui.ActionBar.j5;
-import org.telegram.ui.ActionBar.j6;
-import org.telegram.ui.Components.oq;
-public final class b extends FrameLayout {
-    public final j5 f48501a;
-    public final ImageView f48502b;
+import org.telegram.messenger.MessageObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.Cells.t1;
+import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.bo;
+public final class b implements Runnable {
+    public final int f45046a;
+    public final c f45047b;
+    public final MessageObject f45048c;
+    public final TLRPC.TL_messageMediaGiveawayResults d;
 
-    public b(Context context, f6 f6Var) {
-        super(context);
-        int i10;
-        j5 j5Var = new j5(context);
-        this.f48501a = j5Var;
-        j5Var.setTextSize(16);
-        if (LocaleController.isRTL) {
-            i10 = 5;
-        } else {
-            i10 = 3;
-        }
-        j5Var.setGravity(i10);
-        int i11 = j6.L6;
-        j5Var.setTextColor(j6.v0(i11, f6Var));
-        j5Var.setTag(Integer.valueOf(i11));
-        addView(j5Var);
-        ImageView imageView = new ImageView(context);
-        this.f48502b = imageView;
-        imageView.setScaleType(ImageView.ScaleType.CENTER);
-        addView(imageView);
-        j5Var.k(LocaleController.getString(R.string.BoostingAddChannelOrGroup));
-        Drawable drawable = getResources().getDrawable(R.drawable.poll_add_circle);
-        Drawable drawable2 = getResources().getDrawable(R.drawable.poll_add_plus);
-        int v02 = j6.v0(j6.N6, f6Var);
-        PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
-        drawable.setColorFilter(new PorterDuffColorFilter(v02, mode));
-        drawable2.setColorFilter(new PorterDuffColorFilter(j6.v0(j6.f20792k7, f6Var), mode));
-        imageView.setImageDrawable(new oq(drawable, drawable2));
-        setBackgroundColor(j6.v0(j6.f20734h5, f6Var));
+    public b(c cVar, MessageObject messageObject, TLRPC.TL_messageMediaGiveawayResults tL_messageMediaGiveawayResults, int i10) {
+        this.f45046a = i10;
+        this.f45047b = cVar;
+        this.f45048c = messageObject;
+        this.d = tL_messageMediaGiveawayResults;
     }
 
     @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        int dp;
-        int measuredWidth;
-        int i14 = i12 - i10;
-        j5 j5Var = this.f48501a;
-        int textHeight = ((i13 - i11) - j5Var.getTextHeight()) / 2;
-        boolean z11 = LocaleController.isRTL;
-        float f7 = 23.0f;
-        ImageView imageView = this.f48502b;
-        if (z11) {
-            int measuredWidth2 = getMeasuredWidth() - j5Var.getMeasuredWidth();
-            if (imageView.getVisibility() == 0) {
-                f7 = 68.0f;
-            }
-            dp = measuredWidth2 - AndroidUtilities.dp(f7);
-        } else {
-            if (imageView.getVisibility() == 0) {
-                f7 = 68.0f;
-            }
-            dp = AndroidUtilities.dp(f7);
+    public final void run() {
+        switch (this.f45046a) {
+            case 0:
+                AndroidUtilities.runOnUIThread(new b(this.f45047b, this.f45048c, this.d, 1));
+                return;
+            default:
+                t1 t1Var = this.f45047b.f45051c;
+                long dialogId = this.f45048c.getDialogId();
+                TLRPC.TL_messageMediaGiveawayResults tL_messageMediaGiveawayResults = this.d;
+                if (dialogId == (-tL_messageMediaGiveawayResults.channel_id)) {
+                    t1Var.getDelegate().b2(t1Var, tL_messageMediaGiveawayResults.launch_msg_id, 0.0f, 0.0f, false);
+                    return;
+                }
+                Bundle bundle = new Bundle();
+                bundle.putLong("chat_id", tL_messageMediaGiveawayResults.channel_id);
+                bundle.putInt("message_id", tL_messageMediaGiveawayResults.launch_msg_id);
+                LaunchActivity.R().presentFragment(new bo(bundle));
+                return;
         }
-        j5Var.layout(dp, textHeight, j5Var.getMeasuredWidth() + dp, j5Var.getMeasuredHeight() + textHeight);
-        if (!LocaleController.isRTL) {
-            measuredWidth = AndroidUtilities.dp(24.0f);
-        } else {
-            measuredWidth = (i14 - imageView.getMeasuredWidth()) - AndroidUtilities.dp(24.0f);
-        }
-        imageView.layout(measuredWidth, 0, imageView.getMeasuredWidth() + measuredWidth, imageView.getMeasuredHeight());
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        int size = View.MeasureSpec.getSize(i10);
-        this.f48501a.measure(vl.d(94.0f, size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(20.0f), 1073741824));
-        this.f48502b.measure(View.MeasureSpec.makeMeasureSpec(size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(50.0f), 1073741824));
-        setMeasuredDimension(size, AndroidUtilities.dp(50.0f));
     }
 }

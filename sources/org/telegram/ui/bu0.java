@@ -1,62 +1,143 @@
 package org.telegram.ui;
 
-import android.animation.Animator;
-import android.animation.ObjectAnimator;
-import android.transition.Fade;
-import android.transition.TransitionValues;
-import android.view.View;
-import android.view.ViewGroup;
-public final class bu0 extends Fade {
-    public final int f34931a;
-    public final boolean f34932b;
-    public final boolean f34933c;
-    public final PhotoViewer d;
+import android.content.Context;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.NotificationCenter;
+public final class bu0 extends ou0 {
+    public final int f32586p0;
+    public final NotificationCenter.NotificationCenterDelegate f32587q0;
 
-    public bu0(PhotoViewer photoViewer, boolean z10, boolean z11, int i10) {
-        super(1);
-        this.f34931a = i10;
-        switch (i10) {
-            case 1:
-                this.d = photoViewer;
-                this.f34932b = z10;
-                this.f34933c = z11;
-                super(2);
-                return;
-            default:
-                this.d = photoViewer;
-                this.f34932b = z10;
-                this.f34933c = z11;
-                return;
-        }
+    public bu0(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, Context context, ru0 ru0Var, FrameLayout frameLayout, int i10) {
+        super(context, ru0Var, frameLayout);
+        this.f32586p0 = i10;
+        this.f32587q0 = notificationCenterDelegate;
     }
 
     @Override
-    public Animator onAppear(ViewGroup viewGroup, View view, TransitionValues transitionValues, TransitionValues transitionValues2) {
-        switch (this.f34931a) {
+    public boolean C() {
+        switch (this.f32586p0) {
             case 0:
-                Animator onAppear = super.onAppear(viewGroup, view, transitionValues, transitionValues2);
-                if (this.f34932b && !this.f34933c && view == this.d.Q1) {
-                    onAppear.addListener(new gk0(this, 8));
-                    ((ObjectAnimator) onAppear).addUpdateListener(new c3(this, 20));
-                }
-                return onAppear;
+                return !((PhotoViewer) this.f32587q0).f31057s;
             default:
-                return super.onAppear(viewGroup, view, transitionValues, transitionValues2);
+                return super.C();
         }
     }
 
     @Override
-    public Animator onDisappear(ViewGroup viewGroup, View view, TransitionValues transitionValues, TransitionValues transitionValues2) {
-        switch (this.f34931a) {
+    public void D() {
+        switch (this.f32586p0) {
             case 1:
-                Animator onDisappear = super.onDisappear(viewGroup, view, transitionValues, transitionValues2);
-                if (!this.f34932b && this.f34933c && view == this.d.Q1) {
-                    onDisappear.addListener(new gk0(this, 9));
-                    ((ObjectAnimator) onDisappear).addUpdateListener(new c3(this, 21));
+                SecretMediaViewer secretMediaViewer = (SecretMediaViewer) this.f32587q0;
+                if (secretMediaViewer.J && getScrollY() <= 0) {
+                    AndroidUtilities.runOnUIThread(secretMediaViewer.f31475r1, 3000L);
+                    return;
                 }
-                return onDisappear;
+                return;
             default:
-                return super.onDisappear(viewGroup, view, transitionValues, transitionValues2);
+                return;
+        }
+    }
+
+    @Override
+    public void F() {
+        switch (this.f32586p0) {
+            case 1:
+                AndroidUtilities.cancelRunOnUIThread(((SecretMediaViewer) this.f32587q0).f31475r1);
+                return;
+            default:
+                return;
+        }
+    }
+
+    @Override
+    public void G() {
+        boolean z10;
+        switch (this.f32586p0) {
+            case 1:
+                SecretMediaViewer secretMediaViewer = (SecretMediaViewer) this.f32587q0;
+                if (secretMediaViewer.K0 == null) {
+                    if (getScrollY() < getMeasuredHeight() / 3.0f && secretMediaViewer.f31460k0) {
+                        z10 = true;
+                    } else {
+                        z10 = false;
+                    }
+                    secretMediaViewer.k(z10, true);
+                    return;
+                }
+                return;
+            default:
+                return;
+        }
+    }
+
+    @Override
+    public void invalidate() {
+        boolean z10;
+        boolean z11;
+        int i10;
+        boolean z12;
+        switch (this.f32586p0) {
+            case 0:
+                super.invalidate();
+                PhotoViewer photoViewer = (PhotoViewer) this.f32587q0;
+                zu0[] zu0VarArr = photoViewer.W0;
+                ImageView[] imageViewArr = photoViewer.y3;
+                if (photoViewer.J) {
+                    int scrollY = getScrollY();
+                    float translationY = photoViewer.Q1.getTranslationY();
+                    float f7 = 0.0f;
+                    if (scrollY == 0 && translationY == 0.0f) {
+                        z10 = true;
+                    } else {
+                        z10 = false;
+                    }
+                    if (scrollY == 0 && translationY == 0.0f) {
+                        z11 = true;
+                    } else {
+                        z11 = false;
+                    }
+                    if (!z10) {
+                        int b10 = zu0VarArr[0].b() + zu0VarArr[0].f40308j;
+                        if (C()) {
+                            i10 = AndroidUtilities.statusBarHeight;
+                        } else {
+                            i10 = 0;
+                        }
+                        int top = (((photoViewer.Z1.getTop() + ((int) translationY)) - scrollY) + (org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() + i10)) - AndroidUtilities.dp(12.0f);
+                        if (top > AndroidUtilities.dp(32.0f) + ((int) imageViewArr[0].getY())) {
+                            z12 = true;
+                        } else {
+                            z12 = false;
+                        }
+                        if (top > b10) {
+                            z10 = true;
+                        } else {
+                            z10 = false;
+                        }
+                        z11 = z12;
+                    }
+                    if (photoViewer.f31126z3) {
+                        if (imageViewArr[0].getTag() != null && ((Integer) imageViewArr[0].getTag()).intValue() == 3 && z11) {
+                            imageViewArr[0].setTag(2);
+                            imageViewArr[0].animate().alpha(1.0f).setDuration(150L).setListener(new cr0(this, 4)).start();
+                        } else if (imageViewArr[0].getTag() == null && !z11) {
+                            imageViewArr[0].setTag(3);
+                            imageViewArr[0].animate().alpha(0.0f).setListener(null).setDuration(150L).start();
+                        }
+                    }
+                    zu0 zu0Var = zu0VarArr[0];
+                    if (z10) {
+                        f7 = 1.0f;
+                    }
+                    zu0Var.e(2, f7, true);
+                    return;
+                }
+                return;
+            default:
+                super.invalidate();
+                return;
         }
     }
 }

@@ -1,15 +1,37 @@
 package org.telegram.ui.Components;
-public final class k implements zk0 {
-    public final int f27600a;
-    public final Object f27601b;
 
-    public k(Object obj, int i10) {
-        this.f27600a = i10;
-        this.f27601b = obj;
+import android.text.Editable;
+import android.text.TextWatcher;
+public final class k implements TextWatcher {
+    public final e0 f25461a;
+
+    public k(e0 e0Var) {
+        this.f25461a = e0Var;
     }
 
     @Override
-    public final void a(int r33, android.view.View r34) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.k.a(int, android.view.View):void");
+    public final void afterTextChanged(Editable editable) {
+        int i10;
+        d0 d0Var;
+        e0 e0Var = this.f25461a;
+        d0 d0Var2 = e0Var.f23475w0;
+        if (d0Var2 != null) {
+            i10 = d0Var2.getSelectedTab();
+        } else {
+            i10 = 0;
+        }
+        if (i10 == 1 && (d0Var = e0Var.f23476x0) != null && (d0Var.getSelectedTone() instanceof z)) {
+            e0Var.c0();
+            e0Var.q0();
+            e0Var.p0(true);
+        }
+    }
+
+    @Override
+    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+    }
+
+    @Override
+    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
     }
 }

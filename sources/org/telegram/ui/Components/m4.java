@@ -1,70 +1,51 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
+import android.content.Context;
+import android.graphics.Point;
+import android.widget.LinearLayout;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MessagesController;
-import org.telegram.ui.StickersActivity;
-public final class m4 extends l51 {
-    public final int f28373e;
-    public Object f28374f;
+public final class m4 extends LinearLayout {
+    public boolean f26058a;
+    public final uc0 f26059b;
+    public final uc0 f26060c;
+    public final uc0 d;
 
-    public m4(Object obj, int i10) {
-        super("@stickers", (n01) null);
-        this.f28373e = i10;
-        this.f28374f = obj;
+    public m4(Context context, uc0 uc0Var, uc0 uc0Var2, uc0 uc0Var3) {
+        super(context);
+        this.f26059b = uc0Var;
+        this.f26060c = uc0Var2;
+        this.d = uc0Var3;
+        this.f26058a = false;
     }
 
     @Override
-    public final void onClick(View view) {
-        int i10;
-        int i11;
+    public final void onMeasure(int i10, int i11) {
         int i12;
-        switch (this.f28373e) {
-            case 0:
-                ((org.telegram.ui.ActionBar.n2) this.f28374f).dismissCurrentDialog();
-                super.onClick(view);
-                return;
-            case 1:
-                ux0 ux0Var = (ux0) this.f28374f;
-                i10 = ((org.telegram.ui.ActionBar.f3) ux0Var).currentAccount;
-                MessagesController.getInstance(i10).openByUserName(getURL(), ux0Var.L, 1);
-                ux0Var.dismiss();
-                return;
-            case 2:
-                AndroidUtilities.addToClipboard(getURL());
-                yc.a0((ig.v) this.f28374f).k(false).j();
-                return;
-            case 3:
-                org.telegram.ui.u70 u70Var = ((org.telegram.ui.s70) this.f28374f).d;
-                i11 = ((org.telegram.ui.ActionBar.n2) u70Var).currentAccount;
-                MessagesController.getInstance(i11).openByUserName("stickers", u70Var, 1);
-                return;
-            case 4:
-                ((org.telegram.ui.xm0) this.f28374f).f42763a.dismissCurrentDialog();
-                super.onClick(view);
-                return;
-            default:
-                StickersActivity stickersActivity = (StickersActivity) this.f28374f;
-                i12 = ((org.telegram.ui.ActionBar.n2) stickersActivity).currentAccount;
-                MessagesController.getInstance(i12).openByUserName("stickers", stickersActivity, 3);
-                return;
+        this.f26058a = true;
+        Point point = AndroidUtilities.displaySize;
+        if (point.x > point.y) {
+            i12 = 3;
+        } else {
+            i12 = 5;
         }
+        uc0 uc0Var = this.f26059b;
+        uc0Var.setItemCount(i12);
+        uc0 uc0Var2 = this.f26060c;
+        uc0Var2.setItemCount(i12);
+        uc0 uc0Var3 = this.d;
+        uc0Var3.setItemCount(i12);
+        uc0Var.getLayoutParams().height = AndroidUtilities.dp(42.0f) * i12;
+        uc0Var2.getLayoutParams().height = AndroidUtilities.dp(42.0f) * i12;
+        uc0Var3.getLayoutParams().height = AndroidUtilities.dp(42.0f) * i12;
+        this.f26058a = false;
+        super.onMeasure(i10, i11);
     }
 
-    public m4(String str, int i10, Object obj) {
-        super(str, (n01) null);
-        this.f28373e = i10;
-        this.f28374f = obj;
-    }
-
-    public m4(String str, n01 n01Var) {
-        super(str, n01Var);
-        this.f28373e = 2;
-    }
-
-    public m4(org.telegram.ui.ActionBar.n2 n2Var, String str) {
-        super(str, (n01) null);
-        this.f28373e = 0;
-        this.f28374f = n2Var;
+    @Override
+    public final void requestLayout() {
+        if (this.f26058a) {
+            return;
+        }
+        super.requestLayout();
     }
 }

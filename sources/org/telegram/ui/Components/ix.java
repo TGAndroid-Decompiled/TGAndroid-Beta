@@ -1,12 +1,35 @@
 package org.telegram.ui.Components;
-public final class ix extends org.telegram.ui.co {
+
+import android.content.Context;
+import android.graphics.Canvas;
+import android.view.View;
+import android.widget.FrameLayout;
+import org.telegram.messenger.AndroidUtilities;
+public final class ix extends FrameLayout {
+    public final kz f25165a;
+
+    public ix(kz kzVar, Context context) {
+        super(context);
+        this.f25165a = kzVar;
+    }
+
     @Override
-    public final void onTransitionAnimationEnd(boolean z10, boolean z11) {
-        org.telegram.ui.mk mkVar;
-        super.onTransitionAnimationEnd(z10, z11);
-        if (z10 && (mkVar = this.Y) != null) {
-            mkVar.s1();
-            this.Y.postDelayed(new wp(this, 13), 100L);
+    public final boolean drawChild(Canvas canvas, View view, long j3) {
+        kz kzVar = this.f25165a;
+        nx nxVar = kzVar.I;
+        jw jwVar = kzVar.V;
+        vx vxVar = kzVar.P;
+        if (view != vxVar && view != jwVar) {
+            return super.drawChild(canvas, view, j3);
         }
+        canvas.save();
+        float y3 = nxVar.getY() + nxVar.getMeasuredHeight() + 1.0f;
+        if (view == vxVar && jwVar != null) {
+            y3 = Math.max(y3, jwVar.getY() + jwVar.getMeasuredHeight() + 1.0f);
+        }
+        canvas.clipRect(0.0f, y3 - (AndroidUtilities.dp(16.0f) * kzVar.f25697b.e), getMeasuredWidth(), getMeasuredHeight());
+        boolean drawChild = super.drawChild(canvas, view, j3);
+        canvas.restore();
+        return drawChild;
     }
 }

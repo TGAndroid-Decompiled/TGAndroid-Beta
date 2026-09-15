@@ -1,44 +1,34 @@
 package org.telegram.ui.Components;
 
 import java.util.ArrayList;
-import org.telegram.messenger.MessagesStorage;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.tl.TL_bots;
-public final class ps {
-    public final int f29478a;
-    public final ls f29479b;
-    public boolean f29480c;
-    public boolean d;
-    public boolean f29481e;
-    public long f29482f;
-    public String f29483g;
-    public final ArrayList h = new ArrayList();
-    public boolean f29484i = false;
+public final class ps implements Runnable {
+    public final int f27135a;
+    public final qs f27136b;
 
-    public ps(int i10, ls lsVar) {
-        this.f29478a = i10;
-        this.f29479b = lsVar;
+    public ps(qs qsVar, int i10) {
+        this.f27135a = i10;
+        this.f27136b = qsVar;
     }
 
-    public final void a() {
-        if (!this.f29480c && !this.f29481e) {
-            this.f29480c = true;
-            boolean z10 = this.d;
-            int i10 = this.f29478a;
-            if (!z10) {
-                os osVar = new os(this, 0);
-                MessagesStorage messagesStorage = MessagesStorage.getInstance(i10);
-                messagesStorage.getStorageQueue().postRunnable(new org.telegram.ui.ActionBar.p(this, messagesStorage, osVar, 14));
+    @Override
+    public final void run() {
+        switch (this.f27135a) {
+            case 0:
+                qs qsVar = this.f27136b;
+                qsVar.f27437c = false;
+                qsVar.f27436b.run();
+                ArrayList arrayList = qsVar.h;
+                if (arrayList.isEmpty() || System.currentTimeMillis() - qsVar.f27438f > 3600000) {
+                    arrayList.clear();
+                    qsVar.e = false;
+                    qsVar.f27439g = null;
+                    qsVar.a();
+                    return;
+                }
                 return;
-            }
-            TL_bots.getPopularAppBots getpopularappbots = new TL_bots.getPopularAppBots();
-            getpopularappbots.limit = 20;
-            String str = this.f29483g;
-            if (str == null) {
-                str = "";
-            }
-            getpopularappbots.offset = str;
-            ConnectionsManager.getInstance(i10).sendRequest(getpopularappbots, new y1(this, 3));
+            default:
+                this.f27136b.f27440i = false;
+                return;
         }
     }
 }

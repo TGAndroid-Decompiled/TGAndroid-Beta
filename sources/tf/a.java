@@ -1,37 +1,27 @@
 package tf;
 
-import android.content.SharedPreferences;
-import android.os.SystemClock;
-import org.telegram.messenger.ApplicationLoader;
-import w7.p;
-public final class a {
-    public final SharedPreferences f46482a;
-    public long f46483b;
-    public long f46484c;
-    public int d;
+import ai.n4;
+import android.view.View;
+import android.view.ViewTreeObserver;
+import yf.x;
+public final class a implements ViewTreeObserver.OnDrawListener {
+    public final int f43054a;
+    public final View f43055b;
 
-    public a(String str) {
-        SharedPreferences sharedPreferences = ApplicationLoader.applicationContext.getSharedPreferences("pip_duration_".concat(str), 0);
-        this.f46482a = sharedPreferences;
-        this.f46483b = sharedPreferences.getLong("estimated", 400L);
-        this.d = sharedPreferences.getInt("count", 0);
+    public a(int i10, View view) {
+        this.f43054a = i10;
+        this.f43055b = view;
     }
 
-    public final void a() {
-        int b10;
-        if (this.f46484c == 0) {
-            return;
+    @Override
+    public final void onDraw() {
+        switch (this.f43054a) {
+            case 0:
+                ((n4) this.f43055b).forceLayout();
+                return;
+            default:
+                ((x) this.f43055b).e.incrementAndGet();
+                return;
         }
-        this.f46483b = (((SystemClock.uptimeMillis() - this.f46484c) * (10 - b10)) / 10) + ((this.f46483b * p.b(this.d, 0, 9)) / 10);
-        this.f46484c = 0L;
-        this.d++;
-        this.f46482a.edit().putLong("estimated", this.f46483b).putInt("count", this.d).apply();
-    }
-
-    public final float b() {
-        if (this.f46483b > 0) {
-            return p.a(((float) (SystemClock.uptimeMillis() - this.f46484c)) / ((float) this.f46483b), 0.0f, 1.0f);
-        }
-        return 0.5f;
     }
 }

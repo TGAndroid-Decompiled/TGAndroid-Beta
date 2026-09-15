@@ -1,129 +1,62 @@
 package org.telegram.ui;
 
-import android.view.ViewPropertyAnimator;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Utilities;
-public final class ss0 implements org.telegram.ui.ActionBar.s0, org.telegram.ui.Components.v61, org.telegram.ui.Components.h71, org.telegram.ui.Components.te0 {
-    public final PhotoViewer f40521a;
+import java.io.File;
+import org.telegram.messenger.FileLoader;
+import org.telegram.messenger.ImageLocation;
+import org.telegram.tgnet.TLRPC;
+public final class ss0 extends org.telegram.ui.ActionBar.j {
+    public final org.telegram.ui.ActionBar.e6 f37447a;
+    public final PhotoViewer f37448b;
 
-    public ss0(PhotoViewer photoViewer) {
-        this.f40521a = photoViewer;
+    public ss0(PhotoViewer photoViewer, org.telegram.ui.ActionBar.e6 e6Var) {
+        this.f37448b = photoViewer;
+        this.f37447a = e6Var;
     }
 
-    public void a(boolean z10) {
-        float f7;
-        boolean z11 = !z10;
-        PhotoViewer photoViewer = this.f40521a;
-        if (photoViewer.V0.isClickable() != z11) {
-            photoViewer.V0.setClickable(z11);
-            photoViewer.V0.setVisibility(0);
-            photoViewer.V0.clearAnimation();
-            ViewPropertyAnimator animate = photoViewer.V0.animate();
-            if (!z10) {
-                f7 = 1.0f;
+    @Override
+    public final boolean a() {
+        TLRPC.TL_fileLocationToBeDeprecated tL_fileLocationToBeDeprecated;
+        boolean z10;
+        PhotoViewer photoViewer = this.f37448b;
+        if (photoViewer.T4 != null || photoViewer.f30913b5 != null) {
+            return true;
+        }
+        if (photoViewer.f30903a5 != null) {
+            FileLoader fileLoader = FileLoader.getInstance(photoViewer.T);
+            ImageLocation imageLocation = photoViewer.f30903a5;
+            TLRPC.TL_fileLocationToBeDeprecated tL_fileLocationToBeDeprecated2 = null;
+            if (imageLocation == null) {
+                tL_fileLocationToBeDeprecated = null;
             } else {
-                f7 = 0.0f;
+                tL_fileLocationToBeDeprecated = imageLocation.location;
             }
-            animate.alpha(f7).setInterpolator(org.telegram.ui.Components.pr.f29466f).setDuration(150L).withEndAction(new org.telegram.ui.Components.mr0(8, photoViewer, z11));
-        }
-    }
-
-    @Override
-    public void b(float f7) {
-        hu0 hu0Var;
-        PhotoViewer photoViewer = this.f40521a;
-        if (photoViewer.F2 == null && ((hu0Var = photoViewer.f33558f0) == null || !hu0Var.f29716x)) {
-            return;
-        }
-        if (!photoViewer.A8 && photoViewer.Q7.getVisibility() == 0) {
-            f7 = ((photoViewer.R7.getRightProgress() - photoViewer.R7.getLeftProgress()) * f7) + photoViewer.R7.getLeftProgress();
-        }
-        long A1 = photoViewer.A1();
-        if (A1 == -9223372036854775807L) {
-            photoViewer.f33513a3 = f7;
+            String q12 = PhotoViewer.q1(imageLocation);
+            if (photoViewer.f31128z5 == 0 && !photoViewer.B5) {
+                z10 = false;
+            } else {
+                z10 = true;
+            }
+            File pathToAttach = fileLoader.getPathToAttach(tL_fileLocationToBeDeprecated, q12, z10);
+            File file = new File(FileLoader.getDirectory(4), pathToAttach.getName());
+            FileLoader fileLoader2 = FileLoader.getInstance(photoViewer.T);
+            ImageLocation imageLocation2 = photoViewer.f30903a5;
+            if (imageLocation2 != null) {
+                tL_fileLocationToBeDeprecated2 = imageLocation2.location;
+            }
+            File pathToAttach2 = fileLoader2.getPathToAttach(tL_fileLocationToBeDeprecated2, PhotoViewer.q1(imageLocation2), false);
+            if (pathToAttach.exists() || file.exists() || pathToAttach2.exists()) {
+                return true;
+            }
+            return false;
+        } else if (photoViewer.f30986j7 != null) {
+            return true;
         } else {
-            photoViewer.t2((int) (f7 * ((float) A1)));
-        }
-        photoViewer.b3(false);
-        photoViewer.f33692u3 = false;
-    }
-
-    @Override
-    public void c(float f7) {
-        lt0 lt0Var;
-        lt0 lt0Var2;
-        PhotoViewer photoViewer = this.f40521a;
-        hu0 hu0Var = photoViewer.f33558f0;
-        if (hu0Var != null && hu0Var.f29716x && (lt0Var2 = photoViewer.f33674s3) != null) {
-            int i10 = photoViewer.f33655q3.h - org.telegram.ui.Components.i71.S;
-            lt0Var2.N = hu0Var;
-            if (lt0Var2.W != 0) {
-                lt0Var2.W = 0L;
-                lt0Var2.f28677f0 = null;
-                lt0Var2.f28675e0 = null;
-                lt0Var2.f28673d0 = null;
-                lt0Var2.b(-1);
-            }
-            if (i10 != 0) {
-                lt0Var2.f28680r = i10;
-                int i11 = ((int) (i10 * f7)) / 5;
-                if (lt0Var2.f28679n != i11) {
-                    lt0Var2.f28679n = i11;
-                }
-            }
-            String formatShortDuration = AndroidUtilities.formatShortDuration((int) ((hu0Var.getVideoDuration() * f7) / 1000));
-            lt0Var2.f28684y = formatShortDuration;
-            lt0Var2.E = (int) Math.ceil(lt0Var2.F.measureText(formatShortDuration));
-            lt0Var2.invalidate();
-            if (lt0Var2.f28676f != null) {
-                Utilities.globalQueue.cancelRunnable(lt0Var2.f28676f);
-            }
-            double videoDuration = (f7 * hu0Var.getVideoDuration()) / 1000.0d;
-            lt0Var2.O = videoDuration;
-            String c10 = hu0Var.c((int) videoDuration);
-            if (c10 != null) {
-                lt0Var2.Q.setImage(c10, null, null, null, 0L);
-            }
-        } else if (photoViewer.F2 != null && (lt0Var = photoViewer.f33674s3) != null) {
-            lt0Var.e(photoViewer.T4, f7, photoViewer.f33655q3.h - org.telegram.ui.Components.i71.S);
-        }
-        this.f40521a.b3(true);
-        PhotoViewer.X(this.f40521a);
-    }
-
-    @Override
-    public void d() {
-        PhotoViewer photoViewer = this.f40521a;
-        if (photoViewer.f33612l3 && photoViewer.P3) {
-            photoViewer.s2();
+            return false;
         }
     }
 
     @Override
-    public void e() {
-        PhotoViewer photoViewer = this.f40521a;
-        if (photoViewer.f33612l3 && photoViewer.P3) {
-            AndroidUtilities.cancelRunOnUIThread(photoViewer.f33720x2);
-        }
-    }
-
-    public void f() {
-        PhotoViewer photoViewer = this.f40521a;
-        org.telegram.ui.Components.g71 g71Var = photoViewer.F2;
-        if (g71Var == null) {
-            return;
-        }
-        g71Var.K(((float) g71Var.p()) * photoViewer.f33706v8);
-        photoViewer.F2.B();
-        photoViewer.R7.setProgress(photoViewer.f33706v8);
-        photoViewer.u0();
-        rl0 rl0Var = new rl0(this, 18);
-        photoViewer.I2 = rl0Var;
-        AndroidUtilities.runOnUIThread(rl0Var, 860L);
-    }
-
-    @Override
-    public void invalidate() {
-        this.f40521a.f33549e0.invalidate();
+    public final void b(int r35) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ss0.b(int):void");
     }
 }

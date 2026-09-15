@@ -1,48 +1,31 @@
 package org.telegram.ui.Components;
 
-import android.view.ActionMode;
-import android.view.Menu;
-import android.view.MenuItem;
-public final class wt implements ActionMode.Callback {
-    public final ActionMode.Callback f32337a;
-    public final zt f32338b;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.tl.TL_payments;
+public final class wt implements org.telegram.ui.ActionBar.a2 {
+    public final int f29779a;
+    public final int f29780b;
+    public final Object f29781c;
 
-    public wt(zt ztVar, ActionMode.Callback callback) {
-        this.f32338b = ztVar;
-        this.f32337a = callback;
+    public wt(int i10, int i11, org.telegram.ui.ActionBar.n2 n2Var) {
+        this.f29779a = i10;
+        this.f29780b = i11;
+        this.f29781c = n2Var;
     }
 
     @Override
-    public final boolean onActionItemClicked(ActionMode actionMode, MenuItem menuItem) {
-        if (this.f32338b.performMenuAction(menuItem.getItemId())) {
-            actionMode.finish();
-            return true;
-        }
-        try {
-            return this.f32337a.onActionItemClicked(actionMode, menuItem);
-        } catch (Exception unused) {
-            return true;
-        }
+    public void f(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
+        nf.e g10 = b2Var.g(-1, true, true);
+        g10.d();
+        TL_payments.TL_resolveStarGiftOffer tL_resolveStarGiftOffer = new TL_payments.TL_resolveStarGiftOffer();
+        tL_resolveStarGiftOffer.offer_msg_id = this.f29779a;
+        int i11 = this.f29780b;
+        ConnectionsManager.getInstance(i11).sendRequestTyped(tL_resolveStarGiftOffer, new ei.h1(i11, (org.telegram.ui.ActionBar.n2) this.f29781c, g10, b2Var));
     }
 
-    @Override
-    public final boolean onCreateActionMode(ActionMode actionMode, Menu menu) {
-        zt ztVar = this.f32338b;
-        ztVar.copyPasteShowed = true;
-        ztVar.onContextMenuOpen();
-        return this.f32337a.onCreateActionMode(actionMode, menu);
-    }
-
-    @Override
-    public final void onDestroyActionMode(ActionMode actionMode) {
-        zt ztVar = this.f32338b;
-        ztVar.copyPasteShowed = false;
-        ztVar.onContextMenuClose();
-        this.f32337a.onDestroyActionMode(actionMode);
-    }
-
-    @Override
-    public final boolean onPrepareActionMode(ActionMode actionMode, Menu menu) {
-        return this.f32337a.onPrepareActionMode(actionMode, menu);
+    public wt(bu buVar, int i10, int i11) {
+        this.f29781c = buVar;
+        this.f29779a = i10;
+        this.f29780b = i11;
     }
 }

@@ -1,29 +1,142 @@
 package org.telegram.messenger;
 
 import java.util.ArrayList;
-import java.util.Comparator;
-import org.telegram.messenger.MediaDataController;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-public final class j7 implements Comparator {
-    public final int f18060a;
-    public final ArrayList f18061b;
+import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.ProfileActivity;
+import org.telegram.ui.bo;
+public final class j7 implements Runnable {
+    public final int f16463a;
+    public final Object f16464b;
+    public final long f16465c;
+    public final int d;
+    public final Object e;
 
-    public j7(ArrayList arrayList, int i10) {
-        this.f18060a = i10;
-        this.f18061b = arrayList;
+    public j7(Object obj, long j3, int i10, Object obj2, int i11) {
+        this.f16463a = i11;
+        this.f16464b = obj;
+        this.f16465c = j3;
+        this.d = i10;
+        this.e = obj2;
     }
 
     @Override
-    public final int compare(Object obj, Object obj2) {
-        int lambda$getEmojiSuggestions$220;
-        int lambda$reorderStickers$54;
-        switch (this.f18060a) {
+    public final void run() {
+        switch (this.f16463a) {
             case 0:
-                lambda$getEmojiSuggestions$220 = MediaDataController.lambda$getEmojiSuggestions$220(this.f18061b, (MediaDataController.KeywordResult) obj, (MediaDataController.KeywordResult) obj2);
-                return lambda$getEmojiSuggestions$220;
+                ((MediaDataController) this.f16464b).lambda$putMenuBotsToCache$6((TLRPC.TL_attachMenuBots) this.e, this.f16465c, this.d);
+                return;
+            case 1:
+                ((MediaDataController) this.f16464b).lambda$processLoadedStickers$104((ArrayList) this.e, this.f16465c, this.d);
+                return;
+            case 2:
+                int i10 = this.d;
+                ((MessagesController) this.f16464b).lambda$checkPromoInfoInternal$168(this.f16465c, (TLRPC.TL_help_promoData) this.e, i10);
+                return;
+            case 3:
+                ((MessagesController) this.f16464b).lambda$processUpdateArray$388(this.f16465c, this.d, (TLRPC.TL_sendMessageTextDraftAction) this.e);
+                return;
+            case 4:
+                ((MessagesController) this.f16464b).lambda$processUpdateArray$389(this.f16465c, this.d, (TLRPC.TL_sendMessageRichMessageDraftAction) this.e);
+                return;
+            case 5:
+                int i11 = this.d;
+                ((MessagesStorage) this.f16464b).lambda$updateTopicData$48(this.f16465c, (TLRPC.TL_forumTopic) this.e, i11);
+                return;
+            case 6:
+                ((MessagesStorage) this.f16464b).lambda$updateMessageVoiceTranscriptionOpen$107(this.d, this.f16465c, (TLRPC.Message) this.e);
+                return;
+            case 7:
+                ((MessagesStorage) this.f16464b).lambda$updateMessageReactions$104(this.d, this.f16465c, (TLRPC.TL_messageReactions) this.e);
+                return;
+            case 8:
+                ((MessagesStorage) this.f16464b).lambda$updateChatDefaultBannedRights$180(this.f16465c, this.d, (TLRPC.TL_chatBannedRights) this.e);
+                return;
+            case 9:
+                ((SendMessagesHelper) this.f16464b).lambda$sendNotificationCallback$30(this.f16465c, this.d, (byte[]) this.e);
+                return;
+            case 10:
+                ((TranslateController) this.f16464b).lambda$checkLanguage$14((MessageObject) this.e, this.f16465c, this.d);
+                return;
+            case 11:
+                org.telegram.ui.h4 h4Var = (org.telegram.ui.h4) this.f16464b;
+                TLObject tLObject = (TLObject) this.e;
+                if (h4Var.G0 != 0) {
+                    h4Var.G0 = 0;
+                    h4Var.b0(false);
+                    if (tLObject != null) {
+                        TLRPC.TL_contacts_resolvedPeer tL_contacts_resolvedPeer = (TLRPC.TL_contacts_resolvedPeer) tLObject;
+                        int i12 = this.d;
+                        MessagesController.getInstance(i12).putUsers(tL_contacts_resolvedPeer.users, false);
+                        MessagesStorage.getInstance(i12).putUsersAndChats(tL_contacts_resolvedPeer.users, tL_contacts_resolvedPeer.chats, false, true);
+                        if (!tL_contacts_resolvedPeer.users.isEmpty()) {
+                            h4Var.P(this.f16465c, tL_contacts_resolvedPeer.users.get(0));
+                            return;
+                        }
+                        return;
+                    }
+                    return;
+                }
+                return;
+            case 12:
+                org.telegram.ui.m6 m6Var = (org.telegram.ui.m6) this.f16464b;
+                long currentTimeMillis = System.currentTimeMillis();
+                boolean z10 = false;
+                Float valueOf = Float.valueOf(((int[]) this.e)[0] / this.d);
+                if (currentTimeMillis - this.f16465c > 250) {
+                    z10 = true;
+                }
+                m6Var.run(valueOf, Boolean.valueOf(z10));
+                return;
+            case 13:
+                ((ProfileActivity) this.f16464b).getMessagesController().getStoriesController().b(this.d, this.f16465c, (ArrayList) this.e);
+                return;
             default:
-                lambda$reorderStickers$54 = MediaDataController.lambda$reorderStickers$54(this.f18061b, (TLRPC.TL_messages_stickerSet) obj, (TLRPC.TL_messages_stickerSet) obj2);
-                return lambda$reorderStickers$54;
+                ((ci.d) this.f16464b).setLoading(false);
+                org.telegram.ui.ActionBar.f3 f3Var = ((org.telegram.ui.ActionBar.f3[]) this.e)[0];
+                if (f3Var != null) {
+                    f3Var.dismiss();
+                }
+                yh.v5.y(this.d, false).S();
+                org.telegram.ui.ActionBar.n2 U = LaunchActivity.U();
+                if (U != null) {
+                    U.presentFragment(bo.R9(this.f16465c));
+                    return;
+                }
+                return;
         }
+    }
+
+    public j7(Object obj, Object obj2, int i10, long j3, int i11) {
+        this.f16463a = i11;
+        this.f16464b = obj;
+        this.e = obj2;
+        this.d = i10;
+        this.f16465c = j3;
+    }
+
+    public j7(BaseController baseController, long j3, TLObject tLObject, int i10, int i11) {
+        this.f16463a = i11;
+        this.f16464b = baseController;
+        this.f16465c = j3;
+        this.e = tLObject;
+        this.d = i10;
+    }
+
+    public j7(BaseController baseController, Object obj, long j3, int i10, int i11) {
+        this.f16463a = i11;
+        this.f16464b = baseController;
+        this.e = obj;
+        this.f16465c = j3;
+        this.d = i10;
+    }
+
+    public j7(MessagesStorage messagesStorage, int i10, long j3, TLObject tLObject, int i11) {
+        this.f16463a = i11;
+        this.f16464b = messagesStorage;
+        this.d = i10;
+        this.f16465c = j3;
+        this.e = tLObject;
     }
 }

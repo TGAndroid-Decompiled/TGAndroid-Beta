@@ -1,30 +1,35 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.view.View;
-public final class o91 implements View.OnClickListener {
-    public final int f39150a;
-    public final Context f39151b;
-    public final org.telegram.ui.ActionBar.f6 f39152c;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.RectF;
+import android.text.style.ReplacementSpan;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class o91 extends ReplacementSpan {
+    public final org.telegram.ui.Components.g01 f36140a = new org.telegram.ui.Components.g01(LocaleController.getString(R.string.StakeDiceTitleBeta), 12.0f, AndroidUtilities.bold());
+    public final Paint f36141b = new Paint(1);
+    public final org.telegram.ui.ActionBar.e6 f36142c;
 
-    public o91(Context context, int i10, org.telegram.ui.ActionBar.f6 f6Var) {
-        this.f39150a = i10;
-        this.f39151b = context;
-        this.f39152c = f6Var;
+    public o91(org.telegram.ui.ActionBar.e6 e6Var) {
+        this.f36142c = e6Var;
     }
 
     @Override
-    public final void onClick(View view) {
-        switch (this.f39150a) {
-            case 0:
-                new zh.l7(this.f39151b, this.f39152c).show();
-                return;
-            case 1:
-                new zh.l7(this.f39151b, this.f39152c).show();
-                return;
-            default:
-                new zh.l7(this.f39151b, this.f39152c).show();
-                return;
-        }
+    public final void draw(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
+        float dp = ((i12 + i14) / 2.0f) + AndroidUtilities.dp(1.0f);
+        int v02 = org.telegram.ui.ActionBar.i6.v0(org.telegram.ui.ActionBar.i6.Oh, this.f36142c);
+        Paint paint2 = this.f36141b;
+        paint2.setColor(v02);
+        RectF rectF = AndroidUtilities.rectTmp;
+        rectF.set(f7, dp - AndroidUtilities.dp(9.0f), AndroidUtilities.dp(16.0f) + f7 + this.f36140a.f24149c, AndroidUtilities.dp(9.0f) + dp);
+        canvas.drawRoundRect(rectF, AndroidUtilities.dp(9.0f), AndroidUtilities.dp(9.0f), paint2);
+        this.f36140a.c(f7 + AndroidUtilities.dp(8.0f), dp, 1.0f, -1, canvas);
+    }
+
+    @Override
+    public final int getSize(Paint paint, CharSequence charSequence, int i10, int i11, Paint.FontMetricsInt fontMetricsInt) {
+        return (int) (AndroidUtilities.dp(16.0f) + this.f36140a.f24149c);
     }
 }
