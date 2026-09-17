@@ -5,10 +5,10 @@ import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class gk implements qt {
-    public final co f36736a;
+    public final co f36709a;
 
     public gk(co coVar) {
-        this.f36736a = coVar;
+        this.f36709a = coVar;
     }
 
     @Override
@@ -44,14 +44,14 @@ public final class gk implements qt {
     @Override
     public final void M(TLRPC.InputStickerSet inputStickerSet, boolean z10) {
         if (inputStickerSet != null) {
-            co coVar = this.f36736a;
+            co coVar = this.f36709a;
             if (coVar.getParentActivity() != null) {
                 TLRPC.TL_inputStickerSetID tL_inputStickerSetID = new TLRPC.TL_inputStickerSetID();
                 tL_inputStickerSetID.access_hash = inputStickerSet.access_hash;
-                tL_inputStickerSetID.f19916id = inputStickerSet.f19916id;
-                org.telegram.ui.Components.ux0 ux0Var = new org.telegram.ui.Components.ux0(coVar.getParentActivity(), coVar, tL_inputStickerSetID, null, coVar.Y, coVar.f35275ea);
+                tL_inputStickerSetID.f19889id = inputStickerSet.f19889id;
+                org.telegram.ui.Components.ux0 ux0Var = new org.telegram.ui.Components.ux0(coVar.getParentActivity(), coVar, tL_inputStickerSetID, null, coVar.Y, coVar.f35248ea);
                 ux0Var.setCalcMandatoryInsets(coVar.x9());
-                ux0Var.f31031i0 = z10;
+                ux0Var.f31004i0 = z10;
                 coVar.showDialog(ux0Var);
             }
         }
@@ -74,17 +74,17 @@ public final class gk implements qt {
 
     @Override
     public final long a() {
-        return this.f36736a.T5;
+        return this.f36709a.T5;
     }
 
     @Override
     public final boolean b() {
-        return this.f36736a.D6();
+        return this.f36709a.D6();
     }
 
     @Override
     public final boolean c() {
-        if (this.f36736a.R3 == 1) {
+        if (this.f36709a.R3 == 1) {
             return true;
         }
         return false;
@@ -127,7 +127,7 @@ public final class gk implements qt {
 
     @Override
     public final void l(TLRPC.Document document, String str, Object obj, boolean z10, int i10, int i11) {
-        this.f36736a.Y.a(document, str, obj, null, true, z10, i10, i11);
+        this.f36709a.Y.a(document, str, obj, null, true, z10, i10, i11);
     }
 
     @Override

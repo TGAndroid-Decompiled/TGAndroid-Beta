@@ -8,10 +8,10 @@ import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class ip implements org.telegram.ui.Components.zk0 {
-    public final kp f37447a;
+    public final kp f37420a;
 
     public ip(kp kpVar) {
-        this.f37447a = kpVar;
+        this.f37420a = kpVar;
     }
 
     @Override
@@ -20,16 +20,16 @@ public final class ip implements org.telegram.ui.Components.zk0 {
         int i11;
         int i12;
         int i13;
-        kp kpVar = this.f37447a;
-        lp lpVar = kpVar.f38128a3;
+        kp kpVar = this.f37420a;
+        lp lpVar = kpVar.f38101a3;
         if ((view instanceof na) && (tL_username = ((na) view).v) != null) {
             if (tL_username.editable) {
                 View view2 = lpVar.fragmentView;
                 if (view2 instanceof ScrollView) {
-                    ((ScrollView) view2).smoothScrollTo(0, lpVar.f38480y.getTop() - AndroidUtilities.dp(128.0f));
+                    ((ScrollView) view2).smoothScrollTo(0, lpVar.f38453y.getTop() - AndroidUtilities.dp(128.0f));
                 }
-                lpVar.f38451a.requestFocus();
-                AndroidUtilities.showKeyboard(lpVar.f38451a);
+                lpVar.f38424a.requestFocus();
+                AndroidUtilities.showKeyboard(lpVar.f38424a);
                 return;
             }
             AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(kpVar.getContext(), 0, lpVar.getResourceProvider());
@@ -38,13 +38,13 @@ public final class ip implements org.telegram.ui.Components.zk0 {
             } else {
                 i11 = R.string.UsernameActivateLink;
             }
-            alertDialog$Builder.f20226a.R = LocaleController.getString(i11);
+            alertDialog$Builder.f20199a.R = LocaleController.getString(i11);
             if (tL_username.active) {
                 i12 = R.string.UsernameDeactivateLinkChannelMessage;
             } else {
                 i12 = R.string.UsernameActivateLinkChannelMessage;
             }
-            alertDialog$Builder.f20226a.T = LocaleController.getString(i12);
+            alertDialog$Builder.f20199a.T = LocaleController.getString(i12);
             if (tL_username.active) {
                 i13 = R.string.Hide;
             } else {

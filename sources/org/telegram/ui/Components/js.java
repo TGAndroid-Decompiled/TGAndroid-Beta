@@ -11,19 +11,19 @@ import org.telegram.messenger.AndroidUtilities;
 public final class js extends g6 {
     public boolean E;
     public boolean F;
-    public dh.d f27589s;
+    public dh.d f27562s;
     public final Path v;
-    public final RectF f27590w;
-    public int f27591x;
-    public FragmentContextView f27592y;
+    public final RectF f27563w;
+    public int f27564x;
+    public FragmentContextView f27565y;
 
     public js(Context context) {
         super(context);
         this.v = new Path();
-        this.f27590w = new RectF();
-        this.f27591x = 24;
+        this.f27563w = new RectF();
+        this.f27564x = 24;
         setOrientation(1);
-        dh.d dVar = this.f27589s;
+        dh.d dVar = this.f27562s;
         if (dVar != null) {
             dVar.u();
         }
@@ -36,23 +36,23 @@ public final class js extends g6 {
         int currentStyle;
         FragmentContextView fragmentContextView;
         Canvas canvas2 = canvas;
-        if (getMetadata().f15413c.f15423a != 0.0f) {
-            dh.d dVar = this.f27589s;
+        if (getMetadata().f15386c.f15396a != 0.0f) {
+            dh.d dVar = this.f27562s;
             if (dVar != null) {
                 dVar.draw(canvas2);
             }
-            FragmentContextView fragmentContextView2 = this.f27592y;
-            le.j jVar = this.f26288c;
+            FragmentContextView fragmentContextView2 = this.f27565y;
+            le.j jVar = this.f26261c;
             View view = null;
             if (fragmentContextView2 != null && ((currentStyle = fragmentContextView2.getCurrentStyle()) == 3 || currentStyle == 1)) {
                 int entriesCount = getEntriesCount();
                 for (int i10 = 0; i10 < entriesCount; i10++) {
                     le.g n10 = jVar.n(i10);
                     float paddingTop = getPaddingTop() + n10.b().top;
-                    View view2 = ((f6) n10.f15406a).f25953a;
+                    View view2 = ((f6) n10.f15379a).f25926a;
                     float c10 = n10.c();
-                    if (c10 > 0.0f && (fragmentContextView = this.f27592y) != null && (fragmentContextView == view2 || fragmentContextView.getParent() == view2)) {
-                        jd capsuleBlobDrawable = this.f27592y.getCapsuleBlobDrawable();
+                    if (c10 > 0.0f && (fragmentContextView = this.f27565y) != null && (fragmentContextView == view2 || fragmentContextView.getParent() == view2)) {
+                        jd capsuleBlobDrawable = this.f27565y.getCapsuleBlobDrawable();
                         int dp = AndroidUtilities.dp(1.0f) + ((int) capsuleBlobDrawable.c());
                         int i11 = -dp;
                         capsuleBlobDrawable.setBounds(getPaddingLeft() - dp, i11, (getMeasuredWidth() - getPaddingRight()) + dp, (dp * 2) + AndroidUtilities.dp(36.0f) + i11);
@@ -73,14 +73,14 @@ public final class js extends g6 {
             while (i12 < entriesCount2) {
                 le.g n11 = jVar.n(i12);
                 float paddingTop2 = getPaddingTop() + n11.b().top;
-                View view4 = ((f6) n11.f15406a).f25953a;
-                float min = Math.min(1.0f, n11.f15408c.f15423a) * n11.c();
+                View view4 = ((f6) n11.f15379a).f25926a;
+                float min = Math.min(1.0f, n11.f15381c.f15396a) * n11.c();
                 if (min > 0.0f && view3 != view4) {
-                    int alpha = org.telegram.ui.ActionBar.j6.f20813k0.getAlpha();
-                    org.telegram.ui.ActionBar.j6.f20813k0.setAlpha((int) (alpha * min));
+                    int alpha = org.telegram.ui.ActionBar.j6.f20786k0.getAlpha();
+                    org.telegram.ui.ActionBar.j6.f20786k0.setAlpha((int) (alpha * min));
                     float f7 = 1.0f - min;
-                    canvas2.drawLine(getPaddingLeft() + (AndroidUtilities.dp(16.0f) * f7), paddingTop2, getWidth() - ((AndroidUtilities.dp(16.0f) * f7) + getPaddingRight()), paddingTop2, org.telegram.ui.ActionBar.j6.f20813k0);
-                    org.telegram.ui.ActionBar.j6.f20813k0.setAlpha(alpha);
+                    canvas2.drawLine(getPaddingLeft() + (AndroidUtilities.dp(16.0f) * f7), paddingTop2, getWidth() - ((AndroidUtilities.dp(16.0f) * f7) + getPaddingRight()), paddingTop2, org.telegram.ui.ActionBar.j6.f20786k0);
+                    org.telegram.ui.ActionBar.j6.f20786k0.setAlpha(alpha);
                 }
                 i12++;
                 canvas2 = canvas;
@@ -106,7 +106,7 @@ public final class js extends g6 {
     public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
         dh.d dVar;
         if (!super.dispatchTouchEvent(motionEvent)) {
-            if (motionEvent.getAction() != 0 || (dVar = this.f27589s) == null || !dVar.getBounds().contains((int) motionEvent.getX(), (int) motionEvent.getY())) {
+            if (motionEvent.getAction() != 0 || (dVar = this.f27562s) == null || !dVar.getBounds().contains((int) motionEvent.getX(), (int) motionEvent.getY())) {
                 return false;
             }
             return true;
@@ -117,7 +117,7 @@ public final class js extends g6 {
     @Override
     public final boolean drawChild(Canvas canvas, View view, long j3) {
         boolean z10;
-        FragmentContextView fragmentContextView = this.f27592y;
+        FragmentContextView fragmentContextView = this.f27565y;
         if (fragmentContextView != null && (fragmentContextView == view || fragmentContextView.getParent() == view)) {
             z10 = true;
         } else {
@@ -136,19 +136,19 @@ public final class js extends g6 {
     }
 
     public final void j() {
-        float f7 = getMetadata().f15416g.f15423a;
-        float f10 = getMetadata().f15413c.f15423a;
-        RectF rectF = this.f27590w;
+        float f7 = getMetadata().f15389g.f15396a;
+        float f10 = getMetadata().f15386c.f15396a;
+        RectF rectF = this.f27563w;
         rectF.set(getPaddingLeft(), getPaddingTop(), getMeasuredWidth() - getPaddingRight(), getPaddingTop() + f7);
-        float min = Math.min(AndroidUtilities.dp(this.f27591x), Math.min(rectF.width(), rectF.height()) / 2.0f);
+        float min = Math.min(AndroidUtilities.dp(this.f27564x), Math.min(rectF.width(), rectF.height()) / 2.0f);
         Path path = this.v;
         path.rewind();
         path.addRoundRect(rectF, min, min, Path.Direction.CW);
-        dh.d dVar = this.f27589s;
+        dh.d dVar = this.f27562s;
         if (dVar != null) {
             dVar.setAlpha((int) (f10 * 255.0f));
-            this.f27589s.setBounds(AndroidUtilities.dp(4.0f), AndroidUtilities.dp(14.0f), getMeasuredWidth() - AndroidUtilities.dp(4.0f), ((getPaddingBottom() + getPaddingTop()) + ((int) f7)) - AndroidUtilities.dp(14.0f));
-            this.f27589s.p(Math.min(AndroidUtilities.dp(this.f27591x), f7 / 2.0f));
+            this.f27562s.setBounds(AndroidUtilities.dp(4.0f), AndroidUtilities.dp(14.0f), getMeasuredWidth() - AndroidUtilities.dp(4.0f), ((getPaddingBottom() + getPaddingTop()) + ((int) f7)) - AndroidUtilities.dp(14.0f));
+            this.f27562s.p(Math.min(AndroidUtilities.dp(this.f27564x), f7 / 2.0f));
         }
     }
 
@@ -159,22 +159,22 @@ public final class js extends g6 {
     }
 
     public void setBlurredBackground(dh.d dVar) {
-        this.f27589s = dVar;
+        this.f27562s = dVar;
     }
 
     public void setCallFragmentContextView(FragmentContextView fragmentContextView) {
-        this.f27592y = fragmentContextView;
+        this.f27565y = fragmentContextView;
         fragmentContextView.getCapsuleBlobDrawable().setCallback(this);
     }
 
     public void setDefaultRadiusDp(int i10) {
-        this.f27591x = i10;
+        this.f27564x = i10;
     }
 
     @Override
     public final boolean verifyDrawable(Drawable drawable) {
         if (!super.verifyDrawable(drawable)) {
-            FragmentContextView fragmentContextView = this.f27592y;
+            FragmentContextView fragmentContextView = this.f27565y;
             if (fragmentContextView == null || fragmentContextView.getCapsuleBlobDrawable() != drawable) {
                 return false;
             }

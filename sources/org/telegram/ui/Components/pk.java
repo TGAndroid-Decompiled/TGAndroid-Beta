@@ -8,29 +8,29 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class pk extends ni {
-    public final kz f29436n;
-    public final ll0 f29437r;
-    public final s4.c0 f29438s;
+    public final kz f29409n;
+    public final ll0 f29410r;
+    public final s4.c0 f29411s;
     public final HorizontalScrollView v;
-    public final boolean f29439w;
+    public final boolean f29412w;
 
     public pk(vi viVar, Context context, org.telegram.ui.ActionBar.f6 f6Var, boolean z10) {
         super(context, f6Var, viVar);
-        this.f29439w = z10;
-        this.f28784f = true;
-        org.telegram.ui.ActionBar.n2 n2Var = viVar.f31307f0;
+        this.f29412w = z10;
+        this.f28757f = true;
+        org.telegram.ui.ActionBar.n2 n2Var = viVar.f31280f0;
         boolean z11 = !z10 ? 1 : 0;
         kz kzVar = new kz(n2Var, z11, z10, false, getContext(), true, null, null, false, f6Var, false, true);
-        this.f29436n = kzVar;
-        kzVar.f28023w0 = false;
+        this.f29409n = kzVar;
+        kzVar.f27996w0 = false;
         kzVar.K(z11, z10, false, false);
-        kzVar.f27998o2 = true;
-        ax axVar = kzVar.f28026x;
+        kzVar.f27971o2 = true;
+        ax axVar = kzVar.f27999x;
         if (axVar != null) {
             axVar.setVisibility(8);
         }
-        kzVar.f28001p2 = true;
-        ImageView imageView = kzVar.f28030y;
+        kzVar.f27974p2 = true;
+        ImageView imageView = kzVar.f28003y;
         if (imageView != null) {
             imageView.setVisibility(8);
         }
@@ -39,38 +39,38 @@ public final class pk extends ni {
         HorizontalScrollView y3 = kzVar.y(z11 ? 1 : 0);
         this.v = y3;
         ll0 x10 = kzVar.x(z11 ? 1 : 0);
-        this.f29437r = x10;
+        this.f29410r = x10;
         x10.j(new ah.e0(this, 21));
-        this.f29438s = (s4.c0) x10.getLayoutManager();
+        this.f29411s = (s4.c0) x10.getLayoutManager();
         y3.setTranslationY(Math.max(0, getCurrentItemTop()));
     }
 
     @Override
     public final void D(ni niVar) {
         int i10;
-        vi viVar = this.f28781b;
+        vi viVar = this.f28754b;
         try {
             viVar.X0.getTitleTextView().setBuildFullLayout(true);
         } catch (Exception unused) {
         }
         z7 z7Var = viVar.X0;
-        if (this.f29439w) {
+        if (this.f29412w) {
             i10 = R.string.SelectSticker;
         } else {
             i10 = R.string.SelectEmoji;
         }
         z7Var.setTitle(LocaleController.getString(i10));
-        this.f29438s.h1(0, 0);
+        this.f29411s.h1(0, 0);
     }
 
     @Override
     public final void G() {
-        this.f29437r.x0(0);
+        this.f29410r.x0(0);
     }
 
     @Override
     public int getCurrentItemTop() {
-        ll0 ll0Var = this.f29437r;
+        ll0 ll0Var = this.f29410r;
         if (ll0Var.getChildCount() <= 0) {
             ll0Var.setTopGlowOffset(ll0Var.getPaddingTop());
             return Integer.MAX_VALUE;
@@ -93,7 +93,7 @@ public final class pk extends ni {
 
     @Override
     public int getListTopPadding() {
-        return this.f29437r.getPaddingTop();
+        return this.f29410r.getPaddingTop();
     }
 
     @Override
@@ -108,13 +108,13 @@ public final class pk extends ni {
     }
 
     public void setDelegate(ly lyVar) {
-        this.f29436n.setDelegate(lyVar);
+        this.f29409n.setDelegate(lyVar);
     }
 
     @Override
     public void setTranslationY(float f7) {
         super.setTranslationY(f7);
-        this.f28781b.getSheetContainer().invalidate();
+        this.f28754b.getSheetContainer().invalidate();
         invalidate();
     }
 

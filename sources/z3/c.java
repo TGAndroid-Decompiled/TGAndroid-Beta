@@ -1,13 +1,13 @@
 package z3;
 public final class c extends j {
-    public final w2.b f50718c;
+    public final w2.b f50689n;
 
     public c(w2.b bVar) {
-        this.f50718c = bVar;
+        this.f50689n = bVar;
     }
 
     @Override
-    public final void release() {
-        this.f50718c.n(this);
+    public final void j() {
+        this.f50689n.n(this);
     }
 }

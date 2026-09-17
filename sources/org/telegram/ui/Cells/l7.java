@@ -2,27 +2,27 @@ package org.telegram.ui.Cells;
 
 import android.util.Log;
 public final class l7 implements Runnable {
-    public final int f22282a;
-    public final Object f22283b;
+    public final int f22255a;
+    public final Object f22256b;
 
     public l7(Object obj, int i10) {
-        this.f22282a = i10;
-        this.f22283b = obj;
+        this.f22255a = i10;
+        this.f22256b = obj;
     }
 
     private final void a() {
-        p8.a aVar = (p8.a) this.f22283b;
-        synchronized (aVar.f44023a) {
+        p8.a aVar = (p8.a) this.f22256b;
+        synchronized (aVar.f43996a) {
             try {
                 if (!aVar.b()) {
                     return;
                 }
-                Log.e("WakeLock", String.valueOf(aVar.f44030j).concat(" ** IS FORCE-RELEASED ON TIMEOUT **"));
+                Log.e("WakeLock", String.valueOf(aVar.f44003j).concat(" ** IS FORCE-RELEASED ON TIMEOUT **"));
                 aVar.d();
                 if (!aVar.b()) {
                     return;
                 }
-                aVar.f44025c = 1;
+                aVar.f43998c = 1;
                 aVar.e();
             } catch (Throwable th2) {
                 throw th2;

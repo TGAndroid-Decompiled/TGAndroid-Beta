@@ -5,31 +5,31 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class cd implements RequestDelegate {
-    public final int f35099a;
-    public final md f35100b;
+    public final int f35072a;
+    public final md f35073b;
 
     public cd(md mdVar, int i10) {
-        this.f35099a = i10;
-        this.f35100b = mdVar;
+        this.f35072a = i10;
+        this.f35073b = mdVar;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f35099a) {
+        switch (this.f35072a) {
             case 0:
-                AndroidUtilities.runOnUIThread(new org.telegram.ui.ActionBar.c6(23, this.f35100b, tLObject));
+                AndroidUtilities.runOnUIThread(new org.telegram.ui.ActionBar.c6(23, this.f35073b, tLObject));
                 return;
             case 1:
                 if (tLObject instanceof TLRPC.TL_boolTrue) {
-                    AndroidUtilities.runOnUIThread(new dd(this.f35100b, 3));
+                    AndroidUtilities.runOnUIThread(new dd(this.f35073b, 3));
                     return;
                 }
                 return;
             case 2:
-                AndroidUtilities.runOnUIThread(new org.telegram.ui.ActionBar.c6(21, this.f35100b, tL_error));
+                AndroidUtilities.runOnUIThread(new org.telegram.ui.ActionBar.c6(21, this.f35073b, tL_error));
                 return;
             default:
-                AndroidUtilities.runOnUIThread(new r1(this.f35100b, tL_error, tLObject, 11));
+                AndroidUtilities.runOnUIThread(new r1(this.f35073b, tL_error, tLObject, 11));
                 return;
         }
     }

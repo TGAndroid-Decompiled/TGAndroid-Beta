@@ -4,20 +4,20 @@ import android.content.Context;
 import android.text.Editable;
 import android.text.TextUtils;
 public final class c41 extends org.telegram.ui.Cells.i3 {
-    public final d41 f35021x;
+    public final d41 f34994x;
 
     public c41(d41 d41Var, Context context, org.telegram.ui.ActionBar.f6 f6Var) {
         super(context, "", true, false, 1024, f6Var);
-        this.f35021x = d41Var;
+        this.f34994x = d41Var;
     }
 
     @Override
     public final void b(Editable editable) {
         boolean z10;
-        d41 d41Var = this.f35021x;
-        di.d dVar = d41Var.f35680s;
+        d41 d41Var = this.f34994x;
+        di.d dVar = d41Var.f35653s;
         if (dVar != null) {
-            if (!d41Var.d.optional && TextUtils.isEmpty(d41Var.f35678n.getText())) {
+            if (!d41Var.d.optional && TextUtils.isEmpty(d41Var.f35651n.getText())) {
                 z10 = false;
             } else {
                 z10 = true;

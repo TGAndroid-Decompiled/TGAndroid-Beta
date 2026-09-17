@@ -6,28 +6,28 @@ import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.tgnet.TLRPC;
 public final class x4 {
-    public final ImageLocation f42611a;
-    public final ImageLocation f42612b;
-    public final ImageLocation f42613c;
+    public final ImageLocation f42584a;
+    public final ImageLocation f42585b;
+    public final ImageLocation f42586c;
     public final String d;
-    public final String f42614e;
-    public final String f42615f;
-    public final BitmapDrawable f42616g;
+    public final String f42587e;
+    public final String f42588f;
+    public final BitmapDrawable f42589g;
     public final Object h;
-    public final d5[] f42617i;
-    public final z4 f42618j;
+    public final d5[] f42590i;
+    public final z4 f42591j;
 
     public x4(ImageLocation imageLocation, ImageLocation imageLocation2, ImageLocation imageLocation3, String str, String str2, String str3, BitmapDrawable bitmapDrawable, Object obj, d5[] d5VarArr, z4 z4Var) {
-        this.f42611a = imageLocation;
-        this.f42612b = imageLocation2;
-        this.f42613c = imageLocation3;
+        this.f42584a = imageLocation;
+        this.f42585b = imageLocation2;
+        this.f42586c = imageLocation3;
         this.d = str;
-        this.f42614e = str2;
-        this.f42615f = str3;
-        this.f42616g = bitmapDrawable;
+        this.f42587e = str2;
+        this.f42588f = str3;
+        this.f42589g = bitmapDrawable;
         this.h = obj;
-        this.f42617i = d5VarArr;
-        this.f42618j = z4Var;
+        this.f42590i = d5VarArr;
+        this.f42591j = z4Var;
     }
 
     public static x4 a(TLRPC.Chat chat, TLRPC.ChatFull chatFull, d5... d5VarArr) {

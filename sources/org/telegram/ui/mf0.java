@@ -6,37 +6,37 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class mf0 implements Runnable {
-    public final int f38725a;
-    public final zf0 f38726b;
+    public final int f38698a;
+    public final zf0 f38699b;
 
     public mf0(zf0 zf0Var, int i10) {
-        this.f38725a = i10;
-        this.f38726b = zf0Var;
+        this.f38698a = i10;
+        this.f38699b = zf0Var;
     }
 
     @Override
     public final void run() {
         gs[] gsVarArr;
         View view;
-        int i10 = this.f38725a;
+        int i10 = this.f38698a;
         int i11 = 0;
-        zf0 zf0Var = this.f38726b;
+        zf0 zf0Var = this.f38699b;
         switch (i10) {
             case 0:
                 org.telegram.ui.Components.aj0 aj0Var = zf0Var.G;
-                es esVar = zf0Var.f43433f;
-                int i12 = zf0Var.f43434f0;
-                if (i12 != 3 && (gsVarArr = esVar.f36191f) != null) {
+                es esVar = zf0Var.f43406f;
+                int i12 = zf0Var.f43407f0;
+                if (i12 != 3 && (gsVarArr = esVar.f36164f) != null) {
                     for (int length = gsVarArr.length - 1; length >= 0; length--) {
-                        if (length == 0 || esVar.f36191f[length].length() != 0) {
-                            esVar.f36191f[length].requestFocus();
-                            gs gsVar = esVar.f36191f[length];
+                        if (length == 0 || esVar.f36164f[length].length() != 0) {
+                            esVar.f36164f[length].requestFocus();
+                            gs gsVar = esVar.f36164f[length];
                             gsVar.setSelection(gsVar.length());
-                            wg0.T0(zf0Var.f43449s0, esVar.f36191f[length]);
+                            wg0.T0(zf0Var.f43422s0, esVar.f36164f[length]);
                         }
                     }
                 }
-                org.telegram.ui.Components.xi0 xi0Var = zf0Var.f43424a;
+                org.telegram.ui.Components.xi0 xi0Var = zf0Var.f43397a;
                 if (xi0Var != null) {
                     xi0Var.start();
                 }
@@ -50,18 +50,18 @@ public final class mf0 implements Runnable {
                 AndroidUtilities.runOnUIThread(new mf0(zf0Var, 6));
                 return;
             case 2:
-                fe0 fe0Var = zf0Var.f43450w;
-                zf0Var.f43445q0 = false;
+                fe0 fe0Var = zf0Var.f43423w;
+                zf0Var.f43418q0 = false;
                 while (true) {
-                    gs[] gsVarArr2 = zf0Var.f43433f.f36191f;
+                    gs[] gsVarArr2 = zf0Var.f43406f.f36164f;
                     if (i11 < gsVarArr2.length) {
                         gsVarArr2[i11].i(0.0f);
                         i11++;
                     } else {
-                        if (zf0Var.f43434f0 == 15) {
+                        if (zf0Var.f43407f0 == 15) {
                             view = zf0Var.F;
                         } else {
-                            view = zf0Var.f43452y;
+                            view = zf0Var.f43425y;
                         }
                         if (fe0Var.getCurrentView() != view) {
                             fe0Var.showNext();
@@ -74,7 +74,7 @@ public final class mf0 implements Runnable {
                 AndroidUtilities.runOnUIThread(new mf0(zf0Var, 4));
                 return;
             case 4:
-                org.telegram.ui.Components.aj0 aj0Var2 = zf0Var.f43448s;
+                org.telegram.ui.Components.aj0 aj0Var2 = zf0Var.f43421s;
                 aj0Var2.setAutoRepeat(true);
                 org.telegram.ui.Components.xi0 xi0Var2 = zf0Var.O;
                 xi0Var2.L(0, false, false);
@@ -84,12 +84,12 @@ public final class mf0 implements Runnable {
                 return;
             case 5:
                 try {
-                    zf0Var.f43449s0.fragmentView.performHapticFeedback(3, 2);
+                    zf0Var.f43422s0.fragmentView.performHapticFeedback(3, 2);
                 } catch (Exception unused) {
                 }
                 AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(zf0Var.getContext());
                 String string = LocaleController.getString(R.string.YourPasswordSuccess);
-                org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20226a;
+                org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20199a;
                 b2Var.R = string;
                 b2Var.T = LocaleController.formatString(R.string.ChangePhoneNumberSuccessWithPhone, org.telegram.messenger.w1.j(new StringBuilder("+"), zf0Var.d, gf.b.c()));
                 alertDialog$Builder.k(LocaleController.getString(R.string.OK), null);
@@ -98,8 +98,8 @@ public final class mf0 implements Runnable {
                 return;
             case 6:
                 org.telegram.ui.Components.xi0 xi0Var3 = zf0Var.P;
-                xi0Var3.f32605u0 = new mf0(zf0Var, 8);
-                org.telegram.ui.Components.aj0 aj0Var3 = zf0Var.f43448s;
+                xi0Var3.f32578u0 = new mf0(zf0Var, 8);
+                org.telegram.ui.Components.aj0 aj0Var3 = zf0Var.f43421s;
                 aj0Var3.setAutoRepeat(false);
                 xi0Var3.L(0, false, false);
                 aj0Var3.setAnimation(xi0Var3);
@@ -112,11 +112,11 @@ public final class mf0 implements Runnable {
                 AndroidUtilities.runOnUIThread(new mf0(zf0Var, 10));
                 return;
             case 9:
-                es esVar2 = zf0Var.f43433f;
-                esVar2.f36190e = false;
-                esVar2.f36191f[0].requestFocus();
+                es esVar2 = zf0Var.f43406f;
+                esVar2.f36163e = false;
+                esVar2.f36164f[0].requestFocus();
                 while (true) {
-                    gs[] gsVarArr3 = esVar2.f36191f;
+                    gs[] gsVarArr3 = esVar2.f36164f;
                     if (i11 < gsVarArr3.length) {
                         gsVarArr3[i11].i(0.0f);
                         i11++;
@@ -125,9 +125,9 @@ public final class mf0 implements Runnable {
                     }
                 }
             default:
-                org.telegram.ui.Components.aj0 aj0Var4 = zf0Var.f43448s;
+                org.telegram.ui.Components.aj0 aj0Var4 = zf0Var.f43421s;
                 aj0Var4.setAutoRepeat(false);
-                aj0Var4.setAnimation(zf0Var.f43424a);
+                aj0Var4.setAnimation(zf0Var.f43397a);
                 return;
         }
     }

@@ -25,8 +25,8 @@ import java.util.Map;
 import java.util.Set;
 import org.telegram.ui.Cells.p6;
 public abstract class h {
-    public static final ArrayMap f47932a;
-    public static final ArrayMap f47933b;
+    public static final ArrayMap f47904a;
+    public static final ArrayMap f47905b;
 
     static {
         ArrayMap arrayMap = new ArrayMap();
@@ -42,7 +42,7 @@ public abstract class h {
         arrayMap.put(Map.class, "map");
         arrayMap.put(List.class, "list");
         arrayMap.put(IconCompat.class, "image");
-        f47932a = arrayMap;
+        f47904a = arrayMap;
         ArrayMap arrayMap2 = new ArrayMap();
         arrayMap2.put(0, "primitive");
         arrayMap2.put(1, "iInterface");
@@ -52,7 +52,7 @@ public abstract class h {
         arrayMap2.put(4, "list");
         arrayMap2.put(5, "object");
         arrayMap2.put(6, "image");
-        f47933b = arrayMap2;
+        f47905b = arrayMap2;
     }
 
     public static void a(Bundle bundle, AbstractCollection abstractCollection, e eVar) {
@@ -189,11 +189,11 @@ public abstract class h {
         Objects.requireNonNull(classLoader);
         bundle.setClassLoader(classLoader);
         int i10 = bundle.getInt("tag_class_type");
-        String str2 = (String) f47933b.get(Integer.valueOf(bundle.getInt("tag_class_type")));
+        String str2 = (String) f47905b.get(Integer.valueOf(bundle.getInt("tag_class_type")));
         if (str2 == null) {
             str2 = "unknown";
         }
-        e eVar2 = new e(bundle, str2, eVar.f47931b);
+        e eVar2 = new e(bundle, str2, eVar.f47903b);
         try {
             switch (i10) {
                 case 0:
@@ -305,7 +305,7 @@ public abstract class h {
     }
 
     public static String i(Class cls) {
-        String str = (String) f47932a.get(cls);
+        String str = (String) f47904a.get(cls);
         if (str == null) {
             if (List.class.isAssignableFrom(cls)) {
                 return "<List>";
@@ -437,11 +437,11 @@ public abstract class h {
     }
 
     public static Bundle o(Object obj, String str, e eVar) {
-        ArrayDeque arrayDeque = eVar.f47931b;
+        ArrayDeque arrayDeque = eVar.f47903b;
         if (obj != null) {
             Iterator it = arrayDeque.iterator();
             while (it.hasNext()) {
-                if (((d) it.next()).f47928a == obj) {
+                if (((d) it.next()).f47900a == obj) {
                     throw new g("Found cycle while bundling type ".concat(obj.getClass().getSimpleName()), eVar);
                 }
             }

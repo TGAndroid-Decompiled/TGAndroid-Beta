@@ -11,24 +11,24 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
 public final class wm implements wu0 {
-    public final TL_iv.RichMessage f42462a;
-    public final ArrayList f42463b;
-    public final MessageObject f42464c;
+    public final TL_iv.RichMessage f42435a;
+    public final ArrayList f42436b;
+    public final MessageObject f42437c;
 
     public wm(TL_iv.RichMessage richMessage, ArrayList arrayList, MessageObject messageObject) {
-        this.f42462a = richMessage;
-        this.f42463b = arrayList;
-        this.f42464c = messageObject;
+        this.f42435a = richMessage;
+        this.f42436b = arrayList;
+        this.f42437c = messageObject;
     }
 
     @Override
     public final boolean a(int i10) {
         if (i10 >= 0) {
-            ArrayList arrayList = this.f42463b;
+            ArrayList arrayList = this.f42436b;
             if (i10 < arrayList.size()) {
                 TL_iv.PageBlock pageBlock = (TL_iv.PageBlock) arrayList.get(i10);
                 if (pageBlock instanceof TL_iv.pageBlockVideo) {
-                    TLRPC.Document b10 = f4.b(this.f42462a, ((TL_iv.pageBlockVideo) pageBlock).video_id);
+                    TLRPC.Document b10 = f4.b(this.f42435a, ((TL_iv.pageBlockVideo) pageBlock).video_id);
                     if (b10 != null) {
                         return MessageObject.isVideoDocument(b10);
                     }
@@ -46,11 +46,11 @@ public final class wm implements wu0 {
         TLRPC.Document b10;
         TLRPC.PhotoSize closestPhotoSizeWithSize;
         if (i10 >= 0) {
-            ArrayList arrayList = this.f42463b;
+            ArrayList arrayList = this.f42436b;
             if (i10 < arrayList.size()) {
                 TL_iv.PageBlock pageBlock = (TL_iv.PageBlock) arrayList.get(i10);
                 boolean z10 = pageBlock instanceof TL_iv.pageBlockPhoto;
-                TL_iv.RichMessage richMessage = this.f42462a;
+                TL_iv.RichMessage richMessage = this.f42435a;
                 if (z10) {
                     TLRPC.Photo f7 = f4.f(richMessage, ((TL_iv.pageBlockPhoto) pageBlock).photo_id);
                     if (f7 != null && (closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(f7.sizes, AndroidUtilities.getPhotoSize())) != null) {
@@ -80,11 +80,11 @@ public final class wm implements wu0 {
     @Override
     public final TLObject d(int i10) {
         if (i10 >= 0) {
-            ArrayList arrayList = this.f42463b;
+            ArrayList arrayList = this.f42436b;
             if (i10 < arrayList.size()) {
                 TL_iv.PageBlock pageBlock = (TL_iv.PageBlock) arrayList.get(i10);
                 boolean z10 = pageBlock instanceof TL_iv.pageBlockPhoto;
-                TL_iv.RichMessage richMessage = this.f42462a;
+                TL_iv.RichMessage richMessage = this.f42435a;
                 if (z10) {
                     return f4.f(richMessage, ((TL_iv.pageBlockPhoto) pageBlock).photo_id);
                 }
@@ -138,27 +138,27 @@ public final class wm implements wu0 {
 
     @Override
     public final Object g() {
-        MessageObject messageObject = this.f42464c;
+        MessageObject messageObject = this.f42437c;
         if (messageObject != null) {
             return messageObject;
         }
-        return this.f42462a;
+        return this.f42435a;
     }
 
     @Override
     public final TL_iv.PageBlock get(int i10) {
-        return (TL_iv.PageBlock) this.f42463b.get(i10);
+        return (TL_iv.PageBlock) this.f42436b.get(i10);
     }
 
     @Override
     public final List getAll() {
-        return this.f42463b;
+        return this.f42436b;
     }
 
     @Override
     public final void h(TL_iv.PageBlock pageBlock) {
         RichMessageLayout richMessageLayout;
-        MessageObject messageObject = this.f42464c;
+        MessageObject messageObject = this.f42437c;
         if (messageObject != null && (richMessageLayout = messageObject.richLayout) != null) {
             richMessageLayout.setSlideshowPage(pageBlock);
         }
@@ -171,6 +171,6 @@ public final class wm implements wu0 {
 
     @Override
     public final int j() {
-        return this.f42463b.size();
+        return this.f42436b.size();
     }
 }

@@ -5,23 +5,23 @@ import android.graphics.Matrix;
 import android.view.View;
 import android.widget.FrameLayout;
 public final class s5 implements qg.u {
-    public boolean f8148a;
-    public final qg.s0 f8149b;
-    public final rb f8150c;
+    public boolean f8120a;
+    public final qg.s0 f8121b;
+    public final rb f8122c;
 
     public s5(rb rbVar, qg.s0 s0Var) {
-        this.f8150c = rbVar;
-        this.f8149b = s0Var;
+        this.f8122c = rbVar;
+        this.f8121b = s0Var;
     }
 
     @Override
     public final void a() {
-        this.f8148a = true;
+        this.f8120a = true;
     }
 
     @Override
     public final void b(Canvas canvas) {
-        g6 g6Var = this.f8150c.O0;
+        g6 g6Var = this.f8122c.O0;
         Matrix matrix = g6Var.getMatrix();
         canvas.save();
         canvas.translate(g6Var.getX(), g6Var.getY());
@@ -32,22 +32,22 @@ public final class s5 implements qg.u {
 
     @Override
     public final boolean c() {
-        return this.f8148a;
+        return this.f8120a;
     }
 
     @Override
     public final void d() {
-        this.f8148a = false;
+        this.f8120a = false;
     }
 
     @Override
     public final View e() {
-        return this.f8150c;
+        return this.f8122c;
     }
 
     @Override
     public final FrameLayout f() {
-        return this.f8150c.V0;
+        return this.f8122c.V0;
     }
 
     @Override
@@ -57,13 +57,13 @@ public final class s5 implements qg.u {
 
     @Override
     public final void h(int i10) {
-        rb rbVar = this.f8150c;
+        rb rbVar = this.f8122c;
         rbVar.I0(false);
-        qg.s0 s0Var = this.f8149b;
+        qg.s0 s0Var = this.f8121b;
         s0Var.h(i10, true);
         s0Var.g();
         rbVar.setNewColor(i10);
-        r5 r5Var = rbVar.f8023w1;
+        r5 r5Var = rbVar.f7995w1;
         r5Var.setSelectedColorIndex(s0Var.d());
         r5Var.getAdapter().l();
     }

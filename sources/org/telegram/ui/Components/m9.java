@@ -4,19 +4,19 @@ import android.view.ViewGroup;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ImageReceiver;
 public final class m9 implements le.h, oe.a {
-    public final ImageReceiver f28444a;
-    public final i9 f28445b;
-    public long f28446c;
+    public final ImageReceiver f28417a;
+    public final i9 f28418b;
+    public long f28419c;
     public boolean d;
-    public final n9 f28447e;
+    public final n9 f28420e;
 
     public m9(n9 n9Var, ViewGroup viewGroup) {
-        this.f28447e = n9Var;
+        this.f28420e = n9Var;
         ImageReceiver imageReceiver = new ImageReceiver(viewGroup);
-        this.f28444a = imageReceiver;
-        imageReceiver.setRoundRadius(n9Var.f28721e / 2);
+        this.f28417a = imageReceiver;
+        imageReceiver.setRoundRadius(n9Var.f28694e / 2);
         i9 i9Var = new i9((org.telegram.ui.ActionBar.f6) null);
-        this.f28445b = i9Var;
+        this.f28418b = i9Var;
         i9Var.u(AndroidUtilities.dp(22.0f));
     }
 
@@ -24,9 +24,9 @@ public final class m9 implements le.h, oe.a {
     public final void a() {
         if (this.d) {
             this.d = false;
-            this.f28444a.onDetachedFromWindow();
+            this.f28417a.onDetachedFromWindow();
         }
-        this.f28446c = 0L;
+        this.f28419c = 0L;
     }
 
     @Override
@@ -34,11 +34,11 @@ public final class m9 implements le.h, oe.a {
         if (z10) {
             return 0;
         }
-        return -this.f28447e.f28722f;
+        return -this.f28420e.f28695f;
     }
 
     public final boolean equals(Object obj) {
-        if (!(obj instanceof m9) || this.f28446c != ((m9) obj).f28446c) {
+        if (!(obj instanceof m9) || this.f28419c != ((m9) obj).f28419c) {
             return false;
         }
         return true;
@@ -46,11 +46,11 @@ public final class m9 implements le.h, oe.a {
 
     @Override
     public final int getHeight() {
-        return this.f28447e.f28721e;
+        return this.f28420e.f28694e;
     }
 
     @Override
     public final int getWidth() {
-        return this.f28447e.f28721e;
+        return this.f28420e.f28694e;
     }
 }

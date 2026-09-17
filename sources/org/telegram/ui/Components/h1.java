@@ -3,19 +3,19 @@ package org.telegram.ui.Components;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class h1 implements rc0 {
-    public final int f26583a;
-    public final int[] f26584b;
+    public final int f26556a;
+    public final int[] f26557b;
 
     public h1(int i10, int[] iArr) {
-        this.f26583a = i10;
-        this.f26584b = iArr;
+        this.f26556a = i10;
+        this.f26557b = iArr;
     }
 
     @Override
     public final String f(int i10) {
-        switch (this.f26583a) {
+        switch (this.f26556a) {
             case 0:
-                int i11 = this.f26584b[i10];
+                int i11 = this.f26557b[i10];
                 if (i11 == 0) {
                     return LocaleController.getString(R.string.MuteNever);
                 }
@@ -36,7 +36,7 @@ public final class h1 implements rc0 {
                 }
                 return LocaleController.formatPluralString("Years", i11 / 525600, new Object[0]);
             default:
-                int i12 = this.f26584b[i10];
+                int i12 = this.f26557b[i10];
                 if (i12 == 0) {
                     return LocaleController.getString(R.string.AutoDeleteNever);
                 }

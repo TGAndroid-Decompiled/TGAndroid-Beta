@@ -44,7 +44,7 @@ public abstract class m60 {
             TL_phone.groupCall groupcall = (TL_phone.groupCall) tLObject;
             MessagesController.getInstance(i10).putUsers(groupcall.users, false);
             MessagesController.getInstance(i10).putChats(groupcall.chats, false);
-            if (VoIPService.getSharedInstance() != null && (conferenceCall = VoIPService.getSharedInstance().conference) != null && (groupCall = conferenceCall.groupCall) != null && groupcall.call.f19906id == groupCall.f19906id && (launchActivity = LaunchActivity.G1) != null) {
+            if (VoIPService.getSharedInstance() != null && (conferenceCall = VoIPService.getSharedInstance().conference) != null && (groupCall = conferenceCall.groupCall) != null && groupcall.call.f19879id == groupCall.f19879id && (launchActivity = LaunchActivity.G1) != null) {
                 j60.c1(launchActivity, AccountInstance.getInstance(VoIPService.getSharedInstance().getAccount()), null, null, false, null);
                 return;
             }
@@ -126,15 +126,15 @@ public abstract class m60 {
             linearLayout.setPadding(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(f7), AndroidUtilities.dp(12.0f), AndroidUtilities.dp(f7));
             linearLayout.setClipToPadding(false);
             linearLayout.setOrientation(0);
-            linearLayout.setBackground(org.telegram.ui.ActionBar.j6.Y(bVar.G0(org.telegram.ui.ActionBar.j6.f20781i6), 20, 20));
+            linearLayout.setBackground(org.telegram.ui.ActionBar.j6.Y(bVar.G0(org.telegram.ui.ActionBar.j6.f20754i6), 20, 20));
             org.telegram.ui.Components.mp mpVar = new org.telegram.ui.Components.mp(context, 24, bVar);
-            mpVar.b(org.telegram.ui.ActionBar.j6.f20764h7, org.telegram.ui.ActionBar.j6.f20800j7, org.telegram.ui.ActionBar.j6.f20820k7);
+            mpVar.b(org.telegram.ui.ActionBar.j6.f20737h7, org.telegram.ui.ActionBar.j6.f20773j7, org.telegram.ui.ActionBar.j6.f20793k7);
             mpVar.setDrawUnchecked(true);
             mpVar.a(MessagesController.getGlobalMainSettings().getBoolean("callmiconstart", true), false);
             mpVar.setDrawBackgroundAsArc(10);
             linearLayout.addView(mpVar, w7.x5.t(26, 26, 16, 0, 0, 0, 0));
             TextView textView = new TextView(context);
-            textView.setTextColor(bVar.G0(org.telegram.ui.ActionBar.j6.f20798j5));
+            textView.setTextColor(bVar.G0(org.telegram.ui.ActionBar.j6.f20771j5));
             textView.setTextSize(1, 14.0f);
             textView.setText(LocaleController.getString(R.string.GroupCallLinkMicrophone));
             linearLayout.addView(textView, w7.x5.t(-2, -2, 16, 9, 0, 0, 0));
@@ -184,7 +184,7 @@ public abstract class m60 {
         getgroupcall.limit = 10;
         int sendRequest = ConnectionsManager.getInstance(i10).sendRequest(getgroupcall, new bi.fa(b2Var, eVar, i10, activity, tL_inputGroupCallSlug, 8));
         if (eVar != null) {
-            eVar.f17031b = new org.telegram.messenger.kh(i10, sendRequest, 3);
+            eVar.f17004b = new org.telegram.messenger.kh(i10, sendRequest, 3);
             eVar.d();
         }
     }

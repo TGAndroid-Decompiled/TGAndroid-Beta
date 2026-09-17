@@ -20,23 +20,23 @@ public final class b3 implements org.telegram.ui.Cells.ba, uj0, org.telegram.ui.
     public Stack J;
     public AtomicReference K;
     public View L;
-    public final v70 f34638a;
-    public View f34639b;
-    public boolean f34640c;
+    public final v70 f34611a;
+    public View f34612b;
+    public boolean f34613c;
     public StaticLayout d;
-    public org.telegram.ui.Components.x80 f34641e;
-    public org.telegram.ui.Components.x80 f34642f;
+    public org.telegram.ui.Components.x80 f34614e;
+    public org.telegram.ui.Components.x80 f34615f;
     public org.telegram.ui.Components.x80 h;
-    public TL_iv.PageBlock f34643n;
-    public TL_iv.RichText f34644r;
-    public int f34645s;
+    public TL_iv.PageBlock f34616n;
+    public TL_iv.RichText f34617r;
+    public int f34618s;
     public int v;
-    public int f34646w;
-    public CharSequence f34647x;
-    public SpannableStringBuilder f34648y;
+    public int f34619w;
+    public CharSequence f34620x;
+    public SpannableStringBuilder f34621y;
 
     public b3(v70 v70Var) {
-        this.f34638a = v70Var;
+        this.f34611a = v70Var;
     }
 
     public final int a() {
@@ -100,23 +100,23 @@ public final class b3 implements org.telegram.ui.Cells.ba, uj0, org.telegram.ui.
         float width;
         Object obj;
         TL_iv.RichText richText;
-        this.f34640c = true;
-        this.f34639b = view;
-        v70 v70Var = this.f34638a;
+        this.f34613c = true;
+        this.f34612b = view;
+        v70 v70Var = this.f34611a;
         float f7 = 0.0f;
         if (!v70Var.E.isEmpty()) {
             r3 r3Var = (r3) v70Var.E.get(v70Var.G);
-            if (r3Var.f40081c == this.f34643n && ((obj = r3Var.f40080b) == (richText = this.f34644r) || ((obj instanceof String) && richText == null))) {
-                if (-1 != r3Var.f40079a) {
+            if (r3Var.f40054c == this.f34616n && ((obj = r3Var.f40053b) == (richText = this.f34617r) || ((obj instanceof String) && richText == null))) {
+                if (-1 != r3Var.f40052a) {
                     org.telegram.ui.Components.x80 x80Var = new org.telegram.ui.Components.x80(0);
                     this.h = x80Var;
-                    x80Var.f32485n = false;
-                    x80Var.d(this.d, r3Var.f40079a, 0.0f);
-                    this.h.f32486o = 0;
+                    x80Var.f32458n = false;
+                    x80Var.d(this.d, r3Var.f40052a, 0.0f);
+                    this.h.f32459o = 0;
                     StaticLayout staticLayout = this.d;
-                    int i10 = r3Var.f40079a;
+                    int i10 = r3Var.f40052a;
                     staticLayout.getSelectionPath(i10, v70Var.F.length() + i10, this.h);
-                    this.h.f32485n = true;
+                    this.h.f32458n = true;
                 }
             } else {
                 this.h = null;
@@ -126,27 +126,27 @@ public final class b3 implements org.telegram.ui.Cells.ba, uj0, org.telegram.ui.
         }
         org.telegram.ui.Components.x80 x80Var2 = this.h;
         if (x80Var2 != null) {
-            canvas.drawPath(x80Var2, i4.f37238y1);
+            canvas.drawPath(x80Var2, i4.f37211y1);
         }
-        org.telegram.ui.Components.x80 x80Var3 = this.f34641e;
+        org.telegram.ui.Components.x80 x80Var3 = this.f34614e;
         if (x80Var3 != null) {
-            canvas.drawPath(x80Var3, i4.f37237x1);
+            canvas.drawPath(x80Var3, i4.f37210x1);
         }
-        org.telegram.ui.Components.x80 x80Var4 = this.f34642f;
+        org.telegram.ui.Components.x80 x80Var4 = this.f34615f;
         if (x80Var4 != null) {
-            canvas.drawPath(x80Var4, i4.f37239z1);
+            canvas.drawPath(x80Var4, i4.f37212z1);
         }
-        if (v70Var.f41463c.g(canvas, this)) {
+        if (v70Var.f41436c.g(canvas, this)) {
             view.invalidate();
         }
-        if (v70Var.d == this && v70Var.f41462b == null && v70Var.h) {
+        if (v70Var.d == this && v70Var.f41435b == null && v70Var.h) {
             if (this.d.getLineCount() == 1) {
                 width = this.d.getLineWidth(0);
                 f7 = this.d.getLineLeft(0);
             } else {
                 width = this.d.getWidth();
             }
-            canvas.drawRect((-AndroidUtilities.dp(2.0f)) + f7, 0.0f, f7 + width + AndroidUtilities.dp(2.0f), this.d.getHeight(), i4.f37236w1);
+            canvas.drawRect((-AndroidUtilities.dp(2.0f)) + f7, 0.0f, f7 + width + AndroidUtilities.dp(2.0f), this.d.getHeight(), i4.f37209w1);
         }
         ArrayList arrayList = this.I;
         if (arrayList != null && !arrayList.isEmpty()) {
@@ -154,7 +154,7 @@ public final class b3 implements org.telegram.ui.Cells.ba, uj0, org.telegram.ui.
         } else {
             this.d.draw(canvas);
         }
-        this.f34640c = false;
+        this.f34613c = false;
     }
 
     @Override
@@ -173,17 +173,17 @@ public final class b3 implements org.telegram.ui.Cells.ba, uj0, org.telegram.ui.
         if (view != null) {
             return view;
         }
-        return this.f34639b;
+        return this.f34612b;
     }
 
     @Override
     public final CharSequence getPrefix() {
-        return this.f34647x;
+        return this.f34620x;
     }
 
     @Override
     public final int getRow() {
-        return this.f34646w;
+        return this.f34619w;
     }
 
     @Override
@@ -198,7 +198,7 @@ public final class b3 implements org.telegram.ui.Cells.ba, uj0, org.telegram.ui.
 
     @Override
     public final int getX() {
-        return this.f34645s;
+        return this.f34618s;
     }
 
     @Override
@@ -208,12 +208,12 @@ public final class b3 implements org.telegram.ui.Cells.ba, uj0, org.telegram.ui.
 
     @Override
     public final void setRow(int i10) {
-        this.f34646w = i10;
+        this.f34619w = i10;
     }
 
     @Override
     public final void setX(int i10) {
-        this.f34645s = i10;
+        this.f34618s = i10;
     }
 
     @Override

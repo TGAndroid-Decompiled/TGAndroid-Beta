@@ -21,69 +21,69 @@ public final class h51 extends pg.a {
     public Object G;
     public Object H;
     public boolean I;
-    public View f26615c;
+    public View f26588c;
     public int d;
-    public boolean f26616e;
-    public boolean f26617f;
-    public boolean f26618g;
+    public boolean f26589e;
+    public boolean f26590f;
+    public boolean f26591g;
     public boolean h;
-    public int f26619i;
-    public boolean f26620j;
-    public int f26621k;
-    public CharSequence f26622l;
-    public CharSequence f26623m;
-    public CharSequence f26624n;
-    public CharSequence f26625o;
-    public String[] f26626p;
-    public boolean f26627q;
-    public boolean f26628r;
-    public boolean f26629s;
-    public boolean f26630t;
-    public int f26631u;
+    public int f26592i;
+    public boolean f26593j;
+    public int f26594k;
+    public CharSequence f26595l;
+    public CharSequence f26596m;
+    public CharSequence f26597n;
+    public CharSequence f26598o;
+    public String[] f26599p;
+    public boolean f26600q;
+    public boolean f26601r;
+    public boolean f26602s;
+    public boolean f26603t;
+    public int f26604u;
     public int v;
-    public boolean f26632w;
-    public long f26633x;
-    public int f26634y;
-    public int f26635z;
+    public boolean f26605w;
+    public long f26606x;
+    public int f26607y;
+    public int f26608z;
 
     public h51(int i10) {
         super(i10, false);
-        this.f26618g = true;
-        this.f26631u = -1;
+        this.f26591g = true;
+        this.f26604u = -1;
         this.I = true;
     }
 
     public static h51 A(int i10, CharSequence charSequence) {
         h51 h51Var = new h51(7);
         h51Var.d = i10;
-        h51Var.f26622l = charSequence;
+        h51Var.f26595l = charSequence;
         return h51Var;
     }
 
     public static h51 B(CharSequence charSequence) {
         h51 h51Var = new h51(7);
-        h51Var.f26622l = charSequence;
+        h51Var.f26595l = charSequence;
         return h51Var;
     }
 
     public static h51 C(int i10) {
         h51 h51Var = new h51(28);
-        h51Var.f26635z = i10;
+        h51Var.f26608z = i10;
         return h51Var;
     }
 
     public static h51 D(int i10, int i11) {
         h51 h51Var = new h51(28);
         h51Var.d = i10;
-        h51Var.f26635z = i11;
+        h51Var.f26608z = i11;
         return h51Var;
     }
 
     public static h51 E(int i10, String str) {
         h51 h51Var = new h51(39);
         h51Var.d = i10;
-        h51Var.f26622l = str;
-        h51Var.f26635z = 1;
+        h51Var.f26595l = str;
+        h51Var.f26608z = 1;
         return h51Var;
     }
 
@@ -111,52 +111,52 @@ public final class h51 extends pg.a {
 
     public static h51 b(String str) {
         h51 h51Var = new h51(1);
-        h51Var.f26622l = str;
+        h51Var.f26595l = str;
         return h51Var;
     }
 
     public static h51 c(int i10, int i11, String str) {
         h51 h51Var = new h51(3);
         h51Var.d = i10;
-        h51Var.f26621k = i11;
-        h51Var.f26622l = str;
+        h51Var.f26594k = i11;
+        h51Var.f26595l = str;
         return h51Var;
     }
 
     public static h51 d(int i10, int i11, String str, String str2) {
         h51 h51Var = new h51(3);
         h51Var.d = i10;
-        h51Var.f26621k = i11;
-        h51Var.f26622l = str;
-        h51Var.f26624n = str2;
+        h51Var.f26594k = i11;
+        h51Var.f26595l = str;
+        h51Var.f26597n = str2;
         return h51Var;
     }
 
     public static h51 e(int i10, String str) {
         h51 h51Var = new h51(3);
         h51Var.d = i10;
-        h51Var.f26622l = str;
+        h51Var.f26595l = str;
         return h51Var;
     }
 
     public static h51 f(String str, CharSequence charSequence, int i10) {
         h51 h51Var = new h51(3);
         h51Var.d = i10;
-        h51Var.f26622l = str;
-        h51Var.f26624n = charSequence;
+        h51Var.f26595l = str;
+        h51Var.f26597n = charSequence;
         return h51Var;
     }
 
     public static h51 g(CharSequence charSequence) {
         h51 h51Var = new h51(7);
-        h51Var.f26622l = charSequence;
-        h51Var.f26627q = true;
+        h51Var.f26595l = charSequence;
+        h51Var.f26600q = true;
         return h51Var;
     }
 
     public static h51 h(int i10, int i11, na1 na1Var) {
         h51 h51Var = new h51(i10 + 18);
-        h51Var.f26635z = i11;
+        h51Var.f26608z = i11;
         h51Var.G = na1Var;
         return h51Var;
     }
@@ -164,71 +164,71 @@ public final class h51 extends pg.a {
     public static h51 i(int i10, CharSequence charSequence) {
         h51 h51Var = new h51(4);
         h51Var.d = i10;
-        h51Var.f26622l = charSequence;
+        h51Var.f26595l = charSequence;
         return h51Var;
     }
 
     public static h51 j(int i10, View view) {
         h51 h51Var = new h51(-1);
         h51Var.d = i10;
-        h51Var.f26615c = view;
-        h51Var.f26635z = -1;
+        h51Var.f26588c = view;
+        h51Var.f26608z = -1;
         return h51Var;
     }
 
     public static h51 k(View view) {
         h51 h51Var = new h51(-1);
-        h51Var.f26615c = view;
-        h51Var.f26635z = -1;
+        h51Var.f26588c = view;
+        h51Var.f26608z = -1;
         return h51Var;
     }
 
     public static h51 l(View view) {
         h51 h51Var = new h51(-4);
-        h51Var.f26615c = view;
-        h51Var.f26635z = -1;
+        h51Var.f26588c = view;
+        h51Var.f26608z = -1;
         return h51Var;
     }
 
     public static h51 m(int i10, String str, String str2) {
         h51 h51Var = new h51(40);
         h51Var.d = i10;
-        h51Var.f26622l = str;
-        h51Var.f26625o = str2;
+        h51Var.f26595l = str;
+        h51Var.f26598o = str2;
         return h51Var;
     }
 
     public static h51 n(int i10) {
         h51 h51Var = new h51(34);
-        h51Var.f26635z = i10;
+        h51Var.f26608z = i10;
         return h51Var;
     }
 
     public static h51 o(int i10, int i11) {
         h51 h51Var = new h51(34);
         h51Var.d = i10;
-        h51Var.f26635z = i11;
+        h51Var.f26608z = i11;
         return h51Var;
     }
 
     public static h51 p(View view, int i10, boolean z10) {
         h51 h51Var = new h51(-3);
-        h51Var.f26615c = view;
-        h51Var.f26635z = i10;
-        h51Var.f26634y = z10 ? 1 : 0;
+        h51Var.f26588c = view;
+        h51Var.f26608z = i10;
+        h51Var.f26607y = z10 ? 1 : 0;
         return h51Var;
     }
 
     public static h51 q(String str) {
         h51 h51Var = new h51(31);
-        h51Var.f26622l = str;
+        h51Var.f26595l = str;
         return h51Var;
     }
 
     public static h51 r(String str, String str2, View.OnClickListener onClickListener) {
         h51 h51Var = new h51(31);
-        h51Var.f26622l = str;
-        h51Var.f26623m = str2;
+        h51Var.f26595l = str;
+        h51Var.f26596m = str2;
         h51Var.D = onClickListener;
         return h51Var;
     }
@@ -236,13 +236,13 @@ public final class h51 extends pg.a {
     public static h51 s(int i10, String str) {
         h51 h51Var = new h51(0);
         h51Var.d = i10;
-        h51Var.f26622l = str;
+        h51Var.f26595l = str;
         return h51Var;
     }
 
     public static h51 t(String str) {
         h51 h51Var = new h51(0);
-        h51Var.f26622l = str;
+        h51Var.f26595l = str;
         return h51Var;
     }
 
@@ -261,37 +261,37 @@ public final class h51 extends pg.a {
     public static h51 w(int i10, String str) {
         h51 h51Var = new h51(10);
         h51Var.d = i10;
-        h51Var.f26622l = str;
+        h51Var.f26595l = str;
         return h51Var;
     }
 
     public static h51 x(int i10, String str, String str2) {
         h51 h51Var = new h51(44);
         h51Var.d = i10;
-        h51Var.f26622l = str;
-        h51Var.f26624n = str2;
+        h51Var.f26595l = str;
+        h51Var.f26597n = str2;
         return h51Var;
     }
 
     public static h51 y(int i10, CharSequence charSequence) {
         h51 h51Var = new h51(35);
         h51Var.d = i10;
-        h51Var.f26622l = charSequence;
+        h51Var.f26595l = charSequence;
         return h51Var;
     }
 
     public static h51 z(String str, CharSequence charSequence, int i10) {
         h51 h51Var = new h51(41);
         h51Var.d = i10;
-        h51Var.f26622l = charSequence;
-        h51Var.f26625o = str;
+        h51Var.f26595l = charSequence;
+        h51Var.f26598o = str;
         return h51Var;
     }
 
     public final boolean G(Class cls) {
         HashMap hashMap;
         g51 g51Var;
-        if (this.f44099a >= 10000 && (hashMap = L) != null && (g51Var = (g51) hashMap.get(cls)) != null && g51Var.viewType == this.f44099a) {
+        if (this.f44072a >= 10000 && (hashMap = L) != null && (g51Var = (g51) hashMap.get(cls)) != null && g51Var.viewType == this.f44072a) {
             return true;
         }
         return false;
@@ -302,16 +302,16 @@ public final class h51 extends pg.a {
     }
 
     public final boolean I(h51 h51Var) {
-        if (this.d == h51Var.d && this.f26619i == h51Var.f26619i && this.f26633x == h51Var.f26633x && this.f26621k == h51Var.f26621k && this.f26620j == h51Var.f26620j && this.f26629s == h51Var.f26629s && this.f26628r == h51Var.f26628r && this.f26630t == h51Var.f26630t && this.f26627q == h51Var.f26627q && this.f26615c == h51Var.f26615c && TextUtils.equals(this.f26622l, h51Var.f26622l) && TextUtils.equals(this.f26623m, h51Var.f26623m) && TextUtils.equals(this.f26624n, h51Var.f26624n) && this.f26615c == h51Var.f26615c && this.f26635z == h51Var.f26635z && Math.abs(this.A - h51Var.A) < 0.01f && this.B == h51Var.B && Objects.equals(this.G, h51Var.G) && Objects.equals(this.H, h51Var.H)) {
+        if (this.d == h51Var.d && this.f26592i == h51Var.f26592i && this.f26606x == h51Var.f26606x && this.f26594k == h51Var.f26594k && this.f26593j == h51Var.f26593j && this.f26602s == h51Var.f26602s && this.f26601r == h51Var.f26601r && this.f26603t == h51Var.f26603t && this.f26600q == h51Var.f26600q && this.f26588c == h51Var.f26588c && TextUtils.equals(this.f26595l, h51Var.f26595l) && TextUtils.equals(this.f26596m, h51Var.f26596m) && TextUtils.equals(this.f26597n, h51Var.f26597n) && this.f26588c == h51Var.f26588c && this.f26608z == h51Var.f26608z && Math.abs(this.A - h51Var.A) < 0.01f && this.B == h51Var.B && Objects.equals(this.G, h51Var.G) && Objects.equals(this.H, h51Var.H)) {
             return true;
         }
         return false;
     }
 
     public final void K(boolean z10) {
-        this.f26616e = z10;
-        if (this.f44099a == 11) {
-            this.f44099a = 12;
+        this.f26589e = z10;
+        if (this.f44072a == 11) {
+            this.f44072a = 12;
         }
     }
 
@@ -321,15 +321,15 @@ public final class h51 extends pg.a {
         if (this != aVar) {
             if (h51.class == aVar.getClass()) {
                 h51 h51Var = (h51) aVar;
-                int i10 = this.f44099a;
-                if (i10 == h51Var.f44099a) {
+                int i10 = this.f44072a;
+                if (i10 == h51Var.f44072a) {
                     if (i10 == 31) {
-                        if (TextUtils.equals(this.f26622l, h51Var.f26622l) && TextUtils.equals(this.f26623m, h51Var.f26623m)) {
+                        if (TextUtils.equals(this.f26595l, h51Var.f26595l) && TextUtils.equals(this.f26596m, h51Var.f26596m)) {
                             return true;
                         }
                         return false;
                     } else if (i10 == 28) {
-                        if (this.f26635z == h51Var.f26635z) {
+                        if (this.f26608z == h51Var.f26608z) {
                             return true;
                         }
                         return false;
@@ -338,7 +338,7 @@ public final class h51 extends pg.a {
                             return F.contentsEquals(this, h51Var);
                         }
                         return H(h51Var);
-                    } else if (this.d == h51Var.d && TextUtils.equals(this.f26622l, h51Var.f26622l) && this.f26616e == h51Var.f26616e) {
+                    } else if (this.d == h51Var.d && TextUtils.equals(this.f26595l, h51Var.f26595l) && this.f26589e == h51Var.f26589e) {
                         return true;
                     } else {
                         return false;
@@ -356,8 +356,8 @@ public final class h51 extends pg.a {
         if (this != obj) {
             if (obj != null && h51.class == obj.getClass()) {
                 h51 h51Var = (h51) obj;
-                int i10 = this.f44099a;
-                if (i10 == h51Var.f44099a) {
+                int i10 = this.f44072a;
+                if (i10 == h51Var.f44072a) {
                     if (i10 != 36 && i10 != 35) {
                         if (i10 == 28) {
                             if (this.d == h51Var.d) {
@@ -365,7 +365,7 @@ public final class h51 extends pg.a {
                             }
                             return false;
                         } else if (i10 == 31) {
-                            return TextUtils.equals(this.f26622l, h51Var.f26622l);
+                            return TextUtils.equals(this.f26595l, h51Var.f26595l);
                         } else {
                             if (i10 >= 10000 && (F = F(i10)) != null) {
                                 return F.equals(this, h51Var);

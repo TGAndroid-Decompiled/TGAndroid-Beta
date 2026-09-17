@@ -11,12 +11,12 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.SvgHelper;
 import org.telegram.tgnet.TLRPC;
 public final class pt extends org.telegram.ui.Components.kl0 {
-    public final ArrayList f39659c;
+    public final ArrayList f39632c;
     public final st d;
 
     public pt(st stVar, ArrayList arrayList) {
         this.d = stVar;
-        this.f39659c = arrayList;
+        this.f39632c = arrayList;
     }
 
     @Override
@@ -26,15 +26,15 @@ public final class pt extends org.telegram.ui.Components.kl0 {
 
     @Override
     public final int h() {
-        return this.f39659c.size();
+        return this.f39632c.size();
     }
 
     @Override
     public final void v(s4.c1 c1Var, int i10) {
-        rt rtVar = (rt) c1Var.f45767a;
-        TLRPC.StickerSetCovered stickerSetCovered = (TLRPC.StickerSetCovered) this.f39659c.get(i10);
-        org.telegram.ui.ActionBar.j5 j5Var = rtVar.f40260b;
-        org.telegram.ui.Components.x9 x9Var = rtVar.f40259a;
+        rt rtVar = (rt) c1Var.f45739a;
+        TLRPC.StickerSetCovered stickerSetCovered = (TLRPC.StickerSetCovered) this.f39632c.get(i10);
+        org.telegram.ui.ActionBar.j5 j5Var = rtVar.f40233b;
+        org.telegram.ui.Components.x9 x9Var = rtVar.f40232a;
         rtVar.d = stickerSetCovered;
         if (stickerSetCovered instanceof TLRPC.TL_stickerSetNoCovered) {
             j5Var.l(LocaleController.getString(R.string.NewStickerPack), false);
@@ -45,7 +45,7 @@ public final class pt extends org.telegram.ui.Components.kl0 {
         TLRPC.Document document = stickerSetCovered.cover;
         if (document != null) {
             TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(document.thumbs, 90);
-            SvgHelper.SvgDrawable svgThumb = DocumentObject.getSvgThumb(stickerSetCovered.cover, org.telegram.ui.ActionBar.j6.f20635a7, 1.0f, 1.0f, rtVar.f40261c);
+            SvgHelper.SvgDrawable svgThumb = DocumentObject.getSvgThumb(stickerSetCovered.cover, org.telegram.ui.ActionBar.j6.f20608a7, 1.0f, 1.0f, rtVar.f40234c);
             if (svgThumb != null) {
                 if (closestPhotoSizeWithSize != null) {
                     x9Var.i(ImageLocation.getForDocument(closestPhotoSizeWithSize, stickerSetCovered.cover), null, "webp", svgThumb, stickerSetCovered);
@@ -63,7 +63,7 @@ public final class pt extends org.telegram.ui.Components.kl0 {
 
     @Override
     public final s4.c1 x(ViewGroup viewGroup, int i10) {
-        rt rtVar = new rt(viewGroup.getContext(), this.d.f40557c0);
+        rt rtVar = new rt(viewGroup.getContext(), this.d.f40530c0);
         rtVar.setLayoutParams(new s4.p0(-2, AndroidUtilities.dp(48.0f)));
         return new s4.c1(rtVar);
     }

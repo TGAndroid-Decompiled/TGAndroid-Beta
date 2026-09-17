@@ -2,16 +2,16 @@ package org.telegram.ui;
 
 import org.telegram.messenger.Utilities;
 public final class lg implements Utilities.Callback {
-    public final int f38375a;
-    public final long f38376b;
-    public final long f38377c;
+    public final int f38348a;
+    public final long f38349b;
+    public final long f38350c;
     public final Object d;
 
     public lg(Object obj, long j3, long j10, int i10) {
-        this.f38375a = i10;
+        this.f38348a = i10;
         this.d = obj;
-        this.f38376b = j3;
-        this.f38377c = j10;
+        this.f38349b = j3;
+        this.f38350c = j10;
     }
 
     @Override

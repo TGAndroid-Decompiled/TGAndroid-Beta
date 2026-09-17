@@ -13,26 +13,26 @@ import org.telegram.ui.Components.p6;
 import org.telegram.ui.Components.pr;
 import org.telegram.ui.oj1;
 public final class b extends View {
-    public final p6 f47093a;
-    public float f47094b;
-    public ValueAnimator f47095c;
+    public final p6 f47065a;
+    public float f47066b;
+    public ValueAnimator f47067c;
     public int d;
-    public final Paint f47096e;
+    public final Paint f47068e;
 
     public b(Context context) {
         super(context);
-        this.f47094b = 1.0f;
+        this.f47066b = 1.0f;
         p6 p6Var = new p6(false, false, true, false);
-        this.f47093a = p6Var;
+        this.f47065a = p6Var;
         p6Var.k(0.3f, 250L, pr.h);
         p6Var.setCallback(this);
         p6Var.t(AndroidUtilities.dp(11.5f));
         p6Var.u(AndroidUtilities.bold());
         p6Var.r(-1);
         p6Var.q("", true, true);
-        p6Var.f29313b = 17;
+        p6Var.f29286b = 17;
         Paint paint = new Paint(1);
-        this.f47096e = paint;
+        this.f47068e = paint;
         paint.setColor(-6915073);
         setVisibility(8);
     }
@@ -44,28 +44,28 @@ public final class b extends View {
         if (i10 > 0) {
             setVisibility(0);
         }
-        p6 p6Var = this.f47093a;
+        p6 p6Var = this.f47065a;
         if (z10) {
             p6Var.b();
         }
         if (z10 && i10 != this.d && i10 > 0) {
-            ValueAnimator valueAnimator = this.f47095c;
+            ValueAnimator valueAnimator = this.f47067c;
             if (valueAnimator != null) {
                 valueAnimator.cancel();
-                this.f47095c = null;
+                this.f47067c = null;
             }
             ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-            this.f47095c = ofFloat;
+            this.f47067c = ofFloat;
             ofFloat.addUpdateListener(new ki.a(this, 19));
-            this.f47095c.addListener(new oj1(this, 9));
-            this.f47095c.setInterpolator(new OvershootInterpolator(2.0f));
-            this.f47095c.setDuration(200L);
-            this.f47095c.start();
+            this.f47067c.addListener(new oj1(this, 9));
+            this.f47067c.setInterpolator(new OvershootInterpolator(2.0f));
+            this.f47067c.setDuration(200L);
+            this.f47067c.start();
         }
         this.d = i10;
-        int length = p6Var.f29317g.length();
+        int length = p6Var.f29290g.length();
         p6Var.q("x" + i10, z10, true);
-        int length2 = p6Var.f29317g.length();
+        int length2 = p6Var.f29290g.length();
         invalidate();
         if (length != length2) {
             requestLayout();
@@ -79,20 +79,20 @@ public final class b extends View {
         canvas.translate(AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f));
         Rect rect = AndroidUtilities.rectTmp2;
         int dp = AndroidUtilities.dp(8.0f);
-        p6 p6Var = this.f47093a;
+        p6 p6Var = this.f47065a;
         rect.set(0, 0, dp + ((int) p6Var.d()), AndroidUtilities.dp(20.0f));
         RectF rectF = AndroidUtilities.rectTmp;
         rectF.set(rect);
-        if (this.f47094b != 1.0f) {
+        if (this.f47066b != 1.0f) {
             canvas.save();
-            float f7 = this.f47094b;
+            float f7 = this.f47066b;
             canvas.scale(f7, f7, rect.centerX(), rect.centerY());
         }
-        canvas.drawRoundRect(rectF, AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f), this.f47096e);
+        canvas.drawRoundRect(rectF, AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f), this.f47068e);
         rect.set(0, 0, (int) rectF.width(), AndroidUtilities.dp(19.0f));
         p6Var.setBounds(rect);
         p6Var.draw(canvas);
-        if (this.f47094b != 1.0f) {
+        if (this.f47066b != 1.0f) {
             canvas.restore();
         }
         canvas.restore();
@@ -100,6 +100,6 @@ public final class b extends View {
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec((int) (this.f47093a.e() + AndroidUtilities.dp(15.0f)), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(26.0f), 1073741824));
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec((int) (this.f47065a.e() + AndroidUtilities.dp(15.0f)), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(26.0f), 1073741824));
     }
 }

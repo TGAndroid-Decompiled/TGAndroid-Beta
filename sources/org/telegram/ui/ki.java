@@ -1,9 +1,9 @@
 package org.telegram.ui;
 public final class ki implements org.telegram.ui.Components.cl0 {
-    public final co f38100a;
+    public final co f38073a;
 
     public ki(co coVar) {
-        this.f38100a = coVar;
+        this.f38073a = coVar;
     }
 
     @Override

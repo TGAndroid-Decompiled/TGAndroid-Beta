@@ -15,15 +15,15 @@ public final class k extends g51 {
 
     public static h51 a(int i10, String str, String str2) {
         h51 J = h51.J(k.class);
-        J.f26621k = i10;
-        J.f26622l = str;
-        J.f26623m = str2;
+        J.f26594k = i10;
+        J.f26595l = str;
+        J.f26596m = str2;
         return J;
     }
 
     @Override
     public final void bindView(View view, h51 h51Var, boolean z10, v51 v51Var, d61 d61Var) {
-        ((l) view).a(h51Var.f26622l, h51Var.f26623m, h51Var.f26621k);
+        ((l) view).a(h51Var.f26595l, h51Var.f26596m, h51Var.f26594k);
     }
 
     @Override

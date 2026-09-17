@@ -5,30 +5,30 @@ import java.util.List;
 import java.util.function.BiConsumer;
 import org.telegram.ui.Components.bb;
 public final class v0 implements BiConsumer {
-    public final int f47246a;
-    public final bb f47247b;
+    public final int f47218a;
+    public final bb f47219b;
 
     public v0(bb bbVar, int i10) {
-        this.f47246a = i10;
-        this.f47247b = bbVar;
+        this.f47218a = i10;
+        this.f47219b = bbVar;
     }
 
     @Override
     public final void accept(Object obj, Object obj2) {
-        switch (this.f47246a) {
+        switch (this.f47218a) {
             case 0:
                 String str = (String) obj;
-                ((a1) this.f47247b).f47082k0.addAll((List) obj2);
+                ((a1) this.f47219b).f47054k0.addAll((List) obj2);
                 return;
             default:
                 String str2 = (String) obj;
-                ((uh.f) this.f47247b).f47277b0.addAll((List) obj2);
+                ((uh.f) this.f47219b).f47249b0.addAll((List) obj2);
                 return;
         }
     }
 
     public BiConsumer andThen(BiConsumer biConsumer) {
-        int i10 = this.f47246a;
+        int i10 = this.f47218a;
         return BiConsumer$CC.$default$andThen(this, biConsumer);
     }
 }

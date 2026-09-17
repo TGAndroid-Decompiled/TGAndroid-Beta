@@ -30,15 +30,15 @@ public final class du extends kz {
         hu huVar = this.S2;
         if (huVar.b()) {
             int i15 = i13 - i11;
-            if (!this.Q2 && huVar.f26884x) {
+            if (!this.Q2 && huVar.f26857x) {
                 this.R2 = true;
             }
             if (this.R2 && (i14 = this.P2) > 0 && i15 > 0 && i15 != i14) {
                 setTranslationY(i15 - i14);
-                org.telegram.messenger.vl.q(animate().translationY(0.0f), org.telegram.ui.ActionBar.p1.f21303w, 250L);
+                org.telegram.messenger.vl.q(animate().translationY(0.0f), org.telegram.ui.ActionBar.p1.f21276w, 250L);
                 this.R2 = false;
             }
-            this.Q2 = huVar.f26884x;
+            this.Q2 = huVar.f26857x;
             this.P2 = i15;
         }
     }

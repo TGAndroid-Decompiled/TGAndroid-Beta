@@ -3,14 +3,14 @@ package org.telegram.ui.Components;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.tl.TL_payments;
 public final class ut implements org.telegram.ui.ActionBar.a2 {
-    public final int f30995a;
-    public final int f30996b;
-    public final Object f30997c;
+    public final int f30968a;
+    public final int f30969b;
+    public final Object f30970c;
 
     public ut(int i10, int i11, org.telegram.ui.ActionBar.n2 n2Var) {
-        this.f30995a = i10;
-        this.f30996b = i11;
-        this.f30997c = n2Var;
+        this.f30968a = i10;
+        this.f30969b = i11;
+        this.f30970c = n2Var;
     }
 
     @Override
@@ -18,14 +18,14 @@ public final class ut implements org.telegram.ui.ActionBar.a2 {
         of.e g10 = b2Var.g(-1, true, true);
         g10.d();
         TL_payments.TL_resolveStarGiftOffer tL_resolveStarGiftOffer = new TL_payments.TL_resolveStarGiftOffer();
-        tL_resolveStarGiftOffer.offer_msg_id = this.f30995a;
-        int i11 = this.f30996b;
-        ConnectionsManager.getInstance(i11).sendRequestTyped(tL_resolveStarGiftOffer, new fi.h1(i11, (org.telegram.ui.ActionBar.n2) this.f30997c, g10, b2Var));
+        tL_resolveStarGiftOffer.offer_msg_id = this.f30968a;
+        int i11 = this.f30969b;
+        ConnectionsManager.getInstance(i11).sendRequestTyped(tL_resolveStarGiftOffer, new fi.h1(i11, (org.telegram.ui.ActionBar.n2) this.f30970c, g10, b2Var));
     }
 
     public ut(zt ztVar, int i10, int i11) {
-        this.f30997c = ztVar;
-        this.f30995a = i10;
-        this.f30996b = i11;
+        this.f30970c = ztVar;
+        this.f30968a = i10;
+        this.f30969b = i11;
     }
 }

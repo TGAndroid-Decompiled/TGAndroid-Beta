@@ -43,18 +43,18 @@ import org.telegram.ui.Components.t00;
 import org.telegram.ui.t5;
 import w7.x5;
 public final class d0 extends kl0 {
-    public final k0 f46092c;
+    public final k0 f46064c;
 
     public d0(k0 k0Var) {
-        this.f46092c = k0Var;
+        this.f46064c = k0Var;
     }
 
     @Override
     public final boolean D(s4.c1 c1Var) {
-        k0 k0Var = this.f46092c;
-        int i10 = k0Var.f46166h0;
+        k0 k0Var = this.f46064c;
+        int i10 = k0Var.f46138h0;
         if ((i10 != 11 && i10 != 34) || k0Var.Y) {
-            int i11 = c1Var.f45771f;
+            int i11 = c1Var.f45743f;
             if (i11 == 1 || i11 == 4) {
                 return true;
             }
@@ -65,39 +65,39 @@ public final class d0 extends kl0 {
 
     @Override
     public final int h() {
-        return this.f46092c.f46169k0;
+        return this.f46064c.f46141k0;
     }
 
     @Override
     public final int j(int i10) {
         int i11;
-        k0 k0Var = this.f46092c;
-        if (k0Var.f46170l0 == i10) {
+        k0 k0Var = this.f46064c;
+        if (k0Var.f46142l0 == i10) {
             return 0;
         }
         if (k0Var.m0 == i10) {
             return 2;
         }
-        if (k0Var.f46171n0 == i10) {
+        if (k0Var.f46143n0 == i10) {
             return 3;
         }
-        if (k0Var.f46174q0 == i10) {
+        if (k0Var.f46146q0 == i10) {
             return 5;
         }
-        if (k0Var.f46175r0 == i10) {
+        if (k0Var.f46147r0 == i10) {
             return 6;
         }
         if (k0Var.Z == i10) {
             return 7;
         }
-        if (k0Var.f46176s0 == i10) {
+        if (k0Var.f46148s0 == i10) {
             return 8;
         }
-        ArrayList arrayList = k0Var.f46178u0;
-        if (arrayList != null && i10 >= (i11 = k0Var.f46177t0) && i10 <= arrayList.size() + i11) {
+        ArrayList arrayList = k0Var.f46150u0;
+        if (arrayList != null && i10 >= (i11 = k0Var.f46149t0) && i10 <= arrayList.size() + i11) {
             return 9;
         }
-        int i12 = k0Var.f46166h0;
+        int i12 = k0Var.f46138h0;
         if (i12 != 5 && i12 != 11 && i12 != 34) {
             return 1;
         }
@@ -111,11 +111,11 @@ public final class d0 extends kl0 {
         TL_account.requirementToContactPremium requirementtocontactpremium;
         int i11;
         String formatUserStatus;
-        k0 k0Var = this.f46092c;
-        int i12 = k0Var.f46166h0;
-        HashSet hashSet = k0Var.f46182y0;
-        int i13 = c1Var.f45771f;
-        View view = c1Var.f45767a;
+        k0 k0Var = this.f46064c;
+        int i12 = k0Var.f46138h0;
+        HashSet hashSet = k0Var.f46154y0;
+        int i13 = c1Var.f45743f;
+        View view = c1Var.f45739a;
         boolean z11 = false;
         boolean z12 = true;
         if (i13 != 1) {
@@ -124,19 +124,19 @@ public final class d0 extends kl0 {
                     if (i13 == 4) {
                         f4 f4Var = (f4) view;
                         if (i12 == 5) {
-                            TLRPC.Chat chat = (TLRPC.Chat) k0Var.f46183z0.get(i10 - k0Var.f46172o0);
-                            String str2 = (String) k0Var.A0.get(i10 - k0Var.f46172o0);
+                            TLRPC.Chat chat = (TLRPC.Chat) k0Var.f46155z0.get(i10 - k0Var.f46144o0);
+                            String str2 = (String) k0Var.A0.get(i10 - k0Var.f46144o0);
                             String str3 = chat.title;
-                            if (i10 == k0Var.f46173p0 - 1.0f) {
+                            if (i10 == k0Var.f46145p0 - 1.0f) {
                                 z12 = false;
                             }
                             f4Var.e(chat, str3, str2, z12);
                             f4Var.c(hashSet.contains(chat), false);
                             return;
                         } else if (i12 == 11 || i12 == 34) {
-                            TLRPC.User user = (TLRPC.User) k0Var.B0.get(i10 - k0Var.f46172o0);
+                            TLRPC.User user = (TLRPC.User) k0Var.B0.get(i10 - k0Var.f46144o0);
                             ArrayList arrayList = k0Var.C0;
-                            if (arrayList != null && arrayList.contains(Long.valueOf(user.f20043id))) {
+                            if (arrayList != null && arrayList.contains(Long.valueOf(user.f20016id))) {
                                 z10 = true;
                             } else {
                                 z10 = false;
@@ -156,7 +156,7 @@ public final class d0 extends kl0 {
                                 formatUserStatus = LocaleController.getString(R.string.InvitePremiumBlockedUser);
                             }
                             String formatName = ContactsController.formatName(user.first_name, user.last_name);
-                            if (i10 == k0Var.f46173p0 - 1.0f) {
+                            if (i10 == k0Var.f46145p0 - 1.0f) {
                                 z12 = false;
                             }
                             f4Var.e(user, formatName, formatUserStatus, z12);
@@ -188,41 +188,41 @@ public final class d0 extends kl0 {
                     return;
                 }
             }
-            int i14 = i10 - k0Var.f46177t0;
-            ArrayList arrayList2 = k0Var.f46178u0;
+            int i14 = i10 - k0Var.f46149t0;
+            ArrayList arrayList2 = k0Var.f46150u0;
             if (arrayList2 != null && i14 >= 0 && i14 < arrayList2.size()) {
                 g0 g0Var = (g0) view;
-                f0 f0Var = (f0) k0Var.f46178u0.get(i14);
-                t5 t5Var = g0Var.f46130c;
-                ImageView imageView = g0Var.f46128a;
-                j5 j5Var = g0Var.f46129b;
+                f0 f0Var = (f0) k0Var.f46150u0.get(i14);
+                t5 t5Var = g0Var.f46102c;
+                ImageView imageView = g0Var.f46100a;
+                j5 j5Var = g0Var.f46101b;
                 if (f0Var instanceof e0) {
-                    g0Var.f46132f = (e0) f0Var;
-                    g0Var.f46131e = null;
+                    g0Var.f46104f = (e0) f0Var;
+                    g0Var.f46103e = null;
                     imageView.setVisibility(8);
                     j5Var.setVisibility(8);
                     t5Var.setVisibility(0);
                     j5 j5Var2 = g0Var.d;
-                    e0 e0Var = g0Var.f46132f;
+                    e0 e0Var = g0Var.f46104f;
                     if (e0Var.h) {
                         str = "BoostLevelUnlocks";
                     } else {
                         str = "BoostLevel";
                     }
-                    j5Var2.l(LocaleController.formatPluralString(str, e0Var.f46105g, new Object[0]), false);
+                    j5Var2.l(LocaleController.formatPluralString(str, e0Var.f46077g, new Object[0]), false);
                     return;
                 } else if (f0Var != null) {
-                    g0Var.f46132f = null;
-                    g0Var.f46131e = f0Var;
+                    g0Var.f46104f = null;
+                    g0Var.f46103e = f0Var;
                     imageView.setVisibility(0);
-                    imageView.setImageResource(g0Var.f46131e.f46120a);
+                    imageView.setImageResource(g0Var.f46103e.f46092a);
                     j5Var.setVisibility(0);
-                    f0 f0Var2 = g0Var.f46131e;
+                    f0 f0Var2 = g0Var.f46103e;
                     String str4 = "";
                     if (f0Var2.d != null) {
-                        String string = LocaleController.getString(g0Var.f46131e.d + "_" + LocaleController.getStringParamForNumber(g0Var.f46131e.f46123e));
+                        String string = LocaleController.getString(g0Var.f46103e.d + "_" + LocaleController.getStringParamForNumber(g0Var.f46103e.f46095e));
                         if (string == null || string.startsWith("LOC_ERR")) {
-                            string = LocaleController.getString(g0Var.f46131e.d + "_other");
+                            string = LocaleController.getString(g0Var.f46103e.d + "_other");
                         }
                         if (string == null) {
                             string = "";
@@ -231,22 +231,22 @@ public final class d0 extends kl0 {
                         int indexOf = string.indexOf("%d");
                         if (indexOf >= 0) {
                             spannableStringBuilder = new SpannableStringBuilder(string);
-                            SpannableString spannableString = new SpannableString(a4.a.n(g0Var.f46131e.f46123e, "", new StringBuilder()));
+                            SpannableString spannableString = new SpannableString(a4.a.n(g0Var.f46103e.f46095e, "", new StringBuilder()));
                             spannableString.setSpan(new e51(AndroidUtilities.bold()), 0, spannableString.length(), 33);
                             spannableStringBuilder.replace(indexOf, indexOf + 2, (CharSequence) spannableString);
                         }
                         j5Var.l(spannableStringBuilder, false);
                     } else {
-                        String string2 = LocaleController.getString(f0Var2.f46121b);
+                        String string2 = LocaleController.getString(f0Var2.f46093b);
                         if (string2 != null) {
                             str4 = string2;
                         }
-                        if (g0Var.f46131e.f46122c != null) {
+                        if (g0Var.f46103e.f46094c != null) {
                             SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(str4);
                             int indexOf2 = str4.indexOf("%s");
                             if (indexOf2 >= 0) {
                                 spannableStringBuilder2 = new SpannableStringBuilder(str4);
-                                SpannableString spannableString2 = new SpannableString(g0Var.f46131e.f46122c);
+                                SpannableString spannableString2 = new SpannableString(g0Var.f46103e.f46094c);
                                 spannableString2.setSpan(new e51(AndroidUtilities.bold()), 0, spannableString2.length(), 33);
                                 spannableStringBuilder2.replace(indexOf2, indexOf2 + 2, (CharSequence) spannableString2);
                             }
@@ -263,7 +263,7 @@ public final class d0 extends kl0 {
             }
             return;
         }
-        TLRPC.Chat chat2 = (TLRPC.Chat) k0Var.f46167i0.get(i10 - k0Var.f46172o0);
+        TLRPC.Chat chat2 = (TLRPC.Chat) k0Var.f46139i0.get(i10 - k0Var.f46144o0);
         org.telegram.ui.Cells.n nVar = (org.telegram.ui.Cells.n) view;
         TLRPC.Chat currentChannel = nVar.getCurrentChannel();
         nVar.a(chat2, false);
@@ -271,7 +271,7 @@ public final class d0 extends kl0 {
         if (currentChannel == chat2) {
             z11 = true;
         }
-        nVar.f22342r.a(contains, z11);
+        nVar.f22315r.a(contains, z11);
     }
 
     @Override
@@ -300,13 +300,13 @@ public final class d0 extends kl0 {
         f6 f6Var11;
         f6 f6Var12;
         Context context = viewGroup.getContext();
-        k0 k0Var = this.f46092c;
+        k0 k0Var = this.f46064c;
         switch (i10) {
             case 1:
                 j0Var = new org.telegram.ui.Cells.n(context, new c0(this), true, 9);
                 break;
             case 2:
-                int i19 = j6.f20635a7;
+                int i19 = j6.f20608a7;
                 f6Var = ((f3) k0Var).resourcesProvider;
                 j0Var = new a7(context, j6.v0(i19, f6Var), 0);
                 break;
@@ -325,7 +325,7 @@ public final class d0 extends kl0 {
                 break;
             case 5:
                 t00 t00Var = new t00(context, null);
-                if (k0Var.f46166h0 == 2) {
+                if (k0Var.f46138h0 == 2) {
                     i13 = 22;
                 } else {
                     i13 = 21;
@@ -366,7 +366,7 @@ public final class d0 extends kl0 {
                 int i20 = j6.e7;
                 f6Var3 = ((f3) k0Var).resourcesProvider;
                 int v02 = j6.v0(i20, f6Var3);
-                int i21 = j6.f20781i6;
+                int i21 = j6.f20754i6;
                 f6Var4 = ((f3) k0Var).resourcesProvider;
                 int k10 = i0.a.k(j6.v0(i21, f6Var4), 76);
                 textView.setBackground(j6.i0(dp4, dp4, dp4, dp4, v02, k10, k10));
@@ -374,10 +374,10 @@ public final class d0 extends kl0 {
                 f6Var5 = ((f3) k0Var).resourcesProvider;
                 textView.setTextColor(j6.v0(i22, f6Var5));
                 textView.setOnClickListener(new View.OnClickListener(this) {
-                    public final d0 f46055b;
+                    public final d0 f46027b;
 
                     {
-                        this.f46055b = this;
+                        this.f46027b = this;
                     }
 
                     @Override
@@ -385,22 +385,22 @@ public final class d0 extends kl0 {
                         f6 f6Var13;
                         switch (r2) {
                             case 0:
-                                k0 k0Var2 = this.f46055b.f46092c;
-                                n2 n2Var = k0Var2.f24677n;
-                                long j3 = k0Var2.f46159a0;
+                                k0 k0Var2 = this.f46027b.f46064c;
+                                n2 n2Var = k0Var2.f24650n;
+                                long j3 = k0Var2.f46131a0;
                                 f6Var13 = ((f3) k0Var2).resourcesProvider;
                                 ug.n.m(n2Var, f6Var13, j3, null);
                                 return;
                             case 1:
-                                k0 k0Var3 = this.f46055b.f46092c;
+                                k0 k0Var3 = this.f46027b.f46064c;
                                 AndroidUtilities.addToClipboard(k0Var3.p1());
                                 k0Var3.dismiss();
                                 return;
                             case 2:
-                                AndroidUtilities.addToClipboard(this.f46055b.f46092c.p1());
+                                AndroidUtilities.addToClipboard(this.f46027b.f46064c.p1());
                                 return;
                             default:
-                                k0 k0Var4 = this.f46055b.f46092c;
+                                k0 k0Var4 = this.f46027b.f46064c;
                                 k0Var4.Q0.run();
                                 k0Var4.dismiss();
                                 return;
@@ -410,7 +410,7 @@ public final class d0 extends kl0 {
                 if (k0Var.Q0 != null) {
                     ImageView imageView = new ImageView(k0Var.getContext());
                     imageView.setImageResource(R.drawable.msg_stats);
-                    int i23 = j6.f20798j5;
+                    int i23 = j6.f20771j5;
                     f6Var6 = ((f3) k0Var).resourcesProvider;
                     imageView.setColorFilter(j6.v0(i23, f6Var6));
                     imageView.setPadding(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f));
@@ -420,10 +420,10 @@ public final class d0 extends kl0 {
                     imageView.setBackground(j6.i0(dp5, dp5, dp5, dp5, 0, k11, k11));
                     frameLayout2.addView(imageView, x5.d(40, 40.0f, 21, 15.0f, 0.0f, 15.0f, 0.0f));
                     imageView.setOnClickListener(new View.OnClickListener(this) {
-                        public final d0 f46055b;
+                        public final d0 f46027b;
 
                         {
-                            this.f46055b = this;
+                            this.f46027b = this;
                         }
 
                         @Override
@@ -431,22 +431,22 @@ public final class d0 extends kl0 {
                             f6 f6Var13;
                             switch (r2) {
                                 case 0:
-                                    k0 k0Var2 = this.f46055b.f46092c;
-                                    n2 n2Var = k0Var2.f24677n;
-                                    long j3 = k0Var2.f46159a0;
+                                    k0 k0Var2 = this.f46027b.f46064c;
+                                    n2 n2Var = k0Var2.f24650n;
+                                    long j3 = k0Var2.f46131a0;
                                     f6Var13 = ((f3) k0Var2).resourcesProvider;
                                     ug.n.m(n2Var, f6Var13, j3, null);
                                     return;
                                 case 1:
-                                    k0 k0Var3 = this.f46055b.f46092c;
+                                    k0 k0Var3 = this.f46027b.f46064c;
                                     AndroidUtilities.addToClipboard(k0Var3.p1());
                                     k0Var3.dismiss();
                                     return;
                                 case 2:
-                                    AndroidUtilities.addToClipboard(this.f46055b.f46092c.p1());
+                                    AndroidUtilities.addToClipboard(this.f46027b.f46064c.p1());
                                     return;
                                 default:
-                                    k0 k0Var4 = this.f46055b.f46092c;
+                                    k0 k0Var4 = this.f46027b.f46064c;
                                     k0Var4.Q0.run();
                                     k0Var4.dismiss();
                                     return;
@@ -491,7 +491,7 @@ public final class d0 extends kl0 {
                 d90Var.setLineSpacing(AndroidUtilities.dp(3.0f), 1.0f);
                 f6Var8 = ((f3) k0Var).resourcesProvider;
                 if (f6Var8 instanceof bi.b) {
-                    int i25 = j6.f21070y6;
+                    int i25 = j6.f21043y6;
                     f6Var11 = ((f3) k0Var).resourcesProvider;
                     d90Var.setTextColor(j6.v0(i25, f6Var11));
                 } else {
@@ -501,10 +501,10 @@ public final class d0 extends kl0 {
                 }
                 d90Var.setGravity(1);
                 d90Var.setOnClickListener(new View.OnClickListener(this) {
-                    public final d0 f46055b;
+                    public final d0 f46027b;
 
                     {
-                        this.f46055b = this;
+                        this.f46027b = this;
                     }
 
                     @Override
@@ -512,22 +512,22 @@ public final class d0 extends kl0 {
                         f6 f6Var13;
                         switch (r2) {
                             case 0:
-                                k0 k0Var2 = this.f46055b.f46092c;
-                                n2 n2Var = k0Var2.f24677n;
-                                long j3 = k0Var2.f46159a0;
+                                k0 k0Var2 = this.f46027b.f46064c;
+                                n2 n2Var = k0Var2.f24650n;
+                                long j3 = k0Var2.f46131a0;
                                 f6Var13 = ((f3) k0Var2).resourcesProvider;
                                 ug.n.m(n2Var, f6Var13, j3, null);
                                 return;
                             case 1:
-                                k0 k0Var3 = this.f46055b.f46092c;
+                                k0 k0Var3 = this.f46027b.f46064c;
                                 AndroidUtilities.addToClipboard(k0Var3.p1());
                                 k0Var3.dismiss();
                                 return;
                             case 2:
-                                AndroidUtilities.addToClipboard(this.f46055b.f46092c.p1());
+                                AndroidUtilities.addToClipboard(this.f46027b.f46064c.p1());
                                 return;
                             default:
-                                k0 k0Var4 = this.f46055b.f46092c;
+                                k0 k0Var4 = this.f46027b.f46064c;
                                 k0Var4.Q0.run();
                                 k0Var4.dismiss();
                                 return;
@@ -540,10 +540,10 @@ public final class d0 extends kl0 {
                     di.d dVar = new di.d(context, f6Var10, true);
                     dVar.g(LocaleController.getString(R.string.Copy), false, true);
                     dVar.setOnClickListener(new View.OnClickListener(this) {
-                        public final d0 f46055b;
+                        public final d0 f46027b;
 
                         {
-                            this.f46055b = this;
+                            this.f46027b = this;
                         }
 
                         @Override
@@ -551,22 +551,22 @@ public final class d0 extends kl0 {
                             f6 f6Var13;
                             switch (r2) {
                                 case 0:
-                                    k0 k0Var2 = this.f46055b.f46092c;
-                                    n2 n2Var = k0Var2.f24677n;
-                                    long j3 = k0Var2.f46159a0;
+                                    k0 k0Var2 = this.f46027b.f46064c;
+                                    n2 n2Var = k0Var2.f24650n;
+                                    long j3 = k0Var2.f46131a0;
                                     f6Var13 = ((f3) k0Var2).resourcesProvider;
                                     ug.n.m(n2Var, f6Var13, j3, null);
                                     return;
                                 case 1:
-                                    k0 k0Var3 = this.f46055b.f46092c;
+                                    k0 k0Var3 = this.f46027b.f46064c;
                                     AndroidUtilities.addToClipboard(k0Var3.p1());
                                     k0Var3.dismiss();
                                     return;
                                 case 2:
-                                    AndroidUtilities.addToClipboard(this.f46055b.f46092c.p1());
+                                    AndroidUtilities.addToClipboard(this.f46027b.f46064c.p1());
                                     return;
                                 default:
-                                    k0 k0Var4 = this.f46055b.f46092c;
+                                    k0 k0Var4 = this.f46027b.f46064c;
                                     k0Var4.Q0.run();
                                     k0Var4.dismiss();
                                     return;
@@ -590,7 +590,7 @@ public final class d0 extends kl0 {
                 break;
             default:
                 j0 j0Var2 = new j0(k0Var, context);
-                k0Var.f46162d0 = j0Var2;
+                k0Var.f46134d0 = j0Var2;
                 j0Var = j0Var2;
                 break;
         }

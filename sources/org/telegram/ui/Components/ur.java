@@ -6,20 +6,20 @@ import android.view.View;
 import java.lang.ref.WeakReference;
 import org.telegram.messenger.AndroidUtilities;
 public final class ur implements View.OnTouchListener {
-    public final int f30989a;
-    public final Object f30990b;
+    public final int f30962a;
+    public final Object f30963b;
 
     public ur(Object obj, int i10) {
-        this.f30989a = i10;
-        this.f30990b = obj;
+        this.f30962a = i10;
+        this.f30963b = obj;
     }
 
     @Override
     public final boolean onTouch(View view, MotionEvent motionEvent) {
         i70 i70Var;
-        switch (this.f30989a) {
+        switch (this.f30962a) {
             case 0:
-                org.telegram.ui.ActionBar.n1 n1Var = ((wr) this.f30990b).f32350a;
+                org.telegram.ui.ActionBar.n1 n1Var = ((wr) this.f30963b).f32323a;
                 if (motionEvent.getActionMasked() == 1 && n1Var != null && n1Var.isShowing()) {
                     Rect rect = AndroidUtilities.rectTmp2;
                     view.getHitRect(rect);
@@ -31,8 +31,8 @@ public final class ur implements View.OnTouchListener {
                 }
                 return false;
             case 1:
-                n70 n70Var = (n70) ((WeakReference) this.f30990b).get();
-                if (n70Var != null && (i70Var = n70Var.f28678m) != null && i70Var.isShowing()) {
+                n70 n70Var = (n70) ((WeakReference) this.f30963b).get();
+                if (n70Var != null && (i70Var = n70Var.f28651m) != null && i70Var.isShowing()) {
                     if (view.getParent() != null) {
                         view.getParent().requestDisallowInterceptTouchEvent(true);
                     }
@@ -41,40 +41,40 @@ public final class ur implements View.OnTouchListener {
                         n70Var.b0((int) motionEvent.getRawX(), (int) motionEvent.getRawY());
                     } else if (actionMasked == 1) {
                         n70Var.b0((int) motionEvent.getRawX(), (int) motionEvent.getRawY());
-                        View view2 = n70Var.f28684p0;
+                        View view2 = n70Var.f28657p0;
                         if (view2 != null) {
-                            n70Var.f28684p0 = null;
+                            n70Var.f28657p0 = null;
                             view2.setPressed(false);
                             view2.performClick();
                         }
                         view.setOnTouchListener(null);
-                        n70Var.f28682o0 = null;
+                        n70Var.f28655o0 = null;
                     } else if (actionMasked == 3) {
-                        View view3 = n70Var.f28684p0;
+                        View view3 = n70Var.f28657p0;
                         if (view3 != null) {
                             view3.setPressed(false);
-                            n70Var.f28684p0 = null;
+                            n70Var.f28657p0 = null;
                         }
                         view.setOnTouchListener(null);
-                        n70Var.f28682o0 = null;
+                        n70Var.f28655o0 = null;
                     }
                     return true;
                 }
                 view.setOnTouchListener(null);
                 return false;
             case 2:
-                oa0 oa0Var = (oa0) this.f30990b;
+                oa0 oa0Var = (oa0) this.f30963b;
                 oa0Var.getClass();
-                return org.telegram.ui.st.q().s(motionEvent, oa0Var.getListView(), oa0Var.f29053w, null, oa0Var.f29045a);
+                return org.telegram.ui.st.q().s(motionEvent, oa0Var.getListView(), oa0Var.f29026w, null, oa0Var.f29018a);
             case 3:
-                qb0 qb0Var = (qb0) this.f30990b;
+                qb0 qb0Var = (qb0) this.f30963b;
                 qb0Var.getClass();
                 if (motionEvent.getAction() == 1) {
-                    qb0Var.f29690c0.a(true);
+                    qb0Var.f29663c0.a(true);
                 }
                 return true;
             default:
-                return ux0.v((ux0) this.f30990b, motionEvent);
+                return ux0.v((ux0) this.f30963b, motionEvent);
         }
     }
 }

@@ -15,7 +15,7 @@ public final class ox extends jz {
     @Override
     public final void a(RecyclerView recyclerView, int i10) {
         if (i10 == 0) {
-            this.d.f27970f0 = false;
+            this.d.f27943f0 = false;
         }
         super.a(recyclerView, i10);
     }
@@ -27,16 +27,16 @@ public final class ox extends jz {
         ky kyVar = kzVar.S;
         lx lxVar = kzVar.Q;
         kzVar.W(lxVar.I0());
-        if (Build.VERSION.SDK_INT >= 31 && (fVar = kzVar.f27984j2) != null) {
+        if (Build.VERSION.SDK_INT >= 31 && (fVar = kzVar.f27957j2) != null) {
             fVar.f(i10, i11);
             kzVar.C();
         }
         super.b(recyclerView, i10, i11);
         if (kyVar != null && kzVar.P.getAdapter() == kyVar) {
-            ky kyVar2 = kyVar.f27949x.f27612a;
+            ky kyVar2 = kyVar.f27922x.f27585a;
             if (!kyVar2.F.V.F && !kyVar2.E) {
                 if (lxVar.N0() + 20 > kyVar.h()) {
-                    jy jyVar = kyVar.f27949x;
+                    jy jyVar = kyVar.f27922x;
                     Objects.requireNonNull(jyVar);
                     AndroidUtilities.runOnUIThread(new sw(jyVar, 1));
                 }

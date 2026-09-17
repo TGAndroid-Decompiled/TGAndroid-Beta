@@ -12,16 +12,16 @@ import org.telegram.tgnet.tl.TL_communities;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.tgnet.tl.TL_keyboard;
 public final class c implements Vector.TLDeserializer {
-    public final int f20154a;
+    public final int f20127a;
 
     public c(int i10) {
-        this.f20154a = i10;
+        this.f20127a = i10;
     }
 
     @Override
     public final TLObject deserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
         TLObject access$400;
-        switch (this.f20154a) {
+        switch (this.f20127a) {
             case 0:
                 access$400 = TL_keyboard.access$400(inputSerializedData, i10, z10);
                 return access$400;

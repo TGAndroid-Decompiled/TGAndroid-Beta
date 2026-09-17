@@ -1,11 +1,11 @@
 package org.telegram.ui;
 public final class gd1 implements nd1 {
-    public boolean f36660a;
-    public final co f36661b;
+    public boolean f36633a;
+    public final co f36634b;
 
     public gd1(co coVar, boolean z10) {
-        this.f36661b = coVar;
-        this.f36660a = z10;
+        this.f36634b = coVar;
+        this.f36633a = z10;
     }
 
     @Override
@@ -15,14 +15,14 @@ public final class gd1 implements nd1 {
 
     @Override
     public final boolean a() {
-        return this.f36660a;
+        return this.f36633a;
     }
 
     @Override
     public final void p1(boolean z10) {
-        boolean z11 = !this.f36660a;
-        this.f36660a = z11;
-        ao aoVar = this.f36661b.f35275ea;
-        aoVar.i(aoVar.f34518f, aoVar.h, z10, Boolean.valueOf(z11), false);
+        boolean z11 = !this.f36633a;
+        this.f36633a = z11;
+        ao aoVar = this.f36634b.f35248ea;
+        aoVar.i(aoVar.f34491f, aoVar.h, z10, Boolean.valueOf(z11), false);
     }
 }

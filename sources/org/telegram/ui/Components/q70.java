@@ -7,38 +7,38 @@ import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.tgnet.TLRPC;
 public final class q70 extends LinearLayout {
-    public boolean f29643a;
-    public final w70 f29644b;
+    public boolean f29616a;
+    public final w70 f29617b;
 
     public q70(w70 w70Var, Context context) {
         super(context);
-        this.f29644b = w70Var;
+        this.f29617b = w70Var;
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
         int size;
-        w70 w70Var = this.f29644b;
+        w70 w70Var = this.f29617b;
         ArrayList arrayList = w70Var.h;
-        if (w70Var.f32219s == 0) {
+        if (w70Var.f32192s == 0) {
             int size2 = View.MeasureSpec.getSize(i10);
             int dp = AndroidUtilities.dp(95.0f) * arrayList.size();
             LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) w70Var.d.getLayoutParams();
             if (dp > size2) {
                 layoutParams.width = -1;
                 layoutParams.gravity = 51;
-                if (!this.f29643a) {
+                if (!this.f29616a) {
                     TLRPC.Peer peer = w70Var.v;
                     if (peer != null) {
                         arrayList.remove(peer);
                         arrayList.add(0, w70Var.v);
                     }
-                    this.f29643a = true;
+                    this.f29616a = true;
                 }
             } else {
                 layoutParams.width = -2;
                 layoutParams.gravity = 49;
-                if (!this.f29643a) {
+                if (!this.f29616a) {
                     if (w70Var.v != null) {
                         if (arrayList.size() % 2 == 0) {
                             size = Math.max(0, (arrayList.size() / 2) - 1);
@@ -48,7 +48,7 @@ public final class q70 extends LinearLayout {
                         arrayList.remove(w70Var.v);
                         arrayList.add(size, w70Var.v);
                     }
-                    this.f29643a = true;
+                    this.f29616a = true;
                 }
             }
         }

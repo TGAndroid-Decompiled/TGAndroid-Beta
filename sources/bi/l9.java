@@ -10,38 +10,38 @@ import org.telegram.ui.Components.lu;
 import org.telegram.ui.Components.o20;
 import org.telegram.ui.Components.pr;
 public final class l9 {
-    public final int f3319a;
-    public final lu f3320b;
-    public final o20 f3321c;
+    public final int f3292a;
+    public final lu f3293b;
+    public final o20 f3294c;
     public int d;
-    public int f3322e;
-    public final org.telegram.ui.Components.h5 f3323f;
-    public final org.telegram.ui.Components.h5 f3324g;
+    public int f3295e;
+    public final org.telegram.ui.Components.h5 f3296f;
+    public final org.telegram.ui.Components.h5 f3297g;
 
     public l9(View view) {
         lu luVar = new lu(1, view);
-        this.f3319a = UserConfig.selectedAccount;
-        this.f3320b = luVar;
+        this.f3292a = UserConfig.selectedAccount;
+        this.f3293b = luVar;
         pr prVar = pr.h;
-        this.f3323f = new org.telegram.ui.Components.h5(luVar, 350L, prVar);
-        this.f3324g = new org.telegram.ui.Components.h5(luVar, 350L, prVar);
+        this.f3296f = new org.telegram.ui.Components.h5(luVar, 350L, prVar);
+        this.f3297g = new org.telegram.ui.Components.h5(luVar, 350L, prVar);
         o20 o20Var = new o20();
-        this.f3321c = o20Var;
-        o20Var.f28956a = true;
-        o20Var.f28957b = true;
+        this.f3294c = o20Var;
+        o20Var.f28929a = true;
+        o20Var.f28930b = true;
         b(false);
-        o20Var.f28958c.setStrokeWidth(AndroidUtilities.dpf2(2.0f));
-        o20Var.f28958c.setStyle(Paint.Style.STROKE);
-        o20Var.f28958c.setStrokeCap(Paint.Cap.ROUND);
+        o20Var.f28931c.setStrokeWidth(AndroidUtilities.dpf2(2.0f));
+        o20Var.f28931c.setStyle(Paint.Style.STROKE);
+        o20Var.f28931c.setStrokeCap(Paint.Cap.ROUND);
     }
 
     public final Paint a(RectF rectF) {
-        int a2 = this.f3323f.a(this.d, false);
-        int a10 = this.f3324g.a(this.f3322e, false);
-        o20 o20Var = this.f3321c;
+        int a2 = this.f3296f.a(this.d, false);
+        int a10 = this.f3297g.a(this.f3295e, false);
+        o20 o20Var = this.f3294c;
         o20Var.d(a2, a10, 0, 0);
         o20Var.b(rectF.left, rectF.top, rectF.right, rectF.bottom);
-        return o20Var.f28958c;
+        return o20Var.f28931c;
     }
 
     public final void b(boolean z10) {
@@ -58,12 +58,12 @@ public final class l9 {
 
     public final void d(int i10, int i11, boolean z10) {
         this.d = i10;
-        this.f3322e = i11;
+        this.f3295e = i11;
         if (!z10) {
-            this.f3323f.a(i10, true);
-            this.f3324g.a(i11, true);
+            this.f3296f.a(i10, true);
+            this.f3297g.a(i11, true);
         }
-        lu luVar = this.f3320b;
+        lu luVar = this.f3293b;
         if (luVar != null) {
             luVar.run();
         }

@@ -3,10 +3,10 @@ package org.telegram.ui;
 import java.util.List;
 import org.telegram.messenger.MessagesStorage;
 public final class v7 implements MessagesStorage.BooleanCallback {
-    public final h8 f41460a;
+    public final h8 f41433a;
 
     public v7(h8 h8Var) {
-        this.f41460a = h8Var;
+        this.f41433a = h8Var;
     }
 
     @Override
@@ -15,7 +15,7 @@ public final class v7 implements MessagesStorage.BooleanCallback {
         org.telegram.ui.ActionBar.d5 d5Var2;
         org.telegram.ui.ActionBar.d5 d5Var3;
         org.telegram.ui.ActionBar.d5 d5Var4;
-        h8 h8Var = this.f41460a;
+        h8 h8Var = this.f41433a;
         h8Var.finishFragment();
         d5Var = ((org.telegram.ui.ActionBar.n2) h8Var).parentLayout;
         if (d5Var != null) {

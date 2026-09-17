@@ -1,21 +1,21 @@
 package ug;
 public final class k implements Runnable {
-    public final int f47168a;
-    public final n f47169b;
+    public final int f47140a;
+    public final n f47141b;
 
     public k(n nVar, int i10) {
-        this.f47168a = i10;
-        this.f47169b = nVar;
+        this.f47140a = i10;
+        this.f47141b = nVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f47168a) {
+        switch (this.f47140a) {
             case 0:
-                this.f47169b.dismiss();
+                this.f47141b.dismiss();
                 return;
             default:
-                this.f47169b.onBackPressed();
+                this.f47141b.onBackPressed();
                 return;
         }
     }

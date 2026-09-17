@@ -7,29 +7,29 @@ import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.FileLog;
 import org.telegram.ui.Components.EditTextBoldCursor;
 public final class cm0 implements org.telegram.ui.ActionBar.a2, au, dn0 {
-    public final int f35206a;
-    public final pn0 f35207b;
+    public final int f35179a;
+    public final pn0 f35180b;
 
     public cm0(pn0 pn0Var, int i10) {
-        this.f35206a = i10;
-        this.f35207b = pn0Var;
+        this.f35179a = i10;
+        this.f35180b = pn0Var;
     }
 
     @Override
     public void a1(vt vtVar) {
         String str;
-        switch (this.f35206a) {
+        switch (this.f35179a) {
             case 2:
-                pn0 pn0Var = this.f35207b;
-                pn0Var.Y[5].setText(vtVar.f41721a);
-                pn0Var.f39617s = vtVar.d;
+                pn0 pn0Var = this.f35180b;
+                pn0Var.Y[5].setText(vtVar.f41694a);
+                pn0Var.f39590s = vtVar.d;
                 return;
             default:
-                pn0 pn0Var2 = this.f35207b;
-                pn0Var2.Y[0].setText(vtVar.f41721a);
-                if (pn0Var2.U0.indexOf(vtVar.f41721a) != -1) {
+                pn0 pn0Var2 = this.f35180b;
+                pn0Var2.Y[0].setText(vtVar.f41694a);
+                if (pn0Var2.U0.indexOf(vtVar.f41694a) != -1) {
                     pn0Var2.Z0 = true;
-                    String str2 = (String) pn0Var2.V0.get(vtVar.f41721a);
+                    String str2 = (String) pn0Var2.V0.get(vtVar.f41694a);
                     pn0Var2.Y[1].setText(str2);
                     String str3 = (String) pn0Var2.X0.get(str2);
                     EditTextBoldCursor editTextBoldCursor = pn0Var2.Y[2];
@@ -51,14 +51,14 @@ public final class cm0 implements org.telegram.ui.ActionBar.a2, au, dn0 {
 
     @Override
     public void b(String str, String str2) {
-        this.f35207b.x1();
+        this.f35180b.x1();
     }
 
     @Override
     public void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        switch (this.f35206a) {
+        switch (this.f35179a) {
             case 0:
-                pn0 pn0Var = this.f35207b;
+                pn0 pn0Var = this.f35180b;
                 pn0Var.getClass();
                 try {
                     Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
@@ -70,15 +70,15 @@ public final class cm0 implements org.telegram.ui.ActionBar.a2, au, dn0 {
                     return;
                 }
             case 1:
-                this.f35207b.finishFragment();
+                this.f35180b.finishFragment();
                 return;
             case 2:
             case 3:
             default:
-                pn0.a0(this.f35207b);
+                pn0.a0(this.f35180b);
                 return;
             case 4:
-                pn0.d0(this.f35207b);
+                pn0.d0(this.f35180b);
                 return;
         }
     }

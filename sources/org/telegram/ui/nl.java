@@ -8,17 +8,17 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 public final class nl implements pm {
-    public final co f39006a;
-    public final co f39007b;
+    public final co f38979a;
+    public final co f38980b;
 
     public nl(co coVar, co coVar2) {
-        this.f39007b = coVar;
-        this.f39006a = coVar2;
+        this.f38980b = coVar;
+        this.f38979a = coVar2;
     }
 
     @Override
     public final void V0(int i10) {
-        this.f39007b.F(i10, 0, 0, 0, true, true);
+        this.f38980b.F(i10, 0, 0, 0, true, true);
     }
 
     @Override
@@ -27,7 +27,7 @@ public final class nl implements pm {
         ArrayList arrayList;
         org.telegram.ui.Components.yb ybVar;
         int i10;
-        co coVar = this.f39007b;
+        co coVar = this.f38980b;
         if (z10) {
             ArrayList arrayList2 = new ArrayList(coVar.H4);
             ArrayList arrayList3 = new ArrayList(coVar.J4.values());
@@ -53,15 +53,15 @@ public final class nl implements pm {
             coVar.B3 = true;
             int i11 = coVar.C3 + 1;
             coVar.C3 = i11;
-            boolean z12 = coVar.f35305h4;
-            co coVar2 = this.f39006a;
+            boolean z12 = coVar.f35278h4;
+            co coVar2 = this.f38979a;
             if (z12) {
                 G8 = coVar2.G8();
             } else {
                 G8 = coVar.G8();
             }
             int i12 = G8;
-            if (coVar.f35305h4) {
+            if (coVar.f35278h4) {
                 arrayList = coVar2.H4;
             } else {
                 arrayList = coVar.H4;
@@ -69,25 +69,25 @@ public final class nl implements pm {
             ArrayList arrayList4 = new ArrayList(arrayList);
             org.telegram.messenger.x7 x7Var = new org.telegram.messenger.x7(this, z11, arrayList2, arrayList3, i12, i11);
             org.telegram.messenger.voip.l0 l0Var = new org.telegram.messenger.voip.l0(this, z11, arrayList4, i11);
-            ao aoVar = coVar.f35275ea;
+            ao aoVar = coVar.f35248ea;
             if (coVar.getParentActivity() == null) {
                 l0Var.run();
             } else {
                 if (z11) {
                     ?? ncVar = new org.telegram.ui.Components.nc(coVar.getParentActivity(), aoVar);
                     ncVar.c(R.raw.ic_unpin, 28, 28, "Pin", "Line");
-                    ncVar.f28752b.setText(LocaleController.getString(R.string.PinnedMessagesHidden));
-                    ncVar.f28753c.setText(LocaleController.getString(R.string.PinnedMessagesHiddenInfo));
+                    ncVar.f28725b.setText(LocaleController.getString(R.string.PinnedMessagesHidden));
+                    ncVar.f28726c.setText(LocaleController.getString(R.string.PinnedMessagesHiddenInfo));
                     ybVar = ncVar;
                 } else {
                     org.telegram.ui.Components.yb ybVar2 = new org.telegram.ui.Components.yb(coVar.getParentActivity(), aoVar);
                     ybVar2.c(R.raw.ic_unpin, 28, 28, "Pin", "Line");
-                    ybVar2.f32904b.setText(LocaleController.formatPluralString("MessagesUnpinned", i12, new Object[0]));
+                    ybVar2.f32877b.setText(LocaleController.formatPluralString("MessagesUnpinned", i12, new Object[0]));
                     ybVar = ybVar2;
                 }
                 org.telegram.ui.Components.oc ocVar = new org.telegram.ui.Components.oc(coVar.getParentActivity(), aoVar, true);
-                ocVar.f29057a = x7Var;
-                ocVar.f29058b = l0Var;
+                ocVar.f29030a = x7Var;
+                ocVar.f29031b = l0Var;
                 ybVar.setButton(ocVar);
                 qcVar = org.telegram.ui.Components.qc.g(coVar, ybVar, 5000);
             }
@@ -96,13 +96,13 @@ public final class nl implements pm {
         }
         MessageObject messageObject = (MessageObject) coVar.J4.get(Integer.valueOf(coVar.L4));
         if (messageObject == null) {
-            messageObject = (MessageObject) coVar.f35392o6[0].get(coVar.L4);
+            messageObject = (MessageObject) coVar.f35365o6[0].get(coVar.L4);
         }
         coVar.cc(messageObject);
     }
 
     @Override
     public final void r0(String str) {
-        this.f39007b.da(str, false);
+        this.f38980b.da(str, false);
     }
 }

@@ -8,17 +8,17 @@ import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.bd;
 public final class f implements e2.h {
-    public final int f2970a;
+    public final int f2943a;
 
     public f(int i10) {
-        this.f2970a = i10;
+        this.f2943a = i10;
     }
 
     @Override
     public final void accept(Object obj) {
         MessageObject messageObject;
         MessageObject messageObject2;
-        switch (this.f2970a) {
+        switch (this.f2943a) {
             case 0:
                 View view = (View) obj;
                 view.setAlpha(1.0f);
@@ -34,7 +34,7 @@ public final class f implements e2.h {
             case 3:
                 View view2 = (View) obj;
                 if (view2 instanceof ig.x1) {
-                    ((ig.x1) view2).f12302c.invalidate();
+                    ((ig.x1) view2).f12276c.invalidate();
                     return;
                 }
                 return;
@@ -121,11 +121,11 @@ public final class f implements e2.h {
                 View view7 = (View) obj;
                 if (view7 instanceof org.telegram.ui.Cells.g5) {
                     org.telegram.ui.Cells.g5 g5Var = (org.telegram.ui.Cells.g5) view7;
-                    g5Var.f22001b.invalidate();
-                    g5Var.f22002c.invalidate();
+                    g5Var.f21974b.invalidate();
+                    g5Var.f21975c.invalidate();
                     return;
                 } else if (view7 instanceof ig.x1) {
-                    ((ig.x1) view7).f12302c.invalidate();
+                    ((ig.x1) view7).f12276c.invalidate();
                     return;
                 } else {
                     view7.invalidate();
@@ -169,6 +169,6 @@ public final class f implements e2.h {
     }
 
     public f(bd bdVar) {
-        this.f2970a = 20;
+        this.f2943a = 20;
     }
 }

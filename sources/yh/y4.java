@@ -22,68 +22,68 @@ import org.telegram.ui.Components.z5;
 import zh.s5;
 import zh.v7;
 public final class y4 extends View {
-    public final zh.y3 f50688a;
-    public final f6 f50689b;
-    public float f50690c;
+    public final zh.y3 f50659a;
+    public final f6 f50660b;
+    public float f50661c;
     public float d;
-    public Drawable f50691e;
+    public Drawable f50662e;
 
     public y4(Context context, int i10, f6 f6Var) {
         super(context);
-        this.f50689b = f6Var;
+        this.f50660b = f6Var;
         zh.y3 y3Var = new zh.y3(i10, this, f6Var);
-        this.f50688a = y3Var;
-        y3Var.f52925y.setCallback(this);
+        this.f50659a = y3Var;
+        y3Var.f52894y.setCallback(this);
         NotificationCenter.listenEmojiLoading(this);
     }
 
     public final void a(TL_stars.TL_starGiftUnique tL_starGiftUnique, long j3, TLRPC.TL_textWithEntities tL_textWithEntities, String str, boolean z10) {
         float dp;
         float f7;
-        zh.y3 y3Var = this.f50688a;
-        o5 o5Var = y3Var.f52907e;
-        k1 k1Var = y3Var.f52911j;
+        zh.y3 y3Var = this.f50659a;
+        o5 o5Var = y3Var.f52876e;
+        k1 k1Var = y3Var.f52880j;
         ImageReceiver imageReceiver = y3Var.d;
         y3Var.K = false;
         y3Var.N = null;
         y3Var.O = null;
-        y3Var.f52917p = false;
-        y3Var.f52912k = (TL_stars.starGiftAttributeBackdrop) s5.l(tL_starGiftUnique.attributes, TL_stars.starGiftAttributeBackdrop.class);
-        y3Var.f52913l = (TL_stars.starGiftAttributePattern) s5.l(tL_starGiftUnique.attributes, TL_stars.starGiftAttributePattern.class);
-        TL_stars.starGiftAttributeModel stargiftattributemodel = y3Var.f52914m;
-        y3Var.f52914m = (TL_stars.starGiftAttributeModel) s5.l(tL_starGiftUnique.attributes, TL_stars.starGiftAttributeModel.class);
-        Paint paint = y3Var.f52908f;
+        y3Var.f52886p = false;
+        y3Var.f52881k = (TL_stars.starGiftAttributeBackdrop) s5.l(tL_starGiftUnique.attributes, TL_stars.starGiftAttributeBackdrop.class);
+        y3Var.f52882l = (TL_stars.starGiftAttributePattern) s5.l(tL_starGiftUnique.attributes, TL_stars.starGiftAttributePattern.class);
+        TL_stars.starGiftAttributeModel stargiftattributemodel = y3Var.f52883m;
+        y3Var.f52883m = (TL_stars.starGiftAttributeModel) s5.l(tL_starGiftUnique.attributes, TL_stars.starGiftAttributeModel.class);
+        Paint paint = y3Var.f52877f;
         y3Var.h = null;
         paint.setShader(null);
-        TL_stars.starGiftAttributePattern stargiftattributepattern = y3Var.f52913l;
+        TL_stars.starGiftAttributePattern stargiftattributepattern = y3Var.f52882l;
         if (stargiftattributepattern != null) {
             o5Var.i(stargiftattributepattern.document, false);
         } else {
             o5Var.g(null, false);
         }
-        TL_stars.starGiftAttributeModel stargiftattributemodel2 = y3Var.f52914m;
-        if (stargiftattributemodel2 != null && (stargiftattributemodel == null || stargiftattributemodel.document.f19902id != stargiftattributemodel2.document.f19902id)) {
+        TL_stars.starGiftAttributeModel stargiftattributemodel2 = y3Var.f52883m;
+        if (stargiftattributemodel2 != null && (stargiftattributemodel == null || stargiftattributemodel.document.f19875id != stargiftattributemodel2.document.f19875id)) {
             imageReceiver.setAutoRepeatCount(0);
             imageReceiver.clearDecorators();
             imageReceiver.setAutoRepeat(0);
-            v7.Z0(imageReceiver, y3Var.f52914m.document, 110);
+            v7.Z0(imageReceiver, y3Var.f52883m.document, 110);
         }
         boolean z11 = tL_starGiftUnique.burned;
         y3Var.J = z11;
         if (z11) {
-            int v02 = j6.v0(j6.f20926q7, y3Var.f52906c);
-            Paint paint2 = k1Var.f29825a;
+            int v02 = j6.v0(j6.f20899q7, y3Var.f52875c);
+            Paint paint2 = k1Var.f29798a;
             paint2.setShader(null);
             paint2.setColor(v02);
             k1Var.e(11, LocaleController.getString(R.string.Gift2UniqueRibbonBurned), true);
         } else {
-            k1Var.d(y3Var.f52912k, true, false);
+            k1Var.d(y3Var.f52881k, true, false);
             k1Var.e(11, LocaleController.getString(R.string.Gift2UniqueRibbon), true);
         }
         if (y3Var.P) {
             imageReceiver.onAttachedToWindow();
             o5Var.a();
-            y3Var.f52925y.d.onAttachedToWindow();
+            y3Var.f52894y.d.onAttachedToWindow();
         }
         if (AndroidUtilities.isTablet()) {
             dp = AndroidUtilities.getMinTabletSide() * 0.6f;
@@ -98,10 +98,10 @@ public final class y4 extends View {
         y3Var.h(tL_starGiftUnique, j3, tL_textWithEntities, str);
         le.e eVar = y3Var.Q;
         if (z10) {
-            if (eVar.f15405g) {
-                f7 = eVar.f15404f;
+            if (eVar.f15378g) {
+                f7 = eVar.f15377f;
             } else {
-                f7 = eVar.f15403e;
+                f7 = eVar.f15376e;
             }
             int round = Math.round(f7);
             int i10 = y3Var.L;
@@ -116,32 +116,32 @@ public final class y4 extends View {
     }
 
     public zh.y3 getLayout() {
-        return this.f50688a;
+        return this.f50659a;
     }
 
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        zh.y3 y3Var = this.f50688a;
+        zh.y3 y3Var = this.f50659a;
         y3Var.P = true;
         if (y3Var.N != null) {
             y3Var.d.onAttachedToWindow();
-            y3Var.f52907e.a();
-            y3Var.f52925y.d.onAttachedToWindow();
+            y3Var.f52876e.a();
+            y3Var.f52894y.d.onAttachedToWindow();
         }
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        zh.y3 y3Var = this.f50688a;
+        zh.y3 y3Var = this.f50659a;
         y3Var.P = false;
         y3Var.d.onDetachedFromWindow();
-        y3Var.f52907e.b();
-        k0 k0Var = y3Var.f52925y;
+        y3Var.f52876e.b();
+        k0 k0Var = y3Var.f52894y;
         k0Var.d.onDetachedFromWindow();
-        z5.release((View) null, k0Var.f50400q);
-        k0Var.f50400q = null;
+        z5.release((View) null, k0Var.f50371q);
+        k0Var.f50371q = null;
     }
 
     @Override
@@ -152,25 +152,25 @@ public final class y4 extends View {
         } else {
             i10 = 0;
         }
-        f6 f6Var = this.f50689b;
+        f6 f6Var = this.f50660b;
         if (f6Var != null) {
             f6Var.l(0.0f, getY(), getMeasuredWidth(), i10);
         } else {
             j6.q(0.0f, getY(), getMeasuredWidth(), i10);
         }
-        zh.y3 y3Var = this.f50688a;
-        this.f50690c = (getWidth() - ((int) y3Var.Q.f15403e)) / 2.0f;
-        float dp = y3Var.Q.f15403e + AndroidUtilities.dp(8.0f);
+        zh.y3 y3Var = this.f50659a;
+        this.f50661c = (getWidth() - ((int) y3Var.Q.f15376e)) / 2.0f;
+        float dp = y3Var.Q.f15376e + AndroidUtilities.dp(8.0f);
         float width = (getWidth() - dp) / 2.0f;
         float dp2 = this.d - AndroidUtilities.dp(4.0f);
         RectF rectF = AndroidUtilities.rectTmp;
         rectF.set(width, dp2, dp + width, y3Var.M + dp2 + AndroidUtilities.dp(8.0f));
         Rect rect = AndroidUtilities.rectTmp2;
         rectF.round(rect);
-        this.f50691e.setBounds(rect);
-        this.f50691e.draw(canvas);
+        this.f50662e.setBounds(rect);
+        this.f50662e.draw(canvas);
         canvas.save();
-        canvas.translate(this.f50690c, this.d);
+        canvas.translate(this.f50661c, this.d);
         y3Var.a(canvas);
         y3Var.b(canvas);
         canvas.restore();
@@ -179,8 +179,8 @@ public final class y4 extends View {
     @Override
     public final void onMeasure(int i10, int i11) {
         int size = View.MeasureSpec.getSize(i10);
-        zh.y3 y3Var = this.f50688a;
-        this.f50690c = (size - ((int) y3Var.Q.f15403e)) / 2.0f;
+        zh.y3 y3Var = this.f50659a;
+        this.f50661c = (size - ((int) y3Var.Q.f15376e)) / 2.0f;
         float paddingTop = getPaddingTop();
         this.d = paddingTop;
         setMeasuredDimension(size, getPaddingBottom() + ((int) paddingTop) + y3Var.M);
@@ -188,17 +188,17 @@ public final class y4 extends View {
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        return this.f50688a.e(this.f50690c, this.d, motionEvent);
+        return this.f50659a.e(this.f50661c, this.d, motionEvent);
     }
 
     public void setLayoutBackground(Drawable drawable) {
-        this.f50691e = drawable;
+        this.f50662e = drawable;
         invalidate();
     }
 
     @Override
     public final boolean verifyDrawable(Drawable drawable) {
-        if (!super.verifyDrawable(drawable) && drawable != this.f50688a.f52925y) {
+        if (!super.verifyDrawable(drawable) && drawable != this.f50659a.f52894y) {
             return false;
         }
         return true;

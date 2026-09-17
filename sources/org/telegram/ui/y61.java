@@ -12,29 +12,29 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public abstract class y61 extends FrameLayout implements org.telegram.ui.ActionBar.z5 {
-    public final FrameLayout f43028a;
-    public final ImageView f43029b;
-    public final ImageView f43030c;
+    public final FrameLayout f43001a;
+    public final ImageView f43002b;
+    public final ImageView f43003c;
     public final org.telegram.ui.Components.ig0 d;
-    public final View f43031e;
-    public final org.telegram.ui.Components.xm0 f43032f;
+    public final View f43004e;
+    public final org.telegram.ui.Components.xm0 f43005f;
     public final org.telegram.ui.Cells.b6 h;
-    public x61 f43033n;
-    public float f43034r;
-    public ValueAnimator f43035s;
+    public x61 f43006n;
+    public float f43007r;
+    public ValueAnimator f43008s;
     public f01 v;
-    public boolean f43036w;
-    public boolean f43037x;
-    public final j71 f43038y;
+    public boolean f43009w;
+    public boolean f43010x;
+    public final j71 f43011y;
 
     public y61(j71 j71Var, Context context, boolean z10) {
         super(context);
         org.telegram.ui.ActionBar.f6 f6Var = j71Var.Z0;
-        this.f43038y = j71Var;
-        this.f43036w = false;
+        this.f43011y = j71Var;
+        this.f43009w = false;
         setClickable(true);
         FrameLayout frameLayout = new FrameLayout(context);
-        this.f43028a = frameLayout;
+        this.f43001a = frameLayout;
         if (z10) {
             setBackgroundColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.G8, f6Var));
         }
@@ -42,15 +42,15 @@ public abstract class y61 extends FrameLayout implements org.telegram.ui.ActionB
         int i10 = org.telegram.ui.ActionBar.j6.He;
         frameLayout.setBackground(org.telegram.ui.ActionBar.j6.b0(dp, org.telegram.ui.ActionBar.j6.v0(i10, f6Var)));
         frameLayout.setClipToOutline(true);
-        bi.z1 z1Var = yf.j0.f50142a;
+        bi.z1 z1Var = yf.j0.f50113a;
         frameLayout.setOutlineProvider(new yf.i0(0, AndroidUtilities.dp(18.0f)));
         addView(frameLayout, w7.x5.d(-1, 36.0f, 55, 8.0f, 12.0f, 8.0f, 8.0f));
         ImageView imageView = new ImageView(context);
-        this.f43029b = imageView;
+        this.f43002b = imageView;
         ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
         imageView.setScaleType(scaleType);
         org.telegram.ui.Components.xm0 xm0Var = new org.telegram.ui.Components.xm0();
-        this.f43032f = xm0Var;
+        this.f43005f = xm0Var;
         xm0Var.c(0, false, false);
         int i11 = org.telegram.ui.ActionBar.j6.Je;
         xm0Var.a(org.telegram.ui.ActionBar.j6.v0(i11, f6Var));
@@ -63,14 +63,14 @@ public abstract class y61 extends FrameLayout implements org.telegram.ui.ActionB
                     case 0:
                         a61 a61Var2 = a61Var;
                         org.telegram.ui.Cells.b6 b6Var = a61Var2.h;
-                        if (a61Var2.f43032f.f32649k == 1) {
+                        if (a61Var2.f43005f.f32622k == 1) {
                             b6Var.setText("");
-                            a61Var2.f43038y.v(null, true, false);
-                            x61 x61Var = a61Var2.f43033n;
+                            a61Var2.f43011y.v(null, true, false);
+                            x61 x61Var = a61Var2.f43006n;
                             if (x61Var != null) {
                                 x61Var.E1(null);
-                                a61Var2.f43033n.F1(true, true);
-                                a61Var2.f43033n.C1();
+                                a61Var2.f43006n.F1(true, true);
+                                a61Var2.f43006n.C1();
                             }
                             b6Var.clearAnimation();
                             b6Var.animate().translationX(0.0f).setInterpolator(org.telegram.ui.Components.pr.h).start();
@@ -80,7 +80,7 @@ public abstract class y61 extends FrameLayout implements org.telegram.ui.ActionB
                         return;
                     case 1:
                         a61 a61Var3 = a61Var;
-                        j71 j71Var2 = a61Var3.f43038y;
+                        j71 j71Var2 = a61Var3.f43011y;
                         if (!j71Var2.u()) {
                             j71Var2.q();
                             a61Var3.h.requestFocus();
@@ -92,11 +92,11 @@ public abstract class y61 extends FrameLayout implements org.telegram.ui.ActionB
                         a61 a61Var4 = a61Var;
                         org.telegram.ui.Cells.b6 b6Var2 = a61Var4.h;
                         b6Var2.setText("");
-                        a61Var4.f43038y.v(null, true, false);
-                        x61 x61Var2 = a61Var4.f43033n;
+                        a61Var4.f43011y.v(null, true, false);
+                        x61 x61Var2 = a61Var4.f43006n;
                         if (x61Var2 != null) {
                             x61Var2.E1(null);
-                            a61Var4.f43033n.F1(true, true);
+                            a61Var4.f43006n.F1(true, true);
                         }
                         b6Var2.clearAnimation();
                         b6Var2.animate().translationX(0.0f).setInterpolator(org.telegram.ui.Components.pr.h).start();
@@ -132,7 +132,7 @@ public abstract class y61 extends FrameLayout implements org.telegram.ui.ActionB
         ig0Var.addView(b6Var, w7.x5.d(-1, -1.0f, 119, 0.0f, 0.0f, 32.0f, 0.0f));
         if (z10) {
             View view = new View(context);
-            this.f43031e = view;
+            this.f43004e = view;
             Drawable mutate = context.getResources().getDrawable(R.drawable.gradient_right).mutate();
             mutate.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.j6.v0(i10, f6Var), PorterDuff.Mode.MULTIPLY));
             view.setBackground(mutate);
@@ -146,14 +146,14 @@ public abstract class y61 extends FrameLayout implements org.telegram.ui.ActionB
                     case 0:
                         a61 a61Var2 = a61Var;
                         org.telegram.ui.Cells.b6 b6Var2 = a61Var2.h;
-                        if (a61Var2.f43032f.f32649k == 1) {
+                        if (a61Var2.f43005f.f32622k == 1) {
                             b6Var2.setText("");
-                            a61Var2.f43038y.v(null, true, false);
-                            x61 x61Var = a61Var2.f43033n;
+                            a61Var2.f43011y.v(null, true, false);
+                            x61 x61Var = a61Var2.f43006n;
                             if (x61Var != null) {
                                 x61Var.E1(null);
-                                a61Var2.f43033n.F1(true, true);
-                                a61Var2.f43033n.C1();
+                                a61Var2.f43006n.F1(true, true);
+                                a61Var2.f43006n.C1();
                             }
                             b6Var2.clearAnimation();
                             b6Var2.animate().translationX(0.0f).setInterpolator(org.telegram.ui.Components.pr.h).start();
@@ -163,7 +163,7 @@ public abstract class y61 extends FrameLayout implements org.telegram.ui.ActionB
                         return;
                     case 1:
                         a61 a61Var3 = a61Var;
-                        j71 j71Var2 = a61Var3.f43038y;
+                        j71 j71Var2 = a61Var3.f43011y;
                         if (!j71Var2.u()) {
                             j71Var2.q();
                             a61Var3.h.requestFocus();
@@ -175,11 +175,11 @@ public abstract class y61 extends FrameLayout implements org.telegram.ui.ActionB
                         a61 a61Var4 = a61Var;
                         org.telegram.ui.Cells.b6 b6Var22 = a61Var4.h;
                         b6Var22.setText("");
-                        a61Var4.f43038y.v(null, true, false);
-                        x61 x61Var2 = a61Var4.f43033n;
+                        a61Var4.f43011y.v(null, true, false);
+                        x61 x61Var2 = a61Var4.f43006n;
                         if (x61Var2 != null) {
                             x61Var2.E1(null);
-                            a61Var4.f43033n.F1(true, true);
+                            a61Var4.f43006n.F1(true, true);
                         }
                         b6Var22.clearAnimation();
                         b6Var22.animate().translationX(0.0f).setInterpolator(org.telegram.ui.Components.pr.h).start();
@@ -189,10 +189,10 @@ public abstract class y61 extends FrameLayout implements org.telegram.ui.ActionB
             }
         });
         ImageView imageView2 = new ImageView(context);
-        this.f43030c = imageView2;
+        this.f43003c = imageView2;
         imageView2.setScaleType(scaleType);
         imageView2.setImageDrawable(new di.j2(a61Var));
-        imageView2.setBackground(org.telegram.ui.ActionBar.j6.f0(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f20781i6, f6Var), 1, AndroidUtilities.dp(15.0f)));
+        imageView2.setBackground(org.telegram.ui.ActionBar.j6.f0(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f20754i6, f6Var), 1, AndroidUtilities.dp(15.0f)));
         imageView2.setAlpha(0.0f);
         imageView2.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -201,14 +201,14 @@ public abstract class y61 extends FrameLayout implements org.telegram.ui.ActionB
                     case 0:
                         a61 a61Var2 = a61Var;
                         org.telegram.ui.Cells.b6 b6Var2 = a61Var2.h;
-                        if (a61Var2.f43032f.f32649k == 1) {
+                        if (a61Var2.f43005f.f32622k == 1) {
                             b6Var2.setText("");
-                            a61Var2.f43038y.v(null, true, false);
-                            x61 x61Var = a61Var2.f43033n;
+                            a61Var2.f43011y.v(null, true, false);
+                            x61 x61Var = a61Var2.f43006n;
                             if (x61Var != null) {
                                 x61Var.E1(null);
-                                a61Var2.f43033n.F1(true, true);
-                                a61Var2.f43033n.C1();
+                                a61Var2.f43006n.F1(true, true);
+                                a61Var2.f43006n.C1();
                             }
                             b6Var2.clearAnimation();
                             b6Var2.animate().translationX(0.0f).setInterpolator(org.telegram.ui.Components.pr.h).start();
@@ -218,7 +218,7 @@ public abstract class y61 extends FrameLayout implements org.telegram.ui.ActionB
                         return;
                     case 1:
                         a61 a61Var3 = a61Var;
-                        j71 j71Var2 = a61Var3.f43038y;
+                        j71 j71Var2 = a61Var3.f43011y;
                         if (!j71Var2.u()) {
                             j71Var2.q();
                             a61Var3.h.requestFocus();
@@ -230,11 +230,11 @@ public abstract class y61 extends FrameLayout implements org.telegram.ui.ActionB
                         a61 a61Var4 = a61Var;
                         org.telegram.ui.Cells.b6 b6Var22 = a61Var4.h;
                         b6Var22.setText("");
-                        a61Var4.f43038y.v(null, true, false);
-                        x61 x61Var2 = a61Var4.f43033n;
+                        a61Var4.f43011y.v(null, true, false);
+                        x61 x61Var2 = a61Var4.f43006n;
                         if (x61Var2 != null) {
                             x61Var2.E1(null);
-                            a61Var4.f43033n.F1(true, true);
+                            a61Var4.f43006n.F1(true, true);
                         }
                         b6Var22.clearAnimation();
                         b6Var22.animate().translationX(0.0f).setInterpolator(org.telegram.ui.Components.pr.h).start();
@@ -264,7 +264,7 @@ public abstract class y61 extends FrameLayout implements org.telegram.ui.ActionB
             AndroidUtilities.cancelRunOnUIThread(f01Var2);
             a61Var.v = null;
         }
-        AndroidUtilities.updateViewShow(a61Var.f43030c, false);
+        AndroidUtilities.updateViewShow(a61Var.f43003c, false);
     }
 
     public final void b() {
@@ -273,32 +273,32 @@ public abstract class y61 extends FrameLayout implements org.telegram.ui.ActionB
 
     public final void c(boolean z10) {
         float f7;
-        if (z10 == this.f43036w) {
+        if (z10 == this.f43009w) {
             return;
         }
-        this.f43036w = z10;
-        ValueAnimator valueAnimator = this.f43035s;
+        this.f43009w = z10;
+        ValueAnimator valueAnimator = this.f43008s;
         if (valueAnimator != null) {
             valueAnimator.cancel();
         }
-        float f10 = this.f43034r;
+        float f10 = this.f43007r;
         if (z10) {
             f7 = 1.0f;
         } else {
             f7 = 0.0f;
         }
         ValueAnimator ofFloat = ValueAnimator.ofFloat(f10, f7);
-        this.f43035s = ofFloat;
+        this.f43008s = ofFloat;
         ofFloat.addUpdateListener(new b21(this, 9));
-        this.f43035s.setDuration(120L);
-        this.f43035s.setInterpolator(org.telegram.ui.Components.pr.h);
-        this.f43035s.start();
+        this.f43008s.setDuration(120L);
+        this.f43008s.setInterpolator(org.telegram.ui.Components.pr.h);
+        this.f43008s.start();
     }
 
     @Override
     public final void d() {
-        if (this.f43037x) {
-            this.f43028a.setBackground(org.telegram.ui.ActionBar.j6.b0(AndroidUtilities.dp(18.0f), org.telegram.ui.ActionBar.j6.l1(0.06f, org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.E8, this.f43038y.Z0))));
+        if (this.f43010x) {
+            this.f43001a.setBackground(org.telegram.ui.ActionBar.j6.b0(AndroidUtilities.dp(18.0f), org.telegram.ui.ActionBar.j6.l1(0.06f, org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.E8, this.f43011y.Z0))));
         }
     }
 
@@ -307,20 +307,20 @@ public abstract class y61 extends FrameLayout implements org.telegram.ui.ActionB
         String str;
         x61 x61Var;
         x61 x61Var2;
-        org.telegram.ui.Components.xm0 xm0Var = this.f43032f;
-        int i10 = xm0Var.f32649k;
+        org.telegram.ui.Components.xm0 xm0Var = this.f43005f;
+        int i10 = xm0Var.f32622k;
         org.telegram.ui.Cells.b6 b6Var = this.h;
         int i11 = 2;
-        if (i10 == 2 && ((b6Var.length() != 0 || ((x61Var2 = this.f43033n) != null && x61Var2.getSelectedCategory() != null)) && !z10)) {
+        if (i10 == 2 && ((b6Var.length() != 0 || ((x61Var2 = this.f43006n) != null && x61Var2.getSelectedCategory() != null)) && !z10)) {
             return;
         }
-        if (b6Var.length() <= 0 && ((x61Var = this.f43033n) == null || x61Var.f32035o3 <= 0.5f || (!x61Var.j3 && x61Var.getSelectedCategory() == null))) {
+        if (b6Var.length() <= 0 && ((x61Var = this.f43006n) == null || x61Var.f32008o3 <= 0.5f || (!x61Var.j3 && x61Var.getSelectedCategory() == null))) {
             r62 = 0;
         } else {
             r62 = 1;
         }
         xm0Var.b(r62);
-        ImageView imageView = this.f43029b;
+        ImageView imageView = this.f43002b;
         imageView.setClickable(r62);
         if (r62 != 0) {
             str = LocaleController.getString(R.string.AccDescrGoBack);

@@ -5,26 +5,26 @@ import android.view.View;
 import android.widget.LinearLayout;
 import org.telegram.messenger.AndroidUtilities;
 public final class y11 extends LinearLayout implements org.telegram.ui.ActionBar.z5 {
-    public final org.telegram.ui.ActionBar.f6 f32848a;
-    public final x9 f32849b;
-    public final d90 f32850c;
+    public final org.telegram.ui.ActionBar.f6 f32821a;
+    public final x9 f32822b;
+    public final d90 f32823c;
     public final d90 d;
-    public int f32851e;
-    public int f32852f;
+    public int f32824e;
+    public int f32825f;
 
     public y11(Context context, org.telegram.ui.ActionBar.f6 f6Var) {
         super(context);
-        this.f32851e = 90;
-        this.f32848a = f6Var;
+        this.f32824e = 90;
+        this.f32821a = f6Var;
         setOrientation(1);
         x9 x9Var = new x9(context);
-        this.f32849b = x9Var;
+        this.f32822b = x9Var;
         x9Var.getImageReceiver().setAutoRepeatCount(1);
         x9Var.getImageReceiver().setAutoRepeat(1);
         x9Var.setOnClickListener(new x70(this, 22));
         addView(x9Var, w7.x5.t(90, 90, 17, 0, 9, 0, 9));
         d90 d90Var = new d90(context, null);
-        this.f32850c = d90Var;
+        this.f32823c = d90Var;
         d90Var.setTextSize(1, 20.0f);
         d90Var.setGravity(17);
         d90Var.setTypeface(AndroidUtilities.bold());
@@ -43,9 +43,9 @@ public final class y11 extends LinearLayout implements org.telegram.ui.ActionBar
     public final void d() {
         int i10;
         int i11 = org.telegram.ui.ActionBar.j6.G6;
-        org.telegram.ui.ActionBar.f6 f6Var = this.f32848a;
+        org.telegram.ui.ActionBar.f6 f6Var = this.f32821a;
         int v02 = org.telegram.ui.ActionBar.j6.v0(i11, f6Var);
-        d90 d90Var = this.f32850c;
+        d90 d90Var = this.f32823c;
         d90Var.setTextColor(v02);
         int i12 = org.telegram.ui.ActionBar.j6.gc;
         d90Var.setLinkTextColor(org.telegram.ui.ActionBar.j6.v0(i12, f6Var));
@@ -56,13 +56,13 @@ public final class y11 extends LinearLayout implements org.telegram.ui.ActionBar
         d90 d90Var2 = this.d;
         d90Var2.setTextColor(v03);
         d90Var2.setLinkTextColor(org.telegram.ui.ActionBar.j6.v0(i12, f6Var));
-        int i13 = this.f32851e;
+        int i13 = this.f32824e;
         if (d90Var.getVisibility() == 0) {
             i10 = 0;
         } else {
             i10 = 9;
         }
-        this.f32849b.setLayoutParams(w7.x5.t(i13, i13, 17, 0, i10, 0, 9));
+        this.f32822b.setLayoutParams(w7.x5.t(i13, i13, 17, 0, i10, 0, 9));
     }
 
     public int[] getColorKeys() {
@@ -75,33 +75,33 @@ public final class y11 extends LinearLayout implements org.telegram.ui.ActionBar
     }
 
     public void setEmoji(int i10) {
-        if (this.f32852f != i10) {
-            this.f32852f = i10;
+        if (this.f32825f != i10) {
+            this.f32825f = i10;
             xi0 xi0Var = new xi0(i10, AndroidUtilities.dp(90.0f), AndroidUtilities.dp(90.0f));
-            x9 x9Var = this.f32849b;
+            x9 x9Var = this.f32822b;
             x9Var.setImageDrawable(xi0Var);
             x9Var.getImageReceiver().setAutoRepeat(2);
         }
     }
 
     public void setEmojiSize(int i10) {
-        if (this.f32851e != i10) {
-            this.f32851e = i10;
+        if (this.f32824e != i10) {
+            this.f32824e = i10;
             d();
         }
     }
 
     public void setEmojiStatic(int i10) {
-        if (this.f32852f != i10) {
-            x9 x9Var = this.f32849b;
+        if (this.f32825f != i10) {
+            x9 x9Var = this.f32822b;
             x9Var.b();
-            this.f32852f = i10;
+            this.f32825f = i10;
             x9Var.setImageResource(i10);
         }
     }
 
     public void setText(CharSequence charSequence) {
-        this.f32850c.setVisibility(8);
+        this.f32823c.setVisibility(8);
         d90 d90Var = this.d;
         d90Var.setText(charSequence);
         d90Var.setMaxWidth(di.f4.a(charSequence, d90Var.getPaint()));

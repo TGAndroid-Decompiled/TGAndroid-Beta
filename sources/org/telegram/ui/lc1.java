@@ -6,12 +6,12 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.tgnet.TLRPC;
 public final class lc1 implements ImageReceiver.ImageReceiverDelegate, org.telegram.ui.Components.al0, org.telegram.ui.Components.k81, org.telegram.ui.ActionBar.a2 {
-    public final int f38329a;
-    public final wd1 f38330b;
+    public final int f38302a;
+    public final wd1 f38303b;
 
     public lc1(wd1 wd1Var, int i10) {
-        this.f38329a = i10;
-        this.f38330b = wd1Var;
+        this.f38302a = i10;
+        this.f38303b = wd1Var;
     }
 
     @Override
@@ -19,7 +19,7 @@ public final class lc1 implements ImageReceiver.ImageReceiverDelegate, org.teleg
         if (view instanceof org.telegram.ui.Cells.t1) {
             org.telegram.ui.Cells.t1 t1Var = (org.telegram.ui.Cells.t1) view;
             boolean i32 = t1Var.i3(f7);
-            wd1 wd1Var = this.f38330b;
+            wd1 wd1Var = this.f38303b;
             if (i32) {
                 if (t1Var.getMessageObject().isOutOwner()) {
                     wd1Var.Y0(3, true);
@@ -40,17 +40,17 @@ public final class lc1 implements ImageReceiver.ImageReceiverDelegate, org.teleg
 
     @Override
     public void didSetImage(ImageReceiver imageReceiver, boolean z10, boolean z11, boolean z12) {
-        wd1 wd1Var = this.f38330b;
+        wd1 wd1Var = this.f38303b;
         if (!(wd1Var.B1 instanceof gj1)) {
             Drawable drawable = imageReceiver.getDrawable();
             if (z10 && drawable != null) {
-                wc1 wc1Var = wd1Var.f41942a;
+                wc1 wc1Var = wd1Var.f41915a;
                 AndroidUtilities.calcDrawableColor(drawable);
                 wc1Var.b(wd1Var.P0(drawable), drawable, Float.valueOf(wd1Var.l1));
-                if (!z11 && wd1Var.F1 && wd1Var.f42003w1 == null) {
-                    wd1Var.f42005x0.getImageReceiver().setCrossfadeWithOldImage(false);
+                if (!z11 && wd1Var.F1 && wd1Var.f41976w1 == null) {
+                    wd1Var.f41978x0.getImageReceiver().setCrossfadeWithOldImage(false);
                     wd1Var.i1();
-                    wd1Var.f42005x0.getImageReceiver().setCrossfadeWithOldImage(true);
+                    wd1Var.f41978x0.getImageReceiver().setCrossfadeWithOldImage(true);
                 }
                 wd1Var.V0();
             }
@@ -65,21 +65,21 @@ public final class lc1 implements ImageReceiver.ImageReceiverDelegate, org.teleg
     @Override
     public void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
         boolean z10;
-        switch (this.f38329a) {
+        switch (this.f38302a) {
             case 3:
-                this.f38330b.f41993s0.getActionBarMenuOnItemClick().b(4);
+                this.f38303b.f41966s0.getActionBarMenuOnItemClick().b(4);
                 return;
             case 4:
-                this.f38330b.O0(false);
+                this.f38303b.O0(false);
                 return;
             case 5:
-                wd1 wd1Var = this.f38330b;
-                org.telegram.ui.ActionBar.h6 h6Var = wd1Var.f41992s;
-                if (h6Var.f20525j == 4294967296L) {
-                    h6Var.f20525j = 0L;
-                    h6Var.f20526k = 0L;
-                    h6Var.f20527l = 0L;
-                    h6Var.f20528m = 0L;
+                wd1 wd1Var = this.f38303b;
+                org.telegram.ui.ActionBar.h6 h6Var = wd1Var.f41965s;
+                if (h6Var.f20498j == 4294967296L) {
+                    h6Var.f20498j = 0L;
+                    h6Var.f20499k = 0L;
+                    h6Var.f20500l = 0L;
+                    h6Var.f20501m = 0L;
                     wd1Var.m1(false);
                     org.telegram.ui.ActionBar.j6.n1(false, false);
                 }
@@ -88,19 +88,19 @@ public final class lc1 implements ImageReceiver.ImageReceiverDelegate, org.teleg
                 wd1Var.Y0(2, false);
                 return;
             case 6:
-                wd1 wd1Var2 = this.f38330b;
-                org.telegram.ui.ActionBar.h6 h6Var2 = wd1Var2.f41992s;
-                if (org.telegram.ui.ActionBar.j6.Z0() && org.telegram.ui.ActionBar.j6.I.f20581i0.d != 0) {
-                    org.telegram.ui.ActionBar.b6 b6Var = h6Var2.f20539y;
-                    h6Var2.f20525j = b6Var.d;
-                    h6Var2.f20526k = b6Var.f20305e;
-                    h6Var2.f20527l = b6Var.f20306f;
-                    h6Var2.f20528m = b6Var.f20307g;
-                    h6Var2.f20529n = b6Var.h;
-                    String str = b6Var.f20304c;
-                    h6Var2.f20530o = str;
-                    float f7 = b6Var.f20310k;
-                    h6Var2.f20531p = f7;
+                wd1 wd1Var2 = this.f38303b;
+                org.telegram.ui.ActionBar.h6 h6Var2 = wd1Var2.f41965s;
+                if (org.telegram.ui.ActionBar.j6.Z0() && org.telegram.ui.ActionBar.j6.I.f20554i0.d != 0) {
+                    org.telegram.ui.ActionBar.b6 b6Var = h6Var2.f20512y;
+                    h6Var2.f20498j = b6Var.d;
+                    h6Var2.f20499k = b6Var.f20278e;
+                    h6Var2.f20500l = b6Var.f20279f;
+                    h6Var2.f20501m = b6Var.f20280g;
+                    h6Var2.f20502n = b6Var.h;
+                    String str = b6Var.f20277c;
+                    h6Var2.f20503o = str;
+                    float f7 = b6Var.f20283k;
+                    h6Var2.f20504p = f7;
                     wd1Var2.l1 = f7;
                     if (str != null && !"c".equals(str)) {
                         int size = wd1Var2.U0.size();
@@ -108,7 +108,7 @@ public final class lc1 implements ImageReceiver.ImageReceiverDelegate, org.teleg
                         while (true) {
                             if (i11 < size) {
                                 TLRPC.TL_wallPaper tL_wallPaper = (TLRPC.TL_wallPaper) wd1Var2.U0.get(i11);
-                                if (tL_wallPaper.pattern && h6Var2.f20530o.equals(tL_wallPaper.slug)) {
+                                if (tL_wallPaper.pattern && h6Var2.f20503o.equals(tL_wallPaper.slug)) {
                                     wd1Var2.W0 = tL_wallPaper;
                                 } else {
                                     i11++;
@@ -129,13 +129,13 @@ public final class lc1 implements ImageReceiver.ImageReceiverDelegate, org.teleg
                     wd1Var2.m1(false);
                     org.telegram.ui.ActionBar.j6.n1(false, false);
                 }
-                Drawable background = wd1Var2.f42005x0.getBackground();
+                Drawable background = wd1Var2.f41978x0.getBackground();
                 if (background instanceof org.telegram.ui.Components.dc0) {
                     org.telegram.ui.Components.dc0 dc0Var = (org.telegram.ui.Components.dc0) background;
                     dc0Var.t(null, 100);
                     if (org.telegram.ui.ActionBar.j6.I.q()) {
                         if (wd1Var2.l1 < 0.0f) {
-                            wd1Var2.f42005x0.getImageReceiver().setGradientBitmap(dc0Var.f25381k);
+                            wd1Var2.f41978x0.getImageReceiver().setGradientBitmap(dc0Var.f25354k);
                         }
                         org.telegram.ui.Cells.j0 j0Var = wd1Var2.T0;
                         if (j0Var != null) {
@@ -156,13 +156,13 @@ public final class lc1 implements ImageReceiver.ImageReceiverDelegate, org.teleg
                 wd1Var2.Y0(2, false);
                 return;
             default:
-                wd1 wd1Var3 = this.f38330b;
-                org.telegram.ui.ActionBar.h6 h6Var3 = wd1Var3.f41992s;
-                if (h6Var3.f20525j == 4294967296L) {
-                    h6Var3.f20525j = 0L;
-                    h6Var3.f20526k = 0L;
-                    h6Var3.f20527l = 0L;
-                    h6Var3.f20528m = 0L;
+                wd1 wd1Var3 = this.f38303b;
+                org.telegram.ui.ActionBar.h6 h6Var3 = wd1Var3.f41965s;
+                if (h6Var3.f20498j == 4294967296L) {
+                    h6Var3.f20498j = 0L;
+                    h6Var3.f20499k = 0L;
+                    h6Var3.f20500l = 0L;
+                    h6Var3.f20501m = 0L;
                     wd1Var3.m1(false);
                     org.telegram.ui.ActionBar.j6.n1(false, false);
                 }
@@ -175,17 +175,17 @@ public final class lc1 implements ImageReceiver.ImageReceiverDelegate, org.teleg
 
     @Override
     public void h(int i10, int i11) {
-        wd1 wd1Var = this.f38330b;
+        wd1 wd1Var = this.f38303b;
         if (!wd1Var.E1) {
             return;
         }
-        wd1Var.f42005x0.getBackground();
+        wd1Var.f41978x0.getBackground();
         float f7 = 1.0f;
         if (wd1Var.B0 != null) {
-            f7 = (wd1Var.f42005x0.getScaleX() - 1.0f) / (wd1Var.f42009y1 - 1.0f);
+            f7 = (wd1Var.f41978x0.getScaleX() - 1.0f) / (wd1Var.f41982y1 - 1.0f);
         }
-        wd1Var.f42005x0.setTranslationX(i10 * f7);
-        wd1Var.f42005x0.setTranslationY(i11 * f7);
+        wd1Var.f41978x0.setTranslationX(i10 * f7);
+        wd1Var.f41978x0.setTranslationY(i11 * f7);
     }
 
     @Override

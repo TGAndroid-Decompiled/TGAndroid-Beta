@@ -20,29 +20,29 @@ import org.telegram.messenger.VideoEditedInfo;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class et0 implements qt {
-    public final String f36198a;
-    public final VideoEditedInfo f36199b;
-    public final MediaController.PhotoEntry f36200c;
+    public final String f36171a;
+    public final VideoEditedInfo f36172b;
+    public final MediaController.PhotoEntry f36173c;
     public final boolean d;
-    public final int f36201e;
-    public final int f36202f;
-    public final boolean f36203g;
+    public final int f36174e;
+    public final int f36175f;
+    public final boolean f36176g;
     public final PhotoViewer h;
 
     public et0(PhotoViewer photoViewer, String str, VideoEditedInfo videoEditedInfo, MediaController.PhotoEntry photoEntry, boolean z10, int i10, int i11, boolean z11) {
         this.h = photoViewer;
-        this.f36198a = str;
-        this.f36199b = videoEditedInfo;
-        this.f36200c = photoEntry;
+        this.f36171a = str;
+        this.f36172b = videoEditedInfo;
+        this.f36173c = photoEntry;
         this.d = z10;
-        this.f36201e = i10;
-        this.f36202f = i11;
-        this.f36203g = z11;
+        this.f36174e = i10;
+        this.f36175f = i11;
+        this.f36176g = z11;
     }
 
     @Override
     public final boolean A() {
-        if (this.h.f33753x7 != null) {
+        if (this.h.f33726x7 != null) {
             return true;
         }
         return false;
@@ -66,9 +66,9 @@ public final class et0 implements qt {
     @Override
     public final void G(CharSequence charSequence, String str, nf nfVar) {
         PhotoViewer photoViewer = this.h;
-        photoViewer.f33743w7 = true;
+        photoViewer.f33716w7 = true;
         R();
-        photoViewer.p5.p(this.f36198a, this.f36199b, str, charSequence, false, 0L, null, null, photoViewer.v1(), this.f36200c.thumbPath, nfVar, null);
+        photoViewer.p5.p(this.f36171a, this.f36172b, str, charSequence, false, 0L, null, null, photoViewer.v1(), this.f36173c.thumbPath, nfVar, null);
     }
 
     @Override
@@ -78,7 +78,7 @@ public final class et0 implements qt {
 
     @Override
     public final boolean J() {
-        if (this.h.f33715t7 != null) {
+        if (this.h.f33688t7 != null) {
             return true;
         }
         return false;
@@ -92,9 +92,9 @@ public final class et0 implements qt {
     @Override
     public final void O(String str) {
         PhotoViewer photoViewer = this.h;
-        photoViewer.f33743w7 = true;
+        photoViewer.f33716w7 = true;
         R();
-        photoViewer.p5.p(this.f36198a, this.f36199b, str, null, true, 0L, null, null, photoViewer.v1(), this.f36200c.thumbPath, null, null);
+        photoViewer.p5.p(this.f36171a, this.f36172b, str, null, true, 0L, null, null, photoViewer.v1(), this.f36173c.thumbPath, null, null);
     }
 
     @Override
@@ -110,7 +110,7 @@ public final class et0 implements qt {
     public final void R() {
         st q6 = st.q();
         ImageReceiver imageReceiver = q6.A;
-        MediaController.PhotoEntry photoEntry = this.f36200c;
+        MediaController.PhotoEntry photoEntry = this.f36173c;
         if (photoEntry.thumbPath != null) {
             try {
                 new File(photoEntry.thumbPath).delete();
@@ -197,9 +197,9 @@ public final class et0 implements qt {
     @Override
     public final void m(String str) {
         PhotoViewer photoViewer = this.h;
-        photoViewer.f33743w7 = true;
+        photoViewer.f33716w7 = true;
         R();
-        photoViewer.p5.p(this.f36198a, this.f36199b, str, null, false, 0L, null, null, photoViewer.v1(), this.f36200c.thumbPath, null, photoViewer.f33753x7);
+        photoViewer.p5.p(this.f36171a, this.f36172b, str, null, false, 0L, null, null, photoViewer.v1(), this.f36173c.thumbPath, null, photoViewer.f33726x7);
     }
 
     @Override
@@ -215,9 +215,9 @@ public final class et0 implements qt {
     @Override
     public final void v(TLRPC.StickerSet stickerSet, String str) {
         PhotoViewer photoViewer = this.h;
-        photoViewer.f33743w7 = true;
+        photoViewer.f33716w7 = true;
         R();
-        photoViewer.p5.p(this.f36198a, this.f36199b, str, null, false, 0L, stickerSet, photoViewer.f33715t7, photoViewer.v1(), this.f36200c.thumbPath, null, null);
+        photoViewer.p5.p(this.f36171a, this.f36172b, str, null, false, 0L, stickerSet, photoViewer.f33688t7, photoViewer.v1(), this.f36173c.thumbPath, null, null);
     }
 
     @Override
@@ -239,20 +239,20 @@ public final class et0 implements qt {
         av0 av0Var = photoViewer.d;
         if (av0Var != null) {
             boolean P = av0Var.P();
-            MediaController.PhotoEntry photoEntry = this.f36200c;
+            MediaController.PhotoEntry photoEntry = this.f36173c;
             if (P) {
                 if (photoViewer.l4 == null) {
                     return;
                 }
-                photoViewer.f33743w7 = true;
+                photoViewer.f33716w7 = true;
                 R();
-                photoViewer.p5.p(this.f36198a, this.f36199b, str, null, false, photoViewer.l4.a(), null, null, photoViewer.v1(), photoEntry.thumbPath, null, null);
+                photoViewer.p5.p(this.f36171a, this.f36172b, str, null, false, photoViewer.l4.a(), null, null, photoViewer.v1(), photoEntry.thumbPath, null, null);
                 return;
             }
-            photoViewer.f33743w7 = true;
+            photoViewer.f33716w7 = true;
             R();
-            photoEntry.imagePath = this.f36198a;
-            photoViewer.d.o(photoViewer.P4, this.f36199b, this.d, this.f36201e, this.f36202f, this.f36203g);
+            photoEntry.imagePath = this.f36171a;
+            photoViewer.d.o(photoViewer.P4, this.f36172b, this.d, this.f36174e, this.f36175f, this.f36176g);
             NotificationCenter.getInstance(UserConfig.selectedAccount).postNotificationNameOnUIThread(NotificationCenter.customStickerCreated, Boolean.TRUE);
         }
     }

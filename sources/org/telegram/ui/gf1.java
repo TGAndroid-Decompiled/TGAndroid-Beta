@@ -53,12 +53,12 @@ public final class gf1 extends s4.c0 {
 
     @Override
     public final void v0(RecyclerView recyclerView, s4.z0 z0Var, int i10) {
-        if (this.J.f36096x > 0 && i10 == 1) {
+        if (this.J.f36069x > 0 && i10 == 1) {
             super.v0(recyclerView, z0Var, i10);
             return;
         }
         ki.p pVar = new ki.p(recyclerView.getContext(), 0);
-        pVar.f45935a = i10;
+        pVar.f45907a = i10;
         w0(pVar);
     }
 }

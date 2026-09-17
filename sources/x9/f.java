@@ -19,11 +19,11 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.telegram.ui.Cells.p6;
 public final class f {
-    public static final Charset f49338b = Charset.forName("UTF-8");
-    public final ba.c f49339a;
+    public static final Charset f49309b = Charset.forName("UTF-8");
+    public final ba.c f49310a;
 
     public f(ba.c cVar) {
-        this.f49339a = cVar;
+        this.f49310a = cVar;
     }
 
     public static HashMap a(String str) {
@@ -60,7 +60,7 @@ public final class f {
         JSONArray jSONArray = new JSONArray();
         for (int i10 = 0; i10 < list.size(); i10++) {
             try {
-                jSONArray.put(new JSONObject(l.f49354a.y(list.get(i10))));
+                jSONArray.put(new JSONObject(l.f49325a.y(list.get(i10))));
             } catch (JSONException e7) {
                 Log.w("FirebaseCrashlytics", "Exception parsing rollout assignment!", e7);
             }
@@ -79,7 +79,7 @@ public final class f {
         File b10;
         FileInputStream fileInputStream;
         Exception e7;
-        ba.c cVar = this.f49339a;
+        ba.c cVar = this.f49310a;
         if (z10) {
             b10 = cVar.b(str, "internal-keys");
         } else {
@@ -126,7 +126,7 @@ public final class f {
     public final String d(String str) {
         FileInputStream fileInputStream;
         String str2;
-        File b10 = this.f49339a.b(str, "user-data");
+        File b10 = this.f49310a.b(str, "user-data");
         Closeable closeable = null;
         if (b10.exists()) {
             ?? r32 = (b10.length() > 0L ? 1 : (b10.length() == 0L ? 0 : -1));
@@ -180,7 +180,7 @@ public final class f {
         File b10;
         String jSONObject;
         BufferedWriter bufferedWriter;
-        ba.c cVar = this.f49339a;
+        ba.c cVar = this.f49310a;
         if (z10) {
             b10 = cVar.b(str, "internal-keys");
         } else {
@@ -190,7 +190,7 @@ public final class f {
         try {
             try {
                 jSONObject = new JSONObject(map).toString();
-                bufferedWriter = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(b10), f49338b));
+                bufferedWriter = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(b10), f49309b));
             } catch (Exception e7) {
                 e = e7;
             }
@@ -218,7 +218,7 @@ public final class f {
     public final void h(String str, List list) {
         String e7;
         BufferedWriter bufferedWriter;
-        File b10 = this.f49339a.b(str, "rollouts-state");
+        File b10 = this.f49310a.b(str, "rollouts-state");
         if (list.isEmpty()) {
             f(b10);
             return;
@@ -227,7 +227,7 @@ public final class f {
         try {
             try {
                 e7 = e(list);
-                bufferedWriter = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(b10), f49338b));
+                bufferedWriter = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(b10), f49309b));
             } catch (Exception e10) {
                 e = e10;
             }
@@ -255,14 +255,14 @@ public final class f {
     public final void i(String str, String str2) {
         String obj;
         BufferedWriter bufferedWriter;
-        File b10 = this.f49339a.b(str, "user-data");
+        File b10 = this.f49310a.b(str, "user-data");
         BufferedWriter bufferedWriter2 = null;
         try {
             try {
                 JSONObject jSONObject = new JSONObject();
                 jSONObject.put("userId", str2);
                 obj = jSONObject.toString();
-                bufferedWriter = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(b10), f49338b));
+                bufferedWriter = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(b10), f49309b));
             } catch (Exception e7) {
                 e = e7;
             }

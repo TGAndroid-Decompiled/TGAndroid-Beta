@@ -3,10 +3,10 @@ package org.telegram.ui;
 import android.webkit.JavascriptInterface;
 import org.telegram.messenger.AndroidUtilities;
 public final class pj1 {
-    public final qj1 f39561a;
+    public final qj1 f39534a;
 
     public pj1(qj1 qj1Var) {
-        this.f39561a = qj1Var;
+        this.f39534a = qj1Var;
     }
 
     @JavascriptInterface

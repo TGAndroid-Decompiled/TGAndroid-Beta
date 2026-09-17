@@ -3,18 +3,18 @@ package org.telegram.ui.Components;
 import android.content.Context;
 import android.view.View;
 public final class zl extends s4.d0 {
-    public final ci.k f33199r;
+    public final ci.k f33172r;
 
     public zl(ci.k kVar, Context context) {
         super(context);
-        this.f33199r = kVar;
+        this.f33172r = kVar;
     }
 
     @Override
     public final int k(int i10, View view) {
         int topScrollOffset;
         int k10 = super.k(i10, view);
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = (ChatAttachAlertPhotoLayout) this.f33199r.R;
+        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = (ChatAttachAlertPhotoLayout) this.f33172r.R;
         int paddingTop = chatAttachAlertPhotoLayout.E.getPaddingTop();
         topScrollOffset = chatAttachAlertPhotoLayout.getTopScrollOffset();
         return k10 - (paddingTop - topScrollOffset);

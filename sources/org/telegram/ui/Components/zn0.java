@@ -13,24 +13,24 @@ import j$.util.Objects;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 public class zn0 extends ScrollView {
-    public final org.telegram.ui.ActionBar.f6 f33216a;
-    public final LinearLayout f33217b;
-    public final float f33218c;
+    public final org.telegram.ui.ActionBar.f6 f33189a;
+    public final LinearLayout f33190b;
+    public final float f33191c;
     public final float[] d;
-    public final float[] f33219e;
-    public final ArrayList f33220f;
+    public final float[] f33192e;
+    public final ArrayList f33193f;
     public final ArrayList h;
-    public final Path f33221n;
+    public final Path f33194n;
 
     public zn0(Context context, LinearLayout linearLayout, org.telegram.ui.ActionBar.f6 f6Var, boolean z10) {
         super(context);
         float f7;
-        this.f33218c = AndroidUtilities.dp(16.0f);
-        this.f33220f = new ArrayList();
+        this.f33191c = AndroidUtilities.dp(16.0f);
+        this.f33193f = new ArrayList();
         this.h = new ArrayList();
-        this.f33221n = new Path();
-        this.f33216a = f6Var;
-        this.f33217b = linearLayout;
+        this.f33194n = new Path();
+        this.f33189a = f6Var;
+        this.f33190b = linearLayout;
         setWillNotDraw(false);
         int dp = AndroidUtilities.dp(12.0f);
         if (z10) {
@@ -40,7 +40,7 @@ public class zn0 extends ScrollView {
         }
         linearLayout.setPadding(dp, AndroidUtilities.dp(f7), AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f));
         this.d = new float[]{AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), 0.0f, 0.0f, 0.0f, 0.0f};
-        this.f33219e = new float[]{0.0f, 0.0f, 0.0f, 0.0f, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f)};
+        this.f33192e = new float[]{0.0f, 0.0f, 0.0f, 0.0f, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f)};
     }
 
     public static boolean e(View view) {
@@ -57,7 +57,7 @@ public class zn0 extends ScrollView {
             ViewGroup.LayoutParams layoutParams2 = view2.getLayoutParams();
             ViewParent parent = view.getParent();
             float f10 = 0.0f;
-            LinearLayout linearLayout = this.f33217b;
+            LinearLayout linearLayout = this.f33190b;
             if (parent != linearLayout && (layoutParams instanceof ViewGroup.MarginLayoutParams)) {
                 f7 = ((ViewGroup.MarginLayoutParams) layoutParams).topMargin;
             } else {
@@ -69,7 +69,7 @@ public class zn0 extends ScrollView {
             RectF rectF = AndroidUtilities.rectTmp;
             rectF.set(c(view) + linearLayout.getX(), Math.max(getScrollY() - AndroidUtilities.dp(16.0f), (d(view) + linearLayout.getY()) - f7), c(view) + linearLayout.getX() + view.getWidth(), Math.min(getScrollY() + AndroidUtilities.dp(16.0f) + getHeight(), d(view2) + linearLayout.getY() + view2.getHeight() + f10));
             if (rectF.bottom >= rectF.top) {
-                ll0.N0(canvas, rectF, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), view.getAlpha(), this.f33216a);
+                ll0.N0(canvas, rectF, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), view.getAlpha(), this.f33189a);
             }
         }
     }
@@ -81,7 +81,7 @@ public class zn0 extends ScrollView {
                 if (childAt instanceof LinearLayout) {
                     LinearLayout linearLayout = (LinearLayout) childAt;
                     if (linearLayout.getOrientation() == 1) {
-                        LinearLayout linearLayout2 = this.f33217b;
+                        LinearLayout linearLayout2 = this.f33190b;
                         if (childAt.getX() + f7 <= linearLayout2.getPaddingLeft() && childAt.getX() + f7 + childAt.getWidth() >= linearLayout2.getWidth() - linearLayout2.getPaddingRight()) {
                             b(linearLayout, childAt.getX() + f7, childAt.getY() + f10);
                         }
@@ -93,14 +93,14 @@ public class zn0 extends ScrollView {
     }
 
     public final float c(View view) {
-        if (view != this.f33217b && (view.getParent() instanceof View)) {
+        if (view != this.f33190b && (view.getParent() instanceof View)) {
             return view.getX() + c((View) view.getParent());
         }
         return view.getX();
     }
 
     public final float d(View view) {
-        if (view != this.f33217b && (view.getParent() instanceof View)) {
+        if (view != this.f33190b && (view.getParent() instanceof View)) {
             return view.getY() + d((View) view.getParent());
         }
         return view.getY();
@@ -110,7 +110,7 @@ public class zn0 extends ScrollView {
     public void dispatchDraw(Canvas canvas) {
         ArrayList arrayList = this.h;
         arrayList.clear();
-        b(this.f33217b, 0.0f, 0.0f);
+        b(this.f33190b, 0.0f, 0.0f);
         int size = arrayList.size();
         int i10 = 0;
         while (true) {
@@ -147,7 +147,7 @@ public class zn0 extends ScrollView {
     @Override
     public final void onScrollChanged(int i10, int i11, int i12, int i13) {
         super.onScrollChanged(i10, i11, i12, i13);
-        ArrayList arrayList = this.f33220f;
+        ArrayList arrayList = this.f33193f;
         int size = arrayList.size();
         int i14 = 0;
         while (i14 < size) {
@@ -156,6 +156,6 @@ public class zn0 extends ScrollView {
             ((Runnable) obj).run();
         }
         invalidate();
-        this.f33217b.invalidate();
+        this.f33190b.invalidate();
     }
 }

@@ -3,18 +3,18 @@ package org.telegram.ui;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 public final class u60 implements org.telegram.ui.Components.c20, org.telegram.ui.ActionBar.a2, r0.n {
-    public final int f40975a;
-    public final f70 f40976b;
+    public final int f40948a;
+    public final f70 f40949b;
 
     public u60(f70 f70Var, int i10) {
-        this.f40975a = i10;
-        this.f40976b = f70Var;
+        this.f40948a = i10;
+        this.f40949b = f70Var;
     }
 
     @Override
     public r0.l1 T0(View view, r0.l1 l1Var) {
         int i10 = AndroidUtilities.getDefaultWindowInsets(l1Var, false).d;
-        f70 f70Var = this.f40976b;
+        f70 f70Var = this.f40949b;
         f70Var.m0 = i10;
         bi.e7 e7Var = f70Var.F;
         if (e7Var != null) {
@@ -22,23 +22,23 @@ public final class u60 implements org.telegram.ui.Components.c20, org.telegram.u
         }
         f70Var.j0();
         f70Var.h0();
-        return r0.l1.f44739b;
+        return r0.l1.f44711b;
     }
 
     @Override
     public void a(int i10) {
-        f70 f70Var = this.f40976b;
-        f70Var.f36308b.a(Math.min(i10, f70Var.f36311c0));
+        f70 f70Var = this.f40949b;
+        f70Var.f36281b.a(Math.min(i10, f70Var.f36284c0));
     }
 
     @Override
     public void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        switch (this.f40975a) {
+        switch (this.f40948a) {
             case 1:
-                this.f40976b.o0();
+                this.f40949b.o0();
                 return;
             default:
-                this.f40976b.finishFragment();
+                this.f40949b.finishFragment();
                 return;
         }
     }

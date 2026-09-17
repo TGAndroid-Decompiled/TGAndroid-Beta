@@ -6,32 +6,32 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class c01 implements org.telegram.ui.ActionBar.a2 {
-    public final int f24865a;
-    public final e01 f24866b;
+    public final int f24838a;
+    public final e01 f24839b;
 
     public c01(e01 e01Var, int i10) {
-        this.f24865a = i10;
-        this.f24866b = e01Var;
+        this.f24838a = i10;
+        this.f24839b = e01Var;
     }
 
     @Override
     public final void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        switch (this.f24865a) {
+        switch (this.f24838a) {
             case 0:
-                this.f24866b.a();
+                this.f24839b.a();
                 return;
             case 1:
-                e01 e01Var = this.f24866b;
+                e01 e01Var = this.f24839b;
                 AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(e01Var.getContext());
-                alertDialog$Builder.f20226a.T = LocaleController.getString(R.string.TosDeclineDeleteAccount);
-                alertDialog$Builder.f20226a.R = LocaleController.getString(R.string.AppName);
+                alertDialog$Builder.f20199a.T = LocaleController.getString(R.string.TosDeclineDeleteAccount);
+                alertDialog$Builder.f20199a.R = LocaleController.getString(R.string.AppName);
                 alertDialog$Builder.k(LocaleController.getString(R.string.Deactivate), new c01(e01Var, 2));
                 i2.g.r(R.string.Cancel, alertDialog$Builder, null);
                 return;
             default:
-                e01 e01Var2 = this.f24866b;
+                e01 e01Var2 = this.f24839b;
                 org.telegram.ui.ActionBar.b2 b2Var2 = new org.telegram.ui.ActionBar.b2(e01Var2.getContext(), 3, null);
-                b2Var2.f20265g0 = false;
+                b2Var2.f20238g0 = false;
                 TL_account.deleteAccount deleteaccount = new TL_account.deleteAccount();
                 deleteaccount.reason = "Decline ToS update";
                 ConnectionsManager.getInstance(e01Var2.d).sendRequest(deleteaccount, new org.telegram.ui.ro(16, e01Var2, b2Var2));

@@ -3,19 +3,19 @@ package ig;
 import java.util.HashSet;
 import org.telegram.messenger.MessageObject;
 public final class a2 {
-    public int f12018a;
-    public String f12019b;
-    public int f12020c;
+    public int f11992a;
+    public String f11993b;
+    public int f11994c;
     public int d;
-    public MessageObject f12021e;
-    public int f12022f;
-    public boolean f12023g;
+    public MessageObject f11995e;
+    public int f11996f;
+    public boolean f11997g;
     public final HashSet h = new HashSet();
 
     public final int a() {
-        if (this.f12023g) {
+        if (this.f11997g) {
             return this.h.size();
         }
-        return this.f12022f;
+        return this.f11996f;
     }
 }

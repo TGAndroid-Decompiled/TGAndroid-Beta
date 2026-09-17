@@ -5,10 +5,10 @@ import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.MessageObject;
 import org.telegram.tgnet.TLRPC;
 public final class gb extends su0 {
-    public final ub f36649a;
+    public final ub f36622a;
 
     public gb(ub ubVar) {
-        this.f36649a = ubVar;
+        this.f36622a = ubVar;
     }
 
     @Override
@@ -17,7 +17,7 @@ public final class gb extends su0 {
         MessageObject messageObject2;
         org.telegram.ui.Cells.t1 t1Var;
         MessageObject messageObject3;
-        ub ubVar = this.f36649a;
+        ub ubVar = this.f36622a;
         int childCount = ubVar.E.getChildCount();
         int i11 = 0;
         while (true) {
@@ -54,13 +54,13 @@ public final class gb extends su0 {
                 int[] iArr = new int[2];
                 childAt.getLocationInWindow(iArr);
                 cv0 cv0Var = new cv0();
-                cv0Var.f35569b = iArr[0];
-                cv0Var.f35570c = iArr[1];
+                cv0Var.f35542b = iArr[0];
+                cv0Var.f35543c = iArr[1];
                 cv0Var.d = ubVar.E;
-                cv0Var.f35568a = imageReceiver;
-                cv0Var.f35571e = imageReceiver.getBitmapSafe();
+                cv0Var.f35541a = imageReceiver;
+                cv0Var.f35544e = imageReceiver.getBitmapSafe();
                 cv0Var.h = imageReceiver.getRoundRadius(true);
-                cv0Var.f35577l = true;
+                cv0Var.f35550l = true;
                 return cv0Var;
             }
             i11++;

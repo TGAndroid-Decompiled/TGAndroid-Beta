@@ -9,14 +9,14 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.UserConfig;
 public final class ei implements TextWatcher {
-    public boolean f25731a;
-    public boolean f25732b;
-    public final org.telegram.ui.ActionBar.n2 f25733c;
+    public boolean f25704a;
+    public boolean f25705b;
+    public final org.telegram.ui.ActionBar.n2 f25706c;
     public final vi d;
 
     public ei(vi viVar, org.telegram.ui.ActionBar.n2 n2Var) {
         this.d = viVar;
-        this.f25733c = n2Var;
+        this.f25706c = n2Var;
     }
 
     @Override
@@ -26,28 +26,28 @@ public final class ei implements TextWatcher {
         int i10;
         boolean z12;
         vi viVar = this.d;
-        q6 q6Var = viVar.f31346s;
+        q6 q6Var = viVar.f31319s;
         di diVar = viVar.P0;
         int i11 = viVar.J1;
         q6 q6Var2 = viVar.v;
-        if (this.f25732b != TextUtils.isEmpty(editable)) {
-            ni niVar = viVar.f31368y0;
+        if (this.f25705b != TextUtils.isEmpty(editable)) {
+            ni niVar = viVar.f31341y0;
             if (niVar != null) {
                 niVar.B(niVar.getSelectedItemsCount());
             }
-            this.f25732b = !this.f25732b;
+            this.f25705b = !this.f25705b;
         }
         boolean z13 = false;
-        if (this.f25731a) {
+        if (this.f25704a) {
             for (ImageSpan imageSpan : (ImageSpan[]) editable.getSpans(0, editable.length(), ImageSpan.class)) {
                 editable.removeSpan(imageSpan);
             }
             Emoji.replaceEmoji(editable, diVar.getEditText().getPaint().getFontMetricsInt(), false);
-            this.f25731a = false;
+            this.f25704a = false;
         }
         int codePointCount = Character.codePointCount(editable, 0, editable.length());
         viVar.L = codePointCount;
-        le.b bVar = viVar.f31302e;
+        le.b bVar = viVar.f31275e;
         if (codePointCount > 0) {
             z10 = true;
         } else {
@@ -76,10 +76,10 @@ public final class ei implements TextWatcher {
             q6Var2.animate().setListener(null).cancel();
             q6Var2.animate().alpha(1.0f).scaleX(1.0f).scaleY(1.0f).setDuration(100L).start();
             if (i10 < 0) {
-                q6Var2.setTextColor(viVar.getThemedColor(org.telegram.ui.ActionBar.j6.f20908p7));
+                q6Var2.setTextColor(viVar.getThemedColor(org.telegram.ui.ActionBar.j6.f20881p7));
                 z11 = false;
             } else {
-                q6Var2.setTextColor(viVar.getThemedColor(org.telegram.ui.ActionBar.j6.f21070y6));
+                q6Var2.setTextColor(viVar.getThemedColor(org.telegram.ui.ActionBar.j6.f21043y6));
                 z11 = true;
             }
             q6Var.c(LocaleController.formatNumber(j3, ','), false, true);
@@ -93,11 +93,11 @@ public final class ei implements TextWatcher {
             viVar.U0 = z11;
             viVar.I0.invalidate();
         }
-        if (!viVar.f31318i2 && !MessagesController.getInstance(i11).premiumFeaturesBlocked() && !UserConfig.getInstance(i11).isPremium() && viVar.L > MessagesController.getInstance(i11).captionLengthLimitDefault && viVar.L < MessagesController.getInstance(i11).captionLengthLimitPremium) {
-            viVar.f31318i2 = true;
-            viVar.O1(this.f25733c);
+        if (!viVar.f31291i2 && !MessagesController.getInstance(i11).premiumFeaturesBlocked() && !UserConfig.getInstance(i11).isPremium() && viVar.L > MessagesController.getInstance(i11).captionLengthLimitDefault && viVar.L < MessagesController.getInstance(i11).captionLengthLimitPremium) {
+            viVar.f31291i2 = true;
+            viVar.O1(this.f25706c);
         }
-        if (viVar.f31296c0) {
+        if (viVar.f31269c0) {
             if (diVar.getEditText().getLineCount() > 2 && !TextUtils.isEmpty(diVar.getText().toString().trim())) {
                 z13 = true;
             }
@@ -109,7 +109,7 @@ public final class ei implements TextWatcher {
     @Override
     public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
         if (i12 - i11 >= 1) {
-            this.f25731a = true;
+            this.f25704a = true;
         }
         vi viVar = this.d;
         if (viVar.B2 == null) {

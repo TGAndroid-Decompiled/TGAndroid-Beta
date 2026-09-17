@@ -5,12 +5,12 @@ import org.telegram.messenger.Utilities;
 import org.telegram.ui.Components.h51;
 import r0.l1;
 public final class q implements Utilities.Callback5, Utilities.Callback5Return, r0.n {
-    public final s f10782a;
+    public final s f10754a;
 
     @Override
     public l1 T0(View view, l1 l1Var) {
-        this.f10782a.V(l1Var.f44740a.f(519).d);
-        return l1.f44739b;
+        this.f10754a.V(l1Var.f44712a.f(519).d);
+        return l1.f44711b;
     }
 
     @Override
@@ -20,7 +20,7 @@ public final class q implements Utilities.Callback5, Utilities.Callback5Return, 
         ((Integer) obj3).intValue();
         ((Float) obj4).floatValue();
         ((Float) obj5).floatValue();
-        this.f10782a.getClass();
+        this.f10754a.getClass();
         return Boolean.FALSE;
     }
 
@@ -30,6 +30,6 @@ public final class q implements Utilities.Callback5, Utilities.Callback5Return, 
         ((Integer) obj3).getClass();
         ((Float) obj4).getClass();
         ((Float) obj5).getClass();
-        s.U(this.f10782a, (h51) obj);
+        s.U(this.f10754a, (h51) obj);
     }
 }

@@ -8,19 +8,19 @@ import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.uy;
 public final class fg implements Runnable {
-    public final int f17723a;
-    public final long f17724b;
-    public final boolean f17725c;
+    public final int f17696a;
+    public final long f17697b;
+    public final boolean f17698c;
     public final int d;
-    public final Object f17726e;
-    public final Object f17727f;
+    public final Object f17699e;
+    public final Object f17700f;
 
     public fg(BaseController baseController, long j3, List list, boolean z10, int i10, int i11) {
-        this.f17723a = i11;
-        this.f17726e = baseController;
-        this.f17724b = j3;
-        this.f17727f = list;
-        this.f17725c = z10;
+        this.f17696a = i11;
+        this.f17699e = baseController;
+        this.f17697b = j3;
+        this.f17700f = list;
+        this.f17698c = z10;
         this.d = i10;
     }
 
@@ -28,15 +28,15 @@ public final class fg implements Runnable {
     public final void run() {
         bi.d9 d9Var;
         TL_stories.StoryItem storyItem;
-        int i10 = this.f17723a;
-        Object obj = this.f17727f;
-        Object obj2 = this.f17726e;
+        int i10 = this.f17696a;
+        Object obj = this.f17700f;
+        Object obj2 = this.f17699e;
         switch (i10) {
             case 0:
-                ((MessagesStorage) obj2).lambda$saveTopics$47(this.f17724b, (List) obj, this.f17725c, this.d);
+                ((MessagesStorage) obj2).lambda$saveTopics$47(this.f17697b, (List) obj, this.f17698c, this.d);
                 return;
             case 1:
-                ((TopicsController) obj2).lambda$loadTopics$0(this.f17724b, (ArrayList) obj, this.f17725c, this.d);
+                ((TopicsController) obj2).lambda$loadTopics$0(this.f17697b, (ArrayList) obj, this.f17698c, this.d);
                 return;
             default:
                 LaunchActivity launchActivity = (LaunchActivity) obj2;
@@ -48,7 +48,7 @@ public final class fg implements Runnable {
                     while (true) {
                         d9Var = null;
                         if (i11 < tL_stories_stories.stories.size()) {
-                            if (tL_stories_stories.stories.get(i11).f20133id == this.d) {
+                            if (tL_stories_stories.stories.get(i11).f20106id == this.d) {
                                 storyItem = tL_stories_stories.stories.get(i11);
                             } else {
                                 i11++;
@@ -58,7 +58,7 @@ public final class fg implements Runnable {
                         }
                     }
                     if (storyItem != null) {
-                        long j3 = this.f17724b;
+                        long j3 = this.f17697b;
                         storyItem.dialogId = j3;
                         org.telegram.ui.ActionBar.n2 R = LaunchActivity.R();
                         if (R != null) {
@@ -72,8 +72,8 @@ public final class fg implements Runnable {
                             R.getOrCreateStoryViewer().v();
                             ArrayList arrayList = new ArrayList();
                             arrayList.add(Long.valueOf(j3));
-                            if (this.f17725c) {
-                                R.getOrCreateStoryViewer().f3610w1 = true;
+                            if (this.f17698c) {
+                                R.getOrCreateStoryViewer().f3583w1 = true;
                             }
                             R.getOrCreateStoryViewer().G(launchActivity, storyItem, arrayList, 0, null, null, d9Var2, false);
                             return;
@@ -87,11 +87,11 @@ public final class fg implements Runnable {
     }
 
     public fg(LaunchActivity launchActivity, TLObject tLObject, int i10, long j3, boolean z10) {
-        this.f17723a = 2;
-        this.f17726e = launchActivity;
-        this.f17727f = tLObject;
+        this.f17696a = 2;
+        this.f17699e = launchActivity;
+        this.f17700f = tLObject;
         this.d = i10;
-        this.f17724b = j3;
-        this.f17725c = z10;
+        this.f17697b = j3;
+        this.f17698c = z10;
     }
 }

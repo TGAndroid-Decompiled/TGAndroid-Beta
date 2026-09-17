@@ -2,14 +2,14 @@ package org.telegram.ui.ActionBar;
 
 import android.view.ViewTreeObserver;
 public final class i1 implements ViewTreeObserver.OnScrollChangedListener {
-    public final ActionBarPopupWindow$ActionBarPopupWindowLayout f20543a;
+    public final ActionBarPopupWindow$ActionBarPopupWindowLayout f20516a;
 
     public i1(ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout) {
-        this.f20543a = actionBarPopupWindow$ActionBarPopupWindowLayout;
+        this.f20516a = actionBarPopupWindow$ActionBarPopupWindowLayout;
     }
 
     @Override
     public final void onScrollChanged() {
-        this.f20543a.invalidate();
+        this.f20516a.invalidate();
     }
 }

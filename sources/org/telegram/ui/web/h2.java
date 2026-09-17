@@ -5,32 +5,32 @@ import org.telegram.messenger.SharedConfig;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 public final class h2 {
-    public final int f42130a;
-    public boolean f42131b;
-    public boolean f42132c;
+    public final int f42103a;
+    public boolean f42104b;
+    public boolean f42105c;
     public String d;
-    public float f42133e;
-    public boolean f42134f;
-    public boolean f42135g;
+    public float f42106e;
+    public boolean f42107f;
+    public boolean f42108g;
     public TLRPC.WebPage h;
-    public boolean f42136i;
-    public TLRPC.TL_webPage f42137j;
-    public int f42138k;
-    public b f42139l;
-    public final ArrayList f42140m = new ArrayList();
+    public boolean f42109i;
+    public TLRPC.TL_webPage f42110j;
+    public int f42111k;
+    public b f42112l;
+    public final ArrayList f42113m = new ArrayList();
 
     public h2(int i10) {
-        this.f42130a = i10;
+        this.f42103a = i10;
     }
 
     public final void a() {
         b bVar;
-        if (!this.f42132c) {
-            this.f42132c = true;
-            if (!this.f42135g) {
-                ConnectionsManager.getInstance(this.f42130a).cancelRequest(this.f42138k, true);
+        if (!this.f42105c) {
+            this.f42105c = true;
+            if (!this.f42108g) {
+                ConnectionsManager.getInstance(this.f42103a).cancelRequest(this.f42111k, true);
             }
-            if (!this.f42136i && (bVar = this.f42139l) != null) {
+            if (!this.f42109i && (bVar = this.f42112l) != null) {
                 bVar.run();
             }
         }
@@ -41,7 +41,7 @@ public final class h2 {
         if (!SharedConfig.onlyLocalInstantView && (webPage = this.h) != null) {
             return webPage;
         }
-        TLRPC.TL_webPage tL_webPage = this.f42137j;
+        TLRPC.TL_webPage tL_webPage = this.f42110j;
         if (tL_webPage != null) {
             return tL_webPage;
         }
@@ -49,7 +49,7 @@ public final class h2 {
     }
 
     public final void c() {
-        ArrayList arrayList = this.f42140m;
+        ArrayList arrayList = this.f42113m;
         int size = arrayList.size();
         int i10 = 0;
         while (i10 < size) {
@@ -60,22 +60,22 @@ public final class h2 {
     }
 
     public final void d(z0 z0Var) {
-        if (this.f42132c) {
+        if (this.f42105c) {
             return;
         }
-        TLRPC.TL_webPage tL_webPage = this.f42137j;
+        TLRPC.TL_webPage tL_webPage = this.f42110j;
         if (tL_webPage != null) {
             j2.o(tL_webPage);
-            this.f42137j = null;
+            this.f42110j = null;
         }
-        this.f42136i = false;
+        this.f42109i = false;
         this.d = z0Var.getUrl();
-        this.f42133e = z0Var.getProgress();
-        this.f42134f = z0Var.f42356b;
-        b bVar = this.f42139l;
+        this.f42106e = z0Var.getProgress();
+        this.f42107f = z0Var.f42329b;
+        b bVar = this.f42112l;
         if (bVar != null) {
             bVar.run();
         }
-        this.f42139l = j2.e(z0Var, new g2(this, 1));
+        this.f42112l = j2.e(z0Var, new g2(this, 1));
     }
 }

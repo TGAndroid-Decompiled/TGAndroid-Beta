@@ -16,22 +16,22 @@ import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PhotoViewer;
 import org.telegram.ui.PremiumPreviewFragment;
 public final class ue implements Runnable {
-    public final int f30895a;
+    public final int f30868a;
 
     public ue(int i10) {
-        this.f30895a = i10;
+        this.f30868a = i10;
     }
 
     @Override
     public final void run() {
-        switch (this.f30895a) {
+        switch (this.f30868a) {
             case 0:
                 MediaController.getInstance().stopRecording(0, false, 0, false, 0L);
                 return;
             case 1:
                 return;
             case 2:
-                int i10 = tn.f30651m1;
+                int i10 = tn.f30624m1;
                 return;
             case 3:
                 PhotoViewer.t1().G0(false, false);
@@ -40,7 +40,7 @@ public final class ue implements Runnable {
                 PhotoViewer.t1().G0(false, false);
                 return;
             case 5:
-                int i11 = zt.f33258b;
+                int i11 = zt.f33231b;
                 return;
             case 6:
                 NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.groupCallVisibilityChanged, new Object[0]);
@@ -55,26 +55,26 @@ public final class ue implements Runnable {
                 org.telegram.ui.ActionBar.n2 R = LaunchActivity.R();
                 if (R != 0) {
                     ?? obj = new Object();
-                    obj.f21170a = true;
+                    obj.f21143a = true;
                     R.showAsSheet(new PremiumPreviewFragment(0, "noncontacts"), obj);
                     return;
                 }
                 return;
             case 9:
-                int i12 = g01.f26251f;
+                int i12 = g01.f26224f;
                 return;
             case 10:
                 SharedPreferences.Editor edit = MessagesController.getGlobalMainSettings().edit();
-                w01.f32079f = Boolean.TRUE;
+                w01.f32052f = Boolean.TRUE;
                 edit.putBoolean("nothanos", true).apply();
                 return;
             case 11:
                 SharedPreferences.Editor edit2 = MessagesController.getGlobalMainSettings().edit();
-                w01.f32079f = Boolean.TRUE;
+                w01.f32052f = Boolean.TRUE;
                 edit2.putBoolean("nothanos", true).apply();
                 return;
             case 12:
-                int i13 = w21.f32118f0;
+                int i13 = w21.f32091f0;
                 return;
             case 13:
                 SavedMessagesController.openSavedMessages();
@@ -139,7 +139,7 @@ public final class ue implements Runnable {
     }
 
     public ue(Object obj, int i10) {
-        this.f30895a = i10;
+        this.f30868a = i10;
     }
 
     private final void a() {

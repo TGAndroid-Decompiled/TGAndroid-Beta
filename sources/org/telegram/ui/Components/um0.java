@@ -8,15 +8,15 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.R;
 public final class um0 extends kl0 {
-    public final vm0 f30952c;
+    public final vm0 f30925c;
 
     public um0(vm0 vm0Var) {
-        this.f30952c = vm0Var;
+        this.f30925c = vm0Var;
     }
 
     @Override
     public final boolean D(s4.c1 c1Var) {
-        int i10 = c1Var.f45771f;
+        int i10 = c1Var.f45743f;
         if (i10 == 1 || i10 == 2) {
             return true;
         }
@@ -24,27 +24,27 @@ public final class um0 extends kl0 {
     }
 
     public final MessageObject E(int i10) {
-        vm0 vm0Var = this.f30952c;
+        vm0 vm0Var = this.f30925c;
         int i11 = vm0Var.v;
-        if (i10 >= i11 && i10 < vm0Var.f31399w) {
-            return (MessageObject) vm0Var.f31394e.get(i10 - i11);
+        if (i10 >= i11 && i10 < vm0Var.f31372w) {
+            return (MessageObject) vm0Var.f31367e.get(i10 - i11);
         }
-        int i12 = vm0Var.f31401y;
+        int i12 = vm0Var.f31374y;
         if (i10 >= i12 && i10 < vm0Var.E) {
-            return (MessageObject) vm0Var.f31395f.get(i10 - i12);
+            return (MessageObject) vm0Var.f31368f.get(i10 - i12);
         }
         return null;
     }
 
     @Override
     public final int h() {
-        return this.f30952c.f31397r;
+        return this.f30925c.f31370r;
     }
 
     @Override
     public final int j(int i10) {
-        vm0 vm0Var = this.f30952c;
-        if (i10 != vm0Var.f31398s && i10 != vm0Var.f31400x) {
+        vm0 vm0Var = this.f30925c;
+        if (i10 != vm0Var.f31371s && i10 != vm0Var.f31373x) {
             MessageObject E = E(i10);
             if (E == null || !E.isMusic()) {
                 return 1;
@@ -63,14 +63,14 @@ public final class um0 extends kl0 {
         boolean z12;
         int i11;
         int i12;
-        vm0 vm0Var = this.f30952c;
+        vm0 vm0Var = this.f30925c;
         org.telegram.ui.p10 p10Var = vm0Var.J;
-        int i13 = c1Var.f45771f;
-        View view = c1Var.f45767a;
+        int i13 = c1Var.f45743f;
+        View view = c1Var.f45739a;
         boolean z13 = false;
         if (i13 == 0) {
             org.telegram.ui.Cells.u3 u3Var = (org.telegram.ui.Cells.u3) view;
-            if (i10 == vm0Var.f31398s) {
+            if (i10 == vm0Var.f31371s) {
                 String string = LocaleController.getString(R.string.Downloading);
                 if (u3Var.getText().equals(string)) {
                     if (vm0Var.H) {
@@ -80,7 +80,7 @@ public final class um0 extends kl0 {
                     }
                     String string2 = LocaleController.getString(i12);
                     boolean z14 = vm0Var.H;
-                    org.telegram.ui.Cells.t3 t3Var = u3Var.f23345b;
+                    org.telegram.ui.Cells.t3 t3Var = u3Var.f23318b;
                     t3Var.c(string2, true, z14);
                     t3Var.setVisibility(0);
                     return;
@@ -92,7 +92,7 @@ public final class um0 extends kl0 {
                 }
                 u3Var.c(string, LocaleController.getString(i11), new tm0(this));
                 return;
-            } else if (i10 == vm0Var.f31400x) {
+            } else if (i10 == vm0Var.f31373x) {
                 u3Var.c(LocaleController.getString(R.string.RecentlyDownloaded), LocaleController.getString(R.string.Settings), new x70(this, 11));
                 return;
             } else {
@@ -101,7 +101,7 @@ public final class um0 extends kl0 {
         }
         MessageObject E = E(i10);
         if (E != null) {
-            if (vm0Var.I.g() && i10 >= vm0Var.v && i10 < vm0Var.f31399w) {
+            if (vm0Var.I.g() && i10 >= vm0Var.v && i10 < vm0Var.f31372w) {
                 z10 = true;
             } else {
                 z10 = false;
@@ -109,8 +109,8 @@ public final class um0 extends kl0 {
             float f7 = 0.0f;
             if (i13 == 1) {
                 rm0 rm0Var = (rm0) view;
-                rm0Var.setBackgroundColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f20691d6, false));
-                org.telegram.ui.Cells.j7 j7Var = rm0Var.f30080a;
+                rm0Var.setBackgroundColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f20664d6, false));
+                org.telegram.ui.Cells.j7 j7Var = rm0Var.f30053a;
                 if (j7Var.getMessage() == null) {
                     id3 = 0;
                 } else {
@@ -118,8 +118,8 @@ public final class um0 extends kl0 {
                 }
                 j7Var.c(E, true);
                 int id4 = j7Var.getMessage().getId();
-                p10Var.f39409a = j7Var.getMessage().getDialogId();
-                p10Var.f39410b = id4;
+                p10Var.f39382a = j7Var.getMessage().getDialogId();
+                p10Var.f39383b = id4;
                 boolean b10 = vm0Var.I.b(p10Var);
                 if (id3 == E.getId()) {
                     z12 = true;
@@ -149,8 +149,8 @@ public final class um0 extends kl0 {
                 }
                 i7Var.f(E, true);
                 int id5 = i7Var.getMessage().getId();
-                p10Var.f39409a = i7Var.getMessage().getDialogId();
-                p10Var.f39410b = id5;
+                p10Var.f39382a = i7Var.getMessage().getDialogId();
+                p10Var.f39383b = id5;
                 boolean b11 = vm0Var.I.b(p10Var);
                 if (id2 == E.getId()) {
                     z11 = true;
@@ -161,13 +161,13 @@ public final class um0 extends kl0 {
                 if (id2 == E.getId()) {
                     z13 = true;
                 }
-                if (i7Var.f22138d0 != z10) {
-                    i7Var.f22138d0 = z10;
+                if (i7Var.f22111d0 != z10) {
+                    i7Var.f22111d0 = z10;
                     if (!z13) {
                         if (z10) {
                             f7 = 1.0f;
                         }
-                        i7Var.f22140e0 = f7;
+                        i7Var.f22113e0 = f7;
                     }
                     i7Var.invalidate();
                 }
@@ -184,8 +184,8 @@ public final class um0 extends kl0 {
             Context context = viewGroup.getContext();
             ?? frameLayout2 = new FrameLayout(context);
             org.telegram.ui.Cells.j7 j7Var = new org.telegram.ui.Cells.j7(context, 2, null);
-            frameLayout2.f30080a = j7Var;
-            j7Var.f22217r.setVisibility(8);
+            frameLayout2.f30053a = j7Var;
+            j7Var.f22190r.setVisibility(8);
             frameLayout2.addView(j7Var);
             frameLayout = frameLayout2;
         } else {

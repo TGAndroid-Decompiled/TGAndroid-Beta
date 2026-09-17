@@ -9,17 +9,17 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.LocationController;
 import org.telegram.messenger.R;
 public final class zu0 extends kl0 {
-    public final Context f33262c;
+    public final Context f33235c;
     public final bv0 d;
 
     public zu0(bv0 bv0Var, Context context) {
         this.d = bv0Var;
-        this.f33262c = context;
+        this.f33235c = context;
     }
 
     @Override
     public final boolean D(s4.c1 c1Var) {
-        if (c1Var.f45771f == 0) {
+        if (c1Var.f45743f == 0) {
             return true;
         }
         return false;
@@ -41,22 +41,22 @@ public final class zu0 extends kl0 {
     @Override
     public final void v(s4.c1 c1Var, int i10) {
         TextView textView;
-        int i11 = c1Var.f45771f;
+        int i11 = c1Var.f45743f;
         if (i11 != 0) {
-            if (i11 == 1 && (textView = this.d.f24829e) != null) {
+            if (i11 == 1 && (textView = this.d.f24802e) != null) {
                 textView.setText(LocaleController.formatString("SharingLiveLocationTitle", R.string.SharingLiveLocationTitle, LocaleController.formatPluralString("Chats", LocationController.getLocationsCount(), new Object[0])));
                 return;
             }
             return;
         }
-        ((org.telegram.ui.Cells.w7) c1Var.f45767a).setDialog(bv0.p(i10 - 1));
+        ((org.telegram.ui.Cells.w7) c1Var.f45739a).setDialog(bv0.p(i10 - 1));
     }
 
     @Override
     public final s4.c1 x(ViewGroup viewGroup, int i10) {
         FrameLayout w7Var;
         org.telegram.ui.ActionBar.f6 f6Var;
-        Context context = this.f33262c;
+        Context context = this.f33235c;
         bv0 bv0Var = this.d;
         if (i10 == 0) {
             f6Var = ((org.telegram.ui.ActionBar.f3) bv0Var).resourcesProvider;
@@ -65,12 +65,12 @@ public final class zu0 extends kl0 {
             w7Var = new bi.g5(context, 18);
             w7Var.setWillNotDraw(false);
             TextView textView = new TextView(context);
-            bv0Var.f24829e = textView;
+            bv0Var.f24802e = textView;
             textView.setTextColor(bv0Var.getThemedColor(org.telegram.ui.ActionBar.j6.J5));
-            bv0Var.f24829e.setTextSize(1, 14.0f);
-            bv0Var.f24829e.setGravity(17);
-            bv0Var.f24829e.setPadding(0, 0, 0, AndroidUtilities.dp(8.0f));
-            w7Var.addView(bv0Var.f24829e, w7.x5.c(40.0f, -1));
+            bv0Var.f24802e.setTextSize(1, 14.0f);
+            bv0Var.f24802e.setGravity(17);
+            bv0Var.f24802e.setPadding(0, 0, 0, AndroidUtilities.dp(8.0f));
+            w7Var.addView(bv0Var.f24802e, w7.x5.c(40.0f, -1));
         }
         return new s4.c1(w7Var);
     }

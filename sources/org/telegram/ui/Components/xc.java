@@ -8,46 +8,46 @@ public final class xc {
     public static final xc H;
     public static final xc I;
     public static final xc[] J;
-    public static final xc f32524e;
-    public static final xc f32525f;
+    public static final xc f32497e;
+    public static final xc f32498f;
     public static final xc h;
-    public static final xc f32526n;
-    public static final xc f32527r;
-    public static final xc f32528s;
+    public static final xc f32499n;
+    public static final xc f32500r;
+    public static final xc f32501s;
     public static final xc v;
-    public static final xc f32529w;
-    public static final xc f32530x;
-    public static final xc f32531y;
-    public final String f32532a;
-    public final int f32533b;
-    public final boolean f32534c;
+    public static final xc f32502w;
+    public static final xc f32503x;
+    public static final xc f32504y;
+    public final String f32505a;
+    public final int f32506b;
+    public final boolean f32507c;
     public final wc d;
 
     static {
         int i10 = R.string.PhotoSavedHint;
         wc wcVar = wc.SAVED_TO_GALLERY;
         xc xcVar = new xc("PHOTO", 0, "PhotoSavedHint", i10, wcVar);
-        f32524e = xcVar;
+        f32497e = xcVar;
         xc xcVar2 = new xc("PHOTOS", 1, "PhotosSavedHint", wcVar);
-        f32525f = xcVar2;
+        f32498f = xcVar2;
         xc xcVar3 = new xc("VIDEO", 2, "VideoSavedHint", R.string.VideoSavedHint, wcVar);
         h = xcVar3;
         xc xcVar4 = new xc("VIDEOS", 3, "VideosSavedHint", wcVar);
-        f32526n = xcVar4;
+        f32499n = xcVar4;
         xc xcVar5 = new xc("LIVEPHOTO", 4, "LivePhotoSavedHint", R.string.LivePhotoSavedHint, wcVar);
-        f32527r = xcVar5;
+        f32500r = xcVar5;
         xc xcVar6 = new xc("LIVEPHOTOS", 5, "LivePhotosSavedHint", wcVar);
-        f32528s = xcVar6;
+        f32501s = xcVar6;
         xc xcVar7 = new xc("MEDIA", 6, "MediaSavedHint", wcVar);
         v = xcVar7;
         int i11 = R.string.PhotoSavedToDownloadsHintLinked;
         wc wcVar2 = wc.SAVED_TO_DOWNLOADS;
         xc xcVar8 = new xc("PHOTO_TO_DOWNLOADS", 7, "PhotoSavedToDownloadsHintLinked", i11, wcVar2);
-        f32529w = xcVar8;
+        f32502w = xcVar8;
         xc xcVar9 = new xc("VIDEO_TO_DOWNLOADS", 8, "VideoSavedToDownloadsHintLinked", R.string.VideoSavedToDownloadsHintLinked, wcVar2);
-        f32530x = xcVar9;
+        f32503x = xcVar9;
         xc xcVar10 = new xc("GIF", 9, "GifSavedHint", R.string.GifSavedHint, wc.SAVED_TO_GIFS);
-        f32531y = xcVar10;
+        f32504y = xcVar10;
         xc xcVar11 = new xc("GIF_TO_DOWNLOADS", 10, "GifSavedToDownloadsHintLinked", R.string.GifSavedToDownloadsHintLinked, wcVar2);
         E = xcVar11;
         int i12 = R.string.AudioSavedHint;
@@ -64,10 +64,10 @@ public final class xc {
     }
 
     public xc(String str, int i10, String str2, int i11, wc wcVar) {
-        this.f32532a = str2;
-        this.f32533b = i11;
+        this.f32505a = str2;
+        this.f32506b = i11;
         this.d = wcVar;
-        this.f32534c = false;
+        this.f32507c = false;
     }
 
     public static xc valueOf(String str) {
@@ -79,9 +79,9 @@ public final class xc {
     }
 
     public xc(String str, int i10, String str2, wc wcVar) {
-        this.f32532a = str2;
+        this.f32505a = str2;
         this.d = wcVar;
-        this.f32533b = 0;
-        this.f32534c = true;
+        this.f32506b = 0;
+        this.f32507c = true;
     }
 }

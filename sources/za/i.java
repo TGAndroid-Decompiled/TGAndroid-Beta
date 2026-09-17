@@ -7,14 +7,14 @@ public enum i implements ka.f {
     COLLECTION_DISABLED_REMOTE(4),
     COLLECTION_SAMPLED(5);
     
-    public final int f51472a;
+    public final int f51441a;
 
     i(int i10) {
-        this.f51472a = i10;
+        this.f51441a = i10;
     }
 
     @Override
     public final int a() {
-        return this.f51472a;
+        return this.f51441a;
     }
 }

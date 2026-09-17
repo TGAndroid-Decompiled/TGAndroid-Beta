@@ -12,38 +12,38 @@ import org.telegram.ui.Components.jn0;
 import org.telegram.ui.Components.pr;
 import w7.x5;
 public final class k extends FrameLayout {
-    public final j f31600a;
-    public final TransitionSet f31601b;
-    public boolean f31602c;
+    public final j f31573a;
+    public final TransitionSet f31574b;
+    public boolean f31575c;
 
     public k(Activity activity) {
         super(activity);
-        this.f31602c = false;
+        this.f31575c = false;
         setWillNotDraw(false);
         j jVar = new j(activity);
-        this.f31600a = jVar;
+        this.f31573a = jVar;
         addView(jVar, x5.e(52, 52, 5));
         TransitionSet transitionSet = new TransitionSet();
-        this.f31601b = transitionSet;
+        this.f31574b = transitionSet;
         transitionSet.setOrdering(0);
         transitionSet.addTransition(new org.telegram.ui.ActionBar.i(1));
         transitionSet.setDuration(500L);
-        transitionSet.setInterpolator((TimeInterpolator) pr.f29494f);
+        transitionSet.setInterpolator((TimeInterpolator) pr.f29467f);
     }
 
     public final void a(View.OnClickListener onClickListener, boolean z10) {
-        if (this.f31602c) {
+        if (this.f31575c) {
             return;
         }
-        this.f31602c = true;
+        this.f31575c = true;
         if (z10) {
-            TransitionManager.beginDelayedTransition(this, this.f31601b);
+            TransitionManager.beginDelayedTransition(this, this.f31574b);
         }
-        j jVar = this.f31600a;
+        j jVar = this.f31573a;
         jVar.v = 255;
-        jVar.f31587n = -1;
-        jVar.f31589s = 0;
-        jVar.f31588r = AndroidUtilities.dp(8.0f);
+        jVar.f31560n = -1;
+        jVar.f31562s = 0;
+        jVar.f31561r = AndroidUtilities.dp(8.0f);
         ViewGroup.LayoutParams layoutParams = jVar.getLayoutParams();
         layoutParams.width = -1;
         jVar.setLayoutParams(layoutParams);
@@ -51,6 +51,6 @@ public final class k extends FrameLayout {
     }
 
     public j getEndCloseView() {
-        return this.f31600a;
+        return this.f31573a;
     }
 }

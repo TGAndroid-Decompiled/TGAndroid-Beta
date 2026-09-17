@@ -12,7 +12,7 @@ public final class dw0 extends bb {
         super(context, null, true, false, null);
         fixNavigationBar();
         this.E = true;
-        this.f24682y = true;
+        this.f24655y = true;
         K();
         ll0 ll0Var = this.d;
         int i10 = this.backgroundPaddingLeft;
@@ -38,7 +38,7 @@ public final class dw0 extends bb {
     public final kl0 v(ll0 ll0Var) {
         qs qsVar = new qs(ll0Var, getContext(), this.currentAccount, 0, true, this.resourcesProvider);
         this.X = qsVar;
-        qsVar.f31163r = false;
+        qsVar.f31136r = false;
         return qsVar;
     }
 

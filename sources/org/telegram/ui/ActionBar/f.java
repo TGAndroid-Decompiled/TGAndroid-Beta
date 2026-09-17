@@ -14,17 +14,17 @@ import org.telegram.ui.cj0;
 import org.telegram.ui.pi0;
 import org.telegram.ui.vi0;
 public final class f extends AnimatorListenerAdapter {
-    public final int f20424a = 0;
-    public final boolean f20425b;
-    public final boolean f20426c;
+    public final int f20397a = 0;
+    public final boolean f20398b;
+    public final boolean f20399c;
     public final Object d;
-    public final KeyEvent.Callback f20427e;
+    public final KeyEvent.Callback f20400e;
 
     public f(k kVar, ArrayList arrayList, boolean z10, boolean z11) {
-        this.f20427e = kVar;
+        this.f20400e = kVar;
         this.d = arrayList;
-        this.f20425b = z10;
-        this.f20426c = z11;
+        this.f20398b = z10;
+        this.f20399c = z11;
     }
 
     @Override
@@ -34,14 +34,14 @@ public final class f extends AnimatorListenerAdapter {
         org.telegram.ui.Cells.t1 t1Var;
         ViewGroup viewGroup;
         pi0 pi0Var;
-        switch (this.f20424a) {
+        switch (this.f20397a) {
             case 0:
                 ArrayList arrayList = (ArrayList) this.d;
-                k kVar = (k) this.f20427e;
+                k kVar = (k) this.f20400e;
                 int i10 = 0;
                 while (true) {
                     int size = arrayList.size();
-                    boolean z10 = this.f20425b;
+                    boolean z10 = this.f20398b;
                     if (i10 < size) {
                         View view = (View) arrayList.get(i10);
                         if (z10) {
@@ -52,17 +52,17 @@ public final class f extends AnimatorListenerAdapter {
                         }
                         i10++;
                     } else {
-                        if (z10 && !this.f20426c) {
-                            j5 j5Var = kVar.f21130n[0];
+                        if (z10 && !this.f20399c) {
+                            j5 j5Var = kVar.f21103n[0];
                             if (j5Var != null) {
                                 j5Var.setVisibility(8);
                             }
-                            j5 j5Var2 = kVar.f21130n[1];
+                            j5 j5Var2 = kVar.f21103n[1];
                             if (j5Var2 != null) {
                                 j5Var2.setVisibility(8);
                             }
                         }
-                        x9 x9Var = kVar.f21115f;
+                        x9 x9Var = kVar.f21088f;
                         if (x9Var != null && !z10) {
                             x9Var.setVisibility(8);
                             return;
@@ -73,38 +73,38 @@ public final class f extends AnimatorListenerAdapter {
                 break;
             default:
                 Runnable runnable = (Runnable) this.d;
-                cj0 cj0Var = (cj0) this.f20427e;
+                cj0 cj0Var = (cj0) this.f20400e;
                 vi0 vi0Var = cj0Var.K;
-                boolean z11 = this.f20425b;
+                boolean z11 = this.f20398b;
                 if (z11) {
                     f7 = 1.0f;
                 } else {
                     f7 = 0.0f;
                 }
                 cj0Var.E = f7;
-                cj0Var.f35186x = false;
-                cj0Var.f35188y = false;
+                cj0Var.f35159x = false;
+                cj0Var.f35161y = false;
                 cj0Var.H.setAlpha(f7);
                 if (z11) {
-                    cj0Var.f35184w = false;
+                    cj0Var.f35157w = false;
                     cj0Var.v = false;
                 }
                 qf qfVar2 = cj0Var.S;
                 if (qfVar2 != null) {
                     qfVar2.setAlpha(1.0f);
                 }
-                org.telegram.ui.Cells.t1 t1Var2 = cj0Var.f35178r0;
+                org.telegram.ui.Cells.t1 t1Var2 = cj0Var.f35151r0;
                 if (t1Var2 != null) {
                     t1Var2.setVisibility(0);
                 }
                 vg vgVar = cj0Var.W;
-                if (vgVar != null && !cj0Var.f35179s) {
+                if (vgVar != null && !cj0Var.f35152s) {
                     vgVar.setAlpha(1.0f);
                 }
                 if (!z11 && (pi0Var = cj0Var.X) != null) {
                     pi0Var.setAlpha(0.0f);
                 }
-                if (!this.f20426c && (viewGroup = cj0Var.Z) != null) {
+                if (!this.f20399c && (viewGroup = cj0Var.Z) != null) {
                     viewGroup.setAlpha(cj0Var.E);
                 }
                 vi0Var.invalidate();
@@ -112,8 +112,8 @@ public final class f extends AnimatorListenerAdapter {
                 cj0Var.F.invalidate();
                 cj0Var.G.invalidate();
                 if (runnable != null) {
-                    if (!z11 && (t1Var = cj0Var.f35178r0) != null && t1Var.isAttachedToWindow()) {
-                        cj0Var.f35178r0.post(runnable);
+                    if (!z11 && (t1Var = cj0Var.f35151r0) != null && t1Var.isAttachedToWindow()) {
+                        cj0Var.f35151r0.post(runnable);
                         return;
                     } else if (!z11 && (qfVar = cj0Var.S) != null && qfVar.isAttachedToWindow()) {
                         cj0Var.S.post(runnable);
@@ -128,9 +128,9 @@ public final class f extends AnimatorListenerAdapter {
     }
 
     public f(cj0 cj0Var, boolean z10, boolean z11, Runnable runnable) {
-        this.f20427e = cj0Var;
-        this.f20425b = z10;
-        this.f20426c = z11;
+        this.f20400e = cj0Var;
+        this.f20398b = z10;
+        this.f20399c = z11;
         this.d = runnable;
     }
 }

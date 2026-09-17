@@ -1,38 +1,38 @@
 package org.telegram.messenger;
 public final class a8 implements Runnable {
-    public final int f17169a;
-    public final MediaDataController f17170b;
-    public final String f17171c;
+    public final int f17142a;
+    public final MediaDataController f17143b;
+    public final String f17144c;
 
     public a8(MediaDataController mediaDataController, String str, int i10) {
-        this.f17169a = i10;
-        this.f17170b = mediaDataController;
-        this.f17171c = str;
+        this.f17142a = i10;
+        this.f17143b = mediaDataController;
+        this.f17144c = str;
     }
 
     @Override
     public final void run() {
-        switch (this.f17169a) {
+        switch (this.f17142a) {
             case 0:
-                MediaDataController.F2(this.f17170b, this.f17171c);
+                MediaDataController.F2(this.f17143b, this.f17144c);
                 return;
             case 1:
-                MediaDataController.u3(this.f17170b, this.f17171c);
+                MediaDataController.u3(this.f17143b, this.f17144c);
                 return;
             case 2:
-                MediaDataController.k3(this.f17170b, this.f17171c);
+                MediaDataController.k3(this.f17143b, this.f17144c);
                 return;
             case 3:
-                MediaDataController.S1(this.f17170b, this.f17171c);
+                MediaDataController.S1(this.f17143b, this.f17144c);
                 return;
             case 4:
-                MediaDataController.o(this.f17170b, this.f17171c);
+                MediaDataController.o(this.f17143b, this.f17144c);
                 return;
             case 5:
-                MediaDataController.m1(this.f17170b, this.f17171c);
+                MediaDataController.m1(this.f17143b, this.f17144c);
                 return;
             default:
-                MediaDataController.q1(this.f17170b, this.f17171c);
+                MediaDataController.q1(this.f17143b, this.f17144c);
                 return;
         }
     }

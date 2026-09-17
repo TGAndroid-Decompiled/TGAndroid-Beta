@@ -3,17 +3,17 @@ package org.telegram.ui;
 import android.graphics.Bitmap;
 import java.io.File;
 public final class aj1 implements org.telegram.ui.Components.o81 {
-    public final WallpapersListActivity f34490a;
+    public final WallpapersListActivity f34463a;
 
     public aj1(WallpapersListActivity wallpapersListActivity) {
-        this.f34490a = wallpapersListActivity;
+        this.f34463a = wallpapersListActivity;
     }
 
     @Override
     public final void b(File file, Bitmap bitmap, boolean z10) {
         wd1 wd1Var = new wd1(new hj1(file, file, ""), bitmap, false);
         wd1Var.c1(0L);
-        this.f34490a.presentFragment(wd1Var, z10);
+        this.f34463a.presentFragment(wd1Var, z10);
     }
 
     @Override

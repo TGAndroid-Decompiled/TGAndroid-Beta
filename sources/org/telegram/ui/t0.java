@@ -2,16 +2,16 @@ package org.telegram.ui;
 
 import org.telegram.messenger.AndroidUtilities;
 public final class t0 extends org.telegram.ui.Components.s6 {
-    public final int f40606b;
+    public final int f40579b;
 
     public t0(String str, int i10) {
         super(str, 0);
-        this.f40606b = i10;
+        this.f40579b = i10;
     }
 
     @Override
     public final void b(Object obj, float f7) {
-        switch (this.f40606b) {
+        switch (this.f40579b) {
             case 0:
                 ((ArticleViewer$WindowView) obj).setInnerTranslationX(f7);
                 return;
@@ -32,11 +32,11 @@ public final class t0 extends org.telegram.ui.Components.s6 {
                 return;
             default:
                 e51 e51Var = (e51) obj;
-                if (e51Var.f35962a != f7) {
-                    e51Var.f35962a = f7;
-                    SecretMediaViewer secretMediaViewer = e51Var.f35968r;
+                if (e51Var.f35935a != f7) {
+                    e51Var.f35935a = f7;
+                    SecretMediaViewer secretMediaViewer = e51Var.f35941r;
                     secretMediaViewer.S.setAlpha(f7);
-                    if (e51Var.f35963b) {
+                    if (e51Var.f35936b) {
                         org.telegram.ui.ActionBar.j5 j5Var = secretMediaViewer.S;
                         j5Var.setPivotX(j5Var.getWidth());
                         org.telegram.ui.ActionBar.j5 j5Var2 = secretMediaViewer.S;
@@ -46,14 +46,14 @@ public final class t0 extends org.telegram.ui.Components.s6 {
                         secretMediaViewer.S.setScaleX(f11);
                         secretMediaViewer.S.setScaleY(f11);
                         org.telegram.ui.Components.i71 i71Var = secretMediaViewer.Q;
-                        if (i71Var.f27034y != f10) {
-                            i71Var.f27034y = f10;
+                        if (i71Var.f27007y != f10) {
+                            i71Var.f27007y = f10;
                             i71Var.v.invalidate();
                             return;
                         }
                         return;
                     }
-                    if (e51Var.f35964c) {
+                    if (e51Var.f35937c) {
                         e51Var.setTranslationY((1.0f - f7) * AndroidUtilities.dpf2(24.0f));
                     }
                     secretMediaViewer.R.setAlpha(f7);
@@ -65,7 +65,7 @@ public final class t0 extends org.telegram.ui.Components.s6 {
 
     @Override
     public final Object get(Object obj) {
-        switch (this.f40606b) {
+        switch (this.f40579b) {
             case 0:
                 return Float.valueOf(((ArticleViewer$WindowView) obj).getInnerTranslationX());
             case 1:
@@ -79,7 +79,7 @@ public final class t0 extends org.telegram.ui.Components.s6 {
             case 5:
                 return Float.valueOf(((SecretMediaViewer) obj).getAnimationValue());
             default:
-                return Float.valueOf(((e51) obj).f35962a);
+                return Float.valueOf(((e51) obj).f35935a);
         }
     }
 }

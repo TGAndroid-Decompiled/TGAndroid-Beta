@@ -16,12 +16,12 @@ import org.telegram.messenger.Utilities;
 import org.telegram.messenger.voip.VoIPService;
 import org.telegram.messenger.voip.VoipAudioManager;
 public final class t20 implements View.OnClickListener {
-    public final int f40630a;
-    public final j60 f40631b;
+    public final int f40603a;
+    public final j60 f40604b;
 
     public t20(j60 j60Var, int i10) {
-        this.f40630a = i10;
-        this.f40631b = j60Var;
+        this.f40603a = i10;
+        this.f40604b = j60Var;
     }
 
     @Override
@@ -29,33 +29,33 @@ public final class t20 implements View.OnClickListener {
         int i10;
         int i11;
         String string;
-        int i12 = this.f40630a;
+        int i12 = this.f40603a;
         int i13 = 0;
-        j60 j60Var = this.f40631b;
+        j60 j60Var = this.f40604b;
         switch (i12) {
             case 0:
-                org.telegram.ui.ActionBar.v0 v0Var = j60Var.f37583k1;
-                org.telegram.ui.ActionBar.f1 f1Var = j60Var.f37628v1;
-                org.telegram.ui.ActionBar.f1 f1Var2 = j60Var.f37624u1;
-                org.telegram.ui.ActionBar.f1 f1Var3 = j60Var.f37602p1;
-                ChatObject.Call call = j60Var.f37541a1;
-                if (call != null && !j60Var.a2.f31625b) {
+                org.telegram.ui.ActionBar.v0 v0Var = j60Var.f37556k1;
+                org.telegram.ui.ActionBar.f1 f1Var = j60Var.f37601v1;
+                org.telegram.ui.ActionBar.f1 f1Var2 = j60Var.f37597u1;
+                org.telegram.ui.ActionBar.f1 f1Var3 = j60Var.f37575p1;
+                ChatObject.Call call = j60Var.f37514a1;
+                if (call != null && !j60Var.a2.f31598b) {
                     if (call.call.join_muted) {
-                        int i14 = org.telegram.ui.ActionBar.j6.f20771hg;
+                        int i14 = org.telegram.ui.ActionBar.j6.f20744hg;
                         f1Var2.c(org.telegram.ui.ActionBar.j6.w0(null, i14, false), org.telegram.ui.ActionBar.j6.w0(null, i14, false));
                         f1Var2.setChecked(false);
-                        int i15 = org.telegram.ui.ActionBar.j6.f21044wg;
+                        int i15 = org.telegram.ui.ActionBar.j6.f21017wg;
                         f1Var.c(org.telegram.ui.ActionBar.j6.w0(null, i15, false), org.telegram.ui.ActionBar.j6.w0(null, i15, false));
                         f1Var.setChecked(true);
                     } else {
-                        int i16 = org.telegram.ui.ActionBar.j6.f21044wg;
+                        int i16 = org.telegram.ui.ActionBar.j6.f21017wg;
                         f1Var2.c(org.telegram.ui.ActionBar.j6.w0(null, i16, false), org.telegram.ui.ActionBar.j6.w0(null, i16, false));
                         f1Var2.setChecked(true);
-                        int i17 = org.telegram.ui.ActionBar.j6.f20771hg;
+                        int i17 = org.telegram.ui.ActionBar.j6.f20744hg;
                         f1Var.c(org.telegram.ui.ActionBar.j6.w0(null, i17, false), org.telegram.ui.ActionBar.j6.w0(null, i17, false));
                         f1Var.setChecked(false);
                     }
-                    j60Var.f37586l0 = false;
+                    j60Var.f37559l0 = false;
                     v0Var.r(1);
                     v0Var.r(2);
                     if (VoIPService.getSharedInstance() != null && (VoIPService.getSharedInstance().hasEarpiece() || VoIPService.getSharedInstance().isBluetoothHeadsetConnected())) {
@@ -98,15 +98,15 @@ public final class t20 implements View.OnClickListener {
                 return;
             case 1:
                 if (j60Var.r1()) {
-                    if (tf.c.a(j60Var.f37575i0) > 0) {
-                        org.telegram.ui.Components.voip.h1.n(j60Var.f37575i0);
+                    if (tf.c.a(j60Var.f37548i0) > 0) {
+                        org.telegram.ui.Components.voip.h1.n(j60Var.f37548i0);
                         j60Var.dismiss();
                         return;
                     }
-                    org.telegram.ui.Components.e5.B(j60Var.f37575i0, null, true).o();
+                    org.telegram.ui.Components.e5.B(j60Var.f37548i0, null, true).o();
                     return;
-                } else if (AndroidUtilities.checkInlinePermissions(j60Var.f37575i0)) {
-                    org.telegram.ui.Components.z20.f33083e0 = false;
+                } else if (AndroidUtilities.checkInlinePermissions(j60Var.f37548i0)) {
+                    org.telegram.ui.Components.z20.f33056e0 = false;
                     j60Var.dismiss();
                     return;
                 } else {
@@ -121,16 +121,16 @@ public final class t20 implements View.OnClickListener {
                         sharedInstance.stopScreenCapture();
                         return;
                     }
-                    LaunchActivity launchActivity = j60Var.f37575i0;
+                    LaunchActivity launchActivity = j60Var.f37548i0;
                     if (launchActivity != null) {
-                        j60Var.f37575i0.startActivityForResult(((MediaProjectionManager) launchActivity.getSystemService("media_projection")).createScreenCaptureIntent(), 520);
+                        j60Var.f37548i0.startActivityForResult(((MediaProjectionManager) launchActivity.getSystemService("media_projection")).createScreenCaptureIntent(), 520);
                         return;
                     }
                     return;
                 }
                 return;
             case 3:
-                ChatObject.Call call2 = j60Var.f37541a1;
+                ChatObject.Call call2 = j60Var.f37514a1;
                 if (call2 != null && call2.recording) {
                     j60Var.G1(j60Var.O.getTitleTextView());
                     return;
@@ -153,12 +153,12 @@ public final class t20 implements View.OnClickListener {
                 if (P0 > 0 && P0 != Integer.MAX_VALUE) {
                     j60Var.Q.v0(0, P0, null);
                 }
-                org.telegram.ui.Components.cu cuVar = j60Var.H.f26875a;
+                org.telegram.ui.Components.cu cuVar = j60Var.H.f26848a;
                 cuVar.requestFocus();
                 AndroidUtilities.showKeyboard(cuVar);
                 return;
             case 7:
-                ChatObject.Call call3 = j60Var.f37541a1;
+                ChatObject.Call call3 = j60Var.f37514a1;
                 if (call3 != null && !call3.isScheduled() && !j60Var.r1()) {
                     if (VoIPService.getSharedInstance() != null) {
                         VoIPService.getSharedInstance().toggleSpeakerphoneOrShowRouteSheet(j60Var.getContext(), false);
@@ -169,14 +169,14 @@ public final class t20 implements View.OnClickListener {
                 j60Var.j1(false);
                 return;
             case 8:
-                ChatObject.Call call4 = j60Var.f37541a1;
+                ChatObject.Call call4 = j60Var.f37514a1;
                 if (call4 != null && call4.recording) {
                     j60Var.G1(j60Var.O.getTitleTextView());
                     return;
                 }
                 return;
             case 9:
-                ChatObject.Call call5 = j60Var.f37541a1;
+                ChatObject.Call call5 = j60Var.f37514a1;
                 if (call5 != null && call5.recording) {
                     j60Var.G1(j60Var.O.getTitleTextView());
                     return;
@@ -201,37 +201,37 @@ public final class t20 implements View.OnClickListener {
                     }
                     for (int i18 = 0; i18 < arrayList.size(); i18++) {
                         org.telegram.ui.Components.voip.t tVar = (org.telegram.ui.Components.voip.t) arrayList.get(i18);
-                        ChatObject.VideoParticipant videoParticipant = tVar.f31861w;
+                        ChatObject.VideoParticipant videoParticipant = tVar.f31834w;
                         if (videoParticipant.participant.self && !videoParticipant.presentation) {
-                            org.telegram.ui.Components.voip.o oVar = tVar.f31832a;
+                            org.telegram.ui.Components.voip.o oVar = tVar.f31805a;
                             if (tVar.J0 == null) {
                                 tVar.K0 = false;
-                                ImageView imageView = tVar.f31864x0;
+                                ImageView imageView = tVar.f31837x0;
                                 if (imageView == null) {
-                                    tVar.f31864x0 = new ImageView(tVar.getContext());
+                                    tVar.f31837x0 = new ImageView(tVar.getContext());
                                 } else {
                                     imageView.animate().cancel();
                                 }
                                 if (oVar.d.isFirstFrameRendered()) {
-                                    Bitmap bitmap = oVar.f31770e.getBitmap(100, 100);
+                                    Bitmap bitmap = oVar.f31743e.getBitmap(100, 100);
                                     if (bitmap != null) {
                                         Utilities.blurBitmap(bitmap, 3);
-                                        tVar.f31864x0.setBackground(new BitmapDrawable(bitmap));
+                                        tVar.f31837x0.setBackground(new BitmapDrawable(bitmap));
                                     }
-                                    tVar.f31864x0.setAlpha(0.0f);
+                                    tVar.f31837x0.setAlpha(0.0f);
                                 } else {
-                                    tVar.f31864x0.setAlpha(1.0f);
+                                    tVar.f31837x0.setAlpha(1.0f);
                                 }
-                                if (tVar.f31864x0.getParent() == null) {
-                                    oVar.addView(tVar.f31864x0);
+                                if (tVar.f31837x0.getParent() == null) {
+                                    oVar.addView(tVar.f31837x0);
                                 }
-                                ((FrameLayout.LayoutParams) tVar.f31864x0.getLayoutParams()).gravity = 17;
+                                ((FrameLayout.LayoutParams) tVar.f31837x0.getLayoutParams()).gravity = 17;
                                 ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
                                 tVar.J0 = ofFloat;
                                 ofFloat.addUpdateListener(new org.telegram.ui.Components.voip.n(tVar, 1));
                                 tVar.J0.addListener(new org.telegram.ui.Components.voip.r(tVar, 2));
                                 tVar.J0.setDuration(400L);
-                                tVar.J0.setInterpolator(org.telegram.ui.Components.pr.f29494f);
+                                tVar.J0.setInterpolator(org.telegram.ui.Components.pr.f29467f);
                                 tVar.J0.start();
                             }
                         }

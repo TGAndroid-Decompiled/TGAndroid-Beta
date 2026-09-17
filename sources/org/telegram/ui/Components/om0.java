@@ -7,24 +7,24 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.R;
 public final class om0 implements Runnable {
-    public final int f29160a = 1;
-    public final vm0 f29161b;
-    public final String f29162c;
+    public final int f29133a = 1;
+    public final vm0 f29134b;
+    public final String f29135c;
     public final ArrayList d;
-    public final ArrayList f29163e;
+    public final ArrayList f29136e;
 
     public om0(vm0 vm0Var, String str, ArrayList arrayList, ArrayList arrayList2) {
-        this.f29161b = vm0Var;
-        this.f29162c = str;
+        this.f29134b = vm0Var;
+        this.f29135c = str;
         this.d = arrayList;
-        this.f29163e = arrayList2;
+        this.f29136e = arrayList2;
     }
 
     @Override
     public final void run() {
-        switch (this.f29160a) {
+        switch (this.f29133a) {
             case 0:
-                vm0 vm0Var = this.f29161b;
+                vm0 vm0Var = this.f29134b;
                 int i10 = vm0Var.d;
                 ArrayList arrayList = new ArrayList();
                 ArrayList arrayList2 = new ArrayList();
@@ -32,7 +32,7 @@ public final class om0 implements Runnable {
                 while (true) {
                     ArrayList arrayList3 = this.d;
                     int size = arrayList3.size();
-                    String str = this.f29162c;
+                    String str = this.f29135c;
                     if (i11 < size) {
                         String documentFileName = FileLoader.getDocumentFileName(((MessageObject) arrayList3.get(i11)).getDocument());
                         if (documentFileName != null && documentFileName.toLowerCase().contains(str)) {
@@ -45,7 +45,7 @@ public final class om0 implements Runnable {
                     } else {
                         int i12 = 0;
                         while (true) {
-                            ArrayList arrayList4 = this.f29163e;
+                            ArrayList arrayList4 = this.f29136e;
                             if (i12 < arrayList4.size()) {
                                 String documentFileName2 = FileLoader.getDocumentFileName(((MessageObject) arrayList4.get(i12)).getDocument());
                                 if (documentFileName2 != null && documentFileName2.toLowerCase().contains(str)) {
@@ -64,16 +64,16 @@ public final class om0 implements Runnable {
                 }
                 break;
             default:
-                vm0 vm0Var2 = this.f29161b;
-                xw0 xw0Var = vm0Var2.f31391a;
-                if (this.f29162c.equals(vm0Var2.L)) {
-                    if (vm0Var2.f31397r == 0) {
+                vm0 vm0Var2 = this.f29134b;
+                xw0 xw0Var = vm0Var2.f31364a;
+                if (this.f29135c.equals(vm0Var2.L)) {
+                    if (vm0Var2.f31370r == 0) {
                         vm0Var2.N.b(0);
                     }
-                    vm0Var2.e(this.d, this.f29163e, true);
-                    if (vm0Var2.f31397r == 0) {
+                    vm0Var2.e(this.d, this.f29136e, true);
+                    if (vm0Var2.f31370r == 0) {
                         xw0Var.e(false, true);
-                        d90 d90Var = xw0Var.f32783e;
+                        d90 d90Var = xw0Var.f32756e;
                         xw0Var.d.setText(LocaleController.getString(R.string.SearchEmptyViewTitle2));
                         d90Var.setVisibility(0);
                         d90Var.setText(LocaleController.getString(R.string.SearchEmptyViewFilteredSubtitle2));
@@ -86,9 +86,9 @@ public final class om0 implements Runnable {
     }
 
     public om0(vm0 vm0Var, ArrayList arrayList, String str, ArrayList arrayList2) {
-        this.f29161b = vm0Var;
+        this.f29134b = vm0Var;
         this.d = arrayList;
-        this.f29162c = str;
-        this.f29163e = arrayList2;
+        this.f29135c = str;
+        this.f29136e = arrayList2;
     }
 }

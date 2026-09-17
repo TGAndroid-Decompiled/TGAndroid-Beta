@@ -2,12 +2,12 @@ package zd;
 
 import java.util.concurrent.atomic.AtomicIntegerFieldUpdater;
 public final class e {
-    public static final AtomicIntegerFieldUpdater f51565b = AtomicIntegerFieldUpdater.newUpdater(e.class, "notCompletedCount$volatile");
-    public final h0[] f51566a;
+    public static final AtomicIntegerFieldUpdater f51534b = AtomicIntegerFieldUpdater.newUpdater(e.class, "notCompletedCount$volatile");
+    public final h0[] f51535a;
     private volatile int notCompletedCount$volatile;
 
     public e(h0[] h0VarArr) {
-        this.f51566a = h0VarArr;
+        this.f51535a = h0VarArr;
         this.notCompletedCount$volatile = h0VarArr.length;
     }
 }

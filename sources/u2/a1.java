@@ -11,45 +11,45 @@ public class a1 implements c3.h0 {
     public boolean E;
     public long F;
     public boolean G;
-    public final ho0 f46647a;
+    public final ho0 f46619a;
     public final n2.m d;
-    public final n2.j f46650e;
-    public Object f46651f;
-    public b2.s f46652g;
+    public final n2.j f46622e;
+    public Object f46623f;
+    public b2.s f46624g;
     public n2.g h;
-    public int f46660p;
-    public int f46661q;
-    public int f46662r;
-    public int f46663s;
-    public boolean f46666w;
-    public boolean f46669z;
-    public final j5.b f46648b = new Object();
-    public int f46653i = 1000;
-    public long[] f46654j = new long[1000];
-    public long[] f46655k = new long[1000];
-    public long[] f46658n = new long[1000];
-    public int[] f46657m = new int[1000];
-    public int[] f46656l = new int[1000];
-    public c3.g0[] f46659o = new c3.g0[1000];
-    public final a5.a f46649c = new a5.a(new org.telegram.ui.web.n(2));
-    public long f46664t = Long.MIN_VALUE;
-    public long f46665u = Long.MIN_VALUE;
+    public int f46632p;
+    public int f46633q;
+    public int f46634r;
+    public int f46635s;
+    public boolean f46638w;
+    public boolean f46641z;
+    public final j5.b f46620b = new Object();
+    public int f46625i = 1000;
+    public long[] f46626j = new long[1000];
+    public long[] f46627k = new long[1000];
+    public long[] f46630n = new long[1000];
+    public int[] f46629m = new int[1000];
+    public int[] f46628l = new int[1000];
+    public c3.g0[] f46631o = new c3.g0[1000];
+    public final a5.a f46621c = new a5.a(new org.telegram.ui.web.n(2));
+    public long f46636t = Long.MIN_VALUE;
+    public long f46637u = Long.MIN_VALUE;
     public long v = Long.MIN_VALUE;
-    public boolean f46668y = true;
-    public boolean f46667x = true;
+    public boolean f46640y = true;
+    public boolean f46639x = true;
     public boolean D = true;
 
     public a1(y2.d dVar, n2.m mVar, n2.j jVar) {
         this.d = mVar;
-        this.f46650e = jVar;
-        this.f46647a = new ho0(dVar);
+        this.f46622e = jVar;
+        this.f46619a = new ho0(dVar);
     }
 
     public final void A(b2.s sVar, n4.y yVar) {
         boolean z10;
         b2.o oVar;
         b2.s sVar2;
-        b2.s sVar3 = this.f46652g;
+        b2.s sVar3 = this.f46624g;
         if (sVar3 == null) {
             z10 = true;
         } else {
@@ -60,7 +60,7 @@ public class a1 implements c3.h0 {
         } else {
             oVar = sVar3.v;
         }
-        this.f46652g = sVar;
+        this.f46624g = sVar;
         b2.o oVar2 = sVar.v;
         n2.m mVar = this.d;
         if (mVar != null) {
@@ -71,15 +71,15 @@ public class a1 implements c3.h0 {
         } else {
             sVar2 = sVar;
         }
-        yVar.f16524c = sVar2;
-        yVar.f16523b = this.h;
+        yVar.f16497c = sVar2;
+        yVar.f16496b = this.h;
         if (mVar != null) {
             if (z10 || !Objects.equals(oVar, oVar2)) {
                 n2.g gVar = this.h;
-                n2.j jVar = this.f46650e;
+                n2.j jVar = this.f46622e;
                 n2.g T0 = mVar.T0(jVar, sVar);
                 this.h = T0;
-                yVar.f16523b = T0;
+                yVar.f16496b = T0;
                 if (gVar != null) {
                     gVar.a(jVar);
                 }
@@ -91,14 +91,14 @@ public class a1 implements c3.h0 {
         boolean z10;
         long j3;
         try {
-            int u10 = u(this.f46663s);
-            if (this.f46663s != this.f46660p) {
+            int u10 = u(this.f46635s);
+            if (this.f46635s != this.f46632p) {
                 z10 = true;
             } else {
                 z10 = false;
             }
             if (z10) {
-                j3 = this.f46654j[u10];
+                j3 = this.f46626j[u10];
             } else {
                 j3 = this.C;
             }
@@ -108,7 +108,7 @@ public class a1 implements c3.h0 {
         return j3;
     }
 
-    public final int C(n4.y yVar, h2.h hVar, int i10, boolean z10) {
+    public final int C(n4.y yVar, h2.g gVar, int i10, boolean z10) {
         boolean z11;
         boolean z12;
         int i11;
@@ -118,42 +118,42 @@ public class a1 implements c3.h0 {
         } else {
             z11 = false;
         }
-        j5.b bVar = this.f46648b;
+        j5.b bVar = this.f46620b;
         synchronized (this) {
             try {
-                hVar.d = false;
-                if (this.f46663s != this.f46660p) {
+                gVar.f10848f = false;
+                if (this.f46635s != this.f46632p) {
                     z12 = true;
                 } else {
                     z12 = false;
                 }
                 i11 = -3;
                 if (!z12) {
-                    if (!z10 && !this.f46666w) {
+                    if (!z10 && !this.f46638w) {
                         b2.s sVar = this.B;
-                        if (sVar == null || (!z11 && sVar == this.f46652g)) {
+                        if (sVar == null || (!z11 && sVar == this.f46624g)) {
                         }
                         A(sVar, yVar);
                         i11 = -5;
                     }
-                    hVar.setFlags(4);
-                    hVar.f10877e = Long.MIN_VALUE;
+                    gVar.f6773b = 4;
+                    gVar.h = Long.MIN_VALUE;
                     i11 = -4;
                 } else {
-                    b2.s sVar2 = ((y0) this.f46649c.l(t())).f46888a;
-                    if (!z11 && sVar2 == this.f46652g) {
-                        int u10 = u(this.f46663s);
+                    b2.s sVar2 = ((y0) this.f46621c.l(t())).f46860a;
+                    if (!z11 && sVar2 == this.f46624g) {
+                        int u10 = u(this.f46635s);
                         if (!y(u10)) {
-                            hVar.d = true;
+                            gVar.f10848f = true;
                         } else {
-                            hVar.setFlags(this.f46657m[u10]);
-                            if (this.f46663s == this.f46660p - 1 && (z10 || this.f46666w)) {
-                                hVar.addFlag(536870912);
+                            gVar.f6773b = this.f46629m[u10];
+                            if (this.f46635s == this.f46632p - 1 && (z10 || this.f46638w)) {
+                                gVar.a(536870912);
                             }
-                            hVar.f10877e = this.f46658n[u10];
-                            bVar.f13539b = this.f46656l[u10];
-                            bVar.f13538a = this.f46655k[u10];
-                            bVar.f13540c = this.f46659o[u10];
+                            gVar.h = this.f46630n[u10];
+                            bVar.f13513b = this.f46628l[u10];
+                            bVar.f13512a = this.f46627k[u10];
+                            bVar.f13514c = this.f46631o[u10];
                             i11 = -4;
                         }
                     }
@@ -164,21 +164,21 @@ public class a1 implements c3.h0 {
                 throw th2;
             }
         }
-        if (i11 == -4 && !hVar.isEndOfStream()) {
+        if (i11 == -4 && !gVar.c(4)) {
             if ((i10 & 1) != 0) {
                 z13 = true;
             }
             if ((i10 & 4) == 0) {
                 if (z13) {
-                    ho0 ho0Var = this.f46647a;
-                    ho0.f((x0) ho0Var.f26805f, hVar, this.f46648b, (e2.v) ho0Var.d);
+                    ho0 ho0Var = this.f46619a;
+                    ho0.f((x0) ho0Var.f26778f, gVar, this.f46620b, (e2.v) ho0Var.d);
                 } else {
-                    ho0 ho0Var2 = this.f46647a;
-                    ho0Var2.f26805f = ho0.f((x0) ho0Var2.f26805f, hVar, this.f46648b, (e2.v) ho0Var2.d);
+                    ho0 ho0Var2 = this.f46619a;
+                    ho0Var2.f26778f = ho0.f((x0) ho0Var2.f26778f, gVar, this.f46620b, (e2.v) ho0Var2.d);
                 }
             }
             if (!z13) {
-                this.f46663s++;
+                this.f46635s++;
             }
         }
         return i11;
@@ -186,59 +186,59 @@ public class a1 implements c3.h0 {
 
     public final void D(boolean z10) {
         boolean z11;
-        ho0 ho0Var = this.f46647a;
-        ho0Var.a((x0) ho0Var.f26804e);
-        x0 x0Var = (x0) ho0Var.f26804e;
-        int i10 = ho0Var.f26801a;
-        if (((y2.a) x0Var.f46885c) == null) {
+        ho0 ho0Var = this.f46619a;
+        ho0Var.a((x0) ho0Var.f26777e);
+        x0 x0Var = (x0) ho0Var.f26777e;
+        int i10 = ho0Var.f26774a;
+        if (((y2.a) x0Var.f46857c) == null) {
             z11 = true;
         } else {
             z11 = false;
         }
         e2.d.g(z11);
-        x0Var.f46883a = 0L;
-        x0Var.f46884b = i10;
-        x0 x0Var2 = (x0) ho0Var.f26804e;
-        ho0Var.f26805f = x0Var2;
-        ho0Var.f26806g = x0Var2;
-        ho0Var.f26802b = 0L;
-        ((y2.d) ho0Var.f26803c).b();
-        this.f46660p = 0;
-        this.f46661q = 0;
-        this.f46662r = 0;
-        this.f46663s = 0;
-        this.f46667x = true;
-        this.f46664t = Long.MIN_VALUE;
-        this.f46665u = Long.MIN_VALUE;
+        x0Var.f46855a = 0L;
+        x0Var.f46856b = i10;
+        x0 x0Var2 = (x0) ho0Var.f26777e;
+        ho0Var.f26778f = x0Var2;
+        ho0Var.f26779g = x0Var2;
+        ho0Var.f26775b = 0L;
+        ((y2.d) ho0Var.f26776c).b();
+        this.f46632p = 0;
+        this.f46633q = 0;
+        this.f46634r = 0;
+        this.f46635s = 0;
+        this.f46639x = true;
+        this.f46636t = Long.MIN_VALUE;
+        this.f46637u = Long.MIN_VALUE;
         this.v = Long.MIN_VALUE;
-        this.f46666w = false;
-        a5.a aVar = this.f46649c;
-        SparseArray sparseArray = (SparseArray) aVar.f298c;
+        this.f46638w = false;
+        a5.a aVar = this.f46621c;
+        SparseArray sparseArray = (SparseArray) aVar.f286c;
         for (int i11 = 0; i11 < sparseArray.size(); i11++) {
             ((org.telegram.ui.web.n) aVar.d).accept(sparseArray.valueAt(i11));
         }
-        aVar.f297b = -1;
+        aVar.f285b = -1;
         sparseArray.clear();
         if (z10) {
             this.A = null;
             this.B = null;
-            this.f46668y = true;
+            this.f46640y = true;
             this.D = true;
         }
     }
 
     public final synchronized void E() {
-        this.f46663s = 0;
-        ho0 ho0Var = this.f46647a;
-        ho0Var.f26805f = (x0) ho0Var.f26804e;
+        this.f46635s = 0;
+        ho0 ho0Var = this.f46619a;
+        ho0Var.f26778f = (x0) ho0Var.f26777e;
     }
 
     public final synchronized boolean F(int i10) {
         E();
-        int i11 = this.f46661q;
-        if (i10 >= i11 && i10 <= this.f46660p + i11) {
-            this.f46664t = Long.MIN_VALUE;
-            this.f46663s = i10 - i11;
+        int i11 = this.f46633q;
+        if (i10 >= i11 && i10 <= this.f46632p + i11) {
+            this.f46636t = Long.MIN_VALUE;
+            this.f46635s = i10 - i11;
             return true;
         }
         return false;
@@ -253,15 +253,15 @@ public class a1 implements c3.h0 {
         try {
             try {
                 E();
-                int u10 = u(this.f46663s);
-                int i10 = this.f46663s;
-                int i11 = this.f46660p;
+                int u10 = u(this.f46635s);
+                int i10 = this.f46635s;
+                int i11 = this.f46632p;
                 if (i10 != i11) {
                     z11 = true;
                 } else {
                     z11 = false;
                 }
-                if (!z11 || j3 < this.f46658n[u10] || (j3 > this.v && !z10)) {
+                if (!z11 || j3 < this.f46630n[u10] || (j3 > this.v && !z10)) {
                     return false;
                 }
                 if (this.D) {
@@ -270,12 +270,12 @@ public class a1 implements c3.h0 {
                     while (true) {
                         if (i13 < i12) {
                             try {
-                                if (this.f46658n[u10] >= j3) {
+                                if (this.f46630n[u10] >= j3) {
                                     i12 = i13;
                                     break;
                                 }
                                 u10++;
-                                if (u10 == this.f46653i) {
+                                if (u10 == this.f46625i) {
                                     u10 = 0;
                                 }
                                 i13++;
@@ -299,8 +299,8 @@ public class a1 implements c3.h0 {
                 if (o9 == -1) {
                     return false;
                 }
-                a1Var.f46664t = j10;
-                a1Var.f46663s += o9;
+                a1Var.f46636t = j10;
+                a1Var.f46635s += o9;
                 return true;
             } catch (Throwable th4) {
                 th = th4;
@@ -318,10 +318,10 @@ public class a1 implements c3.h0 {
         boolean z10;
         if (i10 >= 0) {
             try {
-                if (this.f46663s + i10 <= this.f46660p) {
+                if (this.f46635s + i10 <= this.f46632p) {
                     z10 = true;
                     e2.d.b(z10);
-                    this.f46663s += i10;
+                    this.f46635s += i10;
                 }
             } catch (Throwable th2) {
                 throw th2;
@@ -329,7 +329,7 @@ public class a1 implements c3.h0 {
         }
         z10 = false;
         e2.d.b(z10);
-        this.f46663s += i10;
+        this.f46635s += i10;
     }
 
     @Override
@@ -342,25 +342,25 @@ public class a1 implements c3.h0 {
         boolean z10;
         b2.s p5 = p(sVar);
         boolean z11 = false;
-        this.f46669z = false;
+        this.f46641z = false;
         this.A = sVar;
         synchronized (this) {
             try {
-                this.f46668y = false;
+                this.f46640y = false;
                 if (!Objects.equals(p5, this.B)) {
-                    if (((SparseArray) this.f46649c.f298c).size() == 0) {
+                    if (((SparseArray) this.f46621c.f286c).size() == 0) {
                         z10 = true;
                     } else {
                         z10 = false;
                     }
                     if (!z10) {
-                        SparseArray sparseArray = (SparseArray) this.f46649c.f298c;
-                        if (((y0) sparseArray.valueAt(sparseArray.size() - 1)).f46888a.equals(p5)) {
-                            SparseArray sparseArray2 = (SparseArray) this.f46649c.f298c;
-                            this.B = ((y0) sparseArray2.valueAt(sparseArray2.size() - 1)).f46888a;
+                        SparseArray sparseArray = (SparseArray) this.f46621c.f286c;
+                        if (((y0) sparseArray.valueAt(sparseArray.size() - 1)).f46860a.equals(p5)) {
+                            SparseArray sparseArray2 = (SparseArray) this.f46621c.f286c;
+                            this.B = ((y0) sparseArray2.valueAt(sparseArray2.size() - 1)).f46860a;
                             boolean z12 = this.D;
                             b2.s sVar2 = this.B;
-                            this.D = z12 & b2.r0.a(sVar2.f2397r, sVar2.f2390k);
+                            this.D = z12 & b2.r0.a(sVar2.f2370r, sVar2.f2363k);
                             this.E = false;
                             z11 = true;
                         }
@@ -368,7 +368,7 @@ public class a1 implements c3.h0 {
                     this.B = p5;
                     boolean z122 = this.D;
                     b2.s sVar22 = this.B;
-                    this.D = z122 & b2.r0.a(sVar22.f2397r, sVar22.f2390k);
+                    this.D = z122 & b2.r0.a(sVar22.f2370r, sVar22.f2363k);
                     this.E = false;
                     z11 = true;
                 }
@@ -376,7 +376,7 @@ public class a1 implements c3.h0 {
                 throw th2;
             }
         }
-        ?? r52 = this.f46651f;
+        ?? r52 = this.f46623f;
         if (r52 != 0 && z11) {
             r52.b();
         }
@@ -394,22 +394,22 @@ public class a1 implements c3.h0 {
 
     @Override
     public final int e(b2.k kVar, int i10, boolean z10) {
-        ho0 ho0Var = this.f46647a;
+        ho0 ho0Var = this.f46619a;
         int c10 = ho0Var.c(i10);
-        x0 x0Var = (x0) ho0Var.f26806g;
-        y2.a aVar = (y2.a) x0Var.f46885c;
-        int read = kVar.read(aVar.f49505a, ((int) (ho0Var.f26802b - x0Var.f46883a)) + aVar.f49506b, c10);
+        x0 x0Var = (x0) ho0Var.f26779g;
+        y2.a aVar = (y2.a) x0Var.f46857c;
+        int read = kVar.read(aVar.f49476a, ((int) (ho0Var.f26775b - x0Var.f46855a)) + aVar.f49477b, c10);
         if (read == -1) {
             if (z10) {
                 return -1;
             }
             throw new EOFException();
         }
-        long j3 = ho0Var.f26802b + read;
-        ho0Var.f26802b = j3;
-        x0 x0Var2 = (x0) ho0Var.f26806g;
-        if (j3 == x0Var2.f46884b) {
-            ho0Var.f26806g = (x0) x0Var2.d;
+        long j3 = ho0Var.f26775b + read;
+        ho0Var.f26775b = j3;
+        x0 x0Var2 = (x0) ho0Var.f26779g;
+        if (j3 == x0Var2.f46856b) {
+            ho0Var.f26779g = (x0) x0Var2.d;
         }
         return read;
     }
@@ -417,18 +417,18 @@ public class a1 implements c3.h0 {
     @Override
     public final void f(e2.v vVar, int i10, int i11) {
         while (true) {
-            ho0 ho0Var = this.f46647a;
+            ho0 ho0Var = this.f46619a;
             if (i10 > 0) {
                 int c10 = ho0Var.c(i10);
-                x0 x0Var = (x0) ho0Var.f26806g;
-                y2.a aVar = (y2.a) x0Var.f46885c;
-                vVar.h(((int) (ho0Var.f26802b - x0Var.f46883a)) + aVar.f49506b, c10, aVar.f49505a);
+                x0 x0Var = (x0) ho0Var.f26779g;
+                y2.a aVar = (y2.a) x0Var.f46857c;
+                vVar.h(((int) (ho0Var.f26775b - x0Var.f46855a)) + aVar.f49477b, c10, aVar.f49476a);
                 i10 -= c10;
-                long j3 = ho0Var.f26802b + c10;
-                ho0Var.f26802b = j3;
-                x0 x0Var2 = (x0) ho0Var.f26806g;
-                if (j3 == x0Var2.f46884b) {
-                    ho0Var.f26806g = (x0) x0Var2.d;
+                long j3 = ho0Var.f26775b + c10;
+                ho0Var.f26775b = j3;
+                x0 x0Var2 = (x0) ho0Var.f26779g;
+                if (j3 == x0Var2.f46856b) {
+                    ho0Var.f26779g = (x0) x0Var2.d;
                 }
             } else {
                 ho0Var.getClass();
@@ -442,13 +442,13 @@ public class a1 implements c3.h0 {
     }
 
     public final int h(long j3) {
-        int i10 = this.f46660p;
+        int i10 = this.f46632p;
         int u10 = u(i10 - 1);
-        while (i10 > this.f46663s && this.f46658n[u10] >= j3) {
+        while (i10 > this.f46635s && this.f46630n[u10] >= j3) {
             i10--;
             u10--;
             if (u10 == -1) {
-                u10 = this.f46653i - 1;
+                u10 = this.f46625i - 1;
             }
         }
         return i10;
@@ -456,24 +456,24 @@ public class a1 implements c3.h0 {
 
     public final long i(int i10) {
         int i11;
-        this.f46665u = Math.max(this.f46665u, s(i10));
-        this.f46660p -= i10;
-        int i12 = this.f46661q + i10;
-        this.f46661q = i12;
-        int i13 = this.f46662r + i10;
-        this.f46662r = i13;
-        int i14 = this.f46653i;
+        this.f46637u = Math.max(this.f46637u, s(i10));
+        this.f46632p -= i10;
+        int i12 = this.f46633q + i10;
+        this.f46633q = i12;
+        int i13 = this.f46634r + i10;
+        this.f46634r = i13;
+        int i14 = this.f46625i;
         if (i13 >= i14) {
-            this.f46662r = i13 - i14;
+            this.f46634r = i13 - i14;
         }
-        int i15 = this.f46663s - i10;
-        this.f46663s = i15;
+        int i15 = this.f46635s - i10;
+        this.f46635s = i15;
         int i16 = 0;
         if (i15 < 0) {
-            this.f46663s = 0;
+            this.f46635s = 0;
         }
-        a5.a aVar = this.f46649c;
-        SparseArray sparseArray = (SparseArray) aVar.f298c;
+        a5.a aVar = this.f46621c;
+        SparseArray sparseArray = (SparseArray) aVar.f286c;
         while (i16 < sparseArray.size() - 1) {
             int i17 = i16 + 1;
             if (i12 < sparseArray.keyAt(i17)) {
@@ -481,37 +481,37 @@ public class a1 implements c3.h0 {
             }
             ((org.telegram.ui.web.n) aVar.d).accept(sparseArray.valueAt(i16));
             sparseArray.removeAt(i16);
-            int i18 = aVar.f297b;
+            int i18 = aVar.f285b;
             if (i18 > 0) {
-                aVar.f297b = i18 - 1;
+                aVar.f285b = i18 - 1;
             }
             i16 = i17;
         }
-        if (this.f46660p == 0) {
-            int i19 = this.f46662r;
+        if (this.f46632p == 0) {
+            int i19 = this.f46634r;
             if (i19 == 0) {
-                i19 = this.f46653i;
+                i19 = this.f46625i;
             }
-            return this.f46655k[i19 - 1] + this.f46656l[i11];
+            return this.f46627k[i19 - 1] + this.f46628l[i11];
         }
-        return this.f46655k[this.f46662r];
+        return this.f46627k[this.f46634r];
     }
 
     public final void j(long j3, boolean z10) {
         Throwable th2;
-        ho0 ho0Var = this.f46647a;
+        ho0 ho0Var = this.f46619a;
         synchronized (this) {
             try {
                 try {
-                    int i10 = this.f46660p;
+                    int i10 = this.f46632p;
                     long j10 = -1;
                     if (i10 != 0) {
-                        long[] jArr = this.f46658n;
-                        int i11 = this.f46662r;
+                        long[] jArr = this.f46630n;
+                        int i11 = this.f46634r;
                         if (j3 >= jArr[i11]) {
                             if (z10) {
                                 try {
-                                    int i12 = this.f46663s;
+                                    int i12 = this.f46635s;
                                     if (i12 != i10) {
                                         i10 = i12 + 1;
                                     }
@@ -543,9 +543,9 @@ public class a1 implements c3.h0 {
 
     public final void k() {
         long i10;
-        ho0 ho0Var = this.f46647a;
+        ho0 ho0Var = this.f46619a;
         synchronized (this) {
-            int i11 = this.f46660p;
+            int i11 = this.f46632p;
             if (i11 == 0) {
                 i10 = -1;
             } else {
@@ -557,7 +557,7 @@ public class a1 implements c3.h0 {
 
     public final void l(long j3) {
         boolean z10;
-        if (this.f46660p == 0) {
+        if (this.f46632p == 0) {
             return;
         }
         if (j3 > r()) {
@@ -566,45 +566,45 @@ public class a1 implements c3.h0 {
             z10 = false;
         }
         e2.d.b(z10);
-        n(this.f46661q + h(j3));
+        n(this.f46633q + h(j3));
     }
 
     public final long m(int i10) {
         boolean z10;
         int i11;
         int u10;
-        int i12 = this.f46661q;
-        int i13 = this.f46660p;
+        int i12 = this.f46633q;
+        int i13 = this.f46632p;
         int i14 = (i12 + i13) - i10;
         boolean z11 = false;
-        if (i14 >= 0 && i14 <= i13 - this.f46663s) {
+        if (i14 >= 0 && i14 <= i13 - this.f46635s) {
             z10 = true;
         } else {
             z10 = false;
         }
         e2.d.b(z10);
-        int i15 = this.f46660p - i14;
-        this.f46660p = i15;
-        this.v = Math.max(this.f46665u, s(i15));
-        if (i14 == 0 && this.f46666w) {
+        int i15 = this.f46632p - i14;
+        this.f46632p = i15;
+        this.v = Math.max(this.f46637u, s(i15));
+        if (i14 == 0 && this.f46638w) {
             z11 = true;
         }
-        this.f46666w = z11;
-        a5.a aVar = this.f46649c;
-        SparseArray sparseArray = (SparseArray) aVar.f298c;
+        this.f46638w = z11;
+        a5.a aVar = this.f46621c;
+        SparseArray sparseArray = (SparseArray) aVar.f286c;
         for (int size = sparseArray.size() - 1; size >= 0 && i10 < sparseArray.keyAt(size); size--) {
             ((org.telegram.ui.web.n) aVar.d).accept(sparseArray.valueAt(size));
             sparseArray.removeAt(size);
         }
         if (sparseArray.size() > 0) {
-            i11 = Math.min(aVar.f297b, sparseArray.size() - 1);
+            i11 = Math.min(aVar.f285b, sparseArray.size() - 1);
         } else {
             i11 = -1;
         }
-        aVar.f297b = i11;
-        int i16 = this.f46660p;
+        aVar.f285b = i11;
+        int i16 = this.f46632p;
         if (i16 != 0) {
-            return this.f46655k[u(i16 - 1)] + this.f46656l[u10];
+            return this.f46627k[u(i16 - 1)] + this.f46628l[u10];
         }
         return 0L;
     }
@@ -612,59 +612,59 @@ public class a1 implements c3.h0 {
     public final void n(int i10) {
         boolean z10;
         long m10 = m(i10);
-        ho0 ho0Var = this.f46647a;
-        int i11 = ho0Var.f26801a;
-        if (m10 <= ho0Var.f26802b) {
+        ho0 ho0Var = this.f46619a;
+        int i11 = ho0Var.f26774a;
+        if (m10 <= ho0Var.f26775b) {
             z10 = true;
         } else {
             z10 = false;
         }
         e2.d.b(z10);
-        ho0Var.f26802b = m10;
+        ho0Var.f26775b = m10;
         if (m10 != 0) {
-            x0 x0Var = (x0) ho0Var.f26804e;
-            if (m10 != x0Var.f46883a) {
-                while (ho0Var.f26802b > x0Var.f46884b) {
+            x0 x0Var = (x0) ho0Var.f26777e;
+            if (m10 != x0Var.f46855a) {
+                while (ho0Var.f26775b > x0Var.f46856b) {
                     x0Var = (x0) x0Var.d;
                 }
                 x0 x0Var2 = (x0) x0Var.d;
                 x0Var2.getClass();
                 ho0Var.a(x0Var2);
-                x0 x0Var3 = new x0(x0Var.f46884b, i11);
+                x0 x0Var3 = new x0(x0Var.f46856b, i11);
                 x0Var.d = x0Var3;
-                if (ho0Var.f26802b == x0Var.f46884b) {
+                if (ho0Var.f26775b == x0Var.f46856b) {
                     x0Var = x0Var3;
                 }
-                ho0Var.f26806g = x0Var;
-                if (((x0) ho0Var.f26805f) == x0Var2) {
-                    ho0Var.f26805f = x0Var3;
+                ho0Var.f26779g = x0Var;
+                if (((x0) ho0Var.f26778f) == x0Var2) {
+                    ho0Var.f26778f = x0Var3;
                     return;
                 }
                 return;
             }
         }
-        ho0Var.a((x0) ho0Var.f26804e);
-        x0 x0Var4 = new x0(ho0Var.f26802b, i11);
-        ho0Var.f26804e = x0Var4;
-        ho0Var.f26805f = x0Var4;
-        ho0Var.f26806g = x0Var4;
+        ho0Var.a((x0) ho0Var.f26777e);
+        x0 x0Var4 = new x0(ho0Var.f26775b, i11);
+        ho0Var.f26777e = x0Var4;
+        ho0Var.f26778f = x0Var4;
+        ho0Var.f26779g = x0Var4;
     }
 
     public final int o(long j3, int i10, int i11, boolean z10) {
         int i12 = -1;
         for (int i13 = 0; i13 < i11; i13++) {
-            int i14 = (this.f46658n[i10] > j3 ? 1 : (this.f46658n[i10] == j3 ? 0 : -1));
+            int i14 = (this.f46630n[i10] > j3 ? 1 : (this.f46630n[i10] == j3 ? 0 : -1));
             if (i14 > 0) {
                 break;
             }
-            if (!z10 || (this.f46657m[i10] & 1) != 0) {
+            if (!z10 || (this.f46629m[i10] & 1) != 0) {
                 if (i14 == 0) {
                     return i13;
                 }
                 i12 = i13;
             }
             i10++;
-            if (i10 == this.f46653i) {
+            if (i10 == this.f46625i) {
                 i10 = 0;
             }
         }
@@ -672,9 +672,9 @@ public class a1 implements c3.h0 {
     }
 
     public b2.s p(b2.s sVar) {
-        if (this.F != 0 && sVar.f2401w != Long.MAX_VALUE) {
+        if (this.F != 0 && sVar.f2374w != Long.MAX_VALUE) {
             b2.r a2 = sVar.a();
-            a2.v = sVar.f2401w + this.F;
+            a2.v = sVar.f2374w + this.F;
             return new b2.s(a2);
         }
         return sVar;
@@ -685,7 +685,7 @@ public class a1 implements c3.h0 {
     }
 
     public final synchronized long r() {
-        return Math.max(this.f46665u, s(this.f46663s));
+        return Math.max(this.f46637u, s(this.f46635s));
     }
 
     public final long s(int i10) {
@@ -695,25 +695,25 @@ public class a1 implements c3.h0 {
         }
         int u10 = u(i10 - 1);
         for (int i11 = 0; i11 < i10; i11++) {
-            j3 = Math.max(j3, this.f46658n[u10]);
-            if ((this.f46657m[u10] & 1) != 0) {
+            j3 = Math.max(j3, this.f46630n[u10]);
+            if ((this.f46629m[u10] & 1) != 0) {
                 return j3;
             }
             u10--;
             if (u10 == -1) {
-                u10 = this.f46653i - 1;
+                u10 = this.f46625i - 1;
             }
         }
         return j3;
     }
 
     public final int t() {
-        return this.f46661q + this.f46663s;
+        return this.f46633q + this.f46635s;
     }
 
     public final int u(int i10) {
-        int i11 = this.f46662r + i10;
-        int i12 = this.f46653i;
+        int i11 = this.f46634r + i10;
+        int i12 = this.f46625i;
         if (i11 < i12) {
             return i11;
         }
@@ -724,15 +724,15 @@ public class a1 implements c3.h0 {
         boolean z11;
         try {
             try {
-                int u10 = u(this.f46663s);
-                int i10 = this.f46663s;
-                int i11 = this.f46660p;
+                int u10 = u(this.f46635s);
+                int i10 = this.f46635s;
+                int i11 = this.f46632p;
                 if (i10 != i11) {
                     z11 = true;
                 } else {
                     z11 = false;
                 }
-                if (!z11 || j3 < this.f46658n[u10]) {
+                if (!z11 || j3 < this.f46630n[u10]) {
                     return 0;
                 }
                 if (j3 > this.v && z10) {
@@ -755,7 +755,7 @@ public class a1 implements c3.h0 {
 
     public final synchronized b2.s w() {
         b2.s sVar;
-        if (this.f46668y) {
+        if (this.f46640y) {
             sVar = null;
         } else {
             sVar = this.B;
@@ -767,27 +767,27 @@ public class a1 implements c3.h0 {
         boolean z11;
         b2.s sVar;
         boolean z12 = false;
-        if (this.f46663s != this.f46660p) {
+        if (this.f46635s != this.f46632p) {
             z11 = true;
         } else {
             z11 = false;
         }
         if (!z11) {
-            if (z10 || this.f46666w || ((sVar = this.B) != null && sVar != this.f46652g)) {
+            if (z10 || this.f46638w || ((sVar = this.B) != null && sVar != this.f46624g)) {
                 z12 = true;
             }
             return z12;
-        } else if (((y0) this.f46649c.l(t())).f46888a != this.f46652g) {
+        } else if (((y0) this.f46621c.l(t())).f46860a != this.f46624g) {
             return true;
         } else {
-            return y(u(this.f46663s));
+            return y(u(this.f46635s));
         }
     }
 
     public final boolean y(int i10) {
         n2.g gVar = this.h;
         if (gVar != null && gVar.e() != 4) {
-            if ((this.f46657m[i10] & 1073741824) != 0 || !this.h.d()) {
+            if ((this.f46629m[i10] & 1073741824) != 0 || !this.h.d()) {
                 return false;
             }
             return true;

@@ -13,7 +13,7 @@ public abstract class ym extends org.telegram.ui.Components.ll0 implements bi.b9
     @Override
     public final void a(int[] iArr) {
         co coVar = this.X2;
-        iArr[0] = ((int) coVar.f35446s9) - AndroidUtilities.dp(4.0f);
-        iArr[1] = org.telegram.messenger.w1.z(3.0f, coVar.f35501x0.getPaddingBottom(), coVar.f35501x0.getMeasuredHeight());
+        iArr[0] = ((int) coVar.f35419s9) - AndroidUtilities.dp(4.0f);
+        iArr[1] = org.telegram.messenger.w1.z(3.0f, coVar.f35474x0.getPaddingBottom(), coVar.f35474x0.getMeasuredHeight());
     }
 }

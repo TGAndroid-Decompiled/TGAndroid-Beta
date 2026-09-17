@@ -2,16 +2,16 @@ package org.telegram.ui.ActionBar;
 
 import org.telegram.ui.hz;
 public final class s extends hz {
-    public final ActionBarLayout f21351a;
+    public final ActionBarLayout f21324a;
 
     public s(ActionBarLayout actionBarLayout) {
         super(null);
-        this.f21351a = actionBarLayout;
+        this.f21324a = actionBarLayout;
     }
 
     @Override
     public final void updateSheetsVisibility() {
         super.updateSheetsVisibility();
-        this.f21351a.invalidate();
+        this.f21324a.invalidate();
     }
 }

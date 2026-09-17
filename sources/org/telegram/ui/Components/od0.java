@@ -4,38 +4,38 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 public final class od0 extends AnimatorListenerAdapter {
-    public final int f29065a;
-    public final di.l9 f29066b;
+    public final int f29038a;
+    public final di.l9 f29039b;
 
     public od0(di.l9 l9Var, int i10) {
-        this.f29065a = i10;
-        this.f29066b = l9Var;
+        this.f29038a = i10;
+        this.f29039b = l9Var;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        switch (this.f29065a) {
+        switch (this.f29038a) {
             case 0:
-                di.l9 l9Var = this.f29066b;
-                AnimatorSet animatorSet = (AnimatorSet) l9Var.f7603e;
+                di.l9 l9Var = this.f29039b;
+                AnimatorSet animatorSet = (AnimatorSet) l9Var.f7575e;
                 if (animatorSet != null && animatorSet.equals(animator)) {
-                    l9Var.f7603e = null;
+                    l9Var.f7575e = null;
                     return;
                 }
                 return;
             case 1:
-                di.l9 l9Var2 = this.f29066b;
-                AnimatorSet animatorSet2 = (AnimatorSet) l9Var2.f7603e;
+                di.l9 l9Var2 = this.f29039b;
+                AnimatorSet animatorSet2 = (AnimatorSet) l9Var2.f7575e;
                 if (animatorSet2 != null && animatorSet2.equals(animator)) {
-                    l9Var2.f7603e = null;
+                    l9Var2.f7575e = null;
                     return;
                 }
                 return;
             default:
-                di.l9 l9Var3 = this.f29066b;
-                AnimatorSet animatorSet3 = (AnimatorSet) l9Var3.f7603e;
+                di.l9 l9Var3 = this.f29039b;
+                AnimatorSet animatorSet3 = (AnimatorSet) l9Var3.f7575e;
                 if (animatorSet3 != null && animatorSet3.equals(animator)) {
-                    l9Var3.f7603e = null;
+                    l9Var3.f7575e = null;
                     return;
                 }
                 return;

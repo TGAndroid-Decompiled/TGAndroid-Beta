@@ -22,32 +22,32 @@ import org.telegram.ui.Components.h90;
 import org.telegram.ui.Components.pr;
 import org.telegram.ui.r01;
 public abstract class g6 extends FrameLayout implements org.telegram.ui.ActionBar.z5 {
-    public final org.telegram.ui.ActionBar.f6 f22006a;
-    public final TextView f22007b;
-    public final cq f22008c;
+    public final org.telegram.ui.ActionBar.f6 f21979a;
+    public final TextView f21980b;
+    public final cq f21981c;
     public final r2 d;
-    public boolean f22009e;
-    public final org.telegram.ui.Components.e6 f22010f;
+    public boolean f21982e;
+    public final org.telegram.ui.Components.e6 f21983f;
     public final h90 h;
-    public boolean f22011n;
+    public boolean f21984n;
 
     public g6(org.telegram.ui.ActionBar.n2 n2Var) {
         super(n2Var.getContext());
         pr prVar = pr.h;
-        this.f22010f = new org.telegram.ui.Components.e6(320L, prVar);
-        this.f22011n = false;
+        this.f21983f = new org.telegram.ui.Components.e6(320L, prVar);
+        this.f21984n = false;
         Context context = n2Var.getContext();
         org.telegram.ui.ActionBar.f6 resourceProvider = n2Var.getResourceProvider();
-        this.f22006a = resourceProvider;
+        this.f21979a = resourceProvider;
         LinearLayout f7 = vl.f(context, 0);
         addView(f7, w7.x5.d(-1, -2.0f, 55, 16.66f, 11.6f, 16.66f, 0.0f));
         TextView textView = new TextView(context);
-        this.f22007b = textView;
+        this.f21980b = textView;
         vl.j(14.0f, 1, textView);
         textView.setText(LocaleController.getString(R.string.ProfileChannel));
         f7.addView(textView, w7.x5.q(-2, -2, 51));
         cq cqVar = new cq(context);
-        this.f22008c = cqVar;
+        this.f21981c = cqVar;
         cqVar.getDrawable().o(true, true, false);
         cqVar.b(0.3f, 165L, prVar);
         cqVar.setTypeface(AndroidUtilities.bold());
@@ -66,7 +66,7 @@ public abstract class g6 extends FrameLayout implements org.telegram.ui.ActionBa
         setWillNotDraw(false);
         h90 h90Var = new h90();
         this.h = h90Var;
-        int i10 = org.telegram.ui.ActionBar.j6.f20781i6;
+        int i10 = org.telegram.ui.ActionBar.j6.f20754i6;
         h90Var.e(org.telegram.ui.ActionBar.j6.l1(1.25f, org.telegram.ui.ActionBar.j6.v0(i10, resourceProvider)), org.telegram.ui.ActionBar.j6.l1(0.8f, org.telegram.ui.ActionBar.j6.v0(i10, resourceProvider)));
         h90Var.j(8.0f);
     }
@@ -78,13 +78,13 @@ public abstract class g6 extends FrameLayout implements org.telegram.ui.ActionBa
         String formatShortNumber;
         boolean z11;
         float f11;
-        boolean z12 = this.f22011n;
+        boolean z12 = this.f21984n;
         if (chat != null && chat.participants_count <= 0) {
             z10 = false;
         } else {
             z10 = true;
         }
-        cq cqVar = this.f22008c;
+        cq cqVar = this.f21981c;
         cqVar.a();
         float f12 = 0.0f;
         cqVar.setPivotX(0.0f);
@@ -138,21 +138,21 @@ public abstract class g6 extends FrameLayout implements org.telegram.ui.ActionBa
             } else {
                 z11 = true;
             }
-            this.f22009e = z11;
+            this.f21982e = z11;
             r2 r2Var = this.d;
             if (z11) {
-                r2Var.W(-chat.f19896id, null, 0, false, z12);
+                r2Var.W(-chat.f19869id, null, 0, false, z12);
             } else {
                 MessageObject messageObject = (MessageObject) i2.g.h(1, arrayList);
-                long j3 = -chat.f19896id;
+                long j3 = -chat.f19869id;
                 int i11 = messageObject.messageOwner.date;
                 if (r2Var.H0 != j3) {
-                    r2Var.f22660t4 = -1;
+                    r2Var.f22633t4 = -1;
                 }
                 r2Var.H0 = j3;
-                r2Var.f22682x4 = System.currentTimeMillis();
-                r2Var.f22588f1 = messageObject;
-                r2Var.f22663u2 = false;
+                r2Var.f22655x4 = System.currentTimeMillis();
+                r2Var.f22561f1 = messageObject;
+                r2Var.f22636u2 = false;
                 r2Var.N0 = false;
                 r2Var.R0 = i11;
                 int i12 = messageObject.messageOwner.edit_date;
@@ -163,8 +163,8 @@ public abstract class g6 extends FrameLayout implements org.telegram.ui.ActionBa
                 r2Var.V0 = 0;
                 r2Var.W0 = 0;
                 r2Var.X0 = messageObject.isUnread();
-                r2Var.f22593g1 = arrayList;
-                MessageObject messageObject2 = r2Var.f22588f1;
+                r2Var.f22566g1 = arrayList;
+                MessageObject messageObject2 = r2Var.f22561f1;
                 if (messageObject2 != null) {
                     r2Var.Y0 = messageObject2.messageOwner.send_state;
                 }
@@ -172,25 +172,25 @@ public abstract class g6 extends FrameLayout implements org.telegram.ui.ActionBa
             }
         }
         if (!z12) {
-            this.f22010f.f(this.f22009e, true);
+            this.f21983f.f(this.f21982e, true);
         }
         invalidate();
-        this.f22011n = true;
+        this.f21984n = true;
     }
 
     @Override
     public final void d() {
-        int v02 = org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.L6, this.f22006a);
-        cq cqVar = this.f22008c;
+        int v02 = org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.L6, this.f21979a);
+        cq cqVar = this.f21981c;
         cqVar.setTextColor(v02);
         cqVar.setBackground(org.telegram.ui.ActionBar.j6.c0(AndroidUtilities.dp(9.0f), AndroidUtilities.dp(9.0f), org.telegram.ui.ActionBar.j6.l1(0.1f, v02)));
-        this.f22007b.setTextColor(v02);
+        this.f21980b.setTextColor(v02);
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
-        float e7 = this.f22010f.e(this.f22009e);
+        float e7 = this.f21983f.e(this.f21982e);
         if (e7 > 0.0f) {
             h90 h90Var = this.h;
             h90Var.setAlpha((int) (e7 * 255.0f));

@@ -8,16 +8,16 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 public final class d41 extends FrameLayout {
-    public int f35673a;
-    public TLRPC.TL_channels_sponsoredMessageReportResultChooseOption f35674b;
-    public TLRPC.TL_reportResultChooseOption f35675c;
+    public int f35646a;
+    public TLRPC.TL_channels_sponsoredMessageReportResultChooseOption f35647b;
+    public TLRPC.TL_reportResultChooseOption f35648c;
     public TLRPC.TL_reportResultAddComment d;
-    public final FrameLayout f35676e;
-    public final org.telegram.ui.Components.d61 f35677f;
+    public final FrameLayout f35649e;
+    public final org.telegram.ui.Components.d61 f35650f;
     public final t5 h;
-    public c41 f35678n;
-    public FrameLayout f35679r;
-    public di.d f35680s;
+    public c41 f35651n;
+    public FrameLayout f35652r;
+    public di.d f35653s;
     public final e41 v;
 
     public d41(e41 e41Var, Context context) {
@@ -29,7 +29,7 @@ public final class d41 extends FrameLayout {
         org.telegram.ui.ActionBar.f6 f6Var4;
         this.v = e41Var;
         FrameLayout frameLayout = new FrameLayout(context);
-        this.f35676e = frameLayout;
+        this.f35649e = frameLayout;
         frameLayout.setPadding(0, AndroidUtilities.statusBarHeight, 0, 0);
         frameLayout.setClipToPadding(true);
         addView(frameLayout, w7.x5.e(-1, -1, 119));
@@ -37,18 +37,18 @@ public final class d41 extends FrameLayout {
         t5 t5Var = new t5(context, f6Var);
         TextView textView = (TextView) t5Var.d;
         this.h = t5Var;
-        t5Var.f40649e = new b41(this, 0);
+        t5Var.f40622e = new b41(this, 0);
         if (e41Var.d) {
             textView.setText(LocaleController.getString(R.string.ReportAd));
-        } else if (e41Var.f35954e) {
+        } else if (e41Var.f35927e) {
             textView.setText(LocaleController.getString(R.string.ReportStory));
         } else {
             textView.setText(LocaleController.getString(R.string.Report2));
         }
         int i11 = org.telegram.ui.ActionBar.j6.G6;
         f6Var2 = ((org.telegram.ui.ActionBar.f3) e41Var).resourcesProvider;
-        ((org.telegram.ui.ActionBar.g2) t5Var.f40647b).a(org.telegram.ui.ActionBar.j6.v0(i11, f6Var2));
-        int i12 = org.telegram.ui.ActionBar.j6.f20762h5;
+        ((org.telegram.ui.ActionBar.g2) t5Var.f40620b).a(org.telegram.ui.ActionBar.j6.v0(i11, f6Var2));
+        int i12 = org.telegram.ui.ActionBar.j6.f20735h5;
         f6Var3 = ((org.telegram.ui.ActionBar.f3) e41Var).resourcesProvider;
         t5Var.setBackgroundColor(org.telegram.ui.ActionBar.j6.v0(i12, f6Var3));
         addView(t5Var, w7.x5.e(-1, -2, 55));
@@ -57,7 +57,7 @@ public final class d41 extends FrameLayout {
         vl0 vl0Var = new vl0(this, 15);
         f6Var4 = ((org.telegram.ui.ActionBar.f3) e41Var).resourcesProvider;
         org.telegram.ui.Components.d61 d61Var = new org.telegram.ui.Components.d61(context, i10, 0, true, b5Var, vl0Var, null, f6Var4);
-        this.f35677f = d61Var;
+        this.f35650f = d61Var;
         d61Var.setClipToPadding(false);
         d61Var.X2.k1(true);
         d61Var.setOnScrollListener(new i3(this, 26));
@@ -66,25 +66,25 @@ public final class d41 extends FrameLayout {
 
     public final void a(int i10) {
         boolean z10;
-        this.f35673a = i10;
+        this.f35646a = i10;
         if (i10 != 0) {
             z10 = true;
         } else {
             z10 = false;
         }
         this.h.b(z10);
-        org.telegram.ui.Components.d61 d61Var = this.f35677f;
+        org.telegram.ui.Components.d61 d61Var = this.f35650f;
         if (d61Var != null) {
             d61Var.Y2.N(true);
         }
     }
 
     public final void b(TLRPC.TL_reportResultAddComment tL_reportResultAddComment) {
-        this.f35674b = null;
-        this.f35675c = null;
+        this.f35647b = null;
+        this.f35648c = null;
         this.d = tL_reportResultAddComment;
-        this.f35677f.Y2.N(false);
-        if (this.f35678n != null) {
+        this.f35650f.Y2.N(false);
+        if (this.f35651n != null) {
             AndroidUtilities.runOnUIThread(new b41(this, 1), 120L);
         }
     }

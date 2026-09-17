@@ -32,20 +32,20 @@ public final class xc0 extends ik0 implements DownloadController.FileDownloadPro
     public String E;
     public String F;
     public String G;
-    public long f32535a;
-    public float f32536b;
-    public float f32537c;
+    public long f32508a;
+    public float f32509b;
+    public float f32510c;
     public long d;
-    public float f32538e;
-    public float f32539f;
+    public float f32511e;
+    public float f32512f;
     public boolean h;
-    public View f32540n;
-    public MessageObject f32541r;
-    public int f32542s;
+    public View f32513n;
+    public MessageObject f32514r;
+    public int f32515s;
     public boolean v;
-    public boolean f32543w;
-    public Drawable f32544x;
-    public String f32545y;
+    public boolean f32516w;
+    public Drawable f32517x;
+    public String f32518y;
 
     static {
         Paint paint = new Paint();
@@ -82,24 +82,24 @@ public final class xc0 extends ik0 implements DownloadController.FileDownloadPro
 
     public final void a() {
         String attachFileName;
-        MessageObject messageObject = this.f32541r;
+        MessageObject messageObject = this.f32514r;
         if (messageObject != null) {
             TLRPC.Message message = messageObject.messageOwner;
             if (message.media != null) {
-                if ((TextUtils.isEmpty(message.attachPath) || !new File(this.f32541r.messageOwner.attachPath).exists()) && !FileLoader.getInstance(UserConfig.selectedAccount).getPathToMessage(this.f32541r.messageOwner).exists()) {
-                    attachFileName = FileLoader.getAttachFileName(this.f32541r.getDocument());
+                if ((TextUtils.isEmpty(message.attachPath) || !new File(this.f32514r.messageOwner.attachPath).exists()) && !FileLoader.getInstance(UserConfig.selectedAccount).getPathToMessage(this.f32514r.messageOwner).exists()) {
+                    attachFileName = FileLoader.getAttachFileName(this.f32514r.getDocument());
                 } else {
                     attachFileName = null;
                 }
-                this.f32543w = false;
+                this.f32516w = false;
                 if (attachFileName == null) {
                     this.h = false;
                     this.v = false;
-                    this.f32543w = true;
-                    DownloadController.getInstance(this.f32541r.currentAccount).removeLoadingFileObserver(this);
+                    this.f32516w = true;
+                    DownloadController.getInstance(this.f32514r.currentAccount).removeLoadingFileObserver(this);
                 } else {
-                    DownloadController.getInstance(this.f32541r.currentAccount).addLoadingFileObserver(attachFileName, this);
-                    boolean isLoadingFile = FileLoader.getInstance(this.f32541r.currentAccount).isLoadingFile(attachFileName);
+                    DownloadController.getInstance(this.f32514r.currentAccount).addLoadingFileObserver(attachFileName, this);
+                    boolean isLoadingFile = FileLoader.getInstance(this.f32514r.currentAccount).isLoadingFile(attachFileName);
                     this.v = isLoadingFile;
                     if (isLoadingFile) {
                         this.h = true;
@@ -112,32 +112,32 @@ public final class xc0 extends ik0 implements DownloadController.FileDownloadPro
                         this.h = false;
                     }
                 }
-                this.f32540n.invalidate();
+                this.f32513n.invalidate();
             }
         }
         this.v = false;
-        this.f32543w = true;
+        this.f32516w = true;
         this.h = false;
         b(0.0f, false);
-        DownloadController.getInstance(this.f32541r.currentAccount).removeLoadingFileObserver(this);
-        this.f32540n.invalidate();
+        DownloadController.getInstance(this.f32514r.currentAccount).removeLoadingFileObserver(this);
+        this.f32513n.invalidate();
     }
 
     public final void b(float f7, boolean z10) {
         if (!z10) {
-            this.f32538e = f7;
-            this.f32537c = f7;
+            this.f32511e = f7;
+            this.f32510c = f7;
         } else {
-            this.f32537c = this.f32538e;
+            this.f32510c = this.f32511e;
         }
         this.G = String.format("%d%%", Integer.valueOf((int) (100.0f * f7)));
         if (f7 != 1.0f) {
-            this.f32539f = 1.0f;
+            this.f32512f = 1.0f;
         }
-        this.f32536b = f7;
+        this.f32509b = f7;
         this.d = 0L;
-        this.f32535a = System.currentTimeMillis();
-        this.f32540n.invalidate();
+        this.f32508a = System.currentTimeMillis();
+        this.f32513n.invalidate();
     }
 
     @Override
@@ -161,13 +161,13 @@ public final class xc0 extends ik0 implements DownloadController.FileDownloadPro
         canvas.drawRect(0.0f, 0.0f, width, height, H);
         int y3 = org.telegram.messenger.vl.y(240.0f, height, 2);
         int y10 = org.telegram.messenger.vl.y(48.0f, width, 2);
-        Drawable drawable = this.f32544x;
+        Drawable drawable = this.f32517x;
         drawable.setBounds(y10, y3, AndroidUtilities.dp(48.0f) + y10, AndroidUtilities.dp(48.0f) + y3);
         drawable.draw(canvas);
-        canvas.drawText(this.f32545y, (width - ((int) Math.ceil(textPaint.measureText(str)))) / 2, AndroidUtilities.dp(31.0f) + y3, J);
+        canvas.drawText(this.f32518y, (width - ((int) Math.ceil(textPaint.measureText(str)))) / 2, AndroidUtilities.dp(31.0f) + y3, J);
         canvas.drawText(this.E, (width - ((int) Math.ceil(textPaint2.measureText(str2)))) / 2, AndroidUtilities.dp(96.0f) + y3, K);
         canvas.drawText(this.F, (width - ((int) Math.ceil(textPaint3.measureText(str3)))) / 2, AndroidUtilities.dp(125.0f) + y3, L);
-        if (this.f32543w) {
+        if (this.f32516w) {
             string = LocaleController.getString(R.string.OpenFile);
             textPaint4 = O;
             dp = 0;
@@ -189,46 +189,46 @@ public final class xc0 extends ik0 implements DownloadController.FileDownloadPro
             int dp2 = AndroidUtilities.dp(232.0f) + y3;
             Paint paint = I;
             paint.setColor(-10327179);
-            paint.setAlpha((int) (this.f32539f * 255.0f));
+            paint.setAlpha((int) (this.f32512f * 255.0f));
             float f7 = dp2;
-            canvas.drawRect(((int) (AndroidUtilities.dp(240.0f) * this.f32538e)) + y11, f7, AndroidUtilities.dp(240.0f) + y11, AndroidUtilities.dp(2.0f) + dp2, paint);
+            canvas.drawRect(((int) (AndroidUtilities.dp(240.0f) * this.f32511e)) + y11, f7, AndroidUtilities.dp(240.0f) + y11, AndroidUtilities.dp(2.0f) + dp2, paint);
             paint.setColor(-1);
-            paint.setAlpha((int) (this.f32539f * 255.0f));
+            paint.setAlpha((int) (this.f32512f * 255.0f));
             float f10 = y11;
-            canvas.drawRect(f10, f7, (AndroidUtilities.dp(240.0f) * this.f32538e) + f10, AndroidUtilities.dp(2.0f) + dp2, paint);
+            canvas.drawRect(f10, f7, (AndroidUtilities.dp(240.0f) * this.f32511e) + f10, AndroidUtilities.dp(2.0f) + dp2, paint);
             long currentTimeMillis = System.currentTimeMillis();
-            long j3 = currentTimeMillis - this.f32535a;
-            this.f32535a = currentTimeMillis;
-            float f11 = this.f32538e;
+            long j3 = currentTimeMillis - this.f32508a;
+            this.f32508a = currentTimeMillis;
+            float f11 = this.f32511e;
             if (f11 != 1.0f) {
-                float f12 = this.f32536b;
+                float f12 = this.f32509b;
                 if (f11 != f12) {
-                    float f13 = this.f32537c;
+                    float f13 = this.f32510c;
                     float f14 = f12 - f13;
                     if (f14 > 0.0f) {
                         long j10 = this.d + j3;
                         this.d = j10;
                         if (j10 >= 300) {
-                            this.f32538e = f12;
-                            this.f32537c = f12;
+                            this.f32511e = f12;
+                            this.f32510c = f12;
                             this.d = 0L;
                         } else {
-                            this.f32538e = (P.getInterpolation(((float) j10) / 300.0f) * f14) + f13;
+                            this.f32511e = (P.getInterpolation(((float) j10) / 300.0f) * f14) + f13;
                         }
                     }
-                    this.f32540n.invalidate();
+                    this.f32513n.invalidate();
                 }
             }
-            int i10 = (this.f32538e > 1.0f ? 1 : (this.f32538e == 1.0f ? 0 : -1));
+            int i10 = (this.f32511e > 1.0f ? 1 : (this.f32511e == 1.0f ? 0 : -1));
             if (i10 >= 0 && i10 == 0) {
-                float f15 = this.f32539f;
+                float f15 = this.f32512f;
                 if (f15 != 0.0f) {
                     float f16 = f15 - (((float) j3) / 200.0f);
-                    this.f32539f = f16;
+                    this.f32512f = f16;
                     if (f16 <= 0.0f) {
-                        this.f32539f = 0.0f;
+                        this.f32512f = 0.0f;
                     }
-                    this.f32540n.invalidate();
+                    this.f32513n.invalidate();
                 }
             }
         }
@@ -237,27 +237,27 @@ public final class xc0 extends ik0 implements DownloadController.FileDownloadPro
 
     @Override
     public final int getIntrinsicHeight() {
-        return this.f32540n.getMeasuredHeight();
+        return this.f32513n.getMeasuredHeight();
     }
 
     @Override
     public final int getIntrinsicWidth() {
-        return this.f32540n.getMeasuredWidth();
+        return this.f32513n.getMeasuredWidth();
     }
 
     @Override
     public final int getMinimumHeight() {
-        return this.f32540n.getMeasuredHeight();
+        return this.f32513n.getMeasuredHeight();
     }
 
     @Override
     public final int getMinimumWidth() {
-        return this.f32540n.getMeasuredWidth();
+        return this.f32513n.getMeasuredWidth();
     }
 
     @Override
     public final int getObserverTag() {
-        return this.f32542s;
+        return this.f32515s;
     }
 
     @Override
@@ -286,7 +286,7 @@ public final class xc0 extends ik0 implements DownloadController.FileDownloadPro
 
     @Override
     public final void setAlpha(int i10) {
-        Drawable drawable = this.f32544x;
+        Drawable drawable = this.f32517x;
         if (drawable != null) {
             drawable.setAlpha(i10);
         }

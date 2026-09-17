@@ -8,35 +8,35 @@ import java.util.logging.Logger;
 import l5.o;
 import n6.l;
 public final class j implements Executor {
-    public static final Logger f45082f = Logger.getLogger(j.class.getName());
-    public final Executor f45083a;
-    public final ArrayDeque f45084b = new ArrayDeque();
-    public int f45085c = 1;
+    public static final Logger f45054f = Logger.getLogger(j.class.getName());
+    public final Executor f45055a;
+    public final ArrayDeque f45056b = new ArrayDeque();
+    public int f45057c = 1;
     public long d = 0;
-    public final s f45086e = new s(this);
+    public final s f45058e = new s(this);
 
     public j(Executor executor) {
         l.h(executor);
-        this.f45083a = executor;
+        this.f45055a = executor;
     }
 
     @Override
     public final void execute(Runnable runnable) {
         l.h(runnable);
-        synchronized (this.f45084b) {
-            int i10 = this.f45085c;
+        synchronized (this.f45056b) {
+            int i10 = this.f45057c;
             if (i10 != 4 && i10 != 3) {
                 long j3 = this.d;
                 o oVar = new o(1, runnable);
-                this.f45084b.add(oVar);
-                this.f45085c = 2;
+                this.f45056b.add(oVar);
+                this.f45057c = 2;
                 try {
-                    this.f45083a.execute(this.f45086e);
-                    if (this.f45085c == 2) {
-                        synchronized (this.f45084b) {
+                    this.f45055a.execute(this.f45058e);
+                    if (this.f45057c == 2) {
+                        synchronized (this.f45056b) {
                             try {
-                                if (this.d == j3 && this.f45085c == 2) {
-                                    this.f45085c = 3;
+                                if (this.d == j3 && this.f45057c == 2) {
+                                    this.f45057c = 3;
                                 }
                             } finally {
                             }
@@ -45,11 +45,11 @@ public final class j implements Executor {
                     }
                     return;
                 } catch (Error | RuntimeException e7) {
-                    synchronized (this.f45084b) {
+                    synchronized (this.f45056b) {
                         try {
-                            int i11 = this.f45085c;
+                            int i11 = this.f45057c;
                             boolean z10 = true;
-                            if ((i11 != 1 && i11 != 2) || !this.f45084b.removeLastOccurrence(oVar)) {
+                            if ((i11 != 1 && i11 != 2) || !this.f45056b.removeLastOccurrence(oVar)) {
                                 z10 = false;
                             }
                             if (!(e7 instanceof RejectedExecutionException) || z10) {
@@ -61,11 +61,11 @@ public final class j implements Executor {
                     return;
                 }
             }
-            this.f45084b.add(runnable);
+            this.f45056b.add(runnable);
         }
     }
 
     public final String toString() {
-        return "SequentialExecutor@" + System.identityHashCode(this) + "{" + this.f45083a + "}";
+        return "SequentialExecutor@" + System.identityHashCode(this) + "{" + this.f45055a + "}";
     }
 }

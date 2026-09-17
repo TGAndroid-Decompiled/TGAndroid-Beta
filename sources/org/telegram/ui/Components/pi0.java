@@ -8,25 +8,25 @@ import android.graphics.drawable.Drawable;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 public final class pi0 extends Drawable {
-    public final View f29420a;
-    public final Paint f29421b;
-    public final Path f29422c;
+    public final View f29393a;
+    public final Paint f29394b;
+    public final Path f29395c;
     public int d;
-    public boolean f29423e;
-    public final e6 f29424f;
+    public boolean f29396e;
+    public final e6 f29397f;
 
     public pi0(View view) {
         Paint paint = new Paint(1);
-        this.f29421b = paint;
+        this.f29394b = paint;
         Path path = new Path();
-        this.f29422c = path;
+        this.f29395c = path;
         this.d = 255;
-        this.f29420a = view;
+        this.f29393a = view;
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeCap(Paint.Cap.ROUND);
         paint.setStrokeJoin(Paint.Join.ROUND);
         paint.setStrokeWidth(AndroidUtilities.dp(1.0f));
-        this.f29424f = new e6(view, 0L, 350L, pr.h);
+        this.f29397f = new e6(view, 0L, 350L, pr.h);
         float dpf2 = AndroidUtilities.dpf2(4.66f);
         float dpf22 = AndroidUtilities.dpf2(2.16f);
         path.rewind();
@@ -43,7 +43,7 @@ public final class pi0 extends Drawable {
     public final void draw(Canvas canvas) {
         int centerX = getBounds().centerX();
         int centerY = getBounds().centerY();
-        float e7 = this.f29424f.e(this.f29423e);
+        float e7 = this.f29397f.e(this.f29396e);
         float dpf2 = AndroidUtilities.dpf2(2.51f);
         canvas.save();
         canvas.translate(centerX, centerY);
@@ -51,8 +51,8 @@ public final class pi0 extends Drawable {
         canvas.translate(dpf2, dpf2);
         canvas.rotate(45.0f);
         canvas.scale(AndroidUtilities.lerp(-1.0f, 1.0f, e7), 1.0f);
-        Path path = this.f29422c;
-        Paint paint = this.f29421b;
+        Path path = this.f29395c;
+        Paint paint = this.f29394b;
         canvas.drawPath(path, paint);
         canvas.restore();
         canvas.save();
@@ -73,7 +73,7 @@ public final class pi0 extends Drawable {
     @Override
     public final void setAlpha(int i10) {
         this.d = i10;
-        this.f29421b.setAlpha(i10);
+        this.f29394b.setAlpha(i10);
     }
 
     @Override

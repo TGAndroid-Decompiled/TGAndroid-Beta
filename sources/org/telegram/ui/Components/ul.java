@@ -12,32 +12,32 @@ import org.telegram.messenger.VideoEditedInfo;
 import org.telegram.messenger.camera.CameraController;
 import org.telegram.ui.PhotoViewer;
 public final class ul extends cm {
-    public final boolean f30946b;
-    public final ChatAttachAlertPhotoLayout f30947c;
+    public final boolean f30919b;
+    public final ChatAttachAlertPhotoLayout f30920c;
 
     public ul(ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout, boolean z10) {
         super(chatAttachAlertPhotoLayout);
-        this.f30947c = chatAttachAlertPhotoLayout;
-        this.f30946b = z10;
+        this.f30920c = chatAttachAlertPhotoLayout;
+        this.f30919b = z10;
     }
 
     @Override
     public final void D() {
-        boolean z10 = ChatAttachAlertPhotoLayout.f23859q1;
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.f30947c;
+        boolean z10 = ChatAttachAlertPhotoLayout.f23832q1;
+        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.f30920c;
         chatAttachAlertPhotoLayout.m0();
-        chatAttachAlertPhotoLayout.B(ChatAttachAlertPhotoLayout.f23861s1.size());
+        chatAttachAlertPhotoLayout.B(ChatAttachAlertPhotoLayout.f23834s1.size());
     }
 
     @Override
     public final void G() {
-        tl tlVar = this.f30947c.E;
+        tl tlVar = this.f30920c.E;
         int childCount = tlVar.getChildCount();
         for (int i10 = 0; i10 < childCount; i10++) {
             View childAt = tlVar.getChildAt(i10);
             if (childAt instanceof org.telegram.ui.Cells.s5) {
                 org.telegram.ui.Cells.s5 s5Var = (org.telegram.ui.Cells.s5) childAt;
-                s5Var.f22859a.getImageReceiver().setVisible(true, true);
+                s5Var.f22832a.getImageReceiver().setVisible(true, true);
                 s5Var.g(true);
             }
         }
@@ -45,10 +45,10 @@ public final class ul extends cm {
 
     @Override
     public final boolean J() {
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.f30947c;
-        if (!chatAttachAlertPhotoLayout.f28781b.V) {
+        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.f30920c;
+        if (!chatAttachAlertPhotoLayout.f28754b.V) {
             int i10 = Settings.System.getInt(chatAttachAlertPhotoLayout.getContext().getContentResolver(), "accelerometer_rotation", 0);
-            if (this.f30946b || i10 == 1) {
+            if (this.f30919b || i10 == 1) {
                 return true;
             }
         }
@@ -62,13 +62,13 @@ public final class ul extends cm {
 
     @Override
     public final void d() {
-        boolean z10 = ChatAttachAlertPhotoLayout.f23859q1;
-        this.f30947c.k0();
+        boolean z10 = ChatAttachAlertPhotoLayout.f23832q1;
+        this.f30920c.k0();
     }
 
     @Override
     public final boolean g() {
-        if (this.f30947c.f28781b.S1 != 1) {
+        if (this.f30920c.f28754b.S1 != 1) {
             return true;
         }
         return false;
@@ -76,7 +76,7 @@ public final class ul extends cm {
 
     @Override
     public final void i() {
-        boolean z10 = ChatAttachAlertPhotoLayout.f23859q1;
+        boolean z10 = ChatAttachAlertPhotoLayout.f23832q1;
     }
 
     @Override
@@ -86,36 +86,36 @@ public final class ul extends cm {
 
     @Override
     public final void n() {
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.f30947c;
-        TextView textView = chatAttachAlertPhotoLayout.f23893p0;
-        chatAttachAlertPhotoLayout.f23900t0 = false;
-        if (ChatAttachAlertPhotoLayout.f23859q1) {
-            vi viVar = chatAttachAlertPhotoLayout.f28781b;
+        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.f30920c;
+        TextView textView = chatAttachAlertPhotoLayout.f23866p0;
+        chatAttachAlertPhotoLayout.f23873t0 = false;
+        if (ChatAttachAlertPhotoLayout.f23832q1) {
+            vi viVar = chatAttachAlertPhotoLayout.f28754b;
             viVar.Z1.l0(0, true, true, 0, 0, 0L, viVar.s1(), false, 0L);
             return;
         }
-        if (!chatAttachAlertPhotoLayout.f23866b0) {
+        if (!chatAttachAlertPhotoLayout.f23839b0) {
             chatAttachAlertPhotoLayout.h0(false);
         }
         textView.setVisibility(0);
-        chatAttachAlertPhotoLayout.f23896r.setVisibility(0);
+        chatAttachAlertPhotoLayout.f23869r.setVisibility(0);
         textView.setAlpha(1.0f);
         chatAttachAlertPhotoLayout.y0(false);
     }
 
     @Override
     public final void o(int i10, VideoEditedInfo videoEditedInfo, boolean z10, int i11, int i12, boolean z11) {
-        vi viVar = this.f30947c.f28781b;
-        ArrayList arrayList = ChatAttachAlertPhotoLayout.f23860r1;
+        vi viVar = this.f30920c.f28754b;
+        ArrayList arrayList = ChatAttachAlertPhotoLayout.f23833r1;
         if (!arrayList.isEmpty() && !viVar.V) {
             if (videoEditedInfo != null && i10 >= 0 && i10 < arrayList.size()) {
                 ((MediaController.PhotoEntry) arrayList.get(i10)).editedInfo = videoEditedInfo;
             }
-            org.telegram.ui.ActionBar.n2 n2Var = viVar.f31307f0;
+            org.telegram.ui.ActionBar.n2 n2Var = viVar.f31280f0;
             if (!(n2Var instanceof org.telegram.ui.co) || !((org.telegram.ui.co) n2Var).v()) {
                 int size = arrayList.size();
                 for (int i13 = 0; i13 < size; i13++) {
-                    MediaController.PhotoEntry photoEntry = (MediaController.PhotoEntry) ChatAttachAlertPhotoLayout.f23860r1.get(i13);
+                    MediaController.PhotoEntry photoEntry = (MediaController.PhotoEntry) ChatAttachAlertPhotoLayout.f23833r1.get(i13);
                     if (photoEntry.ttl <= 0) {
                         AndroidUtilities.addMediaToGallery(photoEntry.path);
                     }
@@ -124,27 +124,27 @@ public final class ul extends cm {
             viVar.Y0();
             PhotoViewer.t1();
             PhotoViewer.t1().O = false;
-            PhotoViewer.t1().f33719u2 = false;
-            e5.a0(viVar.J1, viVar.j1() + ChatAttachAlertPhotoLayout.f23861s1.size(), viVar.n1(), new pl(this, z11, z10, i11));
+            PhotoViewer.t1().f33692u2 = false;
+            e5.a0(viVar.J1, viVar.j1() + ChatAttachAlertPhotoLayout.f23834s1.size(), viVar.n1(), new pl(this, z11, z10, i11));
         }
     }
 
     @Override
     public final boolean u() {
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.f30947c;
-        if (chatAttachAlertPhotoLayout.f23866b0 && chatAttachAlertPhotoLayout.P != null) {
+        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.f30920c;
+        if (chatAttachAlertPhotoLayout.f23839b0 && chatAttachAlertPhotoLayout.P != null) {
             AndroidUtilities.runOnUIThread(new pg(this, 24), 1000L);
-            chatAttachAlertPhotoLayout.f23886l0.b(0.0f, false);
+            chatAttachAlertPhotoLayout.f23859l0.b(0.0f, false);
             chatAttachAlertPhotoLayout.B0 = 0.0f;
             chatAttachAlertPhotoLayout.P.setZoom(0.0f);
             CameraController.getInstance().startPreview(chatAttachAlertPhotoLayout.P.getCameraSession());
         }
-        if (chatAttachAlertPhotoLayout.f23900t0) {
-            ArrayList arrayList = ChatAttachAlertPhotoLayout.f23860r1;
+        if (chatAttachAlertPhotoLayout.f23873t0) {
+            ArrayList arrayList = ChatAttachAlertPhotoLayout.f23833r1;
             if (arrayList.size() == 1) {
                 int size = arrayList.size();
                 for (int i10 = 0; i10 < size; i10++) {
-                    MediaController.PhotoEntry photoEntry = (MediaController.PhotoEntry) ChatAttachAlertPhotoLayout.f23860r1.get(i10);
+                    MediaController.PhotoEntry photoEntry = (MediaController.PhotoEntry) ChatAttachAlertPhotoLayout.f23833r1.get(i10);
                     new File(photoEntry.path).delete();
                     if (photoEntry.imagePath != null) {
                         new File(photoEntry.imagePath).delete();
@@ -153,14 +153,14 @@ public final class ul extends cm {
                         new File(photoEntry.thumbPath).delete();
                     }
                 }
-                ChatAttachAlertPhotoLayout.f23860r1.clear();
-                ChatAttachAlertPhotoLayout.f23862t1.clear();
-                ChatAttachAlertPhotoLayout.f23861s1.clear();
-                chatAttachAlertPhotoLayout.f23893p0.setVisibility(4);
-                chatAttachAlertPhotoLayout.f23896r.setVisibility(8);
+                ChatAttachAlertPhotoLayout.f23833r1.clear();
+                ChatAttachAlertPhotoLayout.f23835t1.clear();
+                ChatAttachAlertPhotoLayout.f23834s1.clear();
+                chatAttachAlertPhotoLayout.f23866p0.setVisibility(4);
+                chatAttachAlertPhotoLayout.f23869r.setVisibility(8);
                 chatAttachAlertPhotoLayout.G.l();
                 chatAttachAlertPhotoLayout.v.l();
-                chatAttachAlertPhotoLayout.f28781b.V1(0);
+                chatAttachAlertPhotoLayout.f28754b.V1(0);
             }
         }
         return true;
@@ -168,7 +168,7 @@ public final class ul extends cm {
 
     @Override
     public final boolean z() {
-        vi viVar = this.f30947c.f28781b;
+        vi viVar = this.f30920c.f28754b;
         if (!viVar.F && !viVar.H) {
             return true;
         }

@@ -16,35 +16,35 @@ import org.telegram.ui.Components.aj0;
 import org.telegram.ui.Components.x9;
 import org.telegram.ui.q31;
 public final class k1 implements Runnable {
-    public final int f52158a;
-    public final KeyEvent.Callback f52159b;
-    public final Object f52160c;
+    public final int f52127a;
+    public final KeyEvent.Callback f52128b;
+    public final Object f52129c;
     public final Object d;
-    public final TLObject f52161e;
+    public final TLObject f52130e;
 
     public k1(x2 x2Var, TL_stars.StarGift starGift, ArrayList arrayList, Runnable runnable) {
-        this.f52158a = 2;
-        this.f52159b = x2Var;
-        this.f52161e = starGift;
+        this.f52127a = 2;
+        this.f52128b = x2Var;
+        this.f52130e = starGift;
         this.d = arrayList;
-        this.f52160c = runnable;
+        this.f52129c = runnable;
     }
 
     @Override
     public final void run() {
         boolean z10;
         int i10;
-        switch (this.f52158a) {
+        switch (this.f52127a) {
             case 0:
-                w3.S0((w3) this.f52159b, (MessageObject) this.f52160c, (ArrayList) this.d, (TL_stars.StarGift) this.f52161e);
+                w3.S0((w3) this.f52128b, (MessageObject) this.f52129c, (ArrayList) this.d, (TL_stars.StarGift) this.f52130e);
                 return;
             case 1:
-                w3 w3Var = (w3) this.f52159b;
-                TLRPC.TL_error tL_error = (TLRPC.TL_error) this.f52160c;
+                w3 w3Var = (w3) this.f52128b;
+                TLRPC.TL_error tL_error = (TLRPC.TL_error) this.f52129c;
                 TLObject tLObject = (TLObject) this.d;
-                TL_stars.InputSavedStarGift inputSavedStarGift = (TL_stars.InputSavedStarGift) this.f52161e;
+                TL_stars.InputSavedStarGift inputSavedStarGift = (TL_stars.InputSavedStarGift) this.f52130e;
                 if (tL_error == null && (tLObject instanceof TLRPC.Updates)) {
-                    w3Var.f52817q0 = true;
+                    w3Var.f52786q0 = true;
                     w3Var.l1 = null;
                     w3Var.r1(inputSavedStarGift, (TLRPC.Updates) tLObject, new b1(w3Var, 5));
                     Utilities.stageQueue.postRunnable(new ug.r(19, w3Var, tLObject));
@@ -53,14 +53,14 @@ public final class k1 implements Runnable {
                 w3Var.getBulletinFactory().d0(tL_error, false);
                 return;
             default:
-                x2 x2Var = (x2) this.f52159b;
-                TL_stars.StarGift starGift = (TL_stars.StarGift) this.f52161e;
+                x2 x2Var = (x2) this.f52128b;
+                TL_stars.StarGift starGift = (TL_stars.StarGift) this.f52130e;
                 ArrayList arrayList = (ArrayList) this.d;
-                Runnable runnable = (Runnable) this.f52160c;
+                Runnable runnable = (Runnable) this.f52129c;
                 org.telegram.ui.Components.q6 q6Var = x2Var.H;
-                x2Var.f52863h0 = false;
+                x2Var.f52832h0 = false;
                 if (starGift == null) {
-                    aj0 aj0Var = x2Var.f52867l0;
+                    aj0 aj0Var = x2Var.f52836l0;
                     if (aj0Var != null) {
                         aj0Var.d();
                         AndroidUtilities.runOnUIThread(new q31(18), 750L);
@@ -90,11 +90,11 @@ public final class k1 implements Runnable {
                     int i12 = 0;
                     while (i12 < arrayList.size()) {
                         TL_stars.StarGift starGift2 = (TL_stars.StarGift) arrayList.get(i12);
-                        yh.h1 h1Var = new yh.h1(x2Var.getContext(), x2Var.W, x2Var.f52851a);
+                        yh.h1 h1Var = new yh.h1(x2Var.getContext(), x2Var.W, x2Var.f52820a);
                         h1Var.g(starGift2, false, false, false, false, true);
-                        h1Var.f50356x.setVisibility(8);
+                        h1Var.f50327x.setVisibility(8);
                         h1Var.setRibbonColor(-3065286);
-                        x9 x9Var = h1Var.f50357y;
+                        x9 x9Var = h1Var.f50328y;
                         FrameLayout.LayoutParams e7 = w7.x5.e(42, 42, 17);
                         h1Var.E = e7;
                         x9Var.setLayoutParams(e7);
@@ -122,10 +122,10 @@ public final class k1 implements Runnable {
     }
 
     public k1(w3 w3Var, Object obj, Object obj2, TLObject tLObject, int i10) {
-        this.f52158a = i10;
-        this.f52159b = w3Var;
-        this.f52160c = obj;
+        this.f52127a = i10;
+        this.f52128b = w3Var;
+        this.f52129c = obj;
         this.d = obj2;
-        this.f52161e = tLObject;
+        this.f52130e = tLObject;
     }
 }

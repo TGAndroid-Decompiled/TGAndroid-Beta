@@ -8,40 +8,40 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class h2 implements RequestDelegate {
-    public final int f17872a;
-    public final Object f17873b;
-    public final Object f17874c;
+    public final int f17845a;
+    public final Object f17846b;
+    public final Object f17847c;
     public final Object d;
-    public final Object f17875e;
+    public final Object f17848e;
 
     public h2(Object obj, Object obj2, Object obj3, Object obj4, int i10) {
-        this.f17872a = i10;
-        this.f17873b = obj;
-        this.f17874c = obj2;
+        this.f17845a = i10;
+        this.f17846b = obj;
+        this.f17847c = obj2;
         this.d = obj3;
-        this.f17875e = obj4;
+        this.f17848e = obj4;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f17872a) {
+        switch (this.f17845a) {
             case 0:
-                ((FactCheckController) this.f17873b).lambda$loadMissing$2((TLRPC.TL_getFactCheck) this.f17874c, (ArrayList) this.d, (HashMap) this.f17875e, tLObject, tL_error);
+                ((FactCheckController) this.f17846b).lambda$loadMissing$2((TLRPC.TL_getFactCheck) this.f17847c, (ArrayList) this.d, (HashMap) this.f17848e, tLObject, tL_error);
                 return;
             case 1:
-                ((LocationController) this.f17873b).lambda$broadcastLastKnownLocation$7((LocationController.SharingLocationInfo) this.f17874c, (int[]) this.d, (TLRPC.TL_messages_editMessage) this.f17875e, tLObject, tL_error);
+                ((LocationController) this.f17846b).lambda$broadcastLastKnownLocation$7((LocationController.SharingLocationInfo) this.f17847c, (int[]) this.d, (TLRPC.TL_messages_editMessage) this.f17848e, tLObject, tL_error);
                 return;
             case 2:
-                ((MessagesController) this.f17873b).lambda$didReceivedNotification$45((org.telegram.ui.ActionBar.b6) this.f17874c, (TLRPC.TL_wallPaperSettings) this.d, (String) this.f17875e, tLObject, tL_error);
+                ((MessagesController) this.f17846b).lambda$didReceivedNotification$45((org.telegram.ui.ActionBar.b6) this.f17847c, (TLRPC.TL_wallPaperSettings) this.d, (String) this.f17848e, tLObject, tL_error);
                 return;
             case 3:
-                ((MessagesController) this.f17873b).lambda$deleteUserChannelHistory$133((TLRPC.Chat) this.f17874c, (TLRPC.User) this.d, (TLRPC.Chat) this.f17875e, tLObject, tL_error);
+                ((MessagesController) this.f17846b).lambda$deleteUserChannelHistory$133((TLRPC.Chat) this.f17847c, (TLRPC.User) this.d, (TLRPC.Chat) this.f17848e, tLObject, tL_error);
                 return;
             case 4:
-                ((SecretChatHelper) this.f17873b).lambda$startSecretChat$30((Context) this.f17874c, (org.telegram.ui.ActionBar.b2) this.d, (TLRPC.User) this.f17875e, tLObject, tL_error);
+                ((SecretChatHelper) this.f17846b).lambda$startSecretChat$30((Context) this.f17847c, (org.telegram.ui.ActionBar.b2) this.d, (TLRPC.User) this.f17848e, tLObject, tL_error);
                 return;
             default:
-                ((SendMessagesHelper) this.f17873b).lambda$sendVote$32((MessageObject) this.f17874c, (String) this.d, (Runnable) this.f17875e, tLObject, tL_error);
+                ((SendMessagesHelper) this.f17846b).lambda$sendVote$32((MessageObject) this.f17847c, (String) this.d, (Runnable) this.f17848e, tLObject, tL_error);
                 return;
         }
     }

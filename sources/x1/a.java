@@ -10,27 +10,27 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
 import u4.e;
 public final class a implements Runnable {
-    public static Handler f48707f;
-    public final d f48711e;
-    public volatile int f48709b = 1;
-    public final AtomicBoolean f48710c = new AtomicBoolean();
+    public static Handler f48678f;
+    public final d f48682e;
+    public volatile int f48680b = 1;
+    public final AtomicBoolean f48681c = new AtomicBoolean();
     public final AtomicBoolean d = new AtomicBoolean();
-    public final b f48708a = new b(this, new x(this, 8));
+    public final b f48679a = new b(this, new x(this, 8));
 
     public a(d dVar) {
-        this.f48711e = dVar;
+        this.f48682e = dVar;
     }
 
     public final void a() {
-        d dVar = this.f48711e;
+        d dVar = this.f48682e;
         int i10 = 0;
-        for (m mVar : dVar.f317j) {
+        for (m mVar : dVar.f305j) {
             if (mVar.d(dVar)) {
                 i10++;
             }
         }
         try {
-            dVar.f316i.tryAcquire(i10, 5L, TimeUnit.SECONDS);
+            dVar.f304i.tryAcquire(i10, 5L, TimeUnit.SECONDS);
         } catch (InterruptedException e7) {
             Log.i("GACSignInLoader", "Unexpected InterruptedException", e7);
             Thread.currentThread().interrupt();
@@ -41,10 +41,10 @@ public final class a implements Runnable {
         Handler handler;
         synchronized (a.class) {
             try {
-                if (f48707f == null) {
-                    f48707f = new Handler(Looper.getMainLooper());
+                if (f48678f == null) {
+                    f48678f = new Handler(Looper.getMainLooper());
                 }
-                handler = f48707f;
+                handler = f48678f;
             } catch (Throwable th2) {
                 throw th2;
             }
@@ -54,6 +54,6 @@ public final class a implements Runnable {
 
     @Override
     public final void run() {
-        this.f48711e.b();
+        this.f48682e.b();
     }
 }

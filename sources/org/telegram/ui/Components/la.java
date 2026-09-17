@@ -4,21 +4,21 @@ import android.graphics.Paint;
 import android.view.View;
 import java.util.ArrayList;
 public final class la implements View.OnAttachStateChangeListener {
-    public final int f28153a;
-    public final Object f28154b;
-    public final Object f28155c;
+    public final int f28126a;
+    public final Object f28127b;
+    public final Object f28128c;
 
     public la(int i10, Object obj, Object obj2) {
-        this.f28153a = i10;
-        this.f28155c = obj;
-        this.f28154b = obj2;
+        this.f28126a = i10;
+        this.f28128c = obj;
+        this.f28127b = obj2;
     }
 
     @Override
     public final void onViewAttachedToWindow(View view) {
-        int i10 = this.f28153a;
-        Object obj = this.f28154b;
-        Object obj2 = this.f28155c;
+        int i10 = this.f28126a;
+        Object obj = this.f28127b;
+        Object obj2 = this.f28128c;
         switch (i10) {
             case 0:
                 ja jaVar = (ja) obj;
@@ -29,31 +29,31 @@ public final class la implements View.OnAttachStateChangeListener {
                 return;
             default:
                 f01 f01Var = (f01) obj2;
-                f01Var.f25881k = z5.update(f01Var.f25882l, (View) obj, f01Var.f25881k, f01Var.f25874b);
+                f01Var.f25854k = z5.update(f01Var.f25855l, (View) obj, f01Var.f25854k, f01Var.f25847b);
                 return;
         }
     }
 
     @Override
     public final void onViewDetachedFromWindow(View view) {
-        switch (this.f28153a) {
+        switch (this.f28126a) {
             case 0:
-                na naVar = (na) this.f28155c;
-                ja jaVar = (ja) this.f28154b;
+                na naVar = (na) this.f28128c;
+                ja jaVar = (ja) this.f28127b;
                 if (jaVar != null) {
                     ArrayList arrayList = jaVar.d;
                     arrayList.remove(naVar);
-                    if (jaVar.f27438e.isEmpty() && arrayList.isEmpty()) {
-                        jaVar.f27446n.a();
+                    if (jaVar.f27411e.isEmpty() && arrayList.isEmpty()) {
+                        jaVar.f27419n.a();
                     }
                 }
-                naVar.f28741n = null;
+                naVar.f28714n = null;
                 Paint paint = naVar.h;
-                naVar.f28742o = null;
+                naVar.f28715o = null;
                 paint.setShader(null);
                 return;
             default:
-                z5.release((View) this.f28154b, ((f01) this.f28155c).f25881k);
+                z5.release((View) this.f28127b, ((f01) this.f28128c).f25854k);
                 return;
         }
     }

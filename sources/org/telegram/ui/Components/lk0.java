@@ -6,17 +6,17 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.HashMap;
 public final class lk0 implements View.OnLayoutChangeListener {
-    public final s4.h0 f28217a;
-    public final ArrayList f28218b;
-    public final boolean f28219c;
+    public final s4.h0 f28190a;
+    public final ArrayList f28191b;
+    public final boolean f28192c;
     public final mk0 d;
-    public final ok0 f28220e;
+    public final ok0 f28193e;
 
     public lk0(ok0 ok0Var, s4.h0 h0Var, ArrayList arrayList, boolean z10, mk0 mk0Var) {
-        this.f28220e = ok0Var;
-        this.f28217a = h0Var;
-        this.f28218b = arrayList;
-        this.f28219c = z10;
+        this.f28193e = ok0Var;
+        this.f28190a = h0Var;
+        this.f28191b = arrayList;
+        this.f28192c = z10;
         this.d = mk0Var;
     }
 
@@ -28,9 +28,9 @@ public final class lk0 implements View.OnLayoutChangeListener {
         int i19;
         long min;
         View view2;
-        ok0 ok0Var = this.f28220e;
-        HashMap hashMap = (HashMap) ok0Var.f29133k;
-        ll0 ll0Var = (ll0) ok0Var.f29128e;
+        ok0 ok0Var = this.f28193e;
+        HashMap hashMap = (HashMap) ok0Var.f29106k;
+        ll0 ll0Var = (ll0) ok0Var.f29101e;
         ll0Var.removeOnLayoutChangeListener(this);
         final ArrayList arrayList2 = new ArrayList();
         ll0Var.B0();
@@ -41,7 +41,7 @@ public final class lk0 implements View.OnLayoutChangeListener {
         int i23 = 0;
         boolean z10 = false;
         while (true) {
-            arrayList = this.f28218b;
+            arrayList = this.f28191b;
             if (i20 >= childCount) {
                 break;
             }
@@ -56,8 +56,8 @@ public final class lk0 implements View.OnLayoutChangeListener {
             if (childAt instanceof org.telegram.ui.Cells.n4) {
                 ((org.telegram.ui.Cells.n4) childAt).e(true, false);
             }
-            s4.h0 h0Var = this.f28217a;
-            if (h0Var != null && (h0Var.f45824b || ok0Var.f29127c)) {
+            s4.h0 h0Var = this.f28190a;
+            if (h0Var != null && (h0Var.f45796b || ok0Var.f29100c)) {
                 ll0Var.getClass();
                 long i24 = h0Var.i(RecyclerView.R(childAt));
                 if (hashMap.containsKey(Long.valueOf(i24)) && (view2 = (View) hashMap.get(Long.valueOf(i24))) != null) {
@@ -65,7 +65,7 @@ public final class lk0 implements View.OnLayoutChangeListener {
                         ((org.telegram.ui.Cells.n4) view2).e(false, false);
                     }
                     arrayList.remove(view2);
-                    w7.y5 y5Var = (w7.y5) ok0Var.f29131i;
+                    w7.y5 y5Var = (w7.y5) ok0Var.f29104i;
                     if (y5Var != null) {
                         y5Var.d(view2);
                     }
@@ -97,7 +97,7 @@ public final class lk0 implements View.OnLayoutChangeListener {
             }
             if (view3.getParent() == null) {
                 ll0Var.addView(view3);
-                ((s4.c0) ok0Var.f29129f).M(view3);
+                ((s4.c0) ok0Var.f29102f).M(view3);
             }
             if (view3 instanceof org.telegram.ui.Cells.n4) {
                 ((org.telegram.ui.Cells.n4) view3).e(true, true);
@@ -108,14 +108,14 @@ public final class lk0 implements View.OnLayoutChangeListener {
         } else {
             i18 = i25;
         }
-        w7.y5 y5Var2 = (w7.y5) ok0Var.f29131i;
+        w7.y5 y5Var2 = (w7.y5) ok0Var.f29104i;
         if (y5Var2 != null) {
             y5Var2.b();
         }
         if (arrayList.isEmpty()) {
             i19 = Math.abs(i23);
         } else {
-            boolean z11 = this.f28219c;
+            boolean z11 = this.f28192c;
             if (!z11) {
                 i26 = ll0Var.getHeight() - i18;
             }
@@ -127,22 +127,22 @@ public final class lk0 implements View.OnLayoutChangeListener {
             i19 = height + i26;
         }
         final int paddingBottom = ll0Var.getPaddingBottom();
-        ValueAnimator valueAnimator = (ValueAnimator) ok0Var.f29130g;
+        ValueAnimator valueAnimator = (ValueAnimator) ok0Var.f29103g;
         if (valueAnimator != null) {
             valueAnimator.removeAllListeners();
-            ((ValueAnimator) ok0Var.f29130g).cancel();
+            ((ValueAnimator) ok0Var.f29103g).cancel();
         }
         ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-        ok0Var.f29130g = ofFloat;
-        final boolean z12 = this.f28219c;
+        ok0Var.f29103g = ofFloat;
+        final boolean z12 = this.f28192c;
         final int i28 = i19;
         ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
                 boolean z13;
                 int i29;
-                ok0 ok0Var2 = lk0.this.f28220e;
-                ll0 ll0Var2 = (ll0) ok0Var2.f29128e;
+                ok0 ok0Var2 = lk0.this.f28193e;
+                ll0 ll0Var2 = (ll0) ok0Var2.f29101e;
                 float floatValue = ((Float) valueAnimator2.getAnimatedValue()).floatValue();
                 ArrayList arrayList3 = arrayList;
                 int size2 = arrayList3.size();
@@ -182,19 +182,19 @@ public final class lk0 implements View.OnLayoutChangeListener {
                 }
             }
         });
-        ((ValueAnimator) ok0Var.f29130g).addListener(new bi.t(28, this, arrayList2));
+        ((ValueAnimator) ok0Var.f29103g).addListener(new bi.t(28, this, arrayList2));
         long j3 = 300;
         if (ok0Var.d) {
             if (z10) {
-                ((ValueAnimator) ok0Var.f29130g).setDuration(150L);
-                ((ValueAnimator) ok0Var.f29130g).setInterpolator(pr.f29495g);
+                ((ValueAnimator) ok0Var.f29103g).setDuration(150L);
+                ((ValueAnimator) ok0Var.f29103g).setInterpolator(pr.f29468g);
             } else {
                 long measuredHeight = ((i28 / ll0Var.getMeasuredHeight()) + 1.0f) * 200.0f;
                 if (measuredHeight >= 300) {
                     j3 = measuredHeight;
                 }
-                ((ValueAnimator) ok0Var.f29130g).setDuration(Math.min(j3, 1300L));
-                ((ValueAnimator) ok0Var.f29130g).setInterpolator(pr.h);
+                ((ValueAnimator) ok0Var.f29103g).setDuration(Math.min(j3, 1300L));
+                ((ValueAnimator) ok0Var.f29103g).setInterpolator(pr.h);
             }
         } else {
             if (z10) {
@@ -206,9 +206,9 @@ public final class lk0 implements View.OnLayoutChangeListener {
                 }
                 min = Math.min(j3, 1300L);
             }
-            ((ValueAnimator) ok0Var.f29130g).setDuration(min);
-            ((ValueAnimator) ok0Var.f29130g).setInterpolator(pr.h);
+            ((ValueAnimator) ok0Var.f29103g).setDuration(min);
+            ((ValueAnimator) ok0Var.f29103g).setInterpolator(pr.h);
         }
-        ((ValueAnimator) ok0Var.f29130g).start();
+        ((ValueAnimator) ok0Var.f29103g).start();
     }
 }

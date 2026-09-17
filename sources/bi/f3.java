@@ -12,44 +12,44 @@ import org.telegram.ui.co;
 import org.telegram.ui.rl;
 import org.telegram.ui.sn;
 public final class f3 extends w7.h0 {
-    public final int f2986a;
-    public final Object f2987b;
+    public final int f2959a;
+    public final Object f2960b;
 
     public f3(Object obj, int i10) {
-        this.f2986a = i10;
-        this.f2987b = obj;
+        this.f2959a = i10;
+        this.f2960b = obj;
     }
 
     @Override
     public final void a(boolean z10) {
         MessageObject messageObject;
-        switch (this.f2986a) {
+        switch (this.f2959a) {
             case 0:
-                o5 o5Var = (o5) this.f2987b;
+                o5 o5Var = (o5) this.f2960b;
                 h5 h5Var = o5Var.Q1;
                 boolean y3 = o5Var.K0.W.y();
                 pb pbVar = ((gb) h5Var).d;
-                pbVar.f3582j1 = y3;
+                pbVar.f3555j1 = y3;
                 pbVar.P();
                 return;
             case 1:
-                org.telegram.ui.ActionBar.f3 f3Var = ((org.telegram.ui.i4) this.f2987b).I;
+                org.telegram.ui.ActionBar.f3 f3Var = ((org.telegram.ui.i4) this.f2960b).I;
                 if (f3Var != null) {
                     f3Var.setDisableScroll(z10);
                     return;
                 }
                 return;
             case 2:
-                co coVar = (co) this.f2987b;
-                coVar.f35384n9 = !z10;
+                co coVar = (co) this.f2960b;
+                coVar.f35357n9 = !z10;
                 if (z10) {
-                    if (coVar.f35261d9 != null) {
+                    if (coVar.f35234d9 != null) {
                         co.V1(coVar, 0.0f);
-                        coVar.f35261d9 = null;
+                        coVar.f35234d9 = null;
                     }
-                    coVar.f35274e9 = false;
-                    coVar.f35286f9 = false;
-                    rl rlVar = coVar.f35310h9;
+                    coVar.f35247e9 = false;
+                    coVar.f35259f9 = false;
+                    rl rlVar = coVar.f35283h9;
                     if (rlVar != null) {
                         AndroidUtilities.cancelRunOnUIThread(rlVar.H);
                         rlVar.a();
@@ -58,16 +58,16 @@ public final class f3 extends w7.h0 {
                 coVar.vc();
                 return;
             default:
-                qb0 qb0Var = (qb0) this.f2987b;
-                hb0 hb0Var = qb0Var.f29691e;
-                ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = qb0Var.f29695s;
-                wb0 wb0Var = qb0Var.f29690c0;
-                if (wb0Var.f32259s) {
-                    if (!z10 && actionBarPopupWindow$ActionBarPopupWindowLayout.getSwipeBack().f30916b > 0.0f) {
+                qb0 qb0Var = (qb0) this.f2960b;
+                hb0 hb0Var = qb0Var.f29664e;
+                ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = qb0Var.f29668s;
+                wb0 wb0Var = qb0Var.f29663c0;
+                if (wb0Var.f32232s) {
+                    if (!z10 && actionBarPopupWindow$ActionBarPopupWindowLayout.getSwipeBack().f30889b > 0.0f) {
                         actionBarPopupWindow$ActionBarPopupWindowLayout.getSwipeBack().b(true);
                         return;
                     } else if (z10) {
-                        if (hb0Var.v - hb0Var.f21827u > MessagesController.getInstance(wb0Var.f32260w).quoteLengthMax) {
+                        if (hb0Var.v - hb0Var.f21800u > MessagesController.getInstance(wb0Var.f32233w).quoteLengthMax) {
                             qb0Var.f();
                             return;
                         }
@@ -80,7 +80,7 @@ public final class f3 extends w7.h0 {
                         MessageObject c10 = qb0Var.c(messageObject);
                         MessagePreviewParams messagePreviewParams = wb0Var.d;
                         if (messagePreviewParams.quote == null) {
-                            int i10 = hb0Var.f21827u;
+                            int i10 = hb0Var.f21800u;
                             messagePreviewParams.quoteStart = i10;
                             int i11 = hb0Var.v;
                             messagePreviewParams.quoteEnd = i11;
@@ -101,9 +101,9 @@ public final class f3 extends w7.h0 {
     public void b() {
         org.telegram.ui.ActionBar.k kVar;
         org.telegram.ui.ActionBar.k kVar2;
-        switch (this.f2986a) {
+        switch (this.f2959a) {
             case 2:
-                co coVar = (co) this.f2987b;
+                co coVar = (co) this.f2960b;
                 kVar = ((org.telegram.ui.ActionBar.n2) coVar).actionBar;
                 if (kVar != null) {
                     kVar2 = ((org.telegram.ui.ActionBar.n2) coVar).actionBar;

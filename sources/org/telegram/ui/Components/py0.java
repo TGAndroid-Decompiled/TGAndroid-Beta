@@ -6,15 +6,15 @@ import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import org.telegram.messenger.R;
 public final class py0 extends Drawable {
-    public boolean f29548a;
-    public final e6 f29549b;
-    public final Drawable f29550c;
+    public boolean f29521a;
+    public final e6 f29522b;
+    public final Drawable f29523c;
     public final Drawable d;
-    public int f29551e = 255;
+    public int f29524e = 255;
 
     public py0(org.telegram.ui.Cells.t1 t1Var) {
-        this.f29549b = new e6(t1Var, 420L, pr.h);
-        this.f29550c = t1Var.getContext().getResources().getDrawable(R.drawable.summary_arrow);
+        this.f29522b = new e6(t1Var, 420L, pr.h);
+        this.f29523c = t1Var.getContext().getResources().getDrawable(R.drawable.summary_arrow);
         this.d = t1Var.getContext().getResources().getDrawable(R.drawable.summary_stars);
     }
 
@@ -23,9 +23,9 @@ public final class py0 extends Drawable {
         Rect bounds = getBounds();
         Drawable drawable = this.d;
         drawable.setBounds(bounds);
-        drawable.setAlpha(this.f29551e);
+        drawable.setAlpha(this.f29524e);
         drawable.draw(canvas);
-        float e7 = this.f29549b.e(this.f29548a);
+        float e7 = this.f29522b.e(this.f29521a);
         float centerX = getBounds().centerX();
         float centerY = getBounds().centerY();
         float width = getBounds().width();
@@ -45,9 +45,9 @@ public final class py0 extends Drawable {
             canvas.translate((-width) * f11 * 0.4f, f11 * width * 0.4f);
         }
         Rect bounds2 = getBounds();
-        Drawable drawable2 = this.f29550c;
+        Drawable drawable2 = this.f29523c;
         drawable2.setBounds(bounds2);
-        drawable2.setAlpha(this.f29551e);
+        drawable2.setAlpha(this.f29524e);
         drawable2.draw(canvas);
         canvas.restore();
         canvas.save();
@@ -62,7 +62,7 @@ public final class py0 extends Drawable {
             canvas.translate((-width) * abs3 * 0.4f, width * abs3 * 0.4f);
         }
         drawable2.setBounds(getBounds());
-        drawable2.setAlpha(this.f29551e);
+        drawable2.setAlpha(this.f29524e);
         drawable2.draw(canvas);
         canvas.restore();
         canvas.restore();
@@ -70,12 +70,12 @@ public final class py0 extends Drawable {
 
     @Override
     public final int getIntrinsicHeight() {
-        return this.f29550c.getIntrinsicHeight();
+        return this.f29523c.getIntrinsicHeight();
     }
 
     @Override
     public final int getIntrinsicWidth() {
-        return this.f29550c.getIntrinsicWidth();
+        return this.f29523c.getIntrinsicWidth();
     }
 
     @Override
@@ -85,12 +85,12 @@ public final class py0 extends Drawable {
 
     @Override
     public final void setAlpha(int i10) {
-        this.f29551e = i10;
+        this.f29524e = i10;
     }
 
     @Override
     public final void setColorFilter(ColorFilter colorFilter) {
-        this.f29550c.setColorFilter(colorFilter);
+        this.f29523c.setColorFilter(colorFilter);
         this.d.setColorFilter(colorFilter);
     }
 }

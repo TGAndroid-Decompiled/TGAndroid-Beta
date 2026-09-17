@@ -3,17 +3,17 @@ package org.telegram.ui;
 import android.view.View;
 import org.telegram.messenger.MessageObject;
 public final class lm extends org.telegram.ui.Components.s6 {
-    public final nm f38432b;
+    public final nm f38405b;
 
     public lm(nm nmVar) {
         super("progress", 0);
-        this.f38432b = nmVar;
+        this.f38405b = nmVar;
     }
 
     @Override
     public final void b(Object obj, float f7) {
         ((MessageObject.SendAnimationData) obj).progress = f7;
-        View view = this.f38432b.f39012b.Q.fragmentView;
+        View view = this.f38405b.f38985b.Q.fragmentView;
         if (view != null) {
             view.invalidate();
         }

@@ -14,7 +14,7 @@ public class vi0 extends xi0 {
     public volatile boolean X0;
     public boolean Y0;
     public final int Z0;
-    public int f31374a1;
+    public int f31347a1;
 
     public vi0(String str, int i10, int i11) {
         super(i10, i11);
@@ -33,30 +33,30 @@ public class vi0 extends xi0 {
         if (TextUtils.isEmpty(str2)) {
             return;
         }
-        this.f32596n0 = RLottieNative.b(str2, this.f32585e, null, null);
+        this.f32569n0 = RLottieNative.b(str2, this.f32558e, null, null);
     }
 
     @Override
     public void A(boolean z10) {
-        this.f32594l0 = false;
+        this.f32567l0 = false;
         this.m0 = true;
         l();
         j();
         if (!this.Y0 && !this.V0) {
-            if (this.Q == null && !this.f32613z0) {
+            if (this.Q == null && !this.f32586z0) {
                 B(z10);
                 yf.e eVar = this.D0;
                 if (eVar != null) {
-                    RandomAccessFile randomAccessFile = eVar.f50115s;
+                    RandomAccessFile randomAccessFile = eVar.f50086s;
                     if (randomAccessFile != null) {
                         try {
                             randomAccessFile.close();
                         } catch (IOException e7) {
                             e7.printStackTrace();
                         }
-                        eVar.f50115s = null;
+                        eVar.f50086s = null;
                     }
-                    eVar.f50114r = true;
+                    eVar.f50085r = true;
                     this.D0 = null;
                 }
                 C();
@@ -70,9 +70,9 @@ public class vi0 extends xi0 {
 
     @Override
     public final void B(boolean z10) {
-        RLottieNative rLottieNative = this.f32596n0;
+        RLottieNative rLottieNative = this.f32569n0;
         RLottieNative rLottieNative2 = this.U0;
-        this.f32596n0 = null;
+        this.f32569n0 = null;
         this.U0 = null;
         if (rLottieNative == null && rLottieNative2 == null) {
             return;
@@ -89,11 +89,11 @@ public class vi0 extends xi0 {
     public void n() {
         if (this.W) {
             l();
-            if (this.Q == null && this.f32596n0 != null) {
+            if (this.Q == null && this.f32569n0 != null) {
                 B(true);
             }
         }
-        if (this.f32596n0 == null && this.U0 == null && this.D0 == null) {
+        if (this.f32569n0 == null && this.U0 == null && this.D0 == null) {
             C();
             return;
         }
@@ -101,7 +101,7 @@ public class vi0 extends xi0 {
         if (!t()) {
             stop();
         }
-        if (this.f32594l0) {
+        if (this.f32567l0) {
             G();
         }
     }

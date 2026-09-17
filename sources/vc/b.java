@@ -16,7 +16,7 @@ import org.telegram.ui.Cells.p6;
 import tc.g;
 import w7.q8;
 public abstract class b {
-    public static final c f47803a = new c();
+    public static final c f47775a = new c();
 
     public static HttpURLConnection a(String str, i iVar) {
         Throwable th2;
@@ -29,7 +29,7 @@ public abstract class b {
         hashMap.put("Accept-Charset", "UTF-8");
         hashMap.put("Accept", "application/json");
         hashMap.put("User-Agent", "Stripe/v1 JavaBindings/3.5.0");
-        String str2 = iVar.f4430a;
+        String str2 = iVar.f4403a;
         hashMap.put("Authorization", "Bearer " + str2);
         String[] strArr = {"os.name", "os.version", "os.arch", "java.version", "java.vendor", "java.vm.version", "java.vm.vendor"};
         HashMap hashMap2 = new HashMap();
@@ -45,7 +45,7 @@ public abstract class b {
             httpURLConnection.setRequestProperty((String) entry.getKey(), (String) entry.getValue());
         }
         if (httpURLConnection instanceof HttpsURLConnection) {
-            ((HttpsURLConnection) httpURLConnection).setSSLSocketFactory(f47803a);
+            ((HttpsURLConnection) httpURLConnection).setSSLSocketFactory(f47775a);
         }
         httpURLConnection.setDoOutput(true);
         httpURLConnection.setRequestMethod("POST");
@@ -77,8 +77,8 @@ public abstract class b {
             if (sb2.length() > 0) {
                 sb2.append("&");
             }
-            String str = aVar.f47801a;
-            String str2 = aVar.f47802b;
+            String str = aVar.f47773a;
+            String str2 = aVar.f47774b;
             if (str == null) {
                 encode = null;
             } else {

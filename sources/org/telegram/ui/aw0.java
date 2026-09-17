@@ -2,19 +2,19 @@ package org.telegram.ui;
 
 import org.telegram.messenger.AndroidUtilities;
 public final class aw0 implements Runnable {
-    public final int f34587a;
-    public final lw0 f34588b;
+    public final int f34560a;
+    public final lw0 f34561b;
 
     public aw0(lw0 lw0Var, int i10) {
-        this.f34587a = i10;
-        this.f34588b = lw0Var;
+        this.f34560a = i10;
+        this.f34561b = lw0Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f34587a) {
+        switch (this.f34560a) {
             case 0:
-                lw0 lw0Var = this.f34588b;
+                lw0 lw0Var = this.f34561b;
                 AndroidUtilities.runOnUIThread(new aw0(lw0Var, 3));
                 org.telegram.ui.Cells.t1 t1Var = lw0Var.L;
                 if (t1Var != null) {
@@ -23,18 +23,18 @@ public final class aw0 implements Runnable {
                     t1Var2.L7 = null;
                     t1Var2.invalidate();
                 }
-                zm zmVar = lw0Var.f38526e0;
+                zm zmVar = lw0Var.f38499e0;
                 if (zmVar != null) {
                     AndroidUtilities.runOnUIThread(zmVar);
-                    lw0Var.f38526e0 = null;
+                    lw0Var.f38499e0 = null;
                     return;
                 }
                 return;
             case 1:
-                this.f34588b.c(false);
+                this.f34561b.c(false);
                 return;
             case 2:
-                this.f34588b.c(false);
+                this.f34561b.c(false);
                 return;
             default:
                 super/*android.app.Dialog*/.dismiss();
@@ -43,7 +43,7 @@ public final class aw0 implements Runnable {
     }
 
     public aw0(lw0 lw0Var, boolean z10) {
-        this.f34587a = 0;
-        this.f34588b = lw0Var;
+        this.f34560a = 0;
+        this.f34561b = lw0Var;
     }
 }

@@ -8,54 +8,54 @@ import android.text.TextPaint;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 public final class w61 extends Drawable {
-    public static final int[] f32197r = {10, 7, 26, 16, 10, 25};
-    public final Paint f32198a;
-    public final TextPaint f32199b;
-    public final Path f32200c;
+    public static final int[] f32170r = {10, 7, 26, 16, 10, 25};
+    public final Paint f32171a;
+    public final TextPaint f32172b;
+    public final Path f32173c;
     public boolean d;
-    public final boolean f32201e;
-    public Path f32202f;
-    public int f32203g;
+    public final boolean f32174e;
+    public Path f32175f;
+    public int f32176g;
     public float h;
-    public float f32204i;
-    public boolean f32205j;
-    public boolean f32206k;
-    public boolean f32207l;
-    public long f32208m;
-    public v61 f32209n;
-    public long f32210o;
-    public String f32211p;
-    public float f32212q;
+    public float f32177i;
+    public boolean f32178j;
+    public boolean f32179k;
+    public boolean f32180l;
+    public long f32181m;
+    public v61 f32182n;
+    public long f32183o;
+    public String f32184p;
+    public float f32185q;
 
     public w61(boolean z10) {
         Paint paint = new Paint(1);
-        this.f32198a = paint;
+        this.f32171a = paint;
         TextPaint textPaint = new TextPaint(1);
-        this.f32199b = textPaint;
+        this.f32172b = textPaint;
         Path path = new Path();
-        this.f32200c = path;
-        this.f32212q = 1.0f;
-        this.f32201e = z10;
+        this.f32173c = path;
+        this.f32185q = 1.0f;
+        this.f32174e = z10;
         paint.setColor(-1);
         textPaint.setColor(-1);
         textPaint.setTextSize(AndroidUtilities.dp(12.0f));
         textPaint.setTextAlign(Paint.Align.CENTER);
         path.reset();
         for (int i10 = 0; i10 < 3; i10++) {
-            int[] iArr = f32197r;
+            int[] iArr = f32170r;
             if (i10 == 0) {
                 int i11 = i10 * 2;
-                this.f32200c.moveTo(AndroidUtilities.dp(iArr[i11]), AndroidUtilities.dp(iArr[i11 + 1]));
+                this.f32173c.moveTo(AndroidUtilities.dp(iArr[i11]), AndroidUtilities.dp(iArr[i11 + 1]));
             } else {
                 int i12 = i10 * 2;
-                this.f32200c.lineTo(AndroidUtilities.dp(iArr[i12]), AndroidUtilities.dp(iArr[i12 + 1]));
+                this.f32173c.lineTo(AndroidUtilities.dp(iArr[i12]), AndroidUtilities.dp(iArr[i12 + 1]));
             }
         }
-        this.f32200c.close();
+        this.f32173c.close();
     }
 
     public final void a() {
-        v61 v61Var = this.f32209n;
+        v61 v61Var = this.f32182n;
         if (v61Var != null) {
             v61Var.invalidate();
         } else {
@@ -64,24 +64,24 @@ public final class w61 extends Drawable {
     }
 
     public final boolean b() {
-        return this.f32205j;
+        return this.f32178j;
     }
 
     public final void c(org.telegram.ui.ss0 ss0Var) {
-        this.f32209n = ss0Var;
+        this.f32182n = ss0Var;
     }
 
     public final void d(boolean z10) {
         boolean z11 = this.d;
-        if (z11 == z10 && this.h >= 1.0f && this.f32206k) {
+        if (z11 == z10 && this.h >= 1.0f && this.f32179k) {
             return;
         }
         if (z11 != z10) {
-            this.f32210o = 0L;
-            this.f32211p = null;
+            this.f32183o = 0L;
+            this.f32184p = null;
         }
         this.d = z10;
-        this.f32205j = true;
+        this.f32178j = true;
         this.h = 0.0f;
         invalidateSelf();
     }
@@ -92,25 +92,25 @@ public final class w61 extends Drawable {
     }
 
     public final void e(boolean z10) {
-        if (this.f32206k != z10) {
-            this.f32206k = z10;
-            this.f32211p = null;
-            this.f32210o = 0L;
+        if (this.f32179k != z10) {
+            this.f32179k = z10;
+            this.f32184p = null;
+            this.f32183o = 0L;
             this.h = 0.0f;
         }
     }
 
     public final void f(boolean z10) {
-        this.f32207l = z10;
+        this.f32180l = z10;
         a();
     }
 
     public final void g(long j3) {
-        this.f32210o = j3;
+        this.f32183o = j3;
         if (j3 >= 1000) {
-            this.f32211p = LocaleController.formatPluralString("Seconds", (int) (j3 / 1000), new Object[0]);
+            this.f32184p = LocaleController.formatPluralString("Seconds", (int) (j3 / 1000), new Object[0]);
         } else {
-            this.f32211p = null;
+            this.f32184p = null;
         }
     }
 
@@ -141,12 +141,12 @@ public final class w61 extends Drawable {
 
     @Override
     public final void setAlpha(int i10) {
-        this.f32198a.setAlpha(i10);
-        this.f32199b.setAlpha(i10);
+        this.f32171a.setAlpha(i10);
+        this.f32172b.setAlpha(i10);
     }
 
     @Override
     public final void setColorFilter(ColorFilter colorFilter) {
-        this.f32198a.setColorFilter(colorFilter);
+        this.f32171a.setColorFilter(colorFilter);
     }
 }

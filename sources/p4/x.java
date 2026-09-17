@@ -11,16 +11,16 @@ import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import org.telegram.ui.Cells.l7;
 public final class x {
-    public static e f43972c;
-    public final Context f43973a;
-    public final ArrayList f43974b = new ArrayList();
+    public static e f43945c;
+    public final Context f43946a;
+    public final ArrayList f43947b = new ArrayList();
 
     static {
         Log.isLoggable("AxMediaRouter", 3);
     }
 
     public x(Context context) {
-        this.f43973a = context;
+        this.f43946a = context;
     }
 
     public static void b() {
@@ -31,7 +31,7 @@ public final class x {
     }
 
     public static e c() {
-        e eVar = f43972c;
+        e eVar = f43945c;
         if (eVar != null) {
             return eVar;
         }
@@ -41,10 +41,10 @@ public final class x {
     public static x d(Context context) {
         if (context != null) {
             b();
-            if (f43972c == null) {
-                f43972c = new e(context.getApplicationContext());
+            if (f43945c == null) {
+                f43945c = new e(context.getApplicationContext());
             }
-            ArrayList arrayList = f43972c.f43839i;
+            ArrayList arrayList = f43945c.f43812i;
             int size = arrayList.size();
             while (true) {
                 size--;
@@ -52,7 +52,7 @@ public final class x {
                     x xVar = (x) ((WeakReference) arrayList.get(size)).get();
                     if (xVar == null) {
                         arrayList.remove(size);
-                    } else if (xVar.f43973a == context) {
+                    } else if (xVar.f43946a == context) {
                         return xVar;
                     }
                 } else {
@@ -67,19 +67,19 @@ public final class x {
     }
 
     public static MediaSessionCompat$Token e() {
-        e eVar = f43972c;
+        e eVar = f43945c;
         if (eVar != null) {
             m2.t tVar = eVar.C;
             if (tVar != null) {
-                android.support.v4.media.session.c0 c0Var = (android.support.v4.media.session.c0) tVar.f15844b;
+                android.support.v4.media.session.c0 c0Var = (android.support.v4.media.session.c0) tVar.f15817b;
                 if (c0Var != null) {
-                    return c0Var.f819a.f844c;
+                    return c0Var.f807a.f832c;
                 }
                 return null;
             }
             android.support.v4.media.session.c0 c0Var2 = eVar.D;
             if (c0Var2 != null) {
-                return c0Var2.f819a.f844c;
+                return c0Var2.f807a.f832c;
             }
             return null;
         }
@@ -93,11 +93,11 @@ public final class x {
 
     public static boolean g() {
         Bundle bundle;
-        if (f43972c == null) {
+        if (f43945c == null) {
             return false;
         }
-        z zVar = c().f43851u;
-        if (zVar != null && (bundle = zVar.f43982e) != null && !bundle.getBoolean("androidx.mediarouter.media.MediaRouterParams.ENABLE_GROUP_VOLUME_UX", true)) {
+        z zVar = c().f43824u;
+        if (zVar != null && (bundle = zVar.f43955e) != null && !bundle.getBoolean("androidx.mediarouter.media.MediaRouterParams.ENABLE_GROUP_VOLUME_UX", true)) {
             return false;
         }
         return true;
@@ -107,16 +107,16 @@ public final class x {
         boolean z10;
         b();
         e c10 = c();
-        z zVar2 = c10.f43851u;
-        b bVar = c10.f43833a;
-        c10.f43851u = zVar;
+        z zVar2 = c10.f43824u;
+        b bVar = c10.f43806a;
+        c10.f43824u = zVar;
         if (c10.f()) {
-            if (c10.f43848r == null) {
+            if (c10.f43821r == null) {
                 k kVar = new k(c10.h, new mg.n(c10, 10));
-                c10.f43848r = kVar;
+                c10.f43821r = kVar;
                 c10.a(kVar, true);
                 c10.k();
-                s0 s0Var = c10.f43835c;
+                s0 s0Var = c10.f43808c;
                 ((Handler) s0Var.d).post((l7) s0Var.h);
             }
             if (zVar2 != null && zVar2.d) {
@@ -125,27 +125,27 @@ public final class x {
                 z10 = false;
             }
             if (z10 != zVar.d) {
-                k kVar2 = c10.f43848r;
+                k kVar2 = c10.f43821r;
                 kVar2.h = c10.A;
-                if (!kVar2.f5993b) {
-                    kVar2.f5993b = true;
-                    ((androidx.mediarouter.app.c) kVar2.f5995e).sendEmptyMessage(2);
+                if (!kVar2.f5966b) {
+                    kVar2.f5966b = true;
+                    ((androidx.mediarouter.app.c) kVar2.f5968e).sendEmptyMessage(2);
                 }
             }
         } else {
-            k kVar3 = c10.f43848r;
+            k kVar3 = c10.f43821r;
             if (kVar3 != null) {
                 u d = c10.d(kVar3);
                 if (d != null) {
                     b();
-                    kVar3.f5996f = null;
+                    kVar3.f5969f = null;
                     kVar3.h(null);
                     c10.m(d, null);
                     bVar.b(514, d);
-                    c10.f43842l.remove(d);
+                    c10.f43815l.remove(d);
                 }
-                c10.f43848r = null;
-                s0 s0Var2 = c10.f43835c;
+                c10.f43821r = null;
+                s0 s0Var2 = c10.f43808c;
                 ((Handler) s0Var2.d).post((l7) s0Var2.h);
             }
         }
@@ -174,13 +174,13 @@ public final class x {
         if (rVar != null) {
             if (sVar != null) {
                 b();
-                ArrayList arrayList2 = this.f43974b;
+                ArrayList arrayList2 = this.f43947b;
                 int size = arrayList2.size();
                 int i11 = 0;
                 int i12 = 0;
                 while (true) {
                     if (i12 < size) {
-                        if (((t) arrayList2.get(i12)).f43943b == sVar) {
+                        if (((t) arrayList2.get(i12)).f43916b == sVar) {
                             break;
                         }
                         i12++;
@@ -206,16 +206,16 @@ public final class x {
                 if ((i10 & 1) != 0) {
                     z10 = true;
                 }
-                tVar.f43945e = elapsedRealtime;
-                r rVar3 = tVar.f43944c;
+                tVar.f43918e = elapsedRealtime;
+                r rVar3 = tVar.f43917c;
                 rVar3.a();
                 rVar.a();
-                if (!rVar3.f43930b.containsAll(rVar.f43930b)) {
-                    r rVar4 = tVar.f43944c;
+                if (!rVar3.f43903b.containsAll(rVar.f43903b)) {
+                    r rVar4 = tVar.f43917c;
                     if (rVar4 != null) {
                         rVar4.a();
-                        if (!rVar4.f43930b.isEmpty()) {
-                            arrayList = new ArrayList<>(rVar4.f43930b);
+                        if (!rVar4.f43903b.isEmpty()) {
+                            arrayList = new ArrayList<>(rVar4.f43903b);
                         } else {
                             arrayList = null;
                         }
@@ -239,13 +239,13 @@ public final class x {
                             }
                         }
                         if (arrayList == null) {
-                            rVar2 = r.f43928c;
+                            rVar2 = r.f43901c;
                         } else {
                             Bundle bundle = new Bundle();
                             bundle.putStringArrayList("controlCategories", arrayList);
                             rVar2 = new r(bundle, arrayList);
                         }
-                        tVar.f43944c = rVar2;
+                        tVar.f43917c = rVar2;
                     } else {
                         throw new IllegalArgumentException("selector must not be null");
                     }
@@ -266,12 +266,12 @@ public final class x {
     public final void h(s sVar) {
         if (sVar != null) {
             b();
-            ArrayList arrayList = this.f43974b;
+            ArrayList arrayList = this.f43947b;
             int size = arrayList.size();
             int i10 = 0;
             while (true) {
                 if (i10 < size) {
-                    if (((t) arrayList.get(i10)).f43943b == sVar) {
+                    if (((t) arrayList.get(i10)).f43916b == sVar) {
                         break;
                     }
                     i10++;

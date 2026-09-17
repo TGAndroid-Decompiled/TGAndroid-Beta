@@ -9,12 +9,12 @@ import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.Drawable;
 import org.telegram.messenger.AndroidUtilities;
 public final class ht0 extends AnimatorListenerAdapter {
-    public final int f37135a;
-    public final PhotoViewer f37136b;
+    public final int f37108a;
+    public final PhotoViewer f37109b;
 
     public ht0(PhotoViewer photoViewer, int i10) {
-        this.f37135a = i10;
-        this.f37136b = photoViewer;
+        this.f37108a = i10;
+        this.f37109b = photoViewer;
     }
 
     @Override
@@ -22,25 +22,25 @@ public final class ht0 extends AnimatorListenerAdapter {
         boolean z10;
         boolean z11;
         org.telegram.ui.Components.vi viVar;
-        int i10 = this.f37135a;
-        PhotoViewer photoViewer = this.f37136b;
+        int i10 = this.f37108a;
+        PhotoViewer photoViewer = this.f37109b;
         switch (i10) {
             case 0:
-                photoViewer.f33677p6 = null;
+                photoViewer.f33650p6 = null;
                 org.telegram.ui.Components.ue0 ue0Var = photoViewer.C1;
                 if (ue0Var != null) {
-                    if (ue0Var.f30897b.j()) {
-                        photoViewer.f33540a1.setColorFilter(new PorterDuffColorFilter(photoViewer.z1(org.telegram.ui.ActionBar.j6.f21098zf), PorterDuff.Mode.MULTIPLY));
+                    if (ue0Var.f30870b.j()) {
+                        photoViewer.f33513a1.setColorFilter(new PorterDuffColorFilter(photoViewer.z1(org.telegram.ui.ActionBar.j6.f21071zf), PorterDuff.Mode.MULTIPLY));
                     } else {
-                        photoViewer.f33540a1.setColorFilter((ColorFilter) null);
+                        photoViewer.f33513a1.setColorFilter((ColorFilter) null);
                     }
-                    photoViewer.f33600g6 = 0.0f;
-                    photoViewer.f33577e0.invalidate();
+                    photoViewer.f33573g6 = 0.0f;
+                    photoViewer.f33550e0.invalidate();
                     return;
                 }
                 return;
             case 1:
-                photoViewer.f33711t3 = null;
+                photoViewer.f33684t3 = null;
                 return;
             case 2:
                 Drawable[] drawableArr = PhotoViewer.T8;
@@ -49,19 +49,19 @@ public final class ht0 extends AnimatorListenerAdapter {
             case 3:
                 photoViewer.L1.n0(false);
                 zt0 zt0Var = photoViewer.L1;
-                zt0Var.f45399u1.setTypeface(qg.s0.e(zt0Var.P1).f44602j);
+                zt0Var.f45371u1.setTypeface(qg.s0.e(zt0Var.P1).f44574j);
                 zt0Var.Z0.setVisibility(0);
                 zt0Var.W0.setVisibility(0);
                 zt0Var.X0.setVisibility(0);
-                org.telegram.ui.Components.gd0 gd0Var = photoViewer.f33759y4;
+                org.telegram.ui.Components.gd0 gd0Var = photoViewer.f33732y4;
                 int childCount = gd0Var.getChildCount();
                 for (int i11 = 0; i11 < childCount; i11++) {
                     gd0Var.getChildAt(i11).setVisibility(4);
                 }
-                photoViewer.f33677p6 = null;
-                photoViewer.f33721u4 = 3;
+                photoViewer.f33650p6 = null;
+                photoViewer.f33694u4 = 3;
                 di.j4 j4Var = photoViewer.f1().L;
-                if (photoViewer.f33721u4 != 0) {
+                if (photoViewer.f33694u4 != 0) {
                     z10 = true;
                 } else {
                     z10 = false;
@@ -69,22 +69,22 @@ public final class ht0 extends AnimatorListenerAdapter {
                 j4Var.b(z10);
                 di.j4 j4Var2 = photoViewer.K1;
                 if (j4Var2 != null) {
-                    if (photoViewer.f33721u4 != 3) {
+                    if (photoViewer.f33694u4 != 3) {
                         z11 = true;
                     } else {
                         z11 = false;
                     }
                     j4Var2.b(z11);
                 }
-                photoViewer.f33669o6 = -1;
+                photoViewer.f33642o6 = -1;
                 float r22 = photoViewer.r2(false);
-                photoViewer.f33544a6 = r22;
-                photoViewer.f33583e6 = r22;
-                photoViewer.f33564c6 = 0.0f;
-                photoViewer.f33573d6 = 0.0f;
+                photoViewer.f33517a6 = r22;
+                photoViewer.f33556e6 = r22;
+                photoViewer.f33537c6 = 0.0f;
+                photoViewer.f33546d6 = 0.0f;
                 photoViewer.w3(r22);
-                photoViewer.f33710t2 = true;
-                photoViewer.f33577e0.invalidate();
+                photoViewer.f33683t2 = true;
+                photoViewer.f33550e0.invalidate();
                 av0 av0Var = photoViewer.d;
                 if (av0Var == null || !av0Var.O()) {
                     photoViewer.R1();
@@ -94,7 +94,7 @@ public final class ht0 extends AnimatorListenerAdapter {
             case 4:
                 AnimatorSet animatorSet = photoViewer.B1;
                 if (animatorSet != null && animatorSet.equals(animator)) {
-                    photoViewer.f33664o1.setVisibility(8);
+                    photoViewer.f33637o1.setVisibility(8);
                     photoViewer.B1 = null;
                     return;
                 }
@@ -103,12 +103,12 @@ public final class ht0 extends AnimatorListenerAdapter {
                 AndroidUtilities.runOnUIThread(new rl0(this, 20));
                 return;
             case 6:
-                photoViewer.f33650m6 = 1.0f;
-                Runnable runnable = photoViewer.f33676p4;
+                photoViewer.f33623m6 = 1.0f;
+                Runnable runnable = photoViewer.f33649p4;
                 if (runnable != null) {
                     co coVar = photoViewer.l4;
                     if (coVar == null && (viVar = photoViewer.a2) != null) {
-                        org.telegram.ui.ActionBar.n2 n2Var = viVar.f31307f0;
+                        org.telegram.ui.ActionBar.n2 n2Var = viVar.f31280f0;
                         if (n2Var instanceof co) {
                             coVar = (co) n2Var;
                         }
@@ -118,13 +118,13 @@ public final class ht0 extends AnimatorListenerAdapter {
                         return;
                     }
                     runnable.run();
-                    photoViewer.f33676p4 = null;
+                    photoViewer.f33649p4 = null;
                     return;
                 }
                 return;
             case 7:
-                photoViewer.f33677p6 = null;
-                photoViewer.f33577e0.invalidate();
+                photoViewer.f33650p6 = null;
+                photoViewer.f33550e0.invalidate();
                 return;
             case 8:
                 photoViewer.y3[0].setTag(null);

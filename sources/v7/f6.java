@@ -1,4 +1,4 @@
 package v7;
 public final class f6 {
-    public final Float f47475a;
+    public final Float f47447a;
 }

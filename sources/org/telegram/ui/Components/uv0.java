@@ -1,18 +1,18 @@
 package org.telegram.ui.Components;
 public final class uv0 implements Runnable {
-    public final int f31016a;
-    public final wv0 f31017b;
+    public final int f30989a;
+    public final wv0 f30990b;
 
     public uv0(wv0 wv0Var, int i10) {
-        this.f31016a = i10;
-        this.f31017b = wv0Var;
+        this.f30989a = i10;
+        this.f30990b = wv0Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f31016a) {
+        switch (this.f30989a) {
             case 0:
-                wv0 wv0Var = this.f31017b;
+                wv0 wv0Var = this.f30990b;
                 wv0Var.V0 = false;
                 if (!wv0Var.Y0 && wv0Var.W0) {
                     wv0Var.A(true);
@@ -20,10 +20,10 @@ public final class uv0 implements Runnable {
                 }
                 return;
             case 1:
-                this.f31017b.V0 = false;
+                this.f30990b.V0 = false;
                 return;
             case 2:
-                wv0 wv0Var2 = this.f31017b;
+                wv0 wv0Var2 = this.f30990b;
                 wv0Var2.Y0 = false;
                 if (!wv0Var2.V0 && wv0Var2.W0) {
                     wv0Var2.A(true);
@@ -31,7 +31,7 @@ public final class uv0 implements Runnable {
                 }
                 return;
             default:
-                this.f31017b.Y0 = false;
+                this.f30990b.Y0 = false;
                 return;
         }
     }

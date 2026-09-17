@@ -6,19 +6,19 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class rz implements RequestDelegate {
-    public final int f40291a;
-    public final c00 f40292b;
+    public final int f40264a;
+    public final c00 f40265b;
 
     public rz(c00 c00Var, int i10) {
-        this.f40291a = i10;
-        this.f40292b = c00Var;
+        this.f40264a = i10;
+        this.f40265b = c00Var;
     }
 
     @Override
     public final void run(TLObject tLObject, final TLRPC.TL_error tL_error) {
-        switch (this.f40291a) {
+        switch (this.f40264a) {
             case 0:
-                final c00 c00Var = this.f40292b;
+                final c00 c00Var = this.f40265b;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
@@ -39,7 +39,7 @@ public final class rz implements RequestDelegate {
                 });
                 return;
             default:
-                final c00 c00Var2 = this.f40292b;
+                final c00 c00Var2 = this.f40265b;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {

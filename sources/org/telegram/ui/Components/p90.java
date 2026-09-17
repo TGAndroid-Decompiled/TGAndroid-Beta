@@ -2,16 +2,16 @@ package org.telegram.ui.Components;
 
 import java.util.regex.Pattern;
 public final class p90 extends ed.h {
-    public static final Pattern f29351e = Pattern.compile("\\$([^\\s\\$][^\\$]*?)(?<!\\s)\\$(?![0-9])");
+    public static final Pattern f29324e = Pattern.compile("\\$([^\\s\\$][^\\$]*?)(?<!\\s)\\$(?![0-9])");
 
     @Override
     public final bf.p b() {
-        String a2 = a(f29351e);
+        String a2 = a(f29324e);
         if (a2 == null) {
             return null;
         }
         ?? pVar = new bf.p();
-        pVar.f51549g = com.google.android.gms.internal.vision.e2.i(1, 1, a2);
+        pVar.f51518g = com.google.android.gms.internal.vision.e2.i(1, 1, a2);
         return pVar;
     }
 

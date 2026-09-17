@@ -5,17 +5,17 @@ import android.view.accessibility.AccessibilityNodeInfo;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class d31 extends org.telegram.ui.Components.aj0 {
-    public final f31 f35669r;
+    public final f31 f35642r;
 
     public d31(f31 f31Var, Activity activity) {
         super(activity);
-        this.f35669r = f31Var;
+        this.f35642r = f31Var;
     }
 
     @Override
     public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        if (this.f35669r.S.K) {
+        if (this.f35642r.S.K) {
             accessibilityNodeInfo.setText(LocaleController.getString(R.string.AccDescrSwitchToDayTheme));
         } else {
             accessibilityNodeInfo.setText(LocaleController.getString(R.string.AccDescrSwitchToNightTheme));

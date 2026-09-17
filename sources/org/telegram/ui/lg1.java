@@ -2,33 +2,33 @@ package org.telegram.ui;
 
 import org.telegram.tgnet.tl.TL_account;
 public final class lg1 implements org.telegram.ui.ActionBar.a2 {
-    public final int f38380a;
-    public final TwoStepVerificationActivity f38381b;
+    public final int f38353a;
+    public final TwoStepVerificationActivity f38354b;
 
     public lg1(TwoStepVerificationActivity twoStepVerificationActivity, int i10) {
-        this.f38380a = i10;
-        this.f38381b = twoStepVerificationActivity;
+        this.f38353a = i10;
+        this.f38354b = twoStepVerificationActivity;
     }
 
     @Override
     public final void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        switch (this.f38380a) {
+        switch (this.f38353a) {
             case 0:
-                this.f38381b.finishFragment();
+                this.f38354b.finishFragment();
                 return;
             case 1:
                 TL_account.declinePasswordReset declinepasswordreset = new TL_account.declinePasswordReset();
-                TwoStepVerificationActivity twoStepVerificationActivity = this.f38381b;
+                TwoStepVerificationActivity twoStepVerificationActivity = this.f38354b;
                 twoStepVerificationActivity.getConnectionsManager().sendRequest(declinepasswordreset, new mg1(twoStepVerificationActivity, 2));
                 return;
             case 2:
-                this.f38381b.k0();
+                this.f38354b.k0();
                 return;
             case 3:
-                this.f38381b.u0();
+                this.f38354b.u0();
                 return;
             default:
-                this.f38381b.u0();
+                this.f38354b.u0();
                 return;
         }
     }

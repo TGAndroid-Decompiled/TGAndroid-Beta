@@ -9,21 +9,21 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.tgnet.TLRPC;
 public final class eu0 extends kl0 {
-    public final Context f25814c;
+    public final Context f25787c;
     public final int d;
-    public final org.telegram.ui.ActionBar.f6 f25815e;
-    public final cu0 f25816f;
+    public final org.telegram.ui.ActionBar.f6 f25788e;
+    public final cu0 f25789f;
     public final ArrayList h = new ArrayList(10);
-    public final ArrayList f25817n = new ArrayList();
-    public pt0 f25818r;
-    public final xu0 f25819s;
+    public final ArrayList f25790n = new ArrayList();
+    public pt0 f25791r;
+    public final xu0 f25792s;
 
     public eu0(xu0 xu0Var, Context context, int i10, org.telegram.ui.ActionBar.f6 f6Var) {
-        this.f25819s = xu0Var;
-        this.f25814c = context;
+        this.f25792s = xu0Var;
+        this.f25787c = context;
         this.d = i10;
-        this.f25815e = f6Var;
-        this.f25816f = new cu0(this, i10, f6Var);
+        this.f25788e = f6Var;
+        this.f25789f = new cu0(this, i10, f6Var);
         E();
     }
 
@@ -33,9 +33,9 @@ public final class eu0 extends kl0 {
     }
 
     public final void E() {
-        ArrayList arrayList = this.f25817n;
+        ArrayList arrayList = this.f25790n;
         arrayList.clear();
-        ArrayList c10 = this.f25819s.f32750t1[8].c();
+        ArrayList c10 = this.f25792s.f32723t1[8].c();
         int i10 = 0;
         for (int i11 = 0; i11 < c10.size(); i11++) {
             MessageObject messageObject = (MessageObject) c10.get(i11);
@@ -44,7 +44,7 @@ public final class eu0 extends kl0 {
                 TLRPC.TL_message tL_message = new TLRPC.TL_message();
                 long j3 = i12;
                 tL_message.message = LocaleController.formatDateChat(j3);
-                tL_message.f19917id = 0;
+                tL_message.f19890id = 0;
                 Calendar calendar = Calendar.getInstance();
                 calendar.setTimeInMillis(j3 * 1000);
                 calendar.set(11, 0);
@@ -65,13 +65,13 @@ public final class eu0 extends kl0 {
 
     @Override
     public final int h() {
-        return this.f25817n.size();
+        return this.f25790n.size();
     }
 
     @Override
     public final int j(int i10) {
         if (i10 >= 0) {
-            ArrayList arrayList = this.f25817n;
+            ArrayList arrayList = this.f25790n;
             if (i10 < arrayList.size()) {
                 return ((MessageObject) arrayList.get(i10)).contentType;
             }
@@ -89,11 +89,11 @@ public final class eu0 extends kl0 {
     @Override
     public final void v(s4.c1 c1Var, int i10) {
         if (i10 >= 0) {
-            ArrayList arrayList = this.f25817n;
+            ArrayList arrayList = this.f25790n;
             if (i10 < arrayList.size()) {
                 MessageObject messageObject = (MessageObject) arrayList.get(i10);
-                int i11 = c1Var.f45771f;
-                View view = c1Var.f45767a;
+                int i11 = c1Var.f45743f;
+                View view = c1Var.f45739a;
                 if (i11 == 0) {
                     ((org.telegram.ui.Cells.t1) view).X3(messageObject, null, false, false, false, false);
                 } else {
@@ -106,10 +106,10 @@ public final class eu0 extends kl0 {
     @Override
     public final s4.c1 x(ViewGroup viewGroup, int i10) {
         if (i10 == 0) {
-            du0 du0Var = new du0(this.f25814c, this.d, false, null, this.f25815e);
-            du0Var.setDelegate(this.f25816f);
+            du0 du0Var = new du0(this.f25787c, this.d, false, null, this.f25788e);
+            du0Var.setDelegate(this.f25789f);
             return new s4.c1(du0Var);
         }
-        return new s4.c1(new org.telegram.ui.Cells.w0(this.f25814c, this.f25815e, false));
+        return new s4.c1(new org.telegram.ui.Cells.w0(this.f25787c, this.f25788e, false));
     }
 }

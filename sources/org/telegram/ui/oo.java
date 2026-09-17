@@ -5,12 +5,12 @@ import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.tgnet.TLRPC;
 public final class oo implements org.telegram.ui.ActionBar.a2, MessagesStorage.LongCallback, dd0, MessagesStorage.BooleanCallback {
-    public final int f39315a;
-    public final xo f39316b;
+    public final int f39288a;
+    public final xo f39289b;
 
     public oo(xo xoVar, int i10) {
-        this.f39315a = i10;
-        this.f39316b = xoVar;
+        this.f39288a = i10;
+        this.f39289b = xoVar;
     }
 
     @Override
@@ -18,61 +18,61 @@ public final class oo implements org.telegram.ui.ActionBar.a2, MessagesStorage.L
         TLRPC.TL_channelLocation tL_channelLocation = new TLRPC.TL_channelLocation();
         tL_channelLocation.address = messageMedia.address;
         tL_channelLocation.geo_point = messageMedia.geo;
-        xo xoVar = this.f39316b;
-        TLRPC.ChatFull chatFull = xoVar.f42829y0;
+        xo xoVar = this.f39289b;
+        TLRPC.ChatFull chatFull = xoVar.f42802y0;
         chatFull.location = tL_channelLocation;
         chatFull.flags |= 32768;
         xoVar.p0(false, true);
-        xoVar.getMessagesController().loadFullChat(xoVar.f42825w0, 0, true);
+        xoVar.getMessagesController().loadFullChat(xoVar.f42798w0, 0, true);
     }
 
     @Override
     public void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        switch (this.f39315a) {
+        switch (this.f39288a) {
             case 0:
-                this.f39316b.j0();
+                this.f39289b.j0();
                 return;
             case 1:
-                this.f39316b.finishFragment();
+                this.f39289b.finishFragment();
                 return;
             case 2:
-                this.f39316b.j0();
+                this.f39289b.j0();
                 return;
             default:
-                this.f39316b.finishFragment();
+                this.f39289b.finishFragment();
                 return;
         }
     }
 
     @Override
     public void run(boolean z10) {
-        xo xoVar = this.f39316b;
+        xo xoVar = this.f39289b;
         xoVar.getClass();
         if (AndroidUtilities.isTablet()) {
-            xoVar.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.closeChats, Long.valueOf(-xoVar.f42825w0));
+            xoVar.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.closeChats, Long.valueOf(-xoVar.f42798w0));
         } else {
             xoVar.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.closeChats, new Object[0]);
         }
         xoVar.finishFragment();
-        xoVar.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needDeleteDialog, Long.valueOf(-xoVar.f42827x0.f19896id), null, xoVar.f42827x0, Boolean.valueOf(z10));
+        xoVar.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needDeleteDialog, Long.valueOf(-xoVar.f42800x0.f19869id), null, xoVar.f42800x0, Boolean.valueOf(z10));
     }
 
     @Override
     public void run(long j3) {
-        switch (this.f39315a) {
+        switch (this.f39288a) {
             case 4:
-                this.f39316b.t0(Long.valueOf(j3));
+                this.f39289b.t0(Long.valueOf(j3));
                 return;
             default:
-                xo xoVar = this.f39316b;
+                xo xoVar = this.f39289b;
                 if (j3 == 0) {
                     xoVar.N0 = false;
                     return;
                 }
-                xoVar.f42825w0 = j3;
-                xoVar.f42827x0 = xoVar.getMessagesController().getChat(Long.valueOf(j3));
+                xoVar.f42798w0 = j3;
+                xoVar.f42800x0 = xoVar.getMessagesController().getChat(Long.valueOf(j3));
                 xoVar.N0 = false;
-                TLRPC.ChatFull chatFull = xoVar.f42829y0;
+                TLRPC.ChatFull chatFull = xoVar.f42802y0;
                 if (chatFull != null) {
                     chatFull.hidden_prehistory = true;
                 }

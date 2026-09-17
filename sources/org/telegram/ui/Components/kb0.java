@@ -32,11 +32,11 @@ public final class kb0 extends ki.o {
 
     @Override
     public final void W() {
-        wb0 wb0Var = this.Y.f29690c0;
-        AndroidUtilities.cancelRunOnUIThread(wb0Var.f32262y);
-        wb0Var.f32262y.run();
+        wb0 wb0Var = this.Y.f29663c0;
+        AndroidUtilities.cancelRunOnUIThread(wb0Var.f32235y);
+        wb0Var.f32235y.run();
         if (this.W == -1) {
-            this.W = NotificationCenter.getInstance(wb0Var.f32260w).setAnimationInProgress(this.W, null, false);
+            this.W = NotificationCenter.getInstance(wb0Var.f32233w).setAnimationInProgress(this.W, null, false);
         }
         Runnable runnable = this.X;
         if (runnable != null) {

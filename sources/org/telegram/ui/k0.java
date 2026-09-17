@@ -20,79 +20,79 @@ public final class k0 extends org.telegram.ui.web.w1 {
 
     @Override
     public final org.telegram.ui.web.h2 getInstantViewLoader() {
-        m3 m3Var = this.B0.f37260u0[0];
+        m3 m3Var = this.B0.f37233u0[0];
         if (!m3Var.f()) {
-            org.telegram.ui.web.h2 h2Var = m3Var.f38588y;
+            org.telegram.ui.web.h2 h2Var = m3Var.f38561y;
             if (h2Var != null) {
                 h2Var.a();
-                org.telegram.ui.web.h2 h2Var2 = m3Var.f38588y;
-                TLRPC.TL_webPage tL_webPage = h2Var2.f42137j;
+                org.telegram.ui.web.h2 h2Var2 = m3Var.f38561y;
+                TLRPC.TL_webPage tL_webPage = h2Var2.f42110j;
                 if (tL_webPage != null) {
                     org.telegram.ui.web.j2.o(tL_webPage);
-                    h2Var2.f42137j = null;
+                    h2Var2.f42110j = null;
                 }
-                m3Var.f38588y = null;
+                m3Var.f38561y = null;
                 return null;
             }
         } else if (m3Var.getWebView() == null) {
-            org.telegram.ui.web.h2 h2Var3 = m3Var.f38588y;
+            org.telegram.ui.web.h2 h2Var3 = m3Var.f38561y;
             if (h2Var3 != null) {
                 h2Var3.a();
-                org.telegram.ui.web.h2 h2Var4 = m3Var.f38588y;
-                TLRPC.TL_webPage tL_webPage2 = h2Var4.f42137j;
+                org.telegram.ui.web.h2 h2Var4 = m3Var.f38561y;
+                TLRPC.TL_webPage tL_webPage2 = h2Var4.f42110j;
                 if (tL_webPage2 != null) {
                     org.telegram.ui.web.j2.o(tL_webPage2);
-                    h2Var4.f42137j = null;
+                    h2Var4.f42110j = null;
                 }
-                m3Var.f38588y = null;
+                m3Var.f38561y = null;
             }
         } else {
-            org.telegram.ui.web.h2 h2Var5 = m3Var.f38588y;
-            if (h2Var5 != null && (h2Var5.f42134f != m3Var.getWebView().f42356b || m3Var.f38588y.f42133e != m3Var.getWebView().getProgress())) {
-                m3Var.f38588y.d(m3Var.getWebView());
-                return m3Var.f38588y;
-            } else if (m3Var.f38588y != null && TextUtils.equals(m3Var.getWebView().getUrl(), m3Var.f38588y.d)) {
-                return m3Var.f38588y;
+            org.telegram.ui.web.h2 h2Var5 = m3Var.f38561y;
+            if (h2Var5 != null && (h2Var5.f42107f != m3Var.getWebView().f42329b || m3Var.f38561y.f42106e != m3Var.getWebView().getProgress())) {
+                m3Var.f38561y.d(m3Var.getWebView());
+                return m3Var.f38561y;
+            } else if (m3Var.f38561y != null && TextUtils.equals(m3Var.getWebView().getUrl(), m3Var.f38561y.d)) {
+                return m3Var.f38561y;
             } else {
-                org.telegram.ui.web.h2 h2Var6 = m3Var.f38588y;
+                org.telegram.ui.web.h2 h2Var6 = m3Var.f38561y;
                 if (h2Var6 != null) {
                     h2Var6.a();
-                    org.telegram.ui.web.h2 h2Var7 = m3Var.f38588y;
-                    TLRPC.TL_webPage tL_webPage3 = h2Var7.f42137j;
+                    org.telegram.ui.web.h2 h2Var7 = m3Var.f38561y;
+                    TLRPC.TL_webPage tL_webPage3 = h2Var7.f42110j;
                     if (tL_webPage3 != null) {
                         org.telegram.ui.web.j2.o(tL_webPage3);
-                        h2Var7.f42137j = null;
+                        h2Var7.f42110j = null;
                     }
-                    m3Var.f38588y = null;
+                    m3Var.f38561y = null;
                 }
                 org.telegram.ui.web.h2 h2Var8 = new org.telegram.ui.web.h2(m3Var.K.X);
-                m3Var.f38588y = h2Var8;
+                m3Var.f38561y = h2Var8;
                 org.telegram.ui.web.z0 webView = m3Var.getWebView();
-                if (!h2Var8.f42131b) {
-                    h2Var8.f42131b = true;
+                if (!h2Var8.f42104b) {
+                    h2Var8.f42104b = true;
                     h2Var8.d = webView.getUrl();
-                    h2Var8.f42133e = webView.getProgress();
-                    h2Var8.f42134f = webView.f42356b;
-                    h2Var8.f42139l = org.telegram.ui.web.j2.e(webView, new org.telegram.ui.web.g2(h2Var8, 0));
+                    h2Var8.f42106e = webView.getProgress();
+                    h2Var8.f42107f = webView.f42329b;
+                    h2Var8.f42112l = org.telegram.ui.web.j2.e(webView, new org.telegram.ui.web.g2(h2Var8, 0));
                     TLRPC.TL_messages_getWebPage tL_messages_getWebPage = new TLRPC.TL_messages_getWebPage();
                     tL_messages_getWebPage.url = h2Var8.d;
                     tL_messages_getWebPage.hash = 0;
-                    h2Var8.f42138k = ConnectionsManager.getInstance(h2Var8.f42130a).sendRequest(tL_messages_getWebPage, new bi.v7(h2Var8, 18));
+                    h2Var8.f42111k = ConnectionsManager.getInstance(h2Var8.f42103a).sendRequest(tL_messages_getWebPage, new bi.v7(h2Var8, 18));
                 }
-                return m3Var.f38588y;
+                return m3Var.f38561y;
             }
         }
         return null;
     }
 
     public final void j(float f7) {
-        int d = i0.a.d(this.f42303a0, this.f42331w, this.f42335y);
+        int d = i0.a.d(this.f42276a0, this.f42304w, this.f42308y);
         org.telegram.ui.ActionBar.g2 g2Var = this.M;
         g2Var.a(d);
-        g2Var.b(i0.a.d(this.f42303a0, this.f42331w, this.f42335y));
+        g2Var.b(i0.a.d(this.f42276a0, this.f42304w, this.f42308y));
         this.L.invalidate();
         i4 i4Var = this.B0;
-        org.telegram.ui.web.l lVar = i4Var.f37249i0;
+        org.telegram.ui.web.l lVar = i4Var.f37222i0;
         if (lVar != null) {
             lVar.setOpenProgress(f7);
         }
@@ -106,39 +106,39 @@ public final class k0 extends org.telegram.ui.web.w1 {
         float f7;
         long j3;
         if (this.W != z10) {
-            ValueAnimator valueAnimator = this.f42332w0;
+            ValueAnimator valueAnimator = this.f42305w0;
             if (valueAnimator != null) {
                 valueAnimator.cancel();
             }
             this.W = z10;
-            gi.o oVar = this.f42305b0;
+            gi.o oVar = this.f42278b0;
             if (z10) {
-                int i10 = this.f42307c0;
+                int i10 = this.f42280c0;
                 int i11 = SharedConfig.searchEngineType;
                 if (i10 != i11) {
-                    this.f42307c0 = i11;
-                    oVar.setHint(LocaleController.formatString(R.string.AddressPlaceholder, org.telegram.ui.web.p1.a().f42236a));
+                    this.f42280c0 = i11;
+                    oVar.setHint(LocaleController.formatString(R.string.AddressPlaceholder, org.telegram.ui.web.p1.a().f42209a));
                 }
             }
             oVar.setVisibility(0);
             float f10 = 0.0f;
-            if (!this.f42329u0 && !z10) {
+            if (!this.f42302u0 && !z10) {
                 f7 = 1.0f;
             } else {
                 f7 = 0.0f;
             }
             this.M.c(f7, true);
-            float f11 = this.f42303a0;
+            float f11 = this.f42276a0;
             if (z10) {
                 f10 = 1.0f;
             }
             ValueAnimator ofFloat = ValueAnimator.ofFloat(f11, f10);
-            this.f42332w0 = ofFloat;
+            this.f42305w0 = ofFloat;
             ofFloat.addUpdateListener(new ki.a(this, 8));
-            this.f42332w0.addListener(new e50(14, this, z10));
-            this.f42332w0.setInterpolator(org.telegram.ui.Components.pr.h);
-            this.f42332w0.setDuration(360L);
-            this.f42332w0.start();
+            this.f42305w0.addListener(new e50(14, this, z10));
+            this.f42305w0.setInterpolator(org.telegram.ui.Components.pr.h);
+            this.f42305w0.setDuration(360L);
+            this.f42305w0.start();
             AndroidUtilities.cancelRunOnUIThread(new org.telegram.ui.web.r1(this, 1));
             org.telegram.ui.web.r1 r1Var = new org.telegram.ui.web.r1(this, 1);
             if (this.W) {
@@ -148,7 +148,7 @@ public final class k0 extends org.telegram.ui.web.w1 {
             }
             AndroidUtilities.runOnUIThread(r1Var, j3);
         }
-        org.telegram.ui.web.l lVar = this.B0.f37249i0;
+        org.telegram.ui.web.l lVar = this.B0.f37222i0;
         if (lVar != null) {
             lVar.setOpened(z10);
         }
@@ -157,6 +157,6 @@ public final class k0 extends org.telegram.ui.web.w1 {
     @Override
     public final void onMeasure(int i10, int i11) {
         super.onMeasure(i10, i11);
-        ((ViewGroup.MarginLayoutParams) this.B0.f37249i0.getLayoutParams()).topMargin = getMeasuredHeight();
+        ((ViewGroup.MarginLayoutParams) this.B0.f37222i0.getLayoutParams()).topMargin = getMeasuredHeight();
     }
 }

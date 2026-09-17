@@ -16,11 +16,11 @@ public final class d7 extends org.telegram.ui.Components.i9 {
         switch (this.D) {
             case 0:
                 super.invalidateSelf();
-                ((f7) this.E).f21958a.invalidate();
+                ((f7) this.E).f21931a.invalidate();
                 return;
             default:
                 super.invalidateSelf();
-                ((g7) this.E).f22012a.invalidate();
+                ((g7) this.E).f21985a.invalidate();
                 return;
         }
     }

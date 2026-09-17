@@ -3,28 +3,28 @@ package org.telegram.ui.Components;
 import android.animation.ValueAnimator;
 import android.widget.FrameLayout;
 public final class ak implements ValueAnimator.AnimatorUpdateListener {
-    public final int f24439a;
-    public final int f24440b;
-    public final float f24441c;
+    public final int f24412a;
+    public final int f24413b;
+    public final float f24414c;
     public final FrameLayout d;
 
     public ak(FrameLayout frameLayout, int i10, float f7, int i11) {
-        this.f24439a = i11;
+        this.f24412a = i11;
         this.d = frameLayout;
-        this.f24440b = i10;
-        this.f24441c = f7;
+        this.f24413b = i10;
+        this.f24414c = f7;
     }
 
     @Override
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f24439a) {
+        switch (this.f24412a) {
             case 0:
                 ok okVar = (ok) this.d;
-                dk dkVar = okVar.f29120r;
-                dk dkVar2 = okVar.f29121s;
+                dk dkVar = okVar.f29093r;
+                dk dkVar2 = okVar.f29094s;
                 float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                int i10 = this.f24440b;
-                float f7 = this.f24441c;
+                int i10 = this.f24413b;
+                float f7 = this.f24414c;
                 if (i10 == 1) {
                     dkVar.setTranslationX(f7 * floatValue);
                     dkVar.setAlpha(1.0f - floatValue);
@@ -48,9 +48,9 @@ public final class ak implements ValueAnimator.AnimatorUpdateListener {
                 qb0 qb0Var = (qb0) this.d;
                 float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 float f12 = 1.0f - floatValue2;
-                int i11 = (int) ((qb0Var.R * floatValue2) + (this.f24440b * f12));
+                int i11 = (int) ((qb0Var.R * floatValue2) + (this.f24413b * f12));
                 qb0Var.T = i11;
-                qb0Var.e((qb0Var.S * floatValue2) + (this.f24441c * f12), i11);
+                qb0Var.e((qb0Var.S * floatValue2) + (this.f24414c * f12), i11);
                 return;
         }
     }

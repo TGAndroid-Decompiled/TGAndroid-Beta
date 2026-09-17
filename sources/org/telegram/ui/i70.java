@@ -1,9 +1,9 @@
 package org.telegram.ui;
 public final class i70 extends pg.a {
-    public final String f37280c;
+    public final String f37253c;
 
     public i70(String str) {
         super(5, true);
-        this.f37280c = str;
+        this.f37253c = str;
     }
 }

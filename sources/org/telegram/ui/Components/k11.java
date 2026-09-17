@@ -10,17 +10,17 @@ import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.ThemeEditorView;
 public final class k11 extends kl0 {
-    public final Context f27672c;
+    public final Context f27645c;
     public int d;
-    public ArrayList f27673e = new ArrayList();
-    public ArrayList f27674f = new ArrayList();
+    public ArrayList f27646e = new ArrayList();
+    public ArrayList f27647f = new ArrayList();
     public org.telegram.ui.dm h;
-    public String f27675n;
-    public final ThemeEditorView.EditorAlert f27676r;
+    public String f27648n;
+    public final ThemeEditorView.EditorAlert f27649r;
 
     public k11(ThemeEditorView.EditorAlert editorAlert, Context context) {
-        this.f27676r = editorAlert;
-        this.f27672c = context;
+        this.f27649r = editorAlert;
+        this.f27645c = context;
     }
 
     public static CharSequence E(String str, String str2) {
@@ -65,10 +65,10 @@ public final class k11 extends kl0 {
 
     @Override
     public final int h() {
-        if (this.f27673e.isEmpty()) {
+        if (this.f27646e.isEmpty()) {
             return 0;
         }
-        return this.f27673e.size() + 1;
+        return this.f27646e.size() + 1;
     }
 
     @Override
@@ -82,18 +82,18 @@ public final class k11 extends kl0 {
     @Override
     public final void v(s4.c1 c1Var, int i10) {
         int b10;
-        if (c1Var.f45771f == 0) {
+        if (c1Var.f45743f == 0) {
             boolean z10 = true;
             int i11 = i10 - 1;
-            org.telegram.ui.ActionBar.l6 l6Var = (org.telegram.ui.ActionBar.l6) ((ArrayList) this.f27673e.get(i11)).get(0);
-            if (l6Var.f21205f == org.telegram.ui.ActionBar.j6.Nd) {
+            org.telegram.ui.ActionBar.l6 l6Var = (org.telegram.ui.ActionBar.l6) ((ArrayList) this.f27646e.get(i11)).get(0);
+            if (l6Var.f21178f == org.telegram.ui.ActionBar.j6.Nd) {
                 b10 = 0;
             } else {
                 b10 = l6Var.b();
             }
-            org.telegram.ui.Cells.z8 z8Var = (org.telegram.ui.Cells.z8) c1Var.f45767a;
-            z8Var.f23657a.setText((CharSequence) this.f27674f.get(i11));
-            z8Var.f23658b = b10;
+            org.telegram.ui.Cells.z8 z8Var = (org.telegram.ui.Cells.z8) c1Var.f45739a;
+            z8Var.f23630a.setText((CharSequence) this.f27647f.get(i11));
+            z8Var.f23631b = b10;
             if (b10 != 0) {
                 z10 = false;
             }
@@ -105,7 +105,7 @@ public final class k11 extends kl0 {
     @Override
     public final s4.c1 x(ViewGroup viewGroup, int i10) {
         View z8Var;
-        Context context = this.f27672c;
+        Context context = this.f27645c;
         if (i10 != 0) {
             z8Var = new View(context);
             z8Var.setLayoutParams(new s4.p0(-1, AndroidUtilities.dp(56.0f)));

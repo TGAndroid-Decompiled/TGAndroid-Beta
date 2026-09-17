@@ -22,42 +22,42 @@ import ka.d;
 import m5.e;
 import org.telegram.ui.Cells.p6;
 public final class c implements e {
-    public final u4 f13541a;
-    public final ConnectivityManager f13542b;
-    public final Context f13543c;
+    public final u4 f13515a;
+    public final ConnectivityManager f13516b;
+    public final Context f13517c;
     public final URL d;
-    public final u5.a f13544e;
-    public final u5.a f13545f;
-    public final int f13546g;
+    public final u5.a f13518e;
+    public final u5.a f13519f;
+    public final int f13520g;
 
     public c(Context context, u5.a aVar, u5.a aVar2) {
         d dVar = new d();
-        k5.c cVar = k5.c.f14776a;
+        k5.c cVar = k5.c.f14750a;
         dVar.j(o.class, cVar);
         dVar.j(i.class, cVar);
-        f fVar = f.f14787a;
+        f fVar = f.f14761a;
         dVar.j(s.class, fVar);
         dVar.j(l.class, fVar);
-        k5.d dVar2 = k5.d.f14778a;
+        k5.d dVar2 = k5.d.f14752a;
         dVar.j(q.class, dVar2);
         dVar.j(j.class, dVar2);
-        k5.b bVar = k5.b.f14765a;
+        k5.b bVar = k5.b.f14739a;
         dVar.j(k5.a.class, bVar);
         dVar.j(h.class, bVar);
-        k5.e eVar = k5.e.f14781a;
+        k5.e eVar = k5.e.f14755a;
         dVar.j(r.class, eVar);
         dVar.j(k.class, eVar);
-        g gVar = g.f14793a;
+        g gVar = g.f14767a;
         dVar.j(v.class, gVar);
         dVar.j(n.class, gVar);
         dVar.d = true;
-        this.f13541a = new u4(dVar, 2);
-        this.f13543c = context;
-        this.f13542b = (ConnectivityManager) context.getSystemService("connectivity");
-        this.d = b(a.f13533c);
-        this.f13544e = aVar2;
-        this.f13545f = aVar;
-        this.f13546g = 130000;
+        this.f13515a = new u4(dVar, 2);
+        this.f13517c = context;
+        this.f13516b = (ConnectivityManager) context.getSystemService("connectivity");
+        this.d = b(a.f13507c);
+        this.f13518e = aVar2;
+        this.f13519f = aVar;
+        this.f13520g = 130000;
     }
 
     public static URL b(String str) {

@@ -39,37 +39,37 @@ public abstract class vg extends View implements m70 {
     public float U;
     public final e6 V;
     public final e6 W;
-    public final org.telegram.ui.ActionBar.f6 f31250a;
-    public final Path f31251a0;
-    public int f31252b;
-    public final Paint f31253b0;
-    public Drawable f31254c;
-    public final p6 f31255c0;
+    public final org.telegram.ui.ActionBar.f6 f31223a;
+    public final Path f31224a0;
+    public int f31225b;
+    public final Paint f31226b0;
+    public Drawable f31227c;
+    public final p6 f31228c0;
     public Drawable d;
-    public float f31256d0;
-    public Drawable f31257e;
-    public final e6 f31258e0;
-    public final o5 f31259f;
-    public Drawable f31260f0;
-    public dh.d f31261g0;
+    public float f31229d0;
+    public Drawable f31230e;
+    public final e6 f31231e0;
+    public final o5 f31232f;
+    public Drawable f31233f0;
+    public dh.d f31234g0;
     public float h;
-    public boolean f31262h0;
-    public int f31263i0;
-    public ValueAnimator f31264j0;
-    public final RectF f31265k0;
-    public float f31266n;
-    public long f31267r;
-    public int f31268s;
+    public boolean f31235h0;
+    public int f31236i0;
+    public ValueAnimator f31237j0;
+    public final RectF f31238k0;
+    public float f31239n;
+    public long f31240r;
+    public int f31241s;
     public boolean v;
-    public final p6 f31269w;
-    public final e6 f31270x;
-    public final Paint f31271y;
+    public final p6 f31242w;
+    public final e6 f31243x;
+    public final Paint f31244y;
 
     public vg(int i10, Context context, org.telegram.ui.ActionBar.f6 f6Var, boolean z10) {
         super(context);
         pr prVar = pr.h;
-        this.f31270x = new e6(this, 0L, 320L, prVar);
-        this.f31271y = new Paint(1);
+        this.f31243x = new e6(this, 0L, 320L, prVar);
+        this.f31244y = new Paint(1);
         this.I = -1;
         this.J = -1;
         this.L = new Paint(1);
@@ -79,29 +79,29 @@ public abstract class vg extends View implements m70 {
         this.S = new u1.a();
         this.V = new e6(this, 0L, 420L, prVar);
         this.W = new e6(this, 0L, 500L, prVar);
-        this.f31251a0 = new Path();
+        this.f31224a0 = new Path();
         Paint paint = new Paint(1);
-        this.f31253b0 = paint;
+        this.f31226b0 = paint;
         p6 p6Var = new p6(true, true, true, false);
-        this.f31255c0 = p6Var;
-        this.f31256d0 = 1.0f;
-        this.f31258e0 = new e6(this, 0L, 320L, prVar);
-        this.f31265k0 = new RectF();
-        this.f31252b = i10;
-        this.f31250a = f6Var;
+        this.f31228c0 = p6Var;
+        this.f31229d0 = 1.0f;
+        this.f31231e0 = new e6(this, 0L, 320L, prVar);
+        this.f31238k0 = new RectF();
+        this.f31225b = i10;
+        this.f31223a = f6Var;
         this.E = z10;
         p6 p6Var2 = new p6(false, false, false, false);
-        this.f31269w = p6Var2;
+        this.f31242w = p6Var2;
         p6Var2.t(AndroidUtilities.dp(15.0f));
         p6Var2.u(AndroidUtilities.bold());
         p6Var2.r(-1);
-        p6Var2.f29313b = 3;
+        p6Var2.f29286b = 3;
         p6Var2.setCallback(this);
         p6Var2.G = AndroidUtilities.displaySize.x;
-        this.f31254c = context.getResources().getDrawable(i10).mutate();
+        this.f31227c = context.getResources().getDrawable(i10).mutate();
         this.d = context.getResources().getDrawable(i10).mutate();
-        this.f31257e = context.getResources().getDrawable(i10).mutate();
-        this.f31259f = new o5(AndroidUtilities.dp(14.0f), this);
+        this.f31230e = context.getResources().getDrawable(i10).mutate();
+        this.f31232f = new o5(AndroidUtilities.dp(14.0f), this);
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeWidth(AndroidUtilities.dp(2.0f));
         paint.setStrokeJoin(Paint.Join.ROUND);
@@ -110,7 +110,7 @@ public abstract class vg extends View implements m70 {
         p6Var.r(-1);
         p6Var.t(AndroidUtilities.dp(12.0f));
         p6Var.u(AndroidUtilities.bold());
-        p6Var.f29313b = 17;
+        p6Var.f29286b = 17;
     }
 
     @Override
@@ -121,17 +121,17 @@ public abstract class vg extends View implements m70 {
     }
 
     public final void b() {
-        ValueAnimator valueAnimator = this.f31264j0;
+        ValueAnimator valueAnimator = this.f31237j0;
         if (valueAnimator != null) {
             valueAnimator.cancel();
         }
         ValueAnimator ofFloat = ValueAnimator.ofFloat(0.9f, 1.0f);
-        this.f31264j0 = ofFloat;
+        this.f31237j0 = ofFloat;
         ofFloat.addUpdateListener(new l6(this, 8));
-        this.f31264j0.addListener(new j6(this, 6));
-        this.f31264j0.setDuration(180L);
-        this.f31264j0.setInterpolator(new OvershootInterpolator());
-        this.f31264j0.start();
+        this.f31237j0.addListener(new j6(this, 6));
+        this.f31237j0.setDuration(180L);
+        this.f31237j0.setInterpolator(new OvershootInterpolator());
+        this.f31237j0.start();
     }
 
     @Override
@@ -147,9 +147,9 @@ public abstract class vg extends View implements m70 {
             Paint paint = this.L;
             paint.setColor(i10);
             paint.setAlpha((int) (Color.alpha(this.K) * f7));
-            float f13 = this.P.f25593c;
-            float f14 = this.f31270x.f25593c;
-            if (this.f31262h0) {
+            float f13 = this.P.f25566c;
+            float f14 = this.f31243x.f25566c;
+            if (this.f31235h0) {
                 lerp = AndroidUtilities.lerp(getMeasuredWidth() - (getMeasuredHeight() / 2.0f), getMeasuredWidth() - AndroidUtilities.dp(4.0f), f13) - this.M;
                 lerp3 = getCircleHeight() * f13;
                 lerp2 = ((getMeasuredHeight() - this.N) - AndroidUtilities.dp(4.0f)) - (lerp3 / 2.0f);
@@ -164,7 +164,7 @@ public abstract class vg extends View implements m70 {
             } else {
                 f10 = 22.0f;
             }
-            float lerp4 = AndroidUtilities.lerp(circleWidth, this.f31269w.d() + AndroidUtilities.dp(f10), f14) * f13;
+            float lerp4 = AndroidUtilities.lerp(circleWidth, this.f31242w.d() + AndroidUtilities.dp(f10), f14) * f13;
             if (f13 > 0.0f && lerp4 > 0.0f && lerp3 > 0.0f) {
                 RectF rectF = AndroidUtilities.rectTmp;
                 float f15 = lerp3 / 2.0f;
@@ -173,11 +173,11 @@ public abstract class vg extends View implements m70 {
                 float min = (Math.min(lerp4, lerp3) / 2.0f) + AndroidUtilities.dp(4.0f);
                 canvas.drawRoundRect(rectF, min, min, paint);
             }
-            p6 p6Var = this.f31255c0;
+            p6 p6Var = this.f31228c0;
             float g10 = (1.0f - f14) * p6Var.g();
             if (g10 > 0.0f) {
                 float max = Math.max(p6Var.d() + AndroidUtilities.dp(9.0f), AndroidUtilities.dp(18.0f));
-                if (this.f31262h0) {
+                if (this.f31235h0) {
                     f11 = lerp - AndroidUtilities.dp(50.0f);
                     f12 = (max / 2.0f) + (lerp2 - (getCircleHeight() / 2.0f));
                 } else {
@@ -187,7 +187,7 @@ public abstract class vg extends View implements m70 {
                     f11 = measuredWidth;
                     f12 = measuredHeight;
                 }
-                canvas.drawCircle(f11, f12, ((max / 2.0f) + AndroidUtilities.dp(2.0f)) * g10 * this.f31256d0, paint);
+                canvas.drawCircle(f11, f12, ((max / 2.0f) + AndroidUtilities.dp(2.0f)) * g10 * this.f31229d0, paint);
             }
         }
         draw(canvas);
@@ -205,22 +205,22 @@ public abstract class vg extends View implements m70 {
         }
         canvas.saveLayerAlpha(-AndroidUtilities.dp(6.0f), -AndroidUtilities.dp(6.0f), getWidth(), getHeight(), 255, 31);
         super.draw(canvas);
-        RectF rectF = this.f31265k0;
+        RectF rectF = this.f31238k0;
         float dp = AndroidUtilities.dp(18.0f) / 2.0f;
         float dp2 = (rectF.left + dp) - AndroidUtilities.dp(6.0f);
         float dp3 = (rectF.top + dp) - AndroidUtilities.dp(6.0f);
         canvas.drawCircle(dp2, dp3, AndroidUtilities.dp(2.0f) + dp, org.telegram.ui.ActionBar.j6.Il);
-        canvas.drawCircle(dp2, dp3, dp, this.f31271y);
+        canvas.drawCircle(dp2, dp3, dp, this.f31244y);
         if (this.G == null) {
             Drawable mutate = getContext().getResources().getDrawable(R.drawable.mini_switch_lock).mutate();
             this.G = mutate;
-            int i10 = this.f31263i0;
+            int i10 = this.f31236i0;
             this.H = i10;
             mutate.setColorFilter(new PorterDuffColorFilter(i10, PorterDuff.Mode.SRC_IN));
         }
-        if (this.H != this.f31263i0) {
+        if (this.H != this.f31236i0) {
             Drawable drawable = this.G;
-            int i11 = this.f31263i0;
+            int i11 = this.f31236i0;
             this.H = i11;
             drawable.setColorFilter(new PorterDuffColorFilter(i11, PorterDuff.Mode.SRC_IN));
         }
@@ -240,7 +240,7 @@ public abstract class vg extends View implements m70 {
         if (i10 > 0) {
             str = i2.g.i(i10, "");
         }
-        this.f31255c0.q(str, z10, true);
+        this.f31228c0.q(str, z10, true);
         invalidate();
     }
 
@@ -261,7 +261,7 @@ public abstract class vg extends View implements m70 {
     }
 
     public int getFillColor() {
-        return org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.Yd, this.f31250a);
+        return org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.Yd, this.f31223a);
     }
 
     public final void h(boolean z10) {
@@ -288,12 +288,12 @@ public abstract class vg extends View implements m70 {
             this.W.d(0.0f, true);
         }
         e6 e6Var = this.V;
-        if (z10 && e6Var.f25593c >= 1.0f) {
+        if (z10 && e6Var.f25566c >= 1.0f) {
             j3 = 650;
         } else {
             j3 = 0;
         }
-        e6Var.f25595f = j3;
+        e6Var.f25568f = j3;
         this.T = z10;
         if (!z10) {
             f7 = 1.0f;
@@ -303,23 +303,23 @@ public abstract class vg extends View implements m70 {
     }
 
     public final void i(int i10, long j3, boolean z10) {
-        if (this.f31267r == j3 && this.f31268s == i10) {
+        if (this.f31240r == j3 && this.f31241s == i10) {
             return;
         }
-        this.f31267r = j3;
-        this.f31268s = i10;
+        this.f31240r = j3;
+        this.f31241s = i10;
         boolean z11 = false;
-        p6 p6Var = this.f31269w;
+        p6 p6Var = this.f31242w;
         if (j3 > 0) {
-            p6Var.q(zh.v7.V0(false, i2.g.k(j3 * Math.max(1, this.f31268s), ',', new StringBuilder("⭐️")), this.O), z10, true);
+            p6Var.q(zh.v7.V0(false, i2.g.k(j3 * Math.max(1, this.f31241s), ',', new StringBuilder("⭐️")), this.O), z10, true);
         } else {
             p6Var.q("", z10, true);
         }
         if (!z10) {
-            if (this.f31267r > 0) {
+            if (this.f31240r > 0) {
                 z11 = true;
             }
-            this.f31270x.a(z11);
+            this.f31243x.a(z11);
             return;
         }
         invalidate();
@@ -332,23 +332,23 @@ public abstract class vg extends View implements m70 {
     public final void k() {
         int v02;
         boolean z10 = this.E;
-        org.telegram.ui.ActionBar.f6 f6Var = this.f31250a;
+        org.telegram.ui.ActionBar.f6 f6Var = this.f31223a;
         if (z10) {
             v02 = -1;
         } else {
             v02 = org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.Yd, f6Var);
         }
-        if (v02 != this.f31263i0) {
-            this.f31263i0 = v02;
-            Drawable drawable = this.f31254c;
+        if (v02 != this.f31236i0) {
+            this.f31236i0 = v02;
+            Drawable drawable = this.f31227c;
             PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
             drawable.setColorFilter(new PorterDuffColorFilter(v02, mode));
             int v03 = org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.Wk, f6Var);
             this.d.setColorFilter(new PorterDuffColorFilter(Color.argb(180, Color.red(v03), Color.green(v03), Color.blue(v03)), mode));
-            this.f31257e.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f20662bf, f6Var), mode));
+            this.f31230e.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f20635bf, f6Var), mode));
         }
         boolean z11 = this.E;
-        Paint paint = this.f31271y;
+        Paint paint = this.f31244y;
         if (z11) {
             paint.setColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.Yd, f6Var));
         } else if (j()) {
@@ -372,7 +372,7 @@ public abstract class vg extends View implements m70 {
         } else {
             f7 = 0.0f;
         }
-        if (this.f31267r > 0) {
+        if (this.f31240r > 0) {
             f11 = 1.0f;
         }
         float circleWidth = this.M + getCircleWidth() + this.M;
@@ -382,7 +382,7 @@ public abstract class vg extends View implements m70 {
         } else {
             f10 = 22.0f;
         }
-        return (int) AndroidUtilities.lerp(circleWidth, AndroidUtilities.dp(f10) + dp + this.f31269w.d, f11 * f7);
+        return (int) AndroidUtilities.lerp(circleWidth, AndroidUtilities.dp(f10) + dp + this.f31242w.d, f11 * f7);
     }
 
     @Override
@@ -423,19 +423,19 @@ public abstract class vg extends View implements m70 {
         float dpf2 = AndroidUtilities.dpf2(3.0f);
         float dpf22 = AndroidUtilities.dpf2(38.0f);
         float dpf23 = AndroidUtilities.dpf2(20.0f);
-        p6 p6Var = this.f31269w;
-        float lerp4 = AndroidUtilities.lerp(Math.max(dpf22, p6Var.d() + dpf23), dpf22, this.f31266n);
-        RectF rectF = this.f31265k0;
+        p6 p6Var = this.f31242w;
+        float lerp4 = AndroidUtilities.lerp(Math.max(dpf22, p6Var.d() + dpf23), dpf22, this.f31239n);
+        RectF rectF = this.f31238k0;
         rectF.set((getMeasuredWidth() - lerp4) - dpf2, (getMeasuredHeight() - dpf22) - dpf2, getMeasuredWidth() - dpf2, getMeasuredHeight() - dpf2);
         boolean z11 = this.E;
-        Paint paint = this.f31271y;
+        Paint paint = this.f31244y;
         if (z11) {
             canvas2.drawRoundRect(rectF, AndroidUtilities.dp(19.0f), AndroidUtilities.dp(19.0f), paint);
         }
         if (e()) {
             drawable = this.d;
         } else {
-            drawable = this.f31254c;
+            drawable = this.f31227c;
         }
         Drawable drawable3 = drawable;
         if (this.E) {
@@ -454,13 +454,13 @@ public abstract class vg extends View implements m70 {
         int i16 = measuredHeight;
         float e7 = this.V.e(this.T);
         float e10 = this.P.e(f());
-        if (this.f31267r > 0 && !this.v) {
+        if (this.f31240r > 0 && !this.v) {
             z10 = true;
         } else {
             z10 = false;
         }
-        float e11 = this.f31270x.e(z10) * (1.0f - this.h);
-        float d = this.f31258e0.d(1.0f, false);
+        float e11 = this.f31243x.e(z10) * (1.0f - this.h);
+        float d = this.f31231e0.d(1.0f, false);
         if (e10 < 1.0f) {
             canvas2.save();
             f10 = 2.0f;
@@ -480,7 +480,7 @@ public abstract class vg extends View implements m70 {
             f7 = e7;
             f10 = 2.0f;
         }
-        if (this.f31262h0) {
+        if (this.f31235h0) {
             lerp = AndroidUtilities.lerp(getMeasuredWidth() - (getMeasuredHeight() / f10), getMeasuredWidth() - AndroidUtilities.dp(4.0f), e10) - this.M;
             lerp3 = getCircleHeight() * e10;
             lerp2 = ((getMeasuredHeight() - this.N) - AndroidUtilities.dp(4.0f)) - (lerp3 / f10);
@@ -498,7 +498,7 @@ public abstract class vg extends View implements m70 {
             f11 = 22.0f;
         }
         float lerp6 = AndroidUtilities.lerp(circleWidth, p6Var.d() + AndroidUtilities.dp(f11), e11);
-        float lerp7 = AndroidUtilities.lerp(lerp6, f21, this.f31266n) * e10;
+        float lerp7 = AndroidUtilities.lerp(lerp6, f21, this.f31239n) * e10;
         float f23 = lerp6 - lerp7;
         float f24 = f22 - (lerp7 / f10);
         setPivotX(f24);
@@ -506,7 +506,7 @@ public abstract class vg extends View implements m70 {
         float lerp8 = AndroidUtilities.lerp(1.0f, 0.79f, this.h);
         if (e10 > 0.0f) {
             canvas2.save();
-            Path path = this.f31251a0;
+            Path path = this.f31224a0;
             path.rewind();
             f13 = 0.0f;
             float min = Math.min(lerp7, f21) / f10;
@@ -520,27 +520,27 @@ public abstract class vg extends View implements m70 {
             float centerX = rectF2.centerX();
             float centerY = rectF2.centerY();
             if (this.h > 0.0f) {
-                if (this.f31260f0 == null) {
+                if (this.f31233f0 == null) {
                     f12 = f22;
-                    this.f31260f0 = getContext().getResources().getDrawable(R.drawable.send_outline);
+                    this.f31233f0 = getContext().getResources().getDrawable(R.drawable.send_outline);
                 } else {
                     f12 = f22;
                 }
                 i11 = i15;
-                this.f31260f0.setColorFilter(paint.getColor(), PorterDuff.Mode.MULTIPLY);
-                yf.p.d(this.f31260f0, centerX, centerY, 17);
-                yf.p.b(canvas2, this.f31260f0, this.h);
+                this.f31233f0.setColorFilter(paint.getColor(), PorterDuff.Mode.MULTIPLY);
+                yf.p.d(this.f31233f0, centerX, centerY, 17);
+                yf.p.b(canvas2, this.f31233f0, this.h);
             } else {
                 f12 = f22;
                 i11 = i15;
             }
             canvas2.scale(lerp8, lerp8, centerX, centerY);
-            if (this.f31261g0 != null) {
+            if (this.f31234g0 != null) {
                 Rect rect = AndroidUtilities.rectTmp2;
                 rectF2.round(rect);
                 rect.inset(-AndroidUtilities.dp(7.0f), -AndroidUtilities.dp(7.0f));
-                this.f31261g0.setBounds(rect);
-                this.f31261g0.draw(canvas2);
+                this.f31234g0.setBounds(rect);
+                this.f31234g0.draw(canvas2);
             }
             if (!this.E) {
                 canvas2.drawPath(path, paint);
@@ -548,7 +548,7 @@ public abstract class vg extends View implements m70 {
             canvas2.clipPath(path);
             int i17 = (f7 > 0.0f ? 1 : (f7 == 0.0f ? 0 : -1));
             if (i17 > 0) {
-                Paint paint2 = this.f31253b0;
+                Paint paint2 = this.f31226b0;
                 paint2.setColor(-1);
                 paint2.setAlpha((int) (f7 * 255.0f));
                 float dp = AndroidUtilities.dp(8.66f);
@@ -592,7 +592,7 @@ public abstract class vg extends View implements m70 {
                 f16 = f24;
             }
             if (e11 > f13) {
-                if (this.f31262h0) {
+                if (this.f31235h0) {
                     p6Var.l((f12 - p6Var.d) - AndroidUtilities.dp(11.0f), f26, f12 - AndroidUtilities.dp(11.0f), f27);
                 } else if (this.E) {
                     p6Var.l(rectF.left + AndroidUtilities.dp(10.0f), rectF.top, rectF.right, rectF.bottom);
@@ -600,18 +600,18 @@ public abstract class vg extends View implements m70 {
                     p6Var.l((getMeasuredWidth() - p6Var.d) - AndroidUtilities.dp(20.0f), getMeasuredHeight() - AndroidUtilities.dp(48.0f), getMeasuredWidth() - AndroidUtilities.dp(20.0f), getMeasuredHeight());
                 }
                 f17 = 1.0f;
-                p6Var.f29331w = (int) ((1.0f - f15) * e11 * 255.0f);
+                p6Var.f29304w = (int) ((1.0f - f15) * e11 * 255.0f);
                 p6Var.draw(canvas2);
             } else {
                 f17 = 1.0f;
             }
-            this.f31257e.setAlpha((int) ((f17 - e11) * (f17 - f15) * 255.0f));
+            this.f31230e.setAlpha((int) ((f17 - e11) * (f17 - f15) * 255.0f));
             if (this.I > 0) {
-                this.f31257e.setBounds((int) (f16 - (drawable2.getIntrinsicWidth() / f10)), (int) (lerp2 - (this.f31257e.getIntrinsicHeight() / f10)), (int) ((this.f31257e.getIntrinsicWidth() / f10) + f16), (int) ((this.f31257e.getIntrinsicHeight() / f10) + lerp2));
+                this.f31230e.setBounds((int) (f16 - (drawable2.getIntrinsicWidth() / f10)), (int) (lerp2 - (this.f31230e.getIntrinsicHeight() / f10)), (int) ((this.f31230e.getIntrinsicWidth() / f10) + f16), (int) ((this.f31230e.getIntrinsicHeight() / f10) + lerp2));
             } else {
-                this.f31257e.setBounds(i11, i12, drawable3.getIntrinsicWidth() + i11, drawable3.getIntrinsicHeight() + i12);
+                this.f31230e.setBounds(i11, i12, drawable3.getIntrinsicWidth() + i11, drawable3.getIntrinsicHeight() + i12);
             }
-            this.f31257e.draw(canvas2);
+            this.f31230e.draw(canvas2);
             if (i13 > 0) {
                 canvas2.restore();
             }
@@ -621,11 +621,11 @@ public abstract class vg extends View implements m70 {
             f12 = f22;
             f13 = 0.0f;
         }
-        p6 p6Var2 = this.f31255c0;
+        p6 p6Var2 = this.f31228c0;
         float g10 = (1.0f - e11) * p6Var2.g();
         if (!this.F) {
             float max2 = Math.max(p6Var2.d() + AndroidUtilities.dp(9.0f), AndroidUtilities.dp(18.0f));
-            if (this.f31262h0) {
+            if (this.f31235h0) {
                 measuredWidth = (f12 - AndroidUtilities.dp(50.0f)) + f23;
                 measuredHeight2 = (max2 / f10) + (lerp2 - (getCircleHeight() / f10));
                 f14 = AndroidUtilities.dp(0.66f);
@@ -642,10 +642,10 @@ public abstract class vg extends View implements m70 {
                 canvas2.save();
                 canvas2.scale(lerp10, lerp10, measuredWidth, measuredHeight2);
                 if (!this.E) {
-                    canvas2.drawCircle(measuredWidth, measuredHeight2, (AndroidUtilities.dp(f10) + f30) * g10 * this.f31256d0, org.telegram.ui.ActionBar.j6.Il);
-                    canvas2.drawCircle(measuredWidth, measuredHeight2, f30 * g10 * this.f31256d0, paint);
+                    canvas2.drawCircle(measuredWidth, measuredHeight2, (AndroidUtilities.dp(f10) + f30) * g10 * this.f31229d0, org.telegram.ui.ActionBar.j6.Il);
+                    canvas2.drawCircle(measuredWidth, measuredHeight2, f30 * g10 * this.f31229d0, paint);
                 }
-                p6Var2.f29331w = (int) (g10 * 255.0f);
+                p6Var2.f29304w = (int) (g10 * 255.0f);
                 p6Var2.draw(canvas2);
                 canvas2.restore();
             }
@@ -658,7 +658,7 @@ public abstract class vg extends View implements m70 {
             int i20 = lerp12 - dp2;
             int i21 = lerp11 + dp2;
             int i22 = lerp12 + dp2;
-            o5 o5Var = this.f31259f;
+            o5 o5Var = this.f31232f;
             o5Var.setBounds(i19, i20, i21, i22);
             o5Var.v = (int) ((1.0f - g10) * 255.0f);
             o5Var.draw(canvas2);
@@ -676,9 +676,9 @@ public abstract class vg extends View implements m70 {
     }
 
     public void setBlurredBackgroundDrawable(dh.d dVar) {
-        this.f31261g0 = dVar;
+        this.f31234g0 = dVar;
         dVar.p(AndroidUtilities.dp(22.0f));
-        this.f31261g0.o(AndroidUtilities.dp(4.0f));
+        this.f31234g0.o(AndroidUtilities.dp(4.0f));
     }
 
     public void setCircleSize(int i10) {
@@ -698,7 +698,7 @@ public abstract class vg extends View implements m70 {
     }
 
     public void setEmoji(Drawable drawable) {
-        this.f31259f.g(drawable, true);
+        this.f31232f.g(drawable, true);
     }
 
     public void setEphemeralFactor(float f7) {
@@ -723,18 +723,18 @@ public abstract class vg extends View implements m70 {
     }
 
     public void setResourceId(int i10) {
-        if (this.f31252b != i10) {
-            this.f31252b = i10;
-            this.f31254c = getContext().getResources().getDrawable(i10).mutate();
+        if (this.f31225b != i10) {
+            this.f31225b = i10;
+            this.f31227c = getContext().getResources().getDrawable(i10).mutate();
             this.d = getContext().getResources().getDrawable(i10).mutate();
-            this.f31257e = getContext().getResources().getDrawable(i10).mutate();
+            this.f31230e = getContext().getResources().getDrawable(i10).mutate();
             invalidate();
         }
     }
 
     public void setSameWidthFactor(float f7) {
-        if (this.f31266n != f7) {
-            this.f31266n = f7;
+        if (this.f31239n != f7) {
+            this.f31239n = f7;
             invalidate();
         }
     }
@@ -746,7 +746,7 @@ public abstract class vg extends View implements m70 {
 
     @Override
     public final boolean verifyDrawable(Drawable drawable) {
-        if (drawable != this.f31255c0 && drawable != this.f31259f && drawable != this.f31269w && !super.verifyDrawable(drawable)) {
+        if (drawable != this.f31228c0 && drawable != this.f31232f && drawable != this.f31242w && !super.verifyDrawable(drawable)) {
             return false;
         }
         return true;

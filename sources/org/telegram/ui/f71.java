@@ -46,20 +46,20 @@ public abstract class f71 extends Dialog {
     public ValueAnimator N;
     public boolean O;
     public final j71 P;
-    public final s61 f36337a;
-    public final ImageReceiver f36338b;
-    public final Rect f36339c;
+    public final s61 f36310a;
+    public final ImageReceiver f36311b;
+    public final Rect f36312c;
     public final Rect d;
-    public final Rect f36340e;
-    public final Runnable f36341f;
+    public final Rect f36313e;
+    public final Runnable f36314f;
     public final View h;
-    public Bitmap f36342n;
-    public Paint f36343r;
-    public final j0 f36344s;
+    public Bitmap f36315n;
+    public Paint f36316r;
+    public final j0 f36317s;
     public final ActionBarPopupWindow$ActionBarPopupWindowLayout v;
-    public org.telegram.ui.ActionBar.f3 f36345w;
-    public boolean f36346x;
-    public final int f36347y;
+    public org.telegram.ui.ActionBar.f3 f36318w;
+    public boolean f36319x;
+    public final int f36320y;
 
     public f71(j71 j71Var, Context context, Runnable runnable, View view, s61 s61Var, org.telegram.ui.ActionBar.f6 f6Var) {
         super(context);
@@ -69,21 +69,21 @@ public abstract class f71 extends Dialog {
         ColorFilter colorFilter;
         this.P = j71Var;
         Rect rect = new Rect();
-        this.f36339c = rect;
+        this.f36312c = rect;
         Rect rect2 = new Rect();
         this.d = rect2;
         Rect rect3 = new Rect();
-        this.f36340e = rect3;
+        this.f36313e = rect3;
         int[] iArr = new int[2];
         this.G = iArr;
         this.H = false;
         this.O = false;
-        this.f36337a = s61Var;
-        this.f36341f = runnable;
+        this.f36310a = s61Var;
+        this.f36314f = runnable;
         this.h = view;
         final y51 y51Var = (y51) this;
         j0 j0Var = new j0(y51Var, context, 23);
-        this.f36344s = j0Var;
+        this.f36317s = j0Var;
         setContentView(j0Var, new ViewGroup.LayoutParams(-1, -1));
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setOrientation(1);
@@ -192,22 +192,22 @@ public abstract class f71 extends Dialog {
             z10 = true;
         }
         if (s61Var != null) {
-            s61Var.f40344b = z10;
+            s61Var.f40317b = z10;
         }
         f();
         ImageReceiver imageReceiver = new ImageReceiver();
-        this.f36338b = imageReceiver;
+        this.f36311b = imageReceiver;
         imageReceiver.setParentView(j0Var);
         imageReceiver.setLayerNum(7);
         TLRPC.Document document = s61Var.d;
         if (document == null) {
             Drawable drawable = s61Var.E;
             if (drawable instanceof org.telegram.ui.Components.q5) {
-                document = ((org.telegram.ui.Components.q5) drawable).f29607e;
+                document = ((org.telegram.ui.Components.q5) drawable).f29580e;
             }
         }
         if (document != null) {
-            SvgHelper.SvgDrawable svgThumb = DocumentObject.getSvgThumb(document.thumbs, org.telegram.ui.ActionBar.j6.f20855m6, 0.2f);
+            SvgHelper.SvgDrawable svgThumb = DocumentObject.getSvgThumb(document.thumbs, org.telegram.ui.ActionBar.j6.f20828m6, 0.2f);
             TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(document.thumbs, 90);
             if ("video/webm".equals(document.mime_type)) {
                 forDocument = ImageLocation.getForDocument(document);
@@ -227,13 +227,13 @@ public abstract class f71 extends Dialog {
             if ((s61Var.E instanceof org.telegram.ui.Components.q5) && (MessageObject.isTextColorEmoji(document2) || ((org.telegram.ui.Components.q5) s61Var.E).c())) {
                 if (!MessageObject.isTextColorEmoji(document2)) {
                     org.telegram.ui.Components.q5 q5Var = (org.telegram.ui.Components.q5) s61Var.E;
-                    SparseArray sparseArray = org.telegram.ui.Components.q5.f29598q;
+                    SparseArray sparseArray = org.telegram.ui.Components.q5.f29571q;
                     if (q5Var == null || !q5Var.l()) {
                         colorFilter = org.telegram.ui.ActionBar.j6.n0(f6Var);
                         imageReceiver.setColorFilter(colorFilter);
                     }
                 }
-                colorFilter = j71Var.f37681k1;
+                colorFilter = j71Var.f37654k1;
                 imageReceiver.setColorFilter(colorFilter);
             }
         }
@@ -244,7 +244,7 @@ public abstract class f71 extends Dialog {
         rect.bottom = (s61Var.getHeight() + iArr[1]) - s61Var.getPaddingBottom();
         AndroidUtilities.lerp(rect, rect2, this.I, rect3);
         view.getLocationOnScreen(iArr);
-        this.f36347y = iArr[0];
+        this.f36320y = iArr[0];
         int i10 = iArr[1];
         this.E = i10;
         this.F = view.getHeight() + i10;
@@ -253,7 +253,7 @@ public abstract class f71 extends Dialog {
     public static void a(f71 f71Var, Integer num) {
         Runnable runnable;
         y51 y51Var = (y51) f71Var;
-        if (num != null && (runnable = y51Var.S.f43326e.T1) != null) {
+        if (num != null && (runnable = y51Var.S.f43299e.T1) != null) {
             runnable.run();
         }
         try {
@@ -295,14 +295,14 @@ public abstract class f71 extends Dialog {
             this.N.setInterpolator(org.telegram.ui.Components.pr.h);
         } else {
             this.N.setDuration(240L);
-            this.N.setInterpolator(org.telegram.ui.Components.pr.f29495g);
+            this.N.setInterpolator(org.telegram.ui.Components.pr.f29468g);
         }
         this.N.start();
     }
 
     public final void d(final boolean z10, b71 b71Var, final b71 b71Var2, final boolean z11) {
         float f7;
-        s61 s61Var = this.f36337a;
+        s61 s61Var = this.f36310a;
         if (s61Var == null) {
             if (b71Var != null) {
                 b71Var.run();
@@ -319,7 +319,7 @@ public abstract class f71 extends Dialog {
         }
         this.J = z10;
         if (z10) {
-            s61Var.f40344b = true;
+            s61Var.f40317b = true;
         }
         final boolean[] zArr = new boolean[1];
         float f10 = this.I;
@@ -337,16 +337,16 @@ public abstract class f71 extends Dialog {
                 float floatValue = ((Float) valueAnimator2.getAnimatedValue()).floatValue();
                 f71 f71Var = f71.this;
                 f71Var.I = floatValue;
-                AndroidUtilities.lerp(f71Var.f36339c, f71Var.d, floatValue, f71Var.f36340e);
-                f71Var.f36344s.invalidate();
+                AndroidUtilities.lerp(f71Var.f36312c, f71Var.d, floatValue, f71Var.f36313e);
+                f71Var.f36317s.invalidate();
                 boolean z12 = z10;
                 if (!z12) {
                     f71Var.v.setAlpha(f71Var.I);
                 }
                 if (f71Var.I < 0.025f && !z12) {
                     if (z11) {
-                        f71Var.f36337a.f40344b = false;
-                        f71Var.P.f37674h0.invalidate();
+                        f71Var.f36310a.f40317b = false;
+                        f71Var.P.f37647h0.invalidate();
                     }
                     NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.startAllHeavyOperations, 4);
                 }
@@ -413,7 +413,7 @@ public abstract class f71 extends Dialog {
         Bitmap createBitmap = Bitmap.createBitmap(measuredWidth, measuredHeight, Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(createBitmap);
         canvas.scale(0.083333336f, 0.083333336f);
-        canvas.drawColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f20691d6, false));
+        canvas.drawColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f20664d6, false));
         decorView.draw(canvas);
         if (activity instanceof LaunchActivity) {
             LaunchActivity launchActivity = (LaunchActivity) activity;
@@ -430,8 +430,8 @@ public abstract class f71 extends Dialog {
             canvas.restore();
         }
         Utilities.stackBlurBitmap(createBitmap, Math.max(10, Math.max(measuredWidth, measuredHeight) / 180));
-        this.f36343r = new Paint(1);
-        this.f36342n = createBitmap;
+        this.f36316r = new Paint(1);
+        this.f36315n = createBitmap;
     }
 
     @Override

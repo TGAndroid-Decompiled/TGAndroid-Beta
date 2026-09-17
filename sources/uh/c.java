@@ -13,23 +13,23 @@ import org.telegram.ui.Components.m30;
 import org.telegram.ui.Components.yc;
 import org.telegram.ui.Components.zk0;
 public final class c implements zk0 {
-    public final f6 f47268a;
-    public final Context f47269b;
-    public final f f47270c;
+    public final f6 f47240a;
+    public final Context f47241b;
+    public final f f47242c;
 
     public c(Context context, f6 f6Var, f fVar) {
-        this.f47270c = fVar;
-        this.f47268a = f6Var;
-        this.f47269b = context;
+        this.f47242c = fVar;
+        this.f47240a = f6Var;
+        this.f47241b = context;
     }
 
     @Override
     public final void a(int i10, View view) {
         TLRPC.TL_help_country tL_help_country;
-        f fVar = this.f47270c;
-        f20 f20Var = fVar.f47283h0;
-        HashMap hashMap = fVar.f47285j0;
-        if (i10 == 0 || (tL_help_country = (TLRPC.TL_help_country) fVar.f47279d0.G(i10 - 1).G) == null) {
+        f fVar = this.f47242c;
+        f20 f20Var = fVar.f47255h0;
+        HashMap hashMap = fVar.f47257j0;
+        if (i10 == 0 || (tL_help_country = (TLRPC.TL_help_country) fVar.f47251d0.G(i10 - 1).G) == null) {
             return;
         }
         boolean z10 = false;
@@ -39,10 +39,10 @@ public final class c implements zk0 {
             int size = hashMap.size();
             int i11 = fVar.m0;
             if (size >= i11) {
-                new yc(fVar.f47288n0, this.f47268a).Q(R.raw.info, 36, AndroidUtilities.replaceTags(LocaleController.formatString(R.string.PollV2YouCanAddXCountriesOnly, Integer.valueOf(i11)))).j();
+                new yc(fVar.f47260n0, this.f47240a).Q(R.raw.info, 36, AndroidUtilities.replaceTags(LocaleController.formatString(R.string.PollV2YouCanAddXCountriesOnly, Integer.valueOf(i11)))).j();
                 return;
             }
-            m30 m30Var = new m30(this.f47269b, tL_help_country);
+            m30 m30Var = new m30(this.f47241b, tL_help_country);
             m30Var.setOnClickListener(new a(fVar, 4));
             f20Var.a(m30Var);
             hashMap.put(tL_help_country.iso2, m30Var);
@@ -51,7 +51,7 @@ public final class c implements zk0 {
         if (view instanceof yg.b) {
             ((yg.b) view).c(z10, true);
         }
-        fVar.f47279d0.N(true);
-        fVar.f47280e0.b(hashMap.size(), true);
+        fVar.f47251d0.N(true);
+        fVar.f47252e0.b(hashMap.size(), true);
     }
 }

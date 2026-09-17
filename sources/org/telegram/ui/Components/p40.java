@@ -7,10 +7,10 @@ import org.telegram.messenger.MediaController;
 import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.tgnet.TLRPC;
 public final class p40 implements ti {
-    public final u40 f29299a;
+    public final u40 f29272a;
 
     public p40(u40 u40Var) {
-        this.f29299a = u40Var;
+        this.f29272a = u40Var;
     }
 
     @Override
@@ -25,15 +25,15 @@ public final class p40 implements ti {
 
     @Override
     public final void H() {
-        AndroidUtilities.hideKeyboard(this.f29299a.f30827a.getFragmentView().findFocus());
+        AndroidUtilities.hideKeyboard(this.f29272a.f30800a.getFragmentView().findFocus());
     }
 
     @Override
     public final void l0(int i10, boolean z10, boolean z11, int i11, int i12, long j3, boolean z12, boolean z13, long j10) {
         vi viVar;
-        u40 u40Var = this.f29299a;
-        org.telegram.ui.ActionBar.n2 n2Var = u40Var.f30827a;
-        if (n2Var != null && n2Var.getParentActivity() != null && (viVar = u40Var.f30829c) != null) {
+        u40 u40Var = this.f29272a;
+        org.telegram.ui.ActionBar.n2 n2Var = u40Var.f30800a;
+        if (n2Var != null && n2Var.getParentActivity() != null && (viVar = u40Var.f30802c) != null) {
             if (i10 != 8 && i10 != 7) {
                 viVar.dismissWithButtonClick(i10);
                 if (i10 == 0) {
@@ -42,8 +42,8 @@ public final class p40 implements ti {
                 }
                 return;
             }
-            HashMap<Object, Object> selectedPhotos = viVar.f31319j0.getSelectedPhotos();
-            ArrayList<Object> selectedPhotosOrder = u40Var.f30829c.f31319j0.getSelectedPhotosOrder();
+            HashMap<Object, Object> selectedPhotos = viVar.f31292j0.getSelectedPhotos();
+            ArrayList<Object> selectedPhotosOrder = u40Var.f30802c.f31292j0.getSelectedPhotosOrder();
             ArrayList arrayList = new ArrayList();
             boolean z14 = false;
             for (int i13 = 0; i13 < selectedPhotosOrder.size(); i13++) {
@@ -106,7 +106,7 @@ public final class p40 implements ti {
             }
             u40.b(u40Var, z14, arrayList);
             if (i10 != 8) {
-                u40Var.f30829c.dismiss(true);
+                u40Var.f30802c.dismiss(true);
             }
         }
     }
@@ -118,7 +118,7 @@ public final class p40 implements ti {
 
     @Override
     public final void x() {
-        this.f29299a.r();
+        this.f29272a.r();
     }
 
     @Override

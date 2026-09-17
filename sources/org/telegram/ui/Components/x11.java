@@ -5,24 +5,24 @@ import android.view.ViewPropertyAnimator;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 public final class x11 extends TextView {
-    public View f32432a;
-    public ViewPropertyAnimator f32433b;
-    public boolean f32434c;
+    public View f32405a;
+    public ViewPropertyAnimator f32406b;
+    public boolean f32407c;
     public jq0 d;
 
     public final void a() {
-        if (this.f32432a == null) {
+        if (this.f32405a == null) {
             return;
         }
         View view = (View) getParent();
         int i10 = 0;
         int i11 = 0;
         int i12 = 0;
-        for (View view2 = this.f32432a; view2 != view; view2 = (View) view2.getParent()) {
+        for (View view2 = this.f32405a; view2 != view; view2 = (View) view2.getParent()) {
             i12 += view2.getTop();
             i11 += view2.getLeft();
         }
-        int width = ((this.f32432a.getWidth() / 2) + i11) - (getMeasuredWidth() / 2);
+        int width = ((this.f32405a.getWidth() / 2) + i11) - (getMeasuredWidth() / 2);
         if (width >= 0) {
             if (getMeasuredWidth() + width > view.getMeasuredWidth()) {
                 i10 = (view.getMeasuredWidth() - getMeasuredWidth()) - AndroidUtilities.dp(16.0f);

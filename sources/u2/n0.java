@@ -1,10 +1,10 @@
 package u2;
 public final class n0 {
-    public final f0 f46784a;
-    public final d0 f46785b;
+    public final f0 f46756a;
+    public final d0 f46757b;
 
     public n0(f0 f0Var, d0 d0Var) {
-        this.f46784a = f0Var;
-        this.f46785b = d0Var;
+        this.f46756a = f0Var;
+        this.f46757b = d0Var;
     }
 }

@@ -12,7 +12,7 @@ public final class gg extends p41 {
     @Override
     public final void dismiss() {
         super.dismiss();
-        ChatActivityEnterView chatActivityEnterView = this.h.f26758a;
+        ChatActivityEnterView chatActivityEnterView = this.h.f26731a;
         if (chatActivityEnterView.Z2 == this) {
             chatActivityEnterView.Z2 = null;
         }

@@ -7,22 +7,22 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 public final class n21 extends AnimatorListenerAdapter {
-    public final boolean f28631a;
-    public final w21 f28632b;
+    public final boolean f28604a;
+    public final w21 f28605b;
 
     public n21(w21 w21Var, boolean z10) {
-        this.f28632b = w21Var;
-        this.f28631a = z10;
+        this.f28605b = w21Var;
+        this.f28604a = z10;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
         float f7;
         int i10;
-        w21 w21Var = this.f28632b;
-        long j3 = w21Var.f32123c;
+        w21 w21Var = this.f28605b;
+        long j3 = w21Var.f32096c;
         if (w21Var.U == animator) {
-            boolean z10 = this.f28631a;
+            boolean z10 = this.f28604a;
             if (z10) {
                 f7 = 1.0f;
             } else {
@@ -39,7 +39,7 @@ public final class n21 extends AnimatorListenerAdapter {
             }
             imageView.setImageResource(i10);
             w21Var.U = null;
-            MessagesController.getInstance(w21Var.f32121b).getMainSettings().edit().putBoolean(a4.a.o(j3, "topicssidetabs"), w21Var.Q).putBoolean(a4.a.o(j3, "topicssidetabsb"), w21Var.P).apply();
+            MessagesController.getInstance(w21Var.f32094b).getMainSettings().edit().putBoolean(a4.a.o(j3, "topicssidetabs"), w21Var.Q).putBoolean(a4.a.o(j3, "topicssidetabsb"), w21Var.P).apply();
             Boolean bool = w21Var.T;
             if (bool != null && z10 != bool.booleanValue()) {
                 boolean booleanValue = w21Var.T.booleanValue();

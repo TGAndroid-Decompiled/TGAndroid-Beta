@@ -5,32 +5,32 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class jj extends ni {
-    public bi.o0 f27541n;
-    public int f27542r;
-    public ci.k f27543s;
+    public bi.o0 f27514n;
+    public int f27515r;
+    public ci.k f27516s;
     public za v;
-    public int f27544w;
-    public q0.a f27545x;
+    public int f27517w;
+    public q0.a f27518x;
 
     @Override
     public final void D(ni niVar) {
-        vi viVar = this.f28781b;
+        vi viVar = this.f28754b;
         try {
             viVar.X0.getTitleTextView().setBuildFullLayout(true);
         } catch (Exception unused) {
         }
         viVar.X0.setTitle(LocaleController.getString(R.string.SelectColor));
-        this.f27543s.h1(0, 0);
+        this.f27516s.h1(0, 0);
     }
 
     @Override
     public final void G() {
-        this.f27541n.x0(0);
+        this.f27514n.x0(0);
     }
 
     @Override
     public int getCurrentItemTop() {
-        bi.o0 o0Var = this.f27541n;
+        bi.o0 o0Var = this.f27514n;
         if (o0Var.getChildCount() <= 0) {
             o0Var.setTopGlowOffset(o0Var.getPaddingTop());
             return Integer.MAX_VALUE;
@@ -53,7 +53,7 @@ public final class jj extends ni {
 
     @Override
     public int getListTopPadding() {
-        return this.f27541n.getPaddingTop();
+        return this.f27514n.getPaddingTop();
     }
 
     @Override
@@ -62,13 +62,13 @@ public final class jj extends ni {
     }
 
     public void setDelegate(q0.a aVar) {
-        this.f27545x = aVar;
+        this.f27518x = aVar;
     }
 
     @Override
     public void setTranslationY(float f7) {
         super.setTranslationY(f7);
-        this.f28781b.getSheetContainer().invalidate();
+        this.f28754b.getSheetContainer().invalidate();
         invalidate();
     }
 

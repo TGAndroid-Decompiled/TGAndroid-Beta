@@ -8,13 +8,13 @@ import android.view.ViewGroup;
 import java.util.WeakHashMap;
 import org.telegram.messenger.AndroidUtilities;
 public final class jh1 extends ViewGroup {
-    public final Paint f37805a;
-    public View f37806b;
-    public boolean f37807c;
+    public final Paint f37778a;
+    public View f37779b;
+    public boolean f37780c;
 
     public jh1(Context context) {
         super(context);
-        this.f37805a = new Paint(1);
+        this.f37778a = new Paint(1);
         setClipToPadding(false);
     }
 
@@ -23,8 +23,8 @@ public final class jh1 extends ViewGroup {
         int paddingBottom = getPaddingBottom();
         float navigationBarThirdButtonsFactor = AndroidUtilities.getNavigationBarThirdButtonsFactor(0.1f, 0.75f, paddingBottom);
         int w02 = org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.Oh, false);
-        int h = i0.a.h(org.telegram.ui.ActionBar.j6.l1(navigationBarThirdButtonsFactor, org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f20691d6, false)), w02);
-        Paint paint = this.f37805a;
+        int h = i0.a.h(org.telegram.ui.ActionBar.j6.l1(navigationBarThirdButtonsFactor, org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f20664d6, false)), w02);
+        Paint paint = this.f37778a;
         paint.setColor(w02);
         canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight() - paddingBottom, paint);
         paint.setColor(h);
@@ -45,7 +45,7 @@ public final class jh1 extends ViewGroup {
     public final void onMeasure(int i10, int i11) {
         boolean z10;
         int i12;
-        View view = this.f37806b;
+        View view = this.f37779b;
         if (view != null && view.getVisibility() == 0) {
             z10 = true;
         } else {
@@ -64,9 +64,9 @@ public final class jh1 extends ViewGroup {
         for (int i13 = 0; i13 < childCount; i13++) {
             getChildAt(i13).measure(makeMeasureSpec, makeMeasureSpec2);
         }
-        if (this.f37807c != z10) {
-            this.f37807c = z10;
-            WeakHashMap weakHashMap = r0.i0.f44726a;
+        if (this.f37780c != z10) {
+            this.f37780c = z10;
+            WeakHashMap weakHashMap = r0.i0.f44698a;
             r0.y.c(this);
         }
     }
@@ -74,7 +74,7 @@ public final class jh1 extends ViewGroup {
     @Override
     public final void onViewAdded(View view) {
         super.onViewAdded(view);
-        this.f37806b = view;
+        this.f37779b = view;
     }
 
     @Override

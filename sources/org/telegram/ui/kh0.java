@@ -3,19 +3,19 @@ package org.telegram.ui;
 import android.view.View;
 import org.telegram.tgnet.TLRPC;
 public final class kh0 implements org.telegram.ui.Components.bl0, org.telegram.ui.ActionBar.a2 {
-    public final yh0 f38097a;
+    public final yh0 f38070a;
 
     public kh0(yh0 yh0Var) {
-        this.f38097a = yh0Var;
+        this.f38070a = yh0Var;
     }
 
     @Override
     public boolean a(int i10, View view) {
-        yh0 yh0Var = this.f38097a;
-        if ((i10 < yh0Var.f43176y || i10 >= yh0Var.E) && (i10 < yh0Var.H || i10 >= yh0Var.I)) {
+        yh0 yh0Var = this.f38070a;
+        if ((i10 < yh0Var.f43149y || i10 >= yh0Var.E) && (i10 < yh0Var.H || i10 >= yh0Var.I)) {
             return false;
         }
-        ((vh0) view).f41592x.callOnClick();
+        ((vh0) view).f41565x.callOnClick();
         try {
             view.performHapticFeedback(0, 2);
             return true;
@@ -27,15 +27,15 @@ public final class kh0 implements org.telegram.ui.Components.bl0, org.telegram.u
     @Override
     public void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
         TLRPC.TL_messages_deleteRevokedExportedChatInvites tL_messages_deleteRevokedExportedChatInvites = new TLRPC.TL_messages_deleteRevokedExportedChatInvites();
-        yh0 yh0Var = this.f38097a;
-        tL_messages_deleteRevokedExportedChatInvites.peer = yh0Var.getMessagesController().getInputPeer(-yh0Var.f43164n);
-        long j3 = yh0Var.f43156f;
+        yh0 yh0Var = this.f38070a;
+        tL_messages_deleteRevokedExportedChatInvites.peer = yh0Var.getMessagesController().getInputPeer(-yh0Var.f43137n);
+        long j3 = yh0Var.f43129f;
         if (j3 == yh0Var.getUserConfig().getClientUserId()) {
             tL_messages_deleteRevokedExportedChatInvites.admin_id = yh0Var.getMessagesController().getInputUser(yh0Var.getUserConfig().getCurrentUser());
         } else {
             tL_messages_deleteRevokedExportedChatInvites.admin_id = yh0Var.getMessagesController().getInputUser(j3);
         }
-        yh0Var.f43152c0 = true;
+        yh0Var.f43125c0 = true;
         yh0Var.getConnectionsManager().sendRequest(tL_messages_deleteRevokedExportedChatInvites, new hh0(yh0Var, 1));
     }
 }

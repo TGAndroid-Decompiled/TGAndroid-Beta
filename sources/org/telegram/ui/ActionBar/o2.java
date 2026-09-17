@@ -3,19 +3,19 @@ package org.telegram.ui.ActionBar;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
 public final class o2 implements Runnable {
-    public final int f21279a;
-    public final f3 f21280b;
+    public final int f21252a;
+    public final f3 f21253b;
 
     public o2(f3 f3Var, int i10) {
-        this.f21279a = i10;
-        this.f21280b = f3Var;
+        this.f21252a = i10;
+        this.f21253b = f3Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f21279a) {
+        switch (this.f21252a) {
             case 0:
-                f3 f3Var = this.f21280b;
+                f3 f3Var = this.f21253b;
                 f3Var.getClass();
                 try {
                     f3Var.dismissInternal();
@@ -25,12 +25,12 @@ public final class o2 implements Runnable {
                     return;
                 }
             case 1:
-                f3 f3Var2 = this.f21280b;
+                f3 f3Var2 = this.f21253b;
                 AndroidUtilities.removeFromParent(f3Var2.container);
                 f3Var2.attachedFragment.getLayoutContainer().addView(f3Var2.container);
                 return;
             default:
-                this.f21280b.dismiss();
+                this.f21253b.dismiss();
                 return;
         }
     }

@@ -5,31 +5,31 @@ import android.view.View;
 import java.util.Iterator;
 import org.telegram.messenger.AndroidUtilities;
 public final class w0 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f21477a;
-    public final Object f21478b;
+    public final int f21450a;
+    public final Object f21451b;
 
     public w0(Object obj, int i10) {
-        this.f21477a = i10;
-        this.f21478b = obj;
+        this.f21450a = i10;
+        this.f21451b = obj;
     }
 
     @Override
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f21477a) {
+        switch (this.f21450a) {
             case 0:
-                c1 c1Var = (c1) this.f21478b;
+                c1 c1Var = (c1) this.f21451b;
                 c1Var.getClass();
-                c1Var.f20325a = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                c1Var.f20298a = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 c1Var.invalidate();
                 return;
             case 1:
-                f1 f1Var = (f1) this.f21478b;
+                f1 f1Var = (f1) this.f21451b;
                 float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 f1Var.setTextColor(i0.a.d(floatValue, -1, -9194260));
                 f1Var.setIconColor(i0.a.d(floatValue, -1, -9194260));
                 return;
             case 2:
-                ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = (ActionBarPopupWindow$ActionBarPopupWindowLayout) this.f21478b;
+                ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = (ActionBarPopupWindow$ActionBarPopupWindowLayout) this.f21451b;
                 int itemsCount = actionBarPopupWindow$ActionBarPopupWindowLayout.getItemsCount();
                 float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 for (int i10 = 0; i10 < itemsCount; i10++) {
@@ -46,22 +46,22 @@ public final class w0 implements ValueAnimator.AnimatorUpdateListener {
                 }
                 return;
             case 3:
-                p1 p1Var = (p1) this.f21478b;
-                if (!p1Var.f21307e) {
+                p1 p1Var = (p1) this.f21451b;
+                if (!p1Var.f21280e) {
                     float floatValue3 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                    if (p1Var.f21319r) {
+                    if (p1Var.f21292r) {
                         floatValue3 = 1.0f - floatValue3;
                     }
-                    float z10 = (int) com.google.android.gms.internal.vision.e2.z(1.0f, floatValue3, p1Var.f21318q, p1Var.f21317p * floatValue3);
+                    float z10 = (int) com.google.android.gms.internal.vision.e2.z(1.0f, floatValue3, p1Var.f21291q, p1Var.f21290p * floatValue3);
                     if (!(p1Var instanceof ah.v)) {
-                        p1Var.f21304a.setTranslationY(z10);
+                        p1Var.f21277a.setTranslationY(z10);
                     }
-                    p1Var.e(-z10, floatValue3, p1Var.f21320s);
+                    p1Var.e(-z10, floatValue3, p1Var.f21293s);
                     return;
                 }
                 return;
             case 4:
-                o3 o3Var = (o3) this.f21478b;
+                o3 o3Var = (o3) this.f21451b;
                 o3Var.getClass();
                 o3Var.G = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 Iterator it = o3Var.I.iterator();
@@ -71,9 +71,9 @@ public final class w0 implements ValueAnimator.AnimatorUpdateListener {
                 o3Var.invalidate();
                 return;
             default:
-                w3 w3Var = (w3) this.f21478b;
-                w3Var.f21487i = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                x3 x3Var = w3Var.f21482b;
+                w3 w3Var = (w3) this.f21451b;
+                w3Var.f21460i = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                x3 x3Var = w3Var.f21455b;
                 if (x3Var != null) {
                     x3Var.invalidate();
                     return;

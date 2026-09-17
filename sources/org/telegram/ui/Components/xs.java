@@ -1,13 +1,13 @@
 package org.telegram.ui.Components;
 public final class xs {
-    public s4.c1 f32683a;
-    public s4.c1 f32684b;
-    public int f32685c;
+    public s4.c1 f32656a;
+    public s4.c1 f32657b;
+    public int f32658c;
     public int d;
-    public int f32686e;
-    public int f32687f;
+    public int f32659e;
+    public int f32660f;
 
     public final String toString() {
-        return "ChangeInfo{oldHolder=" + this.f32683a + ", newHolder=" + this.f32684b + ", fromX=" + this.f32685c + ", fromY=" + this.d + ", toX=" + this.f32686e + ", toY=" + this.f32687f + '}';
+        return "ChangeInfo{oldHolder=" + this.f32656a + ", newHolder=" + this.f32657b + ", fromX=" + this.f32658c + ", fromY=" + this.d + ", toX=" + this.f32659e + ", toY=" + this.f32660f + '}';
     }
 }

@@ -7,40 +7,40 @@ import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import org.telegram.messenger.AndroidUtilities;
 public final class u0 extends AnimatorListenerAdapter {
-    public final int f40903a;
-    public final int f40904b;
-    public final Object f40905c;
+    public final int f40876a;
+    public final int f40877b;
+    public final Object f40878c;
 
     public u0(Object obj, int i10, int i11) {
-        this.f40903a = i11;
-        this.f40905c = obj;
-        this.f40904b = i10;
+        this.f40876a = i11;
+        this.f40878c = obj;
+        this.f40877b = i10;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        switch (this.f40903a) {
+        switch (this.f40876a) {
             case 0:
-                i4 i4Var = (i4) this.f40905c;
-                i4Var.f37260u0[1].b();
-                i4Var.f37260u0[1].setVisibility(8);
-                i4Var.O0.T(i4Var.f37260u0[0].f38579b);
+                i4 i4Var = (i4) this.f40878c;
+                i4Var.f37233u0[1].b();
+                i4Var.f37233u0[1].setVisibility(8);
+                i4Var.O0.T(i4Var.f37233u0[0].f38552b);
                 org.telegram.ui.Cells.q9 q9Var = i4Var.O0;
-                m3[] m3VarArr = i4Var.f37260u0;
+                m3[] m3VarArr = i4Var.f37233u0;
                 q9Var.E0 = m3VarArr[0].d;
-                int i10 = this.f40904b;
+                int i10 = this.f40877b;
                 m3VarArr[i10].setBackgroundDrawable(null);
-                i4Var.f37260u0[i10].setLayerType(0, null);
-                i4Var.f37261v0 = null;
-                i4Var.f37246f0.f21597f = false;
+                i4Var.f37233u0[i10].setLayerType(0, null);
+                i4Var.f37234v0 = null;
+                i4Var.f37219f0.f21570f = false;
                 return;
             case 1:
-                ((ev) this.f40905c).f36213c.d.setColorFilter(new PorterDuffColorFilter(this.f40904b, PorterDuff.Mode.SRC_IN));
+                ((ev) this.f40878c).f36186c.d.setColorFilter(new PorterDuffColorFilter(this.f40877b, PorterDuff.Mode.SRC_IN));
                 super.onAnimationEnd(animator);
                 return;
             case 2:
-                Activity activity = (Activity) this.f40905c;
-                int i11 = this.f40904b;
+                Activity activity = (Activity) this.f40878c;
+                int i11 = this.f40877b;
                 boolean z10 = false;
                 AndroidUtilities.setNavigationBarColor(activity, i11, false);
                 if (AndroidUtilities.computePerceivedBrightness(i11) >= 0.721f) {
@@ -49,7 +49,7 @@ public final class u0 extends AnimatorListenerAdapter {
                 AndroidUtilities.setLightNavigationBar(activity, z10);
                 return;
             default:
-                ((LaunchActivity) this.f40905c).z0(this.f40904b);
+                ((LaunchActivity) this.f40878c).z0(this.f40877b);
                 return;
         }
     }

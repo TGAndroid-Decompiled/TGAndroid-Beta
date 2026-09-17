@@ -6,43 +6,43 @@ import org.telegram.ui.Components.EditTextBoldCursor;
 import org.telegram.ui.eg0;
 import org.telegram.ui.o31;
 public final class r4 implements DialogInterface.OnDismissListener {
-    public final int f3653a;
-    public final Object f3654b;
+    public final int f3626a;
+    public final Object f3627b;
 
     public r4(Object obj, int i10) {
-        this.f3653a = i10;
-        this.f3654b = obj;
+        this.f3626a = i10;
+        this.f3627b = obj;
     }
 
     @Override
     public final void onDismiss(DialogInterface dialogInterface) {
         org.telegram.ui.web.i0 i0Var;
-        switch (this.f3653a) {
+        switch (this.f3626a) {
             case 0:
-                ((a3.d) this.f3654b).run();
+                ((a3.c) this.f3627b).run();
                 return;
             case 1:
-                pb pbVar = (pb) this.f3654b;
-                if (dialogInterface == pbVar.f3604u0) {
-                    pbVar.f3604u0 = null;
+                pb pbVar = (pb) this.f3627b;
+                if (dialogInterface == pbVar.f3577u0) {
+                    pbVar.f3577u0 = null;
                     pbVar.P();
                     return;
                 }
                 return;
             case 2:
-                AndroidUtilities.hideKeyboard((ig.s) this.f3654b);
+                AndroidUtilities.hideKeyboard((ig.s) this.f3627b);
                 return;
             case 3:
-                AndroidUtilities.hideKeyboard((ig.r1) this.f3654b);
+                AndroidUtilities.hideKeyboard((ig.r1) this.f3627b);
                 return;
             case 4:
-                ((ji.r) this.f3654b).O = null;
+                ((ji.r) this.f3627b).O = null;
                 return;
             case 5:
-                ((ji.c2) this.f3654b).O0 = null;
+                ((ji.c2) this.f3627b).O0 = null;
                 return;
             case 6:
-                Runnable[] runnableArr = (Runnable[]) this.f3654b;
+                Runnable[] runnableArr = (Runnable[]) this.f3627b;
                 Runnable runnable = runnableArr[0];
                 if (runnable != null) {
                     runnable.run();
@@ -51,45 +51,45 @@ public final class r4 implements DialogInterface.OnDismissListener {
                 }
                 return;
             case 7:
-                org.telegram.ui.web.d1 d1Var = ((org.telegram.ui.web.o0) this.f3654b).f42227e.Q;
-                if (d1Var != null && (i0Var = d1Var.f42067c) != null) {
+                org.telegram.ui.web.d1 d1Var = ((org.telegram.ui.web.o0) this.f3627b).f42200e.Q;
+                if (d1Var != null && (i0Var = d1Var.f42040c) != null) {
                     i0Var.y();
                     return;
                 }
                 return;
             case 8:
-                org.telegram.ui.web.i0 i0Var2 = ((org.telegram.ui.web.v0) this.f3654b).f42288b.f42301e.Q.f42067c;
+                org.telegram.ui.web.i0 i0Var2 = ((org.telegram.ui.web.v0) this.f3627b).f42261b.f42274e.Q.f42040c;
                 if (i0Var2 != null) {
                     i0Var2.y();
                     return;
                 }
                 return;
             case 9:
-                sg.k0 k0Var = (sg.k0) this.f3654b;
-                k0Var.f46164f0 = false;
-                k0Var.f46181x0.f24079d0 = true;
+                sg.k0 k0Var = (sg.k0) this.f3627b;
+                k0Var.f46136f0 = false;
+                k0Var.f46153x0.f24052d0 = true;
                 k0Var.E0.invalidate();
-                k0Var.f46181x0.invalidate();
+                k0Var.f46153x0.invalidate();
                 return;
             case 10:
-                sg.o1 o1Var = (sg.o1) this.f3654b;
-                eg0 eg0Var = o1Var.f46239r0;
+                sg.o1 o1Var = (sg.o1) this.f3627b;
+                eg0 eg0Var = o1Var.f46211r0;
                 if (eg0Var != null) {
                     eg0Var.setDialogVisible(false);
                 }
-                o1Var.f46238q0.setPaused(false);
+                o1Var.f46210q0.setPaused(false);
                 return;
             case 11:
-                ((xh.n) this.f3654b).f49488s = null;
+                ((xh.n) this.f3627b).f49459s = null;
                 return;
             case 12:
-                ((o31) this.f3654b).run();
+                ((o31) this.f3627b).run();
                 return;
             case 13:
-                AndroidUtilities.hideKeyboard((EditTextBoldCursor) this.f3654b);
+                AndroidUtilities.hideKeyboard((EditTextBoldCursor) this.f3627b);
                 return;
             default:
-                ((ug.r) this.f3654b).run();
+                ((ug.r) this.f3627b).run();
                 return;
         }
     }

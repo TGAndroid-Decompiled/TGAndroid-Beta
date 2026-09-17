@@ -32,20 +32,20 @@ public class t00 extends View implements org.telegram.ui.ActionBar.z5 {
     public t00 R;
     public boolean S;
     public float T;
-    public int f30485a;
-    public LinearGradient f30486b;
-    public final Paint f30487c;
+    public int f30458a;
+    public LinearGradient f30459b;
+    public final Paint f30460c;
     public final Paint d;
-    public long f30488e;
-    public int f30489f;
+    public long f30461e;
+    public int f30462f;
     public final Matrix h;
-    public final RectF f30490n;
-    public int f30491r;
-    public int f30492s;
+    public final RectF f30463n;
+    public int f30464r;
+    public int f30465s;
     public int v;
-    public boolean f30493w;
-    public boolean f30494x;
-    public boolean f30495y;
+    public boolean f30466w;
+    public boolean f30467x;
+    public boolean f30468y;
 
     public t00(Context context) {
         this(context, null);
@@ -161,27 +161,27 @@ public class t00 extends View implements org.telegram.ui.ActionBar.z5 {
         org.telegram.ui.ActionBar.f6 f6Var = this.L;
         int v02 = org.telegram.ui.ActionBar.j6.v0(i11, f6Var);
         int v03 = org.telegram.ui.ActionBar.j6.v0(this.I, f6Var);
-        if (this.f30492s == v03 && this.f30491r == v02) {
+        if (this.f30465s == v03 && this.f30464r == v02) {
             return;
         }
-        this.f30491r = v02;
-        this.f30492s = v03;
+        this.f30464r = v02;
+        this.f30465s = v03;
         int i12 = this.E;
         if (i12 != 34 && i12 != 35 && i12 != 36) {
-            if (!this.f30495y && i12 != 13 && i12 != 14 && i12 != 17) {
-                this.f30485a = AndroidUtilities.dp(600.0f);
+            if (!this.f30468y && i12 != 13 && i12 != 14 && i12 != 17) {
+                this.f30458a = AndroidUtilities.dp(600.0f);
             } else {
-                this.f30485a = AndroidUtilities.dp(200.0f);
+                this.f30458a = AndroidUtilities.dp(200.0f);
             }
         } else {
-            this.f30485a = AndroidUtilities.displaySize.x;
+            this.f30458a = AndroidUtilities.displaySize.x;
         }
-        if (!this.f30495y && (i10 = this.E) != 13 && i10 != 14 && i10 != 17) {
-            this.f30486b = new LinearGradient(0.0f, 0.0f, 0.0f, this.f30485a, new int[]{v03, v02, v02, v03}, new float[]{0.0f, 0.4f, 0.6f, 1.0f}, Shader.TileMode.CLAMP);
+        if (!this.f30468y && (i10 = this.E) != 13 && i10 != 14 && i10 != 17) {
+            this.f30459b = new LinearGradient(0.0f, 0.0f, 0.0f, this.f30458a, new int[]{v03, v02, v02, v03}, new float[]{0.0f, 0.4f, 0.6f, 1.0f}, Shader.TileMode.CLAMP);
         } else {
-            this.f30486b = new LinearGradient(0.0f, 0.0f, this.f30485a, 0.0f, new int[]{v03, v02, v02, v03}, new float[]{0.0f, 0.4f, 0.6f, 1.0f}, Shader.TileMode.CLAMP);
+            this.f30459b = new LinearGradient(0.0f, 0.0f, this.f30458a, 0.0f, new int[]{v03, v02, v02, v03}, new float[]{0.0f, 0.4f, 0.6f, 1.0f}, Shader.TileMode.CLAMP);
         }
-        this.f30487c.setShader(this.f30486b);
+        this.f30460c.setShader(this.f30459b);
     }
 
     public final int e(int i10) {
@@ -196,7 +196,7 @@ public class t00 extends View implements org.telegram.ui.ActionBar.z5 {
     }
 
     public final void g() {
-        this.f30493w = false;
+        this.f30466w = false;
     }
 
     public int getAdditionalHeight() {
@@ -212,7 +212,7 @@ public class t00 extends View implements org.telegram.ui.ActionBar.z5 {
     }
 
     public Paint getPaint() {
-        return this.f30487c;
+        return this.f30460c;
     }
 
     public int getViewType() {
@@ -226,7 +226,7 @@ public class t00 extends View implements org.telegram.ui.ActionBar.z5 {
             return;
         }
         long elapsedRealtime = SystemClock.elapsedRealtime();
-        long abs = Math.abs(this.f30488e - elapsedRealtime);
+        long abs = Math.abs(this.f30461e - elapsedRealtime);
         if (abs > 17) {
             abs = 16;
         }
@@ -245,25 +245,25 @@ public class t00 extends View implements org.telegram.ui.ActionBar.z5 {
         if (i12 == 0) {
             i12 = getMeasuredHeight();
         }
-        this.f30488e = elapsedRealtime;
-        boolean z10 = this.f30495y;
+        this.f30461e = elapsedRealtime;
+        boolean z10 = this.f30468y;
         Matrix matrix = this.h;
         if (!z10 && this.E != 13 && getViewType() != 14 && getViewType() != 17) {
-            int i13 = (int) ((((float) (abs * i12)) / 400.0f) + this.f30489f);
-            this.f30489f = i13;
+            int i13 = (int) ((((float) (abs * i12)) / 400.0f) + this.f30462f);
+            this.f30462f = i13;
             if (i13 >= i12 * 2) {
-                this.f30489f = (-this.f30485a) * 2;
+                this.f30462f = (-this.f30458a) * 2;
             }
-            matrix.setTranslate(this.Q, this.f30489f);
+            matrix.setTranslate(this.Q, this.f30462f);
         } else {
-            int i14 = (int) ((((float) (abs * i10)) / 400.0f) + this.f30489f);
-            this.f30489f = i14;
+            int i14 = (int) ((((float) (abs * i10)) / 400.0f) + this.f30462f);
+            this.f30462f = i14;
             if (i14 >= i10 * 2) {
-                this.f30489f = (-this.f30485a) * 2;
+                this.f30462f = (-this.f30458a) * 2;
             }
-            matrix.setTranslate(this.f30489f + this.Q, 0.0f);
+            matrix.setTranslate(this.f30462f + this.Q, 0.0f);
         }
-        LinearGradient linearGradient = this.f30486b;
+        LinearGradient linearGradient = this.f30459b;
         if (linearGradient != null) {
             linearGradient.setLocalMatrix(matrix);
         }
@@ -308,9 +308,9 @@ public class t00 extends View implements org.telegram.ui.ActionBar.z5 {
                 t00Var.P = measuredHeight;
                 t00Var.Q = -getX();
             }
-            paint = this.R.f30487c;
+            paint = this.R.f30460c;
         } else {
-            paint = this.f30487c;
+            paint = this.f30460c;
         }
         Paint paint4 = paint;
         if (getViewType() == 34 || getViewType() == 35 || getViewType() == 36) {
@@ -319,7 +319,7 @@ public class t00 extends View implements org.telegram.ui.ActionBar.z5 {
         d();
         h();
         int i13 = this.F;
-        if (this.f30494x) {
+        if (this.f30467x) {
             int dp20 = AndroidUtilities.dp(32.0f) + i13;
             int i14 = this.J;
             if (i14 >= 0) {
@@ -341,7 +341,7 @@ public class t00 extends View implements org.telegram.ui.ActionBar.z5 {
         int viewType = getViewType();
         int i15 = 0;
         int i16 = 1;
-        RectF rectF = this.f30490n;
+        RectF rectF = this.f30463n;
         if (viewType == 7) {
             while (i13 <= getMeasuredHeight()) {
                 int c10 = c(getMeasuredWidth());
@@ -357,14 +357,14 @@ public class t00 extends View implements org.telegram.ui.ActionBar.z5 {
                     b(rectF);
                     canvas2.drawRoundRect(rectF, AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), paint4);
                 }
-                if (this.f30493w) {
+                if (this.f30466w) {
                     rectF.set(getMeasuredWidth() - AndroidUtilities.dp(50.0f), AndroidUtilities.dp(16.0f) + i13, getMeasuredWidth() - AndroidUtilities.dp(12.0f), AndroidUtilities.dp(24.0f) + i13);
                     b(rectF);
                     canvas2.drawRoundRect(rectF, AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), paint4);
                 }
                 i13 = org.telegram.ui.Cells.p6.d(this, i13);
                 int i17 = i15 + 1;
-                if (this.f30495y && i17 >= this.K) {
+                if (this.f30468y && i17 >= this.K) {
                     break;
                 }
                 i15 = i17;
@@ -385,7 +385,7 @@ public class t00 extends View implements org.telegram.ui.ActionBar.z5 {
                     b(rectF);
                     canvas2.drawRoundRect(rectF, AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), paint4);
                 }
-                if (this.f30493w) {
+                if (this.f30466w) {
                     rectF.set(getMeasuredWidth() - AndroidUtilities.dp(50.0f), AndroidUtilities.dp(16.0f) + i13, getMeasuredWidth() - AndroidUtilities.dp(12.0f), AndroidUtilities.dp(24.0f) + i13);
                     b(rectF);
                     canvas2.drawRoundRect(rectF, AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), paint4);
@@ -393,7 +393,7 @@ public class t00 extends View implements org.telegram.ui.ActionBar.z5 {
                 canvas2.restore();
                 i13 += c(getMeasuredWidth());
                 int i18 = i15 + 1;
-                if (this.f30495y && i18 >= this.K) {
+                if (this.f30468y && i18 >= this.K) {
                     break;
                 }
                 i15 = i18;
@@ -423,7 +423,7 @@ public class t00 extends View implements org.telegram.ui.ActionBar.z5 {
                 canvas2 = canvas3;
                 i19 = org.telegram.ui.Cells.p6.d(this, i19);
                 int i20 = i15 + 1;
-                if (this.f30495y && i20 >= this.K) {
+                if (this.f30468y && i20 >= this.K) {
                     break;
                 }
                 i15 = i20;
@@ -454,7 +454,7 @@ public class t00 extends View implements org.telegram.ui.ActionBar.z5 {
                     paint6 = paint7;
                     i21 = org.telegram.ui.Cells.p6.d(this, i21);
                     int i22 = i15 + 1;
-                    if (this.f30495y && i22 >= this.K) {
+                    if (this.f30468y && i22 >= this.K) {
                         break;
                     }
                     i15 = i22;
@@ -468,14 +468,14 @@ public class t00 extends View implements org.telegram.ui.ActionBar.z5 {
                     rectF.set(AndroidUtilities.dp(68.0f), AndroidUtilities.dp(42.0f) + i13, AndroidUtilities.dp(260.0f), AndroidUtilities.dp(50.0f) + i13);
                     b(rectF);
                     canvas2.drawRoundRect(rectF, AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), paint6);
-                    if (this.f30493w) {
+                    if (this.f30466w) {
                         rectF.set(getMeasuredWidth() - AndroidUtilities.dp(50.0f), AndroidUtilities.dp(20.0f) + i13, getMeasuredWidth() - AndroidUtilities.dp(12.0f), AndroidUtilities.dp(28.0f) + i13);
                         b(rectF);
                         canvas2.drawRoundRect(rectF, AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), paint6);
                     }
                     i13 = org.telegram.ui.Cells.p6.d(this, i13);
                     int i23 = i15 + 1;
-                    if (this.f30495y && i23 >= this.K) {
+                    if (this.f30468y && i23 >= this.K) {
                         break;
                     }
                     i15 = i23;
@@ -493,14 +493,14 @@ public class t00 extends View implements org.telegram.ui.ActionBar.z5 {
                         rectF.set(AndroidUtilities.dp(68.0f), AndroidUtilities.dp(34.0f) + i13, AndroidUtilities.dp(260.0f), AndroidUtilities.dp(42.0f) + i13);
                         b(rectF);
                         canvas2.drawRoundRect(rectF, AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), paint6);
-                        if (this.f30493w) {
+                        if (this.f30466w) {
                             rectF.set(getMeasuredWidth() - AndroidUtilities.dp(50.0f), AndroidUtilities.dp(12.0f) + i13, getMeasuredWidth() - AndroidUtilities.dp(12.0f), AndroidUtilities.dp(20.0f) + i13);
                             b(rectF);
                             canvas2.drawRoundRect(rectF, AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), paint6);
                         }
                         i13 = org.telegram.ui.Cells.p6.d(this, i13);
                         int i24 = i15 + 1;
-                        if (this.f30495y && i24 >= this.K) {
+                        if (this.f30468y && i24 >= this.K) {
                             break;
                         }
                         i15 = i24;
@@ -514,14 +514,14 @@ public class t00 extends View implements org.telegram.ui.ActionBar.z5 {
                         rectF.set(AndroidUtilities.dp(68.0f), AndroidUtilities.dp(34.0f) + i13, AndroidUtilities.dp(260.0f), AndroidUtilities.dp(42.0f) + i13);
                         b(rectF);
                         canvas2.drawRoundRect(rectF, AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), paint6);
-                        if (this.f30493w) {
+                        if (this.f30466w) {
                             rectF.set(getMeasuredWidth() - AndroidUtilities.dp(50.0f), AndroidUtilities.dp(12.0f) + i13, getMeasuredWidth() - AndroidUtilities.dp(12.0f), AndroidUtilities.dp(20.0f) + i13);
                             b(rectF);
                             canvas2.drawRoundRect(rectF, AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), paint6);
                         }
                         i13 = org.telegram.ui.Cells.p6.d(this, i13);
                         int i25 = i15 + 1;
-                        if (this.f30495y && i25 >= this.K) {
+                        if (this.f30468y && i25 >= this.K) {
                             break;
                         }
                         i15 = i25;
@@ -540,14 +540,14 @@ public class t00 extends View implements org.telegram.ui.ActionBar.z5 {
                         rectF.set(AndroidUtilities.dp(68.0f), AndroidUtilities.dp(54.0f) + i13, AndroidUtilities.dp(188.0f), AndroidUtilities.dp(62.0f) + i13);
                         b(rectF);
                         canvas2.drawRoundRect(rectF, AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), paint6);
-                        if (this.f30493w) {
+                        if (this.f30466w) {
                             rectF.set(getMeasuredWidth() - AndroidUtilities.dp(50.0f), AndroidUtilities.dp(12.0f) + i13, getMeasuredWidth() - AndroidUtilities.dp(12.0f), AndroidUtilities.dp(20.0f) + i13);
                             b(rectF);
                             canvas2.drawRoundRect(rectF, AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), paint6);
                         }
                         i13 = org.telegram.ui.Cells.p6.d(this, i13);
                         int i26 = i15 + 1;
-                        if (this.f30495y && i26 >= this.K) {
+                        if (this.f30468y && i26 >= this.K) {
                             break;
                         }
                         i15 = i26;
@@ -564,7 +564,7 @@ public class t00 extends View implements org.telegram.ui.ActionBar.z5 {
                             canvas2.drawRoundRect(rectF, AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), paint6);
                             i13 = org.telegram.ui.Cells.p6.d(this, i13);
                             int i27 = i15 + 1;
-                            if (this.f30495y && i27 >= this.K) {
+                            if (this.f30468y && i27 >= this.K) {
                                 break;
                             }
                             i15 = i27;
@@ -580,7 +580,7 @@ public class t00 extends View implements org.telegram.ui.ActionBar.z5 {
                             canvas2.drawRoundRect(rectF, AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), paint6);
                             i13 = org.telegram.ui.Cells.p6.d(this, i13);
                             int i28 = i15 + 1;
-                            if (this.f30495y && i28 >= this.K) {
+                            if (this.f30468y && i28 >= this.K) {
                                 break;
                             }
                             i15 = i28;
@@ -592,7 +592,7 @@ public class t00 extends View implements org.telegram.ui.ActionBar.z5 {
                             b(rectF);
                             canvas2.drawRect(rectF, paint6);
                             int i29 = i15 + 1;
-                            if (this.f30495y && i29 >= this.K) {
+                            if (this.f30468y && i29 >= this.K) {
                                 break;
                             }
                             i15 = i29;
@@ -606,14 +606,14 @@ public class t00 extends View implements org.telegram.ui.ActionBar.z5 {
                             rectF.set(AndroidUtilities.dp(68.0f) + this.G, AndroidUtilities.dp(39.0f) + i13, AndroidUtilities.dp(260.0f) + this.G, AndroidUtilities.dp(47.0f) + i13);
                             b(rectF);
                             canvas2.drawRoundRect(rectF, AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), paint6);
-                            if (this.f30493w) {
+                            if (this.f30466w) {
                                 rectF.set(getMeasuredWidth() - AndroidUtilities.dp(50.0f), AndroidUtilities.dp(20.0f) + i13, getMeasuredWidth() - AndroidUtilities.dp(12.0f), AndroidUtilities.dp(28.0f) + i13);
                                 b(rectF);
                                 canvas2.drawRoundRect(rectF, AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), paint6);
                             }
                             i13 = org.telegram.ui.Cells.p6.d(this, i13);
                             int i30 = i15 + 1;
-                            if (this.f30495y && i30 >= this.K) {
+                            if (this.f30468y && i30 >= this.K) {
                                 break;
                             }
                             i15 = i30;
@@ -627,14 +627,14 @@ public class t00 extends View implements org.telegram.ui.ActionBar.z5 {
                             rectF.set(AndroidUtilities.dp(72.0f), AndroidUtilities.dp(38.0f) + i13, AndroidUtilities.dp(140.0f), AndroidUtilities.dp(46.0f) + i13);
                             b(rectF);
                             canvas2.drawRoundRect(rectF, AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), paint6);
-                            if (this.f30493w) {
+                            if (this.f30466w) {
                                 rectF.set(getMeasuredWidth() - AndroidUtilities.dp(50.0f), AndroidUtilities.dp(16.0f) + i13, getMeasuredWidth() - AndroidUtilities.dp(12.0f), AndroidUtilities.dp(24.0f) + i13);
                                 b(rectF);
                                 canvas2.drawRoundRect(rectF, AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), paint6);
                             }
                             i13 = org.telegram.ui.Cells.p6.d(this, i13);
                             int i31 = i15 + 1;
-                            if (this.f30495y && i31 >= this.K) {
+                            if (this.f30468y && i31 >= this.K) {
                                 break;
                             }
                             i15 = i31;
@@ -650,7 +650,7 @@ public class t00 extends View implements org.telegram.ui.ActionBar.z5 {
                             canvas2.drawRoundRect(rectF, AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), paint6);
                             i13 = org.telegram.ui.Cells.p6.d(this, i13);
                             i32++;
-                            if (this.f30495y && i32 >= this.K) {
+                            if (this.f30468y && i32 >= this.K) {
                                 break;
                             }
                         }
@@ -667,7 +667,7 @@ public class t00 extends View implements org.telegram.ui.ActionBar.z5 {
                                 canvas2.drawRoundRect(rectF2, AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), paint6);
                             }
                             dp22 = org.telegram.ui.Cells.p6.d(this, dp22);
-                            if (this.f30495y) {
+                            if (this.f30468y) {
                                 break;
                             }
                         }
@@ -705,7 +705,7 @@ public class t00 extends View implements org.telegram.ui.ActionBar.z5 {
                                 }
                                 i13 = org.telegram.ui.Cells.p6.d(this, i13);
                                 int i35 = i15 + 1;
-                                if (this.f30495y && i35 >= this.K) {
+                                if (this.f30468y && i35 >= this.K) {
                                     break;
                                 }
                                 i15 = i35;
@@ -723,7 +723,7 @@ public class t00 extends View implements org.telegram.ui.ActionBar.z5 {
                                     canvas2.drawRoundRect(rectF, AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), paint6);
                                     i13 = org.telegram.ui.Cells.p6.d(this, i13);
                                     int i37 = i15 + 1;
-                                    if (this.f30495y && i37 >= this.K) {
+                                    if (this.f30468y && i37 >= this.K) {
                                         break;
                                     }
                                     i15 = i37;
@@ -739,7 +739,7 @@ public class t00 extends View implements org.telegram.ui.ActionBar.z5 {
                                     canvas2.drawRoundRect(rectF, AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), paint6);
                                     i13 = org.telegram.ui.Cells.p6.d(this, i13);
                                     int i38 = i15 + 1;
-                                    if (this.f30495y && i38 >= this.K) {
+                                    if (this.f30468y && i38 >= this.K) {
                                         break;
                                     }
                                     i15 = i38;
@@ -751,7 +751,7 @@ public class t00 extends View implements org.telegram.ui.ActionBar.z5 {
                                     canvas2.drawRoundRect(rectF, AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), paint6);
                                     i13 = org.telegram.ui.Cells.p6.d(this, i13);
                                     int i39 = i15 + 1;
-                                    if (this.f30495y && i39 >= this.K) {
+                                    if (this.f30468y && i39 >= this.K) {
                                         break;
                                     }
                                     i15 = i39;
@@ -773,7 +773,7 @@ public class t00 extends View implements org.telegram.ui.ActionBar.z5 {
                                     canvas2.drawRoundRect(rectF, AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), paint6);
                                     i13 = org.telegram.ui.Cells.p6.d(this, i13);
                                     int i40 = i15 + 1;
-                                    if (this.f30495y && i40 >= this.K) {
+                                    if (this.f30468y && i40 >= this.K) {
                                         break;
                                     }
                                     i15 = i40;
@@ -787,14 +787,14 @@ public class t00 extends View implements org.telegram.ui.ActionBar.z5 {
                                     rectF.set(AndroidUtilities.dp(68.0f) + this.G, AndroidUtilities.dp(39.0f) + i13, AndroidUtilities.dp(140.0f) + this.G, AndroidUtilities.dp(47.0f) + i13);
                                     b(rectF);
                                     canvas2.drawRoundRect(rectF, AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), paint6);
-                                    if (this.f30493w) {
+                                    if (this.f30466w) {
                                         rectF.set(getMeasuredWidth() - AndroidUtilities.dp(50.0f), AndroidUtilities.dp(20.0f) + i13, getMeasuredWidth() - AndroidUtilities.dp(12.0f), AndroidUtilities.dp(28.0f) + i13);
                                         b(rectF);
                                         canvas2.drawRoundRect(rectF, AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), paint6);
                                     }
                                     i13 = org.telegram.ui.Cells.p6.d(this, i13);
                                     int i41 = i15 + 1;
-                                    if (this.f30495y && i41 >= this.K) {
+                                    if (this.f30468y && i41 >= this.K) {
                                         break;
                                     }
                                     i15 = i41;
@@ -811,7 +811,7 @@ public class t00 extends View implements org.telegram.ui.ActionBar.z5 {
                                     canvas2.drawRoundRect(rectF, AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), paint6);
                                     i13 += c11;
                                     int i42 = i15 + 1;
-                                    if (this.f30495y && i42 >= this.K) {
+                                    if (this.f30468y && i42 >= this.K) {
                                         break;
                                     }
                                     i15 = i42;
@@ -831,7 +831,7 @@ public class t00 extends View implements org.telegram.ui.ActionBar.z5 {
                                     canvas2.drawRoundRect(rectF, AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), paint6);
                                     i13 += c12;
                                     int i43 = i15 + 1;
-                                    if (this.f30495y && i43 >= this.K) {
+                                    if (this.f30468y && i43 >= this.K) {
                                         break;
                                     }
                                     i15 = i43;
@@ -853,7 +853,7 @@ public class t00 extends View implements org.telegram.ui.ActionBar.z5 {
                                 }
                                 i13 = org.telegram.ui.Cells.p6.d(this, i13);
                                 i44++;
-                                if (this.f30495y && i44 >= this.K) {
+                                if (this.f30468y && i44 >= this.K) {
                                     break;
                                 }
                             }
@@ -874,7 +874,7 @@ public class t00 extends View implements org.telegram.ui.ActionBar.z5 {
                             if (this.N == null) {
                                 this.N = new Paint(i16);
                             }
-                            this.N.setColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f20762h5, this.L));
+                            this.N.setColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f20735h5, this.L));
                             RectF rectF4 = AndroidUtilities.rectTmp;
                             int i45 = dp27 + dp28;
                             rectF4.set(AndroidUtilities.dp(4.0f) + dp27, AndroidUtilities.dp(4.0f), i45 - AndroidUtilities.dp(4.0f), getMeasuredHeight() - AndroidUtilities.dp(4.0f));
@@ -917,14 +917,14 @@ public class t00 extends View implements org.telegram.ui.ActionBar.z5 {
                         rectF.set(AndroidUtilities.dp(68.0f) + this.G, AndroidUtilities.dp(39.0f) + i13, AndroidUtilities.dp(140.0f) + this.G, AndroidUtilities.dp(47.0f) + i13);
                         b(rectF);
                         canvas2.drawRoundRect(rectF, AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), paint6);
-                        if (this.f30493w) {
+                        if (this.f30466w) {
                             rectF.set(getMeasuredWidth() - AndroidUtilities.dp(50.0f), AndroidUtilities.dp(20.0f) + i13, getMeasuredWidth() - AndroidUtilities.dp(12.0f), AndroidUtilities.dp(28.0f) + i13);
                             b(rectF);
                             canvas2.drawRoundRect(rectF, AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), paint6);
                         }
                         i13 = org.telegram.ui.Cells.p6.d(this, i13);
                         int i46 = i15 + 1;
-                        if (this.f30495y && i46 >= this.K) {
+                        if (this.f30468y && i46 >= this.K) {
                             break;
                         }
                         i15 = i46;
@@ -940,7 +940,7 @@ public class t00 extends View implements org.telegram.ui.ActionBar.z5 {
                 int i47 = i13;
                 int i48 = 0;
                 while (true) {
-                    if (i47 >= getMeasuredHeight() && !this.f30495y) {
+                    if (i47 >= getMeasuredHeight() && !this.f30468y) {
                         break;
                     }
                     int i49 = 0;
@@ -957,7 +957,7 @@ public class t00 extends View implements org.telegram.ui.ActionBar.z5 {
                     Paint paint9 = paint6;
                     i47 = org.telegram.messenger.w1.C(2.0f, i10, i47);
                     i48++;
-                    if (this.f30495y && i48 >= 2) {
+                    if (this.f30468y && i48 >= 2) {
                         break;
                     }
                     paint6 = paint9;
@@ -969,7 +969,7 @@ public class t00 extends View implements org.telegram.ui.ActionBar.z5 {
 
     @Override
     public void onMeasure(int i10, int i11) {
-        if (this.f30495y) {
+        if (this.f30468y) {
             int i12 = this.K;
             if (i12 > 1 && this.S) {
                 super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(getAdditionalHeight() + (c(View.MeasureSpec.getSize(i10)) * this.K), 1073741824));
@@ -994,7 +994,7 @@ public class t00 extends View implements org.telegram.ui.ActionBar.z5 {
     }
 
     public void setIsSingleCell(boolean z10) {
-        this.f30495y = z10;
+        this.f30468y = z10;
     }
 
     public void setItemsCount(int i10) {
@@ -1026,7 +1026,7 @@ public class t00 extends View implements org.telegram.ui.ActionBar.z5 {
     }
 
     public void setUseHeaderOffset(boolean z10) {
-        this.f30494x = z10;
+        this.f30467x = z10;
     }
 
     public void setViewType(int i10) {
@@ -1043,12 +1043,12 @@ public class t00 extends View implements org.telegram.ui.ActionBar.z5 {
 
     public t00(Context context, org.telegram.ui.ActionBar.f6 f6Var) {
         super(context);
-        this.f30487c = new Paint();
+        this.f30460c = new Paint();
         this.d = new Paint();
-        this.f30490n = new RectF();
-        this.f30493w = true;
+        this.f30463n = new RectF();
+        this.f30466w = true;
         this.H = org.telegram.ui.ActionBar.j6.G8;
-        this.I = org.telegram.ui.ActionBar.j6.f20781i6;
+        this.I = org.telegram.ui.ActionBar.j6.f20754i6;
         this.J = -1;
         this.K = 1;
         this.L = f6Var;

@@ -6,33 +6,33 @@ import android.graphics.drawable.Drawable;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 public final class bn0 extends EditTextBoldCursor {
-    public final h5 f24777b;
-    public int f24778c;
+    public final h5 f24750b;
+    public int f24751c;
     public final p6 d;
-    public final org.telegram.ui.ActionBar.f6 f24779e;
+    public final org.telegram.ui.ActionBar.f6 f24752e;
 
     public bn0(Context context, org.telegram.ui.ActionBar.f6 f6Var) {
         super(context);
-        this.f24779e = f6Var;
-        this.f24777b = new h5(this);
+        this.f24752e = f6Var;
+        this.f24750b = new h5(this);
         p6 p6Var = new p6(false, true, true, false);
         this.d = p6Var;
         p6Var.k(0.2f, 160L, pr.h);
         p6Var.t(AndroidUtilities.dp(15.33f));
         p6Var.setCallback(this);
-        p6Var.f29313b = 5;
+        p6Var.f29286b = 5;
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
         int i10;
         super.dispatchDraw(canvas);
-        if (this.f24778c < 0) {
-            i10 = org.telegram.ui.ActionBar.j6.f20908p7;
+        if (this.f24751c < 0) {
+            i10 = org.telegram.ui.ActionBar.j6.f20881p7;
         } else {
             i10 = org.telegram.ui.ActionBar.j6.P5;
         }
-        int a2 = this.f24777b.a(org.telegram.ui.ActionBar.j6.v0(i10, this.f24779e), false);
+        int a2 = this.f24750b.a(org.telegram.ui.ActionBar.j6.v0(i10, this.f24752e), false);
         p6 p6Var = this.d;
         p6Var.r(a2);
         p6Var.setBounds(getScrollX(), 0, getWidth() + getScrollX(), getHeight());
@@ -49,11 +49,11 @@ public final class bn0 extends EditTextBoldCursor {
         super.onTextChanged(charSequence, i10, i11, i12);
         p6 p6Var = this.d;
         if (p6Var != null) {
-            this.f24778c = 12 - charSequence.length();
+            this.f24751c = 12 - charSequence.length();
             p6Var.b();
             String str = "";
-            if (this.f24778c <= 4) {
-                str = "" + this.f24778c;
+            if (this.f24751c <= 4) {
+                str = "" + this.f24751c;
             }
             p6Var.q(str, true, true);
         }

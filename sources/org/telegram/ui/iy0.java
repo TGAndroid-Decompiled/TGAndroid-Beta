@@ -11,58 +11,58 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 public final class iy0 implements Runnable {
-    public final int f37482a;
-    public final ProfileActivity f37483b;
-    public final TLRPC.User f37484c;
+    public final int f37455a;
+    public final ProfileActivity f37456b;
+    public final TLRPC.User f37457c;
 
     public iy0(ProfileActivity profileActivity, TLRPC.User user, int i10) {
-        this.f37482a = i10;
-        this.f37483b = profileActivity;
-        this.f37484c = user;
+        this.f37455a = i10;
+        this.f37456b = profileActivity;
+        this.f37457c = user;
     }
 
     @Override
     public final void run() {
         boolean z10;
         boolean z11;
-        switch (this.f37482a) {
+        switch (this.f37455a) {
             case 0:
-                ProfileActivity profileActivity = this.f37483b;
-                TLRPC.User user = this.f37484c;
+                ProfileActivity profileActivity = this.f37456b;
+                TLRPC.User user = this.f37457c;
                 profileActivity.getClass();
-                profileActivity.presentFragment(co.R9(user.f20043id));
+                profileActivity.presentFragment(co.R9(user.f20016id));
                 return;
             case 1:
-                ProfileActivity profileActivity2 = this.f37483b;
-                TLRPC.User user2 = this.f37484c;
+                ProfileActivity profileActivity2 = this.f37456b;
+                TLRPC.User user2 = this.f37457c;
                 if (profileActivity2.getParentActivity() != null) {
-                    TLRPC.UserFull userFull = profileActivity2.f34034v2;
+                    TLRPC.UserFull userFull = profileActivity2.f34007v2;
                     if (userFull != null && userFull.video_calls_available) {
                         z10 = true;
                     } else {
                         z10 = false;
                     }
-                    org.telegram.ui.Components.voip.d2.m(user2, false, z10, profileActivity2.getParentActivity(), profileActivity2.f34034v2, profileActivity2.getAccountInstance());
+                    org.telegram.ui.Components.voip.d2.m(user2, false, z10, profileActivity2.getParentActivity(), profileActivity2.f34007v2, profileActivity2.getAccountInstance());
                     return;
                 }
                 return;
             case 2:
-                ProfileActivity profileActivity3 = this.f37483b;
-                TLRPC.User user3 = this.f37484c;
+                ProfileActivity profileActivity3 = this.f37456b;
+                TLRPC.User user3 = this.f37457c;
                 if (profileActivity3.getParentActivity() != null) {
-                    TLRPC.UserFull userFull2 = profileActivity3.f34034v2;
+                    TLRPC.UserFull userFull2 = profileActivity3.f34007v2;
                     if (userFull2 != null && userFull2.video_calls_available) {
                         z11 = true;
                     } else {
                         z11 = false;
                     }
-                    org.telegram.ui.Components.voip.d2.m(user3, true, z11, profileActivity3.getParentActivity(), profileActivity3.f34034v2, profileActivity3.getAccountInstance());
+                    org.telegram.ui.Components.voip.d2.m(user3, true, z11, profileActivity3.getParentActivity(), profileActivity3.f34007v2, profileActivity3.getAccountInstance());
                     return;
                 }
                 return;
             case 3:
-                ProfileActivity profileActivity4 = this.f37483b;
-                TLRPC.User user4 = this.f37484c;
+                ProfileActivity profileActivity4 = this.f37456b;
+                TLRPC.User user4 = this.f37457c;
                 profileActivity4.getClass();
                 try {
                     Intent intent = new Intent("android.intent.action.DIAL", Uri.parse("tel:+" + user4.phone));
@@ -74,8 +74,8 @@ public final class iy0 implements Runnable {
                     return;
                 }
             default:
-                ProfileActivity profileActivity5 = this.f37483b;
-                TLRPC.User user5 = this.f37484c;
+                ProfileActivity profileActivity5 = this.f37456b;
+                TLRPC.User user5 = this.f37457c;
                 try {
                     ((ClipboardManager) ApplicationLoader.applicationContext.getSystemService("clipboard")).setPrimaryClip(ClipData.newPlainText("label", "+" + user5.phone));
                     if (AndroidUtilities.shouldShowClipboardToast()) {

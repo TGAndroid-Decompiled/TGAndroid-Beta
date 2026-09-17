@@ -19,34 +19,34 @@ public final class g0 extends View implements NotificationCenter.NotificationCen
     public final DecelerateInterpolator K;
     public final LinearInterpolator L;
     public f0 M;
-    public final int f51958a;
-    public final long f51959b;
-    public final View f51960c;
+    public final int f51927a;
+    public final long f51928b;
+    public final View f51929c;
     public boolean d;
-    public float f51961e;
-    public float f51962f;
+    public float f51930e;
+    public float f51931f;
     public boolean h;
-    public float f51963n;
-    public float f51964r;
-    public float f51965s;
+    public float f51932n;
+    public float f51933r;
+    public float f51934s;
     public float v;
-    public float f51966w;
-    public float f51967x;
-    public final org.telegram.ui.Components.e6 f51968y;
+    public float f51935w;
+    public float f51936x;
+    public final org.telegram.ui.Components.e6 f51937y;
 
     public g0(Context context, int i10, long j3, org.telegram.ui.j0 j0Var) {
         super(context);
         this.d = true;
-        this.f51968y = new org.telegram.ui.Components.e6(this, 0L, 350L, pr.h);
+        this.f51937y = new org.telegram.ui.Components.e6(this, 0L, 350L, pr.h);
         this.E = 1.0f;
         this.G = new ArrayList();
         this.H = new ArrayList();
         this.I = new HashSet();
         this.K = new DecelerateInterpolator();
         this.L = new LinearInterpolator();
-        this.f51958a = i10;
-        this.f51959b = j3;
-        this.f51960c = j0Var;
+        this.f51927a = i10;
+        this.f51928b = j3;
+        this.f51929c = j0Var;
     }
 
     public final void a() {
@@ -55,7 +55,7 @@ public final class g0 extends View implements NotificationCenter.NotificationCen
 
     @Override
     public final void didReceivedNotification(int i10, int i11, Object... objArr) {
-        if (i10 == NotificationCenter.starUserGiftsLoaded && ((Long) objArr[0]).longValue() == this.f51959b) {
+        if (i10 == NotificationCenter.starUserGiftsLoaded && ((Long) objArr[0]).longValue() == this.f51928b) {
             a();
         }
     }
@@ -68,14 +68,14 @@ public final class g0 extends View implements NotificationCenter.NotificationCen
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        NotificationCenter.getInstance(this.f51958a).addObserver(this, NotificationCenter.starUserGiftsLoaded);
+        NotificationCenter.getInstance(this.f51927a).addObserver(this, NotificationCenter.starUserGiftsLoaded);
         ArrayList arrayList = this.H;
         int size = arrayList.size();
         int i10 = 0;
         while (i10 < size) {
             Object obj = arrayList.get(i10);
             i10++;
-            ((f0) obj).f51881j.a(this);
+            ((f0) obj).f51850j.a(this);
         }
         a();
     }
@@ -83,14 +83,14 @@ public final class g0 extends View implements NotificationCenter.NotificationCen
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        NotificationCenter.getInstance(this.f51958a).removeObserver(this, NotificationCenter.starUserGiftsLoaded);
+        NotificationCenter.getInstance(this.f51927a).removeObserver(this, NotificationCenter.starUserGiftsLoaded);
         ArrayList arrayList = this.H;
         int size = arrayList.size();
         int i10 = 0;
         while (i10 < size) {
             Object obj = arrayList.get(i10);
             i10++;
-            ((f0) obj).f51881j.o(this);
+            ((f0) obj).f51850j.o(this);
         }
     }
 
@@ -108,7 +108,7 @@ public final class g0 extends View implements NotificationCenter.NotificationCen
         while (true) {
             ArrayList arrayList = this.H;
             if (i10 < arrayList.size()) {
-                if (((f0) arrayList.get(i10)).f51883l.contains(x10, y3)) {
+                if (((f0) arrayList.get(i10)).f51852l.contains(x10, y3)) {
                     f0Var = (f0) arrayList.get(i10);
                     break;
                 }
@@ -121,22 +121,22 @@ public final class g0 extends View implements NotificationCenter.NotificationCen
         if (motionEvent.getAction() == 0) {
             this.M = f0Var;
             if (f0Var != null) {
-                f0Var.f51884m.c(true);
+                f0Var.f51853m.c(true);
             }
         } else if (motionEvent.getAction() == 2) {
             f0 f0Var4 = this.M;
             if (f0Var4 != f0Var && f0Var4 != null) {
-                f0Var4.f51884m.c(false);
+                f0Var4.f51853m.c(false);
                 this.M = null;
             }
         } else if (motionEvent.getAction() == 1) {
             if (this.M != null) {
-                of.f.s(getContext(), "https://t.me/nft/" + f0Var3.f51877e);
-                this.M.f51884m.c(false);
+                of.f.s(getContext(), "https://t.me/nft/" + f0Var3.f51846e);
+                this.M.f51853m.c(false);
                 this.M = null;
             }
         } else if (motionEvent.getAction() == 3 && (f0Var2 = this.M) != null) {
-            f0Var2.f51884m.c(false);
+            f0Var2.f51853m.c(false);
             this.M = null;
         }
         if (this.M == null) {
@@ -146,7 +146,7 @@ public final class g0 extends View implements NotificationCenter.NotificationCen
     }
 
     public void setActionBarActionMode(float f7) {
-        this.f51963n = f7;
+        this.f51932n = f7;
         invalidate();
     }
 
@@ -155,13 +155,13 @@ public final class g0 extends View implements NotificationCenter.NotificationCen
     }
 
     public void setExpandCoords(float f7) {
-        this.f51966w = f7;
+        this.f51935w = f7;
         invalidate();
     }
 
     public void setExpandProgress(float f7) {
-        if (this.f51961e != f7) {
-            this.f51961e = f7;
+        if (this.f51930e != f7) {
+            this.f51930e = f7;
             invalidate();
         }
     }

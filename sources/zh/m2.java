@@ -1,11 +1,11 @@
 package zh;
 public final class m2 implements Runnable {
-    public final int f52283a;
-    public final Object f52284b;
+    public final int f52252a;
+    public final Object f52253b;
 
     public m2(Object obj, int i10) {
-        this.f52283a = i10;
-        this.f52284b = obj;
+        this.f52252a = i10;
+        this.f52253b = obj;
     }
 
     @Override

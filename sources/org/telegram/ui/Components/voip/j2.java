@@ -7,42 +7,42 @@ import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 public final class j2 extends FrameLayout {
     public static final int h = 0;
-    public final float f31595a;
-    public float f31596b;
-    public float f31597c;
+    public final float f31568a;
+    public float f31569b;
+    public float f31570c;
     public float d;
-    public float f31598e;
-    public final k2 f31599f;
+    public float f31571e;
+    public final k2 f31572f;
 
     public j2(k2 k2Var, Context context) {
         super(context);
-        this.f31599f = k2Var;
-        this.f31595a = ViewConfiguration.get(context).getScaledTouchSlop();
+        this.f31572f = k2Var;
+        this.f31568a = ViewConfiguration.get(context).getScaledTouchSlop();
         setOutlineProvider(new bi.z1(16));
         setClipToOutline(true);
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
-        k2 k2Var = this.f31599f;
-        k2Var.f31610n.setPivotX(k2Var.f31611r.getMeasuredWidth());
-        k2Var.f31610n.setPivotY(k2Var.f31611r.getMeasuredHeight());
-        k2Var.f31610n.setTranslationX((1.0f / getScaleX()) * (-AndroidUtilities.dp(4.0f)) * k2Var.f31612s);
-        k2Var.f31610n.setTranslationY((1.0f / getScaleY()) * (-AndroidUtilities.dp(4.0f)) * k2Var.f31612s);
-        k2Var.f31610n.setRoundCorners((1.0f / getScaleY()) * AndroidUtilities.dp(8.0f) * k2Var.f31612s);
-        k2Var.f31610n.setScaleX(((1.0f - k2Var.f31612s) * 0.6f) + 0.4f);
-        k2Var.f31610n.setScaleY(((1.0f - k2Var.f31612s) * 0.6f) + 0.4f);
-        k2Var.f31610n.setAlpha(Math.min(1.0f, 1.0f - k2Var.f31612s));
+        k2 k2Var = this.f31572f;
+        k2Var.f31583n.setPivotX(k2Var.f31584r.getMeasuredWidth());
+        k2Var.f31583n.setPivotY(k2Var.f31584r.getMeasuredHeight());
+        k2Var.f31583n.setTranslationX((1.0f / getScaleX()) * (-AndroidUtilities.dp(4.0f)) * k2Var.f31585s);
+        k2Var.f31583n.setTranslationY((1.0f / getScaleY()) * (-AndroidUtilities.dp(4.0f)) * k2Var.f31585s);
+        k2Var.f31583n.setRoundCorners((1.0f / getScaleY()) * AndroidUtilities.dp(8.0f) * k2Var.f31585s);
+        k2Var.f31583n.setScaleX(((1.0f - k2Var.f31585s) * 0.6f) + 0.4f);
+        k2Var.f31583n.setScaleY(((1.0f - k2Var.f31585s) * 0.6f) + 0.4f);
+        k2Var.f31583n.setAlpha(Math.min(1.0f, 1.0f - k2Var.f31585s));
         super.dispatchDraw(canvas);
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
         super.onMeasure(i10, i11);
-        this.f31596b = AndroidUtilities.dp(16.0f);
-        this.f31597c = AndroidUtilities.dp(16.0f);
+        this.f31569b = AndroidUtilities.dp(16.0f);
+        this.f31570c = AndroidUtilities.dp(16.0f);
         this.d = AndroidUtilities.dp(60.0f);
-        this.f31598e = AndroidUtilities.dp(16.0f);
+        this.f31571e = AndroidUtilities.dp(16.0f);
     }
 
     @Override

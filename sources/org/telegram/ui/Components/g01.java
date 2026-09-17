@@ -10,33 +10,33 @@ import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ImageReceiver;
 public final class g01 extends ReplacementSpan {
-    public static final int f26251f = 0;
-    public ImageReceiver f26252a;
-    public int f26253b;
-    public int f26254c;
+    public static final int f26224f = 0;
+    public ImageReceiver f26225a;
+    public int f26226b;
+    public int f26227c;
     public final boolean d;
-    public final int f26255e;
+    public final int f26228e;
 
     public g01(View view, Bitmap bitmap, int i10, int i11, int i12, int i13) {
-        this.f26253b = i10;
-        this.f26254c = i11;
+        this.f26226b = i10;
+        this.f26227c = i11;
         ImageReceiver imageReceiver = new ImageReceiver(view);
-        this.f26252a = imageReceiver;
+        this.f26225a = imageReceiver;
         imageReceiver.setInvalidateAll(true);
         imageReceiver.setImageBitmap(bitmap);
         imageReceiver.setColorFilter(new PorterDuffColorFilter(i12, PorterDuff.Mode.SRC_IN));
-        this.f26255e = i13;
+        this.f26228e = i13;
         this.d = true;
     }
 
     @Override
     public final void draw(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
-        int i15 = this.f26253b;
-        int i16 = this.f26254c;
-        ImageReceiver imageReceiver = this.f26252a;
+        int i15 = this.f26226b;
+        int i16 = this.f26227c;
+        ImageReceiver imageReceiver = this.f26225a;
         canvas.save();
         if (this.d) {
-            imageReceiver.setImageCoords((int) f7, i13 - (i16 - this.f26255e), i15, i16);
+            imageReceiver.setImageCoords((int) f7, i13 - (i16 - this.f26228e), i15, i16);
         } else {
             imageReceiver.setImageCoords((int) f7, i2.g.C(org.telegram.messenger.w1.B(4.0f, i14, i12), i16, 2, i12), i15, i16);
         }
@@ -46,10 +46,10 @@ public final class g01 extends ReplacementSpan {
 
     @Override
     public final int getSize(Paint paint, CharSequence charSequence, int i10, int i11, Paint.FontMetricsInt fontMetricsInt) {
-        int i12 = this.f26254c;
+        int i12 = this.f26227c;
         if (fontMetricsInt != null) {
             if (this.d) {
-                int i13 = this.f26255e;
+                int i13 = this.f26228e;
                 int i14 = -(i12 - i13);
                 fontMetricsInt.ascent = i14;
                 fontMetricsInt.top = i14;
@@ -64,6 +64,6 @@ public final class g01 extends ReplacementSpan {
                 fontMetricsInt.bottom = dp2;
             }
         }
-        return this.f26253b;
+        return this.f26226b;
     }
 }

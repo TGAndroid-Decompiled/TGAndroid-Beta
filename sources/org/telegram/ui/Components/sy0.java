@@ -14,24 +14,24 @@ public final class sy0 extends FrameLayout {
     public int E;
     public int F;
     public jq0 G;
-    public Paint f30468a;
-    public Paint f30469b;
-    public Paint f30470c;
+    public Paint f30441a;
+    public Paint f30442b;
+    public Paint f30443c;
     public Paint d;
-    public RectF f30471e;
-    public ry0 f30472f;
+    public RectF f30444e;
+    public ry0 f30445f;
     public String[] h;
-    public int[] f30473n;
-    public xi0[] f30474r;
-    public int f30475s;
+    public int[] f30446n;
+    public xi0[] f30447r;
+    public int f30448s;
     public aj0[] v;
-    public float f30476w;
-    public float f30477x;
-    public int f30478y;
+    public float f30449w;
+    public float f30450x;
+    public int f30451y;
 
     public final xi0 a(int i10) {
         int i11;
-        xi0[] xi0VarArr = this.f30474r;
+        xi0[] xi0VarArr = this.f30447r;
         if (xi0VarArr[i10] == null) {
             if (i10 != 1) {
                 if (i10 != 2) {
@@ -63,9 +63,9 @@ public final class sy0 extends FrameLayout {
     public final void b() {
         int value;
         aj0[] aj0VarArr = this.v;
-        if (this.G == null && this.F != (value = this.f30472f.getValue())) {
+        if (this.G == null && this.F != (value = this.f30445f.getValue())) {
             this.F = value;
-            int i10 = (this.f30475s + 1) % 2;
+            int i10 = (this.f30448s + 1) % 2;
             xi0 a2 = a(value);
             if (a2 != null) {
                 if (aj0VarArr[i10].getVisibility() != 0) {
@@ -76,9 +76,9 @@ public final class sy0 extends FrameLayout {
             } else {
                 aj0VarArr[i10].a();
             }
-            AndroidUtilities.updateViewVisibilityAnimated(aj0VarArr[this.f30475s], false, 0.5f, true);
+            AndroidUtilities.updateViewVisibilityAnimated(aj0VarArr[this.f30448s], false, 0.5f, true);
             AndroidUtilities.updateViewVisibilityAnimated(aj0VarArr[i10], true, 0.5f, true);
-            this.f30475s = i10;
+            this.f30448s = i10;
             jq0 jq0Var = new jq0(this, 12);
             this.G = jq0Var;
             AndroidUtilities.runOnUIThread(jq0Var, 150L);
@@ -86,10 +86,10 @@ public final class sy0 extends FrameLayout {
     }
 
     public final void c(int i10) {
-        xi0[] xi0VarArr = this.f30474r;
+        xi0[] xi0VarArr = this.f30447r;
         if (xi0VarArr[i10] != null) {
-            int d = i0.a.d(0.9f, org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f20691d6, false), org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f20676c9, false));
-            int w02 = org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f20713e9, false);
+            int d = i0.a.d(0.9f, org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f20664d6, false), org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f20649c9, false));
+            int w02 = org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f20686e9, false);
             if (i10 == 2) {
                 xi0VarArr[i10].O(d, "Arrow");
                 xi0VarArr[i10].O(w02, "Box2");
@@ -107,7 +107,7 @@ public final class sy0 extends FrameLayout {
 
     @Override
     public final void onInitializeAccessibilityEvent(AccessibilityEvent accessibilityEvent) {
-        ry0 ry0Var = this.f30472f;
+        ry0 ry0Var = this.f30445f;
         super.onInitializeAccessibilityEvent(accessibilityEvent);
         if (accessibilityEvent.getEventType() == 1) {
             int value = ry0Var.getValue() + 1;
@@ -120,7 +120,7 @@ public final class sy0 extends FrameLayout {
     public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
         accessibilityNodeInfo.setEnabled(true);
-        accessibilityNodeInfo.setContentDescription(this.h[this.f30472f.getValue()]);
+        accessibilityNodeInfo.setContentDescription(this.h[this.f30445f.getValue()]);
         accessibilityNodeInfo.addAction(new AccessibilityNodeInfo.AccessibilityAction(16, null));
     }
 
@@ -131,12 +131,12 @@ public final class sy0 extends FrameLayout {
 
     @Override
     public void setBackgroundColor(int i10) {
-        ry0 ry0Var = this.f30472f;
+        ry0 ry0Var = this.f30445f;
         super.setBackgroundColor(i10);
-        for (int i11 = 0; i11 < this.f30474r.length; i11++) {
+        for (int i11 = 0; i11 < this.f30447r.length; i11++) {
             c(i11);
         }
-        ry0Var.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f20798j5, false));
+        ry0Var.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f20771j5, false));
         ry0Var.invalidate();
     }
 }

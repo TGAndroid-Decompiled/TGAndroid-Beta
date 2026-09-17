@@ -25,44 +25,44 @@ public class RadialProgress2 {
     public int G;
     public float H;
     public float I;
-    public View f24099b;
-    public boolean f24100c;
-    public final Paint f24101e;
-    public final Paint f24102f;
-    public final Paint f24103g;
+    public View f24072b;
+    public boolean f24073c;
+    public final Paint f24074e;
+    public final Paint f24075f;
+    public final Paint f24076g;
     public final Paint h;
-    public final t90 f24104i;
-    public final t90 f24105j;
-    public float f24106k;
-    public int f24107l;
-    public int f24108m;
-    public int f24109n;
-    public int f24110o;
-    public int f24111p;
-    public int f24112q;
-    public float f24113r;
-    public float f24114s;
-    public int f24115t;
-    public int f24116u;
+    public final t90 f24077i;
+    public final t90 f24078j;
+    public float f24079k;
+    public int f24080l;
+    public int f24081m;
+    public int f24082n;
+    public int f24083o;
+    public int f24084p;
+    public int f24085q;
+    public float f24086r;
+    public float f24087s;
+    public int f24088t;
+    public int f24089u;
     public int v;
-    public final ImageReceiver f24117w;
-    public int f24118x;
-    public boolean f24119y;
-    public boolean f24120z;
-    public final RectF f24098a = new RectF();
+    public final ImageReceiver f24090w;
+    public int f24091x;
+    public boolean f24092y;
+    public boolean f24093z;
+    public final RectF f24071a = new RectF();
     public int d = -1;
 
     public RadialProgress2(View view, org.telegram.ui.ActionBar.f6 f6Var) {
         Paint paint = new Paint(1);
-        this.f24102f = paint;
-        this.f24103g = new Paint(1);
+        this.f24075f = paint;
+        this.f24076g = new Paint(1);
         this.h = new Paint(1);
-        this.f24106k = 1.0f;
-        this.f24111p = -1;
-        this.f24112q = -1;
-        this.f24114s = 1.0f;
-        this.f24115t = -1;
-        this.f24116u = -1;
+        this.f24079k = 1.0f;
+        this.f24084p = -1;
+        this.f24085q = -1;
+        this.f24087s = 1.0f;
+        this.f24088t = -1;
+        this.f24089u = -1;
         this.v = -1;
         this.A = 1.0f;
         this.B = true;
@@ -70,20 +70,20 @@ public class RadialProgress2 {
         this.H = 1.0f;
         this.I = 1.0f;
         this.F = f6Var;
-        this.f24101e = new Paint(1);
-        this.f24099b = view;
+        this.f24074e = new Paint(1);
+        this.f24072b = view;
         ImageReceiver imageReceiver = new ImageReceiver(view);
-        this.f24117w = imageReceiver;
+        this.f24090w = imageReceiver;
         imageReceiver.setInvalidateAll(true);
         t90 t90Var = new t90();
-        this.f24104i = t90Var;
+        this.f24077i = t90Var;
         t90 t90Var2 = new t90();
-        this.f24105j = t90Var2;
-        t90Var2.f30594j = true;
-        t90Var2.f30588b.setStrokeWidth(AndroidUtilities.dp(2.0f));
+        this.f24078j = t90Var2;
+        t90Var2.f30567j = true;
+        t90Var2.f30561b.setStrokeWidth(AndroidUtilities.dp(2.0f));
         t90Var2.d(4, false);
         int dp = AndroidUtilities.dp(22.0f);
-        this.f24118x = dp;
+        this.f24091x = dp;
         imageReceiver.setRoundRadius(dp);
         paint.setColor(1677721600);
         if (view != null) {
@@ -93,13 +93,13 @@ public class RadialProgress2 {
     }
 
     public final int a() {
-        return this.f24104i.f30601q;
+        return this.f24077i.f30574q;
     }
 
     public final float b() {
-        t90 t90Var = this.f24104i;
-        int i10 = t90Var.f30601q;
-        int i11 = t90Var.f30600p;
+        t90 t90Var = this.f24077i;
+        int i10 = t90Var.f30574q;
+        int i11 = t90Var.f30573p;
         if ((i10 == 3 || i10 == 6 || i10 == 10 || i10 == 8 || i10 == 0) && i11 == 4) {
             return t90Var.b();
         }
@@ -121,8 +121,8 @@ public class RadialProgress2 {
 
     public final void d() {
         int dp = AndroidUtilities.dp(2.0f);
-        View view = this.f24099b;
-        RectF rectF = this.f24098a;
+        View view = this.f24072b;
+        RectF rectF = this.f24071a;
         int i10 = ((int) rectF.left) - dp;
         int i11 = ((int) rectF.top) - dp;
         int i12 = dp * 2;
@@ -149,101 +149,101 @@ public class RadialProgress2 {
         int alpha;
         int argb;
         int i14;
-        t90 t90Var = this.f24104i;
-        int i15 = t90Var.f30601q;
-        Paint paint2 = t90Var.f30589c;
+        t90 t90Var = this.f24077i;
+        int i15 = t90Var.f30574q;
+        Paint paint2 = t90Var.f30562c;
         if (i15 != 4 || t90Var.b() < 1.0f) {
-            RectF rectF = this.f24098a;
+            RectF rectF = this.f24071a;
             if (!rectF.isEmpty()) {
-                int i16 = t90Var.f30601q;
+                int i16 = t90Var.f30574q;
                 float b11 = b();
-                boolean z10 = this.f24120z;
-                t90 t90Var2 = this.f24105j;
+                boolean z10 = this.f24093z;
+                t90 t90Var2 = this.f24078j;
                 Paint paint3 = this.h;
-                if (z10 && this.f24112q < 0) {
+                if (z10 && this.f24085q < 0) {
                     int i17 = this.v;
                     if (i17 >= 0) {
                         t90Var2.c(org.telegram.ui.ActionBar.j6.v0(i17, this.F));
                     } else {
-                        t90Var2.c(this.f24110o);
+                        t90Var2.c(this.f24083o);
                     }
-                    int i18 = this.f24115t;
+                    int i18 = this.f24088t;
                     if (i18 >= 0) {
                         paint3.setColor(org.telegram.ui.ActionBar.j6.v0(i18, this.F));
                     } else {
-                        paint3.setColor(this.f24108m);
+                        paint3.setColor(this.f24081m);
                     }
                 } else {
-                    int i19 = this.f24116u;
+                    int i19 = this.f24089u;
                     if (i19 >= 0) {
                         t90Var2.c(org.telegram.ui.ActionBar.j6.v0(i19, this.F));
                     } else {
-                        t90Var2.c(this.f24109n);
+                        t90Var2.c(this.f24082n);
                     }
-                    int i20 = this.f24111p;
+                    int i20 = this.f24084p;
                     if (i20 >= 0) {
-                        if (this.f24112q >= 0) {
-                            paint3.setColor(AndroidUtilities.getOffsetColor(org.telegram.ui.ActionBar.j6.v0(i20, this.F), org.telegram.ui.ActionBar.j6.v0(this.f24112q, this.F), this.f24113r, this.f24114s));
+                        if (this.f24085q >= 0) {
+                            paint3.setColor(AndroidUtilities.getOffsetColor(org.telegram.ui.ActionBar.j6.v0(i20, this.F), org.telegram.ui.ActionBar.j6.v0(this.f24085q, this.F), this.f24086r, this.f24087s));
                         } else {
                             paint3.setColor(org.telegram.ui.ActionBar.j6.v0(i20, this.F));
                         }
                     } else {
-                        paint3.setColor(this.f24107l);
+                        paint3.setColor(this.f24080l);
                     }
                 }
-                boolean z11 = this.f24119y;
-                Paint paint4 = this.f24103g;
+                boolean z11 = this.f24092y;
+                Paint paint4 = this.f24076g;
                 if (z11) {
                     int i21 = this.v;
                     if (i21 >= 0) {
                         i10 = org.telegram.ui.ActionBar.j6.v0(i21, this.F);
                         t90Var.c(i10);
-                        paint2.setColor((-16777216) | org.telegram.ui.ActionBar.j6.v0(this.f24115t, this.F));
+                        paint2.setColor((-16777216) | org.telegram.ui.ActionBar.j6.v0(this.f24088t, this.F));
                     } else {
-                        i10 = this.f24110o;
+                        i10 = this.f24083o;
                         t90Var.c(i10);
-                        paint2.setColor((-16777216) | this.f24108m);
+                        paint2.setColor((-16777216) | this.f24081m);
                     }
-                    int i22 = this.f24115t;
+                    int i22 = this.f24088t;
                     if (i22 >= 0) {
                         paint4.setColor(org.telegram.ui.ActionBar.j6.v0(i22, this.F));
                     } else {
-                        paint4.setColor(this.f24108m);
+                        paint4.setColor(this.f24081m);
                     }
                 } else {
-                    int i23 = this.f24116u;
+                    int i23 = this.f24089u;
                     if (i23 >= 0) {
                         i10 = org.telegram.ui.ActionBar.j6.v0(i23, this.F);
                         t90Var.c(i10);
-                        paint2.setColor((-16777216) | org.telegram.ui.ActionBar.j6.v0(this.f24111p, this.F));
+                        paint2.setColor((-16777216) | org.telegram.ui.ActionBar.j6.v0(this.f24084p, this.F));
                     } else {
-                        i10 = this.f24109n;
+                        i10 = this.f24082n;
                         t90Var.c(i10);
-                        paint2.setColor((-16777216) | this.f24107l);
+                        paint2.setColor((-16777216) | this.f24080l);
                     }
-                    int i24 = this.f24111p;
+                    int i24 = this.f24084p;
                     if (i24 >= 0) {
                         paint4.setColor(org.telegram.ui.ActionBar.j6.v0(i24, this.F));
                     } else {
-                        paint4.setColor(this.f24107l);
+                        paint4.setColor(this.f24080l);
                     }
                 }
-                if ((this.f24100c || this.f24112q >= 0) && this.D != null) {
+                if ((this.f24073c || this.f24085q >= 0) && this.D != null) {
                     this.C.eraseColor(0);
                 }
                 paint4.setAlpha((int) (paint4.getAlpha() * b11 * this.E * this.A));
                 paint3.setAlpha((int) (paint3.getAlpha() * b11 * this.E));
-                if ((this.f24100c || this.f24112q >= 0) && this.D != null) {
+                if ((this.f24073c || this.f24085q >= 0) && this.D != null) {
                     ceil = (int) Math.ceil(rectF.width() / 2.0f);
                     ceil2 = (int) Math.ceil(rectF.height() / 2.0f);
                 } else {
                     ceil = (int) rectF.centerX();
                     ceil2 = (int) rectF.centerY();
                 }
-                ImageReceiver imageReceiver = this.f24117w;
+                ImageReceiver imageReceiver = this.f24090w;
                 boolean hasBitmapImage = imageReceiver.hasBitmapImage();
                 boolean z12 = true;
-                Paint paint5 = this.f24102f;
+                Paint paint5 = this.f24075f;
                 int i25 = 2;
                 if (hasBitmapImage) {
                     float currentAlpha = imageReceiver.getCurrentAlpha();
@@ -264,7 +264,7 @@ public class RadialProgress2 {
                         argb = Color.argb(Color.alpha(i10) + ((int) ((255 - alpha) * currentAlpha)), red + ((int) ((255 - red) * currentAlpha)), green + ((int) ((255 - green) * currentAlpha)), blue + ((int) ((255 - blue) * currentAlpha)));
                     }
                     t90Var.c(argb);
-                    float f12 = this.f24118x * 2;
+                    float f12 = this.f24091x * 2;
                     imageReceiver.setImageCoords(ceil - i14, ceil2 - i14, f12, f12);
                 } else {
                     f7 = b11;
@@ -272,31 +272,31 @@ public class RadialProgress2 {
                     f10 = 1.0f;
                 }
                 Canvas canvas5 = this.D;
-                if (canvas5 != null && this.f24112q >= 0 && this.f24114s != f10) {
+                if (canvas5 != null && this.f24085q >= 0 && this.f24087s != f10) {
                     i11 = canvas5.save();
-                    float b12 = com.google.android.gms.internal.vision.e2.b(1.0f, this.f24114s, 0.1f, 1.0f);
+                    float b12 = com.google.android.gms.internal.vision.e2.b(1.0f, this.f24087s, 0.1f, 1.0f);
                     this.D.scale(b12, b12, ceil, ceil2);
                 } else {
                     i11 = Integer.MIN_VALUE;
                 }
                 if (z12 && this.B) {
-                    if ((this.f24100c || this.f24112q >= 0) && (canvas4 = this.D) != null) {
-                        canvas4.drawCircle(ceil, ceil2, this.f24118x, paint4);
+                    if ((this.f24073c || this.f24085q >= 0) && (canvas4 = this.D) != null) {
+                        canvas4.drawCircle(ceil, ceil2, this.f24091x, paint4);
                     } else if (i16 != 4 || f7 != 0.0f) {
-                        canvas.drawCircle(ceil, ceil2, this.f24118x, paint4);
+                        canvas.drawCircle(ceil, ceil2, this.f24091x, paint4);
                     }
                 }
                 if (imageReceiver.hasBitmapImage()) {
                     imageReceiver.setAlpha(f7 * this.E * this.H);
-                    if ((this.f24100c || this.f24112q >= 0) && (canvas3 = this.D) != null) {
+                    if ((this.f24073c || this.f24085q >= 0) && (canvas3 = this.D) != null) {
                         imageReceiver.draw(canvas3);
-                        this.D.drawCircle(ceil, ceil2, this.f24118x, paint5);
+                        this.D.drawCircle(ceil, ceil2, this.f24091x, paint5);
                     } else {
                         imageReceiver.draw(canvas);
-                        canvas.drawCircle(ceil, ceil2, this.f24118x, paint5);
+                        canvas.drawCircle(ceil, ceil2, this.f24091x, paint5);
                     }
                 }
-                int i26 = this.f24118x;
+                int i26 = this.f24091x;
                 int i27 = this.G;
                 if (i27 > 0 && i26 > i27) {
                     i26 = i27;
@@ -308,8 +308,8 @@ public class RadialProgress2 {
                 }
                 t90Var.setBounds(ceil - i26, ceil2 - i26, ceil + i26, ceil2 + i26);
                 t90Var.E = imageReceiver.hasBitmapImage();
-                if (!this.f24100c && this.f24112q < 0) {
-                    t90Var.f30599o = this.E;
+                if (!this.f24073c && this.f24085q < 0) {
+                    t90Var.f30572o = this.E;
                     t90Var.draw(canvas);
                 } else {
                     Canvas canvas6 = this.D;
@@ -322,7 +322,7 @@ public class RadialProgress2 {
                 if (i11 != Integer.MIN_VALUE && (canvas2 = this.D) != null) {
                     canvas2.restoreToCount(i11);
                 }
-                if (this.f24100c || this.f24112q >= 0) {
+                if (this.f24073c || this.f24085q >= 0) {
                     if (Math.abs(rectF.width() - AndroidUtilities.dp(44.0f)) < AndroidUtilities.density) {
                         float f14 = 16;
                         centerX = rectF.centerX() + AndroidUtilities.dp(f14);
@@ -335,14 +335,14 @@ public class RadialProgress2 {
                         i12 = 22;
                     }
                     int i28 = i12 / 2;
-                    if (this.f24100c) {
-                        if (t90Var2.f30601q != 4) {
+                    if (this.f24073c) {
+                        if (t90Var2.f30574q != 4) {
                             b10 = 1.0f;
                         } else {
                             b10 = 1.0f - t90Var2.b();
                         }
                         if (b10 == 0.0f) {
-                            this.f24100c = false;
+                            this.f24073c = false;
                         }
                         f11 = b10;
                     } else {
@@ -351,26 +351,26 @@ public class RadialProgress2 {
                     Canvas canvas7 = this.D;
                     if (canvas7 != null) {
                         float f15 = i12 + 18 + i25;
-                        canvas7.drawCircle(AndroidUtilities.dp(f15), AndroidUtilities.dp(f15), AndroidUtilities.dp(i28 + 1) * f11 * this.f24106k, org.telegram.ui.ActionBar.j6.f20868n0);
+                        canvas7.drawCircle(AndroidUtilities.dp(f15), AndroidUtilities.dp(f15), AndroidUtilities.dp(i28 + 1) * f11 * this.f24079k, org.telegram.ui.ActionBar.j6.f20841n0);
                     } else {
                         int i29 = this.d;
-                        Paint paint6 = this.f24101e;
+                        Paint paint6 = this.f24074e;
                         paint6.setColor(i29);
                         canvas.drawCircle(centerX, centerY, AndroidUtilities.dp(12.0f), paint6);
                     }
                     if (this.D != null) {
                         canvas.drawBitmap(this.C, (int) rectF.left, (int) rectF.top, (Paint) null);
                     }
-                    if (this.f24106k < 1.0f) {
+                    if (this.f24079k < 1.0f) {
                         i13 = canvas.save();
-                        float f16 = this.f24106k;
+                        float f16 = this.f24079k;
                         canvas.scale(f16, f16, centerX, centerY);
                     } else {
                         i13 = Integer.MIN_VALUE;
                     }
                     float f17 = i28;
-                    canvas.drawCircle(centerX, centerY, com.google.android.gms.internal.vision.e2.z(1.0f, this.f24114s, AndroidUtilities.dp(1.0f), AndroidUtilities.dp(f17) * f11), paint);
-                    if (this.f24100c) {
+                    canvas.drawCircle(centerX, centerY, com.google.android.gms.internal.vision.e2.z(1.0f, this.f24087s, AndroidUtilities.dp(1.0f), AndroidUtilities.dp(f17) * f11), paint);
+                    if (this.f24073c) {
                         t90Var2.setBounds((int) (centerX - (AndroidUtilities.dp(f17) * f11)), (int) (centerY - (AndroidUtilities.dp(f17) * f11)), (int) ((AndroidUtilities.dp(f17) * f11) + centerX), (int) ((AndroidUtilities.dp(f17) * f11) + centerY));
                         t90Var2.draw(canvas);
                     }
@@ -386,17 +386,17 @@ public class RadialProgress2 {
     }
 
     public final void e() {
-        this.f24117w.onAttachedToWindow();
+        this.f24090w.onAttachedToWindow();
     }
 
     public final void f() {
-        this.f24117w.onDetachedFromWindow();
+        this.f24090w.onDetachedFromWindow();
     }
 
     public final void g(int i10, int i11, int i12, int i13) {
-        this.f24111p = i10;
-        this.f24115t = i11;
-        this.f24116u = i12;
+        this.f24084p = i10;
+        this.f24088t = i11;
+        this.f24089u = i12;
         this.v = i13;
     }
 
@@ -404,24 +404,24 @@ public class RadialProgress2 {
         String str2;
         if (str != null) {
             Locale locale = Locale.US;
-            str2 = a4.a.k(this.f24118x * 2, this.f24118x * 2, "_");
+            str2 = a4.a.k(this.f24091x * 2, this.f24091x * 2, "_");
         } else {
             str2 = null;
         }
-        this.f24117w.setImage(str, str2, null, null, -1L);
+        this.f24090w.setImage(str, str2, null, null, -1L);
     }
 
     public final void i(TLRPC.PhotoSize photoSize, TLRPC.Document document, MessageObject messageObject) {
         Locale locale = Locale.US;
         ImageLocation forDocument = ImageLocation.getForDocument(photoSize, document);
-        int i10 = this.f24118x;
-        this.f24117w.setImage(forDocument, a4.a.k(i10 * 2, i10 * 2, "_"), null, null, messageObject, 1);
+        int i10 = this.f24091x;
+        this.f24090w.setImage(forDocument, a4.a.k(i10 * 2, i10 * 2, "_"), null, null, messageObject, 1);
     }
 
     public final void j(TLRPC.PhotoSize photoSize, TLRPC.PhotoSize photoSize2, TLRPC.Document document, Object obj) {
         ImageLocation forDocument;
         Locale locale = Locale.US;
-        String k10 = a4.a.k(this.f24118x * 2, this.f24118x * 2, "_");
+        String k10 = a4.a.k(this.f24091x * 2, this.f24091x * 2, "_");
         ImageLocation imageLocation = null;
         if (photoSize == null) {
             forDocument = null;
@@ -431,14 +431,14 @@ public class RadialProgress2 {
         if (photoSize2 != null) {
             imageLocation = ImageLocation.getForDocument(photoSize2, document);
         }
-        this.f24117w.setImage(forDocument, k10, imageLocation, k10, null, 0L, null, obj, 1);
+        this.f24090w.setImage(forDocument, k10, imageLocation, k10, null, 0L, null, obj, 1);
     }
 
     public final void k(int i10, boolean z10, boolean z11) {
         boolean z12;
         if (i10 == 2 || i10 == 3 || i10 == 4) {
-            t90 t90Var = this.f24105j;
-            if (z10 && i10 == t90Var.f30601q) {
+            t90 t90Var = this.f24078j;
+            if (z10 && i10 == t90Var.f30574q) {
                 return;
             }
             t90Var.d(i10, z11);
@@ -447,12 +447,12 @@ public class RadialProgress2 {
             } else {
                 z12 = true;
             }
-            this.f24100c = z12;
+            this.f24073c = z12;
             if (z12) {
                 c();
             }
             if (!z11) {
-                this.f24099b.invalidate();
+                this.f24072b.invalidate();
             } else {
                 d();
             }
@@ -460,31 +460,31 @@ public class RadialProgress2 {
     }
 
     public final void l(float f7) {
-        this.f24106k = f7;
+        this.f24079k = f7;
     }
 
     public final void m(View view) {
-        this.f24099b = view;
-        this.f24117w.setParentView(view);
+        this.f24072b = view;
+        this.f24090w.setParentView(view);
         Objects.requireNonNull(view);
-        this.f24104i.A = new kv(view, 13);
-        this.f24105j.A = new kv(view, 13);
+        this.f24077i.A = new kv(view, 13);
+        this.f24078j.A = new kv(view, 13);
     }
 
     public final void n(boolean z10, boolean z11) {
         if (z11) {
-            this.f24120z = z10;
+            this.f24093z = z10;
         } else {
-            this.f24119y = z10;
+            this.f24092y = z10;
         }
         d();
     }
 
     public final void o(float f7, boolean z10) {
-        if (this.f24100c) {
-            this.f24105j.e(f7, z10);
+        if (this.f24073c) {
+            this.f24078j.e(f7, z10);
         } else {
-            this.f24104i.e(f7, z10);
+            this.f24077i.e(f7, z10);
         }
     }
 
@@ -493,45 +493,45 @@ public class RadialProgress2 {
     }
 
     public final void q(int i10, int i11, int i12, int i13) {
-        this.f24098a.set(i10, i11, i12, i13);
+        this.f24071a.set(i10, i11, i12, i13);
     }
 
     public void setAsMini() {
-        t90 t90Var = this.f24104i;
-        t90Var.f30594j = true;
-        t90Var.f30588b.setStrokeWidth(AndroidUtilities.dp(2.0f));
+        t90 t90Var = this.f24077i;
+        t90Var.f30567j = true;
+        t90Var.f30561b.setStrokeWidth(AndroidUtilities.dp(2.0f));
     }
 
     public void setBackgroundGradientDrawable(LinearGradient linearGradient) {
-        t90 t90Var = this.f24104i;
+        t90 t90Var = this.f24077i;
         t90Var.C = linearGradient;
         t90Var.D = new Matrix();
-        t90 t90Var2 = this.f24105j;
+        t90 t90Var2 = this.f24078j;
         t90Var2.C = linearGradient;
         t90Var2.D = new Matrix();
     }
 
     public void setCircleRadius(int i10) {
-        this.f24118x = i10;
-        this.f24117w.setRoundRadius(i10);
+        this.f24091x = i10;
+        this.f24090w.setRoundRadius(i10);
     }
 
     public void setColors(int i10, int i11, int i12, int i13) {
-        this.f24107l = i10;
-        this.f24108m = i11;
-        this.f24109n = i12;
-        this.f24110o = i13;
-        this.f24111p = -1;
-        this.f24115t = -1;
-        this.f24116u = -1;
+        this.f24080l = i10;
+        this.f24081m = i11;
+        this.f24082n = i12;
+        this.f24083o = i13;
+        this.f24084p = -1;
+        this.f24088t = -1;
+        this.f24089u = -1;
         this.v = -1;
     }
 
     public void setIcon(int i10, boolean z10, boolean z11) {
-        t90 t90Var = this.f24104i;
-        if (!z10 || i10 != t90Var.f30601q) {
+        t90 t90Var = this.f24077i;
+        if (!z10 || i10 != t90Var.f30574q) {
             t90Var.d(i10, z11);
-            View view = this.f24099b;
+            View view = this.f24072b;
             if (view != null) {
                 if (!z11) {
                     view.invalidate();

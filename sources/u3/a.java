@@ -1,10 +1,10 @@
 package u3;
 public final class a {
-    public final int f46891a;
-    public final long f46892b;
+    public final int f46863a;
+    public final long f46864b;
 
     public a(int i10, long j3) {
-        this.f46891a = i10;
-        this.f46892b = j3;
+        this.f46863a = i10;
+        this.f46864b = j3;
     }
 }

@@ -3,31 +3,31 @@ package org.telegram.ui;
 import android.content.Context;
 import org.telegram.messenger.AndroidUtilities;
 public final class y31 implements a41 {
-    public final org.telegram.ui.ActionBar.n2 f43006a;
-    public final Context f43007b;
-    public final org.telegram.ui.ActionBar.f6 f43008c;
+    public final org.telegram.ui.ActionBar.n2 f42979a;
+    public final Context f42980b;
+    public final org.telegram.ui.ActionBar.f6 f42981c;
     public final org.telegram.ui.Components.jn0 d;
 
     public y31(org.telegram.ui.ActionBar.n2 n2Var, Context context, org.telegram.ui.ActionBar.f6 f6Var, org.telegram.ui.Components.jn0 jn0Var) {
-        this.f43006a = n2Var;
-        this.f43007b = context;
-        this.f43008c = f6Var;
+        this.f42979a = n2Var;
+        this.f42980b = context;
+        this.f42981c = f6Var;
         this.d = jn0Var;
     }
 
     @Override
     public final void a() {
-        AndroidUtilities.runOnUIThread(new s31(this.f43006a, this.f43007b, this.f43008c, this.d, 2), 200L);
+        AndroidUtilities.runOnUIThread(new s31(this.f42979a, this.f42980b, this.f42981c, this.d, 2), 200L);
     }
 
     @Override
     public final void b() {
-        AndroidUtilities.runOnUIThread(new rx0(26, this.f43006a, this.d), 200L);
+        AndroidUtilities.runOnUIThread(new rx0(26, this.f42979a, this.d), 200L);
     }
 
     @Override
     public final void c() {
-        org.telegram.ui.ActionBar.n2 n2Var = this.f43006a;
+        org.telegram.ui.ActionBar.n2 n2Var = this.f42979a;
         n2Var.showDialog(new sg.a1(n2Var, 3, true));
     }
 }

@@ -13,15 +13,15 @@ import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.e51;
 public final class l3 {
-    public boolean f22268a;
-    public StaticLayout f22269b;
-    public StaticLayout f22270c;
+    public boolean f22241a;
+    public StaticLayout f22242b;
+    public StaticLayout f22243c;
     public int d;
-    public int f22271e;
-    public float f22272f;
-    public float f22273g;
+    public int f22244e;
+    public float f22245f;
+    public float f22246g;
     public float h;
-    public float f22274i;
+    public float f22247i;
 
     public final void a(t1 t1Var) {
         TLRPC.Message message;
@@ -65,19 +65,19 @@ public final class l3 {
                 TextPaint textPaint2 = org.telegram.ui.ActionBar.j6.Z2;
                 int dp = AndroidUtilities.dp(10.0f);
                 Layout.Alignment alignment = Layout.Alignment.ALIGN_NORMAL;
-                this.f22269b = new StaticLayout(e7, textPaint2, dp + ((int) (textPaint2.measureText(e7, 0, e7.length()) + 1.0f)), alignment, 1.0f, 0.0f, false);
-                this.f22270c = new StaticLayout(str2, textPaint2, AndroidUtilities.dp(10.0f) + ((int) (textPaint2.measureText((CharSequence) str2, 0, str2.length()) + 1.0f)), alignment, 1.0f, 0.0f, false);
-                this.f22271e = 0;
+                this.f22242b = new StaticLayout(e7, textPaint2, dp + ((int) (textPaint2.measureText(e7, 0, e7.length()) + 1.0f)), alignment, 1.0f, 0.0f, false);
+                this.f22243c = new StaticLayout(str2, textPaint2, AndroidUtilities.dp(10.0f) + ((int) (textPaint2.measureText((CharSequence) str2, 0, str2.length()) + 1.0f)), alignment, 1.0f, 0.0f, false);
+                this.f22244e = 0;
                 this.h = AndroidUtilities.dp(4.0f);
-                this.f22274i = AndroidUtilities.dp(12.0f);
-                this.f22271e = (int) p6.a(this.h, 2.0f, AndroidUtilities.dp(4.0f) + this.f22270c.getHeight() + AndroidUtilities.dp(2.0f) + this.f22269b.getHeight() + AndroidUtilities.dp(4.0f), this.f22271e);
-                this.d = t1Var.getExtraTextX() + AndroidUtilities.dp(20.0f) + AndroidUtilities.dp(12.0f) + Math.max(this.f22269b.getWidth(), this.f22270c.getWidth());
+                this.f22247i = AndroidUtilities.dp(12.0f);
+                this.f22244e = (int) p6.a(this.h, 2.0f, AndroidUtilities.dp(4.0f) + this.f22243c.getHeight() + AndroidUtilities.dp(2.0f) + this.f22242b.getHeight() + AndroidUtilities.dp(4.0f), this.f22244e);
+                this.d = t1Var.getExtraTextX() + AndroidUtilities.dp(20.0f) + AndroidUtilities.dp(12.0f) + Math.max(this.f22242b.getWidth(), this.f22243c.getWidth());
                 return;
             }
         }
         this.h = AndroidUtilities.dp(4.0f);
-        this.f22274i = AndroidUtilities.dp(12.0f);
-        this.f22271e = 0;
+        this.f22247i = AndroidUtilities.dp(12.0f);
+        this.f22244e = 0;
         this.d = 0;
     }
 }

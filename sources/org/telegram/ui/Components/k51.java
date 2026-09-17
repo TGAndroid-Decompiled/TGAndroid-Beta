@@ -6,18 +6,18 @@ import android.text.style.MetricAffectingSpan;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.SharedConfig;
 public final class k51 extends MetricAffectingSpan {
-    public final CharSequence f27726a;
-    public final int f27727b;
-    public final int f27728c;
+    public final CharSequence f27699a;
+    public final int f27700b;
+    public final int f27701c;
     public final byte d;
-    public final n01 f27729e;
+    public final n01 f27702e;
 
     public k51(CharSequence charSequence, int i10, int i11, byte b10, n01 n01Var) {
-        this.f27726a = charSequence;
-        this.f27727b = i10;
-        this.f27728c = i11;
+        this.f27699a = charSequence;
+        this.f27700b = i10;
+        this.f27701c = i11;
         this.d = b10;
-        this.f27729e = n01Var;
+        this.f27702e = n01Var;
     }
 
     @Override
@@ -27,11 +27,11 @@ public final class k51 extends MetricAffectingSpan {
         if (b10 == 2) {
             textPaint.setColor(-1);
         } else if (b10 == 1) {
-            textPaint.setColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f20733fc, false));
+            textPaint.setColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f20706fc, false));
         } else {
             textPaint.setColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.ec, false));
         }
-        n01 n01Var = this.f27729e;
+        n01 n01Var = this.f27702e;
         if (n01Var != null) {
             n01Var.a(textPaint);
             return;
@@ -44,7 +44,7 @@ public final class k51 extends MetricAffectingSpan {
     public final void updateMeasureState(TextPaint textPaint) {
         textPaint.setTextSize(AndroidUtilities.dp(SharedConfig.fontSize - 1));
         textPaint.setFlags(textPaint.getFlags() | 128);
-        n01 n01Var = this.f27729e;
+        n01 n01Var = this.f27702e;
         if (n01Var != null) {
             n01Var.a(textPaint);
         } else {

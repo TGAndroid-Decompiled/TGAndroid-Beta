@@ -6,17 +6,17 @@ import android.graphics.Path;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 public final class v41 extends FrameLayout implements org.telegram.ui.ActionBar.z5 {
-    public final Path f41438a;
-    public dh.d f41439b;
+    public final Path f41411a;
+    public dh.d f41412b;
 
     public v41(Activity activity) {
         super(activity);
-        this.f41438a = new Path();
+        this.f41411a = new Path();
     }
 
     @Override
     public final void d() {
-        dh.d dVar = this.f41439b;
+        dh.d dVar = this.f41412b;
         if (dVar != null) {
             dVar.u();
         }
@@ -25,7 +25,7 @@ public final class v41 extends FrameLayout implements org.telegram.ui.ActionBar.
     @Override
     public final void dispatchDraw(Canvas canvas) {
         canvas.save();
-        canvas.clipPath(this.f41438a);
+        canvas.clipPath(this.f41411a);
         super.dispatchDraw(canvas);
         canvas.restore();
     }
@@ -37,13 +37,13 @@ public final class v41 extends FrameLayout implements org.telegram.ui.ActionBar.
     @Override
     public final void onSizeChanged(int i10, int i11, int i12, int i13) {
         super.onSizeChanged(i10, i11, i12, i13);
-        Path path = this.f41438a;
+        Path path = this.f41411a;
         path.rewind();
         path.addRoundRect(AndroidUtilities.dp(9.0f), AndroidUtilities.dp(9.0f), i10 - AndroidUtilities.dp(9.0f), i11 - AndroidUtilities.dp(9.0f), AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), Path.Direction.CW);
     }
 
     public void setBlurredBackground(dh.d dVar) {
-        this.f41439b = dVar;
+        this.f41412b = dVar;
         setBackground(dVar);
     }
 }

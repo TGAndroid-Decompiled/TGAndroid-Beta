@@ -8,24 +8,24 @@ import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.SharedConfig;
 public final class e4 extends FrameLayout {
-    public final org.telegram.ui.Components.fo0 f35946a;
-    public final int f35947b;
-    public final int f35948c;
+    public final org.telegram.ui.Components.fo0 f35919a;
+    public final int f35920b;
+    public final int f35921c;
     public int d;
-    public final TextPaint f35949e;
-    public final i4 f35950f;
+    public final TextPaint f35922e;
+    public final i4 f35923f;
 
     public e4(i4 i4Var, Context context) {
         super(context);
-        this.f35950f = i4Var;
-        this.f35947b = 12;
-        this.f35948c = 30;
+        this.f35923f = i4Var;
+        this.f35920b = 12;
+        this.f35921c = 30;
         setWillNotDraw(false);
         TextPaint textPaint = new TextPaint(1);
-        this.f35949e = textPaint;
+        this.f35922e = textPaint;
         textPaint.setTextSize(AndroidUtilities.dp(16.0f));
         org.telegram.ui.Components.fo0 fo0Var = new org.telegram.ui.Components.fo0(context, null, false);
-        this.f35946a = fo0Var;
+        this.f35919a = fo0Var;
         fo0Var.setReportChanges(true);
         fo0Var.setSeparatorsCount(19);
         fo0Var.setDelegate(new g(this, 3));
@@ -35,15 +35,15 @@ public final class e4 extends FrameLayout {
     @Override
     public final void invalidate() {
         super.invalidate();
-        this.f35946a.invalidate();
+        this.f35919a.invalidate();
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
         int i10 = org.telegram.ui.ActionBar.j6.I6;
-        this.f35950f.getClass();
+        this.f35923f.getClass();
         int w02 = org.telegram.ui.ActionBar.j6.w0(null, i10, false);
-        TextPaint textPaint = this.f35949e;
+        TextPaint textPaint = this.f35922e;
         textPaint.setColor(w02);
         canvas.drawText("" + SharedConfig.ivFontSize, getMeasuredWidth() - AndroidUtilities.dp(39.0f), AndroidUtilities.dp(28.0f), textPaint);
     }
@@ -54,8 +54,8 @@ public final class e4 extends FrameLayout {
         int size = View.MeasureSpec.getSize(i10);
         if (this.d != size) {
             int i12 = SharedConfig.ivFontSize;
-            int i13 = this.f35947b;
-            this.f35946a.setProgress((i12 - i13) / (this.f35948c - i13));
+            int i13 = this.f35920b;
+            this.f35919a.setProgress((i12 - i13) / (this.f35921c - i13));
             this.d = size;
         }
     }

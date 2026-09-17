@@ -7,123 +7,123 @@ import java.util.ArrayList;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class od1 extends org.telegram.ui.Components.kl0 {
-    public final Context f39252c;
+    public final Context f39225c;
     public final ArrayList d;
 
     public od1(Context context) {
-        this.f39252c = context;
+        this.f39225c = context;
         ArrayList arrayList = new ArrayList();
         this.d = arrayList;
         int currentTimeMillis = (int) (System.currentTimeMillis() / 1000);
         org.telegram.ui.Cells.m2 m2Var = new org.telegram.ui.Cells.m2();
-        m2Var.f22298a = LocaleController.getString(R.string.ThemePreviewDialog1);
-        m2Var.f22299b = LocaleController.getString(R.string.ThemePreviewDialogMessage1);
-        m2Var.f22300c = 0;
+        m2Var.f22271a = LocaleController.getString(R.string.ThemePreviewDialog1);
+        m2Var.f22272b = LocaleController.getString(R.string.ThemePreviewDialogMessage1);
+        m2Var.f22273c = 0;
         m2Var.d = 0;
-        m2Var.f22301e = true;
-        m2Var.f22302f = false;
-        m2Var.f22303g = 0;
+        m2Var.f22274e = true;
+        m2Var.f22275f = false;
+        m2Var.f22276g = 0;
         m2Var.h = currentTimeMillis;
-        m2Var.f22304i = false;
-        m2Var.f22305j = false;
-        m2Var.f22306k = 2;
+        m2Var.f22277i = false;
+        m2Var.f22278j = false;
+        m2Var.f22279k = 2;
         arrayList.add(m2Var);
         org.telegram.ui.Cells.m2 m2Var2 = new org.telegram.ui.Cells.m2();
-        m2Var2.f22298a = LocaleController.getString(R.string.ThemePreviewDialog2);
-        m2Var2.f22299b = LocaleController.getString(R.string.ThemePreviewDialogMessage2);
-        m2Var2.f22300c = 1;
+        m2Var2.f22271a = LocaleController.getString(R.string.ThemePreviewDialog2);
+        m2Var2.f22272b = LocaleController.getString(R.string.ThemePreviewDialogMessage2);
+        m2Var2.f22273c = 1;
         m2Var2.d = 2;
-        m2Var2.f22301e = false;
-        m2Var2.f22302f = false;
-        m2Var2.f22303g = 0;
+        m2Var2.f22274e = false;
+        m2Var2.f22275f = false;
+        m2Var2.f22276g = 0;
         m2Var2.h = currentTimeMillis - 3600;
-        m2Var2.f22304i = false;
-        m2Var2.f22305j = false;
-        m2Var2.f22306k = -1;
+        m2Var2.f22277i = false;
+        m2Var2.f22278j = false;
+        m2Var2.f22279k = -1;
         arrayList.add(m2Var2);
         org.telegram.ui.Cells.m2 m2Var3 = new org.telegram.ui.Cells.m2();
-        m2Var3.f22298a = LocaleController.getString(R.string.ThemePreviewDialog3);
-        m2Var3.f22299b = LocaleController.getString(R.string.ThemePreviewDialogMessage3);
-        m2Var3.f22300c = 2;
+        m2Var3.f22271a = LocaleController.getString(R.string.ThemePreviewDialog3);
+        m2Var3.f22272b = LocaleController.getString(R.string.ThemePreviewDialogMessage3);
+        m2Var3.f22273c = 2;
         m2Var3.d = 3;
-        m2Var3.f22301e = false;
-        m2Var3.f22302f = true;
-        m2Var3.f22303g = 0;
+        m2Var3.f22274e = false;
+        m2Var3.f22275f = true;
+        m2Var3.f22276g = 0;
         m2Var3.h = currentTimeMillis - 7200;
-        m2Var3.f22304i = false;
-        m2Var3.f22305j = true;
-        m2Var3.f22306k = -1;
+        m2Var3.f22277i = false;
+        m2Var3.f22278j = true;
+        m2Var3.f22279k = -1;
         arrayList.add(m2Var3);
         org.telegram.ui.Cells.m2 m2Var4 = new org.telegram.ui.Cells.m2();
-        m2Var4.f22298a = LocaleController.getString(R.string.ThemePreviewDialog4);
-        m2Var4.f22299b = LocaleController.getString(R.string.ThemePreviewDialogMessage4);
-        m2Var4.f22300c = 3;
+        m2Var4.f22271a = LocaleController.getString(R.string.ThemePreviewDialog4);
+        m2Var4.f22272b = LocaleController.getString(R.string.ThemePreviewDialogMessage4);
+        m2Var4.f22273c = 3;
         m2Var4.d = 0;
-        m2Var4.f22301e = false;
-        m2Var4.f22302f = false;
-        m2Var4.f22303g = 2;
+        m2Var4.f22274e = false;
+        m2Var4.f22275f = false;
+        m2Var4.f22276g = 2;
         m2Var4.h = currentTimeMillis - 10800;
-        m2Var4.f22304i = false;
-        m2Var4.f22305j = false;
-        m2Var4.f22306k = -1;
+        m2Var4.f22277i = false;
+        m2Var4.f22278j = false;
+        m2Var4.f22279k = -1;
         arrayList.add(m2Var4);
         org.telegram.ui.Cells.m2 m2Var5 = new org.telegram.ui.Cells.m2();
-        m2Var5.f22298a = LocaleController.getString(R.string.ThemePreviewDialog5);
-        m2Var5.f22299b = LocaleController.getString(R.string.ThemePreviewDialogMessage5);
-        m2Var5.f22300c = 4;
+        m2Var5.f22271a = LocaleController.getString(R.string.ThemePreviewDialog5);
+        m2Var5.f22272b = LocaleController.getString(R.string.ThemePreviewDialogMessage5);
+        m2Var5.f22273c = 4;
         m2Var5.d = 0;
-        m2Var5.f22301e = false;
-        m2Var5.f22302f = false;
-        m2Var5.f22303g = 1;
+        m2Var5.f22274e = false;
+        m2Var5.f22275f = false;
+        m2Var5.f22276g = 1;
         m2Var5.h = currentTimeMillis - 14400;
-        m2Var5.f22304i = false;
-        m2Var5.f22305j = false;
-        m2Var5.f22306k = 2;
+        m2Var5.f22277i = false;
+        m2Var5.f22278j = false;
+        m2Var5.f22279k = 2;
         arrayList.add(m2Var5);
         org.telegram.ui.Cells.m2 m2Var6 = new org.telegram.ui.Cells.m2();
-        m2Var6.f22298a = LocaleController.getString(R.string.ThemePreviewDialog6);
-        m2Var6.f22299b = LocaleController.getString(R.string.ThemePreviewDialogMessage6);
-        m2Var6.f22300c = 5;
+        m2Var6.f22271a = LocaleController.getString(R.string.ThemePreviewDialog6);
+        m2Var6.f22272b = LocaleController.getString(R.string.ThemePreviewDialogMessage6);
+        m2Var6.f22273c = 5;
         m2Var6.d = 0;
-        m2Var6.f22301e = false;
-        m2Var6.f22302f = false;
-        m2Var6.f22303g = 0;
+        m2Var6.f22274e = false;
+        m2Var6.f22275f = false;
+        m2Var6.f22276g = 0;
         m2Var6.h = currentTimeMillis - 18000;
-        m2Var6.f22304i = false;
-        m2Var6.f22305j = false;
-        m2Var6.f22306k = -1;
+        m2Var6.f22277i = false;
+        m2Var6.f22278j = false;
+        m2Var6.f22279k = -1;
         arrayList.add(m2Var6);
         org.telegram.ui.Cells.m2 m2Var7 = new org.telegram.ui.Cells.m2();
-        m2Var7.f22298a = LocaleController.getString(R.string.ThemePreviewDialog7);
-        m2Var7.f22299b = LocaleController.getString(R.string.ThemePreviewDialogMessage7);
-        m2Var7.f22300c = 6;
+        m2Var7.f22271a = LocaleController.getString(R.string.ThemePreviewDialog7);
+        m2Var7.f22272b = LocaleController.getString(R.string.ThemePreviewDialogMessage7);
+        m2Var7.f22273c = 6;
         m2Var7.d = 0;
-        m2Var7.f22301e = false;
-        m2Var7.f22302f = false;
-        m2Var7.f22303g = 0;
+        m2Var7.f22274e = false;
+        m2Var7.f22275f = false;
+        m2Var7.f22276g = 0;
         m2Var7.h = currentTimeMillis - 21600;
-        m2Var7.f22304i = true;
-        m2Var7.f22305j = false;
-        m2Var7.f22306k = -1;
+        m2Var7.f22277i = true;
+        m2Var7.f22278j = false;
+        m2Var7.f22279k = -1;
         arrayList.add(m2Var7);
         org.telegram.ui.Cells.m2 m2Var8 = new org.telegram.ui.Cells.m2();
-        m2Var8.f22298a = LocaleController.getString(R.string.ThemePreviewDialog8);
-        m2Var8.f22299b = LocaleController.getString(R.string.ThemePreviewDialogMessage8);
-        m2Var8.f22300c = 0;
+        m2Var8.f22271a = LocaleController.getString(R.string.ThemePreviewDialog8);
+        m2Var8.f22272b = LocaleController.getString(R.string.ThemePreviewDialogMessage8);
+        m2Var8.f22273c = 0;
         m2Var8.d = 0;
-        m2Var8.f22301e = false;
-        m2Var8.f22302f = false;
-        m2Var8.f22303g = 0;
+        m2Var8.f22274e = false;
+        m2Var8.f22275f = false;
+        m2Var8.f22276g = 0;
         m2Var8.h = currentTimeMillis - 25200;
-        m2Var8.f22304i = true;
-        m2Var8.f22305j = false;
-        m2Var8.f22306k = -1;
+        m2Var8.f22277i = true;
+        m2Var8.f22278j = false;
+        m2Var8.f22279k = -1;
         arrayList.add(m2Var8);
     }
 
     @Override
     public final boolean D(s4.c1 c1Var) {
-        if (c1Var.f45771f != 1) {
+        if (c1Var.f45743f != 1) {
             return true;
         }
         return false;
@@ -144,14 +144,14 @@ public final class od1 extends org.telegram.ui.Components.kl0 {
 
     @Override
     public final void v(s4.c1 c1Var, int i10) {
-        if (c1Var.f45771f == 0) {
-            org.telegram.ui.Cells.r2 r2Var = (org.telegram.ui.Cells.r2) c1Var.f45767a;
+        if (c1Var.f45743f == 0) {
+            org.telegram.ui.Cells.r2 r2Var = (org.telegram.ui.Cells.r2) c1Var.f45739a;
             ArrayList arrayList = this.d;
             boolean z10 = true;
             if (i10 == arrayList.size() - 1) {
                 z10 = false;
             }
-            r2Var.f22653s2 = z10;
+            r2Var.f22626s2 = z10;
             r2Var.setDialog((org.telegram.ui.Cells.m2) arrayList.get(i10));
         }
     }
@@ -159,7 +159,7 @@ public final class od1 extends org.telegram.ui.Components.kl0 {
     @Override
     public final s4.c1 x(ViewGroup viewGroup, int i10) {
         View r4Var;
-        Context context = this.f39252c;
+        Context context = this.f39225c;
         if (i10 == 0) {
             r4Var = new org.telegram.ui.Cells.r2(context, false);
         } else {

@@ -63,31 +63,31 @@ public final class b0 extends bb implements NotificationCenter.NotificationCente
     public final ArrayList X;
     public final List Y;
     public final List Z;
-    public final List f47097a0;
-    public final TLRPC.Chat f47098b0;
-    public final ArrayList f47099c0;
-    public final ArrayList f47100d0;
-    public final ArrayList f47101e0;
-    public final ArrayList f47102f0;
-    public vg.b f47103g0;
-    public int f47104h0;
-    public int f47105i0;
-    public int f47106j0;
-    public boolean f47107k0;
-    public int f47108l0;
+    public final List f47069a0;
+    public final TLRPC.Chat f47070b0;
+    public final ArrayList f47071c0;
+    public final ArrayList f47072d0;
+    public final ArrayList f47073e0;
+    public final ArrayList f47074f0;
+    public vg.b f47075g0;
+    public int f47076h0;
+    public int f47077i0;
+    public int f47078j0;
+    public boolean f47079k0;
+    public int f47080l0;
     public long m0;
-    public int f47109n0;
-    public int f47110o0;
-    public long f47111p0;
-    public final wg.a f47112q0;
-    public o0.a f47113r0;
-    public int f47114s0;
-    public k f47115t0;
-    public final TL_stories.PrepaidGiveaway f47116u0;
-    public String f47117v0;
-    public boolean f47118w0;
-    public boolean f47119x0;
-    public final u f47120y0;
+    public int f47081n0;
+    public int f47082o0;
+    public long f47083p0;
+    public final wg.a f47084q0;
+    public o0.a f47085r0;
+    public int f47086s0;
+    public k f47087t0;
+    public final TL_stories.PrepaidGiveaway f47088u0;
+    public String f47089v0;
+    public boolean f47090w0;
+    public boolean f47091x0;
+    public final u f47092y0;
 
     public b0(n2 n2Var, long j3, TL_stories.PrepaidGiveaway prepaidGiveaway) {
         super(n2Var, false);
@@ -106,17 +106,17 @@ public final class b0 extends bb implements NotificationCenter.NotificationCente
             asList2 = Arrays.asList(1, 3, 5, 7, 10, 25, 50, 100);
         }
         this.Z = asList2;
-        this.f47097a0 = Arrays.asList(750, 10000, 50000);
-        this.f47099c0 = new ArrayList();
-        this.f47100d0 = new ArrayList();
-        this.f47101e0 = new ArrayList();
-        this.f47102f0 = new ArrayList();
-        int i10 = wg.d.f48552s;
-        this.f47104h0 = 2;
-        this.f47105i0 = 0;
-        int i11 = wg.u.f48589s;
-        this.f47106j0 = 0;
-        this.f47108l0 = 12;
+        this.f47069a0 = Arrays.asList(750, 10000, 50000);
+        this.f47071c0 = new ArrayList();
+        this.f47072d0 = new ArrayList();
+        this.f47073e0 = new ArrayList();
+        this.f47074f0 = new ArrayList();
+        int i10 = wg.d.f48523s;
+        this.f47076h0 = 2;
+        this.f47077i0 = 0;
+        int i11 = wg.u.f48560s;
+        this.f47078j0 = 0;
+        this.f47080l0 = 12;
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(new Date().getTime() + 259200000);
         calendar.set(14, 0);
@@ -127,29 +127,29 @@ public final class b0 extends bb implements NotificationCenter.NotificationCente
         }
         calendar.set(12, i12);
         this.m0 = calendar.getTimeInMillis();
-        this.f47109n0 = 2;
-        this.f47110o0 = 2;
-        this.f47117v0 = "";
-        this.f47119x0 = true;
-        this.f47120y0 = new u(this, 0);
-        this.f47116u0 = prepaidGiveaway;
+        this.f47081n0 = 2;
+        this.f47082o0 = 2;
+        this.f47089v0 = "";
+        this.f47091x0 = true;
+        this.f47092y0 = new u(this, 0);
+        this.f47088u0 = prepaidGiveaway;
         this.v = 0.15f;
         setApplyTopPadding(false);
         setApplyBottomPadding(false);
         this.useBackgroundTopPadding = false;
         this.backgroundPaddingLeft = 0;
         N();
-        ((ViewGroup.MarginLayoutParams) this.f24675e.getLayoutParams()).leftMargin = 0;
-        ((ViewGroup.MarginLayoutParams) this.f24675e.getLayoutParams()).rightMargin = 0;
+        ((ViewGroup.MarginLayoutParams) this.f24648e.getLayoutParams()).leftMargin = 0;
+        ((ViewGroup.MarginLayoutParams) this.f24648e.getLayoutParams()).rightMargin = 0;
         if (prepaidGiveaway instanceof TL_stories.TL_prepaidStarsGiveaway) {
-            int i13 = wg.d.f48552s;
-            this.f47104h0 = 3;
+            int i13 = wg.d.f48523s;
+            this.f47076h0 = 3;
         }
         s4.j jVar = new s4.j();
         jVar.n(350L);
         jVar.o(pr.h);
         jVar.C = false;
-        jVar.f45806m = false;
+        jVar.f45778m = false;
         this.d.setItemAnimator(jVar);
         ll0 ll0Var = this.d;
         int i14 = this.backgroundPaddingLeft;
@@ -157,22 +157,22 @@ public final class b0 extends bb implements NotificationCenter.NotificationCente
         this.d.setOnScrollListener(new Object());
         this.d.setOnItemClickListener(new x5(23, this, n2Var));
         TLRPC.Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-j3));
-        this.f47098b0 = chat;
-        vg.b bVar = this.f47103g0;
+        this.f47070b0 = chat;
+        vg.b bVar = this.f47075g0;
         ArrayList arrayList = this.X;
         ll0 ll0Var2 = this.d;
         v vVar = new v(this);
         v vVar2 = new v(this);
         v vVar3 = new v(this);
-        bVar.f47823e = arrayList;
+        bVar.f47795e = arrayList;
         bVar.v = chat;
-        bVar.f47824f = ll0Var2;
+        bVar.f47796f = ll0Var2;
         bVar.h = vVar;
-        bVar.f47825n = vVar2;
-        bVar.f47827s = vVar3;
+        bVar.f47797n = vVar2;
+        bVar.f47799s = vVar3;
         a0(false, false);
         wg.a aVar = new wg.a(getContext(), this.resourcesProvider);
-        this.f47112q0 = aVar;
+        this.f47084q0 = aVar;
         aVar.setOnClickListener(new ir(this, prepaidGiveaway, j3, n2Var));
         Z(false);
         this.containerView.addView(aVar, w7.x5.d(-1, 68.0f, 80, 0.0f, 0.0f, 0.0f, 0.0f));
@@ -188,13 +188,13 @@ public final class b0 extends bb implements NotificationCenter.NotificationCente
         String str2;
         TL_stories.TL_prepaidStarsGiveaway tL_prepaidStarsGiveaway;
         long j10;
-        ArrayList arrayList = b0Var.f47101e0;
-        ArrayList arrayList2 = b0Var.f47099c0;
-        TLRPC.Chat chat = b0Var.f47098b0;
-        ArrayList arrayList3 = b0Var.f47100d0;
-        ArrayList arrayList4 = b0Var.f47102f0;
-        wg.a aVar = b0Var.f47112q0;
-        if (!aVar.f48524a.N) {
+        ArrayList arrayList = b0Var.f47073e0;
+        ArrayList arrayList2 = b0Var.f47071c0;
+        TLRPC.Chat chat = b0Var.f47070b0;
+        ArrayList arrayList3 = b0Var.f47072d0;
+        ArrayList arrayList4 = b0Var.f47074f0;
+        wg.a aVar = b0Var.f47084q0;
+        if (!aVar.f48495a.N) {
             if (b0Var.Y()) {
                 if (prepaidGiveaway instanceof TL_stories.TL_prepaidStarsGiveaway) {
                     tL_prepaidStarsGiveaway = (TL_stories.TL_prepaidStarsGiveaway) prepaidGiveaway;
@@ -211,7 +211,7 @@ public final class b0 extends bb implements NotificationCenter.NotificationCente
                 if (R != null) {
                     AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(R.getContext(), 0, R.getResourceProvider());
                     String string = LocaleController.getString(R.string.BoostingStartGiveawayConfirmTitle);
-                    b2 b2Var = alertDialog$Builder.f20226a;
+                    b2 b2Var = alertDialog$Builder.f20199a;
                     b2Var.R = string;
                     b2Var.T = AndroidUtilities.replaceTags(LocaleController.getString(R.string.BoostingStartGiveawayConfirmText));
                     alertDialog$Builder.k(LocaleController.getString(R.string.Start), new p2(t2Var, 7));
@@ -221,8 +221,8 @@ public final class b0 extends bb implements NotificationCenter.NotificationCente
                 }
                 return;
             }
-            int i11 = b0Var.f47104h0;
-            int i12 = wg.d.f48552s;
+            int i11 = b0Var.f47076h0;
+            int i12 = wg.d.f48523s;
             String str3 = "inapp";
             if (i11 == 3) {
                 Activity findActivity = AndroidUtilities.findActivity(b0Var.getContext());
@@ -230,12 +230,12 @@ public final class b0 extends bb implements NotificationCenter.NotificationCente
                     findActivity = LaunchActivity.G1;
                 }
                 if (findActivity != null && !findActivity.isFinishing()) {
-                    TL_stars.TL_starsGiveawayOption W = b0Var.W(b0Var.f47111p0);
+                    TL_stars.TL_starsGiveawayOption W = b0Var.W(b0Var.f47083p0);
                     int U = b0Var.U();
                     if (W != null) {
-                        aVar.f48524a.setLoading(true);
-                        int i13 = b0Var.f47106j0;
-                        int i14 = wg.u.f48589s;
+                        aVar.f48495a.setLoading(true);
+                        int i13 = b0Var.f47078j0;
+                        int i14 = wg.u.f48560s;
                         if (i13 == 1) {
                             z11 = true;
                         } else {
@@ -243,11 +243,11 @@ public final class b0 extends bb implements NotificationCenter.NotificationCente
                         }
                         s5 y3 = s5.y(b0Var.currentAccount, false);
                         int l4 = t.l(b0Var.m0);
-                        boolean z12 = b0Var.f47119x0;
-                        boolean z13 = b0Var.f47118w0;
-                        String str4 = b0Var.f47117v0;
+                        boolean z12 = b0Var.f47091x0;
+                        boolean z13 = b0Var.f47090w0;
+                        String str4 = b0Var.f47089v0;
                         bi.f0 f0Var = new bi.f0(21, b0Var, W);
-                        int i15 = y3.f52598a;
+                        int i15 = y3.f52567a;
                         if (!MessagesController.getInstance(i15).starsPurchaseAvailable()) {
                             n2 R2 = LaunchActivity.R();
                             if (R2 != null && R2.getContext() != null) {
@@ -298,8 +298,8 @@ public final class b0 extends bb implements NotificationCenter.NotificationCente
                         tL_inputStorePaymentStarsGiveaway.users = U;
                         if (!BuildVars.useInvoiceBilling() && BillingController.getInstance().isReady() && (str2 = W.store_product) != null) {
                             ?? obj3 = new Object();
-                            obj3.f4369b = "inapp";
-                            obj3.f4368a = str2;
+                            obj3.f4342b = "inapp";
+                            obj3.f4341a = str2;
                             BillingController.getInstance().queryProductDetails(Arrays.asList(obj3.a()), new a1.d(y3, f0Var, tL_inputStorePaymentStarsGiveaway, activity, 22));
                             return;
                         }
@@ -317,11 +317,11 @@ public final class b0 extends bb implements NotificationCenter.NotificationCente
                         ConnectionsManager.getInstance(i15).sendRequest(tL_payments_getPaymentForm, new c5(y3, f0Var, tL_inputInvoiceStars, 26));
                     }
                 }
-            } else if (b0Var.f47105i0 == 1) {
+            } else if (b0Var.f47077i0 == 1) {
                 ArrayList b10 = t.b(arrayList3.size(), arrayList4);
                 for (int i18 = 0; i18 < b10.size(); i18++) {
                     TLRPC.TL_premiumGiftCodeOption tL_premiumGiftCodeOption = (TLRPC.TL_premiumGiftCodeOption) b10.get(i18);
-                    if (tL_premiumGiftCodeOption.months == b0Var.f47108l0 && arrayList3.size() > 0) {
+                    if (tL_premiumGiftCodeOption.months == b0Var.f47080l0 && arrayList3.size() > 0) {
                         if (t.h()) {
                             Context context = b0Var.getContext();
                             f6 f6Var = b0Var.resourcesProvider;
@@ -341,7 +341,7 @@ public final class b0 extends bb implements NotificationCenter.NotificationCente
                                 int i20 = tL_premiumGiftCodeOption.users;
                                 AlertDialog$Builder alertDialog$Builder2 = new AlertDialog$Builder(context, 0, f6Var);
                                 String string2 = LocaleController.getString("BoostingReduceQuantity", R.string.BoostingReduceQuantity);
-                                b2 b2Var2 = alertDialog$Builder2.f20226a;
+                                b2 b2Var2 = alertDialog$Builder2.f20199a;
                                 b2Var2.R = string2;
                                 b2Var2.T = AndroidUtilities.replaceTags(LocaleController.formatPluralString("BoostingReduceUsersTextPlural", i20, join));
                                 alertDialog$Builder2.k(LocaleController.getString("OK", R.string.OK), new t0.a(5));
@@ -350,7 +350,7 @@ public final class b0 extends bb implements NotificationCenter.NotificationCente
                             }
                         }
                         aVar.b(true);
-                        t.k(arrayList3, tL_premiumGiftCodeOption, b0Var.f47098b0, null, n2Var, new w(b0Var, 0), new w(b0Var, 1));
+                        t.k(arrayList3, tL_premiumGiftCodeOption, b0Var.f47070b0, null, n2Var, new w(b0Var, 0), new w(b0Var, 1));
                         return;
                     }
                 }
@@ -359,7 +359,7 @@ public final class b0 extends bb implements NotificationCenter.NotificationCente
                 int i21 = 0;
                 while (i21 < b11.size()) {
                     TLRPC.TL_premiumGiftCodeOption tL_premiumGiftCodeOption3 = (TLRPC.TL_premiumGiftCodeOption) b11.get(i21);
-                    if (tL_premiumGiftCodeOption3.months == b0Var.f47108l0) {
+                    if (tL_premiumGiftCodeOption3.months == b0Var.f47080l0) {
                         if (t.h()) {
                             List list = b0Var.Y;
                             Context context2 = b0Var.getContext();
@@ -395,7 +395,7 @@ public final class b0 extends bb implements NotificationCenter.NotificationCente
                                 int i27 = tL_premiumGiftCodeOption5.users;
                                 AlertDialog$Builder alertDialog$Builder3 = new AlertDialog$Builder(context2, 0, f6Var2);
                                 String string3 = LocaleController.getString("BoostingReduceQuantity", R.string.BoostingReduceQuantity);
-                                b2 b2Var3 = alertDialog$Builder3.f20226a;
+                                b2 b2Var3 = alertDialog$Builder3.f20199a;
                                 b2Var3.R = string3;
                                 b2Var3.T = AndroidUtilities.replaceTags(LocaleController.formatPluralString("BoostingReduceQuantityTextPlural", i26, formatPluralString, Integer.valueOf(i27)));
                                 alertDialog$Builder3.k(LocaleController.getString("Reduce", R.string.Reduce), new sg.x(3, wVar, tL_premiumGiftCodeOption5));
@@ -404,8 +404,8 @@ public final class b0 extends bb implements NotificationCenter.NotificationCente
                                 return;
                             }
                         }
-                        int i28 = b0Var.f47106j0;
-                        int i29 = wg.u.f48589s;
+                        int i28 = b0Var.f47078j0;
+                        int i29 = wg.u.f48560s;
                         if (i28 == 1) {
                             z10 = true;
                         } else {
@@ -413,9 +413,9 @@ public final class b0 extends bb implements NotificationCenter.NotificationCente
                         }
                         int l10 = t.l(b0Var.m0);
                         aVar.b(true);
-                        boolean z14 = b0Var.f47119x0;
-                        boolean z15 = b0Var.f47118w0;
-                        String str5 = b0Var.f47117v0;
+                        boolean z14 = b0Var.f47091x0;
+                        boolean z15 = b0Var.f47090w0;
+                        String str5 = b0Var.f47089v0;
                         w wVar2 = new w(b0Var, 3);
                         String str6 = str3;
                         w wVar3 = new w(b0Var, 4);
@@ -444,14 +444,14 @@ public final class b0 extends bb implements NotificationCenter.NotificationCente
                                 TLObject tLObject = (TLObject) obj7;
                                 if (tLObject instanceof TLRPC.Chat) {
                                     i10 = i32;
-                                    tL_inputStorePaymentPremiumGiveaway.additional_peers.add(messagesController.getInputPeer(-((TLRPC.Chat) tLObject).f19896id));
+                                    tL_inputStorePaymentPremiumGiveaway.additional_peers.add(messagesController.getInputPeer(-((TLRPC.Chat) tLObject).f19869id));
                                 } else {
                                     i10 = i32;
                                 }
                                 i31 = i10;
                             }
-                            tL_inputStorePaymentPremiumGiveaway.boost_peer = messagesController.getInputPeer(-chat.f19896id);
-                            tL_inputStorePaymentPremiumGiveaway.boost_peer = messagesController.getInputPeer(-chat.f19896id);
+                            tL_inputStorePaymentPremiumGiveaway.boost_peer = messagesController.getInputPeer(-chat.f19869id);
+                            tL_inputStorePaymentPremiumGiveaway.boost_peer = messagesController.getInputPeer(-chat.f19869id);
                             tL_inputStorePaymentPremiumGiveaway.currency = tL_premiumGiftCodeOption3.currency;
                             tL_inputStorePaymentPremiumGiveaway.amount = tL_premiumGiftCodeOption3.amount;
                             int size7 = arrayList.size();
@@ -496,14 +496,14 @@ public final class b0 extends bb implements NotificationCenter.NotificationCente
                             TLObject tLObject2 = (TLObject) obj9;
                             if (tLObject2 instanceof TLRPC.Chat) {
                                 str = str6;
-                                tL_inputStorePaymentPremiumGiveaway2.additional_peers.add(messagesController2.getInputPeer(-((TLRPC.Chat) tLObject2).f19896id));
+                                tL_inputStorePaymentPremiumGiveaway2.additional_peers.add(messagesController2.getInputPeer(-((TLRPC.Chat) tLObject2).f19869id));
                             } else {
                                 str = str6;
                             }
                             str6 = str;
                         }
                         String str7 = str6;
-                        tL_inputStorePaymentPremiumGiveaway2.boost_peer = messagesController2.getInputPeer(-chat.f19896id);
+                        tL_inputStorePaymentPremiumGiveaway2.boost_peer = messagesController2.getInputPeer(-chat.f19869id);
                         int size9 = arrayList.size();
                         int i36 = 0;
                         while (i36 < size9) {
@@ -512,8 +512,8 @@ public final class b0 extends bb implements NotificationCenter.NotificationCente
                             tL_inputStorePaymentPremiumGiveaway2.countries_iso2.add(((TLRPC.TL_help_country) ((TLObject) obj10)).iso2);
                         }
                         ?? obj11 = new Object();
-                        obj11.f4369b = str7;
-                        obj11.f4368a = tL_premiumGiftCodeOption3.store_product;
+                        obj11.f4342b = str7;
+                        obj11.f4341a = tL_premiumGiftCodeOption3.store_product;
                         BillingController.getInstance().queryProductDetails(Arrays.asList(obj11.a()), new org.telegram.ui.Components.e1(tL_inputStorePaymentPremiumGiveaway2, tL_premiumGiftCodeOption3, connectionsManager2, wVar3, wVar2, n2Var, 3));
                         return;
                     }
@@ -529,31 +529,31 @@ public final class b0 extends bb implements NotificationCenter.NotificationCente
         boolean z10;
         o0.a aVar;
         boolean z11;
-        ArrayList arrayList = b0Var.f47100d0;
-        u uVar = b0Var.f47120y0;
+        ArrayList arrayList = b0Var.f47072d0;
+        u uVar = b0Var.f47092y0;
         if (view instanceof wg.y) {
             wg.y yVar = (wg.y) view;
             int type = yVar.getType();
-            boolean z12 = yVar.f23518e.h;
+            boolean z12 = yVar.f23491e.h;
             boolean z13 = !z12;
             yVar.setChecked(z13);
             int i10 = wg.y.L;
             if (type == 0) {
-                b0Var.f47119x0 = z13;
+                b0Var.f47091x0 = z13;
                 b0Var.a0(false, false);
             } else if (type == 1) {
                 yVar.setDivider(z13);
-                b0Var.f47118w0 = z13;
+                b0Var.f47090w0 = z13;
                 b0Var.a0(false, false);
-                vg.b bVar = b0Var.f47103g0;
+                vg.b bVar = b0Var.f47075g0;
                 int i11 = 0;
                 while (true) {
-                    if (i11 >= bVar.f47823e.size()) {
+                    if (i11 >= bVar.f47795e.size()) {
                         break;
                     }
-                    vg.a aVar2 = (vg.a) bVar.f47823e.get(i11);
-                    if (aVar2.f44099a == 15) {
-                        int i12 = aVar2.f47821l;
+                    vg.a aVar2 = (vg.a) bVar.f47795e.get(i11);
+                    if (aVar2.f44072a == 15) {
+                        int i12 = aVar2.f47793l;
                         int i13 = wg.y.L;
                         if (i12 == 1) {
                             if (!z12) {
@@ -565,8 +565,8 @@ public final class b0 extends bb implements NotificationCenter.NotificationCente
                     }
                     i11++;
                 }
-                b0Var.f47103g0.G();
-                if (!b0Var.f47118w0) {
+                b0Var.f47075g0.G();
+                if (!b0Var.f47090w0) {
                     AndroidUtilities.runOnUIThread(uVar, 250L);
                 } else {
                     AndroidUtilities.cancelRunOnUIThread(uVar);
@@ -576,30 +576,30 @@ public final class b0 extends bb implements NotificationCenter.NotificationCente
         if (view instanceof wg.c) {
             if (view instanceof wg.d) {
                 int selectedType = ((wg.d) view).getSelectedType();
-                int i14 = wg.d.f48552s;
+                int i14 = wg.d.f48523s;
                 if (selectedType != 2 && selectedType != 3) {
                     if (selectedType == 1) {
-                        o0.a aVar3 = b0Var.f47113r0;
+                        o0.a aVar3 = b0Var.f47085r0;
                         if (aVar3 != null) {
-                            ((a1) aVar3.f16796b).V(1, arrayList);
-                            ((n) aVar3.f16797c).f47183b.D(1);
+                            ((a1) aVar3.f16769b).V(1, arrayList);
+                            ((n) aVar3.f16770c).f47155b.D(1);
                         }
                     } else {
-                        b0Var.f47105i0 = selectedType;
+                        b0Var.f47077i0 = selectedType;
                         b0Var.a0(true, true);
                         b0Var.Z(true);
                         b0Var.N();
                     }
-                } else if (selectedType == 2 && b0Var.f47104h0 == selectedType) {
-                    o0.a aVar4 = b0Var.f47113r0;
+                } else if (selectedType == 2 && b0Var.f47076h0 == selectedType) {
+                    o0.a aVar4 = b0Var.f47085r0;
                     if (aVar4 != null) {
-                        ((a1) aVar4.f16796b).V(1, arrayList);
-                        ((n) aVar4.f16797c).f47183b.D(1);
+                        ((a1) aVar4.f16769b).V(1, arrayList);
+                        ((n) aVar4.f16770c).f47155b.D(1);
                         return;
                     }
                     return;
                 } else {
-                    b0Var.f47104h0 = selectedType;
+                    b0Var.f47076h0 = selectedType;
                     b0Var.a0(true, true);
                     b0Var.Z(true);
                     b0Var.N();
@@ -625,16 +625,16 @@ public final class b0 extends bb implements NotificationCenter.NotificationCente
         }
         if (view instanceof wg.u) {
             int selectedType2 = ((wg.u) view).getSelectedType();
-            if (b0Var.f47106j0 == selectedType2 && (aVar = b0Var.f47113r0) != null) {
-                ((a1) aVar.f16796b).V(3, b0Var.f47101e0);
-                ((n) aVar.f16797c).f47183b.D(1);
+            if (b0Var.f47078j0 == selectedType2 && (aVar = b0Var.f47085r0) != null) {
+                ((a1) aVar.f16769b).V(3, b0Var.f47073e0);
+                ((n) aVar.f16770c).f47155b.D(1);
             }
-            b0Var.f47106j0 = selectedType2;
+            b0Var.f47078j0 = selectedType2;
             b0Var.a0(false, false);
         } else if (view instanceof wg.i) {
-            b0Var.f47108l0 = ((TLRPC.TL_premiumGiftCodeOption) ((wg.i) view).getGifCode()).months;
+            b0Var.f47080l0 = ((TLRPC.TL_premiumGiftCodeOption) ((wg.i) view).getGifCode()).months;
             b0Var.a0(false, false);
-            b0Var.f47103g0.G();
+            b0Var.f47075g0.G();
         } else if (view instanceof wg.h) {
             Context context = n2Var.getContext();
             long j3 = b0Var.m0;
@@ -644,7 +644,7 @@ public final class b0 extends bb implements NotificationCenter.NotificationCente
             a3 a3Var = new a3(context, f6Var);
             a3Var.a();
             vc0 vc0Var = new vc0(context, f6Var);
-            int i16 = c5Var2.f24915a;
+            int i16 = c5Var2.f24888a;
             vc0Var.setTextColor(i16);
             vc0Var.setTextOffset(AndroidUtilities.dp(10.0f));
             vc0Var.setItemCount(5);
@@ -727,7 +727,7 @@ public final class b0 extends bb implements NotificationCenter.NotificationCente
             }
             in0Var.setPadding(AndroidUtilities.dp(34.0f), 0, AndroidUtilities.dp(34.0f), 0);
             in0Var.setGravity(17);
-            in0Var.setTextColor(c5Var.f24920g);
+            in0Var.setTextColor(c5Var.f24893g);
             in0Var.setTextSize(1, 14.0f);
             in0Var.setTypeface(AndroidUtilities.bold());
             in0Var.setBackground(y5.e(new float[]{8.0f}, c5Var.h));
@@ -735,9 +735,9 @@ public final class b0 extends bb implements NotificationCenter.NotificationCente
             c4Var.addView(in0Var, w7.x5.t(-1, 48, 83, 16, 15, 16, 16));
             in0Var.setOnClickListener(new org.telegram.ui.Components.n0(calendar, vc0Var, vc0Var2, vc0Var3, vVar, a3Var));
             a3Var.b(c4Var);
-            f3 f3Var = a3Var.f20232a;
+            f3 f3Var = a3Var.f20205a;
             f3Var.show();
-            int i21 = c5Var.f24916b;
+            int i21 = c5Var.f24889b;
             f3Var.setBackgroundColor(i21);
             f3Var.fixNavigationBar(i21);
             if (i0.a.f(i21) > 0.699999988079071d) {
@@ -747,34 +747,34 @@ public final class b0 extends bb implements NotificationCenter.NotificationCente
             }
             AndroidUtilities.setLightStatusBar(f3Var, z10);
         } else if (view instanceof wg.b) {
-            o0.a aVar5 = b0Var.f47113r0;
+            o0.a aVar5 = b0Var.f47085r0;
             if (aVar5 != null) {
-                ((a1) aVar5.f16796b).V(2, b0Var.f47099c0);
-                ((n) aVar5.f16797c).f47183b.D(1);
+                ((a1) aVar5.f16769b).V(2, b0Var.f47071c0);
+                ((n) aVar5.f16770c).f47155b.D(1);
             }
         } else if (view instanceof wg.w) {
             TL_stars.TL_starsGiveawayOption option = ((wg.w) view).getOption();
             if (option != null) {
-                b0Var.f47111p0 = option.stars;
+                b0Var.f47083p0 = option.stars;
                 b0Var.a0(true, true);
                 b0Var.Z(true);
                 b0Var.N();
             }
         } else if (view instanceof e7) {
-            b0Var.f47107k0 = true;
+            b0Var.f47079k0 = true;
             b0Var.a0(true, true);
         }
     }
 
     public static void R(b0 b0Var) {
-        o1 o1Var = new o1(b0Var.f24677n, b0Var.currentAccount, null, b0Var.resourcesProvider);
+        o1 o1Var = new o1(b0Var.f24650n, b0Var.currentAccount, null, b0Var.resourcesProvider);
         o1Var.setOnDismissListener(new x(b0Var, 1));
         o1Var.setOnShowListener(new y(b0Var, 1));
         o1Var.show();
     }
 
     public static void S(b0 b0Var) {
-        o1 o1Var = new o1(b0Var.f24677n, b0Var.currentAccount, null, b0Var.resourcesProvider);
+        o1 o1Var = new o1(b0Var.f24650n, b0Var.currentAccount, null, b0Var.resourcesProvider);
         o1Var.setOnDismissListener(new x(b0Var, 0));
         o1Var.setOnShowListener(new y(b0Var, 0));
         o1Var.show();
@@ -782,7 +782,7 @@ public final class b0 extends bb implements NotificationCenter.NotificationCente
 
     @Override
     public final void C(Canvas canvas, int i10) {
-        this.f47114s0 = i10;
+        this.f47086s0 = i10;
     }
 
     public final ArrayList T(long j3) {
@@ -802,32 +802,32 @@ public final class b0 extends bb implements NotificationCenter.NotificationCente
     }
 
     public final int U() {
-        int i10 = this.f47104h0;
-        int i11 = wg.d.f48552s;
+        int i10 = this.f47076h0;
+        int i11 = wg.d.f48523s;
         if (i10 == 2) {
-            return ((Integer) this.Y.get(this.f47109n0)).intValue();
+            return ((Integer) this.Y.get(this.f47081n0)).intValue();
         }
         List X = X();
-        int i12 = this.f47110o0;
+        int i12 = this.f47082o0;
         if (i12 < 0 || i12 >= X.size()) {
-            this.f47110o0 = 0;
+            this.f47082o0 = 0;
         }
-        if (this.f47110o0 >= X.size()) {
+        if (this.f47082o0 >= X.size()) {
             return 0;
         }
-        return ((Integer) X.get(this.f47110o0)).intValue();
+        return ((Integer) X.get(this.f47082o0)).intValue();
     }
 
     public final int V() {
         int U;
         int g10;
-        int i10 = this.f47104h0;
-        int i11 = wg.d.f48552s;
+        int i10 = this.f47076h0;
+        int i11 = wg.d.f48523s;
         if (i10 == 2) {
-            U = ((Integer) this.Y.get(this.f47109n0)).intValue();
+            U = ((Integer) this.Y.get(this.f47081n0)).intValue();
             g10 = t.g();
         } else {
-            TL_stars.TL_starsGiveawayOption W = W(this.f47111p0);
+            TL_stars.TL_starsGiveawayOption W = W(this.f47083p0);
             if (W != null) {
                 return W.yearly_boosts;
             }
@@ -852,13 +852,13 @@ public final class b0 extends bb implements NotificationCenter.NotificationCente
     }
 
     public final List X() {
-        int i10 = this.f47104h0;
-        int i11 = wg.d.f48552s;
+        int i10 = this.f47076h0;
+        int i11 = wg.d.f48523s;
         if (i10 == 2) {
             return this.Y;
         }
         ArrayList arrayList = new ArrayList();
-        TL_stars.TL_starsGiveawayOption W = W(this.f47111p0);
+        TL_stars.TL_starsGiveawayOption W = W(this.f47083p0);
         if (W != null) {
             for (int i12 = 0; i12 < W.winners.size(); i12++) {
                 TL_stars.TL_starsGiveawayWinnersOption tL_starsGiveawayWinnersOption = W.winners.get(i12);
@@ -871,7 +871,7 @@ public final class b0 extends bb implements NotificationCenter.NotificationCente
     }
 
     public final boolean Y() {
-        if (this.f47116u0 != null) {
+        if (this.f47088u0 != null) {
             return true;
         }
         return false;
@@ -880,9 +880,9 @@ public final class b0 extends bb implements NotificationCenter.NotificationCente
     public final void Z(boolean z10) {
         boolean z11;
         boolean Y = Y();
-        wg.a aVar = this.f47112q0;
+        wg.a aVar = this.f47084q0;
         if (Y) {
-            TL_stories.PrepaidGiveaway prepaidGiveaway = this.f47116u0;
+            TL_stories.PrepaidGiveaway prepaidGiveaway = this.f47088u0;
             if (prepaidGiveaway instanceof TL_stories.TL_prepaidStarsGiveaway) {
                 aVar.a(prepaidGiveaway.quantity, z10);
                 return;
@@ -890,27 +890,27 @@ public final class b0 extends bb implements NotificationCenter.NotificationCente
             aVar.a(t.g() * prepaidGiveaway.quantity, z10);
             return;
         }
-        int i10 = this.f47105i0;
-        int i11 = wg.d.f48552s;
+        int i10 = this.f47077i0;
+        int i11 = wg.d.f48523s;
         if (i10 == 0) {
             aVar.a(V(), z10);
             return;
         }
-        ArrayList arrayList = this.f47100d0;
+        ArrayList arrayList = this.f47072d0;
         int g10 = t.g() * arrayList.size();
         if (arrayList.size() > 0) {
             z11 = true;
         } else {
             z11 = false;
         }
-        aVar.f48527e = true;
-        di.d dVar = aVar.f48524a;
+        aVar.f48498e = true;
+        di.d dVar = aVar.f48495a;
         dVar.k();
         dVar.setShowZero(true);
         dVar.setEnabled(z11);
         dVar.b(g10, z10);
         dVar.g(LocaleController.getString(R.string.GiftPremium), z10, true);
-        aVar.f48525b.setBackgroundColor(j6.v0(j6.f20762h5, aVar.f48526c));
+        aVar.f48496b.setBackgroundColor(j6.v0(j6.f20735h5, aVar.f48497c));
     }
 
     public final void a0(boolean r26, boolean r27) {
@@ -927,7 +927,7 @@ public final class b0 extends bb implements NotificationCenter.NotificationCente
 
     @Override
     public final void dismiss() {
-        k kVar = this.f47115t0;
+        k kVar = this.f47087t0;
         if (kVar != null) {
             kVar.run();
         }
@@ -937,14 +937,14 @@ public final class b0 extends bb implements NotificationCenter.NotificationCente
     @Override
     public final kl0 v(ll0 ll0Var) {
         vg.b bVar = new vg.b(this.resourcesProvider);
-        this.f47103g0 = bVar;
+        this.f47075g0 = bVar;
         return bVar;
     }
 
     @Override
     public final CharSequence y() {
-        int i10 = this.f47105i0;
-        int i11 = wg.d.f48552s;
+        int i10 = this.f47077i0;
+        int i11 = wg.d.f48523s;
         if (i10 == 1) {
             return LocaleController.getString(R.string.GiftPremium);
         }

@@ -6,9 +6,9 @@ import org.telegram.tgnet.SerializedData;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class a extends TLObject {
-    public int f50076a;
-    public long f50077b;
-    public TLRPC.InputStorePaymentPurpose f50078c;
+    public int f50047a;
+    public long f50048b;
+    public TLRPC.InputStorePaymentPurpose f50049c;
 
     public static a a(SerializedData serializedData, int i10) {
         TLObject tLObject;
@@ -22,20 +22,20 @@ public final class a extends TLObject {
 
     @Override
     public final void readParams(InputSerializedData inputSerializedData, boolean z10) {
-        this.f50076a = inputSerializedData.readInt32(z10);
-        this.f50077b = inputSerializedData.readInt64(z10);
-        if ((this.f50076a & 1) != 0) {
-            this.f50078c = TLRPC.InputStorePaymentPurpose.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
+        this.f50047a = inputSerializedData.readInt32(z10);
+        this.f50048b = inputSerializedData.readInt64(z10);
+        if ((this.f50047a & 1) != 0) {
+            this.f50049c = TLRPC.InputStorePaymentPurpose.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
         }
     }
 
     @Override
     public final void serializeToStream(OutputSerializedData outputSerializedData) {
         outputSerializedData.writeInt32(495638674);
-        outputSerializedData.writeInt32(this.f50076a);
-        outputSerializedData.writeInt64(this.f50077b);
-        if ((this.f50076a & 1) != 0) {
-            this.f50078c.serializeToStream(outputSerializedData);
+        outputSerializedData.writeInt32(this.f50047a);
+        outputSerializedData.writeInt64(this.f50048b);
+        if ((this.f50047a & 1) != 0) {
+            this.f50049c.serializeToStream(outputSerializedData);
         }
     }
 }

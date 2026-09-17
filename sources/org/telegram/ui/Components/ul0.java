@@ -1,5 +1,5 @@
 package org.telegram.ui.Components;
 public abstract class ul0 extends org.telegram.ui.ActionBar.f3 {
-    public tl0 f30948b;
-    public EditTextBoldCursor f30949c;
+    public tl0 f30921b;
+    public EditTextBoldCursor f30922c;
 }

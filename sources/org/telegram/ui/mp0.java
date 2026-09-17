@@ -15,7 +15,7 @@ public final class mp0 extends org.telegram.ui.Components.ll0 {
     @Override
     public final Integer V0(int i10) {
         vp0 vp0Var = this.Y2;
-        if ((i10 >= vp0Var.f41630b0 && i10 < vp0Var.f41632c0) || (i10 >= vp0Var.f41633d0 && i10 < vp0Var.f41635e0)) {
+        if ((i10 >= vp0Var.f41603b0 && i10 < vp0Var.f41605c0) || (i10 >= vp0Var.f41606d0 && i10 < vp0Var.f41608e0)) {
             return 0;
         }
         return super.V0(i10);
@@ -38,7 +38,7 @@ public final class mp0 extends org.telegram.ui.Components.ll0 {
         zh.j5 j5Var;
         super.onLayout(z10, i10, i11, i12, i13);
         vp0 vp0Var = this.Y2;
-        bq0 bq0Var = vp0Var.f41647p0;
+        bq0 bq0Var = vp0Var.f41620p0;
         vp0Var.h();
         if (vp0Var.K != null) {
             if (vp0Var.J != null && vp0Var.c()) {
@@ -48,9 +48,9 @@ public final class mp0 extends org.telegram.ui.Components.ll0 {
             return;
         }
         if (this.X2 == 1) {
-            j5Var = bq0Var.f34889c;
+            j5Var = bq0Var.f34862c;
         } else {
-            j5Var = bq0Var.f34887b;
+            j5Var = bq0Var.f34860b;
         }
         if (j5Var != null && vp0Var.c()) {
             j5Var.a();

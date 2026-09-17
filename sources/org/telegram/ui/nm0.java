@@ -6,20 +6,20 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.Components.EditTextBoldCursor;
 public final class nm0 implements TextWatcher {
-    public final EditTextBoldCursor f39013a;
-    public final String f39014b;
-    public final pn0 f39015c;
+    public final EditTextBoldCursor f38986a;
+    public final String f38987b;
+    public final pn0 f38988c;
 
     public nm0(pn0 pn0Var, EditTextBoldCursor editTextBoldCursor, String str) {
-        this.f39015c = pn0Var;
-        this.f39013a = editTextBoldCursor;
-        this.f39014b = str;
+        this.f38988c = pn0Var;
+        this.f38986a = editTextBoldCursor;
+        this.f38987b = str;
     }
 
     @Override
     public final void afterTextChanged(Editable editable) {
         boolean z10;
-        EditTextBoldCursor editTextBoldCursor = this.f39013a;
+        EditTextBoldCursor editTextBoldCursor = this.f38986a;
         int intValue = ((Integer) editTextBoldCursor.getTag()).intValue();
         int i10 = 0;
         while (true) {
@@ -35,13 +35,13 @@ public final class nm0 implements TextWatcher {
                 break;
             }
         }
-        pn0 pn0Var = this.f39015c;
-        if (z10 && !pn0Var.f39622u0) {
+        pn0 pn0Var = this.f38988c;
+        if (z10 && !pn0Var.f39595u0) {
             editTextBoldCursor.setErrorText(LocaleController.getString(R.string.PassportUseLatinOnly));
             return;
         }
-        pn0Var.f39620t0[intValue] = z10;
-        pn0.J0(pn0Var, editTextBoldCursor, this.f39014b, editable, false);
+        pn0Var.f39593t0[intValue] = z10;
+        pn0.J0(pn0Var, editTextBoldCursor, this.f38987b, editable, false);
     }
 
     @Override

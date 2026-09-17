@@ -2,10 +2,10 @@ package org.telegram.ui.Components;
 
 import java.util.List;
 public final class y61 implements b2.z0 {
-    public final g71 f32883a;
+    public final g71 f32856a;
 
     public y61(g71 g71Var) {
-        this.f32883a = g71Var;
+        this.f32856a = g71Var;
     }
 
     @Override
@@ -14,7 +14,7 @@ public final class y61 implements b2.z0 {
 
     @Override
     public final void onPlayerStateChanged(boolean z10, int i10) {
-        g71 g71Var = this.f32883a;
+        g71 g71Var = this.f32856a;
         if (!g71Var.H && i10 == 3) {
             g71Var.H = true;
             if (g71Var.G && g71Var.I) {

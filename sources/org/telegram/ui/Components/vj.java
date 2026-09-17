@@ -2,29 +2,29 @@ package org.telegram.ui.Components;
 
 import org.telegram.messenger.AndroidUtilities;
 public final class vj implements Runnable {
-    public final int f31375a;
-    public final xj f31376b;
+    public final int f31348a;
+    public final xj f31349b;
 
     public vj(xj xjVar, int i10) {
-        this.f31375a = i10;
-        this.f31376b = xjVar;
+        this.f31348a = i10;
+        this.f31349b = xjVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f31375a) {
+        switch (this.f31348a) {
             case 0:
-                xj xjVar = this.f31376b;
-                if (xjVar.f32618f != null) {
-                    xjVar.v = org.telegram.messenger.w1.j(new StringBuilder("+"), xjVar.f32618f.phone, gf.b.c());
-                    xjVar.f32621s = xjVar.f32618f;
+                xj xjVar = this.f31349b;
+                if (xjVar.f32591f != null) {
+                    xjVar.v = org.telegram.messenger.w1.j(new StringBuilder("+"), xjVar.f32591f.phone, gf.b.c());
+                    xjVar.f32594s = xjVar.f32591f;
                     AndroidUtilities.runOnUIThread(new vj(xjVar, 1));
                     return;
                 }
                 return;
             default:
-                xj xjVar2 = this.f31376b;
-                xjVar2.f32616c.l(xjVar2.v, false);
+                xj xjVar2 = this.f31349b;
+                xjVar2.f32589c.l(xjVar2.v, false);
                 return;
         }
     }

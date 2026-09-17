@@ -14,14 +14,14 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.vl;
 import org.telegram.ui.Components.mp;
 public final class x8 extends FrameLayout {
-    public final TextView f23568a;
-    public final TextView f23569b;
-    public final mp f23570c;
+    public final TextView f23541a;
+    public final TextView f23542b;
+    public final mp f23543c;
     public boolean d;
-    public boolean f23571e;
-    public int f23572f;
+    public boolean f23544e;
+    public int f23545f;
     public float h;
-    public float f23573n;
+    public float f23546n;
 
     static {
         new t8("animationProgress", 1);
@@ -37,9 +37,9 @@ public final class x8 extends FrameLayout {
         int i13;
         float f11;
         float f12;
-        this.f23572f = 50;
+        this.f23545f = 50;
         TextView textView = new TextView(context);
-        this.f23568a = textView;
+        this.f23541a = textView;
         vl.r(textView, org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.G6, false), 1, 16.0f, 1);
         textView.setMaxLines(1);
         textView.setSingleLine(true);
@@ -70,8 +70,8 @@ public final class x8 extends FrameLayout {
         }
         addView(textView, w7.x5.d(-1, -1.0f, i14, f7, 0.0f, f10, 0.0f));
         TextView textView2 = new TextView(context);
-        this.f23569b = textView2;
-        textView2.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f21089z6, false));
+        this.f23542b = textView2;
+        textView2.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f21062z6, false));
         textView2.setTextSize(1, 13.0f);
         if (LocaleController.isRTL) {
             i12 = 5;
@@ -103,30 +103,30 @@ public final class x8 extends FrameLayout {
         }
         addView(textView2, w7.x5.d(-2, -2.0f, i15, f11, 36.0f, f12, 0.0f));
         mp mpVar = new mp(context, 21, null);
-        this.f23570c = mpVar;
+        this.f23543c = mpVar;
         mpVar.setDrawUnchecked(true);
         mpVar.setDrawBackgroundAsArc(10);
         mpVar.setDuration(100L);
-        mpVar.b(org.telegram.ui.ActionBar.j6.f20764h7, org.telegram.ui.ActionBar.j6.f20800j7, org.telegram.ui.ActionBar.j6.f20820k7);
+        mpVar.b(org.telegram.ui.ActionBar.j6.f20737h7, org.telegram.ui.ActionBar.j6.f20773j7, org.telegram.ui.ActionBar.j6.f20793k7);
         addView(mpVar, w7.x5.d(20, 20.0f, (LocaleController.isRTL ? 5 : 3) | 16, 22.0f, 0.0f, 22.0f, 0.0f));
         setClipChildren(false);
     }
 
     public void setAnimationProgress(float f7) {
         this.h = f7;
-        Math.max(this.f23573n, getMeasuredWidth() - this.f23573n);
+        Math.max(this.f23546n, getMeasuredWidth() - this.f23546n);
         AndroidUtilities.dp(40.0f);
         getMeasuredHeight();
     }
 
     public final void b(String str, String str2, boolean z10, boolean z11) {
-        TextView textView = this.f23568a;
+        TextView textView = this.f23541a;
         textView.setText(str);
-        TextView textView2 = this.f23569b;
+        TextView textView2 = this.f23542b;
         textView2.setText(str2);
         this.d = z11;
         textView2.setVisibility(0);
-        this.f23571e = z10;
+        this.f23544e = z10;
         if (z10) {
             textView2.setLines(0);
             textView2.setMaxLines(0);
@@ -164,7 +164,7 @@ public final class x8 extends FrameLayout {
             } else {
                 i10 = 0;
             }
-            canvas.drawLine(dp, measuredHeight, measuredWidth - i10, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.j6.f20813k0);
+            canvas.drawLine(dp, measuredHeight, measuredWidth - i10, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.j6.f20786k0);
         }
     }
 
@@ -173,10 +173,10 @@ public final class x8 extends FrameLayout {
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
         accessibilityNodeInfo.setClassName("android.widget.checkbox");
         accessibilityNodeInfo.setCheckable(true);
-        accessibilityNodeInfo.setChecked(this.f23570c.f28505a.f23935q);
+        accessibilityNodeInfo.setChecked(this.f23543c.f28478a.f23908q);
         StringBuilder sb2 = new StringBuilder();
-        sb2.append(this.f23568a.getText());
-        TextView textView = this.f23569b;
+        sb2.append(this.f23541a.getText());
+        TextView textView = this.f23542b;
         if (textView != null) {
             sb2.append("\n");
             sb2.append(textView.getText());
@@ -187,22 +187,22 @@ public final class x8 extends FrameLayout {
     @Override
     public final void onMeasure(int i10, int i11) {
         float f7;
-        if (this.f23571e) {
+        if (this.f23544e) {
             super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(0, 0));
             return;
         }
         int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824);
-        if (this.f23569b.getVisibility() == 0) {
+        if (this.f23542b.getVisibility() == 0) {
             f7 = 64.0f;
         } else {
-            f7 = this.f23572f;
+            f7 = this.f23545f;
         }
         super.onMeasure(makeMeasureSpec, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(f7) + (this.d ? 1 : 0), 1073741824));
     }
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        this.f23573n = motionEvent.getX();
+        this.f23546n = motionEvent.getX();
         return super.onTouchEvent(motionEvent);
     }
 
@@ -213,11 +213,11 @@ public final class x8 extends FrameLayout {
     }
 
     public void setChecked(boolean z10) {
-        this.f23570c.a(z10, true);
+        this.f23543c.a(z10, true);
     }
 
     public void setHeight(int i10) {
-        this.f23572f = i10;
+        this.f23545f = i10;
     }
 
     @Override
@@ -226,6 +226,6 @@ public final class x8 extends FrameLayout {
     }
 
     public void setTypeface(Typeface typeface) {
-        this.f23568a.setTypeface(typeface);
+        this.f23541a.setTypeface(typeface);
     }
 }

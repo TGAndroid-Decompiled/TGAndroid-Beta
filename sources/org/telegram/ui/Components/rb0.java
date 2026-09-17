@@ -11,20 +11,20 @@ import android.graphics.Shader;
 import android.graphics.drawable.Drawable;
 import org.telegram.messenger.AndroidUtilities;
 public final class rb0 extends Drawable {
-    public final int f30032a;
-    public boolean f30033b;
-    public Object f30034c;
+    public final int f30005a;
+    public boolean f30006b;
+    public Object f30007c;
     public Object d;
-    public Object f30035e;
+    public Object f30008e;
 
     public rb0(int i10) {
-        this.f30032a = i10;
+        this.f30005a = i10;
         switch (i10) {
             case 1:
-                this.f30034c = new Paint(1);
+                this.f30007c = new Paint(1);
                 Paint paint = new Paint(1);
                 this.d = paint;
-                this.f30035e = new Matrix();
+                this.f30008e = new Matrix();
                 paint.setStyle(Paint.Style.STROKE);
                 paint.setShader(new LinearGradient(0.0f, 0.0f, 0.0f, AndroidUtilities.dp(28.0f), new int[]{1308622847, 0, 452984831}, new float[]{0.0f, 0.5f, 1.0f}, Shader.TileMode.CLAMP));
                 return;
@@ -34,21 +34,21 @@ public final class rb0 extends Drawable {
     }
 
     public void b(int i10, int i11) {
-        ((Paint) this.f30034c).setShader(new LinearGradient(0.0f, 0.0f, 0.0f, AndroidUtilities.dp(28.0f), new int[]{i10, i11}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP));
+        ((Paint) this.f30007c).setShader(new LinearGradient(0.0f, 0.0f, 0.0f, AndroidUtilities.dp(28.0f), new int[]{i10, i11}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP));
     }
 
     @Override
     public final void draw(Canvas canvas) {
         xi0 xi0Var;
-        switch (this.f30032a) {
+        switch (this.f30005a) {
             case 0:
                 xi0 xi0Var2 = (xi0) this.d;
-                xi0 xi0Var3 = (xi0) this.f30034c;
+                xi0 xi0Var3 = (xi0) this.f30007c;
                 Rect rect = AndroidUtilities.rectTmp2;
                 rect.set(getBounds().centerX() - AndroidUtilities.dp(12.0f), getBounds().centerY() - AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f) + getBounds().centerX(), AndroidUtilities.dp(12.0f) + getBounds().centerY());
-                if (((xi0) this.f30035e).y()) {
-                    xi0 xi0Var4 = (xi0) this.f30035e;
-                    boolean z10 = this.f30033b;
+                if (((xi0) this.f30008e).y()) {
+                    xi0 xi0Var4 = (xi0) this.f30008e;
+                    boolean z10 = this.f30006b;
                     if (z10) {
                         xi0Var = xi0Var3;
                     } else {
@@ -58,23 +58,23 @@ public final class rb0 extends Drawable {
                         if (z10) {
                             xi0Var2 = xi0Var3;
                         }
-                        this.f30035e = xi0Var2;
-                        xi0Var2.K(xi0Var2.f32585e[0] - 1);
+                        this.f30008e = xi0Var2;
+                        xi0Var2.K(xi0Var2.f32558e[0] - 1);
                     }
                 }
-                ((xi0) this.f30035e).setBounds(rect);
-                ((xi0) this.f30035e).draw(canvas);
+                ((xi0) this.f30008e).setBounds(rect);
+                ((xi0) this.f30008e).draw(canvas);
                 return;
             default:
                 Paint paint = (Paint) this.d;
                 float dp = AndroidUtilities.dp(10.0f);
                 RectF rectF = AndroidUtilities.rectTmp;
                 rectF.set(getBounds());
-                Matrix matrix = (Matrix) this.f30035e;
+                Matrix matrix = (Matrix) this.f30008e;
                 matrix.reset();
                 matrix.postTranslate(rectF.left, rectF.top);
-                canvas.drawRoundRect(rectF, dp, dp, (Paint) this.f30034c);
-                if (this.f30033b) {
+                canvas.drawRoundRect(rectF, dp, dp, (Paint) this.f30007c);
+                if (this.f30006b) {
                     float dp2 = AndroidUtilities.dp(1.0f);
                     paint.setStrokeWidth(dp2);
                     matrix.reset();
@@ -90,7 +90,7 @@ public final class rb0 extends Drawable {
 
     @Override
     public int getIntrinsicHeight() {
-        switch (this.f30032a) {
+        switch (this.f30005a) {
             case 0:
                 return AndroidUtilities.dp(24.0f);
             default:
@@ -100,7 +100,7 @@ public final class rb0 extends Drawable {
 
     @Override
     public int getIntrinsicWidth() {
-        switch (this.f30032a) {
+        switch (this.f30005a) {
             case 0:
                 return AndroidUtilities.dp(24.0f);
             default:
@@ -110,7 +110,7 @@ public final class rb0 extends Drawable {
 
     @Override
     public final int getOpacity() {
-        switch (this.f30032a) {
+        switch (this.f30005a) {
             case 0:
                 return -2;
             default:
@@ -120,9 +120,9 @@ public final class rb0 extends Drawable {
 
     @Override
     public final void setAlpha(int i10) {
-        switch (this.f30032a) {
+        switch (this.f30005a) {
             case 0:
-                ((xi0) this.f30034c).setAlpha(i10);
+                ((xi0) this.f30007c).setAlpha(i10);
                 ((xi0) this.d).setAlpha(i10);
                 return;
             default:
@@ -132,9 +132,9 @@ public final class rb0 extends Drawable {
 
     @Override
     public final void setColorFilter(ColorFilter colorFilter) {
-        switch (this.f30032a) {
+        switch (this.f30005a) {
             case 0:
-                ((xi0) this.f30034c).setColorFilter(colorFilter);
+                ((xi0) this.f30007c).setColorFilter(colorFilter);
                 ((xi0) this.d).setColorFilter(colorFilter);
                 return;
             default:

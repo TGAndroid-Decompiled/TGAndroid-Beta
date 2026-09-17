@@ -9,33 +9,33 @@ import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.cj1;
 import zh.k5;
 public final class t3 implements k5 {
-    public final int f50586a;
-    public final long f50587b;
-    public final Utilities.Callback f50588c;
-    public int f50589e;
-    public long f50592i;
-    public String f50600q;
-    public boolean f50601r;
-    public boolean f50602s;
-    public boolean f50603t;
+    public final int f50557a;
+    public final long f50558b;
+    public final Utilities.Callback f50559c;
+    public int f50560e;
+    public long f50563i;
+    public String f50571q;
+    public boolean f50572r;
+    public boolean f50573s;
+    public boolean f50574t;
     public final ArrayList d = new ArrayList();
-    public final ArrayList f50590f = new ArrayList();
-    public final ArrayList f50591g = new ArrayList();
+    public final ArrayList f50561f = new ArrayList();
+    public final ArrayList f50562g = new ArrayList();
     public final ArrayList h = new ArrayList();
-    public final HashSet f50593j = new HashSet();
-    public final HashSet f50594k = new HashSet();
-    public final HashSet f50595l = new HashSet();
-    public final HashMap f50596m = new HashMap();
-    public final HashMap f50597n = new HashMap();
-    public final HashMap f50598o = new HashMap();
-    public s3 f50599p = s3.BY_PRICE;
-    public boolean f50604u = false;
+    public final HashSet f50564j = new HashSet();
+    public final HashSet f50565k = new HashSet();
+    public final HashSet f50566l = new HashSet();
+    public final HashMap f50567m = new HashMap();
+    public final HashMap f50568n = new HashMap();
+    public final HashMap f50569o = new HashMap();
+    public s3 f50570p = s3.BY_PRICE;
+    public boolean f50575u = false;
     public int v = -1;
 
     public t3(long j3, int i10, Utilities.Callback callback) {
-        this.f50586a = i10;
-        this.f50587b = j3;
-        this.f50588c = callback;
+        this.f50557a = i10;
+        this.f50558b = j3;
+        this.f50559c = callback;
     }
 
     @Override
@@ -50,7 +50,7 @@ public final class t3 implements k5 {
 
     @Override
     public final int c() {
-        return this.f50589e;
+        return this.f50560e;
     }
 
     @Override
@@ -60,27 +60,27 @@ public final class t3 implements k5 {
 
     public final void f() {
         if (this.v >= 0) {
-            ConnectionsManager.getInstance(this.f50586a).cancelRequest(this.v, true);
+            ConnectionsManager.getInstance(this.f50557a).cancelRequest(this.v, true);
             this.v = -1;
         }
-        this.f50603t = false;
+        this.f50574t = false;
     }
 
     public final void g(boolean z10) {
-        if (!this.f50603t) {
-            if (z10 || !this.f50604u) {
-                this.f50603t = true;
+        if (!this.f50574t) {
+            if (z10 || !this.f50575u) {
+                this.f50574t = true;
                 TL_stars.getResaleStarGifts getresalestargifts = new TL_stars.getResaleStarGifts();
-                getresalestargifts.gift_id = this.f50587b;
-                String str = this.f50600q;
+                getresalestargifts.gift_id = this.f50558b;
+                String str = this.f50571q;
                 if (str == null) {
                     str = "";
                 }
                 getresalestargifts.offset = str;
                 getresalestargifts.limit = 15;
-                getresalestargifts.for_craft = this.f50602s;
-                getresalestargifts.stars_only = this.f50601r;
-                s3 s3Var = this.f50599p;
+                getresalestargifts.for_craft = this.f50573s;
+                getresalestargifts.stars_only = this.f50572r;
+                s3 s3Var = this.f50570p;
                 int i10 = 0;
                 if (s3Var == s3.BY_NUMBER) {
                     getresalestargifts.sort_by_num = true;
@@ -92,10 +92,10 @@ public final class t3 implements k5 {
                     getresalestargifts.sort_by_num = false;
                     getresalestargifts.sort_by_price = true;
                 }
-                long j3 = this.f50592i;
+                long j3 = this.f50563i;
                 ArrayList arrayList = this.h;
-                ArrayList arrayList2 = this.f50591g;
-                ArrayList arrayList3 = this.f50590f;
+                ArrayList arrayList2 = this.f50562g;
+                ArrayList arrayList3 = this.f50561f;
                 if (j3 != 0) {
                     getresalestargifts.flags = 1 | getresalestargifts.flags;
                     getresalestargifts.attributes_hash = j3;
@@ -103,10 +103,10 @@ public final class t3 implements k5 {
                     getresalestargifts.flags = 1 | getresalestargifts.flags;
                     getresalestargifts.attributes_hash = 0L;
                 }
-                HashSet hashSet = this.f50593j;
+                HashSet hashSet = this.f50564j;
                 boolean isEmpty = hashSet.isEmpty();
-                HashSet hashSet2 = this.f50595l;
-                HashSet hashSet3 = this.f50594k;
+                HashSet hashSet2 = this.f50566l;
+                HashSet hashSet3 = this.f50565k;
                 if (!isEmpty || !hashSet3.isEmpty() || !hashSet2.isEmpty()) {
                     getresalestargifts.flags |= 8;
                     if (!hashSet.isEmpty()) {
@@ -116,9 +116,9 @@ public final class t3 implements k5 {
                             Object obj = arrayList3.get(i11);
                             i11++;
                             TL_stars.starGiftAttributeModel stargiftattributemodel = (TL_stars.starGiftAttributeModel) obj;
-                            if (!hashSet.contains(Long.valueOf(stargiftattributemodel.document.f19902id))) {
+                            if (!hashSet.contains(Long.valueOf(stargiftattributemodel.document.f19875id))) {
                                 TL_stars.starGiftAttributeIdModel stargiftattributeidmodel = new TL_stars.starGiftAttributeIdModel();
-                                stargiftattributeidmodel.document_id = stargiftattributemodel.document.f19902id;
+                                stargiftattributeidmodel.document_id = stargiftattributemodel.document.f19875id;
                                 getresalestargifts.attributes.add(stargiftattributeidmodel);
                             }
                         }
@@ -143,15 +143,15 @@ public final class t3 implements k5 {
                             Object obj3 = arrayList.get(i10);
                             i10++;
                             TL_stars.starGiftAttributePattern stargiftattributepattern = (TL_stars.starGiftAttributePattern) obj3;
-                            if (!hashSet2.contains(Long.valueOf(stargiftattributepattern.document.f19902id))) {
+                            if (!hashSet2.contains(Long.valueOf(stargiftattributepattern.document.f19875id))) {
                                 TL_stars.starGiftAttributeIdPattern stargiftattributeidpattern = new TL_stars.starGiftAttributeIdPattern();
-                                stargiftattributeidpattern.document_id = stargiftattributepattern.document.f19902id;
+                                stargiftattributeidpattern.document_id = stargiftattributepattern.document.f19875id;
                                 getresalestargifts.attributes.add(stargiftattributeidpattern);
                             }
                         }
                     }
                 }
-                this.v = ConnectionsManager.getInstance(this.f50586a).sendRequest(getresalestargifts, new cj1(5, this, getresalestargifts));
+                this.v = ConnectionsManager.getInstance(this.f50557a).sendRequest(getresalestargifts, new cj1(5, this, getresalestargifts));
             }
         }
     }
@@ -163,18 +163,18 @@ public final class t3 implements k5 {
 
     public final void h() {
         f();
-        this.f50600q = null;
+        this.f50571q = null;
         this.d.clear();
         g(true);
-        Utilities.Callback callback = this.f50588c;
+        Utilities.Callback callback = this.f50559c;
         if (callback != null) {
             callback.run(Boolean.TRUE);
         }
     }
 
     public final void i(s3 s3Var) {
-        if (this.f50599p != s3Var) {
-            this.f50599p = s3Var;
+        if (this.f50570p != s3Var) {
+            this.f50570p = s3Var;
             h();
         }
     }

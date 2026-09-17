@@ -10,21 +10,21 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class pa extends FrameLayout {
-    public final org.telegram.ui.Components.d90 f39477a;
-    public final org.telegram.ui.Cells.x1 f39478b;
-    public Integer f39479c;
+    public final org.telegram.ui.Components.d90 f39450a;
+    public final org.telegram.ui.Cells.x1 f39451b;
+    public Integer f39452c;
     public ValueAnimator d;
-    public final qa f39480e;
+    public final qa f39453e;
 
     public pa(qa qaVar, Activity activity) {
         super(activity);
         int i10;
-        this.f39480e = qaVar;
+        this.f39453e = qaVar;
         qaVar.F = this;
         setPadding(AndroidUtilities.dp(18.0f), AndroidUtilities.dp(10.0f), AndroidUtilities.dp(18.0f), AndroidUtilities.dp(17.0f));
         setClipChildren(false);
         org.telegram.ui.Components.d90 d90Var = new org.telegram.ui.Components.d90(activity, null);
-        this.f39477a = d90Var;
+        this.f39450a = d90Var;
         d90Var.setTextSize(1, 15.0f);
         int i11 = org.telegram.ui.ActionBar.j6.F6;
         d90Var.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, i11, false));
@@ -41,7 +41,7 @@ public final class pa extends FrameLayout {
         d90Var.setPadding(AndroidUtilities.dp(3.0f), 0, AndroidUtilities.dp(3.0f), 0);
         org.telegram.ui.Cells.x1 x1Var = new org.telegram.ui.Cells.x1(this, activity, 2);
         qaVar.G = x1Var;
-        this.f39478b = x1Var;
+        this.f39451b = x1Var;
         x1Var.setTextSize(1, 15.0f);
         x1Var.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, i11, false));
         x1Var.setGravity(LocaleController.isRTL ? 5 : 3);
@@ -50,7 +50,7 @@ public final class pa extends FrameLayout {
         x1Var.setPadding(AndroidUtilities.dp(3.0f), 0, AndroidUtilities.dp(3.0f), 0);
         addView(d90Var, w7.x5.e(-1, -2, 48));
         addView(x1Var, w7.x5.e(-1, -2, 48));
-        if (qaVar.f39836x != 0) {
+        if (qaVar.f39809x != 0) {
             String string = LocaleController.getString(R.string.BotUsernameHelp);
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(string);
             int indexOf = string.indexOf(42);
@@ -70,8 +70,8 @@ public final class pa extends FrameLayout {
         int intValue;
         int i10;
         final float f7;
-        org.telegram.ui.Components.d90 d90Var = paVar.f39477a;
-        org.telegram.ui.Cells.x1 x1Var = paVar.f39478b;
+        org.telegram.ui.Components.d90 d90Var = paVar.f39450a;
+        org.telegram.ui.Cells.x1 x1Var = paVar.f39451b;
         if (x1Var.getVisibility() == 0) {
             x1Var.measure(View.MeasureSpec.makeMeasureSpec((paVar.getMeasuredWidth() - paVar.getPaddingLeft()) - paVar.getPaddingRight(), 1073741824), View.MeasureSpec.makeMeasureSpec(9999999, Integer.MIN_VALUE));
         }
@@ -79,7 +79,7 @@ public final class pa extends FrameLayout {
         if (valueAnimator != null) {
             valueAnimator.cancel();
         }
-        Integer num = paVar.f39479c;
+        Integer num = paVar.f39452c;
         if (num == null) {
             intValue = paVar.getMeasuredHeight();
         } else {
@@ -107,8 +107,8 @@ public final class pa extends FrameLayout {
                 pa paVar2 = pa.this;
                 paVar2.getClass();
                 float floatValue = ((Float) valueAnimator2.getAnimatedValue()).floatValue();
-                paVar2.f39477a.setTranslationY(AndroidUtilities.lerp(translationY, f7, floatValue));
-                paVar2.f39479c = Integer.valueOf(AndroidUtilities.lerp(i11, i12, floatValue));
+                paVar2.f39450a.setTranslationY(AndroidUtilities.lerp(translationY, f7, floatValue));
+                paVar2.f39452c = Integer.valueOf(AndroidUtilities.lerp(i11, i12, floatValue));
                 paVar2.requestLayout();
             }
         });
@@ -119,7 +119,7 @@ public final class pa extends FrameLayout {
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        Integer num = this.f39479c;
+        Integer num = this.f39452c;
         if (num != null) {
             i11 = View.MeasureSpec.makeMeasureSpec(num.intValue(), 1073741824);
         }

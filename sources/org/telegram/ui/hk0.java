@@ -11,45 +11,45 @@ import android.view.View;
 import android.view.animation.OvershootInterpolator;
 import org.telegram.messenger.AndroidUtilities;
 public final class hk0 extends View {
-    public final Paint f37083a;
-    public final Paint f37084b;
-    public final org.telegram.ui.Components.e6 f37085c;
+    public final Paint f37056a;
+    public final Paint f37057b;
+    public final org.telegram.ui.Components.e6 f37058c;
     public final org.telegram.ui.Components.p6 d;
-    public int f37086e;
-    public float f37087f;
+    public int f37059e;
+    public float f37060f;
     public ValueAnimator h;
 
     public hk0(Context context) {
         super(context);
         Paint paint = new Paint(1);
-        this.f37083a = paint;
+        this.f37056a = paint;
         Paint paint2 = new Paint(1);
-        this.f37084b = paint2;
+        this.f37057b = paint2;
         org.telegram.ui.Components.pr prVar = org.telegram.ui.Components.pr.h;
-        this.f37085c = new org.telegram.ui.Components.e6(this, 0L, 320L, prVar);
+        this.f37058c = new org.telegram.ui.Components.e6(this, 0L, 320L, prVar);
         org.telegram.ui.Components.p6 p6Var = new org.telegram.ui.Components.p6(false, true, true, false);
         this.d = p6Var;
-        this.f37087f = 1.0f;
+        this.f37060f = 1.0f;
         paint.setColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.Oh, false));
-        paint2.setColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f20762h5, false));
+        paint2.setColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f20735h5, false));
         paint2.setStyle(Paint.Style.STROKE);
         paint2.setStrokeWidth(AndroidUtilities.dp(4.0f));
         p6Var.setCallback(this);
         p6Var.k(0.35f, 200L, prVar);
         Paint.Style style = Paint.Style.FILL_AND_STROKE;
-        TextPaint textPaint = p6Var.f29312a;
+        TextPaint textPaint = p6Var.f29285a;
         textPaint.setStyle(style);
         textPaint.setStrokeWidth(AndroidUtilities.dp(0.24f));
         textPaint.setStrokeJoin(Paint.Join.ROUND);
         p6Var.t(AndroidUtilities.dp(13.3f));
         p6Var.r(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.Sh, false));
         p6Var.G = AndroidUtilities.dp(64.0f);
-        p6Var.f29313b = 1;
+        p6Var.f29286b = 1;
     }
 
     public final boolean a(int i10) {
         boolean z10;
-        int i11 = this.f37086e;
+        int i11 = this.f37059e;
         if (i11 == i10) {
             return false;
         }
@@ -58,10 +58,10 @@ public final class hk0 extends View {
         } else {
             z10 = false;
         }
-        this.f37086e = i10;
+        this.f37059e = i10;
         String str = "";
         if (i10 > 0) {
-            str = "" + this.f37086e;
+            str = "" + this.f37059e;
         }
         this.d.q(str, true, true);
         if (z10) {
@@ -84,14 +84,14 @@ public final class hk0 extends View {
     @Override
     public final void onDraw(Canvas canvas) {
         float f7;
-        if (this.f37086e > 0) {
+        if (this.f37059e > 0) {
             f7 = 1.0f;
         } else {
             f7 = 0.0f;
         }
-        float d = this.f37085c.d(f7, false);
+        float d = this.f37058c.d(f7, false);
         canvas.save();
-        float f10 = this.f37087f;
+        float f10 = this.f37060f;
         canvas.scale(f10 * d, f10 * d, getWidth() / 2.0f, getHeight() / 2.0f);
         org.telegram.ui.Components.p6 p6Var = this.d;
         float dpf2 = AndroidUtilities.dpf2(12.66f) + p6Var.d();
@@ -99,10 +99,10 @@ public final class hk0 extends View {
         RectF rectF = AndroidUtilities.rectTmp;
         rectF.set((getWidth() - dpf2) / 2.0f, (getHeight() - dpf22) / 2.0f, (getWidth() + dpf2) / 2.0f, (getHeight() + dpf22) / 2.0f);
         int i10 = (int) (d * 255.0f);
-        Paint paint = this.f37084b;
+        Paint paint = this.f37057b;
         paint.setAlpha(i10);
         canvas.drawRoundRect(rectF, AndroidUtilities.dp(30.0f), AndroidUtilities.dp(30.0f), paint);
-        Paint paint2 = this.f37083a;
+        Paint paint2 = this.f37056a;
         paint2.setAlpha(i10);
         canvas.drawRoundRect(rectF, AndroidUtilities.dp(30.0f), AndroidUtilities.dp(30.0f), paint2);
         canvas.save();

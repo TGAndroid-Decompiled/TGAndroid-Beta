@@ -6,21 +6,21 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import java.util.Random;
 public final class rp {
-    public float f30095g;
-    public float f30098k;
-    public final Path f30090a = new Path();
-    public final float[] f30091b = new float[4];
-    public final float[] f30092c = new float[4];
+    public float f30068g;
+    public float f30071k;
+    public final Path f30063a = new Path();
+    public final float[] f30064b = new float[4];
+    public final float[] f30065c = new float[4];
     public final Matrix d = new Matrix();
     public final float h = 1.0f;
-    public final Random f30096i = new Random();
-    public final int f30094f = 6;
-    public final float f30093e = (float) (Math.tan(3.141592653589793d / 12) * 1.3333333333333333d);
-    public final float[] f30097j = new float[6];
+    public final Random f30069i = new Random();
+    public final int f30067f = 6;
+    public final float f30066e = (float) (Math.tan(3.141592653589793d / 12) * 1.3333333333333333d);
+    public final float[] f30070j = new float[6];
 
     public rp() {
-        for (int i10 = 0; i10 < this.f30094f; i10++) {
-            this.f30097j[i10] = (this.f30096i.nextInt() % 100) / 100.0f;
+        for (int i10 = 0; i10 < this.f30067f; i10++) {
+            this.f30070j[i10] = (this.f30069i.nextInt() % 100) / 100.0f;
         }
     }
 
@@ -29,17 +29,17 @@ public final class rp {
         int i10;
         float f12;
         rp rpVar = this;
-        float f13 = rpVar.f30095g;
+        float f13 = rpVar.f30068g;
         float f14 = (f13 - 0.0f) - 0.0f;
         float f15 = f13 + 0.0f + 0.0f;
         float max = Math.max(f14, f15);
-        float f16 = rpVar.f30093e;
+        float f16 = rpVar.f30066e;
         float f17 = max * f16 * rpVar.h;
-        Path path = rpVar.f30090a;
+        Path path = rpVar.f30063a;
         path.reset();
         int i11 = 0;
         while (true) {
-            int i12 = rpVar.f30094f;
+            int i12 = rpVar.f30067f;
             if (i11 < i12) {
                 Matrix matrix = rpVar.d;
                 matrix.reset();
@@ -50,10 +50,10 @@ public final class rp {
                 } else {
                     f11 = f15;
                 }
-                float f19 = rpVar.f30098k;
-                float[] fArr = rpVar.f30097j;
+                float f19 = rpVar.f30071k;
+                float[] fArr = rpVar.f30070j;
                 float f20 = (fArr[i11] * f19) + f11;
-                float[] fArr2 = rpVar.f30091b;
+                float[] fArr2 = rpVar.f30064b;
                 fArr2[0] = f7;
                 float f21 = f10 - f20;
                 fArr2[1] = f21;
@@ -72,8 +72,8 @@ public final class rp {
                 } else {
                     f12 = f22;
                 }
-                float f23 = rpVar.f30098k;
-                float[] fArr3 = rpVar.f30092c;
+                float f23 = rpVar.f30071k;
+                float[] fArr3 = rpVar.f30065c;
                 fArr3[0] = f7;
                 float f24 = f10 - ((fArr[i10] * f23) + f12);
                 fArr3[1] = f24;

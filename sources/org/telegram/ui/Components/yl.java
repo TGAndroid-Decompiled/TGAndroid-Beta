@@ -4,36 +4,36 @@ import android.content.Context;
 import android.view.accessibility.AccessibilityNodeInfo;
 import org.telegram.ui.wd1;
 public final class yl extends org.telegram.ui.ActionBar.v0 {
-    public final int f32968v0;
-    public final Object f32969w0;
+    public final int f32941v0;
+    public final Object f32942w0;
 
     public yl(ni niVar, Context context, org.telegram.ui.ActionBar.z zVar, org.telegram.ui.ActionBar.f6 f6Var, int i10) {
         super(context, zVar, 0, 0, false, f6Var);
-        this.f32968v0 = i10;
-        this.f32969w0 = niVar;
+        this.f32941v0 = i10;
+        this.f32942w0 = niVar;
     }
 
     @Override
     public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        switch (this.f32968v0) {
+        switch (this.f32941v0) {
             case 0:
                 super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-                accessibilityNodeInfo.setText(((ChatAttachAlertPhotoLayout) this.f32969w0).f23905x.getText());
+                accessibilityNodeInfo.setText(((ChatAttachAlertPhotoLayout) this.f32942w0).f23878x.getText());
                 return;
             case 1:
                 super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-                accessibilityNodeInfo.setText(((qm) this.f32969w0).f29800x.getText());
+                accessibilityNodeInfo.setText(((qm) this.f32942w0).f29773x.getText());
                 return;
             default:
                 super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-                accessibilityNodeInfo.setText(((wd1) this.f32969w0).h.getText());
+                accessibilityNodeInfo.setText(((wd1) this.f32942w0).h.getText());
                 return;
         }
     }
 
     public yl(wd1 wd1Var, Context context, org.telegram.ui.ActionBar.z zVar) {
         super(context, zVar, 0, 0);
-        this.f32968v0 = 2;
-        this.f32969w0 = wd1Var;
+        this.f32941v0 = 2;
+        this.f32942w0 = wd1Var;
     }
 }

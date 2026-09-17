@@ -8,22 +8,22 @@ import java.util.HashSet;
 import java.util.Iterator;
 import org.telegram.messenger.SavedMessagesController;
 public final class hu0 extends kl0 {
-    public final Context f26886c;
+    public final Context f26859c;
     public final SavedMessagesController d;
     public boolean h;
-    public pt0 f26891s;
-    public final xu0 f26893x;
-    public final ArrayList f26887e = new ArrayList();
-    public final ArrayList f26888f = new ArrayList();
-    public final jq0 f26889n = new jq0(this, 5);
-    public final s4.u0 f26890r = new s4.u0();
+    public pt0 f26864s;
+    public final xu0 f26866x;
+    public final ArrayList f26860e = new ArrayList();
+    public final ArrayList f26861f = new ArrayList();
+    public final jq0 f26862n = new jq0(this, 5);
+    public final s4.u0 f26863r = new s4.u0();
     public final s4.y v = new s4.y(new fu0(this));
-    public final HashSet f26892w = new HashSet();
+    public final HashSet f26865w = new HashSet();
 
     public hu0(xu0 xu0Var, Context context) {
-        this.f26893x = xu0Var;
-        this.f26886c = context;
-        SavedMessagesController savedMessagesController = xu0Var.f32754v1.getMessagesController().getSavedMessagesController();
+        this.f26866x = xu0Var;
+        this.f26859c = context;
+        SavedMessagesController savedMessagesController = xu0Var.f32727v1.getMessagesController().getSavedMessagesController();
         this.d = savedMessagesController;
         if (xu0Var.l0()) {
             savedMessagesController.loadDialogs(false);
@@ -48,7 +48,7 @@ public final class hu0 extends kl0 {
             int i11 = 0;
             int i12 = 0;
             while (true) {
-                arrayList = this.f26888f;
+                arrayList = this.f26861f;
                 if (i12 < arrayList.size()) {
                     if (((SavedMessagesController.SavedDialog) arrayList.get(i12)).dialogId == dialogId) {
                         savedDialog = (SavedMessagesController.SavedDialog) arrayList.get(i12);
@@ -64,9 +64,9 @@ public final class hu0 extends kl0 {
                 return;
             }
             Long valueOf = Long.valueOf(savedDialog.dialogId);
-            HashSet hashSet = this.f26892w;
+            HashSet hashSet = this.f26865w;
             boolean contains = hashSet.contains(valueOf);
-            xu0 xu0Var = this.f26893x;
+            xu0 xu0Var = this.f26866x;
             if (contains) {
                 hashSet.remove(Long.valueOf(savedDialog.dialogId));
                 if (hashSet.size() <= 0 && xu0Var.C1) {
@@ -76,11 +76,11 @@ public final class hu0 extends kl0 {
                 hashSet.add(Long.valueOf(savedDialog.dialogId));
                 if (hashSet.size() > 0 && !xu0Var.C1) {
                     xu0Var.b1(true);
-                    org.telegram.ui.ActionBar.v0 v0Var = xu0Var.f32751u0;
+                    org.telegram.ui.ActionBar.v0 v0Var = xu0Var.f32724u0;
                     if (v0Var != null) {
                         v0Var.setVisibility(8);
                     }
-                    org.telegram.ui.ActionBar.v0 v0Var2 = xu0Var.f32749t0;
+                    org.telegram.ui.ActionBar.v0 v0Var2 = xu0Var.f32722t0;
                     if (v0Var2 != null) {
                         v0Var2.setVisibility(8);
                     }
@@ -113,7 +113,7 @@ public final class hu0 extends kl0 {
                     break;
                 }
             }
-            org.telegram.ui.ActionBar.v0 v0Var3 = xu0Var.f32753v0;
+            org.telegram.ui.ActionBar.v0 v0Var3 = xu0Var.f32726v0;
             if (v0Var3 != null) {
                 if (z10) {
                     i10 = 8;
@@ -122,7 +122,7 @@ public final class hu0 extends kl0 {
                 }
                 v0Var3.setVisibility(i10);
             }
-            org.telegram.ui.ActionBar.v0 v0Var4 = xu0Var.f32756w0;
+            org.telegram.ui.ActionBar.v0 v0Var4 = xu0Var.f32729w0;
             if (v0Var4 != null) {
                 if (!z10) {
                     i11 = 8;
@@ -134,9 +134,9 @@ public final class hu0 extends kl0 {
     }
 
     public final void F(boolean z10) {
-        ArrayList arrayList = this.f26887e;
+        ArrayList arrayList = this.f26860e;
         arrayList.clear();
-        ArrayList arrayList2 = this.f26888f;
+        ArrayList arrayList2 = this.f26861f;
         arrayList.addAll(arrayList2);
         arrayList2.clear();
         arrayList2.addAll(this.d.allDialogs);
@@ -147,13 +147,13 @@ public final class hu0 extends kl0 {
 
     @Override
     public final int h() {
-        return this.f26888f.size();
+        return this.f26861f.size();
     }
 
     @Override
     public final long i(int i10) {
         if (i10 >= 0) {
-            ArrayList arrayList = this.f26888f;
+            ArrayList arrayList = this.f26861f;
             if (i10 < arrayList.size()) {
                 return ((SavedMessagesController.SavedDialog) arrayList.get(i10)).dialogId;
             }
@@ -168,30 +168,30 @@ public final class hu0 extends kl0 {
 
     @Override
     public final void v(s4.c1 c1Var, int i10) {
-        View view = c1Var.f45767a;
+        View view = c1Var.f45739a;
         if (!(view instanceof org.telegram.ui.Cells.r2)) {
             return;
         }
         org.telegram.ui.Cells.r2 r2Var = (org.telegram.ui.Cells.r2) view;
-        ArrayList arrayList = this.f26888f;
+        ArrayList arrayList = this.f26861f;
         SavedMessagesController.SavedDialog savedDialog = (SavedMessagesController.SavedDialog) arrayList.get(i10);
         r2Var.W(savedDialog.dialogId, savedDialog.message, savedDialog.getDate(), false, false);
         boolean z10 = true;
-        r2Var.f22651s0 = true;
-        r2Var.V(this.f26892w.contains(Long.valueOf(savedDialog.dialogId)), false);
+        r2Var.f22624s0 = true;
+        r2Var.V(this.f26865w.contains(Long.valueOf(savedDialog.dialogId)), false);
         if (i10 + 1 >= arrayList.size()) {
             z10 = false;
         }
-        r2Var.f22653s2 = z10;
+        r2Var.f22626s2 = z10;
     }
 
     @Override
     public final s4.c1 x(ViewGroup viewGroup, int i10) {
-        gu0 gu0Var = new gu0(this, this.f26886c);
-        xu0 xu0Var = this.f26893x;
+        gu0 gu0Var = new gu0(this, this.f26859c);
+        xu0 xu0Var = this.f26866x;
         gu0Var.setDialogCellDelegate(xu0Var);
-        gu0Var.f22645r0 = true;
-        gu0Var.setBackgroundColor(xu0Var.h0(org.telegram.ui.ActionBar.j6.f20691d6));
+        gu0Var.f22618r0 = true;
+        gu0Var.setBackgroundColor(xu0Var.h0(org.telegram.ui.ActionBar.j6.f20664d6));
         return new s4.c1(gu0Var);
     }
 }

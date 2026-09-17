@@ -5,17 +5,17 @@ import android.view.Menu;
 import org.telegram.ui.Components.ChatActivityEnterView;
 import org.telegram.ui.co;
 public final class g0 extends ChatActivityEnterView {
-    public final j0 f50318n5;
+    public final j0 f50289n5;
 
     public g0(j0 j0Var, Activity activity, f0 f0Var) {
         super(activity, f0Var, null, false, null);
-        this.f50318n5 = j0Var;
+        this.f50289n5 = j0Var;
     }
 
     @Override
     public final void A0(float f7) {
-        j0 j0Var = this.f50318n5;
-        j0Var.f50370f.setInputBubbleHeight(f7);
+        j0 j0Var = this.f50289n5;
+        j0Var.f50341f.setInputBubbleHeight(f7);
         j0Var.o();
     }
 

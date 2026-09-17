@@ -5,33 +5,33 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.VideoEditedInfo;
 import org.telegram.tgnet.TLRPC;
 public final class em extends su0 {
-    public final MessageObject f36156a;
-    public final MediaController.PhotoEntry f36157b;
-    public final fm f36158c;
+    public final MessageObject f36129a;
+    public final MediaController.PhotoEntry f36130b;
+    public final fm f36131c;
 
     public em(fm fmVar, MessageObject messageObject, MediaController.PhotoEntry photoEntry) {
-        this.f36158c = fmVar;
-        this.f36156a = messageObject;
-        this.f36157b = photoEntry;
+        this.f36131c = fmVar;
+        this.f36129a = messageObject;
+        this.f36130b = photoEntry;
     }
 
     @Override
     public final cv0 E(MessageObject messageObject, TLRPC.FileLocation fileLocation, int i10, boolean z10, boolean z11) {
-        return this.f36158c.f36460a.Q.Fa.E(this.f36156a, fileLocation, i10, z10, false);
+        return this.f36131c.f36433a.Q.Fa.E(this.f36129a, fileLocation, i10, z10, false);
     }
 
     @Override
     public final void o(int i10, VideoEditedInfo videoEditedInfo, boolean z10, int i11, int i12, boolean z11) {
-        om omVar = this.f36158c.f36460a;
-        MessageObject messageObject = this.f36156a;
+        om omVar = this.f36131c.f36433a;
+        MessageObject messageObject = this.f36129a;
         messageObject.settingAvatar = true;
-        MediaController.PhotoEntry photoEntry = this.f36157b;
+        MediaController.PhotoEntry photoEntry = this.f36130b;
         if (photoEntry.imagePath == null && !photoEntry.isVideo) {
             TLRPC.TL_photos_updateProfilePhoto tL_photos_updateProfilePhoto = new TLRPC.TL_photos_updateProfilePhoto();
             TLRPC.TL_inputPhoto tL_inputPhoto = new TLRPC.TL_inputPhoto();
-            tL_photos_updateProfilePhoto.f20028id = tL_inputPhoto;
+            tL_photos_updateProfilePhoto.f20001id = tL_inputPhoto;
             TLRPC.Photo photo = messageObject.messageOwner.action.photo;
-            tL_inputPhoto.f19915id = photo.f19920id;
+            tL_inputPhoto.f19888id = photo.f19893id;
             tL_inputPhoto.access_hash = photo.access_hash;
             tL_inputPhoto.file_reference = photo.file_reference;
             omVar.Q.getConnectionsManager().sendRequest(tL_photos_updateProfilePhoto, new bi.m1(29, this, messageObject));
@@ -42,8 +42,8 @@ public final class em extends su0 {
         org.telegram.ui.ActionBar.d5 parentLayout = coVar.getParentLayout();
         int currentAccount = coVar.getCurrentAccount();
         org.telegram.ui.Components.u40 u40Var = new org.telegram.ui.Components.u40(0, true, true);
-        u40Var.f30827a = coVar;
+        u40Var.f30800a = coVar;
         u40Var.t(photoEntry);
-        u40Var.f30828b = new da(currentAccount, djVar, parentLayout, u40Var);
+        u40Var.f30801b = new da(currentAccount, djVar, parentLayout, u40Var);
     }
 }

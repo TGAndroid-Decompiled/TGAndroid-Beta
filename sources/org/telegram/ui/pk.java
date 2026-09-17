@@ -6,25 +6,25 @@ import android.graphics.PorterDuffColorFilter;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 public final class pk extends org.telegram.ui.Components.od {
-    public final boolean f39562e;
-    public final co f39563f;
+    public final boolean f39535e;
+    public final co f39536f;
 
     public pk(co coVar, Context context, boolean z10) {
         super(context);
-        this.f39563f = coVar;
-        this.f39562e = z10;
+        this.f39536f = coVar;
+        this.f39535e = z10;
     }
 
     @Override
     public final void d() {
         int i10;
-        if (this.f39562e) {
+        if (this.f39535e) {
             i10 = AndroidUtilities.dp(4.0f);
         } else {
             i10 = 0;
         }
-        int i11 = org.telegram.ui.ActionBar.j6.f21025ve;
-        co coVar = this.f39563f;
+        int i11 = org.telegram.ui.ActionBar.j6.f20998ve;
+        co coVar = this.f39536f;
         setBackground(org.telegram.ui.ActionBar.j6.W(AndroidUtilities.dp(19.0f), 436207615 & coVar.getThemedColor(i11), i10, AndroidUtilities.dp(3.0f), 0, AndroidUtilities.dp(3.0f)));
         getImageView().setColorFilter(new PorterDuffColorFilter(coVar.getThemedColor(i11), PorterDuff.Mode.MULTIPLY));
         getTextView().setTextColor(coVar.getThemedColor(i11));
@@ -34,7 +34,7 @@ public final class pk extends org.telegram.ui.Components.od {
     public final void setEditButton(boolean z10) {
         int i10;
         super.setEditButton(z10);
-        if (this.f39562e) {
+        if (this.f39535e) {
             TextView textView = getTextView();
             if (z10) {
                 i10 = AndroidUtilities.dp(116.0f);

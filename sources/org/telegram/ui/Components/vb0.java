@@ -11,49 +11,49 @@ import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 public final class vb0 extends View {
-    public final p6 f31190a;
-    public final rb0 f31191b;
-    public boolean f31192c;
+    public final p6 f31163a;
+    public final rb0 f31164b;
+    public boolean f31165c;
     public boolean d;
-    public final String f31193e;
-    public final String f31194f;
+    public final String f31166e;
+    public final String f31167f;
     public final int h;
 
     public vb0(Context context, int i10, String str, int i11, String str2, org.telegram.ui.ActionBar.f6 f6Var) {
         super(context);
-        this.f31192c = true;
-        this.f31193e = str;
-        this.f31194f = str2;
-        setBackground(org.telegram.ui.ActionBar.j6.f0(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f20781i6, f6Var), 2, -1));
+        this.f31165c = true;
+        this.f31166e = str;
+        this.f31167f = str2;
+        setBackground(org.telegram.ui.ActionBar.j6.f0(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f20754i6, f6Var), 2, -1));
         p6 p6Var = new p6(true, true, true, false);
-        this.f31190a = p6Var;
+        this.f31163a = p6Var;
         p6Var.k(0.35f, 300L, pr.h);
         p6Var.t(AndroidUtilities.dp(16.0f));
         p6Var.r(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.E8, f6Var));
         p6Var.setCallback(this);
         p6Var.n(!LocaleController.isRTL);
         if (LocaleController.isRTL) {
-            p6Var.f29313b = 5;
+            p6Var.f29286b = 5;
         }
-        TextPaint textPaint = p6Var.f29312a;
+        TextPaint textPaint = p6Var.f29285a;
         int max = (int) (Math.max(textPaint.measureText(str), textPaint.measureText(str2)) + AndroidUtilities.dp(77.0f));
         this.h = max;
         p6Var.G = max;
         rb0 rb0Var = new rb0(0);
         xi0 xi0Var = new xi0(i10, AndroidUtilities.dp(24.0f), AndroidUtilities.dp(24.0f));
-        rb0Var.f30034c = xi0Var;
-        xi0Var.f32606v0 = this;
+        rb0Var.f30007c = xi0Var;
+        xi0Var.f32579v0 = this;
         xi0Var.H(true);
         xi0Var.h = true;
         xi0Var.I(0);
         xi0 xi0Var2 = new xi0(i11, AndroidUtilities.dp(24.0f), AndroidUtilities.dp(24.0f));
         rb0Var.d = xi0Var2;
-        xi0Var2.f32606v0 = this;
+        xi0Var2.f32579v0 = this;
         xi0Var2.H(true);
         xi0Var2.h = true;
         xi0Var2.I(0);
-        rb0Var.f30035e = xi0Var;
-        this.f31191b = rb0Var;
+        rb0Var.f30008e = xi0Var;
+        this.f31164b = rb0Var;
         rb0Var.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.F8, f6Var), PorterDuff.Mode.SRC_IN));
     }
 
@@ -61,52 +61,52 @@ public final class vb0 extends View {
         String str;
         boolean z12;
         xi0 xi0Var;
-        if (!this.f31192c && z10 == this.d) {
+        if (!this.f31165c && z10 == this.d) {
             return;
         }
         this.d = z10;
         if (z10) {
-            str = this.f31193e;
+            str = this.f31166e;
         } else {
-            str = this.f31194f;
+            str = this.f31167f;
         }
         if (z11 && !LocaleController.isRTL) {
             z12 = true;
         } else {
             z12 = false;
         }
-        p6 p6Var = this.f31190a;
+        p6 p6Var = this.f31163a;
         p6Var.q(str, z12, true);
-        rb0 rb0Var = this.f31191b;
+        rb0 rb0Var = this.f31164b;
         xi0 xi0Var2 = (xi0) rb0Var.d;
-        xi0 xi0Var3 = (xi0) rb0Var.f30034c;
-        rb0Var.f30033b = z10;
+        xi0 xi0Var3 = (xi0) rb0Var.f30007c;
+        rb0Var.f30006b = z10;
         if (z11) {
             if (z10) {
                 xi0Var = xi0Var3;
             } else {
                 xi0Var = xi0Var2;
             }
-            rb0Var.f30035e = xi0Var;
+            rb0Var.f30008e = xi0Var;
             xi0Var3.K(0);
             xi0Var2.K(0);
-            ((xi0) rb0Var.f30035e).start();
+            ((xi0) rb0Var.f30008e).start();
         } else {
             if (z10) {
                 xi0Var2 = xi0Var3;
             }
-            rb0Var.f30035e = xi0Var2;
-            xi0Var2.K(xi0Var2.f32585e[0] - 1);
+            rb0Var.f30008e = xi0Var2;
+            xi0Var2.K(xi0Var2.f32558e[0] - 1);
         }
-        this.f31192c = false;
-        setContentDescription(p6Var.f29317g);
+        this.f31165c = false;
+        setContentDescription(p6Var.f29290g);
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
         boolean z10 = LocaleController.isRTL;
-        p6 p6Var = this.f31190a;
-        rb0 rb0Var = this.f31191b;
+        p6 p6Var = this.f31163a;
+        rb0 rb0Var = this.f31164b;
         if (z10) {
             rb0Var.setBounds(getMeasuredWidth() - AndroidUtilities.dp(41.0f), org.telegram.messenger.vl.y(24.0f, getMeasuredHeight(), 2), getMeasuredWidth() - AndroidUtilities.dp(17.0f), (AndroidUtilities.dp(24.0f) + getMeasuredHeight()) / 2);
             p6Var.setBounds(0, 0, getMeasuredWidth() - AndroidUtilities.dp(59.0f), getMeasuredHeight());
@@ -145,7 +145,7 @@ public final class vb0 extends View {
 
     @Override
     public final boolean verifyDrawable(Drawable drawable) {
-        if (drawable != this.f31190a && !super.verifyDrawable(drawable)) {
+        if (drawable != this.f31163a && !super.verifyDrawable(drawable)) {
             return false;
         }
         return true;

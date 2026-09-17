@@ -2,16 +2,16 @@ package org.telegram.ui;
 
 import android.text.TextUtils;
 public final class ru extends pg.a {
-    public final int f40262c;
+    public final int f40235c;
     public final int d;
-    public final int f40263e;
-    public final CharSequence f40264f;
-    public final CharSequence f40265g;
+    public final int f40236e;
+    public final CharSequence f40237f;
+    public final CharSequence f40238g;
     public final int h;
 
     public ru(int i10, String str) {
         super(i10, false);
-        this.f40264f = str;
+        this.f40237f = str;
     }
 
     public static ru b(CharSequence charSequence, String str) {
@@ -23,18 +23,18 @@ public final class ru extends pg.a {
             return false;
         }
         ru ruVar = (ru) obj;
-        CharSequence charSequence = ruVar.f40264f;
-        int i10 = ruVar.f44099a;
-        int i11 = this.f44099a;
+        CharSequence charSequence = ruVar.f40237f;
+        int i10 = ruVar.f44072a;
+        int i11 = this.f44072a;
         if (i10 != i11) {
             return false;
         }
-        CharSequence charSequence2 = this.f40264f;
+        CharSequence charSequence2 = this.f40237f;
         if (i11 != 1 && i11 != 4 && i11 != 3 && i11 != 5) {
             if (i11 != 2) {
                 return true;
             }
-            if (ruVar.h != this.h || !TextUtils.equals(charSequence2, charSequence) || ruVar.d != this.d || ruVar.f40263e != this.f40263e || ruVar.f40262c != this.f40262c) {
+            if (ruVar.h != this.h || !TextUtils.equals(charSequence2, charSequence) || ruVar.d != this.d || ruVar.f40236e != this.f40236e || ruVar.f40235c != this.f40235c) {
                 return false;
             }
             return true;
@@ -45,10 +45,10 @@ public final class ru extends pg.a {
     public ru(int i10, int i11, int i12, int i13, CharSequence charSequence, CharSequence charSequence2) {
         super(2, false);
         this.h = i10;
-        this.f40262c = i11;
+        this.f40235c = i11;
         this.d = i12;
-        this.f40263e = i13;
-        this.f40264f = charSequence;
-        this.f40265g = charSequence2;
+        this.f40236e = i13;
+        this.f40237f = charSequence;
+        this.f40238g = charSequence2;
     }
 }

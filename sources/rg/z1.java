@@ -33,22 +33,22 @@ public final class z1 extends k {
     public final Rect E0;
     public final Paint F0;
     public MediaController.CropState G0;
-    public final TLObject f45613q0;
-    public final String f45614r0;
-    public final int f45615s0;
-    public boolean f45616t0;
-    public final e6 f45617u0;
-    public final iv0 f45618v0;
-    public final int f45619w0;
-    public boolean f45620x0;
-    public final e6 f45621y0;
-    public final ah.y f45622z0;
+    public final TLObject f45585q0;
+    public final String f45586r0;
+    public final int f45587s0;
+    public boolean f45588t0;
+    public final e6 f45589u0;
+    public final iv0 f45590v0;
+    public final int f45591w0;
+    public boolean f45592x0;
+    public final e6 f45593y0;
+    public final ah.y f45594z0;
 
     public z1(Context context, PointF pointF, iv0 iv0Var, String str, int i10) {
         super(context, pointF);
-        this.f45615s0 = -1;
-        this.f45616t0 = false;
-        this.f45620x0 = false;
+        this.f45587s0 = -1;
+        this.f45588t0 = false;
+        this.f45592x0 = false;
         new Rect();
         new RectF();
         new Paint(3);
@@ -57,15 +57,15 @@ public final class z1 extends k {
         this.F0 = new Paint(3);
         setRotation(0.0f);
         setScale(1.0f);
-        this.f45614r0 = str;
-        this.f45618v0 = iv0Var;
+        this.f45586r0 = str;
+        this.f45590v0 = iv0Var;
         ah.y yVar = new ah.y(this, context);
-        this.f45622z0 = yVar;
+        this.f45594z0 = yVar;
         addView(yVar, x5.c(-1.0f, -1));
         pr prVar = pr.h;
-        this.f45617u0 = new e6(yVar, 0L, 500L, prVar);
-        this.f45621y0 = new e6(yVar, 0L, 350L, prVar);
-        this.f45619w0 = i10;
+        this.f45589u0 = new e6(yVar, 0L, 500L, prVar);
+        this.f45593y0 = new e6(yVar, 0L, 350L, prVar);
+        this.f45591w0 = i10;
         Bitmap q6 = o8.q(new k5(str, 26), 1920, 1920, 0, false);
         this.A0 = q6;
         if (q6 != null) {
@@ -86,11 +86,11 @@ public final class z1 extends k {
     }
 
     public int getAnchor() {
-        return this.f45615s0;
+        return this.f45587s0;
     }
 
     public iv0 getBaseSize() {
-        return this.f45618v0;
+        return this.f45590v0;
     }
 
     public int getContentHeight() {
@@ -110,7 +110,7 @@ public final class z1 extends k {
     }
 
     public int getOrientation() {
-        return this.f45619w0;
+        return this.f45591w0;
     }
 
     public Bitmap getSegmentedOutBitmap() {
@@ -137,9 +137,9 @@ public final class z1 extends k {
 
     @Override
     public final void k() {
-        iv0 iv0Var = this.f45618v0;
-        float f7 = iv0Var.f27299a / 2.0f;
-        float f10 = iv0Var.f27300b / 2.0f;
+        iv0 iv0Var = this.f45590v0;
+        float f7 = iv0Var.f27272a / 2.0f;
+        float f10 = iv0Var.f27273b / 2.0f;
         MediaController.CropState cropState = this.G0;
         if (cropState != null) {
             f7 *= cropState.cropPw;
@@ -162,9 +162,9 @@ public final class z1 extends k {
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        iv0 iv0Var = this.f45618v0;
-        float f7 = iv0Var.f27299a;
-        float f10 = iv0Var.f27300b;
+        iv0 iv0Var = this.f45590v0;
+        float f7 = iv0Var.f27272a;
+        float f10 = iv0Var.f27273b;
         MediaController.CropState cropState = this.G0;
         if (cropState != null) {
             f7 *= cropState.cropPw;
@@ -174,23 +174,23 @@ public final class z1 extends k {
     }
 
     public final String q(int i10) {
-        TLObject tLObject = this.f45613q0;
+        TLObject tLObject = this.f45585q0;
         if (tLObject instanceof TLRPC.Photo) {
             try {
                 return FileLoader.getInstance(i10).getPathToAttach(FileLoader.getClosestPhotoSizeWithSize(((TLRPC.Photo) tLObject).sizes, 1000), true).getAbsolutePath();
             } catch (Exception unused) {
             }
         }
-        return this.f45614r0;
+        return this.f45586r0;
     }
 
     public final void r(boolean z10) {
-        boolean z11 = !this.f45616t0;
-        this.f45616t0 = z11;
+        boolean z11 = !this.f45588t0;
+        this.f45588t0 = z11;
         if (!z10) {
-            this.f45617u0.f(z11, true);
+            this.f45589u0.f(z11, true);
         }
-        ah.y yVar = this.f45622z0;
+        ah.y yVar = this.f45594z0;
         if (yVar != null) {
             yVar.invalidate();
         }
@@ -199,20 +199,20 @@ public final class z1 extends k {
     public final void s(Bitmap bitmap) {
         if (!this.C0 && !this.B0 && bitmap != null && Build.VERSION.SDK_INT >= 24) {
             ac.d dVar = new ac.d();
-            dVar.f408a = true;
+            dVar.f396a = true;
             zzd a2 = i8.d.a(new ac.e(dVar));
             this.B0 = true;
-            a2.g(vb.a.a(bitmap, this.f45619w0)).addOnSuccessListener(new k5(this, 27)).addOnFailureListener(new qv0(28, this, bitmap));
+            a2.g(vb.a.a(bitmap, this.f45591w0)).addOnSuccessListener(new k5(this, 27)).addOnFailureListener(new qv0(28, this, bitmap));
         }
     }
 
     public final void t(boolean z10) {
-        boolean z11 = !this.f45620x0;
-        this.f45620x0 = z11;
+        boolean z11 = !this.f45592x0;
+        this.f45592x0 = z11;
         if (!z10) {
-            this.f45621y0.f(z11, true);
+            this.f45593y0.f(z11, true);
         }
-        ah.y yVar = this.f45622z0;
+        ah.y yVar = this.f45594z0;
         if (yVar != null) {
             yVar.invalidate();
         }
@@ -220,9 +220,9 @@ public final class z1 extends k {
 
     public z1(Context context, PointF pointF, iv0 iv0Var, TLObject tLObject) {
         super(context, pointF);
-        this.f45615s0 = -1;
-        this.f45616t0 = false;
-        this.f45620x0 = false;
+        this.f45587s0 = -1;
+        this.f45588t0 = false;
+        this.f45592x0 = false;
         new Rect();
         new RectF();
         new Paint(3);
@@ -231,14 +231,14 @@ public final class z1 extends k {
         this.F0 = new Paint(3);
         setRotation(0.0f);
         setScale(1.0f);
-        this.f45613q0 = tLObject;
-        this.f45618v0 = iv0Var;
+        this.f45585q0 = tLObject;
+        this.f45590v0 = iv0Var;
         ah.y yVar = new ah.y(this, context);
-        this.f45622z0 = yVar;
+        this.f45594z0 = yVar;
         addView(yVar, x5.c(-1.0f, -1));
         pr prVar = pr.h;
-        this.f45617u0 = new e6(yVar, 0L, 500L, prVar);
-        this.f45621y0 = new e6(yVar, 0L, 350L, prVar);
+        this.f45589u0 = new e6(yVar, 0L, 500L, prVar);
+        this.f45593y0 = new e6(yVar, 0L, 350L, prVar);
         k();
     }
 }

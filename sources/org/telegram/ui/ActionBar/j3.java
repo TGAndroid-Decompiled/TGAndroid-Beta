@@ -12,26 +12,26 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Cells.wa;
 import org.telegram.ui.h41;
 public final class j3 implements Utilities.Callback {
-    public final int f20591a;
+    public final int f20564a;
 
     public j3(int i10) {
-        this.f20591a = i10;
+        this.f20564a = i10;
     }
 
     @Override
     public final void run(Object obj) {
-        switch (this.f20591a) {
+        switch (this.f20564a) {
             case 0:
                 Boolean bool = (Boolean) obj;
                 HashMap hashMap = o3.K;
                 return;
             case 1:
                 Boolean bool2 = (Boolean) obj;
-                int i10 = m3.f21220r;
+                int i10 = m3.f21193r;
                 return;
             case 2:
                 ArrayList arrayList = (ArrayList) obj;
-                int i11 = wa.f23527f;
+                int i11 = wa.f23500f;
                 return;
             case 3:
                 ((Boolean) obj).getClass();
@@ -50,7 +50,7 @@ public final class j3 implements Utilities.Callback {
                     edit.putStringSet("translate_button_restricted_languages", hashSet);
                 }
                 edit.putInt("translate_button_restricted_languages_version", 2).apply();
-                h41.f36905s = false;
+                h41.f36878s = false;
                 for (int i12 = 0; i12 < 4; i12++) {
                     try {
                         MessagesController.getInstance(i12).getTranslateController().checkRestrictedLanguagesUpdate();

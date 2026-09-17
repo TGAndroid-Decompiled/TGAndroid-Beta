@@ -10,29 +10,29 @@ import android.text.TextPaint;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 public final class jc extends View {
-    public final Paint f27455a;
-    public long f27456b;
-    public int f27457c;
+    public final Paint f27428a;
+    public long f27429b;
+    public int f27430c;
     public String d;
-    public int f27458e;
-    public StaticLayout f27459f;
+    public int f27431e;
+    public StaticLayout f27432f;
     public StaticLayout h;
-    public int f27460n;
-    public float f27461r;
-    public final TextPaint f27462s;
+    public int f27433n;
+    public float f27434r;
+    public final TextPaint f27435s;
     public long v;
-    public final RectF f27463w;
+    public final RectF f27436w;
 
     public jc(Context context, org.telegram.ui.ActionBar.f6 f6Var) {
         super(context);
-        this.f27461r = 1.0f;
-        this.f27463w = new RectF();
+        this.f27434r = 1.0f;
+        this.f27436w = new RectF();
         TextPaint textPaint = new TextPaint(1);
-        this.f27462s = textPaint;
+        this.f27435s = textPaint;
         textPaint.setTextSize(AndroidUtilities.dp(12.0f));
         textPaint.setTypeface(AndroidUtilities.getTypeface("fonts/num.otf"));
         Paint paint = new Paint(1);
-        this.f27455a = paint;
+        this.f27428a = paint;
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeWidth(AndroidUtilities.dp(2.0f));
         paint.setStrokeCap(Paint.Cap.ROUND);
@@ -45,66 +45,66 @@ public final class jc extends View {
         int i10;
         String valueOf;
         super.onDraw(canvas);
-        if (this.f27456b > 0) {
+        if (this.f27429b > 0) {
             i10 = (int) Math.ceil(((float) j3) / 1000.0f);
         } else {
             i10 = 0;
         }
-        RectF rectF = this.f27463w;
+        RectF rectF = this.f27436w;
         rectF.set(AndroidUtilities.dp(1.0f), AndroidUtilities.dp(1.0f), getMeasuredWidth() - AndroidUtilities.dp(1.0f), getMeasuredHeight() - AndroidUtilities.dp(1.0f));
-        int i11 = this.f27457c;
-        TextPaint textPaint = this.f27462s;
+        int i11 = this.f27430c;
+        TextPaint textPaint = this.f27435s;
         if (i11 != i10) {
-            this.f27457c = i10;
+            this.f27430c = i10;
             this.d = String.valueOf(Math.max(0, i10));
-            StaticLayout staticLayout = this.f27459f;
+            StaticLayout staticLayout = this.f27432f;
             if (staticLayout != null) {
                 this.h = staticLayout;
-                this.f27461r = 0.0f;
-                this.f27460n = this.f27458e;
+                this.f27434r = 0.0f;
+                this.f27433n = this.f27431e;
             }
-            this.f27458e = (int) Math.ceil(textPaint.measureText(valueOf));
-            this.f27459f = new StaticLayout(this.d, textPaint, Integer.MAX_VALUE, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+            this.f27431e = (int) Math.ceil(textPaint.measureText(valueOf));
+            this.f27432f = new StaticLayout(this.d, textPaint, Integer.MAX_VALUE, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
         }
-        float f7 = this.f27461r;
+        float f7 = this.f27434r;
         if (f7 < 1.0f) {
             float f10 = f7 + 0.10666667f;
-            this.f27461r = f10;
+            this.f27434r = f10;
             if (f10 > 1.0f) {
-                this.f27461r = 1.0f;
+                this.f27434r = 1.0f;
             } else {
                 invalidate();
             }
         }
         int alpha = textPaint.getAlpha();
         if (this.h != null) {
-            float f11 = this.f27461r;
+            float f11 = this.f27434r;
             if (f11 < 1.0f) {
                 textPaint.setAlpha((int) ((1.0f - f11) * alpha));
                 canvas.save();
-                canvas.translate(rectF.centerX() - (this.f27460n / 2.0f), ((AndroidUtilities.dp(10.0f) * this.f27461r) + (rectF.centerY() - (this.h.getHeight() / 2.0f))) - AndroidUtilities.dp(0.5f));
+                canvas.translate(rectF.centerX() - (this.f27433n / 2.0f), ((AndroidUtilities.dp(10.0f) * this.f27434r) + (rectF.centerY() - (this.h.getHeight() / 2.0f))) - AndroidUtilities.dp(0.5f));
                 this.h.draw(canvas);
                 textPaint.setAlpha(alpha);
                 canvas.restore();
             }
         }
-        if (this.f27459f != null) {
-            float f12 = this.f27461r;
+        if (this.f27432f != null) {
+            float f12 = this.f27434r;
             if (f12 != 1.0f) {
                 textPaint.setAlpha((int) (alpha * f12));
             }
             canvas.save();
-            canvas.translate(rectF.centerX() - (this.f27458e / 2.0f), com.google.android.gms.internal.vision.e2.b(1.0f, this.f27461r, AndroidUtilities.dp(10.0f), rectF.centerY() - (this.f27459f.getHeight() / 2.0f)) - AndroidUtilities.dp(0.5f));
-            this.f27459f.draw(canvas);
-            if (this.f27461r != 1.0f) {
+            canvas.translate(rectF.centerX() - (this.f27431e / 2.0f), com.google.android.gms.internal.vision.e2.b(1.0f, this.f27434r, AndroidUtilities.dp(10.0f), rectF.centerY() - (this.f27432f.getHeight() / 2.0f)) - AndroidUtilities.dp(0.5f));
+            this.f27432f.draw(canvas);
+            if (this.f27434r != 1.0f) {
                 textPaint.setAlpha(alpha);
             }
             canvas.restore();
         }
-        canvas.drawArc(rectF, -90.0f, (((float) Math.max(0L, this.f27456b)) / 5000.0f) * (-360.0f), false, this.f27455a);
+        canvas.drawArc(rectF, -90.0f, (((float) Math.max(0L, this.f27429b)) / 5000.0f) * (-360.0f), false, this.f27428a);
         if (this.v != 0) {
             long currentTimeMillis = System.currentTimeMillis();
-            this.f27456b -= currentTimeMillis - this.v;
+            this.f27429b -= currentTimeMillis - this.v;
             this.v = currentTimeMillis;
         } else {
             this.v = System.currentTimeMillis();
@@ -113,7 +113,7 @@ public final class jc extends View {
     }
 
     public void setColor(int i10) {
-        this.f27462s.setColor(i10);
-        this.f27455a.setColor(i10);
+        this.f27435s.setColor(i10);
+        this.f27428a.setColor(i10);
     }
 }

@@ -14,23 +14,23 @@ import org.telegram.ui.Components.mp;
 import sg.p0;
 import w7.x5;
 public final class b extends wg.c {
-    public final mp f50189r;
-    public TLRPC.TL_help_country f50190s;
+    public final mp f50160r;
+    public TLRPC.TL_help_country f50161s;
     public final TextPaint v;
-    public final p0 f50191w;
+    public final p0 f50162w;
 
     public b(Context context, f6 f6Var) {
         super(context, f6Var);
         int i10;
         TextPaint textPaint = new TextPaint();
         this.v = textPaint;
-        this.f50191w = new p0(this, 16);
+        this.f50162w = new p0(this, 16);
         textPaint.setTextSize(AndroidUtilities.dp(20.0f));
-        this.f48539f.setVisibility(8);
-        this.f48537c.setVisibility(8);
+        this.f48510f.setVisibility(8);
+        this.f48508c.setVisibility(8);
         mp mpVar = new mp(context, 21, f6Var);
-        this.f50189r = mpVar;
-        mpVar.b(j6.B5, j6.f20800j7, j6.C5);
+        this.f50160r = mpVar;
+        mpVar.b(j6.B5, j6.f20773j7, j6.C5);
         mpVar.setDrawUnchecked(true);
         mpVar.setDrawBackgroundAsArc(10);
         addView(mpVar);
@@ -55,7 +55,7 @@ public final class b extends wg.c {
 
     @Override
     public final void c(boolean z10, boolean z11) {
-        mp mpVar = this.f50189r;
+        mp mpVar = this.f50160r;
         if (mpVar.getVisibility() == 0) {
             mpVar.a(z10, z11);
         }
@@ -107,7 +107,7 @@ public final class b extends wg.c {
         } else {
             f12 = 20.0f;
         }
-        this.f48538e.setLayoutParams(x5.d(-1, -2.0f, i14, f11, 0.0f, f12, 0.0f));
+        this.f48509e.setLayoutParams(x5.d(-1, -2.0f, i14, f11, 0.0f, f12, 0.0f));
         boolean z12 = LocaleController.isRTL;
         if (z12) {
             i12 = 5;
@@ -123,13 +123,13 @@ public final class b extends wg.c {
         } else {
             f14 = 15.0f;
         }
-        this.f48539f.setLayoutParams(x5.d(22, 22.0f, i15, f13, 0.0f, f14, 0.0f));
+        this.f48510f.setLayoutParams(x5.d(22, 22.0f, i15, f13, 0.0f, f14, 0.0f));
     }
 
     public final void f() {
-        TLRPC.TL_help_country tL_help_country = this.f50190s;
+        TLRPC.TL_help_country tL_help_country = this.f50161s;
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
-        CharSequence replaceWithRestrictedEmoji = Emoji.replaceWithRestrictedEmoji(LocaleController.getLanguageFlag(tL_help_country.iso2), this.v.getFontMetricsInt(), 0, this.f50191w);
+        CharSequence replaceWithRestrictedEmoji = Emoji.replaceWithRestrictedEmoji(LocaleController.getLanguageFlag(tL_help_country.iso2), this.v.getFontMetricsInt(), 0, this.f50162w);
         if (replaceWithRestrictedEmoji != null) {
             spannableStringBuilder.append(replaceWithRestrictedEmoji).append((CharSequence) " ");
             spannableStringBuilder.setSpan(new a(16), replaceWithRestrictedEmoji.length(), replaceWithRestrictedEmoji.length() + 1, 0);
@@ -146,7 +146,7 @@ public final class b extends wg.c {
     }
 
     public TLRPC.TL_help_country getCountry() {
-        return this.f50190s;
+        return this.f50161s;
     }
 
     @Override

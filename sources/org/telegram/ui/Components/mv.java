@@ -16,19 +16,19 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
 public final class mv extends FrameLayout {
-    public final d90 f28565a;
-    public final TextView f28566b;
-    public final TextView f28567c;
+    public final d90 f28538a;
+    public final TextView f28539b;
+    public final TextView f28540c;
     public final TextView d;
-    public final sg.r0 f28568e;
-    public final org.telegram.ui.ActionBar.v0 f28569f;
+    public final sg.r0 f28541e;
+    public final org.telegram.ui.ActionBar.v0 f28542f;
     public final boolean h;
-    public final bi.l3 f28570n;
-    public TLRPC.TL_messages_stickerSet f28571r;
-    public boolean f28572s;
+    public final bi.l3 f28543n;
+    public TLRPC.TL_messages_stickerSet f28544r;
+    public boolean f28545s;
     public float v;
-    public ValueAnimator f28573w;
-    public final rv f28574x;
+    public ValueAnimator f28546w;
+    public final rv f28547x;
 
     public mv(rv rvVar, Context context, boolean z10) {
         super(context);
@@ -41,9 +41,9 @@ public final class mv extends FrameLayout {
         float f10;
         float f11;
         org.telegram.ui.ActionBar.f6 f6Var4;
-        this.f28574x = rvVar;
-        this.f28570n = new bi.l3(this, 5);
-        this.f28572s = false;
+        this.f28547x = rvVar;
+        this.f28543n = new bi.l3(this, 5);
+        this.f28545s = false;
         this.v = 0.0f;
         this.h = z10;
         if (!z10) {
@@ -55,31 +55,31 @@ public final class mv extends FrameLayout {
                 f10 = 28.0f;
                 f6Var4 = ((org.telegram.ui.ActionBar.f3) rvVar).resourcesProvider;
                 sg.r0 r0Var = new sg.r0(dp, context, f6Var4, false);
-                this.f28568e = r0Var;
+                this.f28541e = r0Var;
                 r0Var.a(LocaleController.getString(R.string.Unlock), new View.OnClickListener(this) {
-                    public final mv f27604b;
+                    public final mv f27577b;
 
                     {
-                        this.f27604b = this;
+                        this.f27577b = this;
                     }
 
                     @Override
                     public final void onClick(View view) {
                         int i12 = r2;
-                        mv mvVar = this.f27604b;
+                        mv mvVar = this.f27577b;
                         switch (i12) {
                             case 0:
-                                rv rvVar2 = mvVar.f28574x;
+                                rv rvVar2 = mvVar.f28547x;
                                 rvVar2.Q = SystemClock.elapsedRealtime();
                                 rvVar2.Z();
                                 return;
                             case 1:
-                                rv.W(mvVar.f28570n, mvVar.f28571r, true, null, null);
+                                rv.W(mvVar.f28543n, mvVar.f28544r, true, null, null);
                                 mvVar.a(true, true);
                                 return;
                             case 2:
-                                bi.l3 l3Var = mvVar.f28570n;
-                                TLRPC.TL_messages_stickerSet tL_messages_stickerSet = mvVar.f28571r;
+                                bi.l3 l3Var = mvVar.f28543n;
+                                TLRPC.TL_messages_stickerSet tL_messages_stickerSet = mvVar.f28544r;
                                 wp wpVar = new wp(mvVar, 12);
                                 Pattern pattern = rv.V;
                                 if (l3Var != null && tL_messages_stickerSet != null && l3Var.getFragmentView() != null) {
@@ -88,7 +88,7 @@ public final class mv extends FrameLayout {
                                 mvVar.a(false, true);
                                 return;
                             default:
-                                mvVar.f28569f.M(null, null);
+                                mvVar.f28542f.M(null, null);
                                 return;
                         }
                     }
@@ -110,7 +110,7 @@ public final class mv extends FrameLayout {
                 f11 = 16.0f;
             }
             TextView textView = new TextView(context);
-            this.f28567c = textView;
+            this.f28540c = textView;
             textView.setTypeface(AndroidUtilities.bold());
             textView.setTextColor(rvVar.getThemedColor(org.telegram.ui.ActionBar.j6.Sh));
             int i12 = org.telegram.ui.ActionBar.j6.Oh;
@@ -118,29 +118,29 @@ public final class mv extends FrameLayout {
             textView.setPadding(org.telegram.ui.Cells.p6.b(18.0f, R.string.Add, textView), 0, AndroidUtilities.dp(18.0f), 0);
             textView.setGravity(17);
             textView.setOnClickListener(new View.OnClickListener(this) {
-                public final mv f27604b;
+                public final mv f27577b;
 
                 {
-                    this.f27604b = this;
+                    this.f27577b = this;
                 }
 
                 @Override
                 public final void onClick(View view) {
                     int i122 = r2;
-                    mv mvVar = this.f27604b;
+                    mv mvVar = this.f27577b;
                     switch (i122) {
                         case 0:
-                            rv rvVar2 = mvVar.f28574x;
+                            rv rvVar2 = mvVar.f28547x;
                             rvVar2.Q = SystemClock.elapsedRealtime();
                             rvVar2.Z();
                             return;
                         case 1:
-                            rv.W(mvVar.f28570n, mvVar.f28571r, true, null, null);
+                            rv.W(mvVar.f28543n, mvVar.f28544r, true, null, null);
                             mvVar.a(true, true);
                             return;
                         case 2:
-                            bi.l3 l3Var = mvVar.f28570n;
-                            TLRPC.TL_messages_stickerSet tL_messages_stickerSet = mvVar.f28571r;
+                            bi.l3 l3Var = mvVar.f28543n;
+                            TLRPC.TL_messages_stickerSet tL_messages_stickerSet = mvVar.f28544r;
                             wp wpVar = new wp(mvVar, 12);
                             Pattern pattern = rv.V;
                             if (l3Var != null && tL_messages_stickerSet != null && l3Var.getFragmentView() != null) {
@@ -149,7 +149,7 @@ public final class mv extends FrameLayout {
                             mvVar.a(false, true);
                             return;
                         default:
-                            mvVar.f28569f.M(null, null);
+                            mvVar.f28542f.M(null, null);
                             return;
                     }
                 }
@@ -165,29 +165,29 @@ public final class mv extends FrameLayout {
             textView2.setPadding(org.telegram.ui.Cells.p6.b(12.0f, R.string.StickersRemove, textView2), 0, AndroidUtilities.dp(12.0f), 0);
             textView2.setGravity(17);
             textView2.setOnClickListener(new View.OnClickListener(this) {
-                public final mv f27604b;
+                public final mv f27577b;
 
                 {
-                    this.f27604b = this;
+                    this.f27577b = this;
                 }
 
                 @Override
                 public final void onClick(View view) {
                     int i122 = r2;
-                    mv mvVar = this.f27604b;
+                    mv mvVar = this.f27577b;
                     switch (i122) {
                         case 0:
-                            rv rvVar2 = mvVar.f28574x;
+                            rv rvVar2 = mvVar.f28547x;
                             rvVar2.Q = SystemClock.elapsedRealtime();
                             rvVar2.Z();
                             return;
                         case 1:
-                            rv.W(mvVar.f28570n, mvVar.f28571r, true, null, null);
+                            rv.W(mvVar.f28543n, mvVar.f28544r, true, null, null);
                             mvVar.a(true, true);
                             return;
                         case 2:
-                            bi.l3 l3Var = mvVar.f28570n;
-                            TLRPC.TL_messages_stickerSet tL_messages_stickerSet = mvVar.f28571r;
+                            bi.l3 l3Var = mvVar.f28543n;
+                            TLRPC.TL_messages_stickerSet tL_messages_stickerSet = mvVar.f28544r;
                             wp wpVar = new wp(mvVar, 12);
                             Pattern pattern = rv.V;
                             if (l3Var != null && tL_messages_stickerSet != null && l3Var.getFragmentView() != null) {
@@ -196,7 +196,7 @@ public final class mv extends FrameLayout {
                             mvVar.a(false, true);
                             return;
                         default:
-                            mvVar.f28569f.M(null, null);
+                            mvVar.f28542f.M(null, null);
                             return;
                     }
                 }
@@ -213,7 +213,7 @@ public final class mv extends FrameLayout {
         }
         f6Var = ((org.telegram.ui.ActionBar.f3) rvVar).resourcesProvider;
         d90 d90Var = new d90(context, f6Var);
-        this.f28565a = d90Var;
+        this.f28538a = d90Var;
         d90Var.setPadding(AndroidUtilities.dp(2.0f), 0, AndroidUtilities.dp(2.0f), 0);
         d90Var.setTypeface(AndroidUtilities.bold());
         TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
@@ -223,7 +223,7 @@ public final class mv extends FrameLayout {
         int i13 = org.telegram.ui.ActionBar.j6.J6;
         f6Var2 = ((org.telegram.ui.ActionBar.f3) rvVar).resourcesProvider;
         d90Var.setLinkTextColor(org.telegram.ui.ActionBar.j6.v0(i13, f6Var2));
-        d90Var.setTextColor(rvVar.getThemedColor(org.telegram.ui.ActionBar.j6.f20798j5));
+        d90Var.setTextColor(rvVar.getThemedColor(org.telegram.ui.ActionBar.j6.f20771j5));
         if (z10) {
             d90Var.setTextSize(1, 20.0f);
             addView(d90Var, w7.x5.i(-1.0f, -2.0f, 8388659, 12.0f, 11.0f, f7, 0.0f));
@@ -233,9 +233,9 @@ public final class mv extends FrameLayout {
         }
         if (!z10) {
             TextView textView3 = new TextView(context);
-            this.f28566b = textView3;
+            this.f28539b = textView3;
             textView3.setTextSize(1, 13.0f);
-            textView3.setTextColor(rvVar.getThemedColor(org.telegram.ui.ActionBar.j6.f20925q5));
+            textView3.setTextColor(rvVar.getThemedColor(org.telegram.ui.ActionBar.j6.f20898q5));
             textView3.setEllipsize(truncateAt);
             textView3.setSingleLine(true);
             textView3.setLines(1);
@@ -245,7 +245,7 @@ public final class mv extends FrameLayout {
             int themedColor = rvVar.getThemedColor(org.telegram.ui.ActionBar.j6.Ji);
             f6Var3 = ((org.telegram.ui.ActionBar.f3) rvVar).resourcesProvider;
             org.telegram.ui.ActionBar.v0 v0Var = new org.telegram.ui.ActionBar.v0(context, null, 0, themedColor, false, f6Var3);
-            this.f28569f = v0Var;
+            this.f28542f = v0Var;
             v0Var.setLongClickEnabled(false);
             v0Var.setSubMenuOpenSide(2);
             v0Var.setIcon(R.drawable.ic_ab_other);
@@ -255,29 +255,29 @@ public final class mv extends FrameLayout {
             v0Var.e(1, R.drawable.msg_share, LocaleController.getString(R.string.StickersShare));
             v0Var.e(2, R.drawable.msg_link, LocaleController.getString(R.string.CopyLink));
             v0Var.setOnClickListener(new View.OnClickListener(this) {
-                public final mv f27604b;
+                public final mv f27577b;
 
                 {
-                    this.f27604b = this;
+                    this.f27577b = this;
                 }
 
                 @Override
                 public final void onClick(View view) {
                     int i122 = r2;
-                    mv mvVar = this.f27604b;
+                    mv mvVar = this.f27577b;
                     switch (i122) {
                         case 0:
-                            rv rvVar2 = mvVar.f28574x;
+                            rv rvVar2 = mvVar.f28547x;
                             rvVar2.Q = SystemClock.elapsedRealtime();
                             rvVar2.Z();
                             return;
                         case 1:
-                            rv.W(mvVar.f28570n, mvVar.f28571r, true, null, null);
+                            rv.W(mvVar.f28543n, mvVar.f28544r, true, null, null);
                             mvVar.a(true, true);
                             return;
                         case 2:
-                            bi.l3 l3Var = mvVar.f28570n;
-                            TLRPC.TL_messages_stickerSet tL_messages_stickerSet = mvVar.f28571r;
+                            bi.l3 l3Var = mvVar.f28543n;
+                            TLRPC.TL_messages_stickerSet tL_messages_stickerSet = mvVar.f28544r;
                             wp wpVar = new wp(mvVar, 12);
                             Pattern pattern = rv.V;
                             if (l3Var != null && tL_messages_stickerSet != null && l3Var.getFragmentView() != null) {
@@ -286,7 +286,7 @@ public final class mv extends FrameLayout {
                             mvVar.a(false, true);
                             return;
                         default:
-                            mvVar.f28569f.M(null, null);
+                            mvVar.f28542f.M(null, null);
                             return;
                     }
                 }
@@ -304,14 +304,14 @@ public final class mv extends FrameLayout {
         float f12;
         float f13;
         float f14;
-        if (this.f28572s != z10) {
-            this.f28572s = z10;
-            ValueAnimator valueAnimator = this.f28573w;
+        if (this.f28545s != z10) {
+            this.f28545s = z10;
+            ValueAnimator valueAnimator = this.f28546w;
             if (valueAnimator != null) {
                 valueAnimator.cancel();
-                this.f28573w = null;
+                this.f28546w = null;
             }
-            TextView textView2 = this.f28567c;
+            TextView textView2 = this.f28540c;
             if (textView2 != null && (textView = this.d) != null) {
                 textView2.setClickable(!z10);
                 textView.setClickable(z10);
@@ -322,11 +322,11 @@ public final class mv extends FrameLayout {
                         f15 = 1.0f;
                     }
                     ValueAnimator ofFloat = ValueAnimator.ofFloat(f16, f15);
-                    this.f28573w = ofFloat;
+                    this.f28546w = ofFloat;
                     ofFloat.addUpdateListener(new l6(this, 18));
-                    this.f28573w.setInterpolator(pr.h);
-                    this.f28573w.setDuration(250L);
-                    this.f28573w.start();
+                    this.f28546w.setInterpolator(pr.h);
+                    this.f28546w.setDuration(250L);
+                    this.f28546w.start();
                     return;
                 }
                 if (z10) {

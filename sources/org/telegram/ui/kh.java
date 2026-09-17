@@ -3,38 +3,38 @@ package org.telegram.ui;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.EditTextBoldCursor;
 public final class kh implements Runnable {
-    public final int f38095a;
-    public final EditTextBoldCursor f38096b;
+    public final int f38068a;
+    public final EditTextBoldCursor f38069b;
 
     public kh(int i10, EditTextBoldCursor editTextBoldCursor) {
-        this.f38095a = i10;
-        this.f38096b = editTextBoldCursor;
+        this.f38068a = i10;
+        this.f38069b = editTextBoldCursor;
     }
 
     @Override
     public final void run() {
-        switch (this.f38095a) {
+        switch (this.f38068a) {
             case 0:
-                AndroidUtilities.showKeyboard(this.f38096b);
+                AndroidUtilities.showKeyboard(this.f38069b);
                 return;
             case 1:
-                EditTextBoldCursor editTextBoldCursor = this.f38096b;
+                EditTextBoldCursor editTextBoldCursor = this.f38069b;
                 editTextBoldCursor.requestFocus();
                 AndroidUtilities.showKeyboard(editTextBoldCursor);
                 return;
             case 2:
-                EditTextBoldCursor editTextBoldCursor2 = this.f38096b;
+                EditTextBoldCursor editTextBoldCursor2 = this.f38069b;
                 editTextBoldCursor2.requestFocus();
                 AndroidUtilities.showKeyboard(editTextBoldCursor2);
                 return;
             case 3:
-                AndroidUtilities.showKeyboard(this.f38096b);
+                AndroidUtilities.showKeyboard(this.f38069b);
                 return;
             case 4:
-                AndroidUtilities.showKeyboard(this.f38096b);
+                AndroidUtilities.showKeyboard(this.f38069b);
                 return;
             default:
-                EditTextBoldCursor editTextBoldCursor3 = this.f38096b;
+                EditTextBoldCursor editTextBoldCursor3 = this.f38069b;
                 editTextBoldCursor3.requestFocus();
                 AndroidUtilities.showKeyboard(editTextBoldCursor3);
                 return;

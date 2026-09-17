@@ -9,15 +9,15 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 public final class s0 extends WindowInsetsAnimation.Callback {
-    public final qh.e f44755a;
-    public List f44756b;
-    public ArrayList f44757c;
+    public final qh.e f44727a;
+    public List f44728b;
+    public ArrayList f44729c;
     public final HashMap d;
 
     public s0(qh.e eVar) {
         super(0);
         this.d = new HashMap();
-        this.f44755a = eVar;
+        this.f44727a = eVar;
     }
 
     public final v0 a(WindowInsetsAnimation windowInsetsAnimation) {
@@ -25,7 +25,7 @@ public final class s0 extends WindowInsetsAnimation.Callback {
         if (v0Var == null) {
             v0Var = new v0(0, 0L, null);
             if (Build.VERSION.SDK_INT >= 30) {
-                v0Var.f44767a = new t0(windowInsetsAnimation);
+                v0Var.f44739a = new t0(windowInsetsAnimation);
             }
             this.d.put(windowInsetsAnimation, v0Var);
         }
@@ -34,7 +34,7 @@ public final class s0 extends WindowInsetsAnimation.Callback {
 
     @Override
     public final void onEnd(WindowInsetsAnimation windowInsetsAnimation) {
-        qh.e eVar = this.f44755a;
+        qh.e eVar = this.f44727a;
         a(windowInsetsAnimation);
         eVar.S0();
         this.d.remove(windowInsetsAnimation);
@@ -42,46 +42,46 @@ public final class s0 extends WindowInsetsAnimation.Callback {
 
     @Override
     public final void onPrepare(WindowInsetsAnimation windowInsetsAnimation) {
-        qh.e eVar = this.f44755a;
+        qh.e eVar = this.f44727a;
         a(windowInsetsAnimation);
         eVar.getClass();
     }
 
     @Override
     public final WindowInsets onProgress(WindowInsets windowInsets, List list) {
-        ArrayList arrayList = this.f44757c;
+        ArrayList arrayList = this.f44729c;
         if (arrayList == null) {
             ArrayList arrayList2 = new ArrayList(list.size());
-            this.f44757c = arrayList2;
-            this.f44756b = DesugarCollections.unmodifiableList(arrayList2);
+            this.f44729c = arrayList2;
+            this.f44728b = DesugarCollections.unmodifiableList(arrayList2);
         } else {
             arrayList.clear();
         }
         for (int size = list.size() - 1; size >= 0; size--) {
             WindowInsetsAnimation windowInsetsAnimation = (WindowInsetsAnimation) list.get(size);
             v0 a2 = a(windowInsetsAnimation);
-            a2.f44767a.d(windowInsetsAnimation.getFraction());
-            this.f44757c.add(a2);
+            a2.f44739a.d(windowInsetsAnimation.getFraction());
+            this.f44729c.add(a2);
         }
-        qh.e eVar = this.f44755a;
+        qh.e eVar = this.f44727a;
         l1 h = l1.h(null, windowInsets);
-        eVar.T0(h, this.f44756b);
+        eVar.T0(h, this.f44728b);
         return h.g();
     }
 
     @Override
     public final WindowInsetsAnimation.Bounds onStart(WindowInsetsAnimation windowInsetsAnimation, WindowInsetsAnimation.Bounds bounds) {
-        qh.e eVar = this.f44755a;
+        qh.e eVar = this.f44727a;
         a(windowInsetsAnimation);
         i0.c f7 = t0.f(bounds);
         i0.c e7 = t0.e(bounds);
-        if (eVar.f44675c == 0) {
+        if (eVar.f44647c == 0) {
             Iterator it = eVar.d.iterator();
             while (it.hasNext()) {
                 ((qh.d) it.next()).s();
             }
         }
-        eVar.f44675c++;
+        eVar.f44647c++;
         r0.c();
         return r0.a(f7.d(), e7.d());
     }

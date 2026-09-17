@@ -2,14 +2,14 @@ package org.telegram.ui.Components;
 
 import java.util.ArrayList;
 public abstract class mk0 extends kl0 {
-    public boolean f28490c;
+    public boolean f28463c;
     public boolean d;
-    public ArrayList f28491e;
-    public ArrayList f28492f;
+    public ArrayList f28464e;
+    public ArrayList f28465f;
 
     public final void E() {
-        this.f28490c = false;
-        if (!this.d && this.f28491e.isEmpty() && this.f28492f.isEmpty()) {
+        this.f28463c = false;
+        if (!this.d && this.f28464e.isEmpty() && this.f28465f.isEmpty()) {
             return;
         }
         ((org.telegram.ui.om) this).O(false);
@@ -17,7 +17,7 @@ public abstract class mk0 extends kl0 {
 
     @Override
     public void l() {
-        if (!this.f28490c) {
+        if (!this.f28463c) {
             super.l();
         } else {
             this.d = true;
@@ -26,15 +26,15 @@ public abstract class mk0 extends kl0 {
 
     @Override
     public void m(int i10) {
-        if (!this.f28490c) {
+        if (!this.f28463c) {
             super.m(i10);
         }
     }
 
     @Override
     public void o(int i10) {
-        ArrayList arrayList = this.f28491e;
-        if (!this.f28490c) {
+        ArrayList arrayList = this.f28464e;
+        if (!this.f28463c) {
             super.o(i10);
             return;
         }
@@ -44,15 +44,15 @@ public abstract class mk0 extends kl0 {
 
     @Override
     public void q(int i10, int i11) {
-        if (!this.f28490c) {
+        if (!this.f28463c) {
             super.q(i10, i11);
         }
     }
 
     @Override
     public void s(int i10, int i11) {
-        ArrayList arrayList = this.f28491e;
-        if (!this.f28490c) {
+        ArrayList arrayList = this.f28464e;
+        if (!this.f28463c) {
             super.s(i10, i11);
             return;
         }
@@ -62,8 +62,8 @@ public abstract class mk0 extends kl0 {
 
     @Override
     public void t(int i10, int i11) {
-        ArrayList arrayList = this.f28492f;
-        if (!this.f28490c) {
+        ArrayList arrayList = this.f28465f;
+        if (!this.f28463c) {
             super.t(i10, i11);
             return;
         }
@@ -73,8 +73,8 @@ public abstract class mk0 extends kl0 {
 
     @Override
     public void u(int i10) {
-        ArrayList arrayList = this.f28492f;
-        if (!this.f28490c) {
+        ArrayList arrayList = this.f28465f;
+        if (!this.f28463c) {
             super.u(i10);
             return;
         }

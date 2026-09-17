@@ -12,19 +12,19 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class pe implements RequestDelegate {
-    public final int f39509a;
-    public final co f39510b;
+    public final int f39482a;
+    public final co f39483b;
 
     public pe(co coVar, int i10) {
-        this.f39509a = i10;
-        this.f39510b = coVar;
+        this.f39482a = i10;
+        this.f39483b = coVar;
     }
 
     @Override
     public final void run(final TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f39509a) {
+        switch (this.f39482a) {
             case 0:
-                final co coVar = this.f39510b;
+                final co coVar = this.f39483b;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
@@ -63,13 +63,13 @@ public final class pe implements RequestDelegate {
                             default:
                                 co coVar3 = coVar;
                                 TLObject tLObject3 = tLObject;
-                                coVar3.f35391o5 = 0;
+                                coVar3.f35364o5 = 0;
                                 if (tLObject3 == null && coVar3.getParentActivity() != null) {
-                                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(coVar3.getParentActivity(), 0, coVar3.f35275ea);
-                                    alertDialog$Builder.f20226a.R = LocaleController.getString(R.string.AppName);
-                                    alertDialog$Builder.f20226a.T = LocaleController.getString(R.string.EditMessageError);
+                                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(coVar3.getParentActivity(), 0, coVar3.f35248ea);
+                                    alertDialog$Builder.f20199a.R = LocaleController.getString(R.string.AppName);
+                                    alertDialog$Builder.f20199a.T = LocaleController.getString(R.string.EditMessageError);
                                     alertDialog$Builder.k(LocaleController.getString(R.string.OK), null);
-                                    coVar3.showDialog(alertDialog$Builder.f20226a);
+                                    coVar3.showDialog(alertDialog$Builder.f20199a);
                                     mk mkVar = coVar3.Y;
                                     if (mkVar != null) {
                                         mkVar.c1(null, null, false);
@@ -84,7 +84,7 @@ public final class pe implements RequestDelegate {
                 });
                 return;
             case 1:
-                final co coVar2 = this.f39510b;
+                final co coVar2 = this.f39483b;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
@@ -123,13 +123,13 @@ public final class pe implements RequestDelegate {
                             default:
                                 co coVar3 = coVar2;
                                 TLObject tLObject3 = tLObject;
-                                coVar3.f35391o5 = 0;
+                                coVar3.f35364o5 = 0;
                                 if (tLObject3 == null && coVar3.getParentActivity() != null) {
-                                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(coVar3.getParentActivity(), 0, coVar3.f35275ea);
-                                    alertDialog$Builder.f20226a.R = LocaleController.getString(R.string.AppName);
-                                    alertDialog$Builder.f20226a.T = LocaleController.getString(R.string.EditMessageError);
+                                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(coVar3.getParentActivity(), 0, coVar3.f35248ea);
+                                    alertDialog$Builder.f20199a.R = LocaleController.getString(R.string.AppName);
+                                    alertDialog$Builder.f20199a.T = LocaleController.getString(R.string.EditMessageError);
                                     alertDialog$Builder.k(LocaleController.getString(R.string.OK), null);
-                                    coVar3.showDialog(alertDialog$Builder.f20226a);
+                                    coVar3.showDialog(alertDialog$Builder.f20199a);
                                     mk mkVar = coVar3.Y;
                                     if (mkVar != null) {
                                         mkVar.c1(null, null, false);
@@ -144,7 +144,7 @@ public final class pe implements RequestDelegate {
                 });
                 return;
             case 2:
-                final co coVar3 = this.f39510b;
+                final co coVar3 = this.f39483b;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
@@ -183,13 +183,13 @@ public final class pe implements RequestDelegate {
                             default:
                                 co coVar32 = coVar3;
                                 TLObject tLObject3 = tLObject;
-                                coVar32.f35391o5 = 0;
+                                coVar32.f35364o5 = 0;
                                 if (tLObject3 == null && coVar32.getParentActivity() != null) {
-                                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(coVar32.getParentActivity(), 0, coVar32.f35275ea);
-                                    alertDialog$Builder.f20226a.R = LocaleController.getString(R.string.AppName);
-                                    alertDialog$Builder.f20226a.T = LocaleController.getString(R.string.EditMessageError);
+                                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(coVar32.getParentActivity(), 0, coVar32.f35248ea);
+                                    alertDialog$Builder.f20199a.R = LocaleController.getString(R.string.AppName);
+                                    alertDialog$Builder.f20199a.T = LocaleController.getString(R.string.EditMessageError);
                                     alertDialog$Builder.k(LocaleController.getString(R.string.OK), null);
-                                    coVar32.showDialog(alertDialog$Builder.f20226a);
+                                    coVar32.showDialog(alertDialog$Builder.f20199a);
                                     mk mkVar = coVar32.Y;
                                     if (mkVar != null) {
                                         mkVar.c1(null, null, false);
@@ -204,7 +204,7 @@ public final class pe implements RequestDelegate {
                 });
                 return;
             case 3:
-                final co coVar4 = this.f39510b;
+                final co coVar4 = this.f39483b;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
@@ -243,13 +243,13 @@ public final class pe implements RequestDelegate {
                             default:
                                 co coVar32 = coVar4;
                                 TLObject tLObject3 = tLObject;
-                                coVar32.f35391o5 = 0;
+                                coVar32.f35364o5 = 0;
                                 if (tLObject3 == null && coVar32.getParentActivity() != null) {
-                                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(coVar32.getParentActivity(), 0, coVar32.f35275ea);
-                                    alertDialog$Builder.f20226a.R = LocaleController.getString(R.string.AppName);
-                                    alertDialog$Builder.f20226a.T = LocaleController.getString(R.string.EditMessageError);
+                                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(coVar32.getParentActivity(), 0, coVar32.f35248ea);
+                                    alertDialog$Builder.f20199a.R = LocaleController.getString(R.string.AppName);
+                                    alertDialog$Builder.f20199a.T = LocaleController.getString(R.string.EditMessageError);
                                     alertDialog$Builder.k(LocaleController.getString(R.string.OK), null);
-                                    coVar32.showDialog(alertDialog$Builder.f20226a);
+                                    coVar32.showDialog(alertDialog$Builder.f20199a);
                                     mk mkVar = coVar32.Y;
                                     if (mkVar != null) {
                                         mkVar.c1(null, null, false);
@@ -264,7 +264,7 @@ public final class pe implements RequestDelegate {
                 });
                 return;
             case 4:
-                co coVar5 = this.f39510b;
+                co coVar5 = this.f39483b;
                 if (tL_error != null) {
                     coVar5.getClass();
                     return;
@@ -273,7 +273,7 @@ public final class pe implements RequestDelegate {
                     return;
                 }
             default:
-                co.Z0(this.f39510b, tLObject);
+                co.Z0(this.f39483b, tLObject);
                 return;
         }
     }

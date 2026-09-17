@@ -5,29 +5,29 @@ import org.json.JSONObject;
 import org.telegram.messenger.FileLog;
 import org.telegram.ui.LaunchActivity;
 public final class u implements Runnable {
-    public final int f42277a;
-    public final d1 f42278b;
+    public final int f42250a;
+    public final d1 f42251b;
 
     public u(d1 d1Var, int i10) {
-        this.f42277a = i10;
-        this.f42278b = d1Var;
+        this.f42250a = i10;
+        this.f42251b = d1Var;
     }
 
     @Override
     public final void run() {
         boolean z10;
-        switch (this.f42277a) {
+        switch (this.f42250a) {
             case 0:
-                i0 i0Var = this.f42278b.f42067c;
+                i0 i0Var = this.f42251b.f42040c;
                 if (i0Var != null) {
                     i0Var.b();
                 }
                 LaunchActivity.L();
                 return;
             case 1:
-                d1 d1Var = this.f42278b;
+                d1 d1Var = this.f42251b;
                 k9 k9Var = d1Var.I0;
-                fi.w0 w0Var = d1Var.f42078k0;
+                fi.w0 w0Var = d1Var.f42051k0;
                 w0Var.getClass();
                 JSONObject jSONObject = new JSONObject();
                 try {
@@ -35,7 +35,7 @@ public final class u implements Runnable {
                     if (w0Var.d()) {
                         jSONObject.put("access_requested", w0Var.d);
                         if (w0Var.d) {
-                            if (w0Var.f10083e && w0Var.a()) {
+                            if (w0Var.f10055e && w0Var.a()) {
                                 z10 = true;
                             } else {
                                 z10 = false;
@@ -49,10 +49,10 @@ public final class u implements Runnable {
                 d1Var.y(k9Var, "location_checked", jSONObject);
                 return;
             default:
-                d1 d1Var2 = this.f42278b;
+                d1 d1Var2 = this.f42251b;
                 if (d1Var2.S) {
                     d1Var2.S = false;
-                    i0 i0Var2 = d1Var2.f42067c;
+                    i0 i0Var2 = d1Var2.f42040c;
                     if (i0Var2 != null) {
                         i0Var2.t(false);
                     }
@@ -61,10 +61,10 @@ public final class u implements Runnable {
                 d1Var2.N = false;
                 d1Var2.P = 0L;
                 d1Var2.T = false;
-                z0 z0Var = d1Var2.f42063a;
+                z0 z0Var = d1Var2.f42036a;
                 if (z0Var != null) {
                     z0Var.onResume();
-                    d1Var2.f42063a.reload();
+                    d1Var2.f42036a.reload();
                     return;
                 }
                 return;

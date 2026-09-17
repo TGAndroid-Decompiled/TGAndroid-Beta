@@ -63,7 +63,7 @@ import org.webrtc.GlRectDrawer;
 import org.webrtc.RendererCommon;
 import org.webrtc.TextureViewRenderer;
 public final class ui1 implements VoIPService.StateListener, NotificationCenter.NotificationCenterDelegate, sf.a {
-    public static ui1 f41134n1;
+    public static ui1 f41107n1;
     public AnimatorSet A0;
     public boolean B0;
     public boolean C0;
@@ -106,69 +106,69 @@ public final class ui1 implements VoIPService.StateListener, NotificationCenter.
     public float Y0;
     public org.telegram.ui.Components.voip.s1 Z;
     public float Z0;
-    public final int f41135a;
-    public boolean f41136a0;
-    public boolean f41137a1;
-    public Activity f41138b;
-    public TextureViewRenderer f41139b0;
-    public float f41140b1;
-    public final TLRPC.User f41141c;
-    public org.telegram.ui.Components.voip.q2 f41142c0;
-    public float f41143c1;
+    public final int f41108a;
+    public boolean f41109a0;
+    public boolean f41110a1;
+    public Activity f41111b;
+    public TextureViewRenderer f41112b0;
+    public float f41113b1;
+    public final TLRPC.User f41114c;
+    public org.telegram.ui.Components.voip.q2 f41115c0;
+    public float f41116c1;
     public final TLRPC.User d;
-    public org.telegram.ui.Components.voip.q2 f41144d0;
-    public int f41145d1;
-    public org.telegram.ui.Components.voip.i3 f41146e;
-    public org.telegram.ui.Components.voip.e f41147e0;
-    public int f41148e1;
-    public org.telegram.ui.Components.voip.i3 f41149f;
-    public boolean f41150f0;
-    public qf.e f41152g0;
-    public boolean f41153g1;
+    public org.telegram.ui.Components.voip.q2 f41117d0;
+    public int f41118d1;
+    public org.telegram.ui.Components.voip.i3 f41119e;
+    public org.telegram.ui.Components.voip.e f41120e0;
+    public int f41121e1;
+    public org.telegram.ui.Components.voip.i3 f41122f;
+    public boolean f41123f0;
+    public qf.e f41125g0;
+    public boolean f41126g1;
     public org.telegram.ui.Components.voip.i3 h;
-    public View f41154h0;
-    public boolean f41155h1;
-    public View f41156i0;
-    public ValueAnimator f41157i1;
-    public org.telegram.ui.Components.voip.p1 f41158j0;
-    public boolean f41159j1;
-    public org.telegram.ui.Components.voip.q2 f41161k1;
+    public View f41127h0;
+    public boolean f41128h1;
+    public View f41129i0;
+    public ValueAnimator f41130i1;
+    public org.telegram.ui.Components.voip.p1 f41131j0;
+    public boolean f41132j1;
+    public org.telegram.ui.Components.voip.q2 f41134k1;
     public com.google.android.gms.internal.cast.p l1;
     public boolean m0;
-    public boolean f41163m1;
-    public ri1 f41164n;
-    public boolean f41165n0;
-    public ni1 f41166o0;
-    public int f41167p0;
-    public int f41168q0;
-    public WindowInsets f41170r0;
-    public pi1 f41171s;
-    public boolean f41172s0;
-    public float f41173t0;
-    public mi1 f41174u0;
+    public boolean f41136m1;
+    public ri1 f41137n;
+    public boolean f41138n0;
+    public ni1 f41139o0;
+    public int f41140p0;
+    public int f41141q0;
+    public WindowInsets f41143r0;
+    public pi1 f41144s;
+    public boolean f41145s0;
+    public float f41146t0;
+    public mi1 f41147u0;
     public org.telegram.ui.Components.voip.a3 v;
-    public int f41175v0;
-    public org.telegram.ui.Components.voip.x2 f41176w;
-    public AccessibilityManager f41177w0;
-    public org.telegram.ui.Components.voip.c3 f41178x;
-    public org.telegram.ui.Components.voip.r0 f41180y;
-    public boolean f41182z0;
-    public final org.telegram.ui.Components.voip.o1 f41169r = new org.telegram.ui.Components.voip.o1();
+    public int f41148v0;
+    public org.telegram.ui.Components.voip.x2 f41149w;
+    public AccessibilityManager f41150w0;
+    public org.telegram.ui.Components.voip.c3 f41151x;
+    public org.telegram.ui.Components.voip.r0 f41153y;
+    public boolean f41155z0;
+    public final org.telegram.ui.Components.voip.o1 f41142r = new org.telegram.ui.Components.voip.o1();
     public final org.telegram.ui.Components.x9[] V = new org.telegram.ui.Components.x9[4];
     public final Drawable[] W = new Drawable[4];
-    public final Paint f41160k0 = new Paint();
-    public final Paint f41162l0 = new Paint();
-    public boolean f41179x0 = true;
-    public float f41181y0 = 1.0f;
+    public final Paint f41133k0 = new Paint();
+    public final Paint f41135l0 = new Paint();
+    public boolean f41152x0 = true;
+    public float f41154y0 = 1.0f;
     public final AnimationNotificationsLocker L0 = new AnimationNotificationsLocker();
     public final b21 Q0 = new b21(this, 20);
     public final ei1 S0 = new ei1(this, 12);
     public final ei1 T0 = new ei1(this, 13);
-    public float f41151f1 = 1.0f;
+    public float f41124f1 = 1.0f;
 
     public ui1(int i10) {
-        this.f41135a = i10;
-        this.f41141c = MessagesController.getInstance(i10).getUser(Long.valueOf(UserConfig.getInstance(i10).getClientUserId()));
+        this.f41108a = i10;
+        this.f41114c = MessagesController.getInstance(i10).getUser(Long.valueOf(UserConfig.getInstance(i10).getClientUserId()));
         VoIPServiceState sharedState = VoIPService.getSharedState();
         if (sharedState == null) {
             return;
@@ -178,8 +178,8 @@ public final class ui1 implements VoIPService.StateListener, NotificationCenter.
             VoIPService.getSharedInstance().registerStateListener(this);
         }
         sharedState.isOutgoing();
-        this.f41168q0 = -1;
-        this.f41167p0 = sharedState.getCallState();
+        this.f41141q0 = -1;
+        this.f41140p0 = sharedState.getCallState();
         NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.webRtcSpeakerAmplitudeEvent);
         NotificationCenter.getInstance(i10).addObserver(this, NotificationCenter.voipServiceCreated);
         NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.emojiLoaded);
@@ -190,8 +190,8 @@ public final class ui1 implements VoIPService.StateListener, NotificationCenter.
     public static void i(ui1 ui1Var) {
         AndroidUtilities.cancelRunOnUIThread(ui1Var.S0);
         ui1Var.R0 = false;
-        if (Build.VERSION.SDK_INT >= 23 && ui1Var.f41138b.checkSelfPermission("android.permission.CAMERA") != 0) {
-            ui1Var.f41138b.requestPermissions(new String[]{"android.permission.CAMERA"}, 102);
+        if (Build.VERSION.SDK_INT >= 23 && ui1Var.f41111b.checkSelfPermission("android.permission.CAMERA") != 0) {
+            ui1Var.f41111b.requestPermissions(new String[]{"android.permission.CAMERA"}, 102);
         } else {
             ui1Var.C();
         }
@@ -199,43 +199,43 @@ public final class ui1 implements VoIPService.StateListener, NotificationCenter.
 
     public static void j(ui1 ui1Var) {
         ui1 ui1Var2;
-        if (ui1Var.f41153g1) {
-            ui1Var.f41153g1 = false;
+        if (ui1Var.f41126g1) {
+            ui1Var.f41126g1 = false;
             ValueAnimator ofFloat = ValueAnimator.ofFloat(1.0f, 0.0f);
-            ui1Var.f41157i1 = ofFloat;
+            ui1Var.f41130i1 = ofFloat;
             ui1Var2 = ui1Var;
-            ofFloat.addUpdateListener(new org.telegram.ui.Components.voip.w(ui1Var2, ui1Var.f41151f1, ui1Var.Y0, ui1Var.Z0, 1));
-            ui1Var2.f41157i1.addListener(new ii1(ui1Var2, 0));
-            ui1Var2.f41157i1.setDuration(350L);
-            ui1Var2.f41157i1.setInterpolator(org.telegram.ui.Components.pr.f29494f);
-            ui1Var2.f41157i1.start();
+            ofFloat.addUpdateListener(new org.telegram.ui.Components.voip.w(ui1Var2, ui1Var.f41124f1, ui1Var.Y0, ui1Var.Z0, 1));
+            ui1Var2.f41130i1.addListener(new ii1(ui1Var2, 0));
+            ui1Var2.f41130i1.setDuration(350L);
+            ui1Var2.f41130i1.setInterpolator(org.telegram.ui.Components.pr.f29467f);
+            ui1Var2.f41130i1.start();
         } else {
             ui1Var2 = ui1Var;
         }
-        ui1Var2.f41155h1 = false;
-        ui1Var2.f41137a1 = false;
+        ui1Var2.f41128h1 = false;
+        ui1Var2.f41110a1 = false;
     }
 
     public static void q(int i10, int[] iArr) {
-        ui1 ui1Var = f41134n1;
+        ui1 ui1Var = f41107n1;
         if (ui1Var != null) {
             if (i10 == 101) {
                 if (VoIPService.getSharedState() == null) {
-                    ui1Var.f41174u0.b();
+                    ui1Var.f41147u0.b();
                     return;
                 } else if (iArr.length > 0 && iArr[0] == 0) {
                     ui1Var.r(new q31(3));
-                } else if (!ui1Var.f41138b.shouldShowRequestPermissionRationale("android.permission.RECORD_AUDIO")) {
+                } else if (!ui1Var.f41111b.shouldShowRequestPermissionRationale("android.permission.RECORD_AUDIO")) {
                     if (VoIPService.getSharedState() != null) {
                         VoIPService.getSharedState().declineIncomingCall();
                     }
-                    org.telegram.ui.Components.voip.d2.h(ui1Var.f41138b, new ei1(ui1Var, 2), i10);
+                    org.telegram.ui.Components.voip.d2.h(ui1Var.f41111b, new ei1(ui1Var, 2), i10);
                     return;
                 }
             }
             if (i10 == 102) {
                 if (VoIPService.getSharedState() == null) {
-                    ui1Var.f41174u0.b();
+                    ui1Var.f41147u0.b();
                 } else if (iArr.length > 0 && iArr[0] == 0) {
                     ui1Var.C();
                 }
@@ -251,22 +251,22 @@ public final class ui1 implements VoIPService.StateListener, NotificationCenter.
         int size;
         int size2;
         float f7;
-        ui1 ui1Var = f41134n1;
-        if (ui1Var != null && ui1Var.f41174u0.getParent() == null) {
-            ui1 ui1Var2 = f41134n1;
+        ui1 ui1Var = f41107n1;
+        if (ui1Var != null && ui1Var.f41147u0.getParent() == null) {
+            ui1 ui1Var2 = f41107n1;
             if (ui1Var2 != null) {
-                ui1Var2.f41142c0.d.release();
-                f41134n1.f41144d0.d.release();
-                f41134n1.f41139b0.release();
-                mi1 mi1Var = f41134n1.f41174u0;
+                ui1Var2.f41115c0.d.release();
+                f41107n1.f41117d0.d.release();
+                f41107n1.f41112b0.release();
+                mi1 mi1Var = f41107n1.f41147u0;
                 if (mi1Var != null) {
                     mi1Var.d();
                 }
-                f41134n1.l();
+                f41107n1.l();
             }
-            f41134n1 = null;
+            f41107n1 = null;
         }
-        if (f41134n1 == null && !activity.isFinishing()) {
+        if (f41107n1 == null && !activity.isFinishing()) {
             if (org.telegram.ui.Components.voip.k2.k() != null) {
                 z10 = true;
             } else {
@@ -274,49 +274,49 @@ public final class ui1 implements VoIPService.StateListener, NotificationCenter.
             }
             if (VoIPService.getSharedState() != null && VoIPService.getSharedState().getUser() != null) {
                 ui1 ui1Var3 = new ui1(i10);
-                ui1Var3.f41138b = activity;
-                f41134n1 = ui1Var3;
+                ui1Var3.f41111b = activity;
+                f41107n1 = ui1Var3;
                 mi1 mi1Var2 = new mi1(activity, !z10, ui1Var3);
-                f41134n1.J0 = ((KeyguardManager) activity.getSystemService("keyguard")).inKeyguardRestrictedInputMode();
+                f41107n1.J0 = ((KeyguardManager) activity.getSystemService("keyguard")).inKeyguardRestrictedInputMode();
                 ((PowerManager) activity.getSystemService("power")).isInteractive();
-                f41134n1.getClass();
-                mi1Var2.setLockOnScreen(f41134n1.J0);
-                ui1Var3.f41174u0 = mi1Var2;
+                f41107n1.getClass();
+                mi1Var2.setLockOnScreen(f41107n1.J0);
+                ui1Var3.f41147u0 = mi1Var2;
                 ci1 ci1Var = new ci1(ui1Var3, 4);
-                WeakHashMap weakHashMap = r0.i0.f44726a;
+                WeakHashMap weakHashMap = r0.i0.f44698a;
                 r0.a0.j(mi1Var2, ci1Var);
                 ((WindowManager) activity.getSystemService("window")).addView(mi1Var2, org.telegram.ui.Components.voip.u2.a());
-                ui1Var3.f41173t0 = ViewConfiguration.get(activity).getScaledTouchSlop();
-                ui1Var3.f41177w0 = (AccessibilityManager) f0.e.f(activity, AccessibilityManager.class);
+                ui1Var3.f41146t0 = ViewConfiguration.get(activity).getScaledTouchSlop();
+                ui1Var3.f41150w0 = (AccessibilityManager) f0.e.f(activity, AccessibilityManager.class);
                 pi1 pi1Var = new pi1(ui1Var3, activity);
                 pi1Var.setClipToPadding(false);
                 pi1Var.setClipChildren(false);
                 pi1Var.setBackgroundColor(-16777216);
                 ui1Var3.G();
-                ui1Var3.f41171s = pi1Var;
+                ui1Var3.f41144s = pi1Var;
                 VoIPServiceState sharedState = VoIPService.getSharedState();
                 if (sharedState != null && sharedState.isConference()) {
                     z11 = true;
                 } else {
                     z11 = false;
                 }
-                org.telegram.ui.Components.voip.o1 o1Var = ui1Var3.f41169r;
+                org.telegram.ui.Components.voip.o1 o1Var = ui1Var3.f41142r;
                 ui1Var3.v = new org.telegram.ui.Components.voip.a3(activity, z11, o1Var);
                 org.telegram.ui.Components.voip.q2 q2Var = new org.telegram.ui.Components.voip.q2(activity, false, true, false, false);
-                ui1Var3.f41142c0 = q2Var;
+                ui1Var3.f41115c0 = q2Var;
                 RendererCommon.ScalingType scalingType = RendererCommon.ScalingType.SCALE_ASPECT_FIT;
                 q2Var.d.setScalingType(scalingType);
-                ui1Var3.f41142c0.d.setEnableHardwareScaler(true);
-                ui1Var3.f41142c0.d.setRotateTextureWithScreen(true);
-                ui1Var3.f41142c0.f31764a0 = 1;
+                ui1Var3.f41115c0.d.setEnableHardwareScaler(true);
+                ui1Var3.f41115c0.d.setRotateTextureWithScreen(true);
+                ui1Var3.f41115c0.f31737a0 = 1;
                 pi1Var.addView(ui1Var3.v, w7.x5.c(-1.0f, -1));
                 TLRPC.User user = ui1Var3.d;
                 org.telegram.ui.Components.voip.x2 x2Var = new org.telegram.ui.Components.voip.x2(activity, user, o1Var);
-                ui1Var3.f41176w = x2Var;
+                ui1Var3.f41149w = x2Var;
                 pi1Var.addView(x2Var, w7.x5.c(-1.0f, -1));
                 ?? view = new View(activity);
                 if (LiteMode.isEnabled(512)) {
-                    int i12 = org.telegram.ui.ActionBar.j6.f20628a;
+                    int i12 = org.telegram.ui.ActionBar.j6.f20601a;
                     Calendar calendar = Calendar.getInstance();
                     calendar.setTimeInMillis(System.currentTimeMillis());
                     int i13 = calendar.get(2);
@@ -324,49 +324,49 @@ public final class ui1 implements VoIPService.StateListener, NotificationCenter.
                     calendar.get(12);
                     calendar.get(11);
                     if ((i13 == 11 && i14 >= 24 && i14 <= 31) || (i13 == 0 && i14 == 1)) {
-                        view.f31475a = new org.telegram.ui.Components.zv0(0);
+                        view.f31448a = new org.telegram.ui.Components.zv0(0);
                     }
                 }
-                ui1Var3.f41178x = view;
+                ui1Var3.f41151x = view;
                 pi1Var.addView((View) view, w7.x5.c(220.0f, -1));
-                pi1Var.addView(ui1Var3.f41142c0);
+                pi1Var.addView(ui1Var3.f41115c0);
                 GradientDrawable.Orientation orientation = GradientDrawable.Orientation.TOP_BOTTOM;
                 new org.telegram.ui.Components.w9(orientation, new int[]{-14994098, -14328963}).f(l.d.s(0.5f, 1), new ed1(ui1Var3, 1), 0L);
                 org.telegram.ui.Components.voip.s1 s1Var = new org.telegram.ui.Components.voip.s1(activity);
                 ui1Var3.Y = s1Var;
                 s1Var.setDelegate(new ci1(ui1Var3, 3));
                 ui1Var3.Y.d(1.0f, 1.0f);
-                ui1Var3.f41136a0 = true;
+                ui1Var3.f41109a0 = true;
                 org.telegram.ui.Components.voip.q2 q2Var2 = new org.telegram.ui.Components.voip.q2(activity, true, false);
-                ui1Var3.f41144d0 = q2Var2;
+                ui1Var3.f41117d0 = q2Var2;
                 q2Var2.d.setIsCamera(true);
-                ui1Var3.f41144d0.d.setUseCameraRotation(true);
+                ui1Var3.f41117d0.d.setUseCameraRotation(true);
                 ui1Var3.Y.setOnTapListener(new fi1(ui1Var3, 1));
-                ui1Var3.f41144d0.d.setMirror(true);
-                ui1Var3.Y.addView(ui1Var3.f41144d0);
+                ui1Var3.f41117d0.d.setMirror(true);
+                ui1Var3.Y.addView(ui1Var3.f41117d0);
                 org.telegram.ui.Components.voip.s1 s1Var2 = new org.telegram.ui.Components.voip.s1(activity);
                 ui1Var3.Z = s1Var2;
                 s1Var2.S = true;
                 s1Var2.c(true, false);
                 TextureViewRenderer textureViewRenderer = new TextureViewRenderer(activity);
-                ui1Var3.f41139b0 = textureViewRenderer;
+                ui1Var3.f41112b0 = textureViewRenderer;
                 textureViewRenderer.setEnableHardwareScaler(true);
-                ui1Var3.f41139b0.setIsCamera(false);
-                ui1Var3.f41139b0.setFpsReduction(30.0f);
-                ui1Var3.f41139b0.setScalingType(scalingType);
-                ui1Var3.Z.addView(ui1Var3.f41139b0, w7.x5.e(-1, -2, 17));
+                ui1Var3.f41112b0.setIsCamera(false);
+                ui1Var3.f41112b0.setFpsReduction(30.0f);
+                ui1Var3.f41112b0.setScalingType(scalingType);
+                ui1Var3.Z.addView(ui1Var3.f41112b0, w7.x5.e(-1, -2, 17));
                 ui1Var3.Z.setOnTapListener(new fi1(ui1Var3, 2));
                 ui1Var3.Z.setVisibility(8);
                 pi1Var.addView(ui1Var3.Y, w7.x5.c(-2.0f, -2));
                 pi1Var.addView(ui1Var3.Z);
                 View view2 = new View(activity);
-                ui1Var3.f41154h0 = view2;
+                ui1Var3.f41127h0 = view2;
                 view2.setBackground(new GradientDrawable(orientation, new int[]{0, i0.a.k(-16777216, 127)}));
-                pi1Var.addView(ui1Var3.f41154h0, w7.x5.e(-1, 160, 80));
+                pi1Var.addView(ui1Var3.f41127h0, w7.x5.e(-1, 160, 80));
                 View view3 = new View(activity);
-                ui1Var3.f41156i0 = view3;
+                ui1Var3.f41129i0 = view3;
                 view3.setBackground(new GradientDrawable(orientation, new int[]{i0.a.k(-16777216, 102), 0}));
-                pi1Var.addView(ui1Var3.f41156i0, w7.x5.e(-1, 160, 48));
+                pi1Var.addView(ui1Var3.f41129i0, w7.x5.e(-1, 160, 48));
                 cc1 cc1Var = new cc1(ui1Var3, activity, 16);
                 ui1Var3.N = cc1Var;
                 cc1Var.setOrientation(0);
@@ -419,13 +419,13 @@ public final class ui1 implements VoIPService.StateListener, NotificationCenter.
                 qi1Var.setOrientation(1);
                 ui1Var3.X.setFocusable(true);
                 ui1Var3.X.setFocusableInTouchMode(true);
-                ui1Var3.f41180y = new org.telegram.ui.Components.voip.r0(activity);
+                ui1Var3.f41153y = new org.telegram.ui.Components.voip.r0(activity);
                 org.telegram.ui.Components.i9 i9Var = new org.telegram.ui.Components.i9((org.telegram.ui.ActionBar.f6) null);
                 i9Var.r(user);
-                org.telegram.ui.Components.voip.r0 r0Var = ui1Var3.f41180y;
-                int i16 = ui1Var3.f41135a;
-                r0Var.f31783b.h(ImageLocation.getForUserOrChat(i16, user, 0), null, i9Var, user);
-                ui1Var3.f41180y.setRoundRadius(AndroidUtilities.dp(135.0f) / 2);
+                org.telegram.ui.Components.voip.r0 r0Var = ui1Var3.f41153y;
+                int i16 = ui1Var3.f41108a;
+                r0Var.f31756b.h(ImageLocation.getForUserOrChat(i16, user, 0), null, i9Var, user);
+                ui1Var3.f41153y.setRoundRadius(AndroidUtilities.dp(135.0f) / 2);
                 TextView textView2 = new TextView(activity);
                 ui1Var3.E = textView2;
                 textView2.setTextSize(1, 28.0f);
@@ -437,18 +437,18 @@ public final class ui1 implements VoIPService.StateListener, NotificationCenter.
                 ui1Var3.E.setImportantForAccessibility(2);
                 ui1Var3.X.addView(ui1Var3.E, w7.x5.t(-2, -2, 1, 8, 0, 8, 6));
                 ?? frameLayout2 = new FrameLayout(activity);
-                frameLayout2.f31697a = new TextView[2];
+                frameLayout2.f31670a = new TextView[2];
                 int i17 = 0;
                 for (int i18 = 2; i17 < i18; i18 = 2) {
-                    frameLayout2.f31697a[i17] = new TextView(activity);
-                    frameLayout2.f31697a[i17].setTextSize(1, 15.0f);
-                    frameLayout2.f31697a[i17].setTextColor(-1);
-                    frameLayout2.f31697a[i17].setGravity(1);
-                    frameLayout2.addView(frameLayout2.f31697a[i17]);
+                    frameLayout2.f31670a[i17] = new TextView(activity);
+                    frameLayout2.f31670a[i17].setTextSize(1, 15.0f);
+                    frameLayout2.f31670a[i17].setTextColor(-1);
+                    frameLayout2.f31670a[i17].setGravity(1);
+                    frameLayout2.addView(frameLayout2.f31670a[i17]);
                     i17++;
                 }
                 FrameLayout frameLayout3 = new FrameLayout(activity);
-                frameLayout2.f31699c = frameLayout3;
+                frameLayout2.f31672c = frameLayout3;
                 org.telegram.ui.Components.voip.l2 l2Var = new org.telegram.ui.Components.voip.l2(frameLayout2, activity, o1Var);
                 l2Var.setTextSize(1, 15.0f);
                 l2Var.setTextColor(-1);
@@ -459,7 +459,7 @@ public final class ui1 implements VoIPService.StateListener, NotificationCenter.
                 frameLayout3.setVisibility(8);
                 frameLayout2.addView(frameLayout3, w7.x5.d(-1, -2.0f, 0, 0.0f, 44.0f, 0.0f, 0.0f));
                 TextView textView3 = new TextView(activity);
-                frameLayout2.f31698b = textView3;
+                frameLayout2.f31671b = textView3;
                 textView3.setTextSize(1, 15.0f);
                 textView3.setTextColor(-1);
                 textView3.setGravity(1);
@@ -474,13 +474,13 @@ public final class ui1 implements VoIPService.StateListener, NotificationCenter.
                 frameLayout2.d = r2Var;
                 frameLayout2.addView(r2Var, w7.x5.c(-2.0f, -1));
                 ui1Var3.F = frameLayout2;
-                WeakHashMap weakHashMap2 = r0.i0.f44726a;
+                WeakHashMap weakHashMap2 = r0.i0.f44698a;
                 frameLayout2.setImportantForAccessibility(4);
                 ui1Var3.X.addView(ui1Var3.F, w7.x5.t(-2, -2, 1, 0, 0, 0, 6));
                 if (sharedState != null && sharedState.getUser() != null && sharedState.isConference() && sharedState.getGroupCall() != null) {
                     ti1 ti1Var = new ti1(activity);
                     ui1Var3.G = ti1Var;
-                    long j3 = sharedState.getUser().f20043id;
+                    long j3 = sharedState.getUser().f20016id;
                     ArrayList<TLRPC.GroupCallParticipant> groupParticipants = sharedState.getGroupParticipants();
                     int i19 = sharedState.getGroupCall().participants_count;
                     if (groupParticipants == null && i19 <= 0) {
@@ -498,7 +498,7 @@ public final class ui1 implements VoIPService.StateListener, NotificationCenter.
                             size2 = groupParticipants.size();
                         }
                         int min = Math.min(3, size2);
-                        org.telegram.ui.Components.k9 k9Var = ti1Var.f40791b;
+                        org.telegram.ui.Components.k9 k9Var = ti1Var.f40764b;
                         k9Var.k(min);
                         int i20 = 0;
                         while (i20 < min) {
@@ -511,7 +511,7 @@ public final class ui1 implements VoIPService.StateListener, NotificationCenter.
                         if (max == 1 && (groupParticipants == null || groupParticipants.size() == 0 || (groupParticipants.size() == 1 && DialogObject.getPeerDialogId(groupParticipants.get(0).peer) == j10))) {
                             ti1Var.setVisibility(8);
                         } else {
-                            ti1Var.f40792c = new org.telegram.ui.Components.f01(LocaleController.formatPluralStringComma("Participants", max), 14.0f, AndroidUtilities.bold());
+                            ti1Var.f40765c = new org.telegram.ui.Components.f01(LocaleController.formatPluralStringComma("Participants", max), 14.0f, AndroidUtilities.bold());
                             ti1Var.setVisibility(0);
                             ti1Var.invalidate();
                         }
@@ -525,51 +525,51 @@ public final class ui1 implements VoIPService.StateListener, NotificationCenter.
                 ui1Var3.Q = new org.telegram.ui.Components.voip.m1(activity, o1Var);
                 ui1Var3.U.setAlpha(0.0f);
                 ui1Var3.Q.setVisibility(8);
-                pi1Var.addView(ui1Var3.f41180y, w7.x5.d(204, 204.0f, 1, 0.0f, 93.0f, 0.0f, 0.0f));
+                pi1Var.addView(ui1Var3.f41153y, w7.x5.d(204, 204.0f, 1, 0.0f, 93.0f, 0.0f, 0.0f));
                 pi1Var.addView(ui1Var3.X, w7.x5.d(-1, -2.0f, 0, 0.0f, 135.0f, 0.0f, 0.0f));
                 pi1Var.addView(ui1Var3.O, w7.x5.d(-2, -2.0f, 1, 0.0f, 0.0f, 0.0f, 0.0f));
                 pi1Var.addView(ui1Var3.R, w7.x5.d(304, -2.0f, 49, 0.0f, 118.0f, 0.0f, 0.0f));
                 pi1Var.addView(ui1Var3.N, w7.x5.d(-2, -2.0f, 1, 0.0f, 0.0f, 0.0f, 0.0f));
                 pi1Var.addView(ui1Var3.U, w7.x5.d(-1, 52.0f, 5, 0.0f, 0.0f, 0.0f, 0.0f));
                 pi1Var.addView(ui1Var3.Q, w7.x5.d(-1, -2.0f, 3, 0.0f, 380.0f, 0.0f, 0.0f));
-                ui1Var3.f41158j0 = new org.telegram.ui.Components.voip.p1(activity);
-                ui1Var3.f41146e = new org.telegram.ui.Components.voip.i3(activity, o1Var);
-                ui1Var3.f41149f = new org.telegram.ui.Components.voip.i3(activity, o1Var);
+                ui1Var3.f41131j0 = new org.telegram.ui.Components.voip.p1(activity);
+                ui1Var3.f41119e = new org.telegram.ui.Components.voip.i3(activity, o1Var);
+                ui1Var3.f41122f = new org.telegram.ui.Components.voip.i3(activity, o1Var);
                 ui1Var3.h = new org.telegram.ui.Components.voip.i3(activity, o1Var);
-                ui1Var3.f41164n = new org.telegram.ui.Components.voip.t2(activity, 52.0f);
-                ui1Var3.f41146e.setTranslationY(AndroidUtilities.dp(100.0f));
-                ui1Var3.f41146e.setScaleX(0.0f);
-                ui1Var3.f41146e.setScaleY(0.0f);
-                ui1Var3.f41146e.animate().setStartDelay(150).translationY(0.0f).scaleY(1.0f).scaleX(1.0f).setDuration(250L).start();
-                ui1Var3.f41149f.setTranslationY(AndroidUtilities.dp(100.0f));
-                ui1Var3.f41149f.setScaleX(0.0f);
-                ui1Var3.f41149f.setScaleY(0.0f);
-                ui1Var3.f41149f.animate().setStartDelay(166).translationY(0.0f).scaleY(1.0f).scaleX(1.0f).setDuration(250L).start();
+                ui1Var3.f41137n = new org.telegram.ui.Components.voip.t2(activity, 52.0f);
+                ui1Var3.f41119e.setTranslationY(AndroidUtilities.dp(100.0f));
+                ui1Var3.f41119e.setScaleX(0.0f);
+                ui1Var3.f41119e.setScaleY(0.0f);
+                ui1Var3.f41119e.animate().setStartDelay(150).translationY(0.0f).scaleY(1.0f).scaleX(1.0f).setDuration(250L).start();
+                ui1Var3.f41122f.setTranslationY(AndroidUtilities.dp(100.0f));
+                ui1Var3.f41122f.setScaleX(0.0f);
+                ui1Var3.f41122f.setScaleY(0.0f);
+                ui1Var3.f41122f.animate().setStartDelay(166).translationY(0.0f).scaleY(1.0f).scaleX(1.0f).setDuration(250L).start();
                 ui1Var3.h.setTranslationY(AndroidUtilities.dp(100.0f));
                 ui1Var3.h.setScaleX(0.0f);
                 ui1Var3.h.setScaleY(0.0f);
                 ui1Var3.h.animate().setStartDelay(182).translationY(0.0f).scaleY(1.0f).scaleX(1.0f).setDuration(250L).start();
-                ui1Var3.f41164n.setTranslationY(AndroidUtilities.dp(100.0f));
-                ui1Var3.f41164n.setScaleX(0.0f);
-                ui1Var3.f41164n.setScaleY(0.0f);
-                ui1Var3.f41164n.animate().setStartDelay(198).translationY(0.0f).scaleY(1.0f).scaleX(1.0f).setDuration(250L).start();
-                ui1Var3.f41158j0.addView(ui1Var3.f41146e);
-                ui1Var3.f41158j0.addView(ui1Var3.f41149f);
-                ui1Var3.f41158j0.addView(ui1Var3.h);
-                ui1Var3.f41158j0.addView(ui1Var3.f41164n);
+                ui1Var3.f41137n.setTranslationY(AndroidUtilities.dp(100.0f));
+                ui1Var3.f41137n.setScaleX(0.0f);
+                ui1Var3.f41137n.setScaleY(0.0f);
+                ui1Var3.f41137n.animate().setStartDelay(198).translationY(0.0f).scaleY(1.0f).scaleX(1.0f).setDuration(250L).start();
+                ui1Var3.f41131j0.addView(ui1Var3.f41119e);
+                ui1Var3.f41131j0.addView(ui1Var3.f41122f);
+                ui1Var3.f41131j0.addView(ui1Var3.h);
+                ui1Var3.f41131j0.addView(ui1Var3.f41137n);
                 org.telegram.ui.Components.voip.e eVar = new org.telegram.ui.Components.voip.e(activity);
-                ui1Var3.f41147e0 = eVar;
+                ui1Var3.f41120e0 = eVar;
                 eVar.setListener(new si1(ui1Var3));
-                ui1Var3.f41147e0.setScaleX(1.15f);
-                ui1Var3.f41147e0.setScaleY(1.15f);
-                pi1Var.addView(ui1Var3.f41158j0, w7.x5.e(-1, -2, 80));
+                ui1Var3.f41120e0.setScaleX(1.15f);
+                ui1Var3.f41120e0.setScaleY(1.15f);
+                pi1Var.addView(ui1Var3.f41131j0, w7.x5.e(-1, -2, 80));
                 if (AndroidUtilities.isTablet()) {
                     i11 = 100;
                 } else {
                     i11 = 27;
                 }
                 float f10 = i11;
-                pi1Var.addView(ui1Var3.f41147e0, w7.x5.d(-1, 186.0f, 80, f10, 0.0f, f10, 0.0f));
+                pi1Var.addView(ui1Var3.f41120e0, w7.x5.d(-1, 186.0f, 80, f10, 0.0f, f10, 0.0f));
                 ImageView imageView = new ImageView(activity);
                 ui1Var3.I = imageView;
                 imageView.setBackground(org.telegram.ui.ActionBar.j6.f0(i0.a.k(-1, 76), 1, -1));
@@ -595,18 +595,18 @@ public final class ui1 implements VoIPService.StateListener, NotificationCenter.
                 ui1Var3.K.setOnClickListener(new fi1(ui1Var3, 5));
                 ui1Var3.H.setOnClickListener(new fi1(ui1Var3, 6));
                 ui1Var3.I.setOnClickListener(new wy0(10, ui1Var3, activity));
-                if (ui1Var3.f41174u0.f31901b) {
+                if (ui1Var3.f41147u0.f31874b) {
                     ui1Var3.H.setVisibility(8);
                     ui1Var3.I.setVisibility(8);
                 }
                 ?? linearLayout = new LinearLayout(activity);
-                linearLayout.f31510a = new HashMap();
-                linearLayout.f31511b = new ArrayList();
-                linearLayout.f31512c = new ArrayList();
+                linearLayout.f31483a = new HashMap();
+                linearLayout.f31484b = new ArrayList();
+                linearLayout.f31485c = new ArrayList();
                 TextPaint textPaint = new TextPaint();
-                linearLayout.f31516r = textPaint;
+                linearLayout.f31489r = textPaint;
                 linearLayout.setOrientation(1);
-                linearLayout.f31515n = o1Var;
+                linearLayout.f31488n = o1Var;
                 TransitionSet transitionSet = new TransitionSet();
                 linearLayout.d = transitionSet;
                 transitionSet.addTransition(new Fade(2).setDuration(150L)).addTransition(new ChangeBounds().setDuration(200L)).addTransition(new org.telegram.ui.ActionBar.n0(3).setDuration(200L));
@@ -621,10 +621,10 @@ public final class ui1 implements VoIPService.StateListener, NotificationCenter.
                 Layout.Alignment alignment = Layout.Alignment.ALIGN_CENTER;
                 b3Var.K = alignment;
                 b3Var.d = -1L;
-                b3Var.f7238l0 = new ei1(ui1Var3, 6);
+                b3Var.f7210l0 = new ei1(ui1Var3, 6);
                 b3Var.T = true;
                 b3Var.h = AndroidUtilities.dp(320.0f);
-                b3Var.f7229e = true;
+                b3Var.f7201e = true;
                 b3Var.k(10.0f, 6.0f, 10.0f, 6.0f);
                 b3Var.q(8.0f);
                 ui1Var3.N0 = b3Var;
@@ -636,7 +636,7 @@ public final class ui1 implements VoIPService.StateListener, NotificationCenter.
                 b3Var2.d = 4000L;
                 b3Var2.T = true;
                 b3Var2.h = AndroidUtilities.dp(320.0f);
-                b3Var2.f7229e = true;
+                b3Var2.f7201e = true;
                 b3Var2.k(10.0f, 6.0f, 10.0f, 6.0f);
                 b3Var2.q(8.0f);
                 ui1Var3.O0 = b3Var2;
@@ -662,10 +662,10 @@ public final class ui1 implements VoIPService.StateListener, NotificationCenter.
                     ui1Var3.I0 = true;
                     VoIPService sharedInstance2 = VoIPService.getSharedInstance();
                     if (sharedInstance2 != null && sharedInstance2.getVideoState(false) == 2) {
-                        ui1Var3.f41142c0.setStub(org.telegram.ui.Components.voip.k2.k().f31611r);
-                        ui1Var3.f41144d0.setStub(org.telegram.ui.Components.voip.k2.k().f31610n);
+                        ui1Var3.f41115c0.setStub(org.telegram.ui.Components.voip.k2.k().f31584r);
+                        ui1Var3.f41117d0.setStub(org.telegram.ui.Components.voip.k2.k().f31583n);
                     }
-                    ui1Var3.f41174u0.setAlpha(0.0f);
+                    ui1Var3.f41147u0.setAlpha(0.0f);
                     ui1Var3.H();
                     ui1Var3.E0 = true;
                     org.telegram.ui.Components.voip.k2.T = true;
@@ -682,13 +682,13 @@ public final class ui1 implements VoIPService.StateListener, NotificationCenter.
                 }
                 VoIPService sharedInstance3 = VoIPService.getSharedInstance();
                 if (sharedInstance3 != null && sharedInstance3.getRemoteVideoState() == 2 && tf.c.a(activity) == 1) {
-                    ui1 ui1Var4 = f41134n1;
+                    ui1 ui1Var4 = f41107n1;
                     qf.d dVar = new qf.d(activity, ui1Var4);
-                    dVar.f44373c = "voip-fragment-pip";
-                    org.telegram.ui.Components.voip.q2 q2Var3 = ui1Var4.f41142c0;
-                    dVar.f44378j = q2Var3.d;
-                    dVar.f44379k = q2Var3.getPlaceholderView();
-                    ui1Var4.f41152g0 = dVar.a();
+                    dVar.f44345c = "voip-fragment-pip";
+                    org.telegram.ui.Components.voip.q2 q2Var3 = ui1Var4.f41115c0;
+                    dVar.f44350j = q2Var3.d;
+                    dVar.f44351k = q2Var3.getPlaceholderView();
+                    ui1Var4.f41125g0 = dVar.a();
                 }
             }
         }
@@ -702,54 +702,54 @@ public final class ui1 implements VoIPService.StateListener, NotificationCenter.
         }
         b21 b21Var = this.Q0;
         int i11 = 0;
-        if (!z10 && this.f41179x0) {
+        if (!z10 && this.f41152x0) {
             ViewPropertyAnimator duration = this.K.animate().alpha(0.0f).translationY(-AndroidUtilities.dp(10.0f)).setDuration(150L);
-            org.telegram.ui.Components.pr prVar = org.telegram.ui.Components.pr.f29494f;
+            org.telegram.ui.Components.pr prVar = org.telegram.ui.Components.pr.f29467f;
             duration.setInterpolator(prVar).start();
             this.H.animate().alpha(0.0f).translationY(-AndroidUtilities.dp(10.0f)).setDuration(150L).setInterpolator(prVar).start();
             this.I.animate().alpha(0.0f).translationY(-AndroidUtilities.dp(10.0f)).setDuration(150L).setInterpolator(prVar).start();
             this.N.animate().alpha(0.0f).translationY(-AndroidUtilities.dp(10.0f)).setDuration(150L).setInterpolator(prVar).start();
             this.E.animate().alpha(0.0f).setDuration(150L).translationY(-AndroidUtilities.dp(10.0f)).setInterpolator(prVar).start();
             this.F.animate().alpha(0.0f).setDuration(150L).translationY(-AndroidUtilities.dp(10.0f)).setInterpolator(prVar).start();
-            this.f41158j0.animate().alpha(0.0f).translationY(AndroidUtilities.dp(10.0f)).setDuration(150L).setInterpolator(prVar).start();
-            this.f41154h0.animate().alpha(0.0f).setDuration(150L).setInterpolator(prVar).start();
-            this.f41156i0.animate().alpha(0.0f).setDuration(150L).setInterpolator(prVar).start();
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(this.f41181y0, 0.0f);
+            this.f41131j0.animate().alpha(0.0f).translationY(AndroidUtilities.dp(10.0f)).setDuration(150L).setInterpolator(prVar).start();
+            this.f41127h0.animate().alpha(0.0f).setDuration(150L).setInterpolator(prVar).start();
+            this.f41129i0.animate().alpha(0.0f).setDuration(150L).setInterpolator(prVar).start();
+            ValueAnimator ofFloat = ValueAnimator.ofFloat(this.f41154y0, 0.0f);
             this.P0 = ofFloat;
             ofFloat.addUpdateListener(b21Var);
             this.P0.setDuration(150L).setInterpolator(prVar);
             this.P0.start();
             AndroidUtilities.cancelRunOnUIThread(this.S0);
             this.R0 = false;
-            this.f41158j0.setEnabled(false);
+            this.f41131j0.setEnabled(false);
             this.O0.e(true);
             i10 = 150;
         } else {
-            if (z10 && !this.f41179x0) {
+            if (z10 && !this.f41152x0) {
                 this.N0.e(true);
                 this.O0.e(true);
                 ViewPropertyAnimator translationY = this.E.animate().alpha(1.0f).setDuration(150L).translationY(0.0f);
-                org.telegram.ui.Components.pr prVar2 = org.telegram.ui.Components.pr.f29494f;
+                org.telegram.ui.Components.pr prVar2 = org.telegram.ui.Components.pr.f29467f;
                 translationY.setInterpolator(prVar2).start();
                 this.F.animate().alpha(1.0f).setDuration(150L).translationY(0.0f).setInterpolator(prVar2).start();
                 this.K.animate().alpha(1.0f).translationY(0.0f).setDuration(150L).setInterpolator(prVar2).start();
                 this.H.animate().alpha(1.0f).translationY(0.0f).setDuration(150L).setInterpolator(prVar2).start();
                 this.I.animate().alpha(1.0f).translationY(0.0f).setDuration(150L).setInterpolator(prVar2).start();
                 this.N.animate().alpha(1.0f).translationY(0.0f).setDuration(150L).setInterpolator(prVar2).start();
-                this.f41158j0.animate().alpha(1.0f).translationY(0.0f).setDuration(150L).setInterpolator(prVar2).start();
-                this.f41154h0.animate().alpha(1.0f).setDuration(150L).setInterpolator(prVar2).start();
-                this.f41156i0.animate().alpha(1.0f).setDuration(150L).setInterpolator(prVar2).start();
-                ValueAnimator ofFloat2 = ValueAnimator.ofFloat(this.f41181y0, 1.0f);
+                this.f41131j0.animate().alpha(1.0f).translationY(0.0f).setDuration(150L).setInterpolator(prVar2).start();
+                this.f41127h0.animate().alpha(1.0f).setDuration(150L).setInterpolator(prVar2).start();
+                this.f41129i0.animate().alpha(1.0f).setDuration(150L).setInterpolator(prVar2).start();
+                ValueAnimator ofFloat2 = ValueAnimator.ofFloat(this.f41154y0, 1.0f);
                 this.P0 = ofFloat2;
                 ofFloat2.addUpdateListener(b21Var);
                 this.P0.setDuration(150L).setInterpolator(prVar2);
                 this.P0.start();
-                this.f41158j0.setEnabled(true);
+                this.f41131j0.setEnabled(true);
             }
             i10 = 0;
         }
-        this.f41179x0 = z10;
-        mi1 mi1Var = this.f41174u0;
+        this.f41152x0 = z10;
+        mi1 mi1Var = this.f41147u0;
         if (!z10) {
             mi1Var.setSystemUiVisibility(mi1Var.getSystemUiVisibility() | 4);
         } else {
@@ -757,10 +757,10 @@ public final class ui1 implements VoIPService.StateListener, NotificationCenter.
         }
         ViewPropertyAnimator animate = this.M0.animate();
         int i12 = -AndroidUtilities.dp(16.0f);
-        if (this.f41179x0) {
+        if (this.f41152x0) {
             i11 = AndroidUtilities.dp(80.0f);
         }
-        animate.translationY(i12 - i11).setDuration(150L).setStartDelay(i10).setInterpolator(org.telegram.ui.Components.pr.f29494f).start();
+        animate.translationY(i12 - i11).setDuration(150L).setStartDelay(i10).setInterpolator(org.telegram.ui.Components.pr.f29467f).start();
     }
 
     public final void B() {
@@ -768,7 +768,7 @@ public final class ui1 implements VoIPService.StateListener, NotificationCenter.
             ei1 ei1Var = this.S0;
             AndroidUtilities.cancelRunOnUIThread(ei1Var);
             this.R0 = false;
-            if (this.f41182z0 && this.f41179x0) {
+            if (this.f41155z0 && this.f41152x0) {
                 AndroidUtilities.runOnUIThread(ei1Var, 3000L);
                 this.R0 = true;
             }
@@ -779,38 +779,38 @@ public final class ui1 implements VoIPService.StateListener, NotificationCenter.
         String string;
         VoIPService sharedInstance = VoIPService.getSharedInstance();
         if (sharedInstance != null) {
-            if (this.f41177w0.isTouchExplorationEnabled()) {
-                if (!this.f41165n0) {
+            if (this.f41150w0.isTouchExplorationEnabled()) {
+                if (!this.f41138n0) {
                     string = LocaleController.getString(R.string.AccDescrVoipCamOn);
                 } else {
                     string = LocaleController.getString(R.string.AccDescrVoipCamOff);
                 }
-                this.f41171s.announceForAccessibility(string);
+                this.f41144s.announceForAccessibility(string);
             }
-            if (!this.f41165n0) {
-                if (this.f41166o0 == null) {
+            if (!this.f41138n0) {
+                if (this.f41139o0 == null) {
                     sharedInstance.createCaptureDevice(false);
                     if (!sharedInstance.isFrontFaceCamera()) {
                         sharedInstance.switchCamera();
                     }
-                    this.f41174u0.setLockOnScreen(true);
+                    this.f41147u0.setLockOnScreen(true);
                     int[] iArr = new int[2];
-                    this.f41149f.getLocationOnScreen(iArr);
-                    ni1 ni1Var = new ni1(this, this.f41171s.getContext(), iArr[0], iArr[1]);
-                    this.f41166o0 = ni1Var;
-                    WindowInsets windowInsets = this.f41170r0;
+                    this.f41122f.getLocationOnScreen(iArr);
+                    ni1 ni1Var = new ni1(this, this.f41144s.getContext(), iArr[0], iArr[1]);
+                    this.f41139o0 = ni1Var;
+                    WindowInsets windowInsets = this.f41143r0;
                     if (windowInsets != null) {
                         ni1Var.setBottomPadding(windowInsets.getSystemWindowInsetBottom());
                     }
-                    this.f41171s.addView(this.f41166o0);
+                    this.f41144s.addView(this.f41139o0);
                     return;
                 }
                 return;
             }
-            this.f41144d0.c();
+            this.f41117d0.c();
             sharedInstance.setVideoState(false, 0);
             sharedInstance.clearCamera();
-            this.f41168q0 = this.f41167p0;
+            this.f41141q0 = this.f41140p0;
             H();
         }
     }
@@ -821,75 +821,75 @@ public final class ui1 implements VoIPService.StateListener, NotificationCenter.
             if (z10) {
                 TransitionSet transitionSet = new TransitionSet();
                 Transition duration = new org.telegram.ui.ActionBar.n0(4).setDuration(250L);
-                org.telegram.ui.Components.pr prVar = org.telegram.ui.Components.pr.f29494f;
+                org.telegram.ui.Components.pr prVar = org.telegram.ui.Components.pr.f29467f;
                 transitionSet.addTransition(duration.setInterpolator(prVar)).addTransition(new ChangeBounds().setDuration(250L).setInterpolator(prVar));
                 transitionSet.excludeChildren(org.telegram.ui.Components.voip.t2.class, true);
                 transitionSet.excludeChildren(org.telegram.ui.Components.voip.i3.class, true);
-                TransitionManager.beginDelayedTransition(this.f41158j0, transitionSet);
+                TransitionManager.beginDelayedTransition(this.f41131j0, transitionSet);
             }
-            int i10 = this.f41167p0;
+            int i10 = this.f41140p0;
             if (i10 == 11) {
-                this.f41146e.setVisibility(8);
-                this.f41149f.setVisibility(8);
+                this.f41119e.setVisibility(8);
+                this.f41122f.setVisibility(8);
                 this.h.setVisibility(8);
-                this.f41164n.setVisibility(8);
+                this.f41137n.setVisibility(8);
                 return;
             }
             int i11 = 0;
             if (i10 != 15 && i10 != 17) {
-                if (f41134n1 == null) {
+                if (f41107n1 == null) {
                     return;
                 }
-                if (!sharedInstance.isScreencast() && (this.f41165n0 || this.m0)) {
-                    s(this.f41146e, sharedInstance);
-                    if (this.f41179x0) {
+                if (!sharedInstance.isScreencast() && (this.f41138n0 || this.m0)) {
+                    s(this.f41119e, sharedInstance);
+                    if (this.f41152x0) {
                         this.K.setTag(1);
                         this.K.animate().alpha(1.0f).start();
                     }
                 } else {
-                    u(this.f41146e, sharedInstance);
+                    u(this.f41119e, sharedInstance);
                     this.K.setTag(null);
                     this.K.animate().alpha(0.0f).start();
                 }
-                v(this.f41149f, sharedInstance, false);
+                v(this.f41122f, sharedInstance, false);
                 t(this.h, sharedInstance, z10);
-                this.f41164n.c(R.drawable.calls_decline, -1, -1041108, 1.0f, true, LocaleController.getString(R.string.VoipEndCall2), false, z10);
-                this.f41164n.setOnClickListener(new fi1(this, 0));
+                this.f41137n.c(R.drawable.calls_decline, -1, -1041108, 1.0f, true, LocaleController.getString(R.string.VoipEndCall2), false, z10);
+                this.f41137n.setOnClickListener(new fi1(this, 0));
             } else {
                 TL_phone.PhoneCall phoneCall = sharedInstance.privateCall;
                 if (phoneCall != null && phoneCall.video && i10 == 15) {
-                    if (!sharedInstance.isScreencast() && (this.f41165n0 || this.m0)) {
-                        s(this.f41146e, sharedInstance);
-                        if (this.f41179x0) {
+                    if (!sharedInstance.isScreencast() && (this.f41138n0 || this.m0)) {
+                        s(this.f41119e, sharedInstance);
+                        if (this.f41152x0) {
                             this.K.animate().alpha(1.0f).start();
                         }
                     } else {
-                        u(this.f41146e, sharedInstance);
+                        u(this.f41119e, sharedInstance);
                         this.K.animate().alpha(0.0f).start();
                     }
-                    v(this.f41149f, sharedInstance, false);
+                    v(this.f41122f, sharedInstance, false);
                     t(this.h, sharedInstance, z10);
                 } else {
-                    this.f41146e.setVisibility(8);
-                    this.f41149f.setVisibility(8);
+                    this.f41119e.setVisibility(8);
+                    this.f41122f.setVisibility(8);
                     this.h.setVisibility(8);
                 }
-                this.f41164n.setVisibility(8);
+                this.f41137n.setVisibility(8);
             }
-            if (this.f41146e.getVisibility() == 0) {
-                this.f41146e.f31581f = 0;
+            if (this.f41119e.getVisibility() == 0) {
+                this.f41119e.f31554f = 0;
                 i11 = 16;
             }
-            if (this.f41149f.getVisibility() == 0) {
-                this.f41149f.f31581f = i11;
+            if (this.f41122f.getVisibility() == 0) {
+                this.f41122f.f31554f = i11;
                 i11 += 16;
             }
             if (this.h.getVisibility() == 0) {
-                this.h.f31581f = i11;
+                this.h.f31554f = i11;
                 i11 += 16;
             }
-            if (this.f41164n.getVisibility() == 0) {
-                this.f41164n.F = i11;
+            if (this.f41137n.getVisibility() == 0) {
+                this.f41137n.F = i11;
             }
             F();
         }
@@ -923,9 +923,9 @@ public final class ui1 implements VoIPService.StateListener, NotificationCenter.
     }
 
     public final void G() {
-        this.f41160k0.setColor(i0.a.k(-16777216, (int) (this.f41181y0 * 102.0f * this.F0)));
-        this.f41162l0.setColor(i0.a.k(-16777216, (int) (127.5f * this.F0)));
-        pi1 pi1Var = this.f41171s;
+        this.f41133k0.setColor(i0.a.k(-16777216, (int) (this.f41154y0 * 102.0f * this.F0)));
+        this.f41135l0.setColor(i0.a.k(-16777216, (int) (127.5f * this.F0)));
+        pi1 pi1Var = this.f41144s;
         if (pi1Var != null) {
             pi1Var.invalidate();
         }
@@ -938,37 +938,37 @@ public final class ui1 implements VoIPService.StateListener, NotificationCenter.
     @Override
     public final void a(com.google.android.gms.internal.cast.p pVar) {
         this.l1 = pVar;
-        org.telegram.ui.Components.voip.q2 q2Var = this.f41142c0;
+        org.telegram.ui.Components.voip.q2 q2Var = this.f41115c0;
         if (q2Var != null) {
             q2Var.d.clearFirstFrame();
         }
-        this.f41163m1 = true;
+        this.f41136m1 = true;
         H();
-        ((WindowManager) this.f41138b.getSystemService("window")).removeView(this.f41174u0);
-        this.f41174u0.invalidate();
+        ((WindowManager) this.f41111b.getSystemService("window")).removeView(this.f41147u0);
+        this.f41147u0.invalidate();
     }
 
     @Override
     public final void b(com.google.android.gms.internal.cast.p pVar) {
         this.l1 = pVar;
-        mi1 mi1Var = this.f41174u0;
+        mi1 mi1Var = this.f41147u0;
         mi1Var.getClass();
-        ((WindowManager) this.f41138b.getSystemService("window")).addView(mi1Var, org.telegram.ui.Components.voip.u2.a());
-        this.f41163m1 = false;
+        ((WindowManager) this.f41111b.getSystemService("window")).addView(mi1Var, org.telegram.ui.Components.voip.u2.a());
+        this.f41136m1 = false;
         H();
-        this.f41174u0.invalidate();
-        org.telegram.ui.Components.voip.q2 q2Var = this.f41161k1;
+        this.f41147u0.invalidate();
+        org.telegram.ui.Components.voip.q2 q2Var = this.f41134k1;
         if (q2Var != null) {
             q2Var.d.release();
-            this.f41161k1 = null;
+            this.f41134k1 = null;
         }
     }
 
     @Override
     public final Bitmap c() {
-        org.telegram.ui.Components.voip.q2 q2Var = this.f41161k1;
+        org.telegram.ui.Components.voip.q2 q2Var = this.f41134k1;
         if (q2Var != null && q2Var.d.isAvailable()) {
-            return this.f41161k1.d.getBitmap();
+            return this.f41134k1.d.getBitmap();
         }
         return null;
     }
@@ -981,33 +981,33 @@ public final class ui1 implements VoIPService.StateListener, NotificationCenter.
     @Override
     public final void didReceivedNotification(int i10, int i11, Object... objArr) {
         if (i10 == NotificationCenter.voipServiceCreated) {
-            if (this.f41167p0 == 17 && VoIPService.getSharedInstance() != null) {
-                this.f41144d0.d.release();
-                this.f41142c0.d.release();
-                this.f41139b0.release();
+            if (this.f41140p0 == 17 && VoIPService.getSharedInstance() != null) {
+                this.f41117d0.d.release();
+                this.f41115c0.d.release();
+                this.f41112b0.release();
                 o();
                 VoIPService.getSharedInstance().registerStateListener(this);
             }
         } else if (i10 == NotificationCenter.emojiLoaded) {
             E(true);
         } else if (i10 == NotificationCenter.closeInCallActivity) {
-            this.f41174u0.b();
+            this.f41147u0.b();
         } else if (i10 == NotificationCenter.webRtcSpeakerAmplitudeEvent) {
-            this.f41180y.setAmplitude(((Float) objArr[0]).floatValue() * 15.0f);
+            this.f41153y.setAmplitude(((Float) objArr[0]).floatValue() * 15.0f);
         } else if (i10 == NotificationCenter.nearEarEvent) {
             boolean booleanValue = ((Boolean) objArr[0]).booleanValue();
-            this.f41150f0 = booleanValue;
+            this.f41123f0 = booleanValue;
             if (booleanValue) {
-                this.f41180y.b(true, true);
+                this.f41153y.b(true, true);
             }
         }
     }
 
     @Override
     public final Bitmap e() {
-        org.telegram.ui.Components.voip.q2 q2Var = this.f41142c0;
+        org.telegram.ui.Components.voip.q2 q2Var = this.f41115c0;
         if (q2Var != null && q2Var.d.isAvailable()) {
-            return this.f41142c0.d.getBitmap();
+            return this.f41115c0.d.getBitmap();
         }
         return null;
     }
@@ -1019,19 +1019,19 @@ public final class ui1 implements VoIPService.StateListener, NotificationCenter.
 
     @Override
     public final View h() {
-        org.telegram.ui.Components.voip.q2 q2Var = new org.telegram.ui.Components.voip.q2(this.f41138b, false, true, false, false);
-        this.f41161k1 = q2Var;
+        org.telegram.ui.Components.voip.q2 q2Var = new org.telegram.ui.Components.voip.q2(this.f41111b, false, true, false, false);
+        this.f41134k1 = q2Var;
         q2Var.d.setScalingType(RendererCommon.ScalingType.SCALE_ASPECT_FIT);
-        this.f41161k1.d.setEnableHardwareScaler(true);
-        this.f41161k1.d.setRotateTextureWithScreen(true);
-        org.telegram.ui.Components.voip.q2 q2Var2 = this.f41161k1;
-        q2Var2.f31764a0 = 1;
+        this.f41134k1.d.setEnableHardwareScaler(true);
+        this.f41134k1.d.setRotateTextureWithScreen(true);
+        org.telegram.ui.Components.voip.q2 q2Var2 = this.f41134k1;
+        q2Var2.f31737a0 = 1;
         q2Var2.d.init(VideoCapturerDevice.getEglBase().getEglBaseContext(), new oi1(this));
-        View view = this.f41161k1.h;
+        View view = this.f41134k1.h;
         if (view != null) {
             view.setVisibility(8);
         }
-        return this.f41161k1;
+        return this.f41134k1;
     }
 
     public final ValueAnimator k(boolean z10) {
@@ -1047,21 +1047,21 @@ public final class ui1 implements VoIPService.StateListener, NotificationCenter.
         float f15;
         float f16;
         this.Y.animate().cancel();
-        float f17 = org.telegram.ui.Components.voip.k2.k().d.x + org.telegram.ui.Components.voip.k2.k().f31615y;
+        float f17 = org.telegram.ui.Components.voip.k2.k().d.x + org.telegram.ui.Components.voip.k2.k().f31588y;
         float f18 = org.telegram.ui.Components.voip.k2.k().d.y + org.telegram.ui.Components.voip.k2.k().E;
         final float x10 = this.Y.getX();
         final float y3 = this.Y.getY();
         final float scaleX = this.Y.getScaleX();
         org.telegram.ui.Components.voip.k2.U.getClass();
-        final float measuredWidth = f17 - ((this.f41142c0.getMeasuredWidth() - (this.f41142c0.getMeasuredWidth() * 0.25f)) / 2.0f);
-        final float measuredHeight2 = f18 - ((this.f41142c0.getMeasuredHeight() - (this.f41142c0.getMeasuredHeight() * 0.25f)) / 2.0f);
+        final float measuredWidth = f17 - ((this.f41115c0.getMeasuredWidth() - (this.f41115c0.getMeasuredWidth() * 0.25f)) / 2.0f);
+        final float measuredHeight2 = f18 - ((this.f41115c0.getMeasuredHeight() - (this.f41115c0.getMeasuredHeight() * 0.25f)) / 2.0f);
         final float f19 = 1.0f;
         if (this.m0) {
             int measuredWidth2 = this.Y.getMeasuredWidth();
-            if (this.f41165n0 && measuredWidth2 != 0) {
-                f16 = (this.f41174u0.getMeasuredWidth() / measuredWidth2) * 0.25f * 0.4f;
+            if (this.f41138n0 && measuredWidth2 != 0) {
+                f16 = (this.f41147u0.getMeasuredWidth() / measuredWidth2) * 0.25f * 0.4f;
                 c10 = 0;
-                f15 = (((org.telegram.ui.Components.voip.k2.k().f31609f * 0.25f) + (f17 - ((this.Y.getMeasuredWidth() - (this.Y.getMeasuredWidth() * f16)) / 2.0f))) - ((org.telegram.ui.Components.voip.k2.k().f31609f * 0.25f) * 0.4f)) - AndroidUtilities.dp(4.0f);
+                f15 = (((org.telegram.ui.Components.voip.k2.k().f31582f * 0.25f) + (f17 - ((this.Y.getMeasuredWidth() - (this.Y.getMeasuredWidth() * f16)) / 2.0f))) - ((org.telegram.ui.Components.voip.k2.k().f31582f * 0.25f) * 0.4f)) - AndroidUtilities.dp(4.0f);
                 measuredHeight = (((org.telegram.ui.Components.voip.k2.k().h * 0.25f) + (f18 - ((this.Y.getMeasuredHeight() - (this.Y.getMeasuredHeight() * f16)) / 2.0f))) - ((org.telegram.ui.Components.voip.k2.k().h * 0.25f) * 0.4f)) - AndroidUtilities.dp(4.0f);
                 z11 = true;
             } else {
@@ -1102,11 +1102,11 @@ public final class ui1 implements VoIPService.StateListener, NotificationCenter.
                 this.Y.setCornerRadius(dp);
                 this.Y.setAlpha(f19);
             }
-            this.f41142c0.setScaleX(0.25f);
-            this.f41142c0.setScaleY(0.25f);
-            this.f41142c0.setTranslationX(measuredWidth);
-            this.f41142c0.setTranslationY(measuredHeight2);
-            this.f41142c0.setRoundCorners((AndroidUtilities.dp(6.0f) * 1.0f) / 0.25f);
+            this.f41115c0.setScaleX(0.25f);
+            this.f41115c0.setScaleY(0.25f);
+            this.f41115c0.setTranslationX(measuredWidth);
+            this.f41115c0.setTranslationY(measuredHeight2);
+            this.f41115c0.setRoundCorners((AndroidUtilities.dp(6.0f) * 1.0f) / 0.25f);
         }
         if (z10) {
             f12 = 1.0f;
@@ -1148,18 +1148,18 @@ public final class ui1 implements VoIPService.StateListener, NotificationCenter.
                     ui1Var.Y.setAlpha((f19 * floatValue) + (1.0f * f23));
                 }
                 float f25 = (r12 * floatValue) + (1.0f * f23);
-                ui1Var.f41142c0.setScaleX(f25);
-                ui1Var.f41142c0.setScaleY(f25);
+                ui1Var.f41115c0.setScaleX(f25);
+                ui1Var.f41115c0.setScaleY(f25);
                 float f26 = 0.0f * f23;
                 float f27 = (measuredWidth * floatValue) + f26;
                 float f28 = (measuredHeight2 * floatValue) + f26;
-                ui1Var.f41142c0.setTranslationX(f27);
-                ui1Var.f41142c0.setTranslationY(f28);
-                ui1Var.f41142c0.setRoundCorners(((AndroidUtilities.dp(4.0f) * floatValue) * 1.0f) / f25);
+                ui1Var.f41115c0.setTranslationX(f27);
+                ui1Var.f41115c0.setTranslationY(f28);
+                ui1Var.f41115c0.setRoundCorners(((AndroidUtilities.dp(4.0f) * floatValue) * 1.0f) / f25);
                 if (!ui1Var.Y.P) {
-                    ui1Var.f41144d0.d(floatValue, false);
+                    ui1Var.f41117d0.d(floatValue, false);
                 }
-                ui1Var.f41174u0.invalidate();
+                ui1Var.f41147u0.invalidate();
             }
         });
         return ofFloat;
@@ -1170,14 +1170,14 @@ public final class ui1 implements VoIPService.StateListener, NotificationCenter.
             VoIPService.getSharedInstance().unregisterStateListener(this);
         }
         NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.webRtcSpeakerAmplitudeEvent);
-        NotificationCenter.getInstance(this.f41135a).removeObserver(this, NotificationCenter.voipServiceCreated);
+        NotificationCenter.getInstance(this.f41108a).removeObserver(this, NotificationCenter.voipServiceCreated);
         NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.emojiLoaded);
         NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.closeInCallActivity);
         NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.nearEarEvent);
-        qf.e eVar = this.f41152g0;
+        qf.e eVar = this.f41125g0;
         if (eVar != null) {
             eVar.c();
-            this.f41152g0 = null;
+            this.f41125g0 = null;
         }
         ug.n1 n1Var = this.M;
         if (n1Var != null) {
@@ -1188,9 +1188,9 @@ public final class ui1 implements VoIPService.StateListener, NotificationCenter.
 
     public final void m(boolean z10) {
         ValueAnimator ofFloat;
-        if (this.B0 && this.C0 != z10 && this.f41179x0) {
+        if (this.B0 && this.C0 != z10 && this.f41152x0) {
             this.C0 = z10;
-            org.telegram.ui.Components.voip.x2 x2Var = this.f41176w;
+            org.telegram.ui.Components.voip.x2 x2Var = this.f41149w;
             if (x2Var.K && z10 != x2Var.E) {
                 x2Var.E = z10;
                 float[] fArr = {1.0f, 0.0f};
@@ -1202,11 +1202,11 @@ public final class ui1 implements VoIPService.StateListener, NotificationCenter.
                 } else {
                     ofFloat = ValueAnimator.ofFloat(fArr);
                 }
-                x2Var.f31959c = ofFloat;
+                x2Var.f31932c = ofFloat;
                 ofFloat.addUpdateListener(new org.telegram.ui.Components.voip.w2(x2Var, 1));
-                x2Var.f31959c.setInterpolator(org.telegram.ui.Components.pr.f29494f);
-                x2Var.f31959c.setDuration(200L);
-                x2Var.f31959c.start();
+                x2Var.f31932c.setInterpolator(org.telegram.ui.Components.pr.f29467f);
+                x2Var.f31932c.setDuration(200L);
+                x2Var.f31932c.start();
             }
             if (z10) {
                 if (SharedConfig.callEncryptionHintDisplayedCount < 2) {
@@ -1215,17 +1215,17 @@ public final class ui1 implements VoIPService.StateListener, NotificationCenter.
                 this.O0.e(true);
                 AndroidUtilities.cancelRunOnUIThread(this.S0);
                 this.R0 = false;
-                if (this.f41180y.getVisibility() == 0) {
-                    this.f41180y.animate().setStartDelay(0L).translationY(AndroidUtilities.dp(48.0f)).scaleY(0.1f).scaleX(0.1f).alpha(0.0f).setDuration(200L).setInterpolator(org.telegram.ui.Components.pr.f29494f).start();
+                if (this.f41153y.getVisibility() == 0) {
+                    this.f41153y.animate().setStartDelay(0L).translationY(AndroidUtilities.dp(48.0f)).scaleY(0.1f).scaleX(0.1f).alpha(0.0f).setDuration(200L).setInterpolator(org.telegram.ui.Components.pr.f29467f).start();
                 }
                 this.O.animate().setListener(null).cancel();
                 this.O.setVisibility(0);
                 this.O.setAlpha(0.0f);
                 this.O.setScaleX(0.3f);
                 this.O.setScaleY(0.3f);
-                this.O.animate().alpha(1.0f).scaleY(1.0f).scaleX(1.0f).setDuration(340L).setInterpolator(org.telegram.ui.Components.pr.f29495g).start();
+                this.O.animate().alpha(1.0f).scaleY(1.0f).scaleX(1.0f).setDuration(340L).setInterpolator(org.telegram.ui.Components.pr.f29468g).start();
                 ViewPropertyAnimator translationY = this.N.animate().scaleX(1.72f).scaleY(1.72f).translationY(AndroidUtilities.dp(140.0f));
-                org.telegram.ui.Components.pr prVar = org.telegram.ui.Components.pr.f29494f;
+                org.telegram.ui.Components.pr prVar = org.telegram.ui.Components.pr.f29467f;
                 org.telegram.messenger.vl.q(translationY, prVar, 400L);
                 this.R.animate().setListener(null).cancel();
                 this.R.setVisibility(0);
@@ -1235,30 +1235,30 @@ public final class ui1 implements VoIPService.StateListener, NotificationCenter.
                 this.R.setAlpha(0.0f);
                 this.R.animate().alpha(1.0f).translationY(0.0f).scaleX(1.0f).scaleY(1.0f).setDuration(400L).setListener(new ii1(this, 3)).setInterpolator(prVar).start();
             } else {
-                if (this.f41180y.getVisibility() == 0) {
-                    this.f41180y.animate().setStartDelay(50L).translationY(0.0f).scaleX(1.0f).scaleY(1.0f).alpha(1.0f).setDuration(250L).setInterpolator(org.telegram.ui.Components.pr.f29494f).start();
+                if (this.f41153y.getVisibility() == 0) {
+                    this.f41153y.animate().setStartDelay(50L).translationY(0.0f).scaleX(1.0f).scaleY(1.0f).alpha(1.0f).setDuration(250L).setInterpolator(org.telegram.ui.Components.pr.f29467f).start();
                 }
                 this.O.animate().setListener(null).cancel();
                 ViewPropertyAnimator duration = this.O.animate().alpha(0.0f).scaleY(0.3f).scaleX(0.3f).setDuration(230L);
-                org.telegram.ui.Components.pr prVar2 = org.telegram.ui.Components.pr.f29494f;
+                org.telegram.ui.Components.pr prVar2 = org.telegram.ui.Components.pr.f29467f;
                 duration.setInterpolator(prVar2).setListener(new to(this.O)).start();
                 this.N.animate().scaleX(1.0f).scaleY(1.0f).translationY(0.0f).setInterpolator(prVar2).setDuration(280L).start();
                 this.R.animate().setListener(null).cancel();
                 this.R.animate().alpha(0.0f).scaleY(0.7f).scaleX(0.7f).translationY(-AndroidUtilities.dp(120.0f)).setListener(new ii1(this, 4)).setDuration(250L).setInterpolator(prVar2).start();
             }
-            this.f41168q0 = this.f41167p0;
+            this.f41141q0 = this.f41140p0;
             H();
         }
     }
 
     public final void n() {
-        this.f41174u0.b();
+        this.f41147u0.b();
     }
 
     public final void o() {
-        this.f41144d0.d.init(VideoCapturerDevice.getEglBase().getEglBaseContext(), new ji1(this));
-        this.f41142c0.d.init(VideoCapturerDevice.getEglBase().getEglBaseContext(), new ki1(this), EglBase.CONFIG_PLAIN, new GlRectDrawer());
-        this.f41139b0.init(VideoCapturerDevice.getEglBase().getEglBaseContext(), null);
+        this.f41117d0.d.init(VideoCapturerDevice.getEglBase().getEglBaseContext(), new ji1(this));
+        this.f41115c0.d.init(VideoCapturerDevice.getEglBase().getEglBaseContext(), new ki1(this), EglBase.CONFIG_PLAIN, new GlRectDrawer());
+        this.f41112b0.init(VideoCapturerDevice.getEglBase().getEglBaseContext(), null);
     }
 
     @Override
@@ -1273,31 +1273,31 @@ public final class ui1 implements VoIPService.StateListener, NotificationCenter.
 
     @Override
     public final void onCameraSwitch(boolean z10) {
-        this.f41168q0 = this.f41167p0;
+        this.f41141q0 = this.f41140p0;
         H();
     }
 
     @Override
     public final void onMediaStateUpdated(int i10, int i11) {
-        this.f41168q0 = this.f41167p0;
+        this.f41141q0 = this.f41140p0;
         if (i11 == 2 && !this.U0) {
             this.U0 = true;
         }
         VoIPService sharedInstance = VoIPService.getSharedInstance();
         if (sharedInstance != null && sharedInstance.getRemoteVideoState() == 2) {
-            if (this.f41152g0 == null && tf.c.a(this.f41138b) == 1) {
-                qf.d dVar = new qf.d(this.f41138b, f41134n1);
-                dVar.f44373c = "voip-fragment-pip";
-                org.telegram.ui.Components.voip.q2 q2Var = this.f41142c0;
-                dVar.f44378j = q2Var.d;
-                dVar.f44379k = q2Var.getPlaceholderView();
-                this.f41152g0 = dVar.a();
+            if (this.f41125g0 == null && tf.c.a(this.f41111b) == 1) {
+                qf.d dVar = new qf.d(this.f41111b, f41107n1);
+                dVar.f44345c = "voip-fragment-pip";
+                org.telegram.ui.Components.voip.q2 q2Var = this.f41115c0;
+                dVar.f44350j = q2Var.d;
+                dVar.f44351k = q2Var.getPlaceholderView();
+                this.f41125g0 = dVar.a();
             }
         } else {
-            qf.e eVar = this.f41152g0;
+            qf.e eVar = this.f41125g0;
             if (eVar != null) {
                 eVar.c();
-                this.f41152g0 = null;
+                this.f41125g0 = null;
             }
         }
         H();
@@ -1307,11 +1307,11 @@ public final class ui1 implements VoIPService.StateListener, NotificationCenter.
     public final void onSignalBarsCountChanged(int i10) {
         org.telegram.ui.Components.voip.a3 a3Var;
         if (i10 > 0) {
-            this.f41159j1 = true;
+            this.f41132j1 = true;
         }
         if (this.F != null && (a3Var = this.v) != null) {
             int i11 = a3Var.V;
-            if ((i11 == 2 || i11 == 3) && this.f41159j1) {
+            if ((i11 == 2 || i11 == 3) && this.f41132j1) {
                 AndroidUtilities.runOnUIThread(new org.telegram.ui.Components.m8(this, i10, 29), 400L);
             }
         }
@@ -1319,11 +1319,11 @@ public final class ui1 implements VoIPService.StateListener, NotificationCenter.
 
     @Override
     public final void onStateChanged(int i10) {
-        int i11 = this.f41167p0;
+        int i11 = this.f41140p0;
         if (i11 != i10) {
-            this.f41168q0 = i11;
-            this.f41167p0 = i10;
-            if (this.f41174u0 != null) {
+            this.f41141q0 = i11;
+            this.f41140p0 = i10;
+            if (this.f41147u0 != null) {
                 H();
             }
         }
@@ -1331,7 +1331,7 @@ public final class ui1 implements VoIPService.StateListener, NotificationCenter.
 
     @Override
     public final void onVideoAvailableChange(boolean z10) {
-        this.f41168q0 = this.f41167p0;
+        this.f41141q0 = this.f41140p0;
         if (z10 && !this.U0) {
             this.U0 = true;
         }
@@ -1340,43 +1340,43 @@ public final class ui1 implements VoIPService.StateListener, NotificationCenter.
 
     public final void p() {
         if (!this.G0 && !this.E0) {
-            ni1 ni1Var = this.f41166o0;
+            ni1 ni1Var = this.f41139o0;
             if (ni1Var != null) {
                 ni1Var.a(false, false);
-            } else if (this.m0 && this.f41165n0 && this.H0) {
+            } else if (this.m0 && this.f41138n0 && this.H0) {
                 this.H0 = false;
                 this.Y.setRelativePosition(this.Z);
-                this.f41136a0 = false;
-                this.f41168q0 = this.f41167p0;
+                this.f41109a0 = false;
+                this.f41141q0 = this.f41140p0;
                 H();
             } else if (this.C0) {
                 m(false);
             } else if (this.R.getVisibility() == 8) {
                 if (this.D0 && VoIPService.getSharedInstance() != null && !VoIPService.getSharedInstance().isConverting()) {
-                    if (tf.c.a(this.f41138b) > 0) {
-                        if (!this.G0 && f41134n1 != null) {
+                    if (tf.c.a(this.f41111b) > 0) {
+                        if (!this.G0 && f41107n1 != null) {
                             this.G0 = true;
                             if (VoIPService.getSharedInstance() != null) {
-                                int measuredHeight = f41134n1.f41174u0.getMeasuredHeight();
-                                ui1 ui1Var = f41134n1;
-                                org.telegram.ui.Components.voip.k2.l(ui1Var.f41138b, ui1Var.f41135a, ui1Var.f41174u0.getMeasuredWidth(), measuredHeight, 1);
-                                WindowInsets windowInsets = f41134n1.f41170r0;
+                                int measuredHeight = f41107n1.f41147u0.getMeasuredHeight();
+                                ui1 ui1Var = f41107n1;
+                                org.telegram.ui.Components.voip.k2.l(ui1Var.f41111b, ui1Var.f41108a, ui1Var.f41147u0.getMeasuredWidth(), measuredHeight, 1);
+                                WindowInsets windowInsets = f41107n1.f41143r0;
                                 if (windowInsets != null) {
                                     org.telegram.ui.Components.voip.k2.W = windowInsets.getSystemWindowInsetTop();
-                                    f41134n1.f41170r0.getSystemWindowInsetBottom();
+                                    f41107n1.f41143r0.getSystemWindowInsetBottom();
                                 }
                             }
                             if (org.telegram.ui.Components.voip.k2.k() != null) {
                                 ViewPropertyAnimator duration = this.K.animate().alpha(0.0f).setDuration(150L);
-                                org.telegram.ui.Components.pr prVar = org.telegram.ui.Components.pr.f29494f;
+                                org.telegram.ui.Components.pr prVar = org.telegram.ui.Components.pr.f29467f;
                                 duration.setInterpolator(prVar).start();
                                 this.H.animate().alpha(0.0f).setDuration(150L).setInterpolator(prVar).start();
                                 this.I.animate().alpha(0.0f).setDuration(150L).setInterpolator(prVar).start();
                                 this.N.animate().alpha(0.0f).setDuration(150L).setInterpolator(prVar).start();
                                 this.X.animate().alpha(0.0f).setDuration(150L).setInterpolator(prVar).start();
-                                this.f41158j0.animate().alpha(0.0f).setDuration(350L).setInterpolator(prVar).start();
-                                this.f41154h0.animate().alpha(0.0f).setDuration(350L).setInterpolator(prVar).start();
-                                this.f41156i0.animate().alpha(0.0f).setDuration(350L).setInterpolator(prVar).start();
+                                this.f41131j0.animate().alpha(0.0f).setDuration(350L).setInterpolator(prVar).start();
+                                this.f41127h0.animate().alpha(0.0f).setDuration(350L).setInterpolator(prVar).start();
+                                this.f41129i0.animate().alpha(0.0f).setDuration(350L).setInterpolator(prVar).start();
                                 this.Z.animate().alpha(0.0f).setDuration(350L).setInterpolator(prVar).start();
                                 this.M0.animate().alpha(0.0f).setDuration(350L).setInterpolator(prVar).start();
                                 org.telegram.ui.Components.voip.k2.T = true;
@@ -1393,52 +1393,52 @@ public final class ui1 implements VoIPService.StateListener, NotificationCenter.
                         }
                         return;
                     }
-                    org.telegram.ui.Components.e5.B(this.f41138b, new ci1(this, 0), true).o();
+                    org.telegram.ui.Components.e5.B(this.f41111b, new ci1(this, 0), true).o();
                     return;
                 }
-                this.f41174u0.b();
+                this.f41147u0.b();
             }
         }
     }
 
     public final void r(Runnable runnable) {
-        if (this.f41149f.getVisibility() == 0) {
-            this.f41147e0.getLocationOnScreen(new int[2]);
-            org.telegram.ui.Components.voip.e eVar = this.f41147e0;
-            ValueAnimator valueAnimator = eVar.f31485b0;
+        if (this.f41122f.getVisibility() == 0) {
+            this.f41120e0.getLocationOnScreen(new int[2]);
+            org.telegram.ui.Components.voip.e eVar = this.f41120e0;
+            ValueAnimator valueAnimator = eVar.f31458b0;
             if (valueAnimator != null) {
                 valueAnimator.cancel();
-                eVar.f31485b0 = null;
+                eVar.f31458b0 = null;
                 eVar.U.stop();
             }
             runnable.run();
             return;
         }
-        this.f41164n.animate().cancel();
-        this.f41146e.animate().cancel();
+        this.f41137n.animate().cancel();
+        this.f41119e.animate().cancel();
         this.h.animate().cancel();
-        this.f41149f.animate().cancel();
-        this.f41147e0.getLocationOnScreen(new int[2]);
-        org.telegram.ui.Components.voip.e eVar2 = this.f41147e0;
-        ValueAnimator valueAnimator2 = eVar2.f31485b0;
+        this.f41122f.animate().cancel();
+        this.f41120e0.getLocationOnScreen(new int[2]);
+        org.telegram.ui.Components.voip.e eVar2 = this.f41120e0;
+        ValueAnimator valueAnimator2 = eVar2.f31458b0;
         if (valueAnimator2 != null) {
             valueAnimator2.cancel();
-            eVar2.f31485b0 = null;
+            eVar2.f31458b0 = null;
             eVar2.U.stop();
         }
-        this.f41164n.c(R.drawable.calls_decline, -1, -1041108, 1.0f, true, LocaleController.getString(R.string.VoipEndCall2), false, false);
-        this.f41146e.d(5, false, false);
+        this.f41137n.c(R.drawable.calls_decline, -1, -1041108, 1.0f, true, LocaleController.getString(R.string.VoipEndCall2), false, false);
+        this.f41119e.d(5, false, false);
         this.h.d(1, false, false);
-        this.f41149f.d(3, true, false);
-        this.f41164n.setVisibility(0);
-        this.f41146e.setVisibility(0);
+        this.f41122f.d(3, true, false);
+        this.f41137n.setVisibility(0);
+        this.f41119e.setVisibility(0);
         this.h.setVisibility(0);
-        this.f41149f.setVisibility(0);
-        this.f41164n.setAlpha(0.0f);
-        this.f41146e.setAlpha(0.0f);
+        this.f41122f.setVisibility(0);
+        this.f41137n.setAlpha(0.0f);
+        this.f41119e.setAlpha(0.0f);
         this.h.setAlpha(0.0f);
-        this.f41149f.setAlpha(0.0f);
-        final ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) this.f41147e0.getLayoutParams();
+        this.f41122f.setAlpha(0.0f);
+        final ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) this.f41120e0.getLayoutParams();
         final int marginEnd = marginLayoutParams.getMarginEnd();
         AndroidUtilities.dp(52.0f);
         final int dp = AndroidUtilities.dp(24.0f);
@@ -1451,21 +1451,21 @@ public final class ui1 implements VoIPService.StateListener, NotificationCenter.
                 ui1 ui1Var = ui1.this;
                 ui1Var.getClass();
                 float floatValue = ((Float) valueAnimator3.getAnimatedValue()).floatValue();
-                ui1Var.f41147e0.setTranslationY(dp2 * floatValue);
+                ui1Var.f41120e0.setTranslationY(dp2 * floatValue);
                 int i10 = marginEnd;
                 int i11 = (int) (i10 - ((i10 + dp) * floatValue));
                 ViewGroup.MarginLayoutParams marginLayoutParams2 = marginLayoutParams;
                 marginLayoutParams2.leftMargin = i11;
                 marginLayoutParams2.rightMargin = i11;
-                ui1Var.f41147e0.requestLayout();
+                ui1Var.f41120e0.requestLayout();
             }
         });
-        org.telegram.ui.Components.voip.e eVar3 = this.f41147e0;
+        org.telegram.ui.Components.voip.e eVar3 = this.f41120e0;
         ObjectAnimator ofFloat2 = ObjectAnimator.ofFloat(eVar3, View.SCALE_X, eVar3.getScaleX(), 1.0f, 1.0f, 1.0f);
-        org.telegram.ui.Components.voip.e eVar4 = this.f41147e0;
+        org.telegram.ui.Components.voip.e eVar4 = this.f41120e0;
         ObjectAnimator ofFloat3 = ObjectAnimator.ofFloat(eVar4, View.SCALE_Y, eVar4.getScaleY(), 1.0f, 1.0f, 1.0f);
-        org.telegram.ui.Components.voip.e eVar5 = this.f41147e0;
-        animatorSet.playTogether(ofFloat, ofFloat2, ofFloat3, ObjectAnimator.ofFloat(eVar5, View.ALPHA, eVar5.getAlpha(), this.f41147e0.getAlpha(), 0.0f, 0.0f));
+        org.telegram.ui.Components.voip.e eVar5 = this.f41120e0;
+        animatorSet.playTogether(ofFloat, ofFloat2, ofFloat3, ObjectAnimator.ofFloat(eVar5, View.ALPHA, eVar5.getAlpha(), this.f41120e0.getAlpha(), 0.0f, 0.0f));
         animatorSet.setDuration(400L);
         animatorSet.setInterpolator(new LinearInterpolator());
         animatorSet.addListener(new org.telegram.ui.Components.pk0(17, this, runnable));
@@ -1474,7 +1474,7 @@ public final class ui1 implements VoIPService.StateListener, NotificationCenter.
     }
 
     public final void s(org.telegram.ui.Components.voip.i3 i3Var, VoIPService voIPService) {
-        if (!this.f41165n0) {
+        if (!this.f41138n0) {
             i3Var.d(2, false, false);
             i3Var.setOnBtnClickedListener(null);
             i3Var.setEnabled(false);
@@ -1495,7 +1495,7 @@ public final class ui1 implements VoIPService.StateListener, NotificationCenter.
         boolean isMicMute = voIPService.isMicMute();
         float f7 = 0.0f;
         if (!z10) {
-            ValueAnimator valueAnimator = s1Var.f31819f0;
+            ValueAnimator valueAnimator = s1Var.f31792f0;
             if (valueAnimator != null) {
                 valueAnimator.cancel();
             }
@@ -1505,7 +1505,7 @@ public final class ui1 implements VoIPService.StateListener, NotificationCenter.
             s1Var.K = f7;
             s1Var.invalidate();
         } else {
-            ValueAnimator valueAnimator2 = s1Var.f31819f0;
+            ValueAnimator valueAnimator2 = s1Var.f31792f0;
             if (valueAnimator2 != null) {
                 valueAnimator2.cancel();
             }
@@ -1514,10 +1514,10 @@ public final class ui1 implements VoIPService.StateListener, NotificationCenter.
                 f7 = 1.0f;
             }
             ValueAnimator ofFloat = ValueAnimator.ofFloat(f10, f7);
-            s1Var.f31819f0 = ofFloat;
-            ofFloat.addUpdateListener(s1Var.f31820g0);
-            s1Var.f31819f0.setDuration(150L);
-            s1Var.f31819f0.start();
+            s1Var.f31792f0 = ofFloat;
+            ofFloat.addUpdateListener(s1Var.f31793g0);
+            s1Var.f31792f0.setDuration(150L);
+            s1Var.f31792f0.start();
         }
         i3Var.setOnBtnClickedListener(new ci1(this, 5));
     }
@@ -1541,13 +1541,13 @@ public final class ui1 implements VoIPService.StateListener, NotificationCenter.
 
     public final void v(org.telegram.ui.Components.voip.i3 i3Var, VoIPService voIPService, boolean z10) {
         boolean z11;
-        if (!this.f41165n0 && !this.m0) {
+        if (!this.f41138n0 && !this.m0) {
             z11 = voIPService.isVideoAvailable();
         } else {
             z11 = true;
         }
         if (z11) {
-            if (this.f41165n0) {
+            if (this.f41138n0) {
                 if (voIPService.isScreencast()) {
                     i3Var.d(3, false, z10);
                 } else {
@@ -1568,49 +1568,49 @@ public final class ui1 implements VoIPService.StateListener, NotificationCenter.
     public final void x(boolean z10, boolean z11) {
         boolean z12;
         int i10 = 0;
-        if (!this.f41165n0 && !this.m0) {
+        if (!this.f41138n0 && !this.m0) {
             z12 = true;
         } else {
             z12 = false;
         }
         Integer num = null;
         if (z10) {
-            if (z12 && this.f41180y.getTag() == null) {
-                this.f41180y.animate().setListener(null).cancel();
-                this.f41180y.setVisibility(0);
+            if (z12 && this.f41153y.getTag() == null) {
+                this.f41153y.animate().setListener(null).cancel();
+                this.f41153y.setVisibility(0);
                 if (!this.C0) {
                     if (z11) {
-                        this.f41180y.setAlpha(0.0f);
-                        this.f41180y.animate().alpha(1.0f).translationY(0.0f).scaleY(1.0f).scaleX(1.0f).setDuration(150L).setInterpolator(org.telegram.ui.Components.pr.f29494f).start();
+                        this.f41153y.setAlpha(0.0f);
+                        this.f41153y.animate().alpha(1.0f).translationY(0.0f).scaleY(1.0f).scaleX(1.0f).setDuration(150L).setInterpolator(org.telegram.ui.Components.pr.f29467f).start();
                     } else {
-                        this.f41180y.setAlpha(0.0f);
-                        this.f41180y.setTranslationY(-AndroidUtilities.dp(135.0f));
-                        this.f41180y.animate().alpha(1.0f).translationY(0.0f).scaleY(1.0f).scaleX(1.0f).setDuration(150L).setInterpolator(org.telegram.ui.Components.pr.f29494f).start();
+                        this.f41153y.setAlpha(0.0f);
+                        this.f41153y.setTranslationY(-AndroidUtilities.dp(135.0f));
+                        this.f41153y.animate().alpha(1.0f).translationY(0.0f).scaleY(1.0f).scaleX(1.0f).setDuration(150L).setInterpolator(org.telegram.ui.Components.pr.f29467f).start();
                     }
                 } else if (z11) {
-                    this.f41180y.setAlpha(0.0f);
-                    this.f41180y.setTranslationY(AndroidUtilities.dp(48.0f));
-                    this.f41180y.setScaleX(0.1f);
-                    this.f41180y.setScaleY(0.1f);
+                    this.f41153y.setAlpha(0.0f);
+                    this.f41153y.setTranslationY(AndroidUtilities.dp(48.0f));
+                    this.f41153y.setScaleX(0.1f);
+                    this.f41153y.setScaleY(0.1f);
                 }
-            } else if (!z12 && this.f41180y.getTag() != null) {
-                this.f41180y.animate().setListener(null).cancel();
-                this.f41180y.setTranslationY(0.0f);
-                this.f41180y.animate().alpha(0.0f).setDuration(150L).scaleX(0.1f).scaleY(0.1f).setInterpolator(org.telegram.ui.Components.pr.f29494f).setListener(new ii1(this, 7)).start();
+            } else if (!z12 && this.f41153y.getTag() != null) {
+                this.f41153y.animate().setListener(null).cancel();
+                this.f41153y.setTranslationY(0.0f);
+                this.f41153y.animate().alpha(0.0f).setDuration(150L).scaleX(0.1f).scaleY(0.1f).setInterpolator(org.telegram.ui.Components.pr.f29467f).setListener(new ii1(this, 7)).start();
             }
         } else {
-            this.f41180y.animate().setListener(null).cancel();
-            this.f41180y.setTranslationY(0.0f);
-            this.f41180y.setAlpha(1.0f);
-            this.f41180y.setScaleX(1.0f);
-            this.f41180y.setScaleY(1.0f);
-            org.telegram.ui.Components.voip.r0 r0Var = this.f41180y;
+            this.f41153y.animate().setListener(null).cancel();
+            this.f41153y.setTranslationY(0.0f);
+            this.f41153y.setAlpha(1.0f);
+            this.f41153y.setScaleX(1.0f);
+            this.f41153y.setScaleY(1.0f);
+            org.telegram.ui.Components.voip.r0 r0Var = this.f41153y;
             if (!z12) {
                 i10 = 8;
             }
             r0Var.setVisibility(i10);
         }
-        org.telegram.ui.Components.voip.r0 r0Var2 = this.f41180y;
+        org.telegram.ui.Components.voip.r0 r0Var2 = this.f41153y;
         if (z12) {
             num = 1;
         }
@@ -1619,19 +1619,19 @@ public final class ui1 implements VoIPService.StateListener, NotificationCenter.
 
     public final void y(CharSequence charSequence) {
         TextView textView;
-        if (this.f41138b.isFinishing()) {
+        if (this.f41111b.isFinishing()) {
             return;
         }
-        org.telegram.ui.ActionBar.b2 b2Var = new org.telegram.ui.ActionBar.b2(this.f41138b, 0, null);
+        org.telegram.ui.ActionBar.b2 b2Var = new org.telegram.ui.ActionBar.b2(this.f41111b, 0, null);
         boolean[] zArr = new boolean[3];
         b2Var.R = LocaleController.getString(R.string.VoipFailed);
         b2Var.T = charSequence;
-        b2Var.f20270l0 = LocaleController.getString(R.string.OK);
+        b2Var.f20243l0 = LocaleController.getString(R.string.OK);
         b2Var.m0 = null;
         b2Var.show();
         for (int i10 = 0; i10 < 3; i10++) {
             if (zArr[i10] && (textView = (TextView) b2Var.d(-(i10 + 1))) != null) {
-                textView.setTextColor(b2Var.e(org.telegram.ui.ActionBar.j6.f20926q7));
+                textView.setTextColor(b2Var.e(org.telegram.ui.ActionBar.j6.f20899q7));
             }
         }
         b2Var.setCanceledOnTouchOutside(true);
@@ -1643,7 +1643,7 @@ public final class ui1 implements VoIPService.StateListener, NotificationCenter.
         boolean z12;
         AnimatorSet animatorSet;
         if (this.Y.getTag() == null || ((Integer) this.Y.getTag()).intValue() != 2) {
-            this.Y.setUiVisible(this.f41179x0);
+            this.Y.setUiVisible(this.f41152x0);
         }
         if (!z10 && (animatorSet = this.A0) != null) {
             animatorSet.removeAllListeners();
@@ -1669,7 +1669,7 @@ public final class ui1 implements VoIPService.StateListener, NotificationCenter.
                     }
                     this.A0 = animatorSet3;
                     animatorSet3.addListener(new ii1(this, 6));
-                    this.A0.setDuration(250L).setInterpolator(org.telegram.ui.Components.pr.f29494f);
+                    this.A0.setDuration(250L).setInterpolator(org.telegram.ui.Components.pr.f29467f);
                     this.A0.setStartDelay(50L);
                     this.A0.start();
                 }
@@ -1705,9 +1705,9 @@ public final class ui1 implements VoIPService.StateListener, NotificationCenter.
             }
             if (this.Y.getTag() == null || ((Integer) this.Y.getTag()).intValue() != 2) {
                 org.telegram.ui.Components.voip.s1 s1Var4 = this.Y;
-                if (s1Var4.f31829y < 0.0f) {
+                if (s1Var4.f31802y < 0.0f) {
                     s1Var4.d(1.0f, 1.0f);
-                    this.f41136a0 = true;
+                    this.f41109a0 = true;
                 }
             }
             org.telegram.ui.Components.voip.s1 s1Var5 = this.Y;
@@ -1720,7 +1720,7 @@ public final class ui1 implements VoIPService.StateListener, NotificationCenter.
             if (i10 == 2) {
                 z13 = false;
             }
-            this.f41136a0 = z13;
+            this.f41109a0 = z13;
         }
         this.Y.setTag(Integer.valueOf(i10));
     }

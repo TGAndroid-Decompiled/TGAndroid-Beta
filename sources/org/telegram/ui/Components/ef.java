@@ -1,14 +1,14 @@
 package org.telegram.ui.Components;
 public final class ef implements u71, d5 {
-    public final ChatActivityEnterView f25697a;
+    public final ChatActivityEnterView f25670a;
 
     public ef(ChatActivityEnterView chatActivityEnterView) {
-        this.f25697a = chatActivityEnterView;
+        this.f25670a = chatActivityEnterView;
     }
 
     @Override
     public void J(int i10, int i11, boolean z10) {
-        ChatActivityEnterView chatActivityEnterView = this.f25697a;
+        ChatActivityEnterView chatActivityEnterView = this.f25670a;
         boolean T0 = chatActivityEnterView.T0(i10, z10, i11, true, 0L);
         nf nfVar = chatActivityEnterView.L0;
         if (nfVar != null) {

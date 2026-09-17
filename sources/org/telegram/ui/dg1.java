@@ -8,16 +8,16 @@ import org.telegram.messenger.TopicsController;
 import org.telegram.tgnet.TLRPC;
 public final class dg1 extends s4.v {
     public boolean d;
-    public final eg1 f35813e;
+    public final eg1 f35786e;
 
     public dg1(eg1 eg1Var) {
-        this.f35813e = eg1Var;
+        this.f35786e = eg1Var;
     }
 
     @Override
     public final void a(RecyclerView recyclerView, s4.c1 c1Var) {
         super.a(recyclerView, c1Var);
-        c1Var.f45767a.setPressed(false);
+        c1Var.f45739a.setPressed(false);
     }
 
     @Override
@@ -25,12 +25,12 @@ public final class dg1 extends s4.v {
         int l4 = s4.v.l(0, 0);
         int b10 = c1Var.b();
         if (b10 >= 0) {
-            eg1 eg1Var = this.f35813e;
-            if (b10 < eg1Var.f36056b.size() && ((vf1) eg1Var.f36056b.get(b10)).f41561c != null && ChatObject.canManageTopics(eg1Var.g())) {
-                TLRPC.TL_forumTopic tL_forumTopic = ((vf1) eg1Var.f36056b.get(b10)).f41561c;
-                if (eg1Var.f36054a0.isEmpty()) {
-                    View view = c1Var.f45767a;
-                    if ((view instanceof bg1) && tL_forumTopic.f19948id == 1) {
+            eg1 eg1Var = this.f35786e;
+            if (b10 < eg1Var.f36029b.size() && ((vf1) eg1Var.f36029b.get(b10)).f41534c != null && ChatObject.canManageTopics(eg1Var.g())) {
+                TLRPC.TL_forumTopic tL_forumTopic = ((vf1) eg1Var.f36029b.get(b10)).f41534c;
+                if (eg1Var.f36027a0.isEmpty()) {
+                    View view = c1Var.f45739a;
+                    if ((view instanceof bg1) && tL_forumTopic.f19921id == 1) {
                         this.d = true;
                         ((bg1) view).setSliding(true);
                         return s4.v.l(0, 4);
@@ -47,20 +47,20 @@ public final class dg1 extends s4.v {
 
     @Override
     public final boolean k() {
-        return !this.f35813e.f36054a0.isEmpty();
+        return !this.f35786e.f36027a0.isEmpty();
     }
 
     @Override
     public final boolean n(RecyclerView recyclerView, s4.c1 c1Var, s4.c1 c1Var2) {
         int b10;
-        eg1 eg1Var = this.f35813e;
-        ArrayList arrayList = eg1Var.f36056b;
-        if (c1Var.f45771f == c1Var2.f45771f && (b10 = c1Var2.b()) >= 0 && b10 < arrayList.size() && ((vf1) arrayList.get(b10)).f41561c != null && ((vf1) arrayList.get(b10)).f41561c.pinned) {
-            tf1 tf1Var = eg1Var.f36087r;
+        eg1 eg1Var = this.f35786e;
+        ArrayList arrayList = eg1Var.f36029b;
+        if (c1Var.f45743f == c1Var2.f45743f && (b10 = c1Var2.b()) >= 0 && b10 < arrayList.size() && ((vf1) arrayList.get(b10)).f41534c != null && ((vf1) arrayList.get(b10)).f41534c.pinned) {
+            tf1 tf1Var = eg1Var.f36060r;
             int b11 = c1Var.b();
             int b12 = c1Var2.b();
             eg1 eg1Var2 = tf1Var.d;
-            ArrayList arrayList2 = eg1Var2.f36056b;
+            ArrayList arrayList2 = eg1Var2.f36029b;
             arrayList2.add(b12, (vf1) arrayList2.remove(b11));
             s4.m0 itemAnimator = eg1Var2.N.getItemAnimator();
             rf1 rf1Var = eg1Var2.I0;
@@ -75,37 +75,37 @@ public final class dg1 extends s4.v {
 
     @Override
     public final void p(s4.c1 c1Var, int i10) {
-        eg1 eg1Var = this.f35813e;
+        eg1 eg1Var = this.f35786e;
         if (i10 == 0) {
-            ArrayList arrayList = eg1Var.f36056b;
+            ArrayList arrayList = eg1Var.f36029b;
             ArrayList<Integer> arrayList2 = new ArrayList<>();
             for (int i11 = 0; i11 < arrayList.size(); i11++) {
-                TLRPC.TL_forumTopic tL_forumTopic = ((vf1) arrayList.get(i11)).f41561c;
+                TLRPC.TL_forumTopic tL_forumTopic = ((vf1) arrayList.get(i11)).f41534c;
                 if (tL_forumTopic != null && tL_forumTopic.pinned) {
-                    arrayList2.add(Integer.valueOf(tL_forumTopic.f19948id));
+                    arrayList2.add(Integer.valueOf(tL_forumTopic.f19921id));
                 }
             }
-            eg1Var.getMessagesController().getTopicsController().reorderPinnedTopics(eg1Var.f36053a, arrayList2);
+            eg1Var.getMessagesController().getTopicsController().reorderPinnedTopics(eg1Var.f36026a, arrayList2);
             return;
         }
         eg1Var.N.I0(false);
-        c1Var.f45767a.setPressed(true);
+        c1Var.f45739a.setPressed(true);
     }
 
     @Override
     public final void q(s4.c1 c1Var) {
         if (c1Var != null) {
-            bg1 bg1Var = (bg1) c1Var.f45767a;
+            bg1 bg1Var = (bg1) c1Var.f45739a;
             TLRPC.TL_forumTopic tL_forumTopic = bg1Var.N;
-            eg1 eg1Var = this.f35813e;
+            eg1 eg1Var = this.f35786e;
             if (tL_forumTopic != null) {
                 TopicsController topicsController = eg1Var.getMessagesController().getTopicsController();
-                long j3 = eg1Var.f36053a;
+                long j3 = eg1Var.f36026a;
                 TLRPC.TL_forumTopic tL_forumTopic2 = bg1Var.N;
-                topicsController.toggleShowTopic(j3, tL_forumTopic2.f19948id, tL_forumTopic2.hidden);
+                topicsController.toggleShowTopic(j3, tL_forumTopic2.f19921id, tL_forumTopic2.hidden);
             }
-            eg1Var.f36058b1 = bg1Var;
-            int i10 = cg1.f35132h3;
+            eg1Var.f36031b1 = bg1Var;
+            int i10 = cg1.f35105h3;
             eg1Var.N.y1(!bg1Var.N.hidden, bg1Var);
             eg1Var.U0(true, true);
             TLRPC.TL_forumTopic tL_forumTopic3 = bg1Var.Y4;

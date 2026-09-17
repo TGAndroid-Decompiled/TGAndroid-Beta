@@ -5,31 +5,31 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class u4 implements RequestDelegate {
-    public final int f52722a;
-    public final s5 f52723b;
+    public final int f52691a;
+    public final s5 f52692b;
 
     public u4(s5 s5Var, int i10) {
-        this.f52722a = i10;
-        this.f52723b = s5Var;
+        this.f52691a = i10;
+        this.f52692b = s5Var;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f52722a) {
+        switch (this.f52691a) {
             case 0:
-                AndroidUtilities.runOnUIThread(new y4(this.f52723b, tLObject, 0));
+                AndroidUtilities.runOnUIThread(new y4(this.f52692b, tLObject, 0));
                 return;
             case 1:
-                AndroidUtilities.runOnUIThread(new y4(this.f52723b, tLObject, 1));
+                AndroidUtilities.runOnUIThread(new y4(this.f52692b, tLObject, 1));
                 return;
             case 2:
-                AndroidUtilities.runOnUIThread(new y4(this.f52723b, tLObject, 2));
+                AndroidUtilities.runOnUIThread(new y4(this.f52692b, tLObject, 2));
                 return;
             case 3:
-                AndroidUtilities.runOnUIThread(new y4(this.f52723b, tLObject, 3));
+                AndroidUtilities.runOnUIThread(new y4(this.f52692b, tLObject, 3));
                 return;
             default:
-                AndroidUtilities.runOnUIThread(new y4(this.f52723b, tLObject, 4));
+                AndroidUtilities.runOnUIThread(new y4(this.f52692b, tLObject, 4));
                 return;
         }
     }

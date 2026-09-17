@@ -20,7 +20,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.LaunchActivity;
 public class vc0 extends LinearLayout {
-    public static final pr f31197v0 = new pr(0.0f, 0.5f, 0.5f, 1.0f);
+    public static final pr f31170v0 = new pr(0.0f, 0.5f, 0.5f, 1.0f);
     public int E;
     public boolean F;
     public int G;
@@ -40,41 +40,41 @@ public class vc0 extends LinearLayout {
     public int U;
     public qc0 V;
     public float W;
-    public int f31198a;
-    public long f31199a0;
-    public int f31200b;
-    public float f31201b0;
-    public int f31202c;
-    public VelocityTracker f31203c0;
+    public int f31171a;
+    public long f31172a0;
+    public int f31173b;
+    public float f31174b0;
+    public int f31175c;
+    public VelocityTracker f31176c0;
     public final TextView d;
-    public final int f31204d0;
-    public final int f31205e;
-    public final int f31206e0;
-    public final int f31207f;
-    public final int f31208f0;
-    public boolean f31209g0;
+    public final int f31177d0;
+    public final int f31178e;
+    public final int f31179e0;
+    public final int f31180f;
+    public final int f31181f0;
+    public boolean f31182g0;
     public final int h;
-    public boolean f31210h0;
-    public final Paint f31211i0;
-    public final int f31212j0;
-    public int f31213k0;
-    public int f31214l0;
+    public boolean f31183h0;
+    public final Paint f31184i0;
+    public final int f31185j0;
+    public int f31186k0;
+    public int f31187l0;
     public int m0;
-    public int f31215n;
-    public boolean f31216n0;
-    public boolean f31217o0;
-    public final uc0 f31218p0;
-    public int f31219q0;
-    public final boolean f31220r;
-    public boolean f31221r0;
-    public final int f31222s;
-    public Utilities.CallbackReturn f31223s0;
-    public Integer f31224t0;
-    public int f31225u0;
+    public int f31188n;
+    public boolean f31189n0;
+    public boolean f31190o0;
+    public final uc0 f31191p0;
+    public int f31192q0;
+    public final boolean f31193r;
+    public boolean f31194r0;
+    public final int f31195s;
+    public Utilities.CallbackReturn f31196s0;
+    public Integer f31197t0;
+    public int f31198u0;
     public int v;
-    public String[] f31226w;
-    public int f31227x;
-    public boolean f31228y;
+    public String[] f31199w;
+    public int f31200x;
+    public boolean f31201y;
 
     public vc0(LaunchActivity launchActivity) {
         this(launchActivity, null);
@@ -138,9 +138,9 @@ public class vc0 extends LinearLayout {
         if (((String) sparseArray.get(i10)) != null) {
             return;
         }
-        int i11 = this.f31227x;
+        int i11 = this.f31200x;
         if (i10 >= i11 && i10 <= this.E) {
-            String[] strArr = this.f31226w;
+            String[] strArr = this.f31199w;
             if (strArr != null) {
                 str = strArr[i10 - i11];
             } else {
@@ -179,27 +179,27 @@ public class vc0 extends LinearLayout {
     @Override
     public final void computeScroll() {
         nm0 nm0Var = this.S;
-        if (nm0Var.f28860q) {
+        if (nm0Var.f28833q) {
             nm0Var = this.T;
-            if (nm0Var.f28860q) {
+            if (nm0Var.f28833q) {
                 return;
             }
         }
         nm0Var.b();
-        int i10 = nm0Var.f28854k;
+        int i10 = nm0Var.f28827k;
         if (this.U == 0) {
-            this.U = nm0Var.f28848c;
+            this.U = nm0Var.f28821c;
         }
         scrollBy(0, i10 - this.U);
         this.U = i10;
-        if (nm0Var.f28860q) {
+        if (nm0Var.f28833q) {
             if (nm0Var == this.S) {
                 if (!c()) {
                     n();
                 }
                 i(0);
                 return;
-            } else if (this.f31213k0 != 1) {
+            } else if (this.f31186k0 != 1) {
                 n();
                 return;
             } else {
@@ -221,7 +221,7 @@ public class vc0 extends LinearLayout {
 
     @Override
     public final int computeVerticalScrollRange() {
-        return ((this.E - this.f31227x) + 1) * this.P;
+        return ((this.E - this.f31200x) + 1) * this.P;
     }
 
     public CharSequence d(int i10) {
@@ -258,10 +258,10 @@ public class vc0 extends LinearLayout {
         int i14;
         int i15;
         int i16;
-        if (this.F && i10 > (i14 = this.E) && (i16 = i14 - (i15 = this.f31227x)) != 0) {
+        if (this.F && i10 > (i14 = this.E) && (i16 = i14 - (i15 = this.f31200x)) != 0) {
             return (((i10 - i14) % i16) + i15) - 1;
         }
-        if (this.f31228y && i10 < (i11 = this.f31227x) && (i13 = (i12 = this.E) - i11) != 0) {
+        if (this.f31201y && i10 < (i11 = this.f31200x) && (i13 = (i12 = this.E) - i11) != 0) {
             return (i12 - ((i11 - i10) % i13)) + 1;
         }
         return i10;
@@ -272,8 +272,8 @@ public class vc0 extends LinearLayout {
         int[] iArr = this.N;
         int value = getValue();
         for (int i10 = 0; i10 < this.N.length; i10++) {
-            int i11 = (i10 - this.f31200b) + value;
-            if (this.f31209g0) {
+            int i11 = (i10 - this.f31173b) + value;
+            if (this.f31182g0) {
                 i11 = e(i11);
             }
             iArr[i10] = i11;
@@ -287,11 +287,11 @@ public class vc0 extends LinearLayout {
     }
 
     public String[] getDisplayedValues() {
-        return this.f31226w;
+        return this.f31199w;
     }
 
     public int getItemsCount() {
-        return this.f31198a;
+        return this.f31171a;
     }
 
     public int getMaxValue() {
@@ -299,7 +299,7 @@ public class vc0 extends LinearLayout {
     }
 
     public int getMinValue() {
-        return this.f31227x;
+        return this.f31200x;
     }
 
     @Override
@@ -317,12 +317,12 @@ public class vc0 extends LinearLayout {
     }
 
     public boolean getWrapSelectorWheel() {
-        return this.f31209g0;
+        return this.f31182g0;
     }
 
     public final boolean h(nm0 nm0Var) {
-        nm0Var.f28860q = true;
-        int i10 = nm0Var.f28849e - nm0Var.f28854k;
+        nm0Var.f28833q = true;
+        int i10 = nm0Var.f28822e - nm0Var.f28827k;
         int i11 = this.Q - ((this.R + i10) % this.P);
         if (i11 == 0) {
             return false;
@@ -342,8 +342,8 @@ public class vc0 extends LinearLayout {
 
     public final void i(int i10) {
         String str;
-        if (this.f31213k0 != i10) {
-            this.f31213k0 = i10;
+        if (this.f31186k0 != i10) {
+            this.f31186k0 = i10;
             sc0 sc0Var = this.J;
             if (sc0Var != null) {
                 sc0Var.b(i10);
@@ -351,7 +351,7 @@ public class vc0 extends LinearLayout {
             if (i10 == 0) {
                 AccessibilityManager accessibilityManager = (AccessibilityManager) getContext().getSystemService("accessibility");
                 if (accessibilityManager.isTouchExplorationEnabled()) {
-                    String[] strArr = this.f31226w;
+                    String[] strArr = this.f31199w;
                     if (strArr == null) {
                         int i11 = this.G;
                         rc0 rc0Var = this.K;
@@ -361,7 +361,7 @@ public class vc0 extends LinearLayout {
                             str = String.format(Locale.getDefault(), "%d", Integer.valueOf(i11));
                         }
                     } else {
-                        str = strArr[this.G - this.f31227x];
+                        str = strArr[this.G - this.f31200x];
                     }
                     AccessibilityEvent obtain = AccessibilityEvent.obtain();
                     obtain.setEventType(16384);
@@ -377,7 +377,7 @@ public class vc0 extends LinearLayout {
         if (qc0Var != null) {
             removeCallbacks(qc0Var);
         }
-        this.f31218p0.a();
+        this.f31191p0.a();
     }
 
     public final void l(int i10, boolean z10) {
@@ -385,10 +385,10 @@ public class vc0 extends LinearLayout {
         sc0 sc0Var;
         tc0 tc0Var;
         if (this.G != i10) {
-            if (this.f31209g0) {
+            if (this.f31182g0) {
                 min = e(i10);
             } else {
-                min = Math.min(Math.max(i10, this.f31227x), this.E);
+                min = Math.min(Math.max(i10, this.f31200x), this.E);
             }
             int i11 = this.G;
             this.H = min;
@@ -402,7 +402,7 @@ public class vc0 extends LinearLayout {
             }
             f();
             invalidate();
-            if (this.f31213k0 == 0 && (sc0Var = this.J) != null) {
+            if (this.f31186k0 == 0 && (sc0Var = this.J) != null) {
                 sc0Var.b(0);
             }
         }
@@ -410,8 +410,8 @@ public class vc0 extends LinearLayout {
 
     public final void m() {
         int i10;
-        if (this.f31220r) {
-            String[] strArr = this.f31226w;
+        if (this.f31193r) {
+            String[] strArr = this.f31199w;
             Paint paint = this.O;
             int i11 = 0;
             if (strArr == null) {
@@ -440,12 +440,12 @@ public class vc0 extends LinearLayout {
             }
             TextView textView = this.d;
             int paddingRight = textView.getPaddingRight() + textView.getPaddingLeft() + i10;
-            if (this.f31215n != paddingRight) {
+            if (this.f31188n != paddingRight) {
                 int i15 = this.h;
                 if (paddingRight > i15) {
-                    this.f31215n = paddingRight;
+                    this.f31188n = paddingRight;
                 } else {
-                    this.f31215n = i15;
+                    this.f31188n = i15;
                 }
                 invalidate();
             }
@@ -454,7 +454,7 @@ public class vc0 extends LinearLayout {
 
     public final void n() {
         String str;
-        String[] strArr = this.f31226w;
+        String[] strArr = this.f31199w;
         if (strArr == null) {
             int i10 = this.G;
             rc0 rc0Var = this.K;
@@ -464,7 +464,7 @@ public class vc0 extends LinearLayout {
                 str = String.format(Locale.getDefault(), "%d", Integer.valueOf(i10));
             }
         } else {
-            str = strArr[this.G - this.f31227x];
+            str = strArr[this.G - this.f31200x];
         }
         if (!TextUtils.isEmpty(str)) {
             TextView textView = this.d;
@@ -488,7 +488,7 @@ public class vc0 extends LinearLayout {
         float measuredHeight;
         boolean z10;
         int i12;
-        int i13 = this.f31225u0;
+        int i13 = this.f31198u0;
         if (i13 == 5) {
             this.O.setTextAlign(Paint.Align.RIGHT);
             width = getWidth();
@@ -499,13 +499,13 @@ public class vc0 extends LinearLayout {
             this.O.setTextAlign(Paint.Align.CENTER);
             width = getWidth() / 2.0f;
         }
-        float f7 = width + this.f31202c;
+        float f7 = width + this.f31175c;
         float f10 = this.R;
         int[] iArr = this.N;
         for (int i14 = 0; i14 < iArr.length; i14++) {
             String str = (String) this.M.get(iArr[i14]);
-            if (str != null && (i14 != this.f31200b || this.d.getVisibility() != 0)) {
-                if (this.f31198a > 3) {
+            if (str != null && (i14 != this.f31173b || this.d.getVisibility() != 0)) {
+                if (this.f31171a > 3) {
                     float measuredHeight2 = getMeasuredHeight() * 0.5f;
                     float textSize = f10 - (this.O.getTextSize() / 2.0f);
                     if (textSize < getMeasuredHeight() / 2.0f) {
@@ -515,7 +515,7 @@ public class vc0 extends LinearLayout {
                         measuredHeight = (getMeasuredHeight() - textSize) / measuredHeight2;
                         z10 = false;
                     }
-                    float interpolation = f31197v0.getInterpolation(Utilities.clamp(measuredHeight, 1.0f, 0.0f));
+                    float interpolation = f31170v0.getInterpolation(Utilities.clamp(measuredHeight, 1.0f, 0.0f));
                     float textSize2 = this.O.getTextSize() * (1.0f - interpolation);
                     if (!z10) {
                         textSize2 = -textSize2;
@@ -540,9 +540,9 @@ public class vc0 extends LinearLayout {
             }
             f10 += this.P;
         }
-        if (this.f31221r0) {
-            canvas.drawRect(0.0f, this.f31214l0, getRight(), this.f31212j0 + i10, this.f31211i0);
-            canvas.drawRect(0.0f, i11 - this.f31212j0, getRight(), this.m0, this.f31211i0);
+        if (this.f31194r0) {
+            canvas.drawRect(0.0f, this.f31187l0, getRight(), this.f31185j0 + i10, this.f31184i0);
+            canvas.drawRect(0.0f, i11 - this.f31185j0, getRight(), this.m0, this.f31184i0);
         }
     }
 
@@ -555,40 +555,40 @@ public class vc0 extends LinearLayout {
         this.d.setVisibility(4);
         float y3 = motionEvent.getY();
         this.W = y3;
-        this.f31201b0 = y3;
-        this.f31199a0 = motionEvent.getEventTime();
+        this.f31174b0 = y3;
+        this.f31172a0 = motionEvent.getEventTime();
         float f7 = this.W;
-        if (f7 < this.f31214l0) {
-            if (this.f31213k0 == 0) {
-                uc0 uc0Var = this.f31218p0;
+        if (f7 < this.f31187l0) {
+            if (this.f31186k0 == 0) {
+                uc0 uc0Var = this.f31191p0;
                 uc0Var.a();
-                uc0Var.f30890c = 1;
-                uc0Var.f30889b = 2;
+                uc0Var.f30863c = 1;
+                uc0Var.f30862b = 2;
                 ((vc0) uc0Var.d).postDelayed(uc0Var, ViewConfiguration.getTapTimeout());
             }
-        } else if (f7 > this.m0 && this.f31213k0 == 0) {
-            uc0 uc0Var2 = this.f31218p0;
+        } else if (f7 > this.m0 && this.f31186k0 == 0) {
+            uc0 uc0Var2 = this.f31191p0;
             uc0Var2.a();
-            uc0Var2.f30890c = 1;
-            uc0Var2.f30889b = 1;
+            uc0Var2.f30863c = 1;
+            uc0Var2.f30862b = 1;
             ((vc0) uc0Var2.d).postDelayed(uc0Var2, ViewConfiguration.getTapTimeout());
         }
         getParent().requestDisallowInterceptTouchEvent(true);
         nm0 nm0Var = this.S;
-        if (!nm0Var.f28860q) {
-            nm0Var.f28860q = true;
-            this.T.f28860q = true;
+        if (!nm0Var.f28833q) {
+            nm0Var.f28833q = true;
+            this.T.f28833q = true;
             i(0);
             return true;
         }
         nm0 nm0Var2 = this.T;
-        if (!nm0Var2.f28860q) {
-            nm0Var.f28860q = true;
-            nm0Var2.f28860q = true;
+        if (!nm0Var2.f28833q) {
+            nm0Var.f28833q = true;
+            nm0Var2.f28833q = true;
             return true;
         }
         float f10 = this.W;
-        if (f10 < this.f31214l0) {
+        if (f10 < this.f31187l0) {
             long longPressTimeout = ViewConfiguration.getLongPressTimeout();
             Runnable runnable = this.V;
             if (runnable == null) {
@@ -597,7 +597,7 @@ public class vc0 extends LinearLayout {
                 removeCallbacks(runnable);
             }
             qc0 qc0Var = this.V;
-            qc0Var.f29719a = false;
+            qc0Var.f29692a = false;
             postDelayed(qc0Var, longPressTimeout);
             return true;
         }
@@ -610,7 +610,7 @@ public class vc0 extends LinearLayout {
                 removeCallbacks(runnable2);
             }
             qc0 qc0Var2 = this.V;
-            qc0Var2.f29719a = true;
+            qc0Var2.f29692a = true;
             postDelayed(qc0Var2, longPressTimeout2);
         }
         return true;
@@ -629,25 +629,25 @@ public class vc0 extends LinearLayout {
             f();
             int[] iArr = this.N;
             int length = iArr.length;
-            int i16 = this.f31222s;
+            int i16 = this.f31195s;
             int bottom = (int) (((((getBottom() - getTop()) + i16) - (length * i16)) / iArr.length) + 0.5f);
             this.v = bottom;
             this.P = bottom + i16;
-            int top = (this.d.getTop() + this.d.getBaseline()) - (this.P * this.f31200b);
+            int top = (this.d.getTop() + this.d.getBaseline()) - (this.P * this.f31173b);
             this.Q = top;
             this.R = top;
             n();
             setVerticalFadingEdgeEnabled(true);
             setFadingEdgeLength(((getBottom() - getTop()) - i16) / 2);
-            this.f31214l0 = ((getHeight() - i16) - this.v) / 2;
+            this.f31187l0 = ((getHeight() - i16) - this.v) / 2;
             this.m0 = ((getHeight() + i16) + this.v) / 2;
         }
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        super.onMeasure(g(i10, this.f31215n), g(i11, this.f31207f));
-        setMeasuredDimension(k(this.h, getMeasuredWidth(), i10), k(this.f31205e, getMeasuredHeight(), i11));
+        super.onMeasure(g(i10, this.f31188n), g(i11, this.f31180f));
+        setMeasuredDimension(k(this.h, getMeasuredWidth(), i10), k(this.f31178e, getMeasuredHeight(), i11));
     }
 
     @Override
@@ -655,37 +655,37 @@ public class vc0 extends LinearLayout {
         if (!isEnabled()) {
             return false;
         }
-        if (this.f31203c0 == null) {
-            this.f31203c0 = VelocityTracker.obtain();
+        if (this.f31176c0 == null) {
+            this.f31176c0 = VelocityTracker.obtain();
         }
-        this.f31203c0.addMovement(motionEvent);
+        this.f31176c0.addMovement(motionEvent);
         int actionMasked = motionEvent.getActionMasked();
         if (actionMasked != 1) {
             if (actionMasked != 2) {
                 return true;
             }
             float y3 = motionEvent.getY();
-            if (this.f31213k0 != 1) {
-                if (((int) Math.abs(y3 - this.W)) > this.f31204d0) {
+            if (this.f31186k0 != 1) {
+                if (((int) Math.abs(y3 - this.W)) > this.f31177d0) {
                     j();
                     i(1);
                 }
             } else {
-                scrollBy(0, (int) (y3 - this.f31201b0));
+                scrollBy(0, (int) (y3 - this.f31174b0));
                 invalidate();
             }
-            this.f31201b0 = y3;
+            this.f31174b0 = y3;
             return true;
         }
         qc0 qc0Var = this.V;
         if (qc0Var != null) {
             removeCallbacks(qc0Var);
         }
-        this.f31218p0.a();
-        VelocityTracker velocityTracker = this.f31203c0;
-        velocityTracker.computeCurrentVelocity(1000, this.f31208f0);
+        this.f31191p0.a();
+        VelocityTracker velocityTracker = this.f31176c0;
+        velocityTracker.computeCurrentVelocity(1000, this.f31181f0);
         int yVelocity = (int) velocityTracker.getYVelocity();
-        if (Math.abs(yVelocity) > this.f31206e0) {
+        if (Math.abs(yVelocity) > this.f31179e0) {
             this.U = 0;
             if (yVelocity > 0) {
                 this.S.c(0, 0, 0, yVelocity, 0, 0, 0, Integer.MAX_VALUE);
@@ -697,22 +697,22 @@ public class vc0 extends LinearLayout {
         } else {
             int y10 = (int) motionEvent.getY();
             int abs = (int) Math.abs(y10 - this.W);
-            long eventTime = motionEvent.getEventTime() - this.f31199a0;
-            if (abs <= this.f31204d0 && eventTime < ViewConfiguration.getTapTimeout()) {
-                int i10 = (y10 / this.P) - this.f31200b;
+            long eventTime = motionEvent.getEventTime() - this.f31172a0;
+            if (abs <= this.f31177d0 && eventTime < ViewConfiguration.getTapTimeout()) {
+                int i10 = (y10 / this.P) - this.f31173b;
                 if (i10 > 0) {
                     a(true);
-                    uc0 uc0Var = this.f31218p0;
+                    uc0 uc0Var = this.f31191p0;
                     uc0Var.a();
-                    uc0Var.f30890c = 2;
-                    uc0Var.f30889b = 1;
+                    uc0Var.f30863c = 2;
+                    uc0Var.f30862b = 1;
                     ((vc0) uc0Var.d).post(uc0Var);
                 } else if (i10 < 0) {
                     a(false);
-                    uc0 uc0Var2 = this.f31218p0;
+                    uc0 uc0Var2 = this.f31191p0;
                     uc0Var2.a();
-                    uc0Var2.f30890c = 2;
-                    uc0Var2.f30889b = 2;
+                    uc0Var2.f30863c = 2;
+                    uc0Var2.f30862b = 2;
                     ((vc0) uc0Var2.d).post(uc0Var2);
                 }
             } else {
@@ -720,16 +720,16 @@ public class vc0 extends LinearLayout {
             }
             i(0);
         }
-        this.f31203c0.recycle();
-        this.f31203c0 = null;
+        this.f31176c0.recycle();
+        this.f31176c0 = null;
         return true;
     }
 
     @Override
     public final void scrollBy(int i10, int i11) {
         int[] iArr = this.N;
-        boolean z10 = this.f31209g0;
-        if (!z10 && i11 > 0 && iArr[this.f31200b] <= this.f31227x) {
+        boolean z10 = this.f31182g0;
+        if (!z10 && i11 > 0 && iArr[this.f31173b] <= this.f31200x) {
             int i12 = this.R + i11;
             int i13 = this.Q;
             if (i12 > i13) {
@@ -737,7 +737,7 @@ public class vc0 extends LinearLayout {
                 return;
             }
         }
-        if (!z10 && i11 < 0 && iArr[this.f31200b] >= this.E) {
+        if (!z10 && i11 < 0 && iArr[this.f31173b] >= this.E) {
             int i14 = this.R + i11;
             int i15 = this.Q;
             if (i14 < i15) {
@@ -754,12 +754,12 @@ public class vc0 extends LinearLayout {
             this.R = i16 - this.P;
             System.arraycopy(iArr, 0, iArr, 1, iArr.length - 1);
             int i17 = iArr[1] - 1;
-            if (this.f31209g0 && i17 < this.f31227x) {
+            if (this.f31182g0 && i17 < this.f31200x) {
                 i17 = this.E;
             }
             iArr[0] = i17;
             b(i17);
-            if (!this.f31209g0 && iArr[this.f31200b] <= this.f31227x) {
+            if (!this.f31182g0 && iArr[this.f31173b] <= this.f31200x) {
                 int i18 = this.R;
                 int i19 = this.Q;
                 if (i18 > i19) {
@@ -773,12 +773,12 @@ public class vc0 extends LinearLayout {
                 this.R = i20 + this.P;
                 System.arraycopy(iArr, 1, iArr, 0, iArr.length - 1);
                 int i21 = iArr[iArr.length - 2] + 1;
-                if (this.f31209g0 && i21 > this.E) {
-                    i21 = this.f31227x;
+                if (this.f31182g0 && i21 > this.E) {
+                    i21 = this.f31200x;
                 }
                 iArr[iArr.length - 1] = i21;
                 b(i21);
-                if (!this.f31209g0 && iArr[this.f31200b] >= this.E) {
+                if (!this.f31182g0 && iArr[this.f31173b] >= this.E) {
                     int i22 = this.R;
                     int i23 = this.Q;
                     if (i22 < i23) {
@@ -786,33 +786,33 @@ public class vc0 extends LinearLayout {
                     }
                 }
             } else {
-                l(iArr[this.f31200b], true);
+                l(iArr[this.f31173b], true);
                 return;
             }
         }
     }
 
     public void setAllItemsCount(int i10) {
-        this.f31224t0 = Integer.valueOf(i10);
-        setWrapSelectorWheel(this.f31210h0);
+        this.f31197t0 = Integer.valueOf(i10);
+        setWrapSelectorWheel(this.f31183h0);
     }
 
     public void setContentDescriptionCallback(Utilities.CallbackReturn<Integer, CharSequence> callbackReturn) {
-        this.f31223s0 = callbackReturn;
+        this.f31196s0 = callbackReturn;
     }
 
     public void setDisplayedValues(String[] strArr) {
-        if (this.f31226w == strArr) {
+        if (this.f31199w == strArr) {
             return;
         }
-        this.f31226w = strArr;
+        this.f31199w = strArr;
         n();
         f();
         m();
     }
 
     public void setDrawDividers(boolean z10) {
-        this.f31221r0 = z10;
+        this.f31194r0 = z10;
         invalidate();
     }
 
@@ -833,16 +833,16 @@ public class vc0 extends LinearLayout {
 
     @Override
     public void setGravity(int i10) {
-        this.f31225u0 = i10;
+        this.f31198u0 = i10;
         super.setGravity(i10);
     }
 
     public void setItemCount(int i10) {
-        if (this.f31198a == i10) {
+        if (this.f31171a == i10) {
             return;
         }
-        this.f31198a = i10;
-        this.f31200b = i10 / 2;
+        this.f31171a = i10;
+        this.f31173b = i10 / 2;
         this.N = new int[i10];
         f();
     }
@@ -861,12 +861,12 @@ public class vc0 extends LinearLayout {
                         this.G = i10;
                     }
                 }
-                setWrapSelectorWheel(this.f31210h0);
+                setWrapSelectorWheel(this.f31183h0);
                 f();
                 n();
                 m();
                 invalidate();
-                if (this.f31213k0 == 0 && (sc0Var = this.J) != null) {
+                if (this.f31186k0 == 0 && (sc0Var = this.J) != null) {
                     sc0Var.b(0);
                     return;
                 }
@@ -878,10 +878,10 @@ public class vc0 extends LinearLayout {
 
     public void setMinValue(int i10) {
         sc0 sc0Var;
-        this.f31228y = true;
-        if (this.f31227x != i10) {
+        this.f31201y = true;
+        if (this.f31200x != i10) {
             if (i10 >= 0) {
-                this.f31227x = i10;
+                this.f31200x = i10;
                 if (i10 > this.G) {
                     int i11 = this.H;
                     if (i10 <= i11) {
@@ -890,12 +890,12 @@ public class vc0 extends LinearLayout {
                         this.G = i10;
                     }
                 }
-                setWrapSelectorWheel(this.f31210h0);
+                setWrapSelectorWheel(this.f31183h0);
                 f();
                 n();
                 m();
                 invalidate();
-                if (this.f31213k0 == 0 && (sc0Var = this.J) != null) {
+                if (this.f31186k0 == 0 && (sc0Var = this.J) != null) {
                     sc0Var.b(0);
                     return;
                 }
@@ -918,7 +918,7 @@ public class vc0 extends LinearLayout {
     }
 
     public void setSelectorColor(int i10) {
-        this.f31211i0.setColor(i10);
+        this.f31184i0.setColor(i10);
     }
 
     public void setTextColor(int i10) {
@@ -927,7 +927,7 @@ public class vc0 extends LinearLayout {
     }
 
     public void setTextOffset(int i10) {
-        this.f31202c = i10;
+        this.f31175c = i10;
         invalidate();
     }
 
@@ -945,48 +945,48 @@ public class vc0 extends LinearLayout {
 
     public vc0(Context context, int i10, org.telegram.ui.ActionBar.f6 f6Var) {
         super(context);
-        this.f31198a = 3;
-        this.f31200b = 1;
+        this.f31171a = 3;
+        this.f31173b = 1;
         this.L = 300L;
         this.M = new SparseArray();
-        this.N = new int[this.f31198a];
+        this.N = new int[this.f31171a];
         this.Q = Integer.MIN_VALUE;
-        this.f31213k0 = 0;
-        this.f31219q0 = -1;
-        this.f31221r0 = true;
+        this.f31186k0 = 0;
+        this.f31192q0 = -1;
+        this.f31194r0 = true;
         int dp = AndroidUtilities.dp(i10);
-        this.f31222s = dp;
+        this.f31195s = dp;
         Paint paint = new Paint();
-        this.f31211i0 = paint;
+        this.f31184i0 = paint;
         paint.setColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.Oh, f6Var));
-        this.f31212j0 = (int) TypedValue.applyDimension(1, 2.0f, getResources().getDisplayMetrics());
+        this.f31185j0 = (int) TypedValue.applyDimension(1, 2.0f, getResources().getDisplayMetrics());
         TypedValue.applyDimension(1, 48.0f, getResources().getDisplayMetrics());
-        this.f31205e = -1;
+        this.f31178e = -1;
         int applyDimension = (int) TypedValue.applyDimension(1, 180.0f, getResources().getDisplayMetrics());
-        this.f31207f = applyDimension;
-        int i11 = this.f31205e;
+        this.f31180f = applyDimension;
+        int i11 = this.f31178e;
         if (i11 != -1 && applyDimension != -1 && i11 > applyDimension) {
             throw new IllegalArgumentException("minHeight > maxHeight");
         }
         this.h = (int) TypedValue.applyDimension(1, 64.0f, getResources().getDisplayMetrics());
-        this.f31215n = -1;
-        this.f31220r = true;
-        this.f31218p0 = new uc0(this);
+        this.f31188n = -1;
+        this.f31193r = true;
+        this.f31191p0 = new uc0(this);
         setWillNotDraw(false);
         TextView textView = new TextView(getContext());
         this.d = textView;
         textView.setGravity(17);
         this.d.setSingleLine(true);
-        this.d.setTextColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f20798j5, f6Var));
+        this.d.setTextColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f20771j5, f6Var));
         this.d.setBackgroundResource(0);
         float f7 = dp;
         this.d.setTextSize(0, f7);
         this.d.setVisibility(4);
         addView(this.d, new LinearLayout.LayoutParams(-1, -2));
         ViewConfiguration viewConfiguration = ViewConfiguration.get(getContext());
-        this.f31204d0 = viewConfiguration.getScaledTouchSlop();
-        this.f31206e0 = viewConfiguration.getScaledMinimumFlingVelocity();
-        this.f31208f0 = viewConfiguration.getScaledMaximumFlingVelocity() / 8;
+        this.f31177d0 = viewConfiguration.getScaledTouchSlop();
+        this.f31179e0 = viewConfiguration.getScaledMinimumFlingVelocity();
+        this.f31181f0 = viewConfiguration.getScaledMaximumFlingVelocity() / 8;
         Paint paint2 = new Paint();
         paint2.setAntiAlias(true);
         paint2.setTextAlign(Paint.Align.CENTER);

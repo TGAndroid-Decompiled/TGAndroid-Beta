@@ -3,23 +3,23 @@ package org.telegram.ui;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.NotificationCenter;
 public final class nl0 implements Runnable {
-    public final int f39008a;
-    public final PasscodeActivity f39009b;
-    public final boolean f39010c;
+    public final int f38981a;
+    public final PasscodeActivity f38982b;
+    public final boolean f38983c;
 
     public nl0(PasscodeActivity passcodeActivity, boolean z10, int i10) {
-        this.f39008a = i10;
-        this.f39009b = passcodeActivity;
-        this.f39010c = z10;
+        this.f38981a = i10;
+        this.f38982b = passcodeActivity;
+        this.f38983c = z10;
     }
 
     @Override
     public final void run() {
-        switch (this.f39008a) {
+        switch (this.f38981a) {
             case 0:
-                PasscodeActivity passcodeActivity = this.f39009b;
+                PasscodeActivity passcodeActivity = this.f38982b;
                 passcodeActivity.getMediaDataController().buildShortcuts();
-                if (this.f39010c) {
+                if (this.f38983c) {
                     passcodeActivity.presentFragment(new PasscodeActivity(0), true);
                     ac0 ac0Var = passcodeActivity.Q;
                     if (ac0Var != null) {
@@ -32,8 +32,8 @@ public final class nl0 implements Runnable {
                 NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.didSetPasscode, new Object[0]);
                 return;
             default:
-                PasscodeActivity passcodeActivity2 = this.f39009b;
-                passcodeActivity2.f33531w.e(true, this.f39010c);
+                PasscodeActivity passcodeActivity2 = this.f38982b;
+                passcodeActivity2.f33504w.e(true, this.f38983c);
                 AndroidUtilities.cancelRunOnUIThread(passcodeActivity2.P);
                 return;
         }

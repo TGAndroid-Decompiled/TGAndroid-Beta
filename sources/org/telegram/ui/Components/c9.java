@@ -8,13 +8,13 @@ public final class c9 extends ll0 {
     public final ArrayList X2;
     public final int Y2;
     public int Z2;
-    public final org.telegram.ui.w7 f24951a3;
-    public b9 f24952b3;
-    public final f9 f24953c3;
+    public final org.telegram.ui.w7 f24924a3;
+    public b9 f24925b3;
+    public final f9 f24926c3;
 
     public c9(f9 f9Var, Activity activity) {
         super(activity, null);
-        this.f24953c3 = f9Var;
+        this.f24926c3 = f9Var;
         this.X2 = new ArrayList();
         this.Y2 = 200;
         this.Z2 = -1;
@@ -25,41 +25,41 @@ public final class c9 extends ll0 {
             ?? obj = new Object();
             int i11 = this.Y2;
             this.Y2 = i11 + 1;
-            obj.f24627a = i11;
-            int[] iArr = f9.f25990c0[i10];
-            obj.f24629c = iArr[0];
+            obj.f24600a = i11;
+            int[] iArr = f9.f25963c0[i10];
+            obj.f24602c = iArr[0];
             obj.d = iArr[1];
-            obj.f24630e = iArr[2];
-            obj.f24631f = iArr[3];
+            obj.f24603e = iArr[2];
+            obj.f24604f = iArr[3];
             this.X2.add(obj);
         }
         for (int i12 = 0; i12 < 30; i12++) {
             ?? obj2 = new Object();
             int i13 = this.Y2;
             this.Y2 = i13 + 1;
-            obj2.f24627a = i13;
-            int[] iArr2 = f9.f25991d0[i12];
-            obj2.f24629c = iArr2[0];
+            obj2.f24600a = i13;
+            int[] iArr2 = f9.f25964d0[i12];
+            obj2.f24602c = iArr2[0];
             obj2.d = iArr2[1];
-            obj2.f24630e = 0;
-            obj2.f24631f = 0;
-            obj2.f24628b = true;
+            obj2.f24603e = 0;
+            obj2.f24604f = 0;
+            obj2.f24601b = true;
             this.X2.add(obj2);
         }
         setPadding(AndroidUtilities.dp(4.0f), 0, AndroidUtilities.dp(4.0f), 0);
         setClipToPadding(false);
-        this.f28236h1 = true;
+        this.f28209h1 = true;
         setOnItemClickListener(new k(this, 2));
         org.telegram.ui.w7 w7Var = new org.telegram.ui.w7(this, 2);
-        this.f24951a3 = w7Var;
+        this.f24924a3 = w7Var;
         setAdapter(w7Var);
         setOverScrollMode(1);
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        int size = View.MeasureSpec.getSize(i10) / this.f24951a3.h();
-        f9 f9Var = this.f24953c3;
+        int size = View.MeasureSpec.getSize(i10) / this.f24924a3.h();
+        f9 f9Var = this.f24926c3;
         f9Var.P = size;
         if (size < AndroidUtilities.dp(39.0f)) {
             f9Var.P = AndroidUtilities.dp(39.0f);
@@ -75,16 +75,16 @@ public final class c9 extends ll0 {
             ArrayList arrayList = this.X2;
             if (i10 < arrayList.size()) {
                 if (((b9) arrayList.get(i10)).equals(b9Var)) {
-                    this.Z2 = ((b9) arrayList.get(i10)).f24627a;
+                    this.Z2 = ((b9) arrayList.get(i10)).f24600a;
                     break;
                 }
                 i10++;
             } else {
-                this.f24952b3 = b9Var;
+                this.f24925b3 = b9Var;
                 this.Z2 = 1;
                 break;
             }
         }
-        this.f24951a3.l();
+        this.f24924a3.l();
     }
 }

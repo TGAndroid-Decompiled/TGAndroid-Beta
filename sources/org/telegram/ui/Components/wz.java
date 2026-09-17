@@ -4,17 +4,17 @@ import android.graphics.PointF;
 import java.nio.ByteBuffer;
 import org.telegram.messenger.MediaController;
 public final class wz implements yz {
-    public final MediaController.SavedFilterState f32395a;
+    public final MediaController.SavedFilterState f32368a;
 
     public wz(MediaController.SavedFilterState savedFilterState) {
-        this.f32395a = savedFilterState;
+        this.f32368a = savedFilterState;
     }
 
     @Override
     public final ByteBuffer a() {
-        MediaController.SavedFilterState savedFilterState = this.f32395a;
+        MediaController.SavedFilterState savedFilterState = this.f32368a;
         savedFilterState.curvesToolValue.a();
-        return savedFilterState.curvesToolValue.f26059e;
+        return savedFilterState.curvesToolValue.f26032e;
     }
 
     @Override
@@ -24,67 +24,67 @@ public final class wz implements yz {
 
     @Override
     public final boolean c() {
-        return !this.f32395a.curvesToolValue.b();
+        return !this.f32368a.curvesToolValue.b();
     }
 
     @Override
     public final float getBlurAngle() {
-        return this.f32395a.blurAngle;
+        return this.f32368a.blurAngle;
     }
 
     @Override
     public final float getBlurExcludeBlurSize() {
-        return this.f32395a.blurExcludeBlurSize;
+        return this.f32368a.blurExcludeBlurSize;
     }
 
     @Override
     public final PointF getBlurExcludePoint() {
-        return this.f32395a.blurExcludePoint;
+        return this.f32368a.blurExcludePoint;
     }
 
     @Override
     public final float getBlurExcludeSize() {
-        return this.f32395a.blurExcludeSize;
+        return this.f32368a.blurExcludeSize;
     }
 
     @Override
     public final int getBlurType() {
-        return this.f32395a.blurType;
+        return this.f32368a.blurType;
     }
 
     @Override
     public final float getContrastValue() {
-        return a4.a.e(this.f32395a.contrastValue, 100.0f, 0.3f, 1.0f);
+        return a4.a.e(this.f32368a.contrastValue, 100.0f, 0.3f, 1.0f);
     }
 
     @Override
     public final float getEnhanceValue() {
-        return this.f32395a.enhanceValue / 100.0f;
+        return this.f32368a.enhanceValue / 100.0f;
     }
 
     @Override
     public final float getExposureValue() {
-        return this.f32395a.exposureValue / 100.0f;
+        return this.f32368a.exposureValue / 100.0f;
     }
 
     @Override
     public final float getFadeValue() {
-        return this.f32395a.fadeValue / 100.0f;
+        return this.f32368a.fadeValue / 100.0f;
     }
 
     @Override
     public final float getGrainValue() {
-        return (this.f32395a.grainValue / 100.0f) * 0.04f;
+        return (this.f32368a.grainValue / 100.0f) * 0.04f;
     }
 
     @Override
     public final float getHighlightsValue() {
-        return com.google.android.gms.internal.vision.e2.y(this.f32395a.highlightsValue, 0.75f, 100.0f, 100.0f);
+        return com.google.android.gms.internal.vision.e2.y(this.f32368a.highlightsValue, 0.75f, 100.0f, 100.0f);
     }
 
     @Override
     public final float getSaturationValue() {
-        float f7 = this.f32395a.saturationValue / 100.0f;
+        float f7 = this.f32368a.saturationValue / 100.0f;
         if (f7 > 0.0f) {
             f7 *= 1.05f;
         }
@@ -93,27 +93,27 @@ public final class wz implements yz {
 
     @Override
     public final float getShadowsValue() {
-        return com.google.android.gms.internal.vision.e2.y(this.f32395a.shadowsValue, 0.55f, 100.0f, 100.0f);
+        return com.google.android.gms.internal.vision.e2.y(this.f32368a.shadowsValue, 0.55f, 100.0f, 100.0f);
     }
 
     @Override
     public final float getSharpenValue() {
-        return a4.a.e(this.f32395a.sharpenValue, 100.0f, 0.6f, 0.11f);
+        return a4.a.e(this.f32368a.sharpenValue, 100.0f, 0.6f, 0.11f);
     }
 
     @Override
     public final float getSoftenSkinValue() {
-        return this.f32395a.softenSkinValue / 100.0f;
+        return this.f32368a.softenSkinValue / 100.0f;
     }
 
     @Override
     public final int getTintHighlightsColor() {
-        return this.f32395a.tintHighlightsColor;
+        return this.f32368a.tintHighlightsColor;
     }
 
     @Override
     public final float getTintHighlightsIntensityValue() {
-        if (this.f32395a.tintHighlightsColor == 0) {
+        if (this.f32368a.tintHighlightsColor == 0) {
             return 0.0f;
         }
         return 0.5f;
@@ -121,12 +121,12 @@ public final class wz implements yz {
 
     @Override
     public final int getTintShadowsColor() {
-        return this.f32395a.tintShadowsColor;
+        return this.f32368a.tintShadowsColor;
     }
 
     @Override
     public final float getTintShadowsIntensityValue() {
-        if (this.f32395a.tintShadowsColor == 0) {
+        if (this.f32368a.tintShadowsColor == 0) {
             return 0.0f;
         }
         return 0.5f;
@@ -134,11 +134,11 @@ public final class wz implements yz {
 
     @Override
     public final float getVignetteValue() {
-        return this.f32395a.vignetteValue / 100.0f;
+        return this.f32368a.vignetteValue / 100.0f;
     }
 
     @Override
     public final float getWarmthValue() {
-        return this.f32395a.warmthValue / 100.0f;
+        return this.f32368a.warmthValue / 100.0f;
     }
 }

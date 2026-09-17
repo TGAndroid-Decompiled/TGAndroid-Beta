@@ -6,14 +6,14 @@ import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
 import org.telegram.messenger.AndroidUtilities;
 public final class h5 extends Drawable {
-    public final int f20516a;
-    public Paint f20517b;
+    public final int f20489a;
+    public Paint f20490b;
 
     public h5(int i10) {
-        this.f20516a = i10;
+        this.f20489a = i10;
         switch (i10) {
             case 1:
-                this.f20517b = new Paint(1);
+                this.f20490b = new Paint(1);
                 return;
             default:
                 return;
@@ -22,12 +22,12 @@ public final class h5 extends Drawable {
 
     @Override
     public final void draw(Canvas canvas) {
-        switch (this.f20516a) {
+        switch (this.f20489a) {
             case 0:
-                canvas.drawCircle(getBounds().centerX(), getBounds().centerY() - AndroidUtilities.dp(1.0f), (getBounds().width() - AndroidUtilities.dp(8.0f)) / 2.0f, this.f20517b);
+                canvas.drawCircle(getBounds().centerX(), getBounds().centerY() - AndroidUtilities.dp(1.0f), (getBounds().width() - AndroidUtilities.dp(8.0f)) / 2.0f, this.f20490b);
                 return;
             default:
-                Paint paint = this.f20517b;
+                Paint paint = this.f20490b;
                 paint.setColor(j6.w0(null, j6.hl, false));
                 canvas.drawRoundRect(getBounds().left, getBounds().exactCenterY() - AndroidUtilities.dp(14.0f), getBounds().right, AndroidUtilities.dp(14.0f) + getBounds().exactCenterY(), AndroidUtilities.dp(14.0f), AndroidUtilities.dp(14.0f), paint);
                 return;
@@ -36,7 +36,7 @@ public final class h5 extends Drawable {
 
     @Override
     public final int getOpacity() {
-        switch (this.f20516a) {
+        switch (this.f20489a) {
             case 0:
                 return 0;
             default:
@@ -46,9 +46,9 @@ public final class h5 extends Drawable {
 
     @Override
     public final void setAlpha(int i10) {
-        switch (this.f20516a) {
+        switch (this.f20489a) {
             case 0:
-                this.f20517b.setAlpha(i10);
+                this.f20490b.setAlpha(i10);
                 return;
             default:
                 return;
@@ -57,7 +57,7 @@ public final class h5 extends Drawable {
 
     @Override
     public final void setColorFilter(ColorFilter colorFilter) {
-        int i10 = this.f20516a;
+        int i10 = this.f20489a;
     }
 
     private final void a(int i10) {

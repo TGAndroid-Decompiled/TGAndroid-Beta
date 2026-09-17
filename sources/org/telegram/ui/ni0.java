@@ -14,31 +14,31 @@ import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.tgnet.TLRPC;
 public final class ni0 extends FrameLayout {
-    public final int f38992a;
-    public final cj0 f38993b;
+    public final int f38965a;
+    public final cj0 f38966b;
 
     public ni0(cj0 cj0Var, Context context, int i10) {
         super(context);
-        this.f38992a = i10;
-        this.f38993b = cj0Var;
+        this.f38965a = i10;
+        this.f38966b = cj0Var;
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
         Canvas canvas2;
         boolean z10;
-        switch (this.f38992a) {
+        switch (this.f38965a) {
             case 0:
                 super.dispatchDraw(canvas);
-                cj0 cj0Var = this.f38993b;
-                oi0 oi0Var = cj0Var.f35156a0;
+                cj0 cj0Var = this.f38966b;
+                oi0 oi0Var = cj0Var.f35129a0;
                 oi0Var.e(canvas);
                 ArrayList arrayList = oi0Var.F;
                 boolean z11 = true;
                 float f7 = -1.0f;
                 if (!arrayList.isEmpty()) {
                     fz fzVar = (fz) i2.g.h(1, arrayList);
-                    ImageReceiver imageReceiver = fzVar.f36539r;
+                    ImageReceiver imageReceiver = fzVar.f36512r;
                     ImageLocation mediaLocation = imageReceiver.getMediaLocation();
                     if (mediaLocation == null) {
                         mediaLocation = imageReceiver.getImageLocation();
@@ -47,16 +47,16 @@ public final class ni0 extends FrameLayout {
                         mediaLocation = imageReceiver.getThumbLocation();
                     }
                     if (mediaLocation != null) {
-                        if (fzVar.f36540s == null) {
+                        if (fzVar.f36513s == null) {
                             TLRPC.Document document = mediaLocation.document;
                             if (document != null) {
-                                fzVar.f36540s = FileLoader.getAttachFileName(document, "tgs");
+                                fzVar.f36513s = FileLoader.getAttachFileName(document, "tgs");
                             } else {
-                                fzVar.f36540s = FileLoader.getAttachFileName(mediaLocation.location, "tgs");
+                                fzVar.f36513s = FileLoader.getAttachFileName(mediaLocation.location, "tgs");
                             }
                         }
-                        if (fzVar.f36540s != null) {
-                            Float fileProgress = ImageLoader.getInstance().getFileProgress(fzVar.f36540s);
+                        if (fzVar.f36513s != null) {
+                            Float fileProgress = ImageLoader.getInstance().getFileProgress(fzVar.f36513s);
                             if (fileProgress == null) {
                                 fileProgress = Float.valueOf(1.0f);
                             }
@@ -73,24 +73,24 @@ public final class ni0 extends FrameLayout {
                 }
                 return;
             default:
-                cj0 cj0Var2 = this.f38993b;
+                cj0 cj0Var2 = this.f38966b;
                 kb0 kb0Var = cj0Var2.d;
                 if (kb0Var != null) {
-                    if (cj0Var2.E == 1.0f && cj0Var2.f35172n != null) {
+                    if (cj0Var2.E == 1.0f && cj0Var2.f35145n != null) {
                         z10 = true;
                     } else {
                         z10 = false;
                     }
                     kb0Var.a(z10);
                 }
-                if (cj0Var2.E > 0.0f && cj0Var2.f35172n != null) {
-                    cj0Var2.f35177r.reset();
-                    float width = getWidth() / cj0Var2.f35164f.getWidth();
-                    cj0Var2.f35177r.postScale(width, width);
-                    cj0Var2.h.setLocalMatrix(cj0Var2.f35177r);
-                    cj0Var2.f35172n.setAlpha((int) (cj0Var2.E * 255.0f));
+                if (cj0Var2.E > 0.0f && cj0Var2.f35145n != null) {
+                    cj0Var2.f35150r.reset();
+                    float width = getWidth() / cj0Var2.f35137f.getWidth();
+                    cj0Var2.f35150r.postScale(width, width);
+                    cj0Var2.h.setLocalMatrix(cj0Var2.f35150r);
+                    cj0Var2.f35145n.setAlpha((int) (cj0Var2.E * 255.0f));
                     canvas2 = canvas;
-                    canvas2.drawRect(0.0f, 0.0f, getWidth(), getHeight(), cj0Var2.f35172n);
+                    canvas2.drawRect(0.0f, 0.0f, getWidth(), getHeight(), cj0Var2.f35145n);
                 } else {
                     canvas2 = canvas;
                 }
@@ -101,10 +101,10 @@ public final class ni0 extends FrameLayout {
 
     @Override
     public boolean dispatchKeyEventPreIme(KeyEvent keyEvent) {
-        switch (this.f38992a) {
+        switch (this.f38965a) {
             case 1:
                 if (keyEvent != null && keyEvent.getKeyCode() == 4 && keyEvent.getAction() == 1) {
-                    this.f38993b.onBackPressed();
+                    this.f38966b.onBackPressed();
                     return true;
                 }
                 return super.dispatchKeyEventPreIme(keyEvent);
@@ -120,11 +120,11 @@ public final class ni0 extends FrameLayout {
         int measuredHeight;
         pi0 pi0Var;
         int height;
-        switch (this.f38992a) {
+        switch (this.f38965a) {
             case 1:
                 super.onLayout(z10, i10, i11, i12, i13);
-                cj0 cj0Var = this.f38993b;
-                if (!cj0Var.f35166g0 || cj0Var.f35167h0) {
+                cj0 cj0Var = this.f38966b;
+                if (!cj0Var.f35139g0 || cj0Var.f35140h0) {
                     ArrayList arrayList = cj0Var.N;
                     vi0 vi0Var = cj0Var.K;
                     if (cj0Var.F.getWidth() > 0) {
@@ -132,17 +132,17 @@ public final class ni0 extends FrameLayout {
                         int[] iArr = {org.telegram.messenger.vl.D(6.0f, cj0Var.W.getWidth() - cj0Var.W.l(), iArr[0])};
                         cj0Var.X.setScaleX(cj0Var.W.getScaleX());
                         cj0Var.X.setScaleY(cj0Var.W.getScaleY());
-                        int[] iArr2 = cj0Var.f35174o0;
+                        int[] iArr2 = cj0Var.f35147o0;
                         iArr2[0] = iArr[0];
                         iArr2[1] = iArr[1];
                         int measuredHeight2 = vi0Var.getMeasuredHeight() - cj0Var.X.getHeight();
-                        if (cj0Var.f35163e0 != null) {
+                        if (cj0Var.f35136e0 != null) {
                             i14 = AndroidUtilities.dp(320.0f);
                         } else {
                             i14 = 0;
                         }
                         int i15 = measuredHeight2 + i14;
-                        int dp = AndroidUtilities.dp(8.0f) + cj0Var.f35162e.f11452b;
+                        int dp = AndroidUtilities.dp(8.0f) + cj0Var.f35135e.f11426b;
                         if (arrayList.isEmpty()) {
                             f7 = -6.0f;
                         } else {
@@ -156,7 +156,7 @@ public final class ni0 extends FrameLayout {
                             measuredHeight = viewGroup.getMeasuredHeight();
                         }
                         int i16 = dp2 + measuredHeight;
-                        int measuredHeight3 = (cj0Var.G.getMeasuredHeight() - AndroidUtilities.dp(8.0f)) - cj0Var.f35162e.d;
+                        int measuredHeight3 = (cj0Var.G.getMeasuredHeight() - AndroidUtilities.dp(8.0f)) - cj0Var.f35135e.d;
                         if (iArr[1] + i16 > measuredHeight3) {
                             iArr[1] = measuredHeight3 - i16;
                         }
@@ -172,7 +172,7 @@ public final class ni0 extends FrameLayout {
                             iArr[0] = iArr[0] - (cj0Var.Y - cj0Var.W.l());
                         }
                         vi0Var.setX((AndroidUtilities.dp(7.0f) + iArr[0]) - vi0Var.getMeasuredWidth());
-                        if (cj0Var.f35166g0) {
+                        if (cj0Var.f35139g0) {
                             org.telegram.messenger.vl.q(vi0Var.animate().translationY(((cj0Var.X.getHeight() + iArr[1]) - vi0Var.getMeasuredHeight()) - vi0Var.getTop()), ki.o.V, 250L);
                         } else {
                             vi0Var.setY((cj0Var.X.getHeight() + iArr[1]) - vi0Var.getMeasuredHeight());
@@ -189,33 +189,33 @@ public final class ni0 extends FrameLayout {
                             }
                             viewGroup3.setY(i17 + height);
                         }
-                        FrameLayout frameLayout = cj0Var.f35161d0;
+                        FrameLayout frameLayout = cj0Var.f35134d0;
                         if (frameLayout != null) {
-                            frameLayout.setX(i2.g.f(6.0f, (cj0Var.X.l() + iArr[0]) - cj0Var.f35161d0.getMeasuredWidth(), 0));
-                            RectF rectF = cj0Var.f35171l0;
+                            frameLayout.setX(i2.g.f(6.0f, (cj0Var.X.l() + iArr[0]) - cj0Var.f35134d0.getMeasuredWidth(), 0));
+                            RectF rectF = cj0Var.f35144l0;
                             if (rectF != null) {
-                                FrameLayout frameLayout2 = cj0Var.f35161d0;
-                                float max = Math.max(cj0Var.f35162e.f11452b, rectF.top - frameLayout2.getMeasuredWidth());
-                                cj0Var.f35160c0 = max;
+                                FrameLayout frameLayout2 = cj0Var.f35134d0;
+                                float max = Math.max(cj0Var.f35135e.f11426b, rectF.top - frameLayout2.getMeasuredWidth());
+                                cj0Var.f35133c0 = max;
                                 frameLayout2.setY(max);
-                                qi0 qi0Var = cj0Var.f35163e0;
+                                qi0 qi0Var = cj0Var.f35136e0;
                                 if (qi0Var != null) {
-                                    qi0Var.setY(Math.max(cj0Var.f35162e.f11452b, (cj0Var.f35171l0.top - AndroidUtilities.dp(24.0f)) - cj0Var.f35163e0.getMeasuredHeight()));
+                                    qi0Var.setY(Math.max(cj0Var.f35135e.f11426b, (cj0Var.f35144l0.top - AndroidUtilities.dp(24.0f)) - cj0Var.f35136e0.getMeasuredHeight()));
                                 }
                             } else {
                                 float height2 = (cj0Var.X.getHeight() + iArr[1]) - vi0Var.getMeasuredHeight();
-                                FrameLayout frameLayout3 = cj0Var.f35161d0;
-                                float max2 = Math.max(cj0Var.f35162e.f11452b, height2 - frameLayout3.getMeasuredHeight()) + AndroidUtilities.dp(24.0f);
-                                cj0Var.f35160c0 = max2;
+                                FrameLayout frameLayout3 = cj0Var.f35134d0;
+                                float max2 = Math.max(cj0Var.f35135e.f11426b, height2 - frameLayout3.getMeasuredHeight()) + AndroidUtilities.dp(24.0f);
+                                cj0Var.f35133c0 = max2;
                                 frameLayout3.setY(max2);
-                                qi0 qi0Var2 = cj0Var.f35163e0;
+                                qi0 qi0Var2 = cj0Var.f35136e0;
                                 if (qi0Var2 != null) {
-                                    qi0Var2.setY(Math.max(0.0f, (height2 - qi0Var2.getMeasuredHeight()) - cj0Var.f35160c0));
+                                    qi0Var2.setY(Math.max(0.0f, (height2 - qi0Var2.getMeasuredHeight()) - cj0Var.f35133c0));
                                 }
                             }
                         }
                     }
-                    cj0Var.f35166g0 = true;
+                    cj0Var.f35139g0 = true;
                     return;
                 }
                 return;
@@ -227,11 +227,11 @@ public final class ni0 extends FrameLayout {
 
     @Override
     public void onSizeChanged(int i10, int i11, int i12, int i13) {
-        switch (this.f38992a) {
+        switch (this.f38965a) {
             case 1:
                 super.onSizeChanged(i10, i11, i12, i13);
-                cj0 cj0Var = this.f38993b;
-                hh.d.c(cj0Var.f35169j0, cj0Var.F);
+                cj0 cj0Var = this.f38966b;
+                hh.d.c(cj0Var.f35142j0, cj0Var.F);
                 ViewGroup viewGroup = cj0Var.Z;
                 if (viewGroup != null) {
                     viewGroup.invalidate();

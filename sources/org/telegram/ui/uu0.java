@@ -35,7 +35,7 @@ public final class uu0 extends org.telegram.ui.Components.pv0 {
         float f7;
         super.S();
         PhotoViewer photoViewer = this.E0;
-        if (photoViewer.f33690r1) {
+        if (photoViewer.f33663r1) {
             yu0 yu0Var = photoViewer.W0[0];
             if (getKeyboardHeight() <= AndroidUtilities.dp(20.0f)) {
                 f7 = 1.0f;
@@ -53,7 +53,7 @@ public final class uu0 extends org.telegram.ui.Components.pv0 {
             }
             this.D0.clear();
             PhotoViewer photoViewer = this.E0;
-            if (photoViewer.f33721u4 == 1 || photoViewer.f33669o6 == 1) {
+            if (photoViewer.f33694u4 == 1 || photoViewer.f33642o6 == 1) {
                 int measuredHeight = getMeasuredHeight();
                 int measuredWidth = getMeasuredWidth();
                 this.D0.add(new Rect(0, org.telegram.messenger.vl.y(200.0f, measuredHeight, 2), AndroidUtilities.dp(100.0f), (AndroidUtilities.dp(200.0f) + measuredHeight) / 2));
@@ -68,23 +68,23 @@ public final class uu0 extends org.telegram.ui.Components.pv0 {
     public final void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
         PhotoViewer photoViewer = this.E0;
-        photoViewer.Q.o(photoViewer.f33594g0.getContext()).draw(canvas);
+        photoViewer.Q.o(photoViewer.f33567g0.getContext()).draw(canvas);
     }
 
     @Override
     public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
         PhotoViewer photoViewer = this.E0;
         org.telegram.ui.Cells.ca o9 = photoViewer.Q.o(getContext());
-        org.telegram.ui.Cells.da daVar = o9.f21744r;
+        org.telegram.ui.Cells.da daVar = o9.f21717r;
         if (motionEvent.getAction() == 0) {
             o9.h = motionEvent.getX();
-            o9.f21743n = motionEvent.getY();
-            daVar.f21797e = daVar.y();
-        } else if (daVar.f21797e && Math.abs(motionEvent.getX() - o9.h) < AndroidUtilities.touchSlop && Math.abs(motionEvent.getY() - o9.f21743n) < AndroidUtilities.touchSlop && (motionEvent.getAction() == 3 || motionEvent.getAction() == 1)) {
+            o9.f21716n = motionEvent.getY();
+            daVar.f21770e = daVar.y();
+        } else if (daVar.f21770e && Math.abs(motionEvent.getX() - o9.h) < AndroidUtilities.touchSlop && Math.abs(motionEvent.getY() - o9.f21716n) < AndroidUtilities.touchSlop && (motionEvent.getAction() == 3 || motionEvent.getAction() == 1)) {
             motionEvent.getX();
             motionEvent.getY();
-            org.telegram.ui.Cells.da daVar2 = o9.f21744r;
-            if (!daVar2.f21804i && daVar2.f21797e) {
+            org.telegram.ui.Cells.da daVar2 = o9.f21717r;
+            if (!daVar2.f21777i && daVar2.f21770e) {
                 daVar2.f(false);
             }
         }
@@ -99,17 +99,17 @@ public final class uu0 extends org.telegram.ui.Components.pv0 {
     public final void draw(Canvas canvas) {
         super.draw(canvas);
         PhotoViewer photoViewer = this.E0;
-        hu0 hu0Var = photoViewer.f33586f0;
-        if (hu0Var != null && hu0Var.f29744x) {
-            int measuredHeight = ((int) ((photoViewer.f33544a6 - 1.0f) * hu0Var.getWebView().getMeasuredHeight())) / 2;
-            org.telegram.ui.Components.w61 w61Var = photoViewer.f33765z1;
-            if (w61Var != null && w61Var.f32205j) {
-                w61Var.setBounds(photoViewer.f33586f0.getLeft(), (photoViewer.f33586f0.getWebView().getTop() - measuredHeight) + ((int) (photoViewer.Y5 / photoViewer.f33544a6)), photoViewer.f33586f0.getRight(), photoViewer.f33586f0.getWebView().getBottom() + measuredHeight + ((int) (photoViewer.Y5 / photoViewer.f33544a6)));
-                photoViewer.f33765z1.draw(canvas);
+        hu0 hu0Var = photoViewer.f33559f0;
+        if (hu0Var != null && hu0Var.f29717x) {
+            int measuredHeight = ((int) ((photoViewer.f33517a6 - 1.0f) * hu0Var.getWebView().getMeasuredHeight())) / 2;
+            org.telegram.ui.Components.w61 w61Var = photoViewer.f33738z1;
+            if (w61Var != null && w61Var.f32178j) {
+                w61Var.setBounds(photoViewer.f33559f0.getLeft(), (photoViewer.f33559f0.getWebView().getTop() - measuredHeight) + ((int) (photoViewer.Y5 / photoViewer.f33517a6)), photoViewer.f33559f0.getRight(), photoViewer.f33559f0.getWebView().getBottom() + measuredHeight + ((int) (photoViewer.Y5 / photoViewer.f33517a6)));
+                photoViewer.f33738z1.draw(canvas);
             }
             org.telegram.ui.Components.ko0 ko0Var = photoViewer.A1;
             if (ko0Var != null && ko0Var.a()) {
-                photoViewer.A1.setBounds(photoViewer.f33586f0.getLeft(), (int) ((photoViewer.F.getAlpha() * AndroidUtilities.dp(90.0f)) + AndroidUtilities.statusBarHeight), photoViewer.f33586f0.getRight(), photoViewer.f33586f0.getWebView().getBottom() + measuredHeight + ((int) (photoViewer.Y5 / photoViewer.f33544a6)));
+                photoViewer.A1.setBounds(photoViewer.f33559f0.getLeft(), (int) ((photoViewer.F.getAlpha() * AndroidUtilities.dp(90.0f)) + AndroidUtilities.statusBarHeight), photoViewer.f33559f0.getRight(), photoViewer.f33559f0.getWebView().getBottom() + measuredHeight + ((int) (photoViewer.Y5 / photoViewer.f33517a6)));
                 photoViewer.A1.draw(canvas);
             }
         }
@@ -118,7 +118,7 @@ public final class uu0 extends org.telegram.ui.Components.pv0 {
     @Override
     public final boolean drawChild(Canvas canvas, View view, long j3) {
         PhotoViewer photoViewer = this.E0;
-        if (view != photoViewer.Q.o(photoViewer.f33594g0.getContext()) && view != photoViewer.f33704s5 && view != photoViewer.f33768z4 && view != photoViewer.A4 && view != photoViewer.X0) {
+        if (view != photoViewer.Q.o(photoViewer.f33567g0.getContext()) && view != photoViewer.f33677s5 && view != photoViewer.f33741z4 && view != photoViewer.A4 && view != photoViewer.X0) {
             FrameLayout frameLayout = photoViewer.Q7;
             if (view == frameLayout && frameLayout.getTranslationY() > 0.0f && photoViewer.P0.getTranslationY() == 0.0f) {
                 canvas.save();
@@ -128,7 +128,7 @@ public final class uu0 extends org.telegram.ui.Components.pv0 {
                 return drawChild;
             }
             try {
-                if (view != photoViewer.f33758y2 && view != photoViewer.f33759y4) {
+                if (view != photoViewer.f33731y2 && view != photoViewer.f33732y4) {
                     if (super.drawChild(canvas, view, j3)) {
                         return true;
                     }
@@ -210,9 +210,9 @@ public final class uu0 extends org.telegram.ui.Components.pv0 {
         uu0Var.setMeasuredDimension(size, i17);
         PhotoViewer photoViewer = uu0Var.E0;
         boolean z10 = true;
-        if (!photoViewer.f33690r1) {
+        if (!photoViewer.f33663r1) {
             uu0Var.B0 = true;
-            if (photoViewer.f33614i2) {
+            if (photoViewer.f33587i2) {
                 Point point = AndroidUtilities.displaySize;
                 if (point.x > point.y) {
                     i16 = 5;
@@ -227,7 +227,7 @@ public final class uu0 extends org.telegram.ui.Components.pv0 {
             }
             uu0Var.B0 = false;
         }
-        if (photoViewer.f33612i0.getVisibility() != 8) {
+        if (photoViewer.f33585i0.getVisibility() != 8) {
             i12 = AndroidUtilities.dp(48.0f);
         } else {
             i12 = 0;
@@ -252,10 +252,10 @@ public final class uu0 extends org.telegram.ui.Components.pv0 {
             i13 = i10;
             i14 = 0;
         }
-        jv0 jv0Var = photoViewer.f33615i3;
+        jv0 jv0Var = photoViewer.f33588i3;
         if (jv0Var != null) {
-            jv0Var.f37877e = size;
-            jv0Var.f37878f = i17;
+            jv0Var.f37850e = size;
+            jv0Var.f37851f = i17;
         }
         int paddingLeft = size - (uu0Var.getPaddingLeft() + uu0Var.getPaddingRight());
         int paddingBottom = i17 - uu0Var.getPaddingBottom();
@@ -264,10 +264,10 @@ public final class uu0 extends org.telegram.ui.Components.pv0 {
         while (i18 < childCount) {
             View childAt = uu0Var.getChildAt(i18);
             if (childAt.getVisibility() != 8 && childAt != photoViewer.l1) {
-                rt0 rt0Var = photoViewer.f33758y2;
+                rt0 rt0Var = photoViewer.f33731y2;
                 if (childAt == rt0Var) {
                     childAt.measure(i13, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.displaySize.y + AndroidUtilities.statusBarHeight, 1073741824));
-                } else if (childAt == photoViewer.f33759y4) {
+                } else if (childAt == photoViewer.f33732y4) {
                     if (rt0Var != null && rt0Var.getVisibility() == 0) {
                         if (photoViewer.D2) {
                             view = photoViewer.C2;
@@ -284,10 +284,10 @@ public final class uu0 extends org.telegram.ui.Components.pv0 {
                         bitmapWidth = paddingLeft;
                         bitmapHeight = paddingBottom;
                     }
-                    photoViewer.f33759y4.measure(View.MeasureSpec.makeMeasureSpec(bitmapWidth, 1073741824), View.MeasureSpec.makeMeasureSpec(bitmapHeight, 1073741824));
-                } else if (!photoViewer.U1.f7621f.l(childAt) && !photoViewer.V1.f7621f.l(childAt)) {
+                    photoViewer.f33732y4.measure(View.MeasureSpec.makeMeasureSpec(bitmapWidth, 1073741824), View.MeasureSpec.makeMeasureSpec(bitmapHeight, 1073741824));
+                } else if (!photoViewer.U1.f7593f.l(childAt) && !photoViewer.V1.f7593f.l(childAt)) {
                     if (childAt == photoViewer.T1) {
-                        if (photoViewer.f33646m2) {
+                        if (photoViewer.f33619m2) {
                             if (uu0Var.C0) {
                                 i15 = i12 + i14;
                                 int currentActionBarHeight = (paddingBottom - (org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() + AndroidUtilities.statusBarHeight)) - i15;
@@ -320,7 +320,7 @@ public final class uu0 extends org.telegram.ui.Components.pv0 {
                     } else {
                         childAt.measure(i13, View.MeasureSpec.makeMeasureSpec(paddingBottom - (org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() + AndroidUtilities.statusBarHeight), 1073741824));
                     }
-                } else if (photoViewer.f33698s) {
+                } else if (photoViewer.f33671s) {
                     childAt.measure(View.MeasureSpec.makeMeasureSpec(paddingLeft, 1073741824), View.MeasureSpec.makeMeasureSpec(paddingBottom, 1073741824));
                 } else if (AndroidUtilities.isInMultiwindow) {
                     if (AndroidUtilities.isTablet()) {

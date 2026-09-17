@@ -8,15 +8,15 @@ import j$.util.Objects;
 import java.util.ArrayList;
 import v7.x7;
 public final class o extends j {
-    public final String f44194b;
-    public final i0 f44195c;
+    public final String f44166b;
+    public final i0 f44167c;
 
     public o(String str, String str2, a1 a1Var) {
         super(str);
         e2.d.b(!a1Var.isEmpty());
-        this.f44194b = str2;
+        this.f44166b = str2;
         i0 v = i0.v(a1Var);
-        this.f44195c = v;
+        this.f44167c = v;
         String str3 = (String) v.get(0);
     }
 
@@ -47,7 +47,7 @@ public final class o extends j {
     public final void b(m0 m0Var) {
         char c10;
         Integer num;
-        String str = this.f44184a;
+        String str = this.f44156a;
         switch (str.hashCode()) {
             case 82815:
                 if (str.equals("TAL")) {
@@ -214,28 +214,28 @@ public final class o extends j {
                 c10 = 65535;
                 break;
         }
-        i0 i0Var = this.f44195c;
+        i0 i0Var = this.f44167c;
         try {
             switch (c10) {
                 case 0:
                 case '\n':
-                    m0Var.f2176c = (CharSequence) i0Var.get(0);
+                    m0Var.f2149c = (CharSequence) i0Var.get(0);
                     return;
                 case 1:
                 case 11:
-                    m0Var.f2196z = (CharSequence) i0Var.get(0);
+                    m0Var.f2169z = (CharSequence) i0Var.get(0);
                     return;
                 case 2:
                 case '\r':
                     String str2 = (String) i0Var.get(0);
                     int parseInt = Integer.parseInt(str2.substring(2, 4));
                     int parseInt2 = Integer.parseInt(str2.substring(0, 2));
-                    m0Var.f2191t = Integer.valueOf(parseInt);
-                    m0Var.f2192u = Integer.valueOf(parseInt2);
+                    m0Var.f2164t = Integer.valueOf(parseInt);
+                    m0Var.f2165u = Integer.valueOf(parseInt2);
                     return;
                 case 3:
                 case 18:
-                    m0Var.f2175b = (CharSequence) i0Var.get(0);
+                    m0Var.f2148b = (CharSequence) i0Var.get(0);
                     return;
                 case 4:
                 case 19:
@@ -247,7 +247,7 @@ public final class o extends j {
                     return;
                 case 6:
                 case 21:
-                    String str3 = d0.f8765a;
+                    String str3 = d0.f8737a;
                     String[] split = ((String) i0Var.get(0)).split("/", -1);
                     int parseInt3 = Integer.parseInt(split[0]);
                     if (split.length > 1) {
@@ -255,20 +255,20 @@ public final class o extends j {
                     } else {
                         num = null;
                     }
-                    m0Var.f2185n = Integer.valueOf(parseInt3);
-                    m0Var.f2186o = num;
+                    m0Var.f2158n = Integer.valueOf(parseInt3);
+                    m0Var.f2159o = num;
                     return;
                 case 7:
                 case 17:
-                    m0Var.f2174a = (CharSequence) i0Var.get(0);
+                    m0Var.f2147a = (CharSequence) i0Var.get(0);
                     return;
                 case '\b':
                 case 16:
-                    m0Var.f2195y = (CharSequence) i0Var.get(0);
+                    m0Var.f2168y = (CharSequence) i0Var.get(0);
                     return;
                 case '\t':
                 case 22:
-                    m0Var.f2190s = Integer.valueOf(Integer.parseInt((String) i0Var.get(0)));
+                    m0Var.f2163s = Integer.valueOf(Integer.parseInt((String) i0Var.get(0)));
                     return;
                 case '\f':
                     Integer g10 = x7.g((String) i0Var.get(0));
@@ -288,14 +288,14 @@ public final class o extends j {
                     if (size != 1) {
                         if (size != 2) {
                             if (size == 3) {
-                                m0Var.f2192u = (Integer) d.get(2);
+                                m0Var.f2165u = (Integer) d.get(2);
                             } else {
                                 return;
                             }
                         }
-                        m0Var.f2191t = (Integer) d.get(1);
+                        m0Var.f2164t = (Integer) d.get(1);
                     }
-                    m0Var.f2190s = (Integer) d.get(0);
+                    m0Var.f2163s = (Integer) d.get(0);
                     return;
                 case 15:
                     ArrayList d10 = d((String) i0Var.get(0));
@@ -303,12 +303,12 @@ public final class o extends j {
                     if (size2 != 1) {
                         if (size2 != 2) {
                             if (size2 == 3) {
-                                m0Var.f2194x = (Integer) d10.get(2);
+                                m0Var.f2167x = (Integer) d10.get(2);
                             } else {
                                 return;
                             }
                         }
-                        m0Var.f2193w = (Integer) d10.get(1);
+                        m0Var.f2166w = (Integer) d10.get(1);
                     }
                     m0Var.v = (Integer) d10.get(0);
                     return;
@@ -325,7 +325,7 @@ public final class o extends j {
         }
         if (obj != null && o.class == obj.getClass()) {
             o oVar = (o) obj;
-            if (Objects.equals(this.f44184a, oVar.f44184a) && Objects.equals(this.f44194b, oVar.f44194b) && this.f44195c.equals(oVar.f44195c)) {
+            if (Objects.equals(this.f44156a, oVar.f44156a) && Objects.equals(this.f44166b, oVar.f44166b) && this.f44167c.equals(oVar.f44167c)) {
                 return true;
             }
         }
@@ -334,18 +334,18 @@ public final class o extends j {
 
     public final int hashCode() {
         int i10;
-        int h = a4.a.h(527, 31, this.f44184a);
-        String str = this.f44194b;
+        int h = a4.a.h(527, 31, this.f44156a);
+        String str = this.f44166b;
         if (str != null) {
             i10 = str.hashCode();
         } else {
             i10 = 0;
         }
-        return this.f44195c.hashCode() + ((h + i10) * 31);
+        return this.f44167c.hashCode() + ((h + i10) * 31);
     }
 
     @Override
     public final String toString() {
-        return this.f44184a + ": description=" + this.f44194b + ": values=" + this.f44195c;
+        return this.f44156a + ": description=" + this.f44166b + ": values=" + this.f44167c;
     }
 }

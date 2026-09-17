@@ -3,11 +3,11 @@ package sg;
 import android.content.Context;
 import android.view.View;
 public final class q1 extends View {
-    public final r1 f46258a;
+    public final r1 f46230a;
 
     public q1(r1 r1Var, Context context) {
         super(context);
-        this.f46258a = r1Var;
+        this.f46230a = r1Var;
     }
 
     @Override

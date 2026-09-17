@@ -8,22 +8,22 @@ import org.telegram.messenger.UserObject;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class er0 implements Runnable {
-    public final int f25783a;
-    public final Object f25784b;
-    public final Object f25785c;
+    public final int f25756a;
+    public final Object f25757b;
+    public final Object f25758c;
     public final Object d;
 
     public er0(Object obj, Object obj2, Object obj3, int i10) {
-        this.f25783a = i10;
-        this.f25784b = obj;
-        this.f25785c = obj2;
+        this.f25756a = i10;
+        this.f25757b = obj;
+        this.f25758c = obj2;
         this.d = obj3;
     }
 
     private final void a() {
         TLRPC.User user;
-        TLObject tLObject = (TLObject) this.f25784b;
-        MessagesController messagesController = (MessagesController) this.f25785c;
+        TLObject tLObject = (TLObject) this.f25757b;
+        MessagesController messagesController = (MessagesController) this.f25758c;
         ug.y0 y0Var = (ug.y0) this.d;
         if (tLObject instanceof TLRPC.TL_channels_channelParticipants) {
             TLRPC.TL_channels_channelParticipants tL_channels_channelParticipants = (TLRPC.TL_channels_channelParticipants) tLObject;
@@ -47,9 +47,9 @@ public final class er0 implements Runnable {
     }
 
     public er0(org.telegram.ui.web.h1 h1Var, ArrayList arrayList, String str) {
-        this.f25783a = 19;
-        this.f25784b = h1Var;
+        this.f25756a = 19;
+        this.f25757b = h1Var;
         this.d = arrayList;
-        this.f25785c = str;
+        this.f25758c = str;
     }
 }

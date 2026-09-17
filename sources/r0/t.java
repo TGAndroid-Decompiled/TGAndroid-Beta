@@ -4,5 +4,5 @@ import j$.util.DesugarCollections;
 import java.util.Map;
 import java.util.WeakHashMap;
 public abstract class t {
-    public static final Map f44758a = DesugarCollections.synchronizedMap(new WeakHashMap());
+    public static final Map f44730a = DesugarCollections.synchronizedMap(new WeakHashMap());
 }

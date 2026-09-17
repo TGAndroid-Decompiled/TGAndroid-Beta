@@ -6,41 +6,41 @@ import android.view.ViewGroup;
 import java.lang.reflect.Method;
 import org.telegram.messenger.FileLog;
 public final class a51 extends AnimatorListenerAdapter {
-    public final int f34364a;
-    public final org.telegram.ui.Components.em0 f34365b;
+    public final int f34337a;
+    public final org.telegram.ui.Components.em0 f34338b;
 
     public a51(org.telegram.ui.Components.em0 em0Var, int i10) {
-        this.f34364a = i10;
-        this.f34365b = em0Var;
+        this.f34337a = i10;
+        this.f34338b = em0Var;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        switch (this.f34364a) {
+        switch (this.f34337a) {
             case 0:
-                SecretMediaViewer secretMediaViewer = (SecretMediaViewer) this.f34365b.f25762b;
+                SecretMediaViewer secretMediaViewer = (SecretMediaViewer) this.f34338b.f25735b;
                 secretMediaViewer.Z.getNextView().setText((CharSequence) null);
-                au0 au0Var = secretMediaViewer.f34086a0;
-                au0Var.f39060l0 = false;
+                au0 au0Var = secretMediaViewer.f34059a0;
+                au0Var.f39033l0 = false;
                 if (au0Var.m0 >= 0) {
-                    ((ViewGroup.MarginLayoutParams) au0Var.f39062o0.getLayoutParams()).topMargin = au0Var.m0;
+                    ((ViewGroup.MarginLayoutParams) au0Var.f39035o0.getLayoutParams()).topMargin = au0Var.m0;
                     au0Var.m0 = -1;
                     au0Var.requestLayout();
                     return;
                 }
                 return;
             default:
-                ((SecretMediaViewer) this.f34365b.f25762b).Z.setTranslationY(0.0f);
+                ((SecretMediaViewer) this.f34338b.f25735b).Z.setTranslationY(0.0f);
                 return;
         }
     }
 
     @Override
     public void onAnimationStart(Animator animator) {
-        switch (this.f34364a) {
+        switch (this.f34337a) {
             case 0:
-                au0 au0Var = ((SecretMediaViewer) this.f34365b.f25762b).f34086a0;
-                Method method = au0Var.f39054f0;
+                au0 au0Var = ((SecretMediaViewer) this.f34338b.f25735b).f34059a0;
+                Method method = au0Var.f39027f0;
                 if (method != null) {
                     try {
                         method.invoke(au0Var, null);

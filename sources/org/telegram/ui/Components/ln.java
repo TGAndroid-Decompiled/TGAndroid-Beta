@@ -4,22 +4,22 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageView;
 public final class ln implements View.OnKeyListener {
-    public final int f28275a;
-    public final Object f28276b;
+    public final int f28248a;
+    public final Object f28249b;
 
     public ln(Object obj, int i10) {
-        this.f28275a = i10;
-        this.f28276b = obj;
+        this.f28248a = i10;
+        this.f28249b = obj;
     }
 
     @Override
     public final boolean onKey(View view, int i10, KeyEvent keyEvent) {
-        switch (this.f28275a) {
+        switch (this.f28248a) {
             case 0:
-                qn qnVar = (qn) this.f28276b;
+                qn qnVar = (qn) this.f28249b;
                 EditTextBoldCursor editTextBoldCursor = (EditTextBoldCursor) view;
                 if (i10 == 67 && keyEvent.getAction() == 0 && editTextBoldCursor.length() == 0) {
-                    ImageView imageView = qnVar.f21714f;
+                    ImageView imageView = qnVar.f21687f;
                     if (imageView != null) {
                         imageView.callOnClick();
                     }
@@ -27,7 +27,7 @@ public final class ln implements View.OnKeyListener {
                 }
                 return false;
             default:
-                vu vuVar = (vu) this.f28276b;
+                vu vuVar = (vu) this.f28249b;
                 vuVar.getClass();
                 if (i10 == 82 && keyEvent.getRepeatCount() == 0 && keyEvent.getAction() == 1 && vuVar.isShowing()) {
                     vuVar.dismiss();

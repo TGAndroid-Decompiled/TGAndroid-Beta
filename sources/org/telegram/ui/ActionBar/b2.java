@@ -48,7 +48,7 @@ import org.telegram.ui.Components.y6;
 import org.telegram.ui.z80;
 import zh.l7;
 public class b2 extends Dialog implements Drawable.Callback, NotificationCenter.NotificationCenterDelegate {
-    public static final int f20251c1 = 0;
+    public static final int f20224c1 = 0;
     public final Rect A0;
     public final float B0;
     public Bitmap C0;
@@ -97,48 +97,48 @@ public class b2 extends Dialog implements Drawable.Callback, NotificationCenter.
     public FrameLayout Y0;
     public Map Z;
     public zh.a Z0;
-    public int f20252a;
-    public int f20253a0;
-    public z1 f20254a1;
-    public View f20255b;
-    public Drawable f20256b0;
-    public boolean f20257b1;
-    public TextView f20258c;
-    public int f20259c0;
+    public int f20225a;
+    public int f20226a0;
+    public z1 f20227a1;
+    public View f20228b;
+    public Drawable f20229b0;
+    public boolean f20230b1;
+    public TextView f20231c;
+    public int f20232c0;
     public iu d;
-    public final int f20260d0;
-    public int f20261e;
-    public int f20262e0;
-    public wh.p f20263f;
-    public boolean f20264f0;
-    public boolean f20265g0;
+    public final int f20233d0;
+    public int f20234e;
+    public int f20235e0;
+    public wh.p f20236f;
+    public boolean f20237f0;
+    public boolean f20238g0;
     public TextView h;
-    public boolean f20266h0;
-    public boolean f20267i0;
-    public boolean f20268j0;
-    public aj0 f20269k0;
-    public CharSequence f20270l0;
+    public boolean f20239h0;
+    public boolean f20240i0;
+    public boolean f20241j0;
+    public aj0 f20242k0;
+    public CharSequence f20243l0;
     public a2 m0;
-    public iu f20271n;
-    public CharSequence f20272n0;
-    public a2 f20273o0;
-    public String f20274p0;
-    public ji.e4 f20275q0;
-    public FrameLayout f20276r;
-    public CharSequence f20277r0;
-    public FrameLayout f20278s;
-    public a2 f20279s0;
-    public ViewGroup f20280t0;
-    public m80 f20281u0;
+    public iu f20244n;
+    public CharSequence f20245n0;
+    public a2 f20246o0;
+    public String f20247p0;
+    public ji.e4 f20248q0;
+    public FrameLayout f20249r;
+    public CharSequence f20250r0;
+    public FrameLayout f20251s;
+    public a2 f20252s0;
+    public ViewGroup f20253t0;
+    public m80 f20254u0;
     public v1 v;
-    public TextView f20282v0;
-    public LinearLayout f20283w;
-    public z80 f20284w0;
-    public y1 f20285x;
-    public final int[] f20286x0;
-    public final BitmapDrawable[] f20287y;
-    public boolean f20288y0;
-    public final Drawable f20289z0;
+    public TextView f20255v0;
+    public LinearLayout f20256w;
+    public z80 f20257w0;
+    public y1 f20258x;
+    public final int[] f20259x0;
+    public final BitmapDrawable[] f20260y;
+    public boolean f20261y0;
+    public final Drawable f20262z0;
 
     public b2(Context context) {
         this(context, 3, null);
@@ -156,7 +156,7 @@ public class b2 extends Dialog implements Drawable.Callback, NotificationCenter.
             }
             AnimatorSet animatorSet2 = new AnimatorSet();
             animatorSetArr[i10] = animatorSet2;
-            BitmapDrawable bitmapDrawable = b2Var.f20287y[i10];
+            BitmapDrawable bitmapDrawable = b2Var.f20260y[i10];
             if (bitmapDrawable != null) {
                 if (z10) {
                     i11 = 255;
@@ -203,7 +203,7 @@ public class b2 extends Dialog implements Drawable.Callback, NotificationCenter.
     }
 
     public final View d(int i10) {
-        ViewGroup viewGroup = this.f20280t0;
+        ViewGroup viewGroup = this.f20253t0;
         if (viewGroup != null) {
             return viewGroup.findViewWithTag(Integer.valueOf(i10));
         }
@@ -213,7 +213,7 @@ public class b2 extends Dialog implements Drawable.Callback, NotificationCenter.
     @Override
     public final void didReceivedNotification(int i10, int i11, Object... objArr) {
         iu iuVar;
-        if (i10 == NotificationCenter.emojiLoaded && (iuVar = this.f20271n) != null) {
+        if (i10 == NotificationCenter.emojiLoaded && (iuVar = this.f20244n) != null) {
             iuVar.invalidate();
         }
     }
@@ -225,8 +225,8 @@ public class b2 extends Dialog implements Drawable.Callback, NotificationCenter.
         if (callback != null) {
             this.O = null;
             callback.run(new q1(this, 0));
-        } else if (!this.f20257b1) {
-            this.f20257b1 = true;
+        } else if (!this.f20230b1) {
+            this.f20230b1 = true;
             NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.emojiLoaded);
             DialogInterface.OnDismissListener onDismissListener = this.N;
             if (onDismissListener != null) {
@@ -278,37 +278,37 @@ public class b2 extends Dialog implements Drawable.Callback, NotificationCenter.
         int i24;
         float f13;
         z1 z1Var = new z1(getContext(), this);
-        this.f20254a1 = z1Var;
+        this.f20227a1 = z1Var;
         z1Var.setOrientation(1);
         boolean z12 = this.T0;
-        int i25 = this.f20260d0;
+        int i25 = this.f20233d0;
         if ((z12 || i25 == 3) && i25 != 2) {
-            this.f20254a1.setBackground(null);
-            this.f20254a1.setPadding(0, 0, 0, 0);
+            this.f20227a1.setBackground(null);
+            this.f20227a1.setPadding(0, 0, 0, 0);
             if (this.T0) {
-                this.f20254a1.setWillNotDraw(false);
+                this.f20227a1.setWillNotDraw(false);
             }
-            this.f20267i0 = false;
+            this.f20240i0 = false;
         } else {
-            boolean z13 = this.f20268j0;
-            Drawable drawable = this.f20289z0;
+            boolean z13 = this.f20241j0;
+            Drawable drawable = this.f20262z0;
             if (z13) {
                 Rect rect = new Rect();
                 drawable.getPadding(rect);
-                this.f20254a1.setPadding(rect.left, rect.top, rect.right, rect.bottom);
-                this.f20267i0 = true;
+                this.f20227a1.setPadding(rect.left, rect.top, rect.right, rect.bottom);
+                this.f20240i0 = true;
             } else {
-                this.f20254a1.setBackground(null);
-                this.f20254a1.setPadding(0, 0, 0, 0);
-                this.f20254a1.setBackground(drawable);
-                z1 z1Var2 = this.f20254a1;
-                bi.z1 z1Var3 = yf.j0.f50142a;
+                this.f20227a1.setBackground(null);
+                this.f20227a1.setPadding(0, 0, 0, 0);
+                this.f20227a1.setBackground(drawable);
+                z1 z1Var2 = this.f20227a1;
+                bi.z1 z1Var3 = yf.j0.f50113a;
                 z1Var2.setOutlineProvider(new yf.i0(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(20.0f)));
-                this.f20254a1.setClipToOutline(true);
-                this.f20267i0 = false;
+                this.f20227a1.setClipToOutline(true);
+                this.f20240i0 = false;
             }
         }
-        ViewGroup viewGroup = this.f20254a1;
+        ViewGroup viewGroup = this.f20227a1;
         boolean z14 = this.X0;
         f6 f6Var = this.R0;
         if (z14) {
@@ -316,24 +316,24 @@ public class b2 extends Dialog implements Drawable.Callback, NotificationCenter.
                 FrameLayout frameLayout = new FrameLayout(getContext());
                 this.Y0 = frameLayout;
                 frameLayout.setOnClickListener(new View.OnClickListener(this) {
-                    public final b2 f21353b;
+                    public final b2 f21326b;
 
                     {
-                        this.f21353b = this;
+                        this.f21326b = this;
                     }
 
                     @Override
                     public final void onClick(View view) {
                         switch (r2) {
                             case 0:
-                                this.f21353b.dismiss();
+                                this.f21326b.dismiss();
                                 return;
                             case 1:
-                                b2 b2Var = this.f21353b;
+                                b2 b2Var = this.f21326b;
                                 new l7(b2Var.getContext(), b2Var.R0).show();
                                 return;
                             default:
-                                b2 b2Var2 = this.f21353b;
+                                b2 b2Var2 = this.f21326b;
                                 DialogInterface.OnClickListener onClickListener = b2Var2.M;
                                 if (onClickListener != null) {
                                     onClickListener.onClick(b2Var2, ((Integer) view.getTag()).intValue());
@@ -349,24 +349,24 @@ public class b2 extends Dialog implements Drawable.Callback, NotificationCenter.
                 this.Z0 = aVar;
                 w7.z5.a(aVar);
                 this.Z0.setOnClickListener(new View.OnClickListener(this) {
-                    public final b2 f21353b;
+                    public final b2 f21326b;
 
                     {
-                        this.f21353b = this;
+                        this.f21326b = this;
                     }
 
                     @Override
                     public final void onClick(View view) {
                         switch (r2) {
                             case 0:
-                                this.f21353b.dismiss();
+                                this.f21326b.dismiss();
                                 return;
                             case 1:
-                                b2 b2Var = this.f21353b;
+                                b2 b2Var = this.f21326b;
                                 new l7(b2Var.getContext(), b2Var.R0).show();
                                 return;
                             default:
-                                b2 b2Var2 = this.f21353b;
+                                b2 b2Var2 = this.f21326b;
                                 DialogInterface.OnClickListener onClickListener = b2Var2.M;
                                 if (onClickListener != null) {
                                     onClickListener.onClick(b2Var2, ((Integer) view.getTag()).intValue());
@@ -377,9 +377,9 @@ public class b2 extends Dialog implements Drawable.Callback, NotificationCenter.
                     }
                 });
             }
-            AndroidUtilities.removeFromParent(this.f20254a1);
+            AndroidUtilities.removeFromParent(this.f20227a1);
             AndroidUtilities.removeFromParent(this.Z0);
-            this.Y0.addView(this.f20254a1, w7.x5.e(-2, -2, 17));
+            this.Y0.addView(this.f20227a1, w7.x5.e(-2, -2, 17));
             this.Y0.addView(this.Z0, w7.x5.d(-2, -2.0f, 49, 0.0f, 48.0f, 0.0f, 0.0f));
             viewGroup = this.Y0;
         }
@@ -388,7 +388,7 @@ public class b2 extends Dialog implements Drawable.Callback, NotificationCenter.
                 FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(-1, -1);
                 layoutParams.gravity = 119;
                 setContentView(viewGroup, layoutParams);
-            } else if (this.f20252a > 0) {
+            } else if (this.f20225a > 0) {
                 FrameLayout.LayoutParams layoutParams2 = new FrameLayout.LayoutParams(-2, -2);
                 layoutParams2.gravity = 17;
                 setContentView(viewGroup, layoutParams2);
@@ -396,28 +396,28 @@ public class b2 extends Dialog implements Drawable.Callback, NotificationCenter.
                 setContentView(viewGroup);
             }
         }
-        if (this.f20270l0 == null && this.f20272n0 == null && this.f20274p0 == null && this.f20277r0 == null) {
+        if (this.f20243l0 == null && this.f20245n0 == null && this.f20247p0 == null && this.f20250r0 == null) {
             z11 = false;
         } else {
             z11 = true;
         }
-        if (this.U == 0 && this.X == 0 && this.f20256b0 == null) {
+        if (this.U == 0 && this.X == 0 && this.f20229b0 == null) {
             View view = this.V;
             if (view != null) {
                 view.setPadding(0, 0, 0, 0);
-                this.f20254a1.addView(this.V, w7.x5.t(-1, this.f20253a0, 51, 0, 0, 0, 0));
+                this.f20227a1.addView(this.V, w7.x5.t(-1, this.f20226a0, 51, 0, 0, 0, 0));
             }
         } else {
             ?? imageView = new ImageView(getContext());
-            this.f20269k0 = imageView;
-            Drawable drawable2 = this.f20256b0;
+            this.f20242k0 = imageView;
+            Drawable drawable2 = this.f20229b0;
             if (drawable2 != null) {
                 imageView.setImageDrawable(drawable2);
-                Drawable drawable3 = this.f20256b0;
+                Drawable drawable3 = this.f20229b0;
                 if (drawable3 instanceof y6) {
                     y6 y6Var = (y6) drawable3;
-                    this.f20269k0.addOnAttachStateChangeListener(new t1(y6Var));
-                    y6Var.a(this.f20269k0);
+                    this.f20242k0.addOnAttachStateChangeListener(new t1(y6Var));
+                    y6Var.a(this.f20242k0);
                 }
             } else {
                 int i26 = this.U;
@@ -425,55 +425,55 @@ public class b2 extends Dialog implements Drawable.Callback, NotificationCenter.
                     imageView.setImageResource(i26);
                 } else {
                     imageView.setAutoRepeat(this.S0);
-                    aj0 aj0Var = this.f20269k0;
+                    aj0 aj0Var = this.f20242k0;
                     int i27 = this.X;
                     int i28 = this.Y;
                     aj0Var.f(i27, i28, i28, null);
                     if (this.Z != null) {
-                        xi0 animatedDrawable = this.f20269k0.getAnimatedDrawable();
+                        xi0 animatedDrawable = this.f20242k0.getAnimatedDrawable();
                         for (Map.Entry entry : this.Z.entrySet()) {
                             Integer num = (Integer) entry.getValue();
                             num.getClass();
-                            animatedDrawable.f32602s.put((String) entry.getKey(), num);
+                            animatedDrawable.f32575s.put((String) entry.getKey(), num);
                             animatedDrawable.E();
                         }
                     }
-                    this.f20269k0.d();
+                    this.f20242k0.d();
                 }
             }
-            this.f20269k0.setScaleType(ImageView.ScaleType.CENTER);
+            this.f20242k0.setScaleType(ImageView.ScaleType.CENTER);
             if (this.W) {
                 GradientDrawable gradientDrawable = new GradientDrawable();
-                gradientDrawable.setColor(this.f20259c0);
+                gradientDrawable.setColor(this.f20232c0);
                 gradientDrawable.setCornerRadius(AndroidUtilities.dp(128.0f));
-                this.f20269k0.setBackground(new u1(this, gradientDrawable));
-                this.f20253a0 = 92;
+                this.f20242k0.setBackground(new u1(this, gradientDrawable));
+                this.f20226a0 = 92;
             } else {
-                this.f20269k0.setBackground(j6.c0(AndroidUtilities.dp(10.0f), 0, this.f20259c0));
+                this.f20242k0.setBackground(j6.c0(AndroidUtilities.dp(10.0f), 0, this.f20232c0));
             }
             if (this.W) {
-                this.f20269k0.setTranslationY(AndroidUtilities.dp(16.0f));
+                this.f20242k0.setTranslationY(AndroidUtilities.dp(16.0f));
             } else {
-                this.f20269k0.setTranslationY(0.0f);
+                this.f20242k0.setTranslationY(0.0f);
             }
-            this.f20269k0.setPadding(0, 0, 0, 0);
-            this.f20254a1.addView(this.f20269k0, w7.x5.t(-1, this.f20253a0, 51, 0, 0, 0, 0));
+            this.f20242k0.setPadding(0, 0, 0, 0);
+            this.f20227a1.addView(this.f20242k0, w7.x5.t(-1, this.f20226a0, 51, 0, 0, 0, 0));
         }
         int i29 = 5;
         if (this.R != null) {
             FrameLayout frameLayout2 = new FrameLayout(getContext());
-            this.f20278s = frameLayout2;
-            this.f20254a1.addView(frameLayout2, w7.x5.t(-2, -2, this.W ? 1 : 0, 24, 0, 24, 0));
+            this.f20251s = frameLayout2;
+            this.f20227a1.addView(frameLayout2, w7.x5.t(-2, -2, this.W ? 1 : 0, 24, 0, 24, 0));
             wh.p pVar = new wh.p(getContext(), null, false);
-            this.f20263f = pVar;
+            this.f20236f = pVar;
             NotificationCenter.listenEmojiLoading(pVar);
-            wh.p pVar2 = this.f20263f;
+            wh.p pVar2 = this.f20236f;
             pVar2.h = 3;
             pVar2.setText(this.R);
-            this.f20263f.setTextColor(e(j6.f20798j5));
-            this.f20263f.setTextSize(1, 20.0f);
-            this.f20263f.setTypeface(AndroidUtilities.bold());
-            wh.p pVar3 = this.f20263f;
+            this.f20236f.setTextColor(e(j6.f20771j5));
+            this.f20236f.setTextSize(1, 20.0f);
+            this.f20236f.setTypeface(AndroidUtilities.bold());
+            wh.p pVar3 = this.f20236f;
             if (this.W) {
                 i22 = 1;
             } else if (LocaleController.isRTL) {
@@ -482,8 +482,8 @@ public class b2 extends Dialog implements Drawable.Callback, NotificationCenter.
                 i22 = 3;
             }
             pVar3.setGravity(i22 | 48);
-            FrameLayout frameLayout3 = this.f20278s;
-            wh.p pVar4 = this.f20263f;
+            FrameLayout frameLayout3 = this.f20251s;
+            wh.p pVar4 = this.f20236f;
             boolean z15 = this.W;
             if (z15) {
                 i23 = 1;
@@ -520,7 +520,7 @@ public class b2 extends Dialog implements Drawable.Callback, NotificationCenter.
                 i19 = 3;
             }
             textView2.setGravity(i19 | 48);
-            z1 z1Var4 = this.f20254a1;
+            z1 z1Var4 = this.f20227a1;
             TextView textView3 = this.h;
             if (LocaleController.isRTL) {
                 i20 = 5;
@@ -536,7 +536,7 @@ public class b2 extends Dialog implements Drawable.Callback, NotificationCenter.
             z1Var4.addView(textView3, w7.x5.t(-2, -2, i31, 24, 0, 24, i21));
         }
         if (i25 == 0) {
-            BitmapDrawable[] bitmapDrawableArr = this.f20287y;
+            BitmapDrawable[] bitmapDrawableArr = this.f20260y;
             bitmapDrawableArr[0] = (BitmapDrawable) getContext().getResources().getDrawable(R.drawable.header_shadow).mutate();
             bitmapDrawableArr[1] = (BitmapDrawable) getContext().getResources().getDrawable(R.drawable.header_shadow_reverse).mutate();
             bitmapDrawableArr[0].setAlpha(0);
@@ -547,35 +547,35 @@ public class b2 extends Dialog implements Drawable.Callback, NotificationCenter.
             this.v = v1Var;
             v1Var.setVerticalScrollBarEnabled(false);
             AndroidUtilities.setScrollViewEdgeEffectColor(this.v, e(j6.A5));
-            this.f20254a1.addView(this.v, w7.x5.k(0.0f, 0.0f, 0.0f, 0.0f, -1, -2));
+            this.f20227a1.addView(this.v, w7.x5.k(0.0f, 0.0f, 0.0f, 0.0f, -1, -2));
             LinearLayout linearLayout = new LinearLayout(getContext());
-            this.f20283w = linearLayout;
+            this.f20256w = linearLayout;
             linearLayout.setOrientation(1);
             f7 = 20.0f;
             f10 = 4.0f;
-            this.v.addView(this.f20283w, new FrameLayout.LayoutParams(-1, -2));
+            this.v.addView(this.f20256w, new FrameLayout.LayoutParams(-1, -2));
         } else {
             f7 = 20.0f;
             f10 = 4.0f;
         }
         iu iuVar = new iu(getContext());
-        this.f20271n = iuVar;
+        this.f20244n = iuVar;
         NotificationCenter.listenEmojiLoading(iuVar);
-        iu iuVar2 = this.f20271n;
+        iu iuVar2 = this.f20244n;
         if (this.W) {
-            i10 = j6.f21070y6;
+            i10 = j6.f21043y6;
         } else {
-            i10 = j6.f20798j5;
+            i10 = j6.f20771j5;
         }
         iuVar2.setTextColor(e(i10));
-        this.f20271n.setTextSize(1, 16.0f);
-        this.f20271n.setMovementMethod(new AndroidUtilities.LinkMovementMethodMy());
-        this.f20271n.setLinkTextColor(e(j6.f20818k5));
-        if (!this.f20264f0) {
-            this.f20271n.setClickable(false);
-            this.f20271n.setEnabled(false);
+        this.f20244n.setTextSize(1, 16.0f);
+        this.f20244n.setMovementMethod(new AndroidUtilities.LinkMovementMethodMy());
+        this.f20244n.setLinkTextColor(e(j6.f20791k5));
+        if (!this.f20237f0) {
+            this.f20244n.setClickable(false);
+            this.f20244n.setEnabled(false);
         }
-        iu iuVar3 = this.f20271n;
+        iu iuVar3 = this.f20244n;
         if (this.W) {
             i11 = 1;
         } else if (LocaleController.isRTL) {
@@ -585,8 +585,8 @@ public class b2 extends Dialog implements Drawable.Callback, NotificationCenter.
         }
         iuVar3.setGravity(i11 | 48);
         if (i25 == 2) {
-            z1 z1Var5 = this.f20254a1;
-            iu iuVar4 = this.f20271n;
+            z1 z1Var5 = this.f20227a1;
+            iu iuVar4 = this.f20244n;
             if (LocaleController.isRTL) {
                 i16 = 5;
             } else {
@@ -600,72 +600,72 @@ public class b2 extends Dialog implements Drawable.Callback, NotificationCenter.
             }
             z1Var5.addView(iuVar4, w7.x5.t(-2, -2, i32, 24, i17, 24, 20));
             m80 m80Var = new m80(getContext());
-            this.f20281u0 = m80Var;
-            m80Var.a(this.f20262e0 / 100.0f, false);
-            this.f20281u0.setProgressColor(e(j6.F5));
-            this.f20281u0.setBackColor(e(j6.G5));
-            this.f20254a1.addView(this.f20281u0, w7.x5.t(-1, 4, 19, 24, 0, 24, 0));
+            this.f20254u0 = m80Var;
+            m80Var.a(this.f20235e0 / 100.0f, false);
+            this.f20254u0.setProgressColor(e(j6.F5));
+            this.f20254u0.setBackColor(e(j6.G5));
+            this.f20227a1.addView(this.f20254u0, w7.x5.t(-1, 4, 19, 24, 0, 24, 0));
             TextView textView4 = new TextView(getContext());
-            this.f20282v0 = textView4;
+            this.f20255v0 = textView4;
             textView4.setTypeface(AndroidUtilities.bold());
-            TextView textView5 = this.f20282v0;
+            TextView textView5 = this.f20255v0;
             if (LocaleController.isRTL) {
                 i18 = 5;
             } else {
                 i18 = 3;
             }
             textView5.setGravity(i18 | 48);
-            this.f20282v0.setTextColor(e(j6.f20925q5));
-            this.f20282v0.setTextSize(1, 14.0f);
-            z1 z1Var6 = this.f20254a1;
-            TextView textView6 = this.f20282v0;
+            this.f20255v0.setTextColor(e(j6.f20898q5));
+            this.f20255v0.setTextSize(1, 14.0f);
+            z1 z1Var6 = this.f20227a1;
+            TextView textView6 = this.f20255v0;
             if (!LocaleController.isRTL) {
                 i29 = 3;
             }
             z1Var6.addView(textView6, w7.x5.t(-2, -2, i29 | 48, 23, 4, 23, 24));
-            this.f20282v0.setText(String.format("%d%%", Integer.valueOf(this.f20262e0)));
+            this.f20255v0.setText(String.format("%d%%", Integer.valueOf(this.f20235e0)));
         } else if (i25 == 3) {
             super.setCanceledOnTouchOutside(false);
             setCancelable(false);
-            this.f20276r = new FrameLayout(getContext());
+            this.f20249r = new FrameLayout(getContext());
             this.U0 = e(j6.M5);
             if (!this.T0) {
-                this.f20276r.setBackgroundDrawable(j6.b0(AndroidUtilities.dp(18.0f), this.U0));
+                this.f20249r.setBackgroundDrawable(j6.b0(AndroidUtilities.dp(18.0f), this.U0));
             }
-            this.f20254a1.addView(this.f20276r, w7.x5.q(86, 86, 17));
+            this.f20227a1.addView(this.f20249r, w7.x5.q(86, 86, 17));
             RadialProgressView radialProgressView = new RadialProgressView(getContext(), f6Var);
             radialProgressView.setSize(AndroidUtilities.dp(32.0f));
             radialProgressView.setProgressColor(e(j6.N5));
-            this.f20276r.addView(radialProgressView, w7.x5.e(86, 86, 17));
+            this.f20249r.addView(radialProgressView, w7.x5.e(86, 86, 17));
         } else {
             iu iuVar5 = this.d;
             if (iuVar5 != null) {
-                this.f20283w.addView(iuVar5, w7.x5.k(22.0f, 4.0f, 22.0f, 12.0f, -1, -2));
+                this.f20256w.addView(iuVar5, w7.x5.k(22.0f, 4.0f, 22.0f, 12.0f, -1, -2));
             }
-            LinearLayout linearLayout2 = this.f20283w;
-            iu iuVar6 = this.f20271n;
+            LinearLayout linearLayout2 = this.f20256w;
+            iu iuVar6 = this.f20244n;
             if (this.W) {
                 i29 = 1;
             } else if (!LocaleController.isRTL) {
                 i29 = 3;
             }
             int i33 = i29 | 48;
-            if (this.f20255b == null && this.P == null) {
+            if (this.f20228b == null && this.P == null) {
                 i12 = 0;
             } else {
                 i12 = this.G;
             }
             linearLayout2.addView(iuVar6, w7.x5.t(-2, -2, i33, 24, 0, 24, i12));
-            TextView textView7 = this.f20258c;
+            TextView textView7 = this.f20231c;
             if (textView7 != null) {
-                this.f20283w.addView(textView7, w7.x5.k(22.0f, 12.0f, 22.0f, 0.0f, -1, -2));
+                this.f20256w.addView(textView7, w7.x5.k(22.0f, 12.0f, 22.0f, 0.0f, -1, -2));
             }
         }
         if (!TextUtils.isEmpty(this.T)) {
-            this.f20271n.setText(this.T);
-            this.f20271n.setVisibility(0);
+            this.f20244n.setText(this.T);
+            this.f20244n.setVisibility(0);
         } else {
-            this.f20271n.setVisibility(8);
+            this.f20244n.setVisibility(8);
         }
         if (this.P != null) {
             int i34 = 0;
@@ -686,26 +686,26 @@ public class b2 extends Dialog implements Drawable.Callback, NotificationCenter.
                     x1Var.a(i15, charSequence);
                     x1Var.setTag(Integer.valueOf(i34));
                     this.N0.add(x1Var);
-                    this.f20283w.addView(x1Var, w7.x5.n(-1, 50));
+                    this.f20256w.addView(x1Var, w7.x5.n(-1, 50));
                     x1Var.setOnClickListener(new View.OnClickListener(this) {
-                        public final b2 f21353b;
+                        public final b2 f21326b;
 
                         {
-                            this.f21353b = this;
+                            this.f21326b = this;
                         }
 
                         @Override
                         public final void onClick(View view2) {
                             switch (r2) {
                                 case 0:
-                                    this.f21353b.dismiss();
+                                    this.f21326b.dismiss();
                                     return;
                                 case 1:
-                                    b2 b2Var = this.f21353b;
+                                    b2 b2Var = this.f21326b;
                                     new l7(b2Var.getContext(), b2Var.R0).show();
                                     return;
                                 default:
-                                    b2 b2Var2 = this.f21353b;
+                                    b2 b2Var2 = this.f21326b;
                                     DialogInterface.OnClickListener onClickListener = b2Var2.M;
                                     if (onClickListener != null) {
                                         onClickListener.onClick(b2Var2, ((Integer) view2.getTag()).intValue());
@@ -719,47 +719,47 @@ public class b2 extends Dialog implements Drawable.Callback, NotificationCenter.
                 i34++;
             }
         }
-        View view2 = this.f20255b;
+        View view2 = this.f20228b;
         if (view2 != null) {
             if (view2.getParent() != null) {
-                ((ViewGroup) this.f20255b.getParent()).removeView(this.f20255b);
+                ((ViewGroup) this.f20228b.getParent()).removeView(this.f20228b);
             }
-            this.f20283w.addView(this.f20255b, w7.x5.n(-1, this.f20261e));
+            this.f20256w.addView(this.f20228b, w7.x5.n(-1, this.f20234e));
         }
         if (z11) {
             if (!this.I0) {
                 TextPaint textPaint = new TextPaint();
                 textPaint.setTextSize(AndroidUtilities.dp(16.0f));
                 textPaint.setTypeface(AndroidUtilities.bold());
-                CharSequence charSequence2 = this.f20270l0;
+                CharSequence charSequence2 = this.f20243l0;
                 if (charSequence2 != null) {
                     i14 = (int) (textPaint.measureText(charSequence2, 0, charSequence2.length()) + AndroidUtilities.dp(24.0f) + 0);
                 } else {
                     i14 = 0;
                 }
-                if (this.f20272n0 != null) {
+                if (this.f20245n0 != null) {
                     if (i14 > 0) {
                         i14 += AndroidUtilities.dp(8.0f);
                     }
-                    CharSequence charSequence3 = this.f20272n0;
+                    CharSequence charSequence3 = this.f20245n0;
                     i14 = (int) (textPaint.measureText(charSequence3, 0, charSequence3.length()) + AndroidUtilities.dp(24.0f) + i14);
                 }
-                if (this.f20274p0 != null) {
+                if (this.f20247p0 != null) {
                     if (i14 > 0) {
                         i14 += AndroidUtilities.dp(8.0f);
                     }
-                    String str = this.f20274p0;
+                    String str = this.f20247p0;
                     i14 = (int) (textPaint.measureText((CharSequence) str, 0, str.length()) + AndroidUtilities.dp(24.0f) + i14);
                 }
-                if (this.f20277r0 != null) {
+                if (this.f20250r0 != null) {
                     if (i14 > 0) {
                         i14 += AndroidUtilities.dp(8.0f);
                     }
-                    CharSequence charSequence4 = this.f20277r0;
+                    CharSequence charSequence4 = this.f20250r0;
                     i14 = (int) (textPaint.measureText(charSequence4, 0, charSequence4.length()) + AndroidUtilities.dp(24.0f) + i14);
                 }
                 if (i14 > AndroidUtilities.displaySize.x - AndroidUtilities.dp(64.0f)) {
-                    if (this.J0 && this.f20270l0 != null && this.f20272n0 != null && this.f20274p0 != null && this.f20277r0 != null) {
+                    if (this.J0 && this.f20243l0 != null && this.f20245n0 != null && this.f20247p0 != null && this.f20250r0 != null) {
                         this.K0 = true;
                     } else {
                         this.I0 = true;
@@ -769,18 +769,18 @@ public class b2 extends Dialog implements Drawable.Callback, NotificationCenter.
             if (this.I0) {
                 LinearLayout linearLayout3 = new LinearLayout(getContext());
                 linearLayout3.setOrientation(1);
-                this.f20280t0 = linearLayout3;
+                this.f20253t0 = linearLayout3;
             } else {
-                this.f20280t0 = new t2(this, getContext(), 1);
+                this.f20253t0 = new t2(this, getContext(), 1);
             }
-            if (this.f20258c != null) {
-                this.f20280t0.setPadding(AndroidUtilities.dp(16.0f), 0, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(f10));
-                this.f20280t0.setTranslationY(-AndroidUtilities.dp(6.0f));
+            if (this.f20231c != null) {
+                this.f20253t0.setPadding(AndroidUtilities.dp(16.0f), 0, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(f10));
+                this.f20253t0.setTranslationY(-AndroidUtilities.dp(6.0f));
             } else {
-                this.f20280t0.setPadding(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f));
+                this.f20253t0.setPadding(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f));
             }
-            z1 z1Var7 = this.f20254a1;
-            ViewGroup viewGroup2 = this.f20280t0;
+            z1 z1Var7 = this.f20227a1;
+            ViewGroup viewGroup2 = this.f20253t0;
             if (this.K0) {
                 i13 = 96;
             } else {
@@ -788,9 +788,9 @@ public class b2 extends Dialog implements Drawable.Callback, NotificationCenter.
             }
             z1Var7.addView(viewGroup2, w7.x5.n(-1, i13));
             if (this.W) {
-                this.f20280t0.setTranslationY(-AndroidUtilities.dp(8.0f));
+                this.f20253t0.setTranslationY(-AndroidUtilities.dp(8.0f));
             }
-            if (this.f20270l0 != null) {
+            if (this.f20243l0 != null) {
                 w1 w1Var = new w1(getContext(), 0);
                 w1Var.setMinWidth(AndroidUtilities.dp(64.0f));
                 w1Var.setTag(-1);
@@ -798,23 +798,23 @@ public class b2 extends Dialog implements Drawable.Callback, NotificationCenter.
                 w1Var.setTextColor(e(this.I));
                 w1Var.setGravity(17);
                 w1Var.setTypeface(AndroidUtilities.bold());
-                w1Var.setText(this.f20270l0);
+                w1Var.setText(this.f20243l0);
                 f11 = 64.0f;
                 w1Var.setBackground(j6.G0(AndroidUtilities.dp(f7), e(this.I)));
                 w1Var.setPadding(AndroidUtilities.dp(12.0f), 0, AndroidUtilities.dp(12.0f), 0);
                 if (this.I0) {
                     f12 = 6.0f;
-                    this.f20280t0.addView(w1Var, w7.x5.q(-1, 40, 7));
+                    this.f20253t0.addView(w1Var, w7.x5.q(-1, 40, 7));
                 } else {
                     f12 = 6.0f;
-                    this.f20280t0.addView(w1Var, w7.x5.e(-2, 40, 53));
+                    this.f20253t0.addView(w1Var, w7.x5.e(-2, 40, 53));
                 }
                 w1Var.setOnClickListener(new bi.u1(18, this, w1Var));
             } else {
                 f11 = 64.0f;
                 f12 = 6.0f;
             }
-            if (this.f20272n0 != null) {
+            if (this.f20245n0 != null) {
                 w1 w1Var2 = new w1(getContext(), 1);
                 w1Var2.setMinWidth(AndroidUtilities.dp(f11));
                 w1Var2.setTag(-2);
@@ -824,17 +824,17 @@ public class b2 extends Dialog implements Drawable.Callback, NotificationCenter.
                 w1Var2.setTypeface(AndroidUtilities.bold());
                 w1Var2.setEllipsize(TextUtils.TruncateAt.END);
                 w1Var2.setSingleLine(true);
-                w1Var2.setText(this.f20272n0.toString());
+                w1Var2.setText(this.f20245n0.toString());
                 w1Var2.setBackground(j6.G0(AndroidUtilities.dp(f7), e(this.I)));
                 w1Var2.setPadding(AndroidUtilities.dp(12.0f), 0, AndroidUtilities.dp(12.0f), 0);
                 if (this.I0) {
-                    this.f20280t0.addView(w1Var2, 0, w7.x5.q(-1, 40, 7));
+                    this.f20253t0.addView(w1Var2, 0, w7.x5.q(-1, 40, 7));
                 } else {
-                    this.f20280t0.addView(w1Var2, w7.x5.e(-2, 40, 53));
+                    this.f20253t0.addView(w1Var2, w7.x5.e(-2, 40, 53));
                 }
                 w1Var2.setOnClickListener(new bi.u1(19, this, w1Var2));
             }
-            if (this.f20277r0 != null) {
+            if (this.f20250r0 != null) {
                 w1 w1Var3 = new w1(getContext(), 2);
                 w1Var3.setMinWidth(AndroidUtilities.dp(f11));
                 w1Var3.setTag(-3);
@@ -844,17 +844,17 @@ public class b2 extends Dialog implements Drawable.Callback, NotificationCenter.
                 w1Var3.setTypeface(AndroidUtilities.bold());
                 w1Var3.setEllipsize(TextUtils.TruncateAt.END);
                 w1Var3.setSingleLine(true);
-                w1Var3.setText(this.f20277r0.toString());
+                w1Var3.setText(this.f20250r0.toString());
                 w1Var3.setBackground(j6.G0(AndroidUtilities.dp(f7), e(this.I)));
                 w1Var3.setPadding(AndroidUtilities.dp(12.0f), 0, AndroidUtilities.dp(12.0f), 0);
                 if (this.I0) {
-                    this.f20280t0.addView(w1Var3, 1, w7.x5.q(-1, 40, 7));
+                    this.f20253t0.addView(w1Var3, 1, w7.x5.q(-1, 40, 7));
                 } else {
-                    this.f20280t0.addView(w1Var3, w7.x5.e(-2, 40, 51));
+                    this.f20253t0.addView(w1Var3, w7.x5.e(-2, 40, 51));
                 }
                 w1Var3.setOnClickListener(new bi.u1(20, this, w1Var3));
             }
-            if (this.f20274p0 != null) {
+            if (this.f20247p0 != null) {
                 w1 w1Var4 = new w1(getContext(), 3);
                 w1Var4.setMinWidth(AndroidUtilities.dp(f11));
                 w1Var4.setTag(-4);
@@ -864,19 +864,19 @@ public class b2 extends Dialog implements Drawable.Callback, NotificationCenter.
                 w1Var4.setTypeface(AndroidUtilities.bold());
                 w1Var4.setEllipsize(TextUtils.TruncateAt.END);
                 w1Var4.setSingleLine(true);
-                w1Var4.setText(this.f20274p0.toString());
+                w1Var4.setText(this.f20247p0.toString());
                 w1Var4.setBackground(j6.G0(AndroidUtilities.dp(f7), e(this.I)));
                 w1Var4.setPadding(AndroidUtilities.dp(12.0f), 0, AndroidUtilities.dp(12.0f), 0);
                 if (this.I0) {
-                    this.f20280t0.addView(w1Var4, 0, w7.x5.q(-1, 40, 7));
+                    this.f20253t0.addView(w1Var4, 0, w7.x5.q(-1, 40, 7));
                 } else {
-                    this.f20280t0.addView(w1Var4, w7.x5.e(-2, 40, 53));
+                    this.f20253t0.addView(w1Var4, w7.x5.e(-2, 40, 53));
                 }
                 w1Var4.setOnClickListener(new bi.u1(21, this, w1Var4));
             }
             if (this.I0) {
-                for (int i35 = 1; i35 < this.f20280t0.getChildCount(); i35++) {
-                    ((ViewGroup.MarginLayoutParams) this.f20280t0.getChildAt(i35).getLayoutParams()).topMargin = AndroidUtilities.dp(f12);
+                for (int i35 = 1; i35 < this.f20253t0.getChildCount(); i35++) {
+                    ((ViewGroup.MarginLayoutParams) this.f20253t0.getChildAt(i35).getLayoutParams()).topMargin = AndroidUtilities.dp(f12);
                 }
             }
         }
@@ -913,8 +913,8 @@ public class b2 extends Dialog implements Drawable.Callback, NotificationCenter.
             Rect rect2 = this.A0;
             layoutParams3.width = min + rect2.left + rect2.right;
         }
-        View view3 = this.f20255b;
-        if (view3 != null && this.f20288y0 && b(view3)) {
+        View view3 = this.f20228b;
+        if (view3 != null && this.f20261y0 && b(view3)) {
             layoutParams3.flags &= -131073;
             layoutParams3.softInputMode = 16;
         } else {
@@ -933,7 +933,7 @@ public class b2 extends Dialog implements Drawable.Callback, NotificationCenter.
     public final of.e g(int i10, boolean z10, boolean z11) {
         View d = d(i10);
         if (z11) {
-            this.f20266h0 = false;
+            this.f20239h0 = false;
         }
         return new of.e(new q(d, 5), new di.y0(this, d, z10, 9));
     }
@@ -941,13 +941,13 @@ public class b2 extends Dialog implements Drawable.Callback, NotificationCenter.
     public final void h() {
         TextView textView = (TextView) d(-1);
         if (textView != null) {
-            textView.setTextColor(e(j6.f20926q7));
+            textView.setTextColor(e(j6.f20899q7));
         }
     }
 
     public final void i(int i10) {
         this.U0 = i10;
-        Drawable drawable = this.f20289z0;
+        Drawable drawable = this.f20262z0;
         if (drawable != null) {
             drawable.setColorFilter(new PorterDuffColorFilter(this.U0, PorterDuff.Mode.MULTIPLY));
         }
@@ -956,11 +956,11 @@ public class b2 extends Dialog implements Drawable.Callback, NotificationCenter.
     @Override
     public final void invalidateDrawable(Drawable drawable) {
         this.v.invalidate();
-        this.f20283w.invalidate();
+        this.f20256w.invalidate();
     }
 
     public final void j() {
-        this.f20265g0 = false;
+        this.f20238g0 = false;
     }
 
     public final void k(boolean z10) {
@@ -985,39 +985,39 @@ public class b2 extends Dialog implements Drawable.Callback, NotificationCenter.
             ArrayList arrayList = this.N0;
             if (i10 < arrayList.size()) {
                 x1 x1Var = (x1) arrayList.get(i10);
-                x1Var.f21506a.setTextColor(i11);
-                x1Var.f21507b.setColorFilter(new PorterDuffColorFilter(i12, PorterDuff.Mode.MULTIPLY));
+                x1Var.f21479a.setTextColor(i11);
+                x1Var.f21480b.setColorFilter(new PorterDuffColorFilter(i12, PorterDuff.Mode.MULTIPLY));
             }
         }
     }
 
     public final void m(String str) {
         this.T = str;
-        if (this.f20271n != null) {
+        if (this.f20244n != null) {
             if (!TextUtils.isEmpty(str)) {
-                this.f20271n.setText(this.T);
-                this.f20271n.setVisibility(0);
+                this.f20244n.setText(this.T);
+                this.f20244n.setVisibility(0);
                 return;
             }
-            this.f20271n.setVisibility(8);
+            this.f20244n.setVisibility(8);
         }
     }
 
     public final void n(int i10) {
-        this.f20262e0 = i10;
-        m80 m80Var = this.f20281u0;
+        this.f20235e0 = i10;
+        m80 m80Var = this.f20254u0;
         if (m80Var != null) {
             m80Var.a(i10 / 100.0f, true);
-            this.f20282v0.setText(String.format("%d%%", Integer.valueOf(this.f20262e0)));
+            this.f20255v0.setText(String.format("%d%%", Integer.valueOf(this.f20235e0)));
         }
     }
 
     public final void o(int i10) {
-        wh.p pVar = this.f20263f;
+        wh.p pVar = this.f20236f;
         if (pVar != null) {
             pVar.setTextColor(i10);
         }
-        iu iuVar = this.f20271n;
+        iu iuVar = this.f20244n;
         if (iuVar != null) {
             iuVar.setTextColor(i10);
         }
@@ -1026,7 +1026,7 @@ public class b2 extends Dialog implements Drawable.Callback, NotificationCenter.
     @Override
     public final void onBackPressed() {
         super.onBackPressed();
-        z80 z80Var = this.f20284w0;
+        z80 z80Var = this.f20257w0;
         if (z80Var != null) {
             z80Var.g(this, -2);
         }
@@ -1040,10 +1040,10 @@ public class b2 extends Dialog implements Drawable.Callback, NotificationCenter.
     }
 
     public final void p() {
-        if (this.f20265g0 && this.K == null) {
+        if (this.f20238g0 && this.K == null) {
             AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(getContext(), 0, this.R0);
-            alertDialog$Builder.f20226a.R = LocaleController.getString(R.string.StopLoadingTitle);
-            alertDialog$Builder.f20226a.T = LocaleController.getString(R.string.StopLoading);
+            alertDialog$Builder.f20199a.R = LocaleController.getString(R.string.StopLoadingTitle);
+            alertDialog$Builder.f20199a.T = LocaleController.getString(R.string.StopLoading);
             alertDialog$Builder.k(LocaleController.getString(R.string.WaitMore), null);
             alertDialog$Builder.h(LocaleController.getString(R.string.Stop), new n(this, 3));
             alertDialog$Builder.j(new r1(this, 0));
@@ -1077,7 +1077,7 @@ public class b2 extends Dialog implements Drawable.Callback, NotificationCenter.
     @Override
     public final void setTitle(CharSequence charSequence) {
         this.R = charSequence;
-        wh.p pVar = this.f20263f;
+        wh.p pVar = this.f20236f;
         if (pVar != null) {
             pVar.setText(charSequence);
         }
@@ -1088,13 +1088,13 @@ public class b2 extends Dialog implements Drawable.Callback, NotificationCenter.
         if (!AndroidUtilities.isSafeToShow(getContext())) {
             return;
         }
-        this.f20257b1 = false;
+        this.f20230b1 = false;
         super.show();
-        FrameLayout frameLayout = this.f20276r;
-        if (frameLayout != null && this.f20260d0 == 3) {
+        FrameLayout frameLayout = this.f20249r;
+        if (frameLayout != null && this.f20233d0 == 3) {
             frameLayout.setScaleX(0.0f);
-            this.f20276r.setScaleY(0.0f);
-            this.f20276r.animate().scaleX(1.0f).scaleY(1.0f).setInterpolator(new OvershootInterpolator(1.3f)).setDuration(190L).start();
+            this.f20249r.setScaleY(0.0f);
+            this.f20249r.animate().scaleX(1.0f).scaleY(1.0f).setInterpolator(new OvershootInterpolator(1.3f)).setDuration(190L).start();
         }
         this.W0 = System.currentTimeMillis();
     }
@@ -1109,19 +1109,19 @@ public class b2 extends Dialog implements Drawable.Callback, NotificationCenter.
 
     public b2(Context context, int i10, f6 f6Var) {
         super(context, R.style.TransparentDialog);
-        this.f20252a = -1;
-        this.f20261e = -2;
-        this.f20287y = new BitmapDrawable[2];
+        this.f20225a = -1;
+        this.f20234e = -2;
+        this.f20260y = new BitmapDrawable[2];
         this.E = new boolean[2];
         this.F = new AnimatorSet[2];
         this.G = 12;
         this.I = j6.H5;
-        this.f20253a0 = 132;
-        this.f20264f0 = true;
-        this.f20265g0 = true;
-        this.f20266h0 = true;
-        this.f20286x0 = new int[2];
-        this.f20288y0 = true;
+        this.f20226a0 = 132;
+        this.f20237f0 = true;
+        this.f20238g0 = true;
+        this.f20239h0 = true;
+        this.f20259x0 = new int[2];
+        this.f20261y0 = true;
         this.L0 = new q1(this, 0);
         this.M0 = new q1(this, 1);
         this.N0 = new ArrayList();
@@ -1129,8 +1129,8 @@ public class b2 extends Dialog implements Drawable.Callback, NotificationCenter.
         this.Q0 = 0.5f;
         this.S0 = true;
         this.R0 = f6Var;
-        this.f20260d0 = i10;
-        int e7 = e(j6.f20762h5);
+        this.f20233d0 = i10;
+        int e7 = e(j6.f20735h5);
         this.U0 = e7;
         boolean z10 = AndroidUtilities.computePerceivedBrightness(e7) < 0.721f;
         this.T0 = SharedConfig.getDevicePerformanceClass() >= 2 && LiteMode.isEnabled(256) && z10;
@@ -1138,7 +1138,7 @@ public class b2 extends Dialog implements Drawable.Callback, NotificationCenter.
         this.A0 = rect;
         if (i10 != 3 || this.T0) {
             Drawable mutate = context.getResources().getDrawable(R.drawable.popup_fixed_alert4).mutate();
-            this.f20289z0 = mutate;
+            this.f20262z0 = mutate;
             this.B0 = i10 == 3 ? 0.55f : z10 ? 0.8f : 0.985f;
             mutate.setColorFilter(new PorterDuffColorFilter(this.U0, PorterDuff.Mode.MULTIPLY));
             mutate.getPadding(rect);

@@ -10,36 +10,36 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.tgnet.TLRPC;
 public class yb extends nb {
-    public final aj0 f32903a;
-    public TextView f32904b;
-    public int f32905c;
+    public final aj0 f32876a;
+    public TextView f32877b;
+    public int f32878c;
 
     public yb(Context context, org.telegram.ui.ActionBar.f6 f6Var) {
         super(context, f6Var);
         ?? imageView = new ImageView(context);
-        this.f32903a = imageView;
+        this.f32876a = imageView;
         imageView.setScaleType(ImageView.ScaleType.CENTER);
         addView((View) imageView, w7.x5.h(56.0f, 48.0f, 8388627));
         xb xbVar = new xb(context, 0, null);
         xbVar.setDisablePaddingsOffset(true);
-        this.f32904b = xbVar;
+        this.f32877b = xbVar;
         NotificationCenter.listenEmojiLoading(xbVar);
-        this.f32904b.setSingleLine();
-        this.f32904b.setTypeface(Typeface.SANS_SERIF);
-        this.f32904b.setTextSize(1, 15.0f);
-        this.f32904b.setEllipsize(TextUtils.TruncateAt.END);
-        this.f32904b.setPadding(0, AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(8.0f));
-        addView(this.f32904b, w7.x5.i(-2.0f, -2.0f, 8388627, 56.0f, 0.0f, 16.0f, 0.0f));
-        this.f32904b.setLinkTextColor(getThemedColor(org.telegram.ui.ActionBar.j6.Gi));
+        this.f32877b.setSingleLine();
+        this.f32877b.setTypeface(Typeface.SANS_SERIF);
+        this.f32877b.setTextSize(1, 15.0f);
+        this.f32877b.setEllipsize(TextUtils.TruncateAt.END);
+        this.f32877b.setPadding(0, AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(8.0f));
+        addView(this.f32877b, w7.x5.i(-2.0f, -2.0f, 8388627, 56.0f, 0.0f, 16.0f, 0.0f));
+        this.f32877b.setLinkTextColor(getThemedColor(org.telegram.ui.ActionBar.j6.Gi));
         setTextColor(getThemedColor(org.telegram.ui.ActionBar.j6.Hi));
         setBackground(getThemedColor(org.telegram.ui.ActionBar.j6.Fi));
     }
 
     public final void c(int i10, int i11, int i12, String... strArr) {
-        aj0 aj0Var = this.f32903a;
+        aj0 aj0Var = this.f32876a;
         aj0Var.f(i10, i11, i12, null);
         for (String str : strArr) {
-            aj0Var.h(this.f32905c, str);
+            aj0Var.h(this.f32878c, str);
         }
     }
 
@@ -48,32 +48,32 @@ public class yb extends nb {
     }
 
     public final void e(TLRPC.Document document, String... strArr) {
-        aj0 aj0Var = this.f32903a;
+        aj0 aj0Var = this.f32876a;
         aj0Var.setAutoRepeat(true);
         aj0Var.g(36, 36, document);
         for (String str : strArr) {
-            aj0Var.h(this.f32905c, str);
+            aj0Var.h(this.f32878c, str);
         }
     }
 
     @Override
     public CharSequence getAccessibilityText() {
-        return this.f32904b.getText();
+        return this.f32877b.getText();
     }
 
     @Override
     public final void onShow() {
         super.onShow();
-        this.f32903a.d();
+        this.f32876a.d();
     }
 
     public void setIconPaddingBottom(int i10) {
-        this.f32903a.setLayoutParams(w7.x5.i(56.0f, 48 - i10, 8388627, 0.0f, 0.0f, 0.0f, i10));
+        this.f32876a.setLayoutParams(w7.x5.i(56.0f, 48 - i10, 8388627, 0.0f, 0.0f, 0.0f, i10));
     }
 
     public void setTextColor(int i10) {
-        this.f32905c = i10;
-        this.f32904b.setTextColor(i10);
+        this.f32878c = i10;
+        this.f32877b.setTextColor(i10);
     }
 
     public yb(int i10, int i11, Context context, org.telegram.ui.ActionBar.f6 f6Var) {

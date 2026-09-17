@@ -2,12 +2,12 @@ package org.telegram.ui;
 
 import android.view.View;
 public final class d0 implements View.OnTouchListener {
-    public final int f35610a;
-    public final Object f35611b;
+    public final int f35583a;
+    public final Object f35584b;
 
     public d0(Object obj, int i10) {
-        this.f35610a = i10;
-        this.f35611b = obj;
+        this.f35583a = i10;
+        this.f35584b = obj;
     }
 
     @Override

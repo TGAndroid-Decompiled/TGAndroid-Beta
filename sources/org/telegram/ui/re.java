@@ -8,38 +8,38 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 public final class re implements Runnable {
-    public final int f40177a = 0;
-    public final boolean f40178b;
-    public final Object f40179c;
+    public final int f40150a = 0;
+    public final boolean f40151b;
+    public final Object f40152c;
     public final boolean d;
-    public final Object f40180e;
-    public final Object f40181f;
+    public final Object f40153e;
+    public final Object f40154f;
     public final Object h;
-    public final Object f40182n;
+    public final Object f40155n;
 
     public re(co coVar, String str, CharacterStyle characterStyle, MessageObject messageObject, org.telegram.ui.Cells.t1 t1Var, boolean z10, boolean z11) {
-        this.f40180e = coVar;
-        this.f40179c = str;
-        this.f40181f = characterStyle;
+        this.f40153e = coVar;
+        this.f40152c = str;
+        this.f40154f = characterStyle;
         this.h = messageObject;
-        this.f40182n = t1Var;
-        this.f40178b = z10;
+        this.f40155n = t1Var;
+        this.f40151b = z10;
         this.d = z11;
     }
 
     @Override
     public final void run() {
-        switch (this.f40177a) {
+        switch (this.f40150a) {
             case 0:
-                co coVar = (co) this.f40180e;
-                String str = (String) this.f40179c;
-                CharacterStyle characterStyle = (CharacterStyle) this.f40181f;
+                co coVar = (co) this.f40153e;
+                String str = (String) this.f40152c;
+                CharacterStyle characterStyle = (CharacterStyle) this.f40154f;
                 MessageObject messageObject = (MessageObject) this.h;
-                org.telegram.ui.Cells.t1 t1Var = (org.telegram.ui.Cells.t1) this.f40182n;
+                org.telegram.ui.Cells.t1 t1Var = (org.telegram.ui.Cells.t1) this.f40155n;
                 if (str.startsWith("video?")) {
                     coVar.U7(characterStyle, false, messageObject, t1Var);
                     return;
-                } else if (this.f40178b && !this.d) {
+                } else if (this.f40151b && !this.d) {
                     coVar.getParentActivity();
                     of.f.n(str);
                     return;
@@ -49,46 +49,46 @@ public final class re implements Runnable {
                     return;
                 }
             case 1:
-                xh.n nVar = (xh.n) this.f40180e;
-                Runnable runnable = (Runnable) this.f40181f;
-                String str2 = (String) this.f40179c;
+                xh.n nVar = (xh.n) this.f40153e;
+                Runnable runnable = (Runnable) this.f40154f;
+                String str2 = (String) this.f40152c;
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) this.h;
-                TLObject tLObject = (TLObject) this.f40182n;
-                nVar.f49491w = false;
-                nVar.f49494z = true;
-                if (this.f40178b) {
+                TLObject tLObject = (TLObject) this.f40155n;
+                nVar.f49462w = false;
+                nVar.f49465z = true;
+                if (this.f40151b) {
                     AndroidUtilities.cancelRunOnUIThread(runnable);
                 }
-                xh.n.k(nVar.f49486q, false, false);
-                if (TextUtils.equals(str2, nVar.f49489t) && tL_error == null) {
-                    nVar.f49494z = true;
+                xh.n.k(nVar.f49457q, false, false);
+                if (TextUtils.equals(str2, nVar.f49460t) && tL_error == null) {
+                    nVar.f49465z = true;
                     nVar.g((TLRPC.TL_messages_chatInviteImporters) tLObject, str2, this.d, false);
                     return;
                 }
                 return;
             default:
-                zh.w3.A0((zh.w3) this.f40180e, (TLObject) this.f40179c, this.f40178b, (TLRPC.Document) this.f40181f, this.d, (TLRPC.TL_error) this.h, (TL_stars.saveStarGift) this.f40182n);
+                zh.w3.A0((zh.w3) this.f40153e, (TLObject) this.f40152c, this.f40151b, (TLRPC.Document) this.f40154f, this.d, (TLRPC.TL_error) this.h, (TL_stars.saveStarGift) this.f40155n);
                 return;
         }
     }
 
     public re(xh.n nVar, boolean z10, Runnable runnable, String str, TLRPC.TL_error tL_error, TLObject tLObject, boolean z11) {
-        this.f40180e = nVar;
-        this.f40178b = z10;
-        this.f40181f = runnable;
-        this.f40179c = str;
+        this.f40153e = nVar;
+        this.f40151b = z10;
+        this.f40154f = runnable;
+        this.f40152c = str;
         this.h = tL_error;
-        this.f40182n = tLObject;
+        this.f40155n = tLObject;
         this.d = z11;
     }
 
     public re(zh.w3 w3Var, TLObject tLObject, boolean z10, TLRPC.Document document, boolean z11, TLRPC.TL_error tL_error, TL_stars.saveStarGift savestargift) {
-        this.f40180e = w3Var;
-        this.f40179c = tLObject;
-        this.f40178b = z10;
-        this.f40181f = document;
+        this.f40153e = w3Var;
+        this.f40152c = tLObject;
+        this.f40151b = z10;
+        this.f40154f = document;
         this.d = z11;
         this.h = tL_error;
-        this.f40182n = savestargift;
+        this.f40155n = savestargift;
     }
 }

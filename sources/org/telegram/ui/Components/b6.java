@@ -9,12 +9,12 @@ import org.telegram.messenger.DispatchQueue;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.FileLog;
 public final class b6 implements Runnable {
-    public final int f24585a;
-    public final d6 f24586b;
+    public final int f24558a;
+    public final d6 f24559b;
 
     public b6(d6 d6Var, int i10) {
-        this.f24585a = i10;
-        this.f24586b = d6Var;
+        this.f24558a = i10;
+        this.f24559b = d6Var;
     }
 
     @Override
@@ -25,17 +25,17 @@ public final class b6 implements Runnable {
         boolean z12;
         boolean z13;
         View view;
-        switch (this.f24585a) {
+        switch (this.f24558a) {
             case 0:
-                this.f24586b.i();
+                this.f24559b.i();
                 return;
             case 1:
-                yf.e eVar = this.f24586b.f25303z0;
+                yf.e eVar = this.f24559b.f25276z0;
                 return;
             case 2:
-                d6 d6Var = this.f24586b;
+                d6 d6Var = this.f24559b;
                 d6Var.k();
-                d6Var.f25275e = null;
+                d6Var.f25248e = null;
                 if (d6Var.M >= 0 && d6Var.L == -1) {
                     d6Var.M = -1L;
                 }
@@ -43,14 +43,14 @@ public final class b6 implements Runnable {
                 d6Var.t();
                 return;
             case 3:
-                d6 d6Var2 = this.f24586b;
-                if (!d6Var2.f25273c0 && !d6Var2.f25297w && !d6Var2.C0 && d6Var2.D0 == null) {
-                    d6Var2.f25279g0 = (float) System.currentTimeMillis();
+                d6 d6Var2 = this.f24559b;
+                if (!d6Var2.f25246c0 && !d6Var2.f25270w && !d6Var2.C0 && d6Var2.D0 == null) {
+                    d6Var2.f25252g0 = (float) System.currentTimeMillis();
                     if (xi0.T0 == null) {
                         xi0.T0 = new DispatchQueue("cache generator queue");
                     }
                     d6Var2.C0 = true;
-                    d6Var2.f25275e = null;
+                    d6Var2.f25248e = null;
                     yf.e.A++;
                     DispatchQueue dispatchQueue = xi0.T0;
                     b6 b6Var = new b6(d6Var2, 7);
@@ -60,10 +60,10 @@ public final class b6 implements Runnable {
                 }
                 return;
             case 4:
-                d6 d6Var3 = this.f24586b;
+                d6 d6Var3 = this.f24559b;
                 d6Var3.k();
-                if (d6Var3.f25295u0 != null && d6Var3.N) {
-                    FileLoader.getInstance(d6Var3.J).removeLoadingVideo(d6Var3.f25295u0.getDocument(), false, false);
+                if (d6Var3.f25268u0 != null && d6Var3.N) {
+                    FileLoader.getInstance(d6Var3.J).removeLoadingVideo(d6Var3.f25268u0.getDocument(), false, false);
                 }
                 int i11 = d6Var3.O;
                 if (i11 <= 0) {
@@ -76,98 +76,98 @@ public final class b6 implements Runnable {
                 } else {
                     d6Var3.F = false;
                 }
-                d6Var3.f25275e = null;
+                d6Var3.f25248e = null;
                 if (d6Var3.M >= 0) {
-                    d6Var3.f25290r = d6Var3.v;
-                    d6Var3.f25292s = null;
-                } else if (!d6Var3.f25270b) {
-                    d6Var3.f25290r = d6Var3.v;
+                    d6Var3.f25263r = d6Var3.v;
+                    d6Var3.f25265s = null;
+                } else if (!d6Var3.f25243b) {
+                    d6Var3.f25263r = d6Var3.v;
                 } else {
-                    a6 a6Var = d6Var3.f25290r;
-                    if (a6Var == null && d6Var3.f25292s == null) {
-                        d6Var3.f25290r = d6Var3.v;
+                    a6 a6Var = d6Var3.f25263r;
+                    if (a6Var == null && d6Var3.f25265s == null) {
+                        d6Var3.f25263r = d6Var3.v;
                     } else if (a6Var == null) {
-                        d6Var3.f25290r = d6Var3.f25292s;
-                        d6Var3.f25292s = d6Var3.v;
+                        d6Var3.f25263r = d6Var3.f25265s;
+                        d6Var3.f25265s = d6Var3.v;
                     } else {
-                        d6Var3.f25292s = d6Var3.v;
+                        d6Var3.f25265s = d6Var3.v;
                     }
                 }
                 d6Var3.v = null;
                 if (d6Var3.P) {
                     d6Var3.P = false;
-                    d6Var3.f25302y0++;
+                    d6Var3.f25275y0++;
                     d6Var3.j();
                 }
-                if (d6Var3.d[3] < d6Var3.f25272c) {
-                    float f7 = d6Var3.f25279g0;
+                if (d6Var3.d[3] < d6Var3.f25245c) {
+                    float f7 = d6Var3.f25252g0;
                     if (f7 > 0.0f) {
                         i10 = (int) (f7 * 1000.0f);
                     } else {
                         i10 = 0;
                     }
-                    d6Var3.f25272c = i10;
+                    d6Var3.f25245c = i10;
                 }
                 if (d6Var3.M >= 0 && d6Var3.L == -1) {
                     d6Var3.M = -1L;
                 }
-                d6Var3.f25272c = d6Var3.d[3];
-                int size = d6Var3.f25293s0.size();
+                d6Var3.f25245c = d6Var3.d[3];
+                int size = d6Var3.f25266s0.size();
                 for (int i12 = 0; i12 < size; i12++) {
-                    ((View) d6Var3.f25293s0.get(i12)).invalidate();
+                    ((View) d6Var3.f25266s0.get(i12)).invalidate();
                 }
-                if ((!d6Var3.f25271b0 && d6Var3.f25301y) || (d6Var3.f25285n == null && d6Var3.f25290r != null)) {
+                if ((!d6Var3.f25244b0 && d6Var3.f25274y) || (d6Var3.f25258n == null && d6Var3.f25263r != null)) {
                     d6Var3.t();
                 }
                 d6Var3.x(false);
                 return;
             case 5:
-                d6 d6Var4 = this.f24586b;
-                if (d6Var4.f25273c0) {
+                d6 d6Var4 = this.f24559b;
+                if (d6Var4.f25246c0) {
                     AndroidUtilities.runOnUIThread(d6Var4.F0);
                     return;
                 }
                 boolean z14 = false;
-                if (!d6Var4.f25299x && d6Var4.f25274d0 == null) {
-                    d6Var4.f25274d0 = AnimatedFileNative.a(d6Var4.G.getAbsolutePath(), d6Var4.d, d6Var4.J, d6Var4.H, d6Var4.f25295u0, false);
-                    if (d6Var4.f25274d0 == null && (!d6Var4.f25286n0 || d6Var4.G0 > 15)) {
+                if (!d6Var4.f25272x && d6Var4.f25247d0 == null) {
+                    d6Var4.f25247d0 = AnimatedFileNative.a(d6Var4.G.getAbsolutePath(), d6Var4.d, d6Var4.J, d6Var4.H, d6Var4.f25268u0, false);
+                    if (d6Var4.f25247d0 == null && (!d6Var4.f25259n0 || d6Var4.G0 > 15)) {
                         z12 = true;
                     } else {
                         z12 = false;
                     }
-                    d6Var4.f25276e0 = z12;
-                    if (d6Var4.f25274d0 != null) {
+                    d6Var4.f25249e0 = z12;
+                    if (d6Var4.f25247d0 != null) {
                         int[] iArr = d6Var4.d;
                         if (iArr[0] > 3840 || iArr[1] > 3840) {
-                            d6Var4.f25274d0.f();
-                            d6Var4.f25274d0 = null;
+                            d6Var4.f25247d0.f();
+                            d6Var4.f25247d0 = null;
                         }
                     }
                     d6Var4.d();
                     d6Var4.E();
-                    if (d6Var4.f25286n0 && d6Var4.f25274d0 == null) {
+                    if (d6Var4.f25259n0 && d6Var4.f25247d0 == null) {
                         int i13 = d6Var4.G0;
                         d6Var4.G0 = i13 + 1;
                         if (i13 <= 15) {
                             z13 = false;
-                            d6Var4.f25299x = z13;
+                            d6Var4.f25272x = z13;
                             AndroidUtilities.runOnUIThread(new b6(d6Var4, 0));
                         }
                     }
                     z13 = true;
-                    d6Var4.f25299x = z13;
+                    d6Var4.f25272x = z13;
                     AndroidUtilities.runOnUIThread(new b6(d6Var4, 0));
                 }
                 try {
                 } catch (Throwable th2) {
                     FileLog.e(th2);
                 }
-                if (d6Var4.f25303z0 != null) {
+                if (d6Var4.f25276z0 != null) {
                     if (d6Var4.v == null) {
                         if (!d6Var4.h.isEmpty()) {
                             d6Var4.v = (a6) d6Var4.h.remove(0);
                         } else {
-                            d6Var4.v = new a6(Bitmap.createBitmap(d6Var4.f25282j0, d6Var4.f25281i0, Bitmap.Config.ARGB_8888));
+                            d6Var4.v = new a6(Bitmap.createBitmap(d6Var4.f25255j0, d6Var4.f25254i0, Bitmap.Config.ARGB_8888));
                         }
                     }
                     if (d6Var4.A0 == null) {
@@ -175,27 +175,27 @@ public final class b6 implements Runnable {
                     }
                     System.currentTimeMillis();
                     com.google.android.gms.internal.cast.a aVar = d6Var4.A0;
-                    int i14 = aVar.f5211a;
-                    yf.e eVar2 = d6Var4.f25303z0;
-                    int f10 = eVar2.f(d6Var4.v.f24313b, eVar2.f50105i);
-                    aVar.f5211a = eVar2.f50105i;
-                    if (eVar2.f50113q && !eVar2.f50102e.isEmpty()) {
-                        int i15 = eVar2.f50105i + 1;
-                        eVar2.f50105i = i15;
-                        if (i15 >= eVar2.f50102e.size()) {
-                            eVar2.f50105i = 0;
+                    int i14 = aVar.f5184a;
+                    yf.e eVar2 = d6Var4.f25276z0;
+                    int f10 = eVar2.f(d6Var4.v.f24286b, eVar2.f50076i);
+                    aVar.f5184a = eVar2.f50076i;
+                    if (eVar2.f50084q && !eVar2.f50073e.isEmpty()) {
+                        int i15 = eVar2.f50076i + 1;
+                        eVar2.f50076i = i15;
+                        if (i15 >= eVar2.f50073e.size()) {
+                            eVar2.f50076i = 0;
                         }
                     }
-                    if (f10 != -1 && d6Var4.A0.f5211a < i14) {
+                    if (f10 != -1 && d6Var4.A0.f5184a < i14) {
                         d6Var4.P = true;
                     }
                     int[] iArr2 = d6Var4.d;
                     a6 a6Var2 = d6Var4.v;
-                    int max = d6Var4.A0.f5211a * Math.max(16, iArr2[4] / Math.max(1, d6Var4.f25303z0.f50102e.size()));
-                    a6Var2.f24315e = max;
+                    int max = d6Var4.A0.f5184a * Math.max(16, iArr2[4] / Math.max(1, d6Var4.f25276z0.f50073e.size()));
+                    a6Var2.f24288e = max;
                     iArr2[3] = max;
-                    d6Var4.v.f24316f = false;
-                    if (d6Var4.f25303z0.g()) {
+                    d6Var4.v.f24289f = false;
+                    if (d6Var4.f25276z0.g()) {
                         AndroidUtilities.runOnUIThread(d6Var4.E0);
                     }
                     if (f10 == -1) {
@@ -206,7 +206,7 @@ public final class b6 implements Runnable {
                         return;
                     }
                 }
-                if (d6Var4.f25274d0 == null) {
+                if (d6Var4.f25247d0 == null) {
                     int[] iArr3 = d6Var4.d;
                     if (iArr3[0] != 0 && iArr3[1] != 0) {
                         AndroidUtilities.runOnUIThread(d6Var4.B0);
@@ -231,64 +231,64 @@ public final class b6 implements Runnable {
                     synchronized (d6Var4.Q) {
                         d6Var4.L = -1L;
                     }
-                    AnimatedFileDrawableStream animatedFileDrawableStream = d6Var4.f25295u0;
+                    AnimatedFileDrawableStream animatedFileDrawableStream = d6Var4.f25268u0;
                     if (animatedFileDrawableStream != null) {
                         animatedFileDrawableStream.reset();
                     }
-                    d6Var4.f25274d0.g(j3, true);
+                    d6Var4.f25247d0.g(j3, true);
                     z10 = true;
                 } else {
                     z10 = false;
                 }
                 if (d6Var4.v != null) {
                     System.currentTimeMillis();
-                    if (d6Var4.f25274d0.c(d6Var4.v.f24313b, false, d6Var4.f25279g0, d6Var4.f25280h0, d6Var4.f25283k0) == 0) {
+                    if (d6Var4.f25247d0.c(d6Var4.v.f24286b, false, d6Var4.f25252g0, d6Var4.f25253h0, d6Var4.f25256k0) == 0) {
                         AndroidUtilities.runOnUIThread(d6Var4.B0);
                         return;
                     }
-                    if (!d6Var4.f25277f) {
-                        if (d6Var4.f25274d0.f23678a[7] == 1) {
+                    if (!d6Var4.f25250f) {
+                        if (d6Var4.f25247d0.f23651a[7] == 1) {
                             z11 = true;
                         } else {
                             z11 = false;
                         }
-                        d6Var4.f25277f = z11;
+                        d6Var4.f25250f = z11;
                     }
                     int i16 = d6Var4.d[3];
-                    if (i16 < d6Var4.f25272c) {
+                    if (i16 < d6Var4.f25245c) {
                         d6Var4.P = true;
                     }
                     if (z10) {
-                        d6Var4.f25272c = i16;
+                        d6Var4.f25245c = i16;
                     }
                     a6 a6Var3 = d6Var4.v;
-                    a6Var3.f24315e = i16;
-                    if (d6Var4.f25274d0.f23678a[6] == 1) {
+                    a6Var3.f24288e = i16;
+                    if (d6Var4.f25247d0.f23651a[6] == 1) {
                         z14 = true;
                     }
-                    a6Var3.f24316f = z14;
+                    a6Var3.f24289f = z14;
                 }
                 AndroidUtilities.runOnUIThread(d6Var4.F0);
                 return;
             case 6:
-                d6 d6Var5 = this.f24586b;
-                ArrayList arrayList = d6Var5.f25293s0;
+                d6 d6Var5 = this.f24559b;
+                ArrayList arrayList = d6Var5.f25266s0;
                 int size2 = arrayList.size();
                 for (int i17 = 0; i17 < size2; i17++) {
                     ((View) arrayList.get(i17)).invalidate();
                 }
-                if ((arrayList.isEmpty() || d6Var5.R) && (view = d6Var5.f25291r0) != null) {
+                if ((arrayList.isEmpty() || d6Var5.R) && (view = d6Var5.f25264r0) != null) {
                     view.invalidate();
                     return;
                 }
                 return;
             case 7:
-                d6 d6Var6 = this.f24586b;
-                d6Var6.f25303z0.b();
+                d6 d6Var6 = this.f24559b;
+                d6Var6.f25276z0.b();
                 AndroidUtilities.runOnUIThread(new b6(d6Var6, 8));
                 return;
             default:
-                d6 d6Var7 = this.f24586b;
+                d6 d6Var7 = this.f24559b;
                 if (d6Var7.D0 != null) {
                     yf.e.c();
                     d6Var7.D0 = null;

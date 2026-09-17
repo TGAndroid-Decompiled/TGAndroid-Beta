@@ -8,25 +8,25 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class tp0 extends gq0 {
-    public final hq0 f30702n;
+    public final hq0 f30675n;
 
     public tp0(hq0 hq0Var, Context context) {
         super(context);
-        this.f30702n = hq0Var;
-        this.f26518f = new Paint(1);
+        this.f30675n = hq0Var;
+        this.f26491f = new Paint(1);
         this.h = new RectF();
         View view = new View(context);
         int dp = AndroidUtilities.dp(18.0f);
         int i10 = org.telegram.ui.ActionBar.j6.O5;
-        int i11 = hq0.f26814a1;
+        int i11 = hq0.f26787a1;
         view.setBackgroundDrawable(org.telegram.ui.ActionBar.j6.b0(dp, hq0Var.getThemedColor(i10)));
         addView(view, w7.x5.d(-1, 36.0f, 51, 14.0f, 0.0f, 14.0f, 0.0f));
         di.eb ebVar = new di.eb(this, context, 23);
-        this.f26516c = ebVar;
+        this.f26489c = ebVar;
         addView(ebVar, w7.x5.d(-1, 36.0f, 51, 14.0f, 0.0f, 14.0f, 0.0f));
         org.telegram.ui.ActionBar.j5 j5Var = new org.telegram.ui.ActionBar.j5(context);
-        this.f26515b = j5Var;
-        int i12 = org.telegram.ui.ActionBar.j6.f20881ng;
+        this.f26488b = j5Var;
+        int i12 = org.telegram.ui.ActionBar.j6.f20854ng;
         j5Var.setTextColor(hq0Var.getThemedColor(i12));
         j5Var.setTextSize(13);
         j5Var.setLeftDrawable(R.drawable.msg_tabs_mic1);
@@ -34,26 +34,26 @@ public final class tp0 extends gq0 {
         j5Var.setGravity(17);
         addView(j5Var, w7.x5.d(-1, -1.0f, 51, 14.0f, 0.0f, 0.0f, 0.0f));
         j5Var.setOnClickListener(new View.OnClickListener(this) {
-            public final tp0 f26194b;
+            public final tp0 f26167b;
 
             {
-                this.f26194b = this;
+                this.f26167b = this;
             }
 
             @Override
             public final void onClick(View view2) {
                 switch (r2) {
                     case 0:
-                        this.f26194b.a(0);
+                        this.f26167b.a(0);
                         return;
                     default:
-                        this.f26194b.a(1);
+                        this.f26167b.a(1);
                         return;
                 }
             }
         });
         org.telegram.ui.ActionBar.j5 j5Var2 = new org.telegram.ui.ActionBar.j5(context);
-        this.f26514a = j5Var2;
+        this.f26487a = j5Var2;
         j5Var2.setTextColor(hq0Var.getThemedColor(i12));
         j5Var2.setTextSize(13);
         j5Var2.setLeftDrawable(R.drawable.msg_tabs_mic2);
@@ -61,20 +61,20 @@ public final class tp0 extends gq0 {
         j5Var2.setGravity(17);
         addView(j5Var2, w7.x5.d(-1, -1.0f, 51, 0.0f, 0.0f, 14.0f, 0.0f));
         j5Var2.setOnClickListener(new View.OnClickListener(this) {
-            public final tp0 f26194b;
+            public final tp0 f26167b;
 
             {
-                this.f26194b = this;
+                this.f26167b = this;
             }
 
             @Override
             public final void onClick(View view2) {
                 switch (r2) {
                     case 0:
-                        this.f26194b.a(0);
+                        this.f26167b.a(0);
                         return;
                     default:
-                        this.f26194b.a(1);
+                        this.f26167b.a(1);
                         return;
                 }
             }

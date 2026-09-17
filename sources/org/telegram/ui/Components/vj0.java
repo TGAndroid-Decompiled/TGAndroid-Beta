@@ -29,19 +29,19 @@ public final class vj0 extends pg.b {
 
     @Override
     public final int j(int i10) {
-        return ((wj0) this.d.d.get(i10)).f44099a;
+        return ((wj0) this.d.d.get(i10)).f44072a;
     }
 
     @Override
     public final void v(s4.c1 c1Var, int i10) {
-        int i11 = c1Var.f45771f;
+        int i11 = c1Var.f45743f;
         if (i11 != 0 && i11 != 3) {
             return;
         }
-        dk0 dk0Var = (dk0) c1Var.f45767a;
+        dk0 dk0Var = (dk0) c1Var.f45739a;
         dk0Var.setScaleX(1.0f);
         dk0Var.setScaleY(1.0f);
-        dk0.a(dk0Var, ((wj0) this.d.d.get(i10)).f32302c, i10);
+        dk0.a(dk0Var, ((wj0) this.d.d.get(i10)).f32275c, i10);
     }
 
     @Override
@@ -54,41 +54,41 @@ public final class vj0 extends pg.b {
             } else {
                 fk0Var.S = new ah.w(fk0Var, fk0Var.getContext());
                 rr rrVar = new rr(fk0Var, fk0Var.getContext());
-                fk0Var.f26143v0 = rrVar;
+                fk0Var.f26116v0 = rrVar;
                 rrVar.setImageResource(R.drawable.msg_reactions_expand);
-                fk0Var.f26143v0.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
+                fk0Var.f26116v0.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
                 int i11 = fk0Var.M0;
                 if (i11 != 1 && i11 != 2 && i11 != 4) {
-                    fk0Var.f26143v0.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f20762h5, false), PorterDuff.Mode.MULTIPLY));
+                    fk0Var.f26116v0.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f20735h5, false), PorterDuff.Mode.MULTIPLY));
                 } else {
-                    fk0Var.f26143v0.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.MULTIPLY));
+                    fk0Var.f26116v0.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.MULTIPLY));
                 }
-                fk0Var.f26143v0.setBackground(org.telegram.ui.ActionBar.j6.h0(AndroidUtilities.dp(28.0f), 0, i0.a.k(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f20781i6, false), 40)));
-                fk0Var.f26143v0.setPadding(AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f));
-                fk0Var.f26143v0.setContentDescription(LocaleController.getString(R.string.AccDescrExpandPanel));
-                fk0Var.S.addView(fk0Var.f26143v0, w7.x5.e(30, 30, 17));
-                fk0Var.f26143v0.setOnClickListener(new View.OnClickListener(this) {
-                    public final vj0 f30941b;
+                fk0Var.f26116v0.setBackground(org.telegram.ui.ActionBar.j6.h0(AndroidUtilities.dp(28.0f), 0, i0.a.k(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f20754i6, false), 40)));
+                fk0Var.f26116v0.setPadding(AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f));
+                fk0Var.f26116v0.setContentDescription(LocaleController.getString(R.string.AccDescrExpandPanel));
+                fk0Var.S.addView(fk0Var.f26116v0, w7.x5.e(30, 30, 17));
+                fk0Var.f26116v0.setOnClickListener(new View.OnClickListener(this) {
+                    public final vj0 f30914b;
 
                     {
-                        this.f30941b = this;
+                        this.f30914b = this;
                     }
 
                     @Override
                     public final void onClick(View view2) {
                         switch (r2) {
                             case 0:
-                                vj0 vj0Var = this.f30941b;
+                                vj0 vj0Var = this.f30914b;
                                 vj0Var.getClass();
                                 view2.getLocationOnScreen(new int[2]);
                                 fk0 fk0Var2 = vj0Var.d;
                                 view2.getMeasuredWidth();
                                 view2.getMeasuredHeight();
                                 fk0Var2.getClass();
-                                new sg.a1(fk0Var2.f26141t0, 4, true).show();
+                                new sg.a1(fk0Var2.f26114t0, 4, true).show();
                                 return;
                             default:
-                                fk0.a(this.f30941b.d);
+                                fk0.a(this.f30914b.d);
                                 return;
                         }
                     }
@@ -98,37 +98,37 @@ public final class vj0 extends pg.b {
         } else {
             fk0Var.R = new FrameLayout(fk0Var.getContext());
             sg.e1 e1Var = new sg.e1(fk0Var.getContext(), 0, null);
-            fk0Var.f26142u0 = e1Var;
+            fk0Var.f26115u0 = e1Var;
             int w02 = org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.F8, false);
-            int i12 = org.telegram.ui.ActionBar.j6.f20762h5;
+            int i12 = org.telegram.ui.ActionBar.j6.f20735h5;
             e1Var.setColor(i0.a.d(0.7f, w02, org.telegram.ui.ActionBar.j6.w0(null, i12, false)));
-            fk0Var.f26142u0.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.j6.w0(null, i12, false), PorterDuff.Mode.MULTIPLY));
-            fk0Var.f26142u0.setScaleX(0.0f);
-            fk0Var.f26142u0.setScaleY(0.0f);
-            fk0Var.f26142u0.setPadding(AndroidUtilities.dp(1.0f), AndroidUtilities.dp(1.0f), AndroidUtilities.dp(1.0f), AndroidUtilities.dp(1.0f));
-            fk0Var.R.addView(fk0Var.f26142u0, w7.x5.e(26, 26, 17));
-            fk0Var.f26142u0.setOnClickListener(new View.OnClickListener(this) {
-                public final vj0 f30941b;
+            fk0Var.f26115u0.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.j6.w0(null, i12, false), PorterDuff.Mode.MULTIPLY));
+            fk0Var.f26115u0.setScaleX(0.0f);
+            fk0Var.f26115u0.setScaleY(0.0f);
+            fk0Var.f26115u0.setPadding(AndroidUtilities.dp(1.0f), AndroidUtilities.dp(1.0f), AndroidUtilities.dp(1.0f), AndroidUtilities.dp(1.0f));
+            fk0Var.R.addView(fk0Var.f26115u0, w7.x5.e(26, 26, 17));
+            fk0Var.f26115u0.setOnClickListener(new View.OnClickListener(this) {
+                public final vj0 f30914b;
 
                 {
-                    this.f30941b = this;
+                    this.f30914b = this;
                 }
 
                 @Override
                 public final void onClick(View view2) {
                     switch (r2) {
                         case 0:
-                            vj0 vj0Var = this.f30941b;
+                            vj0 vj0Var = this.f30914b;
                             vj0Var.getClass();
                             view2.getLocationOnScreen(new int[2]);
                             fk0 fk0Var2 = vj0Var.d;
                             view2.getMeasuredWidth();
                             view2.getMeasuredHeight();
                             fk0Var2.getClass();
-                            new sg.a1(fk0Var2.f26141t0, 4, true).show();
+                            new sg.a1(fk0Var2.f26114t0, 4, true).show();
                             return;
                         default:
-                            fk0.a(this.f30941b.d);
+                            fk0.a(this.f30914b.d);
                             return;
                     }
                 }
@@ -144,9 +144,9 @@ public final class vj0 extends pg.b {
     public final void y(s4.c1 c1Var) {
         int b10;
         ArrayList arrayList = this.d.d;
-        int i10 = c1Var.f45771f;
+        int i10 = c1Var.f45743f;
         if ((i10 == 0 || i10 == 3) && (b10 = c1Var.b()) >= 0 && b10 < arrayList.size()) {
-            ((dk0) c1Var.f45767a).f(((wj0) arrayList.get(b10)).f32302c, false);
+            ((dk0) c1Var.f45739a).f(((wj0) arrayList.get(b10)).f32275c, false);
         }
     }
 }

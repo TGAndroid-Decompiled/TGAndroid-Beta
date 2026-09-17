@@ -1,13 +1,13 @@
 package za;
 public final class j {
-    public final i f51477a;
-    public final i f51478b;
-    public final double f51479c;
+    public final i f51446a;
+    public final i f51447b;
+    public final double f51448c;
 
     public j(i iVar, i iVar2, double d) {
-        this.f51477a = iVar;
-        this.f51478b = iVar2;
-        this.f51479c = d;
+        this.f51446a = iVar;
+        this.f51447b = iVar2;
+        this.f51448c = d;
     }
 
     public final boolean equals(Object obj) {
@@ -18,19 +18,19 @@ public final class j {
             return false;
         }
         j jVar = (j) obj;
-        if (this.f51477a == jVar.f51477a && this.f51478b == jVar.f51478b && Double.valueOf(this.f51479c).equals(Double.valueOf(jVar.f51479c))) {
+        if (this.f51446a == jVar.f51446a && this.f51447b == jVar.f51447b && Double.valueOf(this.f51448c).equals(Double.valueOf(jVar.f51448c))) {
             return true;
         }
         return false;
     }
 
     public final int hashCode() {
-        int hashCode = this.f51478b.hashCode();
-        long doubleToLongBits = Double.doubleToLongBits(this.f51479c);
-        return ((hashCode + (this.f51477a.hashCode() * 31)) * 31) + ((int) (doubleToLongBits ^ (doubleToLongBits >>> 32)));
+        int hashCode = this.f51447b.hashCode();
+        long doubleToLongBits = Double.doubleToLongBits(this.f51448c);
+        return ((hashCode + (this.f51446a.hashCode() * 31)) * 31) + ((int) (doubleToLongBits ^ (doubleToLongBits >>> 32)));
     }
 
     public final String toString() {
-        return "DataCollectionStatus(performance=" + this.f51477a + ", crashlytics=" + this.f51478b + ", sessionSamplingRate=" + this.f51479c + ')';
+        return "DataCollectionStatus(performance=" + this.f51446a + ", crashlytics=" + this.f51447b + ", sessionSamplingRate=" + this.f51448c + ')';
     }
 }

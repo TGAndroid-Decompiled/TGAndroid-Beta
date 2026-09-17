@@ -4,13 +4,13 @@ import android.content.Context;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 public final class fq0 extends org.telegram.ui.Components.ov0 {
-    public int f36475w0;
-    public boolean f36476x0;
-    public final kq0 f36477y0;
+    public int f36448w0;
+    public boolean f36449x0;
+    public final kq0 f36450y0;
 
     public fq0(kq0 kq0Var, Context context) {
         super(context, null);
-        this.f36477y0 = kq0Var;
+        this.f36450y0 = kq0Var;
     }
 
     @Override
@@ -27,16 +27,16 @@ public final class fq0 extends org.telegram.ui.Components.ov0 {
         setMeasuredDimension(size, size2);
         int dp = AndroidUtilities.dp(20.0f);
         int i13 = 0;
-        kq0 kq0Var = this.f36477y0;
+        kq0 kq0Var = this.f36450y0;
         if (dp >= 0) {
             if (!AndroidUtilities.isInMultiwindow) {
                 size2 -= kq0Var.M.getEmojiPadding();
                 i11 = View.MeasureSpec.makeMeasureSpec(size2, 1073741824);
             }
         } else {
-            this.f36476x0 = true;
+            this.f36449x0 = true;
             kq0Var.M.j();
-            this.f36476x0 = false;
+            this.f36449x0 = false;
         }
         int i14 = i11;
         int childCount = getChildCount();
@@ -73,7 +73,7 @@ public final class fq0 extends org.telegram.ui.Components.ov0 {
 
     @Override
     public final void requestLayout() {
-        if (this.f36476x0) {
+        if (this.f36449x0) {
             return;
         }
         super.requestLayout();

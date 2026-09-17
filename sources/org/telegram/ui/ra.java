@@ -7,24 +7,24 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.Vector;
 public final class ra implements RequestDelegate {
-    public final int f40142a;
-    public final ub f40143b;
+    public final int f40115a;
+    public final ub f40116b;
 
     public ra(ub ubVar, int i10) {
-        this.f40142a = i10;
-        this.f40143b = ubVar;
+        this.f40115a = i10;
+        this.f40116b = ubVar;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f40142a) {
+        switch (this.f40115a) {
             case 0:
-                AndroidUtilities.runOnUIThread(new r1(this.f40143b, tL_error, tLObject, 9));
+                AndroidUtilities.runOnUIThread(new r1(this.f40116b, tL_error, tLObject, 9));
                 return;
             case 1:
                 if (tLObject != null) {
                     final TLRPC.TL_channels_adminLogResults tL_channels_adminLogResults = (TLRPC.TL_channels_adminLogResults) tLObject;
-                    final ub ubVar = this.f40143b;
+                    final ub ubVar = this.f40116b;
                     AndroidUtilities.runOnUIThread(new Runnable() {
                         @Override
                         public final void run() {
@@ -42,7 +42,7 @@ public final class ra implements RequestDelegate {
                 }
                 return;
             case 2:
-                ub ubVar2 = this.f40143b;
+                ub ubVar2 = this.f40116b;
                 ubVar2.getClass();
                 if (tLObject instanceof Vector) {
                     ArrayList<T> arrayList = ((Vector) tLObject).objects;
@@ -57,12 +57,12 @@ public final class ra implements RequestDelegate {
                 }
                 return;
             case 3:
-                AndroidUtilities.runOnUIThread(new org.telegram.ui.ActionBar.c6(17, this.f40143b, tLObject));
+                AndroidUtilities.runOnUIThread(new org.telegram.ui.ActionBar.c6(17, this.f40116b, tLObject));
                 return;
             default:
                 if (tLObject != null) {
                     final TLRPC.TL_channels_adminLogResults tL_channels_adminLogResults2 = (TLRPC.TL_channels_adminLogResults) tLObject;
-                    final ub ubVar3 = this.f40143b;
+                    final ub ubVar3 = this.f40116b;
                     AndroidUtilities.runOnUIThread(new Runnable() {
                         @Override
                         public final void run() {

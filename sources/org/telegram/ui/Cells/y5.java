@@ -15,28 +15,28 @@ import org.telegram.messenger.vl;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.mp;
 public final class y5 extends FrameLayout {
-    public org.telegram.ui.Components.x9 f23591a;
-    public FrameLayout f23592b;
-    public mp f23593c;
+    public org.telegram.ui.Components.x9 f23564a;
+    public FrameLayout f23565b;
+    public mp f23566c;
     public TextView d;
-    public org.telegram.ui.t5 f23594e;
-    public int f23595f;
+    public org.telegram.ui.t5 f23567e;
+    public int f23568f;
     public int h;
 
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        this.f23593c.b(org.telegram.ui.ActionBar.j6.W9, org.telegram.ui.ActionBar.j6.X9, org.telegram.ui.ActionBar.j6.V9);
+        this.f23566c.b(org.telegram.ui.ActionBar.j6.W9, org.telegram.ui.ActionBar.j6.X9, org.telegram.ui.ActionBar.j6.V9);
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(this.f23595f + this.h, 1073741824), View.MeasureSpec.makeMeasureSpec(this.f23595f, 1073741824));
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(this.f23568f + this.h, 1073741824), View.MeasureSpec.makeMeasureSpec(this.f23568f, 1073741824));
     }
 
     public void setImage(MediaController.PhotoEntry photoEntry) {
-        org.telegram.ui.t5 t5Var = this.f23594e;
-        org.telegram.ui.Components.x9 x9Var = this.f23591a;
+        org.telegram.ui.t5 t5Var = this.f23567e;
+        org.telegram.ui.Components.x9 x9Var = this.f23564a;
         Drawable drawable = getResources().getDrawable(R.drawable.nophotos);
         String str = photoEntry.thumbPath;
         if (str != null) {
@@ -66,11 +66,11 @@ public final class y5 extends FrameLayout {
     }
 
     public void setNum(int i10) {
-        this.f23593c.setNum(i10);
+        this.f23566c.setNum(i10);
     }
 
     public void setImage(MediaController.SearchImage searchImage) {
-        org.telegram.ui.Components.x9 x9Var = this.f23591a;
+        org.telegram.ui.Components.x9 x9Var = this.f23564a;
         Drawable drawable = getResources().getDrawable(R.drawable.nophotos);
         TLRPC.PhotoSize photoSize = searchImage.thumbPhotoSize;
         if (photoSize != null) {

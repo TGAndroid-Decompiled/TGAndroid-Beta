@@ -7,38 +7,38 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 public final class gx0 implements Runnable {
-    public final int f26546a;
-    public final TLObject f26547b;
-    public final Utilities.Callback f26548c;
+    public final int f26519a;
+    public final TLObject f26520b;
+    public final Utilities.Callback f26521c;
 
     public gx0(TLObject tLObject, Utilities.Callback callback, int i10) {
-        this.f26546a = i10;
-        this.f26547b = tLObject;
-        this.f26548c = callback;
+        this.f26519a = i10;
+        this.f26520b = tLObject;
+        this.f26521c = callback;
     }
 
     @Override
     public final void run() {
         boolean z10;
-        switch (this.f26546a) {
+        switch (this.f26519a) {
             case 0:
-                TLObject tLObject = this.f26547b;
+                TLObject tLObject = this.f26520b;
                 if (tLObject instanceof TLRPC.TL_messages_stickerSet) {
                     TLRPC.TL_messages_stickerSet tL_messages_stickerSet = (TLRPC.TL_messages_stickerSet) tLObject;
                     MediaDataController.getInstance(UserConfig.selectedAccount).putStickerSet(tL_messages_stickerSet);
-                    if (!MediaDataController.getInstance(UserConfig.selectedAccount).isStickerPackInstalled(tL_messages_stickerSet.set.f19923id)) {
+                    if (!MediaDataController.getInstance(UserConfig.selectedAccount).isStickerPackInstalled(tL_messages_stickerSet.set.f19896id)) {
                         MediaDataController.getInstance(UserConfig.selectedAccount).toggleStickerSet(null, tL_messages_stickerSet, 2, null, false, false);
                     }
                     z10 = true;
                 } else {
                     z10 = false;
                 }
-                this.f26548c.run(Boolean.valueOf(z10));
+                this.f26521c.run(Boolean.valueOf(z10));
                 return;
             default:
-                TLObject tLObject2 = this.f26547b;
+                TLObject tLObject2 = this.f26520b;
                 boolean z11 = tLObject2 instanceof TL_account.paidMessagesRevenue;
-                Utilities.Callback callback = this.f26548c;
+                Utilities.Callback callback = this.f26521c;
                 if (z11) {
                     callback.run(Long.valueOf(((TL_account.paidMessagesRevenue) tLObject2).stars_amount));
                     return;

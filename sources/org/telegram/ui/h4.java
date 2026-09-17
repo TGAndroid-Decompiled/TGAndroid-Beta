@@ -4,45 +4,45 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import org.telegram.tgnet.TLRPC;
 public final class h4 extends AnimatorListenerAdapter {
-    public final boolean f36902a;
-    public final ArticleViewer$WindowView f36903b;
+    public final boolean f36875a;
+    public final ArticleViewer$WindowView f36876b;
 
     public h4(ArticleViewer$WindowView articleViewer$WindowView, boolean z10) {
-        this.f36903b = articleViewer$WindowView;
-        this.f36902a = z10;
+        this.f36876b = articleViewer$WindowView;
+        this.f36875a = z10;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        ArticleViewer$WindowView articleViewer$WindowView = this.f36903b;
+        ArticleViewer$WindowView articleViewer$WindowView = this.f36876b;
         i4 i4Var = articleViewer$WindowView.H;
-        boolean z10 = articleViewer$WindowView.f21596e;
-        boolean z11 = this.f36902a;
+        boolean z10 = articleViewer$WindowView.f21569e;
+        boolean z11 = this.f36875a;
         if (z10) {
             Object obj = null;
-            i4Var.f37260u0[0].setBackgroundDrawable(null);
+            i4Var.f37233u0[0].setBackgroundDrawable(null);
             if (!z11) {
-                m3[] m3VarArr = i4Var.f37260u0;
+                m3[] m3VarArr = i4Var.f37233u0;
                 m3 m3Var = m3VarArr[1];
                 m3VarArr[1] = m3VarArr[0];
                 m3VarArr[0] = m3Var;
-                i4Var.f37248h0.i();
-                i4Var.Z0.a(i4Var.f37260u0[0].getBackgroundColor(), true);
-                i4Var.f37241a1.a(i4Var.f37260u0[1].getBackgroundColor(), true);
+                i4Var.f37221h0.i();
+                i4Var.Z0.a(i4Var.f37233u0[0].getBackgroundColor(), true);
+                i4Var.f37214a1.a(i4Var.f37233u0[1].getBackgroundColor(), true);
                 v3 v3Var = i4Var.K;
                 if (v3Var != null) {
                     v3Var.m();
                 }
-                obj = i2.g.z(1, i4Var.f37244d0);
-                i4Var.O0.T(i4Var.f37260u0[0].f38579b);
+                obj = i2.g.z(1, i4Var.f37217d0);
+                i4Var.O0.T(i4Var.f37233u0[0].f38552b);
                 org.telegram.ui.Cells.q9 q9Var = i4Var.O0;
-                q9Var.E0 = i4Var.f37260u0[0].d;
+                q9Var.E0 = i4Var.f37233u0[0].d;
                 q9Var.f(true);
                 i4Var.i0(false);
                 i4Var.f0();
             }
-            i4Var.f37260u0[1].b();
-            i4Var.f37260u0[1].setVisibility(8);
+            i4Var.f37233u0[1].b();
+            i4Var.f37233u0[1].setVisibility(8);
             if (obj instanceof z2) {
                 ((z2) obj).a();
             }
@@ -59,7 +59,7 @@ public final class h4 extends AnimatorListenerAdapter {
                 i4Var.M();
             }
         }
-        articleViewer$WindowView.f21596e = false;
+        articleViewer$WindowView.f21569e = false;
         articleViewer$WindowView.d = false;
         i4Var.T0 = false;
     }

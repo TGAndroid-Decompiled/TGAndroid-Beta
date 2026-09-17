@@ -7,21 +7,21 @@ import org.telegram.ui.ActionBar.f6;
 import org.telegram.ui.ActionBar.j6;
 import org.telegram.ui.Cells.z;
 public abstract class c extends Drawable {
-    public final z f46601a;
-    public int f46602b;
-    public int f46603c = 255;
+    public final z f46573a;
+    public int f46574b;
+    public int f46575c = 255;
 
     public c(f6 f6Var) {
-        int v02 = j6.v0(j6.f20781i6, f6Var);
-        this.f46602b = v02;
-        this.f46601a = j6.Y(v02, 0, 0);
+        int v02 = j6.v0(j6.f20754i6, f6Var);
+        this.f46574b = v02;
+        this.f46573a = j6.Y(v02, 0, 0);
     }
 
     public abstract void a(int i10);
 
     @Override
     public final int getAlpha() {
-        return this.f46603c;
+        return this.f46575c;
     }
 
     @Override
@@ -32,13 +32,13 @@ public abstract class c extends Drawable {
     @Override
     public void onBoundsChange(Rect rect) {
         super.onBoundsChange(rect);
-        this.f46601a.setBounds(rect);
+        this.f46573a.setBounds(rect);
     }
 
     @Override
     public final void setAlpha(int i10) {
-        if (this.f46603c != i10) {
-            this.f46603c = i10;
+        if (this.f46575c != i10) {
+            this.f46575c = i10;
             a(i10);
         }
     }

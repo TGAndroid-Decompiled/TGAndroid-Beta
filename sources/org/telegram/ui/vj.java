@@ -3,19 +3,19 @@ package org.telegram.ui;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.FileLog;
 public final class vj implements Runnable {
-    public final int f41610a;
-    public final wj f41611b;
+    public final int f41583a;
+    public final wj f41584b;
 
     public vj(wj wjVar, int i10) {
-        this.f41610a = i10;
-        this.f41611b = wjVar;
+        this.f41583a = i10;
+        this.f41584b = wjVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f41610a) {
+        switch (this.f41583a) {
             case 0:
-                wj wjVar = this.f41611b;
+                wj wjVar = this.f41584b;
                 wjVar.W = null;
                 co coVar = wjVar.X;
                 if (coVar.H9 != -1) {
@@ -28,7 +28,7 @@ public final class vj implements Runnable {
                 }
                 return;
             default:
-                wj wjVar2 = this.f41611b;
+                wj wjVar2 = this.f41584b;
                 wjVar2.W = null;
                 co coVar2 = wjVar2.X;
                 if (coVar2.H9 != -1) {

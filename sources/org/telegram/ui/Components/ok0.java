@@ -10,41 +10,41 @@ import java.util.Collection;
 import java.util.HashMap;
 import org.telegram.messenger.MessagesController;
 public class ok0 {
-    public final int f29125a;
-    public int f29126b;
-    public boolean f29127c;
+    public final int f29098a;
+    public int f29099b;
+    public boolean f29100c;
     public boolean d;
-    public final Object f29128e;
-    public final Object f29129f;
-    public Object f29130g;
+    public final Object f29101e;
+    public final Object f29102f;
+    public Object f29103g;
     public Object h;
-    public Object f29131i;
-    public final Object f29132j;
-    public Object f29133k;
+    public Object f29104i;
+    public final Object f29105j;
+    public Object f29106k;
 
     public ok0(ll0 ll0Var, s4.c0 c0Var) {
-        this.f29125a = 0;
-        this.f29132j = new SparseArray();
-        this.f29133k = new HashMap();
-        this.f29128e = ll0Var;
-        this.f29129f = c0Var;
+        this.f29098a = 0;
+        this.f29105j = new SparseArray();
+        this.f29106k = new HashMap();
+        this.f29101e = ll0Var;
+        this.f29102f = c0Var;
     }
 
     public final void a() {
-        switch (this.f29125a) {
+        switch (this.f29098a) {
             case 0:
-                ValueAnimator valueAnimator = (ValueAnimator) this.f29130g;
+                ValueAnimator valueAnimator = (ValueAnimator) this.f29103g;
                 if (valueAnimator != null) {
                     valueAnimator.cancel();
                 }
-                ll0 ll0Var = (ll0) this.f29128e;
+                ll0 ll0Var = (ll0) this.f29101e;
                 ll0Var.setVerticalScrollBarEnabled(true);
                 ll0Var.X1 = false;
                 s4.h0 adapter = ll0Var.getAdapter();
                 if (adapter instanceof mk0) {
                     ((mk0) adapter).E();
                 }
-                this.f29130g = null;
+                this.f29103g = null;
                 int childCount = ll0Var.getChildCount();
                 for (int i10 = 0; i10 < childCount; i10++) {
                     View childAt = ll0Var.getChildAt(i10);
@@ -55,8 +55,8 @@ public class ok0 {
                 }
                 return;
             default:
-                p4.q qVar = (p4.q) this.f29128e;
-                if (!this.f29127c && !this.d) {
+                p4.q qVar = (p4.q) this.f29101e;
+                if (!this.f29100c && !this.d) {
                     this.d = true;
                     if (qVar != null) {
                         qVar.h(0);
@@ -71,26 +71,26 @@ public class ok0 {
 
     public void b() {
         c0.k kVar;
-        p4.v vVar = (p4.v) this.f29129f;
-        int i10 = this.f29126b;
-        WeakReference weakReference = (WeakReference) this.f29132j;
+        p4.v vVar = (p4.v) this.f29102f;
+        int i10 = this.f29099b;
+        WeakReference weakReference = (WeakReference) this.f29105j;
         p4.x.b();
-        if (!this.f29127c && !this.d) {
+        if (!this.f29100c && !this.d) {
             p4.e eVar = (p4.e) weakReference.get();
-            if (eVar != null && eVar.f43838g == this && ((kVar = (c0.k) this.f29133k) == null || !kVar.isCancelled())) {
-                this.f29127c = true;
-                eVar.f43838g = null;
+            if (eVar != null && eVar.f43811g == this && ((kVar = (c0.k) this.f29106k) == null || !kVar.isCancelled())) {
+                this.f29100c = true;
+                eVar.f43811g = null;
                 p4.e eVar2 = (p4.e) weakReference.get();
                 if (eVar2 != null) {
-                    HashMap hashMap = eVar2.f43834b;
+                    HashMap hashMap = eVar2.f43807b;
                     if (eVar2.d == vVar) {
-                        Message obtainMessage = eVar2.f43833a.obtainMessage(263, vVar);
+                        Message obtainMessage = eVar2.f43806a.obtainMessage(263, vVar);
                         obtainMessage.arg1 = i10;
                         obtainMessage.sendToTarget();
-                        p4.q qVar = eVar2.f43836e;
+                        p4.q qVar = eVar2.f43809e;
                         if (qVar != null) {
                             qVar.h(i10);
-                            eVar2.f43836e.d();
+                            eVar2.f43809e.d();
                         }
                         if (!hashMap.isEmpty()) {
                             for (p4.q qVar2 : hashMap.values()) {
@@ -99,15 +99,15 @@ public class ok0 {
                             }
                             hashMap.clear();
                         }
-                        eVar2.f43836e = null;
+                        eVar2.f43809e = null;
                     }
                 }
                 p4.e eVar3 = (p4.e) weakReference.get();
                 if (eVar3 != null) {
-                    p4.b bVar = eVar3.f43833a;
-                    p4.v vVar2 = (p4.v) this.f29130g;
+                    p4.b bVar = eVar3.f43806a;
+                    p4.v vVar2 = (p4.v) this.f29103g;
                     eVar3.d = vVar2;
-                    eVar3.f43836e = (p4.q) this.f29128e;
+                    eVar3.f43809e = (p4.q) this.f29101e;
                     p4.v vVar3 = (p4.v) this.h;
                     if (vVar3 == null) {
                         Message obtainMessage2 = bVar.obtainMessage(262, new q0.b(vVar, vVar2));
@@ -118,10 +118,10 @@ public class ok0 {
                         obtainMessage3.arg1 = i10;
                         obtainMessage3.sendToTarget();
                     }
-                    eVar3.f43834b.clear();
+                    eVar3.f43807b.clear();
                     eVar3.g();
                     eVar3.l();
-                    ArrayList arrayList = (ArrayList) this.f29131i;
+                    ArrayList arrayList = (ArrayList) this.f29104i;
                     if (arrayList != null) {
                         eVar3.d.n(arrayList);
                         return;
@@ -139,10 +139,10 @@ public class ok0 {
         mk0 mk0Var;
         s4.h0 h0Var;
         long j3;
-        HashMap hashMap = (HashMap) this.f29133k;
-        SparseArray sparseArray = (SparseArray) this.f29132j;
-        s4.c0 c0Var = (s4.c0) this.f29129f;
-        ll0 ll0Var = (ll0) this.f29128e;
+        HashMap hashMap = (HashMap) this.f29106k;
+        SparseArray sparseArray = (SparseArray) this.f29105j;
+        s4.c0 c0Var = (s4.c0) this.f29102f;
+        ll0 ll0Var = (ll0) this.f29101e;
         if (!ll0Var.X1) {
             if (ll0Var.getItemAnimator() != null) {
                 if (z11) {
@@ -152,7 +152,7 @@ public class ok0 {
                     if (!k10) {
                         c(i10, i11, z10, false);
                     } else {
-                        itemAnimator.f45856b.add(jk0Var);
+                        itemAnimator.f45828b.add(jk0Var);
                     }
                     if (k10) {
                         return;
@@ -161,13 +161,13 @@ public class ok0 {
                     return;
                 }
             }
-            if (this.f29126b == -1) {
+            if (this.f29099b == -1) {
                 c0Var.i1(i10, i11, z10);
                 return;
             }
             int childCount = ll0Var.getChildCount();
             if (childCount != 0 && MessagesController.getGlobalMainSettings().getBoolean("view_animations", true)) {
-                if (this.f29126b == 0) {
+                if (this.f29099b == 0) {
                     z12 = true;
                 } else {
                     z12 = false;
@@ -183,11 +183,11 @@ public class ok0 {
                     arrayList.add(childAt);
                     c0Var.getClass();
                     sparseArray.put(s4.o0.H(childAt), childAt);
-                    if (adapter == null || (!adapter.f45824b && !this.f29127c)) {
+                    if (adapter == null || (!adapter.f45796b && !this.f29100c)) {
                         h0Var = adapter;
                     } else {
-                        if (this.f29127c) {
-                            int b10 = ((s4.p0) childAt.getLayoutParams()).f45886a.b();
+                        if (this.f29100c) {
+                            int b10 = ((s4.p0) childAt.getLayoutParams()).f45858a.b();
                             if (b10 < 0) {
                                 h0Var = adapter;
                                 i12++;
@@ -198,7 +198,7 @@ public class ok0 {
                             }
                         } else {
                             h0Var = adapter;
-                            j3 = ((s4.p0) childAt.getLayoutParams()).f45886a.f45770e;
+                            j3 = ((s4.p0) childAt.getLayoutParams()).f45858a.f45742e;
                         }
                         hashMap.put(Long.valueOf(j3), childAt);
                     }
@@ -213,13 +213,13 @@ public class ok0 {
                 ll0Var.o0();
                 ra.a aVar = ll0Var.d;
                 aVar.m((ArrayList) aVar.d);
-                aVar.m((ArrayList) aVar.f45094e);
-                aVar.f45092b = 0;
-                pf.e eVar = ll0Var.f1894b;
-                s4.h0 h0Var3 = ll0Var.f1921w;
+                aVar.m((ArrayList) aVar.f45066e);
+                aVar.f45064b = 0;
+                pf.e eVar = ll0Var.f1867b;
+                s4.h0 h0Var3 = ll0Var.f1894w;
                 eVar.d(h0Var3, h0Var3);
-                ll0Var.f1918t0.f45948f = true;
-                ll0Var.f1899e.L();
+                ll0Var.f1891t0.f45920f = true;
+                ll0Var.f1872e.L();
                 eVar.l();
                 if (h0Var2 instanceof mk0) {
                     mk0Var = (mk0) h0Var2;
@@ -233,16 +233,16 @@ public class ok0 {
                 }
                 ll0Var.B0();
                 ll0Var.setVerticalScrollBarEnabled(false);
-                w7.y5 y5Var = (w7.y5) this.f29131i;
+                w7.y5 y5Var = (w7.y5) this.f29104i;
                 if (y5Var != null) {
                     y5Var.c();
                 }
                 ll0Var.X1 = true;
                 if (mk0Var2 != null) {
-                    mk0Var2.f28490c = true;
+                    mk0Var2.f28463c = true;
                     mk0Var2.d = false;
-                    mk0Var2.f28491e.clear();
-                    mk0Var2.f28492f.clear();
+                    mk0Var2.f28464e.clear();
+                    mk0Var2.f28465f.clear();
                 }
                 ll0Var.addOnLayoutChangeListener(new lk0(this, h0Var2, arrayList, z12, mk0Var2));
                 return;
@@ -252,17 +252,17 @@ public class ok0 {
     }
 
     public ok0(p4.e eVar, p4.v vVar, p4.q qVar, int i10, p4.v vVar2, Collection collection) {
-        this.f29125a = 1;
-        this.f29133k = null;
-        this.f29127c = false;
+        this.f29098a = 1;
+        this.f29106k = null;
+        this.f29100c = false;
         this.d = false;
-        this.f29132j = new WeakReference(eVar);
-        this.f29130g = vVar;
-        this.f29128e = qVar;
-        this.f29126b = i10;
-        this.f29129f = eVar.d;
+        this.f29105j = new WeakReference(eVar);
+        this.f29103g = vVar;
+        this.f29101e = qVar;
+        this.f29099b = i10;
+        this.f29102f = eVar.d;
         this.h = vVar2;
-        this.f29131i = collection != null ? new ArrayList(collection) : null;
-        eVar.f43833a.postDelayed(new org.telegram.ui.web.b(this, 11), 15000L);
+        this.f29104i = collection != null ? new ArrayList(collection) : null;
+        eVar.f43806a.postDelayed(new org.telegram.ui.web.b(this, 11), 15000L);
     }
 }

@@ -3,10 +3,10 @@ package org.telegram.ui.Components;
 import android.webkit.JavascriptInterface;
 import org.telegram.messenger.AndroidUtilities;
 public final class su {
-    public final tu f30444a;
+    public final tu f30417a;
 
     public su(tu tuVar) {
-        this.f30444a = tuVar;
+        this.f30417a = tuVar;
     }
 
     @JavascriptInterface

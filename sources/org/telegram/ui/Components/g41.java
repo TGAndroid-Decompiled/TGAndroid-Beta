@@ -5,37 +5,37 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class g41 implements Runnable {
-    public final int f26279a;
-    public final org.telegram.ui.ActionBar.f3[] f26280b;
-    public final Context f26281c;
+    public final int f26252a;
+    public final org.telegram.ui.ActionBar.f3[] f26253b;
+    public final Context f26254c;
 
     public g41(Context context, org.telegram.ui.ActionBar.f3[] f3VarArr) {
-        this.f26279a = 3;
-        this.f26281c = context;
-        this.f26280b = f3VarArr;
+        this.f26252a = 3;
+        this.f26254c = context;
+        this.f26253b = f3VarArr;
     }
 
     @Override
     public final void run() {
         org.telegram.ui.ActionBar.f3 f3Var;
         org.telegram.ui.ActionBar.n2 n2Var;
-        switch (this.f26279a) {
+        switch (this.f26252a) {
             case 0:
-                this.f26280b[0].dismiss();
-                of.f.s(this.f26281c, LocaleController.getString(R.string.CocoonFeature1TextLink));
+                this.f26253b[0].dismiss();
+                of.f.s(this.f26254c, LocaleController.getString(R.string.CocoonFeature1TextLink));
                 return;
             case 1:
-                this.f26280b[0].dismiss();
-                of.f.u(this.f26281c, LocaleController.getString(R.string.CocoonFeature3TextLink));
+                this.f26253b[0].dismiss();
+                of.f.u(this.f26254c, LocaleController.getString(R.string.CocoonFeature3TextLink));
                 return;
             case 2:
-                this.f26280b[0].dismiss();
-                of.f.s(this.f26281c, LocaleController.getString(R.string.CocoonFooterLink));
+                this.f26253b[0].dismiss();
+                of.f.s(this.f26254c, LocaleController.getString(R.string.CocoonFooterLink));
                 return;
             default:
-                dw0 dw0Var = new dw0(this.f26281c);
+                dw0 dw0Var = new dw0(this.f26254c);
                 if (!AndroidUtilities.isTablet()) {
-                    org.telegram.ui.ActionBar.f3[] f3VarArr = this.f26280b;
+                    org.telegram.ui.ActionBar.f3[] f3VarArr = this.f26253b;
                     if (!AndroidUtilities.hasDialogOnTop(f3VarArr[0].attachedFragment) && (f3Var = f3VarArr[0]) != null && (n2Var = f3Var.attachedFragment) != null) {
                         dw0Var.makeAttached(n2Var);
                     }
@@ -46,8 +46,8 @@ public final class g41 implements Runnable {
     }
 
     public g41(org.telegram.ui.ActionBar.f3[] f3VarArr, Context context, int i10) {
-        this.f26279a = i10;
-        this.f26280b = f3VarArr;
-        this.f26281c = context;
+        this.f26252a = i10;
+        this.f26253b = f3VarArr;
+        this.f26254c = context;
     }
 }

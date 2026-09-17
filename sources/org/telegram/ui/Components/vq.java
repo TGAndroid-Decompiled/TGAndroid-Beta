@@ -4,21 +4,21 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.view.View;
 public final class vq extends View {
-    public final uq f31990a;
+    public final uq f31963a;
 
     public vq(Context context, org.telegram.ui.ActionBar.f6 f6Var) {
         super(context);
         setVisibility(8);
         uq uqVar = new uq(this, true, f6Var);
-        this.f31990a = uqVar;
+        this.f31963a = uqVar;
         uqVar.G = true;
     }
 
     public float getEnterProgress() {
         int i10;
-        uq uqVar = this.f31990a;
-        float f7 = uqVar.f30972l;
-        if (f7 != 1.0f && ((i10 = uqVar.f30965c) == 0 || i10 == 1)) {
+        uq uqVar = this.f31963a;
+        float f7 = uqVar.f30945l;
+        if (f7 != 1.0f && ((i10 = uqVar.f30938c) == 0 || i10 == 1)) {
             if (i10 == 0) {
                 return f7;
             }
@@ -32,20 +32,20 @@ public final class vq extends View {
 
     @Override
     public final void onDraw(Canvas canvas) {
-        this.f31990a.a(canvas);
+        this.f31963a.a(canvas);
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
         super.onMeasure(i10, i11);
-        this.f31990a.d(getMeasuredHeight(), getMeasuredWidth());
+        this.f31963a.d(getMeasuredHeight(), getMeasuredWidth());
     }
 
     public void setGravity(int i10) {
-        this.f31990a.f30985z = i10;
+        this.f31963a.f30958z = i10;
     }
 
     public void setReverse(boolean z10) {
-        this.f31990a.D = z10;
+        this.f31963a.D = z10;
     }
 }

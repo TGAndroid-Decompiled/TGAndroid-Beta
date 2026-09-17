@@ -8,22 +8,22 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.tl.TL_stories;
 public final class tb extends qb {
-    public final sb f3791a;
-    public final TL_stories.TL_mediaAreaWeather f3792b;
-    public View f3793c;
+    public final sb f3764a;
+    public final TL_stories.TL_mediaAreaWeather f3765b;
+    public View f3766c;
     public final ub d;
 
     public tb(ub ubVar, TL_stories.TL_mediaAreaWeather tL_mediaAreaWeather) {
         this.d = ubVar;
-        this.f3792b = tL_mediaAreaWeather;
+        this.f3765b = tL_mediaAreaWeather;
         ?? tLObject = new TLObject();
-        tLObject.f7734c = tL_mediaAreaWeather.emoji;
+        tLObject.f7706c = tL_mediaAreaWeather.emoji;
         tLObject.d = (float) tL_mediaAreaWeather.temperature_c;
         sb sbVar = new sb(this, ApplicationLoader.applicationContext, AndroidUtilities.density);
-        this.f3791a = sbVar;
+        this.f3764a = sbVar;
         sbVar.setMaxWidth(AndroidUtilities.displaySize.x);
         sbVar.setIsVideo(false);
-        sbVar.d(UserConfig.selectedAccount, tLObject.f7734c);
+        sbVar.d(UserConfig.selectedAccount, tLObject.f7706c);
         sbVar.setText(tLObject.a());
         sbVar.e(3, tL_mediaAreaWeather.color);
         sbVar.f();
@@ -35,15 +35,15 @@ public final class tb extends qb {
         int heightInternal;
         ub ubVar = this.d;
         double d = ubVar.d;
-        TL_stories.TL_mediaAreaWeather tL_mediaAreaWeather = this.f3792b;
+        TL_stories.TL_mediaAreaWeather tL_mediaAreaWeather = this.f3765b;
         TL_stories.MediaAreaCoordinates mediaAreaCoordinates = tL_mediaAreaWeather.coordinates;
-        double d10 = (mediaAreaCoordinates.f20130x * d) / 100.0d;
-        double d11 = ubVar.f3872e;
-        double d12 = (mediaAreaCoordinates.f20131y * d11) / 100.0d;
-        float f10 = (float) ((d * mediaAreaCoordinates.f20129w) / 100.0d);
+        double d10 = (mediaAreaCoordinates.f20103x * d) / 100.0d;
+        double d11 = ubVar.f3845e;
+        double d12 = (mediaAreaCoordinates.f20104y * d11) / 100.0d;
+        float f10 = (float) ((d * mediaAreaCoordinates.f20102w) / 100.0d);
         canvas.save();
-        canvas.translate((float) (d10 + ubVar.f3870b), (float) (d12 + ubVar.f3871c));
-        sb sbVar = this.f3791a;
+        canvas.translate((float) (d10 + ubVar.f3843b), (float) (d12 + ubVar.f3844c));
+        sb sbVar = this.f3764a;
         float min = Math.min(f10 / ((sbVar.getWidthInternal() - sbVar.getPaddingLeft()) - sbVar.getPaddingRight()), ((float) ((d11 * mediaAreaCoordinates.h) / 100.0d)) / ((sbVar.getHeightInternal() - sbVar.getPaddingTop()) - sbVar.getPaddingBottom()));
         canvas.scale(min, min);
         double d13 = tL_mediaAreaWeather.coordinates.rotation;
@@ -57,24 +57,24 @@ public final class tb extends qb {
 
     @Override
     public final void b(boolean z10) {
-        sb sbVar = this.f3791a;
+        sb sbVar = this.f3764a;
         if (z10) {
             sbVar.K = true;
             if (sbVar.L) {
-                sbVar.f45538s.onAttachedToWindow();
+                sbVar.f45510s.onAttachedToWindow();
                 return;
             } else {
-                sbVar.f45537r.onAttachedToWindow();
+                sbVar.f45509r.onAttachedToWindow();
                 return;
             }
         }
         sbVar.K = false;
-        sbVar.f45537r.onDetachedFromWindow();
-        sbVar.f45538s.onDetachedFromWindow();
+        sbVar.f45509r.onDetachedFromWindow();
+        sbVar.f45510s.onDetachedFromWindow();
     }
 
     @Override
     public final void c(View view) {
-        this.f3793c = view;
+        this.f3766c = view;
     }
 }

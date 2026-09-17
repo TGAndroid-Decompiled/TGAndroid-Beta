@@ -51,14 +51,14 @@ import zh.r5;
 import zh.s5;
 import zh.w3;
 public final class r implements Runnable {
-    public final int f47226a;
-    public final Object f47227b;
-    public final Object f47228c;
+    public final int f47198a;
+    public final Object f47199b;
+    public final Object f47200c;
 
     public r(int i10, Object obj, Object obj2) {
-        this.f47226a = i10;
-        this.f47227b = obj;
-        this.f47228c = obj2;
+        this.f47198a = i10;
+        this.f47199b = obj;
+        this.f47200c = obj2;
     }
 
     @Override
@@ -73,11 +73,11 @@ public final class r implements Runnable {
         TLRPC.TL_messageReactions tL_messageReactions;
         boolean z13;
         TLRPC.TL_messageReactions tL_messageReactions2;
-        int i12 = this.f47226a;
+        int i12 = this.f47198a;
         int i13 = 8;
         ArrayList<TLRPC.MessageReactor> arrayList = null;
-        Object obj = this.f47228c;
-        Object obj2 = this.f47227b;
+        Object obj = this.f47200c;
+        Object obj2 = this.f47199b;
         switch (i12) {
             case 0:
                 ((w) obj2).run((TLRPC.TL_error) obj);
@@ -95,20 +95,20 @@ public final class r implements Runnable {
                 return;
             case 3:
                 qc M = yc.a0((co) obj2).M(LocaleController.getString(R.string.StarsGiveawaySentPopup), AndroidUtilities.replaceTags(LocaleController.formatPluralStringComma("StarsGiveawaySentPopupInfo", (int) ((TL_stars.TL_starsGiveawayOption) obj).stars)), R.raw.stars_send);
-                M.f29707j = 5000;
+                M.f29680j = 5000;
                 M.k(true);
                 return;
             case 4:
                 b0 b0Var = (b0) obj2;
                 b0Var.getClass();
-                NotificationCenter.getInstance(UserConfig.selectedAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.boostByChannelCreated, b0Var.f47098b0, Boolean.TRUE, (TL_stories.PrepaidGiveaway) obj);
+                NotificationCenter.getInstance(UserConfig.selectedAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.boostByChannelCreated, b0Var.f47070b0, Boolean.TRUE, (TL_stories.PrepaidGiveaway) obj);
                 return;
             case 5:
                 n1.P((n1) obj2, (TLObject) obj);
                 return;
             case 6:
                 vh.i iVar = (vh.i) obj2;
-                iVar.f47924b.add((String) obj);
+                iVar.f47896b.add((String) obj);
                 iVar.invalidate();
                 return;
             case 7:
@@ -117,10 +117,10 @@ public final class r implements Runnable {
             case 8:
                 xh.n nVar = (xh.n) obj2;
                 f5 f5Var = (f5) obj;
-                int i14 = nVar.f49480k;
-                n2 n2Var = nVar.f49477g;
+                int i14 = nVar.f49451k;
+                n2 n2Var = nVar.f49448g;
                 TLRPC.TL_chatInviteImporter importer = f5Var.getImporter();
-                nVar.f49487r = importer;
+                nVar.f49458r = importer;
                 LongSparseArray longSparseArray = nVar.d;
                 TLRPC.User user = (TLRPC.User) longSparseArray.get(importer.user_id);
                 if (user != null) {
@@ -132,12 +132,12 @@ public final class r implements Runnable {
                         z10 = false;
                     }
                     if (user.photo != null && !z10) {
-                        if (nVar.f49488s == null) {
-                            xh.m mVar = new xh.m(nVar, n2Var.getParentActivity(), (ll0) f5Var.getParent(), n2Var.getResourceProvider(), nVar.f49472a);
-                            nVar.f49488s = mVar;
-                            TLRPC.TL_chatInviteImporter tL_chatInviteImporter = nVar.f49487r;
+                        if (nVar.f49459s == null) {
+                            xh.m mVar = new xh.m(nVar, n2Var.getParentActivity(), (ll0) f5Var.getParent(), n2Var.getResourceProvider(), nVar.f49443a);
+                            nVar.f49459s = mVar;
+                            TLRPC.TL_chatInviteImporter tL_chatInviteImporter = nVar.f49458r;
                             x9 avatarImageView = f5Var.getAvatarImageView();
-                            mVar.f49467r = tL_chatInviteImporter;
+                            mVar.f49438r = tL_chatInviteImporter;
                             mVar.v = avatarImageView;
                             TLRPC.User user2 = MessagesController.getInstance(i14).getUser(Long.valueOf(tL_chatInviteImporter.user_id));
                             ImageLocation forUserOrChat = ImageLocation.getForUserOrChat(i14, user2, 0);
@@ -151,24 +151,24 @@ public final class r implements Runnable {
                             oh0Var.H(null, forUserOrChat, forUserOrChat2, true);
                             mVar.d.setText(UserObject.getUserName((TLRPC.User) longSparseArray.get(tL_chatInviteImporter.user_id)));
                             String str = tL_chatInviteImporter.about;
-                            TextView textView = mVar.f49464e;
+                            TextView textView = mVar.f49435e;
                             textView.setText(str);
                             if (!TextUtils.isEmpty(tL_chatInviteImporter.about)) {
                                 i13 = 0;
                             }
                             textView.setVisibility(i13);
-                            mVar.f49471y.requestLayout();
-                            nVar.f49488s.setOnDismissListener(new r4(nVar, 11));
-                            nVar.f49488s.show();
+                            mVar.f49442y.requestLayout();
+                            nVar.f49459s.setOnDismissListener(new r4(nVar, 11));
+                            nVar.f49459s.show();
                             return;
                         }
                         return;
                     }
-                    nVar.f49473b = true;
+                    nVar.f49444b = true;
                     n2Var.dismissCurrentDialog();
                     Bundle bundle = new Bundle();
                     ProfileActivity profileActivity = new ProfileActivity(bundle, null);
-                    bundle.putLong("user_id", user.f20043id);
+                    bundle.putLong("user_id", user.f20016id);
                     bundle.putBoolean("removeFragmentOnChatOpen", false);
                     n2Var.presentFragment(profileActivity);
                     return;
@@ -197,23 +197,23 @@ public final class r implements Runnable {
                 return;
             case 13:
                 AndroidUtilities.addToClipboard((String) obj);
-                yc.a0(((m2) obj2).f50469a.f50545a).k(false).j();
+                yc.a0(((m2) obj2).f50440a.f50516a).k(false).j();
                 return;
             case 14:
                 zh.l lVar = (zh.l) obj2;
                 TLObject tLObject = (TLObject) obj;
-                int i15 = lVar.f52205a;
-                ArrayList arrayList2 = lVar.f52208e;
-                lVar.f52211i = 0;
+                int i15 = lVar.f52174a;
+                ArrayList arrayList2 = lVar.f52177e;
+                lVar.f52180i = 0;
                 if (tLObject instanceof TL_payments.connectedStarRefBots) {
                     TL_payments.connectedStarRefBots connectedstarrefbots = (TL_payments.connectedStarRefBots) tLObject;
                     MessagesController.getInstance(i15).putUsers(connectedstarrefbots.users, false);
-                    if (lVar.f52207c <= 0) {
+                    if (lVar.f52176c <= 0) {
                         arrayList2.clear();
                     }
-                    lVar.f52207c = connectedstarrefbots.count;
+                    lVar.f52176c = connectedstarrefbots.count;
                     arrayList2.addAll(connectedstarrefbots.connected_bots);
-                    if (!connectedstarrefbots.connected_bots.isEmpty() && arrayList2.size() < lVar.f52207c) {
+                    if (!connectedstarrefbots.connected_bots.isEmpty() && arrayList2.size() < lVar.f52176c) {
                         z11 = false;
                     } else {
                         z11 = true;
@@ -223,48 +223,48 @@ public final class r implements Runnable {
                     lVar.h = true;
                     lVar.d = true;
                 }
-                lVar.f52210g = false;
-                NotificationCenter.getInstance(i15).lambda$postNotificationNameOnUIThread$1(NotificationCenter.channelConnectedBotsUpdate, Long.valueOf(lVar.f52206b));
+                lVar.f52179g = false;
+                NotificationCenter.getInstance(i15).lambda$postNotificationNameOnUIThread$1(NotificationCenter.channelConnectedBotsUpdate, Long.valueOf(lVar.f52175b));
                 return;
             case 15:
                 zh.m mVar2 = (zh.m) obj2;
                 TLObject tLObject2 = (TLObject) obj;
-                int i16 = mVar2.f52272a;
-                ArrayList arrayList3 = mVar2.f52275e;
+                int i16 = mVar2.f52241a;
+                ArrayList arrayList3 = mVar2.f52244e;
                 if (tLObject2 instanceof TL_payments.suggestedStarRefBots) {
                     TL_payments.suggestedStarRefBots suggestedstarrefbots = (TL_payments.suggestedStarRefBots) tLObject2;
                     MessagesController.getInstance(i16).putUsers(suggestedstarrefbots.users, false);
-                    if (mVar2.f52274c <= 0) {
+                    if (mVar2.f52243c <= 0) {
                         arrayList3.clear();
                     }
-                    mVar2.f52274c = suggestedstarrefbots.count;
+                    mVar2.f52243c = suggestedstarrefbots.count;
                     arrayList3.addAll(suggestedstarrefbots.suggested_bots);
-                    mVar2.f52279j = suggestedstarrefbots.next_offset;
-                    if (!suggestedstarrefbots.suggested_bots.isEmpty() && arrayList3.size() < mVar2.f52274c) {
+                    mVar2.f52248j = suggestedstarrefbots.next_offset;
+                    if (!suggestedstarrefbots.suggested_bots.isEmpty() && arrayList3.size() < mVar2.f52243c) {
                         z12 = false;
                     } else {
                         z12 = true;
                     }
                     mVar2.d = z12;
                 } else {
-                    mVar2.f52278i = true;
+                    mVar2.f52247i = true;
                     mVar2.d = true;
                 }
                 mVar2.h = false;
-                NotificationCenter.getInstance(i16).lambda$postNotificationNameOnUIThread$1(NotificationCenter.channelSuggestedBotsUpdate, Long.valueOf(mVar2.f52273b));
+                NotificationCenter.getInstance(i16).lambda$postNotificationNameOnUIThread$1(NotificationCenter.channelSuggestedBotsUpdate, Long.valueOf(mVar2.f52242b));
                 return;
             case 16:
                 w3.U0((w3) obj2, (Long) obj);
                 return;
             case 17:
                 w3 w3Var = (w3) obj2;
-                if (!((s5) obj).f52601e) {
+                if (!((s5) obj).f52570e) {
                     qc Q = w3Var.getBulletinFactory().Q(R.raw.error, 36, LocaleController.formatString(R.string.UnknownErrorCode, "NO_BALANCE"));
-                    Q.f29717t = true;
+                    Q.f29690t = true;
                     Q.j();
                     return;
                 }
-                w3Var.f52805j0.setLoading(false);
+                w3Var.f52774j0.setLoading(false);
                 w3Var.w1();
                 return;
             case 18:
@@ -277,7 +277,7 @@ public final class r implements Runnable {
                 w3 w3Var2 = (w3) obj2;
                 w3Var2.getClass();
                 ((boolean[]) obj)[0] = true;
-                w3Var2.f52805j0.setLoading(false);
+                w3Var2.f52774j0.setLoading(false);
                 w3Var2.w1();
                 return;
             case 21:
@@ -318,14 +318,14 @@ public final class r implements Runnable {
             case 26:
                 a4 a4Var = (a4) obj2;
                 co coVar = (co) obj;
-                org.telegram.ui.Cells.a0 a0Var = a4Var.f51711b;
+                org.telegram.ui.Cells.a0 a0Var = a4Var.f51680b;
                 if (a0Var != null) {
                     try {
                         a0Var.performHapticFeedback(0);
                     } catch (Exception unused) {
                     }
                     a4Var.onTouchEvent(MotionEvent.obtain(0L, 0L, 3, 0.0f, 0.0f, 0));
-                    org.telegram.ui.Cells.a0 a0Var2 = a4Var.f51711b;
+                    org.telegram.ui.Cells.a0 a0Var2 = a4Var.f51680b;
                     if (a0Var2 instanceof t1) {
                         messageObject = ((t1) a0Var2).getPrimaryMessageObject();
                         if (messageObject != null) {
@@ -361,7 +361,7 @@ public final class r implements Runnable {
                     MessageObject messageObject2 = messageObject;
                     n8 n8Var = new n8(context, currentAccount, a2, coVar, messageObject2, arrayList4, z13, false, 0L, coVar.getResourceProvider());
                     messageObject2.getId();
-                    org.telegram.ui.Cells.a0 a0Var3 = a4Var.f51711b;
+                    org.telegram.ui.Cells.a0 a0Var3 = a4Var.f51680b;
                     n8Var.T = coVar;
                     n8Var.U = a0Var3;
                     n8Var.show();
@@ -390,8 +390,8 @@ public final class r implements Runnable {
             default:
                 j5 j5Var = (j5) obj2;
                 TLObject tLObject4 = (TLObject) obj;
-                ArrayList arrayList5 = j5Var.f52133l;
-                int i19 = j5Var.f52124a;
+                ArrayList arrayList5 = j5Var.f52102l;
+                int i19 = j5Var.f52093a;
                 if (tLObject4 instanceof TL_stars.TL_payments_savedStarGifts) {
                     TL_stars.TL_payments_savedStarGifts tL_payments_savedStarGifts = (TL_stars.TL_payments_savedStarGifts) tLObject4;
                     MessagesController.getInstance(i19).putUsers(tL_payments_savedStarGifts.users, false);
@@ -403,7 +403,7 @@ public final class r implements Runnable {
                             i20++;
                         }
                         arrayList5.add(i20, savedStarGift);
-                        NotificationCenter.getInstance(i19).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starUserGiftsLoaded, Long.valueOf(j5Var.f52125b), j5Var);
+                        NotificationCenter.getInstance(i19).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starUserGiftsLoaded, Long.valueOf(j5Var.f52094b), j5Var);
                         return;
                     }
                     return;
@@ -413,8 +413,8 @@ public final class r implements Runnable {
     }
 
     public r(s5 s5Var, boolean[] zArr, Utilities.Callback2 callback2) {
-        this.f47226a = 28;
-        this.f47227b = zArr;
-        this.f47228c = callback2;
+        this.f47198a = 28;
+        this.f47199b = zArr;
+        this.f47200c = callback2;
     }
 }

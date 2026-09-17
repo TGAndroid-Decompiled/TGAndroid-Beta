@@ -21,24 +21,24 @@ public class qs extends v51 {
     public int X;
     public int Y;
     public boolean Z;
-    public boolean f29833a0;
-    public boolean f29834b0;
-    public int f29835c0;
-    public int f29836d0;
-    public String f29837e0;
-    public final ls f29838f0;
-    public boolean f29839g0;
-    public final y2 f29840h0;
+    public boolean f29806a0;
+    public boolean f29807b0;
+    public int f29808c0;
+    public int f29809d0;
+    public String f29810e0;
+    public final ls f29811f0;
+    public boolean f29812g0;
+    public final y2 f29813h0;
 
     public qs(ll0 ll0Var, Context context, int i10, int i11, boolean z10, org.telegram.ui.ActionBar.f6 f6Var) {
         super(ll0Var, context, i10, 0, true, null, f6Var);
         this.R = new ArrayList();
         this.S = new ArrayList();
         this.T = new ArrayList();
-        this.f29838f0 = new ls(this, 0);
-        this.f29839g0 = true;
-        this.f29840h0 = new y2(this, 3);
-        this.f31164s = new d(this, 8);
+        this.f29811f0 = new ls(this, 0);
+        this.f29812g0 = true;
+        this.f29813h0 = new y2(this, 3);
+        this.f31137s = new d(this, 8);
         this.N = i10;
         this.O = i11;
         this.P = z10;
@@ -49,16 +49,16 @@ public class qs extends v51 {
     }
 
     public final void V() {
-        boolean isEmpty = TextUtils.isEmpty(this.f29837e0);
+        boolean isEmpty = TextUtils.isEmpty(this.f29810e0);
         ll0 ll0Var = this.d;
         if (!isEmpty) {
-            if (this.f29834b0 && !this.Z && ll0Var != null) {
+            if (this.f29807b0 && !this.Z && ll0Var != null) {
                 int i10 = 0;
                 while (true) {
                     if (i10 >= ll0Var.getChildCount()) {
                         break;
                     } else if (ll0Var.getChildAt(i10) instanceof t00) {
-                        if (this.f29834b0 && !this.Z && !TextUtils.isEmpty(this.f29837e0)) {
+                        if (this.f29807b0 && !this.Z && !TextUtils.isEmpty(this.f29810e0)) {
                             W(true);
                         }
                     } else {
@@ -67,7 +67,7 @@ public class qs extends v51 {
                 }
             }
         } else {
-            if (!this.f29839g0) {
+            if (!this.f29812g0) {
                 if (ll0Var != null) {
                     for (int i11 = 0; i11 < ll0Var.getChildCount(); i11++) {
                         if (!(ll0Var.getChildAt(i11) instanceof t00)) {
@@ -78,7 +78,7 @@ public class qs extends v51 {
             this.Q.a();
             break;
         }
-        this.f29839g0 = false;
+        this.f29812g0 = false;
     }
 
     public final void W(boolean r10) {

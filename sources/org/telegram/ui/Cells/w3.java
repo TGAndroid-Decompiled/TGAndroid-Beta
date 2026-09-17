@@ -13,41 +13,41 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.vl;
 public abstract class w3 extends FrameLayout {
-    public org.telegram.ui.ActionBar.j5 f23495a;
-    public org.telegram.ui.ActionBar.j5 f23496b;
-    public ImageView f23497c;
+    public org.telegram.ui.ActionBar.j5 f23468a;
+    public org.telegram.ui.ActionBar.j5 f23469b;
+    public ImageView f23470c;
     public ImageView d;
-    public int f23498e;
-    public boolean f23499f;
+    public int f23471e;
+    public boolean f23472f;
     public int h;
-    public int f23500n;
-    public Paint f23501r;
+    public int f23473n;
+    public Paint f23474r;
 
     public final void a(int i10, int i11) {
-        org.telegram.ui.ActionBar.j5 j5Var = this.f23495a;
+        org.telegram.ui.ActionBar.j5 j5Var = this.f23468a;
         j5Var.setTextColor(i11);
         j5Var.setTag(null);
-        ImageView imageView = this.f23497c;
+        ImageView imageView = this.f23470c;
         imageView.setColorFilter(new PorterDuffColorFilter(i10, PorterDuff.Mode.MULTIPLY));
         imageView.setTag(null);
     }
 
     public final void b(int i10, String str, boolean z10) {
-        this.f23495a.l(str, false);
-        org.telegram.ui.ActionBar.j5 j5Var = this.f23496b;
+        this.f23468a.l(str, false);
+        org.telegram.ui.ActionBar.j5 j5Var = this.f23469b;
         j5Var.l(null, false);
-        ImageView imageView = this.f23497c;
+        ImageView imageView = this.f23470c;
         imageView.setImageResource(i10);
         imageView.setVisibility(0);
         j5Var.setVisibility(8);
         this.d.setVisibility(8);
         imageView.setPadding(0, AndroidUtilities.dp(7.0f), 0, 0);
-        this.f23499f = z10;
+        this.f23472f = z10;
         setWillNotDraw(!z10);
     }
 
     public org.telegram.ui.ActionBar.j5 getTextView() {
-        return this.f23495a;
+        return this.f23468a;
     }
 
     public ImageView getValueImageView() {
@@ -55,7 +55,7 @@ public abstract class w3 extends FrameLayout {
     }
 
     public org.telegram.ui.ActionBar.j5 getValueTextView() {
-        return this.f23496b;
+        return this.f23469b;
     }
 
     @Override
@@ -63,8 +63,8 @@ public abstract class w3 extends FrameLayout {
         float f7;
         float dp;
         int i10;
-        ImageView imageView = this.f23497c;
-        if (this.f23499f) {
+        ImageView imageView = this.f23470c;
+        if (this.f23472f) {
             float f10 = 20.0f;
             if (LocaleController.isRTL) {
                 dp = 0.0f;
@@ -86,16 +86,16 @@ public abstract class w3 extends FrameLayout {
             } else {
                 i10 = 0;
             }
-            canvas.drawLine(dp, measuredHeight, measuredWidth - i10, getMeasuredHeight() - 1, this.f23501r);
+            canvas.drawLine(dp, measuredHeight, measuredWidth - i10, getMeasuredHeight() - 1, this.f23474r);
         }
     }
 
     @Override
     public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        CharSequence text = this.f23495a.getText();
+        CharSequence text = this.f23468a.getText();
         if (!TextUtils.isEmpty(text)) {
-            CharSequence text2 = this.f23496b.getText();
+            CharSequence text2 = this.f23469b.getText();
             if (!TextUtils.isEmpty(text2)) {
                 accessibilityNodeInfo.setText(((Object) text) + ": " + ((Object) text2));
                 return;
@@ -111,14 +111,14 @@ public abstract class w3 extends FrameLayout {
         int dp;
         int measuredWidth;
         int measuredWidth2;
-        int i15 = this.f23500n;
-        int i16 = this.f23498e;
-        org.telegram.ui.ActionBar.j5 j5Var = this.f23495a;
+        int i15 = this.f23473n;
+        int i16 = this.f23471e;
+        org.telegram.ui.ActionBar.j5 j5Var = this.f23468a;
         ImageView imageView = this.d;
-        ImageView imageView2 = this.f23497c;
+        ImageView imageView2 = this.f23470c;
         int i17 = i13 - i11;
         int i18 = i12 - i10;
-        org.telegram.ui.ActionBar.j5 j5Var2 = this.f23496b;
+        org.telegram.ui.ActionBar.j5 j5Var2 = this.f23469b;
         int textHeight = (i17 - j5Var2.getTextHeight()) / 2;
         if (LocaleController.isRTL) {
             i14 = AndroidUtilities.dp(i16);
@@ -167,18 +167,18 @@ public abstract class w3 extends FrameLayout {
         ImageView imageView = this.d;
         int size = View.MeasureSpec.getSize(i10);
         int dp = AndroidUtilities.dp(48.0f);
-        org.telegram.ui.ActionBar.j5 j5Var = this.f23496b;
-        int i12 = this.f23498e;
+        org.telegram.ui.ActionBar.j5 j5Var = this.f23469b;
+        int i12 = this.f23471e;
         j5Var.measure(vl.d(i12, size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(20.0f), 1073741824));
-        this.f23495a.measure(View.MeasureSpec.makeMeasureSpec((size - AndroidUtilities.dp(i12 + 71)) - j5Var.getTextWidth(), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(20.0f), 1073741824));
-        ImageView imageView2 = this.f23497c;
+        this.f23468a.measure(View.MeasureSpec.makeMeasureSpec((size - AndroidUtilities.dp(i12 + 71)) - j5Var.getTextWidth(), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(20.0f), 1073741824));
+        ImageView imageView2 = this.f23470c;
         if (imageView2.getVisibility() == 0) {
             imageView2.measure(View.MeasureSpec.makeMeasureSpec(size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(dp, Integer.MIN_VALUE));
         }
         if (imageView.getVisibility() == 0) {
             imageView.measure(View.MeasureSpec.makeMeasureSpec(size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(dp, Integer.MIN_VALUE));
         }
-        setMeasuredDimension(size, AndroidUtilities.dp(50.0f) + (this.f23499f ? 1 : 0));
+        setMeasuredDimension(size, AndroidUtilities.dp(50.0f) + (this.f23472f ? 1 : 0));
     }
 
     public void setOffsetFromImage(int i10) {
@@ -186,6 +186,6 @@ public abstract class w3 extends FrameLayout {
     }
 
     public void setTextColor(int i10) {
-        this.f23495a.setTextColor(i10);
+        this.f23468a.setTextColor(i10);
     }
 }

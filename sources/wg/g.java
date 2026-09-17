@@ -19,10 +19,10 @@ import org.telegram.ui.Components.x9;
 import org.telegram.ui.wy0;
 import w7.x5;
 public final class g extends c {
-    public final ImageView f48554r;
-    public f f48555s;
+    public final ImageView f48525r;
+    public f f48526s;
     public TLRPC.Chat v;
-    public boolean f48556w;
+    public boolean f48527w;
 
     public g(Context context, f6 f6Var) {
         super(context, f6Var);
@@ -32,12 +32,12 @@ public final class g extends c {
         float f11;
         this.d.setTypeface(AndroidUtilities.bold());
         ImageView imageView = new ImageView(context);
-        this.f48554r = imageView;
+        this.f48525r = imageView;
         imageView.setFocusable(false);
         imageView.setScaleType(ImageView.ScaleType.CENTER);
         imageView.setBackground(j6.f0(j6.w0(null, j6.Vh, false), 1, -1));
         imageView.setImageResource(R.drawable.poll_remove);
-        imageView.setColorFilter(new PorterDuffColorFilter(j6.w0(null, j6.f20855m6, false), PorterDuff.Mode.MULTIPLY));
+        imageView.setColorFilter(new PorterDuffColorFilter(j6.w0(null, j6.f20828m6, false), PorterDuff.Mode.MULTIPLY));
         imageView.setContentDescription(LocaleController.getString(R.string.Delete));
         boolean z10 = LocaleController.isRTL;
         if (z10) {
@@ -76,12 +76,12 @@ public final class g extends c {
         int i12;
         String string;
         String str2;
-        this.f48556w = z10;
+        this.f48527w = z10;
         this.v = chat;
-        i9 i9Var = this.f48536b;
+        i9 i9Var = this.f48507b;
         i9Var.q(chat);
         int dp = AndroidUtilities.dp(20.0f);
-        x9 x9Var = this.f48537c;
+        x9 x9Var = this.f48508c;
         x9Var.setRoundRadius(dp);
         x9Var.e(chat, i9Var);
         String str3 = chat.title;
@@ -113,9 +113,9 @@ public final class g extends c {
             }
             setSubtitle(LocaleController.formatPluralString(str, i10, new Object[0]));
         }
-        this.f48538e.setTextColor(j6.v0(j6.f20943r5, this.f48535a));
+        this.f48509e.setTextColor(j6.v0(j6.f20916r5, this.f48506a));
         setDivider(true);
-        ImageView imageView = this.f48554r;
+        ImageView imageView = this.f48525r;
         if (z10) {
             imageView.setVisibility(0);
         } else {
@@ -131,10 +131,10 @@ public final class g extends c {
     @Override
     public final void onMeasure(int i10, int i11) {
         super.onMeasure(i10, i11);
-        this.f48554r.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(48.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(48.0f), 1073741824));
+        this.f48525r.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(48.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(48.0f), 1073741824));
     }
 
     public void setChatDeleteListener(f fVar) {
-        this.f48555s = fVar;
+        this.f48526s = fVar;
     }
 }

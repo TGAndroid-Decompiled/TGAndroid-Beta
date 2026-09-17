@@ -6,34 +6,34 @@ import android.graphics.RectF;
 import android.os.Build;
 import android.widget.FrameLayout;
 public final class k40 extends FrameLayout {
-    public final RectF f37936a;
-    public final RectF f37937b;
-    public final RectF f37938c;
+    public final RectF f37909a;
+    public final RectF f37910b;
+    public final RectF f37911c;
     public final Paint d;
-    public final j60 f37939e;
+    public final j60 f37912e;
 
     public k40(j60 j60Var, LaunchActivity launchActivity) {
         super(launchActivity);
-        this.f37939e = j60Var;
-        this.f37936a = new RectF();
-        this.f37937b = new RectF();
-        this.f37938c = new RectF();
+        this.f37912e = j60Var;
+        this.f37909a = new RectF();
+        this.f37910b = new RectF();
+        this.f37911c = new RectF();
         this.d = new Paint(1);
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
-        j60 j60Var = this.f37939e;
+        j60 j60Var = this.f37912e;
         l40 l40Var = j60Var.F;
         float y3 = l40Var.getY() + l40Var.getMeasuredHeight();
         le.e eVar = j60Var.B3;
-        RectF rectF = this.f37936a;
-        rectF.set(0.0f, y3 - eVar.f15403e, getMeasuredWidth(), getMeasuredHeight());
-        RectF rectF2 = this.f37937b;
+        RectF rectF = this.f37909a;
+        rectF.set(0.0f, y3 - eVar.f15376e, getMeasuredWidth(), getMeasuredHeight());
+        RectF rectF2 = this.f37910b;
         rectF2.set(0.0f, l40Var.getY() + l40Var.getMeasuredHeight(), getMeasuredWidth(), getMeasuredHeight());
         float y10 = l40Var.getY() + l40Var.getMeasuredHeight();
-        RectF rectF3 = this.f37938c;
-        rectF3.set(0.0f, (l40Var.getY() + l40Var.getMeasuredHeight()) - eVar.f15403e, getMeasuredWidth(), y10);
+        RectF rectF3 = this.f37911c;
+        rectF3.set(0.0f, (l40Var.getY() + l40Var.getMeasuredHeight()) - eVar.f15376e, getMeasuredWidth(), y10);
         int i10 = Build.VERSION.SDK_INT;
         Paint paint = this.d;
         if (i10 >= 29 && j60Var.Q2 != null && canvas.isHardwareAccelerated()) {

@@ -6,26 +6,26 @@ import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Build;
 public abstract class b0 {
-    public static Boolean f47412a;
-    public static Boolean f47413b;
-    public static Boolean f47414c;
+    public static Boolean f47384a;
+    public static Boolean f47385b;
+    public static Boolean f47386c;
     public static Boolean d;
-    public static Boolean f47415e;
-    public static Boolean f47416f;
-    public static Boolean f47417g;
+    public static Boolean f47387e;
+    public static Boolean f47388f;
+    public static Boolean f47389g;
 
     public static boolean a(Context context) {
         boolean z10;
         PackageManager packageManager = context.getPackageManager();
-        if (f47416f == null) {
+        if (f47388f == null) {
             if (Build.VERSION.SDK_INT >= 26 && packageManager.hasSystemFeature("android.hardware.type.automotive")) {
                 z10 = true;
             } else {
                 z10 = false;
             }
-            f47416f = Boolean.valueOf(z10);
+            f47388f = Boolean.valueOf(z10);
         }
-        return f47416f.booleanValue();
+        return f47388f.booleanValue();
     }
 
     public static boolean b(Resources resources) {
@@ -49,23 +49,23 @@ public abstract class b0 {
         if (resources == null) {
             return false;
         }
-        if (f47413b == null) {
-            f47413b = Boolean.valueOf(((resources.getConfiguration().screenLayout & 15) > 3 || b(resources)) ? true : true);
+        if (f47385b == null) {
+            f47385b = Boolean.valueOf(((resources.getConfiguration().screenLayout & 15) > 3 || b(resources)) ? true : true);
         }
-        return f47413b.booleanValue();
+        return f47385b.booleanValue();
     }
 
     public static boolean d(Context context) {
         boolean z10;
         PackageManager packageManager = context.getPackageManager();
-        if (f47417g == null) {
+        if (f47389g == null) {
             if (!packageManager.hasSystemFeature("com.google.android.tv") && !packageManager.hasSystemFeature("android.hardware.type.television") && !packageManager.hasSystemFeature("android.software.leanback")) {
                 z10 = false;
             } else {
                 z10 = true;
             }
-            f47417g = Boolean.valueOf(z10);
+            f47389g = Boolean.valueOf(z10);
         }
-        return f47417g.booleanValue();
+        return f47389g.booleanValue();
     }
 }

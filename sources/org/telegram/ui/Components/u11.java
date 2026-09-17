@@ -16,31 +16,31 @@ import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.R;
 public final class u11 extends Drawable {
-    public final TextPaint f30797a;
-    public final Paint f30798b;
-    public StaticLayout f30799c;
+    public final TextPaint f30770a;
+    public final Paint f30771b;
+    public StaticLayout f30772c;
     public float d;
-    public int f30800e;
-    public int f30801f;
-    public Drawable f30802g;
+    public int f30773e;
+    public int f30774f;
+    public Drawable f30775g;
     public int h;
-    public final Context f30803i;
-    public final org.telegram.ui.ActionBar.f6 f30804j;
-    public boolean f30805k;
-    public boolean f30806l;
-    public boolean f30807m;
-    public ColorFilter f30808n;
+    public final Context f30776i;
+    public final org.telegram.ui.ActionBar.f6 f30777j;
+    public boolean f30778k;
+    public boolean f30779l;
+    public boolean f30780m;
+    public ColorFilter f30781n;
 
     public u11(Context context, org.telegram.ui.ActionBar.f6 f6Var) {
         TextPaint textPaint = new TextPaint(1);
-        this.f30797a = textPaint;
-        this.f30798b = new Paint(1);
+        this.f30770a = textPaint;
+        this.f30771b = new Paint(1);
         Paint paint = new Paint(1);
         this.d = 0.0f;
-        this.f30800e = 0;
-        this.f30801f = -1;
-        this.f30803i = context;
-        this.f30804j = f6Var;
+        this.f30773e = 0;
+        this.f30774f = -1;
+        this.f30776i = context;
+        this.f30777j = f6Var;
         textPaint.setTypeface(AndroidUtilities.getTypeface("fonts/rcondensedbold.ttf"));
         paint.setStrokeWidth(AndroidUtilities.dp(1.0f));
         paint.setStyle(Paint.Style.STROKE);
@@ -49,19 +49,19 @@ public final class u11 extends Drawable {
     public static u11 a(int i10) {
         u11 u11Var = new u11(ApplicationLoader.applicationContext, null);
         u11Var.b(i10);
-        u11Var.f30806l = true;
+        u11Var.f30779l = true;
         return u11Var;
     }
 
     public final void b(int i10) {
         int i11;
         String str;
-        if (this.f30801f != i10) {
-            this.f30801f = i10;
-            boolean z10 = this.f30807m;
-            Context context = this.f30803i;
+        if (this.f30774f != i10) {
+            this.f30774f = i10;
+            boolean z10 = this.f30780m;
+            Context context = this.f30776i;
             if (z10) {
-                this.f30802g = context.getDrawable(R.drawable.msg_autodelete_badge2).mutate();
+                this.f30775g = context.getDrawable(R.drawable.msg_autodelete_badge2).mutate();
             } else {
                 if (i10 == 0) {
                     i11 = R.drawable.msg_mini_autodelete;
@@ -69,11 +69,11 @@ public final class u11 extends Drawable {
                     i11 = R.drawable.msg_mini_autodelete_empty;
                 }
                 Drawable mutate = context.getDrawable(i11).mutate();
-                this.f30802g = mutate;
-                mutate.setColorFilter(this.f30808n);
+                this.f30775g = mutate;
+                mutate.setColorFilter(this.f30781n);
             }
             invalidateSelf();
-            int i12 = this.f30801f;
+            int i12 = this.f30774f;
             if (i12 >= 1 && i12 < 60) {
                 str = i2.g.i(i10, "");
                 if (str.length() < 2) {
@@ -113,7 +113,7 @@ public final class u11 extends Drawable {
                 }
             }
             String str2 = str;
-            TextPaint textPaint = this.f30797a;
+            TextPaint textPaint = this.f30770a;
             textPaint.setTextSize(AndroidUtilities.dp(11.0f));
             float measureText = textPaint.measureText(str2);
             this.d = measureText;
@@ -127,10 +127,10 @@ public final class u11 extends Drawable {
             }
             try {
                 StaticLayout staticLayout = new StaticLayout(str2, textPaint, (int) Math.ceil(this.d), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
-                this.f30799c = staticLayout;
-                this.f30800e = staticLayout.getHeight();
+                this.f30772c = staticLayout;
+                this.f30773e = staticLayout.getHeight();
             } catch (Exception e7) {
-                this.f30799c = null;
+                this.f30772c = null;
                 FileLog.e(e7);
             }
             invalidateSelf();
@@ -141,51 +141,51 @@ public final class u11 extends Drawable {
     public final void draw(Canvas canvas) {
         int dp = AndroidUtilities.dp(23.0f);
         int dp2 = AndroidUtilities.dp(23.0f);
-        boolean z10 = this.f30807m;
-        Paint paint = this.f30798b;
+        boolean z10 = this.f30780m;
+        Paint paint = this.f30771b;
         int i10 = -1;
-        TextPaint textPaint = this.f30797a;
-        org.telegram.ui.ActionBar.f6 f6Var = this.f30804j;
+        TextPaint textPaint = this.f30770a;
+        org.telegram.ui.ActionBar.f6 f6Var = this.f30777j;
         if (z10) {
             textPaint.setColor(-1);
-        } else if (!this.f30806l) {
-            if (!this.f30805k) {
-                paint.setColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f20965s8, f6Var));
+        } else if (!this.f30779l) {
+            if (!this.f30778k) {
+                paint.setColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f20938s8, f6Var));
             }
             textPaint.setColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.A8, f6Var));
         } else {
             textPaint.setColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.F8, f6Var));
         }
-        if (this.f30802g != null) {
-            if (!this.f30806l && !this.f30807m) {
+        if (this.f30775g != null) {
+            if (!this.f30779l && !this.f30780m) {
                 canvas.drawCircle(getBounds().centerX(), getBounds().centerY(), getBounds().width() / 2.0f, paint);
                 int v02 = org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.A8, f6Var);
                 if (this.h != v02) {
                     this.h = v02;
-                    this.f30802g.setColorFilter(new PorterDuffColorFilter(v02, PorterDuff.Mode.MULTIPLY));
+                    this.f30775g.setColorFilter(new PorterDuffColorFilter(v02, PorterDuff.Mode.MULTIPLY));
                 }
             }
-            if (this.f30807m) {
-                this.f30802g.setBounds(getBounds().left, getBounds().top, this.f30802g.getIntrinsicWidth() + getBounds().left, this.f30802g.getIntrinsicHeight() + getBounds().top);
-                this.f30802g.draw(canvas);
+            if (this.f30780m) {
+                this.f30775g.setBounds(getBounds().left, getBounds().top, this.f30775g.getIntrinsicWidth() + getBounds().left, this.f30775g.getIntrinsicHeight() + getBounds().top);
+                this.f30775g.draw(canvas);
             } else {
                 Rect rect = AndroidUtilities.rectTmp2;
-                rect.set(getBounds().centerX() - AndroidUtilities.dp(10.5f), getBounds().centerY() - AndroidUtilities.dp(10.5f), this.f30802g.getIntrinsicWidth() + (getBounds().centerX() - AndroidUtilities.dp(10.5f)), this.f30802g.getIntrinsicHeight() + (getBounds().centerY() - AndroidUtilities.dp(10.5f)));
-                this.f30802g.setBounds(rect);
-                this.f30802g.draw(canvas);
+                rect.set(getBounds().centerX() - AndroidUtilities.dp(10.5f), getBounds().centerY() - AndroidUtilities.dp(10.5f), this.f30775g.getIntrinsicWidth() + (getBounds().centerX() - AndroidUtilities.dp(10.5f)), this.f30775g.getIntrinsicHeight() + (getBounds().centerY() - AndroidUtilities.dp(10.5f)));
+                this.f30775g.setBounds(rect);
+                this.f30775g.draw(canvas);
             }
         }
-        if (this.f30801f != 0 && this.f30799c != null) {
+        if (this.f30774f != 0 && this.f30772c != null) {
             if (AndroidUtilities.density != 3.0f) {
                 i10 = 0;
             }
             canvas.save();
-            if (this.f30807m) {
-                canvas.translate((float) (((getBounds().width() / 2) - Math.ceil(this.d / 2.0f)) + i10), (getBounds().height() - this.f30800e) / 2.0f);
-                this.f30799c.draw(canvas);
+            if (this.f30780m) {
+                canvas.translate((float) (((getBounds().width() / 2) - Math.ceil(this.d / 2.0f)) + i10), (getBounds().height() - this.f30773e) / 2.0f);
+                this.f30772c.draw(canvas);
             } else {
-                canvas.translate(((int) ((dp / 2) - Math.ceil(this.d / 2.0f))) + i10, (dp2 - this.f30800e) / 2.0f);
-                this.f30799c.draw(canvas);
+                canvas.translate(((int) ((dp / 2) - Math.ceil(this.d / 2.0f))) + i10, (dp2 - this.f30773e) / 2.0f);
+                this.f30772c.draw(canvas);
             }
             canvas.restore();
         }
@@ -208,9 +208,9 @@ public final class u11 extends Drawable {
 
     @Override
     public final void setColorFilter(ColorFilter colorFilter) {
-        this.f30808n = colorFilter;
-        if (this.f30806l) {
-            this.f30802g.setColorFilter(colorFilter);
+        this.f30781n = colorFilter;
+        if (this.f30779l) {
+            this.f30775g.setColorFilter(colorFilter);
         }
     }
 

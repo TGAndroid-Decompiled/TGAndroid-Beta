@@ -35,29 +35,29 @@ public final class z0 extends WebView {
     public a6.i S;
     public c1 T;
     public Runnable U;
-    public final int f42355a;
-    public boolean f42356b;
-    public final boolean f42357c;
+    public final int f42328a;
+    public boolean f42329b;
+    public final boolean f42330c;
     public String d;
-    public e1 f42358e;
-    public z0 f42359f;
+    public e1 f42331e;
+    public z0 f42332f;
     public boolean h;
-    public String f42360n;
-    public String f42361r;
-    public boolean f42362s;
+    public String f42333n;
+    public String f42334r;
+    public boolean f42335s;
     public boolean v;
-    public int f42363w;
-    public int f42364x;
-    public String f42365y;
+    public int f42336w;
+    public int f42337x;
+    public String f42338y;
 
     public z0(Context context, boolean z10, long j3) {
         super(context);
         int i10 = d1.Q0;
         d1.Q0 = i10 + 1;
-        this.f42355a = i10;
-        this.f42365y = "about:blank";
+        this.f42328a = i10;
+        this.f42338y = "about:blank";
         this.P = new HashMap();
-        this.f42357c = z10;
+        this.f42330c = z10;
         c("created new webview " + this);
         setOnLongClickListener(new m0(this));
         setWebViewClient(new o0(this, z10, context));
@@ -69,22 +69,22 @@ public final class z0 extends WebView {
     }
 
     public static void a(z0 z0Var) {
-        if (!z0Var.f42357c) {
+        if (!z0Var.f42330c) {
             n2 a2 = n2.a(z0Var);
             o2 b10 = o2.b();
             if (a2 == null) {
                 b10.getClass();
             } else {
-                if (b10.f42229a == null) {
-                    b10.f42229a = new HashMap();
+                if (b10.f42202a == null) {
+                    b10.f42202a = new HashMap();
                 }
-                if (!TextUtils.isEmpty(a2.f42217b)) {
-                    b10.f42229a.put(a2.f42217b, a2);
+                if (!TextUtils.isEmpty(a2.f42190b)) {
+                    b10.f42202a.put(a2.f42190b, a2);
                     b10.c();
                     b10.d();
                 }
             }
-            e1 e1Var = z0Var.f42358e;
+            e1 e1Var = z0Var.f42331e;
             if (e1Var != null && a2 != null) {
                 e1Var.d = a2;
                 f1.c(e1Var);
@@ -97,20 +97,20 @@ public final class z0 extends WebView {
         if (n2Var != null) {
             d1 d1Var = this.Q;
             boolean z10 = false;
-            if (d1Var != null && (i0Var = d1Var.f42067c) != null) {
-                int i10 = n2Var.f42219e;
+            if (d1Var != null && (i0Var = d1Var.f42040c) != null) {
+                int i10 = n2Var.f42192e;
                 if (i10 != 0) {
                     i0Var.o(i10, true);
-                    this.f42362s = true;
+                    this.f42335s = true;
                 }
-                int i11 = n2Var.f42220f;
+                int i11 = n2Var.f42193f;
                 if (i11 != 0) {
-                    this.Q.f42067c.o(i11, false);
+                    this.Q.f42040c.o(i11, false);
                     this.v = true;
                 } else {
                     i11 = -1;
                 }
-                Bitmap bitmap = n2Var.f42221i;
+                Bitmap bitmap = n2Var.f42194i;
                 if (bitmap != null) {
                     d1 d1Var2 = this.Q;
                     this.O = bitmap;
@@ -119,7 +119,7 @@ public final class z0 extends WebView {
                 }
                 if (!TextUtils.isEmpty(n2Var.d)) {
                     String str = n2Var.d;
-                    this.f42361r = str;
+                    this.f42334r = str;
                     d1 d1Var3 = this.Q;
                     this.K = str;
                     d1Var3.I();
@@ -140,7 +140,7 @@ public final class z0 extends WebView {
     }
 
     public final void c(String str) {
-        FileLog.d("[webview] #" + this.f42355a + " " + str);
+        FileLog.d("[webview] #" + this.f42328a + " " + str);
     }
 
     @Override
@@ -237,7 +237,7 @@ public final class z0 extends WebView {
     @Override
     public String getUrl() {
         if (this.E) {
-            return this.f42365y;
+            return this.f42338y;
         }
         return super.getUrl();
     }
@@ -280,7 +280,7 @@ public final class z0 extends WebView {
             f3Var.dismiss();
             this.F = null;
         }
-        if (!this.f42357c) {
+        if (!this.f42330c) {
             b(o2.b().a(AndroidUtilities.getHostAuthority(str, true)));
         }
         this.d = str;
@@ -348,7 +348,7 @@ public final class z0 extends WebView {
         if (c1Var != null) {
             getScrollX();
             getScrollY();
-            ((m3) ((org.telegram.ui.g) c1Var).f36543b).K.f0();
+            ((m3) ((org.telegram.ui.g) c1Var).f36516b).K.f0();
         }
         getScrollX();
         getScrollY();
@@ -455,7 +455,7 @@ public final class z0 extends WebView {
             f3Var.dismiss();
             this.F = null;
         }
-        if (!this.f42357c) {
+        if (!this.f42330c) {
             b(o2.b().a(AndroidUtilities.getHostAuthority(str, true)));
         }
         this.d = str;

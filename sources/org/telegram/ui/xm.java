@@ -9,13 +9,13 @@ import org.telegram.messenger.RichMessageLayout;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
 public final class xm extends su0 {
-    public final ArrayList f42788a;
-    public final int[] f42789b = new int[2];
-    public final co f42790c;
+    public final ArrayList f42761a;
+    public final int[] f42762b = new int[2];
+    public final co f42763c;
 
     public xm(co coVar, ArrayList arrayList) {
-        this.f42790c = coVar;
-        this.f42788a = arrayList;
+        this.f42763c = coVar;
+        this.f42761a = arrayList;
     }
 
     @Override
@@ -24,16 +24,16 @@ public final class xm extends su0 {
         org.telegram.ui.Cells.t1 t1Var;
         MessageObject messageObject2;
         RichMessageLayout richMessageLayout;
-        co coVar = this.f42790c;
-        if (coVar.f35501x0 != null && i10 >= 0) {
-            ArrayList arrayList = this.f42788a;
+        co coVar = this.f42763c;
+        if (coVar.f35474x0 != null && i10 >= 0) {
+            ArrayList arrayList = this.f42761a;
             if (i10 < arrayList.size()) {
                 TL_iv.PageBlock pageBlock = (TL_iv.PageBlock) arrayList.get(i10);
-                int childCount = coVar.f35501x0.getChildCount();
+                int childCount = coVar.f35474x0.getChildCount();
                 for (int i11 = 0; i11 < childCount; i11++) {
-                    View childAt = coVar.f35501x0.getChildAt(i11);
+                    View childAt = coVar.f35474x0.getChildAt(i11);
                     boolean z12 = childAt instanceof org.telegram.ui.Cells.t1;
-                    int[] iArr = this.f42789b;
+                    int[] iArr = this.f42762b;
                     if (z12 && (messageObject2 = (t1Var = (org.telegram.ui.Cells.t1) childAt).getMessageObject()) != null && (richMessageLayout = messageObject2.richLayout) != null) {
                         int[] iArr2 = new int[2];
                         imageReceiver = richMessageLayout.findMediaImageReceiver(pageBlock, iArr2);
@@ -47,14 +47,14 @@ public final class xm extends su0 {
                     }
                     if (imageReceiver != null) {
                         cv0 cv0Var = new cv0();
-                        cv0Var.f35569b = iArr[0];
-                        cv0Var.f35570c = iArr[1];
-                        cv0Var.d = coVar.f35501x0;
-                        cv0Var.f35568a = imageReceiver;
-                        cv0Var.f35571e = imageReceiver.getBitmapSafe();
+                        cv0Var.f35542b = iArr[0];
+                        cv0Var.f35543c = iArr[1];
+                        cv0Var.d = coVar.f35474x0;
+                        cv0Var.f35541a = imageReceiver;
+                        cv0Var.f35544e = imageReceiver.getBitmapSafe();
                         cv0Var.h = imageReceiver.getRoundRadius(true);
-                        cv0Var.f35575j = (int) ((coVar.f35446s9 - coVar.f35471u9) - AndroidUtilities.dp(4.0f));
-                        cv0Var.f35574i = (int) (coVar.W8(org.telegram.ui.Components.s21.f30206c) + coVar.v.c() + AndroidUtilities.dp(9.0f) + coVar.Aa + coVar.f35449sc);
+                        cv0Var.f35548j = (int) ((coVar.f35419s9 - coVar.f35444u9) - AndroidUtilities.dp(4.0f));
+                        cv0Var.f35547i = (int) (coVar.W8(org.telegram.ui.Components.s21.f30179c) + coVar.v.c() + AndroidUtilities.dp(9.0f) + coVar.Aa + coVar.f35422sc);
                         return cv0Var;
                     }
                 }

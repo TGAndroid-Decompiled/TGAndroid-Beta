@@ -2,26 +2,26 @@ package org.telegram.ui;
 
 import org.telegram.tgnet.TLRPC;
 public final class sg implements Runnable {
-    public final int f40467a;
-    public final co f40468b;
-    public final TLRPC.User f40469c;
+    public final int f40440a;
+    public final co f40441b;
+    public final TLRPC.User f40442c;
 
     public sg(co coVar, TLRPC.User user, int i10) {
-        this.f40467a = i10;
-        this.f40468b = coVar;
-        this.f40469c = user;
+        this.f40440a = i10;
+        this.f40441b = coVar;
+        this.f40442c = user;
     }
 
     @Override
     public final void run() {
-        switch (this.f40467a) {
+        switch (this.f40440a) {
             case 0:
-                co coVar = this.f40468b;
+                co coVar = this.f40441b;
                 coVar.getClass();
-                coVar.presentFragment(co.R9(this.f40469c.f20043id));
+                coVar.presentFragment(co.R9(this.f40442c.f20016id));
                 return;
             default:
-                this.f40468b.ma(this.f40469c);
+                this.f40441b.ma(this.f40442c);
                 return;
         }
     }

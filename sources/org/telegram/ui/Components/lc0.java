@@ -11,19 +11,19 @@ import android.graphics.drawable.Drawable;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
 public final class lc0 extends Drawable {
-    public final Drawable f28163a;
-    public final Paint f28164b;
-    public final Paint f28165c;
+    public final Drawable f28136a;
+    public final Paint f28137b;
+    public final Paint f28138c;
     public final e6 d;
-    public boolean f28166e;
+    public boolean f28139e;
 
     public lc0(Context context) {
         Paint paint = new Paint(1);
-        this.f28164b = paint;
+        this.f28137b = paint;
         Paint paint2 = new Paint(1);
-        this.f28165c = paint2;
-        this.d = new e6(new cc0(this, 2), 200L, pr.f29495g, 0);
-        this.f28163a = context.getResources().getDrawable(R.drawable.filled_sound_on).mutate();
+        this.f28138c = paint2;
+        this.d = new e6(new cc0(this, 2), 200L, pr.f29468g, 0);
+        this.f28136a = context.getResources().getDrawable(R.drawable.filled_sound_on).mutate();
         Paint.Style style = Paint.Style.STROKE;
         paint.setStyle(style);
         paint.setStrokeWidth(AndroidUtilities.dpf2(1.566f));
@@ -44,17 +44,17 @@ public final class lc0 extends Drawable {
     public final void draw(Canvas canvas) {
         Rect bounds = getBounds();
         canvas.saveLayerAlpha(bounds.left, bounds.top, bounds.right, bounds.bottom, 255, 31);
-        Drawable drawable = this.f28163a;
+        Drawable drawable = this.f28136a;
         drawable.setBounds(bounds);
         drawable.draw(canvas);
-        float e7 = this.d.e(this.f28166e);
+        float e7 = this.d.e(this.f28139e);
         if (e7 > 0.0f) {
             float dpf2 = AndroidUtilities.dpf2(0.783f);
             float centerX = (bounds.centerX() - AndroidUtilities.dp(9.0f)) + dpf2;
             float centerY = (bounds.centerY() - AndroidUtilities.dp(9.0f)) + dpf2;
             float dp = (AndroidUtilities.dp(9.0f) + bounds.centerX()) - dpf2;
             float dp2 = (AndroidUtilities.dp(9.0f) + bounds.centerY()) - dpf2;
-            if (this.f28166e) {
+            if (this.f28139e) {
                 centerX = AndroidUtilities.lerp(dp, centerX, e7);
                 centerY = AndroidUtilities.lerp(dp2, centerY, e7);
             } else {
@@ -65,8 +65,8 @@ public final class lc0 extends Drawable {
             float f10 = centerX;
             float f11 = centerY;
             float f12 = dp;
-            canvas.drawLine(f10, f11, f12, f7, this.f28165c);
-            Paint paint = this.f28164b;
+            canvas.drawLine(f10, f11, f12, f7, this.f28138c);
+            Paint paint = this.f28137b;
             paint.setAlpha((int) (Math.min(1.0f, e7 * 10.0f) * 255.0f));
             canvas.drawLine(f10, f11, f12, f7, paint);
         }
@@ -90,7 +90,7 @@ public final class lc0 extends Drawable {
 
     @Override
     public final void setAlpha(int i10) {
-        this.f28163a.setAlpha(i10);
+        this.f28136a.setAlpha(i10);
     }
 
     @Override

@@ -3,20 +3,20 @@ package org.telegram.ui;
 import android.view.View;
 import org.telegram.tgnet.tl.TL_iv;
 public final class o2 extends z4.a {
-    public final q2 f39114c;
+    public final q2 f39087c;
 
     public o2(q2 q2Var) {
-        this.f39114c = q2Var;
+        this.f39087c = q2Var;
     }
 
     @Override
     public final void a(z4.g gVar, Object obj) {
-        gVar.removeView(((n2) obj).f38842b);
+        gVar.removeView(((n2) obj).f38815b);
     }
 
     @Override
     public final int b() {
-        TL_iv.pageBlockSlideshow pageblockslideshow = this.f39114c.d;
+        TL_iv.pageBlockSlideshow pageblockslideshow = this.f39087c.d;
         if (pageblockslideshow == null) {
             return 0;
         }
@@ -25,7 +25,7 @@ public final class o2 extends z4.a {
 
     @Override
     public final int c(Object obj) {
-        if (this.f39114c.d.items.contains(((n2) obj).f38841a)) {
+        if (this.f39087c.d.items.contains(((n2) obj).f38814a)) {
             return -1;
         }
         return -2;
@@ -34,9 +34,9 @@ public final class o2 extends z4.a {
     @Override
     public final Object e(z4.g gVar, int i10) {
         x2 x2Var;
-        q2 q2Var = this.f39114c;
-        g4 g4Var = q2Var.f39707w;
-        i4 i4Var = q2Var.f39708x;
+        q2 q2Var = this.f39087c;
+        g4 g4Var = q2Var.f39680w;
+        i4 i4Var = q2Var.f39681x;
         TL_iv.PageBlock pageBlock = q2Var.d.items.get(i10);
         if (pageBlock instanceof TL_iv.pageBlockPhoto) {
             d2 d2Var = new d2(q2Var.getContext(), i4Var, g4Var, 1);
@@ -45,19 +45,19 @@ public final class o2 extends z4.a {
         } else {
             x2 x2Var2 = new x2(q2Var.getContext(), i4Var, g4Var, 1);
             TL_iv.pageBlockVideo pageblockvideo = (TL_iv.pageBlockVideo) pageBlock;
-            x2Var2.b(pageblockvideo, (y2) i4Var.f41471y.f(pageblockvideo.video_id), false, true);
+            x2Var2.b(pageblockvideo, (y2) i4Var.f41444y.f(pageblockvideo.video_id), false, true);
             x2Var = x2Var2;
         }
         gVar.addView(x2Var);
         ?? obj = new Object();
-        obj.f38842b = x2Var;
-        obj.f38841a = pageBlock;
+        obj.f38815b = x2Var;
+        obj.f38814a = pageBlock;
         return obj;
     }
 
     @Override
     public final boolean f(View view, Object obj) {
-        if (((n2) obj).f38842b == view) {
+        if (((n2) obj).f38815b == view) {
             return true;
         }
         return false;

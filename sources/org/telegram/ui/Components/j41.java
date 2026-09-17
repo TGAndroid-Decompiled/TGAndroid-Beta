@@ -8,27 +8,27 @@ import java.util.ArrayList;
 import org.telegram.messenger.TranslateController;
 import org.telegram.ui.NotificationsCustomSettingsActivity;
 public final class j41 implements Runnable {
-    public final int f27371a = 1;
-    public final ArrayList f27372b;
-    public final ArrayList f27373c;
+    public final int f27344a = 1;
+    public final ArrayList f27345b;
+    public final ArrayList f27346c;
     public final Object d;
-    public final Object f27374e;
-    public final Serializable f27375f;
+    public final Object f27347e;
+    public final Serializable f27348f;
     public final Serializable h;
-    public final Object f27376n;
-    public final Object f27377r;
-    public final Object f27378s;
+    public final Object f27349n;
+    public final Object f27350r;
+    public final Object f27351s;
 
     public j41(org.telegram.ui.zk zkVar, boolean[] zArr, String str, LinearLayout linearLayout, ArrayList arrayList, String str2, TranslateController translateController, org.telegram.ui.ActionBar.n1 n1Var, ArrayList arrayList2) {
         this.d = zkVar;
-        this.f27374e = zArr;
-        this.f27375f = str;
-        this.f27376n = linearLayout;
-        this.f27372b = arrayList;
+        this.f27347e = zArr;
+        this.f27348f = str;
+        this.f27349n = linearLayout;
+        this.f27345b = arrayList;
         this.h = str2;
-        this.f27377r = translateController;
-        this.f27378s = n1Var;
-        this.f27373c = arrayList2;
+        this.f27350r = translateController;
+        this.f27351s = n1Var;
+        this.f27346c = arrayList2;
     }
 
     @Override
@@ -36,15 +36,15 @@ public final class j41 implements Runnable {
         boolean z10;
         org.telegram.ui.ActionBar.f1 f1Var;
         String y3;
-        switch (this.f27371a) {
+        switch (this.f27344a) {
             case 0:
                 final org.telegram.ui.zk zkVar = (org.telegram.ui.zk) this.d;
-                boolean[] zArr = (boolean[]) this.f27374e;
-                String str = (String) this.f27375f;
-                LinearLayout linearLayout = (LinearLayout) this.f27376n;
+                boolean[] zArr = (boolean[]) this.f27347e;
+                String str = (String) this.f27348f;
+                LinearLayout linearLayout = (LinearLayout) this.f27349n;
                 String str2 = (String) this.h;
-                final TranslateController translateController = (TranslateController) this.f27377r;
-                final org.telegram.ui.ActionBar.n1 n1Var = (org.telegram.ui.ActionBar.n1) this.f27378s;
+                final TranslateController translateController = (TranslateController) this.f27350r;
+                final org.telegram.ui.ActionBar.n1 n1Var = (org.telegram.ui.ActionBar.n1) this.f27351s;
                 boolean z11 = false;
                 if (!zArr[0]) {
                     if (str != null && (y3 = u31.y(u31.D(str, null, null))) != null) {
@@ -53,7 +53,7 @@ public final class j41 implements Runnable {
                         f1Var2.setText(y3);
                         linearLayout.addView(f1Var2);
                     }
-                    ArrayList arrayList = this.f27372b;
+                    ArrayList arrayList = this.f27345b;
                     int size = arrayList.size();
                     int i10 = 0;
                     while (i10 < size) {
@@ -77,13 +77,13 @@ public final class j41 implements Runnable {
                                         switch (r5) {
                                             case 0:
                                                 org.telegram.ui.zk zkVar2 = zkVar;
-                                                translateController.setDialogTranslateTo(zkVar2.f28079b, str3);
+                                                translateController.setDialogTranslateTo(zkVar2.f28052b, str3);
                                                 n1Var.d(true);
                                                 zkVar2.b();
                                                 return;
                                             default:
                                                 org.telegram.ui.zk zkVar3 = zkVar;
-                                                translateController.setDialogTranslateTo(zkVar3.f28079b, str3);
+                                                translateController.setDialogTranslateTo(zkVar3.f28052b, str3);
                                                 n1Var.d(true);
                                                 zkVar3.b();
                                                 return;
@@ -99,7 +99,7 @@ public final class j41 implements Runnable {
                         }
                     }
                     linearLayout.addView(new org.telegram.ui.ActionBar.k1(zkVar.getContext(), zkVar.d), w7.x5.n(-1, 8));
-                    ArrayList arrayList2 = this.f27373c;
+                    ArrayList arrayList2 = this.f27346c;
                     int size2 = arrayList2.size();
                     int i12 = 0;
                     while (i12 < size2) {
@@ -122,13 +122,13 @@ public final class j41 implements Runnable {
                                         switch (r5) {
                                             case 0:
                                                 org.telegram.ui.zk zkVar2 = zkVar;
-                                                translateController.setDialogTranslateTo(zkVar2.f28079b, str4);
+                                                translateController.setDialogTranslateTo(zkVar2.f28052b, str4);
                                                 n1Var.d(true);
                                                 zkVar2.b();
                                                 return;
                                             default:
                                                 org.telegram.ui.zk zkVar3 = zkVar;
-                                                translateController.setDialogTranslateTo(zkVar3.f28079b, str4);
+                                                translateController.setDialogTranslateTo(zkVar3.f28052b, str4);
                                                 n1Var.d(true);
                                                 zkVar3.b();
                                                 return;
@@ -146,24 +146,24 @@ public final class j41 implements Runnable {
                 return;
             default:
                 NotificationsCustomSettingsActivity notificationsCustomSettingsActivity = (NotificationsCustomSettingsActivity) this.d;
-                ArrayList arrayList3 = (ArrayList) this.f27375f;
+                ArrayList arrayList3 = (ArrayList) this.f27348f;
                 ArrayList arrayList4 = (ArrayList) this.h;
-                ArrayList arrayList5 = (ArrayList) this.f27376n;
-                ArrayList arrayList6 = (ArrayList) this.f27377r;
-                ArrayList arrayList7 = (ArrayList) this.f27378s;
-                notificationsCustomSettingsActivity.getMessagesController().putUsers(this.f27372b, true);
-                notificationsCustomSettingsActivity.getMessagesController().putChats(this.f27373c, true);
-                notificationsCustomSettingsActivity.getMessagesController().putEncryptedChats((ArrayList) this.f27374e, true);
-                int i14 = notificationsCustomSettingsActivity.f33508s;
+                ArrayList arrayList5 = (ArrayList) this.f27349n;
+                ArrayList arrayList6 = (ArrayList) this.f27350r;
+                ArrayList arrayList7 = (ArrayList) this.f27351s;
+                notificationsCustomSettingsActivity.getMessagesController().putUsers(this.f27345b, true);
+                notificationsCustomSettingsActivity.getMessagesController().putChats(this.f27346c, true);
+                notificationsCustomSettingsActivity.getMessagesController().putEncryptedChats((ArrayList) this.f27347e, true);
+                int i14 = notificationsCustomSettingsActivity.f33481s;
                 if (i14 == 1) {
-                    notificationsCustomSettingsActivity.f33509w = arrayList3;
+                    notificationsCustomSettingsActivity.f33482w = arrayList3;
                 } else if (i14 == 0) {
-                    notificationsCustomSettingsActivity.f33509w = arrayList4;
+                    notificationsCustomSettingsActivity.f33482w = arrayList4;
                 } else if (i14 == 3) {
-                    notificationsCustomSettingsActivity.f33509w = arrayList5;
+                    notificationsCustomSettingsActivity.f33482w = arrayList5;
                     notificationsCustomSettingsActivity.v = arrayList6;
                 } else {
-                    notificationsCustomSettingsActivity.f33509w = arrayList7;
+                    notificationsCustomSettingsActivity.f33482w = arrayList7;
                 }
                 notificationsCustomSettingsActivity.l0(true);
                 return;
@@ -172,13 +172,13 @@ public final class j41 implements Runnable {
 
     public j41(NotificationsCustomSettingsActivity notificationsCustomSettingsActivity, ArrayList arrayList, ArrayList arrayList2, ArrayList arrayList3, ArrayList arrayList4, ArrayList arrayList5, ArrayList arrayList6, ArrayList arrayList7, ArrayList arrayList8) {
         this.d = notificationsCustomSettingsActivity;
-        this.f27372b = arrayList;
-        this.f27373c = arrayList2;
-        this.f27374e = arrayList3;
-        this.f27375f = arrayList4;
+        this.f27345b = arrayList;
+        this.f27346c = arrayList2;
+        this.f27347e = arrayList3;
+        this.f27348f = arrayList4;
         this.h = arrayList5;
-        this.f27376n = arrayList6;
-        this.f27377r = arrayList7;
-        this.f27378s = arrayList8;
+        this.f27349n = arrayList6;
+        this.f27350r = arrayList7;
+        this.f27351s = arrayList8;
     }
 }

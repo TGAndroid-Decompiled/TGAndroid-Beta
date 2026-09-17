@@ -29,8 +29,8 @@ public final class y1 extends nz {
         int i11;
         int i12;
         iv0 iv0Var = this.X;
-        iv0Var.f27301c = false;
-        Object F = this.Y.f8535c.F(i10);
+        iv0Var.f27274c = false;
+        Object F = this.Y.f8507c.F(i10);
         if (F instanceof TLRPC.BotInlineResult) {
             TLRPC.BotInlineResult botInlineResult = (TLRPC.BotInlineResult) F;
             document = botInlineResult.document;
@@ -53,22 +53,22 @@ public final class y1 extends nz {
             document = (TLRPC.Document) F;
             arrayList = document.attributes;
         } else {
-            iv0Var.f27301c = true;
+            iv0Var.f27274c = true;
             return iv0Var;
         }
-        iv0Var.f27300b = 100.0f;
-        iv0Var.f27299a = 100.0f;
-        iv0Var.f27301c = false;
-        if (document != null && (closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(document.thumbs, 90)) != null && (i11 = closestPhotoSizeWithSize.f19921w) != 0 && (i12 = closestPhotoSizeWithSize.h) != 0) {
-            iv0Var.f27299a = i11;
-            iv0Var.f27300b = i12;
+        iv0Var.f27273b = 100.0f;
+        iv0Var.f27272a = 100.0f;
+        iv0Var.f27274c = false;
+        if (document != null && (closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(document.thumbs, 90)) != null && (i11 = closestPhotoSizeWithSize.f19894w) != 0 && (i12 = closestPhotoSizeWithSize.h) != 0) {
+            iv0Var.f27272a = i11;
+            iv0Var.f27273b = i12;
         }
         if (arrayList != null) {
             for (int i13 = 0; i13 < arrayList.size(); i13++) {
                 TLRPC.DocumentAttribute documentAttribute = arrayList.get(i13);
                 if ((documentAttribute instanceof TLRPC.TL_documentAttributeImageSize) || (documentAttribute instanceof TLRPC.TL_documentAttributeVideo)) {
-                    iv0Var.f27299a = documentAttribute.f19903w;
-                    iv0Var.f27300b = documentAttribute.h;
+                    iv0Var.f27272a = documentAttribute.f19876w;
+                    iv0Var.f27273b = documentAttribute.h;
                     break;
                 }
             }

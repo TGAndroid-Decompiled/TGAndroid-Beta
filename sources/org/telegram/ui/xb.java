@@ -5,18 +5,18 @@ import java.util.regex.Pattern;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.tgnet.tl.TL_stories;
 public final class xb implements e2.h {
-    public final int f42697a;
-    public final Object f42698b;
+    public final int f42670a;
+    public final Object f42671b;
 
     public xb(Object obj, int i10) {
-        this.f42697a = i10;
-        this.f42698b = obj;
+        this.f42670a = i10;
+        this.f42671b = obj;
     }
 
     @Override
     public final void accept(Object obj) {
-        int i10 = this.f42697a;
-        Object obj2 = this.f42698b;
+        int i10 = this.f42670a;
+        Object obj2 = this.f42671b;
         switch (i10) {
             case 0:
                 AndroidUtilities.runOnUIThread(new org.telegram.ui.ActionBar.c6(18, (cc) obj2, (TL_stories.TL_premium_boostsStatus) obj));
@@ -32,25 +32,25 @@ public final class xb implements e2.h {
             case 3:
                 vp0 vp0Var = (vp0) obj2;
                 View view = (View) obj;
-                bq0 bq0Var = vp0Var.f41647p0;
+                bq0 bq0Var = vp0Var.f41620p0;
                 if (view instanceof yp0) {
-                    view.setBackgroundColor(bq0Var.getThemedColor(org.telegram.ui.ActionBar.j6.f20691d6));
+                    view.setBackgroundColor(bq0Var.getThemedColor(org.telegram.ui.ActionBar.j6.f20664d6));
                     ((yp0) view).b();
                     return;
                 } else if (view instanceof org.telegram.ui.Cells.r8) {
-                    view.setBackgroundColor(bq0Var.getThemedColor(org.telegram.ui.ActionBar.j6.f20691d6));
+                    view.setBackgroundColor(bq0Var.getThemedColor(org.telegram.ui.ActionBar.j6.f20664d6));
                     ((org.telegram.ui.Cells.r8) view).v();
                     return;
                 } else if (view instanceof up0) {
-                    int i11 = org.telegram.ui.ActionBar.j6.f20691d6;
+                    int i11 = org.telegram.ui.ActionBar.j6.f20664d6;
                     view.setBackgroundColor(bq0Var.getThemedColor(i11));
                     up0 up0Var = (up0) view;
-                    bq0 bq0Var2 = up0Var.d.f41647p0;
+                    bq0 bq0Var2 = up0Var.d.f41620p0;
                     up0Var.setBackgroundColor(bq0Var2.getThemedColor(i11));
-                    up0Var.f41224a.setTextColor(bq0Var2.getThemedColor(org.telegram.ui.ActionBar.j6.G6));
+                    up0Var.f41197a.setTextColor(bq0Var2.getThemedColor(org.telegram.ui.ActionBar.j6.G6));
                     return;
                 } else if (view instanceof org.telegram.ui.Cells.l4) {
-                    view.setBackgroundColor(bq0Var.getThemedColor(org.telegram.ui.ActionBar.j6.f20691d6));
+                    view.setBackgroundColor(bq0Var.getThemedColor(org.telegram.ui.ActionBar.j6.f20664d6));
                     return;
                 } else if (view instanceof jp0) {
                     ((jp0) view).d.invalidate();

@@ -14,31 +14,31 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class xu0 extends View {
-    public final Paint f42922a;
-    public final org.telegram.ui.Components.p6 f42923b;
-    public final TextPaint f42924c;
+    public final Paint f42895a;
+    public final org.telegram.ui.Components.p6 f42896b;
+    public final TextPaint f42897c;
     public StaticLayout d;
-    public float f42925e;
-    public float f42926f;
+    public float f42898e;
+    public float f42899f;
     public final org.telegram.ui.Components.p6 h;
-    public String f42927n;
-    public boolean f42928r;
-    public final org.telegram.ui.Components.e6 f42929s;
+    public String f42900n;
+    public boolean f42901r;
+    public final org.telegram.ui.Components.e6 f42902s;
     public boolean v;
-    public int f42930w;
+    public int f42903w;
 
     public xu0(Activity activity) {
         super(activity);
         Paint paint = new Paint(1);
-        this.f42922a = paint;
+        this.f42895a = paint;
         TextPaint textPaint = new TextPaint(1);
-        this.f42924c = textPaint;
-        this.f42928r = false;
+        this.f42897c = textPaint;
+        this.f42901r = false;
         org.telegram.ui.Components.pr prVar = org.telegram.ui.Components.pr.h;
-        this.f42929s = new org.telegram.ui.Components.e6(this, 0L, 350L, prVar);
+        this.f42902s = new org.telegram.ui.Components.e6(this, 0L, 350L, prVar);
         paint.setColor(2130706432);
         org.telegram.ui.Components.p6 p6Var = new org.telegram.ui.Components.p6(false, true, true, false);
-        this.f42923b = p6Var;
+        this.f42896b = p6Var;
         p6Var.k(0.3f, 320L, prVar);
         p6Var.r(-1);
         p6Var.t(AndroidUtilities.dp(14.0f));
@@ -71,7 +71,7 @@ public final class xu0 extends View {
         boolean z12 = false;
         int max = Math.max(0, i10);
         int max2 = Math.max(max, i11);
-        if (LocaleController.getInstance().getCurrentLocaleInfo() != null && !TextUtils.equals(this.f42927n, LocaleController.getInstance().getCurrentLocaleInfo().shortName)) {
+        if (LocaleController.getInstance().getCurrentLocaleInfo() != null && !TextUtils.equals(this.f42900n, LocaleController.getInstance().getCurrentLocaleInfo().shortName)) {
             c();
         }
         if (LocaleController.isRTL) {
@@ -85,7 +85,7 @@ public final class xu0 extends View {
         } else {
             z11 = false;
         }
-        this.f42923b.q(format, z11, true);
+        this.f42896b.q(format, z11, true);
         if (!LocaleController.isRTL) {
             max = max2;
         }
@@ -98,22 +98,22 @@ public final class xu0 extends View {
     }
 
     public final void c() {
-        this.f42927n = LocaleController.getInstance().getCurrentLocaleInfo().shortName;
-        StaticLayout staticLayout = new StaticLayout(LocaleController.getString(R.string.Of).replace("%1$d", "").replace("%2$d", ""), this.f42924c, AndroidUtilities.dp(200.0f), Layout.Alignment.ALIGN_CENTER, 1.0f, 0.0f, false);
+        this.f42900n = LocaleController.getInstance().getCurrentLocaleInfo().shortName;
+        StaticLayout staticLayout = new StaticLayout(LocaleController.getString(R.string.Of).replace("%1$d", "").replace("%2$d", ""), this.f42897c, AndroidUtilities.dp(200.0f), Layout.Alignment.ALIGN_CENTER, 1.0f, 0.0f, false);
         this.d = staticLayout;
         if (staticLayout.getLineCount() >= 1) {
-            this.f42925e = this.d.getLineWidth(0);
-            this.f42926f = this.d.getLineDescent(0);
+            this.f42898e = this.d.getLineWidth(0);
+            this.f42899f = this.d.getLineDescent(0);
             return;
         }
-        this.f42925e = 0.0f;
-        this.f42926f = 0.0f;
+        this.f42898e = 0.0f;
+        this.f42899f = 0.0f;
     }
 
     public final void d(boolean z10, boolean z11) {
         float f7;
-        if (this.f42928r != z10) {
-            this.f42928r = z10;
+        if (this.f42901r != z10) {
+            this.f42901r = z10;
             if (!z10) {
                 this.v = true;
             }
@@ -123,7 +123,7 @@ public final class xu0 extends View {
                 } else {
                     f7 = 0.0f;
                 }
-                this.f42929s.d(f7, true);
+                this.f42902s.d(f7, true);
             }
             invalidate();
         }
@@ -131,30 +131,30 @@ public final class xu0 extends View {
 
     @Override
     public final boolean isShown() {
-        return this.f42928r;
+        return this.f42901r;
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
         float f7;
         super.onDraw(canvas);
-        if (this.f42928r) {
+        if (this.f42901r) {
             f7 = 1.0f;
         } else {
             f7 = 0.0f;
         }
-        float d = this.f42929s.d(f7, false);
+        float d = this.f42902s.d(f7, false);
         if (d <= 0.0f) {
             return;
         }
-        org.telegram.ui.Components.p6 p6Var = this.f42923b;
-        float d10 = p6Var.d() + this.f42925e;
+        org.telegram.ui.Components.p6 p6Var = this.f42896b;
+        float d10 = p6Var.d() + this.f42898e;
         org.telegram.ui.Components.p6 p6Var2 = this.h;
         float d11 = p6Var2.d() + d10 + AndroidUtilities.dp(18.0f);
-        float f10 = ((1.0f - d) * (-AndroidUtilities.dp(8.0f))) + this.f42930w;
+        float f10 = ((1.0f - d) * (-AndroidUtilities.dp(8.0f))) + this.f42903w;
         RectF rectF = AndroidUtilities.rectTmp;
         rectF.set((getWidth() - d11) / 2.0f, AndroidUtilities.dpf2(10.0f) + f10, (getWidth() + d11) / 2.0f, AndroidUtilities.dpf2(33.0f) + f10);
-        Paint paint = this.f42922a;
+        Paint paint = this.f42895a;
         int alpha = paint.getAlpha();
         paint.setAlpha((int) (alpha * d));
         canvas.drawRoundRect(rectF, AndroidUtilities.dpf2(12.0f), AndroidUtilities.dpf2(12.0f), paint);
@@ -163,17 +163,17 @@ public final class xu0 extends View {
         canvas.translate(((getWidth() - d11) / 2.0f) + AndroidUtilities.dp(9.0f), f10 + AndroidUtilities.dp(9.5f));
         p6Var.setBounds(0, 0, (int) p6Var.d(), AndroidUtilities.dp(23.0f));
         int i10 = (int) (d * 255.0f);
-        p6Var.f29331w = i10;
+        p6Var.f29304w = i10;
         p6Var.draw(canvas);
         canvas.translate(p6Var.d(), 0.0f);
         canvas.save();
-        canvas.translate((-(this.d.getWidth() - this.f42925e)) / 2.0f, ((this.f42926f / 2.0f) + (AndroidUtilities.dp(23.0f) - this.d.getHeight())) / 2.0f);
-        this.f42924c.setAlpha(i10);
+        canvas.translate((-(this.d.getWidth() - this.f42898e)) / 2.0f, ((this.f42899f / 2.0f) + (AndroidUtilities.dp(23.0f) - this.d.getHeight())) / 2.0f);
+        this.f42897c.setAlpha(i10);
         this.d.draw(canvas);
         canvas.restore();
-        canvas.translate(this.f42925e, 0.0f);
+        canvas.translate(this.f42898e, 0.0f);
         p6Var2.setBounds(0, 0, (int) p6Var2.d(), AndroidUtilities.dp(23.0f));
-        p6Var2.f29331w = i10;
+        p6Var2.f29304w = i10;
         p6Var2.draw(canvas);
         canvas.restore();
     }
@@ -181,15 +181,15 @@ public final class xu0 extends View {
     @Override
     public final void onMeasure(int i10, int i11) {
         int size = View.MeasureSpec.getSize(i10);
-        this.f42930w = org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() + AndroidUtilities.statusBarHeight;
-        this.f42923b.G = size;
+        this.f42903w = org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() + AndroidUtilities.statusBarHeight;
+        this.f42896b.G = size;
         this.h.G = size;
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), org.telegram.messenger.vl.C(43.0f, this.f42930w, 1073741824));
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), org.telegram.messenger.vl.C(43.0f, this.f42903w, 1073741824));
     }
 
     @Override
     public final boolean verifyDrawable(Drawable drawable) {
-        if (this.f42923b != drawable && this.h != drawable && !super.verifyDrawable(drawable)) {
+        if (this.f42896b != drawable && this.h != drawable && !super.verifyDrawable(drawable)) {
             return false;
         }
         return true;

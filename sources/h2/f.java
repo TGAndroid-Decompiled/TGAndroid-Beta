@@ -1,3 +1,3 @@
 package h2;
-public abstract class f extends Exception {
+public final class f extends IllegalStateException {
 }

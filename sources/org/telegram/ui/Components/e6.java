@@ -5,26 +5,26 @@ import android.os.SystemClock;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 public final class e6 {
-    public View f25591a;
-    public final Runnable f25592b;
-    public float f25593c;
+    public View f25564a;
+    public final Runnable f25565b;
+    public float f25566c;
     public float d;
-    public boolean f25594e;
-    public long f25595f;
-    public long f25596g;
+    public boolean f25567e;
+    public long f25568f;
+    public long f25569g;
     public TimeInterpolator h;
-    public boolean f25597i;
-    public long f25598j;
-    public float f25599k;
+    public boolean f25570i;
+    public long f25571j;
+    public float f25572k;
 
     public e6(long j3, TimeInterpolator timeInterpolator) {
-        this.f25595f = 0L;
-        this.f25596g = 200L;
-        pr prVar = pr.f29494f;
-        this.f25591a = null;
-        this.f25596g = j3;
+        this.f25568f = 0L;
+        this.f25569g = 200L;
+        pr prVar = pr.f29467f;
+        this.f25564a = null;
+        this.f25569g = j3;
         this.h = timeInterpolator;
-        this.f25594e = true;
+        this.f25567e = true;
     }
 
     public final void a(boolean z10) {
@@ -38,53 +38,53 @@ public final class e6 {
     }
 
     public final float b() {
-        if (!this.f25597i) {
+        if (!this.f25570i) {
             return 0.0f;
         }
-        return w7.p.a(((float) ((SystemClock.elapsedRealtime() - this.f25598j) - this.f25595f)) / ((float) this.f25596g), 0.0f, 1.0f);
+        return w7.p.a(((float) ((SystemClock.elapsedRealtime() - this.f25571j) - this.f25568f)) / ((float) this.f25569g), 0.0f, 1.0f);
     }
 
     public final float c() {
-        if (this.f25597i) {
+        if (this.f25570i) {
             long elapsedRealtime = SystemClock.elapsedRealtime();
-            float a2 = w7.p.a(((float) ((elapsedRealtime - this.f25598j) - this.f25595f)) / ((float) this.f25596g), 0.0f, 1.0f);
-            if (elapsedRealtime - this.f25598j >= this.f25595f) {
+            float a2 = w7.p.a(((float) ((elapsedRealtime - this.f25571j) - this.f25568f)) / ((float) this.f25569g), 0.0f, 1.0f);
+            if (elapsedRealtime - this.f25571j >= this.f25568f) {
                 TimeInterpolator timeInterpolator = this.h;
                 if (timeInterpolator == null) {
-                    this.f25593c = AndroidUtilities.lerp(this.f25599k, this.d, a2);
+                    this.f25566c = AndroidUtilities.lerp(this.f25572k, this.d, a2);
                 } else {
-                    this.f25593c = AndroidUtilities.lerp(this.f25599k, this.d, timeInterpolator.getInterpolation(a2));
+                    this.f25566c = AndroidUtilities.lerp(this.f25572k, this.d, timeInterpolator.getInterpolation(a2));
                 }
             }
             if (a2 >= 1.0f) {
-                this.f25597i = false;
+                this.f25570i = false;
             } else {
-                View view = this.f25591a;
+                View view = this.f25564a;
                 if (view != null) {
                     view.invalidate();
                 }
-                Runnable runnable = this.f25592b;
+                Runnable runnable = this.f25565b;
                 if (runnable != null) {
                     runnable.run();
                 }
             }
         }
-        return this.f25593c;
+        return this.f25566c;
     }
 
     public final float d(float f7, boolean z10) {
-        if (!z10 && this.f25596g > 0 && !this.f25594e) {
+        if (!z10 && this.f25569g > 0 && !this.f25567e) {
             if (Math.abs(this.d - f7) > 1.0E-4f) {
-                this.f25597i = true;
+                this.f25570i = true;
                 this.d = f7;
-                this.f25599k = this.f25593c;
-                this.f25598j = SystemClock.elapsedRealtime();
+                this.f25572k = this.f25566c;
+                this.f25571j = SystemClock.elapsedRealtime();
             }
         } else {
             this.d = f7;
-            this.f25593c = f7;
-            this.f25597i = false;
-            this.f25594e = false;
+            this.f25566c = f7;
+            this.f25570i = false;
+            this.f25567e = false;
         }
         return c();
     }
@@ -110,97 +110,97 @@ public final class e6 {
     }
 
     public e6(long j3, long j10, TimeInterpolator timeInterpolator) {
-        this.f25595f = 0L;
-        this.f25596g = 200L;
-        pr prVar = pr.f29494f;
-        this.f25591a = null;
-        this.f25595f = j3;
-        this.f25596g = j10;
+        this.f25568f = 0L;
+        this.f25569g = 200L;
+        pr prVar = pr.f29467f;
+        this.f25564a = null;
+        this.f25568f = j3;
+        this.f25569g = j10;
         this.h = timeInterpolator;
-        this.f25594e = true;
+        this.f25567e = true;
     }
 
     public e6(View view) {
-        this.f25595f = 0L;
-        this.f25596g = 200L;
-        this.h = pr.f29494f;
-        this.f25591a = view;
-        this.f25594e = true;
+        this.f25568f = 0L;
+        this.f25569g = 200L;
+        this.h = pr.f29467f;
+        this.f25564a = view;
+        this.f25567e = true;
     }
 
     public e6(View view, long j3, TimeInterpolator timeInterpolator) {
-        this.f25595f = 0L;
-        this.f25596g = 200L;
-        pr prVar = pr.f29494f;
-        this.f25591a = view;
-        this.f25596g = j3;
+        this.f25568f = 0L;
+        this.f25569g = 200L;
+        pr prVar = pr.f29467f;
+        this.f25564a = view;
+        this.f25569g = j3;
         this.h = timeInterpolator;
-        this.f25594e = true;
+        this.f25567e = true;
     }
 
     public e6(View view, long j3, long j10, TimeInterpolator timeInterpolator) {
-        this.f25595f = 0L;
-        this.f25596g = 200L;
-        pr prVar = pr.f29494f;
-        this.f25591a = view;
-        this.f25595f = j3;
-        this.f25596g = j10;
+        this.f25568f = 0L;
+        this.f25569g = 200L;
+        pr prVar = pr.f29467f;
+        this.f25564a = view;
+        this.f25568f = j3;
+        this.f25569g = j10;
         this.h = timeInterpolator;
-        this.f25594e = true;
+        this.f25567e = true;
     }
 
     public e6(Runnable runnable) {
-        this.f25595f = 0L;
-        this.f25596g = 200L;
-        this.h = pr.f29494f;
-        this.f25592b = runnable;
-        this.f25594e = true;
+        this.f25568f = 0L;
+        this.f25569g = 200L;
+        this.h = pr.f29467f;
+        this.f25565b = runnable;
+        this.f25567e = true;
     }
 
     public e6(Runnable runnable, long j3, TimeInterpolator timeInterpolator) {
-        this.f25595f = 0L;
-        this.f25596g = 200L;
-        pr prVar = pr.f29494f;
-        this.f25592b = runnable;
-        this.f25596g = j3;
+        this.f25568f = 0L;
+        this.f25569g = 200L;
+        pr prVar = pr.f29467f;
+        this.f25565b = runnable;
+        this.f25569g = j3;
         this.h = timeInterpolator;
-        this.f25594e = true;
+        this.f25567e = true;
     }
 
     public e6(Runnable runnable, long j3, TimeInterpolator timeInterpolator, int i10) {
-        this.f25595f = 0L;
-        this.f25596g = 200L;
-        pr prVar = pr.f29494f;
-        this.f25592b = runnable;
-        this.f25595f = 0L;
-        this.f25596g = j3;
+        this.f25568f = 0L;
+        this.f25569g = 200L;
+        pr prVar = pr.f29467f;
+        this.f25565b = runnable;
+        this.f25568f = 0L;
+        this.f25569g = j3;
         this.h = timeInterpolator;
-        this.f25594e = true;
+        this.f25567e = true;
     }
 
     public e6(float f7, View view, long j3, long j10, TimeInterpolator timeInterpolator) {
-        this.f25595f = 0L;
-        this.f25596g = 200L;
-        pr prVar = pr.f29494f;
-        this.f25591a = view;
+        this.f25568f = 0L;
+        this.f25569g = 200L;
+        pr prVar = pr.f29467f;
+        this.f25564a = view;
         this.d = f7;
-        this.f25593c = f7;
-        this.f25595f = j3;
-        this.f25596g = j10;
+        this.f25566c = f7;
+        this.f25568f = j3;
+        this.f25569g = j10;
         this.h = timeInterpolator;
-        this.f25594e = false;
+        this.f25567e = false;
     }
 
     public e6(float f7, Runnable runnable, long j3, long j10, TimeInterpolator timeInterpolator) {
-        this.f25595f = 0L;
-        this.f25596g = 200L;
-        pr prVar = pr.f29494f;
-        this.f25592b = runnable;
+        this.f25568f = 0L;
+        this.f25569g = 200L;
+        pr prVar = pr.f29467f;
+        this.f25565b = runnable;
         this.d = f7;
-        this.f25593c = f7;
-        this.f25595f = j3;
-        this.f25596g = j10;
+        this.f25566c = f7;
+        this.f25568f = j3;
+        this.f25569g = j10;
         this.h = timeInterpolator;
-        this.f25594e = false;
+        this.f25567e = false;
     }
 }

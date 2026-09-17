@@ -3,30 +3,30 @@ package org.telegram.ui.Components;
 import android.animation.ValueAnimator;
 import org.telegram.messenger.AndroidUtilities;
 public final class qd implements ValueAnimator.AnimatorUpdateListener {
-    public final int f29721a;
-    public final ChatActivityEnterView f29722b;
+    public final int f29694a;
+    public final ChatActivityEnterView f29695b;
 
     public qd(ChatActivityEnterView chatActivityEnterView, int i10) {
-        this.f29721a = i10;
-        this.f29722b = chatActivityEnterView;
+        this.f29694a = i10;
+        this.f29695b = chatActivityEnterView;
     }
 
     @Override
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        int i10 = this.f29721a;
-        ChatActivityEnterView chatActivityEnterView = this.f29722b;
+        int i10 = this.f29694a;
+        ChatActivityEnterView chatActivityEnterView = this.f29695b;
         switch (i10) {
             case 0:
                 af afVar = chatActivityEnterView.I1;
                 if (afVar != null) {
-                    afVar.setTranslationX(afVar.f24379a);
+                    afVar.setTranslationX(afVar.f24352a);
                     return;
                 }
                 return;
             case 1:
                 af afVar2 = chatActivityEnterView.I1;
                 if (afVar2 != null) {
-                    afVar2.setTranslationX(afVar2.f24379a);
+                    afVar2.setTranslationX(afVar2.f24352a);
                     return;
                 }
                 return;
@@ -37,8 +37,8 @@ public final class qd implements ValueAnimator.AnimatorUpdateListener {
                 chatActivityEnterView.l1.invalidate();
                 return;
             case 4:
-                int i11 = ChatActivityEnterView.f23689m5;
-                chatActivityEnterView.f23816w0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                int i11 = ChatActivityEnterView.f23662m5;
+                chatActivityEnterView.f23789w0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 eg egVar = chatActivityEnterView.U0;
                 if (egVar != null) {
                     egVar.a0();
@@ -49,21 +49,21 @@ public final class qd implements ValueAnimator.AnimatorUpdateListener {
                 chatActivityEnterView.I1.setTranslationX(((Float) valueAnimator.getAnimatedValue()).floatValue());
                 return;
             case 6:
-                int i12 = ChatActivityEnterView.f23689m5;
+                int i12 = ChatActivityEnterView.f23662m5;
                 chatActivityEnterView.M1.setTransformToSeekbar(((Float) valueAnimator.getAnimatedValue()).floatValue());
-                if (!chatActivityEnterView.f23705c1) {
-                    chatActivityEnterView.f23737h1.setAlpha(chatActivityEnterView.M1.getTransformToSeekbarProgressStep3());
-                    chatActivityEnterView.f23737h1.invalidate();
+                if (!chatActivityEnterView.f23678c1) {
+                    chatActivityEnterView.f23710h1.setAlpha(chatActivityEnterView.M1.getTransformToSeekbarProgressStep3());
+                    chatActivityEnterView.f23710h1.invalidate();
                 }
                 chatActivityEnterView.x0();
                 return;
             default:
-                int i13 = ChatActivityEnterView.f23689m5;
+                int i13 = ChatActivityEnterView.f23662m5;
                 chatActivityEnterView.getClass();
                 float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                chatActivityEnterView.f23811v1.setScaleX(AndroidUtilities.lerp(0.6f, 1.0f, floatValue));
-                chatActivityEnterView.f23811v1.setScaleY(AndroidUtilities.lerp(0.6f, 1.0f, floatValue));
-                chatActivityEnterView.f23811v1.setAlpha(floatValue);
+                chatActivityEnterView.f23784v1.setScaleX(AndroidUtilities.lerp(0.6f, 1.0f, floatValue));
+                chatActivityEnterView.f23784v1.setScaleY(AndroidUtilities.lerp(0.6f, 1.0f, floatValue));
+                chatActivityEnterView.f23784v1.setAlpha(floatValue);
                 return;
         }
     }

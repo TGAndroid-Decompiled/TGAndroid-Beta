@@ -6,20 +6,20 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.tl.TL_account;
 public final class c1 implements Utilities.Callback {
-    public final int f47128a;
-    public final n1 f47129b;
+    public final int f47100a;
+    public final n1 f47101b;
 
     public c1(n1 n1Var, int i10) {
-        this.f47128a = i10;
-        this.f47129b = n1Var;
+        this.f47100a = i10;
+        this.f47101b = n1Var;
     }
 
     @Override
     public final void run(Object obj) {
-        switch (this.f47128a) {
+        switch (this.f47100a) {
             case 0:
-                n1 n1Var = this.f47129b;
-                ArrayList arrayList = n1Var.f47202r0;
+                n1 n1Var = this.f47101b;
+                ArrayList arrayList = n1Var.f47174r0;
                 arrayList.clear();
                 arrayList.addAll((List) obj);
                 k1 k1Var = n1Var.Y;
@@ -33,15 +33,15 @@ public final class c1 implements Utilities.Callback {
                 }
                 return;
             case 1:
-                this.f47129b.dismiss(((Boolean) obj).booleanValue());
+                this.f47101b.dismiss(((Boolean) obj).booleanValue());
                 return;
             case 2:
-                n1.T(this.f47129b, (TL_account.TL_birthday) obj);
+                n1.T(this.f47101b, (TL_account.TL_birthday) obj);
                 return;
             default:
-                n1 n1Var2 = this.f47129b;
-                n1Var2.f47199o0 = (String) obj;
-                rg.b0 b0Var = n1Var2.f47207w0;
+                n1 n1Var2 = this.f47101b;
+                n1Var2.f47171o0 = (String) obj;
+                rg.b0 b0Var = n1Var2.f47179w0;
                 AndroidUtilities.cancelRunOnUIThread(b0Var);
                 AndroidUtilities.runOnUIThread(b0Var, 350L);
                 return;

@@ -7,20 +7,20 @@ import android.text.TextPaint;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 public final class sr extends View {
-    public final TextPaint f30429a;
-    public final TextPaint f30430b;
-    public final String f30431c;
+    public final TextPaint f30402a;
+    public final TextPaint f30403b;
+    public final String f30404c;
     public final String d;
-    public final Rect f30432e;
+    public final Rect f30405e;
 
     public sr(Context context, String str, String str2) {
         super(context);
         TextPaint textPaint = new TextPaint(1);
-        this.f30429a = textPaint;
+        this.f30402a = textPaint;
         TextPaint textPaint2 = new TextPaint(1);
-        this.f30430b = textPaint2;
-        this.f30432e = new Rect();
-        this.f30431c = str;
+        this.f30403b = textPaint2;
+        this.f30405e = new Rect();
+        this.f30404c = str;
         this.d = str2;
         textPaint.setTextSize(AndroidUtilities.dp(24.0f));
         textPaint2.setTextSize(AndroidUtilities.dp(14.0f));
@@ -30,14 +30,14 @@ public final class sr extends View {
 
     @Override
     public final void onDraw(Canvas canvas) {
-        TextPaint textPaint = this.f30430b;
+        TextPaint textPaint = this.f30403b;
         String str = this.d;
         float measureText = textPaint.measureText(str);
-        TextPaint textPaint2 = this.f30429a;
-        String str2 = this.f30431c;
+        TextPaint textPaint2 = this.f30402a;
+        String str2 = this.f30404c;
         float measureText2 = textPaint2.measureText(str2);
         int length = str2.length();
-        Rect rect = this.f30432e;
+        Rect rect = this.f30405e;
         textPaint2.getTextBounds(str2, 0, length, rect);
         textPaint.getTextBounds(str, 0, str.length(), rect);
         canvas.drawText(str2, (getWidth() * 0.25f) - (measureText2 / 2.0f), (getHeight() / 2.0f) + (rect.height() / 2.0f), textPaint2);

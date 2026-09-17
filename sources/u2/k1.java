@@ -3,48 +3,48 @@ package u2;
 import android.net.Uri;
 import java.util.ArrayList;
 public final class k1 implements d0, y2.h {
-    public final g2.m f46747a;
-    public final g2.g f46748b;
-    public final g2.c0 f46749c;
+    public final g2.m f46719a;
+    public final g2.g f46720b;
+    public final g2.c0 f46721c;
     public final rb.a d;
-    public final a5.a f46750e;
-    public final o1 f46751f;
+    public final a5.a f46722e;
+    public final o1 f46723f;
     public final ArrayList h = new ArrayList();
-    public final long f46752n;
-    public final y2.m f46753r;
-    public final b2.s f46754s;
+    public final long f46724n;
+    public final y2.m f46725r;
+    public final b2.s f46726s;
     public final boolean v;
-    public boolean f46755w;
-    public byte[] f46756x;
-    public int f46757y;
+    public boolean f46727w;
+    public byte[] f46728x;
+    public int f46729y;
 
     public k1(g2.m mVar, g2.g gVar, g2.c0 c0Var, b2.s sVar, long j3, rb.a aVar, a5.a aVar2, boolean z10, z2.a aVar3) {
         y2.m mVar2;
-        this.f46747a = mVar;
-        this.f46748b = gVar;
-        this.f46749c = c0Var;
-        this.f46754s = sVar;
-        this.f46752n = j3;
+        this.f46719a = mVar;
+        this.f46720b = gVar;
+        this.f46721c = c0Var;
+        this.f46726s = sVar;
+        this.f46724n = j3;
         this.d = aVar;
-        this.f46750e = aVar2;
+        this.f46722e = aVar2;
         this.v = z10;
-        this.f46751f = new o1(new b2.l1("", sVar));
+        this.f46723f = new o1(new b2.l1("", sVar));
         if (aVar3 != null) {
             mVar2 = new y2.m(aVar3);
         } else {
             mVar2 = new y2.m("SingleSampleMediaPeriod");
         }
-        this.f46753r = mVar2;
+        this.f46725r = mVar2;
     }
 
     @Override
     public final boolean c() {
-        return this.f46753r.d();
+        return this.f46725r.d();
     }
 
     @Override
     public final long d() {
-        if (!this.f46755w && !this.f46753r.d()) {
+        if (!this.f46727w && !this.f46725r.d()) {
             return 0L;
         }
         return Long.MIN_VALUE;
@@ -59,28 +59,28 @@ public final class k1 implements d0, y2.h {
     public final void h(y2.j jVar, long j3, long j10, int i10) {
         t tVar;
         j1 j1Var = (j1) jVar;
-        g2.b0 b0Var = j1Var.f46742b;
+        g2.b0 b0Var = j1Var.f46714b;
         if (i10 == 0) {
-            tVar = new t(j1Var.f46741a);
+            tVar = new t(j1Var.f46713a);
         } else {
-            Uri uri = b0Var.f10326c;
+            Uri uri = b0Var.f10298c;
             tVar = new t(j10);
         }
-        this.f46750e.r(tVar, 1, -1, this.f46754s, 0, null, 0L, this.f46752n, i10);
+        this.f46722e.r(tVar, 1, -1, this.f46726s, 0, null, 0L, this.f46724n, i10);
     }
 
     @Override
     public final void i(y2.j jVar, long j3, long j10) {
         j1 j1Var = (j1) jVar;
-        this.f46757y = (int) j1Var.f46742b.f10325b;
-        byte[] bArr = j1Var.f46743c;
+        this.f46729y = (int) j1Var.f46714b.f10297b;
+        byte[] bArr = j1Var.f46715c;
         bArr.getClass();
-        this.f46756x = bArr;
-        this.f46755w = true;
-        Uri uri = j1Var.f46742b.f10326c;
+        this.f46728x = bArr;
+        this.f46727w = true;
+        Uri uri = j1Var.f46714b.f10298c;
         t tVar = new t(j10);
         this.d.getClass();
-        this.f46750e.o(tVar, 1, -1, this.f46754s, 0, null, 0L, this.f46752n);
+        this.f46722e.o(tVar, 1, -1, this.f46726s, 0, null, 0L, this.f46724n);
     }
 
     @Override
@@ -90,8 +90,8 @@ public final class k1 implements d0, y2.h {
             ArrayList arrayList = this.h;
             if (i10 < arrayList.size()) {
                 i1 i1Var = (i1) arrayList.get(i10);
-                if (i1Var.f46733a == 2) {
-                    i1Var.f46733a = 1;
+                if (i1Var.f46705a == 2) {
+                    i1Var.f46705a = 1;
                 }
                 i10++;
             } else {
@@ -112,15 +112,15 @@ public final class k1 implements d0, y2.h {
 
     @Override
     public final boolean p(i2.r0 r0Var) {
-        if (!this.f46755w) {
-            y2.m mVar = this.f46753r;
+        if (!this.f46727w) {
+            y2.m mVar = this.f46725r;
             if (!mVar.d() && !mVar.c()) {
-                g2.h createDataSource = this.f46748b.createDataSource();
-                g2.c0 c0Var = this.f46749c;
+                g2.h createDataSource = this.f46720b.createDataSource();
+                g2.c0 c0Var = this.f46721c;
                 if (c0Var != null) {
                     createDataSource.addTransferListener(c0Var);
                 }
-                j1 j1Var = new j1(createDataSource, this.f46747a);
+                j1 j1Var = new j1(createDataSource, this.f46719a);
                 this.d.getClass();
                 mVar.f(j1Var, this, 3);
                 return true;
@@ -151,12 +151,12 @@ public final class k1 implements d0, y2.h {
 
     @Override
     public final o1 r() {
-        return this.f46751f;
+        return this.f46723f;
     }
 
     @Override
     public final long s() {
-        if (this.f46755w) {
+        if (this.f46727w) {
             return Long.MIN_VALUE;
         }
         return 0L;
@@ -164,10 +164,10 @@ public final class k1 implements d0, y2.h {
 
     @Override
     public final void w(y2.j jVar, long j3, long j10, boolean z10) {
-        Uri uri = ((j1) jVar).f46742b.f10326c;
+        Uri uri = ((j1) jVar).f46714b.f10298c;
         t tVar = new t(j10);
         this.d.getClass();
-        this.f46750e.n(tVar, 1, -1, null, 0, null, 0L, this.f46752n);
+        this.f46722e.n(tVar, 1, -1, null, 0, null, 0L, this.f46724n);
     }
 
     @Override

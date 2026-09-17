@@ -6,26 +6,26 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.tl.TL_stars;
 public final class s3 extends AnimatorListenerAdapter {
-    public final t3 f52594a;
+    public final t3 f52563a;
 
     public s3(t3 t3Var) {
-        this.f52594a = t3Var;
+        this.f52563a = t3Var;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        t3 t3Var = this.f52594a;
-        m2 m2Var = t3Var.f52660i0;
-        t3Var.f52672s0 = t3Var.f52670r0;
+        t3 t3Var = this.f52563a;
+        m2 m2Var = t3Var.f52629i0;
+        t3Var.f52641s0 = t3Var.f52639r0;
         t3Var.d(t3Var.U);
-        TL_stars.starGiftAttributeModel[] stargiftattributemodelArr = t3Var.f52654e;
-        int i10 = 2 - t3Var.f52670r0;
-        stargiftattributemodelArr[i10] = (TL_stars.starGiftAttributeModel) t3Var.W.f5127f;
-        v7.Z0(t3Var.d[i10].getImageReceiver(), stargiftattributemodelArr[2 - t3Var.f52670r0].document, 160);
-        TL_stars.starGiftAttributePattern stargiftattributepattern = (TL_stars.starGiftAttributePattern) t3Var.f52648a0.f5127f;
+        TL_stars.starGiftAttributeModel[] stargiftattributemodelArr = t3Var.f52623e;
+        int i10 = 2 - t3Var.f52639r0;
+        stargiftattributemodelArr[i10] = (TL_stars.starGiftAttributeModel) t3Var.W.f5100f;
+        v7.Z0(t3Var.d[i10].getImageReceiver(), stargiftattributemodelArr[2 - t3Var.f52639r0].document, 160);
+        TL_stars.starGiftAttributePattern stargiftattributepattern = (TL_stars.starGiftAttributePattern) t3Var.f52617a0.f5100f;
         if (stargiftattributepattern != null) {
             org.telegram.ui.Components.q5 m10 = org.telegram.ui.Components.q5.m(UserConfig.selectedAccount, 7, stargiftattributepattern.document);
-            m10.f29614m = true;
+            m10.f29587m = true;
             m10.v();
         }
         AndroidUtilities.cancelRunOnUIThread(m2Var);

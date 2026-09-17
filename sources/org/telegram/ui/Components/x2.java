@@ -3,30 +3,30 @@ package org.telegram.ui.Components;
 import j$.time.YearMonth;
 import org.telegram.messenger.FileLog;
 public final class x2 implements Runnable {
-    public final vc0 f32435a;
-    public final int f32436b;
-    public final vc0 f32437c;
+    public final vc0 f32408a;
+    public final int f32409b;
+    public final vc0 f32410c;
     public final vc0 d;
-    public final int f32438e;
-    public final int f32439f;
+    public final int f32411e;
+    public final int f32412f;
     public final int h;
 
     public x2(vc0 vc0Var, int i10, vc0 vc0Var2, vc0 vc0Var3, int i11, int i12, int i13) {
-        this.f32435a = vc0Var;
-        this.f32436b = i10;
-        this.f32437c = vc0Var2;
+        this.f32408a = vc0Var;
+        this.f32409b = i10;
+        this.f32410c = vc0Var2;
         this.d = vc0Var3;
-        this.f32438e = i11;
-        this.f32439f = i12;
+        this.f32411e = i11;
+        this.f32412f = i12;
         this.h = i13;
     }
 
     @Override
     public final void run() {
-        vc0 vc0Var = this.f32435a;
+        vc0 vc0Var = this.f32408a;
         int value = vc0Var.getValue();
-        int i10 = this.f32436b;
-        vc0 vc0Var2 = this.f32437c;
+        int i10 = this.f32409b;
+        vc0 vc0Var2 = this.f32410c;
         vc0 vc0Var3 = this.d;
         if (value == i10) {
             vc0Var2.setMinValue(1);
@@ -38,9 +38,9 @@ public final class x2 implements Runnable {
             }
             vc0Var3.setMinValue(0);
             vc0Var3.setMaxValue(11);
-        } else if (vc0Var.getValue() == this.f32438e) {
+        } else if (vc0Var.getValue() == this.f32411e) {
             vc0Var3.setMinValue(0);
-            int i11 = this.f32439f;
+            int i11 = this.f32412f;
             vc0Var3.setMaxValue(i11);
             if (vc0Var3.getValue() == i11) {
                 vc0Var2.setMinValue(1);

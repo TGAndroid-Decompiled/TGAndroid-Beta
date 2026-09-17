@@ -5,17 +5,17 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.ui.Components.xi0;
 public final class a7 implements ImageReceiver.ImageReceiverDelegate {
-    public final boolean[] f51727a;
+    public final boolean[] f51696a;
 
     public a7(boolean[] zArr) {
-        this.f51727a = zArr;
+        this.f51696a = zArr;
     }
 
     @Override
     public final void didSetImage(ImageReceiver imageReceiver, boolean z10, boolean z11, boolean z12) {
         xi0 lottieAnimation;
         if (z10 && (lottieAnimation = imageReceiver.getLottieAnimation()) != null) {
-            boolean[] zArr = this.f51727a;
+            boolean[] zArr = this.f51696a;
             if (!zArr[0]) {
                 lottieAnimation.L(0, false, false);
                 AndroidUtilities.runOnUIThread(new org.telegram.ui.Cells.q0(lottieAnimation, 0));

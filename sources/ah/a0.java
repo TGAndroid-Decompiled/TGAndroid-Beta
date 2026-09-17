@@ -6,15 +6,15 @@ import android.view.View;
 import bi.a2;
 import org.telegram.messenger.NotificationCenter;
 public final class a0 extends AnimatorListenerAdapter {
-    public final int f450a;
+    public final int f438a;
 
     @Override
     public void onAnimationEnd(Animator animator, boolean z10) {
         View view;
-        switch (this.f450a) {
+        switch (this.f438a) {
             case 1:
                 qf.e eVar = a2.Z.L;
-                if (eVar == null || (view = eVar.f44389j) == null) {
+                if (eVar == null || (view = eVar.f44361j) == null) {
                     return;
                 }
                 eVar.e(view);
@@ -27,7 +27,7 @@ public final class a0 extends AnimatorListenerAdapter {
 
     @Override
     public void onAnimationEnd(Animator animator) {
-        switch (this.f450a) {
+        switch (this.f438a) {
             case 0:
                 NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.startAllHeavyOperations, 512);
                 return;

@@ -8,24 +8,24 @@ import android.widget.EditText;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
 public final class tr extends ViewGroup {
-    public static final int f30712s = 0;
-    public final rr f30713a;
-    public EditText f30714b;
-    public final View[] f30715c;
+    public static final int f30685s = 0;
+    public final rr f30686a;
+    public EditText f30687b;
+    public final View[] f30688c;
     public View d;
-    public boolean f30716e;
-    public boolean f30717f;
+    public boolean f30689e;
+    public boolean f30690f;
     public final qr h;
-    public boolean f30718n;
-    public final qr f30719r;
+    public boolean f30691n;
+    public final qr f30692r;
 
     public tr(Context context) {
         super(context);
         String str;
         int i10;
-        this.f30715c = new View[12];
+        this.f30688c = new View[12];
         this.h = new qr(this, 0);
-        this.f30719r = new qr(this, 1);
+        this.f30692r = new qr(this, 1);
         int i11 = 0;
         for (int i12 = 0; i12 < 11; i12++) {
             if (i12 != 9) {
@@ -68,22 +68,22 @@ public final class tr extends ViewGroup {
                     i10 = 0;
                 }
                 String valueOf = String.valueOf(i10);
-                this.f30715c[i12] = new sr(context, valueOf, str);
-                this.f30715c[i12].setOnClickListener(new org.telegram.ui.rf(27, this, valueOf));
-                addView(this.f30715c[i12]);
+                this.f30688c[i12] = new sr(context, valueOf, str);
+                this.f30688c[i12].setOnClickListener(new org.telegram.ui.rf(27, this, valueOf));
+                addView(this.f30688c[i12]);
             }
         }
         rr rrVar = new rr(this, context, new l.d(context, new fi.o4(this, ViewConfiguration.get(context).getScaledTouchSlop(), 1)));
-        this.f30713a = rrVar;
+        this.f30686a = rrVar;
         rrVar.setImageResource(R.drawable.msg_clear_input);
         rrVar.setColorFilter(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.G6, false));
         int dp = AndroidUtilities.dp(11.0f);
         rrVar.setPadding(dp, dp, dp, dp);
         rrVar.setOnClickListener(new ah.f(11));
-        this.f30715c[11] = rrVar;
+        this.f30688c[11] = rrVar;
         addView(rrVar);
         while (true) {
-            View[] viewArr = this.f30715c;
+            View[] viewArr = this.f30688c;
             if (i11 < viewArr.length) {
                 View view = viewArr[i11];
                 if (view != null) {
@@ -124,7 +124,7 @@ public final class tr extends ViewGroup {
         if (i10 <= 8) {
             z13 = false;
         }
-        int i12 = org.telegram.ui.ActionBar.j6.f20781i6;
+        int i12 = org.telegram.ui.ActionBar.j6.f20754i6;
         int w02 = org.telegram.ui.ActionBar.j6.w0(null, i12, false);
         int k10 = i0.a.k(org.telegram.ui.ActionBar.j6.w0(null, i12, false), 30);
         float f12 = 12.0f;
@@ -163,7 +163,7 @@ public final class tr extends ViewGroup {
         int y10 = org.telegram.messenger.vl.y(42.0f, getHeight(), 4);
         int i14 = 0;
         while (true) {
-            View[] viewArr = this.f30715c;
+            View[] viewArr = this.f30688c;
             if (i14 < viewArr.length) {
                 int dp = AndroidUtilities.dp(6.0f) + y3;
                 int dp2 = AndroidUtilities.dp(10.0f) + (dp * (i14 % 3));
@@ -186,7 +186,7 @@ public final class tr extends ViewGroup {
         setMeasuredDimension(View.MeasureSpec.getSize(i10), View.MeasureSpec.getSize(i11));
         int y3 = org.telegram.messenger.vl.y(32.0f, getWidth(), 3);
         int y10 = org.telegram.messenger.vl.y(42.0f, getHeight(), 4);
-        for (View view : this.f30715c) {
+        for (View view : this.f30688c) {
             if (view != null) {
                 view.measure(View.MeasureSpec.makeMeasureSpec(y3, 1073741824), View.MeasureSpec.makeMeasureSpec(y10, 1073741824));
             }
@@ -194,12 +194,12 @@ public final class tr extends ViewGroup {
     }
 
     public void setDispatchBackWhenEmpty(boolean z10) {
-        this.f30716e = z10;
+        this.f30689e = z10;
     }
 
     public void setEditText(EditText editText) {
-        this.f30714b = editText;
-        this.f30716e = false;
+        this.f30687b = editText;
+        this.f30689e = false;
     }
 
     public void setViewToFindFocus(View view) {

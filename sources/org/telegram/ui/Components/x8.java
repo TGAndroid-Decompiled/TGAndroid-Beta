@@ -17,16 +17,16 @@ public final class x8 extends ov0 {
     public float A0;
     public float B0;
     public final f9 C0;
-    public final b2.q0 f32474w0;
-    public final f9 f32475x0;
-    public boolean f32476y0;
-    public boolean f32477z0;
+    public final b2.q0 f32447w0;
+    public final f9 f32448x0;
+    public boolean f32449y0;
+    public boolean f32450z0;
 
     public x8(f9 f9Var, Context context) {
         super(context, null);
         this.C0 = f9Var;
-        this.f32475x0 = f9Var;
-        this.f32474w0 = new Object();
+        this.f32448x0 = f9Var;
+        this.f32447w0 = new Object();
     }
 
     @Override
@@ -39,31 +39,31 @@ public final class x8 extends ov0 {
         if (!f9Var.U) {
             if (!f9Var.h) {
                 canvas.save();
-                float x10 = f9Var.f25992a.getX() + f9Var.f26000r.getX();
-                float y3 = f9Var.f25992a.getY() + f9Var.f26000r.getY();
-                int i10 = f9Var.d - f9Var.f25996c;
-                float lerp = AndroidUtilities.lerp(y3, AndroidUtilities.statusBarHeight + ((org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() - f9Var.f25996c) >> 1), f9Var.N);
+                float x10 = f9Var.f25965a.getX() + f9Var.f25973r.getX();
+                float y3 = f9Var.f25965a.getY() + f9Var.f25973r.getY();
+                int i10 = f9Var.d - f9Var.f25969c;
+                float lerp = AndroidUtilities.lerp(y3, AndroidUtilities.statusBarHeight + ((org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() - f9Var.f25969c) >> 1), f9Var.N);
                 canvas.translate(x10, lerp);
-                f9Var.f25992a.draw(canvas);
+                f9Var.f25965a.draw(canvas);
                 RectF rectF = AndroidUtilities.rectTmp;
                 float f10 = i10 / 2.0f;
-                rectF.set(x10, lerp - (f9Var.E * f10), f9Var.f25992a.getMeasuredWidth() + x10, (f10 * f9Var.E) + f9Var.f25992a.getMeasuredHeight() + lerp);
-                y8 y8Var = f9Var.f25992a;
-                float f11 = x10 + y8Var.f25643y;
+                rectF.set(x10, lerp - (f9Var.E * f10), f9Var.f25965a.getMeasuredWidth() + x10, (f10 * f9Var.E) + f9Var.f25965a.getMeasuredHeight() + lerp);
+                y8 y8Var = f9Var.f25965a;
+                float f11 = x10 + y8Var.f25616y;
                 float f12 = lerp + y8Var.E;
                 gd gdVar = f9Var.K;
-                float f13 = y8Var.f25642x;
+                float f13 = y8Var.f25615x;
                 gdVar.getClass();
                 rectF.set((int) (f11 - f13), (int) (f12 - f13), (int) (f11 + f13), (int) (f12 + f13));
-                gdVar.f26381i = false;
-                gdVar.f26377c = 0;
+                gdVar.f26354i = false;
+                gdVar.f26350c = 0;
                 gdVar.a(rectF);
                 canvas.restore();
             }
             canvas.restoreToCount(save);
-            float f14 = f9Var.f25992a.f25640s.f25593c;
-            if (f9Var.f25997e.getVisibility() == 0) {
-                f7 = f9Var.f25997e.getAlpha();
+            float f14 = f9Var.f25965a.f25613s.f25566c;
+            if (f9Var.f25970e.getVisibility() == 0) {
+                f7 = f9Var.f25970e.getAlpha();
             } else {
                 f7 = 0.0f;
             }
@@ -84,7 +84,7 @@ public final class x8 extends ov0 {
                 f9Var.H.setVisibility(8);
             }
         }
-        if (f9Var.f25998f) {
+        if (f9Var.f25971f) {
             invalidate();
         }
     }
@@ -98,7 +98,7 @@ public final class x8 extends ov0 {
         if (view != f9Var.H) {
             kVar = ((org.telegram.ui.ActionBar.n2) f9Var).actionBar;
             if (view == kVar && f9Var.N > 0.0f) {
-                paint.setColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f20691d6, false));
+                paint.setColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f20664d6, false));
                 paint.setAlpha((int) (f9Var.N * 255.0f));
                 canvas2 = canvas;
                 canvas2.drawRect(0.0f, 0.0f, view.getMeasuredWidth(), view.getMeasuredHeight(), paint);
@@ -113,8 +113,8 @@ public final class x8 extends ov0 {
 
     @Override
     public final int getNestedScrollAxes() {
-        b2.q0 q0Var = this.f32474w0;
-        return q0Var.f2288b | q0Var.f2287a;
+        b2.q0 q0Var = this.f32447w0;
+        return q0Var.f2261b | q0Var.f2260a;
     }
 
     @Override
@@ -133,7 +133,7 @@ public final class x8 extends ov0 {
         float f7;
         org.telegram.ui.ActionBar.k kVar;
         R();
-        if (View.MeasureSpec.getSize(i10) > View.MeasureSpec.getSize(i11) + this.f29234f) {
+        if (View.MeasureSpec.getSize(i10) > View.MeasureSpec.getSize(i11) + this.f29207f) {
             z10 = true;
         } else {
             z10 = false;
@@ -142,35 +142,35 @@ public final class x8 extends ov0 {
         float f10 = 0.0f;
         if (z10 != f9Var.U) {
             f9Var.U = z10;
-            AndroidUtilities.removeFromParent(f9Var.f25992a);
+            AndroidUtilities.removeFromParent(f9Var.f25965a);
             AndroidUtilities.requestAdjustNothing(f9Var.getParentActivity(), f9Var.getClassGuid());
             if (f9Var.U) {
                 f9Var.i0(0.0f, false);
-                f9Var.f25992a.setExpanded(false);
-                addView(f9Var.f25992a, 0, w7.x5.c(-1.0f, -1));
+                f9Var.f25965a.setExpanded(false);
+                addView(f9Var.f25965a, 0, w7.x5.c(-1.0f, -1));
             } else {
-                f9Var.f26000r.addView(f9Var.f25992a, 0, w7.x5.c(-2.0f, -1));
+                f9Var.f25973r.addView(f9Var.f25965a, 0, w7.x5.c(-2.0f, -1));
             }
             AndroidUtilities.requestAdjustResize(f9Var.getParentActivity(), f9Var.getClassGuid());
         }
         if (f9Var.U) {
             int size = (int) (View.MeasureSpec.getSize(i10) * 0.55f);
-            ((ViewGroup.MarginLayoutParams) f9Var.f26000r.getLayoutParams()).bottomMargin = 0;
-            ((ViewGroup.MarginLayoutParams) f9Var.f26000r.getLayoutParams()).leftMargin = (int) (View.MeasureSpec.getSize(i10) * 0.45f);
-            ((ViewGroup.MarginLayoutParams) f9Var.f25992a.getLayoutParams()).rightMargin = size;
-            ((ViewGroup.MarginLayoutParams) f9Var.f26003x.getLayoutParams()).rightMargin = AndroidUtilities.dp(16.0f) + size;
+            ((ViewGroup.MarginLayoutParams) f9Var.f25973r.getLayoutParams()).bottomMargin = 0;
+            ((ViewGroup.MarginLayoutParams) f9Var.f25973r.getLayoutParams()).leftMargin = (int) (View.MeasureSpec.getSize(i10) * 0.45f);
+            ((ViewGroup.MarginLayoutParams) f9Var.f25965a.getLayoutParams()).rightMargin = size;
+            ((ViewGroup.MarginLayoutParams) f9Var.f25976x.getLayoutParams()).rightMargin = AndroidUtilities.dp(16.0f) + size;
             ((ViewGroup.MarginLayoutParams) f9Var.W.getLayoutParams()).topMargin = 0;
             ((ViewGroup.MarginLayoutParams) f9Var.V.getLayoutParams()).topMargin = AndroidUtilities.dp(10.0f);
         } else {
-            ((ViewGroup.MarginLayoutParams) f9Var.f26000r.getLayoutParams()).bottomMargin = AndroidUtilities.dp(64.0f);
-            ((ViewGroup.MarginLayoutParams) f9Var.f26000r.getLayoutParams()).leftMargin = 0;
-            ((ViewGroup.MarginLayoutParams) f9Var.f25992a.getLayoutParams()).rightMargin = 0;
-            ((ViewGroup.MarginLayoutParams) f9Var.f26003x.getLayoutParams()).rightMargin = AndroidUtilities.dp(16.0f);
+            ((ViewGroup.MarginLayoutParams) f9Var.f25973r.getLayoutParams()).bottomMargin = AndroidUtilities.dp(64.0f);
+            ((ViewGroup.MarginLayoutParams) f9Var.f25973r.getLayoutParams()).leftMargin = 0;
+            ((ViewGroup.MarginLayoutParams) f9Var.f25965a.getLayoutParams()).rightMargin = 0;
+            ((ViewGroup.MarginLayoutParams) f9Var.f25976x.getLayoutParams()).rightMargin = AndroidUtilities.dp(16.0f);
             ((ViewGroup.MarginLayoutParams) f9Var.W.getLayoutParams()).topMargin = AndroidUtilities.dp(10.0f);
             ((ViewGroup.MarginLayoutParams) f9Var.V.getLayoutParams()).topMargin = AndroidUtilities.dp(18.0f);
         }
         boolean z12 = f9Var.L;
-        if (this.f29234f >= AndroidUtilities.dp(20.0f)) {
+        if (this.f29207f >= AndroidUtilities.dp(20.0f)) {
             z11 = true;
         } else {
             z11 = false;
@@ -180,13 +180,13 @@ public final class x8 extends ov0 {
             super.onMeasure(i10, i11);
             if (f9Var.L) {
                 kVar = ((org.telegram.ui.ActionBar.n2) f9Var).actionBar;
-                i12 = AndroidUtilities.dp(8.0f) + kVar.getMeasuredHeight() + (-f9Var.f25994b.getTop());
+                i12 = AndroidUtilities.dp(8.0f) + kVar.getMeasuredHeight() + (-f9Var.f25967b.getTop());
             } else {
                 i12 = 0;
             }
-            cc1 cc1Var = f9Var.f26000r;
-            cc1Var.setTranslationY((cc1Var.getTranslationY() + ((ViewGroup.MarginLayoutParams) f9Var.f26000r.getLayoutParams()).topMargin) - i12);
-            ((ViewGroup.MarginLayoutParams) f9Var.f26000r.getLayoutParams()).topMargin = i12;
+            cc1 cc1Var = f9Var.f25973r;
+            cc1Var.setTranslationY((cc1Var.getTranslationY() + ((ViewGroup.MarginLayoutParams) f9Var.f25973r.getLayoutParams()).topMargin) - i12);
+            ((ViewGroup.MarginLayoutParams) f9Var.f25973r.getLayoutParams()).topMargin = i12;
             boolean z13 = f9Var.L;
             if (!f9Var.U) {
                 float f11 = f9Var.N;
@@ -196,28 +196,28 @@ public final class x8 extends ov0 {
                     f7 = 0.0f;
                 }
                 f9Var.M = ValueAnimator.ofFloat(f11, f7);
-                float f12 = ((f9Var.d - f9Var.f25996c) - AndroidUtilities.statusBarHeight) * f9Var.E;
+                float f12 = ((f9Var.d - f9Var.f25969c) - AndroidUtilities.statusBarHeight) * f9Var.E;
                 if (z13) {
-                    f9Var.f25992a.setExpanded(false);
-                    f12 = f9Var.f26000r.getTranslationY();
+                    f9Var.f25965a.setExpanded(false);
+                    f12 = f9Var.f25973r.getTranslationY();
                 } else {
-                    f10 = f9Var.f26000r.getTranslationY();
+                    f10 = f9Var.f25973r.getTranslationY();
                 }
                 if (f9Var.F && !z13) {
-                    f9Var.f25992a.setExpanded(true);
+                    f9Var.f25965a.setExpanded(true);
                 } else {
                     f9Var.F = false;
                 }
                 f9Var.M.addUpdateListener(new a9(f9Var, f12, f10, z13));
                 f9Var.M.addListener(new u8(f9Var, 1));
                 f9Var.M.setDuration(250L);
-                f9Var.M.setInterpolator(org.telegram.ui.ActionBar.p1.f21303w);
+                f9Var.M.setInterpolator(org.telegram.ui.ActionBar.p1.f21276w);
                 f9Var.M.start();
             }
         }
         super.onMeasure(i10, i11);
-        f9Var.f25996c = f9Var.f25992a.getMeasuredHeight();
-        f9Var.d = f9Var.f25992a.getMeasuredWidth();
+        f9Var.f25969c = f9Var.f25965a.getMeasuredHeight();
+        f9Var.d = f9Var.f25965a.getMeasuredWidth();
     }
 
     @Override
@@ -232,7 +232,7 @@ public final class x8 extends ov0 {
 
     @Override
     public final void onNestedPreScroll(View view, int i10, int i11, int[] iArr) {
-        f9 f9Var = this.f32475x0;
+        f9 f9Var = this.f32448x0;
         if (f9Var.N <= 0.0f && !f9Var.U && i11 > 0 && f9Var.E > 0.0f) {
             f9Var.d0();
             f9Var.i0(Utilities.clamp(f9Var.E - (i11 / f9Var.d), 1.0f, 0.0f), true);
@@ -242,7 +242,7 @@ public final class x8 extends ov0 {
 
     @Override
     public final void onNestedScroll(View view, int i10, int i11, int i12, int i13) {
-        f9 f9Var = this.f32475x0;
+        f9 f9Var = this.f32448x0;
         if (f9Var.N <= 0.0f && !f9Var.U && i13 != 0) {
             f9Var.d0();
             f9Var.i0(Utilities.clamp(f9Var.E - (i13 / f9Var.d), 1.0f, 0.0f), true);
@@ -251,13 +251,13 @@ public final class x8 extends ov0 {
 
     @Override
     public final void onNestedScrollAccepted(View view, View view2, int i10) {
-        this.f32474w0.f2287a = i10;
-        this.f32475x0.d0();
+        this.f32447w0.f2260a = i10;
+        this.f32448x0.d0();
     }
 
     @Override
     public final boolean onStartNestedScroll(View view, View view2, int i10) {
-        f9 f9Var = this.f32475x0;
+        f9 f9Var = this.f32448x0;
         if (f9Var.N <= 0.0f && !f9Var.U) {
             return true;
         }
@@ -267,8 +267,8 @@ public final class x8 extends ov0 {
     @Override
     public final void onStopNestedScroll(View view) {
         boolean z10;
-        this.f32474w0.f2287a = 0;
-        f9 f9Var = this.f32475x0;
+        this.f32447w0.f2260a = 0;
+        f9 f9Var = this.f32448x0;
         if (f9Var.E > 0.5f) {
             z10 = true;
         } else {
@@ -285,20 +285,20 @@ public final class x8 extends ov0 {
         if (!f9Var.K.b(motionEvent)) {
             if (!f9Var.U) {
                 if (motionEvent.getAction() == 0) {
-                    z8 z8Var = f9Var.f25994b;
+                    z8 z8Var = f9Var.f25967b;
                     Rect rect = AndroidUtilities.rectTmp2;
                     z8Var.getHitRect(rect);
-                    rect.offset(0, (int) f9Var.f26000r.getY());
+                    rect.offset(0, (int) f9Var.f25973r.getY());
                     if (f9Var.N == 0.0f && !rect.contains((int) motionEvent.getX(), (int) motionEvent.getY())) {
-                        this.f32476y0 = true;
+                        this.f32449y0 = true;
                         motionEvent.getX();
                         this.B0 = motionEvent.getY();
                     }
-                } else if (motionEvent.getAction() == 2 && ((z11 = this.f32476y0) || this.f32477z0)) {
+                } else if (motionEvent.getAction() == 2 && ((z11 = this.f32449y0) || this.f32450z0)) {
                     if (z11) {
                         if (Math.abs(this.B0 - motionEvent.getY()) > AndroidUtilities.touchSlop) {
-                            this.f32476y0 = false;
-                            this.f32477z0 = true;
+                            this.f32449y0 = false;
+                            this.f32450z0 = true;
                             this.A0 = f9Var.E;
                             motionEvent.getX();
                             this.B0 = motionEvent.getY();
@@ -307,7 +307,7 @@ public final class x8 extends ov0 {
                         f9Var.i0(Utilities.clamp(((-(this.B0 - motionEvent.getY())) / f9Var.d) + this.A0, 1.0f, 0.0f), true);
                     }
                 } else if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
-                    if (this.f32477z0) {
+                    if (this.f32450z0) {
                         if (f9Var.E > 0.5f) {
                             z10 = true;
                         } else {
@@ -315,11 +315,11 @@ public final class x8 extends ov0 {
                         }
                         f9Var.g0(z10, false, false);
                     }
-                    this.f32476y0 = false;
-                    this.f32477z0 = false;
+                    this.f32449y0 = false;
+                    this.f32450z0 = false;
                 }
             }
-            if (!this.f32477z0 && !super.onTouchEvent(motionEvent) && !this.f32476y0) {
+            if (!this.f32450z0 && !super.onTouchEvent(motionEvent) && !this.f32449y0) {
                 return false;
             }
         }

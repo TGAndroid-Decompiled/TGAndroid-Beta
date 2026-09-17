@@ -8,34 +8,34 @@ import android.widget.FrameLayout;
 public final class mp0 extends hu {
     public boolean V;
     public int W;
-    public int f28508a0;
-    public ValueAnimator f28509b0;
-    public final hq0 f28510c0;
+    public int f28481a0;
+    public ValueAnimator f28482b0;
+    public final hq0 f28483c0;
 
     public mp0(hq0 hq0Var, Context context, sp0 sp0Var, org.telegram.ui.ActionBar.f6 f6Var) {
         super(context, sp0Var, null, 1, true, f6Var);
-        this.f28510c0 = hq0Var;
+        this.f28483c0 = hq0Var;
     }
 
     @Override
     public final void c(float f7) {
-        this.f28510c0.Y0();
+        this.f28483c0.Y0();
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
         if (this.V) {
-            zt editText = this.f28510c0.d.getEditText();
-            editText.setOffsetY(editText.getOffsetY() - ((this.f28508a0 - editText.getScrollY()) + (this.W - editText.getMeasuredHeight())));
+            zt editText = this.f28483c0.d.getEditText();
+            editText.setOffsetY(editText.getOffsetY() - ((this.f28481a0 - editText.getScrollY()) + (this.W - editText.getMeasuredHeight())));
             ValueAnimator ofFloat = ValueAnimator.ofFloat(editText.getOffsetY(), 0.0f);
             ofFloat.addUpdateListener(new h70(editText, 18));
-            ValueAnimator valueAnimator = this.f28509b0;
+            ValueAnimator valueAnimator = this.f28482b0;
             if (valueAnimator != null) {
                 valueAnimator.cancel();
             }
-            this.f28509b0 = ofFloat;
+            this.f28482b0 = ofFloat;
             ofFloat.setDuration(200L);
-            ofFloat.setInterpolator(pr.f29494f);
+            ofFloat.setInterpolator(pr.f29467f);
             ofFloat.start();
             this.V = false;
         }
@@ -46,22 +46,22 @@ public final class mp0 extends hu {
     public final void f() {
         super.f();
         kz emojiView = getEmojiView();
-        hq0 hq0Var = this.f28510c0;
+        hq0 hq0Var = this.f28483c0;
         if (emojiView != null) {
-            emojiView.f28023w0 = false;
-            emojiView.f28029x2 = false;
+            emojiView.f27996w0 = false;
+            emojiView.f28002x2 = false;
             emojiView.setShouldDrawBackground(false);
             emojiView.setBottomInset(hq0Var.G0.d);
         }
-        FrameLayout frameLayout = hq0Var.f26819c0;
+        FrameLayout frameLayout = hq0Var.f26792c0;
         if (frameLayout != null) {
             frameLayout.bringToFront();
         }
-        lp0 lp0Var = hq0Var.f26818c;
+        lp0 lp0Var = hq0Var.f26791c;
         if (lp0Var != null) {
             lp0Var.bringToFront();
         }
-        lp0 lp0Var2 = hq0Var.f26823f;
+        lp0 lp0Var2 = hq0Var.f26796f;
         if (lp0Var2 != null) {
             lp0Var2.bringToFront();
         }
@@ -69,19 +69,19 @@ public final class mp0 extends hu {
 
     @Override
     public final void q(int i10, int i11) {
-        hq0 hq0Var = this.f28510c0;
-        lp0 lp0Var = hq0Var.f26818c;
+        hq0 hq0Var = this.f28483c0;
+        lp0 lp0Var = hq0Var.f26791c;
         if (!TextUtils.isEmpty(getEditText().getText())) {
             this.V = true;
             this.W = getEditText().getMeasuredHeight();
-            this.f28508a0 = getEditText().getScrollY();
+            this.f28481a0 = getEditText().getScrollY();
             invalidate();
         } else {
             getEditText().animate().cancel();
             getEditText().setOffsetY(0.0f);
             this.V = false;
         }
-        hq0Var.f26842v0 = lp0Var.getTop() + hq0Var.f26841u0;
+        hq0Var.f26815v0 = lp0Var.getTop() + hq0Var.f26814u0;
         lp0Var.invalidate();
     }
 }

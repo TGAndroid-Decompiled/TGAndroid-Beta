@@ -7,24 +7,24 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 public final class tc implements Utilities.Callback {
-    public final int f30615a = 0;
-    public final long f30616b;
-    public final int f30617c;
+    public final int f30588a = 0;
+    public final long f30589b;
+    public final int f30590c;
     public final Object d;
 
     public tc(int i10, qc qcVar, long j3) {
-        this.f30617c = i10;
+        this.f30590c = i10;
         this.d = qcVar;
-        this.f30616b = j3;
+        this.f30589b = j3;
     }
 
     @Override
     public final void run(Object obj) {
         Object string;
         TLRPC.StickerSet stickerSet;
-        int i10 = this.f30615a;
-        int i11 = this.f30617c;
-        long j3 = this.f30616b;
+        int i10 = this.f30588a;
+        int i11 = this.f30590c;
+        long j3 = this.f30589b;
         Object obj2 = this.d;
         switch (i10) {
             case 0:
@@ -51,7 +51,7 @@ public final class tc implements Utilities.Callback {
 
     public tc(xu0 xu0Var, long j3, int i10) {
         this.d = xu0Var;
-        this.f30616b = j3;
-        this.f30617c = i10;
+        this.f30589b = j3;
+        this.f30590c = i10;
     }
 }

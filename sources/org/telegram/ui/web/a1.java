@@ -5,36 +5,36 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.j6;
 public final class a1 {
-    public final String f42026a;
-    public final String f42027b;
-    public final int f42028c;
+    public final String f41999a;
+    public final String f42000b;
+    public final int f42001c;
 
     public a1(JSONObject jSONObject) {
-        this.f42028c = -1;
-        this.f42026a = jSONObject.getString("id");
+        this.f42001c = -1;
+        this.f41999a = jSONObject.getString("id");
         String string = jSONObject.getString("type");
         switch (string.hashCode()) {
             case -1829997182:
                 if (string.equals("destructive")) {
-                    this.f42028c = j6.f20926q7;
+                    this.f42001c = j6.f20899q7;
                     break;
                 }
                 break;
             case -1367724422:
                 if (string.equals("cancel")) {
-                    this.f42027b = LocaleController.getString(R.string.Cancel);
+                    this.f42000b = LocaleController.getString(R.string.Cancel);
                     return;
                 }
                 break;
             case 3548:
                 if (string.equals("ok")) {
-                    this.f42027b = LocaleController.getString(R.string.OK);
+                    this.f42000b = LocaleController.getString(R.string.OK);
                     return;
                 }
                 break;
             case 94756344:
                 if (string.equals("close")) {
-                    this.f42027b = LocaleController.getString(R.string.Close);
+                    this.f42000b = LocaleController.getString(R.string.Close);
                     return;
                 }
                 break;
@@ -42,6 +42,6 @@ public final class a1 {
                 string.equals("default");
                 break;
         }
-        this.f42027b = jSONObject.getString("text");
+        this.f42000b = jSONObject.getString("text");
     }
 }

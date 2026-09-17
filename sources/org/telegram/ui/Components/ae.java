@@ -2,16 +2,16 @@ package org.telegram.ui.Components;
 
 import android.view.KeyEvent;
 public final class ae implements fi.m0, org.telegram.ui.ActionBar.a2, xt, org.telegram.ui.ActionBar.l1 {
-    public final ChatActivityEnterView f24371a;
+    public final ChatActivityEnterView f24344a;
 
     public ae(ChatActivityEnterView chatActivityEnterView) {
-        this.f24371a = chatActivityEnterView;
+        this.f24344a = chatActivityEnterView;
     }
 
     @Override
     public void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        int i11 = ChatActivityEnterView.f23689m5;
-        ChatActivityEnterView chatActivityEnterView = this.f24371a;
+        int i11 = ChatActivityEnterView.f23662m5;
+        ChatActivityEnterView chatActivityEnterView = this.f24344a;
         chatActivityEnterView.O();
         qf qfVar = chatActivityEnterView.E0;
         if (qfVar != null) {
@@ -21,7 +21,7 @@ public final class ae implements fi.m0, org.telegram.ui.ActionBar.a2, xt, org.te
 
     @Override
     public void j() {
-        ChatActivityEnterView chatActivityEnterView = this.f24371a;
+        ChatActivityEnterView chatActivityEnterView = this.f24344a;
         chatActivityEnterView.E0.invalidateEffects();
         og ogVar = chatActivityEnterView.Y2;
         if (ogVar != null) {
@@ -33,8 +33,8 @@ public final class ae implements fi.m0, org.telegram.ui.ActionBar.a2, xt, org.te
     public void n(KeyEvent keyEvent) {
         ChatActivityEnterView chatActivityEnterView;
         mf mfVar;
-        int i10 = ChatActivityEnterView.f23689m5;
-        if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && (mfVar = (chatActivityEnterView = this.f24371a).N0) != null && mfVar.isShowing()) {
+        int i10 = ChatActivityEnterView.f23662m5;
+        if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && (mfVar = (chatActivityEnterView = this.f24344a).N0) != null && mfVar.isShowing()) {
             chatActivityEnterView.N0.dismiss();
         }
     }

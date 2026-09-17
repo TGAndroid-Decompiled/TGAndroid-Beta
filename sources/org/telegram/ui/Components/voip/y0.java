@@ -6,17 +6,17 @@ import android.view.MotionEvent;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ni1;
 public final class y0 extends GestureDetector.SimpleOnGestureListener {
-    public boolean f31969a;
-    public boolean f31970b;
-    public final ni1 f31971c;
+    public boolean f31942a;
+    public boolean f31943b;
+    public final ni1 f31944c;
 
     public y0(ni1 ni1Var) {
-        this.f31971c = ni1Var;
+        this.f31944c = ni1Var;
     }
 
     @Override
     public final boolean onDown(MotionEvent motionEvent) {
-        this.f31969a = true;
+        this.f31942a = true;
         return super.onDown(motionEvent);
     }
 
@@ -24,13 +24,13 @@ public final class y0 extends GestureDetector.SimpleOnGestureListener {
     public final boolean onScroll(MotionEvent motionEvent, MotionEvent motionEvent2, float f7, float f10) {
         float x10 = motionEvent.getX() - motionEvent2.getX();
         float y3 = motionEvent.getY() - motionEvent2.getY();
-        if (Math.abs(x10) > AndroidUtilities.getPixelsInCM(0.4f, true) && Math.abs(x10) / 3.0f > y3 && this.f31969a && !this.f31970b) {
-            this.f31969a = false;
+        if (Math.abs(x10) > AndroidUtilities.getPixelsInCM(0.4f, true) && Math.abs(x10) / 3.0f > y3 && this.f31942a && !this.f31943b) {
+            this.f31942a = false;
             org.telegram.ui.b0 b0Var = new org.telegram.ui.b0(this, x10, 2);
-            ni1 ni1Var = this.f31971c;
+            ni1 ni1Var = this.f31944c;
             ValueAnimator valueAnimator = ni1Var.U;
             if (valueAnimator != null) {
-                this.f31970b = true;
+                this.f31943b = true;
                 AndroidUtilities.runOnUIThread(b0Var, (valueAnimator.getDuration() - ni1Var.U.getCurrentPlayTime()) + 50);
             } else {
                 b0Var.run();

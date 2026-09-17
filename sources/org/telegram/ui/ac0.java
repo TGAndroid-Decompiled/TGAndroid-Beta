@@ -1,22 +1,22 @@
 package org.telegram.ui;
 public final class ac0 implements Runnable {
-    public final int f34408a;
-    public final fc0 f34409b;
-    public final String f34410c;
+    public final int f34381a;
+    public final fc0 f34382b;
+    public final String f34383c;
 
     public ac0(fc0 fc0Var, String str, int i10) {
-        this.f34408a = i10;
-        this.f34409b = fc0Var;
-        this.f34410c = str;
+        this.f34381a = i10;
+        this.f34382b = fc0Var;
+        this.f34383c = str;
     }
 
     @Override
     public final void run() {
-        switch (this.f34408a) {
+        switch (this.f34381a) {
             case 0:
-                fc0 fc0Var = this.f34409b;
+                fc0 fc0Var = this.f34382b;
                 fc0Var.getClass();
-                String str = this.f34410c;
+                String str = this.f34383c;
                 if ("disable".equalsIgnoreCase(str)) {
                     fc0Var.o("turnPasswordOffRow");
                 }
@@ -29,9 +29,9 @@ public final class ac0 implements Runnable {
                 }
                 return;
             default:
-                fc0 fc0Var2 = this.f34409b;
+                fc0 fc0Var2 = this.f34382b;
                 fc0Var2.getClass();
-                String str2 = this.f34410c;
+                String str2 = this.f34383c;
                 if ("disable".equalsIgnoreCase(str2)) {
                     fc0Var2.o("disablePasscodeRow");
                 }

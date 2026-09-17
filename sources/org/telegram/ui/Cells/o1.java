@@ -5,26 +5,26 @@ import android.text.Spanned;
 import java.util.Comparator;
 import org.telegram.messenger.CodeHighlighting;
 public final class o1 implements Comparator {
-    public final int f22431a;
-    public final Spanned f22432b;
+    public final int f22404a;
+    public final Spanned f22405b;
 
     public o1(Spanned spanned, int i10) {
-        this.f22431a = i10;
-        this.f22432b = spanned;
+        this.f22404a = i10;
+        this.f22405b = spanned;
     }
 
     @Override
     public final int compare(Object obj, Object obj2) {
         int spanStart;
         int spanStart2;
-        switch (this.f22431a) {
+        switch (this.f22404a) {
             case 0:
-                Spanned spanned = this.f22432b;
+                Spanned spanned = this.f22405b;
                 spanStart = spanned.getSpanStart((CodeHighlighting.Span) obj2);
                 spanStart2 = spanned.getSpanStart((CodeHighlighting.Span) obj);
                 break;
             default:
-                SpannableStringBuilder spannableStringBuilder = (SpannableStringBuilder) this.f22432b;
+                SpannableStringBuilder spannableStringBuilder = (SpannableStringBuilder) this.f22405b;
                 spanStart = spannableStringBuilder.getSpanStart((w9) obj2);
                 spanStart2 = spannableStringBuilder.getSpanStart((w9) obj);
                 break;

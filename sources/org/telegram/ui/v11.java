@@ -6,12 +6,12 @@ import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.NotificationsController;
 import org.telegram.tgnet.TLRPC;
 public final class v11 extends org.telegram.ui.ActionBar.j {
-    public final String f41411a;
-    public final y11 f41412b;
+    public final String f41384a;
+    public final y11 f41385b;
 
     public v11(y11 y11Var, String str) {
-        this.f41412b = y11Var;
-        this.f41411a = str;
+        this.f41385b = y11Var;
+        this.f41384a = str;
     }
 
     @Override
@@ -23,12 +23,12 @@ public final class v11 extends org.telegram.ui.ActionBar.j {
         int i15;
         int i16;
         int i17;
-        y11 y11Var = this.f41412b;
-        long j3 = y11Var.f42983f;
-        long j10 = y11Var.f42982e;
-        String str = this.f41411a;
+        y11 y11Var = this.f41385b;
+        long j3 = y11Var.f42956f;
+        long j10 = y11Var.f42955e;
+        String str = this.f41384a;
         if (i10 == -1) {
-            if (!y11Var.h && y11Var.f42984n) {
+            if (!y11Var.h && y11Var.f42957n) {
                 i17 = ((org.telegram.ui.ActionBar.n2) y11Var).currentAccount;
                 SharedPreferences.Editor edit = MessagesController.getNotificationsSettings(i17).edit();
                 edit.putInt("notify2_" + str, 0).apply();
@@ -40,7 +40,7 @@ public final class v11 extends org.telegram.ui.ActionBar.j {
             edit2.putBoolean("custom_" + str, true);
             i12 = ((org.telegram.ui.ActionBar.n2) y11Var).currentAccount;
             TLRPC.Dialog dialog = (TLRPC.Dialog) MessagesController.getInstance(i12).dialogs_dict.f(j10);
-            if (y11Var.f42984n) {
+            if (y11Var.f42957n) {
                 edit2.putInt("notify2_" + str, 0);
                 if (j3 == 0) {
                     i16 = ((org.telegram.ui.ActionBar.n2) y11Var).currentAccount;
@@ -66,16 +66,16 @@ public final class v11 extends org.telegram.ui.ActionBar.j {
             edit2.apply();
             i15 = ((org.telegram.ui.ActionBar.n2) y11Var).currentAccount;
             NotificationsController.getInstance(i15).updateServerNotificationsSettings(j10, j3);
-            if (y11Var.f42985r != null) {
+            if (y11Var.f42958r != null) {
                 ?? obj = new Object();
                 obj.d = j10;
-                obj.f42454b = true;
+                obj.f42427b = true;
                 int c10 = org.telegram.messenger.w1.c("notify2_", str, notificationsSettings, 0);
-                obj.f42455c = c10;
+                obj.f42428c = c10;
                 if (c10 != 0) {
-                    obj.f42453a = org.telegram.messenger.w1.c("notifyuntil_", str, notificationsSettings, 0);
+                    obj.f42426a = org.telegram.messenger.w1.c("notifyuntil_", str, notificationsSettings, 0);
                 }
-                y11Var.f42985r.v(obj);
+                y11Var.f42958r.v(obj);
             }
         }
         y11Var.finishFragment();

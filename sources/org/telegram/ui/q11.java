@@ -3,16 +3,16 @@ package org.telegram.ui;
 import android.graphics.drawable.Drawable;
 import org.telegram.messenger.ImageReceiver;
 public final class q11 implements ImageReceiver.ImageReceiverDelegate {
-    public final Runnable[] f39698a;
+    public final Runnable[] f39671a;
 
     public q11(Runnable[] runnableArr) {
-        this.f39698a = runnableArr;
+        this.f39671a = runnableArr;
     }
 
     @Override
     public final void didSetImage(ImageReceiver imageReceiver, boolean z10, boolean z11, boolean z12) {
         if (imageReceiver.hasBitmapImage()) {
-            Runnable[] runnableArr = this.f39698a;
+            Runnable[] runnableArr = this.f39671a;
             if (runnableArr[0] != null) {
                 org.telegram.ui.Components.xi0 lottieAnimation = imageReceiver.getLottieAnimation();
                 if (lottieAnimation == null) {

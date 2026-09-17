@@ -2,24 +2,24 @@ package org.telegram.ui.Components;
 
 import org.telegram.messenger.AndroidUtilities;
 public final class yl0 implements Runnable {
-    public final int f32970a;
-    public final am0 f32971b;
+    public final int f32943a;
+    public final am0 f32944b;
 
     public yl0(am0 am0Var, int i10) {
-        this.f32970a = i10;
-        this.f32971b = am0Var;
+        this.f32943a = i10;
+        this.f32944b = am0Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f32970a) {
+        switch (this.f32943a) {
             case 0:
-                am0 am0Var = this.f32971b;
+                am0 am0Var = this.f32944b;
                 am0Var.getClass();
                 AndroidUtilities.runOnUIThread(new yl0(am0Var, 2));
                 return;
             case 1:
-                AndroidUtilities.runOnUIThread(new yl0(this.f32971b, 3));
+                AndroidUtilities.runOnUIThread(new yl0(this.f32944b, 3));
                 return;
             case 2:
                 super/*android.app.Dialog*/.dismiss();

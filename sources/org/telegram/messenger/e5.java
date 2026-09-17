@@ -2,24 +2,24 @@ package org.telegram.messenger;
 
 import org.telegram.messenger.ImageLoader;
 public final class e5 implements Runnable {
-    public final int f17558a;
-    public final ImageLoader.HttpImageTask f17559b;
-    public final Boolean f17560c;
+    public final int f17531a;
+    public final ImageLoader.HttpImageTask f17532b;
+    public final Boolean f17533c;
 
     public e5(ImageLoader.HttpImageTask httpImageTask, Boolean bool, int i10) {
-        this.f17558a = i10;
-        this.f17559b = httpImageTask;
-        this.f17560c = bool;
+        this.f17531a = i10;
+        this.f17532b = httpImageTask;
+        this.f17533c = bool;
     }
 
     @Override
     public final void run() {
-        switch (this.f17558a) {
+        switch (this.f17531a) {
             case 0:
-                this.f17559b.lambda$onPostExecute$3(this.f17560c);
+                this.f17532b.lambda$onPostExecute$3(this.f17533c);
                 return;
             default:
-                this.f17559b.lambda$onPostExecute$4(this.f17560c);
+                this.f17532b.lambda$onPostExecute$4(this.f17533c);
                 return;
         }
     }

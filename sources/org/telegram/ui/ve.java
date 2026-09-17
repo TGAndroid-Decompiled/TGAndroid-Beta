@@ -15,23 +15,23 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.Components.UndoView;
 public final class ve implements org.telegram.ui.ActionBar.a2, org.telegram.ui.Components.ho, MessagesStorage.BooleanCallback, org.telegram.ui.Components.mj0, ResultCallback, xh.c, kh.a, kh.b, a70, rs, org.telegram.ui.Components.bl0, kh.d, org.telegram.ui.Components.nk0, FlagSecureReason.FlagSecureCondition, lv0 {
-    public final int f41550a;
-    public final co f41551b;
+    public final int f41523a;
+    public final co f41524b;
 
     public ve(co coVar, int i10) {
-        this.f41550a = i10;
-        this.f41551b = coVar;
+        this.f41523a = i10;
+        this.f41524b = coVar;
     }
 
     @Override
     public boolean a(int i10, View view) {
-        co coVar = this.f41551b;
+        co coVar = this.f41524b;
         boolean z10 = false;
         if (coVar.getParentActivity() != null) {
             hg.k1 adapter = coVar.I1.getAdapter();
             if ((adapter.I != null || adapter.J != null) && i10 != 0) {
                 hg.k1 adapter2 = coVar.I1.getAdapter();
-                if (adapter2.f11182w0 != null && !adapter2.f11164h0) {
+                if (adapter2.f11156w0 != null && !adapter2.f11138h0) {
                     return false;
                 }
                 Object J = coVar.I1.getAdapter().J(i10 - 1);
@@ -40,8 +40,8 @@ public final class ve implements org.telegram.ui.ActionBar.a2, org.telegram.ui.C
                     if (coVar.I1.getAdapter().J != null && org.telegram.ui.Components.i51.h) {
                         coVar.Y.setFieldText("");
                         mk mkVar = coVar.Y;
-                        String str = h1Var.f11091a;
-                        TLRPC.Chat chat = coVar.f35265e;
+                        String str = h1Var.f11065a;
+                        TLRPC.Chat chat = coVar.f35238e;
                         if (chat != null && chat.megagroup) {
                             z10 = true;
                         }
@@ -54,7 +54,7 @@ public final class ve implements org.telegram.ui.ActionBar.a2, org.telegram.ui.C
                             coVar.Y.setFieldText("");
                             mk mkVar2 = coVar.Y;
                             String str2 = (String) J;
-                            TLRPC.Chat chat2 = coVar.f35265e;
+                            TLRPC.Chat chat2 = coVar.f35238e;
                             if (chat2 != null && chat2.megagroup) {
                                 z10 = true;
                             }
@@ -62,12 +62,12 @@ public final class ve implements org.telegram.ui.ActionBar.a2, org.telegram.ui.C
                             return true;
                         }
                     } else {
-                        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(coVar.getParentActivity(), 0, coVar.f35275ea);
-                        alertDialog$Builder.f20226a.R = LocaleController.getString(R.string.AppName);
-                        alertDialog$Builder.f20226a.T = LocaleController.getString(R.string.ClearSearch);
+                        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(coVar.getParentActivity(), 0, coVar.f35248ea);
+                        alertDialog$Builder.f20199a.R = LocaleController.getString(R.string.AppName);
+                        alertDialog$Builder.f20199a.T = LocaleController.getString(R.string.ClearSearch);
                         alertDialog$Builder.k(LocaleController.getString(R.string.ClearButton), new ve(coVar, 10));
                         alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
-                        coVar.showDialog(alertDialog$Builder.f20226a);
+                        coVar.showDialog(alertDialog$Builder.f20199a);
                         return true;
                     }
                 }
@@ -78,39 +78,39 @@ public final class ve implements org.telegram.ui.ActionBar.a2, org.telegram.ui.C
 
     @Override
     public void b() {
-        co coVar = this.f41551b;
+        co coVar = this.f41524b;
         coVar.q9(1);
         coVar.r9();
     }
 
     @Override
     public void c() {
-        co coVar = this.f41551b;
+        co coVar = this.f41524b;
         if (coVar.y3 == null && coVar.getParentActivity() != null) {
             coVar.Q7();
-            coVar.y3.m(coVar.T5, coVar.f35277f, 8);
+            coVar.y3.m(coVar.T5, coVar.f35250f, 8);
         }
     }
 
     @Override
     public void d(TLRPC.Document document) {
-        switch (this.f41550a) {
+        switch (this.f41523a) {
             case 2:
-                co.t0(this.f41551b, document);
+                co.t0(this.f41524b, document);
                 return;
             default:
-                co.u0(this.f41551b, document);
+                co.u0(this.f41524b, document);
                 return;
         }
     }
 
     @Override
     public void e(ArrayList arrayList) {
-        switch (this.f41550a) {
+        switch (this.f41523a) {
             case 9:
-                co coVar = this.f41551b;
+                co coVar = this.f41524b;
                 if (coVar.getParentActivity() != null && coVar.getParentActivity() != null) {
-                    ji jiVar = new ji(coVar, coVar, coVar.getParentActivity(), coVar.f35275ea, arrayList);
+                    ji jiVar = new ji(coVar, coVar, coVar.getParentActivity(), coVar.f35248ea, arrayList);
                     jiVar.setCalcMandatoryInsets(coVar.x9());
                     jiVar.setDimBehind(false);
                     coVar.A7(false);
@@ -119,9 +119,9 @@ public final class ve implements org.telegram.ui.ActionBar.a2, org.telegram.ui.C
                 }
                 return;
             default:
-                co coVar2 = this.f41551b;
+                co coVar2 = this.f41524b;
                 if (coVar2.getParentActivity() != null && coVar2.getParentActivity() != null) {
-                    gj gjVar = new gj(coVar2, coVar2, coVar2.getParentActivity(), coVar2.f35275ea, arrayList);
+                    gj gjVar = new gj(coVar2, coVar2, coVar2.getParentActivity(), coVar2.f35248ea, arrayList);
                     gjVar.setCalcMandatoryInsets(coVar2.x9());
                     gjVar.setDimBehind(false);
                     coVar2.A7(false);
@@ -134,22 +134,22 @@ public final class ve implements org.telegram.ui.ActionBar.a2, org.telegram.ui.C
 
     @Override
     public void f(boolean z10, boolean z11) {
-        co coVar = this.f41551b;
-        coVar.M0.i(coVar.f35287fa.c(), z10, z11);
+        co coVar = this.f41524b;
+        coVar.M0.i(coVar.f35260fa.c(), z10, z11);
     }
 
     @Override
     public void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        switch (this.f41550a) {
+        switch (this.f41523a) {
             case 0:
-                tk tkVar = this.f41551b.B0;
+                tk tkVar = this.f41524b.B0;
                 if (tkVar != null) {
                     tkVar.callOnClick();
                     return;
                 }
                 return;
             case 1:
-                this.f41551b.finishFragment();
+                this.f41524b.finishFragment();
                 return;
             case 2:
             case 3:
@@ -158,34 +158,34 @@ public final class ve implements org.telegram.ui.ActionBar.a2, org.telegram.ui.C
             case 11:
             case 14:
             default:
-                co coVar = this.f41551b;
+                co coVar = this.f41524b;
                 MessageObject messageObject = (MessageObject) coVar.J4.get(Integer.valueOf(coVar.L4));
                 if (messageObject == null) {
-                    messageObject = (MessageObject) coVar.f35392o6[0].get(coVar.L4);
+                    messageObject = (MessageObject) coVar.f35365o6[0].get(coVar.L4);
                 }
                 coVar.cc(messageObject);
                 return;
             case 4:
-                co coVar2 = this.f41551b;
-                MessagePreviewParams messagePreviewParams = coVar2.f35283f5;
+                co coVar2 = this.f41524b;
+                MessagePreviewParams messagePreviewParams = coVar2.f35256f5;
                 if (messagePreviewParams != null) {
                     messagePreviewParams.updateForward(null, coVar2.T5);
                 }
                 coVar2.j8();
                 return;
             case 5:
-                this.f41551b.ca(1);
+                this.f41524b.ca(1);
                 return;
             case 6:
-                co coVar3 = this.f41551b;
-                coVar3.getMessagesController().unblockPeer(coVar3.f35277f.f20043id);
+                co coVar3 = this.f41524b;
+                coVar3.getMessagesController().unblockPeer(coVar3.f35250f.f20016id);
                 return;
             case 8:
-                this.f41551b.finishFragment();
+                this.f41524b.finishFragment();
                 return;
             case 10:
-                hg.k1 adapter = this.f41551b.I1.getAdapter();
-                adapter.f11181w.c();
+                hg.k1 adapter = this.f41524b.I1.getAdapter();
+                adapter.f11155w.c();
                 adapter.I.clear();
                 adapter.l();
                 org.telegram.ui.Components.ja0 ja0Var = adapter.V;
@@ -195,11 +195,11 @@ public final class ve implements org.telegram.ui.ActionBar.a2, org.telegram.ui.C
                 }
                 return;
             case 12:
-                co coVar4 = this.f41551b;
+                co coVar4 = this.f41524b;
                 coVar4.showDialog(new xl(coVar4, coVar4.getParentActivity(), coVar4));
                 return;
             case 13:
-                co coVar5 = this.f41551b;
+                co coVar5 = this.f41524b;
                 coVar5.Q7();
                 UndoView undoView = coVar5.y3;
                 if (undoView != null) {
@@ -208,38 +208,38 @@ public final class ve implements org.telegram.ui.ActionBar.a2, org.telegram.ui.C
                 }
                 return;
             case 15:
-                co coVar6 = this.f41551b;
-                MessagePreviewParams messagePreviewParams2 = coVar6.f35283f5;
+                co coVar6 = this.f41524b;
+                MessagePreviewParams messagePreviewParams2 = coVar6.f35256f5;
                 if (messagePreviewParams2 != null && messagePreviewParams2.quote != null) {
                     coVar6.ca(0);
                     return;
                 }
                 return;
             case 16:
-                this.f41551b.e9(true);
+                this.f41524b.e9(true);
                 return;
         }
     }
 
     @Override
     public void h(float[] fArr) {
-        co coVar = this.f41551b;
-        fArr[1] = coVar.f35501x0.getBottom() - coVar.Aa;
-        fArr[0] = (coVar.f35501x0.getTop() + coVar.f35446s9) - AndroidUtilities.dp(4.0f);
+        co coVar = this.f41524b;
+        fArr[1] = coVar.f35474x0.getBottom() - coVar.Aa;
+        fArr[0] = (coVar.f35474x0.getTop() + coVar.f35419s9) - AndroidUtilities.dp(4.0f);
     }
 
     @Override
     public void j(int i10, ArrayList arrayList) {
-        co coVar = this.f41551b;
-        coVar.getMessagesController().addUsersToChat(coVar.f35265e, coVar, arrayList, i10, null, null, null);
-        coVar.getMessagesController().hidePeerSettingsBar(coVar.T5, coVar.f35277f, coVar.f35265e);
+        co coVar = this.f41524b;
+        coVar.getMessagesController().addUsersToChat(coVar.f35238e, coVar, arrayList, i10, null, null, null);
+        coVar.getMessagesController().hidePeerSettingsBar(coVar.T5, coVar.f35250f, coVar.f35238e);
         coVar.Qc(true);
         coVar.oc(true);
     }
 
     @Override
     public void k(int i10) {
-        co coVar = this.f41551b;
+        co coVar = this.f41524b;
         if (i10 == 1) {
             coVar.U9();
         } else if (i10 == 2) {
@@ -249,7 +249,7 @@ public final class ve implements org.telegram.ui.ActionBar.a2, org.telegram.ui.C
             coVar.getMessagesController().getNextReactionMention(coVar.T5, coVar.d(), coVar.l1, new qg(coVar, 0));
         } else if (i10 == 4) {
             coVar.D4 = true;
-            coVar.getMessagesController().getNextPollVotesMention(coVar.T5, coVar.d(), coVar.f35362m1, new qg(coVar, 1));
+            coVar.getMessagesController().getNextPollVotesMention(coVar.T5, coVar.d(), coVar.f35335m1, new qg(coVar, 1));
         } else if (i10 == 6) {
             coVar.Y8(true);
         } else if (i10 == 5) {
@@ -267,8 +267,8 @@ public final class ve implements org.telegram.ui.ActionBar.a2, org.telegram.ui.C
     public void onComplete(Object obj) {
         boolean z10;
         org.telegram.ui.ActionBar.d4 d4Var = (org.telegram.ui.ActionBar.d4) obj;
-        co coVar = this.f41551b;
-        ao aoVar = coVar.f35275ea;
+        co coVar = this.f41524b;
+        ao aoVar = coVar.f35248ea;
         TLRPC.WallPaper wallPaper = aoVar.h;
         if (coVar.P5 != 0) {
             z10 = true;
@@ -285,13 +285,13 @@ public final class ve implements org.telegram.ui.ActionBar.a2, org.telegram.ui.C
 
     @Override
     public void run(boolean z10) {
-        co coVar = this.f41551b;
+        co coVar = this.f41524b;
         NotificationCenter notificationCenter = coVar.getNotificationCenter();
         int i10 = NotificationCenter.closeChats;
         notificationCenter.removeObserver(coVar, i10);
         coVar.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(i10, new Object[0]);
         coVar.finishFragment();
-        coVar.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needDeleteDialog, Long.valueOf(coVar.T5), coVar.f35277f, coVar.f35265e, Boolean.valueOf(z10));
+        coVar.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needDeleteDialog, Long.valueOf(coVar.T5), coVar.f35250f, coVar.f35238e, Boolean.valueOf(z10));
     }
 
     @Override
@@ -301,7 +301,7 @@ public final class ve implements org.telegram.ui.ActionBar.a2, org.telegram.ui.C
 
     @Override
     public boolean run() {
-        co coVar = this.f41551b;
+        co coVar = this.f41524b;
         return coVar.h != null || coVar.y9();
     }
 

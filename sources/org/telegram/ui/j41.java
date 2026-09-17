@@ -9,41 +9,41 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.SaveToGallerySettingsHelper;
 import org.telegram.tgnet.TLRPC;
 public final class j41 implements View.OnClickListener {
-    public final int f37531a;
-    public final Object f37532b;
+    public final int f37504a;
+    public final Object f37505b;
 
     public j41(Object obj, int i10) {
-        this.f37531a = i10;
-        this.f37532b = obj;
+        this.f37504a = i10;
+        this.f37505b = obj;
     }
 
     @Override
     public final void onClick(View view) {
         float f7;
-        switch (this.f37531a) {
+        switch (this.f37504a) {
             case 0:
-                ((k41) this.f37532b).dismiss();
+                ((k41) this.f37505b).dismiss();
                 return;
             case 1:
-                SaveToGallerySettingsActivity saveToGallerySettingsActivity = (SaveToGallerySettingsActivity) this.f37532b;
+                SaveToGallerySettingsActivity saveToGallerySettingsActivity = (SaveToGallerySettingsActivity) this.f37505b;
                 if (saveToGallerySettingsActivity.d) {
-                    LongSparseArray<SaveToGallerySettingsHelper.DialogException> saveGalleryExceptions = saveToGallerySettingsActivity.getUserConfig().getSaveGalleryExceptions(saveToGallerySettingsActivity.f34076a);
-                    SaveToGallerySettingsHelper.DialogException dialogException = saveToGallerySettingsActivity.f34078c;
+                    LongSparseArray<SaveToGallerySettingsHelper.DialogException> saveGalleryExceptions = saveToGallerySettingsActivity.getUserConfig().getSaveGalleryExceptions(saveToGallerySettingsActivity.f34049a);
+                    SaveToGallerySettingsHelper.DialogException dialogException = saveToGallerySettingsActivity.f34051c;
                     saveGalleryExceptions.put(dialogException.dialogId, dialogException);
-                    saveToGallerySettingsActivity.getUserConfig().updateSaveGalleryExceptions(saveToGallerySettingsActivity.f34076a, saveGalleryExceptions);
+                    saveToGallerySettingsActivity.getUserConfig().updateSaveGalleryExceptions(saveToGallerySettingsActivity.f34049a, saveGalleryExceptions);
                 }
                 saveToGallerySettingsActivity.finishFragment();
                 return;
             case 2:
-                ((u41) this.f37532b).dismiss();
+                ((u41) this.f37505b).dismiss();
                 return;
             case 3:
-                SecretMediaViewer secretMediaViewer = (SecretMediaViewer) this.f37532b;
-                MessageObject messageObject = secretMediaViewer.f34104h0;
+                SecretMediaViewer secretMediaViewer = (SecretMediaViewer) this.f37505b;
+                MessageObject messageObject = secretMediaViewer.f34077h0;
                 if (messageObject != null) {
                     TLRPC.Message message = messageObject.messageOwner;
                     if (message.destroyTime != 0 || message.ttl == Integer.MAX_VALUE) {
-                        di.f4 f4Var = secretMediaViewer.f34123r;
+                        di.f4 f4Var = secretMediaViewer.f34096r;
                         if (f4Var.V) {
                             f4Var.e(true);
                             return;
@@ -56,54 +56,54 @@ public final class j41 implements View.OnClickListener {
                 }
                 return;
             case 4:
-                t71 t71Var = (t71) this.f37532b;
-                if (t71Var.f40676a0 instanceof TLRPC.User) {
-                    di.d dVar = t71Var.f40683h0;
+                t71 t71Var = (t71) this.f37505b;
+                if (t71Var.f40649a0 instanceof TLRPC.User) {
+                    di.d dVar = t71Var.f40656h0;
                     if (!dVar.N) {
                         dVar.setLoading(true);
-                        t71Var.T((TLRPC.User) t71Var.f40676a0, null, null);
+                        t71Var.T((TLRPC.User) t71Var.f40649a0, null, null);
                         return;
                     }
                     return;
                 }
                 return;
             case 5:
-                u81.a((u81) this.f37532b);
+                u81.a((u81) this.f37505b);
                 return;
             case 6:
-                ((le1) this.f37532b).c(true);
+                ((le1) this.f37505b).c(true);
                 return;
             case 7:
-                ((le1) ((hw0) this.f37532b).f37147c).c(true);
+                ((le1) ((hw0) this.f37505b).f37120c).c(true);
                 return;
             case 8:
-                te1 te1Var = (te1) this.f37532b;
-                ArrayList arrayList = te1Var.f40760f;
-                HashSet hashSet = te1Var.f40764w;
+                te1 te1Var = (te1) this.f37505b;
+                ArrayList arrayList = te1Var.f40733f;
+                HashSet hashSet = te1Var.f40737w;
                 if (!hashSet.isEmpty()) {
                     TLRPC.User user = te1Var.getMessagesController().getUser(Long.valueOf(te1Var.getUserConfig().getClientUserId()));
                     ArrayList arrayList2 = new ArrayList();
                     for (int i10 = 0; i10 < arrayList.size(); i10++) {
-                        if (hashSet.contains(Long.valueOf(((TLRPC.Chat) arrayList.get(i10)).f19896id))) {
+                        if (hashSet.contains(Long.valueOf(((TLRPC.Chat) arrayList.get(i10)).f19869id))) {
                             arrayList2.add((TLRPC.Chat) arrayList.get(i10));
                         }
                     }
                     for (int i11 = 0; i11 < arrayList2.size(); i11++) {
                         TLRPC.Chat chat = (TLRPC.Chat) arrayList2.get(i11);
                         te1Var.getMessagesController().putChat(chat, false);
-                        te1Var.getMessagesController().deleteParticipantFromChat(chat.f19896id, user);
+                        te1Var.getMessagesController().deleteParticipantFromChat(chat.f19869id, user);
                     }
                     te1Var.finishFragment();
                     return;
                 }
                 return;
             default:
-                mj1 mj1Var = (mj1) this.f37532b;
-                org.telegram.ui.Cells.z1 z1Var = mj1Var.f38752a;
+                mj1 mj1Var = (mj1) this.f37505b;
+                org.telegram.ui.Cells.z1 z1Var = mj1Var.f38725a;
                 z1Var.c(!z1Var.b(), true);
-                mj1Var.f38754c.setEnabled(mj1Var.f38752a.b());
-                ViewPropertyAnimator animate = mj1Var.f38754c.animate();
-                if (mj1Var.f38752a.b()) {
+                mj1Var.f38727c.setEnabled(mj1Var.f38725a.b());
+                ViewPropertyAnimator animate = mj1Var.f38727c.animate();
+                if (mj1Var.f38725a.b()) {
                     f7 = 1.0f;
                 } else {
                     f7 = 0.5f;

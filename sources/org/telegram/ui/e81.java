@@ -7,31 +7,31 @@ import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class e81 implements View.OnClickListener {
-    public final q81 f36002a;
-    public final TLRPC.TL_authorization f36003b;
-    public final SessionsActivity f36004c;
+    public final q81 f35975a;
+    public final TLRPC.TL_authorization f35976b;
+    public final SessionsActivity f35977c;
     public final g81 d;
 
     public e81(g81 g81Var, q81 q81Var, TLRPC.TL_authorization tL_authorization, SessionsActivity sessionsActivity) {
         this.d = g81Var;
-        this.f36002a = q81Var;
-        this.f36003b = tL_authorization;
-        this.f36004c = sessionsActivity;
+        this.f35975a = q81Var;
+        this.f35976b = tL_authorization;
+        this.f35977c = sessionsActivity;
     }
 
     @Override
     public final void onClick(View view) {
-        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(this.d.f36627c.getParentActivity());
-        alertDialog$Builder.f20226a.T = LocaleController.getString(R.string.TerminateSessionText);
-        alertDialog$Builder.f20226a.R = LocaleController.getString(R.string.AreYouSureSessionTitle);
-        alertDialog$Builder.k(LocaleController.getString(R.string.Terminate), new b7(this, this.f36002a, this.f36003b, 21));
+        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(this.d.f36600c.getParentActivity());
+        alertDialog$Builder.f20199a.T = LocaleController.getString(R.string.TerminateSessionText);
+        alertDialog$Builder.f20199a.R = LocaleController.getString(R.string.AreYouSureSessionTitle);
+        alertDialog$Builder.k(LocaleController.getString(R.string.Terminate), new b7(this, this.f35975a, this.f35976b, 21));
         alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
-        SessionsActivity sessionsActivity = this.f36004c;
-        org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20226a;
+        SessionsActivity sessionsActivity = this.f35977c;
+        org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20199a;
         sessionsActivity.showDialog(b2Var);
         TextView textView = (TextView) b2Var.d(-1);
         if (textView != null) {
-            textView.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f20926q7, false));
+            textView.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f20899q7, false));
         }
     }
 }

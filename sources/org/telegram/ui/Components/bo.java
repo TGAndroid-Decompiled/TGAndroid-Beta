@@ -3,19 +3,19 @@ package org.telegram.ui.Components;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 public final class bo extends AnimatorListenerAdapter {
-    public final int f24780a;
-    public final co f24781b;
+    public final int f24753a;
+    public final co f24754b;
 
     public bo(co coVar, int i10) {
-        this.f24780a = i10;
-        this.f24781b = coVar;
+        this.f24753a = i10;
+        this.f24754b = coVar;
     }
 
     @Override
     public void onAnimationCancel(Animator animator) {
-        switch (this.f24780a) {
+        switch (this.f24753a) {
             case 0:
-                this.f24781b.Q = null;
+                this.f24754b.Q = null;
                 return;
             default:
                 super.onAnimationCancel(animator);
@@ -25,9 +25,9 @@ public final class bo extends AnimatorListenerAdapter {
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        switch (this.f24780a) {
+        switch (this.f24753a) {
             case 0:
-                co coVar = this.f24781b;
+                co coVar = this.f24754b;
                 if (coVar.Q == animator) {
                     coVar.getSubtitleTextView().setVisibility(4);
                     coVar.Q = null;
@@ -35,7 +35,7 @@ public final class bo extends AnimatorListenerAdapter {
                 }
                 return;
             default:
-                this.f24781b.Q = null;
+                this.f24754b.Q = null;
                 return;
         }
     }

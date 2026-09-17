@@ -1,15 +1,15 @@
 package org.telegram.ui;
 public final class dm0 implements Runnable {
-    public final int f35855a;
-    public final boolean f35856b;
-    public final Object f35857c;
+    public final int f35828a;
+    public final boolean f35829b;
+    public final Object f35830c;
     public final Object d;
 
     public dm0(Object obj, Object obj2, boolean z10, int i10) {
-        this.f35855a = i10;
-        this.f35857c = obj;
+        this.f35828a = i10;
+        this.f35830c = obj;
         this.d = obj2;
-        this.f35856b = z10;
+        this.f35829b = z10;
     }
 
     @Override
@@ -18,9 +18,9 @@ public final class dm0 implements Runnable {
     }
 
     public dm0(Object obj, boolean z10, Object obj2, int i10) {
-        this.f35855a = i10;
-        this.f35857c = obj;
-        this.f35856b = z10;
+        this.f35828a = i10;
+        this.f35830c = obj;
+        this.f35829b = z10;
         this.d = obj2;
     }
 }

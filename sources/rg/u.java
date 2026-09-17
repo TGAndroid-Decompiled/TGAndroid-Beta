@@ -10,24 +10,24 @@ import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.j6;
 import w7.x5;
 public final class u implements Runnable {
-    public final int f45528a;
-    public final o0 f45529b;
-    public final k f45530c;
+    public final int f45500a;
+    public final o0 f45501b;
+    public final k f45502c;
 
     public u(o0 o0Var, k kVar, int i10) {
-        this.f45528a = i10;
-        this.f45529b = o0Var;
-        this.f45530c = kVar;
+        this.f45500a = i10;
+        this.f45501b = o0Var;
+        this.f45502c = kVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f45528a) {
+        switch (this.f45500a) {
             case 0:
-                this.f45529b.q0(this.f45530c);
+                this.f45501b.q0(this.f45502c);
                 return;
             default:
-                final o0 o0Var = this.f45529b;
+                final o0 o0Var = this.f45501b;
                 LinearLayout linearLayout = new LinearLayout(o0Var.getContext());
                 linearLayout.setOrientation(0);
                 TextView textView = new TextView(o0Var.getContext());
@@ -42,7 +42,7 @@ public final class u implements Runnable {
                 textView.setText(LocaleController.getString(R.string.PaintDelete));
                 TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
                 textView.setEllipsize(truncateAt);
-                final k kVar = this.f45530c;
+                final k kVar = this.f45502c;
                 textView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {

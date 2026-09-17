@@ -6,23 +6,23 @@ import android.text.TextWatcher;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class up0 implements TextWatcher {
-    public final hq0 f30962a;
+    public final hq0 f30935a;
 
     public up0(hq0 hq0Var) {
-        this.f30962a = hq0Var;
+        this.f30935a = hq0Var;
     }
 
     @Override
     public final void afterTextChanged(Editable editable) {
-        hq0 hq0Var = this.f30962a;
+        hq0 hq0Var = this.f30935a;
         zp0 zp0Var = hq0Var.K;
         xw0 xw0Var = hq0Var.Q;
-        b20 b20Var = hq0Var.f26848y0;
-        if (!TextUtils.isEmpty(b20Var.f24550r.getText())) {
+        b20 b20Var = hq0Var.f26821y0;
+        if (!TextUtils.isEmpty(b20Var.f24523r.getText())) {
             hq0Var.K0(false);
         }
         if (hq0Var.A0) {
-            String obj = b20Var.f24550r.getText().toString();
+            String obj = b20Var.f24523r.getText().toString();
             if (obj.length() != 0) {
                 if (xw0Var != null) {
                     xw0Var.d.setText(LocaleController.getString(R.string.NoResult));

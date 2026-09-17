@@ -11,14 +11,14 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.UserObject;
 import org.telegram.tgnet.TLRPC;
 public final class ht0 extends kl0 {
-    public final Context f26872c;
+    public final Context f26845c;
     public TLRPC.ChatFull d;
-    public ArrayList f26873e;
-    public final xu0 f26874f;
+    public ArrayList f26846e;
+    public final xu0 f26847f;
 
     public ht0(xu0 xu0Var, Context context) {
-        this.f26874f = xu0Var;
-        this.f26872c = context;
+        this.f26847f = xu0Var;
+        this.f26845c = context;
     }
 
     @Override
@@ -60,13 +60,13 @@ public final class ht0 extends kl0 {
         boolean z15;
         boolean z16;
         boolean z17;
-        xu0 xu0Var = this.f26874f;
-        org.telegram.ui.ActionBar.n2 n2Var = xu0Var.f32754v1;
-        View view = c1Var.f45767a;
+        xu0 xu0Var = this.f26847f;
+        org.telegram.ui.ActionBar.n2 n2Var = xu0Var.f32727v1;
+        View view = c1Var.f45739a;
         if (view instanceof org.telegram.ui.Cells.za) {
             org.telegram.ui.Cells.za zaVar = (org.telegram.ui.Cells.za) view;
-            if (!this.f26873e.isEmpty()) {
-                chatParticipant = this.d.participants.participants.get(((Integer) this.f26873e.get(i10)).intValue());
+            if (!this.f26846e.isEmpty()) {
+                chatParticipant = this.d.participants.participants.get(((Integer) this.f26846e.get(i10)).intValue());
             } else {
                 chatParticipant = this.d.participants.participants.get(i10);
             }
@@ -134,7 +134,7 @@ public final class ht0 extends kl0 {
                     z13 = false;
                 }
                 TLRPC.User user = n2Var.getMessagesController().getUser(Long.valueOf(chatParticipant.user_id));
-                if (UserObject.isUserSelf(user) && ChatObject.canManageMyTag(n2Var.getMessagesController().getChat(Long.valueOf(-xu0Var.f32729j1)))) {
+                if (UserObject.isUserSelf(user) && ChatObject.canManageMyTag(n2Var.getMessagesController().getChat(Long.valueOf(-xu0Var.f32702j1)))) {
                     z14 = true;
                 } else {
                     z14 = false;
@@ -150,13 +150,13 @@ public final class ht0 extends kl0 {
 
     @Override
     public final s4.c1 x(ViewGroup viewGroup, int i10) {
-        xu0 xu0Var = this.f26874f;
+        xu0 xu0Var = this.f26847f;
         if (i10 == 20) {
-            kt0 M = xu0.M(7, xu0Var.f32729j1, this.f26872c, xu0Var.F1);
+            kt0 M = xu0.M(7, xu0Var.f32702j1, this.f26845c, xu0Var.F1);
             M.setLayoutParams(new s4.p0(-1, -1));
             return new s4.c1(M);
         }
-        org.telegram.ui.Cells.za zaVar = new org.telegram.ui.Cells.za(9, 0, this.f26872c, xu0Var.F1, true, false);
+        org.telegram.ui.Cells.za zaVar = new org.telegram.ui.Cells.za(9, 0, this.f26845c, xu0Var.F1, true, false);
         zaVar.setLayoutParams(new s4.p0(-1, -2));
         return new s4.c1(zaVar);
     }

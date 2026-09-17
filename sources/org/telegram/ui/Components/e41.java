@@ -19,26 +19,26 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.XiaomiUtilities;
 public final class e41 extends FrameLayout implements org.telegram.ui.ActionBar.z5 {
-    public final org.telegram.ui.ActionBar.f6 f25577a;
-    public boolean f25578b;
-    public final b41 f25579c;
+    public final org.telegram.ui.ActionBar.f6 f25550a;
+    public boolean f25551b;
+    public final b41 f25552c;
     public final TextView d;
-    public final FrameLayout.LayoutParams f25580e;
-    public final c41 f25581f;
+    public final FrameLayout.LayoutParams f25553e;
+    public final c41 f25554f;
     public boolean h;
-    public final ImageView f25582n;
-    public int f25583r;
-    public final e6 f25584s;
+    public final ImageView f25555n;
+    public int f25556r;
+    public final e6 f25557s;
 
     public e41(Context context, org.telegram.ui.ActionBar.f6 f6Var) {
         super(context);
-        this.f25583r = -1;
-        this.f25584s = new e6(this, 0L, 320L, pr.h);
-        this.f25577a = f6Var;
+        this.f25556r = -1;
+        this.f25557s = new e6(this, 0L, 320L, pr.h);
+        this.f25550a = f6Var;
         setClipToPadding(false);
         setPadding(AndroidUtilities.dp(20.0f), 0, AndroidUtilities.dp(20.0f), AndroidUtilities.dp(16.0f));
         b41 b41Var = new b41(this, context);
-        this.f25579c = b41Var;
+        this.f25552c = b41Var;
         NotificationCenter.listenEmojiLoading(b41Var);
         b41Var.setTextSize(1, 16.0f);
         b41Var.setMaxLines(1);
@@ -52,15 +52,15 @@ public final class e41 extends FrameLayout implements org.telegram.ui.ActionBar.
         w7.z5.a(textView);
         addView(textView, w7.x5.d(-2, 18.0f, 53, 0.0f, 1.0f, 0.0f, 0.0f));
         ?? pVar = new wh.p(context);
-        this.f25581f = pVar;
+        this.f25554f = pVar;
         NotificationCenter.listenEmojiLoading(pVar);
         pVar.setTextSize(1, 16.0f);
         pVar.setTextIsSelectable(true);
         FrameLayout.LayoutParams c10 = w7.x5.c(-2.0f, -1);
-        this.f25580e = c10;
+        this.f25553e = c10;
         addView((View) pVar, c10);
         ImageView imageView = new ImageView(context);
-        this.f25582n = imageView;
+        this.f25555n = imageView;
         imageView.setImageResource(R.drawable.msg_copy);
         imageView.setScaleType(ImageView.ScaleType.CENTER);
         imageView.setContentDescription(LocaleController.getString(R.string.Copy));
@@ -73,22 +73,22 @@ public final class e41 extends FrameLayout implements org.telegram.ui.ActionBar.
     @Override
     public final void d() {
         int i10 = org.telegram.ui.ActionBar.j6.G6;
-        org.telegram.ui.ActionBar.f6 f6Var = this.f25577a;
-        this.f25579c.setTextColor(org.telegram.ui.ActionBar.j6.v0(i10, f6Var));
+        org.telegram.ui.ActionBar.f6 f6Var = this.f25550a;
+        this.f25552c.setTextColor(org.telegram.ui.ActionBar.j6.v0(i10, f6Var));
         int i11 = org.telegram.ui.ActionBar.j6.L6;
         int v02 = org.telegram.ui.ActionBar.j6.v0(i11, f6Var);
         TextView textView = this.d;
         textView.setTextColor(v02);
         textView.setBackground(org.telegram.ui.ActionBar.j6.b0(AndroidUtilities.dp(9.0f), org.telegram.ui.ActionBar.j6.l1(0.1f, org.telegram.ui.ActionBar.j6.v0(i11, f6Var))));
         int v03 = org.telegram.ui.ActionBar.j6.v0(i10, f6Var);
-        c41 c41Var = this.f25581f;
+        c41 c41Var = this.f25554f;
         c41Var.setTextColor(v03);
         c41Var.setLinkTextColor(org.telegram.ui.ActionBar.j6.v0(i11, f6Var));
-        c41Var.setHighlightColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f21009uf, f6Var));
-        setHandlesColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f21026vf, f6Var));
+        c41Var.setHighlightColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f20982uf, f6Var));
+        setHandlesColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f20999vf, f6Var));
         int i12 = org.telegram.ui.ActionBar.j6.Oh;
         PorterDuffColorFilter porterDuffColorFilter = new PorterDuffColorFilter(org.telegram.ui.ActionBar.j6.v0(i12, f6Var), PorterDuff.Mode.SRC_IN);
-        ImageView imageView = this.f25582n;
+        ImageView imageView = this.f25555n;
         imageView.setColorFilter(porterDuffColorFilter);
         imageView.setBackground(org.telegram.ui.ActionBar.j6.f0(org.telegram.ui.ActionBar.j6.l1(0.1f, org.telegram.ui.ActionBar.j6.v0(i12, f6Var)), 1, -1));
     }
@@ -96,7 +96,7 @@ public final class e41 extends FrameLayout implements org.telegram.ui.ActionBar.
     @Override
     public final void dispatchDraw(Canvas canvas) {
         canvas.save();
-        canvas.clipRect(0.0f, 0.0f, getWidth(), this.f25584s.d(this.f25583r, false));
+        canvas.clipRect(0.0f, 0.0f, getWidth(), this.f25557s.d(this.f25556r, false));
         super.dispatchDraw(canvas);
         canvas.restore();
     }
@@ -109,15 +109,15 @@ public final class e41 extends FrameLayout implements org.telegram.ui.ActionBar.
     public final void onDraw(Canvas canvas) {
         View view;
         super.onDraw(canvas);
-        if (this.f25578b) {
+        if (this.f25551b) {
             if (this.h) {
-                view = this.f25579c;
+                view = this.f25552c;
             } else {
-                view = this.f25581f;
+                view = this.f25554f;
             }
-            Paint T0 = org.telegram.ui.ActionBar.j6.T0("paintDivider", this.f25577a);
+            Paint T0 = org.telegram.ui.ActionBar.j6.T0("paintDivider", this.f25550a);
             if (T0 == null) {
-                T0 = org.telegram.ui.ActionBar.j6.f20813k0;
+                T0 = org.telegram.ui.ActionBar.j6.f20786k0;
             }
             Paint paint = T0;
             if (LocaleController.isRTL) {
@@ -130,30 +130,30 @@ public final class e41 extends FrameLayout implements org.telegram.ui.ActionBar.
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        this.f25583r = getMeasuredHeight();
+        this.f25556r = getMeasuredHeight();
         int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824);
-        FrameLayout.LayoutParams layoutParams = this.f25580e;
+        FrameLayout.LayoutParams layoutParams = this.f25553e;
         layoutParams.bottomMargin = 0;
         super.onMeasure(makeMeasureSpec, i11);
-        if (this.f25582n.getVisibility() == 0) {
-            Layout layout = this.f25581f.getLayout();
+        if (this.f25555n.getVisibility() == 0) {
+            Layout layout = this.f25554f.getLayout();
             if (layout.getLineCount() > 0 && layout.getLineRight(layout.getLineCount() - 1) > layout.getWidth() - AndroidUtilities.dp(42.0f)) {
                 layoutParams.bottomMargin = AndroidUtilities.dp(26.0f);
                 super.onMeasure(makeMeasureSpec, i11);
             }
         }
-        if (getMeasuredHeight() > this.f25583r && !this.h) {
-            this.f25583r = getMeasuredHeight();
+        if (getMeasuredHeight() > this.f25556r && !this.h) {
+            this.f25556r = getMeasuredHeight();
             invalidate();
             return;
         }
         int measuredHeight = getMeasuredHeight();
-        this.f25583r = measuredHeight;
-        this.f25584s.d(measuredHeight, true);
+        this.f25556r = measuredHeight;
+        this.f25557s.d(measuredHeight, true);
     }
 
     public void setHandlesColor(int i10) {
-        c41 c41Var = this.f25581f;
+        c41 c41Var = this.f25554f;
         if (Build.VERSION.SDK_INT >= 29 && !XiaomiUtilities.isMIUI()) {
             try {
                 Drawable textSelectHandleLeft = c41Var.getTextSelectHandleLeft();

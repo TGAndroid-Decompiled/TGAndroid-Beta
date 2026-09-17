@@ -11,21 +11,21 @@ import org.telegram.ui.Components.p6;
 import org.telegram.ui.Components.pr;
 import org.telegram.ui.Components.zt;
 public final class y1 extends zt {
-    public final h5 f50681c;
+    public final h5 f50652c;
     public int d;
-    public final p6 f50682e;
-    public final q2 f50683f;
+    public final p6 f50653e;
+    public final q2 f50654f;
 
     public y1(q2 q2Var, Context context, f6 f6Var) {
         super(context, f6Var);
-        this.f50683f = q2Var;
-        this.f50681c = new h5(this);
+        this.f50654f = q2Var;
+        this.f50652c = new h5(this);
         p6 p6Var = new p6(false, true, true, false);
-        this.f50682e = p6Var;
+        this.f50653e = p6Var;
         p6Var.k(0.2f, 160L, pr.h);
         p6Var.t(AndroidUtilities.dp(15.33f));
         p6Var.setCallback(this);
-        p6Var.f29313b = 5;
+        p6Var.f29286b = 5;
     }
 
     @Override
@@ -33,12 +33,12 @@ public final class y1 extends zt {
         int i10;
         super.dispatchDraw(canvas);
         if (this.d < 0) {
-            i10 = j6.f20908p7;
+            i10 = j6.f20881p7;
         } else {
             i10 = j6.P5;
         }
-        int a2 = this.f50681c.a(j6.v0(i10, this.f50683f.f50549f), false);
-        p6 p6Var = this.f50682e;
+        int a2 = this.f50652c.a(j6.v0(i10, this.f50654f.f50520f), false);
+        p6 p6Var = this.f50653e;
         p6Var.r(a2);
         p6Var.setBounds(getScrollX(), 0, getWidth() + getScrollX(), getHeight());
         p6Var.draw(canvas);
@@ -47,7 +47,7 @@ public final class y1 extends zt {
     @Override
     public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
         super.onTextChanged(charSequence, i10, i11, i12);
-        p6 p6Var = this.f50682e;
+        p6 p6Var = this.f50653e;
         if (p6Var != null) {
             this.d = 12 - charSequence.length();
             p6Var.b();
@@ -61,7 +61,7 @@ public final class y1 extends zt {
 
     @Override
     public final boolean verifyDrawable(Drawable drawable) {
-        if (drawable != this.f50682e && !super.verifyDrawable(drawable)) {
+        if (drawable != this.f50653e && !super.verifyDrawable(drawable)) {
             return false;
         }
         return true;

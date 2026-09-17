@@ -15,7 +15,7 @@ public final class pw extends jz {
         kz kzVar;
         bh.f fVar;
         super.b(recyclerView, i10, i11);
-        if (Build.VERSION.SDK_INT >= 31 && (fVar = (kzVar = this.d).f27984j2) != null) {
+        if (Build.VERSION.SDK_INT >= 31 && (fVar = (kzVar = this.d).f27957j2) != null) {
             fVar.f(i10, i11);
             kzVar.C();
         }

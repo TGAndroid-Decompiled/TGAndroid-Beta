@@ -10,26 +10,26 @@ import org.telegram.messenger.FileLog;
 import org.telegram.messenger.R;
 import org.telegram.messenger.XiaomiUtilities;
 public final class cu extends zt {
-    public Drawable f25121c;
+    public Drawable f25094c;
     public final int d;
-    public final hu f25122e;
+    public final hu f25095e;
 
     public cu(hu huVar, Context context, org.telegram.ui.ActionBar.f6 f6Var, int i10) {
         super(context, f6Var);
-        this.f25122e = huVar;
+        this.f25095e = huVar;
         this.d = i10;
-        this.f25121c = null;
+        this.f25094c = null;
     }
 
     @Override
     public final int emojiCacheType() {
-        return this.f25122e.h();
+        return this.f25095e.h();
     }
 
     @Override
     public final void extendActionMode(ActionMode actionMode, Menu menu) {
         boolean z10;
-        hu huVar = this.f25122e;
+        hu huVar = this.f25095e;
         if (huVar.a()) {
             if (huVar.L == 3) {
                 z10 = true;
@@ -53,15 +53,15 @@ public final class cu extends zt {
 
     @Override
     public final void onLineCountChanged(int i10, int i11) {
-        this.f25122e.q(i10, i11);
+        this.f25095e.q(i10, i11);
     }
 
     @Override
     public final void onSelectionChanged(int i10, int i11) {
         boolean z10;
         super.onSelectionChanged(i10, i11);
-        hu huVar = this.f25122e;
-        ql0 ql0Var = huVar.f26877c;
+        hu huVar = this.f25095e;
+        ql0 ql0Var = huVar.f26850c;
         if (ql0Var != null) {
             boolean z11 = false;
             if (i11 != i10) {
@@ -73,15 +73,15 @@ public final class cu extends zt {
                 XiaomiUtilities.isMIUI();
                 z11 = true;
             }
-            if (huVar.f26880n != z11) {
-                huVar.f26880n = z11;
+            if (huVar.f26853n != z11) {
+                huVar.f26853n = z11;
                 if (z11) {
-                    this.f25121c = ql0Var.d;
+                    this.f25094c = ql0Var.d;
                     ql0Var.a(R.drawable.msg_edit, true);
                     return;
                 }
-                ql0Var.b(this.f25121c, true);
-                this.f25121c = null;
+                ql0Var.b(this.f25094c, true);
+                this.f25094c = null;
             }
         }
     }
@@ -90,12 +90,12 @@ public final class cu extends zt {
     public final boolean onTouchEvent(MotionEvent motionEvent) {
         int i10;
         du duVar;
-        hu huVar = this.f25122e;
-        if (huVar.f26878e && motionEvent.getAction() == 0) {
+        hu huVar = this.f25095e;
+        if (huVar.f26851e && motionEvent.getAction() == 0) {
             huVar.u();
-            if (huVar.f26884x && (duVar = huVar.d) != null) {
+            if (huVar.f26857x && (duVar = huVar.d) != null) {
                 duVar.t(false);
-                huVar.f26884x = false;
+                huVar.f26857x = false;
                 huVar.k(true);
                 AndroidUtilities.showKeyboard(this);
             } else {
@@ -129,7 +129,7 @@ public final class cu extends zt {
 
     @Override
     public final void scrollTo(int i10, int i11) {
-        if (this.f25122e.t(i11)) {
+        if (this.f25095e.t(i11)) {
             super.scrollTo(i10, i11);
         }
     }

@@ -1,15 +1,15 @@
 package org.telegram.ui.Components;
 public final class je0 extends org.telegram.ui.ActionBar.j {
-    public final pe0 f27491a;
+    public final pe0 f27464a;
 
     public je0(pe0 pe0Var) {
-        this.f27491a = pe0Var;
+        this.f27464a = pe0Var;
     }
 
     @Override
     public final void b(int i10) {
         if (i10 == -1) {
-            this.f27491a.dismiss();
+            this.f27464a.dismiss();
         }
     }
 }

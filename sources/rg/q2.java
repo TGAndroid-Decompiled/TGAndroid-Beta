@@ -17,26 +17,26 @@ import org.telegram.ui.Components.pr;
 import org.telegram.ui.Components.xi0;
 import w7.x5;
 public class q2 extends k {
-    public final TLRPC.Document f45487q0;
-    public final Object f45488r0;
-    public final int f45489s0;
-    public boolean f45490t0;
-    public final e6 f45491u0;
-    public final iv0 f45492v0;
-    public final ah.y f45493w0;
-    public final ImageReceiver f45494x0;
+    public final TLRPC.Document f45459q0;
+    public final Object f45460r0;
+    public final int f45461s0;
+    public boolean f45462t0;
+    public final e6 f45463u0;
+    public final iv0 f45464v0;
+    public final ah.y f45465w0;
+    public final ImageReceiver f45466x0;
 
     public q2(Context context, PointF pointF, float f7, float f10, iv0 iv0Var, TLRPC.Document document, Object obj) {
         super(context, pointF);
-        this.f45489s0 = -1;
+        this.f45461s0 = -1;
         int i10 = 0;
-        this.f45490t0 = false;
-        this.f45494x0 = new ImageReceiver();
+        this.f45462t0 = false;
+        this.f45466x0 = new ImageReceiver();
         setRotation(f7);
         setScale(f10);
-        this.f45487q0 = document;
-        this.f45492v0 = iv0Var;
-        this.f45488r0 = obj;
+        this.f45459q0 = document;
+        this.f45464v0 = iv0Var;
+        this.f45460r0 = obj;
         while (true) {
             if (i10 >= document.attributes.size()) {
                 break;
@@ -45,41 +45,41 @@ public class q2 extends k {
             if (documentAttribute instanceof TLRPC.TL_documentAttributeSticker) {
                 TLRPC.TL_maskCoords tL_maskCoords = documentAttribute.mask_coords;
                 if (tL_maskCoords != null) {
-                    this.f45489s0 = tL_maskCoords.f19971n;
+                    this.f45461s0 = tL_maskCoords.f19944n;
                 }
             } else {
                 i10++;
             }
         }
         ah.y yVar = new ah.y(this, context);
-        this.f45493w0 = yVar;
+        this.f45465w0 = yVar;
         addView(yVar, x5.c(-1.0f, -1));
-        this.f45491u0 = new e6(yVar, 0L, 500L, pr.h);
-        this.f45494x0.setAspectFit(true);
-        this.f45494x0.setInvalidateAll(true);
-        this.f45494x0.setParentView(yVar);
-        this.f45494x0.setImage(ImageLocation.getForDocument(document), (String) null, ImageLocation.getForDocument(FileLoader.getClosestPhotoSizeWithSize(document.thumbs, 90), document), (String) null, "webp", obj, 1);
-        this.f45494x0.setDelegate(new p2(this, 0));
+        this.f45463u0 = new e6(yVar, 0L, 500L, pr.h);
+        this.f45466x0.setAspectFit(true);
+        this.f45466x0.setInvalidateAll(true);
+        this.f45466x0.setParentView(yVar);
+        this.f45466x0.setImage(ImageLocation.getForDocument(document), (String) null, ImageLocation.getForDocument(FileLoader.getClosestPhotoSizeWithSize(document.thumbs, 90), document), (String) null, "webp", obj, 1);
+        this.f45466x0.setDelegate(new p2(this, 0));
         k();
     }
 
     @Override
     public final j a() {
         b2 b2Var = new b2(this, getContext(), 2);
-        b2Var.f45167r = new RectF();
+        b2Var.f45139r = new RectF();
         return b2Var;
     }
 
     public int getAnchor() {
-        return this.f45489s0;
+        return this.f45461s0;
     }
 
     public iv0 getBaseSize() {
-        return this.f45492v0;
+        return this.f45464v0;
     }
 
     public long getDuration() {
-        ImageReceiver imageReceiver = this.f45494x0;
+        ImageReceiver imageReceiver = this.f45466x0;
         xi0 lottieAnimation = imageReceiver.getLottieAnimation();
         if (lottieAnimation != null) {
             return lottieAnimation.p();
@@ -92,7 +92,7 @@ public class q2 extends k {
     }
 
     public Object getParentObject() {
-        return this.f45488r0;
+        return this.f45460r0;
     }
 
     @Override
@@ -109,47 +109,47 @@ public class q2 extends k {
     }
 
     public TLRPC.Document getSticker() {
-        return this.f45487q0;
+        return this.f45459q0;
     }
 
     @Override
     public final void k() {
-        iv0 iv0Var = this.f45492v0;
-        setX(getPositionX() - (iv0Var.f27299a / 2.0f));
-        setY(getPositionY() - (iv0Var.f27300b / 2.0f));
+        iv0 iv0Var = this.f45464v0;
+        setX(getPositionX() - (iv0Var.f27272a / 2.0f));
+        setY(getPositionY() - (iv0Var.f27273b / 2.0f));
         m();
     }
 
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        this.f45494x0.onAttachedToWindow();
+        this.f45466x0.onAttachedToWindow();
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        this.f45494x0.onDetachedFromWindow();
+        this.f45466x0.onDetachedFromWindow();
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        iv0 iv0Var = this.f45492v0;
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec((int) iv0Var.f27299a, 1073741824), View.MeasureSpec.makeMeasureSpec((int) iv0Var.f27300b, 1073741824));
+        iv0 iv0Var = this.f45464v0;
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec((int) iv0Var.f27272a, 1073741824), View.MeasureSpec.makeMeasureSpec((int) iv0Var.f27273b, 1073741824));
     }
 
     public final void r(boolean z10) {
-        boolean z11 = !this.f45490t0;
-        this.f45490t0 = z11;
+        boolean z11 = !this.f45462t0;
+        this.f45462t0 = z11;
         if (!z10) {
-            this.f45491u0.f(z11, true);
+            this.f45463u0.f(z11, true);
         }
-        this.f45493w0.invalidate();
+        this.f45465w0.invalidate();
     }
 
     public q2(Context context, q2 q2Var, PointF pointF) {
-        this(context, pointF, q2Var.getRotation(), q2Var.getScale(), q2Var.f45492v0, q2Var.f45487q0, q2Var.f45488r0);
-        if (q2Var.f45490t0) {
+        this(context, pointF, q2Var.getRotation(), q2Var.getScale(), q2Var.f45464v0, q2Var.f45459q0, q2Var.f45460r0);
+        if (q2Var.f45462t0) {
             r(false);
         }
     }

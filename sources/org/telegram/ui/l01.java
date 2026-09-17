@@ -5,19 +5,19 @@ import android.view.ViewGroup;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ChatObject;
 public final class l01 implements di.gc {
-    public final ProfileActivity f38192a;
+    public final ProfileActivity f38165a;
 
     public l01(ProfileActivity profileActivity) {
-        this.f38192a = profileActivity;
+        this.f38165a = profileActivity;
     }
 
     @Override
     public final di.kc a(long j3) {
         float f7;
-        ProfileActivity profileActivity = this.f38192a;
+        ProfileActivity profileActivity = this.f38165a;
         if (j3 == profileActivity.a()) {
-            profileActivity.f33915e0.setRoundRadiusForExpand((int) AndroidUtilities.lerp(profileActivity.c4(), 0.0f, profileActivity.f33959k2));
-            pz0 pz0Var = profileActivity.f33915e0;
+            profileActivity.f33888e0.setRoundRadiusForExpand((int) AndroidUtilities.lerp(profileActivity.c4(), 0.0f, profileActivity.f33932k2));
+            pz0 pz0Var = profileActivity.f33888e0;
             boolean isForum = ChatObject.isForum(profileActivity.E2);
             if (pz0Var != null && pz0Var.getRootView() != null) {
                 float scaleX = ((View) pz0Var.getParent()).getScaleX();
@@ -34,9 +34,9 @@ public final class l01 implements di.gc {
                 AndroidUtilities.getViewPositionInParent(pz0Var, (ViewGroup) pz0Var.getRootView(), fArr);
                 float imageX = (pz0Var.getImageReceiver().getImageX() * scaleX) + iArr[0] + fArr[0];
                 float imageY = (pz0Var.getImageReceiver().getImageY() * scaleX) + iArr[1] + fArr[1];
-                icVar.f7512c.set(imageX, imageY, imageX + imageWidth, imageWidth + imageY);
-                icVar.f7513e = pz0Var.getImageReceiver();
-                icVar.f7511b = f7;
+                icVar.f7484c.set(imageX, imageY, imageX + imageWidth, imageWidth + imageY);
+                icVar.f7485e = pz0Var.getImageReceiver();
+                icVar.f7483b = f7;
                 return icVar;
             }
             return null;
@@ -46,11 +46,11 @@ public final class l01 implements di.gc {
 
     @Override
     public final void b(long j3, bi.g gVar) {
-        ProfileActivity profileActivity = this.f38192a;
-        profileActivity.f33915e0.setHasStories(profileActivity.j4());
-        if (j3 == profileActivity.a() && profileActivity.f33985o2 && profileActivity.f33959k2 > 0.0f) {
-            profileActivity.f33899c.h1(0, profileActivity.T3() - profileActivity.f33884a.getPaddingTop());
-            profileActivity.f33884a.post(new yb0(profileActivity, 14));
+        ProfileActivity profileActivity = this.f38165a;
+        profileActivity.f33888e0.setHasStories(profileActivity.j4());
+        if (j3 == profileActivity.a() && profileActivity.f33958o2 && profileActivity.f33932k2 > 0.0f) {
+            profileActivity.f33872c.h1(0, profileActivity.T3() - profileActivity.f33857a.getPaddingTop());
+            profileActivity.f33857a.post(new yb0(profileActivity, 14));
         }
         AndroidUtilities.runOnUIThread(gVar, 30L);
     }

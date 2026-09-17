@@ -3,23 +3,23 @@ package org.telegram.ui;
 import org.telegram.messenger.MessageSuggestionParams;
 import org.telegram.messenger.Utilities;
 public final class bf implements Utilities.Callback {
-    public final int f34812a;
-    public final co f34813b;
+    public final int f34785a;
+    public final co f34786b;
 
     public bf(co coVar, int i10) {
-        this.f34812a = i10;
-        this.f34813b = coVar;
+        this.f34785a = i10;
+        this.f34786b = coVar;
     }
 
     @Override
     public final void run(Object obj) {
-        int i10 = this.f34812a;
-        co coVar = this.f34813b;
+        int i10 = this.f34785a;
+        co coVar = this.f34786b;
         switch (i10) {
             case 0:
                 MessageSuggestionParams messageSuggestionParams = (MessageSuggestionParams) obj;
-                co coVar2 = this.f34813b;
-                coVar2.f35295g5 = messageSuggestionParams;
+                co coVar2 = this.f34786b;
+                coVar2.f35268g5 = messageSuggestionParams;
                 coVar2.p5.messageOwner.suggested_post = messageSuggestionParams.toTl();
                 coVar2.yb(true, null, coVar2.p5, null, null, null, false, true);
                 return;
@@ -45,8 +45,8 @@ public final class bf implements Utilities.Callback {
                 }
                 return;
             case 5:
-                hs hsVar = coVar.f35252d0;
-                hsVar.f37129c.add(((org.telegram.ui.ActionBar.v0) obj).getIconView());
+                hs hsVar = coVar.f35225d0;
+                hsVar.f37102c.add(((org.telegram.ui.ActionBar.v0) obj).getIconView());
                 return;
             case 6:
                 int intValue = ((Integer) obj).intValue();

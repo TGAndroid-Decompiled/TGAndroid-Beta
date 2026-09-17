@@ -3,23 +3,23 @@ package p0;
 import android.text.SpannableStringBuilder;
 import b2.p;
 public final class b {
-    public static final String f43654b;
-    public static final String f43655c;
+    public static final String f43627b;
+    public static final String f43628c;
     public static final b d;
-    public static final b f43656e;
-    public final boolean f43657a;
+    public static final b f43629e;
+    public final boolean f43630a;
 
     static {
-        p pVar = f.f43664c;
-        f43654b = Character.toString((char) 8206);
-        f43655c = Character.toString((char) 8207);
+        p pVar = f.f43637c;
+        f43627b = Character.toString((char) 8206);
+        f43628c = Character.toString((char) 8207);
         d = new b(false);
-        f43656e = new b(true);
+        f43629e = new b(true);
     }
 
     public b(boolean z10) {
-        p pVar = f.f43662a;
-        this.f43657a = z10;
+        p pVar = f.f43635a;
+        this.f43630a = z10;
     }
 
     public static int a(java.lang.CharSequence r9) {
@@ -28,10 +28,10 @@ public final class b {
 
     public static int b(CharSequence charSequence) {
         a aVar = new a(charSequence);
-        aVar.f43653c = aVar.f43652b;
+        aVar.f43626c = aVar.f43625b;
         int i10 = 0;
         int i11 = 0;
-        while (aVar.f43653c > 0) {
+        while (aVar.f43626c > 0) {
             byte a2 = aVar.a();
             if (a2 != 0) {
                 if (a2 != 1 && a2 != 2) {
@@ -88,22 +88,22 @@ public final class b {
         String str;
         p pVar2;
         char c10;
-        p pVar3 = f.f43664c;
+        p pVar3 = f.f43637c;
         if (charSequence == null) {
             return null;
         }
         boolean h = pVar3.h(charSequence.length(), charSequence);
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
         if (h) {
-            pVar = f.f43663b;
+            pVar = f.f43636b;
         } else {
-            pVar = f.f43662a;
+            pVar = f.f43635a;
         }
         boolean h10 = pVar.h(charSequence.length(), charSequence);
         String str2 = "";
-        String str3 = f43655c;
-        String str4 = f43654b;
-        boolean z10 = this.f43657a;
+        String str3 = f43628c;
+        String str4 = f43627b;
+        boolean z10 = this.f43630a;
         if (!z10 && (h10 || a(charSequence) == 1)) {
             str = str4;
         } else if (!z10 || (h10 && a(charSequence) != -1)) {
@@ -125,9 +125,9 @@ public final class b {
             spannableStringBuilder.append(charSequence);
         }
         if (h) {
-            pVar2 = f.f43663b;
+            pVar2 = f.f43636b;
         } else {
-            pVar2 = f.f43662a;
+            pVar2 = f.f43635a;
         }
         boolean h11 = pVar2.h(charSequence.length(), charSequence);
         if (!z10 && (h11 || b(charSequence) == 1)) {

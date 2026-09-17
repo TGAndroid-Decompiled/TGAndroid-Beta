@@ -4,23 +4,23 @@ import org.telegram.ui.Components.h51;
 import org.telegram.ui.Components.nz;
 import org.telegram.ui.Components.v51;
 public final class i4 extends g.p {
-    public final k4 f50364c;
+    public final k4 f50335c;
 
     public i4(k4 k4Var) {
-        this.f50364c = k4Var;
+        this.f50335c = k4Var;
     }
 
     @Override
     public final int i(int i10) {
         int i11;
-        k4 k4Var = this.f50364c;
-        nz nzVar = k4Var.f50411a0;
-        v51 v51Var = k4Var.f50415e0;
+        k4 k4Var = this.f50335c;
+        nz nzVar = k4Var.f50382a0;
+        v51 v51Var = k4Var.f50386e0;
         if (v51Var == null) {
             return nzVar.J;
         }
         h51 G = v51Var.G(i10 - 1);
-        if (G != null && (i11 = G.f26631u) != -1) {
+        if (G != null && (i11 = G.f26604u) != -1) {
             return i11;
         }
         return nzVar.J;

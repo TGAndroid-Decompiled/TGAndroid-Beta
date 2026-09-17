@@ -14,10 +14,10 @@ public final class e91 extends org.telegram.ui.Components.g51 {
     public static org.telegram.ui.Components.h51 a(int i10, int i11, int i12, int i13, CharSequence charSequence, CharSequence charSequence2, CharSequence charSequence3) {
         org.telegram.ui.Components.h51 J = org.telegram.ui.Components.h51.J(e91.class);
         J.d = i10;
-        J.f26621k = i13;
-        J.f26622l = charSequence;
-        J.f26623m = charSequence2;
-        J.f26624n = charSequence3;
+        J.f26594k = i13;
+        J.f26595l = charSequence;
+        J.f26596m = charSequence2;
+        J.f26597n = charSequence3;
         J.B = (i11 & 4294967295L) | (i12 << 32);
         return J;
     }
@@ -30,13 +30,13 @@ public final class e91 extends org.telegram.ui.Components.g51 {
         int i11 = (int) j3;
         int i12 = (int) (j3 >>> 32);
         f91 f91Var = (f91) view;
-        int i13 = h51Var.f26621k;
-        CharSequence charSequence = h51Var.f26622l;
-        CharSequence charSequence2 = h51Var.f26623m;
-        CharSequence charSequence3 = h51Var.f26624n;
-        TextView textView = f91Var.f36380e;
-        TextView textView2 = f91Var.f36381f;
-        FrameLayout frameLayout = f91Var.f36379c;
+        int i13 = h51Var.f26594k;
+        CharSequence charSequence = h51Var.f26595l;
+        CharSequence charSequence2 = h51Var.f26596m;
+        CharSequence charSequence3 = h51Var.f26597n;
+        TextView textView = f91Var.f36353e;
+        TextView textView2 = f91Var.f36354f;
+        FrameLayout frameLayout = f91Var.f36352c;
         int i14 = 8;
         if (i13 != 0) {
             i10 = 0;
@@ -55,11 +55,11 @@ public final class e91 extends org.telegram.ui.Components.g51 {
             f10 = AndroidUtilities.dp(2.0f);
         }
         textView2.setTranslationX(f10);
-        f91Var.f36378b.b(i11, i12);
+        f91Var.f36351b.b(i11, i12);
         f91Var.d.setImageResource(i13);
         textView.setText(charSequence);
         boolean isEmpty = TextUtils.isEmpty(charSequence2);
-        f91Var.f36382n = !isEmpty;
+        f91Var.f36355n = !isEmpty;
         if (!isEmpty) {
             i14 = 0;
         }

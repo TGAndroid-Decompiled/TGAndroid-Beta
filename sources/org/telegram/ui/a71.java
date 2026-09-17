@@ -8,10 +8,10 @@ import android.widget.PopupWindow;
 import java.lang.reflect.Field;
 import org.telegram.messenger.AndroidUtilities;
 public abstract class a71 extends PopupWindow {
-    public static final Field f34373c;
+    public static final Field f34346c;
     public static final org.telegram.ui.ActionBar.g1 d = new org.telegram.ui.ActionBar.g1(2);
-    public final ViewTreeObserver.OnScrollChangedListener f34374a;
-    public ViewTreeObserver f34375b;
+    public final ViewTreeObserver.OnScrollChangedListener f34347a;
+    public ViewTreeObserver f34348b;
 
     static {
         Field field = null;
@@ -20,7 +20,7 @@ public abstract class a71 extends PopupWindow {
             field.setAccessible(true);
         } catch (NoSuchFieldException unused) {
         }
-        f34373c = field;
+        f34346c = field;
     }
 
     public a71(j71 j71Var) {
@@ -31,13 +31,13 @@ public abstract class a71 extends PopupWindow {
         setClippingEnabled(true);
         setInputMethodMode(0);
         setSoftInputMode(4);
-        Field field = f34373c;
+        Field field = f34346c;
         if (field != null) {
             try {
-                this.f34374a = (ViewTreeObserver.OnScrollChangedListener) field.get(this);
+                this.f34347a = (ViewTreeObserver.OnScrollChangedListener) field.get(this);
                 field.set(this, d);
             } catch (Exception unused) {
-                this.f34374a = null;
+                this.f34347a = null;
             }
         }
     }
@@ -55,20 +55,20 @@ public abstract class a71 extends PopupWindow {
         if (getContentView() instanceof j71) {
             ((j71) getContentView()).s(new z61(this, 1));
         }
-        if (this.f34374a != null) {
+        if (this.f34347a != null) {
             if (view.getWindowToken() != null) {
                 viewTreeObserver = view.getViewTreeObserver();
             } else {
                 viewTreeObserver = null;
             }
-            ViewTreeObserver viewTreeObserver2 = this.f34375b;
+            ViewTreeObserver viewTreeObserver2 = this.f34348b;
             if (viewTreeObserver != viewTreeObserver2) {
                 if (viewTreeObserver2 != null && viewTreeObserver2.isAlive()) {
-                    this.f34375b.removeOnScrollChangedListener(this.f34374a);
+                    this.f34348b.removeOnScrollChangedListener(this.f34347a);
                 }
-                this.f34375b = viewTreeObserver;
+                this.f34348b = viewTreeObserver;
                 if (viewTreeObserver != null) {
-                    viewTreeObserver.addOnScrollChangedListener(this.f34374a);
+                    viewTreeObserver.addOnScrollChangedListener(this.f34347a);
                 }
             }
         }
@@ -81,7 +81,7 @@ public abstract class a71 extends PopupWindow {
             z61 z61Var = new z61(this, 0);
             Integer num = j71Var.Y1;
             if (num != null) {
-                j71.f37654c2.put(num, j71Var.f37694r0.e0());
+                j71.f37627c2.put(num, j71Var.f37667r0.e0());
             }
             ValueAnimator valueAnimator = j71Var.V1;
             if (valueAnimator != null) {
@@ -95,7 +95,7 @@ public abstract class a71 extends PopupWindow {
             j71Var.V1.setDuration(200L);
             j71Var.V1.setInterpolator(org.telegram.ui.Components.pr.h);
             j71Var.V1.start();
-            a61 a61Var = j71Var.f37670f0;
+            a61 a61Var = j71Var.f37643f0;
             if (a61Var != null) {
                 AndroidUtilities.hideKeyboard(a61Var.h);
             }
@@ -131,11 +131,11 @@ public abstract class a71 extends PopupWindow {
     public final void showAtLocation(View view, int i10, int i11, int i12) {
         ViewTreeObserver viewTreeObserver;
         super.showAtLocation(view, i10, i11, i12);
-        if (this.f34374a != null && (viewTreeObserver = this.f34375b) != null) {
+        if (this.f34347a != null && (viewTreeObserver = this.f34348b) != null) {
             if (viewTreeObserver.isAlive()) {
-                this.f34375b.removeOnScrollChangedListener(this.f34374a);
+                this.f34348b.removeOnScrollChangedListener(this.f34347a);
             }
-            this.f34375b = null;
+            this.f34348b = null;
         }
     }
 

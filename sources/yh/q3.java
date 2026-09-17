@@ -19,7 +19,7 @@ import org.telegram.ui.Components.ll0;
 import org.telegram.ui.Components.q5;
 import org.telegram.ui.Components.v51;
 public final class q3 extends g51 {
-    public static final int f50556a = 0;
+    public static final int f50527a = 0;
 
     static {
         g51.setup(new g51());
@@ -29,14 +29,14 @@ public final class q3 extends g51 {
     public final void bindView(View view, h51 h51Var, boolean z10, v51 v51Var, d61 d61Var) {
         r3 r3Var = (r3) view;
         TL_stars.starGiftAttributePattern stargiftattributepattern = (TL_stars.starGiftAttributePattern) h51Var.G;
-        int i10 = h51Var.f26635z;
-        String str = (String) h51Var.f26622l;
-        boolean z11 = h51Var.f26616e;
+        int i10 = h51Var.f26608z;
+        String str = (String) h51Var.f26595l;
+        boolean z11 = h51Var.f26589e;
         f6 f6Var = r3Var.F;
-        aj0 aj0Var = r3Var.f20431c;
+        aj0 aj0Var = r3Var.f20404c;
         p3 p3Var = r3Var.N;
-        if (p3Var == null || r3Var.M != stargiftattributepattern.document.f19902id) {
-            r3Var.M = stargiftattributepattern.document.f19902id;
+        if (p3Var == null || r3Var.M != stargiftattributepattern.document.f19875id) {
+            r3Var.M = stargiftattributepattern.document.f19875id;
             if (p3Var != null) {
                 p3Var.o(aj0Var);
             }

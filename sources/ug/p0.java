@@ -14,27 +14,27 @@ import org.telegram.ui.Components.i9;
 import org.telegram.ui.Components.x9;
 import w7.x5;
 public final class p0 extends FrameLayout {
-    public final x9 f47218a;
-    public final q0 f47219b;
-    public final Paint f47220c;
+    public final x9 f47190a;
+    public final q0 f47191b;
+    public final Paint f47192c;
     public TLRPC.Chat d;
-    public final i9 f47221e;
+    public final i9 f47193e;
 
     public p0(Context context) {
         super(context);
         Paint paint = new Paint(1);
-        this.f47220c = paint;
-        this.f47221e = new i9((f6) null);
+        this.f47192c = paint;
+        this.f47193e = new i9((f6) null);
         x9 x9Var = new x9(getContext());
-        this.f47218a = x9Var;
+        this.f47190a = x9Var;
         x9Var.setRoundRadius(AndroidUtilities.dp(30.0f));
         ?? view = new View(context);
         Paint paint2 = new Paint(1);
-        view.f47224a = paint2;
-        view.f47225b = view.getContext().getDrawable(R.drawable.mini_boost_remove);
-        int i10 = j6.f20762h5;
+        view.f47196a = paint2;
+        view.f47197b = view.getContext().getDrawable(R.drawable.mini_boost_remove);
+        int i10 = j6.f20735h5;
         paint2.setColor(j6.w0(null, i10, false));
-        this.f47219b = view;
+        this.f47191b = view;
         view.setAlpha(0.0f);
         addView(x9Var, x5.d(-1, -1.0f, 0, 5.0f, 5.0f, 5.0f, 5.0f));
         addView((View) view, x5.d(28, 28.0f, 85, 0.0f, 0.0f, 0.0f, 3.0f));
@@ -43,7 +43,7 @@ public final class p0 extends FrameLayout {
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
-        canvas.drawCircle(getMeasuredWidth() / 2.0f, getMeasuredHeight() / 2.0f, (getMeasuredHeight() / 2.0f) - AndroidUtilities.dp(2.0f), this.f47220c);
+        canvas.drawCircle(getMeasuredWidth() / 2.0f, getMeasuredHeight() / 2.0f, (getMeasuredHeight() / 2.0f) - AndroidUtilities.dp(2.0f), this.f47192c);
         super.dispatchDraw(canvas);
     }
 }

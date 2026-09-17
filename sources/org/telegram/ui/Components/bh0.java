@@ -11,19 +11,19 @@ public final class bh0 {
     public static final bh0 K;
     public static final bh0[] L;
     public static final bh0 d;
-    public static final bh0 f24728e;
-    public static final bh0 f24729f;
+    public static final bh0 f24701e;
+    public static final bh0 f24702f;
     public static final bh0 h;
-    public static final bh0 f24730n;
-    public static final bh0 f24731r;
-    public static final bh0 f24732s;
+    public static final bh0 f24703n;
+    public static final bh0 f24704r;
+    public static final bh0 f24705s;
     public static final bh0 v;
-    public static final bh0 f24733w;
-    public static final bh0 f24734x;
-    public static final bh0 f24735y;
-    public final int f24736a;
-    public final int f24737b;
-    public final int f24738c;
+    public static final bh0 f24706w;
+    public static final bh0 f24707x;
+    public static final bh0 f24708y;
+    public final int f24709a;
+    public final int f24710b;
+    public final int f24711c;
 
     static {
         int i10 = R.string.ProfileActionsMessage;
@@ -32,27 +32,27 @@ public final class bh0 {
         bh0 bh0Var = new bh0("MESSAGE", 0, i10, i11, i12);
         d = bh0Var;
         bh0 bh0Var2 = new bh0("NOTIFICATION_MUTE", 1, R.string.ProfileButtonMute, R.drawable.filled_profile_mute_24, R.drawable.outline_profile_mute_24);
-        f24728e = bh0Var2;
+        f24701e = bh0Var2;
         bh0 bh0Var3 = new bh0("NOTIFICATION_UNMUTE", 2, R.string.ProfileButtonUnmute, R.drawable.filled_profile_unmute_24, R.drawable.outline_profile_unmute_24);
-        f24729f = bh0Var3;
+        f24702f = bh0Var3;
         bh0 bh0Var4 = new bh0("DISCUSS", 3, R.string.ProfileActionsDiscuss, i11, i12);
         h = bh0Var4;
         bh0 bh0Var5 = new bh0("GIFT", 4, R.string.ProfileActionsGift, R.drawable.gift, R.drawable.input_gift_s);
-        f24730n = bh0Var5;
+        f24703n = bh0Var5;
         bh0 bh0Var6 = new bh0("SHARE", 5, R.string.ProfileActionsShare, R.drawable.action_share, R.drawable.msg_share);
-        f24731r = bh0Var6;
+        f24704r = bh0Var6;
         bh0 bh0Var7 = new bh0("CALL", 6, R.string.ProfileActionsCall, R.drawable.filled_profile_call_24, R.drawable.outline_profile_call_24);
-        f24732s = bh0Var7;
+        f24705s = bh0Var7;
         bh0 bh0Var8 = new bh0("VIDEO", 7, R.string.ProfileActionsVideo, R.drawable.filled_profile_video_24, R.drawable.outline_profile_video_24);
         v = bh0Var8;
         bh0 bh0Var9 = new bh0("JOIN", 8, R.string.ProfileActionsJoin, R.drawable.filled_profile_member_24, R.drawable.outline_profile_member_24);
-        f24733w = bh0Var9;
+        f24706w = bh0Var9;
         bh0 bh0Var10 = new bh0("REPORT", 9, R.string.ProfileActionsReport, R.drawable.report, R.drawable.msg_report);
-        f24734x = bh0Var10;
+        f24707x = bh0Var10;
         int i13 = R.string.ProfileActionsLeave;
         int i14 = R.drawable.leave;
         bh0 bh0Var11 = new bh0("LEAVE", 10, i13, i14, i14);
-        f24735y = bh0Var11;
+        f24708y = bh0Var11;
         int i15 = R.string.ProfileActionsVoiceChat;
         int i16 = R.drawable.live_stream;
         bh0 bh0Var12 = new bh0("VOICE_CHAT", 11, i15, i16, i16);
@@ -77,9 +77,9 @@ public final class bh0 {
     }
 
     public bh0(String str, int i10, int i11, int i12, int i13) {
-        this.f24736a = i11;
-        this.f24737b = i12;
-        this.f24738c = i13;
+        this.f24709a = i11;
+        this.f24710b = i12;
+        this.f24711c = i13;
     }
 
     public static bh0 valueOf(String str) {

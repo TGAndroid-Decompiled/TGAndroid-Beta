@@ -7,22 +7,22 @@ import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.qq;
 public final class u3 extends qq {
-    public final View f52718b;
-    public final Paint f52719c;
+    public final View f52687b;
+    public final Paint f52688c;
     public final Path d;
-    public final long f52720e;
-    public float f52721f;
+    public final long f52689e;
+    public float f52690f;
 
     public u3(di.d dVar, int i10) {
         super(dVar);
         Paint paint = new Paint(1);
-        this.f52719c = paint;
+        this.f52688c = paint;
         Path path = new Path();
         this.d = path;
-        this.f52720e = System.currentTimeMillis();
-        this.f52721f = 1.0f;
-        this.f52718b = dVar;
-        this.f29825a.setColor(-1);
+        this.f52689e = System.currentTimeMillis();
+        this.f52690f = 1.0f;
+        this.f52687b = dVar;
+        this.f29798a.setColor(-1);
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeJoin(Paint.Join.ROUND);
         paint.setStrokeCap(Paint.Cap.ROUND);
@@ -36,13 +36,13 @@ public final class u3 extends qq {
     @Override
     public final void draw(Canvas canvas) {
         float f7;
-        Paint paint = this.f29825a;
-        paint.setAlpha((int) (this.f52721f * 255.0f));
+        Paint paint = this.f29798a;
+        paint.setAlpha((int) (this.f52690f * 255.0f));
         canvas.drawCircle(getBounds().centerX(), getBounds().centerY(), getBounds().width() / 2.0f, paint);
-        float currentTimeMillis = ((float) ((System.currentTimeMillis() - this.f52720e) % 400)) / 400.0f;
-        Paint paint2 = this.f52719c;
+        float currentTimeMillis = ((float) ((System.currentTimeMillis() - this.f52689e) % 400)) / 400.0f;
+        Paint paint2 = this.f52688c;
         int alpha = paint2.getAlpha();
-        paint2.setAlpha((int) (alpha * this.f52721f));
+        paint2.setAlpha((int) (alpha * this.f52690f));
         paint2.setStrokeWidth(AndroidUtilities.dpf2(1.33f));
         canvas.save();
         canvas.translate(getBounds().centerX(), getBounds().centerY() - (((AndroidUtilities.dpf2(1.166f) * 2.0f) + (AndroidUtilities.dpf2(2.16f) * 3.0f)) / 2.0f));
@@ -54,7 +54,7 @@ public final class u3 extends qq {
             } else {
                 f7 = 1.0f;
             }
-            paint2.setAlpha((int) (f7 * 255.0f * this.f52721f));
+            paint2.setAlpha((int) (f7 * 255.0f * this.f52690f));
             canvas.save();
             float lerp = AndroidUtilities.lerp(0.5f, 1.0f, f7);
             canvas.scale(lerp, lerp);
@@ -64,7 +64,7 @@ public final class u3 extends qq {
         }
         canvas.restore();
         paint2.setAlpha(alpha);
-        View view = this.f52718b;
+        View view = this.f52687b;
         if (view != null) {
             view.invalidate();
         }
@@ -82,6 +82,6 @@ public final class u3 extends qq {
 
     @Override
     public final void setAlpha(int i10) {
-        this.f52721f = i10 / 255.0f;
+        this.f52690f = i10 / 255.0f;
     }
 }

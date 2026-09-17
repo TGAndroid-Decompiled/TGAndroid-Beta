@@ -4,28 +4,28 @@ import bi.k9;
 import org.json.JSONObject;
 import org.telegram.messenger.FileLog;
 public final class y implements Runnable {
-    public final int f42346a;
-    public final String[] f42347b;
-    public final int f42348c;
+    public final int f42319a;
+    public final String[] f42320b;
+    public final int f42321c;
     public final z0 d;
-    public final k9 f42349e;
+    public final k9 f42322e;
 
     public y(String[] strArr, int i10, z0 z0Var, k9 k9Var, int i11) {
-        this.f42346a = i11;
-        this.f42347b = strArr;
-        this.f42348c = i10;
+        this.f42319a = i11;
+        this.f42320b = strArr;
+        this.f42321c = i10;
         this.d = z0Var;
-        this.f42349e = k9Var;
+        this.f42322e = k9Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f42346a) {
+        switch (this.f42319a) {
             case 0:
-                int i10 = this.f42348c;
+                int i10 = this.f42321c;
                 z0 z0Var = this.d;
-                k9 k9Var = this.f42349e;
-                String[] strArr = this.f42347b;
+                k9 k9Var = this.f42322e;
+                String[] strArr = this.f42320b;
                 if (strArr[0] != null) {
                     try {
                         JSONObject jSONObject = new JSONObject();
@@ -39,10 +39,10 @@ public final class y implements Runnable {
                 }
                 return;
             default:
-                String[] strArr2 = this.f42347b;
-                int i11 = this.f42348c;
+                String[] strArr2 = this.f42320b;
+                int i11 = this.f42321c;
                 z0 z0Var2 = this.d;
-                k9 k9Var2 = this.f42349e;
+                k9 k9Var2 = this.f42322e;
                 try {
                     JSONObject jSONObject2 = new JSONObject();
                     jSONObject2.put("status", strArr2[0]);

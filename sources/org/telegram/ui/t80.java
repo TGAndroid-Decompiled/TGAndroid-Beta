@@ -12,8 +12,8 @@ public final class t80 extends s4.j {
     public final void P(s4.c1 c1Var) {
         View view;
         LanguageSelectActivity languageSelectActivity = this.F;
-        languageSelectActivity.f33445b.invalidate();
-        org.telegram.ui.Components.ll0 ll0Var = languageSelectActivity.f33445b;
+        languageSelectActivity.f33418b.invalidate();
+        org.telegram.ui.Components.ll0 ll0Var = languageSelectActivity.f33418b;
         int i10 = ll0Var.E1;
         if (i10 != -1 && (view = ll0Var.F1) != null) {
             ll0Var.h1(i10, view);

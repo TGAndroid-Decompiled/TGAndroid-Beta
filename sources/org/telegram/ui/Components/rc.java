@@ -1,21 +1,21 @@
 package org.telegram.ui.Components;
 public final class rc implements Runnable {
-    public final int f30036a;
-    public final yb f30037b;
+    public final int f30009a;
+    public final yb f30010b;
 
     public rc(yb ybVar, int i10) {
-        this.f30036a = i10;
-        this.f30037b = ybVar;
+        this.f30009a = i10;
+        this.f30010b = ybVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f30036a) {
+        switch (this.f30009a) {
             case 0:
-                this.f30037b.performHapticFeedback(3, 2);
+                this.f30010b.performHapticFeedback(3, 2);
                 return;
             default:
-                this.f30037b.performHapticFeedback(3, 2);
+                this.f30010b.performHapticFeedback(3, 2);
                 return;
         }
     }

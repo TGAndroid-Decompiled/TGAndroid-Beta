@@ -7,17 +7,17 @@ import org.telegram.messenger.MediaController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 public final class yq0 implements org.telegram.ui.Cells.r5 {
-    public final zq0 f43219a;
+    public final zq0 f43192a;
 
     public yq0(zq0 zq0Var) {
-        this.f43219a = zq0Var;
+        this.f43192a = zq0Var;
     }
 
     public final void a() {
         co coVar;
         TLRPC.Chat chat;
-        br0 br0Var = this.f43219a.d;
-        if (br0Var.I && (coVar = br0Var.U) != null && (chat = coVar.f35265e) != null && !ChatObject.hasAdminRights(chat) && chat.slowmode_enabled && br0Var.W != 2) {
+        br0 br0Var = this.f43192a.d;
+        if (br0Var.I && (coVar = br0Var.U) != null && (chat = coVar.f35238e) != null && !ChatObject.hasAdminRights(chat) && chat.slowmode_enabled && br0Var.W != 2) {
             org.telegram.ui.Components.e5.u0(br0Var, LocaleController.getString(R.string.Slowmode), LocaleController.getString(R.string.SlowmodeSelectSendError), null);
             if (br0Var.W == 1) {
                 br0Var.W = 2;
@@ -29,34 +29,34 @@ public final class yq0 implements org.telegram.ui.Cells.r5 {
     public final void c(org.telegram.ui.Cells.s5 s5Var) {
         boolean z10;
         int intValue = ((Integer) s5Var.getTag()).intValue();
-        br0 br0Var = this.f43219a.d;
+        br0 br0Var = this.f43192a.d;
         MediaController.AlbumEntry albumEntry = br0Var.J;
         int i10 = -1;
         int i11 = 1;
         if (albumEntry != null) {
             MediaController.PhotoEntry photoEntry = albumEntry.photos.get(intValue);
-            boolean containsKey = br0Var.f34911b.containsKey(Integer.valueOf(photoEntry.imageId));
+            boolean containsKey = br0Var.f34884b.containsKey(Integer.valueOf(photoEntry.imageId));
             z10 = !containsKey;
-            if (!containsKey && br0Var.H > 0 && br0Var.f34911b.size() >= br0Var.H) {
+            if (!containsKey && br0Var.H > 0 && br0Var.f34884b.size() >= br0Var.H) {
                 a();
                 return;
             }
-            if (br0Var.f34916e && !containsKey) {
-                i10 = br0Var.f34913c.size();
+            if (br0Var.f34889e && !containsKey) {
+                i10 = br0Var.f34886c.size();
             }
             s5Var.b(i10, z10, true);
             br0Var.Y(intValue, photoEntry);
         } else {
             AndroidUtilities.hideKeyboard(br0Var.getParentActivity().getCurrentFocus());
-            MediaController.SearchImage searchImage = (MediaController.SearchImage) br0Var.f34918f.get(intValue);
-            boolean containsKey2 = br0Var.f34911b.containsKey(searchImage.f17101id);
+            MediaController.SearchImage searchImage = (MediaController.SearchImage) br0Var.f34891f.get(intValue);
+            boolean containsKey2 = br0Var.f34884b.containsKey(searchImage.f17074id);
             z10 = !containsKey2;
-            if (!containsKey2 && br0Var.H > 0 && br0Var.f34911b.size() >= br0Var.H) {
+            if (!containsKey2 && br0Var.H > 0 && br0Var.f34884b.size() >= br0Var.H) {
                 a();
                 return;
             }
-            if (br0Var.f34916e && !containsKey2) {
-                i10 = br0Var.f34913c.size();
+            if (br0Var.f34889e && !containsKey2) {
+                i10 = br0Var.f34886c.size();
             }
             s5Var.b(i10, z10, true);
             br0Var.Y(intValue, searchImage);
@@ -65,6 +65,6 @@ public final class yq0 implements org.telegram.ui.Cells.r5 {
             i11 = 2;
         }
         br0Var.i0(i11);
-        br0Var.f34934s0.a();
+        br0Var.f34907s0.a();
     }
 }

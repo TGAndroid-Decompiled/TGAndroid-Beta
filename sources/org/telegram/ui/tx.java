@@ -5,22 +5,22 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 public final class tx implements k70 {
-    public final org.telegram.ui.ActionBar.b2 f40879a;
-    public final uy f40880b;
+    public final org.telegram.ui.ActionBar.b2 f40852a;
+    public final uy f40853b;
 
     public tx(uy uyVar, org.telegram.ui.ActionBar.b2 b2Var) {
-        this.f40880b = uyVar;
-        this.f40879a = b2Var;
+        this.f40853b = uyVar;
+        this.f40852a = b2Var;
     }
 
     @Override
     public final void a(l70 l70Var, final long j3) {
         final org.telegram.ui.ActionBar.n2[] n2VarArr = {l70Var, null};
         Utilities.Callback callback = new Utilities.Callback(this) {
-            public final tx f40281b;
+            public final tx f40254b;
 
             {
-                this.f40281b = this;
+                this.f40254b = this;
             }
 
             @Override
@@ -28,7 +28,7 @@ public final class tx implements k70 {
                 Runnable runnable = (Runnable) obj;
                 switch (r5) {
                     case 0:
-                        uy uyVar = this.f40281b.f40880b;
+                        uy uyVar = this.f40254b.f40853b;
                         Boolean bool = uyVar.G.has_username;
                         if (bool != null && bool.booleanValue()) {
                             Bundle bundle = new Bundle();
@@ -36,7 +36,7 @@ public final class tx implements k70 {
                             bundle.putLong("chat_id", j3);
                             bundle.putBoolean("forcePublic", uyVar.G.has_username.booleanValue());
                             md mdVar = new md(bundle);
-                            mdVar.f38687t0 = new b5(runnable, 12);
+                            mdVar.f38660t0 = new b5(runnable, 12);
                             uyVar.presentFragment(mdVar);
                             n2VarArr[1] = mdVar;
                             return;
@@ -44,18 +44,18 @@ public final class tx implements k70 {
                         runnable.run();
                         return;
                     default:
-                        tx txVar = this.f40281b;
-                        uy uyVar2 = txVar.f40880b;
+                        tx txVar = this.f40254b;
+                        uy uyVar2 = txVar.f40853b;
                         uyVar2.Q4(uyVar2.getMessagesController().getChat(Long.valueOf(j3)), runnable, new yt(11, txVar, n2VarArr));
                         return;
                 }
             }
         };
         Utilities.Callback callback2 = new Utilities.Callback(this) {
-            public final tx f40281b;
+            public final tx f40254b;
 
             {
-                this.f40281b = this;
+                this.f40254b = this;
             }
 
             @Override
@@ -63,7 +63,7 @@ public final class tx implements k70 {
                 Runnable runnable = (Runnable) obj;
                 switch (r5) {
                     case 0:
-                        uy uyVar = this.f40281b.f40880b;
+                        uy uyVar = this.f40254b.f40853b;
                         Boolean bool = uyVar.G.has_username;
                         if (bool != null && bool.booleanValue()) {
                             Bundle bundle = new Bundle();
@@ -71,7 +71,7 @@ public final class tx implements k70 {
                             bundle.putLong("chat_id", j3);
                             bundle.putBoolean("forcePublic", uyVar.G.has_username.booleanValue());
                             md mdVar = new md(bundle);
-                            mdVar.f38687t0 = new b5(runnable, 12);
+                            mdVar.f38660t0 = new b5(runnable, 12);
                             uyVar.presentFragment(mdVar);
                             n2VarArr[1] = mdVar;
                             return;
@@ -79,19 +79,19 @@ public final class tx implements k70 {
                         runnable.run();
                         return;
                     default:
-                        tx txVar = this.f40281b;
-                        uy uyVar2 = txVar.f40880b;
+                        tx txVar = this.f40254b;
+                        uy uyVar2 = txVar.f40853b;
                         uyVar2.Q4(uyVar2.getMessagesController().getChat(Long.valueOf(j3)), runnable, new yt(11, txVar, n2VarArr));
                         return;
                 }
             }
         };
-        org.telegram.ui.ActionBar.b2 b2Var = this.f40879a;
+        org.telegram.ui.ActionBar.b2 b2Var = this.f40852a;
         Utilities.doCallbacks(callback, callback2, new lu(this, b2Var, j3, 1), new Utilities.Callback(this) {
-            public final tx f40590b;
+            public final tx f40563b;
 
             {
-                this.f40590b = this;
+                this.f40563b = this;
             }
 
             @Override
@@ -100,7 +100,7 @@ public final class tx implements k70 {
                 switch (r4) {
                     case 0:
                         Runnable runnable = (Runnable) obj;
-                        uy uyVar = this.f40590b.f40880b;
+                        uy uyVar = this.f40563b.f40853b;
                         if (uyVar.G.bot_admin_rights != null) {
                             TLRPC.User user = uyVar.getMessagesController().getUser(Long.valueOf(uyVar.H));
                             MessagesController messagesController = uyVar.getMessagesController();
@@ -119,7 +119,7 @@ public final class tx implements k70 {
                         return;
                     default:
                         Runnable runnable2 = (Runnable) obj;
-                        uy uyVar2 = this.f40590b.f40880b;
+                        uy uyVar2 = this.f40563b.f40853b;
                         if (uyVar2.G.user_admin_rights != null) {
                             MessagesController messagesController2 = uyVar2.getMessagesController();
                             long j10 = j3;
@@ -131,10 +131,10 @@ public final class tx implements k70 {
                 }
             }
         }, new Utilities.Callback(this) {
-            public final tx f40590b;
+            public final tx f40563b;
 
             {
-                this.f40590b = this;
+                this.f40563b = this;
             }
 
             @Override
@@ -143,7 +143,7 @@ public final class tx implements k70 {
                 switch (r4) {
                     case 0:
                         Runnable runnable = (Runnable) obj;
-                        uy uyVar = this.f40590b.f40880b;
+                        uy uyVar = this.f40563b.f40853b;
                         if (uyVar.G.bot_admin_rights != null) {
                             TLRPC.User user = uyVar.getMessagesController().getUser(Long.valueOf(uyVar.H));
                             MessagesController messagesController = uyVar.getMessagesController();
@@ -162,7 +162,7 @@ public final class tx implements k70 {
                         return;
                     default:
                         Runnable runnable2 = (Runnable) obj;
-                        uy uyVar2 = this.f40590b.f40880b;
+                        uy uyVar2 = this.f40563b.f40853b;
                         if (uyVar2.G.user_admin_rights != null) {
                             MessagesController messagesController2 = uyVar2.getMessagesController();
                             long j10 = j3;

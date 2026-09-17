@@ -22,24 +22,24 @@ import zh.e5;
 import zh.l7;
 import zh.v4;
 public final class e implements View.OnClickListener {
-    public final int f50199a;
-    public final Object f50200b;
-    public final Object f50201c;
+    public final int f50170a;
+    public final Object f50171b;
+    public final Object f50172c;
     public final Object d;
 
     public e(Object obj, Object obj2, Object obj3, int i10) {
-        this.f50199a = i10;
-        this.f50200b = obj;
-        this.f50201c = obj2;
+        this.f50170a = i10;
+        this.f50171b = obj;
+        this.f50172c = obj2;
         this.d = obj3;
     }
 
     @Override
     public final void onClick(View view) {
-        int i10 = this.f50199a;
+        int i10 = this.f50170a;
         Object obj = this.d;
-        Object obj2 = this.f50201c;
-        Object obj3 = this.f50200b;
+        Object obj2 = this.f50172c;
+        Object obj3 = this.f50171b;
         switch (i10) {
             case 0:
                 ((i) obj3).a(view, (HashSet) obj2, (Runnable) obj);
@@ -60,7 +60,7 @@ public final class e implements View.OnClickListener {
             case 5:
                 m2 m2Var = (m2) obj3;
                 ((n70) obj2).u();
-                nr0 nr0Var = m2Var.f50469a;
+                nr0 nr0Var = m2Var.f50440a;
                 e2 e2Var = new e2(m2Var, (TL_stars.SavedStarGift) obj, 0);
                 HashMap hashMap = q2.T;
                 nr0Var.h(null, e2Var);
@@ -68,7 +68,7 @@ public final class e implements View.OnClickListener {
             case 6:
                 Context context = (Context) obj2;
                 f6 f6Var = (f6) obj;
-                if (((a0) obj3).m0.f51654a == zf.b.f51656a) {
+                if (((a0) obj3).m0.f51623a == zf.b.f51625a) {
                     new l7(context, f6Var).show();
                     return;
                 }

@@ -9,41 +9,41 @@ import android.view.animation.DecelerateInterpolator;
 import android.view.animation.LinearInterpolator;
 import org.telegram.messenger.BuildVars;
 public class d0 extends y0 {
-    public static final boolean f45788q = BuildVars.DEBUG_VERSION;
-    public PointF f45791k;
-    public final DisplayMetrics f45792l;
-    public float f45794n;
-    public final LinearInterpolator f45789i = new LinearInterpolator();
-    public final DecelerateInterpolator f45790j = new DecelerateInterpolator();
-    public boolean f45793m = false;
-    public int f45795o = 0;
-    public int f45796p = 0;
+    public static final boolean f45760q = BuildVars.DEBUG_VERSION;
+    public PointF f45763k;
+    public final DisplayMetrics f45764l;
+    public float f45766n;
+    public final LinearInterpolator f45761i = new LinearInterpolator();
+    public final DecelerateInterpolator f45762j = new DecelerateInterpolator();
+    public boolean f45765m = false;
+    public int f45767o = 0;
+    public int f45768p = 0;
 
     public d0(Context context) {
-        this.f45792l = context.getResources().getDisplayMetrics();
+        this.f45764l = context.getResources().getDisplayMetrics();
     }
 
     @Override
     public final void d(int i10, int i11, x0 x0Var) {
         PointF pointF;
-        if (this.f45936b.f1923x.r() == 0) {
+        if (this.f45908b.f1896x.r() == 0) {
             h();
-        } else if (f45788q && (pointF = this.f45791k) != null && (pointF.x * i10 < 0.0f || pointF.y * i11 < 0.0f)) {
+        } else if (f45760q && (pointF = this.f45763k) != null && (pointF.x * i10 < 0.0f || pointF.y * i11 < 0.0f)) {
             throw new IllegalStateException("Scroll happened in the opposite direction of the target. Some calculations are wrong");
         } else {
-            int i12 = this.f45795o;
+            int i12 = this.f45767o;
             int i13 = i12 - i10;
             int i14 = 0;
             if (i12 * i13 <= 0) {
                 i13 = 0;
             }
-            this.f45795o = i13;
-            int i15 = this.f45796p;
+            this.f45767o = i13;
+            int i15 = this.f45768p;
             int i16 = i15 - i11;
             if (i15 * i16 > 0) {
                 i14 = i16;
             }
-            this.f45796p = i14;
+            this.f45768p = i14;
             if (i13 == 0 && i14 == 0) {
                 q(x0Var);
             }
@@ -52,9 +52,9 @@ public class d0 extends y0 {
 
     @Override
     public final void f() {
-        this.f45796p = 0;
-        this.f45795o = 0;
-        this.f45791k = null;
+        this.f45768p = 0;
+        this.f45767o = 0;
+        this.f45763k = null;
     }
 
     @Override
@@ -63,7 +63,7 @@ public class d0 extends y0 {
         int k10 = k(p(), view);
         int m10 = m((int) Math.sqrt((k10 * k10) + (j3 * j3)));
         if (m10 > 0) {
-            x0Var.b(-j3, -k10, m10, this.f45790j);
+            x0Var.b(-j3, -k10, m10, this.f45762j);
         }
     }
 
@@ -89,19 +89,19 @@ public class d0 extends y0 {
     }
 
     public final int j(int i10, View view) {
-        o0 o0Var = this.f45937c;
+        o0 o0Var = this.f45909c;
         if (o0Var != null && o0Var.d()) {
             p0 p0Var = (p0) view.getLayoutParams();
-            return i(o0.x(view) - ((ViewGroup.MarginLayoutParams) p0Var).leftMargin, o0.y(view) + ((ViewGroup.MarginLayoutParams) p0Var).rightMargin, o0Var.D(), o0Var.f45880m - o0Var.E(), i10);
+            return i(o0.x(view) - ((ViewGroup.MarginLayoutParams) p0Var).leftMargin, o0.y(view) + ((ViewGroup.MarginLayoutParams) p0Var).rightMargin, o0Var.D(), o0Var.f45852m - o0Var.E(), i10);
         }
         return 0;
     }
 
     public int k(int i10, View view) {
-        o0 o0Var = this.f45937c;
+        o0 o0Var = this.f45909c;
         if (o0Var != null && o0Var.e()) {
             p0 p0Var = (p0) view.getLayoutParams();
-            return i(o0.z(view) - ((ViewGroup.MarginLayoutParams) p0Var).topMargin, o0.v(view) + ((ViewGroup.MarginLayoutParams) p0Var).bottomMargin, o0Var.F(), o0Var.f45881n - o0Var.C(), i10);
+            return i(o0.z(view) - ((ViewGroup.MarginLayoutParams) p0Var).topMargin, o0.v(view) + ((ViewGroup.MarginLayoutParams) p0Var).bottomMargin, o0Var.F(), o0Var.f45853n - o0Var.C(), i10);
         }
         return 0;
     }
@@ -116,15 +116,15 @@ public class d0 extends y0 {
 
     public int n(int i10) {
         float abs = Math.abs(i10);
-        if (!this.f45793m) {
-            this.f45794n = l(this.f45792l);
-            this.f45793m = true;
+        if (!this.f45765m) {
+            this.f45766n = l(this.f45764l);
+            this.f45765m = true;
         }
-        return (int) Math.ceil(abs * this.f45794n);
+        return (int) Math.ceil(abs * this.f45766n);
     }
 
     public final int o() {
-        PointF pointF = this.f45791k;
+        PointF pointF = this.f45763k;
         if (pointF != null) {
             float f7 = pointF.x;
             if (f7 != 0.0f) {
@@ -139,7 +139,7 @@ public class d0 extends y0 {
     }
 
     public int p() {
-        PointF pointF = this.f45791k;
+        PointF pointF = this.f45763k;
         if (pointF != null) {
             float f7 = pointF.y;
             if (f7 != 0.0f) {
@@ -154,16 +154,16 @@ public class d0 extends y0 {
     }
 
     public void q(x0 x0Var) {
-        PointF a2 = a(this.f45935a);
+        PointF a2 = a(this.f45907a);
         if (a2 != null && (a2.x != 0.0f || a2.y != 0.0f)) {
             y0.b(a2);
-            this.f45791k = a2;
-            this.f45795o = (int) (a2.x * 10000.0f);
-            this.f45796p = (int) (a2.y * 10000.0f);
-            x0Var.b((int) (this.f45795o * 1.2f), (int) (this.f45796p * 1.2f), (int) (n(10000) * 1.2f), this.f45789i);
+            this.f45763k = a2;
+            this.f45767o = (int) (a2.x * 10000.0f);
+            this.f45768p = (int) (a2.y * 10000.0f);
+            x0Var.b((int) (this.f45767o * 1.2f), (int) (this.f45768p * 1.2f), (int) (n(10000) * 1.2f), this.f45761i);
             return;
         }
-        x0Var.d = this.f45935a;
+        x0Var.d = this.f45907a;
         h();
     }
 

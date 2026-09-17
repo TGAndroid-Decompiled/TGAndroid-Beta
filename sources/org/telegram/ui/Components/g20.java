@@ -13,9 +13,9 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
 public final class g20 extends LinearLayout {
-    public final di.d f26261a;
-    public final di.d f26262b;
-    public final di.d f26263c;
+    public final di.d f26234a;
+    public final di.d f26235b;
+    public final di.d f26236c;
     public final long d;
 
     public g20(Context context, int i10) {
@@ -35,7 +35,7 @@ public final class g20 extends LinearLayout {
         addView(g10, w7.x5.t(-2, -2, 49, 0, 15, 0, 7));
         TextView textView = new TextView(context);
         textView.setTextSize(1, 14.0f);
-        com.google.android.gms.internal.vision.e2.p(org.telegram.ui.ActionBar.j6.f20674c7, null, false, textView, 1);
+        com.google.android.gms.internal.vision.e2.p(org.telegram.ui.ActionBar.j6.f20647c7, null, false, textView, 1);
         if (UserConfig.getInstance(i10).isPremium()) {
             i11 = R.string.GalleryAccessAllowAccessTextPremium;
         } else {
@@ -46,12 +46,12 @@ public final class g20 extends LinearLayout {
         textView.setLineSpacing(AndroidUtilities.dp(2.0f), 1.0f);
         addView(textView, w7.x5.t(-2, -2, 49, 0, 0, 0, 14));
         di.d dVar = new di.d(context, null, true);
-        this.f26261a = dVar;
+        this.f26234a = dVar;
         dVar.e();
         dVar.g(LocaleController.getString(R.string.GalleryAccessAllowAccessButton), false, true);
         addView(dVar, w7.x5.q(-2, 44, 49));
         di.d dVar2 = new di.d(context, null, false);
-        this.f26262b = dVar2;
+        this.f26235b = dVar2;
         dVar2.e();
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("c");
         spannableStringBuilder.setSpan(new nq(R.drawable.outline_attach_camera_24, 0), 0, 1, 33);
@@ -59,7 +59,7 @@ public final class g20 extends LinearLayout {
         dVar2.g(spannableStringBuilder, false, true);
         addView(dVar2, w7.x5.t(-2, 44, 49, 0, 8, 0, 0));
         di.d dVar3 = new di.d(context, null, false);
-        this.f26263c = dVar3;
+        this.f26236c = dVar3;
         dVar3.e();
         dVar3.setVisibility(8);
         SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder("c");
@@ -81,11 +81,11 @@ public final class g20 extends LinearLayout {
     public final void onMeasure(int i10, int i11) {
         int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), Integer.MIN_VALUE);
         int makeMeasureSpec2 = View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(44.0f), 1073741824);
-        di.d dVar = this.f26261a;
+        di.d dVar = this.f26234a;
         dVar.setUseWrapContent(true);
-        di.d dVar2 = this.f26262b;
+        di.d dVar2 = this.f26235b;
         dVar2.setUseWrapContent(true);
-        di.d dVar3 = this.f26263c;
+        di.d dVar3 = this.f26236c;
         dVar3.setUseWrapContent(true);
         dVar.measure(makeMeasureSpec, makeMeasureSpec2);
         dVar2.measure(makeMeasureSpec, makeMeasureSpec2);
@@ -107,6 +107,6 @@ public final class g20 extends LinearLayout {
         } else {
             i10 = 8;
         }
-        this.f26263c.setVisibility(i10);
+        this.f26236c.setVisibility(i10);
     }
 }

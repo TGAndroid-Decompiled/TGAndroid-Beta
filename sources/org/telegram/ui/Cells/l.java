@@ -13,43 +13,43 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.ConnectionsManager;
 public final class l extends FrameLayout {
-    public final org.telegram.ui.Components.p6 f22254a;
-    public final Paint f22255b;
-    public final yf.n f22256c;
+    public final org.telegram.ui.Components.p6 f22227a;
+    public final Paint f22228b;
+    public final yf.n f22229c;
     public final Drawable d;
-    public final int f22257e;
-    public int f22258f;
+    public final int f22230e;
+    public int f22231f;
 
     public l(Context context, int i10) {
         super(context);
         Paint paint = new Paint(1);
-        this.f22255b = paint;
-        this.f22256c = new yf.n(new la(this, 1));
-        this.f22257e = i10;
+        this.f22228b = paint;
+        this.f22229c = new yf.n(new la(this, 1));
+        this.f22230e = i10;
         this.d = context.getResources().getDrawable(R.drawable.filled_gift_sell_24).mutate();
         org.telegram.ui.Components.p6 p6Var = new org.telegram.ui.Components.p6(false, false, false, false);
-        this.f22254a = p6Var;
+        this.f22227a = p6Var;
         p6Var.G = AndroidUtilities.displaySize.x;
         p6Var.setCallback(this);
         p6Var.u(AndroidUtilities.bold());
         p6Var.t(AndroidUtilities.dp(14.0f));
         p6Var.r(-1);
-        p6Var.f29313b = 3;
+        p6Var.f29286b = 3;
         paint.setShader(new LinearGradient(0.0f, 0.0f, AndroidUtilities.dp(72.0f), 0.0f, new int[]{-13460514, -10042885}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP));
     }
 
     public final void a(int i10) {
-        this.f22258f = i10;
+        this.f22231f = i10;
         if (isAttachedToWindow()) {
-            long max = Math.max(0, i10 - ConnectionsManager.getInstance(this.f22257e).getCurrentTime());
-            this.f22256c.a(max);
+            long max = Math.max(0, i10 - ConnectionsManager.getInstance(this.f22230e).getCurrentTime());
+            this.f22229c.a(max);
             b(max);
         }
     }
 
     public final void b(long j3) {
         String formatDurationNoHours;
-        org.telegram.ui.Components.p6 p6Var = this.f22254a;
+        org.telegram.ui.Components.p6 p6Var = this.f22227a;
         if (j3 == 0) {
             p6Var.q(LocaleController.getString(R.string.Gift2AuctionPriceView), true, true);
             return;
@@ -65,12 +65,12 @@ public final class l extends FrameLayout {
     @Override
     public final void dispatchDraw(Canvas canvas) {
         int measuredWidth = getMeasuredWidth() - AndroidUtilities.dp(14.0f);
-        org.telegram.ui.Components.p6 p6Var = this.f22254a;
+        org.telegram.ui.Components.p6 p6Var = this.f22227a;
         int d = measuredWidth - ((int) p6Var.d());
         int dp = d - AndroidUtilities.dp(30.0f);
         canvas.save();
         canvas.translate(dp, 0.0f);
-        canvas.drawRoundRect(0.0f, 0.0f, getWidth() - dp, getHeight(), AndroidUtilities.dp(14.0f), AndroidUtilities.dp(14.0f), this.f22255b);
+        canvas.drawRoundRect(0.0f, 0.0f, getWidth() - dp, getHeight(), AndroidUtilities.dp(14.0f), AndroidUtilities.dp(14.0f), this.f22228b);
         canvas.restore();
         p6Var.setBounds(d, 0, getMeasuredWidth() - AndroidUtilities.dp(8.0f), getMeasuredHeight() - AndroidUtilities.dp(1.0f));
         p6Var.draw(canvas);
@@ -87,13 +87,13 @@ public final class l extends FrameLayout {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        a(this.f22258f);
+        a(this.f22231f);
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        this.f22256c.b();
+        this.f22229c.b();
     }
 
     @Override
@@ -103,7 +103,7 @@ public final class l extends FrameLayout {
 
     @Override
     public final boolean verifyDrawable(Drawable drawable) {
-        if (drawable != this.f22254a && !super.verifyDrawable(drawable)) {
+        if (drawable != this.f22227a && !super.verifyDrawable(drawable)) {
             return false;
         }
         return true;

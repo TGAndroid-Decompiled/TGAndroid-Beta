@@ -5,24 +5,24 @@ import java.util.ArrayList;
 import java.util.regex.Pattern;
 import org.telegram.tgnet.ConnectionsManager;
 public final class oz implements DialogInterface.OnCancelListener {
-    public final int f39388a;
-    public final int f39389b;
-    public final int[] f39390c;
+    public final int f39361a;
+    public final int f39362b;
+    public final int[] f39363c;
 
     public oz(int i10, int i11, int[] iArr) {
-        this.f39388a = i11;
-        this.f39389b = i10;
-        this.f39390c = iArr;
+        this.f39361a = i11;
+        this.f39362b = i10;
+        this.f39363c = iArr;
     }
 
     @Override
     public final void onCancel(DialogInterface dialogInterface) {
-        int i10 = this.f39388a;
-        int[] iArr = this.f39390c;
-        int i11 = this.f39389b;
+        int i10 = this.f39361a;
+        int[] iArr = this.f39363c;
+        int i11 = this.f39362b;
         switch (i10) {
             case 0:
-                ArrayList arrayList = ExternalActionActivity.f33423x;
+                ArrayList arrayList = ExternalActionActivity.f33396x;
                 ConnectionsManager.getInstance(i11).cancelRequest(iArr[0], true);
                 return;
             default:

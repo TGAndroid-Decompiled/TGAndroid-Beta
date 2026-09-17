@@ -34,27 +34,27 @@ public final class ur0 extends nz {
         int i12;
         s4.h0 adapter = this.Y.h.getAdapter();
         xu0 xu0Var = this.Z;
-        mu0[] mu0VarArr = xu0Var.f32750t1;
-        if (adapter == xu0Var.O && !mu0VarArr[5].f28544a.isEmpty()) {
-            document = ((MessageObject) mu0VarArr[5].f28544a.get(i10)).getDocument();
+        mu0[] mu0VarArr = xu0Var.f32723t1;
+        if (adapter == xu0Var.O && !mu0VarArr[5].f28517a.isEmpty()) {
+            document = ((MessageObject) mu0VarArr[5].f28517a.get(i10)).getDocument();
         } else {
             document = null;
         }
         iv0 iv0Var = this.X;
-        iv0Var.f27300b = 100.0f;
-        iv0Var.f27299a = 100.0f;
+        iv0Var.f27273b = 100.0f;
+        iv0Var.f27272a = 100.0f;
         if (document != null) {
             TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(document.thumbs, 90);
-            if (closestPhotoSizeWithSize != null && (i11 = closestPhotoSizeWithSize.f19921w) != 0 && (i12 = closestPhotoSizeWithSize.h) != 0) {
-                iv0Var.f27299a = i11;
-                iv0Var.f27300b = i12;
+            if (closestPhotoSizeWithSize != null && (i11 = closestPhotoSizeWithSize.f19894w) != 0 && (i12 = closestPhotoSizeWithSize.h) != 0) {
+                iv0Var.f27272a = i11;
+                iv0Var.f27273b = i12;
             }
             ArrayList<TLRPC.DocumentAttribute> arrayList = document.attributes;
             for (int i13 = 0; i13 < arrayList.size(); i13++) {
                 TLRPC.DocumentAttribute documentAttribute = arrayList.get(i13);
                 if ((documentAttribute instanceof TLRPC.TL_documentAttributeImageSize) || (documentAttribute instanceof TLRPC.TL_documentAttributeVideo)) {
-                    iv0Var.f27299a = documentAttribute.f19903w;
-                    iv0Var.f27300b = documentAttribute.h;
+                    iv0Var.f27272a = documentAttribute.f19876w;
+                    iv0Var.f27273b = documentAttribute.h;
                     break;
                 }
             }
@@ -66,7 +66,7 @@ public final class ur0 extends nz {
     public final void U(pf.e eVar, s4.z0 z0Var, View view, s0.c cVar) {
         he.c cVar2;
         super.U(eVar, z0Var, view, cVar);
-        AccessibilityNodeInfo accessibilityNodeInfo = cVar.f45714a;
+        AccessibilityNodeInfo accessibilityNodeInfo = cVar.f45686a;
         AccessibilityNodeInfo.CollectionItemInfo collectionItemInfo = accessibilityNodeInfo.getCollectionItemInfo();
         if (collectionItemInfo != null) {
             cVar2 = new he.c(collectionItemInfo);
@@ -74,7 +74,7 @@ public final class ur0 extends nz {
             cVar2 = null;
         }
         if (cVar2 != null) {
-            Object obj = cVar2.f10996a;
+            Object obj = cVar2.f10970a;
             if (((AccessibilityNodeInfo.CollectionItemInfo) obj).isHeading()) {
                 accessibilityNodeInfo.setCollectionItemInfo(AccessibilityNodeInfo.CollectionItemInfo.obtain(((AccessibilityNodeInfo.CollectionItemInfo) obj).getRowIndex(), ((AccessibilityNodeInfo.CollectionItemInfo) obj).getRowSpan(), ((AccessibilityNodeInfo.CollectionItemInfo) obj).getColumnIndex(), ((AccessibilityNodeInfo.CollectionItemInfo) obj).getColumnSpan(), false));
             }

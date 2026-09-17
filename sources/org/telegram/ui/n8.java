@@ -7,20 +7,20 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 public final class n8 implements View.OnClickListener {
-    public final int f38877a;
-    public final k9 f38878b;
+    public final int f38850a;
+    public final k9 f38851b;
 
     public n8(k9 k9Var, int i10) {
-        this.f38877a = i10;
-        this.f38878b = k9Var;
+        this.f38850a = i10;
+        this.f38851b = k9Var;
     }
 
     @Override
     public final void onClick(View view) {
-        switch (this.f38877a) {
+        switch (this.f38850a) {
             case 0:
                 Long l4 = (Long) view.getTag();
-                k9 k9Var = this.f38878b;
+                k9 k9Var = this.f38851b;
                 ChatObject.Call groupCall = k9Var.getMessagesController().getGroupCall(l4.longValue(), false);
                 TLRPC.Chat chat = k9Var.getMessagesController().getChat(l4);
                 k9Var.Q = chat;
@@ -32,12 +32,12 @@ public final class n8 implements View.OnClickListener {
                 k9Var.getMessagesController().loadFullChat(l4.longValue(), 0, true);
                 return;
             case 1:
-                this.f38878b.k0(true);
+                this.f38851b.k0(true);
                 return;
             case 2:
-                k9 k9Var2 = this.f38878b;
+                k9 k9Var2 = this.f38851b;
                 org.telegram.ui.Components.n70 H = org.telegram.ui.Components.n70.H(k9Var2, k9Var2.F);
-                H.f28688s = 8;
+                H.f28661s = 8;
                 if (k9Var2.getUserConfig().showCallsTab) {
                     H.c(R.drawable.msg_archive_hide, LocaleController.getString(R.string.HideCallTab), new j8(k9Var2, 1), false);
                 }
@@ -46,7 +46,7 @@ public final class n8 implements View.OnClickListener {
                 H.X(-AndroidUtilities.dp(64.0f));
                 return;
             default:
-                k9 k9Var3 = this.f38878b;
+                k9 k9Var3 = this.f38851b;
                 k9Var3.getClass();
                 k9.m0(k9Var3);
                 return;

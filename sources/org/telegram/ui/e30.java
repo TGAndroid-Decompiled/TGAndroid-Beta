@@ -4,28 +4,28 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 public final class e30 implements Utilities.Callback2 {
-    public final int f35942a;
-    public final j60 f35943b;
+    public final int f35915a;
+    public final j60 f35916b;
 
     public e30(j60 j60Var, int i10) {
-        this.f35942a = i10;
-        this.f35943b = j60Var;
+        this.f35915a = i10;
+        this.f35916b = j60Var;
     }
 
     @Override
     public final void run(Object obj, Object obj2) {
         TLRPC.Updates updates = (TLRPC.Updates) obj;
         TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
-        switch (this.f35942a) {
+        switch (this.f35915a) {
             case 0:
-                j60 j60Var = this.f35943b;
+                j60 j60Var = this.f35916b;
                 if (updates != null) {
                     j60Var.d.getMessagesController().processUpdates(updates, false);
                 }
                 AndroidUtilities.runOnUIThread(new v20(j60Var, 10));
                 return;
             default:
-                j60 j60Var2 = this.f35943b;
+                j60 j60Var2 = this.f35916b;
                 if (updates != null) {
                     j60Var2.d.getMessagesController().processUpdates(updates, false);
                     return;

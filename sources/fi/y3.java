@@ -8,43 +8,43 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.Components.n70;
 public final class y3 extends ClickableSpan {
-    public final int f10143a;
-    public final zh.m f10144b;
-    public final e4 f10145c;
+    public final int f10115a;
+    public final zh.m f10116b;
+    public final e4 f10117c;
 
     public y3(e4 e4Var, int i10, zh.m mVar) {
-        this.f10145c = e4Var;
-        this.f10143a = i10;
-        this.f10144b = mVar;
+        this.f10117c = e4Var;
+        this.f10115a = i10;
+        this.f10116b = mVar;
     }
 
     @Override
     public final void onClick(View view) {
         boolean z10;
         boolean z11;
-        n70 H = n70.H(this.f10145c, view);
+        n70 H = n70.H(this.f10117c, view);
         boolean z12 = true;
-        int i10 = this.f10143a;
+        int i10 = this.f10115a;
         if (i10 == 3) {
             z10 = true;
         } else {
             z10 = false;
         }
         String string = LocaleController.getString(R.string.ChannelAffiliateProgramProgramsSortDate);
-        final zh.m mVar = this.f10144b;
+        final zh.m mVar = this.f10116b;
         H.i(new Runnable() {
             @Override
             public final void run() {
                 switch (r2) {
                     case 0:
                         zh.m mVar2 = mVar;
-                        if (mVar2.f52277g != 3) {
-                            mVar2.f52277g = 3;
-                            mVar2.f52274c = 0;
+                        if (mVar2.f52246g != 3) {
+                            mVar2.f52246g = 3;
+                            mVar2.f52243c = 0;
                             mVar2.d = false;
-                            mVar2.f52278i = false;
-                            mVar2.f52276f = 0L;
-                            mVar2.f52279j = null;
+                            mVar2.f52247i = false;
+                            mVar2.f52245f = 0L;
+                            mVar2.f52248j = null;
                             mVar2.h = false;
                             mVar2.a();
                             return;
@@ -52,13 +52,13 @@ public final class y3 extends ClickableSpan {
                         return;
                     case 1:
                         zh.m mVar3 = mVar;
-                        if (mVar3.f52277g != 2) {
-                            mVar3.f52277g = 2;
-                            mVar3.f52274c = 0;
+                        if (mVar3.f52246g != 2) {
+                            mVar3.f52246g = 2;
+                            mVar3.f52243c = 0;
                             mVar3.d = false;
-                            mVar3.f52278i = false;
-                            mVar3.f52276f = 0L;
-                            mVar3.f52279j = null;
+                            mVar3.f52247i = false;
+                            mVar3.f52245f = 0L;
+                            mVar3.f52248j = null;
                             mVar3.h = false;
                             mVar3.a();
                             return;
@@ -66,13 +66,13 @@ public final class y3 extends ClickableSpan {
                         return;
                     default:
                         zh.m mVar4 = mVar;
-                        if (mVar4.f52277g != 1) {
-                            mVar4.f52277g = 1;
-                            mVar4.f52274c = 0;
+                        if (mVar4.f52246g != 1) {
+                            mVar4.f52246g = 1;
+                            mVar4.f52243c = 0;
                             mVar4.d = false;
-                            mVar4.f52278i = false;
-                            mVar4.f52276f = 0L;
-                            mVar4.f52279j = null;
+                            mVar4.f52247i = false;
+                            mVar4.f52245f = 0L;
+                            mVar4.f52248j = null;
                             mVar4.h = false;
                             mVar4.a();
                             return;
@@ -92,13 +92,13 @@ public final class y3 extends ClickableSpan {
                 switch (r2) {
                     case 0:
                         zh.m mVar2 = mVar;
-                        if (mVar2.f52277g != 3) {
-                            mVar2.f52277g = 3;
-                            mVar2.f52274c = 0;
+                        if (mVar2.f52246g != 3) {
+                            mVar2.f52246g = 3;
+                            mVar2.f52243c = 0;
                             mVar2.d = false;
-                            mVar2.f52278i = false;
-                            mVar2.f52276f = 0L;
-                            mVar2.f52279j = null;
+                            mVar2.f52247i = false;
+                            mVar2.f52245f = 0L;
+                            mVar2.f52248j = null;
                             mVar2.h = false;
                             mVar2.a();
                             return;
@@ -106,13 +106,13 @@ public final class y3 extends ClickableSpan {
                         return;
                     case 1:
                         zh.m mVar3 = mVar;
-                        if (mVar3.f52277g != 2) {
-                            mVar3.f52277g = 2;
-                            mVar3.f52274c = 0;
+                        if (mVar3.f52246g != 2) {
+                            mVar3.f52246g = 2;
+                            mVar3.f52243c = 0;
                             mVar3.d = false;
-                            mVar3.f52278i = false;
-                            mVar3.f52276f = 0L;
-                            mVar3.f52279j = null;
+                            mVar3.f52247i = false;
+                            mVar3.f52245f = 0L;
+                            mVar3.f52248j = null;
                             mVar3.h = false;
                             mVar3.a();
                             return;
@@ -120,13 +120,13 @@ public final class y3 extends ClickableSpan {
                         return;
                     default:
                         zh.m mVar4 = mVar;
-                        if (mVar4.f52277g != 1) {
-                            mVar4.f52277g = 1;
-                            mVar4.f52274c = 0;
+                        if (mVar4.f52246g != 1) {
+                            mVar4.f52246g = 1;
+                            mVar4.f52243c = 0;
                             mVar4.d = false;
-                            mVar4.f52278i = false;
-                            mVar4.f52276f = 0L;
-                            mVar4.f52279j = null;
+                            mVar4.f52247i = false;
+                            mVar4.f52245f = 0L;
+                            mVar4.f52248j = null;
                             mVar4.h = false;
                             mVar4.a();
                             return;
@@ -144,13 +144,13 @@ public final class y3 extends ClickableSpan {
                 switch (r2) {
                     case 0:
                         zh.m mVar2 = mVar;
-                        if (mVar2.f52277g != 3) {
-                            mVar2.f52277g = 3;
-                            mVar2.f52274c = 0;
+                        if (mVar2.f52246g != 3) {
+                            mVar2.f52246g = 3;
+                            mVar2.f52243c = 0;
                             mVar2.d = false;
-                            mVar2.f52278i = false;
-                            mVar2.f52276f = 0L;
-                            mVar2.f52279j = null;
+                            mVar2.f52247i = false;
+                            mVar2.f52245f = 0L;
+                            mVar2.f52248j = null;
                             mVar2.h = false;
                             mVar2.a();
                             return;
@@ -158,13 +158,13 @@ public final class y3 extends ClickableSpan {
                         return;
                     case 1:
                         zh.m mVar3 = mVar;
-                        if (mVar3.f52277g != 2) {
-                            mVar3.f52277g = 2;
-                            mVar3.f52274c = 0;
+                        if (mVar3.f52246g != 2) {
+                            mVar3.f52246g = 2;
+                            mVar3.f52243c = 0;
                             mVar3.d = false;
-                            mVar3.f52278i = false;
-                            mVar3.f52276f = 0L;
-                            mVar3.f52279j = null;
+                            mVar3.f52247i = false;
+                            mVar3.f52245f = 0L;
+                            mVar3.f52248j = null;
                             mVar3.h = false;
                             mVar3.a();
                             return;
@@ -172,13 +172,13 @@ public final class y3 extends ClickableSpan {
                         return;
                     default:
                         zh.m mVar4 = mVar;
-                        if (mVar4.f52277g != 1) {
-                            mVar4.f52277g = 1;
-                            mVar4.f52274c = 0;
+                        if (mVar4.f52246g != 1) {
+                            mVar4.f52246g = 1;
+                            mVar4.f52243c = 0;
                             mVar4.d = false;
-                            mVar4.f52278i = false;
-                            mVar4.f52276f = 0L;
-                            mVar4.f52279j = null;
+                            mVar4.f52247i = false;
+                            mVar4.f52245f = 0L;
+                            mVar4.f52248j = null;
                             mVar4.h = false;
                             mVar4.a();
                             return;
@@ -188,8 +188,8 @@ public final class y3 extends ClickableSpan {
             }
         }, LocaleController.getString(R.string.ChannelAffiliateProgramProgramsSortProfitability), z12);
         H.V(5);
-        H.f28689t = false;
-        H.f28688s = 0;
+        H.f28662t = false;
+        H.f28661s = 0;
         H.a0(AndroidUtilities.dp(24.0f), -AndroidUtilities.dp(24.0f));
         H.Z();
     }

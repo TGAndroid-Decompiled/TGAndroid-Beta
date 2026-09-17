@@ -8,10 +8,10 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.tgnet.TLRPC;
 public final class bj implements org.telegram.ui.Components.al0 {
-    public final co f34850a;
+    public final co f34823a;
 
     public bj(co coVar) {
-        this.f34850a = coVar;
+        this.f34823a = coVar;
     }
 
     @Override
@@ -20,7 +20,7 @@ public final class bj implements org.telegram.ui.Components.al0 {
         org.telegram.ui.ActionBar.k kVar;
         org.telegram.ui.Cells.t1 t1Var;
         MessageObject messageObject;
-        co coVar = this.f34850a;
+        co coVar = this.f34823a;
         z10 = ((org.telegram.ui.ActionBar.n2) coVar).inPreviewMode;
         if (!z10) {
             coVar.D4 = true;
@@ -75,7 +75,7 @@ public final class bj implements org.telegram.ui.Components.al0 {
             }
             if (view instanceof org.telegram.ui.Cells.t1) {
                 org.telegram.ui.Cells.t1 t1Var2 = (org.telegram.ui.Cells.t1) view;
-                if (coVar.f35249c9.A(t1Var2.getMessageObject())) {
+                if (coVar.f35222c9.A(t1Var2.getMessageObject())) {
                     return;
                 }
                 z12 = !t1Var2.i3(f7);
@@ -92,7 +92,7 @@ public final class bj implements org.telegram.ui.Components.al0 {
         MessageObject messageObject;
         org.telegram.ui.ActionBar.k kVar;
         TLRPC.ChatFull chatFull;
-        co coVar = this.f34850a;
+        co coVar = this.f34823a;
         if (!coVar.z9() && ((tL_availableReaction = coVar.getMediaDataController().getReactionsMap().get((doubleTapReaction = coVar.getMediaDataController().getDoubleTapReaction()))) != null || (doubleTapReaction != null && doubleTapReaction.startsWith("animated_")))) {
             if (coVar.T5 >= 0) {
                 z10 = true;
@@ -127,7 +127,7 @@ public final class bj implements org.telegram.ui.Components.al0 {
         MessageObject messageObject;
         TLRPC.ChatFull chatFull;
         TLRPC.ChatFull chatFull2;
-        co coVar = this.f34850a;
+        co coVar = this.f34823a;
         if (coVar.getParentActivity() != null && !coVar.v() && !coVar.c() && !coVar.isInPreviewMode() && !coVar.z9()) {
             if (view instanceof org.telegram.ui.Cells.t1) {
                 messageObject = ((org.telegram.ui.Cells.t1) view).getPrimaryMessageObject();
@@ -141,8 +141,8 @@ public final class bj implements org.telegram.ui.Components.al0 {
             }
             MessageObject messageObject2 = messageObject;
             if (!messageObject2.isSecret() && messageObject2.canSetReaction() && !messageObject2.isExpiredStory() && messageObject2.type != 27) {
-                TLRPC.Chat chat = coVar.f35265e;
-                if (chat == null || ChatObject.isChannelAndNotMegaGroup(chat) || ChatObject.canUserDoAction(coVar.f35265e, 26)) {
+                TLRPC.Chat chat = coVar.f35238e;
+                if (chat == null || ChatObject.isChannelAndNotMegaGroup(chat) || ChatObject.canUserDoAction(coVar.f35238e, 26)) {
                     boolean z10 = false;
                     ah.e1.b(false);
                     String doubleTapReaction = coVar.getMediaDataController().getDoubleTapReaction();

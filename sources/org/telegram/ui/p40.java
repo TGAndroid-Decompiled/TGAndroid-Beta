@@ -6,31 +6,31 @@ import android.graphics.RectF;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 public final class p40 extends TextView {
-    public final RectF f39432a;
-    public final Paint f39433b;
+    public final RectF f39405a;
+    public final Paint f39406b;
 
     public p40(LaunchActivity launchActivity) {
         super(launchActivity);
-        this.f39432a = new RectF();
+        this.f39405a = new RectF();
         Paint paint = new Paint(1);
-        this.f39433b = paint;
+        this.f39406b = paint;
         paint.setStyle(Paint.Style.FILL);
         paint.setColor(-16711936);
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
-        RectF rectF = this.f39432a;
+        RectF rectF = this.f39405a;
         rectF.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
-        canvas.drawRoundRect(rectF, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), this.f39433b);
+        canvas.drawRoundRect(rectF, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), this.f39406b);
         super.dispatchDraw(canvas);
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
-        Paint paint = this.f39433b;
+        Paint paint = this.f39406b;
         paint.setColor(-16711936);
-        RectF rectF = this.f39432a;
+        RectF rectF = this.f39405a;
         rectF.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
         canvas.drawRoundRect(rectF, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), paint);
         super.onDraw(canvas);

@@ -11,11 +11,11 @@ public final class g91 extends org.telegram.ui.Components.g51 {
 
     public static org.telegram.ui.Components.h51 a(String str, CharSequence charSequence, String str2, View.OnClickListener onClickListener, CharSequence charSequence2, View.OnClickListener onClickListener2) {
         org.telegram.ui.Components.h51 J = org.telegram.ui.Components.h51.J(g91.class);
-        J.f26622l = str;
-        J.f26623m = charSequence;
-        J.f26624n = str2;
+        J.f26595l = str;
+        J.f26596m = charSequence;
+        J.f26597n = str2;
         J.D = onClickListener;
-        J.f26625o = charSequence2;
+        J.f26598o = charSequence2;
         J.E = onClickListener2;
         return J;
     }
@@ -23,17 +23,17 @@ public final class g91 extends org.telegram.ui.Components.g51 {
     @Override
     public final void bindView(View view, org.telegram.ui.Components.h51 h51Var, boolean z10, org.telegram.ui.Components.v51 v51Var, org.telegram.ui.Components.d61 d61Var) {
         h91 h91Var = (h91) view;
-        CharSequence charSequence = h51Var.f26622l;
-        CharSequence charSequence2 = h51Var.f26623m;
-        CharSequence charSequence3 = h51Var.f26624n;
+        CharSequence charSequence = h51Var.f26595l;
+        CharSequence charSequence2 = h51Var.f26596m;
+        CharSequence charSequence3 = h51Var.f26597n;
         View.OnClickListener onClickListener = h51Var.D;
-        CharSequence charSequence4 = h51Var.f26625o;
+        CharSequence charSequence4 = h51Var.f26598o;
         View.OnClickListener onClickListener2 = h51Var.E;
-        di.d dVar = h91Var.f36966e;
-        org.telegram.ui.Components.d90 d90Var = h91Var.f36964b;
+        di.d dVar = h91Var.f36939e;
+        org.telegram.ui.Components.d90 d90Var = h91Var.f36937b;
         int i10 = 0;
         d90Var.setText(Emoji.replaceEmoji(charSequence, d90Var.getPaint().getFontMetricsInt(), false));
-        org.telegram.ui.Components.d90 d90Var2 = h91Var.f36965c;
+        org.telegram.ui.Components.d90 d90Var2 = h91Var.f36938c;
         d90Var2.setText(Emoji.replaceEmoji(charSequence2, d90Var2.getPaint().getFontMetricsInt(), false));
         di.d dVar2 = h91Var.d;
         if (TextUtils.isEmpty(charSequence3)) {

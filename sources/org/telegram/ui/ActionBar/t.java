@@ -3,16 +3,16 @@ package org.telegram.ui.ActionBar;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.pr;
 public final class t implements Runnable {
-    public final boolean f21359a;
-    public final boolean f21360b;
-    public final boolean f21361c;
+    public final boolean f21332a;
+    public final boolean f21333b;
+    public final boolean f21334c;
     public final ActionBarLayout d;
 
     public t(ActionBarLayout actionBarLayout, boolean z10, boolean z11, boolean z12) {
         this.d = actionBarLayout;
-        this.f21359a = z10;
-        this.f21360b = z11;
-        this.f21361c = z12;
+        this.f21332a = z10;
+        this.f21333b = z11;
+        this.f21334c = z12;
     }
 
     @Override
@@ -26,9 +26,9 @@ public final class t implements Runnable {
         }
         Integer num2 = null;
         actionBarLayout.D0 = null;
-        boolean z10 = this.f21359a;
+        boolean z10 = this.f21332a;
         if (z10) {
-            actionBarLayout.f20207v0 = System.currentTimeMillis();
+            actionBarLayout.f20180v0 = System.currentTimeMillis();
         }
         long nanoTime = System.nanoTime() / 1000000;
         long j3 = nanoTime - actionBarLayout.F0;
@@ -38,8 +38,8 @@ public final class t implements Runnable {
             j3 = 18;
         }
         actionBarLayout.F0 = nanoTime;
-        boolean z11 = this.f21361c;
-        boolean z12 = this.f21360b;
+        boolean z11 = this.f21334c;
+        boolean z12 = this.f21333b;
         if (z12 && z11) {
             f7 = 190.0f;
         } else {
@@ -100,25 +100,25 @@ public final class t implements Runnable {
         }
         if (z11) {
             float a2 = w7.p.a(interpolation, 0.0f, 1.0f);
-            actionBarLayout.f20203s.setAlpha(a2);
+            actionBarLayout.f20176s.setAlpha(a2);
             if (z12) {
                 float f11 = (0.3f * interpolation) + 0.7f;
-                actionBarLayout.f20203s.setScaleX(f11);
-                actionBarLayout.f20203s.setScaleY(f11);
+                actionBarLayout.f20176s.setScaleX(f11);
+                actionBarLayout.f20176s.setScaleY(f11);
                 if (actionBarLayout.J != null) {
                     float f12 = 1.0f - interpolation;
-                    actionBarLayout.f20203s.setTranslationY(AndroidUtilities.dp(40.0f) * f12);
+                    actionBarLayout.f20176s.setTranslationY(AndroidUtilities.dp(40.0f) * f12);
                     actionBarLayout.J.setTranslationY((-AndroidUtilities.dp(70.0f)) * f12);
                     float f13 = (interpolation * 0.05f) + 0.95f;
                     actionBarLayout.J.setScaleX(f13);
                     actionBarLayout.J.setScaleY(f13);
                 }
-                actionBarLayout.f20201r.setAlpha((int) (46.0f * a2));
-                j6.f20957s0.setAlpha((int) (a2 * 255.0f));
-                actionBarLayout.f20203s.invalidate();
+                actionBarLayout.f20174r.setAlpha((int) (46.0f * a2));
+                j6.f20930s0.setAlpha((int) (a2 * 255.0f));
+                actionBarLayout.f20176s.invalidate();
                 actionBarLayout.invalidate();
             } else {
-                actionBarLayout.f20203s.setTranslationX((1.0f - interpolation) * AndroidUtilities.dp(48.0f));
+                actionBarLayout.f20176s.setTranslationX((1.0f - interpolation) * AndroidUtilities.dp(48.0f));
             }
         } else {
             float f14 = 1.0f - interpolation;
@@ -128,11 +128,11 @@ public final class t implements Runnable {
                 float f15 = (f14 * 0.1f) + 0.9f;
                 actionBarLayout.v.setScaleX(f15);
                 actionBarLayout.v.setScaleY(f15);
-                actionBarLayout.f20201r.setAlpha((int) (46.0f * a10));
+                actionBarLayout.f20174r.setAlpha((int) (46.0f * a10));
                 if (actionBarLayout.J == null) {
-                    j6.f20957s0.setAlpha((int) (a10 * 255.0f));
+                    j6.f20930s0.setAlpha((int) (a10 * 255.0f));
                 }
-                actionBarLayout.f20203s.invalidate();
+                actionBarLayout.f20176s.invalidate();
                 actionBarLayout.invalidate();
             } else {
                 actionBarLayout.v.setTranslationX(AndroidUtilities.dp(48.0f) * interpolation);

@@ -6,23 +6,23 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class rf0 implements RequestDelegate {
-    public final int f40192a;
-    public final zf0 f40193b;
-    public final Bundle f40194c;
+    public final int f40165a;
+    public final zf0 f40166b;
+    public final Bundle f40167c;
 
     public rf0(zf0 zf0Var, Bundle bundle, int i10) {
-        this.f40192a = i10;
-        this.f40193b = zf0Var;
-        this.f40194c = bundle;
+        this.f40165a = i10;
+        this.f40166b = zf0Var;
+        this.f40167c = bundle;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f40192a) {
+        switch (this.f40165a) {
             case 0:
-                zf0 zf0Var = this.f40193b;
+                zf0 zf0Var = this.f40166b;
                 if (tLObject != null) {
-                    AndroidUtilities.runOnUIThread(new pf0(zf0Var, this.f40194c, tLObject, 1));
+                    AndroidUtilities.runOnUIThread(new pf0(zf0Var, this.f40167c, tLObject, 1));
                     return;
                 } else if (tL_error != null && tL_error.text != null) {
                     AndroidUtilities.runOnUIThread(new r80(24, zf0Var, tL_error));
@@ -31,7 +31,7 @@ public final class rf0 implements RequestDelegate {
                     return;
                 }
             default:
-                AndroidUtilities.runOnUIThread(new org.telegram.ui.Components.in0(this.f40193b, tL_error, this.f40194c, tLObject, 20));
+                AndroidUtilities.runOnUIThread(new org.telegram.ui.Components.in0(this.f40166b, tL_error, this.f40167c, tLObject, 20));
                 return;
         }
     }

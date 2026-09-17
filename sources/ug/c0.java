@@ -13,19 +13,19 @@ import org.telegram.ui.ActionBar.n2;
 import org.telegram.ui.Components.yc;
 import org.telegram.ui.co;
 public final class c0 extends vg.e {
-    public final d0 f47127r;
+    public final d0 f47099r;
 
     public c0(d0 d0Var, f6 f6Var) {
         super(f6Var);
-        this.f47127r = d0Var;
+        this.f47099r = d0Var;
     }
 
     @Override
     public final void E() {
         String string;
         f6 f6Var;
-        d0 d0Var = this.f47127r;
-        String str = d0Var.f47132a0;
+        d0 d0Var = this.f47099r;
+        String str = d0Var.f47104a0;
         if ((str == null || str.isEmpty()) && d0Var.X.to_id == -1) {
             string = LocaleController.getString(R.string.BoostingOnlyGiveawayCreatorSeeLink);
         } else {
@@ -38,14 +38,14 @@ public final class c0 extends vg.e {
 
     @Override
     public final void F(TLObject tLObject) {
-        d0 d0Var = this.f47127r;
+        d0 d0Var = this.f47099r;
         TLRPC.TL_payments_checkedGiftCode tL_payments_checkedGiftCode = d0Var.X;
-        n2 n2Var = d0Var.f24677n;
+        n2 n2Var = d0Var.f24650n;
         d0Var.dismiss();
         if (tLObject instanceof TLRPC.Chat) {
-            n2Var.presentFragment(co.R9(-((TLRPC.Chat) tLObject).f19896id));
+            n2Var.presentFragment(co.R9(-((TLRPC.Chat) tLObject).f19869id));
         } else if (tLObject instanceof TLRPC.User) {
-            n2Var.presentFragment(co.R9(((TLRPC.User) tLObject).f20043id));
+            n2Var.presentFragment(co.R9(((TLRPC.User) tLObject).f20016id));
         } else {
             Bundle bundle = new Bundle();
             bundle.putLong("chat_id", -DialogObject.getPeerDialogId(tL_payments_checkedGiftCode.from_id));

@@ -7,18 +7,18 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
 public final class jh implements Runnable {
-    public final int f37799a;
-    public final View f37800b;
+    public final int f37772a;
+    public final View f37773b;
 
     public jh(int i10, View view) {
-        this.f37799a = i10;
-        this.f37800b = view;
+        this.f37772a = i10;
+        this.f37773b = view;
     }
 
     @Override
     public final void run() {
-        int i10 = this.f37799a;
-        View view = this.f37800b;
+        int i10 = this.f37772a;
+        View view = this.f37773b;
         switch (i10) {
             case 0:
                 try {
@@ -40,15 +40,15 @@ public final class jh implements Runnable {
                 return;
             case 4:
                 SharedConfig.setSuggestStickers(0);
-                ((org.telegram.ui.Cells.ea) view).f21904c.c(LocaleController.getString(R.string.SuggestStickersAll), true, true);
+                ((org.telegram.ui.Cells.ea) view).f21877c.c(LocaleController.getString(R.string.SuggestStickersAll), true, true);
                 return;
             case 5:
                 SharedConfig.setSuggestStickers(1);
-                ((org.telegram.ui.Cells.ea) view).f21904c.c(LocaleController.getString(R.string.SuggestStickersInstalled), true, true);
+                ((org.telegram.ui.Cells.ea) view).f21877c.c(LocaleController.getString(R.string.SuggestStickersInstalled), true, true);
                 return;
             default:
                 SharedConfig.setSuggestStickers(2);
-                ((org.telegram.ui.Cells.ea) view).f21904c.c(LocaleController.getString(R.string.SuggestStickersNone), true, true);
+                ((org.telegram.ui.Cells.ea) view).f21877c.c(LocaleController.getString(R.string.SuggestStickersNone), true, true);
                 return;
         }
     }

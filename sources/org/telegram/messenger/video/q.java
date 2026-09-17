@@ -1,21 +1,21 @@
 package org.telegram.messenger.video;
 public final class q implements Runnable {
-    public final int f19340a;
-    public final VideoPlayerRewinder f19341b;
+    public final int f19313a;
+    public final VideoPlayerRewinder f19314b;
 
     public q(VideoPlayerRewinder videoPlayerRewinder, int i10) {
-        this.f19340a = i10;
-        this.f19341b = videoPlayerRewinder;
+        this.f19313a = i10;
+        this.f19314b = videoPlayerRewinder;
     }
 
     @Override
     public final void run() {
-        switch (this.f19340a) {
+        switch (this.f19313a) {
             case 0:
-                VideoPlayerRewinder.b(this.f19341b);
+                VideoPlayerRewinder.b(this.f19314b);
                 return;
             default:
-                VideoPlayerRewinder.a(this.f19341b);
+                VideoPlayerRewinder.a(this.f19314b);
                 return;
         }
     }

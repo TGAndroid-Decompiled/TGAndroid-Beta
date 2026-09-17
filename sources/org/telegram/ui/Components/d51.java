@@ -32,51 +32,51 @@ public final class d51 extends FrameLayout implements NotificationCenter.Notific
     public final org.telegram.ui.ActionBar.f6 P;
     public float Q;
     public final Paint R;
-    public final int f25257a;
-    public final a51 f25258b;
-    public final TLRPC.StickerSetCovered[] f25259c;
+    public final int f25230a;
+    public final a51 f25231b;
+    public final TLRPC.StickerSetCovered[] f25232c;
     public final LongSparseArray d;
-    public final LongSparseArray f25260e;
-    public final View f25261f;
+    public final LongSparseArray f25233e;
+    public final View f25234f;
     public final s41 h;
-    public final t41 f25262n;
-    public final u41 f25263r;
-    public final c51 f25264s;
+    public final t41 f25235n;
+    public final u41 f25236r;
+    public final c51 f25237s;
     public final hg.f2 v;
-    public final FrameLayout f25265w;
-    public org.telegram.ui.ActionBar.n2 f25266x;
-    public s4.s0 f25267y;
+    public final FrameLayout f25238w;
+    public org.telegram.ui.ActionBar.n2 f25239x;
+    public s4.s0 f25240y;
 
     public d51(Context context, final a51 a51Var, TLRPC.StickerSetCovered[] stickerSetCoveredArr, LongSparseArray longSparseArray, LongSparseArray longSparseArray2, TLRPC.StickerSetCovered stickerSetCovered, org.telegram.ui.ActionBar.f6 f6Var) {
         super(context);
         int i10 = UserConfig.selectedAccount;
-        this.f25257a = i10;
+        this.f25230a = i10;
         this.Q = 1.0f;
         this.R = new Paint();
-        this.f25258b = a51Var;
-        this.f25259c = stickerSetCoveredArr;
+        this.f25231b = a51Var;
+        this.f25232c = stickerSetCoveredArr;
         this.d = longSparseArray;
-        this.f25260e = longSparseArray2;
+        this.f25233e = longSparseArray2;
         this.O = stickerSetCovered;
         this.P = f6Var;
         c51 c51Var = new c51(this, context);
-        this.f25264s = c51Var;
+        this.f25237s = c51Var;
         this.v = new hg.f2(context, new r41(this, a51Var), stickerSetCoveredArr, longSparseArray, longSparseArray2, f6Var);
         FrameLayout frameLayout = new FrameLayout(context);
-        this.f25265w = frameLayout;
-        frameLayout.setBackgroundColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f20762h5, f6Var));
+        this.f25238w = frameLayout;
+        frameLayout.setBackgroundColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f20735h5, f6Var));
         s41 s41Var = new s41(this, context, f6Var);
         this.h = s41Var;
         s41Var.setHint(LocaleController.getString(R.string.SearchTrendingStickersHint));
         frameLayout.addView(s41Var, w7.x5.e(-1, -1, 48));
         t41 t41Var = new t41(this, context, a51Var);
-        this.f25262n = t41Var;
+        this.f25235n = t41Var;
         final k kVar = new k(this, 19);
         t41Var.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public final boolean onTouch(View view, MotionEvent motionEvent) {
                 k kVar2 = kVar;
-                return a51Var.e(d51.this.f25262n, kVar2, motionEvent);
+                return a51Var.e(d51.this.f25235n, kVar2, motionEvent);
             }
         });
         t41Var.setOverScrollMode(2);
@@ -84,7 +84,7 @@ public final class d51 extends FrameLayout implements NotificationCenter.Notific
         t41Var.setItemAnimator(null);
         t41Var.setLayoutAnimation(null);
         u41 u41Var = new u41(this, AndroidUtilities.dp(58.0f), t41Var);
-        this.f25263r = u41Var;
+        this.f25236r = u41Var;
         t41Var.setLayoutManager(u41Var);
         u41Var.O = new v41(this);
         t41Var.setOnScrollListener(new w41(this));
@@ -92,7 +92,7 @@ public final class d51 extends FrameLayout implements NotificationCenter.Notific
         t41Var.setOnItemClickListener(kVar);
         addView(t41Var, w7.x5.d(-1, -1.0f, 51, 0.0f, 0.0f, 0.0f, 0.0f));
         View view = new View(context);
-        this.f25261f = view;
+        this.f25234f = view;
         view.setBackgroundColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.V5, f6Var));
         view.setAlpha(0.0f);
         FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(-1, AndroidUtilities.getShadowHeight());
@@ -109,7 +109,7 @@ public final class d51 extends FrameLayout implements NotificationCenter.Notific
         float f7;
         if (this.G != z10) {
             this.G = z10;
-            ViewPropertyAnimator animate = this.f25261f.animate();
+            ViewPropertyAnimator animate = this.f25234f.animate();
             if (z10) {
                 f7 = 1.0f;
             } else {
@@ -129,7 +129,7 @@ public final class d51 extends FrameLayout implements NotificationCenter.Notific
                 ofFloat.addUpdateListener(new z41(this, contentTopOffset));
                 this.L.addListener(new r80(this, 28));
                 this.L.setDuration(250L);
-                this.L.setInterpolator(org.telegram.ui.ActionBar.p1.f21303w);
+                this.L.setInterpolator(org.telegram.ui.ActionBar.p1.f21276w);
                 this.L.start();
                 return;
             }
@@ -148,31 +148,31 @@ public final class d51 extends FrameLayout implements NotificationCenter.Notific
         if (stickerSet != null) {
             inputStickerSet = new TLRPC.TL_inputStickerSetID();
             inputStickerSet.access_hash = stickerSet.access_hash;
-            inputStickerSet.f19916id = stickerSet.f19923id;
+            inputStickerSet.f19889id = stickerSet.f19896id;
         }
         TLRPC.InputStickerSet inputStickerSet2 = inputStickerSet;
         if (inputStickerSet2 != null) {
-            a51 a51Var = this.f25258b;
+            a51 a51Var = this.f25231b;
             a51Var.getClass();
             if (a51Var instanceof fx) {
                 x41Var = new x41(this);
             } else {
                 x41Var = null;
             }
-            ux0 ux0Var = new ux0(getContext(), this.f25266x, inputStickerSet2, null, x41Var, this.P);
-            ux0Var.f31032j0 = false;
-            ux0Var.f31023c0 = new y41(this, inputStickerSet2);
-            this.f25266x.showDialog(ux0Var);
+            ux0 ux0Var = new ux0(getContext(), this.f25239x, inputStickerSet2, null, x41Var, this.P);
+            ux0Var.f31005j0 = false;
+            ux0Var.f30996c0 = new y41(this, inputStickerSet2);
+            this.f25239x.showDialog(ux0Var);
         }
     }
 
     public final boolean c() {
         int i10;
         boolean z10;
-        t41 t41Var = this.f25262n;
+        t41 t41Var = this.f25235n;
         int childCount = t41Var.getChildCount();
-        View view = this.f25261f;
-        FrameLayout frameLayout = this.f25265w;
+        View view = this.f25234f;
+        FrameLayout frameLayout = this.f25238w;
         if (childCount <= 0) {
             int paddingTop = t41Var.getPaddingTop();
             this.E = paddingTop;
@@ -213,9 +213,9 @@ public final class d51 extends FrameLayout implements NotificationCenter.Notific
     }
 
     public final void d() {
-        t41 t41Var = this.f25262n;
+        t41 t41Var = this.f25235n;
         s4.h0 adapter = t41Var.getAdapter();
-        c51 c51Var = this.f25264s;
+        c51 c51Var = this.f25237s;
         if (adapter == c51Var) {
             c51Var.getClass();
             int childCount = t41Var.getChildCount();
@@ -224,7 +224,7 @@ public final class d51 extends FrameLayout implements NotificationCenter.Notific
                 if (childAt instanceof org.telegram.ui.Cells.r3) {
                     ((org.telegram.ui.Cells.r3) childAt).d();
                 } else if (childAt instanceof org.telegram.ui.Cells.o3) {
-                    xh0 xh0Var = ((org.telegram.ui.Cells.o3) childAt).f22451e;
+                    xh0 xh0Var = ((org.telegram.ui.Cells.o3) childAt).f22424e;
                     xh0Var.setProgressColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.Nh, false));
                     int w02 = org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.Oh, false);
                     org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.Qh, false);
@@ -250,8 +250,8 @@ public final class d51 extends FrameLayout implements NotificationCenter.Notific
     @Override
     public final void didReceivedNotification(int i10, int i11, Object... objArr) {
         int i12 = NotificationCenter.stickersDidLoad;
-        t41 t41Var = this.f25262n;
-        c51 c51Var = this.f25264s;
+        t41 t41Var = this.f25235n;
+        c51 c51Var = this.f25237s;
         if (i10 == i12) {
             if (((Integer) objArr[0]).intValue() == 0) {
                 if (this.J) {
@@ -265,7 +265,7 @@ public final class d51 extends FrameLayout implements NotificationCenter.Notific
                 c51Var.G();
             }
         } else if (i10 == NotificationCenter.featuredStickersDidLoad) {
-            if (this.K != MediaDataController.getInstance(this.f25257a).getFeaturedStickersHashWithoutUnread(false)) {
+            if (this.K != MediaDataController.getInstance(this.f25230a).getFeaturedStickersHashWithoutUnread(false)) {
                 this.J = false;
             }
             if (this.J) {
@@ -296,10 +296,10 @@ public final class d51 extends FrameLayout implements NotificationCenter.Notific
             } else {
                 invalidate();
             }
-            Integer num = (Integer) this.f25264s.h.get(stickerSetCovered);
+            Integer num = (Integer) this.f25237s.h.get(stickerSetCovered);
             if (num != null) {
                 int intValue = num.intValue();
-                u41 u41Var = this.f25263r;
+                u41 u41Var = this.f25236r;
                 View m10 = u41Var.m(intValue);
                 if (m10 != null) {
                     i10 = (int) m10.getY();
@@ -342,7 +342,7 @@ public final class d51 extends FrameLayout implements NotificationCenter.Notific
         boolean dispatchTouchEvent = super.dispatchTouchEvent(motionEvent);
         if (!this.F) {
             MotionEvent obtain = MotionEvent.obtain(motionEvent);
-            this.f25262n.dispatchTouchEvent(obtain);
+            this.f25235n.dispatchTouchEvent(obtain);
             obtain.recycle();
         }
         return dispatchTouchEvent;
@@ -355,7 +355,7 @@ public final class d51 extends FrameLayout implements NotificationCenter.Notific
     @Override
     public final void onConfigurationChanged(Configuration configuration) {
         super.onConfigurationChanged(configuration);
-        s4.h0 adapter = this.f25262n.getAdapter();
+        s4.h0 adapter = this.f25235n.getAdapter();
         adapter.m(adapter.h() - 1);
         this.I = false;
     }
@@ -366,18 +366,18 @@ public final class d51 extends FrameLayout implements NotificationCenter.Notific
         super.onLayout(z10, i10, i11, i12, i13);
         if (!this.I) {
             this.I = true;
-            c51 c51Var = this.f25264s;
+            c51 c51Var = this.f25237s;
             c51Var.G();
             TLRPC.StickerSetCovered stickerSetCovered = this.O;
             if (stickerSetCovered != null && (num = (Integer) c51Var.h.get(stickerSetCovered)) != null) {
-                this.f25263r.h1(num.intValue(), AndroidUtilities.dp(58.0f) + (-this.f25262n.getPaddingTop()));
+                this.f25236r.h1(num.intValue(), AndroidUtilities.dp(58.0f) + (-this.f25235n.getPaddingTop()));
             }
         }
     }
 
     public void setContentViewPaddingTop(int i10) {
         int dp = AndroidUtilities.dp(58.0f) + i10;
-        t41 t41Var = this.f25262n;
+        t41 t41Var = this.f25235n;
         if (t41Var.getPaddingTop() != dp) {
             this.H = true;
             t41Var.setPadding(0, dp, 0, 0);
@@ -386,10 +386,10 @@ public final class d51 extends FrameLayout implements NotificationCenter.Notific
     }
 
     public void setOnScrollListener(s4.s0 s0Var) {
-        this.f25267y = s0Var;
+        this.f25240y = s0Var;
     }
 
     public void setParentFragment(org.telegram.ui.ActionBar.n2 n2Var) {
-        this.f25266x = n2Var;
+        this.f25239x = n2Var;
     }
 }

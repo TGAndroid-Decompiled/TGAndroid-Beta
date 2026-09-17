@@ -4,50 +4,50 @@ import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.tgnet.tl.TL_stars;
 public final class j3 {
-    public final t3 f52101a;
-    public o3 f52102b;
-    public o3 f52103c;
+    public final t3 f52070a;
+    public o3 f52071b;
+    public o3 f52072c;
     public o3 d;
     public f3 h;
-    public f3 f52107i;
-    public f3 f52108j;
-    public f3 f52109k;
-    public TL_stars.TL_starGiftUnique f52110l;
-    public long f52111m;
-    public b1 f52116r;
-    public b1 f52117s;
-    public float f52118t;
-    public boolean f52119u;
+    public f3 f52076i;
+    public f3 f52077j;
+    public f3 f52078k;
+    public TL_stars.TL_starGiftUnique f52079l;
+    public long f52080m;
+    public b1 f52085r;
+    public b1 f52086s;
+    public float f52087t;
+    public boolean f52088u;
     public boolean v;
-    public final ArrayList f52104e = new ArrayList();
-    public final ArrayList f52105f = new ArrayList();
-    public final ArrayList f52106g = new ArrayList();
-    public float f52112n = 0.0f;
-    public boolean f52113o = false;
-    public boolean f52114p = false;
-    public boolean f52115q = false;
+    public final ArrayList f52073e = new ArrayList();
+    public final ArrayList f52074f = new ArrayList();
+    public final ArrayList f52075g = new ArrayList();
+    public float f52081n = 0.0f;
+    public boolean f52082o = false;
+    public boolean f52083p = false;
+    public boolean f52084q = false;
 
     public j3(t3 t3Var) {
-        this.f52101a = t3Var;
-        t3Var.f52651c.addOnAttachStateChangeListener(new bi.i2(this, 14));
+        this.f52070a = t3Var;
+        t3Var.f52620c.addOnAttachStateChangeListener(new bi.i2(this, 14));
     }
 
     public final void a() {
-        this.f52113o = false;
-        this.f52101a.f52651c.c();
+        this.f52082o = false;
+        this.f52070a.f52620c.c();
         f3 f3Var = this.h;
         if (f3Var != null) {
             f3Var.a();
         }
-        f3 f3Var2 = this.f52107i;
+        f3 f3Var2 = this.f52076i;
         if (f3Var2 != null) {
             f3Var2.a();
         }
-        f3 f3Var3 = this.f52108j;
+        f3 f3Var3 = this.f52077j;
         if (f3Var3 != null) {
             f3Var3.a();
         }
-        f3 f3Var4 = this.f52109k;
+        f3 f3Var4 = this.f52078k;
         if (f3Var4 != null) {
             f3Var4.a();
         }
@@ -55,17 +55,17 @@ public final class j3 {
     }
 
     public final void b() {
-        if (this.f52113o && !this.v) {
+        if (this.f52082o && !this.v) {
             this.v = true;
             AndroidUtilities.runOnUIThread(new d3(this, 1));
         }
     }
 
     public final void c() {
-        if (this.f52113o) {
+        if (this.f52082o) {
             return;
         }
-        ArrayList arrayList = this.f52104e;
+        ArrayList arrayList = this.f52073e;
         int size = arrayList.size();
         int i10 = 0;
         while (i10 < size) {
@@ -74,7 +74,7 @@ public final class j3 {
             ((h3) obj).a();
         }
         arrayList.clear();
-        this.f52105f.clear();
-        this.f52106g.clear();
+        this.f52074f.clear();
+        this.f52075g.clear();
     }
 }

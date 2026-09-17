@@ -3,27 +3,27 @@ package org.telegram.ui;
 import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.NotificationCenter;
 public final class va implements MessagesStorage.IntCallback {
-    public final int f41494a;
-    public final Object f41495b;
+    public final int f41467a;
+    public final Object f41468b;
 
     public va(Object obj, int i10) {
-        this.f41494a = i10;
-        this.f41495b = obj;
+        this.f41467a = i10;
+        this.f41468b = obj;
     }
 
     @Override
     public final void run(int i10) {
         uu0 uu0Var;
-        int i11 = this.f41494a;
-        Object obj = this.f41495b;
+        int i11 = this.f41467a;
+        Object obj = this.f41468b;
         switch (i11) {
             case 0:
                 ((ub) obj).V0(true);
                 return;
             case 1:
-                co coVar = ((on) obj).f39311a;
+                co coVar = ((on) obj).f39284a;
                 if (i10 > 0 && coVar.getParentActivity() != null && coVar.fragmentView != null) {
-                    org.telegram.ui.Components.yc.a0(coVar).m(org.telegram.ui.Components.xc.I, i10, 0, 0, coVar.f35275ea).j();
+                    org.telegram.ui.Components.yc.a0(coVar).m(org.telegram.ui.Components.xc.I, i10, 0, 0, coVar.f35248ea).j();
                     return;
                 }
                 return;
@@ -32,7 +32,7 @@ public final class va implements MessagesStorage.IntCallback {
                 return;
             case 3:
                 PhotoViewer photoViewer = (PhotoViewer) obj;
-                if (photoViewer.f33755y != null && (uu0Var = photoViewer.f33577e0) != null && i10 > 0) {
+                if (photoViewer.f33728y != null && (uu0Var = photoViewer.f33550e0) != null && i10 > 0) {
                     org.telegram.ui.Components.yc.F(uu0Var, true).j();
                     return;
                 }
@@ -48,10 +48,10 @@ public final class va implements MessagesStorage.IntCallback {
                     profileActivity.finishFragment();
                     return;
                 }
-                profileActivity.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.peerSettingsDidLoad, Long.valueOf(profileActivity.f33916e1));
+                profileActivity.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.peerSettingsDidLoad, Long.valueOf(profileActivity.f33889e1));
                 return;
             default:
-                eg1 eg1Var = ((jf1) obj).f37793a;
+                eg1 eg1Var = ((jf1) obj).f37766a;
                 if (i10 == 0) {
                     eg1Var.O0(false);
                     return;

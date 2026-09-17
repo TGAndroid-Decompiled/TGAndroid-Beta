@@ -8,15 +8,15 @@ import org.telegram.ui.hh1;
 import q9.d;
 import zh.w3;
 public final class a implements d, a2 {
-    public final int f51408a;
+    public final int f51377a;
 
     public a(int i10) {
-        this.f51408a = i10;
+        this.f51377a = i10;
     }
 
     @Override
     public Object D(c cVar) {
-        switch (this.f51408a) {
+        switch (this.f51377a) {
             case 7:
                 return FirebaseSessionsRegistrar.e(cVar);
             case 8:
@@ -34,17 +34,17 @@ public final class a implements d, a2 {
 
     @Override
     public void g(b2 b2Var, int i10) {
-        switch (this.f51408a) {
+        switch (this.f51377a) {
             case 13:
                 w3.d2(new hh1(6, null));
                 return;
             default:
-                int i11 = w3.f52786q1;
+                int i11 = w3.f52755q1;
                 return;
         }
     }
 
     public a(w3 w3Var) {
-        this.f51408a = 13;
+        this.f51377a = 13;
     }
 }

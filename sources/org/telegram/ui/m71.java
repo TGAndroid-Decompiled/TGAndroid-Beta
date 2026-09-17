@@ -7,47 +7,47 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 public final class m71 implements TextWatcher {
-    public final f01 f38616a = new f01(this, 16);
-    public final t71 f38617b;
+    public final f01 f38589a = new f01(this, 16);
+    public final t71 f38590b;
 
     public m71(t71 t71Var) {
-        this.f38617b = t71Var;
+        this.f38590b = t71Var;
     }
 
     public final void a() {
         boolean z10;
         boolean z11;
         TLRPC.TL_channelParticipantsSearch tL_channelParticipantsSearch = new TLRPC.TL_channelParticipantsSearch();
-        t71 t71Var = this.f38617b;
-        String obj = t71Var.f40678c0.getText().toString();
-        tL_channelParticipantsSearch.f19895q = obj;
-        s71 s71Var = t71Var.f40682g0;
-        TLRPC.ChannelParticipantsFilter channelParticipantsFilter = s71Var.f40365c;
+        t71 t71Var = this.f38590b;
+        String obj = t71Var.f40651c0.getText().toString();
+        tL_channelParticipantsSearch.f19868q = obj;
+        s71 s71Var = t71Var.f40655g0;
+        TLRPC.ChannelParticipantsFilter channelParticipantsFilter = s71Var.f40338c;
         if (channelParticipantsFilter instanceof TLRPC.TL_channelParticipantsSearch) {
-            z10 = !TextUtils.equals(channelParticipantsFilter.f19895q, obj);
+            z10 = !TextUtils.equals(channelParticipantsFilter.f19868q, obj);
             z11 = false;
         } else {
             z10 = true;
             z11 = true;
         }
-        s71Var.f40365c = tL_channelParticipantsSearch;
+        s71Var.f40338c = tL_channelParticipantsSearch;
         if (z10) {
             if (z11) {
-                s71Var.f40369r = false;
-                if (s71Var.f40368n >= 0) {
-                    ConnectionsManager.getInstance(s71Var.f40363a).cancelRequest(s71Var.f40368n, true);
-                    s71Var.f40368n = -1;
+                s71Var.f40342r = false;
+                if (s71Var.f40341n >= 0) {
+                    ConnectionsManager.getInstance(s71Var.f40336a).cancelRequest(s71Var.f40341n, true);
+                    s71Var.f40341n = -1;
                 }
-                s71Var.f40367f = false;
+                s71Var.f40340f = false;
                 s71Var.d.clear();
                 s71Var.h = false;
             } else {
-                s71Var.f40369r = true;
+                s71Var.f40342r = true;
                 s71Var.h = false;
             }
             s71Var.b();
         }
-        org.telegram.ui.Components.v51 v51Var = t71Var.f40684i0;
+        org.telegram.ui.Components.v51 v51Var = t71Var.f40657i0;
         if (v51Var != null) {
             v51Var.N(true);
         }
@@ -56,7 +56,7 @@ public final class m71 implements TextWatcher {
     @Override
     public final void afterTextChanged(Editable editable) {
         int length = editable.length();
-        f01 f01Var = this.f38616a;
+        f01 f01Var = this.f38589a;
         if (length <= 0) {
             AndroidUtilities.cancelRunOnUIThread(f01Var);
             a();

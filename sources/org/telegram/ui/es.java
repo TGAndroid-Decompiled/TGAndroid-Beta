@@ -8,18 +8,18 @@ import android.view.View;
 import android.widget.LinearLayout;
 import org.telegram.messenger.AndroidUtilities;
 public abstract class es extends LinearLayout {
-    public final Paint f36187a;
-    public final Paint f36188b;
-    public float f36189c;
+    public final Paint f36160a;
+    public final Paint f36161b;
+    public float f36162c;
     public boolean d;
-    public boolean f36190e;
-    public gs[] f36191f;
+    public boolean f36163e;
+    public gs[] f36164f;
 
     public es(Context context) {
         super(context);
         Paint paint = new Paint(1);
-        this.f36187a = paint;
-        this.f36188b = new Paint(1);
+        this.f36160a = paint;
+        this.f36161b = new Paint(1);
         paint.setStyle(Paint.Style.STROKE);
         setOrientation(0);
     }
@@ -30,7 +30,7 @@ public abstract class es extends LinearLayout {
         int i12;
         int i13;
         int i14;
-        gs[] gsVarArr = this.f36191f;
+        gs[] gsVarArr = this.f36164f;
         int i15 = 0;
         if (gsVarArr == null || gsVarArr.length != i10) {
             if (gsVarArr != null) {
@@ -38,21 +38,21 @@ public abstract class es extends LinearLayout {
                     removeView(gsVar);
                 }
             }
-            this.f36191f = new gs[i10];
+            this.f36164f = new gs[i10];
             for (int i16 = 0; i16 < i10; i16++) {
-                this.f36191f[i16] = new cs(this, getContext(), i16, i10);
-                this.f36191f[i16].setImeOptions(268435461);
-                this.f36191f[i16].setTextSize(1, 20.0f);
-                this.f36191f[i16].setMaxLines(1);
-                this.f36191f[i16].setTypeface(AndroidUtilities.bold());
-                this.f36191f[i16].setPadding(0, 0, 0, 0);
-                this.f36191f[i16].setGravity(17);
+                this.f36164f[i16] = new cs(this, getContext(), i16, i10);
+                this.f36164f[i16].setImeOptions(268435461);
+                this.f36164f[i16].setTextSize(1, 20.0f);
+                this.f36164f[i16].setMaxLines(1);
+                this.f36164f[i16].setTypeface(AndroidUtilities.bold());
+                this.f36164f[i16].setPadding(0, 0, 0, 0);
+                this.f36164f[i16].setGravity(17);
                 if (i11 == 3) {
-                    this.f36191f[i16].setEnabled(false);
-                    this.f36191f[i16].setInputType(0);
-                    this.f36191f[i16].setVisibility(8);
+                    this.f36164f[i16].setEnabled(false);
+                    this.f36164f[i16].setInputType(0);
+                    this.f36164f[i16].setVisibility(8);
                 } else {
-                    this.f36191f[i16].setInputType(3);
+                    this.f36164f[i16].setInputType(3);
                 }
                 int i17 = 10;
                 if (i11 == 10) {
@@ -67,20 +67,20 @@ public abstract class es extends LinearLayout {
                     i12 = 34;
                     i13 = 42;
                 }
-                gs gsVar2 = this.f36191f[i16];
+                gs gsVar2 = this.f36164f[i16];
                 if (i16 != i10 - 1) {
                     i14 = i17;
                 } else {
                     i14 = 0;
                 }
                 addView(gsVar2, w7.x5.t(i12, i13, 1, 0, 0, i14, 0));
-                this.f36191f[i16].addTextChangedListener(new ds(this, i16, i10));
-                this.f36191f[i16].setOnEditorActionListener(new ia(this, 3));
+                this.f36164f[i16].addTextChangedListener(new ds(this, i16, i10));
+                this.f36164f[i16].setOnEditorActionListener(new ia(this, 3));
             }
             return;
         }
         while (true) {
-            gs[] gsVarArr2 = this.f36191f;
+            gs[] gsVarArr2 = this.f36164f;
             if (i15 < gsVarArr2.length) {
                 gsVarArr2[i15].setText("");
                 i15++;
@@ -91,12 +91,12 @@ public abstract class es extends LinearLayout {
     }
 
     public final void c(String str, boolean z10) {
-        if (this.f36191f != null) {
+        if (this.f36164f != null) {
             int i10 = 0;
             if (z10) {
                 int i11 = 0;
                 while (true) {
-                    gs[] gsVarArr = this.f36191f;
+                    gs[] gsVarArr = this.f36164f;
                     if (i11 >= gsVarArr.length) {
                         break;
                     } else if (gsVarArr[i11].isFocused()) {
@@ -107,8 +107,8 @@ public abstract class es extends LinearLayout {
                     }
                 }
             }
-            for (int i12 = i10; i12 < Math.min(this.f36191f.length, str.length() + i10); i12++) {
-                this.f36191f[i12].setText(Character.toString(str.charAt(i12 - i10)));
+            for (int i12 = i10; i12 < Math.min(this.f36164f.length, str.length() + i10); i12++) {
+                this.f36164f[i12].setText(Character.toString(str.charAt(i12 - i10)));
             }
         }
     }
@@ -119,7 +119,7 @@ public abstract class es extends LinearLayout {
             View childAt = getChildAt(i10);
             if (childAt instanceof gs) {
                 gs gsVar = (gs) childAt;
-                if (!this.f36190e) {
+                if (!this.f36163e) {
                     if (childAt.isFocused()) {
                         gsVar.j(1.0f);
                     } else if (!childAt.isFocused()) {
@@ -127,15 +127,15 @@ public abstract class es extends LinearLayout {
                     }
                 }
                 float successProgress = gsVar.getSuccessProgress();
-                int d = i0.a.d(successProgress, i0.a.d(gsVar.getErrorProgress(), i0.a.d(gsVar.getFocusedProgress(), org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f20819k6, false), org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f20837l6, false)), org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f20926q7, false)), org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f20782i7, false));
-                Paint paint = this.f36187a;
+                int d = i0.a.d(successProgress, i0.a.d(gsVar.getErrorProgress(), i0.a.d(gsVar.getFocusedProgress(), org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f20792k6, false), org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f20810l6, false)), org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f20899q7, false)), org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f20755i7, false));
+                Paint paint = this.f36160a;
                 paint.setColor(d);
                 RectF rectF = AndroidUtilities.rectTmp;
                 rectF.set(childAt.getLeft(), childAt.getTop(), childAt.getRight(), childAt.getBottom());
-                float f7 = this.f36189c;
+                float f7 = this.f36162c;
                 rectF.inset(f7, f7);
                 if (successProgress != 0.0f) {
-                    float f10 = -Math.max(0.0f, (gsVar.getSuccessScaleProgress() - 1.0f) * this.f36189c);
+                    float f10 = -Math.max(0.0f, (gsVar.getSuccessScaleProgress() - 1.0f) * this.f36162c);
                     rectF.inset(f10, f10);
                 }
                 canvas.drawRoundRect(rectF, AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), paint);
@@ -152,10 +152,10 @@ public abstract class es extends LinearLayout {
             float f7 = gsVar.v;
             RectF rectF = AndroidUtilities.rectTmp;
             rectF.set(view.getX(), view.getY(), view.getX() + view.getMeasuredWidth(), view.getY() + view.getMeasuredHeight());
-            float f10 = this.f36189c;
+            float f10 = this.f36162c;
             rectF.inset(f10, f10);
             canvas.clipRect(rectF);
-            if (gsVar.f36798x) {
+            if (gsVar.f36771x) {
                 float f11 = (f7 * 0.5f) + 0.5f;
                 view.setAlpha(f7);
                 canvas.scale(f11, f11, (gsVar.getMeasuredWidth() / 2.0f) + gsVar.getX(), (gsVar.getMeasuredHeight() / 2.0f) + gsVar.getY());
@@ -165,15 +165,15 @@ public abstract class es extends LinearLayout {
             }
             super.drawChild(canvas, view, j3);
             canvas.restore();
-            float f12 = gsVar.f36797w;
+            float f12 = gsVar.f36770w;
             if (f12 < 1.0f) {
                 canvas.save();
                 float f13 = 1.0f - f12;
                 float f14 = (f13 * 0.5f) + 0.5f;
                 canvas.scale(f14, f14, (gsVar.getMeasuredWidth() / 2.0f) + gsVar.getX(), (gsVar.getMeasuredHeight() / 2.0f) + gsVar.getY());
-                Paint paint = this.f36188b;
+                Paint paint = this.f36161b;
                 paint.setAlpha((int) (f13 * 255.0f));
-                canvas.drawBitmap(gsVar.f36799y, gsVar.getX(), gsVar.getY(), paint);
+                canvas.drawBitmap(gsVar.f36772y, gsVar.getX(), gsVar.getY(), paint);
                 canvas.restore();
                 return true;
             }
@@ -183,13 +183,13 @@ public abstract class es extends LinearLayout {
     }
 
     public String getCode() {
-        if (this.f36191f == null) {
+        if (this.f36164f == null) {
             return "";
         }
         StringBuilder sb2 = new StringBuilder();
         int i10 = 0;
         while (true) {
-            gs[] gsVarArr = this.f36191f;
+            gs[] gsVarArr = this.f36164f;
             if (i10 < gsVarArr.length) {
                 sb2.append(gf.b.d(gsVarArr[i10].getText().toString(), false));
                 i10++;
@@ -203,12 +203,12 @@ public abstract class es extends LinearLayout {
     public final void onMeasure(int i10, int i11) {
         super.onMeasure(i10, i11);
         float dp = AndroidUtilities.dp(1.5f);
-        this.f36189c = dp;
-        this.f36187a.setStrokeWidth(dp);
+        this.f36162c = dp;
+        this.f36160a.setStrokeWidth(dp);
     }
 
     public void setCode(String str) {
-        this.f36191f[0].setText(str);
+        this.f36164f[0].setText(str);
     }
 
     public void setText(String str) {

@@ -35,24 +35,24 @@ import org.telegram.ui.ContactsActivity;
 import org.telegram.ui.DataSettingsActivity;
 import org.telegram.ui.LaunchActivity;
 public final class b3 implements org.telegram.ui.ActionBar.a2, d5, org.telegram.ui.Cells.r5, ImageReceiver.ImageReceiverDelegate, dj, org.telegram.ui.ActionBar.m1, bl0, MessagesStorage.BooleanCallback, al0, cl0 {
-    public final int f24556a;
-    public final Object f24557b;
-    public final Object f24558c;
+    public final int f24529a;
+    public final Object f24530b;
+    public final Object f24531c;
 
     public b3(int i10, Object obj, Object obj2) {
-        this.f24556a = i10;
-        this.f24557b = obj;
-        this.f24558c = obj2;
+        this.f24529a = i10;
+        this.f24530b = obj;
+        this.f24531c = obj2;
     }
 
     @Override
     public void J(int i10, int i11, boolean z10) {
         MessageObject threadMessage;
         SendMessageChatArguments sendMessageChatArguments;
-        switch (this.f24556a) {
+        switch (this.f24529a) {
             case 1:
-                String str = (String) this.f24558c;
-                ChatActivityEnterView chatActivityEnterView = ((pf) this.f24557b).f29394a;
+                String str = (String) this.f24531c;
+                ChatActivityEnterView chatActivityEnterView = ((pf) this.f24530b).f29367a;
                 long j3 = chatActivityEnterView.P2;
                 MessageObject messageObject = chatActivityEnterView.S2;
                 threadMessage = chatActivityEnterView.getThreadMessage();
@@ -73,16 +73,16 @@ public final class b3 implements org.telegram.ui.ActionBar.a2, d5, org.telegram.
                 yeVar.setEffect(0L);
                 return;
             case 2:
-                ((ng) this.f24557b).o((t0.j) this.f24558c, z10, i10, i11);
+                ((ng) this.f24530b).o((t0.j) this.f24531c, z10, i10, i11);
                 return;
             case 3:
-                gl glVar = ((dl) this.f24557b).f25447b;
-                glVar.f26483x0.b(((fl) this.f24558c).f26153c, glVar.f26485y0, z10, i10, 0L);
-                glVar.f28781b.dismiss(true);
+                gl glVar = ((dl) this.f24530b).f25420b;
+                glVar.f26456x0.b(((fl) this.f24531c).f26126c, glVar.f26458y0, z10, i10, 0L);
+                glVar.f28754b.dismiss(true);
                 return;
             default:
-                tn tnVar = (tn) this.f24557b;
-                View view = (View) this.f24558c;
+                tn tnVar = (tn) this.f24530b;
+                View view = (View) this.f24531c;
                 if (z10) {
                     tnVar.V = i10;
                     tnVar.U = 0;
@@ -90,7 +90,7 @@ public final class b3 implements org.telegram.ui.ActionBar.a2, d5, org.telegram.
                         tnVar.U((org.telegram.ui.Cells.r8) view, true);
                         return;
                     } else {
-                        tnVar.f30680r.m(tnVar.I0);
+                        tnVar.f30653r.m(tnVar.I0);
                         return;
                     }
                 }
@@ -102,9 +102,9 @@ public final class b3 implements org.telegram.ui.ActionBar.a2, d5, org.telegram.
     @Override
     public boolean a(int i10, View view) {
         z5 z5Var;
-        rv rvVar = (rv) this.f24557b;
-        Context context = (Context) this.f24558c;
-        if (!(view instanceof iv) || (z5Var = ((iv) view).f27297c) == null) {
+        rv rvVar = (rv) this.f24530b;
+        Context context = (Context) this.f24531c;
+        if (!(view instanceof iv) || (z5Var = ((iv) view).f27270c) == null) {
             return false;
         }
         org.telegram.ui.ActionBar.f1 f1Var = new org.telegram.ui.ActionBar.f1(rvVar.getContext(), true, true);
@@ -139,9 +139,9 @@ public final class b3 implements org.telegram.ui.ActionBar.a2, d5, org.telegram.
 
     @Override
     public void b() {
-        ro roVar = (ro) this.f24557b;
-        ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = (ActionBarPopupWindow$ActionBarPopupWindowLayout) this.f24558c;
-        if (roVar.f30084c != null) {
+        ro roVar = (ro) this.f24530b;
+        ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = (ActionBarPopupWindow$ActionBarPopupWindowLayout) this.f24531c;
+        if (roVar.f30057c != null) {
             roVar.h = actionBarPopupWindow$ActionBarPopupWindowLayout.getVisibleHeight() - actionBarPopupWindow$ActionBarPopupWindowLayout.getMeasuredHeight();
             roVar.a();
         }
@@ -151,30 +151,30 @@ public final class b3 implements org.telegram.ui.ActionBar.a2, d5, org.telegram.
     public void c(org.telegram.ui.Cells.s5 s5Var) {
         int i10;
         TLRPC.Chat chat;
-        hm hmVar = (hm) this.f24557b;
-        org.telegram.ui.Cells.s5 s5Var2 = (org.telegram.ui.Cells.s5) this.f24558c;
+        hm hmVar = (hm) this.f24530b;
+        org.telegram.ui.Cells.s5 s5Var2 = (org.telegram.ui.Cells.s5) this.f24531c;
         ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = hmVar.v;
-        boolean z10 = chatAttachAlertPhotoLayout.f23902v0;
-        vi viVar = chatAttachAlertPhotoLayout.f28781b;
+        boolean z10 = chatAttachAlertPhotoLayout.f23875v0;
+        vi viVar = chatAttachAlertPhotoLayout.f28754b;
         if (z10) {
             int i11 = viVar.Q0;
-            org.telegram.ui.ActionBar.n2 n2Var = viVar.f31307f0;
+            org.telegram.ui.ActionBar.n2 n2Var = viVar.f31280f0;
             if (i11 == 0 && !viVar.H) {
                 int intValue = ((Integer) s5Var.getTag()).intValue();
                 MediaController.PhotoEntry photoEntry = s5Var.getPhotoEntry();
                 if (!chatAttachAlertPhotoLayout.X(photoEntry)) {
-                    HashMap hashMap = ChatAttachAlertPhotoLayout.f23861s1;
+                    HashMap hashMap = ChatAttachAlertPhotoLayout.f23834s1;
                     boolean z11 = true;
                     if (hashMap.size() + 1 > ChatAttachAlertPhotoLayout.N(chatAttachAlertPhotoLayout)) {
-                        new yc(viVar.f31344r1, chatAttachAlertPhotoLayout.f28780a).t(AndroidUtilities.replaceTags(LocaleController.formatPluralString("BusinessRepliesToastLimit", n2Var.getMessagesController().config.quickReplyMessagesLimit.get(), new Object[0])), null).j();
+                        new yc(viVar.f31317r1, chatAttachAlertPhotoLayout.f28753a).t(AndroidUtilities.replaceTags(LocaleController.formatPluralString("BusinessRepliesToastLimit", n2Var.getMessagesController().config.quickReplyMessagesLimit.get(), new Object[0])), null).j();
                         return;
                     }
                     boolean containsKey = hashMap.containsKey(Integer.valueOf(photoEntry.imageId));
                     boolean z12 = !containsKey;
                     int i12 = 2;
                     if (!containsKey && viVar.S1 >= 0 && hashMap.size() >= viVar.S1) {
-                        if (viVar.T1 && (n2Var instanceof org.telegram.ui.co) && (chat = ((org.telegram.ui.co) n2Var).f35265e) != null && !ChatObject.hasAdminRights(chat) && chat.slowmode_enabled && chatAttachAlertPhotoLayout.L != 2) {
-                            e5.O(chatAttachAlertPhotoLayout.getContext(), LocaleController.getString(R.string.Slowmode), LocaleController.getString(R.string.SlowmodeSelectSendError), null, null, chatAttachAlertPhotoLayout.f28780a).o();
+                        if (viVar.T1 && (n2Var instanceof org.telegram.ui.co) && (chat = ((org.telegram.ui.co) n2Var).f35238e) != null && !ChatObject.hasAdminRights(chat) && chat.slowmode_enabled && chatAttachAlertPhotoLayout.L != 2) {
+                            e5.O(chatAttachAlertPhotoLayout.getContext(), LocaleController.getString(R.string.Slowmode), LocaleController.getString(R.string.SlowmodeSelectSendError), null, null, chatAttachAlertPhotoLayout.f28753a).o();
                             if (chatAttachAlertPhotoLayout.L == 1) {
                                 chatAttachAlertPhotoLayout.L = 2;
                                 return;
@@ -184,7 +184,7 @@ public final class b3 implements org.telegram.ui.ActionBar.a2, d5, org.telegram.
                         return;
                     }
                     if (!containsKey) {
-                        i10 = ChatAttachAlertPhotoLayout.f23862t1.size();
+                        i10 = ChatAttachAlertPhotoLayout.f23835t1.size();
                     } else {
                         i10 = -1;
                     }
@@ -200,7 +200,7 @@ public final class b3 implements org.telegram.ui.ActionBar.a2, d5, org.telegram.
                         if (hmVar3.d && chatAttachAlertPhotoLayout.T0 == chatAttachAlertPhotoLayout.U0) {
                             intValue++;
                         }
-                        if (hmVar3.f26782f && intValue >= chatAttachAlertPhotoLayout.M0) {
+                        if (hmVar3.f26755f && intValue >= chatAttachAlertPhotoLayout.M0) {
                             intValue++;
                         }
                         hmVar3.m(intValue);
@@ -225,27 +225,27 @@ public final class b3 implements org.telegram.ui.ActionBar.a2, d5, org.telegram.
 
     @Override
     public void d(float f7, float f10, int i10, View view) {
-        switch (this.f24556a) {
+        switch (this.f24529a) {
             case 17:
-                Utilities.Callback5 callback5 = (Utilities.Callback5) this.f24558c;
-                h51 G = ((d61) this.f24557b).Y2.G(i10);
+                Utilities.Callback5 callback5 = (Utilities.Callback5) this.f24531c;
+                h51 G = ((d61) this.f24530b).Y2.G(i10);
                 if (G == null) {
                     return;
                 }
                 callback5.mo17run(G, view, Integer.valueOf(i10), Float.valueOf(f7), Float.valueOf(f10));
                 return;
             case 24:
-                DataSettingsActivity.U((DataSettingsActivity) this.f24557b, (Context) this.f24558c, view, i10, f7);
+                DataSettingsActivity.U((DataSettingsActivity) this.f24530b, (Context) this.f24531c, view, i10, f7);
                 return;
             default:
-                org.telegram.ui.uy.f0((org.telegram.ui.uy) this.f24557b, (org.telegram.ui.ty) this.f24558c, view, i10);
+                org.telegram.ui.uy.f0((org.telegram.ui.uy) this.f24530b, (org.telegram.ui.ty) this.f24531c, view, i10);
                 return;
         }
     }
 
     @Override
     public boolean d1(View view) {
-        switch (this.f24556a) {
+        switch (this.f24529a) {
             case 17:
                 return false;
             case 24:
@@ -257,8 +257,8 @@ public final class b3 implements org.telegram.ui.ActionBar.a2, d5, org.telegram.
 
     @Override
     public void didSetImage(ImageReceiver imageReceiver, boolean z10, boolean z11, boolean z12) {
-        nm nmVar = (nm) this.f24557b;
-        MediaController.PhotoEntry photoEntry = (MediaController.PhotoEntry) this.f24558c;
+        nm nmVar = (nm) this.f24530b;
+        MediaController.PhotoEntry photoEntry = (MediaController.PhotoEntry) this.f24531c;
         nmVar.getClass();
         if (z10 && !z11 && photoEntry != null && photoEntry.hasSpoiler && nmVar.d.getBitmap() == null) {
             if (nmVar.d.getBitmap() != null && !nmVar.d.getBitmap().isRecycled()) {
@@ -276,14 +276,14 @@ public final class b3 implements org.telegram.ui.ActionBar.a2, d5, org.telegram.
 
     @Override
     public void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
-        switch (this.f24556a) {
+        switch (this.f24529a) {
             case 0:
-                b3 b3Var = (b3) this.f24557b;
-                boolean[] zArr = (boolean[]) this.f24558c;
+                b3 b3Var = (b3) this.f24530b;
+                boolean[] zArr = (boolean[]) this.f24531c;
                 boolean z10 = zArr[0];
                 boolean z11 = zArr[1];
-                org.telegram.ui.uy uyVar = (org.telegram.ui.uy) b3Var.f24557b;
-                ArrayList arrayList = (ArrayList) b3Var.f24558c;
+                org.telegram.ui.uy uyVar = (org.telegram.ui.uy) b3Var.f24530b;
+                ArrayList arrayList = (ArrayList) b3Var.f24531c;
                 uyVar.getClass();
                 int size = arrayList.size();
                 for (int i11 = 0; i11 < size; i11++) {
@@ -300,41 +300,41 @@ public final class b3 implements org.telegram.ui.ActionBar.a2, d5, org.telegram.
                 uyVar.b4(false);
                 return;
             case 10:
-                ((yt) this.f24557b).run(((gi.o) this.f24558c).getText().toString().trim());
+                ((yt) this.f24530b).run(((gi.o) this.f24531c).getText().toString().trim());
                 return;
             case 12:
-                d40 d40Var = (d40) this.f24557b;
-                HashtagSearchController.getInstance(d40Var.f25250a).removeHashtagFromHistory((String) this.f24558c);
-                d40Var.f25254f.N(true);
+                d40 d40Var = (d40) this.f24530b;
+                HashtagSearchController.getInstance(d40Var.f25223a).removeHashtagFromHistory((String) this.f24531c);
+                d40Var.f25227f.N(true);
                 return;
             case 13:
-                ca0 ca0Var = ((v90) this.f24557b).f31187a;
-                ca0Var.getMessagesController().getStoriesController().s(ca0Var.f24978e, (ArrayList) this.f24558c);
+                ca0 ca0Var = ((v90) this.f24530b).f31160a;
+                ca0Var.getMessagesController().getStoriesController().s(ca0Var.f24951e, (ArrayList) this.f24531c);
                 ca0Var.V.L(false);
                 return;
             case 14:
-                yn0 yn0Var = (yn0) this.f24557b;
+                yn0 yn0Var = (yn0) this.f24530b;
                 yn0Var.getClass();
                 b2Var.dismiss();
-                yn0Var.J0.getDownloadController().deleteRecentFiles((ArrayList) this.f24558c);
+                yn0Var.J0.getDownloadController().deleteRecentFiles((ArrayList) this.f24531c);
                 yn0Var.Q(false);
                 return;
             case 16:
-                ((Runnable) this.f24557b).run();
+                ((Runnable) this.f24530b).run();
                 TLRPC.TL_stickers_deleteStickerSet tL_stickers_deleteStickerSet = new TLRPC.TL_stickers_deleteStickerSet();
-                tL_stickers_deleteStickerSet.stickerset = MediaDataController.getInputStickerSet((TLRPC.StickerSet) this.f24558c);
+                tL_stickers_deleteStickerSet.stickerset = MediaDataController.getInputStickerSet((TLRPC.StickerSet) this.f24531c);
                 ConnectionsManager.getInstance(UserConfig.selectedAccount).sendRequest(tL_stickers_deleteStickerSet, new bi.c7(15));
                 return;
             case 20:
-                Context context = (Context) this.f24557b;
+                Context context = (Context) this.f24530b;
                 Intent intent = new Intent(context, LaunchActivity.class);
                 intent.setAction("android.intent.action.SEND");
-                intent.putExtra("android.intent.extra.STREAM", Uri.fromFile((File) this.f24558c));
+                intent.putExtra("android.intent.extra.STREAM", Uri.fromFile((File) this.f24531c));
                 context.startActivity(intent);
                 return;
             case 21:
-                org.telegram.ui.ss ssVar = (org.telegram.ui.ss) this.f24557b;
-                TLRPC.User user = (TLRPC.User) this.f24558c;
+                org.telegram.ui.ss ssVar = (org.telegram.ui.ss) this.f24530b;
+                TLRPC.User user = (TLRPC.User) this.f24531c;
                 ssVar.getClass();
                 ArrayList<TLRPC.User> arrayList2 = new ArrayList<>();
                 arrayList2.add(user);
@@ -345,11 +345,11 @@ public final class b3 implements org.telegram.ui.ActionBar.a2, d5, org.telegram.
                 ssVar.finishFragment();
                 return;
             case 22:
-                ContactsActivity.X((ContactsActivity) this.f24557b, (String) this.f24558c);
+                ContactsActivity.X((ContactsActivity) this.f24530b, (String) this.f24531c);
                 return;
             case 23:
-                ContactsActivity contactsActivity = (ContactsActivity) this.f24557b;
-                TLRPC.User user2 = (TLRPC.User) this.f24558c;
+                ContactsActivity contactsActivity = (ContactsActivity) this.f24530b;
+                TLRPC.User user2 = (TLRPC.User) this.f24531c;
                 org.telegram.ui.dt dtVar = contactsActivity.W;
                 if (dtVar != null) {
                     dtVar.b(user2);
@@ -358,18 +358,18 @@ public final class b3 implements org.telegram.ui.ActionBar.a2, d5, org.telegram.
                 }
                 return;
             case 25:
-                org.telegram.ui.ov.U((org.telegram.ui.ov) this.f24557b, (TLRPC.User) this.f24558c);
+                org.telegram.ui.ov.U((org.telegram.ui.ov) this.f24530b, (TLRPC.User) this.f24531c);
                 return;
             case 26:
-                ((org.telegram.ui.uy) this.f24557b).getMediaDataController().removeWebapp(((TLRPC.User) this.f24558c).f20043id);
+                ((org.telegram.ui.uy) this.f24530b).getMediaDataController().removeWebapp(((TLRPC.User) this.f24531c).f20016id);
                 return;
             default:
-                org.telegram.ui.tw twVar = (org.telegram.ui.tw) this.f24557b;
-                MessagesController.DialogFilter dialogFilter = (MessagesController.DialogFilter) this.f24558c;
+                org.telegram.ui.tw twVar = (org.telegram.ui.tw) this.f24530b;
+                MessagesController.DialogFilter dialogFilter = (MessagesController.DialogFilter) this.f24531c;
                 twVar.getClass();
                 TLRPC.TL_messages_updateDialogFilter tL_messages_updateDialogFilter = new TLRPC.TL_messages_updateDialogFilter();
-                tL_messages_updateDialogFilter.f20019id = dialogFilter.f17107id;
-                org.telegram.ui.uy uyVar2 = twVar.f40869b;
+                tL_messages_updateDialogFilter.f19992id = dialogFilter.f17080id;
+                org.telegram.ui.uy uyVar2 = twVar.f40842b;
                 uyVar2.getConnectionsManager().sendRequest(tL_messages_updateDialogFilter, null);
                 uyVar2.getMessagesController().removeFilter(dialogFilter);
                 uyVar2.getMessagesStorage().deleteDialogFilter(dialogFilter);
@@ -379,8 +379,8 @@ public final class b3 implements org.telegram.ui.ActionBar.a2, d5, org.telegram.
 
     @Override
     public void i(ArrayList arrayList, CharSequence charSequence, boolean z10, int i10, int i11, long j3, boolean z11, long j10) {
-        Utilities.Callback callback = (Utilities.Callback) this.f24557b;
-        bn bnVar = (bn) this.f24558c;
+        Utilities.Callback callback = (Utilities.Callback) this.f24530b;
+        bn bnVar = (bn) this.f24531c;
         if (!arrayList.isEmpty()) {
             callback.run(new sh.g((MessageObject) arrayList.get(0)));
         }
@@ -394,33 +394,33 @@ public final class b3 implements org.telegram.ui.ActionBar.a2, d5, org.telegram.
 
     @Override
     public void q0(View view, float f7, float f10) {
-        int i10 = this.f24556a;
+        int i10 = this.f24529a;
     }
 
     @Override
     public void run(boolean z10) {
-        TLRPC.User user = (TLRPC.User) this.f24558c;
-        xu0 xu0Var = ((bt0) this.f24557b).d;
-        xu0Var.f32754v1.finishFragment();
-        org.telegram.ui.ActionBar.n2 n2Var = xu0Var.f32754v1;
+        TLRPC.User user = (TLRPC.User) this.f24531c;
+        xu0 xu0Var = ((bt0) this.f24530b).d;
+        xu0Var.f32727v1.finishFragment();
+        org.telegram.ui.ActionBar.n2 n2Var = xu0Var.f32727v1;
         if (n2Var instanceof NotificationCenter.NotificationCenterDelegate) {
             n2Var.getNotificationCenter().removeObserver((NotificationCenter.NotificationCenterDelegate) n2Var, NotificationCenter.closeChats);
         }
         n2Var.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.closeChats, new Object[0]);
-        n2Var.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needDeleteDialog, Long.valueOf(xu0Var.f32729j1), user, null, Boolean.valueOf(z10));
+        n2Var.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needDeleteDialog, Long.valueOf(xu0Var.f32702j1), user, null, Boolean.valueOf(z10));
         n2Var.getMessagesController().setSavedViewAs(false);
     }
 
     public b3(ContactsActivity contactsActivity, TLRPC.User user, String str) {
-        this.f24556a = 23;
-        this.f24557b = contactsActivity;
-        this.f24558c = user;
+        this.f24529a = 23;
+        this.f24530b = contactsActivity;
+        this.f24531c = user;
     }
 
     @Override
     public boolean mo18d(float f7, float f10, int i10, View view) {
-        Utilities.Callback5Return callback5Return = (Utilities.Callback5Return) this.f24558c;
-        h51 G = ((d61) this.f24557b).Y2.G(i10);
+        Utilities.Callback5Return callback5Return = (Utilities.Callback5Return) this.f24531c;
+        h51 G = ((d61) this.f24530b).Y2.G(i10);
         if (G == null) {
             return false;
         }

@@ -1,18 +1,18 @@
 package org.telegram.ui;
 public final class qf1 implements Runnable {
-    public final int f39892a;
-    public final rf1 f39893b;
+    public final int f39865a;
+    public final rf1 f39866b;
 
     public qf1(rf1 rf1Var, int i10) {
-        this.f39892a = i10;
-        this.f39893b = rf1Var;
+        this.f39865a = i10;
+        this.f39866b = rf1Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f39892a) {
+        switch (this.f39865a) {
             case 0:
-                rf1 rf1Var = this.f39893b;
+                rf1 rf1Var = this.f39866b;
                 rf1Var.F = null;
                 if (rf1Var.G != -1) {
                     rf1Var.H.getNotificationCenter().onAnimationFinish(rf1Var.G);
@@ -21,7 +21,7 @@ public final class qf1 implements Runnable {
                 }
                 return;
             default:
-                rf1 rf1Var2 = this.f39893b;
+                rf1 rf1Var2 = this.f39866b;
                 rf1Var2.F = null;
                 if (rf1Var2.G != -1) {
                     rf1Var2.H.getNotificationCenter().onAnimationFinish(rf1Var2.G);

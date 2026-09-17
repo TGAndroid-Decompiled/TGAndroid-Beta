@@ -5,25 +5,25 @@ import android.util.Log;
 import android.view.View;
 import androidx.recyclerview.widget.RecyclerView;
 public abstract class y0 {
-    public int f45935a = -1;
-    public RecyclerView f45936b;
-    public o0 f45937c;
+    public int f45907a = -1;
+    public RecyclerView f45908b;
+    public o0 f45909c;
     public boolean d;
-    public boolean f45938e;
-    public View f45939f;
-    public final x0 f45940g;
+    public boolean f45910e;
+    public View f45911f;
+    public final x0 f45912g;
     public boolean h;
 
     public y0() {
         ?? obj = new Object();
         obj.d = -1;
-        obj.f45922f = false;
-        obj.f45923g = 0;
-        obj.f45918a = 0;
-        obj.f45919b = 0;
-        obj.f45920c = Integer.MIN_VALUE;
-        obj.f45921e = null;
-        this.f45940g = obj;
+        obj.f45894f = false;
+        obj.f45895g = 0;
+        obj.f45890a = 0;
+        obj.f45891b = 0;
+        obj.f45892c = Integer.MIN_VALUE;
+        obj.f45893e = null;
+        this.f45912g = obj;
     }
 
     public static void b(PointF pointF) {
@@ -35,7 +35,7 @@ public abstract class y0 {
     }
 
     public PointF a(int i10) {
-        o0 o0Var = this.f45937c;
+        o0 o0Var = this.f45909c;
         if (o0Var instanceof c0) {
             return ((c0) o0Var).E0(i10);
         }
@@ -45,11 +45,11 @@ public abstract class y0 {
 
     public final void c(int i10, int i11) {
         PointF a2;
-        RecyclerView recyclerView = this.f45936b;
-        if (this.f45935a == -1 || recyclerView == null) {
+        RecyclerView recyclerView = this.f45908b;
+        if (this.f45907a == -1 || recyclerView == null) {
             h();
         }
-        if (this.d && this.f45939f == null && this.f45937c != null && (a2 = a(this.f45935a)) != null) {
+        if (this.d && this.f45911f == null && this.f45909c != null && (a2 = a(this.f45907a)) != null) {
             float f7 = a2.x;
             if (f7 != 0.0f || a2.y != 0.0f) {
                 recyclerView.t0((int) Math.signum(f7), (int) Math.signum(a2.y), null);
@@ -57,31 +57,31 @@ public abstract class y0 {
         }
         boolean z10 = false;
         this.d = false;
-        View view = this.f45939f;
-        x0 x0Var = this.f45940g;
+        View view = this.f45911f;
+        x0 x0Var = this.f45912g;
         if (view != null) {
-            this.f45936b.getClass();
-            if (RecyclerView.S(view) == this.f45935a) {
-                View view2 = this.f45939f;
-                z0 z0Var = recyclerView.f1918t0;
+            this.f45908b.getClass();
+            if (RecyclerView.S(view) == this.f45907a) {
+                View view2 = this.f45911f;
+                z0 z0Var = recyclerView.f1891t0;
                 g(view2, x0Var);
                 x0Var.a(recyclerView);
                 h();
             } else {
                 Log.e("RecyclerView", "Passed over target position while smooth scrolling.");
-                this.f45939f = null;
+                this.f45911f = null;
             }
         }
-        if (this.f45938e) {
-            z0 z0Var2 = recyclerView.f1918t0;
+        if (this.f45910e) {
+            z0 z0Var2 = recyclerView.f1891t0;
             d(i10, i11, x0Var);
             if (x0Var.d >= 0) {
                 z10 = true;
             }
             x0Var.a(recyclerView);
-            if (z10 && this.f45938e) {
+            if (z10 && this.f45910e) {
                 this.d = true;
-                recyclerView.f1913q0.a();
+                recyclerView.f1886q0.a();
             }
         }
     }
@@ -95,20 +95,20 @@ public abstract class y0 {
     public abstract void g(View view, x0 x0Var);
 
     public final void h() {
-        if (!this.f45938e) {
+        if (!this.f45910e) {
             return;
         }
-        this.f45938e = false;
+        this.f45910e = false;
         f();
-        this.f45936b.f1918t0.f45944a = -1;
-        this.f45939f = null;
-        this.f45935a = -1;
+        this.f45908b.f1891t0.f45916a = -1;
+        this.f45911f = null;
+        this.f45907a = -1;
         this.d = false;
-        o0 o0Var = this.f45937c;
-        if (o0Var.f45873e == this) {
-            o0Var.f45873e = null;
+        o0 o0Var = this.f45909c;
+        if (o0Var.f45845e == this) {
+            o0Var.f45845e = null;
         }
-        this.f45937c = null;
-        this.f45936b = null;
+        this.f45909c = null;
+        this.f45908b = null;
     }
 }

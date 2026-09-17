@@ -9,10 +9,10 @@ import org.telegram.ui.Components.eo0;
 import org.telegram.ui.Components.k61;
 import org.telegram.ui.hu;
 public final class b5 implements eo0 {
-    public final hu f21677a;
+    public final hu f21650a;
 
     public b5(hu huVar) {
-        this.f21677a = huVar;
+        this.f21650a = huVar;
     }
 
     @Override
@@ -35,17 +35,17 @@ public final class b5 implements eo0 {
             }
         }
         int i11 = (int) e7;
-        hu huVar = this.f21677a;
+        hu huVar = this.f21650a;
         long j3 = i11;
         boolean z11 = true;
-        huVar.f21708b.setText(LocaleController.formatString("AutodownloadSizeLimitUpTo", R.string.AutodownloadSizeLimitUpTo, AndroidUtilities.formatFileSize(j3)));
+        huVar.f21681b.setText(LocaleController.formatString("AutodownloadSizeLimitUpTo", R.string.AutodownloadSizeLimitUpTo, AndroidUtilities.formatFileSize(j3)));
         huVar.d = j3;
         w8[] w8VarArr = huVar.h;
-        AnimatorSet[] animatorSetArr = huVar.f37139n;
-        int i12 = huVar.f37137e;
-        i10 = huVar.f37140r.videosRow;
+        AnimatorSet[] animatorSetArr = huVar.f37112n;
+        int i12 = huVar.f37110e;
+        i10 = huVar.f37113r.videosRow;
         if (i12 == i10) {
-            huVar.f37138f.setText(LocaleController.formatString("AutoDownloadPreloadVideoInfo", R.string.AutoDownloadPreloadVideoInfo, AndroidUtilities.formatFileSize(j3)));
+            huVar.f37111f.setText(LocaleController.formatString("AutoDownloadPreloadVideoInfo", R.string.AutoDownloadPreloadVideoInfo, AndroidUtilities.formatFileSize(j3)));
             if (i11 <= 2097152) {
                 z11 = false;
             }
@@ -70,10 +70,10 @@ public final class b5 implements eo0 {
     @Override
     public final CharSequence getContentDescription() {
         StringBuilder sb2 = new StringBuilder();
-        hu huVar = this.f21677a;
-        sb2.append((Object) huVar.f21707a.getText());
+        hu huVar = this.f21650a;
+        sb2.append((Object) huVar.f21680a.getText());
         sb2.append(" ");
-        sb2.append((Object) huVar.f21708b.getText());
+        sb2.append((Object) huVar.f21681b.getText());
         return sb2.toString();
     }
 

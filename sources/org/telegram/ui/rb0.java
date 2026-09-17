@@ -4,22 +4,22 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import org.telegram.messenger.Emoji;
 public final class rb0 implements TextWatcher {
-    public final int f40153a;
-    public final xb0 f40154b;
+    public final int f40126a;
+    public final xb0 f40127b;
 
     public rb0(xb0 xb0Var, int i10) {
-        this.f40153a = i10;
-        this.f40154b = xb0Var;
+        this.f40126a = i10;
+        this.f40127b = xb0Var;
     }
 
     @Override
     public final void afterTextChanged(Editable editable) {
-        switch (this.f40153a) {
+        switch (this.f40126a) {
             case 0:
-                Emoji.replaceEmoji(editable, this.f40154b.K.getPaint().getFontMetricsInt(), false);
+                Emoji.replaceEmoji(editable, this.f40127b.K.getPaint().getFontMetricsInt(), false);
                 return;
             default:
-                xb0 xb0Var = this.f40154b;
+                xb0 xb0Var = this.f40127b;
                 if (!xb0Var.O) {
                     if (editable.toString().equals("0")) {
                         xb0Var.F.setText("");
@@ -45,12 +45,12 @@ public final class rb0 implements TextWatcher {
 
     @Override
     public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-        int i13 = this.f40153a;
+        int i13 = this.f40126a;
     }
 
     @Override
     public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-        int i13 = this.f40153a;
+        int i13 = this.f40126a;
     }
 
     private final void a(int i10, int i11, int i12, CharSequence charSequence) {

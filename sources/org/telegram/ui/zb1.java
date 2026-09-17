@@ -8,15 +8,15 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.ui.ThemeActivity;
 public final class zb1 implements org.telegram.ui.Components.zk0 {
-    public final int f43393a;
-    public final Object f43394b;
-    public final Object f43395c;
+    public final int f43366a;
+    public final Object f43367b;
+    public final Object f43368c;
     public final Object d;
 
     public zb1(Object obj, Object obj2, Object obj3, int i10) {
-        this.f43393a = i10;
-        this.f43394b = obj;
-        this.f43395c = obj2;
+        this.f43366a = i10;
+        this.f43367b = obj;
+        this.f43368c = obj2;
         this.d = obj3;
     }
 
@@ -28,16 +28,16 @@ public final class zb1 implements org.telegram.ui.Components.zk0 {
         boolean z11;
         boolean z12;
         boolean z13;
-        int i11 = this.f43393a;
+        int i11 = this.f43366a;
         Object obj = this.d;
-        Object obj2 = this.f43395c;
-        Object obj3 = this.f43394b;
+        Object obj2 = this.f43368c;
+        Object obj3 = this.f43367b;
         switch (i11) {
             case 0:
                 ic1 ic1Var = (ic1) obj2;
                 ec1 ec1Var = (ec1) obj;
-                ThemeActivity themeActivity = ((gc1) obj3).f36654e;
-                int i12 = themeActivity.f34211f;
+                ThemeActivity themeActivity = ((gc1) obj3).f36627e;
+                int i12 = themeActivity.f34184f;
                 if (i12 == 1) {
                     A0 = org.telegram.ui.ActionBar.j6.J;
                 } else {
@@ -54,12 +54,12 @@ public final class zb1 implements org.telegram.ui.Components.zk0 {
                     themeActivity.presentFragment(new wd1(i6Var, false, 1, false, z13));
                 } else {
                     interpolator = null;
-                    org.telegram.ui.ActionBar.h6 h6Var = (org.telegram.ui.ActionBar.h6) ic1Var.f37326e.get(i10);
-                    if (!TextUtils.isEmpty(h6Var.f20530o) && h6Var.f20518a != org.telegram.ui.ActionBar.j6.f20867n) {
+                    org.telegram.ui.ActionBar.h6 h6Var = (org.telegram.ui.ActionBar.h6) ic1Var.f37299e.get(i10);
+                    if (!TextUtils.isEmpty(h6Var.f20503o) && h6Var.f20491a != org.telegram.ui.ActionBar.j6.f20840n) {
                         org.telegram.ui.ActionBar.e6.a(false);
                     }
                     int i13 = i6Var.Y;
-                    int i14 = h6Var.f20518a;
+                    int i14 = h6Var.f20491a;
                     if (i13 != i14) {
                         NotificationCenter globalInstance = NotificationCenter.getGlobalInstance();
                         int i15 = NotificationCenter.needSetDayNightTheme;
@@ -68,8 +68,8 @@ public final class zb1 implements org.telegram.ui.Components.zk0 {
                         } else {
                             z12 = false;
                         }
-                        globalInstance.lambda$postNotificationNameOnUIThread$1(i15, i6Var, Boolean.valueOf(z12), null, Integer.valueOf(h6Var.f20518a));
-                        org.telegram.ui.ActionBar.d4.q(i6Var, h6Var.f20518a);
+                        globalInstance.lambda$postNotificationNameOnUIThread$1(i15, i6Var, Boolean.valueOf(z12), null, Integer.valueOf(h6Var.f20491a));
+                        org.telegram.ui.ActionBar.d4.q(i6Var, h6Var.f20491a);
                         org.telegram.ui.ActionBar.j6.F1(themeActivity);
                     } else {
                         if (i14 >= 100) {

@@ -5,25 +5,25 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 public final class qh implements e2.h {
-    public final int f39901a;
-    public final Object f39902b;
-    public final Object f39903c;
+    public final int f39874a;
+    public final Object f39875b;
+    public final Object f39876c;
     public final Object d;
 
     public qh(Object obj, Object obj2, Object obj3, int i10) {
-        this.f39901a = i10;
-        this.f39903c = obj;
+        this.f39874a = i10;
+        this.f39876c = obj;
         this.d = obj2;
-        this.f39902b = obj3;
+        this.f39875b = obj3;
     }
 
     @Override
     public final void accept(Object obj) {
         TLRPC.User user;
-        int i10 = this.f39901a;
-        Object obj2 = this.f39902b;
+        int i10 = this.f39874a;
+        Object obj2 = this.f39875b;
         Object obj3 = this.d;
-        Object obj4 = this.f39903c;
+        Object obj4 = this.f39876c;
         switch (i10) {
             case 0:
                 Boolean bool = (Boolean) obj;
@@ -61,7 +61,7 @@ public final class qh implements e2.h {
                 if (l10 == null) {
                     user = null;
                 } else {
-                    user = MessagesController.getInstance(fc0Var.f36396b).getUser(l10);
+                    user = MessagesController.getInstance(fc0Var.f36369b).getUser(l10);
                 }
                 userArr[0] = user;
                 if (user == null) {
@@ -75,9 +75,9 @@ public final class qh implements e2.h {
     }
 
     public qh(uy uyVar, TLRPC.TL_attachMenuBot tL_attachMenuBot, LaunchActivity launchActivity) {
-        this.f39901a = 1;
-        this.f39903c = uyVar;
-        this.f39902b = tL_attachMenuBot;
+        this.f39874a = 1;
+        this.f39876c = uyVar;
+        this.f39875b = tL_attachMenuBot;
         this.d = launchActivity;
     }
 }

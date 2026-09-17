@@ -6,12 +6,12 @@ public enum a {
     CALLS(R.raw.tab_calls),
     CHATS(R.raw.tab_chats),
     SETTINGS(R.raw.tab_settings),
-    f44105s("CHECKLIST", R.raw.tab_checklist_reverse),
+    f44078s("CHECKLIST", R.raw.tab_checklist_reverse),
     v("COLORS", R.raw.tab_colors_reverse),
-    f44106w("FILES", R.raw.tab_files_reverse),
-    f44107x("GALLERY", R.raw.tab_gallery_reverse),
+    f44079w("FILES", R.raw.tab_files_reverse),
+    f44080x("GALLERY", R.raw.tab_gallery_reverse),
     EF7("GIFT", R.raw.tab_gift_reverse),
-    f44108y("LOCATION", R.raw.tab_location_reverse),
+    f44081y("LOCATION", R.raw.tab_location_reverse),
     E("STICKER", R.raw.tab_sticker_reverse),
     F("EMOJI", R.raw.tab_emoji_reverse),
     G("MODELS", R.raw.tab_models_reverse),
@@ -25,41 +25,41 @@ public enum a {
     BOOSTS(R.raw.boosts, 25, 49),
     MONETIZATION(R.raw.monetize, 19, 45);
     
-    public final int f44109a;
-    public final int f44110b;
-    public final int f44111c;
+    public final int f44082a;
+    public final int f44083b;
+    public final int f44084c;
     public final int d;
-    public final int f44112e;
+    public final int f44085e;
 
     a(int i10, int i11, int i12) {
-        this.f44109a = i10;
-        this.f44110b = i10;
+        this.f44082a = i10;
+        this.f44083b = i10;
         this.d = i11;
-        this.f44112e = i12;
-        this.f44111c = -1;
+        this.f44085e = i12;
+        this.f44084c = -1;
     }
 
     a(int i10) {
-        this.f44111c = i10;
-        this.f44109a = -1;
-        this.f44110b = -1;
+        this.f44084c = i10;
+        this.f44082a = -1;
+        this.f44083b = -1;
         this.d = -1;
-        this.f44112e = -1;
+        this.f44085e = -1;
     }
 
     a(int i10) {
-        this.f44109a = i10;
-        this.f44110b = i10;
+        this.f44082a = i10;
+        this.f44083b = i10;
         this.d = -1;
-        this.f44112e = -1;
-        this.f44111c = -1;
+        this.f44085e = -1;
+        this.f44084c = -1;
     }
 
     a(String str, int i10) {
-        this.f44109a = r2;
-        this.f44110b = i10;
+        this.f44082a = r2;
+        this.f44083b = i10;
         this.d = -1;
-        this.f44112e = -1;
-        this.f44111c = -1;
+        this.f44085e = -1;
+        this.f44084c = -1;
     }
 }

@@ -2,32 +2,32 @@ package org.telegram.ui;
 
 import java.util.regex.Pattern;
 public final class eb0 implements rf.c {
-    public final kb0 f36018a;
-    public final LaunchActivity f36019b;
+    public final kb0 f35991a;
+    public final LaunchActivity f35992b;
 
     public eb0(LaunchActivity launchActivity) {
-        this.f36019b = launchActivity;
+        this.f35992b = launchActivity;
         Pattern pattern = LaunchActivity.B1;
-        this.f36018a = new kb0(launchActivity, false);
+        this.f35991a = new kb0(launchActivity, false);
     }
 
     @Override
     public final void b() {
         Pattern pattern = LaunchActivity.B1;
-        this.f36019b.getWindow();
+        this.f35992b.getWindow();
     }
 
     @Override
     public final void d() {
-        this.f36018a.a(false);
+        this.f35991a.a(false);
     }
 
     @Override
     public final void f() {
         Pattern pattern = LaunchActivity.B1;
-        LaunchActivity launchActivity = this.f36019b;
+        LaunchActivity launchActivity = this.f35992b;
         launchActivity.getClass();
-        this.f36018a.a(true);
+        this.f35991a.a(true);
         launchActivity.getWindow();
     }
 

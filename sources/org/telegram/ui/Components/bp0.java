@@ -6,25 +6,25 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.PhotoViewer;
 public final class bp0 implements View.OnClickListener {
-    public final int f24807a;
-    public final hq0 f24808b;
+    public final int f24780a;
+    public final hq0 f24781b;
 
     public bp0(hq0 hq0Var, int i10) {
-        this.f24807a = i10;
-        this.f24808b = hq0Var;
+        this.f24780a = i10;
+        this.f24781b = hq0Var;
     }
 
     @Override
     public final void onClick(View view) {
-        switch (this.f24807a) {
+        switch (this.f24780a) {
             case 0:
-                hq0 hq0Var = this.f24808b;
-                mp mpVar = hq0Var.f26822e0;
-                mpVar.a(!mpVar.f28505a.f23935q, true);
+                hq0 hq0Var = this.f24781b;
+                mp mpVar = hq0Var.f26795e0;
+                mpVar.a(!mpVar.f28478a.f23908q, true);
                 hq0Var.Z0();
                 return;
             case 1:
-                hq0 hq0Var2 = this.f24808b;
+                hq0 hq0Var2 = this.f24781b;
                 org.telegram.ui.ActionBar.n1 n1Var = hq0Var2.J0;
                 if (n1Var != null && n1Var.isShowing()) {
                     hq0Var2.J0.d(true);
@@ -32,7 +32,7 @@ public final class bp0 implements View.OnClickListener {
                 hq0Var2.V0(false);
                 return;
             case 2:
-                hq0 hq0Var3 = this.f24808b;
+                hq0 hq0Var3 = this.f24781b;
                 org.telegram.ui.ActionBar.n1 n1Var2 = hq0Var3.J0;
                 if (n1Var2 != null && n1Var2.isShowing()) {
                     hq0Var3.J0.d(true);
@@ -40,13 +40,13 @@ public final class bp0 implements View.OnClickListener {
                 hq0Var3.V0(true);
                 return;
             case 3:
-                hq0 hq0Var4 = this.f24808b;
-                String[] strArr = hq0Var4.f26833o0;
+                hq0 hq0Var4 = this.f24781b;
+                String[] strArr = hq0Var4.f26806o0;
                 if (hq0Var4.U.m() == 0) {
-                    if (hq0Var4.f26832n0 || strArr[0] != null) {
+                    if (hq0Var4.f26805n0 || strArr[0] != null) {
                         hq0Var4.dismiss();
                         PhotoViewer.t1().G0(true, false);
-                        if (strArr[0] == null && hq0Var4.f26830l0) {
+                        if (strArr[0] == null && hq0Var4.f26803l0) {
                             hq0Var4.m0 = true;
                             Toast.makeText(hq0Var4.getContext(), LocaleController.getString(R.string.Loading), 0).show();
                             return;
@@ -59,12 +59,12 @@ public final class bp0 implements View.OnClickListener {
                 }
                 return;
             case 4:
-                hq0 hq0Var5 = this.f24808b;
-                String[] strArr2 = hq0Var5.f26833o0;
+                hq0 hq0Var5 = this.f24781b;
+                String[] strArr2 = hq0Var5.f26806o0;
                 if (hq0Var5.U.m() == 0) {
-                    if (hq0Var5.f26832n0 || strArr2[0] != null) {
+                    if (hq0Var5.f26805n0 || strArr2[0] != null) {
                         hq0Var5.dismiss();
-                        if (strArr2[0] == null && hq0Var5.f26830l0) {
+                        if (strArr2[0] == null && hq0Var5.f26803l0) {
                             hq0Var5.m0 = true;
                             Toast.makeText(hq0Var5.getContext(), LocaleController.getString(R.string.Loading), 0).show();
                             return;
@@ -77,12 +77,12 @@ public final class bp0 implements View.OnClickListener {
                 }
                 return;
             case 5:
-                hq0 hq0Var6 = this.f24808b;
-                String[] strArr3 = hq0Var6.f26833o0;
+                hq0 hq0Var6 = this.f24781b;
+                String[] strArr3 = hq0Var6.f26806o0;
                 if (hq0Var6.U.m() == 0) {
-                    if (hq0Var6.f26832n0 || strArr3[0] != null) {
+                    if (hq0Var6.f26805n0 || strArr3[0] != null) {
                         hq0Var6.dismiss();
-                        if (strArr3[0] == null && hq0Var6.f26830l0) {
+                        if (strArr3[0] == null && hq0Var6.f26803l0) {
                             hq0Var6.m0 = true;
                             Toast.makeText(hq0Var6.getContext(), LocaleController.getString(R.string.Loading), 0).show();
                             return;
@@ -95,7 +95,7 @@ public final class bp0 implements View.OnClickListener {
                 }
                 return;
             default:
-                this.f24808b.V0(true);
+                this.f24781b.V0(true);
                 return;
         }
     }

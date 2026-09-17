@@ -12,19 +12,19 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
 public final class mg implements Utilities.Callback2 {
-    public final int f38727a = 1;
-    public final co f38728b;
-    public final org.telegram.ui.Cells.t1 f38729c;
+    public final int f38700a = 1;
+    public final co f38701b;
+    public final org.telegram.ui.Cells.t1 f38702c;
     public final of.e d;
-    public final Serializable f38730e;
-    public final Object f38731f;
+    public final Serializable f38703e;
+    public final Object f38704f;
 
     public mg(co coVar, zi ziVar, org.telegram.ui.Cells.t1 t1Var, String str, CharacterStyle characterStyle) {
-        this.f38728b = coVar;
+        this.f38701b = coVar;
         this.d = ziVar;
-        this.f38729c = t1Var;
-        this.f38730e = str;
-        this.f38731f = characterStyle;
+        this.f38702c = t1Var;
+        this.f38703e = str;
+        this.f38704f = characterStyle;
     }
 
     @Override
@@ -40,32 +40,32 @@ public final class mg implements Utilities.Callback2 {
         TL_iv.RichMessage richMessage;
         TLRPC.Message message;
         org.telegram.ui.Cells.t1 t1Var;
-        switch (this.f38727a) {
+        switch (this.f38700a) {
             case 0:
-                String str = (String) this.f38730e;
-                CharacterStyle characterStyle = (CharacterStyle) this.f38731f;
+                String str = (String) this.f38703e;
+                CharacterStyle characterStyle = (CharacterStyle) this.f38704f;
                 TLObject tLObject = (TLObject) obj;
                 Boolean bool2 = (Boolean) obj2;
                 this.d.b();
                 if (tLObject instanceof TLRPC.User) {
-                    j3 = ((TLRPC.User) tLObject).f20043id;
+                    j3 = ((TLRPC.User) tLObject).f20016id;
                     z10 = false;
                     z11 = true;
                 } else if (tLObject instanceof TLRPC.Chat) {
                     TLRPC.Chat chat = (TLRPC.Chat) tLObject;
                     z10 = ChatObject.isChannelAndNotMegaGroup(chat);
-                    j3 = -chat.f19896id;
+                    j3 = -chat.f19869id;
                     z11 = false;
                 } else {
                     z10 = false;
                     z11 = false;
                     j3 = 0;
                 }
-                co coVar = this.f38728b;
-                org.telegram.ui.Cells.t1 t1Var2 = this.f38729c;
+                co coVar = this.f38701b;
+                org.telegram.ui.Cells.t1 t1Var2 = this.f38702c;
                 org.telegram.ui.Components.n70 I = org.telegram.ui.Components.n70.I(coVar, t1Var2);
-                org.telegram.ui.Components.am0 am0Var = new org.telegram.ui.Components.am0(coVar.getParentActivity(), coVar.f35275ea);
-                I.f28683p = new qe(am0Var, 0);
+                org.telegram.ui.Components.am0 am0Var = new org.telegram.ui.Components.am0(coVar.getParentActivity(), coVar.f35248ea);
+                I.f28656p = new qe(am0Var, 0);
                 int i13 = (j3 > 0L ? 1 : (j3 == 0L ? 0 : -1));
                 if (i13 != 0) {
                     if (z10) {
@@ -109,11 +109,11 @@ public final class mg implements Utilities.Callback2 {
                 return;
             default:
                 aj ajVar = (aj) this.d;
-                int[] iArr = (int[]) this.f38730e;
-                MessageObject messageObject = (MessageObject) this.f38731f;
+                int[] iArr = (int[]) this.f38703e;
+                MessageObject messageObject = (MessageObject) this.f38704f;
                 TLRPC.messages_Messages messages_messages = (TLRPC.messages_Messages) obj;
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
-                co coVar2 = this.f38728b;
+                co coVar2 = this.f38701b;
                 if (coVar2.Ab == ajVar) {
                     iArr[0] = 0;
                     ajVar.c(false);
@@ -134,8 +134,8 @@ public final class mg implements Utilities.Callback2 {
                         if (richMessage != null && (message = messageObject.messageOwner) != null) {
                             message.rich_message = richMessage;
                             messageObject.richLayout = null;
-                            on onVar = coVar2.f35409pc;
-                            if (onVar != null && (t1Var = this.f38729c) != null) {
+                            on onVar = coVar2.f35382pc;
+                            if (onVar != null && (t1Var = this.f38702c) != null) {
                                 onVar.k(t1Var, true, false, true);
                                 return;
                             }
@@ -150,10 +150,10 @@ public final class mg implements Utilities.Callback2 {
     }
 
     public mg(co coVar, aj ajVar, int[] iArr, org.telegram.ui.Cells.t1 t1Var, MessageObject messageObject) {
-        this.f38728b = coVar;
+        this.f38701b = coVar;
         this.d = ajVar;
-        this.f38730e = iArr;
-        this.f38729c = t1Var;
-        this.f38731f = messageObject;
+        this.f38703e = iArr;
+        this.f38702c = t1Var;
+        this.f38704f = messageObject;
     }
 }

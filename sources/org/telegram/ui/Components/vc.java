@@ -4,36 +4,36 @@ import android.text.TextPaint;
 import android.text.style.ClickableSpan;
 import android.view.View;
 public final class vc extends ClickableSpan {
-    public final int f31195a;
-    public final Runnable f31196b;
+    public final int f31168a;
+    public final Runnable f31169b;
 
     public vc(int i10, Runnable runnable) {
-        this.f31195a = i10;
-        this.f31196b = runnable;
+        this.f31168a = i10;
+        this.f31169b = runnable;
     }
 
     @Override
     public final void onClick(View view) {
-        switch (this.f31195a) {
+        switch (this.f31168a) {
             case 0:
-                this.f31196b.run();
+                this.f31169b.run();
                 return;
             case 1:
-                Runnable runnable = this.f31196b;
+                Runnable runnable = this.f31169b;
                 if (runnable != null) {
                     runnable.run();
                     return;
                 }
                 return;
             case 2:
-                Runnable runnable2 = this.f31196b;
+                Runnable runnable2 = this.f31169b;
                 if (runnable2 != null) {
                     runnable2.run();
                     return;
                 }
                 return;
             default:
-                Runnable runnable3 = this.f31196b;
+                Runnable runnable3 = this.f31169b;
                 if (runnable3 != null) {
                     runnable3.run();
                     return;
@@ -44,7 +44,7 @@ public final class vc extends ClickableSpan {
 
     @Override
     public final void updateDrawState(TextPaint textPaint) {
-        switch (this.f31195a) {
+        switch (this.f31168a) {
             case 0:
                 super.updateDrawState(textPaint);
                 textPaint.setUnderlineText(false);

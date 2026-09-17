@@ -3,26 +3,26 @@ package org.telegram.ui;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.UndoView;
 public final class fi implements org.telegram.ui.Components.p8 {
-    public final co f36436a;
+    public final co f36409a;
 
     public fi(co coVar) {
-        this.f36436a = coVar;
+        this.f36409a = coVar;
     }
 
     @Override
     public final void Y0(int i10, int i11) {
         int i12;
-        co coVar = this.f36436a;
+        co coVar = this.f36409a;
         coVar.getMessagesController().setDialogHistoryTTL(coVar.T5, i10);
-        if (coVar.f35220a8 != null || coVar.Z7 != null) {
+        if (coVar.f35193a8 != null || coVar.Z7 != null) {
             coVar.Q7();
             UndoView undoView = coVar.y3;
             if (undoView == null) {
                 return;
             }
             long j3 = coVar.T5;
-            TLRPC.User user = coVar.f35277f;
-            TLRPC.UserFull userFull = coVar.f35220a8;
+            TLRPC.User user = coVar.f35250f;
+            TLRPC.UserFull userFull = coVar.f35193a8;
             if (userFull != null) {
                 i12 = userFull.ttl_period;
             } else {
@@ -34,7 +34,7 @@ public final class fi implements org.telegram.ui.Components.p8 {
 
     @Override
     public final void dismiss() {
-        org.telegram.ui.ActionBar.n1 n1Var = this.f36436a.Q8;
+        org.telegram.ui.ActionBar.n1 n1Var = this.f36409a.Q8;
         if (n1Var != null) {
             n1Var.dismiss();
         }

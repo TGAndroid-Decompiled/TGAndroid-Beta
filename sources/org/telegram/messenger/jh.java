@@ -11,32 +11,32 @@ import org.telegram.ui.kj1;
 import org.telegram.ui.lj1;
 import org.telegram.ui.qv0;
 public final class jh implements Utilities.Callback2 {
-    public final int f18130a = 1;
-    public final int f18131b;
-    public final Object f18132c;
+    public final int f18103a = 1;
+    public final int f18104b;
+    public final Object f18105c;
     public final Object d;
-    public final Object f18133e;
-    public final Object f18134f;
+    public final Object f18106e;
+    public final Object f18107f;
 
     public jh(di.d dVar, org.telegram.ui.ActionBar.f3 f3Var, int i10, View view, cf.c cVar) {
-        this.f18132c = dVar;
+        this.f18105c = dVar;
         this.d = f3Var;
-        this.f18131b = i10;
-        this.f18133e = view;
-        this.f18134f = cVar;
+        this.f18104b = i10;
+        this.f18106e = view;
+        this.f18107f = cVar;
     }
 
     @Override
     public final void run(Object obj, Object obj2) {
-        switch (this.f18130a) {
+        switch (this.f18103a) {
             case 0:
-                PasskeysController.lambda$create$9((org.telegram.ui.ActionBar.b2) this.f18132c, (Utilities.Callback2) this.d, (androidx.biometric.s) this.f18133e, (Context) this.f18134f, this.f18131b, (TL_account.passkeyRegistrationOptions) obj, (TLRPC.TL_error) obj2);
+                PasskeysController.lambda$create$9((org.telegram.ui.ActionBar.b2) this.f18105c, (Utilities.Callback2) this.d, (androidx.biometric.s) this.f18106e, (Context) this.f18107f, this.f18104b, (TL_account.passkeyRegistrationOptions) obj, (TLRPC.TL_error) obj2);
                 return;
             default:
-                di.d dVar = (di.d) this.f18132c;
+                di.d dVar = (di.d) this.f18105c;
                 org.telegram.ui.ActionBar.f3 f3Var = (org.telegram.ui.ActionBar.f3) this.d;
-                View view = (View) this.f18133e;
-                cf.c cVar = (cf.c) this.f18134f;
+                View view = (View) this.f18106e;
+                cf.c cVar = (cf.c) this.f18107f;
                 TLRPC.UrlAuthResult urlAuthResult = (TLRPC.UrlAuthResult) obj;
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
                 dVar.setLoading(false);
@@ -47,7 +47,7 @@ public final class jh implements Utilities.Callback2 {
                         new org.telegram.ui.Components.yc(f3Var.topBulletinContainer, f3Var.getResourcesProvider()).c0("NO_TOKEN", false);
                         return;
                     }
-                    int i10 = this.f18131b;
+                    int i10 = this.f18104b;
                     int currentDatacenterId = ConnectionsManager.getInstance(i10).getCurrentDatacenterId();
                     boolean isTestBackend = ConnectionsManager.getInstance(i10).isTestBackend();
                     StringBuilder k10 = com.google.android.gms.internal.vision.e2.k("wear-auth: sending /token account=", i10, " dcId=", currentDatacenterId, " isTest=");
@@ -56,10 +56,10 @@ public final class jh implements Utilities.Callback2 {
                     Context applicationContext = view.getContext().getApplicationContext();
                     try {
                         byte[] c10 = lj1.c(cVar, queryParameter, currentDatacenterId, isTestBackend);
-                        com.google.android.gms.common.api.internal.t0 t0Var = new com.google.android.gms.internal.clearcut.u0(applicationContext, com.google.android.gms.common.api.i.f4985c).h;
+                        com.google.android.gms.common.api.internal.t0 t0Var = new com.google.android.gms.internal.clearcut.u0(applicationContext, com.google.android.gms.common.api.i.f4958c).h;
                         b8.e eVar = new b8.e(t0Var, (String) cVar.d, "/tg-wear-auth/token", c10);
-                        t0Var.f5138b.d(0, eVar);
-                        n6.l.n(eVar, y8.j0.f49640a).addOnSuccessListener(new qv0(20, cVar, dVar)).addOnFailureListener(new kj1(dVar, 1));
+                        t0Var.f5111b.d(0, eVar);
+                        n6.l.n(eVar, y8.j0.f49611a).addOnSuccessListener(new qv0(20, cVar, dVar)).addOnFailureListener(new kj1(dVar, 1));
                         f3Var.dismiss();
                         return;
                     } catch (Exception e7) {
@@ -78,10 +78,10 @@ public final class jh implements Utilities.Callback2 {
     }
 
     public jh(org.telegram.ui.ActionBar.b2 b2Var, Utilities.Callback2 callback2, androidx.biometric.s sVar, Context context, int i10) {
-        this.f18132c = b2Var;
+        this.f18105c = b2Var;
         this.d = callback2;
-        this.f18133e = sVar;
-        this.f18134f = context;
-        this.f18131b = i10;
+        this.f18106e = sVar;
+        this.f18107f = context;
+        this.f18104b = i10;
     }
 }

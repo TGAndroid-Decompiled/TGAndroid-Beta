@@ -4,23 +4,23 @@ import android.graphics.Canvas;
 import android.view.View;
 import android.view.ViewGroup;
 public final class dw implements bh.k {
-    public final int f25499a;
-    public final ViewGroup f25500b;
+    public final int f25472a;
+    public final ViewGroup f25473b;
 
     public dw(ViewGroup viewGroup, int i10) {
-        this.f25499a = i10;
-        this.f25500b = viewGroup;
+        this.f25472a = i10;
+        this.f25473b = viewGroup;
     }
 
     @Override
     public final boolean a(Canvas canvas, View view, long j3) {
-        switch (this.f25499a) {
+        switch (this.f25472a) {
             case 0:
-                return ((kx) this.f25500b).drawChild(canvas, view, j3);
+                return ((kx) this.f25473b).drawChild(canvas, view, j3);
             case 1:
-                return ((ll0) this.f25500b).drawChild(canvas, view, j3);
+                return ((ll0) this.f25473b).drawChild(canvas, view, j3);
             case 2:
-                tw twVar = ((kz) this.f25500b).D0;
+                tw twVar = ((kz) this.f25473b).D0;
                 if (view instanceof pg.c) {
                     canvas.save();
                     canvas.translate(view.getX(), view.getY());
@@ -32,9 +32,9 @@ public final class dw implements bh.k {
                 }
                 return twVar.drawChild(canvas, view, j3);
             case 3:
-                return ((jp0) this.f25500b).drawChild(canvas, view, j3);
+                return ((jp0) this.f25473b).drawChild(canvas, view, j3);
             default:
-                return ((pt0) this.f25500b).drawChild(canvas, view, j3);
+                return ((pt0) this.f25473b).drawChild(canvas, view, j3);
         }
     }
 }

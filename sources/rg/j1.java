@@ -5,13 +5,13 @@ import android.graphics.Canvas;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 public final class j1 extends View {
-    public int f45253a;
-    public float f45254b;
-    public final k1 f45255c;
+    public int f45225a;
+    public float f45226b;
+    public final k1 f45227c;
 
     public j1(k1 k1Var, Context context) {
         super(context);
-        this.f45255c = k1Var;
+        this.f45227c = k1Var;
         setPadding(AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f));
         setLayoutParams(new s4.p0(-2, 0));
     }
@@ -19,18 +19,18 @@ public final class j1 extends View {
     @Override
     public final void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        k1 k1Var = this.f45255c;
-        k1Var.X2.setColor(this.f45253a);
+        k1 k1Var = this.f45227c;
+        k1Var.X2.setColor(this.f45225a);
         float min = Math.min((getWidth() - getPaddingLeft()) - getPaddingRight(), (getHeight() - getPaddingTop()) - getPaddingBottom()) / 2.0f;
-        if (this.f45254b != 0.0f) {
-            min -= (k1Var.Y2.getStrokeWidth() + AndroidUtilities.dp(3.0f)) * this.f45254b;
+        if (this.f45226b != 0.0f) {
+            min -= (k1Var.Y2.getStrokeWidth() + AndroidUtilities.dp(3.0f)) * this.f45226b;
         }
         float width = ((getWidth() / 2.0f) + getPaddingLeft()) - getPaddingRight();
         float height = ((getHeight() / 2.0f) + getPaddingTop()) - getPaddingBottom();
-        k1.w1(width, height, min, this.f45253a, canvas);
-        if (this.f45254b != 0.0f) {
+        k1.w1(width, height, min, this.f45225a, canvas);
+        if (this.f45226b != 0.0f) {
             float min2 = (Math.min((getWidth() - getPaddingLeft()) - getPaddingRight(), (getHeight() - getPaddingTop()) - getPaddingBottom()) / 2.0f) - AndroidUtilities.dp(2.0f);
-            k1Var.Y2.setColor(this.f45253a);
+            k1Var.Y2.setColor(this.f45225a);
             k1Var.Y2.setAlpha(255);
             canvas.drawCircle(width, height, min2, k1Var.Y2);
         }

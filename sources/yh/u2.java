@@ -8,31 +8,31 @@ import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.Components.h51;
 import org.telegram.ui.Components.n70;
 public final class u2 implements Utilities.Callback5 {
-    public final int f50609a;
-    public final g4 f50610b;
-    public final n70 f50611c;
+    public final int f50580a;
+    public final g4 f50581b;
+    public final n70 f50582c;
 
     public u2(g4 g4Var, n70 n70Var, int i10) {
-        this.f50609a = i10;
-        this.f50610b = g4Var;
-        this.f50611c = n70Var;
+        this.f50580a = i10;
+        this.f50581b = g4Var;
+        this.f50582c = n70Var;
     }
 
     @Override
     public final void mo17run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-        int i10 = this.f50609a;
+        int i10 = this.f50580a;
         h51 h51Var = (h51) obj;
         View view = (View) obj2;
         Integer num = (Integer) obj3;
         Float f7 = (Float) obj4;
         Float f10 = (Float) obj5;
-        g4 g4Var = this.f50610b;
+        g4 g4Var = this.f50581b;
         g4Var.getClass();
         switch (i10) {
             case 0:
-                long j3 = ((TL_stars.starGiftAttributePattern) h51Var.G).document.f19902id;
+                long j3 = ((TL_stars.starGiftAttributePattern) h51Var.G).document.f19875id;
                 t3 t3Var = g4Var.d;
-                HashSet hashSet = t3Var.f50595l;
+                HashSet hashSet = t3Var.f50566l;
                 if (!hashSet.contains(Long.valueOf(j3))) {
                     if (hashSet.isEmpty()) {
                         ArrayList arrayList = t3Var.h;
@@ -41,7 +41,7 @@ public final class u2 implements Utilities.Callback5 {
                         while (i11 < size) {
                             Object obj6 = arrayList.get(i11);
                             i11++;
-                            long j10 = ((TL_stars.starGiftAttributePattern) obj6).document.f19902id;
+                            long j10 = ((TL_stars.starGiftAttributePattern) obj6).document.f19875id;
                             if (j10 != j3) {
                                 hashSet.add(Long.valueOf(j10));
                             }
@@ -53,15 +53,15 @@ public final class u2 implements Utilities.Callback5 {
                     hashSet.remove(Long.valueOf(j3));
                 }
                 t3Var.h();
-                this.f50611c.u();
+                this.f50582c.u();
                 return;
             case 1:
                 int i12 = ((TL_stars.starGiftAttributeBackdrop) h51Var.G).backdrop_id;
                 t3 t3Var2 = g4Var.d;
-                HashSet hashSet2 = t3Var2.f50594k;
+                HashSet hashSet2 = t3Var2.f50565k;
                 if (!hashSet2.contains(Integer.valueOf(i12))) {
                     if (hashSet2.isEmpty()) {
-                        ArrayList arrayList2 = t3Var2.f50591g;
+                        ArrayList arrayList2 = t3Var2.f50562g;
                         int size2 = arrayList2.size();
                         int i13 = 0;
                         while (i13 < size2) {
@@ -79,21 +79,21 @@ public final class u2 implements Utilities.Callback5 {
                     hashSet2.remove(Integer.valueOf(i12));
                 }
                 t3Var2.h();
-                this.f50611c.u();
+                this.f50582c.u();
                 return;
             default:
-                long j11 = ((TL_stars.starGiftAttributeModel) h51Var.G).document.f19902id;
+                long j11 = ((TL_stars.starGiftAttributeModel) h51Var.G).document.f19875id;
                 t3 t3Var3 = g4Var.d;
-                HashSet hashSet3 = t3Var3.f50593j;
+                HashSet hashSet3 = t3Var3.f50564j;
                 if (!hashSet3.contains(Long.valueOf(j11))) {
                     if (hashSet3.isEmpty()) {
-                        ArrayList arrayList3 = t3Var3.f50590f;
+                        ArrayList arrayList3 = t3Var3.f50561f;
                         int size3 = arrayList3.size();
                         int i15 = 0;
                         while (i15 < size3) {
                             Object obj8 = arrayList3.get(i15);
                             i15++;
-                            long j12 = ((TL_stars.starGiftAttributeModel) obj8).document.f19902id;
+                            long j12 = ((TL_stars.starGiftAttributeModel) obj8).document.f19875id;
                             if (j12 != j11) {
                                 hashSet3.add(Long.valueOf(j12));
                             }
@@ -105,7 +105,7 @@ public final class u2 implements Utilities.Callback5 {
                     hashSet3.remove(Long.valueOf(j11));
                 }
                 t3Var3.h();
-                this.f50611c.u();
+                this.f50582c.u();
                 return;
         }
     }

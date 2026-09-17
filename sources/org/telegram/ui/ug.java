@@ -9,12 +9,12 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.R;
 import org.telegram.messenger.TranslateController;
 public final class ug implements Runnable {
-    public final int f41116a;
-    public final co f41117b;
+    public final int f41089a;
+    public final co f41090b;
 
     public ug(co coVar, int i10) {
-        this.f41116a = i10;
-        this.f41117b = coVar;
+        this.f41089a = i10;
+        this.f41090b = coVar;
     }
 
     @Override
@@ -22,21 +22,21 @@ public final class ug implements Runnable {
         boolean z10;
         boolean z11;
         di.f4 f4Var;
-        int i10 = this.f41116a;
+        int i10 = this.f41089a;
         boolean z12 = true;
-        co coVar = this.f41117b;
+        co coVar = this.f41090b;
         switch (i10) {
             case 0:
                 AndroidUtilities.removeFromParent(coVar.J0);
                 return;
             case 1:
-                ArrayList arrayList = coVar.f35468u6;
+                ArrayList arrayList = coVar.f35441u6;
                 coVar.Hb = System.currentTimeMillis();
-                if (coVar.f35501x0 != null && coVar.A0 != null) {
+                if (coVar.f35474x0 != null && coVar.A0 != null) {
                     int i11 = Integer.MAX_VALUE;
                     int i12 = Integer.MIN_VALUE;
-                    for (int i13 = 0; i13 < coVar.f35501x0.getChildCount(); i13++) {
-                        View childAt = coVar.f35501x0.getChildAt(i13);
+                    for (int i13 = 0; i13 < coVar.f35474x0.getChildCount(); i13++) {
+                        View childAt = coVar.f35474x0.getChildAt(i13);
                         if (childAt instanceof org.telegram.ui.Cells.t1) {
                             org.telegram.ui.Cells.t1 t1Var = (org.telegram.ui.Cells.t1) childAt;
                             if (t1Var.getCurrentMessagesGroup() != null) {
@@ -56,7 +56,7 @@ public final class ug implements Runnable {
                         ArrayList arrayList2 = new ArrayList();
                         for (int i15 = 0; i15 < arrayList.size(); i15++) {
                             MessageObject messageObject = (MessageObject) arrayList.get(i15);
-                            MessageObject.GroupedMessages groupedMessages = (MessageObject.GroupedMessages) coVar.f35507x6.f(messageObject.getGroupId());
+                            MessageObject.GroupedMessages groupedMessages = (MessageObject.GroupedMessages) coVar.f35480x6.f(messageObject.getGroupId());
                             if (groupedMessages != null) {
                                 if (!arrayList2.contains(Long.valueOf(groupedMessages.groupId))) {
                                     for (int i16 = 0; i16 < groupedMessages.messages.size(); i16++) {
@@ -97,13 +97,13 @@ public final class ug implements Runnable {
                 if (mkVar != null && coVar.Cc != null) {
                     if (mkVar.t0()) {
                         coVar.Y.m0(false);
-                        AndroidUtilities.showKeyboard(coVar.Cc.f45632a);
-                        coVar.Cc.f45633b.f45629a.a(false, true);
+                        AndroidUtilities.showKeyboard(coVar.Cc.f45604a);
+                        coVar.Cc.f45605b.f45601a.a(false, true);
                         return;
                     }
                     coVar.Y.V0(false, false, false);
                     coVar.Y.s1();
-                    coVar.Cc.f45633b.f45629a.a(true, true);
+                    coVar.Cc.f45605b.f45601a.a(true, true);
                     return;
                 }
                 return;
@@ -139,20 +139,20 @@ public final class ug implements Runnable {
                 coVar.g8(false, true, 0.0f);
                 return;
             case 13:
-                org.telegram.ui.ActionBar.b2 b2Var = new org.telegram.ui.ActionBar.b2(coVar.getParentActivity(), 3, coVar.f35275ea);
-                coVar.f35408pb = b2Var;
+                org.telegram.ui.ActionBar.b2 b2Var = new org.telegram.ui.ActionBar.b2(coVar.getParentActivity(), 3, coVar.f35248ea);
+                coVar.f35381pb = b2Var;
                 b2Var.setOnShowListener(new of(coVar, 1));
-                coVar.f35408pb.setOnCancelListener(coVar.f35371ma);
-                coVar.f35408pb.q(500L);
+                coVar.f35381pb.setOnCancelListener(coVar.f35344ma);
+                coVar.f35381pb.q(500L);
                 return;
             case 14:
                 coVar.N6();
                 return;
             case 15:
-                coVar.f35212a = (coVar.f35212a + 1) % 3;
+                coVar.f35185a = (coVar.f35185a + 1) % 3;
                 return;
             case 16:
-                coVar.f35225b = !coVar.f35225b;
+                coVar.f35198b = !coVar.f35198b;
                 return;
             case 17:
                 coVar.A7(true);
@@ -172,9 +172,9 @@ public final class ug implements Runnable {
                 coVar.t7();
                 return;
             case 20:
-                coVar.f35325ic = 0;
-                coVar.f35337jc = false;
-                coVar.f35501x0.e1();
+                coVar.f35298ic = 0;
+                coVar.f35310jc = false;
+                coVar.f35474x0.e1();
                 return;
             case 21:
                 coVar.q9(5);
@@ -184,7 +184,7 @@ public final class ug implements Runnable {
                 return;
             case 23:
                 qk qkVar = coVar.R2;
-                if ((qkVar == null || qkVar.getVisibility() != 0) && (f4Var = coVar.f35489w1) != null) {
+                if ((qkVar == null || qkVar.getVisibility() != 0) && (f4Var = coVar.f35462w1) != null) {
                     f4Var.u();
                     return;
                 }
@@ -201,10 +201,10 @@ public final class ug implements Runnable {
             case 27:
                 FrameLayout.LayoutParams e7 = w7.x5.e(-1, -2, 87);
                 e7.bottomMargin = coVar.Y.getMeasuredHeight();
-                coVar.X0.addView(coVar.f35515y1, e7);
-                coVar.f35515y1.setTranslationY(-AndroidUtilities.navigationBarHeight);
-                coVar.f35515y1.m(0.0f, coVar.Y.getEmojiButton().getX() + AndroidUtilities.dp(22.0f));
-                coVar.f35515y1.u();
+                coVar.X0.addView(coVar.f35488y1, e7);
+                coVar.f35488y1.setTranslationY(-AndroidUtilities.navigationBarHeight);
+                coVar.f35488y1.m(0.0f, coVar.Y.getEmojiButton().getX() + AndroidUtilities.dp(22.0f));
+                coVar.f35488y1.u();
                 return;
             case 28:
                 int i17 = co.Hc;

@@ -2,13 +2,13 @@ package w3;
 
 import e2.d0;
 public final class r {
-    public final o f48061a;
-    public final int f48062b;
-    public final long[] f48063c;
+    public final o f48032a;
+    public final int f48033b;
+    public final long[] f48034c;
     public final int[] d;
-    public final int f48064e;
-    public final long[] f48065f;
-    public final int[] f48066g;
+    public final int f48035e;
+    public final long[] f48036f;
+    public final int[] f48037g;
     public final long h;
 
     public r(o oVar, long[] jArr, int[] iArr, int i10, long[] jArr2, int[] iArr2, long j3) {
@@ -27,14 +27,14 @@ public final class r {
         }
         e2.d.b(z11);
         e2.d.b(iArr2.length == jArr2.length);
-        this.f48061a = oVar;
-        this.f48063c = jArr;
+        this.f48032a = oVar;
+        this.f48034c = jArr;
         this.d = iArr;
-        this.f48064e = i10;
-        this.f48065f = jArr2;
-        this.f48066g = iArr2;
+        this.f48035e = i10;
+        this.f48036f = jArr2;
+        this.f48037g = iArr2;
         this.h = j3;
-        this.f48062b = jArr.length;
+        this.f48033b = jArr.length;
         if (iArr2.length > 0) {
             int length = iArr2.length - 1;
             iArr2[length] = iArr2[length] | 536870912;
@@ -42,9 +42,9 @@ public final class r {
     }
 
     public final int a(long j3) {
-        long[] jArr = this.f48065f;
+        long[] jArr = this.f48036f;
         for (int a2 = d0.a(jArr, j3, true); a2 < jArr.length; a2++) {
-            if ((this.f48066g[a2] & 1) != 0) {
+            if ((this.f48037g[a2] & 1) != 0) {
                 return a2;
             }
         }

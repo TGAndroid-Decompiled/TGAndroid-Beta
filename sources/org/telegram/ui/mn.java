@@ -6,16 +6,16 @@ import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class mn implements qt {
-    public final TLRPC.TL_messageMediaPoll f38763a;
-    public final TLRPC.PollAnswer f38764b;
-    public final org.telegram.ui.Cells.t1 f38765c;
+    public final TLRPC.TL_messageMediaPoll f38736a;
+    public final TLRPC.PollAnswer f38737b;
+    public final org.telegram.ui.Cells.t1 f38738c;
     public final on d;
 
     public mn(on onVar, TLRPC.TL_messageMediaPoll tL_messageMediaPoll, TLRPC.PollAnswer pollAnswer, org.telegram.ui.Cells.t1 t1Var) {
         this.d = onVar;
-        this.f38763a = tL_messageMediaPoll;
-        this.f38764b = pollAnswer;
-        this.f38765c = t1Var;
+        this.f38736a = tL_messageMediaPoll;
+        this.f38737b = pollAnswer;
+        this.f38738c = t1Var;
     }
 
     @Override
@@ -51,23 +51,23 @@ public final class mn implements qt {
     @Override
     public final void K() {
         ArrayList<TLRPC.PollAnswer> arrayList = new ArrayList<>(1);
-        arrayList.add(this.f38764b);
-        SendMessagesHelper sendMessagesHelper = this.d.f39311a.getSendMessagesHelper();
-        org.telegram.ui.Cells.t1 t1Var = this.f38765c;
+        arrayList.add(this.f38737b);
+        SendMessagesHelper sendMessagesHelper = this.d.f39284a.getSendMessagesHelper();
+        org.telegram.ui.Cells.t1 t1Var = this.f38738c;
         sendMessagesHelper.sendVote(t1Var.getMessageObject(), arrayList, null);
         t1Var.S0(true);
     }
 
     @Override
     public final void M(TLRPC.InputStickerSet inputStickerSet, boolean z10) {
-        co coVar = this.d.f39311a;
+        co coVar = this.d.f39284a;
         if (inputStickerSet != null && coVar.getParentActivity() != null) {
             TLRPC.TL_inputStickerSetID tL_inputStickerSetID = new TLRPC.TL_inputStickerSetID();
             tL_inputStickerSetID.access_hash = inputStickerSet.access_hash;
-            tL_inputStickerSetID.f19916id = inputStickerSet.f19916id;
-            org.telegram.ui.Components.ux0 ux0Var = new org.telegram.ui.Components.ux0(coVar.getParentActivity(), coVar, tL_inputStickerSetID, null, coVar.Y, coVar.f35275ea);
+            tL_inputStickerSetID.f19889id = inputStickerSet.f19889id;
+            org.telegram.ui.Components.ux0 ux0Var = new org.telegram.ui.Components.ux0(coVar.getParentActivity(), coVar, tL_inputStickerSetID, null, coVar.Y, coVar.f35248ea);
             ux0Var.setCalcMandatoryInsets(coVar.x9());
-            ux0Var.f31031i0 = z10;
+            ux0Var.f31004i0 = z10;
             coVar.showDialog(ux0Var);
         }
     }
@@ -89,7 +89,7 @@ public final class mn implements qt {
 
     @Override
     public final long a() {
-        return this.d.f39311a.T5;
+        return this.d.f39284a.T5;
     }
 
     @Override
@@ -99,7 +99,7 @@ public final class mn implements qt {
 
     @Override
     public final boolean c() {
-        if (this.d.f39311a.R3 == 1) {
+        if (this.d.f39284a.R3 == 1) {
             return true;
         }
         return false;
@@ -107,7 +107,7 @@ public final class mn implements qt {
 
     @Override
     public final TLRPC.TL_messageMediaPoll d() {
-        return this.f38763a;
+        return this.f38736a;
     }
 
     @Override
@@ -122,7 +122,7 @@ public final class mn implements qt {
 
     @Override
     public final TLRPC.PollAnswer g() {
-        return this.f38764b;
+        return this.f38737b;
     }
 
     @Override
@@ -147,8 +147,8 @@ public final class mn implements qt {
 
     @Override
     public final void q() {
-        SendMessagesHelper sendMessagesHelper = this.d.f39311a.getSendMessagesHelper();
-        org.telegram.ui.Cells.t1 t1Var = this.f38765c;
+        SendMessagesHelper sendMessagesHelper = this.d.f39284a.getSendMessagesHelper();
+        org.telegram.ui.Cells.t1 t1Var = this.f38738c;
         sendMessagesHelper.sendVote(t1Var.getMessageObject(), null, null);
         t1Var.S0(true);
     }
@@ -165,7 +165,7 @@ public final class mn implements qt {
 
     @Override
     public final MessageObject z() {
-        return this.f38765c.getMessageObject();
+        return this.f38738c.getMessageObject();
     }
 
     @Override

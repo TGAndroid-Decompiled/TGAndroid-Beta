@@ -5,24 +5,24 @@ import android.animation.AnimatorListenerAdapter;
 import android.view.View;
 import android.view.ViewPropertyAnimator;
 public final class vs extends AnimatorListenerAdapter {
-    public final int f31999a = 1;
-    public final s4.c1 f32000b;
-    public final View f32001c;
+    public final int f31972a = 1;
+    public final s4.c1 f31973b;
+    public final View f31974c;
     public final ViewPropertyAnimator d;
-    public final zs f32002e;
+    public final zs f31975e;
 
     public vs(zs zsVar, s4.c1 c1Var, ViewPropertyAnimator viewPropertyAnimator, View view) {
-        this.f32002e = zsVar;
-        this.f32000b = c1Var;
+        this.f31975e = zsVar;
+        this.f31973b = c1Var;
         this.d = viewPropertyAnimator;
-        this.f32001c = view;
+        this.f31974c = view;
     }
 
     @Override
     public void onAnimationCancel(Animator animator) {
-        switch (this.f31999a) {
+        switch (this.f31972a) {
             case 1:
-                this.f32001c.setAlpha(1.0f);
+                this.f31974c.setAlpha(1.0f);
                 return;
             default:
                 super.onAnimationCancel(animator);
@@ -32,24 +32,24 @@ public final class vs extends AnimatorListenerAdapter {
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        switch (this.f31999a) {
+        switch (this.f31972a) {
             case 0:
                 this.d.setListener(null);
-                this.f32001c.setAlpha(1.0f);
-                zs zsVar = this.f32002e;
-                s4.c1 c1Var = this.f32000b;
+                this.f31974c.setAlpha(1.0f);
+                zs zsVar = this.f31975e;
+                s4.c1 c1Var = this.f31973b;
                 zsVar.d(c1Var);
-                zsVar.f33252x.remove(c1Var);
+                zsVar.f33225x.remove(c1Var);
                 zsVar.A();
                 return;
             default:
                 this.d.setListener(null);
-                zs zsVar2 = this.f32002e;
-                s4.c1 c1Var2 = this.f32000b;
+                zs zsVar2 = this.f31975e;
+                s4.c1 c1Var2 = this.f31973b;
                 zsVar2.u(c1Var2);
                 zsVar2.v.remove(c1Var2);
                 zsVar2.A();
-                View view = c1Var2.f45767a;
+                View view = c1Var2.f45739a;
                 if (view instanceof org.telegram.ui.Cells.r2) {
                     ((org.telegram.ui.Cells.r2) view).setMoving(false);
                     return;
@@ -60,20 +60,20 @@ public final class vs extends AnimatorListenerAdapter {
 
     @Override
     public final void onAnimationStart(Animator animator) {
-        switch (this.f31999a) {
+        switch (this.f31972a) {
             case 0:
-                this.f32002e.y();
+                this.f31975e.y();
                 return;
             default:
-                this.f32002e.getClass();
+                this.f31975e.getClass();
                 return;
         }
     }
 
     public vs(zs zsVar, s4.c1 c1Var, View view, ViewPropertyAnimator viewPropertyAnimator) {
-        this.f32002e = zsVar;
-        this.f32000b = c1Var;
-        this.f32001c = view;
+        this.f31975e = zsVar;
+        this.f31973b = c1Var;
+        this.f31974c = view;
         this.d = viewPropertyAnimator;
     }
 }

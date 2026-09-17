@@ -34,32 +34,32 @@ public final class v2 extends Dialog {
     public boolean F;
     public p0 G;
     public bi.o1 H;
-    public final int f45553a;
-    public final ah.y f45554b;
-    public final yd f45555c;
+    public final int f45525a;
+    public final ah.y f45526b;
+    public final yd f45527c;
     public final e7 d;
-    public final ImageView f45556e;
-    public final t2 f45557f;
+    public final ImageView f45528e;
+    public final t2 f45529f;
     public final Rect h;
-    public Bitmap f45558n;
-    public BitmapShader f45559r;
-    public Paint f45560s;
+    public Bitmap f45530n;
+    public BitmapShader f45531r;
+    public Paint f45532s;
     public Matrix v;
-    public final vb0 f45561w;
-    public final vb0 f45562x;
-    public float f45563y;
+    public final vb0 f45533w;
+    public final vb0 f45534x;
+    public float f45535y;
 
     public v2(Context context, final int i10) {
         super(context, R.style.TransparentDialog);
         bi.b bVar = new bi.b();
         this.h = new Rect();
         this.F = false;
-        this.f45553a = i10;
+        this.f45525a = i10;
         ah.y yVar = new ah.y(this, context, 27);
-        this.f45554b = yVar;
+        this.f45526b = yVar;
         yVar.setOnClickListener(new m4(this, 8));
         yd ydVar = new yd(context, 8);
-        this.f45555c = ydVar;
+        this.f45527c = ydVar;
         ydVar.setOrientation(1);
         yVar.addView(ydVar, x5.d(-2, -2.0f, 17, 8.0f, 8.0f, 8.0f, 8.0f));
         e7 e7Var = new e7(this, context, 9);
@@ -82,72 +82,72 @@ public final class v2 extends Dialog {
         this.d = e7Var2;
         e7Var.addView(e7Var2, x5.d(-1, -1.0f, 119, 0.0f, 56.0f, 0.0f, 0.0f));
         ImageView imageView = new ImageView(context);
-        this.f45556e = imageView;
+        this.f45528e = imageView;
         imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
         e7Var2.addView(imageView, x5.e(-1, -1, 119));
         t2 t2Var = new t2(this, context, AndroidUtilities.density);
-        this.f45557f = t2Var;
+        this.f45529f = t2Var;
         e7Var2.addView(t2Var, x5.e(-2, -2, 17));
         n70 F = n70.F(yVar, bVar, yVar);
         vb0 vb0Var = new vb0(getContext(), R.raw.position_below, LocaleController.getString(R.string.StoryLinkCaptionAbove), R.raw.position_above, LocaleController.getString(R.string.StoryLinkCaptionBelow), bVar);
-        this.f45561w = vb0Var;
+        this.f45533w = vb0Var;
         vb0Var.setOnClickListener(new View.OnClickListener(this) {
-            public final v2 f45512b;
+            public final v2 f45484b;
 
             {
-                this.f45512b = this;
+                this.f45484b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r3) {
                     case 0:
-                        v2 v2Var = this.f45512b;
+                        v2 v2Var = this.f45484b;
                         p0 p0Var = v2Var.G;
-                        boolean z10 = p0Var.f45440f;
-                        p0Var.f45440f = !z10;
-                        v2Var.f45561w.a(z10, true);
-                        v2Var.f45557f.b(i10, v2Var.G, true);
+                        boolean z10 = p0Var.f45412f;
+                        p0Var.f45412f = !z10;
+                        v2Var.f45533w.a(z10, true);
+                        v2Var.f45529f.b(i10, v2Var.G, true);
                         return;
                     default:
-                        v2 v2Var2 = this.f45512b;
+                        v2 v2Var2 = this.f45484b;
                         p0 p0Var2 = v2Var2.G;
-                        boolean z11 = p0Var2.f45439e;
-                        p0Var2.f45439e = !z11;
-                        v2Var2.f45562x.a(z11, true);
-                        v2Var2.f45557f.b(i10, v2Var2.G, true);
+                        boolean z11 = p0Var2.f45411e;
+                        p0Var2.f45411e = !z11;
+                        v2Var2.f45534x.a(z11, true);
+                        v2Var2.f45529f.b(i10, v2Var2.G, true);
                         return;
                 }
             }
         });
         F.q(vb0Var);
         vb0 vb0Var2 = new vb0(context, R.raw.media_shrink, LocaleController.getString(R.string.LinkMediaLarger), R.raw.media_enlarge, LocaleController.getString(R.string.LinkMediaSmaller), bVar);
-        this.f45562x = vb0Var2;
+        this.f45534x = vb0Var2;
         vb0Var2.setOnClickListener(new View.OnClickListener(this) {
-            public final v2 f45512b;
+            public final v2 f45484b;
 
             {
-                this.f45512b = this;
+                this.f45484b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r3) {
                     case 0:
-                        v2 v2Var = this.f45512b;
+                        v2 v2Var = this.f45484b;
                         p0 p0Var = v2Var.G;
-                        boolean z10 = p0Var.f45440f;
-                        p0Var.f45440f = !z10;
-                        v2Var.f45561w.a(z10, true);
-                        v2Var.f45557f.b(i10, v2Var.G, true);
+                        boolean z10 = p0Var.f45412f;
+                        p0Var.f45412f = !z10;
+                        v2Var.f45533w.a(z10, true);
+                        v2Var.f45529f.b(i10, v2Var.G, true);
                         return;
                     default:
-                        v2 v2Var2 = this.f45512b;
+                        v2 v2Var2 = this.f45484b;
                         p0 p0Var2 = v2Var2.G;
-                        boolean z11 = p0Var2.f45439e;
-                        p0Var2.f45439e = !z11;
-                        v2Var2.f45562x.a(z11, true);
-                        v2Var2.f45557f.b(i10, v2Var2.G, true);
+                        boolean z11 = p0Var2.f45411e;
+                        p0Var2.f45411e = !z11;
+                        v2Var2.f45534x.a(z11, true);
+                        v2Var2.f45529f.b(i10, v2Var2.G, true);
                         return;
                 }
             }
@@ -168,7 +168,7 @@ public final class v2 extends Dialog {
         if (valueAnimator != null) {
             valueAnimator.cancel();
         }
-        float f10 = this.f45563y;
+        float f10 = this.f45535y;
         if (z10) {
             f7 = 1.0f;
         } else {
@@ -201,7 +201,7 @@ public final class v2 extends Dialog {
         }
         this.F = true;
         b(false, new r2(this, 1));
-        this.f45554b.invalidate();
+        this.f45526b.invalidate();
     }
 
     @Override
@@ -215,7 +215,7 @@ public final class v2 extends Dialog {
         Window window = getWindow();
         window.setWindowAnimations(R.style.DialogNoAnimation);
         ViewGroup.LayoutParams layoutParams = new ViewGroup.LayoutParams(-1, -1);
-        ah.y yVar = this.f45554b;
+        ah.y yVar = this.f45526b;
         setContentView(yVar, layoutParams);
         WindowManager.LayoutParams attributes = window.getAttributes();
         attributes.width = -1;

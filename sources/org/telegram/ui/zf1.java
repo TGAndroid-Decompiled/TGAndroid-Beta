@@ -5,90 +5,90 @@ import java.util.ArrayList;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class zf1 extends org.telegram.ui.Components.a81 {
-    public final ArrayList f43453a;
-    public final ag1 f43454b;
+    public final ArrayList f43426a;
+    public final ag1 f43427b;
 
     public zf1(ag1 ag1Var) {
-        this.f43454b = ag1Var;
+        this.f43427b = ag1Var;
         ArrayList arrayList = new ArrayList();
-        this.f43453a = arrayList;
+        this.f43426a = arrayList;
         arrayList.add(new wf1(0));
         wf1 wf1Var = new wf1(2);
-        wf1Var.f42382b = 0;
+        wf1Var.f42355b = 0;
         arrayList.add(wf1Var);
         wf1 wf1Var2 = new wf1(2);
-        wf1Var2.f42382b = 1;
+        wf1Var2.f42355b = 1;
         arrayList.add(wf1Var2);
         wf1 wf1Var3 = new wf1(2);
-        wf1Var3.f42382b = 2;
+        wf1Var3.f42355b = 2;
         arrayList.add(wf1Var3);
         wf1 wf1Var4 = new wf1(2);
-        wf1Var4.f42382b = 3;
+        wf1Var4.f42355b = 3;
         arrayList.add(wf1Var4);
         wf1 wf1Var5 = new wf1(2);
-        wf1Var5.f42382b = 4;
+        wf1Var5.f42355b = 4;
         arrayList.add(wf1Var5);
     }
 
     @Override
     public final void b(View view, int i10, int i11) {
-        ag1 ag1Var = this.f43454b;
-        ag1Var.K(view, i10, ag1Var.f34456b0, true);
+        ag1 ag1Var = this.f43427b;
+        ag1Var.K(view, i10, ag1Var.f34429b0, true);
     }
 
     @Override
     public final View d(int i10) {
         int i11;
-        ag1 ag1Var = this.f43454b;
-        eg1 eg1Var = ag1Var.f34473t0;
+        ag1 ag1Var = this.f43427b;
+        eg1 eg1Var = ag1Var.f34446t0;
         if (i10 == 1) {
             return ag1Var.T;
         }
         if (i10 == 2) {
             i11 = ((org.telegram.ui.ActionBar.n2) eg1Var).currentAccount;
             org.telegram.ui.Components.vm0 vm0Var = new org.telegram.ui.Components.vm0(i11, eg1Var);
-            vm0Var.f31392b.j(new yf1(0));
+            vm0Var.f31365b.j(new yf1(0));
             vm0Var.setUiCallback(ag1Var);
             return vm0Var;
         }
         x10 x10Var = new x10(eg1Var);
-        x10Var.setChatPreviewDelegate(ag1Var.f34471r0);
+        x10Var.setChatPreviewDelegate(ag1Var.f34444r0);
         x10Var.setUiCallback(ag1Var);
-        x10Var.f42565b.j(new yf1(1));
+        x10Var.f42538b.j(new yf1(1));
         return x10Var;
     }
 
     @Override
     public final int e() {
-        return this.f43453a.size();
+        return this.f43426a.size();
     }
 
     @Override
     public final CharSequence g(int i10) {
-        ArrayList arrayList = this.f43453a;
-        if (((wf1) arrayList.get(i10)).f42381a == 0) {
+        ArrayList arrayList = this.f43426a;
+        if (((wf1) arrayList.get(i10)).f42354a == 0) {
             return LocaleController.getString(R.string.SearchMessages);
         }
-        if (((wf1) arrayList.get(i10)).f42381a == 1) {
+        if (((wf1) arrayList.get(i10)).f42354a == 1) {
             return LocaleController.getString(R.string.DownloadsTabs);
         }
-        hg.q0 q0Var = hg.s0.f11263c3[((wf1) arrayList.get(i10)).f42382b];
-        String str = q0Var.f11243c;
+        hg.q0 q0Var = hg.s0.f11237c3[((wf1) arrayList.get(i10)).f42355b];
+        String str = q0Var.f11217c;
         if (str != null) {
             return str;
         }
-        return LocaleController.getString(q0Var.f11242b);
+        return LocaleController.getString(q0Var.f11216b);
     }
 
     @Override
     public final int h(int i10) {
-        ArrayList arrayList = this.f43453a;
-        if (((wf1) arrayList.get(i10)).f42381a == 0) {
+        ArrayList arrayList = this.f43426a;
+        if (((wf1) arrayList.get(i10)).f42354a == 0) {
             return 1;
         }
-        if (((wf1) arrayList.get(i10)).f42381a == 1) {
+        if (((wf1) arrayList.get(i10)).f42354a == 1) {
             return 2;
         }
-        return ((wf1) arrayList.get(i10)).f42381a + i10;
+        return ((wf1) arrayList.get(i10)).f42354a + i10;
     }
 }

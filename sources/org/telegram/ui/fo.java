@@ -6,44 +6,44 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 public abstract class fo extends FrameLayout {
-    public final eo f36465a;
-    public final org.telegram.ui.ActionBar.d5 f36466b;
-    public View f36467c;
+    public final eo f36438a;
+    public final org.telegram.ui.ActionBar.d5 f36439b;
+    public View f36440c;
     public int d;
-    public boolean f36468e;
+    public boolean f36441e;
 
     public fo(Context context, org.telegram.ui.ActionBar.d5 d5Var, Bundle bundle) {
         super(context);
-        this.f36468e = true;
-        this.f36466b = d5Var;
+        this.f36441e = true;
+        this.f36439b = d5Var;
         eo eoVar = new eo(this, bundle);
-        this.f36465a = eoVar;
+        this.f36438a = eoVar;
         eoVar.Oa = true;
     }
 
     public void a() {
         int i10;
-        eo eoVar = this.f36465a;
+        eo eoVar = this.f36438a;
         if (eoVar.onFragmentCreate()) {
-            this.f36467c = eoVar.fragmentView;
-            eoVar.setParentLayout(this.f36466b);
-            View view = this.f36467c;
+            this.f36440c = eoVar.fragmentView;
+            eoVar.setParentLayout(this.f36439b);
+            View view = this.f36440c;
             if (view == null) {
-                this.f36467c = eoVar.createView(getContext());
+                this.f36440c = eoVar.createView(getContext());
             } else {
                 ViewGroup viewGroup = (ViewGroup) view.getParent();
                 if (viewGroup != null) {
                     eoVar.onRemoveFromParent();
-                    viewGroup.removeView(this.f36467c);
+                    viewGroup.removeView(this.f36440c);
                 }
             }
-            uj ujVar = eoVar.f35501x0;
+            uj ujVar = eoVar.f35474x0;
             if (ujVar != null && (i10 = this.d) != 0) {
                 ujVar.setPadding(0, i10, 0, 0);
             }
             eoVar.pa();
-            addView(this.f36467c, w7.x5.c(-1.0f, -1));
-            if (this.f36468e) {
+            addView(this.f36440c, w7.x5.c(-1.0f, -1));
+            if (this.f36441e) {
                 eoVar.onResume();
             }
         }

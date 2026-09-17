@@ -8,27 +8,27 @@ import android.view.View;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 public final class kl extends FrameLayout {
-    public float f38113a;
-    public float f38114b;
-    public final co f38115c;
+    public float f38086a;
+    public float f38087b;
+    public final co f38088c;
 
     public kl(co coVar, Activity activity) {
         super(activity);
-        this.f38115c = coVar;
+        this.f38088c = coVar;
         setOnLongClickListener(new u(this, 2));
     }
 
     @Override
     public final boolean drawChild(Canvas canvas, View view, long j3) {
-        co coVar = this.f38115c;
-        if (view == coVar.f35528z2) {
+        co coVar = this.f38088c;
+        if (view == coVar.f35501z2) {
             canvas.save();
             canvas.clipRect(0, 0, getMeasuredWidth(), AndroidUtilities.dp(48.0f));
         }
         org.telegram.ui.ActionBar.j5[] j5VarArr = coVar.D2;
         if (view != j5VarArr[0] && view != j5VarArr[1]) {
             boolean drawChild = super.drawChild(canvas, view, j3);
-            if (view == coVar.f35528z2) {
+            if (view == coVar.f35501z2) {
                 canvas.restore();
             }
             return drawChild;
@@ -43,7 +43,7 @@ public final class kl extends FrameLayout {
     @Override
     public final void onMeasure(int i10, int i11) {
         super.onMeasure(i10, i11);
-        co coVar = this.f38115c;
+        co coVar = this.f38088c;
         if (coVar.A2) {
             int i12 = 0;
             while (true) {
@@ -64,16 +64,16 @@ public final class kl extends FrameLayout {
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        this.f38113a = motionEvent.getY();
+        this.f38086a = motionEvent.getY();
         int action = motionEvent.getAction();
-        co coVar = this.f38115c;
+        co coVar = this.f38088c;
         if (action == 1) {
             coVar.finishPreviewFragment();
         } else if (motionEvent.getAction() == 2) {
-            float f7 = this.f38114b - this.f38113a;
+            float f7 = this.f38087b - this.f38086a;
             coVar.movePreviewFragment(f7);
             if (f7 < 0.0f) {
-                this.f38114b = this.f38113a;
+                this.f38087b = this.f38086a;
             }
         }
         return super.onTouchEvent(motionEvent);

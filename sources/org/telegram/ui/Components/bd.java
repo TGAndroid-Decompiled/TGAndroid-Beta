@@ -7,36 +7,36 @@ import android.text.SpannableString;
 import android.text.style.ReplacementSpan;
 import org.telegram.messenger.AndroidUtilities;
 public final class bd extends ReplacementSpan {
-    public final org.telegram.ui.ActionBar.f6 f24695a;
-    public final Paint f24696b = new Paint(1);
-    public final f01 f24697c;
+    public final org.telegram.ui.ActionBar.f6 f24668a;
+    public final Paint f24669b = new Paint(1);
+    public final f01 f24670c;
     public final Runnable d;
-    public zc f24698e;
-    public Integer f24699f;
+    public zc f24671e;
+    public Integer f24672f;
 
     public bd(CharSequence charSequence, Runnable runnable, org.telegram.ui.ActionBar.f6 f6Var) {
-        this.f24695a = f6Var;
+        this.f24668a = f6Var;
         this.d = runnable;
-        this.f24697c = new f01(charSequence, 12.0f, null);
+        this.f24670c = new f01(charSequence, 12.0f, null);
     }
 
     public static SpannableString b(CharSequence charSequence, Runnable runnable, org.telegram.ui.ActionBar.f6 f6Var, Integer num) {
         SpannableString spannableString = new SpannableString("btn");
         bd bdVar = new bd(charSequence, runnable, f6Var);
         spannableString.setSpan(bdVar, 0, spannableString.length(), 33);
-        bdVar.f24699f = num;
+        bdVar.f24672f = num;
         return spannableString;
     }
 
     public final int a() {
-        return (int) (this.f24697c.f25875c + AndroidUtilities.dp(14.0f));
+        return (int) (this.f24670c.f25848c + AndroidUtilities.dp(14.0f));
     }
 
     public final void c(ad adVar, boolean z10) {
-        if (this.f24698e == null) {
-            this.f24698e = new zc(adVar);
+        if (this.f24671e == null) {
+            this.f24671e = new zc(adVar);
         }
-        this.f24698e.c(z10);
+        this.f24671e.c(z10);
     }
 
     @Override
@@ -48,7 +48,7 @@ public final class bd extends ReplacementSpan {
         RectF rectF = AndroidUtilities.rectTmp;
         float f11 = dpf2 / 2.0f;
         rectF.set(f7, f10 - f11, a() + f7, f10 + f11);
-        zc zcVar = this.f24698e;
+        zc zcVar = this.f24671e;
         if (zcVar == null) {
             a2 = 1.0f;
         } else {
@@ -56,18 +56,18 @@ public final class bd extends ReplacementSpan {
         }
         canvas.save();
         canvas.scale(a2, a2, rectF.centerX(), rectF.centerY());
-        Integer num = this.f24699f;
+        Integer num = this.f24672f;
         if (num != null) {
             v02 = num.intValue();
         } else {
-            v02 = org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.Oh, this.f24695a);
+            v02 = org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.Oh, this.f24668a);
         }
         int i15 = v02;
         int l1 = org.telegram.ui.ActionBar.j6.l1(0.15f, i15);
-        Paint paint2 = this.f24696b;
+        Paint paint2 = this.f24669b;
         paint2.setColor(l1);
         canvas.drawRoundRect(rectF, f11, f11, paint2);
-        this.f24697c.c(f7 + AndroidUtilities.dp(7.0f), f10, 1.0f, i15, canvas);
+        this.f24670c.c(f7 + AndroidUtilities.dp(7.0f), f10, 1.0f, i15, canvas);
         canvas.restore();
     }
 

@@ -2,23 +2,23 @@ package zh;
 
 import org.telegram.tgnet.TLRPC;
 public final class m1 implements Runnable {
-    public final int f52280a;
-    public final w3 f52281b;
-    public final TLRPC.TL_error f52282c;
+    public final int f52249a;
+    public final w3 f52250b;
+    public final TLRPC.TL_error f52251c;
     public final Runnable d;
 
     public m1(w3 w3Var, TLRPC.TL_error tL_error, Runnable runnable, int i10) {
-        this.f52280a = i10;
-        this.f52281b = w3Var;
-        this.f52282c = tL_error;
+        this.f52249a = i10;
+        this.f52250b = w3Var;
+        this.f52251c = tL_error;
         this.d = runnable;
     }
 
     @Override
     public final void run() {
-        switch (this.f52280a) {
+        switch (this.f52249a) {
             case 0:
-                this.f52281b.getBulletinFactory().d0(this.f52282c, false);
+                this.f52250b.getBulletinFactory().d0(this.f52251c, false);
                 Runnable runnable = this.d;
                 if (runnable != null) {
                     runnable.run();
@@ -26,7 +26,7 @@ public final class m1 implements Runnable {
                 }
                 return;
             default:
-                this.f52281b.getBulletinFactory().d0(this.f52282c, false);
+                this.f52250b.getBulletinFactory().d0(this.f52251c, false);
                 Runnable runnable2 = this.d;
                 if (runnable2 != null) {
                     runnable2.run();

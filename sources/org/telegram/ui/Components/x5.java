@@ -4,14 +4,14 @@ import android.text.Layout;
 import android.view.View;
 import java.util.ArrayList;
 public final class x5 {
-    public Layout f32456a;
-    public final ArrayList f32457b = new ArrayList();
+    public Layout f32429a;
+    public final ArrayList f32430b = new ArrayList();
 
     public x5(View view, Layout layout) {
-        this.f32456a = layout;
+        this.f32429a = layout;
     }
 
     public final void a() {
-        this.f32457b.size();
+        this.f32430b.size();
     }
 }

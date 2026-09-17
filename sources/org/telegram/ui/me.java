@@ -17,12 +17,12 @@ import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class me implements Runnable {
-    public final int f38704a;
-    public final co f38705b;
+    public final int f38677a;
+    public final co f38678b;
 
     public me(co coVar, int i10) {
-        this.f38704a = i10;
-        this.f38705b = coVar;
+        this.f38677a = i10;
+        this.f38678b = coVar;
     }
 
     @Override
@@ -32,18 +32,18 @@ public final class me implements Runnable {
         org.telegram.ui.Cells.t1 t1Var;
         MessageObject messageObject;
         int i11;
-        int i12 = this.f38704a;
+        int i12 = this.f38677a;
         TLRPC.ChatTheme chatTheme = null;
         int i13 = 0;
-        co coVar = this.f38705b;
+        co coVar = this.f38678b;
         switch (i12) {
             case 0:
                 coVar.L5 = null;
                 if (coVar.getParentActivity() != null) {
-                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(coVar.getParentActivity(), 0, coVar.f35275ea);
-                    boolean isChannel = ChatObject.isChannel(coVar.f35265e);
-                    org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20226a;
-                    if (isChannel && !coVar.f35265e.megagroup) {
+                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(coVar.getParentActivity(), 0, coVar.f35248ea);
+                    boolean isChannel = ChatObject.isChannel(coVar.f35238e);
+                    org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20199a;
+                    if (isChannel && !coVar.f35238e.megagroup) {
                         b2Var.T = LocaleController.getString(R.string.JoinByPeekChannelText);
                         b2Var.R = LocaleController.getString(R.string.JoinByPeekChannelTitle);
                     } else {
@@ -63,8 +63,8 @@ public final class me implements Runnable {
                 co.i0(coVar);
                 return;
             case 3:
-                coVar.oa(null, coVar.f35445s8);
-                coVar.f35445s8 = null;
+                coVar.oa(null, coVar.f35418s8);
+                coVar.f35418s8 = null;
                 return;
             case 4:
                 if (!org.telegram.ui.ActionBar.n2.hasSheets(coVar) && (mkVar = coVar.Y) != null) {
@@ -75,7 +75,7 @@ public final class me implements Runnable {
                 return;
             case 5:
                 coVar.o9();
-                AndroidUtilities.forEachViews((RecyclerView) coVar.f35501x0, (e2.h) new hg(coVar, 1));
+                AndroidUtilities.forEachViews((RecyclerView) coVar.f35474x0, (e2.h) new hg(coVar, 1));
                 coVar.u7();
                 dk dkVar = coVar.X2;
                 if (dkVar != null) {
@@ -94,19 +94,19 @@ public final class me implements Runnable {
                 return;
             case 6:
                 af1 a02 = af1.a0(-coVar.T5, 0L);
-                a02.f34448y = coVar;
+                a02.f34421y = coVar;
                 coVar.presentFragment(a02);
                 return;
             case 7:
                 coVar.getNotificationCenter().onAnimationFinish(coVar.F9);
                 return;
             case 8:
-                coVar.f35327j1.d(true);
+                coVar.f35300j1.d(true);
                 return;
             case 9:
-                int childCount = coVar.f35501x0.getChildCount();
+                int childCount = coVar.f35474x0.getChildCount();
                 while (i13 < childCount) {
-                    View childAt = coVar.f35501x0.getChildAt(i13);
+                    View childAt = coVar.f35474x0.getChildAt(i13);
                     if (childAt instanceof org.telegram.ui.Cells.t1) {
                         org.telegram.ui.Cells.t1 t1Var2 = (org.telegram.ui.Cells.t1) childAt;
                         if (t1Var2.getMessageObject().type == 4) {
@@ -121,7 +121,7 @@ public final class me implements Runnable {
                 coVar.xc(true);
                 return;
             case 11:
-                dl dlVar = coVar.f35237bb;
+                dl dlVar = coVar.f35210bb;
                 if (dlVar != null) {
                     dlVar.requestLayout();
                     return;
@@ -131,7 +131,7 @@ public final class me implements Runnable {
                 co.E0(coVar);
                 return;
             case 13:
-                TLRPC.UserFull userFull = coVar.f35220a8;
+                TLRPC.UserFull userFull = coVar.f35193a8;
                 if (userFull != null) {
                     chatTheme = userFull.theme;
                 }
@@ -172,22 +172,22 @@ public final class me implements Runnable {
                 coVar.Y.H0();
                 return;
             case 21:
-                coVar.f35416q7 = null;
-                gl glVar = coVar.f35229b3;
+                coVar.f35389q7 = null;
+                gl glVar = coVar.f35202b3;
                 if (glVar != null) {
                     org.telegram.ui.Components.p50 cameraContainer = glVar.getCameraContainer();
                     AnimatorSet animatorSet = new AnimatorSet();
                     ObjectAnimator ofFloat = ObjectAnimator.ofFloat(cameraContainer, View.SCALE_X, 0.5f);
                     ObjectAnimator ofFloat2 = ObjectAnimator.ofFloat(cameraContainer, View.SCALE_Y, 0.5f);
                     Property property = View.ALPHA;
-                    animatorSet.playTogether(ofFloat, ofFloat2, ObjectAnimator.ofFloat(cameraContainer, property, 0.0f), ObjectAnimator.ofFloat(coVar.f35229b3.getButtonsLayout(), property, 0.0f), ObjectAnimator.ofInt(coVar.f35229b3.getPaint(), org.telegram.ui.Components.t6.f30564b, 0), ObjectAnimator.ofFloat(coVar.f35229b3.getMuteImageView(), property, 0.0f));
+                    animatorSet.playTogether(ofFloat, ofFloat2, ObjectAnimator.ofFloat(cameraContainer, property, 0.0f), ObjectAnimator.ofFloat(coVar.f35202b3.getButtonsLayout(), property, 0.0f), ObjectAnimator.ofInt(coVar.f35202b3.getPaint(), org.telegram.ui.Components.t6.f30537b, 0), ObjectAnimator.ofFloat(coVar.f35202b3.getMuteImageView(), property, 0.0f));
                     animatorSet.addListener(new xi(coVar, 0));
                     animatorSet.start();
                     return;
                 }
                 return;
             case 22:
-                AndroidUtilities.forEachViews((RecyclerView) coVar.f35501x0, (e2.h) new bi.f(22));
+                AndroidUtilities.forEachViews((RecyclerView) coVar.f35474x0, (e2.h) new bi.f(22));
                 om omVar = coVar.A0;
                 if (omVar != null) {
                     omVar.O(true);
@@ -195,44 +195,44 @@ public final class me implements Runnable {
                 }
                 return;
             case 23:
-                co coVar2 = this.f38705b;
-                int i14 = coVar2.f35420qb;
+                co coVar2 = this.f38678b;
+                int i14 = coVar2.f35393qb;
                 if (i14 != 0) {
-                    coVar2.F(i14, coVar2.f35434rb, coVar2.f35460tb, coVar2.f35485vb, coVar2.f35448sb, coVar2.f35473ub);
-                    coVar2.f35420qb = 0;
+                    coVar2.F(i14, coVar2.f35407rb, coVar2.f35433tb, coVar2.f35458vb, coVar2.f35421sb, coVar2.f35446ub);
+                    coVar2.f35393qb = 0;
                     return;
                 }
                 return;
             case 24:
-                if (!coVar.f35353l3 && coVar.f35501x0 != null && coVar.getParentActivity() != null && coVar.fragmentView != null) {
-                    org.telegram.ui.Components.pp ppVar = coVar.f35477v2;
+                if (!coVar.f35326l3 && coVar.f35474x0 != null && coVar.getParentActivity() != null && coVar.fragmentView != null) {
+                    org.telegram.ui.Components.pp ppVar = coVar.f35450v2;
                     if (ppVar == null || ppVar.getTag() == null) {
-                        if (coVar.f35477v2 == null) {
+                        if (coVar.f35450v2 == null) {
                             um umVar = coVar.X0;
                             int indexOfChild = umVar.indexOfChild(coVar.S);
                             if (indexOfChild != -1) {
                                 i10 = 1;
-                                org.telegram.ui.Components.pp ppVar2 = new org.telegram.ui.Components.pp(coVar.getParentActivity(), coVar.f35275ea);
-                                coVar.f35477v2 = ppVar2;
+                                org.telegram.ui.Components.pp ppVar2 = new org.telegram.ui.Components.pp(coVar.getParentActivity(), coVar.f35248ea);
+                                coVar.f35450v2 = ppVar2;
                                 umVar.addView(ppVar2, indexOfChild + 1, w7.x5.d(-2, -2.0f, 51, 10.0f, 0.0f, 10.0f, 0.0f));
-                                coVar.f35477v2.setAlpha(0.0f);
-                                coVar.f35477v2.setVisibility(4);
+                                coVar.f35450v2.setAlpha(0.0f);
+                                coVar.f35450v2.setVisibility(4);
                             } else {
                                 return;
                             }
                         } else {
                             i10 = 1;
                         }
-                        int childCount2 = coVar.f35501x0.getChildCount();
+                        int childCount2 = coVar.f35474x0.getChildCount();
                         for (int i15 = 0; i15 < childCount2; i15++) {
-                            View childAt2 = coVar.f35501x0.getChildAt(i15);
+                            View childAt2 = coVar.f35474x0.getChildAt(i15);
                             if ((childAt2 instanceof org.telegram.ui.Cells.t1) && (messageObject = (t1Var = (org.telegram.ui.Cells.t1) childAt2).getMessageObject()) != null && messageObject.isOutOwner() && messageObject.isSent()) {
-                                org.telegram.ui.Components.pp ppVar3 = coVar.f35477v2;
-                                ImageView imageView = ppVar3.f29482c;
-                                org.telegram.ui.Components.pg pgVar = ppVar3.f29483e;
+                                org.telegram.ui.Components.pp ppVar3 = coVar.f35450v2;
+                                ImageView imageView = ppVar3.f29455c;
+                                org.telegram.ui.Components.pg pgVar = ppVar3.f29456e;
                                 if (pgVar != null) {
                                     AndroidUtilities.cancelRunOnUIThread(pgVar);
-                                    ppVar3.f29483e = null;
+                                    ppVar3.f29456e = null;
                                 }
                                 int[] iArr = new int[2];
                                 t1Var.getLocationInWindow(iArr);
@@ -246,7 +246,7 @@ public final class me implements Runnable {
                                     int dp = AndroidUtilities.dp(5.0f) + t1Var.getChecksX();
                                     int measuredWidth = view.getMeasuredWidth();
                                     float measuredHeight = C - ppVar3.getMeasuredHeight();
-                                    ppVar3.f29484f = measuredHeight;
+                                    ppVar3.f29457f = measuredHeight;
                                     ppVar3.setTranslationY(measuredHeight);
                                     int left = t1Var.getLeft() + dp;
                                     int dp2 = AndroidUtilities.dp(15.0f);
@@ -297,7 +297,7 @@ public final class me implements Runnable {
                                     ppVar3.d.setDuration(180L);
                                     ppVar3.d.start();
                                     while (i13 < 2) {
-                                        ViewPropertyAnimator interpolator = ppVar3.f29480a[i13].animate().scaleX(1.04f).scaleY(1.04f).setInterpolator(org.telegram.ui.Components.pr.f29496i);
+                                        ViewPropertyAnimator interpolator = ppVar3.f29453a[i13].animate().scaleX(1.04f).scaleY(1.04f).setInterpolator(org.telegram.ui.Components.pr.f29469i);
                                         if (i13 == 0) {
                                             i11 = 132;
                                         } else {
@@ -317,7 +317,7 @@ public final class me implements Runnable {
                 }
                 return;
             case 25:
-                AndroidUtilities.forEachViews((RecyclerView) coVar.f35501x0, (e2.h) new bi.f(21));
+                AndroidUtilities.forEachViews((RecyclerView) coVar.f35474x0, (e2.h) new bi.f(21));
                 om omVar2 = coVar.A0;
                 if (omVar2 != null) {
                     omVar2.O(false);
@@ -329,15 +329,15 @@ public final class me implements Runnable {
                 return;
             case 27:
                 mk mkVar2 = coVar.Y;
-                if (mkVar2 != null && coVar.f35396ob != 5) {
+                if (mkVar2 != null && coVar.f35369ob != 5) {
                     mkVar2.H0();
                     return;
                 }
                 return;
             case 28:
-                org.telegram.ui.Components.po poVar = ((org.telegram.ui.Components.po[]) coVar.f35213a0.f730b)[0];
+                org.telegram.ui.Components.po poVar = ((org.telegram.ui.Components.po[]) coVar.f35186a0.f718b)[0];
                 org.telegram.ui.ActionBar.j5 j5Var = poVar.d;
-                org.telegram.ui.ActionBar.j5 j5Var2 = poVar.f29475e;
+                org.telegram.ui.ActionBar.j5 j5Var2 = poVar.f29448e;
                 coVar.F1 = !coVar.F1;
                 j5Var.setPivotX(0.0f);
                 j5Var2.setPivotX(0.0f);

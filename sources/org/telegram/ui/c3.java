@@ -8,70 +8,70 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import org.telegram.messenger.AndroidUtilities;
 public final class c3 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f35012a;
-    public final Object f35013b;
+    public final int f34985a;
+    public final Object f34986b;
 
     public c3(Object obj, int i10) {
-        this.f35012a = i10;
-        this.f35013b = obj;
+        this.f34985a = i10;
+        this.f34986b = obj;
     }
 
     @Override
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f35012a) {
+        switch (this.f34985a) {
             case 0:
-                d3 d3Var = (d3) this.f35013b;
+                d3 d3Var = (d3) this.f34986b;
                 d3Var.getClass();
                 float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 d3Var.d.setTextColor(i0.a.d(floatValue, -16777216, -1));
-                d3Var.f35663e.setTextColor(i0.a.d(floatValue, -16777216, -1));
-                d3Var.f35664f.setTextColor(i0.a.d(floatValue, -16777216, -1));
+                d3Var.f35636e.setTextColor(i0.a.d(floatValue, -16777216, -1));
+                d3Var.f35637f.setTextColor(i0.a.d(floatValue, -16777216, -1));
                 return;
             case 1:
-                r4 r4Var = (r4) this.f35013b;
-                float lerp = AndroidUtilities.lerp(r4Var.f40090n, valueAnimator.getAnimatedFraction());
+                r4 r4Var = (r4) this.f34986b;
+                float lerp = AndroidUtilities.lerp(r4Var.f40063n, valueAnimator.getAnimatedFraction());
                 int i10 = (int) (255.0f * lerp);
-                r4Var.f40089f.setAlpha(i10);
+                r4Var.f40062f.setAlpha(i10);
                 r4Var.h.setAlpha(i10);
-                r4Var.f40091r.setAlpha((int) (66.0f * lerp));
-                r4Var.f40092s.setAlpha((int) (85.0f * lerp));
+                r4Var.f40064r.setAlpha((int) (66.0f * lerp));
+                r4Var.f40065s.setAlpha((int) (85.0f * lerp));
                 r4Var.v.setAlpha(i10);
                 r4Var.G = lerp;
                 r4Var.invalidate();
                 return;
             case 2:
-                z6.X((z6) this.f35013b, valueAnimator);
+                z6.X((z6) this.f34986b, valueAnimator);
                 return;
             case 3:
-                h8 h8Var = (h8) this.f35013b;
+                h8 h8Var = (h8) this.f34986b;
                 float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                for (int i11 = 0; i11 < h8Var.f36926b.getChildCount(); i11++) {
-                    e8.b((e8) h8Var.f36926b.getChildAt(i11), floatValue2);
+                for (int i11 = 0; i11 < h8Var.f36899b.getChildCount(); i11++) {
+                    e8.b((e8) h8Var.f36899b.getChildAt(i11), floatValue2);
                 }
                 return;
             case 4:
-                md mdVar = (md) this.f35013b;
-                mdVar.f38663b.b(((Float) valueAnimator.getAnimatedValue()).floatValue());
-                mdVar.f38663b.invalidateSelf();
+                md mdVar = (md) this.f34986b;
+                mdVar.f38636b.b(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                mdVar.f38636b.invalidateSelf();
                 return;
             case 5:
-                ((org.telegram.ui.Components.or) this.f35013b).b(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                ((org.telegram.ui.Components.or) this.f34986b).b(((Float) valueAnimator.getAnimatedValue()).floatValue());
                 return;
             case 6:
-                dl dlVar = (dl) this.f35013b;
+                dl dlVar = (dl) this.f34986b;
                 dlVar.getClass();
                 dlVar.setBubbleOffset(((Float) valueAnimator.getAnimatedValue()).floatValue());
                 dlVar.invalidate();
                 return;
             case 7:
-                lp lpVar = (lp) this.f35013b;
-                lpVar.f38473r.b(((Float) valueAnimator.getAnimatedValue()).floatValue());
-                lpVar.f38473r.invalidateSelf();
+                lp lpVar = (lp) this.f34986b;
+                lpVar.f38446r.b(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                lpVar.f38446r.invalidateSelf();
                 return;
             case 8:
-                gs gsVar = (gs) this.f35013b;
+                gs gsVar = (gs) this.f34986b;
                 gsVar.getClass();
-                gsVar.f36797w = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                gsVar.f36770w = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 gsVar.invalidate();
                 if (gsVar.getParent() != null) {
                     ((ViewGroup) gsVar.getParent()).invalidate();
@@ -79,7 +79,7 @@ public final class c3 implements ValueAnimator.AnimatorUpdateListener {
                 }
                 return;
             case 9:
-                cs csVar = (cs) this.f35013b;
+                cs csVar = (cs) this.f34986b;
                 csVar.v = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 csVar.invalidate();
                 if (csVar.getParent() != null) {
@@ -88,48 +88,48 @@ public final class c3 implements ValueAnimator.AnimatorUpdateListener {
                 }
                 return;
             case 10:
-                qy qyVar = (qy) this.f35013b;
+                qy qyVar = (qy) this.f34986b;
                 qyVar.getClass();
                 qyVar.setViewsOffset(((Float) valueAnimator.getAnimatedValue()).floatValue());
                 return;
             case 11:
-                lz lzVar = (lz) this.f35013b;
+                lz lzVar = (lz) this.f34986b;
                 lzVar.getClass();
-                lzVar.f38551r = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                org.telegram.ui.Components.x9 x9Var = lzVar.f38547c;
+                lzVar.f38524r = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                org.telegram.ui.Components.x9 x9Var = lzVar.f38520c;
                 int i12 = org.telegram.ui.ActionBar.j6.C6;
-                org.telegram.ui.ActionBar.f6 f6Var = lzVar.f38545a;
+                org.telegram.ui.ActionBar.f6 f6Var = lzVar.f38518a;
                 int v02 = org.telegram.ui.ActionBar.j6.v0(i12, f6Var);
                 int i13 = org.telegram.ui.ActionBar.j6.Oh;
-                int d = i0.a.d(lzVar.f38551r, v02, org.telegram.ui.ActionBar.j6.v0(i13, f6Var));
+                int d = i0.a.d(lzVar.f38524r, v02, org.telegram.ui.ActionBar.j6.v0(i13, f6Var));
                 PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
                 x9Var.setColorFilter(new PorterDuffColorFilter(d, mode));
                 x9Var.invalidate();
-                org.telegram.ui.Components.x9 x9Var2 = lzVar.f38549f;
-                x9Var2.setColorFilter(new PorterDuffColorFilter(i0.a.d(1.0f - lzVar.f38551r, org.telegram.ui.ActionBar.j6.v0(i12, f6Var), org.telegram.ui.ActionBar.j6.v0(i13, f6Var)), mode));
+                org.telegram.ui.Components.x9 x9Var2 = lzVar.f38522f;
+                x9Var2.setColorFilter(new PorterDuffColorFilter(i0.a.d(1.0f - lzVar.f38524r, org.telegram.ui.ActionBar.j6.v0(i12, f6Var), org.telegram.ui.ActionBar.j6.v0(i13, f6Var)), mode));
                 x9Var2.invalidate();
                 return;
             case 12:
-                c00 c00Var = (c00) this.f35013b;
-                c00Var.f34986n.b(((Float) valueAnimator.getAnimatedValue()).floatValue());
-                c00Var.f34986n.invalidateSelf();
+                c00 c00Var = (c00) this.f34986b;
+                c00Var.f34959n.b(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                c00Var.f34959n.invalidateSelf();
                 return;
             case 13:
-                y00 y00Var = (y00) this.f35013b;
+                y00 y00Var = (y00) this.f34986b;
                 y00Var.getClass();
-                y00Var.f42961s = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                y00Var.f42934s = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 y00Var.invalidate();
                 return;
             case 14:
-                a20 a20Var = (a20) this.f35013b;
+                a20 a20Var = (a20) this.f34986b;
                 a20Var.getClass();
                 float floatValue3 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                ImageView imageView = a20Var.f34325c;
+                ImageView imageView = a20Var.f34298c;
                 imageView.setAlpha(floatValue3);
                 float f7 = (floatValue3 * 0.5f) + 0.5f;
                 imageView.setScaleX(f7);
                 imageView.setScaleY(f7);
-                View view = a20Var.f34327f;
+                View view = a20Var.f34300f;
                 float f10 = 1.0f - floatValue3;
                 view.setAlpha(f10);
                 float f11 = (f10 * 0.5f) + 0.5f;
@@ -137,19 +137,19 @@ public final class c3 implements ValueAnimator.AnimatorUpdateListener {
                 view.setScaleY(f11);
                 return;
             case 15:
-                j60 j60Var = (j60) this.f35013b;
+                j60 j60Var = (j60) this.f34986b;
                 j60Var.V0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 j60Var.L1(true);
-                j60Var.f37557e.invalidate();
+                j60Var.f37530e.invalidate();
                 j60Var.Q.invalidate();
                 return;
             case 16:
-                s50 s50Var = (s50) this.f35013b;
+                s50 s50Var = (s50) this.f34986b;
                 s50Var.h = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                s50Var.f40330a.invalidate();
+                s50Var.f40303a.invalidate();
                 return;
             case 17:
-                x50 x50Var = (x50) this.f35013b;
+                x50 x50Var = (x50) this.f34986b;
                 x50Var.F = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 j60 j60Var2 = x50Var.L;
                 j60Var2.Q.invalidate();
@@ -158,13 +158,13 @@ public final class c3 implements ValueAnimator.AnimatorUpdateListener {
                 j60.J0(j60Var2);
                 return;
             case 18:
-                hk0 hk0Var = (hk0) this.f35013b;
+                hk0 hk0Var = (hk0) this.f34986b;
                 hk0Var.getClass();
-                hk0Var.f37087f = Math.max(1.0f, ((Float) valueAnimator.getAnimatedValue()).floatValue());
+                hk0Var.f37060f = Math.max(1.0f, ((Float) valueAnimator.getAnimatedValue()).floatValue());
                 hk0Var.invalidate();
                 return;
             case 19:
-                PasscodeActivity passcodeActivity = (PasscodeActivity) this.f35013b;
+                PasscodeActivity passcodeActivity = (PasscodeActivity) this.f34986b;
                 passcodeActivity.getClass();
                 float floatValue4 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 passcodeActivity.v.setAlpha(floatValue4);
@@ -172,53 +172,53 @@ public final class c3 implements ValueAnimator.AnimatorUpdateListener {
                 passcodeActivity.fragmentView.requestLayout();
                 return;
             case 20:
-                PhotoViewer photoViewer = ((bu0) this.f35013b).d;
-                photoViewer.T1.f39059k0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                PhotoViewer photoViewer = ((bu0) this.f34986b).d;
+                photoViewer.T1.f39032k0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 photoViewer.T1.invalidate();
                 return;
             case 21:
-                PhotoViewer photoViewer2 = ((bu0) this.f35013b).d;
-                photoViewer2.T1.f39059k0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                PhotoViewer photoViewer2 = ((bu0) this.f34986b).d;
+                photoViewer2.T1.f39032k0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 photoViewer2.T1.invalidate();
                 return;
             case 22:
-                ((PhotoViewer) ((org.telegram.ui.Components.em0) this.f35013b).f25762b).T1.scrollTo(0, ((Integer) valueAnimator.getAnimatedValue()).intValue());
+                ((PhotoViewer) ((org.telegram.ui.Components.em0) this.f34986b).f25735b).T1.scrollTo(0, ((Integer) valueAnimator.getAnimatedValue()).intValue());
                 return;
             case 23:
-                PhotoViewer photoViewer3 = ((eu0) this.f35013b).f36210r;
-                photoViewer3.f33650m6 = 1.0f - ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                PhotoViewer photoViewer3 = ((eu0) this.f34986b).f36183r;
+                photoViewer3.f33623m6 = 1.0f - ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 photoViewer3.F1();
                 return;
             case 24:
-                tu0 tu0Var = (tu0) this.f35013b;
+                tu0 tu0Var = (tu0) this.f34986b;
                 tu0Var.getClass();
                 tu0Var.setAlpha(((Float) valueAnimator.getAnimatedValue()).floatValue());
                 return;
             case 25:
-                ov0 ov0Var = (ov0) this.f35013b;
+                ov0 ov0Var = (ov0) this.f34986b;
                 ov0Var.getClass();
                 ov0Var.A = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 ov0Var.e();
                 return;
             case 26:
-                ((hz0) this.f35013b).G.f33884a.invalidate();
+                ((hz0) this.f34986b).G.f33857a.invalidate();
                 return;
             case 27:
-                ((m01) this.f35013b).f38562g2.U4();
+                ((m01) this.f34986b).f38535g2.U4();
                 return;
             case 28:
-                b11 b11Var = (b11) this.f35013b;
-                float[] fArr = b11Var.f34619n;
+                b11 b11Var = (b11) this.f34986b;
+                float[] fArr = b11Var.f34592n;
                 float animatedFraction = valueAnimator.getAnimatedFraction();
                 b11Var.F = animatedFraction;
                 b11Var.e(AndroidUtilities.lerp(fArr, animatedFraction), true);
                 return;
             default:
-                d11 d11Var = (d11) this.f35013b;
-                float lerp2 = AndroidUtilities.lerp(d11Var.f35637e, valueAnimator.getAnimatedFraction());
-                ProfileActivity profileActivity = d11Var.f35639n;
+                d11 d11Var = (d11) this.f34986b;
+                float lerp2 = AndroidUtilities.lerp(d11Var.f35610e, valueAnimator.getAnimatedFraction());
+                ProfileActivity profileActivity = d11Var.f35612n;
                 org.telegram.ui.ActionBar.v0 v0Var = profileActivity.U0;
-                if (v0Var != null && !profileActivity.f33992p2) {
+                if (v0Var != null && !profileActivity.f33965p2) {
                     float f12 = 1.0f - lerp2;
                     v0Var.setScaleX(f12);
                     profileActivity.U0.setScaleY(f12);

@@ -5,7 +5,7 @@ import android.util.Base64;
 import android.util.SparseArray;
 import org.telegram.tgnet.TLRPC;
 public final class f {
-    public final SparseArray f45647a = new SparseArray();
+    public final SparseArray f45619a = new SparseArray();
 
     public static int a(TLRPC.TL_inputMediaPoll tL_inputMediaPoll, TLRPC.InputMedia inputMedia) {
         if (tL_inputMediaPoll.attached_media == inputMedia) {
@@ -156,11 +156,11 @@ public final class f {
     }
 
     public final e b(int i10) {
-        return (e) this.f45647a.get(i10);
+        return (e) this.f45619a.get(i10);
     }
 
     public final void h(int i10) {
-        SparseArray sparseArray = this.f45647a;
+        SparseArray sparseArray = this.f45619a;
         int size = sparseArray.size();
         for (int i11 = 0; i11 < size; i11++) {
             if (sparseArray.keyAt(i11) > i10) {

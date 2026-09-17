@@ -10,14 +10,14 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class yb1 extends View {
-    public static final int f43100c = 0;
-    public final Paint f43101a;
-    public int[] f43102b;
+    public static final int f43073c = 0;
+    public final Paint f43074a;
+    public int[] f43075b;
 
     public yb1(Context context) {
         super(context);
-        this.f43101a = new Paint(1);
-        this.f43102b = new int[7];
+        this.f43074a = new Paint(1);
+        this.f43075b = new int[7];
     }
 
     @Override
@@ -27,15 +27,15 @@ public final class yb1 extends View {
         float dp = AndroidUtilities.dp(5.0f);
         float dp2 = AndroidUtilities.dp(20.0f) - dp;
         Paint.Style style = Paint.Style.FILL;
-        Paint paint = this.f43101a;
+        Paint paint = this.f43074a;
         paint.setStyle(style);
         int i10 = 0;
-        paint.setColor(this.f43102b[0]);
+        paint.setColor(this.f43075b[0]);
         canvas.drawCircle(measuredWidth, measuredHeight, dp, paint);
         double d = 0.0d;
         while (i10 < 6) {
             i10++;
-            paint.setColor(this.f43102b[i10]);
+            paint.setColor(this.f43075b[i10]);
             canvas.drawCircle((((float) Math.sin(d)) * dp2) + measuredWidth, measuredHeight - (((float) Math.cos(d)) * dp2), dp, paint);
             d += 1.0471975511965976d;
         }

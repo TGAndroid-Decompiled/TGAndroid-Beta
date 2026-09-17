@@ -11,29 +11,29 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.SharedPrefsHelper;
 import org.telegram.tgnet.TLRPC;
 public final class ba0 implements Runnable {
-    public final LaunchActivity f34700a;
-    public final org.telegram.ui.ActionBar.n2 f34701b;
-    public final int f34702c;
+    public final LaunchActivity f34673a;
+    public final org.telegram.ui.ActionBar.n2 f34674b;
+    public final int f34675c;
     public final TLRPC.User d;
-    public final TLRPC.TL_messages_botApp f34703e;
-    public final AtomicBoolean f34704f;
+    public final TLRPC.TL_messages_botApp f34676e;
+    public final AtomicBoolean f34677f;
     public final String h;
-    public final boolean f34705n;
-    public final boolean f34706r;
-    public final boolean f34707s;
+    public final boolean f34678n;
+    public final boolean f34679r;
+    public final boolean f34680s;
     public final boolean v;
 
     public ba0(LaunchActivity launchActivity, org.telegram.ui.ActionBar.n2 n2Var, int i10, TLRPC.User user, TLRPC.TL_messages_botApp tL_messages_botApp, AtomicBoolean atomicBoolean, String str, boolean z10, boolean z11, boolean z12, boolean z13) {
-        this.f34700a = launchActivity;
-        this.f34701b = n2Var;
-        this.f34702c = i10;
+        this.f34673a = launchActivity;
+        this.f34674b = n2Var;
+        this.f34675c = i10;
         this.d = user;
-        this.f34703e = tL_messages_botApp;
-        this.f34704f = atomicBoolean;
+        this.f34676e = tL_messages_botApp;
+        this.f34677f = atomicBoolean;
         this.h = str;
-        this.f34705n = z10;
-        this.f34706r = z11;
-        this.f34707s = z12;
+        this.f34678n = z10;
+        this.f34679r = z11;
+        this.f34680s = z12;
         this.v = z13;
     }
 
@@ -42,33 +42,33 @@ public final class ba0 implements Runnable {
         TLRPC.TL_attachMenuBot tL_attachMenuBot;
         String formatString;
         Pattern pattern = LaunchActivity.B1;
-        org.telegram.ui.ActionBar.n2 n2Var = this.f34701b;
+        org.telegram.ui.ActionBar.n2 n2Var = this.f34674b;
         if (n2Var != null && LaunchActivity.C1) {
-            LaunchActivity launchActivity = this.f34700a;
+            LaunchActivity launchActivity = this.f34673a;
             if (!launchActivity.isFinishing() && !launchActivity.isDestroyed()) {
                 TLRPC.User user = this.d;
-                long j3 = user.f20043id;
-                TLRPC.TL_messages_botApp tL_messages_botApp = this.f34703e;
+                long j3 = user.f20016id;
+                TLRPC.TL_messages_botApp tL_messages_botApp = this.f34676e;
                 TLRPC.BotApp botApp = tL_messages_botApp.app;
-                boolean z10 = this.f34704f.get();
-                int i10 = this.f34702c;
+                boolean z10 = this.f34677f.get();
+                int i10 = this.f34675c;
                 String str = this.h;
-                boolean z11 = this.f34705n;
-                boolean z12 = this.f34706r;
+                boolean z11 = this.f34678n;
+                boolean z12 = this.f34679r;
                 fi.f5 b10 = fi.f5.b(i10, j3, j3, null, null, 3, 0, 0L, botApp, z10, str, user, 0, z11, z12);
                 if (launchActivity.P() == null || launchActivity.P().k(b10) == null) {
-                    SharedPrefsHelper.setWebViewConfirmShown(launchActivity.O, user.f20043id, true);
+                    SharedPrefsHelper.setWebViewConfirmShown(launchActivity.O, user.f20016id, true);
                     fi.k3 k3Var = new fi.k3(launchActivity, n2Var.getResourceProvider());
-                    fi.b3 b3Var = k3Var.f9817x;
+                    fi.b3 b3Var = k3Var.f9789x;
                     if (b3Var != null) {
-                        b3Var.setWasOpenedByLinkIntent(this.f34707s);
+                        b3Var.setWasOpenedByLinkIntent(this.f34680s);
                     }
                     k3Var.w(!z11);
                     if (z12) {
-                        k3Var.x(true, false, k3Var.f9794e0);
+                        k3Var.x(true, false, k3Var.f9766e0);
                     }
                     k3Var.A0 = false;
-                    k3Var.f9801k0 = launchActivity;
+                    k3Var.f9773k0 = launchActivity;
                     k3Var.s(n2Var, b10);
                     k3Var.show();
                     if (tL_messages_botApp.inactive || this.v) {

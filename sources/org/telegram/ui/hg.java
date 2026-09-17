@@ -5,24 +5,24 @@ import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.messenger.ChannelBoostsController;
 import org.telegram.tgnet.tl.TL_stories;
 public final class hg implements e2.h {
-    public final int f37021a;
-    public final co f37022b;
+    public final int f36994a;
+    public final co f36995b;
 
     public hg(co coVar, int i10) {
-        this.f37021a = i10;
-        this.f37022b = coVar;
+        this.f36994a = i10;
+        this.f36995b = coVar;
     }
 
     @Override
     public final void accept(Object obj) {
-        switch (this.f37021a) {
+        switch (this.f36994a) {
             case 0:
-                this.f37022b.E1 = (ChannelBoostsController.CanApplyBoost) obj;
+                this.f36995b.E1 = (ChannelBoostsController.CanApplyBoost) obj;
                 return;
             case 1:
                 View view = (View) obj;
                 boolean z10 = view instanceof org.telegram.ui.Cells.t1;
-                co coVar = this.f37022b;
+                co coVar = this.f36995b;
                 if (z10) {
                     org.telegram.ui.Cells.t1 t1Var = (org.telegram.ui.Cells.t1) view;
                     t1Var.E8 = coVar.t9();
@@ -30,9 +30,9 @@ public final class hg implements e2.h {
                     boolean B9 = coVar.B9();
                     if (t1Var.G8 != B9) {
                         t1Var.G8 = B9;
-                        coVar.f35501x0.getClass();
+                        coVar.f35474x0.getClass();
                         int R = RecyclerView.R(view);
-                        t1Var.f23075n8 = true;
+                        t1Var.f23048n8 = true;
                         t1Var.forceLayout();
                         if (R >= 0) {
                             coVar.A0.m(R);
@@ -49,13 +49,13 @@ public final class hg implements e2.h {
                     return;
                 } else if (view instanceof org.telegram.ui.Cells.w0) {
                     org.telegram.ui.Cells.w0 w0Var = (org.telegram.ui.Cells.w0) view;
-                    w0Var.f23438e0 = coVar.t9();
-                    w0Var.f23451i0 = coVar.C9();
+                    w0Var.f23411e0 = coVar.t9();
+                    w0Var.f23424i0 = coVar.C9();
                     coVar.B9();
                     coVar.Q8();
                     int R82 = coVar.R8();
-                    if (w0Var.f23454j0 != R82) {
-                        w0Var.f23454j0 = R82;
+                    if (w0Var.f23427j0 != R82) {
+                        w0Var.f23427j0 = R82;
                         w0Var.invalidate();
                         return;
                     }
@@ -75,7 +75,7 @@ public final class hg implements e2.h {
             default:
                 TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus = (TL_stories.TL_premium_boostsStatus) obj;
                 if (tL_premium_boostsStatus != null) {
-                    co coVar2 = this.f37022b;
+                    co coVar2 = this.f36995b;
                     coVar2.D1 = tL_premium_boostsStatus;
                     coVar2.getMessagesController().getBoostsController().userCanBoostChannel(coVar2.T5, tL_premium_boostsStatus, new hg(coVar2, 0));
                     return;

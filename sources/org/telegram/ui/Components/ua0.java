@@ -24,20 +24,20 @@ public final class ua0 extends FrameLayout implements NotificationCenter.Notific
     public float M;
     public Rect N;
     public Rect O;
-    public final int f30866a;
-    public TLRPC.InputStickerSet f30867b;
-    public final Rect f30868c;
+    public final int f30839a;
+    public TLRPC.InputStickerSet f30840b;
+    public final Rect f30841c;
     public q5 d;
-    public boolean f30869e;
-    public final h90 f30870f;
+    public boolean f30842e;
+    public final h90 f30843f;
     public final TextPaint h;
-    public final CharSequence f30871n;
-    public StaticLayout f30872r;
-    public final String f30873s;
+    public final CharSequence f30844n;
+    public StaticLayout f30845r;
+    public final String f30846s;
     public SpannableStringBuilder v;
-    public StaticLayout f30874w;
-    public int f30875x;
-    public int f30876y;
+    public StaticLayout f30847w;
+    public int f30848x;
+    public int f30849y;
 
     public ua0(int r11, android.content.Context r12, org.telegram.ui.ActionBar.f6 r13, java.util.ArrayList r14, int r15) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ua0.<init>(int, android.content.Context, org.telegram.ui.ActionBar.f6, java.util.ArrayList, int):void");
@@ -53,30 +53,30 @@ public final class ua0 extends FrameLayout implements NotificationCenter.Notific
         }
         CharSequence charSequence = this.G;
         TextPaint textPaint = this.h;
-        CharSequence charSequence2 = this.f30871n;
+        CharSequence charSequence2 = this.f30844n;
         if (charSequence2 != charSequence || this.F != i10) {
             if (charSequence2 != null) {
                 StaticLayout staticLayout = new StaticLayout(charSequence2, 0, charSequence2.length(), textPaint, Math.max(i10, 0), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
-                this.f30872r = staticLayout;
-                h90 h90Var = this.f30870f;
+                this.f30845r = staticLayout;
+                h90 h90Var = this.f30843f;
                 if (h90Var != null && this.O == null) {
                     int lineCount = staticLayout.getLineCount() - 1;
-                    this.f30875x = AndroidUtilities.dp(2.0f) + ((int) this.f30872r.getPrimaryHorizontal(charSequence2.length()));
-                    this.f30876y = this.f30872r.getLineTop(lineCount);
-                    this.E = r3 - this.f30876y;
-                    float min = Math.min(AndroidUtilities.dp(100.0f), this.f30872r.getWidth() - this.f30875x);
+                    this.f30848x = AndroidUtilities.dp(2.0f) + ((int) this.f30845r.getPrimaryHorizontal(charSequence2.length()));
+                    this.f30849y = this.f30845r.getLineTop(lineCount);
+                    this.E = r3 - this.f30849y;
+                    float min = Math.min(AndroidUtilities.dp(100.0f), this.f30845r.getWidth() - this.f30848x);
                     if (this.N == null) {
                         this.N = new Rect();
                     }
                     Rect rect = this.N;
-                    int i13 = this.f30875x;
-                    rect.set(i13, this.f30876y, (int) (i13 + min), r3);
+                    int i13 = this.f30848x;
+                    rect.set(i13, this.f30849y, (int) (i13 + min), r3);
                     h90Var.setBounds(this.N);
-                    this.f30869e = true;
+                    this.f30842e = true;
                 }
             } else {
-                this.f30872r = null;
-                this.f30869e = false;
+                this.f30845r = null;
+                this.f30842e = false;
             }
             this.G = charSequence2;
             this.F = i10;
@@ -86,19 +86,19 @@ public final class ua0 extends FrameLayout implements NotificationCenter.Notific
             if (spannableStringBuilder != null) {
                 SpannableStringBuilder spannableStringBuilder2 = this.v;
                 i11 = i10;
-                this.f30874w = new StaticLayout(spannableStringBuilder2, 0, spannableStringBuilder2.length(), textPaint, i11, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+                this.f30847w = new StaticLayout(spannableStringBuilder2, 0, spannableStringBuilder2.length(), textPaint, i11, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
             } else {
                 i11 = i10;
-                this.f30874w = null;
+                this.f30847w = null;
             }
             this.I = this.v;
             this.H = i11;
         }
-        StaticLayout staticLayout2 = this.f30872r;
+        StaticLayout staticLayout2 = this.f30845r;
         if (staticLayout2 != null) {
             i12 = staticLayout2.getHeight();
         }
-        StaticLayout staticLayout3 = this.f30874w;
+        StaticLayout staticLayout3 = this.f30847w;
         if (staticLayout3 != null) {
             float height = staticLayout3.getHeight() - this.E;
             if (z10) {
@@ -125,7 +125,7 @@ public final class ua0 extends FrameLayout implements NotificationCenter.Notific
         if (q5Var != null) {
             q5Var.a(this);
         }
-        NotificationCenter.getInstance(this.f30866a).addObserver(this, NotificationCenter.groupStickersDidLoad);
+        NotificationCenter.getInstance(this.f30839a).addObserver(this, NotificationCenter.groupStickersDidLoad);
     }
 
     @Override
@@ -135,21 +135,21 @@ public final class ua0 extends FrameLayout implements NotificationCenter.Notific
         if (q5Var != null) {
             q5Var.o(this);
         }
-        NotificationCenter.getInstance(this.f30866a).removeObserver(this, NotificationCenter.groupStickersDidLoad);
+        NotificationCenter.getInstance(this.f30839a).removeObserver(this, NotificationCenter.groupStickersDidLoad);
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
         Rect rect;
         super.onDraw(canvas);
-        if (this.f30872r != null) {
+        if (this.f30845r != null) {
             canvas.save();
             canvas.translate(getPaddingLeft(), getPaddingTop());
             TextPaint textPaint = this.h;
             textPaint.setAlpha(255);
-            this.f30872r.draw(canvas);
-            h90 h90Var = this.f30870f;
-            if (h90Var != null && this.f30869e) {
+            this.f30845r.draw(canvas);
+            h90 h90Var = this.f30843f;
+            if (h90Var != null && this.f30842e) {
                 h90Var.setAlpha((int) ((1.0f - this.M) * 255.0f));
                 Rect rect2 = this.N;
                 if (rect2 != null && (rect = this.O) != null) {
@@ -161,17 +161,17 @@ public final class ua0 extends FrameLayout implements NotificationCenter.Notific
                 h90Var.draw(canvas);
                 invalidate();
             }
-            if (this.f30874w != null) {
+            if (this.f30847w != null) {
                 canvas.save();
-                canvas.translate(0.0f, this.f30876y);
+                canvas.translate(0.0f, this.f30849y);
                 textPaint.setAlpha((int) (this.M * 255.0f));
-                this.f30874w.draw(canvas);
+                this.f30847w.draw(canvas);
                 canvas.restore();
             }
             q5 q5Var = this.d;
             if (q5Var != null) {
                 q5Var.setAlpha((int) (this.M * 255.0f));
-                this.d.setBounds(this.f30868c);
+                this.d.setBounds(this.f30841c);
                 this.d.draw(canvas);
             }
             canvas.restore();

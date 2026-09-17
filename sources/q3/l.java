@@ -2,14 +2,14 @@ package q3;
 
 import j$.util.Objects;
 public final class l extends j {
-    public final String f44186b;
-    public final String f44187c;
+    public final String f44158b;
+    public final String f44159c;
     public final String d;
 
     public l(String str, String str2, String str3) {
         super("----");
-        this.f44186b = str;
-        this.f44187c = str2;
+        this.f44158b = str;
+        this.f44159c = str2;
         this.d = str3;
     }
 
@@ -19,7 +19,7 @@ public final class l extends j {
         }
         if (obj != null && l.class == obj.getClass()) {
             l lVar = (l) obj;
-            if (Objects.equals(this.f44187c, lVar.f44187c) && Objects.equals(this.f44186b, lVar.f44186b) && Objects.equals(this.d, lVar.d)) {
+            if (Objects.equals(this.f44159c, lVar.f44159c) && Objects.equals(this.f44158b, lVar.f44158b) && Objects.equals(this.d, lVar.d)) {
                 return true;
             }
         }
@@ -30,14 +30,14 @@ public final class l extends j {
         int i10;
         int i11;
         int i12 = 0;
-        String str = this.f44186b;
+        String str = this.f44158b;
         if (str != null) {
             i10 = str.hashCode();
         } else {
             i10 = 0;
         }
         int i13 = (527 + i10) * 31;
-        String str2 = this.f44187c;
+        String str2 = this.f44159c;
         if (str2 != null) {
             i11 = str2.hashCode();
         } else {
@@ -53,6 +53,6 @@ public final class l extends j {
 
     @Override
     public final String toString() {
-        return this.f44184a + ": domain=" + this.f44186b + ", description=" + this.f44187c;
+        return this.f44156a + ": domain=" + this.f44158b + ", description=" + this.f44159c;
     }
 }

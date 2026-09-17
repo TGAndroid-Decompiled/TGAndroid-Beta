@@ -11,19 +11,19 @@ import zd.v;
 import zd.w0;
 import zd.x;
 public final class m {
-    public static final n1.d f2592c = new n1.d("firebase_sessions_enabled");
+    public static final n1.d f2565c = new n1.d("firebase_sessions_enabled");
     public static final n1.d d = new n1.d("firebase_sessions_sampling_rate");
-    public static final n1.d f2593e = new n1.d("firebase_sessions_restart_timeout");
-    public static final n1.d f2594f = new n1.d("firebase_sessions_cache_duration");
-    public static final n1.d f2595g = new n1.d("firebase_sessions_cache_updated_time");
-    public final k1.f f2596a;
-    public f f2597b;
+    public static final n1.d f2566e = new n1.d("firebase_sessions_restart_timeout");
+    public static final n1.d f2567f = new n1.d("firebase_sessions_cache_duration");
+    public static final n1.d f2568g = new n1.d("firebase_sessions_cache_updated_time");
+    public final k1.f f2569a;
+    public f f2570b;
 
     public m(k1.f fVar) {
         Object obj;
         id.h hVar;
         long j3;
-        this.f2596a = fVar;
+        this.f2569a = fVar;
         p jVar = new j(this, null, 0);
         Thread currentThread = Thread.currentThread();
         w0 a2 = c2.a();
@@ -31,24 +31,24 @@ public final class m {
         if (!booleanValue) {
             hVar = a2;
         } else {
-            id.i iVar = id.i.f11980a;
+            id.i iVar = id.i.f11954a;
             if (booleanValue) {
-                obj = a2.fold(iVar, x.f51646c);
+                obj = a2.fold(iVar, x.f51615c);
             } else {
                 obj = a2;
             }
             hVar = (id.h) obj;
             iVar.plus(hVar);
         }
-        ge.e eVar = m0.f51602a;
-        if (hVar != eVar && hVar.get(id.d.f11979a) == null) {
+        ge.e eVar = m0.f51571a;
+        if (hVar != eVar && hVar.get(id.d.f11953a) == null) {
             hVar = hVar.plus(eVar);
         }
         zd.h hVar2 = new zd.h(hVar, currentThread, a2);
-        hVar2.L(d0.f51562a, hVar2, jVar);
-        w0 w0Var = hVar2.f51590e;
+        hVar2.L(d0.f51531a, hVar2, jVar);
+        w0 w0Var = hVar2.f51559e;
         if (w0Var != null) {
-            int i10 = w0.f51642f;
+            int i10 = w0.f51611f;
             w0Var.h(false);
         }
         while (!Thread.interrupted()) {
@@ -62,7 +62,7 @@ public final class m {
                     LockSupport.parkNanos(hVar2, j3);
                 } else {
                     if (w0Var != null) {
-                        int i11 = w0.f51642f;
+                        int i11 = w0.f51611f;
                         w0Var.f(false);
                     }
                     Object u10 = e0.u(hVar2.u());
@@ -70,11 +70,11 @@ public final class m {
                     if (vVar == null) {
                         return;
                     }
-                    throw vVar.f51639a;
+                    throw vVar.f51608a;
                 }
             } catch (Throwable th2) {
                 if (w0Var != null) {
-                    int i12 = w0.f51642f;
+                    int i12 = w0.f51611f;
                     w0Var.f(false);
                 }
                 throw th2;
@@ -87,13 +87,13 @@ public final class m {
 
     public static final void a(m mVar, n1.b bVar) {
         mVar.getClass();
-        mVar.f2597b = new f((Boolean) bVar.a(f2592c), (Double) bVar.a(d), (Integer) bVar.a(f2593e), (Integer) bVar.a(f2594f), (Long) bVar.a(f2595g));
+        mVar.f2570b = new f((Boolean) bVar.a(f2565c), (Double) bVar.a(d), (Integer) bVar.a(f2566e), (Integer) bVar.a(f2567f), (Long) bVar.a(f2568g));
     }
 
     public final boolean b() {
-        f fVar = this.f2597b;
+        f fVar = this.f2570b;
         if (fVar != null) {
-            Long l4 = fVar.f2575e;
+            Long l4 = fVar.f2548e;
             if (fVar != null) {
                 Integer num = fVar.d;
                 if (l4 != null && num != null && (System.currentTimeMillis() - l4.longValue()) / 1000 < num.intValue()) {

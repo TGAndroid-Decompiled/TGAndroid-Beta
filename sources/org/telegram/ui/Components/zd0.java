@@ -7,22 +7,22 @@ import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
 public final class zd0 {
-    public Path f33167a;
-    public float f33168b;
-    public float f33169c;
+    public Path f33140a;
+    public float f33141b;
+    public float f33142c;
     public float d;
-    public float f33170e;
-    public float f33171f;
-    public ArrayList f33172g;
+    public float f33143e;
+    public float f33144f;
+    public ArrayList f33145g;
 
     public final void a(String str, float f7) {
-        float f10 = this.f33170e;
+        float f10 = this.f33143e;
         float f11 = this.d;
-        float f12 = this.f33169c;
+        float f12 = this.f33142c;
         try {
             ?? obj = new Object();
-            obj.f32274a = new ArrayList();
-            obj.f32275b = f7 * this.f33171f;
+            obj.f32247a = new ArrayList();
+            obj.f32248b = f7 * this.f33144f;
             String[] split = str.split(" ");
             int i10 = 0;
             while (i10 < split.length) {
@@ -31,32 +31,32 @@ public final class zd0 {
                     if (charAt != 'L') {
                         if (charAt == 'M') {
                             ?? obj2 = new Object();
-                            obj2.f32915a = (Float.parseFloat(split[i10 + 1]) + f11) * f12;
+                            obj2.f32888a = (Float.parseFloat(split[i10 + 1]) + f11) * f12;
                             i10 += 2;
-                            obj2.f32916b = (Float.parseFloat(split[i10]) + f10) * f12;
-                            obj.f32274a.add(obj2);
+                            obj2.f32889b = (Float.parseFloat(split[i10]) + f10) * f12;
+                            obj.f32247a.add(obj2);
                         }
                     } else {
                         ?? obj3 = new Object();
-                        obj3.f32548a = (Float.parseFloat(split[i10 + 1]) + f11) * f12;
+                        obj3.f32521a = (Float.parseFloat(split[i10 + 1]) + f11) * f12;
                         i10 += 2;
-                        obj3.f32549b = (Float.parseFloat(split[i10]) + f10) * f12;
-                        obj.f32274a.add(obj3);
+                        obj3.f32522b = (Float.parseFloat(split[i10]) + f10) * f12;
+                        obj.f32247a.add(obj3);
                     }
                 } else {
                     ?? obj4 = new Object();
-                    obj4.f31231c = (Float.parseFloat(split[i10 + 1]) + f11) * f12;
+                    obj4.f31204c = (Float.parseFloat(split[i10 + 1]) + f11) * f12;
                     obj4.d = (Float.parseFloat(split[i10 + 2]) + f10) * f12;
-                    obj4.f31232e = (Float.parseFloat(split[i10 + 3]) + f11) * f12;
-                    obj4.f31233f = (Float.parseFloat(split[i10 + 4]) + f10) * f12;
-                    obj4.f31229a = (Float.parseFloat(split[i10 + 5]) + f11) * f12;
+                    obj4.f31205e = (Float.parseFloat(split[i10 + 3]) + f11) * f12;
+                    obj4.f31206f = (Float.parseFloat(split[i10 + 4]) + f10) * f12;
+                    obj4.f31202a = (Float.parseFloat(split[i10 + 5]) + f11) * f12;
                     i10 += 6;
-                    obj4.f31230b = (Float.parseFloat(split[i10]) + f10) * f12;
-                    obj.f32274a.add(obj4);
+                    obj4.f31203b = (Float.parseFloat(split[i10]) + f10) * f12;
+                    obj.f32247a.add(obj4);
                 }
                 i10++;
             }
-            this.f33172g.add(obj);
+            this.f33145g.add(obj);
         } catch (Exception e7) {
             FileLog.e(e7);
         }
@@ -67,19 +67,19 @@ public final class zd0 {
         wd0 wd0Var2;
         Object obj;
         float f10;
-        ArrayList arrayList = this.f33172g;
-        Path path = this.f33167a;
-        if (this.f33168b != f7) {
-            this.f33168b = f7;
+        ArrayList arrayList = this.f33145g;
+        Path path = this.f33140a;
+        if (this.f33141b != f7) {
+            this.f33141b = f7;
             int size = arrayList.size();
             wd0 wd0Var3 = null;
             wd0 wd0Var4 = null;
             for (int i10 = 0; i10 < size; i10++) {
                 wd0 wd0Var5 = (wd0) arrayList.get(i10);
-                if ((wd0Var4 == null || wd0Var4.f32275b < wd0Var5.f32275b) && wd0Var5.f32275b <= f7) {
+                if ((wd0Var4 == null || wd0Var4.f32248b < wd0Var5.f32248b) && wd0Var5.f32248b <= f7) {
                     wd0Var4 = wd0Var5;
                 }
-                if ((wd0Var3 == null || wd0Var3.f32275b > wd0Var5.f32275b) && wd0Var5.f32275b >= f7) {
+                if ((wd0Var3 == null || wd0Var3.f32248b > wd0Var5.f32248b) && wd0Var5.f32248b >= f7) {
                     wd0Var3 = wd0Var5;
                 }
             }
@@ -94,21 +94,21 @@ public final class zd0 {
                 wd0Var2 = wd0Var4;
             }
             if (wd0Var != null) {
-                ArrayList arrayList2 = wd0Var.f32274a;
-                if (wd0Var2 == null || wd0Var2.f32274a.size() == arrayList2.size()) {
+                ArrayList arrayList2 = wd0Var.f32247a;
+                if (wd0Var2 == null || wd0Var2.f32247a.size() == arrayList2.size()) {
                     path.reset();
                     int size2 = arrayList2.size();
                     for (int i11 = 0; i11 < size2; i11++) {
                         if (wd0Var2 != null) {
-                            obj = wd0Var2.f32274a.get(i11);
+                            obj = wd0Var2.f32247a.get(i11);
                         } else {
                             obj = null;
                         }
                         Object obj2 = arrayList2.get(i11);
                         if (obj == null || obj.getClass() == obj2.getClass()) {
                             if (wd0Var2 != null) {
-                                float f11 = wd0Var2.f32275b;
-                                f10 = (f7 - f11) / (wd0Var.f32275b - f11);
+                                float f11 = wd0Var2.f32248b;
+                                f10 = (f7 - f11) / (wd0Var.f32248b - f11);
                             } else {
                                 f10 = 1.0f;
                             }
@@ -116,42 +116,42 @@ public final class zd0 {
                                 yd0 yd0Var = (yd0) obj2;
                                 yd0 yd0Var2 = (yd0) obj;
                                 if (yd0Var2 != null) {
-                                    float f12 = yd0Var2.f32915a;
-                                    float dpf2 = AndroidUtilities.dpf2(((yd0Var.f32915a - f12) * f10) + f12);
-                                    float f13 = yd0Var2.f32916b;
-                                    path.moveTo(dpf2, AndroidUtilities.dpf2(((yd0Var.f32916b - f13) * f10) + f13));
+                                    float f12 = yd0Var2.f32888a;
+                                    float dpf2 = AndroidUtilities.dpf2(((yd0Var.f32888a - f12) * f10) + f12);
+                                    float f13 = yd0Var2.f32889b;
+                                    path.moveTo(dpf2, AndroidUtilities.dpf2(((yd0Var.f32889b - f13) * f10) + f13));
                                 } else {
-                                    path.moveTo(AndroidUtilities.dpf2(yd0Var.f32915a), AndroidUtilities.dpf2(yd0Var.f32916b));
+                                    path.moveTo(AndroidUtilities.dpf2(yd0Var.f32888a), AndroidUtilities.dpf2(yd0Var.f32889b));
                                 }
                             } else if (obj2 instanceof xd0) {
                                 xd0 xd0Var = (xd0) obj2;
                                 xd0 xd0Var2 = (xd0) obj;
                                 if (xd0Var2 != null) {
-                                    float f14 = xd0Var2.f32548a;
-                                    float dpf22 = AndroidUtilities.dpf2(((xd0Var.f32548a - f14) * f10) + f14);
-                                    float f15 = xd0Var2.f32549b;
-                                    path.lineTo(dpf22, AndroidUtilities.dpf2(((xd0Var.f32549b - f15) * f10) + f15));
+                                    float f14 = xd0Var2.f32521a;
+                                    float dpf22 = AndroidUtilities.dpf2(((xd0Var.f32521a - f14) * f10) + f14);
+                                    float f15 = xd0Var2.f32522b;
+                                    path.lineTo(dpf22, AndroidUtilities.dpf2(((xd0Var.f32522b - f15) * f10) + f15));
                                 } else {
-                                    path.lineTo(AndroidUtilities.dpf2(xd0Var.f32548a), AndroidUtilities.dpf2(xd0Var.f32549b));
+                                    path.lineTo(AndroidUtilities.dpf2(xd0Var.f32521a), AndroidUtilities.dpf2(xd0Var.f32522b));
                                 }
                             } else if (obj2 instanceof vd0) {
                                 vd0 vd0Var = (vd0) obj2;
                                 vd0 vd0Var2 = (vd0) obj;
                                 if (vd0Var2 != null) {
-                                    float f16 = vd0Var2.f31231c;
-                                    float dpf23 = AndroidUtilities.dpf2(((vd0Var.f31231c - f16) * f10) + f16);
+                                    float f16 = vd0Var2.f31204c;
+                                    float dpf23 = AndroidUtilities.dpf2(((vd0Var.f31204c - f16) * f10) + f16);
                                     float f17 = vd0Var2.d;
                                     float dpf24 = AndroidUtilities.dpf2(((vd0Var.d - f17) * f10) + f17);
-                                    float f18 = vd0Var2.f31232e;
-                                    float dpf25 = AndroidUtilities.dpf2(((vd0Var.f31232e - f18) * f10) + f18);
-                                    float f19 = vd0Var2.f31233f;
-                                    float dpf26 = AndroidUtilities.dpf2(((vd0Var.f31233f - f19) * f10) + f19);
-                                    float f20 = vd0Var2.f31229a;
-                                    float dpf27 = AndroidUtilities.dpf2(((vd0Var.f31229a - f20) * f10) + f20);
-                                    float f21 = vd0Var2.f31230b;
-                                    path.cubicTo(dpf23, dpf24, dpf25, dpf26, dpf27, AndroidUtilities.dpf2(((vd0Var.f31230b - f21) * f10) + f21));
+                                    float f18 = vd0Var2.f31205e;
+                                    float dpf25 = AndroidUtilities.dpf2(((vd0Var.f31205e - f18) * f10) + f18);
+                                    float f19 = vd0Var2.f31206f;
+                                    float dpf26 = AndroidUtilities.dpf2(((vd0Var.f31206f - f19) * f10) + f19);
+                                    float f20 = vd0Var2.f31202a;
+                                    float dpf27 = AndroidUtilities.dpf2(((vd0Var.f31202a - f20) * f10) + f20);
+                                    float f21 = vd0Var2.f31203b;
+                                    path.cubicTo(dpf23, dpf24, dpf25, dpf26, dpf27, AndroidUtilities.dpf2(((vd0Var.f31203b - f21) * f10) + f21));
                                 } else {
-                                    path.cubicTo(AndroidUtilities.dpf2(vd0Var.f31231c), AndroidUtilities.dpf2(vd0Var.d), AndroidUtilities.dpf2(vd0Var.f31232e), AndroidUtilities.dpf2(vd0Var.f31233f), AndroidUtilities.dpf2(vd0Var.f31229a), AndroidUtilities.dpf2(vd0Var.f31230b));
+                                    path.cubicTo(AndroidUtilities.dpf2(vd0Var.f31204c), AndroidUtilities.dpf2(vd0Var.d), AndroidUtilities.dpf2(vd0Var.f31205e), AndroidUtilities.dpf2(vd0Var.f31206f), AndroidUtilities.dpf2(vd0Var.f31202a), AndroidUtilities.dpf2(vd0Var.f31203b));
                                 }
                             }
                         } else {

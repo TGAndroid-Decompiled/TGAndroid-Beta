@@ -5,15 +5,15 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.ae0;
 import org.telegram.ui.Components.r60;
 public final class p implements Runnable {
-    public final int f21298a;
-    public final Object f21299b;
-    public final Object f21300c;
+    public final int f21271a;
+    public final Object f21272b;
+    public final Object f21273c;
     public final Object d;
 
     public p(Object obj, Object obj2, Object obj3, int i10) {
-        this.f21298a = i10;
-        this.f21300c = obj;
-        this.f21299b = obj2;
+        this.f21271a = i10;
+        this.f21273c = obj;
+        this.f21272b = obj2;
         this.d = obj3;
     }
 
@@ -23,16 +23,16 @@ public final class p implements Runnable {
     }
 
     public p(r60 r60Var, TLRPC.User user, n2 n2Var) {
-        this.f21298a = 18;
-        this.f21300c = r60Var;
+        this.f21271a = 18;
+        this.f21273c = r60Var;
         this.d = user;
-        this.f21299b = n2Var;
+        this.f21272b = n2Var;
     }
 
     public p(ae0 ae0Var, TLRPC.TL_error tL_error, TLObject tLObject, boolean z10) {
-        this.f21298a = 24;
-        this.f21300c = ae0Var;
-        this.f21299b = tL_error;
+        this.f21271a = 24;
+        this.f21273c = ae0Var;
+        this.f21272b = tL_error;
         this.d = tLObject;
     }
 }

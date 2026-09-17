@@ -4,37 +4,37 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
 public final class qr implements Runnable {
-    public final int f29828a;
-    public final tr f29829b;
+    public final int f29801a;
+    public final tr f29802b;
 
     public qr(tr trVar, int i10) {
-        this.f29828a = i10;
-        this.f29829b = trVar;
+        this.f29801a = i10;
+        this.f29802b = trVar;
     }
 
     @Override
     public final void run() {
         View view;
-        switch (this.f29828a) {
+        switch (this.f29801a) {
             case 0:
-                tr trVar = this.f29829b;
-                if (trVar.f30714b == null && (view = trVar.d) != null) {
+                tr trVar = this.f29802b;
+                if (trVar.f30687b == null && (view = trVar.d) != null) {
                     View findFocus = view.findFocus();
                     if (findFocus instanceof EditText) {
-                        trVar.f30714b = (EditText) findFocus;
+                        trVar.f30687b = (EditText) findFocus;
                     }
                 }
-                EditText editText = trVar.f30714b;
+                EditText editText = trVar.f30687b;
                 if (editText != null) {
-                    if (editText.length() != 0 || trVar.f30716e) {
+                    if (editText.length() != 0 || trVar.f30689e) {
                         try {
                             trVar.performHapticFeedback(3, 2);
                             trVar.playSoundEffect(0);
                         } catch (Exception unused) {
                         }
-                        trVar.f30714b.dispatchKeyEvent(new KeyEvent(0, 67));
-                        trVar.f30714b.dispatchKeyEvent(new KeyEvent(1, 67));
-                        if (trVar.f30717f) {
+                        trVar.f30687b.dispatchKeyEvent(new KeyEvent(0, 67));
+                        trVar.f30687b.dispatchKeyEvent(new KeyEvent(1, 67));
+                        if (trVar.f30690f) {
                             trVar.postDelayed(trVar.h, 50L);
                             return;
                         }
@@ -44,9 +44,9 @@ public final class qr implements Runnable {
                 }
                 return;
             default:
-                tr trVar2 = this.f29829b;
-                trVar2.f30718n = false;
-                trVar2.f30717f = true;
+                tr trVar2 = this.f29802b;
+                trVar2.f30691n = false;
+                trVar2.f30690f = true;
                 trVar2.h.run();
                 return;
         }

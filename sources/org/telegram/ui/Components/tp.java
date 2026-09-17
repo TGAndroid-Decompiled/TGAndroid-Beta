@@ -1,15 +1,15 @@
 package org.telegram.ui.Components;
 public final class tp implements z4.e {
-    public int f30700a;
-    public final oh0 f30701b;
+    public int f30673a;
+    public final oh0 f30674b;
 
     public tp(oh0 oh0Var) {
-        this.f30701b = oh0Var;
+        this.f30674b = oh0Var;
     }
 
     @Override
     public final void a(float f7, int i10, int i11) {
-        if (i10 == this.f30701b.getCurrentItem() && f7 == 0.0f && this.f30700a == 1) {
+        if (i10 == this.f30674b.getCurrentItem() && f7 == 0.0f && this.f30673a == 1) {
             d();
         }
     }
@@ -19,14 +19,14 @@ public final class tp implements z4.e {
         if (i10 == 0) {
             d();
         }
-        this.f30700a = i10;
+        this.f30673a = i10;
     }
 
     public final void d() {
-        oh0 oh0Var = this.f30701b;
-        if (oh0Var.f31986w0 != null) {
+        oh0 oh0Var = this.f30674b;
+        if (oh0Var.f31959w0 != null) {
             int currentItem = oh0Var.getCurrentItem();
-            int k10 = oh0Var.f31986w0.k(currentItem) + oh0Var.f31986w0.j();
+            int k10 = oh0Var.f31959w0.k(currentItem) + oh0Var.f31959w0.j();
             if (currentItem != k10) {
                 oh0Var.x(k10, false);
             }

@@ -7,12 +7,12 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
 public final class sl0 extends org.telegram.ui.Components.kl0 {
-    public final Context f40498c;
+    public final Context f40471c;
     public final PasscodeActivity d;
 
     public sl0(PasscodeActivity passcodeActivity, Context context) {
         this.d = passcodeActivity;
-        this.f40498c = context;
+        this.f40471c = context;
     }
 
     @Override
@@ -89,8 +89,8 @@ public final class sl0 extends org.telegram.ui.Components.kl0 {
         int i13;
         int i14;
         String formatString;
-        int i15 = c1Var.f45771f;
-        View view = c1Var.f45767a;
+        int i15 = c1Var.f45743f;
+        View view = c1Var.f45739a;
         PasscodeActivity passcodeActivity = this.d;
         if (i15 != 0) {
             if (i15 != 1) {
@@ -99,8 +99,8 @@ public final class sl0 extends org.telegram.ui.Components.kl0 {
                     if (i15 != 3) {
                         if (i15 == 4) {
                             tl0 tl0Var = (tl0) view;
-                            tl0Var.f40820a.f(R.raw.utyan_passcode, 100, 100, null);
-                            tl0Var.f40820a.d();
+                            tl0Var.f40793a.f(R.raw.utyan_passcode, 100, 100, null);
+                            tl0Var.f40793a.d();
                             return;
                         }
                         return;
@@ -147,7 +147,7 @@ public final class sl0 extends org.telegram.ui.Components.kl0 {
                     i14 = passcodeActivity.disablePasscodeRow;
                     if (i10 == i14) {
                         eaVar.b(LocaleController.getString(R.string.DisablePasscode), false);
-                        int i17 = org.telegram.ui.ActionBar.j6.f20926q7;
+                        int i17 = org.telegram.ui.ActionBar.j6.f20899q7;
                         eaVar.setTag(Integer.valueOf(i17));
                         eaVar.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, i17, false));
                         return;
@@ -194,7 +194,7 @@ public final class sl0 extends org.telegram.ui.Components.kl0 {
     @Override
     public final s4.c1 x(ViewGroup viewGroup, int i10) {
         View w8Var;
-        Context context = this.f40498c;
+        Context context = this.f40471c;
         if (i10 != 0) {
             if (i10 != 1) {
                 if (i10 != 3) {

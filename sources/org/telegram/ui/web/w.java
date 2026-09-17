@@ -16,15 +16,15 @@ import org.telegram.ui.Components.yc;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.tj0;
 public final class w implements Utilities.Callback2 {
-    public final int f42295a;
-    public final d1 f42296b;
-    public final k9 f42297c;
+    public final int f42268a;
+    public final d1 f42269b;
+    public final k9 f42270c;
     public final String d;
 
     public w(d1 d1Var, k9 k9Var, String str, int i10) {
-        this.f42295a = i10;
-        this.f42296b = d1Var;
-        this.f42297c = k9Var;
+        this.f42268a = i10;
+        this.f42269b = d1Var;
+        this.f42270c = k9Var;
         this.d = str;
     }
 
@@ -32,17 +32,17 @@ public final class w implements Utilities.Callback2 {
     public final void run(Object obj, Object obj2) {
         int i10;
         tj0 tj0Var;
-        int i11 = this.f42295a;
+        int i11 = this.f42268a;
         String str = this.d;
-        k9 k9Var = this.f42297c;
-        d1 d1Var = this.f42296b;
+        k9 k9Var = this.f42270c;
+        d1 d1Var = this.f42269b;
         switch (i11) {
             case 0:
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
-                d1 d1Var2 = this.f42296b;
-                f6 f6Var = d1Var2.f42070e;
+                d1 d1Var2 = this.f42269b;
+                f6 f6Var = d1Var2.f42043e;
                 TL_keyboard.TL_buttonTypeRequestPeer tL_buttonTypeRequestPeer = (TL_keyboard.TL_buttonTypeRequestPeer) zf.c.a((TL_keyboard.KeyboardButton) obj, TL_keyboard.TL_buttonTypeRequestPeer.class);
-                k9 k9Var2 = this.f42297c;
+                k9 k9Var2 = this.f42270c;
                 String str2 = this.d;
                 if (tL_buttonTypeRequestPeer != null) {
                     TLRPC.RequestPeerType requestPeerType = tL_buttonTypeRequestPeer.peer_type;
@@ -51,7 +51,7 @@ public final class w implements Utilities.Callback2 {
                         int i12 = d1Var2.M;
                         TLRPC.User user = d1Var2.U;
                         r3 r3Var = new r3(d1Var2, k9Var2, str2, tL_buttonTypeRequestPeer, 13);
-                        f6 f6Var2 = d1Var2.f42070e;
+                        f6 f6Var2 = d1Var2.f42043e;
                         br.a(context, i12, user, (TLRPC.TL_requestPeerTypeCreateBot) requestPeerType, false, r3Var, f6Var2, new yc(d1Var2, f6Var2));
                         return;
                     } else if ((requestPeerType instanceof TLRPC.TL_requestPeerTypeUser) && (i10 = tL_buttonTypeRequestPeer.max_quantity) > 1) {
@@ -60,16 +60,16 @@ public final class w implements Utilities.Callback2 {
                         Boolean bool = tL_requestPeerTypeUser.bot;
                         Boolean bool2 = tL_requestPeerTypeUser.premium;
                         d0 d0Var = new d0(d1Var2, zArr, str2, tL_buttonTypeRequestPeer, k9Var2);
-                        tj0 tj0Var2 = tj0.f40795u0;
+                        tj0 tj0Var2 = tj0.f40768u0;
                         org.telegram.ui.ActionBar.n2 R = LaunchActivity.R();
                         if (R == null) {
                             tj0Var = null;
                         } else {
-                            tj0Var = tj0.f40795u0;
+                            tj0Var = tj0.f40768u0;
                             if (tj0Var == null) {
                                 tj0 tj0Var3 = new tj0(R, i10, bool, bool2, d0Var);
                                 tj0Var3.show();
-                                tj0.f40795u0 = tj0Var3;
+                                tj0.f40768u0 = tj0Var3;
                                 tj0Var = tj0Var3;
                             }
                         }
@@ -80,7 +80,7 @@ public final class w implements Utilities.Callback2 {
                         return;
                     } else {
                         Bundle e7 = org.telegram.messenger.w1.e(15, "onlySelect", "dialogsType", true);
-                        e7.putLong("requestPeerBotId", d1Var2.U.f20043id);
+                        e7.putLong("requestPeerBotId", d1Var2.U.f20016id);
                         try {
                             SerializedData serializedData = new SerializedData(tL_buttonTypeRequestPeer.peer_type.getObjectSize());
                             tL_buttonTypeRequestPeer.peer_type.serializeToStream(serializedData);
@@ -95,7 +95,7 @@ public final class w implements Utilities.Callback2 {
                         org.telegram.ui.ActionBar.n2 U = LaunchActivity.U();
                         if (U != 0) {
                             ?? obj3 = new Object();
-                            obj3.f21170a = true;
+                            obj3.f21143a = true;
                             U.showAsSheet(h0Var, obj3);
                             return;
                         }
@@ -113,7 +113,7 @@ public final class w implements Utilities.Callback2 {
             case 1:
                 TLRPC.Updates updates = (TLRPC.Updates) obj;
                 TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj2;
-                f6 f6Var3 = d1Var.f42070e;
+                f6 f6Var3 = d1Var.f42043e;
                 if (updates != null) {
                     MessagesController.getInstance(d1Var.M).processUpdates(updates, false);
                     d1Var.y(k9Var, "requested_chat_sent", d1.B(str, "req_id"));
@@ -130,7 +130,7 @@ public final class w implements Utilities.Callback2 {
             default:
                 TLRPC.Updates updates2 = (TLRPC.Updates) obj;
                 TLRPC.TL_error tL_error3 = (TLRPC.TL_error) obj2;
-                f6 f6Var4 = d1Var.f42070e;
+                f6 f6Var4 = d1Var.f42043e;
                 if (updates2 != null) {
                     MessagesController.getInstance(d1Var.M).processUpdates(updates2, false);
                     d1Var.y(k9Var, "requested_chat_sent", d1.B(str, "req_id"));

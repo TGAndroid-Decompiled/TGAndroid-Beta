@@ -3,24 +3,24 @@ package org.telegram.messenger;
 import android.net.Uri;
 import org.telegram.messenger.Utilities;
 public final class e6 implements Runnable {
-    public final int f17561a;
-    public final Utilities.Callback f17562b;
-    public final Uri f17563c;
+    public final int f17534a;
+    public final Utilities.Callback f17535b;
+    public final Uri f17536c;
 
     public e6(Utilities.Callback callback, Uri uri, int i10) {
-        this.f17561a = i10;
-        this.f17562b = callback;
-        this.f17563c = uri;
+        this.f17534a = i10;
+        this.f17535b = callback;
+        this.f17536c = uri;
     }
 
     @Override
     public final void run() {
-        switch (this.f17561a) {
+        switch (this.f17534a) {
             case 0:
-                this.f17562b.run(this.f17563c);
+                this.f17535b.run(this.f17536c);
                 return;
             default:
-                this.f17562b.run(this.f17563c);
+                this.f17535b.run(this.f17536c);
                 return;
         }
     }

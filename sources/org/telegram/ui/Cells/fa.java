@@ -13,26 +13,26 @@ import org.telegram.ui.Components.mu;
 import org.telegram.ui.Components.x61;
 import org.telegram.ui.Components.z20;
 public final class fa implements ViewTreeObserver.OnPreDrawListener {
-    public final int f21982a;
-    public final Object f21983b;
+    public final int f21955a;
+    public final Object f21956b;
 
     public fa(Object obj, int i10) {
-        this.f21982a = i10;
-        this.f21983b = obj;
+        this.f21955a = i10;
+        this.f21956b = obj;
     }
 
     @Override
     public final boolean onPreDraw() {
         boolean z10;
-        int i10 = this.f21982a;
-        Object obj = this.f21983b;
+        int i10 = this.f21955a;
+        Object obj = this.f21956b;
         switch (i10) {
             case 0:
-                ha haVar = ((ga) obj).f22026a;
+                ha haVar = ((ga) obj).f21999a;
                 haVar.getViewTreeObserver().removeOnPreDrawListener(this);
                 haVar.getTransitionParams().j();
                 haVar.getTransitionParams().f();
-                haVar.getTransitionParams().f22763g = true;
+                haVar.getTransitionParams().f22736g = true;
                 haVar.getTransitionParams().K1 = 0.0f;
                 ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
                 ofFloat.addUpdateListener(new r(this, 8));
@@ -40,19 +40,19 @@ public final class fa implements ViewTreeObserver.OnPreDrawListener {
                 ofFloat.start();
                 return false;
             case 1:
-                ((mu) obj).f28543a.f30736c.getViewTreeObserver().removeOnPreDrawListener(this);
+                ((mu) obj).f28516a.f30709c.getViewTreeObserver().removeOnPreDrawListener(this);
                 return true;
             case 2:
                 z20 z20Var = (z20) obj;
-                d30 d30Var = z20Var.f33091f;
-                org.telegram.ui.u7 u7Var = z20Var.f33090e;
+                d30 d30Var = z20Var.f33064f;
+                org.telegram.ui.u7 u7Var = z20Var.f33063e;
                 u7Var.getViewTreeObserver().removeOnPreDrawListener(this);
                 int[] iArr = z20Var.G;
                 u7Var.getLocationOnScreen(iArr);
-                float f7 = z20Var.f33093r.x + z20Var.Q;
+                float f7 = z20Var.f33066r.x + z20Var.Q;
                 f30 f30Var = z20Var.U;
                 float measuredWidth = ((f30Var.getMeasuredWidth() / 2.0f) + f7) - iArr[0];
-                float measuredWidth2 = ((f30Var.getMeasuredWidth() / 2.0f) + (z20Var.f33093r.y + z20Var.R)) - iArr[1];
+                float measuredWidth2 = ((f30Var.getMeasuredWidth() / 2.0f) + (z20Var.f33066r.y + z20Var.R)) - iArr[1];
                 if (measuredWidth2 - AndroidUtilities.dp(61.0f) > 0.0f && AndroidUtilities.dp(61.0f) + measuredWidth2 < u7Var.getMeasuredHeight()) {
                     z10 = true;
                 } else {
@@ -85,12 +85,12 @@ public final class fa implements ViewTreeObserver.OnPreDrawListener {
                 ((di.r6) obj).invalidate();
                 return true;
             default:
-                b91 b91Var = (b91) ((j50) obj).f27383b;
-                b91Var.f24662n.getViewTreeObserver().removeOnPreDrawListener(this);
-                ImageView imageView = b91Var.f24653e;
+                b91 b91Var = (b91) ((j50) obj).f27356b;
+                b91Var.f24635n.getViewTreeObserver().removeOnPreDrawListener(this);
+                ImageView imageView = b91Var.f24626e;
                 if (imageView != null) {
                     imageView.setVisibility(4);
-                    b91Var.f24653e.setImageDrawable(null);
+                    b91Var.f24626e.setImageDrawable(null);
                     Bitmap bitmap = b91Var.h;
                     if (bitmap != null) {
                         bitmap.recycle();
@@ -98,7 +98,7 @@ public final class fa implements ViewTreeObserver.OnPreDrawListener {
                     }
                 }
                 AndroidUtilities.runOnUIThread(new x61(this, 3));
-                b91Var.f24663r = 0;
+                b91Var.f24636r = 0;
                 return true;
         }
     }

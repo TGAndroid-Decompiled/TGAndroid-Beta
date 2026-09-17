@@ -14,41 +14,41 @@ import org.telegram.ui.PhotoViewer;
 import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.co;
 public final class c2 extends org.telegram.ui.Components.s6 {
-    public final int f21701b;
-    public final Object f21702c;
+    public final int f21674b;
+    public final Object f21675c;
 
     public c2(int i10, FrameLayout frameLayout) {
         super("animationValue", 0);
-        this.f21701b = i10;
-        this.f21702c = frameLayout;
+        this.f21674b = i10;
+        this.f21675c = frameLayout;
     }
 
     @Override
     public final void b(Object obj, float f7) {
         float f10;
-        switch (this.f21701b) {
+        switch (this.f21674b) {
             case 0:
                 e2 e2Var = (e2) obj;
-                e2 e2Var2 = (e2) this.f21702c;
-                e2Var2.f21871g0 = f7;
+                e2 e2Var2 = (e2) this.f21675c;
+                e2Var2.f21844g0 = f7;
                 e2Var2.invalidate();
                 return;
             case 1:
                 co.Ic = f7;
-                co coVar = (co) this.f21702c;
+                co coVar = (co) this.f21675c;
                 coVar.R6.setSaturation(f7);
                 coVar.Q6.setColorFilter(new ColorMatrixColorFilter(coVar.R6));
                 return;
             case 2:
                 org.telegram.ui.ActionBar.k kVar = (org.telegram.ui.ActionBar.k) obj;
-                org.telegram.ui.Components.k8 k8Var = (org.telegram.ui.Components.k8) this.f21702c;
+                org.telegram.ui.Components.k8 k8Var = (org.telegram.ui.Components.k8) this.f21675c;
                 k8Var.Q0 = f7;
                 org.telegram.ui.ActionBar.j5 titleTextView = kVar.getTitleTextView();
                 ImageView backButton = kVar.getBackButton();
                 float f11 = 1.0f - f7;
                 titleTextView.setTranslationX(AndroidUtilities.dp(-52.0f) * f11);
                 backButton.setTranslationX(AndroidUtilities.dp(-52.0f) * f11);
-                org.telegram.ui.ActionBar.v0 v0Var = k8Var.f27756l0;
+                org.telegram.ui.ActionBar.v0 v0Var = k8Var.f27729l0;
                 if (v0Var != null && v0Var.getSearchContainer() != null) {
                     v0Var.getSearchContainer().setClipChildren(false);
                     v0Var.getSearchContainer().setClipToPadding(false);
@@ -75,11 +75,11 @@ public final class c2 extends org.telegram.ui.Components.s6 {
                 org.telegram.ui.Components.k8.k0(k8Var).invalidate();
                 return;
             case 3:
-                k00 k00Var = (k00) this.f21702c;
-                k00Var.f27662w0 = f7;
+                k00 k00Var = (k00) this.f21675c;
+                k00Var.f27635w0 = f7;
                 int i10 = k00Var.U;
-                org.telegram.ui.ActionBar.f6 f6Var = k00Var.f27632a;
-                k00Var.T.setColor(i0.a.d(f7, org.telegram.ui.ActionBar.j6.v0(i10, f6Var), org.telegram.ui.ActionBar.j6.v0(k00Var.f27637c0, f6Var)));
+                org.telegram.ui.ActionBar.f6 f6Var = k00Var.f27605a;
+                k00Var.T.setColor(i0.a.d(f7, org.telegram.ui.ActionBar.j6.v0(i10, f6Var), org.telegram.ui.ActionBar.j6.v0(k00Var.f27610c0, f6Var)));
                 bi.o0 o0Var = k00Var.F;
                 o0Var.e1();
                 o0Var.invalidate();
@@ -87,13 +87,13 @@ public final class c2 extends org.telegram.ui.Components.s6 {
                 return;
             case 4:
                 j81 j81Var = (j81) obj;
-                j81 j81Var2 = (j81) this.f21702c;
-                j81Var2.f27417x = f7;
+                j81 j81Var2 = (j81) this.f21675c;
+                j81Var2.f27390x = f7;
                 j81Var2.invalidate();
                 return;
             case 5:
                 d91 d91Var = (d91) obj;
-                d91 d91Var2 = (d91) this.f21702c;
+                d91 d91Var2 = (d91) this.f21675c;
                 d91Var2.E = f7;
                 c91 c91Var = d91Var2.L;
                 if (c91Var != null) {
@@ -103,7 +103,7 @@ public final class c2 extends org.telegram.ui.Components.s6 {
                 return;
             case 6:
                 ((View) obj).setAlpha(f7);
-                ue0 ue0Var = ((PhotoViewer) this.f21702c).C1;
+                ue0 ue0Var = ((PhotoViewer) this.f21675c).C1;
                 if (ue0Var != null) {
                     ue0Var.setVideoThumbFlashAlpha(f7);
                     return;
@@ -111,72 +111,72 @@ public final class c2 extends org.telegram.ui.Components.s6 {
                 return;
             default:
                 ProfileActivity profileActivity = (ProfileActivity) obj;
-                ((ProfileActivity) this.f21702c).f33893b1 = f7;
+                ((ProfileActivity) this.f21675c).f33866b1 = f7;
                 return;
         }
     }
 
     @Override
     public final Object get(Object obj) {
-        switch (this.f21701b) {
+        switch (this.f21674b) {
             case 0:
                 e2 e2Var = (e2) obj;
-                return Float.valueOf(((e2) this.f21702c).f21871g0);
+                return Float.valueOf(((e2) this.f21675c).f21844g0);
             case 1:
                 return Float.valueOf(co.Ic);
             case 2:
                 org.telegram.ui.ActionBar.k kVar = (org.telegram.ui.ActionBar.k) obj;
-                return Float.valueOf(((org.telegram.ui.Components.k8) this.f21702c).Q0);
+                return Float.valueOf(((org.telegram.ui.Components.k8) this.f21675c).Q0);
             case 3:
                 k00 k00Var = (k00) obj;
-                return Float.valueOf(((k00) this.f21702c).f27662w0);
+                return Float.valueOf(((k00) this.f21675c).f27635w0);
             case 4:
                 j81 j81Var = (j81) obj;
-                return Float.valueOf(((j81) this.f21702c).f27417x);
+                return Float.valueOf(((j81) this.f21675c).f27390x);
             case 5:
                 d91 d91Var = (d91) obj;
-                return Float.valueOf(((d91) this.f21702c).E);
+                return Float.valueOf(((d91) this.f21675c).E);
             case 6:
                 return Float.valueOf(((View) obj).getAlpha());
             default:
                 ProfileActivity profileActivity = (ProfileActivity) obj;
-                return Float.valueOf(((ProfileActivity) this.f21702c).f33893b1);
+                return Float.valueOf(((ProfileActivity) this.f21675c).f33866b1);
         }
     }
 
     public c2(j81 j81Var) {
         super("progress", 0);
-        this.f21701b = 4;
-        this.f21702c = j81Var;
+        this.f21674b = 4;
+        this.f21675c = j81Var;
     }
 
     public c2(d91 d91Var) {
         super("clipProgress", 0);
-        this.f21701b = 5;
-        this.f21702c = d91Var;
+        this.f21674b = 5;
+        this.f21675c = d91Var;
     }
 
     public c2(ProfileActivity profileActivity) {
         super("headerShadow", 0);
-        this.f21701b = 7;
-        this.f21702c = profileActivity;
+        this.f21674b = 7;
+        this.f21675c = profileActivity;
     }
 
     public c2(PhotoViewer photoViewer) {
         super("flashViewAlpha", 0);
-        this.f21701b = 6;
-        this.f21702c = photoViewer;
+        this.f21674b = 6;
+        this.f21675c = photoViewer;
     }
 
     public c2(co coVar) {
         super("", 0);
-        this.f21701b = 1;
-        this.f21702c = coVar;
+        this.f21674b = 1;
+        this.f21675c = coVar;
     }
 
     public c2(org.telegram.ui.Components.k8 k8Var) {
         super("actionBarSlide", 0);
-        this.f21701b = 2;
-        this.f21702c = k8Var;
+        this.f21674b = 2;
+        this.f21675c = k8Var;
     }
 }

@@ -10,23 +10,23 @@ import org.telegram.ui.Components.qc;
 import org.telegram.ui.Components.ub;
 import org.telegram.ui.Components.yb;
 public final class b implements Runnable {
-    public final int f51732a;
-    public final g f51733b;
+    public final int f51701a;
+    public final g f51702b;
 
     public b(g gVar, int i10) {
-        this.f51732a = i10;
-        this.f51733b = gVar;
+        this.f51701a = i10;
+        this.f51702b = gVar;
     }
 
     @Override
     public final void run() {
         boolean z10;
         String formatPluralStringSpaced;
-        int i10 = this.f51732a;
-        g gVar = this.f51733b;
+        int i10 = this.f51701a;
+        g gVar = this.f51702b;
         switch (i10) {
             case 0:
-                b bVar = gVar.f51951n0;
+                b bVar = gVar.f51920n0;
                 int currentTime = gVar.getConnectionsManager().getCurrentTime();
                 ci.p pVar = gVar.R;
                 if (gVar.P <= 0 && gVar.G <= currentTime) {
@@ -46,11 +46,11 @@ public final class b implements Runnable {
                     SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
                     spannableStringBuilder.append((CharSequence) gVar.m0).append((CharSequence) g.j0(gVar.G - currentTime));
                     gVar.R.f(spannableStringBuilder, true);
-                    qc qcVar = gVar.f51934a0;
+                    qc qcVar = gVar.f51903a0;
                     if (qcVar != null) {
-                        ub ubVar = qcVar.f29703e;
+                        ub ubVar = qcVar.f29676e;
                         if ((ubVar instanceof yb) && ubVar.isAttachedToWindow()) {
-                            vl.p(R.string.BotStarsWithdrawalToast, new Object[]{g.j0(gVar.G - currentTime)}, ((yb) gVar.f51934a0.f29703e).f32904b);
+                            vl.p(R.string.BotStarsWithdrawalToast, new Object[]{g.j0(gVar.G - currentTime)}, ((yb) gVar.f51903a0.f29676e).f32877b);
                         }
                     }
                     AndroidUtilities.cancelRunOnUIThread(bVar);

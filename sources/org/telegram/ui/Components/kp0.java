@@ -1,16 +1,16 @@
 package org.telegram.ui.Components;
 public final class kp0 extends g.p {
-    public final int f27914c;
+    public final int f27887c;
     public final hq0 d;
 
     public kp0(hq0 hq0Var, int i10) {
-        this.f27914c = i10;
+        this.f27887c = i10;
         this.d = hq0Var;
     }
 
     @Override
     public final int i(int i10) {
-        switch (this.f27914c) {
+        switch (this.f27887c) {
             case 0:
                 if (i10 == 0) {
                     return this.d.H.J;
@@ -18,7 +18,7 @@ public final class kp0 extends g.p {
                 return 1;
             case 1:
                 dq0 dq0Var = this.d.M;
-                if (i10 != dq0Var.f25475w && i10 != dq0Var.f25476x && i10 != dq0Var.f25477y && i10 != dq0Var.F && dq0Var.j(i10) != 0) {
+                if (i10 != dq0Var.f25448w && i10 != dq0Var.f25449x && i10 != dq0Var.f25450y && i10 != dq0Var.F && dq0Var.j(i10) != 0) {
                     return 1;
                 }
                 return 4;

@@ -57,11 +57,11 @@ import s4.h1;
 import s4.o0;
 import w7.x8;
 public final class d implements e2, y2.h, le.d, m.k, n5.b, o0.b, v61, d5, la0, r0.n, com.google.android.gms.common.api.internal.s, x1, h1, s0 {
-    public final int f15097a;
-    public Object f15098b;
+    public final int f15071a;
+    public Object f15072b;
 
     public d(int i10) {
-        this.f15097a = i10;
+        this.f15071a = i10;
     }
 
     public static float[] p(ArrayList arrayList) {
@@ -257,7 +257,7 @@ public final class d implements e2, y2.h, le.d, m.k, n5.b, o0.b, v61, d5, la0, r
     }
 
     public void C(int i10) {
-        RecyclerView recyclerView = (RecyclerView) this.f15098b;
+        RecyclerView recyclerView = (RecyclerView) this.f15072b;
         View childAt = recyclerView.getChildAt(i10);
         if (childAt != null) {
             recyclerView.r(childAt);
@@ -269,7 +269,7 @@ public final class d implements e2, y2.h, le.d, m.k, n5.b, o0.b, v61, d5, la0, r
     public void D(long j3) {
         long j10 = 0;
         while (j10 < j3) {
-            long skip = ((com.google.firebase.messaging.d) this.f15098b).skip(j3 - j10);
+            long skip = ((com.google.firebase.messaging.d) this.f15072b).skip(j3 - j10);
             if (skip > 0) {
                 j10 += skip;
             } else {
@@ -280,35 +280,35 @@ public final class d implements e2, y2.h, le.d, m.k, n5.b, o0.b, v61, d5, la0, r
 
     @Override
     public void E(int i10, float f7, float f10, le.e eVar) {
-        ((le.j) this.f15098b).i(f7);
+        ((le.j) this.f15072b).i(f7);
     }
 
     @Override
     public void H(float f7) {
-        y0 y0Var = (y0) this.f15098b;
-        qg.s0.e(y0Var.f45581a).k("-1", f7);
-        y0Var.f45584e.setBrushSize(f7);
+        y0 y0Var = (y0) this.f15072b;
+        qg.s0.e(y0Var.f45553a).k("-1", f7);
+        y0Var.f45556e.setBrushSize(f7);
     }
 
     @Override
     public void J(int i10, int i11, boolean z10) {
-        ((ChatActivityEnterView) this.f15098b).T0(i10, z10, 0, true, 0L);
+        ((ChatActivityEnterView) this.f15072b).T0(i10, z10, 0, true, 0L);
     }
 
     @Override
     public l1 T0(View view, l1 l1Var) {
         i0.c defaultWindowInsets = AndroidUtilities.getDefaultWindowInsets(l1Var, false);
-        am0 am0Var = (am0) this.f15098b;
-        am0Var.v.setPadding(defaultWindowInsets.f11451a, defaultWindowInsets.f11452b, defaultWindowInsets.f11453c, defaultWindowInsets.d);
-        am0Var.f24452s.requestLayout();
-        return l1.f44739b;
+        am0 am0Var = (am0) this.f15072b;
+        am0Var.v.setPadding(defaultWindowInsets.f11425a, defaultWindowInsets.f11426b, defaultWindowInsets.f11427c, defaultWindowInsets.d);
+        am0Var.f24425s.requestLayout();
+        return l1.f44711b;
     }
 
     @Override
     public p0 U(Class cls, v1.b bVar) {
         m0 m0Var = null;
-        for (v1.c cVar : (v1.c[]) this.f15098b) {
-            if (cVar.f47307a.equals(cls)) {
+        for (v1.c cVar : (v1.c[]) this.f15072b) {
+            if (cVar.f47279a.equals(cls)) {
                 m0Var = new m0();
             }
         }
@@ -325,12 +325,12 @@ public final class d implements e2, y2.h, le.d, m.k, n5.b, o0.b, v61, d5, la0, r
 
     @Override
     public void accept(Object obj, Object obj2) {
-        switch (this.f15097a) {
+        switch (this.f15071a) {
             case 21:
                 r7.z zVar = (r7.z) ((r7.k) obj).u();
                 r7.f fVar = new r7.f(1, (TaskCompletionSource) obj2);
                 Parcel O0 = zVar.O0();
-                r7.d.c(O0, (g8.e) this.f15098b);
+                r7.d.c(O0, (g8.e) this.f15072b);
                 r7.d.d(O0, fVar);
                 O0.writeString(null);
                 zVar.S0(O0, 63);
@@ -340,7 +340,7 @@ public final class d implements e2, y2.h, le.d, m.k, n5.b, o0.b, v61, d5, la0, r
                 s6.e eVar = (s6.e) ((s6.h) obj).u();
                 Parcel I0 = eVar.I0();
                 k7.a.d(I0, fVar2);
-                k7.a.c(I0, (s6.a) this.f15098b);
+                k7.a.c(I0, (s6.a) this.f15072b);
                 I0.writeStrongBinder(null);
                 eVar.J0(I0, 2);
                 return;
@@ -362,11 +362,11 @@ public final class d implements e2, y2.h, le.d, m.k, n5.b, o0.b, v61, d5, la0, r
         int i15;
         byte[] bArr;
         int i16;
-        u3.d dVar = (u3.d) this.f15098b;
-        u3.e eVar = dVar.f46931b;
-        SparseArray sparseArray = dVar.f46933c;
-        e2.v vVar = dVar.f46942k;
-        e2.v vVar2 = dVar.f46940i;
+        u3.d dVar = (u3.d) this.f15072b;
+        u3.e eVar = dVar.f46903b;
+        SparseArray sparseArray = dVar.f46905c;
+        e2.v vVar = dVar.f46914k;
+        e2.v vVar2 = dVar.f46912i;
         int i17 = 1;
         int i18 = 0;
         if (i10 != 161 && i10 != 163) {
@@ -379,7 +379,7 @@ public final class d implements e2, y2.h, le.d, m.k, n5.b, o0.b, v61, d5, la0, r
                                     if (i10 == 30322) {
                                         dVar.d(i10);
                                         byte[] bArr2 = new byte[i11];
-                                        dVar.f46954x.f46920x = bArr2;
+                                        dVar.f46926x.f46892x = bArr2;
                                         pVar.readFully(bArr2, 0, i11);
                                         return;
                                     }
@@ -387,30 +387,30 @@ public final class d implements e2, y2.h, le.d, m.k, n5.b, o0.b, v61, d5, la0, r
                                 }
                                 dVar.d(i10);
                                 byte[] bArr3 = new byte[i11];
-                                dVar.f46954x.f46909l = bArr3;
+                                dVar.f46926x.f46881l = bArr3;
                                 pVar.readFully(bArr3, 0, i11);
                                 return;
                             }
-                            Arrays.fill(vVar.f8817a, (byte) 0);
-                            pVar.readFully(vVar.f8817a, 4 - i11, i11);
+                            Arrays.fill(vVar.f8789a, (byte) 0);
+                            pVar.readFully(vVar.f8789a, 4 - i11, i11);
                             vVar.J(0);
-                            dVar.f46956z = (int) vVar.z();
+                            dVar.f46928z = (int) vVar.z();
                             return;
                         }
                         byte[] bArr4 = new byte[i11];
                         pVar.readFully(bArr4, 0, i11);
                         dVar.d(i10);
-                        dVar.f46954x.f46908k = new g0(1, 0, 0, bArr4);
+                        dVar.f46926x.f46880k = new g0(1, 0, 0, bArr4);
                         return;
                     }
                     dVar.d(i10);
                     byte[] bArr5 = new byte[i11];
-                    dVar.f46954x.f46907j = bArr5;
+                    dVar.f46926x.f46879j = bArr5;
                     pVar.readFully(bArr5, 0, i11);
                     return;
                 }
                 dVar.d(i10);
-                u3.c cVar = dVar.f46954x;
+                u3.c cVar = dVar.f46926x;
                 int i19 = cVar.h;
                 if (i19 != 1685485123 && i19 != 1685480259) {
                     pVar.r(i11);
@@ -423,10 +423,10 @@ public final class d implements e2, y2.h, le.d, m.k, n5.b, o0.b, v61, d5, la0, r
             } else if (dVar.J == 2) {
                 u3.c cVar2 = (u3.c) sparseArray.get(dVar.P);
                 int i20 = dVar.S;
-                e2.v vVar3 = dVar.f46947p;
-                if (i20 == 4 && "V_VP9".equals(cVar2.f46902c)) {
+                e2.v vVar3 = dVar.f46919p;
+                if (i20 == 4 && "V_VP9".equals(cVar2.f46874c)) {
                     vVar3.G(i11);
-                    pVar.readFully(vVar3.f8817a, 0, i11);
+                    pVar.readFully(vVar3.f8789a, 0, i11);
                     return;
                 }
                 pVar.r(i11);
@@ -437,7 +437,7 @@ public final class d implements e2, y2.h, le.d, m.k, n5.b, o0.b, v61, d5, la0, r
         }
         if (dVar.J == 0) {
             dVar.P = (int) eVar.b(pVar, false, true, 8);
-            dVar.Q = eVar.f46959c;
+            dVar.Q = eVar.f46931c;
             dVar.L = -9223372036854775807L;
             dVar.J = 1;
             vVar2.G(0);
@@ -451,7 +451,7 @@ public final class d implements e2, y2.h, le.d, m.k, n5.b, o0.b, v61, d5, la0, r
         cVar3.Z.getClass();
         if (dVar.J == 1) {
             dVar.j(pVar, 3);
-            int i21 = (vVar2.f8817a[2] & 6) >> 1;
+            int i21 = (vVar2.f8789a[2] & 6) >> 1;
             byte b10 = 255;
             if (i21 == 0) {
                 dVar.N = 1;
@@ -465,7 +465,7 @@ public final class d implements e2, y2.h, le.d, m.k, n5.b, o0.b, v61, d5, la0, r
                 iArr[0] = (i11 - dVar.Q) - 3;
             } else {
                 dVar.j(pVar, 4);
-                int i22 = (vVar2.f8817a[3] & 255) + 1;
+                int i22 = (vVar2.f8789a[3] & 255) + 1;
                 dVar.N = i22;
                 int[] iArr2 = dVar.O;
                 if (iArr2 == null) {
@@ -490,7 +490,7 @@ public final class d implements e2, y2.h, le.d, m.k, n5.b, o0.b, v61, d5, la0, r
                         while (true) {
                             i14 = i26 + 1;
                             dVar.j(pVar, i14);
-                            int i27 = vVar2.f8817a[i26] & 255;
+                            int i27 = vVar2.f8789a[i26] & 255;
                             int[] iArr3 = dVar.O;
                             i15 = iArr3[i24] + i27;
                             iArr3[i24] = i15;
@@ -514,17 +514,17 @@ public final class d implements e2, y2.h, le.d, m.k, n5.b, o0.b, v61, d5, la0, r
                             dVar.O[i28] = i18;
                             int i32 = i30 + 1;
                             dVar.j(pVar, i32);
-                            if (vVar2.f8817a[i30] != 0) {
+                            if (vVar2.f8789a[i30] != 0) {
                                 int i33 = 0;
                                 while (true) {
                                     if (i33 < 8) {
                                         int i34 = 1 << (7 - i33);
-                                        if ((vVar2.f8817a[i30] & i34) != 0) {
+                                        if ((vVar2.f8789a[i30] & i34) != 0) {
                                             i12 = i32 + i33;
                                             dVar.j(pVar, i12);
-                                            j3 = vVar2.f8817a[i30] & b10 & (~i34);
+                                            j3 = vVar2.f8789a[i30] & b10 & (~i34);
                                             while (i32 < i12) {
-                                                j3 = (j3 << 8) | (vVar2.f8817a[i32] & b10);
+                                                j3 = (j3 << 8) | (vVar2.f8789a[i32] & b10);
                                                 i32++;
                                                 b10 = 255;
                                             }
@@ -573,9 +573,9 @@ public final class d implements e2, y2.h, le.d, m.k, n5.b, o0.b, v61, d5, la0, r
             }
             c10 = 1;
             c11 = 0;
-            int i36 = vVar2.f8817a[c10] & 255;
+            int i36 = vVar2.f8789a[c10] & 255;
             dVar.K = dVar.l(i36 | (bArr[c11] << 8)) + dVar.E;
-            if (cVar3.f46903e != 2 && (i10 != 163 || (vVar2.f8817a[2] & 128) != 128)) {
+            if (cVar3.f46875e != 2 && (i10 != 163 || (vVar2.f8789a[2] & 128) != 128)) {
                 i16 = 0;
             } else {
                 i16 = 1;
@@ -588,7 +588,7 @@ public final class d implements e2, y2.h, le.d, m.k, n5.b, o0.b, v61, d5, la0, r
             while (true) {
                 int i37 = dVar.M;
                 if (i37 < dVar.N) {
-                    dVar.e(cVar3, ((dVar.M * cVar3.f46904f) / 1000) + dVar.K, dVar.R, dVar.n(pVar, cVar3, dVar.O[i37], false), 0);
+                    dVar.e(cVar3, ((dVar.M * cVar3.f46876f) / 1000) + dVar.K, dVar.R, dVar.n(pVar, cVar3, dVar.O[i37], false), 0);
                     dVar.M++;
                 } else {
                     dVar.J = 0;
@@ -611,7 +611,7 @@ public final class d implements e2, y2.h, le.d, m.k, n5.b, o0.b, v61, d5, la0, r
 
     @Override
     public void close() {
-        ContentProviderClient contentProviderClient = (ContentProviderClient) this.f15098b;
+        ContentProviderClient contentProviderClient = (ContentProviderClient) this.f15072b;
         if (contentProviderClient != null) {
             contentProviderClient.release();
         }
@@ -619,12 +619,12 @@ public final class d implements e2, y2.h, le.d, m.k, n5.b, o0.b, v61, d5, la0, r
 
     @Override
     public void d(l lVar, MenuItem menuItem) {
-        ((f) this.f15098b).f15116f.removeCallbacksAndMessages(lVar);
+        ((f) this.f15072b).f15090f.removeCallbacksAndMessages(lVar);
     }
 
     @Override
     public int e() {
-        return ((o0) this.f15098b).G();
+        return ((o0) this.f15072b).G();
     }
 
     @Override
@@ -634,23 +634,23 @@ public final class d implements e2, y2.h, le.d, m.k, n5.b, o0.b, v61, d5, la0, r
 
     @Override
     public Object mo28get() {
-        return this.f15098b;
+        return this.f15072b;
     }
 
     @Override
     public void h(y2.j jVar, long j3, long j10, int i10) {
         u2.t tVar;
         y2.p pVar = (y2.p) jVar;
-        l2.g gVar = (l2.g) this.f15098b;
+        l2.g gVar = (l2.g) this.f15072b;
         if (i10 == 0) {
-            long j11 = pVar.f49551a;
-            tVar = new u2.t(pVar.f49552b);
+            long j11 = pVar.f49522a;
+            tVar = new u2.t(pVar.f49523b);
         } else {
-            long j12 = pVar.f49551a;
-            Uri uri = pVar.d.f10326c;
+            long j12 = pVar.f49522a;
+            Uri uri = pVar.d.f10298c;
             tVar = new u2.t(j10);
         }
-        gVar.f15240q.r(tVar, pVar.f49553c, -1, null, 0, null, -9223372036854775807L, -9223372036854775807L, i10);
+        gVar.f15214q.r(tVar, pVar.f49524c, -1, null, 0, null, -9223372036854775807L, -9223372036854775807L, i10);
     }
 
     @Override
@@ -659,26 +659,26 @@ public final class d implements e2, y2.h, le.d, m.k, n5.b, o0.b, v61, d5, la0, r
         int i10;
         long j11;
         y2.p pVar = (y2.p) jVar;
-        l2.g gVar = (l2.g) this.f15098b;
-        long j12 = pVar.f49551a;
-        Uri uri = pVar.d.f10326c;
+        l2.g gVar = (l2.g) this.f15072b;
+        long j12 = pVar.f49522a;
+        Uri uri = pVar.d.f10298c;
         u2.t tVar = new u2.t(j10);
-        gVar.f15236m.getClass();
-        gVar.f15240q.o(tVar, pVar.f49553c, -1, null, 0, null, -9223372036854775807L, -9223372036854775807L);
-        m2.c cVar = (m2.c) pVar.f49555f;
+        gVar.f15210m.getClass();
+        gVar.f15214q.o(tVar, pVar.f49524c, -1, null, 0, null, -9223372036854775807L, -9223372036854775807L);
+        m2.c cVar = (m2.c) pVar.f49526f;
         m2.c cVar2 = gVar.H;
         if (cVar2 == null) {
             size = 0;
         } else {
-            size = cVar2.f15793m.size();
+            size = cVar2.f15766m.size();
         }
-        long j13 = cVar.b(0).f15812b;
+        long j13 = cVar.b(0).f15785b;
         int i11 = 0;
-        while (i11 < size && gVar.H.b(i11).f15812b < j13) {
+        while (i11 < size && gVar.H.b(i11).f15785b < j13) {
             i11++;
         }
         if (cVar.d) {
-            if (size - i11 > cVar.f15793m.size()) {
+            if (size - i11 > cVar.f15766m.size()) {
                 e2.a.n("DashMediaSource", "Loaded out of sync manifest");
             } else {
                 j11 = -9223372036854775807L;
@@ -695,7 +695,7 @@ public final class d implements e2, y2.h, le.d, m.k, n5.b, o0.b, v61, d5, la0, r
             }
             int i12 = gVar.M;
             gVar.M = i12 + 1;
-            if (i12 < gVar.f15236m.L3(pVar.f49553c)) {
+            if (i12 < gVar.f15210m.L3(pVar.f49524c)) {
                 gVar.D.postDelayed(gVar.v, Math.min((gVar.M - 1) * 1000, 5000));
                 return;
             }
@@ -709,12 +709,12 @@ public final class d implements e2, y2.h, le.d, m.k, n5.b, o0.b, v61, d5, la0, r
         gVar.J = j3 - j10;
         gVar.K = j3;
         gVar.O += i10;
-        synchronized (gVar.f15243t) {
+        synchronized (gVar.f15217t) {
             try {
-                if (pVar.f49552b.f10358a.equals(gVar.F)) {
-                    Uri uri2 = gVar.H.f15791k;
+                if (pVar.f49523b.f10330a.equals(gVar.F)) {
+                    Uri uri2 = gVar.H.f15764k;
                     if (uri2 == null) {
-                        uri2 = x8.a(pVar.d.f10326c);
+                        uri2 = x8.a(pVar.d.f10298c);
                     }
                     gVar.F = uri2;
                 }
@@ -724,9 +724,9 @@ public final class d implements e2, y2.h, le.d, m.k, n5.b, o0.b, v61, d5, la0, r
         }
         m2.c cVar3 = gVar.H;
         if (cVar3.d && gVar.L == j11) {
-            m2.u uVar = cVar3.f15789i;
+            m2.u uVar = cVar3.f15762i;
             if (uVar != null) {
-                String str = uVar.f15847b;
+                String str = uVar.f15820b;
                 if (!Objects.equals(str, "urn:mpeg:dash:utc:direct:2014") && !Objects.equals(str, "urn:mpeg:dash:utc:direct:2012")) {
                     if (!Objects.equals(str, "urn:mpeg:dash:utc:http-iso:2014") && !Objects.equals(str, "urn:mpeg:dash:utc:http-iso:2012")) {
                         if (!Objects.equals(str, "urn:mpeg:dash:utc:http-xsdate:2014") && !Objects.equals(str, "urn:mpeg:dash:utc:http-xsdate:2012")) {
@@ -745,7 +745,7 @@ public final class d implements e2, y2.h, le.d, m.k, n5.b, o0.b, v61, d5, la0, r
                     return;
                 }
                 try {
-                    gVar.L = e2.d0.T(uVar.f15848c) - gVar.K;
+                    gVar.L = e2.d0.T(uVar.f15821c) - gVar.K;
                     gVar.y(true);
                     return;
                 } catch (b2.s0 e7) {
@@ -761,33 +761,33 @@ public final class d implements e2, y2.h, le.d, m.k, n5.b, o0.b, v61, d5, la0, r
 
     @Override
     public void invalidate() {
-        switch (this.f15097a) {
+        switch (this.f15071a) {
             case 9:
-                ((t1) ((g1) this.f15098b).f21992b).invalidate();
+                ((t1) ((g1) this.f15072b).f21965b).invalidate();
                 return;
             default:
-                ((eg0) this.f15098b).h.invalidate();
+                ((eg0) this.f15072b).h.invalidate();
                 return;
         }
     }
 
     public p4.r j() {
-        if (((ArrayList) this.f15098b) == null) {
-            return p4.r.f43928c;
+        if (((ArrayList) this.f15072b) == null) {
+            return p4.r.f43901c;
         }
         Bundle bundle = new Bundle();
-        bundle.putStringArrayList("controlCategories", (ArrayList) this.f15098b);
-        return new p4.r(bundle, (ArrayList) this.f15098b);
+        bundle.putStringArrayList("controlCategories", (ArrayList) this.f15072b);
+        return new p4.r(bundle, (ArrayList) this.f15072b);
     }
 
     @Override
     public Paint.FontMetricsInt k() {
-        return ((vi) this.f15098b).E0.getEditText().getPaint().getFontMetricsInt();
+        return ((vi) this.f15072b).E0.getEditText().getPaint().getFontMetricsInt();
     }
 
     @Override
     public Cursor l(Uri uri, String[] strArr, String[] strArr2) {
-        ContentProviderClient contentProviderClient = (ContentProviderClient) this.f15098b;
+        ContentProviderClient contentProviderClient = (ContentProviderClient) this.f15072b;
         if (contentProviderClient == null) {
             return null;
         }
@@ -801,22 +801,22 @@ public final class d implements e2, y2.h, le.d, m.k, n5.b, o0.b, v61, d5, la0, r
 
     @Override
     public int m() {
-        o0 o0Var = (o0) this.f15098b;
-        return o0Var.f45881n - o0Var.C();
+        o0 o0Var = (o0) this.f15072b;
+        return o0Var.f45853n - o0Var.C();
     }
 
     @Override
     public void o(l lVar, n nVar) {
-        f fVar = (f) this.f15098b;
-        Handler handler = fVar.f15116f;
+        f fVar = (f) this.f15072b;
+        Handler handler = fVar.f15090f;
         e eVar = null;
         handler.removeCallbacksAndMessages(null);
-        ArrayList arrayList = fVar.f15117n;
+        ArrayList arrayList = fVar.f15091n;
         int size = arrayList.size();
         int i10 = 0;
         while (true) {
             if (i10 < size) {
-                if (lVar == ((e) arrayList.get(i10)).f15110b) {
+                if (lVar == ((e) arrayList.get(i10)).f15084b) {
                     break;
                 }
                 i10++;
@@ -836,18 +836,18 @@ public final class d implements e2, y2.h, le.d, m.k, n5.b, o0.b, v61, d5, la0, r
     }
 
     public void q(int i10, long j3) {
-        u3.d dVar = (u3.d) this.f15098b;
+        u3.d dVar = (u3.d) this.f15072b;
         if (i10 != 20529) {
             if (i10 != 20530) {
                 boolean z10 = false;
                 switch (i10) {
                     case 131:
                         dVar.d(i10);
-                        dVar.f46954x.f46903e = (int) j3;
+                        dVar.f46926x.f46875e = (int) j3;
                         return;
                     case 136:
                         dVar.d(i10);
-                        u3.c cVar = dVar.f46954x;
+                        u3.c cVar = dVar.f46926x;
                         if (j3 == 1) {
                             z10 = true;
                         }
@@ -858,11 +858,11 @@ public final class d implements e2, y2.h, le.d, m.k, n5.b, o0.b, v61, d5, la0, r
                         return;
                     case 159:
                         dVar.d(i10);
-                        dVar.f46954x.Q = (int) j3;
+                        dVar.f46926x.Q = (int) j3;
                         return;
                     case 176:
                         dVar.d(i10);
-                        dVar.f46954x.f46911n = (int) j3;
+                        dVar.f46926x.f46883n = (int) j3;
                         return;
                     case 179:
                         dVar.a(i10);
@@ -870,11 +870,11 @@ public final class d implements e2, y2.h, le.d, m.k, n5.b, o0.b, v61, d5, la0, r
                         return;
                     case 186:
                         dVar.d(i10);
-                        dVar.f46954x.f46912o = (int) j3;
+                        dVar.f46926x.f46884o = (int) j3;
                         return;
                     case 215:
                         dVar.d(i10);
-                        dVar.f46954x.d = (int) j3;
+                        dVar.f46926x.d = (int) j3;
                         return;
                     case 231:
                         dVar.E = dVar.l(j3);
@@ -895,7 +895,7 @@ public final class d implements e2, y2.h, le.d, m.k, n5.b, o0.b, v61, d5, la0, r
                         return;
                     case 16871:
                         dVar.d(i10);
-                        dVar.f46954x.h = (int) j3;
+                        dVar.f46926x.h = (int) j3;
                         return;
                     case 16980:
                         if (j3 != 3) {
@@ -923,7 +923,7 @@ public final class d implements e2, y2.h, le.d, m.k, n5.b, o0.b, v61, d5, la0, r
                         }
                         return;
                     case 21420:
-                        dVar.A = j3 + dVar.f46950s;
+                        dVar.A = j3 + dVar.f46922s;
                         return;
                     case 21432:
                         int i11 = (int) j3;
@@ -932,34 +932,34 @@ public final class d implements e2, y2.h, le.d, m.k, n5.b, o0.b, v61, d5, la0, r
                             if (i11 != 1) {
                                 if (i11 != 3) {
                                     if (i11 == 15) {
-                                        dVar.f46954x.f46921y = 3;
+                                        dVar.f46926x.f46893y = 3;
                                         return;
                                     }
                                     return;
                                 }
-                                dVar.f46954x.f46921y = 1;
+                                dVar.f46926x.f46893y = 1;
                                 return;
                             }
-                            dVar.f46954x.f46921y = 2;
+                            dVar.f46926x.f46893y = 2;
                             return;
                         }
-                        dVar.f46954x.f46921y = 0;
+                        dVar.f46926x.f46893y = 0;
                         return;
                     case 21680:
                         dVar.d(i10);
-                        dVar.f46954x.f46914q = (int) j3;
+                        dVar.f46926x.f46886q = (int) j3;
                         return;
                     case 21682:
                         dVar.d(i10);
-                        dVar.f46954x.f46916s = (int) j3;
+                        dVar.f46926x.f46888s = (int) j3;
                         return;
                     case 21690:
                         dVar.d(i10);
-                        dVar.f46954x.f46915r = (int) j3;
+                        dVar.f46926x.f46887r = (int) j3;
                         return;
                     case 21930:
                         dVar.d(i10);
-                        u3.c cVar2 = dVar.f46954x;
+                        u3.c cVar2 = dVar.f46926x;
                         if (j3 == 1) {
                             z10 = true;
                         }
@@ -967,25 +967,25 @@ public final class d implements e2, y2.h, le.d, m.k, n5.b, o0.b, v61, d5, la0, r
                         return;
                     case 21938:
                         dVar.d(i10);
-                        u3.c cVar3 = dVar.f46954x;
-                        cVar3.f46922z = true;
-                        cVar3.f46913p = (int) j3;
+                        u3.c cVar3 = dVar.f46926x;
+                        cVar3.f46894z = true;
+                        cVar3.f46885p = (int) j3;
                         return;
                     case 21998:
                         dVar.d(i10);
-                        dVar.f46954x.f46905g = (int) j3;
+                        dVar.f46926x.f46877g = (int) j3;
                         return;
                     case 22186:
                         dVar.d(i10);
-                        dVar.f46954x.T = j3;
+                        dVar.f46926x.T = j3;
                         return;
                     case 22203:
                         dVar.d(i10);
-                        dVar.f46954x.U = j3;
+                        dVar.f46926x.U = j3;
                         return;
                     case 25188:
                         dVar.d(i10);
-                        dVar.f46954x.R = (int) j3;
+                        dVar.f46926x.R = (int) j3;
                         return;
                     case 30114:
                         dVar.U = j3;
@@ -997,25 +997,25 @@ public final class d implements e2, y2.h, le.d, m.k, n5.b, o0.b, v61, d5, la0, r
                             if (i12 != 1) {
                                 if (i12 != 2) {
                                     if (i12 == 3) {
-                                        dVar.f46954x.f46917t = 3;
+                                        dVar.f46926x.f46889t = 3;
                                         return;
                                     }
                                     return;
                                 }
-                                dVar.f46954x.f46917t = 2;
+                                dVar.f46926x.f46889t = 2;
                                 return;
                             }
-                            dVar.f46954x.f46917t = 1;
+                            dVar.f46926x.f46889t = 1;
                             return;
                         }
-                        dVar.f46954x.f46917t = 0;
+                        dVar.f46926x.f46889t = 0;
                         return;
                     case 2352003:
                         dVar.d(i10);
-                        dVar.f46954x.f46904f = (int) j3;
+                        dVar.f46926x.f46876f = (int) j3;
                         return;
                     case 2807729:
-                        dVar.f46951t = j3;
+                        dVar.f46923t = j3;
                         return;
                     default:
                         switch (i10) {
@@ -1024,37 +1024,37 @@ public final class d implements e2, y2.h, le.d, m.k, n5.b, o0.b, v61, d5, la0, r
                                 int i13 = (int) j3;
                                 if (i13 != 1) {
                                     if (i13 == 2) {
-                                        dVar.f46954x.C = 1;
+                                        dVar.f46926x.C = 1;
                                         return;
                                     }
                                     return;
                                 }
-                                dVar.f46954x.C = 2;
+                                dVar.f46926x.C = 2;
                                 return;
                             case 21946:
                                 dVar.d(i10);
                                 int g10 = b2.j.g((int) j3);
                                 if (g10 != -1) {
-                                    dVar.f46954x.B = g10;
+                                    dVar.f46926x.B = g10;
                                     return;
                                 }
                                 return;
                             case 21947:
                                 dVar.d(i10);
-                                dVar.f46954x.f46922z = true;
+                                dVar.f46926x.f46894z = true;
                                 int f7 = b2.j.f((int) j3);
                                 if (f7 != -1) {
-                                    dVar.f46954x.A = f7;
+                                    dVar.f46926x.A = f7;
                                     return;
                                 }
                                 return;
                             case 21948:
                                 dVar.d(i10);
-                                dVar.f46954x.D = (int) j3;
+                                dVar.f46926x.D = (int) j3;
                                 return;
                             case 21949:
                                 dVar.d(i10);
-                                dVar.f46954x.E = (int) j3;
+                                dVar.f46926x.E = (int) j3;
                                 return;
                             default:
                                 return;
@@ -1071,7 +1071,7 @@ public final class d implements e2, y2.h, le.d, m.k, n5.b, o0.b, v61, d5, la0, r
 
     @Override
     public View r(int i10) {
-        return ((o0) this.f15098b).q(i10);
+        return ((o0) this.f15072b).q(i10);
     }
 
     @Override
@@ -1080,18 +1080,18 @@ public final class d implements e2, y2.h, le.d, m.k, n5.b, o0.b, v61, d5, la0, r
     }
 
     public void u(p4.p pVar, p4.m mVar, Collection collection) {
-        p4.e eVar = (p4.e) this.f15098b;
-        if (pVar == eVar.f43854y && mVar != null) {
-            p4.u uVar = eVar.f43853x.f43952a;
+        p4.e eVar = (p4.e) this.f15072b;
+        if (pVar == eVar.f43827y && mVar != null) {
+            p4.u uVar = eVar.f43826x.f43925a;
             String d = mVar.d();
             p4.v vVar = new p4.v(uVar, d, eVar.b(uVar, d), false);
             vVar.i(mVar);
             if (eVar.d != vVar) {
-                eVar.h(eVar, vVar, eVar.f43854y, 3, eVar.f43853x, collection);
-                eVar.f43853x = null;
-                eVar.f43854y = null;
+                eVar.h(eVar, vVar, eVar.f43827y, 3, eVar.f43826x, collection);
+                eVar.f43826x = null;
+                eVar.f43827y = null;
             }
-        } else if (pVar == eVar.f43836e) {
+        } else if (pVar == eVar.f43809e) {
             if (mVar != null) {
                 eVar.n(eVar.d, mVar);
             }
@@ -1101,7 +1101,7 @@ public final class d implements e2, y2.h, le.d, m.k, n5.b, o0.b, v61, d5, la0, r
 
     @Override
     public void v(int i10, int i11, CharSequence charSequence, boolean z10) {
-        vi viVar = (vi) this.f15098b;
+        vi viVar = (vi) this.f15072b;
         if (viVar.m1() == null) {
             return;
         }
@@ -1120,11 +1120,11 @@ public final class d implements e2, y2.h, le.d, m.k, n5.b, o0.b, v61, d5, la0, r
 
     @Override
     public void w(y2.j jVar, long j3, long j10, boolean z10) {
-        ((l2.g) this.f15098b).w((y2.p) jVar, j10);
+        ((l2.g) this.f15072b).w((y2.p) jVar, j10);
     }
 
     public byte y() {
-        int read = ((com.google.firebase.messaging.d) this.f15098b).read();
+        int read = ((com.google.firebase.messaging.d) this.f15072b).read();
         if (read >= 0) {
             return (byte) read;
         }
@@ -1133,74 +1133,74 @@ public final class d implements e2, y2.h, le.d, m.k, n5.b, o0.b, v61, d5, la0, r
 
     @Override
     public void z(float f7, int i10) {
-        ((le.j) this.f15098b).i(f7);
+        ((le.j) this.f15072b).i(f7);
     }
 
     public d(Object obj, int i10) {
-        this.f15097a = i10;
-        this.f15098b = obj;
+        this.f15071a = i10;
+        this.f15072b = obj;
     }
 
     @Override
     public float get() {
-        y0 y0Var = (y0) this.f15098b;
-        int i10 = y0Var.f45581a;
-        qg.m currentBrush = y0Var.f45584e.getCurrentBrush();
+        y0 y0Var = (y0) this.f15072b;
+        int i10 = y0Var.f45553a;
+        qg.m currentBrush = y0Var.f45556e.getCurrentBrush();
         if (currentBrush == null) {
-            return qg.s0.e(i10).f44601i;
+            return qg.s0.e(i10).f44573i;
         }
         return qg.s0.e(i10).f("-1", currentBrush.d());
     }
 
     public d(s6.g gVar, s6.a aVar) {
-        this.f15097a = 27;
-        this.f15098b = aVar;
+        this.f15071a = 27;
+        this.f15072b = aVar;
     }
 
     public d() {
-        this.f15097a = 8;
-        this.f15098b = new LinkedHashMap(5, 1.0f, false);
+        this.f15071a = 8;
+        this.f15072b = new LinkedHashMap(5, 1.0f, false);
     }
 
     public d(int i10, int i11, int[] iArr) {
-        this.f15097a = 10;
+        this.f15071a = 10;
         y50[] y50VarArr = new y50[(iArr.length / 2) + 1];
-        this.f15098b = y50VarArr;
+        this.f15072b = y50VarArr;
         y50 y50Var = new y50(i10, i11);
         int i12 = 0;
         y50VarArr[0] = y50Var;
         while (i12 < iArr.length / 2) {
             int i13 = i12 + 1;
             int i14 = i12 * 2;
-            ((y50[]) this.f15098b)[i13] = new y50(iArr[i14], iArr[i14 + 1]);
+            ((y50[]) this.f15072b)[i13] = new y50(iArr[i14], iArr[i14 + 1]);
             i12 = i13;
         }
     }
 
     public d(Context context, GestureDetector.OnGestureListener onGestureListener) {
-        this.f15097a = 20;
-        this.f15098b = new GestureDetector(context, onGestureListener, null);
+        this.f15071a = 20;
+        this.f15072b = new GestureDetector(context, onGestureListener, null);
     }
 
     public d(v1.c[] initializers) {
-        this.f15097a = 29;
+        this.f15071a = 29;
         kotlin.jvm.internal.i.e(initializers, "initializers");
-        this.f15098b = initializers;
+        this.f15072b = initializers;
     }
 
     public d(ArrayList arrayList) {
-        this.f15097a = 24;
-        this.f15098b = DesugarCollections.unmodifiableList(arrayList);
+        this.f15071a = 24;
+        this.f15072b = DesugarCollections.unmodifiableList(arrayList);
     }
 
     public d(TextView textView) {
-        this.f15097a = 19;
-        this.f15098b = new q1.g(textView);
+        this.f15071a = 19;
+        this.f15072b = new q1.g(textView);
     }
 
     public d(Context context, Uri uri) {
-        this.f15097a = 7;
-        this.f15098b = context.getContentResolver().acquireUnstableContentProviderClient(uri);
+        this.f15071a = 7;
+        this.f15072b = context.getContentResolver().acquireUnstableContentProviderClient(uri);
     }
 
     @Override

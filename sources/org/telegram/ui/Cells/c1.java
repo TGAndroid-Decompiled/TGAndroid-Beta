@@ -5,30 +5,30 @@ import android.view.View;
 import org.telegram.ui.Components.fk0;
 import org.telegram.ui.jv0;
 public final class c1 extends Property {
-    public final int f21700a;
+    public final int f21673a;
 
     public c1(Class cls, String str, int i10) {
         super(cls, str);
-        this.f21700a = i10;
+        this.f21673a = i10;
     }
 
     @Override
     public final Object get(Object obj) {
-        switch (this.f21700a) {
+        switch (this.f21673a) {
             case 0:
-                return Float.valueOf(((t1) obj).f23255ze);
+                return Float.valueOf(((t1) obj).f23228ze);
             case 1:
                 return Integer.valueOf(Math.round(((View) obj).getTranslationY()));
             case 2:
                 return Float.valueOf(((fk0) obj).v);
             default:
-                return Float.valueOf(((jv0) obj).f37874a);
+                return Float.valueOf(((jv0) obj).f37847a);
         }
     }
 
     @Override
     public final void set(Object obj, Object obj2) {
-        switch (this.f21700a) {
+        switch (this.f21673a) {
             case 0:
                 ((t1) obj).setAnimationOffsetX(((Float) obj2).floatValue());
                 return;

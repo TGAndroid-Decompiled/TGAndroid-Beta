@@ -7,32 +7,32 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ImageLoader;
 import org.telegram.messenger.NotificationCenter;
 public final class m51 implements Runnable {
-    public final int f38603a;
-    public final j71 f38604b;
+    public final int f38576a;
+    public final j71 f38577b;
 
     public m51(j71 j71Var, int i10) {
-        this.f38603a = i10;
-        this.f38604b = j71Var;
+        this.f38576a = i10;
+        this.f38577b = j71Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f38603a) {
+        switch (this.f38576a) {
             case 0:
-                j71 j71Var = this.f38604b;
+                j71 j71Var = this.f38577b;
                 j71Var.getClass();
-                HashSet hashSet = ah.y0.f731a;
+                HashSet hashSet = ah.y0.f719a;
                 ff.c cacheOutQueue = ImageLoader.getInstance().getCacheOutQueue();
-                if (cacheOutQueue.f9499b == null) {
-                    cacheOutQueue.f9499b = new CountDownLatch(1);
+                if (cacheOutQueue.f9471b == null) {
+                    cacheOutQueue.f9471b = new CountDownLatch(1);
                 }
-                ah.y0.f732b = true;
-                ah.y0.f734e = false;
-                ah.y0.f736g = false;
+                ah.y0.f720b = true;
+                ah.y0.f722e = false;
+                ah.y0.f724g = false;
                 AndroidUtilities.runOnUIThread(new m51(j71Var, 2), 0L);
                 return;
             case 1:
-                j71 j71Var2 = this.f38604b;
+                j71 j71Var2 = this.f38577b;
                 ArrayList arrayList = j71Var2.A1;
                 if (arrayList != null) {
                     arrayList.clear();
@@ -45,16 +45,16 @@ public final class m51 implements Runnable {
                 if (arrayList3 != null) {
                     arrayList3.clear();
                 }
-                j71Var2.f37691q0.E(true);
+                j71Var2.f37664q0.E(true);
                 return;
             case 2:
-                this.f38604b.U1.start();
+                this.f38577b.U1.start();
                 return;
             case 3:
-                this.f38604b.B(true, true, true);
+                this.f38577b.B(true, true, true);
                 return;
             default:
-                j71 j71Var3 = this.f38604b;
+                j71 j71Var3 = this.f38577b;
                 NotificationCenter globalInstance = NotificationCenter.getGlobalInstance();
                 m51 m51Var = j71Var3.R1;
                 globalInstance.removeDelayed(m51Var);

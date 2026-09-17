@@ -5,14 +5,14 @@ import android.animation.AnimatorListenerAdapter;
 import android.widget.FrameLayout;
 import java.util.ArrayList;
 public final class c61 extends AnimatorListenerAdapter {
-    public final int f35037a;
-    public final boolean f35038b;
-    public final j71 f35039c;
+    public final int f35010a;
+    public final boolean f35011b;
+    public final j71 f35012c;
 
     public c61(j71 j71Var, boolean z10, int i10) {
-        this.f35037a = i10;
-        this.f35039c = j71Var;
-        this.f35038b = z10;
+        this.f35010a = i10;
+        this.f35012c = j71Var;
+        this.f35011b = z10;
     }
 
     @Override
@@ -21,19 +21,19 @@ public final class c61 extends AnimatorListenerAdapter {
         ArrayList arrayList;
         ArrayList arrayList2;
         int i11;
-        switch (this.f35037a) {
+        switch (this.f35010a) {
             case 0:
-                j71 j71Var = this.f35039c;
-                w51 w51Var = j71Var.f37676i0;
+                j71 j71Var = this.f35012c;
+                w51 w51Var = j71Var.f37649i0;
                 int i12 = 8;
-                boolean z10 = this.f35038b;
+                boolean z10 = this.f35011b;
                 if (z10) {
                     i10 = 0;
                 } else {
                     i10 = 8;
                 }
                 w51Var.setVisibility(i10);
-                g61 g61Var = j71Var.f37674h0;
+                g61 g61Var = j71Var.f37647h0;
                 if (!z10) {
                     i12 = 0;
                 }
@@ -45,7 +45,7 @@ public final class c61 extends AnimatorListenerAdapter {
                     if (arrayList3 != null) {
                         arrayList3.clear();
                     }
-                    j71Var.f37691q0.E(false);
+                    j71Var.f37664q0.E(false);
                 }
                 if (!z10 && (arrayList = j71Var.B1) != null) {
                     arrayList.clear();
@@ -53,9 +53,9 @@ public final class c61 extends AnimatorListenerAdapter {
                 }
                 return;
             default:
-                j71 j71Var2 = this.f35039c;
-                FrameLayout frameLayout = j71Var2.f37678j0;
-                if (this.f35038b && j71Var2.f37676i0.getVisibility() == 0) {
+                j71 j71Var2 = this.f35012c;
+                FrameLayout frameLayout = j71Var2.f37651j0;
+                if (this.f35011b && j71Var2.f37649i0.getVisibility() == 0) {
                     i11 = 0;
                 } else {
                     i11 = 8;

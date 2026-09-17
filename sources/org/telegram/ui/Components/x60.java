@@ -12,23 +12,23 @@ import java.util.ArrayList;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class x60 extends kl0 {
-    public ArrayList f32462c = new ArrayList();
+    public ArrayList f32435c = new ArrayList();
     public ArrayList d = new ArrayList();
-    public final hg.b2 f32463e;
-    public int f32464f;
+    public final hg.b2 f32436e;
+    public int f32437f;
     public Runnable h;
-    public final b70 f32465n;
+    public final b70 f32438n;
 
     public x60(b70 b70Var) {
-        this.f32465n = b70Var;
+        this.f32438n = b70Var;
         hg.b2 b2Var = new hg.b2(false);
-        this.f32463e = b2Var;
-        b2Var.f11005a = new kv(this, 7);
+        this.f32436e = b2Var;
+        b2Var.f10979a = new kv(this, 7);
     }
 
     @Override
     public final boolean D(s4.c1 c1Var) {
-        if (c1Var.f45771f == 1) {
+        if (c1Var.f45743f == 1) {
             return true;
         }
         return false;
@@ -36,16 +36,16 @@ public final class x60 extends kl0 {
 
     @Override
     public final int h() {
-        int size = this.f32462c.size();
-        hg.b2 b2Var = this.f32463e;
+        int size = this.f32435c.size();
+        hg.b2 b2Var = this.f32436e;
         int size2 = b2Var.d.size();
-        int size3 = b2Var.f11008e.size();
+        int size3 = b2Var.f10982e.size();
         int i10 = size + size2;
         if (size3 != 0) {
             i10 += size3 + 1;
         }
         int i11 = i10 + 2;
-        this.f32464f = i11;
+        this.f32437f = i11;
         return i11;
     }
 
@@ -54,10 +54,10 @@ public final class x60 extends kl0 {
         if (i10 == 0) {
             return 2;
         }
-        if (i10 == this.f32464f - 1) {
+        if (i10 == this.f32437f - 1) {
             return 4;
         }
-        if (i10 - 1 != this.f32463e.d.size() + this.f32462c.size()) {
+        if (i10 - 1 != this.f32436e.d.size() + this.f32435c.size()) {
             return 1;
         }
         return 0;
@@ -79,12 +79,12 @@ public final class x60 extends kl0 {
                     ?? frameLayout = new FrameLayout(context);
                     frameLayout.setBackgroundColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.e7, false));
                     Drawable drawable = frameLayout.getResources().getDrawable(R.drawable.shadowdown);
-                    frameLayout.f21882a = drawable;
+                    frameLayout.f21855a = drawable;
                     drawable.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.Zh, false), PorterDuff.Mode.MULTIPLY));
                     TextView textView = new TextView(frameLayout.getContext());
-                    frameLayout.f21883b = textView;
+                    frameLayout.f21856b = textView;
                     com.google.android.gms.internal.vision.e2.m(14.0f, 1, textView);
-                    textView.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f20646ai, false));
+                    textView.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f20619ai, false));
                     int i12 = 3;
                     if (LocaleController.isRTL) {
                         i11 = 5;

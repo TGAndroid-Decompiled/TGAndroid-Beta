@@ -10,17 +10,17 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.ui.Components.FragmentContextView;
 public final class sk extends TextView {
-    public final int f40492a;
-    public Object f40493b;
+    public final int f40465a;
+    public Object f40466b;
 
     public sk(Object obj, Context context, int i10) {
         super(context);
-        this.f40492a = i10;
-        this.f40493b = obj;
+        this.f40465a = i10;
+        this.f40466b = obj;
     }
 
     public void a(int i10) {
-        FragmentContextView fragmentContextView = (FragmentContextView) this.f40493b;
+        FragmentContextView fragmentContextView = (FragmentContextView) this.f40466b;
         if (fragmentContextView.M != i10) {
             org.telegram.ui.Components.r10 r10Var = fragmentContextView.d;
             r10Var.setPadding(r10Var.getPaddingLeft(), fragmentContextView.d.getPaddingTop(), (fragmentContextView.d.getPaddingRight() - fragmentContextView.M) + i10, fragmentContextView.d.getPaddingBottom());
@@ -30,14 +30,14 @@ public final class sk extends TextView {
 
     @Override
     public void draw(Canvas canvas) {
-        switch (this.f40492a) {
+        switch (this.f40465a) {
             case 1:
                 super.draw(canvas);
                 int dp = AndroidUtilities.dp(1.0f);
                 RectF rectF = AndroidUtilities.rectTmp;
                 float f7 = dp;
                 rectF.set(f7, f7, getWidth() - dp, getHeight() - dp);
-                ((FragmentContextView) this.f40493b).N.a(AndroidUtilities.dp(16.0f), canvas, rectF, this);
+                ((FragmentContextView) this.f40466b).N.a(AndroidUtilities.dp(16.0f), canvas, rectF, this);
                 return;
             case 2:
             default:
@@ -45,14 +45,14 @@ public final class sk extends TextView {
                 return;
             case 3:
                 super.draw(canvas);
-                u81 u81Var = (u81) this.f40493b;
-                org.telegram.ui.Components.voip.h hVar = u81Var.f41004c;
-                if (hVar.f31532g <= 1.0f) {
+                u81 u81Var = (u81) this.f40466b;
+                org.telegram.ui.Components.voip.h hVar = u81Var.f40977c;
+                if (hVar.f31505g <= 1.0f) {
                     SessionsActivity sessionsActivity = u81Var.d;
                     if (sessionsActivity.W && sessionsActivity.X) {
                         RectF rectF2 = AndroidUtilities.rectTmp;
                         rectF2.set(0.0f, 0.0f, getWidth(), getHeight());
-                        hVar.f31531f = getMeasuredWidth();
+                        hVar.f31504f = getMeasuredWidth();
                         hVar.a(AndroidUtilities.dp(8.0f), canvas, rectF2, null);
                         invalidate();
                         return;
@@ -65,26 +65,26 @@ public final class sk extends TextView {
 
     @Override
     public void onDraw(Canvas canvas) {
-        switch (this.f40492a) {
+        switch (this.f40465a) {
             case 0:
                 super.onDraw(canvas);
-                if (((org.telegram.ui.Components.voip.h) this.f40493b) == null) {
+                if (((org.telegram.ui.Components.voip.h) this.f40466b) == null) {
                     org.telegram.ui.Components.voip.h hVar = new org.telegram.ui.Components.voip.h();
-                    this.f40493b = hVar;
-                    hVar.f31535k = false;
-                    hVar.f31537m = 2.0f;
+                    this.f40466b = hVar;
+                    hVar.f31508k = false;
+                    hVar.f31510m = 2.0f;
                 }
-                ((org.telegram.ui.Components.voip.h) this.f40493b).f31531f = getMeasuredWidth();
+                ((org.telegram.ui.Components.voip.h) this.f40466b).f31504f = getMeasuredWidth();
                 RectF rectF = AndroidUtilities.rectTmp;
                 rectF.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
-                ((org.telegram.ui.Components.voip.h) this.f40493b).a(AndroidUtilities.dp(22.0f), canvas, rectF, null);
+                ((org.telegram.ui.Components.voip.h) this.f40466b).a(AndroidUtilities.dp(22.0f), canvas, rectF, null);
                 invalidate();
                 return;
             case 4:
                 super.onDraw(canvas);
                 RectF rectF2 = AndroidUtilities.rectTmp;
                 rectF2.set(AndroidUtilities.dp(1.0f), AndroidUtilities.dp(1.0f), getMeasuredWidth() - AndroidUtilities.dp(1.0f), getMeasuredHeight() - AndroidUtilities.dp(1.0f));
-                canvas.drawRoundRect(rectF2, AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), (Paint) this.f40493b);
+                canvas.drawRoundRect(rectF2, AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), (Paint) this.f40466b);
                 return;
             default:
                 super.onDraw(canvas);
@@ -94,11 +94,11 @@ public final class sk extends TextView {
 
     @Override
     public void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        switch (this.f40492a) {
+        switch (this.f40465a) {
             case 5:
                 super.onLayout(z10, i10, i11, i12, i13);
                 if (z10) {
-                    ((ui1) this.f40493b).H();
+                    ((ui1) this.f40466b).H();
                     return;
                 }
                 return;
@@ -110,7 +110,7 @@ public final class sk extends TextView {
 
     @Override
     public void onMeasure(int i10, int i11) {
-        switch (this.f40492a) {
+        switch (this.f40465a) {
             case 1:
                 super.onMeasure(i10, i11);
                 a(getMeasuredWidth());
@@ -118,13 +118,13 @@ public final class sk extends TextView {
             case 2:
                 super.onMeasure(i10, i11);
                 if (LocaleController.isRTL) {
-                    ((org.telegram.ui.Components.s31) this.f40493b).f30210b.setPivotX(getMeasuredWidth());
+                    ((org.telegram.ui.Components.s31) this.f40466b).f30183b.setPivotX(getMeasuredWidth());
                     return;
                 }
                 return;
             case 6:
                 super.onMeasure(i10, i11);
-                ((org.telegram.ui.web.z1) this.f40493b).f42368c.setPivotY(getMeasuredHeight() / 2.0f);
+                ((org.telegram.ui.web.z1) this.f40466b).f42341c.setPivotY(getMeasuredHeight() / 2.0f);
                 return;
             default:
                 super.onMeasure(i10, i11);
@@ -134,10 +134,10 @@ public final class sk extends TextView {
 
     @Override
     public void onSizeChanged(int i10, int i11, int i12, int i13) {
-        switch (this.f40492a) {
+        switch (this.f40465a) {
             case 1:
                 super.onSizeChanged(i10, i11, i12, i13);
-                ((FragmentContextView) this.f40493b).N.f31531f = getWidth();
+                ((FragmentContextView) this.f40466b).N.f31504f = getWidth();
                 return;
             default:
                 super.onSizeChanged(i10, i11, i12, i13);
@@ -147,12 +147,12 @@ public final class sk extends TextView {
 
     @Override
     public void setVisibility(int i10) {
-        switch (this.f40492a) {
+        switch (this.f40465a) {
             case 1:
                 super.setVisibility(i10);
                 if (i10 != 0) {
                     a(0);
-                    ((FragmentContextView) this.f40493b).M = 0;
+                    ((FragmentContextView) this.f40466b).M = 0;
                     return;
                 }
                 return;
@@ -164,12 +164,12 @@ public final class sk extends TextView {
 
     public sk(Activity activity, Paint paint) {
         super(activity);
-        this.f40492a = 4;
-        this.f40493b = paint;
+        this.f40465a = 4;
+        this.f40466b = paint;
     }
 
     public sk(Context context) {
         super(context);
-        this.f40492a = 0;
+        this.f40465a = 0;
     }
 }

@@ -1,64 +1,64 @@
 package u2;
 public final class i1 implements b1 {
-    public int f46733a;
-    public boolean f46734b;
-    public final k1 f46735c;
+    public int f46705a;
+    public boolean f46706b;
+    public final k1 f46707c;
 
     public i1(k1 k1Var) {
-        this.f46735c = k1Var;
+        this.f46707c = k1Var;
     }
 
     public final void a() {
-        if (!this.f46734b) {
-            k1 k1Var = this.f46735c;
-            k1Var.f46750e.j(b2.r0.h(k1Var.f46754s.f2397r), k1Var.f46754s, 0, null, 0L);
-            this.f46734b = true;
+        if (!this.f46706b) {
+            k1 k1Var = this.f46707c;
+            k1Var.f46722e.j(b2.r0.h(k1Var.f46726s.f2370r), k1Var.f46726s, 0, null, 0L);
+            this.f46706b = true;
         }
     }
 
     @Override
     public final void b() {
-        k1 k1Var = this.f46735c;
+        k1 k1Var = this.f46707c;
         if (!k1Var.v) {
-            k1Var.f46753r.b();
+            k1Var.f46725r.b();
         }
     }
 
     @Override
     public final boolean e() {
-        return this.f46735c.f46755w;
+        return this.f46707c.f46727w;
     }
 
     @Override
-    public final int f(n4.y yVar, h2.h hVar, int i10) {
+    public final int f(n4.y yVar, h2.g gVar, int i10) {
         a();
-        k1 k1Var = this.f46735c;
-        boolean z10 = k1Var.f46755w;
-        if (z10 && k1Var.f46756x == null) {
-            this.f46733a = 2;
+        k1 k1Var = this.f46707c;
+        boolean z10 = k1Var.f46727w;
+        if (z10 && k1Var.f46728x == null) {
+            this.f46705a = 2;
         }
-        int i11 = this.f46733a;
+        int i11 = this.f46705a;
         if (i11 == 2) {
-            hVar.addFlag(4);
+            gVar.a(4);
             return -4;
         } else if ((i10 & 2) == 0 && i11 != 0) {
             if (!z10) {
                 return -3;
             }
-            k1Var.f46756x.getClass();
-            hVar.addFlag(1);
-            hVar.f10877e = 0L;
+            k1Var.f46728x.getClass();
+            gVar.a(1);
+            gVar.h = 0L;
             if ((i10 & 4) == 0) {
-                hVar.b(k1Var.f46757y);
-                hVar.f10876c.put(k1Var.f46756x, 0, k1Var.f46757y);
+                gVar.l(k1Var.f46729y);
+                gVar.f10847e.put(k1Var.f46728x, 0, k1Var.f46729y);
             }
             if ((i10 & 1) == 0) {
-                this.f46733a = 2;
+                this.f46705a = 2;
             }
             return -4;
         } else {
-            yVar.f16524c = k1Var.f46754s;
-            this.f46733a = 1;
+            yVar.f16497c = k1Var.f46726s;
+            this.f46705a = 1;
             return -5;
         }
     }
@@ -66,8 +66,8 @@ public final class i1 implements b1 {
     @Override
     public final int m(long j3) {
         a();
-        if (j3 > 0 && this.f46733a != 2) {
-            this.f46733a = 2;
+        if (j3 > 0 && this.f46705a != 2) {
+            this.f46705a = 2;
             return 1;
         }
         return 0;

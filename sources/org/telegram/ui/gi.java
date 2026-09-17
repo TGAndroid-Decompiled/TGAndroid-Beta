@@ -13,7 +13,7 @@ public final class gi extends org.telegram.ui.Components.rv {
     @Override
     public final void dismiss() {
         super.dismiss();
-        co coVar = this.W.f37062p;
+        co coVar = this.W.f37035p;
         coVar.getClass();
         coVar.g8(false, true, 0.0f);
     }

@@ -4,19 +4,19 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.view.View;
 public final class c1 extends AnimatorListenerAdapter {
-    public final int f31465a;
-    public final h1 f31466b;
+    public final int f31438a;
+    public final h1 f31439b;
 
     public c1(h1 h1Var, int i10) {
-        this.f31465a = i10;
-        this.f31466b = h1Var;
+        this.f31438a = i10;
+        this.f31439b = h1Var;
     }
 
     @Override
     public void onAnimationEnd(Animator animator) {
-        switch (this.f31465a) {
+        switch (this.f31438a) {
             case 1:
-                this.f31466b.L = null;
+                this.f31439b.L = null;
                 return;
             default:
                 super.onAnimationEnd(animator);
@@ -27,10 +27,10 @@ public final class c1 extends AnimatorListenerAdapter {
     @Override
     public void onAnimationEnd(Animator animator, boolean z10) {
         View view;
-        switch (this.f31465a) {
+        switch (this.f31438a) {
             case 0:
-                qf.e eVar = this.f31466b.O;
-                if (eVar == null || (view = eVar.f44389j) == null) {
+                qf.e eVar = this.f31439b.O;
+                if (eVar == null || (view = eVar.f44361j) == null) {
                     return;
                 }
                 eVar.e(view);

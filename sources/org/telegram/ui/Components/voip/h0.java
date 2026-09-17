@@ -4,16 +4,16 @@ import android.content.Context;
 import org.telegram.ui.Components.UndoView;
 import org.telegram.ui.a40;
 public final class h0 extends UndoView {
-    public final a40 f31541f0;
+    public final a40 f31514f0;
 
     public h0(a40 a40Var, Context context) {
         super(context);
-        this.f31541f0 = a40Var;
+        this.f31514f0 = a40Var;
     }
 
     @Override
     public final void invalidate() {
         super.invalidate();
-        this.f31541f0.invalidate();
+        this.f31514f0.invalidate();
     }
 }

@@ -6,14 +6,14 @@ import org.telegram.messenger.DialogObject;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.r01;
 public final class d6 implements n2 {
-    public final org.telegram.ui.ActionBar.n2 f21775a;
-    public final Context f21776b;
-    public final r01 f21777c;
+    public final org.telegram.ui.ActionBar.n2 f21748a;
+    public final Context f21749b;
+    public final r01 f21750c;
 
     public d6(r01 r01Var, org.telegram.ui.ActionBar.n2 n2Var, Context context) {
-        this.f21777c = r01Var;
-        this.f21775a = n2Var;
-        this.f21776b = context;
+        this.f21750c = r01Var;
+        this.f21748a = n2Var;
+        this.f21749b = context;
     }
 
     @Override
@@ -24,7 +24,7 @@ public final class d6 implements n2 {
     @Override
     public final void c() {
         boolean z10;
-        org.telegram.ui.ActionBar.n2 n2Var = this.f21775a;
+        org.telegram.ui.ActionBar.n2 n2Var = this.f21748a;
         bi.u8 storiesController = n2Var.getMessagesController().getStoriesController();
         ArrayList arrayList = storiesController.h;
         if (arrayList.isEmpty()) {
@@ -42,15 +42,15 @@ public final class d6 implements n2 {
                 arrayList2.add(Long.valueOf(peerDialogId));
             }
         }
-        n2Var.getOrCreateStoryViewer().G(this.f21776b, null, arrayList2, 0, null, null, new bi.d9(this.f21777c), false);
+        n2Var.getOrCreateStoryViewer().G(this.f21749b, null, arrayList2, 0, null, null, new bi.d9(this.f21750c), false);
     }
 
     @Override
     public final void e(r2 r2Var) {
-        org.telegram.ui.ActionBar.n2 n2Var = this.f21775a;
+        org.telegram.ui.ActionBar.n2 n2Var = this.f21748a;
         if (n2Var.getMessagesController().getStoriesController().I(r2Var.getDialogId())) {
             n2Var.getOrCreateStoryViewer().getClass();
-            n2Var.getOrCreateStoryViewer().D(n2Var.getContext(), r2Var.getDialogId(), new bi.d9(this.f21777c));
+            n2Var.getOrCreateStoryViewer().D(n2Var.getContext(), r2Var.getDialogId(), new bi.d9(this.f21750c));
         }
     }
 

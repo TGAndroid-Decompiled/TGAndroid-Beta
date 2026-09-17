@@ -8,21 +8,21 @@ import android.graphics.Shader;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 public final class r71 extends View {
-    public final Paint f40117a;
-    public final LinearGradient f40118b;
+    public final Paint f40090a;
+    public final LinearGradient f40091b;
 
     public r71(t71 t71Var, Context context) {
         super(context);
-        this.f40117a = new Paint(1);
+        this.f40090a = new Paint(1);
         float dp = AndroidUtilities.dp(68.0f);
-        int i10 = org.telegram.ui.ActionBar.j6.f20762h5;
-        this.f40118b = new LinearGradient(0.0f, 0.0f, 0.0f, dp, new int[]{org.telegram.ui.ActionBar.j6.l1(0.0f, t71Var.getThemedColor(i10)), t71Var.getThemedColor(i10)}, new float[]{0.0f, 0.2f}, Shader.TileMode.CLAMP);
+        int i10 = org.telegram.ui.ActionBar.j6.f20735h5;
+        this.f40091b = new LinearGradient(0.0f, 0.0f, 0.0f, dp, new int[]{org.telegram.ui.ActionBar.j6.l1(0.0f, t71Var.getThemedColor(i10)), t71Var.getThemedColor(i10)}, new float[]{0.0f, 0.2f}, Shader.TileMode.CLAMP);
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
-        LinearGradient linearGradient = this.f40118b;
-        Paint paint = this.f40117a;
+        LinearGradient linearGradient = this.f40091b;
+        Paint paint = this.f40090a;
         paint.setShader(linearGradient);
         canvas.drawRect(0.0f, 0.0f, getWidth(), getHeight(), paint);
     }

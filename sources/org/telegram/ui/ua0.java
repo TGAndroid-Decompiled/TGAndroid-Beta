@@ -7,27 +7,27 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.tl.TL_stories;
 public final class ua0 implements e2.h {
-    public final int f41037a;
-    public final int f41038b;
-    public final Object f41039c;
+    public final int f41010a;
+    public final int f41011b;
+    public final Object f41012c;
     public final Object d;
-    public final Object f41040e;
+    public final Object f41013e;
 
     public ua0(Object obj, Object obj2, Object obj3, int i10, int i11) {
-        this.f41037a = i11;
-        this.f41039c = obj;
+        this.f41010a = i11;
+        this.f41012c = obj;
         this.d = obj2;
-        this.f41040e = obj3;
-        this.f41038b = i10;
+        this.f41013e = obj3;
+        this.f41011b = i10;
     }
 
     @Override
     public final void accept(Object obj) {
         boolean z10;
-        int i10 = this.f41037a;
-        Object obj2 = this.f41040e;
+        int i10 = this.f41010a;
+        Object obj2 = this.f41013e;
         Object obj3 = this.d;
-        Object obj4 = this.f41039c;
+        Object obj4 = this.f41012c;
         switch (i10) {
             case 0:
                 LaunchActivity launchActivity = (LaunchActivity) obj4;
@@ -61,12 +61,12 @@ public final class ua0 implements e2.h {
                 } else {
                     bundle.putLong("chat_id", -l4.longValue());
                 }
-                bundle.putInt("open_story_album_id", this.f41038b);
+                bundle.putInt("open_story_album_id", this.f41011b);
                 launchActivity.p0(new ProfileActivity(bundle, null));
                 return;
             default:
                 a5.a aVar = (a5.a) obj4;
-                ((u2.k0) obj).h(aVar.f297b, (u2.f0) aVar.f298c, (u2.t) obj3, (u2.b0) obj2, this.f41038b);
+                ((u2.k0) obj).h(aVar.f285b, (u2.f0) aVar.f286c, (u2.t) obj3, (u2.b0) obj2, this.f41011b);
                 return;
         }
     }

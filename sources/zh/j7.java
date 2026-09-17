@@ -20,23 +20,23 @@ import org.telegram.ui.Components.nq;
 import org.telegram.ui.oj1;
 import org.telegram.ui.s00;
 public final class j7 extends LinearLayout implements NotificationCenter.NotificationCenterDelegate {
-    public long f52142a;
-    public final int f52143b;
-    public final s00 f52144c;
+    public long f52111a;
+    public final int f52112b;
+    public final s00 f52113c;
     public boolean d;
-    public SpannableString f52145e;
-    public long f52146f;
+    public SpannableString f52114e;
+    public long f52115f;
     public final nq[] h;
-    public final nq[] f52147n;
-    public ValueAnimator f52148r;
+    public final nq[] f52116n;
+    public ValueAnimator f52117r;
 
     public j7(Context context, int i10, org.telegram.ui.ActionBar.f6 f6Var) {
         super(context);
-        this.f52146f = -1L;
+        this.f52115f = -1L;
         this.h = new nq[1];
-        this.f52147n = new nq[1];
-        this.f52143b = i10;
-        this.f52142a = UserConfig.getInstance(i10).getClientUserId();
+        this.f52116n = new nq[1];
+        this.f52112b = i10;
+        this.f52111a = UserConfig.getInstance(i10).getClientUserId();
         setOrientation(1);
         setGravity(21);
         TextView textView = new TextView(context);
@@ -47,8 +47,8 @@ public final class j7 extends LinearLayout implements NotificationCenter.Notific
         textView.setTypeface(AndroidUtilities.bold());
         addView(textView, w7.x5.q(-2, -2, 5));
         s00 s00Var = new s00(this, context, context.getResources().getDrawable(R.drawable.star_small_inner).mutate());
-        this.f52144c = s00Var;
-        s00Var.f29628n = true;
+        this.f52113c = s00Var;
+        s00Var.f29601n = true;
         s00Var.getDrawable().o(false, true, false);
         s00Var.setTypeface(AndroidUtilities.bold());
         s00Var.setTextColor(org.telegram.ui.ActionBar.j6.v0(i11, f6Var));
@@ -65,7 +65,7 @@ public final class j7 extends LinearLayout implements NotificationCenter.Notific
         boolean z11;
         boolean z12;
         TLRPC.TL_starsRevenueStatus tL_starsRevenueStatus;
-        int i10 = this.f52143b;
+        int i10 = this.f52112b;
         s5 y3 = s5.y(i10, false);
         if (this.d) {
             s5Var = s5.y(i10, true);
@@ -73,18 +73,18 @@ public final class j7 extends LinearLayout implements NotificationCenter.Notific
             s5Var = null;
         }
         long j3 = 0;
-        zf.a i11 = zf.a.i(0L, zf.b.f51657b);
-        s00 s00Var = this.f52144c;
+        zf.a i11 = zf.a.i(0L, zf.b.f51626b);
+        s00 s00Var = this.f52113c;
         s00Var.a();
-        if (this.f52142a == UserConfig.getInstance(i10).getClientUserId()) {
-            z12 = !y3.f52601e;
+        if (this.f52111a == UserConfig.getInstance(i10).getClientUserId()) {
+            z12 = !y3.f52570e;
             j3 = y3.p().amount;
             if (s5Var != null) {
-                z12 |= !s5Var.f52601e;
+                z12 |= !s5Var.f52570e;
                 i11 = s5Var.s();
             }
         } else {
-            TLRPC.TL_payments_starsRevenueStats h = o.g(i10).h(this.f52142a, false);
+            TLRPC.TL_payments_starsRevenueStats h = o.g(i10).h(this.f52111a, false);
             if (h != null && h.status != null) {
                 z11 = false;
             } else {
@@ -95,35 +95,35 @@ public final class j7 extends LinearLayout implements NotificationCenter.Notific
             }
             z12 = z11;
         }
-        long j10 = this.f52146f;
+        long j10 = this.f52115f;
         if (j3 > j10 && j10 != -1) {
-            ValueAnimator valueAnimator = this.f52148r;
+            ValueAnimator valueAnimator = this.f52117r;
             if (valueAnimator != null) {
                 valueAnimator.cancel();
             }
             ValueAnimator ofFloat = ValueAnimator.ofFloat(0.9f, 1.0f);
-            this.f52148r = ofFloat;
+            this.f52117r = ofFloat;
             ofFloat.addUpdateListener(new ki.a(this, 26));
-            this.f52148r.addListener(new oj1(this, 13));
-            this.f52148r.setDuration(320L);
-            this.f52148r.setInterpolator(new OvershootInterpolator());
-            this.f52148r.start();
+            this.f52117r.addListener(new oj1(this, 13));
+            this.f52117r.setDuration(320L);
+            this.f52117r.setInterpolator(new OvershootInterpolator());
+            this.f52117r.start();
         }
         if (z12) {
-            if (this.f52145e == null) {
+            if (this.f52114e == null) {
                 SpannableString spannableString = new SpannableString("x");
-                this.f52145e = spannableString;
-                spannableString.setSpan(new i90(AndroidUtilities.dp(48.0f), s00Var), 0, this.f52145e.length(), 33);
+                this.f52114e = spannableString;
+                spannableString.setSpan(new i90(AndroidUtilities.dp(48.0f), s00Var), 0, this.f52114e.length(), 33);
             }
-            s00Var.c(this.f52145e, z10, true);
-            this.f52146f = -1L;
+            s00Var.c(this.f52114e, z10, true);
+            this.f52115f = -1L;
             return;
         }
         if (this.d) {
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
             if (!i11.k()) {
                 String str = "⭐️" + i11.d();
-                nq[] nqVarArr = this.f52147n;
+                nq[] nqVarArr = this.f52116n;
                 spannableStringBuilder.append((CharSequence) v7.X0(true, str, 0.62f, nqVarArr));
                 nq nqVar = nqVarArr[0];
                 if (nqVar != null) {
@@ -136,14 +136,14 @@ public final class j7 extends LinearLayout implements NotificationCenter.Notific
         } else {
             s00Var.setText(LocaleController.formatNumber(j3, ' '));
         }
-        this.f52146f = j3;
+        this.f52115f = j3;
     }
 
     @Override
     public final void didReceivedNotification(int i10, int i11, Object... objArr) {
         if (i10 == NotificationCenter.starBalanceUpdated) {
             a(true);
-        } else if (i10 == NotificationCenter.botStarsUpdated && ((Long) objArr[0]).longValue() == this.f52142a) {
+        } else if (i10 == NotificationCenter.botStarsUpdated && ((Long) objArr[0]).longValue() == this.f52111a) {
             a(true);
         }
     }
@@ -152,7 +152,7 @@ public final class j7 extends LinearLayout implements NotificationCenter.Notific
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
         a(false);
-        int i10 = this.f52143b;
+        int i10 = this.f52112b;
         NotificationCenter.getInstance(i10).addObserver(this, NotificationCenter.starBalanceUpdated);
         NotificationCenter.getInstance(i10).addObserver(this, NotificationCenter.botStarsUpdated);
     }
@@ -160,7 +160,7 @@ public final class j7 extends LinearLayout implements NotificationCenter.Notific
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        int i10 = this.f52143b;
+        int i10 = this.f52112b;
         NotificationCenter.getInstance(i10).removeObserver(this, NotificationCenter.starBalanceUpdated);
         NotificationCenter.getInstance(i10).removeObserver(this, NotificationCenter.botStarsUpdated);
     }
@@ -171,8 +171,8 @@ public final class j7 extends LinearLayout implements NotificationCenter.Notific
     }
 
     public void setDialogId(long j3) {
-        if (this.f52142a != j3) {
-            this.f52142a = j3;
+        if (this.f52111a != j3) {
+            this.f52111a = j3;
             a(true);
         }
     }

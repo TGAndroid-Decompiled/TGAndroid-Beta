@@ -7,10 +7,10 @@ import org.telegram.ui.Components.x9;
 import org.telegram.ui.cv0;
 import org.telegram.ui.su0;
 public final class m extends su0 {
-    public final p f10754a;
+    public final p f10726a;
 
     public m(p pVar) {
-        this.f10754a = pVar;
+        this.f10726a = pVar;
     }
 
     @Override
@@ -18,8 +18,8 @@ public final class m extends su0 {
         TLRPC.FileLocation fileLocation2;
         TLRPC.ChatPhoto chatPhoto;
         if (fileLocation != null) {
-            p pVar = this.f10754a;
-            TLRPC.Chat chat = pVar.getMessagesController().getChat(Long.valueOf(pVar.f10769b));
+            p pVar = this.f10726a;
+            TLRPC.Chat chat = pVar.getMessagesController().getChat(Long.valueOf(pVar.f10741b));
             if (chat == null || (chatPhoto = chat.photo) == null || (fileLocation2 = chatPhoto.photo_big) == null) {
                 fileLocation2 = null;
             }
@@ -27,18 +27,18 @@ public final class m extends su0 {
                 int[] iArr = new int[2];
                 pVar.v.getLocationInWindow(iArr);
                 cv0 cv0Var = new cv0();
-                cv0Var.f35569b = iArr[0];
-                cv0Var.f35570c = iArr[1];
+                cv0Var.f35542b = iArr[0];
+                cv0Var.f35543c = iArr[1];
                 x9 x9Var = pVar.v;
                 cv0Var.d = x9Var;
                 ImageReceiver imageReceiver = x9Var.getImageReceiver();
-                cv0Var.f35568a = imageReceiver;
-                cv0Var.f35572f = -pVar.f10769b;
-                cv0Var.f35571e = imageReceiver.getBitmapSafe();
-                cv0Var.f35573g = -1L;
+                cv0Var.f35541a = imageReceiver;
+                cv0Var.f35545f = -pVar.f10741b;
+                cv0Var.f35544e = imageReceiver.getBitmapSafe();
+                cv0Var.f35546g = -1L;
                 cv0Var.h = pVar.v.getImageReceiver().getRoundRadius(true);
-                cv0Var.f35576k = 1.0f;
-                cv0Var.f35581p = true;
+                cv0Var.f35549k = 1.0f;
+                cv0Var.f35554p = true;
                 return cv0Var;
             }
         }
@@ -47,7 +47,7 @@ public final class m extends su0 {
 
     @Override
     public final void G() {
-        this.f10754a.v.getImageReceiver().setVisible(true, true);
+        this.f10726a.v.getImageReceiver().setVisible(true, true);
     }
 
     @Override
@@ -57,7 +57,7 @@ public final class m extends su0 {
 
     @Override
     public final void f(String str, String str2, boolean z10) {
-        this.f10754a.E.q(str, str2, z10);
+        this.f10726a.E.q(str, str2, z10);
     }
 
     @Override

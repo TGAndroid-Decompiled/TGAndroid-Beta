@@ -8,14 +8,14 @@ import android.view.View;
 import android.widget.TextView;
 import java.util.ArrayList;
 public final class jf implements Runnable {
-    public final int f27492a;
-    public int f27493b;
-    public final KeyEvent.Callback f27494c;
+    public final int f27465a;
+    public int f27466b;
+    public final KeyEvent.Callback f27467c;
 
     public jf(KeyEvent.Callback callback, int i10, int i11) {
-        this.f27492a = i11;
-        this.f27494c = callback;
-        this.f27493b = i10;
+        this.f27465a = i11;
+        this.f27467c = callback;
+        this.f27466b = i10;
     }
 
     @Override
@@ -24,29 +24,29 @@ public final class jf implements Runnable {
         boolean z10;
         boolean z11;
         int max;
-        int i10 = this.f27492a;
-        KeyEvent.Callback callback = this.f27494c;
+        int i10 = this.f27465a;
+        KeyEvent.Callback callback = this.f27467c;
         switch (i10) {
             case 0:
                 ChatActivityEnterView chatActivityEnterView = (ChatActivityEnterView) callback;
                 eg egVar = chatActivityEnterView.U0;
-                if (egVar != null && (currentPage = egVar.getCurrentPage()) != this.f27493b) {
-                    this.f27493b = currentPage;
-                    boolean z12 = chatActivityEnterView.f23819w3;
+                if (egVar != null && (currentPage = egVar.getCurrentPage()) != this.f27466b) {
+                    this.f27466b = currentPage;
+                    boolean z12 = chatActivityEnterView.f23792w3;
                     int i11 = 2;
                     if (currentPage != 1 && currentPage != 2) {
                         z10 = false;
                     } else {
                         z10 = true;
                     }
-                    chatActivityEnterView.f23819w3 = z10;
-                    boolean z13 = chatActivityEnterView.f23825x3;
+                    chatActivityEnterView.f23792w3 = z10;
+                    boolean z13 = chatActivityEnterView.f23798x3;
                     if (currentPage == 0) {
                         z11 = true;
                     } else {
                         z11 = false;
                     }
-                    chatActivityEnterView.f23825x3 = z11;
+                    chatActivityEnterView.f23798x3 = z11;
                     if (chatActivityEnterView.y3) {
                         if (chatActivityEnterView.Q1 != 0) {
                             if (currentPage != 0) {
@@ -58,7 +58,7 @@ public final class jf implements Runnable {
                             chatActivityEnterView.n1(false, true, false, true);
                         }
                     }
-                    if (z12 != chatActivityEnterView.f23819w3 || z13 != chatActivityEnterView.f23825x3) {
+                    if (z12 != chatActivityEnterView.f23792w3 || z13 != chatActivityEnterView.f23798x3) {
                         chatActivityEnterView.K(true);
                         return;
                     }
@@ -66,9 +66,9 @@ public final class jf implements Runnable {
                 }
                 return;
             case 1:
-                int i12 = this.f27493b;
+                int i12 = this.f27466b;
                 lp lpVar = (lp) callback;
-                s4.o0 layoutManager = lpVar.f28298w.getLayoutManager();
+                s4.o0 layoutManager = lpVar.f28271w.getLayoutManager();
                 if (layoutManager != null) {
                     if (i12 > lpVar.Q) {
                         max = Math.min(i12 + 1, lpVar.h.d.size() - 1);
@@ -76,33 +76,33 @@ public final class jf implements Runnable {
                         max = Math.max(i12 - 1, 0);
                     }
                     fp fpVar = lpVar.H;
-                    fpVar.f45935a = max;
+                    fpVar.f45907a = max;
                     layoutManager.w0(fpVar);
                 }
                 lpVar.Q = i12;
                 return;
             default:
-                int i13 = this.f27493b;
+                int i13 = this.f27466b;
                 di.l9 l9Var = (di.l9) callback;
-                if (((jf) l9Var.f7604f) == this) {
+                if (((jf) l9Var.f7576f) == this) {
                     ArrayList arrayList = new ArrayList();
-                    TextView textView = (TextView) ((ArrayList) l9Var.f7601b).get(i13);
+                    TextView textView = (TextView) ((ArrayList) l9Var.f7573b).get(i13);
                     Property property = View.SCALE_X;
                     arrayList.add(ObjectAnimator.ofFloat(textView, property, 0.0f));
                     Property property2 = View.SCALE_Y;
                     arrayList.add(ObjectAnimator.ofFloat(textView, property2, 0.0f));
                     Property property3 = View.ALPHA;
                     arrayList.add(ObjectAnimator.ofFloat(textView, property3, 0.0f));
-                    TextView textView2 = (TextView) ((ArrayList) l9Var.f7602c).get(i13);
+                    TextView textView2 = (TextView) ((ArrayList) l9Var.f7574c).get(i13);
                     arrayList.add(ObjectAnimator.ofFloat(textView2, property, 1.0f));
                     arrayList.add(ObjectAnimator.ofFloat(textView2, property2, 1.0f));
                     arrayList.add(ObjectAnimator.ofFloat(textView2, property3, 1.0f));
                     AnimatorSet animatorSet = new AnimatorSet();
-                    l9Var.f7603e = animatorSet;
+                    l9Var.f7575e = animatorSet;
                     animatorSet.setDuration(150L);
-                    ((AnimatorSet) l9Var.f7603e).playTogether(arrayList);
-                    ((AnimatorSet) l9Var.f7603e).addListener(new r80(this, 5));
-                    ((AnimatorSet) l9Var.f7603e).start();
+                    ((AnimatorSet) l9Var.f7575e).playTogether(arrayList);
+                    ((AnimatorSet) l9Var.f7575e).addListener(new r80(this, 5));
+                    ((AnimatorSet) l9Var.f7575e).start();
                     return;
                 }
                 return;
@@ -110,8 +110,8 @@ public final class jf implements Runnable {
     }
 
     public jf(ChatActivityEnterView chatActivityEnterView) {
-        this.f27492a = 0;
-        this.f27494c = chatActivityEnterView;
-        this.f27493b = -1;
+        this.f27465a = 0;
+        this.f27467c = chatActivityEnterView;
+        this.f27466b = -1;
     }
 }

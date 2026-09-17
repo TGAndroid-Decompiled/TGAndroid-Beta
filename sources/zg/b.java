@@ -19,28 +19,28 @@ import org.telegram.ui.Cells.za;
 import org.telegram.ui.Components.i9;
 import w7.x5;
 public final class b extends za {
-    public final TextView f51664a0;
-    public final FrameLayout f51665b0;
-    public Drawable f51666c0;
-    public Drawable f51667d0;
-    public TL_stories.Boost f51668e0;
-    public final a f51669f0;
+    public final TextView f51633a0;
+    public final FrameLayout f51634b0;
+    public Drawable f51635c0;
+    public Drawable f51636d0;
+    public TL_stories.Boost f51637e0;
+    public final a f51638f0;
 
     public b(Context context) {
         super(context, 0, 0, false);
         int i10;
         int i11;
-        this.f51669f0 = new a(getContext());
-        this.f51665b0 = new FrameLayout(getContext());
+        this.f51638f0 = new a(getContext());
+        this.f51634b0 = new FrameLayout(getContext());
         TextView textView = new TextView(getContext());
-        this.f51664a0 = textView;
-        textView.setTextColor(j6.v0(j6.G6, this.f23670y));
-        this.f51664a0.setTypeface(AndroidUtilities.bold());
-        this.f51664a0.setTextSize(12.0f);
-        this.f51664a0.setGravity(17);
-        this.f51665b0.addView(this.f51664a0, x5.c(22.0f, -2));
-        this.f51665b0.setPadding(AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(8.0f), 0);
-        FrameLayout frameLayout = this.f51665b0;
+        this.f51633a0 = textView;
+        textView.setTextColor(j6.v0(j6.G6, this.f23643y));
+        this.f51633a0.setTypeface(AndroidUtilities.bold());
+        this.f51633a0.setTextSize(12.0f);
+        this.f51633a0.setGravity(17);
+        this.f51634b0.addView(this.f51633a0, x5.c(22.0f, -2));
+        this.f51634b0.setPadding(AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(8.0f), 0);
+        FrameLayout frameLayout = this.f51634b0;
         boolean z10 = LocaleController.isRTL;
         if (z10) {
             i10 = 3;
@@ -68,7 +68,7 @@ public final class b extends za {
     }
 
     public TL_stories.Boost getBoost() {
-        return this.f51668e0;
+        return this.f51637e0;
     }
 
     @Override
@@ -93,25 +93,25 @@ public final class b extends za {
             } else {
                 i10 = 0;
             }
-            canvas.drawLine(dp, measuredHeight, measuredWidth - i10, getMeasuredHeight() - 1, j6.f20813k0);
+            canvas.drawLine(dp, measuredHeight, measuredWidth - i10, getMeasuredHeight() - 1, j6.f20786k0);
         }
     }
 
     public void setStatus(TL_stories.Boost boost) {
         int i10;
-        this.f51668e0 = boost;
+        this.f51637e0 = boost;
         boolean z10 = boost.gift;
-        FrameLayout frameLayout = this.f51665b0;
-        TextView textView = this.f51664a0;
+        FrameLayout frameLayout = this.f51634b0;
+        TextView textView = this.f51633a0;
         int i11 = 0;
-        j5 j5Var = this.f23661b;
+        j5 j5Var = this.f23634b;
         if (!z10 && !boost.giveaway) {
             frameLayout.setVisibility(8);
         } else {
             frameLayout.setVisibility(0);
             int i12 = ((boost.expires - boost.date) / 30) / 86400;
             long j3 = boost.stars;
-            i5 i5Var = this.f23660a;
+            i5 i5Var = this.f23633a;
             i9 i9Var = this.E;
             if (j3 > 0) {
                 j5Var.l(LocaleController.formatPluralString("BoostingBoostStars", (int) j3, new Object[0]), false);
@@ -133,32 +133,32 @@ public final class b extends za {
             }
             String format = LocaleController.getInstance().getFormatterBoostExpired().format(new Date(boost.expires * 1000));
             long j10 = boost.stars;
-            j5 j5Var2 = this.f23662c;
+            j5 j5Var2 = this.f23635c;
             if (j10 > 0) {
                 j5Var2.l(LocaleController.formatString(R.string.BoostingStarsExpires, format), false);
             } else {
                 j5Var2.l(LocaleController.formatString(R.string.BoostingExpires, format), false);
             }
             if (boost.gift) {
-                if (this.f51667d0 == null) {
+                if (this.f51636d0 == null) {
                     Drawable drawable = getResources().getDrawable(R.drawable.mini_gift);
-                    this.f51667d0 = drawable;
+                    this.f51636d0 = drawable;
                     drawable.setColorFilter(new PorterDuffColorFilter(-3240417, PorterDuff.Mode.MULTIPLY));
                 }
                 textView.setTextColor(-3240417);
-                textView.setCompoundDrawablesWithIntrinsicBounds(this.f51667d0, (Drawable) null, (Drawable) null, (Drawable) null);
+                textView.setCompoundDrawablesWithIntrinsicBounds(this.f51636d0, (Drawable) null, (Drawable) null, (Drawable) null);
                 textView.setCompoundDrawablePadding(AndroidUtilities.dp(4.0f));
                 textView.setText(LocaleController.getString(R.string.BoostingGift));
                 frameLayout.setBackground(j6.c0(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f), j6.l1(0.2f, -3240417)));
             }
             if (boost.giveaway) {
-                if (this.f51666c0 == null) {
+                if (this.f51635c0 == null) {
                     Drawable drawable2 = getResources().getDrawable(R.drawable.mini_giveaway);
-                    this.f51666c0 = drawable2;
+                    this.f51635c0 = drawable2;
                     drawable2.setColorFilter(new PorterDuffColorFilter(-13397548, PorterDuff.Mode.MULTIPLY));
                 }
                 textView.setTextColor(-13397548);
-                textView.setCompoundDrawablesWithIntrinsicBounds(this.f51666c0, (Drawable) null, (Drawable) null, (Drawable) null);
+                textView.setCompoundDrawablesWithIntrinsicBounds(this.f51635c0, (Drawable) null, (Drawable) null, (Drawable) null);
                 textView.setCompoundDrawablePadding(AndroidUtilities.dp(4.0f));
                 textView.setText(LocaleController.getString(R.string.BoostingGiveaway));
                 frameLayout.setBackground(j6.c0(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f), j6.l1(0.2f, -13397548)));
@@ -167,9 +167,9 @@ public final class b extends za {
         int i13 = boost.multiplier;
         if (i13 > 0) {
             String valueOf = String.valueOf(i13);
-            a aVar = this.f51669f0;
-            aVar.f51663f = valueOf;
-            aVar.f51662e = aVar.f51659a.measureText(valueOf);
+            a aVar = this.f51638f0;
+            aVar.f51632f = valueOf;
+            aVar.f51631e = aVar.f51628a.measureText(valueOf);
             aVar.invalidateSelf();
             j5Var.i(aVar);
         } else {

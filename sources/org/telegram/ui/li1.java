@@ -5,15 +5,15 @@ import android.animation.AnimatorListenerAdapter;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class li1 extends AnimatorListenerAdapter {
-    public final ui1 f38403a;
+    public final ui1 f38376a;
 
     public li1(ui1 ui1Var) {
-        this.f38403a = ui1Var;
+        this.f38376a = ui1Var;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        ui1 ui1Var = this.f38403a;
+        ui1 ui1Var = this.f38376a;
         ui1Var.E.setText(LocaleController.getString(R.string.VoipCallEnded));
         ui1Var.E.animate().alpha(1.0f).setDuration(70L).setListener(null).start();
     }

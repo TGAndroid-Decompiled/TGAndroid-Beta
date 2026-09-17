@@ -1,21 +1,21 @@
 package re;
 public final class b {
-    public static final b f45136e;
-    public boolean f45137a;
-    public boolean f45138b;
-    public boolean f45139c;
+    public static final b f45108e;
+    public boolean f45109a;
+    public boolean f45110b;
+    public boolean f45111c;
     public boolean d;
 
     static {
         ?? obj = new Object();
-        obj.f45137a = true;
-        obj.f45138b = true;
-        obj.f45139c = false;
+        obj.f45109a = true;
+        obj.f45110b = true;
+        obj.f45111c = false;
         obj.d = false;
-        f45136e = obj;
-        obj.f45137a = true;
-        obj.f45138b = true;
-        obj.f45139c = false;
+        f45108e = obj;
+        obj.f45109a = true;
+        obj.f45110b = true;
+        obj.f45111c = false;
         obj.d = false;
     }
 

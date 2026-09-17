@@ -7,25 +7,25 @@ import android.view.View;
 import android.view.ViewTreeObserver;
 import androidx.recyclerview.widget.RecyclerView;
 public final class ts0 implements ViewTreeObserver.OnPreDrawListener {
-    public final int f30723a;
-    public final int f30724b;
-    public final KeyEvent.Callback f30725c;
+    public final int f30696a;
+    public final int f30697b;
+    public final KeyEvent.Callback f30698c;
 
     public ts0(KeyEvent.Callback callback, int i10, int i11) {
-        this.f30723a = i11;
-        this.f30725c = callback;
-        this.f30724b = i10;
+        this.f30696a = i11;
+        this.f30698c = callback;
+        this.f30697b = i10;
     }
 
     @Override
     public final boolean onPreDraw() {
-        int i10 = this.f30723a;
-        int i11 = this.f30724b;
-        KeyEvent.Callback callback = this.f30725c;
+        int i10 = this.f30696a;
+        int i11 = this.f30697b;
+        KeyEvent.Callback callback = this.f30698c;
         switch (i10) {
             case 0:
                 xu0 xu0Var = (xu0) callback;
-                xu0Var.f32730k0[i11].getViewTreeObserver().removeOnPreDrawListener(this);
+                xu0Var.f32703k0[i11].getViewTreeObserver().removeOnPreDrawListener(this);
                 xu0Var.U(i11);
                 return true;
             default:
@@ -39,7 +39,7 @@ public final class ts0 implements ViewTreeObserver.OnPreDrawListener {
                     o0Var.getClass();
                     int R = RecyclerView.R(childAt);
                     if (R >= i11) {
-                        if (R == 1 && o0Var.getAdapter() == o61Var.f29005e && (childAt instanceof org.telegram.ui.Cells.u3)) {
+                        if (R == 1 && o0Var.getAdapter() == o61Var.f28978e && (childAt instanceof org.telegram.ui.Cells.u3)) {
                             childAt = ((org.telegram.ui.Cells.u3) childAt).getTextView();
                         }
                         childAt.setAlpha(0.0f);

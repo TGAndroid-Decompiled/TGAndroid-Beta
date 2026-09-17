@@ -13,13 +13,13 @@ import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.zt0;
 public final class m0 extends FrameLayout {
-    public float f45325a;
-    public float f45326b;
-    public final zt0 f45327c;
+    public float f45297a;
+    public float f45298b;
+    public final zt0 f45299c;
 
     public m0(zt0 zt0Var, Context context) {
         super(context);
-        this.f45327c = zt0Var;
+        this.f45299c = zt0Var;
         new Path();
         setWillNotDraw(false);
         Paint paint = zt0Var.H1;
@@ -34,7 +34,7 @@ public final class m0 extends FrameLayout {
         ViewGroup viewGroup2;
         Canvas canvas2 = canvas;
         super.onDraw(canvas);
-        zt0 zt0Var = this.f45327c;
+        zt0 zt0Var = this.f45299c;
         qg.q1 q1Var = zt0Var.K1;
         Paint paint = zt0Var.I1;
         Paint paint2 = zt0Var.H1;
@@ -47,11 +47,11 @@ public final class m0 extends FrameLayout {
         RectF rectF = AndroidUtilities.rectTmp;
         rectF.set(rect);
         float lerp = AndroidUtilities.lerp(AndroidUtilities.dp(32.0f), AndroidUtilities.dp(24.0f), zt0Var.N1);
-        if (zt0Var.f45371c2 != null) {
+        if (zt0Var.f45343c2 != null) {
             rect.inset(-AndroidUtilities.dp(4.0f), -AndroidUtilities.dp(4.0f));
-            zt0Var.f45371c2.p(lerp);
-            zt0Var.f45371c2.setBounds(rect);
-            zt0Var.f45371c2.draw(canvas2);
+            zt0Var.f45343c2.p(lerp);
+            zt0Var.f45343c2.setBounds(rect);
+            zt0Var.f45343c2.draw(canvas2);
         } else {
             canvas2.drawRoundRect(rectF, lerp, lerp, zt0Var.O1);
         }
@@ -69,14 +69,14 @@ public final class m0 extends FrameLayout {
                 int height = (childAt.getHeight() - childAt.getPaddingTop()) - childAt.getPaddingBottom();
                 float x10 = (width / 2.0f) + childAt.getX() + childAt.getPaddingLeft();
                 float y3 = (height / 2.0f) + childAt.getY() + childAt.getPaddingTop();
-                int i10 = q1Var.f44570a;
-                int i11 = zt0Var.f45380h1;
+                int i10 = q1Var.f44542a;
+                int i11 = zt0Var.f45352h1;
                 View view = childAt;
                 if (i11 != -1) {
                     if (i11 == 0) {
-                        viewGroup = zt0Var.f45398t1;
+                        viewGroup = zt0Var.f45370t1;
                     } else if (i11 == 2) {
-                        viewGroup = zt0Var.f45399u1;
+                        viewGroup = zt0Var.f45371u1;
                     } else {
                         viewGroup = null;
                     }
@@ -89,20 +89,20 @@ public final class m0 extends FrameLayout {
                     if (viewGroup instanceof q1) {
                         childAt2 = ((q1) viewGroup).getColorClickableView();
                     }
-                    x10 = AndroidUtilities.lerp(x10, (((childAt2.getWidth() - childAt2.getPaddingLeft()) - childAt2.getPaddingRight()) / 2.0f) + childAt2.getX() + childAt2.getPaddingLeft(), zt0Var.f45382i1);
-                    y3 = AndroidUtilities.lerp(y3, (((childAt2.getHeight() - childAt2.getPaddingTop()) - childAt2.getPaddingBottom()) / 2.0f) + childAt2.getY() + childAt2.getPaddingTop(), zt0Var.f45382i1);
+                    x10 = AndroidUtilities.lerp(x10, (((childAt2.getWidth() - childAt2.getPaddingLeft()) - childAt2.getPaddingRight()) / 2.0f) + childAt2.getX() + childAt2.getPaddingLeft(), zt0Var.f45354i1);
+                    y3 = AndroidUtilities.lerp(y3, (((childAt2.getHeight() - childAt2.getPaddingTop()) - childAt2.getPaddingBottom()) / 2.0f) + childAt2.getY() + childAt2.getPaddingTop(), zt0Var.f45354i1);
                 }
                 if (l0Var != null && l0Var.getChildCount() > 0) {
                     View childAt3 = l0Var.getChildAt(0);
                     x10 = AndroidUtilities.lerp(x10, (childAt3.getWidth() / 2.0f) + childAt3.getX() + (l0Var.getX() - barView.getLeft()), zt0Var.N1);
                     y3 = AndroidUtilities.lerp(y3, (childAt3.getHeight() / 2.0f) + childAt3.getY() + (l0Var.getY() - barView.getTop()), zt0Var.N1);
-                    i10 = i0.a.d(zt0Var.N1, q1Var.f44570a, zt0Var.V1.b(0));
+                    i10 = i0.a.d(zt0Var.N1, q1Var.f44542a, zt0Var.V1.b(0));
                 }
                 float f7 = x10;
                 float f10 = y3;
-                if (f7 != this.f45325a || f10 != this.f45326b) {
-                    this.f45325a = f7;
-                    this.f45326b = f10;
+                if (f7 != this.f45297a || f10 != this.f45298b) {
+                    this.f45297a = f7;
+                    this.f45298b = f10;
                     paint2.setShader(new SweepGradient(f7, f10, new int[]{-1356981, -1146130, -10452764, -16711681, -7352832, -256, -23296, -1356981}, (float[]) null));
                 }
                 float min = (Math.min(width, height) / 2.0f) - AndroidUtilities.dp(0.5f);
@@ -135,7 +135,7 @@ public final class m0 extends FrameLayout {
     @Override
     public final void setTranslationY(float f7) {
         super.setTranslationY(f7);
-        k0 k0Var = this.f45327c.f45372d1;
+        k0 k0Var = this.f45299c.f45344d1;
         if (k0Var != null) {
             k0Var.invalidate();
         }

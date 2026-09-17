@@ -4,16 +4,16 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import org.telegram.messenger.AndroidUtilities;
 public final class gi extends AnimatorListenerAdapter {
-    public final int f26416a;
-    public final int f26417b;
-    public final Object f26418c;
+    public final int f26389a;
+    public final int f26390b;
+    public final Object f26391c;
     public final Object d;
 
     public gi(Object obj, int i10, Object obj2, int i11) {
-        this.f26416a = i11;
+        this.f26389a = i11;
         this.d = obj;
-        this.f26417b = i10;
-        this.f26418c = obj2;
+        this.f26390b = i10;
+        this.f26391c = obj2;
     }
 
     @Override
@@ -21,51 +21,51 @@ public final class gi extends AnimatorListenerAdapter {
         int i10;
         int i11;
         int i12;
-        switch (this.f26416a) {
+        switch (this.f26389a) {
             case 0:
                 vi viVar = (vi) this.d;
-                viVar.f31368y0.setAlpha(0.0f);
-                viVar.f31368y0.setTranslationY(AndroidUtilities.dp(78.0f) + this.f26417b);
-                ji jiVar = viVar.f31303e0;
-                ni niVar = viVar.f31368y0;
+                viVar.f31341y0.setAlpha(0.0f);
+                viVar.f31341y0.setTranslationY(AndroidUtilities.dp(78.0f) + this.f26390b);
+                ji jiVar = viVar.f31276e0;
+                ni niVar = viVar.f31341y0;
                 Float valueOf = Float.valueOf(1.0f);
                 jiVar.getClass();
                 jiVar.getClass();
                 jiVar.b(niVar, valueOf.floatValue());
                 viVar.X0.setAlpha(0.0f);
-                o1.k kVar = new o1.k(viVar.f31371z0, o1.h.f16834n, 0.0f);
-                kVar.f16852u.a(0.75f);
-                kVar.f16852u.b(500.0f);
+                o1.k kVar = new o1.k(viVar.f31344z0, o1.h.f16807n, 0.0f);
+                kVar.f16825u.a(0.75f);
+                kVar.f16825u.b(500.0f);
                 kVar.b(new l7(this, 3));
-                kVar.a(new fi.n4(3, this, (hh) this.f26418c));
-                viVar.f31351t1 = kVar;
+                kVar.a(new fi.n4(3, this, (hh) this.f26391c));
+                viVar.f31324t1 = kVar;
                 kVar.f();
                 return;
             case 1:
                 a5.a aVar = (a5.a) this.d;
-                ((ll0) aVar.d).scrollBy(0, this.f26417b - ((int[]) this.f26418c)[0]);
-                aVar.f298c = null;
+                ((ll0) aVar.d).scrollBy(0, this.f26390b - ((int[]) this.f26391c)[0]);
+                aVar.f286c = null;
                 return;
             default:
                 zh.w3 w3Var = (zh.w3) this.d;
                 w3Var.T1();
-                zh.h2 h2Var = w3Var.f52797f0;
+                zh.h2 h2Var = w3Var.f52766f0;
                 int i13 = 8;
-                int i14 = this.f26417b;
+                int i14 = this.f26390b;
                 if (i14 == 0) {
                     i10 = 0;
                 } else {
                     i10 = 8;
                 }
                 h2Var.setVisibility(i10);
-                zh.h2 h2Var2 = w3Var.f52818r0;
+                zh.h2 h2Var2 = w3Var.f52787r0;
                 if (i14 == 1) {
                     i11 = 0;
                 } else {
                     i11 = 8;
                 }
                 h2Var2.setVisibility(i11);
-                zh.h2 h2Var3 = w3Var.f52825y0;
+                zh.h2 h2Var3 = w3Var.f52794y0;
                 if (i14 == 2) {
                     i12 = 0;
                 } else {
@@ -79,7 +79,7 @@ public final class gi extends AnimatorListenerAdapter {
                 h2Var4.setVisibility(i13);
                 w3Var.s2();
                 w3Var.Z0 = null;
-                Runnable runnable = (Runnable) this.f26418c;
+                Runnable runnable = (Runnable) this.f26391c;
                 if (runnable != null) {
                     runnable.run();
                     return;

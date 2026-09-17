@@ -3,42 +3,42 @@ package tg;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 public final class d extends AnimatorListenerAdapter {
-    public final int f46544a;
-    public final e f46545b;
+    public final int f46516a;
+    public final e f46517b;
 
     public d(e eVar, int i10) {
-        this.f46544a = i10;
-        this.f46545b = eVar;
+        this.f46516a = i10;
+        this.f46517b = eVar;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        switch (this.f46544a) {
+        switch (this.f46516a) {
             case 0:
                 super.onAnimationEnd(animator);
-                e eVar = this.f46545b;
-                eVar.f46548b.d = 0.0f;
+                e eVar = this.f46517b;
+                eVar.f46520b.d = 0.0f;
                 eVar.T = null;
                 eVar.h(eVar.I);
                 return;
             case 1:
                 super.onAnimationEnd(animator);
-                e eVar2 = this.f46545b;
-                eVar2.f46548b.d = 0.0f;
+                e eVar2 = this.f46517b;
+                eVar2.f46520b.d = 0.0f;
                 eVar2.T = null;
                 eVar2.h(eVar2.I);
                 return;
             case 2:
                 super.onAnimationEnd(animator);
-                e eVar3 = this.f46545b;
-                eVar3.f46548b.d = 0.0f;
+                e eVar3 = this.f46517b;
+                eVar3.f46520b.d = 0.0f;
                 eVar3.T = null;
                 eVar3.h(eVar3.I);
                 return;
             default:
                 super.onAnimationEnd(animator);
-                e eVar4 = this.f46545b;
-                eVar4.f46548b.d = 0.0f;
+                e eVar4 = this.f46517b;
+                eVar4.f46520b.d = 0.0f;
                 eVar4.T = null;
                 eVar4.h(eVar4.I);
                 return;

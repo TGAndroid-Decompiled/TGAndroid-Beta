@@ -34,15 +34,15 @@ import wg.c0;
 import wg.d0;
 import wg.t;
 public abstract class e extends kl0 {
-    public final f6 f47834c;
+    public final f6 f47806c;
     public boolean d;
-    public n2 f47835e;
-    public TLRPC.TL_payments_checkedGiftCode f47836f;
+    public n2 f47807e;
+    public TLRPC.TL_payments_checkedGiftCode f47808f;
     public String h;
-    public FrameLayout f47837n;
+    public FrameLayout f47809n;
 
     public e(f6 f6Var) {
-        this.f47834c = f6Var;
+        this.f47806c = f6Var;
     }
 
     @Override
@@ -88,8 +88,8 @@ public abstract class e extends kl0 {
         char c10;
         String formatPluralString;
         String string;
-        int i14 = c1Var.f45771f;
-        View view = c1Var.f45767a;
+        int i14 = c1Var.f45743f;
+        View view = c1Var.f45739a;
         if (i14 != 0) {
             if (i14 != 1) {
                 if (i14 != 2) {
@@ -98,10 +98,10 @@ public abstract class e extends kl0 {
                             wg.a aVar = (wg.a) view;
                             aVar.setOkStyle(this.d);
                             aVar.setOnClickListener(new wy0(20, this, aVar));
-                            TLRPC.TL_payments_checkedGiftCode tL_payments_checkedGiftCode = this.f47836f;
+                            TLRPC.TL_payments_checkedGiftCode tL_payments_checkedGiftCode = this.f47808f;
                             if (tL_payments_checkedGiftCode.boost != null || tL_payments_checkedGiftCode.flags == -1) {
-                                aVar.f48527e = false;
-                                di.d dVar = aVar.f48524a;
+                                aVar.f48498e = false;
+                                di.d dVar = aVar.f48495a;
                                 dVar.setShowZero(false);
                                 dVar.setEnabled(true);
                                 dVar.g(LocaleController.formatString("Close", R.string.Close, new Object[0]), false, true);
@@ -117,7 +117,7 @@ public abstract class e extends kl0 {
                     d0Var.setTextColor(j6.w0(null, j6.G6, false));
                     d0Var.setTopPadding(14);
                     d0Var.setBottomPadding(15);
-                    TLRPC.TL_payments_checkedGiftCode tL_payments_checkedGiftCode2 = this.f47836f;
+                    TLRPC.TL_payments_checkedGiftCode tL_payments_checkedGiftCode2 = this.f47808f;
                     if (tL_payments_checkedGiftCode2.boost != null) {
                         String str = this.h;
                         if (str != null && !str.isEmpty()) {
@@ -133,30 +133,30 @@ public abstract class e extends kl0 {
                         } else {
                             string = LocaleController.getString(R.string.BoostingSendLinkToFriends);
                         }
-                        d0Var.setText(AndroidUtilities.replaceSingleTag(string, j6.gc, 0, new c(this, 1), this.f47834c));
+                        d0Var.setText(AndroidUtilities.replaceSingleTag(string, j6.gc, 0, new c(this, 1), this.f47806c));
                         return;
                     } else {
-                        Date date = new Date(this.f47836f.used_date * 1000);
+                        Date date = new Date(this.f47808f.used_date * 1000);
                         d0Var.setText(LocaleController.formatString("BoostingUsedLinkDate", R.string.BoostingUsedLinkDate, LocaleController.formatString("formatDateAtTime", R.string.formatDateAtTime, LocaleController.getInstance().getFormatterYear().format(date), LocaleController.getInstance().getFormatterDay().format(date))));
                         return;
                     }
                 }
                 c0 c0Var = (c0) view;
-                final TLRPC.TL_payments_checkedGiftCode tL_payments_checkedGiftCode3 = this.f47836f;
+                final TLRPC.TL_payments_checkedGiftCode tL_payments_checkedGiftCode3 = this.f47808f;
                 final b1 b1Var = new b1(this, 14);
                 x9 x9Var = c0Var.h;
-                FrameLayout frameLayout = c0Var.f48549w;
-                x9 x9Var2 = c0Var.f48545f;
-                TextView textView = c0Var.f48541a;
-                TextView textView2 = c0Var.f48542b;
-                f6 f6Var = c0Var.f48546n;
+                FrameLayout frameLayout = c0Var.f48520w;
+                x9 x9Var2 = c0Var.f48516f;
+                TextView textView = c0Var.f48512a;
+                TextView textView2 = c0Var.f48513b;
+                f6 f6Var = c0Var.f48517n;
                 Date date2 = new Date(tL_payments_checkedGiftCode3.date * 1000);
-                c0Var.f48544e.setText(LocaleController.formatString("formatDateAtTime", R.string.formatDateAtTime, LocaleController.getInstance().getFormatterYear().format(date2), LocaleController.getInstance().getFormatterDay().format(date2)));
+                c0Var.f48515e.setText(LocaleController.formatString("formatDateAtTime", R.string.formatDateAtTime, LocaleController.getInstance().getFormatterYear().format(date2), LocaleController.getInstance().getFormatterDay().format(date2)));
                 TextView textView3 = c0Var.d;
                 if (tL_payments_checkedGiftCode3.via_giveaway) {
-                    i11 = j6.f20854m5;
+                    i11 = j6.f20827m5;
                 } else {
-                    i11 = j6.f20798j5;
+                    i11 = j6.f20771j5;
                 }
                 textView3.setTextColor(j6.v0(i11, f6Var));
                 TLRPC.Chat chat = MessagesController.getInstance(UserConfig.selectedAccount).getChat(Long.valueOf(-DialogObject.getPeerDialogId(tL_payments_checkedGiftCode3.from_id)));
@@ -199,7 +199,7 @@ public abstract class e extends kl0 {
                     c10 = 0;
                     formatPluralString = LocaleController.formatPluralString("Months", i15, new Object[0]);
                 }
-                TextView textView4 = c0Var.f48543c;
+                TextView textView4 = c0Var.f48514c;
                 int i16 = R.string.BoostingTelegramPremiumFor;
                 String str2 = formatPluralString;
                 Object[] objArr = new Object[i13];
@@ -250,7 +250,7 @@ public abstract class e extends kl0 {
                         }
                     }, f6Var));
                     textView2.setText(LocaleController.getString(R.string.BoostingNoRecipient));
-                    textView2.setTextColor(j6.v0(j6.f20798j5, f6Var));
+                    textView2.setTextColor(j6.v0(j6.f20771j5, f6Var));
                     ((ViewGroup.MarginLayoutParams) textView2.getLayoutParams()).leftMargin = 0;
                     ((ViewGroup.MarginLayoutParams) textView2.getLayoutParams()).rightMargin = 0;
                     x9Var.setVisibility(8);
@@ -275,7 +275,7 @@ public abstract class e extends kl0 {
                             }
                         }, f6Var), textView2.getPaint().getFontMetricsInt(), false));
                         x9Var.e(user2, new i9(0, user2));
-                        c0Var.f48550x.setOnClickListener(new View.OnClickListener() {
+                        c0Var.f48521x.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public final void onClick(View view2) {
                                 switch (r3) {
@@ -291,18 +291,18 @@ public abstract class e extends kl0 {
                     }
                 }
                 if (tL_payments_checkedGiftCode3.boost != null) {
-                    c0Var.f48551y.setVisibility(8);
+                    c0Var.f48522y.setVisibility(8);
                     return;
                 }
                 return;
             }
             t tVar = (t) view;
             tVar.setSlug(this.h);
-            if (this.f47836f.boost != null && this.h == null) {
+            if (this.f47808f.boost != null && this.h == null) {
                 tVar.a(new c(this, 0));
             }
             String str3 = this.h;
-            if ((str3 == null || str3.isEmpty()) && this.f47836f.to_id == -1) {
+            if ((str3 == null || str3.isEmpty()) && this.f47808f.to_id == -1) {
                 tVar.a(new c(this, 0));
                 return;
             }
@@ -310,17 +310,17 @@ public abstract class e extends kl0 {
         }
         wg.r rVar = (wg.r) view;
         if (this.d) {
-            rVar.f48579c.setText(LocaleController.formatString("BoostingGiftLink", R.string.BoostingGiftLink, new Object[0]));
+            rVar.f48550c.setText(LocaleController.formatString("BoostingGiftLink", R.string.BoostingGiftLink, new Object[0]));
             rVar.d.setText(AndroidUtilities.replaceTags(LocaleController.formatString("BoostingLinkAllows", R.string.BoostingLinkAllows, new Object[0])));
         } else {
-            rVar.f48579c.setText(LocaleController.formatString("BoostingUsedGiftLink", R.string.BoostingUsedGiftLink, new Object[0]));
+            rVar.f48550c.setText(LocaleController.formatString("BoostingUsedGiftLink", R.string.BoostingUsedGiftLink, new Object[0]));
             rVar.d.setText(AndroidUtilities.replaceTags(LocaleController.formatString("BoostingLinkUsed", R.string.BoostingLinkUsed, new Object[0])));
         }
-        TLRPC.TL_payments_checkedGiftCode tL_payments_checkedGiftCode4 = this.f47836f;
+        TLRPC.TL_payments_checkedGiftCode tL_payments_checkedGiftCode4 = this.f47808f;
         if (tL_payments_checkedGiftCode4.boost != null) {
             long j3 = tL_payments_checkedGiftCode4.to_id;
             final b1 b1Var2 = new b1(this, 14);
-            rVar.f48579c.setText(LocaleController.formatString("BoostingGiftLink", R.string.BoostingGiftLink, new Object[0]));
+            rVar.f48550c.setText(LocaleController.formatString("BoostingGiftLink", R.string.BoostingGiftLink, new Object[0]));
             SpannableStringBuilder replaceTags = AndroidUtilities.replaceTags(LocaleController.getString(R.string.BoostingLinkAllowsToUser));
             final TLRPC.User user3 = MessagesController.getInstance(UserConfig.selectedAccount).getUser(Long.valueOf(j3));
             rVar.d.setText(AndroidUtilities.replaceCharSequence("%1$s", replaceTags, AndroidUtilities.replaceSingleTag("**" + UserObject.getUserName(user3) + "**", j6.gc, 2, new Runnable() {
@@ -335,10 +335,10 @@ public abstract class e extends kl0 {
                             return;
                     }
                 }
-            }, rVar.f48580e)));
+            }, rVar.f48551e)));
         }
-        if (this.f47836f.to_id == -1) {
-            rVar.f48579c.setText(LocaleController.formatString("BoostingGiftLink", R.string.BoostingGiftLink, new Object[0]));
+        if (this.f47808f.to_id == -1) {
+            rVar.f48550c.setText(LocaleController.formatString("BoostingGiftLink", R.string.BoostingGiftLink, new Object[0]));
             rVar.d.setText(AndroidUtilities.replaceTags(LocaleController.formatString("BoostingLinkAllowsAnyone", R.string.BoostingLinkAllowsAnyone, new Object[0])));
         }
     }
@@ -347,7 +347,7 @@ public abstract class e extends kl0 {
     public final c1 x(ViewGroup viewGroup, int i10) {
         View tVar;
         Context context = viewGroup.getContext();
-        f6 f6Var = this.f47834c;
+        f6 f6Var = this.f47806c;
         if (i10 != 1) {
             if (i10 != 2) {
                 if (i10 != 3) {

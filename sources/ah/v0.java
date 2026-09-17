@@ -6,23 +6,23 @@ import ji.g6;
 import org.telegram.ui.Components.EditTextBoldCursor;
 import org.telegram.ui.zd;
 public final class v0 implements View.OnFocusChangeListener {
-    public final int f721a;
-    public final Object f722b;
+    public final int f709a;
+    public final Object f710b;
 
     public v0(Object obj, int i10) {
-        this.f721a = i10;
-        this.f722b = obj;
+        this.f709a = i10;
+        this.f710b = obj;
     }
 
     @Override
     public final void onFocusChange(View view, boolean z10) {
         float f7;
-        switch (this.f721a) {
+        switch (this.f709a) {
             case 0:
-                x xVar = (x) this.f722b;
+                x xVar = (x) this.f710b;
                 if (z10) {
                     xVar.n(true);
-                    Runnable runnable = xVar.f727e;
+                    Runnable runnable = xVar.f715e;
                     if (runnable != null) {
                         runnable.run();
                         return;
@@ -32,24 +32,24 @@ public final class v0 implements View.OnFocusChangeListener {
                 xVar.m();
                 return;
             case 1:
-                g6.a((g6) this.f722b, z10);
+                g6.a((g6) this.f710b, z10);
                 return;
             case 2:
-                EditTextBoldCursor editTextBoldCursor = ((qg.v) this.f722b).f44626c;
+                EditTextBoldCursor editTextBoldCursor = ((qg.v) this.f710b).f44598c;
                 if (!z10 && TextUtils.isEmpty(editTextBoldCursor.getText())) {
                     editTextBoldCursor.setText("0");
                     return;
                 }
                 return;
             case 3:
-                EditTextBoldCursor editTextBoldCursor2 = ((qg.w) this.f722b).d;
+                EditTextBoldCursor editTextBoldCursor2 = ((qg.w) this.f710b).d;
                 if (!z10 && TextUtils.isEmpty(editTextBoldCursor2.getText())) {
                     editTextBoldCursor2.setText("0");
                     return;
                 }
                 return;
             case 4:
-                zd zdVar = ((zh.g) this.f722b).M;
+                zd zdVar = ((zh.g) this.f710b).M;
                 if (z10) {
                     f7 = 1.0f;
                 } else {
@@ -58,16 +58,16 @@ public final class v0 implements View.OnFocusChangeListener {
                 zdVar.b(f7, f7, true);
                 return;
             case 5:
-                zh.a0 a0Var = (zh.a0) this.f722b;
-                a0Var.f51680c0.c(z10, !TextUtils.isEmpty(a0Var.f51681d0.getText()));
+                zh.a0 a0Var = (zh.a0) this.f710b;
+                a0Var.f51649c0.c(z10, !TextUtils.isEmpty(a0Var.f51650d0.getText()));
                 return;
             case 6:
-                zh.e0 e0Var = (zh.e0) this.f722b;
-                e0Var.f51841f.c(z10, !TextUtils.isEmpty(e0Var.h.getText()));
+                zh.e0 e0Var = (zh.e0) this.f710b;
+                e0Var.f51810f.c(z10, !TextUtils.isEmpty(e0Var.h.getText()));
                 return;
             default:
-                zh.i0 i0Var = (zh.i0) this.f722b;
-                i0Var.f52038b.c(z10, !TextUtils.isEmpty(i0Var.f52039c.getText()));
+                zh.i0 i0Var = (zh.i0) this.f710b;
+                i0Var.f52007b.c(z10, !TextUtils.isEmpty(i0Var.f52008c.getText()));
                 return;
         }
     }

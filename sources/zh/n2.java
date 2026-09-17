@@ -12,24 +12,24 @@ import android.graphics.drawable.Drawable;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.pr;
 public final class n2 extends Drawable {
-    public final Paint f52326a;
-    public final LinearGradient[] f52327b;
-    public final Matrix f52328c;
+    public final Paint f52295a;
+    public final LinearGradient[] f52296b;
+    public final Matrix f52297c;
     public final org.telegram.ui.Components.e6 d;
-    public final Path f52329e;
-    public final h8 f52330f;
-    public int f52331g;
+    public final Path f52298e;
+    public final h8 f52299f;
+    public int f52300g;
     public int h;
 
     public n2() {
         Paint paint = new Paint(1);
         Paint paint2 = new Paint(1);
-        this.f52326a = new Paint(1);
-        this.f52327b = new LinearGradient[2];
-        this.f52328c = new Matrix();
+        this.f52295a = new Paint(1);
+        this.f52296b = new LinearGradient[2];
+        this.f52297c = new Matrix();
         this.d = new org.telegram.ui.Components.e6(1.0f, new m2(this, 0), 0L, 420L, pr.h);
-        this.f52329e = new Path();
-        this.f52330f = new h8(1, 45);
+        this.f52298e = new Path();
+        this.f52299f = new h8(1, 45);
         Paint.Style style = Paint.Style.STROKE;
         paint.setStyle(style);
         paint.setColor(117440511);
@@ -40,12 +40,12 @@ public final class n2 extends Drawable {
     }
 
     public final void a(int i10, int i11) {
-        if (this.f52331g == i10 && this.h == i11) {
+        if (this.f52300g == i10 && this.h == i11) {
             return;
         }
-        LinearGradient[] linearGradientArr = this.f52327b;
+        LinearGradient[] linearGradientArr = this.f52296b;
         linearGradientArr[0] = linearGradientArr[1];
-        this.f52331g = i10;
+        this.f52300g = i10;
         this.h = i11;
         linearGradientArr[1] = new LinearGradient(0.0f, 0.0f, 100.0f, 0.0f, new int[]{i10, i11}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
         this.d.d(0.0f, true);
@@ -59,18 +59,18 @@ public final class n2 extends Drawable {
         int i10 = 0;
         float d = this.d.d(1.0f, false);
         while (true) {
-            LinearGradient[] linearGradientArr = this.f52327b;
+            LinearGradient[] linearGradientArr = this.f52296b;
             if (i10 < linearGradientArr.length) {
                 if (linearGradientArr[i10] != null) {
                     float pow = (float) Math.pow(1.0f - Math.abs(i10 - d), 0.5d);
                     if (pow > 0.0f) {
-                        Matrix matrix = this.f52328c;
+                        Matrix matrix = this.f52297c;
                         matrix.reset();
                         RectF rectF = AndroidUtilities.rectTmp;
                         matrix.postScale(rectF.width() / 100.0f, 1.0f);
                         linearGradientArr[i10].setLocalMatrix(matrix);
                         LinearGradient linearGradient = linearGradientArr[i10];
-                        Paint paint = this.f52326a;
+                        Paint paint = this.f52295a;
                         paint.setShader(linearGradient);
                         paint.setAlpha((int) (pow * 255.0f));
                         canvas.drawRoundRect(rectF, dp, dp, paint);
@@ -78,13 +78,13 @@ public final class n2 extends Drawable {
                 }
                 i10++;
             } else {
-                Path path = this.f52329e;
+                Path path = this.f52298e;
                 path.rewind();
                 RectF rectF2 = AndroidUtilities.rectTmp;
                 path.addRoundRect(rectF2, dp, dp, Path.Direction.CW);
                 canvas.save();
                 canvas.clipPath(path);
-                h8 h8Var = this.f52330f;
+                h8 h8Var = this.f52299f;
                 h8Var.g(rectF2);
                 h8Var.h = 30.0f;
                 h8Var.d();

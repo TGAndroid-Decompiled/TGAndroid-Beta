@@ -3,31 +3,31 @@ package org.telegram.ui;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.tgnet.TLRPC;
 public final class js implements Runnable {
-    public final int f37864a;
-    public final ss f37865b;
-    public final TLRPC.User f37866c;
+    public final int f37837a;
+    public final ss f37838b;
+    public final TLRPC.User f37839c;
 
     public js(ss ssVar, TLRPC.User user, int i10) {
-        this.f37864a = i10;
-        this.f37865b = ssVar;
-        this.f37866c = user;
+        this.f37837a = i10;
+        this.f37838b = ssVar;
+        this.f37839c = user;
     }
 
     @Override
     public final void run() {
         String str;
-        switch (this.f37864a) {
+        switch (this.f37837a) {
             case 0:
-                ss ssVar = this.f37865b;
-                TLRPC.User user = this.f37866c;
+                ss ssVar = this.f37838b;
+                TLRPC.User user = this.f37839c;
                 if (user != null && ssVar.M == null && ssVar.N == null) {
                     if (user.phone == null && (str = ssVar.L) != null) {
                         user.phone = gf.b.d(str, false);
                     }
-                    ssVar.f40539b.setText(user.first_name);
-                    org.telegram.ui.Cells.g3 g3Var = ssVar.f40539b.f22102b;
+                    ssVar.f40512b.setText(user.first_name);
+                    org.telegram.ui.Cells.g3 g3Var = ssVar.f40512b.f22075b;
                     g3Var.setSelection(g3Var.length());
-                    ssVar.f40540c.setText(user.last_name);
+                    ssVar.f40513c.setText(user.last_name);
                 }
                 TLRPC.UserFull userFull = ssVar.getMessagesController().getUserFull(ssVar.H);
                 if (userFull != null) {
@@ -39,13 +39,13 @@ public final class js implements Runnable {
                     }
                 }
                 if (ssVar.J) {
-                    ssVar.d.f22102b.requestFocus();
-                    AndroidUtilities.showKeyboard(ssVar.d.f22102b);
+                    ssVar.d.f22075b.requestFocus();
+                    AndroidUtilities.showKeyboard(ssVar.d.f22075b);
                     return;
                 }
                 return;
             default:
-                ss.V(this.f37865b, this.f37866c);
+                ss.V(this.f37838b, this.f37839c);
                 return;
         }
     }

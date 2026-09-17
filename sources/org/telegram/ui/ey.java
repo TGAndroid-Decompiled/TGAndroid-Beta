@@ -7,11 +7,11 @@ import org.telegram.messenger.AndroidUtilities;
 public final class ey extends org.telegram.ui.Components.yn0 {
     public final yf.z Y0;
     public final yf.z Z0;
-    public final uy f36233a1;
+    public final uy f36206a1;
 
     public ey(uy uyVar, Activity activity, uy uyVar2, int i10, int i11, int i12, long j3, zx zxVar) {
         super(activity, uyVar2, i10, i11, i12, j3, zxVar);
-        this.f36233a1 = uyVar;
+        this.f36206a1 = uyVar;
         this.Y0 = new yf.z(2);
         this.Z0 = new yf.z(8);
     }
@@ -19,7 +19,7 @@ public final class ey extends org.telegram.ui.Components.yn0 {
     public final void S(int i10, int i11) {
         uy uyVar;
         bh.f fVar;
-        if (Build.VERSION.SDK_INT >= 31 && (fVar = (uyVar = this.f36233a1).l4) != null) {
+        if (Build.VERSION.SDK_INT >= 31 && (fVar = (uyVar = this.f36206a1).l4) != null) {
             fVar.f(i10, i11);
             uyVar.m3();
         }
@@ -31,11 +31,11 @@ public final class ey extends org.telegram.ui.Components.yn0 {
         int i10;
         int i11;
         super.dispatchDraw(canvas);
-        uy uyVar = this.f36233a1;
-        if (uyVar.f41265a0 != null || uyVar.X2 != 0) {
+        uy uyVar = this.f36206a1;
+        if (uyVar.f41238a0 != null || uyVar.X2 != 0) {
             int dp = AndroidUtilities.dp(54.0f);
             kVar = ((org.telegram.ui.ActionBar.n2) uyVar).actionBar;
-            int dp2 = (AndroidUtilities.dp(uyVar.f41264a) + kVar.getMeasuredHeight()) - AndroidUtilities.dp(2.0f);
+            int dp2 = (AndroidUtilities.dp(uyVar.f41237a) + kVar.getMeasuredHeight()) - AndroidUtilities.dp(2.0f);
             if (uyVar.X2 != 0) {
                 i10 = dp;
             } else {
@@ -49,18 +49,18 @@ public final class ey extends org.telegram.ui.Components.yn0 {
                 i11 = 0;
             }
             int i13 = i12 + i11;
-            int l1 = org.telegram.ui.ActionBar.j6.l1(0.7f, uyVar.getThemedColor(org.telegram.ui.ActionBar.j6.f20691d6));
+            int l1 = org.telegram.ui.ActionBar.j6.l1(0.7f, uyVar.getThemedColor(org.telegram.ui.ActionBar.j6.f20664d6));
             yf.z zVar = this.Y0;
             zVar.b(l1);
             zVar.c(i13, 0);
             zVar.setBounds(0, 0, getMeasuredWidth(), i13 + dp);
             zVar.draw(canvas);
         }
-        if (uyVar.f41302g4 > AndroidUtilities.dp(32.0f)) {
-            int l12 = org.telegram.ui.ActionBar.j6.l1(0.9f, uyVar.getThemedColor(org.telegram.ui.ActionBar.j6.f20691d6));
+        if (uyVar.f41275g4 > AndroidUtilities.dp(32.0f)) {
+            int l12 = org.telegram.ui.ActionBar.j6.l1(0.9f, uyVar.getThemedColor(org.telegram.ui.ActionBar.j6.f20664d6));
             yf.z zVar2 = this.Z0;
             zVar2.b(l12);
-            zVar2.setBounds(0, getMeasuredHeight() - uyVar.f41302g4, getMeasuredWidth(), getMeasuredHeight());
+            zVar2.setBounds(0, getMeasuredHeight() - uyVar.f41275g4, getMeasuredWidth(), getMeasuredHeight());
             zVar2.draw(canvas);
         }
     }
@@ -68,13 +68,13 @@ public final class ey extends org.telegram.ui.Components.yn0 {
     @Override
     public final void setAlpha(float f7) {
         super.setAlpha(f7);
-        this.f36233a1.m3();
+        this.f36206a1.m3();
     }
 
     @Override
     public final void setTranslationY(float f7) {
         super.setTranslationY(f7);
-        v41 v41Var = this.f36233a1.Z;
+        v41 v41Var = this.f36206a1.Z;
         if (v41Var != null) {
             v41Var.setTranslationY(f7);
         }
@@ -83,7 +83,7 @@ public final class ey extends org.telegram.ui.Components.yn0 {
     @Override
     public final void w(boolean z10) {
         if (Build.VERSION.SDK_INT >= 31) {
-            uy uyVar = this.f36233a1;
+            uy uyVar = this.f36206a1;
             if (uyVar.l4 != null) {
                 uyVar.m3();
             }
@@ -99,6 +99,6 @@ public final class ey extends org.telegram.ui.Components.yn0 {
         } else {
             z10 = false;
         }
-        this.f36233a1.c5(z10);
+        this.f36206a1.c5(z10);
     }
 }

@@ -5,7 +5,7 @@ public final class g extends k {
     }
 
     @Override
-    public final k b() {
+    public final k f() {
         return this;
     }
 }

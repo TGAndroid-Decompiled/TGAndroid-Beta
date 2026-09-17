@@ -10,7 +10,7 @@ public final class nt0 extends org.telegram.ui.Components.g71 {
     public final void B() {
         super.B();
         PhotoViewer photoViewer = this.m0;
-        if (photoViewer.f33721u4 == 0) {
+        if (photoViewer.f33694u4 == 0) {
             PhotoViewer.Y(photoViewer, false);
         }
         if (!photoViewer.N8) {
@@ -34,7 +34,7 @@ public final class nt0 extends org.telegram.ui.Components.g71 {
     public final void K(long j3) {
         L(j3, false);
         PhotoViewer photoViewer = this.m0;
-        if (photoViewer.f33690r1) {
+        if (photoViewer.f33663r1) {
             PhotoViewer.Z(photoViewer, j3);
         }
         if (!photoViewer.N8) {
@@ -58,10 +58,10 @@ public final class nt0 extends org.telegram.ui.Components.g71 {
         boolean z10 = true;
         photoViewer.R = true;
         if (photoViewer.D2) {
-            photoViewer.f33577e0.invalidate();
+            photoViewer.f33550e0.invalidate();
         }
         photoViewer.z3();
-        if (!b5.d.u() && !photoViewer.f33688r) {
+        if (!b5.d.u() && !photoViewer.f33661r) {
             z10 = false;
         }
         O(z10);
@@ -70,7 +70,7 @@ public final class nt0 extends org.telegram.ui.Components.g71 {
             i2.f0 f0Var = this.d;
             float f7 = 1.0f;
             if (f0Var != null && (h = f0Var.h()) != null) {
-                f7 = h.f2427a;
+                f7 = h.f2400a;
             }
             b5.d.z(f7);
         }
