@@ -3,20 +3,20 @@ package org.telegram.ui.Cells;
 import android.text.Layout;
 import android.text.style.ClickableSpan;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.g90;
-import org.telegram.ui.Components.z80;
-public final class h extends nf.e {
-    public g90 d;
-    public final Layout e;
-    public final ClickableSpan f20168f;
-    public final float f20169g;
+import org.telegram.ui.Components.a90;
+import org.telegram.ui.Components.h90;
+public final class h extends of.e {
+    public h90 d;
+    public final Layout f22027e;
+    public final ClickableSpan f22028f;
+    public final float f22029g;
     public final j h;
 
     public h(j jVar, Layout layout, ClickableSpan clickableSpan, float f7) {
         this.h = jVar;
-        this.e = layout;
-        this.f20168f = clickableSpan;
-        this.f20169g = f7;
+        this.f22027e = layout;
+        this.f22028f = clickableSpan;
+        this.f22029g = f7;
     }
 
     @Override
@@ -34,17 +34,17 @@ public final class h extends nf.e {
     @Override
     public final void d() {
         j jVar = this.h;
-        z80 z80Var = jVar.E;
-        g90 g90Var = jVar.G;
-        if (g90Var != null) {
-            z80Var.l(g90Var, true);
+        a90 a90Var = jVar.E;
+        h90 h90Var = jVar.G;
+        if (h90Var != null) {
+            a90Var.l(h90Var, true);
         }
-        g90 i10 = z80.i(this.e, this.f20168f, this.f20169g);
+        h90 i10 = a90.i(this.f22027e, this.f22028f, this.f22029g);
         this.d = i10;
         jVar.G = i10;
         int v02 = org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.Ld, jVar.I);
         this.d.f(org.telegram.ui.ActionBar.j6.l1(0.8f, v02), org.telegram.ui.ActionBar.j6.l1(1.3f, v02), org.telegram.ui.ActionBar.j6.l1(1.0f, v02), org.telegram.ui.ActionBar.j6.l1(4.0f, v02));
-        this.d.f24148w.setStrokeWidth(AndroidUtilities.dpf2(1.25f));
-        z80Var.b(this.d, null);
+        this.d.f26718w.setStrokeWidth(AndroidUtilities.dpf2(1.25f));
+        a90Var.b(this.d, null);
     }
 }

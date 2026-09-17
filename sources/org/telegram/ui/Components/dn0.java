@@ -1,69 +1,33 @@
 package org.telegram.ui.Components;
+public final class dn0 extends s4.o {
+    public final hn0 f25459b;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.drawable.Drawable;
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-public final class dn0 extends EditTextBoldCursor {
-    public final f5 f23367b;
-    public int f23368c;
-    public final m6 d;
-    public final org.telegram.ui.ActionBar.f6 e;
-
-    public dn0(Context context, org.telegram.ui.ActionBar.f6 f6Var) {
-        super(context);
-        this.e = f6Var;
-        this.f23367b = new f5(this);
-        m6 m6Var = new m6(false, true, true, false);
-        this.d = m6Var;
-        m6Var.k(0.2f, 160L, qr.h);
-        m6Var.t(AndroidUtilities.dp(15.33f));
-        m6Var.setCallback(this);
-        m6Var.f26067b = 5;
+    public dn0(hn0 hn0Var) {
+        this.f25459b = hn0Var;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        int i10;
-        super.dispatchDraw(canvas);
-        if (this.f23368c < 0) {
-            i10 = org.telegram.ui.ActionBar.j6.f19082p7;
-        } else {
-            i10 = org.telegram.ui.ActionBar.j6.P5;
+    public final boolean a(int i10, int i11) {
+        hn0 hn0Var = this.f25459b;
+        return ((en0) hn0Var.f26795n.get(i10)).equals(hn0Var.f26796r.get(i11));
+    }
+
+    @Override
+    public final boolean b(int i10, int i11) {
+        hn0 hn0Var = this.f25459b;
+        if (((en0) hn0Var.f26795n.get(i10)).f25765a.h == ((en0) hn0Var.f26796r.get(i11)).f25765a.h) {
+            return true;
         }
-        int a2 = this.f23367b.a(org.telegram.ui.ActionBar.j6.v0(i10, this.e), false);
-        m6 m6Var = this.d;
-        m6Var.r(a2);
-        m6Var.setBounds(getScrollX(), 0, getWidth() + getScrollX(), getHeight());
-        m6Var.draw(canvas);
+        return false;
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(36.0f), 1073741824));
+    public final int d() {
+        return this.f25459b.f26796r.size();
     }
 
     @Override
-    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-        super.onTextChanged(charSequence, i10, i11, i12);
-        m6 m6Var = this.d;
-        if (m6Var != null) {
-            this.f23368c = 12 - charSequence.length();
-            m6Var.b();
-            String str = "";
-            if (this.f23368c <= 4) {
-                str = "" + this.f23368c;
-            }
-            m6Var.q(str, true, true);
-        }
-    }
-
-    @Override
-    public final boolean verifyDrawable(Drawable drawable) {
-        if (drawable != this.d && !super.verifyDrawable(drawable)) {
-            return false;
-        }
-        return true;
+    public final int e() {
+        return this.f25459b.f26795n.size();
     }
 }

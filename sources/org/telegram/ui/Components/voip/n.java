@@ -2,28 +2,28 @@ package org.telegram.ui.Components.voip;
 
 import android.animation.ValueAnimator;
 public final class n implements ValueAnimator.AnimatorUpdateListener {
-    public final int f29080a;
-    public final u f29081b;
+    public final int f31693a;
+    public final t f31694b;
 
-    public n(u uVar, int i10) {
-        this.f29080a = i10;
-        this.f29081b = uVar;
+    public n(t tVar, int i10) {
+        this.f31693a = i10;
+        this.f31694b = tVar;
     }
 
     @Override
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
         boolean z10;
-        switch (this.f29080a) {
+        switch (this.f31693a) {
             case 0:
                 float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                u uVar = this.f29081b;
-                uVar.f29218a0 = floatValue;
-                uVar.f29220b0.setAlpha(floatValue);
-                uVar.f29217a.invalidate();
+                t tVar = this.f31694b;
+                tVar.f31833a0 = floatValue;
+                tVar.f31835b0.setAlpha(floatValue);
+                tVar.f31832a.invalidate();
                 return;
             default:
-                u uVar2 = this.f29081b;
-                p pVar = uVar2.f29217a;
+                t tVar2 = this.f31694b;
+                o oVar = tVar2.f31832a;
                 float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 if (floatValue2 < 0.5f) {
                     z10 = false;
@@ -31,14 +31,14 @@ public final class n implements ValueAnimator.AnimatorUpdateListener {
                     floatValue2 -= 1.0f;
                     z10 = true;
                 }
-                if (z10 && !uVar2.K0) {
-                    uVar2.f29248x0.setAlpha(1.0f);
-                    uVar2.K0 = true;
-                    pVar.d.clearImage();
+                if (z10 && !tVar2.K0) {
+                    tVar2.f31864x0.setAlpha(1.0f);
+                    tVar2.K0 = true;
+                    oVar.d.clearImage();
                 }
                 float f7 = floatValue2 * 180.0f;
-                uVar2.f29248x0.setRotationY(f7);
-                pVar.d.setRotationY(f7);
+                tVar2.f31864x0.setRotationY(f7);
+                oVar.d.setRotationY(f7);
                 return;
         }
     }

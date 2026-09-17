@@ -1,44 +1,66 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.view.WindowManager;
-import android.widget.FrameLayout;
-import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.FileLog;
-import org.telegram.tgnet.TLRPC;
-public final class it0 extends org.telegram.ui.Components.iq0 {
-    public final FrameLayout f34682b1;
-    public final boolean f34683c1;
-    public final PhotoViewer f34684d1;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.graphics.ColorFilter;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import org.telegram.messenger.MediaController;
+import org.telegram.ui.Components.Crop.CropAreaView;
+public final class it0 extends AnimatorListenerAdapter {
+    public final float f37462a;
+    public final Runnable f37463b;
+    public final PhotoViewer f37464c;
 
-    public it0(PhotoViewer photoViewer, Context context, bo boVar, ArrayList arrayList, String str, Integer num, FrameLayout frameLayout, boolean z10) {
-        super(context, boVar, arrayList, null, null, false, str, null, false, true, false, num, null);
-        this.f34684d1 = photoViewer;
-        this.f34682b1 = frameLayout;
-        this.f34683c1 = z10;
+    public it0(PhotoViewer photoViewer, float f7, Runnable runnable) {
+        this.f37464c = photoViewer;
+        this.f37462a = f7;
+        this.f37463b = runnable;
     }
 
     @Override
-    public final void R0(a0.i iVar, int i10, TLRPC.TL_forumTopic tL_forumTopic, boolean z10) {
-        if (!z10) {
-            return;
+    public final void onAnimationEnd(Animator animator) {
+        PhotoViewer photoViewer = this.f37464c;
+        photoViewer.f33677p6 = null;
+        photoViewer.f33592f6 = 0.0f;
+        photoViewer.f33554b6 = 0.0f;
+        photoViewer.f33600g6 = 0.0f;
+        float r22 = photoViewer.r2(false);
+        photoViewer.f33583e6 = r22;
+        photoViewer.f33544a6 = r22;
+        photoViewer.f33577e0.invalidate();
+        CropAreaView cropAreaView = photoViewer.C1.f30897b.f16330a;
+        float r23 = photoViewer.r2(false);
+        cropAreaView.f23987n0 = 0.0f;
+        cropAreaView.f23988o0 = r23;
+        cropAreaView.f23989p0 = 0.0f;
+        cropAreaView.f23990q0 = 0.0f;
+        cropAreaView.invalidate();
+        photoViewer.C1.f30898c.setRotated(false);
+        float f7 = this.f37462a;
+        if (Math.abs(f7) > 0.0f) {
+            org.telegram.ui.Components.ue0 ue0Var = photoViewer.C1;
+            mg.f fVar = ue0Var.f30898c;
+            if (fVar != null) {
+                fVar.b(0.0f);
+                fVar.setRotated(false);
+            }
+            if (ue0Var.f30897b.m(f7)) {
+                photoViewer.f33549b1.setColorFilter(new PorterDuffColorFilter(photoViewer.z1(org.telegram.ui.ActionBar.j6.f21098zf), PorterDuff.Mode.MULTIPLY));
+            } else {
+                photoViewer.f33549b1.setColorFilter((ColorFilter) null);
+            }
         }
-        AndroidUtilities.runOnUIThread(new org.telegram.ui.Components.t11(this, this.f34682b1, iVar, i10, 9), 250L);
-    }
-
-    @Override
-    public final void dismissInternal() {
-        super.dismissInternal();
-        if (this.f34683c1) {
-            AndroidUtilities.runOnUIThread(new sl0(this, 16), 50L);
+        MediaController.CropState cropState = photoViewer.X4.f40268c;
+        if (cropState != null) {
+            cropState.cropPy = 0.0f;
+            cropState.cropPx = 0.0f;
+            cropState.cropPh = 1.0f;
+            cropState.cropPw = 1.0f;
         }
-        PhotoViewer photoViewer = this.f34684d1;
-        photoViewer.f30941d0.softInputMode = 272;
-        try {
-            ((WindowManager) photoViewer.f31128y.getSystemService("window")).updateViewLayout(photoViewer.f30967g0, photoViewer.f30941d0);
-        } catch (Exception e) {
-            FileLog.e(e);
+        Runnable runnable = this.f37463b;
+        if (runnable != null) {
+            runnable.run();
         }
     }
 }

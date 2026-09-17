@@ -8,22 +8,22 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.UserConfig;
-import org.telegram.ui.Components.qr;
+import org.telegram.ui.Components.pr;
 public final class ha extends t1 {
     public final GestureDetector Fe;
-    public final org.telegram.ui.Components.f5 Ge;
-    public final org.telegram.ui.Components.f5 He;
+    public final org.telegram.ui.Components.h5 Ge;
+    public final org.telegram.ui.Components.h5 He;
     public final int Ie;
-    public final ja Je;
+    public final ia Je;
 
-    public ha(ja jaVar, Context context, int i10, org.telegram.ui.ActionBar.f6 f6Var, Context context2, int i11) {
+    public ha(ia iaVar, Context context, int i10, org.telegram.ui.ActionBar.f6 f6Var, Context context2, int i11) {
         super(context, i10, false, null, f6Var);
-        this.Je = jaVar;
+        this.Je = iaVar;
         this.Ie = i11;
         this.Fe = new GestureDetector(context2, new ga(this));
-        qr qrVar = qr.f27381g;
-        this.Ge = new org.telegram.ui.Components.f5(this, 180L, qrVar, 0);
-        this.He = new org.telegram.ui.Components.f5(this, 180L, qrVar, 0);
+        pr prVar = pr.f29495g;
+        this.Ge = new org.telegram.ui.Components.h5(this, 180L, prVar, 0);
+        this.He = new org.telegram.ui.Components.h5(this, 180L, prVar, 0);
     }
 
     @Override
@@ -32,9 +32,9 @@ public final class ha extends t1 {
         int v03;
         MessagesController.PeerColors peerColors;
         MessageObject messageObject = getMessageObject();
-        org.telegram.ui.Components.f5 f5Var = this.He;
-        org.telegram.ui.Components.f5 f5Var2 = this.Ge;
-        org.telegram.ui.Components.f9 f9Var = this.f21175n9;
+        org.telegram.ui.Components.h5 h5Var = this.He;
+        org.telegram.ui.Components.h5 h5Var2 = this.Ge;
+        org.telegram.ui.Components.i9 i9Var = this.f23076n9;
         if (messageObject != null && getMessageObject().overrideLinkColor >= 0) {
             int i10 = getMessageObject().overrideLinkColor;
             if (i10 >= 14) {
@@ -50,22 +50,22 @@ public final class ha extends t1 {
                 }
                 if (peerColor != null) {
                     int color1 = peerColor.getColor1();
-                    v02 = org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f19083p8[org.telegram.ui.Components.f9.f(color1)], this.Id);
-                    v03 = org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f19101q8[org.telegram.ui.Components.f9.f(color1)], this.Id);
+                    v02 = org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f20909p8[org.telegram.ui.Components.i9.f(color1)], this.Id);
+                    v03 = org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f20927q8[org.telegram.ui.Components.i9.f(color1)], this.Id);
                 } else {
                     long j3 = i10;
-                    v02 = org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f19083p8[org.telegram.ui.Components.f9.e(j3)], this.Id);
-                    v03 = org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f19101q8[org.telegram.ui.Components.f9.e(j3)], this.Id);
+                    v02 = org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f20909p8[org.telegram.ui.Components.i9.e(j3)], this.Id);
+                    v03 = org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f20927q8[org.telegram.ui.Components.i9.e(j3)], this.Id);
                 }
             } else {
                 long j10 = i10;
-                v02 = org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f19083p8[org.telegram.ui.Components.f9.e(j10)], this.Id);
-                v03 = org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f19101q8[org.telegram.ui.Components.f9.e(j10)], this.Id);
+                v02 = org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f20909p8[org.telegram.ui.Components.i9.e(j10)], this.Id);
+                v03 = org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f20927q8[org.telegram.ui.Components.i9.e(j10)], this.Id);
             }
-            f9Var.i(f5Var2.a(v02, false), f5Var.a(v03, false));
+            i9Var.i(h5Var2.a(v02, false), h5Var.a(v03, false));
         } else {
-            f5Var2.a(f9Var.b(), false);
-            f5Var.a(f9Var.c(), false);
+            h5Var2.a(i9Var.b(), false);
+            h5Var.a(i9Var.c(), false);
         }
         if (getAvatarImage() != null && getAvatarImage().getImageHeight() != 0.0f) {
             getAvatarImage().setImageCoords(getAvatarImage().getImageX(), (getMeasuredHeight() - getAvatarImage().getImageHeight()) - AndroidUtilities.dp(4.0f), getAvatarImage().getImageWidth(), getAvatarImage().getImageHeight());

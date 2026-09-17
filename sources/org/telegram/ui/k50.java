@@ -1,37 +1,118 @@
 package org.telegram.ui;
 
-import android.animation.AnimatorSet;
-import android.animation.ObjectAnimator;
-import java.util.ArrayList;
-import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
-public final class k50 extends org.telegram.ui.ActionBar.o1 {
-    public final k60 f34993o;
+import org.telegram.messenger.ChatObject;
+import org.telegram.messenger.MessageObject;
+import org.telegram.tgnet.TLRPC;
+public final class k50 extends s4.o {
+    public final j60 f37944b;
 
-    public k50(k60 k60Var, ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout) {
-        super(actionBarPopupWindow$ActionBarPopupWindowLayout, -2, -2);
-        this.f34993o = k60Var;
+    public k50(j60 j60Var) {
+        this.f37944b = j60Var;
     }
 
     @Override
-    public final void dismiss() {
-        d(true);
-        k60 k60Var = this.f34993o;
-        if (k60Var.f35036f3 != this) {
-            return;
+    public final boolean a(int i10, int i11) {
+        return true;
+    }
+
+    @Override
+    public final boolean b(int i10, int i11) {
+        int i12;
+        int i13;
+        int i14;
+        int i15;
+        int i16;
+        j60 j60Var = this.f37944b;
+        d60 d60Var = j60Var.P;
+        int i17 = d60Var.f35711w;
+        if (i17 >= 0) {
+            int i18 = j60Var.f37574h3;
+            if (i10 == i18 && i11 == i17) {
+                return true;
+            }
+            if ((i10 == i18 && i11 != i17) || (i10 != i18 && i11 == i17)) {
+                return false;
+            }
         }
-        k60Var.f35036f3 = null;
-        AnimatorSet animatorSet = k60Var.f35031e3;
-        if (animatorSet != null) {
-            animatorSet.cancel();
-            k60Var.f35031e3 = null;
+        int i19 = d60Var.f35712x;
+        if (i19 >= 0) {
+            int i20 = j60Var.f37626u3;
+            if (i10 == i20 && i11 == i19) {
+                return true;
+            }
+            if ((i10 == i20 && i11 != i19) || (i10 != i20 && i11 == i19)) {
+                return false;
+            }
         }
-        k60Var.Y.X = true;
-        k60Var.f35031e3 = new AnimatorSet();
-        ArrayList arrayList = new ArrayList();
-        arrayList.add(ObjectAnimator.ofInt(k60Var.W2, org.telegram.ui.Components.q6.f27222b, 0));
-        k60Var.f35031e3.playTogether(arrayList);
-        k60Var.f35031e3.setDuration(220L);
-        k60Var.f35031e3.addListener(new org.telegram.ui.Components.w81(this, 21));
-        k60Var.f35031e3.start();
+        int i21 = d60Var.f35713y;
+        if (i21 >= 0) {
+            int i22 = j60Var.f37630v3;
+            if (i10 == i22 && i11 == i21) {
+                return true;
+            }
+            if ((i10 == i22 && i11 != i21) || (i10 != i22 && i11 == i21)) {
+                return false;
+            }
+        }
+        int i23 = d60Var.K;
+        if (i23 >= 0) {
+            int i24 = j60Var.f37570g3;
+            if (i10 == i24 && i11 == i23) {
+                return true;
+            }
+            if ((i10 == i24 && i11 != i23) || (i10 != i24 && i11 == i23)) {
+                return false;
+            }
+        }
+        int i25 = d60Var.J;
+        if (i25 >= 0) {
+            int i26 = j60Var.f37622t3;
+            if (i10 == i26 && i11 == i25) {
+                return true;
+            }
+            if ((i10 == i26 && i11 != i25) || (i10 != i26 && i11 == i25)) {
+                return false;
+            }
+        }
+        int i27 = d60Var.I;
+        if (i27 >= 0 && i27 == i11 && i10 == j60Var.f37618s3) {
+            return true;
+        }
+        int i28 = j60Var.I0;
+        if (i10 == i28 - 1 && i11 == d60Var.F - 1) {
+            return true;
+        }
+        if (i10 != i28 - 1 && i11 != d60Var.F - 1) {
+            if (i11 >= d60Var.G && i11 < d60Var.H && i10 >= (i16 = j60Var.f37608q3) && i10 < j60Var.f37613r3) {
+                return ((ChatObject.VideoParticipant) j60Var.E0.get(i10 - i16)).equals((ChatObject.VideoParticipant) j60Var.f37605q0.get(i11 - j60Var.P.G));
+            }
+            if (i11 >= d60Var.d && i11 < d60Var.f35706e && i10 >= (i15 = j60Var.f37578i3) && i10 < j60Var.j3) {
+                TLRPC.GroupCallParticipant groupCallParticipant = (TLRPC.GroupCallParticipant) j60Var.D0.get(i10 - i15);
+                if (MessageObject.getPeerId(groupCallParticipant.peer) != MessageObject.getPeerId(j60Var.f37541a1.visibleParticipants.get(i11 - j60Var.P.d).peer) || (i10 != i11 && groupCallParticipant.lastActiveDate != groupCallParticipant.active_date)) {
+                    return false;
+                }
+                return true;
+            } else if (i11 >= d60Var.f35707f && i11 < d60Var.h && i10 >= (i14 = j60Var.f37585k3) && i10 < j60Var.f37588l3) {
+                return ((Long) j60Var.F0.get(i10 - i14)).equals(j60Var.f37541a1.invitedUsers.get(i11 - j60Var.P.f35707f));
+            } else {
+                if (i11 >= d60Var.f35708n && i11 < d60Var.f35709r && i10 >= (i13 = j60Var.f37591m3) && i10 < j60Var.f37596n3) {
+                    return ((Long) j60Var.G0.get(i10 - i13)).equals(j60Var.f37541a1.shadyJoinParticipants.get(i11 - j60Var.P.f35708n));
+                }
+                if (i11 >= d60Var.f35710s && i11 < d60Var.v && i10 >= (i12 = j60Var.f37600o3) && i10 < j60Var.f37604p3) {
+                    return ((Long) j60Var.H0.get(i10 - i12)).equals(j60Var.f37541a1.shadyLeftParticipants.get(i11 - j60Var.P.f35710s));
+                }
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public final int d() {
+        return this.f37944b.P.F;
+    }
+
+    @Override
+    public final int e() {
+        return this.f37944b.I0;
     }
 }

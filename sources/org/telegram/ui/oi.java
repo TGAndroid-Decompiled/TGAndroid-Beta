@@ -1,72 +1,23 @@
 package org.telegram.ui;
+public final class oi implements org.telegram.ui.Components.tg0 {
+    public boolean f39284a = true;
+    public final org.telegram.ui.Components.fk0 f39285b;
 
-import android.graphics.Rect;
-import android.view.MotionEvent;
-import android.view.View;
-public final class oi implements View.OnTouchListener {
-    public final int f36353a;
-    public final int[] f36354b;
-    public final Rect f36355c;
-    public final Object d;
-
-    public oi(k60 k60Var, Rect rect) {
-        this.f36353a = 1;
-        this.d = k60Var;
-        this.f36355c = rect;
-        this.f36354b = new int[2];
+    public oi(org.telegram.ui.Components.fk0 fk0Var) {
+        this.f39285b = fk0Var;
     }
 
     @Override
-    public final boolean onTouch(View view, MotionEvent motionEvent) {
-        k50 k50Var;
-        switch (this.f36353a) {
-            case 0:
-                bo boVar = (bo) this.d;
-                if (motionEvent.getActionMasked() == 0) {
-                    org.telegram.ui.ActionBar.o1 o1Var = boVar.Q8;
-                    if (o1Var != null && o1Var.isShowing()) {
-                        View contentView = boVar.Q8.getContentView();
-                        int[] iArr = this.f36354b;
-                        contentView.getLocationInWindow(iArr);
-                        int i10 = iArr[0];
-                        int measuredHeight = contentView.getMeasuredHeight() + iArr[1];
-                        Rect rect = this.f36355c;
-                        rect.set(i10, iArr[1], contentView.getMeasuredWidth() + i10, measuredHeight);
-                        if (!rect.contains((int) motionEvent.getX(), (int) motionEvent.getY())) {
-                            boVar.A7(true);
-                        }
-                    }
-                } else if (motionEvent.getActionMasked() == 4) {
-                    boVar.A7(true);
-                }
-                return false;
-            default:
-                k60 k60Var = (k60) this.d;
-                if (motionEvent.getActionMasked() == 0) {
-                    k50 k50Var2 = k60Var.f35036f3;
-                    if (k50Var2 != null && k50Var2.isShowing()) {
-                        View contentView2 = k60Var.f35036f3.getContentView();
-                        int[] iArr2 = this.f36354b;
-                        contentView2.getLocationInWindow(iArr2);
-                        int i11 = iArr2[0];
-                        int measuredHeight2 = contentView2.getMeasuredHeight() + iArr2[1];
-                        Rect rect2 = this.f36355c;
-                        rect2.set(i11, iArr2[1], contentView2.getMeasuredWidth() + i11, measuredHeight2);
-                        if (!rect2.contains((int) motionEvent.getX(), (int) motionEvent.getY())) {
-                            k60Var.f35036f3.dismiss();
-                        }
-                    }
-                } else if (motionEvent.getActionMasked() == 4 && (k50Var = k60Var.f35036f3) != null && k50Var.isShowing()) {
-                    k60Var.f35036f3.dismiss();
-                }
-                return false;
+    public final void a(float f7, float f10) {
+        org.telegram.ui.Components.fk0 fk0Var = this.f39285b;
+        if (f7 == 0.0f && !this.f39284a) {
+            fk0Var.r(false);
+            this.f39284a = true;
+        } else if (f7 == 1.0f && this.f39284a) {
+            fk0Var.setAlpha(1.0f - f10);
+            if (f10 == 1.0f) {
+                this.f39284a = false;
+            }
         }
-    }
-
-    public oi(bo boVar, Rect rect) {
-        this.f36353a = 0;
-        this.d = boVar;
-        this.f36355c = rect;
-        this.f36354b = new int[2];
     }
 }

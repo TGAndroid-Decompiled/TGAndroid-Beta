@@ -1,53 +1,79 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.view.WindowManager;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ApplicationLoader;
-public final class mt0 extends LinearLayout {
-    public final TextView f26263a;
-    public final ImageView f26264b;
-    public boolean f26265c;
+import java.util.ArrayList;
+import org.telegram.messenger.MessageObject;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class mt0 implements hg.a2, org.telegram.ui.Cells.z4 {
+    public final ot0 f28542a;
 
-    public mt0(Context context, org.telegram.ui.ActionBar.f6 f6Var) {
-        super(context);
-        TextView textView = new TextView(context);
-        this.f26263a = textView;
-        ImageView imageView = new ImageView(context);
-        this.f26264b = imageView;
-        setOrientation(1);
-        setGravity(17);
-        addView(imageView, w7.x5.n(-2, -2));
-        textView.setTextColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f19263z6, f6Var));
-        textView.setGravity(17);
-        textView.setTextSize(1, 17.0f);
-        textView.setPadding(AndroidUtilities.dp(40.0f), 0, AndroidUtilities.dp(40.0f), AndroidUtilities.dp(128.0f));
-        addView(textView, w7.x5.t(-2, -2, 17, 0, 24, 0, 0));
+    public mt0(ot0 ot0Var) {
+        this.f28542a = ot0Var;
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        int rotation = ((WindowManager) ApplicationLoader.applicationContext.getSystemService("window")).getDefaultDisplay().getRotation();
-        this.f26265c = true;
-        if (AndroidUtilities.isTablet()) {
-            this.f26263a.setPadding(AndroidUtilities.dp(40.0f), 0, AndroidUtilities.dp(40.0f), AndroidUtilities.dp(128.0f));
-        } else if (rotation != 3 && rotation != 1) {
-            this.f26263a.setPadding(AndroidUtilities.dp(40.0f), 0, AndroidUtilities.dp(40.0f), AndroidUtilities.dp(128.0f));
-        } else {
-            this.f26263a.setPadding(AndroidUtilities.dp(40.0f), 0, AndroidUtilities.dp(40.0f), 0);
-        }
-        this.f26265c = false;
-        super.onMeasure(i10, i11);
+    public a0.i G() {
+        return null;
     }
 
     @Override
-    public final void requestLayout() {
-        if (this.f26265c) {
-            return;
+    public boolean Q(int i10) {
+        return true;
+    }
+
+    @Override
+    public boolean d(org.telegram.ui.Cells.a5 a5Var, boolean z10) {
+        int intValue = ((Integer) a5Var.getTag()).intValue();
+        ot0 ot0Var = this.f28542a;
+        TLObject E = ot0Var.E(intValue);
+        if (E instanceof TLRPC.ChannelParticipant) {
+            TLRPC.ChannelParticipant channelParticipant = (TLRPC.ChannelParticipant) E;
+            TLRPC.TL_chatChannelParticipant tL_chatChannelParticipant = new TLRPC.TL_chatChannelParticipant();
+            tL_chatChannelParticipant.channelParticipant = channelParticipant;
+            tL_chatChannelParticipant.user_id = MessageObject.getPeerId(channelParticipant.peer);
+            tL_chatChannelParticipant.inviter_id = channelParticipant.inviter_id;
+            tL_chatChannelParticipant.date = channelParticipant.date;
+            return ot0Var.f29214s.D1.h(tL_chatChannelParticipant, true, !z10, a5Var);
         }
-        super.requestLayout();
+        return false;
+    }
+
+    @Override
+    public void f(int i10) {
+        ot0 ot0Var = this.f28542a;
+        ot0Var.l();
+        if (i10 == 1) {
+            int i11 = ot0Var.f29213r - 1;
+            ot0Var.f29213r = i11;
+            if (i11 == 0) {
+                int i12 = 0;
+                while (true) {
+                    xu0 xu0Var = ot0Var.f29214s;
+                    qt0[] qt0VarArr = xu0Var.f32730k0;
+                    if (i12 < qt0VarArr.length) {
+                        qt0 qt0Var = qt0VarArr[i12];
+                        if (qt0Var.F == 7) {
+                            if (ot0Var.h == 0) {
+                                qt0Var.f29851w.e(false, true);
+                            } else {
+                                xu0Var.z(qt0Var.h, 0, null);
+                            }
+                        }
+                        i12++;
+                    } else {
+                        return;
+                    }
+                }
+            }
+        }
+    }
+
+    @Override
+    public a0.i w() {
+        return null;
+    }
+
+    @Override
+    public void Y(ArrayList arrayList) {
     }
 }

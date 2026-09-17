@@ -1,54 +1,42 @@
 package org.telegram.ui;
 
-import android.graphics.drawable.Drawable;
-import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.SharedConfig;
+import org.telegram.ui.Components.EditTextBoldCursor;
 public final class kh implements Runnable {
-    public final int f35278a;
-    public final View f35279b;
+    public final int f38095a;
+    public final EditTextBoldCursor f38096b;
 
-    public kh(int i10, View view) {
-        this.f35278a = i10;
-        this.f35279b = view;
+    public kh(int i10, EditTextBoldCursor editTextBoldCursor) {
+        this.f38095a = i10;
+        this.f38096b = editTextBoldCursor;
     }
 
     @Override
     public final void run() {
-        int i10 = this.f35278a;
-        View view = this.f35279b;
-        switch (i10) {
+        switch (this.f38095a) {
             case 0:
-                try {
-                    view.performHapticFeedback(3, 2);
-                    return;
-                } catch (Exception unused) {
-                    return;
-                }
+                AndroidUtilities.showKeyboard(this.f38096b);
+                return;
             case 1:
-                view.setBackgroundDrawable(null);
+                EditTextBoldCursor editTextBoldCursor = this.f38096b;
+                editTextBoldCursor.requestFocus();
+                AndroidUtilities.showKeyboard(editTextBoldCursor);
                 return;
             case 2:
-                Drawable[] drawableArr = PhotoViewer.T8;
-                AndroidUtilities.removeFromParent(view);
+                EditTextBoldCursor editTextBoldCursor2 = this.f38096b;
+                editTextBoldCursor2.requestFocus();
+                AndroidUtilities.showKeyboard(editTextBoldCursor2);
                 return;
             case 3:
-                Drawable[] drawableArr2 = PhotoViewer.T8;
-                view.setVisibility(8);
+                AndroidUtilities.showKeyboard(this.f38096b);
                 return;
             case 4:
-                SharedConfig.setSuggestStickers(0);
-                ((org.telegram.ui.Cells.ea) view).f20055c.c(LocaleController.getString(R.string.SuggestStickersAll), true, true);
-                return;
-            case 5:
-                SharedConfig.setSuggestStickers(1);
-                ((org.telegram.ui.Cells.ea) view).f20055c.c(LocaleController.getString(R.string.SuggestStickersInstalled), true, true);
+                AndroidUtilities.showKeyboard(this.f38096b);
                 return;
             default:
-                SharedConfig.setSuggestStickers(2);
-                ((org.telegram.ui.Cells.ea) view).f20055c.c(LocaleController.getString(R.string.SuggestStickersNone), true, true);
+                EditTextBoldCursor editTextBoldCursor3 = this.f38096b;
+                editTextBoldCursor3.requestFocus();
+                AndroidUtilities.showKeyboard(editTextBoldCursor3);
                 return;
         }
     }

@@ -4,17 +4,16 @@ import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.WeakHashMap;
-import k2.c0;
-import w7.s6;
+import w7.p6;
 public final class w extends com.googlecode.mp4parser.c {
-    public static final c0 f8952f;
-    public static final c0 h;
-    public List e;
+    public static final mg.n f9375f;
+    public static final mg.n h;
+    public List f9376e;
 
     static {
         re.a aVar = new re.a(w.class, "TimeToSampleBox.java");
         aVar.e(aVar.d("getEntries", "com.coremedia.iso.boxes.TimeToSampleBox", "", "", "java.util.List"));
-        f8952f = aVar.e(aVar.d("setEntries", "com.coremedia.iso.boxes.TimeToSampleBox", "java.util.List", "entries", "void"));
+        f9375f = aVar.e(aVar.d("setEntries", "com.coremedia.iso.boxes.TimeToSampleBox", "java.util.List", "entries", "void"));
         h = aVar.e(aVar.d("toString", "com.coremedia.iso.boxes.TimeToSampleBox", "", "", "java.lang.String"));
         new WeakHashMap();
     }
@@ -22,32 +21,32 @@ public final class w extends com.googlecode.mp4parser.c {
     @Override
     public final void _parseDetails(ByteBuffer byteBuffer) {
         f(byteBuffer);
-        int a2 = s6.a(e5.b.i(byteBuffer));
-        this.e = new ArrayList(a2);
+        int a2 = p6.a(e5.b.i(byteBuffer));
+        this.f9376e = new ArrayList(a2);
         for (int i10 = 0; i10 < a2; i10++) {
-            this.e.add(new v(e5.b.i(byteBuffer), e5.b.i(byteBuffer)));
+            this.f9376e.add(new v(e5.b.i(byteBuffer), e5.b.i(byteBuffer)));
         }
     }
 
     @Override
     public final void getContent(ByteBuffer byteBuffer) {
         i(byteBuffer);
-        byteBuffer.putInt(this.e.size());
-        for (v vVar : this.e) {
-            byteBuffer.putInt((int) vVar.f8950a);
-            byteBuffer.putInt((int) vVar.f8951b);
+        byteBuffer.putInt(this.f9376e.size());
+        for (v vVar : this.f9376e) {
+            byteBuffer.putInt((int) vVar.f9373a);
+            byteBuffer.putInt((int) vVar.f9374b);
         }
     }
 
     @Override
     public final long getContentSize() {
-        return (this.e.size() * 8) + 8;
+        return (this.f9376e.size() * 8) + 8;
     }
 
     public final String toString() {
-        com.google.firebase.messaging.t b10 = re.a.b(h, this, this);
+        com.google.firebase.messaging.s b10 = re.a.b(h, this, this);
         com.googlecode.mp4parser.g.a().getClass();
         com.googlecode.mp4parser.g.b(b10);
-        return "TimeToSampleBox[entryCount=" + this.e.size() + "]";
+        return "TimeToSampleBox[entryCount=" + this.f9376e.size() + "]";
     }
 }

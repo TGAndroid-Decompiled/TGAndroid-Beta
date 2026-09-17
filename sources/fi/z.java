@@ -1,17 +1,14 @@
 package fi;
+public final class z extends org.telegram.ui.ActionBar.e5 {
+    public final c0 f10151p;
 
-import org.telegram.ui.Cells.r2;
-import org.telegram.ui.Components.vn0;
-public final class z implements vn0 {
-    @Override
-    public final void e(float f7) {
+    public z(c0 c0Var) {
+        this.f10151p = c0Var;
     }
 
     @Override
-    public final void f(r2 r2Var) {
-    }
-
-    @Override
-    public final void finish() {
+    public final void invalidateSelf() {
+        super.invalidateSelf();
+        this.f10151p.invalidate();
     }
 }

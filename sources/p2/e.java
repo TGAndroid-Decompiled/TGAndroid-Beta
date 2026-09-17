@@ -1,46 +1,28 @@
 package p2;
 
-import j$.util.Objects;
+import android.net.Uri;
+import java.util.ArrayList;
+import java.util.HashMap;
 public final class e {
-    public final String f40439a;
-    public final int f40440b;
-    public final double f40441c;
-    public final String d;
+    public final String f43692a;
+    public Uri f43694c;
+    public Uri d;
+    public boolean f43699j;
+    public Boolean f43704o;
+    public String f43705p;
+    public String f43706q;
+    public final HashMap f43693b = new HashMap();
+    public long f43695e = -9223372036854775807L;
+    public long f43696f = -9223372036854775807L;
+    public long f43697g = -9223372036854775807L;
+    public long h = -9223372036854775807L;
+    public ArrayList f43698i = new ArrayList();
+    public long f43700k = -9223372036854775807L;
+    public long f43701l = -9223372036854775807L;
+    public ArrayList f43702m = new ArrayList();
+    public ArrayList f43703n = new ArrayList();
 
-    public e(String str, double d) {
-        this.f40439a = str;
-        this.f40440b = 2;
-        this.f40441c = d;
-        this.d = null;
-    }
-
-    public final boolean equals(Object obj) {
-        if (this != obj) {
-            if (obj instanceof e) {
-                e eVar = (e) obj;
-                if (this.f40440b == eVar.f40440b && Double.compare(this.f40441c, eVar.f40441c) == 0 && Objects.equals(this.f40439a, eVar.f40439a) && Objects.equals(this.d, eVar.d)) {
-                    return true;
-                }
-                return false;
-            }
-            return false;
-        }
-        return true;
-    }
-
-    public final int hashCode() {
-        return Objects.hash(this.f40439a, Integer.valueOf(this.f40440b), Double.valueOf(this.f40441c), this.d);
-    }
-
-    public e(int i10, String str, String str2) {
-        boolean z10 = true;
-        if (i10 == 1 && !str2.startsWith("0x") && !str2.startsWith("0X")) {
-            z10 = false;
-        }
-        e2.d.g(z10);
-        this.f40439a = str;
-        this.f40440b = i10;
-        this.d = str2;
-        this.f40441c = 0.0d;
+    public e(String str) {
+        this.f43692a = str;
     }
 }

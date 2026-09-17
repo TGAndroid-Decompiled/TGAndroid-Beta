@@ -14,40 +14,40 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class xl0 extends FrameLayout {
-    public final int f39662a;
-    public final org.telegram.ui.ActionBar.f6 f39663b;
-    public final FrameLayout f39664c;
-    public final org.telegram.ui.Components.u9 d;
-    public final TextView e;
-    public final TextView f39665f;
+    public final int f42781a;
+    public final org.telegram.ui.ActionBar.f6 f42782b;
+    public final FrameLayout f42783c;
+    public final org.telegram.ui.Components.x9 d;
+    public final TextView f42784e;
+    public final TextView f42785f;
     public final ImageView h;
-    public boolean f39666n;
-    public String f39667r;
+    public boolean f42786n;
+    public String f42787r;
 
     public xl0(Context context, int i10, org.telegram.ui.ActionBar.f6 f6Var) {
         super(context);
-        this.f39662a = i10;
-        this.f39663b = f6Var;
+        this.f42781a = i10;
+        this.f42782b = f6Var;
         FrameLayout frameLayout = new FrameLayout(context);
-        this.f39664c = frameLayout;
+        this.f42783c = frameLayout;
         addView(frameLayout, w7.x5.d(36, 36.0f, 19, 18.5f, 0.0f, 0.0f, 0.0f));
-        org.telegram.ui.Components.u9 u9Var = new org.telegram.ui.Components.u9(context);
-        this.d = u9Var;
-        u9Var.setImageResource(R.drawable.msg2_permissions);
+        org.telegram.ui.Components.x9 x9Var = new org.telegram.ui.Components.x9(context);
+        this.d = x9Var;
+        x9Var.setImageResource(R.drawable.msg2_permissions);
         int i11 = org.telegram.ui.ActionBar.j6.G6;
         int l1 = org.telegram.ui.ActionBar.j6.l1(0.3f, org.telegram.ui.ActionBar.j6.v0(i11, f6Var));
         PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
-        u9Var.setColorFilter(new PorterDuffColorFilter(l1, mode));
-        frameLayout.addView(u9Var, w7.x5.e(36, 36, 17));
+        x9Var.setColorFilter(new PorterDuffColorFilter(l1, mode));
+        frameLayout.addView(x9Var, w7.x5.e(36, 36, 17));
         TextView b10 = w7.b6.b(context, 15.0f, i11, true, null);
-        this.e = b10;
+        this.f42784e = b10;
         b10.setSingleLine();
         TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
         b10.setEllipsize(truncateAt);
         addView(b10, w7.x5.d(-1, -2.0f, 55, 72.0f, 8.0f, 46.0f, 0.0f));
-        int i12 = org.telegram.ui.ActionBar.j6.f19244y6;
+        int i12 = org.telegram.ui.ActionBar.j6.f21070y6;
         TextView b11 = w7.b6.b(context, 13.0f, i12, false, null);
-        this.f39665f = b11;
+        this.f42785f = b11;
         b11.setSingleLine();
         b11.setEllipsize(truncateAt);
         addView(b11, w7.x5.d(-1, -2.0f, 55, 72.0f, 31.0f, 46.0f, 0.0f));
@@ -56,7 +56,7 @@ public final class xl0 extends FrameLayout {
         imageView.setScaleType(ImageView.ScaleType.CENTER);
         imageView.setImageResource(R.drawable.ic_ab_other);
         imageView.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.j6.w0(null, i12, false), mode));
-        imageView.setBackground(org.telegram.ui.ActionBar.j6.f0(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f18952i6, f6Var), 1, -1));
+        imageView.setBackground(org.telegram.ui.ActionBar.j6.f0(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f20781i6, f6Var), 1, -1));
         addView(imageView, w7.x5.d(32, 32.0f, 21, 0.0f, 0.0f, 13.0f, 0.0f));
     }
 
@@ -64,10 +64,10 @@ public final class xl0 extends FrameLayout {
     public final void onDraw(Canvas canvas) {
         float f7;
         super.onDraw(canvas);
-        if (this.f39666n) {
-            Paint T0 = org.telegram.ui.ActionBar.j6.T0("paintDivider", this.f39663b);
+        if (this.f42786n) {
+            Paint T0 = org.telegram.ui.ActionBar.j6.T0("paintDivider", this.f42782b);
             if (T0 == null) {
-                T0 = org.telegram.ui.ActionBar.j6.f18984k0;
+                T0 = org.telegram.ui.ActionBar.j6.f20813k0;
             }
             Paint paint = T0;
             float f10 = 72.0f;

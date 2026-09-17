@@ -97,7 +97,7 @@ public class GroupCallMessagesController extends BaseController {
         ConferenceCall conferenceCall;
         TLRPC.GroupCall groupCall;
         VoIPService sharedInstance = VoIPService.getSharedInstance();
-        if (sharedInstance == null || sharedInstance.getAccount() != this.currentAccount || (conferenceCall = sharedInstance.conference) == null || (groupCall = conferenceCall.groupCall) == null || groupCall.f18131id != j3) {
+        if (sharedInstance == null || sharedInstance.getAccount() != this.currentAccount || (conferenceCall = sharedInstance.conference) == null || (groupCall = conferenceCall.groupCall) == null || groupCall.f19906id != j3) {
             return null;
         }
         long callId = conferenceCall.getCallId();
@@ -118,8 +118,8 @@ public class GroupCallMessagesController extends BaseController {
             if (groupCallMessageDecrypt != null) {
                 tL_groupCallMessage = TLRPC.TL_groupCallMessage.TLJsonDeserialize(new TLJsonParser(new JSONObject(new String(groupCallMessageDecrypt))));
             }
-        } catch (Exception e) {
-            FileLog.e(e);
+        } catch (Exception e7) {
+            FileLog.e(e7);
         }
         if (tL_groupCallMessage != null) {
             AndroidUtilities.runOnUIThread(new h(this, j3, new GroupCallMessage(this.currentAccount, j10, tL_groupCallMessage.random_id, tL_groupCallMessage.message), 1));
@@ -196,7 +196,7 @@ public class GroupCallMessagesController extends BaseController {
                 callMessageListener2.onNewGroupCallMessage(j3, groupCallMessage);
             }
         }
-        AndroidUtilities.runOnUIThread(new ai.j(this, j3, 15), getAppGlobalConfig().groupCallMessageTtl.get(TimeUnit.MILLISECONDS));
+        AndroidUtilities.runOnUIThread(new bi.g(this, j3, 15), getAppGlobalConfig().groupCallMessageTtl.get(TimeUnit.MILLISECONDS));
     }
 
     public List<GroupCallMessage> getCallMessages(long j3) {
@@ -208,9 +208,9 @@ public class GroupCallMessagesController extends BaseController {
     }
 
     public void processUpdate(TL_update.TL_updateGroupCallMessage tL_updateGroupCallMessage) {
-        long j3 = tL_updateGroupCallMessage.call.f18138id;
+        long j3 = tL_updateGroupCallMessage.call.f19913id;
         long peerDialogId = DialogObject.getPeerDialogId(tL_updateGroupCallMessage.message.from_id);
-        long j10 = tL_updateGroupCallMessage.message.f18132id;
+        long j10 = tL_updateGroupCallMessage.message.f19907id;
         if (getUserConfig().clientUserId == peerDialogId) {
             return;
         }
@@ -226,7 +226,7 @@ public class GroupCallMessagesController extends BaseController {
             long nextRandomId = getSendMessagesHelper().getNextRandomId();
             if (sharedInstance.isConference()) {
                 ConferenceCall conferenceCall = sharedInstance.conference;
-                if (conferenceCall != null && (groupCall = conferenceCall.groupCall) != null && groupCall.f18131id == j10) {
+                if (conferenceCall != null && (groupCall = conferenceCall.groupCall) != null && groupCall.f19906id == j10) {
                     long callId = conferenceCall.getCallId();
                     if (callId != -1) {
                         TLRPC.TL_groupCallMessage tL_groupCallMessage = new TLRPC.TL_groupCallMessage();
@@ -285,12 +285,12 @@ public class GroupCallMessagesController extends BaseController {
     }
 
     public void processUpdate(TL_update.TL_updateGroupCallEncryptedMessage tL_updateGroupCallEncryptedMessage) {
-        long j3 = tL_updateGroupCallEncryptedMessage.call.f18138id;
+        long j3 = tL_updateGroupCallEncryptedMessage.call.f19913id;
         long peerDialogId = DialogObject.getPeerDialogId(tL_updateGroupCallEncryptedMessage.from_id);
         byte[] bArr = tL_updateGroupCallEncryptedMessage.encrypted_message;
         if (getUserConfig().clientUserId == peerDialogId) {
             return;
         }
-        Utilities.globalQueue.postRunnable(new a3.g0(this, j3, peerDialogId, bArr, 11));
+        Utilities.globalQueue.postRunnable(new a3.g0(this, j3, peerDialogId, bArr, 10));
     }
 }

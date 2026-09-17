@@ -1,104 +1,96 @@
 package hg;
 
 import android.content.Context;
+import android.text.SpannableStringBuilder;
 import android.view.View;
-import android.widget.FrameLayout;
-import ci.uc;
-import ei.d5;
-import java.util.ArrayList;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ChatObject;
+import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.f6;
 import org.telegram.ui.ActionBar.j6;
-import org.telegram.ui.ActionBar.o2;
-import org.telegram.ui.Components.f61;
-import org.telegram.ui.Components.ml0;
+import org.telegram.ui.Components.i9;
+import org.telegram.ui.Components.oq;
+import org.telegram.ui.Components.x9;
+import org.telegram.ui.d10;
 import w7.x5;
-public final class i1 extends o2 {
-    public final CharSequence f10316a;
-    public final ArrayList f10317b;
-    public final int f10318c;
-    public final int d;
-    public final int e;
-    public uc f10319f;
-    public gg.x1 h;
-    public f61 f10320n;
-    public boolean f10321r;
+public final class i1 extends LinearLayout {
+    public final f6 f11130a;
+    public final x9 f11131b;
+    public final i9 f11132c;
+    public final TextView d;
+    public final TextView f11133e;
 
-    public i1(CharSequence charSequence, ArrayList arrayList, int i10, int i11, int i12) {
-        super(null);
-        this.f10316a = charSequence;
-        this.f10317b = arrayList;
-        this.f10318c = i10;
-        this.d = i11;
-        this.e = i12;
-        this.f10321r = !arrayList.isEmpty();
+    public i1(Context context, f6 f6Var, boolean z10) {
+        super(context);
+        int v02;
+        this.f11132c = new i9((f6) null);
+        this.f11130a = f6Var;
+        setOrientation(0);
+        x9 x9Var = new x9(context);
+        this.f11131b = x9Var;
+        x9Var.setRoundRadius(AndroidUtilities.dp(28.0f));
+        addView(x9Var, x5.t(28, 28, 19, 12, 0, 12, 0));
+        LinearLayout linearLayout = new LinearLayout(context);
+        linearLayout.setOrientation(1);
+        addView(linearLayout, x5.t(-1, -2, 55, 0, 4, 12, 4));
+        TextView textView = new TextView(context);
+        this.d = textView;
+        textView.setTextSize(1, 15.0f);
+        int i10 = j6.G6;
+        textView.setTextColor(j6.v0(i10, f6Var));
+        TextView h = com.google.android.gms.internal.vision.e2.h(linearLayout, textView, x5.n(-1, -2), context);
+        this.f11133e = h;
+        h.setTextSize(1, 13.0f);
+        if (z10) {
+            v02 = j6.l1(0.5f, j6.v0(i10, f6Var));
+        } else {
+            v02 = j6.v0(j6.f21089z6, f6Var);
+        }
+        h.setTextColor(v02);
+        linearLayout.addView(h, x5.n(-1, -2));
     }
 
-    public final boolean U() {
-        ArrayList arrayList = this.f10317b;
-        if (arrayList.size() != 1 || ((f1) arrayList.get(0)).f10289a != 0 || ((f1) arrayList.get(0)).f10290b != 1439) {
-            return false;
+    public final void a(int i10, String str, TLRPC.Chat chat) {
+        if (str == null) {
+            return;
         }
-        return true;
-    }
-
-    public final boolean V() {
-        ArrayList arrayList = this.f10317b;
-        if (arrayList.size() >= this.e) {
-            return false;
+        TextView textView = this.f11133e;
+        TextView textView2 = this.d;
+        x9 x9Var = this.f11131b;
+        if (i10 == 0) {
+            oq oqVar = new oq(j6.b0(AndroidUtilities.dp(28.0f), j6.v0(j6.Oh, this.f11130a)), getContext().getResources().getDrawable(R.drawable.menu_hashtag).mutate());
+            oqVar.f29194s = AndroidUtilities.dp(-0.66f);
+            oqVar.v = 0;
+            int dp = AndroidUtilities.dp(20.0f);
+            int dp2 = AndroidUtilities.dp(20.0f);
+            oqVar.f29190e = dp;
+            oqVar.f29191f = dp2;
+            x9Var.setImageDrawable(oqVar);
+            textView2.setText(LocaleController.formatString(R.string.HashtagSuggestion1Title, str));
+            textView.setText(LocaleController.getString(R.string.HashtagSuggestion1Text));
+            return;
         }
-        if (!arrayList.isEmpty() && !U() && ((f1) k0.h(1, arrayList)).f10290b >= Math.min(1438, this.d - 2)) {
-            return false;
-        }
-        return true;
+        i9 i9Var = this.f11132c;
+        i9Var.q(chat);
+        x9Var.e(chat, i9Var);
+        int i11 = R.string.HashtagSuggestion2Title;
+        StringBuilder g10 = w.f.g(str, "@");
+        g10.append(ChatObject.getPublicUsername(chat));
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(LocaleController.formatString(i11, g10.toString()));
+        spannableStringBuilder.append((CharSequence) "  d");
+        d10 d10Var = new d10(8);
+        d10Var.f35632f = j6.w0(null, j6.Lj, false);
+        spannableStringBuilder.setSpan(d10Var, spannableStringBuilder.length() - 1, spannableStringBuilder.length(), 0);
+        textView2.setText(spannableStringBuilder);
+        textView.setText(LocaleController.getString(R.string.HashtagSuggestion2Text));
     }
 
     @Override
-    public final View createView(Context context) {
-        this.actionBar.setBackButtonImage(R.drawable.ic_ab_back);
-        this.actionBar.setAllowOverlayTitle(true);
-        this.actionBar.setTitle(this.f10316a);
-        this.actionBar.setActionBarMenuOnItemClick(new ei.t(this, 15));
-        FrameLayout frameLayout = new FrameLayout(context);
-        frameLayout.setBackgroundColor(j6.w0(null, j6.f18806a7, false));
-        f61 f61Var = new f61(this, new bi.v(this, 28), new d5(this, 4), null);
-        this.f10320n = f61Var;
-        f61Var.q1();
-        frameLayout.addView(this.f10320n, x5.c(-1.0f, -1));
-        this.fragmentView = frameLayout;
-        return frameLayout;
-    }
-
-    @Override
-    public final ml0 getListViewForSimpleGlass() {
-        return this.f10320n;
-    }
-
-    @Override
-    public final boolean isSupportEdgeToEdge() {
-        return true;
-    }
-
-    @Override
-    public final void onBecomeFullyHidden() {
-        gg.x1 x1Var = this.h;
-        if (x1Var != null) {
-            x1Var.run();
-        }
-        super.onBecomeFullyHidden();
-    }
-
-    @Override
-    public final void onFragmentDestroy() {
-        super.onFragmentDestroy();
-        if (!this.f10321r) {
-            ArrayList arrayList = this.f10317b;
-            if (!arrayList.isEmpty()) {
-                arrayList.clear();
-                uc ucVar = this.f10319f;
-                if (ucVar != null) {
-                    ucVar.run();
-                }
-            }
-        }
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), i11);
     }
 }

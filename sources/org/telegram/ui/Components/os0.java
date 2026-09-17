@@ -1,28 +1,20 @@
 package org.telegram.ui.Components;
 
-import android.animation.ValueAnimator;
-public final class os0 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f26842a;
-    public final st0 f26843b;
-    public final zu0 f26844c;
+import android.view.View;
+public final class os0 implements View.OnLayoutChangeListener {
+    public final xu0 f29206a;
 
-    public os0(zu0 zu0Var, st0 st0Var, int i10) {
-        this.f26842a = i10;
-        this.f26844c = zu0Var;
-        this.f26843b = st0Var;
+    public os0(xu0 xu0Var) {
+        this.f29206a = xu0Var;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f26842a) {
-            case 0:
-                this.f26844c.f30638n1 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                this.f26843b.h.invalidate();
-                return;
-            default:
-                this.f26844c.f30638n1 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                this.f26843b.h.invalidate();
-                return;
+    public final void onLayoutChange(View view, int i10, int i11, int i12, int i13, int i14, int i15, int i16, int i17) {
+        xu0 xu0Var = this.f29206a;
+        org.telegram.ui.ActionBar.v0 v0Var = xu0Var.f32735n0;
+        if (v0Var == null) {
+            return;
         }
+        xu0Var.f32735n0.setTranslationX(((View) v0Var.getParent()).getMeasuredWidth() - xu0Var.f32735n0.getRight());
     }
 }

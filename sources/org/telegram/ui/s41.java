@@ -1,46 +1,47 @@
 package org.telegram.ui;
 
-import android.app.Activity;
-import android.graphics.Canvas;
-public final class s41 extends org.telegram.ui.Components.n6 {
-    public boolean f37381s;
-    public final org.telegram.ui.Components.c6 v;
-    public final SaveToGallerySettingsActivity f37382w;
+import j$.util.Objects;
+import org.telegram.messenger.SaveToGallerySettingsHelper;
+public final class s41 extends pg.a {
+    public final SaveToGallerySettingsHelper.DialogException f40328c;
+    public final String d;
 
-    public s41(SaveToGallerySettingsActivity saveToGallerySettingsActivity, Activity activity) {
-        super(activity, true, true, false);
-        this.f37382w = saveToGallerySettingsActivity;
-        this.v = new org.telegram.ui.Components.c6(this);
-        getDrawable().D = true;
+    public s41(int i10) {
+        super(i10, false);
+        this.f40328c = null;
     }
 
-    @Override
-    public final void dispatchDraw(Canvas canvas) {
-        float f7;
-        if (this.f37381s) {
-            f7 = 1.0f;
-        } else {
-            f7 = 0.0f;
+    public final boolean equals(Object obj) {
+        SaveToGallerySettingsHelper.DialogException dialogException;
+        if (this == obj) {
+            return true;
         }
-        org.telegram.ui.Components.c6 c6Var = this.v;
-        c6Var.d(f7, false);
-        int i10 = org.telegram.ui.ActionBar.j6.f19244y6;
-        SaveToGallerySettingsActivity saveToGallerySettingsActivity = this.f37382w;
-        setTextColor(i0.a.d(c6Var.f22937c, saveToGallerySettingsActivity.getThemedColor(i10), saveToGallerySettingsActivity.getThemedColor(org.telegram.ui.ActionBar.j6.f19047n6)));
-        super.dispatchDraw(canvas);
+        if (obj == null || s41.class != obj.getClass()) {
+            return false;
+        }
+        s41 s41Var = (s41) obj;
+        if (this.f44099a != s41Var.f44099a) {
+            return false;
+        }
+        String str = this.d;
+        if (str != null) {
+            return Objects.equals(str, s41Var.d);
+        }
+        SaveToGallerySettingsHelper.DialogException dialogException2 = this.f40328c;
+        if (dialogException2 == null || (dialogException = s41Var.f40328c) == null || dialogException2.dialogId == dialogException.dialogId) {
+            return true;
+        }
+        return false;
     }
 
-    public final void e(boolean z10, boolean z11) {
-        float f7;
-        if (this.f37381s != z10) {
-            this.f37381s = z10;
-            if (z10) {
-                f7 = 1.0f;
-            } else {
-                f7 = 0.0f;
-            }
-            this.v.d(f7, z11);
-            invalidate();
-        }
+    public s41(SaveToGallerySettingsHelper.DialogException dialogException) {
+        super(2, false);
+        this.f40328c = dialogException;
+    }
+
+    public s41(int i10, String str) {
+        super(i10, false);
+        this.d = str;
+        this.f40328c = null;
     }
 }

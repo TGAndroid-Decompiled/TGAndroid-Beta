@@ -1,56 +1,50 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class l8 implements Runnable {
-    public final int f35473a;
-    public final m9 f35474b;
+import j$.util.function.Function$CC;
+import java.util.function.Function;
+import org.telegram.messenger.DialogObject;
+import org.telegram.messenger.MessageObject;
+import org.telegram.tgnet.TLRPC;
+public final class l8 implements Function {
+    public final int f38246a;
 
-    public l8(m9 m9Var, int i10) {
-        this.f35473a = i10;
-        this.f35474b = m9Var;
+    public l8(int i10) {
+        this.f38246a = i10;
+    }
+
+    public Function andThen(Function function) {
+        int i10 = this.f38246a;
+        return Function$CC.$default$andThen(this, function);
     }
 
     @Override
-    public final void run() {
-        org.telegram.ui.Components.vc a02;
-        switch (this.f35473a) {
+    public final Object apply(Object obj) {
+        switch (this.f38246a) {
             case 0:
-                m9 m9Var = this.f35474b;
-                m9Var.f0();
-                m9Var.i0();
-                return;
+                return Long.valueOf(DialogObject.getPeerDialogId((TLRPC.Peer) obj));
             case 1:
-                m9 m9Var2 = this.f35474b;
-                m9Var2.n0(false);
-                if (m9Var2.f35720w) {
-                    a02 = org.telegram.ui.Components.vc.X();
-                } else {
-                    a02 = org.telegram.ui.Components.vc.a0(m9Var2);
-                }
-                org.telegram.ui.Components.oc I = a02.I(R.raw.contact_check, AndroidUtilities.replaceTags(LocaleController.getString(R.string.GroupCallTabWasHiddenTitle)), LocaleController.getString(R.string.UndoNoCaps), 5000, true, new l8(m9Var2, 5));
-                I.f26702j = 5000;
-                I.j();
-                return;
+                return Long.valueOf(((MessageObject) obj).getFromChatId());
             case 2:
-                this.f35474b.p0(true);
-                return;
+                return Integer.valueOf(((MessageObject) obj).getId());
             case 3:
-                m9 m9Var3 = this.f35474b;
-                m9Var3.h0();
-                m9Var3.f0();
-                return;
+                TLRPC.ChannelParticipant channelParticipant = (TLRPC.ChannelParticipant) obj;
+                if (channelParticipant == null) {
+                    return null;
+                }
+                return channelParticipant.banned_rights;
             case 4:
-                this.f35474b.n0(false);
-                return;
+                return Long.valueOf(DialogObject.getPeerDialogId(((TLRPC.GroupCallParticipant) obj).peer));
             case 5:
-                this.f35474b.n0(true);
-                return;
+                return Long.valueOf(DialogObject.getPeerDialogId(((TLRPC.GroupCallParticipant) obj).peer));
+            case 6:
+                return ((vt) obj).f41721a;
             default:
-                m9 m9Var4 = this.f35474b;
-                m9Var4.d.postOnAnimation(new l8(m9Var4, 3));
-                return;
+                return ((vt) obj).f41721a;
         }
+    }
+
+    public Function compose(Function function) {
+        int i10 = this.f38246a;
+        return Function$CC.$default$compose(this, function);
     }
 }

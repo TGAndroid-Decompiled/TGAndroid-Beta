@@ -1,72 +1,72 @@
 package org.telegram.ui;
 
-import android.animation.ValueAnimator;
-import android.graphics.LinearGradient;
-import android.graphics.Matrix;
-import android.graphics.Paint;
-import android.graphics.PointF;
-import android.graphics.RectF;
-import android.graphics.drawable.NinePatchDrawable;
-import android.text.StaticLayout;
-import org.telegram.messenger.AnimationNotificationsLocker;
-import org.telegram.messenger.MessageObject;
-public final class kb1 implements di0 {
-    public final bo A;
-    public final LinearGradient B;
-    public final float C;
-    public final AnimationNotificationsLocker D;
-    public final MessageObject.TextLayoutBlock E;
-    public final NinePatchDrawable F;
-    public final nk G;
-    public final org.telegram.ui.Components.t5 H;
-    public float I;
-    public float J;
-    public final float K;
-    public final int L;
-    public final int M;
-    public final org.telegram.ui.ActionBar.f6 N;
-    public final PointF O;
-    public final RectF P;
-    public final RectF Q;
-    public float[] R;
-    public final float S;
-    public float f35186a;
-    public final Paint f35187b;
-    public final boolean f35188c;
-    public final ValueAnimator d;
-    public final float e;
-    public final float f35189f;
-    public final float f35190g;
-    public final int h;
-    public final int f35191i;
-    public final float f35192j;
-    public final MessageObject f35193k;
-    public final float f35194l;
-    public final float f35195m;
-    public final boolean f35196n;
-    public final boolean f35197o;
-    public final StaticLayout f35198p;
-    public final StaticLayout f35199q;
-    public final org.telegram.ui.Cells.t1 f35200r;
-    public final org.telegram.ui.Components.ml0 f35201s;
-    public final org.telegram.ui.Components.ui f35202t;
-    public final Matrix f35203u;
-    public final Paint v;
-    public final int f35204w;
-    public final float f35205x;
-    public final float f35206y;
-    public final float f35207z;
+import android.graphics.Canvas;
+import android.graphics.Path;
+import android.graphics.drawable.Drawable;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.ui.Components.Crop.CropAreaView;
+public final class kb1 extends View {
+    public ImageReceiver f38023a;
+    public ImageReceiver f38024b;
+    public View f38025c;
+    public org.telegram.ui.Components.ue0 d;
+    public Path f38026e;
+    public Drawable f38027f;
 
-    public kb1(org.telegram.ui.Cells.t1 r35, org.telegram.ui.bo r36, org.telegram.ui.Components.ml0 r37, org.telegram.ui.Components.ui r38, org.telegram.ui.ActionBar.f6 r39) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.kb1.<init>(org.telegram.ui.Cells.t1, org.telegram.ui.bo, org.telegram.ui.Components.ml0, org.telegram.ui.Components.ui, org.telegram.ui.ActionBar.f6):void");
+    @Override
+    public final void draw(Canvas canvas) {
+        int measuredWidth = getMeasuredWidth() >> 1;
+        int measuredHeight = getMeasuredHeight() - AndroidUtilities.dp(30.0f);
+        int dp = AndroidUtilities.dp(46.0f) + measuredWidth;
+        ImageReceiver imageReceiver = this.f38023a;
+        imageReceiver.setImageCoords((measuredWidth - AndroidUtilities.dp(46.0f)) - AndroidUtilities.dp(30.0f), measuredHeight - AndroidUtilities.dp(30.0f), AndroidUtilities.dp(60.0f), AndroidUtilities.dp(60.0f));
+        this.f38024b.setImageCoords(dp - AndroidUtilities.dp(30.0f), measuredHeight - AndroidUtilities.dp(30.0f), AndroidUtilities.dp(60.0f), AndroidUtilities.dp(60.0f));
+        Drawable drawable = this.f38027f;
+        drawable.setBounds(org.telegram.messenger.vl.w(2, measuredWidth, drawable), org.telegram.messenger.vl.e(2, measuredHeight, drawable), org.telegram.messenger.vl.B(2, measuredWidth, drawable), org.telegram.messenger.vl.z(2, measuredHeight, drawable));
+        drawable.draw(canvas);
+        Path path = this.f38026e;
+        path.reset();
+        path.addCircle(dp, measuredHeight, AndroidUtilities.dp(30.0f), Path.Direction.CW);
+        imageReceiver.draw(canvas);
+        if (this.f38025c != null) {
+            CropAreaView cropAreaView = this.d.f30897b.f16330a;
+            float dp2 = AndroidUtilities.dp(60.0f) / cropAreaView.f23969a;
+            float left = (0.0f - this.d.getLeft()) - cropAreaView.f23971b;
+            canvas.save();
+            canvas.clipPath(path);
+            canvas.scale(dp2, dp2, 0.0f, 0.0f);
+            canvas.translate(left, (0.0f - this.d.getTop()) - cropAreaView.f23973c);
+            canvas.translate((dp - AndroidUtilities.dp(30.0f)) / dp2, (measuredHeight - AndroidUtilities.dp(30.0f)) / dp2);
+            PhotoViewer.t1().f33598g4 = true;
+            this.f38025c.draw(canvas);
+            PhotoViewer.t1().f33598g4 = false;
+            canvas.restore();
+        }
+        super.draw(canvas);
+        this.f38025c.invalidate();
+        invalidate();
     }
 
     @Override
-    public final void a(android.graphics.Canvas r58) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.kb1.a(android.graphics.Canvas):void");
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        this.f38023a.onAttachedToWindow();
+        this.f38024b.onAttachedToWindow();
     }
 
-    public final int b(int i10) {
-        return org.telegram.ui.ActionBar.j6.v0(i10, this.N);
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        this.f38023a.onDetachedFromWindow();
+        this.f38024b.onDetachedFromWindow();
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        this.f38023a.setRoundRadius(AndroidUtilities.dp(30.0f));
+        this.f38024b.setRoundRadius(AndroidUtilities.dp(30.0f));
+        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(86.0f), 1073741824));
     }
 }

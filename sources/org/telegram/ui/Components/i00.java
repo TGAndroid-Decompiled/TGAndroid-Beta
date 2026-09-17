@@ -21,63 +21,63 @@ public final class i00 extends View {
     public StaticLayout L;
     public StaticLayout M;
     public CharSequence N;
-    public t5 O;
+    public v5 O;
     public StaticLayout P;
-    public t5 Q;
+    public v5 Q;
     public StaticLayout R;
-    public t5 S;
+    public v5 S;
     public StaticLayout T;
     public boolean U;
     public boolean V;
     public boolean W;
-    public ValueAnimator f24763a;
-    public float f24764a0;
-    public g00 f24765b;
-    public int f24766b0;
-    public int f24767c;
-    public int f24768c0;
+    public ValueAnimator f26926a;
+    public float f26927a0;
+    public g00 f26928b;
+    public int f26929b0;
+    public int f26930c;
+    public int f26931c0;
     public int d;
-    public int f24769d0;
-    public int e;
-    public float f24770e0;
-    public final RectF f24771f;
-    public float f24772f0;
-    public float f24773g0;
+    public int f26932d0;
+    public int f26933e;
+    public float f26934e0;
+    public final RectF f26935f;
+    public float f26936f0;
+    public float f26937g0;
     public CharSequence h;
-    public float f24774h0;
-    public float f24775i0;
-    public float f24776j0;
-    public float f24777k0;
-    public boolean f24778l0;
+    public float f26938h0;
+    public float f26939i0;
+    public float f26940j0;
+    public float f26941k0;
+    public boolean f26942l0;
     public final k00 m0;
-    public boolean f24779n;
-    public t5 f24780r;
-    public StaticLayout f24781s;
+    public boolean f26943n;
+    public v5 f26944r;
+    public StaticLayout f26945s;
     public int v;
-    public boolean f24782w;
-    public float f24783x;
-    public float f24784y;
+    public boolean f26946w;
+    public float f26947x;
+    public float f26948y;
 
     public i00(k00 k00Var, Context context) {
         super(context);
         this.m0 = k00Var;
-        this.f24771f = new RectF();
+        this.f26935f = new RectF();
         this.I = -1;
     }
 
     public final void a() {
-        this.f24782w = false;
+        this.f26946w = false;
         this.H = false;
         this.U = false;
         this.G = false;
         this.W = false;
-        this.f24763a = null;
+        this.f26926a = null;
         invalidate();
     }
 
     public final void b(float f7, int i10) {
         if (i10 == 6) {
-            this.f24784y = 0.0f;
+            this.f26948y = 0.0f;
             return;
         }
         AnimatorSet animatorSet = new AnimatorSet();
@@ -91,7 +91,7 @@ public final class i00 extends View {
 
     @Override
     public int getId() {
-        return this.f24765b.f24051a;
+        return this.f26928b.f26245a;
     }
 
     @Override
@@ -99,54 +99,54 @@ public final class i00 extends View {
         int i10;
         int i11;
         int i12;
-        this.f24778l0 = true;
+        this.f26942l0 = true;
         super.onAttachedToWindow();
         int i13 = 26;
-        if (this.f24765b.f24055g) {
+        if (this.f26928b.f26250g) {
             i10 = 26;
         } else {
             i10 = 0;
         }
-        this.f24780r = x5.update(i10, this, this.f24780r, this.f24781s);
-        if (this.f24765b.f24055g) {
+        this.f26944r = z5.update(i10, this, this.f26944r, this.f26945s);
+        if (this.f26928b.f26250g) {
             i11 = 26;
         } else {
             i11 = 0;
         }
-        this.O = x5.update(i11, this, this.O, this.P);
-        if (this.f24765b.f24055g) {
+        this.O = z5.update(i11, this, this.O, this.P);
+        if (this.f26928b.f26250g) {
             i12 = 26;
         } else {
             i12 = 0;
         }
-        this.Q = x5.update(i12, this, this.Q, this.R);
-        if (!this.f24765b.f24055g) {
+        this.Q = z5.update(i12, this, this.Q, this.R);
+        if (!this.f26928b.f26250g) {
             i13 = 0;
         }
-        this.S = x5.update(i13, this, this.S, this.T);
+        this.S = z5.update(i13, this, this.S, this.T);
     }
 
     @Override
     public final void onDetachedFromWindow() {
-        this.f24778l0 = false;
+        this.f26942l0 = false;
         super.onDetachedFromWindow();
-        this.f24782w = false;
+        this.f26946w = false;
         this.H = false;
         this.U = false;
         this.G = false;
         this.W = false;
-        ValueAnimator valueAnimator = this.f24763a;
+        ValueAnimator valueAnimator = this.f26926a;
         if (valueAnimator != null) {
             valueAnimator.removeAllListeners();
-            this.f24763a.removeAllUpdateListeners();
-            this.f24763a.cancel();
-            this.f24763a = null;
+            this.f26926a.removeAllUpdateListeners();
+            this.f26926a.cancel();
+            this.f26926a = null;
         }
         invalidate();
-        x5.release(this, this.f24780r);
-        x5.release(this, this.O);
-        x5.release(this, this.Q);
-        x5.release(this, this.S);
+        z5.release(this, this.f26944r);
+        z5.release(this, this.O);
+        z5.release(this, this.Q);
+        z5.release(this, this.S);
     }
 
     @Override
@@ -160,8 +160,8 @@ public final class i00 extends View {
         int i10;
         int i11;
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        g00 g00Var = this.f24765b;
-        if (g00Var != null && (i11 = this.m0.L) != -1 && g00Var.f24051a == i11) {
+        g00 g00Var = this.f26928b;
+        if (g00Var != null && (i11 = this.m0.L) != -1 && g00Var.f26245a == i11) {
             z10 = true;
         } else {
             z10 = false;
@@ -169,10 +169,10 @@ public final class i00 extends View {
         accessibilityNodeInfo.setSelected(z10);
         accessibilityNodeInfo.addAction(16);
         accessibilityNodeInfo.addAction(new AccessibilityNodeInfo.AccessibilityAction(32, LocaleController.getString(R.string.AccDescrOpenMenu2)));
-        if (this.f24765b != null) {
+        if (this.f26928b != null) {
             StringBuilder sb2 = new StringBuilder();
-            sb2.append(this.f24765b.f24052b);
-            g00 g00Var2 = this.f24765b;
+            sb2.append(this.f26928b.f26246b);
+            g00 g00Var2 = this.f26928b;
             if (g00Var2 != null) {
                 i10 = g00Var2.d;
             } else {
@@ -188,6 +188,6 @@ public final class i00 extends View {
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        setMeasuredDimension(AndroidUtilities.dp(24.0f) + this.f24765b.a(false) + this.m0.N, View.MeasureSpec.getSize(i11));
+        setMeasuredDimension(AndroidUtilities.dp(24.0f) + this.f26928b.a(false) + this.m0.N, View.MeasureSpec.getSize(i11));
     }
 }

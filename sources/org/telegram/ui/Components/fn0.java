@@ -1,33 +1,61 @@
 package org.telegram.ui.Components;
-public final class fn0 extends s4.o {
-    public final jn0 f23966b;
 
-    public fn0(jn0 jn0Var) {
-        this.f23966b = jn0Var;
+import android.view.View;
+import org.telegram.tgnet.TLRPC;
+public final class fn0 extends ah.h1 {
+    public final gn0 f26163h0;
+
+    public fn0(gn0 gn0Var, int i10, View view, TLRPC.TL_reactionCount tL_reactionCount, org.telegram.ui.ActionBar.f6 f6Var) {
+        super(null, i10, view, tL_reactionCount, false, true, f6Var);
+        this.f26163h0 = gn0Var;
     }
 
     @Override
-    public final boolean a(int i10, int i11) {
-        jn0 jn0Var = this.f23966b;
-        return ((gn0) jn0Var.f25359n.get(i10)).equals(jn0Var.f25360r.get(i11));
-    }
-
-    @Override
-    public final boolean b(int i10, int i11) {
-        jn0 jn0Var = this.f23966b;
-        if (((gn0) jn0Var.f25359n.get(i10)).f24349a.h == ((gn0) jn0Var.f25360r.get(i11)).f24349a.h) {
-            return true;
+    public final boolean e() {
+        if (this.f590w <= 0 && !this.f589u && this.F.f30972l == 1.0f) {
+            return false;
         }
-        return false;
+        return true;
     }
 
     @Override
-    public final int d() {
-        return this.f23966b.f25360r.size();
+    public final boolean i() {
+        return !e();
     }
 
     @Override
-    public final int e() {
-        return this.f23966b.f25359n.size();
+    public final int j() {
+        return 18;
+    }
+
+    @Override
+    public final void s(float f7) {
+        int i10;
+        int i11;
+        int v02;
+        int i12 = this.f577i;
+        gn0 gn0Var = this.f26163h0;
+        if (gn0Var.f26492e) {
+            i10 = org.telegram.ui.ActionBar.j6.Fj;
+        } else {
+            i10 = org.telegram.ui.ActionBar.j6.f21021va;
+        }
+        this.N = i0.a.d(f7, i12, org.telegram.ui.ActionBar.j6.v0(i10, gn0Var.f26496s.f26792c));
+        int i13 = this.f575g;
+        if (gn0Var.f26492e) {
+            i11 = org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.Cj, gn0Var.f26496s.f26792c);
+        } else {
+            i11 = 0;
+        }
+        int d = i0.a.d(f7, i13, i11);
+        this.O = d;
+        this.N = org.telegram.ui.ActionBar.j6.v(d, this.N);
+        int i14 = this.h;
+        if (gn0Var.f26492e) {
+            v02 = 1526726655;
+        } else {
+            v02 = org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f21040wa, gn0Var.f26496s.f26792c);
+        }
+        this.P = i0.a.d(f7, i14, v02);
     }
 }

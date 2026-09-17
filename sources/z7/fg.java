@@ -3,5 +3,5 @@ package z7;
 import android.os.Binder;
 import android.os.IInterface;
 public abstract class fg extends Binder implements gg, IInterface {
-    public static final int f48275a = 0;
+    public static final int f50896a = 0;
 }

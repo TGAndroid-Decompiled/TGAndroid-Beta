@@ -51,11 +51,11 @@ public abstract class b {
                 c10 = ')';
             }
         }
-        int e = e(charSequence, i10 + 1, c10);
-        if (e == -1 || e >= charSequence.length() || charSequence.charAt(e) != c10) {
+        int e7 = e(charSequence, i10 + 1, c10);
+        if (e7 == -1 || e7 >= charSequence.length() || charSequence.charAt(e7) != c10) {
             return -1;
         }
-        return e + 1;
+        return e7 + 1;
     }
 
     public static int e(CharSequence charSequence, int i10, char c10) {

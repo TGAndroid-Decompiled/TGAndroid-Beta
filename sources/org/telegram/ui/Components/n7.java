@@ -1,63 +1,41 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.view.MotionEvent;
 import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-public final class n7 extends FrameLayout {
-    public final int f26351a;
-    public final h8 f26352b;
+public final class n7 implements zk0 {
+    public final int f28655a;
 
-    public n7(h8 h8Var, Context context, int i10) {
-        super(context);
-        this.f26351a = i10;
-        this.f26352b = h8Var;
+    public n7(int i10) {
+        this.f28655a = i10;
     }
 
     @Override
-    public void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        TextView textView;
-        switch (this.f26351a) {
+    public final void a(int i10, View view) {
+        switch (this.f28655a) {
             case 0:
-                int y3 = org.telegram.messenger.wl.y(248.0f, i12 - i10, 4);
-                for (int i14 = 0; i14 < 5; i14++) {
-                    int dp = (y3 * i14) + AndroidUtilities.dp((i14 * 48) + 4);
-                    int dp2 = AndroidUtilities.dp(9.0f);
-                    h8 h8Var = this.f26352b;
-                    View view = h8Var.f24559n0[i14];
-                    view.layout(dp, dp2, view.getMeasuredWidth() + dp, h8Var.f24559n0[i14].getMeasuredHeight() + dp2);
-                }
-                return;
-            case 1:
-            default:
-                super.onLayout(z10, i10, i11, i12, i13);
-                return;
-            case 2:
-                super.onLayout(z10, i10, i11, i12, i13);
-                h8 h8Var2 = this.f26352b;
-                if (h8Var2.V != null && (textView = h8Var2.f24543a0) != null) {
-                    int left = (textView.getLeft() - AndroidUtilities.dp(4.0f)) - h8Var2.V.getMeasuredWidth();
-                    org.telegram.ui.ActionBar.w0 w0Var = h8Var2.V;
-                    w0Var.layout(left, w0Var.getTop(), h8Var2.V.getMeasuredWidth() + left, h8Var2.V.getBottom());
+                if (view instanceof org.telegram.ui.Cells.x) {
+                    ((org.telegram.ui.Cells.x) view).a();
                     return;
                 }
                 return;
+            case 1:
+                boolean z10 = ChatAttachAlertPhotoLayout.f23859q1;
+                if (view instanceof org.telegram.ui.Cells.s5) {
+                    org.telegram.ui.Cells.s5 s5Var = (org.telegram.ui.Cells.s5) view;
+                    s5Var.f22867w.c(s5Var);
+                    return;
+                }
+                return;
+            case 2:
+                return;
+            case 3:
+                int i11 = yh.c.f50243a0;
+                return;
+            default:
+                int i12 = yh.m.A0;
+                return;
         }
     }
 
-    @Override
-    public boolean onTouchEvent(MotionEvent motionEvent) {
-        switch (this.f26351a) {
-            case 1:
-                h8 h8Var = this.f26352b;
-                if (h8Var.f24554i0.getTag() != null) {
-                    h8Var.A0(false, true);
-                }
-                return true;
-            default:
-                return super.onTouchEvent(motionEvent);
-        }
+    private final void b(int i10, View view) {
     }
 }

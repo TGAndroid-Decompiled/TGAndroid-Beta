@@ -6,66 +6,66 @@ import android.content.Intent;
 import android.os.CancellationSignal;
 import androidx.credentials.playservices.CredentialProviderPlayServicesImpl;
 import androidx.credentials.playservices.controllers.identityauth.HiddenActivity;
-import androidx.fragment.app.a0;
+import bi.oa;
 import java.util.concurrent.Executor;
 import rd.l;
 import w0.i;
 public final class f implements l {
-    public final int f2897a;
-    public final Object f2898b;
-    public final Object f2899c;
+    public final int f1953a;
+    public final Object f1954b;
+    public final Object f1955c;
 
     public f(int i10, Object obj, Object obj2) {
-        this.f2897a = i10;
-        this.f2898b = obj;
-        this.f2899c = obj2;
+        this.f1953a = i10;
+        this.f1954b = obj;
+        this.f1955c = obj2;
     }
 
     @Override
     public final Object invoke(Object obj) {
-        switch (this.f2897a) {
+        switch (this.f1953a) {
             case 0:
-                i e = (i) obj;
-                kotlin.jvm.internal.i.e(e, "e");
-                ((Executor) this.f2898b).execute(new h((v0.i) this.f2899c, e, 1));
-                return gd.i.f9621a;
+                i e7 = (i) obj;
+                kotlin.jvm.internal.i.e(e7, "e");
+                ((Executor) this.f1954b).execute(new h((v0.i) this.f1955c, e7, 1));
+                return gd.i.f10616a;
             case 1:
-                CancellationSignal cancellationSignal = (CancellationSignal) this.f2898b;
-                c1.e eVar = (c1.e) this.f2899c;
-                Context context = eVar.e;
+                CancellationSignal cancellationSignal = (CancellationSignal) this.f1954b;
+                c1.e eVar = (c1.e) this.f1955c;
+                Context context = eVar.f4161e;
                 x5.f fVar = (x5.f) obj;
                 CredentialProviderPlayServicesImpl.Companion.getClass();
                 if (!a1.g.a(cancellationSignal)) {
                     Intent intent = new Intent(context, HiddenActivity.class);
-                    d.a(eVar.f3655i, intent, "BEGIN_SIGN_IN");
-                    intent.putExtra("EXTRA_FLOW_PENDING_INTENT", fVar.f45364a);
+                    d.a(eVar.f4164i, intent, "BEGIN_SIGN_IN");
+                    intent.putExtra("EXTRA_FLOW_PENDING_INTENT", fVar.f48935a);
                     try {
                         context.startActivity(intent);
                     } catch (Exception unused) {
                         CredentialProviderPlayServicesImpl.Companion.getClass();
                         if (!a1.g.a(cancellationSignal)) {
-                            eVar.f().execute(new a0(eVar, 4));
+                            eVar.f().execute(new oa(eVar, 5));
                         }
                     }
                 }
-                return gd.i.f9621a;
+                return gd.i.f10616a;
             default:
-                CancellationSignal cancellationSignal2 = (CancellationSignal) this.f2898b;
-                d1.e eVar2 = (d1.e) this.f2899c;
-                Context context2 = eVar2.e;
+                CancellationSignal cancellationSignal2 = (CancellationSignal) this.f1954b;
+                d1.e eVar2 = (d1.e) this.f1955c;
+                Context context2 = eVar2.f6492e;
                 PendingIntent result = (PendingIntent) obj;
                 kotlin.jvm.internal.i.e(result, "result");
                 CredentialProviderPlayServicesImpl.Companion.getClass();
                 if (!a1.g.a(cancellationSignal2)) {
                     Intent intent2 = new Intent(context2, HiddenActivity.class);
-                    d.a(eVar2.f7412i, intent2, "CREATE_PUBLIC_KEY_CREDENTIAL");
+                    d.a(eVar2.f6495i, intent2, "CREATE_PUBLIC_KEY_CREDENTIAL");
                     intent2.putExtra("EXTRA_FLOW_PENDING_INTENT", result);
                     try {
                         context2.startActivity(intent2);
                     } catch (Exception unused2) {
                         CredentialProviderPlayServicesImpl.Companion.getClass();
                         if (!a1.g.a(cancellationSignal2)) {
-                            Executor executor = eVar2.f7411g;
+                            Executor executor = eVar2.f6494g;
                             if (executor != null) {
                                 executor.execute(new d1.d(eVar2, 0));
                             } else {
@@ -75,7 +75,7 @@ public final class f implements l {
                         }
                     }
                 }
-                return gd.i.f9621a;
+                return gd.i.f10616a;
         }
     }
 }

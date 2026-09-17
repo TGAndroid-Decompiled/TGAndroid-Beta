@@ -2,21 +2,21 @@ package i2;
 
 import j$.util.Objects;
 public final class o1 {
-    public static final o1 f10835b;
-    public final e9.m0 f10836a;
+    public static final o1 f11714b;
+    public final e9.m0 f11715a;
 
     static {
-        a4.m mVar = new a4.m(18, false);
-        mVar.f275b = e9.m0.u(2, 1, 5);
-        f10835b = new o1(mVar);
+        a6.i iVar = new a6.i(24);
+        iVar.f324b = e9.m0.u(2, 1, 5);
+        f11714b = new o1(iVar);
     }
 
-    public o1(a4.m mVar) {
-        this.f10836a = (e9.m0) mVar.f275b;
+    public o1(a6.i iVar) {
+        this.f11715a = (e9.m0) iVar.f324b;
     }
 
     public final boolean equals(Object obj) {
-        if ((obj instanceof o1) && this.f10836a.equals(((o1) obj).f10836a)) {
+        if ((obj instanceof o1) && this.f11715a.equals(((o1) obj).f11715a)) {
             return true;
         }
         return false;
@@ -24,6 +24,6 @@ public final class o1 {
 
     public final int hashCode() {
         Boolean bool = Boolean.TRUE;
-        return Objects.hash(this.f10836a, null, null, bool, bool, bool, bool);
+        return Objects.hash(this.f11715a, null, null, bool, bool, bool, bool);
     }
 }

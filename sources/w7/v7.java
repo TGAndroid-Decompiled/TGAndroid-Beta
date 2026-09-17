@@ -50,7 +50,7 @@ public abstract class v7 {
                             String string4 = data.getString("androidx.credentials.BUNDLE_KEY_PASSWORD");
                             kotlin.jvm.internal.i.b(string3);
                             kotlin.jvm.internal.i.b(string4);
-                            return new v0.n(string4, 2, data);
+                            return new v0.m(string4, 2, data);
                         } catch (Exception unused4) {
                             throw new Exception();
                         }
@@ -61,7 +61,7 @@ public abstract class v7 {
                         try {
                             String string5 = data.getString("androidx.credentials.BUNDLE_KEY_AUTHENTICATION_RESPONSE_JSON");
                             kotlin.jvm.internal.i.b(string5);
-                            return new v0.n(string5, 3, data);
+                            return new v0.m(string5, 3, data);
                         } catch (Exception unused5) {
                             throw new Exception();
                         }
@@ -71,7 +71,7 @@ public abstract class v7 {
                     throw new Exception();
             }
         } catch (z0.a unused6) {
-            return new v0.n(str, 0, data);
+            return new v0.m(str, 0, data);
         }
     }
 }

@@ -1,28 +1,94 @@
 package org.telegram.ui;
-public final class re implements Runnable {
-    public final int f37197a;
-    public final org.telegram.ui.Components.bm0 f37198b;
 
-    public re(org.telegram.ui.Components.bm0 bm0Var, int i10) {
-        this.f37197a = i10;
-        this.f37198b = bm0Var;
+import android.text.TextUtils;
+import android.text.style.CharacterStyle;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.MessageObject;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stars;
+public final class re implements Runnable {
+    public final int f40177a = 0;
+    public final boolean f40178b;
+    public final Object f40179c;
+    public final boolean d;
+    public final Object f40180e;
+    public final Object f40181f;
+    public final Object h;
+    public final Object f40182n;
+
+    public re(co coVar, String str, CharacterStyle characterStyle, MessageObject messageObject, org.telegram.ui.Cells.t1 t1Var, boolean z10, boolean z11) {
+        this.f40180e = coVar;
+        this.f40179c = str;
+        this.f40181f = characterStyle;
+        this.h = messageObject;
+        this.f40182n = t1Var;
+        this.f40178b = z10;
+        this.d = z11;
     }
 
     @Override
     public final void run() {
-        switch (this.f37197a) {
+        switch (this.f40177a) {
             case 0:
-                org.telegram.ui.Components.bm0 bm0Var = this.f37198b;
-                if (!bm0Var.M) {
-                    bm0Var.M = true;
-                    bm0Var.c(new org.telegram.ui.Components.zl0(bm0Var, 0), false);
-                    bm0Var.f22771s.invalidate();
+                co coVar = (co) this.f40180e;
+                String str = (String) this.f40179c;
+                CharacterStyle characterStyle = (CharacterStyle) this.f40181f;
+                MessageObject messageObject = (MessageObject) this.h;
+                org.telegram.ui.Cells.t1 t1Var = (org.telegram.ui.Cells.t1) this.f40182n;
+                if (str.startsWith("video?")) {
+                    coVar.U7(characterStyle, false, messageObject, t1Var);
+                    return;
+                } else if (this.f40178b && !this.d) {
+                    coVar.getParentActivity();
+                    of.f.n(str);
+                    return;
+                } else {
+                    coVar.J9(messageObject, false, false);
+                    coVar.Z9(characterStyle, str, false, t1Var, messageObject);
+                    return;
+                }
+            case 1:
+                xh.n nVar = (xh.n) this.f40180e;
+                Runnable runnable = (Runnable) this.f40181f;
+                String str2 = (String) this.f40179c;
+                TLRPC.TL_error tL_error = (TLRPC.TL_error) this.h;
+                TLObject tLObject = (TLObject) this.f40182n;
+                nVar.f49491w = false;
+                nVar.f49494z = true;
+                if (this.f40178b) {
+                    AndroidUtilities.cancelRunOnUIThread(runnable);
+                }
+                xh.n.k(nVar.f49486q, false, false);
+                if (TextUtils.equals(str2, nVar.f49489t) && tL_error == null) {
+                    nVar.f49494z = true;
+                    nVar.g((TLRPC.TL_messages_chatInviteImporters) tLObject, str2, this.d, false);
                     return;
                 }
                 return;
             default:
-                this.f37198b.dismiss();
+                zh.w3.A0((zh.w3) this.f40180e, (TLObject) this.f40179c, this.f40178b, (TLRPC.Document) this.f40181f, this.d, (TLRPC.TL_error) this.h, (TL_stars.saveStarGift) this.f40182n);
                 return;
         }
+    }
+
+    public re(xh.n nVar, boolean z10, Runnable runnable, String str, TLRPC.TL_error tL_error, TLObject tLObject, boolean z11) {
+        this.f40180e = nVar;
+        this.f40178b = z10;
+        this.f40181f = runnable;
+        this.f40179c = str;
+        this.h = tL_error;
+        this.f40182n = tLObject;
+        this.d = z11;
+    }
+
+    public re(zh.w3 w3Var, TLObject tLObject, boolean z10, TLRPC.Document document, boolean z11, TLRPC.TL_error tL_error, TL_stars.saveStarGift savestargift) {
+        this.f40180e = w3Var;
+        this.f40179c = tLObject;
+        this.f40178b = z10;
+        this.f40181f = document;
+        this.d = z11;
+        this.h = tL_error;
+        this.f40182n = savestargift;
     }
 }

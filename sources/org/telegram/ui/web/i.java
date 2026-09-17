@@ -1,111 +1,120 @@
 package org.telegram.ui.web;
 
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
 import android.text.TextUtils;
-import java.util.ArrayList;
-import org.telegram.messenger.MediaDataController;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.UserConfig;
-import org.telegram.tgnet.ConnectionsManager;
-public final class i implements NotificationCenter.NotificationCenterDelegate {
-    public final int f38820b;
-    public final Runnable f38821c;
-    public final String d;
-    public boolean f38822f;
-    public boolean h;
-    public boolean f38823n;
-    public final ArrayList f38819a = new ArrayList();
-    public final int e = ConnectionsManager.generateClassGuid();
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import di.q3;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.R;
+import org.telegram.ui.ActionBar.f6;
+import org.telegram.ui.ActionBar.j6;
+import org.telegram.ui.ActionBar.z5;
+import org.telegram.ui.Components.x9;
+import w7.x5;
+public final class i extends FrameLayout implements z5 {
+    public final f6 f42141a;
+    public final x9 f42142b;
+    public final LinearLayout f42143c;
+    public final FrameLayout.LayoutParams d;
+    public final TextView f42144e;
+    public final TextView f42145f;
+    public final TextView h;
+    public final ImageView f42146n;
+    public final q3 f42147r;
+    public int f42148s;
+    public final Paint v;
+    public boolean f42149w;
 
-    public i(String str, int i10, Runnable runnable) {
-        this.f38820b = i10;
-        this.d = str;
-        this.f38821c = runnable;
+    public i(Context context, f6 f6Var) {
+        super(context);
+        this.v = new Paint(1);
+        this.f42141a = f6Var;
+        w7.z5.b(this, 0.03f, 1.25f);
+        x9 x9Var = new x9(context);
+        this.f42142b = x9Var;
+        x9Var.setRoundRadius(AndroidUtilities.dp(6.0f));
+        addView(x9Var, x5.d(32, 32.0f, 19, 10.0f, 8.0f, 8.0f, 8.0f));
+        LinearLayout linearLayout = new LinearLayout(context);
+        this.f42143c = linearLayout;
+        linearLayout.setOrientation(1);
+        TextView textView = new TextView(context);
+        this.f42144e = textView;
+        textView.setTextSize(1, 16.0f);
+        textView.setMaxLines(1);
+        TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
+        textView.setEllipsize(truncateAt);
+        linearLayout.addView(textView, x5.q(-1, -2, 51));
+        TextView textView2 = new TextView(context);
+        this.f42145f = textView2;
+        textView2.setTextSize(1, 13.0f);
+        textView2.setMaxLines(1);
+        textView2.setEllipsize(truncateAt);
+        linearLayout.addView(textView2, x5.t(-1, -2, 51, 0, 3, 0, 0));
+        FrameLayout.LayoutParams d = x5.d(-1, -2.0f, 19, 64.0f, 0.0f, 70.0f, 0.0f);
+        this.d = d;
+        addView(linearLayout, d);
+        TextView textView3 = new TextView(context);
+        this.h = textView3;
+        textView3.setTextSize(1, 13.0f);
+        textView3.setMaxLines(1);
+        textView3.setEllipsize(truncateAt);
+        textView3.setGravity(5);
+        textView3.setTextAlignment(6);
+        addView(textView3, x5.d(-2, -2.0f, 21, 64.0f, -10.0f, 12.0f, 0.0f));
+        ImageView imageView = new ImageView(context);
+        this.f42146n = imageView;
+        imageView.setScaleType(ImageView.ScaleType.CENTER);
+        imageView.setImageResource(R.drawable.attach_arrow_right);
+        addView(imageView, x5.d(32, 32.0f, 21, 8.0f, 8.0f, 8.0f, 8.0f));
+        q3 q3Var = new q3(this, getContext(), f6Var, 2);
+        this.f42147r = q3Var;
+        q3Var.b(-1, j6.f20691d6, j6.f20820k7);
+        q3Var.setDrawUnchecked(false);
+        q3Var.setDrawBackgroundAsArc(3);
+        addView(q3Var, x5.d(24, 24.0f, 19, 26.0f, 12.0f, 0.0f, 0.0f));
     }
 
-    public final void a() {
-        if (!this.h) {
-            this.h = true;
-            int i10 = this.f38820b;
-            NotificationCenter.getInstance(i10).addObserver(this, NotificationCenter.mediaDidLoad);
-            NotificationCenter.getInstance(i10).addObserver(this, NotificationCenter.bookmarkAdded);
-            if (TextUtils.isEmpty(this.d)) {
-                d();
-            }
-        }
-    }
-
-    public final void b(ArrayList arrayList) {
-        int i10 = 0;
-        while (true) {
-            ArrayList arrayList2 = this.f38819a;
-            if (i10 < arrayList2.size()) {
-                if (arrayList.contains(Integer.valueOf(((MessageObject) arrayList2.get(i10)).getId()))) {
-                    arrayList2.remove(i10);
-                    i10--;
-                }
-                i10++;
-            } else {
-                return;
-            }
-        }
-    }
-
-    public final void c() {
-        if (!this.h) {
-            return;
-        }
-        this.h = false;
-        int i10 = this.f38820b;
-        NotificationCenter.getInstance(i10).removeObserver(this, NotificationCenter.mediaDidLoad);
-        NotificationCenter.getInstance(i10).removeObserver(this, NotificationCenter.bookmarkAdded);
-        ConnectionsManager.getInstance(i10).cancelRequestsForGuid(this.e);
-        this.f38823n = false;
-    }
-
+    @Override
     public final void d() {
-        ArrayList arrayList;
-        int i10;
-        if (!this.f38823n && !this.f38822f) {
-            this.f38823n = true;
-            int i11 = this.f38820b;
-            long clientUserId = UserConfig.getInstance(i11).getClientUserId();
-            int i12 = 0;
-            int i13 = Integer.MAX_VALUE;
-            while (true) {
-                arrayList = this.f38819a;
-                if (i12 >= arrayList.size()) {
-                    break;
-                }
-                i13 = Math.min(i13, ((MessageObject) arrayList.get(i12)).getId());
-                i12++;
-            }
-            MediaDataController mediaDataController = MediaDataController.getInstance(i11);
-            if (arrayList.isEmpty()) {
-                i10 = 30;
-            } else {
-                i10 = 50;
-            }
-            if (i13 == Integer.MAX_VALUE) {
-                i13 = 0;
-            }
-            mediaDataController.loadMedia(clientUserId, i10, i13, 0, 3, 0L, 1, this.e, 0, null, this.d);
+        int i10 = j6.f20691d6;
+        f6 f6Var = this.f42141a;
+        int v02 = j6.v0(i10, f6Var);
+        int v03 = j6.v0(j6.G6, f6Var);
+        this.f42148s = v03;
+        this.f42144e.setTextColor(v03);
+        this.f42145f.setTextColor(j6.v(v02, j6.l1(0.55f, v03)));
+        this.h.setTextColor(j6.l1(0.55f, v03));
+        this.f42146n.setColorFilter(new PorterDuffColorFilter(j6.l1(0.6f, v03), PorterDuff.Mode.SRC_IN));
+        this.v.setColor(j6.l1(0.1f, v03));
+        this.f42142b.invalidate();
+    }
+
+    public int[] getColorKeys() {
+        return null;
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+        if (this.f42149w) {
+            canvas.drawRect(AndroidUtilities.dp(59.0f), getHeight() - Math.max(AndroidUtilities.dp(0.66f), 1), getWidth(), getHeight(), this.v);
         }
     }
 
     @Override
-    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
-        int i12 = NotificationCenter.mediaDidLoad;
-        ArrayList arrayList = this.f38819a;
-        if (i10 == i12) {
-            if (((Integer) objArr[3]).intValue() == this.e) {
-                this.f38823n = false;
-                this.f38822f = ((Boolean) objArr[5]).booleanValue();
-                arrayList.addAll((ArrayList) objArr[2]);
-                this.f38821c.run();
-            }
-        } else if (i10 == NotificationCenter.bookmarkAdded) {
-            arrayList.add(0, (MessageObject) objArr[0]);
-        }
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(56.0f), 1073741824));
+    }
+
+    public void setChecked(boolean z10) {
+        this.f42147r.a(z10, true);
     }
 }

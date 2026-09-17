@@ -1,35 +1,20 @@
 package org.telegram.ui;
 
-import android.animation.ValueAnimator;
-import android.app.Activity;
-import org.telegram.messenger.AndroidUtilities;
-public final class ev implements ValueAnimator.AnimatorUpdateListener {
-    public final float f33477a;
-    public final int f33478b;
-    public final int f33479c;
-    public final Activity d;
-    public final fv e;
+import android.content.Context;
+import android.view.View;
+public final class ev implements View.OnClickListener {
+    public final Context f36211a;
+    public final org.telegram.ui.ActionBar.n2 f36212b;
+    public final gv f36213c;
 
-    public ev(fv fvVar, float f7, int i10, int i11, Activity activity) {
-        this.e = fvVar;
-        this.f33477a = f7;
-        this.f33478b = i10;
-        this.f33479c = i11;
-        this.d = activity;
+    public ev(gv gvVar, Context context, org.telegram.ui.ActionBar.n2 n2Var) {
+        this.f36213c = gvVar;
+        this.f36211a = context;
+        this.f36212b = n2Var;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        float max = Math.max(0.0f, Math.min(1.0f, ((((Float) valueAnimator.getAnimatedValue()).floatValue() * 350.0f) - this.f33477a) / 150.0f));
-        hv hvVar = this.e.f33762c;
-        hvVar.f34357n = i0.a.d(max, this.f33478b, this.f33479c);
-        int i10 = hvVar.f34357n;
-        Activity activity = this.d;
-        boolean z10 = false;
-        AndroidUtilities.setNavigationBarColor(activity, i10, false);
-        if (AndroidUtilities.computePerceivedBrightness(hvVar.f34357n) >= 0.721f) {
-            z10 = true;
-        }
-        AndroidUtilities.setLightNavigationBar(activity, z10);
+    public final void onClick(android.view.View r14) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ev.onClick(android.view.View):void");
     }
 }

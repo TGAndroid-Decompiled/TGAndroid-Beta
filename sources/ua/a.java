@@ -1,4 +1,4 @@
 package ua;
 public final class a {
-    public boolean f43671a;
+    public boolean f47009a;
 }

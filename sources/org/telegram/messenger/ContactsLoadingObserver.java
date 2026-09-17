@@ -27,10 +27,6 @@ public final class ContactsLoadingObserver {
         this.handler = new Handler(Looper.myLooper());
     }
 
-    public static void b(ContactsLoadingObserver contactsLoadingObserver) {
-        contactsLoadingObserver.lambda$new$1();
-    }
-
     public void lambda$new$0(int i10, int i11, Object[] objArr) {
         if (i10 == NotificationCenter.contactsDidLoad) {
             onContactsLoadingStateUpdated(i11, false);

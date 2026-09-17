@@ -1,92 +1,29 @@
 package org.telegram.ui;
 
-import androidx.recyclerview.widget.RecyclerView;
-import org.telegram.messenger.AndroidUtilities;
-public final class pe1 extends s4.s0 {
-    public final int f36611a;
-    public final Object f36612b;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class pe1 extends AnimatorListenerAdapter {
+    public final int f39522a;
+    public final te1 f39523b;
 
-    public pe1(Object obj, int i10) {
-        this.f36611a = i10;
-        this.f36612b = obj;
+    public pe1(te1 te1Var, int i10) {
+        this.f39522a = i10;
+        this.f39523b = te1Var;
     }
 
     @Override
-    public void a(RecyclerView recyclerView, int i10) {
-        switch (this.f36611a) {
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f39522a) {
             case 0:
-                if (i10 == 1) {
-                    AndroidUtilities.hideKeyboard(((ue1) this.f36612b).getParentActivity().getCurrentFocus());
-                    return;
-                }
+                te1 te1Var = this.f39523b;
+                te1Var.v = 0;
+                te1Var.f40761n.setVisibility(8);
                 return;
             case 1:
+                this.f39523b.v = 0;
+                return;
             default:
-                return;
-            case 2:
-                if (i10 == 1) {
-                    AndroidUtilities.hideKeyboard(((UsersSelectActivity) this.f36612b).f31623c);
-                    return;
-                }
-                return;
-            case 3:
-                WallpapersListActivity wallpapersListActivity = (WallpapersListActivity) this.f36612b;
-                boolean z10 = true;
-                if (i10 == 1) {
-                    AndroidUtilities.hideKeyboard(wallpapersListActivity.getParentActivity().getCurrentFocus());
-                }
-                if (i10 == 0) {
-                    z10 = false;
-                }
-                wallpapersListActivity.f31646h0 = z10;
-                return;
-        }
-    }
-
-    @Override
-    public void b(RecyclerView recyclerView, int i10, int i11) {
-        int abs;
-        switch (this.f36611a) {
-            case 1:
-                bg1 bg1Var = (bg1) this.f36612b;
-                if (bg1Var.f32169n0 && bg1Var.W.N0() + 5 >= bg1Var.f32168l0) {
-                    bg1Var.K(bg1Var.f32159c0);
-                }
-                fg1 fg1Var = bg1Var.f32176u0;
-                if (fg1Var.f33672s0) {
-                    if (i10 != 0 || i11 != 0) {
-                        AndroidUtilities.hideKeyboard(fg1Var.f33667p0.getSearchField());
-                        return;
-                    }
-                    return;
-                }
-                return;
-            case 2:
-            default:
-                return;
-            case 3:
-                WallpapersListActivity wallpapersListActivity = (WallpapersListActivity) this.f36612b;
-                if (wallpapersListActivity.F.getAdapter() == wallpapersListActivity.H) {
-                    int L0 = wallpapersListActivity.I.L0();
-                    if (L0 == -1) {
-                        abs = 0;
-                    } else {
-                        abs = Math.abs(wallpapersListActivity.I.N0() - L0) + 1;
-                    }
-                    if (abs > 0) {
-                        int B = wallpapersListActivity.I.B();
-                        if (abs != 0 && L0 + abs > B - 2) {
-                            ij1 ij1Var = wallpapersListActivity.H;
-                            if (!ij1Var.f34607f && ij1Var.f34610s == 0) {
-                                ij1Var.F(ij1Var.h, ij1Var.f34609r, true);
-                                return;
-                            }
-                            return;
-                        }
-                        return;
-                    }
-                    return;
-                }
+                this.f39523b.F.setVisibility(8);
                 return;
         }
     }

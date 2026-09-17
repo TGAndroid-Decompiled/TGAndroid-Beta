@@ -33,7 +33,7 @@ public abstract class q7 {
         if (z0Var.getTransformationMethod() instanceof PasswordTransformationMethod) {
             textDirectionHeuristic = TextDirectionHeuristics.LTR;
         } else if (i12 >= 28 && (z0Var.getInputType() & 15) == 3) {
-            byte directionality = Character.getDirectionality(b5.d.h(androidx.emoji2.text.v.e(z0Var.getTextLocale()))[0].codePointAt(0));
+            byte directionality = Character.getDirectionality(b5.d.h(androidx.emoji2.text.x.e(z0Var.getTextLocale()))[0].codePointAt(0));
             textDirectionHeuristic = (directionality == 1 || directionality == 2) ? TextDirectionHeuristics.RTL : TextDirectionHeuristics.LTR;
         } else {
             if (z0Var.getLayoutDirection() == 1) {
@@ -110,7 +110,7 @@ public abstract class q7 {
 
     public static ActionMode.Callback d(ActionMode.Callback callback) {
         if ((callback instanceof u0.i) && Build.VERSION.SDK_INT >= 26) {
-            return ((u0.i) callback).f43315a;
+            return ((u0.i) callback).f46625a;
         }
         return callback;
     }

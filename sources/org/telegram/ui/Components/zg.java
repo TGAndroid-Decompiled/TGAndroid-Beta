@@ -1,27 +1,34 @@
 package org.telegram.ui.Components;
+public final class zg {
+    public static final zg f33177a;
+    public static final zg f33178b;
+    public static final zg f33179c;
+    public static final zg d;
+    public static final zg f33180e;
+    public static final zg f33181f;
+    public static final zg[] h;
 
-import android.content.Context;
-public class zg extends bj0 {
-    public xg f30512r;
-    public yg f30513s;
-    public final int v;
-    public final wg f30514w;
-
-    public zg(Context context) {
-        this(context, 32);
+    static {
+        ?? r02 = new Enum("VOICE", 0);
+        f33177a = r02;
+        ?? r12 = new Enum("VIDEO", 1);
+        f33178b = r12;
+        ?? r32 = new Enum("STICKER", 2);
+        f33179c = r32;
+        ?? r52 = new Enum("KEYBOARD", 3);
+        d = r52;
+        ?? r72 = new Enum("SMILE", 4);
+        f33180e = r72;
+        ?? r92 = new Enum("GIF", 5);
+        f33181f = r92;
+        h = new zg[]{r02, r12, r32, r52, r72, r92};
     }
 
-    public xg getCurrentState() {
-        return this.f30512r;
+    public static zg valueOf(String str) {
+        return (zg) Enum.valueOf(zg.class, str);
     }
 
-    public final void j(org.telegram.ui.Components.xg r12, boolean r13) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.zg.j(org.telegram.ui.Components.xg, boolean):void");
-    }
-
-    public zg(Context context, int i10) {
-        super(context);
-        this.f30514w = new wg(this, 0);
-        this.v = i10;
+    public static zg[] values() {
+        return (zg[]) h.clone();
     }
 }

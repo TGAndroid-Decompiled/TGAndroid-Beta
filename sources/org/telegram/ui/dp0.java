@@ -1,41 +1,56 @@
 package org.telegram.ui;
 
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
-public final class dp0 implements Utilities.Callback {
-    public final int f33194a = 0;
-    public final zf.b f33195b;
-    public final TL_stars.TL_starGiftUnique f33196c;
-    public final long d;
-    public final Object e;
-    public final Object f33197f;
+public final class dp0 implements Utilities.Callback2 {
+    public final int f35863a;
+    public final TL_stars.TL_starGiftUnique f35864b;
+    public final long f35865c;
+    public final NotificationCenter.NotificationCenterDelegate d;
+    public final Object f35866e;
+    public final Object f35867f;
 
-    public dp0(cq0 cq0Var, zf.b bVar, TL_stars.TL_starGiftUnique tL_starGiftUnique, long j3, ap0 ap0Var) {
-        this.e = cq0Var;
-        this.f33195b = bVar;
-        this.f33196c = tL_starGiftUnique;
-        this.d = j3;
-        this.f33197f = ap0Var;
+    public dp0(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, Object obj, TL_stars.TL_starGiftUnique tL_starGiftUnique, long j3, Object obj2, int i10) {
+        this.f35863a = i10;
+        this.d = notificationCenterDelegate;
+        this.f35866e = obj;
+        this.f35864b = tL_starGiftUnique;
+        this.f35865c = j3;
+        this.f35867f = obj2;
     }
 
     @Override
-    public final void run(Object obj) {
-        switch (this.f33194a) {
+    public final void run(Object obj, Object obj2) {
+        boolean z10;
+        switch (this.f35863a) {
             case 0:
-                cq0.V((cq0) this.e, this.f33195b, this.f33196c, this.d, (ap0) this.f33197f, (TLRPC.TL_payments_paymentFormStarGift) obj);
+                bq0.U((bq0) this.d, (boolean[]) this.f35866e, this.f35864b, this.f35865c, (zo0) this.f35867f, (zh.a3) obj, (of.e) obj2);
                 return;
             default:
-                xh.g4.U((xh.g4) this.e, (org.telegram.ui.ActionBar.c2) this.f33197f, this.f33195b, this.f33196c, this.d, (TLRPC.TL_payments_paymentFormStarGift) obj);
+                zh.w3 w3Var = (zh.w3) this.d;
+                yh.j0 j0Var = (yh.j0) this.f35867f;
+                String str = (String) obj2;
+                ((of.e) this.f35866e).b();
+                if (((Boolean) obj).booleanValue()) {
+                    zh.j2 j2Var = w3Var.O0;
+                    if (j2Var != null) {
+                        if (j0Var != null) {
+                            z10 = true;
+                        } else {
+                            z10 = false;
+                        }
+                        j2Var.b(this.f35864b, this.f35865c, z10);
+                    }
+                    if (j0Var != null) {
+                        AndroidUtilities.runOnUIThread(new yh.d0(j0Var, 2));
+                        w3Var.skipDismissAnimation();
+                    }
+                    w3Var.dismiss();
+                    return;
+                }
                 return;
         }
-    }
-
-    public dp0(xh.g4 g4Var, org.telegram.ui.ActionBar.c2 c2Var, zf.b bVar, TL_stars.TL_starGiftUnique tL_starGiftUnique, long j3) {
-        this.e = g4Var;
-        this.f33197f = c2Var;
-        this.f33195b = bVar;
-        this.f33196c = tL_starGiftUnique;
-        this.d = j3;
     }
 }

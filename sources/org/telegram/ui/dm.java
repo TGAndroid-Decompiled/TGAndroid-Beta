@@ -1,49 +1,121 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.MediaController;
+import java.util.ArrayList;
+import java.util.HashMap;
+import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.VideoEditedInfo;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.messenger.R;
+import org.telegram.messenger.SvgHelper;
 import org.telegram.tgnet.TLRPC;
-public final class dm extends vu0 {
-    public final MessageObject f33184a;
-    public final MediaController.PhotoEntry f33185b;
-    public final em f33186c;
+public final class dm implements Runnable {
+    public final int f35852a;
+    public final int f35853b;
+    public final Object f35854c;
+    public final Object d;
 
-    public dm(em emVar, MessageObject messageObject, MediaController.PhotoEntry photoEntry) {
-        this.f33186c = emVar;
-        this.f33184a = messageObject;
-        this.f33185b = photoEntry;
+    public dm(int i10, Object obj, Object obj2, int i11) {
+        this.f35852a = i11;
+        this.f35853b = i10;
+        this.f35854c = obj;
+        this.d = obj2;
     }
 
-    @Override
-    public final fv0 E(MessageObject messageObject, TLRPC.FileLocation fileLocation, int i10, boolean z10, boolean z11) {
-        return this.f33186c.f33441a.Q.Fa.E(this.f33184a, fileLocation, i10, z10, false);
+    private final void a() {
+        AndroidUtilities.runOnUIThread(new org.telegram.ui.Components.r11((org.telegram.ui.Components.t11) this.f35854c, (org.telegram.ui.Components.kp) this.d, this.f35853b, SvgHelper.getBitmap(R.raw.default_pattern, AndroidUtilities.dp(120.0f), AndroidUtilities.dp(140.0f), -16777216, AndroidUtilities.density), 0));
     }
 
-    @Override
-    public final void o(int i10, VideoEditedInfo videoEditedInfo, boolean z10, int i11, int i12, boolean z11) {
-        nm nmVar = this.f33186c.f33441a;
-        MessageObject messageObject = this.f33184a;
-        messageObject.settingAvatar = true;
-        MediaController.PhotoEntry photoEntry = this.f33185b;
-        if (photoEntry.imagePath == null && !photoEntry.isVideo) {
-            TLRPC.TL_photos_updateProfilePhoto tL_photos_updateProfilePhoto = new TLRPC.TL_photos_updateProfilePhoto();
-            TLRPC.TL_inputPhoto tL_inputPhoto = new TLRPC.TL_inputPhoto();
-            tL_photos_updateProfilePhoto.f18253id = tL_inputPhoto;
-            TLRPC.Photo photo = messageObject.messageOwner.action.photo;
-            tL_inputPhoto.f18140id = photo.f18145id;
-            tL_inputPhoto.access_hash = photo.access_hash;
-            tL_inputPhoto.file_reference = photo.file_reference;
-            nmVar.Q.getConnectionsManager().sendRequest(tL_photos_updateProfilePhoto, new ai.v1(29, this, messageObject));
+    private final void b() {
+        MessageObject messageObject = (MessageObject) this.f35854c;
+        org.telegram.ui.Cells.k1 k1Var = (org.telegram.ui.Cells.k1) this.d;
+        HashMap hashMap = org.telegram.ui.Components.d31.P;
+        if (hashMap != null) {
+            hashMap.remove(Integer.valueOf(org.telegram.ui.Components.d31.o(messageObject)));
+        }
+        if (k1Var != null) {
+            k1Var.c0(3);
+        }
+        int i10 = this.f35853b;
+        NotificationCenter.getInstance(i10).lambda$postNotificationNameOnUIThread$1(NotificationCenter.voiceTranscriptionUpdate, messageObject);
+        NotificationCenter.getInstance(i10).lambda$postNotificationNameOnUIThread$1(NotificationCenter.updateTranscriptionLock, new Object[0]);
+    }
+
+    private final void c() {
+        int i10;
+        TLRPC.Dialog dialog = (TLRPC.Dialog) this.d;
+        uy uyVar = ((yx) this.f35854c).f43260f0;
+        ArrayList arrayList = uyVar.R1;
+        if (arrayList != null && (i10 = this.f35853b) >= 0 && i10 < arrayList.size()) {
+            uyVar.R1.add(i10, dialog);
+            uyVar.f41287e0[0].q(true);
+        }
+    }
+
+    private final void e() {
+        sy syVar = (sy) this.f35854c;
+        TLRPC.Dialog dialog = (TLRPC.Dialog) this.d;
+        ty tyVar = syVar.f40598g;
+        uy uyVar = syVar.h;
+        uyVar.S1 = true;
+        uyVar.getMessagesController().addDialogToFolder(dialog.f19900id, 0, this.f35853b, 0L);
+        uyVar.S1 = false;
+        ArrayList<TLRPC.Dialog> dialogs = uyVar.getMessagesController().getDialogs(0);
+        int indexOf = dialogs.indexOf(dialog);
+        if (indexOf >= 0) {
+            ArrayList<TLRPC.Dialog> dialogs2 = uyVar.getMessagesController().getDialogs(1);
+            if (!dialogs2.isEmpty() || indexOf != 1) {
+                uyVar.A4(true, true);
+                tyVar.f40895x.D();
+                tyVar.q(true);
+                uyVar.o3();
+            }
+            if (dialogs2.isEmpty()) {
+                dialogs.remove(0);
+                if (indexOf == 1) {
+                    uyVar.A4(true, true);
+                    tyVar.q(true);
+                    uyVar.o3();
+                    return;
+                }
+                if (!uyVar.R1.isEmpty()) {
+                    uyVar.R1.remove(0);
+                }
+                tyVar.f40895x.D();
+                tyVar.q(true);
+                return;
+            }
             return;
         }
-        bo boVar = nmVar.Q;
-        ej ejVar = new ej(messageObject, 4);
-        org.telegram.ui.ActionBar.e5 parentLayout = boVar.getParentLayout();
-        int currentAccount = boVar.getCurrentAccount();
-        org.telegram.ui.Components.u40 u40Var = new org.telegram.ui.Components.u40(0, true, true);
-        u40Var.f28272a = boVar;
-        u40Var.t(photoEntry);
-        u40Var.f28273b = new fa(currentAccount, ejVar, parentLayout, u40Var);
+        tyVar.q(false);
+    }
+
+    private final void f() {
+        j60 j60Var = (j60) this.f35854c;
+        org.telegram.ui.ActionBar.b2[] b2VarArr = (org.telegram.ui.ActionBar.b2[]) this.d;
+        org.telegram.ui.ActionBar.b2 b2Var = b2VarArr[0];
+        if (b2Var == null) {
+            return;
+        }
+        b2Var.setOnCancelListener(new ba(j60Var, this.f35853b, 5));
+        b2VarArr[0].show();
+    }
+
+    @Override
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.dm.run():void");
+    }
+
+    public dm(Object obj, int i10, Object obj2, int i11) {
+        this.f35852a = i11;
+        this.f35854c = obj;
+        this.f35853b = i10;
+        this.d = obj2;
+    }
+
+    public dm(Object obj, Object obj2, int i10, int i11) {
+        this.f35852a = i11;
+        this.f35854c = obj;
+        this.d = obj2;
+        this.f35853b = i10;
     }
 }

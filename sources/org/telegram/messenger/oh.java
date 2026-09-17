@@ -1,35 +1,41 @@
 package org.telegram.messenger;
 
-import android.content.Context;
+import org.telegram.messenger.PasskeysController;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_payments;
 public final class oh implements Utilities.Callback2 {
-    public final int f16976a = 0;
-    public final int f16977b;
-    public final Object f16978c;
+    public final int f18659a;
+    public final long f18660b;
+    public final Object f18661c;
     public final Object d;
 
-    public oh(Context context, int i10, Utilities.Callback2 callback2) {
-        this.f16978c = callback2;
-        this.d = context;
-        this.f16977b = i10;
+    public oh(Object obj, Object obj2, long j3, int i10) {
+        this.f18659a = i10;
+        this.f18661c = obj;
+        this.d = obj2;
+        this.f18660b = j3;
     }
 
     @Override
     public final void run(Object obj, Object obj2) {
-        switch (this.f16976a) {
+        switch (this.f18659a) {
             case 0:
-                PasskeysController.lambda$create$7((Utilities.Callback2) this.f16978c, (Context) this.d, this.f16977b, (v0.c) obj, (Throwable) obj2);
+                PasskeysController.AnonymousClass1.lambda$onResult$0((org.telegram.ui.ActionBar.b2) this.f18661c, (Utilities.Callback3) this.d, this.f18660b, (TLRPC.auth_Authorization) obj, (TLRPC.TL_error) obj2);
+                return;
+            case 1:
+                ((BotForumHelper) this.f18661c).lambda$performSendBotTopicCreate$5(this.f18660b, (String) this.d, (TLRPC.Updates) obj, (TLRPC.TL_error) obj2);
                 return;
             default:
-                ((TranslateController) this.f16978c).lambda$pushToSummarize$19(this.f16977b, (Utilities.Callback) this.d, (TLRPC.TL_textWithEntities) obj, (TLRPC.TL_error) obj2);
+                ((GiftAuctionController) this.f18661c).lambda$getOrRequestAuction$12((Utilities.Callback2) this.d, this.f18660b, (TL_payments.TL_StarGiftAuctionState) obj, (TLRPC.TL_error) obj2);
                 return;
         }
     }
 
-    public oh(TranslateController translateController, int i10, Utilities.Callback callback) {
-        this.f16978c = translateController;
-        this.f16977b = i10;
-        this.d = callback;
+    public oh(BotForumHelper botForumHelper, long j3, String str) {
+        this.f18659a = 1;
+        this.f18661c = botForumHelper;
+        this.f18660b = j3;
+        this.d = str;
     }
 }

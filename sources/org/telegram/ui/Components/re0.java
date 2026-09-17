@@ -1,31 +1,31 @@
 package org.telegram.ui.Components;
-public final class re0 extends p6 {
-    public final int f27599b;
-    public final ue0 f27600c;
+public final class re0 extends s6 {
+    public final int f30047b;
+    public final ue0 f30048c;
 
     public re0(ue0 ue0Var, int i10) {
         super("thumbAnimationProgress", 0);
-        this.f27599b = i10;
+        this.f30047b = i10;
         switch (i10) {
             case 1:
-                this.f27600c = ue0Var;
+                this.f30048c = ue0Var;
                 super("thumbImageVisibleProgress", 0);
                 return;
             default:
-                this.f27600c = ue0Var;
+                this.f30048c = ue0Var;
                 return;
         }
     }
 
     @Override
-    public final void c(Object obj, float f7) {
-        switch (this.f27599b) {
+    public final void b(Object obj, float f7) {
+        switch (this.f30047b) {
             case 0:
-                this.f27600c.f28373r = f7;
+                this.f30048c.f30902r = f7;
                 ((ue0) obj).invalidate();
                 return;
             default:
-                this.f27600c.f28372n = f7;
+                this.f30048c.f30901n = f7;
                 ((ue0) obj).invalidate();
                 return;
         }
@@ -33,13 +33,13 @@ public final class re0 extends p6 {
 
     @Override
     public final Object get(Object obj) {
-        switch (this.f27599b) {
+        switch (this.f30047b) {
             case 0:
                 ue0 ue0Var = (ue0) obj;
-                return Float.valueOf(this.f27600c.f28373r);
+                return Float.valueOf(this.f30048c.f30902r);
             default:
                 ue0 ue0Var2 = (ue0) obj;
-                return Float.valueOf(this.f27600c.f28372n);
+                return Float.valueOf(this.f30048c.f30901n);
         }
     }
 }

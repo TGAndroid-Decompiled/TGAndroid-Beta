@@ -1,29 +1,59 @@
 package org.telegram.ui;
 
-import android.graphics.Canvas;
+import android.os.Build;
 import android.view.View;
-public final class x8 implements ah.n {
-    public final int f39405a;
-    public final Object f39406b;
+import androidx.recyclerview.widget.RecyclerView;
+import java.util.ArrayList;
+import org.telegram.messenger.AndroidUtilities;
+public final class x8 extends s4.s0 {
+    public boolean f42641a;
+    public final k9 f42642b;
 
-    public x8(Object obj, int i10) {
-        this.f39405a = i10;
-        this.f39406b = obj;
+    public x8(k9 k9Var) {
+        this.f42642b = k9Var;
     }
 
     @Override
-    public final boolean a(Canvas canvas, View view, long j3) {
-        switch (this.f39405a) {
-            case 0:
-                return ((org.telegram.ui.Components.f61) this.f39406b).drawChild(canvas, view, j3);
-            case 1:
-                ProfileActivity profileActivity = (ProfileActivity) this.f39406b;
-                if (view == profileActivity.O) {
-                    return true;
-                }
-                return profileActivity.f31251a.drawChild(canvas, view, j3);
-            default:
-                return ((dg1) this.f39406b).drawChild(canvas, view, j3);
+    public final void b(RecyclerView recyclerView, int i10, int i11) {
+        int abs;
+        int i12;
+        bh.f fVar;
+        boolean z10;
+        k9 k9Var = this.f42642b;
+        ArrayList arrayList = k9Var.G;
+        int L0 = k9Var.f37993c.L0();
+        boolean z11 = false;
+        if (L0 == -1) {
+            abs = 0;
+        } else {
+            abs = Math.abs(k9Var.f37993c.N0() - L0) + 1;
+        }
+        if (abs > 0) {
+            int size = k9Var.d.Y2.f31166x.size();
+            if (!k9Var.J && !k9Var.H && !arrayList.isEmpty() && abs + L0 >= size - 5) {
+                AndroidUtilities.runOnUIThread(new org.telegram.ui.ActionBar.c6(11, this, (g9) i2.g.h(1, arrayList)));
+            }
+        }
+        View childAt = recyclerView.getChildAt(0);
+        if (childAt != null) {
+            i12 = childAt.getTop();
+        } else {
+            i12 = 0;
+        }
+        if (i11 != 0 && this.f42641a) {
+            org.telegram.ui.Components.y10 y10Var = k9Var.f37998f;
+            if (i11 < 0) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            y10Var.e(z10, true);
+        }
+        this.f42641a = true;
+        k9Var.f38001r.b((L0 != 0 || i12 < k9Var.d.getPaddingTop()) ? true : true, true);
+        if (Build.VERSION.SDK_INT >= 31 && (fVar = k9Var.Y) != null) {
+            fVar.f(i10, i11);
+            k9Var.f0();
         }
     }
 }

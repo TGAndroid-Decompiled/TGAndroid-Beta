@@ -1,25 +1,69 @@
 package org.telegram.ui.Components;
 
-import android.text.TextWatcher;
-public final class j11 implements TextWatcher {
-    public final int f25070a;
-    public final k11 f25071b;
+import android.content.Context;
+import android.view.View;
+import android.view.ViewGroup;
+import java.util.ArrayList;
+import org.telegram.messenger.AndroidUtilities;
+public final class j11 extends kl0 {
+    public Context f27329c;
+    public ArrayList d;
 
-    public j11(k11 k11Var, int i10) {
-        this.f25071b = k11Var;
-        this.f25070a = i10;
+    @Override
+    public final boolean D(s4.c1 c1Var) {
+        return true;
     }
 
     @Override
-    public final void afterTextChanged(android.text.Editable r9) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.j11.afterTextChanged(android.text.Editable):void");
+    public final int h() {
+        ArrayList arrayList = this.d;
+        if (arrayList.isEmpty()) {
+            return 0;
+        }
+        return arrayList.size() + 1;
     }
 
     @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+    public final int j(int i10) {
+        if (i10 == 0) {
+            return 1;
+        }
+        return 0;
     }
 
     @Override
-    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+    public final void v(s4.c1 c1Var, int i10) {
+        int b10;
+        if (c1Var.f45771f == 0) {
+            boolean z10 = true;
+            org.telegram.ui.ActionBar.l6 l6Var = (org.telegram.ui.ActionBar.l6) ((ArrayList) this.d.get(i10 - 1)).get(0);
+            if (l6Var.f21205f == org.telegram.ui.ActionBar.j6.Nd) {
+                b10 = 0;
+            } else {
+                b10 = l6Var.b();
+            }
+            org.telegram.ui.Cells.z8 z8Var = (org.telegram.ui.Cells.z8) c1Var.f45767a;
+            z8Var.f23657a.setText(org.telegram.ui.ActionBar.g5.i(l6Var.f21205f));
+            z8Var.f23658b = b10;
+            if (b10 != 0) {
+                z10 = false;
+            }
+            z8Var.setWillNotDraw(z10);
+            z8Var.invalidate();
+        }
+    }
+
+    @Override
+    public final s4.c1 x(ViewGroup viewGroup, int i10) {
+        View z8Var;
+        Context context = this.f27329c;
+        if (i10 != 0) {
+            z8Var = new View(context);
+            z8Var.setLayoutParams(new s4.p0(-1, AndroidUtilities.dp(56.0f)));
+        } else {
+            z8Var = new org.telegram.ui.Cells.z8(context);
+            z8Var.setLayoutParams(new s4.p0(-1, -2));
+        }
+        return new s4.c1(z8Var);
     }
 }

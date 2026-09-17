@@ -1,29 +1,12 @@
 package fi;
-
-import android.text.Editable;
-import android.text.TextUtils;
-import android.text.TextWatcher;
-public final class w implements TextWatcher {
-    public final k0 f9198a;
-
-    public w(k0 k0Var) {
-        this.f9198a = k0Var;
-    }
-
-    @Override
-    public final void afterTextChanged(Editable editable) {
-        String obj = editable.toString();
-        k0 k0Var = this.f9198a;
-        boolean isEmpty = TextUtils.isEmpty(k0Var.R);
-        k0Var.R = obj;
-        k0Var.F.h(0L, k0Var.e, 0L, 0L, null, false, obj, isEmpty);
-    }
-
-    @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-    }
-
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-    }
+public final class w {
+    public boolean f10072a;
+    public boolean f10073b;
+    public boolean f10074c;
+    public boolean d;
+    public String f10075e;
+    public long f10076f;
+    public int f10077g;
+    public int h;
+    public String f10078i;
 }

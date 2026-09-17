@@ -1,30 +1,124 @@
 package org.telegram.ui;
 
+import android.app.Activity;
+import android.content.SharedPreferences;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.HashMap;
+import org.telegram.messenger.DialogObject;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-public final class ar implements mq {
-    public final TLObject f31957a;
-    public final ur f31958b;
+public final class ar implements Utilities.Callback {
+    public final int f34565a = 1;
+    public final int f34566b;
+    public final long f34567c;
+    public final Object d;
+    public final Object f34568e;
+    public final Object f34569f;
+    public final Object f34570g;
+    public final Serializable h;
 
-    public ar(ur urVar, TLObject tLObject) {
-        this.f31958b = urVar;
-        this.f31957a = tLObject;
+    public ar(int i10, long j3, Activity activity, ArrayList arrayList, HashMap hashMap, Utilities.Callback callback, org.telegram.ui.ActionBar.f6 f6Var) {
+        this.f34566b = i10;
+        this.d = arrayList;
+        this.f34567c = j3;
+        this.f34568e = activity;
+        this.f34569f = f6Var;
+        this.f34570g = callback;
+        this.h = hashMap;
     }
 
     @Override
-    public final void a(TLRPC.User user) {
-        ur.c0(this.f31958b, user);
-    }
-
-    @Override
-    public final void b(int i10, TLRPC.TL_chatAdminRights tL_chatAdminRights, TLRPC.TL_chatBannedRights tL_chatBannedRights, String str) {
-        TLObject tLObject = this.f31957a;
-        if (tLObject instanceof TLRPC.ChannelParticipant) {
-            TLRPC.ChannelParticipant channelParticipant = (TLRPC.ChannelParticipant) tLObject;
-            channelParticipant.admin_rights = tL_chatAdminRights;
-            channelParticipant.banned_rights = tL_chatBannedRights;
-            channelParticipant.rank = str;
-            ur.W(this.f31958b, channelParticipant, tL_chatAdminRights, tL_chatBannedRights);
+    public final void run(Object obj) {
+        boolean z10;
+        switch (this.f34565a) {
+            case 0:
+                vr vrVar = (vr) this.d;
+                TLObject tLObject = (TLObject) this.f34568e;
+                TLRPC.TL_chatAdminRights tL_chatAdminRights = (TLRPC.TL_chatAdminRights) this.f34569f;
+                TLRPC.TL_chatBannedRights tL_chatBannedRights = (TLRPC.TL_chatBannedRights) this.f34570g;
+                String str = (String) this.h;
+                int intValue = ((Integer) obj).intValue();
+                boolean[] zArr = new boolean[1];
+                if (!(tLObject instanceof TLRPC.TL_channelParticipantAdmin) && !(tLObject instanceof TLRPC.TL_chatParticipantAdmin)) {
+                    z10 = false;
+                } else {
+                    z10 = true;
+                }
+                long j3 = vrVar.N;
+                TLRPC.TL_chatBannedRights tL_chatBannedRights2 = vrVar.E;
+                long j10 = this.f34567c;
+                dr drVar = new dr(vrVar, j10, j3, tL_chatAdminRights, tL_chatBannedRights2, tL_chatBannedRights, str, intValue, zArr, j10);
+                drVar.X0 = new er(vrVar, intValue, j10, this.f34566b, z10, zArr);
+                vrVar.presentFragment(drVar);
+                return;
+            default:
+                final ArrayList arrayList = (ArrayList) this.d;
+                final Activity activity = (Activity) this.f34568e;
+                final org.telegram.ui.ActionBar.f6 f6Var = (org.telegram.ui.ActionBar.f6) this.f34569f;
+                final Utilities.Callback callback = (Utilities.Callback) this.f34570g;
+                final HashMap hashMap = (HashMap) this.h;
+                boolean booleanValue = ((Boolean) obj).booleanValue();
+                final int i10 = this.f34566b;
+                if (booleanValue) {
+                    SharedPreferences.Editor edit = MessagesController.getInstance(i10).getMainSettings().edit();
+                    int i11 = 0;
+                    for (int size = arrayList.size(); i11 < size; size = size) {
+                        Object obj2 = arrayList.get(i11);
+                        i11++;
+                        Long l4 = (Long) obj2;
+                        long longValue = l4.longValue();
+                        long sendPaidMessagesStars = MessagesController.getInstance(i10).getSendPaidMessagesStars(longValue);
+                        if (sendPaidMessagesStars <= 0 && longValue > 0) {
+                            sendPaidMessagesStars = DialogObject.getMessagesStarsPrice(MessagesController.getInstance(i10).isUserContactBlocked(longValue));
+                        }
+                        edit.putLong(org.telegram.ui.Cells.p6.h(longValue, "ask_paid_message_", "_price"), sendPaidMessagesStars);
+                        zh.s5.y(i10, false).O.put(l4, Long.valueOf(System.currentTimeMillis()));
+                    }
+                    edit.apply();
+                }
+                final long j11 = this.f34567c;
+                Runnable runnable = new Runnable() {
+                    @Override
+                    public final void run() {
+                        int i12 = i10;
+                        long j12 = zh.s5.y(i12, false).p().amount;
+                        long j13 = j11;
+                        Utilities.Callback callback2 = callback;
+                        HashMap hashMap2 = hashMap;
+                        if (j12 < j13) {
+                            Activity activity2 = activity;
+                            if (activity2 == null) {
+                                return;
+                            }
+                            long longValue2 = ((Long) arrayList.get(0)).longValue();
+                            new zh.k7(activity2, f6Var, j13, 13, DialogObject.getShortName(i12, longValue2), new b2(callback2, hashMap2, 0), longValue2).show();
+                            return;
+                        }
+                        callback2.run(hashMap2);
+                    }
+                };
+                if (!zh.s5.y(i10, false).f52601e) {
+                    zh.s5 y3 = zh.s5.y(i10, false);
+                    y3.f52601e = false;
+                    y3.q(false, true, runnable);
+                    y3.f52601e = true;
+                    return;
+                }
+                runnable.run();
+                return;
         }
+    }
+
+    public ar(vr vrVar, long j3, int i10, TLObject tLObject, TLRPC.TL_chatAdminRights tL_chatAdminRights, TLRPC.TL_chatBannedRights tL_chatBannedRights, String str, boolean z10) {
+        this.d = vrVar;
+        this.f34567c = j3;
+        this.f34566b = i10;
+        this.f34568e = tLObject;
+        this.f34569f = tL_chatAdminRights;
+        this.f34570g = tL_chatBannedRights;
+        this.h = str;
     }
 }

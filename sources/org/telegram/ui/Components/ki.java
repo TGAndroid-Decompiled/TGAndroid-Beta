@@ -1,28 +1,28 @@
 package org.telegram.ui.Components;
 
 import org.telegram.messenger.AndroidUtilities;
-public final class ki extends org.telegram.ui.ActionBar.q1 {
-    public final li f25632x;
+public final class ki extends org.telegram.ui.ActionBar.p1 {
+    public final li f27857x;
 
     public ki(li liVar, li liVar2) {
         super(liVar2);
-        this.f25632x = liVar;
+        this.f27857x = liVar;
     }
 
     @Override
     public final boolean b() {
         kz kzVar;
-        vi viVar = this.f25632x.B0;
-        if (!viVar.isDismissed() && viVar.f28783s1) {
-            ni niVar = viVar.f28803y0;
-            if (niVar == viVar.m0 || niVar == viVar.f28765n0 || viVar.m1().m()) {
-                ni niVar2 = viVar.f28803y0;
-                un unVar = viVar.m0;
-                if (niVar2 != unVar || ((kzVar = unVar.E) != null && kzVar.getVisibility() == 0)) {
-                    ni niVar3 = viVar.f28803y0;
-                    un unVar2 = viVar.f28765n0;
-                    if (niVar3 == unVar2) {
-                        kz kzVar2 = unVar2.E;
+        vi viVar = this.f27857x.B0;
+        if (!viVar.isDismissed() && viVar.f31348s1) {
+            ni niVar = viVar.f31368y0;
+            if (niVar == viVar.m0 || niVar == viVar.f31330n0 || viVar.m1().m()) {
+                ni niVar2 = viVar.f31368y0;
+                tn tnVar = viVar.m0;
+                if (niVar2 != tnVar || ((kzVar = tnVar.E) != null && kzVar.getVisibility() == 0)) {
+                    ni niVar3 = viVar.f31368y0;
+                    tn tnVar2 = viVar.f31330n0;
+                    if (niVar3 == tnVar2) {
+                        kz kzVar2 = tnVar2.E;
                         if (kzVar2 != null && kzVar2.getVisibility() == 0) {
                             return false;
                         }
@@ -40,36 +40,36 @@ public final class ki extends org.telegram.ui.ActionBar.q1 {
 
     @Override
     public final void e(float f7, float f10, boolean z10) {
-        li liVar = this.f25632x;
+        li liVar = this.f27857x;
         vi viVar = liVar.B0;
-        viVar.f28761l2 = f7;
-        float f11 = viVar.f28737d2;
+        viVar.f31326l2 = f7;
+        float f11 = viVar.f31301d2;
         if (f11 > 0.0f) {
-            viVar.f28761l2 = com.google.android.gms.internal.vision.e2.z(1.0f, f10, f11 - viVar.f28740e2, f7);
+            viVar.f31326l2 = com.google.android.gms.internal.vision.e2.z(1.0f, f10, f11 - viVar.f31305e2, f7);
         }
-        viVar.X0.setTranslationY(viVar.f28761l2);
-        viVar.f28726a1.setTranslationY(viVar.f28761l2);
-        org.telegram.ui.ActionBar.w0 w0Var = viVar.f28739e1;
-        if (w0Var != null) {
-            w0Var.setTranslationY(viVar.f28761l2);
+        viVar.X0.setTranslationY(viVar.f31326l2);
+        viVar.f31290a1.setTranslationY(viVar.f31326l2);
+        org.telegram.ui.ActionBar.v0 v0Var = viVar.f31304e1;
+        if (v0Var != null) {
+            v0Var.setTranslationY(viVar.f31326l2);
         }
-        org.telegram.ui.ActionBar.w0 w0Var2 = viVar.f28733c1;
-        if (w0Var2 != null) {
-            w0Var2.setTranslationY(viVar.f28726a1.getTranslationY());
+        org.telegram.ui.ActionBar.v0 v0Var2 = viVar.f31297c1;
+        if (v0Var2 != null) {
+            v0Var2.setTranslationY(viVar.f31290a1.getTranslationY());
         }
-        ci.f4 f4Var = viVar.f28736d1;
+        di.f4 f4Var = viVar.f31300d1;
         if (f4Var != null) {
-            f4Var.setTranslationY(viVar.f28726a1.getTranslationY());
+            f4Var.setTranslationY(viVar.f31290a1.getTranslationY());
         }
-        viVar.f28743f1.setTranslationY(viVar.f28761l2);
+        viVar.f31308f1.setTranslationY(viVar.f31326l2);
         viVar.a2(0);
-        viVar.setCurrentPanTranslationY(viVar.f28761l2);
+        viVar.setCurrentPanTranslationY(viVar.f31326l2);
         liVar.invalidate();
         viVar.D0.invalidate();
         viVar.U1();
-        ni niVar = viVar.f28803y0;
+        ni niVar = viVar.f31368y0;
         if (niVar != null) {
-            niVar.k(viVar.f28761l2);
+            niVar.k(viVar.f31326l2);
         }
     }
 
@@ -77,19 +77,19 @@ public final class ki extends org.telegram.ui.ActionBar.q1 {
     public final void f() {
         boolean z10;
         int i10;
-        vi viVar = this.f25632x.B0;
-        viVar.X1(viVar.f28803y0, 0);
-        viVar.f28734c2 = viVar.f28730b2[0];
-        viVar.f28803y0.v();
-        if ((viVar.f28803y0 instanceof ei.q4) && !viVar.D1) {
-            z10 = ((org.telegram.ui.ActionBar.g3) viVar).keyboardVisible;
+        vi viVar = this.f27857x.B0;
+        viVar.X1(viVar.f31368y0, 0);
+        viVar.f31298c2 = viVar.f31294b2[0];
+        viVar.f31368y0.v();
+        if ((viVar.f31368y0 instanceof fi.r4) && !viVar.D1) {
+            z10 = ((org.telegram.ui.ActionBar.f3) viVar).keyboardVisible;
             if (z10) {
                 i10 = AndroidUtilities.dp(84.0f);
             } else {
                 i10 = 0;
             }
-            for (int i11 = 0; i11 < viVar.f28799x0.size(); i11++) {
-                ((ei.q4) viVar.f28799x0.valueAt(i11)).setMeasureOffsetY(i10);
+            for (int i11 = 0; i11 < viVar.f31364x0.size(); i11++) {
+                ((fi.r4) viVar.f31364x0.valueAt(i11)).setMeasureOffsetY(i10);
             }
         }
     }
@@ -97,24 +97,24 @@ public final class ki extends org.telegram.ui.ActionBar.q1 {
     @Override
     public final void g(int i10, boolean z10) {
         int i11;
-        li liVar = this.f25632x;
+        li liVar = this.f27857x;
         vi viVar = liVar.B0;
-        int i12 = viVar.f28734c2;
-        if (i12 > 0 && i12 != (i11 = viVar.f28730b2[0]) && z10) {
-            viVar.f28737d2 = i12;
-            viVar.f28740e2 = i11;
+        int i12 = viVar.f31298c2;
+        if (i12 > 0 && i12 != (i11 = viVar.f31294b2[0]) && z10) {
+            viVar.f31301d2 = i12;
+            viVar.f31305e2 = i11;
         } else {
-            viVar.f28737d2 = -1.0f;
+            viVar.f31301d2 = -1.0f;
         }
         liVar.invalidate();
-        xh xhVar = viVar.f28800x1;
-        if ((viVar.f28803y0 instanceof ei.q4) && !viVar.D1) {
+        xh xhVar = viVar.f31365x1;
+        if ((viVar.f31368y0 instanceof fi.r4) && !viVar.D1) {
             if (z10) {
                 xhVar.setVisibility(8);
             } else {
                 xhVar.setVisibility(0);
             }
         }
-        viVar.f28803y0.w(i10, z10);
+        viVar.f31368y0.w(i10, z10);
     }
 }

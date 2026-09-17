@@ -1,34 +1,33 @@
 package org.telegram.ui.Components;
 
-import android.animation.ValueAnimator;
-public final class pw0 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f27148a;
-    public final sw0 f27149b;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class pw0 extends AnimatorListenerAdapter {
+    public final int f29535a;
+    public final qw0 f29536b;
 
-    public pw0(sw0 sw0Var, int i10) {
-        this.f27148a = i10;
-        this.f27149b = sw0Var;
+    public pw0(qw0 qw0Var, int i10) {
+        this.f29535a = i10;
+        this.f29536b = qw0Var;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f27148a) {
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f29535a) {
             case 0:
-                sw0 sw0Var = this.f27149b;
-                sw0Var.getClass();
-                sw0Var.E = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                sw0Var.invalidate();
+                qw0 qw0Var = this.f29536b;
+                qw0Var.f29859y = 1.0f;
+                qw0Var.invalidate();
+                qw0Var.G = null;
                 return;
             case 1:
-                sw0 sw0Var2 = this.f27149b;
-                sw0Var2.getClass();
-                sw0Var2.m(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                qw0 qw0Var2 = this.f29536b;
+                qw0Var2.m(((Float) qw0Var2.v.getAnimatedValue()).floatValue());
+                qw0Var2.v = null;
                 return;
             default:
-                sw0 sw0Var3 = this.f27149b;
-                sw0Var3.getClass();
-                sw0Var3.f27941y = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                sw0Var3.invalidate();
+                super.onAnimationEnd(animator);
+                this.f29536b.F = null;
                 return;
         }
     }

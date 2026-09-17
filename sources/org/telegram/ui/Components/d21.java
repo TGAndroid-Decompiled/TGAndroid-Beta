@@ -1,33 +1,35 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-import org.telegram.messenger.Utilities;
-public final class d21 implements le.d, Utilities.Callback5, Utilities.Callback5Return {
-    public final y21 f23187a;
+import org.telegram.messenger.AndroidUtilities;
+public final class d21 implements Runnable {
+    public final int f25211a;
+    public final w21 f25212b;
 
-    @Override
-    public void D(int i10, float f7, float f10, le.e eVar) {
-        this.f23187a.g();
+    public d21(w21 w21Var, int i10) {
+        this.f25211a = i10;
+        this.f25212b = w21Var;
     }
 
     @Override
-    public Object run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-        ((Integer) obj3).getClass();
-        ((Float) obj4).getClass();
-        ((Float) obj5).getClass();
-        return Boolean.valueOf(y21.c(this.f23187a, (j51) obj, (View) obj2));
-    }
-
-    @Override
-    public void mo17run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-        View view = (View) obj2;
-        ((Integer) obj3).getClass();
-        ((Float) obj4).getClass();
-        ((Float) obj5).getClass();
-        y21.a(this.f23187a, (j51) obj);
-    }
-
-    @Override
-    public void C(float f7, int i10) {
+    public final void run() {
+        switch (this.f25211a) {
+            case 0:
+                w21 w21Var = this.f25212b;
+                m21 m21Var = w21Var.G;
+                m21Var.v1(true);
+                k21 k21Var = w21Var.f32131s;
+                k21Var.v1(true);
+                w21Var.J.a(true, true);
+                AndroidUtilities.updateVisibleRows(k21Var);
+                AndroidUtilities.updateVisibleRows(m21Var);
+                return;
+            default:
+                w21 w21Var2 = this.f25212b;
+                if (w21Var2.k()) {
+                    w21Var2.l();
+                    return;
+                }
+                return;
+        }
     }
 }

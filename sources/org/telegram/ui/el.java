@@ -2,38 +2,38 @@ package org.telegram.ui;
 
 import android.graphics.Canvas;
 import android.graphics.RectF;
-public final class el implements org.telegram.ui.Components.fk0 {
-    public final bo f33435a;
+public final class el implements org.telegram.ui.Components.ek0 {
+    public final co f36145a;
 
-    public el(bo boVar) {
-        this.f33435a = boVar;
+    public el(co coVar) {
+        this.f36145a = coVar;
     }
 
     @Override
-    public final void h(android.view.View r24, zg.p0 r25, boolean r26, boolean r27) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.el.h(android.view.View, zg.p0, boolean, boolean):void");
+    public final void B(android.view.View r24, ah.j1 r25, boolean r26, boolean r27) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.el.B(android.view.View, ah.j1, boolean, boolean):void");
     }
 
     @Override
-    public final boolean j() {
+    public final boolean S() {
+        return false;
+    }
+
+    @Override
+    public final boolean n() {
         return true;
     }
 
     @Override
-    public final boolean k() {
+    public final boolean t() {
         return false;
     }
 
     @Override
-    public final boolean q() {
-        return false;
+    public final void J() {
     }
 
     @Override
-    public final void o() {
-    }
-
-    @Override
-    public final void n(Canvas canvas, RectF rectF, float f7, float f10, float f11, int i10, boolean z10) {
+    public final void I(Canvas canvas, RectF rectF, float f7, float f10, float f11, int i10, boolean z10) {
     }
 }

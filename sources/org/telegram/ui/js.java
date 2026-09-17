@@ -1,90 +1,52 @@
 package org.telegram.ui;
 
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.drawable.Drawable;
-import android.view.View;
-import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-public final class js extends Drawable {
-    public final Drawable f34922a;
-    public final Drawable f34923b;
-    public int d;
-    public int e;
-    public final ArrayList f34924c = new ArrayList();
-    public boolean f34925f = false;
-    public final org.telegram.ui.Components.c6 f34926g = new org.telegram.ui.Components.c6(new ej(this, 13), 420, org.telegram.ui.Components.qr.h);
-    public int h = 255;
+import org.telegram.tgnet.TLRPC;
+public final class js implements Runnable {
+    public final int f37864a;
+    public final ss f37865b;
+    public final TLRPC.User f37866c;
 
-    public js(Drawable drawable, Drawable drawable2) {
-        this.f34922a = drawable;
-        this.f34923b = drawable2;
+    public js(ss ssVar, TLRPC.User user, int i10) {
+        this.f37864a = i10;
+        this.f37865b = ssVar;
+        this.f37866c = user;
     }
 
-    public final void a(int i10, int i11) {
-        this.d = i10;
-        this.e = i11;
-    }
-
-    public final void b(boolean z10) {
-        if (this.f34925f == z10) {
-            return;
+    @Override
+    public final void run() {
+        String str;
+        switch (this.f37864a) {
+            case 0:
+                ss ssVar = this.f37865b;
+                TLRPC.User user = this.f37866c;
+                if (user != null && ssVar.M == null && ssVar.N == null) {
+                    if (user.phone == null && (str = ssVar.L) != null) {
+                        user.phone = gf.b.d(str, false);
+                    }
+                    ssVar.f40539b.setText(user.first_name);
+                    org.telegram.ui.Cells.g3 g3Var = ssVar.f40539b.f22102b;
+                    g3Var.setSelection(g3Var.length());
+                    ssVar.f40540c.setText(user.last_name);
+                }
+                TLRPC.UserFull userFull = ssVar.getMessagesController().getUserFull(ssVar.H);
+                if (userFull != null) {
+                    TLRPC.TL_textWithEntities tL_textWithEntities = userFull.note;
+                    if (tL_textWithEntities != null) {
+                        ssVar.d.setText(tL_textWithEntities);
+                    } else {
+                        ssVar.d.setText("");
+                    }
+                }
+                if (ssVar.J) {
+                    ssVar.d.f22102b.requestFocus();
+                    AndroidUtilities.showKeyboard(ssVar.d.f22102b);
+                    return;
+                }
+                return;
+            default:
+                ss.V(this.f37865b, this.f37866c);
+                return;
         }
-        this.f34925f = z10;
-        ArrayList arrayList = this.f34924c;
-        int size = arrayList.size();
-        int i10 = 0;
-        while (i10 < size) {
-            Object obj = arrayList.get(i10);
-            i10++;
-            ((View) obj).invalidate();
-        }
-        invalidateSelf();
-    }
-
-    @Override
-    public final void draw(Canvas canvas) {
-        float e = this.f34926g.e(this.f34925f);
-        int i10 = this.h;
-        Drawable drawable = this.f34922a;
-        drawable.setAlpha(i10);
-        drawable.setBounds(getBounds());
-        drawable.draw(canvas);
-        if (e > 0.0f) {
-            Drawable drawable2 = this.f34923b;
-            drawable2.setAlpha((int) (this.h * e));
-            drawable2.setBounds(getBounds().left + this.d, getBounds().top + this.e, drawable2.getIntrinsicWidth() + getBounds().left + this.d, drawable2.getIntrinsicHeight() + getBounds().top + this.e);
-            float lerp = AndroidUtilities.lerp(0.5f, 1.0f, e);
-            canvas.save();
-            canvas.scale(lerp, lerp, drawable2.getBounds().centerX(), drawable2.getBounds().centerY());
-            drawable2.draw(canvas);
-            canvas.restore();
-        }
-    }
-
-    @Override
-    public final int getIntrinsicHeight() {
-        return this.f34922a.getIntrinsicHeight();
-    }
-
-    @Override
-    public final int getIntrinsicWidth() {
-        return this.f34922a.getIntrinsicWidth();
-    }
-
-    @Override
-    public final int getOpacity() {
-        return -2;
-    }
-
-    @Override
-    public final void setAlpha(int i10) {
-        this.h = i10;
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
-        this.f34922a.setColorFilter(colorFilter);
-        this.f34923b.setColorFilter(colorFilter);
     }
 }

@@ -3,32 +3,32 @@ package x4;
 import android.animation.TypeEvaluator;
 import v7.g8;
 public final class e implements TypeEvaluator {
-    public i0.d[] f45298a;
+    public i0.e[] f48862a;
 
     @Override
     public final Object evaluate(float f7, Object obj, Object obj2) {
-        i0.d[] dVarArr = (i0.d[]) obj;
-        i0.d[] dVarArr2 = (i0.d[]) obj2;
-        if (g8.a(dVarArr, dVarArr2)) {
-            if (!g8.a(this.f45298a, dVarArr)) {
-                this.f45298a = g8.e(dVarArr);
+        i0.e[] eVarArr = (i0.e[]) obj;
+        i0.e[] eVarArr2 = (i0.e[]) obj2;
+        if (g8.a(eVarArr, eVarArr2)) {
+            if (!g8.a(this.f48862a, eVarArr)) {
+                this.f48862a = g8.e(eVarArr);
             }
-            for (int i10 = 0; i10 < dVarArr.length; i10++) {
-                i0.d dVar = this.f45298a[i10];
-                i0.d dVar2 = dVarArr[i10];
-                i0.d dVar3 = dVarArr2[i10];
-                dVar.getClass();
-                dVar.f10595a = dVar2.f10595a;
+            for (int i10 = 0; i10 < eVarArr.length; i10++) {
+                i0.e eVar = this.f48862a[i10];
+                i0.e eVar2 = eVarArr[i10];
+                i0.e eVar3 = eVarArr2[i10];
+                eVar.getClass();
+                eVar.f11455a = eVar2.f11455a;
                 int i11 = 0;
                 while (true) {
-                    float[] fArr = dVar2.f10596b;
+                    float[] fArr = eVar2.f11456b;
                     if (i11 < fArr.length) {
-                        dVar.f10596b[i11] = (dVar3.f10596b[i11] * f7) + ((1.0f - f7) * fArr[i11]);
+                        eVar.f11456b[i11] = (eVar3.f11456b[i11] * f7) + ((1.0f - f7) * fArr[i11]);
                         i11++;
                     }
                 }
             }
-            return this.f45298a;
+            return this.f48862a;
         }
         throw new IllegalArgumentException("Can't interpolate between two incompatible pathData");
     }

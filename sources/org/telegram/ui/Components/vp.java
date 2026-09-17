@@ -1,17 +1,29 @@
 package org.telegram.ui.Components;
-public abstract class vp extends z4.a {
-    public abstract int j();
 
-    public final int k(int i10) {
-        int size = ((oh0) this).f26734c.size();
-        int j3 = j();
-        if (i10 < j3) {
-            return ((size - (j3 * 2)) - ((j3 - i10) - 1)) - 1;
+import android.content.Context;
+public abstract class vp extends z4.g {
+    public up f31986w0;
+
+    public vp(Context context) {
+        super(context);
+        b(new tp((oh0) this));
+    }
+
+    @Override
+    @Deprecated
+    public void setAdapter(z4.a aVar) {
+        if (aVar instanceof up) {
+            setAdapter((up) aVar);
+            return;
         }
-        int i11 = size - j3;
-        if (i10 >= i11) {
-            return i10 - i11;
+        throw new IllegalArgumentException();
+    }
+
+    public void setAdapter(up upVar) {
+        this.f31986w0 = upVar;
+        super.setAdapter((z4.a) upVar);
+        if (upVar != null) {
+            x(upVar.j(), false);
         }
-        return i10 - j3;
     }
 }

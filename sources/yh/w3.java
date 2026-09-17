@@ -1,142 +1,49 @@
 package yh;
+public final class w3 implements Runnable {
+    public final int f50648a;
+    public final e4 f50649b;
 
-import android.content.Context;
-import android.graphics.Rect;
-import android.view.KeyEvent;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.oc;
-import org.telegram.ui.Components.qr;
-public final class w3 extends FrameLayout {
-    public final int f47957a = 0;
-    public Object f47958b;
-    public Object f47959c;
-
-    public w3(Context context) {
-        super(context);
-    }
-
-    public void b(int i10, CharSequence charSequence, boolean z10) {
-        ImageView imageView = (ImageView) this.f47958b;
-        if (z10) {
-            AndroidUtilities.updateImageViewImageAnimated(imageView, i10);
-        } else {
-            imageView.setImageResource(i10);
-        }
-        ((TextView) this.f47959c).setText(charSequence);
+    public w3(e4 e4Var, int i10) {
+        this.f50648a = i10;
+        this.f50649b = e4Var;
     }
 
     @Override
-    public boolean dispatchKeyEvent(KeyEvent keyEvent) {
-        switch (this.f47957a) {
-            case 2:
-                if (keyEvent.getAction() == 1 && keyEvent.getKeyCode() == 4) {
-                    zg.c0 c0Var = (zg.c0) this.f47959c;
-                    if (!c0Var.f49013k) {
-                        return true;
-                    }
-                    c0Var.d();
-                    return true;
+    public final void run() {
+        switch (this.f50648a) {
+            case 0:
+                t3 t3Var = this.f50649b.f50295c;
+                if (!t3Var.f50593j.isEmpty()) {
+                    t3Var.f50593j.clear();
+                    t3Var.h();
+                    return;
                 }
-                return super.dispatchKeyEvent(keyEvent);
-            default:
-                return super.dispatchKeyEvent(keyEvent);
-        }
-    }
-
-    @Override
-    public void dispatchSetPressed(boolean z10) {
-        switch (this.f47957a) {
-            case 2:
                 return;
-            default:
-                super.dispatchSetPressed(z10);
-                return;
-        }
-    }
-
-    @Override
-    public boolean fitSystemWindows(Rect rect) {
-        switch (this.f47957a) {
-            case 2:
-                zg.c0 c0Var = (zg.c0) this.f47959c;
-                float f7 = c0Var.f49023u;
-                float f10 = rect.bottom;
-                if (f7 != f10 && c0Var.v) {
-                    c0Var.f49023u = f10;
-                    w3 w3Var = c0Var.f49008c;
-                    zg.b0 b0Var = c0Var.f49006a;
-                    if (!c0Var.f49019q) {
-                        float f11 = c0Var.f49022t;
-                        int dp = AndroidUtilities.dp(32.0f);
-                        int i10 = c0Var.f49026y;
-                        if (i10 == 1 || i10 == 2) {
-                            dp = AndroidUtilities.dp(24.0f);
-                        }
-                        float f12 = dp;
-                        if (b0Var.getMeasuredHeight() + f11 > (w3Var.getMeasuredHeight() - c0Var.f49023u) - f12) {
-                            f11 = ((w3Var.getMeasuredHeight() - c0Var.f49023u) - b0Var.getMeasuredHeight()) - f12;
-                        }
-                        if (f11 < 0.0f) {
-                            f11 = 0.0f;
-                        }
-                        b0Var.animate().translationY(f11).setDuration(250L).setUpdateListener(new zg.w(c0Var, 1)).setInterpolator(qr.f27380f).start();
-                    }
+            case 1:
+                t3 t3Var2 = this.f50649b.f50295c;
+                if (!t3Var2.f50594k.isEmpty()) {
+                    t3Var2.f50594k.clear();
+                    t3Var2.h();
+                    return;
                 }
-                return super.fitSystemWindows(rect);
-            default:
-                return super.fitSystemWindows(rect);
-        }
-    }
-
-    @Override
-    public void onAttachedToWindow() {
-        switch (this.f47957a) {
-            case 1:
-                super.onAttachedToWindow();
-                ((zg.n) this.f47958b).c();
                 return;
             case 2:
-                super.onAttachedToWindow();
-                oc.a(this, (ai.w4) this.f47958b);
+                t3 t3Var3 = this.f50649b.f50295c;
+                if (!t3Var3.f50595l.isEmpty()) {
+                    t3Var3.f50595l.clear();
+                    t3Var3.h();
+                    return;
+                }
+                return;
+            case 3:
+                this.f50649b.f50295c.i(s3.BY_PRICE);
+                return;
+            case 4:
+                this.f50649b.f50295c.i(s3.BY_DATE);
                 return;
             default:
-                super.onAttachedToWindow();
+                this.f50649b.f50295c.i(s3.BY_NUMBER);
                 return;
         }
-    }
-
-    @Override
-    public void onDetachedFromWindow() {
-        switch (this.f47957a) {
-            case 1:
-                super.onDetachedFromWindow();
-                ((zg.n) this.f47958b).d();
-                return;
-            case 2:
-                super.onDetachedFromWindow();
-                oc.h(this);
-                return;
-            default:
-                super.onDetachedFromWindow();
-                return;
-        }
-    }
-
-    public w3(zg.c0 c0Var, Context context) {
-        super(context);
-        this.f47959c = c0Var;
-        this.f47958b = new ai.w4(this, 11);
-    }
-
-    public w3(zg.q qVar, Context context) {
-        super(context);
-        this.f47959c = qVar;
-        this.f47958b = new zg.n(this, this);
-    }
-
-    private final void a(boolean z10) {
     }
 }

@@ -1,44 +1,125 @@
 package qg;
-public final class r implements o1.f {
-    public final int f41619a;
-    public final p0 f41620b;
-    public final boolean f41621c;
 
-    public r(p0 p0Var, boolean z10, int i10) {
-        this.f41619a = i10;
-        this.f41620b = p0Var;
-        this.f41621c = z10;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.LinearGradient;
+import android.graphics.Paint;
+import android.graphics.RectF;
+import android.graphics.Shader;
+import android.view.MotionEvent;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+public final class r extends View {
+    public final Paint f44573a;
+    public final Paint f44574b;
+    public int f44575c;
+    public int d;
+    public final x f44576e;
+
+    public r(x xVar, Context context) {
+        super(context);
+        this.f44576e = xVar;
+        this.f44573a = new Paint(1);
+        Paint paint = new Paint(1);
+        this.f44574b = paint;
+        paint.setColor(-1);
+        paint.setStyle(Paint.Style.FILL_AND_STROKE);
+        paint.setStrokeWidth(AndroidUtilities.dp(3.0f));
+    }
+
+    public final void a() {
+        int argb;
+        int argb2;
+        int i10 = this.f44575c;
+        x xVar = this.f44576e;
+        if (i10 != 1) {
+            if (i10 != 2) {
+                argb = Color.argb(255, 0, Color.green(xVar.f44648f), Color.blue(xVar.f44648f));
+                argb2 = Color.argb(255, 255, Color.green(xVar.f44648f), Color.blue(xVar.f44648f));
+            } else {
+                argb = Color.argb(255, Color.red(xVar.f44648f), Color.green(xVar.f44648f), 0);
+                argb2 = Color.argb(255, Color.red(xVar.f44648f), Color.green(xVar.f44648f), 255);
+            }
+        } else {
+            argb = Color.argb(255, Color.red(xVar.f44648f), 0, Color.blue(xVar.f44648f));
+            argb2 = Color.argb(255, Color.red(xVar.f44648f), 255, Color.blue(xVar.f44648f));
+        }
+        this.f44573a.setShader(new LinearGradient(0.0f, 0.0f, getWidth(), 0.0f, new int[]{argb, argb2}, (float[]) null, Shader.TileMode.CLAMP));
+    }
+
+    public final void b(float f7) {
+        int argb;
+        float dp = AndroidUtilities.dp(6.0f);
+        float a2 = w7.p.a(((f7 - dp) + (AndroidUtilities.dp(13.0f) - (this.f44574b.getStrokeWidth() / 2.0f))) / (getWidth() - (dp * 2.0f)), 0.0f, 1.0f);
+        int i10 = this.f44575c;
+        x xVar = this.f44576e;
+        if (i10 != 1) {
+            if (i10 != 2) {
+                argb = Color.argb(255, (int) (a2 * 255.0f), Color.green(xVar.f44648f), Color.blue(xVar.f44648f));
+            } else {
+                argb = Color.argb(255, Color.red(xVar.f44648f), Color.green(xVar.f44648f), (int) (a2 * 255.0f));
+            }
+        } else {
+            argb = Color.argb(255, Color.red(xVar.f44648f), (int) (a2 * 255.0f), Color.blue(xVar.f44648f));
+        }
+        xVar.m(i0.a.k(argb, Color.alpha(xVar.f44648f)), 4);
+        invalidate();
     }
 
     @Override
-    public final void a(o1.h hVar, boolean z10, float f7, float f10) {
-        switch (this.f41619a) {
-            case 0:
-                p0 p0Var = this.f41620b;
-                w1 w1Var = p0Var.f41570v1;
-                if (hVar == p0Var.F1) {
-                    p0Var.F1 = null;
-                    if (!this.f41621c) {
-                        w1Var.setVisibility(8);
-                    }
-                    w1Var.setMaskProvider(null);
-                    return;
-                }
-                return;
-            default:
-                p0 p0Var2 = this.f41620b;
-                l0 l0Var = p0Var2.G1;
-                if (hVar == p0Var2.M1) {
-                    p0Var2.M1 = null;
-                    if (!this.f41621c) {
-                        l0Var.setVisibility(8);
-                        pg.s0.e(p0Var2.P1).g();
-                        l0Var.getAdapter().l();
-                        return;
-                    }
-                    return;
-                }
-                return;
+    public final void onDraw(Canvas canvas) {
+        int green;
+        super.onDraw(canvas);
+        float height = getHeight() / 2.0f;
+        float dp = AndroidUtilities.dp(6.0f);
+        RectF rectF = AndroidUtilities.rectTmp;
+        rectF.set(dp, height - dp, getWidth() - dp, height + dp);
+        canvas.drawRoundRect(rectF, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), this.f44573a);
+        int i10 = this.f44575c;
+        x xVar = this.f44576e;
+        if (i10 != 1) {
+            if (i10 != 2) {
+                green = Color.red(xVar.f44648f);
+            } else {
+                green = Color.blue(xVar.f44648f);
+            }
+        } else {
+            green = Color.green(xVar.f44648f);
         }
+        float f7 = green / 255.0f;
+        float dp2 = AndroidUtilities.dp(13.0f);
+        Paint paint = this.f44574b;
+        float strokeWidth = dp2 - (paint.getStrokeWidth() / 2.0f);
+        float max = Math.max(dp + strokeWidth, (((getWidth() - (2.0f * dp)) * f7) + dp) - strokeWidth);
+        canvas.drawCircle(max, height, dp2, paint);
+        rg.k1.w1(max, height, strokeWidth, this.d, canvas);
+    }
+
+    @Override
+    public final void onSizeChanged(int i10, int i11, int i12, int i13) {
+        super.onSizeChanged(i10, i11, i12, i13);
+        a();
+    }
+
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        int actionMasked = motionEvent.getActionMasked();
+        if (actionMasked != 0) {
+            if (actionMasked != 1) {
+                if (actionMasked != 2) {
+                    if (actionMasked == 3) {
+                        getParent().requestDisallowInterceptTouchEvent(false);
+                    }
+                }
+            } else {
+                b(motionEvent.getX());
+                getParent().requestDisallowInterceptTouchEvent(false);
+            }
+            return true;
+        }
+        getParent().requestDisallowInterceptTouchEvent(true);
+        b(motionEvent.getX());
+        return true;
     }
 }

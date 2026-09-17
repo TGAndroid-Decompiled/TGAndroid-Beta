@@ -3,14 +3,14 @@ package org.telegram.ui;
 import android.webkit.JavascriptInterface;
 import org.telegram.messenger.AndroidUtilities;
 public class ArticleViewer$BlockEmbedCell$TelegramWebviewProxy {
-    public final s1 f19762a;
+    public final t1 f21592a;
 
-    public ArticleViewer$BlockEmbedCell$TelegramWebviewProxy(s1 s1Var) {
-        this.f19762a = s1Var;
+    public ArticleViewer$BlockEmbedCell$TelegramWebviewProxy(t1 t1Var) {
+        this.f21592a = t1Var;
     }
 
     @JavascriptInterface
     public void postEvent(String str, String str2) {
-        AndroidUtilities.runOnUIThread(new q1(this, str, str2, 0));
+        AndroidUtilities.runOnUIThread(new r1(this, str, str2, 0));
     }
 }

@@ -1,23 +1,81 @@
 package org.telegram.ui;
-public final class fq0 extends org.telegram.ui.ActionBar.j {
-    public final lq0 f33739a;
 
-    public fq0(lq0 lq0Var) {
-        this.f33739a = lq0Var;
+import android.content.Context;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+public final class fq0 extends org.telegram.ui.Components.ov0 {
+    public int f36475w0;
+    public boolean f36476x0;
+    public final kq0 f36477y0;
+
+    public fq0(kq0 kq0Var, Context context) {
+        super(context, null);
+        this.f36477y0 = kq0Var;
     }
 
     @Override
-    public final void b(int i10) {
-        lq0 lq0Var = this.f33739a;
-        if (i10 == -1) {
-            lq0Var.finishFragment();
-        } else if (i10 == 1) {
-            if (lq0Var.V != null) {
-                lq0Var.finishFragment(false);
-                lq0Var.V.b();
+    public final void onLayout(boolean r11, int r12, int r13, int r14, int r15) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.fq0.onLayout(boolean, int, int, int, int):void");
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        int i12;
+        float f7;
+        int size = View.MeasureSpec.getSize(i10);
+        int size2 = View.MeasureSpec.getSize(i11);
+        setMeasuredDimension(size, size2);
+        int dp = AndroidUtilities.dp(20.0f);
+        int i13 = 0;
+        kq0 kq0Var = this.f36477y0;
+        if (dp >= 0) {
+            if (!AndroidUtilities.isInMultiwindow) {
+                size2 -= kq0Var.M.getEmojiPadding();
+                i11 = View.MeasureSpec.makeMeasureSpec(size2, 1073741824);
             }
-        } else if (i10 == 2) {
-            lq0.U(lq0Var, null);
+        } else {
+            this.f36476x0 = true;
+            kq0Var.M.j();
+            this.f36476x0 = false;
         }
+        int i14 = i11;
+        int childCount = getChildCount();
+        while (i13 < childCount) {
+            View childAt = getChildAt(i13);
+            if (childAt != null && childAt.getVisibility() != 8) {
+                org.telegram.ui.Components.hu huVar = kq0Var.M;
+                if (huVar != null && huVar.l(childAt)) {
+                    if (!AndroidUtilities.isInMultiwindow && !AndroidUtilities.isTablet()) {
+                        childAt.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(childAt.getLayoutParams().height, 1073741824));
+                    } else if (AndroidUtilities.isTablet()) {
+                        int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(size, 1073741824);
+                        if (AndroidUtilities.isTablet()) {
+                            f7 = 200.0f;
+                        } else {
+                            f7 = 320.0f;
+                        }
+                        childAt.measure(makeMeasureSpec, View.MeasureSpec.makeMeasureSpec(Math.min(AndroidUtilities.dp(f7), getPaddingTop() + (size2 - AndroidUtilities.statusBarHeight)), 1073741824));
+                    } else {
+                        childAt.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(getPaddingTop() + (size2 - AndroidUtilities.statusBarHeight), 1073741824));
+                    }
+                } else {
+                    i12 = i10;
+                    measureChildWithMargins(childAt, i12, 0, i14, 0);
+                    i13++;
+                    i10 = i12;
+                }
+            }
+            i12 = i10;
+            i13++;
+            i10 = i12;
+        }
+    }
+
+    @Override
+    public final void requestLayout() {
+        if (this.f36476x0) {
+            return;
+        }
+        super.requestLayout();
     }
 }

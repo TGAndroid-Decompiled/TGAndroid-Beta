@@ -1,4 +1,4 @@
 package n6;
 public interface k {
-    Object l(com.google.android.gms.common.api.q qVar);
+    Object k(com.google.android.gms.common.api.q qVar);
 }

@@ -1,6 +1,33 @@
 package org.telegram.ui;
 
-import org.telegram.tgnet.TLRPC;
-public interface fd0 {
-    void b(TLRPC.MessageMedia messageMedia, int i10, boolean z10, int i11, long j3);
+import android.content.Context;
+import android.graphics.Point;
+import android.view.View;
+import android.widget.FrameLayout;
+import java.util.HashMap;
+import java.util.Map;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.IMapsProvider;
+public final class fd0 extends FrameLayout {
+    public final HashMap f36403a;
+    public final id0 f36404b;
+
+    public fd0(id0 id0Var, Context context) {
+        super(context);
+        this.f36404b = id0Var;
+        this.f36403a = new HashMap();
+    }
+
+    public final void a() {
+        IMapsProvider.IMap iMap = this.f36404b.I;
+        if (iMap != null) {
+            IMapsProvider.IProjection projection = iMap.getProjection();
+            for (Map.Entry entry : this.f36403a.entrySet()) {
+                View view = (View) entry.getValue();
+                Point screenLocation = projection.toScreenLocation(((IMapsProvider.IMarker) entry.getKey()).getPosition());
+                view.setTranslationX(screenLocation.x - (view.getMeasuredWidth() / 2));
+                view.setTranslationY(AndroidUtilities.dp(22.0f) + (screenLocation.y - view.getMeasuredHeight()));
+            }
+        }
+    }
 }

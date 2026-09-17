@@ -1,85 +1,64 @@
 package org.telegram.ui.Components;
+public final class hb implements o1.f {
+    public final int f26727a;
+    public final Object f26728b;
 
-import android.view.View;
-import android.widget.FrameLayout;
-import j$.util.Objects;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.R;
-import org.telegram.ui.ai1;
-public final class hb implements View.OnLayoutChangeListener {
-    public final boolean f24620a;
-    public final oc f24621b;
-
-    public hb(oc ocVar, boolean z10) {
-        this.f24621b = ocVar;
-        this.f24620a = z10;
+    public hb(Object obj, int i10) {
+        this.f26727a = i10;
+        this.f26728b = obj;
     }
 
     @Override
-    public final void onLayoutChange(View view, int i10, int i11, int i12, int i13, int i14, int i15, int i16, int i17) {
-        mb mbVar;
-        int i18;
-        oc ocVar = this.f24621b;
-        sb sbVar = ocVar.e;
-        sbVar.removeOnLayoutChangeListener(this);
-        if (ocVar.f26704l) {
-            sbVar.onShow();
-            org.telegram.ui.ActionBar.o2 o2Var = ocVar.f26700g;
-            boolean z10 = this.f24620a;
-            if (z10 && (o2Var instanceof ai1)) {
-                o2Var = ((ai1) o2Var).X();
-            }
-            FrameLayout frameLayout = ocVar.h;
-            if (o2Var == null || (mbVar = o2Var.getBulletinDelegate()) == null) {
-                if (frameLayout != null) {
-                    Object tag = frameLayout.getTag(R.id.bulletin_delegate_tag);
-                    if (tag instanceof mb) {
-                        mbVar = (mb) tag;
-                    }
+    public final void a(o1.h hVar, boolean z10, float f7, float f10) {
+        switch (this.f26727a) {
+            case 0:
+                qc qcVar = (qc) this.f26728b;
+                if (qcVar.d == hVar) {
+                    qcVar.d = null;
+                    return;
                 }
-                mbVar = null;
-            }
-            ocVar.f26708p = mbVar;
-            if (mbVar == null && o2Var != null) {
-                ocVar.f26708p = new ai.w4(o2Var, 5);
-            }
-            o1.k kVar = ocVar.d;
-            if (kVar == null || !kVar.f15354f) {
-                mb mbVar2 = ocVar.f26708p;
-                if (mbVar2 != null) {
-                    i18 = mbVar2.f(ocVar.f26696a);
-                } else {
-                    i18 = 0;
-                }
-                ocVar.f26707o = i18;
-            }
-            mb mbVar3 = ocVar.f26708p;
-            if (mbVar3 != null) {
-                mbVar3.b(ocVar);
-            }
-            if (MessagesController.getGlobalMainSettings().getBoolean("view_animations", true) && !ocVar.f26711s) {
-                if (sbVar != null && ocVar.f26709q == null) {
-                    ocVar.f26709q = sbVar.createTransition();
-                }
-                sbVar.transitionRunningEnter = true;
-                sbVar.delegate = ocVar.f26708p;
-                sbVar.invalidate();
-                rb rbVar = ocVar.f26709q;
-                Objects.requireNonNull(sbVar);
-                rbVar.U(sbVar, new db(sbVar, 1), new ng(this, 15), new ml(2, this, z10));
                 return;
-            }
-            mb mbVar4 = ocVar.f26708p;
-            sbVar.delegate = mbVar4;
-            if (mbVar4 != null && !z10) {
-                mbVar4.c(sbVar.getHeight());
-            }
-            ocVar.l();
-            sbVar.onEnterTransitionStart();
-            sbVar.onEnterTransitionEnd();
-            if (ocVar.f26713u) {
-                ocVar.i(true);
-            }
+            case 1:
+                db dbVar = (db) this.f26728b;
+                if (!z10) {
+                    dbVar.run();
+                    return;
+                }
+                return;
+            case 2:
+                vo0 vo0Var = (vo0) this.f26728b;
+                vo0Var.f31410q = false;
+                vo0Var.dismiss();
+                return;
+            case 3:
+                xo0 xo0Var = (xo0) this.f26728b;
+                xo0Var.f32670s = false;
+                xo0Var.f32669r = false;
+                if (!z10) {
+                    hVar.c();
+                }
+                if (hVar == xo0Var.f32667f) {
+                    xo0Var.f32667f = null;
+                    return;
+                }
+                return;
+            case 4:
+                hq0 hq0Var = (hq0) this.f26728b;
+                hq0Var.E.setVisibility(8);
+                hq0Var.f26849z0.setVisibility(8);
+                eq0 eq0Var = hq0Var.L;
+                eq0Var.f25782f = null;
+                eq0Var.l();
+                hq0Var.B0 = null;
+                hq0Var.M0 = false;
+                return;
+            default:
+                hq0 hq0Var2 = ((op0) this.f26728b).d;
+                hq0Var2.F.setVisibility(8);
+                hq0Var2.G.setVisibility(8);
+                hq0Var2.f26848y0.setVisibility(8);
+                hq0Var2.B0 = null;
+                return;
         }
     }
 }

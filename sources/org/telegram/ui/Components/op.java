@@ -1,4 +1,34 @@
 package org.telegram.ui.Components;
-public interface op {
-    void a();
+
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import org.telegram.messenger.AndroidUtilities;
+public final class op extends AnimatorListenerAdapter {
+    public final int f29182a;
+    public final pp f29183b;
+
+    public op(pp ppVar, int i10) {
+        this.f29182a = i10;
+        this.f29183b = ppVar;
+    }
+
+    @Override
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f29182a) {
+            case 0:
+                pp ppVar = this.f29183b;
+                ppVar.d = null;
+                pg pgVar = new pg(this, 29);
+                ppVar.f29483e = pgVar;
+                AndroidUtilities.runOnUIThread(pgVar, 3000L);
+                return;
+            default:
+                pp ppVar2 = this.f29183b;
+                ppVar2.setVisibility(4);
+                ppVar2.getClass();
+                ppVar2.getClass();
+                ppVar2.d = null;
+                return;
+        }
+    }
 }

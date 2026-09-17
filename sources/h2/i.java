@@ -1,4 +1,4 @@
 package h2;
 public interface i {
-    void h(j jVar);
+    void i(j jVar);
 }

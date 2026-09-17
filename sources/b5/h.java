@@ -2,9 +2,9 @@ package b5;
 
 import org.chromium.support_lib_boundary.JsReplyProxyBoundaryInterface;
 public final class h {
-    public final JsReplyProxyBoundaryInterface f3421a;
+    public final JsReplyProxyBoundaryInterface f2520a;
 
     public h(JsReplyProxyBoundaryInterface jsReplyProxyBoundaryInterface) {
-        this.f3421a = jsReplyProxyBoundaryInterface;
+        this.f2520a = jsReplyProxyBoundaryInterface;
     }
 }

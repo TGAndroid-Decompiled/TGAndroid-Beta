@@ -96,12 +96,12 @@ public abstract class w1 {
         textView.setText(AndroidUtilities.replaceTags(LocaleController.getString(i10)));
     }
 
-    public static void o(int i10, org.telegram.ui.Components.vc vcVar, int i11, int i12) {
-        vcVar.Q(i11, i12, LocaleController.getString(i10)).j();
+    public static void o(int i10, org.telegram.ui.Components.yc ycVar, int i11, int i12) {
+        ycVar.Q(i11, i12, LocaleController.getString(i10)).j();
     }
 
-    public static void p(int i10, org.telegram.ui.Components.vc vcVar, org.telegram.ui.ActionBar.f6 f6Var) {
-        vcVar.t(LocaleController.getString(i10), f6Var).j();
+    public static void p(int i10, org.telegram.ui.Components.yc ycVar, org.telegram.ui.ActionBar.f6 f6Var) {
+        ycVar.t(LocaleController.getString(i10), f6Var).j();
     }
 
     public static void q(TextView textView, int i10, int i11, float f7) {

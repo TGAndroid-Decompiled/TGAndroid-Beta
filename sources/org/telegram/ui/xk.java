@@ -1,22 +1,16 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.NotificationCenter;
-public final class xk implements NotificationCenter.PostponeNotificationCallback {
-    public final bo f39659a;
+import android.widget.FrameLayout;
+public final class xk extends gz {
+    public final co N;
 
-    public xk(bo boVar) {
-        this.f39659a = boVar;
+    public xk(co coVar, co coVar2, FrameLayout frameLayout, uj ujVar, int i10, long j3, long j10) {
+        super(coVar2, frameLayout, ujVar, i10, j3, j10);
+        this.N = coVar;
     }
 
     @Override
-    public final boolean needPostpone(int i10, int i11, Object[] objArr) {
-        if (i10 == NotificationCenter.didReceiveNewMessages) {
-            long longValue = ((Long) objArr[0]).longValue();
-            bo boVar = this.f39659a;
-            if (boVar.H6 && longValue == boVar.T5) {
-                return true;
-            }
-        }
-        return false;
+    public final void i() {
+        this.N.uc();
     }
 }

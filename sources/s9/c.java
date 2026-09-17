@@ -6,18 +6,18 @@ import android.util.Log;
 import b5.g;
 import c5.x;
 import com.google.android.gms.tasks.TaskCompletionSource;
-import com.google.firebase.messaging.t;
-import com.google.firebase.messaging.w;
+import com.google.firebase.messaging.s;
+import com.google.firebase.messaging.u;
 import java.util.concurrent.atomic.AtomicMarkableReference;
 import m.p3;
 import w9.m;
 import w9.o;
 import w9.r;
 public final class c {
-    public final o f42901a;
+    public final o f45994a;
 
     public c(o oVar) {
-        this.f42901a = oVar;
+        this.f45994a = oVar;
     }
 
     public final void a(Throwable th2) {
@@ -25,49 +25,49 @@ public final class c {
             Log.w("FirebaseCrashlytics", "A null value was passed to recordException. Ignoring.", null);
             return;
         }
-        m mVar = this.f42901a.f44978f;
+        m mVar = this.f45994a.f48453f;
         Thread currentThread = Thread.currentThread();
         mVar.getClass();
         long currentTimeMillis = System.currentTimeMillis();
-        t tVar = mVar.e;
-        w wVar = new w(mVar, currentTimeMillis, th2, currentThread);
-        tVar.getClass();
-        tVar.k(new x(wVar, 7));
+        s sVar = mVar.f48435e;
+        u uVar = new u(mVar, currentTimeMillis, th2, currentThread);
+        sVar.getClass();
+        sVar.h(new x(uVar, 7));
     }
 
     public final void b() {
-        o oVar = this.f42901a;
+        o oVar = this.f45994a;
         Boolean bool = Boolean.TRUE;
-        r rVar = oVar.f44976b;
+        r rVar = oVar.f48450b;
         synchronized (rVar) {
-            rVar.f44998f = false;
-            rVar.f44999g = bool;
-            SharedPreferences.Editor edit = rVar.f44995a.edit();
+            rVar.f48476f = false;
+            rVar.f48477g = bool;
+            SharedPreferences.Editor edit = rVar.f48472a.edit();
             edit.putBoolean("firebase_crashlytics_collection_enabled", true);
             edit.apply();
-            synchronized (rVar.f44997c) {
+            synchronized (rVar.f48474c) {
                 if (rVar.a()) {
-                    if (!rVar.e) {
+                    if (!rVar.f48475e) {
                         rVar.d.trySetResult(null);
-                        rVar.e = true;
+                        rVar.f48475e = true;
                     }
-                } else if (rVar.e) {
+                } else if (rVar.f48475e) {
                     rVar.d = new TaskCompletionSource();
-                    rVar.e = false;
+                    rVar.f48475e = false;
                 }
             }
         }
     }
 
     public final void c(String str, String str2) {
-        m mVar = this.f42901a.f44978f;
+        m mVar = this.f45994a.f48453f;
         mVar.getClass();
         try {
             ((com.google.firebase.messaging.m) mVar.d.d).u(str, str2);
-        } catch (IllegalArgumentException e) {
-            Context context = mVar.f44959a;
+        } catch (IllegalArgumentException e7) {
+            Context context = mVar.f48432a;
             if (context != null && (context.getApplicationInfo().flags & 2) != 0) {
-                throw e;
+                throw e7;
             }
             Log.e("FirebaseCrashlytics", "Attempting to set custom attribute with null key, ignoring.", null);
         }
@@ -75,7 +75,7 @@ public final class c {
 
     public final void d(String str) {
         boolean equals;
-        p3 p3Var = this.f42901a.f44978f.d;
+        p3 p3Var = this.f45994a.f48453f.d;
         p3Var.getClass();
         String b10 = x9.d.b(1024, str);
         synchronized (((AtomicMarkableReference) p3Var.h)) {
@@ -94,7 +94,7 @@ public final class c {
                     return;
                 }
                 ((AtomicMarkableReference) p3Var.h).set(b10, true);
-                ((t) p3Var.f14293b).k(new g(p3Var, 1));
+                ((s) p3Var.f15662b).h(new g(p3Var, 1));
             } finally {
             }
         }

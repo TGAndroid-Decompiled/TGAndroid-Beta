@@ -9,15 +9,11 @@ import com.google.android.gms.wearable.ConnectionConfiguration;
 import java.util.ArrayList;
 import w7.d0;
 public final class h implements Parcelable.Creator {
-    public final int f45371a;
-
-    public h(int i10) {
-        this.f45371a = i10;
-    }
+    public final int f48943a;
 
     @Override
     public final Object createFromParcel(Parcel parcel) {
-        switch (this.f45371a) {
+        switch (this.f48943a) {
             case 0:
                 int z10 = d0.z(parcel);
                 boolean z11 = false;
@@ -146,7 +142,7 @@ public final class h implements Parcelable.Creator {
 
     @Override
     public final Object[] newArray(int i10) {
-        switch (this.f45371a) {
+        switch (this.f48943a) {
             case 0:
                 return new d[i10];
             case 1:

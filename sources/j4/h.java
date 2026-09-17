@@ -2,42 +2,41 @@ package j4;
 
 import b2.r0;
 import c3.h0;
-import hg.k0;
 import java.util.Collections;
 import java.util.List;
 public final class h implements i {
-    public final int f12699a;
-    public boolean f12700b;
-    public long f12701c;
+    public final int f13337a;
+    public boolean f13338b;
+    public long f13339c;
     public int d;
-    public int e;
-    public final Object f12702f;
-    public Object f12703g;
+    public int f13340e;
+    public final Object f13341f;
+    public Object f13342g;
 
     public h(List list) {
-        this.f12699a = 0;
-        this.f12702f = list;
-        this.f12703g = new h0[list.size()];
-        this.f12701c = -9223372036854775807L;
+        this.f13337a = 0;
+        this.f13341f = list;
+        this.f13342g = new h0[list.size()];
+        this.f13339c = -9223372036854775807L;
     }
 
     @Override
-    public final void a(e2.v vVar) {
+    public final void b(e2.v vVar) {
         h0[] h0VarArr;
         boolean z10;
         boolean z11;
-        switch (this.f12699a) {
+        switch (this.f13337a) {
             case 0:
-                if (this.f12700b) {
+                if (this.f13338b) {
                     if (this.d == 2) {
                         if (vVar.a() == 0) {
                             z11 = false;
                         } else {
                             if (vVar.x() != 32) {
-                                this.f12700b = false;
+                                this.f13338b = false;
                             }
                             this.d--;
-                            z11 = this.f12700b;
+                            z11 = this.f13338b;
                         }
                         if (!z11) {
                             return;
@@ -48,49 +47,49 @@ public final class h implements i {
                             z10 = false;
                         } else {
                             if (vVar.x() != 0) {
-                                this.f12700b = false;
+                                this.f13338b = false;
                             }
                             this.d--;
-                            z10 = this.f12700b;
+                            z10 = this.f13338b;
                         }
                         if (!z10) {
                             return;
                         }
                     }
-                    int i10 = vVar.f7935b;
+                    int i10 = vVar.f8818b;
                     int a2 = vVar.a();
-                    for (h0 h0Var : (h0[]) this.f12703g) {
+                    for (h0 h0Var : (h0[]) this.f13342g) {
                         vVar.J(i10);
                         h0Var.d(a2, vVar);
                     }
-                    this.e += a2;
+                    this.f13340e += a2;
                     return;
                 }
                 return;
             default:
-                e2.v vVar2 = (e2.v) this.f12702f;
-                e2.d.h((h0) this.f12703g);
-                if (this.f12700b) {
+                e2.v vVar2 = (e2.v) this.f13341f;
+                e2.d.h((h0) this.f13342g);
+                if (this.f13338b) {
                     int a10 = vVar.a();
-                    int i11 = this.e;
+                    int i11 = this.f13340e;
                     if (i11 < 10) {
                         int min = Math.min(a10, 10 - i11);
-                        System.arraycopy(vVar.f7934a, vVar.f7935b, vVar2.f7934a, this.e, min);
-                        if (this.e + min == 10) {
+                        System.arraycopy(vVar.f8817a, vVar.f8818b, vVar2.f8817a, this.f13340e, min);
+                        if (this.f13340e + min == 10) {
                             vVar2.J(0);
                             if (73 == vVar2.x() && 68 == vVar2.x() && 51 == vVar2.x()) {
                                 vVar2.K(3);
                                 this.d = vVar2.w() + 10;
                             } else {
                                 e2.a.n("Id3Reader", "Discarding invalid ID3 tag");
-                                this.f12700b = false;
+                                this.f13338b = false;
                                 return;
                             }
                         }
                     }
-                    int min2 = Math.min(a10, this.d - this.e);
-                    ((h0) this.f12703g).d(min2, vVar);
-                    this.e += min2;
+                    int min2 = Math.min(a10, this.d - this.f13340e);
+                    ((h0) this.f13342g).d(min2, vVar);
+                    this.f13340e += min2;
                     return;
                 }
                 return;
@@ -98,87 +97,87 @@ public final class h implements i {
     }
 
     @Override
-    public final void c() {
-        switch (this.f12699a) {
+    public final void d() {
+        switch (this.f13337a) {
             case 0:
-                this.f12700b = false;
-                this.f12701c = -9223372036854775807L;
+                this.f13338b = false;
+                this.f13339c = -9223372036854775807L;
                 return;
             default:
-                this.f12700b = false;
-                this.f12701c = -9223372036854775807L;
+                this.f13338b = false;
+                this.f13339c = -9223372036854775807L;
                 return;
         }
     }
 
     @Override
-    public final void d(c3.q qVar, f0 f0Var) {
-        switch (this.f12699a) {
+    public final void e(c3.q qVar, f0 f0Var) {
+        switch (this.f13337a) {
             case 0:
-                h0[] h0VarArr = (h0[]) this.f12703g;
+                h0[] h0VarArr = (h0[]) this.f13342g;
                 for (int i10 = 0; i10 < h0VarArr.length; i10++) {
-                    e0 e0Var = (e0) ((List) this.f12702f).get(i10);
+                    e0 e0Var = (e0) ((List) this.f13341f).get(i10);
                     f0Var.a();
                     f0Var.b();
-                    h0 Z1 = qVar.Z1(f0Var.d, 3);
+                    h0 R1 = qVar.R1(f0Var.d, 3);
                     b2.r rVar = new b2.r();
                     f0Var.b();
-                    rVar.f3240a = f0Var.e;
-                    rVar.f3252p = r0.n("video/mp2t");
-                    rVar.f3253q = r0.n("application/dvbsubs");
-                    rVar.f3256t = Collections.singletonList(e0Var.f12679b);
-                    rVar.d = e0Var.f12678a;
-                    k0.u(rVar, Z1);
-                    h0VarArr[i10] = Z1;
+                    rVar.f2325a = f0Var.f13321e;
+                    rVar.f2338p = r0.n("video/mp2t");
+                    rVar.f2339q = r0.n("application/dvbsubs");
+                    rVar.f2342t = Collections.singletonList(e0Var.f13315b);
+                    rVar.d = e0Var.f13314a;
+                    i2.g.u(rVar, R1);
+                    h0VarArr[i10] = R1;
                 }
                 return;
             default:
                 f0Var.a();
                 f0Var.b();
-                h0 Z12 = qVar.Z1(f0Var.d, 5);
-                this.f12703g = Z12;
+                h0 R12 = qVar.R1(f0Var.d, 5);
+                this.f13342g = R12;
                 b2.r rVar2 = new b2.r();
                 f0Var.b();
-                rVar2.f3240a = f0Var.e;
-                rVar2.f3252p = r0.n("video/mp2t");
-                rVar2.f3253q = r0.n("application/id3");
-                k0.u(rVar2, Z12);
+                rVar2.f2325a = f0Var.f13321e;
+                rVar2.f2338p = r0.n("video/mp2t");
+                rVar2.f2339q = r0.n("application/id3");
+                i2.g.u(rVar2, R12);
                 return;
         }
     }
 
     @Override
-    public final void e(boolean z10) {
+    public final void f(boolean z10) {
         boolean z11;
         int i10;
         boolean z12;
-        switch (this.f12699a) {
+        switch (this.f13337a) {
             case 0:
-                if (this.f12700b) {
-                    if (this.f12701c != -9223372036854775807L) {
+                if (this.f13338b) {
+                    if (this.f13339c != -9223372036854775807L) {
                         z11 = true;
                     } else {
                         z11 = false;
                     }
                     e2.d.g(z11);
-                    for (h0 h0Var : (h0[]) this.f12703g) {
-                        h0Var.c(this.f12701c, 1, this.e, 0, null);
+                    for (h0 h0Var : (h0[]) this.f13342g) {
+                        h0Var.c(this.f13339c, 1, this.f13340e, 0, null);
                     }
-                    this.f12700b = false;
+                    this.f13338b = false;
                     return;
                 }
                 return;
             default:
-                e2.d.h((h0) this.f12703g);
-                if (this.f12700b && (i10 = this.d) != 0 && this.e == i10) {
-                    if (this.f12701c != -9223372036854775807L) {
+                e2.d.h((h0) this.f13342g);
+                if (this.f13338b && (i10 = this.d) != 0 && this.f13340e == i10) {
+                    if (this.f13339c != -9223372036854775807L) {
                         z12 = true;
                     } else {
                         z12 = false;
                     }
                     e2.d.g(z12);
-                    ((h0) this.f12703g).c(this.f12701c, 1, this.d, 0, null);
-                    this.f12700b = false;
+                    ((h0) this.f13342g).c(this.f13339c, 1, this.d, 0, null);
+                    this.f13338b = false;
                     return;
                 }
                 return;
@@ -186,23 +185,23 @@ public final class h implements i {
     }
 
     @Override
-    public final void f(int i10, long j3) {
-        switch (this.f12699a) {
+    public final void g(int i10, long j3) {
+        switch (this.f13337a) {
             case 0:
                 if ((i10 & 4) != 0) {
-                    this.f12700b = true;
-                    this.f12701c = j3;
-                    this.e = 0;
+                    this.f13338b = true;
+                    this.f13339c = j3;
+                    this.f13340e = 0;
                     this.d = 2;
                     return;
                 }
                 return;
             default:
                 if ((i10 & 4) != 0) {
-                    this.f12700b = true;
-                    this.f12701c = j3;
+                    this.f13338b = true;
+                    this.f13339c = j3;
                     this.d = 0;
-                    this.e = 0;
+                    this.f13340e = 0;
                     return;
                 }
                 return;
@@ -210,8 +209,8 @@ public final class h implements i {
     }
 
     public h() {
-        this.f12699a = 1;
-        this.f12702f = new e2.v(10);
-        this.f12701c = -9223372036854775807L;
+        this.f13337a = 1;
+        this.f13341f = new e2.v(10);
+        this.f13339c = -9223372036854775807L;
     }
 }

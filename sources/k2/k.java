@@ -1,18 +1,18 @@
 package k2;
 public final class k {
-    public final int f13313a;
-    public final int f13314b;
-    public final int f13315c;
+    public final int f14641a;
+    public final int f14642b;
+    public final int f14643c;
     public final boolean d;
-    public final boolean e;
-    public final int f13316f;
+    public final boolean f14644e;
+    public final int f14645f;
 
     public k(int i10, int i11, int i12, int i13, boolean z10, boolean z11) {
-        this.f13313a = i10;
-        this.f13314b = i11;
-        this.f13315c = i12;
+        this.f14641a = i10;
+        this.f14642b = i11;
+        this.f14643c = i12;
         this.d = z10;
-        this.e = z11;
-        this.f13316f = i13;
+        this.f14644e = z11;
+        this.f14645f = i13;
     }
 }

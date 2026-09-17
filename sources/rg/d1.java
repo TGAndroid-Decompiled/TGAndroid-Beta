@@ -1,35 +1,51 @@
 package rg;
 
-import android.content.Context;
-import org.telegram.messenger.MessagesController;
-public final class d1 implements Runnable {
-    public final int f42295a;
-    public final k1 f42296b;
+import android.view.View;
+import di.c6;
+import java.util.ArrayList;
+import org.telegram.messenger.MessageObject;
+public final class d1 extends s4.t {
+    public final c6 S;
 
-    public d1(k1 k1Var, int i10) {
-        this.f42295a = i10;
-        this.f42296b = k1Var;
+    public d1(c6 c6Var) {
+        super(true);
+        this.S = c6Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f42295a) {
-            case 0:
-                k1 k1Var = this.f42296b;
-                Context context = k1Var.getContext();
-                nf.f.s(context, "https://" + MessagesController.getInstance(k1Var.Y).linkPrefix + "/nft/" + k1Var.D0.slug);
-                return;
-            case 1:
-                k1 k1Var2 = this.f42296b;
-                try {
-                    k1Var2.container.performHapticFeedback(3, 2);
-                } catch (Exception unused) {
+    public final boolean B1(int i10) {
+        MessageObject.GroupedMessagePosition position;
+        byte b10;
+        c6 c6Var = this.S;
+        ArrayList arrayList = c6Var.f45220s0;
+        int size = (arrayList.size() - 1) - i10;
+        MessageObject.GroupedMessages groupedMessages = c6Var.f45221t0;
+        if (groupedMessages != null && size >= 0 && size < arrayList.size() && (position = groupedMessages.getPosition((MessageObject) arrayList.get(size))) != null && position.minX != position.maxX && (b10 = position.minY) == position.maxY && b10 != 0) {
+            int size2 = groupedMessages.posArray.size();
+            for (int i11 = 0; i11 < size2; i11++) {
+                MessageObject.GroupedMessagePosition groupedMessagePosition = groupedMessages.posArray.get(i11);
+                if (groupedMessagePosition != position) {
+                    byte b11 = groupedMessagePosition.minY;
+                    byte b12 = position.minY;
+                    if (b11 <= b12 && groupedMessagePosition.maxY >= b12) {
+                        return true;
+                    }
                 }
-                k1Var2.f42379o0.c(k1Var2.K0);
-                return;
-            default:
-                this.f42296b.O0[0].setVisibility(8);
-                return;
+            }
         }
+        return false;
+    }
+
+    @Override
+    public final boolean C1(View view) {
+        if (view instanceof org.telegram.ui.Cells.t1) {
+            return !((org.telegram.ui.Cells.t1) view).getMessageObject().isOutOwner();
+        }
+        return false;
+    }
+
+    @Override
+    public final boolean y0() {
+        return false;
     }
 }

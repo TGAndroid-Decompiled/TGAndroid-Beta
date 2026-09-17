@@ -1,75 +1,36 @@
 package bb;
+
+import java.util.regex.Pattern;
 public final class e {
-    public final Boolean f3466a;
-    public final Double f3467b;
-    public final Integer f3468c;
-    public final Integer d;
-    public final Long e;
+    public final qa.d f2569a;
+    public final aa.a f2570b;
+    public final m f2571c;
+    public final ie.d d = ie.e.a();
 
-    public e(Boolean bool, Double d, Integer num, Integer num2, Long l4) {
-        this.f3466a = bool;
-        this.f3467b = d;
-        this.f3468c = num;
-        this.d = num2;
-        this.e = l4;
+    public e(id.h hVar, qa.d dVar, za.b bVar, aa.a aVar, k1.f fVar) {
+        this.f2569a = dVar;
+        this.f2570b = aVar;
+        this.f2571c = new m(fVar);
     }
 
-    public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (!(obj instanceof e)) {
-            return false;
-        }
-        e eVar = (e) obj;
-        if (kotlin.jvm.internal.i.a(this.f3466a, eVar.f3466a) && kotlin.jvm.internal.i.a(this.f3467b, eVar.f3467b) && kotlin.jvm.internal.i.a(this.f3468c, eVar.f3468c) && kotlin.jvm.internal.i.a(this.d, eVar.d) && kotlin.jvm.internal.i.a(this.e, eVar.e)) {
-            return true;
-        }
-        return false;
+    public static String b(String str) {
+        Pattern compile = Pattern.compile("/");
+        kotlin.jvm.internal.i.d(compile, "compile(...)");
+        String replaceAll = compile.matcher(str).replaceAll("");
+        kotlin.jvm.internal.i.d(replaceAll, "replaceAll(...)");
+        return replaceAll;
     }
 
-    public final int hashCode() {
-        int hashCode;
-        int hashCode2;
-        int hashCode3;
-        int hashCode4;
-        int i10 = 0;
-        Boolean bool = this.f3466a;
-        if (bool == null) {
-            hashCode = 0;
-        } else {
-            hashCode = bool.hashCode();
+    public final Boolean a() {
+        f fVar = this.f2571c.f2597b;
+        if (fVar != null) {
+            return fVar.f2572a;
         }
-        int i11 = hashCode * 31;
-        Double d = this.f3467b;
-        if (d == null) {
-            hashCode2 = 0;
-        } else {
-            hashCode2 = d.hashCode();
-        }
-        int i12 = (i11 + hashCode2) * 31;
-        Integer num = this.f3468c;
-        if (num == null) {
-            hashCode3 = 0;
-        } else {
-            hashCode3 = num.hashCode();
-        }
-        int i13 = (i12 + hashCode3) * 31;
-        Integer num2 = this.d;
-        if (num2 == null) {
-            hashCode4 = 0;
-        } else {
-            hashCode4 = num2.hashCode();
-        }
-        int i14 = (i13 + hashCode4) * 31;
-        Long l4 = this.e;
-        if (l4 != null) {
-            i10 = l4.hashCode();
-        }
-        return i14 + i10;
+        kotlin.jvm.internal.i.h("sessionConfigs");
+        throw null;
     }
 
-    public final String toString() {
-        return "SessionConfigs(sessionEnabled=" + this.f3466a + ", sessionSamplingRate=" + this.f3467b + ", sessionRestartTimeout=" + this.f3468c + ", cacheDuration=" + this.d + ", cacheUpdatedTime=" + this.e + ')';
+    public final java.lang.Object c(id.c r25) {
+        throw new UnsupportedOperationException("Method not decompiled: bb.e.c(id.c):java.lang.Object");
     }
 }

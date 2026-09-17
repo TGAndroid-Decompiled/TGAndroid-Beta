@@ -1,4 +1,10 @@
 package org.telegram.ui.Components;
-public interface z4 {
-    void a(int i10);
+
+import android.widget.TextView;
+import org.telegram.messenger.Emoji;
+public final class z4 extends TextView {
+    @Override
+    public final void setText(CharSequence charSequence, TextView.BufferType bufferType) {
+        super.setText(Emoji.replaceEmoji(charSequence, getPaint().getFontMetricsInt(), false), bufferType);
+    }
 }

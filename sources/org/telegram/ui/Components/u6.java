@@ -1,90 +1,27 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
-import android.view.View;
+import android.graphics.Typeface;
+import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.DocumentObject;
-import org.telegram.messenger.ImageLocation;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.MediaDataController;
+import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.tgnet.TLRPC;
-public final class u6 extends View {
-    public final ImageReceiver f28285a;
-    public final Drawable f28286b;
-    public final Paint f28287c;
-    public final Paint d;
-
-    public u6(Context context) {
-        super(context);
-        Paint paint = new Paint(1);
-        this.f28287c = paint;
-        this.d = new Paint(1);
-        ImageReceiver imageReceiver = new ImageReceiver(this);
-        this.f28285a = imageReceiver;
-        imageReceiver.setAlpha(0.0f);
-        imageReceiver.setDelegate(new s(this, 12));
-        this.f28286b = context.getDrawable(R.drawable.input_attach).mutate().getConstantState().newDrawable();
-        paint.setStyle(Paint.Style.STROKE);
-        paint.setStrokeWidth(AndroidUtilities.dp(3.0f));
-        paint.setStrokeCap(Paint.Cap.ROUND);
-    }
-
-    @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        this.f28285a.onAttachedToWindow();
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        this.f28285a.onDetachedFromWindow();
-    }
-
-    @Override
-    public final void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
-        RectF rectF = AndroidUtilities.rectTmp;
-        rectF.set(0.0f, 0.0f, getWidth(), AndroidUtilities.dp(10.0f) + getHeight());
-        canvas.drawRoundRect(rectF, AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f), this.d);
-        ImageReceiver imageReceiver = this.f28285a;
-        imageReceiver.setImageCoords((getWidth() / 2.0f) - AndroidUtilities.dp(66.0f), (getHeight() / 2.0f) - (AndroidUtilities.dp(42.0f) / 2.0f), AndroidUtilities.dp(42.0f), AndroidUtilities.dp(42.0f));
-        imageReceiver.draw(canvas);
-        Paint paint = this.f28287c;
-        canvas.drawLine((getWidth() / 2.0f) - AndroidUtilities.dp(8.0f), getHeight() / 2.0f, (getWidth() / 2.0f) + AndroidUtilities.dp(8.0f), getHeight() / 2.0f, paint);
-        canvas.drawLine(getWidth() / 2.0f, (getHeight() / 2.0f) - AndroidUtilities.dp(8.0f), getWidth() / 2.0f, AndroidUtilities.dp(8.0f) + (getHeight() / 2.0f), paint);
-        int dp = AndroidUtilities.dp(24.0f) + (getWidth() / 2);
-        int height = (getHeight() / 2) - (AndroidUtilities.dp(42.0f) / 2);
-        int dp2 = AndroidUtilities.dp(66.0f) + (getWidth() / 2);
-        int dp3 = (AndroidUtilities.dp(42.0f) / 2) + (getHeight() / 2);
-        Drawable drawable = this.f28286b;
-        drawable.setBounds(dp, height, dp2, dp3);
-        drawable.draw(canvas);
-    }
-
-    public void setAttachBot(TLRPC.TL_attachMenuBot tL_attachMenuBot) {
-        TLRPC.TL_attachMenuBotIcon staticAttachMenuBotIcon = MediaDataController.getStaticAttachMenuBotIcon(tL_attachMenuBot);
-        if (staticAttachMenuBotIcon != null) {
-            this.f28285a.setImage(ImageLocation.getForDocument(staticAttachMenuBotIcon.icon), "42_42", DocumentObject.getSvgThumb(staticAttachMenuBotIcon.icon, org.telegram.ui.ActionBar.j6.f19099q5, 1.0f), "svg", tL_attachMenuBot, 0);
-        }
-    }
-
-    @Override
-    public void setBackgroundColor(int i10) {
-        this.d.setColor(i10);
-    }
-
-    public void setColor(int i10) {
-        PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
-        this.f28286b.setColorFilter(i10, mode);
-        this.f28287c.setColor(i10);
-        this.f28285a.setColorFilter(new PorterDuffColorFilter(i10, mode));
+import org.telegram.ui.LaunchActivity;
+public final class u6 extends nb {
+    public u6(LaunchActivity launchActivity, org.telegram.ui.lb0 lb0Var) {
+        super(launchActivity, null);
+        org.telegram.ui.Cells.q qVar = new org.telegram.ui.Cells.q(getContext());
+        TextView textView = new TextView(getContext());
+        addView(qVar, w7.x5.i(30.0f, 30.0f, 8388627, 12.0f, 8.0f, 12.0f, 8.0f));
+        textView.setGravity(8388611);
+        textView.setPadding(0, AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(8.0f));
+        textView.setTextColor(getThemedColor(org.telegram.ui.ActionBar.j6.Hi));
+        textView.setTextSize(1, 15.0f);
+        textView.setTypeface(Typeface.SANS_SERIF);
+        addView(textView, w7.x5.i(-1.0f, -2.0f, 8388627, 56.0f, 0.0f, 16.0f, 0.0f));
+        qVar.setImageDrawable(launchActivity.getDrawable(lb0Var.f38290b));
+        qVar.setOuterPadding(AndroidUtilities.dp(8.0f));
+        qVar.setBackgroundOuterPadding(AndroidUtilities.dp(24.0f));
+        qVar.setForeground(lb0Var.f38291c);
+        org.telegram.messenger.vl.p(R.string.AppIconChangedTo, new Object[]{LocaleController.getString(lb0Var.d)}, textView);
     }
 }

@@ -2,48 +2,175 @@ package org.telegram.ui.Components.voip;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.FrameLayout;
-import android.widget.TextView;
+import android.widget.ImageView;
+import ji.k5;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
+import org.telegram.ui.ActionBar.j6;
+import org.telegram.ui.Components.aj0;
+import org.telegram.ui.ci1;
 import w7.x5;
 public final class l1 extends FrameLayout {
-    public final q1 f29025a;
-    public final RectF f29026b;
+    public final aj0 f31659a;
+    public final aj0 f31660b;
+    public final org.telegram.ui.Cells.z f31661c;
+    public org.telegram.ui.Components.b3 d;
+    public k1 f31662e;
+    public int f31663f;
 
-    public l1(Context context, q1 q1Var) {
+    public l1(Context context) {
         super(context);
-        this.f29026b = new RectF();
-        this.f29025a = q1Var;
-        q1Var.a(this);
+        this.f31663f = 0;
         setWillNotDraw(false);
-        TextView textView = new TextView(context);
-        textView.setTextColor(-1);
-        textView.setText(LocaleController.getString(R.string.VoipRateCallTitle));
-        textView.setTextSize(1, 15.0f);
-        textView.setGravity(1);
-        textView.setTypeface(AndroidUtilities.bold());
-        TextView textView2 = new TextView(context);
-        textView2.setTextSize(1, 15.0f);
-        textView2.setTextColor(-1);
-        textView2.setGravity(1);
-        textView2.setText(LocaleController.getString(R.string.VoipRateCallDescription));
-        addView(textView, x5.d(-1, -2.0f, 3, 0.0f, 24.0f, 0.0f, 0.0f));
-        addView(textView2, x5.d(-1, -2.0f, 3, 0.0f, 50.0f, 0.0f, 0.0f));
+        ?? imageView = new ImageView(context);
+        this.f31659a = imageView;
+        ?? imageView2 = new ImageView(context);
+        this.f31660b = imageView2;
+        imageView.f(R.raw.star_stroke, 37, 37, null);
+        imageView2.f(R.raw.star_fill, 37, 37, null);
+        imageView2.setAlpha(0.0f);
+        addView((View) imageView, x5.c(37.0f, 37));
+        addView((View) imageView2, x5.c(37.0f, 37));
+        org.telegram.ui.Cells.z h02 = j6.h0(AndroidUtilities.dp(37.0f), 0, i0.a.k(-1, 76));
+        this.f31661c = h02;
+        h02.setCallback(this);
+        setClickable(true);
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        RectF rectF = this.f29026b;
-        rectF.set(0.0f, 0.0f, getWidth(), getHeight());
-        float x10 = ((View) getParent()).getX() + getX();
-        float y3 = ((View) getParent()).getY() + getY();
-        q1 q1Var = this.f29025a;
-        q1Var.d(x10, y3);
-        canvas.drawRoundRect(rectF, AndroidUtilities.dp(28.0f), AndroidUtilities.dp(28.0f), q1Var.b());
-        super.dispatchDraw(canvas);
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        int i10;
+        k1 k1Var;
+        int action = motionEvent.getAction();
+        int i11 = 0;
+        if (action != 0) {
+            if (action != 1) {
+                if (action == 3 && (k1Var = this.f31662e) != null) {
+                    l1[] l1VarArr = ((m1) ((k5) k1Var).f14048b).f31674c;
+                    int length = l1VarArr.length;
+                    while (i11 < length) {
+                        l1 l1Var = l1VarArr[i11];
+                        aj0 aj0Var = l1Var.f31659a;
+                        aj0 aj0Var2 = l1Var.f31660b;
+                        aj0Var.animate().alpha(1.0f).scaleX(1.0f).scaleY(1.0f).setDuration(250L).start();
+                        aj0Var2.animate().alpha(0.0f).scaleX(1.0f).scaleY(1.0f).setDuration(250L).start();
+                        i11++;
+                    }
+                }
+            } else {
+                k1 k1Var2 = this.f31662e;
+                if (k1Var2 != null) {
+                    l1[] l1VarArr2 = ((m1) ((k5) k1Var2).f14048b).f31674c;
+                    for (int i12 = 0; i12 <= this.f31663f; i12++) {
+                        l1 l1Var2 = l1VarArr2[i12];
+                        aj0 aj0Var3 = l1Var2.f31659a;
+                        aj0 aj0Var4 = l1Var2.f31660b;
+                        aj0Var3.animate().scaleX(1.0f).scaleY(1.0f).setDuration(250L).start();
+                        aj0Var4.animate().scaleX(1.0f).scaleY(1.0f).setDuration(250L).start();
+                    }
+                }
+                if (this.d != null) {
+                    int[] iArr = new int[2];
+                    getLocationOnScreen(iArr);
+                    int i13 = iArr[0];
+                    int i14 = iArr[1];
+                    org.telegram.ui.Components.b3 b3Var = this.d;
+                    float width = (getWidth() / 2.0f) + i13;
+                    float height = (getHeight() / 2.0f) + i14;
+                    int i15 = this.f31663f + 1;
+                    m1 m1Var = (m1) b3Var.f24557b;
+                    Context context = (Context) b3Var.f24558c;
+                    if (i15 >= 4) {
+                        ?? imageView = new ImageView(context);
+                        int dp = AndroidUtilities.dp(133.0f);
+                        imageView.f(R.raw.rate, 133, 133, null);
+                        int[] iArr2 = new int[2];
+                        m1Var.getLocationOnScreen(iArr2);
+                        int i16 = iArr2[0];
+                        int i17 = iArr2[1];
+                        m1Var.addView((View) imageView, x5.c(133.0f, 133));
+                        float f7 = width - i16;
+                        float f10 = dp / 2.0f;
+                        imageView.setTranslationX(f7 - f10);
+                        imageView.setTranslationY((height - i17) - f10);
+                        imageView.setOnAnimationEndListener(new i1(m1Var, imageView, 0));
+                        imageView.d();
+                    }
+                    ci1 ci1Var = m1Var.d;
+                    if (ci1Var != null) {
+                        ci1Var.f35152b.L = i15;
+                    }
+                }
+            }
+        } else {
+            k1 k1Var3 = this.f31662e;
+            if (k1Var3 != null) {
+                l1[] l1VarArr3 = ((m1) ((k5) k1Var3).f14048b).f31674c;
+                while (true) {
+                    i10 = this.f31663f;
+                    if (i11 > i10) {
+                        break;
+                    }
+                    l1 l1Var3 = l1VarArr3[i11];
+                    aj0 aj0Var5 = l1Var3.f31659a;
+                    aj0 aj0Var6 = l1Var3.f31660b;
+                    aj0Var5.animate().alpha(0.0f).scaleX(0.8f).scaleY(0.8f).setDuration(250L).start();
+                    aj0Var6.animate().alpha(1.0f).scaleX(0.8f).scaleY(0.8f).setDuration(250L).start();
+                    i11++;
+                }
+                for (int i18 = i10 + 1; i18 < l1VarArr3.length; i18++) {
+                    l1 l1Var4 = l1VarArr3[i18];
+                    aj0 aj0Var7 = l1Var4.f31659a;
+                    aj0 aj0Var8 = l1Var4.f31660b;
+                    aj0Var7.animate().alpha(1.0f).scaleX(1.0f).scaleY(1.0f).setDuration(250L).start();
+                    aj0Var8.animate().alpha(0.0f).scaleX(1.0f).scaleY(1.0f).setDuration(250L).start();
+                }
+            }
+        }
+        return super.dispatchTouchEvent(motionEvent);
+    }
+
+    @Override
+    public final void drawableStateChanged() {
+        super.drawableStateChanged();
+        org.telegram.ui.Cells.z zVar = this.f31661c;
+        if (zVar != null) {
+            zVar.setState(getDrawableState());
+        }
+    }
+
+    @Override
+    public final void jumpDrawablesToCurrentState() {
+        super.jumpDrawablesToCurrentState();
+        org.telegram.ui.Cells.z zVar = this.f31661c;
+        if (zVar != null) {
+            zVar.jumpToCurrentState();
+        }
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+        int width = getWidth();
+        int height = getHeight();
+        org.telegram.ui.Cells.z zVar = this.f31661c;
+        zVar.setBounds(0, 0, width, height);
+        zVar.draw(canvas);
+    }
+
+    public void setAllStarsProvider(k1 k1Var) {
+        this.f31662e = k1Var;
+    }
+
+    @Override
+    public final boolean verifyDrawable(Drawable drawable) {
+        if (this.f31661c != drawable && !super.verifyDrawable(drawable)) {
+            return false;
+        }
+        return true;
     }
 }

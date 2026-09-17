@@ -2,28 +2,26 @@ package org.telegram.messenger;
 
 import org.telegram.tgnet.TLRPC;
 public final class ri implements Runnable {
-    public final int f17261a;
-    public final SendMessagesHelper f17262b;
-    public final TLRPC.TL_error f17263c;
-    public final org.telegram.ui.ActionBar.o2 d;
-    public final TLRPC.TL_messages_editMessage e;
+    public final int f18945a;
+    public final SendMessagesHelper f18946b;
+    public final TLRPC.Message f18947c;
+    public final int d;
 
-    public ri(SendMessagesHelper sendMessagesHelper, TLRPC.TL_error tL_error, org.telegram.ui.ActionBar.o2 o2Var, TLRPC.TL_messages_editMessage tL_messages_editMessage, int i10) {
-        this.f17261a = i10;
-        this.f17262b = sendMessagesHelper;
-        this.f17263c = tL_error;
-        this.d = o2Var;
-        this.e = tL_messages_editMessage;
+    public ri(SendMessagesHelper sendMessagesHelper, TLRPC.Message message, int i10, int i11) {
+        this.f18945a = i11;
+        this.f18946b = sendMessagesHelper;
+        this.f18947c = message;
+        this.d = i10;
     }
 
     @Override
     public final void run() {
-        switch (this.f17261a) {
+        switch (this.f18945a) {
             case 0:
-                this.f17262b.lambda$sendEditRichMessageRequest$25(this.f17263c, this.d, this.e);
+                this.f18946b.lambda$performSendMessageRequest$102(this.f18947c, this.d);
                 return;
             default:
-                this.f17262b.lambda$editMessage$20(this.f17263c, this.d, this.e);
+                this.f18946b.lambda$sendMessage$15(this.f18947c, this.d);
                 return;
         }
     }

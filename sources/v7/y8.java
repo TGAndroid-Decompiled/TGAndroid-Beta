@@ -4,44 +4,44 @@ import android.content.Context;
 import com.google.android.gms.tasks.Task;
 import java.util.HashMap;
 public final class y8 {
-    public static j9 f44211j;
-    public static final d f44212k;
-    public final String f44213a;
-    public final String f44214b;
-    public final w8 f44215c;
+    public static j9 f47695j;
+    public static final d f47696k;
+    public final String f47697a;
+    public final String f47698b;
+    public final w8 f47699c;
     public final qb.k d;
-    public final Task e;
-    public final Task f44216f;
-    public final String f44217g;
+    public final Task f47700e;
+    public final Task f47701f;
+    public final String f47702g;
     public final int h;
-    public final HashMap f44218i = new HashMap();
+    public final HashMap f47703i = new HashMap();
 
     static {
         Object[] objArr = {"optional-module-barcode", "com.google.android.gms.vision.barcode"};
         objArr[0].getClass();
         objArr[1].getClass();
-        f44212k = new d(objArr);
+        f47696k = new d(objArr);
     }
 
     public y8(Context context, qb.k kVar, w8 w8Var, String str) {
         int i10;
         new HashMap();
-        this.f44213a = context.getPackageName();
-        this.f44214b = qb.c.a(context);
+        this.f47697a = context.getPackageName();
+        this.f47698b = qb.c.a(context);
         this.d = kVar;
-        this.f44215c = w8Var;
+        this.f47699c = w8Var;
         d9.b();
-        this.f44217g = str;
+        this.f47702g = str;
         qb.f a2 = qb.f.a();
         c5.x xVar = new c5.x(this, 5);
         a2.getClass();
-        this.e = qb.f.b(xVar);
+        this.f47700e = qb.f.b(xVar);
         qb.f a10 = qb.f.a();
         kVar.getClass();
         t7.p pVar = new t7.p(kVar, 1);
         a10.getClass();
-        this.f44216f = qb.f.b(pVar);
-        d dVar = f44212k;
+        this.f47701f = qb.f.b(pVar);
+        d dVar = f47696k;
         if (dVar.containsKey(str)) {
             i10 = y6.e.d(context, (String) dVar.get(str), false);
         } else {

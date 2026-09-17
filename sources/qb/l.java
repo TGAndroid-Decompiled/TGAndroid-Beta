@@ -1,16 +1,15 @@
 package qb;
 
-import ai.z9;
 import java.lang.ref.PhantomReference;
 import java.lang.ref.ReferenceQueue;
 import java.util.Set;
 public final class l extends PhantomReference {
-    public final Set f41274a;
-    public final z9 f41275b;
+    public final Set f44320a;
+    public final androidx.emoji2.text.n f44321b;
 
-    public l(a aVar, ReferenceQueue referenceQueue, Set set, z9 z9Var) {
+    public l(a aVar, ReferenceQueue referenceQueue, Set set, androidx.emoji2.text.n nVar) {
         super(aVar, referenceQueue);
-        this.f41274a = set;
-        this.f41275b = z9Var;
+        this.f44320a = set;
+        this.f44321b = nVar;
     }
 }

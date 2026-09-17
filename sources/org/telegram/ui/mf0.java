@@ -1,30 +1,134 @@
 package org.telegram.ui;
 
-import android.content.Intent;
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.NotificationCenter;
-public final class mf0 implements NotificationCenter.NotificationCenterDelegate {
-    public final nf0 f35791a;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+public final class mf0 implements Runnable {
+    public final int f38725a;
+    public final zf0 f38726b;
 
-    public mf0(nf0 nf0Var) {
-        this.f35791a = nf0Var;
+    public mf0(zf0 zf0Var, int i10) {
+        this.f38725a = i10;
+        this.f38726b = zf0Var;
     }
 
     @Override
-    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
-        nf0 nf0Var = this.f35791a;
-        int intValue = ((Integer) objArr[0]).intValue();
-        ((Integer) objArr[1]).getClass();
-        Intent intent = (Intent) objArr[2];
-        NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.onActivityResultReceived);
-        if (intValue == 200) {
-            try {
-                nf0Var.f36097y = (GoogleSignInAccount) w7.d9.b(intent).getResult(com.google.android.gms.common.api.f.class);
-                nf0Var.h(null);
-            } catch (com.google.android.gms.common.api.f e) {
-                FileLog.e(e);
-            }
+    public final void run() {
+        gs[] gsVarArr;
+        View view;
+        int i10 = this.f38725a;
+        int i11 = 0;
+        zf0 zf0Var = this.f38726b;
+        switch (i10) {
+            case 0:
+                org.telegram.ui.Components.aj0 aj0Var = zf0Var.G;
+                es esVar = zf0Var.f43433f;
+                int i12 = zf0Var.f43434f0;
+                if (i12 != 3 && (gsVarArr = esVar.f36191f) != null) {
+                    for (int length = gsVarArr.length - 1; length >= 0; length--) {
+                        if (length == 0 || esVar.f36191f[length].length() != 0) {
+                            esVar.f36191f[length].requestFocus();
+                            gs gsVar = esVar.f36191f[length];
+                            gsVar.setSelection(gsVar.length());
+                            wg0.T0(zf0Var.f43449s0, esVar.f36191f[length]);
+                        }
+                    }
+                }
+                org.telegram.ui.Components.xi0 xi0Var = zf0Var.f43424a;
+                if (xi0Var != null) {
+                    xi0Var.start();
+                }
+                if (i12 == 15) {
+                    aj0Var.getAnimatedDrawable().L(0, false, false);
+                    aj0Var.getAnimatedDrawable().start();
+                    return;
+                }
+                return;
+            case 1:
+                AndroidUtilities.runOnUIThread(new mf0(zf0Var, 6));
+                return;
+            case 2:
+                fe0 fe0Var = zf0Var.f43450w;
+                zf0Var.f43445q0 = false;
+                while (true) {
+                    gs[] gsVarArr2 = zf0Var.f43433f.f36191f;
+                    if (i11 < gsVarArr2.length) {
+                        gsVarArr2[i11].i(0.0f);
+                        i11++;
+                    } else {
+                        if (zf0Var.f43434f0 == 15) {
+                            view = zf0Var.F;
+                        } else {
+                            view = zf0Var.f43452y;
+                        }
+                        if (fe0Var.getCurrentView() != view) {
+                            fe0Var.showNext();
+                            return;
+                        }
+                        return;
+                    }
+                }
+            case 3:
+                AndroidUtilities.runOnUIThread(new mf0(zf0Var, 4));
+                return;
+            case 4:
+                org.telegram.ui.Components.aj0 aj0Var2 = zf0Var.f43448s;
+                aj0Var2.setAutoRepeat(true);
+                org.telegram.ui.Components.xi0 xi0Var2 = zf0Var.O;
+                xi0Var2.L(0, false, false);
+                xi0Var2.I(1);
+                aj0Var2.setAnimation(xi0Var2);
+                aj0Var2.d();
+                return;
+            case 5:
+                try {
+                    zf0Var.f43449s0.fragmentView.performHapticFeedback(3, 2);
+                } catch (Exception unused) {
+                }
+                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(zf0Var.getContext());
+                String string = LocaleController.getString(R.string.YourPasswordSuccess);
+                org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20226a;
+                b2Var.R = string;
+                b2Var.T = LocaleController.formatString(R.string.ChangePhoneNumberSuccessWithPhone, org.telegram.messenger.w1.j(new StringBuilder("+"), zf0Var.d, gf.b.c()));
+                alertDialog$Builder.k(LocaleController.getString(R.string.OK), null);
+                b2Var.setOnDismissListener(new vf0(zf0Var, 1));
+                alertDialog$Builder.o();
+                return;
+            case 6:
+                org.telegram.ui.Components.xi0 xi0Var3 = zf0Var.P;
+                xi0Var3.f32605u0 = new mf0(zf0Var, 8);
+                org.telegram.ui.Components.aj0 aj0Var3 = zf0Var.f43448s;
+                aj0Var3.setAutoRepeat(false);
+                xi0Var3.L(0, false, false);
+                aj0Var3.setAnimation(xi0Var3);
+                aj0Var3.d();
+                return;
+            case 7:
+                zf0Var.postDelayed(new mf0(zf0Var, 9), 150L);
+                return;
+            case 8:
+                AndroidUtilities.runOnUIThread(new mf0(zf0Var, 10));
+                return;
+            case 9:
+                es esVar2 = zf0Var.f43433f;
+                esVar2.f36190e = false;
+                esVar2.f36191f[0].requestFocus();
+                while (true) {
+                    gs[] gsVarArr3 = esVar2.f36191f;
+                    if (i11 < gsVarArr3.length) {
+                        gsVarArr3[i11].i(0.0f);
+                        i11++;
+                    } else {
+                        return;
+                    }
+                }
+            default:
+                org.telegram.ui.Components.aj0 aj0Var4 = zf0Var.f43448s;
+                aj0Var4.setAutoRepeat(false);
+                aj0Var4.setAnimation(zf0Var.f43424a);
+                return;
         }
     }
 }

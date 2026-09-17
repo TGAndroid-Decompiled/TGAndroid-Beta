@@ -1,137 +1,52 @@
 package org.telegram.ui;
 
-import android.text.Editable;
-import android.text.TextUtils;
-import android.text.TextWatcher;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.FileLog;
-public final class fh1 implements TextWatcher {
-    public final int f33686a;
-    public final ih1 f33687b;
+import android.widget.TextView;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.tgnet.tl.TL_account;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+public final class fh1 extends org.telegram.ui.ActionBar.j {
+    public final hh1 f36435a;
 
-    public fh1(ih1 ih1Var, int i10) {
-        this.f33686a = i10;
-        this.f33687b = ih1Var;
+    public fh1(hh1 hh1Var) {
+        this.f36435a = hh1Var;
     }
 
     @Override
-    public final void afterTextChanged(Editable editable) {
-        org.telegram.ui.Components.yi0 yi0Var;
-        switch (this.f33686a) {
-            case 0:
-                this.f33687b.getClass();
-                return;
-            case 1:
-                ih1 ih1Var = this.f33687b;
-                if (!ih1Var.M) {
-                    int i10 = ih1Var.O;
-                    if (i10 == 0) {
-                        org.telegram.ui.Components.yi0 animatedDrawable = ih1Var.f34571a.getAnimatedDrawable();
-                        if (ih1Var.f34585n.length() > 0) {
-                            if (ih1Var.f34585n.getTransformationMethod() == null) {
-                                org.telegram.ui.Components.yi0[] yi0VarArr = ih1Var.f34580f0;
-                                if (animatedDrawable != yi0VarArr[3] && animatedDrawable != (yi0Var = yi0VarArr[5])) {
-                                    ih1Var.f34571a.setAnimation(yi0Var);
-                                    ih1Var.f34580f0[5].S(0.0f, false);
-                                    ih1Var.f34571a.d();
-                                    return;
-                                }
-                                return;
-                            }
-                            org.telegram.ui.Components.yi0[] yi0VarArr2 = ih1Var.f34580f0;
-                            if (animatedDrawable != yi0VarArr2[3]) {
-                                org.telegram.ui.Components.yi0 yi0Var2 = yi0VarArr2[2];
-                                if (animatedDrawable != yi0Var2) {
-                                    ih1Var.f34571a.setAnimation(yi0Var2);
-                                    ih1Var.f34580f0[2].P(49);
-                                    ih1Var.f34580f0[2].S(0.0f, false);
-                                    ih1Var.f34571a.d();
-                                    return;
-                                } else if (yi0Var2.f30221b0 < 49) {
-                                    yi0Var2.P(49);
-                                    return;
-                                } else {
-                                    return;
-                                }
-                            }
-                            return;
-                        }
-                        if (animatedDrawable != ih1Var.f34580f0[3] || ih1Var.f34585n.getTransformationMethod() != null) {
-                            org.telegram.ui.Components.yi0[] yi0VarArr3 = ih1Var.f34580f0;
-                            if (animatedDrawable != yi0VarArr3[5]) {
-                                yi0VarArr3[2].P(-1);
-                                org.telegram.ui.Components.yi0 yi0Var3 = ih1Var.f34580f0[2];
-                                if (animatedDrawable != yi0Var3) {
-                                    ih1Var.f34571a.setAnimation(yi0Var3);
-                                    ih1Var.f34580f0[2].N(49, false, false);
-                                }
-                                ih1Var.f34571a.d();
-                                return;
-                            }
-                        }
-                        ih1Var.f34571a.setAnimation(ih1Var.f34580f0[4]);
-                        ih1Var.f34580f0[4].S(0.0f, false);
-                        ih1Var.f34571a.d();
-                        return;
-                    } else if (i10 == 1) {
-                        try {
-                            ih1Var.f34580f0[6].P((int) ((Math.min(1.0f, ih1Var.f34585n.getLayout().getLineWidth(0) / ih1Var.f34585n.getWidth()) * 142.0f) + 18.0f));
-                            ih1Var.f34571a.d();
-                            return;
-                        } catch (Exception e) {
-                            FileLog.e(e);
-                            return;
-                        }
-                    } else if (i10 == 8 && editable.length() > 0) {
-                        ih1Var.H0(true);
-                        return;
-                    } else {
-                        return;
-                    }
+    public final void b(int i10) {
+        String string;
+        org.telegram.ui.ActionBar.d5 d5Var;
+        hh1 hh1Var = this.f36435a;
+        if (i10 == -1) {
+            if (hh1Var.G >= 0) {
+                d5Var = ((org.telegram.ui.ActionBar.n2) hh1Var).parentLayout;
+                if (d5Var.getFragmentStack().size() == 1) {
+                    hh1Var.I0();
+                    return;
                 }
-                return;
-            default:
-                ih1 ih1Var2 = this.f33687b;
-                if (ih1Var2.F) {
-                    if (ih1Var2.E.getVisibility() != 0 && !TextUtils.isEmpty(editable)) {
-                        AndroidUtilities.updateViewVisibilityAnimated(ih1Var2.E, true, 0.1f, true);
-                        return;
-                    } else if (ih1Var2.E.getVisibility() != 8 && TextUtils.isEmpty(editable)) {
-                        AndroidUtilities.updateViewVisibilityAnimated(ih1Var2.E, false, 0.1f, true);
-                        return;
-                    } else {
-                        return;
-                    }
-                }
-                return;
+            }
+            hh1Var.finishFragment();
+        } else if (i10 == 1) {
+            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(hh1Var.getParentActivity());
+            TL_account.Password password = hh1Var.U;
+            if (password != null && password.has_password) {
+                string = LocaleController.getString(R.string.CancelEmailQuestion);
+            } else {
+                string = LocaleController.getString(R.string.CancelPasswordQuestion);
+            }
+            String string2 = LocaleController.getString(R.string.CancelEmailQuestionTitle);
+            String string3 = LocaleController.getString(R.string.Abort);
+            org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20226a;
+            b2Var.T = string;
+            b2Var.R = string2;
+            alertDialog$Builder.k(string3, new vl0(this, 24));
+            alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
+            org.telegram.ui.ActionBar.b2 b2Var2 = alertDialog$Builder.f20226a;
+            hh1Var.showDialog(b2Var2);
+            TextView textView = (TextView) b2Var2.d(-1);
+            if (textView != null) {
+                textView.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f20926q7, false));
+            }
         }
-    }
-
-    @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-        int i13 = this.f33686a;
-    }
-
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-        int i13 = this.f33686a;
-    }
-
-    private final void a(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void b(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void c(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void d(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void e(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void f(int i10, int i11, int i12, CharSequence charSequence) {
     }
 }

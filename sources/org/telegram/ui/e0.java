@@ -3,61 +3,61 @@ package org.telegram.ui;
 import android.view.View;
 import android.widget.PopupWindow;
 public final class e0 implements PopupWindow.OnDismissListener {
-    public final int f33243a;
-    public final Object f33244b;
+    public final int f35929a;
+    public final Object f35930b;
 
     public e0(Object obj, int i10) {
-        this.f33243a = i10;
-        this.f33244b = obj;
+        this.f35929a = i10;
+        this.f35930b = obj;
     }
 
     @Override
     public final void onDismiss() {
-        switch (this.f33243a) {
+        switch (this.f35929a) {
             case 0:
-                h4 h4Var = (h4) this.f33244b;
-                View view = h4Var.f38583f;
+                i4 i4Var = (i4) this.f35930b;
+                View view = i4Var.f41465f;
                 if (view != null) {
-                    h4Var.d = null;
+                    i4Var.d = null;
                     view.invalidate();
-                    h4Var.f38583f = null;
+                    i4Var.f41465f = null;
                     return;
                 }
                 return;
             case 1:
-                bo boVar = (bo) this.f33244b;
-                boVar.Q8 = null;
-                boVar.T8 = null;
-                boVar.S8 = null;
-                boVar.f32527z0.R = true;
-                boVar.g8(false, true, 0.0f);
-                nk nkVar = boVar.Y;
-                if (nkVar != null && nkVar.getEditField() != null) {
-                    boVar.Y.getEditField().setAllowDrawCursor(true);
+                co coVar = (co) this.f35930b;
+                coVar.Q8 = null;
+                coVar.T8 = null;
+                coVar.S8 = null;
+                coVar.f35526z0.R = true;
+                coVar.g8(false, true, 0.0f);
+                mk mkVar = coVar.Y;
+                if (mkVar != null && mkVar.getEditField() != null) {
+                    coVar.Y.getEditField().setAllowDrawCursor(true);
                     return;
                 }
                 return;
             case 2:
-                pj pjVar = (pj) this.f33244b;
-                pjVar.f36641b = null;
-                bo boVar2 = pjVar.f36647w;
-                boVar2.Q8 = null;
-                boVar2.T8 = null;
-                boVar2.S8 = null;
-                boVar2.f32527z0.R = true;
-                if (boVar2.R8) {
-                    boVar2.g8(false, true, 0.0f);
+                oj ojVar = (oj) this.f35930b;
+                ojVar.f39288b = null;
+                co coVar2 = ojVar.f39295w;
+                coVar2.Q8 = null;
+                coVar2.T8 = null;
+                coVar2.S8 = null;
+                coVar2.f35526z0.R = true;
+                if (coVar2.R8) {
+                    coVar2.g8(false, true, 0.0f);
                 } else {
-                    boVar2.R8 = true;
+                    coVar2.R8 = true;
                 }
-                nk nkVar2 = boVar2.Y;
-                if (nkVar2 != null && nkVar2.getEditField() != null) {
-                    boVar2.Y.getEditField().setAllowDrawCursor(true);
+                mk mkVar2 = coVar2.Y;
+                if (mkVar2 != null && mkVar2.getEditField() != null) {
+                    coVar2.Y.getEditField().setAllowDrawCursor(true);
                     return;
                 }
                 return;
             default:
-                ((ProfileActivity) this.f33244b).H3(0.0f);
+                ((ProfileActivity) this.f35930b).H3(0.0f);
                 return;
         }
     }

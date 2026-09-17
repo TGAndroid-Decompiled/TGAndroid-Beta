@@ -1,32 +1,87 @@
 package org.telegram.ui;
 
-import j$.util.Objects;
-public final class o7 extends og.a {
-    public t6 f36239c;
-    public zh.a d;
+import android.graphics.drawable.ColorDrawable;
+import android.view.ViewGroup;
+import java.io.File;
+import java.util.ArrayList;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ImageLocation;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.messenger.MediaController;
+public final class o7 extends g7 {
+    public org.telegram.ui.Cells.s7 f39151n;
+    public final ArrayList f39152r;
+    public org.telegram.ui.Components.oq f39153s;
+    public final s7 v;
 
-    public final boolean equals(Object obj) {
-        zh.a aVar;
-        zh.a aVar2;
-        t6 t6Var;
-        t6 t6Var2;
-        if (this == obj) {
-            return true;
-        }
-        if (obj != null && o7.class == obj.getClass()) {
-            o7 o7Var = (o7) obj;
-            int i10 = this.f15543a;
-            if (i10 == o7Var.f15543a) {
-                if (i10 == 1 && (t6Var = this.f36239c) != null && (t6Var2 = o7Var.f36239c) != null) {
-                    if (t6Var.f37667a == t6Var2.f37667a) {
-                        return true;
-                    }
-                    return false;
-                } else if (i10 == 2 && (aVar = this.d) != null && (aVar2 = o7Var.d) != null) {
-                    return Objects.equals(aVar.f49217a, aVar2.f49217a);
+    public o7(s7 s7Var) {
+        super(s7Var, 1);
+        this.v = s7Var;
+        this.f39152r = new ArrayList();
+    }
+
+    @Override
+    public final void F() {
+        boolean z10;
+        super.F();
+        ArrayList arrayList = this.f39152r;
+        arrayList.clear();
+        int i10 = 0;
+        while (true) {
+            ArrayList arrayList2 = this.f36305e;
+            if (i10 < arrayList2.size()) {
+                String path = ((m7) arrayList2.get(i10)).d.f750a.getPath();
+                if (((m7) arrayList2.get(i10)).d.d == 1) {
+                    z10 = true;
+                } else {
+                    z10 = false;
                 }
+                arrayList.add(new MediaController.PhotoEntry(0, 0, 0L, path, 0, z10, 0, 0, 0L));
+                i10++;
+            } else {
+                return;
             }
         }
-        return false;
+    }
+
+    @Override
+    public final void v(s4.c1 c1Var, int i10) {
+        boolean z10;
+        if (this.f39153s == null) {
+            org.telegram.ui.Components.oq oqVar = new org.telegram.ui.Components.oq(new ColorDrawable(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.X9, false)), org.telegram.ui.ActionBar.j6.R4);
+            this.f39153s = oqVar;
+            oqVar.f29195w = true;
+        }
+        org.telegram.ui.Cells.t7 t7Var = (org.telegram.ui.Cells.t7) c1Var.f45767a;
+        ai.b bVar = ((m7) this.f36305e.get(i10)).d;
+        Object tag = t7Var.getTag();
+        ImageReceiver imageReceiver = t7Var.f23290c;
+        if (bVar == tag) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        t7Var.setTag(bVar);
+        int max = (int) Math.max(100.0f, AndroidUtilities.getRealScreenSize().x / AndroidUtilities.density);
+        int i11 = bVar.d;
+        File file = bVar.f750a;
+        if (i11 == 1) {
+            imageReceiver.setImage(ImageLocation.getForPath("vthumb://0:" + file.getAbsolutePath()), a4.a.k(max, max, "_"), this.f39153s, null, null, 0);
+            t7Var.m(AndroidUtilities.formatFileSize(bVar.f752c), true);
+        } else {
+            imageReceiver.setImage(ImageLocation.getForPath("thumb://0:" + file.getAbsolutePath()), a4.a.k(max, max, "_"), this.f39153s, null, null, 0);
+            t7Var.m(AndroidUtilities.formatFileSize(bVar.f752c), false);
+        }
+        t7Var.i(this.v.f40358f.f763j.contains(bVar), z10);
+    }
+
+    @Override
+    public final s4.c1 x(ViewGroup viewGroup, int i10) {
+        if (this.f39151n == null) {
+            this.f39151n = new org.telegram.ui.Cells.s7(viewGroup.getContext(), null);
+        }
+        n7 n7Var = new n7(this, viewGroup.getContext(), this.f39151n, this.v.d.getCurrentAccount());
+        n7Var.setStyle(1);
+        return new s4.c1(n7Var);
     }
 }

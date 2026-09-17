@@ -1,114 +1,122 @@
 package l;
 
+import android.content.Context;
+import android.content.ContextWrapper;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.BaseAdapter;
-import androidx.appcompat.view.menu.ListMenuItemView;
-import java.util.ArrayList;
-public final class h extends BaseAdapter {
-    public final k f13741a;
-    public int f13742b = -1;
-    public boolean f13743c;
-    public final boolean d;
-    public final LayoutInflater e;
-    public final int f13744f;
+import android.view.WindowManager;
+import android.widget.AdapterView;
+import androidx.appcompat.view.menu.ExpandedMenuView;
+public final class h implements y, AdapterView.OnItemClickListener {
+    public Context f15125a;
+    public LayoutInflater f15126b;
+    public l f15127c;
+    public ExpandedMenuView d;
+    public x f15128e;
+    public g f15129f;
 
-    public h(k kVar, LayoutInflater layoutInflater, boolean z10, int i10) {
-        this.d = z10;
-        this.e = layoutInflater;
-        this.f13741a = kVar;
-        this.f13744f = i10;
-        a();
+    public h(ContextWrapper contextWrapper) {
+        this.f15125a = contextWrapper;
+        this.f15126b = LayoutInflater.from(contextWrapper);
     }
 
-    public final void a() {
-        k kVar = this.f13741a;
-        m mVar = kVar.v;
-        if (mVar != null) {
-            kVar.i();
-            ArrayList arrayList = kVar.f13752j;
-            int size = arrayList.size();
-            for (int i10 = 0; i10 < size; i10++) {
-                if (((m) arrayList.get(i10)) == mVar) {
-                    this.f13742b = i10;
-                    return;
-                }
+    @Override
+    public final boolean b(n nVar) {
+        return false;
+    }
+
+    @Override
+    public final boolean c() {
+        return false;
+    }
+
+    @Override
+    public final void d(l lVar, boolean z10) {
+        x xVar = this.f15128e;
+        if (xVar != null) {
+            xVar.d(lVar, z10);
+        }
+    }
+
+    @Override
+    public final void e() {
+        g gVar = this.f15129f;
+        if (gVar != null) {
+            gVar.notifyDataSetChanged();
+        }
+    }
+
+    @Override
+    public final void h(x xVar) {
+        throw null;
+    }
+
+    @Override
+    public final void i(Context context, l lVar) {
+        if (this.f15125a != null) {
+            this.f15125a = context;
+            if (this.f15126b == null) {
+                this.f15126b = LayoutInflater.from(context);
             }
         }
-        this.f13742b = -1;
+        this.f15127c = lVar;
+        g gVar = this.f15129f;
+        if (gVar != null) {
+            gVar.notifyDataSetChanged();
+        }
     }
 
     @Override
-    public final m getItem(int i10) {
-        ArrayList l4;
-        boolean z10 = this.d;
-        k kVar = this.f13741a;
-        if (z10) {
-            kVar.i();
-            l4 = kVar.f13752j;
+    public final boolean j(e0 e0Var) {
+        boolean hasVisibleItems = e0Var.hasVisibleItems();
+        Context context = e0Var.f15136a;
+        if (!hasVisibleItems) {
+            return false;
+        }
+        ?? obj = new Object();
+        obj.f15157a = e0Var;
+        c5.b0 b0Var = new c5.b0(context);
+        g.c cVar = (g.c) b0Var.f4374c;
+        h hVar = new h(cVar.f10191a);
+        obj.f15159c = hVar;
+        hVar.f15128e = obj;
+        e0Var.b(hVar, context);
+        h hVar2 = obj.f15159c;
+        if (hVar2.f15129f == null) {
+            hVar2.f15129f = new g(hVar2);
+        }
+        cVar.f10197i = hVar2.f15129f;
+        cVar.f10198j = obj;
+        View view = e0Var.f15148o;
+        if (view != null) {
+            cVar.f10194e = view;
         } else {
-            l4 = kVar.l();
+            cVar.f10193c = e0Var.f15147n;
+            cVar.d = e0Var.f15146m;
         }
-        int i11 = this.f13742b;
-        if (i11 >= 0 && i10 >= i11) {
-            i10++;
+        cVar.h = obj;
+        g.g e7 = b0Var.e();
+        obj.f15158b = e7;
+        e7.setOnDismissListener(obj);
+        WindowManager.LayoutParams attributes = obj.f15158b.getWindow().getAttributes();
+        attributes.type = 1003;
+        attributes.flags |= 131072;
+        obj.f15158b.show();
+        x xVar = this.f15128e;
+        if (xVar != null) {
+            xVar.q(e0Var);
+            return true;
         }
-        return (m) l4.get(i10);
+        return true;
     }
 
     @Override
-    public final int getCount() {
-        ArrayList l4;
-        boolean z10 = this.d;
-        k kVar = this.f13741a;
-        if (z10) {
-            kVar.i();
-            l4 = kVar.f13752j;
-        } else {
-            l4 = kVar.l();
-        }
-        if (this.f13742b < 0) {
-            return l4.size();
-        }
-        return l4.size() - 1;
+    public final boolean k(n nVar) {
+        return false;
     }
 
     @Override
-    public final long getItemId(int i10) {
-        return i10;
-    }
-
-    @Override
-    public final View getView(int i10, View view, ViewGroup viewGroup) {
-        int i11;
-        boolean z10 = false;
-        if (view == null) {
-            view = this.e.inflate(this.f13744f, viewGroup, false);
-        }
-        int i12 = getItem(i10).f13770b;
-        int i13 = i10 - 1;
-        if (i13 >= 0) {
-            i11 = getItem(i13).f13770b;
-        } else {
-            i11 = i12;
-        }
-        ListMenuItemView listMenuItemView = (ListMenuItemView) view;
-        if (this.f13741a.m() && i12 != i11) {
-            z10 = true;
-        }
-        listMenuItemView.setGroupDividerEnabled(z10);
-        y yVar = (y) view;
-        if (this.f13743c) {
-            listMenuItemView.setForceShowIcon(true);
-        }
-        yVar.b(getItem(i10));
-        return view;
-    }
-
-    @Override
-    public final void notifyDataSetChanged() {
-        a();
-        super.notifyDataSetChanged();
+    public final void onItemClick(AdapterView adapterView, View view, int i10, long j3) {
+        this.f15127c.q(this.f15129f.getItem(i10), this, 0);
     }
 }

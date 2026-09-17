@@ -1,17 +1,60 @@
 package org.telegram.ui;
 
 import android.content.Context;
-public final class x01 extends org.telegram.ui.Cells.i5 {
-    public final b11 v;
+import android.view.View;
+import androidx.recyclerview.widget.RecyclerView;
+import org.telegram.messenger.AndroidUtilities;
+public final class x01 extends View {
+    public int f42554a;
+    public int f42555b;
+    public final a11 f42556c;
 
-    public x01(b11 b11Var, Context context, org.telegram.ui.ActionBar.f6 f6Var) {
-        super(18, 70, context, f6Var, false);
-        this.v = b11Var;
+    public x01(a11 a11Var, Context context) {
+        super(context);
+        this.f42556c = a11Var;
+        this.f42554a = 0;
+        this.f42555b = 0;
     }
 
     @Override
-    public final int a(int i10) {
-        this.v.e.getClass();
-        return i10;
+    public final void onMeasure(int i10, int i11) {
+        int measuredHeight;
+        int i12 = this.f42555b;
+        ProfileActivity profileActivity = this.f42556c.f34319e;
+        int i13 = 0;
+        if (i12 != profileActivity.f33884a.getMeasuredHeight()) {
+            this.f42554a = 0;
+        }
+        this.f42555b = profileActivity.f33884a.getMeasuredHeight();
+        int childCount = profileActivity.f33884a.getChildCount();
+        if (childCount == profileActivity.d.f34319e.N2) {
+            int i14 = 0;
+            for (int i15 = 0; i15 < childCount; i15++) {
+                View childAt = profileActivity.f33884a.getChildAt(i15);
+                profileActivity.f33884a.getClass();
+                int R = RecyclerView.R(childAt);
+                if (R >= 0 && R != profileActivity.C3) {
+                    i14 += profileActivity.f33884a.getChildAt(i15).getMeasuredHeight();
+                }
+            }
+            View view = profileActivity.fragmentView;
+            if (view == null) {
+                measuredHeight = 0;
+            } else {
+                measuredHeight = view.getMeasuredHeight();
+            }
+            int currentActionBarHeight = ((measuredHeight - org.telegram.ui.ActionBar.k.getCurrentActionBarHeight()) - AndroidUtilities.statusBarHeight) - i14;
+            if (currentActionBarHeight > profileActivity.T3()) {
+                currentActionBarHeight = 0;
+            }
+            if (currentActionBarHeight > 0) {
+                i13 = currentActionBarHeight;
+            }
+            int measuredWidth = profileActivity.f33884a.getMeasuredWidth();
+            this.f42554a = i13;
+            setMeasuredDimension(measuredWidth, i13);
+            return;
+        }
+        setMeasuredDimension(profileActivity.f33884a.getMeasuredWidth(), this.f42554a);
     }
 }

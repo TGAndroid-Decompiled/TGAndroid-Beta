@@ -1,31 +1,23 @@
 package org.telegram.messenger;
-
-import java.util.ArrayList;
 public final class sk implements Runnable {
-    public final int f17344a;
-    public final TopicsController f17345b;
-    public final long f17346c;
-    public final ArrayList d;
-    public final boolean e;
-    public final long f17347f;
+    public final int f19043a;
+    public final TopicsController f19044b;
+    public final long f19045c;
 
-    public sk(TopicsController topicsController, long j3, ArrayList arrayList, boolean z10, long j10, int i10) {
-        this.f17344a = i10;
-        this.f17345b = topicsController;
-        this.f17346c = j3;
-        this.d = arrayList;
-        this.e = z10;
-        this.f17347f = j10;
+    public sk(TopicsController topicsController, long j3, int i10) {
+        this.f19043a = i10;
+        this.f19044b = topicsController;
+        this.f19045c = j3;
     }
 
     @Override
     public final void run() {
-        switch (this.f17344a) {
+        switch (this.f19043a) {
             case 0:
-                TopicsController.x(this.f17345b, this.f17346c, this.d, this.e, this.f17347f);
+                this.f19044b.lambda$loadTopics$6(this.f19045c);
                 return;
             default:
-                TopicsController.s(this.f17345b, this.f17346c, this.d, this.e, this.f17347f);
+                this.f19044b.lambda$processTopics$8(this.f19045c);
                 return;
         }
     }

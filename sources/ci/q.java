@@ -1,87 +1,49 @@
 package ci;
 
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.Paint;
-import android.graphics.drawable.Drawable;
+import android.content.Context;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.ui.Components.yi0;
-public final class q extends Drawable {
-    public final Paint f5322a;
-    public float f5323b;
-    public float f5324c;
-    public long d;
-    public boolean e;
-    public boolean f5325f;
-    public boolean f5326g;
-    public final yi0 h;
-    public final ec f5327i;
-    public final ec f5328j;
+import org.telegram.messenger.vl;
+import org.telegram.ui.ActionBar.f6;
+import org.telegram.ui.ActionBar.j6;
+import w7.x5;
+public final class q extends LinearLayout {
+    public final TextView f4848a;
+    public final p f4849b;
+    public final n f4850c;
+    public final di.d d;
 
-    public q(ec ecVar, ec ecVar2) {
-        this.f5328j = ecVar;
-        Paint paint = new Paint(1);
-        this.f5322a = paint;
-        this.f5324c = 1.0f;
-        this.f5327i = ecVar2;
-        yi0 yi0Var = new yi0(R.raw.chat_audio_record_delete_3, AndroidUtilities.dp(28.0f), AndroidUtilities.dp(28.0f), false, null);
-        this.h = yi0Var;
-        yi0Var.f30237p0 = true;
-        paint.setColor(-2406842);
-        yi0Var.f30219a0 = true;
-        yi0Var.Q(-2406842, "Cup Red");
-        yi0Var.Q(-2406842, "Box");
-        yi0Var.o();
-    }
-
-    @Override
-    public final void draw(Canvas canvas) {
-        boolean z10 = this.f5326g;
-        yi0 yi0Var = this.h;
-        if (z10) {
-            yi0Var.setAlpha((int) (this.f5323b * 255.0f * this.f5324c));
-        }
-        Paint paint = this.f5322a;
-        paint.setAlpha((int) (this.f5323b * 255.0f * this.f5324c));
-        long currentTimeMillis = System.currentTimeMillis() - this.d;
-        if (!this.e && !this.f5326g) {
-            float f7 = this.f5323b - (((float) currentTimeMillis) / 600.0f);
-            this.f5323b = f7;
-            if (f7 <= 0.0f) {
-                this.f5323b = 0.0f;
-                this.e = true;
-            }
-        } else {
-            float f10 = (((float) currentTimeMillis) / 600.0f) + this.f5323b;
-            this.f5323b = f10;
-            if (f10 >= 1.0f) {
-                this.f5323b = 1.0f;
-                this.e = false;
-            }
-        }
-        this.d = System.currentTimeMillis();
-        yi0Var.setBounds(getBounds());
-        if (this.f5326g) {
-            yi0Var.draw(canvas);
-        }
-        if (!this.f5326g || !yi0Var.u()) {
-            canvas.drawCircle(getBounds().centerX(), getBounds().centerY(), AndroidUtilities.dp(5.0f), paint);
-        }
-        this.f5328j.invalidate();
-    }
-
-    @Override
-    public final int getOpacity() {
-        return -2;
-    }
-
-    @Override
-    public final void setAlpha(int i10) {
-        this.f5324c = i10 / 255.0f;
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
+    public q(Context context, f6 f6Var) {
+        super(context);
+        setPadding(AndroidUtilities.dp(24.0f), AndroidUtilities.dp(21.0f), AndroidUtilities.dp(24.0f), AndroidUtilities.dp(21.0f));
+        setOrientation(1);
+        TextView textView = new TextView(context);
+        this.f4848a = textView;
+        int i10 = j6.f21070y6;
+        vl.n(i10, f6Var, textView, 1, 14.0f);
+        textView.setGravity(17);
+        textView.setTextAlignment(4);
+        addView(textView, x5.k(0.0f, 0.0f, 0.0f, 19.0f, -1, -2));
+        p pVar = new p(0, context, f6Var, true);
+        this.f4849b = pVar;
+        pVar.setMinWidth(AndroidUtilities.dp(200.0f));
+        pVar.g(LocaleController.getString(R.string.ProfileBotAddPreview), false, true);
+        addView(pVar, x5.q(-2, 44, 17));
+        n nVar = new n(context, f6Var);
+        this.f4850c = nVar;
+        nVar.setTextColor(j6.v0(i10, f6Var));
+        nVar.setText(LocaleController.getString(R.string.ProfileBotOr));
+        nVar.setTextSize(1, 14.0f);
+        nVar.setTextAlignment(4);
+        nVar.setGravity(17);
+        nVar.setTypeface(AndroidUtilities.bold());
+        addView(nVar, x5.t(165, -2, 17, 0, 17, 0, 12));
+        di.d dVar = new di.d(context, f6Var, false);
+        this.d = dVar;
+        dVar.setMinWidth(AndroidUtilities.dp(200.0f));
+        addView(dVar, x5.q(-2, 44, 17));
     }
 }

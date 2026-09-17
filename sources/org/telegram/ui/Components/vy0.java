@@ -1,25 +1,47 @@
 package org.telegram.ui.Components;
+public final class vy0 {
+    public final int f32050a;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class vy0 extends AnimatorListenerAdapter {
-    public final int f29429a;
-    public final Switch f29430b;
-
-    public vy0(Switch r12, int i10) {
-        this.f29429a = i10;
-        this.f29430b = r12;
+    public vy0(int i10) {
+        this.f32050a = i10;
     }
 
-    @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f29429a) {
+    public final int a(cz0 cz0Var, int i10) {
+        switch (this.f32050a) {
             case 0:
-                this.f29430b.d = null;
-                return;
+                return Integer.MIN_VALUE;
+            case 1:
+                return 0;
+            case 2:
+                return i10;
+            case 3:
+                return Integer.MIN_VALUE;
             default:
-                this.f29430b.e = null;
-                return;
+                return Integer.MIN_VALUE;
+        }
+    }
+
+    public final int b(cz0 cz0Var, int i10) {
+        switch (this.f32050a) {
+            case 0:
+                return Integer.MIN_VALUE;
+            case 1:
+                return 0;
+            case 2:
+                return i10;
+            case 3:
+                return 0;
+            default:
+                return 0;
+        }
+    }
+
+    public int c(int i10, int i11) {
+        switch (this.f32050a) {
+            case 4:
+                return i11;
+            default:
+                return i10;
         }
     }
 }

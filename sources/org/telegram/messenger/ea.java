@@ -1,43 +1,33 @@
 package org.telegram.messenger;
 
-import java.util.ArrayList;
-public final class ea implements Runnable {
-    public final int f16037a;
-    public final MessagesController f16038b;
-    public final ArrayList f16039c;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class ea implements RequestDelegate {
+    public final int f17579a;
+    public final BaseController f17580b;
+    public final int f17581c;
 
-    public ea(MessagesController messagesController, ArrayList arrayList, int i10) {
-        this.f16037a = i10;
-        this.f16038b = messagesController;
-        this.f16039c = arrayList;
+    public ea(BaseController baseController, int i10, int i11) {
+        this.f17579a = i11;
+        this.f17580b = baseController;
+        this.f17581c = i10;
     }
 
     @Override
-    public final void run() {
-        switch (this.f16037a) {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f17579a) {
             case 0:
-                this.f16038b.lambda$processUpdateArray$397(this.f16039c);
+                ((MessagesController) this.f17580b).lambda$migrateDialogs$216(this.f17581c, tLObject, tL_error);
                 return;
             case 1:
-                this.f16038b.lambda$processUpdates$379(this.f16039c);
+                ((MessagesController) this.f17580b).lambda$loadPinnedDialogs$367(this.f17581c, tLObject, tL_error);
                 return;
             case 2:
-                this.f16038b.lambda$processUpdates$378(this.f16039c);
-                return;
-            case 3:
-                this.f16038b.lambda$getChannelDifference$341(this.f16039c);
-                return;
-            case 4:
-                this.f16038b.lambda$processUpdateArray$398(this.f16039c);
-                return;
-            case 5:
-                this.f16038b.lambda$checkChatInviter$372(this.f16039c);
-                return;
-            case 6:
-                this.f16038b.lambda$reloadMentionsCountForChannels$222(this.f16039c);
+                ((MessagesController) this.f17580b).lambda$loadGlobalNotificationsSettings$201(this.f17581c, tLObject, tL_error);
                 return;
             default:
-                this.f16038b.lambda$checkChatInviter$373(this.f16039c);
+                ((ContactsController) this.f17580b).lambda$loadPrivacySettings$65(this.f17581c, tLObject, tL_error);
                 return;
         }
     }

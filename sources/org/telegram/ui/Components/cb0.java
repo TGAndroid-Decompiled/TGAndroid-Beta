@@ -1,59 +1,84 @@
 package org.telegram.ui.Components;
 
+import android.content.Context;
 import android.view.View;
+import android.widget.FrameLayout;
+import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildVars;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.MessageObject;
-public final class cb0 extends s4.t {
-    public final pb0 S;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessagePreviewParams;
+import org.telegram.messenger.R;
+import org.telegram.tgnet.tl.TL_stars;
+public final class cb0 implements View.OnClickListener {
+    public final int f24988a;
+    public final boolean f24989b;
+    public final FrameLayout f24990c;
+    public final Object d;
+    public final Object f24991e;
+    public final Object f24992f;
 
-    public cb0(pb0 pb0Var) {
-        super(true);
-        this.S = pb0Var;
+    public cb0(FrameLayout frameLayout, boolean z10, Object obj, Object obj2, Object obj3, int i10) {
+        this.f24988a = i10;
+        this.f24990c = frameLayout;
+        this.f24989b = z10;
+        this.d = obj;
+        this.f24991e = obj2;
+        this.f24992f = obj3;
     }
 
     @Override
-    public final boolean B1(int i10) {
-        byte b10;
-        pb0 pb0Var = this.S;
-        MessageObject messageObject = pb0Var.f26991r.previewMessages.get(i10);
-        MessageObject.GroupedMessages a2 = pb0.a(pb0Var, messageObject);
-        if (a2 != null) {
-            MessageObject.GroupedMessagePosition position = a2.getPosition(messageObject);
-            if (position.minX != position.maxX && (b10 = position.minY) == position.maxY && b10 != 0) {
-                int size = a2.posArray.size();
-                for (int i11 = 0; i11 < size; i11++) {
-                    MessageObject.GroupedMessagePosition groupedMessagePosition = a2.posArray.get(i11);
-                    if (groupedMessagePosition != position) {
-                        byte b11 = groupedMessagePosition.minY;
-                        byte b12 = position.minY;
-                        if (b11 <= b12 && groupedMessagePosition.maxY >= b12) {
-                            return true;
-                        }
+    public final void onClick(View view) {
+        int i10 = this.f24988a;
+        Object obj = this.f24992f;
+        Object obj2 = this.f24991e;
+        Object obj3 = this.d;
+        boolean z10 = this.f24989b;
+        FrameLayout frameLayout = this.f24990c;
+        switch (i10) {
+            case 0:
+                qb0 qb0Var = (qb0) frameLayout;
+                Context context = (Context) obj3;
+                vb0 vb0Var = (vb0) obj2;
+                vb0 vb0Var2 = (vb0) obj;
+                wb0 wb0Var = qb0Var.f29690c0;
+                MessagePreviewParams messagePreviewParams = wb0Var.d;
+                if (!z10) {
+                    new yc(wb0Var, wb0Var.F).Q(R.raw.star_premium_2, 36, AndroidUtilities.replaceSingleTag("Subscribe to **Telegram Premium** to forward formatted messages without the sender’s name.", new ab0(qb0Var, context, 0))).j();
+                    return;
+                }
+                boolean z11 = messagePreviewParams.hideForwardSendersName;
+                messagePreviewParams.hideForwardSendersName = !z11;
+                wb0Var.f32261x = false;
+                if (z11) {
+                    messagePreviewParams.hideCaption = false;
+                    if (vb0Var != null) {
+                        vb0Var.a(false, true);
                     }
                 }
-            }
-        }
-        return false;
-    }
-
-    @Override
-    public final boolean C1(View view) {
-        return false;
-    }
-
-    @Override
-    public final void b0(of.e eVar, s4.z0 z0Var) {
-        if (BuildVars.DEBUG_PRIVATE_VERSION) {
-            super.b0(eVar, z0Var);
-            return;
-        }
-        try {
-            super.b0(eVar, z0Var);
-        } catch (Exception e) {
-            FileLog.e(e);
-            AndroidUtilities.runOnUIThread(new xp(this, 28));
+                vb0Var2.a(messagePreviewParams.hideForwardSendersName, true);
+                qb0Var.h();
+                qb0Var.k(true);
+                return;
+            default:
+                TL_stars.TL_starGiftCollection tL_starGiftCollection = (TL_stars.TL_starGiftCollection) obj3;
+                TL_stars.SavedStarGift savedStarGift = (TL_stars.SavedStarGift) obj2;
+                n70 n70Var = (n70) obj;
+                nr0 nr0Var = ((yh.m2) frameLayout).f50469a;
+                if (!z10) {
+                    zh.i5 i5Var = nr0Var.f50548e;
+                    int i11 = tL_starGiftCollection.collection_id;
+                    i5Var.getClass();
+                    ArrayList arrayList = new ArrayList();
+                    arrayList.add(savedStarGift);
+                    i5Var.a(i11, arrayList);
+                    yc.a0(nr0Var.f50545a).R(savedStarGift.gift.getDocument(), AndroidUtilities.replaceTags(LocaleController.formatString(R.string.Gift2AddedToCollection, zh.w3.D1(savedStarGift.gift), tL_starGiftCollection.title))).j();
+                } else {
+                    nr0Var.f50548e.k(tL_starGiftCollection.collection_id, savedStarGift);
+                    yc.a0(nr0Var.f50545a).R(savedStarGift.gift.getDocument(), AndroidUtilities.replaceTags(LocaleController.formatString(R.string.Gift2RemovedFromCollection, zh.w3.D1(savedStarGift.gift), tL_starGiftCollection.title))).j();
+                }
+                n70Var.u();
+                nr0Var.n();
+                return;
         }
     }
 }

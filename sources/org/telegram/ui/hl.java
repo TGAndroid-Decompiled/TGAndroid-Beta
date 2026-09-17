@@ -1,32 +1,32 @@
 package org.telegram.ui;
 public final class hl implements Runnable {
-    public final int f34291a;
-    public final il f34292b;
+    public final int f37088a;
+    public final il f37089b;
 
     public hl(il ilVar, int i10) {
-        this.f34291a = i10;
-        this.f34292b = ilVar;
+        this.f37088a = i10;
+        this.f37089b = ilVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f34291a) {
+        switch (this.f37088a) {
             case 0:
-                nk nkVar = this.f34292b.H.Y;
-                if (nkVar != null) {
-                    nkVar.T0 = false;
-                    org.telegram.ui.Components.cg cgVar = nkVar.U0;
-                    if (cgVar != null) {
-                        cgVar.u(false);
+                mk mkVar = this.f37089b.H.Y;
+                if (mkVar != null) {
+                    mkVar.T0 = false;
+                    org.telegram.ui.Components.eg egVar = mkVar.U0;
+                    if (egVar != null) {
+                        egVar.u(false);
                         return;
                     }
                     return;
                 }
                 return;
             default:
-                nk nkVar2 = this.f34292b.H.Y;
-                if (nkVar2 != null) {
-                    nkVar2.H0();
+                mk mkVar2 = this.f37089b.H.Y;
+                if (mkVar2 != null) {
+                    mkVar2.H0();
                     return;
                 }
                 return;

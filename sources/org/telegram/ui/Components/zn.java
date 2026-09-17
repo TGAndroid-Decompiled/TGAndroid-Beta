@@ -1,75 +1,49 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.view.MotionEvent;
-import android.view.accessibility.AccessibilityNodeInfo;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.ui.fg1;
-public final class zn extends u9 {
-    public final org.telegram.ui.Cells.l6 G;
-    public final org.telegram.ui.ActionBar.o2 H;
-    public final boolean I;
-    public final org.telegram.ui.ActionBar.f6 J;
-    public final eo K;
+import org.telegram.tgnet.TLRPC;
+public final class zn implements p8 {
+    public final org.telegram.ui.ActionBar.n1[] f33214a;
+    public final co f33215b;
 
-    public zn(eo eoVar, Context context, org.telegram.ui.ActionBar.o2 o2Var, boolean z10, org.telegram.ui.ActionBar.f6 f6Var) {
-        super(context);
-        this.K = eoVar;
-        this.H = o2Var;
-        this.I = z10;
-        this.J = f6Var;
-        this.G = new org.telegram.ui.Cells.l6(this);
+    public zn(co coVar, org.telegram.ui.ActionBar.n1[] n1VarArr) {
+        this.f33215b = coVar;
+        this.f33214a = n1VarArr;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        long j3;
-        eo eoVar = this.K;
-        if (eoVar.f23609b && this.e == null) {
-            org.telegram.ui.Cells.l6 l6Var = this.G;
-            l6Var.F.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
-            l6Var.f650a = true;
-            l6Var.v = true;
-            l6Var.J = this.J;
-            Integer num = eoVar.f23611c;
-            if (num != null) {
-                l6Var.f671z = num.intValue();
-            }
-            org.telegram.ui.bo boVar = eoVar.G;
-            if (boVar != null) {
-                j3 = boVar.a();
-            } else {
-                org.telegram.ui.ActionBar.o2 o2Var = this.H;
-                if (o2Var instanceof fg1) {
-                    j3 = -((fg1) o2Var).f33636a;
-                } else {
-                    j3 = 0;
+    public final void Y0(int i10, int i11) {
+        int i12;
+        org.telegram.ui.co coVar = this.f33215b.G;
+        if (coVar != null) {
+            coVar.getMessagesController().setDialogHistoryTTL(coVar.a(), i10);
+            TLRPC.ChatFull chatFull = coVar.Z7;
+            TLRPC.UserFull userFull = coVar.f35220a8;
+            if (userFull != null || chatFull != null) {
+                coVar.Q7();
+                UndoView undoView = coVar.y3;
+                if (undoView != null) {
+                    long a2 = coVar.a();
+                    TLRPC.User i13 = coVar.i();
+                    if (userFull != null) {
+                        i12 = userFull.ttl_period;
+                    } else {
+                        i12 = chatFull.ttl_period;
+                    }
+                    undoView.k(a2, i11, i13, Integer.valueOf(i12), null, null);
                 }
             }
-            ai.ia.h(j3, canvas, this.f28301a, l6Var);
-            return;
         }
-        super.onDraw(canvas);
     }
 
     @Override
-    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        if (this.I && getImageReceiver().hasNotThumb()) {
-            accessibilityNodeInfo.setText(LocaleController.getString(R.string.AccDescrProfilePicture));
-            accessibilityNodeInfo.addAction(new AccessibilityNodeInfo.AccessibilityAction(16, LocaleController.getString(R.string.Open)));
-            return;
+    public final void dismiss() {
+        org.telegram.ui.ActionBar.n1 n1Var = this.f33214a[0];
+        if (n1Var != null) {
+            n1Var.dismiss();
         }
-        accessibilityNodeInfo.setVisibleToUser(false);
     }
 
     @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        if (this.K.f23609b && this.G.a(motionEvent, this)) {
-            return true;
-        }
-        return super.onTouchEvent(motionEvent);
+    public final void l1() {
     }
 }

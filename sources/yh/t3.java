@@ -1,42 +1,190 @@
 package yh;
 
-import android.animation.ValueAnimator;
-import android.widget.FrameLayout;
-public final class t3 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f47842a;
-    public final x3 f47843b;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.tl.TL_stars;
+import org.telegram.ui.cj1;
+import zh.k5;
+public final class t3 implements k5 {
+    public final int f50586a;
+    public final long f50587b;
+    public final Utilities.Callback f50588c;
+    public int f50589e;
+    public long f50592i;
+    public String f50600q;
+    public boolean f50601r;
+    public boolean f50602s;
+    public boolean f50603t;
+    public final ArrayList d = new ArrayList();
+    public final ArrayList f50590f = new ArrayList();
+    public final ArrayList f50591g = new ArrayList();
+    public final ArrayList h = new ArrayList();
+    public final HashSet f50593j = new HashSet();
+    public final HashSet f50594k = new HashSet();
+    public final HashSet f50595l = new HashSet();
+    public final HashMap f50596m = new HashMap();
+    public final HashMap f50597n = new HashMap();
+    public final HashMap f50598o = new HashMap();
+    public s3 f50599p = s3.BY_PRICE;
+    public boolean f50604u = false;
+    public int v = -1;
 
-    public t3(x3 x3Var, int i10) {
-        this.f47842a = i10;
-        this.f47843b = x3Var;
+    public t3(long j3, int i10, Utilities.Callback callback) {
+        this.f50586a = i10;
+        this.f50587b = j3;
+        this.f50588c = callback;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f47842a) {
-            case 0:
-                x3 x3Var = this.f47843b;
-                x3Var.getClass();
-                x3Var.f48010s0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                x3Var.d(x3Var.U);
-                return;
-            case 1:
-                x3 x3Var2 = this.f47843b;
-                x3Var2.getClass();
-                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                float x10 = com.google.android.gms.internal.vision.e2.x((float) Math.pow((floatValue * 2.0f) - 2.0f, 2.0d), 0.075f, floatValue, 1.0f);
-                x3Var2.f48011t0 = x10;
-                FrameLayout frameLayout = x3Var2.f47988b;
-                frameLayout.setScaleX(x10);
-                frameLayout.setScaleY(x3Var2.f48011t0);
-                x3Var2.invalidate();
-                return;
-            default:
-                x3 x3Var3 = this.f47843b;
-                x3Var3.getClass();
-                x3Var3.f48010s0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                x3Var3.d(x3Var3.U);
-                return;
+    public final void a() {
+        g(false);
+    }
+
+    @Override
+    public final int b(int i10) {
+        return -1;
+    }
+
+    @Override
+    public final int c() {
+        return this.f50589e;
+    }
+
+    @Override
+    public final int e() {
+        return this.d.size();
+    }
+
+    public final void f() {
+        if (this.v >= 0) {
+            ConnectionsManager.getInstance(this.f50586a).cancelRequest(this.v, true);
+            this.v = -1;
         }
+        this.f50603t = false;
+    }
+
+    public final void g(boolean z10) {
+        if (!this.f50603t) {
+            if (z10 || !this.f50604u) {
+                this.f50603t = true;
+                TL_stars.getResaleStarGifts getresalestargifts = new TL_stars.getResaleStarGifts();
+                getresalestargifts.gift_id = this.f50587b;
+                String str = this.f50600q;
+                if (str == null) {
+                    str = "";
+                }
+                getresalestargifts.offset = str;
+                getresalestargifts.limit = 15;
+                getresalestargifts.for_craft = this.f50602s;
+                getresalestargifts.stars_only = this.f50601r;
+                s3 s3Var = this.f50599p;
+                int i10 = 0;
+                if (s3Var == s3.BY_NUMBER) {
+                    getresalestargifts.sort_by_num = true;
+                    getresalestargifts.sort_by_price = false;
+                } else if (s3Var == s3.BY_DATE) {
+                    getresalestargifts.sort_by_num = false;
+                    getresalestargifts.sort_by_price = false;
+                } else if (s3Var == s3.BY_PRICE) {
+                    getresalestargifts.sort_by_num = false;
+                    getresalestargifts.sort_by_price = true;
+                }
+                long j3 = this.f50592i;
+                ArrayList arrayList = this.h;
+                ArrayList arrayList2 = this.f50591g;
+                ArrayList arrayList3 = this.f50590f;
+                if (j3 != 0) {
+                    getresalestargifts.flags = 1 | getresalestargifts.flags;
+                    getresalestargifts.attributes_hash = j3;
+                } else if (arrayList3.isEmpty() && arrayList2.isEmpty() && arrayList.isEmpty()) {
+                    getresalestargifts.flags = 1 | getresalestargifts.flags;
+                    getresalestargifts.attributes_hash = 0L;
+                }
+                HashSet hashSet = this.f50593j;
+                boolean isEmpty = hashSet.isEmpty();
+                HashSet hashSet2 = this.f50595l;
+                HashSet hashSet3 = this.f50594k;
+                if (!isEmpty || !hashSet3.isEmpty() || !hashSet2.isEmpty()) {
+                    getresalestargifts.flags |= 8;
+                    if (!hashSet.isEmpty()) {
+                        int size = arrayList3.size();
+                        int i11 = 0;
+                        while (i11 < size) {
+                            Object obj = arrayList3.get(i11);
+                            i11++;
+                            TL_stars.starGiftAttributeModel stargiftattributemodel = (TL_stars.starGiftAttributeModel) obj;
+                            if (!hashSet.contains(Long.valueOf(stargiftattributemodel.document.f19902id))) {
+                                TL_stars.starGiftAttributeIdModel stargiftattributeidmodel = new TL_stars.starGiftAttributeIdModel();
+                                stargiftattributeidmodel.document_id = stargiftattributemodel.document.f19902id;
+                                getresalestargifts.attributes.add(stargiftattributeidmodel);
+                            }
+                        }
+                    }
+                    if (!hashSet3.isEmpty()) {
+                        int size2 = arrayList2.size();
+                        int i12 = 0;
+                        while (i12 < size2) {
+                            Object obj2 = arrayList2.get(i12);
+                            i12++;
+                            TL_stars.starGiftAttributeBackdrop stargiftattributebackdrop = (TL_stars.starGiftAttributeBackdrop) obj2;
+                            if (!hashSet3.contains(Integer.valueOf(stargiftattributebackdrop.backdrop_id))) {
+                                TL_stars.starGiftAttributeIdBackdrop stargiftattributeidbackdrop = new TL_stars.starGiftAttributeIdBackdrop();
+                                stargiftattributeidbackdrop.backdrop_id = stargiftattributebackdrop.backdrop_id;
+                                getresalestargifts.attributes.add(stargiftattributeidbackdrop);
+                            }
+                        }
+                    }
+                    if (!hashSet2.isEmpty()) {
+                        int size3 = arrayList.size();
+                        while (i10 < size3) {
+                            Object obj3 = arrayList.get(i10);
+                            i10++;
+                            TL_stars.starGiftAttributePattern stargiftattributepattern = (TL_stars.starGiftAttributePattern) obj3;
+                            if (!hashSet2.contains(Long.valueOf(stargiftattributepattern.document.f19902id))) {
+                                TL_stars.starGiftAttributeIdPattern stargiftattributeidpattern = new TL_stars.starGiftAttributeIdPattern();
+                                stargiftattributeidpattern.document_id = stargiftattributepattern.document.f19902id;
+                                getresalestargifts.attributes.add(stargiftattributeidpattern);
+                            }
+                        }
+                    }
+                }
+                this.v = ConnectionsManager.getInstance(this.f50586a).sendRequest(getresalestargifts, new cj1(5, this, getresalestargifts));
+            }
+        }
+    }
+
+    @Override
+    public final Object get(int i10) {
+        return this.d.get(i10);
+    }
+
+    public final void h() {
+        f();
+        this.f50600q = null;
+        this.d.clear();
+        g(true);
+        Utilities.Callback callback = this.f50588c;
+        if (callback != null) {
+            callback.run(Boolean.TRUE);
+        }
+    }
+
+    public final void i(s3 s3Var) {
+        if (this.f50599p != s3Var) {
+            this.f50599p = s3Var;
+            h();
+        }
+    }
+
+    @Override
+    public final int indexOf(Object obj) {
+        return this.d.indexOf(obj);
+    }
+
+    @Override
+    public final void d() {
     }
 }

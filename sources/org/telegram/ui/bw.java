@@ -1,44 +1,58 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.MessagesStorage;
-public final class bw implements MessagesStorage.IntCallback {
-    public final int f32590a;
-    public final wy f32591b;
+import android.os.Bundle;
+import android.view.View;
+import java.util.ArrayList;
+import org.telegram.messenger.MessageObject;
+public final class bw implements org.telegram.ui.Components.zk0 {
+    public final int f34963a;
+    public final uy f34964b;
 
-    public bw(wy wyVar, int i10) {
-        this.f32590a = i10;
-        this.f32591b = wyVar;
+    public bw(uy uyVar, int i10) {
+        this.f34963a = i10;
+        this.f34964b = uyVar;
     }
 
     @Override
-    public final void run(int i10) {
-        boolean z10;
-        boolean z11;
-        switch (this.f32590a) {
+    public final void a(int i10, View view) {
+        hg.q0 q0Var;
+        switch (this.f34963a) {
             case 0:
-                wy wyVar = this.f32591b;
-                wyVar.getClass();
-                if (i10 != 0) {
-                    z10 = true;
+                uy uyVar = this.f34964b;
+                Object obj = uyVar.C0.f32997v0.G(i10).G;
+                if (obj instanceof MessageObject) {
+                    MessageObject messageObject = (MessageObject) obj;
+                    Bundle bundle = new Bundle();
+                    if (messageObject.getDialogId() >= 0) {
+                        bundle.putLong("user_id", messageObject.getDialogId());
+                    } else {
+                        bundle.putLong("chat_id", -messageObject.getDialogId());
+                    }
+                    bundle.putInt("message_id", messageObject.getId());
+                    co coVar = new co(bundle);
+                    uy.d4(coVar, messageObject);
+                    uyVar.presentFragment(coVar);
+                    return;
+                } else if (obj instanceof bi.d8) {
+                    bi.d8 d8Var = (bi.d8) obj;
+                    Bundle e7 = org.telegram.ui.Cells.p6.e(3, "type");
+                    e7.putString("hashtag", d8Var.C);
+                    e7.putInt("storiesCount", d8Var.J);
+                    uyVar.presentFragment(new org.telegram.ui.Components.ca0(e7, null));
+                    return;
                 } else {
-                    z10 = false;
+                    return;
                 }
-                wyVar.U1 = z10;
-                MessagesController.getGlobalNotificationsSettings().edit().putBoolean("askAboutContacts", wyVar.U1).apply();
-                wyVar.k3(false);
-                return;
             default:
-                wy wyVar2 = this.f32591b;
-                wyVar2.getClass();
-                if (i10 != 0) {
-                    z11 = true;
+                uy uyVar2 = this.f34964b;
+                uyVar2.f41270b0.I0(true);
+                ArrayList arrayList = uyVar2.f41270b0.X2;
+                if (arrayList.isEmpty()) {
+                    q0Var = hg.s0.f11263c3[i10];
                 } else {
-                    z11 = false;
+                    q0Var = (hg.q0) arrayList.get(i10);
                 }
-                wyVar2.U1 = z11;
-                MessagesController.getGlobalNotificationsSettings().edit().putBoolean("askAboutContacts", wyVar2.U1).commit();
-                wyVar2.k3(false);
+                uyVar2.j3(q0Var);
                 return;
         }
     }

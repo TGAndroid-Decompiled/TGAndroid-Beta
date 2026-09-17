@@ -146,14 +146,14 @@ public class AnimatedFileDrawableStream implements FileLoadOperationStream {
                                     }
                                 }
                                 j3 = j11;
-                            } catch (Exception e) {
-                                e = e;
+                            } catch (Exception e7) {
+                                e = e7;
                                 j3 = j11;
                                 FileLog.e((Throwable) e, false);
                                 return (int) j3;
                             }
-                        } catch (Exception e7) {
-                            e = e7;
+                        } catch (Exception e10) {
+                            e = e10;
                         }
                     }
                     this.lastOffset = i10 + j3;

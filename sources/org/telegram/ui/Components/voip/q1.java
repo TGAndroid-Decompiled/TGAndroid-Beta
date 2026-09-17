@@ -1,160 +1,46 @@
 package org.telegram.ui.Components.voip;
 
 import android.animation.ValueAnimator;
-import android.graphics.Bitmap;
-import android.graphics.Paint;
-import android.view.View;
-import android.view.animation.LinearInterpolator;
-import java.util.ArrayList;
-import org.telegram.ui.Components.w81;
-public final class q1 {
-    public final com.google.firebase.messaging.n f29146a;
-    public final com.google.firebase.messaging.n f29147b;
-    public com.google.firebase.messaging.n f29148c;
-    public com.google.firebase.messaging.n d;
-    public boolean e;
-    public int f29149f;
-    public int f29150g;
-    public int h;
-    public boolean f29151i;
-    public final Paint f29152j;
-    public final Paint f29153k;
-    public final Paint f29154l;
-    public final ArrayList f29155m;
+import android.view.ViewTreeObserver;
+import org.telegram.ui.Components.k61;
+import org.telegram.ui.Components.pr;
+public final class q1 implements ViewTreeObserver.OnPreDrawListener {
+    public final float f31760a;
+    public final float f31761b;
+    public final s1 f31762c;
 
-    public q1() {
-        com.google.firebase.messaging.n nVar = new com.google.firebase.messaging.n(80, 80);
-        this.f29146a = nVar;
-        com.google.firebase.messaging.n nVar2 = new com.google.firebase.messaging.n(80, 80);
-        this.f29147b = nVar2;
-        this.f29149f = 0;
-        this.f29150g = 0;
-        Paint paint = new Paint(1);
-        this.f29152j = paint;
-        Paint paint2 = new Paint(1);
-        this.f29153k = paint2;
-        Paint paint3 = new Paint(1);
-        this.f29154l = paint3;
-        this.f29155m = new ArrayList();
-        nVar2.z(0.0f, 0.0f, 80.0f, 80.0f);
-        nVar.z(0.0f, 0.0f, 80.0f, 80.0f);
-        paint.setColor(-1);
-        paint.setAlpha(35);
-        paint2.setColor(-16777216);
-        paint2.setAlpha(102);
-        paint3.setColor(-16777216);
-        paint3.setAlpha(35);
-        ((Paint) nVar2.f7336a).setAlpha(180);
+    public q1(s1 s1Var, float f7, float f10) {
+        this.f31762c = s1Var;
+        this.f31760a = f7;
+        this.f31761b = f10;
     }
 
-    public final void a(View view) {
-        this.f29155m.add(view);
-    }
-
-    public final Paint b() {
-        if (this.f29151i) {
-            return this.f29153k;
+    @Override
+    public final boolean onPreDraw() {
+        s1 s1Var = this.f31762c;
+        if (!s1Var.P) {
+            ValueAnimator valueAnimator = s1Var.f31815d0;
+            if (valueAnimator != null) {
+                valueAnimator.cancel();
+            }
+            ValueAnimator ofFloat = ValueAnimator.ofFloat(s1Var.J, 0.0f);
+            s1Var.f31815d0 = ofFloat;
+            ofFloat.addUpdateListener(s1Var.f31817e0);
+            s1Var.f31815d0.setDuration(300L);
+            s1Var.f31815d0.start();
+            float measuredWidth = this.f31760a - ((s1Var.getMeasuredWidth() - (s1Var.getMeasuredWidth() * 0.23f)) / 2.0f);
+            float measuredHeight = this.f31761b - ((s1Var.getMeasuredHeight() - (s1Var.getMeasuredHeight() * 0.23f)) / 2.0f);
+            s1Var.getViewTreeObserver().removeOnPreDrawListener(this);
+            s1Var.setTranslationX(measuredWidth);
+            s1Var.setTranslationY(measuredHeight);
+            s1Var.setScaleX(0.23f);
+            s1Var.setScaleY(0.23f);
+            s1Var.animate().setListener(null).cancel();
+            s1Var.animate().setListener(new k61(this, 10)).scaleX(1.0f).scaleY(1.0f).translationX(0.0f).translationY(0.0f).alpha(1.0f).setDuration(300L).setStartDelay(0L).setInterpolator(pr.f29494f).start();
+            return false;
         }
-        return (Paint) this.f29147b.f7336a;
-    }
-
-    public final void c() {
-        ArrayList arrayList = this.f29155m;
-        int size = arrayList.size();
-        int i10 = 0;
-        while (i10 < size) {
-            Object obj = arrayList.get(i10);
-            i10++;
-            ((View) obj).invalidate();
-        }
-    }
-
-    public final void d(float f7, float f10) {
-        float f11 = this.f29150g * 1.12f;
-        com.google.firebase.messaging.n nVar = this.f29147b;
-        float f12 = -f7;
-        float f13 = -f10;
-        nVar.B(f12 - ((f11 - this.f29149f) / 2.0f), f13 - ((f11 - this.f29150g) / 2.0f), f11 / ((Bitmap) nVar.f7338c).getHeight(), this.h);
-        this.d.z(f12, f13, this.f29149f - f7, this.f29150g - f10);
-    }
-
-    public final void e(boolean z10) {
-        if (this.f29151i && !z10) {
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(1.0f, 0.0f);
-            ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener(this) {
-                public final q1 f29137b;
-
-                {
-                    this.f29137b = this;
-                }
-
-                @Override
-                public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                    switch (r2) {
-                        case 0:
-                            q1 q1Var = this.f29137b;
-                            q1Var.getClass();
-                            float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                            int i10 = (int) (35.0f * floatValue);
-                            q1Var.f29154l.setAlpha(i10);
-                            q1Var.f29153k.setAlpha((int) (floatValue * 102.0f));
-                            q1Var.f29152j.setAlpha(i10);
-                            q1Var.c();
-                            return;
-                        default:
-                            q1 q1Var2 = this.f29137b;
-                            q1Var2.getClass();
-                            float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                            ((Paint) q1Var2.f29147b.f7336a).setAlpha((int) (180.0f * floatValue2));
-                            ((Paint) q1Var2.f29146a.f7336a).setAlpha((int) (floatValue2 * 255.0f));
-                            q1Var2.c();
-                            return;
-                    }
-                }
-            });
-            ofFloat.setInterpolator(new LinearInterpolator());
-            ofFloat.setDuration(80L);
-            ofFloat.addListener(new w81(this, 6));
-            ofFloat.start();
-            ValueAnimator ofFloat2 = ValueAnimator.ofFloat(0.0f, 1.0f);
-            ofFloat2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener(this) {
-                public final q1 f29137b;
-
-                {
-                    this.f29137b = this;
-                }
-
-                @Override
-                public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                    switch (r2) {
-                        case 0:
-                            q1 q1Var = this.f29137b;
-                            q1Var.getClass();
-                            float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                            int i10 = (int) (35.0f * floatValue);
-                            q1Var.f29154l.setAlpha(i10);
-                            q1Var.f29153k.setAlpha((int) (floatValue * 102.0f));
-                            q1Var.f29152j.setAlpha(i10);
-                            q1Var.c();
-                            return;
-                        default:
-                            q1 q1Var2 = this.f29137b;
-                            q1Var2.getClass();
-                            float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                            ((Paint) q1Var2.f29147b.f7336a).setAlpha((int) (180.0f * floatValue2));
-                            ((Paint) q1Var2.f29146a.f7336a).setAlpha((int) (floatValue2 * 255.0f));
-                            q1Var2.c();
-                            return;
-                    }
-                }
-            });
-            ofFloat2.setInterpolator(new LinearInterpolator());
-            ofFloat2.setStartDelay(80L);
-            ofFloat2.setDuration(80L);
-            ofFloat2.start();
-        } else {
-            this.f29151i = z10;
-        }
-        c();
+        s1Var.M = false;
+        s1Var.requestLayout();
+        return false;
     }
 }

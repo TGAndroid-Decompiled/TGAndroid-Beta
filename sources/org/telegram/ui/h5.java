@@ -9,7 +9,7 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.camera.CameraController;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public abstract class h5 extends androidx.fragment.app.v {
+public abstract class h5 extends androidx.fragment.app.u {
     public int O = -1;
 
     public final boolean v(int i10, String[] strArr, int[] iArr) {
@@ -30,9 +30,9 @@ public abstract class h5 extends androidx.fragment.app.v {
         }
         if (i10 == 104) {
             if (z10) {
-                k60 k60Var = k60.D3;
-                if (k60Var != null) {
-                    k60Var.f35062n.callOnClick();
+                j60 j60Var = j60.D3;
+                if (j60Var != null) {
+                    j60Var.f37592n.callOnClick();
                     return true;
                 }
             } else {
@@ -122,13 +122,13 @@ public abstract class h5 extends androidx.fragment.app.v {
         return true;
     }
 
-    public final org.telegram.ui.ActionBar.c2 w(int i10, String str) {
+    public final org.telegram.ui.ActionBar.b2 w(int i10, String str) {
         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(this);
         alertDialog$Builder.m(i10, 72, org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.L5, false), null);
-        alertDialog$Builder.f18446a.T = AndroidUtilities.replaceTags(str);
-        alertDialog$Builder.k(LocaleController.getString(R.string.PermissionOpenSettings), new y0(this, 4));
+        alertDialog$Builder.f20226a.T = AndroidUtilities.replaceTags(str);
+        alertDialog$Builder.k(LocaleController.getString(R.string.PermissionOpenSettings), new z0(this, 4));
         alertDialog$Builder.h(LocaleController.getString(R.string.ContactsPermissionAlertNotNow), null);
-        return alertDialog$Builder.f18446a;
+        return alertDialog$Builder.f20226a;
     }
 
     public final void x(int i10, String str) {

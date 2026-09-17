@@ -1,32 +1,26 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import org.telegram.messenger.AndroidUtilities;
-public final class za0 implements Runnable {
-    public final int f30457a;
-    public final pb0 f30458b;
-    public final Context f30459c;
+import android.view.View;
+import android.view.ViewGroup;
+public final class za0 implements e2.h {
+    public final int f33143a;
+    public final ViewGroup f33144b;
 
-    public za0(pb0 pb0Var, Context context, int i10) {
-        this.f30457a = i10;
-        this.f30458b = pb0Var;
-        this.f30459c = context;
+    public za0(ViewGroup viewGroup, int i10) {
+        this.f33143a = i10;
+        this.f33144b = viewGroup;
     }
 
     @Override
-    public final void run() {
-        switch (this.f30457a) {
+    public final void accept(Object obj) {
+        switch (this.f33143a) {
             case 0:
-                pb0 pb0Var = this.f30458b;
-                pb0Var.f26988c0.a(false);
-                AndroidUtilities.runOnUIThread(new za0(pb0Var, this.f30459c, 1));
+                qb0 qb0Var = (qb0) this.f33144b;
+                qb0Var.f29693n.y(qb0Var.f29692f.T((View) obj));
                 return;
             default:
-                Context context = this.f30459c;
-                if (AndroidUtilities.isContextSafe(context)) {
-                    new rg.x0(context, 43, this.f30458b.f26988c0.F).show();
-                    return;
-                }
+                d61 d61Var = (d61) this.f33144b;
+                d61Var.Y2.Q(d61Var.T((View) obj), d61Var.f25309c3);
                 return;
         }
     }

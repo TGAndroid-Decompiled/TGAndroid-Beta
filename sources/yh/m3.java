@@ -1,80 +1,15 @@
 package yh;
 
-import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.tgnet.tl.TL_stars;
-public final class m3 {
-    public final x3 f47460a;
-    public r3 f47461b;
-    public r3 f47462c;
-    public r3 d;
-    public i3 h;
-    public i3 f47465i;
-    public i3 f47466j;
-    public i3 f47467k;
-    public TL_stars.TL_starGiftUnique f47468l;
-    public long f47469m;
-    public b1 f47474r;
-    public b1 f47475s;
-    public float f47476t;
-    public boolean f47477u;
-    public boolean v;
-    public final ArrayList e = new ArrayList();
-    public final ArrayList f47463f = new ArrayList();
-    public final ArrayList f47464g = new ArrayList();
-    public float f47470n = 0.0f;
-    public boolean f47471o = false;
-    public boolean f47472p = false;
-    public boolean f47473q = false;
-
-    public m3(x3 x3Var) {
-        this.f47460a = x3Var;
-        x3Var.f47990c.addOnAttachStateChangeListener(new ai.u2(this, 15));
+import org.telegram.ui.Components.q5;
+public final class m3 extends q5 {
+    @Override
+    public final int getIntrinsicHeight() {
+        return AndroidUtilities.dp(24.0f);
     }
 
-    public final void a() {
-        this.f47471o = false;
-        this.f47460a.f47990c.c();
-        i3 i3Var = this.h;
-        if (i3Var != null) {
-            i3Var.a();
-        }
-        i3 i3Var2 = this.f47465i;
-        if (i3Var2 != null) {
-            i3Var2.a();
-        }
-        i3 i3Var3 = this.f47466j;
-        if (i3Var3 != null) {
-            i3Var3.a();
-        }
-        i3 i3Var4 = this.f47467k;
-        if (i3Var4 != null) {
-            i3Var4.a();
-        }
-        c();
-    }
-
-    public final void b() {
-        if (this.f47471o && !this.v) {
-            this.v = true;
-            AndroidUtilities.runOnUIThread(new g3(this, 1));
-        }
-    }
-
-    public final void c() {
-        if (this.f47471o) {
-            return;
-        }
-        ArrayList arrayList = this.e;
-        int size = arrayList.size();
-        int i10 = 0;
-        while (i10 < size) {
-            Object obj = arrayList.get(i10);
-            i10++;
-            ((k3) obj).a();
-        }
-        arrayList.clear();
-        this.f47463f.clear();
-        this.f47464g.clear();
+    @Override
+    public final int getIntrinsicWidth() {
+        return AndroidUtilities.dp(24.0f);
     }
 }

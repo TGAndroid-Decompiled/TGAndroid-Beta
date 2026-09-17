@@ -7,22 +7,21 @@ import c3.g0;
 import c3.h0;
 import e2.d0;
 import e2.v;
-import hg.k0;
 import java.io.EOFException;
 public final class o implements h0 {
-    public final h0 f48128a;
-    public final k f48129b;
-    public m f48132g;
+    public final h0 f50738a;
+    public final k f50739b;
+    public m f50743g;
     public s h;
-    public boolean f48133i;
+    public boolean f50744i;
     public int d = 0;
-    public int e = 0;
-    public byte[] f48131f = d0.f7889b;
-    public final v f48130c = new v();
+    public int f50741e = 0;
+    public byte[] f50742f = d0.f8766b;
+    public final v f50740c = new v();
 
     public o(h0 h0Var, k kVar) {
-        this.f48128a = h0Var;
-        this.f48129b = kVar;
+        this.f50738a = h0Var;
+        this.f50739b = kVar;
     }
 
     @Override
@@ -34,8 +33,8 @@ public final class o implements h0 {
     public final void b(s sVar) {
         boolean z10;
         m mVar;
-        sVar.f3309r.getClass();
-        String str = sVar.f3309r;
+        sVar.f2397r.getClass();
+        String str = sVar.f2397r;
         if (r0.h(str) == 3) {
             z10 = true;
         } else {
@@ -43,35 +42,35 @@ public final class o implements h0 {
         }
         e2.d.b(z10);
         boolean equals = sVar.equals(this.h);
-        k kVar = this.f48129b;
+        k kVar = this.f50739b;
         if (!equals) {
             this.h = sVar;
-            if (kVar.W(sVar)) {
-                mVar = kVar.x(sVar);
+            if (kVar.i0(sVar)) {
+                mVar = kVar.v(sVar);
             } else {
                 mVar = null;
             }
-            this.f48132g = mVar;
+            this.f50743g = mVar;
         }
-        m mVar2 = this.f48132g;
-        h0 h0Var = this.f48128a;
+        m mVar2 = this.f50743g;
+        h0 h0Var = this.f50738a;
         if (mVar2 == null) {
             h0Var.b(sVar);
             return;
         }
         r a2 = sVar.a();
-        a2.f3253q = r0.n("application/x-media3-cues");
-        a2.f3246j = str;
+        a2.f2339q = r0.n("application/x-media3-cues");
+        a2.f2332j = str;
         a2.v = Long.MAX_VALUE;
-        a2.O = kVar.D(sVar);
-        k0.u(a2, h0Var);
+        a2.O = kVar.J(sVar);
+        i2.g.u(a2, h0Var);
     }
 
     @Override
     public final void c(final long j3, final int i10, int i11, int i12, g0 g0Var) {
         boolean z10;
-        if (this.f48132g == null) {
-            this.f48128a.c(j3, i10, i11, i12, g0Var);
+        if (this.f50743g == null) {
+            this.f50738a.c(j3, i10, i11, i12, g0Var);
             return;
         }
         if (g0Var == null) {
@@ -80,52 +79,52 @@ public final class o implements h0 {
             z10 = false;
         }
         e2.d.a("DRM on subtitles is not supported", z10);
-        int i13 = (this.e - i12) - i11;
+        int i13 = (this.f50741e - i12) - i11;
         try {
-            this.f48132g.B(this.f48131f, i13, i11, l.f48122c, new e2.h() {
+            this.f50743g.e0(this.f50742f, i13, i11, l.f50732c, new e2.h() {
                 @Override
                 public final void accept(Object obj) {
                     boolean z11;
                     a aVar = (a) obj;
                     o oVar = o.this;
                     e2.d.h(oVar.h);
-                    byte[] C2 = ob.a.C2(aVar.f48103a, aVar.f48105c);
-                    v vVar = oVar.f48130c;
+                    byte[] t22 = qb.b.t2(aVar.f50712a, aVar.f50714c);
+                    v vVar = oVar.f50740c;
                     vVar.getClass();
-                    vVar.H(C2.length, C2);
-                    oVar.f48128a.d(C2.length, vVar);
-                    long j10 = aVar.f48104b;
+                    vVar.H(t22.length, t22);
+                    oVar.f50738a.d(t22.length, vVar);
+                    long j10 = aVar.f50713b;
                     long j11 = j3;
                     if (j10 == -9223372036854775807L) {
-                        if (oVar.h.f3313w == Long.MAX_VALUE) {
+                        if (oVar.h.f2401w == Long.MAX_VALUE) {
                             z11 = true;
                         } else {
                             z11 = false;
                         }
                         e2.d.g(z11);
                     } else {
-                        long j12 = oVar.h.f3313w;
+                        long j12 = oVar.h.f2401w;
                         if (j12 == Long.MAX_VALUE) {
                             j11 += j10;
                         } else {
                             j11 = j10 + j12;
                         }
                     }
-                    oVar.f48128a.c(j11, i10 | 1, C2.length, 0, null);
+                    oVar.f50738a.c(j11, i10 | 1, t22.length, 0, null);
                 }
             });
-        } catch (RuntimeException e) {
-            if (this.f48133i) {
-                e2.a.o("SubtitleTranscodingTO", "Parsing subtitles failed, ignoring sample.", e);
+        } catch (RuntimeException e7) {
+            if (this.f50744i) {
+                e2.a.o("SubtitleTranscodingTO", "Parsing subtitles failed, ignoring sample.", e7);
             } else {
-                throw e;
+                throw e7;
             }
         }
         int i14 = i13 + i11;
         this.d = i14;
-        if (i14 == this.e) {
+        if (i14 == this.f50741e) {
             this.d = 0;
-            this.e = 0;
+            this.f50741e = 0;
         }
     }
 
@@ -136,42 +135,42 @@ public final class o implements h0 {
 
     @Override
     public final int e(b2.k kVar, int i10, boolean z10) {
-        if (this.f48132g == null) {
-            return this.f48128a.e(kVar, i10, z10);
+        if (this.f50743g == null) {
+            return this.f50738a.e(kVar, i10, z10);
         }
         g(i10);
-        int read = kVar.read(this.f48131f, this.e, i10);
+        int read = kVar.read(this.f50742f, this.f50741e, i10);
         if (read == -1) {
             if (z10) {
                 return -1;
             }
             throw new EOFException();
         }
-        this.e += read;
+        this.f50741e += read;
         return read;
     }
 
     @Override
     public final void f(v vVar, int i10, int i11) {
-        if (this.f48132g == null) {
-            this.f48128a.f(vVar, i10, i11);
+        if (this.f50743g == null) {
+            this.f50738a.f(vVar, i10, i11);
             return;
         }
         g(i10);
-        vVar.h(this.e, i10, this.f48131f);
-        this.e += i10;
+        vVar.h(this.f50741e, i10, this.f50742f);
+        this.f50741e += i10;
     }
 
     public final void g(int i10) {
         byte[] bArr;
-        int length = this.f48131f.length;
-        int i11 = this.e;
+        int length = this.f50742f.length;
+        int i11 = this.f50741e;
         if (length - i11 >= i10) {
             return;
         }
         int i12 = i11 - this.d;
         int max = Math.max(i12 * 2, i10 + i12);
-        byte[] bArr2 = this.f48131f;
+        byte[] bArr2 = this.f50742f;
         if (max <= bArr2.length) {
             bArr = bArr2;
         } else {
@@ -179,7 +178,7 @@ public final class o implements h0 {
         }
         System.arraycopy(bArr2, this.d, bArr, 0, i12);
         this.d = 0;
-        this.e = i12;
-        this.f48131f = bArr;
+        this.f50741e = i12;
+        this.f50742f = bArr;
     }
 }

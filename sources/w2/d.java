@@ -2,5 +2,11 @@ package w2;
 
 import v8.s;
 public interface d {
-    public static final s C = new s(1);
+    public static final s C;
+
+    static {
+        ?? obj = new Object();
+        obj.f47779a = new rb.a(28);
+        C = obj;
+    }
 }

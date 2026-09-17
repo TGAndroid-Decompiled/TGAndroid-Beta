@@ -1,6 +1,5 @@
 package m;
 
-import ai.rb;
 import android.view.View;
 import android.window.OnBackInvokedCallback;
 import android.window.OnBackInvokedDispatcher;
@@ -12,7 +11,7 @@ public abstract class f3 {
 
     public static OnBackInvokedCallback b(Runnable runnable) {
         Objects.requireNonNull(runnable);
-        return new rb(runnable, 4);
+        return new androidx.activity.r(runnable, 4);
     }
 
     public static void c(Object obj, Object obj2) {

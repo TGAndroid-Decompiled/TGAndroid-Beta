@@ -1,32 +1,91 @@
 package th;
 
 import android.graphics.Canvas;
-import androidx.recyclerview.widget.RecyclerView;
+import android.graphics.Rect;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.f6;
 import org.telegram.ui.ActionBar.j6;
-import s4.n0;
-import yf.y;
-public final class d extends n0 {
-    public final y f43277a = new y(2);
-    public final f6 f43278b;
-    public final f f43279c;
+import org.telegram.ui.Cells.t1;
+import org.telegram.ui.Components.bj0;
+import org.telegram.ui.Components.p6;
+import org.telegram.ui.Components.pr;
+import yf.p;
+public final class d extends c {
+    public final p6 d;
+    public final bj0 f46604e;
+    public final le.b f46605f;
+    public float h;
 
-    public d(f fVar, f6 f6Var) {
-        this.f43279c = fVar;
-        this.f43278b = f6Var;
+    public d(t1 t1Var, f6 f6Var) {
+        super(f6Var);
+        bj0 bj0Var = new bj0(t1Var);
+        this.f46604e = bj0Var;
+        bj0Var.d(null, true, false);
+        bj0Var.v = 650.0f;
+        bj0Var.e(0.69f, false);
+        bj0Var.f24759p.setStrokeWidth(AndroidUtilities.dp(1.5f));
+        this.f46605f = new le.b(t1Var, pr.h, 260L);
+        p6 p6Var = new p6(true, false, false, false);
+        this.d = p6Var;
+        p6Var.u(AndroidUtilities.bold());
+        p6Var.t(AndroidUtilities.dp(13.0f));
+        p6Var.f29313b = 17;
+        int v02 = j6.v0(j6.f20781i6, f6Var);
+        if (this.f46602b != v02) {
+            j6.B1(this.f46601a, v02, false);
+            this.f46602b = v02;
+        }
     }
 
     @Override
-    public final void d(Canvas canvas, RecyclerView recyclerView) {
-        f fVar = this.f43279c;
-        int max = Math.max(0, AndroidUtilities.dp(80.0f) + ((int) fVar.f43288g0.getTranslationY()) + ((int) fVar.X.e));
-        int v02 = j6.v0(j6.f18933h5, this.f43278b);
-        y yVar = this.f43277a;
-        yVar.b(v02);
-        yVar.setBounds(0, max, recyclerView.getWidth(), AndroidUtilities.dp(8.0f) + max);
-        yVar.draw(canvas);
-        fVar.Q();
-        fVar.R();
+    public final void a(int i10) {
+        this.f46601a.setAlpha(i10);
+        this.d.f29331w = i10;
+    }
+
+    public final float b() {
+        return this.f46605f.f15395e;
+    }
+
+    public final void c(int i10) {
+        this.d.r(i10);
+        this.f46604e.f24758o = i10;
+    }
+
+    public final void d(float f7) {
+        if (this.h != f7) {
+            this.h = f7;
+            Rect bounds = getBounds();
+            int i10 = (int) this.h;
+            this.d.setBounds(bounds.left, bounds.top + i10, bounds.right, bounds.bottom + i10);
+        }
+    }
+
+    @Override
+    public final void draw(Canvas canvas) {
+        float f7 = this.f46605f.f15395e;
+        if (f7 < 1.0f) {
+            p.b(canvas, this.d, 1.0f - f7);
+        }
+        if (f7 > 0.0f) {
+            float exactCenterX = getBounds().exactCenterX();
+            float exactCenterY = getBounds().exactCenterY();
+            canvas.save();
+            canvas.scale(f7, f7, exactCenterX, exactCenterY);
+            this.f46604e.a(canvas);
+            canvas.restore();
+        }
+    }
+
+    @Override
+    public final void onBoundsChange(Rect rect) {
+        super.onBoundsChange(rect);
+        Rect bounds = getBounds();
+        int i10 = (int) this.h;
+        this.d.setBounds(bounds.left, bounds.top + i10, bounds.right, bounds.bottom + i10);
+        int dp = AndroidUtilities.dp(11.0f);
+        int centerX = rect.centerX();
+        int centerY = rect.centerY();
+        this.f46604e.f(centerX - dp, centerY - dp, centerX + dp, centerY + dp);
     }
 }

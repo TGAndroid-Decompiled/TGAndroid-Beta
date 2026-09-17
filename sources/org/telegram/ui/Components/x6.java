@@ -1,81 +1,90 @@
 package org.telegram.ui.Components;
 
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
 import android.view.View;
-import org.telegram.messenger.MediaController;
-import org.telegram.messenger.SharedConfig;
-public final class x6 implements org.telegram.ui.ActionBar.s0, cl0 {
-    public final int f29856a;
-    public final h8 f29857b;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.DocumentObject;
+import org.telegram.messenger.ImageLocation;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.messenger.MediaDataController;
+import org.telegram.messenger.R;
+import org.telegram.tgnet.TLRPC;
+public final class x6 extends View {
+    public final ImageReceiver f32459a;
+    public final Drawable f32460b;
+    public final Paint f32461c;
+    public final Paint d;
 
-    public x6(h8 h8Var, int i10) {
-        this.f29856a = i10;
-        this.f29857b = h8Var;
+    public x6(Context context) {
+        super(context);
+        Paint paint = new Paint(1);
+        this.f32461c = paint;
+        this.d = new Paint(1);
+        ImageReceiver imageReceiver = new ImageReceiver(this);
+        this.f32459a = imageReceiver;
+        imageReceiver.setAlpha(0.0f);
+        imageReceiver.setDelegate(new t(this, 12));
+        this.f32460b = context.getDrawable(R.drawable.input_attach).mutate().getConstantState().newDrawable();
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setStrokeWidth(AndroidUtilities.dp(3.0f));
+        paint.setStrokeCap(Paint.Cap.ROUND);
     }
 
     @Override
-    public boolean d(int i10, View view) {
-        boolean z10 = view instanceof org.telegram.ui.Cells.x;
-        h8 h8Var = this.f29857b;
-        if (z10) {
-            if (!h8Var.s0()) {
-                org.telegram.ui.Cells.x xVar = (org.telegram.ui.Cells.x) view;
-                h8Var.B0(xVar, xVar.getMessageObject());
-                return true;
-            }
-            return false;
-        }
-        h8Var.getClass();
-        return false;
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        this.f32459a.onAttachedToWindow();
     }
 
     @Override
-    public void m(int i10) {
-        switch (this.f29856a) {
-            case 0:
-                h8 h8Var = this.f29857b;
-                h8Var.getClass();
-                if (i10 >= 0) {
-                    float[] fArr = h8.U0;
-                    if (i10 < 6) {
-                        MediaController.getInstance().setPlaybackSpeed(true, fArr[i10]);
-                        h8Var.F0(true);
-                        return;
-                    }
-                    return;
-                }
-                return;
-            case 1:
-                h8 h8Var2 = this.f29857b;
-                if (i10 != 1 && i10 != 2) {
-                    if (i10 == 4) {
-                        if (SharedConfig.repeatMode == 1) {
-                            SharedConfig.setRepeatMode(0);
-                        } else {
-                            SharedConfig.setRepeatMode(1);
-                        }
-                    } else if (SharedConfig.repeatMode == 2) {
-                        SharedConfig.setRepeatMode(0);
-                    } else {
-                        SharedConfig.setRepeatMode(2);
-                    }
-                } else {
-                    boolean z10 = SharedConfig.playOrderReversed;
-                    if ((z10 && i10 == 1) || (SharedConfig.shuffleMusic && i10 == 2)) {
-                        MediaController.getInstance().setPlaybackOrderType(0);
-                    } else {
-                        MediaController.getInstance().setPlaybackOrderType(i10);
-                    }
-                    h8Var2.f24565s.l();
-                    if (z10 != SharedConfig.playOrderReversed) {
-                        h8Var2.f24558n.C0();
-                        h8Var2.w0(false);
-                    }
-                }
-                h8Var2.H0();
-                return;
-            default:
-                this.f29857b.t0(i10);
-                return;
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        this.f32459a.onDetachedFromWindow();
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+        RectF rectF = AndroidUtilities.rectTmp;
+        rectF.set(0.0f, 0.0f, getWidth(), AndroidUtilities.dp(10.0f) + getHeight());
+        canvas.drawRoundRect(rectF, AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f), this.d);
+        ImageReceiver imageReceiver = this.f32459a;
+        imageReceiver.setImageCoords((getWidth() / 2.0f) - AndroidUtilities.dp(66.0f), (getHeight() / 2.0f) - (AndroidUtilities.dp(42.0f) / 2.0f), AndroidUtilities.dp(42.0f), AndroidUtilities.dp(42.0f));
+        imageReceiver.draw(canvas);
+        Paint paint = this.f32461c;
+        canvas.drawLine((getWidth() / 2.0f) - AndroidUtilities.dp(8.0f), getHeight() / 2.0f, (getWidth() / 2.0f) + AndroidUtilities.dp(8.0f), getHeight() / 2.0f, paint);
+        canvas.drawLine(getWidth() / 2.0f, (getHeight() / 2.0f) - AndroidUtilities.dp(8.0f), getWidth() / 2.0f, AndroidUtilities.dp(8.0f) + (getHeight() / 2.0f), paint);
+        int dp = AndroidUtilities.dp(24.0f) + (getWidth() / 2);
+        int height = (getHeight() / 2) - (AndroidUtilities.dp(42.0f) / 2);
+        int dp2 = AndroidUtilities.dp(66.0f) + (getWidth() / 2);
+        int dp3 = (AndroidUtilities.dp(42.0f) / 2) + (getHeight() / 2);
+        Drawable drawable = this.f32460b;
+        drawable.setBounds(dp, height, dp2, dp3);
+        drawable.draw(canvas);
+    }
+
+    public void setAttachBot(TLRPC.TL_attachMenuBot tL_attachMenuBot) {
+        TLRPC.TL_attachMenuBotIcon staticAttachMenuBotIcon = MediaDataController.getStaticAttachMenuBotIcon(tL_attachMenuBot);
+        if (staticAttachMenuBotIcon != null) {
+            this.f32459a.setImage(ImageLocation.getForDocument(staticAttachMenuBotIcon.icon), "42_42", DocumentObject.getSvgThumb(staticAttachMenuBotIcon.icon, org.telegram.ui.ActionBar.j6.f20925q5, 1.0f), "svg", tL_attachMenuBot, 0);
         }
+    }
+
+    @Override
+    public void setBackgroundColor(int i10) {
+        this.d.setColor(i10);
+    }
+
+    public void setColor(int i10) {
+        PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
+        this.f32460b.setColorFilter(i10, mode);
+        this.f32461c.setColor(i10);
+        this.f32459a.setColorFilter(new PorterDuffColorFilter(i10, mode));
     }
 }

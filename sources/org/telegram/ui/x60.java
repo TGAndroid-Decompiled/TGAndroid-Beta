@@ -1,45 +1,36 @@
 package org.telegram.ui;
 
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-public final class x60 implements View.OnClickListener {
-    public final int f39388a;
-    public final g70 f39389b;
+import android.content.Context;
+public final class x60 extends org.telegram.ui.Components.f20 {
+    public final f70 f42626r;
 
-    public x60(g70 g70Var, int i10) {
-        this.f39388a = i10;
-        this.f39389b = g70Var;
+    public x60(f70 f70Var, Context context, int i10) {
+        super(context, i10);
+        this.f42626r = f70Var;
     }
 
     @Override
-    public final void onClick(View view) {
-        switch (this.f39388a) {
-            case 0:
-                g70 g70Var = this.f39389b;
-                g70Var.f33875f.f22543r.clearFocus();
-                g70Var.f33875f.f22543r.requestFocus();
-                AndroidUtilities.showKeyboard(g70Var.f33875f.f22543r);
-                return;
-            case 1:
-                this.f39389b.o0();
-                return;
-            case 2:
-                g70 g70Var2 = this.f39389b;
-                g70Var2.n0(g70Var2.l0());
-                return;
-            case 3:
-                g70 g70Var3 = this.f39389b;
-                g70Var3.n0(g70Var3.l0());
-                return;
-            default:
-                g70 g70Var4 = this.f39389b;
-                g70Var4.X = null;
-                g70Var4.Z.b();
-                g70Var4.h.b();
-                g70Var4.k0();
-                g70Var4.r0();
-                g70Var4.s0();
-                return;
+    public final void a(org.telegram.ui.Components.m30 m30Var) {
+        super.a(m30Var);
+        f70.Z(this.f42626r);
+    }
+
+    @Override
+    public final void b() {
+        super.b();
+        f70.Z(this.f42626r);
+    }
+
+    @Override
+    public final void c(org.telegram.ui.Components.m30 m30Var) {
+        f70 f70Var = this.f42626r;
+        if (m30Var == f70Var.X) {
+            f70Var.X = null;
         }
+        if (m30Var == f70Var.Y) {
+            f70Var.Y = null;
+        }
+        super.c(m30Var);
+        f70.Z(f70Var);
     }
 }

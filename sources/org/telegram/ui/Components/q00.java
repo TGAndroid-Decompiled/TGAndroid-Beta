@@ -1,19 +1,19 @@
 package org.telegram.ui.Components;
 public final class q00 {
-    public byte f27175a;
-    public byte f27176b;
-    public byte f27177c;
+    public byte f29558a;
+    public byte f29559b;
+    public byte f29560c;
     public byte d;
-    public byte e;
-    public byte f27178f;
-    public float f27179g;
+    public byte f29561e;
+    public byte f29562f;
+    public float f29563g;
     public float h;
-    public short f27180i;
-    public float f27181j;
-    public float f27182k;
-    public final r00 f27183l;
+    public short f29564i;
+    public float f29565j;
+    public float f29566k;
+    public final r00 f29567l;
 
     public q00(r00 r00Var) {
-        this.f27183l = r00Var;
+        this.f29567l = r00Var;
     }
 }

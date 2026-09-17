@@ -1,62 +1,49 @@
 package org.telegram.ui;
 
-import android.view.View;
-import android.widget.FrameLayout;
-public final class aa1 extends org.telegram.ui.Components.b81 {
-    public final boolean f31776a;
-    public final boolean f31777b;
-    public final boolean f31778c;
-    public final FrameLayout d;
-    public final ab1 e;
+import android.os.Build;
+import androidx.recyclerview.widget.RecyclerView;
+public final class aa1 extends s4.s0 {
+    public final int f34395a;
+    public final bb1 f34396b;
 
-    public aa1(ab1 ab1Var, boolean z10, boolean z11, boolean z12, FrameLayout frameLayout) {
-        this.e = ab1Var;
-        this.f31776a = z10;
-        this.f31777b = z11;
-        this.f31778c = z12;
-        this.d = frameLayout;
+    public aa1(bb1 bb1Var, int i10) {
+        this.f34395a = i10;
+        this.f34396b = bb1Var;
     }
 
     @Override
-    public final View d(int i10) {
-        ab1 ab1Var = this.e;
-        if (ab1Var.f31797l0) {
-            return ab1Var.f31795j0;
+    public final void b(RecyclerView recyclerView, int i10, int i11) {
+        bh.f fVar;
+        bb1 bb1Var;
+        bh.f fVar2;
+        bb1 bb1Var2;
+        bh.f fVar3;
+        switch (this.f34395a) {
+            case 0:
+                bb1 bb1Var3 = this.f34396b;
+                if (bb1Var3.f34741r0.size() != bb1Var3.f34743s0.size() && !bb1Var3.f34748w0 && bb1Var3.U.N0() > bb1Var3.X.f36639c0 - 20) {
+                    bb1Var3.h0();
+                }
+                if (Build.VERSION.SDK_INT >= 31 && (fVar = bb1Var3.C0) != null) {
+                    fVar.f(i10, i11);
+                    bb1.W(bb1Var3);
+                    return;
+                }
+                return;
+            case 1:
+                if (Build.VERSION.SDK_INT >= 31 && (fVar2 = (bb1Var = this.f34396b).C0) != null) {
+                    fVar2.f(i10, i11);
+                    bb1.W(bb1Var);
+                    return;
+                }
+                return;
+            default:
+                if (Build.VERSION.SDK_INT >= 31 && (fVar3 = (bb1Var2 = this.f34396b).C0) != null) {
+                    fVar3.f(i10, i11);
+                    bb1.W(bb1Var2);
+                    return;
+                }
+                return;
         }
-        boolean z10 = this.f31776a;
-        FrameLayout frameLayout = this.d;
-        if (z10) {
-            if (i10 == 0) {
-                return frameLayout;
-            }
-            i10--;
-        }
-        if (this.f31777b) {
-            if (i10 == 0) {
-                return ab1Var.f31795j0;
-            }
-            i10--;
-        }
-        if (this.f31778c && i10 == 0) {
-            return ab1Var.f31796k0;
-        }
-        return frameLayout;
-    }
-
-    @Override
-    public final int e() {
-        if (this.e.f31797l0) {
-            return 1;
-        }
-        return (this.f31776a ? 1 : 0) + (this.f31777b ? 1 : 0) + (this.f31778c ? 1 : 0);
-    }
-
-    @Override
-    public final int h(int i10) {
-        return i10;
-    }
-
-    @Override
-    public final void b(View view, int i10, int i11) {
     }
 }

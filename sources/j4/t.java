@@ -2,66 +2,66 @@ package j4;
 
 import c3.h0;
 public final class t implements i {
-    public final String f12802a;
-    public final int f12803b;
-    public final e2.v f12804c;
+    public final String f13451a;
+    public final int f13452b;
+    public final e2.v f13453c;
     public final a4.h d;
-    public h0 e;
-    public String f12805f;
-    public b2.s f12806g;
+    public h0 f13454e;
+    public String f13455f;
+    public b2.s f13456g;
     public int h;
-    public int f12807i;
-    public int f12808j;
-    public int f12809k;
-    public long f12810l;
-    public boolean f12811m;
-    public int f12812n;
-    public int f12813o;
-    public int f12814p;
-    public boolean f12815q;
-    public long f12816r;
-    public int f12817s;
-    public long f12818t;
-    public int f12819u;
+    public int f13457i;
+    public int f13458j;
+    public int f13459k;
+    public long f13460l;
+    public boolean f13461m;
+    public int f13462n;
+    public int f13463o;
+    public int f13464p;
+    public boolean f13465q;
+    public long f13466r;
+    public int f13467s;
+    public long f13468t;
+    public int f13469u;
     public String v;
 
     public t(String str, int i10) {
-        this.f12802a = str;
-        this.f12803b = i10;
+        this.f13451a = str;
+        this.f13452b = i10;
         e2.v vVar = new e2.v(1024);
-        this.f12804c = vVar;
-        byte[] bArr = vVar.f7934a;
+        this.f13453c = vVar;
+        byte[] bArr = vVar.f8817a;
         this.d = new a4.h(bArr, bArr.length);
-        this.f12810l = -9223372036854775807L;
+        this.f13460l = -9223372036854775807L;
     }
 
     @Override
-    public final void a(e2.v r24) {
-        throw new UnsupportedOperationException("Method not decompiled: j4.t.a(e2.v):void");
+    public final void b(e2.v r24) {
+        throw new UnsupportedOperationException("Method not decompiled: j4.t.b(e2.v):void");
     }
 
     @Override
-    public final void c() {
+    public final void d() {
         this.h = 0;
-        this.f12810l = -9223372036854775807L;
-        this.f12811m = false;
+        this.f13460l = -9223372036854775807L;
+        this.f13461m = false;
     }
 
     @Override
-    public final void d(c3.q qVar, f0 f0Var) {
+    public final void e(c3.q qVar, f0 f0Var) {
         f0Var.a();
         f0Var.b();
-        this.e = qVar.Z1(f0Var.d, 1);
+        this.f13454e = qVar.R1(f0Var.d, 1);
         f0Var.b();
-        this.f12805f = f0Var.e;
+        this.f13455f = f0Var.f13321e;
     }
 
     @Override
-    public final void f(int i10, long j3) {
-        this.f12810l = j3;
+    public final void g(int i10, long j3) {
+        this.f13460l = j3;
     }
 
     @Override
-    public final void e(boolean z10) {
+    public final void f(boolean z10) {
     }
 }

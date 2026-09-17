@@ -1,27 +1,32 @@
 package org.telegram.ui.Components;
-public final class ab0 implements Runnable {
-    public final int f22364a;
-    public final pb0 f22365b;
 
-    public ab0(pb0 pb0Var, int i10) {
-        this.f22364a = i10;
-        this.f22365b = pb0Var;
+import android.content.Context;
+import org.telegram.messenger.AndroidUtilities;
+public final class ab0 implements Runnable {
+    public final int f24353a;
+    public final qb0 f24354b;
+    public final Context f24355c;
+
+    public ab0(qb0 qb0Var, Context context, int i10) {
+        this.f24353a = i10;
+        this.f24354b = qb0Var;
+        this.f24355c = context;
     }
 
     @Override
     public final void run() {
-        switch (this.f22364a) {
+        switch (this.f24353a) {
             case 0:
-                pb0 pb0Var = this.f22365b;
-                hb0 hb0Var = pb0Var.f26989f;
-                if (pb0Var.f26988c0.d.webpageTop) {
-                    hb0Var.x0(-hb0Var.computeVerticalScrollOffset(), 250, ji.n.V);
-                    return;
-                }
-                hb0Var.x0(hb0Var.computeVerticalScrollRange() - (hb0Var.computeVerticalScrollExtent() + hb0Var.computeVerticalScrollOffset()), 250, ji.n.V);
+                qb0 qb0Var = this.f24354b;
+                qb0Var.f29690c0.a(false);
+                AndroidUtilities.runOnUIThread(new ab0(qb0Var, this.f24355c, 1));
                 return;
             default:
-                this.f22365b.g(true, false);
+                Context context = this.f24355c;
+                if (AndroidUtilities.isContextSafe(context)) {
+                    new sg.a1(context, 43, this.f24354b.f29690c0.F).show();
+                    return;
+                }
                 return;
         }
     }

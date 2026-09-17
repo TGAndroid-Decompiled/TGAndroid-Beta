@@ -6,14 +6,14 @@ import java.util.Arrays;
 import w7.e0;
 public final class x extends o6.a {
     public static final Parcelable.Creator<x> CREATOR = new e6.i(9);
-    public final int f9486a;
-    public final boolean f9487b;
-    public final boolean f9488c;
+    public final int f10474a;
+    public final boolean f10475b;
+    public final boolean f10476c;
 
     public x(int i10, boolean z10, boolean z11) {
-        this.f9486a = i10;
-        this.f9487b = z10;
-        this.f9488c = z11;
+        this.f10474a = i10;
+        this.f10475b = z10;
+        this.f10476c = z11;
     }
 
     public final boolean equals(Object obj) {
@@ -24,25 +24,25 @@ public final class x extends o6.a {
             return false;
         }
         x xVar = (x) obj;
-        if (this.f9486a == xVar.f9486a && this.f9487b == xVar.f9487b && this.f9488c == xVar.f9488c) {
+        if (this.f10474a == xVar.f10474a && this.f10475b == xVar.f10475b && this.f10476c == xVar.f10476c) {
             return true;
         }
         return false;
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{Integer.valueOf(this.f9486a), Boolean.valueOf(this.f9487b), Boolean.valueOf(this.f9488c)});
+        return Arrays.hashCode(new Object[]{Integer.valueOf(this.f10474a), Boolean.valueOf(this.f10475b), Boolean.valueOf(this.f10476c)});
     }
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
         int q6 = e0.q(parcel, 20293);
         e0.s(parcel, 2, 4);
-        parcel.writeInt(this.f9486a);
+        parcel.writeInt(this.f10474a);
         e0.s(parcel, 3, 4);
-        parcel.writeInt(this.f9487b ? 1 : 0);
+        parcel.writeInt(this.f10475b ? 1 : 0);
         e0.s(parcel, 4, 4);
-        parcel.writeInt(this.f9488c ? 1 : 0);
+        parcel.writeInt(this.f10476c ? 1 : 0);
         e0.r(parcel, q6);
     }
 }

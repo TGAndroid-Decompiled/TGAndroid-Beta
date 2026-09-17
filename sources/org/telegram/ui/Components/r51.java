@@ -1,31 +1,19 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-public final class r51 implements View.OnClickListener {
-    public final int f27538a;
-    public final UndoView f27539b;
+import org.telegram.messenger.Utilities;
+public final class r51 implements Utilities.Callback0Return {
+    public final int f29964a;
+    public final Object f29965b;
+    public final Object f29966c;
 
-    public r51(UndoView undoView, int i10) {
-        this.f27538a = i10;
-        this.f27539b = undoView;
+    public r51(int i10, Object obj, Object obj2) {
+        this.f29964a = i10;
+        this.f29965b = obj;
+        this.f29966c = obj2;
     }
 
     @Override
-    public final void onClick(View view) {
-        int i10 = this.f27538a;
-        UndoView undoView = this.f27539b;
-        switch (i10) {
-            case 0:
-                int i11 = UndoView.f22238e0;
-                if (undoView.a()) {
-                    undoView.e(1, false);
-                    return;
-                }
-                return;
-            default:
-                int i12 = UndoView.f22238e0;
-                undoView.e(1, false);
-                return;
-        }
+    public final java.lang.Object run() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.r51.run():java.lang.Object");
     }
 }

@@ -7,10 +7,10 @@ import com.google.android.gms.common.api.n;
 import com.google.android.gms.tasks.Task;
 import com.google.android.gms.tasks.Tasks;
 import java.util.Arrays;
-import k2.u;
+import ji.u4;
 import n6.l;
 public final class g extends j {
-    public static final com.google.android.gms.common.api.e f42889k = new com.google.android.gms.common.api.e("ModuleInstall.API", new a8.d(14), new Object());
+    public static final com.google.android.gms.common.api.e f45982k = new com.google.android.gms.common.api.e("ModuleInstall.API", new a8.d(14), new Object());
 
     public final Task f(n... nVarArr) {
         boolean z10;
@@ -24,14 +24,14 @@ public final class g extends j {
             l.i(nVar, "Requested API must not be null.");
         }
         a b10 = a.b(Arrays.asList(nVarArr), false);
-        if (b10.f42883a.isEmpty()) {
+        if (b10.f45976a.isEmpty()) {
             return Tasks.forResult(new r6.a(0, true));
         }
-        v e = w.e();
-        e.d = new k6.c[]{k7.b.f13530c};
-        e.f6181a = 27301;
-        e.f6182b = false;
-        e.f6183c = new u(this, b10);
-        return e(0, e.a());
+        v e7 = w.e();
+        e7.d = new k6.c[]{k7.b.f14862c};
+        e7.f5142a = 27301;
+        e7.f5143b = false;
+        e7.f5144c = new u4(this, b10);
+        return e(0, e7.a());
     }
 }

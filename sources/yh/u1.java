@@ -1,30 +1,32 @@
 package yh;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.TwoStepVerificationActivity;
-public final class u1 implements RequestDelegate {
-    public final int f47866a;
-    public final a4 f47867b;
-    public final TwoStepVerificationActivity f47868c;
+import org.telegram.messenger.Utilities;
+import org.telegram.ui.Components.nr0;
+public final class u1 implements le.d, Utilities.Callback2Return {
+    public final nr0 f50608a;
 
-    public u1(a4 a4Var, TwoStepVerificationActivity twoStepVerificationActivity, int i10) {
-        this.f47866a = i10;
-        this.f47867b = a4Var;
-        this.f47868c = twoStepVerificationActivity;
+    public u1(nr0 nr0Var) {
+        this.f50608a = nr0Var;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f47866a) {
-            case 0:
-                AndroidUtilities.runOnUIThread(new t0(this.f47867b, tL_error, this.f47868c, tLObject));
-                return;
-            default:
-                AndroidUtilities.runOnUIThread(new t0(this.f47867b, tL_error, tLObject, this.f47868c));
-                return;
+    public void E(int i10, float f7, float f10, le.e eVar) {
+        this.f50608a.l();
+    }
+
+    @Override
+    public Object run(Object obj, Object obj2) {
+        Integer num = (Integer) obj2;
+        nr0 nr0Var = this.f50608a;
+        nr0Var.i();
+        if (((Integer) obj).intValue() == -1) {
+            nr0Var.h(null, new r1(nr0Var, 0));
+            return Boolean.TRUE;
         }
+        return Boolean.FALSE;
+    }
+
+    @Override
+    public void z(float f7, int i10) {
     }
 }

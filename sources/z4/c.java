@@ -1,8 +1,8 @@
 package z4;
 public final class c {
-    public Object f48136a;
-    public int f48137b;
-    public boolean f48138c;
+    public Object f50747a;
+    public int f50748b;
+    public boolean f50749c;
     public float d;
-    public float e;
+    public float f50750e;
 }

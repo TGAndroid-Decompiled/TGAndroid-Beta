@@ -1,12 +1,12 @@
 package w9;
 public final class e {
-    public final String f44939a;
-    public final String f44940b;
-    public final String f44941c;
+    public final String f48410a;
+    public final String f48411b;
+    public final String f48412c;
 
     public e(String str, String str2, String str3) {
-        this.f44939a = str;
-        this.f44940b = str2;
-        this.f44941c = str3;
+        this.f48410a = str;
+        this.f48411b = str2;
+        this.f48412c = str3;
     }
 }

@@ -2,13 +2,13 @@ package b2;
 
 import java.util.HashSet;
 public abstract class l0 {
-    public static final HashSet f3087a = new HashSet();
-    public static String f3088b = "media3.common";
+    public static final HashSet f2165a = new HashSet();
+    public static String f2166b = "media3.common";
 
     public static synchronized void a(String str) {
         synchronized (l0.class) {
-            if (f3087a.add(str)) {
-                f3088b += ", " + str;
+            if (f2165a.add(str)) {
+                f2166b += ", " + str;
             }
         }
     }
@@ -16,7 +16,7 @@ public abstract class l0 {
     public static synchronized String b() {
         String str;
         synchronized (l0.class) {
-            str = f3088b;
+            str = f2166b;
         }
         return str;
     }

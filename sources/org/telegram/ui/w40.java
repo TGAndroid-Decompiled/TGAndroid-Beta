@@ -1,11 +1,24 @@
 package org.telegram.ui;
 
-import android.app.Activity;
-public final class w40 extends org.telegram.ui.Components.voip.x0 {
-    public final k60 E;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.view.ViewGroup;
+public final class w40 extends AnimatorListenerAdapter {
+    public final org.telegram.ui.Components.voip.t f41785a;
+    public final j60 f41786b;
 
-    public w40(k60 k60Var, Activity activity, boolean z10) {
-        super(activity, z10);
-        this.E = k60Var;
+    public w40(j60 j60Var, org.telegram.ui.Components.voip.t tVar) {
+        this.f41786b = j60Var;
+        this.f41785a = tVar;
+    }
+
+    @Override
+    public final void onAnimationEnd(Animator animator) {
+        ViewGroup viewGroup;
+        org.telegram.ui.Components.voip.t tVar = this.f41785a;
+        if (tVar.getParent() != null) {
+            viewGroup = ((org.telegram.ui.ActionBar.f3) this.f41786b).containerView;
+            viewGroup.removeView(tVar);
+        }
     }
 }

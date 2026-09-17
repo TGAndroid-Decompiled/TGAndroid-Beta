@@ -1,51 +1,43 @@
 package org.telegram.ui.Components;
 
-import android.os.Bundle;
-import android.widget.LinearLayout;
-public abstract class vv0 extends LinearLayout {
-    public boolean a() {
-        return this instanceof org.telegram.ui.ie0;
+import org.telegram.messenger.DownloadController;
+import org.telegram.messenger.FileLoader;
+import org.telegram.messenger.MessageObject;
+import org.telegram.tgnet.TLRPC;
+public final class vv0 implements Runnable {
+    public final int f32015a;
+    public final TLRPC.Document f32016b;
+    public final int f32017c;
+    public final MessageObject d;
+    public final org.telegram.ui.Cells.t1 f32018e;
+    public final TLRPC.TL_messages_stickerSet f32019f;
+
+    public vv0(TLRPC.Document document, int i10, MessageObject messageObject, org.telegram.ui.Cells.t1 t1Var, TLRPC.TL_messages_stickerSet tL_messages_stickerSet, int i11) {
+        this.f32015a = i11;
+        this.f32016b = document;
+        this.f32017c = i10;
+        this.d = messageObject;
+        this.f32018e = t1Var;
+        this.f32019f = tL_messages_stickerSet;
     }
 
-    public boolean b() {
-        return this instanceof org.telegram.ui.ie0;
-    }
-
-    public boolean c(boolean z10) {
-        return true;
-    }
-
-    public String getHeaderName() {
-        return "";
-    }
-
-    public void d() {
-    }
-
-    public void f() {
-    }
-
-    public void g() {
-    }
-
-    public void h(String str) {
-    }
-
-    public void i() {
-    }
-
-    public void j() {
-    }
-
-    public void k(Bundle bundle) {
-    }
-
-    public void l(Bundle bundle) {
-    }
-
-    public void n() {
-    }
-
-    public void m(Bundle bundle, boolean z10) {
+    @Override
+    public final void run() {
+        switch (this.f32015a) {
+            case 0:
+                TLRPC.Document document = this.f32016b;
+                String attachFileName = FileLoader.getAttachFileName(document);
+                int i10 = this.f32017c;
+                DownloadController.getInstance(i10).addLoadingFileObserver(attachFileName, this.d, this.f32018e);
+                FileLoader.getInstance(i10).loadFile(document, this.f32019f, 1, 1);
+                return;
+            default:
+                TLRPC.Document document2 = this.f32016b;
+                String attachFileName2 = FileLoader.getAttachFileName(document2);
+                int i11 = this.f32017c;
+                DownloadController.getInstance(i11).addLoadingFileObserver(attachFileName2, this.d, this.f32018e);
+                FileLoader.getInstance(i11).loadFile(document2, this.f32019f, 1, 1);
+                return;
+        }
     }
 }

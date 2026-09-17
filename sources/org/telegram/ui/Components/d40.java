@@ -10,39 +10,39 @@ import java.util.ArrayList;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
 public final class d40 extends FrameLayout {
-    public final int f23204a;
-    public final org.telegram.ui.ActionBar.f6 f23205b;
-    public ArrayList f23206c;
+    public final int f25250a;
+    public final org.telegram.ui.ActionBar.f6 f25251b;
+    public ArrayList f25252c;
     public final FrameLayout d;
-    public final f61 e;
-    public final x51 f23207f;
+    public final d61 f25253e;
+    public final v51 f25254f;
     public Utilities.Callback h;
 
     public d40(int i10, Activity activity, org.telegram.ui.ActionBar.f6 f6Var) {
         super(activity);
-        this.f23204a = i10;
-        this.f23205b = f6Var;
-        f61 f61Var = new f61(activity, i10, 0, false, new d(this, 15), new c40(this), new c40(this), f6Var);
-        this.e = f61Var;
-        f61Var.setClipToPadding(false);
-        x51 x51Var = (x51) f61Var.getAdapter();
-        this.f23207f = x51Var;
-        x51Var.f29851r = false;
-        addView(f61Var, -1, -1);
+        this.f25250a = i10;
+        this.f25251b = f6Var;
+        d61 d61Var = new d61(activity, i10, 0, false, new d(this, 15), new c40(this), new c40(this), f6Var);
+        this.f25253e = d61Var;
+        d61Var.setClipToPadding(false);
+        v51 v51Var = (v51) d61Var.getAdapter();
+        this.f25254f = v51Var;
+        v51Var.f31163r = false;
+        addView(d61Var, -1, -1);
         FrameLayout frameLayout = new FrameLayout(activity);
         this.d = frameLayout;
         ImageView imageView = new ImageView(activity);
-        int i11 = org.telegram.ui.ActionBar.j6.f19027m6;
+        int i11 = org.telegram.ui.ActionBar.j6.f20855m6;
         imageView.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.j6.v0(i11, f6Var), PorterDuff.Mode.MULTIPLY));
         imageView.setScaleType(ImageView.ScaleType.CENTER);
         imageView.setImageResource(R.drawable.large_hashtags);
         frameLayout.addView(imageView, w7.x5.e(56, 56, 49));
         TextView textView = new TextView(activity);
         textView.setTextColor(org.telegram.ui.ActionBar.j6.v0(i11, f6Var));
-        org.telegram.messenger.wl.k(R.string.HashtagSearchPlaceholder, textView, 17);
+        org.telegram.messenger.vl.k(R.string.HashtagSearchPlaceholder, textView, 17);
         frameLayout.addView(textView, w7.x5.d(-2, -2.0f, 81, 0.0f, 56.0f, 0.0f, 0.0f));
         addView(frameLayout, w7.x5.e(210, -2, 17));
-        f61Var.setEmptyView(frameLayout);
+        d61Var.setEmptyView(frameLayout);
     }
 
     public void setOnHashtagClickListener(Utilities.Callback<String> callback) {
@@ -50,6 +50,6 @@ public final class d40 extends FrameLayout {
     }
 
     public void setOnScrollListener(s4.s0 s0Var) {
-        this.e.j(s0Var);
+        this.f25253e.j(s0Var);
     }
 }

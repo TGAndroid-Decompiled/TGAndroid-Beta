@@ -4,46 +4,46 @@ import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import java.util.ArrayList;
 public final class e31 implements org.telegram.ui.ActionBar.k6 {
-    public boolean f33276a = false;
-    public final f31 f33277b;
+    public boolean f35944a = false;
+    public final f31 f35945b;
 
     public e31(f31 f31Var) {
-        this.f33277b = f31Var;
+        this.f35945b = f31Var;
     }
 
     @Override
     public final void a(float f7) {
         ArrayList arrayList;
-        f31 f31Var = this.f33277b;
-        if (f7 == 0.0f && !this.f33276a) {
-            org.telegram.ui.Components.kp kpVar = f31Var.f33528b;
-            if (kpVar != null && (arrayList = kpVar.d) != null) {
+        f31 f31Var = this.f35945b;
+        if (f7 == 0.0f && !this.f35944a) {
+            org.telegram.ui.Components.jp jpVar = f31Var.f36279b;
+            if (jpVar != null && (arrayList = jpVar.d) != null) {
                 int size = arrayList.size();
                 int i10 = 0;
                 while (i10 < size) {
                     Object obj = arrayList.get(i10);
                     i10++;
-                    ((org.telegram.ui.Components.lp) obj).f25956c = f31Var.M ? 1 : 0;
+                    ((org.telegram.ui.Components.kp) obj).f27912c = f31Var.M ? 1 : 0;
                 }
             }
             if (!f31Var.Q) {
-                org.telegram.ui.Components.kp kpVar2 = f31Var.f33528b;
-                for (int i11 = 0; i11 < kpVar2.h(); i11++) {
-                    ((org.telegram.ui.Components.lp) kpVar2.d.get(i11)).getClass();
+                org.telegram.ui.Components.jp jpVar2 = f31Var.f36279b;
+                for (int i11 = 0; i11 < jpVar2.h(); i11++) {
+                    ((org.telegram.ui.Components.kp) jpVar2.d.get(i11)).getClass();
                 }
             }
-            this.f33276a = true;
+            this.f35944a = true;
         }
         f31Var.E.setColorFilter(new PorterDuffColorFilter(f31Var.d.getThemedColor(org.telegram.ui.ActionBar.j6.Oh), PorterDuff.Mode.SRC_IN));
         if (f31Var.Q) {
-            org.telegram.ui.Components.kp kpVar3 = f31Var.f33528b;
-            for (int i12 = 0; i12 < kpVar3.h(); i12++) {
-                ((org.telegram.ui.Components.lp) kpVar3.d.get(i12)).getClass();
+            org.telegram.ui.Components.jp jpVar3 = f31Var.f36279b;
+            for (int i12 = 0; i12 < jpVar3.h(); i12++) {
+                ((org.telegram.ui.Components.kp) jpVar3.d.get(i12)).getClass();
             }
         }
-        if (f7 == 1.0f && this.f33276a) {
+        if (f7 == 1.0f && this.f35944a) {
             f31Var.Q = false;
-            this.f33276a = false;
+            this.f35944a = false;
         }
     }
 

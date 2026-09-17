@@ -1,4 +1,4 @@
 package yf;
 public interface m {
-    void e(long j3);
+    void c(long j3);
 }

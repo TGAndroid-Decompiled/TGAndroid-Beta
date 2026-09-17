@@ -1,103 +1,86 @@
 package org.telegram.ui.Components;
 
-import android.animation.AnimatorSet;
-import android.animation.ObjectAnimator;
-import android.app.Activity;
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import android.graphics.drawable.GradientDrawable;
-import android.util.Property;
+import android.graphics.Paint;
+import android.view.MotionEvent;
 import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.ScrollView;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.tgnet.TLRPC;
-public final class ba extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {
-    public TextView f22670a;
-    public TextView f22671b;
-    public ai.f0 f22672c;
-    public ai.f0 d;
-    public cj0 e;
-    public ScrollView f22673f;
-    public AnimatorSet h;
-    public TLRPC.TL_help_appUpdate f22674n;
-    public String f22675r;
-    public int f22676s;
-    public int v;
-    public GradientDrawable f22677w;
-    public GradientDrawable f22678x;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class ba extends View {
+    public Bitmap f24668a;
+    public Bitmap f24669b;
+    public Paint f24670c;
+    public int d;
+    public int f24671e;
+    public aa f24672f;
 
-    public final void a(boolean z10) {
-        ai.f0 f0Var = this.d;
-        TextView textView = this.f22671b;
-        ai.f0 f0Var2 = this.f22672c;
-        AnimatorSet animatorSet = this.h;
-        if (animatorSet != null) {
-            animatorSet.cancel();
-        }
-        this.h = new AnimatorSet();
-        Property property = View.ALPHA;
-        Property property2 = View.SCALE_Y;
-        Property property3 = View.SCALE_X;
-        if (z10) {
-            f0Var2.setVisibility(0);
-            f0Var.setEnabled(false);
-            this.h.playTogether(ObjectAnimator.ofFloat(textView, property3, 0.1f), ObjectAnimator.ofFloat(textView, property2, 0.1f), ObjectAnimator.ofFloat(textView, property, 0.0f), ObjectAnimator.ofFloat(f0Var2, property3, 1.0f), ObjectAnimator.ofFloat(f0Var2, property2, 1.0f), ObjectAnimator.ofFloat(f0Var2, property, 1.0f));
-        } else {
-            textView.setVisibility(0);
-            f0Var.setEnabled(true);
-            this.h.playTogether(ObjectAnimator.ofFloat(f0Var2, property3, 0.1f), ObjectAnimator.ofFloat(f0Var2, property2, 0.1f), ObjectAnimator.ofFloat(f0Var2, property, 0.0f), ObjectAnimator.ofFloat(textView, property3, 1.0f), ObjectAnimator.ofFloat(textView, property2, 1.0f), ObjectAnimator.ofFloat(textView, property, 1.0f));
-        }
-        this.h.addListener(new aa(0, this, z10));
-        this.h.setDuration(150L);
-        this.h.start();
+    public int getRating() {
+        return this.f24671e;
     }
 
     @Override
-    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
-        if (i10 == NotificationCenter.fileLoaded) {
-            String str = (String) objArr[0];
-            String str2 = this.f22675r;
-            if (str2 != null && str2.equals(str)) {
-                a(false);
-                ApplicationLoader.applicationLoaderInstance.openApkInstall((Activity) getContext(), this.f22674n.document);
+    public final void onDraw(Canvas canvas) {
+        int i10;
+        Bitmap bitmap;
+        Paint paint = this.f24670c;
+        for (int i11 = 0; i11 < this.d; i11++) {
+            if (i11 < this.f24671e) {
+                i10 = org.telegram.ui.ActionBar.j6.f20854m5;
+            } else {
+                i10 = org.telegram.ui.ActionBar.j6.f20981t5;
             }
-        } else if (i10 == NotificationCenter.fileLoadFailed) {
-            String str3 = (String) objArr[0];
-            String str4 = this.f22675r;
-            if (str4 != null && str4.equals(str3)) {
-                a(false);
+            paint.setColor(org.telegram.ui.ActionBar.j6.w0(null, i10, false));
+            if (i11 < this.f24671e) {
+                bitmap = this.f24668a;
+            } else {
+                bitmap = this.f24669b;
             }
-        } else if (i10 == NotificationCenter.fileLoadProgressChanged) {
-            String str5 = (String) objArr[0];
-            String str6 = this.f22675r;
-            if (str6 != null && str6.equals(str5)) {
-                this.e.e(Math.min(1.0f, ((float) ((Long) objArr[1]).longValue()) / ((float) ((Long) objArr[2]).longValue())), true);
-            }
+            canvas.drawBitmap(bitmap, AndroidUtilities.dp(48.0f) * i11, 0.0f, paint);
         }
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        super.dispatchDraw(canvas);
-        GradientDrawable gradientDrawable = this.f22677w;
-        ScrollView scrollView = this.f22673f;
-        gradientDrawable.setBounds(scrollView.getLeft(), scrollView.getTop(), scrollView.getRight(), AndroidUtilities.dp(16.0f) + scrollView.getTop());
-        gradientDrawable.draw(canvas);
-        GradientDrawable gradientDrawable2 = this.f22678x;
-        gradientDrawable2.setBounds(scrollView.getLeft(), scrollView.getBottom() - AndroidUtilities.dp(18.0f), scrollView.getRight(), scrollView.getBottom());
-        gradientDrawable2.draw(canvas);
+    public final void onMeasure(int i10, int i11) {
+        int i12 = this.d;
+        setMeasuredDimension(org.telegram.messenger.w1.D(16.0f, i12 - 1, AndroidUtilities.dp(32.0f) * i12), AndroidUtilities.dp(32.0f));
     }
 
     @Override
-    public void setVisibility(int i10) {
-        super.setVisibility(i10);
-        if (i10 == 8) {
-            NotificationCenter.getInstance(this.f22676s).removeObserver(this, NotificationCenter.fileLoaded);
-            NotificationCenter.getInstance(this.f22676s).removeObserver(this, NotificationCenter.fileLoadFailed);
-            NotificationCenter.getInstance(this.f22676s).removeObserver(this, NotificationCenter.fileLoadProgressChanged);
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        int i10;
+        int i11;
+        float dp = AndroidUtilities.dp(-8.0f);
+        boolean z10 = false;
+        for (int i12 = 0; i12 < this.d; i12++) {
+            if (motionEvent.getX() > dp && motionEvent.getX() < AndroidUtilities.dp(48.0f) + dp && this.f24671e != (i10 = i12 + 1)) {
+                this.f24671e = i10;
+                aa aaVar = this.f24672f;
+                if (aaVar != null) {
+                    View view = ((le.a) aaVar).f15391a;
+                    if (i10 > 0) {
+                        z10 = true;
+                    }
+                    view.setEnabled(z10);
+                    TextView textView = (TextView) view;
+                    if (i10 < 4) {
+                        i11 = R.string.Next;
+                    } else {
+                        i11 = R.string.Send;
+                    }
+                    textView.setText(LocaleController.getString(i11).toUpperCase());
+                }
+                invalidate();
+                return true;
+            }
+            dp += AndroidUtilities.dp(48.0f);
         }
+        return true;
+    }
+
+    public void setOnRatingChangeListener(aa aaVar) {
+        this.f24672f = aaVar;
     }
 }

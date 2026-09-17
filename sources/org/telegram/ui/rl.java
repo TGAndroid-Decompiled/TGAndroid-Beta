@@ -8,19 +8,19 @@ import android.graphics.Path;
 import android.text.TextPaint;
 import android.view.animation.OvershootInterpolator;
 import org.telegram.messenger.AndroidUtilities;
-public final class rl extends org.telegram.ui.Components.o01 {
-    public final bo K;
+public final class rl extends org.telegram.ui.Components.m01 {
+    public final co K;
 
-    public rl(Activity activity, org.telegram.ui.ActionBar.f6 f6Var, bo boVar) {
+    public rl(Activity activity, org.telegram.ui.ActionBar.f6 f6Var, co coVar) {
         super(activity);
-        this.K = boVar;
+        this.K = coVar;
         TextPaint textPaint = new TextPaint(1);
-        this.f26579b = textPaint;
+        this.f28358b = textPaint;
         Paint paint = new Paint(1);
-        this.f26580c = paint;
+        this.f28359c = paint;
         this.d = AndroidUtilities.dp(24.0f);
-        this.e = new OvershootInterpolator();
-        this.H = new org.telegram.ui.Components.kq0(this, 14);
+        this.f28360e = new OvershootInterpolator();
+        this.H = new org.telegram.ui.Components.jq0(this, 14);
         this.J = new Path();
         int v02 = org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.Hi, f6Var);
         int alpha = Color.alpha(v02);
@@ -33,8 +33,8 @@ public final class rl extends org.telegram.ui.Components.o01 {
 
     public final void d() {
         int i10 = -(AndroidUtilities.dp(16.0f) + getMeasuredHeight());
-        bo boVar = this.K;
-        int top = boVar.Y.getTop() - boVar.X0.getMeasuredHeight();
+        co coVar = this.K;
+        int top = coVar.Y.getTop() - coVar.X0.getMeasuredHeight();
         setTranslationY(top - ((1.0f - getPrepareProgress()) * (top + i10)));
     }
 

@@ -8,34 +8,34 @@ import org.telegram.messenger.R;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PremiumPreviewFragment;
 public final class b30 implements Runnable {
-    public final int f22554a;
-    public final Context f22555b;
+    public final int f24559a;
+    public final Context f24560b;
 
     public b30(Context context, int i10) {
-        this.f22554a = i10;
-        this.f22555b = context;
+        this.f24559a = i10;
+        this.f24560b = context;
     }
 
     @Override
     public final void run() {
-        switch (this.f22554a) {
+        switch (this.f24559a) {
             case 0:
-                z20.j(this.f22555b);
+                z20.j(this.f24560b);
                 return;
             case 1:
-                nf.f.s(this.f22555b, LocaleController.getString(R.string.StarsTOSLink));
+                of.f.s(this.f24560b, LocaleController.getString(R.string.StarsTOSLink));
                 return;
             case 2:
-                Activity findActivity = AndroidUtilities.findActivity(this.f22555b);
+                Activity findActivity = AndroidUtilities.findActivity(this.f24560b);
                 if (findActivity instanceof LaunchActivity) {
-                    ((LaunchActivity) findActivity).p0(new PremiumPreviewFragment(0, rg.j0.A1(10)));
+                    ((LaunchActivity) findActivity).p0(new PremiumPreviewFragment(0, sg.k0.A1(10)));
                     return;
                 }
                 return;
             default:
-                Activity findActivity2 = AndroidUtilities.findActivity(this.f22555b);
+                Activity findActivity2 = AndroidUtilities.findActivity(this.f24560b);
                 if (findActivity2 instanceof LaunchActivity) {
-                    ((LaunchActivity) findActivity2).p0(new PremiumPreviewFragment(0, rg.j0.A1(9)));
+                    ((LaunchActivity) findActivity2).p0(new PremiumPreviewFragment(0, sg.k0.A1(9)));
                     return;
                 }
                 return;

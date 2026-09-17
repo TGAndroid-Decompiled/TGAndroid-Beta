@@ -1,9 +1,9 @@
 package e3;
 public final class h implements a {
-    public final String f7978a;
+    public final String f8864a;
 
     public h(String str) {
-        this.f7978a = str;
+        this.f8864a = str;
     }
 
     @Override

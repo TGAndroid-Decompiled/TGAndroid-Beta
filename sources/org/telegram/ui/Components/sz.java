@@ -4,19 +4,19 @@ import android.graphics.SurfaceTexture;
 import android.os.Looper;
 import android.view.Surface;
 public final class sz implements Runnable {
-    public final int f27957a;
-    public final vz f27958b;
+    public final int f30479a;
+    public final vz f30480b;
 
     public sz(vz vzVar, int i10) {
-        this.f27957a = i10;
-        this.f27958b = vzVar;
+        this.f30479a = i10;
+        this.f30480b = vzVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f27957a) {
+        switch (this.f30479a) {
             case 0:
-                this.f27958b.finish();
+                this.f30480b.finish();
                 Looper myLooper = Looper.myLooper();
                 if (myLooper != null) {
                     myLooper.quit();
@@ -24,15 +24,15 @@ public final class sz implements Runnable {
                 }
                 return;
             case 1:
-                vz.b(this.f27958b);
+                vz.b(this.f30480b);
                 return;
             default:
-                vz vzVar = this.f27958b;
-                lv lvVar = vzVar.f29434b0;
-                SurfaceTexture surfaceTexture = vzVar.f29442w;
-                v61 v61Var = (v61) lvVar.f25976b;
-                if (v61Var.f28636a != null) {
-                    v61Var.f28636a.T(new Surface(surfaceTexture));
+                vz vzVar = this.f30480b;
+                kv kvVar = vzVar.f32054b0;
+                SurfaceTexture surfaceTexture = vzVar.f32063w;
+                u61 u61Var = (u61) kvVar.f27936b;
+                if (u61Var.f30848a != null) {
+                    u61Var.f30848a.T(new Surface(surfaceTexture));
                     return;
                 }
                 return;

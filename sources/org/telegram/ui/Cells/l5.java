@@ -1,16 +1,16 @@
 package org.telegram.ui.Cells;
 
 import android.view.View;
-import org.telegram.messenger.wl;
+import org.telegram.messenger.vl;
 public final class l5 extends View {
-    public int f20406a;
+    public int f22281a;
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        super.onMeasure(wl.C(2.0f, this.f20406a, 1073741824), wl.C(2.0f, this.f20406a, 1073741824));
+        super.onMeasure(vl.C(2.0f, this.f22281a, 1073741824), vl.C(2.0f, this.f22281a, 1073741824));
     }
 
     public void setItemSize(int i10) {
-        this.f20406a = i10;
+        this.f22281a = i10;
     }
 }

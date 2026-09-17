@@ -1,12 +1,13 @@
 package z3;
 
 import b2.s;
+import t7.u;
 public interface k {
-    public static final rb.a D = new rb.a(28);
+    public static final u D = new u(28);
 
-    int D(s sVar);
+    int J(s sVar);
 
-    boolean W(s sVar);
+    boolean i0(s sVar);
 
-    m x(s sVar);
+    m v(s sVar);
 }

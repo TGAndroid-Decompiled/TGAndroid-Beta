@@ -417,8 +417,8 @@ public class PredefMacros {
     public static final Atom bgcolor_macro(TeXParser teXParser, String[] strArr) {
         try {
             return new ColorAtom(new TeXFormula(teXParser, strArr[2]).root, ColorAtom.getColor(strArr[1]), (Color) null);
-        } catch (NumberFormatException e) {
-            throw new ParseException(e.toString());
+        } catch (NumberFormatException e7) {
+            throw new ParseException(e7.toString());
         }
     }
 
@@ -769,8 +769,8 @@ public class PredefMacros {
     public static final Atom fgcolor_macro(TeXParser teXParser, String[] strArr) {
         try {
             return new ColorAtom(new TeXFormula(teXParser, strArr[2]).root, (Color) null, ColorAtom.getColor(strArr[1]));
-        } catch (NumberFormatException e) {
-            throw new ParseException(e.toString());
+        } catch (NumberFormatException e7) {
+            throw new ParseException(e7.toString());
         }
     }
 
@@ -934,8 +934,8 @@ public class PredefMacros {
                 return new SpaceAtom(i10, 0.0f, parseFloat, 0.0f);
             }
             throw new ParseException("Unknown unit \"" + strArr[1].substring(i11) + "\" !");
-        } catch (NumberFormatException e) {
-            throw new ParseException(e.toString());
+        } catch (NumberFormatException e7) {
+            throw new ParseException(e7.toString());
         }
     }
 

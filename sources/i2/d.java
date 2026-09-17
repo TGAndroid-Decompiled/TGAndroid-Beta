@@ -1,28 +1,28 @@
 package i2;
 
 import android.content.Context;
-public final class d implements d9.i {
-    public final int f10634a;
-    public final Context f10635b;
+public final class d implements d9.j {
+    public final int f11500a;
+    public final Context f11501b;
 
     public d(Context context, int i10) {
-        this.f10634a = i10;
-        this.f10635b = context;
+        this.f11500a = i10;
+        this.f11501b = context;
     }
 
     @Override
     public final Object get() {
-        switch (this.f10634a) {
+        switch (this.f11500a) {
             case 0:
-                return c2.d.e(this.f10635b);
+                return c2.d.e(this.f11501b);
             case 1:
-                return new l(this.f10635b);
+                return new m(this.f11501b);
             case 2:
-                return new u2.p(this.f10635b, new c3.m());
+                return new u2.p(this.f11501b, new c3.m());
             case 3:
-                return new x2.p(this.f10635b, new qb.b(25));
+                return new x2.p(this.f11501b, new rb.a(25));
             default:
-                return y2.f.b(this.f10635b);
+                return y2.f.b(this.f11501b);
         }
     }
 }

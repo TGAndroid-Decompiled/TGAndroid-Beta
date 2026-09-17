@@ -13,13 +13,13 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.SvgHelper;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-public final class iz extends ll0 {
-    public final boolean f25058c;
+public final class iz extends kl0 {
+    public final boolean f27315c;
     public final kz d;
 
     public iz(kz kzVar, boolean z10) {
         this.d = kzVar;
-        this.f25058c = z10;
+        this.f27315c = z10;
     }
 
     @Override
@@ -30,12 +30,12 @@ public final class iz extends ll0 {
     @Override
     public final int h() {
         ArrayList arrayList;
-        boolean z10 = this.f25058c;
+        boolean z10 = this.f27315c;
         kz kzVar = this.d;
         if (z10) {
-            arrayList = kzVar.f25746n1;
+            arrayList = kzVar.f27994n1;
         } else {
-            arrayList = kzVar.f25742m1;
+            arrayList = kzVar.f27990m1;
         }
         return arrayList.size();
     }
@@ -52,21 +52,21 @@ public final class iz extends ll0 {
         ImageLocation forSticker;
         int i11;
         String str;
-        u9 u9Var = (u9) c1Var.f42697a;
+        x9 x9Var = (x9) c1Var.f45767a;
         kz kzVar = this.d;
-        boolean z10 = this.f25058c;
+        boolean z10 = this.f27315c;
         if (z10) {
-            arrayList = kzVar.f25746n1;
+            arrayList = kzVar.f27994n1;
         } else {
-            arrayList = kzVar.f25742m1;
+            arrayList = kzVar.f27990m1;
         }
         TLRPC.StickerSetCovered stickerSetCovered = (TLRPC.StickerSetCovered) arrayList.get(i10);
-        u9Var.setTag(stickerSetCovered);
+        x9Var.setTag(stickerSetCovered);
         ColorFilter colorFilter = null;
         if (stickerSetCovered instanceof TLRPC.TL_stickerSetFullCovered) {
             arrayList2 = ((TLRPC.TL_stickerSetFullCovered) stickerSetCovered).documents;
         } else if (stickerSetCovered instanceof TLRPC.TL_stickerSetNoCovered) {
-            TLRPC.TL_messages_stickerSet stickerSet = MediaDataController.getInstance(kzVar.f25713c1).getStickerSet(MediaDataController.getInputStickerSet(stickerSetCovered.set), false);
+            TLRPC.TL_messages_stickerSet stickerSet = MediaDataController.getInstance(kzVar.f27960c1).getStickerSet(MediaDataController.getInputStickerSet(stickerSetCovered.set), false);
             if (stickerSet == null) {
                 arrayList2 = null;
             } else {
@@ -80,7 +80,7 @@ public final class iz extends ll0 {
             if (arrayList2 != null && !arrayList2.isEmpty()) {
                 if (stickerSetCovered.set != null) {
                     for (int i12 = 0; i12 < arrayList2.size(); i12++) {
-                        if (arrayList2.get(i12).f18127id == stickerSetCovered.set.thumb_document_id) {
+                        if (arrayList2.get(i12).f19902id == stickerSetCovered.set.thumb_document_id) {
                             document = arrayList2.get(i12);
                             break;
                         }
@@ -99,10 +99,10 @@ public final class iz extends ll0 {
                 if (MessageObject.isTextColorEmoji(document)) {
                     colorFilter = org.telegram.ui.ActionBar.j6.n0(kzVar.Z1);
                 }
-                u9Var.setColorFilter(colorFilter);
+                x9Var.setColorFilter(colorFilter);
             }
             TLObject closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(stickerSetCovered.set.thumbs, 90);
-            SvgHelper.SvgDrawable svgThumb = DocumentObject.getSvgThumb(stickerSetCovered.set.thumbs, org.telegram.ui.ActionBar.j6.f18845c7, 0.2f);
+            SvgHelper.SvgDrawable svgThumb = DocumentObject.getSvgThumb(stickerSetCovered.set.thumbs, org.telegram.ui.ActionBar.j6.f20674c7, 0.2f);
             if (svgThumb != null) {
                 svgThumb.overrideWidthAndHeight(512, 512);
             }
@@ -132,14 +132,14 @@ public final class iz extends ll0 {
                     String str2 = str;
                     ImageLocation imageLocation = forSticker;
                     if (imageLocation.imageType == 1) {
-                        u9Var.i(imageLocation, str2, "tgs", svgThumb, stickerSetCovered);
+                        x9Var.i(imageLocation, str2, "tgs", svgThumb, stickerSetCovered);
                     } else {
-                        u9Var.i(imageLocation, null, "webp", svgThumb, stickerSetCovered);
+                        x9Var.i(imageLocation, null, "webp", svgThumb, stickerSetCovered);
                     }
                 } else if (svgThumb != null) {
-                    u9Var.n(ImageLocation.getForDocument(document), str, svgThumb, stickerSetCovered);
+                    x9Var.n(ImageLocation.getForDocument(document), str, svgThumb, stickerSetCovered);
                 } else {
-                    u9Var.j(ImageLocation.getForDocument(document), str, forSticker, null, 0, stickerSetCovered);
+                    x9Var.j(ImageLocation.getForDocument(document), str, forSticker, null, 0, stickerSetCovered);
                 }
             }
         }

@@ -1,15 +1,15 @@
 package b2;
 public class q0 {
-    public int f3203a;
-    public int f3204b;
+    public int f2287a;
+    public int f2288b;
 
     public q0(int i10, int i11) {
-        this.f3203a = i10;
-        this.f3204b = i11;
+        this.f2287a = i10;
+        this.f2288b = i11;
     }
 
     public int a() {
-        int i10 = this.f3204b;
+        int i10 = this.f2288b;
         if (i10 != 2) {
             if (i10 != 5) {
                 if (i10 != 29) {

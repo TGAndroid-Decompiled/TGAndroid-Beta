@@ -1,28 +1,34 @@
 package org.telegram.messenger;
 
-import android.text.Spanned;
-import java.util.Comparator;
+import android.animation.ValueAnimator;
+import android.view.View;
+import android.view.Window;
+import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.RichMessageLayout;
-public final class vh implements Comparator {
-    public final int f17561a;
-    public final Spanned f17562b;
+import org.telegram.ui.Components.g71;
+public final class vh implements ValueAnimator.AnimatorUpdateListener {
+    public final int f19275a;
+    public final Object f19276b;
+    public final Object f19277c;
 
-    public vh(Spanned spanned, int i10) {
-        this.f17561a = i10;
-        this.f17562b = spanned;
+    public vh(int i10, Object obj, Object obj2) {
+        this.f19275a = i10;
+        this.f19276b = obj;
+        this.f19277c = obj2;
     }
 
     @Override
-    public final int compare(Object obj, Object obj2) {
-        int lambda$withReplacements$0;
-        int lambda$new$0;
-        switch (this.f17561a) {
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f19275a) {
             case 0:
-                lambda$withReplacements$0 = RichMessageLayout.RichBlock.lambda$withReplacements$0(this.f17562b, (org.telegram.ui.Cells.w9) obj, (org.telegram.ui.Cells.w9) obj2);
-                return lambda$withReplacements$0;
+                ((RichMessageLayout.SpoilerReveal) this.f19276b).lambda$start$0((View) this.f19277c, valueAnimator);
+                return;
+            case 1:
+                AndroidUtilities.lambda$setNavigationBarColor$23((AndroidUtilities.IntColorCallback) this.f19276b, (Window) this.f19277c, valueAnimator);
+                return;
             default:
-                lambda$new$0 = RichMessageLayout.Text.lambda$new$0(this.f17562b, (RichMessageLayout.RichButtonSpan) obj, (RichMessageLayout.RichButtonSpan) obj2);
-                return lambda$new$0;
+                ((MediaController) this.f19276b).lambda$cleanupPlayer$10((g71) this.f19277c, valueAnimator);
+                return;
         }
     }
 }

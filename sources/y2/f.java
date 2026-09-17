@@ -2,8 +2,9 @@ package y2;
 
 import android.content.Context;
 import android.os.SystemClock;
-import ci.uc;
+import di.nb;
 import e2.t;
+import e2.u;
 import e2.x;
 import e9.a1;
 import e9.i0;
@@ -13,74 +14,74 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.Executor;
-import k2.u;
+import ji.u4;
 public final class f implements c, c0 {
-    public static final a1 f46289p = i0.y(4300000L, 3200000L, 2400000L, 1700000L, 860000L);
-    public static final a1 f46290q = i0.y(1500000L, 980000L, 750000L, 520000L, 290000L);
-    public static final a1 f46291r = i0.y(2000000L, 1300000L, 1000000L, 860000L, 610000L);
-    public static final a1 f46292s = i0.y(2500000L, 1700000L, 1200000L, 970000L, 680000L);
-    public static final a1 f46293t = i0.y(4700000L, 2800000L, 2100000L, 1700000L, 980000L);
-    public static final a1 f46294u = i0.y(2700000L, 2000000L, 1600000L, 1300000L, 1000000L);
+    public static final a1 f49516p = i0.y(4300000L, 3200000L, 2400000L, 1700000L, 860000L);
+    public static final a1 f49517q = i0.y(1500000L, 980000L, 750000L, 520000L, 290000L);
+    public static final a1 f49518r = i0.y(2000000L, 1300000L, 1000000L, 860000L, 610000L);
+    public static final a1 f49519s = i0.y(2500000L, 1700000L, 1200000L, 970000L, 680000L);
+    public static final a1 f49520t = i0.y(4700000L, 2800000L, 2100000L, 1700000L, 980000L);
+    public static final a1 f49521u = i0.y(2700000L, 2000000L, 1600000L, 1300000L, 1000000L);
     public static f v;
-    public final Context f46295a;
-    public final k0 f46296b;
-    public final u f46297c;
+    public final Context f49522a;
+    public final k0 f49523b;
+    public final u4 f49524c;
     public final x d;
-    public final boolean e;
-    public final r f46298f;
-    public int f46299g;
+    public final boolean f49525e;
+    public final r f49526f;
+    public int f49527g;
     public long h;
-    public long f46300i;
-    public long f46301j;
-    public long f46302k;
-    public volatile long f46303l;
-    public long f46304m;
-    public int f46305n;
-    public String f46306o;
+    public long f49528i;
+    public long f49529j;
+    public long f49530k;
+    public volatile long f49531l;
+    public long f49532m;
+    public int f49533n;
+    public String f49534o;
 
     public f(Context context, HashMap hashMap) {
         Context applicationContext;
         boolean z10;
-        x xVar = x.f7940a;
+        x xVar = x.f8823a;
         if (context == null) {
             applicationContext = null;
         } else {
             applicationContext = context.getApplicationContext();
         }
-        this.f46295a = applicationContext;
-        this.f46296b = k0.a(hashMap);
-        this.f46297c = new u(29);
-        this.f46298f = new r();
+        this.f49522a = applicationContext;
+        this.f49523b = k0.a(hashMap);
+        this.f49524c = new u4(29);
+        this.f49526f = new r();
         this.d = xVar;
-        this.e = true;
+        this.f49525e = true;
         if (context != null) {
-            e2.u a2 = e2.u.a(context);
+            u a2 = u.a(context);
             int b10 = a2.b();
-            this.f46305n = b10;
-            this.f46303l = a(b10);
+            this.f49533n = b10;
+            this.f49531l = a(b10);
             e eVar = new e(this);
             Executor g10 = e2.a.g();
             CopyOnWriteArrayList copyOnWriteArrayList = (CopyOnWriteArrayList) a2.d;
             Iterator it = copyOnWriteArrayList.iterator();
             while (it.hasNext()) {
                 t tVar = (t) it.next();
-                if (tVar.f7926a.get() == null) {
+                if (tVar.f8807a.get() == null) {
                     copyOnWriteArrayList.remove(tVar);
                 }
             }
             t tVar2 = new t(a2, eVar, g10);
-            synchronized (a2.e) {
+            synchronized (a2.f8814e) {
                 ((CopyOnWriteArrayList) a2.d).add(tVar2);
-                z10 = a2.f7930a;
+                z10 = a2.f8811a;
             }
             if (z10) {
-                tVar2.f7927b.execute(new uc(tVar2, 5));
+                tVar2.f8808b.execute(new nb(tVar2, 7));
                 return;
             }
             return;
         }
-        this.f46305n = 0;
-        this.f46303l = 1000000L;
+        this.f49533n = 0;
+        this.f49531l = 1000000L;
     }
 
     public static synchronized f b(Context context) {
@@ -117,12 +118,12 @@ public final class f implements c, c0 {
         int[] iArr;
         long longValue;
         Integer valueOf = Integer.valueOf(i10);
-        k0 k0Var = this.f46296b;
+        k0 k0Var = this.f49523b;
         Long l4 = (Long) k0Var.get(valueOf);
         if (l4 == null) {
             l4 = (Long) k0Var.get(0);
         } else if (l4.longValue() == -9223372036854775807L) {
-            String str = this.f46306o;
+            String str = this.f49534o;
             if (str == null) {
                 str = "";
             }
@@ -2146,24 +2147,24 @@ public final class f implements c, c0 {
                                     if (i10 != 10) {
                                         longValue = 1000000;
                                     } else {
-                                        longValue = ((Long) f46293t.get(iArr[4])).longValue();
+                                        longValue = ((Long) f49520t.get(iArr[4])).longValue();
                                     }
                                 } else {
-                                    longValue = ((Long) f46294u.get(iArr[5])).longValue();
+                                    longValue = ((Long) f49521u.get(iArr[5])).longValue();
                                 }
                             }
                         } else {
-                            longValue = ((Long) f46292s.get(iArr[3])).longValue();
+                            longValue = ((Long) f49519s.get(iArr[3])).longValue();
                         }
                     } else {
-                        longValue = ((Long) f46291r.get(iArr[2])).longValue();
+                        longValue = ((Long) f49518r.get(iArr[2])).longValue();
                     }
                 } else {
-                    longValue = ((Long) f46290q.get(iArr[1])).longValue();
+                    longValue = ((Long) f49517q.get(iArr[1])).longValue();
                 }
                 l4 = Long.valueOf(longValue);
             }
-            longValue = ((Long) f46289p.get(iArr[0])).longValue();
+            longValue = ((Long) f49516p.get(iArr[0])).longValue();
             l4 = Long.valueOf(longValue);
         }
         if (l4 == null) {
@@ -2176,16 +2177,16 @@ public final class f implements c, c0 {
         int i11;
         long j11;
         long j12;
-        if (i10 != 0 || j3 != 0 || j10 != this.f46304m) {
-            this.f46304m = j10;
-            Iterator it = ((CopyOnWriteArrayList) this.f46297c.f13385b).iterator();
+        if (i10 != 0 || j3 != 0 || j10 != this.f49532m) {
+            this.f49532m = j10;
+            Iterator it = ((CopyOnWriteArrayList) this.f49524c.f14247b).iterator();
             while (it.hasNext()) {
                 b bVar = (b) it.next();
-                if (!bVar.f46283c) {
+                if (!bVar.f49509c) {
                     i11 = i10;
                     j11 = j3;
                     j12 = j10;
-                    bVar.f46281a.post(new k2.i(bVar, i11, j11, j12, 1));
+                    bVar.f49507a.post(new k2.i(bVar, i11, j11, j12, 1));
                 } else {
                     i11 = i10;
                     j11 = j3;
@@ -2202,21 +2203,21 @@ public final class f implements c, c0 {
         try {
             this.d.getClass();
             long elapsedRealtime = SystemClock.elapsedRealtime();
-            this.f46301j += (int) (elapsedRealtime - this.h);
-            this.f46302k += j3;
+            this.f49529j += (int) (elapsedRealtime - this.h);
+            this.f49530k += j3;
             if (j10 > 0 && j3 > 0) {
-                this.f46298f.a((((float) j3) * 8000.0f) / ((float) j10), (int) Math.sqrt(j3));
-                if (this.f46301j < 2000) {
-                    if (this.f46302k >= 524288) {
+                this.f49526f.a((((float) j3) * 8000.0f) / ((float) j10), (int) Math.sqrt(j3));
+                if (this.f49529j < 2000) {
+                    if (this.f49530k >= 524288) {
                     }
-                    c((int) j10, j3, this.f46303l);
+                    c((int) j10, j3, this.f49531l);
                     this.h = elapsedRealtime;
-                    this.f46300i = 0L;
+                    this.f49528i = 0L;
                 }
-                this.f46303l = this.f46298f.b();
-                c((int) j10, j3, this.f46303l);
+                this.f49531l = this.f49526f.b();
+                c((int) j10, j3, this.f49531l);
                 this.h = elapsedRealtime;
-                this.f46300i = 0L;
+                this.f49528i = 0L;
             }
         } catch (Throwable th2) {
             throw th2;

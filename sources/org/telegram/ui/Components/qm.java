@@ -33,39 +33,39 @@ public final class qm extends ni {
     public int R;
     public boolean S;
     public boolean T;
-    public org.telegram.ui.ActionBar.f6 f27347n;
-    public ai.w0 f27348r;
-    public s4.c0 f27349s;
+    public org.telegram.ui.ActionBar.f6 f29796n;
+    public bi.o0 f29797r;
+    public s4.c0 f29798s;
     public pm v;
-    public UndoView f27350w;
-    public TextView f27351x;
-    public float f27352y;
+    public UndoView f29799w;
+    public TextView f29800x;
+    public float f29801y;
 
     @Override
-    public final void A(int i10) {
-        vi viVar = this.f26460b;
+    public final void B(int i10) {
+        vi viVar = this.f28781b;
         if (i10 > 1) {
-            viVar.f28726a1.K(0);
+            viVar.f31290a1.K(0);
         } else {
-            viVar.f28726a1.r(0);
+            viVar.f31290a1.r(0);
         }
     }
 
     @Override
-    public final void E(ni niVar) {
+    public final void D(ni niVar) {
         pm pmVar = this.v;
         this.Q = true;
         if (niVar instanceof ChatAttachAlertPhotoLayout) {
             this.P = (ChatAttachAlertPhotoLayout) niVar;
-            pmVar.f27074c.clear();
+            pmVar.f29456c.clear();
             ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.P;
             pmVar.h = chatAttachAlertPhotoLayout.getSelectedPhotosOrder();
             pmVar.d = chatAttachAlertPhotoLayout.getSelectedPhotos();
             pmVar.c();
             pmVar.requestLayout();
-            this.f27349s.h1(0, 0);
-            this.f27348r.post(new oh(13, this, niVar));
-            postDelayed(new ng(this, 25), 250L);
+            this.f29798s.h1(0, 0);
+            this.f29797r.post(new uc(19, this, niVar));
+            postDelayed(new pg(this, 25), 250L);
             pmVar.i(this.P, false);
         } else {
             G();
@@ -74,18 +74,18 @@ public final class qm extends ni {
         if (viewPropertyAnimator != null) {
             viewPropertyAnimator.cancel();
         }
-        ViewPropertyAnimator interpolator = this.f27351x.animate().alpha(1.0f).setDuration(150L).setInterpolator(qr.f27380f);
+        ViewPropertyAnimator interpolator = this.f29800x.animate().alpha(1.0f).setDuration(150L).setInterpolator(pr.f29494f);
         this.O = interpolator;
         interpolator.start();
     }
 
     @Override
     public final void G() {
-        this.f27348r.y0(0);
+        this.f29797r.x0(0);
     }
 
     public final void K() {
-        ArrayList arrayList = this.v.f27073b;
+        ArrayList arrayList = this.v.f29455b;
         int size = arrayList.size();
         int i10 = 0;
         while (i10 < size) {
@@ -110,8 +110,8 @@ public final class qm extends ni {
                     nmVar.v.recycle();
                 }
                 nmVar.v = createBitmap;
-                nmVar.f26497w = 0.0f;
-                nmVar.O.f26800z.invalidate();
+                nmVar.f28838w = 0.0f;
+                nmVar.O.f29159z.invalidate();
             }
         }
     }
@@ -128,9 +128,9 @@ public final class qm extends ni {
     public final void dispatchDraw(Canvas canvas) {
         Drawable d;
         int i10;
-        org.telegram.ui.zn znVar = this.f26460b.f28777r;
+        org.telegram.ui.ao aoVar = this.f28781b.f31342r;
         boolean z10 = false;
-        if (znVar != null && (d = znVar.d()) != null) {
+        if (aoVar != null && (d = aoVar.d()) != null) {
             int currentItemTop = getCurrentItemTop();
             if (AndroidUtilities.isTablet()) {
                 i10 = 16;
@@ -160,19 +160,19 @@ public final class qm extends ni {
 
     @Override
     public int getCurrentItemTop() {
-        ai.w0 w0Var = this.f27348r;
-        if (w0Var.getChildCount() <= 0) {
-            w0Var.setTopGlowOffset(w0Var.getPaddingTop());
+        bi.o0 o0Var = this.f29797r;
+        if (o0Var.getChildCount() <= 0) {
+            o0Var.setTopGlowOffset(o0Var.getPaddingTop());
             return Integer.MAX_VALUE;
         }
-        View childAt = w0Var.getChildAt(0);
-        wk0 wk0Var = (wk0) w0Var.H(childAt);
+        View childAt = o0Var.getChildAt(0);
+        vk0 vk0Var = (vk0) o0Var.G(childAt);
         int top = childAt.getTop();
         int dp = AndroidUtilities.dp(8.0f);
-        if (top < AndroidUtilities.dp(8.0f) || wk0Var == null || wk0Var.b() != 0) {
+        if (top < AndroidUtilities.dp(8.0f) || vk0Var == null || vk0Var.b() != 0) {
             top = dp;
         }
-        w0Var.setTopGlowOffset(top);
+        o0Var.setTopGlowOffset(top);
         return top;
     }
 
@@ -183,7 +183,7 @@ public final class qm extends ni {
 
     @Override
     public int getListTopPadding() {
-        return this.f27348r.getPaddingTop();
+        return this.f29797r.getPaddingTop();
     }
 
     public float getPreviewScale() {
@@ -198,12 +198,12 @@ public final class qm extends ni {
     public int getSelectedItemsCount() {
         jm jmVar;
         ArrayList arrayList;
-        ArrayList arrayList2 = this.v.f27073b;
+        ArrayList arrayList2 = this.v.f29455b;
         int size = arrayList2.size();
         int i10 = 0;
         for (int i11 = 0; i11 < size; i11++) {
             om omVar = (om) arrayList2.get(i11);
-            if (omVar != null && (jmVar = omVar.f26786k) != null && (arrayList = jmVar.f25325g) != null) {
+            if (omVar != null && (jmVar = omVar.f29145k) != null && (arrayList = jmVar.f27566g) != null) {
                 i10 = arrayList.size() + i10;
             }
         }
@@ -217,7 +217,7 @@ public final class qm extends ni {
 
     @Override
     public final boolean i() {
-        this.f26460b.Z1(false);
+        this.f28781b.Z1(false);
         return true;
     }
 
@@ -234,11 +234,11 @@ public final class qm extends ni {
         }
         if (this.T != z11) {
             this.T = z11;
-            int size = pmVar.f27073b.size();
+            int size = pmVar.f29455b.size();
             for (int i14 = 0; i14 < size; i14++) {
-                om omVar = (om) pmVar.f27073b.get(i14);
-                if (omVar.f26786k.f25325g.size() == 1) {
-                    om.a(omVar, omVar.f26786k, true);
+                om omVar = (om) pmVar.f29455b.get(i14);
+                if (omVar.f29145k.f27566g.size() == 1) {
+                    om.a(omVar, omVar.f29145k, true);
                 }
             }
         }
@@ -248,11 +248,11 @@ public final class qm extends ni {
     public final void q() {
         MediaController.PhotoEntry photoEntry;
         this.J = null;
-        UndoView undoView = this.f27350w;
+        UndoView undoView = this.f29799w;
         if (undoView != null) {
             undoView.e(0, false);
         }
-        ArrayList arrayList = this.v.f27073b;
+        ArrayList arrayList = this.v.f29455b;
         int size = arrayList.size();
         int i10 = 0;
         while (i10 < size) {
@@ -265,7 +265,7 @@ public final class qm extends ni {
                 Object obj2 = arrayList2.get(i11);
                 i11++;
                 nm nmVar = (nm) obj2;
-                if (nmVar.e && (photoEntry = nmVar.f26480b) != null) {
+                if (nmVar.f28822e && (photoEntry = nmVar.f28820b) != null) {
                     photoEntry.isChatPreviewSpoilerRevealed = false;
                 }
             }
@@ -281,13 +281,13 @@ public final class qm extends ni {
         if (viewPropertyAnimator != null) {
             viewPropertyAnimator.cancel();
         }
-        ViewPropertyAnimator interpolator = this.f27351x.animate().alpha(0.0f).setDuration(150L).setInterpolator(qr.f27383j);
+        ViewPropertyAnimator interpolator = this.f29800x.animate().alpha(0.0f).setDuration(150L).setInterpolator(pr.f29497j);
         this.O = interpolator;
         interpolator.start();
-        if (getSelectedItemsCount() > 1 && (chatAttachAlertPhotoLayout = (viVar = this.f26460b).f28754j0) != null) {
-            chatAttachAlertPhotoLayout.f21918c1.setIcon(R.drawable.msg_view_file);
-            viVar.f28754j0.f21918c1.setText(LocaleController.getString(R.string.AttachMediaPreviewButton));
-            viVar.f28754j0.f21918c1.setRightIcon(R.drawable.msg_arrowright);
+        if (getSelectedItemsCount() > 1 && (chatAttachAlertPhotoLayout = (viVar = this.f28781b).f31319j0) != null) {
+            chatAttachAlertPhotoLayout.f23869c1.setIcon(R.drawable.msg_view_file);
+            viVar.f31319j0.f23869c1.setText(LocaleController.getString(R.string.AttachMediaPreviewButton));
+            viVar.f31319j0.f23869c1.setRightIcon(R.drawable.msg_arrowright);
         }
         this.v.i(this.P, true);
     }
@@ -303,7 +303,7 @@ public final class qm extends ni {
     @Override
     public final void t(int i10) {
         try {
-            this.f26460b.f28754j0.t(i10);
+            this.f28781b.f31319j0.t(i10);
         } catch (Exception unused) {
         }
     }

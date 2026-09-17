@@ -1,100 +1,13 @@
 package qh;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.drawable.Drawable;
 import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.R;
-import org.telegram.ui.ActionBar.j6;
-import org.telegram.ui.Components.qr;
-public final class d extends View {
-    public final Drawable f41784a;
-    public final le.b f41785b;
-    public final int f41786c;
-    public e d;
+import r0.l1;
+public interface d {
+    void J();
 
-    public d(Context context, int i10) {
-        super(context);
-        this.f41785b = new le.b(this, qr.h, 380L);
-        this.f41786c = i10;
-        Drawable mutate = context.getResources().getDrawable(R.drawable.outline_poll_attach_24).mutate();
-        this.f41784a = mutate;
-        mutate.setColorFilter(new PorterDuffColorFilter(j6.w0(null, j6.f19065o7, false), PorterDuff.Mode.SRC_IN));
-    }
+    View N();
 
-    public final void a(e eVar, boolean z10) {
-        boolean z11;
-        e eVar2;
-        e eVar3;
-        if (eVar != null) {
-            z11 = true;
-        } else {
-            z11 = false;
-        }
-        this.f41785b.a(z11, z10);
-        if (isAttachedToWindow() && (eVar3 = this.d) != null) {
-            eVar3.b();
-        }
-        this.d = eVar;
-        if (isAttachedToWindow() && (eVar2 = this.d) != null) {
-            eVar2.a(this);
-        }
-    }
+    void j(l1 l1Var);
 
-    @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        e eVar = this.d;
-        if (eVar != null) {
-            eVar.a(this);
-        }
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        e eVar = this.d;
-        if (eVar != null) {
-            eVar.b();
-        }
-    }
-
-    @Override
-    public final void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
-        float width = getWidth() / 2.0f;
-        float height = getHeight() / 2.0f;
-        float f7 = this.f41785b.e;
-        if (f7 < 1.0f) {
-            canvas.save();
-            float f10 = 1.0f - f7;
-            canvas.scale(f10, f10, width, height);
-            this.f41784a.draw(canvas);
-            canvas.restore();
-        }
-        if (f7 > 0.0f) {
-            float f11 = this.f41786c;
-            int dp = AndroidUtilities.dp(f11);
-            canvas.save();
-            canvas.translate((getWidth() - dp) / 2, (getHeight() - dp) / 2);
-            canvas.scale(f7, f7, AndroidUtilities.dp(f11) / 2.0f, AndroidUtilities.dp(f11) / 2.0f);
-            e eVar = this.d;
-            if (eVar != null) {
-                eVar.c(canvas, AndroidUtilities.dp(f11), AndroidUtilities.dp(f11));
-            }
-            canvas.restore();
-        }
-    }
-
-    @Override
-    public final void onSizeChanged(int i10, int i11, int i12, int i13) {
-        super.onSizeChanged(i10, i11, i12, i13);
-        int dp = AndroidUtilities.dp(24.0f);
-        int i14 = (i10 - dp) / 2;
-        int i15 = (i11 - dp) / 2;
-        this.f41784a.setBounds(i14, i15, i14 + dp, dp + i15);
-    }
+    void s();
 }

@@ -1,41 +1,46 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.view.GestureDetector;
-import android.view.MotionEvent;
-import android.view.ViewGroup;
-import android.widget.ImageView;
-public final class sr extends ImageView {
-    public final int f27907a = 1;
-    public Object f27908b;
-    public final ViewGroup f27909c;
+import android.graphics.Canvas;
+import android.graphics.Rect;
+import android.text.TextPaint;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+public final class sr extends View {
+    public final TextPaint f30429a;
+    public final TextPaint f30430b;
+    public final String f30431c;
+    public final String d;
+    public final Rect f30432e;
 
-    public sr(ur urVar, Context context, k2.u uVar) {
+    public sr(Context context, String str, String str2) {
         super(context);
-        this.f27909c = urVar;
-        this.f27908b = uVar;
+        TextPaint textPaint = new TextPaint(1);
+        this.f30429a = textPaint;
+        TextPaint textPaint2 = new TextPaint(1);
+        this.f30430b = textPaint2;
+        this.f30432e = new Rect();
+        this.f30431c = str;
+        this.d = str2;
+        textPaint.setTextSize(AndroidUtilities.dp(24.0f));
+        textPaint2.setTextSize(AndroidUtilities.dp(14.0f));
+        textPaint.setColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.G6, false));
+        textPaint2.setColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.H6, false));
     }
 
     @Override
-    public boolean onTouchEvent(MotionEvent motionEvent) {
-        switch (this.f27907a) {
-            case 0:
-                ur urVar = (ur) this.f27909c;
-                if ((motionEvent.getAction() == 1 || motionEvent.getAction() == 3) && (urVar.f28475n || urVar.f28474f)) {
-                    urVar.f28475n = false;
-                    urVar.f28474f = false;
-                    removeCallbacks(urVar.f28476r);
-                    removeCallbacks(urVar.h);
-                }
-                super.onTouchEvent(motionEvent);
-                return ((GestureDetector) ((k2.u) this.f27908b).f13385b).onTouchEvent(motionEvent);
-            default:
-                return super.onTouchEvent(motionEvent);
-        }
-    }
-
-    public sr(gk0 gk0Var, Context context) {
-        super(context);
-        this.f27909c = gk0Var;
+    public final void onDraw(Canvas canvas) {
+        TextPaint textPaint = this.f30430b;
+        String str = this.d;
+        float measureText = textPaint.measureText(str);
+        TextPaint textPaint2 = this.f30429a;
+        String str2 = this.f30431c;
+        float measureText2 = textPaint2.measureText(str2);
+        int length = str2.length();
+        Rect rect = this.f30432e;
+        textPaint2.getTextBounds(str2, 0, length, rect);
+        textPaint.getTextBounds(str, 0, str.length(), rect);
+        canvas.drawText(str2, (getWidth() * 0.25f) - (measureText2 / 2.0f), (getHeight() / 2.0f) + (rect.height() / 2.0f), textPaint2);
+        canvas.drawText(str, (getWidth() * 0.7f) - (measureText / 2.0f), (getHeight() / 2.0f) + (rect.height() / 2.0f), textPaint);
     }
 }

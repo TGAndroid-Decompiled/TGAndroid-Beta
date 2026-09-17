@@ -38,7 +38,7 @@ public final class a extends n6.g implements com.google.android.gms.common.api.c
             this.V.getClass();
             Account account = new Account("<<default account>>", "com.google");
             if ("<<default account>>".equals(account.name)) {
-                googleSignInAccount = a6.b.a(this.f15044n).b();
+                googleSignInAccount = a6.b.a(this.f16566n).b();
             } else {
                 googleSignInAccount = null;
             }
@@ -51,12 +51,12 @@ public final class a extends n6.g implements com.google.android.gms.common.api.c
             k7.a.c(I0, gVar);
             k7.a.d(I0, cVar);
             eVar.J0(I0, 12);
-        } catch (RemoteException e) {
+        } catch (RemoteException e7) {
             Log.w("SignInClientImpl", "Remote service probably died when signIn is called");
             try {
                 cVar.B(new h(1, new k6.a(8, null), null));
             } catch (RemoteException unused) {
-                Log.wtf("SignInClientImpl", "ISignInCallbacks#onSignInComplete should be executed from the same process, unexpected RemoteException.", e);
+                Log.wtf("SignInClientImpl", "ISignInCallbacks#onSignInComplete should be executed from the same process, unexpected RemoteException.", e7);
             }
         }
     }
@@ -86,7 +86,7 @@ public final class a extends n6.g implements com.google.android.gms.common.api.c
     @Override
     public final Bundle t() {
         p3 p3Var = this.V;
-        boolean equals = this.f15044n.getPackageName().equals((String) p3Var.d);
+        boolean equals = this.f16566n.getPackageName().equals((String) p3Var.d);
         Bundle bundle = this.W;
         if (!equals) {
             bundle.putString("com.google.android.gms.signin.internal.realClientPackageName", (String) p3Var.d);

@@ -2,13 +2,13 @@ package a3;
 
 import java.util.Arrays;
 public final class g {
-    public long f111a;
-    public long f112b;
-    public long f113c;
+    public long f118a;
+    public long f119b;
+    public long f120c;
     public long d;
-    public long e;
-    public long f114f;
-    public final boolean[] f115g = new boolean[15];
+    public long f121e;
+    public long f122f;
+    public final boolean[] f123g = new boolean[15];
     public int h;
 
     public final boolean a() {
@@ -21,20 +21,20 @@ public final class g {
     public final void b(long j3) {
         long j10 = this.d;
         if (j10 == 0) {
-            this.f111a = j3;
+            this.f118a = j3;
         } else if (j10 == 1) {
-            long j11 = j3 - this.f111a;
-            this.f112b = j11;
-            this.f114f = j11;
-            this.e = 1L;
+            long j11 = j3 - this.f118a;
+            this.f119b = j11;
+            this.f122f = j11;
+            this.f121e = 1L;
         } else {
-            long j12 = j3 - this.f113c;
+            long j12 = j3 - this.f120c;
             int i10 = (int) (j10 % 15);
-            long abs = Math.abs(j12 - this.f112b);
-            boolean[] zArr = this.f115g;
+            long abs = Math.abs(j12 - this.f119b);
+            boolean[] zArr = this.f123g;
             if (abs <= 1000000) {
-                this.e++;
-                this.f114f += j12;
+                this.f121e++;
+                this.f122f += j12;
                 if (zArr[i10]) {
                     zArr[i10] = false;
                     this.h--;
@@ -45,14 +45,14 @@ public final class g {
             }
         }
         this.d++;
-        this.f113c = j3;
+        this.f120c = j3;
     }
 
     public final void c() {
         this.d = 0L;
-        this.e = 0L;
-        this.f114f = 0L;
+        this.f121e = 0L;
+        this.f122f = 0L;
         this.h = 0;
-        Arrays.fill(this.f115g, false);
+        Arrays.fill(this.f123g, false);
     }
 }

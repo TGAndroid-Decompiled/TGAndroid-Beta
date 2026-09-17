@@ -1,41 +1,31 @@
 package org.telegram.ui.Components;
 
-import android.net.Uri;
-import android.text.TextPaint;
-import android.text.style.URLSpan;
 import android.view.View;
-import org.telegram.ui.LaunchActivity;
-public final class p51 extends URLSpan {
-    public final p01 f26933a;
-    public boolean f26934b;
+public final class p51 implements View.OnClickListener {
+    public final int f29310a;
+    public final UndoView f29311b;
 
-    public p51(String str, p01 p01Var) {
-        super(str != null ? str.replace((char) 8238, ' ') : str);
-        this.f26933a = p01Var;
+    public p51(UndoView undoView, int i10) {
+        this.f29310a = i10;
+        this.f29311b = undoView;
     }
 
     @Override
     public final void onClick(View view) {
-        if (this.f26934b && (view.getContext() instanceof LaunchActivity)) {
-            ((LaunchActivity) view.getContext()).X0 = true;
-        }
-        nf.f.p(view.getContext(), Uri.parse(getURL()), true, true);
-    }
-
-    @Override
-    public final void updateDrawState(TextPaint textPaint) {
-        boolean z10;
-        int color = textPaint.getColor();
-        super.updateDrawState(textPaint);
-        p01 p01Var = this.f26933a;
-        if (p01Var != null) {
-            p01Var.a(textPaint);
-            if (textPaint.linkColor == color) {
-                z10 = true;
-            } else {
-                z10 = false;
-            }
-            textPaint.setUnderlineText(z10);
+        int i10 = this.f29310a;
+        UndoView undoView = this.f29311b;
+        switch (i10) {
+            case 0:
+                int i11 = UndoView.f24209e0;
+                if (undoView.a()) {
+                    undoView.e(1, false);
+                    return;
+                }
+                return;
+            default:
+                int i12 = UndoView.f24209e0;
+                undoView.e(1, false);
+                return;
         }
     }
 }

@@ -1,7 +1,22 @@
 package org.telegram.ui;
 
+import android.animation.ValueAnimator;
+import android.view.View;
 import android.widget.FrameLayout;
-import android.widget.TextView;
+import org.telegram.messenger.AndroidUtilities;
 public final class m61 extends FrameLayout {
-    public TextView f35695a;
+    public FrameLayout f38608a;
+    public org.telegram.ui.Cells.t3 f38609b;
+    public sg.r0 f38610c;
+    public String d;
+    public ValueAnimator f38611e;
+    public float f38612f;
+    public Boolean h;
+    public ValueAnimator f38613n;
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        setPadding(AndroidUtilities.dp(5.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(5.0f), AndroidUtilities.dp(8.0f));
+        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(getPaddingBottom() + getPaddingTop() + AndroidUtilities.dp(44.0f), 1073741824));
+    }
 }

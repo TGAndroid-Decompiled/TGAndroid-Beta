@@ -9,17 +9,17 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 public final class j00 extends s4.v {
-    public final xp d = new xp(this, 17);
-    public final k00 e;
+    public final wp d = new wp(this, 17);
+    public final k00 f27322e;
 
     public j00(k00 k00Var) {
-        this.e = k00Var;
+        this.f27322e = k00Var;
     }
 
     @Override
     public final void a(RecyclerView recyclerView, s4.c1 c1Var) {
         super.a(recyclerView, c1Var);
-        View view = c1Var.f42697a;
+        View view = c1Var.f45767a;
         view.setPressed(false);
         view.setBackground(null);
         view.setTag(R.id.dragging, null);
@@ -28,8 +28,8 @@ public final class j00 extends s4.v {
     @Override
     public final int e(RecyclerView recyclerView, s4.c1 c1Var) {
         if (MessagesController.getInstance(UserConfig.selectedAccount).premiumFeaturesBlocked()) {
-            k00 k00Var = this.e;
-            if (!k00Var.f25492n || (c1Var.b() == 0 && ((g00) k00Var.h.get(0)).e && !UserConfig.getInstance(UserConfig.selectedAccount).isPremium())) {
+            k00 k00Var = this.f27322e;
+            if (!k00Var.f27649n || (c1Var.b() == 0 && ((g00) k00Var.h.get(0)).f26248e && !UserConfig.getInstance(UserConfig.selectedAccount).isPremium())) {
                 return s4.v.l(0, 0);
             }
         }
@@ -38,7 +38,7 @@ public final class j00 extends s4.v {
 
     @Override
     public final boolean k() {
-        return this.e.f25492n;
+        return this.f27322e.f27649n;
     }
 
     @Override
@@ -47,12 +47,12 @@ public final class j00 extends s4.v {
         if (MessagesController.getInstance(UserConfig.selectedAccount).premiumFeaturesBlocked() && ((c1Var.b() == 0 || c1Var2.b() == 0) && !UserConfig.getInstance(UserConfig.selectedAccount).isPremium())) {
             return false;
         }
-        f00 f00Var = this.e.I;
+        f00 f00Var = this.f27322e.I;
         int b10 = c1Var.b();
         int b11 = c1Var2.b();
         k00 k00Var = f00Var.d;
         ArrayList arrayList = k00Var.h;
-        SparseIntArray sparseIntArray = k00Var.f25490k0;
+        SparseIntArray sparseIntArray = k00Var.f27647k0;
         int size = arrayList.size();
         if (b10 >= 0 && b11 >= 0 && b10 < size && b11 < size) {
             ArrayList<MessagesController.DialogFilter> dialogFilters = MessagesController.getInstance(UserConfig.selectedAccount).getDialogFilters();
@@ -65,51 +65,51 @@ public final class j00 extends s4.v {
             dialogFilters.set(b11, dialogFilter);
             g00 g00Var = (g00) arrayList.get(b10);
             g00 g00Var2 = (g00) arrayList.get(b11);
-            int i12 = g00Var.f24051a;
-            g00Var.f24051a = g00Var2.f24051a;
-            g00Var2.f24051a = i12;
+            int i12 = g00Var.f26245a;
+            g00Var.f26245a = g00Var2.f26245a;
+            g00Var2.f26245a = i12;
             int i13 = sparseIntArray.get(b10);
             sparseIntArray.put(b10, sparseIntArray.get(b11));
             sparseIntArray.put(b11, i13);
             e00 e00Var = k00Var.J;
-            int i14 = g00Var2.f24051a;
-            int i15 = g00Var.f24051a;
-            org.telegram.ui.vw vwVar = (org.telegram.ui.vw) e00Var;
+            int i14 = g00Var2.f26245a;
+            int i15 = g00Var.f26245a;
+            org.telegram.ui.tw twVar = (org.telegram.ui.tw) e00Var;
             while (true) {
-                org.telegram.ui.vy[] vyVarArr = vwVar.f38511b.f39215e0;
-                if (i10 >= vyVarArr.length) {
+                org.telegram.ui.ty[] tyVarArr = twVar.f40869b.f41287e0;
+                if (i10 >= tyVarArr.length) {
                     break;
                 }
-                org.telegram.ui.vy vyVar = vyVarArr[i10];
-                int i16 = vyVar.h;
+                org.telegram.ui.ty tyVar = tyVarArr[i10];
+                int i16 = tyVar.h;
                 if (i16 == i14) {
-                    vyVar.h = i15;
+                    tyVar.h = i15;
                 } else if (i16 == i15) {
-                    vyVar.h = i14;
+                    tyVar.h = i14;
                 }
                 i10++;
             }
             int i17 = k00Var.K;
             if (i17 == b10) {
                 k00Var.K = b11;
-                k00Var.L = g00Var.f24051a;
+                k00Var.L = g00Var.f26245a;
             } else if (i17 == b11) {
                 k00Var.K = b10;
-                k00Var.L = g00Var2.f24051a;
+                k00Var.L = g00Var2.f26245a;
             }
-            int i18 = k00Var.f25496q0;
+            int i18 = k00Var.f27653q0;
             if (i18 == b10) {
-                k00Var.f25496q0 = b11;
-                k00Var.f25498r0 = g00Var.f24051a;
+                k00Var.f27653q0 = b11;
+                k00Var.f27655r0 = g00Var.f26245a;
             } else if (i18 == b11) {
-                k00Var.f25496q0 = b10;
-                k00Var.f25498r0 = g00Var2.f24051a;
+                k00Var.f27653q0 = b10;
+                k00Var.f27655r0 = g00Var2.f26245a;
             }
             arrayList.set(b10, g00Var2);
             arrayList.set(b11, g00Var);
             k00Var.j();
-            k00Var.f25508y = true;
-            k00Var.F.setItemAnimator(k00Var.f25500s0);
+            k00Var.f27665y = true;
+            k00Var.F.setItemAnimator(k00Var.f27657s0);
             f00Var.p(b10, b11);
         }
         return true;
@@ -119,17 +119,17 @@ public final class j00 extends s4.v {
     public final void p(s4.c1 c1Var, int i10) {
         Boolean bool;
         if (i10 != 0) {
-            k00 k00Var = this.e;
-            k00Var.F.J0(false);
-            c1Var.f42697a.setPressed(true);
-            c1Var.f42697a.setBackgroundColor(org.telegram.ui.ActionBar.j6.v0(k00Var.f25479b0, k00Var.f25476a));
+            k00 k00Var = this.f27322e;
+            k00Var.F.I0(false);
+            c1Var.f45767a.setPressed(true);
+            c1Var.f45767a.setBackgroundColor(org.telegram.ui.ActionBar.j6.v0(k00Var.f27635b0, k00Var.f27632a));
         } else {
-            xp xpVar = this.d;
-            AndroidUtilities.cancelRunOnUIThread(xpVar);
-            AndroidUtilities.runOnUIThread(xpVar, 320L);
+            wp wpVar = this.d;
+            AndroidUtilities.cancelRunOnUIThread(wpVar);
+            AndroidUtilities.runOnUIThread(wpVar, 320L);
         }
         if (c1Var != null) {
-            View view = c1Var.f42697a;
+            View view = c1Var.f45767a;
             int i11 = R.id.dragging;
             if (i10 == 2) {
                 bool = Boolean.TRUE;

@@ -3,33 +3,33 @@ package org.telegram.ui;
 import android.text.TextUtils;
 import org.telegram.messenger.AndroidUtilities;
 public final class x implements Runnable {
-    public final int f39331a;
-    public final h4 f39332b;
-    public final String f39333c;
+    public final int f42548a;
+    public final i4 f42549b;
+    public final String f42550c;
 
-    public x(h4 h4Var, String str, int i10) {
-        this.f39331a = i10;
-        this.f39332b = h4Var;
-        this.f39333c = str;
+    public x(i4 i4Var, String str, int i10) {
+        this.f42548a = i10;
+        this.f42549b = i4Var;
+        this.f42550c = str;
     }
 
     @Override
     public final void run() {
-        switch (this.f39331a) {
+        switch (this.f42548a) {
             case 0:
-                h4 h4Var = this.f39332b;
-                fi.o oVar = h4Var.f34156h0.f38952b0;
-                String str = this.f39333c;
+                i4 i4Var = this.f42549b;
+                gi.o oVar = i4Var.f37248h0.f42305b0;
+                String str = this.f42550c;
                 if (TextUtils.isEmpty(str)) {
                     str = "about:blank";
                 }
                 oVar.setText(str);
-                fi.o oVar2 = h4Var.f34156h0.f38952b0;
+                gi.o oVar2 = i4Var.f37248h0.f42305b0;
                 oVar2.setSelection(oVar2.getText().length());
-                AndroidUtilities.showKeyboard(h4Var.f34156h0.f38952b0);
+                AndroidUtilities.showKeyboard(i4Var.f37248h0.f42305b0);
                 return;
             default:
-                nf.f.m(this.f39332b.L, this.f39333c, false, null);
+                of.f.m(this.f42549b.L, this.f42550c, false, null);
                 return;
         }
     }

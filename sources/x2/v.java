@@ -4,11 +4,11 @@ import b2.s1;
 import i2.m1;
 import j$.util.Objects;
 public final class v {
-    public final int f45241a;
-    public final m1[] f45242b;
-    public final r[] f45243c;
+    public final int f48799a;
+    public final m1[] f48800b;
+    public final r[] f48801c;
     public final s1 d;
-    public final Object e;
+    public final Object f48802e;
 
     public v(m1[] m1VarArr, r[] rVarArr, s1 s1Var, Object obj) {
         boolean z10;
@@ -18,22 +18,22 @@ public final class v {
             z10 = false;
         }
         e2.d.b(z10);
-        this.f45242b = m1VarArr;
-        this.f45243c = (r[]) rVarArr.clone();
+        this.f48800b = m1VarArr;
+        this.f48801c = (r[]) rVarArr.clone();
         this.d = s1Var;
-        this.e = obj;
-        this.f45241a = m1VarArr.length;
+        this.f48802e = obj;
+        this.f48799a = m1VarArr.length;
     }
 
     public final boolean a(v vVar, int i10) {
-        if (vVar == null || !Objects.equals(this.f45242b[i10], vVar.f45242b[i10]) || !Objects.equals(this.f45243c[i10], vVar.f45243c[i10])) {
+        if (vVar == null || !Objects.equals(this.f48800b[i10], vVar.f48800b[i10]) || !Objects.equals(this.f48801c[i10], vVar.f48801c[i10])) {
             return false;
         }
         return true;
     }
 
     public final boolean b(int i10) {
-        if (this.f45242b[i10] != null) {
+        if (this.f48800b[i10] != null) {
             return true;
         }
         return false;

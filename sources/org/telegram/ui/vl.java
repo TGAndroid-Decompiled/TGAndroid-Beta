@@ -3,15 +3,15 @@ package org.telegram.ui;
 import java.util.ArrayList;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.VideoEditedInfo;
-public final class vl extends vu0 {
-    public final ArrayList f38468a;
-    public final boolean[] f38469b;
-    public final bo f38470c;
+public final class vl extends su0 {
+    public final ArrayList f41613a;
+    public final boolean[] f41614b;
+    public final co f41615c;
 
-    public vl(bo boVar, ArrayList arrayList, boolean[] zArr) {
-        this.f38470c = boVar;
-        this.f38468a = arrayList;
-        this.f38469b = zArr;
+    public vl(co coVar, ArrayList arrayList, boolean[] zArr) {
+        this.f41615c = coVar;
+        this.f41613a = arrayList;
+        this.f41614b = zArr;
     }
 
     @Override
@@ -26,18 +26,18 @@ public final class vl extends vu0 {
 
     @Override
     public final void o(int i10, VideoEditedInfo videoEditedInfo, boolean z10, int i11, int i12, boolean z11) {
-        ArrayList arrayList = this.f38468a;
+        ArrayList arrayList = this.f41613a;
         for (int size = arrayList.size() - 1; size >= 0; size--) {
-            if (!this.f38469b[size]) {
+            if (!this.f41614b[size]) {
                 arrayList.remove(size);
             }
         }
-        this.f38470c.eb(arrayList, i11, z10, z11);
+        this.f41615c.eb(arrayList, i11, z10, z11);
     }
 
     @Override
     public final boolean x(int i10) {
-        return this.f38469b[i10];
+        return this.f41614b[i10];
     }
 
     @Override

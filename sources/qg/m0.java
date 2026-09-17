@@ -1,143 +1,97 @@
 package qg;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.Rect;
+import android.animation.ValueAnimator;
 import android.graphics.RectF;
-import android.graphics.SweepGradient;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.FrameLayout;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.cu0;
-public final class m0 extends FrameLayout {
-    public float f41474a;
-    public float f41475b;
-    public final cu0 f41476c;
+import ji.u4;
+import org.telegram.messenger.BotWebViewVibrationEffect;
+import org.telegram.ui.Components.pr;
+public final class m0 implements Runnable {
+    public final int f44510a;
+    public final q0 f44511b;
+    public final f1 f44512c;
 
-    public m0(cu0 cu0Var, Context context) {
-        super(context);
-        this.f41476c = cu0Var;
-        new Path();
-        setWillNotDraw(false);
-        Paint paint = cu0Var.H1;
-        paint.setStyle(Paint.Style.STROKE);
-        paint.setStrokeWidth(AndroidUtilities.dp(2.0f));
+    public m0(q0 q0Var, f1 f1Var, int i10) {
+        this.f44510a = i10;
+        this.f44511b = q0Var;
+        this.f44512c = f1Var;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        ViewGroup barView;
-        ViewGroup viewGroup;
-        ViewGroup viewGroup2;
-        Canvas canvas2 = canvas;
-        super.onDraw(canvas);
-        cu0 cu0Var = this.f41476c;
-        pg.q1 q1Var = cu0Var.K1;
-        Paint paint = cu0Var.I1;
-        Paint paint2 = cu0Var.H1;
-        Paint paint3 = cu0Var.J1;
-        barView = cu0Var.getBarView();
-        Rect rect = AndroidUtilities.rectTmp2;
-        int left = barView.getLeft();
-        l0 l0Var = cu0Var.G1;
-        rect.set(AndroidUtilities.lerp(left, l0Var.getLeft(), cu0Var.N1), AndroidUtilities.lerp(barView.getTop(), l0Var.getTop(), cu0Var.N1), AndroidUtilities.lerp(barView.getRight(), l0Var.getRight(), cu0Var.N1), AndroidUtilities.lerp(barView.getBottom(), l0Var.getBottom(), cu0Var.N1));
-        RectF rectF = AndroidUtilities.rectTmp;
-        rectF.set(rect);
-        float lerp = AndroidUtilities.lerp(AndroidUtilities.dp(32.0f), AndroidUtilities.dp(24.0f), cu0Var.N1);
-        if (cu0Var.f41541c2 != null) {
-            rect.inset(-AndroidUtilities.dp(4.0f), -AndroidUtilities.dp(4.0f));
-            cu0Var.f41541c2.q(lerp);
-            cu0Var.f41541c2.setBounds(rect);
-            cu0Var.f41541c2.draw(canvas2);
-        } else {
-            canvas2.drawRoundRect(rectF, lerp, lerp, cu0Var.O1);
-        }
-        if (barView.getChildCount() >= 1 && cu0Var.N1 != 1.0f) {
-            canvas2.save();
-            canvas2.translate(barView.getLeft(), barView.getTop());
-            View childAt = barView.getChildAt(0);
-            if (barView instanceof r1) {
-                childAt = ((r1) barView).getColorClickableView();
-            }
-            if (childAt.getAlpha() != 0.0f) {
-                canvas2.scale(childAt.getScaleX(), childAt.getScaleY(), childAt.getPivotX(), childAt.getPivotY());
-                paint2.setAlpha((int) (childAt.getAlpha() * (1.0f - cu0Var.N1) * 255.0f));
-                int width = (childAt.getWidth() - childAt.getPaddingLeft()) - childAt.getPaddingRight();
-                int height = (childAt.getHeight() - childAt.getPaddingTop()) - childAt.getPaddingBottom();
-                float x10 = (width / 2.0f) + childAt.getX() + childAt.getPaddingLeft();
-                float y3 = (height / 2.0f) + childAt.getY() + childAt.getPaddingTop();
-                int i10 = q1Var.f40992a;
-                int i11 = cu0Var.f41550h1;
-                View view = childAt;
-                if (i11 != -1) {
-                    if (i11 == 0) {
-                        viewGroup = cu0Var.f41568t1;
-                    } else if (i11 == 2) {
-                        viewGroup = cu0Var.f41569u1;
+    public final void run() {
+        boolean z10;
+        boolean z11;
+        float f7;
+        int i10 = this.f44510a;
+        f1 f1Var = this.f44512c;
+        q0 q0Var = this.f44511b;
+        switch (i10) {
+            case 0:
+                q0Var.f44549c = f1Var;
+                if (q0Var.h == null) {
+                    q0Var.h = new RectF();
+                }
+                q0Var.f44549c.a(q0Var.h);
+                u4 u4Var = q0Var.f44547a;
+                if (u4Var != null) {
+                    u4Var.n();
+                    return;
+                }
+                return;
+            default:
+                if (f1Var != null && q0Var.f44561q == 0) {
+                    q0Var.f44561q = r1.b(q0Var.f44552g);
+                }
+                boolean z12 = q0Var.H;
+                if (f1Var != null) {
+                    z10 = true;
+                } else {
+                    z10 = false;
+                }
+                if (z12 != z10) {
+                    if (f1Var != null) {
+                        z11 = true;
                     } else {
-                        viewGroup = null;
+                        z11 = false;
                     }
-                    if (viewGroup == null) {
-                        viewGroup2 = barView;
+                    q0Var.H = z11;
+                    ValueAnimator valueAnimator = q0Var.K;
+                    if (valueAnimator != null) {
+                        valueAnimator.cancel();
+                        q0Var.K = null;
+                    }
+                    float f10 = q0Var.I;
+                    if (q0Var.H) {
+                        f7 = 1.0f;
                     } else {
-                        viewGroup2 = viewGroup;
+                        f7 = 0.0f;
                     }
-                    View childAt2 = viewGroup2.getChildAt(0);
-                    if (viewGroup instanceof r1) {
-                        childAt2 = ((r1) viewGroup).getColorClickableView();
+                    ValueAnimator ofFloat = ValueAnimator.ofFloat(f10, f7);
+                    q0Var.K = ofFloat;
+                    ofFloat.addUpdateListener(new l0(q0Var, 0));
+                    q0Var.K.addListener(new p0(q0Var, 0));
+                    q0Var.K.setInterpolator(pr.h);
+                    q0Var.K.start();
+                    q0Var.d = f1Var;
+                    u4 u4Var2 = q0Var.f44547a;
+                    if (u4Var2 != null) {
+                        u4Var2.n();
                     }
-                    x10 = AndroidUtilities.lerp(x10, (((childAt2.getWidth() - childAt2.getPaddingLeft()) - childAt2.getPaddingRight()) / 2.0f) + childAt2.getX() + childAt2.getPaddingLeft(), cu0Var.f41552i1);
-                    y3 = AndroidUtilities.lerp(y3, (((childAt2.getHeight() - childAt2.getPaddingTop()) - childAt2.getPaddingBottom()) / 2.0f) + childAt2.getY() + childAt2.getPaddingTop(), cu0Var.f41552i1);
+                    if (q0Var.H) {
+                        BotWebViewVibrationEffect.SELECTION_CHANGE.vibrate();
+                        return;
+                    }
+                    return;
+                } else if (f1Var != q0Var.d) {
+                    q0Var.d = f1Var;
+                    u4 u4Var3 = q0Var.f44547a;
+                    if (u4Var3 != null) {
+                        u4Var3.n();
+                        return;
+                    }
+                    return;
+                } else {
+                    return;
                 }
-                if (l0Var != null && l0Var.getChildCount() > 0) {
-                    View childAt3 = l0Var.getChildAt(0);
-                    x10 = AndroidUtilities.lerp(x10, (childAt3.getWidth() / 2.0f) + childAt3.getX() + (l0Var.getX() - barView.getLeft()), cu0Var.N1);
-                    y3 = AndroidUtilities.lerp(y3, (childAt3.getHeight() / 2.0f) + childAt3.getY() + (l0Var.getY() - barView.getTop()), cu0Var.N1);
-                    i10 = i0.a.d(cu0Var.N1, q1Var.f40992a, cu0Var.V1.b(0));
-                }
-                float f7 = x10;
-                float f10 = y3;
-                if (f7 != this.f41474a || f10 != this.f41475b) {
-                    this.f41474a = f7;
-                    this.f41475b = f10;
-                    paint2.setShader(new SweepGradient(f7, f10, new int[]{-1356981, -1146130, -10452764, -16711681, -7352832, -256, -23296, -1356981}, (float[]) null));
-                }
-                float min = (Math.min(width, height) / 2.0f) - AndroidUtilities.dp(0.5f);
-                if (l0Var != null && l0Var.getChildCount() > 0) {
-                    View childAt4 = l0Var.getChildAt(0);
-                    min = AndroidUtilities.lerp(min, (Math.min((childAt4.getWidth() - childAt4.getPaddingLeft()) - childAt4.getPaddingRight(), (childAt4.getHeight() - childAt4.getPaddingTop()) - childAt4.getPaddingBottom()) / 2.0f) - AndroidUtilities.dp(2.0f), cu0Var.N1);
-                }
-                float f11 = min;
-                rectF.set(f7 - f11, f10 - f11, f7 + f11, f10 + f11);
-                canvas2 = canvas;
-                canvas2.drawArc(rectF, 0.0f, 360.0f, false, paint2);
-                paint.setColor(i10);
-                paint.setAlpha((int) (view.getAlpha() * paint.getAlpha()));
-                paint3.setColor(i10);
-                paint3.setAlpha((int) (view.getAlpha() * 255.0f));
-                float dp = f11 - AndroidUtilities.dp(3.0f);
-                if (l0Var != null && l0Var.getSelectedColorIndex() != 0) {
-                    dp = AndroidUtilities.lerp(f11 - AndroidUtilities.dp(3.0f), AndroidUtilities.dp(2.0f) + f11, cu0Var.N1);
-                }
-                l1.y1(f7, f10, dp, paint.getColor(), canvas2);
-                if (l0Var != null && l0Var.getSelectedColorIndex() == 0) {
-                    paint3.setAlpha((int) (view.getAlpha() * paint3.getAlpha() * cu0Var.N1));
-                    canvas2.drawCircle(f7, f10, com.google.android.gms.internal.vision.e2.b(1.0f, cu0Var.N1, paint3.getStrokeWidth() + AndroidUtilities.dp(3.0f), f11), paint3);
-                }
-            }
-            canvas2.restore();
-        }
-    }
-
-    @Override
-    public final void setTranslationY(float f7) {
-        super.setTranslationY(f7);
-        k0 k0Var = this.f41476c.f41542d1;
-        if (k0Var != null) {
-            k0Var.invalidate();
         }
     }
 }

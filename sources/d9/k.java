@@ -1,41 +1,41 @@
 package d9;
 
-import a3.s;
-public final class k implements i {
-    public static final s d = new s(1);
-    public final Object f7574a = new Object();
-    public volatile i f7575b;
-    public Object f7576c;
+import java.io.Serializable;
+public final class k implements j, Serializable {
+    public final transient Object f6667a = new Object();
+    public final j f6668b;
+    public volatile transient boolean f6669c;
+    public transient Object d;
 
-    public k(i iVar) {
-        this.f7575b = iVar;
+    public k(j jVar) {
+        this.f6668b = jVar;
     }
 
     @Override
     public final Object get() {
-        i iVar = this.f7575b;
-        s sVar = d;
-        if (iVar != sVar) {
-            synchronized (this.f7574a) {
+        if (!this.f6669c) {
+            synchronized (this.f6667a) {
                 try {
-                    if (this.f7575b != sVar) {
-                        Object obj = this.f7575b.get();
-                        this.f7576c = obj;
-                        this.f7575b = sVar;
+                    if (!this.f6669c) {
+                        Object obj = this.f6668b.get();
+                        this.d = obj;
+                        this.f6669c = true;
                         return obj;
                     }
                 } finally {
                 }
             }
         }
-        return this.f7576c;
+        return this.d;
     }
 
     public final String toString() {
-        Object obj = this.f7575b;
+        Object obj;
         StringBuilder sb2 = new StringBuilder("Suppliers.memoize(");
-        if (obj == d) {
-            obj = "<supplier that returned " + this.f7576c + ">";
+        if (this.f6669c) {
+            obj = "<supplier that returned " + this.d + ">";
+        } else {
+            obj = this.f6668b;
         }
         sb2.append(obj);
         sb2.append(")");

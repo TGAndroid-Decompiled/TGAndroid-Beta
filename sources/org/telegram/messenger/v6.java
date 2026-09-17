@@ -1,34 +1,38 @@
 package org.telegram.messenger;
 
-import org.telegram.messenger.MessagesStorage;
+import android.content.SharedPreferences;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class v6 implements Runnable {
-    public final int f17523a = 0;
-    public final MediaDataController f17524b;
-    public final TLRPC.Message f17525c;
-    public final MessagesStorage.TopicKey d;
+    public final int f19233a;
+    public final MediaDataController f19234b;
+    public final TLRPC.TL_error f19235c;
+    public final TLObject d;
+    public final SharedPreferences f19236e;
+    public final boolean[] f19237f;
 
-    public v6(MediaDataController mediaDataController, MessagesStorage.TopicKey topicKey, TLRPC.Message message) {
-        this.f17524b = mediaDataController;
-        this.d = topicKey;
-        this.f17525c = message;
+    public v6(MediaDataController mediaDataController, TLRPC.TL_error tL_error, TLObject tLObject, SharedPreferences sharedPreferences, boolean[] zArr, int i10) {
+        this.f19233a = i10;
+        this.f19234b = mediaDataController;
+        this.f19235c = tL_error;
+        this.d = tLObject;
+        this.f19236e = sharedPreferences;
+        this.f19237f = zArr;
     }
 
     @Override
     public final void run() {
-        switch (this.f17523a) {
+        switch (this.f19233a) {
             case 0:
-                this.f17524b.lambda$putBotKeyboard$200(this.d, this.f17525c);
+                SharedPreferences sharedPreferences = this.f19236e;
+                boolean[] zArr = this.f19237f;
+                this.f19234b.lambda$loadRecentAndTopReactions$237(this.f19235c, this.d, sharedPreferences, zArr);
                 return;
             default:
-                this.f17524b.lambda$loadBotKeyboard$195(this.f17525c, this.d);
+                SharedPreferences sharedPreferences2 = this.f19236e;
+                boolean[] zArr2 = this.f19237f;
+                this.f19234b.lambda$loadRecentAndTopReactions$235(this.f19235c, this.d, sharedPreferences2, zArr2);
                 return;
         }
-    }
-
-    public v6(MediaDataController mediaDataController, TLRPC.Message message, MessagesStorage.TopicKey topicKey) {
-        this.f17524b = mediaDataController;
-        this.f17525c = message;
-        this.d = topicKey;
     }
 }

@@ -1,24 +1,14 @@
 package pg;
+public abstract class a {
+    public int f44099a;
+    public boolean f44100b;
 
-import org.telegram.messenger.R;
-public final class a extends m {
-    @Override
-    public final int c() {
-        return -30208;
+    public a(int i10, boolean z10) {
+        this.f44099a = i10;
+        this.f44100b = z10;
     }
 
-    @Override
-    public final float d() {
-        return 0.25f;
-    }
-
-    @Override
-    public final int e() {
-        return R.raw.photo_arrow;
-    }
-
-    @Override
-    public final float j() {
-        return 0.25f;
+    public boolean a(a aVar) {
+        return false;
     }
 }

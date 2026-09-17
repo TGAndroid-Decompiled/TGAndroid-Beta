@@ -1,24 +1,24 @@
 package org.telegram.messenger;
 public final class u2 implements Runnable {
-    public final int f17437a;
-    public final FileLoader f17438b;
+    public final int f19150a;
+    public final FileLoader f19151b;
 
     public u2(FileLoader fileLoader, int i10) {
-        this.f17437a = i10;
-        this.f17438b = fileLoader;
+        this.f19150a = i10;
+        this.f19151b = fileLoader;
     }
 
     @Override
     public final void run() {
-        switch (this.f17437a) {
+        switch (this.f19150a) {
             case 0:
-                FileLoader.t(this.f17438b);
+                FileLoader.t(this.f19151b);
                 return;
             case 1:
-                FileLoader.m(this.f17438b);
+                FileLoader.m(this.f19151b);
                 return;
             default:
-                FileLoader.q(this.f17438b);
+                FileLoader.q(this.f19151b);
                 return;
         }
     }

@@ -1,46 +1,72 @@
 package org.telegram.ui;
 
 import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MessageObject;
-public final class wf implements View.OnLongClickListener {
-    public final int f39022a;
-    public final bo f39023b;
+import java.io.Serializable;
+import java.util.ArrayList;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_iv;
+public final class wf implements View.OnClickListener {
+    public final int f42371a;
+    public final co f42372b;
+    public final int f42373c;
+    public final ArrayList d;
+    public final String f42374e;
+    public final String f42375f;
+    public final Serializable h;
+    public final TLRPC.InputPeer f42376n;
+    public final int[] f42377r;
+    public final boolean f42378s;
+    public final vf v;
+    public final Object f42379w;
 
-    public wf(bo boVar, int i10) {
-        this.f39022a = i10;
-        this.f39023b = boVar;
+    public wf(co coVar, int i10, ArrayList arrayList, String str, String str2, String str3, TLRPC.InputPeer inputPeer, int[] iArr, Object obj, boolean z10, vf vfVar, int i11) {
+        this.f42371a = i11;
+        this.f42372b = coVar;
+        this.f42373c = i10;
+        this.d = arrayList;
+        this.f42374e = str;
+        this.f42375f = str2;
+        this.h = str3;
+        this.f42376n = inputPeer;
+        this.f42377r = iArr;
+        this.f42379w = obj;
+        this.f42378s = z10;
+        this.v = vfVar;
     }
 
     @Override
-    public final boolean onLongClick(View view) {
-        MessageObject messageObject;
-        MessageObject messageObject2;
-        switch (this.f39022a) {
+    public final void onClick(View view) {
+        switch (this.f42371a) {
             case 0:
-                bo boVar = this.f39023b;
-                MessageObject messageObject3 = boVar.f32258d5;
-                if (messageObject3 == null) {
-                    return false;
-                }
-                if (AndroidUtilities.addToClipboard(messageObject3.sponsoredUrl)) {
-                    new org.telegram.ui.Components.vc(org.telegram.ui.Components.jb.a(boVar.getParentActivity()), boVar.f32275ea).k(false).j();
-                }
-                return true;
+                boolean z10 = this.f42378s;
+                vf vfVar = this.v;
+                co.U0(this.f42372b, this.f42373c, this.d, this.f42374e, this.f42375f, (String) this.h, this.f42376n, this.f42377r, (TL_iv.RichMessage) this.f42379w, z10, vfVar);
+                return;
             case 1:
-                return bo.R0(this.f39023b);
+                boolean z11 = this.f42378s;
+                vf vfVar2 = this.v;
+                co.c0(this.f42372b, this.f42373c, this.d, this.f42374e, this.f42375f, (String) this.h, this.f42376n, this.f42377r, (CharSequence) this.f42379w, z11, vfVar2);
+                return;
             default:
-                bo boVar2 = this.f39023b;
-                int i10 = boVar2.f32397ob;
-                if (i10 == 1 && (messageObject2 = boVar2.p5) != null) {
-                    boVar2.F(messageObject2.getId(), 0, 0, 0, true, true);
-                    return true;
-                } else if (boVar2.f32283f5 != null && i10 == 2 && (messageObject = boVar2.f32381n5) != null) {
-                    boVar2.F(messageObject.getId(), 0, 0, 0, true, true);
-                    return true;
-                } else {
-                    return false;
-                }
+                boolean z12 = this.f42378s;
+                vf vfVar3 = this.v;
+                co.w0(this.f42372b, this.f42373c, this.d, (String[]) this.h, this.f42374e, this.f42375f, this.f42376n, this.f42377r, (CharSequence) this.f42379w, z12, vfVar3);
+                return;
         }
+    }
+
+    public wf(co coVar, int i10, ArrayList arrayList, String[] strArr, String str, String str2, TLRPC.InputPeer inputPeer, int[] iArr, CharSequence charSequence, boolean z10, vf vfVar) {
+        this.f42371a = 2;
+        this.f42372b = coVar;
+        this.f42373c = i10;
+        this.d = arrayList;
+        this.h = strArr;
+        this.f42374e = str;
+        this.f42375f = str2;
+        this.f42376n = inputPeer;
+        this.f42377r = iArr;
+        this.f42379w = charSequence;
+        this.f42378s = z10;
+        this.v = vfVar;
     }
 }

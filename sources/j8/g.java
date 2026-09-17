@@ -1,5 +1,6 @@
 package j8;
 
+import a6.i;
 import android.os.IBinder;
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -8,63 +9,63 @@ import g8.j;
 import w7.e0;
 public final class g extends o6.a {
     public static final Parcelable.Creator<g> CREATOR = new j(15);
-    public LatLng f12931a;
-    public String f12932b;
-    public String f12933c;
-    public xa.c d;
-    public float e;
-    public float f12934f;
+    public LatLng f13598a;
+    public String f13599b;
+    public String f13600c;
+    public i d;
+    public float f13601e;
+    public float f13602f;
     public boolean h;
-    public boolean f12935n;
-    public boolean f12936r;
-    public float f12937s;
+    public boolean f13603n;
+    public boolean f13604r;
+    public float f13605s;
     public float v;
-    public float f12938w;
-    public float f12939x;
-    public float f12940y;
+    public float f13606w;
+    public float f13607x;
+    public float f13608y;
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
         IBinder asBinder;
         int q6 = e0.q(parcel, 20293);
-        e0.k(parcel, 2, this.f12931a, i10);
-        e0.l(parcel, 3, this.f12932b);
-        e0.l(parcel, 4, this.f12933c);
-        xa.c cVar = this.d;
-        if (cVar == null) {
+        e0.k(parcel, 2, this.f13598a, i10);
+        e0.l(parcel, 3, this.f13599b);
+        e0.l(parcel, 4, this.f13600c);
+        i iVar = this.d;
+        if (iVar == null) {
             asBinder = null;
         } else {
-            asBinder = ((x6.a) cVar.f45760b).asBinder();
+            asBinder = ((x6.a) iVar.f324b).asBinder();
         }
         e0.f(parcel, 5, asBinder);
-        float f7 = this.e;
+        float f7 = this.f13601e;
         e0.s(parcel, 6, 4);
         parcel.writeFloat(f7);
-        float f10 = this.f12934f;
+        float f10 = this.f13602f;
         e0.s(parcel, 7, 4);
         parcel.writeFloat(f10);
         boolean z10 = this.h;
         e0.s(parcel, 8, 4);
         parcel.writeInt(z10 ? 1 : 0);
-        boolean z11 = this.f12935n;
+        boolean z11 = this.f13603n;
         e0.s(parcel, 9, 4);
         parcel.writeInt(z11 ? 1 : 0);
-        boolean z12 = this.f12936r;
+        boolean z12 = this.f13604r;
         e0.s(parcel, 10, 4);
         parcel.writeInt(z12 ? 1 : 0);
-        float f11 = this.f12937s;
+        float f11 = this.f13605s;
         e0.s(parcel, 11, 4);
         parcel.writeFloat(f11);
         float f12 = this.v;
         e0.s(parcel, 12, 4);
         parcel.writeFloat(f12);
-        float f13 = this.f12938w;
+        float f13 = this.f13606w;
         e0.s(parcel, 13, 4);
         parcel.writeFloat(f13);
-        float f14 = this.f12939x;
+        float f14 = this.f13607x;
         e0.s(parcel, 14, 4);
         parcel.writeFloat(f14);
-        float f15 = this.f12940y;
+        float f15 = this.f13608y;
         e0.s(parcel, 15, 4);
         parcel.writeFloat(f15);
         e0.r(parcel, q6);

@@ -1,11 +1,10 @@
 package org.telegram.ui.Components;
-public final class kv0 {
-    public float f25695a;
-    public float f25696b;
-    public boolean f25697c;
 
-    public kv0(float f7, float f10) {
-        this.f25695a = f7;
-        this.f25696b = f10;
-    }
+import android.graphics.Bitmap;
+public final class kv0 {
+    public int f27937a;
+    public mv0 f27938b;
+    public Bitmap f27939c;
+    public float d;
+    public float f27940e;
 }

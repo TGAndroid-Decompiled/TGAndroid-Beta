@@ -1,29 +1,36 @@
 package org.telegram.messenger;
 
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
+import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
-public final class wb implements RequestDelegate {
-    public final int f17780a;
-    public final MessagesController f17781b;
-    public final long f17782c;
-    public final long d;
+public final class wb implements Runnable {
+    public final int f19530a;
+    public final MessagesController f19531b;
+    public final int f19532c;
+    public final ArrayList d;
+    public final boolean f19533e;
+    public final TLRPC.TL_messages_peerDialogs f19534f;
+    public final a0.i h;
+    public final TLRPC.TL_messages_dialogs f19535n;
 
-    public wb(int i10, long j3, long j10, MessagesController messagesController) {
-        this.f17780a = i10;
-        this.f17781b = messagesController;
-        this.f17782c = j3;
-        this.d = j10;
+    public wb(MessagesController messagesController, int i10, ArrayList arrayList, boolean z10, TLRPC.TL_messages_peerDialogs tL_messages_peerDialogs, a0.i iVar, TLRPC.TL_messages_dialogs tL_messages_dialogs, int i11) {
+        this.f19530a = i11;
+        this.f19531b = messagesController;
+        this.f19532c = i10;
+        this.d = arrayList;
+        this.f19533e = z10;
+        this.f19534f = tL_messages_peerDialogs;
+        this.h = iVar;
+        this.f19535n = tL_messages_dialogs;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f17780a) {
+    public final void run() {
+        switch (this.f19530a) {
             case 0:
-                this.f17781b.lambda$loadUnknownDialog$208(this.f17782c, this.d, tLObject, tL_error);
+                this.f19531b.lambda$loadPinnedDialogs$366(this.f19532c, this.d, this.f19533e, this.f19534f, this.h, this.f19535n);
                 return;
             default:
-                this.f17781b.lambda$deleteMessages$124(this.f17782c, this.d, tLObject, tL_error);
+                this.f19531b.lambda$loadPinnedDialogs$365(this.f19532c, this.d, this.f19533e, this.f19534f, this.h, this.f19535n);
                 return;
         }
     }

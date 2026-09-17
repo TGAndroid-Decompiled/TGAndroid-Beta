@@ -1,33 +1,88 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import android.text.SpannableStringBuilder;
-import android.widget.FrameLayout;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class jh1 extends FrameLayout {
-    public final rg.p0 f34885a;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.view.View;
+import android.view.ViewGroup;
+import java.util.WeakHashMap;
+import org.telegram.messenger.AndroidUtilities;
+public final class jh1 extends ViewGroup {
+    public final Paint f37805a;
+    public View f37806b;
+    public boolean f37807c;
 
-    public jh1(Context context, org.telegram.ui.ActionBar.f6 f6Var) {
+    public jh1(Context context) {
         super(context);
-        LinearLayout linearLayout = new LinearLayout(context);
-        addView(linearLayout, w7.x5.e(-1, -2, 80));
-        linearLayout.setOrientation(1);
-        TextView textView = new TextView(context);
-        textView.setTextColor(i0.a.k(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.G6, f6Var), 100));
-        textView.setTextSize(1, 13.0f);
-        textView.setGravity(17);
-        textView.setText(LocaleController.getString(R.string.UnlockPremiumStickersDescription));
-        linearLayout.addView(textView, w7.x5.t(-1, -2, 0, 16, 17, 17, 16));
-        rg.p0 p0Var = new rg.p0(context, f6Var, false);
-        this.f34885a = p0Var;
-        String string = LocaleController.getString(R.string.UnlockPremiumStickers);
-        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
-        spannableStringBuilder.append((CharSequence) "d ").setSpan(new org.telegram.ui.Components.oq(0, context.getDrawable(R.drawable.msg_premium_normal)), 0, 1, 0);
-        spannableStringBuilder.append((CharSequence) string);
-        p0Var.d.setText(spannableStringBuilder);
-        linearLayout.addView(p0Var, w7.x5.t(-1, 48, 0, 16, 0, 16, 16));
+        this.f37805a = new Paint(1);
+        setClipToPadding(false);
+    }
+
+    @Override
+    public final void dispatchDraw(Canvas canvas) {
+        int paddingBottom = getPaddingBottom();
+        float navigationBarThirdButtonsFactor = AndroidUtilities.getNavigationBarThirdButtonsFactor(0.1f, 0.75f, paddingBottom);
+        int w02 = org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.Oh, false);
+        int h = i0.a.h(org.telegram.ui.ActionBar.j6.l1(navigationBarThirdButtonsFactor, org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f20691d6, false)), w02);
+        Paint paint = this.f37805a;
+        paint.setColor(w02);
+        canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight() - paddingBottom, paint);
+        paint.setColor(h);
+        canvas.drawRect(0.0f, getMeasuredHeight() - paddingBottom, getMeasuredWidth(), getMeasuredHeight(), paint);
+        super.dispatchDraw(canvas);
+    }
+
+    @Override
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        int childCount = getChildCount();
+        for (int i14 = 0; i14 < childCount; i14++) {
+            View childAt = getChildAt(i14);
+            childAt.layout(0, 0, childAt.getMeasuredWidth(), childAt.getMeasuredHeight());
+        }
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        boolean z10;
+        int i12;
+        View view = this.f37806b;
+        if (view != null && view.getVisibility() == 0) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        int size = View.MeasureSpec.getSize(i10);
+        if (z10) {
+            i12 = getPaddingBottom() + AndroidUtilities.dp(44.0f);
+        } else {
+            i12 = 0;
+        }
+        setMeasuredDimension(size, i12);
+        int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(size, 1073741824);
+        int makeMeasureSpec2 = View.MeasureSpec.makeMeasureSpec(i12, 1073741824);
+        int childCount = getChildCount();
+        for (int i13 = 0; i13 < childCount; i13++) {
+            getChildAt(i13).measure(makeMeasureSpec, makeMeasureSpec2);
+        }
+        if (this.f37807c != z10) {
+            this.f37807c = z10;
+            WeakHashMap weakHashMap = r0.i0.f44726a;
+            r0.y.c(this);
+        }
+    }
+
+    @Override
+    public final void onViewAdded(View view) {
+        super.onViewAdded(view);
+        this.f37806b = view;
+    }
+
+    @Override
+    public final void setPadding(int i10, int i11, int i12, int i13) {
+        super.setPadding(i10, i11, i12, i13);
+        int childCount = getChildCount();
+        for (int i14 = 0; i14 < childCount; i14++) {
+            getChildAt(i14).setPadding(i10, i11, i12, i13);
+        }
     }
 }

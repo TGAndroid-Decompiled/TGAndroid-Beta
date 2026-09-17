@@ -8,5 +8,5 @@ public interface p {
 
     StaticsBoundaryInterface getStatics();
 
-    String[] n();
+    String[] t();
 }

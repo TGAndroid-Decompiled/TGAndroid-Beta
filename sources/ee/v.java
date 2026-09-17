@@ -1,24 +1,4 @@
 package ee;
-public final class v implements fb.n {
-    public final int f8201a;
-    public final String f8202b;
-
-    public v(String str, int i10) {
-        this.f8201a = i10;
-        this.f8202b = str;
-    }
-
-    @Override
-    public Object p2() {
-        throw new RuntimeException(this.f8202b);
-    }
-
-    public String toString() {
-        switch (this.f8201a) {
-            case 0:
-                return "<" + this.f8202b + '>';
-            default:
-                return super.toString();
-        }
-    }
+public abstract class v {
+    public static final int f9122a = Runtime.getRuntime().availableProcessors();
 }

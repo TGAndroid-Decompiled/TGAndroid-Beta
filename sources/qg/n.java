@@ -1,76 +1,39 @@
 package qg;
 
-import ci.n5;
-import java.util.List;
-import org.telegram.ui.Components.y01;
-import org.telegram.ui.gm0;
-import w7.x5;
-public final class n implements Runnable {
-    public final int f41496a;
-    public final p0 f41497b;
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.Rect;
+import android.graphics.RectF;
+import org.telegram.messenger.AndroidUtilities;
+import rg.a2;
+public final class n extends a2 {
+    public final x f44515y;
 
-    public n(p0 p0Var, int i10) {
-        this.f41496a = i10;
-        this.f41497b = p0Var;
-    }
-
-    @Override
-    public final void run() {
-        int e;
-        switch (this.f41496a) {
-            case 0:
-                p0 p0Var = this.f41497b;
-                y01 y01Var = p0Var.f41537a1;
-                if (y01Var != null) {
-                    p0Var.f41537a1 = null;
-                    p0Var.removeView(y01Var);
-                    return;
-                }
-                return;
-            case 1:
-                p0 p0Var2 = this.f41497b;
-                if (p0Var2.E0 != null) {
-                    p0Var2.G0.postRunnable(new n(p0Var2, 3), 200L);
-                    return;
-                }
-                return;
-            case 2:
-                z1 z1Var = this.f41497b.l1;
-                if (z1Var != null) {
-                    z1Var.invalidate();
-                    return;
-                }
-                return;
-            case 3:
-                p0.a0(this.f41497b);
-                return;
-            default:
-                p0 p0Var3 = this.f41497b;
-                boolean z10 = pg.s0.e(p0Var3.P1).f41021k;
-                int i10 = 0;
-                while (true) {
-                    List list = pg.l.f40929b;
-                    if (i10 < list.size()) {
-                        pg.l lVar = (pg.l) list.get(i10);
-                        if (z10) {
-                            e = lVar.m();
-                        } else {
-                            e = lVar.e();
-                        }
-                        String n10 = lVar.n();
-                        gm0 gm0Var = new gm0(p0Var3, lVar, e, 12);
-                        o0 o0Var = new o0(p0Var3, p0Var3.getContext());
-                        o0Var.setIcon(e);
-                        o0Var.setText(n10);
-                        o0Var.setSelected(false);
-                        o0Var.setOnClickListener(new org.telegram.ui.Components.voip.o(gm0Var, 6));
-                        o0Var.setOnLongClickListener(new n5(p0Var3, 6));
-                        p0Var3.S1.a(o0Var, x5.n(-1, 48));
-                        i10++;
-                    } else {
-                        return;
-                    }
-                }
-        }
+    public n(x xVar, Context context, Bitmap bitmap) {
+        super(context);
+        this.f44515y = xVar;
+        Paint paint = new Paint(1);
+        this.f45145b = paint;
+        Paint paint2 = new Paint(1);
+        this.f45146c = paint2;
+        Paint paint3 = new Paint(1);
+        this.d = paint3;
+        this.f45147e = 0.5f;
+        this.f45148f = 0.5f;
+        this.h = new Path();
+        this.f45149n = new Rect();
+        this.f45150r = new RectF();
+        this.f45144a = bitmap;
+        Paint.Style style = Paint.Style.STROKE;
+        paint.setStyle(style);
+        paint.setStrokeWidth(AndroidUtilities.dp(4.0f));
+        paint.setColor(-1);
+        paint2.setStyle(style);
+        paint2.setStrokeWidth(AndroidUtilities.dp(1.0f));
+        paint2.setColor(-1711276033);
+        paint3.setStyle(style);
+        paint3.setStrokeWidth(AndroidUtilities.dp(12.0f));
     }
 }

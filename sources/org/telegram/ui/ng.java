@@ -1,21 +1,80 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.Utilities;
-public final class ng implements Utilities.Callback {
-    public final int f36098a;
-    public final long f36099b;
-    public final long f36100c;
-    public final Object d;
+import android.animation.ValueAnimator;
+import android.view.View;
+import android.widget.ImageView;
+import java.util.ArrayList;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+public final class ng implements ValueAnimator.AnimatorUpdateListener {
+    public final int f38976a;
+    public final float f38977b;
+    public final Object f38978c;
 
-    public ng(Object obj, long j3, long j10, int i10) {
-        this.f36098a = i10;
-        this.d = obj;
-        this.f36099b = j3;
-        this.f36100c = j10;
+    public ng(Object obj, float f7, int i10) {
+        this.f38976a = i10;
+        this.f38978c = obj;
+        this.f38977b = f7;
     }
 
     @Override
-    public final void run(java.lang.Object r22) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ng.run(java.lang.Object):void");
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        int i10;
+        switch (this.f38976a) {
+            case 0:
+                co coVar = (co) this.f38978c;
+                coVar.getClass();
+                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                coVar.H8 = floatValue;
+                coVar.L8 = floatValue / this.f38977b;
+                View view = coVar.fragmentView;
+                if (view != null) {
+                    view.invalidate();
+                    return;
+                }
+                return;
+            case 1:
+                ArrayList arrayList = (ArrayList) this.f38978c;
+                float floatValue2 = 1.0f - ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                for (int i11 = 0; i11 < arrayList.size(); i11++) {
+                    View view2 = (View) arrayList.get(i11);
+                    if (view2 != null) {
+                        view2.setTranslationY(this.f38977b * floatValue2);
+                    }
+                }
+                return;
+            case 2:
+                ((org.telegram.ui.Components.tn) this.f38978c).E.setTranslationY(AndroidUtilities.lerp(this.f38977b, 0.0f, ((Float) valueAnimator.getAnimatedValue()).floatValue()));
+                return;
+            case 3:
+                ((zv0) this.f38978c).R.setTranslationY(AndroidUtilities.lerp(this.f38977b, 0.0f, ((Float) valueAnimator.getAnimatedValue()).floatValue()));
+                return;
+            default:
+                i21 i21Var = (i21) this.f38978c;
+                i21Var.getClass();
+                float floatValue3 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                float lerp = AndroidUtilities.lerp(0.0f, this.f38977b, floatValue3);
+                i21Var.f37199a.setTranslationX(lerp);
+                i21Var.f37200b.setTranslationX(lerp);
+                ImageView imageView = i21Var.f37201c;
+                imageView.setTranslationX(lerp);
+                org.telegram.ui.Components.mp mpVar = i21Var.f37203f;
+                if (LocaleController.isRTL) {
+                    i10 = AndroidUtilities.dp(32.0f);
+                } else {
+                    i10 = -AndroidUtilities.dp(32.0f);
+                }
+                mpVar.setTranslationX(i10 + lerp);
+                float f7 = (floatValue3 * 0.5f) + 0.5f;
+                mpVar.setScaleX(f7);
+                mpVar.setScaleY(f7);
+                mpVar.setAlpha(floatValue3);
+                float f10 = 1.0f - floatValue3;
+                float f11 = (f10 * 0.5f) + 0.5f;
+                imageView.setScaleX(f11);
+                imageView.setScaleY(f11);
+                imageView.setAlpha(f10);
+                return;
+        }
     }
 }

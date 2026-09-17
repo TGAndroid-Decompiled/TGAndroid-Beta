@@ -1,20 +1,17 @@
 package org.telegram.ui;
 
-import android.text.style.CharacterStyle;
 import org.telegram.messenger.AndroidUtilities;
-public final class aj extends nf.e {
+public final class aj extends of.e {
     public final int d;
-    public final int e;
-    public final org.telegram.ui.Cells.t1 f31905f;
-    public final bo f31906g;
-    public final Object h;
+    public final int f34487e;
+    public final org.telegram.ui.Cells.t1 f34488f;
+    public final co f34489g;
 
-    public aj(bo boVar, int i10, Object obj, org.telegram.ui.Cells.t1 t1Var, int i11) {
+    public aj(co coVar, int i10, org.telegram.ui.Cells.t1 t1Var, int i11) {
         this.d = i11;
-        this.f31906g = boVar;
-        this.e = i10;
-        this.h = obj;
-        this.f31905f = t1Var;
+        this.f34489g = coVar;
+        this.f34487e = i10;
+        this.f34488f = t1Var;
     }
 
     @Override
@@ -22,13 +19,19 @@ public final class aj extends nf.e {
         switch (this.d) {
             case 0:
                 if (!z10) {
-                    AndroidUtilities.runOnUIThread(new ai.n8(this, this.e, 20), 240L);
+                    AndroidUtilities.runOnUIThread(new ah.g(this, this.f34487e, 22), 240L);
+                    return;
+                }
+                return;
+            case 1:
+                if (!z10) {
+                    AndroidUtilities.runOnUIThread(new ah.g(this, this.f34487e, 24), 240L);
                     return;
                 }
                 return;
             default:
                 if (!z10) {
-                    AndroidUtilities.runOnUIThread(new ai.n8(this, this.e, 22), 240L);
+                    AndroidUtilities.runOnUIThread(new ah.g(this, this.f34487e, 25), 240L);
                     return;
                 }
                 return;
@@ -39,20 +42,26 @@ public final class aj extends nf.e {
     public final void d() {
         switch (this.d) {
             case 0:
-                int i10 = this.e;
-                bo boVar = this.f31906g;
-                boVar.f32500wb = i10;
-                boVar.f32513xb = 1;
-                boVar.f32525yb = (CharacterStyle) this.h;
-                this.f31905f.invalidate();
+                int i10 = this.f34487e;
+                co coVar = this.f34489g;
+                coVar.f35499wb = i10;
+                coVar.f35512xb = 6;
+                this.f34488f.invalidate();
+                return;
+            case 1:
+                int i11 = this.f34487e;
+                co coVar2 = this.f34489g;
+                coVar2.f35499wb = i11;
+                coVar2.f35512xb = 5;
+                coVar2.f35537zb = null;
+                this.f34488f.invalidate();
                 return;
             default:
-                int i11 = this.e;
-                bo boVar2 = this.f31906g;
-                boVar2.f32500wb = i11;
-                boVar2.f32513xb = 3;
-                boVar2.f32538zb = (String) this.h;
-                this.f31905f.invalidate();
+                int i12 = this.f34487e;
+                co coVar3 = this.f34489g;
+                coVar3.f35499wb = i12;
+                coVar3.f35512xb = 7;
+                this.f34488f.invalidate();
                 return;
         }
     }

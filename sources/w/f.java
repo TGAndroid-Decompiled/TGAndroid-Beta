@@ -1,6 +1,5 @@
 package w;
 
-import ai.f3;
 import android.os.Bundle;
 import android.os.Parcel;
 import e9.f0;
@@ -20,7 +19,7 @@ import z7.w;
 public abstract class f {
     public static z3.b a(m mVar, byte[] bArr, int i10) {
         f0 u10 = i0.u();
-        mVar.B(bArr, 0, i10, l.f48122c, new f3(u10, 10));
+        mVar.e0(bArr, 0, i10, l.f50732c, new ah.m(u10, 11));
         return new z3.b(u10.i());
     }
 
@@ -65,15 +64,15 @@ public abstract class f {
     public static ia.c f(int i10, y yVar) {
         Map unmodifiableMap;
         s sVar = new s(i10);
-        if (((HashMap) yVar.f15005c) == null) {
-            yVar.f15005c = new HashMap();
+        if (((HashMap) yVar.f16524c) == null) {
+            yVar.f16524c = new HashMap();
         }
-        ((HashMap) yVar.f15005c).put(w.class, sVar);
-        String str = (String) yVar.f15004b;
-        if (((HashMap) yVar.f15005c) == null) {
+        ((HashMap) yVar.f16524c).put(w.class, sVar);
+        String str = (String) yVar.f16523b;
+        if (((HashMap) yVar.f16524c) == null) {
             unmodifiableMap = Collections.EMPTY_MAP;
         } else {
-            unmodifiableMap = DesugarCollections.unmodifiableMap(new HashMap((HashMap) yVar.f15005c));
+            unmodifiableMap = DesugarCollections.unmodifiableMap(new HashMap((HashMap) yVar.f16524c));
         }
         return new ia.c(str, unmodifiableMap);
     }

@@ -1,36 +1,14 @@
 package d7;
 
-import hg.k0;
-import java.util.ArrayList;
+import c5.m;
 public final class c {
-    public final ArrayList f7559a;
+    public static final c f6653b;
+    public final m f6654a = new m(1);
 
-    public c(int i10) {
-        switch (i10) {
-            case 1:
-                this.f7559a = new ArrayList();
-                return;
-            default:
-                this.f7559a = new ArrayList();
-                new ArrayList();
-                new ArrayList();
-                return;
-        }
-    }
-
-    public void a(StringBuilder sb2) {
-        String str;
-        if (((Boolean) k0.z(1, this.f7559a)).booleanValue()) {
-            str = "</ol>";
-        } else {
-            str = "</ul>";
-        }
-        sb2.append(str);
-    }
-
-    public void b(StringBuilder sb2) {
-        while (!this.f7559a.isEmpty()) {
-            a(sb2);
+    static {
+        c cVar = new c();
+        synchronized (c.class) {
+            f6653b = cVar;
         }
     }
 }

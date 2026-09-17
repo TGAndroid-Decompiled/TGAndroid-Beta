@@ -1,29 +1,29 @@
 package org.telegram.ui.Components;
 
 import android.view.KeyEvent;
-public final class n80 implements org.telegram.ui.ActionBar.b2, org.telegram.ui.ActionBar.m1 {
-    public final int f26396a;
-    public final v80 f26397b;
+public final class n80 implements org.telegram.ui.ActionBar.a2, org.telegram.ui.ActionBar.l1 {
+    public final int f28715a;
+    public final w80 f28716b;
 
-    public n80(v80 v80Var, int i10) {
-        this.f26396a = i10;
-        this.f26397b = v80Var;
+    public n80(w80 w80Var, int i10) {
+        this.f28715a = i10;
+        this.f28716b = w80Var;
     }
 
     @Override
-    public void f(org.telegram.ui.ActionBar.c2 c2Var, int i10) {
-        switch (this.f26396a) {
+    public void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
+        switch (this.f28715a) {
             case 0:
-                u80 u80Var = this.f26397b.f28652r;
-                if (u80Var != null) {
-                    u80Var.j();
+                v80 v80Var = this.f28716b.f32233r;
+                if (v80Var != null) {
+                    v80Var.j();
                     return;
                 }
                 return;
             default:
-                u80 u80Var2 = this.f26397b.f28652r;
-                if (u80Var2 != null) {
-                    u80Var2.c();
+                v80 v80Var2 = this.f28716b.f32233r;
+                if (v80Var2 != null) {
+                    v80Var2.c();
                     return;
                 }
                 return;
@@ -31,11 +31,11 @@ public final class n80 implements org.telegram.ui.ActionBar.b2, org.telegram.ui.
     }
 
     @Override
-    public void o(KeyEvent keyEvent) {
-        v80 v80Var = this.f26397b;
-        v80Var.getClass();
-        if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && v80Var.f28653s.isShowing()) {
-            v80Var.f28653s.d(true);
+    public void n(KeyEvent keyEvent) {
+        w80 w80Var = this.f28716b;
+        w80Var.getClass();
+        if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && w80Var.f32234s.isShowing()) {
+            w80Var.f32234s.d(true);
         }
     }
 }

@@ -3,23 +3,23 @@ package hc;
 import b2.q0;
 import c5.b0;
 public final class f {
-    public static final int[] e = {31892, 34236, 39577, 42195, 48118, 51042, 55367, 58893, 63784, 68472, 70749, 76311, 79154, 84390, 87683, 92361, 96236, 102084, 102881, 110507, 110734, 117786, 119615, 126325, 127568, 133589, 136944, 141498, 145311, 150283, 152622, 158308, 161089, 167017};
-    public static final f[] f10182f = a();
-    public final int f10183a;
-    public final int[] f10184b;
-    public final b0[] f10185c;
+    public static final int[] f10968e = {31892, 34236, 39577, 42195, 48118, 51042, 55367, 58893, 63784, 68472, 70749, 76311, 79154, 84390, 87683, 92361, 96236, 102084, 102881, 110507, 110734, 117786, 119615, 126325, 127568, 133589, 136944, 141498, 145311, 150283, 152622, 158308, 161089, 167017};
+    public static final f[] f10969f = a();
+    public final int f10970a;
+    public final int[] f10971b;
+    public final b0[] f10972c;
     public final int d;
 
     public f(int i10, int[] iArr, b0... b0VarArr) {
         q0[] q0VarArr;
-        this.f10183a = i10;
-        this.f10184b = iArr;
-        this.f10185c = b0VarArr;
+        this.f10970a = i10;
+        this.f10971b = iArr;
+        this.f10972c = b0VarArr;
         b0 b0Var = b0VarArr[0];
-        int i11 = b0Var.f3846b;
+        int i11 = b0Var.f4373b;
         int i12 = 0;
-        for (q0 q0Var : (q0[]) b0Var.f3847c) {
-            i12 += (q0Var.f3204b + i11) * q0Var.f3203a;
+        for (q0 q0Var : (q0[]) b0Var.f4374c) {
+            i12 += (q0Var.f2288b + i11) * q0Var.f2287a;
         }
         this.d = i12;
     }
@@ -32,7 +32,7 @@ public final class f {
         int i11 = Integer.MAX_VALUE;
         int i12 = 0;
         for (int i13 = 0; i13 < 34; i13++) {
-            int i14 = e[i13];
+            int i14 = f10968e[i13];
             if (i14 == i10) {
                 return c(i13 + 7);
             }
@@ -50,12 +50,12 @@ public final class f {
 
     public static f c(int i10) {
         if (i10 >= 1 && i10 <= 40) {
-            return f10182f[i10 - 1];
+            return f10969f[i10 - 1];
         }
         throw new IllegalArgumentException();
     }
 
     public final String toString() {
-        return String.valueOf(this.f10183a);
+        return String.valueOf(this.f10970a);
     }
 }

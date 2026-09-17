@@ -1,65 +1,162 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class ss0 extends AnimatorListenerAdapter {
-    public final int f27915a;
-    public final zu0 f27916b;
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
+import android.animation.ValueAnimator;
+import android.util.SparseBooleanArray;
+import android.view.View;
+import android.view.ViewTreeObserver;
+import androidx.recyclerview.widget.RecyclerView;
+public final class ss0 implements ViewTreeObserver.OnPreDrawListener {
+    public final ll0 f30436a;
+    public final SparseBooleanArray f30437b;
+    public final View f30438c;
+    public final int d;
+    public final xu0 f30439e;
 
-    public ss0(zu0 zu0Var, int i10) {
-        this.f27915a = i10;
-        this.f27916b = zu0Var;
+    public ss0(xu0 xu0Var, ll0 ll0Var, SparseBooleanArray sparseBooleanArray, t00 t00Var, int i10) {
+        this.f30439e = xu0Var;
+        this.f30436a = ll0Var;
+        this.f30437b = sparseBooleanArray;
+        this.f30438c = t00Var;
+        this.d = i10;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f27915a) {
-            case 0:
-                this.f27916b.L0 = null;
-                return;
-            default:
-                zu0 zu0Var = this.f27916b;
-                org.telegram.ui.ActionBar.w0 w0Var = zu0Var.f30637n0;
-                st0[] st0VarArr = zu0Var.f30632k0;
-                zu0Var.f30623f1 = null;
-                int i10 = 4;
-                if (zu0Var.f30629i1) {
-                    st0VarArr[1].setVisibility(8);
-                    if (w0Var != null && !zu0Var.D()) {
-                        if (zu0Var.v0()) {
-                            i10 = 8;
+    public final boolean onPreDraw() {
+        xu0 xu0Var = this.f30439e;
+        xu0Var.getViewTreeObserver().removeOnPreDrawListener(this);
+        final ll0 ll0Var = this.f30436a;
+        s4.h0 adapter = ll0Var.getAdapter();
+        if (adapter != xu0Var.H && adapter != xu0Var.K && adapter != xu0Var.M && adapter != xu0Var.L) {
+            int childCount = ll0Var.getChildCount();
+            AnimatorSet animatorSet = new AnimatorSet();
+            for (int i10 = 0; i10 < childCount; i10++) {
+                View childAt = ll0Var.getChildAt(i10);
+                View view = this.f30438c;
+                if (childAt != view && RecyclerView.R(childAt) >= this.d - 1) {
+                    childAt.setAlpha(0.0f);
+                    ObjectAnimator ofFloat = ObjectAnimator.ofFloat(childAt, View.ALPHA, 0.0f, 1.0f);
+                    ofFloat.setStartDelay((int) ((Math.min(ll0Var.getMeasuredHeight(), Math.max(0, childAt.getTop())) / ll0Var.getMeasuredHeight()) * 100.0f));
+                    ofFloat.setDuration(200L);
+                    ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                        @Override
+                        public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+                            switch (r2) {
+                                case 0:
+                                    ll0 ll0Var2 = ll0Var;
+                                    if (ll0Var2.a1()) {
+                                        ll0Var2.invalidate();
+                                        return;
+                                    }
+                                    return;
+                                case 1:
+                                    ll0 ll0Var3 = ll0Var;
+                                    if (ll0Var3.a1()) {
+                                        ll0Var3.invalidate();
+                                        return;
+                                    }
+                                    return;
+                                default:
+                                    ll0 ll0Var4 = ll0Var;
+                                    if (ll0Var4.a1()) {
+                                        ll0Var4.invalidate();
+                                        return;
+                                    }
+                                    return;
+                            }
                         }
-                        w0Var.setVisibility(i10);
-                        zu0Var.f30639o0 = 0.0f;
-                    } else {
-                        zu0Var.f30639o0 = zu0Var.b0(0.0f);
-                        zu0Var.s1(0.0f);
-                    }
-                    zu0Var.q1(false);
-                    zu0Var.f30661x0 = 0;
-                } else {
-                    st0 st0Var = st0VarArr[0];
-                    st0VarArr[0] = st0VarArr[1];
-                    st0VarArr[1] = st0Var;
-                    st0Var.setVisibility(8);
-                    if (w0Var != null && zu0Var.f30661x0 == 2) {
-                        if (zu0Var.v0()) {
-                            i10 = 8;
-                        }
-                        w0Var.setVisibility(i10);
-                    }
-                    zu0Var.f30661x0 = 0;
-                    zu0Var.Z0(1.0f, st0VarArr[0].F);
-                    zu0Var.L0();
-                    zu0Var.f1();
+                    });
+                    animatorSet.playTogether(ofFloat);
                 }
-                zu0Var.f30625g1 = false;
-                zu0Var.f30665y1 = false;
-                zu0Var.f30662x1 = false;
-                zu0Var.N0(false);
-                zu0Var.G.setEnabled(true);
-                zu0Var.I0.setEnabled(true);
-                return;
+                if (view != null && view.getParent() == null) {
+                    ll0Var.addView(view);
+                    s4.o0 layoutManager = ll0Var.getLayoutManager();
+                    if (layoutManager != null) {
+                        layoutManager.M(view);
+                        ObjectAnimator ofFloat2 = ObjectAnimator.ofFloat(view, View.ALPHA, view.getAlpha(), 0.0f);
+                        ofFloat2.addListener(new r80(this, layoutManager));
+                        ofFloat2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                            @Override
+                            public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+                                switch (r2) {
+                                    case 0:
+                                        ll0 ll0Var2 = ll0Var;
+                                        if (ll0Var2.a1()) {
+                                            ll0Var2.invalidate();
+                                            return;
+                                        }
+                                        return;
+                                    case 1:
+                                        ll0 ll0Var3 = ll0Var;
+                                        if (ll0Var3.a1()) {
+                                            ll0Var3.invalidate();
+                                            return;
+                                        }
+                                        return;
+                                    default:
+                                        ll0 ll0Var4 = ll0Var;
+                                        if (ll0Var4.a1()) {
+                                            ll0Var4.invalidate();
+                                            return;
+                                        }
+                                        return;
+                                }
+                            }
+                        });
+                        ofFloat2.start();
+                    }
+                }
+            }
+            animatorSet.start();
+            return true;
         }
+        SparseBooleanArray sparseBooleanArray = this.f30437b;
+        if (sparseBooleanArray != null) {
+            int childCount2 = ll0Var.getChildCount();
+            for (int i11 = 0; i11 < childCount2; i11++) {
+                View childAt2 = ll0Var.getChildAt(i11);
+                int p5 = xu0.p(childAt2);
+                if (p5 != 0 && sparseBooleanArray.get(p5, false)) {
+                    xu0Var.O1.put(p5, Float.valueOf(0.0f));
+                    ValueAnimator ofFloat3 = ValueAnimator.ofFloat(0.0f, 1.0f);
+                    ofFloat3.addUpdateListener(new di.x4(this, p5, ll0Var));
+                    ofFloat3.addListener(new fi.v2(this, p5, 10));
+                    ofFloat3.setStartDelay((int) ((Math.min(ll0Var.getMeasuredHeight(), Math.max(0, childAt2.getTop())) / ll0Var.getMeasuredHeight()) * 100.0f));
+                    ofFloat3.setDuration(250L);
+                    ofFloat3.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                        @Override
+                        public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+                            switch (r2) {
+                                case 0:
+                                    ll0 ll0Var2 = ll0Var;
+                                    if (ll0Var2.a1()) {
+                                        ll0Var2.invalidate();
+                                        return;
+                                    }
+                                    return;
+                                case 1:
+                                    ll0 ll0Var3 = ll0Var;
+                                    if (ll0Var3.a1()) {
+                                        ll0Var3.invalidate();
+                                        return;
+                                    }
+                                    return;
+                                default:
+                                    ll0 ll0Var4 = ll0Var;
+                                    if (ll0Var4.a1()) {
+                                        ll0Var4.invalidate();
+                                        return;
+                                    }
+                                    return;
+                            }
+                        }
+                    });
+                    ofFloat3.start();
+                }
+                ll0Var.invalidate();
+            }
+        }
+        return true;
     }
 }

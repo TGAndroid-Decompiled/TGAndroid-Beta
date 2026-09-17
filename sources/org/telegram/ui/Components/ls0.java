@@ -1,26 +1,48 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.widget.FrameLayout;
-public final class ls0 extends FragmentContextView {
-    public final zu0 N0;
+import android.view.ViewGroup;
+public final class ls0 extends g.p {
+    public final int f28328c;
+    public final Object d;
+    public final ViewGroup f28329e;
 
-    public ls0(zu0 zu0Var, Context context, org.telegram.ui.ActionBar.o2 o2Var, zu0 zu0Var2, org.telegram.ui.ActionBar.f6 f6Var) {
-        super(context, o2Var, zu0Var2, false, f6Var);
-        this.N0 = zu0Var;
+    public ls0(ViewGroup viewGroup, Object obj, int i10) {
+        this.f28328c = i10;
+        this.f28329e = viewGroup;
+        this.d = obj;
     }
 
     @Override
-    public final void setVisibility(int i10) {
-        boolean z10;
-        zu0 zu0Var = this.N0;
-        ks ksVar = zu0Var.P0;
-        FrameLayout frameLayout = zu0Var.Q0;
-        if (i10 == 0) {
-            z10 = true;
-        } else {
-            z10 = false;
+    public final int i(int i10) {
+        int i11;
+        switch (this.f28328c) {
+            case 0:
+                qt0 qt0Var = (qt0) this.d;
+                s4.h0 adapter = qt0Var.f29849r.getAdapter();
+                xu0 xu0Var = (xu0) this.f28329e;
+                ru0 ru0Var = xu0Var.I;
+                if (adapter == ru0Var) {
+                    if (ru0Var.j(i10) != 2) {
+                        return 1;
+                    }
+                    return qt0Var.f29850s.J;
+                } else if (xu0.v(xu0Var, adapter) == -1) {
+                    return 1;
+                } else {
+                    ((uu0) adapter).getClass();
+                    return 1;
+                }
+            default:
+                ci.h hVar = (ci.h) this.d;
+                v51 v51Var = ((d61) this.f28329e).Y2;
+                if (v51Var == null) {
+                    return hVar.J;
+                }
+                h51 G = v51Var.G(i10);
+                if (G == null || (i11 = G.f26631u) == -1) {
+                    return hVar.J;
+                }
+                return i11;
         }
-        ksVar.i(frameLayout, z10, true);
     }
 }

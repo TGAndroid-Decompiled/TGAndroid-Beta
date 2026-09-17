@@ -21,17 +21,17 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.SvgHelper;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.cc0;
-import org.telegram.ui.Components.t9;
+import org.telegram.ui.Components.dc0;
+import org.telegram.ui.Components.w9;
 public final class e6 implements NotificationCenter.NotificationCenterDelegate {
-    public static e6 f18622c;
-    public int f18623a;
-    public HashMap f18624b;
+    public static e6 f20421c;
+    public int f20422a;
+    public HashMap f20423b;
 
     public static void a(boolean z10) {
         String str;
         ArrayList arrayList;
-        if (f18622c != null && !z10) {
+        if (f20421c != null && !z10) {
             return;
         }
         ArrayList arrayList2 = null;
@@ -54,11 +54,11 @@ public final class e6 implements NotificationCenter.NotificationCenterDelegate {
                 str = "Blue";
             }
             i6 i6Var = (i6) j6.H.get(str);
-            if (i6Var != null && (arrayList = i6Var.f18759b0) != null && !arrayList.isEmpty()) {
-                int size = i6Var.f18759b0.size();
+            if (i6Var != null && (arrayList = i6Var.f20571b0) != null && !arrayList.isEmpty()) {
+                int size = i6Var.f20571b0.size();
                 for (int i11 = 0; i11 < size; i11++) {
-                    h6 h6Var = (h6) i6Var.f18759b0.get(i11);
-                    if (h6Var.f18720a != j6.f19040n && !TextUtils.isEmpty(h6Var.f18731o)) {
+                    h6 h6Var = (h6) i6Var.f20571b0.get(i11);
+                    if (h6Var.f20518a != j6.f20867n && !TextUtils.isEmpty(h6Var.f20530o)) {
                         if (arrayList2 == null) {
                             arrayList2 = new ArrayList();
                         }
@@ -68,11 +68,11 @@ public final class e6 implements NotificationCenter.NotificationCenterDelegate {
             }
         }
         ?? obj = new Object();
-        obj.f18623a = UserConfig.selectedAccount;
+        obj.f20422a = UserConfig.selectedAccount;
         if (arrayList2 != null) {
-            Utilities.globalQueue.postRunnable(new m4.g0(24, obj, arrayList2));
+            Utilities.globalQueue.postRunnable(new c6(0, obj, arrayList2));
         }
-        f18622c = obj;
+        f20421c = obj;
     }
 
     public static Bitmap b(Bitmap bitmap, boolean z10, File file, h6 h6Var) {
@@ -88,12 +88,12 @@ public final class e6 implements NotificationCenter.NotificationCenterDelegate {
             if (d == null) {
                 return null;
             }
-            i6 i6Var = h6Var.f18721b;
+            i6 i6Var = h6Var.f20519b;
             SparseIntArray Q0 = j6.Q0(null, i6Var.d, null);
             j6.G(Q0, i6Var);
-            int i14 = h6Var.f18722c;
-            int i15 = (int) h6Var.f18726j;
-            long j3 = h6Var.f18727k;
+            int i14 = h6Var.f20520c;
+            int i15 = (int) h6Var.f20525j;
+            long j3 = h6Var.f20526k;
             int i16 = (int) j3;
             if (i16 == 0 && j3 == 0) {
                 if (i15 != 0) {
@@ -106,12 +106,12 @@ public final class e6 implements NotificationCenter.NotificationCenterDelegate {
             } else {
                 i14 = 0;
             }
-            long j10 = h6Var.f18728l;
+            long j10 = h6Var.f20527l;
             int i18 = (int) j10;
             if (i18 == 0 && j10 == 0 && (i13 = Q0.get(j6.Pd)) != 0) {
                 i18 = j6.B(i6Var, i14, i13);
             }
-            long j11 = h6Var.f18729m;
+            long j11 = h6Var.f20528m;
             int i19 = (int) j11;
             if (i19 == 0 && j11 == 0 && (i11 = Q0.get(j6.Qd)) != 0) {
                 i19 = j6.B(i6Var, i14, i11);
@@ -120,11 +120,11 @@ public final class e6 implements NotificationCenter.NotificationCenterDelegate {
                 i15 = j6.B(i6Var, i14, i10);
             }
             if (i18 != 0) {
-                patternColor = cc0.g(i15, i16, i18, i19);
+                patternColor = dc0.g(i15, i16, i18, i19);
             } else if (i16 != 0) {
-                Drawable t9Var = new t9(t9.d(h6Var.f18730n), new int[]{i15, i16});
+                Drawable w9Var = new w9(w9.d(h6Var.f20529n), new int[]{i15, i16});
                 patternColor = AndroidUtilities.getPatternColor(AndroidUtilities.getAverageColor(i15, i16));
-                drawable = t9Var;
+                drawable = w9Var;
             } else {
                 drawable = new ColorDrawable(i15);
                 patternColor = AndroidUtilities.getPatternColor(i15);
@@ -151,7 +151,7 @@ public final class e6 implements NotificationCenter.NotificationCenterDelegate {
                     drawable.draw(canvas);
                     Paint paint = new Paint(2);
                     paint.setColorFilter(new PorterDuffColorFilter(patternColor, PorterDuff.Mode.SRC_IN));
-                    paint.setAlpha((int) (Math.abs(h6Var.f18732p) * 255.0f));
+                    paint.setAlpha((int) (Math.abs(h6Var.f20531p) * 255.0f));
                     canvas.drawBitmap(bitmap2, 0.0f, 0.0f, paint);
                     createBitmap.compress(Bitmap.CompressFormat.JPEG, 87, new FileOutputStream(d));
                     return bitmap2;
@@ -173,15 +173,15 @@ public final class e6 implements NotificationCenter.NotificationCenterDelegate {
 
     @Override
     public final void didReceivedNotification(int i10, int i11, Object... objArr) {
-        HashMap hashMap = this.f18624b;
+        HashMap hashMap = this.f20423b;
         if (hashMap != null) {
             if (i10 == NotificationCenter.fileLoaded) {
                 d6 d6Var = (d6) hashMap.remove((String) objArr[0]);
                 if (d6Var != null) {
-                    Utilities.globalQueue.postRunnable(new m4.g0(25, this, d6Var));
+                    Utilities.globalQueue.postRunnable(new c6(1, this, d6Var));
                 }
             } else if (i10 == NotificationCenter.fileLoadFailed && hashMap.remove((String) objArr[0]) != null) {
-                AndroidUtilities.runOnUIThread(new ci.y0((Object) this, (Object) null, false, 10));
+                AndroidUtilities.runOnUIThread(new di.y0((Object) this, (Object) null, false, 10));
             }
         }
     }

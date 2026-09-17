@@ -4,7 +4,7 @@ import android.os.Binder;
 import android.os.IBinder;
 import android.os.IInterface;
 import android.os.Parcel;
-import d7.f;
+import d7.e;
 public abstract class a extends Binder implements IInterface {
     @Override
     public boolean onTransact(int i10, Parcel parcel, Parcel parcel2, int i11) {
@@ -15,7 +15,7 @@ public abstract class a extends Binder implements IInterface {
         } else {
             parcel.enforceInterface(getInterfaceDescriptor());
         }
-        f fVar = (f) this;
+        e eVar = (e) this;
         if (i10 != 1) {
             boolean z10 = false;
             if (i10 != 2) {
@@ -24,32 +24,32 @@ public abstract class a extends Binder implements IInterface {
                         if (i10 != 5) {
                             return false;
                         }
-                        String stringFlagValue = fVar.getStringFlagValue(parcel.readString(), parcel.readString(), parcel.readInt());
+                        String stringFlagValue = eVar.getStringFlagValue(parcel.readString(), parcel.readString(), parcel.readInt());
                         parcel2.writeNoException();
                         parcel2.writeString(stringFlagValue);
                         return true;
                     }
-                    long longFlagValue = fVar.getLongFlagValue(parcel.readString(), parcel.readLong(), parcel.readInt());
+                    long longFlagValue = eVar.getLongFlagValue(parcel.readString(), parcel.readLong(), parcel.readInt());
                     parcel2.writeNoException();
                     parcel2.writeLong(longFlagValue);
                     return true;
                 }
-                int intFlagValue = fVar.getIntFlagValue(parcel.readString(), parcel.readInt(), parcel.readInt());
+                int intFlagValue = eVar.getIntFlagValue(parcel.readString(), parcel.readInt(), parcel.readInt());
                 parcel2.writeNoException();
                 parcel2.writeInt(intFlagValue);
                 return true;
             }
             String readString = parcel.readString();
-            int i12 = b.f15501a;
+            int i12 = b.f17004a;
             if (parcel.readInt() != 0) {
                 z10 = true;
             }
-            boolean booleanFlagValue = fVar.getBooleanFlagValue(readString, z10, parcel.readInt());
+            boolean booleanFlagValue = eVar.getBooleanFlagValue(readString, z10, parcel.readInt());
             parcel2.writeNoException();
             parcel2.writeInt(booleanFlagValue ? 1 : 0);
             return true;
         }
-        fVar.init(x6.b.L0(parcel.readStrongBinder()));
+        eVar.init(x6.b.L0(parcel.readStrongBinder()));
         parcel2.writeNoException();
         return true;
     }

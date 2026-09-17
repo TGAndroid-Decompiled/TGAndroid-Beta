@@ -1,29 +1,19 @@
 package org.telegram.ui;
 
-import org.telegram.tgnet.ConnectionsManager;
-public final class bc0 implements Runnable {
-    public final int f32098a;
-    public final hc0 f32099b;
+import org.telegram.tgnet.RequestDelegate;
+public final class bc0 implements RequestDelegate {
+    public final int f34758a;
+    public final Object f34759b;
+    public final Object f34760c;
 
-    public bc0(hc0 hc0Var, int i10) {
-        this.f32098a = i10;
-        this.f32099b = hc0Var;
+    public bc0(int i10, Object obj, Object obj2) {
+        this.f34758a = i10;
+        this.f34759b = obj;
+        this.f34760c = obj2;
     }
 
     @Override
-    public final void run() {
-        switch (this.f32098a) {
-            case 0:
-                hc0 hc0Var = this.f32099b;
-                if (hc0Var.h >= 0) {
-                    ConnectionsManager.getInstance(hc0Var.f34231b).cancelRequest(hc0Var.h, true);
-                    hc0Var.h = -1;
-                    return;
-                }
-                return;
-            default:
-                this.f32099b.a();
-                return;
-        }
+    public final void run(org.telegram.tgnet.TLObject r10, org.telegram.tgnet.TLRPC.TL_error r11) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.bc0.run(org.telegram.tgnet.TLObject, org.telegram.tgnet.TLRPC$TL_error):void");
     }
 }

@@ -1,7 +1,7 @@
 package org.telegram.tgnet;
 
 import org.telegram.tgnet.Vector;
-import w7.c0;
+import w7.b0;
 public class TLObject {
     public static final int FLAG_0 = 1;
     public static final int FLAG_1 = 2;
@@ -64,11 +64,11 @@ public class TLObject {
     }
 
     public static boolean hasFlag(int i10, int i11) {
-        return c0.a(i10, i11);
+        return b0.a(i10, i11);
     }
 
     public static int setFlag(int i10, int i11, boolean z10) {
-        return c0.b(i10, i11, z10);
+        return b0.b(i10, i11, z10);
     }
 
     public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i10, boolean z10) {

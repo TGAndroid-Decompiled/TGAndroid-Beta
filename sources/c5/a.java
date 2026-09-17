@@ -4,21 +4,21 @@ import android.content.Context;
 import android.util.Log;
 import java.io.IOException;
 import java.io.InputStream;
-import n7.a1;
+import n7.z0;
 import org.telegram.ui.Cells.p6;
 public final class a {
-    public String f3841a;
-    public String f3842b;
+    public String f4368a;
+    public String f4369b;
 
     public a(String str, String str2) {
-        this.f3841a = str;
-        this.f3842b = str2;
+        this.f4368a = str;
+        this.f4369b = str2;
     }
 
     public r a() {
-        if (!"first_party".equals(this.f3842b)) {
-            if (this.f3841a != null) {
-                if (this.f3842b != null) {
+        if (!"first_party".equals(this.f4369b)) {
+            if (this.f4368a != null) {
+                if (this.f4369b != null) {
                     return new r(this);
                 }
                 throw new IllegalArgumentException("Product type must be provided.");
@@ -28,13 +28,13 @@ public final class a {
         throw new IllegalArgumentException("Serialized doc id must be provided for first party products.");
     }
 
-    public a(a1 a1Var) {
-        Context context = (Context) a1Var.f15118b;
-        int e = w9.h.e(context, "com.google.firebase.crashlytics.unity_version", "string");
-        if (e != 0) {
-            this.f3841a = "Unity";
-            String string = context.getResources().getString(e);
-            this.f3842b = string;
+    public a(z0 z0Var) {
+        Context context = (Context) z0Var.f16730b;
+        int e7 = w9.h.e(context, "com.google.firebase.crashlytics.unity_version", "string");
+        if (e7 != 0) {
+            this.f4368a = "Unity";
+            String string = context.getResources().getString(e7);
+            this.f4369b = string;
             String i10 = p6.i("Unity Editor version is: ", string);
             if (Log.isLoggable("FirebaseCrashlytics", 2)) {
                 Log.v("FirebaseCrashlytics", i10, null);
@@ -48,19 +48,19 @@ public final class a {
                 if (open != null) {
                     open.close();
                 }
-                this.f3841a = "Flutter";
-                this.f3842b = null;
+                this.f4368a = "Flutter";
+                this.f4369b = null;
                 if (Log.isLoggable("FirebaseCrashlytics", 2)) {
                     Log.v("FirebaseCrashlytics", "Development platform is: Flutter", null);
                     return;
                 }
                 return;
             } catch (IOException unused) {
-                this.f3841a = null;
-                this.f3842b = null;
+                this.f4368a = null;
+                this.f4369b = null;
             }
         }
-        this.f3841a = null;
-        this.f3842b = null;
+        this.f4368a = null;
+        this.f4369b = null;
     }
 }

@@ -1,70 +1,116 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.AndroidUtilities;
+import android.os.Bundle;
+import android.view.View;
+import java.util.ArrayList;
 import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.R;
-public final class p41 implements org.telegram.ui.Components.fo0 {
-    public final org.telegram.ui.Components.go0 f36534a;
-    public final s41 f36535b;
-    public final s41 f36536c;
-    public final s41 d;
-    public final q41 e;
+import org.telegram.messenger.SaveToGallerySettingsHelper;
+import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
+public final class p41 implements org.telegram.ui.Components.al0, org.telegram.ui.Components.cl0, oy {
+    public final SaveToGallerySettingsActivity f39434a;
 
-    public p41(q41 q41Var, org.telegram.ui.Components.go0 go0Var, s41 s41Var, s41 s41Var2, s41 s41Var3) {
-        this.e = q41Var;
-        this.f36534a = go0Var;
-        this.f36535b = s41Var;
-        this.f36536c = s41Var2;
-        this.d = s41Var3;
+    public p41(SaveToGallerySettingsActivity saveToGallerySettingsActivity) {
+        this.f39434a = saveToGallerySettingsActivity;
     }
 
     @Override
-    public final void X(float f7, boolean z10) {
-        long j3;
-        SaveToGallerySettingsActivity saveToGallerySettingsActivity = this.e.d;
-        boolean isAttachedToWindow = this.f36534a.isAttachedToWindow();
-        if (f7 > 0.7f) {
-            j3 = (((float) 4089446400L) * ((f7 - 0.7f) / 0.3f)) + ((float) 104857600);
-        } else {
-            j3 = (((float) 104333312) * (f7 / 0.7f)) + 524288.0f;
-        }
-        s41 s41Var = this.d;
-        s41 s41Var2 = this.f36535b;
-        s41 s41Var3 = this.f36536c;
-        if (f7 >= 1.0f) {
-            s41Var2.e(false, isAttachedToWindow);
-            s41Var3.e(false, isAttachedToWindow);
-            s41Var.e(true, isAttachedToWindow);
-            AndroidUtilities.updateViewVisibilityAnimated(s41Var3, false, 0.8f, isAttachedToWindow);
-        } else if (f7 == 0.0f) {
-            s41Var2.e(true, isAttachedToWindow);
-            s41Var3.e(false, isAttachedToWindow);
-            s41Var.e(false, isAttachedToWindow);
-            AndroidUtilities.updateViewVisibilityAnimated(s41Var3, false, 0.8f, isAttachedToWindow);
-        } else {
-            s41Var3.c(LocaleController.formatString("UpToFileSize", R.string.UpToFileSize, AndroidUtilities.formatFileSize(j3, true, false)), false, true);
-            s41Var2.e(false, isAttachedToWindow);
-            s41Var3.e(true, isAttachedToWindow);
-            s41Var.e(false, isAttachedToWindow);
-            AndroidUtilities.updateViewVisibilityAnimated(s41Var3, true, 0.8f, isAttachedToWindow);
-        }
-        if (z10) {
-            saveToGallerySettingsActivity.X().limitVideo = j3;
+    public boolean B() {
+        return false;
+    }
+
+    @Override
+    public boolean K(uy uyVar) {
+        return false;
+    }
+
+    @Override
+    public void d(float f7, float f10, int i10, View view) {
+        SaveToGallerySettingsActivity saveToGallerySettingsActivity = this.f39434a;
+        ArrayList arrayList = saveToGallerySettingsActivity.f34083s;
+        if (i10 == saveToGallerySettingsActivity.f34079e) {
+            SaveToGallerySettingsHelper.Settings X = saveToGallerySettingsActivity.X();
+            X.savePhoto = !X.savePhoto;
             saveToGallerySettingsActivity.Y();
+            saveToGallerySettingsActivity.Z();
+        } else if (i10 == saveToGallerySettingsActivity.f34080f) {
+            SaveToGallerySettingsHelper.Settings X2 = saveToGallerySettingsActivity.X();
+            X2.saveVideo = !X2.saveVideo;
+            saveToGallerySettingsActivity.Y();
+            saveToGallerySettingsActivity.Z();
+        } else if (((s41) arrayList.get(i10)).f44099a == 1) {
+            Bundle bundle = new Bundle();
+            bundle.putBoolean("onlySelect", true);
+            bundle.putBoolean("checkCanWrite", false);
+            int i11 = saveToGallerySettingsActivity.f34076a;
+            if (i11 == 2) {
+                bundle.putInt("dialogsType", 6);
+            } else if (i11 == 4) {
+                bundle.putInt("dialogsType", 5);
+            } else {
+                bundle.putInt("dialogsType", 4);
+            }
+            bundle.putBoolean("allowGlobalSearch", false);
+            uy uyVar = new uy(bundle);
+            uyVar.C2 = new p41(saveToGallerySettingsActivity);
+            saveToGallerySettingsActivity.presentFragment(uyVar);
+        } else if (((s41) arrayList.get(i10)).f44099a == 2) {
+            Bundle bundle2 = new Bundle();
+            bundle2.putLong("dialog_id", ((s41) arrayList.get(i10)).f40328c.dialogId);
+            bundle2.putInt("type", saveToGallerySettingsActivity.f34076a);
+            saveToGallerySettingsActivity.presentFragment(new SaveToGallerySettingsActivity(bundle2));
+        } else if (((s41) arrayList.get(i10)).f44099a == 4) {
+            org.telegram.ui.ActionBar.b2 b2Var = org.telegram.ui.Components.e5.O(saveToGallerySettingsActivity.getParentActivity(), LocaleController.getString(R.string.NotificationsDeleteAllExceptionTitle), LocaleController.getString(R.string.NotificationsDeleteAllExceptionAlert), LocaleController.getString(R.string.Delete), new f01(saveToGallerySettingsActivity, 9), null).f20226a;
+            b2Var.show();
+            b2Var.h();
         }
     }
 
     @Override
-    public final CharSequence getContentDescription() {
-        return null;
+    public boolean d1(View view) {
+        return false;
     }
 
     @Override
-    public final int m0() {
-        return 0;
+    public boolean u(uy uyVar, ArrayList arrayList, CharSequence charSequence, boolean z10, boolean z11, int i10, int i11, eg1 eg1Var) {
+        Bundle bundle = new Bundle();
+        bundle.putLong("dialog_id", ((MessagesStorage.TopicKey) arrayList.get(0)).dialogId);
+        SaveToGallerySettingsActivity saveToGallerySettingsActivity = this.f39434a;
+        bundle.putInt("type", saveToGallerySettingsActivity.f34076a);
+        saveToGallerySettingsActivity.presentFragment(new SaveToGallerySettingsActivity(bundle), true);
+        return true;
     }
 
     @Override
-    public final void B() {
+    public void h() {
+    }
+
+    @Override
+    public void q(float f7) {
+    }
+
+    @Override
+    public boolean mo18d(float f7, float f10, int i10, View view) {
+        SaveToGallerySettingsActivity saveToGallerySettingsActivity = this.f39434a;
+        ArrayList arrayList = saveToGallerySettingsActivity.f34083s;
+        if (((s41) arrayList.get(i10)).f44099a == 2) {
+            SaveToGallerySettingsHelper.DialogException dialogException = ((s41) arrayList.get(i10)).f40328c;
+            ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = new ActionBarPopupWindow$ActionBarPopupWindowLayout(saveToGallerySettingsActivity.getParentActivity(), null);
+            org.telegram.ui.ActionBar.f1 c10 = org.telegram.ui.ActionBar.v0.c(false, false, actionBarPopupWindow$ActionBarPopupWindowLayout, R.drawable.msg_customize, LocaleController.getString(R.string.EditException), false, null);
+            org.telegram.ui.ActionBar.f1 c11 = org.telegram.ui.ActionBar.v0.c(false, false, actionBarPopupWindow$ActionBarPopupWindowLayout, R.drawable.msg_delete, LocaleController.getString(R.string.DeleteException), false, null);
+            int i11 = org.telegram.ui.ActionBar.j6.f20908p7;
+            c11.c(org.telegram.ui.ActionBar.j6.w0(null, i11, false), org.telegram.ui.ActionBar.j6.w0(null, i11, false));
+            org.telegram.ui.ActionBar.n1 Q = org.telegram.ui.Components.e5.Q(saveToGallerySettingsActivity, actionBarPopupWindow$ActionBarPopupWindowLayout, view, f7, f10);
+            actionBarPopupWindow$ActionBarPopupWindowLayout.setParentWindow(Q);
+            c10.setOnClickListener(new org.telegram.ui.Cells.ua(saveToGallerySettingsActivity, Q, i10, 14));
+            c11.setOnClickListener(new z(saveToGallerySettingsActivity, Q, dialogException, 15));
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public void q0(View view, float f7, float f10) {
     }
 }

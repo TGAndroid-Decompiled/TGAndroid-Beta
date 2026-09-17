@@ -1,6 +1,4 @@
 package org.telegram.ui.Components;
-
-import java.util.ArrayList;
-public abstract class kl0 {
-    public static final ArrayList f25651a = new ArrayList();
+public abstract class kl0 extends s4.h0 {
+    public abstract boolean D(s4.c1 c1Var);
 }

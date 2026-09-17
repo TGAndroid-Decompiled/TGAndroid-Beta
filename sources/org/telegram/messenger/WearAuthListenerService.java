@@ -15,9 +15,9 @@ import java.util.Collections;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.kj1;
-import org.telegram.ui.lb1;
-import org.telegram.ui.xy0;
+import org.telegram.ui.f11;
+import org.telegram.ui.lj1;
+import org.telegram.ui.wy0;
 public class WearAuthListenerService extends x8.k {
     public static final String PATH_CANCEL = "/tg-wear-auth/cancel";
     public static final String PATH_OFFER = "/tg-wear-auth/offer";
@@ -31,13 +31,13 @@ public class WearAuthListenerService extends x8.k {
                 return;
             }
             FileLog.d("wear-auth: cancel from " + str2);
-            BigInteger bigInteger = kj1.f35294a;
+            BigInteger bigInteger = lj1.f38423a;
             FileLog.d("wear-auth: cancel received; dropping session and dismissing sheet");
-            kj1.d = null;
-            org.telegram.ui.ActionBar.g3 g3Var = kj1.f35296c;
-            if (g3Var != null) {
-                g3Var.dismiss();
-                kj1.f35296c = null;
+            lj1.d = null;
+            org.telegram.ui.ActionBar.f3 f3Var = lj1.f38425c;
+            if (f3Var != null) {
+                f3Var.dismiss();
+                lj1.f38425c = null;
                 return;
             }
             return;
@@ -46,41 +46,41 @@ public class WearAuthListenerService extends x8.k {
         v.append(bArr.length);
         v.append(" bytes)");
         FileLog.d(v.toString());
-        BigInteger bigInteger2 = kj1.f35294a;
+        BigInteger bigInteger2 = lj1.f38423a;
         if (bArr.length != 272) {
             FileLog.d("wear-auth: malformed offer (" + bArr.length + ")");
             return;
         }
         byte[] copyOfRange = Arrays.copyOfRange(bArr, 0, 16);
         byte[] copyOfRange2 = Arrays.copyOfRange(bArr, 16, bArr.length);
-        cf.c cVar = kj1.d;
-        if (cVar != null && Arrays.equals((byte[]) cVar.f4261b, copyOfRange)) {
+        cf.c cVar = lj1.d;
+        if (cVar != null && Arrays.equals((byte[]) cVar.f4824b, copyOfRange)) {
             FileLog.d("wear-auth: duplicate offer (same sessionId) — ignoring");
             return;
         }
-        FileLog.d("wear-auth: new session " + kj1.d(copyOfRange) + " from " + str2);
+        FileLog.d("wear-auth: new session " + lj1.d(copyOfRange) + " from " + str2);
         ?? obj = new Object();
-        obj.f4261b = copyOfRange;
-        obj.f4262c = copyOfRange2;
+        obj.f4824b = copyOfRange;
+        obj.f4825c = copyOfRange2;
         obj.d = str2;
-        kj1.d = obj;
+        lj1.d = obj;
         Context context = LaunchActivity.G1;
         if (context == null) {
             context = ApplicationLoader.applicationContext;
         }
         if (context != null) {
-            org.telegram.ui.ActionBar.o2 U = LaunchActivity.U();
+            org.telegram.ui.ActionBar.n2 U = LaunchActivity.U();
             if (U != null) {
                 f6Var = U.getResourceProvider();
             } else {
                 f6Var = null;
             }
-            org.telegram.ui.ActionBar.g3 g3Var2 = kj1.f35296c;
-            if (g3Var2 != null) {
-                g3Var2.dismiss();
-                kj1.f35296c = null;
+            org.telegram.ui.ActionBar.f3 f3Var2 = lj1.f38425c;
+            if (f3Var2 != null) {
+                f3Var2.dismiss();
+                lj1.f38425c = null;
             }
-            org.telegram.ui.ActionBar.g3 i10 = wl.i(1, context, f6Var, false);
+            org.telegram.ui.ActionBar.f3 i10 = vl.i(1, context, f6Var, false);
             FrameLayout frameLayout = new FrameLayout(context);
             i10.customView = frameLayout;
             int i11 = UserConfig.selectedAccount;
@@ -94,26 +94,26 @@ public class WearAuthListenerService extends x8.k {
                     arrayList.add(Integer.valueOf(i12));
                 }
             }
-            Collections.sort(arrayList, new lb1(2));
+            Collections.sort(arrayList, new f11(4));
             if (arrayList.isEmpty()) {
                 return;
             }
             FrameLayout frameLayout2 = new FrameLayout(context);
             int i13 = i11;
             FrameLayout frameLayout3 = new FrameLayout(context);
-            frameLayout3.setBackground(org.telegram.ui.ActionBar.j6.b0(AndroidUtilities.dp(14.0f), org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f18951i5, f6Var)));
-            org.telegram.ui.Components.u9 u9Var = new org.telegram.ui.Components.u9(context);
-            u9Var.setRoundRadius(AndroidUtilities.dp(14.0f));
-            u9Var.getImageReceiver().setCrossfadeWithOldImage(true);
-            org.telegram.ui.Components.f9 f9Var = new org.telegram.ui.Components.f9((org.telegram.ui.ActionBar.f6) null);
+            frameLayout3.setBackground(org.telegram.ui.ActionBar.j6.b0(AndroidUtilities.dp(14.0f), org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f20780i5, f6Var)));
+            org.telegram.ui.Components.x9 x9Var = new org.telegram.ui.Components.x9(context);
+            x9Var.setRoundRadius(AndroidUtilities.dp(14.0f));
+            x9Var.getImageReceiver().setCrossfadeWithOldImage(true);
+            org.telegram.ui.Components.i9 i9Var = new org.telegram.ui.Components.i9((org.telegram.ui.ActionBar.f6) null);
             int[] iArr = {UserConfig.selectedAccount};
             TLRPC.User currentUser = UserConfig.getInstance(iArr[0]).getCurrentUser();
-            f9Var.r(currentUser);
-            u9Var.e(currentUser, f9Var);
-            frameLayout3.addView(u9Var, w7.x5.e(28, 28, 115));
+            i9Var.r(currentUser);
+            x9Var.e(currentUser, i9Var);
+            frameLayout3.addView(x9Var, w7.x5.e(28, 28, 115));
             ImageView imageView = new ImageView(context);
             imageView.setScaleType(ImageView.ScaleType.CENTER);
-            imageView.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f19117r5, f6Var), PorterDuff.Mode.SRC_IN));
+            imageView.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f20943r5, f6Var), PorterDuff.Mode.SRC_IN));
             imageView.setImageResource(R.drawable.arrows_select);
             frameLayout3.addView(imageView, w7.x5.d(18, 18.0f, 21, 0.0f, 0.0f, 4.0f, 0.0f));
             frameLayout2.addView(frameLayout3, w7.x5.e(52, 28, 17));
@@ -123,12 +123,12 @@ public class WearAuthListenerService extends x8.k {
             if (arrayList.size() <= 1) {
                 frameLayout2.setVisibility(8);
             }
-            LinearLayout f7 = wl.f(context, 1);
+            LinearLayout f7 = vl.f(context, 1);
             frameLayout.addView(f7, w7.x5.e(-1, -1, 119));
-            org.telegram.ui.Components.u9 u9Var2 = new org.telegram.ui.Components.u9(context);
-            f7.addView(u9Var2, w7.x5.r(130, 130, 49, 32.0f, 32.0f, 32.0f, 9.66f));
-            MediaDataController.getInstance(i13).setPlaceholderImage(u9Var2, "Utya3D", "😎", "130_130");
-            int i14 = org.telegram.ui.ActionBar.j6.f18969j5;
+            org.telegram.ui.Components.x9 x9Var2 = new org.telegram.ui.Components.x9(context);
+            f7.addView(x9Var2, w7.x5.r(130, 130, 49, 32.0f, 32.0f, 32.0f, 9.66f));
+            MediaDataController.getInstance(i13).setPlaceholderImage(x9Var2, "Utya3D", "😎", "130_130");
+            int i14 = org.telegram.ui.ActionBar.j6.f20798j5;
             TextView b10 = w7.b6.b(context, 20.0f, i14, true, f6Var);
             b10.setGravity(17);
             b10.setText(LocaleController.getString(R.string.WearAuthTitle));
@@ -137,15 +137,15 @@ public class WearAuthListenerService extends x8.k {
             b11.setGravity(17);
             b11.setText(LocaleController.getString(R.string.WearAuthText));
             f7.addView(b11, w7.x5.t(-1, -2, 49, 32, 0, 32, 24));
-            ci.d g10 = wl.g(24, context, f6Var, true);
+            di.d g10 = vl.g(24, context, f6Var, true);
             g10.setText(LocaleController.getString(R.string.Next));
             f7.addView(g10, w7.x5.t(-1, 48, 7, 12, 12, 12, 8));
-            int i15 = org.telegram.ui.ActionBar.j6.f18806a7;
+            int i15 = org.telegram.ui.ActionBar.j6.f20635a7;
             i10.setBackgroundColor(org.telegram.ui.ActionBar.j6.v0(i15, f6Var));
             i10.fixNavigationBar(org.telegram.ui.ActionBar.j6.v0(i15, f6Var));
-            frameLayout2.setOnClickListener(new org.telegram.ui.Components.m0(i10, frameLayout3, arrayList, iArr, f9Var, u9Var, 4));
-            g10.setOnClickListener(new xy0(11, g10, iArr));
-            kj1.f35296c = i10;
+            frameLayout2.setOnClickListener(new org.telegram.ui.Components.n0(i10, frameLayout3, arrayList, iArr, i9Var, x9Var, 4));
+            g10.setOnClickListener(new wy0(11, g10, iArr));
+            lj1.f38425c = i10;
             i10.show();
         }
     }
@@ -153,18 +153,18 @@ public class WearAuthListenerService extends x8.k {
     @Override
     public void onMessageReceived(x8.g gVar) {
         y8.k0 k0Var = (y8.k0) gVar;
-        String str = k0Var.f46405b;
+        String str = k0Var.f49643b;
         String str2 = k0Var.d;
-        byte[] bArr = k0Var.f46406c;
+        byte[] bArr = k0Var.f49644c;
         if ("/tg-wear-auth/offer".equals(str)) {
             try {
                 Intent intent = new Intent(this, LaunchActivity.class);
                 intent.addFlags(268566528);
                 startActivity(intent);
-            } catch (Exception e) {
-                FileLog.e("wear-auth: failed to pop LaunchActivity", e);
+            } catch (Exception e7) {
+                FileLog.e("wear-auth: failed to pop LaunchActivity", e7);
             }
         }
-        AndroidUtilities.runOnUIThread(new z8(str, str2, bArr, 29));
+        AndroidUtilities.runOnUIThread(new y8(str, str2, bArr, 29));
     }
 }

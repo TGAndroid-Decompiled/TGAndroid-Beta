@@ -1,26 +1,44 @@
 package org.telegram.ui;
 
-import android.animation.ValueAnimator;
-public final class vn implements ValueAnimator.AnimatorUpdateListener {
-    public final int f38477a;
-    public final org.telegram.ui.Components.cc0 f38478b;
+import android.util.SparseIntArray;
+public final class vn implements Runnable {
+    public final int f41619a;
+    public final ao f41620b;
 
-    public vn(org.telegram.ui.Components.cc0 cc0Var, int i10) {
-        this.f38477a = i10;
-        this.f38478b = cc0Var;
+    public vn(ao aoVar, int i10) {
+        this.f41619a = i10;
+        this.f41620b = aoVar;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f38477a) {
+    public final void run() {
+        org.telegram.ui.ActionBar.d5 d5Var;
+        org.telegram.ui.ActionBar.d5 d5Var2;
+        switch (this.f41619a) {
             case 0:
-                this.f38478b.s(((Float) valueAnimator.getAnimatedValue()).floatValue());
-                return;
-            case 1:
-                this.f38478b.s(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                SparseIntArray sparseIntArray = new SparseIntArray();
+                ao aoVar = this.f41620b;
+                aoVar.f34517e = sparseIntArray;
+                co coVar = aoVar.V;
+                org.telegram.ui.ActionBar.f5 f5Var = (org.telegram.ui.ActionBar.f5) coVar.getThemedDrawable("drawableMsgOut");
+                aoVar.I = f5Var;
+                d5Var = ((org.telegram.ui.ActionBar.n2) coVar).parentLayout;
+                f5Var.H = d5Var.getMessageDrawableOutStart();
+                org.telegram.ui.ActionBar.f5 f5Var2 = (org.telegram.ui.ActionBar.f5) coVar.getThemedDrawable("drawableMsgOutMedia");
+                aoVar.J = f5Var2;
+                d5Var2 = ((org.telegram.ui.ActionBar.n2) coVar).parentLayout;
+                f5Var2.H = d5Var2.getMessageDrawableOutMediaStart();
+                aoVar.I.I = 0.0f;
+                aoVar.J.I = 0.0f;
+                coVar.uc();
+                aoVar.k(0.0f);
                 return;
             default:
-                this.f38478b.s(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                ao aoVar2 = this.f41620b;
+                aoVar2.I.H = null;
+                aoVar2.J.H = null;
+                aoVar2.f34517e = null;
+                aoVar2.k(1.0f);
                 return;
         }
     }

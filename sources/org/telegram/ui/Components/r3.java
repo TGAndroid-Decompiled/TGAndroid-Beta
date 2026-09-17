@@ -1,46 +1,47 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.graphics.Point;
+import android.graphics.Canvas;
 import android.widget.LinearLayout;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
 public final class r3 extends LinearLayout {
-    public boolean f27506a;
-    public final o3 f27507b;
-    public final q3 f27508c;
+    public final f01 f29936a;
+    public boolean f29937b;
+    public f01 f29938c;
+    public final q3 d;
 
-    public r3(Context context, o3 o3Var, q3 q3Var) {
+    public r3(Context context, q3 q3Var) {
         super(context);
-        this.f27507b = o3Var;
-        this.f27508c = q3Var;
-        this.f27506a = false;
+        this.d = q3Var;
+        this.f29936a = new f01(":", 18.0f, null);
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        int i12;
-        this.f27506a = true;
-        Point point = AndroidUtilities.displaySize;
-        if (point.x > point.y) {
-            i12 = 3;
-        } else {
-            i12 = 5;
+    public final void dispatchDraw(Canvas canvas) {
+        boolean z10;
+        String str;
+        float width = (getWidth() - this.f29936a.f25875c) / 2.0f;
+        float height = getHeight() / 2.0f;
+        int i10 = org.telegram.ui.ActionBar.j6.G6;
+        this.f29936a.c(width, height, 1.0f, org.telegram.ui.ActionBar.j6.w0(null, i10, false), canvas);
+        if (!LocaleController.is24HourFormat) {
+            if (this.d.getValue() % 24 < 12) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            if (this.f29937b != z10 || this.f29938c == null) {
+                this.f29937b = z10;
+                if (z10) {
+                    str = "AM";
+                } else {
+                    str = "PM";
+                }
+                this.f29938c = new f01(str, 18.0f, null);
+            }
+            this.f29938c.c((getWidth() / 2.0f) + AndroidUtilities.dp(43.0f), (getHeight() / 2.0f) + AndroidUtilities.dp(1.0f), 1.0f, org.telegram.ui.ActionBar.j6.w0(null, i10, false), canvas);
         }
-        o3 o3Var = this.f27507b;
-        o3Var.setItemCount(i12);
-        q3 q3Var = this.f27508c;
-        q3Var.setItemCount(i12);
-        o3Var.getLayoutParams().height = AndroidUtilities.dp(42.0f) * i12;
-        q3Var.getLayoutParams().height = AndroidUtilities.dp(42.0f) * i12;
-        this.f27506a = false;
-        super.onMeasure(i10, i11);
-    }
-
-    @Override
-    public final void requestLayout() {
-        if (this.f27506a) {
-            return;
-        }
-        super.requestLayout();
+        super.dispatchDraw(canvas);
     }
 }

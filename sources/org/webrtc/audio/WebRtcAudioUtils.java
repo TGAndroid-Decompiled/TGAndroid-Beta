@@ -4,7 +4,7 @@ import android.content.Context;
 import android.media.AudioDeviceInfo;
 import android.media.AudioManager;
 import android.os.Build;
-import hg.k0;
+import i2.g;
 import java.util.Arrays;
 import org.webrtc.Logging;
 final class WebRtcAudioUtils {
@@ -29,7 +29,7 @@ final class WebRtcAudioUtils {
                 case 9:
                     return "MP3";
                 default:
-                    return k0.i(i10, "Invalid encoding: ");
+                    return g.i(i10, "Invalid encoding: ");
             }
         }
         return "INVALID";

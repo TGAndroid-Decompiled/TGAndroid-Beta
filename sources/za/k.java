@@ -1,16 +1,16 @@
 package za;
-public enum k implements ka.g {
+public enum k implements ka.f {
     EVENT_TYPE_UNKNOWN(0),
     SESSION_START(1);
     
-    public final int f48830a;
+    public final int f51487a;
 
     k(int i10) {
-        this.f48830a = i10;
+        this.f51487a = i10;
     }
 
     @Override
     public final int a() {
-        return this.f48830a;
+        return this.f51487a;
     }
 }

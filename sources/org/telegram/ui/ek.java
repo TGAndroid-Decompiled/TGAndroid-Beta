@@ -1,81 +1,30 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.view.MotionEvent;
 import org.telegram.messenger.AndroidUtilities;
-public final class ek extends org.telegram.ui.Cells.w0 {
-    public final bo f33421k2;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.R;
+public final class ek implements Runnable {
+    public final co f36130a;
 
-    public ek(Context context, org.telegram.ui.ActionBar.f6 f6Var, bo boVar) {
-        super(context, f6Var, false);
-        this.f33421k2 = boVar;
+    public ek(co coVar) {
+        this.f36130a = coVar;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        bo boVar = this.f33421k2;
-        if (boVar.B8 == null) {
-            float y3 = ((boVar.f32502x0.getY() + boVar.f32447s9) - getY()) - AndroidUtilities.dp(4.0f);
-            if (y3 > 0.0f) {
-                if (y3 < getMeasuredHeight()) {
-                    canvas.save();
-                    canvas.clipRect(0.0f, y3, getMeasuredWidth(), getMeasuredHeight());
-                    super.onDraw(canvas);
-                    canvas.restore();
-                    return;
-                }
-                return;
+    public final void run() {
+        String formatPluralString;
+        co coVar = this.f36130a;
+        MessageObject messageObject = coVar.f35257d5;
+        if (messageObject != null && coVar.T8 != null) {
+            int max = Math.max(0, messageObject.messageOwner.ttl_period - (coVar.getConnectionsManager().getCurrentTime() - coVar.f35257d5.messageOwner.date));
+            if (max < 86400) {
+                formatPluralString = AndroidUtilities.formatDuration(max, false, true);
+            } else {
+                formatPluralString = LocaleController.formatPluralString("Days", Math.round(max / 86400.0f), new Object[0]);
             }
-            super.onDraw(canvas);
+            coVar.T8.setSubtext(LocaleController.formatString(R.string.AutoDeleteIn, formatPluralString));
+            AndroidUtilities.runOnUIThread(coVar.U8, 1000L);
         }
-    }
-
-    @Override
-    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        org.telegram.ui.ActionBar.k kVar;
-        if (getAlpha() != 0.0f) {
-            bo boVar = this.f33421k2;
-            kVar = ((org.telegram.ui.ActionBar.o2) boVar).actionBar;
-            if (!kVar.s() && !boVar.A9()) {
-                return super.onInterceptTouchEvent(motionEvent);
-            }
-            return false;
-        }
-        return false;
-    }
-
-    @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        org.telegram.ui.ActionBar.k kVar;
-        if (getAlpha() != 0.0f) {
-            bo boVar = this.f33421k2;
-            kVar = ((org.telegram.ui.ActionBar.o2) boVar).actionBar;
-            if (!kVar.s() && !boVar.A9()) {
-                return super.onTouchEvent(motionEvent);
-            }
-            return false;
-        }
-        return false;
-    }
-
-    @Override
-    public final void setAlpha(float f7) {
-        int i10;
-        super.setAlpha(f7);
-        if (f7 > 0.0f) {
-            i10 = 0;
-        } else {
-            i10 = 4;
-        }
-        setVisibility(i10);
-    }
-
-    @Override
-    public final void setTranslationY(float f7) {
-        if (getTranslationY() != f7) {
-            invalidate();
-        }
-        super.setTranslationY(f7);
     }
 }

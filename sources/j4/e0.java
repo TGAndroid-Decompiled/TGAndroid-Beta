@@ -1,10 +1,10 @@
 package j4;
 public final class e0 {
-    public final String f12678a;
-    public final byte[] f12679b;
+    public final String f13314a;
+    public final byte[] f13315b;
 
     public e0(String str, byte[] bArr) {
-        this.f12678a = str;
-        this.f12679b = bArr;
+        this.f13314a = str;
+        this.f13315b = bArr;
     }
 }

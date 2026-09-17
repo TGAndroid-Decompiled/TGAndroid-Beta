@@ -1,22 +1,22 @@
 package s4;
 public final class h {
-    public c1 f42742a;
-    public c1 f42743b;
-    public final int f42744c;
+    public c1 f45818a;
+    public c1 f45819b;
+    public final int f45820c;
     public final int d;
-    public final int e;
-    public final int f42745f;
+    public final int f45821e;
+    public final int f45822f;
 
     public h(c1 c1Var, c1 c1Var2, int i10, int i11, int i12, int i13) {
-        this.f42742a = c1Var;
-        this.f42743b = c1Var2;
-        this.f42744c = i10;
+        this.f45818a = c1Var;
+        this.f45819b = c1Var2;
+        this.f45820c = i10;
         this.d = i11;
-        this.e = i12;
-        this.f42745f = i13;
+        this.f45821e = i12;
+        this.f45822f = i13;
     }
 
     public final String toString() {
-        return "ChangeInfo{oldHolder=" + this.f42742a + ", newHolder=" + this.f42743b + ", fromX=" + this.f42744c + ", fromY=" + this.d + ", toX=" + this.e + ", toY=" + this.f42745f + '}';
+        return "ChangeInfo{oldHolder=" + this.f45818a + ", newHolder=" + this.f45819b + ", fromX=" + this.f45820c + ", fromY=" + this.d + ", toX=" + this.f45821e + ", toY=" + this.f45822f + '}';
     }
 }

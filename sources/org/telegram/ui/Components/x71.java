@@ -1,63 +1,108 @@
 package org.telegram.ui.Components;
 
-import android.animation.ValueAnimator;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.view.View;
-public final class x71 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f29878a;
-    public final j81 f29879b;
+public final class x71 extends AnimatorListenerAdapter {
+    public final int f32472a;
+    public final i81 f32473b;
 
-    public x71(j81 j81Var, int i10) {
-        this.f29878a = i10;
-        this.f29879b = j81Var;
+    public x71(i81 i81Var, int i10) {
+        this.f32472a = i10;
+        this.f32473b = i81Var;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f29878a) {
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f32472a) {
             case 0:
-                j81 j81Var = this.f29879b;
-                j81Var.getClass();
-                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                View[] viewArr = j81Var.e;
-                View view = viewArr[1];
+                i81 i81Var = this.f32473b;
+                View[] viewArr = i81Var.f27045e;
+                View[] viewArr2 = i81Var.f27045e;
+                if (viewArr[1] != null) {
+                    i81Var.F();
+                    i81Var.h.put(i81Var.f27046f[1], viewArr2[1]);
+                    i81Var.removeView(viewArr2[1]);
+                    i81Var.E(viewArr2[0], 0.0f);
+                    viewArr2[1] = null;
+                }
+                i81Var.Q = null;
+                i81Var.w(true);
+                y71 y71Var = i81Var.M;
+                if (y71Var != null) {
+                    y71Var.v.invalidate();
+                    i81Var.M.v.e1();
+                    i81Var.M.invalidate();
+                }
+                i81Var.u();
+                i81Var.J.unlock();
+                return;
+            case 1:
+                i81 i81Var2 = this.f32473b;
+                i81Var2.f27050w = null;
+                View[] viewArr3 = i81Var2.f27045e;
+                if (viewArr3[1] != null) {
+                    if (!i81Var2.F) {
+                        i81Var2.F();
+                    }
+                    i81Var2.h.put(i81Var2.f27046f[1], viewArr3[1]);
+                    i81Var2.removeView(viewArr3[1]);
+                    viewArr3[1].setVisibility(8);
+                    viewArr3[1] = null;
+                }
+                i81Var2.f27051x = false;
+                i81Var2.I = false;
+                y71 y71Var2 = i81Var2.M;
+                if (y71Var2 != null) {
+                    y71Var2.setEnabled(true);
+                }
+                i81Var2.w(false);
+                i81Var2.u();
+                i81Var2.J.unlock();
+                return;
+            case 2:
+                i81 i81Var3 = this.f32473b;
+                i81Var3.f27050w = null;
+                View[] viewArr4 = i81Var3.f27045e;
+                View view = viewArr4[1];
                 if (view != null) {
-                    if (j81Var.f25187y) {
-                        j81Var.F(view, (1.0f - floatValue) * viewArr[0].getMeasuredWidth());
-                        View view2 = viewArr[0];
-                        j81Var.F(view2, (-view2.getMeasuredWidth()) * floatValue);
-                    } else {
-                        j81Var.F(view, (1.0f - floatValue) * (-viewArr[0].getMeasuredWidth()));
-                        View view3 = viewArr[0];
-                        j81Var.F(view3, view3.getMeasuredWidth() * floatValue);
-                    }
-                    j81Var.f25180c = floatValue;
-                    j81Var.x(true);
-                    z71 z71Var = j81Var.M;
-                    if (z71Var != null) {
-                        z71Var.v.invalidate();
-                        j81Var.M.v.g1();
-                        j81Var.M.invalidate();
-                        return;
-                    }
+                    i81Var3.removeView(view);
+                    viewArr4[1] = null;
+                }
+                i81Var3.f27051x = false;
+                y71 y71Var3 = i81Var3.M;
+                if (y71Var3 != null) {
+                    y71Var3.setEnabled(true);
+                    y71 y71Var4 = i81Var3.M;
+                    y71Var4.J = false;
+                    y71Var4.f26660a = 1.0f;
+                    y71Var4.v.e1();
+                    i81Var3.M.invalidate();
                     return;
                 }
                 return;
-            case 1:
-                j81 j81Var2 = this.f29879b;
-                j81Var2.getClass();
-                j81Var2.S = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                return;
-            case 2:
-                j81 j81Var3 = this.f29879b;
-                j81Var3.N.onAnimationUpdate(valueAnimator);
-                j81Var3.M.f24870a = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                j81Var3.M.v.g1();
-                j81Var3.M.invalidate();
-                return;
             default:
-                j81 j81Var4 = this.f29879b;
-                j81Var4.getClass();
-                j81Var4.S = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                i81 i81Var4 = this.f32473b;
+                i81Var4.f27050w = null;
+                View[] viewArr5 = i81Var4.f27045e;
+                if (viewArr5[1] != null) {
+                    if (!i81Var4.F) {
+                        i81Var4.F();
+                    }
+                    i81Var4.h.put(i81Var4.f27046f[1], viewArr5[1]);
+                    i81Var4.removeView(viewArr5[1]);
+                    viewArr5[1].setVisibility(8);
+                    viewArr5[1] = null;
+                }
+                i81Var4.f27051x = false;
+                i81Var4.I = false;
+                y71 y71Var5 = i81Var4.M;
+                if (y71Var5 != null) {
+                    y71Var5.setEnabled(true);
+                }
+                i81Var4.w(false);
+                i81Var4.u();
+                i81Var4.J.unlock();
                 return;
         }
     }

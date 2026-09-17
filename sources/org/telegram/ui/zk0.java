@@ -1,50 +1,46 @@
 package org.telegram.ui;
 
-import android.graphics.Canvas;
-import android.view.View;
-import android.view.accessibility.AccessibilityNodeInfo;
-import android.widget.FrameLayout;
-import android.widget.TextView;
+import android.net.Uri;
+import android.text.TextUtils;
+import java.io.File;
+import java.io.IOException;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.ui.Components.RadioButton;
-public final class zk0 extends FrameLayout {
-    public TextView f40263a;
-    public RadioButton f40264b;
-    public org.telegram.ui.Components.np f40265c;
-    public boolean d;
-    public yk0 e;
+import org.telegram.messenger.FileLoader;
+import org.telegram.tgnet.TLRPC;
+public final class zk0 {
+    public boolean f43479a;
+    public boolean f43480b;
+    public int f43481c;
+    public int d;
+    public TLRPC.Document f43482e;
+    public String f43483f;
+    public String f43484g;
 
-    @Override
-    public final void onDraw(Canvas canvas) {
-        float f7;
-        if (this.d) {
-            float f10 = 60.0f;
-            if (LocaleController.isRTL) {
-                f7 = 0.0f;
-            } else {
-                f7 = 60.0f;
-            }
-            float dp = AndroidUtilities.dp(f7);
-            float height = getHeight() - 1;
-            int measuredWidth = getMeasuredWidth();
-            if (!LocaleController.isRTL) {
-                f10 = 0.0f;
-            }
-            canvas.drawLine(dp, height, measuredWidth - AndroidUtilities.dp(f10), getHeight() - 1, org.telegram.ui.ActionBar.j6.f18984k0);
+    public final Uri a(int i10) {
+        if (!TextUtils.isEmpty(this.f43484g)) {
+            return Uri.fromFile(new File(this.f43484g));
         }
-    }
-
-    @Override
-    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        accessibilityNodeInfo.setClassName("android.widget.RadioButton");
-        accessibilityNodeInfo.setCheckable(true);
-        accessibilityNodeInfo.setChecked(this.f40264b.f22172f);
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(50.0f), 1073741824));
+        TLRPC.Document document = this.f43482e;
+        if (document != null) {
+            String str = document.file_name_fixed;
+            String documentExtension = FileLoader.getDocumentExtension(document);
+            if (documentExtension != null) {
+                String lowerCase = documentExtension.toLowerCase();
+                if (!str.endsWith(lowerCase)) {
+                    str = a4.a.C(str, ".", lowerCase);
+                }
+                File file = new File(AndroidUtilities.getCacheDir(), str);
+                if (!file.exists()) {
+                    try {
+                        AndroidUtilities.copyFile(FileLoader.getInstance(i10).getPathToAttach(this.f43482e), file);
+                    } catch (IOException e7) {
+                        e7.printStackTrace();
+                    }
+                }
+                return Uri.fromFile(file);
+            }
+            return null;
+        }
+        return null;
     }
 }

@@ -1,23 +1,45 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.ImageReceiver;
-public final class xs0 implements org.telegram.ui.Components.u30 {
-    public final PhotoViewer f39694a;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Path;
+import android.graphics.RectF;
+import org.telegram.messenger.SharedConfig;
+public final class xs0 extends org.telegram.ui.Components.r71 {
+    public final org.telegram.ui.Components.na f42913g0;
+    public final PhotoViewer f42914h0;
 
-    public xs0(PhotoViewer photoViewer) {
-        this.f39694a = photoViewer;
+    public xs0(Context context, PhotoViewer photoViewer) {
+        super(context);
+        this.f42914h0 = photoViewer;
+        new Path();
+        this.f42913g0 = new org.telegram.ui.Components.na(photoViewer.f33548b0, this, 0, false);
     }
 
-    public final void a(int i10) {
-        PhotoViewer photoViewer = this.f39694a;
-        photoViewer.P4 = -1;
-        ImageReceiver.BitmapHolder bitmapHolder = photoViewer.f30998j5;
-        if (bitmapHolder != null) {
-            bitmapHolder.release();
-            photoViewer.f30998j5 = null;
+    @Override
+    public final void b(Canvas canvas, RectF rectF) {
+        canvas.save();
+        canvas.clipRect(rectF);
+        PhotoViewer photoViewer = this.f42914h0;
+        canvas.translate((-getX()) - photoViewer.Q7.getX(), (-getY()) - photoViewer.Q7.getY());
+        photoViewer.T0(canvas, this.f42913g0, -14803426, 855638016, false, true, false);
+        canvas.restore();
+    }
+
+    @Override
+    public final void invalidate() {
+        int i10;
+        if (SharedConfig.photoViewerBlur && ((i10 = this.f42914h0.f33658n4) == 1 || i10 == 2 || i10 == 3)) {
+            return;
         }
-        photoViewer.f31014l5 = true;
-        photoViewer.B2(i10);
-        photoViewer.f31014l5 = false;
+        super.invalidate();
+    }
+
+    @Override
+    public final void setTranslationY(float f7) {
+        if (getTranslationY() != f7) {
+            super.setTranslationY(f7);
+            this.f42914h0.f33577e0.invalidate();
+        }
     }
 }

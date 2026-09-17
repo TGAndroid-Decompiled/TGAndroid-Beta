@@ -1,6 +1,6 @@
 package le;
 public interface k {
-    void a();
+    void c();
 
-    void c(l lVar);
+    void e(l lVar);
 }

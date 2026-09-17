@@ -7,24 +7,24 @@ import java.util.Arrays;
 import java.util.UUID;
 public final class n implements Parcelable {
     public static final Parcelable.Creator<n> CREATOR = new m(1);
-    public int f3120a;
-    public final UUID f3121b;
-    public final String f3122c;
+    public int f2200a;
+    public final UUID f2201b;
+    public final String f2202c;
     public final String d;
-    public final byte[] e;
+    public final byte[] f2203e;
 
     public n(UUID uuid, String str, String str2, byte[] bArr) {
         uuid.getClass();
-        this.f3121b = uuid;
-        this.f3122c = str;
+        this.f2201b = uuid;
+        this.f2202c = str;
         str2.getClass();
         this.d = r0.n(str2);
-        this.e = bArr;
+        this.f2203e = bArr;
     }
 
     public final boolean a(UUID uuid) {
-        UUID uuid2 = i.f3017a;
-        UUID uuid3 = this.f3121b;
+        UUID uuid2 = i.f2087a;
+        UUID uuid3 = this.f2201b;
         if (!uuid2.equals(uuid3) && !uuid.equals(uuid3)) {
             return false;
         }
@@ -44,7 +44,7 @@ public final class n implements Parcelable {
             return true;
         }
         n nVar = (n) obj;
-        if (!Objects.equals(this.f3122c, nVar.f3122c) || !Objects.equals(this.d, nVar.d) || !Objects.equals(this.f3121b, nVar.f3121b) || !Arrays.equals(this.e, nVar.e)) {
+        if (!Objects.equals(this.f2202c, nVar.f2202c) || !Objects.equals(this.d, nVar.d) || !Objects.equals(this.f2201b, nVar.f2201b) || !Arrays.equals(this.f2203e, nVar.f2203e)) {
             return false;
         }
         return true;
@@ -52,35 +52,35 @@ public final class n implements Parcelable {
 
     public final int hashCode() {
         int hashCode;
-        if (this.f3120a == 0) {
-            int hashCode2 = this.f3121b.hashCode() * 31;
-            String str = this.f3122c;
+        if (this.f2200a == 0) {
+            int hashCode2 = this.f2201b.hashCode() * 31;
+            String str = this.f2202c;
             if (str == null) {
                 hashCode = 0;
             } else {
                 hashCode = str.hashCode();
             }
-            this.f3120a = Arrays.hashCode(this.e) + a4.a.h((hashCode2 + hashCode) * 31, 31, this.d);
+            this.f2200a = Arrays.hashCode(this.f2203e) + a4.a.h((hashCode2 + hashCode) * 31, 31, this.d);
         }
-        return this.f3120a;
+        return this.f2200a;
     }
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
-        UUID uuid = this.f3121b;
+        UUID uuid = this.f2201b;
         parcel.writeLong(uuid.getMostSignificantBits());
         parcel.writeLong(uuid.getLeastSignificantBits());
-        parcel.writeString(this.f3122c);
+        parcel.writeString(this.f2202c);
         parcel.writeString(this.d);
-        parcel.writeByteArray(this.e);
+        parcel.writeByteArray(this.f2203e);
     }
 
     public n(Parcel parcel) {
-        this.f3121b = new UUID(parcel.readLong(), parcel.readLong());
-        this.f3122c = parcel.readString();
+        this.f2201b = new UUID(parcel.readLong(), parcel.readLong());
+        this.f2202c = parcel.readString();
         String readString = parcel.readString();
-        String str = e2.d0.f7888a;
+        String str = e2.d0.f8765a;
         this.d = readString;
-        this.e = parcel.createByteArray();
+        this.f2203e = parcel.createByteArray();
     }
 }

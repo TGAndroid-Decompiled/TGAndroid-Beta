@@ -1,58 +1,31 @@
 package lg;
 
-import android.animation.ValueAnimator;
-import com.google.android.gms.internal.vision.e2;
-public final class h implements ValueAnimator.AnimatorUpdateListener {
-    public final int f14080a;
-    public final p f14081b;
-    public final float f14082c;
-    public final float[] d;
-    public final float e;
-    public final float f14083f;
+import android.graphics.Paint;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.ActionBar.f6;
+import org.telegram.ui.ActionBar.j6;
+public final class h extends f {
+    public final Paint f15478q;
+    public int f15479r;
+    public final f6 f15480s;
 
-    public h(p pVar, float f7, float[] fArr, float f10, float f11, int i10) {
-        this.f14080a = i10;
-        this.f14081b = pVar;
-        this.f14082c = f7;
-        this.d = fArr;
-        this.e = f10;
-        this.f14083f = f11;
+    public h(kg.a aVar, f6 f6Var) {
+        super(aVar, false, null);
+        Paint paint = new Paint();
+        this.f15478q = paint;
+        this.f15479r = 0;
+        this.f15480s = f6Var;
+        this.f15466c.setStrokeWidth(AndroidUtilities.dpf2(1.0f));
+        Paint paint2 = this.f15466c;
+        Paint.Style style = Paint.Style.STROKE;
+        paint2.setStyle(style);
+        paint.setStyle(style);
+        this.f15466c.setAntiAlias(false);
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f14080a) {
-            case 0:
-                p pVar = this.f14081b;
-                pVar.getClass();
-                float z10 = e2.z(this.f14082c, 1.0f, ((Float) valueAnimator.getAnimatedValue()).floatValue(), 1.0f);
-                float[] fArr = this.d;
-                float f7 = fArr[0];
-                float f10 = z10 / f7;
-                fArr[0] = f7 * f10;
-                n.g(pVar.L, f10, this.e, this.f14083f);
-                pVar.r(false);
-                return;
-            default:
-                p pVar2 = this.f14081b;
-                pVar2.getClass();
-                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                float[] fArr2 = this.d;
-                float f11 = fArr2[1];
-                float f12 = (this.f14082c * floatValue) - f11;
-                fArr2[1] = f11 + f12;
-                float f13 = fArr2[2];
-                float f14 = (this.e * floatValue) - f13;
-                fArr2[2] = f13 + f14;
-                n nVar = pVar2.L;
-                float f15 = fArr2[0];
-                n.f(nVar, f12 * f15, f14 * f15);
-                float f16 = fArr2[0];
-                float f17 = (((this.f14083f - 1.0f) * floatValue) + 1.0f) / f16;
-                fArr2[0] = f16 * f17;
-                n.g(pVar2.L, f17, 0.0f, 0.0f);
-                pVar2.r(false);
-                return;
-        }
+    public final void a() {
+        super.a();
+        this.f15479r = i0.a.d(0.3f, j6.v0(j6.f20691d6, this.f15480s), this.f15474m);
     }
 }

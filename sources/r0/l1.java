@@ -5,44 +5,44 @@ import android.view.View;
 import android.view.WindowInsets;
 import j$.util.Objects;
 public final class l1 {
-    public static final l1 f41876b;
-    public final i1 f41877a;
+    public static final l1 f44739b;
+    public final i1 f44740a;
 
     static {
         int i10 = Build.VERSION.SDK_INT;
         if (i10 >= 34) {
-            f41876b = h1.f41863s;
+            f44739b = h1.f44724s;
         } else if (i10 >= 30) {
-            f41876b = g1.f41854r;
+            f44739b = g1.f44714r;
         } else {
-            f41876b = i1.f41868b;
+            f44739b = i1.f44730b;
         }
     }
 
     public l1(WindowInsets windowInsets) {
         int i10 = Build.VERSION.SDK_INT;
         if (i10 >= 34) {
-            this.f41877a = new h1(this, windowInsets);
+            this.f44740a = new h1(this, windowInsets);
         } else if (i10 >= 30) {
-            this.f41877a = new g1(this, windowInsets);
+            this.f44740a = new g1(this, windowInsets);
         } else if (i10 >= 29) {
-            this.f41877a = new f1(this, windowInsets);
+            this.f44740a = new f1(this, windowInsets);
         } else if (i10 >= 28) {
-            this.f41877a = new e1(this, windowInsets);
+            this.f44740a = new e1(this, windowInsets);
         } else {
-            this.f41877a = new d1(this, windowInsets);
+            this.f44740a = new d1(this, windowInsets);
         }
     }
 
-    public static i0.b e(i0.b bVar, int i10, int i11, int i12, int i13) {
-        int max = Math.max(0, bVar.f10591a - i10);
-        int max2 = Math.max(0, bVar.f10592b - i11);
-        int max3 = Math.max(0, bVar.f10593c - i12);
-        int max4 = Math.max(0, bVar.d - i13);
+    public static i0.c e(i0.c cVar, int i10, int i11, int i12, int i13) {
+        int max = Math.max(0, cVar.f11451a - i10);
+        int max2 = Math.max(0, cVar.f11452b - i11);
+        int max3 = Math.max(0, cVar.f11453c - i12);
+        int max4 = Math.max(0, cVar.d - i13);
         if (max == i10 && max2 == i11 && max3 == i12 && max4 == i13) {
-            return bVar;
+            return cVar;
         }
-        return i0.b.b(max, max2, max3, max4);
+        return i0.c.b(max, max2, max3, max4);
     }
 
     public static l1 h(View view, WindowInsets windowInsets) {
@@ -50,7 +50,7 @@ public final class l1 {
         l1 l1Var = new l1(windowInsets);
         if (view != null && view.isAttachedToWindow()) {
             l1 f7 = i0.f(view);
-            i1 i1Var = l1Var.f41877a;
+            i1 i1Var = l1Var.f44740a;
             i1Var.r(f7);
             i1Var.d(view.getRootView());
             i1Var.t(view.getWindowSystemUiVisibility());
@@ -59,19 +59,19 @@ public final class l1 {
     }
 
     public final int a() {
-        return this.f41877a.k().d;
+        return this.f44740a.k().d;
     }
 
     public final int b() {
-        return this.f41877a.k().f10591a;
+        return this.f44740a.k().f11451a;
     }
 
     public final int c() {
-        return this.f41877a.k().f10593c;
+        return this.f44740a.k().f11453c;
     }
 
     public final int d() {
-        return this.f41877a.k().f10592b;
+        return this.f44740a.k().f11452b;
     }
 
     public final boolean equals(Object obj) {
@@ -81,7 +81,7 @@ public final class l1 {
         if (!(obj instanceof l1)) {
             return false;
         }
-        return Objects.equals(this.f41877a, ((l1) obj).f41877a);
+        return Objects.equals(this.f44740a, ((l1) obj).f44740a);
     }
 
     public final l1 f(int i10, int i11, int i12, int i13) {
@@ -96,20 +96,20 @@ public final class l1 {
         } else {
             x0Var = new x0(this);
         }
-        x0Var.g(i0.b.b(i10, i11, i12, i13));
+        x0Var.g(i0.c.b(i10, i11, i12, i13));
         return x0Var.b();
     }
 
     public final WindowInsets g() {
-        i1 i1Var = this.f41877a;
+        i1 i1Var = this.f44740a;
         if (i1Var instanceof c1) {
-            return ((c1) i1Var).f41842c;
+            return ((c1) i1Var).f44700c;
         }
         return null;
     }
 
     public final int hashCode() {
-        i1 i1Var = this.f41877a;
+        i1 i1Var = this.f44740a;
         if (i1Var == null) {
             return 0;
         }
@@ -117,6 +117,6 @@ public final class l1 {
     }
 
     public l1() {
-        this.f41877a = new i1(this);
+        this.f44740a = new i1(this);
     }
 }

@@ -5,30 +5,30 @@ import android.text.Layout;
 import android.text.Spanned;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Emoji;
-import org.telegram.ui.Components.ml0;
+import org.telegram.ui.Components.ll0;
 public final class k9 implements Runnable {
-    public final da f20379a;
+    public final da f22252a;
 
     public k9(da daVar) {
-        this.f20379a = daVar;
+        this.f22252a = daVar;
     }
 
     @Override
     public final void run() {
-        da daVar = this.f20379a;
-        g gVar = daVar.f19980r0;
+        da daVar = this.f22252a;
+        g gVar = daVar.f21822r0;
         Rect rect = daVar.B;
-        t9 t9Var = daVar.f19950a0;
+        t9 t9Var = daVar.f21791a0;
         y9 y9Var = daVar.X;
         if (y9Var != null && daVar.C != null) {
             y9 y9Var2 = daVar.W;
             CharSequence t10 = daVar.t(y9Var, true);
-            ml0 ml0Var = daVar.E;
-            if (ml0Var != null) {
-                ml0Var.J0(false);
+            ll0 ll0Var = daVar.E;
+            if (ll0Var != null) {
+                ll0Var.I0(false);
             }
-            int i10 = daVar.f19981s;
-            int i11 = daVar.f19983t;
+            int i10 = daVar.f21823s;
+            int i11 = daVar.f21825t;
             if (!rect.isEmpty()) {
                 int i12 = rect.right;
                 if (i10 > i12) {
@@ -48,28 +48,28 @@ public final class k9 implements Runnable {
                 }
             }
             int i16 = i10;
-            int l4 = daVar.l(i16, i11, daVar.f19953c, daVar.d, y9Var, true);
+            int l4 = daVar.l(i16, i11, daVar.f21794c, daVar.d, y9Var, true);
             if (l4 >= t10.length()) {
                 daVar.j(l4, t9Var, true);
-                Layout layout = t9Var.f21418b;
+                Layout layout = t9Var.f23324b;
                 if (layout == null) {
                     daVar.v = -1;
-                    daVar.f19985u = -1;
+                    daVar.f21827u = -1;
                     return;
                 }
                 int lineCount = layout.getLineCount() - 1;
-                float f7 = i16 - daVar.f19953c;
-                if (f7 < t9Var.f21418b.getLineRight(lineCount) + AndroidUtilities.dp(4.0f) && f7 > t9Var.f21418b.getLineLeft(lineCount)) {
+                float f7 = i16 - daVar.f21794c;
+                if (f7 < t9Var.f23324b.getLineRight(lineCount) + AndroidUtilities.dp(4.0f) && f7 > t9Var.f23324b.getLineLeft(lineCount)) {
                     l4 = t10.length() - 1;
                 }
             }
             if (l4 >= 0 && l4 < t10.length() && t10.charAt(l4) != '\n') {
-                int i17 = daVar.f19953c;
+                int i17 = daVar.f21794c;
                 int i18 = daVar.d;
                 daVar.f(false);
                 daVar.C.setVisibility(0);
                 daVar.M(y9Var, y9Var2);
-                daVar.f19985u = l4;
+                daVar.f21827u = l4;
                 daVar.v = l4;
                 if (t10 instanceof Spanned) {
                     Spanned spanned = (Spanned) t10;
@@ -82,24 +82,24 @@ public final class k9 implements Runnable {
                             int spanStart = spanned.getSpanStart(emojiSpan);
                             int spanEnd = spanned.getSpanEnd(emojiSpan);
                             if (l4 >= spanStart && l4 <= spanEnd) {
-                                daVar.f19985u = spanStart;
+                                daVar.f21827u = spanStart;
                                 daVar.v = spanEnd;
                                 break;
                             }
                             i19++;
                         } else {
-                            org.telegram.ui.Components.x5[] x5VarArr = (org.telegram.ui.Components.x5[]) spanned.getSpans(0, t10.length(), org.telegram.ui.Components.x5.class);
-                            int length2 = x5VarArr.length;
+                            org.telegram.ui.Components.z5[] z5VarArr = (org.telegram.ui.Components.z5[]) spanned.getSpans(0, t10.length(), org.telegram.ui.Components.z5.class);
+                            int length2 = z5VarArr.length;
                             int i20 = 0;
                             while (true) {
                                 if (i20 >= length2) {
                                     break;
                                 }
-                                org.telegram.ui.Components.x5 x5Var = x5VarArr[i20];
-                                int spanStart2 = spanned.getSpanStart(x5Var);
-                                int spanEnd2 = spanned.getSpanEnd(x5Var);
+                                org.telegram.ui.Components.z5 z5Var = z5VarArr[i20];
+                                int spanStart2 = spanned.getSpanStart(z5Var);
+                                int spanEnd2 = spanned.getSpanEnd(z5Var);
                                 if (l4 >= spanStart2 && l4 <= spanEnd2) {
-                                    daVar.f19985u = spanStart2;
+                                    daVar.f21827u = spanStart2;
                                     daVar.v = spanEnd2;
                                     break;
                                 }
@@ -108,20 +108,20 @@ public final class k9 implements Runnable {
                         }
                     }
                 }
-                if (daVar.f19985u == daVar.v) {
+                if (daVar.f21827u == daVar.v) {
                     while (true) {
-                        int i21 = daVar.f19985u;
+                        int i21 = daVar.f21827u;
                         if (i21 <= 0 || !da.z(t10.charAt(i21 - 1))) {
                             break;
                         }
-                        daVar.f19985u--;
+                        daVar.f21827u--;
                     }
                     while (daVar.v < t10.length() && da.z(t10.charAt(daVar.v))) {
                         daVar.v++;
                     }
                 }
-                daVar.f19949a = i17;
-                daVar.f19951b = i18;
+                daVar.f21790a = i17;
+                daVar.f21792b = i18;
                 daVar.W = y9Var;
                 try {
                     daVar.C.performHapticFeedback(0, 1);
@@ -138,15 +138,15 @@ public final class k9 implements Runnable {
                 if (h0Var != null) {
                     h0Var.a(true);
                 }
-                daVar.f19962i = true;
+                daVar.f21804i = true;
                 daVar.R = true;
-                daVar.f19966k = true;
-                daVar.f19959g = 0.0f;
-                daVar.f19957f = 0.0f;
+                daVar.f21808k = true;
+                daVar.f21801g = 0.0f;
+                daVar.f21799f = 0.0f;
                 daVar.G();
             }
-            daVar.f19989z = false;
-            daVar.e = false;
+            daVar.f21831z = false;
+            daVar.f21797e = false;
         }
     }
 }

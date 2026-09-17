@@ -1,33 +1,28 @@
 package org.telegram.messenger;
-
-import java.util.ArrayList;
 public final class qe implements Runnable {
-    public final int f17161a = 0;
-    public final MessagesStorage f17162b;
-    public final boolean f17163c;
-    public final ArrayList d;
+    public final int f18848a;
+    public final MessagesStorage f18849b;
+    public final long f18850c;
+    public final long d;
+    public final String f18851e;
 
-    public qe(MessagesStorage messagesStorage, ArrayList arrayList, boolean z10) {
-        this.f17162b = messagesStorage;
-        this.d = arrayList;
-        this.f17163c = z10;
+    public qe(MessagesStorage messagesStorage, long j3, long j10, String str, int i10) {
+        this.f18848a = i10;
+        this.f18849b = messagesStorage;
+        this.f18850c = j3;
+        this.d = j10;
+        this.f18851e = str;
     }
 
     @Override
     public final void run() {
-        switch (this.f17161a) {
+        switch (this.f18848a) {
             case 0:
-                this.f17162b.lambda$putEphemeralMessages$204(this.d, this.f17163c);
+                this.f18849b.lambda$updateRanksInLastMessages$45(this.f18850c, this.d, this.f18851e);
                 return;
             default:
-                this.f17162b.lambda$putContacts$146(this.f17163c, this.d);
+                this.f18849b.lambda$updateRanksInLastMessages$46(this.f18850c, this.d, this.f18851e);
                 return;
         }
-    }
-
-    public qe(MessagesStorage messagesStorage, boolean z10, ArrayList arrayList) {
-        this.f17162b = messagesStorage;
-        this.f17163c = z10;
-        this.d = arrayList;
     }
 }

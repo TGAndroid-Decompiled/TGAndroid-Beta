@@ -10,75 +10,75 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.oa0;
-import org.telegram.ui.p90;
+import org.telegram.ui.o90;
+import org.telegram.ui.r80;
 public final class g1 implements RequestDelegate {
-    public final int f16177a = 0;
-    public final boolean f16178b;
-    public final int f16179c;
+    public final int f17761a = 0;
+    public final boolean f17762b;
+    public final int f17763c;
     public final Object d;
-    public final Object e;
-    public final Serializable f16180f;
-    public final Object f16181g;
+    public final Object f17764e;
+    public final Serializable f17765f;
+    public final Object f17766g;
     public final Serializable h;
-    public final Serializable f16182i;
-    public final Object f16183j;
-    public final Object f16184k;
-    public final Object f16185l;
-    public final Cloneable f16186m;
+    public final Serializable f17767i;
+    public final Object f17768j;
+    public final Object f17769k;
+    public final Object f17770l;
+    public final Cloneable f17771m;
 
     public g1(ContactsController contactsController, HashMap hashMap, SparseArray sparseArray, boolean[] zArr, HashMap hashMap2, TLRPC.TL_contacts_importContacts tL_contacts_importContacts, int i10, HashMap hashMap3, boolean z10, HashMap hashMap4, ArrayList arrayList, HashMap hashMap5) {
         this.d = contactsController;
-        this.e = hashMap;
-        this.f16183j = sparseArray;
-        this.f16184k = zArr;
-        this.f16180f = hashMap2;
-        this.f16185l = tL_contacts_importContacts;
-        this.f16179c = i10;
-        this.f16181g = hashMap3;
-        this.f16178b = z10;
+        this.f17764e = hashMap;
+        this.f17768j = sparseArray;
+        this.f17769k = zArr;
+        this.f17765f = hashMap2;
+        this.f17770l = tL_contacts_importContacts;
+        this.f17763c = i10;
+        this.f17766g = hashMap3;
+        this.f17762b = z10;
         this.h = hashMap4;
-        this.f16186m = arrayList;
-        this.f16182i = hashMap5;
+        this.f17771m = arrayList;
+        this.f17767i = hashMap5;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        int i10 = this.f16177a;
-        Cloneable cloneable = this.f16186m;
-        Object obj = this.f16185l;
-        Object obj2 = this.f16184k;
-        Object obj3 = this.f16183j;
-        Serializable serializable = this.f16182i;
+        int i10 = this.f17761a;
+        Cloneable cloneable = this.f17771m;
+        Object obj = this.f17770l;
+        Object obj2 = this.f17769k;
+        Object obj3 = this.f17768j;
+        Serializable serializable = this.f17767i;
         Serializable serializable2 = this.h;
-        Object obj4 = this.f16181g;
-        Serializable serializable3 = this.f16180f;
-        Object obj5 = this.e;
+        Object obj4 = this.f17766g;
+        Serializable serializable3 = this.f17765f;
+        Object obj5 = this.f17764e;
         Object obj6 = this.d;
         switch (i10) {
             case 0:
-                ((ContactsController) obj6).lambda$performSyncPhoneBook$20((HashMap) obj5, (SparseArray) obj3, (boolean[]) obj2, (HashMap) serializable3, (TLRPC.TL_contacts_importContacts) obj, this.f16179c, (HashMap) obj4, this.f16178b, (HashMap) serializable2, (ArrayList) cloneable, (HashMap) serializable, tLObject, tL_error);
+                ((ContactsController) obj6).lambda$performSyncPhoneBook$20((HashMap) obj5, (SparseArray) obj3, (boolean[]) obj2, (HashMap) serializable3, (TLRPC.TL_contacts_importContacts) obj, this.f17763c, (HashMap) obj4, this.f17762b, (HashMap) serializable2, (ArrayList) cloneable, (HashMap) serializable, tLObject, tL_error);
                 return;
             default:
                 Pattern pattern = LaunchActivity.B1;
-                boolean z10 = this.f16178b;
-                AndroidUtilities.runOnUIThread(new p90((LaunchActivity) obj6, (oa0) obj5, tLObject, z10, (Long) serializable3, (nf.e) obj4, (Long) serializable2, (Integer) serializable, (Integer) obj3, (byte[]) obj2, (org.telegram.ui.ActionBar.o2) obj, this.f16179c, (Bundle) cloneable));
+                boolean z10 = this.f17762b;
+                AndroidUtilities.runOnUIThread(new o90((LaunchActivity) obj6, (r80) obj5, tLObject, z10, (Long) serializable3, (of.e) obj4, (Long) serializable2, (Integer) serializable, (Integer) obj3, (byte[]) obj2, (org.telegram.ui.ActionBar.n2) obj, this.f17763c, (Bundle) cloneable));
                 return;
         }
     }
 
-    public g1(LaunchActivity launchActivity, oa0 oa0Var, boolean z10, Long l4, nf.e eVar, Long l10, Integer num, Integer num2, byte[] bArr, org.telegram.ui.ActionBar.o2 o2Var, int i10, Bundle bundle) {
+    public g1(LaunchActivity launchActivity, r80 r80Var, boolean z10, Long l4, of.e eVar, Long l10, Integer num, Integer num2, byte[] bArr, org.telegram.ui.ActionBar.n2 n2Var, int i10, Bundle bundle) {
         this.d = launchActivity;
-        this.e = oa0Var;
-        this.f16178b = z10;
-        this.f16180f = l4;
-        this.f16181g = eVar;
+        this.f17764e = r80Var;
+        this.f17762b = z10;
+        this.f17765f = l4;
+        this.f17766g = eVar;
         this.h = l10;
-        this.f16182i = num;
-        this.f16183j = num2;
-        this.f16184k = bArr;
-        this.f16185l = o2Var;
-        this.f16179c = i10;
-        this.f16186m = bundle;
+        this.f17767i = num;
+        this.f17768j = num2;
+        this.f17769k = bArr;
+        this.f17770l = n2Var;
+        this.f17763c = i10;
+        this.f17771m = bundle;
     }
 }

@@ -1,83 +1,118 @@
 package org.telegram.ui.Cells;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.drawable.Drawable;
+import android.app.Activity;
+import android.text.TextUtils;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
+import android.widget.Space;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.qr;
-import org.telegram.ui.Components.tp;
-public final class wa extends TextView {
-    public boolean f21606a;
-    public final org.telegram.ui.Components.c6 f21607b;
-    public tp f21608c;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.messenger.UnconfirmedAuthController;
+public final class wa extends FrameLayout {
+    public static final int f23527f = 0;
+    public final LinearLayout f23528a;
+    public final TextView f23529b;
+    public final TextView f23530c;
+    public final va d;
+    public final va f23531e;
 
-    public wa(Context context) {
-        super(context);
-        this.f21607b = new org.telegram.ui.Components.c6(this, 0L, 350L, qr.h);
+    public wa(Activity activity) {
+        super(activity);
+        setClickable(true);
+        LinearLayout linearLayout = new LinearLayout(activity);
+        this.f23528a = linearLayout;
+        linearLayout.setOrientation(1);
+        TextView textView = new TextView(activity);
+        this.f23529b = textView;
+        textView.setGravity(17);
+        textView.setTextSize(1, 14.0f);
+        textView.setTypeface(AndroidUtilities.bold());
+        textView.setText(LocaleController.getString(R.string.UnconfirmedAuthTitle));
+        linearLayout.addView(textView, w7.x5.p(-1, -2, 0.0f, 55, 28, 8, 28, 0));
+        TextView textView2 = new TextView(activity);
+        this.f23530c = textView2;
+        textView2.setGravity(17);
+        textView2.setTextSize(1, 13.0f);
+        textView2.setLineSpacing(AndroidUtilities.dpf2(2.0f), 1.0f);
+        linearLayout.addView(textView2, w7.x5.p(-1, -2, 0.0f, 55, 28, 2, 28, 0));
+        LinearLayout linearLayout2 = new LinearLayout(activity);
+        linearLayout2.setOrientation(0);
+        linearLayout2.setGravity(17);
+        linearLayout2.addView(new Space(activity), w7.x5.o(-2, 1, 17.0f, 1));
+        va vaVar = new va(activity);
+        this.d = vaVar;
+        vaVar.setPadding(AndroidUtilities.dp(10.0f), AndroidUtilities.dp(5.0f), AndroidUtilities.dp(10.0f), AndroidUtilities.dp(7.0f));
+        vaVar.setTypeface(AndroidUtilities.bold());
+        vaVar.setTextSize(1, 14.22f);
+        vaVar.setText(LocaleController.getString(R.string.UnconfirmedAuthConfirm));
+        linearLayout2.addView(vaVar, w7.x5.n(-2, 30));
+        linearLayout2.addView(new Space(activity), w7.x5.o(-2, 1, 17.0f, 1));
+        va vaVar2 = new va(activity);
+        this.f23531e = vaVar2;
+        vaVar2.setPadding(AndroidUtilities.dp(10.0f), AndroidUtilities.dp(5.0f), AndroidUtilities.dp(10.0f), AndroidUtilities.dp(7.0f));
+        vaVar2.setTypeface(AndroidUtilities.bold());
+        vaVar2.setTextSize(1, 14.22f);
+        vaVar2.setText(LocaleController.getString(R.string.UnconfirmedAuthDeny));
+        linearLayout2.addView(vaVar2, w7.x5.n(-2, 30));
+        linearLayout2.addView(new Space(activity), w7.x5.o(-2, 1, 17.0f, 1));
+        linearLayout.addView(linearLayout2, w7.x5.k(28.0f, 4.0f, 28.0f, 8.0f, -1, -2));
+        addView(linearLayout, w7.x5.e(-1, -1, 119));
+        b();
     }
 
-    public final void a(boolean z10, boolean z11) {
-        this.f21606a = z10;
-        boolean z12 = true;
-        if (!z11) {
-            this.f21607b.f(z10, true);
+    public static String a(UnconfirmedAuthController.UnconfirmedAuth unconfirmedAuth) {
+        if (unconfirmedAuth == null) {
+            return "";
         }
-        if (!isPressed() && !z10) {
-            z12 = false;
+        String str = "" + unconfirmedAuth.device;
+        if (!TextUtils.isEmpty(unconfirmedAuth.location) && !str.isEmpty()) {
+            str = str.concat(", ");
         }
-        super.setPressed(z12);
-        invalidate();
+        StringBuilder u10 = a4.a.u(str);
+        u10.append(unconfirmedAuth.location);
+        return u10.toString();
     }
 
-    @Override
-    public final void onDraw(Canvas canvas) {
-        Canvas canvas2;
-        float e = this.f21607b.e(this.f21606a);
-        if (e > 0.0f) {
-            if (e < 1.0f) {
-                canvas2 = canvas;
-                canvas2.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), (int) ((1.0f - e) * 255.0f), 31);
-                float f7 = 1.0f - (0.2f * e);
-                canvas2.scale(f7, f7, getWidth() / 2.0f, getHeight() / 2.0f);
-                canvas2.translate(0.0f, AndroidUtilities.dp(-12.0f) * e);
-                super.onDraw(canvas2);
-                canvas2.restore();
-            } else {
-                canvas2 = canvas;
-            }
-            if (this.f21608c == null) {
-                tp tpVar = new tp(AndroidUtilities.dp(16.0f), AndroidUtilities.dp(2.0f), getCurrentTextColor());
-                this.f21608c = tpVar;
-                tpVar.setCallback(this);
-            }
-            this.f21608c.b(getCurrentTextColor());
-            float f10 = 1.0f - e;
-            this.f21608c.setBounds(getWidth() / 2, (getHeight() / 2) + ((int) (AndroidUtilities.dp(12.0f) * f10)), getWidth() / 2, (getHeight() / 2) + ((int) (f10 * AndroidUtilities.dp(12.0f))));
-            this.f21608c.setAlpha((int) (e * 255.0f));
-            this.f21608c.draw(canvas2);
-            invalidate();
-            return;
-        }
-        super.onDraw(canvas);
-    }
-
-    @Override
-    public final void setPressed(boolean z10) {
-        boolean z11;
-        if (!z10 && !this.f21606a) {
-            z11 = false;
+    public final void b() {
+        float f7;
+        this.f23529b.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.G6, false));
+        this.f23530c.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f21070y6, false));
+        int i10 = org.telegram.ui.ActionBar.j6.I6;
+        int w02 = org.telegram.ui.ActionBar.j6.w0(null, i10, false);
+        va vaVar = this.d;
+        vaVar.setTextColor(w02);
+        int w03 = org.telegram.ui.ActionBar.j6.w0(null, i10, false);
+        float f10 = 0.15f;
+        if (org.telegram.ui.ActionBar.j6.I.q()) {
+            f7 = 0.3f;
         } else {
-            z11 = true;
+            f7 = 0.15f;
         }
-        super.setPressed(z11);
+        vaVar.setBackground(org.telegram.ui.ActionBar.j6.f0(org.telegram.ui.ActionBar.j6.l1(f7, w03), 7, AndroidUtilities.dp(8.0f)));
+        int i11 = org.telegram.ui.ActionBar.j6.f20926q7;
+        int w04 = org.telegram.ui.ActionBar.j6.w0(null, i11, false);
+        va vaVar2 = this.f23531e;
+        vaVar2.setTextColor(w04);
+        int w05 = org.telegram.ui.ActionBar.j6.w0(null, i11, false);
+        if (org.telegram.ui.ActionBar.j6.I.q()) {
+            f10 = 0.3f;
+        }
+        vaVar2.setBackground(org.telegram.ui.ActionBar.j6.f0(org.telegram.ui.ActionBar.j6.l1(f10, w05), 7, AndroidUtilities.dp(8.0f)));
     }
 
     @Override
-    public final boolean verifyDrawable(Drawable drawable) {
-        if (this.f21608c != drawable && !super.verifyDrawable(drawable)) {
-            return false;
+    public final void onMeasure(int i10, int i11) {
+        int size = View.MeasureSpec.getSize(i10);
+        if (size <= 0) {
+            size = AndroidUtilities.displaySize.x;
         }
-        return true;
+        int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec((size - getPaddingLeft()) - getPaddingRight(), 1073741824);
+        int makeMeasureSpec2 = View.MeasureSpec.makeMeasureSpec(AndroidUtilities.displaySize.y, Integer.MIN_VALUE);
+        LinearLayout linearLayout = this.f23528a;
+        linearLayout.measure(makeMeasureSpec, makeMeasureSpec2);
+        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(getPaddingBottom() + getPaddingTop() + linearLayout.getMeasuredHeight() + 1, 1073741824));
     }
 }

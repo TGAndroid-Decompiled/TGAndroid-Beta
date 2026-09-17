@@ -1,214 +1,152 @@
 package org.telegram.ui;
 
-import android.app.Activity;
-import android.content.Context;
-import android.content.SharedPreferences;
-import android.text.TextUtils;
-import android.view.MotionEvent;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.view.View;
-import android.view.ViewParent;
-import android.webkit.CookieManager;
-import android.webkit.WebSettings;
-import android.webkit.WebView;
-import android.widget.FrameLayout;
-import java.net.URLEncoder;
-import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.SerializedData;
-public final class oj1 extends org.telegram.ui.ActionBar.o2 {
-    public WebView f36366a;
-    public org.telegram.ui.ActionBar.w0 f36367b;
-    public org.telegram.ui.Components.tq f36368c;
-    public final String d;
-    public final String e;
-    public final String f36369f;
-    public final String h;
-    public final MessageObject f36370n;
-    public final String f36371r;
-    public w5 f36372s;
+import android.widget.ImageView;
+import java.util.Iterator;
+public final class oj1 extends AnimatorListenerAdapter {
+    public final int f39299a;
+    public final Object f39300b;
 
-    public oj1(String str, String str2, String str3, String str4, MessageObject messageObject) {
-        super(null);
-        String i10;
-        this.f36372s = new w5(this, 15);
-        this.d = str;
-        this.e = str2;
-        this.f36369f = str3;
-        this.f36370n = messageObject;
-        this.f36371r = str4;
-        StringBuilder sb2 = new StringBuilder("https://");
-        sb2.append(MessagesController.getInstance(this.currentAccount).linkPrefix);
-        sb2.append("/");
-        sb2.append(str2);
-        if (TextUtils.isEmpty(str4)) {
-            i10 = "";
-        } else {
-            i10 = org.telegram.ui.Cells.p6.i("?game=", str4);
+    public oj1(Object obj, int i10) {
+        this.f39299a = i10;
+        this.f39300b = obj;
+    }
+
+    @Override
+    public void onAnimationCancel(Animator animator) {
+        switch (this.f39299a) {
+            case 3:
+                ((r0.m0) this.f39300b).a();
+                return;
+            default:
+                super.onAnimationCancel(animator);
+                return;
         }
-        sb2.append(i10);
-        this.h = sb2.toString();
     }
 
-    public static int U(oj1 oj1Var) {
-        return oj1Var.currentAccount;
-    }
-
-    public static void V(String str, MessageObject messageObject, Activity activity, String str2, String str3) {
-        String str4;
-        String str5;
-        String str6 = "";
-        try {
-            SharedPreferences sharedPreferences = ApplicationLoader.applicationContext.getSharedPreferences("botshare", 0);
-            String string = sharedPreferences.getString("" + messageObject.getId(), null);
-            if (string == null) {
-                str4 = "";
-            } else {
-                str4 = string;
-            }
-            StringBuilder sb2 = new StringBuilder(str4);
-            StringBuilder sb3 = new StringBuilder("tgShareScoreUrl=" + URLEncoder.encode("tgb://share_game_score?hash=", "UTF-8"));
-            if (string == null) {
-                char[] charArray = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ".toCharArray();
-                for (int i10 = 0; i10 < 20; i10++) {
-                    sb2.append(charArray[Utilities.random.nextInt(charArray.length)]);
+    @Override
+    public final void onAnimationEnd(Animator animator) {
+        float f7;
+        boolean z10;
+        switch (this.f39299a) {
+            case 0:
+                fg.i iVar = (fg.i) this.f39300b;
+                ((qj1) iVar.f9526b).getClass();
+                ((qj1) iVar.f9526b).f39917c.setVisibility(4);
+                return;
+            case 1:
+                ((org.telegram.ui.web.d1) this.f39300b).f42087s.setVisibility(8);
+                return;
+            case 2:
+                qg.d0 d0Var = (qg.d0) this.f39300b;
+                d0Var.f44427a.getPainting().c(null, d0Var.f44427a.getCurrentColor(), true, null);
+                d0Var.f44442r = null;
+                return;
+            case 3:
+                ((r0.m0) this.f39300b).c();
+                return;
+            case 4:
+                super.onAnimationEnd(animator);
+                rg.n0 n0Var = (rg.n0) this.f39300b;
+                ImageView imageView = n0Var.f45353c;
+                n0Var.f45353c = n0Var.d;
+                n0Var.d = imageView;
+                imageView.bringToFront();
+                n0Var.d.setVisibility(8);
+                n0Var.h = null;
+                return;
+            case 5:
+                rg.t1 t1Var = (rg.t1) this.f39300b;
+                if (animator == t1Var.f45526r) {
+                    t1Var.f45524f = t1Var.h;
+                    t1Var.h = -1;
+                    t1Var.f45526r = null;
+                    return;
                 }
-            }
-            sb3.append((CharSequence) sb2);
-            int indexOf = str.indexOf(35);
-            if (indexOf < 0) {
-                str5 = str + "#" + ((Object) sb3);
-            } else {
-                String substring = str.substring(indexOf + 1);
-                if (substring.indexOf(61) < 0 && substring.indexOf(63) < 0) {
-                    if (substring.length() > 0) {
-                        str5 = str + "?" + ((Object) sb3);
-                    } else {
-                        str5 = str + ((Object) sb3);
+                return;
+            case 6:
+                sg.r0 r0Var = (sg.r0) this.f39300b;
+                if (r0Var.h) {
+                    f7 = 1.0f;
+                } else {
+                    f7 = 0.0f;
+                }
+                r0Var.f46269n = f7;
+                r0Var.e();
+                return;
+            case 7:
+                sg.c2 c2Var = (sg.c2) ((di.c0) this.f39300b).f7010b;
+                c2Var.F = true;
+                c2Var.invalidate();
+                return;
+            case 8:
+                super.onAnimationEnd(animator);
+                tg.e eVar = (tg.e) ((bi.t5) this.f39300b).f3759b;
+                eVar.f46548b.d = 0.0f;
+                eVar.T = null;
+                eVar.h(eVar.I);
+                return;
+            case 9:
+                ug.b bVar = (ug.b) this.f39300b;
+                bVar.f47094b = 1.0f;
+                bVar.invalidate();
+                return;
+            case 10:
+                wh.h hVar = (wh.h) this.f39300b;
+                Iterator it = hVar.h.iterator();
+                while (it.hasNext()) {
+                    wh.c cVar = (wh.c) it.next();
+                    if (hVar.f48645c.size() < hVar.d) {
+                        hVar.f48645c.push(cVar);
                     }
+                    it.remove();
                 }
-                str5 = str + "&" + ((Object) sb3);
-            }
-            SharedPreferences.Editor edit = sharedPreferences.edit();
-            edit.putInt(((Object) sb2) + "_date", (int) (System.currentTimeMillis() / 1000));
-            SerializedData serializedData = new SerializedData(messageObject.messageOwner.getObjectSize());
-            messageObject.messageOwner.serializeToStream(serializedData);
-            edit.putString(((Object) sb2) + "_m", Utilities.bytesToHex(serializedData.toByteArray()));
-            String str7 = ((Object) sb2) + "_link";
-            StringBuilder sb4 = new StringBuilder();
-            sb4.append("https://");
-            sb4.append(MessagesController.getInstance(messageObject.currentAccount).linkPrefix);
-            sb4.append("/");
-            sb4.append(str3);
-            if (!TextUtils.isEmpty(str2)) {
-                str6 = "?game=" + str2;
-            }
-            sb4.append(str6);
-            edit.putString(str7, sb4.toString());
-            edit.commit();
-            nf.f.o(activity, str5, false);
-            serializedData.cleanup();
-        } catch (Exception e) {
-            FileLog.e(e);
+                Runnable runnable = hVar.f48657q;
+                if (runnable != null) {
+                    runnable.run();
+                    hVar.f48657q = null;
+                }
+                hVar.f48658r = null;
+                hVar.invalidateSelf();
+                return;
+            case 11:
+                ((yh.h0) this.f39300b).f50334b.f50374w.setVisibility(8);
+                return;
+            case 12:
+                zh.q2 q2Var = (zh.q2) this.f39300b;
+                q2Var.E = 1.0f;
+                q2Var.F = -1;
+                zh.p2 p2Var = q2Var.H;
+                if (p2Var != null && (z10 = p2Var.f52445l) && z10) {
+                    p2Var.f52445l = false;
+                    p2Var.b();
+                }
+                q2Var.G = null;
+                return;
+            default:
+                s00 s00Var = ((zh.j7) this.f39300b).f52144c;
+                s00Var.setScaleX(1.0f);
+                s00Var.setScaleY(1.0f);
+                return;
         }
     }
 
     @Override
-    public final View createView(Context context) {
-        this.actionBar.setBackButtonImage(R.drawable.ic_ab_back);
-        this.actionBar.setAllowOverlayTitle(true);
-        this.actionBar.setActionBarMenuOnItemClick(new mj1(this));
-        org.telegram.ui.ActionBar.a0 n10 = this.actionBar.n();
-        this.f36367b = n10.g(1, R.drawable.share, AndroidUtilities.dp(54.0f));
-        n10.a(0, R.drawable.ic_ab_other).e(2, R.drawable.msg_openin, LocaleController.getString(R.string.OpenInExternalApp));
-        this.actionBar.setTitle(this.f36369f);
-        org.telegram.ui.ActionBar.k kVar = this.actionBar;
-        kVar.setSubtitle("@" + this.e);
-        org.telegram.ui.Components.tq tqVar = new org.telegram.ui.Components.tq(context, 1);
-        this.f36368c = tqVar;
-        this.f36367b.addView(tqVar, w7.x5.c(-1.0f, -1));
-        this.f36368c.setAlpha(0.0f);
-        this.f36368c.setScaleX(0.1f);
-        this.f36368c.setScaleY(0.1f);
-        this.f36368c.setVisibility(4);
-        AndroidUtilities.checkAndroidTheme(context, true);
-        WebView webView = new WebView(context);
-        this.f36366a = webView;
-        webView.getSettings().setJavaScriptEnabled(true);
-        this.f36366a.getSettings().setDomStorageEnabled(true);
-        FrameLayout frameLayout = new FrameLayout(context);
-        this.fragmentView = frameLayout;
-        this.f36366a.setLayerType(2, null);
-        this.f36366a.getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.TEXT_AUTOSIZING);
-        this.f36366a.getSettings().setMediaPlaybackRequiresUserGesture(false);
-        this.f36366a.getSettings().setMixedContentMode(0);
-        CookieManager.getInstance().setAcceptThirdPartyCookies(this.f36366a, true);
-        this.f36366a.addJavascriptInterface(new nj1(this), "TelegramWebviewProxy");
-        this.f36366a.setWebViewClient(new ni.i(this, 2));
-        frameLayout.addView(this.f36366a, w7.x5.c(-1.0f, -1));
-        return this.fragmentView;
-    }
-
-    @Override
-    public final ArrayList getThemeDescriptions() {
-        ArrayList arrayList = new ArrayList();
-        arrayList.add(new org.telegram.ui.ActionBar.l6(this.fragmentView, 1, null, null, null, null, org.telegram.ui.ActionBar.j6.f18862d6));
-        arrayList.add(new org.telegram.ui.ActionBar.l6(this.actionBar, 1, null, null, null, null, org.telegram.ui.ActionBar.j6.f19139s8));
-        arrayList.add(new org.telegram.ui.ActionBar.l6(this.actionBar, 64, null, null, null, null, org.telegram.ui.ActionBar.j6.f19194v8));
-        arrayList.add(new org.telegram.ui.ActionBar.l6(this.actionBar, 128, null, null, null, null, org.telegram.ui.ActionBar.j6.A8));
-        arrayList.add(new org.telegram.ui.ActionBar.l6(this.actionBar, 256, null, null, null, null, org.telegram.ui.ActionBar.j6.f19158t8));
-        arrayList.add(new org.telegram.ui.ActionBar.l6(this.actionBar, Integer.MIN_VALUE, null, null, null, null, org.telegram.ui.ActionBar.j6.G8));
-        arrayList.add(new org.telegram.ui.ActionBar.l6(this.actionBar, 1073741824, null, null, null, null, org.telegram.ui.ActionBar.j6.E8));
-        arrayList.add(new org.telegram.ui.ActionBar.l6(this.actionBar, 1073741832, null, null, null, null, org.telegram.ui.ActionBar.j6.F8));
-        arrayList.add(new org.telegram.ui.ActionBar.l6(this.f36368c, 0, null, null, null, null, org.telegram.ui.ActionBar.j6.D7));
-        arrayList.add(new org.telegram.ui.ActionBar.l6(this.f36368c, 0, null, null, null, null, org.telegram.ui.ActionBar.j6.E7));
-        return arrayList;
-    }
-
-    @Override
-    public final boolean isSwipeBackEnabled(MotionEvent motionEvent) {
-        return false;
-    }
-
-    @Override
-    public final void onFragmentDestroy() {
-        super.onFragmentDestroy();
-        AndroidUtilities.checkAndroidTheme(getParentActivity(), false);
-        AndroidUtilities.cancelRunOnUIThread(this.f36372s);
-        this.f36366a.setLayerType(0, null);
-        this.f36372s = null;
-        try {
-            ViewParent parent = this.f36366a.getParent();
-            if (parent != null) {
-                ((FrameLayout) parent).removeView(this.f36366a);
-            }
-            this.f36366a.stopLoading();
-            this.f36366a.loadUrl("about:blank");
-            this.f36366a.destroy();
-            this.f36366a = null;
-        } catch (Exception e) {
-            FileLog.e(e);
+    public void onAnimationStart(Animator animator) {
+        switch (this.f39299a) {
+            case 3:
+                ((r0.m0) this.f39300b).b();
+                return;
+            default:
+                super.onAnimationStart(animator);
+                return;
         }
     }
 
-    @Override
-    public final void onResume() {
-        super.onResume();
-        AndroidUtilities.cancelRunOnUIThread(this.f36372s);
-        this.f36372s.run();
-    }
-
-    @Override
-    public final void onTransitionAnimationEnd(boolean z10, boolean z11) {
-        WebView webView;
-        if (z10 && !z11 && (webView = this.f36366a) != null) {
-            webView.loadUrl(this.d);
-        }
+    public oj1(r0.m0 m0Var, View view) {
+        this.f39299a = 3;
+        this.f39300b = m0Var;
     }
 }

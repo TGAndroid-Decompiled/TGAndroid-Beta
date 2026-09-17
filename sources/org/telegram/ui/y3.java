@@ -1,12 +1,13 @@
 package org.telegram.ui;
 
-import java.util.ArrayList;
 import org.telegram.tgnet.tl.TL_iv;
 public final class y3 extends TL_iv.PageBlock {
-    public TL_iv.pageBlockList f39778a;
-    public final ArrayList f39779b = new ArrayList();
-    public int f39780c;
-    public int d;
-    public int e;
-    public int f39781f;
+    public boolean f42998a;
+    public boolean f42999b;
+    public z3 f43000c;
+    public TL_iv.PageBlock d;
+    public TL_iv.RichText f43001e;
+    public String f43002f;
+    public b3 f43003i;
+    public int f43004j = Integer.MAX_VALUE;
 }

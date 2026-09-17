@@ -1,35 +1,37 @@
 package fi;
 
-import android.view.View;
-import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.j51;
-import r0.l1;
-public final class q implements Utilities.Callback5, Utilities.Callback5Return, r0.n {
-    public final s f9165a;
+import org.telegram.messenger.FileLog;
+public final class q extends v7.n {
+    public final s f9918a;
 
-    @Override
-    public l1 Q0(View view, l1 l1Var) {
-        this.f9165a.V(l1Var.f41877a.f(519).d);
-        return l1.f41876b;
+    public q(s sVar) {
+        this.f9918a = sVar;
     }
 
     @Override
-    public Object run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-        j51 j51Var = (j51) obj;
-        View view = (View) obj2;
-        ((Integer) obj3).intValue();
-        ((Float) obj4).floatValue();
-        ((Float) obj5).floatValue();
-        this.f9165a.getClass();
-        return Boolean.FALSE;
+    public final void a(int i10, CharSequence charSequence) {
+        FileLog.d("BotBiometry onAuthenticationError " + i10 + " \"" + ((Object) charSequence) + "\"");
+        s sVar = this.f9918a;
+        bi.f0 f0Var = sVar.f9973j;
+        if (f0Var != null) {
+            sVar.f9973j = null;
+            f0Var.run(Boolean.FALSE, null);
+        }
     }
 
     @Override
-    public void mo17run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-        View view = (View) obj2;
-        ((Integer) obj3).getClass();
-        ((Float) obj4).getClass();
-        ((Float) obj5).getClass();
-        s.U(this.f9165a, (j51) obj);
+    public final void b() {
+        FileLog.d("BotBiometry onAuthenticationFailed");
+    }
+
+    @Override
+    public final void c(androidx.biometric.t tVar) {
+        FileLog.d("BotBiometry onAuthenticationSucceeded");
+        s sVar = this.f9918a;
+        bi.f0 f0Var = sVar.f9973j;
+        if (f0Var != null) {
+            sVar.f9973j = null;
+            f0Var.run(Boolean.TRUE, tVar);
+        }
     }
 }

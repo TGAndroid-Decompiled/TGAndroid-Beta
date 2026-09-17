@@ -1,36 +1,36 @@
 package org.telegram.messenger;
 
 import org.telegram.messenger.GiftAuctionController;
+import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_payments;
 public final class y3 implements Utilities.Callback2 {
-    public final int f17938a = 0;
-    public final GiftAuctionController f17939b;
-    public final GiftAuctionController.AuctionInternal f17940c;
+    public final int f19724a;
+    public final BaseController f19725b;
+    public final Object f19726c;
     public final Object d;
+    public final Object f19727e;
 
-    public y3(GiftAuctionController giftAuctionController, GiftAuctionController.AuctionInternal auctionInternal, Utilities.Callback2 callback2) {
-        this.f17939b = giftAuctionController;
-        this.f17940c = auctionInternal;
-        this.d = callback2;
+    public y3(BaseController baseController, Object obj, Object obj2, Object obj3, int i10) {
+        this.f19724a = i10;
+        this.f19725b = baseController;
+        this.f19726c = obj;
+        this.d = obj2;
+        this.f19727e = obj3;
     }
 
     @Override
     public final void run(Object obj, Object obj2) {
-        switch (this.f17938a) {
+        switch (this.f19724a) {
             case 0:
-                this.f17939b.lambda$sendBid$8(this.f17940c, (Utilities.Callback2) this.d, (TLRPC.payments_PaymentResult) obj, (TLRPC.TL_error) obj2);
+                ((GiftAuctionController) this.f19725b).lambda$sendBid$9((Utilities.Callback2) this.f19726c, (GiftAuctionController.AuctionInternal) this.d, (TLRPC.TL_payments_getPaymentForm) this.f19727e, (TLRPC.PaymentForm) obj, (TLRPC.TL_error) obj2);
+                return;
+            case 1:
+                ((MediaDataController) this.f19725b).lambda$searchStickers$247((MediaDataController.SearchStickersKey) this.f19726c, (MediaDataController.SearchStickersResult) this.d, (Utilities.Callback) this.f19727e, (TLRPC.messages_FoundStickers) obj, (TLRPC.TL_error) obj2);
                 return;
             default:
-                this.f17939b.lambda$getOrRequestAcquiredGifts$11((Utilities.Callback) this.d, this.f17940c, (TL_payments.TL_StarGiftAuctionAcquiredGifts) obj, (TLRPC.TL_error) obj2);
+                ((MediaDataController) this.f19725b).lambda$getStickerSet$38((String) this.f19726c, (Utilities.Callback) this.d, (TLRPC.InputStickerSet) this.f19727e, (Boolean) obj, (TLRPC.TL_messages_stickerSet) obj2);
                 return;
         }
-    }
-
-    public y3(GiftAuctionController giftAuctionController, Utilities.Callback callback, GiftAuctionController.AuctionInternal auctionInternal) {
-        this.f17939b = giftAuctionController;
-        this.d = callback;
-        this.f17940c = auctionInternal;
     }
 }

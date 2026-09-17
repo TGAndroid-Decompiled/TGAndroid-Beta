@@ -1,55 +1,18 @@
 package org.telegram.ui.Components;
 
-import androidx.recyclerview.widget.RecyclerView;
-import org.telegram.messenger.MediaDataController;
-import org.telegram.tgnet.TLRPC;
-public final class px0 extends s4.x {
-    public int e;
-    public final wx0 f27150f;
+import android.content.Context;
+import android.view.View;
+public final class px0 extends org.telegram.ui.Cells.f8 {
+    public final qx0 O;
 
-    public px0(wx0 wx0Var) {
-        this.f27150f = wx0Var;
-        this.d = 15;
-        this.e = -1;
+    public px0(qx0 qx0Var, Context context, org.telegram.ui.ActionBar.f6 f6Var) {
+        super(context, f6Var, false);
+        this.O = qx0Var;
     }
 
     @Override
-    public final boolean n(RecyclerView recyclerView, s4.c1 c1Var, s4.c1 c1Var2) {
-        int i10 = c1Var.f42700f;
-        if (i10 != 3 && i10 == c1Var2.f42700f) {
-            wx0 wx0Var = this.f27150f;
-            if (wx0Var.S == null) {
-                return false;
-            }
-            int b10 = c1Var.b();
-            int b11 = c1Var2.b();
-            wx0Var.S.documents.add(b11, wx0Var.S.documents.remove(b10));
-            wx0Var.d.p(b10, b11);
-            this.e = b11;
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final void p(s4.c1 c1Var, int i10) {
-        wx0 wx0Var = this.f27150f;
-        if (i10 == 0 && wx0Var.f29773f != null && this.e > 0) {
-            TLRPC.TL_stickers_changeStickerPosition tL_stickers_changeStickerPosition = new TLRPC.TL_stickers_changeStickerPosition();
-            tL_stickers_changeStickerPosition.position = this.e;
-            tL_stickers_changeStickerPosition.sticker = MediaDataController.getInputStickerSetItem(wx0Var.f29773f, "").document;
-            this.e = -1;
-            wx0Var.f29773f = null;
-        } else if (i10 == 2) {
-            wx0Var.f29773f = ((org.telegram.ui.Cells.f8) c1Var.f42697a).getSticker();
-        }
-    }
-
-    @Override
-    public final void q(s4.c1 c1Var) {
-    }
-
-    @Override
-    public final void o(RecyclerView recyclerView, s4.c1 c1Var, s4.c1 c1Var2, int i10, int i11, int i12) {
+    public final void onMeasure(int i10, int i11) {
+        qx0 qx0Var = this.O;
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(qx0Var.f29864r.O, 1073741824), View.MeasureSpec.makeMeasureSpec(qx0Var.f29864r.O, 1073741824));
     }
 }

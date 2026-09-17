@@ -4,19 +4,21 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Base64;
 import android.util.Log;
+import com.google.android.gms.tasks.OnFailureListener;
 import java.util.ArrayList;
+import org.telegram.ui.ActionBar.a2;
 import org.telegram.ui.ActionBar.b2;
-import org.telegram.ui.ActionBar.c2;
-public final class i implements q9.d, b2, s5.e, pa.a {
-    public final int f42190a;
+import rg.o2;
+public final class i implements q9.d, OnFailureListener, s5.e, pa.a, a2 {
+    public final int f45081a;
 
     public i(int i10) {
-        this.f42190a = i10;
+        this.f45081a = i10;
     }
 
     @Override
-    public java.lang.Object G(cf.c r45) {
-        throw new UnsupportedOperationException("Method not decompiled: r9.i.G(cf.c):java.lang.Object");
+    public java.lang.Object D(cf.c r45) {
+        throw new UnsupportedOperationException("Method not decompiled: r9.i.D(cf.c):java.lang.Object");
     }
 
     @Override
@@ -27,7 +29,7 @@ public final class i implements q9.d, b2, s5.e, pa.a {
             ArrayList arrayList = new ArrayList();
             while (rawQuery.moveToNext()) {
                 aa.a a2 = l5.i.a();
-                a2.u(rawQuery.getString(1));
+                a2.B(rawQuery.getString(1));
                 a2.d = v5.a.b(rawQuery.getInt(2));
                 String string = rawQuery.getString(3);
                 if (string == null) {
@@ -35,8 +37,8 @@ public final class i implements q9.d, b2, s5.e, pa.a {
                 } else {
                     decode = Base64.decode(string, 0);
                 }
-                a2.f360c = decode;
-                arrayList.add(a2.e());
+                a2.f384c = decode;
+                arrayList.add(a2.f());
             }
             return arrayList;
         } finally {
@@ -45,19 +47,19 @@ public final class i implements q9.d, b2, s5.e, pa.a {
     }
 
     @Override
-    public void f(c2 c2Var, int i10) {
-        switch (this.f42190a) {
-            case 4:
-                c2Var.dismiss();
+    public void g(b2 b2Var, int i10) {
+        switch (this.f45081a) {
+            case 27:
+                b2Var.dismiss();
                 return;
             default:
-                c2Var.dismiss();
+                b2Var.dismiss();
                 return;
         }
     }
 
     @Override
-    public void j(pa.b bVar) {
+    public void h(pa.b bVar) {
         if (Log.isLoggable("FirebaseCrashlytics", 3)) {
             Log.d("FirebaseCrashlytics", "AnalyticsConnector now available.", null);
         }
@@ -65,7 +67,12 @@ public final class i implements q9.d, b2, s5.e, pa.a {
         throw new ClassCastException();
     }
 
+    @Override
+    public void onFailure(Exception exc) {
+        int i10 = o2.f45405r0;
+    }
+
     public i(Object obj, int i10) {
-        this.f42190a = i10;
+        this.f45081a = i10;
     }
 }

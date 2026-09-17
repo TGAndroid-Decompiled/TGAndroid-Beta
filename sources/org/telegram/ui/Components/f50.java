@@ -4,25 +4,25 @@ import android.graphics.Paint;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.ui.ProfileActivity;
 public final class f50 extends Paint {
-    public final int f23776a;
-    public final NotificationCenter.NotificationCenterDelegate f23777b;
+    public final int f25943a;
+    public final NotificationCenter.NotificationCenterDelegate f25944b;
 
     public f50(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, int i10) {
         super(1);
-        this.f23776a = i10;
-        this.f23777b = notificationCenterDelegate;
+        this.f25943a = i10;
+        this.f25944b = notificationCenterDelegate;
     }
 
     @Override
     public final void setAlpha(int i10) {
-        switch (this.f23776a) {
+        switch (this.f25943a) {
             case 0:
                 super.setAlpha(i10);
-                ((w50) this.f23777b).invalidate();
+                ((w50) this.f25944b).invalidate();
                 return;
             default:
                 super.setAlpha(i10);
-                ((ProfileActivity) this.f23777b).fragmentView.invalidate();
+                ((ProfileActivity) this.f25944b).fragmentView.invalidate();
                 return;
         }
     }

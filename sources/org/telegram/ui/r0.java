@@ -4,14 +4,14 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import org.telegram.messenger.AndroidUtilities;
 public final class r0 extends AnimatorListenerAdapter {
-    public final h4 f37056a;
+    public final i4 f40053a;
 
-    public r0(h4 h4Var) {
-        this.f37056a = h4Var;
+    public r0(i4 i4Var) {
+        this.f40053a = i4Var;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        AndroidUtilities.runOnUIThread(new ou0(this, 6));
+        AndroidUtilities.runOnUIThread(new lu0(this, 6));
     }
 }

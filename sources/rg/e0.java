@@ -1,25 +1,27 @@
 package rg;
-public class e0 {
-    public final int f42300a;
-    public final int f42301b;
-    public final String f42302c;
-    public final String d;
-    public final int e;
-    public boolean f42303f;
 
-    public e0(int i10, int i11, int i12, String str, String str2) {
-        this.f42300a = i10;
-        this.f42301b = i11;
-        this.f42302c = str;
-        this.d = str2;
-        this.e = i12;
+import android.content.Context;
+import android.graphics.Bitmap;
+import org.telegram.ui.zt0;
+public final class e0 extends qg.c1 {
+    public final Bitmap E;
+    public final zt0 F;
+
+    public e0(zt0 zt0Var, Context context, qg.q0 q0Var, Bitmap bitmap, Bitmap bitmap2) {
+        super(context, q0Var, bitmap, null, null);
+        this.F = zt0Var;
+        this.E = bitmap2;
     }
 
-    public static e0 a(int i10, int i11) {
-        return new e0(i10, i11, -1, null, null);
-    }
-
-    public static e0 b(int i10, int i11, String str) {
-        return new e0(i10, -1, i11, null, str);
+    @Override
+    public final void g(qg.m mVar) {
+        int indexOf = qg.m.f44509a.indexOf(mVar);
+        int i10 = indexOf + 1;
+        if (i10 <= 1 || this.E != null) {
+            indexOf = i10;
+        }
+        zt0 zt0Var = this.F;
+        zt0Var.f45398t1.b(indexOf);
+        zt0Var.o(mVar);
     }
 }

@@ -5,7 +5,7 @@ import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-public final class al extends gg.u0 {
+public final class al extends hg.u0 {
     public final gl N;
 
     public al(gl glVar, Context context, org.telegram.ui.ActionBar.f6 f6Var, boolean z10) {
@@ -17,13 +17,13 @@ public final class al extends gg.u0 {
     public final void l() {
         gl glVar = this.N;
         al alVar = glVar.R;
-        org.telegram.ui.ActionBar.w0 w0Var = glVar.E;
-        if (w0Var != null) {
-            w0Var.setShowSearchProgress(alVar.J);
+        org.telegram.ui.ActionBar.v0 v0Var = glVar.E;
+        if (v0Var != null) {
+            v0Var.setShowSearchProgress(alVar.J);
         }
-        TextView textView = glVar.f24338y;
+        TextView textView = glVar.f26484y;
         if (textView != null) {
-            textView.setText(AndroidUtilities.replaceTags(LocaleController.formatString("NoPlacesFoundInfo", R.string.NoPlacesFoundInfo, alVar.f9684x)));
+            textView.setText(AndroidUtilities.replaceTags(LocaleController.formatString("NoPlacesFoundInfo", R.string.NoPlacesFoundInfo, alVar.f11028x)));
         }
         super.l();
     }

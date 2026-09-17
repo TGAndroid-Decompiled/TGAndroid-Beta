@@ -1,32 +1,21 @@
 package org.telegram.ui.web;
+public final class m implements Runnable {
+    public final int f42204a;
+    public final q f42205b;
 
-import android.view.View;
-import java.util.concurrent.ExecutorService;
-public final class m implements e2.h {
-    public final int f38867a;
+    public m(q qVar, int i10) {
+        this.f42204a = i10;
+        this.f42205b = qVar;
+    }
 
     @Override
-    public final void accept(Object obj) {
-        switch (this.f38867a) {
+    public final void run() {
+        switch (this.f42204a) {
             case 0:
-                View view = (View) obj;
-                if (view instanceof h) {
-                    ((h) view).setChecked(false);
-                    return;
-                }
-                return;
-            case 1:
-                View view2 = (View) obj;
-                if (view2 instanceof h) {
-                    ((h) view2).setChecked(false);
-                    return;
-                }
-                return;
-            case 2:
-                ((u2.y0) obj).f43560b.release();
+                this.f42205b.g0();
                 return;
             default:
-                ((ExecutorService) obj).shutdown();
+                this.f42205b.g0();
                 return;
         }
     }

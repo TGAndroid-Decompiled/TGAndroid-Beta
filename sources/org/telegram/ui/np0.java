@@ -1,59 +1,82 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.Canvas;
-public final class np0 extends org.telegram.ui.Components.ml0 {
-    public final int X2;
-    public final wp0 Y2;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.tl.TL_stars;
+public final class np0 implements Utilities.Callback {
+    public final int f39029a;
+    public final op0 f39030b;
 
-    public np0(wp0 wp0Var, Context context, org.telegram.ui.ActionBar.f6 f6Var, int i10) {
-        super(context, f6Var);
-        this.Y2 = wp0Var;
-        this.X2 = i10;
+    public np0(op0 op0Var, int i10) {
+        this.f39029a = i10;
+        this.f39030b = op0Var;
     }
 
     @Override
-    public final Integer X0(int i10) {
-        wp0 wp0Var = this.Y2;
-        if ((i10 >= wp0Var.f39131b0 && i10 < wp0Var.f39133c0) || (i10 >= wp0Var.f39134d0 && i10 < wp0Var.f39135e0)) {
-            return 0;
-        }
-        return super.X0(i10);
-    }
-
-    @Override
-    public final void dispatchDraw(Canvas canvas) {
-        super.dispatchDraw(canvas);
-        wp0 wp0Var = this.Y2;
-        if (wp0Var.G && wp0Var.E != null && wp0Var.F != null) {
-            int save = canvas.save();
-            canvas.translate(wp0Var.E.getLeft() + wp0Var.F.getLeft(), wp0Var.F.getTop());
-            wp0Var.E.draw(canvas);
-            canvas.restoreToCount(save);
-        }
-    }
-
-    @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        yh.n5 n5Var;
-        super.onLayout(z10, i10, i11, i12, i13);
-        wp0 wp0Var = this.Y2;
-        cq0 cq0Var = wp0Var.f39147p0;
-        wp0Var.h();
-        if (wp0Var.K != null) {
-            if (wp0Var.J != null && wp0Var.c()) {
-                wp0Var.J.g(false);
+    public final void run(Object obj) {
+        TL_stars.StarGift starGift;
+        int i10;
+        vp0 vp0Var;
+        zp0 zp0Var;
+        vp0 vp0Var2;
+        switch (this.f39029a) {
+            case 0:
+                Integer num = (Integer) obj;
+                op0 op0Var = this.f39030b;
+                vp0 vp0Var3 = op0Var.f39324e;
+                if (num.intValue() == 0) {
+                    starGift = null;
+                } else {
+                    starGift = (TL_stars.StarGift) vp0Var3.M.get(num);
+                }
+                vp0Var3.K = starGift;
+                bq0 bq0Var = vp0Var3.f41647p0;
+                if (starGift == null) {
+                    yh.t3 t3Var = vp0Var3.J;
+                    if (t3Var != null) {
+                        t3Var.f();
+                        vp0Var3.J = null;
+                    }
+                } else {
+                    yh.t3 t3Var2 = vp0Var3.J;
+                    if (t3Var2 == null || t3Var2.f50587b != starGift.f20123id) {
+                        i10 = ((org.telegram.ui.ActionBar.n2) bq0Var).currentAccount;
+                        yh.t3 t3Var3 = new yh.t3(vp0Var3.K.f20123id, i10, new np0(op0Var, 2));
+                        vp0Var3.J = t3Var3;
+                        t3Var3.g(false);
+                    }
+                }
+                vp0.a(vp0Var3);
+                if (bq0Var.I.getCurrentPosition() == 1) {
+                    vp0Var = bq0Var.f34901n;
+                } else {
+                    vp0Var = bq0Var.h;
+                }
+                vp0Var.e();
                 return;
-            }
-            return;
-        }
-        if (this.X2 == 1) {
-            n5Var = cq0Var.f32851c;
-        } else {
-            n5Var = cq0Var.f32849b;
-        }
-        if (n5Var != null && wp0Var.c()) {
-            n5Var.a();
+            case 1:
+                vp0 vp0Var4 = this.f39030b.f39324e;
+                vp0Var4.h = ((Integer) obj).intValue();
+                vp0Var4.f41648r = null;
+                vp0Var4.f41649s = null;
+                vp0Var4.I = null;
+                vp0Var4.j(true);
+                vp0Var4.i();
+                vp0Var4.f(true);
+                up0 up0Var = vp0Var4.f41652y;
+                if (up0Var != null) {
+                    up0Var.invalidate();
+                }
+                bq0 bq0Var2 = vp0Var4.f41647p0;
+                vp0 vp0Var5 = bq0Var2.f34901n;
+                if (vp0Var5 != null && (zp0Var = vp0Var5.f41627a) != null && (vp0Var2 = bq0Var2.h) != null) {
+                    zp0Var.a(vp0Var2.h);
+                    return;
+                }
+                return;
+            default:
+                Boolean bool = (Boolean) obj;
+                this.f39030b.f39324e.e();
+                return;
         }
     }
 }

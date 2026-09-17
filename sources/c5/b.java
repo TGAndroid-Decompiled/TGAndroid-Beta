@@ -7,7 +7,7 @@ public abstract class b {
 
     public abstract h b(Activity activity, g gVar);
 
-    public abstract void c(a4.m mVar, org.telegram.messenger.c0 c0Var);
+    public abstract void c(xa.c cVar, org.telegram.messenger.c0 c0Var);
 
     public abstract void d(BillingController billingController);
 }

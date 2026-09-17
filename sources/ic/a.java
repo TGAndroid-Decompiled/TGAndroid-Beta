@@ -2,10 +2,10 @@ package ic;
 
 import cc.j;
 public final class a extends j {
-    public final float f11070c;
+    public final float f11964c;
 
     public a(float f7, float f10, float f11) {
         super(f7, f10);
-        this.f11070c = f11;
+        this.f11964c = f11;
     }
 }

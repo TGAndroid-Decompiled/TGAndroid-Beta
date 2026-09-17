@@ -1,100 +1,60 @@
 package ji;
 
-import android.content.Context;
-import android.graphics.PointF;
-import android.view.animation.DecelerateInterpolator;
-import android.view.animation.LinearInterpolator;
-import s4.c0;
-import s4.o0;
-import s4.x0;
-import s4.y0;
-public class o extends y0 {
-    public final LinearInterpolator f13098i;
-    public final DecelerateInterpolator f13099j;
-    public final float f13100k;
-    public int f13101l;
-    public int f13102m;
-    public final int f13103n;
-    public final float f13104o;
-    public int f13105p;
+import android.content.Intent;
+import java.util.ArrayList;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.MessageObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.Components.fk;
+import org.telegram.ui.Components.vi;
+public final class o implements fk {
+    public final vi f14108a;
+    public final r f14109b;
 
-    public o(Context context, int i10) {
-        this.f13098i = new LinearInterpolator();
-        this.f13099j = new DecelerateInterpolator(1.5f);
-        this.f13101l = 0;
-        this.f13102m = 0;
-        this.f13104o = 1.0f;
-        this.f13100k = 25.0f / context.getResources().getDisplayMetrics().densityDpi;
-        this.f13103n = i10;
+    public o(r rVar, vi viVar) {
+        this.f14109b = rVar;
+        this.f14108a = viVar;
     }
 
     @Override
-    public final PointF a(int i10) {
-        o0 o0Var = this.f42849c;
-        if (o0Var instanceof c0) {
-            return ((c0) o0Var).E0(i10);
-        }
-        return null;
-    }
-
-    @Override
-    public final void d(int i10, int i11, x0 x0Var) {
-        if (this.f42848b.f2868x.r() == 0) {
-            h();
-            return;
-        }
-        int i12 = this.f13101l;
-        int i13 = i12 - i10;
-        int i14 = 0;
-        if (i12 * i13 <= 0) {
-            i13 = 0;
-        }
-        this.f13101l = i13;
-        int i15 = this.f13102m;
-        int i16 = i15 - i11;
-        if (i15 * i16 > 0) {
-            i14 = i16;
-        }
-        this.f13102m = i14;
-        if (i13 == 0 && i14 == 0) {
-            PointF a2 = a(this.f42847a);
-            if (a2 != null && (a2.x != 0.0f || a2.y != 0.0f)) {
-                y0.b(a2);
-                this.f13101l = (int) (a2.x * 10000.0f);
-                this.f13102m = (int) (a2.y * 10000.0f);
-                x0Var.b((int) (this.f13101l * 1.2f), (int) (this.f13102m * 1.2f), (int) (((int) Math.ceil(Math.abs(10000) * this.f13100k)) * 1.2f), this.f13098i);
-                return;
+    public final void k(ArrayList arrayList, String str, ArrayList arrayList2, ArrayList arrayList3, boolean z10, int i10, long j3, boolean z11, long j10) {
+        String str2;
+        v3 v3Var = this.f14109b.f14159r;
+        if (!arrayList.isEmpty()) {
+            v3Var.b2((String) arrayList.get(0));
+        } else if (!arrayList3.isEmpty()) {
+            MessageObject messageObject = (MessageObject) arrayList3.get(0);
+            v3Var.getClass();
+            if (messageObject != null && messageObject.getDocument() != null) {
+                TLRPC.Document document = messageObject.getDocument();
+                TLRPC.Message message = messageObject.messageOwner;
+                if (message != null) {
+                    str2 = message.attachPath;
+                } else {
+                    str2 = null;
+                }
+                v3Var.c2(document, str2);
             }
-            x0Var.d = this.f42847a;
-            h();
+        }
+        this.f14108a.dismiss(true);
+    }
+
+    @Override
+    public final void w() {
+        try {
+            Intent intent = new Intent("android.intent.action.GET_CONTENT");
+            intent.setType("*/*");
+            this.f14109b.f28781b.f31307f0.startActivityForResult(intent, 21);
+        } catch (Exception e7) {
+            FileLog.e(e7);
         }
     }
 
     @Override
-    public final void f() {
-        this.f13102m = 0;
-        this.f13101l = 0;
+    public final void O() {
     }
 
     @Override
-    public final void g(android.view.View r8, s4.x0 r9) {
-        throw new UnsupportedOperationException("Method not decompiled: ji.o.g(android.view.View, s4.x0):void");
-    }
-
-    public o(Context context, int i10, float f7) {
-        this.f13098i = new LinearInterpolator();
-        this.f13099j = new DecelerateInterpolator(1.5f);
-        this.f13101l = 0;
-        this.f13102m = 0;
-        this.f13104o = f7;
-        this.f13100k = (25.0f / context.getResources().getDisplayMetrics().densityDpi) * f7;
-        this.f13103n = i10;
-    }
-
-    @Override
-    public void e() {
-    }
-
-    public void i() {
+    public final void l(long j3, ArrayList arrayList, boolean z10, int i10) {
     }
 }

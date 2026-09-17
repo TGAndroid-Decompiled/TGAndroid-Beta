@@ -1,14 +1,79 @@
 package yh;
 
-import org.telegram.tgnet.tl.TL_stars;
-public final class o0 {
-    public final TL_stars.starGiftAttributeBackdrop f47573a;
-    public final TL_stars.starGiftAttributePattern f47574b;
-    public final TL_stars.starGiftAttributeModel f47575c;
+import android.os.Bundle;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.tl.TL_stories;
+import org.telegram.ui.Components.bb;
+import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.ProfileActivity;
+import org.telegram.ui.co;
+public final class o0 implements Runnable {
+    public final int f50495a;
+    public final long f50496b;
+    public final Object f50497c;
+    public final Object d;
 
-    public o0(TL_stars.starGiftAttributeBackdrop stargiftattributebackdrop, TL_stars.starGiftAttributePattern stargiftattributepattern, TL_stars.starGiftAttributeModel stargiftattributemodel) {
-        this.f47573a = stargiftattributebackdrop;
-        this.f47574b = stargiftattributepattern;
-        this.f47575c = stargiftattributemodel;
+    public o0(Object obj, long j3, Object obj2, int i10) {
+        this.f50495a = i10;
+        this.f50497c = obj;
+        this.f50496b = j3;
+        this.d = obj2;
+    }
+
+    @Override
+    public final void run() {
+        switch (this.f50495a) {
+            case 0:
+                p1 p1Var = (p1) this.f50497c;
+                Utilities.Callback callback = (Utilities.Callback) this.d;
+                p1Var.getClass();
+                org.telegram.ui.ActionBar.n2 U = LaunchActivity.U();
+                if (U != null) {
+                    p1Var.dismiss();
+                    if (callback != null) {
+                        callback.run(Boolean.FALSE);
+                    }
+                    Bundle bundle = new Bundle();
+                    bundle.putLong("user_id", this.f50496b);
+                    bundle.putBoolean("open_gifts", true);
+                    U.presentFragment(new ProfileActivity(bundle, null));
+                    return;
+                }
+                return;
+            case 1:
+                zh.w3 w3Var = (zh.w3) this.f50497c;
+                Runnable runnable = (Runnable) this.d;
+                w3Var.p2((int) this.f50496b, w3Var.getContext(), true);
+                if (runnable != null) {
+                    runnable.run();
+                    return;
+                }
+                return;
+            case 2:
+                zh.w3 w3Var2 = (zh.w3) this.f50497c;
+                w3Var2.getClass();
+                ((of.e) this.d).b();
+                w3Var2.p2((int) this.f50496b, w3Var2.getContext(), true);
+                return;
+            default:
+                TL_stories.Boost boost = (TL_stories.Boost) this.d;
+                org.telegram.ui.ActionBar.f3 f3Var = ((org.telegram.ui.ActionBar.f3[]) this.f50497c)[0];
+                if (f3Var != null) {
+                    f3Var.dismiss();
+                }
+                org.telegram.ui.ActionBar.n2 U2 = LaunchActivity.U();
+                if (U2 != null) {
+                    U2.presentFragment(co.Q9(boost.giveaway_msg_id, this.f50496b));
+                    return;
+                }
+                return;
+        }
+    }
+
+    public o0(bb bbVar, Object obj, long j3, int i10) {
+        this.f50495a = i10;
+        this.f50497c = bbVar;
+        this.d = obj;
+        this.f50496b = j3;
     }
 }

@@ -1,65 +1,39 @@
 package org.telegram.ui;
+public final class jj extends eh.b {
+    public final int f37811n;
+    public final co f37812r;
 
-import android.content.Context;
-import android.view.ViewGroup;
-import org.telegram.messenger.AndroidUtilities;
-public final class jj extends org.telegram.ui.Components.i40 {
-    public final int I;
-
-    public jj(int i10, int i11, Context context, org.telegram.ui.ActionBar.f6 f6Var, boolean z10) {
-        super(i10, context, f6Var, z10);
-        this.I = i11;
+    public jj(co coVar, org.telegram.ui.ActionBar.f6 f6Var, int i10, int i11) {
+        super(i10, f6Var);
+        this.f37811n = i11;
+        this.f37812r = coVar;
     }
 
     @Override
-    public int c() {
-        switch (this.I) {
+    public final int k0() {
+        int i10;
+        int i11;
+        switch (this.f37811n) {
             case 0:
-                return AndroidUtilities.dp(56.0f) / 2;
+                co coVar = this.f37812r;
+                i10 = ((org.telegram.ui.ActionBar.n2) coVar).currentAccount;
+                if (!fh.b.c(i10, coVar.f35275ea)) {
+                    return i0.a.k(coVar.getThemedColor(org.telegram.ui.ActionBar.j6.Sd), 255);
+                }
+                if (coVar.f35275ea != null && !org.telegram.ui.ActionBar.j6.I.q()) {
+                    return i0.a.k(this.d, 216);
+                }
+                return this.d;
             default:
-                return super.c();
-        }
-    }
-
-    @Override
-    public void setVisibility(int i10) {
-        switch (this.I) {
-            case 1:
-                super.setVisibility(i10);
-                if (i10 != 0) {
-                    try {
-                        ((ViewGroup) getParent()).removeView(this);
-                        return;
-                    } catch (Exception unused) {
-                        return;
-                    }
+                co coVar2 = this.f37812r;
+                i11 = ((org.telegram.ui.ActionBar.n2) coVar2).currentAccount;
+                if (!fh.b.c(i11, coVar2.f35275ea)) {
+                    return i0.a.k(coVar2.getThemedColor(org.telegram.ui.ActionBar.j6.f20691d6), 255);
                 }
-                return;
-            case 2:
-                super.setVisibility(i10);
-                if (i10 != 0) {
-                    try {
-                        ((ViewGroup) getParent()).removeView(this);
-                        return;
-                    } catch (Exception unused2) {
-                        return;
-                    }
+                if (coVar2.f35275ea != null && !org.telegram.ui.ActionBar.j6.I.q()) {
+                    return i0.a.k(this.d, 216);
                 }
-                return;
-            case 3:
-                super.setVisibility(i10);
-                if (i10 != 0) {
-                    try {
-                        ((ViewGroup) getParent()).removeView(this);
-                        return;
-                    } catch (Exception unused3) {
-                        return;
-                    }
-                }
-                return;
-            default:
-                super.setVisibility(i10);
-                return;
+                return this.d;
         }
     }
 }

@@ -1,20 +1,57 @@
 package rg;
-public final class h {
-    public final int f42319a;
-    public final int f42320b;
-    public final String f42321c;
-    public final String d;
-    public final int e;
 
-    public h(int i10) {
-        this.f42319a = i10;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import org.telegram.messenger.AndroidUtilities;
+public final class h extends AnimatorListenerAdapter {
+    public final int f45231a;
+    public final k f45232b;
+
+    public h(k kVar, int i10) {
+        this.f45231a = i10;
+        this.f45232b = kVar;
     }
 
-    public h(int i10, int i11, String str, String str2) {
-        this.f42319a = 1;
-        this.f42320b = i10;
-        this.f42321c = str;
-        this.d = str2;
-        this.e = i11;
+    @Override
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f45231a) {
+            case 0:
+                k kVar = this.f45232b;
+                if (animator == kVar.f45268a0) {
+                    kVar.f45268a0 = null;
+                    return;
+                }
+                return;
+            case 1:
+                k kVar2 = this.f45232b;
+                if (animator == kVar2.f45270b0) {
+                    kVar2.f45270b0 = null;
+                    return;
+                }
+                return;
+            case 2:
+                k kVar3 = this.f45232b;
+                if (animator == kVar3.P) {
+                    kVar3.P = null;
+                    kVar3.O = 0.0f;
+                    return;
+                }
+                return;
+            case 3:
+                k kVar4 = this.f45232b;
+                if (animator == kVar4.Q) {
+                    kVar4.Q = null;
+                    return;
+                }
+                return;
+            default:
+                k kVar5 = this.f45232b;
+                if (!kVar5.f45283l0) {
+                    AndroidUtilities.removeFromParent(kVar5.H);
+                    kVar5.H = null;
+                    return;
+                }
+                return;
+        }
     }
 }

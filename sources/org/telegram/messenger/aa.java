@@ -1,47 +1,29 @@
 package org.telegram.messenger;
 
-import java.util.ArrayList;
+import android.content.Context;
 public final class aa implements Runnable {
-    public final int f15673a;
-    public final MessagesController f15674b;
-    public final long f15675c;
-    public final ArrayList d;
+    public final int f17178a;
+    public final Context f17179b;
+    public final org.telegram.ui.ActionBar.b2 f17180c;
 
-    public aa(MessagesController messagesController, long j3, ArrayList arrayList, int i10) {
-        this.f15673a = i10;
-        this.f15674b = messagesController;
-        this.f15675c = j3;
-        this.d = arrayList;
+    public aa(int i10, Context context, org.telegram.ui.ActionBar.b2 b2Var) {
+        this.f17178a = i10;
+        this.f17179b = context;
+        this.f17180c = b2Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f15673a) {
+        switch (this.f17178a) {
             case 0:
-                MessagesController.f7(this.f15675c, this.d, this.f15674b);
+                MessagesController.lambda$convertToGigaGroup$267(this.f17179b, this.f17180c);
                 return;
             case 1:
-                MessagesController.U0(this.f15675c, this.d, this.f15674b);
-                return;
-            case 2:
-                MessagesController.t0(this.f15675c, this.d, this.f15674b);
-                return;
-            case 3:
-                MessagesController.S1(this.f15675c, this.d, this.f15674b);
-                return;
-            case 4:
-                MessagesController.I4(this.f15675c, this.d, this.f15674b);
+                MessagesController.lambda$convertToMegaGroup$262(this.f17179b, this.f17180c);
                 return;
             default:
-                MessagesController.r4(this.f15675c, this.d, this.f15674b);
+                SecretChatHelper.lambda$startSecretChat$24(this.f17179b, this.f17180c);
                 return;
         }
-    }
-
-    public aa(MessagesController messagesController, ArrayList arrayList, long j3, int i10) {
-        this.f15673a = i10;
-        this.f15674b = messagesController;
-        this.d = arrayList;
-        this.f15675c = j3;
     }
 }

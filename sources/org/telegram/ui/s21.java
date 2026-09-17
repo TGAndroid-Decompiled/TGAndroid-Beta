@@ -5,30 +5,30 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SvgHelper;
 public final class s21 implements Runnable {
-    public final int f37369a;
-    public final g31 f37370b;
+    public final int f40319a;
+    public final g31 f40320b;
 
     public s21(g31 g31Var, int i10) {
-        this.f37369a = i10;
-        this.f37370b = g31Var;
+        this.f40319a = i10;
+        this.f40320b = g31Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f37369a) {
+        switch (this.f40319a) {
             case 0:
-                f31 f31Var = this.f37370b.f33831f;
+                f31 f31Var = this.f40320b.f36570f;
                 if (f31Var != null) {
-                    f31Var.f33533s.setClickable(true);
+                    f31Var.f36285s.setClickable(true);
                     return;
                 }
                 return;
             case 1:
-                g31 g31Var = this.f37370b;
+                g31 g31Var = this.f40320b;
                 g31Var.d0(0, g31Var.J, true);
-                org.telegram.ui.Components.yi0 animatedDrawable = g31Var.F.getAnimatedDrawable();
+                org.telegram.ui.Components.xi0 animatedDrawable = g31Var.F.getAnimatedDrawable();
                 if (g31Var.I == null && animatedDrawable != null) {
-                    g31Var.I = Bitmap.createBitmap(animatedDrawable.f30220b, animatedDrawable.f30222c, Bitmap.Config.ARGB_8888);
+                    g31Var.I = Bitmap.createBitmap(animatedDrawable.f32580b, animatedDrawable.f32582c, Bitmap.Config.ARGB_8888);
                     animatedDrawable.b();
                     animatedDrawable.E0 = 33;
                     animatedDrawable.a(g31Var.I);
@@ -38,19 +38,19 @@ public final class s21 implements Runnable {
                 return;
             case 2:
                 int i10 = R.raw.default_pattern;
-                g31 g31Var2 = this.f37370b;
-                AndroidUtilities.runOnUIThread(new ky0(14, g31Var2, SvgHelper.getBitmap(i10, g31Var2.f33835w.getWidth(), g31Var2.f33835w.getHeight(), -16777216)));
+                g31 g31Var2 = this.f40320b;
+                AndroidUtilities.runOnUIThread(new rx0(20, g31Var2, SvgHelper.getBitmap(i10, g31Var2.f36574w.getWidth(), g31Var2.f36574w.getHeight(), -16777216)));
                 return;
             case 3:
-                g31 g31Var3 = this.f37370b;
-                o0.a aVar = g31Var3.f33828a;
-                aVar.f15310b = g31Var3.J.b(((org.telegram.ui.ActionBar.o2) ((g31) aVar.f15311c)).currentAccount, g31Var3.K ? 1 : 0);
+                g31 g31Var3 = this.f40320b;
+                o0.a aVar = g31Var3.f36566a;
+                aVar.f16796b = g31Var3.J.b(((org.telegram.ui.ActionBar.n2) ((g31) aVar.f16797c)).currentAccount, g31Var3.K ? 1 : 0);
                 return;
             case 4:
-                g31.X(this.f37370b);
+                g31.X(this.f40320b);
                 return;
             default:
-                g31.V(this.f37370b);
+                g31.V(this.f40320b);
                 return;
         }
     }

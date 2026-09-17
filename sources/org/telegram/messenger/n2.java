@@ -2,22 +2,22 @@ package org.telegram.messenger;
 
 import org.telegram.messenger.FileLoadOperation;
 public final class n2 implements Runnable {
-    public final int f16826a;
-    public final FileLoadOperation.RequestInfo f16827b;
+    public final int f18478a;
+    public final FileLoadOperation.RequestInfo f18479b;
 
     public n2(FileLoadOperation.RequestInfo requestInfo, int i10) {
-        this.f16826a = i10;
-        this.f16827b = requestInfo;
+        this.f18478a = i10;
+        this.f18479b = requestInfo;
     }
 
     @Override
     public final void run() {
-        switch (this.f16826a) {
+        switch (this.f18478a) {
             case 0:
-                FileLoadOperation.p(this.f16827b);
+                FileLoadOperation.p(this.f18479b);
                 return;
             default:
-                FileLoadOperation.f(this.f16827b);
+                FileLoadOperation.f(this.f18479b);
                 return;
         }
     }

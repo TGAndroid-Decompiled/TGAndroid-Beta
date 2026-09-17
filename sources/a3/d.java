@@ -1,306 +1,156 @@
 package a3;
 
-import ai.a5;
-import ai.aa;
-import ai.ac;
-import ai.b2;
-import ai.c2;
-import ai.d2;
-import ai.db;
-import ai.e7;
-import ai.f6;
-import ai.h8;
-import ai.ic;
-import ai.j7;
-import ai.jc;
-import ai.kb;
-import ai.l9;
-import ai.m2;
-import ai.ma;
-import ai.mb;
-import ai.sb;
-import ai.sc;
-import ai.u4;
-import ai.w7;
-import ai.xb;
-import ai.y5;
+import android.animation.ValueAnimator;
 import android.content.Context;
-import android.graphics.LinearGradient;
-import android.graphics.Shader;
 import android.graphics.Typeface;
 import android.os.Trace;
-import androidx.fragment.app.v0;
-import ci.b1;
-import ci.f4;
-import ci.p9;
+import androidx.fragment.app.t0;
+import bi.a2;
+import bi.f7;
+import bi.g4;
+import bi.gb;
+import bi.h5;
+import bi.i9;
+import bi.ja;
+import bi.l4;
+import bi.n6;
+import bi.o5;
+import bi.ob;
+import bi.pb;
+import bi.q7;
+import bi.r1;
+import bi.s1;
+import bi.s6;
+import bi.t1;
+import bi.t9;
+import bi.u8;
+import bi.y8;
+import di.b1;
+import di.o9;
 import java.nio.MappedByteBuffer;
 import java.util.ArrayList;
+import java.util.Iterator;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
-import org.telegram.ui.Components.z80;
+import org.telegram.ui.ActionBar.n2;
+import org.telegram.ui.Components.a90;
+import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.Stories.ProfileStoriesView;
-import org.telegram.ui.nx;
-import org.telegram.ui.wy;
+import org.telegram.ui.co;
+import org.telegram.ui.lx;
+import org.telegram.ui.uy;
+import sg.a1;
+import v7.h8;
 import v7.i8;
 import w7.z7;
 public final class d implements Runnable {
-    public final int f76a;
-    public final Object f77b;
+    public final int f79a;
+    public final Object f80b;
 
-    public d(androidx.fragment.app.l lVar, v0 v0Var) {
-        this.f76a = 29;
-        this.f77b = lVar;
+    public d(androidx.fragment.app.k kVar, t0 t0Var) {
+        this.f79a = 9;
+        this.f80b = kVar;
     }
 
     @Override
     public final void run() {
         boolean z10 = false;
-        switch (this.f76a) {
+        switch (this.f79a) {
             case 0:
-                ((f) this.f77b).f101g.C();
+                ((f) this.f80b).f107g.K();
                 return;
             case 1:
-                ((w) this.f77b).f198k--;
+                ((w) this.f80b).f214k--;
                 return;
             case 2:
-                wy wyVar = ((nx) this.f77b).O0;
-                if (wyVar.L && wyVar.X3().G()) {
-                    wyVar.E0.h();
-                    return;
-                } else {
-                    wyVar.x4(true, true);
-                    return;
+                ah.g0 g0Var = (ah.g0) ((a6.m) this.f80b).f328b;
+                ah.f0 f0Var = g0Var.f548b;
+                if (f0Var != null) {
+                    f0Var.d();
                 }
+                g0Var.f547a.z7(true);
+                return;
             case 3:
-                ((b2) this.f77b).f575a.t(false);
+                ((ValueAnimator) this.f80b).start();
                 return;
             case 4:
-                d2 d2Var = ((c2) this.f77b).f621a;
-                NotificationCenter.getInstance(d2Var.e).lambda$postNotificationNameOnUIThread$1(NotificationCenter.liveStoryUpdated, Long.valueOf(d2Var.g()));
+                n2 n2Var = ((ah.o0) this.f80b).f663f2.f712r;
+                if (n2Var instanceof co) {
+                    n2Var.showDialog(new a1(n2Var, 11, false));
+                    return;
+                }
+                n2 R = LaunchActivity.R();
+                if (R != null) {
+                    R.showDialog(new a1(n2Var, 11, false));
+                    return;
+                }
                 return;
             case 5:
-                m2 m2Var = (m2) this.f77b;
-                m2Var.H = false;
-                m2Var.p(false);
-                m2Var.T = false;
+                ((androidx.activity.m) this.f80b).invalidateOptionsMenu();
                 return;
             case 6:
-                ((u4) this.f77b).f1573a.Q0();
-                return;
-            case 7:
-                f6 f6Var = ((a5) this.f77b).f522x;
-                y5 y5Var = f6Var.Q1;
-                if (y5Var != null) {
-                    if (!f6Var.T1 && !f6Var.U1 && !f6Var.V1) {
-                        jc jcVar = ((ac) y5Var).d;
-                        if (!jcVar.f1096n0.getCurrentPeerView().d1(true) && !jcVar.f1096n0.E(true)) {
-                            jcVar.q(true);
-                            return;
-                        }
-                        return;
-                    } else if (f6Var.O1.e) {
-                        ((ic) f6Var.M2.f766c).loopBack();
-                        return;
-                    } else {
-                        f6Var.W0 = 0L;
-                        return;
-                    }
-                }
-                return;
-            case 8:
-                ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = (ActionBarPopupWindow$ActionBarPopupWindowLayout) this.f77b;
-                if (actionBarPopupWindow$ActionBarPopupWindowLayout.getSwipeBack() != null) {
-                    actionBarPopupWindow$ActionBarPopupWindowLayout.getSwipeBack().b(true);
-                    return;
-                }
-                return;
-            case 9:
-                ProfileStoriesView profileStoriesView = (ProfileStoriesView) this.f77b;
-                int i10 = ProfileStoriesView.f31531s0;
-                profileStoriesView.getClass();
-                AndroidUtilities.vibrateCursor(profileStoriesView);
-                return;
-            case 10:
-                j7.a(((e7) this.f77b).d);
-                return;
-            case 11:
-                w7 w7Var = (w7) this.f77b;
-                if (w7Var.isShowing()) {
-                    w7Var.q(true);
-                    return;
-                }
-                return;
-            case 12:
-                ((p9) this.f77b).run();
-                return;
-            case 13:
-                b1 b1Var = (b1) this.f77b;
-                b1Var.c(b1Var.f4382b);
-                b1Var.f4383c = false;
-                return;
-            case 14:
-                ai.p9 p9Var = (ai.p9) this.f77b;
-                p9Var.c();
-                p9Var.a(true);
-                return;
-            case 15:
-                ((h8) this.f77b).accept(null);
-                return;
-            case 16:
-                ((aa) this.f77b).onDetachedFromWindow();
-                return;
-            case 17:
-                ma maVar = (ma) this.f77b;
-                ArrayList arrayList = maVar.f1263c;
-                if (arrayList != null) {
-                    maVar.f1261a.f875z1 = arrayList;
-                }
-                f6 f6Var2 = maVar.f1261a;
-                long j3 = maVar.f1262b;
-                if (f6Var2.B1 != j3 || f6Var2.f875z1 != null) {
-                    f6Var2.B1 = j3;
-                    f6Var2.j1();
-                    f6Var2.i1();
-                    f6Var2.f1(true);
-                    TL_stories.PeerStories peerStories = f6Var2.J0.Q0;
-                    if (peerStories != null) {
-                        f6Var2.S1.S(peerStories, true);
-                        return;
-                    }
-                    l9 l9Var = f6Var2.S1;
-                    TL_stories.PeerStories y3 = l9Var.y(j3);
-                    if (y3 == null) {
-                        y3 = l9Var.z(j3);
-                        z10 = true;
-                    }
-                    l9Var.S(y3, z10);
-                    return;
-                }
-                return;
-            case 18:
-                ((z80) this.f77b).d(true);
-                return;
-            case 19:
-                ((db) this.f77b).requestLayout();
-                return;
-            case 20:
-                mb mbVar = (mb) this.f77b;
-                f4 f4Var = mbVar.f1266c;
-                if (f4Var != null) {
-                    f4Var.e(true);
-                    mbVar.f1266c = null;
-                }
-                mbVar.b(false);
-                return;
-            case 21:
-                kb kbVar = (kb) this.f77b;
-                if (kbVar.v) {
-                    kbVar.E = true;
-                    kbVar.F = System.currentTimeMillis();
-                    Shader.TileMode tileMode = Shader.TileMode.CLAMP;
-                    kbVar.e = new LinearGradient(0.0f, 0.0f, 40.0f, 0.0f, new int[]{16777215, 771751935, 771751935, 16777215}, new float[]{0.0f, 0.4f, 0.6f, 1.0f}, tileMode);
-                    kbVar.f1157f = new LinearGradient(0.0f, 0.0f, 40.0f, 0.0f, new int[]{16777215, 553648127, 553648127, 16777215}, new float[]{0.0f, 0.4f, 0.6f, 1.0f}, tileMode);
-                    kbVar.invalidate();
-                    return;
-                }
-                return;
-            case 22:
-                jc jcVar2 = ((sb) this.f77b).f1534b;
-                try {
-                    xb xbVar = jcVar2.f1107s;
-                    if (xbVar != null) {
-                        if (jcVar2.f1070b) {
-                            AndroidUtilities.removeFromParent(xbVar);
-                        } else {
-                            jcVar2.f1095n.removeView(xbVar);
-                        }
-                        jcVar2.f1107s = null;
-                        return;
-                    }
-                    return;
-                } catch (Exception unused) {
-                    return;
-                }
-            case 23:
-                ((xb) this.f77b).I0.K(true);
-                return;
-            case 24:
-                ((sc) this.f77b).c();
-                return;
-            case 25:
-                ((androidx.activity.l) this.f77b).invalidateOptionsMenu();
-                return;
-            case 26:
-                androidx.activity.k kVar = (androidx.activity.k) this.f77b;
-                Runnable runnable = kVar.f1893b;
+                androidx.activity.l lVar = (androidx.activity.l) this.f80b;
+                Runnable runnable = lVar.f879b;
                 if (runnable != null) {
                     runnable.run();
-                    kVar.f1893b = null;
+                    lVar.f879b = null;
                     return;
                 }
                 return;
-            case 27:
-                androidx.activity.m.a((androidx.activity.m) this.f77b);
+            case 7:
+                androidx.activity.n.a((androidx.activity.n) this.f80b);
                 return;
-            case 28:
-                androidx.emoji2.text.p pVar = (androidx.emoji2.text.p) this.f77b;
-                synchronized (pVar.d) {
+            case 8:
+                androidx.emoji2.text.q qVar = (androidx.emoji2.text.q) this.f80b;
+                synchronized (qVar.d) {
                     try {
-                        if (pVar.h != null) {
+                        if (qVar.h != null) {
                             try {
-                                o0.i d = pVar.d();
-                                int i11 = d.e;
-                                if (i11 == 2) {
-                                    synchronized (pVar.d) {
+                                o0.i d = qVar.d();
+                                int i10 = d.f16819e;
+                                if (i10 == 2) {
+                                    synchronized (qVar.d) {
                                     }
                                 }
-                                if (i11 == 0) {
-                                    int i12 = n0.g.f14863a;
+                                if (i10 == 0) {
+                                    int i11 = n0.g.f16373a;
                                     Trace.beginSection("EmojiCompat.FontRequestEmojiCompatConfig.buildTypeface");
-                                    t7.u uVar = pVar.f2354c;
-                                    Context context = pVar.f2352a;
-                                    uVar.getClass();
+                                    na.d dVar = qVar.f1381c;
+                                    Context context = qVar.f1379a;
+                                    dVar.getClass();
                                     o0.i[] iVarArr = {d};
-                                    v7.h8 h8Var = i0.e.f10597a;
+                                    h8 h8Var = i0.f.f11457a;
                                     z7.a("TypefaceCompat.createFromFontInfo");
-                                    try {
-                                        Typeface b10 = i0.e.f10597a.b(context, iVarArr, 0);
+                                    Typeface b10 = i0.f.f11457a.b(context, iVarArr, 0);
+                                    Trace.endSection();
+                                    MappedByteBuffer e7 = i8.e(qVar.f1379a, d.f16816a);
+                                    if (e7 != null && b10 != null) {
+                                        Trace.beginSection("EmojiCompat.MetadataRepo.create");
+                                        com.google.firebase.messaging.s sVar = new com.google.firebase.messaging.s(b10, v7.x.a(e7));
                                         Trace.endSection();
-                                        MappedByteBuffer e = i8.e(pVar.f2352a, d.f15328a);
-                                        if (e != null && b10 != null) {
-                                            try {
-                                                Trace.beginSection("EmojiCompat.MetadataRepo.create");
-                                                com.google.firebase.messaging.t tVar = new com.google.firebase.messaging.t(b10, v7.x.a(e));
-                                                Trace.endSection();
-                                                synchronized (pVar.d) {
-                                                    v7.w wVar = pVar.h;
-                                                    if (wVar != null) {
-                                                        wVar.b(tVar);
-                                                    }
-                                                }
-                                                pVar.b();
-                                                return;
-                                            } catch (Throwable th2) {
-                                                int i13 = n0.g.f14863a;
-                                                throw th2;
+                                        Trace.endSection();
+                                        synchronized (qVar.d) {
+                                            v7.w wVar = qVar.h;
+                                            if (wVar != null) {
+                                                wVar.b(sVar);
                                             }
                                         }
-                                        throw new RuntimeException("Unable to open file.");
-                                    } finally {
-                                        Trace.endSection();
+                                        qVar.b();
+                                        return;
                                     }
+                                    throw new RuntimeException("Unable to open file.");
                                 }
-                                throw new RuntimeException("fetchFonts result is not OK. (" + i11 + ")");
-                            } catch (Throwable th3) {
-                                synchronized (pVar.d) {
+                                throw new RuntimeException("fetchFonts result is not OK. (" + i10 + ")");
+                            } catch (Throwable th2) {
+                                synchronized (qVar.d) {
                                     try {
-                                        v7.w wVar2 = pVar.h;
+                                        v7.w wVar2 = qVar.h;
                                         if (wVar2 != null) {
-                                            wVar2.a(th3);
+                                            wVar2.a(th2);
                                         }
-                                        pVar.b();
+                                        qVar.b();
                                         return;
                                     } finally {
                                     }
@@ -311,17 +161,158 @@ public final class d implements Runnable {
                     } finally {
                     }
                 }
-            default:
-                androidx.fragment.app.l this$0 = (androidx.fragment.app.l) this.f77b;
+            case 9:
+                androidx.fragment.app.k this$0 = (androidx.fragment.app.k) this.f80b;
                 kotlin.jvm.internal.i.e(this$0, "this$0");
                 kotlin.jvm.internal.i.e(null, "$operation");
                 this$0.a(null);
+                return;
+            case 10:
+                Iterator it = ((androidx.fragment.app.i0) this.f80b).f1459n.iterator();
+                if (!it.hasNext()) {
+                    return;
+                }
+                it.next().getClass();
+                throw new ClassCastException();
+            case 11:
+                androidx.lifecycle.e0 e0Var = (androidx.lifecycle.e0) this.f80b;
+                androidx.lifecycle.v vVar = e0Var.f1607f;
+                if (e0Var.f1604b == 0) {
+                    e0Var.f1605c = true;
+                    vVar.e(androidx.lifecycle.m.ON_PAUSE);
+                }
+                if (e0Var.f1603a == 0 && e0Var.f1605c) {
+                    vVar.e(androidx.lifecycle.m.ON_STOP);
+                    e0Var.d = true;
+                    return;
+                }
+                return;
+            case 12:
+                uy uyVar = ((lx) this.f80b).O0;
+                if (uyVar.L && uyVar.X3().G()) {
+                    uyVar.E0.h();
+                    return;
+                } else {
+                    uyVar.x4(true, true);
+                    return;
+                }
+            case 13:
+                ((r1) this.f80b).f3646a.t(false);
+                return;
+            case 14:
+                t1 t1Var = ((s1) this.f80b).f3708a;
+                NotificationCenter.getInstance(t1Var.f3745e).lambda$postNotificationNameOnUIThread$1(NotificationCenter.liveStoryUpdated, Long.valueOf(t1Var.g()));
+                return;
+            case 15:
+                a2 a2Var = (a2) this.f80b;
+                a2Var.H = false;
+                a2Var.p(false);
+                a2Var.T = false;
+                return;
+            case 16:
+                ((g4) this.f80b).f3048a.Q0();
+                return;
+            case 17:
+                o5 o5Var = ((l4) this.f80b).f3274x;
+                h5 h5Var = o5Var.Q1;
+                if (h5Var != null) {
+                    if (!o5Var.T1 && !o5Var.U1 && !o5Var.V1) {
+                        pb pbVar = ((gb) h5Var).d;
+                        if (!pbVar.f3588n0.getCurrentPeerView().d1(true) && !pbVar.f3588n0.E(true)) {
+                            pbVar.q(true);
+                            return;
+                        }
+                        return;
+                    } else if (o5Var.O1.f3340e) {
+                        ((ob) o5Var.M2.f3393c).loopBack();
+                        return;
+                    } else {
+                        o5Var.W0 = 0L;
+                        return;
+                    }
+                }
+                return;
+            case 18:
+                ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = (ActionBarPopupWindow$ActionBarPopupWindowLayout) this.f80b;
+                if (actionBarPopupWindow$ActionBarPopupWindowLayout.getSwipeBack() != null) {
+                    actionBarPopupWindow$ActionBarPopupWindowLayout.getSwipeBack().b(true);
+                    return;
+                }
+                return;
+            case 19:
+                ProfileStoriesView profileStoriesView = (ProfileStoriesView) this.f80b;
+                int i12 = ProfileStoriesView.f34170s0;
+                profileStoriesView.getClass();
+                AndroidUtilities.vibrateCursor(profileStoriesView);
+                return;
+            case 20:
+                s6.a(((n6) this.f80b).d);
+                return;
+            case 21:
+                f7 f7Var = (f7) this.f80b;
+                if (f7Var.isShowing()) {
+                    f7Var.q(true);
+                    return;
+                }
+                return;
+            case 22:
+                ((o9) this.f80b).run();
+                return;
+            case 23:
+                b1 b1Var = (b1) this.f80b;
+                b1Var.c(b1Var.f6963b);
+                b1Var.f6964c = false;
+                return;
+            case 24:
+                y8 y8Var = (y8) this.f80b;
+                y8Var.c();
+                y8Var.a(true);
+                return;
+            case 25:
+                ((q7) this.f80b).accept(null);
+                return;
+            case 26:
+                ((i9) this.f80b).onDetachedFromWindow();
+                return;
+            case 27:
+                t9 t9Var = (t9) this.f80b;
+                ArrayList arrayList = t9Var.f3778c;
+                if (arrayList != null) {
+                    t9Var.f3776a.f3508z1 = arrayList;
+                }
+                o5 o5Var2 = t9Var.f3776a;
+                long j3 = t9Var.f3777b;
+                if (o5Var2.B1 != j3 || o5Var2.f3508z1 != null) {
+                    o5Var2.B1 = j3;
+                    o5Var2.j1();
+                    o5Var2.i1();
+                    o5Var2.f1(true);
+                    TL_stories.PeerStories peerStories = o5Var2.J0.Q0;
+                    if (peerStories != null) {
+                        o5Var2.S1.S(peerStories, true);
+                        return;
+                    }
+                    u8 u8Var = o5Var2.S1;
+                    TL_stories.PeerStories y3 = u8Var.y(j3);
+                    if (y3 == null) {
+                        y3 = u8Var.z(j3);
+                        z10 = true;
+                    }
+                    u8Var.S(y3, z10);
+                    return;
+                }
+                return;
+            case 28:
+                ((a90) this.f80b).d(true);
+                return;
+            default:
+                ((ja) this.f80b).requestLayout();
                 return;
         }
     }
 
     public d(Object obj, int i10) {
-        this.f76a = i10;
-        this.f77b = obj;
+        this.f79a = i10;
+        this.f80b = obj;
     }
 }

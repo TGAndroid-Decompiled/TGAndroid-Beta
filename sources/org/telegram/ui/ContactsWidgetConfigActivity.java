@@ -18,19 +18,19 @@ public class ContactsWidgetConfigActivity extends ExternalActionActivity {
         }
         if (this.E != 0) {
             org.telegram.messenger.w1.e(10, "onlySelect", "dialogsType", true).putBoolean("allowSwitchAccount", true);
-            fz fzVar = new fz(1, this.E);
-            fzVar.f33801y = new y0(this, 28);
+            dz dzVar = new dz(1, this.E);
+            dzVar.f35925y = new z0(this, 27);
             if (AndroidUtilities.isTablet()) {
                 if (this.d.getFragmentStack().isEmpty()) {
-                    this.d.c(-1, fzVar);
+                    this.d.c(-1, dzVar);
                 }
-            } else if (this.f30807c.getFragmentStack().isEmpty()) {
-                this.f30807c.c(-1, fzVar);
+            } else if (this.f33427c.getFragmentStack().isEmpty()) {
+                this.f33427c.c(-1, dzVar);
             }
             if (!AndroidUtilities.isTablet()) {
-                this.e.setVisibility(8);
+                this.f33428e.setVisibility(8);
             }
-            this.f30807c.c0();
+            this.f33427c.c0();
             if (AndroidUtilities.isTablet()) {
                 this.d.c0();
             }

@@ -1,56 +1,35 @@
 package o2;
 
 import e2.d0;
-import hg.k0;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import n4.y;
 import u2.b1;
-import v7.y7;
+import v7.x7;
 public final class m implements b1 {
-    public final int f15428a;
-    public final q f15429b;
-    public int f15430c = -1;
+    public final int f16924a;
+    public final q f16925b;
+    public int f16926c = -1;
 
     public m(q qVar, int i10) {
-        this.f15429b = qVar;
-        this.f15428a = i10;
+        this.f16925b = qVar;
+        this.f16924a = i10;
     }
 
-    @Override
     public final void a() {
-        int i10 = this.f15430c;
-        q qVar = this.f15429b;
-        if (i10 != -2) {
-            if (i10 == -1) {
-                qVar.C();
-                return;
-            } else if (i10 != -3) {
-                qVar.C();
-                qVar.L[i10].z();
-                return;
-            } else {
-                return;
-            }
-        }
-        qVar.e();
-        throw new IOException(a4.a.p("Unable to bind a sample queue to TrackGroup with MIME type ", qVar.Y.a(this.f15428a).d[0].f3309r, "."));
-    }
-
-    public final void b() {
         boolean z10;
-        if (this.f15430c == -1) {
+        if (this.f16926c == -1) {
             z10 = true;
         } else {
             z10 = false;
         }
         e2.d.b(z10);
-        q qVar = this.f15429b;
+        q qVar = this.f16925b;
         qVar.e();
-        qVar.f15440a0.getClass();
-        int[] iArr = qVar.f15440a0;
-        int i10 = this.f15428a;
+        qVar.f16937a0.getClass();
+        int[] iArr = qVar.f16937a0;
+        int i10 = this.f16924a;
         int i11 = iArr[i10];
         if (i11 == -1) {
             if (qVar.Z.contains(qVar.Y.a(i10))) {
@@ -58,17 +37,37 @@ public final class m implements b1 {
             }
             i11 = -2;
         } else {
-            boolean[] zArr = qVar.f15445d0;
+            boolean[] zArr = qVar.f16942d0;
             if (!zArr[i11]) {
                 zArr[i11] = true;
             }
             i11 = -2;
         }
-        this.f15430c = i11;
+        this.f16926c = i11;
+    }
+
+    @Override
+    public final void b() {
+        int i10 = this.f16926c;
+        q qVar = this.f16925b;
+        if (i10 != -2) {
+            if (i10 == -1) {
+                qVar.D();
+                return;
+            } else if (i10 != -3) {
+                qVar.D();
+                qVar.L[i10].z();
+                return;
+            } else {
+                return;
+            }
+        }
+        qVar.e();
+        throw new IOException(a4.a.p("Unable to bind a sample queue to TrackGroup with MIME type ", qVar.Y.a(this.f16924a).d[0].f2397r, "."));
     }
 
     public final boolean c() {
-        int i10 = this.f15430c;
+        int i10 = this.f16926c;
         if (i10 != -1 && i10 != -3 && i10 != -2) {
             return true;
         }
@@ -77,11 +76,11 @@ public final class m implements b1 {
 
     @Override
     public final boolean e() {
-        if (this.f15430c != -3) {
+        if (this.f16926c != -3) {
             if (c()) {
-                int i10 = this.f15430c;
-                q qVar = this.f15429b;
-                if (qVar.A() || !qVar.L[i10].x(qVar.f15452j0)) {
+                int i10 = this.f16926c;
+                q qVar = this.f16925b;
+                if (qVar.B() || !qVar.L[i10].x(qVar.f16950j0)) {
                     return false;
                 }
                 return true;
@@ -94,15 +93,15 @@ public final class m implements b1 {
     @Override
     public final int f(y yVar, h2.h hVar, int i10) {
         b2.s sVar;
-        if (this.f15430c == -3) {
+        if (this.f16926c == -3) {
             hVar.addFlag(4);
             return -4;
         }
         if (c()) {
-            int i11 = this.f15430c;
-            q qVar = this.f15429b;
-            ArrayList arrayList = qVar.f15461y;
-            if (!qVar.A()) {
+            int i11 = this.f16926c;
+            q qVar = this.f16925b;
+            ArrayList arrayList = qVar.f16959y;
+            if (!qVar.B()) {
                 int i12 = 0;
                 if (!arrayList.isEmpty()) {
                     int i13 = 0;
@@ -110,7 +109,7 @@ public final class m implements b1 {
                         int i14 = ((j) arrayList.get(i13)).v;
                         int length = qVar.L.length;
                         for (int i15 = 0; i15 < length; i15++) {
-                            if (qVar.f15445d0[i15] && qVar.L[i15].B() == i14) {
+                            if (qVar.f16942d0[i15] && qVar.L[i15].B() == i14) {
                                 break loop0;
                             }
                         }
@@ -120,17 +119,17 @@ public final class m implements b1 {
                     j jVar = (j) arrayList.get(0);
                     b2.s sVar2 = jVar.d;
                     if (!sVar2.equals(qVar.W)) {
-                        qVar.v.k(qVar.f15441b, sVar2, jVar.e, jVar.f43868f, jVar.h);
+                        qVar.v.j(qVar.f16938b, sVar2, jVar.f47330e, jVar.f47331f, jVar.h);
                     }
                     qVar.W = sVar2;
                 }
                 if (arrayList.isEmpty() || ((j) arrayList.get(0)).g()) {
-                    int C = qVar.L[i11].C(yVar, hVar, i10, qVar.f15452j0);
+                    int C = qVar.L[i11].C(yVar, hVar, i10, qVar.f16950j0);
                     if (C == -5) {
-                        b2.s sVar3 = (b2.s) yVar.f15005c;
+                        b2.s sVar3 = (b2.s) yVar.f16524c;
                         sVar3.getClass();
                         if (i11 == qVar.R) {
-                            int b10 = y7.b(qVar.L[i11].B());
+                            int b10 = x7.b(qVar.L[i11].B());
                             while (i12 < arrayList.size() && ((j) arrayList.get(i12)).v != b10) {
                                 i12++;
                             }
@@ -142,7 +141,7 @@ public final class m implements b1 {
                             }
                             sVar3 = sVar3.d(sVar);
                         }
-                        yVar.f15005c = sVar3;
+                        yVar.f16524c = sVar3;
                     }
                     return C;
                 }
@@ -152,19 +151,19 @@ public final class m implements b1 {
     }
 
     @Override
-    public final int j(long j3) {
+    public final int m(long j3) {
         Object next;
         Object obj;
         if (c()) {
-            int i10 = this.f15430c;
-            q qVar = this.f15429b;
-            if (!qVar.A()) {
+            int i10 = this.f16926c;
+            q qVar = this.f16925b;
+            if (!qVar.B()) {
                 p pVar = qVar.L[i10];
-                int v = pVar.v(j3, qVar.f15452j0);
-                ArrayList arrayList = qVar.f15461y;
+                int v = pVar.v(j3, qVar.f16950j0);
+                ArrayList arrayList = qVar.f16959y;
                 if (arrayList != null) {
                     if (!arrayList.isEmpty()) {
-                        obj = k0.h(1, arrayList);
+                        obj = i2.g.h(1, arrayList);
                     }
                     obj = null;
                 } else {

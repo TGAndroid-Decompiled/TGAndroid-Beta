@@ -1,66 +1,58 @@
 package mg;
 
-import android.graphics.Canvas;
-import android.os.Bundle;
-import android.text.TextPaint;
-import android.view.View;
-import android.view.accessibility.AccessibilityNodeInfo;
-import android.widget.FrameLayout;
-import java.util.Locale;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.ActionBar.j6;
-import org.telegram.ui.Components.go0;
-import org.telegram.ui.Components.p6;
-public final class h extends FrameLayout {
-    public go0 f14829a;
-    public float f14830b;
-    public float f14831c;
-    public float d;
-    public p6 e;
-    public String f14832f;
-    public TextPaint h;
-    public int f14833n;
+import android.animation.ValueAnimator;
+import com.google.android.gms.internal.vision.e2;
+public final class h implements ValueAnimator.AnimatorUpdateListener {
+    public final int f16294a;
+    public final q f16295b;
+    public final float f16296c;
+    public final float[] d;
+    public final float f16297e;
+    public final float f16298f;
 
-    @Override
-    public final void invalidate() {
-        super.invalidate();
-        this.f14829a.invalidate();
+    public h(q qVar, float f7, float[] fArr, float f10, float f11, int i10) {
+        this.f16294a = i10;
+        this.f16295b = qVar;
+        this.f16296c = f7;
+        this.d = fArr;
+        this.f16297e = f10;
+        this.f16298f = f11;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        TextPaint textPaint = this.h;
-        textPaint.setColor(j6.w0(null, j6.G6, false));
-        canvas.drawText(this.f14832f, AndroidUtilities.dp(24.0f), AndroidUtilities.dp(24.0f), textPaint);
-        textPaint.setColor(j6.w0(null, j6.I6, false));
-        String format = String.format(Locale.ROOT, "%.2f", Float.valueOf(this.d));
-        canvas.drawText(format, (getMeasuredWidth() - AndroidUtilities.dp(8.0f)) - textPaint.measureText(format), this.f14829a.getY() + AndroidUtilities.dp(23.0f), textPaint);
-    }
-
-    @Override
-    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        this.f14829a.getSeekBarAccessibilityDelegate().e(this, accessibilityNodeInfo);
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(i10, i11);
-        int size = View.MeasureSpec.getSize(i10);
-        if (this.f14833n != size) {
-            go0 go0Var = this.f14829a;
-            float floatValue = ((Float) this.e.get(null)).floatValue();
-            float f7 = this.f14830b;
-            go0Var.setProgress((floatValue - f7) / (this.f14831c - f7));
-            this.f14833n = size;
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f16294a) {
+            case 0:
+                q qVar = this.f16295b;
+                qVar.getClass();
+                float z10 = e2.z(this.f16296c, 1.0f, ((Float) valueAnimator.getAnimatedValue()).floatValue(), 1.0f);
+                float[] fArr = this.d;
+                float f7 = fArr[0];
+                float f10 = z10 / f7;
+                fArr[0] = f7 * f10;
+                o.g(qVar.L, f10, this.f16297e, this.f16298f);
+                qVar.r(false);
+                return;
+            default:
+                q qVar2 = this.f16295b;
+                qVar2.getClass();
+                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                float[] fArr2 = this.d;
+                float f11 = fArr2[1];
+                float f12 = (this.f16296c * floatValue) - f11;
+                fArr2[1] = f11 + f12;
+                float f13 = fArr2[2];
+                float f14 = (this.f16297e * floatValue) - f13;
+                fArr2[2] = f13 + f14;
+                o oVar = qVar2.L;
+                float f15 = fArr2[0];
+                o.f(oVar, f12 * f15, f14 * f15);
+                float f16 = fArr2[0];
+                float f17 = (((this.f16298f - 1.0f) * floatValue) + 1.0f) / f16;
+                fArr2[0] = f16 * f17;
+                o.g(qVar2.L, f17, 0.0f, 0.0f);
+                qVar2.r(false);
+                return;
         }
-    }
-
-    @Override
-    public final boolean performAccessibilityAction(int i10, Bundle bundle) {
-        if (!super.performAccessibilityAction(i10, bundle) && !this.f14829a.getSeekBarAccessibilityDelegate().g(this, i10, bundle)) {
-            return false;
-        }
-        return true;
     }
 }

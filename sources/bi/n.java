@@ -1,37 +1,39 @@
 package bi;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import org.telegram.ui.ActionBar.j6;
-import org.telegram.ui.Components.t00;
-public final class n extends t00 {
-    public final Paint U;
-    public final u V;
+import android.widget.FrameLayout;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.lx;
+public final class n extends org.telegram.ui.ActionBar.m {
+    public final int d = 1;
+    public final FrameLayout f3373e;
 
-    public n(u uVar, Context context) {
-        super(context, null);
-        this.V = uVar;
-        this.U = new Paint();
+    public n(lx lxVar, Context context, com.google.firebase.messaging.m mVar) {
+        super(context, null, mVar);
+        this.f3373e = lxVar;
     }
 
     @Override
-    public final int getColumnsCount() {
-        return this.V.d;
+    public final void e(le.l lVar) {
+        switch (this.d) {
+            case 0:
+                super.e(lVar);
+                ((lx) this.f3373e).invalidate();
+                return;
+            default:
+                super.e(lVar);
+                float totalVisibility = getTotalVisibility();
+                g5 g5Var = ((org.telegram.ui.ActionBar.k) this.f3373e).F0;
+                if (g5Var != null) {
+                    g5Var.setTranslationY(totalVisibility * AndroidUtilities.dp(-11.0f));
+                    return;
+                }
+                return;
+        }
     }
 
-    @Override
-    public final int getViewType() {
-        setIsSingleCell(false);
-        return 27;
-    }
-
-    @Override
-    public final void onDraw(Canvas canvas) {
-        int v02 = j6.v0(j6.f18862d6, this.V.W.f3609c);
-        Paint paint = this.U;
-        paint.setColor(v02);
-        canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), paint);
-        super.onDraw(canvas);
+    public n(org.telegram.ui.ActionBar.k kVar, Context context, org.telegram.ui.ActionBar.f6 f6Var, com.google.firebase.messaging.m mVar) {
+        super(context, f6Var, mVar);
+        this.f3373e = kVar;
     }
 }

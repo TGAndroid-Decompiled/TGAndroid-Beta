@@ -1,183 +1,50 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Bitmap;
-import android.text.TextUtils;
-import java.io.IOException;
-import java.io.RandomAccessFile;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.DispatchQueuePoolBackground;
-import org.telegram.messenger.R;
-import org.telegram.messenger.Utilities;
-public class wi0 extends yi0 {
-    public volatile RLottieNative U0;
-    public boolean V0;
-    public boolean W0;
-    public volatile boolean X0;
-    public boolean Y0;
-    public final int Z0;
-    public int f29682a1;
+public final class wi0 implements Runnable {
+    public final int f32300a;
+    public final xi0 f32301b;
 
-    public wi0(String str, int i10, int i11) {
-        super(i10, i11);
-        String str2;
-        this.Z0 = -1;
-        this.K = 1;
-        if ("🎲".equals(str)) {
-            str2 = AndroidUtilities.readRes(R.raw.diceloop);
-            this.Z0 = 60;
-        } else if ("🎯".equals(str)) {
-            str2 = AndroidUtilities.readRes(R.raw.dartloop);
-        } else {
-            str2 = null;
-        }
-        getPaint().setFlags(2);
-        if (TextUtils.isEmpty(str2)) {
-            return;
-        }
-        this.f30235n0 = RLottieNative.b(str2, this.e, null, null);
+    public wi0(xi0 xi0Var, int i10) {
+        this.f32300a = i10;
+        this.f32301b = xi0Var;
     }
 
     @Override
-    public int B(Bitmap bitmap, boolean z10) {
-        RLottieNative rLottieNative;
-        int i10 = this.K;
-        if (i10 == 1) {
-            rLottieNative = this.f30235n0;
-        } else if (i10 == 2) {
-            rLottieNative = this.U0;
-            if (this.X0) {
-                this.f30221b0 = this.f29682a1 - 1;
-            }
-        } else {
-            rLottieNative = this.f30235n0;
-        }
-        if (rLottieNative.c(this.f30221b0, bitmap, z10) < 0) {
-            return 2;
-        }
-        return 1;
-    }
-
-    @Override
-    public void C(boolean z10) {
-        this.f30233l0 = false;
-        this.m0 = true;
-        n();
-        l();
-        if (!this.Y0 && !this.V0) {
-            if (this.Q == null && !this.f30252z0) {
-                D(z10);
-                yf.e eVar = this.D0;
-                if (eVar != null) {
-                    RandomAccessFile randomAccessFile = eVar.f46834s;
-                    if (randomAccessFile != null) {
-                        try {
-                            randomAccessFile.close();
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                        eVar.f46834s = null;
+    public final void run() {
+        switch (this.f32300a) {
+            case 0:
+                xi0 xi0Var = this.f32301b;
+                xi0Var.getClass();
+                try {
+                    yf.e eVar = xi0Var.D0;
+                    if (eVar != null) {
+                        eVar.b();
                     }
-                    eVar.f46833r = true;
-                    this.D0 = null;
+                } catch (Throwable unused) {
                 }
-                E();
+                AndroidUtilities.runOnUIThread(xi0Var.B0);
                 return;
-            }
-            this.W = true;
-            return;
-        }
-        this.W0 = true;
-    }
-
-    @Override
-    public final void D(boolean z10) {
-        RLottieNative rLottieNative = this.f30235n0;
-        RLottieNative rLottieNative2 = this.U0;
-        this.f30235n0 = null;
-        this.U0 = null;
-        if (rLottieNative == null && rLottieNative2 == null) {
-            return;
-        }
-        ny nyVar = new ny(22, rLottieNative, rLottieNative2);
-        if (z10) {
-            DispatchQueuePoolBackground.execute(nyVar);
-        } else {
-            Utilities.globalQueue.postRunnable(nyVar);
-        }
-    }
-
-    @Override
-    public void i() {
-        int i10 = this.K;
-        if (i10 == 1) {
-            int i11 = this.f30221b0 + 1;
-            int i12 = this.Z0;
-            if (i12 == -1) {
-                i12 = this.e[0];
-            }
-            if (i11 < i12) {
-                this.f30221b0 = i11;
+            case 1:
+                xi0 xi0Var2 = this.f32301b;
+                xi0Var2.Q = null;
+                xi0Var2.n();
                 return;
-            }
-            this.f30221b0 = 0;
-            this.O = false;
-            if (this.U0 != null) {
-                this.K = 2;
-            }
-            if (this.f30250y) {
-                this.f30248x = null;
-                this.f30250y = false;
-            }
-        } else if (i10 == 2) {
-            int i13 = this.f30221b0 + 1;
-            if (i13 < this.f29682a1) {
-                this.f30221b0 = i13;
+            case 2:
+                xi0.h(this.f32301b);
                 return;
-            }
-            this.O = true;
-            this.N++;
+            case 3:
+                xi0.e(this.f32301b);
+                return;
+            case 4:
+                xi0.d(this.f32301b);
+                return;
+            case 5:
+                xi0.f(this.f32301b);
+                return;
+            default:
+                this.f32301b.k();
+                return;
         }
-    }
-
-    @Override
-    public int j() {
-        if (this.m0) {
-            return 3;
-        }
-        if (this.f30235n0 == null || (this.K == 2 && this.U0 == null)) {
-            return 2;
-        }
-        return 1;
-    }
-
-    @Override
-    public void p() {
-        if (this.W) {
-            n();
-            if (this.Q == null && this.f30235n0 != null) {
-                D(true);
-            }
-        }
-        if (this.f30235n0 == null && this.U0 == null && this.D0 == null) {
-            E();
-            return;
-        }
-        this.U = true;
-        if (!v()) {
-            stop();
-        }
-        if (this.f30233l0) {
-            I();
-        }
-    }
-
-    @Override
-    public final boolean w() {
-        return this.Y0;
-    }
-
-    @Override
-    public final boolean z() {
-        return false;
     }
 }

@@ -8,8 +8,8 @@ import android.os.Parcel;
 import android.os.RemoteException;
 import java.util.ArrayList;
 public final class h extends Binder {
-    public static final int f3006b;
-    public final e9.i0 f3007a;
+    public static final int f2075b;
+    public final e9.i0 f2076a;
 
     static {
         int i10;
@@ -18,17 +18,17 @@ public final class h extends Binder {
         } else {
             i10 = 65536;
         }
-        f3006b = i10;
+        f2075b = i10;
     }
 
     public h(ArrayList arrayList) {
-        this.f3007a = e9.i0.v(arrayList);
+        this.f2076a = e9.i0.v(arrayList);
     }
 
     public static e9.i0 a(IBinder iBinder) {
         int readInt;
         if (iBinder instanceof h) {
-            return ((h) iBinder).f3007a;
+            return ((h) iBinder).f2076a;
         }
         e9.f0 u10 = e9.i0.u();
         int i10 = 1;
@@ -52,8 +52,8 @@ public final class h extends Binder {
                     obtain2.recycle();
                     obtain.recycle();
                     i10 = readInt;
-                } catch (RemoteException e) {
-                    throw new RuntimeException(e);
+                } catch (RemoteException e7) {
+                    throw new RuntimeException(e7);
                 }
             } catch (Throwable th2) {
                 obtain2.recycle();
@@ -73,10 +73,10 @@ public final class h extends Binder {
         if (parcel2 == null) {
             return false;
         }
-        e9.i0 i0Var = this.f3007a;
+        e9.i0 i0Var = this.f2076a;
         int size = i0Var.size();
         int readInt = parcel.readInt();
-        while (readInt < size && parcel2.dataSize() < f3006b) {
+        while (readInt < size && parcel2.dataSize() < f2075b) {
             parcel2.writeInt(1);
             parcel2.writeBundle((Bundle) i0Var.get(readInt));
             readInt++;

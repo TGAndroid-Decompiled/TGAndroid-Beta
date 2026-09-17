@@ -1,48 +1,64 @@
 package yh;
 
-import android.graphics.Matrix;
-import android.graphics.Paint;
-import android.graphics.RadialGradient;
-import android.graphics.RectF;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.Components.wc;
-public final class f0 {
-    public final long f47154a;
-    public final TLRPC.Document f47155b;
-    public final long f47156c;
-    public final int d;
-    public final String e;
-    public k8 f47157f;
-    public int f47158g = -1;
-    public RadialGradient h;
-    public Paint f47159i;
-    public org.telegram.ui.Components.o5 f47160j;
-    public org.telegram.ui.Components.c6 f47161k;
-    public final RectF f47162l;
-    public final wc f47163m;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.drawable.Drawable;
+import android.view.View;
+import org.telegram.ui.Components.dc0;
+import org.telegram.ui.Components.ov0;
+public final class f0 extends ov0 {
+    public final j0 f50298w0;
 
-    public f0(g0 g0Var, TL_stars.TL_starGiftUnique tL_starGiftUnique) {
-        long j3;
-        new Matrix();
-        this.f47162l = new RectF();
-        this.f47163m = new wc(g0Var);
-        this.f47154a = tL_starGiftUnique.f18347id;
-        TLRPC.Document document = tL_starGiftUnique.getDocument();
-        this.f47155b = document;
-        if (document == null) {
-            j3 = 0;
-        } else {
-            j3 = document.f18127id;
+    public f0(j0 j0Var, Context context) {
+        super(context, null);
+        this.f50298w0 = j0Var;
+    }
+
+    @Override
+    public final boolean P() {
+        return false;
+    }
+
+    @Override
+    public final boolean Q() {
+        return false;
+    }
+
+    @Override
+    public final void U(Drawable drawable) {
+        if (drawable instanceof dc0) {
+            ((dc0) drawable).p();
         }
-        this.f47156c = j3;
-        this.d = ((TL_stars.starGiftAttributeBackdrop) v5.l(tL_starGiftUnique.attributes, TL_stars.starGiftAttributeBackdrop.class)).center_color | (-16777216);
-        this.e = tL_starGiftUnique.slug;
-        this.f47157f = new k8(1, 6);
-        float dp = AndroidUtilities.dp(36.0f);
-        float f7 = (-dp) / 2.0f;
-        float f10 = dp / 2.0f;
-        this.f47157f.f47403c.set(f7, f7, f10, f10);
+        j0 j0Var = this.f50298w0;
+        j0Var.d.f10689a = j0Var.f50368c.c(drawable);
+    }
+
+    @Override
+    public final boolean drawChild(Canvas canvas, View view, long j3) {
+        if (view == this.L) {
+            j0 j0Var = this.f50298w0;
+            gh.a aVar = j0Var.d.f10689a;
+            if (aVar instanceof gh.b) {
+                ((gh.b) aVar).b(getWidth(), getHeight());
+            }
+            j0Var.d.v(canvas, 0.0f, 0.0f, getWidth(), getHeight());
+            return false;
+        }
+        return super.drawChild(canvas, view, j3);
+    }
+
+    @Override
+    public final Drawable getNewDrawable() {
+        Drawable drawable = this.f50298w0.f50376y;
+        if (drawable != null) {
+            return drawable;
+        }
+        return super.getNewDrawable();
+    }
+
+    @Override
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        super.onLayout(z10, i10, i11, i12, i13);
+        this.f50298w0.o();
     }
 }

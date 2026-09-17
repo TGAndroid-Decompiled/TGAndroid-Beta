@@ -24,35 +24,35 @@ public final class m0 extends d2 implements o0 {
     }
 
     @Override
-    public final CharSequence d() {
+    public final CharSequence e() {
         return this.S;
     }
 
     @Override
-    public final void g(CharSequence charSequence) {
+    public final void i(CharSequence charSequence) {
         this.S = charSequence;
     }
 
     @Override
-    public final void k(int i10) {
+    public final void l(int i10) {
         this.V = i10;
     }
 
     @Override
-    public final void l(int i10, int i11) {
+    public final void m(int i10, int i11) {
         ViewTreeObserver viewTreeObserver;
         x xVar = this.O;
         boolean isShowing = xVar.isShowing();
-        q();
+        s();
         xVar.setInputMethodMode(2);
-        h();
-        r1 r1Var = this.f14167c;
+        g();
+        r1 r1Var = this.f15526c;
         r1Var.setChoiceMode(1);
         g0.d(r1Var, i10);
         g0.c(r1Var, i11);
         p0 p0Var = this.W;
         int selectedItemPosition = p0Var.getSelectedItemPosition();
-        r1 r1Var2 = this.f14167c;
+        r1 r1Var2 = this.f15526c;
         if (xVar.isShowing() && r1Var2 != null) {
             r1Var2.setListSelectionHidden(false);
             r1Var2.setSelection(selectedItemPosition);
@@ -68,16 +68,16 @@ public final class m0 extends d2 implements o0 {
     }
 
     @Override
-    public final void n(ListAdapter listAdapter) {
-        super.n(listAdapter);
+    public final void p(ListAdapter listAdapter) {
+        super.p(listAdapter);
         this.T = (j0) listAdapter;
     }
 
-    public final void q() {
+    public final void s() {
         int i10;
         int i11;
         p0 p0Var = this.W;
-        Rect rect = p0Var.f14289n;
+        Rect rect = p0Var.f15658n;
         x xVar = this.O;
         Drawable background = xVar.getBackground();
         if (background != null) {
@@ -102,17 +102,17 @@ public final class m0 extends d2 implements o0 {
             if (a2 > i13) {
                 a2 = i13;
             }
-            p(Math.max(a2, (width - paddingLeft) - paddingRight));
+            r(Math.max(a2, (width - paddingLeft) - paddingRight));
         } else if (i12 == -1) {
-            p((width - paddingLeft) - paddingRight);
+            r((width - paddingLeft) - paddingRight);
         } else {
-            p(i12);
+            r(i12);
         }
         if (s3.a(p0Var)) {
-            i11 = (((width - paddingRight) - this.e) - this.V) + i10;
+            i11 = (((width - paddingRight) - this.f15527e) - this.V) + i10;
         } else {
             i11 = paddingLeft + this.V + i10;
         }
-        this.f14168f = i11;
+        this.f15528f = i11;
     }
 }

@@ -1,54 +1,163 @@
 package org.telegram.ui.Components;
 
 import android.graphics.Bitmap;
+import android.graphics.BitmapShader;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.Matrix;
 import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffXfermode;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.Utilities;
-public final class ma {
-    public String f26116a;
-    public Bitmap f26117b;
-    public final Paint f26118c;
-    public final int d;
-    public final Runnable e;
-    public org.telegram.messenger.y7 f26119f;
+import android.graphics.Path;
+import android.graphics.Rect;
+import android.graphics.RectF;
+import android.graphics.Shader;
+import android.graphics.drawable.Drawable;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+public final class ma extends Drawable {
+    public float f28451a = 1.0f;
+    public final Paint f28452b = new Paint(1);
+    public final Rect f28453c = new Rect();
+    public final Path d = new Path();
+    public final float f28454e;
+    public final float f28455f;
+    public final Drawable f28456g;
+    public final float h;
+    public final na f28457i;
 
-    public ma(int i10, Runnable runnable) {
-        Paint paint = new Paint(1);
-        this.f26118c = paint;
-        this.d = i10;
-        this.e = runnable;
-        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
+    public ma(na naVar, float f7, float f10, Drawable drawable, float f11) {
+        this.f28457i = naVar;
+        this.f28454e = f7;
+        this.f28455f = f10;
+        this.f28456g = drawable;
+        this.h = f11;
     }
 
-    public final void a() {
-        this.f26116a = null;
-        if (this.f26119f != null) {
-            Utilities.globalQueue.cancelRunnable(this.f26119f);
+    @Override
+    public final void draw(Canvas canvas) {
+        Bitmap b10;
+        na naVar = this.f28457i;
+        ja jaVar = naVar.f28730a;
+        Matrix matrix = naVar.f28743p;
+        Paint paint = null;
+        if (jaVar != null && (b10 = jaVar.b()) != null) {
+            if (naVar.f28742o == null || naVar.f28741n != b10) {
+                naVar.f28741n = b10;
+                Shader.TileMode tileMode = Shader.TileMode.CLAMP;
+                BitmapShader bitmapShader = new BitmapShader(b10, tileMode, tileMode);
+                naVar.f28742o = bitmapShader;
+                naVar.h.setShader(bitmapShader);
+            }
+            matrix.reset();
+            matrix.postTranslate((-0.0f) - this.f28454e, (-0.0f) - this.f28455f);
+            View view = jaVar.f27436b;
+            if (view != null) {
+                matrix.preScale(view.getWidth() / b10.getWidth(), jaVar.f27436b.getHeight() / b10.getHeight());
+            }
+            naVar.f28742o.setLocalMatrix(matrix);
+            naVar.h.setAlpha((int) (this.f28451a * 255.0f));
+            paint = naVar.h;
         }
-        Bitmap bitmap = this.f26117b;
-        if (bitmap != null && !bitmap.isRecycled()) {
-            this.f26117b.recycle();
+        Paint paint2 = paint;
+        Rect bounds = getBounds();
+        Drawable drawable = this.f28456g;
+        Paint paint3 = this.f28452b;
+        float f7 = this.h;
+        if (paint2 == null && (jaVar == null || !jaVar.c())) {
+            if (drawable != null) {
+                drawable.setBounds(bounds);
+                drawable.draw(canvas);
+                return;
+            }
+            paint3.setColor(-14145495);
+            if (f7 > 0.0f) {
+                RectF rectF = AndroidUtilities.rectTmp;
+                rectF.set(bounds);
+                canvas.drawRoundRect(rectF, f7, f7, paint3);
+                return;
+            }
+            canvas.drawRect(bounds, paint3);
+            return;
         }
-        this.f26117b = null;
+        Path path = this.d;
+        if (drawable != null) {
+            canvas.saveLayerAlpha(bounds.left, bounds.top, bounds.right, bounds.bottom, 255, 31);
+            drawable.setBounds(bounds);
+            drawable.draw(canvas);
+            Rect rect = this.f28453c;
+            if (jaVar != null && jaVar.c()) {
+                canvas.save();
+                getPadding(rect);
+                RectF rectF2 = AndroidUtilities.rectTmp;
+                rectF2.set(bounds.left + rect.left, bounds.top + rect.top, bounds.right - rect.right, bounds.bottom - rect.bottom);
+                path.rewind();
+                path.addRoundRect(rectF2, f7, f7, Path.Direction.CW);
+                canvas.clipPath(path);
+                naVar.b(canvas, false);
+                canvas.restore();
+            } else {
+                canvas.drawRect(bounds, paint2);
+            }
+            canvas.restore();
+            getPadding(rect);
+            RectF rectF3 = AndroidUtilities.rectTmp;
+            rectF3.set(bounds.left + rect.left, bounds.top + rect.top, bounds.right - rect.right, bounds.bottom - rect.bottom);
+            paint3.setColor(1711276032);
+            canvas.drawRoundRect(rectF3, f7, f7, paint3);
+            return;
+        }
+        int i10 = (f7 > 0.0f ? 1 : (f7 == 0.0f ? 0 : -1));
+        if (i10 > 0) {
+            RectF rectF4 = AndroidUtilities.rectTmp;
+            rectF4.set(bounds);
+            if (jaVar != null && jaVar.c()) {
+                canvas.save();
+                path.rewind();
+                path.addRoundRect(rectF4, f7, f7, Path.Direction.CW);
+                canvas.clipPath(path);
+                naVar.b(canvas, false);
+                canvas.restore();
+            } else {
+                canvas.drawRoundRect(rectF4, f7, f7, paint2);
+            }
+        } else if (jaVar != null && jaVar.c()) {
+            canvas.save();
+            canvas.clipRect(bounds);
+            naVar.b(canvas, false);
+            canvas.restore();
+        } else {
+            canvas.drawRect(bounds, paint2);
+        }
+        paint3.setColor(1711276032);
+        if (i10 > 0) {
+            RectF rectF5 = AndroidUtilities.rectTmp;
+            rectF5.set(bounds);
+            canvas.drawRoundRect(rectF5, f7, f7, paint3);
+            return;
+        }
+        canvas.drawRect(bounds, paint3);
     }
 
-    public final android.graphics.Bitmap b(android.graphics.Bitmap r9, java.lang.String r10, int r11, int r12, boolean r13) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ma.b(android.graphics.Bitmap, java.lang.String, int, int, boolean):android.graphics.Bitmap");
+    @Override
+    public final int getOpacity() {
+        return -2;
     }
 
-    public final Bitmap c(ImageReceiver.BitmapHolder bitmapHolder) {
-        if (bitmapHolder == null) {
-            return null;
+    @Override
+    public final boolean getPadding(Rect rect) {
+        Drawable drawable = this.f28456g;
+        if (drawable != null) {
+            return drawable.getPadding(rect);
         }
-        return b(bitmapHolder.bitmap, bitmapHolder.getKey(), bitmapHolder.orientation, 0, false);
+        rect.set(0, 0, 0, 0);
+        return true;
     }
 
-    public final Bitmap d(ImageReceiver imageReceiver) {
-        if (imageReceiver == null) {
-            return null;
-        }
-        return b(imageReceiver.getBitmap(), imageReceiver.getImageKey(), imageReceiver.getOrientation(), imageReceiver.getInvert(), false);
+    @Override
+    public final void setAlpha(int i10) {
+        this.f28451a = i10 / 255.0f;
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

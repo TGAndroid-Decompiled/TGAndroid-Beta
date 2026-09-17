@@ -15,12 +15,12 @@ import java.nio.ByteOrder;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 public final class f implements a {
-    public final i0 f7975a;
-    public final int f7976b;
+    public final i0 f8861a;
+    public final int f8862b;
 
     public f(int i10, a1 a1Var) {
-        this.f7976b = i10;
-        this.f7975a = a1Var;
+        this.f8862b = i10;
+        this.f8861a = a1Var;
     }
 
     public static f b(int i10, v vVar) {
@@ -31,12 +31,12 @@ public final class f implements a {
         int i12 = 4;
         q.e(4, "initialCapacity");
         Object[] objArr = new Object[4];
-        int i13 = vVar.f7936c;
+        int i13 = vVar.f8819c;
         int i14 = -2;
         int i15 = 0;
         while (vVar.a() > 8) {
             int l4 = vVar.l();
-            int l10 = vVar.f7935b + vVar.l();
+            int l10 = vVar.f8818b + vVar.l();
             vVar.I(l10);
             if (l4 == 1414744396) {
                 gVar = b(vVar.l(), vVar);
@@ -80,14 +80,14 @@ public final class f implements a {
                                     break;
                             }
                             if (str2 == null) {
-                                e2.m(l13, "Ignoring track with unsupported compression ", "StreamFormatChunk");
+                                e2.n(l13, "Ignoring track with unsupported compression ", "StreamFormatChunk");
                                 gVar = dVar;
                                 break;
                             } else {
                                 r rVar = new r();
-                                rVar.f3259x = l11;
-                                rVar.f3260y = l12;
-                                rVar.f3253q = r0.n(str2);
+                                rVar.f2345x = l11;
+                                rVar.f2346y = l12;
+                                rVar.f2339q = r0.n(str2);
                                 gVar = new g(new s(rVar));
                                 break;
                             }
@@ -112,13 +112,13 @@ public final class f implements a {
                                     str = "audio/mpeg";
                                 }
                                 if (str == null) {
-                                    e2.m(q6, "Ignoring track with unsupported format tag ", "StreamFormatChunk");
+                                    e2.n(q6, "Ignoring track with unsupported format tag ", "StreamFormatChunk");
                                 } else {
                                     int q10 = vVar.q();
                                     int l14 = vVar.l();
                                     vVar.K(6);
                                     int q11 = vVar.q();
-                                    String str3 = d0.f7888a;
+                                    String str3 = d0.f8765a;
                                     int B = d0.B(q11, ByteOrder.LITTLE_ENDIAN);
                                     if (vVar.a() > 0) {
                                         i11 = vVar.q();
@@ -126,7 +126,7 @@ public final class f implements a {
                                         i11 = 0;
                                     }
                                     r rVar2 = new r();
-                                    rVar2.f3253q = r0.n(str);
+                                    rVar2.f2339q = r0.n(str);
                                     rVar2.I = q10;
                                     rVar2.J = l14;
                                     if (str.equals("audio/raw") && B != 0) {
@@ -135,7 +135,7 @@ public final class f implements a {
                                     if (str.equals("audio/mp4a-latm") && i11 > 0) {
                                         byte[] bArr = new byte[i11];
                                         vVar.h(0, i11, bArr);
-                                        rVar2.f3256t = i0.z(bArr);
+                                        rVar2.f2342t = i0.z(bArr);
                                     }
                                     gVar = new g(new s(rVar2));
                                     break;
@@ -196,7 +196,7 @@ public final class f implements a {
     }
 
     public final a a(Class cls) {
-        g0 listIterator = this.f7975a.listIterator(0);
+        g0 listIterator = this.f8861a.listIterator(0);
         while (listIterator.hasNext()) {
             a aVar = (a) listIterator.next();
             if (aVar.getClass() == cls) {
@@ -208,6 +208,6 @@ public final class f implements a {
 
     @Override
     public final int getType() {
-        return this.f7976b;
+        return this.f8862b;
     }
 }

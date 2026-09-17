@@ -2,40 +2,40 @@ package org.telegram.messenger;
 
 import android.app.Activity;
 import java.util.HashMap;
-import org.telegram.ui.wy;
+import org.telegram.ui.uy;
 public final class m1 implements Runnable {
-    public final int f16723a = 0;
-    public final boolean f16724b;
-    public final boolean f16725c;
+    public final int f18379a = 0;
+    public final boolean f18380b;
+    public final boolean f18381c;
     public final boolean d;
-    public final Object e;
-    public final Object f16726f;
+    public final Object f18382e;
+    public final Object f18383f;
 
     public m1(ContactsController contactsController, HashMap hashMap, boolean z10, boolean z11, boolean z12) {
-        this.e = contactsController;
-        this.f16726f = hashMap;
-        this.f16724b = z10;
-        this.f16725c = z11;
+        this.f18382e = contactsController;
+        this.f18383f = hashMap;
+        this.f18380b = z10;
+        this.f18381c = z11;
         this.d = z12;
     }
 
     @Override
     public final void run() {
-        switch (this.f16723a) {
+        switch (this.f18379a) {
             case 0:
-                ((ContactsController) this.e).lambda$syncPhoneBookByAlert$7((HashMap) this.f16726f, this.f16724b, this.f16725c, this.d);
+                ((ContactsController) this.f18382e).lambda$syncPhoneBookByAlert$7((HashMap) this.f18383f, this.f18380b, this.f18381c, this.d);
                 return;
             default:
-                wy.i0((wy) this.e, this.f16724b, this.f16725c, this.d, (Activity) this.f16726f);
+                uy.i0((uy) this.f18382e, this.f18380b, this.f18381c, this.d, (Activity) this.f18383f);
                 return;
         }
     }
 
-    public m1(wy wyVar, boolean z10, boolean z11, boolean z12, Activity activity) {
-        this.e = wyVar;
-        this.f16724b = z10;
-        this.f16725c = z11;
+    public m1(uy uyVar, boolean z10, boolean z11, boolean z12, Activity activity) {
+        this.f18382e = uyVar;
+        this.f18380b = z10;
+        this.f18381c = z11;
         this.d = z12;
-        this.f16726f = activity;
+        this.f18383f = activity;
     }
 }

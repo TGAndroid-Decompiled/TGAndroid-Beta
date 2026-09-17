@@ -4,18 +4,18 @@ import bf.o;
 import bf.p;
 import bf.r;
 public final class l extends df.a {
-    public final o f46791a = new p();
-    public final int f46792b;
-    public boolean f46793c;
+    public final o f50068a = new p();
+    public final int f50069b;
+    public boolean f50070c;
 
     public l(int i10) {
-        this.f46792b = i10;
+        this.f50069b = i10;
     }
 
     @Override
     public final boolean b(bf.a aVar) {
-        if (this.f46793c) {
-            bf.a aVar2 = (bf.a) ((p) this.f46791a.f3552b);
+        if (this.f50070c) {
+            bf.a aVar2 = (bf.a) ((p) this.f50068a.f2665b);
             return true;
         }
         return true;
@@ -23,7 +23,7 @@ public final class l extends df.a {
 
     @Override
     public final bf.a e() {
-        return this.f46791a;
+        return this.f50068a;
     }
 
     @Override
@@ -35,17 +35,17 @@ public final class l extends df.a {
     public final q3.h h(d dVar) {
         boolean z10 = false;
         if (dVar.h) {
-            if (((p) this.f46791a.f3553c) != null) {
-                bf.a e = dVar.h().e();
-                this.f46793c = ((e instanceof r) || (e instanceof o)) ? true : true;
-                return q3.h.a(dVar.e);
+            if (((p) this.f50068a.f2666c) != null) {
+                bf.a e7 = dVar.h().e();
+                this.f50070c = ((e7 instanceof r) || (e7 instanceof o)) ? true : true;
+                return q3.h.a(dVar.f50018e);
             }
             return null;
         }
-        int i10 = dVar.f46746g;
-        int i11 = this.f46792b;
+        int i10 = dVar.f50020g;
+        int i11 = this.f50069b;
         if (i10 >= i11) {
-            return new q3.h(-1, dVar.f46744c + i11, false);
+            return new q3.h(-1, dVar.f50017c + i11, false);
         }
         return null;
     }

@@ -20,13 +20,13 @@ public class DocumentObject {
             N0.getClass();
             org.telegram.ui.ActionBar.h6 h6Var = new org.telegram.ui.ActionBar.h6();
             org.telegram.ui.ActionBar.i6.i(h6Var, themeSettings);
-            h6Var.f18721b = N0;
+            h6Var.f20519b = N0;
             this.accent = h6Var;
             TLRPC.WallPaper wallPaper = this.themeSettings.wallpaper;
             if (wallPaper instanceof TLRPC.TL_wallPaper) {
                 TLRPC.Document document = ((TLRPC.TL_wallPaper) wallPaper).document;
                 this.wallpaper = document;
-                this.f18127id = document.f18127id;
+                this.f19902id = document.f19902id;
                 this.access_hash = document.access_hash;
                 this.file_reference = document.file_reference;
                 this.user_id = document.user_id;
@@ -42,7 +42,7 @@ public class DocumentObject {
                 this.attributes = document.attributes;
                 return;
             }
-            this.f18127id = -2147483648L;
+            this.f19902id = -2147483648L;
             this.dc_id = Integer.MIN_VALUE;
         }
     }
@@ -91,8 +91,8 @@ public class DocumentObject {
             svgDrawable.height = 512;
             svgDrawable.setupGradient(i10, f10, false);
             return svgDrawable;
-        } catch (Exception e) {
-            FileLog.e(e);
+        } catch (Exception e7) {
+            FileLog.e(e7);
             return null;
         }
     }
@@ -107,7 +107,7 @@ public class DocumentObject {
             if (photoSize instanceof TLRPC.TL_photoPathSize) {
                 tL_photoPathSize = (TLRPC.TL_photoPathSize) photoSize;
             } else if ((photoSize instanceof TLRPC.TL_photoSize) && z10) {
-                i11 = photoSize.f18146w;
+                i11 = photoSize.f19921w;
                 i12 = photoSize.h;
             }
         }
@@ -143,7 +143,7 @@ public class DocumentObject {
                 for (int i14 = 0; i14 < size2; i14++) {
                     TLRPC.DocumentAttribute documentAttribute = document.attributes.get(i14);
                     if ((documentAttribute instanceof TLRPC.TL_documentAttributeImageSize) || (documentAttribute instanceof TLRPC.TL_documentAttributeVideo)) {
-                        i11 = documentAttribute.f18128w;
+                        i11 = documentAttribute.f19903w;
                         i12 = documentAttribute.h;
                         break;
                     }

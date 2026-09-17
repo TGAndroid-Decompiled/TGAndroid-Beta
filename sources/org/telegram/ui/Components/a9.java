@@ -1,40 +1,37 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Paint;
-import android.graphics.drawable.Drawable;
-import android.view.View;
+import android.animation.ValueAnimator;
 import org.telegram.messenger.AndroidUtilities;
-public final class a9 extends View {
-    public y8 f22351a;
-    public final c6 f22352b;
-    public boolean f22353c;
-    public boolean d;
-    public final o20 e;
-    public Drawable f22354f;
-    public Drawable h;
-    public boolean f22355n;
-    public Paint f22356r;
-    public Paint f22357s;
-    public boolean v;
-    public final c9 f22358w;
+public final class a9 implements ValueAnimator.AnimatorUpdateListener {
+    public final float f24332a;
+    public final float f24333b;
+    public final boolean f24334c;
+    public final f9 d;
 
-    public a9(c9 c9Var, Context context) {
-        super(context);
-        this.f22358w = c9Var;
-        c6 c6Var = new c6(400L, AndroidUtilities.overshootInterpolator);
-        this.f22352b = c6Var;
-        this.e = new o20();
-        c6Var.f22935a = this;
+    public a9(f9 f9Var, float f7, float f10, boolean z10) {
+        this.d = f9Var;
+        this.f24332a = f7;
+        this.f24333b = f10;
+        this.f24334c = z10;
     }
 
     @Override
-    public final void onDraw(android.graphics.Canvas r15) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.a9.onDraw(android.graphics.Canvas):void");
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(this.f22358w.P, 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(48.0f), 1073741824));
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        org.telegram.ui.ActionBar.k kVar;
+        org.telegram.ui.ActionBar.k kVar2;
+        float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        f9 f9Var = this.d;
+        f9Var.N = floatValue;
+        float lerp = AndroidUtilities.lerp(this.f24332a, this.f24333b, floatValue);
+        kVar = ((org.telegram.ui.ActionBar.n2) f9Var).actionBar;
+        kVar.getTitleTextView().setAlpha(f9Var.N);
+        if (f9Var.F && !this.f24334c) {
+            f9Var.i0(1.0f - f9Var.N, false);
+        }
+        f9Var.f26000r.setTranslationY(lerp);
+        f9Var.f26003x.setTranslationY(lerp);
+        f9Var.fragmentView.invalidate();
+        kVar2 = ((org.telegram.ui.ActionBar.n2) f9Var).actionBar;
+        kVar2.invalidate();
     }
 }

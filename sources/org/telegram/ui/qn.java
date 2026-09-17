@@ -1,6 +1,96 @@
 package org.telegram.ui;
-public final class qn {
-    public int f36939a;
-    public int f36940b;
-    public int f36941c;
+
+import android.content.Context;
+import android.view.MotionEvent;
+import android.view.View;
+import java.util.ArrayList;
+import java.util.Collections;
+public final class qn extends View {
+    public final ArrayList f39946a;
+    public final ArrayList f39947b;
+    public final co f39948c;
+
+    public qn(co coVar, Context context) {
+        super(context);
+        this.f39948c = coVar;
+        this.f39946a = new ArrayList();
+        this.f39947b = new ArrayList();
+    }
+
+    public final void a() {
+        ArrayList arrayList = this.f39946a;
+        arrayList.clear();
+        co coVar = this.f39948c;
+        arrayList.add(coVar.K1);
+        arrayList.add(coVar.f35501x0);
+        arrayList.add(coVar.X);
+        arrayList.add(coVar.K3);
+        arrayList.add(coVar.I1);
+        arrayList.add(coVar.X2);
+        arrayList.add(coVar.Y);
+        arrayList.add(coVar.f35327j1);
+        arrayList.add(coVar.S);
+        arrayList.add(coVar.R1);
+        arrayList.removeAll(Collections.singleton(null));
+    }
+
+    @Override
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        return false;
+    }
+
+    @Override
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        co coVar = this.f39948c;
+        coVar.f35435rc = true;
+        ArrayList arrayList = this.f39947b;
+        int size = arrayList.size();
+        int i10 = 0;
+        while (i10 < size) {
+            Object obj = arrayList.get(i10);
+            i10++;
+            ((View) obj).setVisibility(0);
+        }
+        arrayList.clear();
+        coVar.f35435rc = false;
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        a();
+        co coVar = this.f39948c;
+        coVar.f35435rc = true;
+        ArrayList arrayList = this.f39946a;
+        int size = arrayList.size();
+        int i10 = 0;
+        while (i10 < size) {
+            Object obj = arrayList.get(i10);
+            i10++;
+            View view = (View) obj;
+            if (view.getVisibility() == 0) {
+                view.setVisibility(8);
+                this.f39947b.add(view);
+            }
+        }
+        coVar.f35435rc = false;
+    }
+
+    @Override
+    public void setTranslationX(float f7) {
+        super.setTranslationX(f7);
+        a();
+        ArrayList arrayList = this.f39946a;
+        int size = arrayList.size();
+        int i10 = 0;
+        while (i10 < size) {
+            Object obj = arrayList.get(i10);
+            i10++;
+            View view = (View) obj;
+            if (view != null) {
+                view.setTranslationX(f7);
+            }
+        }
+    }
 }

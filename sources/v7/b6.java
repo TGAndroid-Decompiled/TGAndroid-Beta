@@ -1,12 +1,12 @@
 package v7;
 public final class b6 {
-    public final Long f43949a;
-    public final i6 f43950b;
-    public final Boolean f43951c;
+    public final Long f47423a;
+    public final i6 f47424b;
+    public final Boolean f47425c;
 
-    public b6(r1 r1Var) {
-        this.f43949a = (Long) r1Var.f44101b;
-        this.f43950b = (i6) r1Var.d;
-        this.f43951c = (Boolean) r1Var.f44102c;
+    public b6(a6 a6Var) {
+        this.f47423a = (Long) a6Var.f47407b;
+        this.f47424b = (i6) a6Var.f47408c;
+        this.f47425c = (Boolean) a6Var.d;
     }
 }

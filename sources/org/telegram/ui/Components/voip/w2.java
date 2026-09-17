@@ -1,161 +1,46 @@
 package org.telegram.ui.Components.voip;
 
-import android.app.Activity;
-import android.view.MotionEvent;
-import android.view.VelocityTracker;
-import android.view.WindowInsets;
-import android.view.WindowManager;
-import android.widget.FrameLayout;
+import android.animation.ValueAnimator;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.AnimationNotificationsLocker;
-import org.telegram.messenger.voip.VoIPService;
-import org.telegram.ui.Components.qr;
-import org.telegram.ui.Components.w81;
-import org.telegram.ui.ti1;
-import org.webrtc.OrientationHelper;
-public abstract class w2 extends FrameLayout {
-    public Activity f29308a;
-    public boolean f29309b;
-    public AnimationNotificationsLocker f29310c;
-    public VelocityTracker d;
-    public boolean e;
-    public boolean f29311f;
-    public float h;
-    public float f29312n;
-    public boolean f29313r;
+public final class w2 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f31945a;
+    public final x2 f31946b;
 
-    public static WindowManager.LayoutParams a() {
-        WindowManager.LayoutParams layoutParams = new WindowManager.LayoutParams();
-        layoutParams.height = -1;
-        layoutParams.format = -2;
-        layoutParams.width = -1;
-        layoutParams.gravity = 51;
-        layoutParams.type = 99;
-        layoutParams.screenOrientation = 1;
-        AndroidUtilities.applyEdgeToEdgeLayoutParams(layoutParams);
-        layoutParams.flags = -2144665216;
-        return layoutParams;
-    }
-
-    public final void b() {
-        c(330L);
-    }
-
-    public final void c(long j3) {
-        if (!this.f29311f) {
-            this.f29311f = true;
-            if (ti1.f37755n1 != null) {
-                if (VoIPService.getSharedInstance() != null) {
-                    int measuredHeight = ti1.f37755n1.f37794u0.getMeasuredHeight();
-                    if (ti1.f37755n1.D0 && !VoIPService.getSharedInstance().isConverting()) {
-                        ti1 ti1Var = ti1.f37755n1;
-                        m2.l(ti1Var.f37759b, ti1Var.f37756a, ti1Var.f37794u0.getMeasuredWidth(), measuredHeight, 0);
-                        WindowInsets windowInsets = ti1.f37755n1.f37790r0;
-                        if (windowInsets != null) {
-                            m2.W = windowInsets.getSystemWindowInsetTop();
-                            ti1.f37755n1.f37790r0.getSystemWindowInsetBottom();
-                        }
-                    }
-                }
-                ti1.f37755n1.f37763c0.d.release();
-                ti1.f37755n1.f37765d0.d.release();
-                ti1.f37755n1.f37760b0.release();
-                ti1.f37755n1.l();
-            }
-            ti1.f37755n1 = null;
-            if (this.f29309b) {
-                try {
-                    ((WindowManager) this.f29308a.getSystemService("window")).removeView(this);
-                    return;
-                } catch (Exception unused) {
-                    return;
-                }
-            }
-            this.f29310c.lock();
-            animate().translationY(getMeasuredHeight()).alpha(0.0f).setListener(new w81(this, 10)).setDuration(j3).setInterpolator(qr.f27380f).start();
-        }
-    }
-
-    public final void d() {
-        if (getParent() != null) {
-            AndroidUtilities.unlockOrientation(this.f29308a);
-            setVisibility(8);
-            ((WindowManager) this.f29308a.getSystemService("window")).removeView(this);
-            OrientationHelper.cameraRotationDisabled = false;
-        }
+    public w2(x2 x2Var, int i10) {
+        this.f31945a = i10;
+        this.f31946b = x2Var;
     }
 
     @Override
-    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        return onTouchEvent(motionEvent);
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(i10, i11);
-        if (!this.e) {
-            this.e = true;
-            if (!this.f29309b) {
-                setTranslationY(getMeasuredHeight());
-                setAlpha(0.0f);
-                animate().translationY(0.0f).alpha(1.0f).setDuration(330L).setInterpolator(qr.f27380f).start();
-            }
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f31945a) {
+            case 0:
+                x2 x2Var = this.f31946b;
+                x2Var.getClass();
+                int intValue = ((Integer) valueAnimator.getAnimatedValue()).intValue();
+                x2Var.d = intValue;
+                x2Var.f31960e = intValue;
+                x2Var.f31961f = intValue;
+                x2Var.h = intValue;
+                x2Var.f31962n = intValue;
+                x2Var.invalidate();
+                return;
+            default:
+                x2 x2Var2 = this.f31946b;
+                x2Var2.getClass();
+                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                x2Var2.d = AndroidUtilities.lerp(x2Var2.F, AndroidUtilities.dp(56.0f), floatValue);
+                x2Var2.f31960e = AndroidUtilities.lerp(x2Var2.F, AndroidUtilities.dp(36.0f), floatValue);
+                x2Var2.f31961f = AndroidUtilities.lerp(x2Var2.F, AndroidUtilities.dp(60.0f), floatValue);
+                x2Var2.h = AndroidUtilities.lerp(x2Var2.F, AndroidUtilities.dp(36.0f), floatValue);
+                x2Var2.f31962n = AndroidUtilities.lerp(x2Var2.F, AndroidUtilities.dp(64.0f), floatValue);
+                x2Var2.f31963r = AndroidUtilities.lerp(0, AndroidUtilities.dp(50.0f), floatValue);
+                x2Var2.f31964s = AndroidUtilities.lerp(0, AndroidUtilities.dp(20.0f), floatValue);
+                x2Var2.v = AndroidUtilities.lerp(0, 0, floatValue);
+                x2Var2.f31965w = AndroidUtilities.lerp(0, AndroidUtilities.dp(-20.0f), floatValue);
+                x2Var2.f31966x = AndroidUtilities.lerp(0, AndroidUtilities.dp(-40.0f), floatValue);
+                x2Var2.invalidate();
+                return;
         }
-    }
-
-    @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        if (!this.f29309b) {
-            if (motionEvent.getAction() == 0) {
-                this.h = motionEvent.getX();
-                this.f29312n = motionEvent.getY();
-                if (this.d == null) {
-                    this.d = VelocityTracker.obtain();
-                }
-                this.d.clear();
-                return false;
-            }
-            float f7 = 0.0f;
-            if (motionEvent.getAction() == 2) {
-                float x10 = motionEvent.getX() - this.h;
-                float y3 = motionEvent.getY() - this.f29312n;
-                if (!this.f29313r && Math.abs(y3) > AndroidUtilities.getPixelsInCM(0.4f, true) && Math.abs(y3) / 3.0f > x10) {
-                    this.f29312n = motionEvent.getY();
-                    this.f29313r = true;
-                    y3 = 0.0f;
-                }
-                if (this.f29313r) {
-                    if (y3 >= 0.0f) {
-                        f7 = y3;
-                    }
-                    if (this.d == null) {
-                        this.d = VelocityTracker.obtain();
-                    }
-                    this.d.addMovement(motionEvent);
-                    setTranslationY(f7);
-                }
-                return this.f29313r;
-            } else if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
-                float translationY = getTranslationY();
-                if (this.d == null) {
-                    this.d = VelocityTracker.obtain();
-                }
-                this.d.computeCurrentVelocity(1000);
-                float xVelocity = this.d.getXVelocity();
-                float yVelocity = this.d.getYVelocity();
-                if (translationY < getMeasuredHeight() / 3.0f && (xVelocity < 3500.0f || xVelocity < yVelocity)) {
-                    animate().translationY(0.0f).start();
-                } else {
-                    c(Math.max((int) ((200.0f / getMeasuredHeight()) * (getMeasuredHeight() - getTranslationY())), 50));
-                }
-                this.f29313r = false;
-                return false;
-            }
-        }
-        return false;
-    }
-
-    public void setLockOnScreen(boolean z10) {
-        this.f29309b = z10;
     }
 }

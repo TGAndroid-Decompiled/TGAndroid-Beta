@@ -2,12 +2,12 @@ package org.telegram.ui;
 
 import android.app.Activity;
 import org.telegram.messenger.AndroidUtilities;
-public final class yl extends ci.f4 {
-    public final bo L0;
+public final class yl extends di.f4 {
+    public final co L0;
 
-    public yl(bo boVar, Activity activity) {
+    public yl(co coVar, Activity activity) {
         super(activity, 3);
-        this.L0 = boVar;
+        this.L0 = coVar;
     }
 
     @Override

@@ -1,12 +1,12 @@
 package org.telegram.ui.web;
 
-import ai.g5;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Build;
 import android.webkit.RenderProcessGoneDetail;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import bi.r4;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
@@ -14,12 +14,12 @@ import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.ActionBar.f6;
 public final class v0 extends WebViewClient {
-    public final WebView f38947a;
-    public final w0 f38948b;
+    public final WebView f42287a;
+    public final w0 f42288b;
 
     public v0(w0 w0Var, WebView webView) {
-        this.f38948b = w0Var;
-        this.f38947a = webView;
+        this.f42288b = w0Var;
+        this.f42287a = webView;
     }
 
     @Override
@@ -27,7 +27,7 @@ public final class v0 extends WebViewClient {
         f6 f6Var;
         Integer valueOf;
         Boolean valueOf2;
-        z0 z0Var = this.f38948b.e;
+        z0 z0Var = this.f42288b.f42301e;
         if (Build.VERSION.SDK_INT >= 26) {
             StringBuilder sb2 = new StringBuilder("newWebView.onRenderProcessGone priority=");
             if (renderProcessGoneDetail == null) {
@@ -56,27 +56,27 @@ public final class v0 extends WebViewClient {
             if (d1Var == null) {
                 f6Var = null;
             } else {
-                f6Var = d1Var.e;
+                f6Var = d1Var.f42070e;
             }
             AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(context, 0, f6Var);
-            alertDialog$Builder.f18446a.R = LocaleController.getString(R.string.ChromeCrashTitle);
-            alertDialog$Builder.f18446a.T = AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.ChromeCrashMessage), new u0(this, 0));
+            alertDialog$Builder.f20226a.R = LocaleController.getString(R.string.ChromeCrashTitle);
+            alertDialog$Builder.f20226a.T = AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.ChromeCrashMessage), new b(this, 3));
             alertDialog$Builder.k(LocaleController.getString(R.string.OK), null);
-            alertDialog$Builder.f18446a.setOnDismissListener(new g5(this, 8));
+            alertDialog$Builder.f20226a.setOnDismissListener(new r4(this, 8));
             alertDialog$Builder.o();
             return true;
-        } catch (Exception e) {
-            FileLog.e(e);
+        } catch (Exception e7) {
+            FileLog.e(e7);
             return false;
         }
     }
 
     @Override
     public final boolean shouldOverrideUrlLoading(WebView webView, String str) {
-        d1 d1Var = this.f38948b.e.Q;
+        d1 d1Var = this.f42288b.f42301e.Q;
         if (d1Var != null) {
-            d1Var.H(Uri.parse(str), null, !d1Var.f38754o0, false, false);
-            this.f38947a.destroy();
+            d1Var.H(Uri.parse(str), null, !d1Var.f42082o0, false, false);
+            this.f42287a.destroy();
         }
         return true;
     }

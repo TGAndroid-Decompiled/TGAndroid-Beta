@@ -1,60 +1,29 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_account;
-public final class ko0 implements wo0 {
-    public final Runnable f35315a;
-    public final yo0 f35316b;
-
-    public ko0(yo0 yo0Var, Runnable runnable) {
-        this.f35316b = yo0Var;
-        this.f35315a = runnable;
-    }
-
-    @Override
-    public final boolean c(String str, String str2, boolean z10, TLRPC.TL_inputPaymentCredentialsGooglePay tL_inputPaymentCredentialsGooglePay, TLRPC.TL_paymentSavedCredentialsCard tL_paymentSavedCredentialsCard) {
-        String str3;
-        yo0 yo0Var = this.f35316b;
-        yo0Var.f39983y0 = tL_paymentSavedCredentialsCard;
-        yo0Var.f39979w0 = str;
-        yo0Var.U0 = z10;
-        yo0Var.f39981x0 = str2;
-        yo0Var.J0 = tL_inputPaymentCredentialsGooglePay;
-        org.telegram.ui.Cells.d9[] d9VarArr = yo0Var.Y;
-        org.telegram.ui.Cells.d9 d9Var = d9VarArr[0];
-        if (d9Var != null) {
-            d9Var.setVisibility(0);
-            org.telegram.ui.Cells.d9 d9Var2 = d9VarArr[0];
-            String str4 = yo0Var.f39981x0;
-            if (str4 != null && str4.length() > 1) {
-                str3 = yo0Var.f39981x0.substring(0, 1).toUpperCase() + yo0Var.f39981x0.substring(1);
-            } else {
-                str3 = yo0Var.f39981x0;
-            }
-            d9Var2.b(R.drawable.msg_payment_card, str3, LocaleController.getString(R.string.PaymentCheckoutMethod), true);
-            org.telegram.ui.Cells.d9 d9Var3 = d9VarArr[1];
-            if (d9Var3 != null) {
-                d9Var3.setVisibility(0);
-            }
+import org.json.JSONObject;
+public final class ko0 extends JSONObject {
+    public ko0(xo0 xo0Var, int i10) {
+        switch (i10) {
+            case 3:
+                put("type", "PAYMENT_GATEWAY");
+                Object obj = xo0Var.M0;
+                if (obj != null) {
+                    put("parameters", obj);
+                    return;
+                }
+                JSONObject jSONObject = new JSONObject();
+                jSONObject.put("gateway", "stripe");
+                jSONObject.put("stripe:publishableKey", xo0Var.f42853j0);
+                jSONObject.put("stripe:version", "3.5.0");
+                put("parameters", jSONObject);
+                return;
+            default:
+                put("type", "DIRECT");
+                JSONObject jSONObject2 = new JSONObject();
+                jSONObject2.put("protocolVersion", "ECv2");
+                jSONObject2.put("publicKey", xo0Var.K0);
+                put("parameters", jSONObject2);
+                return;
         }
-        Runnable runnable = this.f35315a;
-        if (runnable != null) {
-            runnable.run();
-        }
-        return false;
-    }
-
-    @Override
-    public final void a(TL_account.Password password) {
-    }
-
-    @Override
-    public final void b() {
-    }
-
-    @Override
-    public final void d(TLRPC.TL_payments_validateRequestedInfo tL_payments_validateRequestedInfo) {
     }
 }

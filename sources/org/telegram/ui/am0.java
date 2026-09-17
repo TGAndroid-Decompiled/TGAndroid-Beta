@@ -6,97 +6,97 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class am0 implements View.OnClickListener {
-    public final int f31928a;
-    public final qn0 f31929b;
+    public final int f34506a;
+    public final pn0 f34507b;
 
-    public am0(qn0 qn0Var, int i10) {
-        this.f31928a = i10;
-        this.f31929b = qn0Var;
+    public am0(pn0 pn0Var, int i10) {
+        this.f34506a = i10;
+        this.f34507b = pn0Var;
     }
 
     @Override
     public final void onClick(View view) {
-        switch (this.f31928a) {
+        switch (this.f34506a) {
             case 0:
-                qn0 qn0Var = this.f31929b;
-                qn0Var.S0 = 2;
-                qn0Var.D1();
+                pn0 pn0Var = this.f34507b;
+                pn0Var.S0 = 2;
+                pn0Var.D1();
                 return;
             case 1:
-                this.f31929b.d1();
+                this.f34507b.d1();
                 return;
             case 2:
-                qn0 qn0Var2 = this.f31929b;
-                qn0Var2.S0 = 3;
-                qn0Var2.D1();
+                pn0 pn0Var2 = this.f34507b;
+                pn0Var2.S0 = 3;
+                pn0Var2.D1();
                 return;
             case 3:
-                qn0 qn0Var3 = this.f31929b;
-                qn0Var3.S0 = 1;
-                qn0Var3.D1();
+                pn0 pn0Var3 = this.f34507b;
+                pn0Var3.S0 = 1;
+                pn0Var3.D1();
                 return;
             case 4:
-                qn0 qn0Var4 = this.f31929b;
-                qn0Var4.S0 = 4;
-                qn0Var4.D1();
+                pn0 pn0Var4 = this.f34507b;
+                pn0Var4.S0 = 4;
+                pn0Var4.D1();
                 return;
             case 5:
-                qn0.e0(this.f31929b);
+                pn0.e0(this.f34507b);
                 return;
             case 6:
-                qn0 qn0Var5 = this.f31929b;
-                qn0Var5.f36955f = true;
-                qn0Var5.L.callOnClick();
-                qn0Var5.f36955f = false;
+                pn0 pn0Var5 = this.f34507b;
+                pn0Var5.f39590f = true;
+                pn0Var5.L.callOnClick();
+                pn0Var5.f39590f = false;
                 return;
             case 7:
-                qn0 qn0Var6 = this.f31929b;
-                qn0Var6.S0 = 0;
-                qn0Var6.D1();
+                pn0 pn0Var6 = this.f34507b;
+                pn0Var6.S0 = 0;
+                pn0Var6.D1();
                 return;
             case 8:
-                qn0 qn0Var7 = this.f31929b;
-                qn0Var7.S0 = 4;
-                qn0Var7.D1();
+                pn0 pn0Var7 = this.f34507b;
+                pn0Var7.S0 = 4;
+                pn0Var7.D1();
                 return;
             case 9:
-                this.f31929b.d1();
+                this.f34507b.d1();
                 return;
             case 10:
-                qn0.b0(this.f31929b);
+                pn0.b0(this.f34507b);
                 return;
             case 11:
-                qn0.c0(this.f31929b);
+                pn0.c0(this.f34507b);
                 return;
             case 12:
-                this.f31929b.C1();
+                this.f34507b.C1();
                 return;
             case 13:
-                qn0 qn0Var8 = this.f31929b;
-                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(qn0Var8.getParentActivity());
-                alertDialog$Builder.f18446a.R = LocaleController.getString(R.string.TelegramPassportDeleteTitle);
-                alertDialog$Builder.f18446a.T = LocaleController.getString(R.string.TelegramPassportDeleteAlert);
-                alertDialog$Builder.k(LocaleController.getString(R.string.Delete), new cm0(qn0Var8, 5));
+                pn0 pn0Var8 = this.f34507b;
+                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(pn0Var8.getParentActivity());
+                alertDialog$Builder.f20226a.R = LocaleController.getString(R.string.TelegramPassportDeleteTitle);
+                alertDialog$Builder.f20226a.T = LocaleController.getString(R.string.TelegramPassportDeleteAlert);
+                alertDialog$Builder.k(LocaleController.getString(R.string.Delete), new cm0(pn0Var8, 5));
                 alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
-                org.telegram.ui.ActionBar.c2 c2Var = alertDialog$Builder.f18446a;
-                qn0Var8.showDialog(c2Var);
-                TextView textView = (TextView) c2Var.d(-1);
+                org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20226a;
+                pn0Var8.showDialog(b2Var);
+                TextView textView = (TextView) b2Var.d(-1);
                 if (textView != null) {
-                    textView.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f19100q7, false));
+                    textView.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f20926q7, false));
                     return;
                 }
                 return;
             case 14:
-                this.f31929b.C1();
+                this.f34507b.C1();
                 return;
             case 15:
-                qn0.V(this.f31929b);
+                pn0.V(this.f34507b);
                 return;
             default:
-                qn0 qn0Var9 = this.f31929b;
-                qn0Var9.f36955f = true;
-                qn0Var9.L.callOnClick();
-                qn0Var9.f36955f = false;
+                pn0 pn0Var9 = this.f34507b;
+                pn0Var9.f39590f = true;
+                pn0Var9.L.callOnClick();
+                pn0Var9.f39590f = false;
                 return;
         }
     }

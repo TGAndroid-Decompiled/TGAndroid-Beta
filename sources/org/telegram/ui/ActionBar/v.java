@@ -1,25 +1,44 @@
 package org.telegram.ui.ActionBar;
 
-import android.graphics.Outline;
-import android.graphics.Path;
-import android.os.Build;
-import android.view.View;
-import android.view.ViewOutlineProvider;
 import org.telegram.messenger.AndroidUtilities;
-public final class v extends ViewOutlineProvider {
-    public final Path f19584a = new Path();
+public final class v implements Runnable {
+    public final boolean f21400a;
+    public final n2 f21401b;
+    public final n2 f21402c;
+    public final boolean d;
+    public final ActionBarLayout f21403e;
+
+    public v(ActionBarLayout actionBarLayout, boolean z10, n2 n2Var, n2 n2Var2, boolean z11) {
+        this.f21403e = actionBarLayout;
+        this.f21400a = z10;
+        this.f21401b = n2Var;
+        this.f21402c = n2Var2;
+        this.d = z11;
+    }
 
     @Override
-    public final void getOutline(View view, Outline outline) {
-        float dp = AndroidUtilities.dp(29.0f);
-        float dp2 = AndroidUtilities.dp(12.0f);
-        Path path = this.f19584a;
-        path.rewind();
-        path.addRoundRect(0.0f, 0.0f, view.getWidth(), view.getHeight(), new float[]{dp, dp, dp, dp, dp2, dp2, dp2, dp2}, Path.Direction.CW);
-        if (Build.VERSION.SDK_INT >= 30) {
-            outline.setPath(path);
-        } else {
-            outline.setConvexPath(path);
+    public final void run() {
+        ActionBarLayout actionBarLayout = this.f21403e;
+        if (actionBarLayout.d == this) {
+            actionBarLayout.d = null;
+            if (this.f21400a) {
+                n2 n2Var = this.f21401b;
+                if (n2Var != null) {
+                    n2Var.onTransitionAnimationStart(false, false);
+                }
+                this.f21402c.onTransitionAnimationStart(true, false);
+                actionBarLayout.d0(true, true, this.d);
+                return;
+            }
+            Runnable runnable = actionBarLayout.f20176e;
+            if (runnable != null) {
+                AndroidUtilities.cancelRunOnUIThread(runnable);
+                if (actionBarLayout.R0) {
+                    actionBarLayout.f20176e.run();
+                } else {
+                    AndroidUtilities.runOnUIThread(actionBarLayout.f20176e, 200L);
+                }
+            }
         }
     }
 }

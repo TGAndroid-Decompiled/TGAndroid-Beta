@@ -1,26 +1,39 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import org.telegram.tgnet.TLRPC;
-public final class f50 extends org.telegram.ui.Components.iq0 {
-    public final k60 f33551b1;
+import android.graphics.Canvas;
+import android.view.ViewGroup;
+import org.telegram.messenger.AndroidUtilities;
+public final class f50 extends org.telegram.ui.ActionBar.k {
+    public final org.telegram.ui.Components.qp f36294t1;
+    public final j60 f36295u1;
 
-    public f50(k60 k60Var, Context context, String str, String str2, String str3, String str4) {
-        super(context, null, str, str2, false, str3, str4, true);
-        this.f33551b1 = k60Var;
+    public f50(j60 j60Var, LaunchActivity launchActivity, org.telegram.ui.Components.qp qpVar) {
+        super(launchActivity, null);
+        this.f36295u1 = j60Var;
+        this.f36294t1 = qpVar;
     }
 
     @Override
-    public final void R0(a0.i iVar, int i10, TLRPC.TL_forumTopic tL_forumTopic, boolean z10) {
-        if (!z10) {
-            return;
+    public final void dispatchDraw(Canvas canvas) {
+        super.dispatchDraw(canvas);
+        if (getAdditionalSubtitleTextView().getVisibility() == 0) {
+            canvas.save();
+            canvas.translate(getSubtitleTextView().getLeft(), getSubtitleTextView().getY() - AndroidUtilities.dp(1.0f));
+            org.telegram.ui.Components.qp qpVar = this.f36294t1;
+            qpVar.f29820f = (int) (getAdditionalSubtitleTextView().getAlpha() * 255.0f);
+            qpVar.draw(canvas);
+            canvas.restore();
+            invalidate();
         }
-        int m10 = iVar.m();
-        k60 k60Var = this.f33551b1;
-        if (m10 == 1) {
-            k60Var.k1().m(((TLRPC.Dialog) iVar.n(0)).f18125id, Integer.valueOf(i10), 41);
-        } else {
-            k60Var.k1().k(0L, 41, Integer.valueOf(i10), Integer.valueOf(iVar.m()), null, null);
+    }
+
+    @Override
+    public final void setAlpha(float f7) {
+        ViewGroup viewGroup;
+        if (getAlpha() != f7) {
+            super.setAlpha(f7);
+            viewGroup = ((org.telegram.ui.ActionBar.f3) this.f36295u1).containerView;
+            viewGroup.invalidate();
         }
     }
 }

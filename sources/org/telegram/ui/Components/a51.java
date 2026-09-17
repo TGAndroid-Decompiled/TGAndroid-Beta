@@ -1,43 +1,38 @@
 package org.telegram.ui.Components;
 
-import java.util.ArrayList;
+import android.view.MotionEvent;
 import org.telegram.tgnet.TLRPC;
-public final class a51 implements ux0 {
-    public final TLRPC.InputStickerSet f22325a;
-    public final f51 f22326b;
+public abstract class a51 {
+    public String[] f24311a = new String[0];
 
-    public a51(f51 f51Var, TLRPC.InputStickerSet inputStickerSet) {
-        this.f22326b = f51Var;
-        this.f22325a = inputStickerSet;
+    public boolean a() {
+        return false;
     }
 
-    @Override
-    public final void a() {
-        f51 f51Var = this.f22326b;
-        s4.h0 adapter = f51Var.f23782n.getAdapter();
-        e51 e51Var = f51Var.f23784s;
-        TLRPC.InputStickerSet inputStickerSet = this.f22325a;
-        int i10 = 0;
-        if (adapter == e51Var) {
-            while (i10 < e51Var.e.size()) {
-                TLRPC.StickerSetCovered stickerSetCovered = (TLRPC.StickerSetCovered) e51Var.e.get(i10);
-                if (stickerSetCovered.set.f18148id == inputStickerSet.f18141id) {
-                    e51Var.F(stickerSetCovered, null);
-                    return;
-                }
-                i10++;
-            }
-            return;
-        }
-        gg.g2 g2Var = f51Var.v;
-        ArrayList arrayList = g2Var.E;
-        while (i10 < arrayList.size()) {
-            TLRPC.StickerSetCovered stickerSetCovered2 = (TLRPC.StickerSetCovered) arrayList.get(i10);
-            if (stickerSetCovered2.set.f18148id == inputStickerSet.f18141id) {
-                g2Var.F(stickerSetCovered2, null);
-                return;
-            }
-            i10++;
-        }
+    public String[] b() {
+        return this.f24311a;
+    }
+
+    public boolean c() {
+        return false;
+    }
+
+    public boolean d(t41 t41Var, MotionEvent motionEvent) {
+        return false;
+    }
+
+    public boolean e(t41 t41Var, k kVar, MotionEvent motionEvent) {
+        return false;
+    }
+
+    public abstract void g(TLRPC.StickerSetCovered stickerSetCovered, boolean z10);
+
+    public abstract void h(TLRPC.StickerSetCovered stickerSetCovered);
+
+    public void i(String[] strArr) {
+        this.f24311a = strArr;
+    }
+
+    public void f(TLRPC.Document document, Object obj, boolean z10, int i10) {
     }
 }

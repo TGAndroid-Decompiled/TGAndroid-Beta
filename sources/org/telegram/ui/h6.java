@@ -1,26 +1,16 @@
 package org.telegram.ui;
 
-import android.view.ViewTreeObserver;
-public final class h6 implements ViewTreeObserver.OnPreDrawListener {
-    public final int f34180a;
-    public final Object f34181b;
+import android.content.Context;
+public final class h6 extends org.telegram.ui.Components.nc0 {
+    public final z6 D0;
 
-    public h6(Object obj, int i10) {
-        this.f34180a = i10;
-        this.f34181b = obj;
+    public h6(z6 z6Var, Context context) {
+        super(context);
+        this.D0 = z6Var;
     }
 
     @Override
-    public final boolean onPreDraw() {
-        org.telegram.ui.ActionBar.k kVar;
-        switch (this.f34180a) {
-            case 0:
-                ((a7) this.f34181b).z0();
-                return true;
-            default:
-                kVar = ((org.telegram.ui.ActionBar.o2) ((cl) this.f34181b).d).actionBar;
-                kVar.invalidate();
-                return true;
-        }
+    public final void dispatchDraw(android.graphics.Canvas r8) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.h6.dispatchDraw(android.graphics.Canvas):void");
     }
 }

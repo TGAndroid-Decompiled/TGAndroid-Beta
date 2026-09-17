@@ -1,6 +1,5 @@
 package org.telegram.messenger.voip;
 
-import ai.s1;
 import android.graphics.Point;
 import java.nio.ByteBuffer;
 import java.util.concurrent.CountDownLatch;
@@ -126,9 +125,9 @@ public class NativeInstance {
 
     private void onEmitJoinPayload(String str, int i10) {
         try {
-            AndroidUtilities.runOnUIThread(new s1(this, i10, str, 19));
-        } catch (Exception e) {
-            FileLog.e(e);
+            AndroidUtilities.runOnUIThread(new ah.p(this, i10, str, 20));
+        } catch (Exception e7) {
+            FileLog.e(e7);
         }
     }
 
@@ -286,8 +285,8 @@ public class NativeInstance {
         stopNative();
         try {
             this.stopBarrier.await();
-        } catch (Exception e) {
-            FileLog.e(e);
+        } catch (Exception e7) {
+            FileLog.e(e7);
         }
         return this.finalState;
     }

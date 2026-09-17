@@ -2,27 +2,27 @@ package t7;
 
 import java.util.concurrent.Callable;
 public final class p implements Callable {
-    public final int f43051a;
-    public final qb.k f43052b;
+    public final int f46484a;
+    public final qb.k f46485b;
 
     public p(qb.k kVar, int i10) {
-        this.f43051a = i10;
-        this.f43052b = kVar;
+        this.f46484a = i10;
+        this.f46485b = kVar;
     }
 
     @Override
     public final Object call() {
-        switch (this.f43051a) {
+        switch (this.f46484a) {
             case 0:
-                return this.f43052b.a();
+                return this.f46485b.a();
             case 1:
-                return this.f43052b.a();
+                return this.f46485b.a();
             case 2:
-                return this.f43052b.a();
+                return this.f46485b.a();
             case 3:
-                return this.f43052b.a();
+                return this.f46485b.a();
             default:
-                return this.f43052b.a();
+                return this.f46485b.a();
         }
     }
 }

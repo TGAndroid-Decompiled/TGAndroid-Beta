@@ -2,12 +2,12 @@ package z7;
 
 import java.util.Arrays;
 public final class ra {
-    public final qa f48623a;
-    public final Integer f48624b;
+    public final qa f51259a;
+    public final Integer f51260b;
 
-    public ra(n7.a1 a1Var) {
-        this.f48623a = (qa) a1Var.f15118b;
-        this.f48624b = (Integer) a1Var.f15119c;
+    public ra(n7.z0 z0Var) {
+        this.f51259a = (qa) z0Var.f16730b;
+        this.f51260b = (Integer) z0Var.f16731c;
     }
 
     public final boolean equals(Object obj) {
@@ -18,13 +18,13 @@ public final class ra {
             return false;
         }
         ra raVar = (ra) obj;
-        if (n6.l.l(this.f48623a, raVar.f48623a) && n6.l.l(this.f48624b, raVar.f48624b) && n6.l.l(null, null) && n6.l.l(null, null)) {
+        if (n6.l.l(this.f51259a, raVar.f51259a) && n6.l.l(this.f51260b, raVar.f51260b) && n6.l.l(null, null) && n6.l.l(null, null)) {
             return true;
         }
         return false;
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{this.f48623a, this.f48624b, null, null});
+        return Arrays.hashCode(new Object[]{this.f51259a, this.f51260b, null, null});
     }
 }

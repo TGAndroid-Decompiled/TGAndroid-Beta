@@ -1,29 +1,24 @@
 package org.telegram.messenger;
-
-import org.telegram.tgnet.TLObject;
 public final class ra implements Runnable {
-    public final int f17227a;
-    public final MessagesController f17228b;
-    public final TLObject f17229c;
-    public final org.telegram.ui.ActionBar.i6 d;
-    public final org.telegram.ui.ActionBar.h6 e;
+    public final int f18920a;
+    public final Runnable f18921b;
 
-    public ra(MessagesController messagesController, TLObject tLObject, org.telegram.ui.ActionBar.i6 i6Var, org.telegram.ui.ActionBar.h6 h6Var, int i10) {
-        this.f17227a = i10;
-        this.f17228b = messagesController;
-        this.f17229c = tLObject;
-        this.d = i6Var;
-        this.e = h6Var;
+    public ra(int i10, Runnable runnable) {
+        this.f18920a = i10;
+        this.f18921b = runnable;
     }
 
     @Override
     public final void run() {
-        switch (this.f17227a) {
+        switch (this.f18920a) {
             case 0:
-                this.f17228b.lambda$didReceivedNotification$46(this.f17229c, this.d, this.e);
+                MessagesController.lambda$unblockPeer$110(this.f18921b);
+                return;
+            case 1:
+                this.f18921b.run();
                 return;
             default:
-                this.f17228b.lambda$didReceivedNotification$48(this.f17229c, this.d, this.e);
+                SendMessagesHelper.h0(this.f18921b);
                 return;
         }
     }

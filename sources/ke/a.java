@@ -7,11 +7,11 @@ import android.view.animation.DecelerateInterpolator;
 import android.view.animation.LinearInterpolator;
 import android.view.animation.OvershootInterpolator;
 public abstract class a {
-    public static final DecelerateInterpolator f13590a;
+    public static final DecelerateInterpolator f14926a;
 
     static {
         new AnticipateOvershootInterpolator();
-        f13590a = new DecelerateInterpolator();
+        f14926a = new DecelerateInterpolator();
         new AccelerateInterpolator();
         new DecelerateInterpolator(1.78f);
         new LinearInterpolator();

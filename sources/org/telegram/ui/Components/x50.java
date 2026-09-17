@@ -1,5 +1,5 @@
 package org.telegram.ui.Components;
-public abstract class x50 extends do0 {
+public abstract class x50 extends co0 {
     @Override
     public final boolean a() {
         if (j() > 0) {

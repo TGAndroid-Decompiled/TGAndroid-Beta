@@ -1,41 +1,55 @@
 package ah;
 
-import android.graphics.RenderNode;
-public final class l {
-    public final RenderNode f477a;
-    public final k f478b;
-    public final a f479c = new Object();
-    public long d = 0;
-    public int e;
-    public int f480f;
+import android.view.ViewGroup;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.messenger.R;
+import org.telegram.ui.Components.pr;
+public final class l implements Runnable {
+    public final int f641a;
+    public final b0 f642b;
 
-    public l(RenderNode renderNode, k kVar) {
-        this.f477a = renderNode;
-        this.f478b = kVar;
+    public l(b0 b0Var, int i10) {
+        this.f641a = i10;
+        this.f642b = b0Var;
     }
 
-    public final void a() {
-        long j3;
-        int width = this.f477a.getWidth();
-        int height = this.f477a.getHeight();
-        a aVar = this.f479c;
-        aVar.f418b = 0L;
-        boolean z10 = false;
-        aVar.f417a = false;
-        k kVar = this.f478b;
-        kVar.m(aVar);
-        if (aVar.f417a) {
-            j3 = -1;
-        } else {
-            j3 = aVar.f418b;
-        }
-        z10 = (this.f477a.hasDisplayList() && width == this.e && height == this.f480f && j3 == this.d && j3 != -1) ? true : true;
-        this.e = width;
-        this.f480f = height;
-        this.d = j3;
-        if (z10) {
-            kVar.b(this.f477a.beginRecording());
-            this.f477a.endRecording();
+    @Override
+    public final void run() {
+        int i10 = this.f641a;
+        b0 b0Var = this.f642b;
+        switch (i10) {
+            case 0:
+                b0Var.f460n.requestFocus();
+                return;
+            case 1:
+                b0Var.finishFragment();
+                return;
+            case 2:
+                if (!b0Var.K) {
+                    b0Var.K = true;
+                    NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.stopAllHeavyOperations, 512);
+                    int measuredHeight = b0Var.f457c.getMeasuredHeight();
+                    ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) b0Var.f465y.getLayoutParams();
+                    marginLayoutParams.bottomMargin = measuredHeight;
+                    b0Var.f465y.setLayoutParams(marginLayoutParams);
+                    b0Var.f457c.setVisibility(0);
+                    y yVar = b0Var.f457c;
+                    yVar.setTranslationY(yVar.getMeasuredHeight());
+                    b0Var.f457c.animate().setListener(null).cancel();
+                    b0Var.f457c.animate().translationY(0.0f).withLayer().setDuration(350L).setInterpolator(pr.f29494f).setUpdateListener(new n(b0Var, 0)).setListener(new a0(0)).start();
+                    return;
+                }
+                return;
+            case 3:
+                of.f.s(b0Var.getParentActivity(), "https://t.me/stickers");
+                return;
+            case 4:
+                of.f.s(b0Var.getParentActivity(), LocaleController.getString(R.string.ChannelEnablePaidReactionsInfoLink));
+                return;
+            default:
+                b0Var.Y(false);
+                return;
         }
     }
 }

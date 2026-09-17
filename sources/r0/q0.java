@@ -8,9 +8,9 @@ import android.view.animation.PathInterpolator;
 import java.util.Iterator;
 import java.util.List;
 public final class q0 extends u0 {
-    public static final PathInterpolator e = new PathInterpolator(0.0f, 1.1f, 0.0f, 1.0f);
-    public static final u1.a f41887f = new u1.b(u1.a.f43319c);
-    public static final DecelerateInterpolator f41888g = new DecelerateInterpolator(1.5f);
+    public static final PathInterpolator f44751e = new PathInterpolator(0.0f, 1.1f, 0.0f, 1.0f);
+    public static final u1.a f44752f = new u1.b(u1.a.f46630c);
+    public static final DecelerateInterpolator f44753g = new DecelerateInterpolator(1.5f);
     public static final AccelerateInterpolator h = new AccelerateInterpolator(1.5f);
 
     public static void e(View view, v0 v0Var) {
@@ -28,7 +28,7 @@ public final class q0 extends u0 {
     public static void f(View view, l1 l1Var, boolean z10) {
         b2.g i10 = i(view);
         if (i10 != null) {
-            i10.f3000a = l1Var;
+            i10.f2068a = l1Var;
             if (!z10) {
                 z10 = true;
             }
@@ -56,14 +56,14 @@ public final class q0 extends u0 {
     public static void h(View view, v0 v0Var, o0.a aVar) {
         b2.g i10 = i(view);
         if (i10 != null) {
-            ph.e eVar = (ph.e) i10;
-            if (eVar.f41084c == 0) {
+            qh.e eVar = (qh.e) i10;
+            if (eVar.f44675c == 0) {
                 Iterator it = eVar.d.iterator();
                 while (it.hasNext()) {
-                    ((ph.d) it.next()).s();
+                    ((qh.d) it.next()).s();
                 }
             }
-            eVar.f41084c++;
+            eVar.f44675c++;
         } else if (view instanceof ViewGroup) {
             ViewGroup viewGroup = (ViewGroup) view;
             for (int i11 = 0; i11 < viewGroup.getChildCount(); i11++) {
@@ -75,7 +75,7 @@ public final class q0 extends u0 {
     public static b2.g i(View view) {
         Object tag = view.getTag(2131296698);
         if (tag instanceof p0) {
-            return ((p0) tag).f41884a;
+            return ((p0) tag).f44748a;
         }
         return null;
     }

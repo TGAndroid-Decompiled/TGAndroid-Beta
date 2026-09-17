@@ -1,43 +1,38 @@
 package yh;
+public final class f1 implements Runnable {
+    public final int f50299a;
+    public final h1 f50300b;
+    public final boolean f50301c;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class f1 implements RequestDelegate {
-    public final int f47164a = 1;
-    public final a4 f47165b;
-    public final long f47166c;
-    public final long d;
-    public final long e;
-    public final Object f47167f;
-
-    public f1(a4 a4Var, long j3, long j10, Utilities.Callback callback, long j11) {
-        this.f47165b = a4Var;
-        this.f47166c = j3;
-        this.d = j10;
-        this.f47167f = callback;
-        this.e = j11;
+    public f1(h1 h1Var, boolean z10, int i10) {
+        this.f50299a = i10;
+        this.f50300b = h1Var;
+        this.f50301c = z10;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f47164a) {
+    public final void run() {
+        switch (this.f50299a) {
             case 0:
-                AndroidUtilities.runOnUIThread(new p1(this.f47165b, (org.telegram.ui.ActionBar.c2) this.f47167f, tLObject, this.f47166c, this.d, this.e, tL_error));
-                return;
+                boolean z10 = this.f50301c;
+                h1 h1Var = this.f50300b;
+                if (!z10) {
+                    h1Var.G.setVisibility(8);
+                    return;
+                } else {
+                    h1Var.getClass();
+                    return;
+                }
             default:
-                AndroidUtilities.runOnUIThread(new p1(this.f47165b, tLObject, this.f47166c, this.d, (Utilities.Callback) this.f47167f, tL_error, this.e));
-                return;
+                boolean z11 = this.f50301c;
+                h1 h1Var2 = this.f50300b;
+                if (!z11) {
+                    h1Var2.v.setVisibility(8);
+                    return;
+                } else {
+                    h1Var2.getClass();
+                    return;
+                }
         }
-    }
-
-    public f1(a4 a4Var, org.telegram.ui.ActionBar.c2 c2Var, long j3, long j10, long j11) {
-        this.f47165b = a4Var;
-        this.f47167f = c2Var;
-        this.f47166c = j3;
-        this.d = j10;
-        this.e = j11;
     }
 }

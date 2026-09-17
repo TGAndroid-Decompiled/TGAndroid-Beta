@@ -107,7 +107,7 @@ public class CacheByChatsController {
         if (!this.gotKeepMediaByTypes) {
             this.gotKeepMediaByTypes = true;
             for (int i11 = 0; i11 < 4; i11++) {
-                this.keepMediaByTypes[i11] = SharedConfig.getPreferences().getInt(hg.k0.i(i11, "keep_media_type_"), getDefault(i11));
+                this.keepMediaByTypes[i11] = SharedConfig.getPreferences().getInt(i2.g.i(i11, "keep_media_type_"), getDefault(i11));
             }
         }
         int i12 = this.keepMediaByTypes[i10];
@@ -188,7 +188,7 @@ public class CacheByChatsController {
     }
 
     public void saveKeepMediaExceptions(int i10, ArrayList<KeepMediaException> arrayList) {
-        String i11 = hg.k0.i(i10, "keep_media_exceptions_");
+        String i11 = i2.g.i(i10, "keep_media_exceptions_");
         if (arrayList.isEmpty()) {
             UserConfig.getInstance(this.currentAccount).getPreferences().edit().remove(i11).apply();
             return;
@@ -208,7 +208,7 @@ public class CacheByChatsController {
         if (!this.gotKeepMediaByTypes) {
             this.gotKeepMediaByTypes = true;
             for (int i12 = 0; i12 < 4; i12++) {
-                this.keepMediaByTypes[i12] = SharedConfig.getPreferences().getInt(hg.k0.i(i12, "keep_media_type_"), getDefault(i12));
+                this.keepMediaByTypes[i12] = SharedConfig.getPreferences().getInt(i2.g.i(i12, "keep_media_type_"), getDefault(i12));
             }
         }
         this.keepMediaByTypes[i10] = i11;

@@ -2,15 +2,15 @@ package zd;
 
 import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
 public final class p1 extends ee.b {
-    public final k1 f48941b;
-    public v1 f48942c;
+    public final k1 f51615b;
+    public v1 f51616c;
     public final u1 d;
-    public final a1 e;
+    public final a1 f51617e;
 
     public p1(k1 k1Var, u1 u1Var, a1 a1Var) {
         this.d = u1Var;
-        this.e = a1Var;
-        this.f48941b = k1Var;
+        this.f51617e = a1Var;
+        this.f51615b = k1Var;
     }
 
     @Override
@@ -23,21 +23,21 @@ public final class p1 extends ee.b {
         } else {
             z10 = false;
         }
-        k1 k1Var = this.f48941b;
+        k1 k1Var = this.f51615b;
         if (z10) {
             a1Var = k1Var;
         } else {
-            a1Var = this.f48942c;
+            a1Var = this.f51616c;
         }
         if (a1Var != null) {
-            AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = ee.k.f8187a;
+            AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = ee.k.f9107a;
             while (!atomicReferenceFieldUpdater.compareAndSet(kVar, this, a1Var)) {
                 if (atomicReferenceFieldUpdater.get(kVar) != this) {
                     return;
                 }
             }
             if (z10) {
-                v1 v1Var = this.f48942c;
+                v1 v1Var = this.f51616c;
                 kotlin.jvm.internal.i.b(v1Var);
                 k1Var.e(v1Var);
             }
@@ -45,11 +45,11 @@ public final class p1 extends ee.b {
     }
 
     @Override
-    public final ee.v c(Object obj) {
+    public final d9.f c(Object obj) {
         ee.k kVar = (ee.k) obj;
-        if (this.d.u() == this.e) {
+        if (this.d.u() == this.f51617e) {
             return null;
         }
-        return ee.a.e;
+        return ee.a.f9091e;
     }
 }

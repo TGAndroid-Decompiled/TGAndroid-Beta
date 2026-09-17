@@ -6,43 +6,43 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 import java.util.concurrent.Semaphore;
 public final class a implements Iterator {
-    public int f40777a;
-    public Object f40778b;
-    public final b f40779c;
+    public int f44055a;
+    public Object f44056b;
+    public final b f44057c;
 
     public a(b bVar) {
-        this.f40779c = bVar;
-        this.f40777a = bVar.f40781b.size();
+        this.f44057c = bVar;
+        this.f44055a = bVar.f44059b.size();
     }
 
     @Override
     public final boolean hasNext() {
         int i10;
-        synchronized (this.f40779c.f40781b) {
+        synchronized (this.f44057c.f44059b) {
             try {
-                this.f40778b = null;
+                this.f44056b = null;
                 while (true) {
-                    if (this.f40778b != null || (i10 = this.f40777a) <= 0) {
+                    if (this.f44056b != null || (i10 = this.f44055a) <= 0) {
                         break;
                     }
-                    ArrayList arrayList = this.f40779c.f40781b;
+                    ArrayList arrayList = this.f44057c.f44059b;
                     int i11 = i10 - 1;
-                    this.f40777a = i11;
+                    this.f44055a = i11;
                     Reference reference = (Reference) arrayList.get(i11);
                     Object obj = reference.get();
-                    if (obj != null && !this.f40779c.f40782c.contains(reference)) {
-                        this.f40778b = obj;
+                    if (obj != null && !this.f44057c.f44060c.contains(reference)) {
+                        this.f44056b = obj;
                         break;
                     }
                 }
-                if (this.f40778b == null) {
-                    b bVar = this.f40779c;
-                    if (bVar.f40780a) {
-                        ArrayList arrayList2 = bVar.f40781b;
+                if (this.f44056b == null) {
+                    b bVar = this.f44057c;
+                    if (bVar.f44058a) {
+                        ArrayList arrayList2 = bVar.f44059b;
                         ArrayList arrayList3 = bVar.d;
-                        ArrayList arrayList4 = bVar.f40782c;
-                        if (bVar.e) {
-                            bVar.e = false;
+                        ArrayList arrayList4 = bVar.f44060c;
+                        if (bVar.f44061e) {
+                            bVar.f44061e = false;
                             if (!arrayList4.isEmpty()) {
                                 arrayList2.removeAll(arrayList4);
                                 arrayList4.clear();
@@ -60,8 +60,8 @@ public final class a implements Iterator {
                 throw th2;
             }
         }
-        if (this.f40778b == null) {
-            Semaphore semaphore = this.f40779c.f40783f;
+        if (this.f44056b == null) {
+            Semaphore semaphore = this.f44057c.f44062f;
             if (semaphore != null) {
                 semaphore.release();
             }
@@ -72,7 +72,7 @@ public final class a implements Iterator {
 
     @Override
     public final Object next() {
-        Object obj = this.f40778b;
+        Object obj = this.f44056b;
         if (obj != null) {
             return obj;
         }

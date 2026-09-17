@@ -2,58 +2,29 @@ package org.telegram.ui;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
-import android.view.ViewGroup;
-import java.lang.reflect.Method;
-import org.telegram.messenger.FileLog;
 public final class fu0 extends AnimatorListenerAdapter {
-    public final int f33758a;
-    public final org.telegram.ui.Components.fm0 f33759b;
+    public final gu0 f36502a;
 
-    public fu0(org.telegram.ui.Components.fm0 fm0Var, int i10) {
-        this.f33758a = i10;
-        this.f33759b = fm0Var;
+    public fu0(gu0 gu0Var) {
+        this.f36502a = gu0Var;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        switch (this.f33758a) {
-            case 0:
-                PhotoViewer photoViewer = (PhotoViewer) this.f33759b.f23963b;
-                photoViewer.Q1.getNextView().setText((CharSequence) null);
-                du0 du0Var = photoViewer.T1;
-                du0Var.f37032l0 = false;
-                if (du0Var.m0 >= 0) {
-                    ((ViewGroup.MarginLayoutParams) du0Var.f37034o0.getLayoutParams()).topMargin = du0Var.m0;
-                    du0Var.m0 = -1;
-                    du0Var.requestLayout();
-                    return;
-                }
-                return;
-            default:
-                ((PhotoViewer) this.f33759b.f23963b).Q1.setTranslationY(0.0f);
-                return;
+        super.onAnimationEnd(animator);
+        gu0 gu0Var = this.f36502a;
+        PhotoViewer photoViewer = gu0Var.f36818c;
+        photoViewer.f33658n4 = 0;
+        photoViewer.F1();
+        photoViewer.L0.setAlpha(255);
+        photoViewer.f33577e0.invalidate();
+        photoViewer.P0.setTranslationY(0.0f);
+        if (photoViewer.f33712t4) {
+            PhotoViewer.a0(photoViewer, gu0Var.f36817b.intValue());
         }
-    }
-
-    @Override
-    public void onAnimationStart(Animator animator) {
-        switch (this.f33758a) {
-            case 0:
-                du0 du0Var = ((PhotoViewer) this.f33759b.f23963b).T1;
-                Method method = du0Var.f37026f0;
-                if (method != null) {
-                    try {
-                        method.invoke(du0Var, null);
-                        return;
-                    } catch (Exception e) {
-                        FileLog.e(e);
-                        return;
-                    }
-                }
-                return;
-            default:
-                super.onAnimationStart(animator);
-                return;
+        av0 av0Var = gu0Var.f36816a;
+        if (av0Var != null) {
+            av0Var.d();
         }
     }
 }

@@ -1,73 +1,91 @@
 package org.telegram.ui;
 
-import android.os.Bundle;
-import java.util.regex.Pattern;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.R;
-import org.telegram.messenger.UserConfig;
-import org.telegram.tgnet.tl.TL_stories;
-public final class wa0 implements e2.h {
-    public final int f38628a;
-    public final int f38629b;
-    public final Object f38630c;
-    public final Object d;
-    public final Object e;
+import android.graphics.Canvas;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import android.widget.RelativeLayout;
+import java.util.WeakHashMap;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.ActionBar.ActionBarLayout;
+public final class wa0 extends RelativeLayout {
+    public i0.c f41892a;
+    public boolean f41893b;
+    public final LaunchActivity f41894c;
 
-    public wa0(Object obj, Object obj2, Object obj3, int i10, int i11) {
-        this.f38628a = i11;
-        this.f38630c = obj;
-        this.d = obj2;
-        this.e = obj3;
-        this.f38629b = i10;
+    public wa0(LaunchActivity launchActivity, LaunchActivity launchActivity2) {
+        super(launchActivity2);
+        this.f41894c = launchActivity;
+        this.f41892a = i0.c.f11450e;
+        iu iuVar = new iu(this, 15);
+        WeakHashMap weakHashMap = r0.i0.f44726a;
+        r0.a0.j(this, iuVar);
     }
 
     @Override
-    public final void accept(Object obj) {
-        boolean z10;
-        int i10 = this.f38628a;
-        Object obj2 = this.e;
-        Object obj3 = this.d;
-        Object obj4 = this.f38630c;
-        switch (i10) {
-            case 0:
-                LaunchActivity launchActivity = (LaunchActivity) obj4;
-                oa0 oa0Var = (oa0) obj3;
-                Long l4 = (Long) obj2;
-                TL_stories.TL_storyAlbum tL_storyAlbum = (TL_stories.TL_storyAlbum) obj;
-                Pattern pattern = LaunchActivity.B1;
-                try {
-                    oa0Var.run();
-                } catch (Exception e) {
-                    FileLog.e(e);
-                }
-                LaunchActivity.R();
-                if (tL_storyAlbum == null) {
-                    org.telegram.ui.Components.vc X = org.telegram.ui.Components.vc.X();
-                    if (X != null) {
-                        org.telegram.messenger.w1.o(R.string.StoryAlbumNotFound, X, R.raw.story_bomb2, 36);
-                        return;
-                    }
-                    return;
-                }
-                Bundle bundle = new Bundle();
-                if (l4.longValue() > 0) {
-                    bundle.putLong("user_id", l4.longValue());
-                    if (l4.longValue() == UserConfig.getInstance(launchActivity.O).getClientUserId()) {
-                        z10 = true;
-                    } else {
-                        z10 = false;
-                    }
-                    bundle.putBoolean("my_profile", z10);
-                } else {
-                    bundle.putLong("chat_id", -l4.longValue());
-                }
-                bundle.putInt("open_story_album_id", this.f38629b);
-                launchActivity.p0(new ProfileActivity(bundle, null));
-                return;
-            default:
-                a5.a aVar = (a5.a) obj4;
-                ((u2.k0) obj).h(aVar.f277b, (u2.f0) aVar.f278c, (u2.t) obj3, (u2.b0) obj2, this.f38629b);
-                return;
+    public final void dispatchDraw(Canvas canvas) {
+        ActionBarLayout actionBarLayout = this.f41894c.f33483r0;
+        if (actionBarLayout != null) {
+            actionBarLayout.N(canvas, this);
         }
+        super.dispatchDraw(canvas);
+    }
+
+    @Override
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        int measuredWidth = getMeasuredWidth();
+        getMeasuredHeight();
+        boolean z11 = AndroidUtilities.isInMultiwindow;
+        LaunchActivity launchActivity = this.f41894c;
+        if (!z11 && (!AndroidUtilities.isSmallTablet() || getResources().getConfiguration().orientation == 2)) {
+            i0.c cVar = this.f41892a;
+            int tabletLeftFragmentSize = AndroidUtilities.getTabletLeftFragmentSize(measuredWidth, cVar.f11451a, cVar.f11453c);
+            launchActivity.f33481q0.getView().layout(0, 0, launchActivity.f33481q0.getView().getMeasuredWidth(), launchActivity.f33481q0.getView().getMeasuredHeight());
+            launchActivity.f33485s0.getView().layout(tabletLeftFragmentSize, 0, launchActivity.f33485s0.getView().getMeasuredWidth() + tabletLeftFragmentSize, launchActivity.f33485s0.getView().getMeasuredHeight());
+        } else {
+            launchActivity.f33481q0.getView().layout(0, 0, launchActivity.f33481q0.getView().getMeasuredWidth(), launchActivity.f33481q0.getView().getMeasuredHeight());
+        }
+        int measuredWidth2 = (measuredWidth - launchActivity.f33483r0.getView().getMeasuredWidth()) / 2;
+        int dp = AndroidUtilities.dp(8.0f) + this.f41892a.f11452b;
+        launchActivity.f33483r0.getView().layout(measuredWidth2, dp, launchActivity.f33483r0.getView().getMeasuredWidth() + measuredWidth2, launchActivity.f33483r0.getView().getMeasuredHeight() + dp);
+        ig.q1 q1Var = launchActivity.f33491v0;
+        q1Var.layout(0, 0, q1Var.getMeasuredWidth(), launchActivity.f33491v0.getMeasuredHeight());
+        FrameLayout frameLayout = launchActivity.f33489u0;
+        frameLayout.layout(0, 0, frameLayout.getMeasuredWidth(), launchActivity.f33489u0.getMeasuredHeight());
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        this.f41893b = true;
+        int size = View.MeasureSpec.getSize(i10);
+        int size2 = View.MeasureSpec.getSize(i11);
+        setMeasuredDimension(size, size2);
+        boolean z10 = AndroidUtilities.isInMultiwindow;
+        LaunchActivity launchActivity = this.f41894c;
+        if (!z10 && (!AndroidUtilities.isSmallTablet() || getResources().getConfiguration().orientation == 2)) {
+            launchActivity.O0 = false;
+            i0.c cVar = this.f41892a;
+            int tabletLeftFragmentSize = AndroidUtilities.getTabletLeftFragmentSize(size, cVar.f11451a, cVar.f11453c);
+            launchActivity.f33481q0.getView().measure(View.MeasureSpec.makeMeasureSpec(tabletLeftFragmentSize, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
+            launchActivity.f33485s0.getView().measure(View.MeasureSpec.makeMeasureSpec(size - tabletLeftFragmentSize, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
+        } else {
+            launchActivity.O0 = true;
+            launchActivity.f33481q0.getView().measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
+        }
+        launchActivity.f33491v0.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
+        launchActivity.f33489u0.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
+        ViewGroup view = launchActivity.f33483r0.getView();
+        int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(Math.min(AndroidUtilities.dp(500.0f), size - AndroidUtilities.dp(16.0f)), 1073741824);
+        i0.c cVar2 = this.f41892a;
+        view.measure(makeMeasureSpec, View.MeasureSpec.makeMeasureSpec(((size2 - cVar2.f11452b) - cVar2.d) - AndroidUtilities.dp(16.0f), 1073741824));
+        this.f41893b = false;
+    }
+
+    @Override
+    public final void requestLayout() {
+        if (this.f41893b) {
+            return;
+        }
+        super.requestLayout();
     }
 }

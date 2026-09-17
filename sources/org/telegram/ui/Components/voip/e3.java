@@ -1,22 +1,42 @@
 package org.telegram.ui.Components.voip;
 
-import android.graphics.Canvas;
-import android.view.View;
-import org.telegram.ui.Components.bw0;
-public final class e3 extends View {
-    public bw0 f28918a;
-    public boolean f28919b;
+import android.animation.ValueAnimator;
+public final class e3 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f31502a;
+    public final h3 f31503b;
 
-    @Override
-    public final void onDraw(Canvas canvas) {
-        bw0 bw0Var;
-        if (!this.f28919b && (bw0Var = this.f28918a) != null) {
-            bw0Var.b(canvas, this);
-        }
+    public e3(h3 h3Var, int i10) {
+        this.f31502a = i10;
+        this.f31503b = h3Var;
     }
 
-    public void setState(boolean z10) {
-        this.f28919b = z10;
-        invalidate();
+    @Override
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f31502a) {
+            case 0:
+                h3 h3Var = this.f31503b;
+                h3Var.getClass();
+                h3Var.G = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                h3Var.invalidate();
+                return;
+            case 1:
+                h3 h3Var2 = this.f31503b;
+                h3Var2.getClass();
+                h3Var2.f31566w = ((Integer) valueAnimator.getAnimatedValue()).intValue();
+                h3Var2.invalidate();
+                return;
+            case 2:
+                h3 h3Var3 = this.f31503b;
+                h3Var3.getClass();
+                h3Var3.f31565s = ((Integer) valueAnimator.getAnimatedValue()).intValue();
+                h3Var3.invalidate();
+                return;
+            default:
+                h3 h3Var4 = this.f31503b;
+                h3Var4.getClass();
+                h3Var4.f31564r = ((Integer) valueAnimator.getAnimatedValue()).intValue();
+                h3Var4.invalidate();
+                return;
+        }
     }
 }

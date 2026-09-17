@@ -1,67 +1,54 @@
 package org.telegram.ui.Components;
 
-import android.animation.ValueAnimator;
-import android.widget.FrameLayout;
-import org.telegram.messenger.AndroidUtilities;
-public abstract class to extends FrameLayout {
-    public i81 f28169a;
-    public float f28170b;
-    public boolean f28171c;
-    public float d;
-    public ValueAnimator e;
+import org.telegram.ui.bb1;
+public final class to implements Runnable {
+    public final int f30696a;
+    public final lp f30697b;
 
-    public abstract void a(boolean z10);
-
-    public final void b(boolean z10) {
-        float f7;
-        this.f28171c = z10;
-        ValueAnimator valueAnimator = this.e;
-        if (valueAnimator != null) {
-            this.e = null;
-            valueAnimator.cancel();
-        }
-        if (z10) {
-            setVisibility(0);
-        }
-        float f10 = this.d;
-        if (z10) {
-            f7 = 1.0f;
-        } else {
-            f7 = 0.0f;
-        }
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(f10, f7);
-        this.e = ofFloat;
-        ofFloat.addUpdateListener(new i6(this, 12));
-        this.e.setInterpolator(qr.h);
-        this.e.setDuration(320L);
-        this.e.addListener(new aa(4, this, z10));
-        this.e.start();
-    }
-
-    public int getCurrentHeight() {
-        return (int) (getMeasuredHeight() * this.f28170b);
+    public to(lp lpVar, int i10) {
+        this.f30696a = i10;
+        this.f30697b = lpVar;
     }
 
     @Override
-    public final boolean isShown() {
-        return this.f28171c;
-    }
-
-    public void setShown(float f7) {
-        this.f28170b = f7;
-        i81 i81Var = this.f28169a;
-        if (i81Var != null) {
-            i81Var.setPivotX(i81Var.getWidth() / 2.0f);
-            this.f28169a.setPivotY(0.0f);
-            this.f28169a.setScaleX(AndroidUtilities.lerp(0.8f, 1.0f, f7));
-            this.f28169a.setScaleY(AndroidUtilities.lerp(0.8f, 1.0f, f7));
+    public final void run() {
+        switch (this.f30696a) {
+            case 0:
+                this.f30697b.h.l();
+                return;
+            case 1:
+                this.f30697b.s(true);
+                return;
+            case 2:
+                lp lpVar = this.f30697b;
+                org.telegram.ui.co coVar = lpVar.v;
+                org.telegram.ui.ActionBar.n2 d02 = bb1.d0(coVar.getMessagesController().getChat(Long.valueOf(-coVar.a())), true);
+                ?? obj = new Object();
+                obj.f21170a = true;
+                d02.setResourceProvider(coVar.getResourceProvider());
+                obj.f21172c = new ue(3);
+                obj.d = new to(lpVar, 3);
+                obj.f21171b = new to(lpVar, 4);
+                obj.f21173e = true;
+                lpVar.X = d02;
+                coVar.showAsSheet(d02, obj);
+                return;
+            case 3:
+                this.f30697b.u();
+                return;
+            case 4:
+                this.f30697b.X = null;
+                return;
+            case 5:
+                this.f30697b.u();
+                return;
+            case 6:
+                this.f30697b.X = null;
+                return;
+            default:
+                lp lpVar2 = this.f30697b;
+                lpVar2.U.f(lpVar2.G, true);
+                return;
         }
-        setAlpha(f7);
-        invalidate();
-    }
-
-    public void setTabs(i81 i81Var) {
-        this.f28169a = i81Var;
-        addView(i81Var, w7.x5.c(-1.0f, -1));
     }
 }

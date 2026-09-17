@@ -1,15 +1,15 @@
 package a3;
 public final class z {
-    public long f202a;
-    public long f203b;
+    public long f218a;
+    public long f219b;
 
     public z(long j3, long j10) {
-        this.f202a = j3;
-        this.f203b = j10;
+        this.f218a = j3;
+        this.f219b = j10;
     }
 
     public z() {
-        this.f202a = -9223372036854775807L;
-        this.f203b = -9223372036854775807L;
+        this.f218a = -9223372036854775807L;
+        this.f219b = -9223372036854775807L;
     }
 }

@@ -1,28 +1,16 @@
 package org.telegram.ui;
-public final class hd1 implements od1 {
-    public boolean f34240a;
-    public final bo f34241b;
 
-    public hd1(bo boVar, boolean z10) {
-        this.f34241b = boVar;
-        this.f34240a = z10;
+import android.widget.EditText;
+public final class hd1 extends org.telegram.ui.ActionBar.g5 {
+    @Override
+    public final void m() {
     }
 
     @Override
-    public final boolean Y0() {
-        return true;
+    public final void n() {
     }
 
     @Override
-    public final boolean a() {
-        return this.f34240a;
-    }
-
-    @Override
-    public final void o1(boolean z10) {
-        boolean z11 = !this.f34240a;
-        this.f34240a = z11;
-        zn znVar = this.f34241b.f32275ea;
-        znVar.i(znVar.f40280f, znVar.h, z10, Boolean.valueOf(z11), false);
+    public final void q(EditText editText) {
     }
 }

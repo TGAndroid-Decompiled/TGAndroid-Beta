@@ -1,52 +1,30 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.widget.ImageView;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.R;
-public final class p21 extends AnimatorListenerAdapter {
-    public final boolean f26918a;
-    public final y21 f26919b;
+import android.animation.ValueAnimator;
+public final class p21 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f29293a;
+    public final r21 f29294b;
 
-    public p21(y21 y21Var, boolean z10) {
-        this.f26919b = y21Var;
-        this.f26918a = z10;
+    public p21(r21 r21Var, int i10) {
+        this.f29293a = i10;
+        this.f29294b = r21Var;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        float f7;
-        int i10;
-        y21 y21Var = this.f26919b;
-        long j3 = y21Var.f30100c;
-        if (y21Var.U == animator) {
-            boolean z10 = this.f26918a;
-            if (z10) {
-                f7 = 1.0f;
-            } else {
-                f7 = 0.0f;
-            }
-            y21Var.R = f7;
-            y21Var.n();
-            y21Var.S = false;
-            ImageView imageView = y21Var.E;
-            if (y21Var.P) {
-                i10 = R.drawable.menu_sidebar_top;
-            } else {
-                i10 = R.drawable.menu_sidebar_bottom;
-            }
-            imageView.setImageResource(i10);
-            y21Var.U = null;
-            MessagesController.getInstance(y21Var.f30098b).getMainSettings().edit().putBoolean(a4.a.o(j3, "topicssidetabs"), y21Var.Q).putBoolean(a4.a.o(j3, "topicssidetabsb"), y21Var.P).apply();
-            Boolean bool = y21Var.T;
-            if (bool != null && z10 != bool.booleanValue()) {
-                boolean booleanValue = y21Var.T.booleanValue();
-                y21Var.T = null;
-                y21Var.d(booleanValue);
-            }
-            AndroidUtilities.runOnUIThread(new kq0(this, 19));
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f29293a) {
+            case 0:
+                bi.a4 a4Var = this.f29294b.f29929f;
+                a4Var.setScaleX(Math.max(1.0f, ((Float) valueAnimator.getAnimatedValue()).floatValue()));
+                a4Var.setScaleY(Math.max(1.0f, ((Float) valueAnimator.getAnimatedValue()).floatValue()));
+                a4Var.invalidate();
+                return;
+            default:
+                r21 r21Var = this.f29294b;
+                r21Var.getClass();
+                r21Var.F = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                r21Var.h();
+                return;
         }
     }
 }

@@ -18,108 +18,108 @@ import org.telegram.tgnet.ResultCallback;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class d3 implements Runnable {
-    public final int f15943a;
-    public final Object f15944b;
-    public final Object f15945c;
+    public final int f17467a;
+    public final Object f17468b;
+    public final Object f17469c;
 
     public d3(int i10, Object obj, Object obj2) {
-        this.f15943a = i10;
-        this.f15944b = obj;
-        this.f15945c = obj2;
+        this.f17467a = i10;
+        this.f17468b = obj;
+        this.f17469c = obj2;
     }
 
     @Override
     public final void run() {
-        switch (this.f15943a) {
+        switch (this.f17467a) {
             case 0:
-                FileLoader.AnonymousClass2.lambda$didPreFinishLoading$0((FileLoadOperation) this.f15944b, (FileLoaderPriorityQueue) this.f15945c);
+                FileLoader.AnonymousClass2.lambda$didPreFinishLoading$0((FileLoadOperation) this.f17468b, (FileLoaderPriorityQueue) this.f17469c);
                 return;
             case 1:
-                ((ImageLoader) this.f15944b).lambda$runHttpFileLoadTasks$13((ImageLoader.HttpFileTask) this.f15945c);
+                ((ImageLoader) this.f17468b).lambda$runHttpFileLoadTasks$13((ImageLoader.HttpFileTask) this.f17469c);
                 return;
             case 2:
-                ((ImageLoader.ArtworkLoadTask) this.f15944b).lambda$onPostExecute$0((String) this.f15945c);
+                ((ImageLoader.ArtworkLoadTask) this.f17468b).lambda$onPostExecute$0((String) this.f17469c);
                 return;
             case 3:
-                ((ImageLoader.CacheOutTask) this.f15944b).lambda$onPostExecute$1((Drawable) this.f15945c);
+                ((ImageLoader.CacheOutTask) this.f17468b).lambda$onPostExecute$1((Drawable) this.f17469c);
                 return;
             case 4:
-                ((ImageLoader.ThumbGenerateTask) this.f15944b).lambda$removeTask$0((String) this.f15945c);
+                ((ImageLoader.ThumbGenerateTask) this.f17468b).lambda$removeTask$0((String) this.f17469c);
                 return;
             case 5:
-                ((MediaController.AnonymousClass2) this.f15944b).lambda$run$0((ByteBuffer) this.f15945c);
+                ((MediaController.AnonymousClass2) this.f17468b).lambda$run$0((ByteBuffer) this.f17469c);
                 return;
             case 6:
-                ((MediaController.AnonymousClass5) this.f15944b).lambda$run$1((MessageObject) this.f15945c);
+                ((MediaController.AnonymousClass5) this.f17468b).lambda$run$1((MessageObject) this.f17469c);
                 return;
             case 7:
-                ((MediaController.MediaLoader) this.f15944b).lambda$addMessageToLoad$7((MessageObject) this.f15945c);
+                ((MediaController.MediaLoader) this.f17468b).lambda$addMessageToLoad$7((MessageObject) this.f17469c);
                 return;
             case 8:
-                ((MediaDataController.AnonymousClass2) this.f15944b).lambda$run$0((ArrayList) this.f15945c);
+                ((MediaDataController.AnonymousClass2) this.f17468b).lambda$run$0((ArrayList) this.f17469c);
                 return;
             case 9:
-                ((MediaDataController.AnonymousClass3) this.f15944b).lambda$run$0((ArrayList) this.f15945c);
+                ((MediaDataController.AnonymousClass3) this.f17468b).lambda$run$0((ArrayList) this.f17469c);
                 return;
             case 10:
-                ((SendMessagesHelper.ImportingHistory.AnonymousClass2) this.f15944b).lambda$run$0((String) this.f15945c);
+                ((SendMessagesHelper.ImportingHistory.AnonymousClass2) this.f17468b).lambda$run$0((String) this.f17469c);
                 return;
             case 11:
-                ((BetaUpdaterController) this.f15944b).lambda$downloadUpdate$4((File) this.f15945c);
+                ((BetaUpdaterController) this.f17468b).lambda$downloadUpdate$4((File) this.f17469c);
                 return;
             case 12:
-                BirthdayController.a((BirthdayController) this.f15944b, (TLObject) this.f15945c);
+                BirthdayController.a((BirthdayController) this.f17468b, (TLObject) this.f17469c);
                 return;
             case 13:
-                ChatMessagesMetadataController.a((ChatMessagesMetadataController) this.f15944b, (ArrayList) this.f15945c);
+                ChatMessagesMetadataController.a((ChatMessagesMetadataController) this.f17468b, (ArrayList) this.f17469c);
                 return;
             case 14:
-                ChatThemeController.o((File) this.f15944b, (ResultCallback) this.f15945c);
+                ChatThemeController.o((File) this.f17468b, (ResultCallback) this.f17469c);
                 return;
             case 15:
-                ChatThemeController.s((ResultCallback) this.f15944b, (Bitmap) this.f15945c);
+                ChatThemeController.s((ResultCallback) this.f17468b, (Bitmap) this.f17469c);
                 return;
             case 16:
-                ChatThemeController.u((ChatThemeController) this.f15944b, (TLRPC.ChatFull) this.f15945c);
+                ChatThemeController.u((ChatThemeController) this.f17468b, (TLRPC.ChatFull) this.f17469c);
                 return;
             case 17:
-                ChatThemeController.m((File) this.f15944b, (Utilities.Callback) this.f15945c);
+                ChatThemeController.m((File) this.f17468b, (Utilities.Callback) this.f17469c);
                 return;
             case 18:
-                ChatThemeController.t((Utilities.Callback) this.f15944b, (dg.a) this.f15945c);
+                ChatThemeController.t((Utilities.Callback) this.f17468b, (dg.a) this.f17469c);
                 return;
             case 19:
-                ChatThemeController.k((ChatThemeController) this.f15944b, (ResultCallback) this.f15945c);
+                ChatThemeController.k((ChatThemeController) this.f17468b, (ResultCallback) this.f17469c);
                 return;
             case 20:
-                ChatThemeController.f((File) this.f15944b, (Bitmap) this.f15945c);
+                ChatThemeController.f((File) this.f17468b, (Bitmap) this.f17469c);
                 return;
             case 21:
-                CodeHighlighting.lambda$highlight$4((ArrayList) this.f15944b, (Spannable) this.f15945c);
+                CodeHighlighting.lambda$highlight$4((ArrayList) this.f17468b, (Spannable) this.f17469c);
                 return;
             case 22:
-                ((ContactsController) this.f15944b).lambda$addContact$50((TLRPC.User) this.f15945c);
+                ((ContactsController) this.f17468b).lambda$addContact$50((TLRPC.User) this.f17469c);
                 return;
             case 23:
-                ((ContactsController) this.f15944b).lambda$deleteAllContacts$8((Runnable) this.f15945c);
+                ((ContactsController) this.f17468b).lambda$deleteAllContacts$8((Runnable) this.f17469c);
                 return;
             case 24:
-                ((ContactsController) this.f15944b).lambda$checkInviteText$2((TLRPC.TL_help_inviteText) this.f15945c);
+                ((ContactsController) this.f17468b).lambda$checkInviteText$2((TLRPC.TL_help_inviteText) this.f17469c);
                 return;
             case 25:
-                ((ContactsController) this.f15944b).lambda$applyContactsUpdates$46((Long) this.f15945c);
+                ((ContactsController) this.f17468b).lambda$applyContactsUpdates$46((Long) this.f17469c);
                 return;
             case 26:
-                ((ContactsController) this.f15944b).lambda$migratePhoneBookToV7$12((SparseArray) this.f15945c);
+                ((ContactsController) this.f17468b).lambda$migratePhoneBookToV7$12((SparseArray) this.f17469c);
                 return;
             case 27:
-                ((ContactsController) this.f15944b).lambda$deleteContactsUndoable$53((HashMap) this.f15945c);
+                ((ContactsController) this.f17468b).lambda$deleteContactsUndoable$53((HashMap) this.f17469c);
                 return;
             case 28:
-                ((DispatchQueuePoolBackground) this.f15944b).lambda$execute$0((DispatchQueue) this.f15945c);
+                ((DispatchQueuePoolBackground) this.f17468b).lambda$execute$0((DispatchQueue) this.f17469c);
                 return;
             default:
-                ((DownloadController) this.f15944b).lambda$deleteRecentFiles$13((ArrayList) this.f15945c);
+                ((DownloadController) this.f17468b).lambda$deleteRecentFiles$13((ArrayList) this.f17469c);
                 return;
         }
     }

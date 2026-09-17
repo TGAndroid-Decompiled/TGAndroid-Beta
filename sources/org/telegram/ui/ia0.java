@@ -1,49 +1,35 @@
 package org.telegram.ui;
 
-import android.graphics.Point;
-import android.os.SystemClock;
-import android.view.View;
-import android.view.ViewTreeObserver;
 import java.util.regex.Pattern;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildVars;
-public final class ia0 implements ViewTreeObserver.OnGlobalLayoutListener {
-    public final int f34518a;
-    public final Object f34519b;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_account;
+public final class ia0 implements RequestDelegate {
+    public final int f37307a;
+    public final LaunchActivity f37308b;
 
-    public ia0(Object obj, int i10) {
-        this.f34518a = i10;
-        this.f34519b = obj;
+    public ia0(LaunchActivity launchActivity, int i10) {
+        this.f37307a = i10;
+        this.f37308b = launchActivity;
     }
 
     @Override
-    public final void onGlobalLayout() {
-        int i10 = this.f34518a;
-        Object obj = this.f34519b;
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        int i10 = this.f37307a;
+        LaunchActivity launchActivity = this.f37308b;
         switch (i10) {
             case 0:
                 Pattern pattern = LaunchActivity.B1;
-                int measuredHeight = ((View) obj).getMeasuredHeight();
-                hg.k0.p(AndroidUtilities.displaySize.y, hg.k0.l(measuredHeight, "height = ", " displayHeight = "));
-                int i11 = (measuredHeight - AndroidUtilities.navigationBarHeight) - AndroidUtilities.statusBarHeight;
-                if (i11 > AndroidUtilities.dp(100.0f) && i11 < AndroidUtilities.displaySize.y) {
-                    int dp = AndroidUtilities.dp(100.0f) + i11;
-                    Point point = AndroidUtilities.displaySize;
-                    if (dp > point.y) {
-                        point.y = i11;
-                        if (BuildVars.LOGS_ENABLED) {
-                            hg.k0.p(AndroidUtilities.displaySize.y, new StringBuilder("fix display size y to "));
-                            return;
-                        }
-                        return;
-                    }
+                if (tLObject != null) {
+                    AndroidUtilities.runOnUIThread(new r80(6, launchActivity, (TL_account.Password) tLObject));
                     return;
                 }
                 return;
             default:
-                xd1 xd1Var = (xd1) obj;
-                xd1Var.P = SystemClock.elapsedRealtime() + 1500;
-                xd1Var.f39564k0.invalidate();
+                Pattern pattern2 = LaunchActivity.B1;
+                AndroidUtilities.runOnUIThread(new r80(2, launchActivity, tLObject));
                 return;
         }
     }

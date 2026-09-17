@@ -6,42 +6,42 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 public final class ma implements ja {
-    public final q9.n f44802a;
-    public final ia f44803b;
+    public final q9.n f48264a;
+    public final ia f48265b;
 
     public ma(Context context, ia iaVar) {
-        this.f44803b = iaVar;
-        j5.a aVar = j5.a.e;
-        l5.t.b(context);
-        l5.r c10 = l5.t.a().c(aVar);
+        this.f48265b = iaVar;
+        j5.a aVar = j5.a.f13534e;
+        l5.s.b(context);
+        l5.q c10 = l5.s.a().c(aVar);
         if (j5.a.d.contains(new i5.c("json"))) {
             new q9.n(new v7.a9(c10, 2));
         }
-        this.f44802a = new q9.n(new v7.a9(c10, 3));
+        this.f48264a = new q9.n(new v7.a9(c10, 3));
     }
 
     @Override
-    public final void a(n7.a1 a1Var) {
+    public final void a(o0.a aVar) {
         f fVar;
         ia.d dVar;
-        ia iaVar = this.f44803b;
+        ia iaVar = this.f48265b;
         iaVar.getClass();
-        l5.s sVar = (l5.s) this.f44802a.get();
+        l5.r rVar = (l5.r) this.f48264a.get();
         iaVar.getClass();
-        pa paVar = pa.f44830c;
-        v7.r1 r1Var = (v7.r1) a1Var.f15118b;
-        ((v7.d8) a1Var.f15119c).h = false;
-        v7.d8 d8Var = (v7.d8) a1Var.f15119c;
-        d8Var.f43971f = Boolean.FALSE;
-        r1Var.f44101b = new l9(d8Var);
+        pa paVar = pa.f48292c;
+        v7.a6 a6Var = (v7.a6) aVar.f16796b;
+        ((v7.c8) aVar.f16797c).h = false;
+        v7.c8 c8Var = (v7.c8) aVar.f16797c;
+        c8Var.f47439f = Boolean.FALSE;
+        a6Var.f47407b = new l9(c8Var);
         try {
             pa.b();
-            k7 k7Var = new k7(r1Var);
-            v7.r1 r1Var2 = new v7.r1(4);
-            paVar.a(r1Var2);
-            HashMap hashMap = new HashMap((HashMap) r1Var2.f44101b);
-            HashMap hashMap2 = new HashMap((HashMap) r1Var2.d);
-            e eVar = (e) r1Var2.f44102c;
+            k7 k7Var = new k7(a6Var);
+            v7.a6 a6Var2 = new v7.a6(2);
+            paVar.a(a6Var2);
+            HashMap hashMap = new HashMap((HashMap) a6Var2.f47407b);
+            HashMap hashMap2 = new HashMap((HashMap) a6Var2.f47408c);
+            e eVar = (e) a6Var2.d;
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             try {
                 fVar = new f(byteArrayOutputStream, hashMap, hashMap2, eVar);
@@ -50,12 +50,12 @@ public final class ma implements ja {
             }
             if (dVar != null) {
                 dVar.a(k7Var, fVar);
-                sVar.a(new i5.a(null, byteArrayOutputStream.toByteArray(), i5.d.f10997b, null), new j2.e(18));
+                rVar.a(new i5.a(null, byteArrayOutputStream.toByteArray(), i5.d.f11886b, null), new j2.e(17));
                 return;
             }
             throw new RuntimeException("No encoder for ".concat(String.valueOf(k7.class)));
-        } catch (UnsupportedEncodingException e) {
-            throw new UnsupportedOperationException("Failed to covert logging to UTF-8 byte array", e);
+        } catch (UnsupportedEncodingException e7) {
+            throw new UnsupportedOperationException("Failed to covert logging to UTF-8 byte array", e7);
         }
     }
 }

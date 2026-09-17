@@ -1,57 +1,45 @@
 package n7;
-public final class l extends n {
-    public final transient n f15155c;
+public final class l extends m {
+    public final transient int f16683c;
+    public final transient int d;
+    public final m f16684e;
 
-    public l(n nVar) {
-        this.f15155c = nVar;
-    }
-
-    @Override
-    public final boolean contains(Object obj) {
-        return this.f15155c.contains(obj);
+    public l(m mVar, int i10, int i11) {
+        this.f16684e = mVar;
+        this.f16683c = i10;
+        this.d = i11;
     }
 
     @Override
     public final Object get(int i10) {
-        n nVar = this.f15155c;
-        a.e(i10, nVar.size());
-        return nVar.get((nVar.size() - 1) - i10);
+        a.e(i10, this.d);
+        return this.f16684e.get(i10 + this.f16683c);
     }
 
     @Override
-    public final int indexOf(Object obj) {
-        n nVar = this.f15155c;
-        int lastIndexOf = nVar.lastIndexOf(obj);
-        if (lastIndexOf < 0) {
-            return -1;
-        }
-        return (nVar.size() - 1) - lastIndexOf;
+    public final int n() {
+        return this.f16684e.o() + this.f16683c + this.d;
     }
 
     @Override
-    public final int lastIndexOf(Object obj) {
-        n nVar = this.f15155c;
-        int indexOf = nVar.indexOf(obj);
-        if (indexOf < 0) {
-            return -1;
-        }
-        return (nVar.size() - 1) - indexOf;
+    public final int o() {
+        return this.f16684e.o() + this.f16683c;
     }
 
     @Override
-    public final n r() {
-        return this.f15155c;
+    public final Object[] q() {
+        return this.f16684e.q();
     }
 
     @Override
-    public final n subList(int i10, int i11) {
-        n nVar = this.f15155c;
-        a.m(i10, i11, nVar.size());
-        return nVar.subList(nVar.size() - i11, nVar.size() - i10).r();
+    public final m subList(int i10, int i11) {
+        a.m(i10, i11, this.d);
+        int i12 = this.f16683c;
+        return this.f16684e.subList(i10 + i12, i11 + i12);
     }
 
     @Override
     public final int size() {
-        return this.f15155c.size();
+        return this.d;
     }
 }

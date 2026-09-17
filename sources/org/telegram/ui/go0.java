@@ -1,31 +1,16 @@
 package org.telegram.ui;
 
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_account;
-public final class go0 implements wo0 {
-    public final yo0 f34020a;
-
-    public go0(yo0 yo0Var) {
-        this.f34020a = yo0Var;
+import android.content.Context;
+import android.view.MotionEvent;
+import android.webkit.WebView;
+public final class go0 extends WebView {
+    public go0(Context context) {
+        super(context);
     }
 
     @Override
-    public final boolean c(String str, String str2, boolean z10, TLRPC.TL_inputPaymentCredentialsGooglePay tL_inputPaymentCredentialsGooglePay, TLRPC.TL_paymentSavedCredentialsCard tL_paymentSavedCredentialsCard) {
-        return false;
-    }
-
-    @Override
-    public final void d(TLRPC.TL_payments_validateRequestedInfo tL_payments_validateRequestedInfo) {
-        yo0 yo0Var = this.f34020a;
-        yo0Var.I0 = tL_payments_validateRequestedInfo;
-        yo0Var.B0(tL_payments_validateRequestedInfo.info);
-    }
-
-    @Override
-    public final void a(TL_account.Password password) {
-    }
-
-    @Override
-    public final void b() {
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        getParent().requestDisallowInterceptTouchEvent(true);
+        return super.onTouchEvent(motionEvent);
     }
 }

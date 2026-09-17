@@ -1,97 +1,261 @@
 package fh;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapShader;
-import android.graphics.Canvas;
-import android.graphics.Matrix;
-import android.graphics.Paint;
-import android.graphics.Shader;
-import ch.f;
-public final class b implements a {
-    public final Paint f9068a;
-    public final Matrix f9069b;
-    public BitmapShader f9070c;
-    public Bitmap d;
-    public final Matrix e;
-    public Bitmap f9071f;
-    public int h;
-    public int f9072n;
-
-    public b() {
-        Paint paint = new Paint(3);
-        this.f9068a = paint;
-        this.f9069b = new Matrix();
-        this.e = new Matrix();
-        paint.setFilterBitmap(true);
+import android.graphics.Color;
+import di.w9;
+import eh.e;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.SharedConfig;
+import org.telegram.ui.ActionBar.f6;
+import org.telegram.ui.ActionBar.j6;
+import w7.p;
+public abstract class b {
+    public static e a(f6 f6Var) {
+        e eVar = new e(f6Var);
+        eVar.f9141e = new w9(12);
+        eVar.d(385875968, 402653183);
+        eVar.c(385875968, 402653183);
+        eVar.b(285212672, 83886079);
+        float dpf2 = AndroidUtilities.dpf2(2.0f);
+        float dpf22 = AndroidUtilities.dpf2(0.33333334f);
+        eVar.f9143n = dpf2;
+        eVar.f9144r = dpf22;
+        float dpf23 = AndroidUtilities.dpf2(0.4f);
+        float dpf24 = AndroidUtilities.dpf2(0.4f);
+        eVar.f9142f = dpf23;
+        eVar.h = dpf24;
+        return eVar;
     }
 
-    public final void a(Bitmap bitmap) {
-        if (this.d != bitmap) {
-            this.d = bitmap;
-            Paint paint = this.f9068a;
-            paint.setShader(null);
-            this.f9070c = null;
-            if (bitmap != null) {
-                Shader.TileMode tileMode = Shader.TileMode.CLAMP;
-                BitmapShader bitmapShader = new BitmapShader(bitmap, tileMode, tileMode);
-                this.f9070c = bitmapShader;
-                paint.setShader(bitmapShader);
-                c();
-            }
+    public static e b(f6 f6Var) {
+        e eVar = new e(f6Var);
+        eVar.f9141e = new a(0, f6Var);
+        eVar.d(-1, 687865855);
+        eVar.c(-1, 352321535);
+        eVar.b(536870912, 0);
+        float dpf2 = AndroidUtilities.dpf2(0.5f);
+        float dpf22 = AndroidUtilities.dpf2(0.5f);
+        eVar.f9142f = dpf2;
+        eVar.h = dpf22;
+        return eVar;
+    }
+
+    public static boolean c(int i10, f6 f6Var) {
+        boolean q6;
+        if (f6Var != null) {
+            q6 = f6Var.a();
+        } else {
+            q6 = j6.I.q();
         }
-    }
-
-    public final void b(int i10, int i11) {
-        if (this.h == i10 && this.f9072n == i11) {
-            return;
+        boolean chatBlurEnabled = SharedConfig.chatBlurEnabled();
+        if (chatBlurEnabled && !q6 && MessagesController.getInstance(i10).config.disableBlurInLightTheme.get()) {
+            chatBlurEnabled = false;
         }
-        this.h = i10;
-        this.f9072n = i11;
-        c();
-    }
-
-    public final void c() {
-        Bitmap bitmap = this.d;
-        Matrix matrix = this.f9069b;
-        if (bitmap == null) {
-            matrix.reset();
-            return;
+        if (chatBlurEnabled && q6 && MessagesController.getInstance(i10).config.disableBlurInDarkTheme.get()) {
+            return false;
         }
-        int width = bitmap.getWidth();
-        int height = this.d.getHeight();
-        int i10 = this.h;
-        int i11 = this.f9072n;
-        matrix.reset();
-        if (width > 0 && height > 0 && i10 > 0 && i11 > 0) {
-            float f7 = i10;
-            float f10 = width;
-            float f11 = i11;
-            float f12 = height;
-            float max = Math.max(f7 / f10, f11 / f12);
-            matrix.setScale(max, max);
-            matrix.postTranslate((f7 - (f10 * max)) * 0.5f, ((f11 - (f12 * max)) * 0.5f) + 0);
+        return chatBlurEnabled;
+    }
+
+    public static e d(f6 f6Var) {
+        e eVar = new e(f6Var);
+        eVar.f9141e = new w9(16);
+        eVar.d(-1, 687865855);
+        eVar.c(-1, 352321535);
+        eVar.b(1073741824, 0);
+        float dpf2 = AndroidUtilities.dpf2(3.6666667f);
+        float dpf22 = AndroidUtilities.dpf2(0.6666667f);
+        eVar.f9143n = dpf2;
+        eVar.f9144r = dpf22;
+        float dpf23 = AndroidUtilities.dpf2(0.5f);
+        float dpf24 = AndroidUtilities.dpf2(0.5f);
+        eVar.f9142f = dpf23;
+        eVar.h = dpf24;
+        return eVar;
+    }
+
+    public static e e(f6 f6Var) {
+        e eVar = new e(f6Var);
+        eVar.f9141e = new w9(2);
+        eVar.d(687865855, 687865855);
+        eVar.c(352321535, 352321535);
+        eVar.b(536870912, 0);
+        float dpf2 = AndroidUtilities.dpf2(3.3333333f);
+        float dpf22 = AndroidUtilities.dpf2(0.6666667f);
+        eVar.f9143n = dpf2;
+        eVar.f9144r = dpf22;
+        float dpf23 = AndroidUtilities.dpf2(1.0f);
+        float dpf24 = AndroidUtilities.dpf2(0.6666667f);
+        eVar.f9142f = dpf23;
+        eVar.h = dpf24;
+        return eVar;
+    }
+
+    public static e f(f6 f6Var) {
+        e eVar = new e(f6Var);
+        eVar.f9141e = new w9(11);
+        eVar.d(285212672, 117440511);
+        eVar.c(536870912, 301989887);
+        eVar.b(536870912, 83886079);
+        float dpf2 = AndroidUtilities.dpf2(2.667f);
+        float dpf22 = AndroidUtilities.dpf2(0.85f);
+        eVar.f9143n = dpf2;
+        eVar.f9144r = dpf22;
+        float dpf23 = AndroidUtilities.dpf2(0.4f);
+        float dpf24 = AndroidUtilities.dpf2(0.4f);
+        eVar.f9142f = dpf23;
+        eVar.h = dpf24;
+        return eVar;
+    }
+
+    public static e g(f6 f6Var) {
+        e eVar = new e(f6Var);
+        eVar.f9141e = new w9(3);
+        eVar.d(1157627903, 0);
+        eVar.c(587202559, 0);
+        eVar.b(939524096, 0);
+        eVar.f9143n = AndroidUtilities.dpf2(3.5f);
+        eVar.f9144r = 0.0f;
+        float dpf2 = AndroidUtilities.dpf2(0.6666667f);
+        float dpf22 = AndroidUtilities.dpf2(0.6666667f);
+        eVar.f9142f = dpf2;
+        eVar.h = dpf22;
+        return eVar;
+    }
+
+    public static e h(f6 f6Var) {
+        return g(f6Var);
+    }
+
+    public static e i(f6 f6Var) {
+        e eVar = new e(f6Var);
+        eVar.f9141e = new w9(15);
+        eVar.d(687865855, 687865855);
+        eVar.c(352321535, 352321535);
+        float dpf2 = AndroidUtilities.dpf2(0.6666667f);
+        float dpf22 = AndroidUtilities.dpf2(0.6666667f);
+        eVar.f9142f = dpf2;
+        eVar.h = dpf22;
+        return eVar;
+    }
+
+    public static e j(f6 f6Var) {
+        e eVar = new e(f6Var);
+        eVar.f9141e = new w9(13);
+        eVar.d(-1, 553648127);
+        eVar.c(0, 553648127);
+        eVar.b(1207959552, 83886079);
+        eVar.f9143n = AndroidUtilities.dpf2(0.6666667f);
+        eVar.f9144r = 0.0f;
+        float dpf2 = AndroidUtilities.dpf2(0.67f);
+        float dpf22 = AndroidUtilities.dpf2(0.67f);
+        eVar.f9142f = dpf2;
+        eVar.h = dpf22;
+        return eVar;
+    }
+
+    public static e k(f6 f6Var) {
+        e eVar = new e(f6Var);
+        eVar.f9141e = new w9(10);
+        eVar.d(1157627903, 0);
+        eVar.c(587202559, 0);
+        eVar.b(637534208, 0);
+        eVar.f9143n = AndroidUtilities.dpf2(4.0f);
+        eVar.f9144r = 0.0f;
+        float dpf2 = AndroidUtilities.dpf2(0.6666667f);
+        float dpf22 = AndroidUtilities.dpf2(0.6666667f);
+        eVar.f9142f = dpf2;
+        eVar.h = dpf22;
+        return eVar;
+    }
+
+    public static e l(f6 f6Var) {
+        e eVar = new e(f6Var);
+        eVar.d(0, 687865855);
+        eVar.c(0, 352321535);
+        eVar.b(805306368, 83886079);
+        float dpf2 = AndroidUtilities.dpf2(4.0f);
+        float dpf22 = AndroidUtilities.dpf2(0.33333334f);
+        eVar.f9143n = dpf2;
+        eVar.f9144r = dpf22;
+        float dpf23 = AndroidUtilities.dpf2(0.4f);
+        float dpf24 = AndroidUtilities.dpf2(0.4f);
+        eVar.f9142f = dpf23;
+        eVar.h = dpf24;
+        return eVar;
+    }
+
+    public static int m(float f7, int i10, int i11) {
+        float a2 = p.a(f7, 0.0f, 1.0f);
+        if (a2 <= 0.0f) {
+            return Color.argb(0, 0, 0, 0);
         }
-    }
-
-    @Override
-    public final ch.d l() {
-        return new f(this);
-    }
-
-    @Override
-    public final void y(Canvas canvas, float f7, float f10, float f11, float f12) {
-        Bitmap bitmap = this.d;
-        if (bitmap != null && !bitmap.isRecycled() && this.f9070c != null) {
-            Matrix matrix = this.e;
-            Matrix matrix2 = this.f9069b;
-            matrix.set(matrix2);
-            matrix.postTranslate(f7, f10);
-            this.f9070c.setLocalMatrix(matrix2);
-            canvas.drawRect(f7, f10, f11, f12, this.f9068a);
+        if (a2 >= 1.0f) {
+            return Color.argb(255, Color.red(i11), Color.green(i11), Color.blue(i11));
         }
+        int red = Color.red(i10);
+        int green = Color.green(i10);
+        int blue = Color.blue(i10);
+        int red2 = Color.red(i11);
+        int green2 = Color.green(i11);
+        int blue2 = Color.blue(i11);
+        float f10 = 1.0f - a2;
+        return Color.argb(p.b(Math.round(a2 * 255.0f), 0, 255), p.b(Math.round((red2 - (red * f10)) / a2), 0, 255), p.b(Math.round((green2 - (green * f10)) / a2), 0, 255), p.b(Math.round((blue2 - (blue * f10)) / a2), 0, 255));
     }
 
-    @Override
-    public final void d() {
+    public static e n(f6 f6Var) {
+        e eVar = new e(f6Var);
+        eVar.f9141e = new w9(4);
+        eVar.d(285212672, 117440511);
+        eVar.c(536870912, 301989887);
+        eVar.b(536870912, 83886079);
+        float dpf2 = AndroidUtilities.dpf2(2.667f);
+        float dpf22 = AndroidUtilities.dpf2(0.85f);
+        eVar.f9143n = dpf2;
+        eVar.f9144r = dpf22;
+        float dpf23 = AndroidUtilities.dpf2(0.4f);
+        float dpf24 = AndroidUtilities.dpf2(0.4f);
+        eVar.f9142f = dpf23;
+        eVar.h = dpf24;
+        return eVar;
+    }
+
+    public static e o(f6 f6Var) {
+        e eVar = new e(f6Var);
+        eVar.f9141e = new a(2, f6Var);
+        eVar.d(-1, 553648127);
+        eVar.c(-1, 352321535);
+        eVar.b(536870912, 0);
+        float dpf2 = AndroidUtilities.dpf2(0.55f);
+        float dpf22 = AndroidUtilities.dpf2(0.55f);
+        eVar.f9142f = dpf2;
+        eVar.h = dpf22;
+        return eVar;
+    }
+
+    public static e p(f6 f6Var) {
+        e eVar = new e(f6Var);
+        eVar.f9141e = new w9(14);
+        eVar.d(0, 0);
+        eVar.c(0, 0);
+        eVar.b(0, 0);
+        eVar.f9143n = 0.0f;
+        eVar.f9144r = 0.0f;
+        eVar.f9142f = 0.0f;
+        eVar.h = 0.0f;
+        return eVar;
+    }
+
+    public static e q(f6 f6Var) {
+        e eVar = new e(f6Var);
+        eVar.f9141e = new a(1, f6Var);
+        eVar.d(0, 0);
+        eVar.c(0, 0);
+        eVar.b(0, 0);
+        eVar.f9143n = 0.0f;
+        eVar.f9144r = 0.0f;
+        eVar.f9142f = 0.0f;
+        eVar.h = 0.0f;
+        return eVar;
     }
 }

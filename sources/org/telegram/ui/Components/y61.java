@@ -1,58 +1,145 @@
 package org.telegram.ui.Components;
 
-import android.view.TextureView;
-import java.util.ArrayList;
-public final class y61 implements Runnable {
-    public final int f30132a;
-    public final Object f30133b;
+import java.util.List;
+public final class y61 implements b2.z0 {
+    public final g71 f32883a;
 
-    public y61(Object obj, int i10) {
-        this.f30132a = i10;
-        this.f30133b = obj;
+    public y61(g71 g71Var) {
+        this.f32883a = g71Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f30132a) {
-            case 0:
-                h71 h71Var = (h71) this.f30133b;
-                i2.e0 e0Var = h71Var.d;
-                if (e0Var != null) {
-                    TextureView textureView = h71Var.f24537n;
-                    e0Var.B1();
-                    if (textureView != null && textureView == e0Var.V) {
-                        e0Var.B1();
-                        e0Var.o1();
-                        e0Var.t1(null);
-                        e0Var.m1(0, 0);
-                    }
-                    h71Var.d.v1(h71Var.f24537n);
-                    ArrayList arrayList = h71Var.N;
-                    if (arrayList != null) {
-                        h71Var.F(arrayList, h71Var.O);
-                    } else if (h71Var.U) {
-                        h71Var.G(h71Var.Q, h71Var.S, h71Var.R, h71Var.T);
-                    } else {
-                        h71Var.D(h71Var.Q, h71Var.S);
-                    }
-                    h71Var.C();
-                    return;
-                }
-                return;
-            case 1:
-                h71 h71Var2 = ((g71) this.f30133b).f24108f;
-                h71Var2.f24525a0.removeCallbacksAndMessages(null);
-                h71Var2.K.onVisualizerUpdate(false, true, null);
-                return;
-            case 2:
-                ((j71) this.f30133b).f25155g = false;
-                return;
-            case 3:
-                ((d91) ((j50) ((org.telegram.ui.Cells.fa) this.f30133b).f20123b).f25117b).v.b();
-                return;
-            default:
-                ((z81) this.f30133b).d(false, true);
-                return;
+    public final void onCues(d2.c cVar) {
+    }
+
+    @Override
+    public final void onPlayerStateChanged(boolean z10, int i10) {
+        g71 g71Var = this.f32883a;
+        if (!g71Var.H && i10 == 3) {
+            g71Var.H = true;
+            if (g71Var.G && g71Var.I) {
+                g71Var.C();
+            }
         }
+    }
+
+    @Override
+    public final void onPositionDiscontinuity(int i10) {
+    }
+
+    @Override
+    public final void onCues(List list) {
+    }
+
+    @Override
+    public final void onPositionDiscontinuity(b2.a1 a1Var, b2.a1 a1Var2, int i10) {
+    }
+
+    @Override
+    public final void onAudioAttributesChanged(b2.e eVar) {
+    }
+
+    @Override
+    public final void onAudioSessionIdChanged(int i10) {
+    }
+
+    @Override
+    public final void onAvailableCommandsChanged(b2.x0 x0Var) {
+    }
+
+    @Override
+    public final void onIsLoadingChanged(boolean z10) {
+    }
+
+    @Override
+    public final void onIsPlayingChanged(boolean z10) {
+    }
+
+    @Override
+    public final void onLoadingChanged(boolean z10) {
+    }
+
+    @Override
+    public final void onMediaMetadataChanged(b2.n0 n0Var) {
+    }
+
+    @Override
+    public final void onMetadata(b2.p0 p0Var) {
+    }
+
+    @Override
+    public final void onPlaybackParametersChanged(b2.v0 v0Var) {
+    }
+
+    @Override
+    public final void onPlaybackStateChanged(int i10) {
+    }
+
+    @Override
+    public final void onPlaybackSuppressionReasonChanged(int i10) {
+    }
+
+    @Override
+    public final void onPlayerError(b2.u0 u0Var) {
+    }
+
+    @Override
+    public final void onPlayerErrorChanged(b2.u0 u0Var) {
+    }
+
+    @Override
+    public final void onPlaylistMetadataChanged(b2.n0 n0Var) {
+    }
+
+    @Override
+    public final void onRenderedFirstFrame() {
+    }
+
+    @Override
+    public final void onRepeatModeChanged(int i10) {
+    }
+
+    @Override
+    public final void onShuffleModeEnabledChanged(boolean z10) {
+    }
+
+    @Override
+    public final void onSkipSilenceEnabledChanged(boolean z10) {
+    }
+
+    @Override
+    public final void onTrackSelectionParametersChanged(b2.q1 q1Var) {
+    }
+
+    @Override
+    public final void onTracksChanged(b2.s1 s1Var) {
+    }
+
+    @Override
+    public final void onVideoSizeChanged(b2.x1 x1Var) {
+    }
+
+    @Override
+    public final void onVolumeChanged(float f7) {
+    }
+
+    @Override
+    public final void onEvents(b2.b1 b1Var, b2.y0 y0Var) {
+    }
+
+    @Override
+    public final void onMediaItemTransition(b2.k0 k0Var, int i10) {
+    }
+
+    @Override
+    public final void onPlayWhenReadyChanged(boolean z10, int i10) {
+    }
+
+    @Override
+    public final void onSurfaceSizeChanged(int i10, int i11) {
+    }
+
+    @Override
+    public final void onTimelineChanged(b2.k1 k1Var, int i10) {
     }
 }

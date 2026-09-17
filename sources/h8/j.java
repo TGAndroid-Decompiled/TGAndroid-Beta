@@ -11,28 +11,28 @@ import android.widget.TextView;
 import androidx.mediarouter.app.a0;
 import java.util.ArrayList;
 import java.util.LinkedList;
-import k2.u;
+import ji.u4;
 import n6.q;
 import v7.j8;
 public final class j {
-    public aa.a f10151a;
-    public Bundle f10152b;
-    public LinkedList f10153c;
-    public final d e;
-    public final Context f10154f;
-    public u f10155g;
-    public final u d = new u(this, 28);
+    public aa.a f10934a;
+    public Bundle f10935b;
+    public LinkedList f10936c;
+    public final d f10937e;
+    public final Context f10938f;
+    public u4 f10939g;
+    public final u4 d = new u4(this, 28);
     public final ArrayList h = new ArrayList();
 
     public j(d dVar, Context context) {
-        this.e = dVar;
-        this.f10154f = context;
+        this.f10937e = dVar;
+        this.f10938f = context;
     }
 
     public static void a(d dVar) {
         k6.d dVar2 = k6.d.d;
         Context context = dVar.getContext();
-        int d = dVar2.d(context, k6.e.f13511a);
+        int d = dVar2.d(context, k6.e.f14841a);
         String c10 = q.c(context, d);
         String b10 = q.b(context, d);
         LinearLayout linearLayout = new LinearLayout(dVar.getContext());
@@ -55,50 +55,50 @@ public final class j {
     }
 
     public final void b(int i10) {
-        while (!this.f10153c.isEmpty() && ((x6.e) this.f10153c.getLast()).a() >= i10) {
-            this.f10153c.removeLast();
+        while (!this.f10936c.isEmpty() && ((x6.e) this.f10936c.getLast()).a() >= i10) {
+            this.f10936c.removeLast();
         }
     }
 
     public final void c(Bundle bundle, x6.e eVar) {
-        if (this.f10151a != null) {
+        if (this.f10934a != null) {
             eVar.b();
             return;
         }
-        if (this.f10153c == null) {
-            this.f10153c = new LinkedList();
+        if (this.f10936c == null) {
+            this.f10936c = new LinkedList();
         }
-        this.f10153c.add(eVar);
+        this.f10936c.add(eVar);
         if (bundle != null) {
-            Bundle bundle2 = this.f10152b;
+            Bundle bundle2 = this.f10935b;
             if (bundle2 == null) {
-                this.f10152b = (Bundle) bundle.clone();
+                this.f10935b = (Bundle) bundle.clone();
             } else {
                 bundle2.putAll(bundle);
             }
         }
-        this.f10155g = this.d;
+        this.f10939g = this.d;
         ArrayList arrayList = this.h;
-        Context context = this.f10154f;
-        if (this.f10151a == null) {
+        Context context = this.f10938f;
+        if (this.f10934a == null) {
             try {
                 synchronized (e.class) {
                     e.b(context);
                 }
                 i8.g X0 = j8.a(context).X0(new x6.b(context));
                 if (X0 != null) {
-                    this.f10155g.b0(new aa.a(this.e, X0));
+                    this.f10939g.C(new aa.a(this.f10937e, X0));
                     int size = arrayList.size();
                     int i10 = 0;
                     while (i10 < size) {
                         Object obj = arrayList.get(i10);
                         i10++;
-                        this.f10151a.p((f) obj);
+                        this.f10934a.u((f) obj);
                     }
                     arrayList.clear();
                 }
-            } catch (RemoteException e) {
-                throw new RuntimeException(e);
+            } catch (RemoteException e7) {
+                throw new RuntimeException(e7);
             } catch (k6.f unused) {
             }
         }

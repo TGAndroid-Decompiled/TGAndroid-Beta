@@ -5,35 +5,35 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.SendMessagesHelper;
-public final class o40 implements org.telegram.ui.br0 {
-    public boolean f26617a;
-    public final HashMap f26618b;
-    public final ArrayList f26619c;
+public final class o40 implements org.telegram.ui.ar0 {
+    public boolean f28978a;
+    public final HashMap f28979b;
+    public final ArrayList f28980c;
     public final u40 d;
 
     public o40(u40 u40Var, HashMap hashMap, ArrayList arrayList) {
         this.d = u40Var;
-        this.f26618b = hashMap;
-        this.f26619c = arrayList;
+        this.f28979b = hashMap;
+        this.f28980c = arrayList;
     }
 
     @Override
     public final boolean e() {
-        return this.d.f28273b.e();
+        return this.d.f30828b.e();
     }
 
     @Override
-    public final void i(int i10, boolean z10, boolean z11) {
+    public final void h(int i10, boolean z10, boolean z11) {
         String str;
-        HashMap hashMap = this.f26618b;
+        HashMap hashMap = this.f28979b;
         if (!hashMap.isEmpty()) {
             u40 u40Var = this.d;
-            if (u40Var.f28273b != null && !this.f26617a && !z10) {
-                this.f26617a = true;
+            if (u40Var.f30828b != null && !this.f28978a && !z10) {
+                this.f28978a = true;
                 ArrayList arrayList = new ArrayList();
                 int i11 = 0;
                 while (true) {
-                    ArrayList arrayList2 = this.f26619c;
+                    ArrayList arrayList2 = this.f28980c;
                     if (i11 < arrayList2.size()) {
                         Object obj = hashMap.get(arrayList2.get(i11));
                         SendMessagesHelper.SendingMediaInfo sendingMediaInfo = new SendMessagesHelper.SendingMediaInfo();

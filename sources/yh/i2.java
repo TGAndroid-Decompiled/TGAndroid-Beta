@@ -1,24 +1,30 @@
 package yh;
 
-import android.text.TextPaint;
-import android.text.style.ClickableSpan;
-import android.view.View;
-public final class i2 extends ClickableSpan {
-    public final long f47303a;
-    public final a4 f47304b;
+import org.telegram.ui.Components.nr0;
+public final class i2 extends s4.j {
+    public final nr0 F;
 
-    public i2(a4 a4Var, long j3) {
-        this.f47304b = a4Var;
-        this.f47303a = j3;
+    public i2(nr0 nr0Var) {
+        this.F = nr0Var;
     }
 
     @Override
-    public final void onClick(View view) {
-        this.f47304b.X1(this.f47303a);
+    public final void M() {
+        this.F.o();
     }
 
     @Override
-    public final void updateDrawState(TextPaint textPaint) {
-        textPaint.setColor(textPaint.linkColor);
+    public final void O() {
+        this.F.o();
+    }
+
+    @Override
+    public final void P(s4.c1 c1Var) {
+        this.F.o();
+    }
+
+    @Override
+    public final void Q() {
+        this.F.o();
     }
 }

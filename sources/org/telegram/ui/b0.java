@@ -3,55 +3,55 @@ package org.telegram.ui;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.ui.web.HttpGetFileTask;
 public final class b0 implements Runnable {
-    public final int f32009a;
-    public final float f32010b;
-    public final Object f32011c;
+    public final int f34604a;
+    public final float f34605b;
+    public final Object f34606c;
 
     public b0(Object obj, float f7, int i10) {
-        this.f32009a = i10;
-        this.f32011c = obj;
-        this.f32010b = f7;
+        this.f34604a = i10;
+        this.f34606c = obj;
+        this.f34605b = f7;
     }
 
     @Override
     public final void run() {
-        switch (this.f32009a) {
+        switch (this.f34604a) {
             case 0:
-                ((h4) this.f32011c).f34156h0.M.c(this.f32010b, true);
+                ((i4) this.f34606c).f37248h0.M.c(this.f34605b, true);
                 return;
             case 1:
-                org.telegram.ui.Components.gb gbVar = (org.telegram.ui.Components.gb) this.f32011c;
-                if (gbVar.f24155a.getTranslationX() == this.f32010b) {
-                    gbVar.f24164y.b();
+                org.telegram.ui.Components.ib ibVar = (org.telegram.ui.Components.ib) this.f34606c;
+                if (ibVar.f27086a.getTranslationX() == this.f34605b) {
+                    ibVar.f27096y.b();
                     return;
                 }
                 return;
             case 2:
-                org.telegram.ui.Components.voip.a1 a1Var = (org.telegram.ui.Components.voip.a1) this.f32011c;
-                float f7 = this.f32010b;
-                mi1 mi1Var = a1Var.f28847c;
+                org.telegram.ui.Components.voip.y0 y0Var = (org.telegram.ui.Components.voip.y0) this.f34606c;
+                float f7 = this.f34605b;
+                ni1 ni1Var = y0Var.f31971c;
                 if (f7 > 0.0f) {
-                    int i10 = mi1Var.f28889w;
+                    int i10 = ni1Var.f31450w;
                     if (i10 < 2) {
-                        mi1Var.c(i10 + 1, true);
+                        ni1Var.c(i10 + 1, true);
                     }
                 } else {
-                    int i11 = mi1Var.f28889w;
+                    int i11 = ni1Var.f31450w;
                     if (i11 > 0) {
-                        mi1Var.c(i11 - 1, true);
+                        ni1Var.c(i11 - 1, true);
                     }
                 }
-                a1Var.f28846b = false;
+                y0Var.f31970b = false;
                 return;
             case 3:
-                ((l80) this.f32011c).f35478f.e.smoothScrollTo(0, (int) this.f32010b);
+                ((j80) this.f34606c).f37722f.f38250e.smoothScrollTo(0, (int) this.f34605b);
                 return;
             case 4:
-                float f10 = this.f32010b;
-                ApplicationLoader.applicationContext.getSharedPreferences("media_saved_pos", 0).edit().putFloat((String) this.f32011c, f10).commit();
+                float f10 = this.f34605b;
+                ApplicationLoader.applicationContext.getSharedPreferences("media_saved_pos", 0).edit().putFloat((String) this.f34606c, f10).commit();
                 return;
             default:
-                HttpGetFileTask.b((HttpGetFileTask) this.f32011c, this.f32010b);
+                HttpGetFileTask.b((HttpGetFileTask) this.f34606c, this.f34605b);
                 return;
         }
     }

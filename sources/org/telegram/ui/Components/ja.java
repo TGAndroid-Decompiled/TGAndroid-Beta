@@ -1,60 +1,148 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Paint;
+import android.graphics.Bitmap;
+import android.graphics.RecordingCanvas;
+import android.graphics.RenderEffect;
+import android.graphics.RenderNode;
+import android.graphics.Shader;
+import android.os.Build;
 import android.view.View;
 import java.util.ArrayList;
-public final class ja implements View.OnAttachStateChangeListener {
-    public final int f25194a;
-    public final Object f25195b;
-    public final Object f25196c;
+import javax.microedition.khronos.egl.EGLContext;
+import org.telegram.messenger.AndroidUtilities;
+public final class ja {
+    public int f27435a;
+    public final View f27436b;
+    public final ArrayList f27437c;
+    public final ArrayList d;
+    public final ArrayList f27438e;
+    public final Object f27439f;
+    public EGLContext f27440g;
+    public final Object h;
+    public int f27441i;
+    public di.bc f27442j;
+    public Object f27443k;
+    public Object f27444l;
+    public pa f27445m;
+    public final oa f27446n;
+    public Bitmap f27447o;
+    public int f27448p;
 
-    public ja(int i10, Object obj, Object obj2) {
-        this.f25194a = i10;
-        this.f25196c = obj;
-        this.f25195b = obj2;
+    public ja(View view) {
+        ArrayList arrayList = new ArrayList();
+        this.f27437c = arrayList;
+        this.d = new ArrayList();
+        this.f27438e = new ArrayList();
+        this.f27439f = new Object();
+        this.h = new Object();
+        this.f27446n = new oa(0, new pg(this, 14));
+        this.f27448p = 0;
+        this.f27436b = view;
+        if (view.isAttachedToWindow()) {
+            arrayList.clear();
+            for (View view2 = view; view2 != null; view2 = (View) view2.getParent()) {
+                arrayList.add(0, view2);
+                if (!(view2.getParent() instanceof View)) {
+                    break;
+                }
+            }
+        }
+        view.addOnAttachStateChangeListener(new bi.i2(this, 4));
     }
 
-    @Override
-    public final void onViewAttachedToWindow(View view) {
-        int i10 = this.f25194a;
-        Object obj = this.f25195b;
-        Object obj2 = this.f25196c;
-        switch (i10) {
-            case 0:
-                ha haVar = (ha) obj;
-                if (haVar != null) {
-                    haVar.d.add((la) obj2);
-                    return;
+    public final void a(EGLContext eGLContext) {
+        synchronized (this.f27439f) {
+            try {
+                if (this.f27440g == null) {
+                    this.f27440g = eGLContext;
                 }
-                return;
-            default:
-                h01 h01Var = (h01) obj2;
-                h01Var.f24444k = x5.update(h01Var.f24445l, (View) obj, h01Var.f24444k, h01Var.f24438b);
-                return;
+            } catch (Throwable th2) {
+                throw th2;
+            }
         }
     }
 
-    @Override
-    public final void onViewDetachedFromWindow(View view) {
-        switch (this.f25194a) {
-            case 0:
-                la laVar = (la) this.f25196c;
-                ha haVar = (ha) this.f25195b;
-                if (haVar != null) {
-                    ArrayList arrayList = haVar.d;
-                    arrayList.remove(laVar);
-                    if (haVar.e.isEmpty() && arrayList.isEmpty()) {
-                        haVar.f24616n.a();
-                    }
-                }
-                laVar.f25877n = null;
-                Paint paint = laVar.h;
-                laVar.f25878o = null;
-                paint.setShader(null);
-                return;
-            default:
-                x5.release((View) this.f25195b, ((h01) this.f25196c).f24444k);
-                return;
+    public final Bitmap b() {
+        Bitmap bitmap;
+        pa paVar = this.f27445m;
+        if (paVar == null) {
+            return this.f27447o;
         }
+        synchronized (paVar.f29363n) {
+            try {
+                if (!paVar.f29366q) {
+                    bitmap = null;
+                } else {
+                    bitmap = paVar.f29365p;
+                }
+            } finally {
+            }
+        }
+        if (bitmap == null) {
+            return this.f27447o;
+        }
+        return bitmap;
+    }
+
+    public final boolean c() {
+        if (this.f27444l != null) {
+            return true;
+        }
+        return false;
+    }
+
+    public final void d() {
+        ArrayList arrayList = this.d;
+        int size = arrayList.size();
+        int i10 = 0;
+        int i11 = 0;
+        while (i11 < size) {
+            Object obj = arrayList.get(i11);
+            i11++;
+            ((na) obj).f28731b.invalidate();
+        }
+        ArrayList arrayList2 = this.f27438e;
+        int size2 = arrayList2.size();
+        while (i10 < size2) {
+            Object obj2 = arrayList2.get(i10);
+            i10++;
+            ((Runnable) obj2).run();
+        }
+    }
+
+    public final void e() {
+        pa paVar = this.f27445m;
+        if (paVar != null) {
+            synchronized (paVar.f29363n) {
+                paVar.f29366q = false;
+            }
+        }
+    }
+
+    public final void f(Bitmap bitmap, boolean z10) {
+        StringBuilder sb2 = new StringBuilder("");
+        int i10 = this.f27448p;
+        this.f27448p = i10 + 1;
+        sb2.append(i10);
+        this.f27447o = this.f27446n.b(bitmap, sb2.toString(), 0, 0, z10);
+    }
+
+    public final void g(di.bc bcVar, Object obj) {
+        this.f27442j = bcVar;
+        this.f27443k = obj;
+        this.f27441i = -14737633;
+        if (obj != null && Build.VERSION.SDK_INT >= 31) {
+            RenderNode renderNode = (RenderNode) obj;
+            RenderNode renderNode2 = new RenderNode("blurRenderNode");
+            renderNode2.setRenderEffect(RenderEffect.createBlurEffect(AndroidUtilities.dp(35.0f), AndroidUtilities.dp(35.0f), Shader.TileMode.CLAMP));
+            renderNode2.setPosition(0, 0, renderNode.getWidth(), renderNode.getHeight());
+            RecordingCanvas beginRecording = renderNode2.beginRecording();
+            beginRecording.drawColor(-14737633);
+            beginRecording.drawRenderNode(renderNode);
+            renderNode2.endRecording();
+            this.f27444l = renderNode2;
+            return;
+        }
+        this.f27444l = null;
     }
 }

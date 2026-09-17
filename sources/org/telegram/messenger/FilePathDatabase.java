@@ -36,13 +36,13 @@ public class FilePathDatabase {
     }
 
     public static class PathData {
-        public final int f15603dc;
-        public final long f15604id;
+        public final int f17097dc;
+        public final long f17098id;
         public final int type;
 
         public PathData(long j3, int i10, int i11) {
-            this.f15604id = j3;
-            this.f15603dc = i10;
+            this.f17098id = j3;
+            this.f17097dc = i10;
             this.type = i11;
         }
     }
@@ -62,8 +62,8 @@ public class FilePathDatabase {
         try {
             AndroidUtilities.copyFile(this.cacheFile, file2);
             FileLog.d("file db backup created " + file2.getAbsolutePath());
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (IOException e7) {
+            e7.printStackTrace();
         }
     }
 
@@ -106,8 +106,8 @@ public class FilePathDatabase {
         try {
             this.database.executeFast("DELETE FROM paths WHERE 1").stepThis().dispose();
             this.database.executeFast("DELETE FROM paths_by_dialog_id WHERE 1").stepThis().dispose();
-        } catch (Exception e) {
-            FileLog.e(e);
+        } catch (Exception e7) {
+            FileLog.e(e7);
         }
     }
 
@@ -122,8 +122,8 @@ public class FilePathDatabase {
             if (sQLiteDatabase.queryFinalized("SELECT document_id FROM paths WHERE path = '" + str + "'", new Object[0]).next()) {
                 zArr[0] = true;
             }
-        } catch (Exception e) {
-            FileLog.e(e);
+        } catch (Exception e7) {
+            FileLog.e(e7);
         } finally {
             countDownLatch.countDown();
         }
@@ -141,8 +141,8 @@ public class FilePathDatabase {
                 }
                 zArr[0] = z10;
             }
-        } catch (Exception e) {
-            FileLog.e(e);
+        } catch (Exception e7) {
+            FileLog.e(e7);
         } finally {
             countDownLatch.countDown();
         }
@@ -193,7 +193,7 @@ public class FilePathDatabase {
             this.database.beginTransaction();
             for (int i10 = 0; i10 < list.size(); i10++) {
                 SQLiteDatabase sQLiteDatabase = this.database;
-                sQLiteDatabase.executeFast("DELETE FROM paths_by_dialog_id WHERE path = '" + shield(((zh.a) list.get(i10)).f49217a.getPath()) + "'").stepThis().dispose();
+                sQLiteDatabase.executeFast("DELETE FROM paths_by_dialog_id WHERE path = '" + shield(((ai.b) list.get(i10)).f750a.getPath()) + "'").stepThis().dispose();
             }
         } catch (Throwable th2) {
             try {
@@ -217,8 +217,8 @@ public class FilePathDatabase {
                 sQLitePreparedStatement.bindInteger(4, fileMeta.messageType);
                 sQLitePreparedStatement.step();
                 sQLitePreparedStatement.dispose();
-            } catch (Exception e) {
-                FileLog.e(e);
+            } catch (Exception e7) {
+                FileLog.e(e7);
                 if (sQLitePreparedStatement != null) {
                     sQLitePreparedStatement.dispose();
                 }
@@ -282,8 +282,8 @@ public class FilePathDatabase {
         }
         try {
             return AndroidUtilities.copyFile(file2, this.cacheFile);
-        } catch (IOException e) {
-            FileLog.e(e);
+        } catch (IOException e7) {
+            FileLog.e(e7);
             return false;
         }
     }
@@ -298,18 +298,18 @@ public class FilePathDatabase {
             CountDownLatch countDownLatch = new CountDownLatch(1);
             long currentTimeMillis = System.currentTimeMillis();
             long[] jArr = new long[1];
-            postToFrontRunnable(new qk(this, arrayList2, jArr, countDownLatch, 7));
+            postToFrontRunnable(new pk(this, arrayList2, jArr, countDownLatch, 7));
             try {
                 countDownLatch.await();
-            } catch (InterruptedException e) {
-                FileLog.e(e);
+            } catch (InterruptedException e7) {
+                FileLog.e(e7);
             }
             StringBuilder sb2 = new StringBuilder("checkMediaExistance size=");
             sb2.append(arrayList.size());
             sb2.append(" time=");
             sb2.append(System.currentTimeMillis() - currentTimeMillis);
             sb2.append(" thread_time=");
-            hg.k0.w(sb2, jArr[0]);
+            i2.g.w(sb2, jArr[0]);
             if (BuildVars.DEBUG_VERSION && Thread.currentThread() == Looper.getMainLooper().getThread()) {
                 FileLog.e(new Exception("warning, not allowed in main thread"));
             }
@@ -356,7 +356,7 @@ public class FilePathDatabase {
                 createBackup();
             }
             FileLog.d("files db created from_backup= " + z10);
-        } catch (Exception e) {
+        } catch (Exception e7) {
             if (i10 < 4) {
                 if (!z10 && restoreBackup()) {
                     createDatabase(i10 + 1, true);
@@ -367,7 +367,7 @@ public class FilePathDatabase {
                 createDatabase(i10 + 1, false);
             }
             if (BuildVars.DEBUG_VERSION) {
-                FileLog.e(e);
+                FileLog.e(e7);
             }
         }
     }
@@ -379,8 +379,8 @@ public class FilePathDatabase {
                 while (!NativeLoader.loaded()) {
                     try {
                         Thread.sleep(1000L);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
+                    } catch (InterruptedException e7) {
+                        e7.printStackTrace();
                     }
                     i10++;
                     if (i10 > 5) {
@@ -415,8 +415,8 @@ public class FilePathDatabase {
                     try {
                         i12 = i10;
                         i11 = sQLiteCursor.intValue(2);
-                    } catch (Exception e) {
-                        e = e;
+                    } catch (Exception e7) {
+                        e = e7;
                         FileLog.e(e);
                         i12 = i10;
                         i11 = 0;
@@ -429,8 +429,8 @@ public class FilePathDatabase {
                     i11 = 0;
                 }
                 sQLiteCursor.dispose();
-            } catch (Exception e7) {
-                e = e7;
+            } catch (Exception e10) {
+                e = e10;
                 i10 = 0;
             }
             fileMeta.dialogId = j3;
@@ -459,8 +459,8 @@ public class FilePathDatabase {
         postRunnable(new g3(this, str, zArr, countDownLatch, 1));
         try {
             countDownLatch.await();
-        } catch (InterruptedException e) {
-            FileLog.e(e);
+        } catch (InterruptedException e7) {
+            FileLog.e(e7);
         }
         return zArr[0];
     }
@@ -471,8 +471,8 @@ public class FilePathDatabase {
         postRunnable(new g3(this, str, zArr, countDownLatch, 0));
         try {
             countDownLatch.await();
-        } catch (InterruptedException e) {
-            FileLog.e(e);
+        } catch (InterruptedException e7) {
+            FileLog.e(e7);
         }
         return zArr[0];
     }
@@ -480,12 +480,12 @@ public class FilePathDatabase {
     public LongSparseArray<ArrayList<CacheByChatsController.KeepMediaFile>> lookupFiles(ArrayList<? extends CacheByChatsController.KeepMediaFile> arrayList) {
         CountDownLatch countDownLatch = new CountDownLatch(1);
         LongSparseArray<ArrayList<CacheByChatsController.KeepMediaFile>> longSparseArray = new LongSparseArray<>();
-        postRunnable(new qk(this, arrayList, longSparseArray, countDownLatch, 6));
+        postRunnable(new pk(this, arrayList, longSparseArray, countDownLatch, 6));
         try {
             countDownLatch.await();
             return longSparseArray;
-        } catch (InterruptedException e) {
-            FileLog.e(e);
+        } catch (InterruptedException e7) {
+            FileLog.e(e7);
             return longSparseArray;
         }
     }
@@ -494,7 +494,7 @@ public class FilePathDatabase {
         postRunnable(new h3(this, j3, i10, i11, str, i12));
     }
 
-    public void removeFiles(List<zh.a> list) {
+    public void removeFiles(List<ai.b> list) {
         postRunnable(new b2(8, this, list));
     }
 

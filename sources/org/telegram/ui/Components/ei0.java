@@ -1,76 +1,235 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
+import android.graphics.Rect;
+import android.view.MotionEvent;
+import android.view.VelocityTracker;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.NotificationCenter;
-public final class ei0 extends AnimatorListenerAdapter {
-    public final int f23572a;
-    public final fi0 f23573b;
+import org.telegram.tgnet.TLRPC;
+public final class ei0 extends FrameLayout {
+    public static final int R = 0;
+    public boolean E;
+    public pr F;
+    public vc0 G;
+    public vc0 H;
+    public org.telegram.ui.qc0 I;
+    public ci0 J;
+    public TextView K;
+    public boolean L;
+    public TLRPC.User M;
+    public int N;
+    public boolean O;
+    public bi0 P;
+    public org.telegram.ui.sc0 Q;
+    public VelocityTracker f25734a;
+    public int f25735b;
+    public int f25736c;
+    public int d;
+    public boolean f25737e;
+    public boolean f25738f;
+    public AnimatorSet h;
+    public Rect f25739n;
+    public boolean f25740r;
+    public AnimatorSet f25741s;
+    public ai0 v;
+    public boolean f25742w;
+    public int f25743x;
+    public int f25744y;
 
-    public ei0(fi0 fi0Var, int i10) {
-        this.f23572a = i10;
-        this.f23573b = fi0Var;
-    }
-
-    @Override
-    public void onAnimationCancel(Animator animator) {
-        switch (this.f23572a) {
-            case 1:
-                fi0 fi0Var = this.f23573b;
-                AnimatorSet animatorSet = fi0Var.f23945s;
-                if (animatorSet != null && animatorSet.equals(animator)) {
-                    fi0Var.f23945s = null;
-                    fi0Var.getClass();
-                    return;
-                }
-                return;
-            case 2:
-                fi0 fi0Var2 = this.f23573b;
-                AnimatorSet animatorSet2 = fi0Var2.f23945s;
-                if (animatorSet2 != null && animatorSet2.equals(animator)) {
-                    fi0Var2.f23945s = null;
-                    fi0Var2.getClass();
-                    return;
-                }
-                return;
-            default:
-                super.onAnimationCancel(animator);
-                return;
+    public final void a() {
+        ai0 ai0Var = this.v;
+        if (this.f25740r) {
+            return;
         }
+        this.f25740r = true;
+        AnimatorSet animatorSet = this.f25741s;
+        if (animatorSet != null) {
+            animatorSet.cancel();
+            this.f25741s = null;
+        }
+        AnimatorSet animatorSet2 = new AnimatorSet();
+        this.f25741s = animatorSet2;
+        animatorSet2.playTogether(ObjectAnimator.ofFloat(ai0Var, View.TRANSLATION_Y, AndroidUtilities.dp(10.0f) + ai0Var.getMeasuredHeight()));
+        if (this.E) {
+            float measuredHeight = ai0Var.getMeasuredHeight();
+            this.f25741s.setDuration(Math.max(60, (int) (((measuredHeight - ai0Var.getTranslationY()) * 250.0f) / measuredHeight)));
+            this.E = false;
+        } else {
+            this.f25741s.setDuration(250L);
+        }
+        this.f25741s.setInterpolator(pr.f29494f);
+        this.f25741s.addListener(new di0(this, 2));
+        NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.stopAllHeavyOperations, 512);
+        this.f25741s.start();
     }
 
-    @Override
-    public final void onAnimationEnd(Animator animator) {
-        int i10 = this.f23572a;
-        fi0 fi0Var = this.f23573b;
-        switch (i10) {
-            case 0:
-                AnimatorSet animatorSet = fi0Var.h;
-                if (animatorSet != null && animatorSet.equals(animator)) {
-                    fi0Var.h = null;
-                }
-                NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.startAllHeavyOperations, 512);
-                return;
-            case 1:
-                AnimatorSet animatorSet2 = fi0Var.f23945s;
-                if (animatorSet2 != null && animatorSet2.equals(animator)) {
-                    fi0Var.f23945s = null;
-                    if (fi0Var.f23946w) {
-                        fi0Var.setLayerType(0, null);
+    public final boolean b(MotionEvent motionEvent, boolean z10) {
+        float translationY;
+        ai0 ai0Var = this.v;
+        if (!this.f25740r) {
+            if (motionEvent != null && ((motionEvent.getAction() == 0 || motionEvent.getAction() == 2) && !this.f25738f && !this.f25737e && motionEvent.getPointerCount() == 1)) {
+                this.f25735b = (int) motionEvent.getX();
+                int y3 = (int) motionEvent.getY();
+                this.f25736c = y3;
+                if (y3 >= ai0Var.getTop() && this.f25735b >= ai0Var.getLeft() && this.f25735b <= ai0Var.getRight()) {
+                    this.d = motionEvent.getPointerId(0);
+                    this.f25737e = true;
+                    AnimatorSet animatorSet = this.h;
+                    if (animatorSet != null) {
+                        animatorSet.cancel();
+                        this.h = null;
                     }
+                    VelocityTracker velocityTracker = this.f25734a;
+                    if (velocityTracker != null) {
+                        velocityTracker.clear();
+                    }
+                } else {
+                    requestDisallowInterceptTouchEvent(true);
+                    a();
+                    return true;
                 }
-                NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.startAllHeavyOperations, 512);
-                return;
-            default:
-                AnimatorSet animatorSet3 = fi0Var.f23945s;
-                if (animatorSet3 != null && animatorSet3.equals(animator)) {
-                    fi0Var.f23945s = null;
-                    AndroidUtilities.runOnUIThread(new bc0(this, 14));
+            } else {
+                float f7 = 0.0f;
+                if (motionEvent != null && motionEvent.getAction() == 2 && motionEvent.getPointerId(0) == this.d) {
+                    if (this.f25734a == null) {
+                        this.f25734a = VelocityTracker.obtain();
+                    }
+                    float abs = Math.abs((int) (motionEvent.getX() - this.f25735b));
+                    float y10 = ((int) motionEvent.getY()) - this.f25736c;
+                    this.f25734a.addMovement(motionEvent);
+                    if (this.f25737e && !this.f25738f && y10 > 0.0f && y10 / 3.0f > Math.abs(abs) && Math.abs(y10) >= this.f25744y) {
+                        this.f25736c = (int) motionEvent.getY();
+                        this.f25737e = false;
+                        this.f25738f = true;
+                        requestDisallowInterceptTouchEvent(true);
+                    } else if (this.f25738f) {
+                        float translationY2 = ai0Var.getTranslationY() + y10;
+                        if (translationY2 >= 0.0f) {
+                            f7 = translationY2;
+                        }
+                        ai0Var.setTranslationY(f7);
+                        this.f25736c = (int) motionEvent.getY();
+                    }
+                } else if (motionEvent == null || (motionEvent.getPointerId(0) == this.d && (motionEvent.getAction() == 3 || motionEvent.getAction() == 1 || motionEvent.getAction() == 6))) {
+                    if (this.f25734a == null) {
+                        this.f25734a = VelocityTracker.obtain();
+                    }
+                    this.f25734a.computeCurrentVelocity(1000);
+                    float translationY3 = ai0Var.getTranslationY();
+                    if (!this.f25738f && translationY3 == 0.0f) {
+                        this.f25737e = false;
+                        this.f25738f = false;
+                    } else {
+                        float xVelocity = this.f25734a.getXVelocity();
+                        float yVelocity = this.f25734a.getYVelocity();
+                        if ((ai0Var.getTranslationY() < AndroidUtilities.getPixelsInCM(0.8f, false) && (yVelocity < 3500.0f || Math.abs(yVelocity) < Math.abs(xVelocity))) || (yVelocity < 0.0f && Math.abs(yVelocity) >= 3500.0f)) {
+                            AnimatorSet animatorSet2 = new AnimatorSet();
+                            this.h = animatorSet2;
+                            animatorSet2.playTogether(ObjectAnimator.ofFloat(ai0Var, View.TRANSLATION_Y, 0.0f));
+                            this.h.setDuration((int) ((Math.max(0.0f, translationY) / AndroidUtilities.getPixelsInCM(0.8f, false)) * 150.0f));
+                            this.h.setInterpolator(pr.f29495g);
+                            this.h.addListener(new di0(this, 0));
+                            NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.stopAllHeavyOperations, 512);
+                            this.h.start();
+                        } else {
+                            this.E = true;
+                            a();
+                        }
+                        this.f25738f = false;
+                    }
+                    VelocityTracker velocityTracker2 = this.f25734a;
+                    if (velocityTracker2 != null) {
+                        velocityTracker2.recycle();
+                        this.f25734a = null;
+                    }
+                    this.d = -1;
                 }
-                NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.startAllHeavyOperations, 512);
-                return;
+            }
+            if ((!z10 && this.f25737e) || this.f25738f) {
+                return true;
+            }
         }
+        return false;
+    }
+
+    public final void c(boolean r18) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ei0.c(boolean):void");
+    }
+
+    @Override
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        if (this.f25740r) {
+            return true;
+        }
+        return super.dispatchTouchEvent(motionEvent);
+    }
+
+    public View getCustomView() {
+        return this.P;
+    }
+
+    public boolean getRadiusSet() {
+        return this.L;
+    }
+
+    public float getValue() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ei0.getValue():float");
+    }
+
+    @Override
+    public final boolean hasOverlappingRendering() {
+        return false;
+    }
+
+    @Override
+    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        if (this.f25740r || b(motionEvent, true)) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public final void onLayout(boolean r9, int r10, int r11, int r12, int r13) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ei0.onLayout(boolean, int, int, int, int):void");
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        int size = View.MeasureSpec.getSize(i10);
+        int size2 = View.MeasureSpec.getSize(i11);
+        getRootView();
+        getWindowVisibleDisplayFrame(this.f25739n);
+        setMeasuredDimension(size, size2);
+        ai0 ai0Var = this.v;
+        ai0Var.measure(View.MeasureSpec.makeMeasureSpec((this.f25743x * 2) + size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, Integer.MIN_VALUE));
+        int childCount = getChildCount();
+        for (int i12 = 0; i12 < childCount; i12++) {
+            View childAt = getChildAt(i12);
+            if (childAt.getVisibility() != 8 && childAt != ai0Var) {
+                measureChildWithMargins(childAt, View.MeasureSpec.makeMeasureSpec(size, 1073741824), 0, View.MeasureSpec.makeMeasureSpec(size2, 1073741824), 0);
+            }
+        }
+    }
+
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        if (!this.f25740r && !b(motionEvent, false)) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public final void requestDisallowInterceptTouchEvent(boolean z10) {
+        if (this.f25737e && !this.f25738f) {
+            onTouchEvent(null);
+        }
+        super.requestDisallowInterceptTouchEvent(z10);
     }
 }

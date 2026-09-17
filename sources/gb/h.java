@@ -10,21 +10,21 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.TimeZone;
 public final class h extends db.u {
-    public static final e f9549c = new e();
-    public final g f9550a;
-    public final ArrayList f9551b;
+    public static final e f10541c = new e();
+    public final g f10542a;
+    public final ArrayList f10543b;
 
     public h(g gVar) {
         ArrayList arrayList = new ArrayList();
-        this.f9551b = arrayList;
+        this.f10543b = arrayList;
         Objects.requireNonNull(gVar);
-        this.f9550a = gVar;
+        this.f10542a = gVar;
         Locale locale = Locale.US;
         arrayList.add(DateFormat.getDateTimeInstance(2, 2, locale));
         if (!Locale.getDefault().equals(locale)) {
             arrayList.add(DateFormat.getDateTimeInstance(2, 2));
         }
-        if (fb.g.f9028a >= 9) {
+        if (fb.g.f9458a >= 9) {
             arrayList.add(new SimpleDateFormat(a4.a.C("MMM d, yyyy", " ", "h:mm:ss a"), locale));
         }
     }
@@ -39,9 +39,9 @@ public final class h extends db.u {
             return null;
         }
         String v = aVar.v();
-        synchronized (this.f9551b) {
+        synchronized (this.f10543b) {
             try {
-                ArrayList arrayList = this.f9551b;
+                ArrayList arrayList = this.f10543b;
                 int size = arrayList.size();
                 int i10 = 0;
                 while (true) {
@@ -56,10 +56,10 @@ public final class h extends db.u {
                         try {
                             b10 = hb.a.b(v, new ParsePosition(0));
                             break;
-                        } catch (ParseException e) {
+                        } catch (ParseException e7) {
                             StringBuilder v9 = a4.a.v("Failed parsing '", v, "' as Date; at path ");
                             v9.append(aVar.j());
-                            throw new RuntimeException(v9.toString(), e);
+                            throw new RuntimeException(v9.toString(), e7);
                         }
                     }
                 }
@@ -68,11 +68,11 @@ public final class h extends db.u {
             } finally {
             }
         }
-        return this.f9550a.a(b10);
+        return this.f10542a.a(b10);
     }
 
     public final String toString() {
-        DateFormat dateFormat = (DateFormat) this.f9551b.get(0);
+        DateFormat dateFormat = (DateFormat) this.f10543b.get(0);
         if (dateFormat instanceof SimpleDateFormat) {
             return "DefaultDateTypeAdapter(" + ((SimpleDateFormat) dateFormat).toPattern() + ')';
         }
@@ -87,8 +87,8 @@ public final class h extends db.u {
             bVar.i();
             return;
         }
-        DateFormat dateFormat = (DateFormat) this.f9551b.get(0);
-        synchronized (this.f9551b) {
+        DateFormat dateFormat = (DateFormat) this.f10543b.get(0);
+        synchronized (this.f10543b) {
             format = dateFormat.format(date);
         }
         bVar.r(format);

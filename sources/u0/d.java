@@ -6,45 +6,45 @@ import android.view.ViewConfiguration;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.AnimationUtils;
 import m.r1;
-import qg.b0;
+import rg.b0;
 public final class d implements View.OnTouchListener {
     public static final int H = ViewConfiguration.getTapTimeout();
     public boolean E;
     public boolean F;
     public final r1 G;
-    public final a f43304a;
-    public final AccelerateInterpolator f43305b;
-    public final r1 f43306c;
+    public final a f46613a;
+    public final AccelerateInterpolator f46614b;
+    public final r1 f46615c;
     public b0 d;
-    public final float[] e;
-    public final float[] f43307f;
+    public final float[] f46616e;
+    public final float[] f46617f;
     public final int h;
-    public final int f43308n;
-    public final float[] f43309r;
-    public final float[] f43310s;
+    public final int f46618n;
+    public final float[] f46619r;
+    public final float[] f46620s;
     public final float[] v;
-    public boolean f43311w;
-    public boolean f43312x;
-    public boolean f43313y;
+    public boolean f46621w;
+    public boolean f46622x;
+    public boolean f46623y;
 
     public d(r1 r1Var) {
         ?? obj = new Object();
-        obj.e = Long.MIN_VALUE;
-        obj.f43302g = -1L;
-        obj.f43301f = 0L;
-        this.f43304a = obj;
-        this.f43305b = new AccelerateInterpolator();
+        obj.f46609e = Long.MIN_VALUE;
+        obj.f46611g = -1L;
+        obj.f46610f = 0L;
+        this.f46613a = obj;
+        this.f46614b = new AccelerateInterpolator();
         float[] fArr = {0.0f, 0.0f};
-        this.e = fArr;
+        this.f46616e = fArr;
         float[] fArr2 = {Float.MAX_VALUE, Float.MAX_VALUE};
-        this.f43307f = fArr2;
+        this.f46617f = fArr2;
         float[] fArr3 = {0.0f, 0.0f};
-        this.f43309r = fArr3;
+        this.f46619r = fArr3;
         float[] fArr4 = {0.0f, 0.0f};
-        this.f43310s = fArr4;
+        this.f46620s = fArr4;
         float[] fArr5 = {Float.MAX_VALUE, Float.MAX_VALUE};
         this.v = fArr5;
-        this.f43306c = r1Var;
+        this.f46615c = r1Var;
         float f7 = Resources.getSystem().getDisplayMetrics().density;
         float f10 = ((int) ((1575.0f * f7) + 0.5f)) / 1000.0f;
         fArr5[0] = f10;
@@ -59,9 +59,9 @@ public final class d implements View.OnTouchListener {
         fArr[1] = 0.2f;
         fArr3[0] = 0.001f;
         fArr3[1] = 0.001f;
-        this.f43308n = H;
-        obj.f43298a = 500;
-        obj.f43299b = 500;
+        this.f46618n = H;
+        obj.f46606a = 500;
+        obj.f46607b = 500;
         this.G = r1Var;
     }
 
@@ -100,31 +100,31 @@ public final class d implements View.OnTouchListener {
 
     public final void d() {
         int i10 = 0;
-        if (this.f43312x) {
+        if (this.f46622x) {
             this.E = false;
             return;
         }
         long currentAnimationTimeMillis = AnimationUtils.currentAnimationTimeMillis();
-        a aVar = this.f43304a;
-        int i11 = (int) (currentAnimationTimeMillis - aVar.e);
-        int i12 = aVar.f43299b;
+        a aVar = this.f46613a;
+        int i11 = (int) (currentAnimationTimeMillis - aVar.f46609e);
+        int i12 = aVar.f46607b;
         if (i11 > i12) {
             i10 = i12;
         } else if (i11 >= 0) {
             i10 = i11;
         }
-        aVar.f43303i = i10;
+        aVar.f46612i = i10;
         aVar.h = aVar.a(currentAnimationTimeMillis);
-        aVar.f43302g = currentAnimationTimeMillis;
+        aVar.f46611g = currentAnimationTimeMillis;
     }
 
     public final boolean e() {
         r1 r1Var;
         int count;
-        a aVar = this.f43304a;
+        a aVar = this.f46613a;
         float f7 = aVar.d;
         int abs = (int) (f7 / Math.abs(f7));
-        Math.abs(aVar.f43300c);
+        Math.abs(aVar.f46608c);
         if (abs != 0 && (count = (r1Var = this.G).getCount()) != 0) {
             int childCount = r1Var.getChildCount();
             int firstVisiblePosition = r1Var.getFirstVisiblePosition();
@@ -137,7 +137,7 @@ public final class d implements View.OnTouchListener {
     }
 
     @Override
-    public final boolean onTouch(android.view.View r8, android.view.MotionEvent r9) {
+    public final boolean onTouch(android.view.View r9, android.view.MotionEvent r10) {
         throw new UnsupportedOperationException("Method not decompiled: u0.d.onTouch(android.view.View, android.view.MotionEvent):boolean");
     }
 }

@@ -3,14 +3,14 @@ package org.telegram.ui.Components;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.Utilities;
 public final class ce0 implements NotificationCenter.NotificationCenterDelegate {
-    public final int f23028a;
-    public final Utilities.Callback f23029b;
-    public final NotificationCenter.NotificationCenterDelegate[] f23030c;
+    public final int f25022a;
+    public final Utilities.Callback f25023b;
+    public final NotificationCenter.NotificationCenterDelegate[] f25024c;
 
     public ce0(int i10, Utilities.Callback callback, NotificationCenter.NotificationCenterDelegate[] notificationCenterDelegateArr) {
-        this.f23028a = i10;
-        this.f23029b = callback;
-        this.f23030c = notificationCenterDelegateArr;
+        this.f25022a = i10;
+        this.f25023b = callback;
+        this.f25024c = notificationCenterDelegateArr;
     }
 
     @Override
@@ -20,12 +20,12 @@ public final class ce0 implements NotificationCenter.NotificationCenterDelegate 
             int intValue = ((Integer) objArr[0]).intValue();
             String[] strArr = (String[]) objArr[1];
             int[] iArr = (int[]) objArr[2];
-            if (intValue == this.f23028a) {
-                Utilities.Callback callback = this.f23029b;
+            if (intValue == this.f25022a) {
+                Utilities.Callback callback = this.f25023b;
                 if (callback != null) {
                     callback.run(iArr);
                 }
-                NotificationCenter.getGlobalInstance().removeObserver(this.f23030c[0], i12);
+                NotificationCenter.getGlobalInstance().removeObserver(this.f25024c[0], i12);
             }
         }
     }

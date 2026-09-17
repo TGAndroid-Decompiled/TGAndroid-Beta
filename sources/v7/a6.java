@@ -1,12 +1,94 @@
 package v7;
-public abstract class a6 {
-    public abstract void a(com.google.android.gms.internal.play_billing.f4 f4Var, com.google.android.gms.internal.play_billing.f4 f4Var2);
 
-    public abstract void b(com.google.android.gms.internal.play_billing.f4 f4Var, Thread thread);
+import java.util.Arrays;
+import java.util.HashMap;
+public class a6 implements ja.a {
+    public final int f47406a;
+    public Object f47407b;
+    public Object f47408c;
+    public Object d;
 
-    public abstract boolean c(com.google.android.gms.internal.play_billing.g4 g4Var, com.google.android.gms.internal.play_billing.v2 v2Var, com.google.android.gms.internal.play_billing.v2 v2Var2);
+    public a6(int i10, boolean z10) {
+        this.f47406a = i10;
+    }
 
-    public abstract boolean d(com.google.android.gms.internal.play_billing.g4 g4Var, Object obj, Object obj2);
+    @Override
+    public ja.a j(Class cls, ia.d dVar) {
+        switch (this.f47406a) {
+            case 2:
+                ((HashMap) this.f47407b).put(cls, dVar);
+                ((HashMap) this.f47408c).remove(cls);
+                return this;
+            case 3:
+            default:
+                ((HashMap) this.f47407b).put(cls, dVar);
+                ((HashMap) this.f47408c).remove(cls);
+                return this;
+            case 4:
+                ((HashMap) this.f47407b).put(cls, dVar);
+                ((HashMap) this.f47408c).remove(cls);
+                return this;
+        }
+    }
 
-    public abstract boolean e(com.google.android.gms.internal.play_billing.g4 g4Var, com.google.android.gms.internal.play_billing.f4 f4Var, com.google.android.gms.internal.play_billing.f4 f4Var2);
+    public String toString() {
+        switch (this.f47406a) {
+            case 9:
+                StringBuilder sb2 = new StringBuilder(32);
+                sb2.append((String) this.f47407b);
+                sb2.append('{');
+                a6 a6Var = (a6) ((a6) this.f47408c).d;
+                String str = "";
+                while (a6Var != null) {
+                    Object obj = a6Var.f47408c;
+                    sb2.append(str);
+                    String str2 = (String) a6Var.f47407b;
+                    if (str2 != null) {
+                        sb2.append(str2);
+                        sb2.append('=');
+                    }
+                    if (obj != null && obj.getClass().isArray()) {
+                        String deepToString = Arrays.deepToString(new Object[]{obj});
+                        sb2.append((CharSequence) deepToString, 1, deepToString.length() - 1);
+                    } else {
+                        sb2.append(obj);
+                    }
+                    a6Var = (a6) a6Var.d;
+                    str = ", ";
+                }
+                sb2.append('}');
+                return sb2.toString();
+            default:
+                return super.toString();
+        }
+    }
+
+    public a6(int i10) {
+        this.f47406a = i10;
+        switch (i10) {
+            case 4:
+                this.f47407b = new HashMap();
+                this.f47408c = new HashMap();
+                this.d = x7.d0.f48977c;
+                return;
+            case 10:
+                this.f47407b = new HashMap();
+                this.f47408c = new HashMap();
+                this.d = z7.x.f51347c;
+                return;
+            default:
+                this.f47407b = new HashMap();
+                this.f47408c = new HashMap();
+                this.d = w7.e.f48108c;
+                return;
+        }
+    }
+
+    public a6(String str) {
+        this.f47406a = 9;
+        a6 a6Var = new a6(8, false);
+        this.f47408c = a6Var;
+        this.d = a6Var;
+        this.f47407b = str;
+    }
 }

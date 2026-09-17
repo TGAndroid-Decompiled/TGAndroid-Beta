@@ -6,18 +6,13 @@ import android.view.View;
 import androidx.appcompat.widget.ActionBarContextView;
 import java.lang.ref.WeakReference;
 import n4.y;
-public final class d extends a implements l.i {
-    public Context f13111c;
+public final class d extends a implements l.j {
+    public Context f14413c;
     public ActionBarContextView d;
-    public y e;
-    public WeakReference f13112f;
+    public y f14414e;
+    public WeakReference f14415f;
     public boolean h;
-    public l.k f13113n;
-
-    @Override
-    public final boolean A(l.k kVar, MenuItem menuItem) {
-        return ((ni.f) this.e.f15004b).G(this, menuItem);
-    }
+    public l.l f14416n;
 
     @Override
     public final void a() {
@@ -25,12 +20,12 @@ public final class d extends a implements l.i {
             return;
         }
         this.h = true;
-        this.e.T(this);
+        this.f14414e.I(this);
     }
 
     @Override
     public final View b() {
-        WeakReference weakReference = this.f13112f;
+        WeakReference weakReference = this.f14415f;
         if (weakReference != null) {
             return (View) weakReference.get();
         }
@@ -38,8 +33,8 @@ public final class d extends a implements l.i {
     }
 
     @Override
-    public final l.k c() {
-        return this.f13113n;
+    public final l.l c() {
+        return this.f14416n;
     }
 
     @Override
@@ -59,7 +54,7 @@ public final class d extends a implements l.i {
 
     @Override
     public final void g() {
-        this.e.U(this, this.f13113n);
+        this.f14414e.J(this, this.f14416n);
     }
 
     @Override
@@ -76,12 +71,12 @@ public final class d extends a implements l.i {
         } else {
             weakReference = null;
         }
-        this.f13112f = weakReference;
+        this.f14415f = weakReference;
     }
 
     @Override
     public final void j(int i10) {
-        k(this.f13111c.getString(i10));
+        k(this.f14413c.getString(i10));
     }
 
     @Override
@@ -91,7 +86,7 @@ public final class d extends a implements l.i {
 
     @Override
     public final void l(int i10) {
-        m(this.f13111c.getString(i10));
+        m(this.f14413c.getString(i10));
     }
 
     @Override
@@ -100,17 +95,22 @@ public final class d extends a implements l.i {
     }
 
     @Override
-    public final void n(boolean z10) {
-        this.f13107b = z10;
-        this.d.setTitleOptional(z10);
-    }
-
-    @Override
-    public final void t(l.k kVar) {
+    public final void n(l.l lVar) {
         g();
         m.h hVar = this.d.d;
         if (hVar != null) {
             hVar.l();
         }
+    }
+
+    @Override
+    public final void o(boolean z10) {
+        this.f14409b = z10;
+        this.d.setTitleOptional(z10);
+    }
+
+    @Override
+    public final boolean s(l.l lVar, MenuItem menuItem) {
+        return ((fg.f) this.f14414e.f16523b).H(this, menuItem);
     }
 }

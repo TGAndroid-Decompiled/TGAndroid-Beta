@@ -1,161 +1,359 @@
 package ah;
 
-import android.graphics.RecordingCanvas;
-import android.graphics.RenderEffect;
-import android.graphics.RenderNode;
-import android.graphics.Shader;
+import android.content.DialogInterface;
+import android.os.Looper;
+import android.text.SpannableString;
+import android.text.TextUtils;
+import android.util.StateSet;
+import bi.l7;
+import bi.u8;
+import di.b7;
+import di.o8;
+import di.pc;
+import di.t2;
+import java.io.File;
+import java.util.ArrayList;
+import java.util.Collections;
+import ji.n3;
+import ji.s3;
+import ji.v3;
+import org.telegram.SQLite.SQLiteDatabase;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ContactsController;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaDataController;
-public final class g {
-    public final RenderNode f444a = f.c();
-    public final RenderNode[] f445b;
-    public final RenderNode[] f446c;
-    public final boolean d;
-    public int e;
-    public int f447f;
-    public float f448g;
-    public float h;
-    public long f449i;
-    public final i f450j;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.MessagesStorage;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.messenger.R;
+import org.telegram.messenger.UserConfig;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.b2;
+import org.telegram.ui.ActionBar.n2;
+import org.telegram.ui.Cells.t1;
+import org.telegram.ui.Components.d90;
+import org.telegram.ui.Components.u1;
+import org.telegram.ui.aj;
+import org.telegram.ui.bj;
+import org.telegram.ui.co;
+import org.telegram.ui.fe;
+import org.telegram.ui.on;
+import org.telegram.ui.q4;
+import org.telegram.ui.um;
+import org.telegram.ui.zi;
+public final class g implements Runnable {
+    public final int f544a;
+    public final int f545b;
+    public final Object f546c;
 
-    public g(i iVar, String str, int i10, boolean z10) {
-        this.f450j = iVar;
-        int i11 = i10 + 1;
-        this.f445b = new RenderNode[i11];
-        for (int i12 = 0; i12 < i11; i12++) {
-            RenderNode[] renderNodeArr = this.f445b;
-            f.j();
-            renderNodeArr[i12] = f.d(str + "_down_" + i10);
-        }
-        if (i10 <= 0 && !z10) {
-            this.f446c = this.f445b;
-        } else {
-            this.f446c = new RenderNode[i11];
-            for (int i13 = 0; i13 < i11; i13++) {
-                this.f446c[i13] = f.c();
-            }
-        }
-        this.d = this.f446c == this.f445b;
-        this.f447f = 1;
-        this.e = 1;
+    public g(int i10, Object obj, int i11) {
+        this.f544a = i11;
+        this.f545b = i10;
+        this.f546c = obj;
     }
 
-    public final void a(RenderNode renderNode) {
+    @Override
+    public final void run() {
         boolean z10;
-        RenderNode[] renderNodeArr;
+        ArrayList<TLRPC.MessageEntity> arrayList;
+        ArrayList<TLRPC.MessageEntity> arrayList2;
         boolean z11;
-        int width = renderNode.getWidth();
-        int height = renderNode.getHeight();
-        float f7 = width;
-        i iVar = this.f450j;
-        int round = Math.round((iVar.d * f7) / this.e);
-        float f10 = height;
-        int round2 = Math.round((iVar.d * f10) / this.f447f);
-        float f11 = round;
-        float f12 = f11 / f7;
-        float f13 = round2;
-        float f14 = f13 / f10;
-        int i10 = iVar.d;
-        float f15 = (f7 * i10) / f11;
-        float f16 = (f10 * i10) / f13;
-        long calcHash = MediaDataController.calcHash(MediaDataController.calcHash(MediaDataController.calcHash(MediaDataController.calcHash(MediaDataController.calcHash(0L, renderNode.getUniqueId()), round), round2), width), height);
-        if (this.f444a.hasDisplayList() && this.f445b[0].hasDisplayList()) {
-            z10 = false;
-        } else {
-            z10 = true;
-        }
-        int i11 = 0;
-        while (true) {
-            int length = this.f445b.length;
-            z11 = this.d;
-            if (i11 >= length) {
-                break;
-            }
-            z10 |= !renderNodeArr[i11].hasDisplayList();
-            if (!z11) {
-                z10 |= !this.f446c[i11].hasDisplayList();
-            }
-            i11++;
-        }
-        if (this.f449i != calcHash || z10) {
-            this.f449i = calcHash;
-            int i12 = 0;
-            this.f444a.setPosition(0, 0, width, height);
-            this.f444a.beginRecording(width, height).drawRenderNode(renderNode);
-            this.f444a.endRecording();
-            this.f445b[0].setPosition(0, 0, round, round2);
-            RecordingCanvas beginRecording = this.f445b[0].beginRecording(round, round2);
-            beginRecording.scale(f12, f14);
-            beginRecording.drawRenderNode(this.f444a);
-            this.f445b[0].endRecording();
-            int i13 = 0;
-            while (true) {
-                RenderNode[] renderNodeArr2 = this.f445b;
-                if (i13 < renderNodeArr2.length) {
-                    renderNodeArr2[i13].setPosition(i12, i12, round, round2);
-                    RecordingCanvas beginRecording2 = this.f445b[i13].beginRecording(round, round2);
-                    if (i13 > 0) {
-                        beginRecording2.drawRenderNode(this.f445b[i12]);
-                    } else {
-                        beginRecording2.scale(f12, f14);
-                        beginRecording2.drawRenderNode(this.f444a);
+        int i10;
+        int i11;
+        int i12 = this.f544a;
+        boolean z12 = false;
+        final int i13 = this.f545b;
+        Object obj = this.f546c;
+        switch (i12) {
+            case 0:
+                i iVar = (i) obj;
+                if (iVar.f596b) {
+                    Utilities.Callback callback = iVar.d;
+                    if (callback != null) {
+                        if (i13 < 300) {
+                            z10 = true;
+                        } else {
+                            z10 = false;
+                        }
+                        callback.run(Boolean.valueOf(z10));
+                        try {
+                            iVar.f595a.performHapticFeedback(3);
+                        } catch (Exception unused) {
+                        }
                     }
-                    this.f445b[i13].endRecording();
-                    if (z11) {
-                        this.f445b[i13].setScaleX(f15);
-                        this.f445b[i13].setScaleY(f16);
-                        this.f445b[i13].setPivotX(0.0f);
-                        this.f445b[i13].setPivotY(0.0f);
-                    } else {
-                        this.f446c[i13].setPosition(0, 0, width, height);
-                        RecordingCanvas beginRecording3 = this.f446c[i13].beginRecording(width, height);
-                        beginRecording3.scale(f15, f16);
-                        beginRecording3.drawRenderNode(this.f445b[i13]);
-                        this.f446c[i13].endRecording();
-                    }
-                    i13++;
-                    i12 = 0;
-                } else {
+                    iVar.f597c = true;
+                    int max = Math.max(50, i13 - 100);
+                    AndroidUtilities.runOnUIThread(new g(iVar, max, 0), max);
                     return;
                 }
-            }
+                return;
+            case 1:
+                u8 u8Var = (u8) obj;
+                ArrayList arrayList3 = u8Var.f3837g;
+                u8Var.v(arrayList3);
+                l7 l7Var = u8Var.J;
+                Collections.sort(arrayList3, l7Var);
+                ArrayList arrayList4 = u8Var.h;
+                u8Var.v(arrayList4);
+                Collections.sort(arrayList4, l7Var);
+                NotificationCenter.getInstance(i13).lambda$postNotificationNameOnUIThread$1(NotificationCenter.storiesUpdated, new Object[0]);
+                return;
+            case 2:
+                ((c2.b) obj).f4169b.onAudioFocusChange(i13);
+                return;
+            case 3:
+                ((di.o) obj).run(Integer.valueOf(i13));
+                return;
+            case 4:
+                ((Utilities.Callback) obj).run(Integer.valueOf(i13));
+                return;
+            case 5:
+                ((t2) obj).p0(i13);
+                return;
+            case 6:
+                MessagesController.getInstance(i13).putUsers((ArrayList) obj, true);
+                return;
+            case 7:
+                pc pcVar = (pc) obj;
+                int i14 = pcVar.f7876c;
+                pcVar.m();
+                pcVar.X1 = false;
+                File file = pcVar.K1.O0;
+                if (file != null) {
+                    file.delete();
+                    pcVar.K1.O0 = null;
+                }
+                pcVar.W(pcVar.K1, true);
+                CharSequence[] charSequenceArr = {pcVar.f7878c1.getText()};
+                if (MessagesController.getInstance(i14).storyEntitiesAllowed()) {
+                    arrayList = MediaDataController.getInstance(i14).getEntities(charSequenceArr, true);
+                } else {
+                    arrayList = new ArrayList<>();
+                }
+                CharSequence[] charSequenceArr2 = {pcVar.K1.C0};
+                if (MessagesController.getInstance(i14).storyEntitiesAllowed()) {
+                    arrayList2 = MediaDataController.getInstance(i14).getEntities(charSequenceArr2, true);
+                } else {
+                    arrayList2 = new ArrayList<>();
+                }
+                o8 o8Var = pcVar.K1;
+                if (TextUtils.equals(o8Var.C0, charSequenceArr[0]) && MediaDataController.entitiesEqual(arrayList, arrayList2)) {
+                    z11 = false;
+                } else {
+                    z11 = true;
+                }
+                o8Var.f7791k = z11;
+                pcVar.K1.C0 = new SpannableString(pcVar.f7878c1.getText());
+                pcVar.z();
+                pcVar.y();
+                o8 o8Var2 = pcVar.K1;
+                if (o8Var2 != null && o8Var2.K) {
+                    i10 = 1;
+                } else {
+                    i10 = 0;
+                }
+                pcVar.O1 = i10;
+                pcVar.K1 = (o8) pcVar.H1.get(i13);
+                pcVar.O(0, 1);
+                pcVar.N(0, 1);
+                pcVar.f7881d1.f8262b.Y2.N(false);
+                pcVar.f7878c1.setText(pcVar.K1.C0);
+                return;
+            case 8:
+                ((hg.i0) obj).m(i13);
+                return;
+            case 9:
+                try {
+                    SQLiteDatabase database = ((MessagesStorage) obj).getDatabase();
+                    database.executeFast("DELETE FROM business_replies WHERE topic_id = " + i13).stepThis().dispose();
+                    database.executeFast("DELETE FROM quick_replies_messages WHERE topic_id = " + i13).stepThis().dispose();
+                    return;
+                } catch (Exception e7) {
+                    FileLog.e(e7);
+                    return;
+                }
+            case 10:
+                ih.h hVar = (ih.h) obj;
+                hVar.getClass();
+                try {
+                    hVar.f12366a.scrollBy(0, i13);
+                    return;
+                } catch (Throwable th2) {
+                    FileLog.e(th2);
+                    return;
+                }
+            case 11:
+                ji.d0 d0Var = (ji.d0) obj;
+                ji.g0 g0Var = d0Var.f13881f;
+                if (d0Var.f13879c && g0Var.E != null && g0Var.f13775a != null) {
+                    d0Var.d = true;
+                    d0Var.f13877a.setPressed(false);
+                    try {
+                        d0Var.performHapticFeedback(0);
+                    } catch (Exception unused2) {
+                    }
+                    ji.e0 e0Var = g0Var.E;
+                    ji.a aVar = g0Var.f13775a;
+                    v3 v3Var = ((n3) e0Var).f14104a;
+                    v3Var.n3(false);
+                    v3Var.f14275h3.b(new s3(v3Var, aVar, i13), d0Var);
+                    return;
+                }
+                return;
+            case 12:
+                String str = e2.d0.f8765a;
+                e2.c cVar = ((i2.c0) ((k2.j) ((n4.y) obj).f16524c)).f11497a.E;
+                i2.w wVar = new i2.w(i13, 2);
+                cVar.getClass();
+                if (Looper.myLooper() == ((e2.z) cVar.f8761c).f8826a.getLooper()) {
+                    z12 = true;
+                }
+                e2.d.g(z12);
+                cVar.f8759a++;
+                cVar.i(new b7(17, cVar, wVar));
+                Integer num = (Integer) cVar.f8762e;
+                cVar.n(Integer.valueOf(i13));
+                return;
+            case 13:
+                b2[] b2VarArr = (b2[]) obj;
+                b2 b2Var = b2VarArr[0];
+                if (b2Var != null) {
+                    try {
+                        b2Var.setOnCancelListener(new DialogInterface.OnCancelListener() {
+                            @Override
+                            public final void onCancel(DialogInterface dialogInterface) {
+                                ConnectionsManager.getInstance(UserConfig.selectedAccount).cancelRequest(i13, true);
+                            }
+                        });
+                        b2VarArr[0].show();
+                    } catch (Exception unused3) {
+                        return;
+                    }
+                }
+                return;
+            case 14:
+                ((oh.a) obj).v0(i13, 0, null);
+                return;
+            case 15:
+                ConnectionsManager.lambda$onUpdateConfig$21(i13, (TLRPC.TL_config) obj);
+                return;
+            case 16:
+                MessagesController.getInstance(i13).loadFullChat(((TLRPC.Chat) obj).f19896id, 0, true);
+                return;
+            case 17:
+                ((q4) ((org.telegram.ui.g) obj).f36543b).V(i13, true);
+                return;
+            case 18:
+                t1 t1Var = (t1) obj;
+                int i15 = t1Var.f23189v7;
+                if (i13 == i15) {
+                    org.telegram.ui.Cells.e0 e0Var2 = (org.telegram.ui.Cells.e0) t1Var.f23086o7.get(i15);
+                    if (e0Var2 != null) {
+                        org.telegram.ui.Cells.z zVar = e0Var2.f21855s;
+                        if (zVar != null) {
+                            zVar.setState(StateSet.NOTHING);
+                        }
+                        e0Var2.b(false);
+                        if (!t1Var.f23233y7.scheduled) {
+                            if (e0Var2.f21846j != null) {
+                                t1Var.k();
+                            } else if (e0Var2.f21845i != null) {
+                                t1Var.k();
+                                org.telegram.ui.Cells.k1 k1Var = t1Var.Jc;
+                                if (k1Var != null) {
+                                    k1Var.A1(t1Var, e0Var2.f21845i);
+                                }
+                            }
+                        }
+                    }
+                    t1Var.f23189v7 = -1;
+                    t1Var.a3();
+                    return;
+                }
+                return;
+            case 19:
+                ((fe) obj).f36411f.c(i13);
+                return;
+            case 20:
+                ((bj) obj).f34850a.F(this.f545b, 0, 0, 0, true, true);
+                return;
+            case 21:
+                co coVar = ((zi) obj).f43473g;
+                if (coVar.f35499wb == i13) {
+                    coVar.Ma();
+                    return;
+                }
+                return;
+            case 22:
+                co coVar2 = ((aj) obj).f34489g;
+                if (coVar2.f35499wb == i13) {
+                    coVar2.Ma();
+                    return;
+                }
+                return;
+            case 23:
+                co coVar3 = ((zi) obj).f43473g;
+                if (coVar3.f35499wb == i13) {
+                    coVar3.Ma();
+                    return;
+                }
+                return;
+            case 24:
+                co coVar4 = ((aj) obj).f34489g;
+                if (coVar4.f35499wb == i13) {
+                    coVar4.Ma();
+                    return;
+                }
+                return;
+            case 25:
+                co coVar5 = ((aj) obj).f34489g;
+                if (coVar5.f35499wb == i13) {
+                    coVar5.Ma();
+                    return;
+                }
+                return;
+            case 26:
+                co coVar6 = ((um) obj).J0;
+                coVar6.f35526z0.h1(i13, coVar6.f35517y4);
+                return;
+            case 27:
+                i11 = ((n2) ((on) obj).f39311a).currentAccount;
+                ConnectionsManager.getInstance(i11).cancelRequest(i13, true);
+                return;
+            case 28:
+                NotificationCenter.getInstance(i13).lambda$postNotificationNameOnUIThread$1(NotificationCenter.closeChats, new Object[0]);
+                AndroidUtilities.runOnUIThread(new u1((MessagesStorage.BooleanCallback) obj, 1), 250L);
+                return;
+            default:
+                d90 d90Var = (d90) obj;
+                ArrayList<TLRPC.PrivacyRule> privacyRules = ContactsController.getInstance(i13).getPrivacyRules(11);
+                String string = LocaleController.getString(R.string.EditProfileBirthdayInfoContacts);
+                if (privacyRules != null && !privacyRules.isEmpty()) {
+                    int i16 = 0;
+                    while (true) {
+                        if (i16 < privacyRules.size()) {
+                            if (privacyRules.get(i16) instanceof TLRPC.TL_privacyValueAllowContacts) {
+                                string = LocaleController.getString(R.string.EditProfileBirthdayInfoContacts);
+                            } else {
+                                if ((privacyRules.get(i16) instanceof TLRPC.TL_privacyValueAllowAll) || (privacyRules.get(i16) instanceof TLRPC.TL_privacyValueDisallowAll)) {
+                                    string = LocaleController.getString(R.string.EditProfileBirthdayInfo);
+                                }
+                                i16++;
+                            }
+                        }
+                    }
+                }
+                d90Var.setText(AndroidUtilities.replaceArrows(AndroidUtilities.replaceSingleTag(string, new org.telegram.ui.Components.n1(privacyRules, 0)), true, AndroidUtilities.dp(2.6666667f), AndroidUtilities.dp(0.66f)));
+                return;
         }
     }
 
-    public final void b(float f7, float f10) {
-        float f11;
-        RenderNode[] renderNodeArr;
-        int i10 = this.e;
-        float f12 = 0.0f;
-        if (i10 >= 2) {
-            f11 = (this.f448g + f7) % i10;
-        } else {
-            f11 = 0.0f;
-        }
-        this.f448g = f11;
-        int i11 = this.f447f;
-        if (i11 >= 2) {
-            f12 = (this.h + f10) % i11;
-        }
-        this.h = f12;
-        if (this.f450j.f455b) {
-            this.f444a.setTranslationX(f11);
-            this.f444a.setTranslationY(this.h);
-            for (RenderNode renderNode : this.f446c) {
-                renderNode.setTranslationX(-this.f448g);
-                renderNode.setTranslationY(-this.h);
-            }
-        }
-    }
-
-    public final void c(float f7) {
-        this.f445b[0].setRenderEffect(RenderEffect.createBlurEffect(i.a(f7, this.e), i.a(f7, this.f447f), Shader.TileMode.CLAMP));
-    }
-
-    public final void d(float f7, RenderEffect renderEffect) {
-        this.f445b[0].setRenderEffect(RenderEffect.createChainEffect(RenderEffect.createBlurEffect(i.a(f7, this.e), i.a(f7, this.f447f), Shader.TileMode.CLAMP), renderEffect));
-    }
-
-    public final void e(RenderEffect renderEffect) {
-        this.f445b[1].setRenderEffect(renderEffect);
+    public g(Object obj, int i10, int i11) {
+        this.f544a = i11;
+        this.f546c = obj;
+        this.f545b = i10;
     }
 }

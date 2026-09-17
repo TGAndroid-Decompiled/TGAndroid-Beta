@@ -1,36 +1,47 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class k1 implements Runnable {
-    public final int f25512a;
-    public final org.telegram.ui.ActionBar.c2 f25513b;
-    public final Context f25514c;
+import android.app.Activity;
+import android.content.Intent;
+import android.net.Uri;
+import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.FileLog;
+public final class k1 implements org.telegram.ui.ActionBar.a2 {
+    public final int f27668a;
+    public final Activity f27669b;
 
-    public k1(int i10, Context context, org.telegram.ui.ActionBar.c2 c2Var) {
-        this.f25512a = i10;
-        this.f25513b = c2Var;
-        this.f25514c = context;
+    public k1(Activity activity, int i10) {
+        this.f27668a = i10;
+        this.f27669b = activity;
     }
 
     @Override
-    public final void run() {
-        switch (this.f25512a) {
+    public final void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
+        switch (this.f27668a) {
             case 0:
-                org.telegram.ui.ActionBar.c2 c2Var = this.f25513b;
-                if (c2Var != null) {
-                    c2Var.dismiss();
-                }
-                nf.f.s(this.f25514c, LocaleController.getString(R.string.BotWebViewStartPermissionLink));
+                e5.a(this.f27669b);
                 return;
+            case 1:
+                Activity activity = this.f27669b;
+                try {
+                    Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
+                    intent.setData(Uri.parse("package:" + ApplicationLoader.applicationContext.getPackageName()));
+                    activity.startActivity(intent);
+                    return;
+                } catch (Exception e7) {
+                    FileLog.e(e7);
+                    return;
+                }
             default:
-                org.telegram.ui.ActionBar.c2 c2Var2 = this.f25513b;
-                if (c2Var2 != null) {
-                    c2Var2.dismiss();
+                Activity activity2 = this.f27669b;
+                try {
+                    Intent intent2 = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
+                    intent2.setData(Uri.parse("package:" + ApplicationLoader.applicationContext.getPackageName()));
+                    activity2.startActivity(intent2);
+                    return;
+                } catch (Exception e10) {
+                    FileLog.e(e10);
+                    return;
                 }
-                nf.f.s(this.f25514c, LocaleController.getString(R.string.BotWebViewStartPermissionLink));
-                return;
         }
     }
 }

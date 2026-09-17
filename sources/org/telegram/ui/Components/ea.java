@@ -1,96 +1,70 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
-import android.graphics.Rect;
-import android.view.View;
-import android.view.ViewParent;
-import android.widget.FrameLayout;
-import org.telegram.messenger.SharedConfig;
-public abstract class ea extends FrameLayout {
-    public final qv0 f23523a;
-    public Paint f23524b;
-    public int f23525c;
-    public final boolean d;
-    public final boolean e;
-    public final Rect f23526f;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.Utilities;
+public final class ea implements Runnable {
+    public boolean f25661a;
+    public int f25662b;
+    public int f25663c;
+    public final fa d;
 
-    public ea(Context context, qv0 qv0Var) {
-        super(context);
-        this.f23525c = 0;
-        this.d = true;
-        this.e = true;
-        this.f23526f = new Rect();
-        this.f23523a = qv0Var;
+    public ea(fa faVar) {
+        this.d = faVar;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        Canvas canvas2;
-        if (SharedConfig.chatBlurEnabled() && this.f23523a != null && this.e && this.f23525c != 0) {
-            if (this.f23524b == null) {
-                this.f23524b = new Paint();
+    public final void run() {
+        int i10;
+        Bitmap bitmap;
+        fa faVar = this.d;
+        Paint paint = faVar.f26028w;
+        if (faVar.f26013f == null) {
+            faVar.f26013f = new Bitmap[2];
+            faVar.f26015i = new Canvas[2];
+        }
+        int i11 = (int) (this.f25662b / 15.0f);
+        for (int i12 = 0; i12 < 2; i12++) {
+            if (i12 == 0) {
+                i10 = faVar.f26025s;
+            } else {
+                i10 = this.f25663c;
             }
-            this.f23524b.setColor(this.f23525c);
-            this.f23526f.set(0, 0, getMeasuredWidth(), getMeasuredHeight());
-            float f7 = 0.0f;
-            View view = this;
-            while (true) {
-                qv0 qv0Var = this.f23523a;
-                if (view != qv0Var) {
-                    f7 += view.getY();
-                    ViewParent parent = view.getParent();
-                    if (parent instanceof View) {
-                        view = (View) parent;
-                    } else {
-                        super.dispatchDraw(canvas);
-                        return;
-                    }
-                } else {
-                    canvas2 = canvas;
-                    qv0Var.J(canvas2, f7, this.f23526f, this.f23524b, this.d);
-                    break;
+            int i13 = (int) (i10 / 15.0f);
+            Bitmap bitmap2 = faVar.f26013f[i12];
+            if (bitmap2 != null && ((bitmap2.getHeight() != i13 || faVar.f26013f[i12].getWidth() != i11) && (bitmap = faVar.f26013f[i12]) != null)) {
+                bitmap.recycle();
+                faVar.f26013f[i12] = null;
+            }
+            System.currentTimeMillis();
+            Bitmap[] bitmapArr = faVar.f26013f;
+            if (bitmapArr[i12] == null) {
+                try {
+                    bitmapArr[i12] = Bitmap.createBitmap(i11, i13, Bitmap.Config.ARGB_8888);
+                    faVar.f26015i[i12] = new Canvas(faVar.f26013f[i12]);
+                    faVar.f26015i[i12].scale(i11 / faVar.f26012e[i12].getWidth(), i13 / faVar.f26012e[i12].getHeight());
+                } catch (Throwable th2) {
+                    FileLog.e(th2);
                 }
             }
-        } else {
-            canvas2 = canvas;
+            if (i12 == 1) {
+                faVar.f26013f[i12].eraseColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f20691d6, faVar.f26030y));
+            } else {
+                faVar.f26013f[i12].eraseColor(0);
+            }
+            paint.setAlpha(255);
+            Utilities.stackBlurBitmap(faVar.f26012e[i12], 15);
+            Canvas canvas = faVar.f26015i[i12];
+            if (canvas != null) {
+                canvas.drawBitmap(faVar.f26012e[i12], 0.0f, 0.0f, paint);
+            }
+            if (this.f25661a) {
+                return;
+            }
         }
-        super.dispatchDraw(canvas2);
-    }
-
-    @Override
-    public void onAttachedToWindow() {
-        qv0 qv0Var;
-        if (SharedConfig.chatBlurEnabled() && (qv0Var = this.f23523a) != null) {
-            qv0Var.T.add(this);
-        }
-        super.onAttachedToWindow();
-    }
-
-    @Override
-    public void onDetachedFromWindow() {
-        qv0 qv0Var = this.f23523a;
-        if (qv0Var != null) {
-            qv0Var.T.remove(this);
-        }
-        super.onDetachedFromWindow();
-    }
-
-    @Override
-    public void setBackgroundColor(int i10) {
-        if (SharedConfig.chatBlurEnabled() && this.f23523a != null) {
-            this.f23525c = i10;
-        } else {
-            super.setBackgroundColor(i10);
-        }
-    }
-
-    @Override
-    public void setTranslationY(float f7) {
-        if (SharedConfig.chatBlurEnabled() && f7 != getTranslationY()) {
-            invalidate();
-        }
-        super.setTranslationY(f7);
+        AndroidUtilities.runOnUIThread(new pg(this, 12));
     }
 }

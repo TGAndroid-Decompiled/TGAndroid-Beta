@@ -1,39 +1,67 @@
 package org.telegram.ui.Components;
 
-import android.view.KeyEvent;
-import android.view.View;
-import android.widget.ImageView;
-public final class mn implements View.OnKeyListener {
-    public final int f26213a;
-    public final Object f26214b;
+import android.content.Context;
+import android.view.ActionMode;
+import android.view.Menu;
+import java.util.ArrayList;
+public final class mn extends org.telegram.ui.Cells.c6 {
+    public final int F;
+    public final rn G;
 
-    public mn(Object obj, int i10) {
-        this.f26213a = i10;
-        this.f26214b = obj;
+    public mn(rn rnVar, Context context, int i10, org.telegram.ui.ActionBar.f6 f6Var, int i11) {
+        super(context, i10, null, f6Var);
+        this.G = rnVar;
+        this.F = i11;
     }
 
     @Override
-    public final boolean onKey(View view, int i10, KeyEvent keyEvent) {
-        switch (this.f26213a) {
-            case 0:
-                rn rnVar = (rn) this.f26214b;
-                EditTextBoldCursor editTextBoldCursor = (EditTextBoldCursor) view;
-                if (i10 == 67 && keyEvent.getAction() == 0 && editTextBoldCursor.length() == 0) {
-                    ImageView imageView = rnVar.f19873f;
-                    if (imageView != null) {
-                        imageView.callOnClick();
-                    }
-                    return true;
-                }
-                return false;
-            default:
-                xu xuVar = (xu) this.f26214b;
-                xuVar.getClass();
-                if (i10 == 82 && keyEvent.getRepeatCount() == 0 && keyEvent.getAction() == 1 && xuVar.isShowing()) {
-                    xuVar.dismiss();
-                    return true;
-                }
-                return false;
+    public final void g(org.telegram.ui.Cells.b6 b6Var, ActionMode actionMode) {
+        tn tnVar = this.G.d;
+        if (!tnVar.f30675n && this.F == 11 && b6Var.isFocused() && b6Var.hasSelection()) {
+            Menu menu = actionMode.getMenu();
+            if (menu.findItem(16908321) != null) {
+                org.telegram.ui.co.k8(menu, ((org.telegram.ui.co) tnVar.f28781b.f31307f0).h, false, true, true, true);
+            }
         }
+    }
+
+    @Override
+    public final void i(boolean z10) {
+        tn.M(this.G.d, this, z10);
+    }
+
+    @Override
+    public final void j(org.telegram.ui.Cells.c6 c6Var) {
+        tn.N(this.G.d, c6Var);
+    }
+
+    @Override
+    public final void k(org.telegram.ui.Cells.b6 b6Var) {
+        this.G.d.f28781b.t1(b6Var, true);
+    }
+
+    @Override
+    public final boolean l(ArrayList arrayList) {
+        tn tnVar = this.G.d;
+        if (arrayList.isEmpty()) {
+            return false;
+        }
+        org.telegram.ui.Cells.b6 b6Var = this.d;
+        b6Var.getText().replace(b6Var.getSelectionStart(), b6Var.getSelectionEnd(), (CharSequence) arrayList.remove(0));
+        int i10 = 0;
+        while (!arrayList.isEmpty() && i10 < tnVar.J) {
+            for (int length = tnVar.K.length - 1; length > i10; length--) {
+                CharSequence[] charSequenceArr = tnVar.K;
+                charSequenceArr[length] = charSequenceArr[length - 1];
+            }
+            tnVar.K[i10] = (CharSequence) arrayList.remove(0);
+            tnVar.M++;
+            i10++;
+        }
+        tnVar.h0();
+        tnVar.f30672k0 = (tnVar.f30684t0 + i10) - 1;
+        tnVar.f30682s.setItemAnimator(tnVar.v);
+        tnVar.f30680r.l();
+        return true;
     }
 }

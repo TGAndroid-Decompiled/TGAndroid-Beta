@@ -1,10 +1,76 @@
 package org.telegram.ui.Components;
 
-import android.widget.Button;
-import android.widget.TextView;
-public final class di0 extends TextView {
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.AnimatorSet;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.NotificationCenter;
+public final class di0 extends AnimatorListenerAdapter {
+    public final int f25428a;
+    public final ei0 f25429b;
+
+    public di0(ei0 ei0Var, int i10) {
+        this.f25428a = i10;
+        this.f25429b = ei0Var;
+    }
+
     @Override
-    public final CharSequence getAccessibilityClassName() {
-        return Button.class.getName();
+    public void onAnimationCancel(Animator animator) {
+        switch (this.f25428a) {
+            case 1:
+                ei0 ei0Var = this.f25429b;
+                AnimatorSet animatorSet = ei0Var.f25741s;
+                if (animatorSet != null && animatorSet.equals(animator)) {
+                    ei0Var.f25741s = null;
+                    ei0Var.getClass();
+                    return;
+                }
+                return;
+            case 2:
+                ei0 ei0Var2 = this.f25429b;
+                AnimatorSet animatorSet2 = ei0Var2.f25741s;
+                if (animatorSet2 != null && animatorSet2.equals(animator)) {
+                    ei0Var2.f25741s = null;
+                    ei0Var2.getClass();
+                    return;
+                }
+                return;
+            default:
+                super.onAnimationCancel(animator);
+                return;
+        }
+    }
+
+    @Override
+    public final void onAnimationEnd(Animator animator) {
+        int i10 = this.f25428a;
+        ei0 ei0Var = this.f25429b;
+        switch (i10) {
+            case 0:
+                AnimatorSet animatorSet = ei0Var.h;
+                if (animatorSet != null && animatorSet.equals(animator)) {
+                    ei0Var.h = null;
+                }
+                NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.startAllHeavyOperations, 512);
+                return;
+            case 1:
+                AnimatorSet animatorSet2 = ei0Var.f25741s;
+                if (animatorSet2 != null && animatorSet2.equals(animator)) {
+                    ei0Var.f25741s = null;
+                    if (ei0Var.f25742w) {
+                        ei0Var.setLayerType(0, null);
+                    }
+                }
+                NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.startAllHeavyOperations, 512);
+                return;
+            default:
+                AnimatorSet animatorSet3 = ei0Var.f25741s;
+                if (animatorSet3 != null && animatorSet3.equals(animator)) {
+                    ei0Var.f25741s = null;
+                    AndroidUtilities.runOnUIThread(new cc0(this, 14));
+                }
+                NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.startAllHeavyOperations, 512);
+                return;
+        }
     }
 }

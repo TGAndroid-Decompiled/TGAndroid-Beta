@@ -1,38 +1,56 @@
 package org.telegram.ui.Components;
 
-import java.util.ArrayList;
-import org.telegram.tgnet.TLRPC;
-public abstract class m9 {
-    public static void a(org.telegram.ui.bo boVar, int i10, TLRPC.Chat chat, TLRPC.User user, TLRPC.TL_forumTopic tL_forumTopic, long j3, int i11, int i12) {
-        org.telegram.ui.ActionBar.e5 parentLayout;
-        TLRPC.TL_forumTopic tL_forumTopic2;
-        if ((chat != null || user != null) && (parentLayout = boVar.getParentLayout()) != null) {
-            if (parentLayout.getPulledDialogs() == null) {
-                parentLayout.setPulledDialogs(new ArrayList());
-            }
-            for (l9 l9Var : parentLayout.getPulledDialogs()) {
-                if (tL_forumTopic != null || l9Var.f25862f != j3) {
-                    if (tL_forumTopic != null && (tL_forumTopic2 = l9Var.e) != null && tL_forumTopic2.f18173id == tL_forumTopic.f18173id) {
-                        return;
-                    }
-                } else {
-                    return;
-                }
-            }
-            ?? obj = new Object();
-            obj.f25859a = org.telegram.ui.bo.class;
-            obj.f25860b = i10;
-            obj.f25862f = j3;
-            obj.h = i12;
-            obj.f25863g = i11;
-            obj.f25861c = chat;
-            obj.d = user;
-            obj.e = tL_forumTopic;
-            parentLayout.getPulledDialogs().add(obj);
-        }
+import android.view.ViewGroup;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ImageReceiver;
+public final class m9 implements le.h, oe.a {
+    public final ImageReceiver f28444a;
+    public final i9 f28445b;
+    public long f28446c;
+    public boolean d;
+    public final n9 f28447e;
+
+    public m9(n9 n9Var, ViewGroup viewGroup) {
+        this.f28447e = n9Var;
+        ImageReceiver imageReceiver = new ImageReceiver(viewGroup);
+        this.f28444a = imageReceiver;
+        imageReceiver.setRoundRadius(n9Var.f28721e / 2);
+        i9 i9Var = new i9((org.telegram.ui.ActionBar.f6) null);
+        this.f28445b = i9Var;
+        i9Var.u(AndroidUtilities.dp(22.0f));
     }
 
-    public static org.telegram.ui.ActionBar.o1 b(org.telegram.ui.ActionBar.o2 r37, android.view.View r38, long r39, long r41, org.telegram.ui.ActionBar.f6 r43) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.m9.b(org.telegram.ui.ActionBar.o2, android.view.View, long, long, org.telegram.ui.ActionBar.f6):org.telegram.ui.ActionBar.o1");
+    @Override
+    public final void a() {
+        if (this.d) {
+            this.d = false;
+            this.f28444a.onDetachedFromWindow();
+        }
+        this.f28446c = 0L;
+    }
+
+    @Override
+    public final int b(boolean z10) {
+        if (z10) {
+            return 0;
+        }
+        return -this.f28447e.f28722f;
+    }
+
+    public final boolean equals(Object obj) {
+        if (!(obj instanceof m9) || this.f28446c != ((m9) obj).f28446c) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public final int getHeight() {
+        return this.f28447e.f28721e;
+    }
+
+    @Override
+    public final int getWidth() {
+        return this.f28447e.f28721e;
     }
 }

@@ -2,31 +2,31 @@ package c0;
 
 import java.io.Serializable;
 public final class i {
-    public Serializable f3639a;
-    public k f3640b;
-    public l f3641c;
+    public Serializable f4147a;
+    public k f4148b;
+    public l f4149c;
     public boolean d;
 
     public final void a() {
         this.d = true;
-        k kVar = this.f3640b;
-        if (kVar != null && kVar.f3644b.k(null)) {
-            this.f3639a = null;
-            this.f3640b = null;
-            this.f3641c = null;
+        k kVar = this.f4148b;
+        if (kVar != null && kVar.f4152b.k(null)) {
+            this.f4147a = null;
+            this.f4148b = null;
+            this.f4149c = null;
         }
     }
 
     public final void finalize() {
         l lVar;
-        k kVar = this.f3640b;
+        k kVar = this.f4148b;
         if (kVar != null) {
-            j jVar = kVar.f3644b;
+            j jVar = kVar.f4152b;
             if (!jVar.isDone()) {
-                jVar.l(new b("The completer object was garbage collected - this future would otherwise never complete. The tag was: " + this.f3639a, 1));
+                jVar.l(new b("The completer object was garbage collected - this future would otherwise never complete. The tag was: " + this.f4147a, 1));
             }
         }
-        if (!this.d && (lVar = this.f3641c) != null) {
+        if (!this.d && (lVar = this.f4149c) != null) {
             lVar.k(null);
         }
     }

@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.Surface;
 import java.nio.ByteBuffer;
-import org.telegram.ui.Cells.ia;
+import k2.g0;
 public interface l {
     void a(long j3, int i10, int i11, int i12);
 
@@ -14,15 +14,15 @@ public interface l {
 
     void c(int i10);
 
-    boolean d(ia iaVar);
+    void d(a3.m mVar, Handler handler);
 
-    void e(a3.m mVar, Handler handler);
+    void e();
 
-    void f();
+    void f(int i10, long j3);
 
     void flush();
 
-    void g(int i10, long j3);
+    int g();
 
     ByteBuffer getInputBuffer(int i10);
 
@@ -30,11 +30,11 @@ public interface l {
 
     MediaFormat getOutputFormat();
 
-    int h();
+    int h(MediaCodec.BufferInfo bufferInfo);
 
-    int i(MediaCodec.BufferInfo bufferInfo);
+    void i(int i10);
 
-    void j(int i10);
+    boolean j(g0 g0Var);
 
     void k(Surface surface);
 

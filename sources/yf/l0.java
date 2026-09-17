@@ -2,12 +2,13 @@ package yf;
 
 import android.view.Window;
 import java.lang.ref.WeakReference;
+import rg.p2;
 public final class l0 {
-    public int f46866a;
-    public boolean f46867b;
-    public final r5.d f46868c;
+    public int f50148a;
+    public boolean f50149b;
+    public final p2 f50150c;
 
     public l0(Window window) {
-        this.f46868c = new r5.d(new WeakReference(window), 18);
+        this.f50150c = new p2(new WeakReference(window), 13);
     }
 }

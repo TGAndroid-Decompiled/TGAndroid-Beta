@@ -1,14 +1,14 @@
 package y9;
 public final class f implements ia.d {
-    public static final f f46532a = new Object();
-    public static final ia.c f46533b = ia.c.c("filename");
-    public static final ia.c f46534c = ia.c.c("contents");
+    public static final f f49776a = new Object();
+    public static final ia.c f49777b = ia.c.c("filename");
+    public static final ia.c f49778c = ia.c.c("contents");
 
     @Override
     public final void a(Object obj, Object obj2) {
         ia.e eVar = (ia.e) obj2;
         f0 f0Var = (f0) ((i1) obj);
-        eVar.a(f46533b, f0Var.f46535a);
-        eVar.a(f46534c, f0Var.f46536b);
+        eVar.a(f49777b, f0Var.f49779a);
+        eVar.a(f49778c, f0Var.f49780b);
     }
 }

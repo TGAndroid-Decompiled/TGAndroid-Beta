@@ -1,98 +1,155 @@
 package yh;
 
-import android.content.Context;
-import android.view.MotionEvent;
 import android.view.View;
-import android.widget.FrameLayout;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.j81;
-import org.telegram.ui.Components.tr0;
-public final class j2 extends j81 {
-    public final a4 U;
+import androidx.recyclerview.widget.RecyclerView;
+import java.util.ArrayList;
+import java.util.HashMap;
+import org.telegram.tgnet.tl.TL_stars;
+import org.telegram.ui.Components.nr0;
+import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.ProfileActivity;
+import zh.j5;
+public final class j2 extends s4.v {
+    public final nr0 d;
+    public final m2 f50378e;
 
-    public j2(a4 a4Var, Context context) {
-        super(context, null);
-        this.U = a4Var;
+    public j2(m2 m2Var, nr0 nr0Var) {
+        this.f50378e = m2Var;
+        this.d = nr0Var;
     }
 
     @Override
-    public final void F(View view, float f7) {
-        int i10;
-        View view2;
-        xh.m2 m2Var;
-        xh.m2 m2Var2;
-        l2 l2Var;
-        l2 l2Var2;
-        l2 l2Var3;
-        if (getMeasuredWidth() <= 0) {
-            view.setTranslationX(f7);
-            return;
+    public final void a(RecyclerView recyclerView, s4.c1 c1Var) {
+        super.a(recyclerView, c1Var);
+        c1Var.f45767a.setPressed(false);
+    }
+
+    @Override
+    public final int e(RecyclerView recyclerView, s4.c1 c1Var) {
+        TL_stars.SavedStarGift savedStarGift;
+        View view = c1Var.f45767a;
+        if (view instanceof h1) {
+            savedStarGift = ((h1) view).getSavedGift();
+        } else {
+            savedStarGift = null;
         }
-        float clamp = Utilities.clamp(f7 / getMeasuredWidth(), 1.0f, -1.0f);
-        a4 a4Var = this.U;
-        i10 = ((org.telegram.ui.ActionBar.g3) a4Var).backgroundPaddingLeft;
-        view.setTranslationX(((-clamp) * 2.0f * i10) + f7);
-        float f10 = 0.0f;
-        if (clamp <= 0.0f) {
-            f10 = view.getMeasuredWidth();
+        if (r(savedStarGift)) {
+            return s4.v.l(15, 0);
         }
-        view.setPivotX(f10);
-        view.setCameraDistance(view.getMeasuredHeight() * 3.4f);
-        view.setScaleX(1.0f - Math.abs(0.25f * clamp));
-        view.setRotationY(clamp * 10.0f);
-        if (view instanceof FrameLayout) {
-            FrameLayout frameLayout = (FrameLayout) view;
-            if (frameLayout.getChildCount() > 0) {
-                view2 = frameLayout.getChildAt(0);
-                m2Var = a4Var.f46970b0;
-                if (m2Var != null && view2 == m2Var.Y && (l2Var3 = m2Var.f46974d0) != null) {
-                    l2Var3.invalidate();
-                }
-                if (view2 == a4Var.Y && (l2Var2 = a4Var.f46974d0) != null) {
-                    l2Var2.invalidate();
-                }
-                m2Var2 = a4Var.f46972c0;
-                if (m2Var2 == null && view2 == m2Var2.Y && (l2Var = m2Var2.f46974d0) != null) {
-                    l2Var.invalidate();
-                    return;
-                }
-                return;
+        return s4.v.l(0, 0);
+    }
+
+    @Override
+    public final boolean j() {
+        return this.f50378e.f50474n;
+    }
+
+    @Override
+    public final boolean k() {
+        return this.f50378e.f50474n;
+    }
+
+    @Override
+    public final boolean n(RecyclerView recyclerView, s4.c1 c1Var, s4.c1 c1Var2) {
+        TL_stars.SavedStarGift savedStarGift;
+        zh.g0 g0Var;
+        m2 m2Var = this.f50378e;
+        h2 h2Var = m2Var.f50473f;
+        if (m2Var.f50472e != null && m2Var.f50474n) {
+            View view = c1Var.f45767a;
+            TL_stars.SavedStarGift savedStarGift2 = null;
+            if (view instanceof h1) {
+                savedStarGift = ((h1) view).getSavedGift();
+            } else {
+                savedStarGift = null;
             }
-        }
-        view2 = null;
-        m2Var = a4Var.f46970b0;
-        if (m2Var != null) {
-            l2Var3.invalidate();
-        }
-        if (view2 == a4Var.Y) {
-            l2Var2.invalidate();
-        }
-        m2Var2 = a4Var.f46972c0;
-        if (m2Var2 == null) {
-        }
-    }
-
-    @Override
-    public final void G() {
-        super.G();
-        int i10 = this.f25179b;
-        a4 a4Var = this.U;
-        boolean z10 = false;
-        if (i10 != a4Var.L1(false)) {
-            if (this.f25179b > a4Var.L1(false)) {
-                z10 = true;
+            if (r(savedStarGift)) {
+                View view2 = c1Var2.f45767a;
+                if (view2 instanceof h1) {
+                    savedStarGift2 = ((h1) view2).getSavedGift();
+                }
+                if (r(savedStarGift2)) {
+                    int b10 = c1Var.b();
+                    int b11 = c1Var2.b();
+                    boolean z10 = m2Var.d;
+                    nr0 nr0Var = this.d;
+                    if (z10) {
+                        m2Var.f50472e.k(b10, b11);
+                        nr0Var.f50548e.n(m2Var.f50472e.d);
+                    } else {
+                        j5 j5Var = m2Var.f50472e;
+                        if (j5Var.f52138q == null) {
+                            j5Var.f52138q = j5Var.h();
+                        }
+                        j5Var.k(b10, b11);
+                    }
+                    h2Var.Y2.p(b10, b11);
+                    h2Var.Y2.S();
+                    if (m2Var.d) {
+                        HashMap hashMap = q2.T;
+                        nr0Var.f(true);
+                    }
+                    org.telegram.ui.ActionBar.n2 U = LaunchActivity.U();
+                    if ((U instanceof ProfileActivity) && (g0Var = ((ProfileActivity) U).f34032v0) != null) {
+                        g0Var.a();
+                    }
+                    return true;
+                }
+                return false;
             }
-            AndroidUtilities.runOnUIThread(new tr0(15, this, z10));
-        }
-    }
-
-    @Override
-    public final boolean i(MotionEvent motionEvent) {
-        f4.d dVar = this.U.Y0;
-        if (dVar != null && !dVar.c(0)) {
             return false;
         }
-        return true;
+        return false;
+    }
+
+    @Override
+    public final void p(s4.c1 c1Var, int i10) {
+        m2 m2Var = this.f50378e;
+        if (i10 == 0) {
+            j5 j5Var = m2Var.f50472e;
+            if (j5Var != null) {
+                ArrayList arrayList = j5Var.f52138q;
+                if (arrayList != null) {
+                    ArrayList h = j5Var.h();
+                    if (arrayList.size() == h.size()) {
+                        for (int i11 = 0; i11 < arrayList.size(); i11++) {
+                            if (arrayList.get(i11) == h.get(i11)) {
+                            }
+                        }
+                    }
+                    j5Var.l();
+                    j5Var.f52138q = null;
+                    return;
+                }
+                j5Var.f52138q = null;
+                return;
+            }
+            return;
+        }
+        h2 h2Var = m2Var.f50473f;
+        if (h2Var != null) {
+            h2Var.I0(false);
+        }
+        if (c1Var != null) {
+            c1Var.f45767a.setPressed(true);
+        }
+    }
+
+    public final boolean r(TL_stars.SavedStarGift savedStarGift) {
+        m2 m2Var = this.f50378e;
+        if (m2Var.f50474n) {
+            if (m2Var.f50472e == this.d.d) {
+                if (savedStarGift == null || !savedStarGift.pinned_to_top) {
+                    return false;
+                }
+                return true;
+            }
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public final void q(s4.c1 c1Var) {
     }
 }

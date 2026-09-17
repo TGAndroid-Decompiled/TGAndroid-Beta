@@ -1,32 +1,34 @@
 package org.telegram.messenger;
 
-import android.content.SharedPreferences;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
+import org.telegram.messenger.MessagesStorage;
 import org.telegram.tgnet.TLRPC;
-public final class u6 implements RequestDelegate {
-    public final int f17444a;
-    public final MediaDataController f17445b;
-    public final SharedPreferences f17446c;
+public final class u6 implements Runnable {
+    public final int f19160a = 0;
+    public final MediaDataController f19161b;
+    public final TLRPC.Message f19162c;
+    public final MessagesStorage.TopicKey d;
 
-    public u6(MediaDataController mediaDataController, SharedPreferences sharedPreferences, int i10) {
-        this.f17444a = i10;
-        this.f17445b = mediaDataController;
-        this.f17446c = sharedPreferences;
+    public u6(MediaDataController mediaDataController, MessagesStorage.TopicKey topicKey, TLRPC.Message message) {
+        this.f19161b = mediaDataController;
+        this.d = topicKey;
+        this.f19162c = message;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f17444a) {
+    public final void run() {
+        switch (this.f19160a) {
             case 0:
-                this.f17445b.lambda$loadRestrictedStatusEmojis$246(this.f17446c, tLObject, tL_error);
-                return;
-            case 1:
-                this.f17445b.lambda$loadSavedReactions$240(this.f17446c, tLObject, tL_error);
+                this.f19161b.lambda$putBotKeyboard$200(this.d, this.f19162c);
                 return;
             default:
-                this.f17445b.lambda$loadReplyIcons$244(this.f17446c, tLObject, tL_error);
+                this.f19161b.lambda$loadBotKeyboard$195(this.f19162c, this.d);
                 return;
         }
+    }
+
+    public u6(MediaDataController mediaDataController, TLRPC.Message message, MessagesStorage.TopicKey topicKey) {
+        this.f19161b = mediaDataController;
+        this.f19162c = message;
+        this.d = topicKey;
     }
 }

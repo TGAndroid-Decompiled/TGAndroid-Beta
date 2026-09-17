@@ -1,70 +1,67 @@
 package org.telegram.ui.Components;
 
-import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
-import android.net.Uri;
-import android.os.Build;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.BuildVars;
-import org.telegram.messenger.FileLog;
-import org.telegram.ui.LaunchActivity;
-public final class j0 implements org.telegram.ui.ActionBar.b2 {
-    public final int f25064a;
-    public final Context f25065b;
+import org.telegram.messenger.R;
+public final class j0 extends Drawable {
+    public final Drawable f27319a;
+    public final Drawable f27320b;
+    public final e6 f27321c = new e6(new i0(this, 0), 1200, pr.h, 0);
 
-    public j0(Context context, int i10) {
-        this.f25064a = i10;
-        this.f25065b = context;
+    public j0(Context context) {
+        this.f27319a = context.getResources().getDrawable(R.drawable.input_ai).mutate();
+        this.f27320b = context.getResources().getDrawable(R.drawable.input_ai_star).mutate();
     }
 
     @Override
-    public final void f(org.telegram.ui.ActionBar.c2 c2Var, int i10) {
-        switch (this.f25064a) {
-            case 0:
-                Context context = this.f25065b;
-                try {
-                    context.startActivity(new Intent("android.settings.MANAGE_UNKNOWN_APP_SOURCES", Uri.parse("package:" + context.getPackageName())));
-                    return;
-                } catch (Exception e) {
-                    FileLog.e(e);
-                    return;
-                }
-            case 1:
-                Context context2 = this.f25065b;
-                try {
-                    Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
-                    intent.setData(Uri.parse("package:" + ApplicationLoader.applicationContext.getPackageName()));
-                    context2.startActivity(intent);
-                    return;
-                } catch (Exception e7) {
-                    FileLog.e(e7);
-                    return;
-                }
-            case 2:
-                nf.f.s(this.f25065b, BuildVars.PLAYSTORE_APP_URL);
-                return;
-            default:
-                Context context3 = this.f25065b;
-                if (context3 != null) {
-                    try {
-                        if (Build.VERSION.SDK_INT >= 23) {
-                            Intent intent2 = new Intent("android.settings.action.MANAGE_OVERLAY_PERMISSION", Uri.parse("package:" + context3.getPackageName()));
-                            Activity findActivity = AndroidUtilities.findActivity(context3);
-                            if (findActivity instanceof LaunchActivity) {
-                                findActivity.startActivityForResult(intent2, 105);
-                            } else {
-                                context3.startActivity(intent2);
-                            }
-                        }
-                        return;
-                    } catch (Exception e10) {
-                        FileLog.e(e10);
-                        return;
-                    }
-                }
-                return;
-        }
+    public final void draw(Canvas canvas) {
+        Rect bounds = getBounds();
+        Drawable drawable = this.f27319a;
+        drawable.setBounds(bounds);
+        drawable.draw(canvas);
+        float d = this.f27321c.d(1.0f, false);
+        float width = (bounds.width() * 0.352f) + bounds.left;
+        float height = (bounds.height() * 0.248f) + bounds.top;
+        float width2 = bounds.width() * 0.105f * ((float) (1.0d - Math.sin(AndroidUtilities.cascade(d, 0.0f, 2.0f, 1.5f) * 3.141592653589793d)));
+        float width3 = (bounds.width() * 0.215f) + bounds.left;
+        float height2 = (bounds.height() * 0.43f) + bounds.top;
+        float width4 = bounds.width() * 0.09f * ((float) (1.0d - Math.sin(AndroidUtilities.cascade(d, 1.0f, 2.0f, 1.5f) * 3.141592653589793d)));
+        int i10 = (int) (height + width2);
+        Drawable drawable2 = this.f27320b;
+        drawable2.setBounds((int) (width - width2), (int) (height - width2), (int) (width + width2), i10);
+        drawable2.draw(canvas);
+        drawable2.setBounds((int) (width3 - width4), (int) (height2 - width4), (int) (width3 + width4), (int) (height2 + width4));
+        drawable2.draw(canvas);
+    }
+
+    @Override
+    public final int getIntrinsicHeight() {
+        return this.f27319a.getIntrinsicHeight();
+    }
+
+    @Override
+    public final int getIntrinsicWidth() {
+        return this.f27319a.getIntrinsicWidth();
+    }
+
+    @Override
+    public final int getOpacity() {
+        return -2;
+    }
+
+    @Override
+    public final void setAlpha(int i10) {
+        this.f27319a.setAlpha(i10);
+        this.f27320b.setAlpha(i10);
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
+        this.f27319a.setColorFilter(colorFilter);
+        this.f27320b.setColorFilter(colorFilter);
     }
 }

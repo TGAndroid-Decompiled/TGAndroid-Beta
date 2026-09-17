@@ -1,113 +1,110 @@
 package org.telegram.ui.Components;
 
-import android.view.KeyEvent;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class e1 implements TextView.OnEditorActionListener {
-    public final int f23442a;
-    public final Object f23443b;
+import java.util.List;
+import org.telegram.messenger.AccountInstance;
+import org.telegram.messenger.BillingController;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.lh1;
+public final class e1 implements org.telegram.ui.ActionBar.a2, BillingController.ProductDetailsResponseListenerLegacy {
+    public final int f25533a;
+    public final Object f25534b;
+    public final Object f25535c;
+    public final Object d;
+    public final Object f25536e;
+    public final Object f25537f;
+    public final Object h;
 
-    public e1(Object obj, int i10) {
-        this.f23442a = i10;
-        this.f23443b = obj;
+    public e1(Object obj, Object obj2, Object obj3, Object obj4, Object obj5, Object obj6, int i10) {
+        this.f25533a = i10;
+        this.f25534b = obj;
+        this.f25535c = obj2;
+        this.d = obj3;
+        this.f25536e = obj4;
+        this.f25537f = obj5;
+        this.h = obj6;
     }
 
     @Override
-    public final boolean onEditorAction(TextView textView, int i10, KeyEvent keyEvent) {
-        switch (this.f23442a) {
+    public void g(org.telegram.ui.ActionBar.b2 b2Var, int i10) {
+        switch (this.f25533a) {
             case 0:
-                org.telegram.ui.ActionBar.o5 o5Var = (org.telegram.ui.ActionBar.o5) this.f23443b;
-                if (i10 == 6) {
-                    o5Var.run();
-                    return true;
+                TLRPC.User user = (TLRPC.User) this.f25534b;
+                AccountInstance accountInstance = (AccountInstance) this.f25535c;
+                org.telegram.ui.co coVar = (org.telegram.ui.co) this.d;
+                TLRPC.Chat chat = (TLRPC.Chat) this.f25536e;
+                MessageObject messageObject = (MessageObject) this.f25537f;
+                org.telegram.ui.Cells.z1[] z1VarArr = (org.telegram.ui.Cells.z1[]) this.h;
+                if (user != null) {
+                    accountInstance.getMessagesStorage().deleteUserChatHistory(coVar.a(), user.f20043id);
+                } else {
+                    accountInstance.getMessagesStorage().deleteUserChatHistory(coVar.a(), -chat.f19896id);
                 }
-                return false;
-            case 1:
-                org.telegram.ui.Cells.g3 g3Var = ((org.telegram.ui.Cells.i3) this.f23443b).f20239b;
-                if (i10 == 5) {
-                    g3Var.requestFocus();
-                    g3Var.setSelection(g3Var.length());
-                    return true;
-                }
-                return false;
-            case 2:
-                xq xqVar = (xq) this.f23443b;
-                if (i10 == 6) {
-                    xqVar.run();
-                    return true;
-                }
-                return false;
-            case 3:
-                sd0 sd0Var = (sd0) this.f23443b;
-                if (i10 == 6) {
-                    sd0Var.k(false);
-                    return true;
-                }
-                sd0Var.getClass();
-                return false;
-            case 4:
-                o4 o4Var = (o4) this.f23443b;
-                if (i10 == 6) {
-                    o4Var.f28823b.f28405a.callOnClick();
-                    return true;
-                }
-                return false;
-            case 5:
-                ci.h2 h2Var = ((xm0) this.f23443b).e;
-                if (keyEvent != null) {
-                    if ((keyEvent.getAction() == 1 && keyEvent.getKeyCode() == 84) || (keyEvent.getAction() == 0 && keyEvent.getKeyCode() == 66)) {
-                        h2Var.hideActionMode();
-                        AndroidUtilities.hideKeyboard(h2Var);
-                        return false;
+                TLRPC.TL_contacts_blockFromReplies tL_contacts_blockFromReplies = new TLRPC.TL_contacts_blockFromReplies();
+                tL_contacts_blockFromReplies.msg_id = messageObject.getId();
+                tL_contacts_blockFromReplies.delete_message = true;
+                tL_contacts_blockFromReplies.delete_history = true;
+                if (z1VarArr[0].b()) {
+                    tL_contacts_blockFromReplies.report_spam = true;
+                    if (coVar.getParentActivity() != null) {
+                        coVar.Q7();
+                        UndoView undoView = coVar.y3;
+                        if (undoView != null) {
+                            undoView.j(74, 0L, null);
+                        }
                     }
-                    return false;
                 }
-                return false;
-            case 6:
-                iq0 iq0Var = (iq0) this.f23443b;
-                if (keyEvent != null) {
-                    if ((keyEvent.getAction() == 1 && keyEvent.getKeyCode() == 84) || (keyEvent.getAction() == 0 && keyEvent.getKeyCode() == 66)) {
-                        AndroidUtilities.hideKeyboard(iq0Var.f25016y0.f22543r);
-                        return false;
-                    }
-                    return false;
-                }
-                return false;
-            case 7:
-                AlertDialog$Builder alertDialog$Builder = (AlertDialog$Builder) this.f23443b;
-                if (i10 == 5) {
-                    alertDialog$Builder.f18446a.d(-1).callOnClick();
-                    return true;
-                }
-                return false;
-            case 8:
-                org.telegram.ui.ActionBar.c2 c2Var = (org.telegram.ui.ActionBar.c2) this.f23443b;
-                if (i10 == 6) {
-                    c2Var.d(-1).callOnClick();
-                    return true;
-                }
-                return false;
-            case 9:
-                q11 q11Var = (q11) this.f23443b;
-                if (keyEvent != null) {
-                    if ((keyEvent.getAction() == 1 && keyEvent.getKeyCode() == 84) || (keyEvent.getAction() == 0 && keyEvent.getKeyCode() == 66)) {
-                        AndroidUtilities.hideKeyboard(q11Var.f27191b);
-                        return false;
-                    }
-                    return false;
-                }
-                return false;
+                accountInstance.getConnectionsManager().sendRequest(tL_contacts_blockFromReplies, new y1(accountInstance, 0));
+                return;
             default:
-                o61 o61Var = (o61) this.f23443b;
-                if (keyEvent != null) {
-                    if ((keyEvent.getAction() == 1 && keyEvent.getKeyCode() == 84) || (keyEvent.getAction() == 0 && keyEvent.getKeyCode() == 66)) {
-                        AndroidUtilities.hideKeyboard(o61Var.J);
-                        return false;
-                    }
-                    return false;
-                }
-                return false;
+                org.telegram.ui.xm0 xm0Var = (org.telegram.ui.xm0) this.f25534b;
+                org.telegram.ui.pn0 pn0Var = xm0Var.f42791a;
+                pn0Var.Y[0].setText((String) this.f25535c);
+                pn0Var.Y[1].setText((String) this.d);
+                pn0Var.Y[2].setText((String) this.f25536e);
+                pn0Var.N1(true, true);
+                xm0Var.c((org.telegram.ui.rl0) this.f25537f, (o0.a) this.h);
+                return;
         }
+    }
+
+    @Override
+    public void onProductDetailsResponse(c5.h hVar, List list) {
+        switch (this.f25533a) {
+            case 2:
+                TLRPC.TL_inputStorePaymentPremiumGiftCode tL_inputStorePaymentPremiumGiftCode = (TLRPC.TL_inputStorePaymentPremiumGiftCode) this.f25534b;
+                Utilities.Callback callback = (Utilities.Callback) this.f25537f;
+                org.telegram.ui.ActionBar.n2 n2Var = (org.telegram.ui.ActionBar.n2) this.h;
+                c5.k a2 = ((c5.o) list.get(0)).a();
+                tL_inputStorePaymentPremiumGiftCode.currency = a2.f4437c;
+                tL_inputStorePaymentPremiumGiftCode.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(((TLRPC.TL_premiumGiftCodeOption) this.f25535c).currency)) * (a2.f4436b / Math.pow(10.0d, 6.0d)));
+                TLRPC.TL_payments_canPurchaseStore tL_payments_canPurchaseStore = new TLRPC.TL_payments_canPurchaseStore();
+                tL_payments_canPurchaseStore.purpose = tL_inputStorePaymentPremiumGiftCode;
+                ((ConnectionsManager) this.d).sendRequest(tL_payments_canPurchaseStore, new lh1((Utilities.Callback) this.f25536e, list, hVar, callback, n2Var, tL_inputStorePaymentPremiumGiftCode, 2));
+                return;
+            default:
+                TLRPC.TL_inputStorePaymentPremiumGiveaway tL_inputStorePaymentPremiumGiveaway = (TLRPC.TL_inputStorePaymentPremiumGiveaway) this.f25534b;
+                ug.w wVar = (ug.w) this.f25537f;
+                org.telegram.ui.ActionBar.n2 n2Var2 = (org.telegram.ui.ActionBar.n2) this.h;
+                c5.k a10 = ((c5.o) list.get(0)).a();
+                tL_inputStorePaymentPremiumGiveaway.currency = a10.f4437c;
+                tL_inputStorePaymentPremiumGiveaway.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(((TLRPC.TL_premiumGiftCodeOption) this.f25535c).currency)) * (a10.f4436b / Math.pow(10.0d, 6.0d)));
+                TLRPC.TL_payments_canPurchaseStore tL_payments_canPurchaseStore2 = new TLRPC.TL_payments_canPurchaseStore();
+                tL_payments_canPurchaseStore2.purpose = tL_inputStorePaymentPremiumGiveaway;
+                ((ConnectionsManager) this.d).sendRequest(tL_payments_canPurchaseStore2, new lh1((ug.w) this.f25536e, list, hVar, wVar, n2Var2, tL_inputStorePaymentPremiumGiveaway, 1));
+                return;
+        }
+    }
+
+    public e1(TLRPC.User user, AccountInstance accountInstance, org.telegram.ui.co coVar, TLRPC.Chat chat, MessageObject messageObject, org.telegram.ui.Cells.z1[] z1VarArr, org.telegram.ui.ActionBar.f6 f6Var) {
+        this.f25533a = 0;
+        this.f25534b = user;
+        this.f25535c = accountInstance;
+        this.d = coVar;
+        this.f25536e = chat;
+        this.f25537f = messageObject;
+        this.h = z1VarArr;
     }
 }

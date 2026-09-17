@@ -1,12 +1,16 @@
 package d7;
-public final class d {
-    public static final d f7560b;
-    public final c f7561a = new c(0);
 
-    static {
-        d dVar = new d();
-        synchronized (d.class) {
-            f7560b = dVar;
-        }
+import android.os.IBinder;
+import android.os.IInterface;
+public final class d implements f, IInterface {
+    public final IBinder f6655a;
+
+    public d(IBinder iBinder) {
+        this.f6655a = iBinder;
+    }
+
+    @Override
+    public final IBinder asBinder() {
+        return this.f6655a;
     }
 }

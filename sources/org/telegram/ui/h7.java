@@ -1,23 +1,49 @@
 package org.telegram.ui;
 
-import java.util.ArrayList;
-public abstract class h7 extends og.b {
-    public final int d;
-    public final ArrayList e = new ArrayList();
+import android.view.View;
+import androidx.recyclerview.widget.RecyclerView;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.messenger.MessageObject;
+import org.telegram.tgnet.TLRPC;
+public final class h7 extends su0 {
+    public org.telegram.ui.Components.ll0 f36921a;
+    public final s7 f36922b;
 
-    public h7(int i10) {
-        this.d = i10;
-    }
-
-    public abstract void F();
-
-    @Override
-    public final int h() {
-        return this.e.size();
+    public h7(s7 s7Var) {
+        this.f36922b = s7Var;
     }
 
     @Override
-    public final int j(int i10) {
-        return ((o7) this.e.get(i10)).f15543a;
+    public final cv0 E(MessageObject messageObject, TLRPC.FileLocation fileLocation, int i10, boolean z10, boolean z11) {
+        org.telegram.ui.Cells.t7 t7Var;
+        org.telegram.ui.Components.ll0 listView = this.f36922b.getListView();
+        int i11 = 0;
+        while (true) {
+            if (i11 < listView.getChildCount()) {
+                View childAt = listView.getChildAt(i11);
+                if (RecyclerView.R(childAt) == i10 && (childAt instanceof org.telegram.ui.Cells.t7)) {
+                    t7Var = (org.telegram.ui.Cells.t7) childAt;
+                    break;
+                }
+                i11++;
+            } else {
+                t7Var = null;
+                break;
+            }
+        }
+        if (t7Var == null) {
+            return null;
+        }
+        int[] iArr = new int[2];
+        t7Var.getLocationInWindow(iArr);
+        cv0 cv0Var = new cv0();
+        cv0Var.f35569b = iArr[0];
+        cv0Var.f35570c = iArr[1];
+        cv0Var.d = this.f36921a;
+        ImageReceiver imageReceiver = t7Var.f23290c;
+        cv0Var.f35568a = imageReceiver;
+        cv0Var.f35571e = imageReceiver.getBitmapSafe();
+        cv0Var.f35576k = t7Var.getScaleX();
+        return cv0Var;
     }
 }

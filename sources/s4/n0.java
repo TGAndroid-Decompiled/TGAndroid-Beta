@@ -10,9 +10,9 @@ public abstract class n0 {
         rect.set(0, 0, 0, 0);
     }
 
-    public void c(Canvas canvas, RecyclerView recyclerView) {
+    public void b(Canvas canvas, RecyclerView recyclerView) {
     }
 
-    public void d(Canvas canvas, RecyclerView recyclerView) {
+    public void c(Canvas canvas, RecyclerView recyclerView) {
     }
 }

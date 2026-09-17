@@ -9,12 +9,12 @@ import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import k2.c0;
+import t7.u;
 import w7.l;
 public final class c extends l {
-    public final v f42654a = new v();
-    public final h f42655b = new h();
-    public b0 f42656c;
+    public final v f45722a = new v();
+    public final h f45723b = new h();
+    public b0 f45724c;
 
     @Override
     public final p0 b(l3.a aVar, ByteBuffer byteBuffer) {
@@ -29,17 +29,17 @@ public final class c extends l {
         boolean z16;
         long j10;
         long j11;
-        b0 b0Var = this.f42656c;
-        if (b0Var == null || aVar.f13884r != b0Var.e()) {
-            b0 b0Var2 = new b0(aVar.e);
-            this.f42656c = b0Var2;
-            b0Var2.a(aVar.e - aVar.f13884r);
+        b0 b0Var = this.f45724c;
+        if (b0Var == null || aVar.f15285r != b0Var.e()) {
+            b0 b0Var2 = new b0(aVar.f10877e);
+            this.f45724c = b0Var2;
+            b0Var2.a(aVar.f10877e - aVar.f15285r);
         }
         byte[] array = byteBuffer.array();
         int limit = byteBuffer.limit();
-        v vVar = this.f42654a;
+        v vVar = this.f45722a;
         vVar.H(limit, array);
-        h hVar = this.f42655b;
+        h hVar = this.f45723b;
         hVar.o(limit, array);
         hVar.t(39);
         long i10 = (hVar.i(1) << 32) | hVar.i(32);
@@ -54,12 +54,12 @@ public final class c extends l {
                         if (i12 != 6) {
                             obj = null;
                         } else {
-                            b0 b0Var3 = this.f42656c;
+                            b0 b0Var3 = this.f45724c;
                             long d = a.d(i10, vVar);
                             obj = new a(d, b0Var3.b(d), 1);
                         }
                     } else {
-                        b0 b0Var4 = this.f42656c;
+                        b0 b0Var4 = this.f45724c;
                         vVar.z();
                         if ((vVar.x() & 128) != 0) {
                             z13 = true;
@@ -100,7 +100,7 @@ public final class c extends l {
                                         j11 = -9223372036854775807L;
                                     }
                                     b0Var4.b(j11);
-                                    arrayList.add(new rb.a(21));
+                                    arrayList.add(new u(21));
                                 }
                                 list = arrayList;
                             }
@@ -161,7 +161,7 @@ public final class c extends l {
                             vVar.x();
                             vVar.x();
                         }
-                        arrayList2.add(new c0(arrayList3));
+                        arrayList2.add(new l.d(arrayList3));
                     }
                     obj = new f(arrayList2);
                 }

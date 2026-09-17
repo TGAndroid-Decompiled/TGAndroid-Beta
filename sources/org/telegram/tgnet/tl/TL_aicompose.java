@@ -8,7 +8,7 @@ import org.telegram.tgnet.TLMethod;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.Vector;
-import org.telegram.tgnet.m;
+import org.telegram.tgnet.n;
 public class TL_aicompose {
 
     public static class AiComposeTone extends TLObject {
@@ -49,7 +49,7 @@ public class TL_aicompose {
                     if (inputAiComposeTone2 instanceof inputAiComposeToneID) {
                         inputAiComposeToneID inputaicomposetoneid = (inputAiComposeToneID) inputAiComposeTone;
                         inputAiComposeToneID inputaicomposetoneid2 = (inputAiComposeToneID) inputAiComposeTone2;
-                        if (inputaicomposetoneid.f18332id == inputaicomposetoneid2.f18332id && inputaicomposetoneid.access_hash == inputaicomposetoneid2.access_hash) {
+                        if (inputaicomposetoneid.f20108id == inputaicomposetoneid2.f20108id && inputaicomposetoneid.access_hash == inputaicomposetoneid2.access_hash) {
                             return true;
                         }
                     }
@@ -70,7 +70,7 @@ public class TL_aicompose {
             if (aiComposeTone instanceof TL_aiComposeTone) {
                 inputAiComposeToneID inputaicomposetoneid = new inputAiComposeToneID();
                 TL_aiComposeTone tL_aiComposeTone = (TL_aiComposeTone) aiComposeTone;
-                inputaicomposetoneid.f18332id = tL_aiComposeTone.f18331id;
+                inputaicomposetoneid.f20108id = tL_aiComposeTone.f20107id;
                 inputaicomposetoneid.access_hash = tL_aiComposeTone.access_hash;
                 return inputaicomposetoneid;
             } else if (aiComposeTone instanceof TL_aiComposeToneDefault) {
@@ -111,7 +111,7 @@ public class TL_aicompose {
         public boolean creator;
         public aiComposeToneExample example_english;
         public int flags;
-        public long f18331id;
+        public long f20107id;
         public int installs_count;
         public String prompt;
         public String slug;
@@ -121,7 +121,7 @@ public class TL_aicompose {
             int readInt32 = inputSerializedData.readInt32(z10);
             this.flags = readInt32;
             this.creator = TLObject.hasFlag(readInt32, 1);
-            this.f18331id = inputSerializedData.readInt64(z10);
+            this.f20107id = inputSerializedData.readInt64(z10);
             this.access_hash = inputSerializedData.readInt64(z10);
             this.slug = inputSerializedData.readString(z10);
             this.title = inputSerializedData.readString(z10);
@@ -148,7 +148,7 @@ public class TL_aicompose {
             int flag = TLObject.setFlag(this.flags, 1, this.creator);
             this.flags = flag;
             outputSerializedData.writeInt32(flag);
-            outputSerializedData.writeInt64(this.f18331id);
+            outputSerializedData.writeInt64(this.f20107id);
             outputSerializedData.writeInt64(this.access_hash);
             outputSerializedData.writeString(this.slug);
             outputSerializedData.writeString(this.title);
@@ -199,7 +199,7 @@ public class TL_aicompose {
         public void readParams(InputSerializedData inputSerializedData, boolean z10) {
             this.hash = inputSerializedData.readInt64(z10);
             this.tones = Vector.deserialize(inputSerializedData, new c(17), z10);
-            this.users = Vector.deserialize(inputSerializedData, new m(4), z10);
+            this.users = Vector.deserialize(inputSerializedData, new n(4), z10);
         }
 
         @Override
@@ -368,18 +368,18 @@ public class TL_aicompose {
     public static class inputAiComposeToneID extends InputAiComposeTone {
         public static final int constructor = 125026432;
         public long access_hash;
-        public long f18332id;
+        public long f20108id;
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z10) {
-            this.f18332id = inputSerializedData.readInt64(z10);
+            this.f20108id = inputSerializedData.readInt64(z10);
             this.access_hash = inputSerializedData.readInt64(z10);
         }
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(125026432);
-            outputSerializedData.writeInt64(this.f18332id);
+            outputSerializedData.writeInt64(this.f20108id);
             outputSerializedData.writeInt64(this.access_hash);
         }
     }

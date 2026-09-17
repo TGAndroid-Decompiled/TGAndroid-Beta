@@ -3,32 +3,32 @@ package c3;
 import b2.s0;
 import java.util.ArrayList;
 public final class d {
-    public final ArrayList f3742a;
-    public final int f3743b;
-    public final int f3744c;
+    public final ArrayList f4258a;
+    public final int f4259b;
+    public final int f4260c;
     public final int d;
-    public final int e;
-    public final int f3745f;
-    public final int f3746g;
+    public final int f4261e;
+    public final int f4262f;
+    public final int f4263g;
     public final int h;
-    public final int f3747i;
-    public final int f3748j;
-    public final float f3749k;
-    public final String f3750l;
+    public final int f4264i;
+    public final int f4265j;
+    public final float f4266k;
+    public final String f4267l;
 
     public d(ArrayList arrayList, int i10, int i11, int i12, int i13, int i14, int i15, int i16, int i17, int i18, float f7, String str) {
-        this.f3742a = arrayList;
-        this.f3743b = i10;
-        this.f3744c = i11;
+        this.f4258a = arrayList;
+        this.f4259b = i10;
+        this.f4260c = i11;
         this.d = i12;
-        this.e = i13;
-        this.f3745f = i14;
-        this.f3746g = i15;
+        this.f4261e = i13;
+        this.f4262f = i14;
+        this.f4263g = i15;
         this.h = i16;
-        this.f3747i = i17;
-        this.f3748j = i18;
-        this.f3749k = f7;
-        this.f3750l = str;
+        this.f4264i = i17;
+        this.f4265j = i18;
+        this.f4266k = f7;
+        this.f4267l = str;
     }
 
     public static d a(e2.v vVar) {
@@ -50,44 +50,44 @@ public final class d {
                 int x11 = vVar.x() & 31;
                 for (int i18 = 0; i18 < x11; i18++) {
                     int D = vVar.D();
-                    int i19 = vVar.f7935b;
+                    int i19 = vVar.f8818b;
                     vVar.K(D);
-                    byte[] bArr = vVar.f7934a;
+                    byte[] bArr = vVar.f8817a;
                     byte[] bArr2 = new byte[D + 4];
-                    System.arraycopy(e2.e.f7897a, 0, bArr2, 0, 4);
+                    System.arraycopy(e2.e.f8775a, 0, bArr2, 0, 4);
                     System.arraycopy(bArr, i19, bArr2, 4, D);
                     arrayList.add(bArr2);
                 }
                 int x12 = vVar.x();
                 for (int i20 = 0; i20 < x12; i20++) {
                     int D2 = vVar.D();
-                    int i21 = vVar.f7935b;
+                    int i21 = vVar.f8818b;
                     vVar.K(D2);
-                    byte[] bArr3 = vVar.f7934a;
+                    byte[] bArr3 = vVar.f8817a;
                     byte[] bArr4 = new byte[D2 + 4];
-                    System.arraycopy(e2.e.f7897a, 0, bArr4, 0, 4);
+                    System.arraycopy(e2.e.f8775a, 0, bArr4, 0, 4);
                     System.arraycopy(bArr3, i21, bArr4, 4, D2);
                     arrayList.add(bArr4);
                 }
                 if (x11 > 0) {
-                    f2.n j3 = f2.o.j(4, ((byte[]) arrayList.get(0)).length, (byte[]) arrayList.get(0));
-                    int i22 = j3.e;
-                    int i23 = j3.f8837f;
-                    int i24 = j3.f8846p;
-                    int i25 = j3.f8847q;
-                    int i26 = j3.f8848r;
-                    int i27 = j3.f8849s;
-                    float f10 = j3.f8838g;
-                    int i28 = j3.f8834a;
-                    int i29 = j3.f8835b;
-                    int i30 = j3.f8836c;
-                    byte[] bArr5 = e2.e.f7897a;
+                    f2.o j3 = f2.p.j(4, ((byte[]) arrayList.get(0)).length, (byte[]) arrayList.get(0));
+                    int i22 = j3.f9243e;
+                    int i23 = j3.f9244f;
+                    int i24 = j3.f9253p;
+                    int i25 = j3.f9254q;
+                    int i26 = j3.f9255r;
+                    int i27 = j3.f9256s;
+                    float f10 = j3.f9245g;
+                    int i28 = j3.f9240a;
+                    int i29 = j3.f9241b;
+                    int i30 = j3.f9242c;
+                    byte[] bArr5 = e2.e.f8775a;
                     str = String.format("avc1.%02X%02X%02X", Integer.valueOf(i28), Integer.valueOf(i29), Integer.valueOf(i30));
                     i17 = i27;
                     f7 = f10;
                     i15 = i25;
                     i16 = i26;
-                    i13 = j3.f8839i + 8;
+                    i13 = j3.f9246i + 8;
                     i14 = i24;
                     i11 = i23;
                     i12 = j3.h + 8;
@@ -107,8 +107,8 @@ public final class d {
                 return new d(arrayList, x10, i10, i11, i12, i13, i14, i15, i16, i17, f7, str);
             }
             throw new IllegalStateException();
-        } catch (ArrayIndexOutOfBoundsException e) {
-            throw s0.a(e, "Error parsing AVC config");
+        } catch (ArrayIndexOutOfBoundsException e7) {
+            throw s0.a(e7, "Error parsing AVC config");
         }
     }
 }

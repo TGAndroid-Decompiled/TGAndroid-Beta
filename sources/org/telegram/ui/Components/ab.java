@@ -1,44 +1,25 @@
 package org.telegram.ui.Components;
+public final class ab {
+    public boolean f24347a;
+    public int f24348b;
+    public boolean f24349c;
+    public boolean d;
+    public boolean f24350e;
+    public int f24351f;
+    public org.telegram.ui.ActionBar.f6 f24352g;
 
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.text.Layout;
-import android.text.Spanned;
-import android.text.style.LeadingMarginSpan;
-public final class ab implements LeadingMarginSpan {
-    public final int f22362a;
-    public final int f22363b;
-
-    public ab(int i10, int i11) {
-        this.f22362a = i10;
-        this.f22363b = i11;
+    public ab(ab abVar) {
+        this.f24347a = abVar.f24347a;
+        this.f24348b = abVar.f24348b;
+        this.f24349c = abVar.f24349c;
+        this.d = abVar.d;
+        this.f24350e = abVar.f24350e;
+        this.f24351f = abVar.f24351f;
+        this.f24352g = abVar.f24352g;
     }
 
-    @Override
-    public final void drawLeadingMargin(Canvas canvas, Paint paint, int i10, int i11, int i12, int i13, int i14, CharSequence charSequence, int i15, int i16, boolean z10, Layout layout) {
-        int i17;
-        if (((Spanned) charSequence).getSpanStart(this) == i15) {
-            Paint.Style style = paint.getStyle();
-            int color = paint.getColor();
-            paint.setColor(-11491093);
-            paint.setStyle(Paint.Style.FILL);
-            if (layout != null) {
-                if (layout.getLineForOffset(i15) != layout.getLineCount() - 1) {
-                    i17 = (int) layout.getSpacingAdd();
-                } else {
-                    i17 = 0;
-                }
-                i14 -= i17;
-            }
-            int i18 = this.f22363b;
-            canvas.drawCircle((i11 * i18) + i10, (i12 + i14) / 2.0f, i18, paint);
-            paint.setColor(color);
-            paint.setStyle(style);
-        }
-    }
-
-    @Override
-    public final int getLeadingMargin(boolean z10) {
-        return (this.f22363b * 2) + this.f22362a;
+    public ab() {
+        this.f24348b = 1;
+        this.f24351f = 1;
     }
 }

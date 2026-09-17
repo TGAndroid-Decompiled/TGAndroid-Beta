@@ -45,8 +45,8 @@ public class AudioDecoder {
         this.startTimeUs = 0L;
         try {
             this.endTimeUs = this.extractor.getTrackFormat(this.trackIndex).getLong("durationUs");
-        } catch (Exception e) {
-            FileLog.e(e);
+        } catch (Exception e7) {
+            FileLog.e(e7);
             this.endTimeUs = -1L;
         }
     }
@@ -146,12 +146,12 @@ public class AudioDecoder {
     public int getChannelCount() {
         try {
             return getOutputMediaFormat().getInteger("channel-count");
-        } catch (Exception e) {
-            FileLog.e(e);
+        } catch (Exception e7) {
+            FileLog.e(e7);
             try {
                 return getInputMediaFormat().getInteger("channel-count");
-            } catch (Exception e7) {
-                FileLog.e(e7);
+            } catch (Exception e10) {
+                FileLog.e(e10);
                 return -1;
             }
         }
@@ -160,12 +160,12 @@ public class AudioDecoder {
     public long getDurationUs() {
         try {
             return getOutputMediaFormat().getLong("durationUs");
-        } catch (Exception e) {
-            FileLog.e(e);
+        } catch (Exception e7) {
+            FileLog.e(e7);
             try {
                 return getInputMediaFormat().getLong("durationUs");
-            } catch (Exception e7) {
-                FileLog.e(e7);
+            } catch (Exception e10) {
+                FileLog.e(e10);
                 return -1L;
             }
         }
@@ -178,8 +178,8 @@ public class AudioDecoder {
     public MediaFormat getInputMediaFormat() {
         try {
             return this.extractor.getTrackFormat(this.trackIndex);
-        } catch (Exception e) {
-            FileLog.e(e);
+        } catch (Exception e7) {
+            FileLog.e(e7);
             return null;
         }
     }
@@ -190,8 +190,8 @@ public class AudioDecoder {
                 return getOutputMediaFormat();
             }
             return getInputMediaFormat();
-        } catch (Exception e) {
-            FileLog.e(e);
+        } catch (Exception e7) {
+            FileLog.e(e7);
             return null;
         }
     }
@@ -199,8 +199,8 @@ public class AudioDecoder {
     public MediaFormat getOutputMediaFormat() {
         try {
             return this.decoder.getOutputFormat();
-        } catch (Exception e) {
-            FileLog.e(e);
+        } catch (Exception e7) {
+            FileLog.e(e7);
             return null;
         }
     }
@@ -208,12 +208,12 @@ public class AudioDecoder {
     public int getSampleRate() {
         try {
             return getOutputMediaFormat().getInteger("sample-rate");
-        } catch (Exception e) {
-            FileLog.e(e);
+        } catch (Exception e7) {
+            FileLog.e(e7);
             try {
                 return getInputMediaFormat().getInteger("sample-rate");
-            } catch (Exception e7) {
-                FileLog.e(e7);
+            } catch (Exception e10) {
+                FileLog.e(e10);
                 return -1;
             }
         }

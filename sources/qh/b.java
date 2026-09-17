@@ -1,37 +1,28 @@
 package qh;
+public final class b {
+    public static final b f44665a;
+    public static final b f44666b;
+    public static final b f44667c;
+    public static final b d;
+    public static final b[] f44668e;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.drawable.Drawable;
-import android.view.View;
-import org.telegram.messenger.R;
-import org.telegram.ui.Components.qr;
-public final class b extends View {
-    public final le.b f41771a;
-    public final Drawable f41772b;
-    public final Drawable f41773c;
-
-    public b(Context context) {
-        super(context);
-        this.f41771a = new le.b(this, qr.h, 320L);
-        this.f41772b = context.getResources().getDrawable(R.drawable.outline_poll_emoji_24).mutate();
-        this.f41773c = context.getResources().getDrawable(R.drawable.input_keyboard).mutate();
+    static {
+        ?? r02 = new Enum("STATE_FULLY_HIDDEN", 0);
+        f44665a = r02;
+        ?? r12 = new Enum("STATE_ANIMATING_TO_FULLY_HIDDEN", 1);
+        f44666b = r12;
+        ?? r32 = new Enum("STATE_ANIMATING_TO_FULLY_VISIBLE", 2);
+        f44667c = r32;
+        ?? r52 = new Enum("STATE_FULLY_VISIBLE", 3);
+        d = r52;
+        f44668e = new b[]{r02, r12, r32, r52};
     }
 
-    @Override
-    public final void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
-        float f7 = this.f41771a.e;
-        yf.p.b(canvas, this.f41772b, 1.0f - f7);
-        yf.p.b(canvas, this.f41773c, f7);
+    public static b valueOf(String str) {
+        return (b) Enum.valueOf(b.class, str);
     }
 
-    @Override
-    public final void onSizeChanged(int i10, int i11, int i12, int i13) {
-        super.onSizeChanged(i10, i11, i12, i13);
-        float f7 = i10 / 2.0f;
-        float f10 = i11 / 2.0f;
-        yf.p.d(this.f41772b, f7, f10, 17);
-        yf.p.d(this.f41773c, f7, f10, 17);
+    public static b[] values() {
+        return (b[]) f44668e.clone();
     }
 }

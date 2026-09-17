@@ -1,7 +1,38 @@
 package org.telegram.ui.Components;
-public final class gp extends s4.d0 {
+
+import android.widget.Toast;
+import java.util.List;
+import org.telegram.messenger.ChatThemeController;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.tgnet.ResultCallback;
+import org.telegram.tgnet.TLRPC;
+public final class gp implements ResultCallback {
+    public final ChatThemeController f26506a;
+    public final lp f26507b;
+
+    public gp(lp lpVar, ChatThemeController chatThemeController) {
+        this.f26507b = lpVar;
+        this.f26506a = chatThemeController;
+    }
+
     @Override
-    public final int n(int i10) {
-        return super.n(i10) * 6;
+    public final void onComplete(Object obj) {
+        int i10;
+        List list = (List) obj;
+        List<org.telegram.ui.ActionBar.d4> emojiThemes = this.f26506a.getEmojiThemes(7);
+        lp lpVar = this.f26507b;
+        i10 = ((org.telegram.ui.ActionBar.f3) lpVar).currentAccount;
+        NotificationCenter.getInstance(i10).doOnIdle(new uc(21, this, emojiThemes));
+        lpVar.f28285b0 = false;
+    }
+
+    @Override
+    public final void onError(Throwable th2) {
+        org.telegram.tgnet.l.a(this, th2);
+    }
+
+    @Override
+    public final void onError(TLRPC.TL_error tL_error) {
+        Toast.makeText(this.f26507b.getContext(), tL_error.text, 0).show();
     }
 }

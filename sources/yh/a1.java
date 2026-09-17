@@ -1,33 +1,22 @@
 package yh;
 
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stars;
-public final class a1 implements RequestDelegate {
-    public final int f46941a;
-    public final a4 f46942b;
-    public final TL_stars.TL_starGiftUnique f46943c;
-    public final zf.a d;
-    public final Runnable e;
+import android.content.Context;
+import org.telegram.ui.ActionBar.f6;
+import org.telegram.ui.Components.yc;
+public final class a1 extends x4 {
+    public final p1 f50230x0;
 
-    public a1(a4 a4Var, TL_stars.TL_starGiftUnique tL_starGiftUnique, zf.a aVar, Runnable runnable, int i10) {
-        this.f46941a = i10;
-        this.f46942b = a4Var;
-        this.f46943c = tL_starGiftUnique;
-        this.d = aVar;
-        this.e = runnable;
+    public a1(p1 p1Var, Context context, int i10, sg.k kVar, long j3, m0 m0Var) {
+        super(context, i10, null, kVar, j3, m0Var, false, false);
+        this.f50230x0 = p1Var;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f46941a) {
-            case 0:
-                a4.M0(this.f46942b, this.f46943c, this.d, this.e, tLObject, tL_error);
-                return;
-            default:
-                a4.t0(this.f46942b, this.f46943c, this.d, this.e, tLObject, tL_error);
-                return;
-        }
+    public final yc X() {
+        f6 f6Var;
+        p1 p1Var = this.f50230x0;
+        org.telegram.ui.ActionBar.d3 d3Var = p1Var.container;
+        f6Var = p1Var.resourcesProvider;
+        return new yc(d3Var, f6Var);
     }
 }

@@ -1,74 +1,53 @@
 package hg;
 
-import android.content.Context;
-import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
-import org.telegram.ui.ActionBar.e5;
-import org.telegram.ui.Components.kz;
-import org.telegram.ui.Components.qv0;
-public final class q1 extends qv0 {
-    public final int f10394w0;
+import di.eb;
+import org.telegram.ui.Components.kl0;
+public final class q1 extends kl0 {
+    public k1 f11247c;
+    public Integer d;
+    public eb f11248e;
+    public boolean f11249f;
+    public int h;
 
-    public q1(Context context, e5 e5Var, int i10) {
-        super(context, e5Var);
-        this.f10394w0 = i10;
+    @Override
+    public final boolean D(s4.c1 c1Var) {
+        if (c1Var.b() == 0) {
+            return false;
+        }
+        return this.f11247c.D(c1Var);
     }
 
     @Override
-    public boolean P() {
-        switch (this.f10394w0) {
-            case 2:
-                return false;
-            case 3:
-                return false;
-            case 4:
-            default:
-                return super.P();
-            case 5:
-                return false;
+    public final int h() {
+        k1 k1Var = this.f11247c;
+        int K = k1Var.K();
+        k1Var.L0 = K;
+        return K + 1;
+    }
+
+    @Override
+    public final int j(int i10) {
+        if (i10 == 0) {
+            return -983904;
+        }
+        return this.f11247c.j(i10 - 1);
+    }
+
+    @Override
+    public final void v(s4.c1 c1Var, int i10) {
+        if (i10 > 0) {
+            this.f11247c.v(c1Var, i10 - 1);
         }
     }
 
     @Override
-    public void addView(View view) {
-        switch (this.f10394w0) {
-            case 4:
-                if (view instanceof kz) {
-                    ViewGroup.LayoutParams layoutParams = ((kz) view).getLayoutParams();
-                    if (layoutParams == null) {
-                        layoutParams = new FrameLayout.LayoutParams(-1, -2);
-                    }
-                    if (layoutParams instanceof FrameLayout.LayoutParams) {
-                        ((FrameLayout.LayoutParams) layoutParams).gravity = 87;
-                    }
-                    view.setLayoutParams(layoutParams);
-                }
-                super.addView(view);
-                return;
-            default:
-                super.addView(view);
-                return;
+    public final s4.c1 x(ViewGroup viewGroup, int i10) {
+        if (i10 == -983904) {
+            eb ebVar = new eb(this, viewGroup.getContext(), 4);
+            this.f11248e = ebVar;
+            return new s4.c1(ebVar);
         }
-    }
-
-    @Override
-    public void onLayout(boolean r17, int r18, int r19, int r20, int r21) {
-        throw new UnsupportedOperationException("Method not decompiled: hg.q1.onLayout(boolean, int, int, int, int):void");
-    }
-
-    @Override
-    public void onMeasure(int i10, int i11) {
-        switch (this.f10394w0) {
-            case 0:
-                super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i11), 1073741824));
-                return;
-            case 1:
-                super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i11), 1073741824));
-                return;
-            default:
-                super.onMeasure(i10, i11);
-                return;
-        }
+        return this.f11247c.x(viewGroup, i10);
     }
 }

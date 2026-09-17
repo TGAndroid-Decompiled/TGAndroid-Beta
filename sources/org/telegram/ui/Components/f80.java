@@ -8,7 +8,7 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
-public final class f80 extends org.telegram.ui.bo {
+public final class f80 extends org.telegram.ui.co {
     public boolean Qc;
     public final boolean Rc;
     public final long Sc;
@@ -38,8 +38,8 @@ public final class f80 extends org.telegram.ui.bo {
             z10 = false;
         }
         boolean z11 = chat.creator;
-        f6Var = ((org.telegram.ui.ActionBar.g3) f80Var.Tc).resourcesProvider;
-        c01.c(parentActivity, i10, j10, currentUser, null, z10, z11, f6Var);
+        f6Var = ((org.telegram.ui.ActionBar.f3) f80Var.Tc).resourcesProvider;
+        a01.c(parentActivity, i10, j10, currentUser, null, z10, z11, f6Var);
     }
 
     @Override
@@ -51,13 +51,13 @@ public final class f80 extends org.telegram.ui.bo {
             long j3 = this.Sc;
             TLRPC.Chat chat = messagesController.getChat(Long.valueOf(j3));
             if (ChatObject.canManageMyTag(chat)) {
-                oc J = vc.a0(this).J(R.raw.contact_check, LocaleController.getString(R.string.JoinedGroup), LocaleController.getString(R.string.JoinedGroupAddTag), new a3.h0(this, j3, chat, 21));
-                J.f26710r = false;
+                qc J = yc.a0(this).J(R.raw.contact_check, LocaleController.getString(R.string.JoinedGroup), LocaleController.getString(R.string.JoinedGroupAddTag), new a3.h0(this, j3, chat, 21));
+                J.f29715r = false;
                 J.k(true);
                 return;
             }
-            oc Q = vc.a0(this).Q(R.raw.contact_check, 36, LocaleController.getString(R.string.JoinedGroup));
-            Q.f26710r = false;
+            qc Q = yc.a0(this).Q(R.raw.contact_check, 36, LocaleController.getString(R.string.JoinedGroup));
+            Q.f29715r = false;
             Q.k(true);
         }
     }

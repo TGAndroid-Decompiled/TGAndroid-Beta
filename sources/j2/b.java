@@ -5,13 +5,13 @@ import b2.u0;
 import b2.x1;
 import u2.b0;
 public interface b {
-    void a(i2.g gVar);
+    void a(i2.h hVar);
 
-    void b(b0 b0Var);
+    void b(b1 b1Var, pf.b bVar);
 
-    void c(x1 x1Var);
+    void c(b0 b0Var);
 
-    void d(b1 b1Var, of.b bVar);
+    void d(x1 x1Var);
 
     void e(a aVar, b0 b0Var);
 

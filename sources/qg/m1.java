@@ -1,34 +1,54 @@
 package qg;
+public final class m1 extends o1 {
+    public final int f44513f;
+    public final l1 f44514g;
+    public final p1 h;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-public final class m1 extends View {
-    public final Paint f41477a;
-    public float f41478b;
-
-    public m1(Context context) {
-        super(context);
-        Paint paint = new Paint(1);
-        this.f41477a = paint;
-        paint.setColor(-1);
-        paint.setStyle(Paint.Style.STROKE);
-        paint.setStrokeCap(Paint.Cap.ROUND);
-        paint.setStrokeWidth(AndroidUtilities.dp(2.0f));
+    public m1(p1 p1Var, l1 l1Var, int i10) {
+        this.f44513f = i10;
+        this.h = p1Var;
+        this.f44514g = l1Var;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
-        Paint paint = this.f41477a;
-        canvas.drawLine((getWidth() / 2.0f) + AndroidUtilities.dp(AndroidUtilities.lerp(-6.7f, -7.0f, this.f41478b)), (getHeight() / 2.0f) + AndroidUtilities.dp(AndroidUtilities.lerp(0.71f, 0.0f, this.f41478b)), (getWidth() / 2.0f) + AndroidUtilities.dp(AndroidUtilities.lerp(-2.45f, 7.0f, this.f41478b)), (getHeight() / 2.0f) + AndroidUtilities.dp(AndroidUtilities.lerp(4.79f, 0.0f, this.f41478b)), paint);
-        canvas.drawLine((getWidth() / 2.0f) + AndroidUtilities.dp(AndroidUtilities.lerp(-2.45f, 0.0f, this.f41478b)), (getHeight() / 2.0f) + AndroidUtilities.dp(AndroidUtilities.lerp(4.79f, 7.0f, this.f41478b)), (getWidth() / 2.0f) + AndroidUtilities.dp(AndroidUtilities.lerp(6.59f, 0.0f, this.f41478b)), (getHeight() / 2.0f) + AndroidUtilities.dp(AndroidUtilities.lerp(-4.27f, -7.0f, this.f41478b)), paint);
+    public final void a() {
+        switch (this.f44513f) {
+            case 0:
+                f1 f1Var = this.h.h;
+                float f7 = f1Var.f44462i;
+                float f10 = f1Var.f44463j;
+                this.d = f7;
+                this.f44529e = f10;
+                return;
+            default:
+                f1 f1Var2 = this.h.h;
+                float f11 = f1Var2.d;
+                float f12 = f1Var2.f44459e;
+                this.d = f11;
+                this.f44529e = f12;
+                return;
+        }
     }
 
-    public void setProgress(float f7) {
-        this.f41478b = f7;
-        invalidate();
+    @Override
+    public final void b(float f7, float f10) {
+        switch (this.f44513f) {
+            case 0:
+                f1 f1Var = this.h.h;
+                f1Var.f44462i = f7;
+                f1Var.f44463j = f10;
+                this.d = f7;
+                this.f44529e = f10;
+                this.f44514g.a();
+                return;
+            default:
+                f1 f1Var2 = this.h.h;
+                f1Var2.d = f7;
+                f1Var2.f44459e = f10;
+                this.d = f7;
+                this.f44529e = f10;
+                this.f44514g.a();
+                return;
+        }
     }
 }

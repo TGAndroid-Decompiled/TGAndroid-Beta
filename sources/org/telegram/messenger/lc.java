@@ -1,49 +1,24 @@
 package org.telegram.messenger;
+public final class lc implements Runnable {
+    public final int f18316a;
+    public final MessagesController f18317b;
+    public final boolean f18318c;
 
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class lc implements RequestDelegate {
-    public final int f16677a;
-    public final MessagesController f16678b;
-    public final int f16679c;
-    public final long d;
-    public final long e;
-
-    public lc(int i10, long j3, long j10, MessagesController messagesController) {
-        this.f16677a = 0;
-        this.f16678b = messagesController;
-        this.d = j3;
-        this.f16679c = i10;
-        this.e = j10;
+    public lc(int i10, MessagesController messagesController, boolean z10) {
+        this.f18316a = i10;
+        this.f18317b = messagesController;
+        this.f18318c = z10;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f16677a) {
+    public final void run() {
+        switch (this.f18316a) {
             case 0:
-                int i10 = this.f16679c;
-                long j3 = this.e;
-                this.f16678b.lambda$getChannelDifference$349(this.d, i10, j3, tLObject, tL_error);
-                return;
-            case 1:
-                long j10 = this.d;
-                long j11 = this.e;
-                this.f16678b.lambda$sendTyping$172(this.f16679c, j10, j11, tLObject, tL_error);
+                this.f18317b.lambda$checkPromoInfo$164(this.f18318c);
                 return;
             default:
-                long j12 = this.d;
-                long j13 = this.e;
-                this.f16678b.lambda$sendTyping$174(this.f16679c, j12, j13, tLObject, tL_error);
+                this.f18317b.lambda$removeFolderTemporarily$480(this.f18318c);
                 return;
         }
-    }
-
-    public lc(MessagesController messagesController, int i10, long j3, long j10, int i11) {
-        this.f16677a = i11;
-        this.f16678b = messagesController;
-        this.f16679c = i10;
-        this.d = j3;
-        this.e = j10;
     }
 }

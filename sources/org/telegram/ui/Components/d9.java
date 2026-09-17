@@ -1,46 +1,40 @@
 package org.telegram.ui.Components;
 
+import android.content.Context;
+import android.graphics.Paint;
+import android.graphics.drawable.Drawable;
+import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.tgnet.TLRPC;
-public final class d9 implements Runnable {
-    public final gm f23233a;
+public final class d9 extends View {
+    public b9 f25322a;
+    public final e6 f25323b;
+    public boolean f25324c;
+    public boolean d;
+    public final o20 f25325e;
+    public Drawable f25326f;
+    public Drawable h;
+    public boolean f25327n;
+    public Paint f25328r;
+    public Paint f25329s;
+    public boolean v;
+    public final f9 f25330w;
 
-    public d9(gm gmVar) {
-        this.f23233a = gmVar;
+    public d9(f9 f9Var, Context context) {
+        super(context);
+        this.f25330w = f9Var;
+        e6 e6Var = new e6(400L, AndroidUtilities.overshootInterpolator);
+        this.f25323b = e6Var;
+        this.f25325e = new o20();
+        e6Var.f25591a = this;
     }
 
     @Override
-    public final void run() {
-        ai.l4 l4Var;
-        gm gmVar = this.f23233a;
-        AndroidUtilities.runOnUIThread(gmVar.f23519y, 1000L);
-        TLRPC.TL_emojiList tL_emojiList = gmVar.f23514n;
-        if (tL_emojiList != null && !tL_emojiList.document_id.isEmpty() && gmVar.f23517w == 1.0f) {
-            if (gmVar.f23518x || ((l4Var = gmVar.f23511b.f26636k) != null && l4Var.hasImageLoaded())) {
-                int i10 = gmVar.v + 1;
-                gmVar.v = i10;
-                gmVar.f23516s++;
-                if (i10 > tL_emojiList.document_id.size() - 1) {
-                    gmVar.v = 0;
-                }
-                if (gmVar.f23516s > 6) {
-                    gmVar.f23516s = 0;
-                }
-                o5 o5Var = new o5(4, gmVar.f23515r, tL_emojiList.document_id.get(gmVar.v).longValue());
-                gmVar.f23510a = o5Var;
-                gmVar.d.setAnimatedEmojiDrawable(o5Var);
-                int[] iArr = c9.f22961c0[gmVar.f23516s];
-                int i11 = iArr[0];
-                int i12 = iArr[1];
-                int i13 = iArr[2];
-                int i14 = iArr[3];
-                o20 o20Var = new o20();
-                gmVar.f23513f = o20Var;
-                o20Var.d(i11, i12, i13, i14);
-                gmVar.f23517w = 0.0f;
-                gmVar.b();
-                gmVar.invalidate();
-            }
-        }
+    public final void onDraw(android.graphics.Canvas r15) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.d9.onDraw(android.graphics.Canvas):void");
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(this.f25330w.P, 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(48.0f), 1073741824));
     }
 }

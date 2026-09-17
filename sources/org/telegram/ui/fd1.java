@@ -1,50 +1,18 @@
 package org.telegram.ui;
+public final class fd1 extends wd1 {
+    public final co f36405k2;
+    public final boolean f36406l2;
 
-import android.graphics.Point;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.NotificationCenter;
-public final class fd1 extends w7.i0 {
-    public final int f33618a;
-    public final NotificationCenter.NotificationCenterDelegate f33619b;
-
-    public fd1(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, int i10) {
-        this.f33618a = i10;
-        this.f33619b = notificationCenterDelegate;
+    public fd1(Object obj, co coVar, boolean z10) {
+        super(obj, null, true);
+        this.f36405k2 = coVar;
+        this.f36406l2 = z10;
     }
 
     @Override
-    public void a() {
-        switch (this.f33618a) {
-            case 1:
-                ((ti1) this.f33619b).v.invalidate();
-                return;
-            default:
-                return;
-        }
-    }
-
-    @Override
-    public void b(int i10, int i11) {
-        boolean z10;
-        switch (this.f33618a) {
-            case 0:
-                Point point = AndroidUtilities.displaySize;
-                boolean z11 = false;
-                if (point.x <= point.y) {
-                    z10 = true;
-                } else {
-                    z10 = false;
-                }
-                if (i10 <= i11) {
-                    z11 = true;
-                }
-                if (z10 == z11) {
-                    ((xd1) this.f33619b).f39593x0.invalidate();
-                    return;
-                }
-                return;
-            default:
-                return;
-        }
+    public final void onFragmentClosed() {
+        super.onFragmentClosed();
+        ao aoVar = this.f36405k2.f35275ea;
+        aoVar.i(aoVar.f34518f, aoVar.h, false, Boolean.valueOf(this.f36406l2), false);
     }
 }

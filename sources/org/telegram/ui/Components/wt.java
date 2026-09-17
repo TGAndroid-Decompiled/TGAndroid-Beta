@@ -1,31 +1,48 @@
 package org.telegram.ui.Components;
 
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.tl.TL_payments;
-public final class wt implements org.telegram.ui.ActionBar.b2 {
-    public final int f29736a;
-    public final int f29737b;
-    public final Object f29738c;
+import android.view.ActionMode;
+import android.view.Menu;
+import android.view.MenuItem;
+public final class wt implements ActionMode.Callback {
+    public final ActionMode.Callback f32365a;
+    public final zt f32366b;
 
-    public wt(int i10, int i11, org.telegram.ui.ActionBar.o2 o2Var) {
-        this.f29736a = i10;
-        this.f29737b = i11;
-        this.f29738c = o2Var;
+    public wt(zt ztVar, ActionMode.Callback callback) {
+        this.f32366b = ztVar;
+        this.f32365a = callback;
     }
 
     @Override
-    public void f(org.telegram.ui.ActionBar.c2 c2Var, int i10) {
-        nf.e g10 = c2Var.g(-1, true, true);
-        g10.d();
-        TL_payments.TL_resolveStarGiftOffer tL_resolveStarGiftOffer = new TL_payments.TL_resolveStarGiftOffer();
-        tL_resolveStarGiftOffer.offer_msg_id = this.f29736a;
-        int i11 = this.f29737b;
-        ConnectionsManager.getInstance(i11).sendRequestTyped(tL_resolveStarGiftOffer, new ei.h1(i11, (org.telegram.ui.ActionBar.o2) this.f29738c, g10, c2Var));
+    public final boolean onActionItemClicked(ActionMode actionMode, MenuItem menuItem) {
+        if (this.f32366b.performMenuAction(menuItem.getItemId())) {
+            actionMode.finish();
+            return true;
+        }
+        try {
+            return this.f32365a.onActionItemClicked(actionMode, menuItem);
+        } catch (Exception unused) {
+            return true;
+        }
     }
 
-    public wt(bu buVar, int i10, int i11) {
-        this.f29738c = buVar;
-        this.f29736a = i10;
-        this.f29737b = i11;
+    @Override
+    public final boolean onCreateActionMode(ActionMode actionMode, Menu menu) {
+        zt ztVar = this.f32366b;
+        ztVar.copyPasteShowed = true;
+        ztVar.onContextMenuOpen();
+        return this.f32365a.onCreateActionMode(actionMode, menu);
+    }
+
+    @Override
+    public final void onDestroyActionMode(ActionMode actionMode) {
+        zt ztVar = this.f32366b;
+        ztVar.copyPasteShowed = false;
+        ztVar.onContextMenuClose();
+        this.f32365a.onDestroyActionMode(actionMode);
+    }
+
+    @Override
+    public final boolean onPrepareActionMode(ActionMode actionMode, Menu menu) {
+        return this.f32365a.onPrepareActionMode(actionMode, menu);
     }
 }

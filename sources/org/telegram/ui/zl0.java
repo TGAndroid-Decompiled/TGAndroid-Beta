@@ -5,68 +5,68 @@ import android.view.ViewGroup;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.EditTextBoldCursor;
 public final class zl0 implements Runnable {
-    public final int f40269a;
-    public final qn0 f40270b;
+    public final int f43488a;
+    public final pn0 f43489b;
 
-    public zl0(qn0 qn0Var, int i10) {
-        this.f40269a = i10;
-        this.f40270b = qn0Var;
+    public zl0(pn0 pn0Var, int i10) {
+        this.f43488a = i10;
+        this.f43489b = pn0Var;
     }
 
     @Override
     public final void run() {
         ViewGroup viewGroup;
-        switch (this.f40269a) {
+        switch (this.f43488a) {
             case 0:
-                qn0 qn0Var = this.f40270b;
-                ViewGroup[] viewGroupArr = qn0Var.Z;
+                pn0 pn0Var = this.f43489b;
+                ViewGroup[] viewGroupArr = pn0Var.Z;
                 if (viewGroupArr != null && (viewGroup = viewGroupArr[0]) != null && viewGroup.getVisibility() == 0) {
-                    qn0Var.Y[0].requestFocus();
-                    AndroidUtilities.showKeyboard(qn0Var.Y[0]);
+                    pn0Var.Y[0].requestFocus();
+                    AndroidUtilities.showKeyboard(pn0Var.Y[0]);
                     return;
                 }
                 return;
             case 1:
-                qn0 qn0Var2 = this.f40270b;
-                qn0Var2.presentFragment(qn0Var2.f36961h1, true);
-                qn0Var2.f36961h1 = null;
+                pn0 pn0Var2 = this.f43489b;
+                pn0Var2.presentFragment(pn0Var2.f39596h1, true);
+                pn0Var2.f39596h1 = null;
                 return;
             case 2:
-                qn0 qn0Var3 = this.f40270b;
-                EditTextBoldCursor[] editTextBoldCursorArr = qn0Var3.f36943a0;
+                pn0 pn0Var3 = this.f43489b;
+                EditTextBoldCursor[] editTextBoldCursorArr = pn0Var3.f39577a0;
                 if (editTextBoldCursorArr != null) {
-                    qn0Var3.I1(editTextBoldCursorArr[0]);
+                    pn0Var3.I1(editTextBoldCursorArr[0]);
                     return;
                 }
                 return;
             case 3:
-                AndroidUtilities.showKeyboard(this.f40270b.Y[2]);
+                AndroidUtilities.showKeyboard(this.f43489b.Y[2]);
                 return;
             case 4:
-                this.f40270b.x1();
+                this.f43489b.x1();
                 return;
             case 5:
                 int i10 = 0;
                 while (true) {
-                    qn0 qn0Var4 = this.f40270b;
-                    if (i10 < qn0Var4.f36949c0.getChildCount()) {
-                        View childAt = qn0Var4.f36949c0.getChildAt(i10);
-                        if (childAt instanceof pn0) {
-                            qn0Var4.f36949c0.removeView(childAt);
+                    pn0 pn0Var4 = this.f43489b;
+                    if (i10 < pn0Var4.f39583c0.getChildCount()) {
+                        View childAt = pn0Var4.f39583c0.getChildAt(i10);
+                        if (childAt instanceof on0) {
+                            pn0Var4.f39583c0.removeView(childAt);
                             i10--;
                         }
                         i10++;
                     } else {
-                        qn0Var4.x1();
-                        qn0Var4.f36978q1.clear();
-                        qn0Var4.f36976p1.clear();
-                        qn0Var4.f36997y.values.clear();
-                        qn0Var4.Q1();
+                        pn0Var4.x1();
+                        pn0Var4.f39613q1.clear();
+                        pn0Var4.f39611p1.clear();
+                        pn0Var4.f39632y.values.clear();
+                        pn0Var4.Q1();
                         return;
                     }
                 }
             default:
-                this.f40270b.finishFragment();
+                this.f43489b.finishFragment();
                 return;
         }
     }

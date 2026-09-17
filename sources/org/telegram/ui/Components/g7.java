@@ -1,32 +1,72 @@
 package org.telegram.ui.Components;
 
-import org.telegram.tgnet.TLRPC;
+import org.telegram.messenger.MessageObject;
 public final class g7 implements Runnable {
-    public final int f24099a;
-    public final h8 f24100b;
-    public final TLRPC.TL_error f24101c;
+    public final int f26316a;
+    public final k8 f26317b;
+    public final n70 f26318c;
+    public final MessageObject d;
 
-    public g7(h8 h8Var, TLRPC.TL_error tL_error, int i10) {
-        this.f24099a = i10;
-        this.f24100b = h8Var;
-        this.f24101c = tL_error;
+    public g7(k8 k8Var, MessageObject messageObject, n70 n70Var, int i10) {
+        this.f26316a = i10;
+        this.f26317b = k8Var;
+        this.d = messageObject;
+        this.f26318c = n70Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f24099a) {
+        switch (this.f26316a) {
             case 0:
-                h8.s(this.f24100b, this.f24101c);
+                k8 k8Var = this.f26317b;
+                k8Var.getClass();
+                this.f26318c.u();
+                k8Var.q0(this.d);
                 return;
             case 1:
-                h8.w(this.f24100b, this.f24101c);
+                k8 k8Var2 = this.f26317b;
+                k8Var2.getClass();
+                this.f26318c.u();
+                k8Var2.z0(this.d);
                 return;
             case 2:
-                h8.H(this.f24100b, this.f24101c);
+                k8 k8Var3 = this.f26317b;
+                MessageObject messageObject = this.d;
+                k8Var3.v0(messageObject, false, new g7(k8Var3, messageObject, this.f26318c, 5), false);
+                return;
+            case 3:
+                k8 k8Var4 = this.f26317b;
+                k8Var4.getClass();
+                this.f26318c.u();
+                k8Var4.q0(this.d);
+                return;
+            case 4:
+                k8 k8Var5 = this.f26317b;
+                k8Var5.getClass();
+                this.f26318c.u();
+                k8Var5.z0(this.d);
+                return;
+            case 5:
+                k8.v(this.f26317b, this.d, this.f26318c);
+                return;
+            case 6:
+                k8 k8Var6 = this.f26317b;
+                k8Var6.v0(this.d, true, new h7(k8Var6, this.f26318c, 4), false);
+                return;
+            case 7:
+                k8.L(this.f26317b, this.d, this.f26318c);
                 return;
             default:
-                h8.I(this.f24100b, this.f24101c);
+                this.f26317b.u0(this.d);
+                this.f26318c.u();
                 return;
         }
+    }
+
+    public g7(k8 k8Var, n70 n70Var, MessageObject messageObject, int i10) {
+        this.f26316a = i10;
+        this.f26317b = k8Var;
+        this.f26318c = n70Var;
+        this.d = messageObject;
     }
 }

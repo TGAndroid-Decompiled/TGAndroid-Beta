@@ -1,22 +1,29 @@
 package org.telegram.ui.Components;
 
-import android.animation.ValueAnimator;
-public final class yo implements ValueAnimator.AnimatorUpdateListener {
-    public boolean f30293a = false;
-    public final mp f30294b;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.vd1;
+public final class yo implements vd1 {
+    public final int f33002a;
+    public final vi f33003b;
+    public final org.telegram.ui.t3 f33004c;
 
-    public yo(mp mpVar) {
-        this.f30294b = mpVar;
+    public yo(vi viVar, org.telegram.ui.t3 t3Var, int i10) {
+        this.f33002a = i10;
+        this.f33003b = viVar;
+        this.f33004c = t3Var;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        mp mpVar = this.f30294b;
-        mpVar.S = floatValue;
-        mpVar.R.invalidate();
-        if (!this.f30293a && mpVar.S > 0.5f) {
-            this.f30293a = true;
+    public final void a(TLRPC.TL_wallPaper tL_wallPaper) {
+        switch (this.f33002a) {
+            case 0:
+                this.f33003b.dismissInternal();
+                this.f33004c.run(tL_wallPaper);
+                return;
+            default:
+                this.f33003b.dismissInternal();
+                this.f33004c.run(tL_wallPaper);
+                return;
         }
     }
 }

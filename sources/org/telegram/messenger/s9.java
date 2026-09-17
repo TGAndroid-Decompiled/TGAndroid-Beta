@@ -1,48 +1,52 @@
 package org.telegram.messenger;
 
-import java.util.Comparator;
-import org.telegram.messenger.MessagesController;
+import android.content.Context;
+import android.os.Bundle;
+import org.telegram.messenger.SendMessagesHelper;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-public final class s9 implements Comparator {
-    public final int f17312a;
-    public final MessagesController f17313b;
+public final class s9 implements RequestDelegate {
+    public final int f18998a;
+    public final BaseController f18999b;
+    public final Object f19000c;
+    public final Object d;
+    public final Object f19001e;
+    public final Object f19002f;
 
-    public s9(MessagesController messagesController, int i10) {
-        this.f17312a = i10;
-        this.f17313b = messagesController;
+    public s9(BaseController baseController, Object obj, Object obj2, Object obj3, Object obj4, int i10) {
+        this.f18998a = i10;
+        this.f18999b = baseController;
+        this.f19000c = obj;
+        this.d = obj2;
+        this.f19001e = obj3;
+        this.f19002f = obj4;
     }
 
     @Override
-    public final int compare(Object obj, Object obj2) {
-        int lambda$new$9;
-        int lambda$new$10;
-        int lambda$new$11;
-        int lambda$new$12;
-        int lambda$processUpdatesQueue$327;
-        int lambda$renameSavedReactionTag$484;
-        int lambda$updateSavedReactionTags$483;
-        switch (this.f17312a) {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f18998a) {
             case 0:
-                lambda$new$9 = this.f17313b.lambda$new$9((TLRPC.Dialog) obj, (TLRPC.Dialog) obj2);
-                return lambda$new$9;
+                ((MessagesController) this.f18999b).lambda$checkCanOpenChat$452((org.telegram.ui.ActionBar.b2) this.f19000c, (of.e) this.d, (org.telegram.ui.ActionBar.n2) this.f19001e, (Bundle) this.f19002f, tLObject, tL_error);
+                return;
             case 1:
-                lambda$new$10 = this.f17313b.lambda$new$10((TLRPC.Dialog) obj, (TLRPC.Dialog) obj2);
-                return lambda$new$10;
+                ((MessagesController) this.f18999b).lambda$didReceivedNotification$51((TLRPC.TL_theme) this.f19000c, (org.telegram.ui.ActionBar.i6) this.d, (TLRPC.TL_inputThemeSettings) this.f19001e, (org.telegram.ui.ActionBar.h6) this.f19002f, tLObject, tL_error);
+                return;
             case 2:
-                lambda$new$11 = this.f17313b.lambda$new$11((MessagesController.CommunityPeerDialog) obj, (MessagesController.CommunityPeerDialog) obj2);
-                return lambda$new$11;
-            case 3:
-                lambda$new$12 = this.f17313b.lambda$new$12((TLRPC.Update) obj, (TLRPC.Update) obj2);
-                return lambda$new$12;
-            case 4:
-                lambda$processUpdatesQueue$327 = this.f17313b.lambda$processUpdatesQueue$327((TLRPC.Updates) obj, (TLRPC.Updates) obj2);
-                return lambda$processUpdatesQueue$327;
-            case 5:
-                lambda$renameSavedReactionTag$484 = this.f17313b.lambda$renameSavedReactionTag$484((TLRPC.TL_savedReactionTag) obj, (TLRPC.TL_savedReactionTag) obj2);
-                return lambda$renameSavedReactionTag$484;
+                ((SecretChatHelper) this.f18999b).lambda$startSecretChat$28((Context) this.d, (org.telegram.ui.ActionBar.b2) this.f19000c, (byte[]) this.f19001e, (TLRPC.User) this.f19002f, tLObject, tL_error);
+                return;
             default:
-                lambda$updateSavedReactionTags$483 = this.f17313b.lambda$updateSavedReactionTags$483((TLRPC.TL_savedReactionTag) obj, (TLRPC.TL_savedReactionTag) obj2);
-                return lambda$updateSavedReactionTags$483;
+                ((SendMessagesHelper) this.f18999b).lambda$performSendDelayedMessage$56((TLRPC.InputMedia) this.f19000c, (SendMessagesHelper.DelayedMessage) this.d, (String) this.f19001e, (MessageObject) this.f19002f, tLObject, tL_error);
+                return;
         }
+    }
+
+    public s9(SecretChatHelper secretChatHelper, Context context, org.telegram.ui.ActionBar.b2 b2Var, byte[] bArr, TLRPC.User user) {
+        this.f18998a = 2;
+        this.f18999b = secretChatHelper;
+        this.d = context;
+        this.f19000c = b2Var;
+        this.f19001e = bArr;
+        this.f19002f = user;
     }
 }

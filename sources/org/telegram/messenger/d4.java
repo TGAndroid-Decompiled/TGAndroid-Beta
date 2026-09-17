@@ -1,36 +1,26 @@
 package org.telegram.messenger;
 
-import java.util.ArrayList;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_payments;
-public final class d4 implements Utilities.Callback {
-    public final int f15946a = 0;
-    public final long f15947b;
-    public final BaseController f15948c;
-    public final Object d;
+import org.telegram.tgnet.tl.TL_stars;
+public final class d4 implements Utilities.Callback2 {
+    public final int f17470a;
+    public final Utilities.Callback f17471b;
 
-    public d4(GiftAuctionController giftAuctionController, long j3, TL_payments.TL_StarGiftAuctionState tL_StarGiftAuctionState) {
-        this.f15948c = giftAuctionController;
-        this.f15947b = j3;
-        this.d = tL_StarGiftAuctionState;
+    public d4(int i10, Utilities.Callback callback) {
+        this.f17470a = i10;
+        this.f17471b = callback;
     }
 
     @Override
-    public final void run(Object obj) {
-        switch (this.f15946a) {
+    public final void run(Object obj, Object obj2) {
+        switch (this.f17470a) {
             case 0:
-                ((GiftAuctionController) this.f15948c).lambda$subscribeToGiftAuctionStateInternal$0(this.f15947b, (TL_payments.TL_StarGiftAuctionState) this.d, (ArrayList) obj);
+                GiftAuctionController.lambda$requestAuctionUpgrades$5(this.f17471b, (TL_stars.starGiftUpgradeAttributes) obj, (TLRPC.TL_error) obj2);
                 return;
             default:
-                ((TranslateController) this.f15948c).lambda$checkTranslation$4((MessageObject) this.d, this.f15947b, (TLRPC.TL_textWithEntities) obj);
+                MediaDataController.lambda$searchStickerSets$249(this.f17471b, (TLRPC.messages_FoundStickerSets) obj, (TLRPC.TL_error) obj2);
                 return;
         }
-    }
-
-    public d4(TranslateController translateController, MessageObject messageObject, long j3) {
-        this.f15948c = translateController;
-        this.d = messageObject;
-        this.f15947b = j3;
     }
 }

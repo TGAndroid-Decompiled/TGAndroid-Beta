@@ -2,26 +2,26 @@ package org.telegram.ui.Components;
 
 import android.animation.ValueAnimator;
 public final class um implements ValueAnimator.AnimatorUpdateListener {
-    public final int f28407a;
-    public final un f28408b;
+    public final int f30950a;
+    public final tn f30951b;
 
-    public um(un unVar, int i10) {
-        this.f28407a = i10;
-        this.f28408b = unVar;
+    public um(tn tnVar, int i10) {
+        this.f30950a = i10;
+        this.f30951b = tnVar;
     }
 
     @Override
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f28407a) {
+        switch (this.f30950a) {
             case 0:
-                un unVar = this.f28408b;
-                unVar.getClass();
-                unVar.E.setTranslationY(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                tn tnVar = this.f30951b;
+                tnVar.getClass();
+                tnVar.E.setTranslationY(((Float) valueAnimator.getAnimatedValue()).floatValue());
                 return;
             default:
-                un unVar2 = this.f28408b;
-                unVar2.getClass();
-                unVar2.E.setTranslationY(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                tn tnVar2 = this.f30951b;
+                tnVar2.getClass();
+                tnVar2.E.setTranslationY(((Float) valueAnimator.getAnimatedValue()).floatValue());
                 return;
         }
     }

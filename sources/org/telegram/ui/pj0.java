@@ -1,7 +1,7 @@
 package org.telegram.ui;
 
 import org.telegram.messenger.AndroidUtilities;
-public final class pj0 extends xg.c {
+public final class pj0 extends yg.c {
     @Override
     public final int getHeaderHeight() {
         if (getResources().getConfiguration().orientation == 2) {

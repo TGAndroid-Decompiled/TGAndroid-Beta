@@ -1,48 +1,64 @@
 package ci;
 
-import android.animation.ValueAnimator;
-public final class b implements ValueAnimator.AnimatorUpdateListener {
-    public final int f4376a;
-    public final d f4377b;
+import android.content.Context;
+import android.view.View;
+import bi.b8;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.ui.Components.a81;
+import org.telegram.ui.Components.lr0;
+import org.telegram.ui.Components.u31;
+public final class b extends a81 {
+    public final Context f4829a;
+    public final lr0 f4830b;
 
-    public b(d dVar, int i10) {
-        this.f4376a = i10;
-        this.f4377b = dVar;
+    public b(lr0 lr0Var, Context context) {
+        this.f4830b = lr0Var;
+        this.f4829a = context;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f4376a) {
-            case 0:
-                d dVar = this.f4377b;
-                dVar.getClass();
-                dVar.P = Math.max(1.0f, ((Float) valueAnimator.getAnimatedValue()).floatValue());
-                dVar.invalidate();
-                return;
-            case 1:
-                d dVar2 = this.f4377b;
-                dVar2.getClass();
-                dVar2.V = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                dVar2.invalidate();
-                return;
-            case 2:
-                d dVar3 = this.f4377b;
-                dVar3.getClass();
-                dVar3.M = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                dVar3.invalidate();
-                return;
-            case 3:
-                d dVar4 = this.f4377b;
-                dVar4.getClass();
-                dVar4.H = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                dVar4.invalidate();
-                return;
-            default:
-                d dVar5 = this.f4377b;
-                dVar5.getClass();
-                dVar5.H = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                dVar5.invalidate();
-                return;
+    public final void b(View view, int i10, int i11) {
+        b8 b8Var;
+        t tVar = (t) view;
+        lr0 lr0Var = this.f4830b;
+        if (i10 == 0) {
+            b8Var = lr0Var.f4878e;
+        } else {
+            b8Var = (b8) lr0Var.f4879f.get(i10 - 1);
         }
+        b8Var.H(null);
+        tVar.setList(b8Var);
+        tVar.setVisibleHeight(lr0Var.v);
+    }
+
+    @Override
+    public final View d(int i10) {
+        return new t(this.f4830b, this.f4829a);
+    }
+
+    @Override
+    public final int e() {
+        return this.f4830b.f4879f.size() + 1;
+    }
+
+    @Override
+    public final int f(int i10) {
+        if (i10 == 0) {
+            return 0;
+        }
+        return ((b8) this.f4830b.f4879f.get(i10 - 1)).E.hashCode();
+    }
+
+    @Override
+    public final CharSequence g(int i10) {
+        if (i10 == 0) {
+            return LocaleController.getString(R.string.ProfileBotLanguageGeneral);
+        }
+        String D = u31.D(((b8) this.f4830b.f4879f.get(i10 - 1)).E, null, null);
+        if (D == null) {
+            return null;
+        }
+        return D.substring(0, 1).toUpperCase() + D.substring(1);
     }
 }

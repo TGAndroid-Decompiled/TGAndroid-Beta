@@ -1,25 +1,25 @@
 package y1;
 
 import android.media.VolumeProvider;
-import androidx.emoji2.text.o;
-import lf.i;
+import androidx.emoji2.text.p;
+import m2.t;
 public final class f extends VolumeProvider {
-    public final o f46278a;
+    public final p f49504a;
 
-    public f(o oVar, int i10, int i11, int i12) {
+    public f(p pVar, int i10, int i11, int i12) {
         super(i10, i11, i12);
-        this.f46278a = oVar;
+        this.f49504a = pVar;
     }
 
     @Override
     public final void onAdjustVolume(int i10) {
-        o oVar = this.f46278a;
-        ((p4.e) ((i) oVar.f2351f).d).f40574a.post(new p4.c(oVar, i10, 1));
+        p pVar = this.f49504a;
+        ((p4.e) ((t) pVar.f1378f).d).f43833a.post(new p4.c(pVar, i10, 1));
     }
 
     @Override
     public final void onSetVolumeTo(int i10) {
-        o oVar = this.f46278a;
-        ((p4.e) ((i) oVar.f2351f).d).f40574a.post(new p4.c(oVar, i10, 0));
+        p pVar = this.f49504a;
+        ((p4.e) ((t) pVar.f1378f).d).f43833a.post(new p4.c(pVar, i10, 0));
     }
 }

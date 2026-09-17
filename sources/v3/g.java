@@ -4,30 +4,30 @@ import c3.a0;
 import c3.c0;
 import e2.d0;
 public final class g implements f {
-    public final long[] f43913a;
-    public final long[] f43914b;
-    public final long f43915c;
+    public final long[] f47379a;
+    public final long[] f47380b;
+    public final long f47381c;
     public final long d;
-    public final long e;
-    public final int f43916f;
+    public final long f47382e;
+    public final int f47383f;
 
     public g(long[] jArr, long[] jArr2, long j3, long j10, long j11, int i10) {
-        this.f43913a = jArr;
-        this.f43914b = jArr2;
-        this.f43915c = j3;
+        this.f47379a = jArr;
+        this.f47380b = jArr2;
+        this.f47381c = j3;
         this.d = j10;
-        this.e = j11;
-        this.f43916f = i10;
+        this.f47382e = j11;
+        this.f47383f = i10;
     }
 
     @Override
-    public final long b(long j3) {
-        return this.f43913a[d0.e(this.f43914b, j3, true)];
+    public final long a(long j3) {
+        return this.f47379a[d0.e(this.f47380b, j3, true)];
     }
 
     @Override
     public final long d() {
-        return this.e;
+        return this.f47382e;
     }
 
     @Override
@@ -42,13 +42,13 @@ public final class g implements f {
 
     @Override
     public final a0 j(long j3) {
-        long[] jArr = this.f43913a;
-        int e = d0.e(jArr, j3, true);
-        long j10 = jArr[e];
-        long[] jArr2 = this.f43914b;
-        c0 c0Var = new c0(j10, jArr2[e]);
-        if (j10 < j3 && e != jArr.length - 1) {
-            int i10 = e + 1;
+        long[] jArr = this.f47379a;
+        int e7 = d0.e(jArr, j3, true);
+        long j10 = jArr[e7];
+        long[] jArr2 = this.f47380b;
+        c0 c0Var = new c0(j10, jArr2[e7]);
+        if (j10 < j3 && e7 != jArr.length - 1) {
+            int i10 = e7 + 1;
             return new a0(c0Var, new c0(jArr[i10], jArr2[i10]));
         }
         return new a0(c0Var, c0Var);
@@ -56,11 +56,11 @@ public final class g implements f {
 
     @Override
     public final int k() {
-        return this.f43916f;
+        return this.f47383f;
     }
 
     @Override
     public final long l() {
-        return this.f43915c;
+        return this.f47381c;
     }
 }

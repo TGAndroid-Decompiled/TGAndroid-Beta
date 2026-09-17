@@ -1,29 +1,3 @@
 package org.telegram.ui.Components;
-
-import android.text.TextPaint;
-import android.text.style.MetricAffectingSpan;
-public final class k01 extends MetricAffectingSpan {
-    public TextPaint f25511a;
-
-    @Override
-    public final void updateDrawState(TextPaint textPaint) {
-        TextPaint textPaint2 = this.f25511a;
-        textPaint.setColor(textPaint2.getColor());
-        textPaint.setTypeface(textPaint2.getTypeface());
-        textPaint.setFlags(textPaint2.getFlags());
-        textPaint.setTextSize(textPaint2.getTextSize());
-        textPaint.baselineShift = textPaint2.baselineShift;
-        textPaint.bgColor = textPaint2.bgColor;
-    }
-
-    @Override
-    public final void updateMeasureState(TextPaint textPaint) {
-        TextPaint textPaint2 = this.f25511a;
-        textPaint.setColor(textPaint2.getColor());
-        textPaint.setTypeface(textPaint2.getTypeface());
-        textPaint.setFlags(textPaint2.getFlags());
-        textPaint.setTextSize(textPaint2.getTextSize());
-        textPaint.baselineShift = textPaint2.baselineShift;
-        textPaint.bgColor = textPaint2.bgColor;
-    }
+public final class k01 extends j01 {
 }

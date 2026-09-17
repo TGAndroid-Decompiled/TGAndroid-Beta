@@ -1,65 +1,44 @@
 package ah;
 
-import android.graphics.Rect;
-import android.graphics.RectF;
-import android.graphics.RenderNode;
+import android.content.Context;
+import android.view.MotionEvent;
+import android.widget.ImageView;
 import org.telegram.messenger.AndroidUtilities;
-import yf.f0;
-public final class h {
-    public final g f452b;
-    public final g f453c;
-    public long e;
-    public final RenderNode f451a = f.c();
-    public final Rect d = new Rect();
+import org.telegram.messenger.Utilities;
+public final class h extends ImageView {
+    public long f560a;
+    public final i f561b;
 
-    public h(i iVar) {
-        int i10;
-        if (iVar.f454a) {
-            g gVar = new g(iVar, "glass", 0, true);
-            this.f453c = gVar;
-            gVar.e = 4;
-            gVar.f447f = 4;
-            gVar.d(AndroidUtilities.dpf2(6.0f), f0.b());
-            g gVar2 = new g(iVar, "blur", 0, false);
-            this.f452b = gVar2;
-            gVar2.e = 8;
-            gVar2.f447f = 8;
-            gVar2.c(AndroidUtilities.dpf2(38.34f));
-        } else if (iVar.f456c) {
-            g gVar3 = new g(iVar, "blur", 0, false);
-            this.f452b = gVar3;
-            boolean z10 = iVar.f455b;
-            if (z10) {
-                i10 = 16;
-            } else {
-                i10 = 8;
-            }
-            int i11 = z10 ? 16 : 8;
-            gVar3.e = i10;
-            gVar3.f447f = i11;
-            gVar3.d(AndroidUtilities.dpf2(40.0f), f0.b());
-            this.f453c = null;
-        } else {
-            g gVar4 = new g(iVar, "blur", 1, false);
-            this.f452b = gVar4;
-            gVar4.e = 8;
-            gVar4.f447f = 8;
-            gVar4.c(AndroidUtilities.dpf2(40.0f));
-            gVar4.e(f0.b());
-            this.f453c = null;
-        }
+    public h(i iVar, Context context) {
+        super(context);
+        this.f561b = iVar;
+        this.f560a = 0L;
     }
 
-    public static void a(h hVar, RectF rectF) {
-        Rect rect = hVar.d;
-        float f7 = rectF.left;
-        float f10 = 16;
-        rect.left = Math.round(f7 - (f7 % f10));
-        float f11 = rectF.top;
-        rect.top = Math.round(f11 - (f11 % f10));
-        float f12 = rectF.right;
-        rect.right = Math.round((f10 - (f12 % f10)) + f12);
-        float f13 = rectF.bottom;
-        rect.bottom = Math.round((f10 - (f13 % f10)) + f13);
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        Utilities.Callback callback;
+        int action = motionEvent.getAction();
+        i iVar = this.f561b;
+        if (action == 0) {
+            if (System.currentTimeMillis() < this.f560a + 350) {
+                return false;
+            }
+            this.f560a = System.currentTimeMillis();
+            iVar.f596b = true;
+            iVar.f597c = false;
+            AndroidUtilities.runOnUIThread(new g(iVar, 350, 0), 350);
+        } else if (motionEvent.getAction() == 3 || motionEvent.getAction() == 1) {
+            iVar.f596b = false;
+            if (!iVar.f597c && (callback = iVar.d) != null) {
+                callback.run(Boolean.FALSE);
+                try {
+                    iVar.f595a.performHapticFeedback(3);
+                } catch (Exception unused) {
+                }
+            }
+        }
+        super.onTouchEvent(motionEvent);
+        return true;
     }
 }

@@ -1,28 +1,30 @@
 package org.telegram.messenger;
-
-import java.util.ArrayList;
-import org.telegram.messenger.MediaDataController;
 public final class l7 implements Runnable {
-    public final int f16658a;
-    public final MediaDataController.KeywordResultCallback f16659b;
-    public final ArrayList f16660c;
-    public final String d;
+    public final int f18291a;
+    public final MediaDataController f18292b;
+    public final long f18293c;
+    public final long d;
+    public final int[] f18294e;
 
-    public l7(MediaDataController.KeywordResultCallback keywordResultCallback, ArrayList arrayList, String str, int i10) {
-        this.f16658a = i10;
-        this.f16659b = keywordResultCallback;
-        this.f16660c = arrayList;
-        this.d = str;
+    public l7(MediaDataController mediaDataController, long j3, long j10, int[] iArr, int i10) {
+        this.f18291a = i10;
+        this.f18292b = mediaDataController;
+        this.f18293c = j3;
+        this.d = j10;
+        this.f18294e = iArr;
     }
 
     @Override
     public final void run() {
-        switch (this.f16658a) {
+        switch (this.f18291a) {
             case 0:
-                this.f16659b.run(this.f16660c, this.d);
+                this.f18292b.lambda$getMediaCounts$128(this.f18293c, this.d, this.f18294e);
+                return;
+            case 1:
+                this.f18292b.lambda$getMediaCounts$127(this.f18293c, this.d, this.f18294e);
                 return;
             default:
-                this.f16659b.run(this.f16660c, this.d);
+                this.f18292b.lambda$getMediaCounts$130(this.f18293c, this.d, this.f18294e);
                 return;
         }
     }

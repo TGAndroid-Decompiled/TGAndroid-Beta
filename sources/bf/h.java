@@ -2,11 +2,11 @@ package bf;
 
 import v7.i0;
 public final class h extends a {
-    public char f3540g;
+    public char f2653g;
     public int h;
-    public int f3541i;
-    public String f3542j;
-    public String f3543k;
+    public int f2654i;
+    public String f2655j;
+    public String f2656k;
 
     @Override
     public final void a(i0 i0Var) {

@@ -1,19 +1,35 @@
 package m4;
 
+import android.os.Bundle;
 import j$.util.Objects;
-import java.util.HashSet;
 public final class n1 {
-    public static final String f14636b;
-    public final e9.m0 f14637a;
+    public static final String d;
+    public static final String f16038e;
+    public static final String f16039f;
+    public final int f16040a;
+    public final String f16041b;
+    public final Bundle f16042c;
 
     static {
-        new n1(new HashSet());
-        String str = e2.d0.f7888a;
-        f14636b = Integer.toString(0, 36);
+        String str = e2.d0.f8765a;
+        d = Integer.toString(0, 36);
+        f16038e = Integer.toString(1, 36);
+        f16039f = Integer.toString(2, 36);
     }
 
-    public n1(HashSet hashSet) {
-        this.f14637a = e9.m0.v(hashSet);
+    public n1(int i10) {
+        this("no error message provided", i10, Bundle.EMPTY);
+    }
+
+    public final Bundle a() {
+        Bundle bundle = new Bundle();
+        bundle.putInt(d, this.f16040a);
+        bundle.putString(f16038e, this.f16041b);
+        Bundle bundle2 = this.f16042c;
+        if (!bundle2.isEmpty()) {
+            bundle.putBundle(f16039f, bundle2);
+        }
+        return bundle;
     }
 
     public final boolean equals(Object obj) {
@@ -23,10 +39,25 @@ public final class n1 {
         if (!(obj instanceof n1)) {
             return false;
         }
-        return this.f14637a.equals(((n1) obj).f14637a);
+        n1 n1Var = (n1) obj;
+        if (this.f16040a == n1Var.f16040a && Objects.equals(this.f16041b, n1Var.f16041b)) {
+            return true;
+        }
+        return false;
     }
 
     public final int hashCode() {
-        return Objects.hash(this.f14637a);
+        return Objects.hash(Integer.valueOf(this.f16040a), this.f16041b);
+    }
+
+    public n1(String str, int i10, Bundle bundle) {
+        boolean z10 = true;
+        if (i10 >= 0 && i10 != 1) {
+            z10 = false;
+        }
+        e2.d.b(z10);
+        this.f16040a = i10;
+        this.f16041b = str;
+        this.f16042c = bundle;
     }
 }

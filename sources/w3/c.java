@@ -10,15 +10,15 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import u2.x0;
 public abstract class c {
-    public static final byte[] f44509a;
+    public static final byte[] f47953a;
 
     static {
-        String str = d0.f7888a;
-        f44509a = "OpusHead".getBytes(StandardCharsets.UTF_8);
+        String str = d0.f8765a;
+        f47953a = "OpusHead".getBytes(StandardCharsets.UTF_8);
     }
 
     public static void a(v vVar) {
-        int i10 = vVar.f7935b;
+        int i10 = vVar.f8818b;
         vVar.K(4);
         if (vVar.j() != 1751411826) {
             i10 += 4;
@@ -47,8 +47,8 @@ public abstract class c {
         }
         vVar.K(1);
         d(vVar);
-        String e = r0.e(vVar.x());
-        if (!"audio/mpeg".equals(e) && !"audio/vnd.dts".equals(e) && !"audio/vnd.dts.hd".equals(e)) {
+        String e7 = r0.e(vVar.x());
+        if (!"audio/mpeg".equals(e7) && !"audio/vnd.dts".equals(e7) && !"audio/vnd.dts.hd".equals(e7)) {
             vVar.K(4);
             long z10 = vVar.z();
             long z11 = vVar.z();
@@ -64,9 +64,9 @@ public abstract class c {
             if (z10 > 0) {
                 j10 = z10;
             }
-            return new x0(e, bArr, j3, j10);
+            return new x0(e7, bArr, j3, j10);
         }
-        return new x0(e, null, -1L, -1L);
+        return new x0(e7, null, -1L, -1L);
     }
 
     public static int d(v vVar) {
@@ -83,16 +83,16 @@ public abstract class c {
         return (i10 >> 24) & 255;
     }
 
-    public static p0 f(f2.c cVar) {
-        f2.a aVar;
-        f2.d e = cVar.e(1751411826);
-        f2.d e7 = cVar.e(1801812339);
-        f2.d e10 = cVar.e(1768715124);
-        if (e != null && e7 != null && e10 != null) {
-            v vVar = e.f8802c;
+    public static p0 f(f2.d dVar) {
+        f2.b bVar;
+        f2.e e7 = dVar.e(1751411826);
+        f2.e e10 = dVar.e(1801812339);
+        f2.e e11 = dVar.e(1768715124);
+        if (e7 != null && e10 != null && e11 != null) {
+            v vVar = e7.f9205c;
             vVar.J(16);
             if (vVar.j() == 1835299937) {
-                v vVar2 = e7.f8802c;
+                v vVar2 = e10.f9205c;
                 vVar2.J(12);
                 int j3 = vVar2.j();
                 String[] strArr = new String[j3];
@@ -101,18 +101,18 @@ public abstract class c {
                     vVar2.K(4);
                     strArr[i10] = vVar2.v(j10 - 8, StandardCharsets.UTF_8);
                 }
-                v vVar3 = e10.f8802c;
+                v vVar3 = e11.f9205c;
                 vVar3.J(8);
                 ArrayList arrayList = new ArrayList();
                 while (vVar3.a() > 8) {
-                    int i11 = vVar3.f7935b;
+                    int i11 = vVar3.f8818b;
                     int j11 = vVar3.j();
                     int j12 = vVar3.j() - 1;
                     if (j12 >= 0 && j12 < j3) {
                         String str = strArr[j12];
                         int i12 = i11 + j11;
                         while (true) {
-                            int i13 = vVar3.f7935b;
+                            int i13 = vVar3.f8818b;
                             if (i13 < i12) {
                                 int j13 = vVar3.j();
                                 if (vVar3.j() == 1684108385) {
@@ -121,20 +121,20 @@ public abstract class c {
                                     int i14 = j13 - 16;
                                     byte[] bArr = new byte[i14];
                                     vVar3.h(0, i14, bArr);
-                                    aVar = new f2.a(str, bArr, j15, j14);
+                                    bVar = new f2.b(str, bArr, j15, j14);
                                     break;
                                 }
                                 vVar3.J(i13 + j13);
                             } else {
-                                aVar = null;
+                                bVar = null;
                                 break;
                             }
                         }
-                        if (aVar != null) {
-                            arrayList.add(aVar);
+                        if (bVar != null) {
+                            arrayList.add(bVar);
                         }
                     } else {
-                        e2.m(j12, "Skipped metadata with unknown key index: ", "BoxParsers");
+                        e2.n(j12, "Skipped metadata with unknown key index: ", "BoxParsers");
                     }
                     vVar3.J(i11 + j11);
                 }
@@ -146,7 +146,7 @@ public abstract class c {
         return null;
     }
 
-    public static f2.f g(v vVar) {
+    public static f2.g g(v vVar) {
         long r10;
         long r11;
         vVar.J(8);
@@ -157,7 +157,7 @@ public abstract class c {
             r10 = vVar.r();
             r11 = vVar.r();
         }
-        return new f2.f(r10, r11, vVar.z());
+        return new f2.g(r10, r11, vVar.z());
     }
 
     public static Pair h(v vVar, int i10, int i11) {
@@ -171,7 +171,7 @@ public abstract class c {
         int i13;
         Integer num2;
         boolean z13;
-        int i14 = vVar.f7935b;
+        int i14 = vVar.f8818b;
         while (i14 - i10 < i11) {
             vVar.J(i14);
             int j3 = vVar.j();
@@ -225,9 +225,9 @@ public abstract class c {
                             vVar.J(i18);
                             int j12 = vVar.j();
                             if (vVar.j() == 1952804451) {
-                                int e = e(vVar.j());
+                                int e7 = e(vVar.j());
                                 vVar.K(1);
-                                if (e == 0) {
+                                if (e7 == 0) {
                                     vVar.K(1);
                                     i13 = 0;
                                     i12 = 0;
@@ -267,7 +267,7 @@ public abstract class c {
                         z14 = true;
                     }
                     c3.b.c("tenc atom is mandatory", z14);
-                    String str2 = d0.f7888a;
+                    String str2 = d0.f8765a;
                     create = Pair.create(num, pVar);
                 }
                 if (create != null) {
@@ -279,15 +279,15 @@ public abstract class c {
         return null;
     }
 
-    public static e2.a0 i(e2.v r66, s4.g1 r67, java.lang.String r68, b2.o r69, boolean r70) {
+    public static e2.a0 i(e2.v r67, s4.g1 r68, java.lang.String r69, b2.o r70, boolean r71) {
         throw new UnsupportedOperationException("Method not decompiled: w3.c.i(e2.v, s4.g1, java.lang.String, b2.o, boolean):e2.a0");
     }
 
-    public static java.util.ArrayList j(f2.c r54, c3.w r55, long r56, b2.o r58, boolean r59, boolean r60, d9.e r61) {
-        throw new UnsupportedOperationException("Method not decompiled: w3.c.j(f2.c, c3.w, long, b2.o, boolean, boolean, d9.e):java.util.ArrayList");
+    public static java.util.ArrayList j(f2.d r54, c3.w r55, long r56, b2.o r58, boolean r59, boolean r60, d9.e r61) {
+        throw new UnsupportedOperationException("Method not decompiled: w3.c.j(f2.d, c3.w, long, b2.o, boolean, boolean, d9.e):java.util.ArrayList");
     }
 
-    public static b2.p0 k(f2.d r17) {
-        throw new UnsupportedOperationException("Method not decompiled: w3.c.k(f2.d):b2.p0");
+    public static b2.p0 k(f2.e r17) {
+        throw new UnsupportedOperationException("Method not decompiled: w3.c.k(f2.e):b2.p0");
     }
 }

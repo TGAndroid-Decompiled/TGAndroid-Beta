@@ -1,25 +1,51 @@
 package org.telegram.ui.Components;
-public final class u21 {
-    public static final u21 f28260a;
-    public static final u21 f28261b;
-    public static final u21 f28262c;
-    public static final u21[] d;
+
+import android.content.Context;
+import android.view.View;
+import org.telegram.tgnet.TLRPC;
+public final class u21 extends g51 {
+    public static final int f30816a = 0;
 
     static {
-        ?? r02 = new Enum("TOP", 0);
-        f28260a = r02;
-        ?? r12 = new Enum("LEFT", 1);
-        f28261b = r12;
-        ?? r32 = new Enum("BOTTOM", 2);
-        f28262c = r32;
-        d = new u21[]{r02, r12, r32};
+        g51.setup(new g51());
     }
 
-    public static u21 valueOf(String str) {
-        return (u21) Enum.valueOf(u21.class, str);
+    @Override
+    public final void bindView(View view, h51 h51Var, boolean z10, v51 v51Var, d61 d61Var) {
+        boolean z11;
+        v21 v21Var = (v21) view;
+        boolean z12 = false;
+        if (h51Var.f26628r) {
+            v21Var.e();
+        } else {
+            Object obj = h51Var.G;
+            if (obj == null) {
+                if (h51Var.B == -2) {
+                    v21Var.b(h51Var.f26627q, h51Var.f26616e);
+                } else {
+                    if ((h51Var.f26634y & 1) != 0) {
+                        z11 = true;
+                    } else {
+                        z11 = false;
+                    }
+                    v21Var.c(z11, h51Var.f26627q, h51Var.f26616e);
+                }
+            } else if (obj instanceof TLRPC.TL_forumTopic) {
+                if (!h51Var.I) {
+                    v21Var.f((TLRPC.TL_forumTopic) obj, h51Var.f26616e);
+                } else {
+                    v21Var.a(h51Var.f26633x, (TLRPC.TL_forumTopic) obj, h51Var.f26616e);
+                }
+            }
+        }
+        if (d61Var != null && d61Var.f25309c3 && v21Var.f31099y) {
+            z12 = true;
+        }
+        v21Var.setReorder(z12);
     }
 
-    public static u21[] values() {
-        return (u21[]) d.clone();
+    @Override
+    public final View createView(Context context, ll0 ll0Var, int i10, int i11, org.telegram.ui.ActionBar.f6 f6Var) {
+        return new v21(context, i10, f6Var);
     }
 }

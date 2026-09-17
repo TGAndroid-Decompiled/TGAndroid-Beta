@@ -1,41 +1,47 @@
 package org.telegram.ui;
+public final class ri extends org.telegram.ui.ActionBar.n1 {
+    public final org.telegram.ui.Components.fk0 f40207o;
+    public final co f40208p;
 
-import android.util.SparseArray;
-import org.telegram.messenger.MessageObject;
-public final class ri {
-    public boolean f37245a;
-    public final boolean f37246b;
-    public final SparseArray f37247c;
-    public final bo d;
-
-    public ri(bo boVar, boolean z10, SparseArray sparseArray) {
-        this.d = boVar;
-        this.f37246b = z10;
-        this.f37247c = sparseArray;
+    public ri(co coVar, db dbVar, org.telegram.ui.Components.fk0 fk0Var) {
+        super(dbVar, -2, -2);
+        this.f40208p = coVar;
+        this.f40207o = fk0Var;
     }
 
-    public final boolean a(int i10) {
-        bo boVar = this.d;
-        int i11 = i10 - boVar.A0.J;
-        if (i11 >= 0 && i11 < boVar.f32469u6.size()) {
-            MessageObject messageObject = (MessageObject) boVar.f32469u6.get(i11);
-            if (messageObject.contentType == 0) {
-                SparseArray sparseArray = this.f37247c;
-                boolean z10 = this.f37246b;
-                if (!z10 && sparseArray.get(messageObject.getId(), null) == null) {
-                    return true;
-                }
-                if (z10 && sparseArray.get(messageObject.getId(), null) != null) {
-                    return true;
-                }
-                return false;
-            }
-            return false;
+    @Override
+    public final void d(boolean z10) {
+        super.d(true);
+        org.telegram.ui.Components.fk0 fk0Var = this.f40207o;
+        if (fk0Var != null) {
+            fk0Var.d();
         }
-        return false;
     }
 
-    public final void b(int r8, boolean r9, float r10, float r11) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ri.b(int, boolean, float, float):void");
+    @Override
+    public final void dismiss() {
+        d(true);
+        co coVar = this.f40208p;
+        if (coVar.Q8 == this) {
+            org.telegram.ui.Components.qc qcVar = org.telegram.ui.Components.qc.f29699w;
+            org.telegram.ui.Components.qc qcVar2 = coVar.f35376n1;
+            if (qcVar == qcVar2 && qcVar2 != null) {
+                qcVar2.b();
+                coVar.f35376n1 = null;
+            }
+            coVar.Q8 = null;
+            coVar.T8 = null;
+            coVar.S8 = null;
+            coVar.f35526z0.R = true;
+            if (coVar.R8) {
+                coVar.g8(false, true, 0.0f);
+            } else {
+                coVar.R8 = true;
+            }
+            mk mkVar = coVar.Y;
+            if (mkVar != null && mkVar.getEditField() != null) {
+                coVar.Y.getEditField().setAllowDrawCursor(true);
+            }
+        }
     }
 }

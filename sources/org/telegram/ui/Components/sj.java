@@ -9,14 +9,14 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
-public final class sj extends il0 {
-    public final int f27871r = UserConfig.selectedAccount;
-    public final Context f27872s;
+public final class sj extends hl0 {
+    public final int f30347r = UserConfig.selectedAccount;
+    public final Context f30348s;
     public final yj v;
 
     public sj(yj yjVar, Context context) {
         this.v = yjVar;
-        this.f27872s = context;
+        this.f30348s = context;
     }
 
     @Override
@@ -25,7 +25,7 @@ public final class sj extends il0 {
     }
 
     @Override
-    public final void G(ml0 ml0Var, float f7, int[] iArr) {
+    public final void G(ll0 ll0Var, float f7, int[] iArr) {
         iArr[0] = 0;
         iArr[1] = 0;
     }
@@ -36,7 +36,7 @@ public final class sj extends il0 {
             return 1;
         }
         int i11 = i10 - 1;
-        int i12 = this.f27871r;
+        int i12 = this.f30347r;
         HashMap<String, ArrayList<Object>> hashMap = ContactsController.getInstance(i12).phoneBookSectionsDict;
         ArrayList<String> arrayList = ContactsController.getInstance(i12).phoneBookSectionsArray;
         if (i11 < arrayList.size()) {
@@ -51,7 +51,7 @@ public final class sj extends il0 {
             return null;
         }
         int i12 = i10 - 1;
-        int i13 = this.f27871r;
+        int i13 = this.f30347r;
         HashMap<String, ArrayList<Object>> hashMap = ContactsController.getInstance(i13).phoneBookSectionsDict;
         ArrayList<String> arrayList = ContactsController.getInstance(i13).phoneBookSectionsArray;
         if (i12 < arrayList.size()) {
@@ -76,7 +76,7 @@ public final class sj extends il0 {
 
     @Override
     public final int R() {
-        return ContactsController.getInstance(this.f27871r).phoneBookSectionsArray.size() + 2;
+        return ContactsController.getInstance(this.f30347r).phoneBookSectionsArray.size() + 2;
     }
 
     @Override
@@ -87,7 +87,7 @@ public final class sj extends il0 {
     @Override
     public final boolean V(int i10, int i11, s4.c1 c1Var) {
         if (i10 != 0 && i10 != R() - 1) {
-            int i12 = this.f27871r;
+            int i12 = this.f30347r;
             if (i11 < ContactsController.getInstance(i12).phoneBookSectionsDict.get(ContactsController.getInstance(i12).phoneBookSectionsArray.get(i10 - 1)).size()) {
                 return true;
             }
@@ -99,8 +99,8 @@ public final class sj extends il0 {
     @Override
     public final void W(int i10, int i11, s4.c1 c1Var) {
         TLRPC.User user;
-        if (c1Var.f42700f == 0) {
-            xj xjVar = (xj) c1Var.f42697a;
+        if (c1Var.f45771f == 0) {
+            xj xjVar = (xj) c1Var.f45767a;
             Object O = O(i10, i11);
             boolean z10 = true;
             if (i10 == R() - 2 && i11 == M(i10) - 1) {
@@ -120,12 +120,12 @@ public final class sj extends il0 {
             if (user != null) {
                 xjVar.a(user, null, new rj(0, user), z10);
             }
-            boolean containsKey = this.v.f30256w.containsKey(oj.a(O));
-            np npVar = xjVar.d;
-            if (npVar.getVisibility() != 0) {
-                npVar.setVisibility(0);
+            boolean containsKey = this.v.f32962w.containsKey(oj.a(O));
+            mp mpVar = xjVar.d;
+            if (mpVar.getVisibility() != 0) {
+                mpVar.setVisibility(0);
             }
-            npVar.a(containsKey, false);
+            mpVar.a(containsKey, false);
         }
     }
 
@@ -138,7 +138,7 @@ public final class sj extends il0 {
     @Override
     public final s4.c1 x(ViewGroup viewGroup, int i10) {
         View xjVar;
-        Context context = this.f27872s;
+        Context context = this.f30348s;
         if (i10 != 0) {
             if (i10 != 1) {
                 xjVar = new View(context);
@@ -149,7 +149,7 @@ public final class sj extends il0 {
                 xjVar.setTag(-33024);
             }
         } else {
-            xjVar = new xj(context, this.v.f26459a);
+            xjVar = new xj(context, this.v.f28780a);
         }
         return new s4.c1(xjVar);
     }

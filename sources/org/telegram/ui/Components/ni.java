@@ -6,21 +6,21 @@ import android.widget.FrameLayout;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 public abstract class ni extends FrameLayout {
-    public final org.telegram.ui.ActionBar.f6 f26459a;
-    public final vi f26460b;
-    public ml0 f26461c;
-    public ml0 d;
-    public int e;
-    public boolean f26462f;
+    public final org.telegram.ui.ActionBar.f6 f28780a;
+    public final vi f28781b;
+    public ll0 f28782c;
+    public ll0 d;
+    public int f28783e;
+    public boolean f28784f;
     public boolean h;
 
     public ni(Context context, org.telegram.ui.ActionBar.f6 f6Var, vi viVar) {
         super(context);
-        this.f26459a = f6Var;
-        this.f26460b = viVar;
+        this.f28780a = f6Var;
+        this.f28781b = viVar;
     }
 
-    public boolean B(int i10) {
+    public boolean C(int i10) {
         return false;
     }
 
@@ -29,7 +29,7 @@ public abstract class ni extends FrameLayout {
     }
 
     public boolean J() {
-        return !(this instanceof ei.q4);
+        return !(this instanceof fi.r4);
     }
 
     public boolean b() {
@@ -78,7 +78,7 @@ public abstract class ni extends FrameLayout {
         return 0;
     }
 
-    public bh.a getIBlur3Capture() {
+    public ch.a getIBlur3Capture() {
         return null;
     }
 
@@ -116,10 +116,13 @@ public abstract class ni extends FrameLayout {
 
     public abstract void y(int i10, int i11);
 
-    public void A(int i10) {
+    public void A() {
     }
 
-    public void E(ni niVar) {
+    public void B(int i10) {
+    }
+
+    public void D(ni niVar) {
     }
 
     public void F() {
@@ -165,9 +168,6 @@ public abstract class ni extends FrameLayout {
     }
 
     public void x() {
-    }
-
-    public void z() {
     }
 
     public void w(int i10, boolean z10) {

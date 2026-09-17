@@ -1,30 +1,39 @@
 package org.telegram.messenger;
+public final class a8 implements Runnable {
+    public final int f17169a;
+    public final MediaDataController f17170b;
+    public final String f17171c;
 
-import android.net.Uri;
-import java.util.ArrayList;
-import org.telegram.messenger.MediaDataController;
-import org.telegram.messenger.MessagesStorage;
-import org.telegram.messenger.Utilities;
-public final class a8 implements MediaDataController.KeywordResultCallback, MessagesStorage.LongCallback {
-    public final BaseController f15664a;
-    public final Object f15665b;
-    public final Object f15666c;
-    public final Object d;
-
-    public a8(BaseController baseController, Object obj, Object obj2, Object obj3) {
-        this.f15664a = baseController;
-        this.f15665b = obj;
-        this.f15666c = obj2;
-        this.d = obj3;
+    public a8(MediaDataController mediaDataController, String str, int i10) {
+        this.f17169a = i10;
+        this.f17170b = mediaDataController;
+        this.f17171c = str;
     }
 
     @Override
-    public void run(long j3) {
-        ((SendMessagesHelper) this.f15664a).lambda$prepareImportHistory$105((Uri) this.f15665b, (ArrayList) this.f15666c, (MessagesStorage.LongCallback) this.d, j3);
-    }
-
-    @Override
-    public void run(ArrayList arrayList, String str) {
-        ((MediaDataController) this.f15664a).lambda$searchStickers$248((MediaDataController.SearchStickersKey) this.f15665b, (MediaDataController.SearchStickersResult) this.f15666c, (Utilities.Callback) this.d, arrayList, str);
+    public final void run() {
+        switch (this.f17169a) {
+            case 0:
+                MediaDataController.F2(this.f17170b, this.f17171c);
+                return;
+            case 1:
+                MediaDataController.u3(this.f17170b, this.f17171c);
+                return;
+            case 2:
+                MediaDataController.k3(this.f17170b, this.f17171c);
+                return;
+            case 3:
+                MediaDataController.S1(this.f17170b, this.f17171c);
+                return;
+            case 4:
+                MediaDataController.o(this.f17170b, this.f17171c);
+                return;
+            case 5:
+                MediaDataController.m1(this.f17170b, this.f17171c);
+                return;
+            default:
+                MediaDataController.q1(this.f17170b, this.f17171c);
+                return;
+        }
     }
 }

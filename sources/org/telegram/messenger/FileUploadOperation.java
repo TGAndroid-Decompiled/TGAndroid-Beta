@@ -126,8 +126,8 @@ public class FileUploadOperation {
                 randomAccessFile.close();
                 this.stream = null;
             }
-        } catch (Exception e) {
-            FileLog.e(e);
+        } catch (Exception e7) {
+            FileLog.e(e7);
         }
         AutoDeleteMediaTask.unlockFile(this.uploadingFilePath);
     }
@@ -269,7 +269,7 @@ public class FileUploadOperation {
                                 tL_inputFile.md5_checksum = "";
                             }
                             tL_inputFile.parts = this.currentPartNum;
-                            tL_inputFile.f18135id = this.currentFileId;
+                            tL_inputFile.f19910id = this.currentFileId;
                             String str2 = this.uploadingFilePath;
                             tL_inputFile.name = str2.substring(str2.lastIndexOf("/") + 1);
                             this.delegate.didFinishUploadingFile(this, tL_inputFile, null, null, null);
@@ -282,7 +282,7 @@ public class FileUploadOperation {
                                 tL_inputEncryptedFileUploaded.md5_checksum = "";
                             }
                             tL_inputEncryptedFileUploaded.parts = this.currentPartNum;
-                            tL_inputEncryptedFileUploaded.f18134id = this.currentFileId;
+                            tL_inputEncryptedFileUploaded.f19909id = this.currentFileId;
                             tL_inputEncryptedFileUploaded.key_fingerprint = this.fingerprint;
                             this.delegate.didFinishUploadingFile(this, null, tL_inputEncryptedFileUploaded, this.key, this.iv);
                             cleanup();
@@ -417,7 +417,7 @@ public class FileUploadOperation {
         if (this.state != 1) {
             return;
         }
-        Utilities.stageQueue.postRunnable(new bi.f(9, this, z10));
+        Utilities.stageQueue.postRunnable(new ah.u(10, this, z10));
         AndroidUtilities.runOnUIThread(new r3(this, 3));
     }
 

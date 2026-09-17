@@ -1,34 +1,24 @@
 package org.telegram.ui.Components.voip;
 
-import android.animation.ValueAnimator;
-import android.view.WindowManager;
-import org.telegram.messenger.AndroidUtilities;
-public final class i2 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f28969a;
-    public final m2 f28970b;
+import org.webrtc.RendererCommon;
+public final class i2 implements RendererCommon.RendererEvents {
+    public final k2 f31576a;
 
-    public i2(m2 m2Var, int i10) {
-        this.f28969a = i10;
-        this.f28970b = m2Var;
+    public i2(k2 k2Var) {
+        this.f31576a = k2Var;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f28969a) {
-            case 0:
-                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                m2 m2Var = this.f28970b;
-                WindowManager.LayoutParams layoutParams = m2Var.d;
-                layoutParams.x = (int) floatValue;
-                AndroidUtilities.updateViewLayout(m2Var.f29070c, m2Var.f29068a, layoutParams);
-                return;
-            default:
-                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                m2 m2Var2 = this.f28970b;
-                WindowManager.LayoutParams layoutParams2 = m2Var2.d;
-                layoutParams2.y = (int) floatValue2;
-                AndroidUtilities.updateViewLayout(m2Var2.f29070c, m2Var2.f29068a, layoutParams2);
-                return;
+    public final void onFirstFrameRendered() {
+        k2 k2Var = this.f31576a;
+        com.google.android.gms.internal.cast.p pVar = k2Var.R;
+        if (pVar != null) {
+            pVar.run();
+            k2Var.R = null;
         }
+    }
+
+    @Override
+    public final void onFrameResolutionChanged(int i10, int i11, int i12) {
     }
 }

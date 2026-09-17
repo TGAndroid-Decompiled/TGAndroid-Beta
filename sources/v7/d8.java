@@ -1,44 +1,28 @@
 package v7;
-
-import java.io.Serializable;
 public final class d8 {
-    public String f43968a;
-    public String f43969b;
-    public String f43970c;
-    public String d;
-    public String e;
-    public Object f43971f;
-    public Object f43972g;
-    public Object h;
-    public Integer f43973i;
-    public Object f43974j;
-    public Serializable f43975k;
+    public final String f47451a;
+    public final String f47452b;
+    public final String f47453c;
+    public final String d;
+    public final j9 f47454e;
+    public final String f47455f;
+    public final Boolean f47456g;
+    public final Boolean h;
+    public final Boolean f47457i;
+    public final Integer f47458j;
+    public final Integer f47459k;
 
-    public y9.a0 a() {
-        String str;
-        if (this.f43968a == null) {
-            str = " sdkVersion";
-        } else {
-            str = "";
-        }
-        if (this.f43969b == null) {
-            str = str.concat(" gmpAppId");
-        }
-        if (this.f43973i == null) {
-            str = org.telegram.ui.Cells.p6.t(str, " platform");
-        }
-        if (this.f43970c == null) {
-            str = org.telegram.ui.Cells.p6.t(str, " installationUuid");
-        }
-        if (((String) this.f43975k) == null) {
-            str = org.telegram.ui.Cells.p6.t(str, " buildVersion");
-        }
-        if (((String) this.f43971f) == null) {
-            str = org.telegram.ui.Cells.p6.t(str, " displayVersion");
-        }
-        if (str.isEmpty()) {
-            return new y9.a0(this.f43968a, this.f43969b, this.f43973i.intValue(), this.f43970c, this.d, this.e, (String) this.f43975k, (String) this.f43971f, (y9.d2) this.f43972g, (y9.j1) this.h, (y9.g1) this.f43974j);
-        }
-        throw new IllegalStateException("Missing required properties:".concat(str));
+    public d8(c8 c8Var) {
+        this.f47451a = c8Var.f47435a;
+        this.f47452b = c8Var.f47436b;
+        this.f47453c = c8Var.f47437c;
+        this.d = c8Var.d;
+        this.f47454e = (j9) c8Var.f47443k;
+        this.f47455f = c8Var.f47438e;
+        this.f47456g = (Boolean) c8Var.f47439f;
+        this.h = (Boolean) c8Var.f47440g;
+        this.f47457i = (Boolean) c8Var.h;
+        this.f47458j = c8Var.f47441i;
+        this.f47459k = (Integer) c8Var.f47442j;
     }
 }

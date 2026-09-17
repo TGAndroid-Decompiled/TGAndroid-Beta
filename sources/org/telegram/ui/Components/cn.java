@@ -1,20 +1,29 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-public final class cn extends vi {
-    public final Runnable P2;
+import org.telegram.messenger.Utilities;
+public final class cn implements Utilities.Callback {
+    public final int f25060a;
+    public final Utilities.Callback f25061b;
 
-    public cn(Context context, org.telegram.ui.ActionBar.o2 o2Var, org.telegram.ui.ActionBar.f6 f6Var, Runnable runnable) {
-        super(context, o2Var, false, false, true, f6Var);
-        this.P2 = runnable;
+    public cn(int i10, Utilities.Callback callback) {
+        this.f25060a = i10;
+        this.f25061b = callback;
     }
 
     @Override
-    public final void dismissInternal() {
-        super.dismissInternal();
-        Runnable runnable = this.P2;
-        if (runnable != null) {
-            runnable.run();
+    public final void run(Object obj) {
+        switch (this.f25060a) {
+            case 0:
+                this.f25061b.run(new sh.e((String) obj));
+                return;
+            default:
+                int[] iArr = (int[]) obj;
+                boolean z10 = false;
+                if (iArr.length >= 1 && iArr[0] == 0) {
+                    z10 = true;
+                }
+                this.f25061b.run(Boolean.valueOf(z10));
+                return;
         }
     }
 }

@@ -1,81 +1,197 @@
 package org.telegram.ui.Components;
 
-import androidx.recyclerview.widget.RecyclerView;
+import android.content.Context;
+import android.view.View;
+import android.view.ViewGroup;
 import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
+import java.util.HashSet;
+import java.util.Iterator;
 import org.telegram.messenger.SavedMessagesController;
-public final class hu0 extends s4.v {
-    public final ju0 d;
+public final class hu0 extends kl0 {
+    public final Context f26886c;
+    public final SavedMessagesController d;
+    public boolean h;
+    public pt0 f26891s;
+    public final xu0 f26893x;
+    public final ArrayList f26887e = new ArrayList();
+    public final ArrayList f26888f = new ArrayList();
+    public final jq0 f26889n = new jq0(this, 5);
+    public final s4.u0 f26890r = new s4.u0();
+    public final s4.y v = new s4.y(new fu0(this));
+    public final HashSet f26892w = new HashSet();
 
-    public hu0(ju0 ju0Var) {
-        this.d = ju0Var;
-    }
-
-    @Override
-    public final void a(RecyclerView recyclerView, s4.c1 c1Var) {
-        super.a(recyclerView, c1Var);
-        c1Var.f42697a.setPressed(false);
-    }
-
-    @Override
-    public final int e(RecyclerView recyclerView, s4.c1 c1Var) {
-        SavedMessagesController.SavedDialog r10;
-        int l4 = s4.v.l(0, 0);
-        zu0 zu0Var = this.d.f25446x;
-        if (zu0Var.C1 && recyclerView.getAdapter() != zu0Var.S && (r10 = r(c1Var)) != null && r10.pinned) {
-            return s4.v.l(3, 0);
+    public hu0(xu0 xu0Var, Context context) {
+        this.f26893x = xu0Var;
+        this.f26886c = context;
+        SavedMessagesController savedMessagesController = xu0Var.f32754v1.getMessagesController().getSavedMessagesController();
+        this.d = savedMessagesController;
+        if (xu0Var.l0()) {
+            savedMessagesController.loadDialogs(false);
         }
-        return l4;
+        C(true);
+        F(false);
     }
 
     @Override
-    public final boolean n(RecyclerView recyclerView, s4.c1 c1Var, s4.c1 c1Var2) {
-        ju0 ju0Var = this.d;
-        ArrayList arrayList = ju0Var.f25441f;
-        zu0 zu0Var = ju0Var.f25446x;
-        if (zu0Var.C1 && recyclerView.getAdapter() != zu0Var.S) {
-            SavedMessagesController.SavedDialog r10 = r(c1Var);
-            SavedMessagesController.SavedDialog r11 = r(c1Var2);
-            if (r10 != null && r11 != null && r10.pinned && r11.pinned) {
-                int b10 = c1Var.b();
-                int b11 = c1Var2.b();
-                arrayList.remove(b10);
-                arrayList.add(b11, r10);
-                ju0Var.p(b10, b11);
-                ju0Var.h = true;
-                return true;
+    public final boolean D(s4.c1 c1Var) {
+        return true;
+    }
+
+    public final void E(View view) {
+        ArrayList arrayList;
+        SavedMessagesController.SavedDialog savedDialog;
+        boolean z10;
+        int i10;
+        if (view instanceof org.telegram.ui.Cells.r2) {
+            org.telegram.ui.Cells.r2 r2Var = (org.telegram.ui.Cells.r2) view;
+            long dialogId = r2Var.getDialogId();
+            int i11 = 0;
+            int i12 = 0;
+            while (true) {
+                arrayList = this.f26888f;
+                if (i12 < arrayList.size()) {
+                    if (((SavedMessagesController.SavedDialog) arrayList.get(i12)).dialogId == dialogId) {
+                        savedDialog = (SavedMessagesController.SavedDialog) arrayList.get(i12);
+                        break;
+                    }
+                    i12++;
+                } else {
+                    savedDialog = null;
+                    break;
+                }
             }
-            return false;
+            if (savedDialog == null) {
+                return;
+            }
+            Long valueOf = Long.valueOf(savedDialog.dialogId);
+            HashSet hashSet = this.f26892w;
+            boolean contains = hashSet.contains(valueOf);
+            xu0 xu0Var = this.f26893x;
+            if (contains) {
+                hashSet.remove(Long.valueOf(savedDialog.dialogId));
+                if (hashSet.size() <= 0 && xu0Var.C1) {
+                    xu0Var.b1(false);
+                }
+            } else {
+                hashSet.add(Long.valueOf(savedDialog.dialogId));
+                if (hashSet.size() > 0 && !xu0Var.C1) {
+                    xu0Var.b1(true);
+                    org.telegram.ui.ActionBar.v0 v0Var = xu0Var.f32751u0;
+                    if (v0Var != null) {
+                        v0Var.setVisibility(8);
+                    }
+                    org.telegram.ui.ActionBar.v0 v0Var2 = xu0Var.f32749t0;
+                    if (v0Var2 != null) {
+                        v0Var2.setVisibility(8);
+                    }
+                }
+            }
+            xu0Var.A0.a(hashSet.size(), true);
+            if (hashSet.size() > 0) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            Iterator it = hashSet.iterator();
+            while (it.hasNext()) {
+                long longValue = ((Long) it.next()).longValue();
+                int i13 = 0;
+                while (true) {
+                    if (i13 >= arrayList.size()) {
+                        break;
+                    }
+                    SavedMessagesController.SavedDialog savedDialog2 = (SavedMessagesController.SavedDialog) arrayList.get(i13);
+                    if (savedDialog2.dialogId == longValue) {
+                        if (!savedDialog2.pinned) {
+                            z10 = false;
+                        }
+                    } else {
+                        i13++;
+                    }
+                }
+                if (!z10) {
+                    break;
+                }
+            }
+            org.telegram.ui.ActionBar.v0 v0Var3 = xu0Var.f32753v0;
+            if (v0Var3 != null) {
+                if (z10) {
+                    i10 = 8;
+                } else {
+                    i10 = 0;
+                }
+                v0Var3.setVisibility(i10);
+            }
+            org.telegram.ui.ActionBar.v0 v0Var4 = xu0Var.f32756w0;
+            if (v0Var4 != null) {
+                if (!z10) {
+                    i11 = 8;
+                }
+                v0Var4.setVisibility(i11);
+            }
+            r2Var.V(hashSet.contains(Long.valueOf(savedDialog.dialogId)), true);
         }
-        return false;
+    }
+
+    public final void F(boolean z10) {
+        ArrayList arrayList = this.f26887e;
+        arrayList.clear();
+        ArrayList arrayList2 = this.f26888f;
+        arrayList.addAll(arrayList2);
+        arrayList2.clear();
+        arrayList2.addAll(this.d.allDialogs);
+        if (z10) {
+            l();
+        }
     }
 
     @Override
-    public final void p(s4.c1 c1Var, int i10) {
-        rt0 rt0Var;
-        ju0 ju0Var = this.d;
-        kq0 kq0Var = ju0Var.f25442n;
-        if (c1Var != null && (rt0Var = ju0Var.f25444s) != null) {
-            rt0Var.e1(false);
-        }
-        if (i10 == 0) {
-            AndroidUtilities.cancelRunOnUIThread(kq0Var);
-            AndroidUtilities.runOnUIThread(kq0Var, 300L);
-        }
+    public final int h() {
+        return this.f26888f.size();
     }
 
-    public final SavedMessagesController.SavedDialog r(s4.c1 c1Var) {
-        int b10;
-        if (c1Var != null && (b10 = c1Var.b()) >= 0) {
-            ju0 ju0Var = this.d;
-            if (b10 < ju0Var.f25441f.size()) {
-                return (SavedMessagesController.SavedDialog) ju0Var.f25441f.get(b10);
+    @Override
+    public final long i(int i10) {
+        if (i10 >= 0) {
+            ArrayList arrayList = this.f26888f;
+            if (i10 < arrayList.size()) {
+                return ((SavedMessagesController.SavedDialog) arrayList.get(i10)).dialogId;
             }
         }
-        return null;
+        return i10;
     }
 
     @Override
-    public final void q(s4.c1 c1Var) {
+    public final int j(int i10) {
+        return 13;
+    }
+
+    @Override
+    public final void v(s4.c1 c1Var, int i10) {
+        View view = c1Var.f45767a;
+        if (!(view instanceof org.telegram.ui.Cells.r2)) {
+            return;
+        }
+        org.telegram.ui.Cells.r2 r2Var = (org.telegram.ui.Cells.r2) view;
+        ArrayList arrayList = this.f26888f;
+        SavedMessagesController.SavedDialog savedDialog = (SavedMessagesController.SavedDialog) arrayList.get(i10);
+        r2Var.W(savedDialog.dialogId, savedDialog.message, savedDialog.getDate(), false, false);
+        boolean z10 = true;
+        r2Var.f22651s0 = true;
+        r2Var.V(this.f26892w.contains(Long.valueOf(savedDialog.dialogId)), false);
+        if (i10 + 1 >= arrayList.size()) {
+            z10 = false;
+        }
+        r2Var.f22653s2 = z10;
+    }
+
+    @Override
+    public final s4.c1 x(ViewGroup viewGroup, int i10) {
+        gu0 gu0Var = new gu0(this, this.f26886c);
+        xu0 xu0Var = this.f26893x;
+        gu0Var.setDialogCellDelegate(xu0Var);
+        gu0Var.f22645r0 = true;
+        gu0Var.setBackgroundColor(xu0Var.h0(org.telegram.ui.ActionBar.j6.f20691d6));
+        return new s4.c1(gu0Var);
     }
 }

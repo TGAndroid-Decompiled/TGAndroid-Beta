@@ -1,18 +1,63 @@
 package org.telegram.ui.Components;
 
-import android.content.DialogInterface;
-public final class ou implements DialogInterface.OnShowListener {
-    public final vu f26848a;
+import android.content.Context;
+import android.webkit.RenderProcessGoneDetail;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
+import android.widget.ImageView;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+public final class ou extends WebViewClient {
+    public final tu f29215a;
 
-    public ou(vu vuVar) {
-        this.f26848a = vuVar;
+    public ou(tu tuVar) {
+        this.f29215a = tuVar;
     }
 
     @Override
-    public final void onShow(DialogInterface dialogInterface) {
-        d91 d91Var = this.f26848a.f29410c;
-        if (fg0.f23911p0.P && d91Var.f()) {
-            d91Var.getViewTreeObserver().addOnPreDrawListener(new org.telegram.ui.Cells.fa(this, 1));
+    public final void onPageFinished(WebView webView, String str) {
+        super.onPageFinished(webView, str);
+        tu tuVar = this.f29215a;
+        ImageView imageView = tuVar.f30743x;
+        if (!tuVar.f30744y) {
+            tuVar.f30739n.setVisibility(4);
+            tuVar.h.setVisibility(4);
+            imageView.setEnabled(true);
+            imageView.setAlpha(1.0f);
         }
+    }
+
+    @Override
+    public final boolean onRenderProcessGone(WebView webView, RenderProcessGoneDetail renderProcessGoneDetail) {
+        org.telegram.ui.ActionBar.f6 f6Var;
+        tu tuVar = this.f29215a;
+        try {
+            if (!AndroidUtilities.isSafeToShow(tuVar.getContext())) {
+                return true;
+            }
+            Context context = tuVar.getContext();
+            f6Var = ((org.telegram.ui.ActionBar.f3) tuVar).resourcesProvider;
+            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(context, 0, f6Var);
+            alertDialog$Builder.f20226a.R = LocaleController.getString(R.string.ChromeCrashTitle);
+            alertDialog$Builder.f20226a.T = AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.ChromeCrashMessage), new wp(this, 10));
+            alertDialog$Builder.k(LocaleController.getString(R.string.OK), null);
+            alertDialog$Builder.o();
+            return true;
+        } catch (Exception e7) {
+            FileLog.e(e7);
+            return false;
+        }
+    }
+
+    @Override
+    public final boolean shouldOverrideUrlLoading(WebView webView, String str) {
+        if (this.f29215a.f30744y) {
+            of.f.s(webView.getContext(), str);
+            return true;
+        }
+        return super.shouldOverrideUrlLoading(webView, str);
     }
 }

@@ -3,33 +3,42 @@ package org.telegram.ui;
 import android.animation.LayoutTransition;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 public final class cl implements LayoutTransition.TransitionListener {
-    public h6 f32824a;
-    public int f32825b;
-    public final org.telegram.ui.ActionBar.a0 f32826c;
-    public final bo d;
+    public bl f35195a;
+    public int f35196b;
+    public final org.telegram.ui.ActionBar.z f35197c;
+    public final co d;
 
-    public cl(bo boVar, org.telegram.ui.ActionBar.a0 a0Var) {
-        this.d = boVar;
-        this.f32826c = a0Var;
+    public cl(co coVar, org.telegram.ui.ActionBar.z zVar) {
+        this.d = coVar;
+        this.f35197c = zVar;
     }
 
     @Override
     public final void endTransition(LayoutTransition layoutTransition, ViewGroup viewGroup, View view, int i10) {
-        int i11 = this.f32825b - 1;
-        this.f32825b = i11;
-        if (i11 == 0 && this.f32824a != null) {
-            this.f32826c.getViewTreeObserver().removeOnPreDrawListener(this.f32824a);
-            this.f32824a = null;
+        int i11 = this.f35196b - 1;
+        this.f35196b = i11;
+        if (i11 == 0 && this.f35195a != null) {
+            this.f35197c.getViewTreeObserver().removeOnPreDrawListener(this.f35195a);
+            this.f35195a = null;
         }
     }
 
     @Override
     public final void startTransition(LayoutTransition layoutTransition, ViewGroup viewGroup, View view, int i10) {
-        if (this.f32825b == 0 && this.f32824a == null) {
-            this.f32824a = new h6(this, 1);
-            this.f32826c.getViewTreeObserver().addOnPreDrawListener(this.f32824a);
+        if (this.f35196b == 0 && this.f35195a == null) {
+            this.f35195a = new ViewTreeObserver.OnPreDrawListener() {
+                @Override
+                public final boolean onPreDraw() {
+                    org.telegram.ui.ActionBar.k kVar;
+                    kVar = ((org.telegram.ui.ActionBar.n2) cl.this.d).actionBar;
+                    kVar.invalidate();
+                    return true;
+                }
+            };
+            this.f35197c.getViewTreeObserver().addOnPreDrawListener(this.f35195a);
         }
-        this.f32825b++;
+        this.f35196b++;
     }
 }

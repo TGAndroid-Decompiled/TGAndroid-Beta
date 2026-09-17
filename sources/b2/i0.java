@@ -1,33 +1,33 @@
 package b2;
 
 import java.util.HashSet;
-import w7.r6;
+import w7.o6;
 public final class i0 {
-    public int f3020a;
-    public int f3021b;
-    public Object f3022c;
+    public int f2091a;
+    public int f2092b;
+    public Object f2093c;
     public Object d = null;
-    public Object e;
-    public Object f3023f;
-    public Object f3024g;
+    public Object f2094e;
+    public Object f2095f;
+    public Object f2096g;
 
     public i0(Class cls, Class[] clsArr) {
         HashSet hashSet = new HashSet();
-        this.f3022c = hashSet;
-        this.e = new HashSet();
-        this.f3020a = 0;
-        this.f3021b = 0;
-        this.f3024g = new HashSet();
+        this.f2093c = hashSet;
+        this.f2094e = new HashSet();
+        this.f2091a = 0;
+        this.f2092b = 0;
+        this.f2096g = new HashSet();
         hashSet.add(q9.r.a(cls));
         for (Class cls2 : clsArr) {
-            r6.a(cls2, "Null interface");
-            ((HashSet) this.f3022c).add(q9.r.a(cls2));
+            o6.a(cls2, "Null interface");
+            ((HashSet) this.f2093c).add(q9.r.a(cls2));
         }
     }
 
     public void a(q9.j jVar) {
-        if (!((HashSet) this.f3022c).contains(jVar.f41214a)) {
-            ((HashSet) this.e).add(jVar);
+        if (!((HashSet) this.f2093c).contains(jVar.f44258a)) {
+            ((HashSet) this.f2094e).add(jVar);
             return;
         }
         throw new IllegalArgumentException("Components are not allowed to depend on interfaces they themselves provide.");
@@ -35,26 +35,26 @@ public final class i0 {
 
     public q9.a b() {
         boolean z10;
-        if (((q9.d) this.f3023f) != null) {
+        if (((q9.d) this.f2095f) != null) {
             z10 = true;
         } else {
             z10 = false;
         }
         if (z10) {
-            return new q9.a((String) this.d, new HashSet((HashSet) this.f3022c), new HashSet((HashSet) this.e), this.f3020a, this.f3021b, (q9.d) this.f3023f, (HashSet) this.f3024g);
+            return new q9.a((String) this.d, new HashSet((HashSet) this.f2093c), new HashSet((HashSet) this.f2094e), this.f2091a, this.f2092b, (q9.d) this.f2095f, (HashSet) this.f2096g);
         }
         throw new IllegalStateException("Missing required property: factory.");
     }
 
     public void c(int i10) {
         boolean z10;
-        if (this.f3020a == 0) {
+        if (this.f2091a == 0) {
             z10 = true;
         } else {
             z10 = false;
         }
         if (z10) {
-            this.f3020a = i10;
+            this.f2091a = i10;
             return;
         }
         throw new IllegalStateException("Instantiation type has already been set.");

@@ -1,72 +1,137 @@
 package org.telegram.ui;
 
-import android.app.Activity;
-import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MediaController;
+import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.R;
-import org.telegram.messenger.SendMessagesHelper;
+import org.telegram.tgnet.TLRPC;
 public final class te implements Runnable {
-    public final int f37723a;
-    public final bo f37724b;
-    public final String f37725c;
+    public final int f40749a;
+    public final co f40750b;
+    public final MessageObject f40751c;
 
-    public te(bo boVar, String str, int i10) {
-        this.f37723a = i10;
-        this.f37724b = boVar;
-        this.f37725c = str;
+    public te(co coVar, MessageObject messageObject, int i10) {
+        this.f40749a = i10;
+        this.f40750b = coVar;
+        this.f40751c = messageObject;
     }
 
     @Override
     public final void run() {
-        switch (this.f37723a) {
+        TLRPC.WebPage webPage;
+        boolean z10;
+        int i10;
+        int i11;
+        int i12;
+        int i13;
+        switch (this.f40749a) {
             case 0:
-                bo.W0(this.f37724b, this.f37725c);
-                return;
-            case 1:
-                bo.h1(this.f37724b, this.f37725c);
-                return;
-            case 2:
-                h4.f(this.f37725c, r1.currentAccount, r1.X0, null, this.f37724b.f32275ea);
-                return;
-            case 3:
-                bo boVar = this.f37724b;
-                String str = this.f37725c;
-                if (str != null) {
-                    boVar.getClass();
-                    if (str.length() != 0) {
-                        boVar.getMessagesController().sendBotStart(boVar.f32277f, str);
+                MessageObject messageObject = this.f40751c;
+                TLRPC.MessageMedia messageMedia = messageObject.messageOwner.media;
+                if (messageMedia != null && (webPage = messageMedia.webpage) != null && webPage.cached_page != null) {
+                    LaunchActivity launchActivity = LaunchActivity.G1;
+                    if (launchActivity == null || launchActivity.P() == null || LaunchActivity.G1.P().l(messageObject) == null) {
+                        this.f40750b.createArticleViewer(false).N(messageObject, null, null, null);
                         return;
                     }
+                    return;
                 }
-                boVar.getSendMessagesHelper().sendMessage(SendMessagesHelper.SendMessageParams.of("/start", boVar.T5, null, null, null, false, null, null, null, true, 0, 0, null, false));
+                return;
+            case 1:
+                co coVar = this.f40750b;
+                coVar.getClass();
+                MessageObject messageObject2 = this.f40751c;
+                TLRPC.Message message = messageObject2.messageOwner;
+                int i14 = message.ttl;
+                if (i14 != Integer.MAX_VALUE) {
+                    z10 = true;
+                } else {
+                    z10 = false;
+                }
+                if (i14 == Integer.MAX_VALUE) {
+                    i10 = 0;
+                } else {
+                    i10 = i14;
+                }
+                message.destroyTime = coVar.getConnectionsManager().getCurrentTime() + i10;
+                messageObject2.messageOwner.destroyTimeMillis = coVar.getConnectionsManager().getCurrentTimeMillis() + (i10 * 1000);
+                if (coVar.h != null) {
+                    coVar.getMessagesController().markMessageAsRead(coVar.T5, messageObject2.messageOwner.random_id, i10);
+                    return;
+                } else {
+                    coVar.getMessagesController().markMessageAsRead2(coVar.T5, messageObject2.getId(), null, i10, 0L, z10);
+                    return;
+                }
+            case 2:
+                int id2 = this.f40751c.getId();
+                co coVar2 = this.f40750b;
+                coVar2.Xa(id2, 0, true, 0, true, 0, null, null, new ug(coVar2, 13));
+                if (coVar2.f35307h6.isEmpty()) {
+                    coVar2.Lb(false);
+                    return;
+                }
+                return;
+            case 3:
+                co coVar3 = this.f40750b;
+                coVar3.getClass();
+                MessageObject messageObject3 = this.f40751c;
+                int replyMsgId = messageObject3.getReplyMsgId();
+                int i15 = messageObject3.messageOwner.f19917id;
+                if (messageObject3.getDialogId() == coVar3.L6) {
+                    i11 = 1;
+                } else {
+                    i11 = 0;
+                }
+                coVar3.Xa(replyMsgId, i15, true, i11, false, 0, null, ((TLRPC.TL_messageActionPollAppendAnswer) messageObject3.messageOwner.action).answer.option, null);
                 return;
             case 4:
-                this.f37724b.la(this.f37725c);
+                co coVar4 = this.f40750b;
+                coVar4.getClass();
+                MessageObject messageObject4 = this.f40751c;
+                int replyMsgId2 = messageObject4.getReplyMsgId();
+                int i16 = messageObject4.messageOwner.f19917id;
+                if (messageObject4.getDialogId() == coVar4.L6) {
+                    i12 = 1;
+                } else {
+                    i12 = 0;
+                }
+                coVar4.Xa(replyMsgId2, i16, true, i12, false, 0, null, null, null);
                 return;
             case 5:
-                this.f37724b.da(this.f37725c, false);
+                co coVar5 = this.f40750b;
+                coVar5.getClass();
+                MessageObject messageObject5 = this.f40751c;
+                int replyMsgId3 = messageObject5.getReplyMsgId();
+                int i17 = messageObject5.messageOwner.f19917id;
+                if (messageObject5.getDialogId() == coVar5.L6) {
+                    i13 = 1;
+                } else {
+                    i13 = 0;
+                }
+                coVar5.F(replyMsgId3, i17, i13, 0, true, false);
                 return;
             case 6:
-                Activity parentActivity = this.f37724b.getParentActivity();
-                nf.f.s(parentActivity, "tel:" + this.f37725c);
-                return;
+                co coVar6 = this.f40750b;
+                coVar6.getClass();
+                MessageObject messageObject6 = this.f40751c;
+                if (messageObject6.isVideo()) {
+                    coVar6.ha(null, messageObject6);
+                    return;
+                } else {
+                    MediaController.getInstance().playMessage(messageObject6);
+                    return;
+                }
             case 7:
-                AndroidUtilities.addToClipboard(this.f37725c);
-                org.telegram.messenger.wl.o(R.string.PhoneCopied, org.telegram.ui.Components.vc.a0(this.f37724b));
-                return;
-            case 8:
-                bo.u1(this.f37724b, this.f37725c);
-                return;
-            case 9:
-                Activity parentActivity2 = this.f37724b.getParentActivity();
-                nf.f.s(parentActivity2, "tel:" + this.f37725c);
-                return;
-            case 10:
-                AndroidUtilities.addToClipboard(this.f37725c);
-                org.telegram.messenger.wl.o(R.string.PhoneCopied, org.telegram.ui.Components.vc.a0(this.f37724b));
+                co coVar7 = this.f40750b;
+                coVar7.getMessagesController().pinMessage(coVar7.f35265e, coVar7.f35277f, this.f40751c.getId(), true, false, false);
+                coVar7.A3 = null;
                 return;
             default:
-                Activity parentActivity3 = this.f37724b.getParentActivity();
-                nf.f.s(parentActivity3, "https://fragment.com/username/" + this.f37725c);
+                co coVar8 = this.f40750b;
+                org.telegram.ui.Components.yc.a0(coVar8).c(LocaleController.getString(R.string.AdHidden)).j();
+                MessageObject messageObject7 = this.f40751c;
+                coVar8.Fa(messageObject7);
+                coVar8.Ha(messageObject7);
                 return;
         }
     }

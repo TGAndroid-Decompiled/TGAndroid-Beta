@@ -5,12 +5,12 @@ import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import k2.c0;
 import mc.k;
+import mg.n;
 public abstract class a extends c {
-    public static final Logger f13977f;
-    public static final c0 h;
-    public ByteBuffer e;
+    public static final Logger f15386f;
+    public static final n h;
+    public ByteBuffer f15387e;
 
     static {
         re.a aVar = new re.a(a.class, "AbstractDescriptorBox.java");
@@ -19,34 +19,34 @@ public abstract class a extends c {
         aVar.e(aVar.d("getDescriptorAsString", "com.googlecode.mp4parser.boxes.mp4.AbstractDescriptorBox", "", "", "java.lang.String"));
         aVar.e(aVar.d("setDescriptor", "com.googlecode.mp4parser.boxes.mp4.AbstractDescriptorBox", "com.googlecode.mp4parser.boxes.mp4.objectdescriptors.BaseDescriptor", "descriptor", "void"));
         h = aVar.e(aVar.d("setData", "com.googlecode.mp4parser.boxes.mp4.AbstractDescriptorBox", "java.nio.ByteBuffer", "data", "void"));
-        f13977f = Logger.getLogger(a.class.getName());
+        f15386f = Logger.getLogger(a.class.getName());
     }
 
     @Override
     public final void _parseDetails(ByteBuffer byteBuffer) {
-        Logger logger = f13977f;
+        Logger logger = f15386f;
         f(byteBuffer);
-        this.e = byteBuffer.slice();
+        this.f15387e = byteBuffer.slice();
         byteBuffer.position(byteBuffer.remaining() + byteBuffer.position());
         try {
-            this.e.rewind();
-            k.a(-1, this.e);
-        } catch (IOException e) {
-            logger.log(Level.WARNING, "Error parsing ObjectDescriptor", (Throwable) e);
-        } catch (IndexOutOfBoundsException e7) {
+            this.f15387e.rewind();
+            k.a(-1, this.f15387e);
+        } catch (IOException e7) {
             logger.log(Level.WARNING, "Error parsing ObjectDescriptor", (Throwable) e7);
+        } catch (IndexOutOfBoundsException e10) {
+            logger.log(Level.WARNING, "Error parsing ObjectDescriptor", (Throwable) e10);
         }
     }
 
     @Override
     public final void getContent(ByteBuffer byteBuffer) {
         i(byteBuffer);
-        this.e.rewind();
-        byteBuffer.put(this.e);
+        this.f15387e.rewind();
+        byteBuffer.put(this.f15387e);
     }
 
     @Override
     public final long getContentSize() {
-        return this.e.limit() + 4;
+        return this.f15387e.limit() + 4;
     }
 }

@@ -1,13 +1,13 @@
 package s5;
 public final class b {
-    public final long f42870a;
-    public final l5.i f42871b;
-    public final l5.h f42872c;
+    public final long f45961a;
+    public final l5.i f45962b;
+    public final l5.h f45963c;
 
     public b(long j3, l5.i iVar, l5.h hVar) {
-        this.f42870a = j3;
-        this.f42871b = iVar;
-        this.f42872c = hVar;
+        this.f45961a = j3;
+        this.f45962b = iVar;
+        this.f45963c = hVar;
     }
 
     public final boolean equals(Object obj) {
@@ -16,7 +16,7 @@ public final class b {
         }
         if (obj instanceof b) {
             b bVar = (b) obj;
-            if (this.f42870a == bVar.f42870a && this.f42871b.equals(bVar.f42871b) && this.f42872c.equals(bVar.f42872c)) {
+            if (this.f45961a == bVar.f45961a && this.f45962b.equals(bVar.f45962b) && this.f45963c.equals(bVar.f45963c)) {
                 return true;
             }
         }
@@ -24,11 +24,11 @@ public final class b {
     }
 
     public final int hashCode() {
-        long j3 = this.f42870a;
-        return ((((((int) (j3 ^ (j3 >>> 32))) ^ 1000003) * 1000003) ^ this.f42871b.hashCode()) * 1000003) ^ this.f42872c.hashCode();
+        long j3 = this.f45961a;
+        return ((((((int) (j3 ^ (j3 >>> 32))) ^ 1000003) * 1000003) ^ this.f45962b.hashCode()) * 1000003) ^ this.f45963c.hashCode();
     }
 
     public final String toString() {
-        return "PersistedEvent{id=" + this.f42870a + ", transportContext=" + this.f42871b + ", event=" + this.f42872c + "}";
+        return "PersistedEvent{id=" + this.f45961a + ", transportContext=" + this.f45962b + ", event=" + this.f45963c + "}";
     }
 }

@@ -14,16 +14,16 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
-import org.telegram.ui.Components.b90;
+import org.telegram.ui.Components.c90;
 public class c9 extends FrameLayout {
-    public final vh.o f19890a;
-    public final b9 f19891b;
-    public final b9 f19892c;
+    public final wh.p f21732a;
+    public final b9 f21733b;
+    public final b9 f21734c;
     public final ImageView d;
-    public boolean e;
-    public boolean f19893f;
+    public boolean f21735e;
+    public boolean f21736f;
     public final boolean h;
-    public final org.telegram.ui.ActionBar.f6 f19894n;
+    public final org.telegram.ui.ActionBar.f6 f21737n;
 
     public c9(Context context, org.telegram.ui.ActionBar.f6 f6Var, boolean z10) {
         this(23, context, f6Var, z10, false);
@@ -32,7 +32,7 @@ public class c9 extends FrameLayout {
     public final void b(Drawable drawable, String str) {
         int dp;
         boolean z10;
-        ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) this.f19891b.getLayoutParams();
+        ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) this.f21733b.getLayoutParams();
         if (!LocaleController.isRTL && drawable != null) {
             dp = AndroidUtilities.dp(58.0f);
         } else {
@@ -53,7 +53,7 @@ public class c9 extends FrameLayout {
             imageView.setBackground(null);
             imageView.setImportantForAccessibility(2);
         } else {
-            imageView.setBackground(org.telegram.ui.ActionBar.j6.h0(AndroidUtilities.dp(48.0f), 0, org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f18952i6, this.f19894n)));
+            imageView.setBackground(org.telegram.ui.ActionBar.j6.h0(AndroidUtilities.dp(48.0f), 0, org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.f20781i6, this.f21737n)));
             imageView.setImportantForAccessibility(1);
         }
         int dp2 = AndroidUtilities.dp(23.0f);
@@ -62,47 +62,47 @@ public class c9 extends FrameLayout {
         }
         int i11 = dp2 + i10;
         boolean z11 = LocaleController.isRTL;
-        vh.o oVar = this.f19890a;
+        wh.p pVar = this.f21732a;
         if (z11) {
-            ((ViewGroup.MarginLayoutParams) oVar.getLayoutParams()).leftMargin = i11;
+            ((ViewGroup.MarginLayoutParams) pVar.getLayoutParams()).leftMargin = i11;
         } else {
-            ((ViewGroup.MarginLayoutParams) oVar.getLayoutParams()).rightMargin = i11;
+            ((ViewGroup.MarginLayoutParams) pVar.getLayoutParams()).rightMargin = i11;
         }
-        oVar.requestLayout();
+        pVar.requestLayout();
     }
 
     public final void c(CharSequence charSequence, CharSequence charSequence2, boolean z10) {
-        this.f19890a.setText(charSequence);
-        this.f19891b.setText(charSequence2);
-        this.f19892c.setVisibility(8);
-        this.e = z10;
+        this.f21732a.setText(charSequence);
+        this.f21733b.setText(charSequence2);
+        this.f21734c.setVisibility(8);
+        this.f21735e = z10;
         setWillNotDraw(!z10);
     }
 
     public final void d(CharSequence charSequence, String str, String str2) {
-        this.f19890a.setText(charSequence);
-        this.f19891b.setText(str);
-        b9 b9Var = this.f19892c;
+        this.f21732a.setText(charSequence);
+        this.f21733b.setText(str);
+        b9 b9Var = this.f21734c;
         b9Var.setVisibility(0);
         b9Var.setText(str2);
-        this.e = false;
+        this.f21735e = false;
         setWillNotDraw(true);
     }
 
     public final void e() {
         int i10 = org.telegram.ui.ActionBar.j6.gc;
-        org.telegram.ui.ActionBar.f6 f6Var = this.f19894n;
+        org.telegram.ui.ActionBar.f6 f6Var = this.f21737n;
         int a2 = a(org.telegram.ui.ActionBar.j6.v0(i10, f6Var));
-        vh.o oVar = this.f19890a;
-        oVar.setLinkTextColor(a2);
-        oVar.setTextColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.G6, f6Var));
-        oVar.invalidate();
+        wh.p pVar = this.f21732a;
+        pVar.setLinkTextColor(a2);
+        pVar.setTextColor(org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.G6, f6Var));
+        pVar.invalidate();
         int a10 = a(org.telegram.ui.ActionBar.j6.v0(i10, f6Var));
-        b9 b9Var = this.f19891b;
+        b9 b9Var = this.f21733b;
         b9Var.setLinkTextColor(a10);
-        int i11 = org.telegram.ui.ActionBar.j6.f19263z6;
+        int i11 = org.telegram.ui.ActionBar.j6.f21089z6;
         b9Var.setTextColor(org.telegram.ui.ActionBar.j6.v0(i11, f6Var));
-        this.f19892c.setTextColor(org.telegram.ui.ActionBar.j6.v0(i11, f6Var));
+        this.f21734c.setTextColor(org.telegram.ui.ActionBar.j6.v0(i11, f6Var));
         b9Var.invalidate();
     }
 
@@ -113,7 +113,7 @@ public class c9 extends FrameLayout {
     @Override
     public final void invalidate() {
         super.invalidate();
-        this.f19890a.invalidate();
+        this.f21732a.invalidate();
     }
 
     @Override
@@ -121,15 +121,15 @@ public class c9 extends FrameLayout {
         Paint paint;
         float dp;
         int i10;
-        if (this.e) {
-            org.telegram.ui.ActionBar.f6 f6Var = this.f19894n;
+        if (this.f21735e) {
+            org.telegram.ui.ActionBar.f6 f6Var = this.f21737n;
             if (f6Var != null) {
                 paint = f6Var.G("paintDivider");
             } else {
-                paint = org.telegram.ui.ActionBar.j6.f18984k0;
+                paint = org.telegram.ui.ActionBar.j6.f20813k0;
             }
             if (paint == null) {
-                paint = org.telegram.ui.ActionBar.j6.f18984k0;
+                paint = org.telegram.ui.ActionBar.j6.f20813k0;
             }
             Paint paint2 = paint;
             if (LocaleController.isRTL) {
@@ -152,18 +152,18 @@ public class c9 extends FrameLayout {
     public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
         CharSequence charSequence;
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        CharSequence text = this.f19890a.getText();
-        CharSequence text2 = this.f19891b.getText();
+        CharSequence text = this.f21732a.getText();
+        CharSequence text2 = this.f21733b.getText();
         if (!TextUtils.isEmpty(text) && !TextUtils.isEmpty(text2)) {
             StringBuilder sb2 = new StringBuilder();
-            if (this.f19893f) {
+            if (this.f21736f) {
                 charSequence = text2;
             } else {
                 charSequence = text;
             }
             sb2.append((Object) charSequence);
             sb2.append(": ");
-            if (!this.f19893f) {
+            if (!this.f21736f) {
                 text = text2;
             }
             sb2.append((Object) text);
@@ -175,7 +175,7 @@ public class c9 extends FrameLayout {
     public final void onMeasure(int i10, int i11) {
         int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824);
         if (!this.h) {
-            i11 = View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(60.0f) + (this.e ? 1 : 0), 1073741824);
+            i11 = View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(60.0f) + (this.f21735e ? 1 : 0), 1073741824);
         }
         super.onMeasure(makeMeasureSpec, i11);
     }
@@ -183,7 +183,7 @@ public class c9 extends FrameLayout {
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
         boolean z10;
-        b9 b9Var = this.f19891b;
+        b9 b9Var = this.f21733b;
         ClickableSpan b10 = b9Var.b(((int) motionEvent.getX()) - b9Var.getLeft(), ((int) motionEvent.getY()) - b9Var.getTop());
         boolean z11 = false;
         if (b10 != null) {
@@ -192,8 +192,8 @@ public class c9 extends FrameLayout {
             z10 = false;
         }
         if (!z10) {
-            vh.o oVar = this.f19890a;
-            if (oVar.a(((int) motionEvent.getX()) - oVar.getLeft(), ((int) motionEvent.getY()) - oVar.getTop()) != null) {
+            wh.p pVar = this.f21732a;
+            if (pVar.a(((int) motionEvent.getX()) - pVar.getLeft(), ((int) motionEvent.getY()) - pVar.getTop()) != null) {
                 z11 = true;
             }
             z10 = z11;
@@ -205,7 +205,7 @@ public class c9 extends FrameLayout {
     }
 
     public void setContentDescriptionValueFirst(boolean z10) {
-        this.f19893f = z10;
+        this.f21736f = z10;
     }
 
     public void setImage(Drawable drawable) {
@@ -222,116 +222,116 @@ public class c9 extends FrameLayout {
 
     public c9(int i10, Context context, org.telegram.ui.ActionBar.f6 f6Var, boolean z10, boolean z11) {
         super(context);
-        this.f19894n = f6Var;
+        this.f21737n = f6Var;
         boolean z12 = z10 || z11;
         this.h = z12;
-        vh.o oVar = new vh.o(context, f6Var, true);
-        this.f19890a = oVar;
-        oVar.setOnLinkLongPressListener(new b90(this) {
-            public final c9 f19813b;
+        wh.p pVar = new wh.p(context, f6Var, true);
+        this.f21732a = pVar;
+        pVar.setOnLinkLongPressListener(new c90(this) {
+            public final c9 f21647b;
 
             {
-                this.f19813b = this;
+                this.f21647b = this;
             }
 
             @Override
             public final void a(ClickableSpan clickableSpan) {
                 switch (r2) {
                     case 0:
-                        c9 c9Var = this.f19813b;
+                        c9 c9Var = this.f21647b;
                         c9Var.getClass();
                         if (clickableSpan != null) {
                             try {
                                 c9Var.performHapticFeedback(0, 1);
                             } catch (Exception unused) {
                             }
-                            clickableSpan.onClick(c9Var.f19890a);
+                            clickableSpan.onClick(c9Var.f21732a);
                             return;
                         }
                         return;
                     case 1:
-                        c9 c9Var2 = this.f19813b;
+                        c9 c9Var2 = this.f21647b;
                         if (clickableSpan != null) {
                             try {
                                 c9Var2.performHapticFeedback(0, 1);
                             } catch (Exception unused2) {
                             }
-                            clickableSpan.onClick(c9Var2.f19891b);
+                            clickableSpan.onClick(c9Var2.f21733b);
                             return;
                         }
                         return;
                     default:
-                        c9 c9Var3 = this.f19813b;
+                        c9 c9Var3 = this.f21647b;
                         if (clickableSpan != null) {
                             try {
                                 c9Var3.performHapticFeedback(0, 1);
                             } catch (Exception unused3) {
                             }
-                            clickableSpan.onClick(c9Var3.f19891b);
+                            clickableSpan.onClick(c9Var3.f21733b);
                             return;
                         }
                         return;
                 }
             }
         });
-        oVar.setTextSize(1, 16.0f);
-        oVar.setGravity(LocaleController.isRTL ? 5 : 3);
+        pVar.setTextSize(1, 16.0f);
+        pVar.setGravity(LocaleController.isRTL ? 5 : 3);
         if (z10) {
             setMinimumHeight(AndroidUtilities.dp(60.0f));
         } else {
-            oVar.setLines(1);
-            oVar.setMaxLines(1);
-            oVar.setSingleLine(true);
+            pVar.setLines(1);
+            pVar.setMaxLines(1);
+            pVar.setSingleLine(true);
         }
         TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
-        oVar.setEllipsize(truncateAt);
-        oVar.setImportantForAccessibility(2);
-        oVar.setPadding(AndroidUtilities.dp(6.0f), AndroidUtilities.dp(2.0f), AndroidUtilities.dp(6.0f), AndroidUtilities.dp(5.0f));
+        pVar.setEllipsize(truncateAt);
+        pVar.setImportantForAccessibility(2);
+        pVar.setPadding(AndroidUtilities.dp(6.0f), AndroidUtilities.dp(2.0f), AndroidUtilities.dp(6.0f), AndroidUtilities.dp(5.0f));
         float f7 = i10 - 6;
-        addView(oVar, w7.x5.d(-2, -2.0f, LocaleController.isRTL ? 5 : 3, f7, 6.0f, f7, z10 ? 27.0f : 0.0f));
+        addView(pVar, w7.x5.d(-2, -2.0f, LocaleController.isRTL ? 5 : 3, f7, 6.0f, f7, z10 ? 27.0f : 0.0f));
         b9 b9Var = new b9(this, context, f6Var, 0);
-        this.f19891b = b9Var;
-        b9Var.setOnLinkLongPressListener(new b90(this) {
-            public final c9 f19813b;
+        this.f21733b = b9Var;
+        b9Var.setOnLinkLongPressListener(new c90(this) {
+            public final c9 f21647b;
 
             {
-                this.f19813b = this;
+                this.f21647b = this;
             }
 
             @Override
             public final void a(ClickableSpan clickableSpan) {
                 switch (r2) {
                     case 0:
-                        c9 c9Var = this.f19813b;
+                        c9 c9Var = this.f21647b;
                         c9Var.getClass();
                         if (clickableSpan != null) {
                             try {
                                 c9Var.performHapticFeedback(0, 1);
                             } catch (Exception unused) {
                             }
-                            clickableSpan.onClick(c9Var.f19890a);
+                            clickableSpan.onClick(c9Var.f21732a);
                             return;
                         }
                         return;
                     case 1:
-                        c9 c9Var2 = this.f19813b;
+                        c9 c9Var2 = this.f21647b;
                         if (clickableSpan != null) {
                             try {
                                 c9Var2.performHapticFeedback(0, 1);
                             } catch (Exception unused2) {
                             }
-                            clickableSpan.onClick(c9Var2.f19891b);
+                            clickableSpan.onClick(c9Var2.f21733b);
                             return;
                         }
                         return;
                     default:
-                        c9 c9Var3 = this.f19813b;
+                        c9 c9Var3 = this.f21647b;
                         if (clickableSpan != null) {
                             try {
                                 c9Var3.performHapticFeedback(0, 1);
                             } catch (Exception unused3) {
                             }
-                            clickableSpan.onClick(c9Var3.f19891b);
+                            clickableSpan.onClick(c9Var3.f21733b);
                             return;
                         }
                         return;
@@ -357,48 +357,48 @@ public class c9 extends FrameLayout {
             addView(b9Var, w7.x5.d(-1, -2.0f, LocaleController.isRTL ? 5 : 3, f11, 32.0f, f11, 4.0f));
         }
         b9 b9Var2 = new b9(this, context, f6Var, 1);
-        this.f19892c = b9Var2;
-        b9Var2.setOnLinkLongPressListener(new b90(this) {
-            public final c9 f19813b;
+        this.f21734c = b9Var2;
+        b9Var2.setOnLinkLongPressListener(new c90(this) {
+            public final c9 f21647b;
 
             {
-                this.f19813b = this;
+                this.f21647b = this;
             }
 
             @Override
             public final void a(ClickableSpan clickableSpan) {
                 switch (r2) {
                     case 0:
-                        c9 c9Var = this.f19813b;
+                        c9 c9Var = this.f21647b;
                         c9Var.getClass();
                         if (clickableSpan != null) {
                             try {
                                 c9Var.performHapticFeedback(0, 1);
                             } catch (Exception unused) {
                             }
-                            clickableSpan.onClick(c9Var.f19890a);
+                            clickableSpan.onClick(c9Var.f21732a);
                             return;
                         }
                         return;
                     case 1:
-                        c9 c9Var2 = this.f19813b;
+                        c9 c9Var2 = this.f21647b;
                         if (clickableSpan != null) {
                             try {
                                 c9Var2.performHapticFeedback(0, 1);
                             } catch (Exception unused2) {
                             }
-                            clickableSpan.onClick(c9Var2.f19891b);
+                            clickableSpan.onClick(c9Var2.f21733b);
                             return;
                         }
                         return;
                     default:
-                        c9 c9Var3 = this.f19813b;
+                        c9 c9Var3 = this.f21647b;
                         if (clickableSpan != null) {
                             try {
                                 c9Var3.performHapticFeedback(0, 1);
                             } catch (Exception unused3) {
                             }
-                            clickableSpan.onClick(c9Var3.f19891b);
+                            clickableSpan.onClick(c9Var3.f21733b);
                             return;
                         }
                         return;

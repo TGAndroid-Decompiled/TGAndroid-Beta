@@ -7,33 +7,33 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 public final class b extends c {
-    public final AssetManager f9347a;
-    public Uri f9348b;
-    public InputStream f9349c;
+    public final AssetManager f10320a;
+    public Uri f10321b;
+    public InputStream f10322c;
     public long d;
-    public boolean e;
+    public boolean f10323e;
 
     public b(Context context) {
         super(false);
-        this.f9347a = context.getAssets();
+        this.f10320a = context.getAssets();
     }
 
     @Override
     public final void close() {
-        this.f9348b = null;
+        this.f10321b = null;
         try {
             try {
-                InputStream inputStream = this.f9349c;
+                InputStream inputStream = this.f10322c;
                 if (inputStream != null) {
                     inputStream.close();
                 }
-            } catch (IOException e) {
-                throw new j(e, 2000);
+            } catch (IOException e7) {
+                throw new j(e7, 2000);
             }
         } finally {
-            this.f9349c = null;
-            if (this.e) {
-                this.e = false;
+            this.f10322c = null;
+            if (this.f10323e) {
+                this.f10323e = false;
                 transferEnded();
             }
         }
@@ -41,16 +41,16 @@ public final class b extends c {
 
     @Override
     public final Uri getUri() {
-        return this.f9348b;
+        return this.f10321b;
     }
 
     @Override
     public final long open(m mVar) {
         int i10;
         try {
-            Uri uri = mVar.f9380a;
-            long j3 = mVar.e;
-            this.f9348b = uri;
+            Uri uri = mVar.f10358a;
+            long j3 = mVar.f10361e;
+            this.f10321b = uri;
             String path = uri.getPath();
             path.getClass();
             if (path.startsWith("/android_asset/")) {
@@ -59,33 +59,33 @@ public final class b extends c {
                 path = path.substring(1);
             }
             transferInitializing(mVar);
-            InputStream open = this.f9347a.open(path, 1);
-            this.f9349c = open;
+            InputStream open = this.f10320a.open(path, 1);
+            this.f10322c = open;
             if (open.skip(j3) >= j3) {
-                long j10 = mVar.f9383f;
+                long j10 = mVar.f10362f;
                 if (j10 != -1) {
                     this.d = j10;
                 } else {
-                    long available = this.f9349c.available();
+                    long available = this.f10322c.available();
                     this.d = available;
                     if (available == 2147483647L) {
                         this.d = -1L;
                     }
                 }
-                this.e = true;
+                this.f10323e = true;
                 transferStarted(mVar);
                 return this.d;
             }
             throw new j((Exception) null, 2008);
-        } catch (a e) {
-            throw e;
-        } catch (IOException e7) {
-            if (e7 instanceof FileNotFoundException) {
+        } catch (a e7) {
+            throw e7;
+        } catch (IOException e10) {
+            if (e10 instanceof FileNotFoundException) {
                 i10 = 2005;
             } else {
                 i10 = 2000;
             }
-            throw new j(e7, i10);
+            throw new j(e10, i10);
         }
     }
 
@@ -99,12 +99,12 @@ public final class b extends c {
             if (j3 != -1) {
                 try {
                     i11 = (int) Math.min(j3, i11);
-                } catch (IOException e) {
-                    throw new j(e, 2000);
+                } catch (IOException e7) {
+                    throw new j(e7, 2000);
                 }
             }
-            InputStream inputStream = this.f9349c;
-            String str = e2.d0.f7888a;
+            InputStream inputStream = this.f10322c;
+            String str = e2.d0.f8765a;
             int read = inputStream.read(bArr, i10, i11);
             if (read != -1) {
                 long j10 = this.d;

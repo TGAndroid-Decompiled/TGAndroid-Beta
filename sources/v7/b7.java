@@ -77,8 +77,8 @@ public abstract class b7 {
                 return parseInt;
             }
             throw new IOException("Invalid " + str2 + ": " + parseInt);
-        } catch (NumberFormatException e) {
-            throw new IOException(com.google.android.gms.internal.vision.e2.j("Invalid ", str2, ": ", str), e);
+        } catch (NumberFormatException e7) {
+            throw new IOException(com.google.android.gms.internal.vision.e2.j("Invalid ", str2, ": ", str), e7);
         }
     }
 
@@ -112,7 +112,7 @@ public abstract class b7 {
                 createBitmap.copyPixelsFromBuffer(wrap);
                 return createBitmap;
             }
-            throw new IOException(hg.k0.i(c12, "Only 8-bit PGM supported (maxval=255), got: "));
+            throw new IOException(i2.g.i(c12, "Only 8-bit PGM supported (maxval=255), got: "));
         }
         throw new IOException(org.telegram.ui.Cells.p6.i("Not a binary PGM (P5), got: ", b10));
     }

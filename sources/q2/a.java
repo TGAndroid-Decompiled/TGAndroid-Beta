@@ -3,21 +3,21 @@ package q2;
 import android.graphics.Bitmap;
 import h2.j;
 public final class a extends j {
-    public Bitmap f41119a;
-    public final b f41120b;
+    public Bitmap f44150a;
+    public final c f44151b;
 
-    public a(b bVar) {
-        this.f41120b = bVar;
+    public a(c cVar) {
+        this.f44151b = cVar;
     }
 
     @Override
     public final void clear() {
-        this.f41119a = null;
+        this.f44150a = null;
         super.clear();
     }
 
     @Override
     public final void release() {
-        this.f41120b.n(this);
+        this.f44151b.n(this);
     }
 }

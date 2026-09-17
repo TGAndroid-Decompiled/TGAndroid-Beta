@@ -1,35 +1,42 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-import org.telegram.tgnet.TLRPC;
-public final class go implements View.OnClickListener {
-    public final int f24352a;
-    public final jo f24353b;
-    public final TLRPC.Document f24354c;
+import android.graphics.drawable.Drawable;
+import org.telegram.messenger.ImageReceiver;
+public final class go implements ImageReceiver.ImageReceiverDelegate {
+    public boolean f26497a;
+    public final ig.g f26498b;
+    public final io f26499c;
 
-    public go(jo joVar, TLRPC.Document document, int i10) {
-        this.f24352a = i10;
-        this.f24353b = joVar;
-        this.f24354c = document;
+    public go(ig.i iVar, ig.g gVar) {
+        this.f26499c = iVar;
+        this.f26498b = gVar;
     }
 
     @Override
-    public final void onClick(View view) {
-        switch (this.f24352a) {
-            case 0:
-                io ioVar = this.f24353b.d;
-                if (ioVar != null) {
-                    ioVar.c(this.f24354c);
+    public final void didSetImageBitmap(int i10, String str, Drawable drawable) {
+        xi0 xi0Var;
+        yf.e eVar;
+        if (!this.f26497a) {
+            if ((i10 == 0 || i10 == 3) && drawable != null) {
+                this.f26497a = true;
+                boolean z10 = drawable instanceof xi0;
+                ig.g gVar = this.f26498b;
+                if (z10 && (eVar = (xi0Var = (xi0) drawable).D0) != null && eVar.g()) {
+                    xi0Var.C0 = new uc(20, this, gVar);
                     return;
                 }
-                return;
-            default:
-                io ioVar2 = this.f24353b.d;
-                if (ioVar2 != null) {
-                    ioVar2.c(this.f24354c);
-                    return;
-                }
-                return;
+                io.a(this.f26499c);
+                gVar.run();
+            }
         }
+    }
+
+    @Override
+    public final void onAnimationReady(ImageReceiver imageReceiver) {
+        org.telegram.messenger.g5.b(this, imageReceiver);
+    }
+
+    @Override
+    public final void didSetImage(ImageReceiver imageReceiver, boolean z10, boolean z11, boolean z12) {
     }
 }

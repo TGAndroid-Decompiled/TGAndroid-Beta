@@ -1,72 +1,90 @@
 package org.telegram.ui.Components;
 
+import android.animation.ValueAnimator;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
-public final class or implements Drawable.Callback {
-    public final int f26838a;
-    public final pr f26839b;
+public final class or extends Drawable {
+    public final Drawable f29197a;
+    public final Drawable f29198b;
+    public float f29199c;
+    public float d = 255.0f;
+    public ValueAnimator f29200e;
 
-    public or(pr prVar, int i10) {
-        this.f26838a = i10;
-        this.f26839b = prVar;
+    public or(Drawable drawable, Drawable drawable2) {
+        this.f29197a = drawable;
+        this.f29198b = drawable2;
+        if (drawable != null) {
+            drawable.setCallback(new nr(this, 0));
+        }
+        if (drawable2 != null) {
+            drawable2.setCallback(new nr(this, 1));
+        }
+    }
+
+    public final void a(float f7) {
+        ValueAnimator valueAnimator = this.f29200e;
+        if (valueAnimator != null) {
+            valueAnimator.cancel();
+        }
+        ValueAnimator ofFloat = ValueAnimator.ofFloat(this.f29199c, f7);
+        this.f29200e = ofFloat;
+        ofFloat.addUpdateListener(new l6(this, 15));
+        this.f29200e.setDuration(Math.abs(this.f29199c - f7) * 200.0f);
+        this.f29200e.setInterpolator(pr.f29494f);
+        this.f29200e.start();
+    }
+
+    public final void b(float f7) {
+        this.f29199c = f7;
+        invalidateSelf();
     }
 
     @Override
-    public final void invalidateDrawable(Drawable drawable) {
-        switch (this.f26838a) {
-            case 0:
-                pr prVar = this.f26839b;
-                if (prVar.f27117c < 1.0f) {
-                    prVar.invalidateSelf();
-                    return;
-                }
-                return;
-            default:
-                pr prVar2 = this.f26839b;
-                if (prVar2.f27117c > 0.0f) {
-                    prVar2.invalidateSelf();
-                    return;
-                }
-                return;
+    public final void draw(Canvas canvas) {
+        int i10 = (int) ((1.0f - this.f29199c) * this.d);
+        Drawable drawable = this.f29197a;
+        drawable.setAlpha(i10);
+        int i11 = (int) (this.d * this.f29199c);
+        Drawable drawable2 = this.f29198b;
+        drawable2.setAlpha(i11);
+        if (i10 > 0) {
+            drawable.draw(canvas);
+        }
+        if (i11 > 0) {
+            drawable2.draw(canvas);
         }
     }
 
     @Override
-    public final void scheduleDrawable(Drawable drawable, Runnable runnable, long j3) {
-        switch (this.f26838a) {
-            case 0:
-                pr prVar = this.f26839b;
-                if (prVar.f27117c < 1.0f) {
-                    prVar.scheduleSelf(runnable, j3);
-                    return;
-                }
-                return;
-            default:
-                pr prVar2 = this.f26839b;
-                if (prVar2.f27117c > 0.0f) {
-                    prVar2.scheduleSelf(runnable, j3);
-                    return;
-                }
-                return;
-        }
+    public final int getIntrinsicHeight() {
+        return this.f29197a.getIntrinsicHeight();
     }
 
     @Override
-    public final void unscheduleDrawable(Drawable drawable, Runnable runnable) {
-        switch (this.f26838a) {
-            case 0:
-                pr prVar = this.f26839b;
-                if (prVar.f27117c < 1.0f) {
-                    prVar.unscheduleSelf(runnable);
-                    return;
-                }
-                return;
-            default:
-                pr prVar2 = this.f26839b;
-                if (prVar2.f27117c > 0.0f) {
-                    prVar2.unscheduleSelf(runnable);
-                    return;
-                }
-                return;
-        }
+    public final int getIntrinsicWidth() {
+        return this.f29197a.getIntrinsicWidth();
+    }
+
+    @Override
+    public final int getOpacity() {
+        return -3;
+    }
+
+    @Override
+    public final void onBoundsChange(Rect rect) {
+        this.f29197a.setBounds(rect);
+        this.f29198b.setBounds(rect);
+    }
+
+    @Override
+    public final void setAlpha(int i10) {
+        this.d = i10;
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
+        this.f29197a.setColorFilter(colorFilter);
     }
 }

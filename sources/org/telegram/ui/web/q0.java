@@ -1,47 +1,50 @@
 package org.telegram.ui.web;
 
-import android.webkit.GeolocationPermissions;
+import android.webkit.PermissionRequest;
 public final class q0 implements q0.a {
-    public final int f38908a;
-    public final w0 f38909b;
-    public final GeolocationPermissions.Callback f38910c;
-    public final String d;
+    public final int f42246a;
+    public final w0 f42247b;
+    public final PermissionRequest f42248c;
+    public final String[] d;
 
-    public q0(w0 w0Var, GeolocationPermissions.Callback callback, String str, int i10) {
-        this.f38908a = i10;
-        this.f38909b = w0Var;
-        this.f38910c = callback;
-        this.d = str;
+    public q0(w0 w0Var, PermissionRequest permissionRequest, String[] strArr, int i10) {
+        this.f42246a = i10;
+        this.f42247b = w0Var;
+        this.f42248c = permissionRequest;
+        this.d = strArr;
     }
 
     @Override
     public final void accept(Object obj) {
         Boolean bool = (Boolean) obj;
-        switch (this.f38908a) {
+        switch (this.f42246a) {
             case 0:
-                w0 w0Var = this.f38909b;
-                if (w0Var.f38988a != null) {
-                    w0Var.f38988a = null;
+                w0 w0Var = this.f42247b;
+                if (w0Var.f42298a != null) {
+                    w0Var.f42298a = null;
                     boolean booleanValue = bool.booleanValue();
-                    GeolocationPermissions.Callback callback = this.f38910c;
-                    String str = this.d;
+                    PermissionRequest permissionRequest = this.f42248c;
                     if (booleanValue) {
-                        d1.a(w0Var.e.Q, new String[]{"android.permission.ACCESS_COARSE_LOCATION", "android.permission.ACCESS_FINE_LOCATION"}, new q0(w0Var, callback, str, 1));
+                        d1.a(w0Var.f42301e.Q, new String[]{"android.permission.CAMERA", "android.permission.RECORD_AUDIO"}, new q0(w0Var, permissionRequest, this.d, 1));
                         return;
                     } else {
-                        callback.invoke(str, false, false);
+                        permissionRequest.deny();
                         return;
                     }
                 }
                 return;
             default:
-                w0 w0Var2 = this.f38909b;
+                w0 w0Var2 = this.f42247b;
                 w0Var2.getClass();
-                this.f38910c.invoke(this.d, bool.booleanValue(), false);
-                if (bool.booleanValue()) {
-                    w0Var2.e.Q.T = true;
+                boolean booleanValue2 = bool.booleanValue();
+                PermissionRequest permissionRequest2 = this.f42248c;
+                if (booleanValue2) {
+                    String[] strArr = this.d;
+                    permissionRequest2.grant(new String[]{strArr[0], strArr[1]});
+                    w0Var2.f42301e.Q.T = true;
                     return;
                 }
+                permissionRequest2.deny();
                 return;
         }
     }

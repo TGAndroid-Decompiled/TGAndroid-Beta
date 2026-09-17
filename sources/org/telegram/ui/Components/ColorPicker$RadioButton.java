@@ -11,24 +11,24 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public class ColorPicker$RadioButton extends View {
-    public final Paint f22010a;
-    public ObjectAnimator f22011b;
-    public float f22012c;
+    public final Paint f23965a;
+    public ObjectAnimator f23966b;
+    public float f23967c;
     public boolean d;
-    public int e;
+    public int f23968e;
 
     public ColorPicker$RadioButton(Context context) {
         super(context);
-        this.f22010a = new Paint(1);
+        this.f23965a = new Paint(1);
     }
 
     public final void a(int i10) {
-        this.e = i10;
+        this.f23968e = i10;
         invalidate();
     }
 
     public final void b(boolean z10) {
-        ObjectAnimator objectAnimator = this.f22011b;
+        ObjectAnimator objectAnimator = this.f23966b;
         if (objectAnimator != null) {
             objectAnimator.cancel();
         }
@@ -38,9 +38,9 @@ public class ColorPicker$RadioButton extends View {
                 f7 = 1.0f;
             }
             ObjectAnimator ofFloat = ObjectAnimator.ofFloat(this, "checkedState", f7);
-            this.f22011b = ofFloat;
+            this.f23966b = ofFloat;
             ofFloat.setDuration(200L);
-            this.f22011b.start();
+            this.f23966b.start();
             return;
         }
         if (this.d) {
@@ -50,7 +50,7 @@ public class ColorPicker$RadioButton extends View {
     }
 
     public float getCheckedState() {
-        return this.f22012c;
+        return this.f23967c;
     }
 
     @Override
@@ -64,16 +64,16 @@ public class ColorPicker$RadioButton extends View {
         float dp = AndroidUtilities.dp(15.0f);
         float measuredWidth = getMeasuredWidth() * 0.5f;
         float measuredHeight = getMeasuredHeight() * 0.5f;
-        int i10 = this.e;
-        Paint paint = this.f22010a;
+        int i10 = this.f23968e;
+        Paint paint = this.f23965a;
         paint.setColor(i10);
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeWidth(AndroidUtilities.dp(3.0f));
-        paint.setAlpha(Math.round(this.f22012c * 255.0f));
+        paint.setAlpha(Math.round(this.f23967c * 255.0f));
         canvas.drawCircle(measuredWidth, measuredHeight, dp - (paint.getStrokeWidth() * 0.5f), paint);
         paint.setAlpha(255);
         paint.setStyle(Paint.Style.FILL);
-        canvas.drawCircle(measuredWidth, measuredHeight, dp - (AndroidUtilities.dp(5.0f) * this.f22012c), paint);
+        canvas.drawCircle(measuredWidth, measuredHeight, dp - (AndroidUtilities.dp(5.0f) * this.f23967c), paint);
     }
 
     @Override
@@ -92,7 +92,7 @@ public class ColorPicker$RadioButton extends View {
     }
 
     public void setCheckedState(float f7) {
-        this.f22012c = f7;
+        this.f23967c = f7;
         invalidate();
     }
 }

@@ -3,28 +3,29 @@ package p4;
 import android.content.ComponentName;
 import com.google.android.gms.internal.vision.h3;
 import java.util.ArrayList;
+import ji.u4;
 public final class u {
-    public final h3 f40682a;
-    public final ArrayList f40683b = new ArrayList();
-    public final boolean f40684c;
-    public final k2.u d;
-    public b2.p e;
+    public final h3 f43948a;
+    public final ArrayList f43949b = new ArrayList();
+    public final boolean f43950c;
+    public final u4 d;
+    public b2.p f43951e;
 
     public u(h3 h3Var, boolean z10) {
-        this.f40682a = h3Var;
-        this.d = (k2.u) h3Var.d;
-        this.f40684c = z10;
+        this.f43948a = h3Var;
+        this.d = (u4) h3Var.d;
+        this.f43950c = z10;
     }
 
     public final v a(String str) {
-        ArrayList arrayList = this.f40683b;
+        ArrayList arrayList = this.f43949b;
         int size = arrayList.size();
         int i10 = 0;
         while (i10 < size) {
             Object obj = arrayList.get(i10);
             i10++;
             v vVar = (v) obj;
-            if (vVar.f40686b.equals(str)) {
+            if (vVar.f43953b.equals(str)) {
                 return vVar;
             }
         }
@@ -32,6 +33,6 @@ public final class u {
     }
 
     public final String toString() {
-        return "MediaRouter.RouteProviderInfo{ packageName=" + ((ComponentName) this.d.f13385b).getPackageName() + " }";
+        return "MediaRouter.RouteProviderInfo{ packageName=" + ((ComponentName) this.d.f14247b).getPackageName() + " }";
     }
 }

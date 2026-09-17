@@ -1,20 +1,20 @@
 package c3;
 public final class a {
-    public String f3708a;
-    public int f3709b;
-    public int f3710c;
+    public String f4222a;
+    public int f4223b;
+    public int f4224c;
 
     public a(String str, int i10, int i11, int i12, long j3) {
-        this.f3708a = str;
-        this.f3710c = i10;
-        this.f3709b = i11;
+        this.f4222a = str;
+        this.f4224c = i10;
+        this.f4223b = i11;
     }
 
     public c5.h a() {
         ?? obj = new Object();
-        obj.f3894a = this.f3709b;
-        obj.f3895b = this.f3710c;
-        obj.f3896c = this.f3708a;
+        obj.f4424a = this.f4223b;
+        obj.f4425b = this.f4224c;
+        obj.f4426c = this.f4222a;
         return obj;
     }
 }

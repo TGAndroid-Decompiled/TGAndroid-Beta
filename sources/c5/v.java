@@ -16,30 +16,29 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.concurrent.atomic.AtomicInteger;
-import n7.a1;
 import org.telegram.ui.Cells.p6;
-import org.telegram.ui.Components.lg;
+import org.telegram.ui.Components.ng;
 import w7.la;
 import y8.k0;
 public final class v implements Runnable {
-    public final int f3931a;
-    public Object f3932b;
-    public Object f3933c;
+    public final int f4464a;
+    public Object f4465b;
+    public Object f4466c;
     public Object d;
 
     public v() {
-        this.f3931a = 8;
+        this.f4464a = 8;
     }
 
     private final void a() {
         c6.f fVar;
-        synchronized (((g6.v) this.f3932b).X) {
-            fVar = (c6.f) ((g6.v) this.f3932b).X.get((String) this.f3933c);
+        synchronized (((g6.v) this.f4465b).X) {
+            fVar = (c6.f) ((g6.v) this.f4465b).X.get((String) this.f4466c);
         }
         if (fVar != null) {
             ((e6.h) fVar).o((String) this.d);
         } else {
-            g6.v.f9471n0.b("Discarded message for unknown namespace '%s'", (String) this.f3933c);
+            g6.v.f10459n0.b("Discarded message for unknown namespace '%s'", (String) this.f4466c);
         }
     }
 
@@ -53,24 +52,24 @@ public final class v implements Runnable {
         w9.b bVar;
         Bundle bundle = null;
         Object obj = null;
-        switch (this.f3931a) {
+        switch (this.f4464a) {
             case 0:
-                h hVar = g0.f3886i;
-                ((c) this.f3932b).y(24, 4, hVar);
-                ((j) this.f3933c).a(hVar, ((i) this.d).f3900a);
+                h hVar = g0.f4416i;
+                ((c) this.f4465b).y(24, 4, hVar);
+                ((j) this.f4466c).a(hVar, ((i) this.d).f4430a);
                 return;
             case 1:
-                d0.I((d0) this.f3932b, (a4.m) this.f3933c, (org.telegram.messenger.c0) this.d);
+                d0.I((d0) this.f4465b, (xa.c) this.f4466c, (org.telegram.messenger.c0) this.d);
                 return;
             case 2:
-                d0.H((d0) this.f3932b, (i) this.d, (j) this.f3933c);
+                d0.H((d0) this.f4465b, (i) this.d, (j) this.f4466c);
                 return;
             case 3:
-                c6.d0 d0Var = (c6.d0) this.f3932b;
-                HashMap hashMap = d0Var.f3976b.C;
-                String str = (String) this.f3933c;
+                c6.d0 d0Var = (c6.d0) this.f4465b;
+                HashMap hashMap = d0Var.f4513b.C;
+                String str = (String) this.f4466c;
                 synchronized (hashMap) {
-                    fVar = (c6.f) d0Var.f3976b.C.get(str);
+                    fVar = (c6.f) d0Var.f4513b.C.get(str);
                 }
                 if (fVar != null) {
                     ((e6.h) fVar).o((String) this.d);
@@ -81,10 +80,10 @@ public final class v implements Runnable {
                 }
             case 4:
                 ca.c cVar = (ca.c) this.d;
-                cVar.b((w9.b) this.f3932b, (TaskCompletionSource) this.f3933c);
-                ((AtomicInteger) cVar.f4193i.f15311c).set(0);
-                double min = Math.min(3600000.0d, Math.pow(cVar.f4189b, cVar.a()) * (60000.0d / cVar.f4188a));
-                String str2 = "Delay for: " + String.format(Locale.US, "%.2f", Double.valueOf(min / 1000.0d)) + " s for report: " + bVar.f44935b;
+                cVar.b((w9.b) this.f4465b, (TaskCompletionSource) this.f4466c);
+                ((AtomicInteger) cVar.f4748i.f16731c).set(0);
+                double min = Math.min(3600000.0d, Math.pow(cVar.f4743b, cVar.a()) * (60000.0d / cVar.f4742a));
+                String str2 = "Delay for: " + String.format(Locale.US, "%.2f", Double.valueOf(min / 1000.0d)) + " s for report: " + bVar.f48406b;
                 if (Log.isLoggable("FirebaseCrashlytics", 3)) {
                     Log.d("FirebaseCrashlytics", str2, null);
                 }
@@ -95,62 +94,62 @@ public final class v implements Runnable {
                     return;
                 }
             case 5:
-                com.google.android.gms.common.api.internal.l lVar = (com.google.android.gms.common.api.internal.l) this.f3932b;
+                com.google.android.gms.common.api.internal.l lVar = (com.google.android.gms.common.api.internal.l) this.f4465b;
                 a5.a aVar = (a5.a) this.d;
-                if (aVar.f277b > 0) {
+                if (aVar.f297b > 0) {
                     Bundle bundle2 = (Bundle) aVar.d;
                     if (bundle2 != null) {
-                        bundle = bundle2.getBundle((String) this.f3933c);
+                        bundle = bundle2.getBundle((String) this.f4466c);
                     }
                     lVar.onCreate(bundle);
                 }
-                if (aVar.f277b >= 2) {
+                if (aVar.f297b >= 2) {
                     lVar.onStart();
                 }
-                if (aVar.f277b >= 3) {
+                if (aVar.f297b >= 3) {
                     lVar.onResume();
                 }
-                if (aVar.f277b >= 4) {
+                if (aVar.f297b >= 4) {
                     lVar.onStop();
                 }
-                if (aVar.f277b >= 5) {
+                if (aVar.f297b >= 5) {
                     lVar.onDestroy();
                     return;
                 }
                 return;
             case 6:
-                g.f.b(((g.f) this.d).e, (View) this.f3932b, (View) this.f3933c);
+                g.f.b(((g.f) this.d).f10207e, (View) this.f4465b, (View) this.f4466c);
                 return;
             case 7:
                 a();
                 return;
             case 8:
                 try {
-                    obj = ((o0.f) this.f3932b).call();
+                    obj = ((o0.f) this.f4465b).call();
                 } catch (Exception unused2) {
                 }
-                ((Handler) this.d).post(new i9.s(20, (z) this.f3933c, obj));
+                ((Handler) this.d).post(new i9.s(20, (z) this.f4466c, obj));
                 return;
             case 9:
-                ((lg) this.d).n((File) this.f3933c, (ArrayList) this.f3932b);
+                ((ng) this.d).n((File) this.f4466c, (ArrayList) this.f4465b);
                 return;
             case 10:
                 u4.f fVar2 = (u4.f) this.d;
-                fVar2.d.f2877c.remove((String) this.f3932b);
-                c0.l lVar2 = (c0.l) this.f3933c;
-                if (!(lVar2.f3636a instanceof c0.a)) {
+                fVar2.d.f1932c.remove((String) this.f4465b);
+                c0.l lVar2 = (c0.l) this.f4466c;
+                if (!(lVar2.f4144a instanceof c0.a)) {
                     try {
                         lVar2.get();
                         return;
-                    } catch (Exception e) {
-                        fVar2.f43640c.l(e);
+                    } catch (Exception e7) {
+                        fVar2.f46973c.l(e7);
                         return;
                     }
                 }
                 return;
             case 11:
-                Bitmap bitmap = (Bitmap) this.f3932b;
-                String str3 = (String) this.f3933c;
+                Bitmap bitmap = (Bitmap) this.f4465b;
+                String str3 = (String) this.f4466c;
                 ((ShortcutInfoCompatSaverImpl) this.d).getClass();
                 if (bitmap != null) {
                     if (!TextUtils.isEmpty(str3)) {
@@ -171,9 +170,9 @@ public final class v implements Runnable {
                                 }
                                 throw th2;
                             }
-                        } catch (IOException | OutOfMemoryError | RuntimeException e7) {
-                            Log.wtf("ShortcutInfoCompatSaver", "Unable to write bitmap to file", e7);
-                            throw new RuntimeException(p6.i("Unable to write bitmap to file ", str3), e7);
+                        } catch (IOException | OutOfMemoryError | RuntimeException e10) {
+                            Log.wtf("ShortcutInfoCompatSaver", "Unable to write bitmap to file", e10);
+                            throw new RuntimeException(p6.i("Unable to write bitmap to file ", str3), e10);
                         }
                     }
                     throw new IllegalArgumentException("path is empty");
@@ -183,44 +182,44 @@ public final class v implements Runnable {
                 b();
                 return;
             default:
-                k0 k0Var = (k0) this.f3933c;
+                k0 k0Var = (k0) this.f4466c;
                 y8.e0 e0Var = (y8.e0) this.d;
-                Task<byte[]> onRequest = ((x8.m) this.f3932b).f45718c.onRequest(k0Var.d, k0Var.f46405b, k0Var.f46406c);
+                Task<byte[]> onRequest = ((x8.m) this.f4465b).f49316c.onRequest(k0Var.d, k0Var.f49643b, k0Var.f49644c);
                 if (onRequest == null) {
                     x8.m.M0(e0Var, false, null);
                     return;
                 } else {
-                    onRequest.addOnCompleteListener(new ka.c(e0Var, 21));
+                    onRequest.addOnCompleteListener(new k2.g0(e0Var, 25));
                     return;
                 }
         }
     }
 
     public v(d0 d0Var, i iVar, j jVar) {
-        this.f3931a = 2;
-        this.f3932b = d0Var;
+        this.f4464a = 2;
+        this.f4465b = d0Var;
         this.d = iVar;
-        this.f3933c = jVar;
+        this.f4466c = jVar;
     }
 
     public v(Object obj, Object obj2, Object obj3, int i10) {
-        this.f3931a = i10;
-        this.f3932b = obj;
-        this.f3933c = obj2;
+        this.f4464a = i10;
+        this.f4465b = obj;
+        this.f4466c = obj2;
         this.d = obj3;
     }
 
     public v(Object obj, Object obj2, Object obj3, boolean z10, int i10) {
-        this.f3931a = i10;
+        this.f4464a = i10;
         this.d = obj;
-        this.f3932b = obj2;
-        this.f3933c = obj3;
+        this.f4465b = obj2;
+        this.f4466c = obj3;
     }
 
-    public v(la laVar, a1 a1Var, String str) {
-        this.f3931a = 12;
-        this.f3932b = laVar;
-        this.f3933c = a1Var;
+    public v(la laVar, o0.a aVar, String str) {
+        this.f4464a = 12;
+        this.f4465b = laVar;
+        this.f4466c = aVar;
         this.d = str;
     }
 }

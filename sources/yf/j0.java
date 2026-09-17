@@ -1,6 +1,5 @@
 package yf;
 
-import ai.k2;
 import android.graphics.Canvas;
 import android.graphics.Outline;
 import android.graphics.Path;
@@ -8,30 +7,31 @@ import android.graphics.Rect;
 import android.os.Build;
 import android.os.Looper;
 import android.view.ViewOutlineProvider;
-import org.telegram.ui.rp0;
-import org.telegram.ui.s3;
+import bi.z1;
+import org.telegram.ui.qp0;
+import org.telegram.ui.t3;
 public abstract class j0 {
-    public static final k2 f46861a = new k2(21);
-    public static final k2 f46862b = new k2(22);
-    public static Path f46863c;
+    public static final z1 f50142a = new z1(21);
+    public static final z1 f50143b = new z1(22);
+    public static Path f50144c;
     public static Outline d;
-    public static Rect e;
+    public static Rect f50145e;
 
-    public static void a(Canvas canvas, rp0 rp0Var, s3 s3Var) {
+    public static void a(Canvas canvas, qp0 qp0Var, t3 t3Var) {
         Path path;
         Outline outline;
         Rect rect;
-        ViewOutlineProvider outlineProvider = rp0Var.getOutlineProvider();
-        if (!canvas.isHardwareAccelerated() && Build.VERSION.SDK_INT >= 24 && rp0Var.getClipToOutline() && outlineProvider != null) {
+        ViewOutlineProvider outlineProvider = qp0Var.getOutlineProvider();
+        if (!canvas.isHardwareAccelerated() && Build.VERSION.SDK_INT >= 24 && qp0Var.getClipToOutline() && outlineProvider != null) {
             if (Looper.myLooper() == Looper.getMainLooper()) {
-                if (f46863c == null) {
-                    f46863c = new Path();
+                if (f50144c == null) {
+                    f50144c = new Path();
                     d = new Outline();
-                    e = new Rect();
+                    f50145e = new Rect();
                 }
-                path = f46863c;
+                path = f50144c;
                 outline = d;
-                rect = e;
+                rect = f50145e;
                 outline.setEmpty();
                 rect.setEmpty();
             } else {
@@ -40,7 +40,7 @@ public abstract class j0 {
                 rect = new Rect();
             }
             Path path2 = path;
-            outlineProvider.getOutline(rp0Var, outline);
+            outlineProvider.getOutline(qp0Var, outline);
             path2.rewind();
             if (!outline.isEmpty() && outline.getRect(rect)) {
                 float radius = outline.getRadius();
@@ -51,13 +51,13 @@ public abstract class j0 {
                 }
                 int save = canvas.save();
                 canvas.clipPath(path2);
-                s3Var.run(canvas);
+                t3Var.run(canvas);
                 canvas.restoreToCount(save);
                 return;
             }
-            s3Var.run(canvas);
+            t3Var.run(canvas);
             return;
         }
-        s3Var.run(canvas);
+        t3Var.run(canvas);
     }
 }

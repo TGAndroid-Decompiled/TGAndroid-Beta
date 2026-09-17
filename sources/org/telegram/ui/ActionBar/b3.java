@@ -1,32 +1,66 @@
 package org.telegram.ui.ActionBar;
 
-import android.content.Context;
-import android.view.ViewGroup;
-import org.telegram.ui.Components.t6;
-public final class b3 {
-    public final g3 f18470a;
+import android.animation.ValueAnimator;
+public final class b3 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f20290a;
+    public final d3 f20291b;
 
-    public b3(Context context, f6 f6Var) {
-        g3 g3Var = new g3(1, context, f6Var, false);
-        this.f18470a = g3Var;
-        g3Var.fixNavigationBar();
+    public b3(d3 d3Var, int i10) {
+        this.f20290a = i10;
+        this.f20291b = d3Var;
     }
 
-    public final void a() {
-        this.f18470a.applyBottomPadding = false;
-    }
-
-    public final void b(ViewGroup viewGroup) {
-        this.f18470a.customView = viewGroup;
-    }
-
-    public final void c(t6 t6Var) {
-        g3 g3Var = this.f18470a;
-        g3Var.customView = t6Var;
-        g3Var.customViewGravity = 49;
-    }
-
-    public final void d() {
-        this.f18470a.dimBehind = false;
+    @Override
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        int i10;
+        switch (this.f20290a) {
+            case 0:
+                d3 d3Var = this.f20291b;
+                f3 f3Var = d3Var.G;
+                f3Var.containerView.setTranslationY(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                f3Var.onContainerViewTranslation();
+                f3Var.onSmoothContainerViewLayout(f3Var.containerView.getTranslationY());
+                d3Var.invalidate();
+                return;
+            case 1:
+                d3 d3Var2 = this.f20291b;
+                d3Var2.getClass();
+                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                d3Var2.f20388y = floatValue;
+                f3 f3Var2 = d3Var2.G;
+                f3Var2.containerView.setTranslationX(floatValue);
+                f3Var2.container.invalidate();
+                return;
+            case 2:
+                d3 d3Var3 = this.f20291b;
+                d3Var3.getClass();
+                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                d3Var3.f20388y = floatValue2;
+                f3 f3Var3 = d3Var3.G;
+                f3Var3.containerView.setTranslationX(floatValue2);
+                f3Var3.container.invalidate();
+                return;
+            case 3:
+                d3 d3Var4 = this.f20291b;
+                d3Var4.getClass();
+                float floatValue3 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                f3 f3Var4 = d3Var4.G;
+                e3 e3Var = f3Var4.backDrawable;
+                if (f3Var4.dimBehind) {
+                    i10 = (int) (f3Var4.dimBehindAlpha * floatValue3);
+                } else {
+                    i10 = 0;
+                }
+                e3Var.setAlpha(i10);
+                return;
+            default:
+                f3 f3Var5 = this.f20291b.G;
+                d3 d3Var5 = f3Var5.container;
+                if (d3Var5 != null) {
+                    d3Var5.invalidate();
+                }
+                f3Var5.onContainerViewTranslation();
+                return;
+        }
     }
 }

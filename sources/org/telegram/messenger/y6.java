@@ -1,43 +1,51 @@
 package org.telegram.messenger;
 
-import java.util.ArrayList;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-public final class y6 implements Runnable {
-    public final int f17952a;
-    public final MediaDataController f17953b;
-    public final TLRPC.messages_Messages f17954c;
-    public final int d;
-    public final long e;
-    public final ArrayList f17955f;
-    public final int h;
-    public final int f17956n;
-    public final boolean f17957r;
-    public final int f17958s;
-    public final int v;
+public final class y6 implements RequestDelegate {
+    public final int f19737a;
+    public final Object f19738b;
+    public final long f19739c;
+    public final long d;
+    public final Object f19740e;
 
-    public y6(MediaDataController mediaDataController, TLRPC.messages_Messages messages_messages, int i10, long j3, ArrayList arrayList, int i11, int i12, boolean z10, int i13, int i14, int i15) {
-        this.f17952a = i15;
-        this.f17953b = mediaDataController;
-        this.f17954c = messages_messages;
-        this.d = i10;
-        this.e = j3;
-        this.f17955f = arrayList;
-        this.h = i11;
-        this.f17956n = i12;
-        this.f17957r = z10;
-        this.f17958s = i13;
-        this.v = i14;
+    public y6(Object obj, Object obj2, long j3, long j10, int i10) {
+        this.f19737a = i10;
+        this.f19738b = obj;
+        this.f19740e = obj2;
+        this.f19739c = j3;
+        this.d = j10;
     }
 
     @Override
-    public final void run() {
-        switch (this.f17952a) {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f19737a) {
             case 0:
-                this.f17953b.lambda$processLoadedMedia$133(this.f17954c, this.d, this.e, this.f17955f, this.h, this.f17956n, this.f17957r, this.f17958s, this.v);
+                ((MediaDataController) this.f19738b).lambda$loadPinnedMessageInternal$164(this.f19739c, this.d, (TLRPC.TL_channels_getMessages) this.f19740e, tLObject, tL_error);
+                return;
+            case 1:
+                ((MediaDataController) this.f19738b).lambda$getMediaCounts$129((int[]) this.f19740e, this.f19739c, this.d, tLObject, tL_error);
+                return;
+            case 2:
+                ((MessagesController) this.f19738b).lambda$requestContactToken$476((Utilities.Callback) this.f19740e, this.f19739c, this.d, tLObject, tL_error);
+                return;
+            case 3:
+                ((TopicsController) this.f19738b).lambda$getTopicRepliesCount$30((TLRPC.TL_forumTopic) this.f19740e, this.f19739c, this.d, tLObject, tL_error);
                 return;
             default:
-                this.f17953b.lambda$processLoadedMedia$134(this.f17954c, this.d, this.e, this.f17955f, this.h, this.f17956n, this.f17957r, this.f17958s, this.v);
+                zh.w3 w3Var = (zh.w3) this.f19738b;
+                zh.w3.J0(this.f19739c, this.d, (Utilities.Callback) this.f19740e, tLObject, tL_error, w3Var);
                 return;
         }
+    }
+
+    public y6(MediaDataController mediaDataController, long j3, long j10, TLRPC.TL_channels_getMessages tL_channels_getMessages) {
+        this.f19737a = 0;
+        this.f19738b = mediaDataController;
+        this.f19739c = j3;
+        this.d = j10;
+        this.f19740e = tL_channels_getMessages;
     }
 }

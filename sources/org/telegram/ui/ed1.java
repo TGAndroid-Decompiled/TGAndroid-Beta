@@ -1,50 +1,50 @@
 package org.telegram.ui;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.widget.FrameLayout;
-public final class ed1 extends AnimatorListenerAdapter {
-    public final boolean f33371a;
-    public final int f33372b;
-    public final int f33373c;
-    public final boolean d;
-    public final xd1 e;
+import android.graphics.Point;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.NotificationCenter;
+public final class ed1 extends w7.i0 {
+    public final int f36031a;
+    public final NotificationCenter.NotificationCenterDelegate f36032b;
 
-    public ed1(xd1 xd1Var, boolean z10, int i10, int i11, boolean z11) {
-        this.e = xd1Var;
-        this.f33371a = z10;
-        this.f33372b = i10;
-        this.f33373c = i11;
-        this.d = z11;
+    public ed1(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, int i10) {
+        this.f36031a = i10;
+        this.f36032b = notificationCenterDelegate;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        xd1 xd1Var = this.e;
-        FrameLayout[] frameLayoutArr = xd1Var.L0;
-        xd1Var.f39579r1 = null;
-        int i10 = this.f33373c;
-        int i11 = this.f33372b;
-        boolean z10 = this.f33371a;
-        if (z10 && frameLayoutArr[i11].getVisibility() == 0) {
-            frameLayoutArr[i11].setAlpha(1.0f);
-            frameLayoutArr[i11].setVisibility(4);
-        } else if (!z10) {
-            frameLayoutArr[i10].setVisibility(4);
-        }
-        int i12 = xd1Var.f39534b;
-        char c10 = 2;
-        if (i12 != 1 && i12 != 2) {
-            if (i10 == 1) {
-                frameLayoutArr[i11].setAlpha(0.0f);
+    public void a() {
+        switch (this.f36031a) {
+            case 1:
+                ((ui1) this.f36032b).v.invalidate();
                 return;
-            }
-            return;
+            default:
+                return;
         }
-        org.telegram.ui.Components.k81[] k81VarArr = xd1Var.J0;
-        if (this.d) {
-            c10 = 0;
+    }
+
+    @Override
+    public void b(int i10, int i11) {
+        boolean z10;
+        switch (this.f36031a) {
+            case 0:
+                Point point = AndroidUtilities.displaySize;
+                boolean z11 = false;
+                if (point.x <= point.y) {
+                    z10 = true;
+                } else {
+                    z10 = false;
+                }
+                if (i10 <= i11) {
+                    z11 = true;
+                }
+                if (z10 == z11) {
+                    ((wd1) this.f36032b).f42005x0.invalidate();
+                    return;
+                }
+                return;
+            default:
+                return;
         }
-        k81VarArr[c10].setVisibility(4);
     }
 }

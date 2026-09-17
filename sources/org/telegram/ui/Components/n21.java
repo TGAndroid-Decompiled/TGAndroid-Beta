@@ -1,32 +1,52 @@
 package org.telegram.ui.Components;
 
-import androidx.recyclerview.widget.RecyclerView;
-public final class n21 extends s4.s0 {
-    public final int f26311a;
-    public final y21 f26312b;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.widget.ImageView;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.R;
+public final class n21 extends AnimatorListenerAdapter {
+    public final boolean f28631a;
+    public final w21 f28632b;
 
-    public n21(y21 y21Var, int i10) {
-        this.f26311a = i10;
-        this.f26312b = y21Var;
+    public n21(w21 w21Var, boolean z10) {
+        this.f28632b = w21Var;
+        this.f28631a = z10;
     }
 
     @Override
-    public final void b(RecyclerView recyclerView, int i10, int i11) {
-        switch (this.f26311a) {
-            case 0:
-                y21 y21Var = this.f26312b;
-                if (y21Var.k()) {
-                    y21Var.l();
-                    return;
-                }
-                return;
-            default:
-                y21 y21Var2 = this.f26312b;
-                if (y21Var2.k()) {
-                    y21Var2.l();
-                    return;
-                }
-                return;
+    public final void onAnimationEnd(Animator animator) {
+        float f7;
+        int i10;
+        w21 w21Var = this.f28632b;
+        long j3 = w21Var.f32123c;
+        if (w21Var.U == animator) {
+            boolean z10 = this.f28631a;
+            if (z10) {
+                f7 = 1.0f;
+            } else {
+                f7 = 0.0f;
+            }
+            w21Var.R = f7;
+            w21Var.n();
+            w21Var.S = false;
+            ImageView imageView = w21Var.E;
+            if (w21Var.P) {
+                i10 = R.drawable.menu_sidebar_top;
+            } else {
+                i10 = R.drawable.menu_sidebar_bottom;
+            }
+            imageView.setImageResource(i10);
+            w21Var.U = null;
+            MessagesController.getInstance(w21Var.f32121b).getMainSettings().edit().putBoolean(a4.a.o(j3, "topicssidetabs"), w21Var.Q).putBoolean(a4.a.o(j3, "topicssidetabsb"), w21Var.P).apply();
+            Boolean bool = w21Var.T;
+            if (bool != null && z10 != bool.booleanValue()) {
+                boolean booleanValue = w21Var.T.booleanValue();
+                w21Var.T = null;
+                w21Var.d(booleanValue);
+            }
+            AndroidUtilities.runOnUIThread(new jq0(this, 19));
         }
     }
 }

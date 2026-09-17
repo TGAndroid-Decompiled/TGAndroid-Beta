@@ -1,347 +1,147 @@
 package org.telegram.ui;
 
-import android.app.Dialog;
-import android.text.SpannableStringBuilder;
+import android.os.Bundle;
+import android.text.TextUtils;
+import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.SerializedData;
 import org.telegram.tgnet.tl.TL_account;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class pe0 implements RequestDelegate {
-    public final int f36609a;
-    public final re0 f36610b;
+import org.telegram.ui.Components.EditTextBoldCursor;
+public final class pe0 extends org.telegram.ui.Components.tv0 {
+    public final EditTextBoldCursor f39511a;
+    public final TextView f39512b;
+    public final TextView f39513c;
+    public final TextView d;
+    public final org.telegram.ui.Components.aj0 f39514e;
+    public Bundle f39515f;
+    public boolean h;
+    public TL_account.Password f39516n;
+    public String f39517r;
+    public String f39518s;
+    public String v;
+    public String f39519w;
+    public final org.telegram.ui.Components.zc0 f39520x;
+    public final wg0 f39521y;
 
-    public pe0(re0 re0Var, int i10) {
-        this.f36609a = i10;
-        this.f36610b = re0Var;
+    public pe0(org.telegram.ui.wg0 r20, android.content.Context r21) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.pe0.<init>(org.telegram.ui.wg0, android.content.Context):void");
     }
 
     @Override
-    public final void run(final TLObject tLObject, final TLRPC.TL_error tL_error) {
-        switch (this.f36609a) {
-            case 0:
-                final re0 re0Var = this.f36610b;
-                AndroidUtilities.runOnUIThread(new Runnable() {
-                    @Override
-                    public final void run() {
-                        String formatPluralString;
-                        String formatPluralString2;
-                        int i10;
-                        int i11 = r4;
-                        TLObject tLObject2 = tLObject;
-                        TLRPC.TL_error tL_error2 = tL_error;
-                        re0 re0Var2 = re0Var;
-                        switch (i11) {
-                            case 0:
-                                re0Var2.getClass();
-                                if (tL_error2 == null) {
-                                    re0Var2.f37203n = (TL_account.Password) tLObject2;
-                                    re0Var2.h(null);
-                                    return;
-                                }
-                                return;
-                            case 1:
-                                yg0 yg0Var = re0Var2.f37208y;
-                                yg0Var.k1(false, true);
-                                if (tL_error2 == null) {
-                                    TLRPC.TL_auth_passwordRecovery tL_auth_passwordRecovery = (TLRPC.TL_auth_passwordRecovery) tLObject2;
-                                    if (yg0Var.getParentActivity() != null) {
-                                        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(yg0Var.getParentActivity());
-                                        String str = tL_auth_passwordRecovery.email_pattern;
-                                        SpannableStringBuilder valueOf = SpannableStringBuilder.valueOf(str);
-                                        int indexOf = str.indexOf(42);
-                                        int lastIndexOf = str.lastIndexOf(42);
-                                        if (indexOf != lastIndexOf && indexOf != -1 && lastIndexOf != -1) {
-                                            ?? obj = new Object();
-                                            obj.f26905a |= 256;
-                                            obj.f26906b = indexOf;
-                                            int i12 = lastIndexOf + 1;
-                                            obj.f26907c = i12;
-                                            valueOf.setSpan(new org.telegram.ui.Components.q01(obj, 0), indexOf, i12, 0);
-                                        }
-                                        SpannableStringBuilder formatSpannable = AndroidUtilities.formatSpannable(LocaleController.getString(R.string.RestoreEmailSent), valueOf);
-                                        org.telegram.ui.ActionBar.c2 c2Var = alertDialog$Builder.f18446a;
-                                        c2Var.T = formatSpannable;
-                                        c2Var.R = LocaleController.getString("RestoreEmailSentTitle", R.string.RestoreEmailSentTitle);
-                                        alertDialog$Builder.k(LocaleController.getString(R.string.Continue), new f20(16, re0Var2, tL_auth_passwordRecovery));
-                                        Dialog showDialog = yg0Var.showDialog(c2Var);
-                                        if (showDialog != null) {
-                                            showDialog.setCanceledOnTouchOutside(false);
-                                            showDialog.setCancelable(false);
-                                            return;
-                                        }
-                                        return;
-                                    }
-                                    return;
-                                } else if (tL_error2.text.startsWith("FLOOD_WAIT")) {
-                                    int intValue = Utilities.parseInt((CharSequence) tL_error2.text).intValue();
-                                    if (intValue < 60) {
-                                        formatPluralString = LocaleController.formatPluralString("Seconds", intValue, new Object[0]);
-                                    } else {
-                                        formatPluralString = LocaleController.formatPluralString("Minutes", intValue / 60, new Object[0]);
-                                    }
-                                    yg0Var.l1(LocaleController.getString(R.string.WrongCodeTitle), LocaleController.formatString("FloodWaitTime", R.string.FloodWaitTime, formatPluralString));
-                                    return;
-                                } else {
-                                    yg0Var.l1(LocaleController.getString(R.string.RestorePasswordNoEmailTitle), tL_error2.text);
-                                    return;
-                                }
-                            default:
-                                yg0 yg0Var2 = re0Var2.f37208y;
-                                re0Var2.h = false;
-                                if (tL_error2 != null && "SRP_ID_INVALID".equals(tL_error2.text)) {
-                                    TL_account.getPassword getpassword = new TL_account.getPassword();
-                                    i10 = ((org.telegram.ui.ActionBar.o2) yg0Var2).currentAccount;
-                                    ConnectionsManager.getInstance(i10).sendRequest(getpassword, new pe0(re0Var2, 0), 8);
-                                    return;
-                                } else if (tLObject2 instanceof TLRPC.TL_auth_authorization) {
-                                    yg0Var2.v1(false, true);
-                                    re0Var2.postDelayed(new oa0(12, re0Var2, tLObject2), 150L);
-                                    return;
-                                } else {
-                                    yg0Var2.k1(false, true);
-                                    if (tL_error2.text.equals("PASSWORD_HASH_INVALID")) {
-                                        if (yg0Var2.getParentActivity() != null) {
-                                            re0Var2.f37199a.setText("");
-                                            yg0.U0(yg0Var2, re0Var2.f37207x, true);
-                                            return;
-                                        }
-                                        return;
-                                    } else if (tL_error2.text.startsWith("FLOOD_WAIT")) {
-                                        int intValue2 = Utilities.parseInt((CharSequence) tL_error2.text).intValue();
-                                        if (intValue2 < 60) {
-                                            formatPluralString2 = LocaleController.formatPluralString("Seconds", intValue2, new Object[0]);
-                                        } else {
-                                            formatPluralString2 = LocaleController.formatPluralString("Minutes", intValue2 / 60, new Object[0]);
-                                        }
-                                        yg0Var2.l1(LocaleController.getString(R.string.RestorePasswordNoEmailTitle), LocaleController.formatString("FloodWaitTime", R.string.FloodWaitTime, formatPluralString2));
-                                        return;
-                                    } else {
-                                        yg0Var2.l1(LocaleController.getString(R.string.RestorePasswordNoEmailTitle), tL_error2.text);
-                                        return;
-                                    }
-                                }
-                        }
-                    }
-                });
+    public final boolean b() {
+        return true;
+    }
+
+    @Override
+    public final boolean c(boolean z10) {
+        this.h = false;
+        this.f39521y.k1(true, true);
+        this.f39515f = null;
+        return true;
+    }
+
+    @Override
+    public final void d() {
+        this.h = false;
+    }
+
+    @Override
+    public String getHeaderName() {
+        return LocaleController.getString("LoginPassword", R.string.LoginPassword);
+    }
+
+    @Override
+    public final void h(String str) {
+        if (!this.h && this.f39516n != null) {
+            String obj = this.f39511a.getText().toString();
+            if (obj.length() == 0) {
+                wg0 wg0Var = this.f39521y;
+                if (wg0Var.getParentActivity() == null) {
+                    return;
+                }
+                wg0.U0(wg0Var, this.f39520x, true);
                 return;
-            case 1:
-                final re0 re0Var2 = this.f36610b;
-                AndroidUtilities.runOnUIThread(new Runnable() {
-                    @Override
-                    public final void run() {
-                        String formatPluralString;
-                        String formatPluralString2;
-                        int i10;
-                        int i11 = r4;
-                        TLObject tLObject2 = tLObject;
-                        TLRPC.TL_error tL_error2 = tL_error;
-                        re0 re0Var22 = re0Var2;
-                        switch (i11) {
-                            case 0:
-                                re0Var22.getClass();
-                                if (tL_error2 == null) {
-                                    re0Var22.f37203n = (TL_account.Password) tLObject2;
-                                    re0Var22.h(null);
-                                    return;
-                                }
-                                return;
-                            case 1:
-                                yg0 yg0Var = re0Var22.f37208y;
-                                yg0Var.k1(false, true);
-                                if (tL_error2 == null) {
-                                    TLRPC.TL_auth_passwordRecovery tL_auth_passwordRecovery = (TLRPC.TL_auth_passwordRecovery) tLObject2;
-                                    if (yg0Var.getParentActivity() != null) {
-                                        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(yg0Var.getParentActivity());
-                                        String str = tL_auth_passwordRecovery.email_pattern;
-                                        SpannableStringBuilder valueOf = SpannableStringBuilder.valueOf(str);
-                                        int indexOf = str.indexOf(42);
-                                        int lastIndexOf = str.lastIndexOf(42);
-                                        if (indexOf != lastIndexOf && indexOf != -1 && lastIndexOf != -1) {
-                                            ?? obj = new Object();
-                                            obj.f26905a |= 256;
-                                            obj.f26906b = indexOf;
-                                            int i12 = lastIndexOf + 1;
-                                            obj.f26907c = i12;
-                                            valueOf.setSpan(new org.telegram.ui.Components.q01(obj, 0), indexOf, i12, 0);
-                                        }
-                                        SpannableStringBuilder formatSpannable = AndroidUtilities.formatSpannable(LocaleController.getString(R.string.RestoreEmailSent), valueOf);
-                                        org.telegram.ui.ActionBar.c2 c2Var = alertDialog$Builder.f18446a;
-                                        c2Var.T = formatSpannable;
-                                        c2Var.R = LocaleController.getString("RestoreEmailSentTitle", R.string.RestoreEmailSentTitle);
-                                        alertDialog$Builder.k(LocaleController.getString(R.string.Continue), new f20(16, re0Var22, tL_auth_passwordRecovery));
-                                        Dialog showDialog = yg0Var.showDialog(c2Var);
-                                        if (showDialog != null) {
-                                            showDialog.setCanceledOnTouchOutside(false);
-                                            showDialog.setCancelable(false);
-                                            return;
-                                        }
-                                        return;
-                                    }
-                                    return;
-                                } else if (tL_error2.text.startsWith("FLOOD_WAIT")) {
-                                    int intValue = Utilities.parseInt((CharSequence) tL_error2.text).intValue();
-                                    if (intValue < 60) {
-                                        formatPluralString = LocaleController.formatPluralString("Seconds", intValue, new Object[0]);
-                                    } else {
-                                        formatPluralString = LocaleController.formatPluralString("Minutes", intValue / 60, new Object[0]);
-                                    }
-                                    yg0Var.l1(LocaleController.getString(R.string.WrongCodeTitle), LocaleController.formatString("FloodWaitTime", R.string.FloodWaitTime, formatPluralString));
-                                    return;
-                                } else {
-                                    yg0Var.l1(LocaleController.getString(R.string.RestorePasswordNoEmailTitle), tL_error2.text);
-                                    return;
-                                }
-                            default:
-                                yg0 yg0Var2 = re0Var22.f37208y;
-                                re0Var22.h = false;
-                                if (tL_error2 != null && "SRP_ID_INVALID".equals(tL_error2.text)) {
-                                    TL_account.getPassword getpassword = new TL_account.getPassword();
-                                    i10 = ((org.telegram.ui.ActionBar.o2) yg0Var2).currentAccount;
-                                    ConnectionsManager.getInstance(i10).sendRequest(getpassword, new pe0(re0Var22, 0), 8);
-                                    return;
-                                } else if (tLObject2 instanceof TLRPC.TL_auth_authorization) {
-                                    yg0Var2.v1(false, true);
-                                    re0Var22.postDelayed(new oa0(12, re0Var22, tLObject2), 150L);
-                                    return;
-                                } else {
-                                    yg0Var2.k1(false, true);
-                                    if (tL_error2.text.equals("PASSWORD_HASH_INVALID")) {
-                                        if (yg0Var2.getParentActivity() != null) {
-                                            re0Var22.f37199a.setText("");
-                                            yg0.U0(yg0Var2, re0Var22.f37207x, true);
-                                            return;
-                                        }
-                                        return;
-                                    } else if (tL_error2.text.startsWith("FLOOD_WAIT")) {
-                                        int intValue2 = Utilities.parseInt((CharSequence) tL_error2.text).intValue();
-                                        if (intValue2 < 60) {
-                                            formatPluralString2 = LocaleController.formatPluralString("Seconds", intValue2, new Object[0]);
-                                        } else {
-                                            formatPluralString2 = LocaleController.formatPluralString("Minutes", intValue2 / 60, new Object[0]);
-                                        }
-                                        yg0Var2.l1(LocaleController.getString(R.string.RestorePasswordNoEmailTitle), LocaleController.formatString("FloodWaitTime", R.string.FloodWaitTime, formatPluralString2));
-                                        return;
-                                    } else {
-                                        yg0Var2.l1(LocaleController.getString(R.string.RestorePasswordNoEmailTitle), tL_error2.text);
-                                        return;
-                                    }
-                                }
-                        }
-                    }
-                });
-                return;
-            default:
-                final re0 re0Var3 = this.f36610b;
-                AndroidUtilities.runOnUIThread(new Runnable() {
-                    @Override
-                    public final void run() {
-                        String formatPluralString;
-                        String formatPluralString2;
-                        int i10;
-                        int i11 = r4;
-                        TLObject tLObject2 = tLObject;
-                        TLRPC.TL_error tL_error2 = tL_error;
-                        re0 re0Var22 = re0Var3;
-                        switch (i11) {
-                            case 0:
-                                re0Var22.getClass();
-                                if (tL_error2 == null) {
-                                    re0Var22.f37203n = (TL_account.Password) tLObject2;
-                                    re0Var22.h(null);
-                                    return;
-                                }
-                                return;
-                            case 1:
-                                yg0 yg0Var = re0Var22.f37208y;
-                                yg0Var.k1(false, true);
-                                if (tL_error2 == null) {
-                                    TLRPC.TL_auth_passwordRecovery tL_auth_passwordRecovery = (TLRPC.TL_auth_passwordRecovery) tLObject2;
-                                    if (yg0Var.getParentActivity() != null) {
-                                        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(yg0Var.getParentActivity());
-                                        String str = tL_auth_passwordRecovery.email_pattern;
-                                        SpannableStringBuilder valueOf = SpannableStringBuilder.valueOf(str);
-                                        int indexOf = str.indexOf(42);
-                                        int lastIndexOf = str.lastIndexOf(42);
-                                        if (indexOf != lastIndexOf && indexOf != -1 && lastIndexOf != -1) {
-                                            ?? obj = new Object();
-                                            obj.f26905a |= 256;
-                                            obj.f26906b = indexOf;
-                                            int i12 = lastIndexOf + 1;
-                                            obj.f26907c = i12;
-                                            valueOf.setSpan(new org.telegram.ui.Components.q01(obj, 0), indexOf, i12, 0);
-                                        }
-                                        SpannableStringBuilder formatSpannable = AndroidUtilities.formatSpannable(LocaleController.getString(R.string.RestoreEmailSent), valueOf);
-                                        org.telegram.ui.ActionBar.c2 c2Var = alertDialog$Builder.f18446a;
-                                        c2Var.T = formatSpannable;
-                                        c2Var.R = LocaleController.getString("RestoreEmailSentTitle", R.string.RestoreEmailSentTitle);
-                                        alertDialog$Builder.k(LocaleController.getString(R.string.Continue), new f20(16, re0Var22, tL_auth_passwordRecovery));
-                                        Dialog showDialog = yg0Var.showDialog(c2Var);
-                                        if (showDialog != null) {
-                                            showDialog.setCanceledOnTouchOutside(false);
-                                            showDialog.setCancelable(false);
-                                            return;
-                                        }
-                                        return;
-                                    }
-                                    return;
-                                } else if (tL_error2.text.startsWith("FLOOD_WAIT")) {
-                                    int intValue = Utilities.parseInt((CharSequence) tL_error2.text).intValue();
-                                    if (intValue < 60) {
-                                        formatPluralString = LocaleController.formatPluralString("Seconds", intValue, new Object[0]);
-                                    } else {
-                                        formatPluralString = LocaleController.formatPluralString("Minutes", intValue / 60, new Object[0]);
-                                    }
-                                    yg0Var.l1(LocaleController.getString(R.string.WrongCodeTitle), LocaleController.formatString("FloodWaitTime", R.string.FloodWaitTime, formatPluralString));
-                                    return;
-                                } else {
-                                    yg0Var.l1(LocaleController.getString(R.string.RestorePasswordNoEmailTitle), tL_error2.text);
-                                    return;
-                                }
-                            default:
-                                yg0 yg0Var2 = re0Var22.f37208y;
-                                re0Var22.h = false;
-                                if (tL_error2 != null && "SRP_ID_INVALID".equals(tL_error2.text)) {
-                                    TL_account.getPassword getpassword = new TL_account.getPassword();
-                                    i10 = ((org.telegram.ui.ActionBar.o2) yg0Var2).currentAccount;
-                                    ConnectionsManager.getInstance(i10).sendRequest(getpassword, new pe0(re0Var22, 0), 8);
-                                    return;
-                                } else if (tLObject2 instanceof TLRPC.TL_auth_authorization) {
-                                    yg0Var2.v1(false, true);
-                                    re0Var22.postDelayed(new oa0(12, re0Var22, tLObject2), 150L);
-                                    return;
-                                } else {
-                                    yg0Var2.k1(false, true);
-                                    if (tL_error2.text.equals("PASSWORD_HASH_INVALID")) {
-                                        if (yg0Var2.getParentActivity() != null) {
-                                            re0Var22.f37199a.setText("");
-                                            yg0.U0(yg0Var2, re0Var22.f37207x, true);
-                                            return;
-                                        }
-                                        return;
-                                    } else if (tL_error2.text.startsWith("FLOOD_WAIT")) {
-                                        int intValue2 = Utilities.parseInt((CharSequence) tL_error2.text).intValue();
-                                        if (intValue2 < 60) {
-                                            formatPluralString2 = LocaleController.formatPluralString("Seconds", intValue2, new Object[0]);
-                                        } else {
-                                            formatPluralString2 = LocaleController.formatPluralString("Minutes", intValue2 / 60, new Object[0]);
-                                        }
-                                        yg0Var2.l1(LocaleController.getString(R.string.RestorePasswordNoEmailTitle), LocaleController.formatString("FloodWaitTime", R.string.FloodWaitTime, formatPluralString2));
-                                        return;
-                                    } else {
-                                        yg0Var2.l1(LocaleController.getString(R.string.RestorePasswordNoEmailTitle), tL_error2.text);
-                                        return;
-                                    }
-                                }
-                        }
-                    }
-                });
-                return;
+            }
+            this.h = true;
+            this.f39521y.n1(0, true);
+            Utilities.globalQueue.postRunnable(new r80(19, this, obj));
         }
+    }
+
+    @Override
+    public final void j() {
+        AndroidUtilities.runOnUIThread(new g10(this, 19), wg0.f42386t0);
+    }
+
+    @Override
+    public final void k(Bundle bundle) {
+        Bundle bundle2 = bundle.getBundle("passview_params");
+        this.f39515f = bundle2;
+        if (bundle2 != null) {
+            m(bundle2, true);
+        }
+        String string = bundle.getString("passview_code");
+        if (string != null) {
+            this.f39511a.setText(string);
+        }
+    }
+
+    @Override
+    public final void l(Bundle bundle) {
+        String obj = this.f39511a.getText().toString();
+        if (obj.length() != 0) {
+            bundle.putString("passview_code", obj);
+        }
+        Bundle bundle2 = this.f39515f;
+        if (bundle2 != null) {
+            bundle.putBundle("passview_params", bundle2);
+        }
+    }
+
+    @Override
+    public final void m(Bundle bundle, boolean z10) {
+        if (bundle == null) {
+            return;
+        }
+        boolean isEmpty = bundle.isEmpty();
+        EditTextBoldCursor editTextBoldCursor = this.f39511a;
+        if (isEmpty) {
+            AndroidUtilities.hideKeyboard(editTextBoldCursor);
+            return;
+        }
+        editTextBoldCursor.setText("");
+        this.f39515f = bundle;
+        String string = bundle.getString("password");
+        this.f39517r = string;
+        if (string != null) {
+            SerializedData serializedData = new SerializedData(Utilities.hexToBytes(string));
+            this.f39516n = TL_account.Password.TLdeserialize(serializedData, serializedData.readInt32(false), false);
+        }
+        this.f39518s = bundle.getString("phoneFormated");
+        this.v = bundle.getString("phoneHash");
+        this.f39519w = bundle.getString("code");
+        TL_account.Password password = this.f39516n;
+        if (password != null && !TextUtils.isEmpty(password.hint)) {
+            editTextBoldCursor.setHint(this.f39516n.hint);
+        } else {
+            editTextBoldCursor.setHint((CharSequence) null);
+        }
+    }
+
+    @Override
+    public final void n() {
+        int i10 = org.telegram.ui.ActionBar.j6.G6;
+        this.d.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, i10, false));
+        this.f39512b.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.D6, false));
+        int w02 = org.telegram.ui.ActionBar.j6.w0(null, i10, false);
+        EditTextBoldCursor editTextBoldCursor = this.f39511a;
+        editTextBoldCursor.setTextColor(w02);
+        editTextBoldCursor.setCursorColor(org.telegram.ui.ActionBar.j6.w0(null, i10, false));
+        editTextBoldCursor.setHintTextColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.H6, false));
+        this.f39513c.setTextColor(org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.q6, false));
+        this.f39520x.f();
     }
 }

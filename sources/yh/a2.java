@@ -1,38 +1,36 @@
 package yh;
 
-import com.google.firebase.sessions.FirebaseSessionsRegistrar;
-public final class a2 implements org.telegram.ui.ActionBar.b2, d9.e, q9.d {
-    public final int f46944a;
+import android.text.Editable;
+import android.text.TextWatcher;
+import org.telegram.messenger.AndroidUtilities;
+public final class a2 implements TextWatcher {
+    public boolean f50231a;
+    public final y1 f50232b;
 
-    public a2(int i10) {
-        this.f46944a = i10;
+    public a2(y1 y1Var) {
+        this.f50232b = y1Var;
     }
 
     @Override
-    public Object G(cf.c cVar) {
-        switch (this.f46944a) {
-            case 10:
-                return FirebaseSessionsRegistrar.e(cVar);
-            case 11:
-                return FirebaseSessionsRegistrar.f(cVar);
-            case 12:
-                return FirebaseSessionsRegistrar.a(cVar);
-            case 13:
-                return FirebaseSessionsRegistrar.b(cVar);
-            case 14:
-                return FirebaseSessionsRegistrar.d(cVar);
-            default:
-                return FirebaseSessionsRegistrar.c(cVar);
+    public final void afterTextChanged(Editable editable) {
+        if (!this.f50231a && editable.length() > 12) {
+            this.f50231a = true;
+            editable.delete(12, editable.length());
+            y1 y1Var = this.f50232b;
+            AndroidUtilities.shakeView(y1Var);
+            try {
+                y1Var.performHapticFeedback(3, 2);
+            } catch (Exception unused) {
+            }
+            this.f50231a = false;
         }
     }
 
     @Override
-    public java.lang.Object apply(java.lang.Object r26) {
-        throw new UnsupportedOperationException("Method not decompiled: yh.a2.apply(java.lang.Object):java.lang.Object");
+    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
     }
 
     @Override
-    public void f(org.telegram.ui.ActionBar.c2 c2Var, int i10) {
-        int i11 = a4.f46967q1;
+    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
     }
 }

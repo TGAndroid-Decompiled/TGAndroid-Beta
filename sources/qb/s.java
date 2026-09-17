@@ -2,11 +2,11 @@ package qb;
 
 import java.util.concurrent.Executor;
 public final class s {
-    public final Executor f41289a;
-    public final Runnable f41290b;
+    public final Executor f44336a;
+    public final Runnable f44337b;
 
     public s(Runnable runnable, Executor executor) {
-        this.f41289a = executor;
-        this.f41290b = runnable;
+        this.f44336a = executor;
+        this.f44337b = runnable;
     }
 }

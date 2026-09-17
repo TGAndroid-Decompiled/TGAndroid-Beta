@@ -1,31 +1,25 @@
 package org.telegram.messenger;
+public final class h8 implements Runnable {
+    public final int f17898a;
+    public final MediaDataController f17899b;
+    public final String f17900c;
+    public final boolean d;
 
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class h8 implements RequestDelegate {
-    public final int f16311a;
-    public final int f16312b;
-    public final String f16313c;
-    public final String d;
-    public final BaseController e;
-
-    public h8(BaseController baseController, int i10, String str, String str2, int i11) {
-        this.f16311a = i11;
-        this.e = baseController;
-        this.f16312b = i10;
-        this.f16313c = str;
-        this.d = str2;
+    public h8(MediaDataController mediaDataController, String str, boolean z10, int i10) {
+        this.f17898a = i10;
+        this.f17899b = mediaDataController;
+        this.f17900c = str;
+        this.d = z10;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f16311a) {
+    public final void run() {
+        switch (this.f17898a) {
             case 0:
-                ((MediaDataController) this.e).lambda$fetchNewEmojiKeywords$212(this.f16312b, this.f16313c, this.d, tLObject, tL_error);
+                this.f17899b.lambda$processLoadedDiceStickers$87(this.f17900c, this.d);
                 return;
             default:
-                ((MessagesController) this.e).lambda$checkPromoInfoInternal$169(this.f16312b, this.f16313c, this.d, tLObject, tL_error);
+                this.f17899b.lambda$loadStickersByEmojiOrName$83(this.f17900c, this.d);
                 return;
         }
     }

@@ -9,6 +9,6 @@ public abstract class t7 {
         if (!(obj instanceof gd.e)) {
             return;
         }
-        throw ((gd.e) obj).f9615a;
+        throw ((gd.e) obj).f10610a;
     }
 }

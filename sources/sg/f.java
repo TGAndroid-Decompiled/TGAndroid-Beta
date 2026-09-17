@@ -1,123 +1,43 @@
 package sg;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.opengl.GLES20;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.nio.FloatBuffer;
-import java.nio.charset.StandardCharsets;
-import java.util.Locale;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-public final class f {
-    public static final String[] f42968a0 = {"models/star.binobj"};
-    public static final String[] f42969b0 = {"models/diamond_outer_2.binobj", "models/diamond_outer.binobj", "models/diamond.binobj"};
-    public static final String[] f42970c0 = {"models/coin_outer.binobj", "models/coin_inner.binobj", "models/coin_logo.binobj", "models/coin_stars.binobj"};
-    public static final String[] f42971d0 = {"models/coin_outer.binobj", "models/coin_inner.binobj", "models/deal_logo.binobj", "models/coin_stars.binobj"};
-    public boolean D;
-    public final int E;
-    public final int F;
-    public final int G;
-    public final int H;
-    public final int I;
-    public final int J;
-    public final int K;
-    public final int L;
-    public final int M;
-    public final int N;
-    public final int O;
-    public final int P;
-    public final int Q;
-    public final int R;
-    public final int S;
-    public final int T;
-    public final Bitmap U;
-    public Bitmap V;
-    public final int W;
-    public final int X;
-    public final int[] Y;
-    public final int f42972a;
-    public final int f42973b;
-    public final int f42974c;
-    public final FloatBuffer[] d;
-    public final FloatBuffer[] e;
-    public final FloatBuffer[] f42975f;
-    public final int f42976g;
-    public final int h;
-    public final int f42977i;
-    public final int f42978j;
-    public final int f42979k;
-    public final int f42980l;
-    public final int f42981m;
-    public final int f42982n;
-    public final int f42983o;
-    public final int f42984p;
-    public final int f42985q;
-    public final int f42986r;
-    public float f42987s;
-    public final int[] f42988t;
-    public int f42992y;
-    public int f42993z;
-    public float f42989u = 0.0f;
-    public float v = 2.0f;
-    public float f42990w = 0.13f;
-    public float f42991x = 1.0f;
-    public float A = 0.2f;
-    public int B = -1;
-    public int C = -1;
-    public float Z = 0.0f;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import com.google.android.gms.internal.vision.e2;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.vl;
+import org.telegram.ui.ActionBar.f6;
+import org.telegram.ui.ActionBar.j6;
+import org.telegram.ui.Components.Premium.LimitPreviewView;
+import w7.x5;
+public final class f extends LinearLayout {
+    public final TextView f46117a;
+    public final TextView f46118b;
+    public final LimitPreviewView f46119c;
 
-    public f(android.content.Context r33, int r34) {
-        throw new UnsupportedOperationException("Method not decompiled: sg.f.<init>(android.content.Context, int):void");
+    public f(Context context, f6 f6Var) {
+        super(context);
+        setOrientation(1);
+        setPadding(AndroidUtilities.dp(6.0f), 0, AndroidUtilities.dp(6.0f), 0);
+        TextView textView = new TextView(context);
+        this.f46117a = textView;
+        e2.m(15.0f, 1, textView);
+        textView.setTextColor(j6.v0(j6.G6, f6Var));
+        addView(textView, x5.p(-1, -2, 0.0f, 0, 16, 0, 16, 0));
+        TextView textView2 = new TextView(context);
+        this.f46118b = textView2;
+        vl.n(j6.f21070y6, f6Var, textView2, 1, 14.0f);
+        addView(textView2, x5.p(-1, -2, 0.0f, 0, 16, 1, 16, 0));
+        LimitPreviewView limitPreviewView = new LimitPreviewView(context, 0, 10, f6Var, 20);
+        this.f46119c = limitPreviewView;
+        addView(limitPreviewView, x5.p(-1, -2, 0.0f, 0, 0, 8, 0, 21));
     }
 
-    public static String b(Context context, String str) {
-        StringBuilder sb2 = new StringBuilder();
-        try {
-            InputStream open = context.getAssets().open(str);
-            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(open, StandardCharsets.UTF_8));
-            while (true) {
-                String readLine = bufferedReader.readLine();
-                if (readLine == null) {
-                    break;
-                }
-                sb2.append(readLine);
-                sb2.append("\n");
-            }
-            bufferedReader.close();
-            open.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return sb2.toString();
-    }
-
-    public static String c(String str) {
-        Matcher matcher = Pattern.compile("RGB#([0-9a-fA-F]{6})").matcher(str);
-        StringBuffer stringBuffer = new StringBuffer();
-        while (matcher.find()) {
-            String group = matcher.group(1);
-            matcher.appendReplacement(stringBuffer, String.format(Locale.US, "vec3(%.3f, %.3f, %.3f)", Double.valueOf(Integer.parseInt(group.substring(0, 2), 16) / 255.0d), Double.valueOf(Integer.parseInt(group.substring(2, 4), 16) / 255.0d), Double.valueOf(Integer.parseInt(group.substring(4, 6), 16) / 255.0d)));
-        }
-        matcher.appendTail(stringBuffer);
-        return stringBuffer.toString();
-    }
-
-    public final void a(int i10, boolean z10) {
-        int i11 = i10 * 3;
-        GLES20.glBindBuffer(34962, this.Y[i11]);
-        GLES20.glVertexAttribPointer(this.f42980l, 2, 5126, false, 0, 0);
-        GLES20.glBindBuffer(34962, this.Y[i11 + 1]);
-        GLES20.glVertexAttribPointer(this.f42981m, 3, 5126, false, 0, 0);
-        GLES20.glBindBuffer(34962, this.Y[i11 + 2]);
-        GLES20.glVertexAttribPointer(this.f42979k, 3, 5126, false, 0, 0);
-        GLES20.glUniform1i(this.O, i10);
-        GLES20.glUniform1i(this.P, i10);
-        GLES20.glUniform1i(this.Q, z10 ? 1 : 0);
-        GLES20.glUniform1i(this.R, this.X);
-        GLES20.glDrawArrays(4, 0, this.f42988t[i10] / 3);
+    public final void a(e eVar) {
+        this.f46117a.setText(eVar.f46101a);
+        this.f46118b.setText(eVar.f46102b);
+        LimitPreviewView limitPreviewView = this.f46119c;
+        limitPreviewView.v.setText(String.format("%d", Integer.valueOf(eVar.d)));
+        limitPreviewView.f24092w.setText(String.format("%d", Integer.valueOf(eVar.f46103c)));
     }
 }

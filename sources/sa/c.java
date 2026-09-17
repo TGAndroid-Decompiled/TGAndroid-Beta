@@ -22,14 +22,14 @@ import org.json.JSONObject;
 import org.telegram.ui.Cells.p6;
 public final class c {
     public static final Pattern d = Pattern.compile("[0-9]+s");
-    public static final Charset e = Charset.forName("UTF-8");
-    public final Context f42908a;
-    public final pa.b f42909b;
-    public final d f42910c = new d();
+    public static final Charset f46002e = Charset.forName("UTF-8");
+    public final Context f46003a;
+    public final pa.b f46004b;
+    public final d f46005c = new d();
 
     public c(Context context, pa.b bVar) {
-        this.f42908a = context;
-        this.f42909b = bVar;
+        this.f46003a = context;
+        this.f46004b = bVar;
     }
 
     public static URL a(String str) {
@@ -45,7 +45,7 @@ public final class c {
         InputStream errorStream = httpURLConnection.getErrorStream();
         String str4 = null;
         if (errorStream != null) {
-            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(errorStream, e));
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(errorStream, f46002e));
             try {
                 StringBuilder sb2 = new StringBuilder();
                 while (true) {
@@ -91,7 +91,7 @@ public final class c {
 
     public static a e(HttpURLConnection httpURLConnection) {
         InputStream inputStream = httpURLConnection.getInputStream();
-        JsonReader jsonReader = new JsonReader(new InputStreamReader(inputStream, e));
+        JsonReader jsonReader = new JsonReader(new InputStreamReader(inputStream, f46002e));
         a5.a a2 = b.a();
         jsonReader.beginObject();
         String str = null;
@@ -111,16 +111,16 @@ public final class c {
                 while (jsonReader.hasNext()) {
                     String nextName2 = jsonReader.nextName();
                     if (nextName2.equals("token")) {
-                        a2.f278c = jsonReader.nextString();
+                        a2.f298c = jsonReader.nextString();
                     } else if (nextName2.equals("expiresIn")) {
                         a2.d = Long.valueOf(d(jsonReader.nextString()));
                     } else {
                         jsonReader.skipValue();
                     }
                 }
-                b c10 = a2.c();
+                b b10 = a2.b();
                 jsonReader.endObject();
-                bVar = c10;
+                bVar = b10;
             } else {
                 jsonReader.skipValue();
             }
@@ -133,13 +133,13 @@ public final class c {
 
     public static b f(HttpURLConnection httpURLConnection) {
         InputStream inputStream = httpURLConnection.getInputStream();
-        JsonReader jsonReader = new JsonReader(new InputStreamReader(inputStream, e));
+        JsonReader jsonReader = new JsonReader(new InputStreamReader(inputStream, f46002e));
         a5.a a2 = b.a();
         jsonReader.beginObject();
         while (jsonReader.hasNext()) {
             String nextName = jsonReader.nextName();
             if (nextName.equals("token")) {
-                a2.f278c = jsonReader.nextString();
+                a2.f298c = jsonReader.nextString();
             } else if (nextName.equals("expiresIn")) {
                 a2.d = Long.valueOf(d(jsonReader.nextString()));
             } else {
@@ -149,8 +149,8 @@ public final class c {
         jsonReader.endObject();
         jsonReader.close();
         inputStream.close();
-        a2.f277b = 1;
-        return a2.c();
+        a2.f297b = 1;
+        return a2.b();
     }
 
     public static void g(HttpURLConnection httpURLConnection, String str, String str2) {

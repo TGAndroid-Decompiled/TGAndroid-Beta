@@ -1,30 +1,44 @@
 package org.telegram.messenger;
-
-import org.telegram.messenger.Utilities;
 public final class ze implements Runnable {
-    public final int f18091a;
-    public final MessagesStorage f18092b;
-    public final Utilities.Callback f18093c;
-    public final long d;
-    public final long e;
+    public final int f19870a = 2;
+    public final MessagesStorage f19871b;
+    public final boolean f19872c;
+    public final int d;
+    public final long f19873e;
 
-    public ze(MessagesStorage messagesStorage, Utilities.Callback callback, long j3, long j10, int i10) {
-        this.f18091a = i10;
-        this.f18092b = messagesStorage;
-        this.f18093c = callback;
-        this.d = j3;
-        this.e = j10;
+    public ze(MessagesStorage messagesStorage, int i10, boolean z10, long j3) {
+        this.f19871b = messagesStorage;
+        this.d = i10;
+        this.f19872c = z10;
+        this.f19873e = j3;
     }
 
     @Override
     public final void run() {
-        switch (this.f18091a) {
+        switch (this.f19870a) {
             case 0:
-                this.f18092b.lambda$getEphemeralMessages$208(this.f18093c, this.d, this.e);
+                this.f19871b.lambda$markMessagesAsDeleted$231(this.f19873e, this.d, this.f19872c);
+                return;
+            case 1:
+                this.f19871b.lambda$removeFromDownloadQueue$182(this.f19872c, this.d, this.f19873e);
                 return;
             default:
-                this.f18092b.lambda$getEphemeralMessages$207(this.f18093c, this.d, this.e);
+                this.f19871b.lambda$loadPendingTasks$31(this.d, this.f19872c, this.f19873e);
                 return;
         }
+    }
+
+    public ze(MessagesStorage messagesStorage, long j3, int i10, boolean z10) {
+        this.f19871b = messagesStorage;
+        this.f19873e = j3;
+        this.d = i10;
+        this.f19872c = z10;
+    }
+
+    public ze(MessagesStorage messagesStorage, boolean z10, int i10, long j3) {
+        this.f19871b = messagesStorage;
+        this.f19872c = z10;
+        this.d = i10;
+        this.f19873e = j3;
     }
 }

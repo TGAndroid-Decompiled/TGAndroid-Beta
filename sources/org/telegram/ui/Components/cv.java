@@ -1,11 +1,17 @@
 package org.telegram.ui.Components;
 
+import android.content.Context;
 import java.util.ArrayList;
-public final class cv extends pv {
-    public final sv h;
+public final class cv extends rv {
+    public final rv W;
 
-    public cv(int i10, ArrayList arrayList, sv svVar) {
-        super(i10, arrayList, svVar);
-        this.h = svVar;
+    public cv(rv rvVar, org.telegram.ui.ActionBar.n2 n2Var, Context context, org.telegram.ui.ActionBar.f6 f6Var, ArrayList arrayList) {
+        super(n2Var, context, f6Var, arrayList);
+        this.W = rvVar;
+    }
+
+    @Override
+    public final void Y() {
+        this.W.dismiss();
     }
 }

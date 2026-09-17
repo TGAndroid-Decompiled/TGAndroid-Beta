@@ -12,9 +12,9 @@ import java.util.Random;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.c90;
+import org.telegram.ui.Components.d90;
 import org.telegram.ui.Components.t00;
-import org.telegram.ui.Components.vc;
+import org.telegram.ui.Components.yc;
 public abstract class p6 {
     public static float a(float f7, float f10, float f11, float f12) {
         return (f7 * f10) + f11 + f12;
@@ -88,12 +88,12 @@ public abstract class p6 {
         arrayList2.add(num);
     }
 
-    public static void p(int i10, c90 c90Var) {
-        c90Var.setText(AndroidUtilities.replaceTags(LocaleController.getString(i10)));
+    public static void p(int i10, d90 d90Var) {
+        d90Var.setText(AndroidUtilities.replaceTags(LocaleController.getString(i10)));
     }
 
     public static void q(FrameLayout frameLayout, org.telegram.ui.ActionBar.f6 f6Var, TLRPC.TL_error tL_error, boolean z10) {
-        new vc(frameLayout, f6Var).d0(tL_error, z10);
+        new yc(frameLayout, f6Var).d0(tL_error, z10);
     }
 
     public static void r(String str, int i10, ArrayList arrayList) {

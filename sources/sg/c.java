@@ -1,33 +1,36 @@
 package sg;
 
-import android.animation.AnimatorSet;
-import android.animation.ValueAnimator;
-public final class c implements Runnable {
-    public final int f42953a;
-    public final e f42954b;
+import android.content.Context;
+import android.view.View;
+import java.util.ArrayList;
+import org.telegram.messenger.UserConfig;
+public final class c extends b {
+    public d d;
 
-    public c(e eVar, int i10) {
-        this.f42953a = i10;
-        this.f42954b = eVar;
+    @Override
+    public final s4.h0 a() {
+        d dVar = new d(UserConfig.selectedAccount, this.f46051a);
+        this.d = dVar;
+        dVar.f46090r = this;
+        return dVar;
     }
 
     @Override
-    public final void run() {
-        ValueAnimator valueAnimator;
-        switch (this.f42953a) {
-            case 0:
-                e eVar = this.f42954b;
-                AnimatorSet animatorSet = eVar.T;
-                if ((animatorSet != null && animatorSet.isRunning()) || ((valueAnimator = eVar.S) != null && valueAnimator.isRunning())) {
-                    eVar.h(eVar.I);
-                    return;
-                } else {
-                    eVar.k();
-                    return;
-                }
-            default:
-                this.f42954b.i();
-                return;
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(i10, i11);
+        d dVar = this.d;
+        Context context = getContext();
+        int measuredWidth = getMeasuredWidth();
+        int measuredHeight = getMeasuredHeight();
+        ArrayList arrayList = dVar.f46088f;
+        f fVar = new f(context, dVar.f46086c);
+        int i12 = 0;
+        for (int i13 = 0; i13 < arrayList.size(); i13++) {
+            fVar.a((e) arrayList.get(i13));
+            fVar.measure(View.MeasureSpec.makeMeasureSpec(measuredWidth, 1073741824), View.MeasureSpec.makeMeasureSpec(measuredHeight, Integer.MIN_VALUE));
+            ((e) arrayList.get(i13)).f46104e = i12;
+            i12 += fVar.getMeasuredHeight();
         }
+        dVar.f46089n = i12;
     }
 }

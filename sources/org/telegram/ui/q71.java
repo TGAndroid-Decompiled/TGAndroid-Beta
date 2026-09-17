@@ -1,29 +1,20 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.LinearGradient;
-import android.graphics.Paint;
-import android.graphics.Shader;
-import android.view.View;
+import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.messenger.AndroidUtilities;
-public final class q71 extends View {
-    public final Paint f36822a;
-    public final LinearGradient f36823b;
+public final class q71 extends s4.s0 {
+    public final t71 f39777a;
 
-    public q71(s71 s71Var, Context context) {
-        super(context);
-        this.f36822a = new Paint(1);
-        float dp = AndroidUtilities.dp(68.0f);
-        int i10 = org.telegram.ui.ActionBar.j6.f18933h5;
-        this.f36823b = new LinearGradient(0.0f, 0.0f, 0.0f, dp, new int[]{org.telegram.ui.ActionBar.j6.l1(0.0f, s71Var.getThemedColor(i10)), s71Var.getThemedColor(i10)}, new float[]{0.0f, 0.2f}, Shader.TileMode.CLAMP);
+    public q71(t71 t71Var) {
+        this.f39777a = t71Var;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        LinearGradient linearGradient = this.f36823b;
-        Paint paint = this.f36822a;
-        paint.setShader(linearGradient);
-        canvas.drawRect(0.0f, 0.0f, getWidth(), getHeight(), paint);
+    public final void b(RecyclerView recyclerView, int i10, int i11) {
+        t71 t71Var = this.f39777a;
+        if (t71Var.d.K1) {
+            AndroidUtilities.hideKeyboard(t71Var.f40678c0);
+        }
+        t71.S(t71Var);
     }
 }

@@ -8,9 +8,8 @@ import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
 import n6.i;
 import n6.l;
-import n7.a1;
 import qb.m;
-import v7.r1;
+import v7.a6;
 import w7.d7;
 import w7.e7;
 import w7.j7;
@@ -18,24 +17,24 @@ import w7.la;
 import w7.na;
 import w7.y6;
 public final class a {
-    public volatile Bitmap f44304a;
-    public final int f44305b;
-    public final int f44306c;
+    public volatile Bitmap f47797a;
+    public final int f47798b;
+    public final int f47799c;
     public final int d;
-    public final int e;
+    public final int f47800e;
 
     public a(Bitmap bitmap, int i10) {
         l.h(bitmap);
-        this.f44304a = bitmap;
-        this.f44305b = bitmap.getWidth();
-        this.f44306c = bitmap.getHeight();
+        this.f47797a = bitmap;
+        this.f47798b = bitmap.getWidth();
+        this.f47799c = bitmap.getHeight();
         boolean z10 = true;
         if (i10 != 0 && i10 != 90 && i10 != 180 && i10 != 270) {
             z10 = false;
         }
         l.a("Invalid rotation. Only 0, 90, 180, 270 are supported currently.", z10);
         this.d = i10;
-        this.e = -1;
+        this.f47800e = -1;
     }
 
     public static a a(Bitmap bitmap, int i10) {
@@ -65,9 +64,9 @@ public final class a {
         }
         long elapsedRealtime2 = SystemClock.elapsedRealtime() - elapsedRealtime;
         j7 j7Var = j7.INPUT_IMAGE_CONSTRUCTION;
-        Task task2 = a2.e;
+        Task task2 = a2.f48242e;
         long elapsedRealtime3 = SystemClock.elapsedRealtime();
-        HashMap hashMap = a2.f44784i;
+        HashMap hashMap = a2.f48245i;
         if (hashMap.get(j7Var) == null) {
             task = task2;
             aVar = aVar2;
@@ -80,23 +79,23 @@ public final class a {
         }
         hashMap.put(j7Var, Long.valueOf(elapsedRealtime3));
         ?? obj = new Object();
-        obj.f14294c = y6.BITMAP;
-        obj.f14293b = d7.BITMAP;
+        obj.f15663c = y6.BITMAP;
+        obj.f15662b = d7.BITMAP;
         obj.d = Integer.valueOf(allocationByteCount & Integer.MAX_VALUE);
-        obj.f14295f = Integer.valueOf(height & Integer.MAX_VALUE);
-        obj.e = Integer.valueOf(width & Integer.MAX_VALUE);
-        obj.f14292a = Long.valueOf(Long.MAX_VALUE & elapsedRealtime2);
+        obj.f15665f = Integer.valueOf(height & Integer.MAX_VALUE);
+        obj.f15664e = Integer.valueOf(width & Integer.MAX_VALUE);
+        obj.f15661a = Long.valueOf(Long.MAX_VALUE & elapsedRealtime2);
         obj.h = Integer.valueOf(i10 & Integer.MAX_VALUE);
         e7 e7Var = new e7(obj);
-        r1 r1Var = new r1(5, false);
-        r1Var.f44102c = e7Var;
-        a1 a1Var = new a1(r1Var);
+        a6 a6Var = new a6(3, false);
+        a6Var.d = e7Var;
+        o0.a aVar3 = new o0.a(a6Var);
         if (task.isSuccessful()) {
             a10 = (String) task.getResult();
         } else {
-            a10 = i.f15058c.a(a2.f44783g);
+            a10 = i.f16581c.a(a2.f48244g);
         }
-        m.f41276a.execute(new v(a2, a1Var, a10));
+        m.f44322a.execute(new v(a2, aVar3, a10));
         return aVar;
     }
 }

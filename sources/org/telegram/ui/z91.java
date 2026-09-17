@@ -1,49 +1,7 @@
 package org.telegram.ui;
-
-import android.os.Build;
-import androidx.recyclerview.widget.RecyclerView;
-public final class z91 extends s4.s0 {
-    public final int f40190a;
-    public final ab1 f40191b;
-
-    public z91(ab1 ab1Var, int i10) {
-        this.f40190a = i10;
-        this.f40191b = ab1Var;
-    }
-
+public final class z91 extends s4.j {
     @Override
-    public final void b(RecyclerView recyclerView, int i10, int i11) {
-        ah.i iVar;
-        ab1 ab1Var;
-        ah.i iVar2;
-        ab1 ab1Var2;
-        ah.i iVar3;
-        switch (this.f40190a) {
-            case 0:
-                ab1 ab1Var3 = this.f40191b;
-                if (ab1Var3.f31804r0.size() != ab1Var3.f31806s0.size() && !ab1Var3.f31811w0 && ab1Var3.U.N0() > ab1Var3.X.f33602c0 - 20) {
-                    ab1Var3.h0();
-                }
-                if (Build.VERSION.SDK_INT >= 31 && (iVar = ab1Var3.C0) != null) {
-                    iVar.f(i10, i11);
-                    ab1.W(ab1Var3);
-                    return;
-                }
-                return;
-            case 1:
-                if (Build.VERSION.SDK_INT >= 31 && (iVar2 = (ab1Var = this.f40191b).C0) != null) {
-                    iVar2.f(i10, i11);
-                    ab1.W(ab1Var);
-                    return;
-                }
-                return;
-            default:
-                if (Build.VERSION.SDK_INT >= 31 && (iVar3 = (ab1Var2 = this.f40191b).C0) != null) {
-                    iVar3.f(i10, i11);
-                    ab1.W(ab1Var2);
-                    return;
-                }
-                return;
-        }
+    public final long K(long j3, long j10, long j11) {
+        return j3;
     }
 }

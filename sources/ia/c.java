@@ -5,16 +5,16 @@ import java.util.Collections;
 import java.util.Map;
 import n4.y;
 public final class c {
-    public final String f11064a;
-    public final Map f11065b;
+    public final String f11958a;
+    public final Map f11959b;
 
     public c(String str, Map map) {
-        this.f11064a = str;
-        this.f11065b = map;
+        this.f11958a = str;
+        this.f11959b = map;
     }
 
     public static y a(String str) {
-        return new y(str);
+        return new y(str, 18);
     }
 
     public static c c(String str) {
@@ -22,7 +22,7 @@ public final class c {
     }
 
     public final Annotation b(Class cls) {
-        return (Annotation) this.f11065b.get(cls);
+        return (Annotation) this.f11959b.get(cls);
     }
 
     public final boolean equals(Object obj) {
@@ -33,17 +33,17 @@ public final class c {
             return false;
         }
         c cVar = (c) obj;
-        if (this.f11064a.equals(cVar.f11064a) && this.f11065b.equals(cVar.f11065b)) {
+        if (this.f11958a.equals(cVar.f11958a) && this.f11959b.equals(cVar.f11959b)) {
             return true;
         }
         return false;
     }
 
     public final int hashCode() {
-        return this.f11065b.hashCode() + (this.f11064a.hashCode() * 31);
+        return this.f11959b.hashCode() + (this.f11958a.hashCode() * 31);
     }
 
     public final String toString() {
-        return "FieldDescriptor{name=" + this.f11064a + ", properties=" + this.f11065b.values() + "}";
+        return "FieldDescriptor{name=" + this.f11958a + ", properties=" + this.f11959b.values() + "}";
     }
 }

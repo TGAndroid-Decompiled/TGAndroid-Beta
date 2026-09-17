@@ -1,35 +1,24 @@
 package org.telegram.ui;
 
-import android.view.TextureView;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.view.ViewGroup;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MessageObject;
-public final class v40 implements nv0 {
-    public final k60 f38273a;
+public final class v40 extends AnimatorListenerAdapter {
+    public final org.telegram.ui.Components.voip.t f41436a;
+    public final j60 f41437b;
 
-    public v40(k60 k60Var) {
-        this.f38273a = k60Var;
+    public v40(j60 j60Var, org.telegram.ui.Components.voip.t tVar) {
+        this.f41437b = j60Var;
+        this.f41436a = tVar;
     }
 
     @Override
-    public final void E0(MessageObject messageObject) {
+    public final void onAnimationEnd(Animator animator) {
         ViewGroup viewGroup;
-        k60 k60Var = this.f38273a;
-        k60Var.Q.J0(true);
-        k60Var.f35022c2.f37314f.setRoundRadius(AndroidUtilities.dp(13.0f), AndroidUtilities.dp(13.0f), 0, 0);
-        viewGroup = ((org.telegram.ui.ActionBar.g3) k60Var).containerView;
-        viewGroup.invalidate();
-    }
-
-    @Override
-    public final void H(MessageObject messageObject) {
-        ViewGroup viewGroup;
-        viewGroup = ((org.telegram.ui.ActionBar.g3) this.f38273a).containerView;
-        viewGroup.invalidate();
-    }
-
-    @Override
-    public final TextureView j0() {
-        return null;
+        org.telegram.ui.Components.voip.t tVar = this.f41436a;
+        if (tVar.getParent() != null) {
+            viewGroup = ((org.telegram.ui.ActionBar.f3) this.f41437b).containerView;
+            viewGroup.removeView(tVar);
+        }
     }
 }

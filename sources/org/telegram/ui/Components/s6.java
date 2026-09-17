@@ -1,30 +1,33 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-public final class s6 implements View.OnClickListener {
-    public final int f27777a;
-    public final Runnable f27778b;
+import android.util.Property;
+public abstract class s6 extends Property {
+    public final int f30228a;
 
-    public s6(int i10, Runnable runnable) {
-        this.f27777a = i10;
-        this.f27778b = runnable;
-    }
-
-    @Override
-    public final void onClick(View view) {
-        switch (this.f27777a) {
-            case 0:
-                this.f27778b.run();
-                return;
+    public s6(String str, int i10) {
+        super(Float.class, str);
+        this.f30228a = i10;
+        switch (i10) {
             case 1:
-                Runnable runnable = this.f27778b;
-                if (runnable != null) {
-                    runnable.run();
-                    return;
-                }
+                super(Integer.class, str);
                 return;
             default:
-                this.f27778b.run();
+                return;
+        }
+    }
+
+    public abstract void a(int i10, Object obj);
+
+    public abstract void b(Object obj, float f7);
+
+    @Override
+    public final void set(Object obj, Object obj2) {
+        switch (this.f30228a) {
+            case 0:
+                b(obj, ((Float) obj2).floatValue());
+                return;
+            default:
+                a(((Integer) obj2).intValue(), obj);
                 return;
         }
     }

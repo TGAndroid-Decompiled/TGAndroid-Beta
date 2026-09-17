@@ -1,90 +1,34 @@
 package org.telegram.ui.Components.voip;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.RectF;
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.TextView;
+import android.animation.ValueAnimator;
+import android.view.WindowManager;
 import org.telegram.messenger.AndroidUtilities;
-import w7.x5;
-public final class g2 extends FrameLayout {
-    public String f28933a;
-    public final ImageView f28934b;
-    public final TextView f28935c;
-    public boolean d;
-    public final q1 e;
-    public final RectF f28936f;
+public final class g2 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f31525a;
+    public final k2 f31526b;
 
-    public g2(Context context, q1 q1Var, int i10) {
-        super(context);
-        float f7;
-        this.f28936f = new RectF();
-        setFocusable(true);
-        setFocusableInTouchMode(true);
-        this.e = q1Var;
-        q1Var.a(this);
-        ImageView imageView = new ImageView(context);
-        this.f28934b = imageView;
-        addView(imageView, x5.d(24, 24.0f, 16, 8.0f, 2.0f, 8.0f, 2.0f));
-        TextView textView = new TextView(context);
-        this.f28935c = textView;
-        textView.setTextColor(-1);
-        textView.setTextSize(1, 14.0f);
-        if (i10 == 0) {
-            f7 = 14.0f;
-        } else {
-            f7 = 36.0f;
-        }
-        addView(textView, x5.d(-2, -2.0f, 16, f7, 2.0f, 14.0f, 2.0f));
+    public g2(k2 k2Var, int i10) {
+        this.f31525a = i10;
+        this.f31526b = k2Var;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        Paint b10;
-        Paint b11;
-        Paint b12;
-        RectF rectF = this.f28936f;
-        rectF.set(0.0f, 0.0f, getWidth(), getHeight());
-        float x10 = ((View) getParent()).getX() + getX();
-        float y3 = ((View) getParent()).getY() + getY();
-        q1 q1Var = this.e;
-        q1Var.d(x10, y3);
-        Paint paint = q1Var.f29154l;
-        if (this.d) {
-            b10 = paint;
-        } else {
-            b10 = q1Var.b();
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f31525a) {
+            case 0:
+                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                k2 k2Var = this.f31526b;
+                WindowManager.LayoutParams layoutParams = k2Var.d;
+                layoutParams.x = (int) floatValue;
+                AndroidUtilities.updateViewLayout(k2Var.f31607c, k2Var.f31605a, layoutParams);
+                return;
+            default:
+                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                k2 k2Var2 = this.f31526b;
+                WindowManager.LayoutParams layoutParams2 = k2Var2.d;
+                layoutParams2.y = (int) floatValue2;
+                AndroidUtilities.updateViewLayout(k2Var2.f31607c, k2Var2.f31605a, layoutParams2);
+                return;
         }
-        int alpha = b10.getAlpha();
-        canvas.saveLayerAlpha(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), alpha, 31);
-        if (this.d) {
-            b11 = paint;
-        } else {
-            b11 = q1Var.b();
-        }
-        b11.setAlpha(255);
-        float dp = AndroidUtilities.dp(16.0f);
-        float dp2 = AndroidUtilities.dp(16.0f);
-        if (this.d) {
-            b12 = paint;
-        } else {
-            b12 = q1Var.b();
-        }
-        canvas.drawRoundRect(rectF, dp, dp2, b12);
-        if (!this.d) {
-            paint = q1Var.b();
-        }
-        paint.setAlpha(alpha);
-        if (q1Var.e) {
-            int alpha2 = ((Paint) q1Var.d.f7336a).getAlpha();
-            ((Paint) q1Var.d.f7336a).setAlpha(255);
-            canvas.drawRoundRect(rectF, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), (Paint) q1Var.d.f7336a);
-            ((Paint) q1Var.d.f7336a).setAlpha(alpha2);
-        }
-        canvas.restore();
-        super.dispatchDraw(canvas);
     }
 }

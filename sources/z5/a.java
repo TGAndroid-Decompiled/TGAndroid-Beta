@@ -4,13 +4,13 @@ import android.accounts.Account;
 import java.util.HashMap;
 import java.util.HashSet;
 public final class a {
-    public HashSet f48175a;
-    public boolean f48176b;
-    public boolean f48177c;
+    public HashSet f50790a;
+    public boolean f50791b;
+    public boolean f50792c;
     public boolean d;
-    public String e;
-    public Account f48178f;
-    public String f48179g;
+    public String f50793e;
+    public Account f50794f;
+    public String f50795g;
     public HashMap h;
-    public String f48180i;
+    public String f50796i;
 }

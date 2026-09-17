@@ -1,442 +1,115 @@
 package ig;
 
-import ai.l6;
-import android.animation.Animator;
-import android.animation.ValueAnimator;
+import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Path;
-import com.google.android.gms.internal.vision.e2;
-import java.util.ArrayList;
-public final class k extends g {
+import android.graphics.Matrix;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.accessibility.AccessibilityNodeInfo;
+import android.widget.ImageView;
+import android.widget.ToggleButton;
+import org.telegram.messenger.voip.VoIPService;
+import org.telegram.ui.Components.hu;
+public final class k extends ImageView {
+    public final int f12148a;
+
+    public k(Context context, int i10) {
+        super(context);
+        this.f12148a = i10;
+    }
+
     @Override
-    public final void K() {
-        if (g.B1) {
-            ArrayList arrayList = this.d;
-            int i10 = 0;
-            if (((kg.f) arrayList.get(0)).f13631n) {
-                super.K();
+    public void dispatchDraw(Canvas canvas) {
+        switch (this.f12148a) {
+            case 2:
+                super.dispatchDraw(canvas);
                 return;
-            }
-            int size = arrayList.size();
-            long j3 = 0;
-            while (i10 < size) {
-                Object obj = arrayList.get(i10);
-                i10++;
-                kg.f fVar = (kg.f) obj;
-                if (fVar.f13631n) {
-                    long j10 = fVar.f13621a.e;
-                    if (j10 > j3) {
-                        j3 = j10;
-                    }
-                }
-            }
-            if (arrayList.size() > 1) {
-                j3 = ((float) j3) * ((jg.c) this.f11148h0).f13009l[1];
-            }
-            if (j3 > 0) {
-                float f7 = (float) j3;
-                if (f7 != this.f11155l0) {
-                    this.f11155l0 = f7;
-                    Animator animator = this.f11139d0;
-                    if (animator != null) {
-                        animator.cancel();
-                    }
-                    ValueAnimator e = g.e(this.f11152j0, this.f11155l0, new l6(this, 4));
-                    this.f11139d0 = e;
-                    e.start();
-                }
-            }
+            default:
+                super.dispatchDraw(canvas);
+                return;
         }
     }
 
     @Override
-    public final kg.d f(int i10, long j3, long j10) {
-        float f7;
-        float[] fArr = ((jg.c) this.f11148h0).f13009l;
-        if (fArr.length < 2) {
-            f7 = 1.0f;
-        } else {
-            char c10 = 0;
-            if (fArr[0] == 1.0f) {
-                c10 = 1;
-            }
-            f7 = fArr[c10];
+    public boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        switch (this.f12148a) {
+            case 1:
+                if (getAlpha() < 0.5f) {
+                    return false;
+                }
+                return super.dispatchTouchEvent(motionEvent);
+            default:
+                return super.dispatchTouchEvent(motionEvent);
         }
-        return new kg.d(j3, j10, this.P0, f7, i10, this.N, this.O);
     }
 
     @Override
-    public final kg.f h(jg.a aVar) {
-        return new kg.f(aVar, false, this.W0);
+    public void onDraw(Canvas canvas) {
+        switch (this.f12148a) {
+            case 4:
+                super.onDraw(canvas);
+                invalidate();
+                return;
+            default:
+                super.onDraw(canvas);
+                return;
+        }
     }
 
     @Override
-    public final void k(Canvas canvas) {
+    public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        switch (this.f12148a) {
+            case 5:
+                super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+                accessibilityNodeInfo.setClassName(ToggleButton.class.getName());
+                accessibilityNodeInfo.setCheckable(true);
+                VoIPService sharedInstance = VoIPService.getSharedInstance();
+                if (sharedInstance != null) {
+                    accessibilityNodeInfo.setChecked(sharedInstance.isSpeakerphoneOn());
+                    return;
+                }
+                return;
+            default:
+                super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+                return;
+        }
+    }
+
+    @Override
+    public void onMeasure(int i10, int i11) {
         float f7;
         float f10;
-        boolean z10;
-        float f11;
-        float f12;
-        float f13;
-        float f14;
-        int i10;
-        boolean z11;
-        if (this.f11148h0 != null) {
-            float f15 = this.F0;
-            j jVar = this.f11146g0;
-            float f16 = jVar.f11188l;
-            float f17 = jVar.f11187k;
-            float f18 = f15 / (f16 - f17);
-            float f19 = g.f11115k1;
-            float f20 = (f17 * f18) - f19;
-            canvas.save();
-            int i11 = this.f11173y0;
-            int i12 = 2;
-            if (i11 == 2) {
-                kg.j jVar2 = this.f11174z0;
-                float f21 = jVar2.f13640f;
-                if (f21 > 0.5f) {
-                    f7 = 0.0f;
+        switch (this.f12148a) {
+            case 0:
+                super.onMeasure(i10, i11);
+                Matrix imageMatrix = getImageMatrix();
+                int measuredWidth = (getMeasuredWidth() - getPaddingLeft()) - getPaddingRight();
+                int measuredHeight = (getMeasuredHeight() - getPaddingTop()) - getPaddingBottom();
+                int intrinsicWidth = getDrawable().getIntrinsicWidth();
+                int intrinsicHeight = getDrawable().getIntrinsicHeight();
+                if (intrinsicWidth * measuredHeight > intrinsicHeight * measuredWidth) {
+                    f7 = measuredHeight;
+                    f10 = intrinsicHeight;
                 } else {
-                    f7 = 1.0f - (f21 * 2.0f);
+                    f7 = measuredWidth;
+                    f10 = intrinsicWidth;
                 }
-                canvas.scale((f21 * 2.0f) + 1.0f, 1.0f, jVar2.d, jVar2.e);
-            } else if (i11 == 1) {
-                float f22 = this.f11174z0.f13640f;
-                if (f22 < 0.3f) {
-                    f7 = 0.0f;
-                } else {
-                    f7 = f22;
-                }
-                canvas.save();
-                kg.j jVar3 = this.f11174z0;
-                float f23 = jVar3.f13640f;
-                canvas.scale(f23, f23, jVar3.d, jVar3.e);
-            } else if (i11 == 3) {
-                f7 = this.f11174z0.f13640f;
-            } else {
-                f7 = 1.0f;
-            }
-            int i13 = 0;
-            int i14 = 0;
-            while (true) {
-                ArrayList arrayList = this.d;
-                if (i14 < arrayList.size()) {
-                    kg.f fVar = (kg.f) arrayList.get(i14);
-                    boolean z12 = fVar.f13631n;
-                    float[] fArr = fVar.f13628k;
-                    Path path = fVar.f13624f;
-                    Paint paint = fVar.f13623c;
-                    if (!z12 && fVar.f13632o == 0.0f) {
-                        f11 = f18;
-                        f12 = f20;
-                        f13 = f19;
-                    } else {
-                        long[] jArr = fVar.f13621a.f12995a;
-                        path.reset();
-                        float[] fArr2 = ((jg.c) this.f11148h0).f13002b;
-                        if (fArr2.length < i12) {
-                            f10 = 1.0f;
-                        } else {
-                            f10 = fArr2[1] * f18;
-                        }
-                        int i15 = ((int) (f19 / f10)) + 1;
-                        int max = Math.max(i13, this.F - i15);
-                        int min = Math.min(((jg.c) this.f11148h0).f13002b.length - 1, this.G + i15);
-                        boolean z13 = true;
-                        int i16 = 0;
-                        while (true) {
-                            z10 = g.A1;
-                            if (max > min) {
-                                break;
-                            }
-                            float f24 = f18;
-                            float f25 = f20;
-                            long j3 = jArr[max];
-                            if (j3 < 0) {
-                                f14 = f19;
-                                i10 = min;
-                                z11 = z13;
-                            } else {
-                                f14 = f19;
-                                jg.c cVar = (jg.c) this.f11148h0;
-                                i10 = min;
-                                float f26 = (cVar.f13002b[max] * f24) - f25;
-                                float f27 = ((float) j3) * cVar.f13009l[i14];
-                                float f28 = this.f11168w;
-                                float strokeWidth = paint.getStrokeWidth() / 2.0f;
-                                z11 = z13;
-                                float b10 = e2.b((getMeasuredHeight() - this.f11163s) - g.f11117n1, strokeWidth, (f27 - f28) / (this.v - f28), (getMeasuredHeight() - this.f11163s) - strokeWidth);
-                                if (z10) {
-                                    if (i16 == 0) {
-                                        int i17 = i16 + 1;
-                                        fArr[i16] = f26;
-                                        i16 += 2;
-                                        fArr[i17] = b10;
-                                    } else {
-                                        fArr[i16] = f26;
-                                        fArr[i16 + 1] = b10;
-                                        int i18 = i16 + 3;
-                                        fArr[i16 + 2] = f26;
-                                        i16 += 4;
-                                        fArr[i18] = b10;
-                                    }
-                                } else if (z11) {
-                                    path.moveTo(f26, b10);
-                                    z13 = false;
-                                    max++;
-                                    f18 = f24;
-                                    f20 = f25;
-                                    f19 = f14;
-                                    min = i10;
-                                } else {
-                                    path.lineTo(f26, b10);
-                                }
-                            }
-                            z13 = z11;
-                            max++;
-                            f18 = f24;
-                            f20 = f25;
-                            f19 = f14;
-                            min = i10;
-                        }
-                        f11 = f18;
-                        f12 = f20;
-                        f13 = f19;
-                        if (this.G - this.F > 100) {
-                            paint.setStrokeCap(Paint.Cap.SQUARE);
-                        } else {
-                            paint.setStrokeCap(Paint.Cap.ROUND);
-                        }
-                        paint.setAlpha((int) (fVar.f13632o * 255.0f * f7));
-                        if (!z10) {
-                            canvas.drawPath(path, paint);
-                        } else {
-                            canvas.drawLines(fArr, 0, i16, paint);
-                        }
-                    }
-                    i14++;
-                    f18 = f11;
-                    f20 = f12;
-                    f19 = f13;
-                    i13 = 0;
-                    i12 = 2;
-                } else {
-                    canvas.restore();
-                    return;
-                }
-            }
+                float f11 = f7 / f10;
+                imageMatrix.setScale(f11, f11);
+                setImageMatrix(imageMatrix);
+                return;
+            case 3:
+                int size = View.MeasureSpec.getSize(i10);
+                super.onMeasure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size, 1073741824));
+                return;
+            default:
+                super.onMeasure(i10, i11);
+                return;
         }
     }
 
-    @Override
-    public final void n(Canvas canvas) {
-        boolean z10;
-        int i10;
-        ArrayList arrayList;
-        int i11;
-        int i12;
-        int i13;
-        ArrayList arrayList2;
-        int i14;
-        float f7;
-        int measuredHeight = getMeasuredHeight();
-        int i15 = g.f11120q1;
-        int i16 = measuredHeight - i15;
-        int measuredHeight2 = (getMeasuredHeight() - this.B0) - i15;
-        ArrayList arrayList3 = this.d;
-        int size = arrayList3.size();
-        if (this.f11148h0 != null) {
-            int i17 = 0;
-            while (i17 < size) {
-                kg.f fVar = (kg.f) arrayList3.get(i17);
-                boolean z11 = fVar.f13631n;
-                Paint paint = fVar.f13622b;
-                float[] fArr = fVar.f13629l;
-                Path path = fVar.e;
-                if (!z11 && fVar.f13632o == 0.0f) {
-                    i10 = i16;
-                    arrayList = arrayList3;
-                    i11 = measuredHeight2;
-                    i12 = i17;
-                } else {
-                    path.reset();
-                    int length = ((jg.c) this.f11148h0).f13002b.length;
-                    long[] jArr = fVar.f13621a.f12995a;
-                    fVar.f13624f.reset();
-                    int i18 = 0;
-                    int i19 = 0;
-                    while (true) {
-                        z10 = g.A1;
-                        if (i19 >= length) {
-                            break;
-                        }
-                        int i20 = i17;
-                        long j3 = jArr[i19];
-                        if (j3 < 0) {
-                            i13 = i16;
-                            arrayList2 = arrayList3;
-                            i14 = measuredHeight2;
-                        } else {
-                            i13 = i16;
-                            jg.b bVar = this.f11148h0;
-                            float f10 = this.C0 * ((jg.c) bVar).f13002b[i19];
-                            if (g.B1) {
-                                arrayList2 = arrayList3;
-                                f7 = this.f11152j0;
-                                i14 = measuredHeight2;
-                            } else {
-                                arrayList2 = arrayList3;
-                                i14 = measuredHeight2;
-                                f7 = (float) ((jg.c) bVar).e;
-                            }
-                            float f11 = (1.0f - ((((float) j3) * ((jg.c) bVar).f13009l[i20]) / f7)) * (i13 - i14);
-                            if (z10) {
-                                if (i18 == 0) {
-                                    int i21 = i18 + 1;
-                                    fArr[i18] = f10;
-                                    i18 += 2;
-                                    fArr[i21] = f11;
-                                } else {
-                                    fArr[i18] = f10;
-                                    fArr[i18 + 1] = f11;
-                                    int i22 = i18 + 3;
-                                    fArr[i18 + 2] = f10;
-                                    i18 += 4;
-                                    fArr[i22] = f11;
-                                }
-                            } else if (i19 == 0) {
-                                path.moveTo(f10, f11);
-                            } else {
-                                path.lineTo(f10, f11);
-                            }
-                        }
-                        i19++;
-                        i17 = i20;
-                        i16 = i13;
-                        arrayList3 = arrayList2;
-                        measuredHeight2 = i14;
-                    }
-                    i10 = i16;
-                    arrayList = arrayList3;
-                    i11 = measuredHeight2;
-                    i12 = i17;
-                    fVar.f13627j = i18;
-                    if (fVar.f13631n || fVar.f13632o != 0.0f) {
-                        paint.setAlpha((int) (fVar.f13632o * 255.0f));
-                        if (z10) {
-                            canvas.drawLines(fArr, 0, fVar.f13627j, paint);
-                        } else {
-                            canvas.drawPath(path, paint);
-                        }
-                        i17 = i12 + 1;
-                        i16 = i10;
-                        arrayList3 = arrayList;
-                        measuredHeight2 = i11;
-                    }
-                }
-                i17 = i12 + 1;
-                i16 = i10;
-                arrayList3 = arrayList;
-                measuredHeight2 = i11;
-            }
-        }
-    }
-
-    @Override
-    public final void o(Canvas canvas) {
-        int i10 = this.f11164s0;
-        if (i10 >= 0 && this.f11166u0) {
-            float f7 = this.F0;
-            j jVar = this.f11146g0;
-            float f10 = jVar.f11188l;
-            float f11 = jVar.f11187k;
-            float f12 = f7 / (f10 - f11);
-            float f13 = (((jg.c) this.f11148h0).f13002b[i10] * f12) - ((f11 * f12) - g.f11115k1);
-            Paint paint = this.M;
-            paint.setAlpha((int) (this.f11161r * this.f11167v0));
-            canvas.drawLine(f13, 0.0f, f13, this.H0.bottom, paint);
-            ArrayList arrayList = this.d;
-            this.m0 = arrayList.size();
-            int i11 = 0;
-            while (true) {
-                this.f11157n0 = i11;
-                int i12 = this.f11157n0;
-                if (i12 < this.m0) {
-                    kg.f fVar = (kg.f) arrayList.get(i12);
-                    boolean z10 = fVar.f13631n;
-                    Paint paint2 = fVar.d;
-                    if (z10 || fVar.f13632o != 0.0f) {
-                        float f14 = ((float) fVar.f13621a.f12995a[this.f11164s0]) * ((jg.c) this.f11148h0).f13009l[this.f11157n0];
-                        float f15 = this.f11168w;
-                        float measuredHeight = (getMeasuredHeight() - this.f11163s) - (((f14 - f15) / (this.v - f15)) * ((getMeasuredHeight() - this.f11163s) - g.f11117n1));
-                        paint2.setAlpha((int) (fVar.f13632o * 255.0f * this.f11167v0));
-                        Paint paint3 = this.S;
-                        paint3.setAlpha((int) (fVar.f13632o * 255.0f * this.f11167v0));
-                        canvas.drawPoint(f13, measuredHeight, paint2);
-                        canvas.drawPoint(f13, measuredHeight, paint3);
-                    }
-                    i11 = this.f11157n0 + 1;
-                } else {
-                    return;
-                }
-            }
-        }
-    }
-
-    @Override
-    public final void p(android.graphics.Canvas r22, kg.d r23) {
-        throw new UnsupportedOperationException("Method not decompiled: ig.k.p(android.graphics.Canvas, kg.d):void");
-    }
-
-    @Override
-    public final long r(int i10, int i11) {
-        long j3;
-        ArrayList arrayList = this.d;
-        if (arrayList.isEmpty()) {
-            return 0L;
-        }
-        int size = arrayList.size();
-        long j10 = 0;
-        for (int i12 = 0; i12 < size; i12++) {
-            if (((kg.f) arrayList.get(i12)).f13631n) {
-                j3 = ((float) ((jg.a) ((jg.c) this.f11148h0).d.get(i12)).f12996b.rMaxQ(i10, i11)) * ((jg.c) this.f11148h0).f13009l[i12];
-            } else {
-                j3 = 0;
-            }
-            if (j3 > j10) {
-                j10 = j3;
-            }
-        }
-        return j10;
-    }
-
-    @Override
-    public final long s(int i10, int i11) {
-        long j3;
-        ArrayList arrayList = this.d;
-        if (arrayList.isEmpty()) {
-            return 0L;
-        }
-        int size = arrayList.size();
-        long j10 = Long.MAX_VALUE;
-        for (int i12 = 0; i12 < size; i12++) {
-            if (((kg.f) arrayList.get(i12)).f13631n) {
-                j3 = (int) (((float) ((jg.a) ((jg.c) this.f11148h0).d.get(i12)).f12996b.rMinQ(i10, i11)) * ((jg.c) this.f11148h0).f13009l[i12]);
-            } else {
-                j3 = 2147483647L;
-            }
-            if (j3 < j10) {
-                j10 = j3;
-            }
-        }
-        return j10;
-    }
-
-    @Override
-    public final void t() {
-        this.P0 = true;
-        super.t();
+    public k(hu huVar, Context context) {
+        super(context);
+        this.f12148a = 2;
     }
 }

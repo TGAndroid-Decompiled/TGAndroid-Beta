@@ -2,22 +2,22 @@ package org.telegram.ui;
 
 import org.telegram.messenger.AndroidUtilities;
 public final class xj0 implements Runnable {
-    public final int f39657a;
-    public final ek0 f39658b;
+    public final int f42776a;
+    public final ek0 f42777b;
 
     public xj0(ek0 ek0Var, int i10) {
-        this.f39657a = i10;
-        this.f39658b = ek0Var;
+        this.f42776a = i10;
+        this.f42777b = ek0Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f39657a) {
+        switch (this.f42776a) {
             case 0:
-                AndroidUtilities.hideKeyboard(this.f39658b.f33424b);
+                AndroidUtilities.hideKeyboard(this.f42777b.f36133b);
                 return;
             default:
-                AndroidUtilities.showKeyboard(this.f39658b.d.getEditText());
+                AndroidUtilities.showKeyboard(this.f42777b.d.getEditText());
                 return;
         }
     }

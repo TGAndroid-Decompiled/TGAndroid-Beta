@@ -307,9 +307,9 @@ public class DefaultTeXFontParser {
                 return (FontInfo[]) arrayList.toArray(fontInfoArr);
             }
             throw new FontAlreadyLoadedException(a.p("Font ", attrValueAndCheckIfNotNull2, " is already loaded !"));
-        } catch (Exception e) {
+        } catch (Exception e7) {
             StringBuilder v = a.v("Cannot find the file ", str, "!");
-            v.append(e.toString());
+            v.append(e7.toString());
             throw new XMLResourceParseException(v.toString());
         }
     }
@@ -392,8 +392,8 @@ public class DefaultTeXFontParser {
         factory.setIgnoringComments(true);
         try {
             this.root = factory.newDocumentBuilder().parse(inputStream).getDocumentElement();
-        } catch (Exception e) {
-            throw new XMLResourceParseException(str, e);
+        } catch (Exception e7) {
+            throw new XMLResourceParseException(str, e7);
         }
     }
 
@@ -403,8 +403,8 @@ public class DefaultTeXFontParser {
         factory.setIgnoringComments(true);
         try {
             this.root = factory.newDocumentBuilder().parse(inputStream).getDocumentElement();
-        } catch (Exception e) {
-            throw new XMLResourceParseException(str, e);
+        } catch (Exception e7) {
+            throw new XMLResourceParseException(str, e7);
         }
     }
 

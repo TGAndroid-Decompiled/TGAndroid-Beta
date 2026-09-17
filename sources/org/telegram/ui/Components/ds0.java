@@ -1,34 +1,40 @@
 package org.telegram.ui.Components;
 
-import android.os.Bundle;
-public final class ds0 extends org.telegram.ui.bo {
-    public boolean Qc;
-    public final int Rc;
-    public final zu0 Sc;
+import android.graphics.Point;
+import org.telegram.messenger.AndroidUtilities;
+public final class ds0 implements cl0 {
+    public final tr0 f25492a;
+    public final xu0 f25493b;
 
-    public ds0(zu0 zu0Var, Bundle bundle, int i10) {
-        super(bundle);
-        this.Sc = zu0Var;
-        this.Rc = i10;
-        this.Qc = true;
+    public ds0(xu0 xu0Var, tr0 tr0Var) {
+        this.f25493b = xu0Var;
+        this.f25492a = tr0Var;
     }
 
     @Override
-    public final void onTransitionAnimationStart(boolean z10, boolean z11) {
-        zu0 zu0Var = this.Sc;
-        ku0 ku0Var = zu0Var.S;
-        if (this.Qc) {
-            if (this.f32327j0 != null) {
-                la("");
-                this.f32327j0.H(ku0Var.f25690w, false);
+    public final boolean mo18d(float r18, float r19, int r20, android.view.View r21) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ds0.mo18d(float, float, int, android.view.View):boolean");
+    }
+
+    @Override
+    public final void h() {
+        org.telegram.ui.ActionBar.n2 n2Var = this.f25493b.f32754v1;
+        if (n2Var != null) {
+            Point point = AndroidUtilities.displaySize;
+            if (point.x > point.y) {
+                n2Var.finishPreviewFragment();
             }
-            org.telegram.ui.zk zkVar = this.f32388o1;
-            if (zkVar != null) {
-                zkVar.e(ku0Var.f25691x, false);
-            }
-            zu0Var.f30656v1.getMediaDataController().portSavedSearchResults(getClassGuid(), ku0Var.f25691x, ku0Var.f25690w, ku0Var.f25687n, ku0Var.h, this.Rc, ku0Var.v, ku0Var.f25689s);
-            this.Qc = false;
         }
-        super.onTransitionAnimationStart(z10, z11);
+    }
+
+    @Override
+    public final void q(float f7) {
+        org.telegram.ui.ActionBar.n2 n2Var = this.f25493b.f32754v1;
+        if (n2Var != null) {
+            Point point = AndroidUtilities.displaySize;
+            if (point.x > point.y) {
+                n2Var.movePreviewFragment(f7);
+            }
+        }
     }
 }

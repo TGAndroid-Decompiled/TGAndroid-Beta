@@ -291,14 +291,14 @@ public enum hb implements u {
     OPTIONAL_MODULE_SUBJECT_SEGMENTATION_INFERENCE(763),
     OPTIONAL_MODULE_SUBJECT_SEGMENTATION_RELEASE(764);
     
-    public final int f48502a;
+    public final int f51127a;
 
     hb(int i10) {
-        this.f48502a = i10;
+        this.f51127a = i10;
     }
 
     @Override
     public final int zza() {
-        return this.f48502a;
+        return this.f51127a;
     }
 }

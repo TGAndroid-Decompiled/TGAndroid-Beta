@@ -1,70 +1,111 @@
 package org.telegram.ui.Components;
 
-import android.text.style.ClickableSpan;
-import java.util.ArrayList;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
-public final class z31 implements Utilities.Callback2 {
-    public final int f30390a;
-    public final h41 f30391b;
+import android.content.Context;
+import android.text.TextUtils;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+public final class z31 extends g51 {
+    static {
+        g51.setup(new g51());
+    }
 
-    public z31(h41 h41Var, int i10) {
-        this.f30390a = i10;
-        this.f30391b = h41Var;
+    public static h51 a(int i10, CharSequence charSequence, CharSequence charSequence2, CharSequence charSequence3, View.OnClickListener onClickListener, boolean z10, View.OnClickListener onClickListener2, o oVar) {
+        h51 J = h51.J(z31.class);
+        J.d = i10;
+        J.f26622l = charSequence;
+        J.f26623m = charSequence2;
+        J.f26624n = charSequence3;
+        J.D = onClickListener;
+        J.f26616e = z10;
+        J.E = onClickListener2;
+        J.G = oVar;
+        return J;
+    }
+
+    public static h51 b(int i10, String str, String str2, String str3, w31 w31Var) {
+        return a(i10, str, str2, str3, w31Var, false, null, null);
     }
 
     @Override
-    public final void run(Object obj, Object obj2) {
-        String string;
-        String str;
-        switch (this.f30390a) {
-            case 0:
-                ArrayList arrayList = (ArrayList) obj;
-                x51 x51Var = (x51) obj2;
-                final h41 h41Var = this.f30391b;
-                String[] strArr = h41Var.f24482i0;
-                arrayList.add(j51.B(null));
-                x51Var.E = 1;
-                x51Var.U();
-                String str2 = h41Var.f24478e0;
-                if (str2 != null) {
-                    string = w31.y(w31.E(str2, null, null));
-                } else {
-                    string = LocaleController.getString(R.string.AIEditorOriginalText);
-                }
-                arrayList.add(b41.b(3, "", string, null, null));
-                arrayList.add(f41.a(4, h41Var.f24474a0, h41Var.f24484k0, new dt(18, h41Var, x51Var), new b90() {
-                    @Override
-                    public final void a(ClickableSpan clickableSpan) {
-                        h41.Q(h41.this, clickableSpan);
-                    }
-                }, null));
-                StringBuilder sb2 = new StringBuilder();
-                sb2.append(w31.E(h41Var.f24479f0, null, null));
-                if (h41Var.f24480g0 == 1 || strArr == null) {
-                    str = "";
-                } else {
-                    str = a4.a.s(new StringBuilder(" ("), strArr[h41Var.f24480g0], ")");
-                }
-                sb2.append(str);
-                arrayList.add(b41.b(5, "", w31.y(sb2.toString()), null, new y31(h41Var, 4)));
-                arrayList.add(f41.a(6, h41Var.f24476c0, false, null, new b90() {
-                    @Override
-                    public final void a(ClickableSpan clickableSpan) {
-                        h41.Q(h41.this, clickableSpan);
-                    }
-                }, null));
-                x51Var.T();
-                arrayList.add(j51.B(null));
-                x51Var.U();
-                arrayList.add(j51.c(1, R.drawable.msg_copy, LocaleController.getString(R.string.TranslateCopy)));
-                x51Var.T();
-                return;
-            default:
-                h41.R(this.f30391b, (TLRPC.TL_messages_translateResult) obj, (TLRPC.TL_error) obj2);
-                return;
+    public final void bindView(View view, h51 h51Var, boolean z10, v51 v51Var, d61 d61Var) {
+        View.OnClickListener onClickListener;
+        int i10;
+        boolean z11;
+        int i11;
+        a41 a41Var = (a41) view;
+        CharSequence charSequence = h51Var.f26622l;
+        CharSequence charSequence2 = h51Var.f26623m;
+        CharSequence charSequence3 = h51Var.f26624n;
+        View.OnClickListener onClickListener2 = h51Var.D;
+        boolean z12 = h51Var.f26616e;
+        View.OnClickListener onClickListener3 = h51Var.E;
+        Object obj = h51Var.G;
+        if (obj instanceof View.OnClickListener) {
+            onClickListener = (View.OnClickListener) obj;
+        } else {
+            onClickListener = null;
         }
+        LinearLayout linearLayout = a41Var.f24303r;
+        LinearLayout linearLayout2 = a41Var.h;
+        LinearLayout linearLayout3 = a41Var.f24298b;
+        a41Var.f24299c.setText(charSequence);
+        a41Var.d.setText(charSequence2);
+        a41Var.f24300e.setText(charSequence3);
+        ImageView imageView = a41Var.f24301f;
+        int i12 = 8;
+        if (onClickListener2 != null) {
+            i10 = 0;
+        } else {
+            i10 = 8;
+        }
+        imageView.setVisibility(i10);
+        linearLayout3.setOnClickListener(onClickListener2);
+        if (onClickListener2 != null) {
+            z11 = true;
+        } else {
+            z11 = false;
+        }
+        linearLayout3.setClickable(z11);
+        a41Var.f24302n.a(z12, false);
+        if (onClickListener3 != null) {
+            i11 = 0;
+        } else {
+            i11 = 8;
+        }
+        linearLayout2.setVisibility(i11);
+        linearLayout2.setOnClickListener(onClickListener3);
+        if (onClickListener != null) {
+            i12 = 0;
+        }
+        linearLayout.setVisibility(i12);
+        linearLayout.setOnClickListener(new ct(19, a41Var, onClickListener));
+        a41Var.d();
+    }
+
+    @Override
+    public final boolean contentsEquals(h51 h51Var, h51 h51Var2) {
+        if (TextUtils.equals(h51Var.f26622l, h51Var2.f26622l) && TextUtils.equals(h51Var.f26623m, h51Var2.f26623m) && TextUtils.equals(h51Var.f26624n, h51Var2.f26624n) && h51Var.E == h51Var2.E) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public final View createView(Context context, ll0 ll0Var, int i10, int i11, org.telegram.ui.ActionBar.f6 f6Var) {
+        return new a41(context, f6Var);
+    }
+
+    @Override
+    public final boolean equals(h51 h51Var, h51 h51Var2) {
+        if (h51Var.d == h51Var2.d) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public final boolean isClickable() {
+        return false;
     }
 }

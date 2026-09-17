@@ -1,75 +1,39 @@
 package hg;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.drawable.Drawable;
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.ActionBar.f6;
-import org.telegram.ui.ActionBar.j6;
-import org.telegram.ui.Components.EditTextBoldCursor;
-import org.telegram.ui.Components.f5;
-import org.telegram.ui.Components.m6;
-import org.telegram.ui.Components.qr;
-public final class r1 extends EditTextBoldCursor {
-    public final f5 f10402b;
-    public int f10403c;
-    public final m6 d;
-    public final f6 e;
+import java.util.ArrayList;
+import org.telegram.ui.zs;
+public final class r1 implements a2 {
+    public final zs f11255a;
 
-    public r1(Context context, f6 f6Var) {
-        super(context);
-        this.e = f6Var;
-        this.f10402b = new f5(this);
-        m6 m6Var = new m6(false, true, true, false);
-        this.d = m6Var;
-        m6Var.k(0.2f, 160L, qr.h);
-        m6Var.t(AndroidUtilities.dp(15.33f));
-        m6Var.setCallback(this);
-        m6Var.f26067b = 5;
+    public r1(zs zsVar) {
+        this.f11255a = zsVar;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        int i10;
-        super.dispatchDraw(canvas);
-        if (this.f10403c < 0) {
-            i10 = j6.f19082p7;
-        } else {
-            i10 = j6.P5;
-        }
-        int a2 = this.f10402b.a(j6.v0(i10, this.e), false);
-        m6 m6Var = this.d;
-        m6Var.r(a2);
-        m6Var.setBounds(getScrollX(), 0, getWidth() + getScrollX(), getHeight());
-        m6Var.draw(canvas);
+    public final a0.i G() {
+        return null;
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(36.0f), 1073741824));
-    }
-
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-        super.onTextChanged(charSequence, i10, i11, i12);
-        m6 m6Var = this.d;
-        if (m6Var != null) {
-            this.f10403c = 32 - charSequence.length();
-            m6Var.b();
-            String str = "";
-            if (this.f10403c <= 4) {
-                str = "" + this.f10403c;
-            }
-            m6Var.q(str, true, true);
-        }
-    }
-
-    @Override
-    public final boolean verifyDrawable(Drawable drawable) {
-        if (drawable != this.d && !super.verifyDrawable(drawable)) {
-            return false;
-        }
+    public final boolean Q(int i10) {
         return true;
+    }
+
+    @Override
+    public final void f(int i10) {
+        zs zsVar = this.f11255a;
+        zsVar.l();
+        if (i10 != 0) {
+            zsVar.F();
+        }
+    }
+
+    @Override
+    public final a0.i w() {
+        return null;
+    }
+
+    @Override
+    public final void Y(ArrayList arrayList) {
     }
 }

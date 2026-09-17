@@ -8,44 +8,44 @@ import org.json.JSONException;
 import org.json.JSONObject;
 public final class s extends o6.a {
     public static final Parcelable.Creator<s> CREATOR = new v(19);
-    public float f4047a;
-    public int f4048b;
-    public int f4049c;
+    public float f4591a;
+    public int f4592b;
+    public int f4593c;
     public int d;
-    public int e;
-    public int f4050f;
+    public int f4594e;
+    public int f4595f;
     public int h;
-    public int f4051n;
-    public String f4052r;
-    public int f4053s;
+    public int f4596n;
+    public String f4597r;
+    public int f4598s;
     public int v;
-    public String f4054w;
-    public JSONObject f4055x;
+    public String f4599w;
+    public JSONObject f4600x;
 
     public s(float f7, int i10, int i11, int i12, int i13, int i14, int i15, int i16, String str, int i17, int i18, String str2) {
-        this.f4047a = f7;
-        this.f4048b = i10;
-        this.f4049c = i11;
+        this.f4591a = f7;
+        this.f4592b = i10;
+        this.f4593c = i11;
         this.d = i12;
-        this.e = i13;
-        this.f4050f = i14;
+        this.f4594e = i13;
+        this.f4595f = i14;
         this.h = i15;
-        this.f4051n = i16;
-        this.f4052r = str;
-        this.f4053s = i17;
+        this.f4596n = i16;
+        this.f4597r = str;
+        this.f4598s = i17;
         this.v = i18;
-        this.f4054w = str2;
+        this.f4599w = str2;
         if (str2 != null) {
             try {
-                this.f4055x = new JSONObject(this.f4054w);
+                this.f4600x = new JSONObject(this.f4599w);
                 return;
             } catch (JSONException unused) {
-                this.f4055x = null;
-                this.f4054w = null;
+                this.f4600x = null;
+                this.f4599w = null;
                 return;
             }
         }
-        this.f4055x = null;
+        this.f4600x = null;
     }
 
     public static final int c(String str) {
@@ -65,12 +65,12 @@ public final class s extends o6.a {
     public final JSONObject b() {
         JSONObject jSONObject = new JSONObject();
         try {
-            jSONObject.put("fontScale", this.f4047a);
-            int i10 = this.f4048b;
+            jSONObject.put("fontScale", this.f4591a);
+            int i10 = this.f4592b;
             if (i10 != 0) {
                 jSONObject.put("foregroundColor", d(i10));
             }
-            int i11 = this.f4049c;
+            int i11 = this.f4593c;
             if (i11 != 0) {
                 jSONObject.put("backgroundColor", d(i11));
             }
@@ -94,11 +94,11 @@ public final class s extends o6.a {
             } else {
                 jSONObject.put("edgeType", "NONE");
             }
-            int i13 = this.e;
+            int i13 = this.f4594e;
             if (i13 != 0) {
                 jSONObject.put("edgeColor", d(i13));
             }
-            int i14 = this.f4050f;
+            int i14 = this.f4595f;
             if (i14 != 0) {
                 if (i14 != 1) {
                     if (i14 == 2) {
@@ -114,14 +114,14 @@ public final class s extends o6.a {
             if (i15 != 0) {
                 jSONObject.put("windowColor", d(i15));
             }
-            if (this.f4050f == 2) {
-                jSONObject.put("windowRoundedCornerRadius", this.f4051n);
+            if (this.f4595f == 2) {
+                jSONObject.put("windowRoundedCornerRadius", this.f4596n);
             }
-            String str = this.f4052r;
+            String str = this.f4597r;
             if (str != null) {
                 jSONObject.put("fontFamily", str);
             }
-            switch (this.f4053s) {
+            switch (this.f4598s) {
                 case 0:
                     jSONObject.put("fontGenericFamily", "SANS_SERIF");
                     break;
@@ -160,7 +160,7 @@ public final class s extends o6.a {
             } else {
                 jSONObject.put("fontStyle", "NORMAL");
             }
-            JSONObject jSONObject2 = this.f4055x;
+            JSONObject jSONObject2 = this.f4600x;
             if (jSONObject2 != null) {
                 jSONObject.put("customData", jSONObject2);
             }
@@ -179,13 +179,13 @@ public final class s extends o6.a {
             return false;
         }
         s sVar = (s) obj;
-        JSONObject jSONObject = this.f4055x;
+        JSONObject jSONObject = this.f4600x;
         if (jSONObject != null) {
             z10 = false;
         } else {
             z10 = true;
         }
-        JSONObject jSONObject2 = sVar.f4055x;
+        JSONObject jSONObject2 = sVar.f4600x;
         if (jSONObject2 != null) {
             z11 = false;
         } else {
@@ -194,59 +194,59 @@ public final class s extends o6.a {
         if (z10 != z11) {
             return false;
         }
-        if ((jSONObject == null || jSONObject2 == null || u6.c.a(jSONObject, jSONObject2)) && this.f4047a == sVar.f4047a && this.f4048b == sVar.f4048b && this.f4049c == sVar.f4049c && this.d == sVar.d && this.e == sVar.e && this.f4050f == sVar.f4050f && this.h == sVar.h && this.f4051n == sVar.f4051n && g6.a.d(this.f4052r, sVar.f4052r) && this.f4053s == sVar.f4053s && this.v == sVar.v) {
+        if ((jSONObject == null || jSONObject2 == null || u6.c.a(jSONObject, jSONObject2)) && this.f4591a == sVar.f4591a && this.f4592b == sVar.f4592b && this.f4593c == sVar.f4593c && this.d == sVar.d && this.f4594e == sVar.f4594e && this.f4595f == sVar.f4595f && this.h == sVar.h && this.f4596n == sVar.f4596n && g6.a.d(this.f4597r, sVar.f4597r) && this.f4598s == sVar.f4598s && this.v == sVar.v) {
             return true;
         }
         return false;
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{Float.valueOf(this.f4047a), Integer.valueOf(this.f4048b), Integer.valueOf(this.f4049c), Integer.valueOf(this.d), Integer.valueOf(this.e), Integer.valueOf(this.f4050f), Integer.valueOf(this.h), Integer.valueOf(this.f4051n), this.f4052r, Integer.valueOf(this.f4053s), Integer.valueOf(this.v), String.valueOf(this.f4055x)});
+        return Arrays.hashCode(new Object[]{Float.valueOf(this.f4591a), Integer.valueOf(this.f4592b), Integer.valueOf(this.f4593c), Integer.valueOf(this.d), Integer.valueOf(this.f4594e), Integer.valueOf(this.f4595f), Integer.valueOf(this.h), Integer.valueOf(this.f4596n), this.f4597r, Integer.valueOf(this.f4598s), Integer.valueOf(this.v), String.valueOf(this.f4600x)});
     }
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
         String jSONObject;
-        JSONObject jSONObject2 = this.f4055x;
+        JSONObject jSONObject2 = this.f4600x;
         if (jSONObject2 == null) {
             jSONObject = null;
         } else {
             jSONObject = jSONObject2.toString();
         }
-        this.f4054w = jSONObject;
+        this.f4599w = jSONObject;
         int q6 = w7.e0.q(parcel, 20293);
-        float f7 = this.f4047a;
+        float f7 = this.f4591a;
         w7.e0.s(parcel, 2, 4);
         parcel.writeFloat(f7);
-        int i11 = this.f4048b;
+        int i11 = this.f4592b;
         w7.e0.s(parcel, 3, 4);
         parcel.writeInt(i11);
-        int i12 = this.f4049c;
+        int i12 = this.f4593c;
         w7.e0.s(parcel, 4, 4);
         parcel.writeInt(i12);
         int i13 = this.d;
         w7.e0.s(parcel, 5, 4);
         parcel.writeInt(i13);
-        int i14 = this.e;
+        int i14 = this.f4594e;
         w7.e0.s(parcel, 6, 4);
         parcel.writeInt(i14);
-        int i15 = this.f4050f;
+        int i15 = this.f4595f;
         w7.e0.s(parcel, 7, 4);
         parcel.writeInt(i15);
         int i16 = this.h;
         w7.e0.s(parcel, 8, 4);
         parcel.writeInt(i16);
-        int i17 = this.f4051n;
+        int i17 = this.f4596n;
         w7.e0.s(parcel, 9, 4);
         parcel.writeInt(i17);
-        w7.e0.l(parcel, 10, this.f4052r);
-        int i18 = this.f4053s;
+        w7.e0.l(parcel, 10, this.f4597r);
+        int i18 = this.f4598s;
         w7.e0.s(parcel, 11, 4);
         parcel.writeInt(i18);
         int i19 = this.v;
         w7.e0.s(parcel, 12, 4);
         parcel.writeInt(i19);
-        w7.e0.l(parcel, 13, this.f4054w);
+        w7.e0.l(parcel, 13, this.f4599w);
         w7.e0.r(parcel, q6);
     }
 }

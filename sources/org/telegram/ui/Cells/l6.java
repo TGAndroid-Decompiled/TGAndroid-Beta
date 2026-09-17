@@ -1,11 +1,11 @@
 package org.telegram.ui.Cells;
 
 import android.view.View;
-import org.telegram.ui.Components.ml0;
-import org.telegram.ui.Components.zn;
+import org.telegram.ui.Components.ll0;
+import org.telegram.ui.Components.yn;
 import org.telegram.ui.LaunchActivity;
-public final class l6 extends ai.ca {
-    public final int S = 1;
+public final class l6 extends bi.j9 {
+    public final int S = 0;
     public final View T;
 
     public l6(n6 n6Var, org.telegram.ui.ActionBar.f6 f6Var) {
@@ -20,28 +20,28 @@ public final class l6 extends ai.ca {
                 ((n6) this.T).b(j3);
                 return;
             case 1:
-                ab abVar = (ab) this.T;
-                org.telegram.ui.ActionBar.o2 R = LaunchActivity.R();
+                za zaVar = (za) this.T;
+                org.telegram.ui.ActionBar.n2 R = LaunchActivity.R();
                 if (R != null) {
                     R.getOrCreateStoryViewer().getClass();
-                    R.getOrCreateStoryViewer().D(abVar.getContext(), j3, ai.u9.a((ml0) abVar.getParent()));
+                    R.getOrCreateStoryViewer().D(zaVar.getContext(), j3, bi.d9.a((ll0) zaVar.getParent()));
                     return;
                 }
                 return;
             default:
-                zn znVar = (zn) this.T;
-                znVar.H.getOrCreateStoryViewer().D(znVar.getContext(), j3, new org.telegram.ui.Components.s(this, 25));
+                yn ynVar = (yn) this.T;
+                ynVar.H.getOrCreateStoryViewer().D(ynVar.getContext(), j3, new org.telegram.ui.Components.t(this, 25));
                 return;
         }
     }
 
-    public l6(ab abVar) {
+    public l6(za zaVar) {
         super(null, false);
-        this.T = abVar;
+        this.T = zaVar;
     }
 
-    public l6(zn znVar) {
+    public l6(yn ynVar) {
         super(null, true);
-        this.T = znVar;
+        this.T = ynVar;
     }
 }

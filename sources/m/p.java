@@ -12,59 +12,59 @@ import android.widget.TextView;
 import java.lang.reflect.Field;
 import java.util.Iterator;
 import java.util.Map;
-import v7.r8;
+import v7.o8;
 import w7.n7;
 public final class p {
-    public Parcelable f14280a;
-    public Object f14281b;
-    public boolean f14282c;
+    public Parcelable f15647a;
+    public Object f15648b;
+    public boolean f15649c;
     public boolean d;
-    public boolean e;
-    public final Object f14283f;
+    public boolean f15650e;
+    public final Object f15651f;
 
     public p(TextView textView) {
-        this.f14280a = null;
-        this.f14281b = null;
-        this.f14282c = false;
+        this.f15647a = null;
+        this.f15648b = null;
+        this.f15649c = false;
         this.d = false;
-        this.f14283f = textView;
+        this.f15651f = textView;
     }
 
     public void a() {
         Drawable drawable;
-        CompoundButton compoundButton = (CompoundButton) this.f14283f;
+        CompoundButton compoundButton = (CompoundButton) this.f15651f;
         if (Build.VERSION.SDK_INT >= 23) {
             drawable = e0.b.e(compoundButton);
         } else {
-            if (!n7.f44811b) {
+            if (!n7.f48273b) {
                 try {
                     Field declaredField = CompoundButton.class.getDeclaredField("mButtonDrawable");
-                    n7.f44810a = declaredField;
+                    n7.f48272a = declaredField;
                     declaredField.setAccessible(true);
-                } catch (NoSuchFieldException e) {
-                    Log.i("CompoundButtonCompat", "Failed to retrieve mButtonDrawable field", e);
+                } catch (NoSuchFieldException e7) {
+                    Log.i("CompoundButtonCompat", "Failed to retrieve mButtonDrawable field", e7);
                 }
-                n7.f44811b = true;
+                n7.f48273b = true;
             }
-            Field field = n7.f44810a;
+            Field field = n7.f48272a;
             if (field != null) {
                 try {
                     drawable = (Drawable) field.get(compoundButton);
-                } catch (IllegalAccessException e7) {
-                    Log.i("CompoundButtonCompat", "Failed to get button drawable via reflection", e7);
-                    n7.f44810a = null;
+                } catch (IllegalAccessException e10) {
+                    Log.i("CompoundButtonCompat", "Failed to get button drawable via reflection", e10);
+                    n7.f48272a = null;
                 }
             }
             drawable = null;
         }
         if (drawable != null) {
-            if (this.f14282c || this.d) {
-                Drawable mutate = r8.d(drawable).mutate();
-                if (this.f14282c) {
-                    mutate.setTintList((ColorStateList) this.f14280a);
+            if (this.f15649c || this.d) {
+                Drawable mutate = o8.d(drawable).mutate();
+                if (this.f15649c) {
+                    mutate.setTintList((ColorStateList) this.f15647a);
                 }
                 if (this.d) {
-                    mutate.setTintMode((PorterDuff.Mode) this.f14281b);
+                    mutate.setTintMode((PorterDuff.Mode) this.f15648b);
                 }
                 if (mutate.isStateful()) {
                     mutate.setState(compoundButton.getDrawableState());
@@ -75,16 +75,16 @@ public final class p {
     }
 
     public void b() {
-        o oVar = (o) this.f14283f;
+        o oVar = (o) this.f15651f;
         Drawable checkMarkDrawable = oVar.getCheckMarkDrawable();
         if (checkMarkDrawable != null) {
-            if (this.f14282c || this.d) {
-                Drawable mutate = r8.d(checkMarkDrawable).mutate();
-                if (this.f14282c) {
-                    mutate.setTintList((ColorStateList) this.f14280a);
+            if (this.f15649c || this.d) {
+                Drawable mutate = o8.d(checkMarkDrawable).mutate();
+                if (this.f15649c) {
+                    mutate.setTintList((ColorStateList) this.f15647a);
                 }
                 if (this.d) {
-                    mutate.setTintMode((PorterDuff.Mode) this.f14281b);
+                    mutate.setTintMode((PorterDuff.Mode) this.f15648b);
                 }
                 if (mutate.isStateful()) {
                     mutate.setState(oVar.getDrawableState());
@@ -96,20 +96,20 @@ public final class p {
 
     public Bundle c(String str) {
         if (this.d) {
-            Bundle bundle = (Bundle) this.f14280a;
+            Bundle bundle = (Bundle) this.f15647a;
             if (bundle == null) {
                 return null;
             }
             Bundle bundle2 = bundle.getBundle(str);
-            Bundle bundle3 = (Bundle) this.f14280a;
+            Bundle bundle3 = (Bundle) this.f15647a;
             if (bundle3 != null) {
                 bundle3.remove(str);
             }
-            Bundle bundle4 = (Bundle) this.f14280a;
+            Bundle bundle4 = (Bundle) this.f15647a;
             if (bundle4 != null && !bundle4.isEmpty()) {
                 return bundle2;
             }
-            this.f14280a = null;
+            this.f15647a = null;
             return bundle2;
         }
         throw new IllegalStateException("You can consumeRestoredStateForKey only after super.onCreate of corresponding component");
@@ -118,7 +118,7 @@ public final class p {
     public t4.d d() {
         Map.Entry components;
         t4.d dVar;
-        Iterator it = ((o.f) this.f14283f).iterator();
+        Iterator it = ((o.f) this.f15651f).iterator();
         do {
             o.b bVar = (o.b) it;
             if (bVar.hasNext()) {
@@ -139,21 +139,21 @@ public final class p {
     public void f(String str, t4.d provider) {
         Object obj;
         kotlin.jvm.internal.i.e(provider, "provider");
-        o.f fVar = (o.f) this.f14283f;
+        o.f fVar = (o.f) this.f15651f;
         o.c i10 = fVar.i(str);
         if (i10 != null) {
-            obj = i10.f15301b;
+            obj = i10.f16787b;
         } else {
             o.c cVar = new o.c(str, provider);
             fVar.d++;
-            o.c cVar2 = fVar.f15307b;
+            o.c cVar2 = fVar.f16793b;
             if (cVar2 == null) {
-                fVar.f15306a = cVar;
-                fVar.f15307b = cVar;
+                fVar.f16792a = cVar;
+                fVar.f16793b = cVar;
             } else {
-                cVar2.f15302c = cVar;
+                cVar2.f16788c = cVar;
                 cVar.d = cVar2;
-                fVar.f15307b = cVar;
+                fVar.f16793b = cVar;
             }
             obj = null;
         }
@@ -164,29 +164,29 @@ public final class p {
     }
 
     public void g() {
-        if (this.e) {
-            t4.a aVar = (t4.a) this.f14281b;
+        if (this.f15650e) {
+            t4.a aVar = (t4.a) this.f15648b;
             if (aVar == null) {
                 aVar = new t4.a(this);
             }
-            this.f14281b = aVar;
+            this.f15648b = aVar;
             try {
                 androidx.lifecycle.j.class.getDeclaredConstructor(null);
-                t4.a aVar2 = (t4.a) this.f14281b;
+                t4.a aVar2 = (t4.a) this.f15648b;
                 if (aVar2 != null) {
-                    aVar2.f43029a.add(androidx.lifecycle.j.class.getName());
+                    aVar2.f46457a.add(androidx.lifecycle.j.class.getName());
                     return;
                 }
                 return;
-            } catch (NoSuchMethodException e) {
-                throw new IllegalArgumentException("Class " + androidx.lifecycle.j.class.getSimpleName() + " must have default constructor in order to be automatically recreated", e);
+            } catch (NoSuchMethodException e7) {
+                throw new IllegalArgumentException("Class " + androidx.lifecycle.j.class.getSimpleName() + " must have default constructor in order to be automatically recreated", e7);
             }
         }
         throw new IllegalStateException("Can not perform this action after onSaveInstanceState");
     }
 
     public p() {
-        this.f14283f = new o.f();
-        this.e = true;
+        this.f15651f = new o.f();
+        this.f15650e = true;
     }
 }

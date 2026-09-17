@@ -18,49 +18,49 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SendMessagesHelper;
-public final class w40 extends org.telegram.ui.ActionBar.g3 implements NotificationCenter.NotificationCenterDelegate {
-    public final TextView[] f29519b;
-    public final TextView f29520c;
+public final class w40 extends org.telegram.ui.ActionBar.f3 implements NotificationCenter.NotificationCenterDelegate {
+    public final TextView[] f32143b;
+    public final TextView f32144c;
     public final m80 d;
-    public final org.telegram.ui.bo e;
-    public final bj0 f29521f;
+    public final org.telegram.ui.co f32145e;
+    public final aj0 f32146f;
     public final v40 h;
-    public boolean f29522n;
-    public final yi0 f29523r;
-    public final TextView[] f29524s;
+    public boolean f32147n;
+    public final xi0 f32148r;
+    public final TextView[] f32149s;
     public final String v;
 
-    public w40(Context context, String str, org.telegram.ui.bo boVar, org.telegram.ui.ActionBar.f6 f6Var) {
+    public w40(Context context, String str, org.telegram.ui.co coVar, org.telegram.ui.ActionBar.f6 f6Var) {
         super(1, context, f6Var, false);
-        this.f29519b = new TextView[2];
-        this.f29524s = new TextView[2];
-        xp xpVar = new xp(this, 23);
+        this.f32143b = new TextView[2];
+        this.f32149s = new TextView[2];
+        wp wpVar = new wp(this, 23);
         setApplyBottomPadding(false);
         setApplyTopPadding(false);
-        this.e = boVar;
+        this.f32145e = coVar;
         this.v = str;
         FrameLayout frameLayout = new FrameLayout(context);
         setCustomView(frameLayout);
         TextView textView = new TextView(context);
-        org.telegram.messenger.wl.j(20.0f, 1, textView);
-        int i10 = org.telegram.ui.ActionBar.j6.f18969j5;
+        org.telegram.messenger.vl.j(20.0f, 1, textView);
+        int i10 = org.telegram.ui.ActionBar.j6.f20798j5;
         textView.setTextColor(getThemedColor(i10));
         textView.setSingleLine(true);
         TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
         textView.setEllipsize(truncateAt);
         frameLayout.addView(textView, w7.x5.d(-2, -2.0f, 51, 17.0f, 20.0f, 17.0f, 0.0f));
-        yi0 yi0Var = new yi0(R.raw.import_finish, AndroidUtilities.dp(120.0f), AndroidUtilities.dp(120.0f), false, null);
-        this.f29523r = yi0Var;
-        yi0Var.J(true);
+        xi0 xi0Var = new xi0(R.raw.import_finish, AndroidUtilities.dp(120.0f), AndroidUtilities.dp(120.0f), false, null);
+        this.f32148r = xi0Var;
+        xi0Var.H(true);
         ?? imageView = new ImageView(context);
-        this.f29521f = imageView;
+        this.f32146f = imageView;
         imageView.setAutoRepeat(true);
         imageView.f(R.raw.import_loop, 120, 120, null);
         imageView.d();
         frameLayout.addView((View) imageView, w7.x5.d(160, 160.0f, 49, 17.0f, 79.0f, 17.0f, 0.0f));
-        imageView.getAnimatedDrawable().R(178, xpVar);
+        imageView.getAnimatedDrawable().P(178, wpVar);
         TextView textView2 = new TextView(context);
-        this.f29520c = textView2;
+        this.f32144c = textView2;
         textView2.setTypeface(AndroidUtilities.bold());
         textView2.setTextSize(1, 24.0f);
         textView2.setTextColor(getThemedColor(i10));
@@ -73,7 +73,7 @@ public final class w40 extends org.telegram.ui.ActionBar.g3 implements Notificat
         frameLayout.addView(m80Var, w7.x5.d(-1, 4.0f, 51, 50.0f, 307.0f, 50.0f, 0.0f));
         ?? frameLayout2 = new FrameLayout(context);
         View view = new View(context);
-        frameLayout2.f28593a = view;
+        frameLayout2.f31117a = view;
         int dp = AndroidUtilities.dp(4.0f);
         int v02 = org.telegram.ui.ActionBar.j6.v0(i11, f6Var);
         int v03 = org.telegram.ui.ActionBar.j6.v0(org.telegram.ui.ActionBar.j6.Qh, f6Var);
@@ -84,7 +84,7 @@ public final class w40 extends org.telegram.ui.ActionBar.g3 implements Notificat
         linearLayout.setOrientation(0);
         frameLayout2.addView(linearLayout, w7.x5.e(-2, -2, 17));
         ?? imageView2 = new ImageView(context);
-        frameLayout2.f28595c = imageView2;
+        frameLayout2.f31119c = imageView2;
         int dp2 = AndroidUtilities.dp(20.0f);
         int i12 = org.telegram.ui.ActionBar.j6.Sh;
         imageView2.setBackground(org.telegram.ui.ActionBar.j6.K(dp2, org.telegram.ui.ActionBar.j6.v0(i12, f6Var)));
@@ -95,61 +95,61 @@ public final class w40 extends org.telegram.ui.ActionBar.g3 implements Notificat
         imageView2.setScaleY(0.8f);
         linearLayout.addView((View) imageView2, w7.x5.q(20, 20, 16));
         TextView textView3 = new TextView(context);
-        frameLayout2.f28594b = textView3;
+        frameLayout2.f31118b = textView3;
         textView3.setLines(1);
         textView3.setSingleLine(true);
         textView3.setGravity(1);
         textView3.setEllipsize(truncateAt);
         textView3.setGravity(17);
         textView3.setTextColor(org.telegram.ui.ActionBar.j6.v0(i12, f6Var));
-        com.google.android.gms.internal.vision.e2.l(14.0f, 1, textView3);
+        com.google.android.gms.internal.vision.e2.m(14.0f, 1, textView3);
         linearLayout.addView(textView3, w7.x5.t(-2, -2, 16, 10, 0, 0, 0));
         this.h = frameLayout2;
         frameLayout2.setBackground(null);
         frameLayout2.setText(LocaleController.getString(R.string.ImportDone));
         frameLayout2.setVisibility(4);
-        view.setOnClickListener(new f0(this, 27));
+        view.setOnClickListener(new g0(this, 27));
         view.setPivotY(AndroidUtilities.dp(48.0f));
         view.setScaleY(0.04f);
         frameLayout.addView((View) frameLayout2, w7.x5.d(-1, 50.0f, 51, 34.0f, 247.0f, 34.0f, 0.0f));
         for (int i13 = 0; i13 < 2; i13++) {
-            this.f29519b[i13] = new TextView(context);
-            this.f29519b[i13].setTextSize(1, 16.0f);
-            this.f29519b[i13].setTypeface(AndroidUtilities.bold());
-            this.f29519b[i13].setTextColor(getThemedColor(org.telegram.ui.ActionBar.j6.f18969j5));
-            frameLayout.addView(this.f29519b[i13], w7.x5.d(-2, -2.0f, 49, 17.0f, 340.0f, 17.0f, 0.0f));
-            this.f29524s[i13] = new TextView(context);
-            this.f29524s[i13].setTextSize(1, 14.0f);
-            this.f29524s[i13].setTextColor(getThemedColor(org.telegram.ui.ActionBar.j6.f19117r5));
-            this.f29524s[i13].setGravity(1);
-            frameLayout.addView(this.f29524s[i13], w7.x5.d(-2, -2.0f, 49, 30.0f, 368.0f, 30.0f, 44.0f));
+            this.f32143b[i13] = new TextView(context);
+            this.f32143b[i13].setTextSize(1, 16.0f);
+            this.f32143b[i13].setTypeface(AndroidUtilities.bold());
+            this.f32143b[i13].setTextColor(getThemedColor(org.telegram.ui.ActionBar.j6.f20798j5));
+            frameLayout.addView(this.f32143b[i13], w7.x5.d(-2, -2.0f, 49, 17.0f, 340.0f, 17.0f, 0.0f));
+            this.f32149s[i13] = new TextView(context);
+            this.f32149s[i13].setTextSize(1, 14.0f);
+            this.f32149s[i13].setTextColor(getThemedColor(org.telegram.ui.ActionBar.j6.f20943r5));
+            this.f32149s[i13].setGravity(1);
+            frameLayout.addView(this.f32149s[i13], w7.x5.d(-2, -2.0f, 49, 30.0f, 368.0f, 30.0f, 44.0f));
             if (i13 == 0) {
-                this.f29524s[i13].setText(LocaleController.getString(R.string.ImportImportingInfo));
+                this.f32149s[i13].setText(LocaleController.getString(R.string.ImportImportingInfo));
             } else {
-                this.f29524s[i13].setAlpha(0.0f);
-                this.f29524s[i13].setTranslationY(AndroidUtilities.dp(10.0f));
-                this.f29519b[i13].setAlpha(0.0f);
-                this.f29519b[i13].setTranslationY(AndroidUtilities.dp(10.0f));
+                this.f32149s[i13].setAlpha(0.0f);
+                this.f32149s[i13].setTranslationY(AndroidUtilities.dp(10.0f));
+                this.f32143b[i13].setAlpha(0.0f);
+                this.f32143b[i13].setTranslationY(AndroidUtilities.dp(10.0f));
             }
         }
-        if (this.e != null) {
+        if (this.f32145e != null) {
             textView.setText(LocaleController.getString(R.string.ImportImportingTitle));
-            SendMessagesHelper.ImportingHistory importingHistory = this.e.getSendMessagesHelper().getImportingHistory(this.e.a());
-            this.f29520c.setText(String.format("%d%%", Integer.valueOf(importingHistory.uploadProgress)));
+            SendMessagesHelper.ImportingHistory importingHistory = this.f32145e.getSendMessagesHelper().getImportingHistory(this.f32145e.a());
+            this.f32144c.setText(String.format("%d%%", Integer.valueOf(importingHistory.uploadProgress)));
             this.d.a(importingHistory.uploadProgress / 100.0f, false);
-            this.f29519b[0].setText(LocaleController.formatString("ImportCount", R.string.ImportCount, AndroidUtilities.formatFileSize(importingHistory.getUploadedCount()), AndroidUtilities.formatFileSize(importingHistory.getTotalCount())));
-            this.f29524s[1].setText(LocaleController.getString(R.string.ImportDoneInfo));
-            this.f29519b[1].setText(LocaleController.getString(R.string.ImportDoneTitle));
-            this.e.getNotificationCenter().addObserver(this, NotificationCenter.historyImportProgressChanged);
+            this.f32143b[0].setText(LocaleController.formatString("ImportCount", R.string.ImportCount, AndroidUtilities.formatFileSize(importingHistory.getUploadedCount()), AndroidUtilities.formatFileSize(importingHistory.getTotalCount())));
+            this.f32149s[1].setText(LocaleController.getString(R.string.ImportDoneInfo));
+            this.f32143b[1].setText(LocaleController.getString(R.string.ImportDoneTitle));
+            this.f32145e.getNotificationCenter().addObserver(this, NotificationCenter.historyImportProgressChanged);
             return;
         }
         textView.setText(LocaleController.getString(R.string.ImportStickersImportingTitle));
         SendMessagesHelper.ImportingStickers importingStickers = SendMessagesHelper.getInstance(this.currentAccount).getImportingStickers(str);
-        this.f29520c.setText(String.format("%d%%", Integer.valueOf(importingStickers.uploadProgress)));
+        this.f32144c.setText(String.format("%d%%", Integer.valueOf(importingStickers.uploadProgress)));
         this.d.a(importingStickers.uploadProgress / 100.0f, false);
-        this.f29519b[0].setText(LocaleController.formatString("ImportCount", R.string.ImportCount, AndroidUtilities.formatFileSize(importingStickers.getUploadedCount()), AndroidUtilities.formatFileSize(importingStickers.getTotalCount())));
-        this.f29524s[1].setText(LocaleController.getString(R.string.ImportStickersDoneInfo));
-        this.f29519b[1].setText(LocaleController.getString(R.string.ImportStickersDoneTitle));
+        this.f32143b[0].setText(LocaleController.formatString("ImportCount", R.string.ImportCount, AndroidUtilities.formatFileSize(importingStickers.getUploadedCount()), AndroidUtilities.formatFileSize(importingStickers.getTotalCount())));
+        this.f32149s[1].setText(LocaleController.getString(R.string.ImportStickersDoneInfo));
+        this.f32143b[1].setText(LocaleController.getString(R.string.ImportStickersDoneTitle));
         NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.stickersImportProgressChanged);
     }
 
@@ -157,23 +157,23 @@ public final class w40 extends org.telegram.ui.ActionBar.g3 implements Notificat
     public final void didReceivedNotification(int i10, int i11, Object... objArr) {
         int i12 = NotificationCenter.historyImportProgressChanged;
         m80 m80Var = this.d;
-        TextView[] textViewArr = this.f29519b;
-        TextView textView = this.f29520c;
-        bj0 bj0Var = this.f29521f;
+        TextView[] textViewArr = this.f32143b;
+        TextView textView = this.f32144c;
+        aj0 aj0Var = this.f32146f;
         if (i10 == i12) {
             if (objArr.length > 1) {
                 dismiss();
                 return;
             }
-            org.telegram.ui.bo boVar = this.e;
-            SendMessagesHelper.ImportingHistory importingHistory = boVar.getSendMessagesHelper().getImportingHistory(boVar.a());
+            org.telegram.ui.co coVar = this.f32145e;
+            SendMessagesHelper.ImportingHistory importingHistory = coVar.getSendMessagesHelper().getImportingHistory(coVar.a());
             if (importingHistory == null) {
                 m();
                 return;
             }
-            if (!this.f29522n && ((180 - bj0Var.getAnimatedDrawable().f30221b0) * 16.6d) + 3000.0d >= importingHistory.timeUntilFinish) {
-                bj0Var.setAutoRepeat(false);
-                this.f29522n = true;
+            if (!this.f32147n && ((180 - aj0Var.getAnimatedDrawable().f32581b0) * 16.6d) + 3000.0d >= importingHistory.timeUntilFinish) {
+                aj0Var.setAutoRepeat(false);
+                this.f32147n = true;
             }
             textView.setText(String.format("%d%%", Integer.valueOf(importingHistory.uploadProgress)));
             textViewArr[0].setText(LocaleController.formatString("ImportCount", R.string.ImportCount, AndroidUtilities.formatFileSize(importingHistory.getUploadedCount()), AndroidUtilities.formatFileSize(importingHistory.getTotalCount())));
@@ -188,9 +188,9 @@ public final class w40 extends org.telegram.ui.ActionBar.g3 implements Notificat
                 m();
                 return;
             }
-            if (!this.f29522n && ((180 - bj0Var.getAnimatedDrawable().f30221b0) * 16.6d) + 3000.0d >= importingStickers.timeUntilFinish) {
-                bj0Var.setAutoRepeat(false);
-                this.f29522n = true;
+            if (!this.f32147n && ((180 - aj0Var.getAnimatedDrawable().f32581b0) * 16.6d) + 3000.0d >= importingStickers.timeUntilFinish) {
+                aj0Var.setAutoRepeat(false);
+                this.f32147n = true;
             }
             textView.setText(String.format("%d%%", Integer.valueOf(importingStickers.uploadProgress)));
             textViewArr[0].setText(LocaleController.formatString("ImportCount", R.string.ImportCount, AndroidUtilities.formatFileSize(importingStickers.getUploadedCount()), AndroidUtilities.formatFileSize(importingStickers.getTotalCount())));
@@ -201,35 +201,35 @@ public final class w40 extends org.telegram.ui.ActionBar.g3 implements Notificat
     @Override
     public final void dismissInternal() {
         super.dismissInternal();
-        org.telegram.ui.bo boVar = this.e;
-        if (boVar != null) {
-            boVar.getNotificationCenter().removeObserver(this, NotificationCenter.historyImportProgressChanged);
+        org.telegram.ui.co coVar = this.f32145e;
+        if (coVar != null) {
+            coVar.getNotificationCenter().removeObserver(this, NotificationCenter.historyImportProgressChanged);
         } else {
             NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.stickersImportProgressChanged);
         }
     }
 
     public final void m() {
-        this.f29522n = true;
-        this.f29521f.setAutoRepeat(false);
+        this.f32147n = true;
+        this.f32146f.setAutoRepeat(false);
         v40 v40Var = this.h;
         v40Var.setVisibility(0);
         AnimatorSet animatorSet = new AnimatorSet();
         animatorSet.setDuration(250L);
-        animatorSet.setInterpolator(qr.f27381g);
+        animatorSet.setInterpolator(pr.f29495g);
         Property property = View.ALPHA;
-        TextView textView = this.f29520c;
+        TextView textView = this.f32144c;
         ObjectAnimator ofFloat = ObjectAnimator.ofFloat(textView, property, 0.0f);
         Property property2 = View.TRANSLATION_Y;
         ObjectAnimator ofFloat2 = ObjectAnimator.ofFloat(textView, property2, -AndroidUtilities.dp(10.0f));
-        TextView[] textViewArr = this.f29524s;
+        TextView[] textViewArr = this.f32149s;
         ObjectAnimator ofFloat3 = ObjectAnimator.ofFloat(textViewArr[0], property, 0.0f);
         ObjectAnimator ofFloat4 = ObjectAnimator.ofFloat(textViewArr[0], property2, -AndroidUtilities.dp(10.0f));
-        TextView[] textViewArr2 = this.f29519b;
+        TextView[] textViewArr2 = this.f32143b;
         animatorSet.playTogether(ofFloat, ofFloat2, ofFloat3, ofFloat4, ObjectAnimator.ofFloat(textViewArr2[0], property, 0.0f), ObjectAnimator.ofFloat(textViewArr2[0], property2, -AndroidUtilities.dp(10.0f)), ObjectAnimator.ofFloat(textViewArr[1], property, 1.0f), ObjectAnimator.ofFloat(textViewArr[1], property2, 0.0f), ObjectAnimator.ofFloat(textViewArr2[1], property, 1.0f), ObjectAnimator.ofFloat(textViewArr2[1], property2, 0.0f), ObjectAnimator.ofFloat(this.d, property, 0.0f), ObjectAnimator.ofFloat(v40Var.d, property2, AndroidUtilities.dp(8.0f), 0.0f));
-        v40Var.f28593a.animate().scaleY(1.0f).setInterpolator(new OvershootInterpolator(1.02f)).setDuration(250L).start();
-        v40Var.f28595c.animate().scaleY(1.0f).scaleX(1.0f).setInterpolator(new OvershootInterpolator(1.02f)).setDuration(250L).start();
-        v40Var.f28595c.d();
+        v40Var.f31117a.animate().scaleY(1.0f).setInterpolator(new OvershootInterpolator(1.02f)).setDuration(250L).start();
+        v40Var.f31119c.animate().scaleY(1.0f).scaleX(1.0f).setInterpolator(new OvershootInterpolator(1.02f)).setDuration(250L).start();
+        v40Var.f31119c.d();
         animatorSet.start();
     }
 }

@@ -1,69 +1,36 @@
 package org.telegram.ui.Components;
 
-import android.animation.TimeAnimator;
-import android.animation.ValueAnimator;
 import org.telegram.messenger.AndroidUtilities;
-public final class ew0 extends TimeAnimator {
-    public int f23677a;
-    public int f23678b;
-    public ValueAnimator.AnimatorUpdateListener f23679c;
-    public Float d;
-    public float[] e;
+import org.telegram.ui.ProfileActivity;
+public final class ew0 implements Runnable {
+    public final int f25829a;
+    public final hw0 f25830b;
 
-    @Override
-    public final void addUpdateListener(ValueAnimator.AnimatorUpdateListener animatorUpdateListener) {
-        this.f23679c = animatorUpdateListener;
+    public ew0(hw0 hw0Var, int i10) {
+        this.f25829a = i10;
+        this.f25830b = hw0Var;
     }
 
     @Override
-    public final void end() {
-        this.f23679c = null;
-        super.end();
-    }
-
-    @Override
-    public final Object getAnimatedValue() {
-        return this.d;
-    }
-
-    @Override
-    public final void setFloatValues(float[] fArr) {
-        super.setFloatValues(fArr);
-        this.e = fArr;
-    }
-
-    @Override
-    public final void start() {
-        setTimeListener(new TimeAnimator.TimeListener() {
-            @Override
-            public final void onTimeUpdate(TimeAnimator timeAnimator, long j3, long j10) {
-                int i10;
-                ew0 ew0Var = ew0.this;
-                int i11 = ew0Var.f23677a;
-                if (i11 > 0 && (i10 = ew0Var.f23678b) > 0) {
-                    int i12 = i11 - 1;
-                    ew0Var.f23677a = i12;
-                    if (ew0Var.f23679c != null) {
-                        float[] fArr = ew0Var.e;
-                        if (fArr != null && fArr.length == 2) {
-                            float interpolation = ew0Var.getInterpolator().getInterpolation(1.0f - (i12 / i10));
-                            float[] fArr2 = ew0Var.e;
-                            float f7 = fArr2[0];
-                            ew0Var.d = Float.valueOf(((fArr2[1] - f7) * interpolation) + f7);
-                            ew0Var.f23679c.onAnimationUpdate(ew0Var);
-                            return;
-                        }
-                        ew0Var.end();
-                        return;
-                    }
+    public final void run() {
+        switch (this.f25829a) {
+            case 0:
+                hw0 hw0Var = this.f25830b;
+                hw0Var.invalidate();
+                AndroidUtilities.runOnUIThread(new ew0(hw0Var, 1));
+                return;
+            default:
+                hw0 hw0Var2 = this.f25830b;
+                gw0 gw0Var = hw0Var2.f26913e;
+                if (gw0Var != null) {
+                    hw0Var2.getVisibilityFactor();
+                    ProfileActivity profileActivity = ((org.telegram.ui.ky0) gw0Var).f38180b;
+                    org.telegram.ui.ActionBar.j5[] j5VarArr = profileActivity.f34002r;
+                    j5VarArr[1].setTranslationX(profileActivity.W3(profileActivity.Z5));
+                    j5VarArr[1].setTranslationY(profileActivity.X3(profileActivity.f33890a6));
                     return;
                 }
-                ew0Var.end();
-            }
-        });
-        int duration = (int) (((float) getDuration()) / AndroidUtilities.screenRefreshTime);
-        this.f23677a = duration;
-        this.f23678b = duration;
-        super.start();
+                return;
+        }
     }
 }

@@ -1,34 +1,112 @@
 package yh;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.UserConfig;
+import android.view.View;
+import java.util.ArrayList;
+import java.util.HashSet;
+import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.tl.TL_stars;
-public final class v3 extends AnimatorListenerAdapter {
-    public final x3 f47914a;
+import org.telegram.ui.Components.h51;
+import org.telegram.ui.Components.n70;
+public final class v3 implements Utilities.Callback5 {
+    public final int f50635a;
+    public final e4 f50636b;
+    public final n70 f50637c;
 
-    public v3(x3 x3Var) {
-        this.f47914a = x3Var;
+    public v3(e4 e4Var, n70 n70Var, int i10) {
+        this.f50635a = i10;
+        this.f50636b = e4Var;
+        this.f50637c = n70Var;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        x3 x3Var = this.f47914a;
-        y2 y2Var = x3Var.f47998i0;
-        x3Var.f48010s0 = x3Var.f48008r0;
-        x3Var.d(x3Var.U);
-        TL_stars.starGiftAttributeModel[] stargiftattributemodelArr = x3Var.e;
-        int i10 = 2 - x3Var.f48008r0;
-        stargiftattributemodelArr[i10] = (TL_stars.starGiftAttributeModel) x3Var.W.f6167f;
-        y7.Z0(x3Var.d[i10].getImageReceiver(), stargiftattributemodelArr[2 - x3Var.f48008r0].document, 160);
-        TL_stars.starGiftAttributePattern stargiftattributepattern = (TL_stars.starGiftAttributePattern) x3Var.f47987a0.f6167f;
-        if (stargiftattributepattern != null) {
-            org.telegram.ui.Components.o5 m10 = org.telegram.ui.Components.o5.m(UserConfig.selectedAccount, 7, stargiftattributepattern.document);
-            m10.f26638m = true;
-            m10.v();
+    public final void mo17run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
+        h51 h51Var = (h51) obj;
+        View view = (View) obj2;
+        Integer num = (Integer) obj3;
+        Float f7 = (Float) obj4;
+        Float f10 = (Float) obj5;
+        switch (this.f50635a) {
+            case 0:
+                long j3 = ((TL_stars.starGiftAttributeModel) h51Var.G).document.f19902id;
+                t3 t3Var = this.f50636b.f50295c;
+                HashSet hashSet = t3Var.f50593j;
+                HashSet hashSet2 = t3Var.f50593j;
+                if (!hashSet.contains(Long.valueOf(j3))) {
+                    if (hashSet2.isEmpty()) {
+                        ArrayList arrayList = t3Var.f50590f;
+                        int size = arrayList.size();
+                        int i10 = 0;
+                        while (i10 < size) {
+                            Object obj6 = arrayList.get(i10);
+                            i10++;
+                            long j10 = ((TL_stars.starGiftAttributeModel) obj6).document.f19902id;
+                            if (j10 != j3) {
+                                hashSet2.add(Long.valueOf(j10));
+                            }
+                        }
+                    } else {
+                        hashSet2.add(Long.valueOf(j3));
+                    }
+                } else {
+                    hashSet2.remove(Long.valueOf(j3));
+                }
+                t3Var.h();
+                this.f50637c.u();
+                return;
+            case 1:
+                int i11 = ((TL_stars.starGiftAttributeBackdrop) h51Var.G).backdrop_id;
+                t3 t3Var2 = this.f50636b.f50295c;
+                HashSet hashSet3 = t3Var2.f50594k;
+                HashSet hashSet4 = t3Var2.f50594k;
+                if (!hashSet3.contains(Integer.valueOf(i11))) {
+                    if (hashSet4.isEmpty()) {
+                        ArrayList arrayList2 = t3Var2.f50591g;
+                        int size2 = arrayList2.size();
+                        int i12 = 0;
+                        while (i12 < size2) {
+                            Object obj7 = arrayList2.get(i12);
+                            i12++;
+                            int i13 = ((TL_stars.starGiftAttributeBackdrop) obj7).backdrop_id;
+                            if (i13 != i11) {
+                                hashSet4.add(Integer.valueOf(i13));
+                            }
+                        }
+                    } else {
+                        hashSet4.add(Integer.valueOf(i11));
+                    }
+                } else {
+                    hashSet4.remove(Integer.valueOf(i11));
+                }
+                t3Var2.h();
+                this.f50637c.u();
+                return;
+            default:
+                long j11 = ((TL_stars.starGiftAttributePattern) h51Var.G).document.f19902id;
+                t3 t3Var3 = this.f50636b.f50295c;
+                HashSet hashSet5 = t3Var3.f50595l;
+                HashSet hashSet6 = t3Var3.f50595l;
+                if (!hashSet5.contains(Long.valueOf(j11))) {
+                    if (hashSet6.isEmpty()) {
+                        ArrayList arrayList3 = t3Var3.h;
+                        int size3 = arrayList3.size();
+                        int i14 = 0;
+                        while (i14 < size3) {
+                            Object obj8 = arrayList3.get(i14);
+                            i14++;
+                            long j12 = ((TL_stars.starGiftAttributePattern) obj8).document.f19902id;
+                            if (j12 != j11) {
+                                hashSet6.add(Long.valueOf(j12));
+                            }
+                        }
+                    } else {
+                        hashSet6.add(Long.valueOf(j11));
+                    }
+                } else {
+                    hashSet6.remove(Long.valueOf(j11));
+                }
+                t3Var3.h();
+                this.f50637c.u();
+                return;
         }
-        AndroidUtilities.cancelRunOnUIThread(y2Var);
-        AndroidUtilities.runOnUIThread(y2Var, 2500L);
     }
 }

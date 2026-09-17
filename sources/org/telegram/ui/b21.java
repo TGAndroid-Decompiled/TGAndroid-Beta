@@ -1,144 +1,169 @@
 package org.telegram.ui;
 
-import android.text.SpannableStringBuilder;
+import android.animation.ValueAnimator;
 import android.view.View;
-import java.util.ArrayList;
-import java.util.HashMap;
+import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class b21 extends org.telegram.ui.Components.b81 {
-    public boolean f32036a;
-    public final org.telegram.ui.Components.ur0 f32037b;
+import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
+public final class b21 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f34636a;
+    public final Object f34637b;
 
-    public b21(org.telegram.ui.Components.ur0 ur0Var) {
-        this.f32037b = ur0Var;
+    public b21(Object obj, int i10) {
+        this.f34636a = i10;
+        this.f34637b = obj;
     }
 
     @Override
-    public final void a(ArrayList arrayList) {
-        org.telegram.ui.Components.ur0 ur0Var = this.f32037b;
-        g01 g01Var = ur0Var.G;
-        org.telegram.ui.Components.i81 i81Var = ur0Var.f32645n;
-        ArrayList arrayList2 = new ArrayList();
-        int size = arrayList.size();
-        int i10 = 0;
-        int i11 = 0;
-        while (i11 < size) {
-            Object obj = arrayList.get(i11);
-            i11++;
-            Integer num = (Integer) obj;
-            int intValue = num.intValue();
-            if (intValue != -1 && intValue != -2 && intValue != 0) {
-                arrayList2.add(num);
-            }
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f34636a) {
+            case 0:
+                d21 d21Var = (d21) this.f34637b;
+                d21Var.f35659y = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                d21Var.a();
+                return;
+            case 1:
+                q21 q21Var = (q21) this.f34637b;
+                q21Var.f39719y = AndroidUtilities.lerp(q21Var.E, valueAnimator.getAnimatedFraction());
+                q21Var.h.setTextColor(i0.a.d(q21Var.f39719y, org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.f21089z6, false), org.telegram.ui.ActionBar.j6.w0(null, org.telegram.ui.ActionBar.j6.q6, false)));
+                q21Var.f39715r.setAlpha((q21Var.f39719y / 2.0f) + 0.5f);
+                return;
+            case 2:
+                ((g31) this.f34637b).h.s(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                return;
+            case 3:
+                f31 f31Var = (f31) this.f34637b;
+                f31Var.P = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                f31Var.O.invalidate();
+                return;
+            case 4:
+                SecretMediaViewer secretMediaViewer = ((z41) this.f34637b).d;
+                secretMediaViewer.f34086a0.f39059k0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                secretMediaViewer.f34086a0.invalidate();
+                return;
+            case 5:
+                SecretMediaViewer secretMediaViewer2 = ((z41) this.f34637b).d;
+                secretMediaViewer2.f34086a0.f39059k0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                secretMediaViewer2.f34086a0.invalidate();
+                return;
+            case 6:
+                ((SecretMediaViewer) ((org.telegram.ui.Components.em0) this.f34637b).f25762b).f34086a0.scrollTo(0, ((Integer) valueAnimator.getAnimatedValue()).intValue());
+                return;
+            case 7:
+                k51 k51Var = (k51) this.f34637b;
+                k51Var.v = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                if (k51Var.S) {
+                    k51Var.N.invalidate();
+                    return;
+                }
+                return;
+            case 8:
+                ((z51) this.f34637b).f43326e.U0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                return;
+            case 9:
+                y61 y61Var = (y61) this.f34637b;
+                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                y61Var.f43034r = floatValue;
+                View view = y61Var.f43031e;
+                if (view != null) {
+                    view.setAlpha(floatValue);
+                    return;
+                }
+                org.telegram.ui.Components.ig0 ig0Var = y61Var.d;
+                if (ig0Var != null) {
+                    ig0Var.invalidate();
+                    return;
+                }
+                return;
+            case 10:
+                f71 f71Var = (f71) this.f34637b;
+                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                f71Var.L = floatValue2;
+                ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = f71Var.v;
+                actionBarPopupWindow$ActionBarPopupWindowLayout.setBackScaleY(floatValue2);
+                org.telegram.ui.ActionBar.j1 j1Var = actionBarPopupWindow$ActionBarPopupWindowLayout.L;
+                actionBarPopupWindow$ActionBarPopupWindowLayout.setAlpha(org.telegram.ui.Components.pr.f29495g.getInterpolation(f71Var.L));
+                int itemsCount = actionBarPopupWindow$ActionBarPopupWindowLayout.getItemsCount();
+                for (int i10 = 0; i10 < itemsCount; i10++) {
+                    float cascade = AndroidUtilities.cascade(f71Var.L, i10, itemsCount, 4.0f);
+                    j1Var.getChildAt(i10).setTranslationY((1.0f - cascade) * AndroidUtilities.dp(-12.0f));
+                    j1Var.getChildAt(i10).setAlpha(cascade);
+                }
+                return;
+            case 11:
+                i91.a0((i91) this.f34637b, valueAnimator);
+                return;
+            case 12:
+                la1 la1Var = (la1) this.f34637b;
+                la1Var.getClass();
+                float floatValue3 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                la1Var.f38282e.setAlpha(1.0f - floatValue3);
+                jg.g gVar = la1Var.f38280b;
+                gVar.f13725z0.f15485f = floatValue3;
+                la1Var.f38281c.invalidate();
+                gVar.invalidate();
+                return;
+            case 13:
+                wd1 wd1Var = (wd1) this.f34637b;
+                wd1Var.getClass();
+                wd1Var.f41984o1 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                wd1Var.f42005x0.invalidate();
+                wd1Var.C0.invalidate();
+                wd1Var.R1.setAlpha(wd1Var.f41984o1);
+                wd1Var.Q1.invalidate();
+                wd1Var.V0();
+                return;
+            case 14:
+                wd1 wd1Var2 = ((kd1) this.f34637b).f38038a;
+                wd1Var2.f41984o1 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                wd1Var2.f42005x0.invalidate();
+                wd1Var2.C0.invalidate();
+                wd1Var2.R1.setAlpha(wd1Var2.f41984o1);
+                wd1Var2.Q1.invalidate();
+                wd1Var2.V0();
+                return;
+            case 15:
+                te1 te1Var = (te1) this.f34637b;
+                te1Var.E = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                int childCount = te1Var.f40756a.getChildCount();
+                for (int i11 = 0; i11 < childCount; i11++) {
+                    int R = RecyclerView.R(te1Var.f40756a.getChildAt(i11));
+                    int i12 = te1Var.d.f39882e;
+                    if (R >= i12 && i12 > 0) {
+                        te1Var.f40756a.getChildAt(i11).setAlpha(te1Var.E);
+                    } else {
+                        te1Var.f40756a.getChildAt(i11).setAlpha(1.0f);
+                    }
+                }
+                return;
+            case 16:
+                ye1 ye1Var = (ye1) this.f34637b;
+                ye1Var.getClass();
+                ye1Var.f43123c = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                ye1Var.invalidate();
+                return;
+            case 17:
+                eg1 eg1Var = (eg1) this.f34637b;
+                eg1Var.getClass();
+                eg1Var.S0(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                return;
+            case 18:
+                bg1 bg1Var = (bg1) this.f34637b;
+                bg1Var.getClass();
+                bg1Var.f34828f5 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                bg1Var.f0();
+                return;
+            case 19:
+                cg1 cg1Var = (cg1) this.f34637b;
+                cg1Var.getClass();
+                cg1Var.setViewsOffset(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                return;
+            default:
+                ui1 ui1Var = (ui1) this.f34637b;
+                ui1Var.getClass();
+                ui1Var.f41181y0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                ui1Var.G();
+                return;
         }
-        int f7 = f(i81Var.getCurrentPosition());
-        ai.x8 x8Var = ur0Var.f32646r;
-        x8Var.getClass();
-        HashMap hashMap = new HashMap();
-        ArrayList arrayList3 = x8Var.h;
-        int size2 = arrayList3.size();
-        int i12 = 0;
-        while (i12 < size2) {
-            Object obj2 = arrayList3.get(i12);
-            i12++;
-            ai.e9 e9Var = (ai.e9) obj2;
-            hashMap.put(Integer.valueOf(e9Var.f773a), e9Var);
-        }
-        ArrayList arrayList4 = new ArrayList();
-        int size3 = arrayList2.size();
-        while (i10 < size3) {
-            Object obj3 = arrayList2.get(i10);
-            i10++;
-            Integer num2 = (Integer) obj3;
-            num2.getClass();
-            ai.e9 e9Var2 = (ai.e9) hashMap.get(num2);
-            if (e9Var2 != null) {
-                arrayList4.add(e9Var2);
-            }
-        }
-        arrayList3.clear();
-        arrayList3.addAll(arrayList4);
-        if (f7 >= 0) {
-            int i13 = i(f7);
-            i81Var.e(0.0f, i13, i13);
-        }
-        AndroidUtilities.cancelRunOnUIThread(g01Var);
-        AndroidUtilities.runOnUIThread(g01Var, 1000L);
-    }
-
-    @Override
-    public final boolean c(int i10) {
-        if (i10 == 0) {
-            return false;
-        }
-        if (this.f32036a && i10 == e() - 1) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public final View d(int i10) {
-        if (i10 == -1) {
-            return null;
-        }
-        return new View(this.f32037b.getContext());
-    }
-
-    @Override
-    public final int e() {
-        return this.f32037b.f32646r.h.size() + 1 + (this.f32036a ? 1 : 0);
-    }
-
-    @Override
-    public final int f(int i10) {
-        if (i10 == 0) {
-            return 0;
-        }
-        if (this.f32036a && i10 == e() - 1) {
-            return -1;
-        }
-        return ((ai.e9) this.f32037b.f32646r.h.get(i10 - 1)).f773a;
-    }
-
-    @Override
-    public final CharSequence g(int i10) {
-        if (i10 == 0) {
-            return LocaleController.getString(R.string.StoriesAlbumNameAllStories);
-        }
-        if (this.f32036a && i10 == e() - 1) {
-            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("+ ");
-            spannableStringBuilder.append((CharSequence) LocaleController.getString(R.string.StoriesAlbumAddAlbum));
-            org.telegram.ui.Components.oq oqVar = new org.telegram.ui.Components.oq(R.drawable.poll_add_plus, 0);
-            oqVar.spaceScaleX = 0.8f;
-            spannableStringBuilder.setSpan(oqVar, 0, 1, 33);
-            return spannableStringBuilder;
-        }
-        return ((ai.e9) this.f32037b.f32646r.h.get(i10 - 1)).f774b;
-    }
-
-    @Override
-    public final int h(int i10) {
-        if (this.f32036a && i10 == e() - 1) {
-            return -1;
-        }
-        return i10;
-    }
-
-    public final int i(int i10) {
-        if (i10 == 0) {
-            return 0;
-        }
-        int c10 = this.f32037b.f32646r.c(i10);
-        if (c10 == -1) {
-            return -1;
-        }
-        return c10 + 1;
-    }
-
-    @Override
-    public final void b(View view, int i10, int i11) {
     }
 }

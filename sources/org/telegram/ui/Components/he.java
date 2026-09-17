@@ -1,96 +1,86 @@
 package org.telegram.ui.Components;
 
-import android.util.Property;
-import android.view.View;
-public final class he extends Property {
-    public final int f24644a;
-    public final ChatActivityEnterView f24645b;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Iterator;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.MessagesStorage;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_keyboard;
+import org.telegram.ui.eg1;
+public final class he implements org.telegram.ui.sj0, org.telegram.ui.oy {
+    public final ChatActivityEnterView f26740a;
+    public final MessageObject f26741b;
+    public final TL_keyboard.TL_buttonTypeRequestPeer f26742c;
 
-    public he(ChatActivityEnterView chatActivityEnterView, int i10) {
-        super(Float.class, "emoji_button_scale");
-        this.f24644a = i10;
-        switch (i10) {
-            case 1:
-                this.f24645b = chatActivityEnterView;
-                super(Float.class, "attach_scale");
-                return;
-            case 2:
-                this.f24645b = chatActivityEnterView;
-                super(Float.class, "emoji_button_alpha");
-                return;
-            case 3:
-                this.f24645b = chatActivityEnterView;
-                super(Float.class, "attach_layout_translation_x");
-                return;
-            case 4:
-                this.f24645b = chatActivityEnterView;
-                super(Float.class, "message_text_translation_x");
-                return;
-            default:
-                this.f24645b = chatActivityEnterView;
-                return;
+    public he(ChatActivityEnterView chatActivityEnterView, MessageObject messageObject, TL_keyboard.TL_buttonTypeRequestPeer tL_buttonTypeRequestPeer) {
+        this.f26740a = chatActivityEnterView;
+        this.f26741b = messageObject;
+        this.f26742c = tL_buttonTypeRequestPeer;
+    }
+
+    @Override
+    public boolean B() {
+        return false;
+    }
+
+    @Override
+    public boolean K(org.telegram.ui.uy uyVar) {
+        return false;
+    }
+
+    @Override
+    public void a(ArrayList arrayList) {
+        int i10 = ChatActivityEnterView.f23689m5;
+        if (!arrayList.isEmpty()) {
+            TLRPC.TL_messages_sendBotRequestedPeer tL_messages_sendBotRequestedPeer = new TLRPC.TL_messages_sendBotRequestedPeer();
+            ChatActivityEnterView chatActivityEnterView = this.f26740a;
+            MessagesController messagesController = MessagesController.getInstance(chatActivityEnterView.Q);
+            MessageObject messageObject = this.f26741b;
+            tL_messages_sendBotRequestedPeer.peer = messagesController.getInputPeer(messageObject.messageOwner.peer_id);
+            tL_messages_sendBotRequestedPeer.flags |= 1;
+            tL_messages_sendBotRequestedPeer.msg_id = messageObject.getId();
+            tL_messages_sendBotRequestedPeer.button_id = this.f26742c.button_id;
+            int size = arrayList.size();
+            int i11 = 0;
+            while (i11 < size) {
+                Object obj = arrayList.get(i11);
+                i11++;
+                tL_messages_sendBotRequestedPeer.requested_peers.add(MessagesController.getInstance(chatActivityEnterView.Q).getInputPeer(((Long) obj).longValue()));
+            }
+            ConnectionsManager.getInstance(chatActivityEnterView.Q).sendRequest(tL_messages_sendBotRequestedPeer, null);
         }
     }
 
     @Override
-    public final Object get(Object obj) {
-        switch (this.f24644a) {
-            case 0:
-                View view = (View) obj;
-                return Float.valueOf(this.f24645b.h);
-            case 1:
-                View view2 = (View) obj;
-                return Float.valueOf(this.f24645b.E);
-            case 2:
-                View view3 = (View) obj;
-                return Float.valueOf(this.f24645b.f21818n);
-            case 3:
-                View view4 = (View) obj;
-                return Float.valueOf(this.f24645b.f21872x);
-            default:
-                View view5 = (View) obj;
-                return Float.valueOf(this.f24645b.G);
+    public boolean u(org.telegram.ui.uy uyVar, ArrayList arrayList, CharSequence charSequence, boolean z10, boolean z11, int i10, int i11, eg1 eg1Var) {
+        int i12 = ChatActivityEnterView.f23689m5;
+        if (!arrayList.isEmpty()) {
+            TLRPC.TL_messages_sendBotRequestedPeer tL_messages_sendBotRequestedPeer = new TLRPC.TL_messages_sendBotRequestedPeer();
+            ChatActivityEnterView chatActivityEnterView = this.f26740a;
+            MessagesController messagesController = MessagesController.getInstance(chatActivityEnterView.Q);
+            MessageObject messageObject = this.f26741b;
+            tL_messages_sendBotRequestedPeer.peer = messagesController.getInputPeer(messageObject.messageOwner.peer_id);
+            tL_messages_sendBotRequestedPeer.flags |= 1;
+            tL_messages_sendBotRequestedPeer.msg_id = messageObject.getId();
+            tL_messages_sendBotRequestedPeer.button_id = this.f26742c.button_id;
+            HashSet hashSet = new HashSet();
+            int size = arrayList.size();
+            int i13 = 0;
+            while (i13 < size) {
+                Object obj = arrayList.get(i13);
+                i13++;
+                hashSet.add(Long.valueOf(((MessagesStorage.TopicKey) obj).dialogId));
+            }
+            Iterator it = hashSet.iterator();
+            while (it.hasNext()) {
+                tL_messages_sendBotRequestedPeer.requested_peers.add(MessagesController.getInstance(chatActivityEnterView.Q).getInputPeer(((Long) it.next()).longValue()));
+            }
+            ConnectionsManager.getInstance(chatActivityEnterView.Q).sendRequest(tL_messages_sendBotRequestedPeer, null);
         }
-    }
-
-    @Override
-    public final void set(Object obj, Object obj2) {
-        switch (this.f24644a) {
-            case 0:
-                View view = (View) obj;
-                float floatValue = ((Float) obj2).floatValue();
-                ChatActivityEnterView chatActivityEnterView = this.f24645b;
-                chatActivityEnterView.h = floatValue;
-                chatActivityEnterView.E1();
-                return;
-            case 1:
-                View view2 = (View) obj;
-                float floatValue2 = ((Float) obj2).floatValue();
-                ChatActivityEnterView chatActivityEnterView2 = this.f24645b;
-                chatActivityEnterView2.E = floatValue2;
-                chatActivityEnterView2.z1();
-                return;
-            case 2:
-                View view3 = (View) obj;
-                float floatValue3 = ((Float) obj2).floatValue();
-                ChatActivityEnterView chatActivityEnterView3 = this.f24645b;
-                chatActivityEnterView3.f21818n = floatValue3;
-                chatActivityEnterView3.E1();
-                return;
-            case 3:
-                View view4 = (View) obj;
-                float floatValue4 = ((Float) obj2).floatValue();
-                ChatActivityEnterView chatActivityEnterView4 = this.f24645b;
-                chatActivityEnterView4.f21872x = floatValue4;
-                chatActivityEnterView4.z1();
-                return;
-            default:
-                View view5 = (View) obj;
-                float floatValue5 = ((Float) obj2).floatValue();
-                ChatActivityEnterView chatActivityEnterView5 = this.f24645b;
-                chatActivityEnterView5.G = floatValue5;
-                chatActivityEnterView5.I1();
-                return;
-        }
+        uyVar.finishFragment();
+        return true;
     }
 }

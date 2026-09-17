@@ -1,25 +1,45 @@
 package org.telegram.ui.ActionBar;
-public final class b4 {
-    public static final b4 f18471a;
-    public static final b4 f18472b;
-    public static final b4 f18473c;
-    public static final b4[] d;
 
-    static {
-        ?? r02 = new Enum("NONE", 0);
-        f18471a = r02;
-        ?? r12 = new Enum("VERTICAL", 1);
-        f18472b = r12;
-        ?? r32 = new Enum("FULL", 2);
-        f18473c = r32;
-        d = new b4[]{r02, r12, r32};
+import android.graphics.Point;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ImageLoader;
+import org.telegram.messenger.ImageLocation;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLRPC;
+public final class b4 implements Utilities.Callback {
+    public final Utilities.Callback f20292a;
+    public final TLRPC.WallPaper f20293b;
+    public final int f20294c;
+    public final int d;
+    public final long f20295e;
+
+    public b4(Utilities.Callback callback, TLRPC.WallPaper wallPaper, int i10, int i11, long j3) {
+        this.f20292a = callback;
+        this.f20293b = wallPaper;
+        this.f20294c = i10;
+        this.d = i11;
+        this.f20295e = j3;
     }
 
-    public static b4 valueOf(String str) {
-        return (b4) Enum.valueOf(b4.class, str);
-    }
-
-    public static b4[] values() {
-        return (b4[]) d.clone();
+    @Override
+    public final void run(Object obj) {
+        dg.a aVar = (dg.a) obj;
+        Utilities.Callback callback = this.f20292a;
+        if (aVar != null) {
+            callback.run(aVar);
+            return;
+        }
+        TLRPC.WallPaper wallPaper = this.f20293b;
+        ImageLocation forDocument = ImageLocation.getForDocument(wallPaper.document);
+        ImageReceiver imageReceiver = new ImageReceiver();
+        imageReceiver.setAllowLoadingOnAttachedOnly(false);
+        Point point = AndroidUtilities.displaySize;
+        int min = Math.min(point.x, point.y);
+        Point point2 = AndroidUtilities.displaySize;
+        int max = Math.max(point2.x, point2.y);
+        imageReceiver.setImage(forDocument, (min / AndroidUtilities.density) + "_" + (max / AndroidUtilities.density) + "_f", null, ".jpg", wallPaper, 1);
+        imageReceiver.setDelegate(new org.telegram.tgnet.g(this.f20294c, this.d, this.f20295e, callback));
+        ImageLoader.getInstance().loadImageForImageReceiver(imageReceiver);
     }
 }

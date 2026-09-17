@@ -1,40 +1,69 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.Rect;
-import android.view.MotionEvent;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-public final class cp extends org.telegram.ui.Components.ao0 {
-    public final kp f32843r;
+import org.telegram.messenger.ChatObject;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+public final class cp implements View.OnClickListener {
+    public final int f35540a;
+    public final lp f35541b;
 
-    public cp(kp kpVar, Context context, zd zdVar, org.telegram.ui.ActionBar.f6 f6Var) {
-        super(context, zdVar, f6Var, false);
-        this.f32843r = kpVar;
+    public cp(lp lpVar, int i10) {
+        this.f35540a = i10;
+        this.f35541b = lpVar;
     }
 
     @Override
-    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        if (!this.f32843r.L && super.onInterceptTouchEvent(motionEvent)) {
-            return true;
+    public final void onClick(View view) {
+        int i10 = this.f35540a;
+        lp lpVar = this.f35541b;
+        switch (i10) {
+            case 0:
+                TLRPC.Chat currentChannel = ((org.telegram.ui.Cells.n) view.getParent()).getCurrentChannel();
+                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(lpVar.getParentActivity());
+                String string = LocaleController.getString(R.string.AppName);
+                org.telegram.ui.ActionBar.b2 b2Var = alertDialog$Builder.f20226a;
+                b2Var.R = string;
+                if (lpVar.f38452a0) {
+                    b2Var.T = AndroidUtilities.replaceTags(LocaleController.formatString("RevokeLinkAlertChannel", R.string.RevokeLinkAlertChannel, lpVar.getMessagesController().linkPrefix + "/" + ChatObject.getPublicUsername(currentChannel), currentChannel.title));
+                } else {
+                    b2Var.T = AndroidUtilities.replaceTags(LocaleController.formatString("RevokeLinkAlert", R.string.RevokeLinkAlert, lpVar.getMessagesController().linkPrefix + "/" + ChatObject.getPublicUsername(currentChannel), currentChannel.title));
+                }
+                alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
+                alertDialog$Builder.k(LocaleController.getString(R.string.RevokeButton), new m4(14, lpVar, currentChannel));
+                lpVar.showDialog(b2Var);
+                return;
+            case 1:
+                if (!lpVar.V) {
+                    lpVar.V = true;
+                    lpVar.b0();
+                    return;
+                }
+                return;
+            case 2:
+                if (lpVar.V) {
+                    if (!lpVar.f38456c0) {
+                        lpVar.Z();
+                        return;
+                    }
+                    lpVar.V = false;
+                    lpVar.b0();
+                    return;
+                }
+                return;
+            case 3:
+                yh0 yh0Var = new yh0(lpVar.Z, 0L, 0);
+                yh0Var.g0(lpVar.Y, lpVar.f38467l0);
+                lpVar.presentFragment(yh0Var);
+                return;
+            default:
+                boolean z10 = !lpVar.f38454b0;
+                lpVar.f38454b0 = z10;
+                ((org.telegram.ui.Cells.w8) view).setChecked(z10);
+                return;
         }
-        return false;
-    }
-
-    @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        if (motionEvent.getAction() != 0) {
-            return super.onTouchEvent(motionEvent);
-        }
-        if (!this.f32843r.L && super.onTouchEvent(motionEvent)) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final boolean requestChildRectangleOnScreen(View view, Rect rect, boolean z10) {
-        rect.bottom = AndroidUtilities.dp(60.0f) + rect.bottom;
-        return super.requestChildRectangleOnScreen(view, rect, z10);
     }
 }

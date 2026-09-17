@@ -1,69 +1,165 @@
 package gh;
 
-import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import android.graphics.Matrix;
+import android.graphics.RecordingCanvas;
 import android.graphics.RectF;
-import android.view.View;
-import android.view.ViewGroup;
-import hh.k;
-public abstract class d {
-    public static final Matrix f10010a = new Matrix();
-    public static final RectF f10011b = new RectF();
-    public static final RectF f10012c = new RectF();
+import android.graphics.RenderEffect;
+import android.graphics.RenderNode;
+import android.graphics.Shader;
+import android.os.Build;
+import android.support.v4.media.session.y;
+import bh.f;
+import bh.h;
+import bh.i;
+import java.util.Iterator;
+import java.util.List;
+public final class d implements a {
+    public final a f10681a;
+    public i f10683c;
+    public f d;
+    public int f10684e;
+    public a f10685f;
+    public boolean h;
+    public boolean f10686n;
+    public RecordingCanvas f10687r;
+    public Runnable v;
+    public final pe.b f10688s = new pe.b(true);
+    public final RenderNode f10682b = y.c();
 
-    public static void a(bh.a aVar, Canvas canvas, RectF rectF, View view, ViewGroup viewGroup) {
-        b(aVar, canvas, rectF, view, viewGroup, 255);
+    public d(a aVar) {
+        this.f10681a = aVar;
     }
 
-    public static void b(bh.a aVar, Canvas canvas, RectF rectF, View view, ViewGroup viewGroup, int i10) {
-        boolean z10;
-        if (i10 > 0 && aVar != null) {
-            RectF rectF2 = f10012c;
-            if (k.c(view, viewGroup, rectF2)) {
-                float f7 = rectF2.left;
-                float f10 = rectF2.top;
-                RectF rectF3 = f10011b;
-                rectF3.set(rectF);
-                rectF3.offset(-f7, -f10);
-                boolean z11 = true;
-                if (f7 == 0.0f && f10 == 0.0f) {
-                    z10 = false;
+    public final RecordingCanvas a(int i10, int i11) {
+        if (!this.f10686n) {
+            this.f10686n = true;
+            this.f10682b.setPosition(0, 0, i10, i11);
+            RecordingCanvas beginRecording = this.f10682b.beginRecording(i10, i11);
+            this.f10687r = beginRecording;
+            return beginRecording;
+        }
+        throw new IllegalStateException();
+    }
+
+    public final void b() {
+        if (this.f10686n) {
+            this.f10682b.endRecording();
+            this.f10686n = false;
+            this.f10687r = null;
+            return;
+        }
+        throw new IllegalStateException();
+    }
+
+    public final int c(int i10, int i11, List list) {
+        RectF rectF;
+        Iterator it = this.f10688s.iterator();
+        int i12 = 0;
+        while (it.hasNext()) {
+            dh.e eVar = (dh.e) it.next();
+            boolean v = eVar.v();
+            dh.c cVar = eVar.h;
+            if (v && eVar.f6866j > 0 && !cVar.f6856m.isEmpty()) {
+                if (i10 < list.size()) {
+                    rectF = (RectF) list.get(i10);
                 } else {
-                    z10 = true;
+                    rectF = new RectF();
+                    list.add(rectF);
                 }
-                if (i10 == 255) {
-                    z11 = false;
-                }
-                if (z10) {
-                    canvas.save();
-                    canvas.translate(f7, f10);
-                }
-                if (z11) {
-                    canvas.saveLayerAlpha(rectF3, i10);
-                }
-                aVar.f(canvas, rectF3);
-                if (z11) {
-                    canvas.restore();
-                }
-                if (z10) {
-                    canvas.restore();
-                }
+                rectF.set(cVar.f6856m);
+                rectF.offset(eVar.f6859a, eVar.f6860b);
+                float f7 = -i11;
+                rectF.inset(f7, f7);
+                i10++;
+                i12++;
             }
         }
+        return i12;
     }
 
-    public static void c(fh.b bVar, View view) {
-        Bitmap bitmap;
-        if (bVar != null && view != null && view.getWidth() != 0 && view.getHeight() != 0 && (bitmap = bVar.d) != null && !bitmap.isRecycled() && bitmap.getWidth() != 0 && bitmap.getHeight() != 0) {
-            Matrix matrix = f10010a;
-            matrix.reset();
-            matrix.setScale(view.getWidth() / bitmap.getWidth(), view.getHeight() / bitmap.getHeight());
-            bVar.f9069b.set(matrix);
+    public final void d() {
+        Iterator it = this.f10688s.iterator();
+        while (it.hasNext()) {
+            ((dh.e) it.next()).M = true;
         }
     }
 
-    public static c d(ch.d dVar, int i10, int i11) {
-        return new c(i10, i11, dVar);
+    @Override
+    public final void e() {
+        Runnable runnable = this.v;
+        if (runnable != null) {
+            runnable.run();
+        }
+    }
+
+    public final boolean f(int i10, int i11) {
+        if (this.f10682b.hasDisplayList() && this.f10682b.getWidth() == i10 && this.f10682b.getHeight() == i11) {
+            return false;
+        }
+        return true;
+    }
+
+    public final void g(float f7) {
+        RenderEffect renderEffect;
+        RenderNode renderNode = this.f10682b;
+        if (f7 > 0.0f) {
+            renderEffect = RenderEffect.createBlurEffect(f7, f7, Shader.TileMode.CLAMP);
+        } else {
+            renderEffect = null;
+        }
+        renderNode.setRenderEffect(renderEffect);
+    }
+
+    public final void h(float f7, RenderEffect renderEffect) {
+        this.f10682b.setRenderEffect(RenderEffect.createChainEffect(RenderEffect.createBlurEffect(f7, f7, Shader.TileMode.CLAMP), renderEffect));
+    }
+
+    public final void i(int i10, int i11) {
+        this.f10682b.setPosition(0, 0, i10, i11);
+    }
+
+    public final void j(h hVar) {
+        if (this.f10683c == null) {
+            this.f10683c = new i(this.f10682b, hVar);
+        }
+    }
+
+    @Override
+    public final dh.d k() {
+        dh.e eVar = new dh.e(this);
+        this.f10688s.add(eVar);
+        return eVar;
+    }
+
+    public final void l() {
+        this.f10683c.a();
+    }
+
+    @Override
+    public final void v(Canvas canvas, float f7, float f10, float f11, float f12) {
+        f fVar;
+        if (!canvas.isHardwareAccelerated()) {
+            a aVar = this.f10681a;
+            if (aVar != null) {
+                aVar.v(canvas, f7, f10, f11, f12);
+            }
+        } else if (!this.f10686n) {
+            a aVar2 = this.f10685f;
+            if (aVar2 != null) {
+                aVar2.v(canvas, f7, f10, f11, f12);
+            }
+            canvas.save();
+            if (!this.h) {
+                canvas.clipRect(f7, f10, f11, f12);
+            }
+            if (Build.VERSION.SDK_INT >= 31 && (fVar = this.d) != null) {
+                fVar.c(canvas, this.f10684e);
+            } else {
+                canvas.drawRenderNode(this.f10682b);
+            }
+            canvas.restore();
+        } else {
+            throw new IllegalStateException();
+        }
     }
 }

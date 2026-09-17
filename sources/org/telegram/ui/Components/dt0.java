@@ -1,22 +1,20 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.view.View;
-public final class dt0 implements View.OnClickListener {
-    public final long f23386a;
-    public final org.telegram.ui.ActionBar.f6 f23387b;
-    public final Context f23388c;
-    public final zu0 d;
+import android.os.Bundle;
+public final class dt0 extends org.telegram.ui.fo {
+    public final xu0 f25494f;
 
-    public dt0(zu0 zu0Var, long j3, org.telegram.ui.ActionBar.f6 f6Var, Context context) {
-        this.d = zu0Var;
-        this.f23386a = j3;
-        this.f23387b = f6Var;
-        this.f23388c = context;
+    public dt0(xu0 xu0Var, Context context, org.telegram.ui.ActionBar.d5 d5Var, Bundle bundle) {
+        super(context, d5Var, bundle);
+        this.f25494f = xu0Var;
     }
 
     @Override
-    public final void onClick(android.view.View r29) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.dt0.onClick(android.view.View):void");
+    public final void b(boolean z10) {
+        org.telegram.ui.ActionBar.v0 v0Var = this.f25494f.f32735n0;
+        if (v0Var != null) {
+            v0Var.setShowSearchProgress(z10);
+        }
     }
 }

@@ -1,45 +1,26 @@
 package org.telegram.ui.Components;
-
-import android.os.Build;
-import androidx.recyclerview.widget.RecyclerView;
-import j$.util.Objects;
-import org.telegram.messenger.AndroidUtilities;
-public final class mx extends jz {
-    public final kz d;
+public final class mx extends g.p {
+    public final kz f28577c;
 
     public mx(kz kzVar) {
-        super(kzVar, 1);
-        this.d = kzVar;
+        this.f28577c = kzVar;
     }
 
     @Override
-    public final void a(RecyclerView recyclerView, int i10) {
-        if (i10 == 0) {
-            this.d.f25722f0 = false;
-        }
-        super.a(recyclerView, i10);
-    }
-
-    @Override
-    public final void b(RecyclerView recyclerView, int i10, int i11) {
-        ah.i iVar;
-        kz kzVar = this.d;
-        jy jyVar = kzVar.S;
-        jx jxVar = kzVar.Q;
-        kzVar.V(jxVar.I0());
-        if (Build.VERSION.SDK_INT >= 31 && (iVar = kzVar.f25736j2) != null) {
-            iVar.f(i10, i11);
-        }
-        super.b(recyclerView, i10, i11);
-        if (jyVar != null && kzVar.P.getAdapter() == jyVar) {
-            jy jyVar2 = jyVar.f25464x.f25047a;
-            if (!jyVar2.F.V.F && !jyVar2.E) {
-                if (jxVar.N0() + 20 > jyVar.h()) {
-                    iy iyVar = jyVar.f25464x;
-                    Objects.requireNonNull(iyVar);
-                    AndroidUtilities.runOnUIThread(new rw(iyVar, 1));
-                }
+    public final int i(int i10) {
+        kz kzVar = this.f28577c;
+        tx txVar = kzVar.R;
+        lx lxVar = kzVar.Q;
+        s4.h0 adapter = kzVar.P.getAdapter();
+        ky kyVar = kzVar.S;
+        if (adapter == kyVar) {
+            int j3 = kyVar.j(i10);
+            if (j3 == 1 || j3 == 3 || j3 == 2 || j3 == 4 || j3 == 5) {
+                return lxVar.J;
             }
+        } else if ((kzVar.f27962d0 && i10 == 0) || i10 == txVar.d || i10 == txVar.f30752c || i10 == txVar.f30754f || txVar.f30756r.indexOfKey(i10) >= 0 || txVar.v.indexOfKey(i10) >= 0) {
+            return lxVar.J;
         }
+        return 1;
     }
 }

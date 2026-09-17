@@ -1,35 +1,63 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
+import android.view.MotionEvent;
 import android.view.View;
-public final class wa0 extends b81 {
-    public final Context f29620a;
-    public final vb0 f29621b;
+public final class wa0 extends i81 {
+    public final wb0 T;
 
-    public wa0(vb0 vb0Var, Context context) {
-        this.f29621b = vb0Var;
-        this.f29620a = context;
+    public wa0(wb0 wb0Var, Context context, sb0 sb0Var) {
+        super(context, sb0Var);
+        this.T = wb0Var;
     }
 
     @Override
-    public final void b(View view, int i10, int i11) {
-        pb0 pb0Var = (pb0) view;
-        pb0Var.h();
-        pb0Var.k(false);
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        boolean z10;
+        int i10 = 0;
+        while (true) {
+            View[] viewArr = this.T.f32256f.f27045e;
+            if (i10 < viewArr.length) {
+                View view = viewArr[i10];
+                if (view != null) {
+                    qb0 qb0Var = (qb0) view;
+                    if (qb0Var.f29685a == 0) {
+                        z10 = qb0Var.f29691e.f21804i;
+                        break;
+                    }
+                }
+                i10++;
+            } else {
+                z10 = false;
+                break;
+            }
+        }
+        if (z10) {
+            return false;
+        }
+        return A(motionEvent);
     }
 
     @Override
-    public final View d(int i10) {
-        return new pb0(this.f29621b, this.f29620a, i10);
+    public final void u() {
+        View view = this.f27045e[0];
+        if (view instanceof qb0) {
+            ((qb0) view).f29691e.W();
+        }
     }
 
     @Override
-    public final int e() {
-        return this.f29621b.e.f28053a.size();
-    }
-
-    @Override
-    public final int h(int i10) {
-        return ((sb0) this.f29621b.e.f28053a.get(i10)).f27828a;
+    public final void w(boolean z10) {
+        wb0 wb0Var = this.T;
+        wb0Var.f32255e.setSelectedTab(wb0Var.f32256f.getPositionAnimated());
+        View[] viewArr = this.f27045e;
+        View view = viewArr[0];
+        if (view instanceof qb0) {
+            ((qb0) view).f29691e.H();
+        }
+        View view2 = viewArr[1];
+        if (view2 instanceof qb0) {
+            ((qb0) view2).f29691e.H();
+        }
     }
 }

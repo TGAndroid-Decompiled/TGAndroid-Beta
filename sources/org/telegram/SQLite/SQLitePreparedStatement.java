@@ -95,9 +95,9 @@ public class SQLitePreparedStatement {
             try {
                 this.isFinalized = true;
                 finalize(this.sqliteStatementHandle);
-            } catch (SQLiteException e) {
+            } catch (SQLiteException e7) {
                 if (BuildVars.LOGS_ENABLED) {
-                    FileLog.e(e.getMessage(), e);
+                    FileLog.e(e7.getMessage(), e7);
                 }
             }
         }

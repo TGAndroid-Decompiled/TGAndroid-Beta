@@ -1,75 +1,223 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Rect;
-import android.graphics.RectF;
+import android.app.Dialog;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.util.SparseArray;
+import android.widget.EditText;
+import java.io.File;
 import java.util.ArrayList;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MediaController;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.R;
-public final class pg extends j1.b {
-    public final qg f27021o;
+import org.telegram.ui.Components.ChatActivityEnterView;
+public final class pg implements Runnable {
+    public final int f29396a;
+    public final Object f29397b;
 
-    public pg(qg qgVar, qg qgVar2) {
-        super(qgVar2);
-        this.f27021o = qgVar;
+    public pg(Object obj, int i10) {
+        this.f29396a = i10;
+        this.f29397b = obj;
     }
 
     @Override
-    public final int g(float f7, float f10) {
-        qg qgVar = this.f27021o;
-        ChatActivityEnterView chatActivityEnterView = qgVar.V;
-        if (chatActivityEnterView.f21844r4 && chatActivityEnterView.M1 != null && chatActivityEnterView.R3.contains(f7, f10)) {
-            return 2;
-        }
-        if (chatActivityEnterView.P && chatActivityEnterView.M1 != null && chatActivityEnterView.f21817m4 > 0.1f && qgVar.J.contains(f7, f10)) {
-            return 4;
-        }
-        return -1;
-    }
-
-    @Override
-    public final void h(ArrayList arrayList) {
-        ChatActivityEnterView chatActivityEnterView = this.f27021o.V;
-        if (chatActivityEnterView.f21844r4) {
-            arrayList.add(2);
-        }
-        if (chatActivityEnterView.P && chatActivityEnterView.M1 != null && chatActivityEnterView.f21817m4 > 0.1f) {
-            arrayList.add(4);
-        }
-    }
-
-    @Override
-    public final boolean k(int i10, int i11) {
-        return true;
-    }
-
-    @Override
-    public final void l(int i10, s0.c cVar) {
-        int i11;
-        int i12;
-        qg qgVar = this.f27021o;
-        ChatActivityEnterView chatActivityEnterView = qgVar.V;
-        if (i10 == 2) {
-            Rect rect = chatActivityEnterView.T3;
-            RectF rectF = chatActivityEnterView.R3;
-            rect.set((int) rectF.left, (int) rectF.top, (int) rectF.right, (int) rectF.bottom);
-            cVar.h(chatActivityEnterView.T3);
-            if (chatActivityEnterView.f21828o4 > 0.5f) {
-                i12 = R.string.AccActionResume;
-            } else {
-                i12 = R.string.AccActionPause;
-            }
-            cVar.o(LocaleController.getString(i12));
-        } else if (i10 == 4) {
-            Rect rect2 = chatActivityEnterView.T3;
-            RectF rectF2 = qgVar.J;
-            rect2.set((int) rectF2.left, (int) rectF2.top, (int) rectF2.right, (int) rectF2.bottom);
-            cVar.h(chatActivityEnterView.T3);
-            if (chatActivityEnterView.O) {
-                i11 = R.string.AccActionOnceDeactivate;
-            } else {
-                i11 = R.string.AccActionOnceActivate;
-            }
-            cVar.o(LocaleController.getString(i11));
+    public final void run() {
+        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout;
+        int i10 = this.f29396a;
+        Object obj = this.f29397b;
+        switch (i10) {
+            case 0:
+                ChatActivityEnterView chatActivityEnterView = ((sg) obj).V;
+                if (!MediaController.getInstance().isRecordingPaused()) {
+                    MessagesController.getGlobalMainSettings().edit().putInt("voicepausehint", 3).apply();
+                }
+                if (chatActivityEnterView.f23793r4) {
+                    chatActivityEnterView.I3 = true;
+                }
+                MediaController.getInstance().toggleRecordingPause(chatActivityEnterView.O);
+                chatActivityEnterView.Y2.V0(0);
+                ChatActivityEnterView.SlideTextView slideTextView = chatActivityEnterView.f23749j1;
+                if (slideTextView != null) {
+                    slideTextView.setEnabled(false);
+                    return;
+                }
+                return;
+            case 1:
+                yc ycVar = (yc) obj;
+                new sg.a1(ycVar.W(), 42, ycVar.f32911c).show();
+                return;
+            case 2:
+                AndroidUtilities.removeFromParent((di.f4) obj);
+                return;
+            case 3:
+                AndroidUtilities.showKeyboard((EditText) obj);
+                return;
+            case 4:
+                SparseArray sparseArray = q5.f29598q;
+                ((q5) obj).v();
+                return;
+            case 5:
+                m5 m5Var = (m5) obj;
+                ArrayList arrayList = new ArrayList(m5Var.f28411c);
+                m5Var.f28411c.clear();
+                MessagesStorage.getInstance(m5Var.f28412e).getStorageQueue().postRunnable(new j5(m5Var, arrayList, 0));
+                m5Var.d = null;
+                return;
+            case 6:
+                ((o5) obj).invalidate();
+                return;
+            case 7:
+                ((o1.k) obj).f();
+                return;
+            case 8:
+                q6 q6Var = (q6) obj;
+                CharSequence charSequence = q6Var.f29627f;
+                if (charSequence != null) {
+                    q6Var.c(charSequence, q6Var.h, true);
+                    q6Var.f29627f = null;
+                    q6Var.h = false;
+                    return;
+                }
+                return;
+            case 9:
+                ((j8) obj).f27404n.f27757n.setVisibility(8);
+                return;
+            case 10:
+                ((q8) obj).f29647c.l1();
+                return;
+            case 11:
+                fa faVar = (fa) obj;
+                faVar.f26021o = true;
+                faVar.d.invalidate();
+                return;
+            case 12:
+                ea eaVar = (ea) obj;
+                if (!eaVar.f25661a) {
+                    fa faVar2 = eaVar.d;
+                    Bitmap[] bitmapArr = faVar2.f26014g;
+                    Canvas[] canvasArr = faVar2.h;
+                    faVar2.f26014g = faVar2.f26013f;
+                    faVar2.h = faVar2.f26015i;
+                    faVar2.f26013f = bitmapArr;
+                    faVar2.f26015i = canvasArr;
+                    faVar2.f26017k = false;
+                    di.r6 r6Var = faVar2.d;
+                    if (r6Var != null) {
+                        r6Var.invalidate();
+                        return;
+                    }
+                    return;
+                }
+                return;
+            case 13:
+                ja jaVar = ((pa) obj).f29369t;
+                if (jaVar != null) {
+                    jaVar.d();
+                    return;
+                }
+                return;
+            case 14:
+                ja jaVar2 = (ja) obj;
+                jaVar2.f27447o = jaVar2.f27446n.f29041b;
+                jaVar2.d();
+                return;
+            case 15:
+                qc qcVar = ((jb) obj).f27452b;
+                ub ubVar = qcVar.f29703e;
+                ubVar.transitionRunningEnter = false;
+                ubVar.onEnterTransitionEnd();
+                if (qcVar.f29718u) {
+                    qcVar.i(true);
+                    return;
+                }
+                return;
+            case 16:
+                jd jdVar = (jd) obj;
+                jdVar.getClass();
+                if (LiteMode.isEnabled(512)) {
+                    jdVar.invalidateSelf();
+                    return;
+                }
+                return;
+            case 17:
+                ld ldVar = (ld) obj;
+                if (ldVar.f28180o1) {
+                    ldVar.f28180o1 = false;
+                    ldVar.invalidate();
+                    return;
+                }
+                return;
+            case 18:
+                ((Dialog) obj).dismiss();
+                return;
+            case 19:
+                ChatActivityEnterView chatActivityEnterView2 = ((sf) obj).f30302f;
+                int i11 = ChatActivityEnterView.f23689m5;
+                chatActivityEnterView2.q1();
+                return;
+            case 20:
+                ((bh) obj).f24726s = null;
+                return;
+            case 21:
+                ((li) obj).B0.A1.l();
+                return;
+            case 22:
+                ok okVar = (ok) ((androidx.mediarouter.app.g) obj).f1776b;
+                try {
+                    File file = okVar.O;
+                    if (file == null) {
+                        okVar.O();
+                    } else {
+                        okVar.N(file);
+                    }
+                    okVar.V();
+                    return;
+                } catch (Exception e7) {
+                    FileLog.e(e7);
+                    return;
+                }
+            case 23:
+                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout2 = ((xl) obj).f32632b;
+                boolean z10 = ChatAttachAlertPhotoLayout.f23859q1;
+                chatAttachAlertPhotoLayout2.p0(-1, true);
+                return;
+            case 24:
+                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout3 = ((ul) obj).f30947c;
+                if (chatAttachAlertPhotoLayout3.P != null && !chatAttachAlertPhotoLayout3.f28781b.isDismissed()) {
+                    chatAttachAlertPhotoLayout3.P.setSystemUiVisibility(1028);
+                    return;
+                }
+                return;
+            case 25:
+                qm qmVar = (qm) obj;
+                vi viVar = qmVar.f28781b;
+                if (qmVar.Q && (chatAttachAlertPhotoLayout = viVar.f31319j0) != null) {
+                    org.telegram.ui.ActionBar.f1 f1Var = chatAttachAlertPhotoLayout.f23869c1;
+                    f1Var.setIcon(R.drawable.ic_ab_back);
+                    f1Var.setText(LocaleController.getString(R.string.Back));
+                    f1Var.setRightIcon(0);
+                    return;
+                }
+                return;
+            case 26:
+                tn tnVar = (tn) obj;
+                tnVar.f30673k1 = -1;
+                tnVar.f30671j1 = null;
+                return;
+            case 27:
+                ((no) obj).n();
+                return;
+            case 28:
+                ((po) obj).setVisibility(8);
+                return;
+            default:
+                ((op) obj).f29183b.a();
+                return;
         }
     }
 }

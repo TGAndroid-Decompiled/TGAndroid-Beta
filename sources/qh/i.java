@@ -1,129 +1,261 @@
 package qh;
 
-import android.text.SpannableStringBuilder;
-import android.text.TextUtils;
-import hg.k0;
-import java.util.ArrayList;
+import android.view.View;
+import le.m;
+import le.n;
+import n7.z0;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.DialogObject;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.R;
-import org.telegram.tgnet.TLRPC;
-import w7.c0;
-public abstract class i {
-    public static int a(MessageObject messageObject) {
-        long dialogId;
-        int i10;
-        int i11 = 0;
-        if (messageObject.type != 17) {
-            return 0;
-        }
-        TLRPC.Message message = messageObject.messageOwner;
-        int i12 = messageObject.currentAccount;
-        TLRPC.TL_messageMediaPoll tL_messageMediaPoll = (TLRPC.TL_messageMediaPoll) MessageObject.getMedia(message, TLRPC.TL_messageMediaPoll.class);
-        if (tL_messageMediaPoll == null) {
-            return 0;
-        }
-        TLRPC.Poll poll = tL_messageMediaPoll.poll;
-        if (poll.closed) {
-            i11 = 8;
-        }
-        if (poll.subscribers_only) {
-            TLRPC.MessageFwdHeader messageFwdHeader = message.fwd_from;
-            if (messageFwdHeader != null) {
-                dialogId = DialogObject.getPeerDialogId(messageFwdHeader.from_id);
-            } else {
-                dialogId = messageObject.getDialogId();
-            }
-            TLRPC.Chat chat = MessagesController.getInstance(i12).getChat(Long.valueOf(-dialogId));
-            if (chat != null) {
-                if (chat.left || chat.kicked) {
-                    i11 |= 1;
-                }
-                TLRPC.MessageFwdHeader messageFwdHeader2 = message.fwd_from;
-                if (messageFwdHeader2 != null) {
-                    i10 = messageFwdHeader2.date;
-                } else {
-                    i10 = message.date;
-                }
-                if (i10 - chat.date < 86400) {
-                    i11 |= 2;
-                }
-            }
-        }
-        ArrayList<String> arrayList = tL_messageMediaPoll.poll.countries_iso2;
-        if (arrayList != null && !arrayList.isEmpty()) {
-            if (!tL_messageMediaPoll.poll.countries_iso2.contains(MessagesController.getInstance(i12).config.phoneCountryIso2.get())) {
-                return i11 | 4;
-            }
-        }
-        return i11;
+import org.telegram.messenger.AnimationNotificationsLocker;
+import org.telegram.ui.ActionBar.p1;
+import org.telegram.ui.web.b1;
+import r0.l1;
+public final class i implements g, f, d {
+    public View E;
+    public int F;
+    public int G;
+    public final le.e f44678a;
+    public final Runnable h;
+    public boolean f44683n;
+    public l1 f44684r;
+    public int v;
+    public int f44686w;
+    public e f44688y;
+    public final m f44679b = new m(0.0f);
+    public final n f44680c = new n();
+    public final n d = new n();
+    public final AnimationNotificationsLocker f44681e = new AnimationNotificationsLocker();
+    public final c f44682f = new c(new b1(this, 4));
+    public int f44685s = 1;
+    public final h f44687x = new h(this, 0);
+
+    public i(Runnable runnable) {
+        this.h = runnable;
+        this.f44678a = new le.e(0, new z0(this, runnable, false, 13), p1.f21303w, 250L);
     }
 
-    public static SpannableStringBuilder b(MessageObject messageObject, int i10) {
-        long dialogId;
-        int i11;
-        int i12;
-        if (messageObject.type == 17) {
-            TLRPC.Message message = messageObject.messageOwner;
-            int i13 = messageObject.currentAccount;
-            TLRPC.TL_messageMediaPoll tL_messageMediaPoll = (TLRPC.TL_messageMediaPoll) MessageObject.getMedia(message, TLRPC.TL_messageMediaPoll.class);
-            if (tL_messageMediaPoll != null) {
-                if (c0.a(i10, 4)) {
-                    ArrayList arrayList = new ArrayList(tL_messageMediaPoll.poll.countries_iso2.size());
-                    ArrayList<String> arrayList2 = tL_messageMediaPoll.poll.countries_iso2;
-                    int size = arrayList2.size();
-                    int i14 = 0;
-                    while (i14 < size) {
-                        String str = arrayList2.get(i14);
-                        i14++;
-                        String str2 = str;
-                        String countryName = LocaleController.getCountryName(str2);
-                        if (!TextUtils.isEmpty(countryName)) {
-                            str2 = countryName;
-                        }
-                        arrayList.add(str2);
-                    }
-                    boolean z10 = tL_messageMediaPoll.poll.subscribers_only;
-                    if (arrayList.size() == 1) {
-                        if (z10) {
-                            i12 = R.string.PollV2ToastOnlySubscribersFromCountriesCanVoteOne;
-                        } else {
-                            i12 = R.string.PollV2ToastOnlyUsersFromCountriesCanVoteOne;
-                        }
-                        return AndroidUtilities.replaceTags(LocaleController.formatString(i12, arrayList.get(0)));
-                    }
-                    StringBuffer stringBuffer = new StringBuffer();
-                    for (int i15 = 0; i15 < arrayList.size() - 1; i15++) {
-                        if (stringBuffer.length() > 0) {
-                            stringBuffer.append(", ");
-                        }
-                        stringBuffer.append((String) arrayList.get(i15));
-                    }
-                    if (z10) {
-                        i11 = R.string.PollV2ToastOnlySubscribersFromCountriesCanVoteOther;
-                    } else {
-                        i11 = R.string.PollV2ToastOnlyUsersFromCountriesCanVoteOther;
-                    }
-                    return AndroidUtilities.replaceTags(LocaleController.formatString(i11, stringBuffer, k0.h(1, arrayList)));
-                } else if (c0.a(i10, 1)) {
-                    TLRPC.MessageFwdHeader messageFwdHeader = message.fwd_from;
-                    if (messageFwdHeader != null) {
-                        dialogId = DialogObject.getPeerDialogId(messageFwdHeader.from_id);
-                    } else {
-                        dialogId = messageObject.getDialogId();
-                    }
-                    return AndroidUtilities.replaceTags(LocaleController.formatString(R.string.PollV2ToastOnlySubscribersCanVote, DialogObject.getShortName(MessagesController.getInstance(i13).getChat(Long.valueOf(-dialogId)))));
-                } else if (c0.a(i10, 2)) {
-                    return AndroidUtilities.replaceTags(LocaleController.getString(R.string.PollV2ToastOnlySubscribersJoined24hCanVote));
-                } else {
-                    return null;
-                }
-            }
-            return null;
+    @Override
+    public final void J() {
+        View view = this.E;
+        if (view != null) {
+            view.postOnAnimation(new h(this, 1));
         }
-        return null;
+    }
+
+    @Override
+    public final View N() {
+        return this.E;
+    }
+
+    public final void a() {
+        boolean z10 = this.f44678a.f15405g;
+        boolean z11 = this.f44683n;
+        AnimationNotificationsLocker animationNotificationsLocker = this.f44681e;
+        if (!z11 && z10) {
+            this.f44683n = true;
+            animationNotificationsLocker.lock();
+        }
+        if (this.f44683n && !z10) {
+            this.f44683n = false;
+            animationNotificationsLocker.unlock();
+        }
+    }
+
+    public final float b() {
+        e eVar = this.f44688y;
+        n nVar = this.d;
+        if (eVar != null && this.G > 0) {
+            return Math.max(this.F, nVar.d.f15423a);
+        }
+        return nVar.d.f15423a;
+    }
+
+    public final float c() {
+        e eVar = this.f44688y;
+        n nVar = this.f44680c;
+        if (eVar != null && this.G > 0) {
+            return Math.max(this.F, nVar.d.f15423a);
+        }
+        return nVar.d.f15423a;
+    }
+
+    public final int d() {
+        if (this.f44688y != null && this.G > 0) {
+            return Math.max(this.F, Math.max(e(527).d, this.v));
+        }
+        return Math.max(e(527).d, this.v);
+    }
+
+    public final i0.c e(int i10) {
+        l1 l1Var = this.f44684r;
+        if (l1Var != null) {
+            return l1Var.f44740a.f(i10);
+        }
+        return i0.c.f11450e;
+    }
+
+    public final void f(int i10) {
+        if (this.v == i10 && this.f44685s == 0) {
+            return;
+        }
+        AndroidUtilities.cancelRunOnUIThread(this.f44687x);
+        this.f44686w = Math.max(this.v, i10);
+        this.v = i10;
+        this.f44685s = 0;
+        i(this.f44684r);
+    }
+
+    public final void g(int i10) {
+        if (i10 > 0) {
+            f(i10 + AndroidUtilities.navigationBarHeight);
+        } else {
+            h(true);
+        }
+    }
+
+    public final void h(boolean z10) {
+        int i10;
+        if (this.v != 0) {
+            h hVar = this.f44687x;
+            AndroidUtilities.cancelRunOnUIThread(hVar);
+            if (z10) {
+                i10 = 3;
+            } else {
+                i10 = 2;
+            }
+            this.f44685s = i10;
+            i(this.f44684r);
+            if (z10) {
+                AndroidUtilities.runOnUIThread(hVar, 1000L);
+            }
+        }
+    }
+
+    public final void i(l1 l1Var) {
+        boolean z10;
+        if (this.f44684r != null) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        k(l1Var, z10);
+    }
+
+    @Override
+    public final void j(l1 l1Var) {
+        this.F = l1Var.f44740a.f(8).d;
+        this.h.run();
+    }
+
+    public final void k(l1 l1Var, boolean z10) {
+        i0.c cVar;
+        boolean z11;
+        b bVar;
+        float f7;
+        int i10;
+        le.e eVar;
+        float f10;
+        this.f44684r = l1Var;
+        i0.c cVar2 = i0.c.f11450e;
+        if (l1Var != null) {
+            cVar = l1Var.f44740a.g(647);
+        } else {
+            cVar = cVar2;
+        }
+        if (l1Var != null) {
+            cVar2 = l1Var.f44740a.f(8);
+        }
+        c cVar3 = this.f44682f;
+        b bVar2 = cVar3.f44671c;
+        if (cVar2.d > 0) {
+            z11 = true;
+        } else {
+            z11 = false;
+        }
+        if (!z10) {
+            if (z11) {
+                bVar = b.d;
+            } else {
+                bVar = b.f44665a;
+            }
+        } else if (z11) {
+            bVar = b.f44667c;
+        } else {
+            bVar = b.f44666b;
+        }
+        if (bVar2 != bVar) {
+            cVar3.a(bVar, false);
+        }
+        int i11 = this.f44685s;
+        if (i11 == 2) {
+            this.v = 0;
+        }
+        if (i11 == 3 && cVar2.d > 0) {
+            this.v = 0;
+        }
+        i0.c a2 = i0.c.a(cVar2, i0.c.b(0, 0, 0, this.v));
+        int i12 = a2.f11453c;
+        int i13 = a2.f11452b;
+        int i14 = a2.f11451a;
+        int i15 = a2.d;
+        i0.c a10 = i0.c.a(cVar, a2);
+        int i16 = a10.d;
+        int i17 = a10.f11453c;
+        int i18 = a10.f11452b;
+        int i19 = a10.f11451a;
+        Runnable runnable = this.h;
+        le.e eVar2 = this.f44678a;
+        n nVar = this.d;
+        n nVar2 = this.f44680c;
+        m mVar = this.f44679b;
+        if (z10) {
+            if (i15 > 0) {
+                f7 = 1.0f;
+            } else {
+                f7 = 0.0f;
+            }
+            if (!mVar.b(f7)) {
+                eVar = eVar2;
+                i10 = i17;
+                if (!nVar2.b(i19, i18, i17, i16) && !nVar.b(i14, i13, i12, i15)) {
+                    if (bVar2 != bVar) {
+                        runnable.run();
+                    }
+                }
+            } else {
+                i10 = i17;
+                eVar = eVar2;
+            }
+            eVar.b();
+            mVar.c(false);
+            nVar2.c(false);
+            nVar.c(false);
+            if (i15 > 0) {
+                f10 = 1.0f;
+            } else {
+                f10 = 0.0f;
+            }
+            mVar.f15425c = f10;
+            nVar2.e(i19, i18, i10, i16);
+            nVar.e(i14, i13, i12, i15);
+            le.e eVar3 = eVar;
+            eVar3.c(0.0f);
+            eVar3.a(1.0f);
+        } else {
+            float f11 = 0.0f;
+            eVar2.b();
+            if (i15 > 0) {
+                f11 = 1.0f;
+            }
+            mVar.d(f11);
+            nVar2.d(i19, i18, i17, i16);
+            nVar.d(i14, i13, i12, i15);
+            runnable.run();
+        }
+        a();
+    }
+
+    @Override
+    public final void s() {
+        this.G++;
     }
 }

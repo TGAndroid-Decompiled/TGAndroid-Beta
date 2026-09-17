@@ -1,9 +1,9 @@
 package g5;
 public abstract class a extends com.googlecode.mp4parser.b {
-    public int f9419f;
+    public int f10403f;
 
     public a(String str) {
         super(str);
-        this.f9419f = 1;
+        this.f10403f = 1;
     }
 }

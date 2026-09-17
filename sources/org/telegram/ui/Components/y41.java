@@ -1,43 +1,43 @@
 package org.telegram.ui.Components;
 
-import androidx.recyclerview.widget.RecyclerView;
-import org.telegram.tgnet.ConnectionsManager;
+import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
-public final class y41 extends s4.s0 {
-    public final f51 f30119a;
+public final class y41 implements sx0 {
+    public final TLRPC.InputStickerSet f32870a;
+    public final d51 f32871b;
 
-    public y41(f51 f51Var) {
-        this.f30119a = f51Var;
+    public y41(d51 d51Var, TLRPC.InputStickerSet inputStickerSet) {
+        this.f32871b = d51Var;
+        this.f32870a = inputStickerSet;
     }
 
     @Override
-    public final void a(RecyclerView recyclerView, int i10) {
-        s4.s0 s0Var = this.f30119a.f23787y;
-        if (s0Var != null) {
-            s0Var.a(recyclerView, i10);
-        }
-    }
-
-    @Override
-    public final void b(RecyclerView recyclerView, int i10, int i11) {
-        f51 f51Var = this.f30119a;
-        e51 e51Var = f51Var.f23784s;
-        v41 v41Var = f51Var.f23782n;
-        s4.s0 s0Var = f51Var.f23787y;
-        if (s0Var != null) {
-            s0Var.b(v41Var, i10, i11);
-        }
-        if (i11 > 0 && v41Var.getAdapter() == e51Var && f51Var.J && !e51Var.f23490r && !e51Var.f23491s) {
-            if (f51Var.f23783r.N0() >= ((e51Var.f23492w + 1) - ((e51Var.v + 1) * 10)) - 1) {
-                f51 f51Var2 = e51Var.f23493x;
-                if (f51Var2.J && !e51Var.f23490r && !e51Var.f23491s) {
-                    e51Var.f23490r = true;
-                    TLRPC.TL_messages_getOldFeaturedStickers tL_messages_getOldFeaturedStickers = new TLRPC.TL_messages_getOldFeaturedStickers();
-                    tL_messages_getOldFeaturedStickers.offset = e51Var.f23489n.size();
-                    tL_messages_getOldFeaturedStickers.limit = 40;
-                    ConnectionsManager.getInstance(f51Var2.f23778a).sendRequest(tL_messages_getOldFeaturedStickers, new x1(e51Var, 17));
+    public final void a() {
+        d51 d51Var = this.f32871b;
+        s4.h0 adapter = d51Var.f25262n.getAdapter();
+        c51 c51Var = d51Var.f25264s;
+        TLRPC.InputStickerSet inputStickerSet = this.f32870a;
+        int i10 = 0;
+        if (adapter == c51Var) {
+            while (i10 < c51Var.f24924e.size()) {
+                TLRPC.StickerSetCovered stickerSetCovered = (TLRPC.StickerSetCovered) c51Var.f24924e.get(i10);
+                if (stickerSetCovered.set.f19923id == inputStickerSet.f19916id) {
+                    c51Var.F(stickerSetCovered, null);
+                    return;
                 }
+                i10++;
             }
+            return;
+        }
+        hg.f2 f2Var = d51Var.v;
+        ArrayList arrayList = f2Var.E;
+        while (i10 < arrayList.size()) {
+            TLRPC.StickerSetCovered stickerSetCovered2 = (TLRPC.StickerSetCovered) arrayList.get(i10);
+            if (stickerSetCovered2.set.f19923id == inputStickerSet.f19916id) {
+                f2Var.F(stickerSetCovered2, null);
+                return;
+            }
+            i10++;
         }
     }
 }

@@ -9,20 +9,20 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 public final class r70 extends FrameLayout {
-    public final w70 f27571a;
+    public final w70 f29995a;
 
     public r70(w70 w70Var, Context context) {
         super(context);
-        this.f27571a = w70Var;
+        this.f29995a = w70Var;
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
         int i10;
-        w70 w70Var = this.f27571a;
-        Drawable drawable = w70Var.f29574b;
-        int i11 = w70Var.f29578r;
-        i10 = ((org.telegram.ui.ActionBar.g3) w70Var).backgroundPaddingTop;
+        w70 w70Var = this.f29995a;
+        Drawable drawable = w70Var.f32213b;
+        int i11 = w70Var.f32218r;
+        i10 = ((org.telegram.ui.ActionBar.f3) w70Var).backgroundPaddingTop;
         drawable.setBounds(0, i11 - i10, getMeasuredWidth(), getMeasuredHeight());
         drawable.draw(canvas);
     }
@@ -30,8 +30,8 @@ public final class r70 extends FrameLayout {
     @Override
     public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
         if (motionEvent.getAction() == 0) {
-            w70 w70Var = this.f27571a;
-            if (w70Var.f29578r != 0 && motionEvent.getY() < w70Var.f29578r) {
+            w70 w70Var = this.f29995a;
+            if (w70Var.f32218r != 0 && motionEvent.getY() < w70Var.f32218r) {
                 w70Var.dismiss();
                 return true;
             }
@@ -42,7 +42,7 @@ public final class r70 extends FrameLayout {
     @Override
     public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
         super.onLayout(z10, i10, i11, i12, i13);
-        w70.o(this.f27571a);
+        w70.o(this.f29995a);
     }
 
     @Override
@@ -50,15 +50,15 @@ public final class r70 extends FrameLayout {
         int i12;
         int i13;
         int size = View.MeasureSpec.getSize(i11) - AndroidUtilities.statusBarHeight;
-        w70 w70Var = this.f27571a;
-        TextView textView = w70Var.f29576f;
+        w70 w70Var = this.f29995a;
+        TextView textView = w70Var.f32216f;
         measureChildWithMargins(textView, i10, 0, i11, 0);
         int measuredHeight = textView.getMeasuredHeight();
         s70 s70Var = w70Var.d;
         ((FrameLayout.LayoutParams) s70Var.getLayoutParams()).topMargin = AndroidUtilities.dp(65.0f) + measuredHeight;
         getMeasuredWidth();
         int D = org.telegram.messenger.w1.D(58.0f, w70Var.h.size(), AndroidUtilities.dp(80.0f));
-        i12 = ((org.telegram.ui.ActionBar.g3) w70Var).backgroundPaddingTop;
+        i12 = ((org.telegram.ui.ActionBar.f3) w70Var).backgroundPaddingTop;
         int C = org.telegram.messenger.w1.C(55.0f, i12 + D, measuredHeight);
         int i14 = size / 5;
         if (C < i14 * 3) {
@@ -67,16 +67,16 @@ public final class r70 extends FrameLayout {
             i13 = i14 * 2;
         }
         if (s70Var.getPaddingTop() != i13) {
-            w70Var.f29577n = true;
+            w70Var.f32217n = true;
             s70Var.setPadding(0, i13, 0, 0);
-            w70Var.f29577n = false;
+            w70Var.f32217n = false;
         }
         super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(size, 1073741824));
     }
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        if (!this.f27571a.isDismissed() && super.onTouchEvent(motionEvent)) {
+        if (!this.f29995a.isDismissed() && super.onTouchEvent(motionEvent)) {
             return true;
         }
         return false;
@@ -84,7 +84,7 @@ public final class r70 extends FrameLayout {
 
     @Override
     public final void requestLayout() {
-        if (this.f27571a.f29577n) {
+        if (this.f29995a.f32217n) {
             return;
         }
         super.requestLayout();

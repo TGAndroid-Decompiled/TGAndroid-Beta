@@ -2,17 +2,17 @@ package ag;
 
 import org.telegram.messenger.video.AudioConversions;
 public final class b extends a {
-    public final long f409b;
-    public int f410c;
+    public final long f438b;
+    public int f439c;
 
     public b(long j3) {
-        this.f409b = j3;
+        this.f438b = j3;
     }
 
     @Override
     public final short a() {
         if (c()) {
-            this.f410c--;
+            this.f439c--;
             return (short) 0;
         }
         throw new RuntimeException("Audio input has no remaining value.");
@@ -25,7 +25,7 @@ public final class b extends a {
 
     @Override
     public final boolean c() {
-        if (this.f410c > 0) {
+        if (this.f439c > 0) {
             return true;
         }
         return false;
@@ -33,11 +33,11 @@ public final class b extends a {
 
     @Override
     public final void d() {
-        this.f410c = 0;
+        this.f439c = 0;
     }
 
     @Override
     public final void e(int i10, int i11) {
-        this.f410c = AudioConversions.usToShorts(this.f409b, i10, i11);
+        this.f439c = AudioConversions.usToShorts(this.f438b, i10, i11);
     }
 }

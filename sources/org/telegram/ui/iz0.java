@@ -1,43 +1,49 @@
 package org.telegram.ui;
 
-import android.animation.ValueAnimator;
+import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-public final class iz0 extends s4.j {
-    public int F = -1;
-    public final ProfileActivity G;
+public final class iz0 extends s4.c0 {
+    public final ProfileActivity I;
 
     public iz0(ProfileActivity profileActivity) {
-        this.G = profileActivity;
+        this.I = profileActivity;
     }
 
     @Override
-    public final long K(long j3, long j10, long j11) {
-        return 0L;
-    }
-
-    @Override
-    public final void N() {
-        AndroidUtilities.runOnUIThread(new sl0(this, 28));
-    }
-
-    @Override
-    public final void P(s4.c1 c1Var) {
-        this.G.U4();
-    }
-
-    @Override
-    public final void m() {
-        boolean isEmpty = this.f42755p.isEmpty();
-        boolean isEmpty2 = this.f42757r.isEmpty();
-        boolean isEmpty3 = this.f42758s.isEmpty();
-        boolean isEmpty4 = this.f42756q.isEmpty();
-        if (!isEmpty || !isEmpty2 || !isEmpty4 || !isEmpty3) {
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-            ofFloat.addUpdateListener(new b3(this, 25));
-            ofFloat.setDuration(this.e);
-            ofFloat.start();
-            this.F = this.G.getNotificationCenter().setAnimationInProgress(this.F, null);
+    public final int o0(int i10, pf.e eVar, s4.z0 z0Var) {
+        ProfileActivity profileActivity = this.I;
+        View m10 = profileActivity.f33899c.m(0);
+        if (m10 != null && !profileActivity.F0) {
+            int top = m10.getTop() - profileActivity.T3();
+            boolean z10 = profileActivity.f33985o2;
+            boolean z11 = true;
+            if (!z10 && top > i10) {
+                if (!profileActivity.f33976n0.X0.isEmpty() && profileActivity.f33915e0.getImageReceiver().hasNotThumb() && !AndroidUtilities.isAccessibilityScreenReaderEnabled() && ((!profileActivity.f33978n2 && !AndroidUtilities.isTablet()) || profileActivity.I0)) {
+                    if (profileActivity.J2 != null) {
+                        z11 = false;
+                    }
+                    profileActivity.f33985o2 = z11;
+                }
+            } else if (z10) {
+                if (i10 >= top) {
+                    profileActivity.f33985o2 = false;
+                } else if (profileActivity.f33884a.getScrollState() == 1 && !profileActivity.f33992p2) {
+                    i10 /= 2;
+                }
+            }
+            i10 = top;
         }
-        super.m();
+        if (profileActivity.O1 && !profileActivity.f33884a.O0) {
+            return 0;
+        }
+        return super.o0(i10, eVar, z0Var);
+    }
+
+    @Override
+    public final boolean y0() {
+        if (this.I.f33996q0 != null) {
+            return true;
+        }
+        return false;
     }
 }

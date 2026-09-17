@@ -1,73 +1,22 @@
 package yg;
 
-import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.Rect;
-import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
-import android.text.TextPaint;
+import android.graphics.Paint;
+import android.text.style.ReplacementSpan;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.R;
-public final class a extends Drawable {
-    public final TextPaint f46903a;
-    public final TextPaint f46904b;
-    public final RectF f46905c;
-    public final Drawable d;
-    public float e;
-    public String f46906f;
+public final class a extends ReplacementSpan {
+    public final int f50188a;
 
-    public a(Context context) {
-        TextPaint textPaint = new TextPaint(1);
-        this.f46903a = textPaint;
-        TextPaint textPaint2 = new TextPaint(1);
-        this.f46904b = textPaint2;
-        this.f46905c = new RectF();
-        textPaint.setColor(-1);
-        textPaint.setTypeface(AndroidUtilities.bold());
-        textPaint.setTextSize(AndroidUtilities.dp(12.0f));
-        textPaint2.setColor(-6915073);
-        this.d = context.getDrawable(R.drawable.mini_boost_badge);
+    public a(int i10) {
+        this.f50188a = i10;
     }
 
     @Override
-    public final void draw(Canvas canvas) {
-        Rect bounds = getBounds();
-        RectF rectF = this.f46905c;
-        rectF.set(bounds.left, bounds.top, bounds.right, bounds.bottom);
-        canvas.drawRoundRect(rectF, AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f), this.f46904b);
-        int dp = AndroidUtilities.dp(2.0f) + bounds.left;
-        int dp2 = AndroidUtilities.dp(1.0f) + bounds.top;
-        int dp3 = AndroidUtilities.dp(2.0f) + bounds.left;
-        Drawable drawable = this.d;
-        drawable.setBounds(dp, dp2, drawable.getIntrinsicWidth() + dp3, drawable.getIntrinsicHeight() + AndroidUtilities.dp(1.0f) + getBounds().top);
-        drawable.draw(canvas);
-        String str = this.f46906f;
-        if (str != null) {
-            canvas.drawText(str, AndroidUtilities.dp(16.5f) + bounds.left, AndroidUtilities.dp(13.0f) + bounds.top, this.f46903a);
-        }
+    public final int getSize(Paint paint, CharSequence charSequence, int i10, int i11, Paint.FontMetricsInt fontMetricsInt) {
+        return AndroidUtilities.dp(this.f50188a);
     }
 
     @Override
-    public final int getIntrinsicHeight() {
-        return AndroidUtilities.dp(18.0f);
-    }
-
-    @Override
-    public final int getIntrinsicWidth() {
-        return (int) (AndroidUtilities.dp(23.0f) + this.e);
-    }
-
-    @Override
-    public final int getOpacity() {
-        return -1;
-    }
-
-    @Override
-    public final void setAlpha(int i10) {
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
+    public final void draw(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
     }
 }

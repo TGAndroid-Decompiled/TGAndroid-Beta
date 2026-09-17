@@ -2,25 +2,25 @@ package lc;
 
 import com.google.android.gms.internal.vision.e2;
 import java.nio.ByteBuffer;
-import k2.c0;
+import mg.n;
 public final class b extends a {
-    public static final c0 f13978n;
-    public static final c0 f13979r;
+    public static final n f15388n;
+    public static final n f15389r;
 
     static {
         re.a aVar = new re.a(b.class, "ESDescriptorBox.java");
         aVar.e(aVar.d("getEsDescriptor", "com.googlecode.mp4parser.boxes.mp4.ESDescriptorBox", "", "", "com.googlecode.mp4parser.boxes.mp4.objectdescriptors.ESDescriptor"));
         aVar.e(aVar.d("setEsDescriptor", "com.googlecode.mp4parser.boxes.mp4.ESDescriptorBox", "com.googlecode.mp4parser.boxes.mp4.objectdescriptors.ESDescriptor", "esDescriptor", "void"));
-        f13978n = aVar.e(aVar.d("equals", "com.googlecode.mp4parser.boxes.mp4.ESDescriptorBox", "java.lang.Object", "o", "boolean"));
-        f13979r = aVar.e(aVar.d("hashCode", "com.googlecode.mp4parser.boxes.mp4.ESDescriptorBox", "", "", "int"));
+        f15388n = aVar.e(aVar.d("equals", "com.googlecode.mp4parser.boxes.mp4.ESDescriptorBox", "java.lang.Object", "o", "boolean"));
+        f15389r = aVar.e(aVar.d("hashCode", "com.googlecode.mp4parser.boxes.mp4.ESDescriptorBox", "", "", "int"));
     }
 
     public final boolean equals(Object obj) {
-        e2.q(re.a.c(f13978n, this, this, obj));
+        e2.q(re.a.c(f15388n, this, this, obj));
         if (this != obj) {
             if (obj != null && b.class == obj.getClass()) {
-                ByteBuffer byteBuffer = this.e;
-                ByteBuffer byteBuffer2 = ((b) obj).e;
+                ByteBuffer byteBuffer = this.f15387e;
+                ByteBuffer byteBuffer2 = ((b) obj).f15387e;
                 if (byteBuffer != null) {
                     if (byteBuffer.equals(byteBuffer2)) {
                         return true;
@@ -38,8 +38,8 @@ public final class b extends a {
     }
 
     public final int hashCode() {
-        e2.q(re.a.b(f13979r, this, this));
-        ByteBuffer byteBuffer = this.e;
+        e2.q(re.a.b(f15389r, this, this));
+        ByteBuffer byteBuffer = this.f15387e;
         if (byteBuffer != null) {
             return byteBuffer.hashCode();
         }

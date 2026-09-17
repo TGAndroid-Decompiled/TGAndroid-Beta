@@ -1,68 +1,48 @@
 package hg;
 
-import android.app.Activity;
-import android.graphics.Canvas;
-import android.graphics.drawable.Drawable;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.ActionBar.j6;
-import org.telegram.ui.Components.EditTextBoldCursor;
-import org.telegram.ui.Components.f5;
-import org.telegram.ui.Components.m6;
-import org.telegram.ui.Components.qr;
-public final class b1 extends EditTextBoldCursor {
-    public final f5 f10231b;
-    public int f10232c;
-    public final m6 d;
-    public final e1 e;
+import bi.c3;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.MessagesStorage;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class b1 implements Runnable {
+    public final String f11001a;
+    public final String f11002b;
+    public final MessagesController f11003c;
+    public final MessagesStorage d;
+    public final k1 f11004e;
 
-    public b1(e1 e1Var, Activity activity) {
-        super(activity);
-        this.e = e1Var;
-        this.f10231b = new f5(this);
-        m6 m6Var = new m6(false, true, true, false);
-        this.d = m6Var;
-        m6Var.k(0.2f, 160L, qr.h);
-        m6Var.t(AndroidUtilities.dp(15.33f));
-        m6Var.setCallback(this);
-        m6Var.f26067b = 5;
+    public b1(k1 k1Var, String str, String str2, MessagesController messagesController, MessagesStorage messagesStorage) {
+        this.f11004e = k1Var;
+        this.f11001a = str;
+        this.f11002b = str2;
+        this.f11003c = messagesController;
+        this.d = messagesStorage;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        int i10;
-        super.dispatchDraw(canvas);
-        if (this.f10232c < 0) {
-            i10 = j6.f19082p7;
-        } else {
-            i10 = j6.P5;
-        }
-        int a2 = this.f10231b.a(j6.v0(i10, this.e.getResourceProvider()), false);
-        m6 m6Var = this.d;
-        m6Var.r(a2);
-        m6Var.setBounds(getScrollX(), 0, getWidth() + getScrollX(), getHeight());
-        m6Var.draw(canvas);
-    }
-
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-        super.onTextChanged(charSequence, i10, i11, i12);
-        m6 m6Var = this.d;
-        if (m6Var != null) {
-            this.f10232c = 96 - charSequence.length();
-            m6Var.b();
-            String str = "";
-            if (this.f10232c <= 12) {
-                str = "" + this.f10232c;
+    public final void run() {
+        k1 k1Var = this.f11004e;
+        if (k1Var.f11186y0 == this) {
+            k1Var.f11186y0 = null;
+            TLRPC.User user = k1Var.f11182w0;
+            if (user == null && !k1Var.f11180v0) {
+                String str = this.f11002b;
+                k1Var.f11173q0 = str;
+                MessagesController messagesController = this.f11003c;
+                TLObject userOrChat = messagesController.getUserOrChat(str);
+                if (userOrChat instanceof TLRPC.User) {
+                    k1Var.R((TLRPC.User) userOrChat);
+                    return;
+                }
+                TLRPC.TL_contacts_resolveUsername tL_contacts_resolveUsername = new TLRPC.TL_contacts_resolveUsername();
+                tL_contacts_resolveUsername.username = k1Var.f11173q0;
+                k1Var.f11178t0 = ConnectionsManager.getInstance(k1Var.f11161f).sendRequest(tL_contacts_resolveUsername, new c3(this, str, messagesController, this.d, 2));
+            } else if (k1Var.f11180v0) {
+            } else {
+                k1Var.T(true, user, this.f11001a, "");
             }
-            m6Var.q(str, true, true);
         }
-    }
-
-    @Override
-    public final boolean verifyDrawable(Drawable drawable) {
-        if (drawable != this.d && !super.verifyDrawable(drawable)) {
-            return false;
-        }
-        return true;
     }
 }
