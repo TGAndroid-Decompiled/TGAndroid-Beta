@@ -18,13 +18,13 @@ public final class si implements Runnable {
     public final void run() {
         switch (this.f19037a) {
             case 0:
-                SendMessagesHelper.u(this.f19038b, this.f19039c, this.d);
+                this.f19038b.lambda$sendMessage$11(this.f19039c, this.d);
                 return;
             case 1:
-                SendMessagesHelper.k1(this.f19038b, this.f19039c, this.d);
+                this.f19038b.lambda$performSendMessageRequestMulti$69(this.f19039c, this.d);
                 return;
             default:
-                SendMessagesHelper.R0(this.f19038b, this.f19039c, this.d);
+                this.f19038b.lambda$performSendMessageRequest$97(this.f19039c, this.d);
                 return;
         }
     }

@@ -152,10 +152,9 @@ public final class i0 implements j61, ih.i, j9, a2, OnFailureListener, q9.d, OnC
         int i19;
         TLRPC.ChatParticipants chatParticipants;
         ArrayList<TLRPC.ChatParticipant> arrayList;
-        int i20;
         f6 f6Var9;
         float f11;
-        int i21 = i10;
+        int i20 = i10;
         switch (this.f598a) {
             case 10:
                 ba baVar = (ba) this.f599b;
@@ -166,18 +165,18 @@ public final class i0 implements j61, ih.i, j9, a2, OnFailureListener, q9.d, OnC
                 ArrayList arrayList3 = baVar.f6986c;
                 HashMap hashMap = baVar.d;
                 ia iaVar = baVar.W;
-                if (i21 >= 0 && i21 < arrayList2.size()) {
-                    m9 m9Var = (m9) arrayList2.get(i21);
-                    int i22 = m9Var.f44099a;
-                    int i23 = 0;
-                    if (i22 == 3) {
+                if (i20 >= 0 && i20 < arrayList2.size()) {
+                    m9 m9Var = (m9) arrayList2.get(i20);
+                    int i21 = m9Var.f44099a;
+                    int i22 = 0;
+                    if (i21 == 3) {
                         if (m9Var.f7684n && iaVar.F) {
-                            i20 = ((f3) iaVar).currentAccount;
+                            int i23 = ((f3) iaVar).currentAccount;
                             boolean z11 = iaVar.K;
                             TLRPC.InputPeer inputPeer = iaVar.f7420c;
                             p9 p9Var = new p9(baVar, 0);
                             f6Var9 = ((f3) iaVar).resourcesProvider;
-                            new h9(context, i20, z11, inputPeer, p9Var, f6Var9).show();
+                            new h9(context, i23, z11, inputPeer, p9Var, f6Var9).show();
                             return;
                         }
                         int i24 = m9Var.f7679i;
@@ -266,9 +265,9 @@ public final class i0 implements j61, ih.i, j9, a2, OnFailureListener, q9.d, OnC
                                         ArrayList arrayList4 = (ArrayList) hashMap.get(Long.valueOf(j3));
                                         if (arrayList4 != null) {
                                             int size = arrayList4.size();
-                                            while (i23 < size) {
-                                                Object obj = arrayList4.get(i23);
-                                                i23++;
+                                            while (i22 < size) {
+                                                Object obj = arrayList4.get(i22);
+                                                i22++;
                                                 iVar.k(Boolean.FALSE, ((Long) obj).longValue());
                                             }
                                         }
@@ -322,7 +321,7 @@ public final class i0 implements j61, ih.i, j9, a2, OnFailureListener, q9.d, OnC
                             t9Var.K = true;
                             return;
                         }
-                    } else if (i22 == 7) {
+                    } else if (i21 == 7) {
                         if (view instanceof r8) {
                             r8 r8Var = (r8) view;
                             r8Var.setChecked(!r8Var.b());
@@ -406,7 +405,7 @@ public final class i0 implements j61, ih.i, j9, a2, OnFailureListener, q9.d, OnC
                             }
                         }
                         return;
-                    } else if (i22 == 9) {
+                    } else if (i21 == 9) {
                         int i30 = m9Var.f7687q;
                         if (i30 == 0) {
                             ka kaVar = iaVar.f7421c0;
@@ -460,7 +459,7 @@ public final class i0 implements j61, ih.i, j9, a2, OnFailureListener, q9.d, OnC
             default:
                 org.telegram.ui.i4 i4Var = (org.telegram.ui.i4) this.f599b;
                 m3 m3Var = (m3) this.f600c;
-                if (i4Var.K == null || i21 - 1 >= 0) {
+                if (i4Var.K == null || i20 - 1 >= 0) {
                     q9 q9Var = i4Var.O0;
                     if (q9Var != null) {
                         if (q9Var.y()) {
@@ -490,8 +489,8 @@ public final class i0 implements j61, ih.i, j9, a2, OnFailureListener, q9.d, OnC
                             return;
                         }
                         return;
-                    } else if (i21 >= 0 && i21 < adapter.d.size()) {
-                        TL_iv.PageBlock pageBlock = (TL_iv.PageBlock) adapter.d.get(i21);
+                    } else if (i20 >= 0 && i20 < adapter.d.size()) {
+                        TL_iv.PageBlock pageBlock = (TL_iv.PageBlock) adapter.d.get(i20);
                         TL_iv.PageBlock z13 = org.telegram.ui.i4.z(pageBlock);
                         if (z13 instanceof w3) {
                             z13 = ((w3) z13).f41781b;
@@ -526,10 +525,10 @@ public final class i0 implements j61, ih.i, j9, a2, OnFailureListener, q9.d, OnC
                                     m1Var.invalidate();
                                     if (abs != 0) {
                                         if (pageblockdetails.open) {
-                                            adapter.s(i21 + 1, abs);
+                                            adapter.s(i20 + 1, abs);
                                             return;
                                         } else {
-                                            adapter.t(i21 + 1, abs);
+                                            adapter.t(i20 + 1, abs);
                                             return;
                                         }
                                     }

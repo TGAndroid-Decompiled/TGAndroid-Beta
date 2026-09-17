@@ -15,10 +15,10 @@ public final class e2 implements Runnable {
                 FactCheckController.f(this.f17554b);
                 return;
             case 1:
-                this.f17554b.lambda$saveDialogFilter$73();
+                MessagesStorage.r(this.f17554b);
                 return;
             case 2:
-                this.f17554b.lambda$clearLocalDatabase$43();
+                MessagesStorage.s2(this.f17554b);
                 return;
             case 3:
                 this.f17554b.lambda$fixNotificationSettings$9();
@@ -36,7 +36,7 @@ public final class e2 implements Runnable {
                 this.f17554b.lambda$openDatabase$1();
                 return;
             case 8:
-                this.f17554b.lambda$openDatabase$2();
+                MessagesStorage.u3(this.f17554b);
                 return;
             case 9:
                 this.f17554b.lambda$updateFiltersReadCounter$119();
@@ -69,13 +69,13 @@ public final class e2 implements Runnable {
                 this.f17554b.lambda$deleteDialog$89();
                 return;
             case 19:
-                this.f17554b.lambda$loadDialogFilters$67();
+                MessagesStorage.z(this.f17554b);
                 return;
             case 20:
-                this.f17554b.lambda$clearSentMedia$163();
+                MessagesStorage.r0(this.f17554b);
                 return;
             case 21:
-                this.f17554b.lambda$fullReset$63();
+                MessagesStorage.x(this.f17554b);
                 return;
             case 22:
                 this.f17554b.lambda$loadPendingTasks$33();

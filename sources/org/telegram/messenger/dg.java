@@ -18,10 +18,10 @@ public final class dg implements Runnable {
     public final void run() {
         switch (this.f17515a) {
             case 0:
-                this.f17516b.lambda$setDialogsPinned$252(this.f17517c, this.d);
+                MessagesStorage.Q3(this.f17516b, this.f17517c, this.d);
                 return;
             default:
-                this.f17516b.lambda$loadTopics$50(this.f17517c, this.d);
+                MessagesStorage.F(this.f17516b, this.f17517c, this.d);
                 return;
         }
     }

@@ -26,10 +26,10 @@ public final class e implements Runnable {
                 DispatchQueuePoolBackground.b(this.f17548b);
                 return;
             case 4:
-                MessagesStorage.lambda$getWallpapers$80(this.f17548b);
+                MessagesStorage.d2(this.f17548b);
                 return;
             default:
-                MessagesStorage.lambda$updateWidgets$165(this.f17548b);
+                MessagesStorage.c4(this.f17548b);
                 return;
         }
     }

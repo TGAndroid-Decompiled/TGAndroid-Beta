@@ -18,10 +18,10 @@ public final class sj implements Runnable {
     public final void run() {
         switch (this.f19040a) {
             case 0:
-                SendMessagesHelper.M0(this.f19041b, this.f19042c, this.d);
+                this.f19041b.lambda$sendNotificationCallback$28(this.f19042c, this.d);
                 return;
             default:
-                SendMessagesHelper.D1(this.f19041b, this.f19042c, this.d);
+                this.f19041b.lambda$sendCallback$38(this.f19042c, this.d);
                 return;
         }
     }

@@ -16,10 +16,10 @@ public final class r5 implements Runnable {
     public final void run() {
         switch (this.f18899a) {
             case 0:
-                this.f18900b.lambda$loadSharingLocations$14(this.f18901c);
+                LocationController.E(this.f18900b, this.f18901c);
                 return;
             default:
-                this.f18900b.lambda$loadSharingLocations$15(this.f18901c);
+                LocationController.i(this.f18900b, this.f18901c);
                 return;
         }
     }

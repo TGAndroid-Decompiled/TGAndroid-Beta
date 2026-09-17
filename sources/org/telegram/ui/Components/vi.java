@@ -2034,10 +2034,6 @@ public class vi extends org.telegram.ui.ActionBar.f3 implements NotificationCent
         hhVar.run();
     }
 
-    public static void u(vi viVar, di.f4 f4Var) {
-        viVar.containerView.removeView(f4Var);
-    }
-
     public static void v(vi viVar, org.telegram.ui.ActionBar.f6 f6Var, View view) {
         org.telegram.ui.ActionBar.n2 n2Var;
         int i10;
